@@ -4,67 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC2CDC001DF
-	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 08:51:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8D4FC00528
+	for <intel-xe@archiver.kernel.org>; Fri,  4 Aug 2023 09:33:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B31008953E;
-	Fri,  4 Aug 2023 08:50:58 +0000 (UTC)
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com
- [IPv6:2a00:1450:4864:20::62c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D5E0896EC
- for <intel-xe@lists.freedesktop.org>; Fri,  4 Aug 2023 08:50:41 +0000 (UTC)
-Received: by mail-ej1-x62c.google.com with SMTP id
- a640c23a62f3a-94ea38c90ccso49318666b.1
- for <intel-xe@lists.freedesktop.org>; Fri, 04 Aug 2023 01:50:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ffwll.ch; s=google; t=1691139040; x=1691743840;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date:from:to
- :cc:subject:date:message-id:reply-to;
- bh=HA8dbKkV7nV4nxCBGGCJH4RgKZVHt3H6M9C/kpJrdcg=;
- b=fXpQvO2AkzkSySccabIQDFNO5YBZwEroMK29XNhDFjayW3ZVYzYq00PMqz4Yld9RTH
- W4Qdj/Y2M7TNm7rGNrbT2byCSSHob9O9acm7FlUdU7eWAhylL1C+Hz/KCXd+xkJ7drfe
- FrAstohgooW3ESY84uODVH40yIoxllbCOb1MM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1691139040; x=1691743840;
- h=in-reply-to:content-transfer-encoding:content-disposition
- :mime-version:references:message-id:subject:cc:to:from:date
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=HA8dbKkV7nV4nxCBGGCJH4RgKZVHt3H6M9C/kpJrdcg=;
- b=GAb4uYHfpzgcNkkb6b8xeabYDSvKGwVXefNXOCfRbl/ehaFqqyhkFVVdz15FI20Qfr
- 4x9HG1nE5HhGnHhxMRc5HhJ4Fpkt/ExiCvB7c9XukC9P5U9R+MaS4WSEi4+BWQzs7d+i
- nwoKB0ZatmJaSXORhDTjW2u85+HDSwA70BrbcH0tpSA8AxriL7YXfDzKOTAiCh/gW+4u
- IsB8/cr5wF9n3jJcr3/gkNXV0/SAVC2aqC8f7+1VUBSYwQfw4YE2eUKfJGR/nhwDW0Pr
- YJ4e3cYXXEY8Yh7PmuivOZIUpOmkv6834Ex6cSxowVbqRKy4TKbSQg4KHprXCR63PzpS
- pQUA==
-X-Gm-Message-State: AOJu0YyBjA7SGCrhNv5E6n874erSG5WEx8/M5tk5W3PsuK+z0zX18DjK
- C53bZFPl1V07fowF3B/2lagSIA==
-X-Google-Smtp-Source: AGHT+IFS6fOk9WopnXlbIKLDAm0stoGlfbO8InvtypDnWiKgXkVyalJBk0y2RmFSFd6Hx0xiORvgUA==
-X-Received: by 2002:a17:906:2d3:b0:99c:adfb:713 with SMTP id
- 19-20020a17090602d300b0099cadfb0713mr119454ejk.5.1691139039641; 
- Fri, 04 Aug 2023 01:50:39 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:57f4:0:efd0:b9e5:5ae6:c2fa])
- by smtp.gmail.com with ESMTPSA id
- lt1-20020a170906fa8100b009934707378fsm987667ejb.87.2023.08.04.01.50.38
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 04 Aug 2023 01:50:38 -0700 (PDT)
-Date: Fri, 4 Aug 2023 10:50:36 +0200
-From: Daniel Vetter <daniel@ffwll.ch>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <ZMy73BrH55NGq6Ba@phenom.ffwll.local>
-References: <20230801205103.627779-1-matthew.brost@intel.com>
- <20230801205103.627779-5-matthew.brost@intel.com>
- <efabdbaf-4f38-ae62-3d4e-da5660558886@amd.com>
- <CAKMK7uEdyV+Swtk50KqYUeCr5sOAceT_asB69_Ynz=Nx_z+HkQ@mail.gmail.com>
- <88b40106-e24f-e286-c3a3-363a6b2462ee@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BE4210E6C4;
+	Fri,  4 Aug 2023 09:33:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3974F10E143;
+ Fri,  4 Aug 2023 09:33:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1691141610; x=1722677610;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=JvFrMzhhDrbBL4Q+45OunweAz3Dy/Or5e1XCeyH8IoQ=;
+ b=TGGVYJA+kXZFaclgmmp3Vqnt/NiReY/eMbitjVwlsClttttSLm2Y1m3g
+ ctaHU3cs96EACjIJz3KKmGpbEWPtBy9WKPoXeFPuZqbK31tGwxBbTlr4a
+ 8y1KUvBzJVjqtxiS6DBt5dbKwKSfeponDCx4HdaaaLmfhW9jIbMM3iOfN
+ xT2ZEmTwlszjf3RF1453XXmHIX9qpTHFxP42maC8eh9oPGD0A2HKLvbZ/
+ Ziss8UD9m7ViYhZkCTdEEgkuNamAtW/mj5Ga1oV5u4nE1AngkD5GyWdnl
+ oOmzoT+XW7m3qYdX3N9h4HAHXELshDOl/xaitHrgxp7IA8cBg5EOomCYm w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="436435567"
+X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="436435567"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2023 02:33:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10791"; a="765038214"
+X-IronPort-AV: E=Sophos;i="6.01,254,1684825200"; d="scan'208";a="765038214"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.4.52])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Aug 2023 02:33:27 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: Rae Moar <rmoar@google.com>
+Date: Fri, 04 Aug 2023 11:33:25 +0200
+Message-ID: <1827168.QCnGb9OGeP@jkrzyszt-mobl2.ger.corp.intel.com>
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+In-Reply-To: <CA+GJov5G_JWJM3Rw14O-CTioEoB_aTf4SyM-G+tCKEP_txc8yw@mail.gmail.com>
+References: <20230731141021.2854827-5-janusz.krzysztofik@linux.intel.com>
+ <20230731141021.2854827-6-janusz.krzysztofik@linux.intel.com>
+ <CA+GJov5G_JWJM3Rw14O-CTioEoB_aTf4SyM-G+tCKEP_txc8yw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <88b40106-e24f-e286-c3a3-363a6b2462ee@amd.com>
-X-Operating-System: Linux phenom 6.3.0-2-amd64 
-Subject: Re: [Intel-xe] [PATCH 4/8] drm/sched: Add generic scheduler message
- interface
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [Intel-xe] [PATCH v3 1/3] kunit: Report the count of test
+ suites in a module
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,261 +61,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: sarah.walker@imgtec.com, ketil.johnsen@arm.com, Liviu.Dudau@arm.com,
- frank.binns@imgtec.com, dri-devel@lists.freedesktop.org, luben.tuikov@amd.com,
- lina@asahilina.net, donald.robson@imgtec.com, Daniel Vetter <daniel@ffwll.ch>,
- boris.brezillon@collabora.com, robdclark@chromium.org, airlied@gmail.com,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: David Gow <davidgow@google.com>, linux-kernel@vger.kernel.org,
+ igt-dev@lists.freedesktop.org, Brendan Higgins <brendan.higgins@linux.dev>,
+ linux-kselftest@vger.kernel.org,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, kunit-dev@googlegroups.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 03, 2023 at 11:35:30AM +0200, Christian König wrote:
-> Am 03.08.23 um 10:58 schrieb Daniel Vetter:
-> > On Thu, 3 Aug 2023 at 10:53, Christian König <christian.koenig@amd.com> wrote:
-> > > Am 01.08.23 um 22:50 schrieb Matthew Brost:
-> > > > Add generic schedule message interface which sends messages to backend
-> > > > from the drm_gpu_scheduler main submission thread. The idea is some of
-> > > > these messages modify some state in drm_sched_entity which is also
-> > > > modified during submission. By scheduling these messages and submission
-> > > > in the same thread their is not race changing states in
-> > > > drm_sched_entity.
-> > > > 
-> > > > This interface will be used in XE, new Intel GPU driver, to cleanup,
-> > > > suspend, resume, and change scheduling properties of a drm_sched_entity.
-> > > > 
-> > > > The interface is designed to be generic and extendable with only the
-> > > > backend understanding the messages.
-> > > I'm still extremely frowned on this.
-> > > 
-> > > If you need this functionality then let the drivers decide which
-> > > runqueue the scheduler should use.
-> > > 
-> > > When you then create a single threaded runqueue you can just submit work
-> > > to it and serialize this with the scheduler work.
-> > > 
-> > > This way we wouldn't duplicate this core kernel function inside the
-> > > scheduler.
-> > Yeah that's essentially the design we picked for the tdr workers,
-> > where some drivers have requirements that all tdr work must be done on
-> > the same thread (because of cross-engine coordination issues). But
-> > that would require that we rework the scheduler as a pile of
-> > self-submitting work items, and I'm not sure that actually fits all
-> > that well into the core workqueue interfaces either.
-> 
-> There were already patches floating around which did exactly that.
-> 
-> Last time I checked those were actually looking pretty good.
-> 
-> Additional to message passing advantage the real big issue with the
-> scheduler and 1 to 1 mapping is that we create a kernel thread for each
-> instance, which results in tons on overhead.
-> 
-> Just using a work item which is submitted to a work queue completely avoids
-> that.
+Hi Rae,
 
-Hm I should have read the entire series first, since that does the
-conversion still. Apologies for the confusion, and yeah we should be able
-to just submit other work to the same wq with the first patch? And so
-hand-rolling this infra here isn't needed at all?
+On Thursday, 3 August 2023 22:57:43 CEST Rae Moar wrote:
+> On Mon, Jul 31, 2023 at 10:12=E2=80=AFAM Janusz Krzysztofik
+> <janusz.krzysztofik@linux.intel.com> wrote:
+> >
+> > According to KTAP specification[1], results should always start from a
+> > header that provides a TAP protocol version, followed by a test plan wi=
+th
+> > a count of items to be executed.  That pattern should be followed at ea=
+ch
+> > nesting level.  In the current implementation of the top-most, i.e., te=
+st
+> > suite level, those rules apply only for test suites built into the kern=
+el,
+> > executed and reported on boot.  Results submitted to dmesg from kunit t=
+est
+> > modules loaded later are missing those top-level headers.
+> >
+> > As a consequence, if a kunit test module provides more than one test su=
+ite
+> > then, without the top level test plan, external tools that are parsing
+> > dmesg for kunit test output are not able to tell how many test suites
+> > should be expected and whether to continue parsing after complete output
+> > from the first test suite is collected.
+> >
+> > Submit the top-level headers also from the kunit test module notifier
+> > initialization callback.
+> >
+> > [1] https://docs.kernel.org/dev-tools/ktap.html#
+> >
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> > ---
+>=20
+> Hi!
+>=20
+> I think this is a really great idea to improve the KTAP compatibility
+> for module output. I do agree with Mauro and I wonder if this could be
+> replaced with using kunit_exec_run_tests. However, if the output of
+> 1..0 for a module with no KUnit tests run is not wanted,=20
 
-Or what am I missing?
+I do believe we really don't want that.  As soon as kunit framework registe=
+rs=20
+its notifier callbacks, those callbacks are executed by generic module=20
+handling code on load / unload of every module, not only those providing ku=
+nit=20
+tests.  If our module initialization callback called unmodified=20
+kunit_exec_run_tests() that deliberately prints these two lines=20
+unconditionally:
 
-> Regards,
-> Christian.
-> 
-> > 
-> > Worst case I think this isn't a dead-end and can be refactored to
-> > internally use the workqueue services, with the new functions here
-> > just being dumb wrappers until everyone is converted over. So it
-> > doesn't look like an expensive mistake, if it turns out to be a
-> > mistake.
-> > -Daniel
-> > 
-> > 
-> > > Regards,
-> > > Christian.
-> > > 
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >    drivers/gpu/drm/scheduler/sched_main.c | 52 +++++++++++++++++++++++++-
-> > > >    include/drm/gpu_scheduler.h            | 29 +++++++++++++-
-> > > >    2 files changed, 78 insertions(+), 3 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > index 2597fb298733..84821a124ca2 100644
-> > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > @@ -1049,6 +1049,49 @@ drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
-> > > >    }
-> > > >    EXPORT_SYMBOL(drm_sched_pick_best);
-> > > > 
-> > > > +/**
-> > > > + * drm_sched_add_msg - add scheduler message
-> > > > + *
-> > > > + * @sched: scheduler instance
-> > > > + * @msg: message to be added
-> > > > + *
-> > > > + * Can and will pass an jobs waiting on dependencies or in a runnable queue.
-> > > > + * Messages processing will stop if schedule run wq is stopped and resume when
-> > > > + * run wq is started.
-> > > > + */
-> > > > +void drm_sched_add_msg(struct drm_gpu_scheduler *sched,
-> > > > +                    struct drm_sched_msg *msg)
-> > > > +{
-> > > > +     spin_lock(&sched->job_list_lock);
-> > > > +     list_add_tail(&msg->link, &sched->msgs);
-> > > > +     spin_unlock(&sched->job_list_lock);
-> > > > +
-> > > > +     drm_sched_run_wq_queue(sched);
-> > > > +}
-> > > > +EXPORT_SYMBOL(drm_sched_add_msg);
-> > > > +
-> > > > +/**
-> > > > + * drm_sched_get_msg - get scheduler message
-> > > > + *
-> > > > + * @sched: scheduler instance
-> > > > + *
-> > > > + * Returns NULL or message
-> > > > + */
-> > > > +static struct drm_sched_msg *
-> > > > +drm_sched_get_msg(struct drm_gpu_scheduler *sched)
-> > > > +{
-> > > > +     struct drm_sched_msg *msg;
-> > > > +
-> > > > +     spin_lock(&sched->job_list_lock);
-> > > > +     msg = list_first_entry_or_null(&sched->msgs,
-> > > > +                                    struct drm_sched_msg, link);
-> > > > +     if (msg)
-> > > > +             list_del(&msg->link);
-> > > > +     spin_unlock(&sched->job_list_lock);
-> > > > +
-> > > > +     return msg;
-> > > > +}
-> > > > +
-> > > >    /**
-> > > >     * drm_sched_main - main scheduler thread
-> > > >     *
-> > > > @@ -1060,6 +1103,7 @@ static void drm_sched_main(struct work_struct *w)
-> > > >                container_of(w, struct drm_gpu_scheduler, work_run);
-> > > >        struct drm_sched_entity *entity;
-> > > >        struct drm_sched_job *cleanup_job;
-> > > > +     struct drm_sched_msg *msg;
-> > > >        int r;
-> > > > 
-> > > >        if (READ_ONCE(sched->pause_run_wq))
-> > > > @@ -1067,12 +1111,15 @@ static void drm_sched_main(struct work_struct *w)
-> > > > 
-> > > >        cleanup_job = drm_sched_get_cleanup_job(sched);
-> > > >        entity = drm_sched_select_entity(sched);
-> > > > +     msg = drm_sched_get_msg(sched);
-> > > > 
-> > > > -     if (!entity && !cleanup_job)
-> > > > +     if (!entity && !cleanup_job && !msg)
-> > > >                return; /* No more work */
-> > > > 
-> > > >        if (cleanup_job)
-> > > >                sched->ops->free_job(cleanup_job);
-> > > > +     if (msg)
-> > > > +             sched->ops->process_msg(msg);
-> > > > 
-> > > >        if (entity) {
-> > > >                struct dma_fence *fence;
-> > > > @@ -1082,7 +1129,7 @@ static void drm_sched_main(struct work_struct *w)
-> > > >                sched_job = drm_sched_entity_pop_job(entity);
-> > > >                if (!sched_job) {
-> > > >                        complete_all(&entity->entity_idle);
-> > > > -                     if (!cleanup_job)
-> > > > +                     if (!cleanup_job && !msg)
-> > > >                                return; /* No more work */
-> > > >                        goto again;
-> > > >                }
-> > > > @@ -1177,6 +1224,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
-> > > > 
-> > > >        init_waitqueue_head(&sched->job_scheduled);
-> > > >        INIT_LIST_HEAD(&sched->pending_list);
-> > > > +     INIT_LIST_HEAD(&sched->msgs);
-> > > >        spin_lock_init(&sched->job_list_lock);
-> > > >        atomic_set(&sched->hw_rq_count, 0);
-> > > >        INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
-> > > > diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> > > > index df1993dd44ae..267bd060d178 100644
-> > > > --- a/include/drm/gpu_scheduler.h
-> > > > +++ b/include/drm/gpu_scheduler.h
-> > > > @@ -394,6 +394,23 @@ enum drm_gpu_sched_stat {
-> > > >        DRM_GPU_SCHED_STAT_ENODEV,
-> > > >    };
-> > > > 
-> > > > +/**
-> > > > + * struct drm_sched_msg - an in-band (relative to GPU scheduler run queue)
-> > > > + * message
-> > > > + *
-> > > > + * Generic enough for backend defined messages, backend can expand if needed.
-> > > > + */
-> > > > +struct drm_sched_msg {
-> > > > +     /** @link: list link into the gpu scheduler list of messages */
-> > > > +     struct list_head                link;
-> > > > +     /**
-> > > > +      * @private_data: opaque pointer to message private data (backend defined)
-> > > > +      */
-> > > > +     void                            *private_data;
-> > > > +     /** @opcode: opcode of message (backend defined) */
-> > > > +     unsigned int                    opcode;
-> > > > +};
-> > > > +
-> > > >    /**
-> > > >     * struct drm_sched_backend_ops - Define the backend operations
-> > > >     *  called by the scheduler
-> > > > @@ -471,6 +488,12 @@ struct drm_sched_backend_ops {
-> > > >             * and it's time to clean it up.
-> > > >         */
-> > > >        void (*free_job)(struct drm_sched_job *sched_job);
-> > > > +
-> > > > +     /**
-> > > > +      * @process_msg: Process a message. Allowed to block, it is this
-> > > > +      * function's responsibility to free message if dynamically allocated.
-> > > > +      */
-> > > > +     void (*process_msg)(struct drm_sched_msg *msg);
-> > > >    };
-> > > > 
-> > > >    /**
-> > > > @@ -482,6 +505,7 @@ struct drm_sched_backend_ops {
-> > > >     * @timeout: the time after which a job is removed from the scheduler.
-> > > >     * @name: name of the ring for which this scheduler is being used.
-> > > >     * @sched_rq: priority wise array of run queues.
-> > > > + * @msgs: list of messages to be processed in @work_run
-> > > >     * @job_scheduled: once @drm_sched_entity_do_release is called the scheduler
-> > > >     *                 waits on this wait queue until all the scheduled jobs are
-> > > >     *                 finished.
-> > > > @@ -489,7 +513,7 @@ struct drm_sched_backend_ops {
-> > > >     * @job_id_count: used to assign unique id to the each job.
-> > > >     * @run_wq: workqueue used to queue @work_run
-> > > >     * @timeout_wq: workqueue used to queue @work_tdr
-> > > > - * @work_run: schedules jobs and cleans up entities
-> > > > + * @work_run: schedules jobs, cleans up jobs, and processes messages
-> > > >     * @work_tdr: schedules a delayed call to @drm_sched_job_timedout after the
-> > > >     *            timeout interval is over.
-> > > >     * @pending_list: the list of jobs which are currently in the job queue.
-> > > > @@ -513,6 +537,7 @@ struct drm_gpu_scheduler {
-> > > >        long                            timeout;
-> > > >        const char                      *name;
-> > > >        struct drm_sched_rq             sched_rq[DRM_SCHED_PRIORITY_COUNT];
-> > > > +     struct list_head                msgs;
-> > > >        wait_queue_head_t               job_scheduled;
-> > > >        atomic_t                        hw_rq_count;
-> > > >        atomic64_t                      job_id_count;
-> > > > @@ -566,6 +591,8 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
-> > > > 
-> > > >    void drm_sched_job_cleanup(struct drm_sched_job *job);
-> > > >    void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
-> > > > +void drm_sched_add_msg(struct drm_gpu_scheduler *sched,
-> > > > +                    struct drm_sched_msg *msg);
-> > > >    void drm_sched_run_wq_stop(struct drm_gpu_scheduler *sched);
-> > > >    void drm_sched_run_wq_start(struct drm_gpu_scheduler *sched);
-> > > >    void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad);
-> > 
-> 
+	KTAP version 1
+	1..n
 
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+then there would be a lot of unnecessary noise.
+
+To avoid that noise, I decided to teach the callback itself to display the=
+=20
+header with the number of test suits provided by the module before processi=
+ng=20
+them if there is at least one, and be silent otherwise.  But since both you=
+=20
+and Mauro think that kunit_exec_run_tests() should be reused, I can do that=
+ by=20
+moving that logic to kunit_exec_run_tests() and passing an additional flag=
+=20
+that controls that logic from kunit_module_init() to kunit_exec_run_tests()=
+=2E =20
+Would that approach be more acceptable?
+
+> I am ok with
+> this change as is.
+>=20
+> LGTM.
+>=20
+> Tested-by: Rae Moar <rmoar@google.com>
+
+Thank you for testing.
+
+Janusz
+
+>=20
+> -Rae
+>=20
+> >  lib/kunit/test.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> >
+> > diff --git a/lib/kunit/test.c b/lib/kunit/test.c
+> > index 84e4666555c94..a29ca1acc4d81 100644
+> > --- a/lib/kunit/test.c
+> > +++ b/lib/kunit/test.c
+> > @@ -729,6 +729,11 @@ EXPORT_SYMBOL_GPL(__kunit_test_suites_exit);
+> >  #ifdef CONFIG_MODULES
+> >  static void kunit_module_init(struct module *mod)
+> >  {
+> > +       if (mod->num_kunit_suites > 0) {
+> > +               pr_info("KTAP version 1\n");
+> > +               pr_info("1..%d\n", mod->num_kunit_suites);
+> > +       }
+> > +
+> >         __kunit_test_suites_init(mod->kunit_suites, mod-
+>num_kunit_suites);
+> >  }
+> >
+> > --
+> > 2.41.0
+> >
+> > --
+> > You received this message because you are subscribed to the Google Grou=
+ps=20
+"KUnit Development" group.
+> > To unsubscribe from this group and stop receiving emails from it, send =
+an=20
+email to kunit-dev+unsubscribe@googlegroups.com.
+> > To view this discussion on the web visit https://groups.google.com/d/
+msgid/kunit-dev/20230731141021.2854827-6-janusz.krzysztofik%40linux.intel.c=
+om.
+>=20
+
+
+
+
