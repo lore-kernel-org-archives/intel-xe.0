@@ -4,122 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E7BFC04A6A
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Aug 2023 15:46:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BAFCC001DB
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Aug 2023 16:18:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0835110E1FA;
-	Mon,  7 Aug 2023 15:46:32 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6611510E1EE;
- Mon,  7 Aug 2023 15:46:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ACA2610E2A0;
+	Mon,  7 Aug 2023 16:18:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A702B10E297
+ for <intel-xe@lists.freedesktop.org>; Mon,  7 Aug 2023 16:17:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1691425078; x=1722961078;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=x2+66ggqwADhw5VT66Ur4VhnoTlCPfe1QpbXvg11grQ=;
+ b=fIXY021M+p8CNjiyVH5lTSRe3AmMqloWPd0E9rx3ZLWu4lgM02pq6wRl
+ X6f1OS5VIDNlO+Fhhuk2yBd0+OXVn4eohQWxfJKh0B0PDEBsPGra8dN6V
+ pFqhVPdGkEwoxjUvrzbBySc5kf8tMte+zWdqWUjohzJLHek6aqZuXF7kw
+ LKZhfFE7sz6LWIsgwwzSuJaG19myxqzFwerOPocbXi9AyrnDcvCtwHU19
+ M57ibsgGB5zJapypHXIs/1sQ/SyX6zMG0uF9YuUu5SJVx9k0ozhaME2oI
+ cO3gSJoP6xNZAnhlrkWhlz/w0tTeexSuui7XiIowcA5sbuZ+ZypkFOGKR A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="436917320"
+X-IronPort-AV: E=Sophos;i="6.01,262,1684825200"; d="scan'208";a="436917320"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Aug 2023 09:17:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="734126173"
+X-IronPort-AV: E=Sophos;i="6.01,262,1684825200"; d="scan'208";a="734126173"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga007.fm.intel.com with ESMTP; 07 Aug 2023 09:17:56 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Mon, 7 Aug 2023 09:17:56 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Mon, 7 Aug 2023 09:17:56 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Mon, 7 Aug 2023 09:17:56 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lIGCpE6QSFAj2BHk8jrOwSjZH2eq2NwgYTrTRm3ochFsyiWwe1Im2IyJZeasMRhCMhJA4QpvY2TprPmW7sksuhBfHIqGfJLuOBa/v6QArDFIEZntK+WpIUtI5rvJ+/js8SoGSR4S90ys+sjljLpoQglpGVLuXVXJ2h2V6XO1SpdlTUfxgRrjQ6QpcfTBxYftSjzwMtQDke7blYFZP/C0mcNgpMdd0FU2obtdAYKsUeBL72QptFWoZdh+Oo/v6C/W7Qoj3ULarZHAHbKVkRU8EXq8Tmed6I6iFITUQtzOf9ufVfnl+IZ3QkA1IL0/kDGVvgcMUArLU2oQvPffwMm0mw==
+ b=IgXMWTfe/v4E7jjpun4TwowvvV10bVJD1VedmRHAc0Ym+u6+xtneaaxwhgyWwMjG/EZSt1+xrfEyEmtIZNZpxoDelqCROa4JzCrUJgqNzxtlPVXBz93FwEbHK+oyi1Q5u+0PXoy6f3RR5co9iVuZc00O9go/3maVm4nalCwqLLHdAD0jwXuPdoZF91RVEUyqGY560JLKqg43vD6HXAh/6VK1bmAq9XCF8zNTFFvo7Q148qsySCWd0AX1oidCaHJZ562pCuGHwDJxkhJGVUTciwNAVesJpBHne9+ijhJqy91xt7MUzOirRg/sXomttQMJ++/40NE0z7KgQOJwO+n8yQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EegIVydY588PdDVI9gaaUitOn7IixRi6pNwkuC1FC6Q=;
- b=FZGMpKQq/G5ORZduHpuGRgLLTg326bsajcEidiM4fGrkAqHfq0D3XNbO6ifuO9iuRL+Y5Q/PQ1NAZwneTvxy42E1Q99ZH+OoGwyK93aFbZAFVhqL8IwEhAgQ9RW6Ec7GYq0azBSgT0CBED/u3IYiajmCoX6I1KwCUifXH2pfnCexYJiZUk/7I8QYaL8YNJNx5ALF+DFFthyuP1HNMdXpKDaxfGSaXxZX5cjliGr+w9SrixI7UjG6YAnFrco5x97UU30NBgGk9EKMjqHFectfWC6P553XCgD4re603xLPrN4hnZVquz+IrtVoYOs/OHe2byGerr2HF/97y5ZmQ/D9dw==
+ bh=uxpe/aKoQ+tJycvKk+2qUlZ5/VRjiwz+rry15Do8re4=;
+ b=jcbGJYd6UK+DvQjBOYoYIM7M/4zCUH2mvrrnkUuUebUTzBlvLA7G5nTeVVjtJiJANG4EwhhdIMOVpkwawSHmYJwNAHgsGB1bTrlMutp1yQCMtmyWHWlO7VQ9H5ZxzjOdUIBwp6G4pqljv4BafwgR5qKIl0aqnV+xP3DLHhrdkpbWx0tCxCmaAoq0CiM/FBW+87BdbgiS6yikETMB7Mq9ozlPrSUEywCo+XImi787NwZUf940wQ0bmzeCzbwj//qjE+0UbL+kCrK2Rn2Zy7nJgRWsyRuwOLe0e/B+9HzB+hZ8Hn9060KEAY8y1lQZYK0fuPKsGlMw1AHVN+vpPRQSGA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EegIVydY588PdDVI9gaaUitOn7IixRi6pNwkuC1FC6Q=;
- b=bP3BunkWU1yYQQGrU++UhFGftOTo4w9qImJHTcj8cr9GIKzvACUW8yW7Hp5f2IkH+kBzzbXSeYHBiGnJlNDhTObLlHX6oR/AtrRCLPqpioz5iJpUZUoSxQBLEUmalbJtTBIaMp/WtzNRnSqlfDD0Xg00/8IfrPFkP5LeLtl21FI=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by CH0PR12MB5092.namprd12.prod.outlook.com (2603:10b6:610:bf::16)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by PH7PR11MB7516.namprd11.prod.outlook.com (2603:10b6:510:275::7)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.26; Mon, 7 Aug
- 2023 15:46:20 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::3d:c14:667a:1c81]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::3d:c14:667a:1c81%4]) with mapi id 15.20.6652.026; Mon, 7 Aug 2023
- 15:46:19 +0000
-Message-ID: <b19bb89c-a814-2519-e037-ee1c33dce02f@amd.com>
-Date: Mon, 7 Aug 2023 17:46:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, Daniel Vetter <daniel@ffwll.ch>
-References: <20230801205103.627779-1-matthew.brost@intel.com>
- <20230801205103.627779-5-matthew.brost@intel.com>
- <efabdbaf-4f38-ae62-3d4e-da5660558886@amd.com>
- <CAKMK7uEdyV+Swtk50KqYUeCr5sOAceT_asB69_Ynz=Nx_z+HkQ@mail.gmail.com>
- <88b40106-e24f-e286-c3a3-363a6b2462ee@amd.com>
- <ZMy73BrH55NGq6Ba@phenom.ffwll.local>
- <ZM0HfRR8CczTLpao@DUT025-TGLU.fm.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <ZM0HfRR8CczTLpao@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: FR3P281CA0064.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:4b::12) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+ 2023 16:17:53 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::538f:8837:abce:4522]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::538f:8837:abce:4522%4]) with mapi id 15.20.6652.026; Mon, 7 Aug 2023
+ 16:17:53 +0000
+Date: Mon, 7 Aug 2023 16:16:48 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <ZNEY8D9eU/xh4wRY@DUT025-TGLU.fm.intel.com>
+References: <20230807130226.49777-2-matthew.auld@intel.com>
+ <ZNDxdJtc96V3tRij@DUT025-TGLU.fm.intel.com>
+ <1019a70e-cbbc-e6e7-28b0-39666e3e9a88@intel.com>
+ <ZNEEhcq8YTR0CbjO@DUT025-TGLU.fm.intel.com>
+ <8f6fc52a-addc-d1f8-e8c9-47bc8e6bcc41@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <8f6fc52a-addc-d1f8-e8c9-47bc8e6bcc41@intel.com>
+X-ClientProxiedBy: SJ0P220CA0009.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::25) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|CH0PR12MB5092:EE_
-X-MS-Office365-Filtering-Correlation-Id: fb2441eb-623c-4ac3-c32e-08db975d7198
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB7516:EE_
+X-MS-Office365-Filtering-Correlation-Id: 11e9216b-8816-4f1d-feb7-08db9761da86
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8temfhztPgtiU7ft6oiLL3GkhT0xrLPMNlrC0I//JvAkNVsdzxrOoMz9mH06abzrpcaSifemf505o0GNvOiAr7eoCrvwJyFqCEDlhFgNtsMfZXCLfEKjhoiJNPM2+tAiUBNqRD4TuR5Y61dLwtBnnHwgGUP790MsVSTw789t8GqYsQ+atRR3CE8GW4EvdgM4lse34/K3cEWorZR/qR6EJbvx9wwVZbZCMeJaqu0WIQG9jYkFmwVQ/zUFDVApMcyqrGZs9hM8f+B1I4uwmd5GXfnQU88stJ/tzsiT8g0mMdE4ziPdVmtsc9RD4smC1B0DJ2GVgIKTBlu8pr/5L3YQcppC0ai07orH/esbX2xKiF+5xVdnYUeZW6rFjyZ8OQUmLn3tUKCT30HyFY4z/qdgQxOHrktkJHu+nh7rECcI1VXuxRSVFKI8gNiJKDERheGVIQNBj68sJ+vDpyGjEtkgBcj3L1PxMSdknWSFM9U1yi9wxsinSmScyjp5FGcOATx38EiwWG+kIRfxkRnI9pG/WEwnYawRBnKBpA1zqbEOF20QZ5WGHU7+wMBsvF5Zf9VaLLhJBsJDi+EdcEkKMY++Qt0sZl3WYpPX7urmUHswqZNI/sg6ljcNJWIWOrlCOKmtwLynUmSld+H9SxAepuk8PycbffT1Q97pd1qrStwDT/E=
+X-Microsoft-Antispam-Message-Info: gt30jv2pfz3nnnHbQi9nIAhgtFzc9eSAFGzpRWdHIIP6AXBa6yFFYuH/4Mt6Gt9Luz8bEwS0Fr70Jl+YcrPu5zVw+XKJopdi7Nw0iCdLMeken679R8Q0a1LWvqTi+0SxtNXv/E9Qf2i0LxoqJsM/BFlz2N8wqRmIo/cs4zeuI/5cQGjOcS5RnH3ZmFtz/JYDxpXeVpXbezaTHuvehy6sPjaPydD5BmwuwGgwSPQd2ECPzC7Hwd9lgbynsK3yIMVHBtbgwN8qeFhIHvH3zQrWjowhaz8OKQdHEO+CjHaL4q3oeSva6lErR7JmYcdb1vX37QeQ38jAMWPzf0ik9pQ/zafy9RVRLeW1Bp7J5EcDRs7uHkaYB7jXadp4DA/vSMrORZe4SOTsCRLBzmmTQJ3Ef0cqhSCyRlEKa3jz0LDjBslxlPkuJO6djMR/y5YYqwxXKRQEX1zVn57ftr0ow2urzvLuRKEUYs70brAtQM3jTR6FBe67sdfi+5Dh0O18QBDIc4hL4gr2kdWIoRoejq51HvbKxqHy4VhdlDjZrx875Zw=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(4636009)(396003)(366004)(376002)(136003)(346002)(39860400002)(451199021)(186006)(1800799003)(2616005)(36756003)(966005)(6512007)(4326008)(316002)(86362001)(478600001)(110136005)(38100700002)(6666004)(66946007)(6486002)(66556008)(66476007)(31696002)(6506007)(41300700001)(15650500001)(8676002)(8936002)(2906002)(30864003)(83380400001)(7416002)(5660300002)(31686004)(41533002)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(376002)(366004)(136003)(39860400002)(396003)(451199021)(186006)(1800799003)(83380400001)(4326008)(38100700002)(6636002)(2906002)(5660300002)(316002)(6862004)(8936002)(8676002)(44832011)(66946007)(66556008)(66476007)(41300700001)(6512007)(966005)(86362001)(478600001)(82960400001)(6666004)(6486002)(6506007)(26005)(53546011);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WDFLT1VDVUNSUFQzQzVDTkNOV04zNlNXQnpKemFEUmt3UThPRG42cy92Rm1G?=
- =?utf-8?B?NkN2czBLU3NOeUJiLzg1cU1RYTVKMXdOSEhLQlZ0MEthcWhoakRWN29raDhP?=
- =?utf-8?B?MnY4N0hrbjZsWk45a1ozaWVWdW85RWpOS2tvVU43d0lHWXNEQXNmSWNKRHd1?=
- =?utf-8?B?dEYybW5temltTGFKUXlXOUxKdHIwbFVQeTMzLzZwZmtKQWdVdVNFTmFabEtR?=
- =?utf-8?B?c2gwTXJ1OTNpUFRobURGNkhCcjBCZTY4OWVuVnJ6c3hObW9SZ21WalBzd25p?=
- =?utf-8?B?dVRjOUdhbUM3eXJ1dnpDRGJxYzVBQzZLOUx2K1BMRGx6ZEdxSlgyc3hOUE9T?=
- =?utf-8?B?YmtmWHNsaEFudmw2K0ZSTUwzUW0rQjdTZmxBbzJFcE9oQUlKN3A1ME9scDVV?=
- =?utf-8?B?SzdTSEpDUUlsVkRaWHVHb0ljRi9LbG9LcVFRZ1M1SktOWlJoMW5qbC9uVzFl?=
- =?utf-8?B?d3VMVHg3OXJBcTlNTFMwTEdLQUVZRUx0bldBZEduZHN3dTBZaG5IUllSWXlq?=
- =?utf-8?B?Nm44QTduMCsvMThIekhXclVuTC9LbzdVcDFvUTYzNXFUTlM0d0NEUmdvNUVD?=
- =?utf-8?B?a1NKZXVyVTkxZitweDlaUjFiY3d3cFlZQlFQNDRXK2FhbmV2azMrcHdyZk1S?=
- =?utf-8?B?Q2E4Qk8rK0dRa2xqMTZlL05hNnpoQURUTXFyZWJWK2Nld3pJMXd6bDRoVDl1?=
- =?utf-8?B?eTM3c0lXSnl3TE9zUjd1eHdVQWkrSFJLVUExTEhBU0EzSmo4RmlOalBrK2Fq?=
- =?utf-8?B?allsQ0xkSldhU2F5N3Z6azdNMDdZTVR5UHNSY3RsNDdJbEN3MG5pZ256TkdC?=
- =?utf-8?B?UHlua0xaeFFJZ1dlRGxZbnVrMlJpdHJnZkh4ZWZ0a1NLeStuZVNHZUt0Q21I?=
- =?utf-8?B?T3VOeWpJeEh2andpS09QUE5yNFNIMlJiUVlHSWdLUGEvcFVUZHZLTFBqZ25S?=
- =?utf-8?B?eDVuZGdkZTY4aTZ3VGFpdkFvOUtEQjB5U1VUVnV5aEd4enVpRHppMUVPeExF?=
- =?utf-8?B?WEtta2Yva3ZYdEFpcS9aZElLWlZkUEMvUjVoODR2OEllVjJxZTdRY0Vsbll0?=
- =?utf-8?B?MkVHcmdwenJFVTVLYlkyaWN5alJkMGhaSDJhMmtVZjBQU3dYU3pwakhWQ29y?=
- =?utf-8?B?T1dzNWR6eE1hSTNlVmJaWTFqYzc0dE1FS2tPTy9YRy9QaEhHTk1nWnd2V0hL?=
- =?utf-8?B?VDFheUdqWGszVkdnVXlSWkIyeGxmVlBEQkc0THR1SDg4UXhCcVljQ3BrZlYv?=
- =?utf-8?B?c2o2VUIwYWhFQmpVTlFqSzQxLzkzNTNTbDloTDZyVHRqRUxTMUgzRzd3SGkw?=
- =?utf-8?B?T0swOFlFVlBMRWVLWVQ2NHM4K0puck4wcnJKUnU3N1FuTVhhRzdYMXhib1hT?=
- =?utf-8?B?UGkrZ0ZHRVdhMEZCeWQyUGpickczMFcyaE51Rnl6OVlkUmtUQ0tUaXcxYmwr?=
- =?utf-8?B?c3RFVngrNGxqckRBUld2U2haNC9jeVBqaXRhaFBFOUxsenU2aTFUcDVEejB0?=
- =?utf-8?B?c3dlN2VGQ3orYk56VXdBZXpUbFRxQWljYkhZWk1UNlhWcUQrSU5EalpTTUpY?=
- =?utf-8?B?NEcxSEJzeXBnRERGUSsvQ1JVQzc3ejVtcWRjYUlTREd3dVhPMysrZ1FhWXdu?=
- =?utf-8?B?aTlVWUVGSnFzWGJhTVhuc2h0KzBUSTNoRTVOZTZ4cEE4Yk1ZLzhRTlQrWTdY?=
- =?utf-8?B?cUZ2c25zTXVMQTl2RWVoSC9BUnJWYUlKOVo2TS82WmJHTGZ4bzRFUUR2NG81?=
- =?utf-8?B?ZW9xbWtPNWdiWTIvTGdxdDRzNHV4WS9qZGtHR1ZGRXMrRVJ0WXdLUy9tM1FE?=
- =?utf-8?B?U01yRTBUdDNLZ3lTZiszK1ByQnNtNmdKQ2t5OG0wNDZLOTJOK1V3T2pQSTFu?=
- =?utf-8?B?MjRVZzk0bVN6R1BSRFJsVlhBVkxFT200L3dMcEFNM0xuMlBPc08zLzBXbFpo?=
- =?utf-8?B?cWxiYzRqVDljQ3M3Z2FoTFlUTFk5bDErMEhQQkVMWFQ5UzZlbFhCZG1Qa24w?=
- =?utf-8?B?VjUvRUtqZlIreEtNUWNvNHR6VXFMT2dwTVFQQSswWmVYOHczUVVDN3ExV3g2?=
- =?utf-8?B?bVVUQ3FPelV1NUd2QUI0bE9ZbW1taFVsUStVUldxUVk0ZkhtSEhWMmtuajds?=
- =?utf-8?B?aGY4aTJ5S3VhODBGQS9qVVhUZ0pRa2p4Q3BRMHVTbGtNNVlOSGRjSGJ5MGwr?=
- =?utf-8?Q?/5vdx9gp8zZG5jTr40MSNoOlmIeoVEsF77d5b0kTY+Sk?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fb2441eb-623c-4ac3-c32e-08db975d7198
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?AAmhtnTtIBNGwjLpS2R83AeuvMEvrzKUvYi/tUbivHsleQit6eV6j2H3gOLp?=
+ =?us-ascii?Q?5pXzlxAI7ox4S5IiDUP3GYnzAssM3FClDTnMVT5QTTAt1BI7Nhi0CzvPw3ar?=
+ =?us-ascii?Q?rChQ2wVf0iPI6DEPZf2c7W90ssLz3Yf+IU5he2nQdXMVonuuoDhThqdcfKSS?=
+ =?us-ascii?Q?H0jSn1Wyb9mXB13YGT+wWraj7a3+HrBJqqvvSVVCvw2EolhqY6fXj9c3R20E?=
+ =?us-ascii?Q?RRuIMv/zY8DI5wn20nRvVI764MeVIu6SGNQOr/73z9garyC0U4l6OLZH0jR1?=
+ =?us-ascii?Q?Qd/+U4Avy4lzptIO4Fe9iTiXj3H9O4Bh/GZUviHFIVZK3cJoh0YNrHX3HT0L?=
+ =?us-ascii?Q?vHrp9eOmTCzSdliOW5DU19EUYU50U0OKoC3Y0RCh36f1pEdC6gGdEMMG1QSc?=
+ =?us-ascii?Q?QxdnQcuy2mIjl8ZvR4HWTmbZ0KhE+sypVFHuNurwByvn1KwNn7ckyvlIBT7Q?=
+ =?us-ascii?Q?rGWNQ9HDpwy14eJGnrl7JalI0bGnhJAKZdmOzE9Xv+IJ+11kG/k8MJHnXIgS?=
+ =?us-ascii?Q?7LZEi6DY6yi0w3R7CekvjvxzbinKpXWh8KNMtrLZlQUehiKJNUThvL1jrt2Y?=
+ =?us-ascii?Q?pNdL+f6lOIxCQqxaPEJh1PVVwzsy63bmMau21N7eRnBaEZ/ep3dZIQ/Mnwja?=
+ =?us-ascii?Q?OLPyvcZhZ1o+U1Z+xz3kmNFzJQ2TuP1+EtxQqNiYhgeiSDaPJO58P7PFOw0P?=
+ =?us-ascii?Q?7QSdeJXGEQpxb4QYI6aNSRs52dG6kDAzWJe87GVtXoLIsg/1LZDyQwcCH980?=
+ =?us-ascii?Q?+yV5izRugNZQV371y7uSjp5i50DRWejRF69uPNgzclc0abm/EL3pE2+1G9iW?=
+ =?us-ascii?Q?5Np/ExN8sGbvsYYBuIsf1MzbLAsrFRCVE44iK+OuerCGX9MTtduPjEeyzfKu?=
+ =?us-ascii?Q?/ZPHBtjXlEMETSiYBpUYRIHitKw7bNA1MMBNCPP9zXaTZ7R1Yh+/NDxdsBPq?=
+ =?us-ascii?Q?RDCxxuCc7vByor+p7m3fuWgGP3PS/DFJD8DtbFaZziV1KTzW5PkCF7oReYD+?=
+ =?us-ascii?Q?hMYV74eTjgcxCVT3/zswbfk5ymHvzReeaToeAA7utopQAC0iR/mLWVnthyVb?=
+ =?us-ascii?Q?A+j2knIZjyK231WdeTHnXSxgWZIC/TEtbMOs+rJli4zU2tCGSlWWL8n50mhT?=
+ =?us-ascii?Q?q+bG+19um4iNDg6kD/ctqTblJYWhtgZJXd/6IQvvu/pLXM9128QRlRppLvwK?=
+ =?us-ascii?Q?Hrvah5AypJgwdAOwCNp89fGzW36UnMfBe2mIR9lex8Nlm6BsRrM6KFmA8Clx?=
+ =?us-ascii?Q?7yiAniFK7ywqDOrWby2ZMPH4bifQB9sxPY/3NPjOENLY2ILJdpZCAiF1GXb/?=
+ =?us-ascii?Q?raspvaL9a4SHsrt9y5NqQ0zVb84/XGnfEsbySSd0Lk6ZKH4ogY2bVwvQ6ntE?=
+ =?us-ascii?Q?CKTTwwFBbuDuwtM1Tb0pDwcm8UXncL1/fAq48Uhbt7mdgR4ElP/avrOaK5aV?=
+ =?us-ascii?Q?OA4BzhtA27lRb8u3Ag0beGa2298pTOVUNJ9f+A9xAXDdZbOpP4FWhK3/rOAV?=
+ =?us-ascii?Q?I2yKJVd/i0NvO/xe8afgtxioZBh5wLnKhgRAHmJuifjs9l/ObUtRq/tJdkIK?=
+ =?us-ascii?Q?sbQtuMPujQx3yy3FYr3JUoBZT0qKs5W9KphAsBkwClc+382rb1DpFqwdKXLW?=
+ =?us-ascii?Q?LQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11e9216b-8816-4f1d-feb7-08db9761da86
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2023 15:46:19.8401 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Aug 2023 16:17:53.8160 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rarwMQbXL8RYzFsBii0LM/6/ShfHixXhORAhXpoWVdfooTBzGMeailqCVSQEFEAf
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR12MB5092
-Subject: Re: [Intel-xe] [PATCH 4/8] drm/sched: Add generic scheduler message
- interface
+X-MS-Exchange-CrossTenant-UserPrincipalName: pFyQjZpoMsntVHEu8iQLiOIVuQB5r7WI4wds0zahlp2eZK2rwnEhMfczqyaYexQ+T5QHS+cc1SKMtf6Vyf5Ahw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7516
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH] drm/xe/vm: uncombine the
+ combined_links.destroy
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -131,317 +146,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- Liviu.Dudau@arm.com, frank.binns@imgtec.com, dri-devel@lists.freedesktop.org,
- luben.tuikov@amd.com, lina@asahilina.net, donald.robson@imgtec.com,
- boris.brezillon@collabora.com, airlied@gmail.com,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 04.08.23 um 16:13 schrieb Matthew Brost:
-> [SNIP]
-> Christian / Daniel - I've read both of you comments and having a hard
-> time parsing them. I do not really understand the issue with this patch
-> or exactly what is being suggested instead. Let's try to work through
-> this.
->
->>>>> I'm still extremely frowned on this.
->>>>>
->>>>> If you need this functionality then let the drivers decide which
->>>>> runqueue the scheduler should use.
-> What do you mean by runqueue here? Do you mean 'struct
-> workqueue_struct'? The scheduler in this context is 'struct
-> drm_gpu_scheduler', right?
+On Mon, Aug 07, 2023 at 04:19:46PM +0100, Matthew Auld wrote:
+> On 07/08/2023 15:49, Matthew Brost wrote:
+> > On Mon, Aug 07, 2023 at 03:41:30PM +0100, Matthew Auld wrote:
+> > > On 07/08/2023 14:28, Matthew Brost wrote:
+> > > > On Mon, Aug 07, 2023 at 02:02:27PM +0100, Matthew Auld wrote:
+> > > > > It looks like it's plausible for eviction to be happening as we are
+> > > > > closing the vm, however the rebind_link and destroy links are in this
+> > > > > case not mutually exclusive, since eviction only needs the vm dma-resv
+> > > > > lock which the vm close drops when accessing the contested list. If we
+> > > > > race with eviction here it can run rampant and corrupt the list since
+> > > > > both the destroy and rebind links are the same list entry underneath.
+> > > > > Simplest is to just split these entries into separate links.
+> > > > > 
+> > > > 
+> > > > I think there is another problem here too, I think
+> > > > vm->notifier.rebind_list could be corrupted too.
+> > > 
+> > > AFAICT that one always has vm->lock held, and close_and_put() doesn't
+> > > release it until nuking the vma, so I think it's fine?
+> > > 
+> > 
+> > External BOs do not hold the VM->lock in xe_bo_trigger_rebind so I do
+> > think there is a potenial issue.
+> 
+> Maybe I'm misunderstanding something as I only see it being added to
+> vm->notifier.rebind_list, which doesn't involve the combined_links. Once it
+> can fully lock the vm later, when for example doing xe_vm_lock_dma_resv(),
+> it moves it to the real vm->rebind_list but at that point we are holding the
+> vm->lock, and if the vma was since nuked we never actually transfer it.
+> 
 
-Sorry for the confusing wording, your understanding is correct.
+It is not related to the combined list, rather a race between
+close_and_put & trigger_rebind.
 
-> Yes, we have added this functionality iin the first patch.
->
->>>>> When you then create a single threaded runqueue you can just submit work
->>>>> to it and serialize this with the scheduler work.
->>>>>
-> We don't want to use a single threaded workqueue_struct in Xe, we want
-> to use a system_wq as run_job() can be executed in parallel across
-> multiple entites (or drm_gpu_scheduler as in Xe we have 1 to 1
-> relationship between entity and scheduler). What we want is on per
-> entity / scheduler granularity to be able to communicate into the
-> backend a message synchronously (run_job / free_job not executing,
-> scheduler execution not paused for a reset).
->
-> If I'm underatanding what you suggesting in Xe we'd create an ordered
-> workqueue_struct per drm_gpu_scheduler and the queue messages on the
-> ordered workqueue_struct?
+close_and_put can remove from the vm->notifier.rebind_list, then
+trigger_rebind can add it back in, VMA is destroyed, and now we have
+destroyed (corrupt memory) on the vm->notifier.rebind_list.
 
-Yes, correct.
+Make sense?
 
-> This seems pretty messy to me as now we have
-> open coded a solution bypassing the scheduler, every drm_gpu_scheduler
-> creates its own workqueue_struct, and we'd also have to open code the
-> pausing of these messages for resets too.
->
-> IMO this is pretty clean solution that follows the pattern of cleanup
-> jobs already in place.
+Matt
 
-Yeah, exactly that's the point. Moving the job cleanup into the 
-scheduler thread is seen as very very bad idea by me.
-
-And I really don't want to exercise that again for different use cases.
-
->
->>>>> This way we wouldn't duplicate this core kernel function inside the
->>>>> scheduler.
->>>> Yeah that's essentially the design we picked for the tdr workers,
->>>> where some drivers have requirements that all tdr work must be done on
->>>> the same thread (because of cross-engine coordination issues). But
->>>> that would require that we rework the scheduler as a pile of
->>>> self-submitting work items, and I'm not sure that actually fits all
->>>> that well into the core workqueue interfaces either.
-> This is the ordering between TDRs firing between different
-> drm_gpu_scheduler and larger external resets (GT in Xe) an ordered
-> workqueue_struct makes sense for this. Here we are talking about
-> ordering jobs and messages within a single drm_gpu_scheduler. Using the
-> main execution thread to do ordering makes sense in my opinion.
-
-I completely disagree to that.
-
-Take a look at how this came to be. This is a very very ugly hack and we 
-already had a hard time making lockdep understand the different fence 
-signaling dependencies with freeing the job and I'm pretty sure that is 
-still not 100% correct.
-
->
->>> There were already patches floating around which did exactly that.
->>>
->>> Last time I checked those were actually looking pretty good.
->>>
-> Link to patches for reference.
->
->>> Additional to message passing advantage the real big issue with the
->>> scheduler and 1 to 1 mapping is that we create a kernel thread for each
->>> instance, which results in tons on overhead.
-> First patch in the series switches from kthread to work queue, that is
-> still a good idea.
-
-This was the patch I was referring to. Sorry didn't remembered that this 
-was in the same patch set.
-
->
->>> Just using a work item which is submitted to a work queue completely avoids
->>> that.
->> Hm I should have read the entire series first, since that does the
->> conversion still. Apologies for the confusion, and yeah we should be able
->> to just submit other work to the same wq with the first patch? And so
->> hand-rolling this infra here isn't needed at all?
->>
-> I wouldn't call this hand rolling, rather it following patten already in
-> place.
-
-Basically workqueues are the in kernel infrastructure for exactly that 
-use case and we are trying to re-create that here and that is usually a 
-rather bad idea.
-
-Regards,
-Christian.
-
->
-> Matt
->
->> Or what am I missing?
->>
->>> Regards,
->>> Christian.
->>>
->>>> Worst case I think this isn't a dead-end and can be refactored to
->>>> internally use the workqueue services, with the new functions here
->>>> just being dumb wrappers until everyone is converted over. So it
->>>> doesn't look like an expensive mistake, if it turns out to be a
->>>> mistake.
->>>> -Daniel
->>>>
->>>>
->>>>> Regards,
->>>>> Christian.
->>>>>
->>>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>>>> ---
->>>>>>     drivers/gpu/drm/scheduler/sched_main.c | 52 +++++++++++++++++++++++++-
->>>>>>     include/drm/gpu_scheduler.h            | 29 +++++++++++++-
->>>>>>     2 files changed, 78 insertions(+), 3 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
->>>>>> index 2597fb298733..84821a124ca2 100644
->>>>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
->>>>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->>>>>> @@ -1049,6 +1049,49 @@ drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
->>>>>>     }
->>>>>>     EXPORT_SYMBOL(drm_sched_pick_best);
->>>>>>
->>>>>> +/**
->>>>>> + * drm_sched_add_msg - add scheduler message
->>>>>> + *
->>>>>> + * @sched: scheduler instance
->>>>>> + * @msg: message to be added
->>>>>> + *
->>>>>> + * Can and will pass an jobs waiting on dependencies or in a runnable queue.
->>>>>> + * Messages processing will stop if schedule run wq is stopped and resume when
->>>>>> + * run wq is started.
->>>>>> + */
->>>>>> +void drm_sched_add_msg(struct drm_gpu_scheduler *sched,
->>>>>> +                    struct drm_sched_msg *msg)
->>>>>> +{
->>>>>> +     spin_lock(&sched->job_list_lock);
->>>>>> +     list_add_tail(&msg->link, &sched->msgs);
->>>>>> +     spin_unlock(&sched->job_list_lock);
->>>>>> +
->>>>>> +     drm_sched_run_wq_queue(sched);
->>>>>> +}
->>>>>> +EXPORT_SYMBOL(drm_sched_add_msg);
->>>>>> +
->>>>>> +/**
->>>>>> + * drm_sched_get_msg - get scheduler message
->>>>>> + *
->>>>>> + * @sched: scheduler instance
->>>>>> + *
->>>>>> + * Returns NULL or message
->>>>>> + */
->>>>>> +static struct drm_sched_msg *
->>>>>> +drm_sched_get_msg(struct drm_gpu_scheduler *sched)
->>>>>> +{
->>>>>> +     struct drm_sched_msg *msg;
->>>>>> +
->>>>>> +     spin_lock(&sched->job_list_lock);
->>>>>> +     msg = list_first_entry_or_null(&sched->msgs,
->>>>>> +                                    struct drm_sched_msg, link);
->>>>>> +     if (msg)
->>>>>> +             list_del(&msg->link);
->>>>>> +     spin_unlock(&sched->job_list_lock);
->>>>>> +
->>>>>> +     return msg;
->>>>>> +}
->>>>>> +
->>>>>>     /**
->>>>>>      * drm_sched_main - main scheduler thread
->>>>>>      *
->>>>>> @@ -1060,6 +1103,7 @@ static void drm_sched_main(struct work_struct *w)
->>>>>>                 container_of(w, struct drm_gpu_scheduler, work_run);
->>>>>>         struct drm_sched_entity *entity;
->>>>>>         struct drm_sched_job *cleanup_job;
->>>>>> +     struct drm_sched_msg *msg;
->>>>>>         int r;
->>>>>>
->>>>>>         if (READ_ONCE(sched->pause_run_wq))
->>>>>> @@ -1067,12 +1111,15 @@ static void drm_sched_main(struct work_struct *w)
->>>>>>
->>>>>>         cleanup_job = drm_sched_get_cleanup_job(sched);
->>>>>>         entity = drm_sched_select_entity(sched);
->>>>>> +     msg = drm_sched_get_msg(sched);
->>>>>>
->>>>>> -     if (!entity && !cleanup_job)
->>>>>> +     if (!entity && !cleanup_job && !msg)
->>>>>>                 return; /* No more work */
->>>>>>
->>>>>>         if (cleanup_job)
->>>>>>                 sched->ops->free_job(cleanup_job);
->>>>>> +     if (msg)
->>>>>> +             sched->ops->process_msg(msg);
->>>>>>
->>>>>>         if (entity) {
->>>>>>                 struct dma_fence *fence;
->>>>>> @@ -1082,7 +1129,7 @@ static void drm_sched_main(struct work_struct *w)
->>>>>>                 sched_job = drm_sched_entity_pop_job(entity);
->>>>>>                 if (!sched_job) {
->>>>>>                         complete_all(&entity->entity_idle);
->>>>>> -                     if (!cleanup_job)
->>>>>> +                     if (!cleanup_job && !msg)
->>>>>>                                 return; /* No more work */
->>>>>>                         goto again;
->>>>>>                 }
->>>>>> @@ -1177,6 +1224,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->>>>>>
->>>>>>         init_waitqueue_head(&sched->job_scheduled);
->>>>>>         INIT_LIST_HEAD(&sched->pending_list);
->>>>>> +     INIT_LIST_HEAD(&sched->msgs);
->>>>>>         spin_lock_init(&sched->job_list_lock);
->>>>>>         atomic_set(&sched->hw_rq_count, 0);
->>>>>>         INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
->>>>>> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
->>>>>> index df1993dd44ae..267bd060d178 100644
->>>>>> --- a/include/drm/gpu_scheduler.h
->>>>>> +++ b/include/drm/gpu_scheduler.h
->>>>>> @@ -394,6 +394,23 @@ enum drm_gpu_sched_stat {
->>>>>>         DRM_GPU_SCHED_STAT_ENODEV,
->>>>>>     };
->>>>>>
->>>>>> +/**
->>>>>> + * struct drm_sched_msg - an in-band (relative to GPU scheduler run queue)
->>>>>> + * message
->>>>>> + *
->>>>>> + * Generic enough for backend defined messages, backend can expand if needed.
->>>>>> + */
->>>>>> +struct drm_sched_msg {
->>>>>> +     /** @link: list link into the gpu scheduler list of messages */
->>>>>> +     struct list_head                link;
->>>>>> +     /**
->>>>>> +      * @private_data: opaque pointer to message private data (backend defined)
->>>>>> +      */
->>>>>> +     void                            *private_data;
->>>>>> +     /** @opcode: opcode of message (backend defined) */
->>>>>> +     unsigned int                    opcode;
->>>>>> +};
->>>>>> +
->>>>>>     /**
->>>>>>      * struct drm_sched_backend_ops - Define the backend operations
->>>>>>      *  called by the scheduler
->>>>>> @@ -471,6 +488,12 @@ struct drm_sched_backend_ops {
->>>>>>              * and it's time to clean it up.
->>>>>>          */
->>>>>>         void (*free_job)(struct drm_sched_job *sched_job);
->>>>>> +
->>>>>> +     /**
->>>>>> +      * @process_msg: Process a message. Allowed to block, it is this
->>>>>> +      * function's responsibility to free message if dynamically allocated.
->>>>>> +      */
->>>>>> +     void (*process_msg)(struct drm_sched_msg *msg);
->>>>>>     };
->>>>>>
->>>>>>     /**
->>>>>> @@ -482,6 +505,7 @@ struct drm_sched_backend_ops {
->>>>>>      * @timeout: the time after which a job is removed from the scheduler.
->>>>>>      * @name: name of the ring for which this scheduler is being used.
->>>>>>      * @sched_rq: priority wise array of run queues.
->>>>>> + * @msgs: list of messages to be processed in @work_run
->>>>>>      * @job_scheduled: once @drm_sched_entity_do_release is called the scheduler
->>>>>>      *                 waits on this wait queue until all the scheduled jobs are
->>>>>>      *                 finished.
->>>>>> @@ -489,7 +513,7 @@ struct drm_sched_backend_ops {
->>>>>>      * @job_id_count: used to assign unique id to the each job.
->>>>>>      * @run_wq: workqueue used to queue @work_run
->>>>>>      * @timeout_wq: workqueue used to queue @work_tdr
->>>>>> - * @work_run: schedules jobs and cleans up entities
->>>>>> + * @work_run: schedules jobs, cleans up jobs, and processes messages
->>>>>>      * @work_tdr: schedules a delayed call to @drm_sched_job_timedout after the
->>>>>>      *            timeout interval is over.
->>>>>>      * @pending_list: the list of jobs which are currently in the job queue.
->>>>>> @@ -513,6 +537,7 @@ struct drm_gpu_scheduler {
->>>>>>         long                            timeout;
->>>>>>         const char                      *name;
->>>>>>         struct drm_sched_rq             sched_rq[DRM_SCHED_PRIORITY_COUNT];
->>>>>> +     struct list_head                msgs;
->>>>>>         wait_queue_head_t               job_scheduled;
->>>>>>         atomic_t                        hw_rq_count;
->>>>>>         atomic64_t                      job_id_count;
->>>>>> @@ -566,6 +591,8 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
->>>>>>
->>>>>>     void drm_sched_job_cleanup(struct drm_sched_job *job);
->>>>>>     void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
->>>>>> +void drm_sched_add_msg(struct drm_gpu_scheduler *sched,
->>>>>> +                    struct drm_sched_msg *msg);
->>>>>>     void drm_sched_run_wq_stop(struct drm_gpu_scheduler *sched);
->>>>>>     void drm_sched_run_wq_start(struct drm_gpu_scheduler *sched);
->>>>>>     void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad);
->> -- 
->> Daniel Vetter
->> Software Engineer, Intel Corporation
->> http://blog.ffwll.ch
-
+> > 
+> > Matt
+> > 
+> > > > 
+> > > > I think a better solution is to check the XE_VMA_DESTROYED bit in
+> > > > xe_bo_trigger_rebind before adding to either the
+> > > > vm->notifier.rebind_list or vm->rebind_list. Both checks should done
+> > > > under the list locks.
+> > > 
+> > > Ok, let me try that. Thanks for reviewing.
+> > > 
+> > > > 
+> > > > Matt
+> > > > 
+> > > > > References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/514
+> > > > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> > > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > > ---
+> > > > >    drivers/gpu/drm/xe/xe_vm.c       | 10 +++++-----
+> > > > >    drivers/gpu/drm/xe/xe_vm_types.h | 11 ++++++-----
+> > > > >    2 files changed, 11 insertions(+), 10 deletions(-)
+> > > > > 
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> > > > > index cb28dbc2bdbb..aa13b2bcda86 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_vm.c
+> > > > > +++ b/drivers/gpu/drm/xe/xe_vm.c
+> > > > > @@ -891,6 +891,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+> > > > >    	}
+> > > > >    	INIT_LIST_HEAD(&vma->combined_links.rebind);
+> > > > > +	INIT_LIST_HEAD(&vma->destroy_link);
+> > > > >    	INIT_LIST_HEAD(&vma->notifier.rebind_link);
+> > > > >    	INIT_LIST_HEAD(&vma->extobj.link);
+> > > > > @@ -1063,7 +1064,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+> > > > >    	struct xe_vm *vm = xe_vma_vm(vma);
+> > > > >    	lockdep_assert_held_write(&vm->lock);
+> > > > > -	XE_WARN_ON(!list_empty(&vma->combined_links.destroy));
+> > > > > +	XE_WARN_ON(!list_empty(&vma->destroy_link));
+> > > > >    	if (xe_vma_is_userptr(vma)) {
+> > > > >    		XE_WARN_ON(!(vma->gpuva.flags & XE_VMA_DESTROYED));
+> > > > > @@ -1449,7 +1450,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+> > > > >    			continue;
+> > > > >    		}
+> > > > > -		list_move_tail(&vma->combined_links.destroy, &contested);
+> > > > > +		list_add_tail(&vma->destroy_link, &contested);
+> > > > >    	}
+> > > > >    	/*
+> > > > > @@ -1477,9 +1478,8 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+> > > > >    	 * Since we hold a refcount to the bo, we can remove and free
+> > > > >    	 * the members safely without locking.
+> > > > >    	 */
+> > > > > -	list_for_each_entry_safe(vma, next_vma, &contested,
+> > > > > -				 combined_links.destroy) {
+> > > > > -		list_del_init(&vma->combined_links.destroy);
+> > > > > +	list_for_each_entry_safe(vma, next_vma, &contested, destroy_link) {
+> > > > > +		list_del_init(&vma->destroy_link);
+> > > > >    		xe_vma_destroy_unlocked(vma);
+> > > > >    	}
+> > > > > diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> > > > > index 3681a5ff588b..a01dde418803 100644
+> > > > > --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> > > > > +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> > > > > @@ -79,13 +79,14 @@ struct xe_vma {
+> > > > >    		 * mutually exclusive execution with userptr.
+> > > > >    		 */
+> > > > >    		struct list_head rebind;
+> > > > > -		/**
+> > > > > -		 * @destroy: link to contested list when VM is being closed.
+> > > > > -		 * Protected by vm->lock in write mode and vm's resv lock.
+> > > > > -		 */
+> > > > > -		struct list_head destroy;
+> > > > >    	} combined_links;
+> > > > > +	/**
+> > > > > +	 * @destroy_link: link to contested list when VM is being closed.
+> > > > > +	 * Protected by vm->lock in write mode and vm's resv lock.
+> > > > > +	 */
+> > > > > +	struct list_head destroy_link;
+> > > > > +
+> > > > >    	union {
+> > > > >    		/** @destroy_cb: callback to destroy VMA when unbind job is done */
+> > > > >    		struct dma_fence_cb destroy_cb;
+> > > > > -- 
+> > > > > 2.41.0
+> > > > > 
