@@ -4,50 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8E28EB64DD
-	for <intel-xe@archiver.kernel.org>; Mon,  7 Aug 2023 10:28:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC1D6C001DB
+	for <intel-xe@archiver.kernel.org>; Mon,  7 Aug 2023 10:57:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C600010E201;
-	Mon,  7 Aug 2023 10:28:51 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F269B10E26B;
- Mon,  7 Aug 2023 10:28:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691404127; x=1722940127;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=66Bf15rdGfG0UCMYjEAnqcNDQIKljPnA7ruoBxJKezg=;
- b=BYhV2HSNNYrMy6W4M3pIukXQuhkz9d0rkbv3X4ozQ5iGvd4lLKZrQGIh
- bbNF9eK41UX0Tri9D3UM175OCzmWO+RURQlVegnQ0xk7IjgslMEK08e0x
- XKcvIQpx3SP25+h7+UEKi0xFDKXpCvPv5MhB583UJoXg76mbt5LdD25fY
- FijcKhAZRogbmL8UZy9gGBLo0twAW4LahI8PIPLf8bJ4vbuKE4LwT1SXz
- +Wv1Hg+WybWVD6YeuFN/RxoggYmsX/ARO6Xy6Q8mBahA4bOQdrqqEKjrj
- 3mZ2P2LgRfRiR3ZxN5eQZHFkqrj0RHxmHpbcehR5SQhuyMkATkjPnhm+3 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10794"; a="350818221"
-X-IronPort-AV: E=Sophos;i="6.01,261,1684825200"; d="scan'208";a="350818221"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2023 03:28:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10794"; a="730909412"
-X-IronPort-AV: E=Sophos;i="6.01,261,1684825200"; d="scan'208";a="730909412"
-Received: from kornelo-mobl2.ger.corp.intel.com (HELO
- jkrzyszt-mobl2.ger.corp.intel.com) ([10.213.30.73])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Aug 2023 03:28:41 -0700
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Brendan Higgins <brendan.higgins@linux.dev>,
- David Gow <davidgow@google.com>
-Date: Mon,  7 Aug 2023 12:23:56 +0200
-Message-ID: <20230807102352.4607-8-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230807102352.4607-5-janusz.krzysztofik@linux.intel.com>
-References: <20230807102352.4607-5-janusz.krzysztofik@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67BEF10E0A1;
+	Mon,  7 Aug 2023 10:57:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7762810E0A1;
+ Mon,  7 Aug 2023 10:57:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6CF3FAADD7;
+ Mon,  7 Aug 2023 10:57:09 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v5 3/3] kunit: Allow kunit test modules to use
- test filtering
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Date: Mon, 07 Aug 2023 10:57:09 -0000
+Message-ID: <169140582944.13178.8830387108210553659@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230807102352.4607-5-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20230807102352.4607-5-janusz.krzysztofik@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_kunit=3A_Expose_some_built-in_features_to_modules_=28rev5=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,242 +39,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Rae Moar <rmoar@google.com>,
- igt-dev@lists.freedesktop.org, linux-kselftest@vger.kernel.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-xe@lists.freedesktop.org, kunit-dev@googlegroups.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-External tools, e.g., Intel GPU tools (IGT), support execution of
-individual selftests provided by kernel modules.  That could be also
-applicable to kunit test modules if they provided test filtering.  But
-test filtering is now possible only when kunit code is built into the
-kernel.  Moreover, a filter can be specified only at boot time, then
-reboot is required each time a different filter is needed.
+== Series Details ==
 
-Build the test filtering code also when kunit is configured as a module,
-expose test filtering functions to other kunit source files, and use them
-in kunit module notifier callback functions.  Userspace can then reload
-the kunit module with a value of the filter_glob parameter tuned to a
-specific kunit test module every time it wants to limit the scope of tests
-executed on that module load.  Make the kunit.filter* parameters visible
-in sysfs for user convenience.
+Series: kunit: Expose some built-in features to modules (rev5)
+URL   : https://patchwork.freedesktop.org/series/121534/
+State : failure
 
-v5: Refresh on tpp of attributes filtering fix
-v4: Refresh on top of newly applied attributes patches and changes
-    introdced by new versions of other patches submitted in series with
-    this one.
-v3: Fix CONFIG_GLOB, required by filtering functions, not selected when
-    building as a module (lkp@intel.com).
-v2: Fix new name of a structure moved to kunit namespace not updated
-    across all uses (lkp@intel.com).
+== Summary ==
 
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
----
- include/kunit/test.h | 11 ++++++++
- lib/kunit/Kconfig    |  2 +-
- lib/kunit/executor.c | 63 ++++++++++++++++++++++++++------------------
- lib/kunit/test.c     | 17 ++++++++++++
- 4 files changed, 66 insertions(+), 27 deletions(-)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 8a6b4e2f0 drm/xe: Fix error path in xe_guc_pc_start()
+=== git am output follows ===
+error: patch failed: lib/kunit/executor.c:119
+error: lib/kunit/executor.c: patch does not apply
+error: patch failed: lib/kunit/executor_test.c:144
+error: lib/kunit/executor_test.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: kunit: Report the count of test suites in a module
+Patch failed at 0001 kunit: Report the count of test suites in a module
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-diff --git a/include/kunit/test.h b/include/kunit/test.h
-index 6a338a3267ed5..d33114097d0d0 100644
---- a/include/kunit/test.h
-+++ b/include/kunit/test.h
-@@ -310,6 +310,9 @@ static inline void kunit_set_failure(struct kunit *test)
- 
- bool kunit_enabled(void);
- const char *kunit_action(void);
-+const char *kunit_filter_glob(void);
-+char *kunit_filter(void);
-+char *kunit_filter_action(void);
- 
- void kunit_init_test(struct kunit *test, const char *name, char *log);
- 
-@@ -320,6 +323,14 @@ size_t kunit_suite_num_test_cases(struct kunit_suite *suite);
- unsigned int kunit_test_case_num(struct kunit_suite *suite,
- 				 struct kunit_case *test_case);
- 
-+struct kunit_suite_set
-+kunit_filter_suites(const struct kunit_suite_set *suite_set,
-+		    const char *filter_glob,
-+		    char *filters,
-+		    char *filter_action,
-+		    int *err);
-+void kunit_free_suite_set(struct kunit_suite_set suite_set);
-+
- int __kunit_test_suites_init(struct kunit_suite * const * const suites, int num_suites);
- 
- void __kunit_test_suites_exit(struct kunit_suite **suites, int num_suites);
-diff --git a/lib/kunit/Kconfig b/lib/kunit/Kconfig
-index 626719b95badd..68a6daec0aef1 100644
---- a/lib/kunit/Kconfig
-+++ b/lib/kunit/Kconfig
-@@ -4,7 +4,7 @@
- 
- menuconfig KUNIT
- 	tristate "KUnit - Enable support for unit tests"
--	select GLOB if KUNIT=y
-+	select GLOB
- 	help
- 	  Enables support for kernel unit tests (KUnit), a lightweight unit
- 	  testing and mocking framework for the Linux kernel. These tests are
-diff --git a/lib/kunit/executor.c b/lib/kunit/executor.c
-index e877c1f1e75c8..5181aa2e760b6 100644
---- a/lib/kunit/executor.c
-+++ b/lib/kunit/executor.c
-@@ -27,24 +27,37 @@ const char *kunit_action(void)
- 	return action_param;
- }
- 
--#if IS_BUILTIN(CONFIG_KUNIT)
--
- static char *filter_glob_param;
- static char *filter_param;
- static char *filter_action_param;
- 
--module_param_named(filter_glob, filter_glob_param, charp, 0);
-+module_param_named(filter_glob, filter_glob_param, charp, 0400);
- MODULE_PARM_DESC(filter_glob,
- 		"Filter which KUnit test suites/tests run at boot-time, e.g. list* or list*.*del_test");
--module_param_named(filter, filter_param, charp, 0);
-+module_param_named(filter, filter_param, charp, 0400);
- MODULE_PARM_DESC(filter,
- 		"Filter which KUnit test suites/tests run at boot-time using attributes, e.g. speed>slow");
--module_param_named(filter_action, filter_action_param, charp, 0);
-+module_param_named(filter_action, filter_action_param, charp, 0400);
- MODULE_PARM_DESC(filter_action,
- 		"Changes behavior of filtered tests using attributes, valid values are:\n"
- 		"<none>: do not run filtered tests as normal\n"
- 		"'skip': skip all filtered tests instead so tests will appear in output\n");
- 
-+const char *kunit_filter_glob(void)
-+{
-+	return filter_glob_param;
-+}
-+
-+char *kunit_filter(void)
-+{
-+	return filter_param;
-+}
-+
-+char *kunit_filter_action(void)
-+{
-+	return filter_action_param;
-+}
-+
- /* glob_match() needs NULL terminated strings, so we need a copy of filter_glob_param. */
- struct kunit_glob_filter {
- 	char *suite_glob;
-@@ -108,10 +121,7 @@ kunit_filter_glob_tests(const struct kunit_suite *const suite, const char *test_
- 	return copy;
- }
- 
--static char *kunit_shutdown;
--core_param(kunit_shutdown, kunit_shutdown, charp, 0644);
--
--static void kunit_free_suite_set(struct kunit_suite_set suite_set)
-+void kunit_free_suite_set(struct kunit_suite_set suite_set)
- {
- 	struct kunit_suite * const *suites;
- 
-@@ -120,7 +130,7 @@ static void kunit_free_suite_set(struct kunit_suite_set suite_set)
- 	kfree(suite_set.start);
- }
- 
--static struct kunit_suite_set
-+struct kunit_suite_set
- kunit_filter_suites(const struct kunit_suite_set *suite_set,
- 		    const char *filter_glob,
- 		    char *filters,
-@@ -218,22 +228,6 @@ kunit_filter_suites(const struct kunit_suite_set *suite_set,
- 	return filtered;
- }
- 
--static void kunit_handle_shutdown(void)
--{
--	if (!kunit_shutdown)
--		return;
--
--	if (!strcmp(kunit_shutdown, "poweroff"))
--		kernel_power_off();
--	else if (!strcmp(kunit_shutdown, "halt"))
--		kernel_halt();
--	else if (!strcmp(kunit_shutdown, "reboot"))
--		kernel_restart(NULL);
--
--}
--
--#endif
--
- void kunit_exec_run_tests(struct kunit_suite_set *suite_set, bool builtin)
- {
- 	size_t num_suites = suite_set->end - suite_set->start;
-@@ -271,6 +265,23 @@ void kunit_exec_list_tests(struct kunit_suite_set *suite_set, bool include_attr)
- 
- #if IS_BUILTIN(CONFIG_KUNIT)
- 
-+static char *kunit_shutdown;
-+core_param(kunit_shutdown, kunit_shutdown, charp, 0644);
-+
-+static void kunit_handle_shutdown(void)
-+{
-+	if (!kunit_shutdown)
-+		return;
-+
-+	if (!strcmp(kunit_shutdown, "poweroff"))
-+		kernel_power_off();
-+	else if (!strcmp(kunit_shutdown, "halt"))
-+		kernel_halt();
-+	else if (!strcmp(kunit_shutdown, "reboot"))
-+		kernel_restart(NULL);
-+
-+}
-+
- int kunit_run_all_tests(void)
- {
- 	struct kunit_suite_set suite_set = {
-diff --git a/lib/kunit/test.c b/lib/kunit/test.c
-index 5232a43737826..49698a168437a 100644
---- a/lib/kunit/test.c
-+++ b/lib/kunit/test.c
-@@ -740,6 +740,17 @@ static void kunit_module_init(struct module *mod)
- 		mod->kunit_suites, mod->kunit_suites + mod->num_kunit_suites,
- 	};
- 	const char *action = kunit_action();
-+	int err = 0;
-+
-+	suite_set = kunit_filter_suites(&suite_set,
-+					kunit_filter_glob() ?: "*.*",
-+					kunit_filter(), kunit_filter_action(),
-+					&err);
-+	if (err)
-+		pr_err("kunit module: error filtering suites: %d\n", err);
-+
-+	mod->kunit_suites = (struct kunit_suite **)suite_set.start;
-+	mod->num_kunit_suites = suite_set.end - suite_set.start;
- 
- 	if (!action)
- 		kunit_exec_run_tests(&suite_set, false);
-@@ -753,11 +764,17 @@ static void kunit_module_init(struct module *mod)
- 
- static void kunit_module_exit(struct module *mod)
- {
-+	struct kunit_suite_set suite_set = {
-+		mod->kunit_suites, mod->kunit_suites + mod->num_kunit_suites,
-+	};
- 	const char *action = kunit_action();
- 
- 	if (!action)
- 		__kunit_test_suites_exit(mod->kunit_suites,
- 					 mod->num_kunit_suites);
-+
-+	if (suite_set.start)
-+		kunit_free_suite_set(suite_set);
- }
- 
- static int kunit_module_notify(struct notifier_block *nb, unsigned long val,
--- 
-2.41.0
 
