@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9DB2CC001B0
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 07:45:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C0DCC001B0
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 07:47:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B58C10E3AA;
-	Tue,  8 Aug 2023 07:45:33 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E477210E3AA
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 07:45:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF6BC10E3AA;
+	Tue,  8 Aug 2023 07:47:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1EA110E3AA
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 07:47:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691480730; x=1723016730;
+ t=1691480823; x=1723016823;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=/ExBjK04kpEOX9cwhno6kG5ue6826sNzhiWpWS6tcAs=;
- b=Qe4NIRW40917iuBvtwLiMShbwSp4rM6+e4+wis7j22OIf2nhdSO9jOxi
- yda97oTXQcXGWsI9mgkcO76ExAM0RxtsqxqCoPYouwGd0EbBH0vZtdqqC
- L0NBVcyn8oaELJY66+alxm1lg8CnOo3J+2hqFjIbTuCc3UliFfKsGZRmK
- mT4NqOXV5caU9AymWIZijctrfyNEEEMaVO+NlfxzYNml+u1G5JPJQ6eCl
- 6Rn3HSVTVQyByvEFVYjxaCPg/icxgV55JKQPnsy9T2dW+4ENWqVjoY3+Z
- R8S3JAiatIE659IlF6smaY94uLkj1ljttlU56f9J8Rhs8XrKrRflgsV9V A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="437077866"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="437077866"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 00:45:30 -0700
+ message-id:mime-version;
+ bh=IoyF+moFDTOuaOvtGqEieiANWRCkEmHTlT2uS/epL3A=;
+ b=gQx//oGfvFtVydmayeWaK7J2VwqpApteZdrxudFuEMJKPBvAwmbR+IsP
+ Pl6l9Y9sWbB9IXzmbzhciDYME8mp9NUefyzjnyDfK+x3H85h7w+uTDTHZ
+ 8xMYWW6/r1GJ39/x2QNDmqFTPY30R33j+lbUsY28uAZMzNWIiMOL4UEWz
+ uWvAB0bgEHvtdv0NfALLMTQ4Q0DT5y5bNFroWgjwa17jcAPX4hXg/UsSW
+ VN6Z/wCJsKiCjrKnrDe5Xn6rebp5CLyhfFFaoQtYmVtN0pVbOzo2YWjVL
+ gvAl8Y+rGX58K3GzwZra54DaS9c/NioAwrnVS9VvjhLRCvr+OYbtP2dEZ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="457132265"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="457132265"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 00:47:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="796621176"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="796621176"
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="734398574"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="734398574"
 Received: from sschwar3-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.49.159])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 00:45:28 -0700
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 00:47:02 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20230807173446.2039-1-michal.wajdeczko@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <ZNFrijjUJNUJOWzw@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230807173446.2039-1-michal.wajdeczko@intel.com>
-Date: Tue, 08 Aug 2023 10:45:26 +0300
-Message-ID: <87r0oet1t5.fsf@intel.com>
+References: <20230803105352.789000-1-jani.nikula@intel.com>
+ <ZNFrijjUJNUJOWzw@intel.com>
+Date: Tue, 08 Aug 2023 10:46:59 +0300
+Message-ID: <87o7jit1qk.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Introduce xe_ASSERT macros
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH] fixup! drm/i915/display: Remaining changes
+ to make xe compile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,281 +59,259 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 07 Aug 2023, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
-> As we are moving away from the controversial XE_BUG_ON macro,
-> relying just on WARN_ON or drm_err does not cover the cases
-> where we want to annotate functions with additional detailed
-> debug checks to assert that all prerequisites are satisfied,
-> without paying footprint or performance penalty on non-debug
-> builds, where all misuses introduced during code integration
-> were already fixed.
+On Mon, 07 Aug 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Thu, Aug 03, 2023 at 01:53:52PM +0300, Jani Nikula wrote:
+>> Remove some changes completely unrelated to building for xe.
+>> 
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >
-> Introduce family of xe_ASSERT macros that try to follow classic
-> assert() utility and can be compiled out on non-debug builds.
->
-> Macros are based on drm_WARN, but unlikely to origin, disallow
-> use in expressions since we will compile that code out.
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Final bikeshedding... thought of the inconsistency between:
-
- - drm_WARN_ON <-> xe_ASSERT
- - drm_WARN <-> xe_ASSERT_MSG
-
-and wondering if xe_ASSERT_ON and xe_ASSERT would be more in line.
-
-*shrug*
-
-Either way, this looks fine.
+Thanks, pushed.
 
 BR,
 Jani.
 
+>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_color.c             | 1 -
+>>  drivers/gpu/drm/i915/display/intel_display.c           | 6 +++---
+>>  drivers/gpu/drm/i915/display/intel_display.h           | 1 -
+>>  drivers/gpu/drm/i915/display/intel_display_power_map.c | 1 +
+>>  drivers/gpu/drm/i915/display/intel_display_rps.c       | 1 -
+>>  drivers/gpu/drm/i915/display/intel_dp.c                | 2 +-
+>>  drivers/gpu/drm/i915/display/intel_dpio_phy.h          | 1 -
+>>  drivers/gpu/drm/i915/display/intel_dpll.c              | 1 +
+>>  drivers/gpu/drm/i915/display/intel_dsb.c               | 1 -
+>>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c           | 6 ++++--
+>>  drivers/gpu/drm/i915/display/intel_pipe_crc.c          | 1 -
+>>  drivers/gpu/drm/i915/display/intel_pps.c               | 1 -
+>>  drivers/gpu/drm/i915/display/intel_sprite.c            | 2 --
+>>  drivers/gpu/drm/i915/display/skl_universal_plane.c     | 2 +-
+>>  14 files changed, 11 insertions(+), 16 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+>> index ccc4b636c2b8..8966e6560516 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_color.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+>> @@ -26,7 +26,6 @@
+>>  #include "intel_color.h"
+>>  #include "intel_de.h"
+>>  #include "intel_display_types.h"
+>> -#include "intel_dpll.h"
+>>  #include "intel_dsb.h"
+>>  
+>>  struct intel_color_funcs {
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index 45a932c9b1b3..f9eda7ad892e 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -7423,7 +7423,7 @@ static u32 intel_encoder_possible_crtcs(struct intel_encoder *encoder)
+>>  	return possible_crtcs;
+>>  }
+>>  
+>> -static inline bool ilk_has_edp_a(struct drm_i915_private *dev_priv)
+>> +static bool ilk_has_edp_a(struct drm_i915_private *dev_priv)
+>>  {
+>>  	if (!IS_MOBILE(dev_priv))
+>>  		return false;
+>> @@ -7437,7 +7437,7 @@ static inline bool ilk_has_edp_a(struct drm_i915_private *dev_priv)
+>>  	return true;
+>>  }
+>>  
+>> -static inline bool intel_ddi_crt_present(struct drm_i915_private *dev_priv)
+>> +static bool intel_ddi_crt_present(struct drm_i915_private *dev_priv)
+>>  {
+>>  	if (DISPLAY_VER(dev_priv) >= 9)
+>>  		return false;
+>> @@ -7468,6 +7468,7 @@ bool assert_port_valid(struct drm_i915_private *i915, enum port port)
+>>  void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>>  {
+>>  	struct intel_encoder *encoder;
+>> +	bool dpd_is_edp = false;
+>>  
+>>  	intel_pps_unlock_regs_wa(dev_priv);
+>>  
+>> @@ -7491,7 +7492,6 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
+>>  		if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
+>>  			vlv_dsi_init(dev_priv);
+>>  	} else if (HAS_PCH_SPLIT(dev_priv)) {
+>> -		bool dpd_is_edp = false;
+>>  		int found;
+>>  
+>>  		/*
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+>> index 8b8ea8a4a7b0..991461d9c221 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+>> @@ -429,7 +429,6 @@ int vlv_get_cck_clock(struct drm_i915_private *dev_priv,
+>>  		      const char *name, u32 reg, int ref_freq);
+>>  int vlv_get_cck_clock_hpll(struct drm_i915_private *dev_priv,
+>>  			   const char *name, u32 reg);
+>> -void intel_hpd_poll_fini(struct drm_i915_private *i915);
+>>  void intel_init_display_hooks(struct drm_i915_private *dev_priv);
+>>  unsigned int intel_fb_xy_to_linear(int x, int y,
+>>  				   const struct intel_plane_state *state,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+>> index be0c5a945669..5ad04cd42c15 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+>> @@ -5,6 +5,7 @@
+>>  
+>>  #include "i915_drv.h"
+>>  #include "i915_reg.h"
+>> +
+>>  #include "vlv_sideband_reg.h"
+>>  
+>>  #include "intel_display_power_map.h"
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.c b/drivers/gpu/drm/i915/display/intel_display_rps.c
+>> index 8c81f542e5e8..918d0327169a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_rps.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.c
+>> @@ -7,7 +7,6 @@
+>>  #include <drm/drm_vblank.h>
+>>  
+>>  #include "gt/intel_rps.h"
+>> -
+>>  #include "i915_drv.h"
+>>  #include "intel_display_rps.h"
+>>  #include "intel_display_types.h"
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 5427ce10c06f..9f40da20e88d 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -5416,8 +5416,8 @@ intel_edp_add_properties(struct intel_dp *intel_dp)
+>>  static void intel_edp_backlight_setup(struct intel_dp *intel_dp,
+>>  				      struct intel_connector *connector)
+>>  {
+>> -	enum pipe pipe = INVALID_PIPE;
+>>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
+>> +	enum pipe pipe = INVALID_PIPE;
+>>  
+>>  	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
+>>  		/*
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.h b/drivers/gpu/drm/i915/display/intel_dpio_phy.h
+>> index 882bf1bc6b6e..4d43dbbdf81c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dpio_phy.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.h
+>> @@ -7,7 +7,6 @@
+>>  #define __INTEL_DPIO_PHY_H__
+>>  
+>>  #include <linux/types.h>
+>> -#include "intel_display.h"
+>>  
+>>  enum pipe;
+>>  enum port;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+>> index dab8dd915282..999badfe2906 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+>> @@ -2054,6 +2054,7 @@ void i9xx_disable_pll(const struct intel_crtc_state *crtc_state)
+>>  	intel_de_posting_read(dev_priv, DPLL(pipe));
+>>  }
+>>  
+>> +
+>>  /**
+>>   * vlv_force_pll_off - forcibly disable just the PLL
+>>   * @dev_priv: i915 private structure
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+>> index 3830309aacf4..70d3a41e8b35 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+>> @@ -15,7 +15,6 @@
+>>  #include "i915_drv.h"
+>>  #include "i915_reg.h"
+>>  #include "intel_de.h"
+>> -#include "intel_dsb.h"
+>>  #include "intel_display_types.h"
+>>  #include "intel_dsb.h"
+>>  #include "intel_dsb_regs.h"
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>> index 173607ab8560..e56ec3f2d84a 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+>> @@ -831,7 +831,9 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
+>>  	intel_dsi->eotp_pkt = mipi_config->eot_pkt_disabled ? 0 : 1;
+>>  	intel_dsi->clock_stop = mipi_config->enable_clk_stop ? 1 : 0;
+>>  	intel_dsi->lane_count = mipi_config->lane_cnt + 1;
+>> -	intel_dsi->pixel_format = mipi_config->videomode_color_format << 7;
+>> +	intel_dsi->pixel_format =
+>> +			pixel_format_from_register_bits(
+>> +				mipi_config->videomode_color_format << 7);
+>>  
+>>  	intel_dsi->dual_link = mipi_config->dual_link;
+>>  	intel_dsi->pixel_overlap = mipi_config->pixel_overlap;
+>> @@ -845,7 +847,7 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
+>>  	intel_dsi->init_count = mipi_config->master_init_timer;
+>>  	intel_dsi->bw_timer = mipi_config->dbi_bw_timer;
+>>  	intel_dsi->video_frmt_cfg_bits =
+>> -		mipi_config->bta_enabled ? BIT(3) : 0;
+>> +		mipi_config->bta_enabled ? DISABLE_VIDEO_BTA : 0;
+>>  	intel_dsi->bgr_enabled = mipi_config->rgb_flip;
+>>  
+>>  	/* Starting point, adjusted depending on dual link and burst mode */
+>> diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+>> index 57a576097b47..5a468ed6e26c 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
+>> @@ -34,7 +34,6 @@
+>>  #include "intel_de.h"
+>>  #include "intel_display_types.h"
+>>  #include "intel_pipe_crc.h"
+>> -#include "i915_irq.h"
+>>  
+>>  static const char * const pipe_crc_sources[] = {
+>>  	[INTEL_PIPE_CRC_SOURCE_NONE] = "none",
+>> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
+>> index 19558895c360..73f0f1714b37 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_pps.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
+>> @@ -11,7 +11,6 @@
+>>  #include "intel_display_types.h"
+>>  #include "intel_dp.h"
+>>  #include "intel_dpio_phy.h"
+>> -#include "intel_dpio_phy.h"
+>>  #include "intel_dpll.h"
+>>  #include "intel_lvds.h"
+>>  #include "intel_lvds_regs.h"
+>> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+>> index d9713094735b..25034bbf1445 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+>> @@ -40,7 +40,6 @@
+>>  
+>>  #include "i915_drv.h"
+>>  #include "i915_reg.h"
+>> -#include "i915_vgpu.h"
+>>  #include "i9xx_plane.h"
+>>  #include "intel_atomic_plane.h"
+>>  #include "intel_de.h"
+>> @@ -1666,4 +1665,3 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
+>>  
+>>  	return ERR_PTR(ret);
+>>  }
+>> -
+>> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> index 1064af3c80d8..3c212d8401c8 100644
+>> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+>> @@ -1336,7 +1336,7 @@ skl_plane_async_flip(struct intel_plane *plane,
+>>  			  skl_plane_surf(plane_state, 0));
+>>  }
+>>  
+>> -static inline bool intel_format_is_p01x(u32 format)
+>> +static bool intel_format_is_p01x(u32 format)
+>>  {
+>>  	switch (format) {
+>>  	case DRM_FORMAT_P010:
+>> -- 
+>> 2.39.2
+>> 
 
-
-
->
-> As we are operating on the xe pointers, we can print additional
-> information about the device, like tile or GT identifier, that
-> is not available from generic WARN report:
->
-> [ ] xe 0000:00:02.0: [drm] Assertion `true =3D=3D false` failed!
->     platform: 1 subplatform: 1
->     graphics: Xe_LP 12.0 step B0
->     media: Xe_M 12.0 step B0
->     display: enabled step D0
->     tile: 0 VRAM 0 B
->     GT: 0 type 1
->
-> [ ] xe 0000:b3:00.0: [drm] Assertion `true =3D=3D false` failed!
->     platform: 7 subplatform: 3
->     graphics: Xe_HPG 12.55 step A1
->     media: Xe_HPM 12.55 step A1
->     display: disabled step **
->     tile: 0 VRAM 14.0 GiB
->     GT: 0 type 1
->
-> [ ] WARNING: CPU: 0 PID: 2687 at drivers/gpu/drm/xe/xe_device.c:281 xe_de=
-vice_probe+0x374/0x520 [xe]
-> [ ] RIP: 0010:xe_device_probe+0x374/0x520 [xe]
-> [ ] Call Trace:
-> [ ]  ? __warn+0x7b/0x160
-> [ ]  ? xe_device_probe+0x374/0x520 [xe]
-> [ ]  ? report_bug+0x1c3/0x1d0
-> [ ]  ? handle_bug+0x42/0x70
-> [ ]  ? exc_invalid_op+0x14/0x70
-> [ ]  ? asm_exc_invalid_op+0x16/0x20
-> [ ]  ? xe_device_probe+0x374/0x520 [xe]
-> [ ]  ? xe_device_probe+0x374/0x520 [xe]
-> [ ]  xe_pci_probe+0x6e3/0x950 [xe]
-> [ ]  ? lockdep_hardirqs_on+0xc7/0x140
-> [ ]  pci_device_probe+0x9e/0x160
-> [ ]  really_probe+0x19d/0x400
->
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Oded Gabbay <ogabbay@kernel.org>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_assert.h | 160 +++++++++++++++++++++++++++++++++
->  1 file changed, 160 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/xe_assert.h
->
-> diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_asser=
-t.h
-> new file mode 100644
-> index 000000000000..7ea295b7091c
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_assert.h
-> @@ -0,0 +1,160 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright =C2=A9 2023 Intel Corporation
-> + */
-> +
-> +#ifndef __XE_ASSERT_H__
-> +#define __XE_ASSERT_H__
-> +
-> +#include <linux/string_helpers.h>
-> +#include <drm/drm_print.h>
-> +#include "xe_device_types.h"
-> +#include "xe_step.h"
-> +
-> +/**
-> + * DOC: Xe ASSERTs
-> + *
-> + * While Xe driver aims to be simpler than legacy i915 driver it is still
-> + * complex enough that some changes introduced while adding new function=
-ality
-> + * could break the existing code.
-> + *
-> + * Adding &drm_WARN or &drm_err to catch unwanted programming usage coul=
-d lead
-> + * to undesired increased driver footprint and may impact production dri=
-ver
-> + * performance as this additional code will be always present.
-> + *
-> + * To allow annotate functions with additional detailed debug checks to =
-assert
-> + * that all prerequisites are satisfied, without worrying about footprin=
-t or
-> + * performance penalty on production builds where all potential misuses
-> + * introduced during code integration were already fixed, we introduce f=
-amily
-> + * of ASSERT macros that try to follow classic assert() utility and can =
-be
-> + * compiled out on non-debug builds:
-> + *
-> + *  * &xe_ASSERT
-> + *  * &xe_tile_ASSERT
-> + *  * &xe_gt_ASSERT
-> + *
-> + * These macros are based on &drm_WARN, but unlikely to the origin, we d=
-isallow
-> + * use of them in an expressions since we will compile that code out.
-> + *
-> + * Note that these macros shall not be used to cover known gaps in the
-> + * implementation, for such cases use &drm_WARN or &drm_err and provide =
-valid
-> + * safe fallback.
-> + *
-> + * Below code shows how asserts could help in debug to catch unplanned u=
-se::
-> + *
-> + *	static void one_igfx(struct xe_device *xe)
-> + *	{
-> + *		xe_ASSERT(xe, xe->info.is_dgfx =3D=3D false);
-> + *		xe_ASSERT(xe, xe->info.tile_count =3D=3D 1);
-> + *	}
-> + *
-> + *	static void two_dgfx(struct xe_device *xe)
-> + *	{
-> + *		xe_ASSERT(xe, xe->info.is_dgfx);
-> + *		xe_ASSERT(xe, xe->info.tile_count =3D=3D 2);
-> + *	}
-> + *
-> + *	void foo(struct xe_device *xe)
-> + *	{
-> + *		if (xe->info.dgfx)
-> + *			return two_dgfx(xe);
-> + *		return one_igfx(xe);
-> + *	}
-> + */
-> +
-> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> +#define __XE_ASSERT_MSG(xe, condition, msg, arg...) ({						\
-> +	(void)drm_WARN(&(xe)->drm, !(condition), "[" DRM_NAME "] Assertion `%s`=
- failed!\n" msg,	\
-> +		       __stringify(condition), ## arg);						\
-> +})
-> +#else
-> +#define __XE_ASSERT_MSG(xe, condition, msg, arg...) ({						\
-> +	typecheck(struct xe_device *, xe);							\
-> +	BUILD_BUG_ON_INVALID(condition);							\
-> +})
-> +#endif
-> +
-> +/**
-> + * xe_ASSERT - warn if condition is false when debugging.
-> + * @xe: the &struct xe_device pointer to which &condition applies
-> + * @condition: condition to check
-> + *
-> + * xe_ASSERT() uses &drm_WARN to emit a warning and print additional inf=
-ormation
-> + * that could be read from the &xe pointer if provided &condition is fal=
-se.
-> + *
-> + * Contrary to &drm_WARN, xe_ASSERT() is effective only on debug builds
-> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressi=
-ons
-> + * or as a condition.
-> + *
-> + * See `Xe ASSERTs`_ for general usage guidelines.
-> + */
-> +#define xe_ASSERT(xe, condition) xe_ASSERT_MSG((xe), condition, "")
-> +#define xe_ASSERT_MSG(xe, condition, msg, arg...) ({						\
-> +	struct xe_device *__xe =3D (xe);								\
-> +	__XE_ASSERT_MSG(__xe, condition,							\
-> +			"platform: %d subplatform: %d\n"					\
-> +			"graphics: %s %u.%u step %s\n"						\
-> +			"media: %s %u.%u step %s\n"						\
-> +			"display: %s step %s\n"							\
-> +			msg,									\
-> +			__xe->info.platform, __xe->info.subplatform,				\
-> +			__xe->info.graphics_name,						\
-> +			__xe->info.graphics_verx100 / 100,					\
-> +			__xe->info.graphics_verx100 % 100,					\
-> +			xe_step_name(__xe->info.step.graphics),					\
-> +			__xe->info.media_name,							\
-> +			__xe->info.media_verx100 / 100,						\
-> +			__xe->info.media_verx100 % 100,						\
-> +			xe_step_name(__xe->info.step.media),					\
-> +			str_enabled_disabled(__xe->info.enable_display),			\
-> +			xe_step_name(__xe->info.step.display),					\
-> +			## arg);								\
-> +})
-> +
-> +/**
-> + * xe_tile_ASSERT - warn if condition is false when debugging.
-> + * @tile: the &struct xe_tile pointer to which &condition applies
-> + * @condition: condition to check
-> + *
-> + * xe_tile_ASSERT() uses &drm_WARN to emit a warning and print additional
-> + * information that could be read from the &tile pointer if provided &co=
-ndition
-> + * is false.
-> + *
-> + * Contrary to &drm_WARN, xe_tile_ASSERT() is effective only on debug bu=
-ilds
-> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressi=
-ons
-> + * or as a condition.
-> + *
-> + * See `Xe ASSERTs`_ for general usage guidelines.
-> + */
-> +#define xe_tile_ASSERT(tile, condition) xe_tile_ASSERT_MSG((tile), condi=
-tion, "")
-> +#define xe_tile_ASSERT_MSG(tile, condition, msg, arg...) ({					\
-> +	struct xe_tile *__tile =3D (tile);							\
-> +	char __buf[10];										\
-> +	xe_ASSERT_MSG(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg,	=
-		\
-> +		      __tile->id, ({ string_get_size(__tile->mem.vram.actual_physical_=
-size, 1,	\
-> +				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
-> +})
-> +
-> +/**
-> + * xe_gt_ASSERT - warn if condition is false when debugging.
-> + * @gt: the &struct xe_gt pointer to which &condition applies
-> + * @condition: condition to check
-> + *
-> + * xe_gt_ASSERT() uses &drm_WARN to emit a warning and print additional
-> + * information that could be safetely read from the &gt pointer if provi=
-ded
-> + * &condition is false.
-> + *
-> + * Contrary to &drm_WARN, xe_gt_ASSERT() is effective only on debug buil=
-ds
-> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressi=
-ons
-> + * or as a condition.
-> + *
-> + * See `Xe ASSERTs`_ for general usage guidelines.
-> + */
-> +#define xe_gt_ASSERT(gt, condition) xe_gt_ASSERT_MSG((gt), condition, "")
-> +#define xe_gt_ASSERT_MSG(gt, condition, msg, arg...) ({						\
-> +	struct xe_gt *__gt =3D (gt);								\
-> +	xe_tile_ASSERT_MSG(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,=
-			\
-> +			   __gt->info.id, __gt->info.type, ## arg);				\
-> +})
-> +
-> +#endif /* __XE_ASSERT_H__ */
-
---=20
+-- 
 Jani Nikula, Intel Open Source Graphics Center
