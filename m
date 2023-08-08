@@ -4,50 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90208C001DF
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 11:46:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E786C001B0
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 11:50:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62F4810E3DC;
-	Tue,  8 Aug 2023 11:46:21 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1D7C10E3DC
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 11:46:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 244BF10E118;
+	Tue,  8 Aug 2023 11:50:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C74F10E106
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 11:50:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691495180; x=1723031180;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iW2sRqmB1lmYBUf1amS76KckLiGH6y4bI0lInoyBR00=;
- b=XuqXj4yucw1KHlBzde63JT/Lm4zorQ1wJw2m4atFvyGTZJ3X534bBKEx
- uHuP8SretMqmpC5RZQG9kpYQnuBrINPBM2wqMRYxxCGAJYy8+ELbw/BRG
- ObSrgVaVBtOrbreauoaLrpGAg66ZES31226pqFP4lOIbYt9okP+cGBacN
- l8OW8cwEmk+va8AS7IWJiGf9F6czLl7WSCiASGY7mN3JaWIvEVpbXxVIC
- ztVBysTYPAzPApdX4Kd5lQOc1iSRU3C6IwMkS81JP+0xCez/xg54I9GNg
- gExRrQkUMxr/ZxudfFXDO5RsNLZFXYWkw9W7YXwPxjC7jSXvHiWGb2lc8 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="401758788"
-X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="401758788"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 04:46:19 -0700
+ t=1691495434; x=1723031434;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=2k+tFFIWkI/v7V9lJvE6h3SjqijixpZhsGY9WOLfaVg=;
+ b=N3XSy++N4WQvOUNwl4IRKUlOeUj/tXHdwmM6tn6nOXAlZoU0W/gVvTh9
+ 4lG5SC20KT57T58papTSgnbCi6ZNQHcqhseWWnUPLpkFVdqcMn9XSo5nG
+ QQz843GYqKu21Wk6iXvCfmYR9RxbaX4sefSADnh8yUbmD7RDpxQJE2qG8
+ ytRTVl02aEdOs6Q7EYkGeBnWs222UCGQHYI23TBsRIUSxlwG8H+yDIDnT
+ 7T6spisUWgeX2itHwST/d7vRtNeG2sRt+33uSh7Sf2zrqNwQ9NwgHKdNL
+ olCmZH/Rf66B6p7jDu5HpArNzu85QhbyUT+TPZwrEJKtUZj5VDYx9Vxjz g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="370790133"
+X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="370790133"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 04:50:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="734497609"
-X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="734497609"
-Received: from sschwar3-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.49.159])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 04:46:17 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="724898449"
+X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="724898449"
+Received: from aravind-dev.iind.intel.com ([10.145.162.80])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 04:50:32 -0700
+From: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  8 Aug 2023 14:45:35 +0300
-Message-Id: <20230808114535.1600595-9-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230808114535.1600595-1-jani.nikula@intel.com>
-References: <20230808114535.1600595-1-jani.nikula@intel.com>
+Date: Tue,  8 Aug 2023 17:24:34 +0530
+Message-Id: <20230808115436.400611-1-aravind.iddamsetty@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 9/9] fixup! drm/i915/display: Remaining changes
- to make xe compile
+Subject: [Intel-xe] [PATCH v3 0/2] drm/xe/pmu: Enable PMU interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,30 +54,77 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unnecessary change, drop it.
+There are a set of engine group busyness counters provided by HW which are
+perfect fit to be exposed via PMU perf events.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vbt_defs.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+BSPEC: 46559, 46560, 46722, 46729, 52071, 71028
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 001de8fe4e64..a9f44abfc9fc 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -30,7 +30,7 @@
-  *
-  * Please do NOT include anywhere else.
-  */
--#if !defined(_INTEL_BIOS_PRIVATE) && !defined(HDRTEST)
-+#ifndef _INTEL_BIOS_PRIVATE
- #error "intel_vbt_defs.h is private to intel_bios.c"
- #endif
- 
+events can be listed using:
+perf list
+  xe_0000_03_00.0/any-engine-group-busy-gt0/         [Kernel PMU event]
+  xe_0000_03_00.0/copy-group-busy-gt0/               [Kernel PMU event]
+  xe_0000_03_00.0/interrupts/                        [Kernel PMU event]
+  xe_0000_03_00.0/media-group-busy-gt0/              [Kernel PMU event]
+  xe_0000_03_00.0/render-group-busy-gt0/             [Kernel PMU event]
+
+and can be read using:
+
+perf stat -e "xe_0000_8c_00.0/render-group-busy-gt0/" -I 1000
+           time             counts unit events
+     1.001139062                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+     2.003294678                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+     3.005199582                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+     4.007076497                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+     5.008553068                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+     6.010531563              43520 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+     7.012468029              44800 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+     8.013463515                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+     9.015300183                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+    10.017233010                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+    10.971934120                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
+
+The pmu base implementation is taken from i915.
+
+v3:
+1. drop init_samples, as storing counters before going to suspend should
+be sufficient.
+2. ported the "drm/i915/pmu: Make PMU sample array two-dimensional" and
+dropped helpers to store and read samples.
+3. use xe_device_mem_access_get_if_ongoing to check if device is active
+before reading the OA registers.
+4. dropped format attr as no longer needed
+5. introduce xe_pmu_suspend to call engine_group_busyness_store
+6. few other nits.
+
+v2:
+Store last known value when device is awake return that while the GT is
+suspended and then update the driver copy when read during awake.
+
+Aravind Iddamsetty (2):
+  drm/xe: Get GT clock to nanosecs
+  drm/xe/pmu: Enable PMU interface
+
+ drivers/gpu/drm/xe/Makefile          |   2 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |   5 +
+ drivers/gpu/drm/xe/xe_device.c       |   2 +
+ drivers/gpu/drm/xe/xe_device_types.h |   4 +
+ drivers/gpu/drm/xe/xe_gt.c           |   2 +
+ drivers/gpu/drm/xe/xe_gt_clock.c     |   5 +
+ drivers/gpu/drm/xe/xe_gt_clock.h     |   4 +-
+ drivers/gpu/drm/xe/xe_irq.c          |  18 +
+ drivers/gpu/drm/xe/xe_module.c       |   5 +
+ drivers/gpu/drm/xe/xe_pmu.c          | 673 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_pmu.h          |  25 +
+ drivers/gpu/drm/xe/xe_pmu_types.h    |  76 +++
+ include/uapi/drm/xe_drm.h            |  16 +
+ 13 files changed, 836 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_pmu.c
+ create mode 100644 drivers/gpu/drm/xe/xe_pmu.h
+ create mode 100644 drivers/gpu/drm/xe/xe_pmu_types.h
+
 -- 
-2.39.2
+2.25.1
 
