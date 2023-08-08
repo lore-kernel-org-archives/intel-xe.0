@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B5BBC001B0
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 04:15:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FD2FC001B0
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 04:15:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F4AE10E025;
-	Tue,  8 Aug 2023 04:15:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 45BE510E39D;
+	Tue,  8 Aug 2023 04:15:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A896B10E025;
- Tue,  8 Aug 2023 04:15:31 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B44D810E39D;
+ Tue,  8 Aug 2023 04:15:42 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 88F86AADEC;
- Tue,  8 Aug 2023 04:15:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B18FBAADEC;
+ Tue,  8 Aug 2023 04:15:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Oak Zeng" <oak.zeng@intel.com>
-Date: Tue, 08 Aug 2023 04:15:31 -0000
-Message-ID: <169146813153.13862.5221355549665319271@emeril.freedesktop.org>
+Date: Tue, 08 Aug 2023 04:15:42 -0000
+Message-ID: <169146814272.13860.10736924909943668257@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230808024501.11669-1-oak.zeng@intel.com>
 In-Reply-To: <20230808024501.11669-1-oak.zeng@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_series_starting_with_=5B1/2=5D_drm/xe=3A_Move_the_memory_reg?=
- =?utf-8?q?ion_struct_out_xe=5Ftile?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_se?=
+ =?utf-8?q?ries_starting_with_=5B1/2=5D_drm/xe=3A_Move_the_memory_region_s?=
+ =?utf-8?q?truct_out_xe=5Ftile?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,14 +49,31 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/2] drm/xe: Move the memory region struct out xe_tile
 URL   : https://patchwork.freedesktop.org/series/122133/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 00d518723 drm/xe: Set max pte size when skipping rebinds
-=== git am output follows ===
-Applying: drm/xe: Move the memory region struct out xe_tile
-Applying: drm/xe: Improve vram info debug printing
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e700ea2f248a75138759bcb443affeef4a2d1991
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 751d4a13f553b85d0b54433e6d95ca0d4b6c50e1
+Author: Oak Zeng <oak.zeng@intel.com>
+Date:   Mon Aug 7 22:45:01 2023 -0400
+
+    drm/xe: Improve vram info debug printing
+    
+    Print both device physical address range and CPU io range
+    of vram. Also print vram's actual size, usable size excluding
+    stolen memory, and CPU io accessible size.
+    
+    Signed-off-by: Oak Zeng <oak.zeng@intel.com>
++ /mt/dim checkpatch 00d518723e237d9b1798b100ce9f5590c15e5158 drm-intel
+/mt/dim: line 50: /root/.dimrc: No such file or directory
 
 
