@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08B61C001DB
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 05:30:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B751CC001DE
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 05:30:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D63B10E0B8;
-	Tue,  8 Aug 2023 05:30:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FB7010E0B8;
+	Tue,  8 Aug 2023 05:30:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 66C9210E0B8;
- Tue,  8 Aug 2023 05:30:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id C896310E3A2;
+ Tue,  8 Aug 2023 05:30:14 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 50957AADF2;
- Tue,  8 Aug 2023 05:30:04 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C529BAADF2;
+ Tue,  8 Aug 2023 05:30:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Date: Tue, 08 Aug 2023 05:30:04 -0000
-Message-ID: <169147260430.13861.1205444910916033256@emeril.freedesktop.org>
+Date: Tue, 08 Aug 2023 05:30:14 -0000
+Message-ID: <169147261480.13860.4543625697444268604@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230808013159.38811-1-ashutosh.dixit@intel.com>
 In-Reply-To: <20230808013159.38811-1-ashutosh.dixit@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Add_OA_functionality_to_Xe_=28rev4=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Ad?=
+ =?utf-8?q?d_OA_functionality_to_Xe_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,22 +48,30 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Add OA functionality to Xe (rev4)
 URL   : https://patchwork.freedesktop.org/series/121084/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 00d518723 drm/xe: Set max pte size when skipping rebinds
-=== git am output follows ===
-Applying: drm/xe/oa: Introduce OA uapi
-Applying: drm/xe/oa: Add OA types
-Applying: drm/xe/oa: Add registers and GPU commands used by OA
-Applying: drm/xe/oa: Module init/exit and probe/remove
-Applying: drm/xe/oa: Add/remove config ioctl's
-Applying: drm/xe/oa: Start implementing OA stream open ioctl
-Applying: drm/xe/oa: OA stream initialization
-Applying: drm/xe/oa: Expose OA stream fd
-Applying: drm/xe/oa: Read file_operation
-Applying: drm/xe/oa: Implement queries
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e700ea2f248a75138759bcb443affeef4a2d1991
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 455e188e0d8aae4da4195f9ddd54720734f04f90
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Mon Aug 7 18:31:59 2023 -0700
+
+    drm/xe/oa: Implement queries
+    
+    Implement queries to query OA unit ID's for HW engines, OA timestamp freq
+    and OA ioctl version.
+    
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch 00d518723e237d9b1798b100ce9f5590c15e5158 drm-intel
+/mt/dim: line 50: /root/.dimrc: No such file or directory
 
 
