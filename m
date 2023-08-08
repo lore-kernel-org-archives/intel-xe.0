@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EE65C001DF
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 10:42:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3893C001B0
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 10:47:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AEC810E004;
-	Tue,  8 Aug 2023 10:42:16 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2074810E004
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 10:42:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8102410E0A8;
+	Tue,  8 Aug 2023 10:47:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 073C710E0A8
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 10:47:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691491334; x=1723027334;
+ t=1691491675; x=1723027675;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=Mk2srlVVXVR4x6J0aGpxgmeP6fx3mJjUKkexWz24f9A=;
- b=Bq7+m+phHcUTuWxv1JeVZ++Xk3aH+oBHJnhv63ZmsY0TITwPsl5TQqeS
- NRIUkqQUm8xY6MQvpef1U4Es9kSqDOEmlhDsohz5vZqpYyps9H37kByhI
- PqBWefaSTCMGjEieVDiLl8PuIGCt4CHT9Ih1N+MFcG3wJLnHIzyIxRKi1
- zknhwRwkNlZtGpi2+5Cd/NzdkE/xQjIUjguQD92aqMYKYB4O7Z0kGS+8s
- EAFZq2OtTXNrFX688vy4m6vqvKiCER2Vh7f01yvQFBrdnx86W2kHXcwRz
- wnb8C8Yan0JUl+gNr7w2DStwalPFz0ulHViVVb2zUuwVCSi6AWibbxM1c w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="374460376"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="374460376"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 03:42:13 -0700
+ bh=AlyDn2p/wsOEDolPqWIjk7kKj0CRWNPY7LVlXTLgYqg=;
+ b=RBBGIL+aI4G27y8O9HlF2Ma2LpSj0Sr62aoKm1DFJP79PiYJEIWAlSB6
+ xJsfAYQX9wfzgJkPLLyVqdZuVJE5Ab5Aw5eHUf6+EQ/vXDNYYuQEfxuML
+ h5NM/5np4Nab+sj3OEqy4mJ3kl8xpBxq6JIN/fTaabPfYP2V3cp4LTNuf
+ 3qeWhsBv9Snk3QZ/yueYJ9Wz/iPae+mOdNVDLMJ8DAzCH4mpkvMz7X8B6
+ nJQ9mzjsYwV/4SDZNfIocdGVs/BRUGSuV2txmYRXRYg4Gojtt1sOlcaoo
+ Rfg1++u9wca0FIlyb12WvgWVEvKf3FfesMzH2Ha0+/Gt179F3na7Wv/oO w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="434635937"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="434635937"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 03:47:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="905172264"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="905172264"
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="1061962440"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="1061962440"
 Received: from sschwar3-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.252.49.159])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 03:42:11 -0700
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 03:47:52 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, Francois Dugast
- <francois.dugast@intel.com>
-In-Reply-To: <ZLFXWdDsM6vpPg8D@DUT025-TGLU>
+To: Lucas De Marchi <lucas.demarchi@intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>
+In-Reply-To: <3zwh5c6wvaure57flxp5jrqe2rira6des6an3ws25anrauxsnu@a24cb3vjzbh3>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20230713150611.7-1-francois.dugast@intel.com>
- <20230713150611.7-3-francois.dugast@intel.com>
- <ZLFXWdDsM6vpPg8D@DUT025-TGLU>
-Date: Tue, 08 Aug 2023 13:42:09 +0300
-Message-ID: <87il9pu872.fsf@intel.com>
+ <ZLBfsNWDeWYx+c/X@intel.com>
+ <3zwh5c6wvaure57flxp5jrqe2rira6des6an3ws25anrauxsnu@a24cb3vjzbh3>
+Date: Tue, 08 Aug 2023 13:47:50 +0300
+Message-ID: <87fs4tu7xl.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 2/7] drm/xe: Cleanup OPEN_BRACE style issues
+Subject: Re: [Intel-xe] [PATCH 0/7] drm/xe: Code cleanup
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,83 +60,78 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 14 Jul 2023, Matthew Brost <matthew.brost@intel.com> wrote:
-> On Thu, Jul 13, 2023 at 03:06:06PM +0000, Francois Dugast wrote:
->> Remove almost all existing style issues of type OPEN_BRACE reported
->> by checkpatch.
->> 
->> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+On Mon, 17 Jul 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Thu, Jul 13, 2023 at 04:33:52PM -0400, Rodrigo Vivi wrote:
+>>On Thu, Jul 13, 2023 at 03:06:04PM +0000, Francois Dugast wrote:
+>>> Fix minor typos and reduce ERRORs reported by checkpatch.pl from 95 to 22.
+>>
+>>I wonder if we should do this with !fixup patches...
 >
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
->
->> ---
->>  drivers/gpu/drm/xe/display/ext/intel_device_info.c | 11 ++++++++---
->>  drivers/gpu/drm/xe/xe_gt_mcr.c                     |  3 ++-
+> I think that would be a nightmare to thread through the conflicts.
 
-I don't know what I need to do to drive this point through:
-
-
-WE MUST **STOP** CHANGING DISPLAY CODE AND XE CODE IN THE SAME COMMITS.
-
-
-The code in display/ext/intel_device_info.c is a nightmare that needs to
-be fixed. The history of it needs to be gone when submitting
-upstream. Doing checkpatch fixes to it is utterly pointless, and
-combined with changes to rest of xe in the same commit, this makes
-display fixes harder than it already is.
-
-Do not touch display code *or* i915 code in the same commits, please.
+For display it's a nightmare we have to plunge through. And this just
+made it worse.
 
 BR,
 Jani.
 
 
->>  2 files changed, 10 insertions(+), 4 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/xe/display/ext/intel_device_info.c b/drivers/gpu/drm/xe/display/ext/intel_device_info.c
->> index 29f3909e018a..9e9ccdef81f1 100644
->> --- a/drivers/gpu/drm/xe/display/ext/intel_device_info.c
->> +++ b/drivers/gpu/drm/xe/display/ext/intel_device_info.c
->> @@ -49,9 +49,14 @@ void intel_dvo_init(struct drm_i915_private *i915) {}
->>  int intel_tv_init(struct drm_i915_private *i915) { return 0; }
->>  int assert_dsi_pll_enabled(struct drm_i915_private *i915) { return 0; }
->>  bool intel_sdvo_init(struct drm_i915_private *dev_priv,
->> -		     i915_reg_t sdvo_reg, enum port port) { return false; }
->> +		     i915_reg_t sdvo_reg, enum port port)
->> +
->> +{
->> +	return false;
->> +}
->>  void g4x_hdmi_init(struct drm_i915_private *dev_priv,
->> -		   i915_reg_t hdmi_reg, enum port port) {}
->> +		   i915_reg_t hdmi_reg, enum port port)
->> +{}
->>  int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
->> -                                    struct drm_atomic_state *state)
->> +				    struct drm_atomic_state *state)
->>  { return -ENODEV; }
->> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
->> index 3db550c85e32..ff4075387564 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
->> @@ -429,7 +429,8 @@ static void mcr_lock(struct xe_gt *gt)
->>  	drm_WARN_ON_ONCE(&xe->drm, ret == -ETIMEDOUT);
->>  }
->>  
->> -static void mcr_unlock(struct xe_gt *gt) {
->> +static void mcr_unlock(struct xe_gt *gt)
->> +{
->>  	/* Release hardware semaphore */
->>  	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270)
->>  		xe_mmio_write32(gt, STEER_SEMAPHORE, 0x1);
->> -- 
->> 2.34.1
->> 
+> Let's just accept the mistakes happened when we werent' checking
+> for checkpatch in CI.
+>
+> Lucas De Marchi
+>
+>>
+>>But we anyway need this,
+>>
+>>Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>for the series
+>>
+>>>
+>>> Francois Dugast (7):
+>>>   drm/xe: Cleanup SPACING style issues
+>>>   drm/xe: Cleanup OPEN_BRACE style issues
+>>>   drm/xe: Cleanup POINTER_LOCATION style issues
+>>>   drm/xe: Cleanup CODE_INDENT style issues
+>>>   drm/xe: Cleanup TRAILING_WHITESPACE style issues
+>>>   drm/xe: Cleanup COMPLEX_MACRO style issues
+>>>   drm/xe: Fix typos
+>>>
+>>>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h  |  4 ++--
+>>>  drivers/gpu/drm/xe/display/ext/intel_device_info.c | 11 ++++++++---
+>>>  drivers/gpu/drm/xe/display/xe_fb_pin.c             |  4 ++--
+>>>  drivers/gpu/drm/xe/xe_device.h                     |  6 +++---
+>>>  drivers/gpu/drm/xe/xe_device_types.h               |  4 ++--
+>>>  drivers/gpu/drm/xe/xe_engine.c                     |  4 ++--
+>>>  drivers/gpu/drm/xe/xe_force_wake.c                 |  2 +-
+>>>  drivers/gpu/drm/xe/xe_gt.h                         |  2 +-
+>>>  drivers/gpu/drm/xe/xe_gt_clock.c                   |  8 ++++----
+>>>  drivers/gpu/drm/xe/xe_gt_debugfs.c                 |  2 +-
+>>>  drivers/gpu/drm/xe/xe_gt_mcr.c                     |  3 ++-
+>>>  drivers/gpu/drm/xe/xe_gt_types.h                   |  8 ++++----
+>>>  drivers/gpu/drm/xe/xe_guc.c                        |  2 +-
+>>>  drivers/gpu/drm/xe/xe_guc_debugfs.c                |  2 +-
+>>>  drivers/gpu/drm/xe/xe_guc_fwif.h                   | 12 ++++++------
+>>>  drivers/gpu/drm/xe/xe_guc_submit.c                 | 14 +++++++-------
+>>>  drivers/gpu/drm/xe/xe_huc_debugfs.c                |  2 +-
+>>>  drivers/gpu/drm/xe/xe_hw_engine.c                  |  2 +-
+>>>  drivers/gpu/drm/xe/xe_lrc.c                        |  4 ++--
+>>>  drivers/gpu/drm/xe/xe_rtp.h                        |  4 ++--
+>>>  drivers/gpu/drm/xe/xe_rtp_helpers.h                | 10 +++++-----
+>>>  drivers/gpu/drm/xe/xe_sched_job.c                  |  2 +-
+>>>  drivers/gpu/drm/xe/xe_uc.c                         | 10 +++++-----
+>>>  drivers/gpu/drm/xe/xe_uc_fw.c                      |  4 ++--
+>>>  drivers/gpu/drm/xe/xe_vm.c                         |  2 +-
+>>>  drivers/gpu/drm/xe/xe_wa.c                         |  4 ++--
+>>>  26 files changed, 69 insertions(+), 63 deletions(-)
+>>>
+>>> --
+>>> 2.34.1
+>>>
 
 -- 
 Jani Nikula, Intel Open Source Graphics Center
