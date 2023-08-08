@@ -4,46 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72D46C001DB
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 09:12:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C0A8C001DB
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 09:19:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C4EE10E3D3;
-	Tue,  8 Aug 2023 09:12:19 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0026010E3D3
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 09:12:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 052E210E3D3;
+	Tue,  8 Aug 2023 09:19:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B828B10E3D3
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 09:19:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691485938; x=1723021938;
+ t=1691486354; x=1723022354;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=I70OqPTbtKZqW3CQ1Et1Iah8077x/NZluJY42fn8S90=;
- b=NvQelFIqvp67BvZjzxwHg/KfAGGsBb1K8OGPRlhY8NXLl7Ap3nUcLShV
- Y19VcmbwZ9L6iJ2PYvvMUgyiJ1Cc7+cUXvxf/xEHfQgeRodrNc0/RBcYg
- o0eIeAjdqNsPVaEU/dLGNU8LcR4HFP3h0sCRijXuKoQQWuKzqycxKiza6
- KM23GDBpJahatM7MeTFhQnmvt6fs2Jj6pI/BmXKrBqRAVARBkYFgC+AiU
- nION1ZSlaNhXPXEZW2K63Tv1zrIWmnXggA13tqqhT9rtMyHRi8566f9Ks
- GnVl79Th6Nkvqd9JJ9eOO4ttEnKWaMWPTGgFsnuup2d8LwVodmpWAmJaO w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="434616891"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="434616891"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 02:12:16 -0700
+ bh=w3SMp9bdPQ+NYNjyHW+AZo8RbN8wUB+cJjRA51kAljA=;
+ b=BAA75pMTd9fofOFm/3NhyRRRWsUMIfeDDwSKB4A9APh+BnhZcLhA9OfP
+ kMTRyqSeJsAwwJDSgLwG4/i9ere08yQxaTSgArIK3gdE5ZErYIXK1T8wp
+ piUb2Iip0ZhYcwqPH7w7QevPKjFR2fzVFPfW9htYBcaSook6bHBj3+Ikw
+ ln5j537hoE+YIRHs9uLHwPhc6HZkmI7LsNAiZrP1AiuFX+xLk023K7Ood
+ tUaAtvDa/VoQ5E6lLiYI7jAu26Ib4zfYrmZSp51kOyxefFJsNAEoGO47v
+ Lj4QLl6o/0Oc6rb7SznxGulvsqS5+nE9fYVJ3I3w+wuF5tmPmvX7qgo66 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="369668303"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="369668303"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 02:19:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="731313475"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="731313475"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="874649141"
 Received: from akurkina-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.18.47])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 02:12:15 -0700
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 02:19:16 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  8 Aug 2023 10:12:09 +0100
-Message-ID: <20230808091208.112793-2-matthew.auld@intel.com>
+Date: Tue,  8 Aug 2023 10:19:04 +0100
+Message-ID: <20230808091903.114939-2-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: skip rebind_list if vma destroyed
+Subject: [Intel-xe] [PATCH v2] drm/xe/guc_submit: fixup deregister in job
+ timeout
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,59 +58,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If we are closing a vm, mark each vma as XE_VMA_DESTROYED and skip
-touching the rebind_list if this is seen on the eviction path. That way
-we can safely drop the vm dma-resv lock on the close path without
-needing to worry about racing with the eviction path trying to add stuff
-to the rebind_list which can corrupt our contended list, since the
-destroy and rebind links are the same list entry underneath.
+Rather check if the engine is still registered before proceeding with
+deregister steps. Also the engine being marked as disabled doesn't mean
+the engine has been disabled or deregistered from GuC pov, and here we
+are signalling fences so we need to be sure GuC is not still using this
+context.
 
-References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/514
+v2:
+ - Drop the read_stopped() for this path. Since we are signalling
+   fences on error here, best play it safe and wait for the GT reset to
+   mark the engine as disabled, rather than it just being queued.
+
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 10 ++++++----
- drivers/gpu/drm/xe/xe_vm.c |  1 +
- 2 files changed, 7 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_submit.c | 12 +++++++-----
+ 1 file changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 284c86107a5f..6a7dc14feab0 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -504,15 +504,17 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
- 				vm_resv_locked = true;
- 			else if (ctx->resv != &vm->resv) {
- 				spin_lock(&vm->notifier.list_lock);
--				list_move_tail(&vma->notifier.rebind_link,
--					       &vm->notifier.rebind_list);
-+				if (!(vma->gpuva.flags & XE_VMA_DESTROYED))
-+					list_move_tail(&vma->notifier.rebind_link,
-+						       &vm->notifier.rebind_list);
- 				spin_unlock(&vm->notifier.list_lock);
- 				continue;
- 			}
- 
- 			xe_vm_assert_held(vm);
--			if (list_empty(&vma->combined_links.rebind) &&
--			    vma->tile_present)
-+			if (vma->tile_present &&
-+			    !(vma->gpuva.flags & XE_VMA_DESTROYED) &&
-+			    list_empty(&vma->combined_links.rebind))
- 				list_add_tail(&vma->combined_links.rebind,
- 					      &vm->rebind_list);
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 936492915ecb..aef032ba8e27 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1450,6 +1450,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 		}
- 
- 		list_move_tail(&vma->combined_links.destroy, &contested);
-+		vma->gpuva.flags |= XE_VMA_DESTROYED;
+diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+index 52c61f78b083..6126ddf2fdd5 100644
+--- a/drivers/gpu/drm/xe/xe_guc_submit.c
++++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+@@ -881,15 +881,17 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
  	}
  
- 	/*
+ 	/* Engine state now stable, disable scheduling if needed */
+-	if (exec_queue_enabled(q)) {
++	if (exec_queue_registered(q)) {
+ 		struct xe_guc *guc = exec_queue_to_guc(q);
+ 		int ret;
+ 
+ 		if (exec_queue_reset(q))
+ 			err = -EIO;
+ 		set_exec_queue_banned(q);
+-		xe_exec_queue_get(q);
+-		disable_scheduling_deregister(guc, q);
++		if (!exec_queue_destroyed(q)) {
++			xe_exec_queue_get(q);
++			disable_scheduling_deregister(guc, q);
++		}
+ 
+ 		/*
+ 		 * Must wait for scheduling to be disabled before signalling
+@@ -901,8 +903,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
+ 		 */
+ 		smp_rmb();
+ 		ret = wait_event_timeout(guc->ct.wq,
+-					 !exec_queue_pending_disable(q) ||
+-					 guc_read_stopped(guc), HZ * 5);
++					 !exec_queue_pending_disable(q),
++					 HZ * 5);
+ 		if (!ret) {
+ 			XE_WARN_ON("Schedule disable failed to respond");
+ 			sched->timeout = MIN_SCHED_TIMEOUT;
 -- 
 2.41.0
 
