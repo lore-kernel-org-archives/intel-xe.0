@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BCB42C001B0
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 12:01:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42E9EC001DB
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 12:02:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8D29010E12E;
-	Tue,  8 Aug 2023 12:01:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F9FA10E12E;
+	Tue,  8 Aug 2023 12:02:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 78F7810E12E;
- Tue,  8 Aug 2023 12:01:09 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9CDDD10E12E;
+ Tue,  8 Aug 2023 12:02:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 716D2AADDC;
- Tue,  8 Aug 2023 12:01:09 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 99267AADDC;
+ Tue,  8 Aug 2023 12:02:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Tue, 08 Aug 2023 12:01:09 -0000
-Message-ID: <169149606946.13859.12254460017762242012@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Date: Tue, 08 Aug 2023 12:02:44 -0000
+Message-ID: <169149616462.13861.10885965312715753462@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230726210352.390864-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20230726210352.390864-1-rodrigo.vivi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_drm/xe=3A_Invert_mask_and_val_in_xe=5Fmmio=5Fwait32=2E?=
+References: <20230808114535.1600595-1-jani.nikula@intel.com>
+In-Reply-To: <20230808114535.1600595-1-jani.nikula@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/9=5D_drm/i915/display=3A_add_I915_?=
+ =?utf-8?q?conditional_build_to_g4x=5Fhdmi=2Eh?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,38 +47,23 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Invert mask and val in xe_mmio_wait32.
-URL   : https://patchwork.freedesktop.org/series/121388/
-State : failure
+Series: series starting with [1/9] drm/i915/display: add I915 conditional build to g4x_hdmi.h
+URL   : https://patchwork.freedesktop.org/series/122152/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 958ba208e fixup! drm/xe/display: Implement display support
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h:90
-error: drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_force_wake.c:120
-error: drivers/gpu/drm/xe/xe_force_wake.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_gt.c:456
-error: drivers/gpu/drm/xe/xe_gt.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_gt_mcr.c:423
-error: drivers/gpu/drm/xe/xe_gt_mcr.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_guc.c:290
-error: drivers/gpu/drm/xe/xe_guc.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_huc.c:85
-error: drivers/gpu/drm/xe/xe_huc.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_mmio.h:107
-error: drivers/gpu/drm/xe/xe_mmio.h: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_pcode.c:68
-error: drivers/gpu/drm/xe/xe_pcode.c: patch does not apply
-error: patch failed: drivers/gpu/drm/xe/xe_uc_fw.c:484
-error: drivers/gpu/drm/xe/xe_uc_fw.c: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe: Invert mask and val in xe_mmio_wait32.
-Patch failed at 0001 drm/xe: Invert mask and val in xe_mmio_wait32.
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/i915/display: add I915 conditional build to g4x_hdmi.h
+Applying: drm/i915/display: add I915 conditional build to intel_dvo.h
+Applying: drm/i915/display: add I915 conditional build to intel_sdvo.h
+Applying: drm/i915/display: add I915 conditional build to intel_tv.h
+Applying: drm/i915/display: add I915 conditional build to vlv_dsi_pll.h
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/i915/display: Remaining changes to make xe compile
 
 
