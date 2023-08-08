@@ -4,142 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FB9AC001B0
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 14:08:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF4FFC001B0
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 14:12:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6B3510E1C3;
-	Tue,  8 Aug 2023 14:08:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 481F410E1C3;
- Tue,  8 Aug 2023 14:08:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAA8F10E1C3;
+	Tue,  8 Aug 2023 14:12:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8E6D10E1C3
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 14:12:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691503705; x=1723039705;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=zmbvYpqlzH81nJJTsZ08hD76OAT2TzYtSfZf3SbHRs0=;
- b=J/aOegTL/Sy8cjECJYaME5peGQcJX+fBEbnaAkXCsieFPWslB6xkXCRA
- v5D2bAQD6MyZY29wf4XaU41yxTqXFvXxf5mWyW6M1yFBbTv2Yi36ZqZox
- D8Wth9N5Re9vs0HrR1MXQ3QBI8c2SXwUoMGN/c3MaoQ6JxUAe56R2oHhe
- hrP6MavJ+KQcMrLvmjUc3pf236ebd2mtVCXBQlA+HyCJGiGQkoln/UHm2
- Z0wHYkZpMlxIhd8au98CThvt3ybMEjWkIf8fFe42b0OWV+E0mUumdKLsU
- KCxYkGxoiKxppghGiwWscelXx95rfvm5vu+oNCUeqO3bsNSdXhmjci4kq g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="351132408"
-X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="351132408"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 07:07:43 -0700
+ t=1691503932; x=1723039932;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=TQJbvqM5Pn1E14Q9tS1dgsXihOtAiAIZQEqoraJHD48=;
+ b=LZeIzVZul/0EowxMf4Opgh8IZNwMRTqXq3JCRQDB3flz0cYMBrxivVtg
+ 2asFbA3uxiyWzzJi5s4Qfd/NqmQFuQtRRDwCmLYFZ+3XR0Dgh4wV7maad
+ AewH2BkRoCeJKJ9PUb1HEd0Du8R8U/WVBeGudE6xrHLugDzfeWbM8oohC
+ 5MEcDl4iSUZmfLk3t4+qx9eyveQTWnVd+1GxEiSdjCuaMA8pzGKgW0vGx
+ DVbYf5hPeDUbAsFiM47x32qZrTwMPMhGPzXf+IlKIHjwX5FyE5QEHsdjA
+ o4X3CbtiTRZVweyHJApZOAUDnilFcw+cmPbFGm2ZJV7GVpV8ndxo3T5XW g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="360923881"
+X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="360923881"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 07:12:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="845490793"
-X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="845490793"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga002.fm.intel.com with ESMTP; 08 Aug 2023 07:07:38 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 8 Aug 2023 07:07:37 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 8 Aug 2023 07:07:37 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.48) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 8 Aug 2023 07:07:37 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fFFU5ppsaH9RLsaWghvx511zV59zJyGcff7WlvFaIKC4xPdUTIllXCyiExO1xos2DtodKOdjhSfOdxrXwJZGjnGwxssveCO3oXhcfTgY9BUE4OMHCEUWPma9+v4nZ4lTjtYaBh4JDSGRojHppazInU82W3/j0EvIHqhxorRhYCgkcVhwQ/aQ/c1VyhMl5vz3DtAo6cMD/Sl0xu2rwuIo7nGlbO1u7wnX5EUueCaN/+4LJXerUjvoGRopTcc7CvAw9OmJ+w+FJlVv/Kq/X0RKcSFT72yBnroosl5CapdaQ5GODV47BijdMHFkdql2CeqP+7uCgU6rtNF1hHaqs1TGLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/NVp1r8SYn4nEI5G343i5IJAiVzWiHQ1dhOAE3SZ1xA=;
- b=MXmcKYL8IPqIsROprmJEx7Z+vCaPyjP3A/wVMu+fgZI94hEPoA21auFfyF2xZXYkPevoXXBrOgjI/DedlRGxA88jx3PhQ3+Hp48J74GSi+lRLTWXJwCfJDnEXZitIgYmFFozux/ICa3/NGqJvMbVk1kYLxH+QQ/Jkd6siEa9CXCspV2ATLgfYfJkCQdzVBtnQF3W2GcC7jmtuJtYF91GkhtYNGVyExf1O9zd9pRomW574ow+jyAW9Gmb83DvFovZb/xzfm8Xh/BxTktEKg4FsmDTGjvwZp3fzchZv4BjsfNeovHJ63g72pGBm+EiaFbKQFEOELkGuEXJdkFGUGbnZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by IA1PR11MB6243.namprd11.prod.outlook.com (2603:10b6:208:3e7::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.27; Tue, 8 Aug
- 2023 14:07:35 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::538f:8837:abce:4522]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::538f:8837:abce:4522%4]) with mapi id 15.20.6652.026; Tue, 8 Aug 2023
- 14:07:35 +0000
-Date: Tue, 8 Aug 2023 14:06:25 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <ZNJL4Sgigy4JsprS@DUT025-TGLU.fm.intel.com>
-References: <20230801205103.627779-1-matthew.brost@intel.com>
- <20230801205103.627779-5-matthew.brost@intel.com>
- <efabdbaf-4f38-ae62-3d4e-da5660558886@amd.com>
- <CAKMK7uEdyV+Swtk50KqYUeCr5sOAceT_asB69_Ynz=Nx_z+HkQ@mail.gmail.com>
- <88b40106-e24f-e286-c3a3-363a6b2462ee@amd.com>
- <ZMy73BrH55NGq6Ba@phenom.ffwll.local>
- <ZM0HfRR8CczTLpao@DUT025-TGLU.fm.intel.com>
- <b19bb89c-a814-2519-e037-ee1c33dce02f@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b19bb89c-a814-2519-e037-ee1c33dce02f@amd.com>
-X-ClientProxiedBy: SJ0PR03CA0020.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::25) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="905223410"
+X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="905223410"
+Received: from sschwar3-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.49.159])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 07:12:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <a82b72a1-2804-1eca-6130-d111e6bf0f78@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230807173446.2039-1-michal.wajdeczko@intel.com>
+ <87r0oet1t5.fsf@intel.com>
+ <a82b72a1-2804-1eca-6130-d111e6bf0f78@intel.com>
+Date: Tue, 08 Aug 2023 17:12:08 +0300
+Message-ID: <874jl9tyh3.fsf@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|IA1PR11MB6243:EE_
-X-MS-Office365-Filtering-Correlation-Id: 161e232e-8a9f-4a73-046e-08db9818d0a0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DOrjlnoHf24++D8uQ0RMN7oEZjYGvH6MEAVwCDKlRYTT1ITmBkJD8QYxn03k7VFVaQFvBWBkODgQHY33uNGcSnALwj0kGJBih3QgqNomGZg3rGEQHP6oOao8Ii68g4xH2Q7k7ucP5vrASue+m7kA+20MjF1BRQGnN5o/ARei2esr3LCfDXmUEgbIz6XSygUOeg1rkPNe4UDKPvHUb06reP4jqhMYtsmUj/9D70nYEF0f+TaHiQ6Y7f7dVa5IAoNRRuvphSKMkSjYD/hIrn3KadlecVMOE0TZqW1XXQfMM8GLEW3cB6Eu/lFEMW2kzcJLX7s9J7jXG9KTM4jgUzM14WaX3WKiKy5TIcE2zDYDqHZgZ8cYHa0/TaL9juuxABt+QX4Xpno2NimmFxSr6MUpVwg42II1qlgnOzsaxuBJde7ZtzjDeqBTjCNvD4ReNkRT57IhclGK++U7octdp2+RGSkvQRzdzYTRq7a71mCdarTvj/9IWA571KpbWmkDLG3vSNnCYnAyRry1tNZEJaK22cpG6r3r3Qgy1nXBOS/ymmbF+2/W7ykvDddiCc3E4aEWxgfEvF37kv7mrS66wGm5vfKAjgu+Y1z7JdpOqG2QIZQ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(376002)(136003)(346002)(39860400002)(366004)(451199021)(1800799003)(186006)(8676002)(2906002)(8936002)(41300700001)(316002)(5660300002)(7416002)(44832011)(30864003)(15650500001)(86362001)(66574015)(478600001)(26005)(6506007)(82960400001)(38100700002)(83380400001)(6512007)(966005)(6666004)(6486002)(66946007)(66556008)(6916009)(4326008)(66476007)(41533002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ZLgYnKLATPLHPL6xn8qP/OO4+P5qCjzLnrFuP57EBRwd1U6gePQcQqqVCP?=
- =?iso-8859-1?Q?6ggy/sMCZRb+9yia665Y2TEh7dvr899MXVp8rtIyXVqi+b9L6BUxhmRm7Y?=
- =?iso-8859-1?Q?VK6cWg1LEm4khxvfHlFurhk/Tf+S3ohrishBjypnRAvrXAdD4OV7tGdQfE?=
- =?iso-8859-1?Q?ZN674UTnGjRkk5BwckmTvZJBZvm1UaaJLAD792mvTJU49mHdQAKzq+5koQ?=
- =?iso-8859-1?Q?A4oOYfbSUjeUGRjOxoEJ+Btp73OGsdUFfO8+NjfiZ76Wxx5LR9oi4kQXFn?=
- =?iso-8859-1?Q?R7/8TsLJDwDsT8SPfAoTArjbGmOaqdR3tVkRAQi/pFoHzqbEtUYZcgaNfP?=
- =?iso-8859-1?Q?Nx4y1aJt6nkZMwMj31NdoxOt8UQr4jaUmZKSqVmfYEvw15gGAjpUOzQFpO?=
- =?iso-8859-1?Q?zvRnUWLNWBAqSqdiZU4st5E3iPVHShp8JFMgXr3WHiQNiS2VkNoosZq+WK?=
- =?iso-8859-1?Q?n3mBEq4MWPyB9U3vFxs9tznA3rZdRTjdMLoDtC+iu8VuUDicaOcobe0TB1?=
- =?iso-8859-1?Q?bYAF1qmKvDGh1RrGi78D7k//VF2ufQNXUcJ9LLKto6AM2KidY51wz/syVo?=
- =?iso-8859-1?Q?gqfxGi0L2LnEccvbh2HhzKztszEScfnotsz0dIthIKDvPpEaEOq9aLvhBb?=
- =?iso-8859-1?Q?1OR9lqrgc1vL9B7tAB36Xw5y0i84SnK1xlnzmVXbpoAy7r9aZua8T5mJX0?=
- =?iso-8859-1?Q?xMPsXGB6LvnHsWFkyiXhd/lfpKFYMFH8r4+qWsjdqFnDvZpRpE876vA+p6?=
- =?iso-8859-1?Q?iroNEO6qy+z5LZPcSxarVMWaHN4OKCIBgI9d0TK7GsU/T6L2pHPdN4QeQ8?=
- =?iso-8859-1?Q?puQN+RZSbh1UhmI+wQU2NBWYOZ5tUnio/3QC6l9DUoBNq7KSxwXWdGMfVX?=
- =?iso-8859-1?Q?NE0zzSN91K2wb25UqdXJRrt2+mmY2laQQBBNKDO2U3cRuqpiwF0xN0VyS5?=
- =?iso-8859-1?Q?PRX+3VREJtweoBfpc8t+cqUL4muJz3fEccUaIGqw6ZFcFRzSb8sRpLgfVN?=
- =?iso-8859-1?Q?w3Gt91NU0mNrIcqSGiW1W3ru6pV/N1eBXGfQZ2vP+aDOpu4ZekueUOcVK2?=
- =?iso-8859-1?Q?7Y8Q4BTHZ2Kv35NFlRo+7EOMlZ/dDmq0SlUHLtKVSvzQO7osK0G2vLviNB?=
- =?iso-8859-1?Q?H2Jg4u5wiZrWJ87Yqdp9QVgu/guR+yxiOkd6k75X3OsbAjqDzR2N9JPeSK?=
- =?iso-8859-1?Q?+yzuNlmBF1vnl4bgEr/YNIDwVUeIuubrDfbsLojhHqWSha9DJCZjeZ/AmT?=
- =?iso-8859-1?Q?VzADAClFzPyMaiODVEs9vhGtjGg8rZOxR4JpM38pSaWBmS4OCjBUEUFLa0?=
- =?iso-8859-1?Q?9o4Hp2VQbWxWFEAlBGaqgFni5Zs2Ty/5Sp1s+SNDCQjncRrYhuIaERfDbV?=
- =?iso-8859-1?Q?MYISxDKSRMC2lkpL6m3IvedJHCTnU0nOFKo6+6siU+dT0Fgg9+16PZ0sIG?=
- =?iso-8859-1?Q?hIhfbXF+GGSflnfa+Ml/DlcVe2tPhtqR3BnDNUBqva9cOwHEtSH3jke0EF?=
- =?iso-8859-1?Q?5uYZW6fP7zo9Qd+LCBHuT6mJHhS9wR7SadxXlXjR/3OHGqPScwHTFSaaGo?=
- =?iso-8859-1?Q?scKhz/uCuoj3auiltJ1HyooDJiDUhHvxVuHgdSMiYMO1MfzmrLVo3Ecqnx?=
- =?iso-8859-1?Q?uXzcxCTDYsxDTfPWVBd98JY7m79ClhzQq0TBz+Nkc4PcYDvr58j1v97g?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 161e232e-8a9f-4a73-046e-08db9818d0a0
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2023 14:07:35.1481 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dBlGVK4rG5zlfGl49e2CKCiH82zDu1iDJOU7mKaLilKanZl+RrftwDlSql+X+mC39VWcAKiRq8AZ132A2jFz2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6243
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 4/8] drm/sched: Add generic scheduler message
- interface
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Introduce xe_ASSERT macros
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,329 +61,304 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- Liviu.Dudau@arm.com, frank.binns@imgtec.com, dri-devel@lists.freedesktop.org,
- luben.tuikov@amd.com, lina@asahilina.net, donald.robson@imgtec.com,
- Daniel Vetter <daniel@ffwll.ch>, boris.brezillon@collabora.com,
- airlied@gmail.com, intel-xe@lists.freedesktop.org,
- faith.ekstrand@collabora.com
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 07, 2023 at 05:46:16PM +0200, Christian König wrote:
-> Am 04.08.23 um 16:13 schrieb Matthew Brost:
-> > [SNIP]
-> > Christian / Daniel - I've read both of you comments and having a hard
-> > time parsing them. I do not really understand the issue with this patch
-> > or exactly what is being suggested instead. Let's try to work through
-> > this.
-> > 
-> > > > > > I'm still extremely frowned on this.
-> > > > > > 
-> > > > > > If you need this functionality then let the drivers decide which
-> > > > > > runqueue the scheduler should use.
-> > What do you mean by runqueue here? Do you mean 'struct
-> > workqueue_struct'? The scheduler in this context is 'struct
-> > drm_gpu_scheduler', right?
-> 
-> Sorry for the confusing wording, your understanding is correct.
-> 
-> > Yes, we have added this functionality iin the first patch.
-> > 
-> > > > > > When you then create a single threaded runqueue you can just submit work
-> > > > > > to it and serialize this with the scheduler work.
-> > > > > > 
-> > We don't want to use a single threaded workqueue_struct in Xe, we want
-> > to use a system_wq as run_job() can be executed in parallel across
-> > multiple entites (or drm_gpu_scheduler as in Xe we have 1 to 1
-> > relationship between entity and scheduler). What we want is on per
-> > entity / scheduler granularity to be able to communicate into the
-> > backend a message synchronously (run_job / free_job not executing,
-> > scheduler execution not paused for a reset).
-> > 
-> > If I'm underatanding what you suggesting in Xe we'd create an ordered
-> > workqueue_struct per drm_gpu_scheduler and the queue messages on the
-> > ordered workqueue_struct?
-> 
-> Yes, correct.
-> 
-> > This seems pretty messy to me as now we have
-> > open coded a solution bypassing the scheduler, every drm_gpu_scheduler
-> > creates its own workqueue_struct, and we'd also have to open code the
-> > pausing of these messages for resets too.
-> > 
-> > IMO this is pretty clean solution that follows the pattern of cleanup
-> > jobs already in place.
-> 
-> Yeah, exactly that's the point. Moving the job cleanup into the scheduler
-> thread is seen as very very bad idea by me.
-> 
-> And I really don't want to exercise that again for different use cases.
-> 
-> > 
-> > > > > > This way we wouldn't duplicate this core kernel function inside the
-> > > > > > scheduler.
-> > > > > Yeah that's essentially the design we picked for the tdr workers,
-> > > > > where some drivers have requirements that all tdr work must be done on
-> > > > > the same thread (because of cross-engine coordination issues). But
-> > > > > that would require that we rework the scheduler as a pile of
-> > > > > self-submitting work items, and I'm not sure that actually fits all
-> > > > > that well into the core workqueue interfaces either.
-> > This is the ordering between TDRs firing between different
-> > drm_gpu_scheduler and larger external resets (GT in Xe) an ordered
-> > workqueue_struct makes sense for this. Here we are talking about
-> > ordering jobs and messages within a single drm_gpu_scheduler. Using the
-> > main execution thread to do ordering makes sense in my opinion.
-> 
-> I completely disagree to that.
-> 
-> Take a look at how this came to be. This is a very very ugly hack and we
-> already had a hard time making lockdep understand the different fence
-> signaling dependencies with freeing the job and I'm pretty sure that is
-> still not 100% correct.
-> 
-> > 
-> > > > There were already patches floating around which did exactly that.
-> > > > 
-> > > > Last time I checked those were actually looking pretty good.
-> > > > 
-> > Link to patches for reference.
-> > 
-> > > > Additional to message passing advantage the real big issue with the
-> > > > scheduler and 1 to 1 mapping is that we create a kernel thread for each
-> > > > instance, which results in tons on overhead.
-> > First patch in the series switches from kthread to work queue, that is
-> > still a good idea.
-> 
-> This was the patch I was referring to. Sorry didn't remembered that this was
-> in the same patch set.
-> 
-> > 
-> > > > Just using a work item which is submitted to a work queue completely avoids
-> > > > that.
-> > > Hm I should have read the entire series first, since that does the
-> > > conversion still. Apologies for the confusion, and yeah we should be able
-> > > to just submit other work to the same wq with the first patch? And so
-> > > hand-rolling this infra here isn't needed at all?
-> > > 
-> > I wouldn't call this hand rolling, rather it following patten already in
-> > place.
-> 
-> Basically workqueues are the in kernel infrastructure for exactly that use
-> case and we are trying to re-create that here and that is usually a rather
-> bad idea.
-> 
+On Tue, 08 Aug 2023, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
+> On 08.08.2023 09:45, Jani Nikula wrote:
+>> On Mon, 07 Aug 2023, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
+>>> As we are moving away from the controversial XE_BUG_ON macro,
+>>> relying just on WARN_ON or drm_err does not cover the cases
+>>> where we want to annotate functions with additional detailed
+>>> debug checks to assert that all prerequisites are satisfied,
+>>> without paying footprint or performance penalty on non-debug
+>>> builds, where all misuses introduced during code integration
+>>> were already fixed.
+>>>
+>>> Introduce family of xe_ASSERT macros that try to follow classic
+>>> assert() utility and can be compiled out on non-debug builds.
+>>>
+>>> Macros are based on drm_WARN, but unlikely to origin, disallow
+>>> use in expressions since we will compile that code out.
+>>=20
+>> Final bikeshedding... thought of the inconsistency between:
+>>=20
+>>  - drm_WARN_ON <-> xe_ASSERT
+>>  - drm_WARN <-> xe_ASSERT_MSG
+>
+> but use of _MSG suffix is consistent with:
+>
+>  - BUILD_BUG_ON(cond)         <-> xe_ASSERT(cond)
+>  - BUILD_BUG_ON_MSG(cond,msg) <-> xe_ASSERT_MSG(cond,msg)
+>
+>>=20
+>> and wondering if xe_ASSERT_ON and xe_ASSERT would be more in line.
+>
+> note that unlike WARN, ASSERT warns if the condition is false, thus
+> using _ON suffix could be misleading IMO
 
-Ok let me play around with what this would look like in Xe, what you are
-suggesting would be ordered-wq per scheduler, work item for run job,
-work item for clean up job, and work item for a message. That might
-work I suppose? Only issue I see is scaling as this exposes an
-ordered-wq creation directly to an IOCTL. No idea if that is actually a
-concern though.
+Agreed on both, please disregard my comment.
 
-Matt
+Thanks,
+Jani.
 
-> Regards,
-> Christian.
-> 
-> > 
-> > Matt
-> > 
-> > > Or what am I missing?
-> > > 
-> > > > Regards,
-> > > > Christian.
-> > > > 
-> > > > > Worst case I think this isn't a dead-end and can be refactored to
-> > > > > internally use the workqueue services, with the new functions here
-> > > > > just being dumb wrappers until everyone is converted over. So it
-> > > > > doesn't look like an expensive mistake, if it turns out to be a
-> > > > > mistake.
-> > > > > -Daniel
-> > > > > 
-> > > > > 
-> > > > > > Regards,
-> > > > > > Christian.
-> > > > > > 
-> > > > > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > > > > ---
-> > > > > > >     drivers/gpu/drm/scheduler/sched_main.c | 52 +++++++++++++++++++++++++-
-> > > > > > >     include/drm/gpu_scheduler.h            | 29 +++++++++++++-
-> > > > > > >     2 files changed, 78 insertions(+), 3 deletions(-)
-> > > > > > > 
-> > > > > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > index 2597fb298733..84821a124ca2 100644
-> > > > > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > > > > @@ -1049,6 +1049,49 @@ drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
-> > > > > > >     }
-> > > > > > >     EXPORT_SYMBOL(drm_sched_pick_best);
-> > > > > > > 
-> > > > > > > +/**
-> > > > > > > + * drm_sched_add_msg - add scheduler message
-> > > > > > > + *
-> > > > > > > + * @sched: scheduler instance
-> > > > > > > + * @msg: message to be added
-> > > > > > > + *
-> > > > > > > + * Can and will pass an jobs waiting on dependencies or in a runnable queue.
-> > > > > > > + * Messages processing will stop if schedule run wq is stopped and resume when
-> > > > > > > + * run wq is started.
-> > > > > > > + */
-> > > > > > > +void drm_sched_add_msg(struct drm_gpu_scheduler *sched,
-> > > > > > > +                    struct drm_sched_msg *msg)
-> > > > > > > +{
-> > > > > > > +     spin_lock(&sched->job_list_lock);
-> > > > > > > +     list_add_tail(&msg->link, &sched->msgs);
-> > > > > > > +     spin_unlock(&sched->job_list_lock);
-> > > > > > > +
-> > > > > > > +     drm_sched_run_wq_queue(sched);
-> > > > > > > +}
-> > > > > > > +EXPORT_SYMBOL(drm_sched_add_msg);
-> > > > > > > +
-> > > > > > > +/**
-> > > > > > > + * drm_sched_get_msg - get scheduler message
-> > > > > > > + *
-> > > > > > > + * @sched: scheduler instance
-> > > > > > > + *
-> > > > > > > + * Returns NULL or message
-> > > > > > > + */
-> > > > > > > +static struct drm_sched_msg *
-> > > > > > > +drm_sched_get_msg(struct drm_gpu_scheduler *sched)
-> > > > > > > +{
-> > > > > > > +     struct drm_sched_msg *msg;
-> > > > > > > +
-> > > > > > > +     spin_lock(&sched->job_list_lock);
-> > > > > > > +     msg = list_first_entry_or_null(&sched->msgs,
-> > > > > > > +                                    struct drm_sched_msg, link);
-> > > > > > > +     if (msg)
-> > > > > > > +             list_del(&msg->link);
-> > > > > > > +     spin_unlock(&sched->job_list_lock);
-> > > > > > > +
-> > > > > > > +     return msg;
-> > > > > > > +}
-> > > > > > > +
-> > > > > > >     /**
-> > > > > > >      * drm_sched_main - main scheduler thread
-> > > > > > >      *
-> > > > > > > @@ -1060,6 +1103,7 @@ static void drm_sched_main(struct work_struct *w)
-> > > > > > >                 container_of(w, struct drm_gpu_scheduler, work_run);
-> > > > > > >         struct drm_sched_entity *entity;
-> > > > > > >         struct drm_sched_job *cleanup_job;
-> > > > > > > +     struct drm_sched_msg *msg;
-> > > > > > >         int r;
-> > > > > > > 
-> > > > > > >         if (READ_ONCE(sched->pause_run_wq))
-> > > > > > > @@ -1067,12 +1111,15 @@ static void drm_sched_main(struct work_struct *w)
-> > > > > > > 
-> > > > > > >         cleanup_job = drm_sched_get_cleanup_job(sched);
-> > > > > > >         entity = drm_sched_select_entity(sched);
-> > > > > > > +     msg = drm_sched_get_msg(sched);
-> > > > > > > 
-> > > > > > > -     if (!entity && !cleanup_job)
-> > > > > > > +     if (!entity && !cleanup_job && !msg)
-> > > > > > >                 return; /* No more work */
-> > > > > > > 
-> > > > > > >         if (cleanup_job)
-> > > > > > >                 sched->ops->free_job(cleanup_job);
-> > > > > > > +     if (msg)
-> > > > > > > +             sched->ops->process_msg(msg);
-> > > > > > > 
-> > > > > > >         if (entity) {
-> > > > > > >                 struct dma_fence *fence;
-> > > > > > > @@ -1082,7 +1129,7 @@ static void drm_sched_main(struct work_struct *w)
-> > > > > > >                 sched_job = drm_sched_entity_pop_job(entity);
-> > > > > > >                 if (!sched_job) {
-> > > > > > >                         complete_all(&entity->entity_idle);
-> > > > > > > -                     if (!cleanup_job)
-> > > > > > > +                     if (!cleanup_job && !msg)
-> > > > > > >                                 return; /* No more work */
-> > > > > > >                         goto again;
-> > > > > > >                 }
-> > > > > > > @@ -1177,6 +1224,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
-> > > > > > > 
-> > > > > > >         init_waitqueue_head(&sched->job_scheduled);
-> > > > > > >         INIT_LIST_HEAD(&sched->pending_list);
-> > > > > > > +     INIT_LIST_HEAD(&sched->msgs);
-> > > > > > >         spin_lock_init(&sched->job_list_lock);
-> > > > > > >         atomic_set(&sched->hw_rq_count, 0);
-> > > > > > >         INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
-> > > > > > > diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> > > > > > > index df1993dd44ae..267bd060d178 100644
-> > > > > > > --- a/include/drm/gpu_scheduler.h
-> > > > > > > +++ b/include/drm/gpu_scheduler.h
-> > > > > > > @@ -394,6 +394,23 @@ enum drm_gpu_sched_stat {
-> > > > > > >         DRM_GPU_SCHED_STAT_ENODEV,
-> > > > > > >     };
-> > > > > > > 
-> > > > > > > +/**
-> > > > > > > + * struct drm_sched_msg - an in-band (relative to GPU scheduler run queue)
-> > > > > > > + * message
-> > > > > > > + *
-> > > > > > > + * Generic enough for backend defined messages, backend can expand if needed.
-> > > > > > > + */
-> > > > > > > +struct drm_sched_msg {
-> > > > > > > +     /** @link: list link into the gpu scheduler list of messages */
-> > > > > > > +     struct list_head                link;
-> > > > > > > +     /**
-> > > > > > > +      * @private_data: opaque pointer to message private data (backend defined)
-> > > > > > > +      */
-> > > > > > > +     void                            *private_data;
-> > > > > > > +     /** @opcode: opcode of message (backend defined) */
-> > > > > > > +     unsigned int                    opcode;
-> > > > > > > +};
-> > > > > > > +
-> > > > > > >     /**
-> > > > > > >      * struct drm_sched_backend_ops - Define the backend operations
-> > > > > > >      *  called by the scheduler
-> > > > > > > @@ -471,6 +488,12 @@ struct drm_sched_backend_ops {
-> > > > > > >              * and it's time to clean it up.
-> > > > > > >          */
-> > > > > > >         void (*free_job)(struct drm_sched_job *sched_job);
-> > > > > > > +
-> > > > > > > +     /**
-> > > > > > > +      * @process_msg: Process a message. Allowed to block, it is this
-> > > > > > > +      * function's responsibility to free message if dynamically allocated.
-> > > > > > > +      */
-> > > > > > > +     void (*process_msg)(struct drm_sched_msg *msg);
-> > > > > > >     };
-> > > > > > > 
-> > > > > > >     /**
-> > > > > > > @@ -482,6 +505,7 @@ struct drm_sched_backend_ops {
-> > > > > > >      * @timeout: the time after which a job is removed from the scheduler.
-> > > > > > >      * @name: name of the ring for which this scheduler is being used.
-> > > > > > >      * @sched_rq: priority wise array of run queues.
-> > > > > > > + * @msgs: list of messages to be processed in @work_run
-> > > > > > >      * @job_scheduled: once @drm_sched_entity_do_release is called the scheduler
-> > > > > > >      *                 waits on this wait queue until all the scheduled jobs are
-> > > > > > >      *                 finished.
-> > > > > > > @@ -489,7 +513,7 @@ struct drm_sched_backend_ops {
-> > > > > > >      * @job_id_count: used to assign unique id to the each job.
-> > > > > > >      * @run_wq: workqueue used to queue @work_run
-> > > > > > >      * @timeout_wq: workqueue used to queue @work_tdr
-> > > > > > > - * @work_run: schedules jobs and cleans up entities
-> > > > > > > + * @work_run: schedules jobs, cleans up jobs, and processes messages
-> > > > > > >      * @work_tdr: schedules a delayed call to @drm_sched_job_timedout after the
-> > > > > > >      *            timeout interval is over.
-> > > > > > >      * @pending_list: the list of jobs which are currently in the job queue.
-> > > > > > > @@ -513,6 +537,7 @@ struct drm_gpu_scheduler {
-> > > > > > >         long                            timeout;
-> > > > > > >         const char                      *name;
-> > > > > > >         struct drm_sched_rq             sched_rq[DRM_SCHED_PRIORITY_COUNT];
-> > > > > > > +     struct list_head                msgs;
-> > > > > > >         wait_queue_head_t               job_scheduled;
-> > > > > > >         atomic_t                        hw_rq_count;
-> > > > > > >         atomic64_t                      job_id_count;
-> > > > > > > @@ -566,6 +591,8 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
-> > > > > > > 
-> > > > > > >     void drm_sched_job_cleanup(struct drm_sched_job *job);
-> > > > > > >     void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
-> > > > > > > +void drm_sched_add_msg(struct drm_gpu_scheduler *sched,
-> > > > > > > +                    struct drm_sched_msg *msg);
-> > > > > > >     void drm_sched_run_wq_stop(struct drm_gpu_scheduler *sched);
-> > > > > > >     void drm_sched_run_wq_start(struct drm_gpu_scheduler *sched);
-> > > > > > >     void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad);
-> > > -- 
-> > > Daniel Vetter
-> > > Software Engineer, Intel Corporation
-> > > http://blog.ffwll.ch
-> 
+
+>
+>>=20
+>> *shrug*
+>>=20
+>> Either way, this looks fine.
+>>=20
+>> BR,
+>> Jani.
+>>=20
+>>=20
+>>=20
+>>=20
+>>>
+>>> As we are operating on the xe pointers, we can print additional
+>>> information about the device, like tile or GT identifier, that
+>>> is not available from generic WARN report:
+>>>
+>>> [ ] xe 0000:00:02.0: [drm] Assertion `true =3D=3D false` failed!
+>>>     platform: 1 subplatform: 1
+>>>     graphics: Xe_LP 12.0 step B0
+>>>     media: Xe_M 12.0 step B0
+>>>     display: enabled step D0
+>>>     tile: 0 VRAM 0 B
+>>>     GT: 0 type 1
+>>>
+>>> [ ] xe 0000:b3:00.0: [drm] Assertion `true =3D=3D false` failed!
+>>>     platform: 7 subplatform: 3
+>>>     graphics: Xe_HPG 12.55 step A1
+>>>     media: Xe_HPM 12.55 step A1
+>>>     display: disabled step **
+>>>     tile: 0 VRAM 14.0 GiB
+>>>     GT: 0 type 1
+>>>
+>>> [ ] WARNING: CPU: 0 PID: 2687 at drivers/gpu/drm/xe/xe_device.c:281 xe_=
+device_probe+0x374/0x520 [xe]
+>>> [ ] RIP: 0010:xe_device_probe+0x374/0x520 [xe]
+>>> [ ] Call Trace:
+>>> [ ]  ? __warn+0x7b/0x160
+>>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>>> [ ]  ? report_bug+0x1c3/0x1d0
+>>> [ ]  ? handle_bug+0x42/0x70
+>>> [ ]  ? exc_invalid_op+0x14/0x70
+>>> [ ]  ? asm_exc_invalid_op+0x16/0x20
+>>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>>> [ ]  xe_pci_probe+0x6e3/0x950 [xe]
+>>> [ ]  ? lockdep_hardirqs_on+0xc7/0x140
+>>> [ ]  pci_device_probe+0x9e/0x160
+>>> [ ]  really_probe+0x19d/0x400
+>>>
+>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> Cc: Oded Gabbay <ogabbay@kernel.org>
+>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/xe/xe_assert.h | 160 +++++++++++++++++++++++++++++++++
+>>>  1 file changed, 160 insertions(+)
+>>>  create mode 100644 drivers/gpu/drm/xe/xe_assert.h
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_ass=
+ert.h
+>>> new file mode 100644
+>>> index 000000000000..7ea295b7091c
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/xe/xe_assert.h
+>>> @@ -0,0 +1,160 @@
+>>> +/* SPDX-License-Identifier: MIT */
+>>> +/*
+>>> + * Copyright =C2=A9 2023 Intel Corporation
+>>> + */
+>>> +
+>>> +#ifndef __XE_ASSERT_H__
+>>> +#define __XE_ASSERT_H__
+>>> +
+>>> +#include <linux/string_helpers.h>
+>>> +#include <drm/drm_print.h>
+>>> +#include "xe_device_types.h"
+>>> +#include "xe_step.h"
+>>> +
+>>> +/**
+>>> + * DOC: Xe ASSERTs
+>>> + *
+>>> + * While Xe driver aims to be simpler than legacy i915 driver it is st=
+ill
+>>> + * complex enough that some changes introduced while adding new functi=
+onality
+>>> + * could break the existing code.
+>>> + *
+>>> + * Adding &drm_WARN or &drm_err to catch unwanted programming usage co=
+uld lead
+>>> + * to undesired increased driver footprint and may impact production d=
+river
+>>> + * performance as this additional code will be always present.
+>>> + *
+>>> + * To allow annotate functions with additional detailed debug checks t=
+o assert
+>>> + * that all prerequisites are satisfied, without worrying about footpr=
+int or
+>>> + * performance penalty on production builds where all potential misuses
+>>> + * introduced during code integration were already fixed, we introduce=
+ family
+>>> + * of ASSERT macros that try to follow classic assert() utility and ca=
+n be
+>>> + * compiled out on non-debug builds:
+>>> + *
+>>> + *  * &xe_ASSERT
+>>> + *  * &xe_tile_ASSERT
+>>> + *  * &xe_gt_ASSERT
+>>> + *
+>>> + * These macros are based on &drm_WARN, but unlikely to the origin, we=
+ disallow
+>>> + * use of them in an expressions since we will compile that code out.
+>>> + *
+>>> + * Note that these macros shall not be used to cover known gaps in the
+>>> + * implementation, for such cases use &drm_WARN or &drm_err and provid=
+e valid
+>>> + * safe fallback.
+>>> + *
+>>> + * Below code shows how asserts could help in debug to catch unplanned=
+ use::
+>>> + *
+>>> + *	static void one_igfx(struct xe_device *xe)
+>>> + *	{
+>>> + *		xe_ASSERT(xe, xe->info.is_dgfx =3D=3D false);
+>>> + *		xe_ASSERT(xe, xe->info.tile_count =3D=3D 1);
+>>> + *	}
+>>> + *
+>>> + *	static void two_dgfx(struct xe_device *xe)
+>>> + *	{
+>>> + *		xe_ASSERT(xe, xe->info.is_dgfx);
+>>> + *		xe_ASSERT(xe, xe->info.tile_count =3D=3D 2);
+>>> + *	}
+>>> + *
+>>> + *	void foo(struct xe_device *xe)
+>>> + *	{
+>>> + *		if (xe->info.dgfx)
+>>> + *			return two_dgfx(xe);
+>>> + *		return one_igfx(xe);
+>>> + *	}
+>>> + */
+>>> +
+>>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>>> +#define __XE_ASSERT_MSG(xe, condition, msg, arg...) ({						\
+>>> +	(void)drm_WARN(&(xe)->drm, !(condition), "[" DRM_NAME "] Assertion `%=
+s` failed!\n" msg,	\
+>>> +		       __stringify(condition), ## arg);						\
+>>> +})
+>>> +#else
+>>> +#define __XE_ASSERT_MSG(xe, condition, msg, arg...) ({						\
+>>> +	typecheck(struct xe_device *, xe);							\
+>>> +	BUILD_BUG_ON_INVALID(condition);							\
+>>> +})
+>>> +#endif
+>>> +
+>>> +/**
+>>> + * xe_ASSERT - warn if condition is false when debugging.
+>>> + * @xe: the &struct xe_device pointer to which &condition applies
+>>> + * @condition: condition to check
+>>> + *
+>>> + * xe_ASSERT() uses &drm_WARN to emit a warning and print additional i=
+nformation
+>>> + * that could be read from the &xe pointer if provided &condition is f=
+alse.
+>>> + *
+>>> + * Contrary to &drm_WARN, xe_ASSERT() is effective only on debug builds
+>>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expres=
+sions
+>>> + * or as a condition.
+>>> + *
+>>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>>> + */
+>>> +#define xe_ASSERT(xe, condition) xe_ASSERT_MSG((xe), condition, "")
+>>> +#define xe_ASSERT_MSG(xe, condition, msg, arg...) ({						\
+>>> +	struct xe_device *__xe =3D (xe);								\
+>>> +	__XE_ASSERT_MSG(__xe, condition,							\
+>>> +			"platform: %d subplatform: %d\n"					\
+>>> +			"graphics: %s %u.%u step %s\n"						\
+>>> +			"media: %s %u.%u step %s\n"						\
+>>> +			"display: %s step %s\n"							\
+>>> +			msg,									\
+>>> +			__xe->info.platform, __xe->info.subplatform,				\
+>>> +			__xe->info.graphics_name,						\
+>>> +			__xe->info.graphics_verx100 / 100,					\
+>>> +			__xe->info.graphics_verx100 % 100,					\
+>>> +			xe_step_name(__xe->info.step.graphics),					\
+>>> +			__xe->info.media_name,							\
+>>> +			__xe->info.media_verx100 / 100,						\
+>>> +			__xe->info.media_verx100 % 100,						\
+>>> +			xe_step_name(__xe->info.step.media),					\
+>>> +			str_enabled_disabled(__xe->info.enable_display),			\
+>>> +			xe_step_name(__xe->info.step.display),					\
+>>> +			## arg);								\
+>>> +})
+>>> +
+>>> +/**
+>>> + * xe_tile_ASSERT - warn if condition is false when debugging.
+>>> + * @tile: the &struct xe_tile pointer to which &condition applies
+>>> + * @condition: condition to check
+>>> + *
+>>> + * xe_tile_ASSERT() uses &drm_WARN to emit a warning and print additio=
+nal
+>>> + * information that could be read from the &tile pointer if provided &=
+condition
+>>> + * is false.
+>>> + *
+>>> + * Contrary to &drm_WARN, xe_tile_ASSERT() is effective only on debug =
+builds
+>>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expres=
+sions
+>>> + * or as a condition.
+>>> + *
+>>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>>> + */
+>>> +#define xe_tile_ASSERT(tile, condition) xe_tile_ASSERT_MSG((tile), con=
+dition, "")
+>>> +#define xe_tile_ASSERT_MSG(tile, condition, msg, arg...) ({					\
+>>> +	struct xe_tile *__tile =3D (tile);							\
+>>> +	char __buf[10];										\
+>>> +	xe_ASSERT_MSG(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg=
+,			\
+>>> +		      __tile->id, ({ string_get_size(__tile->mem.vram.actual_physica=
+l_size, 1,	\
+>>> +				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
+>>> +})
+>>> +
+>>> +/**
+>>> + * xe_gt_ASSERT - warn if condition is false when debugging.
+>>> + * @gt: the &struct xe_gt pointer to which &condition applies
+>>> + * @condition: condition to check
+>>> + *
+>>> + * xe_gt_ASSERT() uses &drm_WARN to emit a warning and print additional
+>>> + * information that could be safetely read from the &gt pointer if pro=
+vided
+>>> + * &condition is false.
+>>> + *
+>>> + * Contrary to &drm_WARN, xe_gt_ASSERT() is effective only on debug bu=
+ilds
+>>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expres=
+sions
+>>> + * or as a condition.
+>>> + *
+>>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>>> + */
+>>> +#define xe_gt_ASSERT(gt, condition) xe_gt_ASSERT_MSG((gt), condition, =
+"")
+>>> +#define xe_gt_ASSERT_MSG(gt, condition, msg, arg...) ({						\
+>>> +	struct xe_gt *__gt =3D (gt);								\
+>>> +	xe_tile_ASSERT_MSG(gt_to_tile(__gt), condition, "GT: %u type %d\n" ms=
+g,			\
+>>> +			   __gt->info.id, __gt->info.type, ## arg);				\
+>>> +})
+>>> +
+>>> +#endif /* __XE_ASSERT_H__ */
+>>=20
+
+--=20
+Jani Nikula, Intel Open Source Graphics Center
