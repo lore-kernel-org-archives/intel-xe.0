@@ -4,52 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FFE2C001DE
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 15:06:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20051C001B0
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 15:18:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5B5B10E1AA;
-	Tue,  8 Aug 2023 15:06:13 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4A8110E1AA
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 15:06:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C873010E0CB;
+	Tue,  8 Aug 2023 15:18:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEF8110E0CB
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 15:18:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691507171; x=1723043171;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=rPEEtRq/aBakgGGWfOoLMOcAfc9hbZ+s0UMVlEToibI=;
- b=i1cvcByyYcWm1GIgo/a808bUfgKh8XRjcSPeZckKL6lwwoeneZwQwq00
- iJ+/2kVJOmx6IQwKM/lgldwLeFKDaewLSbwp33t3OLk7pBHOncN1XbzN4
- 8b3hU6PzDeFw9kJ0JEjCPxqBUWLYE8rIVFle9hIm/awGqdtbr+jHKcov8
- pDn+UNJ0RpauSbDS7dLSRVmd7gWuW9caoHTOm3nEK5e4uWxtXG5F9l3UZ
- pz2yakYU5CqmtBUZl28nOj+OtxF1HVNwRwNunO0kHDMgw0m/BZpNlcv/O
- CuIJHvMhts8yNaheiozaFZ2zgHbe+0401WjcN9p6dCdB761yzZmryAG3H A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="369748121"
-X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="369748121"
+ t=1691507909; x=1723043909;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=y4ZTwf5CVHXNEtWjqANyzM3n2QXOXrsO/hX0KVoZaok=;
+ b=K6UkiwzjxO2bCTcDXl+HRlg6m62MQdCRveXnjtItZiBwU51Gxb24MLu0
+ l5MVtjFxaiXfr5A5Gy1OPeAaZWHRlLSqX+SVL1M38dh6X3BM7p4YtzZow
+ 8twu1k3O9YR534eFXdLjROH5ZnOd8z5BvllZPwu+1SDVtNKedFxHsfylW
+ n1oxRyxtCe0Pd/Hq98/XhusJi3wK0XaP5EOha1mGPNVKosZ4ocn6j6XbD
+ jTb8idPUQymVhYcneYrgPmLUQf8IRCS6bdcLSZ5A7k0UOUUmka1ANjHKw
+ ufu3997P9nM8vu4On6UMvmCx0M2CTzVoPCQqmNurZ5NnUwPfpKvf4KOc0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="373601152"
+X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="373601152"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 08:05:44 -0700
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 08:18:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="845508678"
-X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="845508678"
-Received: from sschwar3-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.49.159])
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="845513884"
+X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="845513884"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.190.202])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 08:05:42 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-In-Reply-To: <a3bof7gwvoiqgcjlvhogomb45qhylrn6i3mbetvxofs4sthe5u@ka2lh4hbmsk6>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230713150611.7-1-francois.dugast@intel.com>
- <ZLBfsNWDeWYx+c/X@intel.com>
- <3zwh5c6wvaure57flxp5jrqe2rira6des6an3ws25anrauxsnu@a24cb3vjzbh3>
- <87fs4tu7xl.fsf@intel.com>
- <a3bof7gwvoiqgcjlvhogomb45qhylrn6i3mbetvxofs4sthe5u@ka2lh4hbmsk6>
-Date: Tue, 08 Aug 2023 18:05:40 +0300
-Message-ID: <87v8dpshff.fsf@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 0/7] drm/xe: Code cleanup
+ 08 Aug 2023 08:18:28 -0700
+Date: Tue, 08 Aug 2023 08:18:14 -0700
+Message-ID: <87il9py349.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
+In-Reply-To: <d2c664b8-f7de-1c66-4f5b-42358fa322d7@intel.com>
+References: <20230627122113.1472532-1-aravind.iddamsetty@intel.com>
+ <20230627122113.1472532-3-aravind.iddamsetty@intel.com>
+ <87cz0mqdpi.wl-ashutosh.dixit@intel.com>
+ <f4f6c8f9-a97d-6072-cf0c-4122b3d4f93f@intel.com>
+ <877cqsrg65.wl-ashutosh.dixit@intel.com>
+ <875y6cqy6p.wl-ashutosh.dixit@intel.com>
+ <8fd9bc04-b737-0acd-a0c9-4f163c1a117c@intel.com>
+ <87351dqpcr.wl-ashutosh.dixit@intel.com>
+ <42bb140d-2faf-43d3-a027-fe430b3682e5@intel.com>
+ <87zg3lp8y5.wl-ashutosh.dixit@intel.com>
+ <500331df-d95b-d447-18e6-d0f198570072@intel.com>
+ <87o7jiy2lw.wl-ashutosh.dixit@intel.com>
+ <87msz2xzky.wl-ashutosh.dixit@intel.com>
+ <d2c664b8-f7de-1c66-4f5b-42358fa322d7@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-xe] [PATCH v2 2/2] drm/xe/pmu: Enable PMU interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,104 +72,170 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ intel-xe@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 08 Aug 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Tue, Aug 08, 2023 at 01:47:50PM +0300, Jani Nikula wrote:
->>On Mon, 17 Jul 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
->>> On Thu, Jul 13, 2023 at 04:33:52PM -0400, Rodrigo Vivi wrote:
->>>>On Thu, Jul 13, 2023 at 03:06:04PM +0000, Francois Dugast wrote:
->>>>> Fix minor typos and reduce ERRORs reported by checkpatch.pl from 95 to 22.
->>>>
->>>>I wonder if we should do this with !fixup patches...
->>>
->>> I think that would be a nightmare to thread through the conflicts.
->>
->>For display it's a nightmare we have to plunge through. And this just
->>made it worse.
+On Tue, 08 Aug 2023 06:45:36 -0700, Iddamsetty, Aravind wrote:
 >
-> This is automatically resolved when we move display up in the branch
-> though.  "Automatically" meaning that the pour sould doing the rebase
-> has to resolve the conflicts. I don't like doing it, but what's the
-> alternative? Last rebase I did a "squash-heavy approach" because moving
-> display up means some commits don't make sense anymore, even if they
-> apply correctly.  Those coding style changes would just be squashed in
-> the respective commits.
 
-Squashing is easy if you have respective commits with 1:1 mapping, but
-if you have one commit fixing multiple commits, it gets tricky.
+Hi Aravind,
 
-BR,
-Jani.
-
-
+> On 08-08-2023 03:52, Dixit, Ashutosh wrote:
+> > On Mon, 07 Aug 2023 14:16:59 -0700, Dixit, Ashutosh wrote:
+> I have sent a new revision, but commenting here for few comments.
+> >
+> >> On Tue, 25 Jul 2023 04:38:45 -0700, Iddamsetty, Aravind wrote:
+> >>> On 24-07-2023 22:01, Dixit, Ashutosh wrote:
+> >>>> On Mon, 24 Jul 2023 09:05:53 -0700, Iddamsetty, Aravind wrote:
+> >>>>>
+> >>>>>>> On 22-07-2023 11:34, Dixit, Ashutosh wrote:
+> >>>>>>>>> On Fri, 21 Jul 2023 16:36:02 -0700, Dixit, Ashutosh wrote:
+> >>>>>>>>> On Fri, 21 Jul 2023 04:51:09 -0700, Iddamsetty, Aravind wrote:
+> >>>>>>>>>>>> +void engine_group_busyness_store(struct xe_gt *gt)
+> >>>>>>>>>>>> +{
+> >>>>>>>>>>>> +	struct xe_pmu *pmu = &gt->tile->xe->pmu;
+> >>>>>>>>>>>> +	unsigned int gt_id = gt->info.id;
+> >>>>>>>>>>>> +	unsigned long flags;
+> >>>>>>>>>>>> +
+> >>>>>>>>>>>> +	spin_lock_irqsave(&pmu->lock, flags);
+> >>>>>>>>>>>> +
+> >>>>>>>>>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_RENDER_GROUP_BUSY,
+> >>>>>>>>>>>> +		     __engine_group_busyness_read(gt, XE_PMU_RENDER_GROUP_BUSY(0)));
+> >>>>>>>>>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_COPY_GROUP_BUSY,
+> >>>>>>>>>>>> +		     __engine_group_busyness_read(gt, XE_PMU_COPY_GROUP_BUSY(0)));
+> >>>>>>>>>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_MEDIA_GROUP_BUSY,
+> >>>>>>>>>>>> +		     __engine_group_busyness_read(gt, XE_PMU_MEDIA_GROUP_BUSY(0)));
+> >>>>>>>>>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY,
+> >>>>>>>>>>>> +		     __engine_group_busyness_read(gt, XE_PMU_ANY_ENGINE_GROUP_BUSY(0)));
+> >>>>>>>>
+> >>>>>>>> Here why should we store everything, we should store only those events
+> >>>>>>>> which are enabled?
+> >>>>>>>
+> >>>>>>> The events are enabled only when they are opened which can happen after
+> >>>>>>> the device is suspended hence we need to store all. As in the present
+> >>>>>>> case device is put to suspend immediately after probe and event is
+> >>>>>>> opened post driver load is done.
+> >>>>>>
+> >>>>>> I don't think we can justify doing expensive PCIe reads and increasing the
+> >>>>>> time to go into runtime suspend, when PMU might not being used at all.
+> >>>>>>
+> >>>>>> If we store only enabled samples and start storing them only after they are
+> >>>>>> enabled, what would be the consequence of this? The first non-zero sample
+> >>>>>> seen by the perf tool would be wrong and later samples will be fine?
+> >>>>>
+> >>>>> Why do you say it is wrong perf reports relative from the time an event
+> >>>>> is opened.
+> >>>>
+> >>>> I am asking you what is the consequence. Initial values will all be zero
+> >>>> and then there is some activity and we get a non zero value but this will
+> >>>> include all the previous activity so the first difference we send to perf
+> >>>> will be large/wrong I think.
+> >>>
+> >>> correct if we just store the enabled events in suspend, any other event
+> >>> will have 0 initial value and when we read the register later it will
+> >>> have all the accumulation and since past value we have is 0 we would end
+> >>> up reporting the entire value which is wrong.
+> >>
+> >> Ok, agreed, so we need to do "something".
+> >>
+> >>>
+> >>>>
+> >>>>>
+> >>>>>>
+> >>>>>> If there is a consequence, we might have to go back to what I was saying
+> >>>>>> earlier about waking the device up and reading the enabled counter when
+> >>>>>> xe_pmu_event_start happens, to initialize the counter values. I am assuming
+> >>>>>> this will work?
+> >>>>>
+> >>>>> xe_pmu_event_start can be called when device is in suspend so we shall
+> >>>>> not wake up the device i.e event being enabled when in suspend, so if we
+> >>>>> do not store while going to suspend we will not have any value to
+> >>>>> consider when event is enabled after suspend as we need to present
+> >>>>> relative value.
+> >>>>
+> >>>> That is why I am saying wake up the device and initialize the counters in
+> >>>> xe_pmu_event_start.
+> >>>
+> >>> Afaik since PMU doesn't take DRM reference we shall not wake up the
+> >>> device.
+> >>
+> >> Not sure what you mean because PMU does do this:
+> >>
+> >>	drm_dev_get(&xe->drm);
 >
+> sorry it was my misunderstanding here, please ignore.
 >
-> Lucas De Marchi
+> >>
+> >> Anyway I don't think it has anything to do with waking up the device since
+> >> that is done via xe_device_mem_access_get.
+> >>
+> >>> if we were allowed to wake up the device why do we even need to
+> >>> store during suspend. when ever PMU event is opened we could wake up the
+> >>> device and read the register directly.
+> >>
+> >> No. That is why we are saving the counters during suspend so we don't have
+> >> to wake up the device just to read the counters. So the issue is only how
+> >> to *initialize* the counters.
+> >>
+> >> You are saying we initialize by saving all counters during suspend, whether
+> >> or not they are enabled, which I don't agree with. I am saying we should
+> >> only read and store the counters which are enabled during normal
+> >> operation. And to initialize we wake the device up during
+> >> xe_pmu_event_start and store the counter value. Alternatively, we can zero
+> >> out the enabled counters during xe_pmu_event_start (the counters are RW)
+> >> but in any case that will also need waking up the device.
 >
->>
->>BR,
->>Jani.
->>
->>
->>> Let's just accept the mistakes happened when we werent' checking
->>> for checkpatch in CI.
->>>
->>> Lucas De Marchi
->>>
->>>>
->>>>But we anyway need this,
->>>>
->>>>Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>>>for the series
->>>>
->>>>>
->>>>> Francois Dugast (7):
->>>>>   drm/xe: Cleanup SPACING style issues
->>>>>   drm/xe: Cleanup OPEN_BRACE style issues
->>>>>   drm/xe: Cleanup POINTER_LOCATION style issues
->>>>>   drm/xe: Cleanup CODE_INDENT style issues
->>>>>   drm/xe: Cleanup TRAILING_WHITESPACE style issues
->>>>>   drm/xe: Cleanup COMPLEX_MACRO style issues
->>>>>   drm/xe: Fix typos
->>>>>
->>>>>  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h  |  4 ++--
->>>>>  drivers/gpu/drm/xe/display/ext/intel_device_info.c | 11 ++++++++---
->>>>>  drivers/gpu/drm/xe/display/xe_fb_pin.c             |  4 ++--
->>>>>  drivers/gpu/drm/xe/xe_device.h                     |  6 +++---
->>>>>  drivers/gpu/drm/xe/xe_device_types.h               |  4 ++--
->>>>>  drivers/gpu/drm/xe/xe_engine.c                     |  4 ++--
->>>>>  drivers/gpu/drm/xe/xe_force_wake.c                 |  2 +-
->>>>>  drivers/gpu/drm/xe/xe_gt.h                         |  2 +-
->>>>>  drivers/gpu/drm/xe/xe_gt_clock.c                   |  8 ++++----
->>>>>  drivers/gpu/drm/xe/xe_gt_debugfs.c                 |  2 +-
->>>>>  drivers/gpu/drm/xe/xe_gt_mcr.c                     |  3 ++-
->>>>>  drivers/gpu/drm/xe/xe_gt_types.h                   |  8 ++++----
->>>>>  drivers/gpu/drm/xe/xe_guc.c                        |  2 +-
->>>>>  drivers/gpu/drm/xe/xe_guc_debugfs.c                |  2 +-
->>>>>  drivers/gpu/drm/xe/xe_guc_fwif.h                   | 12 ++++++------
->>>>>  drivers/gpu/drm/xe/xe_guc_submit.c                 | 14 +++++++-------
->>>>>  drivers/gpu/drm/xe/xe_huc_debugfs.c                |  2 +-
->>>>>  drivers/gpu/drm/xe/xe_hw_engine.c                  |  2 +-
->>>>>  drivers/gpu/drm/xe/xe_lrc.c                        |  4 ++--
->>>>>  drivers/gpu/drm/xe/xe_rtp.h                        |  4 ++--
->>>>>  drivers/gpu/drm/xe/xe_rtp_helpers.h                | 10 +++++-----
->>>>>  drivers/gpu/drm/xe/xe_sched_job.c                  |  2 +-
->>>>>  drivers/gpu/drm/xe/xe_uc.c                         | 10 +++++-----
->>>>>  drivers/gpu/drm/xe/xe_uc_fw.c                      |  4 ++--
->>>>>  drivers/gpu/drm/xe/xe_vm.c                         |  2 +-
->>>>>  drivers/gpu/drm/xe/xe_wa.c                         |  4 ++--
->>>>>  26 files changed, 69 insertions(+), 63 deletions(-)
->>>>>
->>>>> --
->>>>> 2.34.1
->>>>>
->>
->>-- 
->>Jani Nikula, Intel Open Source Graphics Center
+> when the driver is initially loaded there might not be any users of
+> device and immediately it might enter suspend, so at the time of suspend
+> there no event enabled, but the pmu can be opened just after suspend
+> wihtout any actual work on device so device still resides in suspend, so
+> we should not be waking the device just to read the register in
+> event_start or any of the callbacks without any real workload or user of
+> the device.
+>
+> so ideally if the device didn't enter suspend, the counter is
+> initialized in the first read when device is still awake.
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Yes, I understand. But the issue is why are we reading (doing expensive
+reads across PCIe) and saving all these registers for PMU when it's
+possible PMU might not be used at all and none of these events might be
+enabled at all?
+
+So to me the lesser evil is to wake up the device at xe_pmu_event_start
+time and initialize the counters. We are only waking the device up once at
+init time, not during normal operation. Whereas in your case, you are
+reading and saving these registers continuously each time we suspend,
+whether or not PMU is or will be used.
+
+> >> So this way we only wake up the device for initialization but not
+> >> afterwards.
+> >>
+> >> Since this is the "base" patch we should try to set up a good
+> >> infrastructure in this patch so that other stuff which is exposed via PMU
+> >> can be easily added later.
+> >
+> > After thinking a bit more about this, though I think this needs to be done,
+> > I won't insist that we do this in this patch, we can review and do this in
+> > a subsequent patch (if no one else objects).
+> >
+> > So let's skip this for now. So if you can generate a new version of the
+> > patch after addressing all of the other review comments, we can review that
+> > again and try to get it merged.
+> >
+> > Thanks.
+> > --
+> > Ashutosh
+> >
+> >>>>>>
+> >>>>>> Doing this IMO would be better than always doing these PCIe reads on
+> >>>>>> runtime suspend even when PMU is not being used
+> >>>>>
+> >>>>> we have been doing these in i915 not sure if it affected any timing
+> >>>>> requirements for runtime suspend.
+> >>>>
+> >>>> Hmm i915 indeed seems to be reading the RC6 residency in __gt_park even
+> >>>> when RC6 event is not enabled or PMU might not be used.
+> >>>>
+> >>>> @Tvrtko, any comments here?
