@@ -4,50 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C0DCC001B0
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 07:47:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38E1AC001DE
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 07:47:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF6BC10E3AA;
-	Tue,  8 Aug 2023 07:47:04 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1EA110E3AA
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 07:47:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691480823; x=1723016823;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=IoyF+moFDTOuaOvtGqEieiANWRCkEmHTlT2uS/epL3A=;
- b=gQx//oGfvFtVydmayeWaK7J2VwqpApteZdrxudFuEMJKPBvAwmbR+IsP
- Pl6l9Y9sWbB9IXzmbzhciDYME8mp9NUefyzjnyDfK+x3H85h7w+uTDTHZ
- 8xMYWW6/r1GJ39/x2QNDmqFTPY30R33j+lbUsY28uAZMzNWIiMOL4UEWz
- uWvAB0bgEHvtdv0NfALLMTQ4Q0DT5y5bNFroWgjwa17jcAPX4hXg/UsSW
- VN6Z/wCJsKiCjrKnrDe5Xn6rebp5CLyhfFFaoQtYmVtN0pVbOzo2YWjVL
- gvAl8Y+rGX58K3GzwZra54DaS9c/NioAwrnVS9VvjhLRCvr+OYbtP2dEZ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="457132265"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="457132265"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 00:47:03 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="734398574"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="734398574"
-Received: from sschwar3-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.49.159])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 00:47:02 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-In-Reply-To: <ZNFrijjUJNUJOWzw@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230803105352.789000-1-jani.nikula@intel.com>
- <ZNFrijjUJNUJOWzw@intel.com>
-Date: Tue, 08 Aug 2023 10:46:59 +0300
-Message-ID: <87o7jit1qk.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B35A10E3B1;
+	Tue,  8 Aug 2023 07:47:42 +0000 (UTC)
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com
+ [IPv6:2a00:1450:4864:20::333])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 444D610E3B1
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 07:47:40 +0000 (UTC)
+Received: by mail-wm1-x333.google.com with SMTP id
+ 5b1f17b1804b1-3fe32ec7201so42185e9.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 08 Aug 2023 00:47:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20221208; t=1691480858; x=1692085658;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=+PEXb9J5o1im/hDiaZ1gUUteyyluUT4EAL1NdQ7/Zn8=;
+ b=LBqxChdNNz/G7sVITr2y8F1NButMjaso39n/Shr+1sUjrjyIhqEJNpo4IpuaWjwrjw
+ XRZpGAfcHfRUBbnc/xrN9dviG5u2bhinku368X04kD3NXLZhaj/otDripFlU5uIolXpo
+ CD2YhcLHtKTqqzaoAZ9Dwgwf5M6WcRdnWXXDgOzrwExtmAlx/4F0VaYnpYkD3VvwrFAr
+ zH+g0wDOcyEBTBfGZitrcUS2vuWrSLxT3UP8Nq5QDxcbEo1LPSb8d85tQIXf0g69w7Vq
+ GlKMQsFBdlvuf/JPpYHCIY+FCW0pxgDJydie2IKWhndP4NxrzQUN22Jxyy1aA/QU2J61
+ n8Fg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1691480858; x=1692085658;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=+PEXb9J5o1im/hDiaZ1gUUteyyluUT4EAL1NdQ7/Zn8=;
+ b=J5PoLMPKzUdotPdSPvNM92HTIGBS1/QNE9Y9NXpbBJ9vX4jNVzND8gJdWthdabHRbR
+ QDeAawwL6WXWJZj1LGV1K9joNZdTebSyd/3I1oJeQb0b+yYPP9yOEnu87erW9TQ2Pkkg
+ Pi+1vQkFsg8zsDKv1F5IGuKtwEkSG3lWJnquuz6GZYM+Gwg3dyx/Wp3YlVY0oMuHQRcM
+ 08nalPPUsX+2SYADv8FKW96585IATZHq6ifwWFD6cA++ordDEysjtUYlDvQ43dUtmI9O
+ vbleJcFNVQb+YzHNMi7ZIw3u90RoxuuU1iLUEBvGEEbuRpR1qPpFLXS43XvvYABezgpV
+ qIxA==
+X-Gm-Message-State: AOJu0YykCD91v2Zw+2l1cdpvXw+u9unLu9/O+We65L4P9pwyUImVL+7S
+ xH53ASCRdnlid8mICp6rHEFc54lfHNYrgSBe8zzRpA==
+X-Google-Smtp-Source: AGHT+IGkuUTVJQ/G0MgeQXfUbOK8TmkbDKDsVCMrmdluKtsbEiZZJ4lWuswPzm3mAYboVYwyJB2GlFOAJrm1Fv/LzB8=
+X-Received: by 2002:a05:600c:4e4b:b0:3fd:e15:6d5 with SMTP id
+ e11-20020a05600c4e4b00b003fd0e1506d5mr309374wmq.2.1691480858460; Tue, 08 Aug
+ 2023 00:47:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH] fixup! drm/i915/display: Remaining changes
- to make xe compile
+References: <20230807102352.4607-5-janusz.krzysztofik@linux.intel.com>
+ <20230807102352.4607-6-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20230807102352.4607-6-janusz.krzysztofik@linux.intel.com>
+From: David Gow <davidgow@google.com>
+Date: Tue, 8 Aug 2023 15:47:25 +0800
+Message-ID: <CABVgOS=_rZuP5CJm2_5H27GOkvEGsJ08=qUgj6sSEQPk5ZfGkA@mail.gmail.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+ micalg=sha-256; boundary="000000000000bcb4900602649314"
+Subject: Re: [Intel-xe] [PATCH v5 1/3] kunit: Report the count of test
+ suites in a module
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,259 +68,358 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: linux-kernel@vger.kernel.org, Rae Moar <rmoar@google.com>,
+ igt-dev@lists.freedesktop.org, Brendan Higgins <brendan.higgins@linux.dev>,
+ linux-kselftest@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ kunit-dev@googlegroups.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 07 Aug 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Thu, Aug 03, 2023 at 01:53:52PM +0300, Jani Nikula wrote:
->> Remove some changes completely unrelated to building for xe.
->> 
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+--000000000000bcb4900602649314
+Content-Type: text/plain; charset="UTF-8"
+
+On Mon, 7 Aug 2023 at 18:28, Janusz Krzysztofik
+<janusz.krzysztofik@linux.intel.com> wrote:
 >
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Thanks, pushed.
-
-BR,
-Jani.
-
+> According to KTAP specification[1], results should always start from a
+> header that provides a TAP protocol version, followed by a test plan with
+> a count of items to be executed.  That pattern should be followed at each
+> nesting level.  In the current implementation of the top-most, i.e., test
+> suite level, those rules apply only for test suites built into the kernel,
+> executed and reported on boot.  Results submitted to dmesg from kunit test
+> modules loaded later are missing those top-level headers.
 >
->> ---
->>  drivers/gpu/drm/i915/display/intel_color.c             | 1 -
->>  drivers/gpu/drm/i915/display/intel_display.c           | 6 +++---
->>  drivers/gpu/drm/i915/display/intel_display.h           | 1 -
->>  drivers/gpu/drm/i915/display/intel_display_power_map.c | 1 +
->>  drivers/gpu/drm/i915/display/intel_display_rps.c       | 1 -
->>  drivers/gpu/drm/i915/display/intel_dp.c                | 2 +-
->>  drivers/gpu/drm/i915/display/intel_dpio_phy.h          | 1 -
->>  drivers/gpu/drm/i915/display/intel_dpll.c              | 1 +
->>  drivers/gpu/drm/i915/display/intel_dsb.c               | 1 -
->>  drivers/gpu/drm/i915/display/intel_dsi_vbt.c           | 6 ++++--
->>  drivers/gpu/drm/i915/display/intel_pipe_crc.c          | 1 -
->>  drivers/gpu/drm/i915/display/intel_pps.c               | 1 -
->>  drivers/gpu/drm/i915/display/intel_sprite.c            | 2 --
->>  drivers/gpu/drm/i915/display/skl_universal_plane.c     | 2 +-
->>  14 files changed, 11 insertions(+), 16 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
->> index ccc4b636c2b8..8966e6560516 100644
->> --- a/drivers/gpu/drm/i915/display/intel_color.c
->> +++ b/drivers/gpu/drm/i915/display/intel_color.c
->> @@ -26,7 +26,6 @@
->>  #include "intel_color.h"
->>  #include "intel_de.h"
->>  #include "intel_display_types.h"
->> -#include "intel_dpll.h"
->>  #include "intel_dsb.h"
->>  
->>  struct intel_color_funcs {
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 45a932c9b1b3..f9eda7ad892e 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -7423,7 +7423,7 @@ static u32 intel_encoder_possible_crtcs(struct intel_encoder *encoder)
->>  	return possible_crtcs;
->>  }
->>  
->> -static inline bool ilk_has_edp_a(struct drm_i915_private *dev_priv)
->> +static bool ilk_has_edp_a(struct drm_i915_private *dev_priv)
->>  {
->>  	if (!IS_MOBILE(dev_priv))
->>  		return false;
->> @@ -7437,7 +7437,7 @@ static inline bool ilk_has_edp_a(struct drm_i915_private *dev_priv)
->>  	return true;
->>  }
->>  
->> -static inline bool intel_ddi_crt_present(struct drm_i915_private *dev_priv)
->> +static bool intel_ddi_crt_present(struct drm_i915_private *dev_priv)
->>  {
->>  	if (DISPLAY_VER(dev_priv) >= 9)
->>  		return false;
->> @@ -7468,6 +7468,7 @@ bool assert_port_valid(struct drm_i915_private *i915, enum port port)
->>  void intel_setup_outputs(struct drm_i915_private *dev_priv)
->>  {
->>  	struct intel_encoder *encoder;
->> +	bool dpd_is_edp = false;
->>  
->>  	intel_pps_unlock_regs_wa(dev_priv);
->>  
->> @@ -7491,7 +7492,6 @@ void intel_setup_outputs(struct drm_i915_private *dev_priv)
->>  		if (IS_GEMINILAKE(dev_priv) || IS_BROXTON(dev_priv))
->>  			vlv_dsi_init(dev_priv);
->>  	} else if (HAS_PCH_SPLIT(dev_priv)) {
->> -		bool dpd_is_edp = false;
->>  		int found;
->>  
->>  		/*
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
->> index 8b8ea8a4a7b0..991461d9c221 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display.h
->> @@ -429,7 +429,6 @@ int vlv_get_cck_clock(struct drm_i915_private *dev_priv,
->>  		      const char *name, u32 reg, int ref_freq);
->>  int vlv_get_cck_clock_hpll(struct drm_i915_private *dev_priv,
->>  			   const char *name, u32 reg);
->> -void intel_hpd_poll_fini(struct drm_i915_private *i915);
->>  void intel_init_display_hooks(struct drm_i915_private *dev_priv);
->>  unsigned int intel_fb_xy_to_linear(int x, int y,
->>  				   const struct intel_plane_state *state,
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
->> index be0c5a945669..5ad04cd42c15 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
->> @@ -5,6 +5,7 @@
->>  
->>  #include "i915_drv.h"
->>  #include "i915_reg.h"
->> +
->>  #include "vlv_sideband_reg.h"
->>  
->>  #include "intel_display_power_map.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_rps.c b/drivers/gpu/drm/i915/display/intel_display_rps.c
->> index 8c81f542e5e8..918d0327169a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_rps.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_rps.c
->> @@ -7,7 +7,6 @@
->>  #include <drm/drm_vblank.h>
->>  
->>  #include "gt/intel_rps.h"
->> -
->>  #include "i915_drv.h"
->>  #include "intel_display_rps.h"
->>  #include "intel_display_types.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 5427ce10c06f..9f40da20e88d 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -5416,8 +5416,8 @@ intel_edp_add_properties(struct intel_dp *intel_dp)
->>  static void intel_edp_backlight_setup(struct intel_dp *intel_dp,
->>  				      struct intel_connector *connector)
->>  {
->> -	enum pipe pipe = INVALID_PIPE;
->>  	struct drm_i915_private *i915 = dp_to_i915(intel_dp);
->> +	enum pipe pipe = INVALID_PIPE;
->>  
->>  	if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
->>  		/*
->> diff --git a/drivers/gpu/drm/i915/display/intel_dpio_phy.h b/drivers/gpu/drm/i915/display/intel_dpio_phy.h
->> index 882bf1bc6b6e..4d43dbbdf81c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dpio_phy.h
->> +++ b/drivers/gpu/drm/i915/display/intel_dpio_phy.h
->> @@ -7,7 +7,6 @@
->>  #define __INTEL_DPIO_PHY_H__
->>  
->>  #include <linux/types.h>
->> -#include "intel_display.h"
->>  
->>  enum pipe;
->>  enum port;
->> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
->> index dab8dd915282..999badfe2906 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
->> @@ -2054,6 +2054,7 @@ void i9xx_disable_pll(const struct intel_crtc_state *crtc_state)
->>  	intel_de_posting_read(dev_priv, DPLL(pipe));
->>  }
->>  
->> +
->>  /**
->>   * vlv_force_pll_off - forcibly disable just the PLL
->>   * @dev_priv: i915 private structure
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
->> index 3830309aacf4..70d3a41e8b35 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
->> @@ -15,7 +15,6 @@
->>  #include "i915_drv.h"
->>  #include "i915_reg.h"
->>  #include "intel_de.h"
->> -#include "intel_dsb.h"
->>  #include "intel_display_types.h"
->>  #include "intel_dsb.h"
->>  #include "intel_dsb_regs.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->> index 173607ab8560..e56ec3f2d84a 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
->> @@ -831,7 +831,9 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
->>  	intel_dsi->eotp_pkt = mipi_config->eot_pkt_disabled ? 0 : 1;
->>  	intel_dsi->clock_stop = mipi_config->enable_clk_stop ? 1 : 0;
->>  	intel_dsi->lane_count = mipi_config->lane_cnt + 1;
->> -	intel_dsi->pixel_format = mipi_config->videomode_color_format << 7;
->> +	intel_dsi->pixel_format =
->> +			pixel_format_from_register_bits(
->> +				mipi_config->videomode_color_format << 7);
->>  
->>  	intel_dsi->dual_link = mipi_config->dual_link;
->>  	intel_dsi->pixel_overlap = mipi_config->pixel_overlap;
->> @@ -845,7 +847,7 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
->>  	intel_dsi->init_count = mipi_config->master_init_timer;
->>  	intel_dsi->bw_timer = mipi_config->dbi_bw_timer;
->>  	intel_dsi->video_frmt_cfg_bits =
->> -		mipi_config->bta_enabled ? BIT(3) : 0;
->> +		mipi_config->bta_enabled ? DISABLE_VIDEO_BTA : 0;
->>  	intel_dsi->bgr_enabled = mipi_config->rgb_flip;
->>  
->>  	/* Starting point, adjusted depending on dual link and burst mode */
->> diff --git a/drivers/gpu/drm/i915/display/intel_pipe_crc.c b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
->> index 57a576097b47..5a468ed6e26c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pipe_crc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pipe_crc.c
->> @@ -34,7 +34,6 @@
->>  #include "intel_de.h"
->>  #include "intel_display_types.h"
->>  #include "intel_pipe_crc.h"
->> -#include "i915_irq.h"
->>  
->>  static const char * const pipe_crc_sources[] = {
->>  	[INTEL_PIPE_CRC_SOURCE_NONE] = "none",
->> diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
->> index 19558895c360..73f0f1714b37 100644
->> --- a/drivers/gpu/drm/i915/display/intel_pps.c
->> +++ b/drivers/gpu/drm/i915/display/intel_pps.c
->> @@ -11,7 +11,6 @@
->>  #include "intel_display_types.h"
->>  #include "intel_dp.h"
->>  #include "intel_dpio_phy.h"
->> -#include "intel_dpio_phy.h"
->>  #include "intel_dpll.h"
->>  #include "intel_lvds.h"
->>  #include "intel_lvds_regs.h"
->> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
->> index d9713094735b..25034bbf1445 100644
->> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
->> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
->> @@ -40,7 +40,6 @@
->>  
->>  #include "i915_drv.h"
->>  #include "i915_reg.h"
->> -#include "i915_vgpu.h"
->>  #include "i9xx_plane.h"
->>  #include "intel_atomic_plane.h"
->>  #include "intel_de.h"
->> @@ -1666,4 +1665,3 @@ intel_sprite_plane_create(struct drm_i915_private *dev_priv,
->>  
->>  	return ERR_PTR(ret);
->>  }
->> -
->> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> index 1064af3c80d8..3c212d8401c8 100644
->> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> @@ -1336,7 +1336,7 @@ skl_plane_async_flip(struct intel_plane *plane,
->>  			  skl_plane_surf(plane_state, 0));
->>  }
->>  
->> -static inline bool intel_format_is_p01x(u32 format)
->> +static bool intel_format_is_p01x(u32 format)
->>  {
->>  	switch (format) {
->>  	case DRM_FORMAT_P010:
->> -- 
->> 2.39.2
->> 
+> As a consequence, if a kunit test module provides more than one test suite
+> then, without the top level test plan, external tools that are parsing
+> dmesg for kunit test output are not able to tell how many test suites
+> should be expected and whether to continue parsing after complete output
+> from the first test suite is collected.
+>
+> Submit the top-level headers also from the kunit test module notifier
+> initialization callback.
+>
+> v3: Fix new name of a structure moved to kunit namespace not updated in
+>     executor_test functions (lkp@intel.com).
+> v2: Use kunit_exec_run_tests() (Mauro, Rae), but prevent it from
+>     emitting the headers when called on load of non-test modules.
+>
+> [1] https://docs.kernel.org/dev-tools/ktap.html#
+>
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Rae Moar <rmoar@google.com>
+> ---
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+Thanks! This is a long overdue feature, and it seems to work well here.
+
+Reviewed-by: David Gow <davidgow@google.com>
+
+Cheers,
+-- David
+
+
+>  include/kunit/test.h      |  8 ++++++++
+>  lib/kunit/executor.c      | 42 +++++++++++++++++++++------------------
+>  lib/kunit/executor_test.c | 36 ++++++++++++++++++++++-----------
+>  lib/kunit/test.c          |  6 +++++-
+>  4 files changed, 60 insertions(+), 32 deletions(-)
+>
+> diff --git a/include/kunit/test.h b/include/kunit/test.h
+> index 011e0d6bb506c..3d002e6b252f2 100644
+> --- a/include/kunit/test.h
+> +++ b/include/kunit/test.h
+> @@ -256,6 +256,12 @@ struct kunit_suite {
+>         int suite_init_err;
+>  };
+>
+> +/* Stores an array of suites, end points one past the end */
+> +struct kunit_suite_set {
+> +       struct kunit_suite * const *start;
+> +       struct kunit_suite * const *end;
+> +};
+> +
+>  /**
+>   * struct kunit - represents a running instance of a test.
+>   *
+> @@ -317,6 +323,8 @@ int __kunit_test_suites_init(struct kunit_suite * const * const suites, int num_
+>
+>  void __kunit_test_suites_exit(struct kunit_suite **suites, int num_suites);
+>
+> +void kunit_exec_run_tests(struct kunit_suite_set *suite_set, bool builtin);
+> +
+>  #if IS_BUILTIN(CONFIG_KUNIT)
+>  int kunit_run_all_tests(void);
+>  #else
+> diff --git a/lib/kunit/executor.c b/lib/kunit/executor.c
+> index dc295150c4e57..5ef90c334eb0f 100644
+> --- a/lib/kunit/executor.c
+> +++ b/lib/kunit/executor.c
+> @@ -104,13 +104,7 @@ kunit_filter_glob_tests(const struct kunit_suite *const suite, const char *test_
+>  static char *kunit_shutdown;
+>  core_param(kunit_shutdown, kunit_shutdown, charp, 0644);
+>
+> -/* Stores an array of suites, end points one past the end */
+> -struct suite_set {
+> -       struct kunit_suite * const *start;
+> -       struct kunit_suite * const *end;
+> -};
+> -
+> -static void kunit_free_suite_set(struct suite_set suite_set)
+> +static void kunit_free_suite_set(struct kunit_suite_set suite_set)
+>  {
+>         struct kunit_suite * const *suites;
+>
+> @@ -119,16 +113,17 @@ static void kunit_free_suite_set(struct suite_set suite_set)
+>         kfree(suite_set.start);
+>  }
+>
+> -static struct suite_set kunit_filter_suites(const struct suite_set *suite_set,
+> -                                           const char *filter_glob,
+> -                                               char *filters,
+> -                                               char *filter_action,
+> -                                           int *err)
+> +static struct kunit_suite_set
+> +kunit_filter_suites(const struct kunit_suite_set *suite_set,
+> +                   const char *filter_glob,
+> +                   char *filters,
+> +                   char *filter_action,
+> +                   int *err)
+>  {
+>         int i, j, k;
+>         int filter_count = 0;
+>         struct kunit_suite **copy, **copy_start, *filtered_suite, *new_filtered_suite;
+> -       struct suite_set filtered = {NULL, NULL};
+> +       struct kunit_suite_set filtered = {NULL, NULL};
+>         struct kunit_glob_filter parsed_glob;
+>         struct kunit_attr_filter *parsed_filters = NULL;
+>
+> @@ -230,17 +225,24 @@ static void kunit_handle_shutdown(void)
+>
+>  }
+>
+> -static void kunit_exec_run_tests(struct suite_set *suite_set)
+> +#endif
+> +
+> +void kunit_exec_run_tests(struct kunit_suite_set *suite_set, bool builtin)
+>  {
+>         size_t num_suites = suite_set->end - suite_set->start;
+>
+> -       pr_info("KTAP version 1\n");
+> -       pr_info("1..%zu\n", num_suites);
+> +       if (builtin || num_suites) {
+> +               pr_info("KTAP version 1\n");
+> +               pr_info("1..%zu\n", num_suites);
+> +       }
+>
+>         __kunit_test_suites_init(suite_set->start, num_suites);
+>  }
+>
+> -static void kunit_exec_list_tests(struct suite_set *suite_set, bool include_attr)
+> +#if IS_BUILTIN(CONFIG_KUNIT)
+> +
+> +static void kunit_exec_list_tests(struct kunit_suite_set *suite_set,
+> +                                 bool include_attr)
+>  {
+>         struct kunit_suite * const *suites;
+>         struct kunit_case *test_case;
+> @@ -265,7 +267,9 @@ static void kunit_exec_list_tests(struct suite_set *suite_set, bool include_attr
+>
+>  int kunit_run_all_tests(void)
+>  {
+> -       struct suite_set suite_set = {__kunit_suites_start, __kunit_suites_end};
+> +       struct kunit_suite_set suite_set = {
+> +               __kunit_suites_start, __kunit_suites_end,
+> +       };
+>         int err = 0;
+>         if (!kunit_enabled()) {
+>                 pr_info("kunit: disabled\n");
+> @@ -282,7 +286,7 @@ int kunit_run_all_tests(void)
+>         }
+>
+>         if (!action_param)
+> -               kunit_exec_run_tests(&suite_set);
+> +               kunit_exec_run_tests(&suite_set, true);
+>         else if (strcmp(action_param, "list") == 0)
+>                 kunit_exec_list_tests(&suite_set, false);
+>         else if (strcmp(action_param, "list_attr") == 0)
+> diff --git a/lib/kunit/executor_test.c b/lib/kunit/executor_test.c
+> index 3e0a1c99cb4e8..4084071d0eb5b 100644
+> --- a/lib/kunit/executor_test.c
+> +++ b/lib/kunit/executor_test.c
+> @@ -43,8 +43,10 @@ static void parse_filter_test(struct kunit *test)
+>  static void filter_suites_test(struct kunit *test)
+>  {
+>         struct kunit_suite *subsuite[3] = {NULL, NULL};
+> -       struct suite_set suite_set = {.start = subsuite, .end = &subsuite[2]};
+> -       struct suite_set got;
+> +       struct kunit_suite_set suite_set = {
+> +               .start = subsuite, .end = &subsuite[2],
+> +       };
+> +       struct kunit_suite_set got;
+>         int err = 0;
+>
+>         subsuite[0] = alloc_fake_suite(test, "suite1", dummy_test_cases);
+> @@ -67,8 +69,10 @@ static void filter_suites_test(struct kunit *test)
+>  static void filter_suites_test_glob_test(struct kunit *test)
+>  {
+>         struct kunit_suite *subsuite[3] = {NULL, NULL};
+> -       struct suite_set suite_set = {.start = subsuite, .end = &subsuite[2]};
+> -       struct suite_set got;
+> +       struct kunit_suite_set suite_set = {
+> +               .start = subsuite, .end = &subsuite[2],
+> +       };
+> +       struct kunit_suite_set got;
+>         int err = 0;
+>
+>         subsuite[0] = alloc_fake_suite(test, "suite1", dummy_test_cases);
+> @@ -94,8 +98,10 @@ static void filter_suites_test_glob_test(struct kunit *test)
+>  static void filter_suites_to_empty_test(struct kunit *test)
+>  {
+>         struct kunit_suite *subsuite[3] = {NULL, NULL};
+> -       struct suite_set suite_set = {.start = subsuite, .end = &subsuite[2]};
+> -       struct suite_set got;
+> +       struct kunit_suite_set suite_set = {
+> +               .start = subsuite, .end = &subsuite[2],
+> +       };
+> +       struct kunit_suite_set got;
+>         int err = 0;
+>
+>         subsuite[0] = alloc_fake_suite(test, "suite1", dummy_test_cases);
+> @@ -144,8 +150,10 @@ static struct kunit_case dummy_attr_test_cases[] = {
+>  static void filter_attr_test(struct kunit *test)
+>  {
+>         struct kunit_suite *subsuite[3] = {NULL, NULL};
+> -       struct suite_set suite_set = {.start = subsuite, .end = &subsuite[2]};
+> -       struct suite_set got;
+> +       struct kunit_suite_set suite_set = {
+> +               .start = subsuite, .end = &subsuite[2],
+> +       };
+> +       struct kunit_suite_set got;
+>         int err = 0;
+>
+>         subsuite[0] = alloc_fake_suite(test, "normal_suite", dummy_attr_test_cases);
+> @@ -179,8 +187,10 @@ static void filter_attr_test(struct kunit *test)
+>  static void filter_attr_empty_test(struct kunit *test)
+>  {
+>         struct kunit_suite *subsuite[3] = {NULL, NULL};
+> -       struct suite_set suite_set = {.start = subsuite, .end = &subsuite[2]};
+> -       struct suite_set got;
+> +       struct kunit_suite_set suite_set = {
+> +               .start = subsuite, .end = &subsuite[2],
+> +       };
+> +       struct kunit_suite_set got;
+>         int err = 0;
+>
+>         subsuite[0] = alloc_fake_suite(test, "suite1", dummy_attr_test_cases);
+> @@ -197,8 +207,10 @@ static void filter_attr_empty_test(struct kunit *test)
+>  static void filter_attr_skip_test(struct kunit *test)
+>  {
+>         struct kunit_suite *subsuite[2] = {NULL};
+> -       struct suite_set suite_set = {.start = subsuite, .end = &subsuite[1]};
+> -       struct suite_set got;
+> +       struct kunit_suite_set suite_set = {
+> +               .start = subsuite, .end = &subsuite[1],
+> +       };
+> +       struct kunit_suite_set got;
+>         int err = 0;
+>
+>         subsuite[0] = alloc_fake_suite(test, "suite", dummy_attr_test_cases);
+> diff --git a/lib/kunit/test.c b/lib/kunit/test.c
+> index cb9797fa6303f..8b2808068497f 100644
+> --- a/lib/kunit/test.c
+> +++ b/lib/kunit/test.c
+> @@ -736,7 +736,11 @@ EXPORT_SYMBOL_GPL(__kunit_test_suites_exit);
+>  #ifdef CONFIG_MODULES
+>  static void kunit_module_init(struct module *mod)
+>  {
+> -       __kunit_test_suites_init(mod->kunit_suites, mod->num_kunit_suites);
+> +       struct kunit_suite_set suite_set = {
+> +               mod->kunit_suites, mod->kunit_suites + mod->num_kunit_suites,
+> +       };
+> +
+> +       kunit_exec_run_tests(&suite_set, false);
+>  }
+>
+>  static void kunit_module_exit(struct module *mod)
+> --
+> 2.41.0
+>
+
+--000000000000bcb4900602649314
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIIPnwYJKoZIhvcNAQcCoIIPkDCCD4wCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+ggz5MIIEtjCCA56gAwIBAgIQeAMYYHb81ngUVR0WyMTzqzANBgkqhkiG9w0BAQsFADBMMSAwHgYD
+VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
+AxMKR2xvYmFsU2lnbjAeFw0yMDA3MjgwMDAwMDBaFw0yOTAzMTgwMDAwMDBaMFQxCzAJBgNVBAYT
+AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFz
+IFIzIFNNSU1FIENBIDIwMjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvLe9xPU9W
+dpiHLAvX7kFnaFZPuJLey7LYaMO8P/xSngB9IN73mVc7YiLov12Fekdtn5kL8PjmDBEvTYmWsuQS
+6VBo3vdlqqXZ0M9eMkjcKqijrmDRleudEoPDzTumwQ18VB/3I+vbN039HIaRQ5x+NHGiPHVfk6Rx
+c6KAbYceyeqqfuJEcq23vhTdium/Bf5hHqYUhuJwnBQ+dAUcFndUKMJrth6lHeoifkbw2bv81zxJ
+I9cvIy516+oUekqiSFGfzAqByv41OrgLV4fLGCDH3yRh1tj7EtV3l2TngqtrDLUs5R+sWIItPa/4
+AJXB1Q3nGNl2tNjVpcSn0uJ7aFPbAgMBAAGjggGKMIIBhjAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0l
+BBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHzM
+CmjXouseLHIb0c1dlW+N+/JjMB8GA1UdIwQYMBaAFI/wS3+oLkUkrk1Q+mOai97i3Ru8MHsGCCsG
+AQUFBwEBBG8wbTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL3Jvb3Ry
+MzA7BggrBgEFBQcwAoYvaHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvcm9vdC1y
+My5jcnQwNgYDVR0fBC8wLTAroCmgJ4YlaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9yb290LXIz
+LmNybDBMBgNVHSAERTBDMEEGCSsGAQQBoDIBKDA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5n
+bG9iYWxzaWduLmNvbS9yZXBvc2l0b3J5LzANBgkqhkiG9w0BAQsFAAOCAQEANyYcO+9JZYyqQt41
+TMwvFWAw3vLoLOQIfIn48/yea/ekOcParTb0mbhsvVSZ6sGn+txYAZb33wIb1f4wK4xQ7+RUYBfI
+TuTPL7olF9hDpojC2F6Eu8nuEf1XD9qNI8zFd4kfjg4rb+AME0L81WaCL/WhP2kDCnRU4jm6TryB
+CHhZqtxkIvXGPGHjwJJazJBnX5NayIce4fGuUEJ7HkuCthVZ3Rws0UyHSAXesT/0tXATND4mNr1X
+El6adiSQy619ybVERnRi5aDe1PTwE+qNiotEEaeujz1a/+yYaaTY+k+qJcVxi7tbyQ0hi0UB3myM
+A/z2HmGEwO8hx7hDjKmKbDCCA18wggJHoAMCAQICCwQAAAAAASFYUwiiMA0GCSqGSIb3DQEBCwUA
+MEwxIDAeBgNVBAsTF0dsb2JhbFNpZ24gUm9vdCBDQSAtIFIzMRMwEQYDVQQKEwpHbG9iYWxTaWdu
+MRMwEQYDVQQDEwpHbG9iYWxTaWduMB4XDTA5MDMxODEwMDAwMFoXDTI5MDMxODEwMDAwMFowTDEg
+MB4GA1UECxMXR2xvYmFsU2lnbiBSb290IENBIC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24xEzAR
+BgNVBAMTCkdsb2JhbFNpZ24wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDMJXaQeQZ4
+Ihb1wIO2hMoonv0FdhHFrYhy/EYCQ8eyip0EXyTLLkvhYIJG4VKrDIFHcGzdZNHr9SyjD4I9DCuu
+l9e2FIYQebs7E4B3jAjhSdJqYi8fXvqWaN+JJ5U4nwbXPsnLJlkNc96wyOkmDoMVxu9bi9IEYMpJ
+pij2aTv2y8gokeWdimFXN6x0FNx04Druci8unPvQu7/1PQDhBjPogiuuU6Y6FnOM3UEOIDrAtKeh
+6bJPkC4yYOlXy7kEkmho5TgmYHWyn3f/kRTvriBJ/K1AFUjRAjFhGV64l++td7dkmnq/X8ET75ti
++w1s4FRpFqkD2m7pg5NxdsZphYIXAgMBAAGjQjBAMA4GA1UdDwEB/wQEAwIBBjAPBgNVHRMBAf8E
+BTADAQH/MB0GA1UdDgQWBBSP8Et/qC5FJK5NUPpjmove4t0bvDANBgkqhkiG9w0BAQsFAAOCAQEA
+S0DbwFCq/sgM7/eWVEVJu5YACUGssxOGhigHM8pr5nS5ugAtrqQK0/Xx8Q+Kv3NnSoPHRHt44K9u
+bG8DKY4zOUXDjuS5V2yq/BKW7FPGLeQkbLmUY/vcU2hnVj6DuM81IcPJaP7O2sJTqsyQiunwXUaM
+ld16WCgaLx3ezQA3QY/tRG3XUyiXfvNnBB4V14qWtNPeTCekTBtzc3b0F5nCH3oO4y0IrQocLP88
+q1UOD5F+NuvDV0m+4S4tfGCLw0FREyOdzvcya5QBqJnnLDMfOjsl0oZAzjsshnjJYS8Uuu7bVW/f
+hO4FCU29KNhyztNiUGUe65KXgzHZs7XKR1g/XzCCBNgwggPAoAMCAQICEAEDPnEOWzT2vYIrJhGq
+c1swDQYJKoZIhvcNAQELBQAwVDELMAkGA1UEBhMCQkUxGTAXBgNVBAoTEEdsb2JhbFNpZ24gbnYt
+c2ExKjAoBgNVBAMTIUdsb2JhbFNpZ24gQXRsYXMgUjMgU01JTUUgQ0EgMjAyMDAeFw0yMzA1MTIx
+NjMzMjlaFw0yMzExMDgxNjMzMjlaMCQxIjAgBgkqhkiG9w0BCQEWE2RhdmlkZ293QGdvb2dsZS5j
+b20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCfIQuFV9ECjSKrnHc+/gEoEHeMu29G
+hkC9x5KA7Tgm7ZISSdxxP+b9Q23vqKKYcaXlXzxDUweAEa7KrhRdZMpcF1p14/qI6AG7rBn8otbO
+t6QSE9nwXQRL5ITEHtPRcQzLU5H9Yyq4b9MmEZAq+ByKX1t6FrXw461kqV8I/oCueKmD0p6mU/4k
+xzQWik4ZqST0MXkJiZenSKDDN+U1qGgHKC3HAzsIlWpNh/WsWcD4RRcEtwfW1h9DwRfGFp78OFQg
+65qXbeub4G7ELSIdjGygCzVG+g1jo6we5uqPep3iRCzn92KROEVxP5lG9FlwQ2YWMt+dNiGrJdKy
+Kw4TK7CrAgMBAAGjggHUMIIB0DAeBgNVHREEFzAVgRNkYXZpZGdvd0Bnb29nbGUuY29tMA4GA1Ud
+DwEB/wQEAwIFoDAdBgNVHSUEFjAUBggrBgEFBQcDBAYIKwYBBQUHAwIwHQYDVR0OBBYEFG/UTu3x
+9IGQSBx2i4m+hGXJpET+MEwGA1UdIARFMEMwQQYJKwYBBAGgMgEoMDQwMgYIKwYBBQUHAgEWJmh0
+dHBzOi8vd3d3Lmdsb2JhbHNpZ24uY29tL3JlcG9zaXRvcnkvMAwGA1UdEwEB/wQCMAAwgZoGCCsG
+AQUFBwEBBIGNMIGKMD4GCCsGAQUFBzABhjJodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9jYS9n
+c2F0bGFzcjNzbWltZWNhMjAyMDBIBggrBgEFBQcwAoY8aHR0cDovL3NlY3VyZS5nbG9iYWxzaWdu
+LmNvbS9jYWNlcnQvZ3NhdGxhc3Izc21pbWVjYTIwMjAuY3J0MB8GA1UdIwQYMBaAFHzMCmjXouse
+LHIb0c1dlW+N+/JjMEYGA1UdHwQ/MD0wO6A5oDeGNWh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20v
+Y2EvZ3NhdGxhc3Izc21pbWVjYTIwMjAuY3JsMA0GCSqGSIb3DQEBCwUAA4IBAQCRI3Z4cAidgFcv
+Usqdz765x6KMZSfg/WtFrYg8ewsP2NpCxVM2+EhPyyEQ0k0DhtzdtGoI/Ug+jdFDyCKB9P2+EPLh
+iMjMnFILp7Zs4r18ECHlvZuDZfH9m0BchXIxu5jLIuQyKUWrCRDZZEDNr510ZhhVfYSFPA8ms1nk
+jyzYFOHYQyv5IfML/3IBFKlON5OZa+V8EZYULYcNkp03DdWglafj7SXZ1/XgAbVYrC381UvrsYN8
+jndVvoa1GWwe+NVlIIK7Q3uAjV3qLEDQpaNPg1rr0oAn6YmvTccjVMqj2YNwN+RHhKNzgRGxY5ct
+FaN+8fXZhRhpv3bVbAWuPZXoMYICajCCAmYCAQEwaDBUMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQ
+R2xvYmFsU2lnbiBudi1zYTEqMCgGA1UEAxMhR2xvYmFsU2lnbiBBdGxhcyBSMyBTTUlNRSBDQSAy
+MDIwAhABAz5xDls09r2CKyYRqnNbMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCDW
+39fS2BpQs3E5K678v/zRuFglL4oO6SmXBbbmJPNl9zAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcB
+MBwGCSqGSIb3DQEJBTEPFw0yMzA4MDgwNzQ3MzhaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUD
+BAEqMAsGCWCGSAFlAwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsG
+CSqGSIb3DQEBBzALBglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAAVaWQwqXwlGiQTKITakv
+eM1ycMAd1t6yAs6mIT7RGTCmYN4xYdNfu+10g4FpgC7J0nNv30qA7zZxHewl/muG/Yr9HldnepOb
+U4zANPRT4JZqZ8tmbmgSliT6SPLn5Pm2BYnwXlYVMbzuFiKp246LXSsJG8s9uz588OHo55XwqCKj
+tAr5BtvV/tGYDu5iOXbY5LOM/2PHwdBN3VNsF92UDKYwtcpTo+r1kNvmY7sPPI/DbN/0GA57SVNI
+njSY6/5vTgFvz5StS3BfjrEWiwoEn2av5F4XVaqOvY0KMedwIEfmAZ78QVZbfOecMxx1XG3j8I+X
+pDUw7wzIq3TNw/jNIg==
+--000000000000bcb4900602649314--
