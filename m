@@ -4,51 +4,142 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1FBEC04A6A
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 16:45:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6683CC001DB
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 18:15:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B63710E3C1;
-	Tue,  8 Aug 2023 16:45:52 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D99A10E1FD
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 16:45:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2DE2C10E3E6;
+	Tue,  8 Aug 2023 18:15:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42A1610E3E6
+ for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 18:15:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691513150; x=1723049150;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=Wm0HyA0ekXnuhOmbZnA74jMlx4X81eOvBsPrAYSrE3k=;
- b=gQRRtXJax+ymuGRMSbmQTkFk2rjEgtFzEy1YOo1DBm+ZIRaAt1R9XL6g
- yqye/JN7uDH7d0W1gX6R8mrL4zryl+tb/KBweJnq6NHPR+3vDNKNoWnD0
- MY5thFhGXlg15/squaBtVQUjf+NMrtvOmnRS5J0ktYPx2t/khO9/c+woq
- 7A1LQGjSns7pbfNbVHAWB8klfmxzbQFwV6PfQeUWs2uOwNuoTOlD7+q1K
- lvTG+9iaaW4Tu+2qleIAcsjKAJd9il+K3eeNyMKOChM4b7uBgWp0NMTLv
- ITVus49pZklZThtDb/o29owkZ+hQrxz+ERBr6HwCNGJrLpRGarPGxlb97 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="457267553"
-X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="457267553"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 09:45:45 -0700
+ t=1691518528; x=1723054528;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=xqhjEGqO3o7Aisb9IVNDXSS/CJK9s6sEIx8V2GkwCJ4=;
+ b=PMFe8iD8svokbIW+pltvGMJ8cwnlzGsIfqRUmr2nuLJVDMYYNt5PfAfa
+ PVTWhPdQfcCEX06h06X3TRPfTE5vsv3wh+2A+jKtUncZ0pEc6kVIiIOqu
+ F0WMHf36uY7Lq07W5lIS1fLmyWFZbbI6luByAFGE24ecz5lDPKkcj5vsK
+ U6tC5AOfEcn9p9eaOZub2Ak4zvw4z2cAbBwjOBt0VepNSZAhzV4rKY87H
+ nggrysIsKlpXNOaSa+DgbllA2Ih8TpMgbTqUcZPuDB6XXCNqn+sR0ZwTj
+ +M3akgb2C1+s9M2StnLy/YNn40kbU13D2JljujzSzIoW5Iny79GIZovT3 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="351217134"
+X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="351217134"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 11:15:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="766431665"
-X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="766431665"
-Received: from awvttsim-04.aw.intel.com (HELO awvttsim-04.ph.intel.com)
- ([10.228.212.165])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 09:45:44 -0700
-From: David Kershner <david.kershner@intel.com>
-To: david.kershner@intel.com, intel-xe@lists.freedesktop.org,
- michael.j.ruhl@intel.com, john.fleck@intel.com, lucas.demarchi@intel.com,
- rodrigo.vivi@intel.com, matthew.d.roper@intel.com, matthew.brost@intel.com
-Date: Tue,  8 Aug 2023 12:45:33 -0400
-Message-Id: <20230808164534.1027552-3-david.kershner@intel.com>
-X-Mailer: git-send-email 2.35.1
-In-Reply-To: <20230808164534.1027552-1-david.kershner@intel.com>
-References: <20230808164534.1027552-1-david.kershner@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="681362201"
+X-IronPort-AV: E=Sophos;i="6.01,156,1684825200"; d="scan'208";a="681362201"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga003.jf.intel.com with ESMTP; 08 Aug 2023 11:15:11 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 8 Aug 2023 11:15:11 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 8 Aug 2023 11:15:11 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Tue, 8 Aug 2023 11:15:11 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Tue, 8 Aug 2023 11:15:10 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=getqznyTnoyRSH/wWn2CqDodFbTZ/T450AZQYJ7pp2Fk6rO8pxfw1FPx2PKVb261toB3KQHQ1P/eUU1/fydr1KmxHKXJ2lulZKiijGalBInwpa9Ikan4KhgvT2MN9BNdovb+OeBm/nABLVeXmejE4LtROdwU2Qa6tPcqS94Pr/hrfneiRKAkzbzxqfQPeSpnChwf/S2P5YGDlxc79MpbEf1DyJZ/2u5qBQRLFUhgqr18qJYvvLfPc0HgJWgM4aeBC9oU8OuLRa4TBH6J1YTaNamd04NbDFdnkuZv+5GoUc6wzEg1WY03gTOe/Z1sJPd3yL25UCiWNu2DFMO0SuGPQg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fgBXV52rQ0pGJN9kJkIUKzkGeU8RvMIhJEFnyQjfQKk=;
+ b=iPdTISzxwbsbXe7/rJXyCVcb7cI1x7qlBhX0rYMQl1k1QE7nNw+kyMURLaekXFTbDzhMqsdOeKAYZPVEbTEIEOMJUROMrp66jwOQ8xZSNySc7ualFq6Mh6dR8pnUjuWvqg3nFm3QefcfC1EaIMmtgOAKqyNw0cyLeMEgUv+SXJdn+PvWDxziQe++wm69nhCYH7Vfn4rZjKRTNijApTBmx92p8GNZaRGDwflefHs0IkVt4hZe9KLZ957nW17qo5kQeEjNF9V92B0zQOkLF5ySTrzeON5OJbehtV7jd0WA6dbBZd+T7rjLbcAY4aIXBI5ENCaruj2/T6+pvHxOcL4TBQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SJ0PR11MB5085.namprd11.prod.outlook.com (2603:10b6:a03:2db::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.27; Tue, 8 Aug
+ 2023 18:15:08 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::538f:8837:abce:4522]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::538f:8837:abce:4522%4]) with mapi id 15.20.6652.026; Tue, 8 Aug 2023
+ 18:15:08 +0000
+Date: Tue, 8 Aug 2023 18:13:58 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <ZNKF5txFNhetaAPk@DUT025-TGLU.fm.intel.com>
+References: <20230807173446.2039-1-michal.wajdeczko@intel.com>
+ <vrhcmrdcsrd4pw4mgwcrbrmdinoh2ce3uu7ebrabpqcc7kjjll@2aor4ajoytf4>
+ <87y1ilshhn.fsf@intel.com>
+ <uc5h46hdu34kr5yrng7jpn4o5fobs5z5ttkfqshqzqg3i4lyfc@ecqj62tyqw5o>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/3] drm/xe: Introduce XeLink device
+In-Reply-To: <uc5h46hdu34kr5yrng7jpn4o5fobs5z5ttkfqshqzqg3i4lyfc@ecqj62tyqw5o>
+X-ClientProxiedBy: BYAPR11CA0037.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::14) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB5085:EE_
+X-MS-Office365-Filtering-Correlation-Id: df5b0233-6b66-4e55-0b56-08db983b65df
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: N6X0kQ75w1BazTcEv9bgmX6GTWj3OWnPpRLimADjC24f++K4wEKJcI1/I+4E4UfNbAUnrJ5ySvqLOGM4QBg20g2ml1AzJKVoze1BruVBxtcJQBQimAiB5/tG9YRmXLydp5GbBvKSUpq54+mZoyqnD9AMyuKI034G4KKoZdEfvLz9o6wiVA6JMEUJjS1oqHPEBahwc4ONLeytGDfZUiAHMQmDwpzgGVrG2ufvg2yUn5yeAfYAmJiE29DmOD80Q/ejAIoOQdugF/y861sGFdo5kxQ/DSvrwSd6uyu/RaJqlJrzchQj0eYkQz+/DsC+5nod6s6d2NbSZRHw0wI7pX3lR0pGhJl0WDHFAAlREzrVPcniBz5hMJW9Wf6JveCjs9+4PLaQ8zYxvztHMGnrEdiyHE3Z9OreYtZwpb3Bx7c1474vnoiRyT+NFK4gfVVHorTd3ztMALoRylJcdxakci1i101ZkkZKbAVLbC/9kJiy5xlvmK+4BFXY1DJWvaOZN+bEjwYrufea/mBXAZqJepyVYkTDehUz2d7RagAgF5ETBOJ5HlINMiW74SJ5Fqm0vh1Y
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(346002)(376002)(39860400002)(366004)(136003)(396003)(186006)(451199021)(1800799003)(316002)(83380400001)(4326008)(2906002)(82960400001)(6862004)(6666004)(8676002)(38100700002)(8936002)(6486002)(5660300002)(478600001)(66946007)(66556008)(41300700001)(66476007)(44832011)(6506007)(6636002)(86362001)(54906003)(26005)(6512007);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?xPT4PJW2lt8k3me/iq0xYwrlXakcmJgK1X7y7v9Ovpz50iKb8BKSyeCUQu?=
+ =?iso-8859-1?Q?Xaj6C3irXHChgwGQ6FYCgbfiOtW7oMDGCBMmhub0OujQHzXwgP5SOgaRYJ?=
+ =?iso-8859-1?Q?9VIrzFh8FdVNTflhLTlYyLfgWrgkKB5jijdoTVqZVShuAk6jNH7U0PvYcG?=
+ =?iso-8859-1?Q?kIvF3hgnZMN7keKiVBiJYa06nif8P1DMhzJVBFdwveWgqcGR70lzV0MvRx?=
+ =?iso-8859-1?Q?Nmcf+PDSAon36H1yEVcoaxWm+i0ww+iArc0jjNEGjKBDZyytgihZkFMS9s?=
+ =?iso-8859-1?Q?06jgN3IcN1wMbxn8J+gJNLfD8X2opJkMzqgwIBbVrNQAjOSn0tvNxiCBI4?=
+ =?iso-8859-1?Q?0pMrTlaU6Aq06Nxt8/y4n/NcUONlRyDRPoCivjLEbJjQfT67nq6Drz/ZvV?=
+ =?iso-8859-1?Q?ydCjUlg6wFK4NdQXyrjI63xZfirmM6kG3ygCbhUX3XFKa6kEBxR3GTJOKE?=
+ =?iso-8859-1?Q?qmTImFzaAq39UW7JhkUt5gMVRm8osaQe5w2MGd1Ef/2vznLVu1Y8qneiq2?=
+ =?iso-8859-1?Q?H/++tMvzPHi+mKwgxY/AxlP+BtIcO4jBDnYzrXUjLDcThI3Ni8/kNdpubI?=
+ =?iso-8859-1?Q?dCsecCw9f+PtFJfSYFdP+D+w3MaLcIs1n+6vvdwZn3E2GDYPuKDdwQoJLO?=
+ =?iso-8859-1?Q?BGTTU2C8BI3NbtfQ+ppzU1APvkirQYKGLu5QEpfkedgqj531MFI5GYCmIJ?=
+ =?iso-8859-1?Q?+IsUGr7h7hLKDRA23aOUtjR9u593DM25UJa12hMos1XjFkppIMlsxag01G?=
+ =?iso-8859-1?Q?SL79uzj3okZrLSxKbUQZl8+B9ZesOgGKo5pGtz05m7hJUM+Ll7pLdEoQLl?=
+ =?iso-8859-1?Q?ksbKiK7x16rogepMo2k4YxBOIdwLU9xdjIvY3rHsQOfD0GaZD/mqEiKlNN?=
+ =?iso-8859-1?Q?gBMzeHV+IrK9f/xwPl9ywGLtAxYXvRLnOsiv66itWVuVQil4BbFN1xnP8N?=
+ =?iso-8859-1?Q?3pJbKosHSabyjYUKVKDibtBlUtE3wiB4O9DX2LmApa0Pjcv51G7CE+DvV+?=
+ =?iso-8859-1?Q?CC+ISqWJOAUufjSE+8JbZFhIjd09Z0DidczqlcMCq5yzK+Bszqaxu07FVR?=
+ =?iso-8859-1?Q?sZuwURFH9E+0JPm2ZmUzsOrctLcx9XpKd3nsqC56cfbiptJZWP8I6Ac9rB?=
+ =?iso-8859-1?Q?E3aLae8+pv3KgnMrqkcgL/c08cOZ6Yoc8y8GvtI5RSnruEY22c+cyXySTf?=
+ =?iso-8859-1?Q?Xwqugt1JF7ghhRpH1ImoNLAE4wq7P/2D2+58ObuhhVJrLXvRhsULlsdkze?=
+ =?iso-8859-1?Q?QFydJgnVzKVWtE7M8hUGmFMQ1vbtji+iiiTcPO9TbVnBVEias/ZM/Lkfim?=
+ =?iso-8859-1?Q?tLfzW4RfL0CIIE7N7SvikgzO+9yfs1WU7EoYV3d9C4R9oTjgv6Lql5uu1U?=
+ =?iso-8859-1?Q?+jwyE4liNImD5+SkywWoYGbJ7VsBid7kTlRIbLGQz1aHQq3y6lkEyy0dtS?=
+ =?iso-8859-1?Q?lm6pY2pGehj+70GTRtQloW41fGslzW9eTvTaFo1LYfxxXWUxM+0DfNbP5K?=
+ =?iso-8859-1?Q?X9+PKJOCLicpStoTCBRwg7Kicu0eIRht2Ty0njSD1QQpUAJBjQ2YuaNHYl?=
+ =?iso-8859-1?Q?cduVap2qczG40wJaAwiZfb2/WHTcDmGysdiLVh/JMWvccFkY1r9fYhsJNF?=
+ =?iso-8859-1?Q?HcEmRCb3nZL/qKWnuOArOHfEDoVwXjrZglgqAq6fsLlwxKAzuB+jHFcw?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: df5b0233-6b66-4e55-0b56-08db983b65df
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Aug 2023 18:15:08.4208 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bKS9yaAwuMMCQsX6Q3DJCHvALGcZJpFgLiwWGiAidxUDfgGXD/gsag0jsA2xqf5+MtMgiWEFoTL/64MZ9E3orA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5085
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Introduce xe_ASSERT macros
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,1008 +151,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add XeLink support for PVC devices.
+On Tue, Aug 08, 2023 at 10:28:01AM -0600, Lucas De Marchi wrote:
+> On Tue, Aug 08, 2023 at 06:04:20PM +0300, Jani Nikula wrote:
+> > On Tue, 08 Aug 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> > > On Mon, Aug 07, 2023 at 07:34:46PM +0200, Michal Wajdeczko wrote:
+> > > > As we are moving away from the controversial XE_BUG_ON macro,
+> > > > relying just on WARN_ON or drm_err does not cover the cases
+> > > > where we want to annotate functions with additional detailed
+> > > > debug checks to assert that all prerequisites are satisfied,
+> > > > without paying footprint or performance penalty on non-debug
+> > > > builds, where all misuses introduced during code integration
+> > > > were already fixed.
+> > > > 
+> > > > Introduce family of xe_ASSERT macros that try to follow classic
+> > > > assert() utility and can be compiled out on non-debug builds.
+> > > > 
+> > > > Macros are based on drm_WARN, but unlikely to origin, disallow
+> > > > use in expressions since we will compile that code out.
+> > > > 
+> > > > As we are operating on the xe pointers, we can print additional
+> > > > information about the device, like tile or GT identifier, that
+> > > > is not available from generic WARN report:
+> > > > 
+> > > > [ ] xe 0000:00:02.0: [drm] Assertion `true == false` failed!
+> > > >    platform: 1 subplatform: 1
+> > > >    graphics: Xe_LP 12.0 step B0
+> > > >    media: Xe_M 12.0 step B0
+> > > >    display: enabled step D0
+> > > >    tile: 0 VRAM 0 B
+> > > >    GT: 0 type 1
+> > > > 
+> > > > [ ] xe 0000:b3:00.0: [drm] Assertion `true == false` failed!
+> > > >    platform: 7 subplatform: 3
+> > > >    graphics: Xe_HPG 12.55 step A1
+> > > >    media: Xe_HPM 12.55 step A1
+> > > >    display: disabled step **
+> > > >    tile: 0 VRAM 14.0 GiB
+> > > >    GT: 0 type 1
+> > > > 
+> > > > [ ] WARNING: CPU: 0 PID: 2687 at drivers/gpu/drm/xe/xe_device.c:281 xe_device_probe+0x374/0x520 [xe]
+> > > > [ ] RIP: 0010:xe_device_probe+0x374/0x520 [xe]
+> > > > [ ] Call Trace:
+> > > > [ ]  ? __warn+0x7b/0x160
+> > > > [ ]  ? xe_device_probe+0x374/0x520 [xe]
+> > > > [ ]  ? report_bug+0x1c3/0x1d0
+> > > > [ ]  ? handle_bug+0x42/0x70
+> > > > [ ]  ? exc_invalid_op+0x14/0x70
+> > > > [ ]  ? asm_exc_invalid_op+0x16/0x20
+> > > > [ ]  ? xe_device_probe+0x374/0x520 [xe]
+> > > > [ ]  ? xe_device_probe+0x374/0x520 [xe]
+> > > > [ ]  xe_pci_probe+0x6e3/0x950 [xe]
+> > > > [ ]  ? lockdep_hardirqs_on+0xc7/0x140
+> > > > [ ]  pci_device_probe+0x9e/0x160
+> > > > [ ]  really_probe+0x19d/0x400
+> > > > 
+> > > > Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+> > > > Cc: Oded Gabbay <ogabbay@kernel.org>
+> > > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > ---
+> > > > drivers/gpu/drm/xe/xe_assert.h | 160 +++++++++++++++++++++++++++++++++
+> > > > 1 file changed, 160 insertions(+)
+> > > > create mode 100644 drivers/gpu/drm/xe/xe_assert.h
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_assert.h
+> > > > new file mode 100644
+> > > > index 000000000000..7ea295b7091c
+> > > > --- /dev/null
+> > > > +++ b/drivers/gpu/drm/xe/xe_assert.h
+> > > > @@ -0,0 +1,160 @@
+> > > > +/* SPDX-License-Identifier: MIT */
+> > > > +/*
+> > > > + * Copyright � 2023 Intel Corporation
+> > > > + */
+> > > > +
+> > > > +#ifndef __XE_ASSERT_H__
+> > > > +#define __XE_ASSERT_H__
+> > > > +
+> > > > +#include <linux/string_helpers.h>
+> > > > +#include <drm/drm_print.h>
+> > > > +#include "xe_device_types.h"
+> > > > +#include "xe_step.h"
+> > > > +
+> > > > +/**
+> > > > + * DOC: Xe ASSERTs
+> > > > + *
+> > > > + * While Xe driver aims to be simpler than legacy i915 driver it is still
+> > > > + * complex enough that some changes introduced while adding new functionality
+> > > > + * could break the existing code.
+> > > > + *
+> > > > + * Adding &drm_WARN or &drm_err to catch unwanted programming usage could lead
+> > > > + * to undesired increased driver footprint and may impact production driver
+> > > > + * performance as this additional code will be always present.
+> > > > + *
+> > > > + * To allow annotate functions with additional detailed debug checks to assert
+> > > > + * that all prerequisites are satisfied, without worrying about footprint or
+> > > > + * performance penalty on production builds where all potential misuses
+> > > > + * introduced during code integration were already fixed, we introduce family
+> > > > + * of ASSERT macros that try to follow classic assert() utility and can be
+> > > > + * compiled out on non-debug builds:
+> > > > + *
+> > > > + *  * &xe_ASSERT
+> > > 
+> > > pass by comment, not really checking anything else here... Why are we
+> > > mixing upper/lower case? It's perfectly fine to use XE_ as the namespace
+> > > like is done for other macros.
+> > 
+> > I think it comes from drm_WARN, but yeah, could be XE_ASSERT.
+> 
+> yeah... I think copying that would be like perpetuating a mistake.
+>
 
-Introduce the initial platform data structure that will be shared
-between the Xe driver and the XeLink driver.
+Agree with Lucas.
 
-If the device is PVC, and there is an XeLink device present, add
-and initialize an Auxbus device with the appropriate resources.
-
-Add the XeLink information register.
-
-Add package address register for defining the Device Physical Address
-space (DPA).
-
-Add initial interrupt support.
-
-The package address register defines the device physical
-address (DPA) space for the given device.
-
-Using the "unique" xa_array index, generate a DPA address
-for the device and program the package register appropriately.
-
-Update the LMEM offset to use the DPA address.
-
-Signed-off-by: David Kershner <david.kershner@intel.com>
----
- drivers/gpu/drm/xe/Kconfig           |   1 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  20 ++
- drivers/gpu/drm/xe/xe_device.c       |  13 +-
- drivers/gpu/drm/xe/xe_device_types.h |  27 ++
- drivers/gpu/drm/xe/xe_gt_types.h     |   2 +
- drivers/gpu/drm/xe/xe_irq.c          |  28 +-
- drivers/gpu/drm/xe/xe_mmio.c         |   2 +-
- drivers/gpu/drm/xe/xe_pci.c          |   2 +
- drivers/gpu/drm/xe/xe_pci_types.h    |   1 +
- drivers/gpu/drm/xe/xe_xelink.c       | 447 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_xelink.h       |  36 +++
- include/drm/intel_xelink_platform.h  | 140 +++++++++
- 12 files changed, 716 insertions(+), 3 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_xelink.h
- create mode 100644 include/drm/intel_xelink_platform.h
-
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 0a4ea965645b..9d396ca7708a 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -36,6 +36,7 @@ config DRM_XE
- 	select DRM_SCHED
- 	select MMU_NOTIFIER
- 	select WANT_DEV_COREDUMP
-+	select AUXILIARY_BUS
- 	help
- 	  Experimental driver for Intel Xe series GPUs
+Matt
  
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index d654f3311351..fa78cbcd1058 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -81,6 +81,11 @@
- #define GLOBAL_MOCS(i)				XE_REG(0x4000 + (i) * 4) /* Global MOCS regs */
- #define GFX_CCS_AUX_NV				XE_REG(0x4208)
- 
-+#define PKG_ADDR_RANGE				XE_REG(0x41B0)
-+#define   PKG_ADDR_RANGE_RANGE_SHIFT		20
-+#define   PKG_ADDR_RANGE_BASE_SHIFT		1
-+#define   PKG_ADDR_RANGE_ENABLE			1
-+
- #define VD0_AUX_NV				XE_REG(0x4218)
- #define VE0_AUX_NV				XE_REG(0x4238)
- 
-@@ -88,6 +93,11 @@
- #define   AUX_INV				REG_BIT(0)
- 
- #define XEHP_TILE_ADDR_RANGE(_idx)		XE_REG_MCR(0x4900 + (_idx) * 4)
-+#define   XEHP_TILE_LMEM_RANGE_SHIFT            8
-+#define   XEHP_TILE_LMEM_BASE_SHIFT             1
-+#define   XEHP_TILE_LMEM_BASE_MASK              REG_GENMASK(7, 1)
-+#define   XEHP_TILE_LMEM_RANGE_MASK             REG_GENMASK(14, 8)
-+
- #define XEHP_FLAT_CCS_BASE_ADDR			XE_REG_MCR(0x4910)
- 
- #define CHICKEN_RASTER_1			XE_REG_MCR(0x6204, XE_REG_OPTION_MASKED)
-@@ -349,6 +359,11 @@
- #define RCU_MODE				XE_REG(0x14800, XE_REG_OPTION_MASKED)
- #define   RCU_MODE_CCS_ENABLE			REG_BIT(0)
- 
-+#define PKG_ADDR_BASE				XE_REG(0x108390)
-+#define   PKG_ADDR_BASE_RANGE_SHIFT		20
-+#define   PKG_ADDR_BASE_BASE_SHIFT		1
-+#define   PKG_ADDR_BASE_ENABLE			1
-+
- #define FORCEWAKE_ACK_GT			XE_REG(0x130044)
- #define   FORCEWAKE_KERNEL			BIT(0)
- #define   FORCEWAKE_USER			BIT(1)
-@@ -397,4 +412,9 @@
- #define XEHPC_BCS5_BCS6_INTR_MASK		XE_REG(0x190118)
- #define XEHPC_BCS7_BCS8_INTR_MASK		XE_REG(0x19011c)
- 
-+#define PUNIT_MMIO_CR_POC_STRAPS		XE_REG(0x281078)
-+#define NUM_TILES_MASK				REG_GENMASK(1, 0)
-+#define CD_ALIVE				REG_BIT(2)
-+#define SOCKET_ID_MASK				REG_GENMASK(7, 3)
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 766df07de979..296953b7d512 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: MIT
- /*
-- * Copyright © 2021 Intel Corporation
-+ * Copyright © 2021 - 2023 Intel Corporation
-  */
- 
- #include "xe_device.h"
-@@ -34,6 +34,7 @@
- #include "xe_vm.h"
- #include "xe_vm_madvise.h"
- #include "xe_wait_user_fence.h"
-+#include "xe_xelink.h"
- 
- #ifdef CONFIG_LOCKDEP
- struct lockdep_map xe_device_mem_access_lockdep_map = {
-@@ -262,6 +263,8 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
-+	xe_xelink_init_early(xe);
-+
- 	for_each_tile(tile, xe, id) {
- 		err = xe_tile_alloc(tile);
- 		if (err)
-@@ -272,6 +275,8 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
-+	xe_xelink_init_mmio(xe);
-+
- 	for_each_gt(gt, xe, id) {
- 		err = xe_pcode_probe(gt);
- 		if (err)
-@@ -292,6 +297,8 @@ int xe_device_probe(struct xe_device *xe)
- 			goto err_irq_shutdown;
- 	}
- 
-+	xe_xelink_init(xe);
-+
- 	err = xe_mmio_probe_vram(xe);
- 	if (err)
- 		goto err_irq_shutdown;
-@@ -333,6 +340,8 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	xe_display_register(xe);
- 
-+	xe_xelink_init_aux(xe);
-+
- 	xe_debugfs_register(xe);
- 
- 	err = drmm_add_action_or_reset(&xe->drm, xe_device_sanitize, xe);
-@@ -365,6 +374,8 @@ void xe_device_remove(struct xe_device *xe)
- 
- 	xe_display_unlink(xe);
- 
-+	xe_xelink_remove(xe);
-+
- 	xe_irq_shutdown(xe);
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index f84ecb976f5d..7b27a5178aca 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -16,6 +16,7 @@
- #include "xe_gt_types.h"
- #include "xe_platform_types.h"
- #include "xe_step_types.h"
-+#include "xe_xelink.h"
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- #include "ext/intel_device_info.h"
-@@ -219,6 +220,10 @@ struct xe_device {
- 		u8 has_asid:1;
- 		/** @force_execlist: Forced execlist submission */
- 		u8 force_execlist:1;
-+		/** @has_xelink: Has XeLink */
-+		u8 has_xelink:1;
-+		/** @enable_guc: GuC submission enabled */
-+		u8 enable_guc:1;
- 		/** @has_flat_ccs: Whether flat CCS metadata is used */
- 		u8 has_flat_ccs:1;
- 		/** @has_4tile: Whether tile-4 tiling is supported */
-@@ -376,6 +381,28 @@ struct xe_device {
- 	 */
- 	struct task_struct *pm_callback_task;
- 
-+	/** @intel_xelink: XeLink information, for those gpus with XeLink connectivity */
-+	struct {
-+		/** @ops: shared interface operations */
-+		const struct xelink_ops *ops;
-+		/** @handle: XeLink device handle */
-+		void *handle;
-+		/** @pd: platform data needed for auxiliary bus */
-+		struct xelink_pdata *pd;
-+		/** @dpa: base device physical address */
-+		u64 dpa;
-+		/** @irq_base: base IRQ for multi tile devices */
-+		int irq_base;
-+		/** @index: internal index for xe devices */
-+		int index;
-+		/** @xelink_id: XeLink id generated by the XeLink device */
-+		u32 xelink_id;
-+		/** @socket_id: socket from certain platforms */
-+		u8 socket_id;
-+		/* @present: Reflect PUNIT presence information */
-+		bool present;
-+	} intel_xelink;
-+
- 	/* private: */
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 35b8c19fa8bf..e9e551fea95b 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -346,6 +346,8 @@ struct xe_gt {
- 		/** @oob: bitmap with active OOB workaroudns */
- 		unsigned long *oob;
- 	} wa_active;
-+	/** @xelink_irq: IRQ value assigned to the ANR HW */
-+	int xelink_irq;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 2022a5643e01..aaf9569426cc 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -1,10 +1,11 @@
- // SPDX-License-Identifier: MIT
- /*
-- * Copyright © 2021 Intel Corporation
-+ * Copyright © 2021 - 2023 Intel Corporation
-  */
- 
- #include "xe_irq.h"
- 
-+#include <linux/irq.h>
- #include <linux/sched/clock.h>
- 
- #include <drm/drm_managed.h>
-@@ -27,6 +28,15 @@
- #define IIR(offset)				XE_REG(offset + 0x8)
- #define IER(offset)				XE_REG(offset + 0xc)
- 
-+/* Define the BAR and offset for XeLink CSRs */
-+#define XE_XELINK_IRQ BIT(8)
-+#define CD_BASE_OFFSET 0x291000
-+#define CD_BAR_SIZE (256 * 1024)
-+
-+#define CPORT_MBDB_CSRS				XE_REG(CD_BASE_OFFSET + 0x6000)
-+#define CPORT_MBDB_CSRS_END			XE_REG(CD_BASE_OFFSET + 0x1000)
-+#define CPORT_MBDB_INT_ENABLE_MASK		XE_REG(CD_BASE_OFFSET + 0x8)
-+
- static void assert_iir_is_zero(struct xe_gt *mmio, struct xe_reg reg)
- {
- 	u32 val = xe_mmio_read32(mmio, reg);
-@@ -362,6 +372,18 @@ static void dg1_intr_enable(struct xe_device *xe, bool stall)
- 		xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
- }
- 
-+/*
-+ * xelink_irq_handler - handle XeLink IRQs
-+ *
-+ * PVC can have an XeLink attached.  Handle the IRQs that are sourced by
-+ * the device supporting the XeLink.
-+ */
-+static void xelink_irq_handler(struct xe_gt *gt, const u32 master_ctl)
-+{
-+	if (master_ctl & XE_XELINK_IRQ)
-+		generic_handle_irq(gt->xelink_irq);
-+}
-+
- /*
-  * Top-level interrupt handler for Xe_LP+ and beyond.  These platforms have
-  * a "master tile" interrupt register which must be consulted before the
-@@ -423,6 +445,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 			xe_display_irq_handler(xe, master_ctl);
- 			gu_misc_iir = gu_misc_irq_ack(xe, master_ctl);
- 		}
-+		xelink_irq_handler(mmio, master_ctl);
- 	}
- 
- 	dg1_intr_enable(xe, false);
-@@ -469,6 +492,9 @@ static void gt_irq_reset(struct xe_tile *tile)
- 	xe_mmio_write32(mmio, GPM_WGBOXPERF_INTR_MASK,  ~0);
- 	xe_mmio_write32(mmio, GUC_SG_INTR_ENABLE,	 0);
- 	xe_mmio_write32(mmio, GUC_SG_INTR_MASK,		~0);
-+
-+	if (tile->xe->intel_xelink.present)
-+		xe_mmio_write64(mmio, CPORT_MBDB_INT_ENABLE_MASK, 0);
- }
- 
- static void xelp_irq_reset(struct xe_tile *tile)
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index aa9c573b1243..1b0184135d45 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -173,7 +173,7 @@ static int xe_determine_lmem_bar_size(struct xe_device *xe)
- 	if (!xe->mem.vram.io_size)
- 		return -EIO;
- 
--	xe->mem.vram.base = 0; /* DPA offset */
-+	xe->mem.vram.base = xe->intel_xelink.dpa;
- 
- 	/* set up a map to the total memory area. */
- 	xe->mem.vram.mapping = ioremap_wc(xe->mem.vram.io_start, xe->mem.vram.io_size);
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 46e3a9632efe..a2258524c577 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -162,6 +162,7 @@ static const struct xe_graphics_desc graphics_xehpc = {
- 
- 	.has_asid = 1,
- 	.has_flat_ccs = 0,
-+	.has_xelink = 1,
- 	.has_link_copy_engine = 1,
- 	.supports_usm = 1,
- };
-@@ -563,6 +564,7 @@ static int xe_info_init(struct xe_device *xe,
- 	xe->info.vm_max_level = graphics_desc->vm_max_level;
- 	xe->info.supports_usm = graphics_desc->supports_usm;
- 	xe->info.has_asid = graphics_desc->has_asid;
-+	xe->info.has_xelink = graphics_desc->has_xelink;
- 	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
- 	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
- 	xe->info.has_link_copy_engine = graphics_desc->has_link_copy_engine;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index ba31b933eb8e..85fec0c9e638 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -22,6 +22,7 @@ struct xe_graphics_desc {
- 	u8 max_remote_tiles:2;
- 
- 	u8 has_asid:1;
-+	u8 has_xelink:1;
- 	u8 has_flat_ccs:1;
- 	u8 has_link_copy_engine:1;
- 	u8 has_range_tlb_invalidation:1;
-diff --git a/drivers/gpu/drm/xe/xe_xelink.c b/drivers/gpu/drm/xe/xe_xelink.c
-index 51a31f6a4740..ac4cff76f81d 100644
---- a/drivers/gpu/drm/xe/xe_xelink.c
-+++ b/drivers/gpu/drm/xe/xe_xelink.c
-@@ -3,7 +3,20 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
-+#include <linux/auxiliary_bus.h>
-+#include <linux/firmware.h>
-+#include <linux/irq.h>
- #include <linux/moduleparam.h>
-+#include <linux/xarray.h>
-+
-+#include <drm/intel_xelink_platform.h>
-+
-+#include "xe_device.h"
-+#include "xe_mmio.h"
-+#include "xe_gt_mcr.h"
-+#include "xe_xelink.h"
-+#include "regs/xe_reg_defs.h"
-+#include "regs/xe_gt_regs.h"
- 
- /*
-  * This module parameter is needed because SRIOV PF and XeLink are mutually
-@@ -15,3 +28,437 @@
- static bool xe_enable_xelink = true;
- module_param_named(enable_xelink, xe_enable_xelink, bool, 0400);
- MODULE_PARM_DESC(enable_xelink, "Enable XeLink feature (default: true)");
-+
-+#define HAS_XELINK(xe) ((xe)->info.has_xelink)
-+/* Define the BAR and offset for the XeLink CSRs */
-+#define GTTMMADR_BAR 0
-+#define CD_BASE_OFFSET 0x291000
-+#define CD_BAR_SIZE (256 * 1024)
-+
-+/* Xarray of XeLink devices */
-+static DEFINE_XARRAY_ALLOC(intel_fdevs);
-+
-+static struct query_info *default_query(void *handle, u32 xelink_id)
-+{
-+	return ERR_PTR(-EOPNOTSUPP);
-+}
-+
-+static int default_handle_event(void *handle, enum xelink_parent_event event)
-+{
-+	return -EOPNOTSUPP;
-+}
-+
-+static const struct xelink_ops default_ops = {
-+	.connectivity_query = default_query,
-+	.parent_event = default_handle_event,
-+};
-+
-+static int register_dev(void *parent, void *handle, u32 xelink_id,
-+			const struct xelink_ops *ops)
-+{
-+	struct xe_device *xe = parent;
-+
-+	WARN(xe->intel_xelink.ops != &default_ops, "XeLink: already registered");
-+
-+	xe->intel_xelink.handle = handle;
-+	xe->intel_xelink.xelink_id = xelink_id;
-+	xe->intel_xelink.ops = ops;
-+
-+	drm_info(&xe->drm, "XeLink: registered: 0x%x\n", xelink_id);
-+
-+	return 0;
-+}
-+
-+static void unregister_dev(void *parent, const void *handle)
-+{
-+	struct xe_device *xe = parent;
-+
-+	WARN(xe->intel_xelink.handle != handle, "XeLink: invalid handle");
-+
-+	drm_info(&xe->drm, "XeLink: unregistered: 0x%x\n",
-+		 xe->intel_xelink.xelink_id);
-+	xe->intel_xelink.handle = NULL;
-+	xe->intel_xelink.ops = &default_ops;
-+}
-+
-+static int dev_event(void *parent, void *handle, enum xelink_dev_event event,
-+		     void *event_data)
-+{
-+	return 0;
-+}
-+
-+/**
-+ * init_pd - Allocate and initialize platform specific data
-+ * @xe: Valid xe instance
-+ *
-+ * Return:
-+ * * pd - initialized xelink_pdata,
-+ * * NULL - Allocation failure
-+ */
-+static struct xelink_pdata *init_pd(struct xe_device *xe)
-+{
-+	struct xelink_pdata *pd;
-+	u32 reg;
-+
-+	pd = kzalloc(sizeof(*pd), GFP_KERNEL);
-+	if (!pd)
-+		return NULL;
-+
-+	pd->version = XELINK_VERSION;
-+	pd->parent = xe;
-+	pd->product = XELINK_PONTEVECCHIO;
-+	pd->index = xe->intel_xelink.index & 0xFFFF;
-+	pd->sd_cnt = xe->info.tile_count;
-+	pd->socket_id = xe->intel_xelink.socket_id;
-+	pd->slot = PCI_SLOT(to_pci_dev(xe->drm.dev)->devfn);
-+
-+	pd->resources = NULL;
-+	pd->num_resources = 0;
-+	pd->register_dev = register_dev;
-+	pd->unregister_dev = unregister_dev;
-+	pd->dev_event = dev_event;
-+
-+	/*
-+	 * Calculate the actual DPA offset and size (in GB) for the device.
-+	 * Each tile will have the same amount of memory, so we only need to
-+	 * read the first one.
-+	 */
-+	reg = xe_gt_mcr_unicast_read_any(xe_device_get_root_tile(xe)->primary_gt,
-+					 XEHP_TILE_ADDR_RANGE(0)) & XEHP_TILE_LMEM_RANGE_MASK;
-+
-+	// TILE0 is < 8Gb, PVC needs 8GB, so fake it.
-+	if (reg >> XEHP_TILE_LMEM_RANGE_SHIFT < 8) {
-+		drm_err(&xe->drm, "XEHP_TILE0_ADDR_RANGE: %x\n", reg);
-+		reg = 8 << XEHP_TILE_LMEM_RANGE_SHIFT;
-+	}
-+	pd->dpa.pkg_offset = (u32)xe->intel_xelink.index * MAX_DPA_SIZE;
-+	pd->dpa.pkg_size = (reg >> XEHP_TILE_LMEM_RANGE_SHIFT) * pd->sd_cnt;
-+
-+	return pd;
-+}
-+
-+/**
-+ * init_resource - Create the resource array, and apply the appropriate data
-+ * @xe: valid xe instance
-+ * @res_cnt: pointer to return number of allocated resources
-+ *
-+ * First resource [0] is for the IRQ(s).  Each device gets 1 IRQ. Subsequent
-+ * resources describe the IO memory space for the device(s).
-+ *
-+ * Make sure to set the gt->xelink_irq value.
-+ *
-+ * Return:
-+ * * res - Initialized resource array
-+ * * NULL - Allocaction failure
-+ */
-+static struct resource *init_resource(struct xe_device *xe,
-+				      u32 *res_cnt)
-+{
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	struct xe_gt *gt;
-+	struct resource *res_base, *res;
-+	u32 cnt = xe->info.tile_count * 2;
-+	unsigned int i;
-+
-+	/* Each sd gets one resource for IRQ and one for MEM */
-+	res_base = kcalloc(cnt, sizeof(*res_base), GFP_KERNEL);
-+	if (!res_base)
-+		return NULL;
-+
-+	res = res_base;
-+	for_each_gt(gt, xe, i) {
-+		res->start = xe->intel_xelink.irq_base + i;
-+		res->end = xe->intel_xelink.irq_base + i;
-+		res->flags = IORESOURCE_IRQ;
-+		res++;
-+
-+		res->start = pci_resource_start(pdev, GTTMMADR_BAR) + CD_BASE_OFFSET +
-+			     i * gt_to_tile(gt)->mmio.size;
-+		res->end = res->start + CD_BAR_SIZE - 1;
-+		res->flags = IORESOURCE_MEM;
-+		drm_info(&xe->drm, "XeLink: mem_resource = %pR\n", res);
-+		res++;
-+		gt->xelink_irq = xe->intel_xelink.irq_base + i;
-+	}
-+
-+	*res_cnt = cnt;
-+	return res_base;
-+}
-+
-+/**
-+ * xelink_irq_mask - Null callback.  Masking/unmasking happens in the parent
-+ * driver
-+ * @d: Valid irq_data information
-+ */
-+static void xelink_irq_mask(struct irq_data *d)
-+{
-+}
-+
-+static void xelink_irq_unmask(struct irq_data *d)
-+{
-+}
-+
-+static struct irq_chip xelink_irq_chip = {
-+	.name = "xelink_irq_chip",
-+	.irq_mask = xelink_irq_mask,
-+	.irq_unmask = xelink_irq_unmask,
-+};
-+
-+/**
-+ * init_irq_desc - Allocate IRQ descriptors to use for the xelink
-+ * @xe: Valid xe instance
-+ *
-+ * Allocate the required IRQ descriptor(s) and initialize the
-+ * appropriate state.
-+ *
-+ * Return:
-+ * * 0 - Success
-+ * * errno - Error that occurred
-+ */
-+static int init_irq_desc(struct xe_device *xe)
-+{
-+	unsigned int num_subdevs = xe->info.tile_count;
-+	int err;
-+	int irq;
-+	int irq_base;
-+
-+	irq_base = irq_alloc_descs(-1, 0, num_subdevs, 0);
-+	if (irq_base < 0) {
-+		err = irq_base;
-+		goto cleanup;
-+	}
-+
-+	err = 0;
-+	for (irq = irq_base; !err && irq < irq_base + num_subdevs; irq++) {
-+		irq_set_chip_and_handler_name(irq, &xelink_irq_chip,
-+					      handle_simple_irq,
-+					      "xelink_irq_handler");
-+		err = irq_set_chip_data(irq, xe);
-+	}
-+
-+	if (err) {
-+		irq_free_descs(irq_base, num_subdevs);
-+		goto cleanup;
-+	}
-+
-+	drm_info(&xe->drm, "XeLink: IRQ base: %d  cnt: %d\n", irq_base,
-+		 num_subdevs);
-+
-+	xe->intel_xelink.irq_base = irq_base;
-+
-+	return 0;
-+
-+cleanup:
-+	xe->intel_xelink.index = err;
-+	drm_err(&xe->drm, "XeLink: Failed to allocate IRQ data: %d\n", err);
-+	return err;
-+}
-+
-+/**
-+ * xe_xelink_init_early - Set the XeLink info to the defaults
-+ * @xe: valid xe instance
-+ *
-+ * index is set to ENODEV to show that, by default, there is no device.
-+ * If any of the initialization steps fail, it will be set to the appropriate
-+ * errno value.
-+ */
-+void xe_xelink_init_early(struct xe_device *xe)
-+{
-+	xe->intel_xelink.ops = &default_ops;
-+	xe->intel_xelink.index = -ENODEV;
-+}
-+
-+/**
-+ * xe_xelink_init_mmio - check if XeLink is available via MMIO
-+ * @xe: valid xe instance
-+ *
-+ * Read the relevant regs to check for XeLink availability and get the socket id
-+ */
-+void xe_xelink_init_mmio(struct xe_device *xe)
-+{
-+	u32 xelink_info;
-+
-+	if (!HAS_XELINK(xe) || !xe_enable_xelink)
-+		return;
-+
-+	xelink_info = xe_mmio_read32(xe_device_get_root_tile(xe)->primary_gt,
-+				     PUNIT_MMIO_CR_POC_STRAPS);
-+
-+	xe->intel_xelink.socket_id = REG_FIELD_GET(SOCKET_ID_MASK, xelink_info);
-+
-+	if (REG_FIELD_GET(CD_ALIVE, xelink_info)) {
-+		drm_info(&xe->drm, "XeLink available\n");
-+		xe->intel_xelink.present = true;
-+	}
-+}
-+
-+/**
-+ * xe_xelink_init - Allocate device index and complete initial HW setup
-+ * @xe: valid device instance
-+ *
-+ * NOTE: index is zero inited.  If the XeLink is not present, or an error occurs
-+ * during setup, this must be 0 for the range registers.
-+ *
-+ */
-+void xe_xelink_init(struct xe_device *xe)
-+{
-+	struct xe_gt *gt;
-+	static u32 last_id;
-+	unsigned int i;
-+	u32 index = 0;
-+	u32 range;
-+	u32 base;
-+	int err;
-+
-+	if (!HAS_XELINK(xe))
-+		return;
-+
-+	if (!xe->intel_xelink.present)
-+		goto set_range;
-+
-+	err = init_irq_desc(xe);
-+	if (err) {
-+		xe->intel_xelink.index = err;
-+		goto set_range;
-+	}
-+
-+	/*
-+	 * Try the socket id first.  Systems with this feature, will
-+	 * get a deterministic value.  If not, try with the cyclic.
-+	 */
-+	err = xa_insert(&intel_fdevs, xe->intel_xelink.socket_id, xe,
-+			GFP_KERNEL);
-+	if (!err)
-+		index = xe->intel_xelink.socket_id;
-+
-+	/* socket_id is not available */
-+	if (err == -EBUSY) {
-+		/*
-+		 * NOTE: index is only updated on success i.e. >= 0
-+		 * < 0 err, 0 ok, > 0 wrapped
-+		 */
-+		err = xa_alloc_cyclic(&intel_fdevs, &index, xe,
-+				      XA_LIMIT(0, MAX_DEVICE_COUNT - 1),
-+				      &last_id, GFP_KERNEL);
-+	}
-+	if (err < 0) {
-+		index = 0;
-+		xe->intel_xelink.index = err;
-+		drm_err(&xe->drm,
-+			"XeLink: Failed to allocate index: %d\n",
-+			err);
-+		irq_free_descs(xe->intel_xelink.irq_base,
-+			       xe->info.tile_count);
-+		goto set_range;
-+	}
-+	xe->intel_xelink.index = index;
-+	xe->intel_xelink.dpa = (u64)index * MAX_DPA_SIZE * SZ_1G;
-+	drm_info(&xe->drm, "XeLink: [dpa 0x%llx-0x%llx\n", xe->intel_xelink.dpa,
-+		 ((u64)index + 1) * MAX_DPA_SIZE * SZ_1G - 1);
-+
-+	/*
-+	 * Set range has to be done for all devices that support device
-+	 * address space, regardless of presence or error.
-+	 */
-+set_range:
-+	/* Set GAM address range registers */
-+	range = index * MAX_DPA_SIZE << PKG_ADDR_RANGE_BASE_SHIFT;
-+	range |= MAX_DPA_SIZE << PKG_ADDR_RANGE_RANGE_SHIFT;
-+	range |= PKG_ADDR_RANGE_ENABLE;
-+
-+	/* set SGunit address range register */
-+	base = index * MAX_DPA_SIZE << PKG_ADDR_BASE_BASE_SHIFT;
-+	base |= MAX_DPA_SIZE << PKG_ADDR_BASE_RANGE_SHIFT;
-+	base |= PKG_ADDR_BASE_ENABLE;
-+
-+	/* Needs to be set for each gt */
-+	for_each_gt(gt, xe, i) {
-+		xe_mmio_write32(gt, PKG_ADDR_RANGE, range);
-+		xe_mmio_write32(gt, PKG_ADDR_BASE, base);
-+	}
-+}
-+
-+static void xe_xelink_release_dev(struct device *dev)
-+{
-+	struct auxiliary_device *aux = to_auxiliary_dev(dev);
-+	struct xelink_pdata *pd = container_of(aux, struct xelink_pdata, aux_dev);
-+
-+	kfree(pd->resources);
-+	pd->resources = NULL;
-+
-+	kfree(pd);
-+}
-+
-+/**
-+ * xe_xelink_init_aux - Initialize resources and add auxiliary bus interface
-+ * @xe: valid xe instance
-+ *
-+ */
-+void xe_xelink_init_aux(struct xe_device *xe)
-+{
-+	struct device *dev = &to_pci_dev(xe->drm.dev)->dev;
-+	struct resource *res = NULL;
-+	struct xelink_pdata *pd;
-+	int err = -ENOMEM;
-+	u32 res_cnt;
-+
-+	if (!xe->intel_xelink.present)
-+		return;
-+
-+	if (xe->intel_xelink.index < 0) {
-+		err = xe->intel_xelink.index;
-+		goto fail;
-+	}
-+
-+	pd = init_pd(xe);
-+	if (!pd)
-+		goto cleanup;
-+
-+	res = init_resource(xe, &res_cnt);
-+	if (!res)
-+		goto cleanup;
-+
-+	pd->resources = res;
-+	pd->num_resources = res_cnt;
-+
-+	pd->aux_dev.name = "xelink";
-+	pd->aux_dev.id = pd->index;
-+	pd->aux_dev.dev.parent = dev;
-+	pd->aux_dev.dev.release = xe_xelink_release_dev;
-+
-+	err = auxiliary_device_init(&pd->aux_dev);
-+	if (err)
-+		goto cleanup;
-+
-+	err = auxiliary_device_add(&pd->aux_dev);
-+	if (err) {
-+		auxiliary_device_uninit(&pd->aux_dev);
-+		goto cleanup;
-+	}
-+
-+	xe->intel_xelink.pd = pd;
-+
-+	return;
-+
-+cleanup:
-+	xa_erase(&intel_fdevs, xe->intel_xelink.index);
-+	irq_free_descs(xe->intel_xelink.irq_base, xe->info.tile_count);
-+	kfree(res);
-+	kfree(pd);
-+	xe->intel_xelink.index = err;
-+fail:
-+	drm_err(&xe->drm, "XeLink: Failed to initialize err: %d\n", err);
-+}
-+
-+void xe_xelink_remove(struct xe_device *xe)
-+{
-+	if (xe->intel_xelink.index < 0)
-+		return;
-+
-+	auxiliary_device_delete(&xe->intel_xelink.pd->aux_dev);
-+	auxiliary_device_uninit(&xe->intel_xelink.pd->aux_dev);
-+	xa_erase(&intel_fdevs, xe->intel_xelink.index);
-+	irq_free_descs(xe->intel_xelink.irq_base, xe->info.tile_count);
-+
-+	xe->intel_xelink.ops = &default_ops;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_xelink.h b/drivers/gpu/drm/xe/xe_xelink.h
-new file mode 100644
-index 000000000000..e17faacc7b1c
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_xelink.h
-@@ -0,0 +1,36 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2019 - 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_XELINK_H_
-+#define _XE_XELINK_H_
-+
-+/*
-+ * Define the maximum number of devices instances based on the amount of
-+ * FID space.
-+ *
-+ * XARRAY limits are "inclusive", but using this value as a range check
-+ * outside of xarray, makes the exclusive upper bound a little easier to
-+ * deal with.
-+ *
-+ * I.e.:
-+ * [0 - 256)
-+ *
-+ * Less than HW supports, but more than will be currently possible.
-+ *
-+ */
-+#define MAX_DEVICE_COUNT 256
-+
-+/* Fixed Device Physical Address (DPA) size for a device/package (in GB) */
-+#define MAX_DPA_SIZE 128
-+
-+struct xe_device;
-+
-+void xe_xelink_init_early(struct xe_device *xe);
-+void xe_xelink_init_mmio(struct xe_device *xe);
-+void xe_xelink_init(struct xe_device *xe);
-+void xe_xelink_init_aux(struct xe_device *xe);
-+void xe_xelink_remove(struct xe_device *xe);
-+
-+#endif
-diff --git a/include/drm/intel_xelink_platform.h b/include/drm/intel_xelink_platform.h
-new file mode 100644
-index 000000000000..86eeb10fdc1e
---- /dev/null
-+++ b/include/drm/intel_xelink_platform.h
-@@ -0,0 +1,140 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright(c) 2019 - 2023 Intel Corporation.
-+ */
-+
-+#ifndef __INTEL_XELINK_PLATFORM_H
-+#define __INTEL_XELINK_PLATFORM_H
-+
-+#define XELINK_VERSION 1
-+
-+#include <linux/auxiliary_bus.h>
-+#include <linux/types.h>
-+
-+/**
-+ * enum product_type - Product type identifying the parent
-+ * @XELINK_UNDEFINED: no product type hints
-+ * @XELINK_PONTEVECCHIO: parent is a PVC
-+ * @XELINK_PRODUCTS: end of the list
-+ *
-+ */
-+enum product_type {
-+	XELINK_UNDEFINED,
-+	XELINK_PONTEVECCHIO,
-+	XELINK_PRODUCTS
-+};
-+
-+/**
-+ * enum xelink_dev_event - events generated to the parent device
-+ * @XELINK_DEV_REMOVE: Xelink device was removed
-+ * @XELINK_DEV_ERROR: An error occurred
-+ * @XELINK_DEV_EVENTS: end of list
-+ *
-+ * Connectivity events, possible errors, etc.
-+ */
-+enum xelink_dev_event {
-+	XELINK_DEV_REMOVE,
-+	XELINK_DEV_EVENTS
-+};
-+
-+/**
-+ * enum xelink_parent_event - Events generated by the parent device
-+ * @XELINK_PARENT_PCIE_ERR: Parent had a PCI error
-+ * @XELINK_PARENT_MAPPING_GET: Notify XeLink of buffer mapping
-+ * @XELINK_PARENT_MAPPING_PUT: Notify XeLink of buffer unmapping
-+ *
-+ * These are examples.
-+ */
-+enum xelink_parent_event {
-+	XELINK_PARENT_PCIE_ERR,
-+	XELINK_PARENT_MAPPING_GET,
-+	XELINK_PARENT_MAPPING_PUT,
-+};
-+
-+/**
-+ * struct sd2sd_info - Subdevice to subdevice connectivity info
-+ * @bandwidth: in Gbps units not factoring in width or quality degredation
-+ * @latency: in 1/10 hops units
-+ */
-+struct sd2sd_info {
-+	u16 bandwidth;
-+	u16 latency;
-+};
-+
-+/**
-+ * struct query_info - connectivity query response information
-+ * @src_cnt: Requester subdevice count
-+ * @dst_cnt: Destination path count
-+ * @sd2sd: array of src/dst bandwidth/latency information
-+ *
-+ * Query info will be a variably sized data structure allocated by the
-+ * XeLink driver.  The access will be indexed by
-+ *    (src_index * dst_cnt) + dst_index
-+ *
-+ * The caller will need to free the buffer when done.
-+ */
-+struct query_info {
-+	u8 src_cnt;
-+	u8 dst_cnt;
-+	struct sd2sd_info sd2sd[];
-+};
-+
-+/**
-+ * struct xelink_ops - Communication path from parent to XeLink instance
-+ * @connectivity_query: Query a device for xelink_id connectivity
-+ * @parent_event: Any events needed by the XeLink device
-+ *
-+ * connectivity_query() returns:
-+ *   a populated query_info on success,
-+ *   an ERR_PTR() on failure
-+ *
-+ */
-+struct xelink_ops {
-+	struct query_info *(*connectivity_query)(void *handle, u32 xelink_id);
-+	int (*parent_event)(void *handle, enum xelink_parent_event event);
-+};
-+
-+struct dpa_space {
-+	u32 pkg_offset;
-+	u16 pkg_size;
-+};
-+
-+/**
-+ * struct xelink_pdata - Platform specific data that needs to be shared
-+ * @version: PSD version information
-+ * @parent: Handle to use when calling the parent device
-+ * @product: a product hint for any necessary special case requirements
-+ * @index: unique device index. This will be part of the device name
-+ * @dpa: Device physical address offset and size
-+ * @sd_cnt: parent subdevice count
-+ * @socket_id: device socket information
-+ * @slot: PCI/CXL slot number
-+ * @aux_dev: Auxiliary bus device
-+ * @resources: Array of resources (Assigned by Xe, the IRQ/MEM for the device)
-+ * @num_resources: number of resources in resources array
-+ * @register_dev: Register a XeLink instance and ops with the parent device
-+ * @unregister_dev: Unregister a XeLink instance from the parent device
-+ * @dev_event: Notify parent that an event has occurred
-+ */
-+struct xelink_pdata {
-+	u16 version;
-+	void *parent;
-+	enum product_type product;
-+	u16 index;
-+	struct dpa_space dpa;
-+	u8 sd_cnt;
-+	u8 socket_id;
-+	u8 slot;
-+
-+	struct auxiliary_device aux_dev;
-+	struct resource *resources;
-+	u32 num_resources;
-+
-+	int (*register_dev)(void *parent, void *handle, u32 xelink_id,
-+			    const struct xelink_ops *ops);
-+	void (*unregister_dev)(void *parent, const void *handle);
-+	int (*dev_event)(void *parent, void *handle,
-+			 enum xelink_dev_event event, void *event_data);
-+};
-+
-+#endif /* __INTEL_XELINK_PLATFORM_H */
--- 
-2.35.1
-
+> Lucas De Marchi
+> 
+> > 
+> > > 
+> > > Lucas De Marchi
+> > 
+> > -- 
+> > Jani Nikula, Intel Open Source Graphics Center
