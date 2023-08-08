@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4AE96C04A94
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8E87DC04E69
 	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 01:32:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC01610E392;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D877B10E395;
 	Tue,  8 Aug 2023 01:32:06 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0CF3110E152
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E98310E152
  for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 01:32:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1691458324; x=1722994324;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Qo831zkNOfujiJspt/49NGF9/0LS8OhX27qo3NLiiIQ=;
- b=KKRDO5VotIr+ib5tEbS/vIR1BjlkmJjbNQdw2LNMboFcgaf3zYxgucx7
- iYAAEaMWSuP8ACzsl5/WQu50h/aiC2GWf1ziUjx/Fgf+/HDJEQ9TXmLzR
- iGlhpQtyx5+mzAFH2hj9CGU2w/QEt6uFAA8Tus5M/44Ss616TVN9urueV
- DcH7QfHzqUgXjKdBiF5pbPycsrD2xwHJDtFLV5iE9wF3pdWuRym1k7OI7
- AIdtPcNC9izhwVRbwHgBykg//te7YhlPAVPFgyzwVB4X2YJO3+zE+WujW
- U60Cha2mUfODPaDWti7YqNjyhoZE+5abFhmN4DdRBFRmw0GoNZNRxJyOO w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="350284312"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="350284312"
+ bh=YtyKHXdDTfrAxPwXkOaag3RO+uM2U361+if/3vKhndU=;
+ b=mrI3nwE/ZDWNjLhIvW92abFEE5s9Wh7Z5BaBn3epXWf/SxJvTpV9LaAv
+ ydzV2650eikh098e1RE/tcaZI9UveZebQCbWpqyljSUbWTYoImmWHhN9c
+ P5OLzzHmd5WBVqyNZRPl/RasPUMWsT1mUbNEGZz8uDQRLb62w8t2PR1Xt
+ fZ1V5OheYhN75/x3PcqWSEmfuT5PieAezH4Zi9OWo7LlnQOdtfCnLlZMR
+ coGAk9Sr5U30QZgznx4zC3slBmdo14ABZ1I1u4KBAMWm6saI/YiWQGO43
+ 9g3GQPqQxvOyYcOutuMS9iAYrNDs34ZpkuR+3r+ZjpPI+1kpX9kIMpFBJ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="350284314"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="350284314"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Aug 2023 18:32:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="708075758"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="708075758"
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="708075764"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="708075764"
 Received: from orsosgc001.jf.intel.com ([10.165.21.138])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Aug 2023 18:32:03 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  7 Aug 2023 18:31:50 -0700
-Message-ID: <20230808013159.38811-2-ashutosh.dixit@intel.com>
+Date: Mon,  7 Aug 2023 18:31:52 -0700
+Message-ID: <20230808013159.38811-4-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230808013159.38811-1-ashutosh.dixit@intel.com>
 References: <20230808013159.38811-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 01/10] drm/xe/oa: Introduce OA uapi
+Subject: [Intel-xe] [PATCH 03/10] drm/xe/oa: Add registers and GPU commands
+ used by OA
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,323 +61,282 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-OA uapi allows userspace to:
-* Read streams of performance counters written by hardware
-* Configure (and reconfigure) which sets of perf counters are captured as
-  part of OA streams
-* Configure other properties (such as format and periodicity) of such
-  captures.
-* Query associated parameters such as OA unit timestamp freq, oa_unit_id's
-  for hw engines and OA ioctl version
+Add registers and GPU commands used by OA in subsequent patches. The xe oa
+code programs OA units which generate performance data. The code also
+submits command buffers to change hardware engine context images and
+implement waits.
 
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 257 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 256 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h  |   5 +
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  27 ++++
+ drivers/gpu/drm/xe/regs/xe_oa_regs.h      | 173 ++++++++++++++++++++++
+ 3 files changed, 205 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_oa_regs.h
 
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 86f16d50e9ccc..b4ab07c285245 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -111,6 +111,9 @@ struct xe_user_extension {
- #define DRM_XE_WAIT_USER_FENCE		0x0b
- #define DRM_XE_VM_MADVISE		0x0c
- #define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0d
-+#define DRM_XE_OA_OPEN			0x36
-+#define DRM_XE_OA_ADD_CONFIG		0x37
-+#define DRM_XE_OA_REMOVE_CONFIG		0x38
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 79873bf64e8dd..044a4920f1568 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -84,6 +84,9 @@
  
- /* Must be kept compact -- no holes */
- #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
-@@ -127,6 +130,9 @@ struct xe_user_extension {
- #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
-+#define DRM_IOCTL_XE_OA_OPEN			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_OPEN, struct drm_xe_oa_open_param)
-+#define DRM_IOCTL_XE_OA_ADD_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_ADD_CONFIG, struct drm_xe_oa_config)
-+#define DRM_IOCTL_XE_OA_REMOVE_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_REMOVE_CONFIG, __u64)
+ #define RING_CTX_TIMESTAMP(base)		XE_REG((base) + 0x3a8)
  
- /**
-  * enum drm_xe_memory_class - Supported memory classes.
-@@ -261,7 +267,8 @@ struct drm_xe_query_config {
- #define XE_QUERY_CONFIG_GT_COUNT		4
- #define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
- #define XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY	6
--#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY + 1)
-+#define XE_QUERY_OA_IOCTL_VERSION		7
-+#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_OA_IOCTL_VERSION + 1)
- 	/** @info: array of elements containing the config info */
- 	__u64 info[];
- };
-@@ -298,6 +305,7 @@ struct drm_xe_query_gts {
- 		__u64 native_mem_regions;	/* bit mask of instances from drm_xe_query_mem_usage */
- 		__u64 slow_mem_regions;		/* bit mask of instances from drm_xe_query_mem_usage */
- 		__u64 inaccessible_mem_regions;	/* bit mask of instances from drm_xe_query_mem_usage */
-+		__u64 oa_timestamp_freq;
- 		__u64 reserved[8];
- 	} gts[];
- };
-@@ -753,6 +761,7 @@ struct drm_xe_engine_class_instance {
++#define MI_PREDICATE_RESULT_2(base)		XE_REG((base) + 0x3bc)
++#define MI_PREDICATE_RESULT_1(base)		XE_REG((base) + 0x41c)
++
+ #define RING_FORCE_TO_NONPRIV(base, i)		XE_REG(((base) + 0x4d0) + (i) * 4)
+ #define   RING_FORCE_TO_NONPRIV_DENY		REG_BIT(30)
+ #define   RING_FORCE_TO_NONPRIV_ACCESS_MASK	REG_GENMASK(29, 28)
+@@ -108,6 +111,8 @@
+ #define RING_EXECLIST_CONTROL(base)		XE_REG((base) + 0x550)
+ #define	  EL_CTRL_LOAD				REG_BIT(0)
  
- 	__u16 engine_instance;
- 	__u16 gt_id;
-+	__u16 oa_unit_id;
- };
++#define GEN8_RING_CS_GPR(base, n)		XE_REG((base) + 0x600 + (n) * 8)
++
+ #define VDBOX_CGCTL3F10(base)			XE_REG((base) + 0x3f10)
+ #define   IECPUNIT_CLKGATE_DIS			REG_BIT(22)
  
- struct drm_xe_exec_queue_create {
-@@ -1056,6 +1065,252 @@ struct drm_xe_vm_madvise {
- 	__u64 reserved[2];
- };
+diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+index 12120dd37aa2a..672100d375312 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+@@ -14,8 +14,10 @@
  
-+enum drm_xe_oa_format {
-+	XE_OA_FORMAT_C4_B8 = 7,
+ #define MI_INSTR(opcode, flags) \
+ 	(__INSTR(INSTR_MI_CLIENT) | (opcode) << 23 | (flags))
++#define MI_OPCODE(x)		(((x) >> 23) & 0x3f)
+ 
+ #define MI_NOOP			MI_INSTR(0, 0)
++#define MI_SET_PREDICATE	MI_INSTR(0x01, 0)
+ #define MI_USER_INTERRUPT	MI_INSTR(0x02, 0)
+ 
+ #define MI_ARB_ON_OFF		MI_INSTR(0x08, 0)
+@@ -23,12 +25,32 @@
+ #define   MI_ARB_DISABLE		(0<<0)
+ 
+ #define MI_BATCH_BUFFER_END	MI_INSTR(0x0a, 0)
 +
-+	/* Gen8+ */
-+	XE_OA_FORMAT_A12,
-+	XE_OA_FORMAT_A12_B8_C8,
-+	XE_OA_FORMAT_A32u40_A4u32_B8_C8,
++#define	MI_MATH(x)		MI_INSTR(0x1a, (x) - 1)
++#define MI_MATH_INSTR(opcode, op1, op2) ((opcode) << 20 | (op1) << 10 | (op2))
++#define	  MI_MATH_LOAD(op1, op2)	MI_MATH_INSTR(0x080, op1, op2)
++#define   MI_MATH_ADD			MI_MATH_INSTR(0x100, 0x0, 0x0)
++#define   MI_MATH_SUB			MI_MATH_INSTR(0x101, 0x0, 0x0)
++#define   MI_MATH_STORE(op1, op2)	MI_MATH_INSTR(0x180, op1, op2)
++#define   MI_MATH_STOREINV(op1, op2)	MI_MATH_INSTR(0x580, op1, op2)
++#define   MI_MATH_REG(x) (x)
++#define   MI_MATH_REG_SRCA		0x20
++#define   MI_MATH_REG_SRCB		0x21
++#define   MI_MATH_REG_ACCU		0x31
++#define   MI_MATH_REG_CF		0x33
 +
-+	/* DG2 */
-+	XE_OAR_FORMAT_A32u40_A4u32_B8_C8,
-+	XE_OA_FORMAT_A24u40_A14u32_B8_C8,
+ #define MI_STORE_DATA_IMM	MI_INSTR(0x20, 0)
++#define MI_STORE_DWORD_IMM_GEN4	MI_INSTR(0x20, 2)
+ 
+ #define MI_LOAD_REGISTER_IMM(x)	MI_INSTR(0x22, 2*(x)-1)
+ #define   MI_LRI_LRM_CS_MMIO		REG_BIT(19)
+ #define   MI_LRI_MMIO_REMAP_EN		REG_BIT(17)
+ #define   MI_LRI_FORCE_POSTED		(1<<12)
++#define   IS_MI_LRI_CMD(x)		(MI_OPCODE(x) == MI_OPCODE(MI_INSTR(0x22, 0)))
++#define   MI_LRI_LEN(x)			(((x) & 0xff) + 1)
 +
-+	/* MTL OAM */
-+	XE_OAM_FORMAT_MPEC8u64_B8_C8,
-+	XE_OAM_FORMAT_MPEC8u32_B8_C8,
++#define MI_STORE_REGISTER_MEM	MI_INSTR(0x24, 1)
++#define   MI_SRM_LRM_GLOBAL_GTT		REG_BIT(22)
+ 
+ #define MI_FLUSH_DW		MI_INSTR(0x26, 1)
+ #define   MI_FLUSH_DW_STORE_INDEX	(1<<21)
+@@ -37,7 +59,12 @@
+ #define   MI_FLUSH_DW_OP_STOREDW	(1<<14)
+ #define   MI_FLUSH_DW_USE_GTT		(1<<2)
+ 
++#define MI_LOAD_REGISTER_MEM	MI_INSTR(0x29, 1)
 +
-+	XE_OA_FORMAT_MAX	    /* non-ABI */
-+};
++#define MI_LOAD_REGISTER_REG	MI_INSTR(0x2A, 1)
 +
-+enum drm_xe_oa_property_id {
-+	/**
-+	 * Open the stream for a specific exec queue id (as used with
-+	 * drm_xe_exec). A stream opened for a specific exec queue id this
-+	 * way won't typically require root privileges.
-+	 */
-+	DRM_XE_OA_PROP_EXEC_QUEUE_ID = 1,
-+
-+	/**
-+	 * A value of 1 requests the inclusion of raw OA unit reports as
-+	 * part of stream samples.
-+	 */
-+	DRM_XE_OA_PROP_SAMPLE_OA,
-+
-+	/**
-+	 * The value specifies which set of OA unit metrics should be
-+	 * configured, defining the contents of any OA unit reports.
-+	 */
-+	DRM_XE_OA_PROP_OA_METRICS_SET,
-+
-+	/**
-+	 * The value specifies the size and layout of OA unit reports.
-+	 */
-+	DRM_XE_OA_PROP_OA_FORMAT,
-+
-+	/**
-+	 * Specifying this property implicitly requests periodic OA unit
-+	 * sampling and (at least on Haswell) the sampling frequency is derived
-+	 * from this exponent as follows:
-+	 *
-+	 *   80ns * 2^(period_exponent + 1)
-+	 */
-+	DRM_XE_OA_PROP_OA_EXPONENT,
-+
-+	/**
-+	 * Specifying this property is only valid when specify a context to
-+	 * filter with DRM_XE_OA_PROP_ENGINE_ID. Specifying this property
-+	 * will hold preemption of the particular engine we want to gather
-+	 * performance data about.
-+	 */
-+	DRM_XE_OA_PROP_HOLD_PREEMPTION,
-+
-+	/**
-+	 * Specifying this pins all contexts to the specified SSEU power
-+	 * configuration for the duration of the recording.
-+	 *
-+	 * This parameter's value is a pointer to a struct
-+	 * drm_xe_gem_context_param_sseu (TBD).
-+	 */
-+	DRM_XE_OA_PROP_GLOBAL_SSEU,
-+
-+	/**
-+	 * This optional parameter specifies the timer interval in nanoseconds
-+	 * at which the xe driver will check the OA buffer for available data.
-+	 * Minimum allowed value is 100 microseconds. A default value is used by
-+	 * the driver if this parameter is not specified. Note that larger timer
-+	 * values will reduce cpu consumption during OA perf captures. However,
-+	 * excessively large values would potentially result in OA buffer
-+	 * overwrites as captures reach end of the OA buffer.
-+	 */
-+	DRM_XE_OA_PROP_POLL_OA_PERIOD,
-+
-+	/**
-+	 * Multiple engines may be mapped to the same OA unit. The OA unit is
-+	 * identified by class:instance of any engine mapped to it.
-+	 *
-+	 * This parameter specifies the engine class and must be passed along
-+	 * with DRM_XE_OA_PROP_OA_ENGINE_INSTANCE.
-+	 */
-+	DRM_XE_OA_PROP_OA_ENGINE_CLASS,
-+
-+	/**
-+	 * This parameter specifies the engine instance and must be passed along
-+	 * with DRM_XE_OA_PROP_OA_ENGINE_CLASS.
-+	 */
-+	DRM_XE_OA_PROP_OA_ENGINE_INSTANCE,
-+
-+	DRM_XE_OA_PROP_MAX /* non-ABI */
-+};
-+
-+struct drm_xe_oa_open_param {
-+	__u32 flags;
-+#define XE_OA_FLAG_FD_CLOEXEC	BIT(0)
-+#define XE_OA_FLAG_FD_NONBLOCK	BIT(1)
-+#define XE_OA_FLAG_DISABLED	BIT(2)
-+
-+	/** The number of u64 (id, value) pairs */
-+	__u32 num_properties;
-+
-+	/**
-+	 * Pointer to array of u64 (id, value) pairs configuring the stream
-+	 * to open.
-+	 */
-+	__u64 properties_ptr;
-+};
-+
+ #define MI_BATCH_BUFFER_START		MI_INSTR(0x31, 1)
++#define   MI_BATCH_PREDICATE         REG_BIT(15) /* HSW+ on RCS only*/
+ 
+ #define XY_CTRL_SURF_COPY_BLT		((2 << 29) | (0x48 << 22) | 3)
+ #define   SRC_ACCESS_TYPE_SHIFT		21
+diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+new file mode 100644
+index 0000000000000..0b378cb7a6ddb
+--- /dev/null
++++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+@@ -0,0 +1,173 @@
++/* SPDX-License-Identifier: MIT */
 +/*
-+ * Enable data capture for a stream that was either opened in a disabled state
-+ * via I915_PERF_FLAG_DISABLED or was later disabled via
-+ * I915_PERF_IOCTL_DISABLE.
-+ *
-+ * It is intended to be cheaper to disable and enable a stream than it may be
-+ * to close and re-open a stream with the same configuration.
-+ *
-+ * It's undefined whether any pending data for the stream will be lost.
++ * Copyright © 2023 Intel Corporation
 + */
-+#define XE_OA_IOCTL_ENABLE	_IO('i', 0x0)
 +
-+/*
-+ * Disable data capture for a stream.
-+ *
-+ * It is an error to try and read a stream that is disabled.
-+ */
-+#define XE_OA_IOCTL_DISABLE	_IO('i', 0x1)
++#ifndef __XE_OA_REGS__
++#define __XE_OA_REGS__
 +
-+/*
-+ * Change metrics_set captured by a stream.
-+ *
-+ * If the stream is bound to a specific context, the configuration change
-+ * will performed inline with that context such that it takes effect before
-+ * the next execbuf submission.
-+ *
-+ * Returns the previously bound metrics set id, or a negative error code.
-+ */
-+#define XE_OA_IOCTL_CONFIG	_IO('i', 0x2)
++#define REG_EQUAL(reg, xe_reg) ((reg) == (xe_reg.addr))
++#define REG_EQUAL_MCR(reg, xe_reg) ((reg) == (xe_reg.__reg.addr))
 +
-+struct drm_xe_oa_record_header {
-+	__u32 type;
-+	__u16 pad;
-+	__u16 size;
-+};
++#define HALF_SLICE_CHICKEN2 XE_REG_MCR(0xe180)
++#define   GEN8_ST_PO_DISABLE	REG_BIT(13)
 +
-+enum drm_xe_oa_record_type {
-+	/**
-+	 * Samples are the work horse record type whose contents are
-+	 * extensible and defined when opening an xe oa stream based on the
-+	 * given properties.
-+	 *
-+	 * Boolean properties following the naming convention
-+	 * DRM_XE_OA_SAMPLE_xyz_PROP request the inclusion of 'xyz' data in
-+	 * every sample.
-+	 *
-+	 * The order of these sample properties given by userspace has no
-+	 * affect on the ordering of data within a sample. The order is
-+	 * documented here.
-+	 *
-+	 * struct {
-+	 *     struct drm_xe_oa_record_header header;
-+	 *
-+	 *     { u32 oa_report[]; } && DRM_XE_OA_PROP_SAMPLE_OA
-+	 * };
-+	 */
-+	DRM_XE_OA_RECORD_SAMPLE = 1,
++#define GEN7_ROW_CHICKEN2		XE_REG(0xe4f4)
++#define GEN8_ROW_CHICKEN		XE_REG_MCR(0xe4f0)
++#define   STALL_DOP_GATING_DISABLE	REG_BIT(5)
++#define   GEN12_DISABLE_DOP_GATING	REG_BIT(0)
 +
-+	/**
-+	 * Indicates that one or more OA reports were not written by the
-+	 * hardware. This can happen for example if an MI_REPORT_PERF_COUNT
-+	 * command collides with periodic sampling - which would be more likely
-+	 * at higher sampling frequencies.
-+	 */
-+	DRM_XE_OA_RECORD_OA_REPORT_LOST = 2,
++#define RPM_CONFIG1			XE_REG(0xd04)
++#define   GEN10_GT_NOA_ENABLE		REG_BIT(9)
 +
-+	/**
-+	 * An error occurred that resulted in all pending OA reports being lost.
-+	 */
-+	DRM_XE_OA_RECORD_OA_BUFFER_LOST = 3,
++#define WAIT_FOR_RC6_EXIT XE_REG(0x20cc)
++#define   HSW_WAIT_FOR_RC6_EXIT_ENABLE	REG_BIT(0)
 +
-+	DRM_XE_OA_RECORD_MAX /* non-ABI */
-+};
++#define EU_PERF_CNTL0 XE_REG(0xe458)
++#define EU_PERF_CNTL4 XE_REG(0xe45c)
++#define EU_PERF_CNTL1 XE_REG(0xe558)
++#define EU_PERF_CNTL5 XE_REG(0xe55c)
++#define EU_PERF_CNTL2 XE_REG(0xe658)
++#define EU_PERF_CNTL6 XE_REG(0xe65c)
++#define EU_PERF_CNTL3 XE_REG(0xe758)
 +
-+struct drm_xe_oa_config {
-+	/**
-+	 * @uuid:
-+	 *
-+	 * String formatted like "%\08x-%\04x-%\04x-%\04x-%\012x"
-+	 */
-+	char uuid[36];
++#define OABUFFER_SIZE_MASK	REG_GENMASK(5, 3)
++#define OABUFFER_SIZE_128K	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 0)
++#define OABUFFER_SIZE_256K	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 1)
++#define OABUFFER_SIZE_512K	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 2)
++#define OABUFFER_SIZE_1M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 3)
++#define OABUFFER_SIZE_2M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 4)
++#define OABUFFER_SIZE_4M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 5)
++#define OABUFFER_SIZE_8M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 6)
++#define OABUFFER_SIZE_16M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 7)
 +
-+	/**
-+	 * @n_mux_regs:
-+	 *
-+	 * Number of mux regs in &mux_regs_ptr.
-+	 */
-+	__u32 n_mux_regs;
++#define GEN12_OA_TLB_INV_CR XE_REG(0xceec)
 +
-+	/**
-+	 * @n_boolean_regs:
-+	 *
-+	 * Number of boolean regs in &boolean_regs_ptr.
-+	 */
-+	__u32 n_boolean_regs;
++/* Gen12 OAR unit */
++#define GEN12_OAR_OACONTROL XE_REG(0x2960)
++#define  GEN12_OAR_OACONTROL_COUNTER_FORMAT_SHIFT 1
++#define  GEN12_OAR_OACONTROL_COUNTER_ENABLE	REG_BIT(0)
 +
-+	/**
-+	 * @n_flex_regs:
-+	 *
-+	 * Number of flex regs in &flex_regs_ptr.
-+	 */
-+	__u32 n_flex_regs;
++#define GEN8_OACTXCONTROL XE_REG(0x2360)
++#define  GEN8_OA_COUNTER_RESUME			REG_BIT(0)
 +
-+	/**
-+	 * @mux_regs_ptr:
-+	 *
-+	 * Pointer to tuples of u32 values (register address, value) for mux
-+	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
-+	 * &n_mux_regs).
-+	 */
-+	__u64 mux_regs_ptr;
++#define GEN12_OACTXCONTROL(base) XE_REG((base) + 0x360)
++#define GEN12_OAR_OASTATUS XE_REG(0x2968)
 +
-+	/**
-+	 * @boolean_regs_ptr:
-+	 *
-+	 * Pointer to tuples of u32 values (register address, value) for mux
-+	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
-+	 * &n_boolean_regs).
-+	 */
-+	__u64 boolean_regs_ptr;
++/* Gen12 OAG unit */
++#define GEN12_OAG_OAHEADPTR XE_REG(0xdb00)
++#define  GEN12_OAG_OAHEADPTR_MASK 0xffffffc0
++#define GEN12_OAG_OATAILPTR XE_REG(0xdb04)
++#define  GEN12_OAG_OATAILPTR_MASK 0xffffffc0
 +
-+	/**
-+	 * @flex_regs_ptr:
-+	 *
-+	 * Pointer to tuples of u32 values (register address, value) for mux
-+	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
-+	 * &n_flex_regs).
-+	 */
-+	__u64 flex_regs_ptr;
-+};
++#define GEN12_OAG_OABUFFER XE_REG(0xdb08)
++#define  GEN12_OAG_OABUFFER_BUFFER_SIZE_MASK  (0x7)
++#define  GEN12_OAG_OABUFFER_BUFFER_SIZE_SHIFT (3)
++#define  GEN12_OAG_OABUFFER_MEMORY_SELECT     REG_BIT(0) /* 0: PPGTT, 1: GGTT */
 +
- #if defined(__cplusplus)
- }
- #endif
++#define GEN12_OAG_OAGLBCTXCTRL XE_REG(0x2b28)
++#define  GEN12_OAG_OAGLBCTXCTRL_TIMER_PERIOD_SHIFT 2
++#define  GEN12_OAG_OAGLBCTXCTRL_TIMER_ENABLE	REG_BIT(1)
++#define  GEN12_OAG_OAGLBCTXCTRL_COUNTER_RESUME	REG_BIT(0)
++
++#define GEN12_OAG_OACONTROL XE_REG(0xdaf4)
++#define  GEN12_OAG_OACONTROL_OA_COUNTER_FORMAT_SHIFT 2
++#define  GEN12_OAG_OACONTROL_OA_COUNTER_ENABLE	REG_BIT(0)
++
++#define GEN12_OAG_OA_DEBUG XE_REG(0xdaf8)
++#define  GEN12_OAG_OA_DEBUG_INCLUDE_CLK_RATIO		REG_BIT(6)
++#define  GEN12_OAG_OA_DEBUG_DISABLE_CLK_RATIO_REPORTS	REG_BIT(5)
++#define  GEN12_OAG_OA_DEBUG_DISABLE_GO_1_0_REPORTS	REG_BIT(2)
++#define  GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS	REG_BIT(1)
++
++#define GEN12_OAG_OASTATUS XE_REG(0xdafc)
++#define  GEN12_OAG_OASTATUS_COUNTER_OVERFLOW	REG_BIT(2)
++#define  GEN12_OAG_OASTATUS_BUFFER_OVERFLOW	REG_BIT(1)
++#define  GEN12_OAG_OASTATUS_REPORT_LOST		REG_BIT(0)
++
++#define GDT_CHICKEN_BITS    XE_REG(0x9840)
++#define   GT_NOA_ENABLE	    0x00000080
++
++#define GEN12_SQCNT1				XE_REG(0x8718)
++#define   GEN12_SQCNT1_PMON_ENABLE		REG_BIT(30)
++#define   GEN12_SQCNT1_OABPC			REG_BIT(29)
++
++/* Gen12 OAM unit */
++#define GEN12_OAM_HEAD_POINTER_OFFSET   (0x1a0)
++#define  GEN12_OAM_HEAD_POINTER_MASK    0xffffffc0
++
++#define GEN12_OAM_TAIL_POINTER_OFFSET   (0x1a4)
++#define  GEN12_OAM_TAIL_POINTER_MASK    0xffffffc0
++
++#define GEN12_OAM_BUFFER_OFFSET         (0x1a8)
++#define  GEN12_OAM_BUFFER_SIZE_MASK     (0x7)
++#define  GEN12_OAM_BUFFER_SIZE_SHIFT    (3)
++#define  GEN12_OAM_BUFFER_MEMORY_SELECT REG_BIT(0) /* 0: PPGTT, 1: GGTT */
++
++#define GEN12_OAM_CONTEXT_CONTROL_OFFSET              (0x1bc)
++#define  GEN12_OAM_CONTEXT_CONTROL_TIMER_PERIOD_SHIFT 2
++#define  GEN12_OAM_CONTEXT_CONTROL_TIMER_ENABLE       REG_BIT(1)
++#define  GEN12_OAM_CONTEXT_CONTROL_COUNTER_RESUME     REG_BIT(0)
++
++#define GEN12_OAM_CONTROL_OFFSET                (0x194)
++#define  GEN12_OAM_CONTROL_COUNTER_FORMAT_SHIFT 1
++#define  GEN12_OAM_CONTROL_COUNTER_ENABLE       REG_BIT(0)
++
++#define GEN12_OAM_DEBUG_OFFSET                      (0x198)
++#define  GEN12_OAM_DEBUG_BUFFER_SIZE_SELECT         REG_BIT(12)
++#define  GEN12_OAM_DEBUG_INCLUDE_CLK_RATIO          REG_BIT(6)
++#define  GEN12_OAM_DEBUG_DISABLE_CLK_RATIO_REPORTS  REG_BIT(5)
++#define  GEN12_OAM_DEBUG_DISABLE_GO_1_0_REPORTS     REG_BIT(2)
++#define  GEN12_OAM_DEBUG_DISABLE_CTX_SWITCH_REPORTS REG_BIT(1)
++
++#define GEN12_OAM_STATUS_OFFSET            (0x19c)
++#define  GEN12_OAM_STATUS_COUNTER_OVERFLOW REG_BIT(2)
++#define  GEN12_OAM_STATUS_BUFFER_OVERFLOW  REG_BIT(1)
++#define  GEN12_OAM_STATUS_REPORT_LOST      REG_BIT(0)
++
++#define GEN12_OAM_MMIO_TRG_OFFSET	(0x1d0)
++
++#define GEN12_OAM_MMIO_TRG(base) \
++	XE_REG((base) + GEN12_OAM_MMIO_TRG_OFFSET)
++
++#define GEN12_OAM_HEAD_POINTER(base) \
++	XE_REG((base) + GEN12_OAM_HEAD_POINTER_OFFSET)
++#define GEN12_OAM_TAIL_POINTER(base) \
++	XE_REG((base) + GEN12_OAM_TAIL_POINTER_OFFSET)
++#define GEN12_OAM_BUFFER(base) \
++	XE_REG((base) + GEN12_OAM_BUFFER_OFFSET)
++#define GEN12_OAM_CONTEXT_CONTROL(base) \
++	XE_REG((base) + GEN12_OAM_CONTEXT_CONTROL_OFFSET)
++#define GEN12_OAM_CONTROL(base) \
++	XE_REG((base) + GEN12_OAM_CONTROL_OFFSET)
++#define GEN12_OAM_DEBUG(base) \
++	XE_REG((base) + GEN12_OAM_DEBUG_OFFSET)
++#define GEN12_OAM_STATUS(base) \
++	XE_REG((base) + GEN12_OAM_STATUS_OFFSET)
++
++#define GEN12_OAM_CEC0_0_OFFSET		(0x40)
++#define GEN12_OAM_CEC7_1_OFFSET		(0x7c)
++#define GEN12_OAM_CEC0_0(base) \
++	XE_REG((base) + GEN12_OAM_CEC0_0_OFFSET)
++#define GEN12_OAM_CEC7_1(base) \
++	XE_REG((base) + GEN12_OAM_CEC7_1_OFFSET)
++
++#define GEN12_OAM_STARTTRIG1_OFFSET	(0x00)
++#define GEN12_OAM_STARTTRIG8_OFFSET	(0x1c)
++#define GEN12_OAM_STARTTRIG1(base) \
++	XE_REG((base) + GEN12_OAM_STARTTRIG1_OFFSET)
++#define GEN12_OAM_STARTTRIG8(base) \
++	XE_REG((base) + GEN12_OAM_STARTTRIG8_OFFSET)
++
++#define GEN12_OAM_REPORTTRIG1_OFFSET	(0x20)
++#define GEN12_OAM_REPORTTRIG8_OFFSET	(0x3c)
++#define GEN12_OAM_REPORTTRIG1(base) \
++	XE_REG((base) + GEN12_OAM_REPORTTRIG1_OFFSET)
++#define GEN12_OAM_REPORTTRIG8(base) \
++	XE_REG((base) + GEN12_OAM_REPORTTRIG8_OFFSET)
++
++#define GEN12_OAM_PERF_COUNTER_B0_OFFSET	(0x84)
++#define GEN12_OAM_PERF_COUNTER_B(base, idx) \
++	XE_REG((base) + GEN12_OAM_PERF_COUNTER_B0_OFFSET + 4 * (idx))
++
++#endif /* __XE_OA_REGS__ */
 -- 
 2.41.0
 
