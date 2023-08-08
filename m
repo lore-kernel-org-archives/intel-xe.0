@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6C89EB64DD
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDCE0C00528
 	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 02:37:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DA5D10E1BE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1BF10E391;
 	Tue,  8 Aug 2023 02:37:17 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 59A5910E1BE
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7050610E390
  for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 02:37:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1691462235; x=1722998235;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=a1CUaQgmhv77BHcn2ZqQlygRbforb5gTJ3qb1QXZ3MY=;
- b=jXSzAbhhyYLmjIGl+fV8cHskx0Q0sXCE1MF87zBOrWBpBkH/FSJsgnco
- uj4oQmUqvvnmK4xf0WKPxCRs5hD4kOBswBB++Jb6eB4fc9jnHiqkDG9Ux
- 32e9TKJqiqUPU55RG8M/hjFKJKHA6prA5yQ7cy4ZC5NjHO2GTWZooxrnh
- v5Meo9CyNWv8+dvE0Xgw7ocQyvMNgJ6XNBA+hUIA+oVpcuKpO3Dn0lnep
- PRZ7ZbWOfFJv2+AFwW3n15AidHoCf7Eiec6okzkd2d2Ok9AbOYA3hj6sN
- y32KFoDEkotbYbrFkYBdClAiDzree7rj0enBaruYswkFnKmhzX94t1bdk Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="369597001"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="369597001"
+ bh=K2jD70gzP/EAU5acGWeuAIsks/KoazQS0W4k2Y2IRCE=;
+ b=ddg1eCpMG1hKWNE3cUInZ2k+4FjTqPsKahod4NgfeO6yxQaZK2e10pW/
+ LlNPrV1dWCrxjYLhEOxn8vw5isWjIhcVwUSibkTRGr9+hKAUBjvj3u6Wh
+ vzIXCwJzjphGdrTlhB9Yx8ffQ5u8mc2435qLokj92dns6u87JwcNsxk59
+ RmNZPWqrrWjUbhahRMTBZ7H4sf5hPPFVquQixdkPW7a8v7wwEoF/OTUFF
+ skv1q12hAfqAudHN2v6ffTbfY6/qSgzoXvAvMK1mougRi7jZ5hqvmHUGG
+ 5ImoVDLp3FH3nnrL3v45Ui2AriH3mAfNECoGWfhh13tLz0e0zn5RET1Ke Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="369597000"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="369597000"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Aug 2023 19:37:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="845272138"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="845272138"
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="845272133"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="845272133"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Aug 2023 19:37:14 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  7 Aug 2023 22:43:34 -0400
-Message-Id: <20230808024334.11619-3-oak.zeng@intel.com>
+Date: Mon,  7 Aug 2023 22:43:33 -0400
+Message-Id: <20230808024334.11619-2-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20230808024334.11619-1-oak.zeng@intel.com>
 References: <20230808024334.11619-1-oak.zeng@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/xe: Improve vram info debug printing
+Subject: [Intel-xe] [PATCH 1/2] drm/xe: Move the memory region struct out
+ xe_tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,37 +61,206 @@ Cc: --cc=michael.j.ruhl@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Print both device physical address range and CPU io range
-of vram. Also print vram's actual size, usable size excluding
-stolen memory, and CPU io accessible size.
+Make a xe_mem_region structure which will be used in the
+coming patches. The new structure is used in both xe device
+level (xe->mem.vram) and xe_tile level (tile->vram).
+
+Make the definition of xe_mem_region.base to be the DPA of
+the vram and change codes according to this new definition.
+
+Also add a pagemap member to this structure. pagemap will be
+used to map GPU local memory to CPU's HPA space as ZONE_DEVICE.
+This is preparation work for introducing svm (shared virtual memory)
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c           |  2 +-
+ drivers/gpu/drm/xe/xe_device_types.h | 96 ++++++++++++----------------
+ drivers/gpu/drm/xe/xe_migrate.c      |  2 +-
+ drivers/gpu/drm/xe/xe_mmio.c         |  7 +-
+ 4 files changed, 48 insertions(+), 59 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 284c86107a5f..a397a7224a99 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1457,7 +1457,7 @@ uint64_t vram_region_gpu_offset(struct ttm_resource *res)
+ 	if (res->mem_type == XE_PL_STOLEN)
+ 		return xe_ttm_stolen_gpu_offset(xe);
+ 
+-	return xe->mem.vram.base + tile->mem.vram.base;
++	return tile->mem.vram.base;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index f84ecb976f5d..a454a5098121 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -57,6 +57,46 @@ struct xe_ggtt;
+ 		 const struct xe_tile * : (const struct xe_device *)((tile__)->xe),	\
+ 		 struct xe_tile * : (tile__)->xe)
+ 
++/**
++ * struct xe_mem_region - memory region structure
++ * This is used to describe a memory region in xe
++ * device, such as HBM memory or CXL extension memory.
++ */
++struct xe_mem_region {
++	/** @io_start: IO start address of this VRAM instance */
++	resource_size_t io_start;
++	/**
++	 * @io_size: IO size of this VRAM instance
++	 *
++	 * This represents how much of this VRAM we can access
++	 * via the CPU through the VRAM BAR. This can be smaller
++	 * than @usable_size, in which case only part of VRAM is CPU
++	 * accessible (typically the first 256M). This
++	 * configuration is known as small-bar.
++	 */
++	resource_size_t io_size;
++	/** @base: This memory regions's DPA (device physical address) */
++	resource_size_t base;
++	/**
++	 * @usable_size: usable size of VRAM
++	 *
++	 * Usable size of VRAM excluding reserved portions
++	 * (e.g stolen mem)
++	 */
++	resource_size_t usable_size;
++	/**
++	 * @actual_physical_size: Actual VRAM size
++	 *
++	 * Actual VRAM size including reserved portions
++	 * (e.g stolen mem)
++	 */
++	resource_size_t actual_physical_size;
++	/** @mapping: pointer to VRAM mappable space */
++	void *__iomem mapping;
++	/** @pagemap: Used to map device memory as ZONE_DEVICE */
++	struct dev_pagemap pagemap;
++};
++
+ /**
+  * struct xe_tile - hardware tile structure
+  *
+@@ -114,38 +154,7 @@ struct xe_tile {
+ 		 * Although VRAM is associated with a specific tile, it can
+ 		 * still be accessed by all tiles' GTs.
+ 		 */
+-		struct {
+-			/** @io_start: IO start address of this VRAM instance */
+-			resource_size_t io_start;
+-			/**
+-			 * @io_size: IO size of this VRAM instance
+-			 *
+-			 * This represents how much of this VRAM we can access
+-			 * via the CPU through the VRAM BAR. This can be smaller
+-			 * than @size, in which case only part of VRAM is CPU
+-			 * accessible (typically the first 256M). This
+-			 * configuration is known as small-bar.
+-			 */
+-			resource_size_t io_size;
+-			/** @base: offset of VRAM starting base */
+-			resource_size_t base;
+-			/**
+-			 * @usable_size: usable size of VRAM
+-			 *
+-			 * Usable size of VRAM excluding reserved portions
+-			 * (e.g stolen mem)
+-			 */
+-			resource_size_t usable_size;
+-			/**
+-			 * @actual_physical_size: Actual VRAM size
+-			 *
+-			 * Actual VRAM size including reserved portions
+-			 * (e.g stolen mem)
+-			 */
+-			resource_size_t actual_physical_size;
+-			/** @mapping: pointer to VRAM mappable space */
+-			void *__iomem mapping;
+-		} vram;
++		struct xe_mem_region vram;
+ 
+ 		/** @vram_mgr: VRAM TTM manager */
+ 		struct xe_ttm_vram_mgr *vram_mgr;
+@@ -264,28 +273,7 @@ struct xe_device {
+ 	/** @mem: memory info for device */
+ 	struct {
+ 		/** @vram: VRAM info for device */
+-		struct {
+-			/** @io_start: IO start address of VRAM */
+-			resource_size_t io_start;
+-			/**
+-			 * @io_size: IO size of VRAM.
+-			 *
+-			 * This represents how much of VRAM the CPU can access
+-			 * via the VRAM BAR.
+-			 * On systems that do not support large BAR IO space,
+-			 * this can be smaller than the actual memory size, in
+-			 * which case only part of VRAM is CPU accessible
+-			 * (typically the first 256M).  This configuration is
+-			 * known as small-bar.
+-			 */
+-			resource_size_t io_size;
+-			/** @size: Total size of VRAM */
+-			resource_size_t size;
+-			/** @base: Offset to apply for Device Physical Address control */
+-			resource_size_t base;
+-			/** @mapping: pointer to VRAM mappable space */
+-			void *__iomem mapping;
+-		} vram;
++		struct xe_mem_region vram;
+ 		/** @sys_mgr: system TTM manager */
+ 		struct ttm_resource_manager sys_mgr;
+ 	} mem;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 18c94022930f..956a96b38346 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -264,7 +264,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 		 * Use 1GB pages, it shouldn't matter the physical amount of
+ 		 * vram is less, when we don't access it.
+ 		 */
+-		for (pos = 0; pos < xe->mem.vram.size; pos += SZ_1G, ofs += 8)
++		for (pos = 0; pos < xe->mem.vram.actual_physical_size; pos += SZ_1G, ofs += 8)
+ 			xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
+ 	}
+ 
 diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 0d0966691eaa..9f249c61ff8e 100644
+index aa9c573b1243..0d0966691eaa 100644
 --- a/drivers/gpu/drm/xe/xe_mmio.c
 +++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -286,12 +286,12 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+@@ -173,6 +173,7 @@ static int xe_determine_lmem_bar_size(struct xe_device *xe)
+ 	if (!xe->mem.vram.io_size)
+ 		return -EIO;
+ 
++	/* XXX: Is this correct? Device's DPA should be decided by IAF */
+ 	xe->mem.vram.base = 0; /* DPA offset */
+ 
+ 	/* set up a map to the total memory area. */
+@@ -281,7 +282,7 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 			return -ENODEV;
+ 		}
+ 
+-		tile->mem.vram.base = tile_offset;
++		tile->mem.vram.base = xe->mem.vram.base + tile_offset;
  		tile->mem.vram.usable_size = vram_size;
  		tile->mem.vram.mapping = xe->mem.vram.mapping + tile_offset;
  
--		drm_info(&xe->drm, "VRAM[%u, %u]: %pa, %pa\n", id, tile->id,
--			 &tile->mem.vram.io_start, &tile->mem.vram.usable_size);
-+		drm_info(&xe->drm, "VRAM[%u, %u]: Actual physical size %pa, usable size exclude stolen %pa, CPU accessible size %pa\n", id,
-+			 tile->id, &tile->mem.vram.actual_physical_size, &tile->mem.vram.usable_size, &tile->mem.vram.io_size);
+@@ -304,10 +305,10 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+ 		io_size -= min_t(u64, tile_size, io_size);
+ 	}
  
--		if (tile->mem.vram.io_size < tile->mem.vram.usable_size)
--			drm_info(&xe->drm, "VRAM[%u, %u]: CPU access limited to %pa\n", id,
--				 tile->id, &tile->mem.vram.io_size);
-+		drm_info(&xe->drm, "VRAM[%u, %u]: DPA range: [%pa-%llx], io range: [%pa-%llx]\n", id, tile->id,
-+			 &tile->mem.vram.base, tile->mem.vram.base + tile->mem.vram.actual_physical_size,
-+			 &tile->mem.vram.io_start, tile->mem.vram.io_start + tile->mem.vram.io_size);
+-	xe->mem.vram.size = total_size;
++	xe->mem.vram.actual_physical_size = total_size;
  
- 		/* calculate total size using tile size to get the correct HW sizing */
- 		total_size += tile_size;
+ 	drm_info(&xe->drm, "Total VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
+-		 &xe->mem.vram.size);
++		 &xe->mem.vram.actual_physical_size);
+ 	drm_info(&xe->drm, "Available VRAM: %pa, %pa\n", &xe->mem.vram.io_start,
+ 		 &available_size);
+ 
 -- 
 2.26.3
 
