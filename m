@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C0A8C001DB
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 09:19:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36144C001B0
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 09:45:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 052E210E3D3;
-	Tue,  8 Aug 2023 09:19:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B828B10E3D3
- for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 09:19:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691486354; x=1723022354;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=w3SMp9bdPQ+NYNjyHW+AZo8RbN8wUB+cJjRA51kAljA=;
- b=BAA75pMTd9fofOFm/3NhyRRRWsUMIfeDDwSKB4A9APh+BnhZcLhA9OfP
- kMTRyqSeJsAwwJDSgLwG4/i9ere08yQxaTSgArIK3gdE5ZErYIXK1T8wp
- piUb2Iip0ZhYcwqPH7w7QevPKjFR2fzVFPfW9htYBcaSook6bHBj3+Ikw
- ln5j537hoE+YIRHs9uLHwPhc6HZkmI7LsNAiZrP1AiuFX+xLk023K7Ood
- tUaAtvDa/VoQ5E6lLiYI7jAu26Ib4zfYrmZSp51kOyxefFJsNAEoGO47v
- Lj4QLl6o/0Oc6rb7SznxGulvsqS5+nE9fYVJ3I3w+wuF5tmPmvX7qgo66 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="369668303"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="369668303"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 02:19:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="874649141"
-Received: from akurkina-mobl1.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
- ([10.252.18.47])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 02:19:16 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue,  8 Aug 2023 10:19:04 +0100
-Message-ID: <20230808091903.114939-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.41.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD38F10E040;
+	Tue,  8 Aug 2023 09:45:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 045F310E040;
+ Tue,  8 Aug 2023 09:45:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E0ED9AADF2;
+ Tue,  8 Aug 2023 09:45:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2] drm/xe/guc_submit: fixup deregister in job
- timeout
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Tue, 08 Aug 2023 09:45:05 -0000
+Message-ID: <169148790589.13862.14826669290372405807@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230808091208.112793-2-matthew.auld@intel.com>
+In-Reply-To: <20230808091208.112793-2-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_skip_rebind=5Flist_if_vma_destroyed?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,62 +39,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather check if the engine is still registered before proceeding with
-deregister steps. Also the engine being marked as disabled doesn't mean
-the engine has been disabled or deregistered from GuC pov, and here we
-are signalling fences so we need to be sure GuC is not still using this
-context.
+== Series Details ==
 
-v2:
- - Drop the read_stopped() for this path. Since we are signalling
-   fences on error here, best play it safe and wait for the GT reset to
-   mark the engine as disabled, rather than it just being queued.
+Series: drm/xe: skip rebind_list if vma destroyed
+URL   : https://patchwork.freedesktop.org/series/122146/
+State : success
 
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_submit.c | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-index 52c61f78b083..6126ddf2fdd5 100644
---- a/drivers/gpu/drm/xe/xe_guc_submit.c
-+++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-@@ -881,15 +881,17 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 	}
- 
- 	/* Engine state now stable, disable scheduling if needed */
--	if (exec_queue_enabled(q)) {
-+	if (exec_queue_registered(q)) {
- 		struct xe_guc *guc = exec_queue_to_guc(q);
- 		int ret;
- 
- 		if (exec_queue_reset(q))
- 			err = -EIO;
- 		set_exec_queue_banned(q);
--		xe_exec_queue_get(q);
--		disable_scheduling_deregister(guc, q);
-+		if (!exec_queue_destroyed(q)) {
-+			xe_exec_queue_get(q);
-+			disable_scheduling_deregister(guc, q);
-+		}
- 
- 		/*
- 		 * Must wait for scheduling to be disabled before signalling
-@@ -901,8 +903,8 @@ guc_exec_queue_timedout_job(struct drm_sched_job *drm_job)
- 		 */
- 		smp_rmb();
- 		ret = wait_event_timeout(guc->ct.wq,
--					 !exec_queue_pending_disable(q) ||
--					 guc_read_stopped(guc), HZ * 5);
-+					 !exec_queue_pending_disable(q),
-+					 HZ * 5);
- 		if (!ret) {
- 			XE_WARN_ON("Schedule disable failed to respond");
- 			sched->timeout = MIN_SCHED_TIMEOUT;
--- 
-2.41.0
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: d404117f8 fixup! drm/i915/display: Remaining changes to make xe compile
+=== git am output follows ===
+Applying: drm/xe: skip rebind_list if vma destroyed
+
 
