@@ -4,47 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDCE0C00528
-	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 02:37:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 426EDC001DB
+	for <intel-xe@archiver.kernel.org>; Tue,  8 Aug 2023 02:37:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A1BF10E391;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C762410E390;
 	Tue,  8 Aug 2023 02:37:17 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7050610E390
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 846F810E391
  for <intel-xe@lists.freedesktop.org>; Tue,  8 Aug 2023 02:37:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1691462235; x=1722998235;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
  bh=K2jD70gzP/EAU5acGWeuAIsks/KoazQS0W4k2Y2IRCE=;
- b=ddg1eCpMG1hKWNE3cUInZ2k+4FjTqPsKahod4NgfeO6yxQaZK2e10pW/
- LlNPrV1dWCrxjYLhEOxn8vw5isWjIhcVwUSibkTRGr9+hKAUBjvj3u6Wh
- vzIXCwJzjphGdrTlhB9Yx8ffQ5u8mc2435qLokj92dns6u87JwcNsxk59
- RmNZPWqrrWjUbhahRMTBZ7H4sf5hPPFVquQixdkPW7a8v7wwEoF/OTUFF
- skv1q12hAfqAudHN2v6ffTbfY6/qSgzoXvAvMK1mougRi7jZ5hqvmHUGG
- 5ImoVDLp3FH3nnrL3v45Ui2AriH3mAfNECoGWfhh13tLz0e0zn5RET1Ke Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="369597000"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="369597000"
+ b=A9NwOSmnd482/wtOxy3URmXHG3OC8+XlXoQTwi8L+9/qJ5IThyjdA/BF
+ DAFVYoBltTD8wwNmPparMIcn3+i3fzi8qD608kG5auBzASnuy9Yy3SIo1
+ Oxa94YgxfUPwWWRzqBUx+l4Uq5YmqWDcCIVwkY38ncz6gohUh/54Wml4n
+ LI2uFr/e2hzidbuQN7nrFhYBvwZVFZ5HlZGcVZKpdmqv9C7XQxeU4H1kn
+ 7LSNgDxngKLp79g3hQ3SmxCTM2p78wOoZU+JLTEpZtGnNHDoAERyW7w3T
+ w/M3oNpJgCjLKvPmjuQ0CI64zQo+EYoCqOKbqsOY9bPvWhymCm0BpVeo2 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="369596999"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="369596999"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Aug 2023 19:37:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="845272133"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="845272133"
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="845272129"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; d="scan'208";a="845272129"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Aug 2023 19:37:14 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  7 Aug 2023 22:43:33 -0400
-Message-Id: <20230808024334.11619-2-oak.zeng@intel.com>
+Date: Mon,  7 Aug 2023 22:43:32 -0400
+Message-Id: <20230808024334.11619-1-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
-In-Reply-To: <20230808024334.11619-1-oak.zeng@intel.com>
-References: <20230808024334.11619-1-oak.zeng@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/2] drm/xe: Move the memory region struct out
+Subject: [Intel-xe] [PATCH 1/3] drm/xe: Move the memory region struct out
  xe_tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
