@@ -4,30 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA236C0015E
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Aug 2023 19:00:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 648FDC001DE
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Aug 2023 19:05:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 686C410E495;
-	Wed,  9 Aug 2023 19:00:15 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 84F9610E0DE;
- Wed,  9 Aug 2023 19:00:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7D35AAADFC;
- Wed,  9 Aug 2023 19:00:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6601496459037925000=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19C9C10E053;
+	Wed,  9 Aug 2023 19:05:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C72510E053
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Aug 2023 19:05:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1691607915; x=1723143915;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=bN1al0KZP1DLyLVBw/moQ+E/Ht8b9HMJRTlb3pp/Nis=;
+ b=VHebiZh+d65AtDfh4vvPPe6S43q6yuiOQD9mLUPp8Ho/HK35XP5nlQw4
+ eNfCMPLEDqJ1L9IZA4cF5PPFAEQirUyiUl9hb61GNu4+ud/egpzc3YJwz
+ IQjUeeZHGoYZjirJCCNM0+MzQ+tlEUjfrNHu01Ua8FeOtYVwebA74pt2c
+ qQ0H3KsiBEjdDOcYZjMd8HPKtfnqT1aGzrhBP6U5BgovOOYLW4W6PgvBI
+ KI4RE0v5NWlkd0b2FVaJ6L1LRugLw1OzH5OnbU0NoTcRQk1GV3PRsKM0r
+ QRnf4JXubxXbZK9hnSfT9yVOxLW0bbowwT+bhkoko6uemi/VX8MQQEDiy g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="370108198"
+X-IronPort-AV: E=Sophos;i="6.01,160,1684825200"; d="scan'208";a="370108198"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2023 12:05:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="905768004"
+X-IronPort-AV: E=Sophos;i="6.01,160,1684825200"; d="scan'208";a="905768004"
+Received: from rbujor-mobl.ger.corp.intel.com (HELO localhost) ([10.252.49.48])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Aug 2023 12:05:12 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed,  9 Aug 2023 22:04:45 +0300
+Message-Id: <20230809190453.1927134-1-jani.nikula@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Wed, 09 Aug 2023 19:00:12 -0000
-Message-ID: <169160761247.10296.6355653169782360978@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230809180515.2083-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20230809180515.2083-1-michal.wajdeczko@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A?=
- =?utf-8?q?_Introduce_Xe_assert_macros?=
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 1/9] drm/i915/display: add I915 conditional
+ build to g4x_hdmi.h
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,72 +56,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6601496459037925000==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Add stubs for !I915.
 
-== Series Details ==
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/g4x_hdmi.h | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
-Series: drm/xe: Introduce Xe assert macros
-URL   : https://patchwork.freedesktop.org/series/122240/
-State : failure
+diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.h b/drivers/gpu/drm/i915/display/g4x_hdmi.h
+index 1e3ea7f3c846..817f55c7a3a1 100644
+--- a/drivers/gpu/drm/i915/display/g4x_hdmi.h
++++ b/drivers/gpu/drm/i915/display/g4x_hdmi.h
+@@ -15,9 +15,21 @@ struct drm_atomic_state;
+ struct drm_connector;
+ struct drm_i915_private;
+ 
++#ifdef I915
+ void g4x_hdmi_init(struct drm_i915_private *dev_priv,
+ 		   i915_reg_t hdmi_reg, enum port port);
+ int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
+ 				    struct drm_atomic_state *state);
++#else
++static inline void g4x_hdmi_init(struct drm_i915_private *dev_priv,
++				 i915_reg_t hdmi_reg, int port)
++{
++}
++static inline int g4x_hdmi_connector_atomic_check(struct drm_connector *connector,
++						  struct drm_atomic_state *state)
++{
++	return 0;
++}
++#endif
+ 
+ #endif
+-- 
+2.39.2
 
-== Summary ==
-
-Participating hosts:
-bat-pvc-2
-bat-atsm-2
-bat-dg2-oem2
-bat-adlp-7
-Missing hosts results[1]:
-bat-pvc-2
-Results: [xe-pw-122240v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122240v1/index.html)
-
-
-
---===============6601496459037925000==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Introduce Xe assert macros</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122240/">https://patchwork.freedesktop.org/series/122240/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-</table>
-
-
-    <p>Participating hosts:<br />
-bat-pvc-2<br />
-bat-atsm-2<br />
-bat-dg2-oem2<br />
-bat-adlp-7<br />
-Missing hosts results[1]:<br />
-bat-pvc-2<br />
-Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122240v1/index.html">xe-pw-122240v1</a></p>
-
-</body>
-</html>
-
---===============6601496459037925000==--
