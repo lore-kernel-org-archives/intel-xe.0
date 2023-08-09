@@ -4,136 +4,162 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E9A7EB64DD
-	for <intel-xe@archiver.kernel.org>; Wed,  9 Aug 2023 03:20:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F79BC04A94
+	for <intel-xe@archiver.kernel.org>; Wed,  9 Aug 2023 04:26:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20B5610E0EB;
-	Wed,  9 Aug 2023 03:20:51 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CAFC10E0EB
- for <intel-xe@lists.freedesktop.org>; Wed,  9 Aug 2023 03:20:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA8E010E232;
+	Wed,  9 Aug 2023 04:26:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5DF6E10E232
+ for <intel-xe@lists.freedesktop.org>; Wed,  9 Aug 2023 04:26:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691551249; x=1723087249;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=fyjoG4xtAV1J8vmZDjsxCG51SSt3ZCuLd8ZF142wKqg=;
- b=CAspJFHlrho7WAp/ZU6+w8N73E7VjncPyrVwRo96kkyOTaZINeDYSg0X
- /L5dk//CIjb8Me8mE/DrZn3VEY0exAgZWAJmVCwPNJ/MODJd46ML3sWjh
- f2Nq2ZBCZAvvvlmk+MD8ZQB23GIM/reGysRnLC8BQrXcLYWrdeFPtuPZr
- N1csKHK+epWUuSvvdomYCACJYqphL+S4Z6hgfUliC9af4jqzQ0WlkygJ7
- g8OlxLo5l+CWhcDZu2uCK8EyCy1wwk89gkq6YAAqgdf7EX/AebLcWIde1
- h2+9LfPNTFn6KRxTTFj8WYYjLzGJ1KyjSgxDctuHwAzcwQPVy9xgSHSxw A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="401974481"
-X-IronPort-AV: E=Sophos;i="6.01,158,1684825200"; d="scan'208";a="401974481"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Aug 2023 20:20:48 -0700
+ t=1691555197; x=1723091197;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=0AT55D/4m6J8DvD+6EgfSasaYqScMsLPCNJHbSafPqA=;
+ b=OLaqbsCDujyuFPbYcqiwLpuDQQRGcWXA2Att7uKtqXb4lA/MaEdVq1fR
+ wpX48i67/bqlXT2kmuq6XXBemPj5nOFdPLBzajSKhxfdBoLK2eeAMyAcq
+ CyAV2LWexQPTAJ9BLRo3x4By9Kkd6gEIzJPReN/g+piL27ZqmTQ2lsXMd
+ G637JGX+bezr66UkPSOGT56+PlkPG7hPU+g/N7xC28TYrchs2Z49ix4I6
+ J7LsndjbJq41mQ+s97WAp45rSZWQeXaiNIJO0WfGJmT+4ECRXX3IYfTBX
+ nNgHDBPRnLQ+VdNX7eADwt3V/x5wsfQkv6TwyhtZ4InNdijwn9FuY4Lze w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="355983481"
+X-IronPort-AV: E=Sophos;i="6.01,158,1684825200"; d="scan'208";a="355983481"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Aug 2023 21:26:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="766641901"
-X-IronPort-AV: E=Sophos;i="6.01,158,1684825200"; d="scan'208";a="766641901"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga001.jf.intel.com with ESMTP; 08 Aug 2023 20:20:48 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10795"; a="681528428"
+X-IronPort-AV: E=Sophos;i="6.01,158,1684825200"; d="scan'208";a="681528428"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga003.jf.intel.com with ESMTP; 08 Aug 2023 21:26:36 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 8 Aug 2023 20:20:47 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.27; Tue, 8 Aug 2023 21:26:36 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 8 Aug 2023 20:20:47 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.27; Tue, 8 Aug 2023 21:26:35 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Tue, 8 Aug 2023 21:26:35 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.174)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 8 Aug 2023 20:20:47 -0700
+ 15.1.2507.27; Tue, 8 Aug 2023 21:26:35 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DjUozuOa00dkgO3H2zu8TG9PmfItfzFPo+1ImuVE0x7kdRmtD3n56Qx2HHzygd7enTAQymk0RLL04u6ihtfLWHXEYMK2Wz6XRR67OM5a6nyjmOylJx7IfxVavFCSjwk6zLi7bED/lFocy/P4zf2j4SRGupskE0E1NEK7TJHnVT18Pew2ow6DdleMyDyNQszy1F199n6Vqwez7GhbkS0u7dbypJKyBQVitbliUKRD0p5v8Hw0WNVVIcsTxYNWd6HuRsN9QOfvuluSZNB0i2Zpk5zBKu1zIDLLnfK8MmM/WLaud44r90cWvlbnc466Bu0z+KDni051YwW8wpmE3yKSAg==
+ b=EI04WutHrDWViPD623aMVyP5qUWIHqFBfGnevwmwoEjRPDZjxWcnyeLANNcyuPozh7DEjn2f5jDw0jGDQp8I9VpB65pos8LLvlegvMMhPx16weq/uas1bCaO1zTc7EK3xvQf0sSPsnSC3aLJ7LjyiYhROa+kgryupOGbup8qibCu1TQ2e6zCDHKRy2a1b4K2HQSh/6JJeAoZhoqdlsxE+u0ymssxDhPhCD2pokcr5AMGAkE5AruNz14u/s2mb7CvqwJlQECbN7CVGJLqxFkHFdskZNEyc1JwgoSEMZ4PspBjAp20i7t8+Cov0vUHQxjZIlOn5mMSYkX+GfHVWLOfZg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/qusBImiXyejEmc8La1+C8xDVS23DfIB0sEVjspct3s=;
- b=n4lVrBqjXNr6VbA/uD86b/URwhgsslX8rG4X/aC7AuUcMFkRzsdJqOP6Z22TD9r0J/FphDamPIkfUkm8fXm+lbw6bfN06Y2aEUhiHuHzovViGq5gRT3V1Lh85/hvgamHg7Qmd7COhPd6TtmCTyyU5bnB/pS0Qk6xeTIaXPANQGkeXTwhi2qcIneNIVYVqaKyxRqqoaD7UsCzv7M5N9iWy9H363baZRd5Xq3sH9XbKbOb1+98smtb0SD05kHqwK2V4RU9Rycx6WjeMo5QswakZ2ppB3v8D91pSGSCtdN8Qdw1B7+pSsDm/O22Xf4LJ9QvadmTvXK5X5VE2p6utEsZig==
+ bh=Cc/MizYK54m1qdfUIOIKNynVBd6lkRbxSj/2lI/LoJ0=;
+ b=bSx2L9sHw3qWLq6TZMhJDhbmUTqyZ3DVoXmlybZVe4wNLHVxgaOzkS/gGzrRz+pAsEaTjwSjciJDgrnKje0HBKyB4ob1LKlxq3wuv8/hY/fxcjgLnC1JGw7bUTxXhbwrnNNiWLjL4itAUXoFfOdJhIB3z2vhAi6hlp1wSHMqZPac77NWC9T+RXIGcwqXcQnUOrbwGkVGsvkgkLwJHSMZ0FC2oJR+zDcTpQ50Qx+s9m+zBvs0Bnv7mKLXGNAB1nJJYjZjhZwGZZZNy3QhfJk9Uashcfv1RwxQoFGNzuSGU6WBqsuGnirOtIfMKS7DVK98auLIW72195OxCucQT4tQeA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DS7PR11MB7833.namprd11.prod.outlook.com (2603:10b6:8:ea::11) with
+Received: from CH0PR11MB5474.namprd11.prod.outlook.com (2603:10b6:610:d5::8)
+ by MN0PR11MB6110.namprd11.prod.outlook.com (2603:10b6:208:3ce::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.26; Wed, 9 Aug
- 2023 03:20:46 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::538f:8837:abce:4522]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::538f:8837:abce:4522%4]) with mapi id 15.20.6652.026; Wed, 9 Aug 2023
- 03:20:46 +0000
-Date: Wed, 9 Aug 2023 03:19:34 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: David Kershner <david.kershner@intel.com>
-Message-ID: <ZNMFxiwk0gYBI0Zn@DUT025-TGLU.fm.intel.com>
-References: <20230808164534.1027552-1-david.kershner@intel.com>
- <20230808164534.1027552-2-david.kershner@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230808164534.1027552-2-david.kershner@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0099.namprd03.prod.outlook.com
- (2603:10b6:a03:333::14) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+ 2023 04:26:33 +0000
+Received: from CH0PR11MB5474.namprd11.prod.outlook.com
+ ([fe80::a581:e6a4:d186:c153]) by CH0PR11MB5474.namprd11.prod.outlook.com
+ ([fe80::a581:e6a4:d186:c153%7]) with mapi id 15.20.6652.026; Wed, 9 Aug 2023
+ 04:26:33 +0000
+Message-ID: <8220ad17-1624-5476-3207-0b5043b845c7@intel.com>
+Date: Wed, 9 Aug 2023 09:56:20 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.14.0
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20230627122113.1472532-1-aravind.iddamsetty@intel.com>
+ <20230627122113.1472532-3-aravind.iddamsetty@intel.com>
+ <87cz0mqdpi.wl-ashutosh.dixit@intel.com>
+ <f4f6c8f9-a97d-6072-cf0c-4122b3d4f93f@intel.com>
+ <877cqsrg65.wl-ashutosh.dixit@intel.com>
+ <875y6cqy6p.wl-ashutosh.dixit@intel.com>
+ <8fd9bc04-b737-0acd-a0c9-4f163c1a117c@intel.com>
+ <87351dqpcr.wl-ashutosh.dixit@intel.com>
+ <42bb140d-2faf-43d3-a027-fe430b3682e5@intel.com>
+ <87zg3lp8y5.wl-ashutosh.dixit@intel.com>
+ <500331df-d95b-d447-18e6-d0f198570072@intel.com>
+ <87o7jiy2lw.wl-ashutosh.dixit@intel.com>
+ <87msz2xzky.wl-ashutosh.dixit@intel.com>
+ <d2c664b8-f7de-1c66-4f5b-42358fa322d7@intel.com>
+ <87il9py349.wl-ashutosh.dixit@intel.com>
+From: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
+In-Reply-To: <87il9py349.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0066.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:99::15) To CH0PR11MB5474.namprd11.prod.outlook.com
+ (2603:10b6:610:d5::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DS7PR11MB7833:EE_
-X-MS-Office365-Filtering-Correlation-Id: 66687d80-3447-4f42-2670-08db98879f04
+X-MS-TrafficTypeDiagnostic: CH0PR11MB5474:EE_|MN0PR11MB6110:EE_
+X-MS-Office365-Filtering-Correlation-Id: 06923bbd-16a7-4228-c1df-08db9890cf79
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: CvJkQRIEEpDujgCOLsaYtUnIyvXPENJ0sRrqSQlLZj4njOsxPDrDG40HOSq8/oUMvOqY3cyYd77AfFTaNgdJm0Aq38ZwvxX8LrnGv/oh9Q/ht6QxL98BS1c+z8fi3PK5rywKBQwX5MVtxSlvMTtBFXuQc6htgtiCYL6H1J2DwBMUDEfUXK/vTHEe1QCVLzaWgW3vChlQRFB0dta/9g/VsQETc7FjQPMCtWyAQp79HsV7KOLlorOln0LwUYHOCzAAhXKcqcOdxLFpu/7t+yZQUQJ1gcPxmUcl6r2Anq0vasqsLiVHhIsQRgf922zYiw5WSTDN/YL1q+Vl/jfdBFsFonUKFzwAqXyLk8h1DtfIa5tDU19swG4NfOALh+ZUzZtpjKvCnXAxC1doAFbPUDyc96x88SwXxFfdZ3uFzmU2xpSmAXjeSTQlK+TxotPFTS8KJR26m7n+GPwbgT/CxgiBKWEpfRQJ6IALZ/ut5dqoC/+EVBDx+6bL7XXDVMItGzNSxgm5R3bU7ewUZJIExZGVCh4fPAlZ1FJFh4c/cK3QriMk/f44q6lZjk+Js/HEtIvu
+X-Microsoft-Antispam-Message-Info: cpIZab8A6ujf+5cy/QfLtIFMYDKktDhMpkHMDGlx3lRigj7PvHoqSH+zGb/FPys1eP9BdUMrFWOh4ckJZ8Pg+DeMDmbrhVhgsv9JBW+kkT/8Jm8fBfrWqxV5PMlFEYXqP1mD2Gq0UtpmgKUKZLEG9n15yQk33K3lR5OCsyw3VwiMXgtg0yi2+nCnFotHltj0akIbnIU0mEZ741O8gWPHHa7Os0DHWNLGzkidiFtP0fqc0Km7MQMY4vY25KtuL/B1YGkumPb78jSfTXuCsfBfY8wuyYCWvUbnZyJDL9rLfG8KXuhS0uomB2SNuBc13G2RMrn13p3IXuxy9uDNOXpcomuqDnBmIbTVT8BMrCmeSdm0c0QUimxsdL3DSpQskDlOhCh0fUpsdS2Qj0gLayy/+ARsNueGZf8neh2t/y2aHVaj1nuxzUQ41u7RkoIQgrMBudnTsOAn3fWhVdjd/J9iAfu9cBdj5UHpeL8PpZZ29w8AsD+fEIm5V+inHA/6RDzkke6/rCD9iScougx4Cz9Uz3QiGiTP44KrEZnje3HL0bigXthJfIcrhY/xc0XIDxgzCzNBUW0pJGcxdX6zYDzJWeGZ0EvJ83b2WKm1+T505pa6yMWS1nEQ28osTqAJw8xI+LfJnAQqn0xWGxtm2LmXPw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(6029001)(136003)(376002)(346002)(39860400002)(366004)(396003)(451199021)(1800799006)(186006)(6666004)(6486002)(86362001)(82960400001)(478600001)(6512007)(26005)(6506007)(107886003)(316002)(5660300002)(44832011)(8676002)(8936002)(38100700002)(6636002)(4326008)(2906002)(6862004)(66476007)(41300700001)(66556008)(66946007)(83380400001);
+ IPV:NLI; SFV:NSPM; H:CH0PR11MB5474.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(366004)(396003)(346002)(39860400002)(376002)(136003)(186006)(1800799006)(451199021)(83380400001)(31686004)(2616005)(66899021)(54906003)(38100700002)(6636002)(4326008)(5660300002)(316002)(8676002)(6862004)(8936002)(66476007)(66556008)(66946007)(478600001)(82960400001)(31696002)(6666004)(37006003)(6486002)(41300700001)(2906002)(107886003)(26005)(53546011)(36756003)(6512007)(6506007)(86362001)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ld3wHkpm0WUkmnwhMnRdaaaSIqYoi+w75ORzkvfQ/pjb5ObEKrHzKPEO9q?=
- =?iso-8859-1?Q?w5C+BGxlDZSoNJRok5M38+RgNvB7g7dNQIQbZA4SCOrTidHRUlKAvoqZbP?=
- =?iso-8859-1?Q?l9p7DbiGdqrjMCEtD/Nj8N45CRunMq3NCOEhAyoieg1OF2DZO3Uzzmu/N6?=
- =?iso-8859-1?Q?q8hNfwqQvsPTRe+7ylt5VgZCCwKXJ2HsubVhPf3wXNGjMFDVAkbJSs0o3S?=
- =?iso-8859-1?Q?zs4Gnx596AZnmWFual+e9QJqMr0P4sB9x6cx91Gk9PFdXNVvqnvd4+AdRz?=
- =?iso-8859-1?Q?uhJp2psXmDGd9R91UZoKOLgHHMQS7wnSyQjhjJ8EjJwNbG+r4BSgrNoNYg?=
- =?iso-8859-1?Q?XPBUF+mHuK8xsftWJSPx7SyTdHIMViltvZoAVxbMoAmSqauziUAnXHTa6D?=
- =?iso-8859-1?Q?nekShV8HIN7TQ/wlVQh49kkOf1LXqZ1ezJHf8qdE3jq6DSEqZ2SNCY6tA/?=
- =?iso-8859-1?Q?anqDGAsdpt3O+FwT0AOi0Ex+r9ocbQGuuHSnfG8+lZpRTxjeK75lVIHBZo?=
- =?iso-8859-1?Q?XWyGu0cUbw5sPNqglALYpb6z6cVd0Mhz8SWnZabD6++ykUIE6JNhH2NKcr?=
- =?iso-8859-1?Q?5uw8Sxt9+CjiZBCor0m3RuQmWAKzfqzlgJadSnRV9MnaknSlAMB4mF+AT0?=
- =?iso-8859-1?Q?8k70wnVSxdLP93ZzcOUtqB9OoIDsj+3UYFMUBF6LRvf5FYyrUVKAxmW1ff?=
- =?iso-8859-1?Q?yDoUknsm1gtzh9kBGpkUEWNwQ3ogDUK8Y2oFD4SEQx0eONexdmQWB26pDj?=
- =?iso-8859-1?Q?FEuqsfAeAlnVWuL944HTA9RHWd0BVW8iCeERMS6f1Jn5W9nYH91xZP3UOO?=
- =?iso-8859-1?Q?JMEpW5wOy9Yu/IUccqV/lfPq1YDu9ZCMB7a2VmXv9+2UIoJ7aE56JBwmpL?=
- =?iso-8859-1?Q?gxTMOeMbHKBpEdWA8ANe7Sydl50PvnNcxGrI6NAB4bcqdg74Cbj+etR/su?=
- =?iso-8859-1?Q?DCC2CtgpFIZJ/Cm7vGODa3ZHJRdZ4z2G3Bk/Kpd9ceWoAfUA+hqFdUaiMw?=
- =?iso-8859-1?Q?9erW6m0wKFLMygHb4NePmR+xOrKYv9crM+BIX2ZebMhSpyfom0fUYFRQwi?=
- =?iso-8859-1?Q?yoOVS//kthHrGoDDcU6RH6/XhVE5GCwNvcJLMqyFr33KUNyqrhouQ5hBqS?=
- =?iso-8859-1?Q?/e8unG5XKP8KCgZgq9e/e8M/UG2MMChx+lunL6Q3fmwv7Emuq7qx12JbhY?=
- =?iso-8859-1?Q?cM187Rz2uiAvU4dAcLfmoA/8QdJKpLQfalxFASqEyfR2Mh3DJgrl93QZW8?=
- =?iso-8859-1?Q?H6q9QYTzLRIzTUTAQEnBPX1BDMN4QqAz7uCKo8TLqw8Es6dk1m6+hZxHJJ?=
- =?iso-8859-1?Q?9I53Zasl7cL4OrxHhEvCVXhA8YYTL0Cn6OoMJFC9ckGkmjDgf39vQaV2qy?=
- =?iso-8859-1?Q?yeYIy3rplB1zK55/pb/Mt6yaNebYCqClLmq4kq1D2Be5PLMeKr5TuGkj9J?=
- =?iso-8859-1?Q?LMLrEJ2lnN4EKbCi4RDsNtM3PmziZ4vlyFWFszNVLe/1CnVSkLmSt0Efv/?=
- =?iso-8859-1?Q?JXGuDtfp0fyjHrNFOmTrpidLn7zV0e6IHzi8F767CMeRbpHtdtZ9sATqC3?=
- =?iso-8859-1?Q?/iXrbHg2ZvyxQLJ45xkcbeYs4WV3KbHZENO3h2IvfwG7AKb+sAyBKPQYYa?=
- =?iso-8859-1?Q?l0gt4nFJWrnhfUQAZTyzCHeGFO4O8oSv2/CW1Z2nSPdsFkCpraOk0l8Q?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 66687d80-3447-4f42-2670-08db98879f04
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1A4RXhWRVY2U3BKcnNQNkwxeUFwYlAzZ1RHZ0gyZTdIUFFyK1k0ZTlhQmFE?=
+ =?utf-8?B?eloyUWNjeFBTcjgybkMxbzkyaHM0K3NrL2ZveG9NWjNqcTEwaEZXMHE2VEVM?=
+ =?utf-8?B?UmxzNWtObUlDREQrQzQ0Mk1seGUzZUc5U2s3SkhHOVFTOGJjQ3REY3JybVpV?=
+ =?utf-8?B?djVvdVZQQVhVbmNHaXl3S29DTUpQQkVaRGdFQ3JrQXF3eC9LamNOWmlUdWZO?=
+ =?utf-8?B?N0lGVjRqcUwzTU5OZEYyVG8xRWw4TEdJMDl3eFBWaCt4cG5kYjU5RGErOGpx?=
+ =?utf-8?B?QW12dFYwS0NjaE9GSm5xTUV3enRDa3NVdzRDQkVGS01KQTc4SnRaSWVpbzJF?=
+ =?utf-8?B?UmxTbFoydXNVdWppNm13YllBcjVDOTY0SWVGa0s5YW1yQ1djdS93enlyLzVG?=
+ =?utf-8?B?cG9TTzJmdnlWdjFSRlZHaGd3R1lySXBSVU5JK3dZMk54K0ROL1JaYkVqZmJ6?=
+ =?utf-8?B?QlZMQ0ptVDU3MkYra1RTcmJ1azdTNHVqSWtkVm9scDdZT1pqMUFRYlNEcXQ4?=
+ =?utf-8?B?ZnBBcDA1Wk9YZlY5M1Y2VEcydWNrTTFmcDZPVkFrZmpaRGZoTVJuU0JTa2tJ?=
+ =?utf-8?B?cW5XaitSZUxnaVFYb3haQnlDMEhJOG5JcTRqVmozb2plR0ZVc1EzMkRQelhN?=
+ =?utf-8?B?Ym1JM2VnQ3AzYWllY0FMditIMHB5UXlad0lLSjZsY3dNVmdadE94Z3pwTStV?=
+ =?utf-8?B?WHRvVDd4ZHVNUWJITWhSZXJ4L09JN3VBTFpwTlVqeGhMVS91QTFKSXAvOCs0?=
+ =?utf-8?B?UnRPZUJRQmxwT2pYZDFFajVqNW5aUjdRT3l3d0pUYXc3dllmM2ZQay9OZU9O?=
+ =?utf-8?B?RHVPc21jMU1jc3JhaTEwZnJ5YlNDaG9jMFozRlowbCtReEJtRkZzZE9lbXBW?=
+ =?utf-8?B?eExjc2l5TDBlUXZRRnV1ZFo5TmJyWGZLVmV0enhqSWhmWGdsQjEzUDUrd1g3?=
+ =?utf-8?B?dXZ3V0R5YjNMYWROSXV6MUpkSm56YU1kWGpLZW9CMGJYek5JanBxdWw1YXBj?=
+ =?utf-8?B?OTBQbnQ2Kzg4aVpNK0hldXQzSVNUYkNJMVN6WHFwK3RIMTUwSm5Wc2FES3RH?=
+ =?utf-8?B?M0RYYWZJOWZtN1JhRUtzUzNGdmY1UmtVazdqTlpPdE9sblZqNTdIbWRqMHhK?=
+ =?utf-8?B?R2g1bUF5dWowSG1nemk5RzFrdUk2VndTQzZnTVJyNWdhSEZKU0JnM0pweU5n?=
+ =?utf-8?B?VXE3RTFvTTNJTldxRGxWOUUxZSsxNzVWQjVaMVNXWXJVNkdPcEVENmpweVZw?=
+ =?utf-8?B?SkF5RGw1R0l6cTFLS0ZScnk4YzR0L2hGQThqaFg4dFl1amMwdmdJMVdHcjFp?=
+ =?utf-8?B?c3RyTzBqd2JCcjJjd09XNDAvL01WY3NmRnhtTUlMeWhidXJ6bDFFY2Q3K2VX?=
+ =?utf-8?B?WkFvSFdQUnJTaVVHaERjNXV6RVY0c05qMGZsblIyd2xwSjB5R1BxVGxPYTRu?=
+ =?utf-8?B?Qnc1TkkzMjlFUDNVQ3JIREc4QjFpSVpkeUFtYXJIT3BXSXNjQU5mTVFBd3Vq?=
+ =?utf-8?B?RmNMd0RhMnZ2a0pKay9HbGc3T3BIdEtIM29GZ3RvWklueStoRTM1QVhqQ0N5?=
+ =?utf-8?B?V0RFa1lpY3ZWdXh5dzZ0bExVOGNKeTVQanJwM2t1QTd4b1pUYzFhZWl6MWlC?=
+ =?utf-8?B?L0tkY2NxTUp6WGo1dEY3dHFMdCtLRGRiUkRDc3JSYlRPaDBzeEo1K0ttRzh2?=
+ =?utf-8?B?SWtqckRWVnBtbmUxMmRIRHEva3ZlQ3lpMmJvU0JhQVlFWXYzVkhRUlYrRXNU?=
+ =?utf-8?B?YmtxZVRWcnJVd2t5OUUwcXlzVzRGM2VEdklPRHZuaTJldGRLQ1B6MjVKb3Vp?=
+ =?utf-8?B?ZHlTQVl1SXhlN0o5QmpNNXp6ZW5wc0JOaldRdmQ4bjEwZkJvK25LRXRjS2RJ?=
+ =?utf-8?B?S1NTRG9lb0pJeXBaNmNNQVFrVE0xZU92LzRhcXlpNmUzeEVlZUlHYmozb2t2?=
+ =?utf-8?B?QlBNenM2QWdzcXRGZlB1bGtMYkNObkJrL0xDYStjdm1SQ3BHSXhybklQSzN5?=
+ =?utf-8?B?VlJNdHhZeDRQdnNFM3hwQU9rbHBsOFd6ZHZRdldLcXhOZTNyd3VPR1FQem5U?=
+ =?utf-8?B?REFFcjFCUXVNbTNsQU85bGFKNElCbk1wTzIyM2g5THZySG00dHJ1K0xLb3FI?=
+ =?utf-8?B?aVdSNi9LR1dXMnltL1lGd3p3MHYrcVJucVdkR1hXVkNsRnJMKy93UjNDbmFB?=
+ =?utf-8?B?T2c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 06923bbd-16a7-4228-c1df-08db9890cf79
+X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5474.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2023 03:20:46.0163 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Aug 2023 04:26:33.0875 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3/eHhEDLgnlG9c0gKeuB8APDmMoHUnCKq9V1tdwSWScNX8E+dXLHJ8bBvDWgmrWAN0H3RlWNK1NO71EZosJf2w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7833
+X-MS-Exchange-CrossTenant-UserPrincipalName: 47xp4cDdZLt8UZIoW5gWqyUzKnW+1XLaEnL6asUNjyrinP1/ryEJY0xK+4Nf/HEDt8asNsO5jnZGUd+o/gxnUGLbRRZphtYf3EnDR285kKg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6110
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/3] drm/xe: Introduce a module parameter to
- control XeLink
+Subject: Re: [Intel-xe] [PATCH v2 2/2] drm/xe/pmu: Enable PMU interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,70 +171,189 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: lucas.demarchi@intel.com, john.fleck@intel.com, rodrigo.vivi@intel.com,
- matthew.d.roper@intel.com, intel-xe@lists.freedesktop.org
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ intel-xe@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 08, 2023 at 12:45:32PM -0400, David Kershner wrote:
-> Add a new module parameter to control enable/disable of the XeLink
-> feature.
+
+
+On 08-08-2023 20:48, Dixit, Ashutosh wrote:
+
+Hi Ashutosh,
+> On Tue, 08 Aug 2023 06:45:36 -0700, Iddamsetty, Aravind wrote:
+>>
 > 
-> Signed-off-by: David Kershner <david.kershner@intel.com>
-> ---
->  drivers/gpu/drm/xe/Makefile    |  3 ++-
->  drivers/gpu/drm/xe/xe_xelink.c | 17 +++++++++++++++++
-
-I find the name 'xe_xelink' kinda offensive. This is just an opinion but
-can we find a better name?
-
-xe_fabric_link?
-xe_link?
-
-Open to other ideas.
-
-Matt
-
->  2 files changed, 19 insertions(+), 1 deletion(-)
->  create mode 100644 drivers/gpu/drm/xe/xe_xelink.c
+> Hi Aravind,
 > 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 1b59702cd9f9..d46558cf12a9 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -115,7 +115,8 @@ xe-y += xe_bb.o \
->  	xe_vm_madvise.o \
->  	xe_wait_user_fence.o \
->  	xe_wa.o \
-> -	xe_wopcm.o
-> +	xe_wopcm.o \
-> +	xe_xelink.o
->  
->  # i915 Display compat #defines and #includes
->  subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
-> diff --git a/drivers/gpu/drm/xe/xe_xelink.c b/drivers/gpu/drm/xe/xe_xelink.c
-> new file mode 100644
-> index 000000000000..51a31f6a4740
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_xelink.c
-> @@ -0,0 +1,17 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#include <linux/moduleparam.h>
-> +
-> +/*
-> + * This module parameter is needed because SRIOV PF and XeLink are mutually
-> + * exclusive. The driver needs to be able to enable/disable the XeLink
-> + * infrastructure (specifically Device Physical Addressing).  Since there
-> + * will be no enable/disable for the SRIOV PF path, this parameter is
-> + * needed to explicitly disable XeLink when SRIOV PF is required.
-> + */
-> +static bool xe_enable_xelink = true;
-> +module_param_named(enable_xelink, xe_enable_xelink, bool, 0400);
-> +MODULE_PARM_DESC(enable_xelink, "Enable XeLink feature (default: true)");
-> -- 
-> 2.35.1
+>> On 08-08-2023 03:52, Dixit, Ashutosh wrote:
+>>> On Mon, 07 Aug 2023 14:16:59 -0700, Dixit, Ashutosh wrote:
+>> I have sent a new revision, but commenting here for few comments.
+>>>
+>>>> On Tue, 25 Jul 2023 04:38:45 -0700, Iddamsetty, Aravind wrote:
+>>>>> On 24-07-2023 22:01, Dixit, Ashutosh wrote:
+>>>>>> On Mon, 24 Jul 2023 09:05:53 -0700, Iddamsetty, Aravind wrote:
+>>>>>>>
+>>>>>>>>> On 22-07-2023 11:34, Dixit, Ashutosh wrote:
+>>>>>>>>>>> On Fri, 21 Jul 2023 16:36:02 -0700, Dixit, Ashutosh wrote:
+>>>>>>>>>>> On Fri, 21 Jul 2023 04:51:09 -0700, Iddamsetty, Aravind wrote:
+>>>>>>>>>>>>>> +void engine_group_busyness_store(struct xe_gt *gt)
+>>>>>>>>>>>>>> +{
+>>>>>>>>>>>>>> +	struct xe_pmu *pmu = &gt->tile->xe->pmu;
+>>>>>>>>>>>>>> +	unsigned int gt_id = gt->info.id;
+>>>>>>>>>>>>>> +	unsigned long flags;
+>>>>>>>>>>>>>> +
+>>>>>>>>>>>>>> +	spin_lock_irqsave(&pmu->lock, flags);
+>>>>>>>>>>>>>> +
+>>>>>>>>>>>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_RENDER_GROUP_BUSY,
+>>>>>>>>>>>>>> +		     __engine_group_busyness_read(gt, XE_PMU_RENDER_GROUP_BUSY(0)));
+>>>>>>>>>>>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_COPY_GROUP_BUSY,
+>>>>>>>>>>>>>> +		     __engine_group_busyness_read(gt, XE_PMU_COPY_GROUP_BUSY(0)));
+>>>>>>>>>>>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_MEDIA_GROUP_BUSY,
+>>>>>>>>>>>>>> +		     __engine_group_busyness_read(gt, XE_PMU_MEDIA_GROUP_BUSY(0)));
+>>>>>>>>>>>>>> +	store_sample(pmu, gt_id, __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY,
+>>>>>>>>>>>>>> +		     __engine_group_busyness_read(gt, XE_PMU_ANY_ENGINE_GROUP_BUSY(0)));
+>>>>>>>>>>
+>>>>>>>>>> Here why should we store everything, we should store only those events
+>>>>>>>>>> which are enabled?
+>>>>>>>>>
+>>>>>>>>> The events are enabled only when they are opened which can happen after
+>>>>>>>>> the device is suspended hence we need to store all. As in the present
+>>>>>>>>> case device is put to suspend immediately after probe and event is
+>>>>>>>>> opened post driver load is done.
+>>>>>>>>
+>>>>>>>> I don't think we can justify doing expensive PCIe reads and increasing the
+>>>>>>>> time to go into runtime suspend, when PMU might not being used at all.
+>>>>>>>>
+>>>>>>>> If we store only enabled samples and start storing them only after they are
+>>>>>>>> enabled, what would be the consequence of this? The first non-zero sample
+>>>>>>>> seen by the perf tool would be wrong and later samples will be fine?
+>>>>>>>
+>>>>>>> Why do you say it is wrong perf reports relative from the time an event
+>>>>>>> is opened.
+>>>>>>
+>>>>>> I am asking you what is the consequence. Initial values will all be zero
+>>>>>> and then there is some activity and we get a non zero value but this will
+>>>>>> include all the previous activity so the first difference we send to perf
+>>>>>> will be large/wrong I think.
+>>>>>
+>>>>> correct if we just store the enabled events in suspend, any other event
+>>>>> will have 0 initial value and when we read the register later it will
+>>>>> have all the accumulation and since past value we have is 0 we would end
+>>>>> up reporting the entire value which is wrong.
+>>>>
+>>>> Ok, agreed, so we need to do "something".
+>>>>
+>>>>>
+>>>>>>
+>>>>>>>
+>>>>>>>>
+>>>>>>>> If there is a consequence, we might have to go back to what I was saying
+>>>>>>>> earlier about waking the device up and reading the enabled counter when
+>>>>>>>> xe_pmu_event_start happens, to initialize the counter values. I am assuming
+>>>>>>>> this will work?
+>>>>>>>
+>>>>>>> xe_pmu_event_start can be called when device is in suspend so we shall
+>>>>>>> not wake up the device i.e event being enabled when in suspend, so if we
+>>>>>>> do not store while going to suspend we will not have any value to
+>>>>>>> consider when event is enabled after suspend as we need to present
+>>>>>>> relative value.
+>>>>>>
+>>>>>> That is why I am saying wake up the device and initialize the counters in
+>>>>>> xe_pmu_event_start.
+>>>>>
+>>>>> Afaik since PMU doesn't take DRM reference we shall not wake up the
+>>>>> device.
+>>>>
+>>>> Not sure what you mean because PMU does do this:
+>>>>
+>>>> 	drm_dev_get(&xe->drm);
+>>
+>> sorry it was my misunderstanding here, please ignore.
+>>
+>>>>
+>>>> Anyway I don't think it has anything to do with waking up the device since
+>>>> that is done via xe_device_mem_access_get.
+>>>>
+>>>>> if we were allowed to wake up the device why do we even need to
+>>>>> store during suspend. when ever PMU event is opened we could wake up the
+>>>>> device and read the register directly.
+>>>>
+>>>> No. That is why we are saving the counters during suspend so we don't have
+>>>> to wake up the device just to read the counters. So the issue is only how
+>>>> to *initialize* the counters.
+>>>>
+>>>> You are saying we initialize by saving all counters during suspend, whether
+>>>> or not they are enabled, which I don't agree with. I am saying we should
+>>>> only read and store the counters which are enabled during normal
+>>>> operation. And to initialize we wake the device up during
+>>>> xe_pmu_event_start and store the counter value. Alternatively, we can zero
+>>>> out the enabled counters during xe_pmu_event_start (the counters are RW)
+>>>> but in any case that will also need waking up the device.
+>>
+>> when the driver is initially loaded there might not be any users of
+>> device and immediately it might enter suspend, so at the time of suspend
+>> there no event enabled, but the pmu can be opened just after suspend
+>> wihtout any actual work on device so device still resides in suspend, so
+>> we should not be waking the device just to read the register in
+>> event_start or any of the callbacks without any real workload or user of
+>> the device.
+>>
+>> so ideally if the device didn't enter suspend, the counter is
+>> initialized in the first read when device is still awake.
 > 
+> Yes, I understand. But the issue is why are we reading (doing expensive
+> reads across PCIe) and saving all these registers for PMU when it's
+> possible PMU might not be used at all and none of these events might be
+> enabled at all?
+> 
+> So to me the lesser evil is to wake up the device at xe_pmu_event_start
+> time and initialize the counters. We are only waking the device up once at
+> init time, not during normal operation. Whereas in your case, you are
+> reading and saving these registers continuously each time we suspend,
+> whether or not PMU is or will be used.
+
+I'm not sure which is costly saving the registers during suspend or
+waking the device on even_init we shall remember that the same event can
+be opened by multiple listeners so that will make the device wake up
+multiple times had the device got suspended in between opening those events.
+
+and suppose if we do multiple PCIe reads are you suspecting it will
+affect any timing requirements if the suspend has any and I have little
+doubt there if PCIe reads will take so long to miss any timings atleast
+in this case. But anyways as you said we can take this up later, if we
+know we will be adding more such counters in future.
+
+Thanks,
+Aravind.
+> 
+>>>> So this way we only wake up the device for initialization but not
+>>>> afterwards.
+>>>>
+>>>> Since this is the "base" patch we should try to set up a good
+>>>> infrastructure in this patch so that other stuff which is exposed via PMU
+>>>> can be easily added later.
+>>>
+>>> After thinking a bit more about this, though I think this needs to be done,
+>>> I won't insist that we do this in this patch, we can review and do this in
+>>> a subsequent patch (if no one else objects).
+>>>
+>>> So let's skip this for now. So if you can generate a new version of the
+>>> patch after addressing all of the other review comments, we can review that
+>>> again and try to get it merged.
+>>>
+>>> Thanks.
+>>> --
+>>> Ashutosh
+>>>
+>>>>>>>>
+>>>>>>>> Doing this IMO would be better than always doing these PCIe reads on
+>>>>>>>> runtime suspend even when PMU is not being used
+>>>>>>>
+>>>>>>> we have been doing these in i915 not sure if it affected any timing
+>>>>>>> requirements for runtime suspend.
+>>>>>>
+>>>>>> Hmm i915 indeed seems to be reading the RC6 residency in __gt_park even
+>>>>>> when RC6 event is not enabled or PMU might not be used.
+>>>>>>
+>>>>>> @Tvrtko, any comments here?
