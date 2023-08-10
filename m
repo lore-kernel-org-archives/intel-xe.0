@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C3E9C001DB
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Aug 2023 13:34:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3639C001B0
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Aug 2023 14:12:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4732F10E194;
-	Thu, 10 Aug 2023 13:34:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78DF810E19A;
+	Thu, 10 Aug 2023 14:12:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BC5EC10E194;
- Thu, 10 Aug 2023 13:34:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id BCBD010E19E;
+ Thu, 10 Aug 2023 14:12:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B881EAADE3;
- Thu, 10 Aug 2023 13:34:25 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B464DAADFC;
+ Thu, 10 Aug 2023 14:12:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Thu, 10 Aug 2023 13:34:25 -0000
-Message-ID: <169167446575.4959.1770610966401693431@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 10 Aug 2023 14:12:25 -0000
+Message-ID: <169167674571.4958.6684438972572447021@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230809190453.1927134-1-jani.nikula@intel.com>
-In-Reply-To: <20230809190453.1927134-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_s?=
- =?utf-8?q?eries_starting_with_=5Bv2=2C1/9=5D_drm/i915/display=3A_add_I915?=
- =?utf-8?q?_conditional_build_to_g4x=5Fhdmi=2Eh_=28rev2=29?=
+References: <20230808091903.114939-2-matthew.auld@intel.com>
+In-Reply-To: <20230808091903.114939-2-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_drm/xe/guc=5Fsubmit=3A_fixup_deregister_in_job_timeout?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,28 +46,22 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [v2,1/9] drm/i915/display: add I915 conditional build to g4x_hdmi.h (rev2)
-URL   : https://patchwork.freedesktop.org/series/122242/
-State : warning
+Series: drm/xe/guc_submit: fixup deregister in job timeout
+URL   : https://patchwork.freedesktop.org/series/122147/
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast f33dda969aa35b8630410f712179c9c2211c14f4
-/root/linux/maintainer-tools/dim: line 50: /root/.dimrc: No such file or directory
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: f33dda969 drm/xe: skip rebind_list if vma destroyed
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_guc_submit.c:881
+error: drivers/gpu/drm/xe/xe_guc_submit.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe/guc_submit: fixup deregister in job timeout
+Patch failed at 0001 drm/xe/guc_submit: fixup deregister in job timeout
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
