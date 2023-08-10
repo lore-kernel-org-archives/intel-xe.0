@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8DC32C04A6A
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Aug 2023 05:03:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B612C04E69
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Aug 2023 05:03:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39D5810E159;
-	Thu, 10 Aug 2023 05:03:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F2CB10E4B2;
+	Thu, 10 Aug 2023 05:03:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2615110E154
- for <intel-xe@lists.freedesktop.org>; Thu, 10 Aug 2023 05:03:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB30610E159
+ for <intel-xe@lists.freedesktop.org>; Thu, 10 Aug 2023 05:03:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691643798; x=1723179798;
+ t=1691643797; x=1723179797;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NBoumZX7EHusgY5eSF47eVgeE99q+AlTO/DI5AQkoDE=;
- b=PAjelgCmluZ05JiMyMdPYdevXgGJrPbqQgLc10uLhFEepaPyZFaLUyM8
- UERauYCwApgnLGMAlzlAFwhk5XGjphbkkSrtHRXmEUSQORyeWPz3/X+Vu
- wmoSZweedVyiLtFdwk6gfn/v55+n5d+Yv98HlmeKAN23mPR30RnyQa1oA
- yk6uHh1fl8PK1oY6/h93+CZ0yLg4EShgSZ0+Ve/U7T/X4V9kexH7ZBPgz
- 9eJwJkVWn2vVFwm77K8uThmrOufYmed/oBWTzxPNqPiCH2cF4JtiblToQ
- /ajv5nE39yu7IzRBA+2snXk6Ps99ioS9Yv2mlBS5P/3uB3AiH/pRxeajl A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="374077059"
-X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="374077059"
+ bh=fKedghBTb9s2ZiuwRh2vph0gRb6DaFLfy5Zu1zLXpNI=;
+ b=RS/wxMG/KqCikTV0tcRiYSaFGkf1m9kCqtDgPLVd8pLB57P5Q9luyd8T
+ iABSw1zXRXj1gHv6j4P4QaiER5MKFTaSgtZ88IDhySJS28Dyf72Lntksz
+ JfVjgM/5FnoEOHVnrjIALZkRJsJ7hi4JsumV0mEhnWTwfunyHBa1AIajy
+ BZtC2JDOxzuKcL6cGTDc3jXs8UK147i/ml4MoiRBYbfP2C35F9lWfgvvM
+ fWkftko8mIxgxCv4PKBwszi8ZADfEPy3f98H5qzf10g5l0oJsjNwvYUZr
+ r1q7Qm31PVdrOQEn0OsGZ+ZMD3JXxdViyTpmPxJ4uCuXEkkVX9n/xOtSS Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="374077063"
+X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="374077063"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Aug 2023 22:02:57 -0700
+ 09 Aug 2023 22:03:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="725652094"
-X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="725652094"
+X-IronPort-AV: E=McAfee;i="6600,9927,10797"; a="725652108"
+X-IronPort-AV: E=Sophos;i="6.01,161,1684825200"; d="scan'208";a="725652108"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga007.jf.intel.com with ESMTP; 09 Aug 2023 22:02:54 -0700
+ by orsmga007.jf.intel.com with ESMTP; 09 Aug 2023 22:02:57 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 10 Aug 2023 10:37:52 +0530
-Message-Id: <20230810050755.715775-2-himal.prasad.ghimiray@intel.com>
+Date: Thu, 10 Aug 2023 10:37:53 +0530
+Message-Id: <20230810050755.715775-3-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230810050755.715775-1-himal.prasad.ghimiray@intel.com>
 References: <20230810050755.715775-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/4] drm/xe: Handle errors from various
- components.
+Subject: [Intel-xe] [PATCH v2 2/4] drm/xe: Log and count the GT hardware
+ errors.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,22 +63,10 @@ Cc: Jani Nikula <jani.nikula@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GFX device can generate numbers of classes of error under the new
-infrastructure: correctable, non-fatal, and fatal errors.
+For the errors reported by GT unit, read the GT error register.
+Log and count these errors and clear the error register.
 
-The non-fatal and fatal error classes distinguish between levels of
-severity for uncorrectable errors. Driver will only handle logging
-of errors and updating counters from various components within the
-graphics device. Anything more will be handled at system level.
-
-For errors that will route as interrupts, three bits in the Master
-Interrupt Register will be used to convey the class of error.
-
-For each class of error: Determine source of error (IP block) by reading
-the Device Error Source Register (RW1C) that
-corresponds to the class of error being serviced.
-
-Bspec: 50875, 53073, 53074, 53075
+Bspec: 53088, 53089, 53090
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
@@ -88,350 +76,185 @@ Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Cc: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_regs.h            |   7 +
- drivers/gpu/drm/xe/regs/xe_tile_error_regs.h | 108 +++++++++
- drivers/gpu/drm/xe/xe_device_types.h         |   6 +
- drivers/gpu/drm/xe/xe_irq.c                  | 220 +++++++++++++++++++
- 4 files changed, 341 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+ drivers/gpu/drm/xe/regs/xe_gt_error_regs.h |  48 ++++++++++
+ drivers/gpu/drm/xe/xe_gt_types.h           |   6 ++
+ drivers/gpu/drm/xe/xe_irq.c                | 103 +++++++++++++++++++++
+ 3 files changed, 157 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_gt_error_regs.h
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index ec45b1ba9db1..9901e55fc89c 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -87,7 +87,14 @@
- #define   GU_MISC_IRQ				REG_BIT(29)
- #define   DISPLAY_IRQ				REG_BIT(16)
- #define   GT_DW_IRQ(x)				REG_BIT(x)
-+#define   XE_ERROR_IRQ(x)			REG_BIT(26 + (x))
- 
- #define PVC_RP_STATE_CAP			XE_REG(0x281014)
- 
-+enum hardware_error {
-+	HARDWARE_ERROR_CORRECTABLE = 0,
-+	HARDWARE_ERROR_NONFATAL = 1,
-+	HARDWARE_ERROR_FATAL = 2,
-+	HARDWARE_ERROR_MAX,
-+};
- #endif
-diff --git a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_error_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_error_regs.h
 new file mode 100644
-index 000000000000..fbb794b2f183
+index 000000000000..6d51cfbddb61
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
-@@ -0,0 +1,108 @@
++++ b/drivers/gpu/drm/xe/regs/xe_gt_error_regs.h
+@@ -0,0 +1,48 @@
 +/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2023 Intel Corporation
 + */
-+#ifndef XE_TILE_ERROR_REGS_H_
-+#define XE_TILE_ERROR_REGS_H_
++#ifndef XE_GT_ERROR_REGS_H_
++#define XE_GT_ERROR_REGS_H_
 +
-+#include <linux/stddef.h>
++#define _ERR_STAT_GT_COR                0x100160
++#define _ERR_STAT_GT_NONFATAL           0x100164
++#define ERR_STAT_GT_REG(x)              XE_REG(_PICK_EVEN((x), \
++						_ERR_STAT_GT_COR, \
++						_ERR_STAT_GT_NONFATAL))
 +
-+#define _DEV_ERR_STAT_NONFATAL                         0x100178
-+#define _DEV_ERR_STAT_CORRECTABLE                      0x10017c
-+#define DEV_ERR_STAT_REG(x)                            XE_REG(_PICK_EVEN((x), \
-+								_DEV_ERR_STAT_CORRECTABLE, \
-+								_DEV_ERR_STAT_NONFATAL))
-+
-+#define  DEV_ERR_STAT_MAX_ERROR_BIT         (21)
-+
-+/* Count of  Correctable and Uncorrectable errors reported on tile */
-+enum xe_tile_hw_errors {
-+	XE_TILE_HW_ERR_GT_FATAL = 0,
-+	XE_TILE_HW_ERR_SGGI_FATAL,
-+	XE_TILE_HW_ERR_DISPLAY_FATAL,
-+	XE_TILE_HW_ERR_SGDI_FATAL,
-+	XE_TILE_HW_ERR_SGLI_FATAL,
-+	XE_TILE_HW_ERR_SGUNIT_FATAL,
-+	XE_TILE_HW_ERR_SGCI_FATAL,
-+	XE_TILE_HW_ERR_GSC_FATAL,
-+	XE_TILE_HW_ERR_SOC_FATAL,
-+	XE_TILE_HW_ERR_MERT_FATAL,
-+	XE_TILE_HW_ERR_SGMI_FATAL,
-+	XE_TILE_HW_ERR_UNKNOWN_FATAL,
-+	XE_TILE_HW_ERR_SGGI_NONFATAL,
-+	XE_TILE_HW_ERR_DISPLAY_NONFATAL,
-+	XE_TILE_HW_ERR_SGDI_NONFATAL,
-+	XE_TILE_HW_ERR_SGLI_NONFATAL,
-+	XE_TILE_HW_ERR_GT_NONFATAL,
-+	XE_TILE_HW_ERR_SGUNIT_NONFATAL,
-+	XE_TILE_HW_ERR_SGCI_NONFATAL,
-+	XE_TILE_HW_ERR_GSC_NONFATAL,
-+	XE_TILE_HW_ERR_SOC_NONFATAL,
-+	XE_TILE_HW_ERR_MERT_NONFATAL,
-+	XE_TILE_HW_ERR_SGMI_NONFATAL,
-+	XE_TILE_HW_ERR_UNKNOWN_NONFATAL,
-+	XE_TILE_HW_ERR_GT_CORR,
-+	XE_TILE_HW_ERR_DISPLAY_CORR,
-+	XE_TILE_HW_ERR_SGUNIT_CORR,
-+	XE_TILE_HW_ERR_GSC_CORR,
-+	XE_TILE_HW_ERR_SOC_CORR,
-+	XE_TILE_HW_ERR_UNKNOWN_CORR,
++#define  ERR_GT_STAT_MAX_ERROR_BIT	(16)
++/* Count of GT Correctable and FATAL HW ERRORS */
++enum xe_gt_hw_errors {
++	XE_GT_HW_ERR_L3_SNG_CORR,
++	XE_GT_HW_ERR_GUC_CORR,
++	XE_GT_HW_ERR_SAMPLER_CORR,
++	XE_GT_HW_ERR_SLM_CORR,
++	XE_GT_HW_ERR_EU_IC_CORR,
++	XE_GT_HW_ERR_EU_GRF_CORR,
++	XE_GT_HW_ERR_UNKNOWN_CORR,
++	XE_GT_HW_ERR_ARR_BIST_FATAL,
++	XE_GT_HW_ERR_FPU_FATAL,
++	XE_GT_HW_ERR_L3_DOUB_FATAL,
++	XE_GT_HW_ERR_L3_ECC_CHK_FATAL,
++	XE_GT_HW_ERR_GUC_FATAL,
++	XE_GT_HW_ERR_IDI_PAR_FATAL,
++	XE_GT_HW_ERR_SQIDI_FATAL,
++	XE_GT_HW_ERR_SAMPLER_FATAL,
++	XE_GT_HW_ERR_SLM_FATAL,
++	XE_GT_HW_ERR_EU_IC_FATAL,
++	XE_GT_HW_ERR_EU_GRF_FATAL,
++	XE_GT_HW_ERR_UNKNOWN_FATAL,
 +};
 +
-+#define XE_TILE_HW_ERROR_MAX (XE_TILE_HW_ERR_UNKNOWN_CORR + 1)
++#define XE_GT_HW_ERROR_MAX (XE_GT_HW_ERR_UNKNOWN_FATAL + 1)
 +
-+#define PVC_DEV_ERR_STAT_FATAL_MASK \
-+		(REG_BIT(0) | \
-+		 REG_BIT(1) | \
-+		 REG_BIT(8) | \
-+		 REG_BIT(9) | \
-+		 REG_BIT(13) | \
-+		 REG_BIT(16) | \
-+		 REG_BIT(20))
++#define xe_gt_log_hw_err(gt, fmt, ...) \
++	drm_err_ratelimited(&gt_to_xe(gt)->drm, HW_ERR "GT%d detected " fmt, \
++			    gt->info.id, ##__VA_ARGS__)
 +
-+#define PVC_DEV_ERR_STAT_NONFATAL_MASK \
-+		(REG_BIT(0) | \
-+		 REG_BIT(1) | \
-+		 REG_BIT(8) | \
-+		 REG_BIT(9) | \
-+		 REG_BIT(13) | \
-+		 REG_BIT(16) | \
-+		 REG_BIT(20))
-+
-+#define PVC_DEV_ERR_STAT_CORRECTABLE_MASK \
-+		(REG_BIT(0) | \
-+		 REG_BIT(8))
-+
-+#define DG2_DEV_ERR_STAT_FATAL_MASK \
-+		(REG_BIT(0) | \
-+		 REG_BIT(4) | \
-+		 REG_BIT(8) | \
-+		 REG_BIT(12) | \
-+		 REG_BIT(16))
-+
-+#define DG2_DEV_ERR_STAT_NONFATAL_MASK \
-+		(REG_BIT(0) | \
-+		 REG_BIT(4) | \
-+		 REG_BIT(8) | \
-+		 REG_BIT(12) | \
-+		 REG_BIT(16) | \
-+		 REG_BIT(20))
-+
-+#define DG2_DEV_ERR_STAT_CORRECTABLE_MASK \
-+		(REG_BIT(0) | \
-+		 REG_BIT(4) | \
-+		 REG_BIT(8) | \
-+		 REG_BIT(12) | \
-+		 REG_BIT(16))
-+
-+#define REG_SIZE 32
-+
-+#define xe_tile_log_hw_err(tile, fmt, ...) \
-+	drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR "TILE%d detected " fmt, \
-+			    tile->id, ##__VA_ARGS__)
-+
-+#define xe_tile_log_hw_warn(tile, fmt, ...) \
-+	drm_warn(&tile_to_xe(tile)->drm, HW_ERR "TILE%d detected " fmt, \
-+		 tile->id, ##__VA_ARGS__)
++#define xe_gt_log_hw_warn(gt, fmt, ...) \
++	drm_warn(&gt_to_xe(gt)->drm, HW_ERR "GT%d detected " fmt, \
++		 gt->info.id, ##__VA_ARGS__)
 +
 +#endif
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index f84ecb976f5d..1335ba74981a 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -16,6 +16,7 @@
- #include "xe_gt_types.h"
- #include "xe_platform_types.h"
- #include "xe_step_types.h"
-+#include "regs/xe_tile_error_regs.h"
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 35b8c19fa8bf..780e192e4cc8 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -13,6 +13,7 @@
+ #include "xe_reg_sr_types.h"
+ #include "xe_sa_types.h"
+ #include "xe_uc_types.h"
++#include "regs/xe_gt_error_regs.h"
  
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- #include "ext/intel_device_info.h"
-@@ -166,6 +167,11 @@ struct xe_tile {
- 
- 	/** @sysfs: sysfs' kobj used by xe_tile_sysfs */
- 	struct kobject *sysfs;
+ struct xe_exec_queue_ops;
+ struct xe_migrate;
+@@ -346,6 +347,11 @@ struct xe_gt {
+ 		/** @oob: bitmap with active OOB workaroudns */
+ 		unsigned long *oob;
+ 	} wa_active;
 +
-+	/** @tile_hw_errors: hardware errors reported for the tile */
-+	struct tile_hw_errors {
-+		unsigned long hw[XE_TILE_HW_ERROR_MAX];
++	/** @gt_hw_errors: hardware errors reported for the gt */
++	struct gt_hw_errors {
++		 unsigned long hw[XE_GT_HW_ERROR_MAX];
 +	} errors;
  };
  
- /**
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 2022a5643e01..04a665faea23 100644
+index 04a665faea23..ca9c4993be6a 100644
 --- a/drivers/gpu/drm/xe/xe_irq.c
 +++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -362,6 +362,223 @@ static void dg1_intr_enable(struct xe_device *xe, bool stall)
- 		xe_mmio_read32(mmio, DG1_MSTR_TILE_INTR);
+@@ -454,6 +454,44 @@ struct error_msg_counter_pair dev_err_stat_correctable_reg[] = {
+ 	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
+ };
+ 
++struct error_msg_counter_pair err_stat_gt_fatal_reg[] = {
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_FATAL},
++	{"Array BIST",		XE_GT_HW_ERR_ARR_BIST_FATAL		/* Bit Pos 1 */},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_FATAL},
++	{"FPU",			XE_GT_HW_ERR_FPU_FATAL			/* Bit Pos 3 */},
++	{"L3 Double",		XE_GT_HW_ERR_L3_DOUB_FATAL		/* Bit Pos 4 */},
++	{"L3 ECC Checker",	XE_GT_HW_ERR_L3_ECC_CHK_FATAL		/* Bit Pos 5 */},
++	{"GUC SRAM",		XE_GT_HW_ERR_GUC_FATAL			/* Bit Pos 6 */},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_FATAL},
++	{"IDI PARITY",		XE_GT_HW_ERR_IDI_PAR_FATAL		/* Bit Pos 8 */},
++	{"SQIDI",		XE_GT_HW_ERR_SQIDI_FATAL		/* Bit Pos 9 */},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_FATAL},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_FATAL},
++	{"SAMPLER",		XE_GT_HW_ERR_SAMPLER_FATAL		/* Bit Pos 12 */},
++	{"SLM",			XE_GT_HW_ERR_SLM_FATAL			/* Bit Pos 13 */},
++	{"EU IC",		XE_GT_HW_ERR_EU_IC_FATAL		/* Bit Pos 14 */},
++	{"EU GRF",		XE_GT_HW_ERR_EU_GRF_FATAL		/* Bit Pos 15 */},
++};
++
++struct error_msg_counter_pair err_stat_gt_correctable_reg[] = {
++	{"L3 SINGLE",		XE_GT_HW_ERR_L3_SNG_CORR		/* Bit Pos 0 */},
++	{"SINGLE BIT GUC SRAM",	XE_GT_HW_ERR_GUC_CORR			/* Bit Pos 1 */},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_CORR},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_CORR},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_CORR},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_CORR},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_CORR},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_CORR},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_CORR},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_CORR},
++	{"Undefined",		XE_GT_HW_ERR_UNKNOWN_CORR},
++	{"Undefined",           XE_GT_HW_ERR_UNKNOWN_CORR},
++	{"SINGLE BIT SAMPLER",	XE_GT_HW_ERR_SAMPLER_CORR		/* Bit Pos 12 */},
++	{"SINGLE BIT SLM",	XE_GT_HW_ERR_SLM_CORR			/* Bit Pos 13 */},
++	{"SINGLE BIT EU IC",	XE_GT_HW_ERR_EU_IC_CORR			/* Bit Pos 14 */},
++	{"SINGLE BIT EU GRF",	XE_GT_HW_ERR_EU_GRF_CORR		/* Bit Pos 15 */},
++};
++
+ static void update_valid_error_regs(struct xe_device *xe)
+ {
+ 	unsigned long mask = 0;
+@@ -493,6 +531,68 @@ static void update_valid_error_regs(struct xe_device *xe)
+ 	}
  }
  
-+static const char *
-+hardware_error_type_to_str(const enum hardware_error hw_err)
-+{
-+	switch (hw_err) {
-+	case HARDWARE_ERROR_CORRECTABLE:
-+		return "CORRECTABLE";
-+	case HARDWARE_ERROR_NONFATAL:
-+		return "NONFATAL";
-+	case HARDWARE_ERROR_FATAL:
-+		return "FATAL";
-+	default:
-+		return "UNKNOWN";
-+	}
-+}
-+
-+struct error_msg_counter_pair {
-+	const char *errmsg;
-+	int errcounter;
-+};
-+
-+struct error_msg_counter_pair dev_err_stat_fatal_reg[] = {
-+	{"GT",			XE_TILE_HW_ERR_GT_FATAL			/* Bit Pos 0 */},
-+	{"SGGI Cmd Parity",	XE_TILE_HW_ERR_SGGI_FATAL		/* Bit Pos 1 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"DISPLAY",		XE_TILE_HW_ERR_DISPLAY_FATAL		/* Bit Pos 4 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"GSC error",		XE_TILE_HW_ERR_GSC_FATAL		/* Bit Pos 8 */},
-+	{"SGLI Cmd Parity",	XE_TILE_HW_ERR_SGLI_FATAL		/* Bit Pos 9 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"SGUNIT",		XE_TILE_HW_ERR_SGUNIT_FATAL		/* Bit Pos 12 */},
-+	{"SGCI Cmd Parity",	XE_TILE_HW_ERR_SGCI_FATAL		/* Bit Pos 13 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"SOC ERROR",		XE_TILE_HW_ERR_SOC_FATAL		/* Bit Pos 16 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
-+	{"MERT Cmd Parity",	XE_TILE_HW_ERR_MERT_FATAL		/* Bit Pos 20 */},
-+};
-+
-+struct error_msg_counter_pair dev_err_stat_nonfatal_reg[] = {
-+	{"GT",			XE_TILE_HW_ERR_GT_NONFATAL		/* Bit Pos 0 */},
-+	{"SGGI Data Parity",	XE_TILE_HW_ERR_SGGI_NONFATAL		/* Bit Pos 1 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
-+	{"DISPLAY",		XE_TILE_HW_ERR_DISPLAY_NONFATAL		/* Bit Pos 4 */},
-+	{"SGDI Data Parity",	XE_TILE_HW_ERR_SGDI_NONFATAL		/* Bit Pos 5 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
-+	{"GSC",			XE_TILE_HW_ERR_GSC_NONFATAL		/* Bit Pos 8 */},
-+	{"SGLI Data Parity",	XE_TILE_HW_ERR_SGLI_NONFATAL		/* Bit Pos 9 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
-+	{"SGUNIT",		XE_TILE_HW_ERR_SGUNIT_NONFATAL		/* Bit Pos 12 */},
-+	{"SGCI Data Parity",	XE_TILE_HW_ERR_SGCI_NONFATAL		/* Bit Pos 13 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
-+	{"SOC",			XE_TILE_HW_ERR_SOC_NONFATAL		/* Bit Pos 16 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL		/* Bit Pos 17 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
-+	{"MERT Data Parity",	XE_TILE_HW_ERR_MERT_NONFATAL		/* Bit Pos 20 */},
-+};
-+
-+struct error_msg_counter_pair dev_err_stat_correctable_reg[] = {
-+	{"GT",			XE_TILE_HW_ERR_GT_CORR			/* Bit Pos 0 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"DISPLAY",		XE_TILE_HW_ERR_DISPLAY_CORR		/* Bit Pos 4 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"GSC",			XE_TILE_HW_ERR_GSC_CORR			/* Bit Pos 8 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"SGUNIT",		XE_TILE_HW_ERR_SGUNIT_CORR		/* Bit Pos 12 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"SOC",			XE_TILE_HW_ERR_SOC_CORR			/* Bit Pos 16 */},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+	{"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
-+};
-+
-+static void update_valid_error_regs(struct xe_device *xe)
-+{
-+	unsigned long mask = 0;
-+
-+	u32 i;
-+
-+	if (xe->info.platform == XE_DG2) {
-+		mask = ~(0 | DG2_DEV_ERR_STAT_FATAL_MASK);
-+		for_each_set_bit(i, &mask, DEV_ERR_STAT_MAX_ERROR_BIT)
-+			dev_err_stat_fatal_reg[i] = (struct error_msg_counter_pair)
-+			{.errmsg = "Undefined", .errcounter = XE_TILE_HW_ERR_UNKNOWN_FATAL};
-+
-+		mask = ~(0 | DG2_DEV_ERR_STAT_NONFATAL_MASK);
-+		for_each_set_bit(i, &mask, DEV_ERR_STAT_MAX_ERROR_BIT)
-+			dev_err_stat_nonfatal_reg[i] = (struct error_msg_counter_pair)
-+			{.errmsg = "Undefined", .errcounter = XE_TILE_HW_ERR_UNKNOWN_NONFATAL};
-+
-+		mask = ~(0 | DG2_DEV_ERR_STAT_CORRECTABLE_MASK);
-+		for_each_set_bit(i, &mask, DEV_ERR_STAT_MAX_ERROR_BIT)
-+			dev_err_stat_correctable_reg[i] = (struct error_msg_counter_pair)
-+			{.errmsg = "Undefined", .errcounter = XE_TILE_HW_ERR_UNKNOWN_CORR};
-+	} else if (xe->info.platform == XE_PVC) {
-+		mask = ~(0 | PVC_DEV_ERR_STAT_FATAL_MASK);
-+		for_each_set_bit(i, &mask, DEV_ERR_STAT_MAX_ERROR_BIT)
-+			dev_err_stat_fatal_reg[i] = (struct error_msg_counter_pair)
-+			{.errmsg = "Undefined", .errcounter = XE_TILE_HW_ERR_UNKNOWN_FATAL};
-+
-+		mask = ~(0 | PVC_DEV_ERR_STAT_NONFATAL_MASK);
-+		for_each_set_bit(i, &mask, DEV_ERR_STAT_MAX_ERROR_BIT)
-+			dev_err_stat_nonfatal_reg[i] = (struct error_msg_counter_pair)
-+			{.errmsg = "Undefined", .errcounter = XE_TILE_HW_ERR_UNKNOWN_NONFATAL};
-+
-+		mask = ~(0 | PVC_DEV_ERR_STAT_CORRECTABLE_MASK);
-+		for_each_set_bit(i, &mask, DEV_ERR_STAT_MAX_ERROR_BIT)
-+			dev_err_stat_correctable_reg[i] = (struct error_msg_counter_pair)
-+			{.errmsg = "Undefined", .errcounter = XE_TILE_HW_ERR_UNKNOWN_CORR};
-+	}
-+}
-+
 +static void
-+xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
++xe_gt_hw_error_handler(struct xe_gt *gt, const enum hardware_error hw_err)
 +{
 +	const char *hw_err_str = hardware_error_type_to_str(hw_err);
 +	struct error_msg_counter_pair *errstat;
 +	unsigned long errsrc;
-+	unsigned long flags;
 +	const char *errmsg;
-+	struct xe_gt *mmio;
 +	u32 counter;
 +	u32 errcntr;
 +	u32 errbit;
 +
++	if (gt_to_xe(gt)->info.platform == XE_PVC)
++		return;
++
++	lockdep_assert_held(&gt_to_xe(gt)->irq.lock);
++	errsrc = xe_mmio_read32(gt, ERR_STAT_GT_REG(hw_err));
++	if (!errsrc) {
++		xe_gt_log_hw_err(gt, "ERR_STAT_GT_REG_%s blank!\n", hw_err_str);
++		return;
++	}
++
 +	switch (hw_err) {
 +	case HARDWARE_ERROR_FATAL:
-+		errstat = (struct error_msg_counter_pair *)dev_err_stat_fatal_reg;
-+		counter = XE_TILE_HW_ERR_UNKNOWN_FATAL;
++		errstat = (struct error_msg_counter_pair *)err_stat_gt_fatal_reg;
++		counter = XE_GT_HW_ERR_UNKNOWN_FATAL;
 +		break;
 +	case HARDWARE_ERROR_NONFATAL:
-+		errstat = (struct error_msg_counter_pair *)dev_err_stat_nonfatal_reg;
-+		counter = XE_TILE_HW_ERR_UNKNOWN_NONFATAL;
-+		break;
++		/*  The GT Non Fatal Error Status Register has only reserved bits
++		 *  Nothing to service.
++		 */
++		xe_gt_log_hw_err(gt, "%s error\n", hw_err_str);
++		goto clear_reg;
 +	case HARDWARE_ERROR_CORRECTABLE:
-+		errstat = (struct error_msg_counter_pair *)dev_err_stat_correctable_reg;
-+		counter = XE_TILE_HW_ERR_UNKNOWN_CORR;
++		errstat = (struct error_msg_counter_pair *)err_stat_gt_correctable_reg;
++		counter = XE_GT_HW_ERR_UNKNOWN_CORR;
 +		break;
 +	default:
 +		return;
 +	}
 +
-+	spin_lock_irqsave(&tile_to_xe(tile)->irq.lock, flags);
-+	mmio = tile->primary_gt;
-+	errsrc = xe_mmio_read32(mmio, DEV_ERR_STAT_REG(hw_err));
-+
-+	if (!errsrc) {
-+		xe_tile_log_hw_err(tile, "DEV_ERR_STAT_REG_%s blank!\n", hw_err_str);
-+		goto unlock;
-+	}
-+
-+	for_each_set_bit(errbit, &errsrc, REG_SIZE) {
-+		if (errbit < DEV_ERR_STAT_MAX_ERROR_BIT) {
++	for_each_set_bit(errbit, &errsrc, 32) {
++		if (errbit < ERR_GT_STAT_MAX_ERROR_BIT) {
 +			errmsg = errstat[errbit].errmsg;
 +			errcntr = errstat[errbit].errcounter;
 +		} else {
@@ -439,64 +262,32 @@ index 2022a5643e01..04a665faea23 100644
 +			errcntr = counter;
 +		}
 +
-+		if (hw_err == HARDWARE_ERROR_CORRECTABLE)
-+			xe_tile_log_hw_warn(tile, "%s %s error bit[%d] is set\n",
-+					    errmsg, hw_err_str, errbit);
-+		else
-+			xe_tile_log_hw_err(tile, "%s %s error bit[%d] is set\n",
++		if (hw_err == HARDWARE_ERROR_FATAL)
++			xe_gt_log_hw_err(gt, "%s %s error bit[%d] is set\n",
 +					   errmsg, hw_err_str, errbit);
++		else
++			xe_gt_log_hw_warn(gt, "%s %s error bit[%d] is set\n",
++					    errmsg, hw_err_str, errbit);
 +
-+		tile->errors.hw[errcntr]++;
++		gt->errors.hw[counter]++;
 +	}
 +
-+	xe_mmio_write32(mmio, DEV_ERR_STAT_REG(hw_err), errsrc);
-+unlock:
-+	spin_unlock_irqrestore(&tile_to_xe(tile)->irq.lock, flags);
++clear_reg: xe_mmio_write32(gt, ERR_STAT_GT_REG(hw_err), errsrc);
 +}
 +
-+/*
-+ * XE Platforms adds three Error bits to the Master Interrupt
-+ * Register to support error handling. These three bits are
-+ * used to convey the class of error:
-+ * FATAL, NONFATAL, or CORRECTABLE.
-+ *
-+ * To process an interrupt:
-+ *       Determine source of error (IP block) by reading
-+ *	 the Device Error Source Register (RW1C) that
-+ *	 corresponds to the class of error being serviced
-+ *	 and log the error.
-+ */
-+static void
-+xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
-+{
-+	enum hardware_error hw_err;
-+
-+	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
-+		if (master_ctl & XE_ERROR_IRQ(hw_err))
-+			xe_hw_error_source_handler(tile, hw_err);
-+	}
-+}
-+
- /*
-  * Top-level interrupt handler for Xe_LP+ and beyond.  These platforms have
-  * a "master tile" interrupt register which must be consulted before the
-@@ -413,6 +630,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 		xe_mmio_write32(mmio, GFX_MSTR_IRQ, master_ctl);
+ static void
+ xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+ {
+@@ -549,6 +649,9 @@ xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_er
+ 					   errmsg, hw_err_str, errbit);
  
- 		gt_irq_handler(tile, master_ctl, intr_dw, identity);
-+		xe_hw_error_irq_handler(tile, master_ctl);
- 
- 		/*
- 		 * Display interrupts (including display backlight operations
-@@ -561,6 +779,8 @@ int xe_irq_install(struct xe_device *xe)
- 		return -EINVAL;
+ 		tile->errors.hw[errcntr]++;
++
++		if (errbit == 0)
++			xe_gt_hw_error_handler(tile->primary_gt, hw_err);
  	}
  
-+	update_valid_error_regs(xe);
-+
- 	xe->irq.enabled = true;
- 
- 	xe_irq_reset(xe);
+ 	xe_mmio_write32(mmio, DEV_ERR_STAT_REG(hw_err), errsrc);
 -- 
 2.25.1
 
