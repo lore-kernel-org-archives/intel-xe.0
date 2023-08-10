@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74DCAC001B0
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Aug 2023 18:57:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43C42C001E0
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Aug 2023 18:57:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B87E10E5DF;
-	Thu, 10 Aug 2023 18:57:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18A1710E5E2;
+	Thu, 10 Aug 2023 18:57:31 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C3CBE10E5DF;
- Thu, 10 Aug 2023 18:57:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4CD4010E5EC;
+ Thu, 10 Aug 2023 18:57:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BF399A0093;
- Thu, 10 Aug 2023 18:57:18 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 47707A0093;
+ Thu, 10 Aug 2023 18:57:29 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
-Date: Thu, 10 Aug 2023 18:57:18 -0000
-Message-ID: <169169383877.4959.15866660920055899953@emeril.freedesktop.org>
+Date: Thu, 10 Aug 2023 18:57:29 -0000
+Message-ID: <169169384929.4958.1632691883326633296@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230809064213.375269-1-shekhar.chauhan@intel.com>
 In-Reply-To: <20230809064213.375269-1-shekhar.chauhan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/mtl=3A_Disable_RNE_in_SF_Unit?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
+ =?utf-8?q?m/xe/mtl=3A_Disable_RNE_in_SF_Unit?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,13 +48,30 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/mtl: Disable RNE in SF Unit
 URL   : https://patchwork.freedesktop.org/series/122199/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: f33dda969 drm/xe: skip rebind_list if vma destroyed
-=== git am output follows ===
-Applying: drm/xe/mtl: Disable RNE in SF Unit
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e700ea2f248a75138759bcb443affeef4a2d1991
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 5c31c9dc24365657614445282316a44de8127a4b
+Author: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Date:   Wed Aug 9 12:12:13 2023 +0530
+
+    drm/xe/mtl: Disable RNE in SF Unit
+    
+    Workaround to disable the round to nearest even in SF unit
+    
+    BSpec: 45818
+    Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
++ /mt/dim checkpatch f33dda969aa35b8630410f712179c9c2211c14f4 drm-intel
+/mt/dim: line 50: /root/.dimrc: No such file or directory
 
 
