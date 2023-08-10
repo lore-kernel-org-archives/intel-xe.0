@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34DF5C04A6A
-	for <intel-xe@archiver.kernel.org>; Thu, 10 Aug 2023 16:29:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0780C001B0
+	for <intel-xe@archiver.kernel.org>; Thu, 10 Aug 2023 17:07:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1110410E5B9;
-	Thu, 10 Aug 2023 16:29:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB50B10E5C6;
+	Thu, 10 Aug 2023 17:07:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 359EF10E5B9;
- Thu, 10 Aug 2023 16:29:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 473E610E5C3;
+ Thu, 10 Aug 2023 17:07:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3266DAADDC;
- Thu, 10 Aug 2023 16:29:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4066CA73C7;
+ Thu, 10 Aug 2023 17:07:27 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0044450373904746979=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
-Date: Thu, 10 Aug 2023 16:29:26 -0000
-Message-ID: <169168496620.4960.6857604328381812409@emeril.freedesktop.org>
+Date: Thu, 10 Aug 2023 17:07:27 -0000
+Message-ID: <169168724726.4957.8091132929388565033@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230809064213.375269-1-shekhar.chauhan@intel.com>
 In-Reply-To: <20230809064213.375269-1-shekhar.chauhan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_d?=
- =?utf-8?q?rm/xe/mtl=3A_Disable_RNE_in_SF_Unit?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/mt?=
+ =?utf-8?q?l=3A_Disable_RNE_in_SF_Unit?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,30 +44,65 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============0044450373904746979==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
 == Series Details ==
 
 Series: drm/xe/mtl: Disable RNE in SF Unit
 URL   : https://patchwork.freedesktop.org/series/122199/
-State : warning
+State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast f33dda969aa35b8630410f712179c9c2211c14f4
-/root/linux/maintainer-tools/dim: line 50: /root/.dimrc: No such file or directory
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Participating hosts:
+bat-pvc-2
+bat-atsm-2
+bat-dg2-oem2
+bat-adlp-7
+Missing hosts results[0]:
+Results: [xe-pw-122199v1](https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/index.html)
 
 
+
+--===============0044450373904746979==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/mtl: Disable RNE in SF Unit</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122199/">https://patchwork.freedesktop.org/series/122199/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>Participating hosts:<br />
+bat-pvc-2<br />
+bat-atsm-2<br />
+bat-dg2-oem2<br />
+bat-adlp-7<br />
+Missing hosts results[0]:<br />
+Results: <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/index.html">xe-pw-122199v1</a></p>
+
+</body>
+</html>
+
+--===============0044450373904746979==--
