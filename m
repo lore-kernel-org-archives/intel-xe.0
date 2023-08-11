@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F2E1C0015E
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 20:13:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAB83C001B0
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 20:29:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64A5310E00B;
-	Fri, 11 Aug 2023 20:13:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 84C1310E00B;
- Fri, 11 Aug 2023 20:13:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 80935AADEB;
- Fri, 11 Aug 2023 20:13:14 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92ED610E6F3;
+	Fri, 11 Aug 2023 20:29:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6186F10E6F3
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Aug 2023 20:29:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1691785752; x=1723321752;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=VT8nlBtwGpeaOHzpSRBznFJp7ej6l0bzXIPfvw0ib5c=;
+ b=aSAWpbroDGJpj4QLz6ua4xgeG1m7u5jy4F6arhfGedCDzJTf1MSOiIvb
+ 15J0J+mvdHRYotDsE/aSFGFehUJ7qFbDOYJk92ifGeCHM2we14p+0EsAo
+ QbpFW9jmktp9E79T1BWsZpaMTaV+c5iLvAol2ZsfwtFpe7D9LcNcVgCJG
+ fScO6VEKvjnMg85dJBQpUZvidBdX7vPxo4eT5gj/BML2/EhhfzlsaIjdH
+ D7La+UeWN1bXwclSoEwiEugqoJ7ZxwjFoZpf1MUgA8TPFonGCvmi59vKv
+ H4kmgQ1SSz6R+uPc6wkIg3djURBQrERKKMYEP3EWL74XubPpzCVy0mZHY w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10799"; a="370657607"
+X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="370657607"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2023 13:29:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10799"; a="732779490"
+X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="732779490"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.136.224])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2023 13:29:02 -0700
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri, 11 Aug 2023 22:28:52 +0200
+Message-Id: <20230811202852.962-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Oak Zeng" <oak.zeng@intel.com>
-Date: Fri, 11 Aug 2023 20:13:14 -0000
-Message-ID: <169178479452.3118.12486286844086846024@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230811193923.132091-1-oak.zeng@intel.com>
-In-Reply-To: <20230811193923.132091-1-oak.zeng@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_series_?=
- =?utf-8?q?starting_with_=5B1/2=5D_drm/xe=3A_Make_xe=5Fmem=5Fregion_struct?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3] drm/xe: Introduce Xe assert macros
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,368 +55,260 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+As we are moving away from the controversial XE_BUG_ON macro,
+relying just on WARN_ON or drm_err does not cover the cases
+where we want to annotate functions with additional detailed
+debug checks to assert that all prerequisites are satisfied,
+without paying footprint or performance penalty on non-debug
+builds, where all misuses introduced during code integration
+were already fixed.
 
-Series: series starting with [1/2] drm/xe: Make xe_mem_region struct
-URL   : https://patchwork.freedesktop.org/series/122363/
-State : failure
+Introduce family of Xe assert macros that try to follow classic
+assert() utility and can be compiled out on non-debug builds.
 
-== Summary ==
+Macros are based on drm_WARN, but unlikely to origin, disallow
+use in expressions since we will compile that code out.
 
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ pwd
-+ ls -la
-/workspace
-total 488
-drwxrwxr-x 10 1003 1003   4096 Aug 11 20:12 .
-drwxr-xr-x  1 root root   4096 Aug 11 20:12 ..
--rw-rw-r--  1 1003 1003 389691 Aug 11 20:12 build.log
--rw-rw-r--  1 1003 1003    993 Aug 11 20:07 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Aug 11 20:06 ci
-drwxrwxr-x  9 1003 1003   4096 Aug 11 20:06 docker
-drwxrwxr-x  8 1003 1003   4096 Aug 11 20:06 .git
--rw-rw-r--  1 1003 1003    286 Aug 11 20:07 git_apply.log
-drwxrwxr-x  3 1003 1003   4096 Aug 11 20:06 .github
--rw-rw-r--  1 1003 1003    233 Aug 11 20:06 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Aug 11 20:12 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Aug 11 20:12 kernel
--rw-rw-r--  1 1003 1003   9495 Aug 11 20:07 kernel.mbox
--rw-rw-r--  1 1003 1003  26091 Aug 11 20:08 kunit.log
--rw-rw-r--  1 1003 1003     48 Aug 11 20:07 parent.tag
-drwxrwxr-x 45 1003 1003   4096 Aug 11 20:06 pipelines
--rw-rw-r--  1 1003 1003    793 Aug 11 20:06 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Aug 11 20:06 scripts
-drwxrwxr-x  2 1003 1003   4096 Aug 11 20:06 .vscode
-+ uname -a
-Linux 76d14b28a124 5.4.0-149-generic #166-Ubuntu SMP Tue Apr 18 16:51:45 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64"
-declare -x CI_KERNEL_IMAGES_DIR="/workspace/kernel/archive/boot"
-declare -x CI_KERNEL_MODULES_DIR="/workspace/kernel/archive"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-ebefcfcfc drm/xe: Improve vram info debug printing
-e8b643a3c drm/xe: Make xe_mem_region struct
-77329b232 drm/xe: Call __guc_exec_queue_fini_async direct for KERNEL exec_queues
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64 ']'
-+ BUILD_DIR=/workspace/kernel/build64
-+ cd /workspace/kernel
-+ grep -q -e '^CONFIG_DRM_XE_DISPLAY=[yY]' /workspace/kernel/build64/.config
-+ RESTORE_DISPLAY_CONFIG=1
-+ trap cleanup EXIT
-+ ./scripts/config --file /workspace/kernel/build64/.config --disable CONFIG_DRM_XE_DISPLAY
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64'
-  SYNC    include/config/auto.conf.cmd
-  GEN     Makefile
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-  UPD     include/generated/utsrelease.h
-  DESCEND objtool
-  CALL    ../scripts/checksyscalls.sh
-  HOSTCC  /workspace/kernel/build64/tools/objtool/fixdep.o
-  HOSTLD  /workspace/kernel/build64/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64/tools/objtool/weak.o
-  CC      /workspace/kernel/build64/tools/objtool/check.o
-  CC      /workspace/kernel/build64/tools/objtool/special.o
-  CC      /workspace/kernel/build64/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64/tools/objtool/elf.o
-  CC      /workspace/kernel/build64/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_device_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec_queue.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_idle_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_range_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm_madvise.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_range_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_madvise.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  MODPOST drivers/gpu/drm/xe/Module.symvers
-  CC [M]  drivers/gpu/drm/xe/xe.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.mod.o
-  LD [M]  drivers/gpu/drm/xe/tests/xe_bo_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_pci_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_wa_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.ko
-  LD [M]  drivers/gpu/drm/xe/xe.ko
-make[1]: Leaving directory '/workspace/kernel/build64'
-+ cleanup
-+ '[' 1 -eq 1 ']'
-+ ./scripts/config --file /workspace/kernel/build64/.config --enable CONFIG_DRM_XE_DISPLAY
-run-parts: executing /workspace/ci/hooks/20-kernel-doc
-+ SRC_DIR=/workspace/kernel
-+ cd /workspace/kernel
-+ find drivers/gpu/drm/xe/ -name '*.[ch]' -not -path 'drivers/gpu/drm/xe/display/*'
-+ xargs ./scripts/kernel-doc -Werror -none include/uapi/drm/xe_drm.h
-drivers/gpu/drm/xe/xe_device_types.h:96: warning: Function parameter or member 'dpa_base' not described in 'xe_mem_region'
-1 warnings as Errors
-run-parts: /workspace/ci/hooks/20-kernel-doc exited with return code 123
+As we are operating on the xe pointers, we can print additional
+information about the device, like tile or GT identifier, that
+is not available from generic WARN report:
 
+[ ] xe 0000:00:02.0: [drm] Assertion `true == false` failed!
+    platform: 1 subplatform: 1
+    graphics: Xe_LP 12.00 step B0
+    media: Xe_M 12.00 step B0
+    display: enabled step D0
+    tile: 0 VRAM 0 B
+    GT: 0 type 1
+
+[ ] xe 0000:b3:00.0: [drm] Assertion `true == false` failed!
+    platform: 7 subplatform: 3
+    graphics: Xe_HPG 12.55 step A1
+    media: Xe_HPM 12.55 step A1
+    display: disabled step **
+    tile: 0 VRAM 14.0 GiB
+    GT: 0 type 1
+
+[ ] WARNING: CPU: 0 PID: 2687 at drivers/gpu/drm/xe/xe_device.c:281 xe_device_probe+0x374/0x520 [xe]
+[ ] RIP: 0010:xe_device_probe+0x374/0x520 [xe]
+[ ] Call Trace:
+[ ]  ? __warn+0x7b/0x160
+[ ]  ? xe_device_probe+0x374/0x520 [xe]
+[ ]  ? report_bug+0x1c3/0x1d0
+[ ]  ? handle_bug+0x42/0x70
+[ ]  ? exc_invalid_op+0x14/0x70
+[ ]  ? asm_exc_invalid_op+0x16/0x20
+[ ]  ? xe_device_probe+0x374/0x520 [xe]
+[ ]  ? xe_device_probe+0x374/0x520 [xe]
+[ ]  xe_pci_probe+0x6e3/0x950 [xe]
+[ ]  ? lockdep_hardirqs_on+0xc7/0x140
+[ ]  pci_device_probe+0x9e/0x160
+[ ]  really_probe+0x19d/0x400
+
+v2: use lowercase names
+v3: apply xe coding style
+
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Oded Gabbay <ogabbay@kernel.org>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_assert.h | 177 +++++++++++++++++++++++++++++++++
+ 1 file changed, 177 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_assert.h
+
+diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_assert.h
+new file mode 100644
+index 000000000000..b2d3c9b82b31
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_assert.h
+@@ -0,0 +1,177 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_ASSERT_H_
++#define _XE_ASSERT_H_
++
++#include <linux/string_helpers.h>
++
++#include <drm/drm_print.h>
++
++#include "xe_device_types.h"
++#include "xe_step.h"
++
++/**
++ * DOC: Xe ASSERTs
++ *
++ * While Xe driver aims to be simpler than legacy i915 driver it is still
++ * complex enough that some changes introduced while adding new functionality
++ * could break the existing code.
++ *
++ * Adding &drm_WARN or &drm_err to catch unwanted programming usage could lead
++ * to undesired increased driver footprint and may impact production driver
++ * performance as this additional code will be always present.
++ *
++ * To allow annotate functions with additional detailed debug checks to assert
++ * that all prerequisites are satisfied, without worrying about footprint or
++ * performance penalty on production builds where all potential misuses
++ * introduced during code integration were already fixed, we introduce family
++ * of Xe assert macros that try to follow classic assert() utility:
++ *
++ *  * &xe_assert
++ *  * &xe_tile_assert
++ *  * &xe_gt_assert
++ *
++ * These macros are implemented on top of &drm_WARN, but unlikely to the origin,
++ * warning is triggered when provided condition is false. Additionally all above
++ * assert macros cannot be used in expressions or as a condition, since
++ * underlying code will be compiled out on non-debug builds.
++ *
++ * Note that these macros are not intended for use to cover known gaps in the
++ * implementation; for such cases use regular &drm_WARN or &drm_err and provide
++ * valid safe fallback.
++ *
++ * Also in cases where performance or footprint is not an issue, developers
++ * should continue to use the regular &drm_WARN or &drm_err to ensure that bug
++ * reports from production builds will contain meagningful diagnostics data.
++ *
++ * Below code shows how asserts could help in debug to catch unplanned use::
++ *
++ *	static void one_igfx(struct xe_device *xe)
++ *	{
++ *		xe_assert(xe, xe->info.is_dgfx == false);
++ *		xe_assert(xe, xe->info.tile_count == 1);
++ *	}
++ *
++ *	static void two_dgfx(struct xe_device *xe)
++ *	{
++ *		xe_assert(xe, xe->info.is_dgfx);
++ *		xe_assert(xe, xe->info.tile_count == 2);
++ *	}
++ *
++ *	void foo(struct xe_device *xe)
++ *	{
++ *		if (xe->info.dgfx)
++ *			return two_dgfx(xe);
++ *		return one_igfx(xe);
++ *	}
++ *
++ *	void bar(struct xe_device *xe)
++ *	{
++ *		if (drm_WARN_ON(xe->drm, xe->info.tile_count > 2))
++ *			return;
++ *
++ *		if (xe->info.tile_count == 2)
++ *			return two_dgfx(xe);
++ *		return one_igfx(xe);
++ *	}
++ */
++
++#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
++#define __xe_assert_msg(xe, condition, msg, arg...) ({						\
++	(void)drm_WARN(&(xe)->drm, !(condition), "[" DRM_NAME "] Assertion `%s` failed!\n" msg,	\
++		       __stringify(condition), ## arg);						\
++})
++#else
++#define __xe_assert_msg(xe, condition, msg, arg...) ({						\
++	typecheck(struct xe_device *, xe);							\
++	BUILD_BUG_ON_INVALID(condition);							\
++})
++#endif
++
++/**
++ * xe_assert - warn if condition is false when debugging.
++ * @xe: the &struct xe_device pointer to which &condition applies
++ * @condition: condition to check
++ *
++ * xe_assert() uses &drm_WARN to emit a warning and print additional information
++ * that could be read from the &xe pointer if provided &condition is false.
++ *
++ * Contrary to &drm_WARN, xe_assert() is effective only on debug builds
++ * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
++ * or as a condition.
++ *
++ * See `Xe ASSERTs`_ for general usage guidelines.
++ */
++#define xe_assert(xe, condition) xe_assert_msg((xe), condition, "")
++#define xe_assert_msg(xe, condition, msg, arg...) ({						\
++	struct xe_device *__xe = (xe);								\
++	__xe_assert_msg(__xe, condition,							\
++			"platform: %d subplatform: %d\n"					\
++			"graphics: %s %u.%02u step %s\n"					\
++			"media: %s %u.%02u step %s\n"						\
++			"display: %s step %s\n"							\
++			msg,									\
++			__xe->info.platform, __xe->info.subplatform,				\
++			__xe->info.graphics_name,						\
++			__xe->info.graphics_verx100 / 100,					\
++			__xe->info.graphics_verx100 % 100,					\
++			xe_step_name(__xe->info.step.graphics),					\
++			__xe->info.media_name,							\
++			__xe->info.media_verx100 / 100,						\
++			__xe->info.media_verx100 % 100,						\
++			xe_step_name(__xe->info.step.media),					\
++			str_enabled_disabled(__xe->info.enable_display),			\
++			xe_step_name(__xe->info.step.display),					\
++			## arg);								\
++})
++
++/**
++ * xe_tile_assert - warn if condition is false when debugging.
++ * @tile: the &struct xe_tile pointer to which &condition applies
++ * @condition: condition to check
++ *
++ * xe_tile_assert() uses &drm_WARN to emit a warning and print additional
++ * information that could be read from the &tile pointer if provided &condition
++ * is false.
++ *
++ * Contrary to &drm_WARN, xe_tile_assert() is effective only on debug builds
++ * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
++ * or as a condition.
++ *
++ * See `Xe ASSERTs`_ for general usage guidelines.
++ */
++#define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
++#define xe_tile_assert_msg(tile, condition, msg, arg...) ({					\
++	struct xe_tile *__tile = (tile);							\
++	char __buf[10];										\
++	xe_assert_msg(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg,			\
++		      __tile->id, ({ string_get_size(__tile->mem.vram.actual_physical_size, 1,	\
++				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
++})
++
++/**
++ * xe_gt_assert - warn if condition is false when debugging.
++ * @gt: the &struct xe_gt pointer to which &condition applies
++ * @condition: condition to check
++ *
++ * xe_gt_assert() uses &drm_WARN to emit a warning and print additional
++ * information that could be safetely read from the &gt pointer if provided
++ * &condition is false.
++ *
++ * Contrary to &drm_WARN, xe_gt_assert() is effective only on debug builds
++ * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
++ * or as a condition.
++ *
++ * See `Xe ASSERTs`_ for general usage guidelines.
++ */
++#define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
++#define xe_gt_assert_msg(gt, condition, msg, arg...) ({						\
++	struct xe_gt *__gt = (gt);								\
++	xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,			\
++			   __gt->info.id, __gt->info.type, ## arg);				\
++})
++
++#endif
+-- 
+2.25.1
 
