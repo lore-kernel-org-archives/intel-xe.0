@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EFDBC001B0
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 09:40:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9E4FC001B0
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 09:40:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E180C10E096;
-	Fri, 11 Aug 2023 09:40:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B320210E686;
+	Fri, 11 Aug 2023 09:40:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C4B9310E096;
- Fri, 11 Aug 2023 09:40:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3E32710E686;
+ Fri, 11 Aug 2023 09:40:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B8D79A3ECB;
- Fri, 11 Aug 2023 09:40:13 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3A577A3ECB;
+ Fri, 11 Aug 2023 09:40:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Fri, 11 Aug 2023 09:40:13 -0000
-Message-ID: <169174681375.3115.5199546611523221293@emeril.freedesktop.org>
+Date: Fri, 11 Aug 2023 09:40:24 -0000
+Message-ID: <169174682423.3118.4420533544892799448@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230811093559.2304457-1-jani.nikula@intel.com>
 In-Reply-To: <20230811093559.2304457-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_i915_irq_backports_+_display_cleanups?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
+ =?utf-8?q?m/xe=3A_i915_irq_backports_+_display_cleanups?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,21 +48,29 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: i915 irq backports + display cleanups
 URL   : https://patchwork.freedesktop.org/series/122339/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: fc4e9b6f0 fixup! drm/i915/display: Remaining changes to make xe compile
-=== git am output follows ===
-Applying: drm/i915/irq: add dedicated intel_display_irq_init()
-Applying: drm/i915/irq: add dg1_de_irq_postinstall()
-Applying: drm/i915/irq: add ilk_de_irq_postinstall()
-Applying: drm/i915/irq: move all PCH irq postinstall calls to display code
-Applying: fixup! drm/xe/display: Implement display support
-Applying: fixup! drm/xe/display: Implement display support
-Applying: fixup! drm/xe/display: Implement display support
-Applying: fixup! drm/xe/display: Implement display support
-Applying: fixup! drm/xe/display: Implement display support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e700ea2f248a75138759bcb443affeef4a2d1991
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit ec949284dcc55ba2d5923c8f1361b03d79f7013b
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Fri Aug 11 12:35:59 2023 +0300
+
+    fixup! drm/xe/display: Implement display support
+    
+    i915 now has a display/intel_wm_types.h and this is no longer needed.
+    
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch fc4e9b6f03c7991bd711cf31f3363fabc064b8c1 drm-intel
+/mt/dim: line 50: /root/.dimrc: No such file or directory
 
 
