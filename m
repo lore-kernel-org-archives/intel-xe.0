@@ -4,46 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C804AC001DE
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 18:49:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40EC3C0015E
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 19:18:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F4C410E6E6;
-	Fri, 11 Aug 2023 18:49:07 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00B6210E6E6
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Aug 2023 18:49:05 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 4803167799;
- Fri, 11 Aug 2023 18:49:05 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.52])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id EB5AEC433C8;
- Fri, 11 Aug 2023 18:49:02 +0000 (UTC)
-Date: Fri, 11 Aug 2023 14:48:59 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Message-ID: <ZNaCmz3iydAb7coz@rdvivi-mobl4>
-References: <20230802135241.458855-2-badal.nilawar@intel.com>
- <ZMrbZXOVsyT133D8@ashyti-mobl2.lan>
- <d8258e4d-4cc4-78e2-7858-78409f47774f@roeck-us.net>
- <436c15bf-c031-9f72-c4cc-c7ff1600fdbf@intel.com>
- <55da1781-3ea7-b3bc-05f8-8af25e5ea143@roeck-us.net>
- <710b7d67-2882-a077-cbd8-ab42c41aa3ca@intel.com>
- <ZNK0NzoBlGt6chs2@intel.com>
- <a95b0703-b3cd-23ae-7ba7-40aab960320a@roeck-us.net>
- <ZNZbY0OAa2GvETUd@rdvivi-mobl4>
- <ebe68c94-65ed-dfa2-13d5-10c06661601b@roeck-us.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ebe68c94-65ed-dfa2-13d5-10c06661601b@roeck-us.net>
-Subject: Re: [Intel-xe] [PATCH v3 1/6] drm/xe/hwmon: Add HWMON infrastructure
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06C0110E6E9;
+	Fri, 11 Aug 2023 19:18:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59B0010E6E9
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Aug 2023 19:18:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1691781491; x=1723317491;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=xJBMvPVFmG6lNGdbvc2H5RJAc5EY/NKp1GD9wFIkcP0=;
+ b=BxnXRxY+/O6Ji18Vgvsadmr9tMMaq3BSqwVwctmZGGmFJ+NSR51t1Dzw
+ k4HNMKesADp3EpmEHGtgxRZ1kqGfh8WBm5CuVFCpSg5frCHi2w0W0/B9Q
+ ko79Nel6jgwjUptGY2v1A2CRRHsiuD/J/eT1ZTmk5Pk59Rps9RC23f6VA
+ NysgoTR1bQKiD/L96eGVgqZifmTkYlQDY/n/c4J6/BTp9vcoSwJjtWRIV
+ P7JSwicVnEiU7hT/PQZbaP/poOPYKPMIiRXBUj2mNiLtzLdQmPImZSwwJ
+ rCfyGtOPJ4C91cRivFR3pHQdQzBjV+s976HTxN9nuy3Sb+m6mAGpZxlL7 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10799"; a="356704530"
+X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="356704530"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2023 12:18:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10799"; a="767765273"
+X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="767765273"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.103.218])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2023 12:18:10 -0700
+Date: Fri, 11 Aug 2023 12:17:17 -0700
+Message-ID: <87wmy1z8w2.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
+In-Reply-To: <890d81c9-f617-f77d-848c-de92cb9396c3@intel.com>
+References: <20230808115436.400611-1-aravind.iddamsetty@intel.com>	<20230808115436.400611-3-aravind.iddamsetty@intel.com>	<877cq4y8s3.wl-ashutosh.dixit@intel.com>	<95750d7f-df24-a9c5-ab39-86db69767bac@intel.com>	<b9496a4b-bea2-fa15-6ae1-5810baf70260@intel.com>	<cec5ddd7-e79f-c848-653f-81e21240f29a@intel.com>	<87msyz39iv.wl-ashutosh.dixit@intel.com>	<badff12b-ac9f-b0ea-9ed2-147b426dfaad@intel.com>	<ZNVc3WlzODiKP/j+@intel.com>	<875y5m1c56.wl-ashutosh.dixit@intel.com>	<890d81c9-f617-f77d-848c-de92cb9396c3@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-xe] [PATCH v3 2/2] drm/xe/pmu: Enable PMU interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,115 +59,172 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, intel-xe@lists.freedesktop.org,
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, intel-xe@lists.freedesktop.org,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Aug 11, 2023 at 10:39:00AM -0700, Guenter Roeck wrote:
-> On 8/11/23 09:01, Rodrigo Vivi wrote:
-> > On Tue, Aug 08, 2023 at 03:07:43PM -0700, Guenter Roeck wrote:
-> > > On 8/8/23 14:31, Rodrigo Vivi wrote:
-> > > > On Fri, Aug 04, 2023 at 08:06:22PM +0530, Nilawar, Badal wrote:
-> > > > > 
-> > > > > 
-> > > > > On 04-08-2023 19:56, Guenter Roeck wrote:
-> > > > > > On 8/4/23 06:19, Nilawar, Badal wrote:
-> > > > > > > 
-> > > > > > > Hi Guenter,
-> > > > > > > On 03-08-2023 04:42, Guenter Roeck wrote:
-> > > > > > > > On 8/2/23 15:40, Andi Shyti wrote:
-> > > > > > > > > Hi Badal,
-> > > > > > > > > 
-> > > > > > > > > [...]
-> > > > > > > > > 
-> > > > > > > > > > +struct xe_hwmon_data {
-> > > > > > > > > > +    struct device *hwmon_dev;
-> > > > > > > > > > +    struct xe_gt *gt;
-> > > > > > > > > > +    char name[12];
-> > > > > > > > > > +};
-> > > > > > > > > > +
-> > > > > > > > > > +struct xe_hwmon {
-> > > > > > > > > > +    struct xe_hwmon_data ddat;
-> > > > > > > > > > +    struct mutex hwmon_lock;
-> > > > > > > > > > +};
-> > > > > > > > > 
-> > > > > > > > > why do we need two structures here? Can we merge them?
-> > > > > > > > > 
-> > > > > > > > 
-> > > > > > > > A later patch adds multiple hwmon devices which makes use of it.
-> > > > > > > > I think that is flawed, and I am not inclined to accept it.
-> > > > > > > Is there any obvious reason that there shouldn't be multiple
-> > > > > > > devices? In i915 we are doing the same.
-> > > > > > > https://patchwork.freedesktop.org/patch/497324/?series=104278&rev=3
-> > > > > > > 
-> > > > > > 
-> > > > > > Technically you can do whatever you like as long as the code doesn't reside
-> > > > > > in drivers/hwmon. I won't NACK it, but I won't give it a Reviewed-by:
-> > > > > > either. i915 shouldn't do it, but I didn't realize what they are doing
-> > > > > > at the time. Other drivers doing it wrong is not an argument. You can't
-> > > > > > argue that you may drive faster than the speed limit because others do it
-> > > > > > or because police didn't stop you last time you did either.
-> > > > > > 
-> > > > > > One chip, one hwmon device. Do you have separate parent devices for
-> > > > > > all your hwmon devices ? If yes, you can argue that having multiple hwmon
-> > > > > > devices make sense. If not, you can't.
-> > > > > Thanks for clarification. There is only one parent device. So will try to
-> > > > > accommodate single hwmon device.
-> > > > 
-> > > > Well, it is one PCI device, but under 1 pci device we can have multiple "tiles"
-> > > > that can duplicate many components. Inside each tile we can even have multiple
-> > > > "gt"s.
-> > > > 
-> > > > But back to the tile, each tile has its own metrics. It's own power delivery,
-> > > > own sensors and all. They can even be seen as independent devices from this
-> > > > angle.
-> > > > 
-> > > > I'm afraid that the attempt to put everything as one device, but all the
-> > > > entries duplicated per tile/gt we might end up with a messed api.
-> > > > 
-> > > 
-> > > Your argument does not make sense. I am not asking to duplicate anything.
-> > 
-> > Okay, I'm sorry, maybe 'duplication' was a bad choice of words from my part.
-> > 
-> > You had told that having multiple hwmon device for a single chip was not
-> > acceptable.
-> > 
-> > But I'm trying to explain that we have a hardware architecture where the graphics
-> > is duplicated in 'tiles' inside the same PCI card. Each tile with its
-> > own sensors and monitoring systems. And also an extra sensors monitoring the
-> > entire 'package' that includes the tiles and the SoC.
-> > So 1 hwmon device per gt-tile and package sound the appropriated way to me.
-> > 
-> 
-> No, it isn't. Next you are going to tell me to split CPU temperature devices
-> in the same way because they are split in "tiles" on the same CPU core.
+On Thu, 10 Aug 2023 23:17:47 -0700, Iddamsetty, Aravind wrote:
+>
 
-okay, let's align with coretemp then.
+Hi Aravind,
 
-> 
-> > Your lines had convinced Badal to get them all and merge in a single hwmon
-> > device. If we do this, the API will get messed up.
-> > 
-> > And this is what I meant by 'messed up':
-> > quoting Badal:
-> > """
-> > With single device energy entries will look like hwmonxx/energy1_input,
-> > energy2_input, energy3_input.
-> > To identify which entry for what need to expose additional entry energyX_lable
-> > which will contain ("package", "gtN")
-> 
-> So what is the problem with that ? That is a description and not "messed up".
+> On 11-08-2023 09:08, Dixit, Ashutosh wrote:
+>
+> > On Thu, 10 Aug 2023 14:55:41 -0700, Rodrigo Vivi wrote:
+> >
+> >> On Thu, Aug 10, 2023 at 01:40:16PM +0530, Iddamsetty, Aravind wrote:
+> >>> On 10-08-2023 08:10, Dixit, Ashutosh wrote:
+> >>>
+> >>>> On Wed, 09 Aug 2023 06:11:48 -0700, Iddamsetty, Aravind wrote:
+> >>>>
+> >>>>> On 09-08-2023 17:27, Iddamsetty, Aravind wrote:
+> >>>>>> On 09-08-2023 15:25, Iddamsetty, Aravind wrote:
+> >>>>>>> On 09-08-2023 12:58, Dixit, Ashutosh wrote:
+> >>>>>>>> On Tue, 08 Aug 2023 04:54:36 -0700, Aravind Iddamsetty wrote:
+> >>>>>>>>
+> >>>>>>>> Spotted a few remaining things. See if it's possible to fix these up and
+> >>>>>>>> send another version.
+> >>>>>>>>
+> >>>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+> >>>>>>>>> new file mode 100644
+> >>>>>>>>> index 000000000000..9637f8283641
+> >>>>>>>>> --- /dev/null
+> >>>>>>>>> +++ b/drivers/gpu/drm/xe/xe_pmu.c
+> >>>>>>>>> @@ -0,0 +1,673 @@
+> >>>>>>>
+> >>>>>>> <snip>
+> >>>>>>>>> +static u64 __engine_group_busyness_read(struct xe_gt *gt, int sample_type)
+> >>>>>>>>> +{
+> >>>>>>>>> +	u64 val = 0;
+> >>>>>>>>> +
+> >>>>>>>>
+> >>>>>>>> What is the forcewake domain for these registers? Don't we need to get
+> >>>>>>>> forcewake before reading these. Something like:
+> >>>>>>>>
+> >>>>>>>>         XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL));
+> >>>>>>>
+> >>>>>>> based on  BSPEC:67609 these belong to GT power domain, so acquiring that
+> >>>>>>> should be sufficient.
+> >>>>>>
+> >>>>>> But if i understand correctly taking forcewake is not allowed here as it
+> >>>>>> is an atomic context and forcewake can sleep and that is what I'm seeing
+> >>>>>> as well, might also be the reason why i915 didn't do that as well.
+> >>>>>>
+> >>>>>> [  899.114316] BUG: sleeping function called from invalid context at
+> >>>>>> kernel/locking/mutex.c:580
+> >>>>>> [  899.115768] in_atomic(): 1, irqs_disabled(): 1, non_block: 0, pid:
+> >>>>>> 290, name: kworker/27:1
+> >>>>>
+> >>>>> that is the reason why in i915 we were doing similar thing of storing
+> >>>>> the counter as we enter rc6, not sure how do we do that in xe.
+> >>>>
+> >>>> Just to check, which code path(s) is/are aotmic context:
+> >>>>
+> >>>> a. xe_pm_suspend
+> >>>> b. xe_pm_runtime_suspend
+> >>>> c. xe_pmu_event_read
+> >>>
+> >>> pmu_event_read and runtime_suspend are atomic contexts.
+> >>
+> >> what about doing this at xe_pci_runtime_idle() ?
+> >>
+> >> This will run after the autosuspend time elapses,
+> >> but before calling any suspend. Also, there's no requirement of
+> >> that function to be in atomic context. So you could forcewake_get/put
+> >> and stash your registers before we go runtime_suspend.
+> >
+> > Thanks for the suggestion. Though Anshuman was saying that rpm_suspend
+> > callback itself is not called in atomic context, Aravind seems to have made
+> > a mistake. Aravind could you please confirm?
+>
+> Yup i made a mistake runtime_suspend is not an atomic context, in actual
+> we are taking the forcewake in gt_suspend which calls the xe_pmu_suspend.
 
-From the user space perspective it would be easier to get an unique handle
-for the subdevice (directory) and then inspect each property (files) with single
-and direct access, without having to inspect every single 'label' file of that
-property in the directory to match the desired sub-device.
+OK, great, thanks for confirming.
 
-But nevermind. Let's have a single hwmon per device with multiple label files
-and aligning with cputemp.
+> >
+> > In any case there seems to be a way out here, we should work to save off
+> > the registers while suspending in either the idle or suspend callbacks.
+> >
+> >>>> Now I am wondering if GuC should provide these counters too along with
+> >>>> other busyness values it provides, since GuC is what control RC6
+> >>>> entry/exit. But let's try to understand the issue some more first.
+> >>>
+> >>> do you mean GuC reading these registers and presenting us in a way, will
+> >>> need to think over how does it fit in the PMU.
+> >
+> > I think better to leave GuC out since it's a long process to modify the GuC
+> > API. So let's cancel that.
+> >
+> > About xe_pmu_event_read being atomic context, since the registers might be
+> > getting updated while xe_pmu_event_read calls are happening, the only way
+> > out I am seeing is to run a kthread (specifically a delayed work item)
+> > while PMU is active. The work item will run every 10 ms or so and save off
+> > the registers (since we cannot take forcewake in xe_pmu_event_read and read
+> > the registers). So this way we should be able to report register values
+> > which are at most 10 ms old.
+>
+> there are two cases here:
 
-> 
-> Guenter
-> 
+Correct.
+
+> 1. similar to suspend, we shall capture the register state before GT goes
+> to rc6 and that shall cover suspend case as well
+>
+> 2. in xe_pmu_event_read, we shall check if device is not in rc6 rather
+> than awake and read register but might have to take forcewake
+>
+> for first I do not think we have a way to know in Xe if GT is entering
+> rc6 (like gt_park in i915).
+
+But we can take forcewake here to either prevent GT from entering RC6 or
+bring it out of RC6 to read the registers.
+
+> even in kthread/timer we shall take forcewake only when GT is out of
+
+Timer is interrupt/atomic context so it cannot be used, it will have to be
+a kthread/workqueue.
+
+> rc6, but there is a problem our devices default autosuspend is in 1sec
+> so if we have a timer or kthread at msec the user shall also adjust the
+> autosuspend to ms or else device will never go to suspend as we take the
+> pm reference in mem_access_get.
+
+The kthread will only try to get forcewake (to read the registers) if the
+device is awake, so it will use xe_device_mem_access_get_if_ongoing. If
+device is not awake use previous stored values.
+
+Thanks.
+--
+Ashutosh
+
+
+> > Any other ideas here?
+> >
+> > Thanks.
+> > --
+> > Ashutosh
+> >
+> >>>>>>>>
+> >>>>>>>>> +	switch (sample_type) {
+> >>>>>>>>> +	case __XE_SAMPLE_RENDER_GROUP_BUSY:
+> >>>>>>>>> +		val = xe_mmio_read32(gt, XE_OAG_RENDER_BUSY_FREE);
+> >>>>>>>>> +		break;
+> >>>>>>>>> +	case __XE_SAMPLE_COPY_GROUP_BUSY:
+> >>>>>>>>> +		val = xe_mmio_read32(gt, XE_OAG_BLT_BUSY_FREE);
+> >>>>>>>>> +		break;
+> >>>>>>>>> +	case __XE_SAMPLE_MEDIA_GROUP_BUSY:
+> >>>>>>>>> +		val = xe_mmio_read32(gt, XE_OAG_ANY_MEDIA_FF_BUSY_FREE);
+> >>>>>>>>> +		break;
+> >>>>>>>>> +	case __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY:
+> >>>>>>>>> +		val = xe_mmio_read32(gt, XE_OAG_RC0_ANY_ENGINE_BUSY_FREE);
+> >>>>>>>>> +		break;
+> >>>>>>>>> +	default:
+> >>>>>>>>> +		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
+> >>>>>>>>> +	}
+> >>>>>>>>
+> >>>>>>>> And similarly here:
+> >>>>>>>>
+> >>>>>>>>         XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
