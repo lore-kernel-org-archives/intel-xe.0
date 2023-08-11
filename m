@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 207E1EB64DD
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 15:28:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9FB8EB64DD
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 16:01:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F268210E6A2;
-	Fri, 11 Aug 2023 15:28:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7BDBA10E6A2;
- Fri, 11 Aug 2023 15:28:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 790A1A0BA8;
- Fri, 11 Aug 2023 15:28:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DDB010E6AF;
+	Fri, 11 Aug 2023 16:01:59 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org
+ [IPv6:2604:1380:4641:c500::1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A118410E6AB
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Aug 2023 16:01:57 +0000 (UTC)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits))
+ (No client certificate requested)
+ by dfw.source.kernel.org (Postfix) with ESMTPS id 1F4A76583C;
+ Fri, 11 Aug 2023 16:01:57 +0000 (UTC)
+Received: from rdvivi-mobl4 (unknown [192.55.54.52])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp.kernel.org (Postfix) with ESMTPSA id D64B8C433C8;
+ Fri, 11 Aug 2023 16:01:54 +0000 (UTC)
+Date: Fri, 11 Aug 2023 12:01:52 -0400
+From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
+To: Guenter Roeck <linux@roeck-us.net>
+Message-ID: <ZNZbY0OAa2GvETUd@rdvivi-mobl4>
+References: <20230802135241.458855-1-badal.nilawar@intel.com>
+ <20230802135241.458855-2-badal.nilawar@intel.com>
+ <ZMrbZXOVsyT133D8@ashyti-mobl2.lan>
+ <d8258e4d-4cc4-78e2-7858-78409f47774f@roeck-us.net>
+ <436c15bf-c031-9f72-c4cc-c7ff1600fdbf@intel.com>
+ <55da1781-3ea7-b3bc-05f8-8af25e5ea143@roeck-us.net>
+ <710b7d67-2882-a077-cbd8-ab42c41aa3ca@intel.com>
+ <ZNK0NzoBlGt6chs2@intel.com>
+ <a95b0703-b3cd-23ae-7ba7-40aab960320a@roeck-us.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
-Date: Fri, 11 Aug 2023 15:28:12 -0000
-Message-ID: <169176769249.3117.15858026248074688503@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230809064213.375269-1-shekhar.chauhan@intel.com>
-In-Reply-To: <20230809064213.375269-1-shekhar.chauhan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_d?=
- =?utf-8?q?rm/xe/mtl=3A_Disable_RNE_in_SF_Unit?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <a95b0703-b3cd-23ae-7ba7-40aab960320a@roeck-us.net>
+Subject: Re: [Intel-xe] [PATCH v3 1/6] drm/xe/hwmon: Add HWMON infrastructure
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,35 +55,114 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: linux-hwmon@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, Aug 08, 2023 at 03:07:43PM -0700, Guenter Roeck wrote:
+> On 8/8/23 14:31, Rodrigo Vivi wrote:
+> > On Fri, Aug 04, 2023 at 08:06:22PM +0530, Nilawar, Badal wrote:
+> > > 
+> > > 
+> > > On 04-08-2023 19:56, Guenter Roeck wrote:
+> > > > On 8/4/23 06:19, Nilawar, Badal wrote:
+> > > > > 
+> > > > > Hi Guenter,
+> > > > > On 03-08-2023 04:42, Guenter Roeck wrote:
+> > > > > > On 8/2/23 15:40, Andi Shyti wrote:
+> > > > > > > Hi Badal,
+> > > > > > > 
+> > > > > > > [...]
+> > > > > > > 
+> > > > > > > > +struct xe_hwmon_data {
+> > > > > > > > +    struct device *hwmon_dev;
+> > > > > > > > +    struct xe_gt *gt;
+> > > > > > > > +    char name[12];
+> > > > > > > > +};
+> > > > > > > > +
+> > > > > > > > +struct xe_hwmon {
+> > > > > > > > +    struct xe_hwmon_data ddat;
+> > > > > > > > +    struct mutex hwmon_lock;
+> > > > > > > > +};
+> > > > > > > 
+> > > > > > > why do we need two structures here? Can we merge them?
+> > > > > > > 
+> > > > > > 
+> > > > > > A later patch adds multiple hwmon devices which makes use of it.
+> > > > > > I think that is flawed, and I am not inclined to accept it.
+> > > > > Is there any obvious reason that there shouldn't be multiple
+> > > > > devices? In i915 we are doing the same.
+> > > > > https://patchwork.freedesktop.org/patch/497324/?series=104278&rev=3
+> > > > > 
+> > > > 
+> > > > Technically you can do whatever you like as long as the code doesn't reside
+> > > > in drivers/hwmon. I won't NACK it, but I won't give it a Reviewed-by:
+> > > > either. i915 shouldn't do it, but I didn't realize what they are doing
+> > > > at the time. Other drivers doing it wrong is not an argument. You can't
+> > > > argue that you may drive faster than the speed limit because others do it
+> > > > or because police didn't stop you last time you did either.
+> > > > 
+> > > > One chip, one hwmon device. Do you have separate parent devices for
+> > > > all your hwmon devices ? If yes, you can argue that having multiple hwmon
+> > > > devices make sense. If not, you can't.
+> > > Thanks for clarification. There is only one parent device. So will try to
+> > > accommodate single hwmon device.
+> > 
+> > Well, it is one PCI device, but under 1 pci device we can have multiple "tiles"
+> > that can duplicate many components. Inside each tile we can even have multiple
+> > "gt"s.
+> > 
+> > But back to the tile, each tile has its own metrics. It's own power delivery,
+> > own sensors and all. They can even be seen as independent devices from this
+> > angle.
+> > 
+> > I'm afraid that the attempt to put everything as one device, but all the
+> > entries duplicated per tile/gt we might end up with a messed api.
+> > 
+> 
+> Your argument does not make sense. I am not asking to duplicate anything.
 
-Series: drm/xe/mtl: Disable RNE in SF Unit
-URL   : https://patchwork.freedesktop.org/series/122199/
-State : warning
+Okay, I'm sorry, maybe 'duplication' was a bad choice of words from my part.
 
-== Summary ==
+You had told that having multiple hwmon device for a single chip was not
+acceptable.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast fc4e9b6f03c7991bd711cf31f3363fabc064b8c1
-/root/linux/maintainer-tools/dim: line 50: /root/.dimrc: No such file or directory
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+But I'm trying to explain that we have a hardware architecture where the graphics
+is duplicated in 'tiles' inside the same PCI card. Each tile with its
+own sensors and monitoring systems. And also an extra sensors monitoring the
+entire 'package' that includes the tiles and the SoC.
+So 1 hwmon device per gt-tile and package sound the appropriated way to me.
 
+Your lines had convinced Badal to get them all and merge in a single hwmon
+device. If we do this, the API will get messed up.
 
+And this is what I meant by 'messed up':
+quoting Badal:
+"""
+With single device energy entries will look like hwmonxx/energy1_input,
+energy2_input, energy3_input.
+To identify which entry for what need to expose additional entry energyX_lable
+which will contain ("package", "gtN")
+"""
+
+I am arguing that for this tiled ('sub-device') hw architecture the
+initial patch from Badal, that is the same way implemented in i915 is
+absolutely the right way to go with the current infrastructure.
+
+One idea that I had the first time that I saw this was if it wouldn't
+be acceptable for instance in hwmon an infra with named (numbered?)
+sub-directories inside the the hwmon device. But I couldn't not find any
+other hwmon usage out there that could justify a big change in the core of
+hwmon like that.
+
+Well, but maybe we are indeed missing some other better way of handling
+this sub-device case with the current hwmon infrastructure. If so, I'd
+like to hear more about the suggestions and get some initial pointers.
+
+Thanks so much for your time and help here,
+Rodrigo.
+
+> 
+> Guenter
+> 
