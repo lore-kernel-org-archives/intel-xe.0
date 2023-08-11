@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1DAD2C04A6A
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 09:36:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB447C001DB
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 09:36:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E958B10E686;
-	Fri, 11 Aug 2023 09:36:43 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7277910E684
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Aug 2023 09:36:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B865E10E68C;
+	Fri, 11 Aug 2023 09:36:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB71910E686
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Aug 2023 09:36:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691746600; x=1723282600;
+ t=1691746603; x=1723282603;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J6fx2vYSw2A5LGzSZem9F5HJgzie8qaV9CcTCceoZDs=;
- b=K0qu6crCwOFyNCY1M+S9eO61rBi4/j7V2bIQF546IXrNYjSHIVKhrrKX
- /9AgqlykS0s0Y2m+tVCdII0VRNKCdfZCt7yrUV8TPDKqrkaTLmEo/ODZs
- 5N0SihONHZjzWCQKEpG29iPVsuHriPhO4O2IynUzpxJucygKJpYlk7ydq
- do9Ew/myrV1+e+gqLdef55FCarzPtePyvjK1E+MGySFRa/n8Vfz4T4skg
- 3+fkk7urlhHGSrTdztuZkGeSCpHZTNmeFbIUaRpBs0S8Jft0alVmjijCi
- nZe64QjuoaYcsVX5GjSAeRIsRVZFlD4Muqfdj/uqPuzqVX2/ycw7+j+bX w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="458012791"
-X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="458012791"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2023 02:36:23 -0700
+ bh=XaZyFvt3NSMOY9vqplMkuyNXCDYMdsmDl1mN6yossjw=;
+ b=QGHmvMhLFUZVuAy1iZ8H8yQXGnvzK/yjdpitJXpS42+kQUQAHNTl9pjT
+ Dg32YQXBe+8gdMKT36Q9FJRjkhkbTkEeXu+XjCBNXOJSG/RKdUka9HqDw
+ jF8kHYTU5aKwQFN5RRPNIb+HNKauJ6M6p7eQFxw4ZM9YooRpNc474KMPS
+ 1F5g3EVaEJFO8tag0xawRogFOtonjaG3QujXMf2ya9cdXoh4TRjPXvN9M
+ LX/Hxc+qyaICMA3TDDScREn/Y1wa9FY/BBisleSxjn2TivIrG4X4FS9Ub
+ 1/jlFKLnbsbxffn4QZHBX0qfpc0E/IudyQqW7vTOoyGIAwfmMBXjchhQE g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="375354258"
+X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="375354258"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2023 02:36:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="906374750"
-X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="906374750"
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="822605306"
+X-IronPort-AV: E=Sophos;i="6.01,165,1684825200"; d="scan'208";a="822605306"
 Received: from unknown (HELO localhost) ([10.252.49.153])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Aug 2023 02:36:21 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Aug 2023 02:36:41 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 11 Aug 2023 12:35:54 +0300
-Message-Id: <20230811093559.2304457-5-jani.nikula@intel.com>
+Date: Fri, 11 Aug 2023 12:35:59 +0300
+Message-Id: <20230811093559.2304457-10-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230811093559.2304457-1-jani.nikula@intel.com>
 References: <20230811093559.2304457-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 4/9] drm/i915/irq: move all PCH irq postinstall
- calls to display code
+Subject: [Intel-xe] [PATCH 9/9] fixup! drm/xe/display: Implement display
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,121 +63,54 @@ Cc: Jani Nikula <jani.nikula@intel.com>, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unify on making the calls from display code. Need to add an if ladder in
-gen8_de_irq_postinstall() for now, but the function looks like it could
-be overall be better split by platform. Something for the future.
-
-The display version check for mtp seems a bit suspect, but this matches
-current code.
+i915 now has a display/intel_wm_types.h and this is no longer needed.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/fe51744aec9e2f465caf0d699b8a15591859f89e.1691509966.git.jani.nikula@intel.com
-(cherry picked from commit 129ebb54f58562c17d30adf71d577aa9286e6ae4)
 ---
- .../gpu/drm/i915/display/intel_display_irq.c  | 19 ++++++++++++-------
- .../gpu/drm/i915/display/intel_display_irq.h  |  2 --
- drivers/gpu/drm/i915/i915_irq.c               |  8 --------
- 3 files changed, 12 insertions(+), 17 deletions(-)
+ .../xe/compat-i915-headers/intel_pm_types.h   | 34 -------------------
+ 1 file changed, 34 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_pm_types.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index a697e0b32c34..62ce55475554 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1537,7 +1537,7 @@ void gen8_irq_power_well_pre_disable(struct drm_i915_private *dev_priv,
-  * to avoid races with the irq handler, assuming we have MSI. Shared legacy
-  * interrupts could still race.
-  */
--void ibx_irq_postinstall(struct drm_i915_private *dev_priv)
-+static void ibx_irq_postinstall(struct drm_i915_private *dev_priv)
- {
- 	struct intel_uncore *uncore = &dev_priv->uncore;
- 	u32 mask;
-@@ -1624,6 +1624,9 @@ void ilk_de_irq_postinstall(struct drm_i915_private *i915)
- 		      display_mask | extra_mask);
- }
- 
-+static void mtp_irq_postinstall(struct drm_i915_private *i915);
-+static void icp_irq_postinstall(struct drm_i915_private *i915);
-+
- void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
- {
- 	struct intel_uncore *uncore = &dev_priv->uncore;
-@@ -1641,6 +1644,13 @@ void gen8_de_irq_postinstall(struct drm_i915_private *dev_priv)
- 	if (!HAS_DISPLAY(dev_priv))
- 		return;
- 
-+	if (DISPLAY_VER(dev_priv) >= 14)
-+		mtp_irq_postinstall(dev_priv);
-+	else if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
-+		icp_irq_postinstall(dev_priv);
-+	else if (HAS_PCH_SPLIT(dev_priv))
-+		ibx_irq_postinstall(dev_priv);
-+
- 	if (DISPLAY_VER(dev_priv) <= 10)
- 		de_misc_masked |= GEN8_DE_MISC_GSE;
- 
-@@ -1721,7 +1731,7 @@ static void mtp_irq_postinstall(struct drm_i915_private *i915)
- 	GEN3_IRQ_INIT(uncore, SDE, ~sde_mask, 0xffffffff);
- }
- 
--void icp_irq_postinstall(struct drm_i915_private *dev_priv)
-+static void icp_irq_postinstall(struct drm_i915_private *dev_priv)
- {
- 	struct intel_uncore *uncore = &dev_priv->uncore;
- 	u32 mask = SDE_GMBUS_ICP;
-@@ -1745,11 +1755,6 @@ void dg1_de_irq_postinstall(struct drm_i915_private *i915)
- 	if (!HAS_DISPLAY(i915))
- 		return;
- 
--	if (DISPLAY_VER(i915) >= 14)
--		mtp_irq_postinstall(i915);
--	else
--		icp_irq_postinstall(i915);
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_pm_types.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_pm_types.h
+deleted file mode 100644
+index 0bd4b1cb9c83..000000000000
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_pm_types.h
++++ /dev/null
+@@ -1,34 +0,0 @@
+-/* SPDX-License-Identifier: MIT */
+-/*
+- * Copyright © 2021 Intel Corporation
+- */
 -
- 	gen8_de_irq_postinstall(i915);
- 	intel_uncore_write(&i915->uncore, GEN11_DISPLAY_INT_CTL,
- 			   GEN11_DISPLAY_IRQ_ENABLE);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-index 2ccc3e53cec3..2a090dd6abd7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-@@ -58,9 +58,7 @@ void vlv_display_irq_reset(struct drm_i915_private *i915);
- void gen8_display_irq_reset(struct drm_i915_private *i915);
- void gen11_display_irq_reset(struct drm_i915_private *i915);
- 
--void ibx_irq_postinstall(struct drm_i915_private *i915);
- void vlv_display_irq_postinstall(struct drm_i915_private *i915);
--void icp_irq_postinstall(struct drm_i915_private *i915);
- void ilk_de_irq_postinstall(struct drm_i915_private *i915);
- void gen8_de_irq_postinstall(struct drm_i915_private *i915);
- void gen11_de_irq_postinstall(struct drm_i915_private *i915);
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index d63f79259637..1bfcfbe6e30b 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -792,11 +792,6 @@ static void valleyview_irq_postinstall(struct drm_i915_private *dev_priv)
- 
- static void gen8_irq_postinstall(struct drm_i915_private *dev_priv)
- {
--	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
--		icp_irq_postinstall(dev_priv);
--	else if (HAS_PCH_SPLIT(dev_priv))
--		ibx_irq_postinstall(dev_priv);
+-#ifndef __INTEL_PM_TYPES_H__
+-#define __INTEL_PM_TYPES_H__
 -
- 	gen8_gt_irq_postinstall(to_gt(dev_priv));
- 	gen8_de_irq_postinstall(dev_priv);
- 
-@@ -809,9 +804,6 @@ static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
- 	struct intel_uncore *uncore = gt->uncore;
- 	u32 gu_misc_masked = GEN11_GU_MISC_GSE;
- 
--	if (INTEL_PCH_TYPE(dev_priv) >= PCH_ICP)
--		icp_irq_postinstall(dev_priv);
+-#include <linux/types.h>
 -
- 	gen11_gt_irq_postinstall(gt);
- 	gen11_de_irq_postinstall(dev_priv);
- 
+-enum intel_ddb_partitioning {
+-	INTEL_DDB_PART_1_2,
+-	INTEL_DDB_PART_5_6, /* IVB+ */
+-};
+-
+-struct skl_ddb_entry {
+-	u16 start, end;	/* in number of blocks, 'end' is exclusive */
+-};
+-
+-static inline u16 skl_ddb_entry_size(const struct skl_ddb_entry *entry)
+-{
+-	return entry->end - entry->start;
+-}
+-
+-static inline bool skl_ddb_entry_equal(const struct skl_ddb_entry *e1,
+-				       const struct skl_ddb_entry *e2)
+-{
+-	if (e1->start == e2->start && e1->end == e2->end)
+-		return true;
+-
+-	return false;
+-}
+-
+-#endif /* __INTEL_PM_TYPES_H__ */
 -- 
 2.39.2
 
