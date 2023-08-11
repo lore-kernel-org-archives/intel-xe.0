@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9FB8EB64DD
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 16:01:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5506EB64DD
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 16:05:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DDB010E6AF;
-	Fri, 11 Aug 2023 16:01:59 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A118410E6AB
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Aug 2023 16:01:57 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 1F4A76583C;
- Fri, 11 Aug 2023 16:01:57 +0000 (UTC)
-Received: from rdvivi-mobl4 (unknown [192.55.54.52])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp.kernel.org (Postfix) with ESMTPSA id D64B8C433C8;
- Fri, 11 Aug 2023 16:01:54 +0000 (UTC)
-Date: Fri, 11 Aug 2023 12:01:52 -0400
-From: Rodrigo Vivi <rodrigo.vivi@kernel.org>
-To: Guenter Roeck <linux@roeck-us.net>
-Message-ID: <ZNZbY0OAa2GvETUd@rdvivi-mobl4>
-References: <20230802135241.458855-1-badal.nilawar@intel.com>
- <20230802135241.458855-2-badal.nilawar@intel.com>
- <ZMrbZXOVsyT133D8@ashyti-mobl2.lan>
- <d8258e4d-4cc4-78e2-7858-78409f47774f@roeck-us.net>
- <436c15bf-c031-9f72-c4cc-c7ff1600fdbf@intel.com>
- <55da1781-3ea7-b3bc-05f8-8af25e5ea143@roeck-us.net>
- <710b7d67-2882-a077-cbd8-ab42c41aa3ca@intel.com>
- <ZNK0NzoBlGt6chs2@intel.com>
- <a95b0703-b3cd-23ae-7ba7-40aab960320a@roeck-us.net>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9343010E6AD;
+	Fri, 11 Aug 2023 16:05:30 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 65EAB10E6AD;
+ Fri, 11 Aug 2023 16:05:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5D50BA7E03;
+ Fri, 11 Aug 2023 16:05:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6767793920650169429=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <a95b0703-b3cd-23ae-7ba7-40aab960320a@roeck-us.net>
-Subject: Re: [Intel-xe] [PATCH v3 1/6] drm/xe/hwmon: Add HWMON infrastructure
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
+Date: Fri, 11 Aug 2023 16:05:28 -0000
+Message-ID: <169176992837.3117.16728263137909526811@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230809064213.375269-1-shekhar.chauhan@intel.com>
+In-Reply-To: <20230809064213.375269-1-shekhar.chauhan@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/mt?=
+ =?utf-8?q?l=3A_Disable_RNE_in_SF_Unit?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,114 +39,238 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, intel-xe@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 08, 2023 at 03:07:43PM -0700, Guenter Roeck wrote:
-> On 8/8/23 14:31, Rodrigo Vivi wrote:
-> > On Fri, Aug 04, 2023 at 08:06:22PM +0530, Nilawar, Badal wrote:
-> > > 
-> > > 
-> > > On 04-08-2023 19:56, Guenter Roeck wrote:
-> > > > On 8/4/23 06:19, Nilawar, Badal wrote:
-> > > > > 
-> > > > > Hi Guenter,
-> > > > > On 03-08-2023 04:42, Guenter Roeck wrote:
-> > > > > > On 8/2/23 15:40, Andi Shyti wrote:
-> > > > > > > Hi Badal,
-> > > > > > > 
-> > > > > > > [...]
-> > > > > > > 
-> > > > > > > > +struct xe_hwmon_data {
-> > > > > > > > +    struct device *hwmon_dev;
-> > > > > > > > +    struct xe_gt *gt;
-> > > > > > > > +    char name[12];
-> > > > > > > > +};
-> > > > > > > > +
-> > > > > > > > +struct xe_hwmon {
-> > > > > > > > +    struct xe_hwmon_data ddat;
-> > > > > > > > +    struct mutex hwmon_lock;
-> > > > > > > > +};
-> > > > > > > 
-> > > > > > > why do we need two structures here? Can we merge them?
-> > > > > > > 
-> > > > > > 
-> > > > > > A later patch adds multiple hwmon devices which makes use of it.
-> > > > > > I think that is flawed, and I am not inclined to accept it.
-> > > > > Is there any obvious reason that there shouldn't be multiple
-> > > > > devices? In i915 we are doing the same.
-> > > > > https://patchwork.freedesktop.org/patch/497324/?series=104278&rev=3
-> > > > > 
-> > > > 
-> > > > Technically you can do whatever you like as long as the code doesn't reside
-> > > > in drivers/hwmon. I won't NACK it, but I won't give it a Reviewed-by:
-> > > > either. i915 shouldn't do it, but I didn't realize what they are doing
-> > > > at the time. Other drivers doing it wrong is not an argument. You can't
-> > > > argue that you may drive faster than the speed limit because others do it
-> > > > or because police didn't stop you last time you did either.
-> > > > 
-> > > > One chip, one hwmon device. Do you have separate parent devices for
-> > > > all your hwmon devices ? If yes, you can argue that having multiple hwmon
-> > > > devices make sense. If not, you can't.
-> > > Thanks for clarification. There is only one parent device. So will try to
-> > > accommodate single hwmon device.
-> > 
-> > Well, it is one PCI device, but under 1 pci device we can have multiple "tiles"
-> > that can duplicate many components. Inside each tile we can even have multiple
-> > "gt"s.
-> > 
-> > But back to the tile, each tile has its own metrics. It's own power delivery,
-> > own sensors and all. They can even be seen as independent devices from this
-> > angle.
-> > 
-> > I'm afraid that the attempt to put everything as one device, but all the
-> > entries duplicated per tile/gt we might end up with a messed api.
-> > 
-> 
-> Your argument does not make sense. I am not asking to duplicate anything.
+--===============6767793920650169429==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 
-Okay, I'm sorry, maybe 'duplication' was a bad choice of words from my part.
+=3D=3D Series Details =3D=3D
 
-You had told that having multiple hwmon device for a single chip was not
-acceptable.
+Series: drm/xe/mtl: Disable RNE in SF Unit
+URL   : https://patchwork.freedesktop.org/series/122199/
+State : failure
 
-But I'm trying to explain that we have a hardware architecture where the graphics
-is duplicated in 'tiles' inside the same PCI card. Each tile with its
-own sensors and monitoring systems. And also an extra sensors monitoring the
-entire 'package' that includes the tiles and the SoC.
-So 1 hwmon device per gt-tile and package sound the appropriated way to me.
+=3D=3D Summary =3D=3D
 
-Your lines had convinced Badal to get them all and merge in a single hwmon
-device. If we do this, the API will get messed up.
+"CI Bug Log - changes from xe-319-fc4e9b6f03c7991bd711cf31f3363fabc064b8c1_=
+BAT -> xe-pw-122199v1_BAT\n=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D\n\nSummary\n-------\n\n  **FAILURE**\n\n =
+ Serious unknown changes coming with xe-pw-122199v1_BAT absolutely need to =
+be\n  verified manually.\n  \n  If you think the reported changes have noth=
+ing to do with the changes\n  introduced in xe-pw-122199v1_BAT, please noti=
+fy your bug team to allow them\n  to document this new failure mode, which =
+will reduce false positives in CI.\n\n  \n\nParticipating hosts (2 -> 2)\n-=
+-----------------------------\n\n  ERROR: It appears as if the changes made=
+ in xe-pw-122199v1_BAT prevented too many machines from booting.\n\n  Addit=
+ional (2): bat-pvc-2 bat-atsm-2 \n  Missing    (2): bat-dg2-oem2 bat-adlp-7=
+ \n\nKnown issues\n------------\n\n  Here are the changes found in xe-pw-12=
+2199v1_BAT that come from known issues:\n\n### IGT changes ###\n\n#### Issu=
+es hit ####\n\n  * igt@core_hotunplug@unbind-rebind:\n    - bat-atsm-2:    =
+     NOTRUN -> [FAIL][1] ([Intel XE#500])\n   [1]: https://intel-gfx-ci.01.=
+org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@core_hotunplug@unbind-rebin=
+d.html\n\n  * igt@kms_addfb_basic@invalid-set-prop-any:\n    - bat-atsm-2: =
+        NOTRUN -> [SKIP][2] ([i915#6077]) +24 similar issues\n   [2]: https=
+://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@kms_addf=
+b_basic@invalid-set-prop-any.html\n\n  * igt@kms_chamelium_frames@dp-crc-fa=
+st:\n    - bat-atsm-2:         NOTRUN -> [SKIP][3] ([Intel XE#274]) +14 sim=
+ilar issues\n   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199=
+v1/bat-atsm-2/igt@kms_chamelium_frames@dp-crc-fast.html\n\n  * igt@kms_flip=
+@basic-flip-vs-wf_vblank:\n    - bat-atsm-2:         NOTRUN -> [SKIP][4] ([=
+Intel XE#275]) +3 similar issues\n   [4]: https://intel-gfx-ci.01.org/tree/=
+intel-xe/xe-pw-122199v1/bat-atsm-2/igt@kms_flip@basic-flip-vs-wf_vblank.htm=
+l\n\n  * igt@kms_force_connector_basic@prune-stale-modes:\n    - bat-atsm-2=
+:         NOTRUN -> [SKIP][5] ([Intel XE#277]) +2 similar issues\n   [5]: h=
+ttps://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@kms_=
+force_connector_basic@prune-stale-modes.html\n\n  * igt@kms_pipe_crc_basic@=
+compare-crc-sanitycheck-xr24:\n    - bat-atsm-2:         NOTRUN -> [SKIP][6=
+] ([i915#1836]) +7 similar issues\n   [6]: https://intel-gfx-ci.01.org/tree=
+/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@kms_pipe_crc_basic@compare-crc-sani=
+tycheck-xr24.html\n\n  * igt@kms_prop_blob@basic:\n    - bat-atsm-2:       =
+  NOTRUN -> [SKIP][7] ([Intel XE#273])\n   [7]: https://intel-gfx-ci.01.org=
+/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@kms_prop_blob@basic.html\n\n  =
+* igt@kms_psr@sprite_plane_onoff:\n    - bat-atsm-2:         NOTRUN -> [SKI=
+P][8] ([i915#1072]) +2 similar issues\n   [8]: https://intel-gfx-ci.01.org/=
+tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@kms_psr@sprite_plane_onoff.html=
+\n\n  * igt@xe_compute@compute-square:\n    - bat-atsm-2:         NOTRUN ->=
+ [SKIP][9] ([Intel XE#252])\n   [9]: https://intel-gfx-ci.01.org/tree/intel=
+-xe/xe-pw-122199v1/bat-atsm-2/igt@xe_compute@compute-square.html\n\n  * igt=
+@xe_exec_fault_mode@twice-userptr-invalidate-imm:\n    - bat-atsm-2:       =
+  NOTRUN -> [SKIP][10] ([Intel XE#288]) +17 similar issues\n   [10]: https:=
+//intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@xe_exec_f=
+ault_mode@twice-userptr-invalidate-imm.html\n\n  * igt@xe_huc_copy@huc_copy=
+:\n    - bat-atsm-2:         NOTRUN -> [SKIP][11] ([Intel XE#255])\n   [11]=
+: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@x=
+e_huc_copy@huc_copy.html\n\n  * igt@xe_live_ktest@dmabuf:\n    - bat-atsm-2=
+:         NOTRUN -> [SKIP][12] ([Intel XE#483]) +4 similar issues\n   [12]:=
+ https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@xe=
+_live_ktest@dmabuf.html\n\n  \n  {name}: This element is suppressed. This m=
+eans it is ignored when computing\n          the status of the difference (=
+SUCCESS, WARNING, or FAILURE).\n\n  [Intel XE#252]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/252\n  [Intel XE#255]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/255\n  [Intel XE#273]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/273\n  [Intel XE#274]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/274\n  [Intel XE#275]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/275\n  [Intel XE#277]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/277\n  [Intel XE#288]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/288\n  [Intel XE#389]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/389\n  [Intel XE#482]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/482\n  [Intel XE#483]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/483\n  [Intel XE#500]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/500\n  [Intel XE#522]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/522\n  [Intel XE#524]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/524\n  [Intel XE#526]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/526\n  [Intel XE#531]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/531\n  [Intel XE#532]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/532\n  [Intel XE#533]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/533\n  [Intel XE#534]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/534\n  [Intel XE#535]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/535\n  [Intel XE#536]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/536\n  [Intel XE#537]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/537\n  [Intel XE#538]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/538\n  [Intel XE#539]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/539\n  [Intel XE#540]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/540\n  [Intel XE#541]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/541\n  [Intel XE#542]: https://gitlab.freedesk=
+top.org/drm/xe/kernel/issues/542\n  [i915#1072]: https://gitlab.freedesktop=
+.org/drm/intel/issues/1072\n  [i915#1836]: https://gitlab.freedesktop.org/d=
+rm/intel/issues/1836\n  [i915#6077]: https://gitlab.freedesktop.org/drm/int=
+el/issues/6077\n\n\nBuild changes\n-------------\n\n  * IGT: IGT_7428 -> IG=
+T_7424\n  * Linux: xe-319-fc4e9b6f03c7991bd711cf31f3363fabc064b8c1 -> xe-pw=
+-122199v1\n\n  IGT_7424: f12c2533941c9dfce43f455a02b7986605692b29 @ https:/=
+/gitlab.freedesktop.org/drm/igt-gpu-tools.git\n  IGT_7428: 2f916814e4153f42=
+8664ab87acec25694751b1f6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools=
+.git\n  xe-319-fc4e9b6f03c7991bd711cf31f3363fabc064b8c1: fc4e9b6f03c7991bd7=
+11cf31f3363fabc064b8c1\n  xe-pw-122199v1: 122199v1\n\n"
 
-And this is what I meant by 'messed up':
-quoting Badal:
-"""
-With single device energy entries will look like hwmonxx/energy1_input,
-energy2_input, energy3_input.
-To identify which entry for what need to expose additional entry energyX_lable
-which will contain ("package", "gtN")
-"""
 
-I am arguing that for this tiled ('sub-device') hw architecture the
-initial patch from Badal, that is the same way implemented in i915 is
-absolutely the right way to go with the current infrastructure.
 
-One idea that I had the first time that I saw this was if it wouldn't
-be acceptable for instance in hwmon an infra with named (numbered?)
-sub-directories inside the the hwmon device. But I couldn't not find any
-other hwmon usage out there that could justify a big change in the core of
-hwmon like that.
+--===============6767793920650169429==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 
-Well, but maybe we are indeed missing some other better way of handling
-this sub-device case with the current hwmon infrastructure. If so, I'd
-like to hear more about the suggestions and get some initial pointers.
 
-Thanks so much for your time and help here,
-Rodrigo.
+<!DOCTYPE html>
+<html xmlns=3D"http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id=3D"css-table-select" type=3D"text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-> 
-> Guenter
-> 
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/mtl: Disable RNE in SF Unit</td></tr>
+<tr><td><b>URL:</b></td><td><a href=3D"https://patchwork.freedesktop.org/se=
+ries/122199/">https://patchwork.freedesktop.org/series/122199/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+</table>
+
+
+    <p>"CI Bug Log - changes from xe-319-fc4e9b6f03c7991bd711cf31f3363fabc0=
+64b8c1_BAT -&gt; xe-pw-122199v1_BAT\n=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D\n\nSummary\n-------\n\n  <str=
+ong>FAILURE</strong>\n\n  Serious unknown changes coming with xe-pw-122199v=
+1_BAT absolutely need to be\n  verified manually.\n  \n  If you think the r=
+eported changes have nothing to do with the changes\n  introduced in xe-pw-=
+122199v1_BAT, please notify your bug team to allow them\n  to document this=
+ new failure mode, which will reduce false positives in CI.\n\n  \n\nPartic=
+ipating hosts (2 -&gt; 2)\n------------------------------\n\n  ERROR: It ap=
+pears as if the changes made in xe-pw-122199v1_BAT prevented too many machi=
+nes from booting.\n\n  Additional (2): bat-pvc-2 bat-atsm-2 \n  Missing    =
+(2): bat-dg2-oem2 bat-adlp-7 \n\nKnown issues\n------------\n\n  Here are t=
+he changes found in xe-pw-122199v1_BAT that come from known issues:\n\n### =
+IGT changes ###\n\n#### Issues hit ####\n\n  * igt@core_hotunplug@unbind-re=
+bind:\n    - bat-atsm-2:         NOTRUN -&gt; [FAIL][1] ([Intel XE#500])\n =
+  [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/=
+igt@core_hotunplug@unbind-rebind.html\n\n  * igt@kms_addfb_basic@invalid-se=
+t-prop-any:\n    - bat-atsm-2:         NOTRUN -&gt; [SKIP][2] ([i915#6077])=
+ +24 similar issues\n   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-p=
+w-122199v1/bat-atsm-2/igt@kms_addfb_basic@invalid-set-prop-any.html\n\n  * =
+igt@kms_chamelium_frames@dp-crc-fast:\n    - bat-atsm-2:         NOTRUN -&g=
+t; [SKIP][3] ([Intel XE#274]) +14 similar issues\n   [3]: https://intel-gfx=
+-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@kms_chamelium_frames=
+@dp-crc-fast.html\n\n  * igt@kms_flip@basic-flip-vs-wf_vblank:\n    - bat-a=
+tsm-2:         NOTRUN -&gt; [SKIP][4] ([Intel XE#275]) +3 similar issues\n =
+  [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/=
+igt@kms_flip@basic-flip-vs-wf_vblank.html\n\n  * igt@kms_force_connector_ba=
+sic@prune-stale-modes:\n    - bat-atsm-2:         NOTRUN -&gt; [SKIP][5] ([=
+Intel XE#277]) +2 similar issues\n   [5]: https://intel-gfx-ci.01.org/tree/=
+intel-xe/xe-pw-122199v1/bat-atsm-2/igt@kms_force_connector_basic@prune-stal=
+e-modes.html\n\n  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:\n =
+   - bat-atsm-2:         NOTRUN -&gt; [SKIP][6] ([i915#1836]) +7 similar is=
+sues\n   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-=
+atsm-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html\n\n  * igt@=
+kms_prop_blob@basic:\n    - bat-atsm-2:         NOTRUN -&gt; [SKIP][7] ([In=
+tel XE#273])\n   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-12219=
+9v1/bat-atsm-2/igt@kms_prop_blob@basic.html\n\n  * igt@kms_psr@sprite_plane=
+_onoff:\n    - bat-atsm-2:         NOTRUN -&gt; [SKIP][8] ([i915#1072]) +2 =
+similar issues\n   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122=
+199v1/bat-atsm-2/igt@kms_psr@sprite_plane_onoff.html\n\n  * igt@xe_compute@=
+compute-square:\n    - bat-atsm-2:         NOTRUN -&gt; [SKIP][9] ([Intel X=
+E#252])\n   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/b=
+at-atsm-2/igt@xe_compute@compute-square.html\n\n  * igt@xe_exec_fault_mode@=
+twice-userptr-invalidate-imm:\n    - bat-atsm-2:         NOTRUN -&gt; [SKIP=
+][10] ([Intel XE#288]) +17 similar issues\n   [10]: https://intel-gfx-ci.01=
+.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-u=
+serptr-invalidate-imm.html\n\n  * igt@xe_huc_copy@huc_copy:\n    - bat-atsm=
+-2:         NOTRUN -&gt; [SKIP][11] ([Intel XE#255])\n   [11]: https://inte=
+l-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@xe_huc_copy@huc=
+_copy.html\n\n  * igt@xe_live_ktest@dmabuf:\n    - bat-atsm-2:         NOTR=
+UN -&gt; [SKIP][12] ([Intel XE#483]) +4 similar issues\n   [12]: https://in=
+tel-gfx-ci.01.org/tree/intel-xe/xe-pw-122199v1/bat-atsm-2/igt@xe_live_ktest=
+@dmabuf.html\n\n  \n  {name}: This element is suppressed. This means it is =
+ignored when computing\n          the status of the difference (SUCCESS, WA=
+RNING, or FAILURE).\n\n  [Intel XE#252]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/252\n  [Intel XE#255]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/255\n  [Intel XE#273]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/273\n  [Intel XE#274]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/274\n  [Intel XE#275]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/275\n  [Intel XE#277]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/277\n  [Intel XE#288]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/288\n  [Intel XE#389]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/389\n  [Intel XE#482]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/482\n  [Intel XE#483]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/483\n  [Intel XE#500]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/500\n  [Intel XE#522]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/522\n  [Intel XE#524]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/524\n  [Intel XE#526]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/526\n  [Intel XE#531]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/531\n  [Intel XE#532]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/532\n  [Intel XE#533]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/533\n  [Intel XE#534]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/534\n  [Intel XE#535]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/535\n  [Intel XE#536]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/536\n  [Intel XE#537]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/537\n  [Intel XE#538]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/538\n  [Intel XE#539]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/539\n  [Intel XE#540]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/540\n  [Intel XE#541]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/541\n  [Intel XE#542]: https://gitlab.freedesktop.org/drm=
+/xe/kernel/issues/542\n  [i915#1072]: https://gitlab.freedesktop.org/drm/in=
+tel/issues/1072\n  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/is=
+sues/1836\n  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6=
+077\n\n\nBuild changes\n-------------\n\n  * IGT: IGT_7428 -&gt; IGT_7424\n=
+  * Linux: xe-319-fc4e9b6f03c7991bd711cf31f3363fabc064b8c1 -&gt; xe-pw-1221=
+99v1\n\n  IGT_7424: f12c2533941c9dfce43f455a02b7986605692b29 @ https://gitl=
+ab.freedesktop.org/drm/igt-gpu-tools.git\n  IGT_7428: 2f916814e4153f428664a=
+b87acec25694751b1f6 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git\=
+n  xe-319-fc4e9b6f03c7991bd711cf31f3363fabc064b8c1: fc4e9b6f03c7991bd711cf3=
+1f3363fabc064b8c1\n  xe-pw-122199v1: 122199v1\n\n"</p>
+
+</body>
+</html>
+
+--===============6767793920650169429==--
