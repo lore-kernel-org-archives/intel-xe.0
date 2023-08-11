@@ -4,139 +4,138 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1489C001DE
-	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 00:27:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83B0BC04A94
+	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 00:29:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C214A10E616;
-	Fri, 11 Aug 2023 00:27:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2E0D10E616
- for <intel-xe@lists.freedesktop.org>; Fri, 11 Aug 2023 00:27:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 356E010E616;
+	Fri, 11 Aug 2023 00:29:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEC8D10E616
+ for <intel-xe@lists.freedesktop.org>; Fri, 11 Aug 2023 00:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1691713667; x=1723249667;
+ t=1691713784; x=1723249784;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=q+yD1lyEf6vC0pTkcskPXnv96vd4ub8xRy0NuE4LSv4=;
- b=DyLAu5hXStGHTlufbJUZt6Yb49nxUZwHumT87ciEV6ZZxx9RI7+Gc421
- Z6T06YpdhWomXTge3sIK41B9FA7JvawjuREm+7CYzGXBZsEcxMc9WjXez
- KdrBOErew/kizJ7K1WfSF5a9Skc4Zj+xlTLwY2yVdUXuwh/BmyBW1uJdy
- /CZSXeg3RgWTggxd96+stFJG40w/CWa0RVXWPaVPYl7ky1ybpVA71uMgb
- 233s+M/z7eaZwh6ZOU1JxYpLxo4uCokj87CytIWPaWF0KkJJQlT3hS2Tp
- sViYB8vCIgnS1/kiTGvMf8USM+096fH/sDWPmjiKU/r1BH4azc8u+ES3H w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="370461147"
-X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="370461147"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Aug 2023 17:27:47 -0700
+ in-reply-to:mime-version;
+ bh=k5yXt7RJbAaw54YcdHDppQdfIYMUI8RTrwqJhe8nKWA=;
+ b=ZQwKTJHgZ6ECotRLNC9Gr9kEKHauDZ173gjGFxf10ysnVHZyoF3KF3oi
+ ljBAcICScdQZ6lBZQS15jTCX8XvK14gG6BW5b21Oz3f5t2YBpuH16afwu
+ xEuHqJ74hdjSS9Awdso/fkVTEdGQKklv5vsrwxZgccNYQXZSlKpZXEZVI
+ kasqUrh8XJvAyb68J+XTd2v5BxQyt8QN0dmTX8k2fiwVktnBQ2KItvB/B
+ 1K8TtF/Gj2zQhIRN6ybLDosiKbKYSn2f8DHpb4LpJX+9c91X0Hmr8Sux9
+ KtdEyiFgzTqhLXKSSmHZItSKrnkWi1VmOHTvcL5kxyrWeU5/tXEnQSxTl A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="351164678"
+X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="351164678"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Aug 2023 17:29:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="761995649"
-X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="761995649"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga008.jf.intel.com with ESMTP; 10 Aug 2023 17:27:47 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10798"; a="802462823"
+X-IronPort-AV: E=Sophos;i="6.01,163,1684825200"; d="scan'208";a="802462823"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga004.fm.intel.com with ESMTP; 10 Aug 2023 17:29:44 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 10 Aug 2023 17:27:46 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.27; Thu, 10 Aug 2023 17:29:44 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 10 Aug 2023 17:27:46 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 10 Aug 2023 17:27:46 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.45) by
- edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Thu, 10 Aug 2023 17:29:44 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 10 Aug 2023 17:27:46 -0700
+ 15.1.2507.27; Thu, 10 Aug 2023 17:29:43 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lZDdi6MncFTLqOMGVcNCyE5gOKykrqTG7+La/RRvJC5oUef1/tg7R8EtKraWF2iM4OHRCUDdOy6KHUfsW9B+/5qZ3lQ7GC4Oy+GT4HdM4SpBxCc4h0ffzuPG/1vJVuplNN/RXgOrLFlT75St8mxVXb5DypDNSoHf2uc08jfvDe71U3AyGTWGj24UeCq8KTyOE1H5JddFY/HeST2EpYIl6rlq+bM9vaH48DgDqimbCTUB/oqDaX6k8FaHCUXzgVbLtol91w5Wpg2mG330av3BYkCWb+zKTAnOpQOvaciyqQMezwZsemGz3ko2vD6/8t6dnN9T60//JLb9bqFJyvpPRg==
+ b=NVo05a4amIC/IWtFZpO4LyXoMvmkYrELwhmO+nnThDbpf8Gu8xz4eVCniiWm+/Z2mGzbOO6r6Svg+S1glmiWIG1JmN2qEtVKU2F/5lfRMhAyFmXEdqc2YzD/2L2v3/pd/bM/TDvDiA/A9Y6BDgxn9TBTMxuChecORInGI8pyzSMEt4Z/AV1EK4n04hJSHGPi/7lTPotDdKeGZNt0qAZ8X3Pi6MC3fQb1b5WFCSa3DVL+xtdu/aLFbd56WS3SNzOCPW/5YA21TAmlYM6qNE48PlaUu/pK67OehVc1TMq6vLucYPmAW5oCAdNyvulLfD96lRbeTZeQcNoYfVpAJTziJw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lVTGVb6Z64NNxcZjUdkF1DEr5gc/VJMgnsuwXQn+pyk=;
- b=fzj6n0Zcy/H1LM8nNQFDqHBQwfooQUOSiVpQDy7RTSh9IaeNe5ceIkKdXSqwTjxT34oMyjKr7+uf49NaKfhTtUEGbrY8g2V9lne4zkGbLJT1Z02Ip4JpjeJ3DYJZ6NOWoXPK+NJHQHRs7hIF55Lu5vGrd60uyV5mcdeh6vDAAE42awgie7lS9u8MPKDLGwEiu5X9j2E7iHd/ZXpgtiGASYgHoRQXp2xco3rf593+wN5JxlslA/6AIQu83QswRDlvXtmDThFuRLDpmJBfllNQmyO0rLcZDeFXVjytYfGMTT//WdMa1NQqVdEWdox3p6RCqy4nHdaVdOKSUvSyuLWoKg==
+ bh=k1McJDS0PaTbTPSAQRNrqRi6GEnWF8NwIdwDkkGc+5Y=;
+ b=EbiupusexJHQy6ChEDi7i+DsiJQivzt9XXr82ywiChpLCH/u9yewB6YRlKAdZxG2jRRDcD1RMIGcmfDBKlnVjdOnvL0C+zwCPBw50AIe7pAP2rRF0fSMW89xNjPMnKPRKMHZnPRKAFVxoKO5cmePJ768H3q7kRIrgUzyUOGtHpnW6HMx/BCchzzFIaH39j7aG9CMkjXDx2EMffQJtfYzzS0GYdJukB0dtnRMziAwEYmQMf7aD52igx0fAZWFVM+m7spwSBrfEXbxWFOBz1LUjUMrtY5YDfWNCpXicjQmJnNq0u/x2gBpGGqqlaGxyebn4gjNz/+xxmjNClgfoqwB+Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- SJ2PR11MB7519.namprd11.prod.outlook.com (2603:10b6:a03:4c0::10) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by SA1PR11MB8544.namprd11.prod.outlook.com (2603:10b6:806:3a3::13)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.30; Fri, 11 Aug
- 2023 00:27:43 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::de6b:b5a9:e542:b41]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::de6b:b5a9:e542:b41%5]) with mapi id 15.20.6652.029; Fri, 11 Aug 2023
- 00:27:43 +0000
-Date: Thu, 10 Aug 2023 17:27:40 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <20230811002740.GB3375865@mdroper-desk1.amr.corp.intel.com>
-References: <20230809180515.2083-1-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ 2023 00:29:41 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6652.029; Fri, 11 Aug 2023
+ 00:29:41 +0000
+Date: Thu, 10 Aug 2023 20:29:37 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Message-ID: <ZNWA8TxN1ZtdYuhV@intel.com>
+References: <20230809190453.1927134-1-jani.nikula@intel.com>
+ <169161122546.10297.4625741320570358620@emeril.freedesktop.org>
+ <ZNVZb3H4uBHtU9K7@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230809180515.2083-1-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0230.namprd13.prod.outlook.com
- (2603:10b6:a03:2c1::25) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+In-Reply-To: <ZNVZb3H4uBHtU9K7@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0114.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::29) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SJ2PR11MB7519:EE_
-X-MS-Office365-Filtering-Correlation-Id: b81cbf68-d016-4955-e8cb-08db9a01c734
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SA1PR11MB8544:EE_
+X-MS-Office365-Filtering-Correlation-Id: 04eabedd-c27c-46bb-47e0-08db9a020d95
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RIdF662TuRbDPQNQrbAdIKL5fHqzAE3YOpI8yFyXbr1HSMHH+wGP0sQGBHaaaNy/Yh7BBLRRvhibisvWzvIhob5mAnt2+FWXgwV6NiAEfYD/eobyew7xyvW2L3NkTs29G+WZH/yj0Myt05e/ADk9mZz2jgRuytuya0QR79KySdNJaPKI11Bm1BEt5wLwOjXW2HvcbJS9FNUqHWsu4VGRppwkMBGsYjXcPbxSCP23OzWzRwUj6JvfKcSo7OT2Y7YAbHEy6t35901bWTfteT6M0+dbcGF9sFfmY8pu53Vh+wyo3baaDiGO+WjyHlZnvQHpFctnL0ofUzInJlonyilqebGu7jVZ39X0tEjplkc2PGn59u7UvlK2D4cjN9TJEHJ4Vm0CxIFe3T2v+Wpd04EAk/vR7ySsKLBSw+B6j9aiyNmtiFtYxqDwu8xkVZZVU/gwJh6pXfJFdilxzbq8hxk6sUsN9VdCzbpmT+w+U3j1VkefWJqR8x7BqgZDiuMXme/DfalLg2VCz/WzOmCucWfM1/nZUoO3UkpaUx1toIhVIudhkd7uHtfFoQzMfM4t3rOT
+X-Microsoft-Antispam-Message-Info: i2ZPF7YE+z+S4v6dfCbSr/ZSPY33JtlIEwh1p1GLVbVOQKAK7BaVcKb/zP+M2TsvRI7Nf0d4L8B1nsIaIYT7DHCoSMuB70qy0IMPHq8ZLCnluR00SmqVAV7gUNSKSdYetEf+nUijtpO9x15RG5s6Mw0faPFx5eNTyVzyScA0HzXxyszzYBesBCVrwLUV2nUMSDgNnAzN1P9msPy71fVPwW2b7psh2f072mSJ3rKrGgkwr/RLxzdYoZKNhecDcKHl6oXzvKy/lxXO2q8tH6V7hsGfJc20OnQdjmy16FaIibyKhgoHbr7XROXXCl6exnM6N1crvsDVqjX7G5gEPIrKJqTNnCkrsf32y1xh8kYe64qvRz/hN4Hs7zuTezYxI++xALbGbmC1hGJ2wMllm6LuKbJzeF+VFbt1C7YN9T3sR79zhRHFO+Z0C9lVwwAwnPt0Qk34NVzMjeLHQP8llgroX3UXwKNarLkVGfOTMWKi+hdowaORE+wyTcTvzmH3tUDhunC0qsAhrGmk2u+we5V78iSFoNiuPONbKbeKVDqJWK4Ah4tG4Y2qZR3RYhUzHCQp
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230028)(396003)(39860400002)(136003)(346002)(366004)(376002)(1800799006)(451199021)(186006)(6862004)(8676002)(54906003)(8936002)(86362001)(33656002)(6486002)(66476007)(316002)(6512007)(1076003)(6506007)(2906002)(478600001)(26005)(107886003)(38100700002)(82960400001)(41300700001)(4326008)(6636002)(83380400001)(66556008)(66946007)(5660300002);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230028)(39860400002)(346002)(366004)(376002)(396003)(136003)(1800799006)(186006)(451199021)(2616005)(66946007)(6506007)(66556008)(66476007)(6916009)(26005)(6666004)(107886003)(478600001)(36756003)(38100700002)(83380400001)(6512007)(41300700001)(44832011)(966005)(6486002)(4326008)(316002)(2906002)(86362001)(82960400001)(5660300002)(8936002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?AbCNiCaQ14hppnRxJ38WHK39oHUU3vMBQnTZEEMYRBQJ2A2mfdZnhVW2pK?=
- =?iso-8859-1?Q?BnKb21sSG7TWaN0mVVNJxFu/1Rz10zN12TaBypl9drK/DW5HDzoJ1STrc0?=
- =?iso-8859-1?Q?X+SGsqGrq5KY8ElyCoMzOg8HFz0j+//5V8MlPOIDHwgD3l8+eAqC6oZJc1?=
- =?iso-8859-1?Q?hgJPjUBndAzflIGMg/UryaBkK8KcpzPrE4wsIzpfarWhlAhEYCb9p7LOxB?=
- =?iso-8859-1?Q?RXMVB10wTcxjqy+G4aDppaFIOsClHm6mdWMUMu27oEVRATu3RXaICmQaQS?=
- =?iso-8859-1?Q?bFS3zZrrGX1uGGJQN8Ee7itn3WTRKKqYM8psdAxAw0D6Zs+Tz4PHdyIMGD?=
- =?iso-8859-1?Q?XqW6fRoSeu39WdGltOqlPdUMT5J7fnj4EfWOSuHNL8OkZRx+4pRqlR7WQf?=
- =?iso-8859-1?Q?OEMS3WDJ5/XGfHONweFxL27c6n4fuCA25qetzSyTPQeuc2bV4hJYUWSPtr?=
- =?iso-8859-1?Q?UJJ8OcLkHHpmy3VfEI4QmXl9SFmt56FbGHnx0i/NZVHHWafI3Gh4kN59N8?=
- =?iso-8859-1?Q?REUTehJuiDyU15hA2zWFWRCE7SBMXCkm6TgH2jRgW2kyWL4SWFgG0L51OV?=
- =?iso-8859-1?Q?qwe6ONmXrbmCD+Wmle4aXc202FY0wok7ywrd9MTO4M3JTujdTS+sHfdasm?=
- =?iso-8859-1?Q?PR0EAhD4U/OFOflhhwLGzZ8UwVHDdgt5lEE7QrxhnQMQhMJrV9MpGFHYDV?=
- =?iso-8859-1?Q?aHdrg3vsFxyiM+dbOC6yn3Ks4C05zXp/6o7tUYV/fz46AIgouXFXMEM5zS?=
- =?iso-8859-1?Q?MxdbwY8T4WuxISThJWrdr7DJt9Gs1DzCaI0O+6J1dlC10YBBfztcg0G3SU?=
- =?iso-8859-1?Q?BLu7Kal64keERH/NWva7P6I5XnUcsYaaCScSPZghr7wkKUMD/4NieDYEFo?=
- =?iso-8859-1?Q?iVQVj0DxbUjzwaulU7lRWJgjZ0EAoXW+KOk/SnY8RlNQP72KtFZrKH5K8v?=
- =?iso-8859-1?Q?knQiMsrwzTZxAndoY5Bz1L6dTOF+2DMMFwS+2Fl8YV6sf70sZxpsW8HVGT?=
- =?iso-8859-1?Q?5if06dy5lDiomqBrra4v3IIpOmXc8Um44mdcLYr94OobWeQ27g+Xr93N8L?=
- =?iso-8859-1?Q?KNtzr5pS1p0NSPjDhbpj5XV/H2ZnOZA7lKJngPF8iVR4+iiw6IRmqa6w83?=
- =?iso-8859-1?Q?DCV08CpKpMSqQuCEcOCoUF4hjCeIyk6qyB7x4wumCaypWwmb8QgDjOE3jN?=
- =?iso-8859-1?Q?Ipva+Ki4XNO9jHfCTxl36cyCYts0xzbjRMklxUhUW24K/6JRhPIBQ9cQXA?=
- =?iso-8859-1?Q?Ucz40B4upMQvfb77EzTaikuzKMquLF3YDxFEP3o4D0m4F2qIDxPaQW+bUu?=
- =?iso-8859-1?Q?xfnczmMLI5p64HL591SfUTiI9BXMqBBte6HCmOsnfT9ijnu3KeNjjCkE8z?=
- =?iso-8859-1?Q?BdTEnRPF5w/KwiqhLGbTBdyt+sSy28YVIYSHuubUCmxWEulTEAsTHRbTos?=
- =?iso-8859-1?Q?waz3IkcPrPgCi4MPZnVRhvS3e5cx25i/kzZwrT95M+Cz8dtITWhdSEwvp9?=
- =?iso-8859-1?Q?VoILNI6voGHJMvS3MV2hdwM5516Vk754/wcz+/nlmB+iVc8s0H82eFijzu?=
- =?iso-8859-1?Q?BjvFywsVxMAytT6sEbSBDMWxJnrhO4MXxmhx7njJpPnDxt3Hs30K/NVS2H?=
- =?iso-8859-1?Q?Uz0/vVgrPLDRN6b5E4stxkwyqlBzhRpXbYX6yKleiXuAFmPAFdkXKdQw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b81cbf68-d016-4955-e8cb-08db9a01c734
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?3ImjR5xTSYihlxcyYLjt+HS33tagyzq8KEcSJ+8NgWfx4IV2uETJtwA4vijT?=
+ =?us-ascii?Q?RswbVVyR4e5nSPgh3IpW1rQw4vqm6TsDjQLHILHSnOR3m5TdRIdsXvab5aek?=
+ =?us-ascii?Q?763C0bj9fWFVi+B0ztYd4uBUmQGqcQRM87RbNMVFjyzAY+TWF+VR+LD70LPJ?=
+ =?us-ascii?Q?ErP8qRmUoMAn12p7lx9AVrbR2Va3zOxm0JpGHzRJDg2IIEYXxV9wz4AQVLBL?=
+ =?us-ascii?Q?OrTSIWI0oR/Z35htPa1f2qYb9684t/LaV8CeraJFsXVMOQjREN1CxD0EOv/P?=
+ =?us-ascii?Q?x3DrmcvpaIrfM/JwA8Jqw9aMJeAc7wQ2o+JZ/rLU+eCGF0roLl3Q0umCLnf7?=
+ =?us-ascii?Q?y81KdRy8JvajNPcVQmR4p9d75T6ynYWM5Q3GWmT+vLPkC0U5mtEYkvS6Fqev?=
+ =?us-ascii?Q?vuRJfTXKqgExry1qc7Dut4wT2KSYUwgk3farc9nK4JFek92z2O0PEK7m25rA?=
+ =?us-ascii?Q?0B3nd0AoCCea1famSwYB4Oo8hO4RRumX+aSvxUjj4tY+7xR/rj0JXeXHVnWn?=
+ =?us-ascii?Q?xuD9/Gtfvhz9fFL2mpWC5/UveEe6yp4tAzNUab3TilddUr1weJml1L2IU1D5?=
+ =?us-ascii?Q?Dzv1skLkxLuFvnxoHmf0rmNaDHdHBzqIiiantNaYKwfxf/C/fQKNkitoMTI8?=
+ =?us-ascii?Q?HZp7nlP78tARrR9qLSPUonihaFXF+gWKK0hHoFjaTotnLA04VoC6r14kHs+2?=
+ =?us-ascii?Q?I3TjvEmQzZuAboAfCy7YxK/kKJLAjpk/iZyWccRBnsAAHK6YKGK6Ai0RVbQe?=
+ =?us-ascii?Q?UuWqncNVYvee1d/x86nwf0y7rKDENIRyorHWt5Ehb+HQ5KNYHTSOG85b6wO4?=
+ =?us-ascii?Q?SBy0GMkTNaQoh2k4K9hPKWwQk0SQlTLoAyE7CbwIn/yzrP4k+nrT6+KogiMs?=
+ =?us-ascii?Q?z+ogedrvKmkTx4Hm9oAAqc6YbGTFn36ELH2LwlDOdBk4tz38upNAxYUEAVDV?=
+ =?us-ascii?Q?CVS9vcE55T1FwPrlTAZxvPXGQlb+rihIg3VBw60GoEnNedt8/MwUFGVGOKBP?=
+ =?us-ascii?Q?9tHzn4WBgMDr+adU3kHKHB55zNJ+zeu+2LTDvwMAsKfESMgeKhmCeItHnbS5?=
+ =?us-ascii?Q?1E0Irc5bPDiBeXf0JDySKTL5+7I6CXoUD35DAPCOBJUGjKfuPuW5qoFacf71?=
+ =?us-ascii?Q?SfJwsFbFh56WMSI0N35atTfQbDJyGre3ejpbVcQSeJMa1xDq80rdpP5sp6aZ?=
+ =?us-ascii?Q?1m3ZqN/PH0PJPLqp5aUpSuBaC7DK6EePlYF6BCPL8TBNEz1EzHiJgbuCwMjN?=
+ =?us-ascii?Q?DegJH2WA9zOZxYgGZQxs6cQQh8dqt22uCox7QCJrgbjGYgdDkyfgicEAjL4d?=
+ =?us-ascii?Q?hA7qmsL0zdtIEXvurrvnetRs1ubs7XOpQfBCuHFlxobmeIUJwjxwTp3PhiWr?=
+ =?us-ascii?Q?5eBmfPuFTOC/D7q/t9Goz43kBB9ci8WaSJY+GJNFltf6q0ylzMLrt8IjGoxl?=
+ =?us-ascii?Q?DFv5T7xs/QyZPTvqumupaI2kIPnkz22zUAzw8OgSgM4tA3icFpaNVBhX5rzn?=
+ =?us-ascii?Q?+thoZzYe1QhxZUS/fGhQdUBOWwidi8k5QoTU1i9nH9u2+r891NmRffCsl7MC?=
+ =?us-ascii?Q?jBX8L3iy4T0WFC+j2/wCV0udTg66MB6VSlhPecqULVlG4suaRoeTc4+2oiVv?=
+ =?us-ascii?Q?6w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 04eabedd-c27c-46bb-47e0-08db9a020d95
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2023 00:27:43.3895 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Aug 2023 00:29:41.3711 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PW89VgbwDjhshoQsxk0tw5RvrSG+5AvbeqLU9tqztmwPQs8pqV5r0gJdmxgE6Zyi3BsNXLzNYklXMuXahWX5aHgQLjbv/5v0Td0lA4fqWV0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7519
+X-MS-Exchange-CrossTenant-UserPrincipalName: EXjSSw1Zh4ms3ZsB2sahW2IyIWA9n1yhbqL5PZrCS/APViZBJxrr3+rojus5Lys/qIXnB1fjFElKQrk38LEcUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8544
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2] drm/xe: Introduce Xe assert macros
+Subject: Re: [Intel-xe] 
+ =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_series_st?=
+ =?utf-8?q?arting_with_=5Bv2=2C1/9=5D___drm/i915/display=3A_add_I915_condi?=
+ =?utf-8?q?tional_build_to_g4x=5Fhdmi=2Eh?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,269 +147,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, intel-xe@lists.freedesktop.org,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 09, 2023 at 08:05:15PM +0200, Michal Wajdeczko wrote:
-> As we are moving away from the controversial XE_BUG_ON macro,
-> relying just on WARN_ON or drm_err does not cover the cases
-> where we want to annotate functions with additional detailed
-> debug checks to assert that all prerequisites are satisfied,
-> without paying footprint or performance penalty on non-debug
-> builds, where all misuses introduced during code integration
-> were already fixed.
+On Thu, Aug 10, 2023 at 05:41:03PM -0400, Rodrigo Vivi wrote:
+> On Wed, Aug 09, 2023 at 08:00:25PM -0000, Patchwork wrote:
+> >    Patch Details                                                                
+> >                                                                                 
+> >    Series: series starting with [v2,1/9] drm/i915/display: add I915             
+> >            conditional build to g4x_hdmi.h                                      
+> >    URL:    [1]https://patchwork.freedesktop.org/series/122242/                  
+> >    State:  failure                                                              
+> >                                                                                 
+> >    Participating hosts:                                                         
+> >    bat-pvc-2                                                                    
+> >    bat-atsm-2                                                                   
+> >    bat-dg2-oem2                                                                 
+> >    bat-adlp-7                                                                   
+> >    Missing hosts results[1]:                                                    
 > 
-> Introduce family of Xe assert macros that try to follow classic
-> assert() utility and can be compiled out on non-debug builds.
-> 
-> Macros are based on drm_WARN, but unlikely to origin, disallow
-> use in expressions since we will compile that code out.
-> 
-> As we are operating on the xe pointers, we can print additional
-> information about the device, like tile or GT identifier, that
-> is not available from generic WARN report:
-> 
-> [ ] xe 0000:00:02.0: [drm] Assertion `true == false` failed!
->     platform: 1 subplatform: 1
->     graphics: Xe_LP 12.0 step B0
+> maybe it broke the build without CONFIG_DRM_XE_DISPLAY?
 
-Really minor nit, but I'd print versions as "%u.%02u" so that we always
-get two digits after the dot.  Othewise we might cause more confusion
-where people forget that "12.3" != "12.30."
+I have verified this locally that it is not true and I have tested in DG2 and
+triggered a retest in CI.
 
+The retest still didn't run in PVC and I couldn't get a PVC working to test there,
+but I cannot see how that would fail in PVC and not fail in DG2 without display.
 
-Matt
+So, I just pushed this patches since it is better to have them before my next
+rebase.
 
->     media: Xe_M 12.0 step B0
->     display: enabled step D0
->     tile: 0 VRAM 0 B
->     GT: 0 type 1
 > 
-> [ ] xe 0000:b3:00.0: [drm] Assertion `true == false` failed!
->     platform: 7 subplatform: 3
->     graphics: Xe_HPG 12.55 step A1
->     media: Xe_HPM 12.55 step A1
->     display: disabled step **
->     tile: 0 VRAM 14.0 GiB
->     GT: 0 type 1
-> 
-> [ ] WARNING: CPU: 0 PID: 2687 at drivers/gpu/drm/xe/xe_device.c:281 xe_device_probe+0x374/0x520 [xe]
-> [ ] RIP: 0010:xe_device_probe+0x374/0x520 [xe]
-> [ ] Call Trace:
-> [ ]  ? __warn+0x7b/0x160
-> [ ]  ? xe_device_probe+0x374/0x520 [xe]
-> [ ]  ? report_bug+0x1c3/0x1d0
-> [ ]  ? handle_bug+0x42/0x70
-> [ ]  ? exc_invalid_op+0x14/0x70
-> [ ]  ? asm_exc_invalid_op+0x16/0x20
-> [ ]  ? xe_device_probe+0x374/0x520 [xe]
-> [ ]  ? xe_device_probe+0x374/0x520 [xe]
-> [ ]  xe_pci_probe+0x6e3/0x950 [xe]
-> [ ]  ? lockdep_hardirqs_on+0xc7/0x140
-> [ ]  pci_device_probe+0x9e/0x160
-> [ ]  really_probe+0x19d/0x400
-> 
-> v2: use lowercase names
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> Cc: Oded Gabbay <ogabbay@kernel.org>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_assert.h | 175 +++++++++++++++++++++++++++++++++
->  1 file changed, 175 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/xe_assert.h
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_assert.h
-> new file mode 100644
-> index 000000000000..4977d9fd3dab
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_assert.h
-> @@ -0,0 +1,175 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef __XE_ASSERT_H__
-> +#define __XE_ASSERT_H__
-> +
-> +#include <linux/string_helpers.h>
-> +#include <drm/drm_print.h>
-> +#include "xe_device_types.h"
-> +#include "xe_step.h"
-> +
-> +/**
-> + * DOC: Xe ASSERTs
-> + *
-> + * While Xe driver aims to be simpler than legacy i915 driver it is still
-> + * complex enough that some changes introduced while adding new functionality
-> + * could break the existing code.
-> + *
-> + * Adding &drm_WARN or &drm_err to catch unwanted programming usage could lead
-> + * to undesired increased driver footprint and may impact production driver
-> + * performance as this additional code will be always present.
-> + *
-> + * To allow annotate functions with additional detailed debug checks to assert
-> + * that all prerequisites are satisfied, without worrying about footprint or
-> + * performance penalty on production builds where all potential misuses
-> + * introduced during code integration were already fixed, we introduce family
-> + * of Xe assert macros that try to follow classic assert() utility:
-> + *
-> + *  * &xe_assert
-> + *  * &xe_tile_assert
-> + *  * &xe_gt_assert
-> + *
-> + * These macros are implemented on top of &drm_WARN, but unlikely to the origin,
-> + * warning is triggered when provided condition is false. Additionally all above
-> + * assert macros cannot be used in expressions or as a condition, since
-> + * underlying code will be compiled out on non-debug builds.
-> + *
-> + * Note that these macros are not intended for use to cover known gaps in the
-> + * implementation; for such cases use regular &drm_WARN or &drm_err and provide
-> + * valid safe fallback.
-> + *
-> + * Also in cases where performance or footprint is not an issue, developers
-> + * should continue to use the regular &drm_WARN or &drm_err to ensure that bug
-> + * reports from production builds will contain meagningful diagnostics data.
-> + *
-> + * Below code shows how asserts could help in debug to catch unplanned use::
-> + *
-> + *	static void one_igfx(struct xe_device *xe)
-> + *	{
-> + *		xe_assert(xe, xe->info.is_dgfx == false);
-> + *		xe_assert(xe, xe->info.tile_count == 1);
-> + *	}
-> + *
-> + *	static void two_dgfx(struct xe_device *xe)
-> + *	{
-> + *		xe_assert(xe, xe->info.is_dgfx);
-> + *		xe_assert(xe, xe->info.tile_count == 2);
-> + *	}
-> + *
-> + *	void foo(struct xe_device *xe)
-> + *	{
-> + *		if (xe->info.dgfx)
-> + *			return two_dgfx(xe);
-> + *		return one_igfx(xe);
-> + *	}
-> + *
-> + *	void bar(struct xe_device *xe)
-> + *	{
-> + *		if (drm_WARN_ON(xe->drm, xe->info.tile_count > 2))
-> + *			return;
-> + *
-> + *		if (xe->info.tile_count == 2)
-> + *			return two_dgfx(xe);
-> + *		return one_igfx(xe);
-> + *	}
-> + */
-> +
-> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
-> +#define __xe_assert_msg(xe, condition, msg, arg...) ({						\
-> +	(void)drm_WARN(&(xe)->drm, !(condition), "[" DRM_NAME "] Assertion `%s` failed!\n" msg,	\
-> +		       __stringify(condition), ## arg);						\
-> +})
-> +#else
-> +#define __xe_assert_msg(xe, condition, msg, arg...) ({						\
-> +	typecheck(struct xe_device *, xe);							\
-> +	BUILD_BUG_ON_INVALID(condition);							\
-> +})
-> +#endif
-> +
-> +/**
-> + * xe_assert - warn if condition is false when debugging.
-> + * @xe: the &struct xe_device pointer to which &condition applies
-> + * @condition: condition to check
-> + *
-> + * xe_assert() uses &drm_WARN to emit a warning and print additional information
-> + * that could be read from the &xe pointer if provided &condition is false.
-> + *
-> + * Contrary to &drm_WARN, xe_assert() is effective only on debug builds
-> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
-> + * or as a condition.
-> + *
-> + * See `Xe ASSERTs`_ for general usage guidelines.
-> + */
-> +#define xe_assert(xe, condition) xe_assert_msg((xe), condition, "")
-> +#define xe_assert_msg(xe, condition, msg, arg...) ({						\
-> +	struct xe_device *__xe = (xe);								\
-> +	__xe_assert_msg(__xe, condition,							\
-> +			"platform: %d subplatform: %d\n"					\
-> +			"graphics: %s %u.%u step %s\n"						\
-> +			"media: %s %u.%u step %s\n"						\
-> +			"display: %s step %s\n"							\
-> +			msg,									\
-> +			__xe->info.platform, __xe->info.subplatform,				\
-> +			__xe->info.graphics_name,						\
-> +			__xe->info.graphics_verx100 / 100,					\
-> +			__xe->info.graphics_verx100 % 100,					\
-> +			xe_step_name(__xe->info.step.graphics),					\
-> +			__xe->info.media_name,							\
-> +			__xe->info.media_verx100 / 100,						\
-> +			__xe->info.media_verx100 % 100,						\
-> +			xe_step_name(__xe->info.step.media),					\
-> +			str_enabled_disabled(__xe->info.enable_display),			\
-> +			xe_step_name(__xe->info.step.display),					\
-> +			## arg);								\
-> +})
-> +
-> +/**
-> + * xe_tile_assert - warn if condition is false when debugging.
-> + * @tile: the &struct xe_tile pointer to which &condition applies
-> + * @condition: condition to check
-> + *
-> + * xe_tile_assert() uses &drm_WARN to emit a warning and print additional
-> + * information that could be read from the &tile pointer if provided &condition
-> + * is false.
-> + *
-> + * Contrary to &drm_WARN, xe_tile_assert() is effective only on debug builds
-> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
-> + * or as a condition.
-> + *
-> + * See `Xe ASSERTs`_ for general usage guidelines.
-> + */
-> +#define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-> +#define xe_tile_assert_msg(tile, condition, msg, arg...) ({					\
-> +	struct xe_tile *__tile = (tile);							\
-> +	char __buf[10];										\
-> +	xe_assert_msg(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg,			\
-> +		      __tile->id, ({ string_get_size(__tile->mem.vram.actual_physical_size, 1,	\
-> +				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
-> +})
-> +
-> +/**
-> + * xe_gt_assert - warn if condition is false when debugging.
-> + * @gt: the &struct xe_gt pointer to which &condition applies
-> + * @condition: condition to check
-> + *
-> + * xe_gt_assert() uses &drm_WARN to emit a warning and print additional
-> + * information that could be safetely read from the &gt pointer if provided
-> + * &condition is false.
-> + *
-> + * Contrary to &drm_WARN, xe_gt_assert() is effective only on debug builds
-> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
-> + * or as a condition.
-> + *
-> + * See `Xe ASSERTs`_ for general usage guidelines.
-> + */
-> +#define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-> +#define xe_gt_assert_msg(gt, condition, msg, arg...) ({						\
-> +	struct xe_gt *__gt = (gt);								\
-> +	xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,			\
-> +			   __gt->info.id, __gt->info.type, ## arg);				\
-> +})
-> +
-> +#endif /* __XE_ASSERT_H__ */
-> -- 
-> 2.25.1
-> 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+> >    bat-pvc-2                                                                    
+> >    Results: [2]xe-pw-122242v1                                                   
+> > 
+> > References
+> > 
+> >    Visible links
+> >    1. https://patchwork.freedesktop.org/series/122242/
+> >    2. https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122242v1/index.html
