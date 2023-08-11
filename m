@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18AB0C41513
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18A45EB64DD
 	for <intel-xe@archiver.kernel.org>; Fri, 11 Aug 2023 16:08:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA18410E6AF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B867D10E6AE;
 	Fri, 11 Aug 2023 16:08:47 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ADCA10E6AD
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 365B210E6AE
  for <intel-xe@lists.freedesktop.org>; Fri, 11 Aug 2023 16:08:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1691770126; x=1723306126;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=whEyqhI/Q3D5b/RxJdKULwxDbsTlInmMjb/g5Xn97nw=;
- b=ZuxYqHn1LAwOJwLPglrumBkpfoXt0jhhR7BlI3Nzxl9NSrFI9z7vSU9K
- lsMS4h5YZPaItyC7NS7Q4R8X+ErlSQwcYsE8fcd78g+p+upsG/KR+Cc0k
- 5lFT9FTE6D56dMT3hsCw2SITBl1j2633KX1fssZ92Fz57L9zkFzS/zcG4
- 84dRsbDnqvXc9l7z+SzCSiG4nZPyyKN1JZzQCSB4ASMzWmbR4pDGoq5RQ
- Jyw2NUW4VdDtJLAu2ea1LDxDAdT7aMPxJDFdlCcpfU+qvzAOS1rngmhDo
- 9gnUU66ps2x4tIpcXWwfdTQK7szoFIrUMrHKgE7B/+tOsDILgUMENMepv A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10799"; a="438044317"
-X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="438044317"
+ bh=4TYGTddiMgmCpuBGZKs+h5kBeGLJ/BQ/92RUOVnL2Is=;
+ b=dxEhTuN+zg4JNHoU7A5XJJATaxSW4zEfIBwLDhuO2JGFpjvR87d5KpAm
+ tHkyszT9nZaRVUbasi3U1gCODRNNNkrMASDdXg/D7QNweWgMeHuROkbiR
+ 8Y3Y3nGM5m94Z3/sdAVX8AIWKNvA1e3D+3fNr8BS5MRqg1Le5aX3fSBAv
+ 2C4jDYBTdKyr7TxnY84rVoiFp4/b9L6WiJA/iXalOmynAhBcYB/R4Kv1Y
+ pGYrEelwnK117+JzcHAVkIAC9B9q5zm/WiSu/WEDXXluf7SlSTCQ4IfUG
+ ycumq7QPOOidG9nVNv8TyCvk9FFw5LbNOXfsHk5t7IGArfO5VLRU/ungX w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10799"; a="438044320"
+X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="438044320"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Aug 2023 09:06:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10799"; a="726300442"
-X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="726300442"
+X-IronPort-AV: E=McAfee;i="6600,9927,10799"; a="726300445"
+X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; d="scan'208";a="726300445"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Aug 2023 09:06:27 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 11 Aug 2023 09:06:04 -0700
-Message-Id: <20230811160618.477297-2-lucas.demarchi@intel.com>
+Date: Fri, 11 Aug 2023 09:06:05 -0700
+Message-Id: <20230811160618.477297-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230811160618.477297-1-lucas.demarchi@intel.com>
 References: <20230811160618.477297-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 01/15] drm/xe/xe2: Update render/compute context
- image sizes
+Subject: [Intel-xe] [PATCH 02/15] drm/xe/xe2: Add GT topology readout
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,44 +62,83 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-The render and compute context are significantly smaller on Xe2 than on
-previous platforms.
-
-Registers:
- - Render:  3008 dwords -> 12032 bytes -> round to 3 pages
- - Compute: 1424 dwords ->  5696 bytes -> round to 2 pages
-
-We also allocate one additional page for the HWSP, so the total
-allocation sizes for render and compute are 4 and 3 pages respectively.
+Xe2 platforms have three DSS fuse registers for both geometry and
+compute.
 
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_lrc.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 +++
+ drivers/gpu/drm/xe/xe_gt_topology.c  | 16 +++++++++++-----
+ drivers/gpu/drm/xe/xe_gt_types.h     |  2 +-
+ 3 files changed, 15 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 09db8da261a39..a6479deb62376 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -37,9 +37,16 @@ size_t xe_lrc_size(struct xe_device *xe, enum xe_engine_class class)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index c93d8f8cd93a5..ad7ae6a28caca 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -164,6 +164,9 @@
+ #define XELP_GT_GEOMETRY_DSS_ENABLE		XE_REG(0x913c)
+ #define XEHP_GT_COMPUTE_DSS_ENABLE		XE_REG(0x9144)
+ #define XEHPC_GT_COMPUTE_DSS_ENABLE_EXT		XE_REG(0x9148)
++#define XE2_GT_COMPUTE_DSS_2			XE_REG(0x914c)
++#define XE2_GT_GEOMETRY_DSS_1			XE_REG(0x9150)
++#define XE2_GT_GEOMETRY_DSS_2			XE_REG(0x9154)
+ 
+ #define GDRST					XE_REG(0x941c)
+ #define   GRDOM_GUC				REG_BIT(3)
+diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
+index d4bbd0a835c22..a8d7f272c30a0 100644
+--- a/drivers/gpu/drm/xe/xe_gt_topology.c
++++ b/drivers/gpu/drm/xe/xe_gt_topology.c
+@@ -65,7 +65,10 @@ load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask)
+ static void
+ get_num_dss_regs(struct xe_device *xe, int *geometry_regs, int *compute_regs)
  {
- 	switch (class) {
- 	case XE_ENGINE_CLASS_RENDER:
-+		if (GRAPHICS_VER(xe) >= 20)
-+			return 4 * SZ_4K;
-+		else
-+			return 14 * SZ_4K;
- 	case XE_ENGINE_CLASS_COMPUTE:
- 		/* 14 pages since graphics_ver == 11 */
--		return 14 * SZ_4K;
-+		if (GRAPHICS_VER(xe) >= 20)
-+			return 3 * SZ_4K;
-+		else
-+			return 14 * SZ_4K;
- 	default:
- 		WARN(1, "Unknown engine class: %d", class);
- 		fallthrough;
+-	if (GRAPHICS_VERx100(xe) == 1260) {
++	if (GRAPHICS_VER(xe) > 20) {
++		*geometry_regs = 3;
++		*compute_regs = 3;
++	} else if (GRAPHICS_VERx100(xe) == 1260) {
+ 		*geometry_regs = 0;
+ 		*compute_regs = 2;
+ 	} else if (GRAPHICS_VERx100(xe) >= 1250) {
+@@ -90,15 +93,18 @@ xe_gt_topology_init(struct xe_gt *gt)
+ 	 * Register counts returned shouldn't exceed the number of registers
+ 	 * passed as parameters below.
+ 	 */
+-	drm_WARN_ON(&xe->drm, num_geometry_regs > 1);
+-	drm_WARN_ON(&xe->drm, num_compute_regs > 2);
++	drm_WARN_ON(&xe->drm, num_geometry_regs > 3);
++	drm_WARN_ON(&xe->drm, num_compute_regs > 3);
+ 
+ 	load_dss_mask(gt, gt->fuse_topo.g_dss_mask,
+ 		      num_geometry_regs,
+-		      XELP_GT_GEOMETRY_DSS_ENABLE);
++		      XELP_GT_GEOMETRY_DSS_ENABLE,
++		      XE2_GT_GEOMETRY_DSS_1,
++		      XE2_GT_GEOMETRY_DSS_2);
+ 	load_dss_mask(gt, gt->fuse_topo.c_dss_mask, num_compute_regs,
+ 		      XEHP_GT_COMPUTE_DSS_ENABLE,
+-		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT);
++		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,
++		      XE2_GT_COMPUTE_DSS_2);
+ 	load_eu_mask(gt, gt->fuse_topo.eu_mask_per_dss);
+ 
+ 	xe_gt_topology_dump(gt, &p);
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 35b8c19fa8bf5..48fd698ff62aa 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -24,7 +24,7 @@ enum xe_gt_type {
+ 	XE_GT_TYPE_MEDIA,
+ };
+ 
+-#define XE_MAX_DSS_FUSE_REGS	2
++#define XE_MAX_DSS_FUSE_REGS	3
+ #define XE_MAX_EU_FUSE_REGS	1
+ 
+ typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(32 * XE_MAX_DSS_FUSE_REGS)];
 -- 
 2.40.1
 
