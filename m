@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1F16C001B0
-	for <intel-xe@archiver.kernel.org>; Mon, 14 Aug 2023 09:05:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9839AEB64DD
+	for <intel-xe@archiver.kernel.org>; Mon, 14 Aug 2023 09:06:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 64EB610E164;
-	Mon, 14 Aug 2023 09:05:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 704F210E164;
+	Mon, 14 Aug 2023 09:06:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 964C610E164;
- Mon, 14 Aug 2023 09:05:54 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 08C9C10E169;
+ Mon, 14 Aug 2023 09:06:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8D399AADEB;
- Mon, 14 Aug 2023 09:05:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 050C0AADEB;
+ Mon, 14 Aug 2023 09:06:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <dev@lankhorst.se>
-Date: Mon, 14 Aug 2023 09:05:54 -0000
-Message-ID: <169200395457.19473.8381469807736704546@emeril.freedesktop.org>
+Date: Mon, 14 Aug 2023 09:06:08 -0000
+Message-ID: <169200396801.19472.260426750547125333@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230814083744.4408-1-dev@lankhorst.se>
 In-Reply-To: <20230814083744.4408-1-dev@lankhorst.se>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_series_starting_with_=5B1/2=5D_fixup!_drm/i915/display=3A_Re?=
- =?utf-8?q?maining_changes_to_make_xe_compile?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_se?=
+ =?utf-8?q?ries_starting_with_=5B1/2=5D_fixup!_drm/i915/display=3A_Remaini?=
+ =?utf-8?q?ng_changes_to_make_xe_compile?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,17 +49,29 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/2] fixup! drm/i915/display: Remaining changes to make xe compile
 URL   : https://patchwork.freedesktop.org/series/122410/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 945d16a6e drm/xe: Improve vram info debug printing
-=== git am output follows ===
-.git/rebase-apply/patch:85: new blank line at EOF.
-+
-warning: 1 line adds whitespace errors.
-Applying: fixup! drm/i915/display: Remaining changes to make xe compile
-Applying: drm/xe: Implement xe DPT slightly differently.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e700ea2f248a75138759bcb443affeef4a2d1991
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d604bf6f7d3537da151e6d547679477a779f39de
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Mon Aug 14 10:37:44 2023 +0200
+
+    drm/xe: Implement xe DPT slightly differently.
+    
+    Just create a dummy to make DPT work.
+    
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
++ /mt/dim checkpatch 945d16a6ea31fbaf3dde002cd182381a92a0e656 drm-intel
+/mt/dim: line 50: /root/.dimrc: No such file or directory
 
 
