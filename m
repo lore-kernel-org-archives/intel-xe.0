@@ -4,147 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70462C27C42
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 21:25:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E6ECC27C42
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 21:55:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11BCE10E100;
-	Wed, 16 Aug 2023 21:25:58 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C731710E100
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Aug 2023 21:25:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E61B610E3D6;
+	Wed, 16 Aug 2023 21:55:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAAB610E3D6
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Aug 2023 21:55:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692221155; x=1723757155;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=2pPaBDEPOTCX7veecV3RXDX/mvC+roXL0rnv0xi6zTs=;
- b=HvLy97p7IpJj3Co58pos0Y8fxBxDz6xnSn+YGZ6L6SFEJ7/WWCFoyBt6
- tkegBBWy5DbOhzBycUTs/rQRrFz0ZCtN4cCKnB/I3HEoZCOz+XAo/SLka
- p4GwG9DwS61h7467ts7N9ugzJf2EsJw5VWvXV2sK02ucTX6fIsyW+87Iy
- PxXluvFAoN4tVBBGgT8feqoU0O+REMfjbAYP2xMQ7eCEiioEEZZeQ6XUm
- jTFESVFrtbc6JkPeHb+JUPA/SR/lfXMGKiEa4qoPrNIx9ghM8LXeopkS1
- ymrk5oNALbQEH13vDPVuWUDN14C1jyyprBhXqzFMW6T6IlawO7m3fDsQI w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="376379680"
-X-IronPort-AV: E=Sophos;i="6.01,178,1684825200"; d="scan'208";a="376379680"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2023 14:25:38 -0700
+ t=1692222926; x=1723758926;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=B4hMQHZTU05WxeliS8/YybHvdvrCsOMNQ5vW+pO7TdE=;
+ b=dnSNoMnFgFlH4uGnJijcolD6xPE+cxGyAbdnJsrtfAYT2qX7Tk7Q8JHY
+ /6CaxidOR4dTre9zEXXB+biOZmOPITRjszHZEOMkkucfOmQAEA0TiP+c6
+ guZYLn2NfHCm5oh98H99WiALYtZdAFxHpVGE/u6ax8pmSCka6RpmkxBHh
+ 9bhDGuG22m6ht24YVN6Nyys2nuRYUPgWdiRNDH/AH8nfcI/B88wHcKWj6
+ eOEbz13pr4vetIJgJXD2ilYlM6ItzMKCyaiyjd0SBNvhQubYjPOqKQrQk
+ R/X1cMcjeJUiRQXUZI+bLAwpBu8l5M3ROMwDV8Nq8xEWY4dxGs24Ek4e6 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="372647051"
+X-IronPort-AV: E=Sophos;i="6.01,178,1684825200"; d="scan'208";a="372647051"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2023 14:55:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="804383984"
-X-IronPort-AV: E=Sophos;i="6.01,178,1684825200"; d="scan'208";a="804383984"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga004.fm.intel.com with ESMTP; 16 Aug 2023 14:25:37 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 16 Aug 2023 14:25:36 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 16 Aug 2023 14:25:36 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Wed, 16 Aug 2023 14:25:36 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Wed, 16 Aug 2023 14:25:36 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DvncEUJ8c9iuf0o9VgwlUycBgW4zYWwWEvrq4+a0BkNesiW/SjzSHNbS2VPwsRLDiXPMG/x96UCI2Ir1AYFQP46DHEcillAh3hLfOWJOcvGI8rU/Ly+Dwx5R7Qx0YxAn/1ZvgR4ECw+FryrlYaEnqhVNewiYXK46pI1mq4pY7nFAfcbwIhQm1kjurG09YSh75nLGly3axCc0B7UxstQ8Py+GfEFUDRiiFce2QNIMl4PRSNc4vOlwCiTp1VmZoUOK22ycJcwIWesuD56PqT+izw+TExi4xrjYqn+5UGeqC8x8DYjRKyMNzV+hpgnm+kZ+Vk4HU+ijx2Ed6Xg/Msp/9Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FDsZij4V431d7BzZ+pPeBBntwPVhC8rVyjGgey6iVAk=;
- b=A2b9A9jMWo8bS/ZLzblMH9zKaVz8C6cvEkyz+rhmR/b4LSIXLGbWL2qc4Yf1fPTLDtKF+QRKW/J7CT4rkrj4Sgr6+AFvCvosVeIWQ4NamoSKt4GbtGBrEMgLhIko4zOUfh8nUf0eHArvFn0MYTBRreMp/M+/eTxL3fR4H2N4yAU+7PdG6UIpA0INBVxpxTY3ZB4X8yHzaqakWYHBtgeTQxiH2G/RVuhso/YiqGoCrPH+wmfgWuurg3eK76GGA57Iu0eEG4hcx554vs1KLUE29Zao1HpX0glXkp5hC+HQgVLns2nUszgGPKcusqeWt2jFm8kYpbHVtxcw2E6UfazGdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN2PR11MB4239.namprd11.prod.outlook.com (2603:10b6:208:192::20)
- by IA1PR11MB7269.namprd11.prod.outlook.com (2603:10b6:208:42b::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.26; Wed, 16 Aug
- 2023 21:25:34 +0000
-Received: from MN2PR11MB4239.namprd11.prod.outlook.com
- ([fe80::18a6:cbff:9bcd:4acc]) by MN2PR11MB4239.namprd11.prod.outlook.com
- ([fe80::18a6:cbff:9bcd:4acc%4]) with mapi id 15.20.6678.025; Wed, 16 Aug 2023
- 21:25:34 +0000
-Date: Wed, 16 Aug 2023 14:25:26 -0700
-From: Matt Atwood <matthew.s.atwood@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, <matthew.d.roper@intel.com>,
- <intel-xe@lists.freedesktop.org>
-Message-ID: <ZN0+xhX/2vgz2IHB@msatwood-mobl>
-References: <20230811160618.477297-1-lucas.demarchi@intel.com>
- <20230811160618.477297-3-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20230811160618.477297-3-lucas.demarchi@intel.com>
-X-ClientProxiedBy: MW4PR04CA0205.namprd04.prod.outlook.com
- (2603:10b6:303:86::30) To MN2PR11MB4239.namprd11.prod.outlook.com
- (2603:10b6:208:192::20)
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="711266950"
+X-IronPort-AV: E=Sophos;i="6.01,178,1684825200"; d="scan'208";a="711266950"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2023 14:55:25 -0700
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 16 Aug 2023 14:55:15 -0700
+Message-ID: <20230816215515.1506619-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN2PR11MB4239:EE_|IA1PR11MB7269:EE_
-X-MS-Office365-Filtering-Correlation-Id: 03a548d3-80ea-421d-2652-08db9e9f52da
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: fR0QjQO5rw/IiuwzKoRnk6N+Nij3d9NRuZO8HsZGgpWhFxCfdkE1DR0sEbA7A1fdzD5VDgsscRH7gGOSsZ5fCd4ST9DmzGDP0J5iBiEImGuzERhS9VYt00Vr4d6ZO/tyc9E00do+SnnUD2uJQ2ViYiTwArTPoNAmPRoUnnGQfoZe1bBEplGiHxpFx700gwBCaPba2zwUVTeQ71shVjO78DqIxKkenuPFNYOc3G9MBYDIJWf1l0zqRTO0SVp4ARBr+6Dyv7SBF93zGB+nRCA4SvjF2masRLNWcG1CtzS7CE8xR2qEQXZFv8cwcm8qWA37wtl6Xck8Lh3ER7PQShPAjDAVFb4xsD0duVZqxGukRuu9DywmTjFm+ikr/KBivTamV3VKuERA113W7aS4GVNLN0X4R7p20VYjhkoWKJ0SjytsItMCMtlWnn5zj3w2fzT/GQnyzpeCPRk4oprVVvCFBodSr3AZBDSxC8359dX0xh/Uwid9RabXBO8d5KLuSzJ3i4TTq+bVXqKM4u8ZAMXI3ueC7FcMBgF0+pIlbtAeZ2kr6WtLr/+I2gWT3Qnw10zE
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN2PR11MB4239.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(366004)(346002)(136003)(396003)(376002)(39860400002)(1800799009)(451199024)(186009)(2906002)(83380400001)(86362001)(478600001)(6506007)(107886003)(6486002)(6666004)(6512007)(9686003)(26005)(5660300002)(41300700001)(316002)(66946007)(66556008)(66476007)(8676002)(8936002)(4326008)(82960400001)(33716001)(38100700002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?emwrTnJpUU9seXNLSGcraEJERC81VTZ1RkdtenB5WC9FM2o2b1o0UFRnSUVE?=
- =?utf-8?B?Zll3TmJXcHcrOStwWkg3S0JoMks5YlZSazV0Z0lMN05wVFc4ZEJEMndKNWpa?=
- =?utf-8?B?VTRRVy9TTDdSMjgrTUFPVjB0NVNJYzhPU3d4UHlCWjZHOEE0aWxxN0M1Rllk?=
- =?utf-8?B?RHJVNkVzVjVZM0E4VVJLUW5VVkJ3N0RyNXYvZ3QxaWZYVWhsNFNHcUEwSkdz?=
- =?utf-8?B?elFHN2ZKZnVvaUFXcURRVkpQeHFvTERici9jOEUxTXB6ckdBSlhBMmtHYzdY?=
- =?utf-8?B?ell4Wk1WdjZyeHNCM2x5a2NJM1ZGY0pNWThkNWJaOHpMWm5ORHMrUyszZko3?=
- =?utf-8?B?T2FCRDdObXplUytMbHlRYnpmSEJBZzFleVBKZFNpaWd6eWNoRUV1dDFETWg2?=
- =?utf-8?B?TXgySy9vMmV3Wkx4NnRoRGJJenJRQmJIc2E1d1lwbVUvRlRITm9Vdjd0OVpl?=
- =?utf-8?B?TkZuSk9nQmFsR1FIY1hIMWdWa1R5MmdQbHNHLzNyWU9SaG4vS3ZUQ1RFTGpx?=
- =?utf-8?B?em5QL0tkQXJOanJXRWNSVXFRbDNHVDBOc01OVndHN3BuVm5kTGlrUDJSQlhz?=
- =?utf-8?B?UGxYUzVHdklYQ1ZrdWQ2VWg5Y1JwMUM0Y2wwSytNWkt6TjI2RzA0U1NLSG1J?=
- =?utf-8?B?aDlIWllRSHA0b1plM3BrNTJwdnlTaURHY25WTmhtTTM1WVlVbjRHVXFuQzdv?=
- =?utf-8?B?Y2lQaWNkYUxTbWRndGo1b3VnZ1IzSjg1enV4T2pUK3RHV1ZoK0cydDUrVEJJ?=
- =?utf-8?B?ZFQ5RUpkMlJ0Sm00dG40VDV6U2VRdURVQ2lPbzhIUlg2MnN2a3lPVTFseTNy?=
- =?utf-8?B?a1ZXYVNvYitTcC9GNDRuekJhLzlIOXZ4TmJGZnp3YjVEZzB2Z2ZFYlN4bnRI?=
- =?utf-8?B?L05lQXREZEtsL29MVXdXajZGUndic2drNDF4YkdtL1NiSGV3QXhpUjVjejFE?=
- =?utf-8?B?TVBJVUZKVkpYVnVOUmxaZ2lJME1oZGtVTWJzNGV2OVRVU1RiTTdtWUR4Wmds?=
- =?utf-8?B?ZlBOMEpCN3pQTSthK1ZrWmhzbERCYks5bUx3eTRteWtFWjFsRU5RRCtPZUd3?=
- =?utf-8?B?WThMZnZBQm9MQXh4bUxaZG9hU0pBL1JyM0RObkh6NGxIejFxUWdTVkpvSUdY?=
- =?utf-8?B?QVF3ZGpQUGNpQ3pxaWNvR0dYK08yeDVWK1kyYkFWbGc3azgyNjhnVkp1SFRH?=
- =?utf-8?B?eWl3TjB0SjJoQnNyVVJIK3NrWmdpdEc5SzJPNEtPVTQrWCtMTGhLbkU1bUQ2?=
- =?utf-8?B?NjNiaTBOMzA3V21pR2RwT2pCNVRkNjNXMGJ1QlRJbXdBQlpYRHBsbFJPOFht?=
- =?utf-8?B?M0F1R1VkWXQvaXoyNks5THdOMXNKSzJDQzVHVVgxaUQwSG1UcGh0L3RIdzFp?=
- =?utf-8?B?bUl2WXJlMXZ0VHp4T0pIOVhqZmRMZTZBOHRSQlhic3lNWVZJbkV1WXVJWmhw?=
- =?utf-8?B?MjRtbTdUbVU1QUg2YUZBSWNkaktDWFg2c3Z0OUxKbDBySHl6eXNLelNEak9X?=
- =?utf-8?B?ZzRHWHFsTnJLUmh0cUlLWmswR2I3UFpoaVdjSkl6VzBOWTZYMWxxM0UyNUcr?=
- =?utf-8?B?UGVWWEV6dWVrcnFFWTMxdUFZUWxRUXRnMXd5UzNzOGwxNmxwWVRyV3paa2ln?=
- =?utf-8?B?UlRNdGN5b2J3UDNSRXgxMDN0djFMMy8rdUVDNHNvSzR1WjFFcHJiUDJRQzF1?=
- =?utf-8?B?alhyeWhuWFdRR0JNOHNYaHcyQ0hpeCtDOTBDUzVCQWdwS1Z5R1d6d1dmYXhy?=
- =?utf-8?B?UWcrdytPdG5mMVAwbFpQeGd1cFRxQkMyNFpKTHoxYW83cUZHQkZXK3J6dDAz?=
- =?utf-8?B?M2w1SEo1WS9ZRys1YldUN3FkcldHQlhZWGVNVEtYcktQUzNaSjF1NGEzTWtY?=
- =?utf-8?B?MWhDQ2VmQUVJSzc3M0o1dE1NZmJXaDdVK2lqZENDZ21DczlsV3pIeUhwRzNv?=
- =?utf-8?B?RXBFRjc2a2IxN3VrdUVrSk1SSnJ1ek9aSU94T0JUTWJ2TWlpTjZWbmZ6Yjc0?=
- =?utf-8?B?ekVxRjkxTHFiaVJybXpjNE1KcjhxZXNGa3ozQks1aGRnSmlKNzNzL3owbTYx?=
- =?utf-8?B?US9CQTErNndjYzhhcEllUi9vdlZhUlBjNjNtS2Y2SVVvaS9SQ3pyZmMvN3M3?=
- =?utf-8?B?MEQ0MmN4MDd2eGJVOTh1YUtJNDNqeVNUKzIvWHBjdFc3UWtqU3hwL2l6TTNa?=
- =?utf-8?B?Umc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 03a548d3-80ea-421d-2652-08db9e9f52da
-X-MS-Exchange-CrossTenant-AuthSource: MN2PR11MB4239.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2023 21:25:33.5852 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ujlCO46S7MbR/TrB9p6UcMDLwpZzyLIoI+X0Ol1YJbZ94voDzQNRoiB/fZZSoyMc0RvkHXfqTEs4iz/Tjo/N8Ys74Aiwh/NtrzRl7mW2UbU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7269
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 02/15] drm/xe/xe2: Add GT topology readout
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [RFC] drm/xe/uc: rework uC version tracking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,93 +55,342 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Zhanjun Dong <zhanjun.dong@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Aug 11, 2023 at 09:06:05AM -0700, Lucas De Marchi wrote:
-> From: Matt Roper <matthew.d.roper@intel.com>
-> 
-> Xe2 platforms have three DSS fuse registers for both geometry and
-> compute.
-> 
-Bspec: 67171, 67537, 67401, 67536
+The GSC firmware, support for which is coming soon for Xe, has both a
+release version (updated on every release) and a compatibility version
+(update only on interface changes). The GuC has something similar, with
+a global release version and a submission version (which is also known
+as the VF compatibility version). The main difference is that for the
+GuC we still want to check the driver requirement against the release
+version, while for the GSC we'll need to check against the compatibility
+version.
+Instead of special casing the GSC, this patch proposes a rework of the
+FW logic so that we store both versions at the uc_fw level for all
+binaries and we allow checking against either of the versions. Initially,
+we'll use it to support GSC, but the logic could be re-used to allow VFs
+to check against their expected GuC compatibility version.
 
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 +++
->  drivers/gpu/drm/xe/xe_gt_topology.c  | 16 +++++++++++-----
->  drivers/gpu/drm/xe/xe_gt_types.h     |  2 +-
->  3 files changed, 15 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index c93d8f8cd93a5..ad7ae6a28caca 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -164,6 +164,9 @@
->  #define XELP_GT_GEOMETRY_DSS_ENABLE		XE_REG(0x913c)
->  #define XEHP_GT_COMPUTE_DSS_ENABLE		XE_REG(0x9144)
->  #define XEHPC_GT_COMPUTE_DSS_ENABLE_EXT		XE_REG(0x9148)
-> +#define XE2_GT_COMPUTE_DSS_2			XE_REG(0x914c)
-> +#define XE2_GT_GEOMETRY_DSS_1			XE_REG(0x9150)
-> +#define XE2_GT_GEOMETRY_DSS_2			XE_REG(0x9154)
->  
->  #define GDRST					XE_REG(0x941c)
->  #define   GRDOM_GUC				REG_BIT(3)
-> diff --git a/drivers/gpu/drm/xe/xe_gt_topology.c b/drivers/gpu/drm/xe/xe_gt_topology.c
-> index d4bbd0a835c22..a8d7f272c30a0 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_topology.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_topology.c
-> @@ -65,7 +65,10 @@ load_eu_mask(struct xe_gt *gt, xe_eu_mask_t mask)
->  static void
->  get_num_dss_regs(struct xe_device *xe, int *geometry_regs, int *compute_regs)
->  {
-> -	if (GRAPHICS_VERx100(xe) == 1260) {
-> +	if (GRAPHICS_VER(xe) > 20) {
-> +		*geometry_regs = 3;
-> +		*compute_regs = 3;
-> +	} else if (GRAPHICS_VERx100(xe) == 1260) {
->  		*geometry_regs = 0;
->  		*compute_regs = 2;
->  	} else if (GRAPHICS_VERx100(xe) >= 1250) {
-> @@ -90,15 +93,18 @@ xe_gt_topology_init(struct xe_gt *gt)
->  	 * Register counts returned shouldn't exceed the number of registers
->  	 * passed as parameters below.
->  	 */
-> -	drm_WARN_ON(&xe->drm, num_geometry_regs > 1);
-> -	drm_WARN_ON(&xe->drm, num_compute_regs > 2);
-> +	drm_WARN_ON(&xe->drm, num_geometry_regs > 3);
-> +	drm_WARN_ON(&xe->drm, num_compute_regs > 3);
->  
->  	load_dss_mask(gt, gt->fuse_topo.g_dss_mask,
->  		      num_geometry_regs,
-> -		      XELP_GT_GEOMETRY_DSS_ENABLE);
-> +		      XELP_GT_GEOMETRY_DSS_ENABLE,
-> +		      XE2_GT_GEOMETRY_DSS_1,
-> +		      XE2_GT_GEOMETRY_DSS_2);
->  	load_dss_mask(gt, gt->fuse_topo.c_dss_mask, num_compute_regs,
->  		      XEHP_GT_COMPUTE_DSS_ENABLE,
-> -		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT);
-> +		      XEHPC_GT_COMPUTE_DSS_ENABLE_EXT,
-> +		      XE2_GT_COMPUTE_DSS_2);
->  	load_eu_mask(gt, gt->fuse_topo.eu_mask_per_dss);
->  
->  	xe_gt_topology_dump(gt, &p);
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index 35b8c19fa8bf5..48fd698ff62aa 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -24,7 +24,7 @@ enum xe_gt_type {
->  	XE_GT_TYPE_MEDIA,
->  };
->  
-> -#define XE_MAX_DSS_FUSE_REGS	2
-> +#define XE_MAX_DSS_FUSE_REGS	3
->  #define XE_MAX_EU_FUSE_REGS	1
->  
->  typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(32 * XE_MAX_DSS_FUSE_REGS)];
-> -- 
-> 2.40.1
-> 
+RFC note: I've added a couple of the GSC defines to show how this is
+supposed to be different for the GSC, but those are not intended to be
+part of this patch in its final version. I'd like to get some early
+feedback on this before I build the full GSC version checking on top of
+it.
+
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michał Winiarski <michal.winiarski@intel.com>
+Cc: Zhanjun Dong <zhanjun.dong@intel.com>
+---
+ drivers/gpu/drm/xe/xe_guc_types.h   |   9 --
+ drivers/gpu/drm/xe/xe_uc_fw.c       | 131 +++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_uc_fw.h       |   2 +
+ drivers/gpu/drm/xe/xe_uc_fw_types.h |  36 ++++++--
+ 4 files changed, 108 insertions(+), 70 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
+index a5e58917a499..343cc39ce5bc 100644
+--- a/drivers/gpu/drm/xe/xe_guc_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_types.h
+@@ -52,15 +52,6 @@ struct xe_guc {
+ 			/** @seqno: suspend fences seqno */
+ 			u32 seqno;
+ 		} suspend;
+-		/** @version: submission version */
+-		struct {
+-			/** @major: major version of GuC submission */
+-			u32 major;
+-			/** @minor: minor version of GuC submission */
+-			u32 minor;
+-			/** @patch: patch version of GuC submission */
+-			u32 patch;
+-		} version;
+ 		/** @enabled: submission is enabled */
+ 		bool enabled;
+ 	} submission_state;
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 2e70dd4880f6..e22afd65e5d6 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -201,9 +201,15 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
+ 	for (i = 0; i < count && p <= entries[i].platform; i++) {
+ 		if (p == entries[i].platform) {
+ 			uc_fw->path = entries[i].path;
+-			uc_fw->major_ver_wanted = entries[i].major;
+-			uc_fw->minor_ver_wanted = entries[i].minor;
++			uc_fw->versions.wanted.major = entries[i].major;
++			uc_fw->versions.wanted.minor = entries[i].minor;
+ 			uc_fw->full_ver_required = entries[i].full_ver_required;
++
++			if (uc_fw->type == XE_UC_FW_TYPE_GSC)
++				uc_fw->versions.wanted_type = XE_UC_FW_VER_COMPATIBILITY;
++			else
++				uc_fw->versions.wanted_type = XE_UC_FW_VER_RELEASE;
++
+ 			break;
+ 		}
+ 	}
+@@ -245,33 +251,30 @@ static void uc_fw_fini(struct drm_device *drm, void *arg)
+ 
+ static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
+ {
+-	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
+-	struct xe_guc *guc = &gt->uc.guc;
++	struct xe_uc_fw_version *release = &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
++	struct xe_uc_fw_version *compatibility = &uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
+ 
+ 	XE_WARN_ON(uc_fw->type != XE_UC_FW_TYPE_GUC);
+-	XE_WARN_ON(uc_fw->major_ver_found < 70);
++	XE_WARN_ON(release->major < 70);
+ 
+-	if (uc_fw->minor_ver_found >= 6) {
++	if (release->major > 70 || release->minor >= 6) {
+ 		/* v70.6.0 adds CSS header support */
+-		guc->submission_state.version.major =
+-			FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+-				  css->submission_version);
+-		guc->submission_state.version.minor =
+-			FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+-				  css->submission_version);
+-		guc->submission_state.version.patch =
+-			FIELD_GET(CSS_SW_VERSION_UC_PATCH,
+-				  css->submission_version);
+-	} else if (uc_fw->minor_ver_found >= 3) {
++		compatibility->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
++						 css->submission_version);
++		compatibility->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
++						 css->submission_version);
++		compatibility->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH,
++						 css->submission_version);
++	} else if (release->minor >= 3) {
+ 		/* v70.3.0 introduced v1.1.0 */
+-		guc->submission_state.version.major = 1;
+-		guc->submission_state.version.minor = 1;
+-		guc->submission_state.version.patch = 0;
++		compatibility->major = 1;
++		compatibility->minor = 1;
++		compatibility->patch = 0;
+ 	} else {
+ 		/* v70.0.0 introduced v1.0.0 */
+-		guc->submission_state.version.major = 1;
+-		guc->submission_state.version.minor = 0;
+-		guc->submission_state.version.patch = 0;
++		compatibility->major = 1;
++		compatibility->minor = 0;
++		compatibility->patch = 0;
+ 	}
+ 
+ 	uc_fw->private_data_size = css->private_data_size;
+@@ -280,30 +283,31 @@ static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
+ static int uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw)
+ {
+ 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
++	struct xe_uc_fw_version *wanted = &uc_fw->versions.wanted;
++	struct xe_uc_fw_version *found = &uc_fw->versions.found[uc_fw->versions.wanted_type];
+ 
+ 	/* Driver has no requirement on any version, any is good. */
+-	if (!uc_fw->major_ver_wanted)
++	if (!wanted->major)
+ 		return 0;
+ 
+ 	/*
+ 	 * If full version is required, both major and minor should match.
+ 	 * Otherwise, at least the major version.
+ 	 */
+-	if (uc_fw->major_ver_wanted != uc_fw->major_ver_found ||
+-	    (uc_fw->full_ver_required &&
+-	     uc_fw->minor_ver_wanted != uc_fw->minor_ver_found)) {
++	if (wanted->major != found->major ||
++	    (uc_fw->full_ver_required && wanted->minor != found->minor)) {
+ 		drm_notice(&xe->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
+ 			   xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+-			   uc_fw->major_ver_found, uc_fw->minor_ver_found,
+-			   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted);
++			   found->major, found->minor,
++			   wanted->major, wanted->minor);
+ 		goto fail;
+ 	}
+ 
+-	if (uc_fw->minor_ver_wanted > uc_fw->minor_ver_found) {
++	if (wanted->minor > found->minor) {
+ 		drm_notice(&xe->drm, "%s firmware (%u.%u) is recommended, but only (%u.%u) was found in %s\n",
+ 			   xe_uc_fw_type_repr(uc_fw->type),
+-			   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted,
+-			   uc_fw->major_ver_found, uc_fw->minor_ver_found,
++			   wanted->major, wanted->minor,
++			   found->major, found->minor,
+ 			   uc_fw->path);
+ 		drm_info(&xe->drm, "Consider updating your linux-firmware pkg or downloading from %s\n",
+ 			 XE_UC_FIRMWARE_URL);
+@@ -325,6 +329,7 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct device *dev = xe->drm.dev;
+ 	const struct firmware *fw = NULL;
++	struct xe_uc_fw_version *release = &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+ 	struct uc_css_header *css;
+ 	struct xe_bo *obj;
+ 	size_t size;
+@@ -395,15 +400,13 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ 	}
+ 
+ 	/* Get version numbers from the CSS header */
+-	uc_fw->major_ver_found = FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+-					   css->sw_version);
+-	uc_fw->minor_ver_found = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+-					   css->sw_version);
++	release->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR, css->sw_version);
++	release->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR, css->sw_version);
++	release->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, css->sw_version);
+ 
+ 	drm_info(&xe->drm, "Using %s firmware (%u.%u) from %s\n",
+ 		 xe_uc_fw_type_repr(uc_fw->type),
+-		 uc_fw->major_ver_found, uc_fw->minor_ver_found,
+-		 uc_fw->path);
++		 release->major, release->minor, uc_fw->path);
+ 
+ 	err = uc_fw_check_version_requirements(uc_fw);
+ 	if (err)
+@@ -523,26 +526,50 @@ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
+ 	return err;
+ }
+ 
++static const char *version_wanted_type_repr(enum xe_uc_fw_version_types type)
++{
++	switch (type) {
++	case XE_UC_FW_VER_RELEASE:
++		return "release version wanted";
++	case XE_UC_FW_VER_COMPATIBILITY:
++		return "compatibility version wanted";
++	default:
++		return "Unknown version type wanted";
++	}
++}
++
++static void print_uc_version(struct drm_printer *p, const char *prefix, struct xe_uc_fw_version *version)
++{
++	if (version->build)
++		drm_printf(p, "\t%s %u.%u.%u.%u\n",
++			   prefix, version->major, version->minor,
++			   version->patch, version->build);
++	else
++		drm_printf(p, "\t%s %u.%u.%u\n",
++			   prefix, version->major, version->minor,
++			   version->patch);
++}
+ 
+ void xe_uc_fw_print(struct xe_uc_fw *uc_fw, struct drm_printer *p)
+ {
++	struct xe_uc_fw_version *wanted = &uc_fw->versions.wanted;
++	struct xe_uc_fw_version *release = &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
++	struct xe_uc_fw_version *compatibility = &uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
++
+ 	drm_printf(p, "%s firmware: %s\n",
+ 		   xe_uc_fw_type_repr(uc_fw->type), uc_fw->path);
+ 	drm_printf(p, "\tstatus: %s\n",
+ 		   xe_uc_fw_status_repr(uc_fw->status));
+-	drm_printf(p, "\tversion: wanted %u.%u, found %u.%u\n",
+-		   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted,
+-		   uc_fw->major_ver_found, uc_fw->minor_ver_found);
+-	drm_printf(p, "\tuCode: %u bytes\n", uc_fw->ucode_size);
+-	drm_printf(p, "\tRSA: %u bytes\n", uc_fw->rsa_size);
+-
+-	if (uc_fw->type == XE_UC_FW_TYPE_GUC) {
+-		struct xe_gt *gt = uc_fw_to_gt(uc_fw);
+-		struct xe_guc *guc = &gt->uc.guc;
+-
+-		drm_printf(p, "\tSubmit version: %u.%u.%u\n",
+-			   guc->submission_state.version.major,
+-			   guc->submission_state.version.minor,
+-			   guc->submission_state.version.patch);
+-	}
++	print_uc_version(p, version_wanted_type_repr(uc_fw->versions.wanted_type), wanted);
++
++	if (release->major)
++		print_uc_version(p, "release version found", release);
++
++	if (compatibility->major)
++		print_uc_version(p, "compatibility version found", compatibility);
++
++	if (uc_fw->ucode_size)
++		drm_printf(p, "\tuCode: %u bytes\n", uc_fw->ucode_size);
++	if (uc_fw->rsa_size)
++		drm_printf(p, "\tRSA: %u bytes\n", uc_fw->rsa_size);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
+index a519c77d4962..1b5bbbb97aaf 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw.h
+@@ -96,6 +96,8 @@ static inline const char *xe_uc_fw_type_repr(enum xe_uc_fw_type type)
+ 		return "GuC";
+ 	case XE_UC_FW_TYPE_HUC:
+ 		return "HuC";
++	case XE_UC_FW_TYPE_GSC:
++		return "GSC";
+ 	}
+ 	return "uC";
+ }
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+index 837f49a2347e..69d3f2446781 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+@@ -55,10 +55,27 @@ enum xe_uc_fw_status {
+ 
+ enum xe_uc_fw_type {
+ 	XE_UC_FW_TYPE_GUC = 0,
+-	XE_UC_FW_TYPE_HUC
++	XE_UC_FW_TYPE_HUC,
++	XE_UC_FW_TYPE_GSC
+ };
+ #define XE_UC_FW_NUM_TYPES 2
+ 
++/**
++ * struct xe_uc_fw_version - Version for XE micro controller firmware
++ */
++struct xe_uc_fw_version {
++	u16 major;
++	u16 minor;
++	u16 patch;
++	u16 build;
++};
++
++enum xe_uc_fw_version_types {
++	XE_UC_FW_VER_RELEASE,
++	XE_UC_FW_VER_COMPATIBILITY,
++	XE_UC_FW_VER_TYPE_COUNT
++};
++
+ /**
+  * struct xe_uc_fw - XE micro controller firmware
+  */
+@@ -98,14 +115,15 @@ struct xe_uc_fw {
+ 	 * version required per platform.
+ 	 */
+ 
+-	/** @major_ver_wanted: major firmware version wanted by platform */
+-	u16 major_ver_wanted;
+-	/** @minor_ver_wanted: minor firmware version wanted by platform */
+-	u16 minor_ver_wanted;
+-	/** @major_ver_found: major version found in firmware blob */
+-	u16 major_ver_found;
+-	/** @minor_ver_found: major version found in firmware blob */
+-	u16 minor_ver_found;
++	/** @versions: FW versions wanted and found */
++	struct {
++		/** @wanted: firmware version wanted by platform */
++		struct xe_uc_fw_version wanted;
++		/** @wanted_type: type of firmware version wanted (release vs compatibility) */
++		enum xe_uc_fw_version_types wanted_type;
++		/** @found: fw versions found in firmware blob */
++		struct xe_uc_fw_version found[XE_UC_FW_VER_TYPE_COUNT];
++	} versions;
+ 
+ 	/** @rsa_size: RSA size */
+ 	u32 rsa_size;
+-- 
+2.41.0
+
