@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45053C001B0
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 07:32:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD9A4C001B0
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 08:14:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3F7F10E047;
-	Wed, 16 Aug 2023 07:32:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB71A10E292;
+	Wed, 16 Aug 2023 08:14:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 11F3210E28D;
- Wed, 16 Aug 2023 07:32:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8F33610E292;
+ Wed, 16 Aug 2023 08:14:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0E5C8AA01E;
- Wed, 16 Aug 2023 07:32:03 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 88F3EAADD2;
+ Wed, 16 Aug 2023 08:14:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Date: Wed, 16 Aug 2023 07:32:03 -0000
-Message-ID: <169217112305.10285.13405491676283866145@emeril.freedesktop.org>
+Date: Wed, 16 Aug 2023 08:14:23 -0000
+Message-ID: <169217366355.10287.14211037075072470719@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230814160217.10707-1-niranjana.vishwanathapura@intel.com>
 In-Reply-To: <20230814160217.10707-1-niranjana.vishwanathapura@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_d?=
- =?utf-8?q?rm/xe=3A_Add_preemption_timeout_config_options?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Add_preemption_timeout_config_options?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,26 +48,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add preemption timeout config options
 URL   : https://patchwork.freedesktop.org/series/122428/
-State : warning
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 9829aba16e62fcfba150f72d5d492fd778e0150e
-/root/linux/maintainer-tools/dim: line 50: /root/.dimrc: No such file or directory
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 9829aba16 drm/xe/dg2: Remove Wa_15010599737
+=== git am output follows ===
+Applying: drm/xe: Simplify engine class sched_props setting
+Applying: drm/xe: Add CONFIG_DRM_XE_PREEMPT_TIMEOUT
+Applying: drm/xe: Add CONFIG_DRM_XE_PREEMPT_TIMEOUT_COMPUTE
 
 
