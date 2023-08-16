@@ -4,142 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A411C001E0
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 05:05:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE780C001B0
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 05:49:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 208BA10E2C4;
-	Wed, 16 Aug 2023 05:05:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD89810E2C4
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Aug 2023 05:05:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B27B710E2C6;
+	Wed, 16 Aug 2023 05:49:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 394E110E2C6
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Aug 2023 05:49:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692162355; x=1723698355;
- h=from:to:cc:subject:date:message-id:references:
+ t=1692164950; x=1723700950;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=Uwljbx+CvTvlr7GQ0CbBKtG91VpPzgGB4HQ14FEi/YY=;
- b=OdfJXYjMqsuEU6qTfG5lhhmqMvUBIKlKcpqi6PZGRvXl+z8AC5OyBU5L
- x6SxueuKiRKWpf09PFs1Hm3eLXpu6ukzNbujfoBMyuUY7HQFX4I1hVUbv
- yRwAU14ZpGFkkAFpMb05Ywk/wbi9PPkFJFD8bulRYKpu73lE1W/pE2FSG
- j7Vjd3JtMWVLzeI6mphLOWctq4FVnrVTn5NgDE4j/iDqUlR4MhYcag1aH
- 92cRzVifpeB/2nU5qfNHWZRECLQ9sHKcK0pIhLwx1zhehbER2eJuao6A6
- ETdoG2BVJp57X8UzwcmuiV9vD2HsGuh26WXt+bMXgTydXbNvB/hLyvctU g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="403421188"
-X-IronPort-AV: E=Sophos;i="6.01,175,1684825200"; d="scan'208";a="403421188"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Aug 2023 22:05:55 -0700
+ bh=TSHiQNepB0O3hccr8PqqcpP34s3ZFOVKQtgy03ZLpvo=;
+ b=CjpBf7CFDd/zamtfN7NvQdpMyvq12RoLVujUhG7fU09Li0WIS6TLeg9f
+ YDSRIsMslsbsd+YU2zrs1zRFuAd7BAiITtTIiAegdBiLR112f1BwwiyZX
+ MoilaujRVROCAIjyXEpssbKc14IG6SSvU5Ew0Z04+H56kg51cUXWZc5pj
+ +gxcKoFbYQL6IKnwywi7szCAmEGi3BWMHWD7pJxjLhxKsvBtb+FFz5Zwn
+ uNTL22RFwiQrCBrzW0ezbvbJoNpI1jBQ5YhsRYrz3ZXj8Peb6QpEyCLSf
+ u9tn4JK2RJEe1qC1zGHHG5B6jIgV8bitdlHjcclQH8xIHEwU3fZgADzaZ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="458799935"
+X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; d="scan'208";a="458799935"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Aug 2023 22:49:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="683910790"
-X-IronPort-AV: E=Sophos;i="6.01,175,1684825200"; d="scan'208";a="683910790"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga003.jf.intel.com with ESMTP; 15 Aug 2023 22:05:55 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="727636361"
+X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; d="scan'208";a="727636361"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga007.jf.intel.com with ESMTP; 15 Aug 2023 22:49:06 -0700
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 15 Aug 2023 22:05:54 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 15 Aug 2023 22:05:54 -0700
+ 15.1.2507.27; Tue, 15 Aug 2023 22:49:06 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 15 Aug 2023 22:05:54 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.105)
+ 15.1.2507.27 via Frontend Transport; Tue, 15 Aug 2023 22:49:06 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.173)
  by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 15 Aug 2023 22:05:53 -0700
+ 15.1.2507.27; Tue, 15 Aug 2023 22:49:05 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F+d3apaLCJ5uxnlV0RTuXyRiCGCgXec7r94mSxxwGKUmoyEgY1EH6RPsyyHvOme2D7qAi7wJuFELgyR32S8a/tN3tszVGJKHicdXacD/+bqRwhL1CLKyN2OXz4+SmD6gklEItdmyLHmxjGLM75uDok5NzIWPjoTM17o+HevmWWp3c7OIeLgyD+pUMF90Ga1LhdWZal1rVsbcFPxs+eVO+aGtx6yeKDYFoaUdHJ1pICKd+SVmysWEfsZd3XIVNlV1fKyKRSz39+WTlkXUrL7Uqpd9wAJsxS5OeR4ost65Cx7XTIFuJRXhGBnzISkRlrzqMBzWRTAB6Tj26ievEiePAA==
+ b=ZOYU3SfwObhb860JdFkGZLROdQYwMeLfr20wAS7LRuXxUkcJI3ltPS1K8/cOj6tOlmFFyADUBPzbYw1GU+2R8iWCpB4YxzFsGbdSegYSay6DXwWuZNMcHpkERenJ9Nbun4qmAMnDK9LycJjuDf+5oFzib7DFJTNj1o6K/DQpu2JOo4WxGYSdCy1SASVCT9uzQs7gNWQeQcJfyzpuh8Nt9a1v9cbGOzni/DxMXIfsFRbNoOzBh2lpOf2XqjvsTZXJkF7R9U2CkdgesS8KWV8ycy2FIGguatg2Ikk23yeyKDKLA7xQ6rL9+a9gZwlvcxnfPKb7abSVygyr3y3nU/6ZFQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=owkNaz12UTWaTgwUIHmZ62ZvCUH0pjbT1SkQzK8qlaw=;
- b=DuRlnVTcpGTe5U06juawCxyRsdbLyHKVYRpSQAIon6KCzxPJ+fmf/n9DKTzVieCbfH2yKthG5jjLI4YoLim0ss7Vzvu6xhYdjy4+HDvkn7L6ohyyRepBA/WAZjffhDvjeQd6i+/69bFSzyF9JmOb/HKq2fYeUPlFzrEJYeYfV2/VoJZEqzKRowe+pVFY2sVldEs3KQh1WT2ZeFv1KP5hEkMpe9B223ss83FhS+v7X4sXuE/qGhpyhYLgaQmdyXUOssILAgx6I3XLDtMjMKFKmRfRqjKtxm2z50xzCvYB2izOnuk63i6/lONgxU5n60kvNB/xF5V/ZgsWUiAxB3xkKQ==
+ bh=Xhu8nbKWlgss+wKwmX5QfMIuOEkMdK3zt2JljOVqxdU=;
+ b=dJXAlFTeBcKy1SYkbh96umixc2kxlHH7pmFUj4T3lJIBOeb+ZhlDwEYVIrdbUJAeOFmnPZ+jSaKRo+z20gV1FzG51nTnjpt8tLTIRhHBHKYbiNlc6Z4oCWBgCzzJ8iLGspZqrKgYyc1N2B6xpPUkn65NwJAV+0XdQafUusmN6H/1r44s6kNiTZaE88lA5he6PpUgUujddDeOSRZJDtUyd2aS8a71yRXn0/gzitiBI0/KPpaJTk+pl3FhiamPXCCwE0aiqd7faLv3FgUa8hM5DpaQUxUuLolXklugfR6spWcyhaMyt697budCNYhd4RyfRlCcNnH2aGfsMfpBosaRMw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by MN6PR11MB8241.namprd11.prod.outlook.com (2603:10b6:208:473::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.26; Wed, 16 Aug
- 2023 05:05:51 +0000
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::ed57:a908:f0ad:13cd]) by SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::ed57:a908:f0ad:13cd%7]) with mapi id 15.20.6678.025; Wed, 16 Aug 2023
- 05:05:51 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>
-Thread-Topic: [PATCH 3/4] drm/xe: Add CONFIG_DRM_XE_PREEMPT_TIMEOUT_COMPUTE
-Thread-Index: AQHZyiWPmsi0gVyx8EOfgLGydLSPaK/mQkQwgAOraACAAnx2QA==
-Date: Wed, 16 Aug 2023 05:05:51 +0000
-Message-ID: <SJ1PR11MB6204930FB84848B3B10DCAB08115A@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20230808182411.31354-1-niranjana.vishwanathapura@intel.com>
- <20230808182411.31354-4-niranjana.vishwanathapura@intel.com>
- <SJ1PR11MB620457BF2B85DA4195524A4F8111A@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <ZNpDGDsAHOsRzsnq@nvishwa1-DESK>
-In-Reply-To: <ZNpDGDsAHOsRzsnq@nvishwa1-DESK>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|MN6PR11MB8241:EE_
-x-ms-office365-filtering-correlation-id: 27131e80-6368-4bd3-03ca-08db9e167680
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: EIVVIpyNrsn0xl9ip5GEqGxwEmp2latvkH6aWakY2YYkNjHJQN0LCerR+ZQS7Oz98md++sgK66Cq1qhPxUf/tS1fMkfWnzLZFWg8ehfpJRzI740CIneiKSiAt9tGvf35YfsBtJZN/WCg+lRnyNaXtawXMreR03PS6XVM1zVvWlRnFdEqYQg5t4f89wVN8XenoCxgwMtnIoq6W4sj6XjP9xf8KIH+zQ7MBZN+BMm//9rwVBl1bXK9BpmcgDfZSFiYj31LcLuFPt9IARiCTiKG21imV8CRweYTNiTvZM6lFm+RTWv7NBPYDXAjwXFmpV5ZwOurmlfPMN3jUr3ADVi9bVAvoomWmYBdby8vXmcnMQ/W2EI6LXY8dUBCJrLtFkoFAfy2xzJpNptjA+YbJkCRm8v+W4Ii3zNyDILCoj86NHkRQYH0richbRIhb3Thhp91wDpJdS+pcXuvgyya6SuDHUo6H1xFFLM6iekAUwszQHkSTEZk3HrAiSYej1imzKjlzs39EYyGL4lY6XbAuq06e2PeqpcExnangGgbPnjQnJvd2N2WyCsB8s8RGAZt6m2t3BynFiMnwswJx2rU8sZvclsrRwBgHajzIltaAxZXxoGPu2Py1h105hn/X2ev2PGm
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(366004)(39860400002)(396003)(346002)(136003)(1800799009)(451199024)(186009)(71200400001)(64756008)(54906003)(66446008)(76116006)(66476007)(66556008)(66946007)(7696005)(6506007)(2906002)(478600001)(9686003)(26005)(107886003)(5660300002)(83380400001)(6636002)(52536014)(41300700001)(316002)(53546011)(8936002)(4326008)(6862004)(8676002)(122000001)(38100700002)(38070700005)(82960400001)(33656002)(86362001)(55016003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?MlWbe1XpVE8GzTXeVgwQD+RWu7d5DsoawGxL1VW1zca1ROCIix6kjtDpPoqg?=
- =?us-ascii?Q?xgPT8zmZnTYo5jZa7pj0e3zV9ujaGD729uaVL5ca8U0hA3Jea3T0ddwweWVA?=
- =?us-ascii?Q?L/rd/1JzQSeAXglJa9TWMbgXozjPxBXJS2mOakJf6borMMh+/nN/AAh0n8MT?=
- =?us-ascii?Q?TqrUoNPOfdIafyNxK77IdSdQLTJvtgWw14kWz6R6Iq+LbPPUnlpFh4omXvEl?=
- =?us-ascii?Q?zi+nqbJIKLr9Ro0xITzl8kVj45zR7/z878HGU83gcZBmw/EwVQo2smz5q+Ye?=
- =?us-ascii?Q?k3SHspUMlzUgfWhWadjW0c7E+DNJFoGkMnOJML2fychQoy1kiJBbOepvB6T8?=
- =?us-ascii?Q?RvD6oh7QESQ7fUNRDO3NsdH2MupgbUEcHAKdd/30jRYhho38aQ1t6km+GMeD?=
- =?us-ascii?Q?9lWBofOVFnxhFGDvQmkGh8+fNUzRzWNvKza2qK53SvjPHId5kF56lbngjKSG?=
- =?us-ascii?Q?cgCt9ykochw9Wvw96+VeGtxiGJKhRgSZcsL16fE/CWoZTGJwKcuuo2jy/hUx?=
- =?us-ascii?Q?F0jLBDnvkwFCyRRzoWjBvUztc0DsAm5iHKNsUmjaFbKvY+QdVHEVphJIOBni?=
- =?us-ascii?Q?jDYYtAPnhoRGTra0hadlh+HXna8ZZpo+RtS2Nq0teOI2SKh7N7/mcu7+YyBJ?=
- =?us-ascii?Q?SUBN5v9gLvAHI67fTJu8R9KxJtbMbSDSG3s6SWaIHB9Pk1VM74z1fsdEx5TB?=
- =?us-ascii?Q?3Si+nvGG8DuLtK16b/6wjr0poVNjdzBao5Zrr6SdIKW3U3JCH9QTlLGfEuQv?=
- =?us-ascii?Q?bE0Am5sBdFsNTYLwu6Y40XgOuZk7/iAzAGMGWn1cLgIKq1mEoY/Kr0X1mjm2?=
- =?us-ascii?Q?JpQDQZcb3A4/dZ3r1pPVLB8tTKxGorRozqthnfdvlNXAZC+Ynm4ojzkjXF00?=
- =?us-ascii?Q?WLNBKiUT5mQBbmr5XP+dEIUgTqFoAjQtx0FO/fN/4zs7HxYei5y9jfB18JzY?=
- =?us-ascii?Q?0Nb14oF9f/ZSmoYaGXSvv7rb/aklKqijIDtrhrcAkt7BQzm84OHmeK++7XR3?=
- =?us-ascii?Q?EHVM1NVASGBka2LFaOpWvoFYeC6Eld4OUoA5PH8GS1hR6bbmGVtPmUC5mWTP?=
- =?us-ascii?Q?7t58sTexhG6f+d6dM2DiNmCIHIgAU4L67Qijsh0/uBVJUKdbaDrkTntIj2dw?=
- =?us-ascii?Q?cdNEowMDEKiq1HtwheSqvMRpjEDgk4Axkfw3QpnJnkoMLtFNT8FWjXBIZqTF?=
- =?us-ascii?Q?fiPZIcen7nOuRco/+pVchxkICgA3ZwAbuuO8hgdesJ9gYbuUfkj14Jk6iPsP?=
- =?us-ascii?Q?tPjdza1X4aeTbJfe969qxP1NUO0/Wivx5RiJ/c+tQ8CrOzkuiu4CUjsElMOz?=
- =?us-ascii?Q?lnuNFb6Fjcgjsr+c+Mc9QOTaDPulCzg9kmRrnXiNS/g98KsgoLi93yPcAJ2Y?=
- =?us-ascii?Q?95DmORk5d9kS6iba+T2qWcRuxDrJV9eIHImjMmIMiFGp0MOFmOqg/KRD1wF4?=
- =?us-ascii?Q?NfWkz9MJ/BaJ3PSq49byaBTOxp3XzsEUOK0Q+tUIP3yRjql3YchOWzkM1e2y?=
- =?us-ascii?Q?l6X7Bdbl9ZN1JIjgVformYfSArVv1W2qrLsHfE9O94sV24L817iky7cvWzuQ?=
- =?us-ascii?Q?lyWIboFC9nmtEBuPnKvEwDPf2FLAyrU2hIpIyq3c?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from BL1PR11MB5480.namprd11.prod.outlook.com (2603:10b6:208:314::6)
+ by MW6PR11MB8339.namprd11.prod.outlook.com (2603:10b6:303:24b::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6652.30; Wed, 16 Aug
+ 2023 05:48:59 +0000
+Received: from BL1PR11MB5480.namprd11.prod.outlook.com
+ ([fe80::6bee:aa5d:26fc:3fd]) by BL1PR11MB5480.namprd11.prod.outlook.com
+ ([fe80::6bee:aa5d:26fc:3fd%7]) with mapi id 15.20.6678.029; Wed, 16 Aug 2023
+ 05:48:58 +0000
+Message-ID: <0d096901-3085-9b25-5d4a-d7c1adb44900@intel.com>
+Date: Wed, 16 Aug 2023 11:18:47 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.14.0
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20230814131213.1620252-1-aravind.iddamsetty@intel.com>
+ <20230814131213.1620252-3-aravind.iddamsetty@intel.com>
+ <875y5htupj.wl-ashutosh.dixit@intel.com>
+From: "Iddamsetty, Aravind" <aravind.iddamsetty@intel.com>
+In-Reply-To: <875y5htupj.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0069.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:99::12) To BL1PR11MB5480.namprd11.prod.outlook.com
+ (2603:10b6:208:314::6)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR11MB5480:EE_|MW6PR11MB8339:EE_
+X-MS-Office365-Filtering-Correlation-Id: 45fa479f-73f4-455f-d452-08db9e1c7bf6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zyBSWSOmDO4jydtkY4qBDrYQK4Y+u5gUHXSKktsM20xvUStRQXBsXxNGvZz3Gb2ONiWAWdj1O1TWxAdTDHSqZ104ePiWrELm7eANiTkcXQoyNUwthJYDVIysqwCoY4wY2E1zYmOANVmGzEjJTXrVsgtAgvvC3ECMSfgiLeNwHRCmCt6Y9BsJtnQUSl6NbFSY2JZWwxxLyAFLLrwaTXpFnQuQS/laTQ+KHB2ZuuQfN4IbGhB6ZAnz3MKEs7HxqxZcOHsHoB3bcxGBRLrq8BZ+iB1z0IxgrUscDqI8N73LtlZ2V6G0TKqOXcR/jjCuwDLFw/uEcZAPseqZI+qJ6dLnuW29A4DTVZg8+S+RbUKxzxJh5RMH8qM3jaX5hLaFZMIOQYHerxQ++/ZRtQko2BDS3vQvN3RCXdsfUyAHlrf4WNxvO2xugABAQEqc8SxeRfv8LPo0T1vz54hJEj5Q06ftqSVs7IEM6WvgI6AFa8CRsAuqICx8h+hzd4vBBrMW9wzf/ZL+pe6aZmBOB75d335i2aFPpHOctlJ3hwQI76m7KaTdCfDtxrBQY8Qfty9EN8nUfzpv/U64Cona9T+JbFNWOSKBfwtTH7KttJghmmovUoFgs0qOKoAx5mkFPF7KsV0uYrixB3GF6PeC+Yf4yYREWQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL1PR11MB5480.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(366004)(39860400002)(396003)(346002)(136003)(1800799009)(451199024)(186009)(6666004)(54906003)(31686004)(66476007)(66556008)(66946007)(37006003)(6512007)(6486002)(6506007)(2906002)(478600001)(26005)(107886003)(5660300002)(2616005)(83380400001)(6636002)(41300700001)(316002)(53546011)(8936002)(4326008)(6862004)(8676002)(38100700002)(82960400001)(36756003)(86362001)(31696002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bDErWEFrZVAwTlRsYkJFdktpcy9xWkROMnJXR2Urb0FrTW9hRGhjZnZ3Y3FL?=
+ =?utf-8?B?bU9scy9ERDEwWmFYRWpIalp5MSsrRXBTZ1dmZmFWQzFTWStWbkJ3SGZ1MjRG?=
+ =?utf-8?B?eWhFbDdDK2tIWmRPMGpRZ1FFb2Ryc3JjbTFXK0x1amFSMzdVS00vNHVsckpi?=
+ =?utf-8?B?SUFjZUhkUFdnRDE4VGQxcFVzbDR5bnU3c24vM1RsSXBweHdPWGE3ZC9hQkFG?=
+ =?utf-8?B?dEs4Ym43WWxGWTFNSmRwTFhrdEtSaERxTmtMYnFYQXVNRkNGUmFMZW1EWDJq?=
+ =?utf-8?B?UEZlQ3pCVkNsemcxYzIrcGxKQ21XR2pLVTNmVFlGZkl0TnlPQmhiTWc2R3cw?=
+ =?utf-8?B?MXc2VE9hcU9kRXQxSVdORlRiQlAwNk5Qd1A5OVRDdCs5enYyS1N3azBYdWpJ?=
+ =?utf-8?B?R04wZDFmaTB2aXhySFJGR25TRVJuTnAvRmtBcWUwY0VoUStZVStFY1FtcG5x?=
+ =?utf-8?B?ME9raWMyMDdIdDVlSDRZZlRyRTFqMzYreGxJODZDRGhpVVc2RC9pUjhySDMz?=
+ =?utf-8?B?OGdTSVVkWSsvU2NmUTV5MmhvS01JQkg2TVJMTVpmSThydWhGb1F6WVl4d0F4?=
+ =?utf-8?B?eFY2L1FRWVdVVzR3THkwdWhTSVRjbnZEcldRb3RTbk5yODhTd3A2cE4ySFFW?=
+ =?utf-8?B?bWkzS3BTc0N6Q09Bc1BLU1E0elFJVFVjWE04VndCOFdDRFhaa3N1SlpBKzNN?=
+ =?utf-8?B?N1dMcEwrVENuNGNUdkl4QVdxZEpkcU5sY3JpcG5wbjE3aXZyb2lnWUFzT1kw?=
+ =?utf-8?B?TCt4aUtuNTJ1eG04LzBzQXoyUGJhT0ZDNDlTS29GR1g2aVR2bWJ5Q21lUXZv?=
+ =?utf-8?B?R1dDREpuelRwNWpaeGVvcFlBaVVvU21wOWQ4NitkTWM4T0s1WkxETUdDbGx3?=
+ =?utf-8?B?QUZ0dUxiZEgxTmY3cXJGR21UemlsdzZmWjVvUFNKZk03VzFON01uamVEeUZq?=
+ =?utf-8?B?UTQzVE4zdWZsV2pDZWpQUUNLSm1iRExGS3NkRW5UamVGdG5zdU4va0NQbWRQ?=
+ =?utf-8?B?amE0ZzJRNnkwVmJVNFhEaGdsVnA2dnZlcjRLeWUrbFR4Y3ZPV2FBVXNNUmNT?=
+ =?utf-8?B?a21Qd0J4RUl0NEJ0OExvZkNNZnlDZ0c3MUwvdzEzZ3VtN28rNHpac2pycWxO?=
+ =?utf-8?B?d1M3bkNqUEFleExZRVZra29IbFN3NFVLNFZ0c3duamx6Y0VndGpHTy9abzh4?=
+ =?utf-8?B?ajE3STBrb3l6Q0RKSFJoQmpFSTlGT3F1VjVNNnRmaHVXRWpCZng4dVQ5NzlF?=
+ =?utf-8?B?ejFrbWpJZmFUM1N5R1hSMXk0dXhlRHFTaWVERnlSaldHY0drRnl1c1FqSE81?=
+ =?utf-8?B?R0I0MzgxTHQvUVdkT242MWc3QmtuUGJnVkdVNEpFTlZJYmxxVUFZd0k2bGxw?=
+ =?utf-8?B?cG5kTE9ZZDFKd3UxSWczN1NBSW5seWgyUHlzTEZPN3JQL1FnVFRIVWczZlVW?=
+ =?utf-8?B?bTBjYXlQaW1HMXZDMUU4ZkVqQnYybC93RFM1MmI3UEhyMXpWTi80d3U4YTJJ?=
+ =?utf-8?B?QnljZ3lKejlBZjk1RjdpZHQ5UnVMditWUm9mdEZ6eUgzcnAzM2hHazB1RXVY?=
+ =?utf-8?B?bU5VMmFvTUJ5dDBVb3hVemxOdlYzSWNpaDk2UVhDaGRuaEFWenVDWTU0VnJM?=
+ =?utf-8?B?ZEhidFlnbFZRUmFlTlV3Z0VIa0FzbE94RmZ5bHlTVWt3NnFmMXd1aVlnQ05O?=
+ =?utf-8?B?NTlWbmdwZWdOQ09mSjJMVkRHMjZmNXJtNUYrUTlYbC9xUlFYclZXWXp1RUxv?=
+ =?utf-8?B?RXVENlY1Ym1TTzVZVElqTHlSaXI3UFBwdGFhaGlXRTJVRUtmaXgvUkxsd1V2?=
+ =?utf-8?B?ZG1HL1JWdjljOTdwQWtFRGRvSitOTDlqcWVqcndSYWgwTkplR1JkejhjN01G?=
+ =?utf-8?B?SEVMZHFWajlvU3AzRU8yOUV3TWZIY2dlaHhWNWwrdWpzUVhTYWsxU29aa0Vk?=
+ =?utf-8?B?RWkreEg5bVlTQ01LUCtCbGRURnJ5c3lEdVpyQnJRZ0p3SFVEMGc4WVp0YU5Z?=
+ =?utf-8?B?a252azlKTHkrUDZtek1kODFYYmxTd3QrSE5ZT3R0TXk4WEg5c2JlYmdVZ0Vl?=
+ =?utf-8?B?VVpuZENZejVjQm14bzNZUzZVSmRCMUN4dmVESncyNys5elU4LzJ4T05Sb3JL?=
+ =?utf-8?B?YzZKU0RiRytSTTgzVXNyVWZXb0FabFFzbWxDcUVQZDNEMlRHUGlUNldHYlhV?=
+ =?utf-8?B?eGc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45fa479f-73f4-455f-d452-08db9e1c7bf6
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR11MB5480.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 27131e80-6368-4bd3-03ca-08db9e167680
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Aug 2023 05:05:51.7200 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +9W1dqj2t21y5eIxicDs0h6xVuBxusxYc8vhoCVxqx/MrSzxRYj43N4MjumlTkdeTz+z9OjpGe+Y6wWLiI6nk9v9lPRcVNLyoMrXEPCetJE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN6PR11MB8241
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2023 05:48:58.7596 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lRMZw2jHi5+wsUZVov+5kDLhTODHoUlpYJgeMbBBDMthbFYAfTQT99vdF2taBv3tdj3xNyhedAPbkTQCxUnQqGR1FaY8BHPutgEAPjzvwFg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR11MB8339
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 3/4] drm/xe: Add
- CONFIG_DRM_XE_PREEMPT_TIMEOUT_COMPUTE
+Subject: Re: [Intel-xe] [PATCH v4 2/2] drm/xe/pmu: Enable PMU interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,161 +155,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ intel-xe@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-> -----Original Message-----
-> From: Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>
-> Sent: Monday, August 14, 2023 8:37 PM
-> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
-> Cc: intel-xe@lists.freedesktop.org; Harrison, John C
-> <john.c.harrison@intel.com>
-> Subject: Re: [PATCH 3/4] drm/xe: Add
-> CONFIG_DRM_XE_PREEMPT_TIMEOUT_COMPUTE
->=20
-> On Sat, Aug 12, 2023 at 12:08:05AM -0700, Upadhyay, Tejas wrote:
-> >
-> >
-> >> -----Original Message-----
-> >> From: Vishwanathapura, Niranjana
-> >> <niranjana.vishwanathapura@intel.com>
-> >> Sent: Tuesday, August 8, 2023 11:54 PM
-> >> To: intel-xe@lists.freedesktop.org
-> >> Cc: Harrison, John C <john.c.harrison@intel.com>; Upadhyay, Tejas
-> >> <tejas.upadhyay@intel.com>
-> >> Subject: [PATCH 3/4] drm/xe: Add
-> >> CONFIG_DRM_XE_PREEMPT_TIMEOUT_COMPUTE
-> >>
-> >> Allow preemption timeout for compute engines to be specified as a
-> >> config option. The purpose is actually to give compute tasks longer
-> >> time to reach a pre-emption point after a pre-emption request has
-> >> been issued. This is necessary because Gen12 does not support
-> >> mid-thread pre-emption and compute tasks can have long running
-> threads.
-> >>
-> >> Signed-off-by: John Harrison <John.C.Harrison@Intel.com>
-> >> Signed-off-by: Niranjana Vishwanathapura
-> >> <niranjana.vishwanathapura@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/xe/Kconfig.profile | 12 ++++++++++++
-> >> drivers/gpu/drm/xe/xe_hw_engine.c  |  8 +++++++-
-> >> drivers/gpu/drm/xe/xe_hw_engine.h  |  6 ++++++
-> >>  3 files changed, 25 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/gpu/drm/xe/Kconfig.profile
-> >> b/drivers/gpu/drm/xe/Kconfig.profile
-> >> index 06742e192206..5ca3305a22b6 100644
-> >> --- a/drivers/gpu/drm/xe/Kconfig.profile
-> >> +++ b/drivers/gpu/drm/xe/Kconfig.profile
-> >> @@ -31,6 +31,18 @@ config DRM_XE_PREEMPT_TIMEOUT
-> >>  	  an arbitration point and yield to HW before the timer expires, the
-> >>  	  HW will be reset to allow the more important context to execute.
-> >>
-> >> +	  Value should be within the
-> >> DRM_XE_PREEMPT_TIMEOUT_MIN/MAX limits.
-> >> +	  This is adjustable via
-> >> XE_ENGINE_SET_PROPERTY_PREEMPTION_TIMEOUT.
-> >> +config DRM_XE_PREEMPT_TIMEOUT_COMPUTE
-> >> +	int "Preempt timeout for compute engines (ms, jiffy granularity)"
-> >> +	default 7500 # milliseconds
-> >
-> >Same comment as previous patch about us unit.
-> >
->=20
-> Got it.
->=20
-> >> +	help
-> >> +	  How long to wait (in milliseconds) for a preemption event to occur
-> >> +	  when submitting a new context to a compute capable engine. If the
-> >> +	  current context does not hit an arbitration point and yield to HW
-> >> +	  before the timer expires, the HW will be reset to allow the more
-> >> +	  important context to execute.
-> >> +
-> >>  	  Value should be within the
-> >> DRM_XE_PREEMPT_TIMEOUT_MIN/MAX limits.
-> >>  	  This is adjustable via
-> >> XE_ENGINE_SET_PROPERTY_PREEMPTION_TIMEOUT.
-> >>  config DRM_XE_PREEMPT_TIMEOUT_MAX
-> >> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c
-> >> b/drivers/gpu/drm/xe/xe_hw_engine.c
-> >> index 25bad007a85b..57a0fb50852c 100644
-> >> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> >> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> >> @@ -340,7 +340,11 @@ hw_engine_setup_default_state(struct
-> >> xe_hw_engine *hwe)
-> >>
-> >>  static u32 get_default_preempt_timeout(struct xe_hw_engine *hwe)  {
-> >> -	return XE_HW_ENGINE_PREEMPT_TIMEOUT;
-> >> +	if (hwe->class =3D=3D XE_ENGINE_CLASS_RENDER ||
-> >> +	    hwe->class =3D=3D XE_ENGINE_CLASS_COMPUTE)
-> >> +		return XE_HW_ENGINE_PREEMPT_TIMEOUT_COMPUTE;
-> >> +	else
-> >> +		return XE_HW_ENGINE_PREEMPT_TIMEOUT;
-> >>  }
-> >
-> >Probably API in previous patch continuation of this change, but it does =
-not
-> make sense to introduce change in previous patch at least.
-> >
->=20
-> Responded in previous patch.
->=20
-> >>
-> >>  static void hw_engine_init_early(struct xe_gt *gt, struct
-> >> xe_hw_engine *hwe, @@ -569,6 +573,8 @@ int
-> >> xe_hw_engines_init_early(struct xe_gt *gt)
-> >>
-> >>  	BUILD_BUG_ON(XE_HW_ENGINE_PREEMPT_TIMEOUT <
-> >> XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN);
-> >>  	BUILD_BUG_ON(XE_HW_ENGINE_PREEMPT_TIMEOUT >
-> >> XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX);
-> >> +	BUILD_BUG_ON(XE_HW_ENGINE_PREEMPT_TIMEOUT_COMPUTE <
-> >> XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN);
-> >> +	BUILD_BUG_ON(XE_HW_ENGINE_PREEMPT_TIMEOUT_COMPUTE >
-> >> +XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX);
-> >
-> >Can this be done shorter with,
-> >BUILD_BUG_ON(get_default_preempt_timeout(hwe) <
-> >> XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN);
-> >BUILD_BUG_ON(get_default_preempt_timeout(hwe) >
-> >XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX);
-> >
->=20
-> No, we can't. The BUILD_BUG_ON is to detect errors during build time, not
-> the runtime. Any config issues must be caught during build time.
+On 14-08-2023 22:41, Dixit, Ashutosh wrote:
+> On Mon, 14 Aug 2023 06:12:13 -0700, Aravind Iddamsetty wrote:
+>>
+> 
+> Hi Aravind,
+> 
+> So I am not going to review this version of the patch. Let's do it as was
+> discussed today, I am assuming something like: when the event is "opened"
+> do a xe_device_mem_access_get and forcewake_get from some non-atomic
+> context. And keep these references till the event is "closed". Also since
+> we are keeping the device awake through PMU data collection, no need to
+> cache register values during rpm_suspend?
 
-Oh, I got it. Thanks
+Hi Ashutosh,
 
->=20
-> Thanks,
-> Niranjana
->=20
-> >Thanks,
-> >Tejas
-> >>
-> >>  	for (i =3D 0; i < ARRAY_SIZE(gt->hw_engines); i++)
-> >>  		hw_engine_init_early(gt, &gt->hw_engines[i], i); diff --git
-> >> a/drivers/gpu/drm/xe/xe_hw_engine.h
-> >> b/drivers/gpu/drm/xe/xe_hw_engine.h
-> >> index 582be209355b..c4f0969efc06 100644
-> >> --- a/drivers/gpu/drm/xe/xe_hw_engine.h
-> >> +++ b/drivers/gpu/drm/xe/xe_hw_engine.h
-> >> @@ -35,6 +35,12 @@ struct drm_printer;  #else  #define
-> >> XE_HW_ENGINE_PREEMPT_TIMEOUT (640 * 1000)  #endif
-> >> +#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_COMPUTE
-> >> +#define XE_HW_ENGINE_PREEMPT_TIMEOUT_COMPUTE \
-> >> +	(CONFIG_DRM_XE_PREEMPT_TIMEOUT_COMPUTE * 1000) #else
-> >> #define
-> >> +XE_HW_ENGINE_PREEMPT_TIMEOUT_COMPUTE
-> >> XE_HW_ENGINE_PREEMPT_TIMEOUT
-> >> +#endif
-> >>  #ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN  #define
-> >> XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN
-> CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
-> >> #else
-> >> --
-> >> 2.21.0.rc0.32.g243a4c7e27
-> >
+I was thinking of a  two stage effort, first have this series merged in
+the current form and extend it in the later, please let me know if you
+think otherwise.
+
+yes we still need to cache registers during suspend as that can happen
+even when PMU is not opened and also PMU can be opened when in suspend
+and we have to return the cached value.
+
+We shall only take forcewake when any event is opened and when the
+device is awake.
+
+Thanks,
+Aravind.
+> 
+> Thanks.
+> --
+> Ashutosh
