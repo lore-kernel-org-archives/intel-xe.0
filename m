@@ -4,85 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBAB3C04E69
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 16:34:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 906CBC04A6A
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 16:41:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 832C810E38B;
-	Wed, 16 Aug 2023 16:34:05 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E365310E38A
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Aug 2023 16:34:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1692203642;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=Wo5D95tyED+6Tl5thZKpJIybwvLVB8DxJJpl6u2ukUI=;
- b=BP1lIyjBdIZKIWKr+ZBTfoaxhze+8XCY/kVJc3EvNj8MfADkPIVNu9N93D6SUDLaqhB1e+
- FwtNKRF913bYYGgSFNCqrvZKEXNLNzVegd2WOdnigln9xa+l92G/UUM74F7x2Q1niEt+jh
- 3H1bUPTwBXSt++NMQjShjnu6BcEziFc=
-Received: from mail-lf1-f71.google.com (mail-lf1-f71.google.com
- [209.85.167.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-259-4ftV0buyNhi0UDSKXeGBLQ-1; Wed, 16 Aug 2023 12:33:58 -0400
-X-MC-Unique: 4ftV0buyNhi0UDSKXeGBLQ-1
-Received: by mail-lf1-f71.google.com with SMTP id
- 2adb3069b0e04-4fe5e67adc6so6560947e87.2
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Aug 2023 09:33:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692203637; x=1692808437;
- h=content-transfer-encoding:in-reply-to:organization:from:references
- :cc:to:content-language:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Wo5D95tyED+6Tl5thZKpJIybwvLVB8DxJJpl6u2ukUI=;
- b=c1xDb3/8BAeW2KJelu5IWOWFJUsnTrZbx412HX4vtLZOKaFFtbDgcsti8qInwLAS9+
- waC/Cmudr5wDc/li+n6k37GzqNz3H/UyEBqVA7bFV06TS8Jse6O0LWFU9GtZGZd9pp88
- UCaD4E3GldkbVgBj3urzw88+Ljh9CIZrGLo0HZgMXUqY3KhkuwCcyxkbCUrLoChFdym7
- poGygN1hXBpgP9eWki9dduxe06k7NDBe3hTiB6knbjzyf2NFlAuK//DTZaKbpqzC2R2J
- 1T04JHmkLpUZpmMJHGMhfMZziCJN8AnApCkDS0WDNua6zdyLfoOj42z1OsO1gd1OQtXZ
- TI8w==
-X-Gm-Message-State: AOJu0YyG5lOum+hYMDAuKA0OvSW/moHss2i+smXoZmN/69Iqq+Td1kqj
- e0XlzYzPsQR7HH5ZA1Ndbn8N6dn47sJyweDpq6E2rcCJP1xUg/4A3WWVtL42XqtLibj/+MizEp8
- GE+1nlUtfDefrsuv2eT8QTXQzV40=
-X-Received: by 2002:ac2:5976:0:b0:4fd:c771:ed86 with SMTP id
- h22-20020ac25976000000b004fdc771ed86mr1657809lfp.67.1692203637286; 
- Wed, 16 Aug 2023 09:33:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFFGMajjD3cyi2NffsYO9tSL87AalfncMUTZ15kYgzr6pwjifyEnzhwTpN76pDF5Y2E/zWlyQ==
-X-Received: by 2002:ac2:5976:0:b0:4fd:c771:ed86 with SMTP id
- h22-20020ac25976000000b004fdc771ed86mr1657756lfp.67.1692203636853; 
- Wed, 16 Aug 2023 09:33:56 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
- ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
- by smtp.gmail.com with ESMTPSA id
- c24-20020aa7d618000000b0052333e5237esm8582880edr.88.2023.08.16.09.33.55
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 16 Aug 2023 09:33:56 -0700 (PDT)
-Message-ID: <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
-Date: Wed, 16 Aug 2023 18:33:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20230811023137.659037-1-matthew.brost@intel.com>
- <20230811023137.659037-2-matthew.brost@intel.com>
- <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
- <069e6cd0-abd3-fdd9-217d-173e8f8e1d29@amd.com>
- <b9a6493c-243b-1078-afbc-d9270cac904a@redhat.com>
- <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
-From: Danilo Krummrich <dakr@redhat.com>
-Organization: RedHat
-In-Reply-To: <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E9F910E388;
+	Wed, 16 Aug 2023 16:41:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7206B10E388
+ for <intel-xe@lists.freedesktop.org>; Wed, 16 Aug 2023 16:41:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692204093; x=1723740093;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=lgZodtlPuDlqaADn5xIgtccPeCLxfIYReYlR4Cogxf4=;
+ b=aMVbeCtFCf0xo/tjbPV/NDT62YKXVsB2Apj0lB47LLhJ2EsliqBP6gYs
+ o6JyFDiAnfMfunqb/UdHkd4YIeLfrBtTO8VMIfQ980oOpEBU4xi9jsYmp
+ vKh0UkKU5pfDMCnFH/VZeuxT7ChNeW9hyBHYlXSZEKclWim0m4QTsM3+a
+ OdGdKSiZpRixZRdybHmnU0B0fFw8UjExPUPAajivDwdNjPX5K1Tyal5Sw
+ w0sKbJm3Yfkyc1hn614kaMyYnQviShDhHxYBl/zWXCNbRonPMPUhstvzJ
+ yPQSjzGFIz8fUpaMTp7+yU1cY2OvwIbJCZ3FF9/n1CH9+aQbn3V8m+QGb A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="438933187"
+X-IronPort-AV: E=Sophos;i="6.01,177,1684825200"; d="scan'208";a="438933187"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Aug 2023 09:41:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="804289900"
+X-IronPort-AV: E=Sophos;i="6.01,177,1684825200"; d="scan'208";a="804289900"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga004.fm.intel.com with ESMTP; 16 Aug 2023 09:41:14 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Wed, 16 Aug 2023 09:41:14 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Wed, 16 Aug 2023 09:41:14 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Wed, 16 Aug 2023 09:41:14 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.106)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Wed, 16 Aug 2023 09:41:13 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=g00cj9KkC882Sa0EBwlJpKc+3jJ6bAtZ18PEDsVp1efak2SlqVLnjRBHElh+Y4+qZgPNpso9uP6PBl4pGBIAoi9AYRM960/niNoRq3tHjrxEOf/WoJFOp6lUS+7PqwFuWcGWQvzOKPpSRf+nSw3MJ5lpHDAKM9M2+iv4Mx9fhYzNPXl/8CSx3gYw+p/MeTWbAPFV50qBL0A5zaTCoy+ZPcd99fTeAFGnIn/s96zKIz2L8mL+UPW3d+glERIE79wLuUq/tjJx88Psy90a3XMjIy4UVxkly8sGluBHwYsTiibjlPVuBTOix7grJtN6Ae5enqnVlX1RjZhPdQlmJ0W7NA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Np4VKGtWoFGs/X+1RKRPR6tqpzh7+QlpYkKUqSMspZ8=;
+ b=GS2zwV7+LX8xw1srWjXJqU2yzi3MkGO94vSVR+NklhXJoKlaXhftOLJrD4IUiEiz8pqZMYuiZ84yirJd0aVJiA4lZAWZCVl8gW+6ftYbNDH0v6ZYHFNECycXTw3ptiyjiaeLPuvGbvFCXzbhCfsoud64UCsX5oh5UVmNdZhNsS0zpYu5hD+CiUPTm1aHFv48OVBeI8DWiq8BDKS32ggi60a+QMakZu5mmARJ4iG2bi9KM8k3rP31Lh8KqeEvUiqn+9hS2u1gT0sqH0+Z9ZVzDl6rxOyB2p5BPeK5UYyCTxV6zAQFvxV9+TxqlG25ami9DF0JuelU9L6h8Ndwf6ODiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com (2603:10b6:510:224::13)
+ by SA2PR11MB4857.namprd11.prod.outlook.com (2603:10b6:806:fa::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.29; Wed, 16 Aug
+ 2023 16:41:12 +0000
+Received: from PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::f7ed:4327:5d1a:b8fc]) by PH8PR11MB6952.namprd11.prod.outlook.com
+ ([fe80::f7ed:4327:5d1a:b8fc%4]) with mapi id 15.20.6678.025; Wed, 16 Aug 2023
+ 16:41:12 +0000
+Date: Wed, 16 Aug 2023 09:41:04 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+Message-ID: <ZNz8IBw8+83D6ifU@nvishwa1-DESK>
+References: <20230816115238.2340-1-niranjana.vishwanathapura@intel.com>
+ <20230816115238.2340-3-niranjana.vishwanathapura@intel.com>
+ <439234fc-4dcc-4f60-b71e-32e1be96d1b5@intel.com>
+ <ZNzx/8KeURxfO8ue@nvishwa1-DESK>
+ <1b3fa46f-8aca-46ee-bee9-2465881f98e3@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
- use a work queue rather than kthread
+In-Reply-To: <1b3fa46f-8aca-46ee-bee9-2465881f98e3@intel.com>
+X-ClientProxiedBy: BY3PR05CA0020.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::25) To PH8PR11MB6952.namprd11.prod.outlook.com
+ (2603:10b6:510:224::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6952:EE_|SA2PR11MB4857:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8f400b74-816d-44ad-ea1a-08db9e779977
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TxZNz6nMIVKPIx2g9A7Kq5C/yV8SSx2N1Dl/5GjVyHCOMDhtOXkpjL2/fhWTGi8cT8EmVdD/zr3KrWgWhxIwTE439+DhYAPjUusWswovbHev4n36dwbbPgk4vFvCBKcz759B6GKxA8lR0//mSiBT6kLCdCsbzFS4xpQ68rzOUpMB5oA4cyGrrNrhakQY+g8y66KNSQHkhfiyKGzzG3hhSsaIuZLs9wHv5NSdE1d/RW40i24rEab5WRYyYpy4H2lRYe2m1X6WbzCcXr89RocA0qtCejFxIReM/v+pntkgUh0BR1Pdr9DdzGxQEHQ34lKGHzz5gTAlKQXKxA5Uv4VUVZwkY6K81zIYq5P5CD/F2wrXFQnncZ1yGf1gYDFctdkSQLyM6OdgbhQm1E3PccqNUNzRGPNtU3g9ra5atNHBOeKhLrC3VpX5Vf7hBNfjc2SpY2HWgnDRdij6XgTyvuKuuubfkq5Fts2M8WNHt/gIZ0lCAL700T8CDH2gReyt4mYbSQXZ6m9M8UNUC9jKL8PqUVcSQ+YF2n420HGKQt/fFfBCLIo9bYtjkSFoUyS7bPn0PnZzQj0Kf1odavlt1OHZzZO/cVcRnqGQNIK/MjElcQo=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6952.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(396003)(39860400002)(346002)(366004)(376002)(136003)(1800799009)(451199024)(186009)(316002)(6636002)(66946007)(66476007)(66556008)(41300700001)(5660300002)(44832011)(38100700002)(8676002)(4326008)(8936002)(6862004)(33716001)(82960400001)(2906002)(83380400001)(26005)(478600001)(86362001)(9686003)(6512007)(53546011)(6506007)(6666004)(6486002)(67856001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?/c6zIxC3UwApfXNJ+jQ8Vc5DwmGHFo7qTGO/765HVOLwMZsC14vA6x5u/P?=
+ =?iso-8859-1?Q?bfBqYbsTeh22Ec4NxyHdcSkJYUyn5IvJZc95AMTNctdYkQcmmK9xo/36l0?=
+ =?iso-8859-1?Q?3oOUeGIgWgj0oHKZ00sye6TweMRaB/D0HS7Jys5cKFXww52ub5i6a1kopr?=
+ =?iso-8859-1?Q?tAYIDMT3ADXyn5Sw9gm53uE9uzbW45hGxe7kl2vsrC4Ffpgpp5W6kPtJFm?=
+ =?iso-8859-1?Q?vrqQc03WF5fnoY9xo0H1NrYD6RoKKEVh+bBK1IeBu9lo8mivBVdUP+Sl+I?=
+ =?iso-8859-1?Q?+CLii6EUPOCl3PcKbrSHz9EgA/B/kL8lmgzlI0P9ZU9NgmIcE9ahl/ESVo?=
+ =?iso-8859-1?Q?fLqQX96NV3vHuLWuEoa8FPhIVe6+nKZv7/KKzDGm8C+tafB1HCISMDw9iK?=
+ =?iso-8859-1?Q?qLRP24zQFekO23H0K8IgcnOIWsvRrKVQwHkq6TziEFc/W44pxUJP/sA7pC?=
+ =?iso-8859-1?Q?pF9uBIfIrv2IWRynnbeAHDK5U25y6A/KsGbSsds+S0oH6D1/Ps+UHt8fah?=
+ =?iso-8859-1?Q?DVLs7TMZtSbu+PFFJDTRe3AqWXkfl7d53GZ+n3a6/uwjTWrGiZXRdGyx8J?=
+ =?iso-8859-1?Q?KgIqU7CLZq3FIcUcHA3PLYmWyVQvDkamfvbL2NAR7LS8nk00Wm2g788jU6?=
+ =?iso-8859-1?Q?X6ercZGzzYvQackE7PU2/JydT3JHmiHMysxxy/X8eG7VyxuNDQ93FtMZqW?=
+ =?iso-8859-1?Q?X2OMmiVIQ5TEbvrxR+0PgBjCOmqyHgygm13n1yUoI64+BDrp2mkW01a6rn?=
+ =?iso-8859-1?Q?QLZFL6xSiYua5HdRB+9wCBtEXwxjWqABTpYbDKA1b4V4p0hAtYMUSa3o8o?=
+ =?iso-8859-1?Q?OWgsWFLlGVzfU5O8acJ90Bhx5mml4eMPPB7H7dwZvX0XswbYwHN3gDZP/v?=
+ =?iso-8859-1?Q?Tewltpo9AsAiFfpL2jqoQ3dTCsk7GukLyK+2DX+KSvORBYHEZ0AEpR+0OH?=
+ =?iso-8859-1?Q?7dVq93IswYWnvPNz0jJ5Cp3XjLvuBxdCpEtgdBGXY5mO6Erv1fiXjnMRlD?=
+ =?iso-8859-1?Q?/Yw/jnmDINbo2e47xrjJtOz9bFXGPB99V0o591XxGO+b7HdwjxM8vKvHpX?=
+ =?iso-8859-1?Q?r265bbbV0FurXrXe/iKh3PZUu/xtx/JQQj5yduOZFsckeNj2JPuXXi/YaK?=
+ =?iso-8859-1?Q?3d4O7HYeW/XoYmYTdJszBw2Hg3sy0S45e4ftqpmrBnV/Kb+L4bXK4eLyQM?=
+ =?iso-8859-1?Q?Lz4tXdEhx8xim4OjTUb2eXJrmsM/eArSEAlx3fyuSt+qWruqfg4E/069GJ?=
+ =?iso-8859-1?Q?Sgd+hcOOTjrOryxmkLXJv3hVLJkm6D1EmpjsboskPFyul9BAZP2yhlYger?=
+ =?iso-8859-1?Q?fvE+rofIO5iM6yLRO7yjxqBT2a2AkVXVYX8Ydmflh3T0UVV/b7skHCH2O5?=
+ =?iso-8859-1?Q?WihjCqA4U0rNvSFml1/AEpvoaFdRhQNmGUqxPsQZ4dHfSkC/8Cxm8bjusf?=
+ =?iso-8859-1?Q?kfHDURs3JmqyU8Mh3tlmSPqivFsiPQo1l5WMJNTAuHstKmEFYVKlkABJKZ?=
+ =?iso-8859-1?Q?FE9Ago6F4DalS8tpNQ1JmEarfK2SQSI8PdkU5v+lDulmoH6KY/8eRMVpDI?=
+ =?iso-8859-1?Q?aOnMVwFKF1Wd97Ed6hIRLlRBhrkfmo9niy/Z07p/9e87JCnLYbZ5kT0M3M?=
+ =?iso-8859-1?Q?GOkfSNjB20NvbI09KGu10tGtyuOeYbOvWE4leBjBYyoJ9TVGU12yNeibBG?=
+ =?iso-8859-1?Q?3KhItcX31BloxuERri4=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8f400b74-816d-44ad-ea1a-08db9e779977
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6952.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Aug 2023 16:41:12.2838 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: w+pb2UStBHVv/HBWvsBgcWeKoQml47hYs4ERukEtsrQ3f7Uw8P8G8ehpm6AZeWigu5Cujxg1zojUF0cIzzKfh/Mzrx+1NE6unJiSVJedcpOEb8le8Yow0X0P/wUI+/sl
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB4857
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v3 2/2] drm/xe: Add
+ CONFIG_DRM_XE_PREEMPT_TIMEOUT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,155 +152,175 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
- luben.tuikov@amd.com, donald.robson@imgtec.com, boris.brezillon@collabora.com,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 8/16/23 16:59, Christian KÃ¶nig wrote:
-> Am 16.08.23 um 14:30 schrieb Danilo Krummrich:
->> On 8/16/23 16:05, Christian KÃ¶nig wrote:
->>> Am 16.08.23 um 13:30 schrieb Danilo Krummrich:
->>>> Hi Matt,
->>>>
->>>> On 8/11/23 04:31, Matthew Brost wrote:
->>>>> In XE, the new Intel GPU driver, a choice has made to have a 1 to 1
->>>>> mapping between a drm_gpu_scheduler and drm_sched_entity. At first 
->>>>> this
->>>>> seems a bit odd but let us explain the reasoning below.
->>>>>
->>>>> 1. In XE the submission order from multiple drm_sched_entity is not
->>>>> guaranteed to be the same completion even if targeting the same 
->>>>> hardware
->>>>> engine. This is because in XE we have a firmware scheduler, the GuC,
->>>>> which allowed to reorder, timeslice, and preempt submissions. If a 
->>>>> using
->>>>> shared drm_gpu_scheduler across multiple drm_sched_entity, the TDR 
->>>>> falls
->>>>> apart as the TDR expects submission order == completion order. Using a
->>>>> dedicated drm_gpu_scheduler per drm_sched_entity solve this problem.
->>>>>
->>>>> 2. In XE submissions are done via programming a ring buffer (circular
->>>>> buffer), a drm_gpu_scheduler provides a limit on number of jobs, if 
->>>>> the
->>>>> limit of number jobs is set to RING_SIZE / MAX_SIZE_PER_JOB we get 
->>>>> flow
->>>>> control on the ring for free.
->>>>
->>>> In XE, where does the limitation of MAX_SIZE_PER_JOB come from?
->>>>
->>>> In Nouveau we currently do have such a limitation as well, but it is 
->>>> derived from the RING_SIZE, hence RING_SIZE / MAX_SIZE_PER_JOB would 
->>>> always be 1. However, I think most jobs won't actually utilize the 
->>>> whole ring.
+On Wed, Aug 16, 2023 at 10:00:59PM +0530, Ghimiray, Himal Prasad wrote:
+>Hi Niranjana,
+>
+>On 16-08-2023 21:27, Niranjana Vishwanathapura wrote:
+>>On Wed, Aug 16, 2023 at 09:18:12PM +0530, Ghimiray, Himal Prasad wrote:
+>>>  Hi Niranjana,
 >>>
->>> Well that should probably rather be RING_SIZE / MAX_SIZE_PER_JOB = 
->>> hw_submission_limit (or even hw_submission_limit - 1 when the hw 
->>> can't distinct full vs empty ring buffer).
->>
->> Not sure if I get you right, let me try to clarify what I was trying 
->> to say: I wanted to say that in Nouveau MAX_SIZE_PER_JOB isn't really 
->> limited by anything other than the RING_SIZE and hence we'd never 
->> allow more than 1 active job.
-> 
-> But that lets the hw run dry between submissions. That is usually a 
-> pretty horrible idea for performance.
-
-Correct, that's the reason why I said it seems to be more efficient to 
-base ring flow control on the actual size of each incoming job rather 
-than the maximum size of a job.
-
-> 
->>
->> However, it seems to be more efficient to base ring flow control on 
->> the actual size of each incoming job rather than the worst case, 
->> namely the maximum size of a job.
-> 
-> That doesn't sounds like a good idea to me. See we don't limit the 
-> number of submitted jobs based on the ring size, but rather we calculate 
-> the ring size based on the number of submitted jobs.
-> 
-
-My point isn't really about whether we derive the ring size from the job 
-limit or the other way around. It's more about the job size (or its 
-maximum size) being arbitrary.
-
-As mentioned in my reply to Matt:
-
-"In Nouveau, userspace can submit an arbitrary amount of addresses of 
-indirect bufferes containing the ring instructions. The ring on the 
-kernel side takes the addresses of the indirect buffers rather than the 
-instructions themself. Hence, technically there isn't really a limit on 
-the amount of IBs submitted by a job except for the ring size."
-
-So, my point is that I don't really want to limit the job size 
-artificially just to be able to fit multiple jobs into the ring even if 
-they're submitted at their "artificial" maximum size, but rather track 
-how much of the ring the submitted job actually occupies.
-
-> In other words the hw_submission_limit defines the ring size, not the 
-> other way around. And you usually want the hw_submission_limit as low as 
-> possible for good scheduler granularity and to avoid extra overhead.
-
-I don't think you really mean "as low as possible", do you? Because one 
-really is the minimum if you want to do work at all, but as you 
-mentioned above a job limit of one can let the ring run dry.
-
-In the end my proposal comes down to tracking the actual size of a job 
-rather than just assuming a pre-defined maximum job size, and hence a 
-dynamic job limit.
-
-I don't think this would hurt the scheduler granularity. In fact, it 
-should even contribute to the desire of not letting the ring run dry 
-even better. Especially for sequences of small jobs, where the current 
-implementation might wrongly assume the ring is already full although 
-actually there would still be enough space left.
-
-> 
-> Christian.
-> 
->>
+>>>  On 16-08-2023 17:22, Niranjana Vishwanathapura wrote:
 >>>
->>> Otherwise your scheduler might just overwrite the ring buffer by 
->>> pushing things to fast.
+>>>Allow preemption timeout to be specified as a config option.
 >>>
->>> Christian.
+>>>v2: Change unit to microseconds (Tejas)
+>>>v3: Remove get_default_preempt_timeout()
 >>>
->>>>
->>>> Given that, it seems like it would be better to let the scheduler 
->>>> keep track of empty ring "slots" instead, such that the scheduler 
->>>> can deceide whether a subsequent job will still fit on the ring and 
->>>> if not re-evaluate once a previous job finished. Of course each 
->>>> submitted job would be required to carry the number of slots it 
->>>> requires on the ring.
->>>>
->>>> What to you think of implementing this as alternative flow control 
->>>> mechanism? Implementation wise this could be a union with the 
->>>> existing hw_submission_limit.
->>>>
->>>> - Danilo
->>>>
->>>>>
->>>>> A problem with this design is currently a drm_gpu_scheduler uses a
->>>>> kthread for submission / job cleanup. This doesn't scale if a large
->>>>> number of drm_gpu_scheduler are used. To work around the scaling 
->>>>> issue,
->>>>> use a worker rather than kthread for submission / job cleanup.
->>>>>
->>>>> v2:
->>>>> Â Â  - (Rob Clark) Fix msm build
->>>>> Â Â  - Pass in run work queue
->>>>> v3:
->>>>> Â Â  - (Boris) don't have loop in worker
->>>>> v4:
->>>>> Â Â  - (Tvrtko) break out submit ready, stop, start helpers into own 
->>>>> patch
->>>>>
->>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>>
+>>>Signed-off-by: Niranjana Vishwanathapura 
+>>><niranjana.vishwanathapura@intel.com>
+>>>---
+>>> drivers/gpu/drm/xe/Kconfig.profile | 11 +++++++++++
+>>> drivers/gpu/drm/xe/xe_hw_engine.c  |  5 ++++-
+>>> drivers/gpu/drm/xe/xe_hw_engine.h  |  5 +++++
+>>> 3 files changed, 20 insertions(+), 1 deletion(-)
+>>>
+>>>diff --git a/drivers/gpu/drm/xe/Kconfig.profile 
+>>>b/drivers/gpu/drm/xe/Kconfig.profile
+>>>index 9ad487647ca1..a3655ee6978e 100644
+>>>--- a/drivers/gpu/drm/xe/Kconfig.profile
+>>>+++ b/drivers/gpu/drm/xe/Kconfig.profile
+>>>@@ -22,6 +22,17 @@ config DRM_XE_TIMESLICE_MIN
+>>>        help
+>>>          Configures the default min timeslice duration between multiple
+>>>          contexts by guc scheduling.
+>>>+config DRM_XE_PREEMPT_TIMEOUT
+>>>+       int "Preempt timeout (us, jiffy granularity)"
+>>>+       default 640000 # microseconds
+>>>+       help
+>>>+         How long to wait (in microseconds) for a preemption 
+>>>event to occur
+>>>+         when submitting a new context. If the current context 
+>>>does not hit
+>>>+         an arbitration point and yield to HW before the timer 
+>>>expires, the
+>>>+         HW will be reset to allow the more important context to 
+>>>execute.
+>>>+
+>>>+         Value should be within the 
+>>>DRM_XE_PREEMPT_TIMEOUT_MIN/MAX limits.
+>>>
+>>>  Is there plan to make this config dependent on
+>>>CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN/CONFIG_DRM_XE_PREEMPT_TIMEOUT_MAX ?
 >>>
 >>
-> 
+>>No, it can be independently set. The _MIN and _MAX can also be 
+>>independently set.
+>
+>If they can be independently set we can have scenario where there is 
+>no DRM_XE_PREEMPT_TIMEOUT_MIN/MAX limits
+>
+>and above statement "Value should be within the 
+>DRM_XE_PREEMPT_TIMEOUT_MIN/MAX limits"  becomes somewhat wrong.
+>
+>>
+>>>  If not, value should be within
+>>>XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN/XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX.
+>>>
+>>
+>>Yes, the patch includes a BUILD_BUG_ON() to ensure that.
+>
+>Yes that is correct. I had only pointed this from description in 
+>Kconfig perspective.
+>
 
+Ok. May be we are overthinking here. It doesn't sound right to
+force MIN/MAX to be defined here and we have BUILD_BUG_ON to
+report any configuration issue anyway.
+
+Let me remove this line as well and MIN/MAX documentation should
+be suffecient here I think.
+
+Niranjana
+
+>BR
+>
+>Himal Ghimiray
+>
+>>
+>>>+         This is adjustable via 
+>>>XE_ENGINE_SET_PROPERTY_PREEMPTION_TIMEOUT.
+>>>
+>>>  If IIRC ioctl calls names are changed from XE_ENGINE_* to
+>>>  XE_EXEC_QUUEUE_*. Please confirm.
+>>>
+>>>  And this statement seems misleading, ioctl call will set the 
+>>>properties
+>>>  for specific exec_queue and config is meant to be for all exec_queues
+>>>  unless changed by ioctl.
+>>>
+>>>  IMO better description will be "preemption property for 
+>>>exec_queue can be
+>>>  adjusted by XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT" or we 
+>>>can skip
+>>>  this
+>>>
+>>>  info altogether in kconfig because ioctl description might be already
+>>>  covering it.
+>>>
+>>
+>>Yah, the for to change the name from Xe_ENGINE* to XE_EXEC_QUEUE.
+>>Yah, makes sense to remove that line altogether. Will post a fixup patch.
+>>
+>>Niranajna
+>>
+>>>  BR
+>>>
+>>>  Himal Ghimiray
+>>>
+>>> config DRM_XE_PREEMPT_TIMEOUT_MAX
+>>>        int "Default max  preempt timeout (us)"
+>>>        default 10000000 # microseconds
+>>>diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c 
+>>>b/drivers/gpu/drm/xe/xe_hw_engine.c
+>>>index c44540684462..4c812d04e182 100644
+>>>--- a/drivers/gpu/drm/xe/xe_hw_engine.c
+>>>+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+>>>@@ -370,7 +370,7 @@ static void hw_engine_init_early(struct xe_gt 
+>>>*gt, struct xe_hw_engine *hwe,
+>>>                hwe->eclass->sched_props.timeslice_us = 1 * 1000;
+>>>                hwe->eclass->sched_props.timeslice_min = 
+>>>XE_HW_ENGINE_TIMESLICE_MIN;
+>>>                hwe->eclass->sched_props.timeslice_max = 
+>>>XE_HW_ENGINE_TIMESLICE_MAX;
+>>>- hwe->eclass->sched_props.preempt_timeout_us = 640 * 1000;
+>>>+ hwe->eclass->sched_props.preempt_timeout_us = 
+>>>XE_HW_ENGINE_PREEMPT_TIMEOUT;
+>>>hwe->eclass->sched_props.preempt_timeout_min = 
+>>>XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN;
+>>>hwe->eclass->sched_props.preempt_timeout_max = 
+>>>XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX;
+>>>                /* Record default props */
+>>>@@ -562,6 +562,9 @@ int xe_hw_engines_init_early(struct xe_gt *gt)
+>>>        read_copy_fuses(gt);
+>>>        read_compute_fuses(gt);
+>>>
+>>>+       BUILD_BUG_ON(XE_HW_ENGINE_PREEMPT_TIMEOUT < 
+>>>XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN);
+>>>+       BUILD_BUG_ON(XE_HW_ENGINE_PREEMPT_TIMEOUT > 
+>>>XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX);
+>>>+
+>>>        for (i = 0; i < ARRAY_SIZE(gt->hw_engines); i++)
+>>>                hw_engine_init_early(gt, &gt->hw_engines[i], i);
+>>>
+>>>diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h 
+>>>b/drivers/gpu/drm/xe/xe_hw_engine.h
+>>>index 3d37d6d44261..71968ee2f600 100644
+>>>--- a/drivers/gpu/drm/xe/xe_hw_engine.h
+>>>+++ b/drivers/gpu/drm/xe/xe_hw_engine.h
+>>>@@ -30,6 +30,11 @@ struct drm_printer;
+>>> #else
+>>> #define XE_HW_ENGINE_TIMESLICE_MAX (10 * 1000 * 1000)
+>>> #endif
+>>>+#ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT
+>>>+#define XE_HW_ENGINE_PREEMPT_TIMEOUT CONFIG_DRM_XE_PREEMPT_TIMEOUT
+>>>+#else
+>>>+#define XE_HW_ENGINE_PREEMPT_TIMEOUT (640 * 1000)
+>>>+#endif
+>>> #ifdef CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
+>>> #define XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN 
+>>>CONFIG_DRM_XE_PREEMPT_TIMEOUT_MIN
+>>> #else
