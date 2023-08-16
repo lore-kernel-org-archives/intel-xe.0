@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A225C001DF
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 07:22:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0A1FC001DF
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 07:26:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 69AC510E047;
-	Wed, 16 Aug 2023 07:22:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE49210E2A8;
+	Wed, 16 Aug 2023 07:26:07 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5D61A10E047;
- Wed, 16 Aug 2023 07:22:36 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D8CAE10E2A8;
+ Wed, 16 Aug 2023 07:26:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 58584A47DF;
- Wed, 16 Aug 2023 07:22:36 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D1E4AAA917;
+ Wed, 16 Aug 2023 07:26:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
-Date: Wed, 16 Aug 2023 07:22:36 -0000
-Message-ID: <169217055635.10282.11008103698769757564@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Wed, 16 Aug 2023 07:26:05 -0000
+Message-ID: <169217076582.10286.8811740728949622235@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230809064213.375269-1-shekhar.chauhan@intel.com>
-In-Reply-To: <20230809064213.375269-1-shekhar.chauhan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/?=
- =?utf-8?q?mtl=3A_Disable_RNE_in_SF_Unit?=
+References: <20230814160217.10707-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20230814160217.10707-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Add_preemption_timeout_config_options?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,138 +46,17 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe/mtl: Disable RNE in SF Unit
-URL   : https://patchwork.freedesktop.org/series/122199/
-State : failure
+Series: drm/xe: Add preemption timeout config options
+URL   : https://patchwork.freedesktop.org/series/122428/
+State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_rtp.h:14,
-                 from ../drivers/gpu/drm/xe/xe_wa.c:22:
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:79:39: error: ‘_XE_DROP_FIRST’ undeclared here (not in a function)
-   79 | #define XE_RTP_DROP_CAST(...) _XE_ESC(_XE_DROP_FIRST _XE_ESC __VA_ARGS__)
-      |                                       ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:16:22: note: in definition of macro ‘_XE_ESC’
-   16 | #define _XE_ESC(...) __VA_ARGS__
-      |                      ^~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:79:31: note: in expansion of macro ‘_XE_ESC’
-   79 | #define XE_RTP_DROP_CAST(...) _XE_ESC(_XE_DROP_FIRST _XE_ESC __VA_ARGS__)
-      |                               ^~~~~~~
-../drivers/gpu/drm/xe/xe_rtp.h:212:11: note: in expansion of macro ‘XE_RTP_DROP_CAST’
-  212 |  { .reg = XE_RTP_DROP_CAST(reg_),     \
-      |           ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:28:31: note: in expansion of macro ‘XE_RTP_ACTION_SET’
-   28 | #define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## b
-      |                               ^~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:27:30: note: in expansion of macro ‘__XE_RTP_CONCAT’
-   27 | #define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
-      |                              ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:63:46: note: in expansion of macro ‘_XE_RTP_CONCAT’
-   63 | #define XE_RTP_PASTE_1(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_)
-      |                                              ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:28:31: note: in expansion of macro ‘XE_RTP_PASTE_1’
-   28 | #define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## b
-      |                               ^~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:27:30: note: in expansion of macro ‘__XE_RTP_CONCAT’
-   27 | #define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
-      |                              ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:62:60: note: in expansion of macro ‘_XE_RTP_CONCAT’
-   62 | #define XE_RTP_PASTE_FOREACH(prefix_, sep_, args_) _XE_ESC(_XE_RTP_CONCAT(PASTE_, _XE_COUNT_ARGS args_)(prefix_, sep_, args_))
-      |                                                            ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp.h:372:3: note: in expansion of macro ‘XE_RTP_PASTE_FOREACH’
-  372 |   XE_RTP_PASTE_FOREACH(ACTION_, COMMA, (__VA_ARGS__)) \
-      |   ^~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_wa.c:614:4: note: in expansion of macro ‘XE_RTP_ACTIONS’
-  614 |    XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN))
-      |    ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:79:54: error: expected ‘}’ before ‘_XE_ESC’
-   79 | #define XE_RTP_DROP_CAST(...) _XE_ESC(_XE_DROP_FIRST _XE_ESC __VA_ARGS__)
-      |                                                      ^~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:16:22: note: in definition of macro ‘_XE_ESC’
-   16 | #define _XE_ESC(...) __VA_ARGS__
-      |                      ^~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:79:31: note: in expansion of macro ‘_XE_ESC’
-   79 | #define XE_RTP_DROP_CAST(...) _XE_ESC(_XE_DROP_FIRST _XE_ESC __VA_ARGS__)
-      |                               ^~~~~~~
-../drivers/gpu/drm/xe/xe_rtp.h:212:11: note: in expansion of macro ‘XE_RTP_DROP_CAST’
-  212 |  { .reg = XE_RTP_DROP_CAST(reg_),     \
-      |           ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:28:31: note: in expansion of macro ‘XE_RTP_ACTION_SET’
-   28 | #define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## b
-      |                               ^~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:27:30: note: in expansion of macro ‘__XE_RTP_CONCAT’
-   27 | #define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
-      |                              ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:63:46: note: in expansion of macro ‘_XE_RTP_CONCAT’
-   63 | #define XE_RTP_PASTE_1(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_)
-      |                                              ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:28:31: note: in expansion of macro ‘XE_RTP_PASTE_1’
-   28 | #define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## b
-      |                               ^~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:27:30: note: in expansion of macro ‘__XE_RTP_CONCAT’
-   27 | #define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
-      |                              ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:62:60: note: in expansion of macro ‘_XE_RTP_CONCAT’
-   62 | #define XE_RTP_PASTE_FOREACH(prefix_, sep_, args_) _XE_ESC(_XE_RTP_CONCAT(PASTE_, _XE_COUNT_ARGS args_)(prefix_, sep_, args_))
-      |                                                            ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp.h:372:3: note: in expansion of macro ‘XE_RTP_PASTE_FOREACH’
-  372 |   XE_RTP_PASTE_FOREACH(ACTION_, COMMA, (__VA_ARGS__)) \
-      |   ^~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_wa.c:614:4: note: in expansion of macro ‘XE_RTP_ACTIONS’
-  614 |    XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN))
-      |    ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp.h:212:2: note: to match this ‘{’
-  212 |  { .reg = XE_RTP_DROP_CAST(reg_),     \
-      |  ^
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:16:22: note: in definition of macro ‘_XE_ESC’
-   16 | #define _XE_ESC(...) __VA_ARGS__
-      |                      ^~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:28:31: note: in expansion of macro ‘XE_RTP_ACTION_SET’
-   28 | #define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## b
-      |                               ^~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:27:30: note: in expansion of macro ‘__XE_RTP_CONCAT’
-   27 | #define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
-      |                              ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:63:46: note: in expansion of macro ‘_XE_RTP_CONCAT’
-   63 | #define XE_RTP_PASTE_1(prefix_, sep_, args_) _XE_RTP_CONCAT(prefix_, _XE_FIRST args_)
-      |                                              ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:28:31: note: in expansion of macro ‘XE_RTP_PASTE_1’
-   28 | #define __XE_RTP_CONCAT(a, b) XE_RTP_ ## a ## b
-      |                               ^~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:27:30: note: in expansion of macro ‘__XE_RTP_CONCAT’
-   27 | #define _XE_RTP_CONCAT(a, b) __XE_RTP_CONCAT(a, b)
-      |                              ^~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp_helpers.h:62:60: note: in expansion of macro ‘_XE_RTP_CONCAT’
-   62 | #define XE_RTP_PASTE_FOREACH(prefix_, sep_, args_) _XE_ESC(_XE_RTP_CONCAT(PASTE_, _XE_COUNT_ARGS args_)(prefix_, sep_, args_))
-      |                                                            ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_rtp.h:372:3: note: in expansion of macro ‘XE_RTP_PASTE_FOREACH’
-  372 |   XE_RTP_PASTE_FOREACH(ACTION_, COMMA, (__VA_ARGS__)) \
-      |   ^~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_wa.c:614:4: note: in expansion of macro ‘XE_RTP_ACTIONS’
-  614 |    XE_RTP_ACTIONS(SET(CHICKEN_RASTER_1, DIS_SF_ROUND_NEAREST_EVEN))
-      |    ^~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:252: drivers/gpu/drm/xe/xe_wa.o] Error 1
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:494: drivers/gpu/drm/xe] Error 2
-make[4]: *** [../scripts/Makefile.build:494: drivers/gpu/drm] Error 2
-make[3]: *** [../scripts/Makefile.build:494: drivers/gpu] Error 2
-make[2]: *** [../scripts/Makefile.build:494: drivers] Error 2
-make[1]: *** [/kernel/Makefile:2026: .] Error 2
-make: *** [Makefile:226: __sub-make] Error 2
-
-[07:22:13] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[07:22:17] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 9829aba16 drm/xe/dg2: Remove Wa_15010599737
+=== git am output follows ===
+Applying: drm/xe: Simplify engine class sched_props setting
+Applying: drm/xe: Add CONFIG_DRM_XE_PREEMPT_TIMEOUT
+Applying: drm/xe: Add CONFIG_DRM_XE_PREEMPT_TIMEOUT_COMPUTE
 
 
