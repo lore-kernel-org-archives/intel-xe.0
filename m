@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2850C001B0
-	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 11:52:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6BAFC001E0
+	for <intel-xe@archiver.kernel.org>; Wed, 16 Aug 2023 13:05:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE89110E364;
-	Wed, 16 Aug 2023 11:52:46 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB3A210E364
- for <intel-xe@lists.freedesktop.org>; Wed, 16 Aug 2023 11:52:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692186763; x=1723722763;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1obcAEnoQ4gcpFkQ7UFKwkGZZ/PUay99jIWreOgOtsw=;
- b=AzLeUAceLszzlJ2Rs5gm/VyvGGT+rUZ56W8ktIuZGTCTkHTRHdhzltyo
- hF3cds7pT951DT8yXtfr9OeH/iKOXciLU1B1YgxxODPDTjGWsOvaiKR7I
- 2Sk/wgr183gGJw7v+WefEym2QargVTyCo5EdH9VOVhvv5+XrHNI8vRwjO
- WJMWLVXDzbDSsowG0EBQ6MXeFO2CTAaIcvJ3CNG8a9yP+Mbn4r3fL99rp
- zNRIS+f1TJtU4bsyRedhX5v78S96BfFCtIEV+LyHkkCM8nI5k+/8CdPnH
- CZDEcHQSOhQ+Qu7kms/imKlxko19w5D/RfumCwI1KJCMA7Q6uTpd1OFOh w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="436407011"
-X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; d="scan'208";a="436407011"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2023 04:52:43 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10803"; a="857796796"
-X-IronPort-AV: E=Sophos;i="6.01,176,1684825200"; d="scan'208";a="857796796"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Aug 2023 04:52:43 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 16 Aug 2023 04:52:37 -0700
-Message-Id: <20230816115238.2340-2-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20230816115238.2340-1-niranjana.vishwanathapura@intel.com>
-References: <20230816115238.2340-1-niranjana.vishwanathapura@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90A7510E36A;
+	Wed, 16 Aug 2023 13:05:25 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6140210E36D;
+ Wed, 16 Aug 2023 13:05:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5E3DCA47DF;
+ Wed, 16 Aug 2023 13:05:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 1/2] drm/xe: Simplify engine class sched_props
- setting
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
+Date: Wed, 16 Aug 2023 13:05:23 -0000
+Message-ID: <169219112338.10282.5212548063910132003@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230816115238.2340-1-niranjana.vishwanathapura@intel.com>
+In-Reply-To: <20230816115238.2340-1-niranjana.vishwanathapura@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Add_preemption_timeout_config_options?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,56 +39,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Shortens the too long code lines.
+== Series Details ==
 
-Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/xe_hw_engine.c | 26 ++++++++++++--------------
- 1 file changed, 12 insertions(+), 14 deletions(-)
+Series: drm/xe: Add preemption timeout config options
+URL   : https://patchwork.freedesktop.org/series/122517/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index b8fcc6e985cf..c44540684462 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -362,22 +362,20 @@ static void hw_engine_init_early(struct xe_gt *gt, struct xe_hw_engine *hwe,
- 	hwe->fence_irq = &gt->fence_irq[info->class];
- 	hwe->engine_id = id;
- 
--	if (!gt->eclass[hwe->class].sched_props.job_timeout_ms) {
--		gt->eclass[hwe->class].sched_props.job_timeout_ms = 5 * 1000;
--		gt->eclass[hwe->class].sched_props.job_timeout_min = XE_HW_ENGINE_JOB_TIMEOUT_MIN;
--		gt->eclass[hwe->class].sched_props.job_timeout_max = XE_HW_ENGINE_JOB_TIMEOUT_MAX;
--		gt->eclass[hwe->class].sched_props.timeslice_us = 1 * 1000;
--		gt->eclass[hwe->class].sched_props.timeslice_min = XE_HW_ENGINE_TIMESLICE_MIN;
--		gt->eclass[hwe->class].sched_props.timeslice_max = XE_HW_ENGINE_TIMESLICE_MAX;
--		gt->eclass[hwe->class].sched_props.preempt_timeout_us = 640 * 1000;
--		gt->eclass[hwe->class].sched_props.preempt_timeout_min =
--								XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN;
--		gt->eclass[hwe->class].sched_props.preempt_timeout_max =
--								XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX;
-+	hwe->eclass = &gt->eclass[hwe->class];
-+	if (!hwe->eclass->sched_props.job_timeout_ms) {
-+		hwe->eclass->sched_props.job_timeout_ms = 5 * 1000;
-+		hwe->eclass->sched_props.job_timeout_min = XE_HW_ENGINE_JOB_TIMEOUT_MIN;
-+		hwe->eclass->sched_props.job_timeout_max = XE_HW_ENGINE_JOB_TIMEOUT_MAX;
-+		hwe->eclass->sched_props.timeslice_us = 1 * 1000;
-+		hwe->eclass->sched_props.timeslice_min = XE_HW_ENGINE_TIMESLICE_MIN;
-+		hwe->eclass->sched_props.timeslice_max = XE_HW_ENGINE_TIMESLICE_MAX;
-+		hwe->eclass->sched_props.preempt_timeout_us = 640 * 1000;
-+		hwe->eclass->sched_props.preempt_timeout_min = XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN;
-+		hwe->eclass->sched_props.preempt_timeout_max = XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX;
- 		/* Record default props */
--		gt->eclass[hwe->class].defaults = gt->eclass[hwe->class].sched_props;
-+		hwe->eclass->defaults = hwe->eclass->sched_props;
- 	}
--	hwe->eclass = &gt->eclass[hwe->class];
- 
- 	xe_reg_sr_init(&hwe->reg_sr, hwe->name, gt_to_xe(gt));
- 	xe_wa_process_engine(hwe);
--- 
-2.21.0.rc0.32.g243a4c7e27
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 9829aba16 drm/xe/dg2: Remove Wa_15010599737
+=== git am output follows ===
+Applying: drm/xe: Simplify engine class sched_props setting
+Applying: drm/xe: Add CONFIG_DRM_XE_PREEMPT_TIMEOUT
+
 
