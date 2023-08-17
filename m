@@ -4,89 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44461C30624
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Aug 2023 14:38:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CA71C30626
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Aug 2023 14:47:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1048A10E4B7;
-	Thu, 17 Aug 2023 14:38:21 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE02210E4B7
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Aug 2023 14:38:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1692283099;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=IU2tly2AhtdFtbxtaCxJNcdKsYvG8JAXPFPJT3GasHg=;
- b=OMhWL3vL+Hzkr71UIKbJDioGhJR5XQEPgSbQKM+0uahbewwt/OCP6pctjfkwuMHJYNRnMH
- slDUgDZMtoRwEKOeRlPAYpUxtV5iwVmswS60Ki06AkCj+fe378Ph79zN7rm/pwaw7U6Jeg
- V/w3Q+/HQ8OcvqbQKwjkNDRPEXCw2k8=
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
- [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-373-YsmaMpAQMJKU-0RfpIqSgQ-1; Thu, 17 Aug 2023 10:38:17 -0400
-X-MC-Unique: YsmaMpAQMJKU-0RfpIqSgQ-1
-Received: by mail-ej1-f71.google.com with SMTP id
- a640c23a62f3a-99beea69484so444768266b.0
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Aug 2023 07:38:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692283096; x=1692887896;
- h=content-transfer-encoding:in-reply-to:organization:from:references
- :cc:to:content-language:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=IU2tly2AhtdFtbxtaCxJNcdKsYvG8JAXPFPJT3GasHg=;
- b=hRMqBtlPykZS4w7diMD0tY90wAc3YeONWzWO7DFxrvWFSwQ8bmwRdIFffNVKa3g2p9
- 5AkraGluNtS6Mpuz3qsYMydi1w43aP4j2vrhVDGAu3IpX9UrB8aUYDm3dRGPmUZn30VF
- IbwGk4+mYojTmp+rO/8U44Q86cmyZyeC/pT+M9resvtlEh4FzbSYdkYKGJ483byBYNaA
- MjG3UvJRPFJnMYXQEFs5FPHKB0Nbabd9m8cULRdqAEeAVKzUceuMQz99nKybizQIZ/Kk
- T2HnyEQvRvkKdMZ7F7Rp32empO2K0mmUlCMRJOxyFL4Aer5tnLN75WR5cbwRrl24wvb+
- 47QA==
-X-Gm-Message-State: AOJu0YwMEWEsH+E7L/PhZph+DhX99zk6GAVzhEyfD7OmPNsywDN7mX3J
- GN0LzabjLtw8VXAYzj/34DjZJ0ZhAVtChtMs/4pJnq0qbRIOVBu1oDpW7GJxa5KHVBq577kEOgm
- 35A9H8d+tStm9dUCd+7QsBu3OZ/k=
-X-Received: by 2002:a17:906:2112:b0:993:d7fe:7f1d with SMTP id
- 18-20020a170906211200b00993d7fe7f1dmr3900017ejt.28.1692283096249; 
- Thu, 17 Aug 2023 07:38:16 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH+F5+H0WBzKpmCycE5M9iD9rlXxyLNJ0FNlmJHuWqXoqxBweptuKKx/57ngEDeKO3xkkDsgw==
-X-Received: by 2002:a17:906:2112:b0:993:d7fe:7f1d with SMTP id
- 18-20020a170906211200b00993d7fe7f1dmr3899999ejt.28.1692283095934; 
- Thu, 17 Aug 2023 07:38:15 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
- ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
- by smtp.gmail.com with ESMTPSA id
- p23-20020a1709060e9700b00977eec7b7e8sm10165987ejf.68.2023.08.17.07.38.14
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 17 Aug 2023 07:38:15 -0700 (PDT)
-Message-ID: <a80be2c1-132e-5ee1-4278-47655916494a@redhat.com>
-Date: Thu, 17 Aug 2023 14:48:31 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id C73A610E4D3;
+	Thu, 17 Aug 2023 14:47:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED95D10E4D0
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Aug 2023 14:47:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692283653; x=1723819653;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=FSp2AfR5MmmOkwpZCfn3WBdesI2Th/Iuc5C5BStR6/A=;
+ b=DTl570D/yUy1V2mmJVmWuGZw5snFEuYnWMZXp4TbBJVipb8SrZsiAmOp
+ MYd712adFQ+z0KioeTo8O8yDOndDe7WTxWKsD3o3efy3XrEnAInMLy7nn
+ 9RDWRrLQD4FdUBXHH4BzuFzLFiLn8y9IN3B1Ad53d0dZ51IjpnveILVXZ
+ vTqedfOelx1lv1/ZV/V4ZkTtmlDhjDY9sqZ8BRfThWpENI1HqN6v2VdZB
+ 6Pcw10qBMAr3jGAlNFHqXiKaWYPQsvXWRP9Bc39oTK+RsmnZz+FpYX73L
+ uGJLU/q5mVn4uYzIxqAW8sTcRMH63PmcTPjHF/yvN4/0K/MDDqBfbkj1p Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="371733005"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="371733005"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Aug 2023 07:47:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10805"; a="824656726"
+X-IronPort-AV: E=Sophos;i="6.01,180,1684825200"; d="scan'208";a="824656726"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by FMSMGA003.fm.intel.com with ESMTP; 17 Aug 2023 07:47:32 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 17 Aug 2023 07:47:31 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 17 Aug 2023 07:47:31 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Thu, 17 Aug 2023 07:47:31 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Thu, 17 Aug 2023 07:47:31 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=MJqVBneHoUzUXKyPdKafwzGOIIZTYJoYDmRuLE7ekvf+8qqSwvasCiMLlvp8HYm08bnM4AmwIo/84WRmdsFG6igOvMsVVgZhh8qaE78qqBNlKM3ntIJd04w/GjWEWz2JWY3cxM7ApmtzjJCKqmwmWiG6s+J9zwmCt+sQhnRDmtrIjqMw3/ocDACDLfq00ialk12H1J2mBDaE4N5YakziQGCODop1pAxWZXVn2TCXGiQD3vLgaLuCMnLoeWDnGFChAFoTOj/nK7PhKRJqoTHpG5SzTqGXge/0F7LY5R10jDZEFPWKk9PRGyGm+atTnlfbKiEKheZqEYL+Xr9SZOWFKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1W6nMH1BD7W2Coy3IwmTgrvbspwom8/cZCJCfkcbItc=;
+ b=CXKChs0Bk7oXkAhWWfJ2MCvMqAXgVUkwUPBAAs22BmJaa7YpcFB+7WMjchaonzYrA1ibvlaPFIPZvKdVDRXokCu+oOmlMScN5LqdlUjroMDAov2WyHtG5SCiJUvDqVs243REVvyS8otpr+EuEnqgKv2/X486OpGfCICRGSoP+Fcbd+AA4B+J3kw+cv2o6UYzWaXcBo5tMrR996vtmUV7Vddv7L7jM2GXX9oE3eO5xnFjKpyk5Ibyo8Rx6Y/W+6UTZ7+KxQ8nHIF6Z6vvXxtIOfVuDjQetQsWRPVroRXltnlcTpEWQH+v5zIef4NQ77EfyxE5tYi4+Lm9u6EKwvNM+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by BL1PR11MB6004.namprd11.prod.outlook.com (2603:10b6:208:390::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.30; Thu, 17 Aug
+ 2023 14:47:29 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6678.031; Thu, 17 Aug 2023
+ 14:47:29 +0000
+Date: Thu, 17 Aug 2023 07:47:07 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Atwood <matthew.s.atwood@intel.com>
+Message-ID: <ogbz7rqkordg6ogfy4efgnboux47bcrahds6hyestku2f6hdzk@6cqh6le33vfw>
+References: <20230811160618.477297-1-lucas.demarchi@intel.com>
+ <20230811160618.477297-4-lucas.demarchi@intel.com>
+ <ZN1Naiw9LLTxVVLR@msatwood-mobl>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <ZN1Naiw9LLTxVVLR@msatwood-mobl>
+X-ClientProxiedBy: BYAPR01CA0063.prod.exchangelabs.com (2603:10b6:a03:94::40)
+ To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20230811023137.659037-1-matthew.brost@intel.com>
- <20230811023137.659037-2-matthew.brost@intel.com>
- <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
- <069e6cd0-abd3-fdd9-217d-173e8f8e1d29@amd.com>
- <b9a6493c-243b-1078-afbc-d9270cac904a@redhat.com>
- <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
- <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
- <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
- <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
- <ef4d2c78-6927-3d3b-7aac-27d013af7ea6@amd.com>
-From: Danilo Krummrich <dakr@redhat.com>
-Organization: RedHat
-In-Reply-To: <ef4d2c78-6927-3d3b-7aac-27d013af7ea6@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
- use a work queue rather than kthread
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|BL1PR11MB6004:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7c88db77-ba99-4a97-6181-08db9f30e03a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: K08h2AazrX+AYQyzvr9gDa9++jK/QAKPS1Hd1QrIJ7Vzo+VLGkCIWClxNbytj/ZOb9DqE6480isOYxB30CRyqlHGhvGAYP0Tjr5A+UYuXhDJeoBFHo/Kdf7VoXazoYezMJtTxAz3tP+P+a7rze4mlJoyfyknqUQ+QG0zhMahWFYPGBPYeNego7eEyaC0uPHSMX8vkISeikTOqFQWQ0o7HV2DleVlk9hoXKtGvMUAYU8I4P8K9EDUcaVYcGUIrnbPVDfaFLm8t3N/5AMDp2gwVSjz69fG+jaizNRFqo/98ikzDiEiX/eIqCIjUw5ZBLjDJ71/hD8vH8mrjfDPW1WGfXgT/fvQgQa7QH0CvgCJf1G+Syw2PzyQmfPXQ1d+1+3dohwiolej4AZxMFlRWtqYcQCn8Pd/bawwiPTagt/o75P9zZa2l6pFKZZ519a6DgVZ1ZnwDqmeXlZ1b0+mU9tDKOR+ezn4pm49rXwcrp82BW5sM3gWCKjfkifHkyjM6uBCjUeEgZyUpy7qsHK4MGwxzHqA2IEktfnoqdRVfM6khsl564gu0fXVMKhSYC/TnHCa
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(366004)(376002)(136003)(346002)(39860400002)(396003)(186009)(451199024)(1800799009)(2906002)(83380400001)(26005)(86362001)(478600001)(6506007)(6666004)(6486002)(6512007)(9686003)(5660300002)(41300700001)(6636002)(316002)(66946007)(66476007)(66556008)(4326008)(6862004)(8676002)(8936002)(82960400001)(33716001)(38100700002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?P7c/HOvdatiU2AkyfUp42lksVaJmRPe238UfOZlXpo0BgPXH+pQuQ2zYDv/9?=
+ =?us-ascii?Q?nYcNYUAUTinz7o3OJIONFcbjXnlMikuyg+LD2ESUmEwEn4SOauDapvZj3BAH?=
+ =?us-ascii?Q?3VD9cRug3jRcxjIX8tfDqlK0qu2IT62dDgw2zs4kIaWxShEa/r4H4BjuH+9/?=
+ =?us-ascii?Q?t/HN2OaJFUXbd12P5o3BON5zBadhenvqEmdb3ThXeEXyne6gSoEmwTuzivXJ?=
+ =?us-ascii?Q?Fi7F0GwLFX93T2kjQgDhWXZsxd7UvbfsU2Cvm92rNvtV638WPaHa/Ux4a+Q3?=
+ =?us-ascii?Q?M8tDMLU5k0jBFmuYZOhmDD36FVM+ruM6Y6UIi5Ll7r50m9H17qhpyXrSTT2j?=
+ =?us-ascii?Q?yVW0OUbzqJIPyndqEEw52yA6zqmI86P0pOG+hHB0qeExF+sJ1DIzvPw+j68S?=
+ =?us-ascii?Q?UjlDFDVsBy3hM1JtM7jXX13IeKltVkbMD9rXj9qaNaQvGmnAB9NkwUdRwF0z?=
+ =?us-ascii?Q?Kw0CmgJnyR6S+3SNcOSapw6p67hJeIad7QMRevBRnP5dMG+s7PIh2kW7LibX?=
+ =?us-ascii?Q?jv1uAvvhEAWRwMJtHls53HASNmL4KBZsVOmHzfKHrVR0ugo9pAhcWzeuI5lc?=
+ =?us-ascii?Q?p7kmh7m6/SS0K3Tk0g9h7FTU+OxvChtQUXrqQxR41HuMTtJDa9vtOvVFhri4?=
+ =?us-ascii?Q?jJyT/l7eva/MEICuQrj9K//tQOUfJ3YFdLiIOT5DZIGnT/eFKPE76WlLET1h?=
+ =?us-ascii?Q?T1x3YCfcb4tbK2B5sY/XzGWIiGRh61B5uj/PxdeU233zTpxKpwRlIHnX27Kq?=
+ =?us-ascii?Q?93hZs4CT5+W57cBqqJUUZO548gMnfGz2YsveVYai12OEAQkJ3rVlEtbl11/J?=
+ =?us-ascii?Q?RKR6D6maDb+7HLsbOBGf+5TR/pQcWvWam2bYcWPqoTm3qKy4xKR4BcY9KFUt?=
+ =?us-ascii?Q?6/TDxwCztMCBZm+1+KcboWG6sDst7clMBQfr+Ohx9vyGqejgpmu3ZuTx9M4Q?=
+ =?us-ascii?Q?XTTmWzpWYRg34BgRHs6inWDtlljFjFA7QIXNoe+Xz5iEwRdN+hjZMAPznbhL?=
+ =?us-ascii?Q?+oom1skIuvCUyYQ6/5zGVbZNJ91DQ0C5BBBCpGlF4jsl+vgwMqOMgFwuVdcX?=
+ =?us-ascii?Q?huxg+pLbQRyytAhAAAwCU+Y9pNS7cNvMnCfhtdiMmqOu40IvJKQvMaIx0tWT?=
+ =?us-ascii?Q?czYWZNrL+iy8QeGoGfxENStIPEVEqqnpCaz4dN49fsT3MZoZeaTt0wIraJOu?=
+ =?us-ascii?Q?2SBuYFq2lLNWjs4vUdvl34nX0D9xryd5ggWFey4cWt1y5xPTiYgGUyrzLL/G?=
+ =?us-ascii?Q?EbPPXKgON6EGuChNMngSNh1qYTnABhsMWGHHDJJYfpykSuVwXBozSyjrv0l6?=
+ =?us-ascii?Q?VHFDT6QxFgg3z6ds5nDPreNyNx9DLwSPOUJvtC+voP9YTEANYitxWKPNu6Vw?=
+ =?us-ascii?Q?7ULRzeJGmWVGiB6KOEjt0ix4kC6zYOnpsZx7HlqJ2O309GwillXYgZuXTc8p?=
+ =?us-ascii?Q?/e4c2AenvF1G7yGb5WiyNKsB7dVKVEtb4H+T8f8oYV9fLq/BcaVG8LFp+SgG?=
+ =?us-ascii?Q?l8PQIzdfM6sEWXLodWIOccnUNcVKNi4zYPrGPVNAWjLptgr8zx0zWu7ceR77?=
+ =?us-ascii?Q?fB6Fv9HnKiMpjsucpMSzzMK9biN6cwogAe3j8sVrdFX2mHKWtuposKpt6Obp?=
+ =?us-ascii?Q?aA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c88db77-ba99-4a97-6181-08db9f30e03a
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Aug 2023 14:47:29.0712 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: F/FS88rKQ7N2yXxgbO+KcRuUGl1M84eQVJeuXXTps0TpQ5Ou/ido3v8R1YoWfrJ849L/u9KL5ygtwY3BLsJRGEe7YRrCgQxRgM5OcBQ8+IA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB6004
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 03/15] drm/xe/xe2: Add MCR register steering
+ for primary GT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,206 +148,171 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
- luben.tuikov@amd.com, donald.robson@imgtec.com, boris.brezillon@collabora.com,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: matthew.d.roper@intel.com, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 8/17/23 15:35, Christian König wrote:
-> Am 17.08.23 um 13:13 schrieb Danilo Krummrich:
->> On 8/17/23 07:33, Christian König wrote:
->>> [SNIP]
->>> The hardware seems to work mostly the same for all vendors, but you 
->>> somehow seem to think that filling the ring is somehow beneficial 
->>> which is really not the case as far as I can see.
+On Wed, Aug 16, 2023 at 03:27:54PM -0700, Matt Atwood wrote:
+>On Fri, Aug 11, 2023 at 09:06:06AM -0700, Lucas De Marchi wrote:
+>> From: Matt Roper <matthew.d.roper@intel.com>
 >>
->> I think that's a misunderstanding. I'm not trying to say that it is 
->> *always* beneficial to fill up the ring as much as possible. But I 
->> think it is under certain circumstances, exactly those circumstances I 
->> described for Nouveau.
-> 
-> As far as I can see this is not correct for Nouveau either.
-> 
+>> Xe2 uses the same steering control register and steering semaphore
+>> register as MTL.  As with recent platforms, group/instance 0,0 is
+>> sufficient to target a non-terminated instance for most classes of MCR
+>> registers; the only types of ranges that need to consider platform
+>> fusing to find a non-terminated instance are SLICE/DSS ranges and a new
+>> SQIDI_PSMI type of range.
 >>
->> As mentioned, in Nouveau the size of a job is only really limited by 
->> the ring size, which means that one job can (but does not necessarily) 
->> fill up the whole ring. We both agree that this is inefficient, 
->> because it potentially results into the HW run dry due to 
->> hw_submission_limit == 1.
+>> Note that the range of valid bits in XE2_NODE_ENABLE_MASK may be reduced
+>> for some Xe2 SKUs.  However the lowest bits are always valid and only
+>> the lowest instance is obtained via __ffs(), so there's no need to
+>> complicate the masking with extra platform/subplatform checks.
 >>
->> I recognize you said that one should define hw_submission_limit and 
->> adjust the other parts of the equation accordingly, the options I see 
->> are:
+>> Also note that Wa_14017387313 suggests skipping MCR lock acquisition
+>> around GAM and GAMWKR registers to prevent MCR register accesses in an
+>> interrupt handler from deadlocking when the steering semaphore is
+>> already held outside the interrupt context.  At this time Xe never
+>> issues MCR accesses from within an interrupt handler so the workaround
+>> is not currently needed.
 >>
->> (1) Increase the ring size while keeping the maximum job size.
->> (2) Decrease the maximum job size while keeping the ring size.
->> (3) Let the scheduler track the actual job size rather than the 
->> maximum job size.
+>> Bspec: 71185
+>> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  1 +
+>>  drivers/gpu/drm/xe/xe_gt_mcr.c       | 50 +++++++++++++++++++++++++++-
+>>  drivers/gpu/drm/xe/xe_gt_types.h     |  1 +
+>>  3 files changed, 51 insertions(+), 1 deletion(-)
 >>
->> (1) results into potentially wasted ring memory, because we're not 
->> always reaching the maximum job size, but the scheduler assumes so.
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> index ad7ae6a28caca..5bc6c7fa4759f 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> @@ -145,6 +145,7 @@
+>>  #define   EN_32B_ACCESS				REG_BIT(30)
 >>
->> (2) results into more IOCTLs from userspace for the same amount of IBs 
->> and more jobs result into more memory allocations and more work being 
->> submitted to the workqueue (with Matt's patches).
+>>  #define	MIRROR_FUSE3				XE_REG(0x9118)
+>> +#define   XE2_NODE_ENABLE_MASK			REG_GENMASK(31, 16)
+>>  #define   L3BANK_PAIR_COUNT			4
+>>  #define   L3BANK_MASK				REG_GENMASK(3, 0)
+>>  /* on Xe_HP the same fuses indicates mslices instead of L3 banks */
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+>> index 9eb7a6a1348d6..ef9f4044ca1fd 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+>> @@ -181,6 +181,39 @@ static const struct xe_mmio_range dg2_implicit_steering_table[] = {
+>>  	{},
+>>  };
 >>
->> (3) doesn't seem to have any of those draw backs.
->>
->> What would be your take on that?
->>
->> Actually, if none of the other drivers is interested into a more 
->> precise way of keeping track of the ring utilization, I'd be totally 
->> fine to do it in a driver specific way. However, unfortunately I don't 
->> see how this would be possible.
->>
->> My proposal would be to just keep the hw_submission_limit (maybe 
->> rename it to submission_unit_limit) and add a submission_units field 
->> to struct drm_sched_job. By default a jobs submission_units field 
->> would be 0 and the scheduler would behave the exact same way as it 
->> does now.
->>
->> Accordingly, jobs with submission_units > 1 would contribute more than 
->> one unit to the submission_unit_limit.
->>
->> What do you think about that?
-> 
-> I think you are approaching this from the completely wrong side.
+>> +static const struct xe_mmio_range xe2lpg_dss_steering_table[] = {
+>> +	{ 0x005200, 0x0052FF },         /* SLICE */
+>> +	{ 0x005500, 0x007FFF },         /* SLICE */
+>> +	{ 0x008140, 0x00815F },         /* SLICE (0x8140-0x814F), DSS (0x8150-0x815F) */
+>> +	{ 0x0094D0, 0x00955F },         /* SLICE (0x94D0-0x951F), DSS (0x9520-0x955F) */
+>> +	{ 0x009680, 0x0096FF },         /* DSS */
+>> +	{ 0x00D800, 0x00D87F },         /* SLICE */
+>> +	{ 0x00DC00, 0x00DCFF },         /* SLICE */
+>> +	{ 0x00DE80, 0x00E8FF },         /* DSS (0xE000-0xE0FF reserved) */
+>> +	{ 0x00E980, 0x00E9FF },         /* SLICE */
+>> +	{ 0x013000, 0x0133FF },         /* DSS (0x13000-0x131FF), SLICE (0x13200-0x133FF) */
+>> +	{},
+>> +};
+>> +
+>> +static const struct xe_mmio_range xe2lpg_sqidi_psmi_steering_table[] = {
+>> +	{ 0x000B00, 0x000BFF },
+>> +	{ 0x001000, 0x001FFF },
+>> +	{},
+>> +};
+>> +
+>> +static const struct xe_mmio_range xe2lpg_instance0_steering_table[] = {
+>> +	{ 0x004000, 0x004AFF },         /* GAM, rsvd, GAMWKR */
+>						^(4200->43FF reserved)
 
-First of all, thanks for keeping up the discussion - I appreciate it. 
-Some more comments / questions below.
+This is intended so we have simpler ranges to lookup on every mcr
+register access. Intention is to keep the table as small as possible
+without causing issues.
 
-> 
-> See the UAPI needs to be stable, so you need a maximum job size 
-> otherwise it can happen that a combination of large and small 
-> submissions work while a different combination doesn't.
+If it's reserved, there shouldn't be any access going on and we can
+coalesce the range with the next ranges. Explicitely leaving out the
+rsvd range would benefit debugging as it would automatically create a
+warning when accessing such a register, but I'm not sure it's worth it.
+Matt Roper, any thoughts?
 
-How is this related to the uAPI being stable? What do you mean by 
-'stable' in this context?
+>> +	{ 0x008700, 0x0087FF },         /* SQIDI, MEMPIPE */
+>8700->87FF is SQIDI only, to include MEMPIPE entry extend to 887F.
 
-The Nouveau uAPI allows userspace to pass EXEC jobs by supplying the 
-ring ID (channel), in-/out-syncs and a certain amount of indirect push 
-buffers. The amount of IBs per job is limited by the amount of IBs 
-fitting into the ring. Just to be clear, when I say 'job size' I mean 
-the amount of IBs per job.
+ack
 
-Maybe I should also mention that the rings we are talking about are 
-software rings managed by a firmware scheduler. We can have an arbitrary 
-amount of software rings and even multiple ones per FD.
+>> +	{ 0x00B000, 0x00B3FF },         /* NODE, L3BANK */
+>> +	{ 0x00C800, 0x00CFFF },         /* GAM */
+>> +	{ 0x00D880, 0x00D8FF },         /* NODE */
+>> +	{ 0x00DD00, 0x00DDFF },         /* MEMPIPE */
+>> +	{ 0x00E900, 0x00E97F },         /* MEMPIPE */
+>> +	{ 0x00EF00, 0x00F4FF },         /* GAM, GAMWKR */
+>GAM starts ate F000, EF00->EFFF is reserved.
 
-Given a constant ring size I really don't see why I should limit the 
-maximum amount of IBs userspace can push per job just to end up with a 
-hw_submission_limit > 1.
+same reason as above, we don't care about the reserved "holes"
 
-For example, let's just assume the ring can take 128 IBs, why would I 
-limit userspace to submit just e.g. 16 IBs at a time, such that the 
-hw_submission_limit becomes 8?
+thanks
+Lucas De Marchi
 
-What is the advantage of doing that, rather than letting userspace 
-submit *up to* 128 IBs per job and just letting the scheduler push IBs 
-to the ring as long as there's actually space left on the ring?
-
-> 
-> So what you usually do, and this is driver independent because simply a 
-> requirement of the UAPI, is that you say here that's my maximum job size 
-> as well as the number of submission which should be pushed to the hw at 
-> the same time. And then get the resulting ring size by the product of 
-> the two.
-
-Given the above, how is that a requirement of the uAPI?
-
-> 
-> That the ring in this use case can't be fully utilized is not a draw 
-> back, this is completely intentional design which should apply to all 
-> drivers independent of the vendor.
-
-Why wouldn't we want to fully utilize the ring size?
-
-- Danilo
-
-> 
+>> +	{ 0x013400, 0x0135FF },         /* MEMPIPE */
+>> +	{},
+>> +};
+>> +
+>>  static void init_steering_l3bank(struct xe_gt *gt)
+>>  {
+>>  	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
+>> @@ -265,6 +298,16 @@ static void init_steering_oaddrm(struct xe_gt *gt)
+>>  	gt->steering[DSS].instance_target = 0;		/* unused */
+>>  }
 >>
->> Besides all that, you said that filling up the ring just enough to not 
->> let the HW run dry rather than filling it up entirely is desirable. 
->> Why do you think so? I tend to think that in most cases it shouldn't 
->> make difference.
-> 
-> That results in better scheduling behavior. It's mostly beneficial if 
-> you don't have a hw scheduler, but as far as I can see there is no need 
-> to pump everything to the hw as fast as possible.
-> 
-> Regards,
-> Christian.
-> 
+>> +static void init_steering_sqidi_psmi(struct xe_gt *gt)
+>> +{
+>> +	u32 mask = REG_FIELD_GET(XE2_NODE_ENABLE_MASK,
+>> +				 xe_mmio_read32(gt, MIRROR_FUSE3));
+>> +	u32 select = __ffs(mask);
+>> +
+>> +	gt->steering[SQIDI_PSMI].group_target = select >> 1;
+>> +	gt->steering[SQIDI_PSMI].instance_target = select & 0x1;
+>> +}
+>> +
+>>  static void init_steering_inst0(struct xe_gt *gt)
+>>  {
+>>  	gt->steering[DSS].group_target = 0;		/* unused */
+>> @@ -280,6 +323,7 @@ static const struct {
+>>  	[LNCF] =	{ "LNCF",	NULL }, /* initialized by mslice init */
+>>  	[DSS] =		{ "DSS",	init_steering_dss },
+>>  	[OADDRM] =	{ "OADDRM",	init_steering_oaddrm },
+>> +	[SQIDI_PSMI] =  { "SQIDI_PSMI", init_steering_sqidi_psmi },
+>>  	[INSTANCE0] =	{ "INSTANCE 0",	init_steering_inst0 },
+>>  	[IMPLICIT_STEERING] = { "IMPLICIT", NULL },
+>>  };
+>> @@ -298,7 +342,11 @@ void xe_gt_mcr_init(struct xe_gt *gt)
 >>
->> - Danilo
+>>  		gt->steering[OADDRM].ranges = xelpmp_oaddrm_steering_table;
+>>  	} else {
+>> -		if (GRAPHICS_VERx100(xe) >= 1270) {
+>> +		if (GRAPHICS_VER(xe) >= 20) {
+>> +			gt->steering[DSS].ranges = xe2lpg_dss_steering_table;
+>> +			gt->steering[SQIDI_PSMI].ranges = xe2lpg_sqidi_psmi_steering_table;
+>> +			gt->steering[INSTANCE0].ranges = xe2lpg_instance0_steering_table;
+>> +		} else if (GRAPHICS_VERx100(xe) >= 1270) {
+>>  			gt->steering[INSTANCE0].ranges = xelpg_instance0_steering_table;
+>>  			gt->steering[L3BANK].ranges = xelpg_l3bank_steering_table;
+>>  			gt->steering[DSS].ranges = xelpg_dss_steering_table;
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+>> index 48fd698ff62aa..d4310be3e1e7c 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>> @@ -55,6 +55,7 @@ enum xe_steering_type {
+>>  	LNCF,
+>>  	DSS,
+>>  	OADDRM,
+>> +	SQIDI_PSMI,
 >>
->>>
->>> Regards,
->>> Christian.
->>>
->>>> Because one really is the minimum if you want to do work at all, but 
->>>> as you mentioned above a job limit of one can let the ring run dry.
->>>>
->>>> In the end my proposal comes down to tracking the actual size of a 
->>>> job rather than just assuming a pre-defined maximum job size, and 
->>>> hence a dynamic job limit.
->>>>
->>>> I don't think this would hurt the scheduler granularity. In fact, it 
->>>> should even contribute to the desire of not letting the ring run dry 
->>>> even better. Especially for sequences of small jobs, where the 
->>>> current implementation might wrongly assume the ring is already full 
->>>> although actually there would still be enough space left.
->>>>
->>>>>
->>>>> Christian.
->>>>>
->>>>>>
->>>>>>>
->>>>>>> Otherwise your scheduler might just overwrite the ring buffer by 
->>>>>>> pushing things to fast.
->>>>>>>
->>>>>>> Christian.
->>>>>>>
->>>>>>>>
->>>>>>>> Given that, it seems like it would be better to let the 
->>>>>>>> scheduler keep track of empty ring "slots" instead, such that 
->>>>>>>> the scheduler can deceide whether a subsequent job will still 
->>>>>>>> fit on the ring and if not re-evaluate once a previous job 
->>>>>>>> finished. Of course each submitted job would be required to 
->>>>>>>> carry the number of slots it requires on the ring.
->>>>>>>>
->>>>>>>> What to you think of implementing this as alternative flow 
->>>>>>>> control mechanism? Implementation wise this could be a union 
->>>>>>>> with the existing hw_submission_limit.
->>>>>>>>
->>>>>>>> - Danilo
->>>>>>>>
->>>>>>>>>
->>>>>>>>> A problem with this design is currently a drm_gpu_scheduler uses a
->>>>>>>>> kthread for submission / job cleanup. This doesn't scale if a 
->>>>>>>>> large
->>>>>>>>> number of drm_gpu_scheduler are used. To work around the 
->>>>>>>>> scaling issue,
->>>>>>>>> use a worker rather than kthread for submission / job cleanup.
->>>>>>>>>
->>>>>>>>> v2:
->>>>>>>>>    - (Rob Clark) Fix msm build
->>>>>>>>>    - Pass in run work queue
->>>>>>>>> v3:
->>>>>>>>>    - (Boris) don't have loop in worker
->>>>>>>>> v4:
->>>>>>>>>    - (Tvrtko) break out submit ready, stop, start helpers into 
->>>>>>>>> own patch
->>>>>>>>>
->>>>>>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>>>>>>
->>>>>>>
->>>>>>
->>>>>
->>>>
->>>
+>>  	/*
+>>  	 * On some platforms there are multiple types of MCR registers that
+>> --
+>> 2.40.1
 >>
-> 
-
