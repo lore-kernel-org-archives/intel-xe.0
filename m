@@ -4,30 +4,87 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FE22C27C7A
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Aug 2023 12:13:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02878C2FC20
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Aug 2023 13:10:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B956E10E460;
-	Thu, 17 Aug 2023 12:12:59 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F06DE10E45E;
- Thu, 17 Aug 2023 12:12:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E90A3AADEB;
- Thu, 17 Aug 2023 12:12:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7869744255607923343=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80C4F10E47C;
+	Thu, 17 Aug 2023 13:10:40 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5057010E47B
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Aug 2023 13:10:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1692277837;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=8d4T8ggQVz0JS0aLTofSvYRi5nLFyyyB50mPYGtURrM=;
+ b=cBXUtsReZemSEKHp2pplQri2S9x6CBvqDtgzaAFq8o+hG65b/vJwL5XgPGJuG70TFjGsKc
+ 8NpEl/BrEa0XFn2SENvwf7UHVyDffsq+Us+gdxsGgnQ0v/t5MpPEEfv5QOPgzW0ZFTMb0E
+ mQ8BRcEAI9GI2GI9d7r2KYYUXRU8o0k=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-219-uezWIIIjPP-Yktl-f67bSQ-1; Thu, 17 Aug 2023 09:10:35 -0400
+X-MC-Unique: uezWIIIjPP-Yktl-f67bSQ-1
+Received: by mail-ej1-f70.google.com with SMTP id
+ a640c23a62f3a-94a34a0b75eso453618566b.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 17 Aug 2023 06:10:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692277834; x=1692882634;
+ h=content-transfer-encoding:in-reply-to:organization:from:references
+ :cc:to:content-language:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=8d4T8ggQVz0JS0aLTofSvYRi5nLFyyyB50mPYGtURrM=;
+ b=FTrhzotOdh/TbmmkSBPV7mKAyt295N7VF2NbW9Vxik/N3R1KolTC619LqgNoBADyXE
+ yWP0H5OwYqBzPcrgd8inVPJ63YjYoL3R5bF0mgDqR1Gr3RHHwD3hyIjksYXeBDnXNc0I
+ Or+neYkY5CUB8z14X1AP67c0xSuiO1eos1PfFRNNHZ/fxhOnyEpt3ZBGhy195I2OQJSk
+ lETVV2j+3243RtAl8eQ5jHmXAWyjuKRsrLwKWpI7CnyVqAKL/7adiOVxT4kW8bdihbcJ
+ IAN825WaOtnwhPxDWaUQ++RLy+syVOw4GRXBZ8jQqDNRT3OyNWvfbdRSEPYwxUmcV3RU
+ v7ig==
+X-Gm-Message-State: AOJu0YwZ5ETYzc0KNfMi6S7E0SnIxfcn6f2n+3nm0s3VpM3Lvp7zwpT+
+ Sz9NcoPfp0jw1yj3eK0b9ke67FpLdSFmV2iSSvKCJHMI1QXuqY8jnvWhrbhm5PglrbK9IZMbnH/
+ qT9bbRnG+xj2codeoEoEsMHsqbwo=
+X-Received: by 2002:a17:906:23ea:b0:993:f540:5bb1 with SMTP id
+ j10-20020a17090623ea00b00993f5405bb1mr3982437ejg.41.1692277834659; 
+ Thu, 17 Aug 2023 06:10:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHV4RYxoTYVs2qAvxQUsM3IB0T+IINExykiB9B8NaeMCnTR0+pmY01uJJO2KOkUgtTkl5kvew==
+X-Received: by 2002:a17:906:23ea:b0:993:f540:5bb1 with SMTP id
+ j10-20020a17090623ea00b00993f5405bb1mr3982410ejg.41.1692277834244; 
+ Thu, 17 Aug 2023 06:10:34 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
+ ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
+ by smtp.gmail.com with ESMTPSA id
+ pw13-20020a17090720ad00b0099bc8bd9066sm10076623ejb.150.2023.08.17.06.10.32
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 17 Aug 2023 06:10:33 -0700 (PDT)
+Message-ID: <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
+Date: Thu, 17 Aug 2023 13:13:31 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Date: Thu, 17 Aug 2023 12:12:58 -0000
-Message-ID: <169227437891.12434.5283880971845368287@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230817110352.7601-1-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20230817110352.7601-1-niranjana.vishwanathapura@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/pv?=
- =?utf-8?q?c=3A_Add_Wa=5F16017236439_=28rev2=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-2-matthew.brost@intel.com>
+ <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
+ <069e6cd0-abd3-fdd9-217d-173e8f8e1d29@amd.com>
+ <b9a6493c-243b-1078-afbc-d9270cac904a@redhat.com>
+ <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
+ <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
+ <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
+From: Danilo Krummrich <dakr@redhat.com>
+Organization: RedHat
+In-Reply-To: <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
+ use a work queue rather than kthread
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,244 +96,225 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ luben.tuikov@amd.com, donald.robson@imgtec.com, boris.brezillon@collabora.com,
+ intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7869744255607923343==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 8/17/23 07:33, Christian König wrote:
+> Am 16.08.23 um 18:33 schrieb Danilo Krummrich:
+>> On 8/16/23 16:59, Christian König wrote:
+>>> Am 16.08.23 um 14:30 schrieb Danilo Krummrich:
+>>>> On 8/16/23 16:05, Christian König wrote:
+>>>>> Am 16.08.23 um 13:30 schrieb Danilo Krummrich:
+>>>>>> Hi Matt,
+>>>>>>
+>>>>>> On 8/11/23 04:31, Matthew Brost wrote:
+>>>>>>> In XE, the new Intel GPU driver, a choice has made to have a 1 to 1
+>>>>>>> mapping between a drm_gpu_scheduler and drm_sched_entity. At 
+>>>>>>> first this
+>>>>>>> seems a bit odd but let us explain the reasoning below.
+>>>>>>>
+>>>>>>> 1. In XE the submission order from multiple drm_sched_entity is not
+>>>>>>> guaranteed to be the same completion even if targeting the same 
+>>>>>>> hardware
+>>>>>>> engine. This is because in XE we have a firmware scheduler, the GuC,
+>>>>>>> which allowed to reorder, timeslice, and preempt submissions. If 
+>>>>>>> a using
+>>>>>>> shared drm_gpu_scheduler across multiple drm_sched_entity, the 
+>>>>>>> TDR falls
+>>>>>>> apart as the TDR expects submission order == completion order. 
+>>>>>>> Using a
+>>>>>>> dedicated drm_gpu_scheduler per drm_sched_entity solve this problem.
+>>>>>>>
+>>>>>>> 2. In XE submissions are done via programming a ring buffer 
+>>>>>>> (circular
+>>>>>>> buffer), a drm_gpu_scheduler provides a limit on number of jobs, 
+>>>>>>> if the
+>>>>>>> limit of number jobs is set to RING_SIZE / MAX_SIZE_PER_JOB we 
+>>>>>>> get flow
+>>>>>>> control on the ring for free.
+>>>>>>
+>>>>>> In XE, where does the limitation of MAX_SIZE_PER_JOB come from?
+>>>>>>
+>>>>>> In Nouveau we currently do have such a limitation as well, but it 
+>>>>>> is derived from the RING_SIZE, hence RING_SIZE / MAX_SIZE_PER_JOB 
+>>>>>> would always be 1. However, I think most jobs won't actually 
+>>>>>> utilize the whole ring.
+>>>>>
+>>>>> Well that should probably rather be RING_SIZE / MAX_SIZE_PER_JOB = 
+>>>>> hw_submission_limit (or even hw_submission_limit - 1 when the hw 
+>>>>> can't distinct full vs empty ring buffer).
+>>>>
+>>>> Not sure if I get you right, let me try to clarify what I was trying 
+>>>> to say: I wanted to say that in Nouveau MAX_SIZE_PER_JOB isn't 
+>>>> really limited by anything other than the RING_SIZE and hence we'd 
+>>>> never allow more than 1 active job.
+>>>
+>>> But that lets the hw run dry between submissions. That is usually a 
+>>> pretty horrible idea for performance.
+>>
+>> Correct, that's the reason why I said it seems to be more efficient to 
+>> base ring flow control on the actual size of each incoming job rather 
+>> than the maximum size of a job.
+>>
+>>>
+>>>>
+>>>> However, it seems to be more efficient to base ring flow control on 
+>>>> the actual size of each incoming job rather than the worst case, 
+>>>> namely the maximum size of a job.
+>>>
+>>> That doesn't sounds like a good idea to me. See we don't limit the 
+>>> number of submitted jobs based on the ring size, but rather we 
+>>> calculate the ring size based on the number of submitted jobs.
+>>>
+>>
+>> My point isn't really about whether we derive the ring size from the 
+>> job limit or the other way around. It's more about the job size (or 
+>> its maximum size) being arbitrary.
+>>
+>> As mentioned in my reply to Matt:
+>>
+>> "In Nouveau, userspace can submit an arbitrary amount of addresses of 
+>> indirect bufferes containing the ring instructions. The ring on the 
+>> kernel side takes the addresses of the indirect buffers rather than 
+>> the instructions themself. Hence, technically there isn't really a 
+>> limit on the amount of IBs submitted by a job except for the ring size."
+>>
+>> So, my point is that I don't really want to limit the job size 
+>> artificially just to be able to fit multiple jobs into the ring even 
+>> if they're submitted at their "artificial" maximum size, but rather 
+>> track how much of the ring the submitted job actually occupies.
+>>
+>>> In other words the hw_submission_limit defines the ring size, not the 
+>>> other way around. And you usually want the hw_submission_limit as low 
+>>> as possible for good scheduler granularity and to avoid extra overhead.
+>>
+>> I don't think you really mean "as low as possible", do you?
+> 
+> No, I do mean as low as possible or in other words as few as possible.
+> 
+> Ideally the scheduler would submit only the minimum amount of work to 
+> the hardware to keep the hardware busy. >
+> The hardware seems to work mostly the same for all vendors, but you 
+> somehow seem to think that filling the ring is somehow beneficial which 
+> is really not the case as far as I can see.
 
-== Series Details ==
+I think that's a misunderstanding. I'm not trying to say that it is 
+*always* beneficial to fill up the ring as much as possible. But I think 
+it is under certain circumstances, exactly those circumstances I 
+described for Nouveau.
 
-Series: drm/xe/pvc: Add Wa_16017236439 (rev2)
-URL   : https://patchwork.freedesktop.org/series/121028/
-State : success
+As mentioned, in Nouveau the size of a job is only really limited by the 
+ring size, which means that one job can (but does not necessarily) fill 
+up the whole ring. We both agree that this is inefficient, because it 
+potentially results into the HW run dry due to hw_submission_limit == 1.
 
-== Summary ==
+I recognize you said that one should define hw_submission_limit and 
+adjust the other parts of the equation accordingly, the options I see are:
 
-CI Bug Log - changes from xe-325-c605cfb9a29a5425541053b45efddbe9751cbad3_BAT -> xe-pw-121028v2_BAT
-====================================================
+(1) Increase the ring size while keeping the maximum job size.
+(2) Decrease the maximum job size while keeping the ring size.
+(3) Let the scheduler track the actual job size rather than the maximum 
+job size.
 
-Summary
--------
+(1) results into potentially wasted ring memory, because we're not 
+always reaching the maximum job size, but the scheduler assumes so.
 
-  **SUCCESS**
+(2) results into more IOCTLs from userspace for the same amount of IBs 
+and more jobs result into more memory allocations and more work being 
+submitted to the workqueue (with Matt's patches).
 
-  No regressions found.
+(3) doesn't seem to have any of those draw backs.
 
-  
+What would be your take on that?
 
-Participating hosts (2 -> 2)
-------------------------------
+Actually, if none of the other drivers is interested into a more precise 
+way of keeping track of the ring utilization, I'd be totally fine to do 
+it in a driver specific way. However, unfortunately I don't see how this 
+would be possible.
 
-  Additional (1): bat-atsm-2 
-  Missing    (1): bat-dg2-oem2 
+My proposal would be to just keep the hw_submission_limit (maybe rename 
+it to submission_unit_limit) and add a submission_units field to struct 
+drm_sched_job. By default a jobs submission_units field would be 0 and 
+the scheduler would behave the exact same way as it does now.
 
-Known issues
-------------
+Accordingly, jobs with submission_units > 1 would contribute more than 
+one unit to the submission_unit_limit.
 
-  Here are the changes found in xe-pw-121028v2_BAT that come from known issues:
+What do you think about that?
 
-### IGT changes ###
+Besides all that, you said that filling up the ring just enough to not 
+let the HW run dry rather than filling it up entirely is desirable. Why 
+do you think so? I tend to think that in most cases it shouldn't make 
+difference.
 
-#### Issues hit ####
+- Danilo
 
-  * igt@kms_addfb_basic@invalid-set-prop-any:
-    - bat-atsm-2:         NOTRUN -> [SKIP][1] ([i915#6077]) +24 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_addfb_basic@invalid-set-prop-any.html
+> 
+> Regards,
+> Christian.
+> 
+>> Because one really is the minimum if you want to do work at all, but 
+>> as you mentioned above a job limit of one can let the ring run dry.
+>>
+>> In the end my proposal comes down to tracking the actual size of a job 
+>> rather than just assuming a pre-defined maximum job size, and hence a 
+>> dynamic job limit.
+>>
+>> I don't think this would hurt the scheduler granularity. In fact, it 
+>> should even contribute to the desire of not letting the ring run dry 
+>> even better. Especially for sequences of small jobs, where the current 
+>> implementation might wrongly assume the ring is already full although 
+>> actually there would still be enough space left.
+>>
+>>>
+>>> Christian.
+>>>
+>>>>
+>>>>>
+>>>>> Otherwise your scheduler might just overwrite the ring buffer by 
+>>>>> pushing things to fast.
+>>>>>
+>>>>> Christian.
+>>>>>
+>>>>>>
+>>>>>> Given that, it seems like it would be better to let the scheduler 
+>>>>>> keep track of empty ring "slots" instead, such that the scheduler 
+>>>>>> can deceide whether a subsequent job will still fit on the ring 
+>>>>>> and if not re-evaluate once a previous job finished. Of course 
+>>>>>> each submitted job would be required to carry the number of slots 
+>>>>>> it requires on the ring.
+>>>>>>
+>>>>>> What to you think of implementing this as alternative flow control 
+>>>>>> mechanism? Implementation wise this could be a union with the 
+>>>>>> existing hw_submission_limit.
+>>>>>>
+>>>>>> - Danilo
+>>>>>>
+>>>>>>>
+>>>>>>> A problem with this design is currently a drm_gpu_scheduler uses a
+>>>>>>> kthread for submission / job cleanup. This doesn't scale if a large
+>>>>>>> number of drm_gpu_scheduler are used. To work around the scaling 
+>>>>>>> issue,
+>>>>>>> use a worker rather than kthread for submission / job cleanup.
+>>>>>>>
+>>>>>>> v2:
+>>>>>>>    - (Rob Clark) Fix msm build
+>>>>>>>    - Pass in run work queue
+>>>>>>> v3:
+>>>>>>>    - (Boris) don't have loop in worker
+>>>>>>> v4:
+>>>>>>>    - (Tvrtko) break out submit ready, stop, start helpers into 
+>>>>>>> own patch
+>>>>>>>
+>>>>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>>>>
+>>>>>
+>>>>
+>>>
+>>
+> 
 
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
-    - bat-atsm-2:         NOTRUN -> [SKIP][2] ([Intel XE#274]) +5 similar issues
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-atsm-2:         NOTRUN -> [SKIP][3] ([Intel XE#275]) +3 similar issues
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-atsm-2:         NOTRUN -> [SKIP][4] ([Intel XE#277]) +2 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-atsm-2:         NOTRUN -> [SKIP][5] ([i915#1836]) +6 similar issues
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  * igt@kms_prop_blob@basic:
-    - bat-atsm-2:         NOTRUN -> [SKIP][6] ([Intel XE#273])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_prop_blob@basic.html
-
-  * igt@kms_psr@sprite_plane_onoff:
-    - bat-atsm-2:         NOTRUN -> [SKIP][7] ([i915#1072]) +2 similar issues
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_psr@sprite_plane_onoff.html
-
-  * igt@xe_compute@compute-square:
-    - bat-atsm-2:         NOTRUN -> [SKIP][8] ([Intel XE#252])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@xe_compute@compute-square.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:
-    - bat-atsm-2:         NOTRUN -> [SKIP][9] ([Intel XE#288]) +17 similar issues
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
-
-  * igt@xe_huc_copy@huc_copy:
-    - bat-atsm-2:         NOTRUN -> [SKIP][10] ([Intel XE#255])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
-
-  * igt@xe_live_ktest@dmabuf:
-    - bat-atsm-2:         NOTRUN -> [SKIP][11] ([Intel XE#483]) +2 similar issues
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@xe_live_ktest@dmabuf.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#252]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/252
-  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
-  [Intel XE#273]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/273
-  [Intel XE#274]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/274
-  [Intel XE#275]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/275
-  [Intel XE#277]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/277
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/483
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
-  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
-
-
-Build changes
--------------
-
-  * IGT: IGT_7441 -> IGT_7442
-  * Linux: xe-325-c605cfb9a29a5425541053b45efddbe9751cbad3 -> xe-pw-121028v2
-
-  IGT_7441: 152bb04fd1297075b5d0b1c4487dac8e9a70d070 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7442: f6eea5a02525d62d10596408d1175c83d6f4038e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-325-c605cfb9a29a5425541053b45efddbe9751cbad3: c605cfb9a29a5425541053b45efddbe9751cbad3
-  xe-pw-121028v2: 121028v2
-
-
-
---===============7869744255607923343==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pvc: Add Wa_16017236439 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121028/">https://patchwork.freedesktop.org/series/121028/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-325-c605cfb9a29a5425541053b45efddbe9751cbad3_BAT -&gt; xe-pw-121028v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 2)</h2>
-<p>Additional (1): bat-atsm-2 <br />
-  Missing    (1): bat-dg2-oem2 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-121028v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@invalid-set-prop-any:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_addfb_basic@invalid-set-prop-any.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6077">i915#6077</a>) +24 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/274">Intel XE#274</a>) +5 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_flip@basic-flip-vs-wf_vblank.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/275">Intel XE#275</a>) +3 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/277">Intel XE#277</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1836">i915#1836</a>) +6 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_prop_blob@basic:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/273">Intel XE#273</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@sprite_plane_onoff:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@kms_psr@sprite_plane_onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_compute@compute-square:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@xe_compute@compute-square.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/252">Intel XE#252</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +17 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_huc_copy@huc_copy:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@dmabuf:</p>
-<ul>
-<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121028v2/bat-atsm-2/igt@xe_live_ktest@dmabuf.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/483">Intel XE#483</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7441 -&gt; IGT_7442</li>
-<li>Linux: xe-325-c605cfb9a29a5425541053b45efddbe9751cbad3 -&gt; xe-pw-121028v2</li>
-</ul>
-<p>IGT_7441: 152bb04fd1297075b5d0b1c4487dac8e9a70d070 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7442: f6eea5a02525d62d10596408d1175c83d6f4038e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-325-c605cfb9a29a5425541053b45efddbe9751cbad3: c605cfb9a29a5425541053b45efddbe9751cbad3<br />
-  xe-pw-121028v2: 121028v2</p>
-
-</body>
-</html>
-
---===============7869744255607923343==--
