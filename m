@@ -4,69 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02878C2FC20
-	for <intel-xe@archiver.kernel.org>; Thu, 17 Aug 2023 13:10:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66B71C2FC27
+	for <intel-xe@archiver.kernel.org>; Thu, 17 Aug 2023 13:36:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80C4F10E47C;
-	Thu, 17 Aug 2023 13:10:40 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5057010E47B
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Aug 2023 13:10:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1692277837;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=8d4T8ggQVz0JS0aLTofSvYRi5nLFyyyB50mPYGtURrM=;
- b=cBXUtsReZemSEKHp2pplQri2S9x6CBvqDtgzaAFq8o+hG65b/vJwL5XgPGJuG70TFjGsKc
- 8NpEl/BrEa0XFn2SENvwf7UHVyDffsq+Us+gdxsGgnQ0v/t5MpPEEfv5QOPgzW0ZFTMb0E
- mQ8BRcEAI9GI2GI9d7r2KYYUXRU8o0k=
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
- [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-219-uezWIIIjPP-Yktl-f67bSQ-1; Thu, 17 Aug 2023 09:10:35 -0400
-X-MC-Unique: uezWIIIjPP-Yktl-f67bSQ-1
-Received: by mail-ej1-f70.google.com with SMTP id
- a640c23a62f3a-94a34a0b75eso453618566b.1
- for <intel-xe@lists.freedesktop.org>; Thu, 17 Aug 2023 06:10:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692277834; x=1692882634;
- h=content-transfer-encoding:in-reply-to:organization:from:references
- :cc:to:content-language:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=8d4T8ggQVz0JS0aLTofSvYRi5nLFyyyB50mPYGtURrM=;
- b=FTrhzotOdh/TbmmkSBPV7mKAyt295N7VF2NbW9Vxik/N3R1KolTC619LqgNoBADyXE
- yWP0H5OwYqBzPcrgd8inVPJ63YjYoL3R5bF0mgDqR1Gr3RHHwD3hyIjksYXeBDnXNc0I
- Or+neYkY5CUB8z14X1AP67c0xSuiO1eos1PfFRNNHZ/fxhOnyEpt3ZBGhy195I2OQJSk
- lETVV2j+3243RtAl8eQ5jHmXAWyjuKRsrLwKWpI7CnyVqAKL/7adiOVxT4kW8bdihbcJ
- IAN825WaOtnwhPxDWaUQ++RLy+syVOw4GRXBZ8jQqDNRT3OyNWvfbdRSEPYwxUmcV3RU
- v7ig==
-X-Gm-Message-State: AOJu0YwZ5ETYzc0KNfMi6S7E0SnIxfcn6f2n+3nm0s3VpM3Lvp7zwpT+
- Sz9NcoPfp0jw1yj3eK0b9ke67FpLdSFmV2iSSvKCJHMI1QXuqY8jnvWhrbhm5PglrbK9IZMbnH/
- qT9bbRnG+xj2codeoEoEsMHsqbwo=
-X-Received: by 2002:a17:906:23ea:b0:993:f540:5bb1 with SMTP id
- j10-20020a17090623ea00b00993f5405bb1mr3982437ejg.41.1692277834659; 
- Thu, 17 Aug 2023 06:10:34 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHV4RYxoTYVs2qAvxQUsM3IB0T+IINExykiB9B8NaeMCnTR0+pmY01uJJO2KOkUgtTkl5kvew==
-X-Received: by 2002:a17:906:23ea:b0:993:f540:5bb1 with SMTP id
- j10-20020a17090623ea00b00993f5405bb1mr3982410ejg.41.1692277834244; 
- Thu, 17 Aug 2023 06:10:34 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
- ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
- by smtp.gmail.com with ESMTPSA id
- pw13-20020a17090720ad00b0099bc8bd9066sm10076623ejb.150.2023.08.17.06.10.32
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 17 Aug 2023 06:10:33 -0700 (PDT)
-Message-ID: <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
-Date: Thu, 17 Aug 2023 13:13:31 +0200
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F76310E47D;
+	Thu, 17 Aug 2023 13:36:04 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2042.outbound.protection.outlook.com [40.107.93.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CAD6610E46D;
+ Thu, 17 Aug 2023 13:36:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L+tnJmPozcyeJUxH9HCHbTH3bXYAGbQE/Ov7glr0aP9Hpt3VeK/tGXCImKQ/7uEjok1MVQogEI5h7FbbTjNyWjPCjhtxfVMhopydMm7CMIlWY9/Azj/zpRS1Mcj1JHztXfBR/tTLhRJVjzHV/K6gVP9IeV+TDV/A6pzXJe/kqEPD1iv4waHv+5hP4m8QQi8RUCkzPtrB5TMikVaq5aXBCOr4ATGquBK5b6Vp9eE0kvFQ/N675lmsWnVMAi5CIgXoeFHfQJNO7bj7rMFGX6aL9xHtuGljrRj2BC718Oke3pje5G8FimI1cxx8sUcoEFkPQ/1AUxcaBArMQAMi6pcHSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=A6O3nMLtx/j4E4+rjTfCSw3bY4+zi4LZ2VjqsV2a7kI=;
+ b=WV7KuW8a/SRmuCvCANfViaAC9Cw6aQLTzYXHQrnMvSacwP+mpXXYHlYGaqFmuUdSvJ8t/YEeSJ+OexKEE0yX+UB3ehy7ogo9f8qp9F3Z7Fg+XvnZYtf3jo2RcAKfZP/cWAzEvKONrJM+g6NeWy7Cv19kY0OAx7sc1TE5KBukvt/2hqqPshF4TovHHwVJHumHgpY8KZqp1SzSKoMRuhJj3EulUuEsq8BFLg4fI1DepMwBdzANC4fL84pJQlbxcGq7swc3fOYYP8BkxtSgtEID/tCmSD68q/f7kT8ijheR/dveoGyCqZOuxGJ/vqgZkdx0MS6iYfQ2AxvVuvxRrrP+sQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=A6O3nMLtx/j4E4+rjTfCSw3bY4+zi4LZ2VjqsV2a7kI=;
+ b=SXgOUP6bUvDOjSFkUePtO2DQStK7wsoFHJwaABz5ucMEw5dDb82YcGPiQopXZqrY4xwgOpDXmev7JNx3fvJuVVU2hPo5/7bqTh1a2j9qgYeDcgTDsT93bSOcvPIAKX+nSTPRqZ2k0BWOSKEB4pnwYM7xQ6NkmResvsCmTvFXMfA=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by SN7PR12MB8132.namprd12.prod.outlook.com (2603:10b6:806:321::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.26; Thu, 17 Aug
+ 2023 13:35:58 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::3d:c14:667a:1c81]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::3d:c14:667a:1c81%4]) with mapi id 15.20.6678.031; Thu, 17 Aug 2023
+ 13:35:58 +0000
+Message-ID: <ef4d2c78-6927-3d3b-7aac-27d013af7ea6@amd.com>
+Date: Thu, 17 Aug 2023 15:35:51 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>
+Content-Language: en-US
+To: Danilo Krummrich <dakr@redhat.com>, Matthew Brost <matthew.brost@intel.com>
 References: <20230811023137.659037-1-matthew.brost@intel.com>
  <20230811023137.659037-2-matthew.brost@intel.com>
  <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
@@ -75,14 +52,73 @@ References: <20230811023137.659037-1-matthew.brost@intel.com>
  <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
  <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
  <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
-From: Danilo Krummrich <dakr@redhat.com>
-Organization: RedHat
-In-Reply-To: <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
+ <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR2P281CA0105.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:9c::17) To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|SN7PR12MB8132:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0517187f-39be-4c85-f015-08db9f26e384
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Rf9ceO0hWJ2KW7PjOLGFM/mXQdWEXnq2vS0IJmCPTbrPYgz+QBNBFyi/DnJtktX0qwAKz2HxVRpGui/Gy638ODBQmXnkIMZuj32uczWWeI8wtVMyaS8LQ+/nf78r4ddheED7pOxoo/2PUAPUrXj7feNNT2UGc4WIjMZpX1mRQvO4pALBBxvsatiqpmJeuZHkOvdnNwd7p0PP3FjGj0bp7qkNIBdr9wiP/BTid7/6O6d+cdAw8We72TtzaV+09SwfWh+mPf1dPwY3ubX8vy/M+63MS2esrpdjHHq3yaPpPq/gyqXYnxCWKHY3Jlrrr93YZQsHvew5nef4AcWz6++GnGgsyNNvuzX3p27oj/yWOiDfPrwlb1YMtIPNXNQSPZ56+Yq51Y6+XIWjXEMQCvaMwNgvWe/OrLE6cin0wg4O1Bt9xLAa+GIe3tcECWapp9dfi5lv2S+dEetGIDwbu6zPJZkx5nXoTvs+9UrGDEUUdgu3RBleDGHklcMyREHjyv1Y1uUTES/3McwL3oerWDvePnvqBkk0/WVxz51FVzBDVVyOCeiD1HbjBCSsw3iZuC6aV/vqDkVNIgFdvkc9gA1KUMxIPZGVacPEUbCm1F4W3/4PJC+u6+y1zPHyufmPzxHDjXznXfkkKW+cRC4d6/QYCA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(396003)(346002)(136003)(376002)(366004)(451199024)(186009)(1800799009)(316002)(110136005)(66946007)(66476007)(66556008)(31686004)(5660300002)(41300700001)(66574015)(38100700002)(8676002)(8936002)(4326008)(26005)(2906002)(31696002)(83380400001)(478600001)(7416002)(86362001)(53546011)(6512007)(6506007)(36756003)(6666004)(6486002)(2616005)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SkRoNkZmNHVsL3c2alZEUHRha09MVDFnaXlybEUzemVqOGswQi91cHAyZDdK?=
+ =?utf-8?B?V0QyL2RoWFB1NS9tTWJrcE9IOTZjNXV5YWJwVUZFQlllRy9YV2dPYVpNRVV5?=
+ =?utf-8?B?WmczOEhENmNVbVQ3LzF5ZkJXN0hKM0xKNmtER1ZTUW1WL3p2TEJyenFrQkEx?=
+ =?utf-8?B?V2J2dHZQdXJUTDhWbXJBb1QrMGRoTi8rYndDTjUzZzBtV1JCTUhoN0xOZk1R?=
+ =?utf-8?B?RENyK3d5NkJPZ0UzeWlVMWpqMHJaRU94UnJmTUN3MVUvckY3Tmk2Ky9yWmFD?=
+ =?utf-8?B?TTNhMStvelIvYXh2WlhRTk1uM3JWOGNPSWs1WVVnUFp0bzZaU2IrUEw5U3hl?=
+ =?utf-8?B?V2c2MU1oaXFadWxUdjQzblJMenZCdndXTFppYy9LWWhESmxES1paU2xrSkth?=
+ =?utf-8?B?UVRXdE9PNmkrano1em85NHltUS9XSlhabmtOL1dVZjNQSi9aMHdhQmlzcVE1?=
+ =?utf-8?B?NHp4bXdxWkF3TjlhMWZ0TlRCaTR0c2JxNVBWZEp3VjdxeGp6UTdCRVZiWXE3?=
+ =?utf-8?B?Qk4vWGhvZm5EajU0OTl2TmZ1YjRQQTF0Z1JkOGp1VmFRKzI2bytITi8xUURh?=
+ =?utf-8?B?ZmQ4NnNORjU1bG5hOHFsQjVyK3QvWjQrbFRQclMzNWNwOVB1ZUQ3Z0RVVlhr?=
+ =?utf-8?B?RmlvMG5XTFVNS29iU2pESnNuRkF4TjVuVmsva2pGUnozY1ZVczJBNUJCYmk2?=
+ =?utf-8?B?WktvalRSL3l4SnprbFQ4eWNVYWhicG1XZUVac3ZWM3R1c2tFd29QK3h6VDNQ?=
+ =?utf-8?B?d0w1ZGhiQ2kyRmlDdXo0L2taU1duR3RYKzVPelFUcndFZThuQk9ScHZac0xB?=
+ =?utf-8?B?SlJWODdtTGVYZzBPMkJ2WjM2cC9SVTVxWkdzRWcvL1dlY09NbWp3QWJmQkdj?=
+ =?utf-8?B?U3dFRHBiR0Z3QnhaaWpiUHdwY1ErdG1OTHVrQjJ6SmZGV0Z0QUJ2MlVpMEx1?=
+ =?utf-8?B?TWF2U2I1ck5SVmN5aFVDYW9IZjlQeE90RXVRWjZmNGZuNzhEMnJjTnF6eFc3?=
+ =?utf-8?B?c1FodmhkRElIV24yV3BMQ0NMWEZQWUJCQitsVUp1Qno5RkxUc1lTbEJ6S1ZF?=
+ =?utf-8?B?cUdPRzVCQ1RNUXVNQUpOcG1aTmJVVTNTUVNMOEEyVSsxamdCRXdzU0NVeDRV?=
+ =?utf-8?B?Tm9nN2kvNkF6Nll1KzZKM0xzZDlHREVvcjZuWmhqUVRDaEZzSE1RNnpjbnd2?=
+ =?utf-8?B?RW9aOWlZai9aSTA2TzN2OFJ6OC85eGhKUlRwTC8wLzRqdWlyTm1aNTcyMHIz?=
+ =?utf-8?B?NVUreWE1NERic20zcHNjUnFySzVVN0t3cndwMEpETjlIZG5jNFJoNzh6ZWtr?=
+ =?utf-8?B?SDJsR3JRLzBsSEtFcUhJYlhmVXlGREoxZjExUGIyNEYxbUVBcmorcGcwYmVu?=
+ =?utf-8?B?YUtscHZ1ZlU1Vnh6OWtlNk1RZnZZelBPQWQ5cEs4eWtGZE5IYTlzekNZdG9G?=
+ =?utf-8?B?Yk8vK1NBeE16aTk4Zm9ucWorb3A3OVozdlU3cjJVbEFiNitRNE5nQmI2NGZl?=
+ =?utf-8?B?dExhbFJVb1pJUkJHc1N6N0EvU3FQYlhUUHNkcjVORm1yOTg4YUdKT044c3Fw?=
+ =?utf-8?B?QjZRUWxqVnUydVlTT1JEcERPajVMbHBKZjNSOUMxd2QrM3N0YVBCK0dpRXln?=
+ =?utf-8?B?UUpIM0JKdkRUZmxNejZWcndESUVFMVgrVU1ZR0o2ZkFCM0R4aEZTdGJzd2Qv?=
+ =?utf-8?B?YmtPMGh2cEJJdFRSemxtUXdqenk3aVFpRVR6d0xseWJGblZtVGxWeUxqSnFS?=
+ =?utf-8?B?RjJNUlZWZzZRUUJjaWxvMDNSK0dOMU1PMjFya3lQYUpHTjVFRTlINHhoN3Rr?=
+ =?utf-8?B?eStsdmtWSithQ2FzeGtPZFoxeWpqdmVyV2RzVHcyUmJtZy9WQWZ0SCtaTWVD?=
+ =?utf-8?B?dXE2SmxMY1Q0YU5pYkZ1QWhRYmMycjNTczBmbmJCSFRSaUhwczNsWW5iUjl4?=
+ =?utf-8?B?Zmx6Y0ZOaUkrVG1iM01EbURPdlFmK0E4MndKSnFFcXJjSkNCYUxqQWY1aStN?=
+ =?utf-8?B?a0pybUgvRGo3TytuRTBzY2kwVVBMVjVDcjNHcmN5UjJrZmM2TlJGelFjU2pY?=
+ =?utf-8?B?NndFOGV0dDdqRmx0S2F3b1ZvMUtFZmZsaS9RSEZjMjRKc216Q1VsVlh3eHRw?=
+ =?utf-8?Q?pI4u7iAAghtNhERRCB4XJB9AO?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0517187f-39be-4c85-f015-08db9f26e384
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Aug 2023 13:35:58.0228 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4fMXjdDnQq99IYrRhe30OW29lsdEGZwg+j0h61yjKcVEFs7he72WMeLuvIzlqfDm
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8132
 Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
  use a work queue rather than kthread
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -103,218 +139,159 @@ Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 8/17/23 07:33, Christian König wrote:
-> Am 16.08.23 um 18:33 schrieb Danilo Krummrich:
->> On 8/16/23 16:59, Christian König wrote:
->>> Am 16.08.23 um 14:30 schrieb Danilo Krummrich:
->>>> On 8/16/23 16:05, Christian König wrote:
->>>>> Am 16.08.23 um 13:30 schrieb Danilo Krummrich:
->>>>>> Hi Matt,
->>>>>>
->>>>>> On 8/11/23 04:31, Matthew Brost wrote:
->>>>>>> In XE, the new Intel GPU driver, a choice has made to have a 1 to 1
->>>>>>> mapping between a drm_gpu_scheduler and drm_sched_entity. At 
->>>>>>> first this
->>>>>>> seems a bit odd but let us explain the reasoning below.
->>>>>>>
->>>>>>> 1. In XE the submission order from multiple drm_sched_entity is not
->>>>>>> guaranteed to be the same completion even if targeting the same 
->>>>>>> hardware
->>>>>>> engine. This is because in XE we have a firmware scheduler, the GuC,
->>>>>>> which allowed to reorder, timeslice, and preempt submissions. If 
->>>>>>> a using
->>>>>>> shared drm_gpu_scheduler across multiple drm_sched_entity, the 
->>>>>>> TDR falls
->>>>>>> apart as the TDR expects submission order == completion order. 
->>>>>>> Using a
->>>>>>> dedicated drm_gpu_scheduler per drm_sched_entity solve this problem.
->>>>>>>
->>>>>>> 2. In XE submissions are done via programming a ring buffer 
->>>>>>> (circular
->>>>>>> buffer), a drm_gpu_scheduler provides a limit on number of jobs, 
->>>>>>> if the
->>>>>>> limit of number jobs is set to RING_SIZE / MAX_SIZE_PER_JOB we 
->>>>>>> get flow
->>>>>>> control on the ring for free.
->>>>>>
->>>>>> In XE, where does the limitation of MAX_SIZE_PER_JOB come from?
->>>>>>
->>>>>> In Nouveau we currently do have such a limitation as well, but it 
->>>>>> is derived from the RING_SIZE, hence RING_SIZE / MAX_SIZE_PER_JOB 
->>>>>> would always be 1. However, I think most jobs won't actually 
->>>>>> utilize the whole ring.
->>>>>
->>>>> Well that should probably rather be RING_SIZE / MAX_SIZE_PER_JOB = 
->>>>> hw_submission_limit (or even hw_submission_limit - 1 when the hw 
->>>>> can't distinct full vs empty ring buffer).
->>>>
->>>> Not sure if I get you right, let me try to clarify what I was trying 
->>>> to say: I wanted to say that in Nouveau MAX_SIZE_PER_JOB isn't 
->>>> really limited by anything other than the RING_SIZE and hence we'd 
->>>> never allow more than 1 active job.
+Am 17.08.23 um 13:13 schrieb Danilo Krummrich:
+> On 8/17/23 07:33, Christian König wrote:
+>> [SNIP]
+>> The hardware seems to work mostly the same for all vendors, but you 
+>> somehow seem to think that filling the ring is somehow beneficial 
+>> which is really not the case as far as I can see.
+>
+> I think that's a misunderstanding. I'm not trying to say that it is 
+> *always* beneficial to fill up the ring as much as possible. But I 
+> think it is under certain circumstances, exactly those circumstances I 
+> described for Nouveau.
+
+As far as I can see this is not correct for Nouveau either.
+
+>
+> As mentioned, in Nouveau the size of a job is only really limited by 
+> the ring size, which means that one job can (but does not necessarily) 
+> fill up the whole ring. We both agree that this is inefficient, 
+> because it potentially results into the HW run dry due to 
+> hw_submission_limit == 1.
+>
+> I recognize you said that one should define hw_submission_limit and 
+> adjust the other parts of the equation accordingly, the options I see 
+> are:
+>
+> (1) Increase the ring size while keeping the maximum job size.
+> (2) Decrease the maximum job size while keeping the ring size.
+> (3) Let the scheduler track the actual job size rather than the 
+> maximum job size.
+>
+> (1) results into potentially wasted ring memory, because we're not 
+> always reaching the maximum job size, but the scheduler assumes so.
+>
+> (2) results into more IOCTLs from userspace for the same amount of IBs 
+> and more jobs result into more memory allocations and more work being 
+> submitted to the workqueue (with Matt's patches).
+>
+> (3) doesn't seem to have any of those draw backs.
+>
+> What would be your take on that?
+>
+> Actually, if none of the other drivers is interested into a more 
+> precise way of keeping track of the ring utilization, I'd be totally 
+> fine to do it in a driver specific way. However, unfortunately I don't 
+> see how this would be possible.
+>
+> My proposal would be to just keep the hw_submission_limit (maybe 
+> rename it to submission_unit_limit) and add a submission_units field 
+> to struct drm_sched_job. By default a jobs submission_units field 
+> would be 0 and the scheduler would behave the exact same way as it 
+> does now.
+>
+> Accordingly, jobs with submission_units > 1 would contribute more than 
+> one unit to the submission_unit_limit.
+>
+> What do you think about that?
+
+I think you are approaching this from the completely wrong side.
+
+See the UAPI needs to be stable, so you need a maximum job size 
+otherwise it can happen that a combination of large and small 
+submissions work while a different combination doesn't.
+
+So what you usually do, and this is driver independent because simply a 
+requirement of the UAPI, is that you say here that's my maximum job size 
+as well as the number of submission which should be pushed to the hw at 
+the same time. And then get the resulting ring size by the product of 
+the two.
+
+That the ring in this use case can't be fully utilized is not a draw 
+back, this is completely intentional design which should apply to all 
+drivers independent of the vendor.
+
+>
+> Besides all that, you said that filling up the ring just enough to not 
+> let the HW run dry rather than filling it up entirely is desirable. 
+> Why do you think so? I tend to think that in most cases it shouldn't 
+> make difference.
+
+That results in better scheduling behavior. It's mostly beneficial if 
+you don't have a hw scheduler, but as far as I can see there is no need 
+to pump everything to the hw as fast as possible.
+
+Regards,
+Christian.
+
+>
+> - Danilo
+>
+>>
+>> Regards,
+>> Christian.
+>>
+>>> Because one really is the minimum if you want to do work at all, but 
+>>> as you mentioned above a job limit of one can let the ring run dry.
 >>>
->>> But that lets the hw run dry between submissions. That is usually a 
->>> pretty horrible idea for performance.
->>
->> Correct, that's the reason why I said it seems to be more efficient to 
->> base ring flow control on the actual size of each incoming job rather 
->> than the maximum size of a job.
->>
+>>> In the end my proposal comes down to tracking the actual size of a 
+>>> job rather than just assuming a pre-defined maximum job size, and 
+>>> hence a dynamic job limit.
 >>>
->>>>
->>>> However, it seems to be more efficient to base ring flow control on 
->>>> the actual size of each incoming job rather than the worst case, 
->>>> namely the maximum size of a job.
->>>
->>> That doesn't sounds like a good idea to me. See we don't limit the 
->>> number of submitted jobs based on the ring size, but rather we 
->>> calculate the ring size based on the number of submitted jobs.
->>>
->>
->> My point isn't really about whether we derive the ring size from the 
->> job limit or the other way around. It's more about the job size (or 
->> its maximum size) being arbitrary.
->>
->> As mentioned in my reply to Matt:
->>
->> "In Nouveau, userspace can submit an arbitrary amount of addresses of 
->> indirect bufferes containing the ring instructions. The ring on the 
->> kernel side takes the addresses of the indirect buffers rather than 
->> the instructions themself. Hence, technically there isn't really a 
->> limit on the amount of IBs submitted by a job except for the ring size."
->>
->> So, my point is that I don't really want to limit the job size 
->> artificially just to be able to fit multiple jobs into the ring even 
->> if they're submitted at their "artificial" maximum size, but rather 
->> track how much of the ring the submitted job actually occupies.
->>
->>> In other words the hw_submission_limit defines the ring size, not the 
->>> other way around. And you usually want the hw_submission_limit as low 
->>> as possible for good scheduler granularity and to avoid extra overhead.
->>
->> I don't think you really mean "as low as possible", do you?
-> 
-> No, I do mean as low as possible or in other words as few as possible.
-> 
-> Ideally the scheduler would submit only the minimum amount of work to 
-> the hardware to keep the hardware busy. >
-> The hardware seems to work mostly the same for all vendors, but you 
-> somehow seem to think that filling the ring is somehow beneficial which 
-> is really not the case as far as I can see.
-
-I think that's a misunderstanding. I'm not trying to say that it is 
-*always* beneficial to fill up the ring as much as possible. But I think 
-it is under certain circumstances, exactly those circumstances I 
-described for Nouveau.
-
-As mentioned, in Nouveau the size of a job is only really limited by the 
-ring size, which means that one job can (but does not necessarily) fill 
-up the whole ring. We both agree that this is inefficient, because it 
-potentially results into the HW run dry due to hw_submission_limit == 1.
-
-I recognize you said that one should define hw_submission_limit and 
-adjust the other parts of the equation accordingly, the options I see are:
-
-(1) Increase the ring size while keeping the maximum job size.
-(2) Decrease the maximum job size while keeping the ring size.
-(3) Let the scheduler track the actual job size rather than the maximum 
-job size.
-
-(1) results into potentially wasted ring memory, because we're not 
-always reaching the maximum job size, but the scheduler assumes so.
-
-(2) results into more IOCTLs from userspace for the same amount of IBs 
-and more jobs result into more memory allocations and more work being 
-submitted to the workqueue (with Matt's patches).
-
-(3) doesn't seem to have any of those draw backs.
-
-What would be your take on that?
-
-Actually, if none of the other drivers is interested into a more precise 
-way of keeping track of the ring utilization, I'd be totally fine to do 
-it in a driver specific way. However, unfortunately I don't see how this 
-would be possible.
-
-My proposal would be to just keep the hw_submission_limit (maybe rename 
-it to submission_unit_limit) and add a submission_units field to struct 
-drm_sched_job. By default a jobs submission_units field would be 0 and 
-the scheduler would behave the exact same way as it does now.
-
-Accordingly, jobs with submission_units > 1 would contribute more than 
-one unit to the submission_unit_limit.
-
-What do you think about that?
-
-Besides all that, you said that filling up the ring just enough to not 
-let the HW run dry rather than filling it up entirely is desirable. Why 
-do you think so? I tend to think that in most cases it shouldn't make 
-difference.
-
-- Danilo
-
-> 
-> Regards,
-> Christian.
-> 
->> Because one really is the minimum if you want to do work at all, but 
->> as you mentioned above a job limit of one can let the ring run dry.
->>
->> In the end my proposal comes down to tracking the actual size of a job 
->> rather than just assuming a pre-defined maximum job size, and hence a 
->> dynamic job limit.
->>
->> I don't think this would hurt the scheduler granularity. In fact, it 
->> should even contribute to the desire of not letting the ring run dry 
->> even better. Especially for sequences of small jobs, where the current 
->> implementation might wrongly assume the ring is already full although 
->> actually there would still be enough space left.
->>
->>>
->>> Christian.
+>>> I don't think this would hurt the scheduler granularity. In fact, it 
+>>> should even contribute to the desire of not letting the ring run dry 
+>>> even better. Especially for sequences of small jobs, where the 
+>>> current implementation might wrongly assume the ring is already full 
+>>> although actually there would still be enough space left.
 >>>
 >>>>
->>>>>
->>>>> Otherwise your scheduler might just overwrite the ring buffer by 
->>>>> pushing things to fast.
->>>>>
->>>>> Christian.
+>>>> Christian.
+>>>>
 >>>>>
 >>>>>>
->>>>>> Given that, it seems like it would be better to let the scheduler 
->>>>>> keep track of empty ring "slots" instead, such that the scheduler 
->>>>>> can deceide whether a subsequent job will still fit on the ring 
->>>>>> and if not re-evaluate once a previous job finished. Of course 
->>>>>> each submitted job would be required to carry the number of slots 
->>>>>> it requires on the ring.
+>>>>>> Otherwise your scheduler might just overwrite the ring buffer by 
+>>>>>> pushing things to fast.
 >>>>>>
->>>>>> What to you think of implementing this as alternative flow control 
->>>>>> mechanism? Implementation wise this could be a union with the 
->>>>>> existing hw_submission_limit.
->>>>>>
->>>>>> - Danilo
+>>>>>> Christian.
 >>>>>>
 >>>>>>>
->>>>>>> A problem with this design is currently a drm_gpu_scheduler uses a
->>>>>>> kthread for submission / job cleanup. This doesn't scale if a large
->>>>>>> number of drm_gpu_scheduler are used. To work around the scaling 
->>>>>>> issue,
->>>>>>> use a worker rather than kthread for submission / job cleanup.
+>>>>>>> Given that, it seems like it would be better to let the 
+>>>>>>> scheduler keep track of empty ring "slots" instead, such that 
+>>>>>>> the scheduler can deceide whether a subsequent job will still 
+>>>>>>> fit on the ring and if not re-evaluate once a previous job 
+>>>>>>> finished. Of course each submitted job would be required to 
+>>>>>>> carry the number of slots it requires on the ring.
 >>>>>>>
->>>>>>> v2:
->>>>>>>    - (Rob Clark) Fix msm build
->>>>>>>    - Pass in run work queue
->>>>>>> v3:
->>>>>>>    - (Boris) don't have loop in worker
->>>>>>> v4:
->>>>>>>    - (Tvrtko) break out submit ready, stop, start helpers into 
->>>>>>> own patch
+>>>>>>> What to you think of implementing this as alternative flow 
+>>>>>>> control mechanism? Implementation wise this could be a union 
+>>>>>>> with the existing hw_submission_limit.
 >>>>>>>
->>>>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>>>>> - Danilo
+>>>>>>>
+>>>>>>>>
+>>>>>>>> A problem with this design is currently a drm_gpu_scheduler uses a
+>>>>>>>> kthread for submission / job cleanup. This doesn't scale if a 
+>>>>>>>> large
+>>>>>>>> number of drm_gpu_scheduler are used. To work around the 
+>>>>>>>> scaling issue,
+>>>>>>>> use a worker rather than kthread for submission / job cleanup.
+>>>>>>>>
+>>>>>>>> v2:
+>>>>>>>>    - (Rob Clark) Fix msm build
+>>>>>>>>    - Pass in run work queue
+>>>>>>>> v3:
+>>>>>>>>    - (Boris) don't have loop in worker
+>>>>>>>> v4:
+>>>>>>>>    - (Tvrtko) break out submit ready, stop, start helpers into 
+>>>>>>>> own patch
+>>>>>>>>
+>>>>>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>>>>>
 >>>>>>
 >>>>>
 >>>>
 >>>
 >>
-> 
+>
 
