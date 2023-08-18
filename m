@@ -4,139 +4,91 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A691C71144
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Aug 2023 13:14:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D2B7C71147
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Aug 2023 13:31:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A0C910E04E;
-	Fri, 18 Aug 2023 13:14:56 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB09B10E04E;
- Fri, 18 Aug 2023 13:14:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692364494; x=1723900494;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=Z9BPhQH7VsZlyb/zpKWAFakABZCGACVF599mhwITqZg=;
- b=Ko7DBU44R1iQr+zENyI12ejk0bgIfuE6M96fZCvqq+JYL78P3C9qgEED
- 2sz+s7mfigEJOltE9MMpn0L3rzW9j1sPg++6E9kk2PsIneNzTfm3bdUxY
- vC2naK1eUae1Bu80O7GPYMQb4FQ3YJuNaqd6WlLjbrdfZAKGs/x7Ef183
- ChlbAbQIkdEE7wLlQbvK2e7tO8oSAul9Iwd2WQKGB/KQ5v0QORZ91FBjq
- OvtHYD+OVIa0j8bJvgkQLX04kZwlh2GOzkBxPXPCT/CtrsoNWpBCP5Mvm
- 1xVdYrPU6xwEcLyO+1P2Fc1ooamiEflYqNeOeKpg0Yj6f9XbLz8gdUqDB w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="353401174"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="353401174"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2023 06:14:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="684889729"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="684889729"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga003.jf.intel.com with ESMTP; 18 Aug 2023 06:14:35 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 18 Aug 2023 06:14:34 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Fri, 18 Aug 2023 06:14:34 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.170)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Fri, 18 Aug 2023 06:14:34 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bmH0ny04qVJf+hHB7mC6K/EAIfEihPZyP10W5/JNQYeTLJgyphr3a8vxWs7/mYwrFcFvoEmHMlS15ys12ZrvCr3ni+XxuTxeiwhmWWQWNiz5HDgzIle0NS+dx4cQJy6JD3aAapKGbMP9EpSkBbFIUjP6os0II6BRWnNmFtoTFN29ZScMlJtyq82FVG2NrnMpg3c3JjwJUbz5XueqiZa5QAYGZxNk1XJAWJ/fNL3fT75QIM1dmKXjHkFjxLmDmluaqc9bitdXzbG7UBljEGAVOihef787vS7qaA1AkqF+EPFYLad3o3rymSBwKlacO2o6RT4p6WKQ6JUTJK+OzINSYA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GlEtdLLX4lTrWJH8tF+/ht8OXifQ4epdZju+ESzyK5s=;
- b=HrtDKeuE9FzX6Wm5BZNV3TezOGvrMWfmisKC4llJMRqW3fJrT5WU2KZr2TPGazuIJXAlAw83+XPTAMAtghD6tCc+XiH+DQg+py0D8pWfI/F+6hJUienSlwdSkII/pTEOALE05VZG17E7t2X/puYRfQqJYUVDYTJUnzu0Fv6Y+flUzVIhR8TQouW7wTdivSd6ulBpPap3NrlrIZYOi5kqGBj6OnEdVAKHBn3KCTVzD5oXiYt9IJXIjT/4GMncSeYHCBAZfZNJcYMBYa/lh4rX96LCs38MUm4hQol2+/00DYoNTOAtFOmTZrc6LgGoX64sAn0s/LOk/kOgdzVwEYrF/Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SA3PR11MB7978.namprd11.prod.outlook.com (2603:10b6:806:2fa::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.31; Fri, 18 Aug
- 2023 13:14:32 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::b429:ee19:a001:eb69]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::b429:ee19:a001:eb69%5]) with mapi id 15.20.6678.031; Fri, 18 Aug 2023
- 13:14:32 +0000
-Date: Fri, 18 Aug 2023 13:13:34 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Message-ID: <ZN9ufogOQm4xblxm@DUT025-TGLU.fm.intel.com>
-References: <20230811023137.659037-1-matthew.brost@intel.com>
- <20230811023137.659037-5-matthew.brost@intel.com>
- <f6b7c246-fd87-a853-b7c4-e2c1b6727a93@amd.com>
- <ZN5exv1IWJtKL1nJ@DUT025-TGLU.fm.intel.com>
- <9f6554fd-8748-2613-1c90-921b670ad4d9@amd.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9f6554fd-8748-2613-1c90-921b670ad4d9@amd.com>
-X-ClientProxiedBy: BYAPR05CA0077.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::18) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E17B310E516;
+	Fri, 18 Aug 2023 13:31:37 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1378B10E516
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Aug 2023 13:31:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1692365494;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3s//y+IyfbwkZGkF6S0djbBdJ44isVJor+2j/oRDSAg=;
+ b=Zp9dS09W7Fo0JsbkDNlxNTrERo4UPUn/gvHckoMX4krT2ie6iJYRDhg3TsNYeBjzanBM0q
+ gS6ur1FjOAempOKI8At3HN13pwLzv4eOW+58AKlP/GdUoSlGIXVJcObtPv6zuWjbhonfk9
+ tcqtQqVlJNXetbtAv5DLjd+0YXLRe4U=
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com
+ [209.85.218.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-280-xAMJlsEYMI6DFfHH18rlpQ-1; Fri, 18 Aug 2023 09:31:30 -0400
+X-MC-Unique: xAMJlsEYMI6DFfHH18rlpQ-1
+Received: by mail-ej1-f70.google.com with SMTP id
+ a640c23a62f3a-99c0bd2ca23so55323366b.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 18 Aug 2023 06:31:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692365489; x=1692970289;
+ h=content-transfer-encoding:in-reply-to:organization:from:references
+ :cc:to:content-language:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=3s//y+IyfbwkZGkF6S0djbBdJ44isVJor+2j/oRDSAg=;
+ b=PgZTbMhEmrZPqfIOaprPzXhA60PjhV72JkMYHXRCzsjy9Cj35c/RC4PgglhWxVwJgZ
+ qeng+99d7aKxo2JcAk/nLj3jMU8B671btBeHjcvhUEJOB85TTb5Vz4HaK071YvctCnz7
+ IKWOGzNnT7lUJxmQeIMuRnLxP5bbPfwih3luktY45iO/F+YHMswXyDDJ1f5nXaX/JhRS
+ FCK8S8HFCbBTWipUvOs1PDc1RgmAcmT76idCi2VEJulAuhoiYJLLN0adO9fBQY3VuT81
+ Bssn4X79ZhWGzSUQQqZGxdaoDOcYmhrcKsvhsyLDrcgf3vu4tXvWkBgwGmNaRVxrKDn+
+ 9f7Q==
+X-Gm-Message-State: AOJu0YxOf1LR+7FI1DfpPYzjwiaffLcOexKVfzSa3gIyQ5A4TBsMS4Xa
+ vE/705qhBUWr8+wlw0bqFvXp1dBKhxzDHUed/YBiNdHB9THNpwfHfmGqu4yGQYe0CrPXpATnyrr
+ Gwtm1DSMD5LgRBjK+NDPYOvV2K7s=
+X-Received: by 2002:a17:906:ef8b:b0:99b:4ed4:5527 with SMTP id
+ ze11-20020a170906ef8b00b0099b4ed45527mr1699822ejb.25.1692365489528; 
+ Fri, 18 Aug 2023 06:31:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEJuIGtydVI+c0Jd5aVypZM1T3a62Roquu83tD9SxioSaTxxb9Op43wHDEs3pu38c2sMJ9yAw==
+X-Received: by 2002:a17:906:ef8b:b0:99b:4ed4:5527 with SMTP id
+ ze11-20020a170906ef8b00b0099b4ed45527mr1699803ejb.25.1692365489228; 
+ Fri, 18 Aug 2023 06:31:29 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
+ ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
+ by smtp.gmail.com with ESMTPSA id
+ c6-20020a170906170600b0099e05fb8f95sm1191602eje.137.2023.08.18.06.31.27
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 18 Aug 2023 06:31:28 -0700 (PDT)
+Message-ID: <a3937c17-eaa5-e0e9-e0ac-1610e0652982@redhat.com>
+Date: Fri, 18 Aug 2023 13:58:15 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA3PR11MB7978:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8a30cb7b-072b-4db7-34f2-08db9fed0fb1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: /2UVePxY19NaxliT6kD98GeyPI2hpoI4nxbtWoCT1iXzNO/Xk1h1QLCqwiyP1cJFm23YQivOb9WvaJ2nfLL0iSOncZSYmPKSoWNTwCXVhC/R1dhIeCpIC3W8+P7G1x5XTTaV4LF5Ntln2+2b7bnAtJgKiVXit+gfkS4HR0aCcmigf0HxXGqugGv3648wR9OfcLHjJ1RZ/HYILptx3RMZpsD/mlxJjZmEM//Kge/oY/6bjzmiidyK/PLEcKpNvQ6DKjUJNzmJUxJJXzgITNLEA1VHK3j4iuT2UHtwnaOOsOslj5zDNiSbzT4gQYkIhvmiuKg/7nmQwwvhZXNmgOH4l6TG4/ZgSrqysfu5P+KZP//5O3mY4HSfnVXy9L8UeKAKQ6SaBfGot4fXRuFZ084L058DzGaaPj3yGXmweGXYGmFFVdNqP4uzhGHo9JbRciBFAepksA7Tr4Y0FvChvt6AYQuojln0Yo+8oK1lI5+jNJoIXw+VccA+/JUy72UKqzTiunPr+Q2rvwp0VnvymCbaNoV2Uw2u7vk8698dWnoBQkdJsnaaGr1leBQM+MrkfIUh
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(376002)(346002)(136003)(396003)(39860400002)(186009)(451199024)(1800799009)(86362001)(83380400001)(4326008)(8676002)(44832011)(5660300002)(8936002)(2906002)(41300700001)(26005)(6486002)(6506007)(30864003)(66574015)(6512007)(478600001)(7416002)(316002)(66946007)(6916009)(82960400001)(66476007)(66556008)(38100700002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?SKcKr2P6MfLjZP66Wwdbb3v6TuPk4xnZXyGvsoC9jDpboFy44jiPz4kEZw?=
- =?iso-8859-1?Q?+qCct+Mh3sHO9lPz2rfiCwJvoC5vQbf+Cgz5XvW7cEh5y/WttYr6o0CpRa?=
- =?iso-8859-1?Q?SYnlAKnelgTvHpLkrJ8eRnriNPdKSQCMFS0IF7jn1Hu2oYgjHyyj7I6jOe?=
- =?iso-8859-1?Q?hZfeBLJ9NGgpGqXBAvhTbIy/qO0wsuFNw/8r5zfUPx9xVSY/8SJhT/ehBh?=
- =?iso-8859-1?Q?fNlaG9p0gkPaAzS12A2r66Oxboo5Aolpxsta+KLXvwQJUCOnjwDNywRpyW?=
- =?iso-8859-1?Q?RHT6EVrOD3QpCq3N3HUuyhXM+yHU6wQtZpKMuJudbROttCv8uwoINIbLqk?=
- =?iso-8859-1?Q?SbFj+mziTq6vNnRiN1eocOvhek3/NdZHngH8aGq1jbXsbH8Vo3amcq3G5l?=
- =?iso-8859-1?Q?42BFHrOV4EOR9ugh0YpuBUMfk5cbV6sgV8OVjeBOSVpn9TMRb3lZs5Gur9?=
- =?iso-8859-1?Q?h/Ck4+ZMtXgjWV9Vz8g/dy5t1AmEJrEWNlul8tqD9W3VZQ2R/plrzscAvT?=
- =?iso-8859-1?Q?dlvXBsvwLAL5gsHxkoChPQonyeKqdhLRu4LopVeMFaHB0wqV3UCdMVfZQ0?=
- =?iso-8859-1?Q?JJl3CYNo5mDqWdSjUHxbIcKE/0DMakV2kvtFdFoRiuxII5PmO1KTsneYag?=
- =?iso-8859-1?Q?iAyNgnI0hjV0H228X532u5ri10lDHoWATYDGbM0CAIcsC+VXZz6nc8ZeOA?=
- =?iso-8859-1?Q?N1E31yV3/qmGO1JmYk+q/8OMEo5QhqQWq/fWr7ZEj/yr5rG+8g6ducBnMY?=
- =?iso-8859-1?Q?+2KeJRf4tM5tcJp6qjl4DQgXW6bLQxIunTL51PQAnUMwwDgHxgOLN0+0pX?=
- =?iso-8859-1?Q?f9irlMq7by+ZOkvomeRFQc5rERyHs2wPqwrS/fZ6QNbaq7UN3KIe9AAfLB?=
- =?iso-8859-1?Q?qiUACw7YP8vtly4F9Wjk3bM43Irh02GJtiYp/HYnQistqrqJsT3Hk7GGUm?=
- =?iso-8859-1?Q?q3pgbXtCHv60IMwPOcx72rRDA7b7/oNvWmmZx48jFAcLrugaH0BB/OjHTn?=
- =?iso-8859-1?Q?Q+kJeFDHPGflW2KcbHvySrdo7JtL8LysSqjuRgM1NJ1Ia8kRrZZDoRYxVJ?=
- =?iso-8859-1?Q?8HEbmc+5uY+sg5wA+nlPNb+BL/sL41QXDreJ/vagT1GyG0poADpbjxKw8u?=
- =?iso-8859-1?Q?7bWEdysZ5hf/B8foKim3BMlyRrl9+ms7IBzqVjDXHLKibI5Xps4DuJogPt?=
- =?iso-8859-1?Q?3BtHpxsN6pRjXLm4g8yfCAWPZfw1hO4kvXctfY0aIMHu1lMV9vpPyOhtMA?=
- =?iso-8859-1?Q?wKpOLiTqkvn6bNlqe4On/Sr+dmB3LtFMy9vVBfYJB50RRABrbKyXF7K8vw?=
- =?iso-8859-1?Q?8TEv2O8LM4qAh6NwgKNbwnhoflqm7wcwwBK5p92vWfBfr+vUQGhgeQRpjf?=
- =?iso-8859-1?Q?8W4ugSpr816XgUfmJRT54QVFweC15fJ0m9VsGepkFGBH4F38au5tE60wKO?=
- =?iso-8859-1?Q?MQEhWClOI0tA+Ig2+zhIfu8Cvphak7KlzUGSwZWVP+Qa1QIDu53s6Czl5q?=
- =?iso-8859-1?Q?qDX9ytg3Sjq8KRa2za0ohTUOTcLk6Audzj6WmLYkwXq7M7zcGnfd5vfeBq?=
- =?iso-8859-1?Q?y2n8IGcvmYG+D/g2CsvhkrYuHwFqKTWFWQdiUeEqVMW19KfM/eESzVK88G?=
- =?iso-8859-1?Q?uxp8T5sHNbkUA52Fn2yV86mWajhcoiFPx6eFhR3jMjmeN9Sq0KG2ALuQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8a30cb7b-072b-4db7-34f2-08db9fed0fb1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2023 13:14:32.4296 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LvpjWNrukAori55waCFCEPhHEB/4Qf3ynnxpW32/Rrp8w8vywrYIW4jVhPHlEQCiGLjkio9AxdQ+eyr9sY2rjw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7978
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 4/9] drm/sched: Split free_job into own
- work item
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-2-matthew.brost@intel.com>
+ <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
+ <069e6cd0-abd3-fdd9-217d-173e8f8e1d29@amd.com>
+ <b9a6493c-243b-1078-afbc-d9270cac904a@redhat.com>
+ <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
+ <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
+ <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
+ <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
+ <ef4d2c78-6927-3d3b-7aac-27d013af7ea6@amd.com>
+ <a80be2c1-132e-5ee1-4278-47655916494a@redhat.com>
+ <0d5af79a-ba3a-d4be-938f-81627db65b50@amd.com>
+From: Danilo Krummrich <dakr@redhat.com>
+Organization: RedHat
+In-Reply-To: <0d5af79a-ba3a-d4be-938f-81627db65b50@amd.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
+ use a work queue rather than kthread
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,377 +101,237 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- Liviu.Dudau@arm.com, frank.binns@imgtec.com, dri-devel@lists.freedesktop.org,
- luben.tuikov@amd.com, lina@asahilina.net, donald.robson@imgtec.com,
- daniel@ffwll.ch, boris.brezillon@collabora.com, airlied@gmail.com,
+ lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ luben.tuikov@amd.com, donald.robson@imgtec.com, boris.brezillon@collabora.com,
  intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Aug 18, 2023 at 07:27:33AM +0200, Christian K�nig wrote:
-> Am 17.08.23 um 19:54 schrieb Matthew Brost:
-> > On Thu, Aug 17, 2023 at 03:39:40PM +0200, Christian K�nig wrote:
-> > > Am 11.08.23 um 04:31 schrieb Matthew Brost:
-> > > > Rather than call free_job and run_job in same work item have a dedicated
-> > > > work item for each. This aligns with the design and intended use of work
-> > > > queues.
-> > > I would rather say we should get completely rid of the free_job callback.
-> > > 
-> > Would we still have work item? e.g. Would we still want to call
-> > drm_sched_get_cleanup_job which removes the job from the pending list
-> > and adjusts the TDR? Trying to figure out out what this looks like. We
-> > probably can't do all of this from an IRQ context.
-> > 
-> > > Essentially the job is just the container which carries the information
-> > > which are necessary before you push it to the hw. The real representation of
-> > > the submission is actually the scheduler fence.
-> > > 
-> > Most of the free_jobs call plus drm_sched_job_cleanup + a put on job. In
-> > Xe this cannot be called from an IRQ context either.
-> > 
-> > I'm just confused what exactly you are suggesting here.
+On 8/17/23 18:17, Christian König wrote:
+> Am 17.08.23 um 14:48 schrieb Danilo Krummrich:
+>> On 8/17/23 15:35, Christian König wrote:
+>>> Am 17.08.23 um 13:13 schrieb Danilo Krummrich:
+>>>> On 8/17/23 07:33, Christian König wrote:
+>>>>> [SNIP]
+>>>>> My proposal would be to just keep the hw_submission_limit (maybe 
+>>>>> rename it to submission_unit_limit) and add a submission_units 
+>>>>> field to struct drm_sched_job. By default a jobs submission_units 
+>>>>> field would be 0 and the scheduler would behave the exact same way 
+>>>>> as it does now.
+>>>>>
+>>>>> Accordingly, jobs with submission_units > 1 would contribute more 
+>>>>> than one unit to the submission_unit_limit.
+>>>>>
+>>>>> What do you think about that?
+>>>
+>>> I think you are approaching this from the completely wrong side.
+>>
+>> First of all, thanks for keeping up the discussion - I appreciate it. 
+>> Some more comments / questions below.
+>>
+>>>
+>>> See the UAPI needs to be stable, so you need a maximum job size 
+>>> otherwise it can happen that a combination of large and small 
+>>> submissions work while a different combination doesn't.
+>>
+>> How is this related to the uAPI being stable? What do you mean by 
+>> 'stable' in this context?
 > 
-> To summarize on one sentence: Instead of the job we keep the scheduler and
-> hardware fences around after pushing the job to the hw.
+> Stable is in you don't get indifferent behavior, not stable is in the 
+> sense of backward compatibility. Sorry for the confusing wording :)
 > 
-> The free_job callback would then be replaced by dropping the reference on
-> the scheduler and hw fence.
+>>
+>> The Nouveau uAPI allows userspace to pass EXEC jobs by supplying the 
+>> ring ID (channel), in-/out-syncs and a certain amount of indirect push 
+>> buffers. The amount of IBs per job is limited by the amount of IBs 
+>> fitting into the ring. Just to be clear, when I say 'job size' I mean 
+>> the amount of IBs per job.
 > 
-> Would that work for you?
+> Well that more or less sounds identical to all other hardware I know of, 
+> e.g. AMD, Intel and the different ARM chips seem to all work like this. 
+> But on those drivers the job size limit is not the ring size, but rather 
+> a fixed value (at least as far as I know).
 > 
+>>
+>> Maybe I should also mention that the rings we are talking about are 
+>> software rings managed by a firmware scheduler. We can have an 
+>> arbitrary amount of software rings and even multiple ones per FD.
+>>
+>> Given a constant ring size I really don't see why I should limit the 
+>> maximum amount of IBs userspace can push per job just to end up with a 
+>> hw_submission_limit > 1.
+>>
+>> For example, let's just assume the ring can take 128 IBs, why would I 
+>> limit userspace to submit just e.g. 16 IBs at a time, such that the 
+>> hw_submission_limit becomes 8?
+> 
+> Well the question is what happens when you have two submissions back to 
+> back which use more than halve of the ring buffer?
+> 
+> I only see two possible outcomes:
+> 1. You return -EBUSY (or similar) error code indicating the the hw can't 
+> receive more commands.
+> 2. Wait on previously pushed commands to be executed.
+> (3. Your driver crash because you accidentally overwrite stuff in the 
+> ring buffer which is still executed. I just assume that's prevented).
+> 
+> Resolution #1 with -EBUSY is actually something the UAPI should not do, 
+> because your UAPI then depends on the specific timing of submissions 
+> which is a really bad idea.
+> 
+> Resolution #2 is usually bad because it forces the hw to run dry between 
+> submission and so degrade performance.
 
-I don't think so for a few reasons.
+I agree, that is a good reason for at least limiting the maximum job 
+size to half of the ring size.
 
-The job and hw fence are different structures (also different allocs too)
-for a reason. The job referenced until it is complete (hw fence is
-signaled) and the free_job is called. This reference is needed for the
-TDR to work properly and also some reset flows too. Also in Xe some of
-things done in free_job cannot be from an IRQ context, hence calling
-this from the scheduler worker is rather helpful.
+However, there could still be cases where two subsequent jobs are 
+submitted with just a single IB, which as is would still block 
+subsequent jobs to be pushed to the ring although there is still plenty 
+of space. Depending on the (CPU) scheduler latency, such a case can let 
+the HW run dry as well.
 
-The HW fence can live for longer as it can be installed in dma-resv
-slots, syncobjs, etc... If the job and hw fence are combined now we
-holding on the memory for the longer and perhaps at the mercy of the
-user. We also run the risk of the final put being done from an IRQ
-context which again wont work in Xe as it is currently coded. Lastly 2
-jobs from the same scheduler could do the final put in parallel, so
-rather than having free_job serialized by the worker now multiple jobs
-are freeing themselves at the same time. This might not be an issue but
-adds another level of raceyness that needs to be accounted for. None of
-this sounds desirable to me.
+Surely, we could just continue decrease the maximum job size even 
+further, but this would result in further overhead on user and kernel 
+for larger IB counts. Tracking the actual job size seems to be the 
+better solution for drivers where the job size can vary over a rather 
+huge range.
 
-FWIW what you suggesting sounds like how the i915 did things
-(i915_request and hw fence in 1 memory alloc) and that turned out to be
-a huge mess. As rule of thumb I generally do the opposite of whatever
-the i915 did.
+- Danilo
 
-Matt
-
+> 
+>>
+>> What is the advantage of doing that, rather than letting userspace 
+>> submit *up to* 128 IBs per job and just letting the scheduler push IBs 
+>> to the ring as long as there's actually space left on the ring?
+> 
+> Predictable behavior I think. Basically you want organize things so that 
+> the hw is at least kept busy all the time without depending on actual 
+> timing.
+> 
+>>
+>>>
+>>> So what you usually do, and this is driver independent because simply 
+>>> a requirement of the UAPI, is that you say here that's my maximum job 
+>>> size as well as the number of submission which should be pushed to 
+>>> the hw at the same time. And then get the resulting ring size by the 
+>>> product of the two.
+>>
+>> Given the above, how is that a requirement of the uAPI?
+> 
+> The requirement of the UAPI is actually pretty simple: You should get 
+> consistent results, independent of the timing (at least as long as you 
+> don't do stuff in parallel).
+> 
+> Otherwise you can run into issues when on a certain configuration stuff 
+> suddenly runs faster or slower than expected. In other words you should 
+> not depend on that stuff finishes in a certain amount of time.
+> 
+>>
+>>>
+>>> That the ring in this use case can't be fully utilized is not a draw 
+>>> back, this is completely intentional design which should apply to all 
+>>> drivers independent of the vendor.
+>>
+>> Why wouldn't we want to fully utilize the ring size?
+> 
+> As far as I know everybody restricts the submission size to something 
+> fixed which is at least smaller than halve the ring size to avoid the 
+> problems mentioned above.
+> 
+> Regards,
 > Christian.
 > 
-> > 
-> > Matt
-> > 
-> > > All the lifetime issues we had came from ignoring this fact and I think we
-> > > should push for fixing this design up again.
-> > > 
-> > > Regards,
-> > > Christian.
-> > > 
-> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> > > > ---
-> > > >    drivers/gpu/drm/scheduler/sched_main.c | 137 ++++++++++++++++++-------
-> > > >    include/drm/gpu_scheduler.h            |   8 +-
-> > > >    2 files changed, 106 insertions(+), 39 deletions(-)
-> > > > 
-> > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > index cede47afc800..b67469eac179 100644
-> > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
-> > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> > > > @@ -213,11 +213,12 @@ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
-> > > >     * drm_sched_rq_select_entity_rr - Select an entity which could provide a job to run
-> > > >     *
-> > > >     * @rq: scheduler run queue to check.
-> > > > + * @dequeue: dequeue selected entity
-> > > >     *
-> > > >     * Try to find a ready entity, returns NULL if none found.
-> > > >     */
-> > > >    static struct drm_sched_entity *
-> > > > -drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
-> > > > +drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq, bool dequeue)
-> > > >    {
-> > > >    	struct drm_sched_entity *entity;
-> > > > @@ -227,8 +228,10 @@ drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
-> > > >    	if (entity) {
-> > > >    		list_for_each_entry_continue(entity, &rq->entities, list) {
-> > > >    			if (drm_sched_entity_is_ready(entity)) {
-> > > > -				rq->current_entity = entity;
-> > > > -				reinit_completion(&entity->entity_idle);
-> > > > +				if (dequeue) {
-> > > > +					rq->current_entity = entity;
-> > > > +					reinit_completion(&entity->entity_idle);
-> > > > +				}
-> > > >    				spin_unlock(&rq->lock);
-> > > >    				return entity;
-> > > >    			}
-> > > > @@ -238,8 +241,10 @@ drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
-> > > >    	list_for_each_entry(entity, &rq->entities, list) {
-> > > >    		if (drm_sched_entity_is_ready(entity)) {
-> > > > -			rq->current_entity = entity;
-> > > > -			reinit_completion(&entity->entity_idle);
-> > > > +			if (dequeue) {
-> > > > +				rq->current_entity = entity;
-> > > > +				reinit_completion(&entity->entity_idle);
-> > > > +			}
-> > > >    			spin_unlock(&rq->lock);
-> > > >    			return entity;
-> > > >    		}
-> > > > @@ -257,11 +262,12 @@ drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
-> > > >     * drm_sched_rq_select_entity_fifo - Select an entity which provides a job to run
-> > > >     *
-> > > >     * @rq: scheduler run queue to check.
-> > > > + * @dequeue: dequeue selected entity
-> > > >     *
-> > > >     * Find oldest waiting ready entity, returns NULL if none found.
-> > > >     */
-> > > >    static struct drm_sched_entity *
-> > > > -drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
-> > > > +drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq, bool dequeue)
-> > > >    {
-> > > >    	struct rb_node *rb;
-> > > > @@ -271,8 +277,10 @@ drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
-> > > >    		entity = rb_entry(rb, struct drm_sched_entity, rb_tree_node);
-> > > >    		if (drm_sched_entity_is_ready(entity)) {
-> > > > -			rq->current_entity = entity;
-> > > > -			reinit_completion(&entity->entity_idle);
-> > > > +			if (dequeue) {
-> > > > +				rq->current_entity = entity;
-> > > > +				reinit_completion(&entity->entity_idle);
-> > > > +			}
-> > > >    			break;
-> > > >    		}
-> > > >    	}
-> > > > @@ -282,13 +290,54 @@ drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
-> > > >    }
-> > > >    /**
-> > > > - * drm_sched_submit_queue - scheduler queue submission
-> > > > + * drm_sched_run_job_queue - queue job submission
-> > > >     * @sched: scheduler instance
-> > > >     */
-> > > > -static void drm_sched_submit_queue(struct drm_gpu_scheduler *sched)
-> > > > +static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
-> > > >    {
-> > > >    	if (!READ_ONCE(sched->pause_submit))
-> > > > -		queue_work(sched->submit_wq, &sched->work_submit);
-> > > > +		queue_work(sched->submit_wq, &sched->work_run_job);
-> > > > +}
-> > > > +
-> > > > +static struct drm_sched_entity *
-> > > > +drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequeue);
-> > > > +
-> > > > +/**
-> > > > + * drm_sched_run_job_queue_if_ready - queue job submission if ready
-> > > > + * @sched: scheduler instance
-> > > > + */
-> > > > +static void drm_sched_run_job_queue_if_ready(struct drm_gpu_scheduler *sched)
-> > > > +{
-> > > > +	if (drm_sched_select_entity(sched, false))
-> > > > +		drm_sched_run_job_queue(sched);
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * drm_sched_free_job_queue - queue free job
-> > > > + *
-> > > > + * @sched: scheduler instance to queue free job
-> > > > + */
-> > > > +static void drm_sched_free_job_queue(struct drm_gpu_scheduler *sched)
-> > > > +{
-> > > > +	if (!READ_ONCE(sched->pause_submit))
-> > > > +		queue_work(sched->submit_wq, &sched->work_free_job);
-> > > > +}
-> > > > +
-> > > > +/**
-> > > > + * drm_sched_free_job_queue_if_ready - queue free job if ready
-> > > > + *
-> > > > + * @sched: scheduler instance to queue free job
-> > > > + */
-> > > > +static void drm_sched_free_job_queue_if_ready(struct drm_gpu_scheduler *sched)
-> > > > +{
-> > > > +	struct drm_sched_job *job;
-> > > > +
-> > > > +	spin_lock(&sched->job_list_lock);
-> > > > +	job = list_first_entry_or_null(&sched->pending_list,
-> > > > +				       struct drm_sched_job, list);
-> > > > +	if (job && dma_fence_is_signaled(&job->s_fence->finished))
-> > > > +		drm_sched_free_job_queue(sched);
-> > > > +	spin_unlock(&sched->job_list_lock);
-> > > >    }
-> > > >    /**
-> > > > @@ -310,7 +359,7 @@ static void drm_sched_job_done(struct drm_sched_job *s_job, int result)
-> > > >    	dma_fence_get(&s_fence->finished);
-> > > >    	drm_sched_fence_finished(s_fence, result);
-> > > >    	dma_fence_put(&s_fence->finished);
-> > > > -	drm_sched_submit_queue(sched);
-> > > > +	drm_sched_free_job_queue(sched);
-> > > >    }
-> > > >    /**
-> > > > @@ -906,18 +955,19 @@ static bool drm_sched_can_queue(struct drm_gpu_scheduler *sched)
-> > > >    void drm_sched_wakeup_if_can_queue(struct drm_gpu_scheduler *sched)
-> > > >    {
-> > > >    	if (drm_sched_can_queue(sched))
-> > > > -		drm_sched_submit_queue(sched);
-> > > > +		drm_sched_run_job_queue(sched);
-> > > >    }
-> > > >    /**
-> > > >     * drm_sched_select_entity - Select next entity to process
-> > > >     *
-> > > >     * @sched: scheduler instance
-> > > > + * @dequeue: dequeue selected entity
-> > > >     *
-> > > >     * Returns the entity to process or NULL if none are found.
-> > > >     */
-> > > >    static struct drm_sched_entity *
-> > > > -drm_sched_select_entity(struct drm_gpu_scheduler *sched)
-> > > > +drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequeue)
-> > > >    {
-> > > >    	struct drm_sched_entity *entity;
-> > > >    	int i;
-> > > > @@ -935,8 +985,10 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
-> > > >    	/* Kernel run queue has higher priority than normal run queue*/
-> > > >    	for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
-> > > >    		entity = sched->sched_policy == DRM_SCHED_POLICY_FIFO ?
-> > > > -			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i]) :
-> > > > -			drm_sched_rq_select_entity_rr(&sched->sched_rq[i]);
-> > > > +			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i],
-> > > > +							dequeue) :
-> > > > +			drm_sched_rq_select_entity_rr(&sched->sched_rq[i],
-> > > > +						      dequeue);
-> > > >    		if (entity)
-> > > >    			break;
-> > > >    	}
-> > > > @@ -1024,30 +1076,44 @@ drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
-> > > >    EXPORT_SYMBOL(drm_sched_pick_best);
-> > > >    /**
-> > > > - * drm_sched_main - main scheduler thread
-> > > > + * drm_sched_free_job_work - worker to call free_job
-> > > >     *
-> > > > - * @param: scheduler instance
-> > > > + * @w: free job work
-> > > >     */
-> > > > -static void drm_sched_main(struct work_struct *w)
-> > > > +static void drm_sched_free_job_work(struct work_struct *w)
-> > > >    {
-> > > >    	struct drm_gpu_scheduler *sched =
-> > > > -		container_of(w, struct drm_gpu_scheduler, work_submit);
-> > > > -	struct drm_sched_entity *entity;
-> > > > +		container_of(w, struct drm_gpu_scheduler, work_free_job);
-> > > >    	struct drm_sched_job *cleanup_job;
-> > > > -	int r;
-> > > >    	if (READ_ONCE(sched->pause_submit))
-> > > >    		return;
-> > > >    	cleanup_job = drm_sched_get_cleanup_job(sched);
-> > > > -	entity = drm_sched_select_entity(sched);
-> > > > +	if (cleanup_job) {
-> > > > +		sched->ops->free_job(cleanup_job);
-> > > > +
-> > > > +		drm_sched_free_job_queue_if_ready(sched);
-> > > > +		drm_sched_run_job_queue_if_ready(sched);
-> > > > +	}
-> > > > +}
-> > > > -	if (!entity && !cleanup_job)
-> > > > -		return;	/* No more work */
-> > > > +/**
-> > > > + * drm_sched_run_job_work - worker to call run_job
-> > > > + *
-> > > > + * @w: run job work
-> > > > + */
-> > > > +static void drm_sched_run_job_work(struct work_struct *w)
-> > > > +{
-> > > > +	struct drm_gpu_scheduler *sched =
-> > > > +		container_of(w, struct drm_gpu_scheduler, work_run_job);
-> > > > +	struct drm_sched_entity *entity;
-> > > > +	int r;
-> > > > -	if (cleanup_job)
-> > > > -		sched->ops->free_job(cleanup_job);
-> > > > +	if (READ_ONCE(sched->pause_submit))
-> > > > +		return;
-> > > > +	entity = drm_sched_select_entity(sched, true);
-> > > >    	if (entity) {
-> > > >    		struct dma_fence *fence;
-> > > >    		struct drm_sched_fence *s_fence;
-> > > > @@ -1056,9 +1122,7 @@ static void drm_sched_main(struct work_struct *w)
-> > > >    		sched_job = drm_sched_entity_pop_job(entity);
-> > > >    		if (!sched_job) {
-> > > >    			complete_all(&entity->entity_idle);
-> > > > -			if (!cleanup_job)
-> > > > -				return;	/* No more work */
-> > > > -			goto again;
-> > > > +			return;	/* No more work */
-> > > >    		}
-> > > >    		s_fence = sched_job->s_fence;
-> > > > @@ -1088,10 +1152,8 @@ static void drm_sched_main(struct work_struct *w)
-> > > >    		}
-> > > >    		wake_up(&sched->job_scheduled);
-> > > > +		drm_sched_run_job_queue_if_ready(sched);
-> > > >    	}
-> > > > -
-> > > > -again:
-> > > > -	drm_sched_submit_queue(sched);
-> > > >    }
-> > > >    /**
-> > > > @@ -1150,7 +1212,8 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
-> > > >    	spin_lock_init(&sched->job_list_lock);
-> > > >    	atomic_set(&sched->hw_rq_count, 0);
-> > > >    	INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
-> > > > -	INIT_WORK(&sched->work_submit, drm_sched_main);
-> > > > +	INIT_WORK(&sched->work_run_job, drm_sched_run_job_work);
-> > > > +	INIT_WORK(&sched->work_free_job, drm_sched_free_job_work);
-> > > >    	atomic_set(&sched->_score, 0);
-> > > >    	atomic64_set(&sched->job_id_count, 0);
-> > > >    	sched->pause_submit = false;
-> > > > @@ -1275,7 +1338,8 @@ EXPORT_SYMBOL(drm_sched_submit_ready);
-> > > >    void drm_sched_submit_stop(struct drm_gpu_scheduler *sched)
-> > > >    {
-> > > >    	WRITE_ONCE(sched->pause_submit, true);
-> > > > -	cancel_work_sync(&sched->work_submit);
-> > > > +	cancel_work_sync(&sched->work_run_job);
-> > > > +	cancel_work_sync(&sched->work_free_job);
-> > > >    }
-> > > >    EXPORT_SYMBOL(drm_sched_submit_stop);
-> > > > @@ -1287,6 +1351,7 @@ EXPORT_SYMBOL(drm_sched_submit_stop);
-> > > >    void drm_sched_submit_start(struct drm_gpu_scheduler *sched)
-> > > >    {
-> > > >    	WRITE_ONCE(sched->pause_submit, false);
-> > > > -	queue_work(sched->submit_wq, &sched->work_submit);
-> > > > +	queue_work(sched->submit_wq, &sched->work_run_job);
-> > > > +	queue_work(sched->submit_wq, &sched->work_free_job);
-> > > >    }
-> > > >    EXPORT_SYMBOL(drm_sched_submit_start);
-> > > > diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> > > > index 04eec2d7635f..fbc083a92757 100644
-> > > > --- a/include/drm/gpu_scheduler.h
-> > > > +++ b/include/drm/gpu_scheduler.h
-> > > > @@ -487,9 +487,10 @@ struct drm_sched_backend_ops {
-> > > >     *                 finished.
-> > > >     * @hw_rq_count: the number of jobs currently in the hardware queue.
-> > > >     * @job_id_count: used to assign unique id to the each job.
-> > > > - * @submit_wq: workqueue used to queue @work_submit
-> > > > + * @submit_wq: workqueue used to queue @work_run_job and @work_free_job
-> > > >     * @timeout_wq: workqueue used to queue @work_tdr
-> > > > - * @work_submit: schedules jobs and cleans up entities
-> > > > + * @work_run_job: schedules jobs
-> > > > + * @work_free_job: cleans up jobs
-> > > >     * @work_tdr: schedules a delayed call to @drm_sched_job_timedout after the
-> > > >     *            timeout interval is over.
-> > > >     * @pending_list: the list of jobs which are currently in the job queue.
-> > > > @@ -518,7 +519,8 @@ struct drm_gpu_scheduler {
-> > > >    	atomic64_t			job_id_count;
-> > > >    	struct workqueue_struct		*submit_wq;
-> > > >    	struct workqueue_struct		*timeout_wq;
-> > > > -	struct work_struct		work_submit;
-> > > > +	struct work_struct		work_run_job;
-> > > > +	struct work_struct		work_free_job;
-> > > >    	struct delayed_work		work_tdr;
-> > > >    	struct list_head		pending_list;
-> > > >    	spinlock_t			job_list_lock;
+>>
+>> - Danilo
+>>
+>>>
+>>>>
+>>>> Besides all that, you said that filling up the ring just enough to 
+>>>> not let the HW run dry rather than filling it up entirely is 
+>>>> desirable. Why do you think so? I tend to think that in most cases 
+>>>> it shouldn't make difference.
+>>>
+>>> That results in better scheduling behavior. It's mostly beneficial if 
+>>> you don't have a hw scheduler, but as far as I can see there is no 
+>>> need to pump everything to the hw as fast as possible.
+>>>
+>>> Regards,
+>>> Christian.
+>>>
+>>>>
+>>>> - Danilo
+>>>>
+>>>>>
+>>>>> Regards,
+>>>>> Christian.
+>>>>>
+>>>>>> Because one really is the minimum if you want to do work at all, 
+>>>>>> but as you mentioned above a job limit of one can let the ring run 
+>>>>>> dry.
+>>>>>>
+>>>>>> In the end my proposal comes down to tracking the actual size of a 
+>>>>>> job rather than just assuming a pre-defined maximum job size, and 
+>>>>>> hence a dynamic job limit.
+>>>>>>
+>>>>>> I don't think this would hurt the scheduler granularity. In fact, 
+>>>>>> it should even contribute to the desire of not letting the ring 
+>>>>>> run dry even better. Especially for sequences of small jobs, where 
+>>>>>> the current implementation might wrongly assume the ring is 
+>>>>>> already full although actually there would still be enough space 
+>>>>>> left.
+>>>>>>
+>>>>>>>
+>>>>>>> Christian.
+>>>>>>>
+>>>>>>>>
+>>>>>>>>>
+>>>>>>>>> Otherwise your scheduler might just overwrite the ring buffer 
+>>>>>>>>> by pushing things to fast.
+>>>>>>>>>
+>>>>>>>>> Christian.
+>>>>>>>>>
+>>>>>>>>>>
+>>>>>>>>>> Given that, it seems like it would be better to let the 
+>>>>>>>>>> scheduler keep track of empty ring "slots" instead, such that 
+>>>>>>>>>> the scheduler can deceide whether a subsequent job will still 
+>>>>>>>>>> fit on the ring and if not re-evaluate once a previous job 
+>>>>>>>>>> finished. Of course each submitted job would be required to 
+>>>>>>>>>> carry the number of slots it requires on the ring.
+>>>>>>>>>>
+>>>>>>>>>> What to you think of implementing this as alternative flow 
+>>>>>>>>>> control mechanism? Implementation wise this could be a union 
+>>>>>>>>>> with the existing hw_submission_limit.
+>>>>>>>>>>
+>>>>>>>>>> - Danilo
+>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> A problem with this design is currently a drm_gpu_scheduler 
+>>>>>>>>>>> uses a
+>>>>>>>>>>> kthread for submission / job cleanup. This doesn't scale if a 
+>>>>>>>>>>> large
+>>>>>>>>>>> number of drm_gpu_scheduler are used. To work around the 
+>>>>>>>>>>> scaling issue,
+>>>>>>>>>>> use a worker rather than kthread for submission / job cleanup.
+>>>>>>>>>>>
+>>>>>>>>>>> v2:
+>>>>>>>>>>>    - (Rob Clark) Fix msm build
+>>>>>>>>>>>    - Pass in run work queue
+>>>>>>>>>>> v3:
+>>>>>>>>>>>    - (Boris) don't have loop in worker
+>>>>>>>>>>> v4:
+>>>>>>>>>>>    - (Tvrtko) break out submit ready, stop, start helpers 
+>>>>>>>>>>> into own patch
+>>>>>>>>>>>
+>>>>>>>>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>>>>>>>>
+>>>>>>>>>
+>>>>>>>>
+>>>>>>>
+>>>>>>
+>>>>>
+>>>>
+>>>
+>>
 > 
+
