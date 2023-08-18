@@ -4,135 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4E88C71143
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Aug 2023 12:59:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A691C71144
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Aug 2023 13:14:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E7F210E0AD;
-	Fri, 18 Aug 2023 12:59:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A0C910E04E;
+	Fri, 18 Aug 2023 13:14:56 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7C9D10E0AD
- for <intel-xe@lists.freedesktop.org>; Fri, 18 Aug 2023 12:59:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB09B10E04E;
+ Fri, 18 Aug 2023 13:14:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692363554; x=1723899554;
+ t=1692364494; x=1723900494;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=8oPOWoEWc1sbVbHNxbb+htiYdRVpBIdzuPidsX/fiqs=;
- b=DNWHw/9u/E1IBE5u7GGLkl4qJg/Pri2bOJgs5hwgqNSL+0SWzsktqpaO
- VWfF7xHM7l5ND457bT01m1GKdugKK0VJROlXk4rctY7jvU21XuSd147di
- uPrYFZl2xOAJQZrCZV4PbdQ7MIRnVBQr8Y/anCJ7enQ7/N0Q+oCus8kkQ
- MIkoNeXFV28lmOLzA2ft4gsj5oTrwuxfSE6HEh3stN2m9KUoP8QwkjvvA
- fG3dSuizF6LYuuwMTMmVYUNj1qL2tSqyqfevJJYSLMTrYP2kVEBA27StV
- YlrhbZJ0XLveRB4ay1+kkvEMgMi2wyQMxrFh9toyUcip8XbRzLwuaysWQ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="353397473"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="353397473"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=Z9BPhQH7VsZlyb/zpKWAFakABZCGACVF599mhwITqZg=;
+ b=Ko7DBU44R1iQr+zENyI12ejk0bgIfuE6M96fZCvqq+JYL78P3C9qgEED
+ 2sz+s7mfigEJOltE9MMpn0L3rzW9j1sPg++6E9kk2PsIneNzTfm3bdUxY
+ vC2naK1eUae1Bu80O7GPYMQb4FQ3YJuNaqd6WlLjbrdfZAKGs/x7Ef183
+ ChlbAbQIkdEE7wLlQbvK2e7tO8oSAul9Iwd2WQKGB/KQ5v0QORZ91FBjq
+ OvtHYD+OVIa0j8bJvgkQLX04kZwlh2GOzkBxPXPCT/CtrsoNWpBCP5Mvm
+ 1xVdYrPU6xwEcLyO+1P2Fc1ooamiEflYqNeOeKpg0Yj6f9XbLz8gdUqDB w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="353401174"
+X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="353401174"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2023 05:59:14 -0700
+ 18 Aug 2023 06:14:35 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="770131502"
-X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="770131502"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga001.jf.intel.com with ESMTP; 18 Aug 2023 05:59:13 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="684889729"
+X-IronPort-AV: E=Sophos;i="6.01,183,1684825200"; d="scan'208";a="684889729"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga003.jf.intel.com with ESMTP; 18 Aug 2023 06:14:35 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 18 Aug 2023 05:59:13 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.27; Fri, 18 Aug 2023 06:14:34 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Fri, 18 Aug 2023 05:59:13 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.171)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Fri, 18 Aug 2023 06:14:34 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.170)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Fri, 18 Aug 2023 05:59:13 -0700
+ 15.1.2507.27; Fri, 18 Aug 2023 06:14:34 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RrGMV8ufl6Fdk7BSbMhVHdFSW5PeeJzp+Gexm+5Rh6HB8+3iilESDxbgRBj5YmU/cbwGAglmAFvpPT9l86Bcj/aIiKiVG27frbaZ8Zmv7FP7DIsckldvLiZkPTgKs1Fm8gJh2Y93Ox3KfuTi91LaEhFeQ42CZZXSs29foOwz2w1Ajdvv8x9gSv3qlFVSfAj6Cx11zOTdLyETg6QzY/KINq3X5/4QnpbMDHUpSSf0XFccI7CwBVIJGfY6IuhzfJt974/agZAH9j62iiTEiZUg05AyrQ+NiMixNKvrW90C6xRzR+0B350z0HOh8g4RnuRG7Km9fzPfOfIUiyEcsSeYdw==
+ b=bmH0ny04qVJf+hHB7mC6K/EAIfEihPZyP10W5/JNQYeTLJgyphr3a8vxWs7/mYwrFcFvoEmHMlS15ys12ZrvCr3ni+XxuTxeiwhmWWQWNiz5HDgzIle0NS+dx4cQJy6JD3aAapKGbMP9EpSkBbFIUjP6os0II6BRWnNmFtoTFN29ZScMlJtyq82FVG2NrnMpg3c3JjwJUbz5XueqiZa5QAYGZxNk1XJAWJ/fNL3fT75QIM1dmKXjHkFjxLmDmluaqc9bitdXzbG7UBljEGAVOihef787vS7qaA1AkqF+EPFYLad3o3rymSBwKlacO2o6RT4p6WKQ6JUTJK+OzINSYA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pEZlCSiax5MCec1kN6ArqKbML6wZ8O+YfMeA0toTaQ8=;
- b=VHDRzy7tQ1+VUu2qBBU02Lg/dG+3tv2Z/+7pK/N5NucQ5HlAse16L8DfDSwQvFBY8D3LWIChFZ95nkoLOqi3W3JyEiJ8yrV20xs7L43ONq+f6I8epR3l+ipI/O/ZmMIZohQ+Xzg65OXifJA/pRfswejPAzl8+b8D9zIvnaGRc/T5cxDSFKT3u1W4BDHqg0cL2gs1Ibwmj9SgJbTVoSl4TrFOKx9JjY1UCflaGGdzw93U9RjSAhNJ3dPXdOgu5R7xd/dS9ok8ThGzOxZuxkX98KN+N+pIiJHJMJ2Hwao3YO7gxTQ3FD64lIeWH6rU/jE+nlIYZlVVvNNoIHsCOoeetw==
+ bh=GlEtdLLX4lTrWJH8tF+/ht8OXifQ4epdZju+ESzyK5s=;
+ b=HrtDKeuE9FzX6Wm5BZNV3TezOGvrMWfmisKC4llJMRqW3fJrT5WU2KZr2TPGazuIJXAlAw83+XPTAMAtghD6tCc+XiH+DQg+py0D8pWfI/F+6hJUienSlwdSkII/pTEOALE05VZG17E7t2X/puYRfQqJYUVDYTJUnzu0Fv6Y+flUzVIhR8TQouW7wTdivSd6ulBpPap3NrlrIZYOi5kqGBj6OnEdVAKHBn3KCTVzD5oXiYt9IJXIjT/4GMncSeYHCBAZfZNJcYMBYa/lh4rX96LCs38MUm4hQol2+/00DYoNTOAtFOmTZrc6LgGoX64sAn0s/LOk/kOgdzVwEYrF/Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SN7PR11MB6945.namprd11.prod.outlook.com (2603:10b6:806:2a8::19)
- by SJ0PR11MB5893.namprd11.prod.outlook.com (2603:10b6:a03:429::13)
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SA3PR11MB7978.namprd11.prod.outlook.com (2603:10b6:806:2fa::6)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.31; Fri, 18 Aug
- 2023 12:59:10 +0000
-Received: from SN7PR11MB6945.namprd11.prod.outlook.com
- ([fe80::9716:fa94:b58a:9a6a]) by SN7PR11MB6945.namprd11.prod.outlook.com
- ([fe80::9716:fa94:b58a:9a6a%6]) with mapi id 15.20.6678.031; Fri, 18 Aug 2023
- 12:59:10 +0000
-Date: Fri, 18 Aug 2023 05:59:02 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <ZN9rFgXcrSzEUD21@nvishwa1-DESK>
-References: <20230817110352.7601-1-niranjana.vishwanathapura@intel.com>
- <20230817110352.7601-4-niranjana.vishwanathapura@intel.com>
- <20230817162906.GD3375865@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
+ 2023 13:14:32 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b429:ee19:a001:eb69]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b429:ee19:a001:eb69%5]) with mapi id 15.20.6678.031; Fri, 18 Aug 2023
+ 13:14:32 +0000
+Date: Fri, 18 Aug 2023 13:13:34 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Message-ID: <ZN9ufogOQm4xblxm@DUT025-TGLU.fm.intel.com>
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-5-matthew.brost@intel.com>
+ <f6b7c246-fd87-a853-b7c4-e2c1b6727a93@amd.com>
+ <ZN5exv1IWJtKL1nJ@DUT025-TGLU.fm.intel.com>
+ <9f6554fd-8748-2613-1c90-921b670ad4d9@amd.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
-In-Reply-To: <20230817162906.GD3375865@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: BYAPR01CA0072.prod.exchangelabs.com (2603:10b6:a03:94::49)
- To SN7PR11MB6945.namprd11.prod.outlook.com
- (2603:10b6:806:2a8::19)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9f6554fd-8748-2613-1c90-921b670ad4d9@amd.com>
+X-ClientProxiedBy: BYAPR05CA0077.namprd05.prod.outlook.com
+ (2603:10b6:a03:e0::18) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR11MB6945:EE_|SJ0PR11MB5893:EE_
-X-MS-Office365-Filtering-Correlation-Id: 718dfee5-f516-4b45-d878-08db9feae9e9
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA3PR11MB7978:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8a30cb7b-072b-4db7-34f2-08db9fed0fb1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Ja8pM8LMr2IB6SJrCPsujUhjt7KpQjddnvyev8oCokfHoDpOiE8Ssh6Fb9rZf4ZFnVoY4VHe0dfJv502Dx8ng5S+UJ7JkD+m4RHLPLf2IK8ruMHb9gDyoGfq6BKm6ZOhncIA2KD4nVGT++lo013Hj9t/NkoIpWlsiaad6/2k0AoMw9uLaWpVeaXni3kPeQGuIRyZjq97ou5+fYKOhs2MCE1etfiAPYZRvL7VMud6iA7BnY+CnrGGqbzUQ+4tsRgCX79QKnask884jhg1ce0byk1PsV1awKV0zl1Usho3rLTw2iPeA0RoJDRld3x8TlXVEzY/7ghoow9na+O3z6jZghO6ktCcAAJCvKHVsrrpLkHLDZ3dHlnXtYywmQmFxzMKaicXFgOvX5/V9g2qAGwbFj82lDXX7EhhYRzXMXblCEKtjgrLJEsKl1FwpBMcAip3mM677hqRJZhhqKjY4QGcSfaW9zrgNQdWnzYXctZVe9S8q0y6azWavRhxn+AaTJjtq1EddA4SlVPv/WnPONp6oMgDIO9frJBlDrHk8G1unF8=
+X-Microsoft-Antispam-Message-Info: /2UVePxY19NaxliT6kD98GeyPI2hpoI4nxbtWoCT1iXzNO/Xk1h1QLCqwiyP1cJFm23YQivOb9WvaJ2nfLL0iSOncZSYmPKSoWNTwCXVhC/R1dhIeCpIC3W8+P7G1x5XTTaV4LF5Ntln2+2b7bnAtJgKiVXit+gfkS4HR0aCcmigf0HxXGqugGv3648wR9OfcLHjJ1RZ/HYILptx3RMZpsD/mlxJjZmEM//Kge/oY/6bjzmiidyK/PLEcKpNvQ6DKjUJNzmJUxJJXzgITNLEA1VHK3j4iuT2UHtwnaOOsOslj5zDNiSbzT4gQYkIhvmiuKg/7nmQwwvhZXNmgOH4l6TG4/ZgSrqysfu5P+KZP//5O3mY4HSfnVXy9L8UeKAKQ6SaBfGot4fXRuFZ084L058DzGaaPj3yGXmweGXYGmFFVdNqP4uzhGHo9JbRciBFAepksA7Tr4Y0FvChvt6AYQuojln0Yo+8oK1lI5+jNJoIXw+VccA+/JUy72UKqzTiunPr+Q2rvwp0VnvymCbaNoV2Uw2u7vk8698dWnoBQkdJsnaaGr1leBQM+MrkfIUh
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB6945.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(366004)(376002)(39860400002)(346002)(136003)(396003)(451199024)(186009)(1800799009)(33716001)(86362001)(83380400001)(8936002)(6862004)(8676002)(4326008)(5660300002)(2906002)(41300700001)(26005)(6666004)(6506007)(44832011)(107886003)(6512007)(6486002)(9686003)(966005)(478600001)(82960400001)(66476007)(316002)(6636002)(38100700002)(66946007)(66556008);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(376002)(346002)(136003)(396003)(39860400002)(186009)(451199024)(1800799009)(86362001)(83380400001)(4326008)(8676002)(44832011)(5660300002)(8936002)(2906002)(41300700001)(26005)(6486002)(6506007)(30864003)(66574015)(6512007)(478600001)(7416002)(316002)(66946007)(6916009)(82960400001)(66476007)(66556008)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?QQjbhFcmTNzHSr1Lc7cczb5Nr/mXFXG48mkW90Li8V1s2GHmcHsXYhtEXaAS?=
- =?us-ascii?Q?tXuOGwIgIlVO9LRBHJvckhBQVg1VVkZlFqRKGxnq5QfApNViQZYh7ggLwBeb?=
- =?us-ascii?Q?Fg2hV0P2OI77w6GI0nWQuDGz9xMxZr2K3yveAQptt8zuLYo2wDrlSk0kNcmH?=
- =?us-ascii?Q?v6cI4MpRECkeFuhaki2Pr8TyovixsQOj/Bcu2yHLav+eknaHkr3B2NhcU4IX?=
- =?us-ascii?Q?d787Z5yDyfveYMYnUL91RmeBbq/yxPnGMlq5Idtk8qK5GwhLdYWquWVeW3B+?=
- =?us-ascii?Q?Lezb3iZMNvg2s41TKNh6WeIxiz6HbWzFx0wtnEDFk0aDgs+/Y2A7y3f3CK/d?=
- =?us-ascii?Q?Mz7iG273U/U6YJQXhoMl5tbO0tACtJTXDnfBmv3UEw+gGkVHqjOvworJAYqf?=
- =?us-ascii?Q?HiHRqV8jiCiItjvkltJ33xbfeBH2lw75sWouATr9Mg2FjYU4wOT/lxaI/DRs?=
- =?us-ascii?Q?kuTOIeaLFc1o/qShmh75av6BIOvPiW+ThtjYvks0DMeI1IQbrRhziB+zEFIS?=
- =?us-ascii?Q?HaLqfB054WmeXOE51oQDboW++YaIyWXnLrhs01Yrm5JjzbUmQbjLzpK/FeKH?=
- =?us-ascii?Q?I4mkhl2p9EZxlzMvuhDyLaNqSgxe/3AZvaJDoFVmaSgP33Rs8nMcMWoj+7lg?=
- =?us-ascii?Q?ttpYOFnsIM0N+x8Hv22xNk1niVdPgnrdQsakckM5uer3RXijWs/nzM1GmAz7?=
- =?us-ascii?Q?l6VoWkTdW40PB98o+1RFj4beUtNTvfBOg7Xma4sqc2TULDuGuBqUInr0db55?=
- =?us-ascii?Q?eH2uZmus+w8/+jTjFkr1bPy10/AUSPCadUIcSELR9B8yhLh5j9bUIe5bzWip?=
- =?us-ascii?Q?E1qBu+u5EBmVeWqX7D31unoJcJ8nhxQI75BVPTje0vlUVNUbJlURru13c+UQ?=
- =?us-ascii?Q?ouAZhRuTmFdxXsftp5Oheh9Wwr6b3AHT+zHTn1Z5xclwTOKBYYZyrKgR9mRr?=
- =?us-ascii?Q?fKpOfLxjgvLI8mRIEVvmznPvzA3PvapovtyvITQptpvMHlPlx4hsYLwLfr1+?=
- =?us-ascii?Q?LYuvxP7g8zq6KdlTh6Szku9ltsM3XlSEGMkgNvlnHE9QV0Y2Ba2u03t7KQBC?=
- =?us-ascii?Q?yHG3OAutWujLPJWF08SAGlu/o/e164MxbUUNqzY2L8i0nJRGzva4QHy4t8V4?=
- =?us-ascii?Q?nZTM6SifNC2OXPHtIPzxWrhj4g7ESgSJ2RGw87bqUuU2rGSGJZ9nM0b1+tAQ?=
- =?us-ascii?Q?G8yuhRWW8bb8W4218/3oQGp0Y6JbLcZMeqRKYDuxyAFziXB0jSz0SrzL4YoS?=
- =?us-ascii?Q?AUxWBptFFPSKiMHTY4lo6R8JGeW7SeCpfu4vCk8E2V9RxMOHBgJrvDDwJ/tU?=
- =?us-ascii?Q?tdmXRtWAecJ8LYYtwS6SKCWtuto1uLgZF7vFkKN+rZrukvJ12kpDjdu2ob4y?=
- =?us-ascii?Q?TJ1HShuUKJiBRbx33AFh4kNjGNuBu4tIpUKf8qWrb2fxK4oVxCSLP2OkXvDr?=
- =?us-ascii?Q?l7QA5x/e5Bce75y+kdRy9ENPNitep3RN/FcJmcOBSASVjNikVf77X9pe9rrY?=
- =?us-ascii?Q?dRA5q0w+vHBvcLzWSB9A01u228EzPvdF9nGvoJ7vYyKR8jTawGnbkKm+0Giz?=
- =?us-ascii?Q?6+r/wLvD/z1UG0RLQQsUsbrOMp9LWf5cQz8HMPYCRIj8dPIxo8wTyM/OvU6w?=
- =?us-ascii?Q?utBXc0g/8ZCnoA2nX1WGC2s=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 718dfee5-f516-4b45-d878-08db9feae9e9
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB6945.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?SKcKr2P6MfLjZP66Wwdbb3v6TuPk4xnZXyGvsoC9jDpboFy44jiPz4kEZw?=
+ =?iso-8859-1?Q?+qCct+Mh3sHO9lPz2rfiCwJvoC5vQbf+Cgz5XvW7cEh5y/WttYr6o0CpRa?=
+ =?iso-8859-1?Q?SYnlAKnelgTvHpLkrJ8eRnriNPdKSQCMFS0IF7jn1Hu2oYgjHyyj7I6jOe?=
+ =?iso-8859-1?Q?hZfeBLJ9NGgpGqXBAvhTbIy/qO0wsuFNw/8r5zfUPx9xVSY/8SJhT/ehBh?=
+ =?iso-8859-1?Q?fNlaG9p0gkPaAzS12A2r66Oxboo5Aolpxsta+KLXvwQJUCOnjwDNywRpyW?=
+ =?iso-8859-1?Q?RHT6EVrOD3QpCq3N3HUuyhXM+yHU6wQtZpKMuJudbROttCv8uwoINIbLqk?=
+ =?iso-8859-1?Q?SbFj+mziTq6vNnRiN1eocOvhek3/NdZHngH8aGq1jbXsbH8Vo3amcq3G5l?=
+ =?iso-8859-1?Q?42BFHrOV4EOR9ugh0YpuBUMfk5cbV6sgV8OVjeBOSVpn9TMRb3lZs5Gur9?=
+ =?iso-8859-1?Q?h/Ck4+ZMtXgjWV9Vz8g/dy5t1AmEJrEWNlul8tqD9W3VZQ2R/plrzscAvT?=
+ =?iso-8859-1?Q?dlvXBsvwLAL5gsHxkoChPQonyeKqdhLRu4LopVeMFaHB0wqV3UCdMVfZQ0?=
+ =?iso-8859-1?Q?JJl3CYNo5mDqWdSjUHxbIcKE/0DMakV2kvtFdFoRiuxII5PmO1KTsneYag?=
+ =?iso-8859-1?Q?iAyNgnI0hjV0H228X532u5ri10lDHoWATYDGbM0CAIcsC+VXZz6nc8ZeOA?=
+ =?iso-8859-1?Q?N1E31yV3/qmGO1JmYk+q/8OMEo5QhqQWq/fWr7ZEj/yr5rG+8g6ducBnMY?=
+ =?iso-8859-1?Q?+2KeJRf4tM5tcJp6qjl4DQgXW6bLQxIunTL51PQAnUMwwDgHxgOLN0+0pX?=
+ =?iso-8859-1?Q?f9irlMq7by+ZOkvomeRFQc5rERyHs2wPqwrS/fZ6QNbaq7UN3KIe9AAfLB?=
+ =?iso-8859-1?Q?qiUACw7YP8vtly4F9Wjk3bM43Irh02GJtiYp/HYnQistqrqJsT3Hk7GGUm?=
+ =?iso-8859-1?Q?q3pgbXtCHv60IMwPOcx72rRDA7b7/oNvWmmZx48jFAcLrugaH0BB/OjHTn?=
+ =?iso-8859-1?Q?Q+kJeFDHPGflW2KcbHvySrdo7JtL8LysSqjuRgM1NJ1Ia8kRrZZDoRYxVJ?=
+ =?iso-8859-1?Q?8HEbmc+5uY+sg5wA+nlPNb+BL/sL41QXDreJ/vagT1GyG0poADpbjxKw8u?=
+ =?iso-8859-1?Q?7bWEdysZ5hf/B8foKim3BMlyRrl9+ms7IBzqVjDXHLKibI5Xps4DuJogPt?=
+ =?iso-8859-1?Q?3BtHpxsN6pRjXLm4g8yfCAWPZfw1hO4kvXctfY0aIMHu1lMV9vpPyOhtMA?=
+ =?iso-8859-1?Q?wKpOLiTqkvn6bNlqe4On/Sr+dmB3LtFMy9vVBfYJB50RRABrbKyXF7K8vw?=
+ =?iso-8859-1?Q?8TEv2O8LM4qAh6NwgKNbwnhoflqm7wcwwBK5p92vWfBfr+vUQGhgeQRpjf?=
+ =?iso-8859-1?Q?8W4ugSpr816XgUfmJRT54QVFweC15fJ0m9VsGepkFGBH4F38au5tE60wKO?=
+ =?iso-8859-1?Q?MQEhWClOI0tA+Ig2+zhIfu8Cvphak7KlzUGSwZWVP+Qa1QIDu53s6Czl5q?=
+ =?iso-8859-1?Q?qDX9ytg3Sjq8KRa2za0ohTUOTcLk6Audzj6WmLYkwXq7M7zcGnfd5vfeBq?=
+ =?iso-8859-1?Q?y2n8IGcvmYG+D/g2CsvhkrYuHwFqKTWFWQdiUeEqVMW19KfM/eESzVK88G?=
+ =?iso-8859-1?Q?uxp8T5sHNbkUA52Fn2yV86mWajhcoiFPx6eFhR3jMjmeN9Sq0KG2ALuQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a30cb7b-072b-4db7-34f2-08db9fed0fb1
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2023 12:59:10.0266 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Aug 2023 13:14:32.4296 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Gd0waPZ9v1GG+56DfOJpx92ERC9NDBYNlMMTwuXSL1dXPV19LhHOf8Sz0sDW0C26PagtabhTlqksRZCcMrpasdCT5BIUKZr+BgmvfLiuHu+/DPKaIpztAbwsfHbEkH9F
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5893
+X-MS-Exchange-CrossTenant-UserPrincipalName: LvpjWNrukAori55waCFCEPhHEB/4Qf3ynnxpW32/Rrp8w8vywrYIW4jVhPHlEQCiGLjkio9AxdQ+eyr9sY2rjw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7978
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 3/3] drm/xe/pvc: Use fast copy engines as
- migrate engine on PVC
+Subject: Re: [Intel-xe] [PATCH v2 4/9] drm/sched: Split free_job into own
+ work item
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,156 +148,378 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ Liviu.Dudau@arm.com, frank.binns@imgtec.com, dri-devel@lists.freedesktop.org,
+ luben.tuikov@amd.com, lina@asahilina.net, donald.robson@imgtec.com,
+ daniel@ffwll.ch, boris.brezillon@collabora.com, airlied@gmail.com,
+ intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 17, 2023 at 09:29:06AM -0700, Matt Roper wrote:
->On Thu, Aug 17, 2023 at 04:03:52AM -0700, Niranjana Vishwanathapura wrote:
->> Some copy hardware engine instances are faster than others on PVC.
->> Use a virtual engine of these plus the reserved instance for the migrate
->> engine on PVC. The idea being if a fast instance is available it will be
->> used and the throughput of kernel copies, clears, and pagefault
->> servicing will be higher.
->>
->> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->> Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_hw_engine.c | 31 +++++++++++++++++++++++++++++++
->>  drivers/gpu/drm/xe/xe_hw_engine.h |  1 +
->>  drivers/gpu/drm/xe/xe_migrate.c   |  7 ++++---
->>  3 files changed, 36 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
->> index 4c812d04e182..00329efbd968 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
->> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
->> @@ -791,3 +791,34 @@ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe)
->>  	return xe->info.supports_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
->>  		hwe->instance == gt->usm.reserved_bcs_instance;
->>  }
->> +
->> +/**
->> + * xe_hw_engine_migrate_logical_mask - Return logical mask for migrate engine.
->> + * @gt: gt instance
->> + *
->> + * On PVC, due to workaround 16017236439, odd instance hardware copy engines
->> + * are faster than even instance ones.
->> + * This function returns the mask involving all faster copy engines and the
->> + * reserved copy engine to be used as logical mask for migrate engine.
->> + * Including the reserved copy engine is required to avoid deadlocks due to
->> + * migrate jobs servicing the faults gets stuck behind the job that faulted.
->> + */
->> +u32 xe_hw_engine_migrate_logical_mask(struct xe_gt *gt)
->> +{
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	u32 logical_mask = 0;
->> +	struct xe_hw_engine *hwe;
->> +	enum xe_hw_engine_id id;
->> +
->> +	/* Only support this function on PVC for now */
->> +	if (XE_WARN_ON(xe->info.platform != XE_PVC))
->
->Here you warn if the platform isn't PVC...
->
->> +		return 0;
->> +
->> +	for_each_hw_engine(hwe, gt, id) {
->> +		if (hwe->class == XE_ENGINE_CLASS_COPY &&
->> +		    (hwe->instance & 1 || xe_gt_is_usm_hwe(gt, hwe)))
->> +			logical_mask |= BIT(hwe->logical_instance);
->> +	}
->> +
->> +	return logical_mask;
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.h b/drivers/gpu/drm/xe/xe_hw_engine.h
->> index 71968ee2f600..edee71e26c57 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_engine.h
->> +++ b/drivers/gpu/drm/xe/xe_hw_engine.h
->> @@ -52,6 +52,7 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec);
->>  void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe);
->>  u32 xe_hw_engine_mask_per_class(struct xe_gt *gt,
->>  				enum xe_engine_class engine_class);
->> +u32 xe_hw_engine_migrate_logical_mask(struct xe_gt *gt);
->>
->>  struct xe_hw_engine_snapshot *
->>  xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe);
->> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
->> index 956a96b38346..cb9a82d13089 100644
->> --- a/drivers/gpu/drm/xe/xe_migrate.c
->> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->> @@ -338,11 +338,12 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
->>  							   XE_ENGINE_CLASS_COPY,
->>  							   primary_gt->usm.reserved_bcs_instance,
->>  							   false);
->> -		if (!hwe)
->> +		u32 logical_mask = xe_hw_engine_migrate_logical_mask(primary_gt);
->
->...but here you call the function unconditionally on all platforms...
->
->> +
->> +		if (!hwe || !logical_mask)
->>  			return ERR_PTR(-EINVAL);
->>
->
->...and here we fail out if logical mask isn't set (which is will never
->be on non-PVC).
->
+On Fri, Aug 18, 2023 at 07:27:33AM +0200, Christian König wrote:
+> Am 17.08.23 um 19:54 schrieb Matthew Brost:
+> > On Thu, Aug 17, 2023 at 03:39:40PM +0200, Christian König wrote:
+> > > Am 11.08.23 um 04:31 schrieb Matthew Brost:
+> > > > Rather than call free_job and run_job in same work item have a dedicated
+> > > > work item for each. This aligns with the design and intended use of work
+> > > > queues.
+> > > I would rather say we should get completely rid of the free_job callback.
+> > > 
+> > Would we still have work item? e.g. Would we still want to call
+> > drm_sched_get_cleanup_job which removes the job from the pending list
+> > and adjusts the TDR? Trying to figure out out what this looks like. We
+> > probably can't do all of this from an IRQ context.
+> > 
+> > > Essentially the job is just the container which carries the information
+> > > which are necessary before you push it to the hw. The real representation of
+> > > the submission is actually the scheduler fence.
+> > > 
+> > Most of the free_jobs call plus drm_sched_job_cleanup + a put on job. In
+> > Xe this cannot be called from an IRQ context either.
+> > 
+> > I'm just confused what exactly you are suggesting here.
+> 
+> To summarize on one sentence: Instead of the job we keep the scheduler and
+> hardware fences around after pushing the job to the hw.
+> 
+> The free_job callback would then be replaced by dropping the reference on
+> the scheduler and hw fence.
+> 
+> Would that work for you?
+> 
 
-This patch was derived from the below earlier work.
-https://patchwork.freedesktop.org/patch/528460/?series=115575&rev=2
+I don't think so for a few reasons.
 
-It was discussed there.
+The job and hw fence are different structures (also different allocs too)
+for a reason. The job referenced until it is complete (hw fence is
+signaled) and the free_job is called. This reference is needed for the
+TDR to work properly and also some reset flows too. Also in Xe some of
+things done in free_job cannot be from an IRQ context, hence calling
+this from the scheduler worker is rather helpful.
 
-We should be fine here as currently only PVC Platforms call this
-xe_hw_engine_migrate_logical_mask() function. The reason for having a
-warning there is to detect any issue while supporting any future platforms
-so that we fix that immediately.
+The HW fence can live for longer as it can be installed in dma-resv
+slots, syncobjs, etc... If the job and hw fence are combined now we
+holding on the memory for the longer and perhaps at the mercy of the
+user. We also run the risk of the final put being done from an IRQ
+context which again wont work in Xe as it is currently coded. Lastly 2
+jobs from the same scheduler could do the final put in parallel, so
+rather than having free_job serialized by the worker now multiple jobs
+are freeing themselves at the same time. This might not be an issue but
+adds another level of raceyness that needs to be accounted for. None of
+this sounds desirable to me.
 
->I think you probably want an OOB workaround for some of this logic (see
->xe_wa_oob.rules); then you can do something like
->
->        if (XE_WA(gt, 16017236439))
->
->to guard any code that should only be executed on platforms where this
->workaround applies.
->
+FWIW what you suggesting sounds like how the i915 did things
+(i915_request and hw fence in 1 memory alloc) and that turned out to be
+a huge mess. As rule of thumb I generally do the opposite of whatever
+the i915 did.
 
-Hmm...the previous patch in the series adds this WA (16017236439) as a
-engine_was (to be moved to lrc_was). I would like to keep that as that
-does the register update nicely (instead of adding additional code for
-that).
+Matt
 
-If at all we need, we need to check here whether that engine/lrc WA is
-active. But as you mentioned, XE_WA() only works for OOB WAs.
-We could add a duplicate OOB WA here (with same number 16017236439).
-But not sure if that is a good idea.
-Or, we can add a function to check if a engine/lrc WA is active by
-doing the name comparision (instead of XE_WA()). Third option is to
-support generating WA index numbering for engine/lrc WAs also (similar
-to OOB), so that we can use some macro similar to XE_WA().
-
-What do you suggest?
-I think we can leave the code as is for now as it gets called only
-for PVC.
-
-Niranjana
-
->
->Matt
->
->> -		m->q = xe_exec_queue_create(xe, vm,
->> -					    BIT(hwe->logical_instance), 1,
->> +		m->q = xe_exec_queue_create(xe, vm, logical_mask, 1,
->>  					    hwe, EXEC_QUEUE_FLAG_KERNEL);
->>  	} else {
->>  		m->q = xe_exec_queue_create_class(xe, primary_gt, vm,
->> --
->> 2.21.0.rc0.32.g243a4c7e27
->>
->
->-- 
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+> Christian.
+> 
+> > 
+> > Matt
+> > 
+> > > All the lifetime issues we had came from ignoring this fact and I think we
+> > > should push for fixing this design up again.
+> > > 
+> > > Regards,
+> > > Christian.
+> > > 
+> > > > Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> > > > ---
+> > > >    drivers/gpu/drm/scheduler/sched_main.c | 137 ++++++++++++++++++-------
+> > > >    include/drm/gpu_scheduler.h            |   8 +-
+> > > >    2 files changed, 106 insertions(+), 39 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > index cede47afc800..b67469eac179 100644
+> > > > --- a/drivers/gpu/drm/scheduler/sched_main.c
+> > > > +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> > > > @@ -213,11 +213,12 @@ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
+> > > >     * drm_sched_rq_select_entity_rr - Select an entity which could provide a job to run
+> > > >     *
+> > > >     * @rq: scheduler run queue to check.
+> > > > + * @dequeue: dequeue selected entity
+> > > >     *
+> > > >     * Try to find a ready entity, returns NULL if none found.
+> > > >     */
+> > > >    static struct drm_sched_entity *
+> > > > -drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
+> > > > +drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq, bool dequeue)
+> > > >    {
+> > > >    	struct drm_sched_entity *entity;
+> > > > @@ -227,8 +228,10 @@ drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
+> > > >    	if (entity) {
+> > > >    		list_for_each_entry_continue(entity, &rq->entities, list) {
+> > > >    			if (drm_sched_entity_is_ready(entity)) {
+> > > > -				rq->current_entity = entity;
+> > > > -				reinit_completion(&entity->entity_idle);
+> > > > +				if (dequeue) {
+> > > > +					rq->current_entity = entity;
+> > > > +					reinit_completion(&entity->entity_idle);
+> > > > +				}
+> > > >    				spin_unlock(&rq->lock);
+> > > >    				return entity;
+> > > >    			}
+> > > > @@ -238,8 +241,10 @@ drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
+> > > >    	list_for_each_entry(entity, &rq->entities, list) {
+> > > >    		if (drm_sched_entity_is_ready(entity)) {
+> > > > -			rq->current_entity = entity;
+> > > > -			reinit_completion(&entity->entity_idle);
+> > > > +			if (dequeue) {
+> > > > +				rq->current_entity = entity;
+> > > > +				reinit_completion(&entity->entity_idle);
+> > > > +			}
+> > > >    			spin_unlock(&rq->lock);
+> > > >    			return entity;
+> > > >    		}
+> > > > @@ -257,11 +262,12 @@ drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
+> > > >     * drm_sched_rq_select_entity_fifo - Select an entity which provides a job to run
+> > > >     *
+> > > >     * @rq: scheduler run queue to check.
+> > > > + * @dequeue: dequeue selected entity
+> > > >     *
+> > > >     * Find oldest waiting ready entity, returns NULL if none found.
+> > > >     */
+> > > >    static struct drm_sched_entity *
+> > > > -drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
+> > > > +drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq, bool dequeue)
+> > > >    {
+> > > >    	struct rb_node *rb;
+> > > > @@ -271,8 +277,10 @@ drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
+> > > >    		entity = rb_entry(rb, struct drm_sched_entity, rb_tree_node);
+> > > >    		if (drm_sched_entity_is_ready(entity)) {
+> > > > -			rq->current_entity = entity;
+> > > > -			reinit_completion(&entity->entity_idle);
+> > > > +			if (dequeue) {
+> > > > +				rq->current_entity = entity;
+> > > > +				reinit_completion(&entity->entity_idle);
+> > > > +			}
+> > > >    			break;
+> > > >    		}
+> > > >    	}
+> > > > @@ -282,13 +290,54 @@ drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
+> > > >    }
+> > > >    /**
+> > > > - * drm_sched_submit_queue - scheduler queue submission
+> > > > + * drm_sched_run_job_queue - queue job submission
+> > > >     * @sched: scheduler instance
+> > > >     */
+> > > > -static void drm_sched_submit_queue(struct drm_gpu_scheduler *sched)
+> > > > +static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
+> > > >    {
+> > > >    	if (!READ_ONCE(sched->pause_submit))
+> > > > -		queue_work(sched->submit_wq, &sched->work_submit);
+> > > > +		queue_work(sched->submit_wq, &sched->work_run_job);
+> > > > +}
+> > > > +
+> > > > +static struct drm_sched_entity *
+> > > > +drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequeue);
+> > > > +
+> > > > +/**
+> > > > + * drm_sched_run_job_queue_if_ready - queue job submission if ready
+> > > > + * @sched: scheduler instance
+> > > > + */
+> > > > +static void drm_sched_run_job_queue_if_ready(struct drm_gpu_scheduler *sched)
+> > > > +{
+> > > > +	if (drm_sched_select_entity(sched, false))
+> > > > +		drm_sched_run_job_queue(sched);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_sched_free_job_queue - queue free job
+> > > > + *
+> > > > + * @sched: scheduler instance to queue free job
+> > > > + */
+> > > > +static void drm_sched_free_job_queue(struct drm_gpu_scheduler *sched)
+> > > > +{
+> > > > +	if (!READ_ONCE(sched->pause_submit))
+> > > > +		queue_work(sched->submit_wq, &sched->work_free_job);
+> > > > +}
+> > > > +
+> > > > +/**
+> > > > + * drm_sched_free_job_queue_if_ready - queue free job if ready
+> > > > + *
+> > > > + * @sched: scheduler instance to queue free job
+> > > > + */
+> > > > +static void drm_sched_free_job_queue_if_ready(struct drm_gpu_scheduler *sched)
+> > > > +{
+> > > > +	struct drm_sched_job *job;
+> > > > +
+> > > > +	spin_lock(&sched->job_list_lock);
+> > > > +	job = list_first_entry_or_null(&sched->pending_list,
+> > > > +				       struct drm_sched_job, list);
+> > > > +	if (job && dma_fence_is_signaled(&job->s_fence->finished))
+> > > > +		drm_sched_free_job_queue(sched);
+> > > > +	spin_unlock(&sched->job_list_lock);
+> > > >    }
+> > > >    /**
+> > > > @@ -310,7 +359,7 @@ static void drm_sched_job_done(struct drm_sched_job *s_job, int result)
+> > > >    	dma_fence_get(&s_fence->finished);
+> > > >    	drm_sched_fence_finished(s_fence, result);
+> > > >    	dma_fence_put(&s_fence->finished);
+> > > > -	drm_sched_submit_queue(sched);
+> > > > +	drm_sched_free_job_queue(sched);
+> > > >    }
+> > > >    /**
+> > > > @@ -906,18 +955,19 @@ static bool drm_sched_can_queue(struct drm_gpu_scheduler *sched)
+> > > >    void drm_sched_wakeup_if_can_queue(struct drm_gpu_scheduler *sched)
+> > > >    {
+> > > >    	if (drm_sched_can_queue(sched))
+> > > > -		drm_sched_submit_queue(sched);
+> > > > +		drm_sched_run_job_queue(sched);
+> > > >    }
+> > > >    /**
+> > > >     * drm_sched_select_entity - Select next entity to process
+> > > >     *
+> > > >     * @sched: scheduler instance
+> > > > + * @dequeue: dequeue selected entity
+> > > >     *
+> > > >     * Returns the entity to process or NULL if none are found.
+> > > >     */
+> > > >    static struct drm_sched_entity *
+> > > > -drm_sched_select_entity(struct drm_gpu_scheduler *sched)
+> > > > +drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequeue)
+> > > >    {
+> > > >    	struct drm_sched_entity *entity;
+> > > >    	int i;
+> > > > @@ -935,8 +985,10 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
+> > > >    	/* Kernel run queue has higher priority than normal run queue*/
+> > > >    	for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
+> > > >    		entity = sched->sched_policy == DRM_SCHED_POLICY_FIFO ?
+> > > > -			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i]) :
+> > > > -			drm_sched_rq_select_entity_rr(&sched->sched_rq[i]);
+> > > > +			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i],
+> > > > +							dequeue) :
+> > > > +			drm_sched_rq_select_entity_rr(&sched->sched_rq[i],
+> > > > +						      dequeue);
+> > > >    		if (entity)
+> > > >    			break;
+> > > >    	}
+> > > > @@ -1024,30 +1076,44 @@ drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
+> > > >    EXPORT_SYMBOL(drm_sched_pick_best);
+> > > >    /**
+> > > > - * drm_sched_main - main scheduler thread
+> > > > + * drm_sched_free_job_work - worker to call free_job
+> > > >     *
+> > > > - * @param: scheduler instance
+> > > > + * @w: free job work
+> > > >     */
+> > > > -static void drm_sched_main(struct work_struct *w)
+> > > > +static void drm_sched_free_job_work(struct work_struct *w)
+> > > >    {
+> > > >    	struct drm_gpu_scheduler *sched =
+> > > > -		container_of(w, struct drm_gpu_scheduler, work_submit);
+> > > > -	struct drm_sched_entity *entity;
+> > > > +		container_of(w, struct drm_gpu_scheduler, work_free_job);
+> > > >    	struct drm_sched_job *cleanup_job;
+> > > > -	int r;
+> > > >    	if (READ_ONCE(sched->pause_submit))
+> > > >    		return;
+> > > >    	cleanup_job = drm_sched_get_cleanup_job(sched);
+> > > > -	entity = drm_sched_select_entity(sched);
+> > > > +	if (cleanup_job) {
+> > > > +		sched->ops->free_job(cleanup_job);
+> > > > +
+> > > > +		drm_sched_free_job_queue_if_ready(sched);
+> > > > +		drm_sched_run_job_queue_if_ready(sched);
+> > > > +	}
+> > > > +}
+> > > > -	if (!entity && !cleanup_job)
+> > > > -		return;	/* No more work */
+> > > > +/**
+> > > > + * drm_sched_run_job_work - worker to call run_job
+> > > > + *
+> > > > + * @w: run job work
+> > > > + */
+> > > > +static void drm_sched_run_job_work(struct work_struct *w)
+> > > > +{
+> > > > +	struct drm_gpu_scheduler *sched =
+> > > > +		container_of(w, struct drm_gpu_scheduler, work_run_job);
+> > > > +	struct drm_sched_entity *entity;
+> > > > +	int r;
+> > > > -	if (cleanup_job)
+> > > > -		sched->ops->free_job(cleanup_job);
+> > > > +	if (READ_ONCE(sched->pause_submit))
+> > > > +		return;
+> > > > +	entity = drm_sched_select_entity(sched, true);
+> > > >    	if (entity) {
+> > > >    		struct dma_fence *fence;
+> > > >    		struct drm_sched_fence *s_fence;
+> > > > @@ -1056,9 +1122,7 @@ static void drm_sched_main(struct work_struct *w)
+> > > >    		sched_job = drm_sched_entity_pop_job(entity);
+> > > >    		if (!sched_job) {
+> > > >    			complete_all(&entity->entity_idle);
+> > > > -			if (!cleanup_job)
+> > > > -				return;	/* No more work */
+> > > > -			goto again;
+> > > > +			return;	/* No more work */
+> > > >    		}
+> > > >    		s_fence = sched_job->s_fence;
+> > > > @@ -1088,10 +1152,8 @@ static void drm_sched_main(struct work_struct *w)
+> > > >    		}
+> > > >    		wake_up(&sched->job_scheduled);
+> > > > +		drm_sched_run_job_queue_if_ready(sched);
+> > > >    	}
+> > > > -
+> > > > -again:
+> > > > -	drm_sched_submit_queue(sched);
+> > > >    }
+> > > >    /**
+> > > > @@ -1150,7 +1212,8 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+> > > >    	spin_lock_init(&sched->job_list_lock);
+> > > >    	atomic_set(&sched->hw_rq_count, 0);
+> > > >    	INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
+> > > > -	INIT_WORK(&sched->work_submit, drm_sched_main);
+> > > > +	INIT_WORK(&sched->work_run_job, drm_sched_run_job_work);
+> > > > +	INIT_WORK(&sched->work_free_job, drm_sched_free_job_work);
+> > > >    	atomic_set(&sched->_score, 0);
+> > > >    	atomic64_set(&sched->job_id_count, 0);
+> > > >    	sched->pause_submit = false;
+> > > > @@ -1275,7 +1338,8 @@ EXPORT_SYMBOL(drm_sched_submit_ready);
+> > > >    void drm_sched_submit_stop(struct drm_gpu_scheduler *sched)
+> > > >    {
+> > > >    	WRITE_ONCE(sched->pause_submit, true);
+> > > > -	cancel_work_sync(&sched->work_submit);
+> > > > +	cancel_work_sync(&sched->work_run_job);
+> > > > +	cancel_work_sync(&sched->work_free_job);
+> > > >    }
+> > > >    EXPORT_SYMBOL(drm_sched_submit_stop);
+> > > > @@ -1287,6 +1351,7 @@ EXPORT_SYMBOL(drm_sched_submit_stop);
+> > > >    void drm_sched_submit_start(struct drm_gpu_scheduler *sched)
+> > > >    {
+> > > >    	WRITE_ONCE(sched->pause_submit, false);
+> > > > -	queue_work(sched->submit_wq, &sched->work_submit);
+> > > > +	queue_work(sched->submit_wq, &sched->work_run_job);
+> > > > +	queue_work(sched->submit_wq, &sched->work_free_job);
+> > > >    }
+> > > >    EXPORT_SYMBOL(drm_sched_submit_start);
+> > > > diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+> > > > index 04eec2d7635f..fbc083a92757 100644
+> > > > --- a/include/drm/gpu_scheduler.h
+> > > > +++ b/include/drm/gpu_scheduler.h
+> > > > @@ -487,9 +487,10 @@ struct drm_sched_backend_ops {
+> > > >     *                 finished.
+> > > >     * @hw_rq_count: the number of jobs currently in the hardware queue.
+> > > >     * @job_id_count: used to assign unique id to the each job.
+> > > > - * @submit_wq: workqueue used to queue @work_submit
+> > > > + * @submit_wq: workqueue used to queue @work_run_job and @work_free_job
+> > > >     * @timeout_wq: workqueue used to queue @work_tdr
+> > > > - * @work_submit: schedules jobs and cleans up entities
+> > > > + * @work_run_job: schedules jobs
+> > > > + * @work_free_job: cleans up jobs
+> > > >     * @work_tdr: schedules a delayed call to @drm_sched_job_timedout after the
+> > > >     *            timeout interval is over.
+> > > >     * @pending_list: the list of jobs which are currently in the job queue.
+> > > > @@ -518,7 +519,8 @@ struct drm_gpu_scheduler {
+> > > >    	atomic64_t			job_id_count;
+> > > >    	struct workqueue_struct		*submit_wq;
+> > > >    	struct workqueue_struct		*timeout_wq;
+> > > > -	struct work_struct		work_submit;
+> > > > +	struct work_struct		work_run_job;
+> > > > +	struct work_struct		work_free_job;
+> > > >    	struct delayed_work		work_tdr;
+> > > >    	struct list_head		pending_list;
+> > > >    	spinlock_t			job_list_lock;
+> 
