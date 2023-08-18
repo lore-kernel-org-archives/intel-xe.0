@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E0C0EE4992
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B951BEE499F
 	for <intel-xe@archiver.kernel.org>; Fri, 18 Aug 2023 22:08:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12E1E10E56B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FFAE10E57A;
 	Fri, 18 Aug 2023 22:08:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B747F10E56B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7956C10E2C9
  for <intel-xe@lists.freedesktop.org>; Fri, 18 Aug 2023 22:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1692396512; x=1723932512;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=L1FFDWhsA8wO4uLpWDGU6ektX1/dCkE4UQ6hUO+cI+U=;
- b=Hinz3LNxMwTHTMNX8r4592cVvX6llZNf1uQQX9ct/c2JOXffKn9Jptkm
- NI4t79b4MoyQe3SOIZQbRNLvvQ1ape7uoBAcEYKo56rVmIxPgnICB8Ug+
- fAVG+yXo2SDfwWXiIVgSwqdmaArQvpCna8Kd+Q3jL2WSJTykvw1WVvlje
- nugrTfinGrUGuhWJPTYj8DRUk69ZbDc5Jn8kUPMkkmrLPcwzBxLY58SAP
- OK1gri3yzZGYQXNtlk2LToJNwb0ngVlRH5TIpnpO3BaRZECVC3XEY/GL6
- RZ9YZrRrQ+HQ7D9RSG9xwE0Vz+izVDuADtlk25v4ePcS47vRG+LJob78Q A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="439592992"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="439592992"
+ bh=2sORZJVl32ERXcV4eZZcqj0+VGQjwTvHj9KXDCOppFA=;
+ b=ElK8rx3nFwcrKHATIKMnNjPMZiaaNuDChZ/isC88YDdjW6L8YPzxwV7P
+ Apjl5XhH3rTm79fkeVtZWVQ9PrnaaeB3djONMWl1mKhz21Vf7bSgR4J04
+ xMKu0GDpSwpGp5h/WoLu+PWaNojVh2LAZ6lgmNlkVLe6du2LzIDiDEAVt
+ EBEfLBIrBxIi4ahxdBcgUa/9pVdlhHJTqgcfgtcuLX+TEQps4/P5f2W02
+ zcxyyP1lozceHzT39dSapi0IpsfDNNG9uOz+YDtpGXCqEwZHXWUT0/n+X
+ vJW64Ovo/ecVqFz/Jbgi8Sg7XRWIBjKVSKSlG8JxoFgTQl9aAnPhfZ9P/ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="439592988"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="439592988"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Aug 2023 15:08:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="728758203"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="728758203"
+X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="728758192"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="728758192"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Aug 2023 15:08:31 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Aug 2023 15:08:19 -0700
-Message-Id: <20230818220824.700519-11-lucas.demarchi@intel.com>
+Date: Fri, 18 Aug 2023 15:08:15 -0700
+Message-Id: <20230818220824.700519-7-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230818220824.700519-1-lucas.demarchi@intel.com>
 References: <20230818220824.700519-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 10/15] drm/xe/xe2: Track VA bits independently
- of max page table level
+Subject: [Intel-xe] [PATCH v2 06/15] drm/xe/xe2: Handle fused-off CCS engines
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,127 +63,78 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matt Roper <matthew.d.roper@intel.com>
 
-Starting with Xe2, a 5-level page table is always used, regardless of
-the actual virtual address range supported by the platform.  The two
-values need to be tracked separately in the device descriptor since Xe2
-platforms only have a 48 bit virtual address range.
+On Xe2 platforms, availability of the CCS engines is reflected in the
+FUSE4 register.
 
-Bspec: 59505, 65637, 70817
+Bspec: 62483
 Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 2 ++
- drivers/gpu/drm/xe/xe_pci.c          | 6 ++++++
- drivers/gpu/drm/xe/xe_pci_types.h    | 1 +
- drivers/gpu/drm/xe/xe_query.c        | 3 +--
- drivers/gpu/drm/xe/xe_vm.c           | 2 +-
- 5 files changed, 11 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  1 +
+ drivers/gpu/drm/xe/xe_hw_engine.c    | 29 +++++++++++++++++++++++++++-
+ 2 files changed, 29 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 303447c093c5..18292aad87e9 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -216,6 +216,8 @@ struct xe_device {
- 		u8 gt_count;
- 		/** @vm_max_level: Max VM level */
- 		u8 vm_max_level;
-+		/** @va_bits: Maximum bits of a virtual address */
-+		u8 va_bits;
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 366818127317..aa9d7fad41ee 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -152,6 +152,7 @@
  
- 		/** @is_dgfx: is discrete device */
- 		u8 is_dgfx:1;
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index fdd2eba1b91f..70d5f25c0d20 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -106,6 +106,7 @@ static const struct xe_graphics_desc graphics_xelp = {
- 	.hw_engine_mask = BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0),
+ /* Fuse readout registers for GT */
+ #define XEHP_FUSE4				XE_REG(0x9114)
++#define   CCS_EN_MASK				REG_GENMASK(19, 16)
+ #define   GT_L3_EXC_MASK			REG_GENMASK(6, 4)
  
- 	.dma_mask_size = 39,
-+	.va_bits = 48,
- 	.vm_max_level = 3,
- };
+ #define GT_VEBOX_VDBOX_DISABLE			XE_REG(0x9140)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 24b5226f1433..dd673a684b70 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -550,7 +550,7 @@ static void read_copy_fuses(struct xe_gt *gt)
+ 	}
+ }
  
-@@ -117,6 +118,7 @@ static const struct xe_graphics_desc graphics_xelpp = {
- 	.hw_engine_mask = BIT(XE_HW_ENGINE_RCS0) | BIT(XE_HW_ENGINE_BCS0),
+-static void read_compute_fuses(struct xe_gt *gt)
++static void read_compute_fuses_from_dss(struct xe_gt *gt)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
  
- 	.dma_mask_size = 39,
-+	.va_bits = 48,
- 	.vm_max_level = 3,
- };
+@@ -577,6 +577,33 @@ static void read_compute_fuses(struct xe_gt *gt)
+ 	}
+ }
  
-@@ -124,6 +126,7 @@ static const struct xe_graphics_desc graphics_xelpp = {
- 	.has_range_tlb_invalidation = true, \
- 	.has_flat_ccs = true, \
- 	.dma_mask_size = 46, \
-+	.va_bits = 48, \
- 	.vm_max_level = 3
- 
- static const struct xe_graphics_desc graphics_xehpg = {
-@@ -157,6 +160,7 @@ static const struct xe_graphics_desc graphics_xehpc = {
- 	XE_HP_FEATURES,
- 	.dma_mask_size = 52,
- 	.max_remote_tiles = 1,
-+	.va_bits = 57,
- 	.vm_max_level = 4,
- 	.vram_flags = XE_VRAM_FLAGS_NEED64K,
- 
-@@ -182,6 +186,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
- 	.has_flat_ccs = 0 /* FIXME: implementation missing */, \
- 	.has_range_tlb_invalidation = 1, \
- 	.supports_usm = 0 /* FIXME: implementation missing */, \
-+	.va_bits = 48, \
- 	.vm_max_level = 4, \
- 	.hw_engine_mask = \
- 		BIT(XE_HW_ENGINE_RCS0) | \
-@@ -587,6 +592,7 @@ static int xe_info_init(struct xe_device *xe,
- 
- 	xe->info.dma_mask_size = graphics_desc->dma_mask_size;
- 	xe->info.vram_flags = graphics_desc->vram_flags;
-+	xe->info.va_bits = graphics_desc->va_bits;
- 	xe->info.vm_max_level = graphics_desc->vm_max_level;
- 	xe->info.supports_usm = graphics_desc->supports_usm;
- 	xe->info.has_asid = graphics_desc->has_asid;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index ba31b933eb8e..df6ddbc52d7f 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -14,6 +14,7 @@ struct xe_graphics_desc {
- 	u8 rel;
- 
- 	u8 dma_mask_size;	/* available DMA address bits */
-+	u8 va_bits;
- 	u8 vm_max_level;
- 	u8 vram_flags;
- 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 7ea235c71385..1db77a7c9039 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -197,8 +197,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
- 			XE_QUERY_CONFIG_FLAGS_HAS_VRAM;
- 	config->info[XE_QUERY_CONFIG_MIN_ALIGNEMENT] =
- 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
--	config->info[XE_QUERY_CONFIG_VA_BITS] = 12 +
--		(9 * (xe->info.vm_max_level + 1));
-+	config->info[XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
- 	config->info[XE_QUERY_CONFIG_GT_COUNT] = xe->info.gt_count;
- 	config->info[XE_QUERY_CONFIG_MEM_REGION_COUNT] =
- 		hweight_long(xe->info.mem_region_mask);
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 2e99f865d7ec..389ac5ba8ddf 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1207,7 +1207,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 	kref_init(&vm->refcount);
- 	dma_resv_init(&vm->resv);
- 
--	vm->size = 1ull << xe_pt_shift(xe->info.vm_max_level + 1);
-+	vm->size = 1ull << xe->info.va_bits;
- 
- 	vm->flags = flags;
- 
++static void read_compute_fuses_from_reg(struct xe_gt *gt)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++	u32 ccs_mask;
++
++	ccs_mask = xe_mmio_read32(gt, XEHP_FUSE4);
++	ccs_mask = REG_FIELD_GET(CCS_EN_MASK, ccs_mask);
++
++	for (int i = XE_HW_ENGINE_CCS0, j = 0; i <= XE_HW_ENGINE_CCS3; ++i, ++j) {
++		if (!(gt->info.engine_mask & BIT(i)))
++			continue;
++
++		if ((ccs_mask & BIT(j)) == 0) {
++			gt->info.engine_mask &= ~BIT(i);
++			drm_info(&xe->drm, "ccs%u fused off\n", j);
++		}
++	}
++}
++
++static void read_compute_fuses(struct xe_gt *gt)
++{
++	if (GRAPHICS_VER(gt_to_xe(gt)) >= 20)
++		read_compute_fuses_from_reg(gt);
++	else
++		read_compute_fuses_from_dss(gt);
++}
++
+ int xe_hw_engines_init_early(struct xe_gt *gt)
+ {
+ 	int i;
 -- 
 2.40.1
 
