@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD95BEE4992
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Aug 2023 22:08:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED9E5EE4992
+	for <intel-xe@archiver.kernel.org>; Fri, 18 Aug 2023 22:08:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8716510E0E8;
-	Fri, 18 Aug 2023 22:08:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C51D810E103;
+	Fri, 18 Aug 2023 22:08:56 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C25CA10E57A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1D8C10E106
  for <intel-xe@lists.freedesktop.org>; Fri, 18 Aug 2023 22:08:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1692396512; x=1723932512;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rhhFKyjt/NmTADUxem2V/iHVu7WA272+IqwLFInpiAE=;
- b=MLoeI7B+3YTAiadtg0bWlcljVKRheFxQY59Q0qkCQAPpSyv3z7j9j71L
- Pcku5NHE+y0FmMl5kJtg50rhtVDu9x5OQHQze8WC6LynNwTtYhPm0/iwa
- 6vum0yKBXHuul+pMC5UJ43iySfSz5sqG5xnr3jZdg8YOa7mra+BYV3joH
- eqwf7NnsKXMfggx9TU3Z/q2EJIQG0HvTJKglSs2CGPRmQQJd4cNMSAhCG
- MDb0rHA34OJEhHr6rlAb8qJNuaQfmb3h1HDQJsIp6WN5ttGWzFWBcolGb
- FBw81XN5UJ+2YsMzOzwdfWrXSnb6vUe3JUVvMZdpHsKxL4CRglK5BAEh2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="439592994"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="439592994"
+ bh=14bknZ5za8R4c37RK2XjyaKQThcOrFq5ldffNZVbN8A=;
+ b=HPVdbjvf6rTIsdnydMziEjiY+3x+hAB5FsSBw4yrzDzBXTrFR5OCJ9FQ
+ pcb2AUFe4qEjGvoXyKVxbLMkeu3K2BaOIGjnf3miq6YQeR0P3rJ9wWgIA
+ A83PB6g/RGlc3AMH/OzhSjgekLmVQt59TEUeNFGDkW+cUBGC/sofhHDce
+ 41tciK8lxc5hNSMDTPsCzkJuUup4H36ZO0QUUkKIGUb+x3C9x32Wf4Dab
+ 1KwCneWsbHIn36ktNE5ATl2emFiQdDbudLS25GMCaJRFanCxex9C7LsmT
+ 3HCspFKG8oRQi+s02naE5TDgCXKuPkesYM5+yxxXf/mAY8ahnDBFD4D5f w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="439592993"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="439592993"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Aug 2023 15:08:32 -0700
+ 18 Aug 2023 15:08:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="728758209"
-X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="728758209"
+X-IronPort-AV: E=McAfee;i="6600,9927,10806"; a="728758206"
+X-IronPort-AV: E=Sophos;i="6.01,184,1684825200"; d="scan'208";a="728758206"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Aug 2023 15:08:31 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 18 Aug 2023 15:08:21 -0700
-Message-Id: <20230818220824.700519-13-lucas.demarchi@intel.com>
+Date: Fri, 18 Aug 2023 15:08:20 -0700
+Message-Id: <20230818220824.700519-12-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230818220824.700519-1-lucas.demarchi@intel.com>
 References: <20230818220824.700519-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 12/15] drm/xe/xe2: Program GuC's MOCS on Xe2
- and beyond
+Subject: [Intel-xe] [PATCH v2 11/15] drm/xe/xe2: Add MOCS table
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,51 +61,81 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matt Roper <matthew.d.roper@intel.com>
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-As with PVC, Xe2 platforms require that the index of an uncached MOCS
-entry be programmed into the GUC_SHIM_CONTROL register.  This will
-likely be needed on future platforms as well.
+Additional minor change to remove L4_2_RESERVED, which will never be
+required.
 
-Xe2 also extends the size of the MOCS index register field from two bits
-to four bits.  Since these extra bits were unused on PVC, it should be
-safe to just increase the size of the mask.
+v2: Make L3/L4 names consistent for GLOB_MOCS defines (Matt Roper)
 
-Bspec: 60592
-Cc: Haridhar Kalvala <haridhar.kalvala@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Bspec: 71582
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_guc_regs.h | 2 +-
- drivers/gpu/drm/xe/xe_guc.c           | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_mocs.c | 29 +++++++++++++++++++++++------
+ 1 file changed, 23 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-index fcb747201bc1..ba375fc51a87 100644
---- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
-@@ -45,7 +45,7 @@
- #define   GUC_WOPCM_SIZE_LOCKED			REG_BIT(0)
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index c9653978fc9f..c120090ef9b4 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -62,13 +62,15 @@ struct xe_mocs_info {
+ #define L3_LKUP(value)		((value) << 7)
  
- #define GUC_SHIM_CONTROL			XE_REG(0xc064)
--#define   GUC_MOCS_INDEX_MASK			REG_GENMASK(25, 24)
-+#define   GUC_MOCS_INDEX_MASK			REG_GENMASK(27, 24)
- #define   GUC_SHIM_WC_ENABLE			REG_BIT(21)
- #define   GUC_ENABLE_MIA_CLOCK_GATING		REG_BIT(15)
- #define   GUC_ENABLE_READ_CACHE_FOR_WOPCM_DATA	REG_BIT(10)
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 2493c5859948..e102637c0695 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -326,7 +326,7 @@ static void guc_prepare_xfer(struct xe_guc *guc)
- 		shim_flags |= GUC_DISABLE_SRAM_INIT_TO_ZEROES |
- 				GUC_ENABLE_MIA_CACHING;
+ /* Defines for the tables (GLOB_MOCS_0 - GLOB_MOCS_16) */
+-#define _L4_CACHEABILITY	REG_GENMASK(3, 2)
+-#define IG_PAT			REG_BIT(8)
++#define IG_PAT				REG_BIT(8)
++#define L3_CACHE_POLICY_MASK		REG_GENMASK(5, 4)
++#define L4_CACHE_POLICY_MASK		REG_GENMASK(3, 2)
  
--	if (xe->info.platform == XE_PVC)
-+	if (GRAPHICS_VER(xe) >= 20 || xe->info.platform == XE_PVC)
- 		shim_flags |= REG_FIELD_PREP(GUC_MOCS_INDEX_MASK, gt->mocs.uc_index);
+ /* Helper defines */
+ #define GEN9_NUM_MOCS_ENTRIES	64  /* 63-64 are reserved, but configured. */
+ #define PVC_NUM_MOCS_ENTRIES	3
+ #define MTL_NUM_MOCS_ENTRIES    16
++#define XE2_NUM_MOCS_ENTRIES	16
  
- 	/* Must program this register before loading the ucode with DMA */
+ /* (e)LLC caching options */
+ /*
+@@ -93,10 +95,14 @@ struct xe_mocs_info {
+ #define L3_3_WB			_L3_CACHEABILITY(3)
+ 
+ /* L4 caching options */
+-#define L4_0_WB                 REG_FIELD_PREP(_L4_CACHEABILITY, 0)
+-#define L4_1_WT                 REG_FIELD_PREP(_L4_CACHEABILITY, 1)
+-#define L4_2_RESERVED           REG_FIELD_PREP(_L4_CACHEABILITY, 2)
+-#define L4_3_UC                 REG_FIELD_PREP(_L4_CACHEABILITY, 3)
++#define L4_0_WB                 REG_FIELD_PREP(L4_CACHE_POLICY_MASK, 0)
++#define L4_1_WT                 REG_FIELD_PREP(L4_CACHE_POLICY_MASK, 1)
++#define L4_3_UC                 REG_FIELD_PREP(L4_CACHE_POLICY_MASK, 3)
++
++#define XE2_L3_0_WB		REG_FIELD_PREP(L3_CACHE_POLICY_MASK, 0)
++/* XD: WB Transient Display */
++#define XE2_L3_1_XD		REG_FIELD_PREP(L3_CACHE_POLICY_MASK, 1)
++#define XE2_L3_3_UC		REG_FIELD_PREP(L3_CACHE_POLICY_MASK, 3)
+ 
+ #define MOCS_ENTRY(__idx, __control_value, __l3cc_value) \
+ 	[__idx] = { \
+@@ -370,6 +376,17 @@ static const struct xe_mocs_entry mtl_mocs_desc[] = {
+ 		   L3_GLBGO(1) | L3_1_UC),
+ };
+ 
++static const struct xe_mocs_entry xe2_mocs_table[] = {
++	/* Defer to PAT */
++	MOCS_ENTRY(0, XE2_L3_0_WB | L4_0_WB, 0),
++	/* Cached L3 + L4 */
++	MOCS_ENTRY(1, IG_PAT | XE2_L3_0_WB | L4_0_WB, 0),
++	/* Uncached L3, Cached L4 */
++	MOCS_ENTRY(2, IG_PAT | XE2_L3_3_UC | L4_0_WB, 0),
++	/* Uncached L3 + L4 */
++	MOCS_ENTRY(3, IG_PAT | XE2_L3_3_UC | L4_3_UC, 0),
++};
++
+ static unsigned int get_mocs_settings(struct xe_device *xe,
+ 				      struct xe_mocs_info *info)
+ {
 -- 
 2.40.1
 
