@@ -4,30 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C18D0EE4992
-	for <intel-xe@archiver.kernel.org>; Fri, 18 Aug 2023 22:44:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 90F0CEE4996
+	for <intel-xe@archiver.kernel.org>; Sun, 20 Aug 2023 03:44:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 539E010E086;
-	Fri, 18 Aug 2023 22:44:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B3EAD10E086;
- Fri, 18 Aug 2023 22:44:01 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ABBD1A00CC;
- Fri, 18 Aug 2023 22:44:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7866565278429544626=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E881B10E0D0;
+	Sun, 20 Aug 2023 03:44:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCE2910E0D0;
+ Sun, 20 Aug 2023 03:44:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692503086; x=1724039086;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=4TAFfstcThoQwJSzW/GbrfXCDo4BnB655aEW6JqqMLk=;
+ b=D5cmPUD7YyLb1dBU91CWIJt/vRf0jD0ecf/3Mh9pauEGddT3hFTdNVVi
+ AnJ5T+iAE97QBfxyP9x9Grt6Ux1kPGpcm8yP0EZ0sFz4A5aleRHZhkVBx
+ DsaXabEexczdxQW+HQOpf0+jAN1WVWgGidINAXjPPpYKpcH2ec6NML7U7
+ SM/4bayEJQ7lS6udS+GGl2qNPr6MownAfko3OS5AyflZpGPtkeGYI3OuX
+ wca+6GHsgZvh+0chGOagJlLvCyse/1Y+tNC7oNzRRkrlBFpAom5h8oB94
+ zspW9dkgtEyJ/v3Le64D/oPp7vJi//8Q3ERWhO0NknuGTXApedbD2NnQp w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10807"; a="363521852"
+X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="363521852"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Aug 2023 20:44:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10807"; a="859112744"
+X-IronPort-AV: E=Sophos;i="6.01,187,1684825200"; d="scan'208";a="859112744"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga004.jf.intel.com with ESMTP; 19 Aug 2023 20:44:46 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Sat, 19 Aug 2023 20:44:45 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Sat, 19 Aug 2023 20:44:45 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Sat, 19 Aug 2023 20:44:45 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.46) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Sat, 19 Aug 2023 20:44:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=D+pyZ1MFIwQ+AHp4BLR+Un4I5N6WvOpft2kQvLKrXwEJ7ZcTN6r0xGLKNw6nrNN223KRqyij8OOqivP8DsiauRRoMTFSnvCHUVM68uBB7+ecT1Rvd6YpwY9tRVsph9jhTZH3bVqQaKY/4sPQfbEAnNXkPtyR5KVc16cB4mUy4bjuCwvcsmEbOm8pFNbzCEODfORWkUDBRFQQGZbSv6HyLp+1Maj58bAp18BVp5cPonni+Si9Fa77W4UbTyLPQhAockZNr7CFYjAldnOxPBvqtVMDIthKaBUsH9we8ITdQn36aoeUAV47S3l+ZvnKCdYxRFKb4yP2es8V+5jil6c9Lw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3ghhX6FI+Nfrn2DOT4pzh11n3cC/c3++cIXIOUnRh2E=;
+ b=FuZIQ6Xmh65Xjz6aF36PWG2XSjNdkKh+S/vgKurhcFdi8YgZ1K5MgcP1/z5FIRASCGaqdcqEinlAYNt/R7aj9wLc9XagPjk38kalqJYaY2hWAc3w0Xd4PKKRRZdtK/CQ0BgRdafubjx4l3cGRjQWyYwJl6iNd1h9TPV4EoE/8vhkV8RJIgnvIdLGW+I/RhAh6csjfpiQIdC7a26fo0B+mcxx6ZyWnEzt/nyG71+1llWEv1Z7hnxzpXrKFzP0Eo1BSeuy2yi/Hv7LUpBn0mU6OcZtpDaT1w1bzCfa9p0kHTGznLnziezT5Ogk4IouYk7e36SGKppYC08zS0gvE1UmCg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by PH7PR11MB7572.namprd11.prod.outlook.com (2603:10b6:510:27b::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20; Sun, 20 Aug
+ 2023 03:44:36 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b429:ee19:a001:eb69]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b429:ee19:a001:eb69%5]) with mapi id 15.20.6699.020; Sun, 20 Aug 2023
+ 03:44:35 +0000
+Date: Sun, 20 Aug 2023 03:43:29 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZOGL4bY8NvFrDP6O@DUT025-TGLU.fm.intel.com>
+References: <20230818150845.96679-1-thomas.hellstrom@linux.intel.com>
+ <20230818150845.96679-4-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230818150845.96679-4-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: SJ0PR05CA0152.namprd05.prod.outlook.com
+ (2603:10b6:a03:339::7) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Fri, 18 Aug 2023 22:44:01 -0000
-Message-ID: <169239864166.12741.13296523242427521098@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230818220824.700519-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230818220824.700519-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_Lunar?=
- =?utf-8?q?_Lake_support_=28rev2=29?=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB7572:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7379c32d-1711-4b89-1a8d-08dba12fc50b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: fdygvqJMumQyLR5zX7Vsl1LTDsa+8fpO9nDNRQIkQHm2CE3zNKpuZCBidQVv/+oFA0pGv7LiSCScDv4NT1QOwpmckPTjsLhhA5grkz0RBNP9l1qL0lL60v2z/4gNW3rKu3loA23S80Ig+pAJ54yJ24IDYcy1CeLvbAqWR6hMgpnboZtU4+k7bzMDcKvBFmXLug+2OdhM4a6jR2QUfqy7ipS9ZouJ9us2EFl7Pf+q3W/AfC8lH/XmlB9r1WYfSfI67N+uBpT+bki4g4gR5OnM5kKKHnRKdBIALuEbRyQb+i5Nq9jAJi2cauU+Hcp20dsHNBfOrWYxPMaDdU5cF0w0rM8HXenB2QC/dtRhLcMemuc46JX+0xdtGoHJfGr67nvDlzGFbuxCqPRmlpKGCg4FQJeWWngJhwLDa9zRFZGnXwTGoqmwtVn3KUCYpTI8Sbr02LlKiU9PJzzra/x8lQrpqYn3ZzjrByYDHv/4IrZInjseDmLFTfAdYxeGWk+xYNjFxGvANenZlAHlYv9jyu+YfkKj8TB9j0eOkf8T72P3eOTc3GJ+Z1fMDzMkyHW6G9v2
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(376002)(396003)(366004)(136003)(346002)(451199024)(1800799009)(186009)(86362001)(44832011)(5660300002)(15650500001)(41300700001)(316002)(2906002)(66946007)(6916009)(66556008)(54906003)(66476007)(8936002)(4326008)(8676002)(478600001)(82960400001)(6666004)(6486002)(38100700002)(6506007)(6512007)(26005)(66574015)(83380400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?RpmhLL2hVcYg6Yro4LI/wtEGT1nSjNwhEekjc03DXCWOXEHqoAOWiD0ihj?=
+ =?iso-8859-1?Q?VsZ0srwKyOqTISaJEcorSVNtyOfnBxKOiWltHR6SNFNEOfHx18hflQpi1V?=
+ =?iso-8859-1?Q?/M7ZOYESbE0puPxRVeU3+6eBenv0WbfSedn/kZnX1fWHyxCmet/AiMs+39?=
+ =?iso-8859-1?Q?sF1EV4gfNLpaHCquob0GLsjBBss3eMEjWERwUs+pmVMZ1q3CxU0l+wIBgu?=
+ =?iso-8859-1?Q?3SKebEHA3JjJox6t/Am1qTPN2dOA/N7nHuMQa45ugS9YbDPOtXNYU8yReC?=
+ =?iso-8859-1?Q?K+tANkz0yqllLYi1eAPV8aRPX55I88u2bu2iW+xS4ELi8tqK1vh/TGSQOi?=
+ =?iso-8859-1?Q?U5JW7F5th+PzFXWQYx8uhUIITpSGl0OCmzqlADKWBwAQqiVHz3nJmOJ/ZA?=
+ =?iso-8859-1?Q?4rppBAEoTsHQhkCqUsiq8dO+tBf8n2rVBqKptgYvIrbN2jamGPHunyHjk0?=
+ =?iso-8859-1?Q?7DF8JFxa+0MAl0Nf/5s1rqi5eiEQvebyiT/4FPy0W7Dd15qT/bBmQ94B95?=
+ =?iso-8859-1?Q?63RDSRndvyZYwc8KzzTdM+Qd8ul9fe7wcro7QLQOrQlxefwDpYbCGcKTYE?=
+ =?iso-8859-1?Q?Im755wCofCupu4KKDgF4ink8vxDqI34ToJmNEm9nHr9IL3CuFOkkn6jj2q?=
+ =?iso-8859-1?Q?t1LNMTlqV5WO0sZM8cO9Jqu+5scRm8ebZRO5WqmpP0Zf9uCNvcS8oBKJRY?=
+ =?iso-8859-1?Q?/fw7VqRr/Wo8ME86QOhmjY7dCIHgtnQY/3VGRIihgMbTj6JwX0WYZSR009?=
+ =?iso-8859-1?Q?Z+xFiDWOvr+07FitOWmNvG+4VNYRTaS/AECli0UcpSDh2RBZLKsDl7+kgv?=
+ =?iso-8859-1?Q?Cq+roMfr2VFxPo2LFMUJnRWx3LdFuVVfzwomMQqYvDUyfMHGBNAtgzYdHh?=
+ =?iso-8859-1?Q?kLM/8+4fXilcQqmLKWvyX7Ud/d7+fx87Tq39eba4rRKfGU1QSvsOUgAoal?=
+ =?iso-8859-1?Q?5krZK87kxM4cfmibEV6nttwDO5FXaaOkd5P4J/hqz2UuuSGk7NKLizar87?=
+ =?iso-8859-1?Q?w3brzhr+WGp379H/RAUZq1haULgmL/3m+pFhBrunnI/y56dBK8IQ9KH7qj?=
+ =?iso-8859-1?Q?OFUH/lmF/1Rq9+PuHHLn3CfRCLfo/yMyRP2JK3VW/8rdaplKatYX5a1PYf?=
+ =?iso-8859-1?Q?XL+swxKNNCTe6NeYU5shOTwL4Rj9VoRp12yRBK0q3FfQQhj9r0gS9/x1ck?=
+ =?iso-8859-1?Q?9llp3dLZkVhna/YnUfjwnDo6cyFvk+7hxs2OUyd8GBHCMVkSMjdzhl8EcV?=
+ =?iso-8859-1?Q?QrfWfKOX5QARn80bREttpd4YR9LQwL5/LZS1uEny0NvEBmLYp0m6VW3ABG?=
+ =?iso-8859-1?Q?fWYneeEZAmlG7Rxb8fXO3Iz/Vq7ovMfIUo0PTJwQ7pv6aGsJ7wGUPOHXiy?=
+ =?iso-8859-1?Q?WPz08hmuBxQzzSg/SbDN/kMSpqhy5dgmdGtt8DfuaAaTPviKyHoMV1A1Zy?=
+ =?iso-8859-1?Q?9Gr9AozEhNszUPMumvcUsiIkJx854OdAYEHIrA45fy8hC1vy2NnoUAYL7+?=
+ =?iso-8859-1?Q?OozyEKGW7EtkPDQM20M6N8myhqxs/mvi+7A5WTssWrUYGjwV4wif0nAlws?=
+ =?iso-8859-1?Q?IqaqUwq4OyULyuKq9RqUiGoNlNWVgWWYtZTXmsMVGM/gINTUVcfrQRUv0m?=
+ =?iso-8859-1?Q?sXprRpmh9evQV4rMiu5RE3Eu8hwWO+/lcC3e36sMrpSubfKuZc3/PpPg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7379c32d-1711-4b89-1a8d-08dba12fc50b
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Aug 2023 03:44:35.2116 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oleEcJ6XMm7RjXggTWxaPwkpm8rcT2qVPd7hWd4y0/yGyJnIXO2+ZvSn3DJIkaxE/zedjL3AyoKvgNHVp+Hykg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7572
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 3/4] drm/xe/vm: Perform accounting of userptr
+ pinned pages
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,176 +149,115 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7866565278429544626==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Aug 18, 2023 at 05:08:44PM +0200, Thomas Hellström wrote:
+> Account these pages against RLIMIT_MEMLOCK following how RDMA does this
+> with CAP_IPC_LOCK bypassing the limit.
+> 
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-== Series Details ==
+Patch LGTM but nits on naming + possible assert.
 
-Series: Add Lunar Lake support (rev2)
-URL   : https://patchwork.freedesktop.org/series/122353/
-State : success
+> ---
+>  drivers/gpu/drm/xe/xe_vm.c | 43 ++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 41 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index ecbcad696b60..d9c000689002 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -34,6 +34,33 @@
+>  
+>  #define TEST_VM_ASYNC_OPS_ERROR
+>  
+> +/*
+> + * Perform userptr PIN accounting against RLIMIT_MEMLOCK for now, similarly
+> + * to how RDMA does this.
+> + */
+> +static int xe_vma_mlock_alloc(struct xe_vma *vma, unsigned long num_pages)
+> +{
 
-== Summary ==
+xe_vma_userptr_mlock_alloc? or maybe even xe_vma_userptr_mlock_reserve?
 
-CI Bug Log - changes from xe-327-ddd31145723188b5d7add72fef209f5ceaf27941_BAT -> xe-pw-122353v2_BAT
-====================================================
+> +	unsigned long lock_limit, new_pinned;
+> +	struct mm_struct *mm = vma->userptr.notifier.mm;
+> +
 
-Summary
--------
+This be a candidate to use the new aseert macros to ensure that the vma
+is a userptr + pinned? Not sure if that merged yet.
 
-  **SUCCESS**
+> +	if (!can_do_mlock())
+> +		return -EPERM;
+> +
+> +	lock_limit = rlimit(RLIMIT_MEMLOCK) >> PAGE_SHIFT;
+> +	new_pinned = atomic64_add_return(num_pages, &mm->pinned_vm);
+> +	if (new_pinned > lock_limit && !capable(CAP_IPC_LOCK)) {
+> +		atomic64_sub(num_pages, &mm->pinned_vm);
+> +		return -ENOMEM;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void xe_vma_mlock_free(struct xe_vma *vma, unsigned long num_pages)
+> +{
 
-  No regressions found.
+xe_vma_userptr_mlock_free? or maybe even xe_vma_userptr_mlock_release?
 
-  
+Same for the assert here.
 
-Participating hosts (3 -> 3)
-------------------------------
+Anyways, I'll leave addressing these nits up to you, with that:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-122353v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([i915#1072]) +2 similar issues
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122353v2/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html
-
-  * igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race:
-    - bat-adlp-7:         [PASS][2] -> [ABORT][3] ([Intel XE#429])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-327-ddd31145723188b5d7add72fef209f5ceaf27941/bat-adlp-7/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122353v2/bat-adlp-7/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
-
-  * igt@xe_live_ktest@bo:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][4] ([Intel XE#483]) +2 similar issues
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122353v2/bat-dg2-oem2/igt@xe_live_ktest@bo.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc:
-    - bat-dg2-oem2:       [INCOMPLETE][5] ([Intel XE#543]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-327-ddd31145723188b5d7add72fef209f5ceaf27941/bat-dg2-oem2/igt@kms_pipe_crc_basic@suspend-read-crc.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122353v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@suspend-read-crc.html
-
-  * igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3:
-    - bat-dg2-oem2:       [INCOMPLETE][7] ([Intel XE#545]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-327-ddd31145723188b5d7add72fef209f5ceaf27941/bat-dg2-oem2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122353v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html
-
-  
-  [Intel XE#429]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/429
-  [Intel XE#483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/483
-  [Intel XE#543]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/543
-  [Intel XE#545]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/545
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-
-
-Build changes
--------------
-
-  * Linux: xe-327-ddd31145723188b5d7add72fef209f5ceaf27941 -> xe-pw-122353v2
-
-  IGT_7445: 7445
-  xe-327-ddd31145723188b5d7add72fef209f5ceaf27941: ddd31145723188b5d7add72fef209f5ceaf27941
-  xe-pw-122353v2: 122353v2
-
-
-
---===============7866565278429544626==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add Lunar Lake support (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122353/">https://patchwork.freedesktop.org/series/122353/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-327-ddd31145723188b5d7add72fef209f5ceaf27941_BAT -&gt; xe-pw-122353v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-122353v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122353v2/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +2 similar issues</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-327-ddd31145723188b5d7add72fef209f5ceaf27941/bat-adlp-7/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122353v2/bat-adlp-7/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/429">Intel XE#429</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@bo:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122353v2/bat-dg2-oem2/igt@xe_live_ktest@bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/483">Intel XE#483</a>) +2 similar issues</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-327-ddd31145723188b5d7add72fef209f5ceaf27941/bat-dg2-oem2/igt@kms_pipe_crc_basic@suspend-read-crc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/543">Intel XE#543</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122353v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@suspend-read-crc.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-327-ddd31145723188b5d7add72fef209f5ceaf27941/bat-dg2-oem2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/545">Intel XE#545</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122353v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@suspend-read-crc@pipe-b-dp-3.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-327-ddd31145723188b5d7add72fef209f5ceaf27941 -&gt; xe-pw-122353v2</li>
-</ul>
-<p>IGT_7445: 7445<br />
-  xe-327-ddd31145723188b5d7add72fef209f5ceaf27941: ddd31145723188b5d7add72fef209f5ceaf27941<br />
-  xe-pw-122353v2: 122353v2</p>
-
-</body>
-</html>
-
---===============7866565278429544626==--
+> +	atomic64_sub(num_pages, &vma->userptr.notifier.mm->pinned_vm);
+> +}
+> +
+>  /**
+>   * xe_vma_userptr_check_repin() - Advisory check for repin needed
+>   * @vma: The userptr vma
+> @@ -89,9 +116,17 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+>  					    !read_only);
+>  		pages = vma->userptr.pinned_pages;
+>  	} else {
+> +		if (xe_vma_is_pinned(vma)) {
+> +			ret = xe_vma_mlock_alloc(vma, num_pages);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +
+>  		pages = kvmalloc_array(num_pages, sizeof(*pages), GFP_KERNEL);
+> -		if (!pages)
+> -			return -ENOMEM;
+> +		if (!pages) {
+> +			ret = -ENOMEM;
+> +			goto out_account;
+> +		}
+>  	}
+>  
+>  	pinned = ret = 0;
+> @@ -187,6 +222,9 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+>  mm_closed:
+>  	kvfree(pages);
+>  	vma->userptr.pinned_pages = NULL;
+> +out_account:
+> +	if (xe_vma_is_pinned(vma))
+> +		xe_vma_mlock_free(vma, num_pages);
+>  	return ret;
+>  }
+>  
+> @@ -1004,6 +1042,7 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+>  			unpin_user_pages_dirty_lock(vma->userptr.pinned_pages,
+>  						    vma->userptr.num_pinned,
+>  						    !read_only);
+> +			xe_vma_mlock_free(vma, xe_vma_size(vma) >> PAGE_SHIFT);
+>  			kvfree(vma->userptr.pinned_pages);
+>  		}
+>  
+> -- 
+> 2.41.0
+> 
