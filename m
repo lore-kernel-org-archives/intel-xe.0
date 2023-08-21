@@ -4,66 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CFD5EE49AA
-	for <intel-xe@archiver.kernel.org>; Sun, 20 Aug 2023 22:21:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2A31EE4996
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 04:49:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5ECA10E16C;
-	Sun, 20 Aug 2023 22:21:43 +0000 (UTC)
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com
- [IPv6:2a00:1450:4864:20::635])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 15BB910E160;
- Sun, 20 Aug 2023 22:21:41 +0000 (UTC)
-Received: by mail-ej1-x635.google.com with SMTP id
- a640c23a62f3a-991c786369cso359461566b.1; 
- Sun, 20 Aug 2023 15:21:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1692570099; x=1693174899;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=/fO+DzwvYyS7ty51jaKKc7uhLpWol4NpPa1fM34YjiI=;
- b=kDf35+n76ZHlFyloB7ru5PEgo6xfYAc/pN2hdlVFyD9WVYTrURVeo97mlakGmR63rh
- BdRQrR8YacX/kMe+dpWoJyxop7n6H0FP2gFFjXDrs7Doqi0CIS1Htpq87LxrQrfaJsjg
- nDHEF3IpUcN6sTGSsRFihxbCVtdDX3ROXNfDOSqZ2B1UL9x+gRSG7IxS/SswGjpKs/vB
- vQ9/By3vYqXcWMHdzzJXU/jmqJZlXC7aPEXLbvaVvGGduruT2ajD8l5d5R6oQvvxRfFF
- YlqR6qwDb5HqIxkp9NfnHcjnjaUXyMl3aZdcGSkLTKaqC+HGfazFPjCSEuYyQeLHsnAB
- jMMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692570099; x=1693174899;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=/fO+DzwvYyS7ty51jaKKc7uhLpWol4NpPa1fM34YjiI=;
- b=aRZKIK2Hny67Z90gHcxbrinIZwFmUjJlgOkr3uoLiJ7HP6GT7Az/mXlZ2v+Lwh5dje
- 8d6b7ljhvEoAcBxMElOqguZILQy/2Z1WDEeJedYsyreDnSdl8RKpBwTYx3D1kadw1qEe
- 1wqWvTC5qGhfr7t/LbCosUz/3+SPnGb26McmYFLwPijqxs+Thip2dTk7CLOovlb8mPAy
- C36AcncnIroJUF9YpcKoSYjJzJANZGy0Hh3MA5A20z29H3IDHxrQLPlZ2xJg67ekWP0Z
- TdwNePzSY8VgKkU1M/E/CNzPGRWDZ1dD+xJw8vdz+YxMcuubpYccihehmZUjpkv5YKzb
- oIaQ==
-X-Gm-Message-State: AOJu0Yxq324NUQ9qqs5GVX3YMN+DVFYn79YgWahFgcjFJXfW8fQAMt7E
- aOb0AtAW40NGtSWDKUNNMvPOHzcxTJ8Iol6CPe0=
-X-Google-Smtp-Source: AGHT+IGYja4fgpmlb3lsJ4H7NFfqHYCj7KSV3ffEzZ0PnNy0qHSe28NrukOhnRseaMq9qCqlz00xJ0uYW7uD5MS1k5o=
-X-Received: by 2002:a17:907:2712:b0:96f:8439:6143 with SMTP id
- w18-20020a170907271200b0096f84396143mr3575005ejk.40.1692570099261; Sun, 20
- Aug 2023 15:21:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <SA1PR11MB699192A66D7A2CC7305A59569214A@SA1PR11MB6991.namprd11.prod.outlook.com>
- <SA1PR11MB6991F9E3107C963BDF95E04E9214A@SA1PR11MB6991.namprd11.prod.outlook.com>
- <e0d7d6a2-5c9d-6e17-4b4b-be03deb6c130@amd.com>
- <SA1PR11MB69918E5603E286961789DE6D9215A@SA1PR11MB6991.namprd11.prod.outlook.com>
- <3c125b60-df60-2037-c23f-918734e4973f@amd.com>
- <SA1PR11MB69916E51CE5A9217D447B91C9215A@SA1PR11MB6991.namprd11.prod.outlook.com>
- <7ae5f112-d0e9-cc52-2b22-7265ea435cc2@amd.com>
- <CAPM=9tyots9C8wEU0TgGnFmLOkfqn62ngaYYjV2yuTf7jwDGFw@mail.gmail.com>
- <SA1PR11MB6991D7E239EAB23CC8A9A36B921AA@SA1PR11MB6991.namprd11.prod.outlook.com>
-In-Reply-To: <SA1PR11MB6991D7E239EAB23CC8A9A36B921AA@SA1PR11MB6991.namprd11.prod.outlook.com>
-From: Dave Airlie <airlied@gmail.com>
-Date: Mon, 21 Aug 2023 08:21:27 +1000
-Message-ID: <CAPM=9tw3wGhZ3ByfizM8+G4Ny5wQLwf4fw8pD4sySVk08355tg@mail.gmail.com>
-To: "Zeng, Oak" <oak.zeng@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] Implement svm without BO concept in xe driver
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65E1010E1AE;
+	Mon, 21 Aug 2023 04:49:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D80DD10E1AE
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 04:49:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692593388; x=1724129388;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=/Jpl/Sz2aYw5Qk8s1xwX9si2MXSPs9b9dvwRhvQ+h9g=;
+ b=fAYRYxxHyk5/y1czjJawlGkTueV36XQRZBcyyZmzdMxzI0LbW/zREHs2
+ p25sAg/FOrJuTfwB4wL0c0M5PaeW4bNGyMbcGOwx0pEkcj+CFKLbp07Y6
+ FGYKe0lOvEa1nJIOXj866tMiXM3IYhpKfChm80H/iuMyD8oIpYcJRxlX1
+ RSrJkU+TzZg+PeQjytg1brmovK8LSSwrfWrAV2zOeAzj2KK7J5vbgdNr5
+ Zb7jLebn4vMcwB7Vm7xe9jJlbf1o3oCeCb5fLaon0XsxG+5psDPumj95X
+ +45c6l5SS7Bo3//lgolnMFj3sevoFxaXdOHAg4IcPcPdEHQ3JuCElYjUK w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10808"; a="459863297"
+X-IronPort-AV: E=Sophos;i="6.01,189,1684825200"; d="scan'208";a="459863297"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2023 21:49:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="879378211"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.24.9])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Aug 2023 21:49:52 -0700
+Date: Sun, 20 Aug 2023 21:48:38 -0700
+Message-ID: <87r0nxroex.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+In-Reply-To: <871qg4t132.wl-ashutosh.dixit@intel.com>
+References: <20230808013159.38811-1-ashutosh.dixit@intel.com>	<20230808013159.38811-2-ashutosh.dixit@intel.com>	<871qg4t132.wl-ashutosh.dixit@intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-xe] [PATCH 01/10] drm/xe/oa: Introduce OA uapi
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,129 +58,226 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Philip Yang <Philip.Yang@amd.com>, Felix Kuehling <felix.kuehling@amd.com>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 17 Aug 2023 at 12:13, Zeng, Oak <oak.zeng@intel.com> wrote:
->
-> > -----Original Message-----
-> > From: Dave Airlie <airlied@gmail.com>
-> > Sent: August 16, 2023 6:52 PM
-> > To: Felix Kuehling <felix.kuehling@amd.com>
-> > Cc: Zeng, Oak <oak.zeng@intel.com>; Christian K=C3=B6nig
-> > <christian.koenig@amd.com>; Thomas Hellstr=C3=B6m
-> > <thomas.hellstrom@linux.intel.com>; Brost, Matthew
-> > <matthew.brost@intel.com>; maarten.lankhorst@linux.intel.com;
-> > Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>; Welty=
-,
-> > Brian <brian.welty@intel.com>; Philip Yang <Philip.Yang@amd.com>; intel=
--
-> > xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org
-> > Subject: Re: Implement svm without BO concept in xe driver
-> >
-> > On Thu, 17 Aug 2023 at 08:15, Felix Kuehling <felix.kuehling@amd.com> w=
-rote:
-> > >
-> > > On 2023-08-16 13:30, Zeng, Oak wrote:
-> > > > I spoke with Thomas. We discussed two approaches:
-> > > >
-> > > > 1) make ttm_resource a central place for vram management functions =
-such as
-> > eviction, cgroup memory accounting. Both the BO-based driver and BO-les=
-s SVM
-> > codes call into ttm_resource_alloc/free functions for vram allocation/f=
-ree.
-> > > >      *This way BO driver and SVM driver shares the eviction/cgroup =
-logic, no
-> > need to reimplment LRU eviction list in SVM driver. Cgroup logic should=
- be in
-> > ttm_resource layer. +Maarten.
-> > > >      *ttm_resource is not a perfect match for SVM to allocate vram.=
- It is still a
-> > big overhead. The *bo* member of ttm_resource is not needed for SVM - t=
-his
-> > might end up with invasive changes to ttm...need to look into more deta=
-ils
-> > >
-> > > Overhead is a problem. We'd want to be able to allocate, free and evi=
-ct
-> > > memory at a similar granularity as our preferred migration and page
-> > > fault granularity, which defaults to 2MB in our SVM implementation.
-> > >
-> > >
-> > > >
-> > > > 2) svm code allocate memory directly from drm-buddy allocator, and =
-expose
-> > memory eviction functions from both ttm and svm so they can evict memor=
-y
-> > from each other. For example, expose the ttm_mem_evict_first function f=
-rom
-> > ttm side so hmm/svm code can call it; expose a similar function from sv=
-m side so
-> > ttm can evict hmm memory.
-> > >
-> > > I like this option. One thing that needs some thought with this is ho=
-w
-> > > to get some semblance of fairness between the two types of clients.
-> > > Basically how to choose what to evict. And what share of the availabl=
-e
-> > > memory does each side get to use on average. E.g. an idle client may =
-get
-> > > all its memory evicted while a busy client may get a bigger share of =
-the
-> > > available memory.
-> >
-> > I'd also like to suggest we try to write any management/generic code
-> > in driver agnostic way as much as possible here. I don't really see
-> > much hw difference should be influencing it.
-> >
-> > I do worry about having effectively 2 LRUs here, you can't really have
-> > two "leasts".
-> >
-> > Like if we hit the shrinker paths who goes first? do we shrink one
-> > object from each side in turn?
->
-> One way to solve this fairness problem is to create a driver agnostic drm=
-_vram_mgr. Maintain a single LRU in drm_vram_mgr. Move the memory eviction/=
-cgroups memory accounting logic from ttm_resource manager to drm_vram_mgr. =
-Both BO-based driver and SVM driver calls to drm_vram_mgr to allocate/free =
-memory.
->
-> I am not sure whether this meets the 2M allocate/free/evict granularity r=
-equirement Felix mentioned above. SVM can allocate 2M size blocks. But BO d=
-river should be able to allocate any arbitrary sized blocks - So the evicti=
-on is also arbitrary size.
->
-> >
-> > Also will we have systems where we can expose system SVM but userspace
-> > may choose to not use the fine grained SVM and use one of the older
-> > modes, will that path get emulated on top of SVM or use the BO paths?
->
->
-> If by "older modes" you meant the gem_bo_create (such as xe_gem_create or=
- amdgpu_gem_create), then today both amd and intel implement those interfac=
-es using BO path. We don't have a plan to emulate that old mode on tope of =
-SVM, afaict.
+On Tue, 15 Aug 2023 15:03:45 -0700, Dixit, Ashutosh wrote:
 
-I'm not sure how the older modes manifest in the kernel I assume as bo
-creates (but they may use userptr), SVM isn't a specific thing, it's a
-group of 3 things.
+Hi Umesh,
 
-coarse-grained SVM which I think is BO
-fine-grained SVM which is page level
-fine-grained system SVM which is HMM
-
-I suppose I'm asking about the previous versions and how they would
-operate in a system SVM capable system.
-
-Dave.
+> On Mon, 07 Aug 2023 18:31:50 -0700, Ashutosh Dixit wrote:
 >
-> Thanks,
-> Oak
+> A couple of other comments on the the uAPI.
+>
+> > OA uapi allows userspace to:
+> > * Read streams of performance counters written by hardware
+> > * Configure (and reconfigure) which sets of perf counters are captured as
+> >   part of OA streams
+> > * Configure other properties (such as format and periodicity) of such
+> >   captures.
+> > * Query associated parameters such as OA unit timestamp freq, oa_unit_id's
+> >   for hw engines and OA ioctl version
+> >
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> >  include/uapi/drm/xe_drm.h | 257 +++++++++++++++++++++++++++++++++++++-
+> >  1 file changed, 256 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > index 86f16d50e9ccc..b4ab07c285245 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -111,6 +111,9 @@ struct xe_user_extension {
+> >  #define DRM_XE_WAIT_USER_FENCE		0x0b
+> >  #define DRM_XE_VM_MADVISE		0x0c
+> >  #define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0d
+> > +#define DRM_XE_OA_OPEN			0x36
+> > +#define DRM_XE_OA_ADD_CONFIG		0x37
+> > +#define DRM_XE_OA_REMOVE_CONFIG		0x38
+> >
+> >  /* Must be kept compact -- no holes */
+> >  #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+> > @@ -127,6 +130,9 @@ struct xe_user_extension {
+> >  #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
+> >  #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+> >  #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
+> > +#define DRM_IOCTL_XE_OA_OPEN			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_OPEN, struct drm_xe_oa_open_param)
+> > +#define DRM_IOCTL_XE_OA_ADD_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_ADD_CONFIG, struct drm_xe_oa_config)
+> > +#define DRM_IOCTL_XE_OA_REMOVE_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_REMOVE_CONFIG, __u64)
+>
+> In current and future HW, there are other HW blocks which generate
+> performance counter streams. There is an ask to expose these streams also
+> using the uapi introduced here. Specifically the ask is to replace "OA" in
+> these and the ioctls below by "PERF" (similar to i915) and support OA
+> streams as only one of the perf counter stream types supported under
+> PERF. But the PERF interface would be able to support other types of perf
+> streams too.
+>
+> We are planning to make this change in the next version of these patches.
 >
 > >
-> > Dave.
+> >  /**
+> >   * enum drm_xe_memory_class - Supported memory classes.
+> > @@ -261,7 +267,8 @@ struct drm_xe_query_config {
+> >  #define XE_QUERY_CONFIG_GT_COUNT		4
+> >  #define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
+> >  #define XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY	6
+> > -#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY + 1)
+> > +#define XE_QUERY_OA_IOCTL_VERSION		7
+> > +#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_OA_IOCTL_VERSION + 1)
+> >	/** @info: array of elements containing the config info */
+> >	__u64 info[];
+> >  };
+> > @@ -298,6 +305,7 @@ struct drm_xe_query_gts {
+> >		__u64 native_mem_regions;	/* bit mask of instances from drm_xe_query_mem_usage */
+> >		__u64 slow_mem_regions;		/* bit mask of instances from drm_xe_query_mem_usage */
+> >		__u64 inaccessible_mem_regions;	/* bit mask of instances from drm_xe_query_mem_usage */
+> > +		__u64 oa_timestamp_freq;
+> >		__u64 reserved[8];
+> >	} gts[];
+> >  };
+> > @@ -753,6 +761,7 @@ struct drm_xe_engine_class_instance {
+> >
+> >	__u16 engine_instance;
+> >	__u16 gt_id;
+> > +	__u16 oa_unit_id;
+> >  };
+> >
+> >  struct drm_xe_exec_queue_create {
+> > @@ -1056,6 +1065,252 @@ struct drm_xe_vm_madvise {
+> >	__u64 reserved[2];
+> >  };
+> >
+> > +enum drm_xe_oa_format {
+> > +	XE_OA_FORMAT_C4_B8 = 7,
+> > +
+> > +	/* Gen8+ */
+> > +	XE_OA_FORMAT_A12,
+> > +	XE_OA_FORMAT_A12_B8_C8,
+> > +	XE_OA_FORMAT_A32u40_A4u32_B8_C8,
+> > +
+> > +	/* DG2 */
+> > +	XE_OAR_FORMAT_A32u40_A4u32_B8_C8,
+> > +	XE_OA_FORMAT_A24u40_A14u32_B8_C8,
+> > +
+> > +	/* MTL OAM */
+> > +	XE_OAM_FORMAT_MPEC8u64_B8_C8,
+> > +	XE_OAM_FORMAT_MPEC8u32_B8_C8,
+> > +
+> > +	XE_OA_FORMAT_MAX	    /* non-ABI */
+> > +};
+> > +
+> > +enum drm_xe_oa_property_id {
+> > +	/**
+> > +	 * Open the stream for a specific exec queue id (as used with
+> > +	 * drm_xe_exec). A stream opened for a specific exec queue id this
+> > +	 * way won't typically require root privileges.
+> > +	 */
+> > +	DRM_XE_OA_PROP_EXEC_QUEUE_ID = 1,
+> > +
+> > +	/**
+> > +	 * A value of 1 requests the inclusion of raw OA unit reports as
+> > +	 * part of stream samples.
+> > +	 */
+> > +	DRM_XE_OA_PROP_SAMPLE_OA,
+> > +
+> > +	/**
+> > +	 * The value specifies which set of OA unit metrics should be
+> > +	 * configured, defining the contents of any OA unit reports.
+> > +	 */
+> > +	DRM_XE_OA_PROP_OA_METRICS_SET,
+> > +
+> > +	/**
+> > +	 * The value specifies the size and layout of OA unit reports.
+> > +	 */
+> > +	DRM_XE_OA_PROP_OA_FORMAT,
+> > +
+> > +	/**
+> > +	 * Specifying this property implicitly requests periodic OA unit
+> > +	 * sampling and (at least on Haswell) the sampling frequency is derived
+> > +	 * from this exponent as follows:
+> > +	 *
+> > +	 *   80ns * 2^(period_exponent + 1)
+> > +	 */
+> > +	DRM_XE_OA_PROP_OA_EXPONENT,
+> > +
+> > +	/**
+> > +	 * Specifying this property is only valid when specify a context to
+> > +	 * filter with DRM_XE_OA_PROP_ENGINE_ID. Specifying this property
+> > +	 * will hold preemption of the particular engine we want to gather
+> > +	 * performance data about.
+> > +	 */
+> > +	DRM_XE_OA_PROP_HOLD_PREEMPTION,
+> > +
+> > +	/**
+> > +	 * Specifying this pins all contexts to the specified SSEU power
+> > +	 * configuration for the duration of the recording.
+> > +	 *
+> > +	 * This parameter's value is a pointer to a struct
+> > +	 * drm_xe_gem_context_param_sseu (TBD).
+> > +	 */
+> > +	DRM_XE_OA_PROP_GLOBAL_SSEU,
+> > +
+> > +	/**
+> > +	 * This optional parameter specifies the timer interval in nanoseconds
+> > +	 * at which the xe driver will check the OA buffer for available data.
+> > +	 * Minimum allowed value is 100 microseconds. A default value is used by
+> > +	 * the driver if this parameter is not specified. Note that larger timer
+> > +	 * values will reduce cpu consumption during OA perf captures. However,
+> > +	 * excessively large values would potentially result in OA buffer
+> > +	 * overwrites as captures reach end of the OA buffer.
+> > +	 */
+> > +	DRM_XE_OA_PROP_POLL_OA_PERIOD,
+> > +
+> > +	/**
+> > +	 * Multiple engines may be mapped to the same OA unit. The OA unit is
+> > +	 * identified by class:instance of any engine mapped to it.
+> > +	 *
+> > +	 * This parameter specifies the engine class and must be passed along
+> > +	 * with DRM_XE_OA_PROP_OA_ENGINE_INSTANCE.
+> > +	 */
+> > +	DRM_XE_OA_PROP_OA_ENGINE_CLASS,
+> > +
+> > +	/**
+> > +	 * This parameter specifies the engine instance and must be passed along
+> > +	 * with DRM_XE_OA_PROP_OA_ENGINE_CLASS.
+> > +	 */
+> > +	DRM_XE_OA_PROP_OA_ENGINE_INSTANCE,
+>
+> Because oa_unit_id has been introduced above in
+> drm_xe_engine_class_instance, should we remove these engine class/instance
+> properties? Since it seems OA streams can be opened directly against the oa
+> unit identified by oa_unit_id. And the driver can itself figure out the
+> engine class/instance from the oa_unit_id?
+
+About these two issues: (a) multiple type of perf streams and (b)
+multiplexing configuration of multiple OA units. There is actually a nice
+way to avoid both these issues. It is basically to expose each OA unit (and
+similar any such other PERF unit) as its own *character device file*.
+
+This was already half-way done in the original i915 code since each OA
+unit/stream had its own file_operations. A character device file will
+complete this interface. So stream_open, add/remove config will basically
+be ioctl's associated with this char device file (rather than the drm file
+as is at present). Any PERF unit is free to expose whatever makes sense to
+it (through its char device).
+
+So as long as OA units are completely independent this char device file to
+me is an attractive option. In the current implementation OA configs are
+common to all OA units. But I think this requirement is not a hard
+requirement, OA configs can also just be specific to an OA unit.
+
+If we are making significant changes to the OA uapi we might as well
+consider doing this too. So I definitely wanted to bring this up.
+
+> Separately, there is also the question of whether we want to share the Xe
+> OA IGT code with i915 as was done for this series. Since duplicating the
+> IGT code as well as all the perf tools seems a bit much.
+
+If we are going to change the OA uapi completely, I am thinking of dumping
+this common IGT code too and just copy and modify the i915 IGT code for XE
+(including the tools). Thoughts?
+
+Thanks.
+--
+Ashutosh
