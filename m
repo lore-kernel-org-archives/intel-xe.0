@@ -4,139 +4,95 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFF2FEE4996
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 18:46:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FFC3EE4993
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 19:07:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49B5210E070;
-	Mon, 21 Aug 2023 18:46:18 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C98E10E070
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 18:46:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692643576; x=1724179576;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=FfpzFdWYwnYQpuW3Ml4X7d05fPXWmjSF8GfH3Z2/Nxg=;
- b=N1D5acRRq2WTqhfD2snJMVPOwpTy1UH6M7oQdj4kSjT27MJBsA9D7lH5
- lGkojkp9oyJ3+ogIKU6DQY2IEjo922USQe16ZArjjK2vAKrGh6HXBN94o
- DJsIVNUvUaIUYpUK1/Yx/IXg7zB3d6JTZZHnt/Ap2mmqB+gS/mFXPalHJ
- LYkBVB4y+GJOoEpsyQpcXXpktfr3km1eDKbE0O3pvbzgT27NWdTE5Nfan
- VtGkYD5uxCc4rhtTGWpnqPT0SLjb0cK2B4UMZoMtu+jwH5Ik4qSQiG124
- E8Et/EG4W/0/5BXehi/+0dLBVctim6VfJEdhNhpw3+NzbI/z8uuZZdV5F A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="371103777"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="371103777"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 11:46:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="806015548"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="806015548"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga004.fm.intel.com with ESMTP; 21 Aug 2023 11:46:15 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 21 Aug 2023 11:46:15 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 21 Aug 2023 11:46:14 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Mon, 21 Aug 2023 11:46:14 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.105)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Mon, 21 Aug 2023 11:46:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FLK2cWXrhfWhnmpX7AioHCKvg81EB8X7bjPVQ+McWEOJ2A3L7plBYIttTvUirF7c8Gzdi+KqTxcRbvYvyabZpY+qF6rQrSvIWPLtTjZlUEGDLqfkUNLp+Y/kI9l1XVd92uUYPCgtNbLY6WGmcnTCEKyXnlRCIB3QTEu5I0ooeSmwgYxWtbUBuLFs2kc/FJ2G7lQefRs7AlnKJvl9makqjEi+txqJz9ATPYxWqij+Ipd+RH/x8UknkZ3pb65/H8b/HsBgjrGAkwsMwi2WRB4dLK3DmOs/MeWjifrzWLud8ky3C4qis6NL3mbup3byTqXCYt16GnJcz9cNKzhbvVizPg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cmVmO8tW+fai9D89NjNnihQWT0C5YbpXn9o1egWyzAw=;
- b=WklL4j1oPKbzuifXpYxObFPrdSzY/4vPryp7Qh5xSpWCXBGY9yZwxYT4tN+EaXF8ajtjH34Zwm/42J/L/pqIaa1WQQLP7ffNAiWFRgtTbUckYyJpsJnhpTcRNyxGzT1oPdP7euMcHM+WB9VSqodx3KyiYJCgx662GR77fj2M8fTUd9aweUSF4WMWSLo5cfe4hKtEM0dM99ds4Wl7ArF27P/9nxLx1/TfkyKBab+RE/9XmU6STMQdk3/md0QHaJaUmRHllxnZx7giSQB3++GvMCn1W2vZJdbKqtzmwfzWmzwrTiSx+c5ueBte+vfWVja+WxXEB8zQYW+9q7NJUekPhw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ1PR11MB6180.namprd11.prod.outlook.com (2603:10b6:a03:459::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20; Mon, 21 Aug
- 2023 18:46:13 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6699.022; Mon, 21 Aug 2023
- 18:46:12 +0000
-Date: Mon, 21 Aug 2023 11:46:10 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <nbz4kmnqzzp66bu4p46ww4ljtjihjnvvyw3g5weyhskm2ia4k4@fraslvjgovls>
-References: <20230818220824.700519-1-lucas.demarchi@intel.com>
- <20230818220824.700519-10-lucas.demarchi@intel.com>
- <20230821142336.GA6080@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230821142336.GA6080@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: MW4PR03CA0118.namprd03.prod.outlook.com
- (2603:10b6:303:b7::33) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21A9C10E070;
+	Mon, 21 Aug 2023 19:07:49 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9D2C10E070
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 19:07:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1692644865;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=lGSgoldDF7M1+mO5xuhb4fHy0+md46F06pChJvfr4Qg=;
+ b=hZQPfM0Uveo9YbAn5geij5gWCZHOmQ4pYtIuyoEQ9ccD88URtRGY6/UkO2GHRSFV1sK0/T
+ OceUCXbcB/APUp5e6r1PWWD5aDYmm9XTvVpnQza2b6vu+uCs7i1hYX3jqb+1EkaVho6pwb
+ 0GUqZOEpt4QOJ+4ZOkIYh9wjuZF6DEs=
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
+ [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-605-esxmD-LtPAOPp_Me7LQj-Q-1; Mon, 21 Aug 2023 15:07:44 -0400
+X-MC-Unique: esxmD-LtPAOPp_Me7LQj-Q-1
+Received: by mail-ej1-f69.google.com with SMTP id
+ a640c23a62f3a-94a356c74e0so247768966b.2
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 12:07:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692644863; x=1693249663;
+ h=content-transfer-encoding:in-reply-to:organization:from:references
+ :cc:to:content-language:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=lGSgoldDF7M1+mO5xuhb4fHy0+md46F06pChJvfr4Qg=;
+ b=ZQ37VjZk4nqV7+WKq4tCoIigYA038nfJpfLEYMlfOszwu96rYsnbUWAw4laijnmsH9
+ FA0hYTYogdF3j7fVJ8SqOimYQW8r3nrHg+q0YB6QyqFlosi5K/c5Uyog04gPg7zxPYpi
+ g0gIK+HeZ6ev2c1IUIrscd7HJFEBjfJt0kxJgq3hUGcq+cm2Fh4DHMaqAbNO8W57a8nk
+ UKzA3JB7VcUxCEYByQ7mvX7xgc+seas+5IA373l32Z804Ykdf51k/+sWrJKUjZEN7V01
+ DO5bdS4BKsDigLHcyLV48D+OGrktWob8iJBSqNu9NGp1Y8RXFFY6uyHpoTxnY0xn1mA2
+ ROjg==
+X-Gm-Message-State: AOJu0YyqMC3rFhOTarDyOAV8TA1LwMn7hYWZWIlxCjDm6bUjf3nxPe1c
+ 9oSv2Z9dKji4QQ6rsimDuEmw5kgQ98D71pNydVVfg7hNOENsyrNoJ6fBzkBAFBvllxBXzYLiFqU
+ ysER9Bv9l7UNJnwhT59dTYf/OYLc=
+X-Received: by 2002:a17:907:1ddd:b0:99e:68ce:b245 with SMTP id
+ og29-20020a1709071ddd00b0099e68ceb245mr5435295ejc.27.1692644863254; 
+ Mon, 21 Aug 2023 12:07:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGfIz50MIpwg5OfAJd8IzvtNA87LoS1sVEbLYqYGM3K7FSWmfn4tOh9OA+CdwNRGqC67f50Tw==
+X-Received: by 2002:a17:907:1ddd:b0:99e:68ce:b245 with SMTP id
+ og29-20020a1709071ddd00b0099e68ceb245mr5435286ejc.27.1692644862936; 
+ Mon, 21 Aug 2023 12:07:42 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
+ ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
+ by smtp.gmail.com with ESMTPSA id
+ jt11-20020a170906dfcb00b0098921e1b064sm6929371ejc.181.2023.08.21.12.07.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 21 Aug 2023 12:07:42 -0700 (PDT)
+Message-ID: <faecd15e-020b-6b06-acf7-1dd4c5a2b4fc@redhat.com>
+Date: Mon, 21 Aug 2023 21:07:40 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ1PR11MB6180:EE_
-X-MS-Office365-Filtering-Correlation-Id: 150fe296-c66e-4417-6140-08dba276e411
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6erTcEXvsdSMdDqv7//G9EgQr3o9pgAHpT0Tl7YbohKTG4quC9nzxuNUocSzmRt7ltDytnP66AKTdgxBhDM3awVGTpj5xWKOGDN5oYhpUQyTSB1AQEktSRjOgDaE5JNt/Mq0xQMkwVbLYvFRR/Tyz5LMG1JbwNpHDnsAZ33+5mzb6Gqf2qu98RtSuubS74QTlLgBZv2/pvKjZXOQuGQefsj68QvyLEJc1GdJG+7M5xsy417HzSe2mQuatHr0JrLoWl7s3SRqmo6A/ji75SREOt85u4JLAOrvd4kPSrjJqEnlmTCT2JsKQijgdZquj7RIPEV/290cdNyuXwesDvxB/RD3kzt7uqOD2cwTjFJ16XzgHh9X05S7ISrUFz+FfyYcoMkPcNN7MAXer3swf9aMTOeu4M/rFFCwZRSaSmhT2ZHSjLJ0lF0makmhH3nNWebAEWf6ICycWt0pOkt9VDieE4bETo743awsnhSAvFtPJJAqedB0romspeGfH1iwPi9KVPZkxgXYcsr6k3Qe5oRoNd7kYPBvIwDFTVmtt5eo3O1WtZo1MaYc6MZFGtn7Ock2nd/QlW9cFRyLbMlSpPIPF79l3NYpf8fr/Q+xjKpe44g=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(39860400002)(376002)(366004)(396003)(136003)(346002)(451199024)(1800799009)(186009)(86362001)(5660300002)(41300700001)(66556008)(66476007)(316002)(2906002)(66946007)(6636002)(8676002)(478600001)(6862004)(4326008)(8936002)(82960400001)(6486002)(9686003)(6506007)(38100700002)(6512007)(26005)(33716001)(27256005);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ZLD6iTmdIFvR419TJmak95bx3R/hHUEzdATx2LEZ/4KYh7/EiH2ZKWzwuRLS?=
- =?us-ascii?Q?39QTrj7oJOtnas3AqymY9TUJ/ZMy/ufTknt69E7BN+r+Sx0UVvWov3e52IY8?=
- =?us-ascii?Q?fMKboyH9JyPoFRmjSCXcTxOHNSRB4ZPwi9nk/4Lpy34zOITRhmurPJcjsrqG?=
- =?us-ascii?Q?kvFVhY1ji8mQCPgD5x9WJJyxH51Q5GsKCoQYlC34Oeh543UPoPOQP1jh8zSz?=
- =?us-ascii?Q?0pyH4uI3hFB/cpPUMyQgHYMQtem0m8rBN3wdcloveg9wLpk2X2PA4WJmH/Rt?=
- =?us-ascii?Q?mtAkY0jwaVuIn2e1MPs1pLHPWAwaoc5haQDYgvhlw3PM67NjStyWixbEODPW?=
- =?us-ascii?Q?WEhRm6ZlEQDEJaE7SdImpdXkZIYtPN4iZ+ZiUgKWY6SzZlhKpbqibgZeSJgZ?=
- =?us-ascii?Q?hiV8v6EwthKM0iz1JXqFM2FaxyIThWHBzFYjkbC9/scNYOeNrQpQwv0GZB2l?=
- =?us-ascii?Q?OX7RirFXkGHaTCXqC47GVkqvo5mmdZv+jYfRUcZJx3u/4DPw8xjyY4VrEMp5?=
- =?us-ascii?Q?rZlyrFdU8VSfZGwV1hDOnF/tUVTDk9X4vSUfasKcYo+Bc+SJ0K4WUQXNrF3K?=
- =?us-ascii?Q?NKhCYNAS4tIbtYdVmTSuvGCr60FXaLeB2u4sITBXLLQMh53TZCi9HyejtLkn?=
- =?us-ascii?Q?e1n6k89zpFhG3wiiOqkh+Ccsgh3FFKnUCaFuijZ7zaGQktNKDcYXoRRKoFW8?=
- =?us-ascii?Q?9eJRI1vTESbnEPEAxFh5CtMMpognnkRNoqgzwl7Kki5ipkvBAYllZhaZrqrA?=
- =?us-ascii?Q?S4PSd5RoDRMripuOyR2jmerEw8nCe61DzwcmVIBU6KhATipD1KydJKmqCGK2?=
- =?us-ascii?Q?6RcNSV/q1hjF49mgD6Jamg7Noim3d2ubk70gFbENnetxXxwpDPUgazHYVNlH?=
- =?us-ascii?Q?ex8NxJW8ikB1kCw/d+gl8oGZF6u9JPKV2pdrm9s0IdObZwuCX7MaNnHBivLI?=
- =?us-ascii?Q?8hITJLDGVA7mN0ZVUFJTfLRHs4hl3Bhcbko/pV5vAJk99Zit/t7Q43QqnTQX?=
- =?us-ascii?Q?G7jDFD4PjsT3Aq16u2ZOCYDgLMZrB+MuOIPYBA7spKDhJGvWrWakfZxrAaGc?=
- =?us-ascii?Q?Nv600HLScz9H83r6ImIVtme0b12QwRoRDsBQlTDgoVD9Yew4bPezo2mC/KFp?=
- =?us-ascii?Q?jMEalKFc2f8VmKz/XG1M3GqWwkctd7ECUZLN1CfI2C965HteOh1r8nnY87xO?=
- =?us-ascii?Q?HGRLyx9FgBAdPf24NTIBj7RrNjwKwMSdY2wUQcEQ2oVHncYYPjr2HjQRp6dH?=
- =?us-ascii?Q?/XJzRtI9Gy1qAQMX/4zCCswrq5FiPYZ88ixgCeV8z8idKMtENLkTiYfSkEjx?=
- =?us-ascii?Q?K2E3aSul37jynJSYAaJh5BNNjQMzTl77UfwwnL9LbHLkxvVorVVyKx7zU5Wq?=
- =?us-ascii?Q?mYiA9i0DEHhbLigWuPYjyUdpiCN9QoXOB46M/VTgRTMabBkvZsvfNuV5Ewc2?=
- =?us-ascii?Q?XRhN7PZPsp6KrMpEUuvu1rSerzuP0LVbYV2b5QztPQxfMQTUSjk2XR1ynJge?=
- =?us-ascii?Q?86EEc3Eh8Muhxn7i4ttMbbxquTj3+ukL4JQSfr2jJcSnfZhjF46Vyfj1kBtJ?=
- =?us-ascii?Q?jIpJQfr/S8SLpOHnexvRHNXVAqD906rXLi0hcdp/zuCdXHIOcLNoWoPCRT+Y?=
- =?us-ascii?Q?ig=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 150fe296-c66e-4417-6140-08dba276e411
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 18:46:12.1204 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: LMi7pcPlLEQquErD1dapbNF0NoytlQFAZaK5E7iSgY6T9vUYlxSW6yAYmpuh8pBoen9sJGCVSbK9F1Wv9vT929l7IxKc+EahWLr/gu1NLJw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6180
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 09/15] drm/xe/xe2: Define Xe2_LPM IP
- features
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-2-matthew.brost@intel.com>
+ <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
+ <069e6cd0-abd3-fdd9-217d-173e8f8e1d29@amd.com>
+ <b9a6493c-243b-1078-afbc-d9270cac904a@redhat.com>
+ <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
+ <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
+ <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
+ <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
+ <ef4d2c78-6927-3d3b-7aac-27d013af7ea6@amd.com>
+ <a80be2c1-132e-5ee1-4278-47655916494a@redhat.com>
+ <0d5af79a-ba3a-d4be-938f-81627db65b50@amd.com>
+ <a3937c17-eaa5-e0e9-e0ac-1610e0652982@redhat.com>
+ <1820cb54-5f1e-d2e6-38fa-7161465ed061@amd.com>
+ <9072642e-f4f6-4ff1-e11f-9bda8730750c@redhat.com>
+ <85107169-8a24-441f-6631-d99472d810f0@amd.com>
+From: Danilo Krummrich <dakr@redhat.com>
+Organization: RedHat
+In-Reply-To: <85107169-8a24-441f-6631-d99472d810f0@amd.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
+ use a work queue rather than kthread
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,70 +104,123 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ luben.tuikov@amd.com, donald.robson@imgtec.com, boris.brezillon@collabora.com,
+ intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 21, 2023 at 07:23:36AM -0700, Matt Roper wrote:
->On Fri, Aug 18, 2023 at 03:08:18PM -0700, Lucas De Marchi wrote:
->> From: Matt Roper <matthew.d.roper@intel.com>
+On 8/21/23 20:12, Christian König wrote:
+> Am 21.08.23 um 20:01 schrieb Danilo Krummrich:
+>> On 8/21/23 16:07, Christian König wrote:
+>>> Am 18.08.23 um 13:58 schrieb Danilo Krummrich:
+>>>> [SNIP]
+>>>>> I only see two possible outcomes:
+>>>>> 1. You return -EBUSY (or similar) error code indicating the the hw 
+>>>>> can't receive more commands.
+>>>>> 2. Wait on previously pushed commands to be executed.
+>>>>> (3. Your driver crash because you accidentally overwrite stuff in 
+>>>>> the ring buffer which is still executed. I just assume that's 
+>>>>> prevented).
+>>>>>
+>>>>> Resolution #1 with -EBUSY is actually something the UAPI should not 
+>>>>> do, because your UAPI then depends on the specific timing of 
+>>>>> submissions which is a really bad idea.
+>>>>>
+>>>>> Resolution #2 is usually bad because it forces the hw to run dry 
+>>>>> between submission and so degrade performance.
+>>>>
+>>>> I agree, that is a good reason for at least limiting the maximum job 
+>>>> size to half of the ring size.
+>>>>
+>>>> However, there could still be cases where two subsequent jobs are 
+>>>> submitted with just a single IB, which as is would still block 
+>>>> subsequent jobs to be pushed to the ring although there is still 
+>>>> plenty of space. Depending on the (CPU) scheduler latency, such a 
+>>>> case can let the HW run dry as well.
+>>>
+>>> Yeah, that was intentionally not done as well. The crux here is that 
+>>> the more you push to the hw the worse the scheduling granularity 
+>>> becomes. It's just that neither Xe nor Nouveau relies that much on 
+>>> the scheduling granularity at all (because of hw queues).
+>>>
+>>> But Xe doesn't seem to need that feature and I would still try to 
+>>> avoid it because the more you have pushed to the hw the harder it is 
+>>> to get going again after a reset.
+>>>
+>>>>
+>>>> Surely, we could just continue decrease the maximum job size even 
+>>>> further, but this would result in further overhead on user and 
+>>>> kernel for larger IB counts. Tracking the actual job size seems to 
+>>>> be the better solution for drivers where the job size can vary over 
+>>>> a rather huge range.
+>>>
+>>> I strongly disagree on that. A larger ring buffer is trivial to allocate 
 >>
->> Xe2_LPM media is represented by GMD_ID values 20.00 and 20.04.
->
->I don't see 20.04 listed in the latest bspec.  I think 20.00 is the only
->version now.
+>> That sounds like a workaround to me. The problem, in the case above, 
+>> isn't that the ring buffer does not have enough space, the problem is 
+>> that we account for the maximum job size although the actual job size 
+>> is much smaller. And enabling the scheduler to track the actual job 
+>> size is trivial as well.
+> 
+> That's what I agree on, so far I just didn't see the reason for doing it 
+> but at least a few reason for not doing it.
+> 
+>>
+>>> and if userspace submissions are so small that the scheduler can't 
+>>> keep up submitting them then your ring buffer size is your smallest 
+>>> problem.
+>>>
+>>> In other words the submission overhead will completely kill your 
+>>> performance and you should probably consider stuffing more into a 
+>>> single submission.
+>>
+>> I fully agree and that is also the reason why I want to keep the 
+>> maximum job size as large as possible.
+>>
+>> However, afaik with Vulkan it's the applications themselves deciding 
+>> when and with how many command buffers a queue is submitted (@Faith: 
+>> please correct me if I'm wrong). Hence, why not optimize for this case 
+>> as well? It's not that it would make another case worse, right?
+> 
+> As I said it does make both the scheduling granularity as well as the 
+> reset behavior worse.
 
-Right, I may have confused with the display part when tweaking this
-patch. Queued to fix in v3.
+As you already mentioned Nouveau (and XE) don't really rely much on 
+scheduling granularity. For Nouveau, the same is true for the reset 
+behavior; if things go south the channel is killed anyway. Userspace 
+would just request a new ring in this case.
 
-thanks
-Lucas De Marchi
+Hence, I think Nouveau would profit from accounting the actual job size. 
+And at the same time, other drivers having a benefit of always 
+accounting for the maximum job size would still do so, by default.
 
->
->
->Matt
->
->> It provides 1 VD + 1 VE + 1 SFC.
+Arbitrary ratios of how much the job size contributes to the ring being 
+considered as full would also be possible.
+
+- Danilo
+
+> 
+> In general I think we should try to push just enough work to the 
+> hardware to keep it busy and not as much as possible.
+> 
+> So as long as nobody from userspace comes and says we absolutely need to 
+> optimize this use case I would rather not do it.
+> 
+> Regards,
+> Christian.
+> 
 >>
->> Bspec: 70821, 70819
->> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_pci.c | 8 ++++++++
->>  1 file changed, 8 insertions(+)
+>> - Danilo
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->> index ed6c4bf8c63b..fdd2eba1b91f 100644
->> --- a/drivers/gpu/drm/xe/xe_pci.c
->> +++ b/drivers/gpu/drm/xe/xe_pci.c
->> @@ -221,6 +221,12 @@ static const struct xe_media_desc media_xelpmp = {
->>  		BIT(XE_HW_ENGINE_VECS0),	/* TODO: add GSC0 */
->>  };
+>>>
+>>> Regards,
+>>> Christian.
+>>>
+>>>>
+>>>> - Danilo
+>>>
 >>
->> +static const struct xe_media_desc media_xe2 = {
->> +	.name = "Xe2_LPM",
->> +	.hw_engine_mask =
->> +		BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VECS0), /* TODO: GSC0 */
->> +};
->> +
->>  static const struct xe_device_desc tgl_desc = {
->>  	.graphics = &graphics_xelp,
->>  	.media = &media_xem,
->> @@ -344,6 +350,8 @@ static struct gmdid_map graphics_ip_map[] = {
->>  /* Map of GMD_ID values to media IP */
->>  static struct gmdid_map media_ip_map[] = {
->>  	{ 1300, &media_xelpmp },
->> +	{ 2000, &media_xe2 },
->> +	{ 2004, &media_xe2 },
->>  };
->>
->>  #define INTEL_VGA_DEVICE(id, info) {			\
->> --
->> 2.40.1
->>
->
->-- 
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+> 
+
