@@ -4,95 +4,126 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6FFC3EE4993
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 19:07:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 601F5EE49A5
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 19:17:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21A9C10E070;
-	Mon, 21 Aug 2023 19:07:49 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9D2C10E070
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 19:07:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1692644865;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=lGSgoldDF7M1+mO5xuhb4fHy0+md46F06pChJvfr4Qg=;
- b=hZQPfM0Uveo9YbAn5geij5gWCZHOmQ4pYtIuyoEQ9ccD88URtRGY6/UkO2GHRSFV1sK0/T
- OceUCXbcB/APUp5e6r1PWWD5aDYmm9XTvVpnQza2b6vu+uCs7i1hYX3jqb+1EkaVho6pwb
- 0GUqZOEpt4QOJ+4ZOkIYh9wjuZF6DEs=
-Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
- [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-605-esxmD-LtPAOPp_Me7LQj-Q-1; Mon, 21 Aug 2023 15:07:44 -0400
-X-MC-Unique: esxmD-LtPAOPp_Me7LQj-Q-1
-Received: by mail-ej1-f69.google.com with SMTP id
- a640c23a62f3a-94a356c74e0so247768966b.2
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 12:07:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692644863; x=1693249663;
- h=content-transfer-encoding:in-reply-to:organization:from:references
- :cc:to:content-language:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=lGSgoldDF7M1+mO5xuhb4fHy0+md46F06pChJvfr4Qg=;
- b=ZQ37VjZk4nqV7+WKq4tCoIigYA038nfJpfLEYMlfOszwu96rYsnbUWAw4laijnmsH9
- FA0hYTYogdF3j7fVJ8SqOimYQW8r3nrHg+q0YB6QyqFlosi5K/c5Uyog04gPg7zxPYpi
- g0gIK+HeZ6ev2c1IUIrscd7HJFEBjfJt0kxJgq3hUGcq+cm2Fh4DHMaqAbNO8W57a8nk
- UKzA3JB7VcUxCEYByQ7mvX7xgc+seas+5IA373l32Z804Ykdf51k/+sWrJKUjZEN7V01
- DO5bdS4BKsDigLHcyLV48D+OGrktWob8iJBSqNu9NGp1Y8RXFFY6uyHpoTxnY0xn1mA2
- ROjg==
-X-Gm-Message-State: AOJu0YyqMC3rFhOTarDyOAV8TA1LwMn7hYWZWIlxCjDm6bUjf3nxPe1c
- 9oSv2Z9dKji4QQ6rsimDuEmw5kgQ98D71pNydVVfg7hNOENsyrNoJ6fBzkBAFBvllxBXzYLiFqU
- ysER9Bv9l7UNJnwhT59dTYf/OYLc=
-X-Received: by 2002:a17:907:1ddd:b0:99e:68ce:b245 with SMTP id
- og29-20020a1709071ddd00b0099e68ceb245mr5435295ejc.27.1692644863254; 
- Mon, 21 Aug 2023 12:07:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGfIz50MIpwg5OfAJd8IzvtNA87LoS1sVEbLYqYGM3K7FSWmfn4tOh9OA+CdwNRGqC67f50Tw==
-X-Received: by 2002:a17:907:1ddd:b0:99e:68ce:b245 with SMTP id
- og29-20020a1709071ddd00b0099e68ceb245mr5435286ejc.27.1692644862936; 
- Mon, 21 Aug 2023 12:07:42 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
- ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
- by smtp.gmail.com with ESMTPSA id
- jt11-20020a170906dfcb00b0098921e1b064sm6929371ejc.181.2023.08.21.12.07.41
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 21 Aug 2023 12:07:42 -0700 (PDT)
-Message-ID: <faecd15e-020b-6b06-acf7-1dd4c5a2b4fc@redhat.com>
-Date: Mon, 21 Aug 2023 21:07:40 +0200
-MIME-Version: 1.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D3F510E172;
+	Mon, 21 Aug 2023 19:17:54 +0000 (UTC)
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com
+ (mail-co1nam11on2061.outbound.protection.outlook.com [40.107.220.61])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 487E610E15B;
+ Mon, 21 Aug 2023 19:17:52 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dFsuOvzBEj1dcloD9lycOsyq5Vk/FBd6PnfaMyzGmqEImHX5O9ro8DX5D5hskds217W1gm+sEj+BKkhQ+23vBrNvIvRQs+Nk5ShZen+K8QoLLxDiKLfqLyjd9U8NzuhAuk9yx/Rn3oWB8lYdWdqjRwTwTjyc4Pe69rNFIe8nIOwonf2VlEbTwPnFwFxCiOtQ52oy6jI93yoEXW+ui8NwjLIU6WbaE2n92633lfswnyGGSbb6qqSliAHuzZZhR6JT8wItT1fK1u/NpTBokWhmCsSgkTh6tWKBsj5hsN2E4vZ6uhkMD5dX7qdBihA1hyflGGIm+xsyQ1gFrsv1iTKkrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fnV3QHRuxu69c9/n9xhIKLgtOz9yEFwgVVTFST1moao=;
+ b=UyccvLqk4NCwXsbgtizM4m1PV+iBzMxEUR5KE1+NLG3LEzxFqR9yNQArMc4+c7w6QJIM+tFDXY0eTBVO4OqgAHs8ZCej125GCvherlJp8cfvozCHtVBq9M/wswm90I9ow/Dhd8u8OPZuzvzQmyNG/X/cZaKTtJjXpLgXZclvITG8FwMyKI+KfLdVDXwO2LA7L7PVK7O2oEozYXb09hYXPHkLGr8W4lZZaA93bGgslE+GIiG8MGSZgBgeRJKWGjElbiY6ELgdCDpf2U1ybtCUN/ejYzUbal3DTwN9iRqjzGcFZs2wPIWTTahSV9HN9+8hcDrYZAl9sJigEBD/w4cWyA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=fnV3QHRuxu69c9/n9xhIKLgtOz9yEFwgVVTFST1moao=;
+ b=Lv7GQc/cUr5opt/uU+rGgwy0ufuTor/j3Smtd/l9UiWQGxTrevgR+Mh6iRXV99n7dSyiwF2hH8I1FoJHqpeLCzHhuU+ZcELK4k/tSqsXHKkBm7WfckpxMs56aIiMRF/GC4xq+DXh0qEpTF0WZs0l54mSKEiyZU4OK9ZHxEgn/ac=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by DM6PR12MB4074.namprd12.prod.outlook.com (2603:10b6:5:218::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Mon, 21 Aug
+ 2023 19:17:49 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::ca28:efb4:a838:58fb]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::ca28:efb4:a838:58fb%4]) with mapi id 15.20.6699.022; Mon, 21 Aug 2023
+ 19:17:48 +0000
+Message-ID: <637ce3f5-a7a9-6a1f-812a-5987211f84f7@amd.com>
+Date: Mon, 21 Aug 2023 15:17:46 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20230811023137.659037-1-matthew.brost@intel.com>
- <20230811023137.659037-2-matthew.brost@intel.com>
- <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
- <069e6cd0-abd3-fdd9-217d-173e8f8e1d29@amd.com>
- <b9a6493c-243b-1078-afbc-d9270cac904a@redhat.com>
- <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
- <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
- <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
- <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
- <ef4d2c78-6927-3d3b-7aac-27d013af7ea6@amd.com>
- <a80be2c1-132e-5ee1-4278-47655916494a@redhat.com>
- <0d5af79a-ba3a-d4be-938f-81627db65b50@amd.com>
- <a3937c17-eaa5-e0e9-e0ac-1610e0652982@redhat.com>
- <1820cb54-5f1e-d2e6-38fa-7161465ed061@amd.com>
- <9072642e-f4f6-4ff1-e11f-9bda8730750c@redhat.com>
- <85107169-8a24-441f-6631-d99472d810f0@amd.com>
-From: Danilo Krummrich <dakr@redhat.com>
-Organization: RedHat
-In-Reply-To: <85107169-8a24-441f-6631-d99472d810f0@amd.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
 Content-Language: en-US
+To: "Zeng, Oak" <oak.zeng@intel.com>, Dave Airlie <airlied@gmail.com>
+References: <SA1PR11MB699192A66D7A2CC7305A59569214A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <SA1PR11MB6991F9E3107C963BDF95E04E9214A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <e0d7d6a2-5c9d-6e17-4b4b-be03deb6c130@amd.com>
+ <SA1PR11MB69918E5603E286961789DE6D9215A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <3c125b60-df60-2037-c23f-918734e4973f@amd.com>
+ <SA1PR11MB69916E51CE5A9217D447B91C9215A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <7ae5f112-d0e9-cc52-2b22-7265ea435cc2@amd.com>
+ <CAPM=9tyots9C8wEU0TgGnFmLOkfqn62ngaYYjV2yuTf7jwDGFw@mail.gmail.com>
+ <SA1PR11MB6991D7E239EAB23CC8A9A36B921AA@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <CAPM=9tw3wGhZ3ByfizM8+G4Ny5wQLwf4fw8pD4sySVk08355tg@mail.gmail.com>
+ <SA1PR11MB69911D8AB895EEC13A64EBCE921EA@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <SA1PR11MB69912B9C5363E40A50B74B35921EA@SA1PR11MB6991.namprd11.prod.outlook.com>
+From: Felix Kuehling <felix.kuehling@amd.com>
+Organization: AMD Inc.
+In-Reply-To: <SA1PR11MB69912B9C5363E40A50B74B35921EA@SA1PR11MB6991.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
- use a work queue rather than kthread
+X-ClientProxiedBy: YT3PR01CA0068.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:84::14) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|DM6PR12MB4074:EE_
+X-MS-Office365-Filtering-Correlation-Id: 86173352-2906-4dd4-8fd6-08dba27b4e47
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ySEZ9kM9M7/gbwo+FDrUiKcYMxgJrs/gQIM/xLLFH69mu5G4bp0Cd40D+oH7lVDsQp8xJiFiYCY8QQ2iJwuDIFH/TpA6oV3uXbJYiDMLcxwm0Ol5mSIJPgIBMwHd/QzDWGfb8vCpxXA0BBkC6i47MSbUYnv4/Ft4MABFUrwfyxt9zSyKGlW4/MN/SD3TpIDLy1rgYUyesf8+sLWUw3MCSSkSofaUewKipinSd+OncgAc+d14viVZ+hrn3+6cTtjrSTlsEKrfwk1GLDRo00jI7cjcTY/mE3KYxStAo7uPS4tj7whMTjnrgdEVR3DBVKq+KJf8SPNIMz1+qYQweoAZSDo294pMaIj6BmjhCsJ++/Wo5qW/Rdx8up4XEzq3o7cd5+m3y7N/17BoI79osZGc9qo9XGA2vg7WwmXHKAszyK5TC8oQ5+i4ZPxR8j/OKa3CpljJd8ZMNNYOfww8GyWx5pNCvghu5snshze1+pGyhRG4TrlqcPNMNu3m/GbqnWbTtu0f3ebWNl474hT+RZzXb2oo6qbqQtZnctRWEkOGF7udsij9ax5CGf2LrraDAo+ITL+g3ny107+7kcH2aRBnT4KmAbwF5kWrH6bzCidAbGbNAYwjl+Aeyq87Xid/71C0YB8aY+MNc3uVmYb1juzDMw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(39860400002)(346002)(396003)(136003)(376002)(451199024)(1800799009)(186009)(66574015)(2906002)(53546011)(38100700002)(36916002)(6486002)(6506007)(83380400001)(5660300002)(44832011)(26005)(86362001)(31686004)(31696002)(8676002)(8936002)(2616005)(4326008)(316002)(66946007)(6512007)(54906003)(66556008)(66476007)(110136005)(478600001)(36756003)(41300700001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U1dMMW9ubFNndVZKTWY1M1kzR1VlM1hrUFBwa3FZUXJYNnlXc05kRlBycG4w?=
+ =?utf-8?B?bjQrdHZ5N0ZCT00ybU9xRjQ1QkViSjRjUWN6WmNWQVByTHd6UTgwQUFDSUZJ?=
+ =?utf-8?B?dXpEaVRaS0RjNnhrMmJaZFBOOWtRNnZsb0EweVgzSDJ4UzMvN2JVaVg5R042?=
+ =?utf-8?B?M2NmY0lTc2t4alVCU0Q2dTlkVmVQTVkwS3VkbmJUdmNWekpRMEE1QWpUd0lr?=
+ =?utf-8?B?WG0zRmhmUGJvazhVQ0dhSURZTXNjUzF3djBjTjZrbVdDY0pYbmdMdjVBamNa?=
+ =?utf-8?B?TGd0MkxpY284Mm9Za2Q3ckxzTEpvUjNFV0puRVNSc3pmeFJOajRzc3Q0azZt?=
+ =?utf-8?B?QW9kRHBnUGRwUGQ5RmJXVnAzTUdCK251dDRxY3NmWStUTUtyNUNPM01zV2ov?=
+ =?utf-8?B?ZVVjbHBrMWJPL09ZcnhHMytmQ3FMdkRDdWtBYVdHVFd5STQrNlhEaHlJMXpi?=
+ =?utf-8?B?UzhpV2JIbWZUUzNPRENKK0RxeVpQKzdialFtdTJEbnRTeW8vZVhxMGwveHp5?=
+ =?utf-8?B?WjQ4bDhnZkpiS3hlSHNDSUx4L25uT3d5TlZoM2lVVHZBbDhwdGFQa0R5cWlR?=
+ =?utf-8?B?TU1FYkFlU1VPUFRHZnorSGFONEhaekFUQ0JJRlFGUUdJU3oyVVdYbGhFSjFG?=
+ =?utf-8?B?cDRraW4vZWI2N3gyYWRUclB6c3ZqdXFGcnJzUjRlT0Z1Y0FRWHBDVEVDR2Vs?=
+ =?utf-8?B?dU04K2JTK0t2bmg5VSsrUjJ0WmlCU0c2RmlTZzNNVUNqaDBtOFFaTVcxdkZS?=
+ =?utf-8?B?Y2VVMTJyUk0rWDNsamo1V2VXbTlTU0R1Nm1DUUV1ZFlEWEVyNk1JT0pMZVdS?=
+ =?utf-8?B?TzJYK0pOQ3hHeWhwT3JFTEJ5UXlpMHZBd2lNc3dqRVJEUHlGVVVmbkRxWFNN?=
+ =?utf-8?B?K0syUDNZU2tuS2p3K1k3eU1WUWNMcEQ5WFpySDdOcklVanpCVTdlUkFlUjlC?=
+ =?utf-8?B?V1ZtN09PeloyZExKUFlNZnFCM2UxZVMrRjFOVWtVU054MTlEM2QyUTV0eUl3?=
+ =?utf-8?B?QXZUQ3FYU20vYnh6VnlNZGR0V2o5enUyVDhqcDNLakJsY3FSSzRiQTZ3K1Fk?=
+ =?utf-8?B?dlJyc0pzKzRsbTJRQXZnazVOODl4S3VhSHQzbkNDbmhKdktuQ0FZMUtKdVlZ?=
+ =?utf-8?B?ZUNpQ2huUEN3NHIrTzMvbjNXQm5XZHNZZ3hzd2pza2JRTmVyQ3B0eXBsdUxQ?=
+ =?utf-8?B?eEdxanMyWll6UURVQklrbXk0YVNvZGRlS0taNXR0S25scVczY0RlMThoZWpS?=
+ =?utf-8?B?Zlh5M3dWUlA3TkFCNm56RVB6ck9NWURpMnp1Z3NhNUdHOG5yeVM3dlUxaW50?=
+ =?utf-8?B?UFhVTldKMVRGWk85WVUvb1UzQjN3NDBIOEJsaXkrem80TkhoNTQwNzM4NFYx?=
+ =?utf-8?B?VXl1WmozcHhWQWxNbXMvY1pTcnlVQ2F3VTAyQVdURDFhTWhkWHVLWXQvYXBW?=
+ =?utf-8?B?NTZIdGlMMklDVGd0MXhNOGUySk5jMEl2WmpnSE1WUkhUeXorNnJremJ2SDl0?=
+ =?utf-8?B?Yjh4OC9qSm9lVkhUdGpCUzBadVpIdVJzUTZhUStjaVBwRlBBaUU4MC9jQ3hm?=
+ =?utf-8?B?ZkVkRytXL0RzMGxBcFpnOFU2TldiZ2l6N3V1dWNhdS9Oa3JEczFyQ1F0SkNI?=
+ =?utf-8?B?cjhrTDFuclE0TUZxMWEzaXNVb1JWZkRPY3Zwa1VjR3A4TGQxb0lkTTBNamU2?=
+ =?utf-8?B?M20xdC9aMUgyRmYvY1JrWG9iVlFpejRBTFRhK3FXc3pqUlhhc1pFNitPNzZ5?=
+ =?utf-8?B?TkkwZWNWZ2ZmNlg4S2F2a2hLbmI2SXFkSk1TbW5oMkVwMzd3Qy85TnBpQlR2?=
+ =?utf-8?B?a2VPaTdIUjRMcHBSNGlRNVcxSnVhbW5yNVUvRkMydXEyUnp3bWVZbUFSWUNL?=
+ =?utf-8?B?Y1dVbnR6amlMQ1hpQVhIZEpJbEJGdzNEYUJxOU5kQmRQOUlBa2xkenhvQ0x2?=
+ =?utf-8?B?THJrZGY5MEVPT0NsYmdwQjVlT2xSUkttUHBqc0RkOEo5aEhPS2dTOHp2QTl4?=
+ =?utf-8?B?T1Qxa1V0RDhvMlBtZk5QT0s4dkFSQklJbGdHdEZXMXJkYVlFdkdnbi9SYXRF?=
+ =?utf-8?B?ZTdaMGQvZVRUaGJQd3dTYWM4dEhORmlhakJUUVhKYjFtMktQK3B2dGtsdHVE?=
+ =?utf-8?Q?1097OArpfiYC9JssMJTskboMp?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86173352-2906-4dd4-8fd6-08dba27b4e47
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 19:17:48.2207 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Mz11Amo0WXr9LfRTxh0lsIeVulH9XPCOIhkk9W4VjmkbD6m0TEUPxZf7+PN/mKoqA5FJGkv2bfPLFBRKp1bz4g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4074
+Subject: Re: [Intel-xe] Implement svm without BO concept in xe driver
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,123 +135,205 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
- luben.tuikov@amd.com, donald.robson@imgtec.com, boris.brezillon@collabora.com,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: Philip Yang <Philip.Yang@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 8/21/23 20:12, Christian König wrote:
-> Am 21.08.23 um 20:01 schrieb Danilo Krummrich:
->> On 8/21/23 16:07, Christian König wrote:
->>> Am 18.08.23 um 13:58 schrieb Danilo Krummrich:
->>>> [SNIP]
->>>>> I only see two possible outcomes:
->>>>> 1. You return -EBUSY (or similar) error code indicating the the hw 
->>>>> can't receive more commands.
->>>>> 2. Wait on previously pushed commands to be executed.
->>>>> (3. Your driver crash because you accidentally overwrite stuff in 
->>>>> the ring buffer which is still executed. I just assume that's 
->>>>> prevented).
+
+On 2023-08-21 11:10, Zeng, Oak wrote:
+> Accidently deleted Brian. Add back.
+>
+> Thanks,
+> Oak
+>
+>> -----Original Message-----
+>> From: Zeng, Oak
+>> Sent: August 21, 2023 11:07 AM
+>> To: Dave Airlie <airlied@gmail.com>
+>> Cc: Brost, Matthew <matthew.brost@intel.com>; Thomas Hellström
+>> <thomas.hellstrom@linux.intel.com>; Philip Yang <Philip.Yang@amd.com>; Felix
+>> Kuehling <felix.kuehling@amd.com>; dri-devel@lists.freedesktop.org; intel-
+>> xe@lists.freedesktop.org; Vishwanathapura, Niranjana
+>> <niranjana.vishwanathapura@intel.com>; Christian König
+>> <christian.koenig@amd.com>
+>> Subject: RE: Implement svm without BO concept in xe driver
+>>
+>>> -----Original Message-----
+>>> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of Dave
+>>> Airlie
+>>> Sent: August 20, 2023 6:21 PM
+>>> To: Zeng, Oak <oak.zeng@intel.com>
+>>> Cc: Brost, Matthew <matthew.brost@intel.com>; Thomas Hellström
+>>> <thomas.hellstrom@linux.intel.com>; Philip Yang <Philip.Yang@amd.com>;
+>> Felix
+>>> Kuehling <felix.kuehling@amd.com>; Welty, Brian <brian.welty@intel.com>;
+>> dri-
+>>> devel@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Vishwanathapura,
+>>> Niranjana <niranjana.vishwanathapura@intel.com>; Christian König
+>>> <christian.koenig@amd.com>
+>>> Subject: Re: Implement svm without BO concept in xe driver
+>>>
+>>> On Thu, 17 Aug 2023 at 12:13, Zeng, Oak <oak.zeng@intel.com> wrote:
+>>>>> -----Original Message-----
+>>>>> From: Dave Airlie <airlied@gmail.com>
+>>>>> Sent: August 16, 2023 6:52 PM
+>>>>> To: Felix Kuehling <felix.kuehling@amd.com>
+>>>>> Cc: Zeng, Oak <oak.zeng@intel.com>; Christian König
+>>>>> <christian.koenig@amd.com>; Thomas Hellström
+>>>>> <thomas.hellstrom@linux.intel.com>; Brost, Matthew
+>>>>> <matthew.brost@intel.com>; maarten.lankhorst@linux.intel.com;
+>>>>> Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>;
+>> Welty,
+>>>>> Brian <brian.welty@intel.com>; Philip Yang <Philip.Yang@amd.com>; intel-
+>>>>> xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org
+>>>>> Subject: Re: Implement svm without BO concept in xe driver
 >>>>>
->>>>> Resolution #1 with -EBUSY is actually something the UAPI should not 
->>>>> do, because your UAPI then depends on the specific timing of 
->>>>> submissions which is a really bad idea.
+>>>>> On Thu, 17 Aug 2023 at 08:15, Felix Kuehling <felix.kuehling@amd.com>
+>>> wrote:
+>>>>>> On 2023-08-16 13:30, Zeng, Oak wrote:
+>>>>>>> I spoke with Thomas. We discussed two approaches:
+>>>>>>>
+>>>>>>> 1) make ttm_resource a central place for vram management functions
+>>> such as
+>>>>> eviction, cgroup memory accounting. Both the BO-based driver and BO-less
+>>> SVM
+>>>>> codes call into ttm_resource_alloc/free functions for vram allocation/free.
+>>>>>>>       *This way BO driver and SVM driver shares the eviction/cgroup logic,
+>> no
+>>>>> need to reimplment LRU eviction list in SVM driver. Cgroup logic should be
+>> in
+>>>>> ttm_resource layer. +Maarten.
+>>>>>>>       *ttm_resource is not a perfect match for SVM to allocate vram. It is
+>> still
+>>> a
+>>>>> big overhead. The *bo* member of ttm_resource is not needed for SVM -
+>>> this
+>>>>> might end up with invasive changes to ttm...need to look into more details
+>>>>>> Overhead is a problem. We'd want to be able to allocate, free and evict
+>>>>>> memory at a similar granularity as our preferred migration and page
+>>>>>> fault granularity, which defaults to 2MB in our SVM implementation.
+>>>>>>
+>>>>>>
+>>>>>>> 2) svm code allocate memory directly from drm-buddy allocator, and
+>>> expose
+>>>>> memory eviction functions from both ttm and svm so they can evict
+>> memory
+>>>>> from each other. For example, expose the ttm_mem_evict_first function
+>>> from
+>>>>> ttm side so hmm/svm code can call it; expose a similar function from svm
+>> side
+>>> so
+>>>>> ttm can evict hmm memory.
+>>>>>> I like this option. One thing that needs some thought with this is how
+>>>>>> to get some semblance of fairness between the two types of clients.
+>>>>>> Basically how to choose what to evict. And what share of the available
+>>>>>> memory does each side get to use on average. E.g. an idle client may get
+>>>>>> all its memory evicted while a busy client may get a bigger share of the
+>>>>>> available memory.
+>>>>> I'd also like to suggest we try to write any management/generic code
+>>>>> in driver agnostic way as much as possible here. I don't really see
+>>>>> much hw difference should be influencing it.
 >>>>>
->>>>> Resolution #2 is usually bad because it forces the hw to run dry 
->>>>> between submission and so degrade performance.
+>>>>> I do worry about having effectively 2 LRUs here, you can't really have
+>>>>> two "leasts".
+>>>>>
+>>>>> Like if we hit the shrinker paths who goes first? do we shrink one
+>>>>> object from each side in turn?
+>>>> One way to solve this fairness problem is to create a driver agnostic
+>>> drm_vram_mgr. Maintain a single LRU in drm_vram_mgr. Move the memory
+>>> eviction/cgroups memory accounting logic from ttm_resource manager to
+>>> drm_vram_mgr. Both BO-based driver and SVM driver calls to drm_vram_mgr
+>> to
+>>> allocate/free memory.
+>>>> I am not sure whether this meets the 2M allocate/free/evict granularity
+>>> requirement Felix mentioned above. SVM can allocate 2M size blocks. But BO
+>>> driver should be able to allocate any arbitrary sized blocks - So the eviction is
+>> also
+>>> arbitrary size.
+>>>>> Also will we have systems where we can expose system SVM but userspace
+>>>>> may choose to not use the fine grained SVM and use one of the older
+>>>>> modes, will that path get emulated on top of SVM or use the BO paths?
+>>>> If by "older modes" you meant the gem_bo_create (such as xe_gem_create
+>> or
+>>> amdgpu_gem_create), then today both amd and intel implement those
+>>> interfaces using BO path. We don't have a plan to emulate that old mode on
+>> tope
+>>> of SVM, afaict.
+>>>
+>>> I'm not sure how the older modes manifest in the kernel I assume as bo
+>>> creates (but they may use userptr), SVM isn't a specific thing, it's a
+>>> group of 3 things.
+>>>
+>>> 1) coarse-grained SVM which I think is BO
+>>> 2) fine-grained SVM which is page level
+>>> 3) fine-grained system SVM which is HMM
+>>>
+>>> I suppose I'm asking about the previous versions and how they would
+>>> operate in a system SVM capable system.
+>> I got your question now.
+>>
+>> As I understand it, the system SVM provides similar functionality as BO-based
+>> SVM (i.e., share virtual address space b/t cpu and gpu program, no explicit
+>> memory placement for gpu program), but they have different user interface
+>> (malloc, mmap vs bo create, vm bind).
+>>
+>>  From functionality perspective, on a system SVM capable system, we don't need
+>> #1/#2. Once #3 is implemented and turned out be as performant as #1/#2, we
+>> can ask user space to switch to #3.
+>>
+>> As far as I know, AMD doesn't have #1/#2 - their BO-based driver *requires* all
+>> valid GPU virtual address be mapped to GPU page table *before* GPU kernel
+>> submission, aka a GPU page fault is treated as fatal. Felix please fix me, as my
+>> AMD knowledge is fading away...
+
+This is correct. The AMD driver can only handle recoverable page faults 
+for virtual address ranges managed by system SVM.
+
+That said, if you want performance parity with #1/#2, you basically need 
+to pre-fault things even for #3. Device page faults just add too much 
+latency.
+
+
+>>
+>>  From interface perspective, i.e., to keep UMD which using #1/#2 continue to run
+>> without modification, we need #1/#2 to continue exist.
+
+Agreed.
+
+
+>>
+>> Should we emulate #1/#2 on top of #3? I feel the BO-based memory
+>> management and the struct page/hmm based memory management are quite
+>> different design philosophy. Trying to emulate one on top of another can run into
+>> serious difficulty. For example, how do we emulate a vm_bind on top of #3?
+>> Remember for #1/#2 virtual address space is managed by user space while #3	
+>> virtual address space is managed by kernel core mm (vma struct...). It is a hard
+>> conflict here...
+
+I have thought about emulating BO allocation APIs on top of system SVM. 
+This was in the context of KFD where memory management is not tied into 
+command submissions APIs, which would add a whole other layer of 
+complexity. The main unsolved (unsolvable?) problem I ran into was, that 
+there is no way to share SVM memory as DMABufs. So there is no good way 
+to support applications that expect to share memory in that way.
+
+You may be able to emulate that with file-backed memory (e.g. POSIX 
+IPC), but it adds overhead at allocation time and HMM migration 
+currently doesn't work with file-backed memory.
+
+Regards,
+   Felix
+
+
+>>
+>> Thanks again for the great question!
+>> Oak
+>>
+>>> Dave.
+>>>> Thanks,
+>>>> Oak
 >>>>
->>>> I agree, that is a good reason for at least limiting the maximum job 
->>>> size to half of the ring size.
->>>>
->>>> However, there could still be cases where two subsequent jobs are 
->>>> submitted with just a single IB, which as is would still block 
->>>> subsequent jobs to be pushed to the ring although there is still 
->>>> plenty of space. Depending on the (CPU) scheduler latency, such a 
->>>> case can let the HW run dry as well.
->>>
->>> Yeah, that was intentionally not done as well. The crux here is that 
->>> the more you push to the hw the worse the scheduling granularity 
->>> becomes. It's just that neither Xe nor Nouveau relies that much on 
->>> the scheduling granularity at all (because of hw queues).
->>>
->>> But Xe doesn't seem to need that feature and I would still try to 
->>> avoid it because the more you have pushed to the hw the harder it is 
->>> to get going again after a reset.
->>>
->>>>
->>>> Surely, we could just continue decrease the maximum job size even 
->>>> further, but this would result in further overhead on user and 
->>>> kernel for larger IB counts. Tracking the actual job size seems to 
->>>> be the better solution for drivers where the job size can vary over 
->>>> a rather huge range.
->>>
->>> I strongly disagree on that. A larger ring buffer is trivial to allocate 
->>
->> That sounds like a workaround to me. The problem, in the case above, 
->> isn't that the ring buffer does not have enough space, the problem is 
->> that we account for the maximum job size although the actual job size 
->> is much smaller. And enabling the scheduler to track the actual job 
->> size is trivial as well.
-> 
-> That's what I agree on, so far I just didn't see the reason for doing it 
-> but at least a few reason for not doing it.
-> 
->>
->>> and if userspace submissions are so small that the scheduler can't 
->>> keep up submitting them then your ring buffer size is your smallest 
->>> problem.
->>>
->>> In other words the submission overhead will completely kill your 
->>> performance and you should probably consider stuffing more into a 
->>> single submission.
->>
->> I fully agree and that is also the reason why I want to keep the 
->> maximum job size as large as possible.
->>
->> However, afaik with Vulkan it's the applications themselves deciding 
->> when and with how many command buffers a queue is submitted (@Faith: 
->> please correct me if I'm wrong). Hence, why not optimize for this case 
->> as well? It's not that it would make another case worse, right?
-> 
-> As I said it does make both the scheduling granularity as well as the 
-> reset behavior worse.
-
-As you already mentioned Nouveau (and XE) don't really rely much on 
-scheduling granularity. For Nouveau, the same is true for the reset 
-behavior; if things go south the channel is killed anyway. Userspace 
-would just request a new ring in this case.
-
-Hence, I think Nouveau would profit from accounting the actual job size. 
-And at the same time, other drivers having a benefit of always 
-accounting for the maximum job size would still do so, by default.
-
-Arbitrary ratios of how much the job size contributes to the ring being 
-considered as full would also be possible.
-
-- Danilo
-
-> 
-> In general I think we should try to push just enough work to the 
-> hardware to keep it busy and not as much as possible.
-> 
-> So as long as nobody from userspace comes and says we absolutely need to 
-> optimize this use case I would rather not do it.
-> 
-> Regards,
-> Christian.
-> 
->>
->> - Danilo
->>
->>>
->>> Regards,
->>> Christian.
->>>
->>>>
->>>> - Danilo
->>>
->>
-> 
-
+>>>>> Dave.
