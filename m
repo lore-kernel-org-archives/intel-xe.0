@@ -4,144 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5BC81EE4996
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 14:42:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94327EE4996
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 14:43:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2698610E27B;
-	Mon, 21 Aug 2023 14:42:43 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6A5810E27B
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 14:42:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51B0010E27B;
+	Mon, 21 Aug 2023 14:43:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0ADB10E27B
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 14:43:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692628961; x=1724164961;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=ijaRpbM+rbjeoNR0KfnrWem+R2628q1pycp8pNycKSk=;
- b=byl3gaRsvp1KiIb95tGFo+RHWuGvd69mnC3WprI0d39K7sj+8FexS/Oo
- O6Kn854ONVOjYEuBgEQ/Raq5IEU6rUSKC4VxBrGQDWZHdT2qdFDJIPx7u
- v+i5a5fq5lRM8Ly2vZSQGUbwPcfpF5FL0WwMGRr9bfLfk8mnXPjbeGPqn
- o5dz39OlRDBsOYb7eSwu5aXlcUMij9BSBjivtkjp3APGWokf9eFi+/oxy
- JXOkS4DMNjGQwR2LnEk62WA41PmTdhdZRmh0+qXc/0noNbifkfRVnfvSW
- mr5QfWguJTJCB528PQo8ouchVKDTwFlwyerfDzFiZ6EXDoHBio0xHAfAR A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="371037447"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="371037447"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 07:42:36 -0700
+ t=1692629009; x=1724165009;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=acsTlgwwcBssi+o0ojgySt1wto7wr2OepckLZb/njes=;
+ b=cjbW9Dzz2cSvDAwUDvf9HI1o7eCTnwJLQvx0xeUQpFH2D6He3MD5NUyl
+ 7xff074hM/ay3G4J8UsWLjPZyOC3XW2gFG4CgJYDNyeF7RzCbmvRPRJb9
+ mQv5jRL467bAjBWofETDpadH++NCqUBOm3QgegONJMSkv7XLWepQulIIx
+ WpQTroBIBeU8ygZKgiHhLq0KA1K6P8sG3hU9fTYgzpNlAgk2FTpIlgdUV
+ AsTdmawHqDX0b9u3I6tGajUDHMP2n4jBvKYWZN3kESgxG32ZLYEvP7Juh
+ xlok04iwtOSgOHeVXPmbYVGRLX8Djg3uhHRTALI/ro6spVbHWmlz1fouU Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="353923026"
+X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="353923026"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2023 07:43:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="850210735"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="850210735"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga002.fm.intel.com with ESMTP; 21 Aug 2023 07:42:36 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 21 Aug 2023 07:42:35 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Mon, 21 Aug 2023 07:42:35 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Mon, 21 Aug 2023 07:42:35 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lNVk0P525XYPUSeBM5ZfcAwS4nUZeZfQy0mzVww/4Veyqii2hMel1Q4R+7+fN0o7KmtHrxGT60Cjl3HRgMdV5fOjELf0+BNJSGGhZsUsir9wOCrP5UirlcYqsotS307BX95dgcNLTi/+lq5ReJeKHEUOLQDMYHT8vpt+jzAhoRdFdK23j5eFbwoxVXm5Hg0jAC/ztBBM3KBmFJvb3usrJcq6u1fIOz3T56mOGbRxMOQqfuYaYNmEva4ydSL3f/dB7uCgMtHxuI6gEoEzEp4nbMq7GwP5wUUxWGiigpZF25LgUv2EFevOGR6xyIV+p+2tEcT+4Fn7XmzHSa55nhazJg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=J3jjtVeTQwlKvJ0g6AkBXvvp0ArgMrCQL8943ropvd0=;
- b=W7TH2ex0xSzaHilI0mtLlTBtpnLxK45r8bB0VnSjCoa0/wmuhWbmgSBmJOFxkL4/pTlT+GWRzMAp2OWUaAf2whVd8nZBiGLnBQd4dIw4qQtVIug5jmttSB7U0a0biUOScwNkAiuu69P1mEVCRzRnPvOuM4D1U24gouxLX7Ik8zgKkyoshSbXRHDmeULBZH6Lw4Kcq0NYgK4CrqgfUKeQS3e/T0qRguzXBMIrWpykL5dBHQd8hvgBgyU4vk63V8BGRPZZqScsAgIzlTLyAXdrr4VBR2hsvYcij3FdAI5bM6kUVJWOxiP/kxUaeUuP8oQIIhVDiXYPQQ1I5qBtS845Iw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB6974.namprd11.prod.outlook.com (2603:10b6:510:225::16)
- by SJ0PR11MB5070.namprd11.prod.outlook.com (2603:10b6:a03:2d5::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20; Mon, 21 Aug
- 2023 14:42:33 +0000
-Received: from PH8PR11MB6974.namprd11.prod.outlook.com
- ([fe80::864b:5f88:8b9d:517f]) by PH8PR11MB6974.namprd11.prod.outlook.com
- ([fe80::864b:5f88:8b9d:517f%4]) with mapi id 15.20.6699.022; Mon, 21 Aug 2023
- 14:42:33 +0000
-Date: Mon, 21 Aug 2023 20:12:23 +0530
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>,
- <intel-xe@lists.freedesktop.org>
-Message-ID: <ZON3z2KDdOVGyz96@bvivekan-mobl>
-References: <20230811160618.477297-1-lucas.demarchi@intel.com>
- <20230811160618.477297-7-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20230811160618.477297-7-lucas.demarchi@intel.com>
-X-ClientProxiedBy: PN3PR01CA0079.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:9a::19) To PH8PR11MB6974.namprd11.prod.outlook.com
- (2603:10b6:510:225::16)
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="712819663"
+X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="712819663"
+Received: from rvodapal-desk.iind.intel.com ([10.145.162.163])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2023 07:43:27 -0700
+From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 21 Aug 2023 20:15:04 +0530
+Message-Id: <20230821144504.236122-1-ravi.kumar.vodapalli@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB6974:EE_|SJ0PR11MB5070:EE_
-X-MS-Office365-Filtering-Correlation-Id: 28a328d9-f355-4032-768b-08dba254da93
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ICGif8Henl4IwNbeik/+m5M9mWe0Za+EKQa3ZlpRUFvoTqz2CtTWY8Ew9w68grcxXH4tqbEg1CmrjU09OXaIfgigIJA1lprgZeoVmS+reknN/b7JQCZhrBnJAmZ4BuPlD88BziWh8VC9Qyl1hO/v0Lu2objfttagU6hzv+X4m1xXZtPSFaVuEUxIhYeY8hU3lP33a/oSfF7G2MLpc/o6opxcoEToPQpabASP5wtFpUvnWwZWisNyyVkcdK0A7zwoVQd8rkQvNkLV5N4fihFT2dHWHj3Sj6wtO5V1ddtNZkFe6XzwCBqVymcuh+9HPTGE4ohmph56z+YvILJu2DcrC305MGl68znXjFaqpknfm+iSEvOx5nuc2KJn3bnAHFWVIPh9fpxIWpq+bMrA6qvA8ZE7sShT+RhDzH8uzaGTciwkEwzEmKLwacFVzdCL7vpvVQiAXH6IwleiORGBzOsCC625Q3LhLc8gv7iIsHkLEmHU8GDqLMmr73rPXMBtAG5ISUIdWwI16qlfITVxDPneLe5sf7TysyUd+VADP6J81z5AmcPLRLIK/TVyAToycZC+
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB6974.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(346002)(366004)(39860400002)(376002)(136003)(396003)(451199024)(186009)(1800799009)(2906002)(53546011)(38100700002)(6506007)(6486002)(83380400001)(5660300002)(44832011)(26005)(86362001)(8676002)(8936002)(107886003)(4326008)(316002)(9686003)(66946007)(6512007)(66556008)(66476007)(82960400001)(478600001)(6666004)(41300700001)(33716001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Y0YwYTM2ZzBybkJINnp3M2s1a1dGMHFPbldtT0NtYXB4WXp5c1pTcHJuOEhw?=
- =?utf-8?B?eDRCZnU1YTB6ZUhWREFTVkRuOUFoSndaeUs4cWJlU0F6NUJqeWIyMFZlRWwz?=
- =?utf-8?B?NXdkVjhKLzNqN3YzQ0p0YzZlMU9HRjI3VU10Y1I4SVdHdEtuN1ZmSXYzYXpD?=
- =?utf-8?B?U1dBM2Z2cjVTZ0psL2xZeDdCVWRmWmU0RW1tZSs0YURQd0hnenFHSkNCekpJ?=
- =?utf-8?B?M08zdzd1c3V5SkJVNzZzOStCVzhLWTNtVXAzT1dHTFpMUXErQzc1OWdHTjls?=
- =?utf-8?B?L3BtRVkvZFFTWU5yYmxRa29IdGhVTE03aEQ2QkRXVmZDOFhQRVpSL3Q0b3Z6?=
- =?utf-8?B?TWtoMkl5U25vTDIySWRjUVhtWEE5eVQvbWJsNXZwM2J6TzlHcDY3MEdSd3BD?=
- =?utf-8?B?UVhxZVUyWVQrYzhrWDdLdUxXdWtwRUp2MDZLNWhXMWJkdFFGemtOc2xDZ3BP?=
- =?utf-8?B?S09BSUVhek1EWS8rUmJuMVJCcStwZkUwK2dzUHhvMkdPb1VyaVZoN2p2cWkv?=
- =?utf-8?B?ZFJJQzRneTR4RThGM3owUDhhVGMva2g1MkZrbkJTalRlUVpqNW0wYmw2R1Fi?=
- =?utf-8?B?Z0hpdDRnVXYyeFRlRjJDU3haRGZyVkgyZjdhTGgzWXViYlBSZjlXY0RIaGEx?=
- =?utf-8?B?RVZqMUFsM0lud2dHOWRDdzdLZW9NenF0SWJFZmlvcFZsSUR3aC9yNHF0aTVN?=
- =?utf-8?B?aDNlNC9wWHRWT0k1RXB1SHpaVFB0eC8zZFJNa2RKRnJlQ1FyNWxYcjVOa3k3?=
- =?utf-8?B?OXhSWUNEd0tVQm9YWjUyZC8vdU5nbzd5cmhPNnprYlFkV2M2Rk1TbzIwQUQ1?=
- =?utf-8?B?QkwyazhqdGFZUjFsOE9Xdko3aU55dVE3ekhyK1FXbVFGc0IwajIzdzREVnpL?=
- =?utf-8?B?bkhsRDhMRWNRSDFFYW1IOG0zblNDYXhVRklsSGNJVURSK1JuQmk0NExZZUEz?=
- =?utf-8?B?ZXBUL1FaWWdqVmFhYUppMVZWKzdBU2ZaYzV4TTB6T0hnM2hzMDZtT3p4Wi9I?=
- =?utf-8?B?WHJLYzRFREJ0U25VMTVMdC9ldFNKYW5vMWU0K1dXQ1ovQzhYQy93QWZaclhK?=
- =?utf-8?B?S1huZU9DdjkxWnJ5UXpmRG5Eb0h1YUJ0TkV2T0ZPcm9aRmRURkR6WE91QmJn?=
- =?utf-8?B?RGcwSnd6TUd0dndSRmdhUVIrUmE2cDhNZUNaQzFCT2pJNG9IZ3ROaHZMeEJV?=
- =?utf-8?B?MjJTMDBodmR0VEF3OERGdGpvTTV6R2x6bDdzV1dlViswODlZSHNMUnEvbDZ3?=
- =?utf-8?B?SlZCNmlSVmI5MEpxQkxpdG1IWmYyb0FVOW5KN2ljalJSVjBXeDMvZ2pFUjFT?=
- =?utf-8?B?UVJBcHBpTEpUQzdCbGMyNnEyMlJ2M3RWRDZTbGRCM0ZHVXoxM0FsSmxyOXR5?=
- =?utf-8?B?YkJTWUxOYmJtMWo5SXlNN3Y4ZC8zQVNRYmJUMEpKbXdiSDVnZ0RMak5DMXFH?=
- =?utf-8?B?blVRNmdEdGdQMTEveGIya1FCbzM2WGhvSkRuZGpRZ0szZ0hhRC9PY0JmWWo0?=
- =?utf-8?B?ci9Ed1pYMmpNNUUzSWJ2UndrNmFCaEhTcDBSVy9HV0Q5REE3SElDRjlkTVFr?=
- =?utf-8?B?SE1xbVNkQ2thMk5DVDRIL2JqSWZieGhaekRBRkRiNG9mSzNuRmdzL2xIejhL?=
- =?utf-8?B?ZkdRUWhDbzYra2dyQUNXUGovZ0xPaUFSaTJYTWlZOEVYVU5ZdTdsVmdubldH?=
- =?utf-8?B?ZlhqRmxrdXZZS203c2lNVEVGRnpLd0NKSG5lWGVWM295NlE5REpXQm9ZeitG?=
- =?utf-8?B?RFpDejJERFFqbFVUQU95OWN5c1hHK3hjRVVLaUpnRkZlYnRMcUhGcEFoRWhF?=
- =?utf-8?B?ZUlwcjVxMmVCSTdlOHVwQTd3a05pMWh5bzVOREdZemR2emFzdnlDNVZDV3pE?=
- =?utf-8?B?bHpKbVozY083RWVNY2JGQTBEaDk4a0ZESzU4VGl2TVNaZWoxWXhpZEJ5cUtR?=
- =?utf-8?B?bnRlcjZwQ3ZYbTcxcHFuK3V6aXFoeWVPdWI5Zm1TZVdKUXdLTy9BaktxZXBU?=
- =?utf-8?B?VkU3Uyt5R09RQXJhcWk4WEVmNlZxZ3ovNFIyTFlpdzg3V1lDMWFKdkl2SDR1?=
- =?utf-8?B?amZ0OFJWY2VZMzQxc0MzckYvM0JmMTZJd1N4SXMzMTgvdDVicEVMK1FTNFlV?=
- =?utf-8?B?SmxCY2IweFZoNVowclFTV1NkclRUYlVXRy9XRWVydEd5WUxNQWVPN2R5dmw2?=
- =?utf-8?Q?D0gGRMTdwSDv56M32W8bkOw=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 28a328d9-f355-4032-768b-08dba254da93
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6974.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 14:42:33.2550 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: il0uguWLyVT5z+J+i223HQL8j+hbPB9HJBkX8Dj9B9v6ypvHKFZBGFXSUNdsWBoBAb/munB3LpHJpkcY+kyq1lGx+Jpc1cagx71hFnEPRfZJlajoUnK8L3BWVP6u0pCg
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5070
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 06/15] drm/xe/xe2: Handle fused-off CCS
- engines
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Add support for PAT encoding in PTE and
+ PDE
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,90 +56,428 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: lucas.demarchi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 11.08.2023 09:06, Lucas De Marchi wrote:
-> From: Matt Roper <matthew.d.roper@intel.com>
-> 
-> On Xe2 platforms, availability of the CCS engines is reflected in the
-> FUSE4 register.
-> 
-> Bspec: 62483
-> Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  1 +
->  drivers/gpu/drm/xe/xe_hw_engine.c    | 29 +++++++++++++++++++++++++++-
->  2 files changed, 29 insertions(+), 1 deletion(-)
+Different platforms has different PAT encoding in PTE and PDE format
+of PPGTT and GGTT, add correct PAT encoding for
+pre-Xe2 platforms (XELP, XEHPC, XELPG).
 
-Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Bspec: 45101, 71582
+Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c       |  3 ++
+ drivers/gpu/drm/xe/xe_device_types.h |  3 ++
+ drivers/gpu/drm/xe/xe_ggtt.c         | 28 ++++++++++++++---
+ drivers/gpu/drm/xe/xe_ggtt_types.h   |  7 +++++
+ drivers/gpu/drm/xe/xe_pat.c          | 38 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_pat.h          | 22 +++++++++++++
+ drivers/gpu/drm/xe/xe_pt.c           | 31 +++++++-----------
+ drivers/gpu/drm/xe/xe_pt_types.h     |  4 ++-
+ drivers/gpu/drm/xe/xe_vm.c           | 47 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_vm_types.h     |  7 +++++
+ 10 files changed, 163 insertions(+), 27 deletions(-)
 
-Regards,
-Bala
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 766df07de979..e952bb2d021c 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -25,6 +25,7 @@
+ #include "xe_irq.h"
+ #include "xe_mmio.h"
+ #include "xe_module.h"
++#include "xe_pat.h"
+ #include "xe_pcode.h"
+ #include "xe_pm.h"
+ #include "xe_query.h"
+@@ -292,6 +293,8 @@ int xe_device_probe(struct xe_device *xe)
+ 			goto err_irq_shutdown;
+ 	}
+ 
++	xe_pte_pat_init(xe);
++
+ 	err = xe_mmio_probe_vram(xe);
+ 	if (err)
+ 		goto err_irq_shutdown;
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 303447c093c5..fda435ae5ef0 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -355,6 +355,9 @@ struct xe_device {
+ 		struct mutex lock;
+ 	} d3cold;
+ 
++	struct {
++		const u32 *pte_pat_table;
++	} pat_table;
+ 	/**
+ 	 * @pm_callback_task: Track the active task that is running in either
+ 	 * the runtime_suspend or runtime_resume callbacks.
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 3ce2dce844b9..209fa053d9fb 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -18,6 +18,7 @@
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
++#include "xe_pat.h"
+ #include "xe_wopcm.h"
+ 
+ /* FIXME: Common file, preferably auto-gen */
+@@ -30,6 +31,7 @@
+ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
+ {
+ 	struct xe_device *xe = xe_bo_device(bo);
++	struct xe_ggtt *ggtt = (bo->tile)->mem.ggtt;
+ 	u64 pte;
+ 
+ 	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
+@@ -38,11 +40,8 @@ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
+ 	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
+ 		pte |= XE_GGTT_PTE_DM;
+ 
+-	/* FIXME: vfunc + pass in caching rules */
+-	if (xe->info.platform == XE_METEORLAKE) {
+-		pte |= MTL_GGTT_PTE_PAT0;
+-		pte |= MTL_GGTT_PTE_PAT1;
+-	}
++	if ((ggtt->pat_encode).pte_encode)
++		pte = (ggtt->pat_encode).pte_encode(xe, pte, XE_CACHE_WB_1_WAY);
+ 
+ 	return pte;
+ }
+@@ -102,6 +101,22 @@ static void primelockdep(struct xe_ggtt *ggtt)
+ 	fs_reclaim_release(GFP_KERNEL);
+ }
+ 
++static u64 xelpg_ggtt_pte_encode_pat(struct xe_device *xe, u64 pte_pat,
++						enum xe_cache_level cache)
++{
++	u32 pat_index = xe_pat_get_index(xe, cache);
++
++	pte_pat &= ~(XELPG_GGTT_PTE_PAT_MASK);
++
++	if (pat_index & BIT(0))
++		pte_pat |= BIT(52);
++
++	if (pat_index & BIT(1))
++		pte_pat |= BIT(53);
++
++	return pte_pat;
++}
++
+ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
+ {
+ 	struct xe_device *xe = tile_to_xe(ggtt->tile);
+@@ -120,6 +135,9 @@ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
+ 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+ 		ggtt->flags |= XE_GGTT_FLAGS_64K;
+ 
++	if (GRAPHICS_VERx100(xe) >= 1270)
++		(ggtt->pat_encode).pte_encode = xelpg_ggtt_pte_encode_pat;
++
+ 	/*
+ 	 * 8B per entry, each points to a 4KB page.
+ 	 *
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index d34b3e733945..7e55fac1a8a9 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -7,9 +7,11 @@
+ #define _XE_GGTT_TYPES_H_
+ 
+ #include <drm/drm_mm.h>
++#include "xe_pt_types.h"
+ 
+ struct xe_bo;
+ struct xe_gt;
++extern struct xe_device *xe;
+ 
+ struct xe_ggtt {
+ 	struct xe_tile *tile;
+@@ -26,6 +28,11 @@ struct xe_ggtt {
+ 	u64 __iomem *gsm;
+ 
+ 	struct drm_mm mm;
++
++	struct {
++		u64 (*pte_encode)(struct xe_device *xe, u64 pte_pat,
++						enum xe_cache_level cache);
++	} pat_encode;
+ };
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index b56a65779d26..a468655db956 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -3,12 +3,13 @@
+  * Copyright © 2023 Intel Corporation
+  */
+ 
+-#include "xe_pat.h"
+ 
+ #include "regs/xe_reg_defs.h"
+ #include "xe_gt.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_mmio.h"
++#include "xe_pat.h"
++#include "xe_pt_types.h"
+ 
+ #define _PAT_INDEX(index)			_PICK_EVEN_2RANGES(index, 8, \
+ 								   0x4800, 0x4804, \
+@@ -62,6 +63,31 @@ static const u32 mtl_pat_table[] = {
+ 	[4] = MTL_PAT_0_WB | MTL_3_COH_2W,
+ };
+ 
++static const u32 xelp_pte_pat_table[XE_CACHE_LAST] = {
++	[XE_CACHE_NONE] = XELP_PAT_UNCACHE,
++	[XE_CACHE_WT] = XELP_PAT_WT_CACHE,
++	[XE_CACHE_WB] = XELP_PAT_WB_CACHE,
++};
++
++static const u32 xehpc_pte_pat_table[XE_CACHE_LAST] = {
++	[XE_CACHE_NONE] = XEHPC_PAT_CLOS0_UNCACHE,
++	[XE_CACHE_WT] = XEHPC_PAT_CLOS0_WT_CACHE,
++	[XE_CACHE_WB] = XEHPC_PAT_CLOS0_WB_CACHE,
++};
++
++static const u32 xelpg_pte_pat_table[XE_CACHE_LAST] = {
++	[XE_CACHE_NONE] = XELPG_PAT_UNCACHE,
++	[XE_CACHE_WT] = XELPG_PAT_WT_CACHE,
++	[XE_CACHE_WB] = XELPG_PAT_WB_CACHE,
++	[XE_CACHE_WB_1_WAY] = XELPG_PAT_WB_CACHE_1_WAY,
++};
++
++unsigned int xe_pat_get_index(struct xe_device *xe, enum xe_cache_level cache)
++{
++	WARN_ON(cache >= XE_CACHE_LAST);
++	return (xe->pat_table).pte_pat_table[cache];
++}
++
+ static void program_pat(struct xe_gt *gt, const u32 table[], int n_entries)
+ {
+ 	for (int i = 0; i < n_entries; i++) {
+@@ -111,3 +137,13 @@ void xe_pat_init(struct xe_gt *gt)
+ 			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
+ 	}
+ }
++
++void xe_pte_pat_init(struct xe_device *xe)
++{
++	if (GRAPHICS_VERx100(xe) >= 1270)
++		(xe->pat_table).pte_pat_table = xelpg_pte_pat_table;
++	else if (GRAPHICS_VERx100(xe) >= 1260)
++		(xe->pat_table).pte_pat_table = xehpc_pte_pat_table;
++	else
++		(xe->pat_table).pte_pat_table = xelp_pte_pat_table;
++}
+diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+index 659de4008131..54022f591621 100644
+--- a/drivers/gpu/drm/xe/xe_pat.h
++++ b/drivers/gpu/drm/xe/xe_pat.h
+@@ -6,8 +6,30 @@
+ #ifndef _XE_PAT_H_
+ #define _XE_PAT_H_
+ 
++#include "xe_pt_types.h"
++
++#define XELP_PTE_PAT_MASK		(BIT_ULL(7) | BIT_ULL(4) | BIT_ULL(3))
++#define XELP_PDE_PAT_MASK		(BIT_ULL(12) | BIT_ULL(4) | BIT_ULL(3))
++#define XELPG_GGTT_PTE_PAT_MASK		(BIT_ULL(53) | BIT_ULL(52))
++
++#define XELP_PAT_WB_CACHE              0
++#define XELP_PAT_WT_CACHE              2
++#define XELP_PAT_UNCACHE               3
++
++#define XEHPC_PAT_CLOS0_UNCACHE        0
++#define XEHPC_PAT_CLOS0_WT_CACHE       2
++#define XEHPC_PAT_CLOS0_WB_CACHE       3
++
++#define XELPG_PAT_WB_CACHE             0
++#define XELPG_PAT_WT_CACHE             1
++#define XELPG_PAT_UNCACHE              2
++#define XELPG_PAT_WB_CACHE_1_WAY       3
++
+ struct xe_gt;
++extern struct xe_device *xe;
+ 
+ void xe_pat_init(struct xe_gt *gt);
++void xe_pte_pat_init(struct xe_device *xe);
++unsigned int xe_pat_get_index(struct xe_device *xe, enum xe_cache_level cache);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 5709518e314b..64713f400d94 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -58,19 +58,18 @@ static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
+  * Return: An encoded page directory entry. No errors.
+  */
+ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
+-		  const enum xe_cache_level level)
++		  const enum xe_cache_level cache)
+ {
+ 	u64 pde;
++	struct xe_vm *vm = bo->vm;
++	struct xe_device *xe = vm->xe;
++
+ 
+ 	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
+ 	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
+ 
+-	/* FIXME: I don't think the PPAT handling is correct for MTL */
+-
+-	if (level != XE_CACHE_NONE)
+-		pde |= PPAT_CACHED_PDE;
+-	else
+-		pde |= PPAT_UNCACHED;
++	if ((vm->pat_encode).pde_encode)
++		pde = (vm->pat_encode).pde_encode(xe, pde, cache);
+ 
+ 	return pde;
+ }
+@@ -78,6 +77,9 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
+ static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
+ 			struct xe_vma *vma, u32 pt_level)
+ {
++	struct xe_vm *vm = xe_vma_vm(vma);
++	struct xe_device *xe = vm->xe;
++
+ 	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
+ 
+ 	if (unlikely(vma && xe_vma_read_only(vma)))
+@@ -86,19 +88,8 @@ static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
+ 	if (unlikely(vma && xe_vma_is_null(vma)))
+ 		pte |= XE_PTE_NULL;
+ 
+-	/* FIXME: I don't think the PPAT handling is correct for MTL */
+-
+-	switch (cache) {
+-	case XE_CACHE_NONE:
+-		pte |= PPAT_UNCACHED;
+-		break;
+-	case XE_CACHE_WT:
+-		pte |= PPAT_DISPLAY_ELLC;
+-		break;
+-	default:
+-		pte |= PPAT_CACHED;
+-		break;
+-	}
++	if ((vm->pat_encode).pte_encode)
++		pte = (vm->pat_encode).pte_encode(xe, pte, cache);
+ 
+ 	if (pt_level == 1)
+ 		pte |= XE_PDE_PS_2M;
+diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
+index 2ed64c0a4485..075040b8a2d4 100644
+--- a/drivers/gpu/drm/xe/xe_pt_types.h
++++ b/drivers/gpu/drm/xe/xe_pt_types.h
+@@ -9,9 +9,11 @@
+ #include "xe_pt_walk.h"
+ 
+ enum xe_cache_level {
+-	XE_CACHE_NONE,
++	XE_CACHE_NONE = 0,
+ 	XE_CACHE_WT,
+ 	XE_CACHE_WB,
++	XE_CACHE_WB_1_WAY,
++	XE_CACHE_LAST,
+ };
+ 
+ #define XE_VM_MAX_LEVEL 4
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 2e99f865d7ec..3f8675e9a62c 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -23,6 +23,7 @@
+ #include "xe_gt_pagefault.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_migrate.h"
++#include "xe_pat.h"
+ #include "xe_pm.h"
+ #include "xe_preempt_fence.h"
+ #include "xe_pt.h"
+@@ -1192,6 +1193,44 @@ static struct drm_gpuva_fn_ops gpuva_ops = {
+ static void xe_vma_op_work_func(struct work_struct *w);
+ static void vm_destroy_work_func(struct work_struct *w);
+ 
++static u64 xelp_ppgtt_pde_encode_pat(struct xe_device *xe, u64 pde_pat,
++						enum xe_cache_level cache)
++{
++	u32 pat_index = xe_pat_get_index(xe, cache);
++
++	pde_pat &= ~(XELP_PDE_PAT_MASK);
++
++	if (pat_index & BIT(0))
++		pde_pat |= BIT(3);
++
++	if (pat_index & BIT(1))
++		pde_pat |= BIT(4);
++
++	if (pat_index & BIT(2))
++		pde_pat |= BIT(12);
++
++	return pde_pat;
++}
++
++static u64 xelp_ppgtt_pte_encode_pat(struct xe_device *xe, u64 pte_pat,
++						enum xe_cache_level cache)
++{
++	u32 pat_index = xe_pat_get_index(xe, cache);
++
++	pte_pat &= ~(XELP_PTE_PAT_MASK);
++
++	if (pat_index & BIT(0))
++		pte_pat |= BIT(3);
++
++	if (pat_index & BIT(1))
++		pte_pat |= BIT(4);
++
++	if (pat_index & BIT(2))
++		pte_pat |= BIT(7);
++
++	return pte_pat;
++}
++
+ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ {
+ 	struct xe_vm *vm;
+@@ -1249,6 +1288,14 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+ 		vm->flags |= XE_VM_FLAG_64K;
+ 
++	if (GRAPHICS_VERx100(xe) >= 1200) {
++		/* __xelp_pte_encode applies to xelp, xehpc and xelpg platform*/
++		(vm->pat_encode).pte_encode = xelp_ppgtt_pte_encode_pat;
++
++		/* __xelp_pde_encode applies to xelp, xehpc and xelpg platform*/
++		(vm->pat_encode).pde_encode = xelp_ppgtt_pde_encode_pat;
++	}
++
+ 	for_each_tile(tile, xe, id) {
+ 		if (flags & XE_VM_FLAG_MIGRATION &&
+ 		    tile->id != XE_VM_FLAG_TILE_ID(flags))
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 3681a5ff588b..83a1f87b6537 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -336,6 +336,13 @@ struct xe_vm {
+ 
+ 	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+ 	bool batch_invalidate_tlb;
++
++	struct {
++		u64 (*pte_encode)(struct xe_device *xe, u64 pte_pat,
++						enum xe_cache_level cache);
++		u64 (*pde_encode)(struct xe_device *xe, u64 pde_pat,
++						enum xe_cache_level cache);
++	} pat_encode;
+ };
+ 
+ /** struct xe_vma_op_map - VMA map operation */
+-- 
+2.25.1
 
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index 5bc6c7fa4759f..b8dde495b8a32 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -154,6 +154,7 @@
->  
->  /* Fuse readout registers for GT */
->  #define XEHP_FUSE4				XE_REG(0x9114)
-> +#define   CCS_EN_MASK				REG_GENMASK(19, 16)
->  #define   GT_L3_EXC_MASK			REG_GENMASK(6, 4)
->  
->  #define GT_VEBOX_VDBOX_DISABLE			XE_REG(0x9140)
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-> index b8fcc6e985cfc..d2c358e711cb6 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> @@ -529,7 +529,7 @@ static void read_copy_fuses(struct xe_gt *gt)
->  	}
->  }
->  
-> -static void read_compute_fuses(struct xe_gt *gt)
-> +static void read_compute_fuses_from_dss(struct xe_gt *gt)
->  {
->  	struct xe_device *xe = gt_to_xe(gt);
->  
-> @@ -556,6 +556,33 @@ static void read_compute_fuses(struct xe_gt *gt)
->  	}
->  }
->  
-> +static void read_compute_fuses_from_reg(struct xe_gt *gt)
-> +{
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	u32 ccs_mask;
-> +
-> +	ccs_mask = xe_mmio_read32(gt, XEHP_FUSE4);
-> +	ccs_mask = REG_FIELD_GET(CCS_EN_MASK, ccs_mask);
-> +
-> +	for (int i = XE_HW_ENGINE_CCS0, j = 0; i <= XE_HW_ENGINE_CCS3; ++i, ++j) {
-> +		if (!(gt->info.engine_mask & BIT(i)))
-> +			continue;
-> +
-> +		if ((ccs_mask & BIT(j)) == 0) {
-> +			gt->info.engine_mask &= ~BIT(i);
-> +			drm_info(&xe->drm, "ccs%u fused off\n", j);
-> +		}
-> +	}
-> +}
-> +
-> +static void read_compute_fuses(struct xe_gt *gt)
-> +{
-> +	if (GRAPHICS_VER(gt_to_xe(gt)) >= 20)
-> +		read_compute_fuses_from_reg(gt);
-> +	else
-> +		read_compute_fuses_from_dss(gt);
-> +}
-> +
->  int xe_hw_engines_init_early(struct xe_gt *gt)
->  {
->  	int i;
-> -- 
-> 2.40.1
-> 
