@@ -4,72 +4,128 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1C8F2EE4996
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 19:46:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BB86EE49A0
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 20:57:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D468110E293;
-	Mon, 21 Aug 2023 19:46:30 +0000 (UTC)
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com
- [IPv6:2a00:1450:4864:20::229])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 072A210E293
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 19:46:27 +0000 (UTC)
-Received: by mail-lj1-x229.google.com with SMTP id
- 38308e7fff4ca-2bb99fbaebdso59294901fa.0
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 12:46:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gfxstrand-net.20221208.gappssmtp.com; s=20221208; t=1692647186; x=1693251986;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=VH/LIB2BBl9Xhwi9WvZVYemx6cbW4NSMo7wfC5sW4/U=;
- b=4lugpclUh6TGrOj/5r/ZpWy9qvRbxn+AVfyrfqJVd4x/iFGt58A9UPDlDN4TUk8bKc
- puBOh2kbF1JB3UIOGAYDWLoyDo390trTLn9vf6gjdWJM6Mao4lmeDSsxSQYAvovNPSvX
- 2ZWfXVcYjA8sP0aHHTn9PSJS2fyLOdkLlw0ZdNhvNgp7eSbBK2dCxTKdrri7kT8QdG28
- wVOZNAD/ZFu6y1PIPwXSqBuNUJG3VtnTF4EN9CTEudmos0K8bka/AMbspuFpG1zVuMZr
- uCuqKPBZq8xF690+u98wJ/YWrI2hXE0VR9r5pjrzM37ULrYs+6s1gsZTaitWOOoMbJob
- ErBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692647186; x=1693251986;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=VH/LIB2BBl9Xhwi9WvZVYemx6cbW4NSMo7wfC5sW4/U=;
- b=FjRV2NA0Ww4azl7A92cjkkO2cd10De9dfQiWLlcIq/3Mc4vdynJkrKQ1+Dqr3GWQcb
- 5oAz5vjdi7uJp2qLZwug2/G2IyTyQmGz06P68kwox5N4ox48ACjGGnS5ULV3FucJRO1j
- dpqiZloUJxyhb9UWOU1LTYaPNL+KFDnDY9+HN3rVdWzcfPh3U8uSgLg4xIrQGbvRgRY3
- 5Y0/pKjqQ/NSpdw52xJrxk8NsH2sqHZMB0wfc7faS8bKaf93UfZaV2g680tBhL1pv1ce
- yM0GxTK9xk8PtcwMnaZFJLVN6MEk0izbmK3Y8o6uV9JKlX+j7WZ7qnYhfCtXT+4/Zeej
- A1Eg==
-X-Gm-Message-State: AOJu0YxR+UN89+EeBcukTpZk0Isgu1hNUFrEh/AgL+olsE3lI+DUWOXi
- pbwB9cOMueC0+MbcBvjawwdh81kBcxj2NegxI+NgSw==
-X-Google-Smtp-Source: AGHT+IHZLI+rqqFi2GPtentGkSlxA7d7hS9xSHP8Tp++QKx+EH7Mwgia6K4BbFUz1JQ9+d4unHseC43vDh1rkRehVeg=
-X-Received: by 2002:a05:6512:2114:b0:4fe:79c:7269 with SMTP id
- q20-20020a056512211400b004fe079c7269mr5305265lfr.67.1692647185853; Mon, 21
- Aug 2023 12:46:25 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D26F10E2B2;
+	Mon, 21 Aug 2023 20:57:18 +0000 (UTC)
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com
+ (mail-dm6nam10on2052.outbound.protection.outlook.com [40.107.93.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DC3510E2B1;
+ Mon, 21 Aug 2023 20:57:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Gge/98u5K4z7SCvSeSzmyJZZubeAik9CKyLK0rzZvlnYuWYfel71BOHmbi5/cx73VV47J7HTcsBsQP2oF6pqdFrvjpbD+vScUYog6aaYBYooSyL1Gy/XNjQHdeQRJU6t9FPHnOKXNpcTYLFXmjtr7C6e36hMS5rsj/mi1HftSQAgsespdkpyd10NfEVO2i6wI5zG6efJnw2f0fTiMb7qLmSnMt2zQ1XoVvHt4ZefKaoLCEBpr/OoDJPK7jyLoN5FxFTT6EQ445/SO+aLWHjafRtVZsBdo94l2/HcB7+GuaZ1OT5Lwf+tj7jw0qhhwsxiZmXMqcl+ioKX7ZYYXEM8lQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iUfeEyNGWR5pSJ+eBvrAnYp7WviJ49oVkr8VMxMnjX4=;
+ b=SPXfJKhQI0kATp1XpiBybtLnJ8DGlIHZua0kJh0N1zxKa6k9K/rnijJm4431ZcVwyicRJRhSCDwt50KntOQFLZD8nL8pQE89muRtZJEEh2GZGZqnu1u4FZTSFKWZaHpid+WJhAGoCPyFDl76AW+W2HKmUg2rYavs4m/e2mKA5qOadp5SnR4OPsg0K28/0+zP3EGWuGjlRFEFLZu+06QO8Y7Igw02TWRDZ7FGBLsT76TzM8EWc7MyqQmBai2bWlsAqrSsXpd16eglO8grODXuStJcsOyGJn72+/ajjrAvWIH94sKZ5vnoxGOK4AmEZ2JJh8TcoBW3mf77gBv8eQfpZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iUfeEyNGWR5pSJ+eBvrAnYp7WviJ49oVkr8VMxMnjX4=;
+ b=qkAVX/kYY85BYoAcg05iMqkW130tjhjBSJeWNHJI4jZnbdPHp0JrWfXJnzDEqeX7InJ/hbsI8NMyvA5AqoleJRFZkRrQfI3QkkxQN6fQ4BPTzJ3AP+KoDi4w+dyyzJo725vAIFeBeA95RJAN86Ko8avrqy5BDHv7cs4auxRgICY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com (2603:10b6:408:118::14)
+ by CYXPR12MB9280.namprd12.prod.outlook.com (2603:10b6:930:e4::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Mon, 21 Aug
+ 2023 20:57:14 +0000
+Received: from BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::ca28:efb4:a838:58fb]) by BN9PR12MB5115.namprd12.prod.outlook.com
+ ([fe80::ca28:efb4:a838:58fb%4]) with mapi id 15.20.6699.022; Mon, 21 Aug 2023
+ 20:57:14 +0000
+Message-ID: <a9d08612-c402-68fe-b625-3148e4ce3841@amd.com>
+Date: Mon, 21 Aug 2023 16:57:12 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: "Zeng, Oak" <oak.zeng@intel.com>, Dave Airlie <airlied@gmail.com>
+References: <SA1PR11MB699192A66D7A2CC7305A59569214A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <SA1PR11MB6991F9E3107C963BDF95E04E9214A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <e0d7d6a2-5c9d-6e17-4b4b-be03deb6c130@amd.com>
+ <SA1PR11MB69918E5603E286961789DE6D9215A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <3c125b60-df60-2037-c23f-918734e4973f@amd.com>
+ <SA1PR11MB69916E51CE5A9217D447B91C9215A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <7ae5f112-d0e9-cc52-2b22-7265ea435cc2@amd.com>
+ <CAPM=9tyots9C8wEU0TgGnFmLOkfqn62ngaYYjV2yuTf7jwDGFw@mail.gmail.com>
+ <SA1PR11MB6991D7E239EAB23CC8A9A36B921AA@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <CAPM=9tw3wGhZ3ByfizM8+G4Ny5wQLwf4fw8pD4sySVk08355tg@mail.gmail.com>
+ <SA1PR11MB69911D8AB895EEC13A64EBCE921EA@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <SA1PR11MB69912B9C5363E40A50B74B35921EA@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <637ce3f5-a7a9-6a1f-812a-5987211f84f7@amd.com>
+ <SA1PR11MB6991E632AFE2684CEC231321921EA@SA1PR11MB6991.namprd11.prod.outlook.com>
+From: Felix Kuehling <felix.kuehling@amd.com>
+Organization: AMD Inc.
+In-Reply-To: <SA1PR11MB6991E632AFE2684CEC231321921EA@SA1PR11MB6991.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YQBPR0101CA0020.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c00::33) To BN9PR12MB5115.namprd12.prod.outlook.com
+ (2603:10b6:408:118::14)
 MIME-Version: 1.0
-References: <20230811023137.659037-1-matthew.brost@intel.com>
- <20230811023137.659037-2-matthew.brost@intel.com>
- <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
- <069e6cd0-abd3-fdd9-217d-173e8f8e1d29@amd.com>
- <b9a6493c-243b-1078-afbc-d9270cac904a@redhat.com>
- <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
- <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
- <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
- <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
- <ef4d2c78-6927-3d3b-7aac-27d013af7ea6@amd.com>
- <a80be2c1-132e-5ee1-4278-47655916494a@redhat.com>
- <0d5af79a-ba3a-d4be-938f-81627db65b50@amd.com>
- <a3937c17-eaa5-e0e9-e0ac-1610e0652982@redhat.com>
- <1820cb54-5f1e-d2e6-38fa-7161465ed061@amd.com>
- <9072642e-f4f6-4ff1-e11f-9bda8730750c@redhat.com>
- <85107169-8a24-441f-6631-d99472d810f0@amd.com>
-In-Reply-To: <85107169-8a24-441f-6631-d99472d810f0@amd.com>
-From: Faith Ekstrand <faith@gfxstrand.net>
-Date: Mon, 21 Aug 2023 14:46:14 -0500
-Message-ID: <CAOFGe94JC8V2GS5L2iCaD9=X-sbbcvrvijck8ivieko=LGBSbg@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: multipart/alternative; boundary="0000000000003e498106037422ec"
-Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
- use a work queue rather than kthread
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR12MB5115:EE_|CYXPR12MB9280:EE_
+X-MS-Office365-Filtering-Correlation-Id: ad98378e-fe8e-4792-6762-08dba28932a5
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: HjW0/jVlTsmwrq1TXOQoyQTun1uV2rnXjDDA5i1OSQOqBP5yM7BAjVh4pj/6CE+8n63zklQvwj6xgBllXdPWdK94tReJ1LL3HPjyYffZZMETuJ2LByeaLim3GbzcdI8FU4eJuJMWW23lOwEParlaI4tA6a+G2tN3ZfBZuVFbXkAiICeHKvrxYw4uK9axHMTUH97bPJ5WtTvBdCc6gnj/qcrSyEMCf8CUZ4nchz6oqg/aODN+4ks6PJIvHiG6r65twSQR8JqSzKwZX+Rdnac4kKM3FFb/Y2pO+BPzNN/ST7us/7knMgK3YMznYcBEfuShoOa/pGfKuuYVMhXCe2NxLtsvAk4IhInNMgYXrrgC5xn/lk8GaDsI435stb3PX6XHiLWvQHgLW92EgUpe5/vA9H7yNcbKSLit1FDg3BhECCigvdYvR7wnudSj8T21M9P28etFSr+H6Faxa4hRf8c867NcNBjvaAYIvdH2XI8vjEpalWfxtCUhiX0rCyYjU18k+MrAwwbKyAm4Z+/PW4Mcl8MK426cVYVguM7pyLIioom949PF1ahRd6a0MUwNjLiHYZ15MAj4p/HjBbTptD3z8rd8EnjtBiHE+Q18EIlTzPRXPmuLNYEMAXMEjnL+2bIyZYPogp4Gz5hwq+9XszgkbA==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR12MB5115.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(376002)(136003)(346002)(39860400002)(366004)(186009)(1800799009)(451199024)(54906003)(66476007)(66556008)(316002)(66946007)(6512007)(110136005)(8676002)(8936002)(2616005)(4326008)(36756003)(41300700001)(478600001)(38100700002)(36916002)(53546011)(6506007)(6486002)(83380400001)(2906002)(86362001)(31686004)(31696002)(44832011)(5660300002)(26005)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dFlUVjJNcUlURHdsT0VyV2FIWFFCa3EvblFRbmVRNDBUbEdXYmg3a1k4TzJZ?=
+ =?utf-8?B?ZUZUVUpkWTl0UEVSc1U3SVZmd1hYYnZVYkx0WjFPZS9scEFqTDljSTNRRzRS?=
+ =?utf-8?B?eHdER3Z2c1NaUHBZRGl1dmdnZWFZN0gxU2wzeDFhWkp3NXFoWkRLcFh2bHhM?=
+ =?utf-8?B?SCt1bEpJU0o5dldsTnBVbndIc0xGRVJ6cFp3L0JaUDF0RitYaWdZQlRva21q?=
+ =?utf-8?B?L1lyV2VTWGpuVnVPc3dQZWdUVVIzRzRpVDRCMFU1dVI3VVFQTEJZc2ExeXZO?=
+ =?utf-8?B?bFJJdVJOc1lMS0NzRm1qdVRWNUxMa3A2NlRRa3hUMzQwZXdJaUYrN094MVp5?=
+ =?utf-8?B?OURqSzArdnp5ajRuOEZ5RlphMXlyZGtFUGNQWFFCaStvMi9UYW5tdHNBTDZU?=
+ =?utf-8?B?Q3lYc3lsYVNNRkR6dVh2TW5xNi94dzE1c0NEMGVvL3lmRFB0N015QmZpL0pi?=
+ =?utf-8?B?Nit0bmRiUFoySDlHQjhjU3BkaXVabmdnMDltTDNRSGNBa3hISE5LWklXTUdF?=
+ =?utf-8?B?V3ZHZWpXTysvaUtkeXBId05XeFlhU1NaSHQ4MWlmbHRvNmJ4NlFjMUp5THpl?=
+ =?utf-8?B?bzFDOTNyYUc2TU5WN01LR1g1K0I3aTVOd2hFdjd6bXJrZHA5SENjUHJXY1RY?=
+ =?utf-8?B?ZzJnZ0F3S0d1dG5DYjYzYU5RNXR3TWRWMy9rQUtTQU9GdjlHOC9IdnFyL2lQ?=
+ =?utf-8?B?MnJGQjFRV2xoRU4xOTJMMWYrRk10MURLblljMVJkZi85SXhHTGJHeE9NdU9z?=
+ =?utf-8?B?YlZReU9NVldkcld5c2U2RVZ5bkhCTkcvdTUxUFczeStaWTJrVzFpeTlkTGZv?=
+ =?utf-8?B?S2swUlhxSDlzRXhjVXczOTZldTZadk9DYnIzeTluMUR1aWVGSndpT25zNXRo?=
+ =?utf-8?B?czh6M3pOditJOWM4N2JWcTZPOTJycmUwdFBRYUR1NkVJZm8xOThmZFlkY2Yx?=
+ =?utf-8?B?NmxVNWVtVWRua0ZvUGkrcTIwWHlEUHVDaEFITDl2em5TeFR4dzBMMXJhZ1Ev?=
+ =?utf-8?B?UExRRzBxSVdqQVlDZk5kL2JkZG1JUkRmb1VlRStETHJkV2wrWGdkclVoWEVK?=
+ =?utf-8?B?QkFmZ2pudGF0VXBScFEwWjNZWE1mRG1ZZVZ0L3I4ZmFNc2FSTlpiNENFU2R0?=
+ =?utf-8?B?a1ZxWEhSc1VXRCtXZXdPbm03L2IrNEhwVTQ3eHhFUHNtOHBicnE4SXN6ckRY?=
+ =?utf-8?B?eTNtSXpzK0xUR2lvd3Jhb0k1MUJBMjhJTVZ5OEIvd0YvQWwwR1RBUUlVVC9D?=
+ =?utf-8?B?TGRlVEE4K1dpNk9SamNlUVNWWHNtZzVFZ0QvZHdxNXRyZzRYOVpYcDM4MXFi?=
+ =?utf-8?B?M3drVFlKNUJyMUN4NWNYbW5QLytCSzlXOC9vSDZrN2xTejBEVzMxRGNHTW1T?=
+ =?utf-8?B?dnNZeS9PTGRjVjhQKzhIWTlMUGE1UTMxOWZVR3FkaDhwSXR4c290ajcwbm5h?=
+ =?utf-8?B?L3JXRjJScHdTbEZ2Q0pDR2k4bFJnajVPQ0NtRktCa3MrUXNaYUR5bUYveklF?=
+ =?utf-8?B?UGttOU4yMytnY3B5cWxiWkpFMEc5UldJTGJRdWFIRHRzOHRNaGhleTF0dXEw?=
+ =?utf-8?B?OVh4aUdyRjhVOWcxY3diQmhlZXlHSGxkdFpLNnc4eHp1dzA2dGlrQzJ4NkFr?=
+ =?utf-8?B?VnZaZ3Z4aHNiV2lhZkVxOG1KVGFQNjJEWlBldUpvWHpiTVJrTDJUaHhNYzZO?=
+ =?utf-8?B?V1c4VXRUb3ZJMUt4Z28rN1A1WGlZOThEK2hPS3d1NFIwSTBYU1B0TlIxcys5?=
+ =?utf-8?B?ZEwrWmxRSnBKMjdzRUtPS3Bhc05rSkJtRndTaVRBNk1PTG9rQldqeUpCV3pT?=
+ =?utf-8?B?Snl4eU1SM2kzT0g2aUE1NzhLUXMwSDlKVFE5dDhvbVU0LzhnWjNpQ1dnREJ4?=
+ =?utf-8?B?aTlpU0QwenJyM0xFSHhESlE4R0t4Y3I0RVRRUjI3Vy9iMFhPb0pMR002NFJm?=
+ =?utf-8?B?dWdQVlBrZjdaZUtNcHV1RmVRTHhkUWFRMjMyWlgyMDZ2d0hkTDBFY3ZsMzFD?=
+ =?utf-8?B?NjYvNDFMMzFDenpkZ2ExNCtrbktobEcwSXdBNExvU2x3UTNlR1dCQjgrN0ZT?=
+ =?utf-8?B?VmNGMGNZazdjZ3ZEemQ4WU80bVRkcmVyQXdkTnVhM0hBTkVFL0h1V0Y4Z2w2?=
+ =?utf-8?Q?PmDy0xQn5h+mduUtqVYzZQlbQ?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ad98378e-fe8e-4792-6762-08dba28932a5
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR12MB5115.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 20:57:14.8588 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: K8TzkHZYdAHf1lhyL2Kd3wqY3GtpjoRBUgkRTaE1KCZ1e6DwuBCHsUZDQ/u3A7PM67vsu1uUsX3hiKDWE6BeDg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9280
+Subject: Re: [Intel-xe] Implement svm without BO concept in xe driver
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,297 +137,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
- luben.tuikov@amd.com, Danilo Krummrich <dakr@redhat.com>,
- donald.robson@imgtec.com, boris.brezillon@collabora.com,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: Philip Yang <Philip.Yang@amd.com>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---0000000000003e498106037422ec
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Aug 21, 2023 at 1:13=E2=80=AFPM Christian K=C3=B6nig <christian.koe=
-nig@amd.com>
-wrote:
+On 2023-08-21 15:41, Zeng, Oak wrote:
+>> I have thought about emulating BO allocation APIs on top of system SVM.
+>> This was in the context of KFD where memory management is not tied into
+>> command submissions APIs, which would add a whole other layer of
+>> complexity. The main unsolved (unsolvable?) problem I ran into was, that
+>> there is no way to share SVM memory as DMABufs. So there is no good way
+>> to support applications that expect to share memory in that way.
+> Great point. I also discussed the dmabuf thing with Mike (cc'ed). dmabuf is a particular technology created specially for the BO driver (and other driver) to share buffer b/t devices. Hmm/system SVM doesn't need this technology: malloc'ed memory by the nature is already shared b/t different devices (in one process) and CPU. We just can simply submit GPU kernel to all devices with malloc'ed memory and let kmd decide the memory placement (such as map in place or migrate). No need of buffer export/import in hmm/system SVM world.
 
-> Am 21.08.23 um 20:01 schrieb Danilo Krummrich:
-> > On 8/21/23 16:07, Christian K=C3=B6nig wrote:
-> >> Am 18.08.23 um 13:58 schrieb Danilo Krummrich:
-> >>> [SNIP]
-> >>>> I only see two possible outcomes:
-> >>>> 1. You return -EBUSY (or similar) error code indicating the the hw
-> >>>> can't receive more commands.
-> >>>> 2. Wait on previously pushed commands to be executed.
-> >>>> (3. Your driver crash because you accidentally overwrite stuff in
-> >>>> the ring buffer which is still executed. I just assume that's
-> >>>> prevented).
-> >>>>
-> >>>> Resolution #1 with -EBUSY is actually something the UAPI should not
-> >>>> do, because your UAPI then depends on the specific timing of
-> >>>> submissions which is a really bad idea.
-> >>>>
-> >>>> Resolution #2 is usually bad because it forces the hw to run dry
-> >>>> between submission and so degrade performance.
-> >>>
-> >>> I agree, that is a good reason for at least limiting the maximum job
-> >>> size to half of the ring size.
-> >>>
-> >>> However, there could still be cases where two subsequent jobs are
-> >>> submitted with just a single IB, which as is would still block
-> >>> subsequent jobs to be pushed to the ring although there is still
-> >>> plenty of space. Depending on the (CPU) scheduler latency, such a
-> >>> case can let the HW run dry as well.
-> >>
-> >> Yeah, that was intentionally not done as well. The crux here is that
-> >> the more you push to the hw the worse the scheduling granularity
-> >> becomes. It's just that neither Xe nor Nouveau relies that much on
-> >> the scheduling granularity at all (because of hw queues).
-> >>
-> >> But Xe doesn't seem to need that feature and I would still try to
-> >> avoid it because the more you have pushed to the hw the harder it is
-> >> to get going again after a reset.
-> >>
-> >>>
-> >>> Surely, we could just continue decrease the maximum job size even
-> >>> further, but this would result in further overhead on user and
-> >>> kernel for larger IB counts. Tracking the actual job size seems to
-> >>> be the better solution for drivers where the job size can vary over
-> >>> a rather huge range.
-> >>
-> >> I strongly disagree on that. A larger ring buffer is trivial to
-> allocate
-> >
-> > That sounds like a workaround to me. The problem, in the case above,
-> > isn't that the ring buffer does not have enough space, the problem is
-> > that we account for the maximum job size although the actual job size
-> > is much smaller. And enabling the scheduler to track the actual job
-> > size is trivial as well.
+I disagree. DMABuf can be used for sharing memory between processes. And 
+it can be used for sharing memory with 3rd-party devices via PCIe P2P 
+(e.g. a Mellanox NIC). You cannot easily do that with malloc'ed memory. 
+POSIX IPC requires that you know that you'll be sharing the memory at 
+allocation time. It adds overhead. And because it's file-backed, it's 
+currently incompatible with migration. And HMM currently doesn't have a 
+solution for P2P. Any access by a different device causes a migration to 
+system memory.
+
+Regards,
+   Felix
+
+
 >
-> That's what I agree on, so far I just didn't see the reason for doing it
-> but at least a few reason for not doing it.
+> So yes from buffer sharing perspective, the design philosophy is also very different.
 >
-> >
-> >> and if userspace submissions are so small that the scheduler can't
-> >> keep up submitting them then your ring buffer size is your smallest
-> >> problem.
-> >>
-> >> In other words the submission overhead will completely kill your
-> >> performance and you should probably consider stuffing more into a
-> >> single submission.
-> >
-> > I fully agree and that is also the reason why I want to keep the
-> > maximum job size as large as possible.
-> >
-> > However, afaik with Vulkan it's the applications themselves deciding
-> > when and with how many command buffers a queue is submitted (@Faith:
-> > please correct me if I'm wrong). Hence, why not optimize for this case
-> > as well? It's not that it would make another case worse, right?
+> Thanks,
+> Oak
 >
-> As I said it does make both the scheduling granularity as well as the
-> reset behavior worse.
->
-> In general I think we should try to push just enough work to the
-> hardware to keep it busy and not as much as possible.
->
-> So as long as nobody from userspace comes and says we absolutely need to
-> optimize this use case I would rather not do it.
->
-
-This is a place where nouveau's needs are legitimately different from AMD
-or Intel, I think.  NVIDIA's command streamer model is very different from
-AMD and Intel.  On AMD and Intel, each EXEC turns into a single small
-packet (on the order of 16B) which kicks off a command buffer.  There may
-be a bit of cache management or something around it but that's it.  From
-there, it's userspace's job to make one command buffer chain to another
-until it's finally done and then do a "return", whatever that looks like.
-
-NVIDIA's model is much more static.  Each packet in the HW/FW ring is an
-address and a size and that much data is processed and then it grabs the
-next packet and processes. The result is that, if we use multiple buffers
-of commands, there's no way to chain them together.  We just have to pass
-the whole list of buffers to the kernel.  A single EXEC ioctl / job may
-have 500 such addr+size packets depending on how big the command buffer
-is.  It gets worse on pre-Turing hardware where we have to split the batch
-for every single DrawIndirect or DispatchIndirect.
-
-Lest you think NVIDIA is just crazy here, it's a perfectly reasonable model
-if you assume that userspace is feeding the firmware.  When that's
-happening, you just have a userspace thread that sits there and feeds the
-ringbuffer with whatever is next and you can marshal as much data through
-as you want. Sure, it'd be nice to have a 2nd level batch thing that gets
-launched from the FW ring and has all the individual launch commands but
-it's not at all necessary.
-
-What does that mean from a gpu_scheduler PoV? Basically, it means a
-variable packet size.
-
-What does this mean for implementation? IDK.  One option would be to teach
-the scheduler about actual job sizes. Another would be to virtualize it and
-have another layer underneath the scheduler that does the actual feeding of
-the ring. Another would be to decrease the job size somewhat and then have
-the front-end submit as many jobs as it needs to service userspace and only
-put the out-fences on the last job. All the options kinda suck.
-
-~Faith
-
---0000000000003e498106037422ec
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Mon, Aug 21, 2023 at 1:13=E2=80=AFPM Christian K=C3=B6nig &lt;<a =
-href=3D"mailto:christian.koenig@amd.com">christian.koenig@amd.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Am 21.08.2=
-3 um 20:01 schrieb Danilo Krummrich:<br>
-&gt; On 8/21/23 16:07, Christian K=C3=B6nig wrote:<br>
-&gt;&gt; Am 18.08.23 um 13:58 schrieb Danilo Krummrich:<br>
-&gt;&gt;&gt; [SNIP]<br>
-&gt;&gt;&gt;&gt; I only see two possible outcomes:<br>
-&gt;&gt;&gt;&gt; 1. You return -EBUSY (or similar) error code indicating th=
-e the hw <br>
-&gt;&gt;&gt;&gt; can&#39;t receive more commands.<br>
-&gt;&gt;&gt;&gt; 2. Wait on previously pushed commands to be executed.<br>
-&gt;&gt;&gt;&gt; (3. Your driver crash because you accidentally overwrite s=
-tuff in <br>
-&gt;&gt;&gt;&gt; the ring buffer which is still executed. I just assume tha=
-t&#39;s <br>
-&gt;&gt;&gt;&gt; prevented).<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Resolution #1 with -EBUSY is actually something the UAPI s=
-hould not <br>
-&gt;&gt;&gt;&gt; do, because your UAPI then depends on the specific timing =
-of <br>
-&gt;&gt;&gt;&gt; submissions which is a really bad idea.<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Resolution #2 is usually bad because it forces the hw to r=
-un dry <br>
-&gt;&gt;&gt;&gt; between submission and so degrade performance.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; I agree, that is a good reason for at least limiting the maxim=
-um job <br>
-&gt;&gt;&gt; size to half of the ring size.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; However, there could still be cases where two subsequent jobs =
-are <br>
-&gt;&gt;&gt; submitted with just a single IB, which as is would still block=
- <br>
-&gt;&gt;&gt; subsequent jobs to be pushed to the ring although there is sti=
-ll <br>
-&gt;&gt;&gt; plenty of space. Depending on the (CPU) scheduler latency, suc=
-h a <br>
-&gt;&gt;&gt; case can let the HW run dry as well.<br>
-&gt;&gt;<br>
-&gt;&gt; Yeah, that was intentionally not done as well. The crux here is th=
-at <br>
-&gt;&gt; the more you push to the hw the worse the scheduling granularity <=
-br>
-&gt;&gt; becomes. It&#39;s just that neither Xe nor Nouveau relies that muc=
-h on <br>
-&gt;&gt; the scheduling granularity at all (because of hw queues).<br>
-&gt;&gt;<br>
-&gt;&gt; But Xe doesn&#39;t seem to need that feature and I would still try=
- to <br>
-&gt;&gt; avoid it because the more you have pushed to the hw the harder it =
-is <br>
-&gt;&gt; to get going again after a reset.<br>
-&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Surely, we could just continue decrease the maximum job size e=
-ven <br>
-&gt;&gt;&gt; further, but this would result in further overhead on user and=
- <br>
-&gt;&gt;&gt; kernel for larger IB counts. Tracking the actual job size seem=
-s to <br>
-&gt;&gt;&gt; be the better solution for drivers where the job size can vary=
- over <br>
-&gt;&gt;&gt; a rather huge range.<br>
-&gt;&gt;<br>
-&gt;&gt; I strongly disagree on that. A larger ring buffer is trivial to al=
-locate <br>
-&gt;<br>
-&gt; That sounds like a workaround to me. The problem, in the case above, <=
-br>
-&gt; isn&#39;t that the ring buffer does not have enough space, the problem=
- is <br>
-&gt; that we account for the maximum job size although the actual job size =
-<br>
-&gt; is much smaller. And enabling the scheduler to track the actual job <b=
-r>
-&gt; size is trivial as well.<br>
-<br>
-That&#39;s what I agree on, so far I just didn&#39;t see the reason for doi=
-ng it <br>
-but at least a few reason for not doing it.<br>
-<br>
-&gt;<br>
-&gt;&gt; and if userspace submissions are so small that the scheduler can&#=
-39;t <br>
-&gt;&gt; keep up submitting them then your ring buffer size is your smalles=
-t <br>
-&gt;&gt; problem.<br>
-&gt;&gt;<br>
-&gt;&gt; In other words the submission overhead will completely kill your <=
-br>
-&gt;&gt; performance and you should probably consider stuffing more into a =
-<br>
-&gt;&gt; single submission.<br>
-&gt;<br>
-&gt; I fully agree and that is also the reason why I want to keep the <br>
-&gt; maximum job size as large as possible.<br>
-&gt;<br>
-&gt; However, afaik with Vulkan it&#39;s the applications themselves decidi=
-ng <br>
-&gt; when and with how many command buffers a queue is submitted (@Faith: <=
-br>
-&gt; please correct me if I&#39;m wrong). Hence, why not optimize for this =
-case <br>
-&gt; as well? It&#39;s not that it would make another case worse, right?<br=
->
-<br>
-As I said it does make both the scheduling granularity as well as the <br>
-reset behavior worse.<br>
-<br>
-In general I think we should try to push just enough work to the <br>
-hardware to keep it busy and not as much as possible.<br>
-<br>
-So as long as nobody from userspace comes and says we absolutely need to <b=
-r>
-optimize this use case I would rather not do it.<br></blockquote><div><br><=
-/div><div>This is a place where nouveau&#39;s needs are legitimately differ=
-ent from AMD or Intel, I think.=C2=A0 NVIDIA&#39;s command streamer model i=
-s very different from AMD and Intel.=C2=A0 On AMD and Intel, each EXEC turn=
-s into a single small packet (on the order of 16B) which kicks off a comman=
-d buffer.=C2=A0 There may be a bit of cache management or something around =
-it but that&#39;s it.=C2=A0 From there, it&#39;s userspace&#39;s job to mak=
-e one command buffer chain to another until it&#39;s finally done and then =
-do a &quot;return&quot;, whatever that looks like.=C2=A0</div><div><br></di=
-v><div>NVIDIA&#39;s model is much more static.=C2=A0 Each packet in the HW/=
-FW ring is an address and a size and that much data is processed and then i=
-t grabs the next packet and processes. The result is that, if we use multip=
-le buffers of commands, there&#39;s no way to chain them together.=C2=A0 We=
- just have to pass the whole list of buffers to the kernel.=C2=A0 A single =
-EXEC ioctl / job may have 500 such addr+size packets depending on how big t=
-he command buffer is.=C2=A0 It gets worse on pre-Turing hardware where we h=
-ave to split the batch for every single DrawIndirect or DispatchIndirect.</=
-div><div><br></div><div>Lest you think NVIDIA is just crazy here, it&#39;s =
-a perfectly reasonable model if you assume that userspace is feeding the fi=
-rmware.=C2=A0 When that&#39;s happening, you just have a userspace thread t=
-hat sits there and feeds the ringbuffer with whatever is next and you can m=
-arshal as much data through as you want. Sure, it&#39;d be nice to have a 2=
-nd level batch thing that gets launched from the FW ring and has all the in=
-dividual launch commands but it&#39;s not at all necessary.</div><div><br><=
-/div><div>What does that mean from a gpu_scheduler PoV? Basically, it means=
- a variable packet size.<br></div><div><br></div><div>What does this mean f=
-or implementation? IDK.=C2=A0 One option would be to teach the scheduler ab=
-out actual job sizes. Another would be to virtualize it and have another la=
-yer underneath the scheduler that does the actual feeding of the ring. Anot=
-her would be to decrease the job size somewhat and then have the front-end =
-submit as many jobs as it needs to service userspace and only put the out-f=
-ences on the last job. All the options kinda suck.</div><div><br></div><div=
->~Faith<br></div></div></div>
-
---0000000000003e498106037422ec--
