@@ -4,134 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75EDEEE4993
-	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 16:06:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8ED9EE4996
+	for <intel-xe@archiver.kernel.org>; Mon, 21 Aug 2023 16:51:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 351B310E1E0;
-	Mon, 21 Aug 2023 16:06:51 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8B1510E1E0
- for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 16:06:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 795DC10E28B;
+	Mon, 21 Aug 2023 16:51:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 693E210E28B
+ for <intel-xe@lists.freedesktop.org>; Mon, 21 Aug 2023 16:51:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692634008; x=1724170008;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=igvbPafB6X63fa+i3TLSPe+LcBed7VL0orqkqCcQTq4=;
- b=h7kN4Rgyy24XvoKcs15RExARfREE7ePNhJi6MAHZPdf3o+HNyYYyOznA
- F0TGUgCt6acoPHjfyqgFcdZYZ/KBopCwvK/mcnMhqgCRhar39QJ1tGeaZ
- cpN2plpH1xHEQOlxNKyJwLZbwn1nLWyv9RE8txi1Ywgw2HFeeZ/mjS59Y
- zBRcds+dBLR51qmo2fugrLVeXq0dAq9KdlaDN/WiUOdqGvmPE/papE6e+
- o/tvUo5+yh67+0ni54VBSgb2N30RmVspMIoDjBrP/5UEFdYjLd1pE4KcS
- HFR6f94g2oxbfv9UbfYa+Q46WiocgwVlNI6QYiOxN7oPK+gxxmGuA3VV7 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="371062740"
-X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="371062740"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 09:04:21 -0700
+ t=1692636693; x=1724172693;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version;
+ bh=LLfMB8xp1J7AWGEbFW9C9TgjEW0NOku/2xmRjnjQCk0=;
+ b=MoX2Y823yT9hoxbZ2IBjevuL+CwTvM7mZ6ruDZ6hRVbXDM0Do6SLiTBX
+ /t3pe7u2w8aQMVC904+Vy5nuF1u8gs9jhiyo4AN53JX/Q/6N8f/BfTFeF
+ x/yhiNGrxnZWty8/XiCNcPPvM0gtJf0C2OYGM2Rqo+YS7JXzfThJfwDRO
+ CJtxwBCxhY9i7Dcu5Usk3LxwRmJVff422FMR21g8IdagLGVWAPralMaso
+ 4Lf4kc3mtwFupseokX+LUFjsyIBv7rE/Hwe5RczcqSaSRi5gFwxE2vuEy
+ Npr9SFtd/LizTJxPQZbz+GscvKmTQFX9WSWiNw126ZRTHDCPvhIDRODE5 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="440024251"
+X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="440024251"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2023 09:51:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="879561578"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga001.fm.intel.com with ESMTP; 21 Aug 2023 09:04:21 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 21 Aug 2023 09:03:58 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Mon, 21 Aug 2023 09:03:58 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Mon, 21 Aug 2023 09:03:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AVBpZTTgasO3w68FEhpohwqOoDrj55rrQl+fcJxT9shR60fKq/nTxmNeQcKWUC5PN4eJ1VVuOyNClkoUhdWWAMfsK08jUWgZC0+nzluOuFnj506YrHIjKpJVmv6DIZbnHKQ1GhKOb9HBuX8Vcg5U1mrBbRSd+wPnIT5dp7x5fN8HAxQQCoQJJSPoRDYC2Dt22kBzlkG0R62AlK8J65tB4WlWDRHHsQMY+vq00RDYHQof42+0Lu9qfyghpq+wtNszxEWjuvItcr/pVnQkneZVS0OcijG4QYWLTL0uKiGiPgyWInohDEyG7qESngdDPiSjyL6gLyx7D+WM1aGhZqQDGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6V2VpyL/Gq7emEWGbGdsL+SJU95cOX7WOA0sQM0xifw=;
- b=kkc72UxKKBpgRwtnY9aH9+MY7g9fZrgPtAbHtoEe1cvx0oMFgwjDECGeWMpSJsliO7Y/dL0JBYYtm/B3ovBJ5F49aIi13DWp9i/89u5Hs26oUJGCTPV3NgR82nFDXlQlGyCCFnH3FVgNGo8NwX/TCLl6NCY2yJbGeLARqaNbrw6RgSQUmPs7GuS0sdjgFULGC9fHPbSWFuRKRxt1jONArrhk6E1n3Ha10nHsAB9WxF9C4zW4Em9YJRmJAYeIdBUH15yoSclW+6fF8viIvSMvuD+nskkXoEZVeo6TuDOd+undgJ2MpNXRoOB3Z/qUesZ1SOKmaymhgN6GizrEYzNMuA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ0PR11MB4782.namprd11.prod.outlook.com (2603:10b6:a03:2df::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Mon, 21 Aug
- 2023 16:03:19 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6699.022; Mon, 21 Aug 2023
- 16:03:19 +0000
-Date: Mon, 21 Aug 2023 09:03:16 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Message-ID: <hwe6d7pbsibj4lf46gsherwfsq3pzayxvofwlvhj3k6ahwradi@hhwryrzxq2ty>
-References: <20230818220824.700519-1-lucas.demarchi@intel.com>
- <20230818220824.700519-9-lucas.demarchi@intel.com>
- <ZON7pQL3RH8ZSaPH@bvivekan-mobl>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <ZON7pQL3RH8ZSaPH@bvivekan-mobl>
-X-ClientProxiedBy: MW2PR16CA0021.namprd16.prod.outlook.com (2603:10b6:907::34)
- To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB4782:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3a838b06-b35c-4ca7-b72e-08dba26022ed
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Xgn9Fzu1P9UyAkI9mwYUAWdMKnpE3ko2o8nRExFoAZrQVGXoswGxi4FeVJV5isMuAgH7F7teqmpLb8bhvYNpoCX2seofl9WJ4LsB5fii+IpnlMH7H4BpqHZtDDadRQ0wOHsVv/dJG7NDYmkbFagGVkXYejDm9Tdxpnb2MJJ8vzIX9jjmPBOF0msmozFpQRHBlRfAF2o0apSTUyusUGjI5xlQLaFD/4IYcveLTdZy8cDpZCXtUTFGfffFZI1ggsVwvH74rvM8Z1YcZHOlWfVB2WmE56Srh4uvvD/eNSAL/vx15KZMsExSJMRzE10japijePLMXq6vIUXjH04uH2V9tOxQABg/a0/m9ekc8nqCgavV7G9i5Sfmdq2O6CLD2BJBKFtdB2UwxeULGLGhwK6CFuMD8KyOu40OFqGlAnF/rA36zMVN2FQ2P/rzz2ApUmmTrQJQR7Yij5+68kGMDWHUu0NG/E43hg+SN+ncYn9Ty25Xa8Qa8uoQiAWknJn5Ixs3PaAmdS2kZGHvAAW+nyxeGjrU+bC1wV+wxWeI0Gd4tTYUshVuXiMSiqn/Tu6zLZaT
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(396003)(39860400002)(136003)(346002)(366004)(376002)(1800799009)(186009)(451199024)(6636002)(66476007)(9686003)(66946007)(6512007)(66556008)(316002)(82960400001)(8676002)(8936002)(6862004)(4326008)(107886003)(33716001)(41300700001)(478600001)(6666004)(38100700002)(6486002)(6506007)(2906002)(83380400001)(86362001)(5660300002)(26005);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?U1mO9G9RDXWU7Z8ONiuokqxeFXqofCjf2zLfpBVsxKC7FzqkdeIvKeWkg83O?=
- =?us-ascii?Q?2TeZPiAFxXXU6KGfWlqcoKyjrEnB1HlLxxE2dmHCos8mpj5W2rhDXElw/qLT?=
- =?us-ascii?Q?ab0RtGJaeeypNBHo1vSshLdm/PIZFEsH43bvgLVJJD307Kw5376ZIluTs9OZ?=
- =?us-ascii?Q?qeArqq6FqImHtm0VfDZmFb/rp5mTC+jAkBRIAN2+GUv1k3I10XV9DKQhGZUg?=
- =?us-ascii?Q?iwLuRJtgn1jJvc3dqcNPQHsrMfPt/LLpuk4eTQBH4mq7nWujNHi+qSQWdvg7?=
- =?us-ascii?Q?A2kixoZZnImGMT6HABKxXDxc11ZxXxXZYPc+yJ7SZKVLvc5fb7Zse1pA2PyG?=
- =?us-ascii?Q?r6n2sMoWsnSwZIyXe+5EOttn8uFog6hk5OBeR4ryqGxRj2kdNpEkFOsOnlgD?=
- =?us-ascii?Q?Kvwv4O3YrCBEHeW3+g+6VGMKoydfoIsmFEn/AipfjW1n/0HZcQpgl6s782yM?=
- =?us-ascii?Q?0P9dRjQAwYDcyrwtxjNi7SM8+eRiSzd2IDomMIqHcJ5Vh5POqyCmQcwrsR70?=
- =?us-ascii?Q?VqBg+l6SIorVHoj9qS+lYS8KQrho28DMpH8wEWLMS1fBQAHeRDZyvc0kxh9E?=
- =?us-ascii?Q?wZqHz6AsVe8HfOMhXb5yn90iJz8nu+qMNBMfD54xYivHhItkDJ5Bzyokwlnl?=
- =?us-ascii?Q?QVvaVPjkWsM95Bv6n9dn3NdcVAfVehWBIKFA2+gq5lbVNqbmHomAMWjnV9do?=
- =?us-ascii?Q?2rGZkCXbZqW3UowQDecMlkhioQPsBbEBZjASk62SUYz6oc4y0oe1Z8fNFeCa?=
- =?us-ascii?Q?sFf+0xINX/cVf/wxHNz9lZNFaHbXQinzoANfmEsG9GdOosTFmKydCH7M705Q?=
- =?us-ascii?Q?Fr9M5Q4R8O18StsbA/8HDC6XPvCxNZtwFLYKZWd0miaRolKGxoUwUnPKohz8?=
- =?us-ascii?Q?rf+xVbu9uhcFSun2TrkhmW64PqZcT+7kSzKs3cfT2Ufqe+dJkZ1YG8BAEcEb?=
- =?us-ascii?Q?ukOkNcad0rQUve8ehcJofS+paFnx8z6Sun0PT4+lyawJrTRN2lmHdmmBlxwc?=
- =?us-ascii?Q?y3dOwbygh3kp9WfQUz2dMB8+PI47LZ0j5IrUsrzb0yIDltqNM2jWmGM42KwF?=
- =?us-ascii?Q?3WOj5nhAhcJ0HxIKjUEGZAIu+KLqZcfy92zRDen4xPQY0F4cp2AVbB65U3ch?=
- =?us-ascii?Q?sVhI4+srmfBn3c1XK8i/2tlY/hqV9suZiNzBrGnbo62j1CscEeCYEJaaqzhx?=
- =?us-ascii?Q?DO5WoYwBwlflQEw+PcXhip6bBe0nvGcUZUuFL/OlM9Xc+J2Xnt1Xj4QUhU/6?=
- =?us-ascii?Q?wQmH901z2jTia1R+4631vZUzJyTdRNSNf4KAeXXuTrJgu2Fm/yjNhohKaeK2?=
- =?us-ascii?Q?EHQ1wB61FnZ28Ks8m/7If/TpzlfIw84I/77vFvUES1zAf5NVmf0EVWguuZkP?=
- =?us-ascii?Q?5wcnAKaIPolHRiPMKXem6FZav7MFhnHBJrBwEi/Rr1i4bhkZaBxUAQZpcoJr?=
- =?us-ascii?Q?vK+bp34Xrj8Ojg8lVXfF3CHznnLq8wK4pOIS8oEmt811RTVQq32GHjKJGyGp?=
- =?us-ascii?Q?IkVhH0Zh/Yolq2sDeyqYuye6E686YTFUoaBIsAgldwc4uchEgvfvJe5D89ja?=
- =?us-ascii?Q?gNRJ0Imp3J/75IuqxNjZMkTOFvClSWV7Gyzkf92GI4yj0XvsNioSmlu4LoRL?=
- =?us-ascii?Q?LQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a838b06-b35c-4ca7-b72e-08dba26022ed
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Aug 2023 16:03:19.2470 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wKLPR+JbRV65aFEbZVDKZFaPeRj3dVIljAvAQJhn3iUbgkUjNPY3xHPUr5CWaISNhbrwvPHxfNEtlmsiAZLr1DraStjc31/QvxMWNT3cHd8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4782
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 08/15] drm/xe/xe2: Define Xe2_LPG IP
- features
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="982545834"
+X-IronPort-AV: E=Sophos;i="6.01,190,1684825200"; d="scan'208";a="982545834"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.24.9])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2023 09:51:32 -0700
+Date: Mon, 21 Aug 2023 09:48:33 -0700
+Message-ID: <87pm3gs5ni.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <ZNwxENspCySSvfCB@orsosgc001.jf.intel.com>
+References: <20230808013159.38811-1-ashutosh.dixit@intel.com>	<20230808013159.38811-2-ashutosh.dixit@intel.com>	<ZNLIzElZdEFY7J3h@orsosgc001.jf.intel.com>	<87350kt87c.wl-ashutosh.dixit@intel.com>	<ZNwxENspCySSvfCB@orsosgc001.jf.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+Subject: Re: [Intel-xe] [PATCH 01/10] drm/xe/oa: Introduce OA uapi
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,94 +59,479 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 21, 2023 at 08:28:45PM +0530, Balasubramani Vivekanandan wrote:
->On 18.08.2023 15:08, Lucas De Marchi wrote:
->> From: Matt Roper <matthew.d.roper@intel.com>
->>
->> Define a common set of Xe2 graphics feature flags and definitions that
->> will be used for all platforms in this family.
->>
->> Several of the feature flags are inherited unchanged from Xe_HP and/or
->> Xe_HPC platforms:
->>  - dma_mask_size remains 46   (Bspec 70817)
->>  - supports_usm=1             (Bspec 59651)
->>  - has_flatccs=1              (Bspec 58797)
->>  - has_asid=1                 (Bspec 59654, 59265, 60288)
->>  - has_range_tlb_invalidate=1 (Bspec 71126)
->>
->> However some of them still need proper implementation in the driver to
->> be used, so they are disabled.
->>
->> Notable Xe2-specific changes:
->>  - All Xe2 platforms use a five-level page table, regardless of the
->>    virtual address space for the platform.  (Bspec 59505)
->>
->> The graphics engine mask represents the Xe2 architecture engines (Bspec
->> 60149), but individual platforms may have a reduced set of usable
->> engines, as reflected by their fusing.
->>
->> Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
->> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  drivers/gpu/drm/xe/xe_pci.c | 19 +++++++++++++++++++
->>  1 file changed, 19 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->> index 46e3a9632efe..ed6c4bf8c63b 100644
->> --- a/drivers/gpu/drm/xe/xe_pci.c
->> +++ b/drivers/gpu/drm/xe/xe_pci.c
->> @@ -176,6 +176,24 @@ static const struct xe_graphics_desc graphics_xelpg = {
->>  	.has_flat_ccs = 0,
->>  };
->>
->> +#define XE2_GFX_FEATURES \
->> +	.dma_mask_size = 46, \
->> +	.has_asid = 1, \
->> +	.has_flat_ccs = 0 /* FIXME: implementation missing */, \
->> +	.has_range_tlb_invalidation = 1, \
->> +	.supports_usm = 0 /* FIXME: implementation missing */, \
->> +	.vm_max_level = 4, \
->> +	.hw_engine_mask = \
->> +		BIT(XE_HW_ENGINE_RCS0) | \
->> +		BIT(XE_HW_ENGINE_BCS8) | BIT(XE_HW_ENGINE_BCS0) | \
->> +		GENMASK(XE_HW_ENGINE_CCS3, XE_HW_ENGINE_CCS0)
+On Tue, 15 Aug 2023 19:14:40 -0700, Umesh Nerlige Ramappa wrote:
 >
->Bspec: 60149 lists more BCS engines than what is assigned here. Is it
->intentionally limited to only BCS0, BCS8.
 
-That's only the mmio address offsets allocated, it doesn't mean the
-platform has those engines. See BSpec 70815: there's one main copy
-engine and one paging copy engine.
+Hi Umesh,
 
-Lucas De Marchi
+Some more thoughts.
 
+> On Tue, Aug 15, 2023 at 12:29:59PM -0700, Dixit, Ashutosh wrote:
+> > On Tue, 08 Aug 2023 15:59:24 -0700, Umesh Nerlige Ramappa wrote:
+> >>
+> >> This looks good in terms of what existed in i915. I have some comments here
+> >> from an improvement perspective. Please let me know what you think.
+> >>
+> >> On Mon, Aug 07, 2023 at 06:31:50PM -0700, Ashutosh Dixit wrote:
+> >> > OA uapi allows userspace to:
+> >> > * Read streams of performance counters written by hardware
+> >> > * Configure (and reconfigure) which sets of perf counters are captured as
+> >> >  part of OA streams
+> >> > * Configure other properties (such as format and periodicity) of such
+> >> >  captures.
+> >> > * Query associated parameters such as OA unit timestamp freq, oa_unit_id's
+> >> >  for hw engines and OA ioctl version
+> >> >
+> >> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> >> > ---
+> >> > include/uapi/drm/xe_drm.h | 257 +++++++++++++++++++++++++++++++++++++-
+> >> > 1 file changed, 256 insertions(+), 1 deletion(-)
+> >> >
+> >> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> >> > index 86f16d50e9ccc..b4ab07c285245 100644
+> >> > --- a/include/uapi/drm/xe_drm.h
+> >> > +++ b/include/uapi/drm/xe_drm.h
+> >> > @@ -111,6 +111,9 @@ struct xe_user_extension {
+> >> > #define DRM_XE_WAIT_USER_FENCE		0x0b
+> >> > #define DRM_XE_VM_MADVISE		0x0c
+> >> > #define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0d
+> >> > +#define DRM_XE_OA_OPEN			0x36
+> >> > +#define DRM_XE_OA_ADD_CONFIG		0x37
+> >> > +#define DRM_XE_OA_REMOVE_CONFIG		0x38
+> >>
+> >> No holes in ioctl numbers above, as in use 0xe 0xf 0x10 instead of 0x36,
+> >> 0x37 and 0x38. Any reason you have left it same as i915?
+> >
+> > Just wanted to get the patches out on the mailing list soon, having the
+> > ioctl numbers same as i915 saves a bunch of IGT changes.
+> >
+> > Also, I am providing these patches to UMD's to test and the holes allow the
+> > ioctls to remain undisturbed even if new ioctls are introduced in non-oa.
+> >
+> > Even the oa_formats below are the same value as i915 :)
+> >
+> > But yes this will eventually have to be fixed before merging.
 >
->Regards,
->Bala
+> sounds good
 >
->> +
->> +static const struct xe_graphics_desc graphics_xe2 = {
->> +	.name = "Xe2_LPG",
->> +
->> +	XE2_GFX_FEATURES,
->> +};
->> +
->>  static const struct xe_media_desc media_xem = {
->>  	.name = "Xe_M",
->>  	.ver = 12,
->> @@ -320,6 +338,7 @@ __diag_pop();
->>  static struct gmdid_map graphics_ip_map[] = {
->>  	{ 1270, &graphics_xelpg },
->>  	{ 1271, &graphics_xelpg },
->> +	{ 2004, &graphics_xe2 },
->>  };
->>
->>  /* Map of GMD_ID values to media IP */
->> --
->> 2.40.1
->>
+> >
+> >>
+> >> >
+> >> > /* Must be kept compact -- no holes */
+> >> > #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+> >> > @@ -127,6 +130,9 @@ struct xe_user_extension {
+> >> > #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
+> >> > #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+> >> > #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
+> >> > +#define DRM_IOCTL_XE_OA_OPEN			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_OPEN, struct drm_xe_oa_open_param)
+> >> > +#define DRM_IOCTL_XE_OA_ADD_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_ADD_CONFIG, struct drm_xe_oa_config)
+> >> > +#define DRM_IOCTL_XE_OA_REMOVE_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_REMOVE_CONFIG, __u64)
+> >> >
+> >> > /**
+> >> >  * enum drm_xe_memory_class - Supported memory classes.
+> >> > @@ -261,7 +267,8 @@ struct drm_xe_query_config {
+> >> > #define XE_QUERY_CONFIG_GT_COUNT		4
+> >> > #define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
+> >> > #define XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY	6
+> >> > -#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY + 1)
+> >> > +#define XE_QUERY_OA_IOCTL_VERSION		7
+> >>
+> >> I am thinking we should just have a query for oa_info where things like
+> >> revision, oa_timestamp_frequency and other OA specific info like supported
+> >> formats (spec - 52198) can be queried by the user.
+
+This is also simplified somewhat if we go with the one char device file per
+OA unit I mentioned in the other mail. So we need info about just that one
+OA unit, rather than multiplex information about all OA units into the
+ioctl.
+
+Not sure if I mentioned earlier that this oa_info is a little bit
+complicated otherwise: e.g. oa_timestamp_frequency is per gt, oa_unit_id is
+per engine etc. Also we may need to exposed mapping from oa_unit_id to
+engines attached to that oa unit.
+
+E.g. if we don't expose oa_format in xe_drm.h (see below) I think oa_info
+for each oa unit is something like:
+
+{ oa_unit_id, oa_timestamp_freq, list-of-attached-engines}
+
+
+> >> Also iirc, revision was just added as a way to determine new
+> >> extensions/features to OA, but I don't see that mechanism used by any other
+> >> interface here. Maybe we should see how other interfaces are adding
+> >> features and detecting their presence and use something similar.
+> >
+> > I believe that would be doing this using xe_user_extension's, both set and
+> > get. See exec_queue_set_property and exec_queue_get_property. Revision
+> > etc. won't be needed if done this way.
+
+Actually this is not strictly true. xe_user_extension's make the interface
+more extensible but don't really eliminate the need for a version.
+
+But I agree, we need to drop this version. Worst case userland can just use
+the kernel version (and maintain a mapping of which OA features are
+available in which kernel version if needed)?
+
+Also, for a simple property <key, value> interface, xe_user_extension's
+seem a bit of an overkill (but drm_xe_ext_exec_queue_set_property seems to
+have done exactly that). To me xe_user_extension seems useful if properties
+are associated with bigger data structs.
+
+So I am still thinking about it. Maybe we should check if the convention in
+XE is to expose even property <key, value> interfaces with
+xe_user_extension. Certainly looks like that.
+
+Or maybe we can separate out the data structs: One for basic OA params and
+one for the query params (OAR/MI_RPC) etc. Or we can retain the one
+property per data struct approach used in
+drm_xe_ext_exec_queue_set_property. Simplest would be to keep the current
+struct but add a xe_user_extension field at the top, so that it is the same
+as now but can be extended in the future.
+
+> >
+> >>
+> >> > +#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_OA_IOCTL_VERSION + 1)
+> >> >	/** @info: array of elements containing the config info */
+> >> >	__u64 info[];
+> >> > };
+> >> > @@ -298,6 +305,7 @@ struct drm_xe_query_gts {
+> >> >		__u64 native_mem_regions;	/* bit mask of instances from drm_xe_query_mem_usage */
+> >> >		__u64 slow_mem_regions;		/* bit mask of instances from drm_xe_query_mem_usage */
+> >> >		__u64 inaccessible_mem_regions;	/* bit mask of instances from drm_xe_query_mem_usage */
+> >> > +		__u64 oa_timestamp_freq;
+> >> >		__u64 reserved[8];
+> >> >	} gts[];
+> >> > };
+> >> > @@ -753,6 +761,7 @@ struct drm_xe_engine_class_instance {
+> >> >
+> >> >	__u16 engine_instance;
+> >> >	__u16 gt_id;
+> >> > +	__u16 oa_unit_id;
+> >> > };
+> >> >
+> >> > struct drm_xe_exec_queue_create {
+> >> > @@ -1056,6 +1065,252 @@ struct drm_xe_vm_madvise {
+> >> >	__u64 reserved[2];
+> >> > };
+> >> >
+> >> > +enum drm_xe_oa_format {
+> >> > +	XE_OA_FORMAT_C4_B8 = 7,
+> >> > +
+> >> > +	/* Gen8+ */
+> >> > +	XE_OA_FORMAT_A12,
+> >> > +	XE_OA_FORMAT_A12_B8_C8,
+> >> > +	XE_OA_FORMAT_A32u40_A4u32_B8_C8,
+> >> > +
+> >> > +	/* DG2 */
+> >> > +	XE_OAR_FORMAT_A32u40_A4u32_B8_C8,
+> >> > +	XE_OA_FORMAT_A24u40_A14u32_B8_C8,
+> >> > +
+> >> > +	/* MTL OAM */
+> >> > +	XE_OAM_FORMAT_MPEC8u64_B8_C8,
+> >> > +	XE_OAM_FORMAT_MPEC8u32_B8_C8,
+> >> > +
+> >> > +	XE_OA_FORMAT_MAX	    /* non-ABI */
+> >> > +};
+> >>
+> >> If we support a query to get the supported OA formats, we can do away with
+> >> this.
+> >
+> > OK, yeah get using user_ext's.
+> >
+> >> Also thinking if we can provide the format definition in such a way
+> >> that UMD can just decode the counters from it with some generic code. That
+> >> way, we don't have to constantly keep updating UMD code for every new
+> >> platforms (may be far-fetched, but could save us a lot of
+> >> time). Thoughts?
+> >
+> > Ok, but I am not sure how to do this.
+>
+> Just a thought, we can ignore that for now.
+
+I am not sure if exposing valid counter_select values has much use since
+userland has metrics files so already knows supported counter_select
+values. How about not exposing anything at all regarding this in xe_drm.h?
+Userland can just send the counter_select values it already knows about and
+XE can just validate these. LNL etc. need a couple of other fields, so we
+can just define the bitfields XE is expecting and have userspace fill these
+in. XE will validate all of these.
+
+I think we need a little bit of encapsulation (provided the OA format) if
+we remove this, but if it causes problems in uapi updates etc. we can
+probably get rid of it.
+
+Again, assuming we'll change the python scripts etc. for this. Maybe we
+/should/ prefer a clean interface to these userspace modifications?
+
+> >
+> >> > +enum drm_xe_oa_property_id {
+> >> > +	/**
+> >> > +	 * Open the stream for a specific exec queue id (as used with
+> >> > +	 * drm_xe_exec). A stream opened for a specific exec queue id this
+> >> > +	 * way won't typically require root privileges.
+> >> > +	 */
+> >> > +	DRM_XE_OA_PROP_EXEC_QUEUE_ID = 1,
+> >> > +
+> >> > +	/**
+> >> > +	 * A value of 1 requests the inclusion of raw OA unit reports as
+> >> > +	 * part of stream samples.
+> >> > +	 */
+> >> > +	DRM_XE_OA_PROP_SAMPLE_OA,
+> >> > +
+> >> > +	/**
+> >> > +	 * The value specifies which set of OA unit metrics should be
+> >> > +	 * configured, defining the contents of any OA unit reports.
+> >> > +	 */
+> >> > +	DRM_XE_OA_PROP_OA_METRICS_SET,
+> >> > +
+> >> > +	/**
+> >> > +	 * The value specifies the size and layout of OA unit reports.
+> >> > +	 */
+> >> > +	DRM_XE_OA_PROP_OA_FORMAT,
+> >> > +
+> >> > +	/**
+> >> > +	 * Specifying this property implicitly requests periodic OA unit
+> >> > +	 * sampling and (at least on Haswell) the sampling frequency is derived
+> >> > +	 * from this exponent as follows:
+> >> > +	 *
+> >> > +	 *   80ns * 2^(period_exponent + 1)
+> >> > +	 */
+> >> > +	DRM_XE_OA_PROP_OA_EXPONENT,
+> >> > +
+> >> > +	/**
+> >> > +	 * Specifying this property is only valid when specify a context to
+> >> > +	 * filter with DRM_XE_OA_PROP_ENGINE_ID. Specifying this property
+> >> > +	 * will hold preemption of the particular engine we want to gather
+> >> > +	 * performance data about.
+> >> > +	 */
+> >> > +	DRM_XE_OA_PROP_HOLD_PREEMPTION,
+> >> > +
+> >> > +	/**
+> >> > +	 * Specifying this pins all contexts to the specified SSEU power
+> >> > +	 * configuration for the duration of the recording.
+> >> > +	 *
+> >> > +	 * This parameter's value is a pointer to a struct
+> >> > +	 * drm_xe_gem_context_param_sseu (TBD).
+> >> > +	 */
+> >> > +	DRM_XE_OA_PROP_GLOBAL_SSEU,
+> >> > +
+> >> > +	/**
+> >> > +	 * This optional parameter specifies the timer interval in nanoseconds
+> >> > +	 * at which the xe driver will check the OA buffer for available data.
+> >> > +	 * Minimum allowed value is 100 microseconds. A default value is used by
+> >> > +	 * the driver if this parameter is not specified. Note that larger timer
+> >> > +	 * values will reduce cpu consumption during OA perf captures. However,
+> >> > +	 * excessively large values would potentially result in OA buffer
+> >> > +	 * overwrites as captures reach end of the OA buffer.
+> >> > +	 */
+> >> > +	DRM_XE_OA_PROP_POLL_OA_PERIOD,
+> >> > +
+> >> > +	/**
+> >> > +	 * Multiple engines may be mapped to the same OA unit. The OA unit is
+> >> > +	 * identified by class:instance of any engine mapped to it.
+> >> > +	 *
+> >> > +	 * This parameter specifies the engine class and must be passed along
+> >> > +	 * with DRM_XE_OA_PROP_OA_ENGINE_INSTANCE.
+> >> > +	 */
+> >> > +	DRM_XE_OA_PROP_OA_ENGINE_CLASS,
+> >> > +
+> >> > +	/**
+> >> > +	 * This parameter specifies the engine instance and must be passed along
+> >> > +	 * with DRM_XE_OA_PROP_OA_ENGINE_CLASS.
+> >> > +	 */
+> >> > +	DRM_XE_OA_PROP_OA_ENGINE_INSTANCE,
+> >> > +
+> >> > +	DRM_XE_OA_PROP_MAX /* non-ABI */
+> >> > +};
+> >>
+> >> Wish we could replace the prop-value interface here. Most ioctls just use a
+> >> struct.  We could do so with some room for additional rsvd params or some
+> >> room for extensions similar to other interfaces here.
+> >
+> > Yes again use user_ext's for these.
+
+Already covered the options for these above.
+
+> >
+> >>
+> >> > +
+> >> > +struct drm_xe_oa_open_param {
+> >> > +	__u32 flags;
+> >> > +#define XE_OA_FLAG_FD_CLOEXEC	BIT(0)
+> >> > +#define XE_OA_FLAG_FD_NONBLOCK	BIT(1)
+> >> > +#define XE_OA_FLAG_DISABLED	BIT(2)
+> >> > +
+> >> > +	/** The number of u64 (id, value) pairs */
+> >> > +	__u32 num_properties;
+> >> > +
+> >> > +	/**
+> >> > +	 * Pointer to array of u64 (id, value) pairs configuring the stream
+> >> > +	 * to open.
+> >> > +	 */
+> >> > +	__u64 properties_ptr;
+> >> > +};
+> >> > +
+> >> > +/*
+> >> > + * Enable data capture for a stream that was either opened in a disabled state
+> >> > + * via I915_PERF_FLAG_DISABLED or was later disabled via
+> >> > + * I915_PERF_IOCTL_DISABLE.
+> >> > + *
+> >> > + * It is intended to be cheaper to disable and enable a stream than it may be
+> >> > + * to close and re-open a stream with the same configuration.
+> >> > + *
+> >> > + * It's undefined whether any pending data for the stream will be lost.
+> >> > + */
+> >> > +#define XE_OA_IOCTL_ENABLE	_IO('i', 0x0)
+> >> > +
+> >> > +/*
+> >> > + * Disable data capture for a stream.
+> >> > + *
+> >> > + * It is an error to try and read a stream that is disabled.
+> >> > + */
+> >> > +#define XE_OA_IOCTL_DISABLE	_IO('i', 0x1)
+> >> > +
+> >> > +/*
+> >> > + * Change metrics_set captured by a stream.
+> >> > + *
+> >> > + * If the stream is bound to a specific context, the configuration change
+> >> > + * will performed inline with that context such that it takes effect before
+> >> > + * the next execbuf submission.
+> >> > + *
+> >> > + * Returns the previously bound metrics set id, or a negative error code.
+> >> > + */
+> >> > +#define XE_OA_IOCTL_CONFIG	_IO('i', 0x2)
+> >> > +
+> >> > +struct drm_xe_oa_record_header {
+> >> > +	__u32 type;
+> >> > +	__u16 pad;
+> >> > +	__u16 size;
+> >> > +};
+> >>
+> >> Note to myself to ensure we are adding the header per read call now and not
+> >> per report.
+> >>
+> >> > +
+> >> > +enum drm_xe_oa_record_type {
+> >> > +	/**
+> >> > +	 * Samples are the work horse record type whose contents are
+> >> > +	 * extensible and defined when opening an xe oa stream based on the
+> >> > +	 * given properties.
+> >> > +	 *
+> >> > +	 * Boolean properties following the naming convention
+> >> > +	 * DRM_XE_OA_SAMPLE_xyz_PROP request the inclusion of 'xyz' data in
+> >> > +	 * every sample.
+> >> > +	 *
+> >> > +	 * The order of these sample properties given by userspace has no
+> >> > +	 * affect on the ordering of data within a sample. The order is
+> >> > +	 * documented here.
+> >> > +	 *
+> >> > +	 * struct {
+> >> > +	 *     struct drm_xe_oa_record_header header;
+> >> > +	 *
+> >> > +	 *     { u32 oa_report[]; } && DRM_XE_OA_PROP_SAMPLE_OA
+> >> > +	 * };
+> >> > +	 */
+> >> > +	DRM_XE_OA_RECORD_SAMPLE = 1,
+> >> > +
+> >> > +	/**
+> >> > +	 * Indicates that one or more OA reports were not written by the
+> >> > +	 * hardware. This can happen for example if an MI_REPORT_PERF_COUNT
+> >> > +	 * command collides with periodic sampling - which would be more likely
+> >> > +	 * at higher sampling frequencies.
+> >> > +	 */
+> >> > +	DRM_XE_OA_RECORD_OA_REPORT_LOST = 2,
+> >> > +
+> >> > +	/**
+> >> > +	 * An error occurred that resulted in all pending OA reports being lost.
+> >> > +	 */
+> >> > +	DRM_XE_OA_RECORD_OA_BUFFER_LOST = 3,
+> >> > +
+> >> > +	DRM_XE_OA_RECORD_MAX /* non-ABI */
+> >> > +};
+> >> > +
+> >> > +struct drm_xe_oa_config {
+> >> > +	/**
+> >> > +	 * @uuid:
+> >> > +	 *
+> >> > +	 * String formatted like "%\08x-%\04x-%\04x-%\04x-%\012x"
+> >> > +	 */
+> >> > +	char uuid[36];
+> >> > +
+> >> > +	/**
+> >> > +	 * @n_mux_regs:
+> >> > +	 *
+> >> > +	 * Number of mux regs in &mux_regs_ptr.
+> >> > +	 */
+> >> > +	__u32 n_mux_regs;
+> >> > +
+> >> > +	/**
+> >> > +	 * @n_boolean_regs:
+> >> > +	 *
+> >> > +	 * Number of boolean regs in &boolean_regs_ptr.
+> >> > +	 */
+> >> > +	__u32 n_boolean_regs;
+> >> > +
+> >> > +	/**
+> >> > +	 * @n_flex_regs:
+> >> > +	 *
+> >> > +	 * Number of flex regs in &flex_regs_ptr.
+> >> > +	 */
+> >> > +	__u32 n_flex_regs;
+> >> > +
+> >> > +	/**
+> >> > +	 * @mux_regs_ptr:
+> >> > +	 *
+> >> > +	 * Pointer to tuples of u32 values (register address, value) for mux
+> >> > +	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
+> >> > +	 * &n_mux_regs).
+> >> > +	 */
+> >> > +	__u64 mux_regs_ptr;
+> >> > +
+> >> > +	/**
+> >> > +	 * @boolean_regs_ptr:
+> >> > +	 *
+> >> > +	 * Pointer to tuples of u32 values (register address, value) for mux
+> >> > +	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
+> >> > +	 * &n_boolean_regs).
+> >> > +	 */
+> >> > +	__u64 boolean_regs_ptr;
+> >> > +
+> >> > +	/**
+> >> > +	 * @flex_regs_ptr:
+> >> > +	 *
+> >> > +	 * Pointer to tuples of u32 values (register address, value) for mux
+> >> > +	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
+> >> > +	 * &n_flex_regs).
+> >> > +	 */
+> >> > +	__u64 flex_regs_ptr;
+> >> > +};
+> >>
+> >> We could just have n_regs and regs_ptr for the above struct instead of
+> >> breaking this down into mux, b and flex. The kernel implementation does not
+> >> care because it only checks for these.
+> >
+> > But the kmd checks for separate addr ranges for mux, b and flex? How to
+> > handle that if have just n_regs and regs_ptr?
+>
+> The per platform ranges will still exist, but the registers will be
+> compared against all ranges (mux can be compared against b and flex
+> ranges. We don't have too many ranges to be concerned about the comparison
+> overhead.
+>
+> Well.. any changes would impact metrics scripts, so we can leave it as is.
+
+Once again, I think we should prefer a clean uapi over the work for
+userspace changes, the uapi is "forever".
+
+> >> The metrics XML processing may need to be tweaked though. Worth it if it
+> >> simplifies the KMD code.
+
+Let's make some decisions and close on these things soon.
+
+Thanks.
+--
+Ashutosh
