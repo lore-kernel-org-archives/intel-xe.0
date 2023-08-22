@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 093B3EE4996
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 16:24:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BE5ABEE4993
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 16:24:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCCDA10E3AF;
-	Tue, 22 Aug 2023 16:24:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9523C10E377;
+	Tue, 22 Aug 2023 16:24:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D1F4910E377;
- Tue, 22 Aug 2023 16:24:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id EFB5B10E377;
+ Tue, 22 Aug 2023 16:24:39 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C896DAA917;
- Tue, 22 Aug 2023 16:24:29 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id EBF56AA917;
+ Tue, 22 Aug 2023 16:24:39 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 22 Aug 2023 16:24:29 -0000
-Message-ID: <169272146979.20551.11353650976186705218@emeril.freedesktop.org>
+Date: Tue, 22 Aug 2023 16:24:39 -0000
+Message-ID: <169272147996.20550.16975374424289722344@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230822162136.25895-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20230822162136.25895-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Support_optional_pinning_of_userptr_pages_=28rev2?=
- =?utf-8?q?=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
+ =?utf-8?q?m/xe=3A_Support_optional_pinning_of_userptr_pages_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,16 +48,51 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Support optional pinning of userptr pages (rev2)
 URL   : https://patchwork.freedesktop.org/series/122637/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 779f35314 drm/xe: madvise_funcs should use value not property
-=== git am output follows ===
-Applying: drm/xe/vm: Use onion unwind for xe_vma_userptr_pin_pages()
-Applying: drm/xe/vm: Implement userptr page pinning
-Applying: drm/xe/vm: Perform accounting of userptr pinned pages
-Applying: drm/xe/uapi: Support pinning of userptr vmas
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e700ea2f248a75138759bcb443affeef4a2d1991
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a3b91acf797c1b38fbff5082db4bd081be5c58cb
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Tue Aug 22 18:21:36 2023 +0200
+
+    drm/xe/uapi: Support pinning of userptr vmas
+    
+    Support pinning of vmas using XE_VM_BIND_FLAG_PIN, initially for userptr
+    only. Pinned memory becomes accounted against RLIMIT_MEMLOCK and processes
+    with CAP_IPC_LOCK will not apply the limit. This is pretty similar to
+    mlock()'ing userptr memory with the added benefit that the driver is
+    aware and can ignore some actions in the MMU invalidation notifier.
+    
+    This will initially become useful for compute VMs on hardware without
+    mid-thread-preemption capability since with pinned pages, the MMU
+    invalidation notifier never tries to preempt a running compute kernel.
+    
+    If that were the only usage we could restrict this to a flag that always
+    pins userptr VMAs on compute VMs on such hardware, but there are
+    indications that this may become needed in other situations as well.
+    
+    From a more general point of view, the usage pattern of a system may be
+    such that in most cases it only ever runs a single workload per system
+    and then the sysadmin would want to configure the system to allow
+    extensive pinning for performance reasons.
+    
+    Hence we might want to extend the pinning capability to bo-backed VMAs
+    as well. How that pinning will be accounted remains an open but to build
+    on the current drm CGROUP work would be an option.
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 779f35314dba1441d29f4cfd510e7beb73c5f615 drm-intel
+/mt/dim: line 50: /root/.dimrc: No such file or directory
 
 
