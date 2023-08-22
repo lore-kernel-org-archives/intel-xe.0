@@ -4,138 +4,132 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D027EE4993
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 08:31:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF804EE49A8
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 09:35:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D143610E1B1;
-	Tue, 22 Aug 2023 08:31:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5624F10E1B1
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 08:31:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692693079; x=1724229079;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=CHNZLx8ZtPmE6SUcDECcqvKbWGJxQ0QbRGqlc2uyZOc=;
- b=YY7uGCKKCqBkdm3rcv08LnbWQrYAbbu4A03mlo5BW8nrrt3jv54xBEe4
- kDLeFLmkmkW0+QCgHBTvK6pOy6gqJbNlCnVTwaE35IMEiPIzRxibSMIc0
- IgSwSQrzWhWEVv7YHKU60k2dobx8w2Vro8irSyL75izxsqTZBB+zXnGxJ
- 57vMm/YqYMBBRphj0wVDE5Ys6AiXOFSPkNF+OjcGggefBpB/BkCdbnxXF
- cYGHvwnX42jXZs+K6LLBzhiG0iMtFeR1PfCmMaWsOQXJ/Zp07oL332LSX
- UhIrRTvqYsqRo8qUWycKjKm01u1dwJrImSjdKTtkbNo3uXLTZmbAgm/oI g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="376554231"
-X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; d="scan'208";a="376554231"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 01:31:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="739227491"
-X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; d="scan'208";a="739227491"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga007.fm.intel.com with ESMTP; 22 Aug 2023 01:31:17 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 22 Aug 2023 01:31:17 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 22 Aug 2023 01:31:17 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 22 Aug 2023 01:31:17 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.174)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 22 Aug 2023 01:31:16 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 788BC10E1C6;
+	Tue, 22 Aug 2023 09:35:25 +0000 (UTC)
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com
+ (mail-sn1nam02on2062b.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:7ea9::62b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7896110E1C2;
+ Tue, 22 Aug 2023 09:35:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CPYpmEeBQ9n0a2TfQQUMT4iInpPK09wENkCMQKBQucRUTZArCM5RrIH73OCf1+Dlf8N8Njfed+Ul7BUbQ+09SX3eajMp5Rvh8cOiM3E7ZeL1dGuhw5XBmYjfggexY84UpSNzYguROehbmkuV1HG7E7tlBwctGH+feWzMCFQB0HO4r3a7ufM/cs5hsQbBPP/DL086Ci9maNfPdlJu5WjGCF1yfUiMqZPv21dh6FBoaRs8Jjwjf1IX0Mpm6aHj+dMk1+4rvLtpzpf1BiCg93zea0dHPO02tFIA1QUa++uGsez7mjAQQNve+F77hYCeDyTrKJ5c5vF70lLyw6EKlRGHhw==
+ b=BTMUAqjNdwn2SeNwcMTY0opqFtxnC6xQgdqdlp46W2/MkInDnX0YcYwJxGgrI/ryDnd9c/44A9Elcj+oc+HmI/xd+y8eFTuJbiGSz38ytJC7QHtWrG4S/n1A7+0npkpIbUK85IEb4Uwhrv3XmjJO/sNkszycm88IvzQU25EXKU1jzC3VLfgEMmdYFP+NQ4mTi25PuVaclQxDYlS5NkdkNjfon3IvhuWJXtuXc3jJ8PXXwYCS7nfihH5zgf7hE1qQYIW9RUxlGxeGDbJbG+vcksPYwSEBQ/tMm2NDtiRmobXUoVsqvL1n3Wdkz7qvxP5PuD/OEQqR32gewA7k6UkcKQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jAYncuRoFPyA2Qe3MTCotrxB0kq3ekT0DObh6q37Fwk=;
- b=XuVp4U5DghJcZGTkTGJ5Z7f8XEUBuWt0ajecf6SGP8UuaZUAvXMfLRgxqsyiZsy2rMpAC7V19mfqAARk0vhn9BF3aptxrtE3MUmudc6cDoFPpRY8PTo1IP6WabBiIwE8YlwyU2K+u86YmtYqTrREoiAAs1lStfVJh/ECxDCPJtmM5lZRNqWAIcLDrcaMXfNDudiP+RRNgkXLyG60pgsmECytnoZjVQHukMV21K+10kjXJfaWk3JVNk3QyWh5Z1OA6AGz72SxCwMK9Nm0UtJMWI6V2E1WPCSYhbyrh8MWu9NsSG5OLEWlLvG8jxrTTsOnQEHGGzcW6bscnA29l4x23w==
+ bh=lTST6AxeXudTLU9HlxpFwrm2icOcx8WHexEbZSnbccc=;
+ b=Qlorh4tcRy5jRGc2p9TfX5ebQ/VwXfb1rWZ93NrmrhiQIo7JIq7wFti4/hP1+aCnk2fNbIyD6UOK9oNmaN1bPvjHJju1l+KDOdan9GoD+TvXS6nrDjI6rjIOL+ANbQU6HnVDvN5sMCHaWVF43uKsKfNhlLPB2IfSze/Cd6uZ5bBZIOp40Q/NwY4XGgmSD4ckeYQqReEKmJh8xQNMhgggCmeA2TslClVMJBSQ67DO68dRVLe9gdNZZlC8UAhN5Qv8CPMSUTkNxB1MCtYnvGbjoBFnbiG140t6kWNvB42rYP9Dk2Bvf1uQE/nruzi1WFz0OXAbAPKbva4utqHfmwHTbg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lTST6AxeXudTLU9HlxpFwrm2icOcx8WHexEbZSnbccc=;
+ b=d9fYvsp7hiK31DJDKrLfaIZc+1oPdZzGnab3Hwk+xtueOMO9rCX0Esr6GQFLlR2DWqYVQMMMJizGzqc/USrdXVp1M1x6eeZhPXAmsQoC/xPlqxiCcH8Dj64UfmGpmMQu10hG6h4T3Ts037S28txu1qP3+D9PGamH5j33EpCY7jc=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA0PR11MB7838.namprd11.prod.outlook.com (2603:10b6:208:402::12)
- by SA2PR11MB5018.namprd11.prod.outlook.com (2603:10b6:806:11a::20)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
+ by IA1PR12MB6235.namprd12.prod.outlook.com (2603:10b6:208:3e5::15)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Tue, 22 Aug
- 2023 08:31:13 +0000
-Received: from IA0PR11MB7838.namprd11.prod.outlook.com
- ([fe80::e3c6:ac94:5f4a:a4be]) by IA0PR11MB7838.namprd11.prod.outlook.com
- ([fe80::e3c6:ac94:5f4a:a4be%7]) with mapi id 15.20.6699.020; Tue, 22 Aug 2023
- 08:31:13 +0000
-Date: Tue, 22 Aug 2023 10:31:06 +0200
-From: Francois Dugast <francois.dugast@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Message-ID: <ZORySgimMKjigx3E@fdugast-desk.home>
-References: <20230808013159.38811-1-ashutosh.dixit@intel.com>
- <20230808013159.38811-2-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230808013159.38811-2-ashutosh.dixit@intel.com>
-Organization: Intel Corporation
-X-ClientProxiedBy: FR3P281CA0158.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a2::8) To IA0PR11MB7838.namprd11.prod.outlook.com
- (2603:10b6:208:402::12)
+ 2023 09:35:19 +0000
+Received: from BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::3d:c14:667a:1c81]) by BN8PR12MB3587.namprd12.prod.outlook.com
+ ([fe80::3d:c14:667a:1c81%4]) with mapi id 15.20.6699.022; Tue, 22 Aug 2023
+ 09:35:19 +0000
+Message-ID: <1cc74496-6c99-3ef5-3710-a092091ef2ea@amd.com>
+Date: Tue, 22 Aug 2023 11:35:15 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Danilo Krummrich <dakr@redhat.com>, Matthew Brost <matthew.brost@intel.com>
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-2-matthew.brost@intel.com>
+ <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
+ <069e6cd0-abd3-fdd9-217d-173e8f8e1d29@amd.com>
+ <b9a6493c-243b-1078-afbc-d9270cac904a@redhat.com>
+ <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
+ <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
+ <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
+ <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
+ <ef4d2c78-6927-3d3b-7aac-27d013af7ea6@amd.com>
+ <a80be2c1-132e-5ee1-4278-47655916494a@redhat.com>
+ <0d5af79a-ba3a-d4be-938f-81627db65b50@amd.com>
+ <a3937c17-eaa5-e0e9-e0ac-1610e0652982@redhat.com>
+ <1820cb54-5f1e-d2e6-38fa-7161465ed061@amd.com>
+ <9072642e-f4f6-4ff1-e11f-9bda8730750c@redhat.com>
+ <85107169-8a24-441f-6631-d99472d810f0@amd.com>
+ <faecd15e-020b-6b06-acf7-1dd4c5a2b4fc@redhat.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+In-Reply-To: <faecd15e-020b-6b06-acf7-1dd4c5a2b4fc@redhat.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FRYP281CA0014.DEUP281.PROD.OUTLOOK.COM (2603:10a6:d10::24)
+ To BN8PR12MB3587.namprd12.prod.outlook.com
+ (2603:10b6:408:43::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7838:EE_|SA2PR11MB5018:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6dc07ad4-7a42-4662-f3cf-08dba2ea24ab
+X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|IA1PR12MB6235:EE_
+X-MS-Office365-Filtering-Correlation-Id: f9ee39df-8d87-4247-720f-08dba2f3199b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MWJmYHJCDjiR4n4iB1B3Q8HwHoHqLxYDhhr/VBph3pUhigeZKaUn4eVoDv9F7fKKeGvqTp0WLYFtBowIrcw1xc3vdDsu49dMyCrl30O1CcHdMSWATgmI0fcbBGkxi5Vq/fXbvnD7jfD7u/ZA1Eu0nK/il57ZDINFTyuFCFRK7eDaopBJZU6VNcPj8uMSHj7l5dzjt6uUe/TFT52ljFzPXDSbZxeHi1i3KXjY0WFfNM9cQnbiduPzw1MthxX88G3MYJfPudvD8flkgA06TKPqKW20KDZ+sDIykUu3ey0mk1vjMffFHQx/TpZM+sTA7yNIXxFdDPCzwEe53QvcEf7cuIo16kCRJULernikpOXfXs8TdMZ8BUtpHp2DiWv0i+L87emuQn7+XlAfG31GRbrcOicSMa0wNDc5cexggO6Axa4fGYYl+Dx4r4ICtahvExOQPbcAZu0+Al67150lgESBO0uY7/KU8NZTnBdhCo4MaohXVNQp/AxoedBwB0Peq1fYXvYvVKghMpEWVjjg4o5ISt5LMoW4fmW/G4mGfVn2IyFhG2wwplp4HBqzFO4Znmif
+X-Microsoft-Antispam-Message-Info: /Q2E0EEI6PBdKqK9Gt1aHU8UEEmSb4ZT0yzHoA/CV6VOgSh35fz+muGX5WYTKu86LNRRYW7WBiLcDpkCgvL3kzRQPY95ONl+oEkp+jDm5mM8gELSaiO7p/lXsJx+yhZGx+j1OXwJMwpJCGO8Y09zTclEE3wnbGcISmNTvN6BIS5WvJXbdr6layqJ9n4cuYIN8XcAgOIcg2IrEKTLcS9udANTj2jRQqey7PNwDkttvaMvUxeic5nqW2c55zibo8ywQZVPhHXIhyiXplTykFh/8xh5LnZ8YHeDPvN1ovG+jkZwi0w7mOtRQwVEdAW3sfzrA/2D6nbNSpRM4nK83p7Ob4ger2sJYrDUfLcSnxgpIGF1BvSKLstT6368SxImJc6+9AEm0kItTIT2ZLYYbvEBou7TmwLxv5G5eCYGVE6VFWwCSNJtiKwjZbuGnjSCFemF4YZGWEC3VIln8JJ48kpLg6XhVoCLcswbwQMSUj2i0T4voCktT/PSHt8y0Z2RckBOG91mmVnZbUD6JoUidOpZc26JF4tVTVKF7jjyt5LVlhwQhOfIfes37GcvUn6HEu4jE2A0l1DZsdFr1Zo2BM08NHEs9BoMEU/tPE+IDmFZFLgeyAE28FZHmFH8mECS3wD6sg8ypadtFwiwXAtAAW62Jg==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7838.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(136003)(39860400002)(346002)(376002)(366004)(1800799009)(186009)(451199024)(6636002)(66556008)(66476007)(6512007)(316002)(9686003)(82960400001)(8676002)(8936002)(6862004)(4326008)(41300700001)(36756003)(478600001)(6666004)(66946007)(36916002)(38100700002)(6506007)(6486002)(83380400001)(30864003)(2906002)(44832011)(86362001)(5660300002)(26005);
- DIR:OUT; SFP:1102; 
+ IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(136003)(39860400002)(376002)(346002)(366004)(1800799009)(186009)(451199024)(66556008)(66946007)(66476007)(316002)(6512007)(110136005)(8936002)(8676002)(2616005)(4326008)(41300700001)(36756003)(478600001)(6666004)(6486002)(6506007)(38100700002)(53546011)(66574015)(2906002)(7416002)(83380400001)(86362001)(31696002)(31686004)(5660300002)(26005)(45980500001)(43740500002);
+ DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?BXFJYye+ncT1DjH1YPSQ++nl3OflaECr4tL0+NhAx7GjCeJP7XMsP6+P49An?=
- =?us-ascii?Q?Qp3hN760w9nJ5kp1stFUitUhnmoyHe/t1DdOEqRwVoiUWHoKj0CLBfRoB9mO?=
- =?us-ascii?Q?INbTBaKZnaSFR+Fcqo0OSI/kdwQ+bAkXS03DgzXlYNn4sTdfSrMOwsQFK3Rc?=
- =?us-ascii?Q?+b4U5P7fGtJXuwR+Jjno995h3YMUH7L+TlS/TI0/g2LEM6zSE4H9rd0HCw5U?=
- =?us-ascii?Q?9Pe9I7GW3dzAJ+V5E3RzgCXxlylTeGxkAZxxx0cdUtFZ5rZ8ysHi1X+csXJo?=
- =?us-ascii?Q?iQXkLOUWP+F2wyrX5uwQ2Ya10xvAXrjNbbra1ioXPSRcvUcro47W8FziO2xh?=
- =?us-ascii?Q?C0a7/g0zcX1Hff7P5EHbciOYNlANU5P6BYIetJFmDIZkr7L8RqKKuSM61Whr?=
- =?us-ascii?Q?UVOssJMYkO+mc/yrYodFD/ToQaW3vKJPoG4zWIqlQVQ7GuKs+W8Rnyz4ezNd?=
- =?us-ascii?Q?E+TehzEYGYsQ5R8xJzANbGCxgTOuznEbGZoSLILGzbmvt+Zf2w0nVqPuTXqn?=
- =?us-ascii?Q?K/rjzeg7Bh2i1rp5oN+D+28sqI6Pzq1gE8o5s8FdIjd/HqL/5N5hC+d08e0M?=
- =?us-ascii?Q?HeieTXJH4NyCIwWD9msWoLKw+yT6nBeqtMJd6RhX0T+vDT0LiBTbt08Pgl1/?=
- =?us-ascii?Q?iZiuYq+acTV1JTvO/5k/3xn9n3UfPe5GZsg+6bnX7rp2qmg0wdRAIioXYNUV?=
- =?us-ascii?Q?/GNeRiBRXysu2+qfwDomcIaFyCB5SiPJkOpByEhuYyODdLsXZ/dsQASPuUUd?=
- =?us-ascii?Q?btUPpb+1gr88kaEuQbG/Dre1+NxKmH2XfnZ1MvB0S5i9HdafpuUtjcWEuyq0?=
- =?us-ascii?Q?/PokS1tUTqSLYuuSU/exkhiTJ/TW2adSk7IdrBIRsgvL8OeGhVsne8cTivvU?=
- =?us-ascii?Q?BZhE9/O5WY/fdgVw4rN8icJnRpFYGcAaSN0kMcejCjuoPYlPYVhPFMhOeTJQ?=
- =?us-ascii?Q?RAVJotT0Aw2jJ+sxNdlV7qAM+s8X+I+CKvOn5Sq29UrOIQyRk7pjynvmV5Uc?=
- =?us-ascii?Q?hXl7Pd1g31Y1O7CBlgwgq60Lf4CaKid8r6VMDFH8I6pLKbx9JuynyBWATLsT?=
- =?us-ascii?Q?y4hMBHT0z+uJOfPZLLS9JaTw/advjZRCF9nWMTUtBftsOg7V7kA/XhjiNnFd?=
- =?us-ascii?Q?wwJPJt0tNOwUL4rbkQygnbNUJTcEUWaAwNgM0RfYbtsGP9WbRCmR2Y1FFV1d?=
- =?us-ascii?Q?NexCHH3KgLtgoS5K3Uwym3+KbpqW6kpMxj3PibjGOqZF8Vf6cB7lHBxcYKTC?=
- =?us-ascii?Q?Zp4HT8z8wwIrriHzkKIzUatuNyN1qLaNcLUOMMrb1PG57e2+pNW8ZIxIy3tT?=
- =?us-ascii?Q?IHPpfPOzX9klAVAvzmkN5sLq2wk/oeLSZje1rRzVprlJouruH9PPu/xFNRzl?=
- =?us-ascii?Q?bg9C/zdiTnYuFWDLLyy6JxF7e2QL1+dm7QnI6YdGG6k2TMMZhu1aWTIQxzL5?=
- =?us-ascii?Q?769mNKgR56qk6nzr7z3/GuM1hrsgSjDd+0Y0/wIhqGFpd6fG39RS8hoQibss?=
- =?us-ascii?Q?zMqeKrWTN6O4hPKZHDP5drZ3sWhis2miidtmSg2WDd9K/D6RKAV293WNdR4N?=
- =?us-ascii?Q?d8l187BhQP3CS1kxCo1m7SEe0RkMxc2Nnbyf8q0UQ+362/3LNMNEx0AgjG0e?=
- =?us-ascii?Q?dQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6dc07ad4-7a42-4662-f3cf-08dba2ea24ab
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7838.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q1VxL2I2eTJDUGpWUVN5MXluenlLdXN5S3Jjc2t0WHBsaGRBS2h4TVVlZ1hC?=
+ =?utf-8?B?Z3hXcmg1ODY3eWZhZEFpSHYzN1JUdEQvdUYwN0ZTSFFKd3JWbXBsZ0N4Mkt6?=
+ =?utf-8?B?bW9aZVVEYjlpa3JyalVxN01oeEIyeVR5VnkrRWxscW0yQzduUjByWUNUK0ZI?=
+ =?utf-8?B?enBqM3NUTVU0dWltc01rZGU2T3dwQmoySnN2eTFKYTh5SXVLSGh5UnFjNEY5?=
+ =?utf-8?B?VjFJZ2F3MjZpdXdMU2RFNFYrSVo5K0JDWHJGNElMWTNENi9HUnpWSlE3LzRF?=
+ =?utf-8?B?Z0gva1ZUcDNXTmxYbDVEdm81RXBoWEJSREJtQ3hoZW9SbnlkQWE2bjE2eUw2?=
+ =?utf-8?B?MTNhMUF6RkVvMXpxWFMvTEU1RDBaTm1UTUxYN3ZFTzl1N2kwK0FGQjhoWHlJ?=
+ =?utf-8?B?eWR2a1BhQVZSNmNGTklOQzhoaVd1a0lUZUtJZXpTVEZNSk51Qkk4QzlDZlNr?=
+ =?utf-8?B?ZHVRVjhVU1pGT2taZC9sZjN6OHRKOUFCWWJpaXUwVXdBY2FaM1VJbFdHbHNZ?=
+ =?utf-8?B?OGNWOTFodTEyZzR2S0dNTGRXZy9rWjd0dEloRDMwRkhOQkgva1pyczVHMkdu?=
+ =?utf-8?B?ekphWmtKc2Jzb2JSM2ZOSW9wRDdscXdybGduYWZZY3VMT2F0aU15cHA4M1R0?=
+ =?utf-8?B?ZzRoMWlEeHNuUGtFOGVLSkVEQmRwQytVWWhSU1pnNU5IR2FJM0RpMDZSZzd4?=
+ =?utf-8?B?WUxuUEJWRndnbHc5NjB2NnFpR1BIeHdnQyt3U0E3MFJMQ0h2Y1Z2R2FvMGp6?=
+ =?utf-8?B?R3BXS3ZJQTFnZVJqT3NiY0cwdzl5eVZyWnc1bVRINVcvMHNHSjJuVU9BK0NT?=
+ =?utf-8?B?aFowVEMyOTducVFvNno4OXZLaFNmajhOaVNmTUNnK3hoZzlPS1Vld0w5VzdQ?=
+ =?utf-8?B?RFVNMk1uUzVFUHowYWdPSFdKZG8rV0d1akcvYXc1S1I5ZlB6V1V2NjBHaXJM?=
+ =?utf-8?B?dC83YTJyWjlsMkpsOFNpY3BFNVRlaUZjYW5hUWpKRlg3NWJvWlJWOHdsZU5Z?=
+ =?utf-8?B?TmxHRllhNUdvTG0xdE9GSjNER0NOK0k1YllaT0dpbVZwczZaV2l5UjBRU0xl?=
+ =?utf-8?B?VlVMenA0bDFKTHpwNzFzNm1FL0NKdGVOM0FnNGxZWEZjTGxDYnBwVHIraEdU?=
+ =?utf-8?B?L0FCNmM1YTFETTlrbDM0NzlqeHdaMnNoZy9TTXB3OUx6dlFWY0xHbHc5WXlT?=
+ =?utf-8?B?ZGlhMDdpZHBoOGhtVDVtWDFWWDlPVlg2bllXcVJBZG1palJ3UGpFRW1mUDVL?=
+ =?utf-8?B?eW5YOEZjZzA1b2VocEhOK3ZqaW5TQ3NvZE9pQmhZWk91cUFVakdVMjRBRjVO?=
+ =?utf-8?B?NGdEZEVtNXVCWm1jMEU1Rlp5MW1Oc0xFU2x6RW5GVmYyNllialdHSGdKS0Rs?=
+ =?utf-8?B?NnBic3JZQk9DcWVyRUdKY0IxNDhsbkVMdkFDV09UNGFSSllkS1NDYmhqbGlY?=
+ =?utf-8?B?NnI3RU1uR3dWckt1UEEyLzIxb201c2JCRUlZYTN4VFd0cVJrQlJEZjRjV2Rz?=
+ =?utf-8?B?RWs1L0ZuMUhmTDh3cDVZQjVMWVN6TDI4clZ0QlNWeFA2L1o2L2xQSW10NU0w?=
+ =?utf-8?B?MGlCNGRDRk5WNDhUdmhCRk9VOW5vQmZYSCtLNlEvdWF0MkU1TDEwMU1KWXRX?=
+ =?utf-8?B?UDlSVDB6YTB0Z21PeTVWSjM0dy85TmVzNWN2SHhzbGd2UmhQY3phbkNobnZY?=
+ =?utf-8?B?bXJOamIzb3dxNmo4RDlOWVZzZmVUTU9JWktXZlcyK3U4bnN5bmJVYXVuLzJ0?=
+ =?utf-8?B?R1FkMVpVaXJTbG9rSFV4N0tDZUFsa0QrU2RkQmN6dUpHR2I2SVJDcC93d3lv?=
+ =?utf-8?B?ZmFSRktrZXo3dGZqRENzOEUvek1CSnRSMkhTWGZWU0RLYVZ5ek5ocktGMDJZ?=
+ =?utf-8?B?bHRFSEhrYTFtZ3BrMVhwdHFpZStSUVpkMkxKWDU1QmNoNXJ2cVRxTXUzYyty?=
+ =?utf-8?B?OUNsVjRRK2VHUFozT3gvMTJIQVBWbERYbkRzZnVyWFh0WmZ5R0E3RVJYSTVN?=
+ =?utf-8?B?OXk4aFRTWTlQdUg4MnlBOVlhalY0aWo2VHRjRzFkUDBqeVJZdXJBNnlxMjE5?=
+ =?utf-8?B?UlVSV08wUEhzUG9PYzlyU3MzaklBMUdhZDQ5QjR1WWpVQ1hxOHpER1UyZFlP?=
+ =?utf-8?Q?bGdKXrSNspW2vZhS7pHUxuN1q?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f9ee39df-8d87-4247-720f-08dba2f3199b
+X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 08:31:12.6836 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 09:35:19.5863 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XeAE/6dAYquX0wHip3LthlFPJ/CD+2sG7L7W2tJVHOQcNlKZkmTgmxc5cF33ywJRX+lke12y0lVAddxutZFDJhFq+TtXrEfA+IEOKz+MY8w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA2PR11MB5018
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 01/10] drm/xe/oa: Introduce OA uapi
+X-MS-Exchange-CrossTenant-UserPrincipalName: uOAjoJZkqGpuhhc0IC53mt0OPKShjR3SEILHS52SEIjUtSLNVGipmFzIfRSabTrC
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6235
+Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
+ use a work queue rather than kthread
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,337 +141,136 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ luben.tuikov@amd.com, donald.robson@imgtec.com, boris.brezillon@collabora.com,
+ intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Ashutosh,
+Am 21.08.23 um 21:07 schrieb Danilo Krummrich:
+> On 8/21/23 20:12, Christian König wrote:
+>> Am 21.08.23 um 20:01 schrieb Danilo Krummrich:
+>>> On 8/21/23 16:07, Christian König wrote:
+>>>> Am 18.08.23 um 13:58 schrieb Danilo Krummrich:
+>>>>> [SNIP]
+>>>>>> I only see two possible outcomes:
+>>>>>> 1. You return -EBUSY (or similar) error code indicating the the 
+>>>>>> hw can't receive more commands.
+>>>>>> 2. Wait on previously pushed commands to be executed.
+>>>>>> (3. Your driver crash because you accidentally overwrite stuff in 
+>>>>>> the ring buffer which is still executed. I just assume that's 
+>>>>>> prevented).
+>>>>>>
+>>>>>> Resolution #1 with -EBUSY is actually something the UAPI should 
+>>>>>> not do, because your UAPI then depends on the specific timing of 
+>>>>>> submissions which is a really bad idea.
+>>>>>>
+>>>>>> Resolution #2 is usually bad because it forces the hw to run dry 
+>>>>>> between submission and so degrade performance.
+>>>>>
+>>>>> I agree, that is a good reason for at least limiting the maximum 
+>>>>> job size to half of the ring size.
+>>>>>
+>>>>> However, there could still be cases where two subsequent jobs are 
+>>>>> submitted with just a single IB, which as is would still block 
+>>>>> subsequent jobs to be pushed to the ring although there is still 
+>>>>> plenty of space. Depending on the (CPU) scheduler latency, such a 
+>>>>> case can let the HW run dry as well.
+>>>>
+>>>> Yeah, that was intentionally not done as well. The crux here is 
+>>>> that the more you push to the hw the worse the scheduling 
+>>>> granularity becomes. It's just that neither Xe nor Nouveau relies 
+>>>> that much on the scheduling granularity at all (because of hw queues).
+>>>>
+>>>> But Xe doesn't seem to need that feature and I would still try to 
+>>>> avoid it because the more you have pushed to the hw the harder it 
+>>>> is to get going again after a reset.
+>>>>
+>>>>>
+>>>>> Surely, we could just continue decrease the maximum job size even 
+>>>>> further, but this would result in further overhead on user and 
+>>>>> kernel for larger IB counts. Tracking the actual job size seems to 
+>>>>> be the better solution for drivers where the job size can vary 
+>>>>> over a rather huge range.
+>>>>
+>>>> I strongly disagree on that. A larger ring buffer is trivial to 
+>>>> allocate 
+>>>
+>>> That sounds like a workaround to me. The problem, in the case above, 
+>>> isn't that the ring buffer does not have enough space, the problem 
+>>> is that we account for the maximum job size although the actual job 
+>>> size is much smaller. And enabling the scheduler to track the actual 
+>>> job size is trivial as well.
+>>
+>> That's what I agree on, so far I just didn't see the reason for doing 
+>> it but at least a few reason for not doing it.
+>>
+>>>
+>>>> and if userspace submissions are so small that the scheduler can't 
+>>>> keep up submitting them then your ring buffer size is your smallest 
+>>>> problem.
+>>>>
+>>>> In other words the submission overhead will completely kill your 
+>>>> performance and you should probably consider stuffing more into a 
+>>>> single submission.
+>>>
+>>> I fully agree and that is also the reason why I want to keep the 
+>>> maximum job size as large as possible.
+>>>
+>>> However, afaik with Vulkan it's the applications themselves deciding 
+>>> when and with how many command buffers a queue is submitted (@Faith: 
+>>> please correct me if I'm wrong). Hence, why not optimize for this 
+>>> case as well? It's not that it would make another case worse, right?
+>>
+>> As I said it does make both the scheduling granularity as well as the 
+>> reset behavior worse.
+>
+> As you already mentioned Nouveau (and XE) don't really rely much on 
+> scheduling granularity. For Nouveau, the same is true for the reset 
+> behavior; if things go south the channel is killed anyway. Userspace 
+> would just request a new ring in this case.
+>
+> Hence, I think Nouveau would profit from accounting the actual job 
+> size. And at the same time, other drivers having a benefit of always 
+> accounting for the maximum job size would still do so, by default.
+>
+> Arbitrary ratios of how much the job size contributes to the ring 
+> being considered as full would also be possible.
 
-On Mon, Aug 07, 2023 at 06:31:50PM -0700, Ashutosh Dixit wrote:
-> OA uapi allows userspace to:
-> * Read streams of performance counters written by hardware
-> * Configure (and reconfigure) which sets of perf counters are captured as
->   part of OA streams
-> * Configure other properties (such as format and periodicity) of such
->   captures.
-> * Query associated parameters such as OA unit timestamp freq, oa_unit_id's
->   for hw engines and OA ioctl version
+That would indeed be rather interesting since for a bunch of drivers the 
+limiting part is not the ring buffer size, but rather the utilization of 
+engines.
 
-Please document the uapi structures, not only their members. Also it would
-be nice to explicit somewhere what OA stands for, maybe in the commit
-message as well.
+But no idea how to properly design that. You would have multiple values 
+to check instead of just one.
 
-Francois
+Christian.
 
-> 
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> ---
->  include/uapi/drm/xe_drm.h | 257 +++++++++++++++++++++++++++++++++++++-
->  1 file changed, 256 insertions(+), 1 deletion(-)
-> 
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 86f16d50e9ccc..b4ab07c285245 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -111,6 +111,9 @@ struct xe_user_extension {
->  #define DRM_XE_WAIT_USER_FENCE		0x0b
->  #define DRM_XE_VM_MADVISE		0x0c
->  #define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0d
-> +#define DRM_XE_OA_OPEN			0x36
-> +#define DRM_XE_OA_ADD_CONFIG		0x37
-> +#define DRM_XE_OA_REMOVE_CONFIG		0x38
->  
->  /* Must be kept compact -- no holes */
->  #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
-> @@ -127,6 +130,9 @@ struct xe_user_extension {
->  #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
->  #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
->  #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
-> +#define DRM_IOCTL_XE_OA_OPEN			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_OPEN, struct drm_xe_oa_open_param)
-> +#define DRM_IOCTL_XE_OA_ADD_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_ADD_CONFIG, struct drm_xe_oa_config)
-> +#define DRM_IOCTL_XE_OA_REMOVE_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_OA_REMOVE_CONFIG, __u64)
->  
->  /**
->   * enum drm_xe_memory_class - Supported memory classes.
-> @@ -261,7 +267,8 @@ struct drm_xe_query_config {
->  #define XE_QUERY_CONFIG_GT_COUNT		4
->  #define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
->  #define XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY	6
-> -#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY + 1)
-> +#define XE_QUERY_OA_IOCTL_VERSION		7
-> +#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_OA_IOCTL_VERSION + 1)
->  	/** @info: array of elements containing the config info */
->  	__u64 info[];
->  };
-> @@ -298,6 +305,7 @@ struct drm_xe_query_gts {
->  		__u64 native_mem_regions;	/* bit mask of instances from drm_xe_query_mem_usage */
->  		__u64 slow_mem_regions;		/* bit mask of instances from drm_xe_query_mem_usage */
->  		__u64 inaccessible_mem_regions;	/* bit mask of instances from drm_xe_query_mem_usage */
-> +		__u64 oa_timestamp_freq;
->  		__u64 reserved[8];
->  	} gts[];
->  };
-> @@ -753,6 +761,7 @@ struct drm_xe_engine_class_instance {
->  
->  	__u16 engine_instance;
->  	__u16 gt_id;
-> +	__u16 oa_unit_id;
->  };
->  
->  struct drm_xe_exec_queue_create {
-> @@ -1056,6 +1065,252 @@ struct drm_xe_vm_madvise {
->  	__u64 reserved[2];
->  };
->  
-> +enum drm_xe_oa_format {
-> +	XE_OA_FORMAT_C4_B8 = 7,
-> +
-> +	/* Gen8+ */
-> +	XE_OA_FORMAT_A12,
-> +	XE_OA_FORMAT_A12_B8_C8,
-> +	XE_OA_FORMAT_A32u40_A4u32_B8_C8,
-> +
-> +	/* DG2 */
-> +	XE_OAR_FORMAT_A32u40_A4u32_B8_C8,
-> +	XE_OA_FORMAT_A24u40_A14u32_B8_C8,
-> +
-> +	/* MTL OAM */
-> +	XE_OAM_FORMAT_MPEC8u64_B8_C8,
-> +	XE_OAM_FORMAT_MPEC8u32_B8_C8,
-> +
-> +	XE_OA_FORMAT_MAX	    /* non-ABI */
-> +};
-> +
-> +enum drm_xe_oa_property_id {
-> +	/**
-> +	 * Open the stream for a specific exec queue id (as used with
-> +	 * drm_xe_exec). A stream opened for a specific exec queue id this
-> +	 * way won't typically require root privileges.
-> +	 */
-> +	DRM_XE_OA_PROP_EXEC_QUEUE_ID = 1,
-> +
-> +	/**
-> +	 * A value of 1 requests the inclusion of raw OA unit reports as
-> +	 * part of stream samples.
-> +	 */
-> +	DRM_XE_OA_PROP_SAMPLE_OA,
-> +
-> +	/**
-> +	 * The value specifies which set of OA unit metrics should be
-> +	 * configured, defining the contents of any OA unit reports.
-> +	 */
-> +	DRM_XE_OA_PROP_OA_METRICS_SET,
-> +
-> +	/**
-> +	 * The value specifies the size and layout of OA unit reports.
-> +	 */
-> +	DRM_XE_OA_PROP_OA_FORMAT,
-> +
-> +	/**
-> +	 * Specifying this property implicitly requests periodic OA unit
-> +	 * sampling and (at least on Haswell) the sampling frequency is derived
-> +	 * from this exponent as follows:
-> +	 *
-> +	 *   80ns * 2^(period_exponent + 1)
-> +	 */
-> +	DRM_XE_OA_PROP_OA_EXPONENT,
-> +
-> +	/**
-> +	 * Specifying this property is only valid when specify a context to
-> +	 * filter with DRM_XE_OA_PROP_ENGINE_ID. Specifying this property
-> +	 * will hold preemption of the particular engine we want to gather
-> +	 * performance data about.
-> +	 */
-> +	DRM_XE_OA_PROP_HOLD_PREEMPTION,
-> +
-> +	/**
-> +	 * Specifying this pins all contexts to the specified SSEU power
-> +	 * configuration for the duration of the recording.
-> +	 *
-> +	 * This parameter's value is a pointer to a struct
-> +	 * drm_xe_gem_context_param_sseu (TBD).
-> +	 */
-> +	DRM_XE_OA_PROP_GLOBAL_SSEU,
-> +
-> +	/**
-> +	 * This optional parameter specifies the timer interval in nanoseconds
-> +	 * at which the xe driver will check the OA buffer for available data.
-> +	 * Minimum allowed value is 100 microseconds. A default value is used by
-> +	 * the driver if this parameter is not specified. Note that larger timer
-> +	 * values will reduce cpu consumption during OA perf captures. However,
-> +	 * excessively large values would potentially result in OA buffer
-> +	 * overwrites as captures reach end of the OA buffer.
-> +	 */
-> +	DRM_XE_OA_PROP_POLL_OA_PERIOD,
-> +
-> +	/**
-> +	 * Multiple engines may be mapped to the same OA unit. The OA unit is
-> +	 * identified by class:instance of any engine mapped to it.
-> +	 *
-> +	 * This parameter specifies the engine class and must be passed along
-> +	 * with DRM_XE_OA_PROP_OA_ENGINE_INSTANCE.
-> +	 */
-> +	DRM_XE_OA_PROP_OA_ENGINE_CLASS,
-> +
-> +	/**
-> +	 * This parameter specifies the engine instance and must be passed along
-> +	 * with DRM_XE_OA_PROP_OA_ENGINE_CLASS.
-> +	 */
-> +	DRM_XE_OA_PROP_OA_ENGINE_INSTANCE,
-> +
-> +	DRM_XE_OA_PROP_MAX /* non-ABI */
-> +};
-> +
-> +struct drm_xe_oa_open_param {
-> +	__u32 flags;
-> +#define XE_OA_FLAG_FD_CLOEXEC	BIT(0)
-> +#define XE_OA_FLAG_FD_NONBLOCK	BIT(1)
-> +#define XE_OA_FLAG_DISABLED	BIT(2)
-> +
-> +	/** The number of u64 (id, value) pairs */
-> +	__u32 num_properties;
-> +
-> +	/**
-> +	 * Pointer to array of u64 (id, value) pairs configuring the stream
-> +	 * to open.
-> +	 */
-> +	__u64 properties_ptr;
-> +};
-> +
-> +/*
-> + * Enable data capture for a stream that was either opened in a disabled state
-> + * via I915_PERF_FLAG_DISABLED or was later disabled via
-> + * I915_PERF_IOCTL_DISABLE.
-> + *
-> + * It is intended to be cheaper to disable and enable a stream than it may be
-> + * to close and re-open a stream with the same configuration.
-> + *
-> + * It's undefined whether any pending data for the stream will be lost.
-> + */
-> +#define XE_OA_IOCTL_ENABLE	_IO('i', 0x0)
-> +
-> +/*
-> + * Disable data capture for a stream.
-> + *
-> + * It is an error to try and read a stream that is disabled.
-> + */
-> +#define XE_OA_IOCTL_DISABLE	_IO('i', 0x1)
-> +
-> +/*
-> + * Change metrics_set captured by a stream.
-> + *
-> + * If the stream is bound to a specific context, the configuration change
-> + * will performed inline with that context such that it takes effect before
-> + * the next execbuf submission.
-> + *
-> + * Returns the previously bound metrics set id, or a negative error code.
-> + */
-> +#define XE_OA_IOCTL_CONFIG	_IO('i', 0x2)
-> +
-> +struct drm_xe_oa_record_header {
-> +	__u32 type;
-> +	__u16 pad;
-> +	__u16 size;
-> +};
-> +
-> +enum drm_xe_oa_record_type {
-> +	/**
-> +	 * Samples are the work horse record type whose contents are
-> +	 * extensible and defined when opening an xe oa stream based on the
-> +	 * given properties.
-> +	 *
-> +	 * Boolean properties following the naming convention
-> +	 * DRM_XE_OA_SAMPLE_xyz_PROP request the inclusion of 'xyz' data in
-> +	 * every sample.
-> +	 *
-> +	 * The order of these sample properties given by userspace has no
-> +	 * affect on the ordering of data within a sample. The order is
-> +	 * documented here.
-> +	 *
-> +	 * struct {
-> +	 *     struct drm_xe_oa_record_header header;
-> +	 *
-> +	 *     { u32 oa_report[]; } && DRM_XE_OA_PROP_SAMPLE_OA
-> +	 * };
-> +	 */
-> +	DRM_XE_OA_RECORD_SAMPLE = 1,
-> +
-> +	/**
-> +	 * Indicates that one or more OA reports were not written by the
-> +	 * hardware. This can happen for example if an MI_REPORT_PERF_COUNT
-> +	 * command collides with periodic sampling - which would be more likely
-> +	 * at higher sampling frequencies.
-> +	 */
-> +	DRM_XE_OA_RECORD_OA_REPORT_LOST = 2,
-> +
-> +	/**
-> +	 * An error occurred that resulted in all pending OA reports being lost.
-> +	 */
-> +	DRM_XE_OA_RECORD_OA_BUFFER_LOST = 3,
-> +
-> +	DRM_XE_OA_RECORD_MAX /* non-ABI */
-> +};
-> +
-> +struct drm_xe_oa_config {
-> +	/**
-> +	 * @uuid:
-> +	 *
-> +	 * String formatted like "%\08x-%\04x-%\04x-%\04x-%\012x"
-> +	 */
-> +	char uuid[36];
-> +
-> +	/**
-> +	 * @n_mux_regs:
-> +	 *
-> +	 * Number of mux regs in &mux_regs_ptr.
-> +	 */
-> +	__u32 n_mux_regs;
-> +
-> +	/**
-> +	 * @n_boolean_regs:
-> +	 *
-> +	 * Number of boolean regs in &boolean_regs_ptr.
-> +	 */
-> +	__u32 n_boolean_regs;
-> +
-> +	/**
-> +	 * @n_flex_regs:
-> +	 *
-> +	 * Number of flex regs in &flex_regs_ptr.
-> +	 */
-> +	__u32 n_flex_regs;
-> +
-> +	/**
-> +	 * @mux_regs_ptr:
-> +	 *
-> +	 * Pointer to tuples of u32 values (register address, value) for mux
-> +	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
-> +	 * &n_mux_regs).
-> +	 */
-> +	__u64 mux_regs_ptr;
-> +
-> +	/**
-> +	 * @boolean_regs_ptr:
-> +	 *
-> +	 * Pointer to tuples of u32 values (register address, value) for mux
-> +	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
-> +	 * &n_boolean_regs).
-> +	 */
-> +	__u64 boolean_regs_ptr;
-> +
-> +	/**
-> +	 * @flex_regs_ptr:
-> +	 *
-> +	 * Pointer to tuples of u32 values (register address, value) for mux
-> +	 * registers.  Expected length of buffer is (2 * sizeof(u32) *
-> +	 * &n_flex_regs).
-> +	 */
-> +	__u64 flex_regs_ptr;
-> +};
-> +
->  #if defined(__cplusplus)
->  }
->  #endif
-> -- 
-> 2.41.0
-> 
+>
+> - Danilo
+>
+>>
+>> In general I think we should try to push just enough work to the 
+>> hardware to keep it busy and not as much as possible.
+>>
+>> So as long as nobody from userspace comes and says we absolutely need 
+>> to optimize this use case I would rather not do it.
+>>
+>> Regards,
+>> Christian.
+>>
+>>>
+>>> - Danilo
+>>>
+>>>>
+>>>> Regards,
+>>>> Christian.
+>>>>
+>>>>>
+>>>>> - Danilo
+>>>>
+>>>
+>>
+>
+
