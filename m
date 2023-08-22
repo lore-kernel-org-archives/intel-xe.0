@@ -4,48 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EEECEE49AA
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 04:48:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55046EE49A3
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 05:00:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D7B910E14E;
-	Tue, 22 Aug 2023 04:48:28 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF9DA10E00C
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 04:48:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1AB1210E2E2;
+	Tue, 22 Aug 2023 05:00:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C101310E14E
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 05:00:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692679704; x=1724215704;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=zqyK+Q4xD3IP86HztlmyITpN/d/bcfeOTEBT+E9KYK4=;
- b=CUywTaWywxqXYyCT/6d4qNx09qtsKsxrxiLGKsn8IHwidoAgZbSNd/18
- eld0pXtJnZ4etFaUutcUF+KbiyGU26kJAnKDtA87a/JSwm5rhZS8WMV3i
- Bz9lKaK4u/Y1sAbft+l1b32xJ+e4uJ3z5trUSg1WnS/AiMrOmXPdAaka1
- 1gx8AppuF/TF2B2/1eSWh+4+kJAcpZXLwQvSb7YP10Isu++icOiOX0UFY
- c/6rT5ignhX30dZFFTufMyldJDoEepG85PBOYrHViaeNsfAWIjvCqiK5r
- Ps9oTcjGay8JeBvTZkn1VQ/Tz89q9x+Kohnc38YfCxrbzAlJ7NQkxCqiE Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="440144559"
-X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; d="scan'208";a="440144559"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Aug 2023 21:48:24 -0700
+ t=1692680411; x=1724216411;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=MdKJdO9wUv/CqFvavVxjqT/bquO7yYCjslBJAso6SnU=;
+ b=Z6EiFpJAbA9cWNu9rqv0eIY+LvgFvCZT0Sn1dlpy9hga4qauzZ0VyTu+
+ JS7l0L4l35KY/Gi8zOjS5eiE1mQ2GMhR5SAvpLInxxQFM/aeKPj4cgdOm
+ RsQfch1xJBAwTRe6T6dMw1FyB7QXg9C3XFyWbcvCdklnKernfZUo+WQu5
+ iFQ7xcQU7YwjYv2eDA4q4MSXK4fp+SIwyCeW465o4+BGlY3vXM/ha2bnc
+ VcpIhxsHL2rQXKCYuaAq8lTIMTEwi65pTdRXj0hy/i9fq7mZoosxOyCbx
+ +qvLNJ0tbWfvnNl+2gqZCfMUmAw3jAZm6/+h3i9NEROTby1JnMxWkibcZ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="371206172"
+X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; d="scan'208";a="371206172"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Aug 2023 22:00:10 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="850454394"
-X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; d="scan'208";a="850454394"
-Received: from suja-super-server.iind.intel.com ([10.145.169.64])
- by fmsmga002.fm.intel.com with ESMTP; 21 Aug 2023 21:48:22 -0700
-From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 22 Aug 2023 10:28:25 +0530
-Message-Id: <20230822045825.3900964-2-sujaritha.sundaresan@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230822045825.3900964-1-sujaritha.sundaresan@intel.com>
-References: <20230822045825.3900964-1-sujaritha.sundaresan@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="771222562"
+X-IronPort-AV: E=Sophos;i="6.01,192,1684825200"; d="scan'208";a="771222562"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga001.jf.intel.com with ESMTP; 21 Aug 2023 22:00:10 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Mon, 21 Aug 2023 22:00:09 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Mon, 21 Aug 2023 22:00:09 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Mon, 21 Aug 2023 22:00:09 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.42) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Mon, 21 Aug 2023 22:00:09 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=L1TaW1Z9ruFKCwS59W4frjuXUDyqvv4TQt3wXvZd9DWQpybgVdO0lud7d4fWDSRMFdkwZIJuyVVYuIFT6OnLXbx40oosSLzp93TpR0v7hxrqmePQvfC9fmHowMhaB0B8lVBBqdKnBTSjQxGT76/ZXpUlISjZfKBT2ipq9sOqBjFhGZarxsdIZyH2+RQKRFOdP4tkkn5LdmtVBBrBAlJkvKMkqT16AM9SUO7oE5/QhEczrbVW/CvLsXitHr6vYKJkRT3ZVh18MCsoaZ+JkdEVe3FyzVyihl+yIwoe/7hyhfd5S1UCcTznRxxtIkixYVnQM538HjcHCsIzyfo+1+P8iw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=p1AUwJpeu3Ix9/kn2ZLO4+2ntovzwsUk2DG0Ku/CFyI=;
+ b=ZKCSU0JRVYeA9lEwpbgEHkUreqHAkU/foVU/MFZr2C0BgxQBJfhROn9SIz/V2m/fNvL1n6JRbZ9mF6L5kHRz07BSbKHPDslB8pk0gJOHWhaysh4W3Yn0te79f71XFRZwXWdRuRmju8wFv+gIWpFZqyk+k2UV0nU8H3YmCOWnvomy9Tedy7460SuJz1mzCABvIDZrbv/DRaJMxm/2RGb489sxSmIIJOIPHlEgVVm4NS7yl6RpCAW5uwCtrsPZDgPNnrV+nj4Js1JVyhflNS7dwPI1RkHLYN2fx+v/FSuyhOe6vC2tyMn0Mpg/7vbpl5hE6oHIhyefg/BqFaP6wyk3eA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM8PR11MB5653.namprd11.prod.outlook.com (2603:10b6:8:25::8) by
+ CH3PR11MB7769.namprd11.prod.outlook.com (2603:10b6:610:123::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Tue, 22 Aug
+ 2023 05:00:05 +0000
+Received: from DM8PR11MB5653.namprd11.prod.outlook.com
+ ([fe80::3382:a13a:ef37:f584]) by DM8PR11MB5653.namprd11.prod.outlook.com
+ ([fe80::3382:a13a:ef37:f584%5]) with mapi id 15.20.6699.022; Tue, 22 Aug 2023
+ 05:00:05 +0000
+Message-ID: <c131b308-72ec-70cd-cf3c-b44f9255cc7e@intel.com>
+Date: Tue, 22 Aug 2023 10:29:54 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+Content-Language: en-US
+To: "Gupta, Anshuman" <anshuman.gupta@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+References: <20230821120728.3871527-1-sujaritha.sundaresan@intel.com>
+ <CY5PR11MB62112CF2D7047C7BBC7232F5951EA@CY5PR11MB6211.namprd11.prod.outlook.com>
+From: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
+In-Reply-To: <CY5PR11MB62112CF2D7047C7BBC7232F5951EA@CY5PR11MB6211.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0153.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:c8::18) To DM8PR11MB5653.namprd11.prod.outlook.com
+ (2603:10b6:8:25::8)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC][PATCH 1/1] drm/xe: Add throttle reason sysfs
- attributes
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM8PR11MB5653:EE_|CH3PR11MB7769:EE_
+X-MS-Office365-Filtering-Correlation-Id: cefbeaef-a128-4f82-9522-08dba2cca5f6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: hd9fziX3AIsSgOffcKmmC5fO/n4be4AIZ78mAYh7D/eS42ZECOx96w8EChnxaMNkTH9WYyULCoYkHkBYjyFXNF7dksw4K7UX5Yn/4i2m2pwPRRUOtWKr0aaRA91ALsC6/NSU4MVKVXuBQgS9Tc8/vP9oxByfCjkltXW9XcG57p5dcq9sqD/cbe7O6FvWjHUi+9FuBcYQAhzozR+2uuZBnzCcmUFXoUP3IJEib/bJ3b7jhCeLOmEvbJJRdobB863VewN/vZIpKIrflkthoQfNcN9zul5yViGk5yvXWMFLW+uCcTjvoRFsgLmeASTwz3JRTDtzoTj2NJMemY5BQgWe/UzyynJU4kTfAVuC9kUog3in+90A6n1z+sC3/c6T+Pl6xUK9MT8Tj3WeySnYst+Los0dnUosyLuRXqmvFPZEwg6H5mRy9vyR1mO8B+H36/3nHvraLg/g/JF6n5/yC5AWCuqPZTwtCCyAtTZahAqeYoezyynqxGfz8VuAisBLPigTEKNh8KgTSOqUT1UuJJczXFW5HkvqUbh21T0Lgi0TnTkvXWw0nbtzr5E5efpI5tRVwRDXPSYmEpu7h4l9TuapcqYajjJyOyhlTbSGx0qe5Bw5ZyO6QzUTjaOdTrf6KFJ0rZVfER9IdjTBLjY8NWDeWQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5653.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(366004)(376002)(136003)(396003)(39860400002)(451199024)(1800799009)(186009)(2906002)(53546011)(38100700002)(6486002)(6506007)(83380400001)(5660300002)(26005)(86362001)(31686004)(31696002)(8676002)(2616005)(8936002)(316002)(66946007)(6512007)(66556008)(66476007)(110136005)(82960400001)(478600001)(6666004)(36756003)(41300700001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NjBTZWp5RWdBa2lDVWtjSTdrNDVFVndqbkJhNVJoeG5NWXNMRE9YTjNmT2dl?=
+ =?utf-8?B?V05UeWhyTDdUOSszNk1oUURjcm9Ud3JmaXJxOTJ6enBJYnMvRkEvanU2WGl3?=
+ =?utf-8?B?MVkwVnQwaEJXMXY2ZmdhUmpmWG9oeTRTVHIwTmNvQVd1M1JrNm1BSUxxdUk1?=
+ =?utf-8?B?b3VqMGIycXZIRFlzU3VFRWFXdXhwc2NsTDZjWkNoZGVMOENrMjVEMkVXTFlG?=
+ =?utf-8?B?TU5TdTF1Q0dSS3k1ZFB6OE4yV1R4L2RpOHMxamFmdzZxRFZIbjR0T1U2Vk9t?=
+ =?utf-8?B?OHR0UlpDYUp6K3JlRlZTNlR4OElxTjBHZHFuMndmZHdhMGc5L0FId0FkZFlF?=
+ =?utf-8?B?TGI1UnlMNTFBcU43QU5USVVHcFcvUUZpTlNVM3JMN3dPSFRlaGU1RzVERzNz?=
+ =?utf-8?B?dFhrRFpLTUxmNVNpeURKcFlDSGZFYlZVbTd2WlFDUVNMTzFoSXRrMUFFaks4?=
+ =?utf-8?B?ckYybFU3bUFmOEo4cFN1SklDZHl4WWI1LzFkZmJJVWU5UVRjS3ZpNmdYb2FF?=
+ =?utf-8?B?QW43SjBITVA2WFptSEVQeWhNNFNDSVQ5c1RmYk5IMllGK09rd3gwQyszRDB1?=
+ =?utf-8?B?TXVLL01nb00xblhNazVadm1MU1ZzalpMeVRJUnBsUXdlcDRSbnVJU2MyUUdy?=
+ =?utf-8?B?ZGtrNlVQMTd0M2VHUUYveXZ3d1pMdjJFaC9FY3hPTTJXYjdOZmlhbXo1RTVQ?=
+ =?utf-8?B?eHQ1NFdSNU92dlFzWDh2NTJXRU9mQ1lXQ1hrUWxtWVY0ZlJnOHZNNUNaNzFF?=
+ =?utf-8?B?TlpDeGZhMi84U2dDRHg0MGJqaDNDdkZtTCtCTVVONVovcWV4aTlsbzNXYnJZ?=
+ =?utf-8?B?amVFSk9qZ1I5UERJbmNtV0JwSGt1WnRFU1c2TkZVd21iL3lGcmYvSkhxb2tx?=
+ =?utf-8?B?ZVlVeHB6TWo1Y1RUSXQzYUx0Y2pDSHo2d2Q3WVozSS9rcUk1VUd5WmJIeWJC?=
+ =?utf-8?B?R0tZQ0dxVytaZ3ovdXh1YnQvcGxiczlyc21oMmpkSjA0TERYekRYL3FMUTY0?=
+ =?utf-8?B?QjcrMktuSmRBQ1N4akhPTTA5SEJ2QjQ1ZHUvaFhBVkw5R3RXZE9BcW4xZSt1?=
+ =?utf-8?B?MEFrMkRMMVNKdzFZNHByc0wrWWdmUko1RzdwVXZRZEcyaU41Slc0Nm5McUtG?=
+ =?utf-8?B?Q2IxTlJEZnRLMkgwWGdaZWpwSnJuVU5oRHEzeithY1NoYTRPd0xLZ0NyZkZY?=
+ =?utf-8?B?cFVlb3ZHdWNBWXMzU2NkL21OcGM5ZW1oMHRGbms2TGpNeGhWK2YxejU3T2RT?=
+ =?utf-8?B?UjYvdVFhdnVnRVZ2a1oreFRKN3V3RGJ0RnFlMGFoZE5hWlVndlQ2d1lXdUZU?=
+ =?utf-8?B?MVRUOWRrTDJOUUtoYVB5eVFsUWdsRTJ0bXpUenJ0eEJmYjU2NWE1TkNlK3o2?=
+ =?utf-8?B?MjBXSXEwbElHUm9CWU13OVdnRTk1L2w4a1ZEV2crZDk5YlMzTGZNT290WHJB?=
+ =?utf-8?B?aUdLVlo2alM4R1o0TnBMUXdJWjY4TE1tWnBwb3JKUElVYUo2ZnNHQWJsNmNY?=
+ =?utf-8?B?d1BTYVo0Rkkrd0h2Nk5EY05CUzYrWHloellQUVNZQU9yay9rWW9vM3pIVEZB?=
+ =?utf-8?B?M3V1Z24wS2VIVVNEbGNOT3dHUzFqUnBnYXBLc05qTElkK0VYZDJiSjQrSmFx?=
+ =?utf-8?B?RWdaSndaL0liRVhIVzhBcndXWVRvVWdvbnVISWVIM3JFK0swM0xuZFV5TWlR?=
+ =?utf-8?B?QnZ2RmlTRzJjOWFaSHg0UTNtbVhTSnk4TW9jL1JZT1FCM2QrTFRiTmwzd3Zq?=
+ =?utf-8?B?RFAxUHprQmJTSXkzS3VNbWNZN2RKWkp5K3ptNHVCUGp1NHZDdEJKcHpNbEZn?=
+ =?utf-8?B?aFRYRnhqMnZKTjh5TGJxM2Vvb3U2U1lmMm9QMjZ5TFcxVXVRMnhjUFdwellE?=
+ =?utf-8?B?R1pxMGFvck4wdTBqWG9TRktWNDFRMEkwdHh1eVhscEUzdDRJdk5BZVpOS2JS?=
+ =?utf-8?B?VDZOTWNaQ3ZiUmVCVjk5TGpsZjFlZGFHRFJDL3ZnRG0yVEVsTkI4NDdXSFdC?=
+ =?utf-8?B?QVAvS0VpUHNGZmJQT3NQSWVxUjFsVlRzcjRjSlBySHJKRVRmZFVpTGVVWEg2?=
+ =?utf-8?B?R2NnVWlmcDFJM2s4MGZPWElyOWdNRTZUNXpXbkdTc0pRZThTdDVjVTRFOFlo?=
+ =?utf-8?B?QVpJampKY1NCNGRiS2l4UG5KVnFIZmpMRXRJYStsOUZDUThCVDRIcXVoejlj?=
+ =?utf-8?Q?iNbKGNCS/LhBw7EUJaNB8lQ=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: cefbeaef-a128-4f82-9522-08dba2cca5f6
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5653.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 05:00:04.8118 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: vfgzpaZJLR7EXkiEd220dzDPXOFMUaPZB0eD9+qh/Hi1XimJgAtoCsqG+7/4HVK7RjaqKYMQMUj3bn9qNYTtbGofrPwR3zkayPdIu9ofHYE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7769
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [RFC][PATCH 0/2] Add vram frequency sysfs attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,513 +159,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add throttle reasons sysfs interface under device/../gt#/
-Currently there is one overall status and eight reasons
-attributes.
 
-The new sysfs structure will have the below layout
-
-device/<dev/gt
-             ├── gt0
-             │   └── throttle
-             │       ├── <throttle_reasons>
-             │
-             │
-             ├── gtN
-             │   └── throttle
-             │       ├── <throttle_reasons>
-
-Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
----
- drivers/gpu/drm/xe/Makefile                   |   1 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h          |  13 +
- .../drm/xe/regs/xe_gt_throttle_sysfs_types.h  |  36 +++
- drivers/gpu/drm/xe/xe_gt.c                    |   3 +
- drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c     | 282 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h     |  17 ++
- .../gpu/drm/xe/xe_gt_throttle_sysfs_types.h   |  35 +++
- drivers/gpu/drm/xe/xe_gt_types.h              |   4 +
- 8 files changed, 391 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
- create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h
-
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 550cdfed729e..eb3ccd90b2fa 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -63,6 +63,7 @@ xe-y += xe_bb.o \
- 	xe_gt_mcr.o \
- 	xe_gt_pagefault.o \
- 	xe_gt_sysfs.o \
-+	xe_gt_throttle_sysfs.o \
- 	xe_gt_tlb_invalidation.o \
- 	xe_gt_topology.o \
- 	xe_guc.o \
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index baa00557f114..8416d483e7c3 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -400,4 +400,17 @@
- #define XEHPC_BCS5_BCS6_INTR_MASK		XE_REG(0x190118)
- #define XEHPC_BCS7_BCS8_INTR_MASK		XE_REG(0x19011c)
- 
-+#define GT0_PERF_LIMIT_REASONS			XE_REG(0x1381a8)
-+#define   GT0_PERF_LIMIT_REASONS_MASK		0xde3
-+#define   PROCHOT_MASK				REG_BIT(0)
-+#define   THERMAL_LIMIT_MASK			REG_BIT(1)
-+#define   RATL_MASK				REG_BIT(5)
-+#define   VR_THERMALERT_MASK			REG_BIT(6)
-+#define   VR_TDC_MASK				REG_BIT(7)
-+#define   POWER_LIMIT_4_MASK			REG_BIT(8)
-+#define   POWER_LIMIT_1_MASK			REG_BIT(10)
-+#define   POWER_LIMIT_2_MASK			REG_BIT(11)
-+#define   GT0_PERF_LIMIT_REASONS_LOG_MASK	REG_GENMASK(31, 16)
-+#define MTL_MEDIA_PERF_LIMIT_REASONS		XE_REG(0x138030)
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h b/drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h
-new file mode 100644
-index 000000000000..b71865f467ce
---- /dev/null
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h
-@@ -0,0 +1,36 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_THROTTLE_SYSFS_TYPES_H_
-+#define _XE_GT_THROTTLE_SYSFS_TYPES_H_
-+
-+#include <linux/types.h>
-+
-+/**
-+ * struct xe_gt_throttle - A struct that contains frequency throttle reasons in gt
-+ */
-+struct xe_gt_throttle {
-+	/** @status: status */
-+	bool status;
-+	/** @reason_pl1: */
-+	bool reason_pl1;
-+	/** @reason_pl2: */
-+	bool reason_pl2;
-+	/** @reason_pl4: */
-+	bool reason_pl4;
-+	/** @reason_thermal: */
-+	bool reason_thermal;
-+	/** @reason_prochot */
-+	bool reason_prochot;
-+	/** @reason_ratl */
-+	bool reason_ratl;
-+	/** @reason_vr_thermalert */
-+	bool reason_vr_thermalert;
-+	/** @reason_vr_tdc */
-+	bool reason_vr_tdc;
-+};
-+
-+#endif /* _XE_GT_THROTTLE_SYSFS_TYPES_H_ */
-+
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 13320af4ddd3..03be2c2980d4 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -24,6 +24,7 @@
- #include "xe_gt_pagefault.h"
- #include "xe_gt_printk.h"
- #include "xe_gt_sysfs.h"
-+#include "xe_gt_throttle_sysfs.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_gt_topology.h"
- #include "xe_guc_exec_queue_types.h"
-@@ -442,6 +443,8 @@ int xe_gt_init(struct xe_gt *gt)
- 
- 	xe_gt_sysfs_init(gt);
- 
-+	xe_gt_throttle_sysfs_init(&gt->throttle);
-+
- 	err = gt_fw_domain_init(gt);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
-new file mode 100644
-index 000000000000..7db67b5fc138
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
-@@ -0,0 +1,282 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#include <drm/drm_managed.h>
-+
-+#include <regs/xe_gt_regs.h>
-+#include "xe_device.h"
-+#include "xe_gt.h"
-+#include "xe_gt_sysfs.h"
-+#include "xe_gt_throttle_sysfs.h"
-+#include "xe_guc_pc.h"
-+#include "xe_mmio.h"
-+
-+/**
-+ * DOC: Xe GT Throttle
-+ *
-+ * Provides sysfs entries for frequency throttle reasons in GT
-+ *
-+ * device/gt#/throttle/status - Overall status
-+ * device/gt#/throttle/throttle_reason_pl1 - Frequency throttle due to PL1
-+ * device/gt#/throttle/throttle_reason_pl2 - Frequency throttle due to PL2
-+ * device/gt#/throttle/throttle_reason_pl4 - Frequency throttle due to PL4, Iccmax etc.
-+ * device/gt#/throttle/throttle_reason_thermal - Frequency throttle due to thermal
-+ * device/gt#/throttle/throttle_reason_prochot - Frequency throttle due to prochot
-+ * device/gt#/throttle/throttle_reason_ratl - Frequency throttle due to RATL
-+ * device/gt#/throttle/throttle_reason_vr_thermalert - Frequency throttle due to VR THERMALERT
-+ * device/gt#/throttle/throttle_reason_vr_tdc -  Frequency throttle due to VR TDC
-+ */
-+
-+static struct xe_gt_throttle *dev_to_throttle(struct device *dev)
-+{
-+	struct kobject *kobj = &dev->kobj;
-+
-+	return &kobj_to_gt(kobj->parent)->throttle;
-+}
-+
-+static struct xe_gt *throttle_to_gt(struct xe_gt_throttle *throttle)
-+{
-+	return container_of(throttle, struct xe_gt, throttle);
-+}
-+
-+u32 read_perf_limit_reasons(struct xe_gt *gt)
-+{
-+	u32 reg;
-+	if (xe_gt_is_media_type(gt))
-+		reg = xe_mmio_read32(gt, MTL_MEDIA_PERF_LIMIT_REASONS);
-+	else
-+		reg = xe_mmio_read32(gt, GT0_PERF_LIMIT_REASONS);
-+
-+	return reg;
-+}
-+
-+u32 xe_read_status(struct xe_gt_throttle *throttle)
-+{
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	u32 status = read_perf_limit_reasons(gt) & GT0_PERF_LIMIT_REASONS_MASK;
-+
-+	return status;
-+}
-+
-+u32 xe_read_reason_pl1(struct xe_gt_throttle *throttle)
-+{
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	u32 pl1 = read_perf_limit_reasons(gt) & POWER_LIMIT_1_MASK;
-+
-+	return pl1;
-+}
-+
-+u32 xe_read_reason_pl2(struct xe_gt_throttle *throttle)
-+{
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	u32 pl2 = read_perf_limit_reasons(gt) & POWER_LIMIT_2_MASK;
-+
-+	return pl2;
-+}
-+
-+u32 xe_read_reason_pl4(struct xe_gt_throttle *throttle)
-+{
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	u32 pl4 = read_perf_limit_reasons(gt) & POWER_LIMIT_4_MASK;
-+
-+	return pl4;
-+}
-+
-+u32 xe_read_reason_thermal(struct xe_gt_throttle *throttle)
-+{
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	u32 thermal = read_perf_limit_reasons(gt) & THERMAL_LIMIT_MASK;
-+
-+	return thermal;
-+}
-+
-+u32 xe_read_reason_prochot(struct xe_gt_throttle *throttle)
-+{
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	u32 prochot = read_perf_limit_reasons(gt) & PROCHOT_MASK;
-+
-+	return prochot;
-+}
-+
-+u32 xe_read_reason_ratl(struct xe_gt_throttle *throttle)
-+{
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	u32 ratl = read_perf_limit_reasons(gt) & RATL_MASK;
-+
-+	return ratl;
-+}
-+
-+u32 xe_read_reason_vr_thermalert(struct xe_gt_throttle *throttle)
-+{
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	u32 thermalert = read_perf_limit_reasons(gt) & VR_THERMALERT_MASK;
-+
-+	return thermalert;
-+}
-+
-+u32 xe_read_reason_vr_tdc(struct xe_gt_throttle *throttle)
-+{
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	u32 tdc = read_perf_limit_reasons(gt) & VR_TDC_MASK;
-+
-+	return tdc;
-+}
-+
-+static ssize_t status_show(struct device *dev,
-+			   struct device_attribute *attr,
-+			   char *buff)
-+{
-+	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	bool status = !!xe_read_status(&gt->throttle);
-+
-+	return sysfs_emit(buff, "%u\n", status);
-+}
-+static DEVICE_ATTR_RO(status);
-+
-+static ssize_t reason_pl1_show(struct device *dev,
-+			       struct device_attribute *attr,
-+			       char *buff)
-+{
-+	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	bool pl1 = !!xe_read_reason_pl1(&gt->throttle);
-+
-+	return sysfs_emit(buff, "%u\n", pl1);
-+}
-+static DEVICE_ATTR_RO(reason_pl1);
-+
-+static ssize_t reason_pl2_show(struct device *dev,
-+			       struct device_attribute *attr,
-+			       char *buff)
-+{
-+	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	bool pl2 = !!xe_read_reason_pl2(&gt->throttle);
-+
-+	return sysfs_emit(buff, "%u\n", pl2);
-+}
-+static DEVICE_ATTR_RO(reason_pl2);
-+
-+static ssize_t reason_pl4_show(struct device *dev,
-+			       struct device_attribute *attr,
-+			       char *buff)
-+{
-+	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	bool pl4 = !!xe_read_reason_pl4(&gt->throttle);
-+
-+	return sysfs_emit(buff, "%u\n", pl4);
-+}
-+static DEVICE_ATTR_RO(reason_pl4);
-+
-+static ssize_t reason_thermal_show(struct device *dev,
-+				   struct device_attribute *attr,
-+				   char *buff)
-+{
-+	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	bool thermal = !!xe_read_reason_thermal(&gt->throttle);
-+
-+	return sysfs_emit(buff, "%u\n", thermal);
-+}
-+static DEVICE_ATTR_RO(reason_thermal);
-+
-+static ssize_t reason_prochot_show(struct device *dev,
-+				   struct device_attribute *attr,
-+				   char *buff)
-+{
-+	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	bool prochot = !!xe_read_reason_prochot(&gt->throttle);
-+
-+	return sysfs_emit(buff, "%u\n", prochot);
-+}
-+static DEVICE_ATTR_RO(reason_prochot);
-+
-+static ssize_t reason_ratl_show(struct device *dev,
-+				struct device_attribute *attr,
-+				char *buff)
-+{
-+	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	bool ratl = !!xe_read_reason_ratl(&gt->throttle);
-+
-+	return sysfs_emit(buff, "%u\n", ratl);
-+}
-+static DEVICE_ATTR_RO(reason_ratl);
-+
-+static ssize_t reason_vr_thermalert_show(struct device *dev,
-+					 struct device_attribute *attr,
-+					 char *buff)
-+{
-+	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	bool thermalert = !!xe_read_reason_vr_thermalert(&gt->throttle);
-+
-+	return sysfs_emit(buff, "%u\n", thermalert);
-+}
-+static DEVICE_ATTR_RO(reason_vr_thermalert);
-+
-+static ssize_t reason_vr_tdc_show(struct device *dev,
-+				  struct device_attribute *attr,
-+				  char *buff)
-+{
-+	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	bool tdc = !!xe_read_reason_vr_tdc(&gt->throttle);
-+
-+	return sysfs_emit(buff, "%u\n", tdc);
-+}
-+static DEVICE_ATTR_RO(reason_vr_tdc);
-+
-+static const struct attribute *throttle_attrs[] = {
-+	&dev_attr_status.attr,
-+	&dev_attr_reason_pl1.attr,
-+	&dev_attr_reason_pl2.attr,
-+	&dev_attr_reason_pl4.attr,
-+	&dev_attr_reason_thermal.attr,
-+	&dev_attr_reason_prochot.attr,
-+	&dev_attr_reason_ratl.attr,
-+	&dev_attr_reason_vr_thermalert.attr,
-+	&dev_attr_reason_vr_tdc.attr,
-+	NULL
-+};
-+
-+static void gt_throttle_sysfs_fini(struct drm_device *drm, void *arg)
-+{
-+	struct kobject *kobj = arg;
-+
-+	sysfs_remove_files(kobj, throttle_attrs);
-+	kobject_put(kobj);
-+}
-+
-+void xe_gt_throttle_sysfs_init(struct xe_gt_throttle *throttle)
-+{
-+	struct xe_gt *gt = throttle_to_gt(throttle);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct kobject *kobj;
-+	int err;
-+
-+	kobj = kobject_create_and_add("throttle", gt->sysfs);
-+	if (!kobj) {
-+		drm_warn(&xe->drm, "%s failed, err: %d\n", __func__, -ENOMEM);
-+		return;
-+	}
-+
-+	err = sysfs_create_files(kobj, throttle_attrs);
-+	if (err) {
-+		kobject_put(kobj);
-+		drm_warn(&xe->drm, "failed to register throttle sysfs, err: %d\n", err);
-+		return;
-+	}
-+
-+	err = drmm_add_action_or_reset(&xe->drm, gt_throttle_sysfs_fini, kobj);
-+	if (err)
-+		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
-+			 __func__, err);
-+}
-+
-+
-diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-new file mode 100644
-index 000000000000..809213c3bba1
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_THROTTLE_SYSFS_H_
-+#define _XE_GT_THROTTLE_SYSFS_H_
-+
-+#include <drm/drm_managed.h>
-+
-+#include "xe_device.h"
-+#include "xe_gt.h"
-+#include "xe_gt_throttle_sysfs_types.h"
-+
-+void xe_gt_throttle_sysfs_init(struct xe_gt_throttle *throttle);
-+
-+#endif /* _XE_GT_THROTTLE_SYSFS_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h
-new file mode 100644
-index 000000000000..acc23ce8d0fc
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h
-@@ -0,0 +1,35 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_GT_THROTTLE_SYSFS_TYPES_H_
-+#define _XE_GT_THROTTLE_SYSFS_TYPES_H_
-+
-+#include <linux/types.h>
-+
-+struct xe_gt;
-+
-+struct xe_gt_throttle {
-+	/** @status: overall throttling status */
-+	bool status;
-+	/** @pl1: throttling reason is PL1 */
-+	bool pl1;
-+	/** @pl2: throttling reason is PL2 */
-+	bool pl2;
-+	/** @pl4: throttling reason is PL4 */
-+	bool pl4;
-+	/** @thermal: throttling reason is thermal */
-+	bool thermal;
-+	/** @prochot: throttling reason is PROCHOT */
-+	bool prochot;
-+	/** @ratl: throttling reason is running average thermal limit */
-+	bool ratl;
-+	/** @thermalert: throttling reason is vr thermalert */
-+	bool thermalert;
-+	/** @tdc: throttling reason is vr tdc */
-+	bool tdc;
-+};
-+
-+#endif /* _XE_GT_THROTTLE_SYSFS_TYPES_H_ */
-+
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index 35b8c19fa8bf..c55815d1114a 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -8,6 +8,7 @@
- 
- #include "xe_force_wake_types.h"
- #include "xe_gt_idle_sysfs_types.h"
-+#include "xe_gt_throttle_sysfs_types.h"
- #include "xe_hw_engine_types.h"
- #include "xe_hw_fence_types.h"
- #include "xe_reg_sr_types.h"
-@@ -298,6 +299,9 @@ struct xe_gt {
- 	/** @sysfs: sysfs' kobj used by xe_gt_sysfs */
- 	struct kobject *sysfs;
- 
-+	/** @throttle: frequency throttling reasons in GT */
-+	struct xe_gt_throttle throttle;
-+
- 	/** @mocs: info */
- 	struct {
- 		/** @uc_index: UC index */
--- 
-2.25.1
-
+On 8/21/2023 6:39 PM, Gupta, Anshuman wrote:
+>
+>> -----Original Message-----
+>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
+>> Sujaritha Sundaresan
+>> Sent: Monday, August 21, 2023 5:37 PM
+>> To: intel-xe@lists.freedesktop.org
+>> Cc: Sundaresan, Sujaritha <sujaritha.sundaresan@intel.com>
+>> Subject: [Intel-xe] [RFC][PATCH 0/2] Add vram frequency sysfs attributes
+>>
+>> Adding vram frequency sysfs along with pcode helpers required
+> Why this series is partially RFC ?
+> Thanks,
+> Anshuman Gupta.
+Not sure what happened there. It wasn't intended to be RFC. Will fix it 
+in the next revision.
+>> Sujaritha Sundaresan (2):
+>>    drm/xe: Add a couple of pcode helpers
+>>    drm/xe: Sysfs entries to query vram fused min, max frequency
+>>
+>>   drivers/gpu/drm/xe/xe_guc_pc.c    | 55
+>> +++++++++++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_pcode.c     | 28 ++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_pcode.h     |  3 ++
+>>   drivers/gpu/drm/xe/xe_pcode_api.h |  8 +++++
+>>   4 files changed, 94 insertions(+)
+>>
+>> --
+>> 2.25.1
