@@ -4,144 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B134FEE4993
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 15:45:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 475AAEE4993
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 15:53:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6185B10E3A1;
-	Tue, 22 Aug 2023 15:45:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0C9A810E3A2;
+	Tue, 22 Aug 2023 15:53:08 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4540F10E3A1
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 15:45:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC1C110E3A2
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 15:53:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692719103; x=1724255103;
+ t=1692719585; x=1724255585;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=UZlowxwRunU0YIrC6aiL3qINZ3A6OHUgL7vfjPrRdr0=;
- b=V2j/+62OgPfSVeA0Qc3fuQACoqgcDrGr21Y77VQSoOTdLHN57lv158c6
- vte66aG1flDh92YDHuB4vg1PV0bQHKtdqqAijnktc0ENsdwb0j6JrQHzd
- g+H3NPq83y8AR1f0wKBt+GFV5ONId2QaS5jC86zgUaBC6YBlWfiRdZZry
- li7A/uaQccuyYyb2Jni2qHkTD/d0NRK9/a3A5ruTDRtsTwbnQtv8KByl7
- +U03Zwj3FID6Vvbx7FU8DZvCyvaaCsIRAH32lJ7KxThFYAwzWZl/Wk/Mk
- GL3HovA3HnbZXiUun9fNV90mWHYK/YSdodbpY8M2Gf5lzsRPcznRtnLOx g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="437846074"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="437846074"
+ bh=woFykmPssFAptc/M/r1eUYBN7v+Vsm5Apd2Q5i9LvR4=;
+ b=bwpzVKlDfMAYVm0onembpkjt1EvW6KUXByzsBK9zV6miQmlfv9oPUrot
+ 7kYWuEkbnd3k/8GKq0PbW074jxDC5J/8auQip26W0ZgzIebfZsZhSGCPz
+ NGX+2AEIuVvKOqglfn5mkGJTvFrU/g4iKP/fbHenfKQIDcRN1HPhgSRU2
+ yxF/nsS/KXFAUycKiR3l44NK8i911eXI/dsdZu7/LjgG635iUdFZu8BRv
+ Qwxa4Med72/SDTKYA75aDvtE7+c8U9ltgZ8uAJbEDhCKrfg5sCtX3DM0p
+ QzNYy4Zv43khXoB6RqKBRdoZuQLTWfkw9/GNBS4/dfxZFW0oazvK+9IlJ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="437848768"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="437848768"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 08:45:02 -0700
+ 22 Aug 2023 08:53:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="850670979"
-X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="850670979"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga002.fm.intel.com with ESMTP; 22 Aug 2023 08:45:01 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="850675823"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="850675823"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga002.fm.intel.com with ESMTP; 22 Aug 2023 08:53:03 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 22 Aug 2023 08:45:01 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ 15.1.2507.27; Tue, 22 Aug 2023 08:53:02 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 22 Aug 2023 08:53:02 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 22 Aug 2023 08:45:01 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Tue, 22 Aug 2023 08:53:02 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 22 Aug 2023 08:45:00 -0700
+ 15.1.2507.27; Tue, 22 Aug 2023 08:53:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NYzrL9pGf5qvlpZlv45qs9u6ESQgYS159pznTnxwjLJRVzPfUaVPm11PTyaE6OpvfU+8YmnlpDy0iz8AHRipwNzW1isux6hAbtGicDiQAvVBKSX6U/8uMdOK7lq+V4wI1oyc6SiXvwDcIXSa3nJb/EHMQjTqhWJY1TqI1QGyrmPzU9a+1SRqPFYEsLHMW/EmcUPHKjcaUZPX1n6m+h7VkJl7503im1gjB54dkw7hjoIVlnOoh0L0Bn9fTJmg7k72kXS0MFzHvMxcgDtzwH2Zgp97HgVOTkCpAJQRZfmhewkQAb01jn2HAEsDP5zRCd2X+ItNL1xKaNSrOZdpszfWeg==
+ b=OQmgQoPYvUNDcLMVWTteZVYbYIVcnPnYuJlw+ByKavIGc5OxQG0A3+WwGtc2yYryzwihklbLJkBSOlZCik55knVuR75Kt8qX+btPYvViXDPYJuvhQhzdOy0Ks/gfi1s++YFCv5Iolc+bIWeB2kc/wG3kuUr6+hkqvL2qvQD96GbQTqOuju91GwkS+GFidbAovupx+dB3axXdjQy/F41eYtoR/S+Qp/ZT1+L9I2j0yVPWhMYZ3MvL9yBXkGlLtW/+tr+ceMAwTvQP6lYp65Nf6VCugVkjVcucB3X0GwzGEb98tBWHk6PZaf/TE7GXnoTEyHtKjkIfOBmRJMCmF7VcSg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9a5PR2a7QN9sw8SB4FY12gBhZBb+uc/ejOnlpzzrrV8=;
- b=S/FGweGZAMlYBwAaDdA+A+Our6qC2Q8yIstbxgla7/KMcgWkgQsw3UWjzGZJK2xBShvptuAmxvS/p1BsznWL7FrQ2OcAL+5V9j1PPD405j8barFwJxZgvHs7nouQ9TEbvM5pnbGQYnLmdYU51N5jgkBiVDgj356ZiAvEumcCHanj3RafIosJmTFXi3p6RPLVt7TAOJHZrwQu5hW31sDysRmVpByDz4xYIYa+KnsoPKWAIiylJrgxZKodcwH2Btn85pJVBIStpdUqI2OEohxCCfgKV1PTz/rJIVSi1XKbMM/8118t62dYV41Rcg3ixQ9YTv5WtE4iozysfBqadN2GkQ==
+ bh=k62cMZFa4IPpVHnyMYQTPYMb84ny6r1/yxNaU97gylE=;
+ b=lVpGXpFEYk6FVYzgYFEe8B0GmZOYXAHj6UlhEri256YMylLbsYGUMVqaPtYRkn+Q8VCr3u30NNYdirAi9Y6HPZcZ4ta7JlkdiEzV/rQCU/+EqMKW6CTkoIdaAi9I9NuXdG9fzSNLGk1U45XgRpO35WrnYu+rGUmcxTWZygbZbaVYG2BKpAYUKFQzvEnKroe97ALHxqVmbcxtJ5O5aLI4N8A5Gn9JPfTEXZ6sf3BS2/vSA62xj/nymBExMWUgTBfVQkduStBH52U6b6LcZW6TyYeCjx8jz0wjUBT1G80bL/7PHaUy/hcH36eeGo9gU1MtZ2RrqQ80cizfWy4/+ymICw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
- IA1PR11MB7319.namprd11.prod.outlook.com (2603:10b6:208:425::6) with
+ SA0PR11MB4525.namprd11.prod.outlook.com (2603:10b6:806:9d::8) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6699.20; Tue, 22 Aug 2023 15:44:58 +0000
+ 15.20.6699.24; Tue, 22 Aug 2023 15:52:59 +0000
 Received: from DM6PR11MB2987.namprd11.prod.outlook.com
  ([fe80::55d8:709a:ac58:ae0e]) by DM6PR11MB2987.namprd11.prod.outlook.com
  ([fe80::55d8:709a:ac58:ae0e%3]) with mapi id 15.20.6699.022; Tue, 22 Aug 2023
- 15:44:57 +0000
-Date: Tue, 22 Aug 2023 08:44:23 -0700
+ 15:52:59 +0000
+Date: Tue, 22 Aug 2023 08:52:56 -0700
 From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Message-ID: <ZOTX15kyZYHTG+iN@orsosgc001>
+Message-ID: <ZOTZ2EsiZOHI5hnc@orsosgc001>
 References: <20230808013159.38811-1-ashutosh.dixit@intel.com>
- <20230808013159.38811-4-ashutosh.dixit@intel.com>
+ <20230808013159.38811-5-ashutosh.dixit@intel.com>
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230808013159.38811-4-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: SJ0P220CA0010.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::14) To DM6PR11MB2987.namprd11.prod.outlook.com
+In-Reply-To: <20230808013159.38811-5-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: BYAPR05CA0029.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::42) To DM6PR11MB2987.namprd11.prod.outlook.com
  (2603:10b6:5:65::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|IA1PR11MB7319:EE_
-X-MS-Office365-Filtering-Correlation-Id: b0dfda86-dafc-4e62-7b87-08dba326bcf0
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|SA0PR11MB4525:EE_
+X-MS-Office365-Filtering-Correlation-Id: 808183bc-228a-4e78-b558-08dba327dbd0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: MRvtD/BBIkOjrcmTCJZHAno0aVHLK5qVaOgzWnyHcC6M+cLOzoEs5rEli/tTvLpL+H5aUybWFdSWAwp8aURt9zh9fIrddpn+056hh5MO1UhfKO+ZdE7p5zS4IISfVZVuumg8WkWTilX4bGneV8h+PNzbmlxFvoPBfiYjRZtpjqrVAqrN+iknzMohjwRlA9BAn8f8jMezbNsH3NI0SHGLJ7QeNQP0dgK1eZuKtbJyqFYHaIzSad+xwUZ9G4MdaBFG780l38hNZIlEFht6QadtItcvgBVAnBHv0ZVOAnH8a+IYM2MWVRugIJhIkeOJlm5/awV+CrfGdntXZbaQhYEnpIpjJNfBwXd8C6tX713sWYezcjX553hGQ7yN4l7CWFOedoIyd6DaAV9PLmgIAiJTTTDMU51NyXtvdaCxNdriWgLbMQtnphkQBVoslAlxpM5mwYiJwdZXjIrfXESGHN4QcWk6/UCZ6DwpoBoLSGQd9ASg7rFXnx44KXfir3A8JbHrXekr8uMQaAbLr4Vo2M47H831qCMeHi8DtDIAbv3P8juCFZqBABSrxEKr8Fe6yJlYa9z+dRnlmnCTP3A2P1Y0E2KqsaWcpaVtLYhtbruyvQU=
+X-Microsoft-Antispam-Message-Info: J3uwrSy6QeggEyEm5iGtKIlDW+hcO3Kzn9d80gfrL+yszL4jQ6mkhvzCOfWhxA1uIhM1AC2hfHR1Ek6coSz16JJOOr3ShLihuUqAfp8ESaiKdZUS5Ao70Rd33278WYAxzU5EORZWE5r79UYX3pE66tHweptTQlAJOFkpGMdsHpKIr7olqOE83AWgAXKxy5Gn3UDZ8j9eIFDqOTki7Ebg87kBKpfK9Oq7F/omf274QIAuxkqv8QkcohYMKGNagNlhXNjgRr8/xWgw+ZcE1jJyY2foo4ZQ8XgaRIC6gcUUXoS7x0R1pg+Pb6lIkaBsjd0eDnNS7D0S4vAi0FTpqYGRNMAZhNBRMZ63HyFowwgY3mv1SF32CsqvfiVnmnaev/gW3Tiz3XCRmfSAQHawQdjJWoWjMrEK1SBH2WZoBY7+YA8fa7/WD0M2/OmonOs/F1UfXT8eg2+dPa2J7i1d5/1lZP+q7vfqyYpxCe9RN4p6GjcSav5zminEPMcpFIdzO52K6Vtxnv8g5ezshv87TeqP5aZIzxXhXe6CL4FVyQdlPKhwOgmI7gFtho05lgI5mmoL
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(366004)(346002)(39860400002)(376002)(136003)(396003)(451199024)(1800799009)(186009)(2906002)(30864003)(38100700002)(6506007)(6486002)(83380400001)(5660300002)(26005)(86362001)(8676002)(8936002)(4326008)(6862004)(316002)(9686003)(66946007)(6512007)(66556008)(66476007)(82960400001)(6636002)(478600001)(6666004)(41300700001)(33716001)(67856001);
+ SFS:(13230031)(7916004)(346002)(39860400002)(366004)(136003)(396003)(376002)(451199024)(186009)(1800799009)(2906002)(30864003)(83380400001)(6506007)(6486002)(38100700002)(5660300002)(26005)(86362001)(8676002)(4326008)(8936002)(6862004)(316002)(9686003)(6512007)(6636002)(66556008)(66476007)(82960400001)(478600001)(66946007)(6666004)(41300700001)(33716001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cGlGSUo5WDdnRmhIbUVSNU9tRTZxZk1XMXJiZWsxcXR3cEI0eTZJdEhVazZY?=
- =?utf-8?B?OUpLcGpsbHBNZEFlekZ3N2E0SnZOYS9HdTkvcWNtZXB5Z1BFbXpxQjVkWlYw?=
- =?utf-8?B?RlZzU2tJMW1EdkphcU4wV0N2UHlDQng1b01ha3hnNlZ0eWFsbEFFdnZrekJ4?=
- =?utf-8?B?NWc2VlVocnk3cmM4RUdrYlA5OVVCelJpamk3M2EwZEl2VVpGNVVlNHZVdURt?=
- =?utf-8?B?QWNFQ1lwdllPMEhEUmNuUmZPTitkOG9JQnRvd1ZsRGNaSEFSVWF5akY5YXBt?=
- =?utf-8?B?VDlSUjlQZU9LMXhFanhDQkl2cEFsdWpXS3JvbU9qaFlQaXoyeWc5MWVjcmNW?=
- =?utf-8?B?VXN2TnFyOTNqMC9ERUNRTWlIVTJWekVLa2dIVjlFbDM3TXB6eFdUaXhNUk42?=
- =?utf-8?B?Mm04V1VaZkI0eVFKVytpR1JUVjgrS3V6YmdLVFRhb0FDNHN4SlBMaDU2YklD?=
- =?utf-8?B?RmczelE4RHZsMzFNa1REcTFsLzM0Mkg3R2I1dmxzTDFTTjlLbDV0NWFOeHRs?=
- =?utf-8?B?ZUdNTitESjUrY1ZseDhZUURnY2R6KzIzWkxzeWF3WHVmMGE1YlVpWnlBcVZV?=
- =?utf-8?B?MnQ0NFIzWC9kekRySGhjY1Y4N2tHUjBBdk5yZjFPd3FweUFWSlFQNHBQZU5j?=
- =?utf-8?B?MlYrbmJTeWllKzdUOTlnWXdCaUhlUi9JL3d4bWcwMFBjbDVWN1JHb1JsWE83?=
- =?utf-8?B?TVBmRUZmemtUN3BGaG9HaVlXMWZCK1VSMDNqeUJzTDNhNi9MSTFpZnNrVmY4?=
- =?utf-8?B?N1JCTXNnckFrbW5YZlpCSk1HY3lwSFZ0UFd1VXg0OTRobFAwTXJvcG9QQU8w?=
- =?utf-8?B?TzFCL2JBdnNpaG9sbHFmNTQ2YzBOVEhhZ2FLR3V1VjlrTHJnalg3ZmlKV3c4?=
- =?utf-8?B?b0dmUVQwSmo3TGdpdnBJQlAxTStJNlNTWjBQNUR1VHdpR3g4b28vL3JUc1lz?=
- =?utf-8?B?ZDN6WDJFdVdxakNkUVRIaWVLUjlESmNXWmxsSC9FSlJmNzNxbFZGTTgyMnVX?=
- =?utf-8?B?cEwzSndlRHd1Qkc5SEw3RFZEOVZtU0xmYVV4MjEvWjlPaVRRVGVlc3hLY2R3?=
- =?utf-8?B?d2VjU2Q2T3oyRXdFRjE4SnhQS0xGWjJNV2VFV3pPMFRFaUpDcytra3VuR2xo?=
- =?utf-8?B?M2sxeE9WM2NSeDlFa012OVMrdEZDVzFobHBtdlhlbXd5azRINTNRMDVwd3Z5?=
- =?utf-8?B?L2xLVkVRcmZGSm1SbEwxVmlsZGkzMUJjcXBVNXZpMjhWZmg5cnYvcU8vUkJu?=
- =?utf-8?B?UTdncFNsVXR0Y2E1ODN6bzBJajk0cnkrTy9HVm1TNzRxcm1sYmVXM0t3OXBR?=
- =?utf-8?B?Y2o5akluVEw4SW9LU21KOXVvUi9JdENLa3EyNHBCN0lhV0owSm0rckdkSTVM?=
- =?utf-8?B?Z2U5WnBuTlVDMDR1SitwRG1ES1FNQVR1TDdyV2V4bm1RS3NETmd2OCt6ZUxB?=
- =?utf-8?B?Sk95YXVmWW81Sy9pb3FMRU16RDkrbmpvWlJwUHJ1cGl5K0xFSG1hQTNrbklj?=
- =?utf-8?B?aFhiSndUTEpnSDl5Ujh2Y0NHTVAwTEpqN2NVOU9rNzJlUjN0VXJaOCtNcHpL?=
- =?utf-8?B?U21JM1oyU2FaRnNZbWpia2pXREdGSmtpZldLTk92M1lGbmNDbUN4M21NdkNy?=
- =?utf-8?B?ZCthbHNZejN3L1dOWm1yYzVhSmRYbTNFeDBmcXZMMlBOS0pVUFdYN0VMK1Fv?=
- =?utf-8?B?SGVPYWxUVitkNjNVSDN1RnhRbjNBTHlidnhtOHg2bWx3WE5wcWZtamJnU1Nw?=
- =?utf-8?B?cjNzMGltNmMxOTRUYUJEZE14WUFXZks3UUF5eXdmRURVSWdhSkVzTkIwQTRy?=
- =?utf-8?B?OS85bmc5SVJZajJXVHRUUGZmTG4zdGtSTXczOE5VaGRwZUFlbHJBUit1Rmcw?=
- =?utf-8?B?MlR5R1BXM1V4ekUzMG40ZUVxbGM0Ynh0RTFOdE40OStuS0dqUk0wVlB1clI5?=
- =?utf-8?B?M1JvZ1FIZ2ZKNG5SZm9uc1VSSTRSZDk1UmRCellGZmlleDZPSG5tc1FNTlhM?=
- =?utf-8?B?WmxJdEZPY2ZRa3hTZmJaNDFmRDR5OXY4dU1tWkdpbmdodzBGbzRBbkhBZHVJ?=
- =?utf-8?B?bThPcUlvYmY0NUF2cmpEM216VDA3VGxUY0FEcFc5RStXZEN5NE9kZTVLbHh2?=
- =?utf-8?B?OCtxekV5RGh0SExhMlZTUzluaEFBUzhqZFVkQnN6bVovUkRqVlpFb1R5QVNp?=
- =?utf-8?Q?YxGCUFAGXgfdKdOjXxVHiAM=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0dfda86-dafc-4e62-7b87-08dba326bcf0
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bXZzeUpPUjZPdGxpQ0xabnRwMkJ6Q0F3SlVHaE92RzZ5N1diZDYvMVJsR0o2?=
+ =?utf-8?B?cWxKRG5OU1lQL2M0YmlRazFGZ0VucjF4MklxWUFjK2Z1ajZjMHY2NHNKbU9u?=
+ =?utf-8?B?TDBhTEJXcGppSzlNUUpvalEyQnJiczUraWdyMjBmbXRhUFNwRTVMQktEYm5X?=
+ =?utf-8?B?dERiUm5kTHprbUsrWG0vMDFvdk54dFlqd3dFcHVZenZNNXd0NnlwNzE1OUNp?=
+ =?utf-8?B?aUlPVjh1QnhJMHlCYm81aUtmTlgweWhMQllHRXZwLzA4RWsrUk9ENHFzTk5J?=
+ =?utf-8?B?SGFIYjJsU0JSMHpnZVBkbzYwU3JWaFBLS0xvVVJYWmlTb2ZWN0lFWERkT1JM?=
+ =?utf-8?B?eHYyR0d6dTBDdXdHZWY3Tm53dGJ0Vm1YR1VhTEZSVVRxTTAvTWU0UHRtUFl1?=
+ =?utf-8?B?SUo4NUx1VElVaTYwdTB2OXhVbHJYN2dnVk9pWURSTFVtc1NoRExXWEdnUUNN?=
+ =?utf-8?B?MnZMQ05kOHo1N3JVTTRwZzFPTzJWREs0TWk0YzR6eUQyYmF5NVVBeFc1ZWZk?=
+ =?utf-8?B?Yko1akN6STJGNU5HQmlyTUhmZEYrTlRadVBTVXlQTE4xUXJiYkJkdS9kaVA2?=
+ =?utf-8?B?TlBjTXR2czNTOTZhTC95VWtVZnBqRXE2LzVGVmhuWGNDNFc2eFdVSy9Cd21S?=
+ =?utf-8?B?N1dScnQzU1pRbHY0VU5WZGZGNHlxQ2Y0TGFGaHZXbmRTaUo3MEpkc25kN1Fx?=
+ =?utf-8?B?WXovSXZDaHYxdVVOU3RWNytlYVBlbDZ0UzR3d0ltdldXWkhpMnFxVkRoZXlk?=
+ =?utf-8?B?UTBzSU9PbHFBYmdaWmNuVUpNNTRaQ1VEdXNXZ09uZWhQNGZldG5UZXR2cWJ4?=
+ =?utf-8?B?ZzVNVEo1cGxlMkhmUnQ0NnNRVFBzbTRNS0F5NmxkVVN5NFlxOXE4bkpFR1BJ?=
+ =?utf-8?B?ODlUS2EwSU5CeEc5eVpjdVJaV2RkUllyWDZ1UGE4TVlQek4xMkRCOHUzMkJW?=
+ =?utf-8?B?T0M0MDYwQmN2WllsSVFQVllKbHdqWTNlcDNhanVGalNaYjhnRFllcjhQOThr?=
+ =?utf-8?B?a3FsTU5pa0lOK2x0cGM3b29ZYmJ2SjBFeVBuRHZUOEQzaFVEZWxTWGhPWk1x?=
+ =?utf-8?B?ODBVOG9Hc1dVL1ZiVHlnVGNNRThUWXFNbkh5eXhsMkFGVDhBSUoxaEMxbzdS?=
+ =?utf-8?B?eTVlMHEyb0VjM0Vhb0pyMDByNUQvYmFIc242RGQrOGJJVGRVUVkwb2lmbGlO?=
+ =?utf-8?B?RDJkN01jMDhLVnRwT3RUUDYzYmNlYmN3VjRaYjhoekxKalBLTWFWTHZSdXVp?=
+ =?utf-8?B?Z2prQzNDM0VCZVdRa0g1QlZ4aVNYVlBOYUlRUXpNUzBDMFBkVGwwcC9QQ0x6?=
+ =?utf-8?B?Z0hPOHJqeS9RRkxERFphdjJVelJxeVZERWl1RW9HN0FSM2k2UVZacjJoN3FN?=
+ =?utf-8?B?WXJwakUvRXBjbjJyZS9lemtFa2NHOTEyc2xpWkRrUmphK0FXUG4wOGdzaGdG?=
+ =?utf-8?B?MHkzcG0wSXdEaENRaG8wd0lCcWtLUHBtRWpUbGZrYzhkcFNTWEJsWUk3WUNY?=
+ =?utf-8?B?NGhVVHZabHF5a2FFZnlHd3VteitVZVBoaTRub0ZqWGxnazJ1MzhDS3Z3Y01q?=
+ =?utf-8?B?UFJ1YW9sc1BZQTF6R0RZSEVDOWE4dGpIUFhiaFgxczRFZDlQK3JrdGhjYW1F?=
+ =?utf-8?B?ZndDSzROSWEzQm5ZMUR5MjJFcDV2Y3lZTE5pK1B2M1g1alEzZytONFBFdVJZ?=
+ =?utf-8?B?NjRwSW4xek43UVM5bW1xZlJvQ2pVaEdaZ1lCbVdJK1BLTExUb01qSDh1Zmt1?=
+ =?utf-8?B?dGp3Nnk5WEo5RmM1STR5U21pa1lnSFdaOXo4SER6MnZSN1B5RjVwZlkrNm0x?=
+ =?utf-8?B?amkrOXBJTFE2NHVZWTRvTFh1bmhWM2NLb0RZTWJXZ2orSHczUWYvcUFLc2NV?=
+ =?utf-8?B?ZUt1RmJkZXh4UzRZMG1OaFpKZWhicDBFOGVJb2d3RkJxMVJTNHdyc2VINENn?=
+ =?utf-8?B?aUVZUmRRbkIyU0prZzhoMkVmYVk0YU13Ukc5Q0lpL1Bvc2RkS3NEMnFuUHo5?=
+ =?utf-8?B?TlJ5WTk4ZDU1UGxhVTIyK1FLeUdWME0yOXg4bmdoT05WY2JkMkhNUHFUbi9t?=
+ =?utf-8?B?ZTczUjNPa2xZeStma1YxYWpUNXRzczlCZDgyK2RNcTRZM0kwSy9jaHA1VitI?=
+ =?utf-8?B?ejRVeU15cWZ3RnRzMDhXb1o5enRaVEZra0M4MldVTlNEeXdWaEdBbng5SEd4?=
+ =?utf-8?Q?qeyjLV6OAQgWT8o9mmEvRzw=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 808183bc-228a-4e78-b558-08dba327dbd0
 X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 15:44:57.8662 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 15:52:59.2136 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: so4FEq3h1faNzemBR4mQYzqYtHNu6kRHUljgFEzVGS93Ff0eK+Ic2FmmvtanIcewaiZoJWNTdbn9LZr9Y53EUdGAWe9EW1TjVgzz9SvHICQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7319
+X-MS-Exchange-CrossTenant-UserPrincipalName: 44Rq1wNYWeoOmlZFPLGCvuCYHwc70m8M8fUEbOO/0yrlPRZuWZQLTBUEba6LwckPvTjcH46a3TH24Y5kgEqCvuNz4kz6lMS0rmo1T9SDjbI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4525
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 03/10] drm/xe/oa: Add registers and GPU
- commands used by OA
+Subject: Re: [Intel-xe] [PATCH 04/10] drm/xe/oa: Module init/exit and
+ probe/remove
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -157,288 +161,514 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 07, 2023 at 06:31:52PM -0700, Ashutosh Dixit wrote:
->Add registers and GPU commands used by OA in subsequent patches. The xe oa
->code programs OA units which generate performance data. The code also
->submits command buffers to change hardware engine context images and
->implement waits.
+On Mon, Aug 07, 2023 at 06:31:53PM -0700, Ashutosh Dixit wrote:
+>Perform OA initialization at module init and probe time:
+>
+>* Setup perf_stream_paranoid and oa_max_sample_rate files in /proc
+>* Setup metrics sysfs directories to expose which metrics configurations
+>  are available
+>* Setup OA groups which associate hw engines with OA units
+>* Initialize OA units
 >
 >Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 >---
-> drivers/gpu/drm/xe/regs/xe_engine_regs.h  |   5 +
-> drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  27 ++++
-> drivers/gpu/drm/xe/regs/xe_oa_regs.h      | 173 ++++++++++++++++++++++
-> 3 files changed, 205 insertions(+)
-> create mode 100644 drivers/gpu/drm/xe/regs/xe_oa_regs.h
+> drivers/gpu/drm/xe/Makefile             |   1 +
+> drivers/gpu/drm/xe/xe_device.c          |  11 +
+> drivers/gpu/drm/xe/xe_device_types.h    |   4 +
+> drivers/gpu/drm/xe/xe_gt_types.h        |   4 +
+> drivers/gpu/drm/xe/xe_hw_engine_types.h |   2 +
+> drivers/gpu/drm/xe/xe_module.c          |   5 +
+> drivers/gpu/drm/xe/xe_oa.c              | 310 ++++++++++++++++++++++++
+> drivers/gpu/drm/xe/xe_oa.h              |  18 ++
+> 8 files changed, 355 insertions(+)
+> create mode 100644 drivers/gpu/drm/xe/xe_oa.c
+> create mode 100644 drivers/gpu/drm/xe/xe_oa.h
 >
->diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->index 79873bf64e8dd..044a4920f1568 100644
->--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->@@ -84,6 +84,9 @@
+>diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>index 1b59702cd9f98..01280233ff271 100644
+>--- a/drivers/gpu/drm/xe/Makefile
+>+++ b/drivers/gpu/drm/xe/Makefile
+>@@ -84,6 +84,7 @@ xe-y += xe_bb.o \
+> 	xe_mmio.o \
+> 	xe_mocs.o \
+> 	xe_module.o \
+>+	xe_oa.o \
+> 	xe_pat.o \
+> 	xe_pci.o \
+> 	xe_pcode.o \
+>diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>index 766df07de979c..1c54cac0a117f 100644
+>--- a/drivers/gpu/drm/xe/xe_device.c
+>+++ b/drivers/gpu/drm/xe/xe_device.c
+>@@ -25,6 +25,7 @@
+> #include "xe_irq.h"
+> #include "xe_mmio.h"
+> #include "xe_module.h"
+>+#include "xe_oa.h"
+> #include "xe_pcode.h"
+> #include "xe_pm.h"
+> #include "xe_query.h"
+>@@ -323,6 +324,10 @@ int xe_device_probe(struct xe_device *xe)
+> 			goto err_irq_shutdown;
+> 	}
 >
-> #define RING_CTX_TIMESTAMP(base)		XE_REG((base) + 0x3a8)
->
->+#define MI_PREDICATE_RESULT_2(base)		XE_REG((base) + 0x3bc)
->+#define MI_PREDICATE_RESULT_1(base)		XE_REG((base) + 0x41c)
+>+	err = xe_oa_init(xe);
+>+	if (err)
+>+		goto err_irq_shutdown;
 >+
+> 	err = xe_display_init(xe);
+> 	if (err)
+> 		goto err_fini_display;
+>@@ -333,6 +338,8 @@ int xe_device_probe(struct xe_device *xe)
+>
+> 	xe_display_register(xe);
+>
+>+	xe_oa_register(xe);
+>+
+> 	xe_debugfs_register(xe);
+>
+> 	err = drmm_add_action_or_reset(&xe->drm, xe_device_sanitize, xe);
+>@@ -361,10 +368,14 @@ static void xe_device_remove_display(struct xe_device *xe)
+>
+> void xe_device_remove(struct xe_device *xe)
+> {
+>+	xe_oa_unregister(xe);
+>+
+> 	xe_device_remove_display(xe);
+>
+> 	xe_display_unlink(xe);
+>
+>+	xe_oa_fini(xe);
+>+
+> 	xe_irq_shutdown(xe);
+> }
+>
+>diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>index f84ecb976f5d4..3b487905306b7 100644
+>--- a/drivers/gpu/drm/xe/xe_device_types.h
+>+++ b/drivers/gpu/drm/xe/xe_device_types.h
+>@@ -16,6 +16,7 @@
+> #include "xe_gt_types.h"
+> #include "xe_platform_types.h"
+> #include "xe_step_types.h"
+>+#include "xe_oa.h"
+>
+> #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> #include "ext/intel_device_info.h"
+>@@ -376,6 +377,9 @@ struct xe_device {
+> 	 */
+> 	struct task_struct *pm_callback_task;
+>
+>+	/** @oa: oa perf counter subsystem */
+>+	struct xe_oa oa;
+>+
+> 	/* private: */
+>
+> #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+>diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+>index 35b8c19fa8bf5..d6053f85dbb60 100644
+>--- a/drivers/gpu/drm/xe/xe_gt_types.h
+>+++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>@@ -13,6 +13,7 @@
+> #include "xe_reg_sr_types.h"
+> #include "xe_sa_types.h"
+> #include "xe_uc_types.h"
+>+#include "xe_oa.h"
+>
+> struct xe_exec_queue_ops;
+> struct xe_migrate;
+>@@ -346,6 +347,9 @@ struct xe_gt {
+> 		/** @oob: bitmap with active OOB workaroudns */
+> 		unsigned long *oob;
+> 	} wa_active;
+>+
+>+	/** @oa: oa perf counter subsystem per gt info */
+>+	struct xe_oa_gt oa;
 
-We can drop these changes until we decide to implement the noa wait.
+I don't see a reference to this, so thought we could drop it. OR can you 
+point me to where this is used?
 
 Umesh
 
-> #define RING_FORCE_TO_NONPRIV(base, i)		XE_REG(((base) + 0x4d0) + (i) * 4)
-> #define   RING_FORCE_TO_NONPRIV_DENY		REG_BIT(30)
-> #define   RING_FORCE_TO_NONPRIV_ACCESS_MASK	REG_GENMASK(29, 28)
->@@ -108,6 +111,8 @@
-> #define RING_EXECLIST_CONTROL(base)		XE_REG((base) + 0x550)
-> #define	  EL_CTRL_LOAD				REG_BIT(0)
+> };
 >
->+#define GEN8_RING_CS_GPR(base, n)		XE_REG((base) + 0x600 + (n) * 8)
->+
-> #define VDBOX_CGCTL3F10(base)			XE_REG((base) + 0x3f10)
-> #define   IECPUNIT_CLKGATE_DIS			REG_BIT(22)
+> #endif
+>diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+>index 97d9ba31b5fc7..92bb30433353c 100644
+>--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
+>+++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+>@@ -144,6 +144,8 @@ struct xe_hw_engine {
+> 	enum xe_hw_engine_id engine_id;
+> 	/** @eclass: pointer to per hw engine class interface */
+> 	struct xe_hw_engine_class_intf *eclass;
+>+	/** @oa_group: oa unit for this hw engine */
+>+	struct xe_oa_group *oa_group;
+> };
 >
->diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
->index 12120dd37aa2a..672100d375312 100644
->--- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
->+++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
->@@ -14,8 +14,10 @@
+> /**
+>diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+>index de85494e2280b..460e8161c6f21 100644
+>--- a/drivers/gpu/drm/xe/xe_module.c
+>+++ b/drivers/gpu/drm/xe/xe_module.c
+>@@ -11,6 +11,7 @@
+> #include "xe_drv.h"
+> #include "xe_hw_fence.h"
+> #include "xe_module.h"
+>+#include "xe_oa.h"
+> #include "xe_pci.h"
+> #include "xe_sched_job.h"
 >
-> #define MI_INSTR(opcode, flags) \
-> 	(__INSTR(INSTR_MI_CLIENT) | (opcode) << 23 | (flags))
->+#define MI_OPCODE(x)		(((x) >> 23) & 0x3f)
+>@@ -53,6 +54,10 @@ static const struct init_funcs init_funcs[] = {
+> 		.init = xe_register_pci_driver,
+> 		.exit = xe_unregister_pci_driver,
+> 	},
+>+	{
+>+		.init = xe_oa_sysctl_register,
+>+		.exit = xe_oa_sysctl_unregister,
+>+	},
+> };
 >
-> #define MI_NOOP			MI_INSTR(0, 0)
->+#define MI_SET_PREDICATE	MI_INSTR(0x01, 0)
-> #define MI_USER_INTERRUPT	MI_INSTR(0x02, 0)
->
-> #define MI_ARB_ON_OFF		MI_INSTR(0x08, 0)
->@@ -23,12 +25,32 @@
-> #define   MI_ARB_DISABLE		(0<<0)
->
-> #define MI_BATCH_BUFFER_END	MI_INSTR(0x0a, 0)
->+
->+#define	MI_MATH(x)		MI_INSTR(0x1a, (x) - 1)
->+#define MI_MATH_INSTR(opcode, op1, op2) ((opcode) << 20 | (op1) << 10 | (op2))
->+#define	  MI_MATH_LOAD(op1, op2)	MI_MATH_INSTR(0x080, op1, op2)
->+#define   MI_MATH_ADD			MI_MATH_INSTR(0x100, 0x0, 0x0)
->+#define   MI_MATH_SUB			MI_MATH_INSTR(0x101, 0x0, 0x0)
->+#define   MI_MATH_STORE(op1, op2)	MI_MATH_INSTR(0x180, op1, op2)
->+#define   MI_MATH_STOREINV(op1, op2)	MI_MATH_INSTR(0x580, op1, op2)
->+#define   MI_MATH_REG(x) (x)
->+#define   MI_MATH_REG_SRCA		0x20
->+#define   MI_MATH_REG_SRCB		0x21
->+#define   MI_MATH_REG_ACCU		0x31
->+#define   MI_MATH_REG_CF		0x33
->+
-> #define MI_STORE_DATA_IMM	MI_INSTR(0x20, 0)
->+#define MI_STORE_DWORD_IMM_GEN4	MI_INSTR(0x20, 2)
->
-> #define MI_LOAD_REGISTER_IMM(x)	MI_INSTR(0x22, 2*(x)-1)
-> #define   MI_LRI_LRM_CS_MMIO		REG_BIT(19)
-> #define   MI_LRI_MMIO_REMAP_EN		REG_BIT(17)
-> #define   MI_LRI_FORCE_POSTED		(1<<12)
->+#define   IS_MI_LRI_CMD(x)		(MI_OPCODE(x) == MI_OPCODE(MI_INSTR(0x22, 0)))
->+#define   MI_LRI_LEN(x)			(((x) & 0xff) + 1)
->+
->+#define MI_STORE_REGISTER_MEM	MI_INSTR(0x24, 1)
->+#define   MI_SRM_LRM_GLOBAL_GTT		REG_BIT(22)
->
-> #define MI_FLUSH_DW		MI_INSTR(0x26, 1)
-> #define   MI_FLUSH_DW_STORE_INDEX	(1<<21)
->@@ -37,7 +59,12 @@
-> #define   MI_FLUSH_DW_OP_STOREDW	(1<<14)
-> #define   MI_FLUSH_DW_USE_GTT		(1<<2)
->
->+#define MI_LOAD_REGISTER_MEM	MI_INSTR(0x29, 1)
->+
->+#define MI_LOAD_REGISTER_REG	MI_INSTR(0x2A, 1)
->+
-> #define MI_BATCH_BUFFER_START		MI_INSTR(0x31, 1)
->+#define   MI_BATCH_PREDICATE         REG_BIT(15) /* HSW+ on RCS only*/
->
-> #define XY_CTRL_SURF_COPY_BLT		((2 << 29) | (0x48 << 22) | 3)
-> #define   SRC_ACCESS_TYPE_SHIFT		21
->diff --git a/drivers/gpu/drm/xe/regs/xe_oa_regs.h b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
+> static int __init xe_init(void)
+>diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
 >new file mode 100644
->index 0000000000000..0b378cb7a6ddb
+>index 0000000000000..d44ef611c76eb
 >--- /dev/null
->+++ b/drivers/gpu/drm/xe/regs/xe_oa_regs.h
->@@ -0,0 +1,173 @@
+>+++ b/drivers/gpu/drm/xe/xe_oa.c
+>@@ -0,0 +1,310 @@
+>+// SPDX-License-Identifier: MIT
+>+/*
+>+ * Copyright © 2023 Intel Corporation
+>+ */
+>+
+>+#include <linux/anon_inodes.h>
+>+#include <linux/nospec.h>
+>+#include <linux/sizes.h>
+>+#include <linux/uuid.h>
+>+
+>+#include <drm/xe_drm.h>
+>+#include <drm/drm_drv.h>
+>+
+>+#include "regs/xe_oa_regs.h"
+>+#include "xe_gt.h"
+>+#include "xe_device.h"
+>+#include "xe_oa.h"
+>+
+>+static u32 xe_oa_stream_paranoid = true;
+>+static int xe_oa_sample_rate_hard_limit;
+>+static u32 xe_oa_max_sample_rate = 100000;
+>+
+>+static const struct xe_oa_format oa_formats[] = {
+>+	[XE_OA_FORMAT_C4_B8]			= { 7, 64 },
+>+	[XE_OA_FORMAT_A12]			= { 0, 64 },
+>+	[XE_OA_FORMAT_A12_B8_C8]		= { 2, 128 },
+>+	[XE_OA_FORMAT_A32u40_A4u32_B8_C8]	= { 5, 256 },
+>+	[XE_OAR_FORMAT_A32u40_A4u32_B8_C8]	= { 5, 256 },
+>+	[XE_OA_FORMAT_A24u40_A14u32_B8_C8]	= { 5, 256 },
+>+	[XE_OAM_FORMAT_MPEC8u64_B8_C8]		= { 1, 192, TYPE_OAM, HDR_64_BIT },
+>+	[XE_OAM_FORMAT_MPEC8u32_B8_C8]		= { 2, 128, TYPE_OAM, HDR_64_BIT },
+>+};
+>+
+>+static struct ctl_table_header *sysctl_header;
+>+
+>+void xe_oa_register(struct xe_device *xe)
+>+{
+>+	struct xe_oa *oa = &xe->oa;
+>+
+>+	if (!oa->xe)
+>+		return;
+>+
+>+	oa->metrics_kobj = kobject_create_and_add("metrics",
+>+						  &xe->drm.primary->kdev->kobj);
+>+}
+>+
+>+void xe_oa_unregister(struct xe_device *xe)
+>+{
+>+	struct xe_oa *oa = &xe->oa;
+>+
+>+	if (!oa->metrics_kobj)
+>+		return;
+>+
+>+	kobject_put(oa->metrics_kobj);
+>+	oa->metrics_kobj = NULL;
+>+}
+>+
+>+static u32 num_oa_groups_per_gt(struct xe_gt *gt)
+>+{
+>+	return 1;
+>+}
+>+
+>+static u32 __oam_engine_group(struct xe_hw_engine *hwe)
+>+{
+>+	if (GRAPHICS_VERx100(gt_to_xe(hwe->gt)) >= 1270) {
+>+		/*
+>+		 * There's 1 SAMEDIA gt and 1 OAM per SAMEDIA gt. All media slices
+>+		 * within the gt use the same OAM. All MTL SKUs list 1 SA MEDIA.
+>+		 */
+>+		drm_WARN_ON(&hwe->gt->tile->xe->drm,
+>+			    hwe->gt->info.type != XE_GT_TYPE_MEDIA);
+>+
+>+		return OA_GROUP_OAM_SAMEDIA_0;
+>+	}
+>+
+>+	return OA_GROUP_INVALID;
+>+}
+>+
+>+static u32 __oa_engine_group(struct xe_hw_engine *hwe)
+>+{
+>+	switch (hwe->class) {
+>+	case XE_ENGINE_CLASS_RENDER:
+>+		return OA_GROUP_OAG;
+>+
+>+	case XE_ENGINE_CLASS_VIDEO_DECODE:
+>+	case XE_ENGINE_CLASS_VIDEO_ENHANCE:
+>+		return __oam_engine_group(hwe);
+>+
+>+	default:
+>+		return OA_GROUP_INVALID;
+>+	}
+>+}
+>+
+>+static struct xe_oa_regs __oam_regs(u32 base)
+>+{
+>+	return (struct xe_oa_regs) {
+>+		base,
+>+		GEN12_OAM_HEAD_POINTER(base),
+>+		GEN12_OAM_TAIL_POINTER(base),
+>+		GEN12_OAM_BUFFER(base),
+>+		GEN12_OAM_CONTEXT_CONTROL(base),
+>+		GEN12_OAM_CONTROL(base),
+>+		GEN12_OAM_DEBUG(base),
+>+		GEN12_OAM_STATUS(base),
+>+		GEN12_OAM_CONTROL_COUNTER_FORMAT_SHIFT,
+>+	};
+>+}
+>+
+>+static struct xe_oa_regs __oag_regs(void)
+>+{
+>+	return (struct xe_oa_regs) {
+>+		0,
+>+		GEN12_OAG_OAHEADPTR,
+>+		GEN12_OAG_OATAILPTR,
+>+		GEN12_OAG_OABUFFER,
+>+		GEN12_OAG_OAGLBCTXCTRL,
+>+		GEN12_OAG_OACONTROL,
+>+		GEN12_OAG_OA_DEBUG,
+>+		GEN12_OAG_OASTATUS,
+>+		GEN12_OAG_OACONTROL_OA_COUNTER_FORMAT_SHIFT,
+>+	};
+>+}
+>+
+>+static void xe_oa_init_groups(struct xe_gt *gt)
+>+{
+>+	const u32 mtl_oa_base[] = {
+>+		[OA_GROUP_OAM_SAMEDIA_0] = 0x393000,
+>+	};
+>+	int i, num_groups = gt->oa.num_oa_groups;
+>+
+>+	for (i = 0; i < num_groups; i++) {
+>+		struct xe_oa_group *g = &gt->oa.group[i];
+>+
+>+		/* Fused off engines can result in a group with num_engines == 0 */
+>+		if (g->num_engines == 0)
+>+			continue;
+>+
+>+		if (i == OA_GROUP_OAG && gt->info.type != XE_GT_TYPE_MEDIA) {
+>+			g->regs = __oag_regs();
+>+			g->type = TYPE_OAG;
+>+		} else if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
+>+			g->regs = __oam_regs(mtl_oa_base[i]);
+>+			g->type = TYPE_OAM;
+>+		}
+>+
+>+		/* Set oa_unit_ids now to ensure ids remain contiguous. */
+>+		g->oa_unit_id = gt->tile->xe->oa.oa_unit_ids++;
+>+	}
+>+}
+>+
+>+static int xe_oa_init_gt(struct xe_gt *gt)
+>+{
+>+	u32 num_groups = num_oa_groups_per_gt(gt);
+>+	struct xe_hw_engine *hwe;
+>+	enum xe_hw_engine_id id;
+>+	struct xe_oa_group *g;
+>+
+>+	g = kcalloc(num_groups, sizeof(*g), GFP_KERNEL);
+>+	if (!g)
+>+		return -ENOMEM;
+>+
+>+	for_each_hw_engine(hwe, gt, id) {
+>+		u32 index = __oa_engine_group(hwe);
+>+
+>+		hwe->oa_group = NULL;
+>+		if (index < num_groups) {
+>+			g[index].num_engines++;
+>+			hwe->oa_group = &g[index];
+>+		}
+>+	}
+>+
+>+	gt->oa.num_oa_groups = num_groups;
+>+	gt->oa.group = g;
+>+
+>+	xe_oa_init_groups(gt);
+>+
+>+	return 0;
+>+}
+>+
+>+static int xe_oa_init_engine_groups(struct xe_oa *oa)
+>+{
+>+	struct xe_gt *gt;
+>+	int i, ret;
+>+
+>+	for_each_gt(gt, oa->xe, i) {
+>+		ret = xe_oa_init_gt(gt);
+>+		if (ret)
+>+			return ret;
+>+	}
+>+
+>+	return 0;
+>+}
+>+
+>+static void oa_format_add(struct xe_oa *oa, enum drm_xe_oa_format format)
+>+{
+>+	__set_bit(format, oa->format_mask);
+>+}
+>+
+>+static void xe_oa_init_supported_formats(struct xe_oa *oa)
+>+{
+>+	switch (oa->xe->info.platform) {
+>+	case XE_ALDERLAKE_S:
+>+	case XE_ALDERLAKE_P:
+>+		oa_format_add(oa, XE_OA_FORMAT_A12);
+>+		oa_format_add(oa, XE_OA_FORMAT_A12_B8_C8);
+>+		oa_format_add(oa, XE_OA_FORMAT_A32u40_A4u32_B8_C8);
+>+		oa_format_add(oa, XE_OA_FORMAT_C4_B8);
+>+		break;
+>+
+>+	case XE_DG2:
+>+		oa_format_add(oa, XE_OAR_FORMAT_A32u40_A4u32_B8_C8);
+>+		oa_format_add(oa, XE_OA_FORMAT_A24u40_A14u32_B8_C8);
+>+		break;
+>+
+>+	case XE_METEORLAKE:
+>+		oa_format_add(oa, XE_OAR_FORMAT_A32u40_A4u32_B8_C8);
+>+		oa_format_add(oa, XE_OA_FORMAT_A24u40_A14u32_B8_C8);
+>+		oa_format_add(oa, XE_OAM_FORMAT_MPEC8u64_B8_C8);
+>+		oa_format_add(oa, XE_OAM_FORMAT_MPEC8u32_B8_C8);
+>+		break;
+>+
+>+	default:
+>+		drm_err(&oa->xe->drm, "Unknown platform\n");
+>+	}
+>+}
+>+
+>+int xe_oa_init(struct xe_device *xe)
+>+{
+>+	struct xe_oa *oa = &xe->oa;
+>+	struct xe_gt *gt;
+>+	int i, ret;
+>+
+>+	/* Support OA only with GuC submission and Gen12+ */
+>+	if (XE_WARN_ON(!xe_device_guc_submission_enabled(xe)) ||
+>+	    XE_WARN_ON(GRAPHICS_VER(xe) < 12))
+>+		return 0;
+>+
+>+	oa->xe = xe;
+>+	oa->oa_formats = oa_formats;
+>+
+>+	for_each_gt(gt, xe, i)
+>+		mutex_init(&gt->oa.lock);
+>+
+>+	/* Choose a representative limit */
+>+	xe_oa_sample_rate_hard_limit = xe_root_mmio_gt(xe)->info.clock_freq / 2;
+>+
+>+	mutex_init(&oa->metrics_lock);
+>+	idr_init_base(&oa->metrics_idr, 1);
+>+
+>+	ret = xe_oa_init_engine_groups(oa);
+>+	if (ret) {
+>+		drm_err(&xe->drm, "OA initialization failed %d\n", ret);
+>+		return ret;
+>+	}
+>+
+>+	xe_oa_init_supported_formats(oa);
+>+
+>+	oa->xe = xe;
+>+	return 0;
+>+}
+>+
+>+void xe_oa_fini(struct xe_device *xe)
+>+{
+>+	struct xe_oa *oa = &xe->oa;
+>+	struct xe_gt *gt;
+>+	int i;
+>+
+>+	if (!oa->xe)
+>+		return;
+>+
+>+	for_each_gt(gt, xe, i)
+>+		kfree(gt->oa.group);
+>+
+>+	idr_destroy(&oa->metrics_idr);
+>+
+>+	oa->xe = NULL;
+>+}
+>+
+>+static struct ctl_table oa_ctl_table[] = {
+>+	{
+>+	 .procname = "perf_stream_paranoid",
+>+	 .data = &xe_oa_stream_paranoid,
+>+	 .maxlen = sizeof(xe_oa_stream_paranoid),
+>+	 .mode = 0644,
+>+	 .proc_handler = proc_dointvec_minmax,
+>+	 .extra1 = SYSCTL_ZERO,
+>+	 .extra2 = SYSCTL_ONE,
+>+	 },
+>+	{
+>+	 .procname = "oa_max_sample_rate",
+>+	 .data = &xe_oa_max_sample_rate,
+>+	 .maxlen = sizeof(xe_oa_max_sample_rate),
+>+	 .mode = 0644,
+>+	 .proc_handler = proc_dointvec_minmax,
+>+	 .extra1 = SYSCTL_ZERO,
+>+	 .extra2 = &xe_oa_sample_rate_hard_limit,
+>+	 },
+>+	{}
+>+};
+>+
+>+int xe_oa_sysctl_register(void)
+>+{
+>+	sysctl_header = register_sysctl("dev/xe", oa_ctl_table);
+>+	return 0;
+>+}
+>+
+>+void xe_oa_sysctl_unregister(void)
+>+{
+>+	unregister_sysctl_table(sysctl_header);
+>+}
+>diff --git a/drivers/gpu/drm/xe/xe_oa.h b/drivers/gpu/drm/xe/xe_oa.h
+>new file mode 100644
+>index 0000000000000..ba4ba80fd34cb
+>--- /dev/null
+>+++ b/drivers/gpu/drm/xe/xe_oa.h
+>@@ -0,0 +1,18 @@
 >+/* SPDX-License-Identifier: MIT */
 >+/*
 >+ * Copyright © 2023 Intel Corporation
 >+ */
 >+
->+#ifndef __XE_OA_REGS__
->+#define __XE_OA_REGS__
+>+#ifndef _XE_OA_H_
+>+#define _XE_OA_H_
 >+
->+#define REG_EQUAL(reg, xe_reg) ((reg) == (xe_reg.addr))
->+#define REG_EQUAL_MCR(reg, xe_reg) ((reg) == (xe_reg.__reg.addr))
+>+#include "xe_oa_types.h"
 >+
->+#define HALF_SLICE_CHICKEN2 XE_REG_MCR(0xe180)
->+#define   GEN8_ST_PO_DISABLE	REG_BIT(13)
+>+int xe_oa_init(struct xe_device *xe);
+>+void xe_oa_fini(struct xe_device *xe);
+>+void xe_oa_register(struct xe_device *xe);
+>+void xe_oa_unregister(struct xe_device *xe);
+>+int xe_oa_sysctl_register(void);
+>+void xe_oa_sysctl_unregister(void);
 >+
->+#define GEN7_ROW_CHICKEN2		XE_REG(0xe4f4)
->+#define GEN8_ROW_CHICKEN		XE_REG_MCR(0xe4f0)
->+#define   STALL_DOP_GATING_DISABLE	REG_BIT(5)
->+#define   GEN12_DISABLE_DOP_GATING	REG_BIT(0)
->+
->+#define RPM_CONFIG1			XE_REG(0xd04)
->+#define   GEN10_GT_NOA_ENABLE		REG_BIT(9)
->+
->+#define WAIT_FOR_RC6_EXIT XE_REG(0x20cc)
->+#define   HSW_WAIT_FOR_RC6_EXIT_ENABLE	REG_BIT(0)
->+
->+#define EU_PERF_CNTL0 XE_REG(0xe458)
->+#define EU_PERF_CNTL4 XE_REG(0xe45c)
->+#define EU_PERF_CNTL1 XE_REG(0xe558)
->+#define EU_PERF_CNTL5 XE_REG(0xe55c)
->+#define EU_PERF_CNTL2 XE_REG(0xe658)
->+#define EU_PERF_CNTL6 XE_REG(0xe65c)
->+#define EU_PERF_CNTL3 XE_REG(0xe758)
->+
->+#define OABUFFER_SIZE_MASK	REG_GENMASK(5, 3)
->+#define OABUFFER_SIZE_128K	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 0)
->+#define OABUFFER_SIZE_256K	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 1)
->+#define OABUFFER_SIZE_512K	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 2)
->+#define OABUFFER_SIZE_1M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 3)
->+#define OABUFFER_SIZE_2M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 4)
->+#define OABUFFER_SIZE_4M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 5)
->+#define OABUFFER_SIZE_8M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 6)
->+#define OABUFFER_SIZE_16M	REG_FIELD_PREP(OABUFFER_SIZE_MASK, 7)
->+
->+#define GEN12_OA_TLB_INV_CR XE_REG(0xceec)
->+
->+/* Gen12 OAR unit */
->+#define GEN12_OAR_OACONTROL XE_REG(0x2960)
->+#define  GEN12_OAR_OACONTROL_COUNTER_FORMAT_SHIFT 1
->+#define  GEN12_OAR_OACONTROL_COUNTER_ENABLE	REG_BIT(0)
->+
->+#define GEN8_OACTXCONTROL XE_REG(0x2360)
->+#define  GEN8_OA_COUNTER_RESUME			REG_BIT(0)
->+
->+#define GEN12_OACTXCONTROL(base) XE_REG((base) + 0x360)
->+#define GEN12_OAR_OASTATUS XE_REG(0x2968)
->+
->+/* Gen12 OAG unit */
->+#define GEN12_OAG_OAHEADPTR XE_REG(0xdb00)
->+#define  GEN12_OAG_OAHEADPTR_MASK 0xffffffc0
->+#define GEN12_OAG_OATAILPTR XE_REG(0xdb04)
->+#define  GEN12_OAG_OATAILPTR_MASK 0xffffffc0
->+
->+#define GEN12_OAG_OABUFFER XE_REG(0xdb08)
->+#define  GEN12_OAG_OABUFFER_BUFFER_SIZE_MASK  (0x7)
->+#define  GEN12_OAG_OABUFFER_BUFFER_SIZE_SHIFT (3)
->+#define  GEN12_OAG_OABUFFER_MEMORY_SELECT     REG_BIT(0) /* 0: PPGTT, 1: GGTT */
->+
->+#define GEN12_OAG_OAGLBCTXCTRL XE_REG(0x2b28)
->+#define  GEN12_OAG_OAGLBCTXCTRL_TIMER_PERIOD_SHIFT 2
->+#define  GEN12_OAG_OAGLBCTXCTRL_TIMER_ENABLE	REG_BIT(1)
->+#define  GEN12_OAG_OAGLBCTXCTRL_COUNTER_RESUME	REG_BIT(0)
->+
->+#define GEN12_OAG_OACONTROL XE_REG(0xdaf4)
->+#define  GEN12_OAG_OACONTROL_OA_COUNTER_FORMAT_SHIFT 2
->+#define  GEN12_OAG_OACONTROL_OA_COUNTER_ENABLE	REG_BIT(0)
->+
->+#define GEN12_OAG_OA_DEBUG XE_REG(0xdaf8)
->+#define  GEN12_OAG_OA_DEBUG_INCLUDE_CLK_RATIO		REG_BIT(6)
->+#define  GEN12_OAG_OA_DEBUG_DISABLE_CLK_RATIO_REPORTS	REG_BIT(5)
->+#define  GEN12_OAG_OA_DEBUG_DISABLE_GO_1_0_REPORTS	REG_BIT(2)
->+#define  GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS	REG_BIT(1)
->+
->+#define GEN12_OAG_OASTATUS XE_REG(0xdafc)
->+#define  GEN12_OAG_OASTATUS_COUNTER_OVERFLOW	REG_BIT(2)
->+#define  GEN12_OAG_OASTATUS_BUFFER_OVERFLOW	REG_BIT(1)
->+#define  GEN12_OAG_OASTATUS_REPORT_LOST		REG_BIT(0)
->+
->+#define GDT_CHICKEN_BITS    XE_REG(0x9840)
->+#define   GT_NOA_ENABLE	    0x00000080
->+
->+#define GEN12_SQCNT1				XE_REG(0x8718)
->+#define   GEN12_SQCNT1_PMON_ENABLE		REG_BIT(30)
->+#define   GEN12_SQCNT1_OABPC			REG_BIT(29)
->+
->+/* Gen12 OAM unit */
->+#define GEN12_OAM_HEAD_POINTER_OFFSET   (0x1a0)
->+#define  GEN12_OAM_HEAD_POINTER_MASK    0xffffffc0
->+
->+#define GEN12_OAM_TAIL_POINTER_OFFSET   (0x1a4)
->+#define  GEN12_OAM_TAIL_POINTER_MASK    0xffffffc0
->+
->+#define GEN12_OAM_BUFFER_OFFSET         (0x1a8)
->+#define  GEN12_OAM_BUFFER_SIZE_MASK     (0x7)
->+#define  GEN12_OAM_BUFFER_SIZE_SHIFT    (3)
->+#define  GEN12_OAM_BUFFER_MEMORY_SELECT REG_BIT(0) /* 0: PPGTT, 1: GGTT */
->+
->+#define GEN12_OAM_CONTEXT_CONTROL_OFFSET              (0x1bc)
->+#define  GEN12_OAM_CONTEXT_CONTROL_TIMER_PERIOD_SHIFT 2
->+#define  GEN12_OAM_CONTEXT_CONTROL_TIMER_ENABLE       REG_BIT(1)
->+#define  GEN12_OAM_CONTEXT_CONTROL_COUNTER_RESUME     REG_BIT(0)
->+
->+#define GEN12_OAM_CONTROL_OFFSET                (0x194)
->+#define  GEN12_OAM_CONTROL_COUNTER_FORMAT_SHIFT 1
->+#define  GEN12_OAM_CONTROL_COUNTER_ENABLE       REG_BIT(0)
->+
->+#define GEN12_OAM_DEBUG_OFFSET                      (0x198)
->+#define  GEN12_OAM_DEBUG_BUFFER_SIZE_SELECT         REG_BIT(12)
->+#define  GEN12_OAM_DEBUG_INCLUDE_CLK_RATIO          REG_BIT(6)
->+#define  GEN12_OAM_DEBUG_DISABLE_CLK_RATIO_REPORTS  REG_BIT(5)
->+#define  GEN12_OAM_DEBUG_DISABLE_GO_1_0_REPORTS     REG_BIT(2)
->+#define  GEN12_OAM_DEBUG_DISABLE_CTX_SWITCH_REPORTS REG_BIT(1)
->+
->+#define GEN12_OAM_STATUS_OFFSET            (0x19c)
->+#define  GEN12_OAM_STATUS_COUNTER_OVERFLOW REG_BIT(2)
->+#define  GEN12_OAM_STATUS_BUFFER_OVERFLOW  REG_BIT(1)
->+#define  GEN12_OAM_STATUS_REPORT_LOST      REG_BIT(0)
->+
->+#define GEN12_OAM_MMIO_TRG_OFFSET	(0x1d0)
->+
->+#define GEN12_OAM_MMIO_TRG(base) \
->+	XE_REG((base) + GEN12_OAM_MMIO_TRG_OFFSET)
->+
->+#define GEN12_OAM_HEAD_POINTER(base) \
->+	XE_REG((base) + GEN12_OAM_HEAD_POINTER_OFFSET)
->+#define GEN12_OAM_TAIL_POINTER(base) \
->+	XE_REG((base) + GEN12_OAM_TAIL_POINTER_OFFSET)
->+#define GEN12_OAM_BUFFER(base) \
->+	XE_REG((base) + GEN12_OAM_BUFFER_OFFSET)
->+#define GEN12_OAM_CONTEXT_CONTROL(base) \
->+	XE_REG((base) + GEN12_OAM_CONTEXT_CONTROL_OFFSET)
->+#define GEN12_OAM_CONTROL(base) \
->+	XE_REG((base) + GEN12_OAM_CONTROL_OFFSET)
->+#define GEN12_OAM_DEBUG(base) \
->+	XE_REG((base) + GEN12_OAM_DEBUG_OFFSET)
->+#define GEN12_OAM_STATUS(base) \
->+	XE_REG((base) + GEN12_OAM_STATUS_OFFSET)
->+
->+#define GEN12_OAM_CEC0_0_OFFSET		(0x40)
->+#define GEN12_OAM_CEC7_1_OFFSET		(0x7c)
->+#define GEN12_OAM_CEC0_0(base) \
->+	XE_REG((base) + GEN12_OAM_CEC0_0_OFFSET)
->+#define GEN12_OAM_CEC7_1(base) \
->+	XE_REG((base) + GEN12_OAM_CEC7_1_OFFSET)
->+
->+#define GEN12_OAM_STARTTRIG1_OFFSET	(0x00)
->+#define GEN12_OAM_STARTTRIG8_OFFSET	(0x1c)
->+#define GEN12_OAM_STARTTRIG1(base) \
->+	XE_REG((base) + GEN12_OAM_STARTTRIG1_OFFSET)
->+#define GEN12_OAM_STARTTRIG8(base) \
->+	XE_REG((base) + GEN12_OAM_STARTTRIG8_OFFSET)
->+
->+#define GEN12_OAM_REPORTTRIG1_OFFSET	(0x20)
->+#define GEN12_OAM_REPORTTRIG8_OFFSET	(0x3c)
->+#define GEN12_OAM_REPORTTRIG1(base) \
->+	XE_REG((base) + GEN12_OAM_REPORTTRIG1_OFFSET)
->+#define GEN12_OAM_REPORTTRIG8(base) \
->+	XE_REG((base) + GEN12_OAM_REPORTTRIG8_OFFSET)
->+
->+#define GEN12_OAM_PERF_COUNTER_B0_OFFSET	(0x84)
->+#define GEN12_OAM_PERF_COUNTER_B(base, idx) \
->+	XE_REG((base) + GEN12_OAM_PERF_COUNTER_B0_OFFSET + 4 * (idx))
->+
->+#endif /* __XE_OA_REGS__ */
+>+#endif
 >-- 
 >2.41.0
 >
