@@ -4,144 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA5EEEE49A5
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 23:58:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 00F55EE49AF
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 23:59:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B7F910E090;
-	Tue, 22 Aug 2023 23:58:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7FB310E09B;
+	Tue, 22 Aug 2023 23:59:42 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F7E010E090
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 23:58:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0064D10E090;
+ Tue, 22 Aug 2023 23:59:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692748708; x=1724284708;
+ t=1692748780; x=1724284780;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=xXmBGFRCYYEZjr1M1OTrVKqXH3/DuXiA5daJ349nuvM=;
- b=JX1bbeLL4KPtQKY7YtbkJfPdCoSShBZ08qD7W4sDu4Z9HDgG78wn7u9c
- BLjpX5hRHlQJ1Qa/BZKD447k5Vcg7yZY0dqRocheFZe2WSQr86znCejNA
- 3q/0odBASMc6fTVzc0XsfUTro7g5KWPxDRitGJsevbrtvjJSznAJ0OVva
- emzqG8TeZyqoPvEydYClWMedGvBPCcquwT8uSoJ8OwMPHQ8Ess65sOBpv
- qLzZOkezCHMSw8XnWcHFe3bXJhcf6VCCi6eG5uV6roypxtAY5ggbjpLjD
- IWTdg9TpGhdtJQHSOLp7MAo2yLFyBJP9WZRqn3VBEFtgpUfuWg0Vm8puL w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="373998288"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="373998288"
+ bh=EXrtaIyzMBSZERHa7IbDsI0CZUNlLMmRdv1IUvP//4Q=;
+ b=kMfsooFy85tc9pVXYF4bH0UwKz/bQZYBGnX2UqAdTgUxyeg9IvteB1h6
+ 1tZ9o4aYBI6jLQTSo9i22h2LWzwOFbQ2LjgqBOtsrlTRSeR/HVPOnBeJ+
+ aUvDezs9PiIgw+mt9l0VjwmygkJ9wXf2ITvFFhHYcjMteWji8ezG+WX8g
+ Dc2i9cLn7oeJYk31qaaYE6mJ1bGA/0pqbI6lpYuqXd6fG3m0qjVieDStO
+ eg2KMlu7liYOmUGIbYu8LiG7VPqbiUhyM1st5E7c8MS/vKSWEY9gGZPB/
+ 2F+vNzMeNjPXnMJNhqWBIEQ/hIUCaIh8rsBe7Tq/s6NgGnjktzFgM9IjG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="373998476"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="373998476"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 16:58:27 -0700
+ 22 Aug 2023 16:59:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="850822290"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="850822290"
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="850822705"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="850822705"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga002.fm.intel.com with ESMTP; 22 Aug 2023 16:58:27 -0700
+ by fmsmga002.fm.intel.com with ESMTP; 22 Aug 2023 16:59:39 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 22 Aug 2023 16:58:26 -0700
+ 15.1.2507.27; Tue, 22 Aug 2023 16:59:38 -0700
 Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 22 Aug 2023 16:58:26 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Tue, 22 Aug 2023 16:59:38 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.176)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 22 Aug 2023 16:58:26 -0700
+ 15.1.2507.27; Tue, 22 Aug 2023 16:59:38 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=NyXSgydx0FY/bwRZRlu9stt5mmS2QaVeZbBgB0D4DRoush5FyZ5d5rIjmy4ChR//UfVTxovtSLv7E3j5vvVoeZu2godYDQ1nEJuvyZDtlx28tvQGgNw33yAZ/ezA49zbOZXLpe5uKSf+ejwlUXgv3uQ1e4bc8is7HkF/Cb4O4MqWXwC9+Lor/A5kajqITUNwMLc9RigksScZnL4g0U58U0gM4LccyydM9xvqOY2IlgGfUdU6NtW3ysMb+PjLnhP+qUMoj9MDIhDi6bicDmJeuGYNN8UJIkrKi6eD0T+ni7fEs9gt7Hy/+s1eluat2Z704f3WEk7tyxdXYO8Rp0vdig==
+ b=BLlNtNs1UGo0Ck343sfQV4IEIRfBqN7Iojs7O/uBSwJ4VNRvxEteA6AUS3MWf7tYyCuzCnfESxOESGr18tBD0paT1cWD8QMCaHZ0YGtpTp1TAtbmid8qZtR2x+dcqMYWI4GaY5Cr2w98imML49wvTxKxQTCo/0Q8c7GoL8OOvsjp55/M9mPW6Dkwn3fsir5JxWRjwHwPi5hVFDgkeRSqT0/TjgZZ1SNiTcn/Mc1hLUmnXeX4AqJ1KWc1CG5+lUbivt8u7XFBDfLwgUZSaEVkJa+s96jxOOLJQv/oqvSHkQaocAoR7R3M5jG+k96gkbzsdQtgg/Qc9RyCxhREV+a2nQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IpM8RM8hEDqvZ4F0lZm7qWJ33dmfAPz0PNsyLbzVVcU=;
- b=cc/hUjjtHZPL4Fwt5Pd8NLJ7YpnxiMOQJ4EfSucsZ1+JYvF2zvv+IjS2evzFLFswolZECXT6AaGFiFYCdNDNsVHWVoDv2KQGdazHJ5cFMsCdGOFOJJBVTX/2I1v6fcaPpNVNEVHKYeQqBDUg2J945LCGErxMt7fpnEhUfGYO5z5SUEJ7g7+nylZ/+AjHR1BEsYdqmxHOdcVh19/+MEDxNzsM0ozIIZsY5szs6IqK8GQX09/rXVbQW4boECLv2MGOHhzdVBjek06qcYv8/8K+wHMuNGmQlC6fDNb1F9SDtJ7rEuTg06v0qouJjOgIx4JnLOQghO9qsdNyJ1KwBBaMUw==
+ bh=zRpLrq4bsBzR/uYGSWzWOGHKGC9FNEK4CTKzLNCj1s0=;
+ b=QWgoTVLVLPz2boVmp7dXZh81Bz00M3oq0zXAPRsuGAtSM9hTqVjUqSJACRED1dRjGZC9ThN3AZ9Cq54gdNDWmLRA/zhojJRceI//6+SXHXazdRFM3hIGF+3oIPZS491jc0pUZKbQvGvlPJ28d0WQecBARFpn2PVShXIR27N010MWuJFWdGAu5CjnTTsHBt4eHpkXcEqdBycUqLQFUrg4t1TDn6zOrlvhzHgD6xJgYfmg7Px5c12GDlu8cjkqxs1di8EQwtJgviAPYBQWXNciVX2IcinRS7S3buokWov8/ADSNPUdlgVAZbuxnOQULta/B2RU2vJZVTv6WJgrOJBOBg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by CY8PR11MB7827.namprd11.prod.outlook.com (2603:10b6:930:77::9) with
+ by DM6PR11MB4721.namprd11.prod.outlook.com (2603:10b6:5:2a3::14) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Tue, 22 Aug
- 2023 23:58:19 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.25; Tue, 22 Aug
+ 2023 23:59:32 +0000
 Received: from BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::a9b6:9a74:51f5:2d2b]) by BL3PR11MB6508.namprd11.prod.outlook.com
  ([fe80::a9b6:9a74:51f5:2d2b%4]) with mapi id 15.20.6699.022; Tue, 22 Aug 2023
- 23:58:19 +0000
-Date: Tue, 22 Aug 2023 23:57:03 +0000
+ 23:59:32 +0000
+Date: Tue, 22 Aug 2023 23:58:15 +0000
 From: Matthew Brost <matthew.brost@intel.com>
-To: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
-Message-ID: <ZOVLT+qHEZjIzga3@DUT025-TGLU.fm.intel.com>
-References: <20230822045825.3900964-1-sujaritha.sundaresan@intel.com>
- <20230822045825.3900964-2-sujaritha.sundaresan@intel.com>
-Content-Type: text/plain; charset="utf-8"
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZOVLlztGYb/Vd/De@DUT025-TGLU.fm.intel.com>
+References: <20230822162136.25895-1-thomas.hellstrom@linux.intel.com>
+ <20230822162136.25895-3-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230822045825.3900964-2-sujaritha.sundaresan@intel.com>
-X-ClientProxiedBy: BY5PR03CA0030.namprd03.prod.outlook.com
- (2603:10b6:a03:1e0::40) To BL3PR11MB6508.namprd11.prod.outlook.com
+In-Reply-To: <20230822162136.25895-3-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: BYAPR11CA0094.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::35) To BL3PR11MB6508.namprd11.prod.outlook.com
  (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|CY8PR11MB7827:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1fbe0568-83fe-4102-155d-08dba36ba8b3
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|DM6PR11MB4721:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1a6cd068-35fe-40e4-f944-08dba36bd408
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7K4tSJ7IWXLann4l7LB1Qrjt5GwWqwybeU/NDa9nuTN5XTX6E+otWqSJpTOJZkr1K3r8UTYuXPtf1Jc5bCvJsqEf71aHUyrTXYDehsUMbvHa27d5U1/OtvyjUckm9oqjsB6oSfgjqfRFM4Zl89geoKSIdEY4IwOBlcBRvNxo/8Scu//k6FWkcIHtVB53O0GuRAnKDZ+sB+EyJ4uRMqjPlAyUMRKLt52sxjAepaYPr0vLy31ih36kTIdAe4nXnuOnGLc1JbmMSAwaEu7YJwr1c3yNu+NBrCuPwPj6RQ9NG4qSuwaXtPtwfvBdxVwf8gll+Av1ye4NQUI8yZNuD0XNxOVmGl8UMc/zm1Nd9IKae/OOXrOLwfMQ7R6Ea9gAcdZpS/Ud08Xm4WYgB7lnRmqVQ0bnwUxScwhLfyuaDU0Fvn8eSGzVTNZ/M2akap8TlxPhwuRwh0MUXmU1bPAJP6GduvfgQ/1KqWYgkvJmwvBAEgHxTLgrAmSJCXkeb+ehIei/YIZ8uLjLj0TzmHZLH34iz8z/xGUK0IUvqwA+10U5JLvZh2i1DKJ5U6+G5Mp5snDd7flYC5PNGCHHmHWJI10mfrjs6KOYTJGZy7byySzaR2JCmJwNcJ1qGPB0h/TGcbnh
+X-Microsoft-Antispam-Message-Info: 27Ze2kG+MDn7QJdqlUmtB18kxA+pbd4HPVLjEdiPB5oDNwzQNcgDwcLDBaO+11IExlbhqJgIb6xJH70etPCbKErSb59sTcqLBOyzdIqHdE8aBlC1I2uHNS++J615I+QzjajC9aWQpCkpqQ1J5s/8+B6OQGRwLoTzizfwZl88sv96p4vw4EYjNyD3rNUJSPmtbqFR3OADDB9dCGrHEwBuTK2SRDYf86pE4FsVFpnOLIfR2m4r5wdBrrdJITNvcGejLaYysWfrt3PdcMlf6JoEhxIZD2k2hgAOp5mqSTv5tJ5Z47PXvAqlGKO8/zOB3spYPeIJrqIx4xjg5QP5OcZ7s9d0CLGXlsI5+ar/EnhwnMcXuN2GZU1LTEmzXz2od6lq/svM6tS+UjIhRkAXOC9FCEbwiTlRB0PRD5TFyPB0TmMowzhaNkHz47z8vEWSh4ILgJ+AhWk8DJ29nf50qoClSut02caDM6PapCUN6/SDQreqKTyElJb9YwQ1LSb2l+TSRRDNz1jCaplTuw2lZHNlysplmLxMpwzmH/qcOS56xg72gmKapjL2Jv1tYHkGoV09
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(346002)(376002)(136003)(39860400002)(366004)(1800799009)(451199024)(186009)(6666004)(4326008)(8676002)(8936002)(6862004)(6636002)(316002)(478600001)(66556008)(66476007)(66946007)(41300700001)(6486002)(6506007)(6512007)(38100700002)(82960400001)(26005)(5660300002)(2906002)(44832011)(83380400001)(86362001)(30864003)(67856001)(309714004);
+ SFS:(13230031)(376002)(346002)(136003)(396003)(39860400002)(366004)(1800799009)(186009)(451199024)(6666004)(6506007)(6486002)(6512007)(86362001)(4326008)(5660300002)(2906002)(44832011)(38100700002)(82960400001)(54906003)(66946007)(8936002)(8676002)(6916009)(41300700001)(66476007)(316002)(66556008)(478600001)(83380400001)(66574015)(26005);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U2hsUWtWVjlINjA5ZUROU2pFRmRLMEd1VWNUNjVYV3J4TG95R0IzTEd1TVFo?=
- =?utf-8?B?YTFyWTJoWGJjSDAxWnJ0Q3BKeC81WUpqUUNRUGtzMzBkKzg2UnY2OW1idS9Z?=
- =?utf-8?B?cFdkOGhIRlA5TzN4am5McXVuUTV0cXRWZkhpMmJFaXlMSDM3Nlc0YmRHd2lt?=
- =?utf-8?B?QmVYVGdHcGdjeDQ1cGp0dUhEM3JoT3plZk9HWmVqajkreTRoVnJ4OEtwd0VO?=
- =?utf-8?B?K25NVTdQUGNESkFZL1MzVkJ3OXpDMDZRVS8vUlc1SXRKQ2MxbkhJSFdtcUZK?=
- =?utf-8?B?dVBpRTdpV01hVGk1MTdkRHRONWk1MnpyVU51RFhmVFdLeVphVFUrOVk3WWpn?=
- =?utf-8?B?Y3dpVEFlaG1NY1NGWUxvMkJleWRGM2hNNnpaZTNVa3JGNENzRDhKWVM0SkZw?=
- =?utf-8?B?WFhHelYzK1daSnV1b2JPd1FSWW5rcHhHQ0NKRWVqbFBubTk4NG9reFE5enlw?=
- =?utf-8?B?dC9wWFdVaDA4NHJzVXlxQ21rMmhMRDUwR2g0RndOZ2xaWVpOMVFTNW1oaFlM?=
- =?utf-8?B?UUg5Z29XblkrdGNlTnkvTHdXYWIvWnFRYUg4RzdKcHQzZXlBQmNyWFpTazlp?=
- =?utf-8?B?RHE2MGs5Znlnd2ZITEdjZnhsaGZ4RU9tRDc5ZmEyYzB6ZGNlcFExRFo3M013?=
- =?utf-8?B?YS9xQWR3bDd4MlR0WWJ4YlQzdXA3SkZ5eTFYYjV6Nk5vV0JsNEpPd01hSUFB?=
- =?utf-8?B?TTNJUTdES0c1WlRGeWNRbktra3VPTDNRNnZib0xhem1JNGo1TFVBRVNkcVdO?=
- =?utf-8?B?NVJmNm8zRiswaXlmL0dhMW5tSXp4RjIxSVFaTzF4RkxMQUVSTG1lSnlUcW9E?=
- =?utf-8?B?b05iVFZXZzR0Y3hYRFBKLzcxRXFqd05MaERaQzdiaXBmVmluT0hNU3V1TlUx?=
- =?utf-8?B?UldXTzV1ZmN0WE96OGhsVFNJWWtuUUdycW90UGV1VUd1NExyei8ybHJUdHZs?=
- =?utf-8?B?YVZxbEJ5bGM1SXh2cGEzWHIzYW95K25YaU9oaENPN1Vqd2FVdHJhVG53bzR5?=
- =?utf-8?B?RjQ2QkFzRDZVaDd3cW1qVWQ4UWp5YXZsam9pTzZqNHltbTExejZObDVJOWYv?=
- =?utf-8?B?UE10b2syUGZhL1kwdkJSWURlQmljVmFZbXdabUZpMGZXRTMwWW5hWlN0RXpV?=
- =?utf-8?B?R1U1b2lyblNUUFMzNWpKc3poVFpIV21vV1BmaSs1c0lvclNpQWVSVHRYSjBI?=
- =?utf-8?B?RWlkZGUvbkxVc0tWNHFsVkhhQnJwMnJSakdBUmp0bi9sMy93bmR6ZGpyQnh4?=
- =?utf-8?B?K1ljL3VPV3JZVjh6K2ZiaVhmL2VIci80clRnU2hDZ2xoejdXd3RiUlRhQ2xt?=
- =?utf-8?B?TFVvaVQxQ2ZzaFBnc2VpQUJSMFZEVnJUR0hLMlVjeVdEUVZiZTJUVmZkcTNY?=
- =?utf-8?B?TVM0Yk9hS1VtSUNHc2QrSXlPRURVZVl0dHVXTVlSZGpGSkRUcVlwQTVzcVA2?=
- =?utf-8?B?aWc5Q1ZzWGRxRkZQaUR0NTZsVDhBbm9UUXZ2aEJRRlEwYlgrcUhqbFVvVVY5?=
- =?utf-8?B?dlNXRmttSE52dXBPRkp4anFqbFF1dEt2OER0R3JpdU1qQTdOQ0dDb2UxdTZs?=
- =?utf-8?B?OXM2RG9Db0xEekdMZzJBMGVTa21DOTVpQTNYdktwZlJtUlhUa3VtdkZacUda?=
- =?utf-8?B?SUViV1g2VS9tK1dCZUd5azdFTEd5VDJmdlN5aVY1RndKSXZmdXZrQmhZcjNY?=
- =?utf-8?B?SVJBRXN0M3A2SW5PL3Yzc3g2RnhwaG11ME1lQUU2dUdML3ZMS3hIYzhFWXBj?=
- =?utf-8?B?QjIwNVNiR1F6OVorR1ljMXhId3VVa1RrRnhUSk0zT21UbGhodVp6bE01V3dC?=
- =?utf-8?B?NUJ0RXpqSkJyelcxSE1lWDF2aXZ1U3RzNytTaWxsS2p4WkM3QXRHV0pYNmhU?=
- =?utf-8?B?Y1AycyszajNnUUQ0MDJlNmlrK1U5YWlCWXpJVTVEWWhzdUxKU2M1VzdDUVFa?=
- =?utf-8?B?dTRGRW5ySzFnZk5xdXN4Z2txeFBPV0NLaVNkRTN3UWtZRDQwMGpTVW5SaDBF?=
- =?utf-8?B?amc0NXErdjJVVTE3S09ZRG5LRUcxQXZEM1FQSzduOTZZWFRUK2gwSDUwTm1X?=
- =?utf-8?B?STkwbnRJVXE4dXh6b1F5MUNrNE9wYkgwM0JoSmpsK09kREdYUXlZUGJOS25L?=
- =?utf-8?B?Uks5OEZJQTh1aFNETjgvMitHcmJwdFRNaG15M3BML05YMStCOHlxemJ1SHph?=
- =?utf-8?B?a1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1fbe0568-83fe-4102-155d-08dba36ba8b3
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?x8orroWZm41Sb3IsfeVuXujkzK1YXaegC4nofyApQaclPouXsZYFB4N5gW?=
+ =?iso-8859-1?Q?tijv/jPeRjTUGWV9jOtwnPMkRJ45eozUkliDd7fTbdaPP7IlW36mr5l/81?=
+ =?iso-8859-1?Q?s76KSXMHI2AxrduizluZUcxyWJ+IcmaBvSLKhQAD1wR2iKpF2MoFk0I1eT?=
+ =?iso-8859-1?Q?MTQ7waI3i7+Jx52tmzu+hWXPoRCoiOO1QBVfH731DClrc/s6zCgYZhCy88?=
+ =?iso-8859-1?Q?hOdalXMqHxNdYZ8GUPYNt3+buTT6zkSGLeq+7dY+YaQuHdcau1edTRQm71?=
+ =?iso-8859-1?Q?1hUh4M24+0unfC5wH0pnLDWd8c3y9cD9WC0xt353FfAJ9Z+ts8b1lyjVeJ?=
+ =?iso-8859-1?Q?nDAJwUBlvXgPkFn1p4ARdwd6yEWGs3cO6n1og857vgnvI4Zm2XB7f8BT4P?=
+ =?iso-8859-1?Q?PwQImru1jGimROVTAvNpWYhngqw+D3W5QZxGx2cFQGue4ZkP9o11MCV7Fy?=
+ =?iso-8859-1?Q?m86vAW55m6/Cp+/7wGnLfuKZ6TcL3shHXHWe3194N0ZVaqgFWvsS7+V7cP?=
+ =?iso-8859-1?Q?BlLDVtboOYtGj9s3NTkJA1yhbdrjA7VyMIIhlzt1ZjmLPwrHh0P21BQAFU?=
+ =?iso-8859-1?Q?STQOv3KRawI8t/MsRPiVRJzzPcPSvqwc+Z7tTuYcSJJVYHqAsABjykwc1H?=
+ =?iso-8859-1?Q?aLhbTz2CaiwUQ9a+y7ppUrZWcWqBOnk+QxjFGcMheHy4XAF+ijLd9hyi1x?=
+ =?iso-8859-1?Q?Jqerl5gY895GdUmG3y910j088+KvFegNJ2rXx+NJlz0uR1OySY5MoF40sj?=
+ =?iso-8859-1?Q?U9xwiKaf9Rx7pVYbKSyQxi39J8rFs1Zx2bkvLX1GlOMfp5Yz+sFepu/mtE?=
+ =?iso-8859-1?Q?lSJ7oiOt8gCVJ8sT6Sq81WXYD/5WmHdW44CHov/INuBLVwLAQJFOax6Hhi?=
+ =?iso-8859-1?Q?DblH1y7VkMfQusYlhHIZ8qRZammmvNOxGyTW4nBMK5NB+DMQnuFNqhRlU9?=
+ =?iso-8859-1?Q?LIytpK6eRkA7UU8l9TmVj1jQAYEL/uhCwUYeocTWAO9DSEzHgHmzAFTl67?=
+ =?iso-8859-1?Q?18kIaXyOL5OTqk/8tUeJk1uaZxzW108abdeJZ5+ZMp+k/eBpJkBtUBxb8D?=
+ =?iso-8859-1?Q?aBmE/HLtCC9SIg5TuTnjgO8FPmoAfaqVlEbxPYaBIk43AZqyo2YKTquF4y?=
+ =?iso-8859-1?Q?atUYAppiCdPtbCIC9kolD8uHu+tHB+KRexiIvK676GyoYoegfgJfYn2j3M?=
+ =?iso-8859-1?Q?8j5A6ByrO8/X6KZr8See063HjtdiTVeiu3mfisyWyxyU2L3dcBa5iHB5zl?=
+ =?iso-8859-1?Q?D1P6BMwDFeP7cq1pYPha6cCyf03rqmjKMx438cu4d2vwcjflNbeyttUr8N?=
+ =?iso-8859-1?Q?xMorDXKPClsxJSEygkhl9rxYOA1sPwfqQmMhw0Z1WKkZsIvXtsnMfIOt6S?=
+ =?iso-8859-1?Q?3nYrsBrY+/D01RYtsV1dk0sw3mEwQRhvurAe+qULR6ZmN8kuBSVbF5+DOB?=
+ =?iso-8859-1?Q?VeOec8FgHPzIWldJomrdKW7JRLIVRRvQpAhltqk5x08ktwmcxJzJ9w5Sgo?=
+ =?iso-8859-1?Q?B9f50wqzq8S4BA9QcLZCb8AAOBnhZRSQ5uhoLuu1PNR1njHZwbFA7YYoGh?=
+ =?iso-8859-1?Q?KUDElSmw3HaJ4yuFyUCV3RFmeEY8RUvvlxsMGTsuh7mRUpT/oLY2xbaypT?=
+ =?iso-8859-1?Q?fNeygYrpqpCQAc6/YEVZeGOnrfRqwtzQgSWWbruMJuZZBjR7V9wJHCsg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a6cd068-35fe-40e4-f944-08dba36bd408
 X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 23:58:19.3446 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 23:59:31.8761 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nJH4Fi4Zh54TuNQsAx4vEkJT01UeYWs6xhv2uipzHFoFINjtHN7uMWEsQfdBzLtrbKw64Hh3Ra9z18EruK1rsw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7827
+X-MS-Exchange-CrossTenant-UserPrincipalName: UprECtp8YyOkV5UFITVWsyfl3GgE6pA/EbYJ8yjgib5TfOPX7il+w0OprpgY+lBb5pdlqlLQN6sH6SbRenR2ew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4721
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [RFC][PATCH 1/1] drm/xe: Add throttle reason sysfs
- attributes
+Subject: Re: [Intel-xe] [PATCH v2 2/4] drm/xe/vm: Implement userptr page
+ pinning
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,519 +145,222 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Aug 22, 2023 at 10:28:25AM +0530, Sujaritha Sundaresan wrote:
-> Add throttle reasons sysfs interface under device/../gt#/
-> Currently there is one overall status and eight reasons
-> attributes.
+On Tue, Aug 22, 2023 at 06:21:34PM +0200, Thomas Hellstr�m wrote:
+> Implement pinning of userptrs between VM_BIND and VM_UNBIND, which will
+> facilitate avoiding long hangs on non-preemptible workloads. But don't
+> hook it up to userspace just yet.
 > 
-> The new sysfs structure will have the below layout
+> v2:
+> - Avoid marking userptr VMAs as invalid in the mmu invalidation notifier.
+>   (Matthew Brost)
+> - Add an WARN that we don't try to repin userptr pages (Matthew Brost)
 > 
-> device/<dev/gt
->              ├── gt0
->              │   └── throttle
->              │       ├── <throttle_reasons>
->              │
->              │
->              ├── gtN
->              │   └── throttle
->              │       ├── <throttle_reasons>
-> 
-> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+> Signed-off-by: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
+
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
 > ---
->  drivers/gpu/drm/xe/Makefile                   |   1 +
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h          |  13 +
->  .../drm/xe/regs/xe_gt_throttle_sysfs_types.h  |  36 +++
->  drivers/gpu/drm/xe/xe_gt.c                    |   3 +
->  drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c     | 282 ++++++++++++++++++
->  drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h     |  17 ++
->  .../gpu/drm/xe/xe_gt_throttle_sysfs_types.h   |  35 +++
->  drivers/gpu/drm/xe/xe_gt_types.h              |   4 +
->  8 files changed, 391 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
->  create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h
+>  drivers/gpu/drm/xe/xe_vm.c       | 80 +++++++++++++++++++++++---------
+>  drivers/gpu/drm/xe/xe_vm.h       |  9 ++++
+>  drivers/gpu/drm/xe/xe_vm_types.h | 12 +++++
+>  3 files changed, 79 insertions(+), 22 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 550cdfed729e..eb3ccd90b2fa 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -63,6 +63,7 @@ xe-y += xe_bb.o \
->  	xe_gt_mcr.o \
->  	xe_gt_pagefault.o \
->  	xe_gt_sysfs.o \
-> +	xe_gt_throttle_sysfs.o \
->  	xe_gt_tlb_invalidation.o \
->  	xe_gt_topology.o \
->  	xe_guc.o \
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index baa00557f114..8416d483e7c3 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -400,4 +400,17 @@
->  #define XEHPC_BCS5_BCS6_INTR_MASK		XE_REG(0x190118)
->  #define XEHPC_BCS7_BCS8_INTR_MASK		XE_REG(0x19011c)
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 8bf7f62e6548..037ac42f74a5 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -74,10 +74,6 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+>  	if (notifier_seq == vma->userptr.notifier_seq)
+>  		return 0;
 >  
-> +#define GT0_PERF_LIMIT_REASONS			XE_REG(0x1381a8)
-> +#define   GT0_PERF_LIMIT_REASONS_MASK		0xde3
-> +#define   PROCHOT_MASK				REG_BIT(0)
-> +#define   THERMAL_LIMIT_MASK			REG_BIT(1)
-> +#define   RATL_MASK				REG_BIT(5)
-> +#define   VR_THERMALERT_MASK			REG_BIT(6)
-> +#define   VR_TDC_MASK				REG_BIT(7)
-> +#define   POWER_LIMIT_4_MASK			REG_BIT(8)
-> +#define   POWER_LIMIT_1_MASK			REG_BIT(10)
-> +#define   POWER_LIMIT_2_MASK			REG_BIT(11)
-> +#define   GT0_PERF_LIMIT_REASONS_LOG_MASK	REG_GENMASK(31, 16)
-> +#define MTL_MEDIA_PERF_LIMIT_REASONS		XE_REG(0x138030)
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h b/drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h
-> new file mode 100644
-> index 000000000000..b71865f467ce
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h
-> @@ -0,0 +1,36 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GT_THROTTLE_SYSFS_TYPES_H_
-> +#define _XE_GT_THROTTLE_SYSFS_TYPES_H_
-> +
-> +#include <linux/types.h>
-> +
-> +/**
-> + * struct xe_gt_throttle - A struct that contains frequency throttle reasons in gt
-> + */
-> +struct xe_gt_throttle {
-> +	/** @status: status */
-> +	bool status;
-> +	/** @reason_pl1: */
-> +	bool reason_pl1;
-> +	/** @reason_pl2: */
-> +	bool reason_pl2;
-> +	/** @reason_pl4: */
-> +	bool reason_pl4;
-> +	/** @reason_thermal: */
-> +	bool reason_thermal;
-> +	/** @reason_prochot */
-> +	bool reason_prochot;
-> +	/** @reason_ratl */
-> +	bool reason_ratl;
-> +	/** @reason_vr_thermalert */
-> +	bool reason_vr_thermalert;
-> +	/** @reason_vr_tdc */
-> +	bool reason_vr_tdc;
-> +};
-> +
-> +#endif /* _XE_GT_THROTTLE_SYSFS_TYPES_H_ */
-> +
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 13320af4ddd3..03be2c2980d4 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -24,6 +24,7 @@
->  #include "xe_gt_pagefault.h"
->  #include "xe_gt_printk.h"
->  #include "xe_gt_sysfs.h"
-> +#include "xe_gt_throttle_sysfs.h"
->  #include "xe_gt_tlb_invalidation.h"
->  #include "xe_gt_topology.h"
->  #include "xe_guc_exec_queue_types.h"
-> @@ -442,6 +443,8 @@ int xe_gt_init(struct xe_gt *gt)
+> -	pages = kvmalloc_array(num_pages, sizeof(*pages), GFP_KERNEL);
+> -	if (!pages)
+> -		return -ENOMEM;
+> -
+>  	if (vma->userptr.sg) {
+>  		dma_unmap_sgtable(xe->drm.dev,
+>  				  vma->userptr.sg,
+> @@ -87,6 +83,18 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+>  		vma->userptr.sg = NULL;
+>  	}
 >  
->  	xe_gt_sysfs_init(gt);
+> +	/* TODO: Convert to xe_assert() */
+> +	if (XE_WARN_ON(vma->userptr.pinned_pages)) {
+> +		unpin_user_pages_dirty_lock(vma->userptr.pinned_pages,
+> +					    vma->userptr.num_pinned,
+> +					    !read_only);
+> +		pages = vma->userptr.pinned_pages;
+> +	} else {
+> +		pages = kvmalloc_array(num_pages, sizeof(*pages), GFP_KERNEL);
+> +		if (!pages)
+> +			return -ENOMEM;
+> +	}
+> +
+>  	pinned = ret = 0;
+>  	if (in_kthread) {
+>  		if (!mmget_not_zero(vma->userptr.notifier.mm)) {
+> @@ -97,11 +105,18 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+>  	}
 >  
-> +	xe_gt_throttle_sysfs_init(&gt->throttle);
-
-This is the wrong place, xe_gt_sysfs_init should call xe_gt_throttle_sysfs_init.
-
-Matt
-
+>  	while (pinned < num_pages) {
+> -		ret = get_user_pages_fast(xe_vma_userptr(vma) +
+> -					  pinned * PAGE_SIZE,
+> -					  num_pages - pinned,
+> -					  read_only ? 0 : FOLL_WRITE,
+> -					  &pages[pinned]);
+> +		if (xe_vma_is_pinned(vma))
+> +			ret = pin_user_pages_fast(xe_vma_userptr(vma) +
+> +						  pinned * PAGE_SIZE,
+> +						  num_pages - pinned,
+> +						  read_only ? 0 : FOLL_WRITE,
+> +						  &pages[pinned]);
+> +		else
+> +			ret = get_user_pages_fast(xe_vma_userptr(vma) +
+> +						  pinned * PAGE_SIZE,
+> +						  num_pages - pinned,
+> +						  read_only ? 0 : FOLL_WRITE,
+> +						  &pages[pinned]);
+>  		if (ret < 0) {
+>  			if (in_kthread)
+>  				ret = 0;
+> @@ -137,19 +152,24 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+>  	if (ret)
+>  		goto out_free_sg;
+>  
+> -	for (i = 0; i < pinned; ++i) {
+> -		if (!read_only) {
+> -			lock_page(pages[i]);
+> -			set_page_dirty(pages[i]);
+> -			unlock_page(pages[i]);
+> +	if (!xe_vma_is_pinned(vma)) {
+> +		for (i = 0; i < pinned; ++i) {
+> +			if (!read_only) {
+> +				lock_page(pages[i]);
+> +				set_page_dirty(pages[i]);
+> +				unlock_page(pages[i]);
+> +			}
 > +
->  	err = gt_fw_domain_init(gt);
->  	if (err)
->  		return err;
-> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
-> new file mode 100644
-> index 000000000000..7db67b5fc138
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
-> @@ -0,0 +1,282 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#include <drm/drm_managed.h>
-> +
-> +#include <regs/xe_gt_regs.h>
-> +#include "xe_device.h"
-> +#include "xe_gt.h"
-> +#include "xe_gt_sysfs.h"
-> +#include "xe_gt_throttle_sysfs.h"
-> +#include "xe_guc_pc.h"
-> +#include "xe_mmio.h"
-> +
-> +/**
-> + * DOC: Xe GT Throttle
-> + *
-> + * Provides sysfs entries for frequency throttle reasons in GT
-> + *
-> + * device/gt#/throttle/status - Overall status
-> + * device/gt#/throttle/throttle_reason_pl1 - Frequency throttle due to PL1
-> + * device/gt#/throttle/throttle_reason_pl2 - Frequency throttle due to PL2
-> + * device/gt#/throttle/throttle_reason_pl4 - Frequency throttle due to PL4, Iccmax etc.
-> + * device/gt#/throttle/throttle_reason_thermal - Frequency throttle due to thermal
-> + * device/gt#/throttle/throttle_reason_prochot - Frequency throttle due to prochot
-> + * device/gt#/throttle/throttle_reason_ratl - Frequency throttle due to RATL
-> + * device/gt#/throttle/throttle_reason_vr_thermalert - Frequency throttle due to VR THERMALERT
-> + * device/gt#/throttle/throttle_reason_vr_tdc -  Frequency throttle due to VR TDC
-> + */
-> +
-> +static struct xe_gt_throttle *dev_to_throttle(struct device *dev)
-> +{
-> +	struct kobject *kobj = &dev->kobj;
-> +
-> +	return &kobj_to_gt(kobj->parent)->throttle;
-> +}
-> +
-> +static struct xe_gt *throttle_to_gt(struct xe_gt_throttle *throttle)
-> +{
-> +	return container_of(throttle, struct xe_gt, throttle);
-> +}
-> +
-> +u32 read_perf_limit_reasons(struct xe_gt *gt)
-> +{
-> +	u32 reg;
-> +	if (xe_gt_is_media_type(gt))
-> +		reg = xe_mmio_read32(gt, MTL_MEDIA_PERF_LIMIT_REASONS);
+> +			mark_page_accessed(pages[i]);
+>  		}
+>  
+> -		mark_page_accessed(pages[i]);
+> +		release_pages(pages, pinned);
+> +		kvfree(pages);
+> +	} else {
+> +		vma->userptr.pinned_pages = pages;
+> +		vma->userptr.num_pinned = pinned;
+>  	}
+>  
+> -	release_pages(pages, pinned);
+> -	kvfree(pages);
+> -
+>  	vma->userptr.notifier_seq = notifier_seq;
+>  	if (xe_vma_userptr_check_repin(vma) == -EAGAIN)
+>  		goto retry;
+> @@ -160,9 +180,14 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma)
+>  	sg_free_table(vma->userptr.sg);
+>  	vma->userptr.sg = NULL;
+>  out_release_pages:
+> -	release_pages(pages, pinned);
+> +	if (!xe_vma_is_pinned(vma))
+> +		release_pages(pages, pinned);
 > +	else
-> +		reg = xe_mmio_read32(gt, GT0_PERF_LIMIT_REASONS);
-> +
-> +	return reg;
-> +}
-> +
-> +u32 xe_read_status(struct xe_gt_throttle *throttle)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	u32 status = read_perf_limit_reasons(gt) & GT0_PERF_LIMIT_REASONS_MASK;
-> +
-> +	return status;
-> +}
-> +
-> +u32 xe_read_reason_pl1(struct xe_gt_throttle *throttle)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	u32 pl1 = read_perf_limit_reasons(gt) & POWER_LIMIT_1_MASK;
-> +
-> +	return pl1;
-> +}
-> +
-> +u32 xe_read_reason_pl2(struct xe_gt_throttle *throttle)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	u32 pl2 = read_perf_limit_reasons(gt) & POWER_LIMIT_2_MASK;
-> +
-> +	return pl2;
-> +}
-> +
-> +u32 xe_read_reason_pl4(struct xe_gt_throttle *throttle)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	u32 pl4 = read_perf_limit_reasons(gt) & POWER_LIMIT_4_MASK;
-> +
-> +	return pl4;
-> +}
-> +
-> +u32 xe_read_reason_thermal(struct xe_gt_throttle *throttle)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	u32 thermal = read_perf_limit_reasons(gt) & THERMAL_LIMIT_MASK;
-> +
-> +	return thermal;
-> +}
-> +
-> +u32 xe_read_reason_prochot(struct xe_gt_throttle *throttle)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	u32 prochot = read_perf_limit_reasons(gt) & PROCHOT_MASK;
-> +
-> +	return prochot;
-> +}
-> +
-> +u32 xe_read_reason_ratl(struct xe_gt_throttle *throttle)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	u32 ratl = read_perf_limit_reasons(gt) & RATL_MASK;
-> +
-> +	return ratl;
-> +}
-> +
-> +u32 xe_read_reason_vr_thermalert(struct xe_gt_throttle *throttle)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	u32 thermalert = read_perf_limit_reasons(gt) & VR_THERMALERT_MASK;
-> +
-> +	return thermalert;
-> +}
-> +
-> +u32 xe_read_reason_vr_tdc(struct xe_gt_throttle *throttle)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	u32 tdc = read_perf_limit_reasons(gt) & VR_TDC_MASK;
-> +
-> +	return tdc;
-> +}
-> +
-> +static ssize_t status_show(struct device *dev,
-> +			   struct device_attribute *attr,
-> +			   char *buff)
-> +{
-> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	bool status = !!xe_read_status(&gt->throttle);
-> +
-> +	return sysfs_emit(buff, "%u\n", status);
-> +}
-> +static DEVICE_ATTR_RO(status);
-> +
-> +static ssize_t reason_pl1_show(struct device *dev,
-> +			       struct device_attribute *attr,
-> +			       char *buff)
-> +{
-> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	bool pl1 = !!xe_read_reason_pl1(&gt->throttle);
-> +
-> +	return sysfs_emit(buff, "%u\n", pl1);
-> +}
-> +static DEVICE_ATTR_RO(reason_pl1);
-> +
-> +static ssize_t reason_pl2_show(struct device *dev,
-> +			       struct device_attribute *attr,
-> +			       char *buff)
-> +{
-> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	bool pl2 = !!xe_read_reason_pl2(&gt->throttle);
-> +
-> +	return sysfs_emit(buff, "%u\n", pl2);
-> +}
-> +static DEVICE_ATTR_RO(reason_pl2);
-> +
-> +static ssize_t reason_pl4_show(struct device *dev,
-> +			       struct device_attribute *attr,
-> +			       char *buff)
-> +{
-> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	bool pl4 = !!xe_read_reason_pl4(&gt->throttle);
-> +
-> +	return sysfs_emit(buff, "%u\n", pl4);
-> +}
-> +static DEVICE_ATTR_RO(reason_pl4);
-> +
-> +static ssize_t reason_thermal_show(struct device *dev,
-> +				   struct device_attribute *attr,
-> +				   char *buff)
-> +{
-> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	bool thermal = !!xe_read_reason_thermal(&gt->throttle);
-> +
-> +	return sysfs_emit(buff, "%u\n", thermal);
-> +}
-> +static DEVICE_ATTR_RO(reason_thermal);
-> +
-> +static ssize_t reason_prochot_show(struct device *dev,
-> +				   struct device_attribute *attr,
-> +				   char *buff)
-> +{
-> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	bool prochot = !!xe_read_reason_prochot(&gt->throttle);
-> +
-> +	return sysfs_emit(buff, "%u\n", prochot);
-> +}
-> +static DEVICE_ATTR_RO(reason_prochot);
-> +
-> +static ssize_t reason_ratl_show(struct device *dev,
-> +				struct device_attribute *attr,
-> +				char *buff)
-> +{
-> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	bool ratl = !!xe_read_reason_ratl(&gt->throttle);
-> +
-> +	return sysfs_emit(buff, "%u\n", ratl);
-> +}
-> +static DEVICE_ATTR_RO(reason_ratl);
-> +
-> +static ssize_t reason_vr_thermalert_show(struct device *dev,
-> +					 struct device_attribute *attr,
-> +					 char *buff)
-> +{
-> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	bool thermalert = !!xe_read_reason_vr_thermalert(&gt->throttle);
-> +
-> +	return sysfs_emit(buff, "%u\n", thermalert);
-> +}
-> +static DEVICE_ATTR_RO(reason_vr_thermalert);
-> +
-> +static ssize_t reason_vr_tdc_show(struct device *dev,
-> +				  struct device_attribute *attr,
-> +				  char *buff)
-> +{
-> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	bool tdc = !!xe_read_reason_vr_tdc(&gt->throttle);
-> +
-> +	return sysfs_emit(buff, "%u\n", tdc);
-> +}
-> +static DEVICE_ATTR_RO(reason_vr_tdc);
-> +
-> +static const struct attribute *throttle_attrs[] = {
-> +	&dev_attr_status.attr,
-> +	&dev_attr_reason_pl1.attr,
-> +	&dev_attr_reason_pl2.attr,
-> +	&dev_attr_reason_pl4.attr,
-> +	&dev_attr_reason_thermal.attr,
-> +	&dev_attr_reason_prochot.attr,
-> +	&dev_attr_reason_ratl.attr,
-> +	&dev_attr_reason_vr_thermalert.attr,
-> +	&dev_attr_reason_vr_tdc.attr,
-> +	NULL
-> +};
-> +
-> +static void gt_throttle_sysfs_fini(struct drm_device *drm, void *arg)
-> +{
-> +	struct kobject *kobj = arg;
-> +
-> +	sysfs_remove_files(kobj, throttle_attrs);
-> +	kobject_put(kobj);
-> +}
-> +
-> +void xe_gt_throttle_sysfs_init(struct xe_gt_throttle *throttle)
-> +{
-> +	struct xe_gt *gt = throttle_to_gt(throttle);
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	struct kobject *kobj;
-> +	int err;
-> +
-> +	kobj = kobject_create_and_add("throttle", gt->sysfs);
-> +	if (!kobj) {
-> +		drm_warn(&xe->drm, "%s failed, err: %d\n", __func__, -ENOMEM);
-> +		return;
+> +		unpin_user_pages(pages, pinned);
+> +	vma->userptr.num_pinned = 0;
+>  mm_closed:
+>  	kvfree(pages);
+> +	vma->userptr.pinned_pages = NULL;
+>  	return ret;
+>  }
+>  
+> @@ -718,6 +743,11 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+>  		return false;
+>  
+>  	down_write(&vm->userptr.notifier_lock);
+> +	if (xe_vma_is_pinned(vma)) {
+> +		up_write(&vm->userptr.notifier_lock);
+> +		return true;
 > +	}
 > +
-> +	err = sysfs_create_files(kobj, throttle_attrs);
-> +	if (err) {
-> +		kobject_put(kobj);
-> +		drm_warn(&xe->drm, "failed to register throttle sysfs, err: %d\n", err);
-> +		return;
-> +	}
+>  	mmu_interval_set_seq(mni, cur_seq);
+>  
+>  	/* No need to stop gpu access if the userptr is not yet bound. */
+> @@ -976,10 +1006,16 @@ static void xe_vma_destroy_late(struct xe_vma *vma)
+>  			vma->userptr.sg = NULL;
+>  		}
+>  
+> +		if (vma->userptr.pinned_pages) {
+> +			unpin_user_pages_dirty_lock(vma->userptr.pinned_pages,
+> +						    vma->userptr.num_pinned,
+> +						    !read_only);
+> +			kvfree(vma->userptr.pinned_pages);
+> +		}
 > +
-> +	err = drmm_add_action_or_reset(&xe->drm, gt_throttle_sysfs_fini, kobj);
-> +	if (err)
-> +		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
-> +			 __func__, err);
+>  		/*
+> -		 * Since userptr pages are not pinned, we can't remove
+> -		 * the notifer until we're sure the GPU is not accessing
+> -		 * them anymore
+> +		 * We can't remove the notifer until we're sure the GPU is
+> +		 * not accessing the pages anymore
+>  		 */
+>  		mmu_interval_notifier_remove(&vma->userptr.notifier);
+>  		xe_vm_put(vm);
+> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+> index 6de6e3edb24a..913544d7d995 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.h
+> +++ b/drivers/gpu/drm/xe/xe_vm.h
+> @@ -139,6 +139,15 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
+>  	return xe_vma_has_no_bo(vma) && !xe_vma_is_null(vma);
+>  }
+>  
+> +/**
+> + * xe_vma_is_pinned() - User has requested the backing store of this vma
+> + * to be pinned.
+> + */
+> +static inline bool xe_vma_is_pinned(struct xe_vma *vma)
+> +{
+> +	return xe_vma_is_userptr(vma) && (vma->gpuva.flags & XE_VMA_PINNED);
 > +}
 > +
-> +
-> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-> new file mode 100644
-> index 000000000000..809213c3bba1
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GT_THROTTLE_SYSFS_H_
-> +#define _XE_GT_THROTTLE_SYSFS_H_
-> +
-> +#include <drm/drm_managed.h>
-> +
-> +#include "xe_device.h"
-> +#include "xe_gt.h"
-> +#include "xe_gt_throttle_sysfs_types.h"
-> +
-> +void xe_gt_throttle_sysfs_init(struct xe_gt_throttle *throttle);
-> +
-> +#endif /* _XE_GT_THROTTLE_SYSFS_H_ */
-> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h
-> new file mode 100644
-> index 000000000000..acc23ce8d0fc
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h
-> @@ -0,0 +1,35 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_GT_THROTTLE_SYSFS_TYPES_H_
-> +#define _XE_GT_THROTTLE_SYSFS_TYPES_H_
-> +
-> +#include <linux/types.h>
-> +
-> +struct xe_gt;
-> +
-> +struct xe_gt_throttle {
-> +	/** @status: overall throttling status */
-> +	bool status;
-> +	/** @pl1: throttling reason is PL1 */
-> +	bool pl1;
-> +	/** @pl2: throttling reason is PL2 */
-> +	bool pl2;
-> +	/** @pl4: throttling reason is PL4 */
-> +	bool pl4;
-> +	/** @thermal: throttling reason is thermal */
-> +	bool thermal;
-> +	/** @prochot: throttling reason is PROCHOT */
-> +	bool prochot;
-> +	/** @ratl: throttling reason is running average thermal limit */
-> +	bool ratl;
-> +	/** @thermalert: throttling reason is vr thermalert */
-> +	bool thermalert;
-> +	/** @tdc: throttling reason is vr tdc */
-> +	bool tdc;
-> +};
-> +
-> +#endif /* _XE_GT_THROTTLE_SYSFS_TYPES_H_ */
-> +
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index 35b8c19fa8bf..c55815d1114a 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -8,6 +8,7 @@
+>  #define xe_vm_assert_held(vm) dma_resv_assert_held(&(vm)->resv)
 >  
->  #include "xe_force_wake_types.h"
->  #include "xe_gt_idle_sysfs_types.h"
-> +#include "xe_gt_throttle_sysfs_types.h"
->  #include "xe_hw_engine_types.h"
->  #include "xe_hw_fence_types.h"
->  #include "xe_reg_sr_types.h"
-> @@ -298,6 +299,9 @@ struct xe_gt {
->  	/** @sysfs: sysfs' kobj used by xe_gt_sysfs */
->  	struct kobject *sysfs;
+>  u64 xe_vm_pdp4_descriptor(struct xe_vm *vm, struct xe_tile *tile);
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index 3681a5ff588b..9b90e649cd69 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -33,6 +33,8 @@ struct xe_vm;
+>  #define XE_VMA_PTE_4K		(DRM_GPUVA_USERBITS << 5)
+>  #define XE_VMA_PTE_2M		(DRM_GPUVA_USERBITS << 6)
+>  #define XE_VMA_PTE_1G		(DRM_GPUVA_USERBITS << 7)
+> +/* User requested backing store to be pinned */
+> +#define XE_VMA_PINNED           (DRM_GPUVA_USERBITS << 8)
 >  
-> +	/** @throttle: frequency throttling reasons in GT */
-> +	struct xe_gt_throttle throttle;
-> +
->  	/** @mocs: info */
->  	struct {
->  		/** @uc_index: UC index */
+>  /** struct xe_userptr - User pointer */
+>  struct xe_userptr {
+> @@ -54,6 +56,16 @@ struct xe_userptr {
+>  	 * read: vm->userptr.notifier_lock in write mode or vm->resv held.
+>  	 */
+>  	bool initial_bind;
+> +	/**
+> +	 * @pinned_pages: List of pinned pages if xe_vma_pinned(),
+> +	 * NULL otherwise. protected by the vm lock.
+> +	 */
+> +	struct page **pinned_pages;
+> +	/**
+> +	 * @num_pinned: Number of pointers to pinned pages in @pinned_pages.
+> +	 * protected by the vm lock.
+> +	 */
+> +	unsigned long num_pinned;
+>  #if IS_ENABLED(CONFIG_DRM_XE_USERPTR_INVAL_INJECT)
+>  	u32 divisor;
+>  #endif
 > -- 
-> 2.25.1
+> 2.41.0
 > 
