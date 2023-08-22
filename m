@@ -4,136 +4,144 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1823EE49AB
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 23:38:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA5EEEE49A5
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 23:58:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6D1810E02D;
-	Tue, 22 Aug 2023 23:38:55 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E1DA10E02D
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 23:38:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B7F910E090;
+	Tue, 22 Aug 2023 23:58:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F7E010E090
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 23:58:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692747534; x=1724283534;
+ t=1692748708; x=1724284708;
  h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=9MKl76c2b4t3hCcNf2qD/Cg0EkDWDo6gsAv826BQojk=;
- b=ia2G3JymT4gmLxRTwstuPdi0DDWRBkAZX5gabfIYZXWy29Lj0Bx4oHkd
- TCvrJx9Gfxgp6eQO3B4+5gkX01xltaxtB9Vn+t7BRyBUVoIuK6syenJnz
- z7z8eqnG2cGosEyHQHtdv92z9opavK1l3DDwOmIjMQjwiRmw+jD+8GLcR
- hqTxN39+iw+6+q6zHJlbUXoRIUpjoIr81JxELKLXKRZnV25Mp0lmoywO2
- pyheW4ZCC2kyoHK8ZVKgWIJKKJzI1rNlFqlm7LD8tDsL+Uc674HY54MAF
- 6DuMRbbop89Ypg5wgwpMr3xJvCBEaZoZznSy6EvT48w7cHmarBEI4kRF6 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="405020402"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="405020402"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Aug 2023 16:38:53 -0700
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=xXmBGFRCYYEZjr1M1OTrVKqXH3/DuXiA5daJ349nuvM=;
+ b=JX1bbeLL4KPtQKY7YtbkJfPdCoSShBZ08qD7W4sDu4Z9HDgG78wn7u9c
+ BLjpX5hRHlQJ1Qa/BZKD447k5Vcg7yZY0dqRocheFZe2WSQr86znCejNA
+ 3q/0odBASMc6fTVzc0XsfUTro7g5KWPxDRitGJsevbrtvjJSznAJ0OVva
+ emzqG8TeZyqoPvEydYClWMedGvBPCcquwT8uSoJ8OwMPHQ8Ess65sOBpv
+ qLzZOkezCHMSw8XnWcHFe3bXJhcf6VCCi6eG5uV6roypxtAY5ggbjpLjD
+ IWTdg9TpGhdtJQHSOLp7MAo2yLFyBJP9WZRqn3VBEFtgpUfuWg0Vm8puL w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="373998288"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="373998288"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2023 16:58:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="686224340"
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="686224340"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga003.jf.intel.com with ESMTP; 22 Aug 2023 16:38:53 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="850822290"
+X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; d="scan'208";a="850822290"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga002.fm.intel.com with ESMTP; 22 Aug 2023 16:58:27 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 22 Aug 2023 16:38:52 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.27; Tue, 22 Aug 2023 16:58:26 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 22 Aug 2023 16:38:52 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 22 Aug 2023 16:38:52 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.172)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Tue, 22 Aug 2023 16:58:26 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.43) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 22 Aug 2023 16:38:51 -0700
+ 15.1.2507.27; Tue, 22 Aug 2023 16:58:26 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lFJsGNvOXX6sPlr2xM2BmF7BLu4WelxPm7Dg3Cy8nS325/BlXJjI1Ug1R/Dc/UL3LuP+gGIUhMQ0pISQOXXGMk21xRbHX+eTk03L3llfqjDJQ6WWk0hfc79uYlBRBbZ2yna8t5ROuI1Y0j1S8q1MOcySWiW5FYN5uhgd/LM1B8iVP6hnaKpscRuZIYyYpryiaYiQ9/k3OtCIAup72NgXvJ8ZKPN583dFdKQutw0ppl/mnyBAw7NN0Da/ruyUErEffynCk8nOlKzbSSB4A81TUH5LcXal87a24pUobQpFAHQRs+NAac7sbTWpm6aELGhLP1saFTS9BE1SnjcQOGAqug==
+ b=NyXSgydx0FY/bwRZRlu9stt5mmS2QaVeZbBgB0D4DRoush5FyZ5d5rIjmy4ChR//UfVTxovtSLv7E3j5vvVoeZu2godYDQ1nEJuvyZDtlx28tvQGgNw33yAZ/ezA49zbOZXLpe5uKSf+ejwlUXgv3uQ1e4bc8is7HkF/Cb4O4MqWXwC9+Lor/A5kajqITUNwMLc9RigksScZnL4g0U58U0gM4LccyydM9xvqOY2IlgGfUdU6NtW3ysMb+PjLnhP+qUMoj9MDIhDi6bicDmJeuGYNN8UJIkrKi6eD0T+ni7fEs9gt7Hy/+s1eluat2Z704f3WEk7tyxdXYO8Rp0vdig==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OoRDZOmAPb8R4bJTctnhITWXTDfUDj2hqTLF5Qw0VPs=;
- b=TcaWvn2QHirclLRxp69FU+mPYyFgNloH25Oe2cYpjs6q42H44XLXPeCxQaoee491liTmeSIFVXv3sCHWcGvIoCHQ/o1T8klyGa1RngJhHWPr+Qd/CPBx9rOyfApM/2yqsLiOp9SzP64WDJ7kbLlyYkn+I4qsZA1j1mK97KMwVKLZqn2tUVNTfw76bngKyFfWwAkoP1hP1v9rW+7hmSw+nIOoKIBFtddLmyJuYvgI2T0/u0vr2DJFKiCjaTl8uR8Y7wpM+jBRceAwgyLm9g4PZ6kE2X1fDhfCZTxT4EzmWX1BKNKRIcCFNvssDfEw5WEmGuuHbIzHOHiA2f0SVPu7NQ==
+ bh=IpM8RM8hEDqvZ4F0lZm7qWJ33dmfAPz0PNsyLbzVVcU=;
+ b=cc/hUjjtHZPL4Fwt5Pd8NLJ7YpnxiMOQJ4EfSucsZ1+JYvF2zvv+IjS2evzFLFswolZECXT6AaGFiFYCdNDNsVHWVoDv2KQGdazHJ5cFMsCdGOFOJJBVTX/2I1v6fcaPpNVNEVHKYeQqBDUg2J945LCGErxMt7fpnEhUfGYO5z5SUEJ7g7+nylZ/+AjHR1BEsYdqmxHOdcVh19/+MEDxNzsM0ozIIZsY5szs6IqK8GQX09/rXVbQW4boECLv2MGOHhzdVBjek06qcYv8/8K+wHMuNGmQlC6fDNb1F9SDtJ7rEuTg06v0qouJjOgIx4JnLOQghO9qsdNyJ1KwBBaMUw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by IA1PR11MB6099.namprd11.prod.outlook.com (2603:10b6:208:3d5::14)
- with Microsoft SMTP Server (version=TLS1_2,
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by CY8PR11MB7827.namprd11.prod.outlook.com (2603:10b6:930:77::9) with
+ Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Tue, 22 Aug
- 2023 23:38:49 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6699.020; Tue, 22 Aug 2023
- 23:38:49 +0000
-Date: Tue, 22 Aug 2023 19:38:46 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <ZOVHBhN+zodryU24@intel.com>
-References: <20230817043148.740495-1-matthew.brost@intel.com>
- <20230817043148.740495-4-matthew.brost@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+ 2023 23:58:19 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::a9b6:9a74:51f5:2d2b]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::a9b6:9a74:51f5:2d2b%4]) with mapi id 15.20.6699.022; Tue, 22 Aug 2023
+ 23:58:19 +0000
+Date: Tue, 22 Aug 2023 23:57:03 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+Message-ID: <ZOVLT+qHEZjIzga3@DUT025-TGLU.fm.intel.com>
+References: <20230822045825.3900964-1-sujaritha.sundaresan@intel.com>
+ <20230822045825.3900964-2-sujaritha.sundaresan@intel.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20230817043148.740495-4-matthew.brost@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0040.namprd13.prod.outlook.com
- (2603:10b6:a03:2c2::15) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230822045825.3900964-2-sujaritha.sundaresan@intel.com>
+X-ClientProxiedBy: BY5PR03CA0030.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::40) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|IA1PR11MB6099:EE_
-X-MS-Office365-Filtering-Correlation-Id: f8298efa-19b0-4580-4e47-08dba368ef78
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|CY8PR11MB7827:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1fbe0568-83fe-4102-155d-08dba36ba8b3
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ZAtLI4G3gMQeMBNWtGjCd4VDEQMS2CcZqfxyD2r59UJs558RJ5t/eNGq/DK0+pKMTUdK0uca4VqZFkrLoC1Gq1HeBoewZyBQ/d6EAiiE7nwfq2yTdMQT3fycqoMBuDZDVVwTszFuXlg7aAM6tUE/givsnTnVOn4Qe3JScbQDsQvbSEtPVi9M8X8aR7BAophvLcUecmlzOPqgiVTOnns1J5sPx5sNSS3CaZAkPq4jhnUExIBm+gkv8Kv32a7adHqgIToGc4Whdu+OORSN6G3J1h3ybHWeTDIABwBQf1yjzxkMSet6/RoIVmR6uu5aInxHmJLHIFgQPV4vfvkQIddGctv/SASCeXngqoOUf5fzmiWWdtzmkb7yyn+/LQnDGZC7aMgGtq2dM/npyK0Az4Izickydka75LBtI3nn7HlP72O26l5LRRtR3RJsFgs2tkoUrpzPgDgybSyA6KOZJJbojcAWEIDAN7inEky1EGuCpyID1VdbYFOXwSTeu7g79rF1KeSJhVDTQxbvl7ceGqnVKapVBO/bLOPNCxrh/97djuy0IRwfwGrWL/O3+B+2DDejmjf7eJTTHklUDfhCJLVZaq+qjS1CiSli10zfec3mJYc=
+X-Microsoft-Antispam-Message-Info: 7K4tSJ7IWXLann4l7LB1Qrjt5GwWqwybeU/NDa9nuTN5XTX6E+otWqSJpTOJZkr1K3r8UTYuXPtf1Jc5bCvJsqEf71aHUyrTXYDehsUMbvHa27d5U1/OtvyjUckm9oqjsB6oSfgjqfRFM4Zl89geoKSIdEY4IwOBlcBRvNxo/8Scu//k6FWkcIHtVB53O0GuRAnKDZ+sB+EyJ4uRMqjPlAyUMRKLt52sxjAepaYPr0vLy31ih36kTIdAe4nXnuOnGLc1JbmMSAwaEu7YJwr1c3yNu+NBrCuPwPj6RQ9NG4qSuwaXtPtwfvBdxVwf8gll+Av1ye4NQUI8yZNuD0XNxOVmGl8UMc/zm1Nd9IKae/OOXrOLwfMQ7R6Ea9gAcdZpS/Ud08Xm4WYgB7lnRmqVQ0bnwUxScwhLfyuaDU0Fvn8eSGzVTNZ/M2akap8TlxPhwuRwh0MUXmU1bPAJP6GduvfgQ/1KqWYgkvJmwvBAEgHxTLgrAmSJCXkeb+ehIei/YIZ8uLjLj0TzmHZLH34iz8z/xGUK0IUvqwA+10U5JLvZh2i1DKJ5U6+G5Mp5snDd7flYC5PNGCHHmHWJI10mfrjs6KOYTJGZy7byySzaR2JCmJwNcJ1qGPB0h/TGcbnh
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(376002)(366004)(136003)(396003)(39860400002)(451199024)(186009)(1800799009)(83380400001)(2906002)(30864003)(6506007)(6486002)(38100700002)(5660300002)(44832011)(26005)(86362001)(8676002)(2616005)(8936002)(4326008)(6862004)(37006003)(66946007)(316002)(6512007)(6636002)(66476007)(66556008)(82960400001)(478600001)(6666004)(36756003)(41300700001)(67856001);
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(346002)(376002)(136003)(39860400002)(366004)(1800799009)(451199024)(186009)(6666004)(4326008)(8676002)(8936002)(6862004)(6636002)(316002)(478600001)(66556008)(66476007)(66946007)(41300700001)(6486002)(6506007)(6512007)(38100700002)(82960400001)(26005)(5660300002)(2906002)(44832011)(83380400001)(86362001)(30864003)(67856001)(309714004);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?72IGAHg9u95l50BalGF5V1sgZQZrqfT9xAAJARzRJjlGYaU95kqTUWOLu1Pn?=
- =?us-ascii?Q?pPxbqQwbO1UjCfzxrGouYR6R579eA5Xm9xpqR7Yl3v94FwtZ0J9VnjkkAhIQ?=
- =?us-ascii?Q?TPZEz+K7R4yhPxNxc/BTcq91CK/lXAjinGpGcGR1Rq8iHeV/GWUCdm7HPMZ9?=
- =?us-ascii?Q?nW8kY+UIxwIdc5xi6qJGg5jcfWoaHy9QiQwV2CZuQh8jUj8B25NXjpE9HrVZ?=
- =?us-ascii?Q?F+jhIRiRDkdVklYpgEr5B//TE3cfuPcawjzWVurvTzbrpH9IUv81kUo1acmx?=
- =?us-ascii?Q?9hPs0bO4rjavrYvRACmms8AAgSVhTmUEeKTrzNTWXhxoQwn1S08buYQWFwNu?=
- =?us-ascii?Q?Mx+FJ8E82mOwbSi9bOg8TTBnOc60GNgAB8D/wtvmXY3eHJZTYGm6EC/FQo66?=
- =?us-ascii?Q?+W8SwmGplFJbSS7EEsXIaE8qpE6Zd+dTdsUUv+sSYGqTo12pvRcEusK6wrlM?=
- =?us-ascii?Q?PSX2cVidXfyk0MAlUDxqoys1iikNiPh0z07qocGsdNrBfSsnQGaZhS/J/TbF?=
- =?us-ascii?Q?GzH0RCFIzuD3X+s2212nktv0mbSo/HR6tib/gtTed5+86RQLVAu9KyO1pWJR?=
- =?us-ascii?Q?37I8NfWIr1MFHDNxcbWXtNgPGxj5S6EVu5C5d1VPpqrg93KiVbdp3GfyvWkM?=
- =?us-ascii?Q?PD4jfpC/YgtmxlW4yeSdynvQmPOTKWJ8L7d4SAp/8+cZUiQv6KpxpNFJCu8T?=
- =?us-ascii?Q?0wsmzvdGCK6QnOHT1xo5XjznxLYqjHLs0epzSCEWbdgHwT9uea53BrCV/oBm?=
- =?us-ascii?Q?EcrUUOzy0YQGqEU9Se7kqrw60Hg9ZPveu+osN80wutijKAdTPFlZ33mzCtJL?=
- =?us-ascii?Q?gkZvfdzED83oPTtt07HiTEOsX/37vQ4lWa/IuDvniunZNbvpszoIghMPgV31?=
- =?us-ascii?Q?/h8szvxhU53lpqii4ke5n15wgeJIwYV70PNG1pD0cKzkKUtUasXmynpVLfn1?=
- =?us-ascii?Q?uvG694Af8wT/nMZpCXHSSkcT7mYfEURxanhsWKL0la43s4xSYdEFHu9kNA0x?=
- =?us-ascii?Q?wcxJ9TBt607VEP4OvZihJGm0W4m3rZMro3v08ThlaEsLKePqhZOoYqaqlgn0?=
- =?us-ascii?Q?lW8jPpquUAToT3EiHShiR6L0Pz5HaeAlD6lSqEX3ns2+eYJWE/M5anIev59i?=
- =?us-ascii?Q?XhJrZwQgORKkbpRGG6VPN/Qor8nOAvjvITrkQ8B599R6VBn1UiODX2GhDO0+?=
- =?us-ascii?Q?Kosllgh4eHR6osFfxMty1POesDIlZceWJBDORBeYxGWmoD2UJ+s4d3kqVlVN?=
- =?us-ascii?Q?aYmz2mjqOmE07Wm8V50fk2ikDuuXLU7wxlOssYBM5ovs0HuVkqX2PuiqEEyh?=
- =?us-ascii?Q?wKkLS75eDQlV4weqxCHknXHtrfrN2YI2xqxnoc4R39oBmaRqodLXOAJZ9t1H?=
- =?us-ascii?Q?wHv0cVWWV/bRpthVW1FCJKBY+75RpxWj60aHMavzgX0u7Ehj4Plly3ppe3jn?=
- =?us-ascii?Q?fNPC43NxWD0kcaC7s+U74JuixLr1TT7/qbOcW8Zk1cB/3mZIOIxVz4EeCKU0?=
- =?us-ascii?Q?Iy06Xvj6QACGRCJc3lf8vys+EISPSR8zFA4n0+XqBtF7xuuqZZA71sItJXIF?=
- =?us-ascii?Q?EZBzKZLdFmY4fxMjhwWaim3AtMbTuJIUaD7piyrZ?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8298efa-19b0-4580-4e47-08dba368ef78
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?U2hsUWtWVjlINjA5ZUROU2pFRmRLMEd1VWNUNjVYV3J4TG95R0IzTEd1TVFo?=
+ =?utf-8?B?YTFyWTJoWGJjSDAxWnJ0Q3BKeC81WUpqUUNRUGtzMzBkKzg2UnY2OW1idS9Z?=
+ =?utf-8?B?cFdkOGhIRlA5TzN4am5McXVuUTV0cXRWZkhpMmJFaXlMSDM3Nlc0YmRHd2lt?=
+ =?utf-8?B?QmVYVGdHcGdjeDQ1cGp0dUhEM3JoT3plZk9HWmVqajkreTRoVnJ4OEtwd0VO?=
+ =?utf-8?B?K25NVTdQUGNESkFZL1MzVkJ3OXpDMDZRVS8vUlc1SXRKQ2MxbkhJSFdtcUZK?=
+ =?utf-8?B?dVBpRTdpV01hVGk1MTdkRHRONWk1MnpyVU51RFhmVFdLeVphVFUrOVk3WWpn?=
+ =?utf-8?B?Y3dpVEFlaG1NY1NGWUxvMkJleWRGM2hNNnpaZTNVa3JGNENzRDhKWVM0SkZw?=
+ =?utf-8?B?WFhHelYzK1daSnV1b2JPd1FSWW5rcHhHQ0NKRWVqbFBubTk4NG9reFE5enlw?=
+ =?utf-8?B?dC9wWFdVaDA4NHJzVXlxQ21rMmhMRDUwR2g0RndOZ2xaWVpOMVFTNW1oaFlM?=
+ =?utf-8?B?UUg5Z29XblkrdGNlTnkvTHdXYWIvWnFRYUg4RzdKcHQzZXlBQmNyWFpTazlp?=
+ =?utf-8?B?RHE2MGs5Znlnd2ZITEdjZnhsaGZ4RU9tRDc5ZmEyYzB6ZGNlcFExRFo3M013?=
+ =?utf-8?B?YS9xQWR3bDd4MlR0WWJ4YlQzdXA3SkZ5eTFYYjV6Nk5vV0JsNEpPd01hSUFB?=
+ =?utf-8?B?TTNJUTdES0c1WlRGeWNRbktra3VPTDNRNnZib0xhem1JNGo1TFVBRVNkcVdO?=
+ =?utf-8?B?NVJmNm8zRiswaXlmL0dhMW5tSXp4RjIxSVFaTzF4RkxMQUVSTG1lSnlUcW9E?=
+ =?utf-8?B?b05iVFZXZzR0Y3hYRFBKLzcxRXFqd05MaERaQzdiaXBmVmluT0hNU3V1TlUx?=
+ =?utf-8?B?UldXTzV1ZmN0WE96OGhsVFNJWWtuUUdycW90UGV1VUd1NExyei8ybHJUdHZs?=
+ =?utf-8?B?YVZxbEJ5bGM1SXh2cGEzWHIzYW95K25YaU9oaENPN1Vqd2FVdHJhVG53bzR5?=
+ =?utf-8?B?RjQ2QkFzRDZVaDd3cW1qVWQ4UWp5YXZsam9pTzZqNHltbTExejZObDVJOWYv?=
+ =?utf-8?B?UE10b2syUGZhL1kwdkJSWURlQmljVmFZbXdabUZpMGZXRTMwWW5hWlN0RXpV?=
+ =?utf-8?B?R1U1b2lyblNUUFMzNWpKc3poVFpIV21vV1BmaSs1c0lvclNpQWVSVHRYSjBI?=
+ =?utf-8?B?RWlkZGUvbkxVc0tWNHFsVkhhQnJwMnJSakdBUmp0bi9sMy93bmR6ZGpyQnh4?=
+ =?utf-8?B?K1ljL3VPV3JZVjh6K2ZiaVhmL2VIci80clRnU2hDZ2xoejdXd3RiUlRhQ2xt?=
+ =?utf-8?B?TFVvaVQxQ2ZzaFBnc2VpQUJSMFZEVnJUR0hLMlVjeVdEUVZiZTJUVmZkcTNY?=
+ =?utf-8?B?TVM0Yk9hS1VtSUNHc2QrSXlPRURVZVl0dHVXTVlSZGpGSkRUcVlwQTVzcVA2?=
+ =?utf-8?B?aWc5Q1ZzWGRxRkZQaUR0NTZsVDhBbm9UUXZ2aEJRRlEwYlgrcUhqbFVvVVY5?=
+ =?utf-8?B?dlNXRmttSE52dXBPRkp4anFqbFF1dEt2OER0R3JpdU1qQTdOQ0dDb2UxdTZs?=
+ =?utf-8?B?OXM2RG9Db0xEekdMZzJBMGVTa21DOTVpQTNYdktwZlJtUlhUa3VtdkZacUda?=
+ =?utf-8?B?SUViV1g2VS9tK1dCZUd5azdFTEd5VDJmdlN5aVY1RndKSXZmdXZrQmhZcjNY?=
+ =?utf-8?B?SVJBRXN0M3A2SW5PL3Yzc3g2RnhwaG11ME1lQUU2dUdML3ZMS3hIYzhFWXBj?=
+ =?utf-8?B?QjIwNVNiR1F6OVorR1ljMXhId3VVa1RrRnhUSk0zT21UbGhodVp6bE01V3dC?=
+ =?utf-8?B?NUJ0RXpqSkJyelcxSE1lWDF2aXZ1U3RzNytTaWxsS2p4WkM3QXRHV0pYNmhU?=
+ =?utf-8?B?Y1AycyszajNnUUQ0MDJlNmlrK1U5YWlCWXpJVTVEWWhzdUxKU2M1VzdDUVFa?=
+ =?utf-8?B?dTRGRW5ySzFnZk5xdXN4Z2txeFBPV0NLaVNkRTN3UWtZRDQwMGpTVW5SaDBF?=
+ =?utf-8?B?amc0NXErdjJVVTE3S09ZRG5LRUcxQXZEM1FQSzduOTZZWFRUK2gwSDUwTm1X?=
+ =?utf-8?B?STkwbnRJVXE4dXh6b1F5MUNrNE9wYkgwM0JoSmpsK09kREdYUXlZUGJOS25L?=
+ =?utf-8?B?Uks5OEZJQTh1aFNETjgvMitHcmJwdFRNaG15M3BML05YMStCOHlxemJ1SHph?=
+ =?utf-8?B?a1E9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1fbe0568-83fe-4102-155d-08dba36ba8b3
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 23:38:49.6101 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 23:58:19.3446 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: t0ijF3uxtQqhq198NImWbKHa7iEp3IfvlboQCpF1MLGW3dUWZQga8NYHJxJdJRLGBP+RaNI0Y3mGPD430g/7Lw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6099
+X-MS-Exchange-CrossTenant-UserPrincipalName: nJH4Fi4Zh54TuNQsAx4vEkJT01UeYWs6xhv2uipzHFoFINjtHN7uMWEsQfdBzLtrbKw64Hh3Ra9z18EruK1rsw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7827
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 3/3] drm/xe: Fix array of binds
+Subject: Re: [Intel-xe] [RFC][PATCH 1/1] drm/xe: Add throttle reason sysfs
+ attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,560 +157,515 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Aug 16, 2023 at 09:31:48PM -0700, Matthew Brost wrote:
-> If multiple bind ops in an array of binds touch the same address range
-> invalid GPUVA operations are generated as each GPUVA operation is
-> generated based on the orignal GPUVA state. To fix this, after each
-> GPUVA operations is generated, commit the GPUVA operation updating the
-> GPUVA state so subsequent bind ops can see a current GPUVA state.
+On Tue, Aug 22, 2023 at 10:28:25AM +0530, Sujaritha Sundaresan wrote:
+> Add throttle reasons sysfs interface under device/../gt#/
+> Currently there is one overall status and eight reasons
+> attributes.
 > 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> The new sysfs structure will have the below layout
+> 
+> device/<dev/gt
+>              ├── gt0
+>              │   └── throttle
+>              │       ├── <throttle_reasons>
+>              │
+>              │
+>              ├── gtN
+>              │   └── throttle
+>              │       ├── <throttle_reasons>
+> 
+> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_vm.c | 418 +++++++++++++++++++------------------
->  1 file changed, 212 insertions(+), 206 deletions(-)
+>  drivers/gpu/drm/xe/Makefile                   |   1 +
+>  drivers/gpu/drm/xe/regs/xe_gt_regs.h          |  13 +
+>  .../drm/xe/regs/xe_gt_throttle_sysfs_types.h  |  36 +++
+>  drivers/gpu/drm/xe/xe_gt.c                    |   3 +
+>  drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c     | 282 ++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h     |  17 ++
+>  .../gpu/drm/xe/xe_gt_throttle_sysfs_types.h   |  35 +++
+>  drivers/gpu/drm/xe/xe_gt_types.h              |   4 +
+>  8 files changed, 391 insertions(+)
+>  create mode 100644 drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index bd20840616ca..2452e24fbc81 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2426,24 +2426,73 @@ static u64 xe_vma_set_pte_size(struct xe_vma *vma, u64 size)
->  	return SZ_4K;
->  }
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 550cdfed729e..eb3ccd90b2fa 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -63,6 +63,7 @@ xe-y += xe_bb.o \
+>  	xe_gt_mcr.o \
+>  	xe_gt_pagefault.o \
+>  	xe_gt_sysfs.o \
+> +	xe_gt_throttle_sysfs.o \
+>  	xe_gt_tlb_invalidation.o \
+>  	xe_gt_topology.o \
+>  	xe_guc.o \
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> index baa00557f114..8416d483e7c3 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> @@ -400,4 +400,17 @@
+>  #define XEHPC_BCS5_BCS6_INTR_MASK		XE_REG(0x190118)
+>  #define XEHPC_BCS7_BCS8_INTR_MASK		XE_REG(0x19011c)
 >  
-> -/*
-> - * Parse operations list and create any resources needed for the operations
-> - * prior to fully committing to the operations. This setup can fail.
-> - */
-> +static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+> +#define GT0_PERF_LIMIT_REASONS			XE_REG(0x1381a8)
+> +#define   GT0_PERF_LIMIT_REASONS_MASK		0xde3
+> +#define   PROCHOT_MASK				REG_BIT(0)
+> +#define   THERMAL_LIMIT_MASK			REG_BIT(1)
+> +#define   RATL_MASK				REG_BIT(5)
+> +#define   VR_THERMALERT_MASK			REG_BIT(6)
+> +#define   VR_TDC_MASK				REG_BIT(7)
+> +#define   POWER_LIMIT_4_MASK			REG_BIT(8)
+> +#define   POWER_LIMIT_1_MASK			REG_BIT(10)
+> +#define   POWER_LIMIT_2_MASK			REG_BIT(11)
+> +#define   GT0_PERF_LIMIT_REASONS_LOG_MASK	REG_GENMASK(31, 16)
+> +#define MTL_MEDIA_PERF_LIMIT_REASONS		XE_REG(0x138030)
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h b/drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h
+> new file mode 100644
+> index 000000000000..b71865f467ce
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/regs/xe_gt_throttle_sysfs_types.h
+> @@ -0,0 +1,36 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#ifndef _XE_GT_THROTTLE_SYSFS_TYPES_H_
+> +#define _XE_GT_THROTTLE_SYSFS_TYPES_H_
+> +
+> +#include <linux/types.h>
+> +
+> +/**
+> + * struct xe_gt_throttle - A struct that contains frequency throttle reasons in gt
+> + */
+> +struct xe_gt_throttle {
+> +	/** @status: status */
+> +	bool status;
+> +	/** @reason_pl1: */
+> +	bool reason_pl1;
+> +	/** @reason_pl2: */
+> +	bool reason_pl2;
+> +	/** @reason_pl4: */
+> +	bool reason_pl4;
+> +	/** @reason_thermal: */
+> +	bool reason_thermal;
+> +	/** @reason_prochot */
+> +	bool reason_prochot;
+> +	/** @reason_ratl */
+> +	bool reason_ratl;
+> +	/** @reason_vr_thermalert */
+> +	bool reason_vr_thermalert;
+> +	/** @reason_vr_tdc */
+> +	bool reason_vr_tdc;
+> +};
+> +
+> +#endif /* _XE_GT_THROTTLE_SYSFS_TYPES_H_ */
+> +
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 13320af4ddd3..03be2c2980d4 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -24,6 +24,7 @@
+>  #include "xe_gt_pagefault.h"
+>  #include "xe_gt_printk.h"
+>  #include "xe_gt_sysfs.h"
+> +#include "xe_gt_throttle_sysfs.h"
+>  #include "xe_gt_tlb_invalidation.h"
+>  #include "xe_gt_topology.h"
+>  #include "xe_guc_exec_queue_types.h"
+> @@ -442,6 +443,8 @@ int xe_gt_init(struct xe_gt *gt)
+>  
+>  	xe_gt_sysfs_init(gt);
+>  
+> +	xe_gt_throttle_sysfs_init(&gt->throttle);
+
+This is the wrong place, xe_gt_sysfs_init should call xe_gt_throttle_sysfs_init.
+
+Matt
+
+> +
+>  	err = gt_fw_domain_init(gt);
+>  	if (err)
+>  		return err;
+> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+> new file mode 100644
+> index 000000000000..7db67b5fc138
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+> @@ -0,0 +1,282 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_managed.h>
+> +
+> +#include <regs/xe_gt_regs.h>
+> +#include "xe_device.h"
+> +#include "xe_gt.h"
+> +#include "xe_gt_sysfs.h"
+> +#include "xe_gt_throttle_sysfs.h"
+> +#include "xe_guc_pc.h"
+> +#include "xe_mmio.h"
+> +
+> +/**
+> + * DOC: Xe GT Throttle
+> + *
+> + * Provides sysfs entries for frequency throttle reasons in GT
+> + *
+> + * device/gt#/throttle/status - Overall status
+> + * device/gt#/throttle/throttle_reason_pl1 - Frequency throttle due to PL1
+> + * device/gt#/throttle/throttle_reason_pl2 - Frequency throttle due to PL2
+> + * device/gt#/throttle/throttle_reason_pl4 - Frequency throttle due to PL4, Iccmax etc.
+> + * device/gt#/throttle/throttle_reason_thermal - Frequency throttle due to thermal
+> + * device/gt#/throttle/throttle_reason_prochot - Frequency throttle due to prochot
+> + * device/gt#/throttle/throttle_reason_ratl - Frequency throttle due to RATL
+> + * device/gt#/throttle/throttle_reason_vr_thermalert - Frequency throttle due to VR THERMALERT
+> + * device/gt#/throttle/throttle_reason_vr_tdc -  Frequency throttle due to VR TDC
+> + */
+> +
+> +static struct xe_gt_throttle *dev_to_throttle(struct device *dev)
 > +{
-> +	int err = 0;
+> +	struct kobject *kobj = &dev->kobj;
 > +
-> +	lockdep_assert_held_write(&vm->lock);
+> +	return &kobj_to_gt(kobj->parent)->throttle;
+> +}
 > +
-> +	switch (op->base.op) {
-> +	case DRM_GPUVA_OP_MAP:
-> +		err |= xe_vm_insert_vma(vm, op->map.vma);
-> +		if (!err)
-> +			op->flags |= XE_VMA_OP_COMMITTED;
-> +		break;
-> +	case DRM_GPUVA_OP_REMAP:
-> +		prep_vma_destroy(vm, gpuva_to_vma(op->base.remap.unmap->va),
-> +				 true);
-> +		op->flags |= XE_VMA_OP_COMMITTED;
+> +static struct xe_gt *throttle_to_gt(struct xe_gt_throttle *throttle)
+> +{
+> +	return container_of(throttle, struct xe_gt, throttle);
+> +}
 > +
-> +		if (op->remap.prev) {
-> +			err |= xe_vm_insert_vma(vm, op->remap.prev);
-> +			if (!err)
-> +				op->flags |= XE_VMA_OP_PREV_COMMITTED;
-> +			if (!err && op->remap.skip_prev)
-> +				op->remap.prev = NULL;
-> +		}
-> +		if (op->remap.next) {
-> +			err |= xe_vm_insert_vma(vm, op->remap.next);
-> +			if (!err)
-> +				op->flags |= XE_VMA_OP_NEXT_COMMITTED;
-> +			if (!err && op->remap.skip_next)
-> +				op->remap.next = NULL;
-> +		}
+> +u32 read_perf_limit_reasons(struct xe_gt *gt)
+> +{
+> +	u32 reg;
+> +	if (xe_gt_is_media_type(gt))
+> +		reg = xe_mmio_read32(gt, MTL_MEDIA_PERF_LIMIT_REASONS);
+> +	else
+> +		reg = xe_mmio_read32(gt, GT0_PERF_LIMIT_REASONS);
 > +
-> +		/* Adjust for partial unbind after removin VMA from VM */
-> +		if (!err) {
-> +			op->base.remap.unmap->va->va.addr = op->remap.start;
-> +			op->base.remap.unmap->va->va.range = op->remap.range;
-> +		}
-> +		break;
-> +	case DRM_GPUVA_OP_UNMAP:
-> +		prep_vma_destroy(vm, gpuva_to_vma(op->base.unmap.va), true);
-> +		op->flags |= XE_VMA_OP_COMMITTED;
-> +		break;
-> +	case DRM_GPUVA_OP_PREFETCH:
-> +		op->flags |= XE_VMA_OP_COMMITTED;
-> +		break;
-> +	default:
-> +		XE_WARN_ON("NOT POSSIBLE");
+> +	return reg;
+> +}
+> +
+> +u32 xe_read_status(struct xe_gt_throttle *throttle)
+> +{
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	u32 status = read_perf_limit_reasons(gt) & GT0_PERF_LIMIT_REASONS_MASK;
+> +
+> +	return status;
+> +}
+> +
+> +u32 xe_read_reason_pl1(struct xe_gt_throttle *throttle)
+> +{
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	u32 pl1 = read_perf_limit_reasons(gt) & POWER_LIMIT_1_MASK;
+> +
+> +	return pl1;
+> +}
+> +
+> +u32 xe_read_reason_pl2(struct xe_gt_throttle *throttle)
+> +{
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	u32 pl2 = read_perf_limit_reasons(gt) & POWER_LIMIT_2_MASK;
+> +
+> +	return pl2;
+> +}
+> +
+> +u32 xe_read_reason_pl4(struct xe_gt_throttle *throttle)
+> +{
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	u32 pl4 = read_perf_limit_reasons(gt) & POWER_LIMIT_4_MASK;
+> +
+> +	return pl4;
+> +}
+> +
+> +u32 xe_read_reason_thermal(struct xe_gt_throttle *throttle)
+> +{
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	u32 thermal = read_perf_limit_reasons(gt) & THERMAL_LIMIT_MASK;
+> +
+> +	return thermal;
+> +}
+> +
+> +u32 xe_read_reason_prochot(struct xe_gt_throttle *throttle)
+> +{
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	u32 prochot = read_perf_limit_reasons(gt) & PROCHOT_MASK;
+> +
+> +	return prochot;
+> +}
+> +
+> +u32 xe_read_reason_ratl(struct xe_gt_throttle *throttle)
+> +{
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	u32 ratl = read_perf_limit_reasons(gt) & RATL_MASK;
+> +
+> +	return ratl;
+> +}
+> +
+> +u32 xe_read_reason_vr_thermalert(struct xe_gt_throttle *throttle)
+> +{
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	u32 thermalert = read_perf_limit_reasons(gt) & VR_THERMALERT_MASK;
+> +
+> +	return thermalert;
+> +}
+> +
+> +u32 xe_read_reason_vr_tdc(struct xe_gt_throttle *throttle)
+> +{
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	u32 tdc = read_perf_limit_reasons(gt) & VR_TDC_MASK;
+> +
+> +	return tdc;
+> +}
+> +
+> +static ssize_t status_show(struct device *dev,
+> +			   struct device_attribute *attr,
+> +			   char *buff)
+> +{
+> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	bool status = !!xe_read_status(&gt->throttle);
+> +
+> +	return sysfs_emit(buff, "%u\n", status);
+> +}
+> +static DEVICE_ATTR_RO(status);
+> +
+> +static ssize_t reason_pl1_show(struct device *dev,
+> +			       struct device_attribute *attr,
+> +			       char *buff)
+> +{
+> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	bool pl1 = !!xe_read_reason_pl1(&gt->throttle);
+> +
+> +	return sysfs_emit(buff, "%u\n", pl1);
+> +}
+> +static DEVICE_ATTR_RO(reason_pl1);
+> +
+> +static ssize_t reason_pl2_show(struct device *dev,
+> +			       struct device_attribute *attr,
+> +			       char *buff)
+> +{
+> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	bool pl2 = !!xe_read_reason_pl2(&gt->throttle);
+> +
+> +	return sysfs_emit(buff, "%u\n", pl2);
+> +}
+> +static DEVICE_ATTR_RO(reason_pl2);
+> +
+> +static ssize_t reason_pl4_show(struct device *dev,
+> +			       struct device_attribute *attr,
+> +			       char *buff)
+> +{
+> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	bool pl4 = !!xe_read_reason_pl4(&gt->throttle);
+> +
+> +	return sysfs_emit(buff, "%u\n", pl4);
+> +}
+> +static DEVICE_ATTR_RO(reason_pl4);
+> +
+> +static ssize_t reason_thermal_show(struct device *dev,
+> +				   struct device_attribute *attr,
+> +				   char *buff)
+> +{
+> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	bool thermal = !!xe_read_reason_thermal(&gt->throttle);
+> +
+> +	return sysfs_emit(buff, "%u\n", thermal);
+> +}
+> +static DEVICE_ATTR_RO(reason_thermal);
+> +
+> +static ssize_t reason_prochot_show(struct device *dev,
+> +				   struct device_attribute *attr,
+> +				   char *buff)
+> +{
+> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	bool prochot = !!xe_read_reason_prochot(&gt->throttle);
+> +
+> +	return sysfs_emit(buff, "%u\n", prochot);
+> +}
+> +static DEVICE_ATTR_RO(reason_prochot);
+> +
+> +static ssize_t reason_ratl_show(struct device *dev,
+> +				struct device_attribute *attr,
+> +				char *buff)
+> +{
+> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	bool ratl = !!xe_read_reason_ratl(&gt->throttle);
+> +
+> +	return sysfs_emit(buff, "%u\n", ratl);
+> +}
+> +static DEVICE_ATTR_RO(reason_ratl);
+> +
+> +static ssize_t reason_vr_thermalert_show(struct device *dev,
+> +					 struct device_attribute *attr,
+> +					 char *buff)
+> +{
+> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	bool thermalert = !!xe_read_reason_vr_thermalert(&gt->throttle);
+> +
+> +	return sysfs_emit(buff, "%u\n", thermalert);
+> +}
+> +static DEVICE_ATTR_RO(reason_vr_thermalert);
+> +
+> +static ssize_t reason_vr_tdc_show(struct device *dev,
+> +				  struct device_attribute *attr,
+> +				  char *buff)
+> +{
+> +	struct xe_gt_throttle *throttle = dev_to_throttle(dev);
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	bool tdc = !!xe_read_reason_vr_tdc(&gt->throttle);
+> +
+> +	return sysfs_emit(buff, "%u\n", tdc);
+> +}
+> +static DEVICE_ATTR_RO(reason_vr_tdc);
+> +
+> +static const struct attribute *throttle_attrs[] = {
+> +	&dev_attr_status.attr,
+> +	&dev_attr_reason_pl1.attr,
+> +	&dev_attr_reason_pl2.attr,
+> +	&dev_attr_reason_pl4.attr,
+> +	&dev_attr_reason_thermal.attr,
+> +	&dev_attr_reason_prochot.attr,
+> +	&dev_attr_reason_ratl.attr,
+> +	&dev_attr_reason_vr_thermalert.attr,
+> +	&dev_attr_reason_vr_tdc.attr,
+> +	NULL
+> +};
+> +
+> +static void gt_throttle_sysfs_fini(struct drm_device *drm, void *arg)
+> +{
+> +	struct kobject *kobj = arg;
+> +
+> +	sysfs_remove_files(kobj, throttle_attrs);
+> +	kobject_put(kobj);
+> +}
+> +
+> +void xe_gt_throttle_sysfs_init(struct xe_gt_throttle *throttle)
+> +{
+> +	struct xe_gt *gt = throttle_to_gt(throttle);
+> +	struct xe_device *xe = gt_to_xe(gt);
+> +	struct kobject *kobj;
+> +	int err;
+> +
+> +	kobj = kobject_create_and_add("throttle", gt->sysfs);
+> +	if (!kobj) {
+> +		drm_warn(&xe->drm, "%s failed, err: %d\n", __func__, -ENOMEM);
+> +		return;
 > +	}
 > +
-> +	return err;
+> +	err = sysfs_create_files(kobj, throttle_attrs);
+> +	if (err) {
+> +		kobject_put(kobj);
+> +		drm_warn(&xe->drm, "failed to register throttle sysfs, err: %d\n", err);
+> +		return;
+> +	}
+> +
+> +	err = drmm_add_action_or_reset(&xe->drm, gt_throttle_sysfs_fini, kobj);
+> +	if (err)
+> +		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
+> +			 __func__, err);
 > +}
 > +
 > +
->  static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
-> -				   struct drm_gpuva_ops **ops, int num_ops_list,
-> +				   struct drm_gpuva_ops *ops,
->  				   struct xe_sync_entry *syncs, u32 num_syncs,
-> -				   struct list_head *ops_list, bool async)
-> +				   struct list_head *ops_list, bool last,
-> +				   bool async)
->  {
->  	struct xe_vma_op *last_op = NULL;
-> -	struct list_head *async_list = NULL;
->  	struct async_op_fence *fence = NULL;
-> -	int err, i;
-> +	struct drm_gpuva_op *__op;
-> +	int err = 0;
->  
->  	lockdep_assert_held_write(&vm->lock);
-> -	XE_WARN_ON(num_ops_list > 1 && !async);
->  
-> -	if (num_syncs && async) {
-> +	if (last && num_syncs && async) {
->  		u64 seqno;
->  
->  		fence = kmalloc(sizeof(*fence), GFP_KERNEL);
-> @@ -2462,145 +2511,145 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->  		}
->  	}
->  
-> -	for (i = 0; i < num_ops_list; ++i) {
-> -		struct drm_gpuva_ops *__ops = ops[i];
-> -		struct drm_gpuva_op *__op;
-
-I got a bit confused here. why we were iterating on the op list,
-but suddenly this iteration is not needed anymore?
-
-> +	drm_gpuva_for_each_op(__op, ops) {
-> +		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-> +		bool first = list_empty(ops_list);
->  
-> -		drm_gpuva_for_each_op(__op, __ops) {
-> -			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-> -			bool first = !async_list;
-> +		XE_WARN_ON(!first && !async);
+> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
+> new file mode 100644
+> index 000000000000..809213c3bba1
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
+> @@ -0,0 +1,17 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
 > +
-> +		INIT_LIST_HEAD(&op->link);
-> +		list_add_tail(&op->link, ops_list);
->  
-> -			XE_WARN_ON(!first && !async);
-> +		if (first) {
-> +			op->flags |= XE_VMA_OP_FIRST;
-> +			op->num_syncs = num_syncs;
-> +			op->syncs = syncs;
-> +		}
->  
-> -			INIT_LIST_HEAD(&op->link);
-> -			if (first)
-> -				async_list = ops_list;
-> -			list_add_tail(&op->link, async_list);
-> +		op->q = q;
+> +#ifndef _XE_GT_THROTTLE_SYSFS_H_
+> +#define _XE_GT_THROTTLE_SYSFS_H_
 > +
-> +		switch (op->base.op) {
-> +		case DRM_GPUVA_OP_MAP:
-> +		{
-> +			struct xe_vma *vma;
->  
-> -			if (first) {
-> -				op->flags |= XE_VMA_OP_FIRST;
-> -				op->num_syncs = num_syncs;
-> -				op->syncs = syncs;
-> +			vma = new_vma(vm, &op->base.map,
-> +				      op->tile_mask, op->map.read_only,
-> +				      op->map.is_null);
-> +			if (IS_ERR(vma)) {
-> +				err = PTR_ERR(vma);
-> +				goto free_fence;
->  			}
->  
-> -			op->q = q;
-> +			op->map.vma = vma;
-> +			break;
-> +		}
-> +		case DRM_GPUVA_OP_REMAP:
-> +		{
-> +			struct xe_vma *old =
-> +				gpuva_to_vma(op->base.remap.unmap->va);
->  
-> -			switch (op->base.op) {
-> -			case DRM_GPUVA_OP_MAP:
-> -			{
-> -				struct xe_vma *vma;
-> +			op->remap.start = xe_vma_start(old);
-> +			op->remap.range = xe_vma_size(old);
->  
-> -				vma = new_vma(vm, &op->base.map,
-> -					      op->tile_mask, op->map.read_only,
-> -					      op->map.is_null);
-> +			if (op->base.remap.prev) {
-> +				struct xe_vma *vma;
-> +				bool read_only =
-> +					op->base.remap.unmap->va->flags &
-> +					XE_VMA_READ_ONLY;
-> +				bool is_null =
-> +					op->base.remap.unmap->va->flags &
-> +					DRM_GPUVA_SPARSE;
+> +#include <drm/drm_managed.h>
 > +
-> +				vma = new_vma(vm, op->base.remap.prev,
-> +					      op->tile_mask, read_only,
-> +					      is_null);
->  				if (IS_ERR(vma)) {
->  					err = PTR_ERR(vma);
->  					goto free_fence;
->  				}
->  
-> -				op->map.vma = vma;
-> -				break;
-> +				op->remap.prev = vma;
+> +#include "xe_device.h"
+> +#include "xe_gt.h"
+> +#include "xe_gt_throttle_sysfs_types.h"
 > +
-> +				/*
-> +				 * Userptr creates a new SG mapping so
-> +				 * we must also rebind.
-> +				 */
-> +				op->remap.skip_prev = !xe_vma_is_userptr(old) &&
-> +					IS_ALIGNED(xe_vma_end(vma),
-> +						   xe_vma_max_pte_size(old));
-> +				if (op->remap.skip_prev) {
-> +					xe_vma_set_pte_size(vma, xe_vma_max_pte_size(old));
-> +					op->remap.range -=
-> +						xe_vma_end(vma) -
-> +						xe_vma_start(old);
-> +					op->remap.start = xe_vma_end(vma);
-> +				}
->  			}
-> -			case DRM_GPUVA_OP_REMAP:
-> -			{
-> -				struct xe_vma *old =
-> -					gpuva_to_vma(op->base.remap.unmap->va);
-> -
-> -				op->remap.start = xe_vma_start(old);
-> -				op->remap.range = xe_vma_size(old);
-> -
-> -				if (op->base.remap.prev) {
-> -					struct xe_vma *vma;
-> -					bool read_only =
-> -						op->base.remap.unmap->va->flags &
-> -						XE_VMA_READ_ONLY;
-> -					bool is_null =
-> -						op->base.remap.unmap->va->flags &
-> -						DRM_GPUVA_SPARSE;
-> -
-> -					vma = new_vma(vm, op->base.remap.prev,
-> -						      op->tile_mask, read_only,
-> -						      is_null);
-> -					if (IS_ERR(vma)) {
-> -						err = PTR_ERR(vma);
-> -						goto free_fence;
-> -					}
-> -
-> -					op->remap.prev = vma;
-> -
-> -					/*
-> -					 * Userptr creates a new SG mapping so
-> -					 * we must also rebind.
-> -					 */
-> -					op->remap.skip_prev = !xe_vma_is_userptr(old) &&
-> -						IS_ALIGNED(xe_vma_end(vma),
-> -							   xe_vma_max_pte_size(old));
-> -					if (op->remap.skip_prev) {
-> -						xe_vma_set_pte_size(vma, xe_vma_max_pte_size(old));
-> -						op->remap.range -=
-> -							xe_vma_end(vma) -
-> -							xe_vma_start(old);
-> -						op->remap.start = xe_vma_end(vma);
-> -					}
+> +void xe_gt_throttle_sysfs_init(struct xe_gt_throttle *throttle);
 > +
-> +			if (op->base.remap.next) {
-> +				struct xe_vma *vma;
-> +				bool read_only =
-> +					op->base.remap.unmap->va->flags &
-> +					XE_VMA_READ_ONLY;
+> +#endif /* _XE_GT_THROTTLE_SYSFS_H_ */
+> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h
+> new file mode 100644
+> index 000000000000..acc23ce8d0fc
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs_types.h
+> @@ -0,0 +1,35 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
 > +
-> +				bool is_null =
-> +					op->base.remap.unmap->va->flags &
-> +					DRM_GPUVA_SPARSE;
+> +#ifndef _XE_GT_THROTTLE_SYSFS_TYPES_H_
+> +#define _XE_GT_THROTTLE_SYSFS_TYPES_H_
 > +
-> +				vma = new_vma(vm, op->base.remap.next,
-> +					      op->tile_mask, read_only,
-> +					      is_null);
-> +				if (IS_ERR(vma)) {
-> +					err = PTR_ERR(vma);
-> +					goto free_fence;
->  				}
->  
-> -				if (op->base.remap.next) {
-> -					struct xe_vma *vma;
-> -					bool read_only =
-> -						op->base.remap.unmap->va->flags &
-> -						XE_VMA_READ_ONLY;
-> -
-> -					bool is_null =
-> -						op->base.remap.unmap->va->flags &
-> -						DRM_GPUVA_SPARSE;
-> -
-> -					vma = new_vma(vm, op->base.remap.next,
-> -						      op->tile_mask, read_only,
-> -						      is_null);
-> -					if (IS_ERR(vma)) {
-> -						err = PTR_ERR(vma);
-> -						goto free_fence;
-> -					}
-> -
-> -					op->remap.next = vma;
-> -
-> -					/*
-> -					 * Userptr creates a new SG mapping so
-> -					 * we must also rebind.
-> -					 */
-> -					op->remap.skip_next = !xe_vma_is_userptr(old) &&
-> -						IS_ALIGNED(xe_vma_start(vma),
-> -							   xe_vma_max_pte_size(old));
-> -					if (op->remap.skip_next) {
-> -						xe_vma_set_pte_size(vma, xe_vma_max_pte_size(old));
-> -						op->remap.range -=
-> -							xe_vma_end(old) -
-> -							xe_vma_start(vma);
-> -					}
-> +				op->remap.next = vma;
+> +#include <linux/types.h>
 > +
-> +				/*
-> +				 * Userptr creates a new SG mapping so
-> +				 * we must also rebind.
-> +				 */
-> +				op->remap.skip_next = !xe_vma_is_userptr(old) &&
-> +					IS_ALIGNED(xe_vma_start(vma),
-> +						   xe_vma_max_pte_size(old));
-> +				if (op->remap.skip_next) {
-> +					xe_vma_set_pte_size(vma, xe_vma_max_pte_size(old));
-> +					op->remap.range -=
-> +						xe_vma_end(old) -
-> +						xe_vma_start(vma);
->  				}
-> -				break;
-> -			}
-> -			case DRM_GPUVA_OP_UNMAP:
-> -			case DRM_GPUVA_OP_PREFETCH:
-> -				/* Nothing to do */
-> -				break;
-> -			default:
-> -				XE_WARN_ON("NOT POSSIBLE");
->  			}
-> -
-> -			last_op = op;
-> +			break;
-> +		}
-> +		case DRM_GPUVA_OP_UNMAP:
-> +		case DRM_GPUVA_OP_PREFETCH:
-> +			/* Nothing to do */
-> +			break;
-> +		default:
-> +			XE_WARN_ON("NOT POSSIBLE");
->  		}
->  
-> -		last_op->ops = __ops;
-> +		last_op = op;
+> +struct xe_gt;
 > +
-> +		err = xe_vma_op_commit(vm, op);
-> +		if (err)
-> +			goto free_fence;
->  	}
->  
-> -	if (!last_op)
-> -		return -ENODATA;
-> +	/* FIXME: Unhandled corner case */
-> +	XE_WARN_ON(!last_op && last && !list_empty(ops_list));
->  
-> -	last_op->flags |= XE_VMA_OP_LAST;
-> -	last_op->num_syncs = num_syncs;
-> -	last_op->syncs = syncs;
-> -	last_op->fence = fence;
-> +	if (!last_op)
-> +		goto free_fence;
-> +	last_op->ops = ops;
-> +	if (last) {
-> +		last_op->flags |= XE_VMA_OP_LAST;
-> +		last_op->num_syncs = num_syncs;
-> +		last_op->syncs = syncs;
-> +		last_op->fence = fence;
-> +	}
->  
->  	return 0;
->  
-> @@ -2609,58 +2658,6 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->  	return err;
->  }
->  
-> -static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
-> -{
-> -	int err = 0;
-> -
-> -	lockdep_assert_held_write(&vm->lock);
-> -
-> -	switch (op->base.op) {
-> -	case DRM_GPUVA_OP_MAP:
-> -		err |= xe_vm_insert_vma(vm, op->map.vma);
-> -		if (!err)
-> -			op->flags |= XE_VMA_OP_COMMITTED;
-> -		break;
-> -	case DRM_GPUVA_OP_REMAP:
-> -		prep_vma_destroy(vm, gpuva_to_vma(op->base.remap.unmap->va),
-> -				 true);
-> -		op->flags |= XE_VMA_OP_COMMITTED;
-> -
-> -		if (op->remap.prev) {
-> -			err |= xe_vm_insert_vma(vm, op->remap.prev);
-> -			if (!err)
-> -				op->flags |= XE_VMA_OP_PREV_COMMITTED;
-> -			if (!err && op->remap.skip_prev)
-> -				op->remap.prev = NULL;
-> -		}
-> -		if (op->remap.next) {
-> -			err |= xe_vm_insert_vma(vm, op->remap.next);
-> -			if (!err)
-> -				op->flags |= XE_VMA_OP_NEXT_COMMITTED;
-> -			if (!err && op->remap.skip_next)
-> -				op->remap.next = NULL;
-> -		}
-> -
-> -		/* Adjust for partial unbind after removin VMA from VM */
-> -		if (!err) {
-> -			op->base.remap.unmap->va->va.addr = op->remap.start;
-> -			op->base.remap.unmap->va->va.range = op->remap.range;
-> -		}
-> -		break;
-> -	case DRM_GPUVA_OP_UNMAP:
-> -		prep_vma_destroy(vm, gpuva_to_vma(op->base.unmap.va), true);
-> -		op->flags |= XE_VMA_OP_COMMITTED;
-> -		break;
-> -	case DRM_GPUVA_OP_PREFETCH:
-> -		op->flags |= XE_VMA_OP_COMMITTED;
-> -		break;
-> -	default:
-> -		XE_WARN_ON("NOT POSSIBLE");
-> -	}
-> -
-> -	return err;
-> -}
-> -
->  static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
->  			       struct xe_vma_op *op)
->  {
-> @@ -2878,11 +2875,13 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
->  	{
->  		struct xe_vma *vma = gpuva_to_vma(op->base.unmap.va);
->  
-> -		down_read(&vm->userptr.notifier_lock);
-> -		vma->gpuva.flags &= ~XE_VMA_DESTROYED;
-> -		up_read(&vm->userptr.notifier_lock);
-> -		if (post_commit)
-> -			xe_vm_insert_vma(vm, vma);
-> +		if (vma) {
-> +			down_read(&vm->userptr.notifier_lock);
-> +			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
-> +			up_read(&vm->userptr.notifier_lock);
-> +			if (post_commit)
-> +				xe_vm_insert_vma(vm, vma);
-> +		}
->  		break;
->  	}
->  	case DRM_GPUVA_OP_REMAP:
-> @@ -2897,11 +2896,13 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
->  			prep_vma_destroy(vm, op->remap.next, next_post_commit);
->  			xe_vma_destroy_unlocked(op->remap.next);
->  		}
-> -		down_read(&vm->userptr.notifier_lock);
-> -		vma->gpuva.flags &= ~XE_VMA_DESTROYED;
-> -		up_read(&vm->userptr.notifier_lock);
-> -		if (post_commit)
-> -			xe_vm_insert_vma(vm, vma);
-> +		if (vma) {
-> +			down_read(&vm->userptr.notifier_lock);
-> +			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
-
-wouldn't we need to clear the other new commited flags here?
-
-> +			up_read(&vm->userptr.notifier_lock);
-> +			if (post_commit)
-> +				xe_vm_insert_vma(vm, vma);
-> +		}
->  		break;
->  	}
->  	case DRM_GPUVA_OP_PREFETCH:
-> @@ -2990,20 +2991,16 @@ static void xe_vma_op_work_func(struct work_struct *w)
->  	}
->  }
->  
-> -static int vm_bind_ioctl_ops_commit(struct xe_vm *vm,
-> -				    struct list_head *ops_list, bool async)
-> +static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
-> +				     struct list_head *ops_list, bool async)
->  {
->  	struct xe_vma_op *op, *last_op, *next;
->  	int err;
->  
->  	lockdep_assert_held_write(&vm->lock);
->  
-> -	list_for_each_entry(op, ops_list, link) {
-> +	list_for_each_entry(op, ops_list, link)
->  		last_op = op;
-> -		err = xe_vma_op_commit(vm, op);
-> -		if (err)
-> -			goto unwind;
-> -	}
->  
->  	if (!async) {
->  		err = xe_vma_op_execute(vm, last_op);
-> @@ -3042,28 +3039,29 @@ static int vm_bind_ioctl_ops_commit(struct xe_vm *vm,
->  	return err;
->  }
->  
-> -/*
-> - * Unwind operations list, called after a failure of vm_bind_ioctl_ops_create or
-> - * vm_bind_ioctl_ops_parse.
-> - */
->  static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
->  				     struct drm_gpuva_ops **ops,
->  				     int num_ops_list)
->  {
->  	int i;
->  
-> -	for (i = 0; i < num_ops_list; ++i) {
-> +	for (i = num_ops_list - 1; i; ++i) {
->  		struct drm_gpuva_ops *__ops = ops[i];
->  		struct drm_gpuva_op *__op;
->  
->  		if (!__ops)
->  			continue;
->  
-> -		drm_gpuva_for_each_op(__op, __ops) {
-> +		drm_gpuva_for_each_op_reverse(__op, __ops) {
->  			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
->  
-> -			xe_vma_op_unwind(vm, op, false, false, false);
-> +			xe_vma_op_unwind(vm, op,
-> +					 op->flags & XE_VMA_OP_COMMITTED,
-> +					 op->flags & XE_VMA_OP_PREV_COMMITTED,
-> +					 op->flags & XE_VMA_OP_NEXT_COMMITTED);
->  		}
+> +struct xe_gt_throttle {
+> +	/** @status: overall throttling status */
+> +	bool status;
+> +	/** @pl1: throttling reason is PL1 */
+> +	bool pl1;
+> +	/** @pl2: throttling reason is PL2 */
+> +	bool pl2;
+> +	/** @pl4: throttling reason is PL4 */
+> +	bool pl4;
+> +	/** @thermal: throttling reason is thermal */
+> +	bool thermal;
+> +	/** @prochot: throttling reason is PROCHOT */
+> +	bool prochot;
+> +	/** @ratl: throttling reason is running average thermal limit */
+> +	bool ratl;
+> +	/** @thermalert: throttling reason is vr thermalert */
+> +	bool thermalert;
+> +	/** @tdc: throttling reason is vr tdc */
+> +	bool tdc;
+> +};
 > +
-> +		drm_gpuva_ops_free(&vm->mgr, __ops);
->  	}
->  }
->  
-> @@ -3384,14 +3382,22 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  			ops[i] = NULL;
->  			goto unwind_ops;
->  		}
+> +#endif /* _XE_GT_THROTTLE_SYSFS_TYPES_H_ */
 > +
-> +		err = vm_bind_ioctl_ops_parse(vm, q, ops[i], syncs, num_syncs,
-> +					      &ops_list,
-> +					      i == args->num_binds - 1,
-> +					      async);
-> +		if (err)
-> +			goto unwind_ops;
->  	}
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index 35b8c19fa8bf..c55815d1114a 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -8,6 +8,7 @@
 >  
-> -	err = vm_bind_ioctl_ops_parse(vm, q, ops, args->num_binds,
-> -				      syncs, num_syncs, &ops_list, async);
-> -	if (err)
-> +	/* Nothing to do */
-> +	if (list_empty(&ops_list)) {
-> +		err = -ENODATA;
->  		goto unwind_ops;
-> +	}
+>  #include "xe_force_wake_types.h"
+>  #include "xe_gt_idle_sysfs_types.h"
+> +#include "xe_gt_throttle_sysfs_types.h"
+>  #include "xe_hw_engine_types.h"
+>  #include "xe_hw_fence_types.h"
+>  #include "xe_reg_sr_types.h"
+> @@ -298,6 +299,9 @@ struct xe_gt {
+>  	/** @sysfs: sysfs' kobj used by xe_gt_sysfs */
+>  	struct kobject *sysfs;
 >  
-> -	err = vm_bind_ioctl_ops_commit(vm, &ops_list, async);
-> +	err = vm_bind_ioctl_ops_execute(vm, &ops_list, async);
->  	up_write(&vm->lock);
->  
->  	for (i = 0; i < args->num_binds; ++i)
+> +	/** @throttle: frequency throttling reasons in GT */
+> +	struct xe_gt_throttle throttle;
+> +
+>  	/** @mocs: info */
+>  	struct {
+>  		/** @uc_index: UC index */
 > -- 
-> 2.34.1
+> 2.25.1
 > 
