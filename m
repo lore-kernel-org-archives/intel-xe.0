@@ -4,30 +4,74 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BB81EE49A3
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 16:30:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC0D1EE4996
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 16:55:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA61B10E3AF;
-	Tue, 22 Aug 2023 16:30:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0370010E3B0;
- Tue, 22 Aug 2023 16:30:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E5AB9AA01E;
- Tue, 22 Aug 2023 16:30:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 604DA10E064;
+	Tue, 22 Aug 2023 16:55:28 +0000 (UTC)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com
+ [IPv6:2a00:1450:4864:20::22a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB8310E064
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 16:55:26 +0000 (UTC)
+Received: by mail-lj1-x22a.google.com with SMTP id
+ 38308e7fff4ca-2b9cdba1228so74372081fa.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 09:55:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gfxstrand-net.20221208.gappssmtp.com; s=20221208; t=1692723324; x=1693328124;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=b/b+LsneC35f8QtKhZiamb+k090rLGqkrC31BsSX3zE=;
+ b=blpzMVaP/nkHWbkM5FpKmrOo/MO6oaf31SQUUrtU4LpyGyS8DbWcHOBGPXTs9nWhZy
+ uFcrP0Wzkbjf8toZs2epwgEYozS1YP+/uKhZ3nLxiWkhGCpVGLvLFBG4dkb/na15pdA/
+ NGT2nI/6IBxA5HPKmhBpKg3Ck+T0idkI1EXBlDbMWGqU1bCs7owms4uso6144wB3Do4r
+ 1qtSclBF1FB4uJ78q633Bhqp9UgAWbW796p03leGREaKHlrdix/Yjj7OM0NqQmtvISGi
+ joyJ1kMQCEp25KWUNnQefoK3TLkkPcf60B0pY9fE8KrYcpdzoCDbc4hMvu0gXcfuayu7
+ 1PGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1692723324; x=1693328124;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=b/b+LsneC35f8QtKhZiamb+k090rLGqkrC31BsSX3zE=;
+ b=k+4zUKh0CHWDilASUbg9jNwHYeMTmKLAeBkL48+tL8hlsW10t0H2wnAglF8WzDxDKB
+ yTr5qjfH3QRY8s8+uSZ56YUKPC2g1UPDex9y1EGc5r315/t+r63R0b2ctlQ/1o2oSvkA
+ Pg8x10yVVjD/7chsmHfvITTVlET5cghFd4o8zSYI6jQLoWyTXkRpX9EP6xAOlVNaa5ko
+ 8Lu3ya5pJBUduAQ6Y8FCubfMliSO/yghYlSo7SuAqmTbHlNdy32cBuYseOcd0kheJ6Kk
+ V77pfGjvLHtGks1vuFBfy1ZYHitKq8ZF51oTh8TE5MjiQjiT9t9T+GMbaZip0tBt41Ds
+ xwug==
+X-Gm-Message-State: AOJu0YwaP09Pobz/uozhhweTR1pKYBYKNJybJfqjPA97kquA7uGqUdJw
+ WnZ0e7vbjMJMZqAmIC24Cv4Agpa+iKW9EkFzvxgl0w==
+X-Google-Smtp-Source: AGHT+IHjgFS8m6Ms3ZJuELgv6kfJH6YrkwTJ+qDUUKWjvX4S6ed1cceGKMM+4VRcsTiuibRVs3BMgBOHSpNdQpPL5vs=
+X-Received: by 2002:a2e:9d08:0:b0:2b9:cc8e:8729 with SMTP id
+ t8-20020a2e9d08000000b002b9cc8e8729mr7130835lji.26.1692723324073; Tue, 22 Aug
+ 2023 09:55:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 22 Aug 2023 16:30:05 -0000
-Message-ID: <169272180593.20550.8820234713129718254@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230822162136.25895-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230822162136.25895-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_drm/xe?=
- =?utf-8?q?=3A_Support_optional_pinning_of_userptr_pages_=28rev2=29?=
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-2-matthew.brost@intel.com>
+ <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
+ <069e6cd0-abd3-fdd9-217d-173e8f8e1d29@amd.com>
+ <b9a6493c-243b-1078-afbc-d9270cac904a@redhat.com>
+ <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
+ <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
+ <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
+ <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
+ <ef4d2c78-6927-3d3b-7aac-27d013af7ea6@amd.com>
+ <a80be2c1-132e-5ee1-4278-47655916494a@redhat.com>
+ <0d5af79a-ba3a-d4be-938f-81627db65b50@amd.com>
+ <a3937c17-eaa5-e0e9-e0ac-1610e0652982@redhat.com>
+ <1820cb54-5f1e-d2e6-38fa-7161465ed061@amd.com>
+ <9072642e-f4f6-4ff1-e11f-9bda8730750c@redhat.com>
+ <85107169-8a24-441f-6631-d99472d810f0@amd.com>
+ <CAOFGe94JC8V2GS5L2iCaD9=X-sbbcvrvijck8ivieko=LGBSbg@mail.gmail.com>
+ <2498b1a3-6597-c112-82cd-58b44ca188f0@amd.com>
+In-Reply-To: <2498b1a3-6597-c112-82cd-58b44ca188f0@amd.com>
+From: Faith Ekstrand <faith@gfxstrand.net>
+Date: Tue, 22 Aug 2023 11:55:12 -0500
+Message-ID: <CAOFGe97ZEy_fstHK+Hm5rJpfXJmw0ODhq0uoC6JAXDYkWpMpWQ@mail.gmail.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Content-Type: multipart/alternative; boundary="0000000000006f5dda060385dcec"
+Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
+ use a work queue rather than kthread
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,370 +83,289 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ luben.tuikov@amd.com, Danilo Krummrich <dakr@redhat.com>,
+ donald.robson@imgtec.com, boris.brezillon@collabora.com,
+ intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+--0000000000006f5dda060385dcec
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Series: drm/xe: Support optional pinning of userptr pages (rev2)
-URL   : https://patchwork.freedesktop.org/series/122637/
-State : failure
+On Tue, Aug 22, 2023 at 4:51=E2=80=AFAM Christian K=C3=B6nig <christian.koe=
+nig@amd.com>
+wrote:
 
-== Summary ==
+> Am 21.08.23 um 21:46 schrieb Faith Ekstrand:
+>
+> On Mon, Aug 21, 2023 at 1:13=E2=80=AFPM Christian K=C3=B6nig <christian.k=
+oenig@amd.com>
+> wrote:
+>
+>> [SNIP]
+>> So as long as nobody from userspace comes and says we absolutely need to
+>> optimize this use case I would rather not do it.
+>>
+>
+> This is a place where nouveau's needs are legitimately different from AMD
+> or Intel, I think.  NVIDIA's command streamer model is very different fro=
+m
+> AMD and Intel.  On AMD and Intel, each EXEC turns into a single small
+> packet (on the order of 16B) which kicks off a command buffer.  There may
+> be a bit of cache management or something around it but that's it.  From
+> there, it's userspace's job to make one command buffer chain to another
+> until it's finally done and then do a "return", whatever that looks like.
+>
+> NVIDIA's model is much more static.  Each packet in the HW/FW ring is an
+> address and a size and that much data is processed and then it grabs the
+> next packet and processes. The result is that, if we use multiple buffers
+> of commands, there's no way to chain them together.  We just have to pass
+> the whole list of buffers to the kernel.
+>
+>
+> So far that is actually completely identical to what AMD has.
+>
+> A single EXEC ioctl / job may have 500 such addr+size packets depending o=
+n
+> how big the command buffer is.
+>
+>
+> And that is what I don't understand. Why would you need 100dreds of such
+> addr+size packets?
+>
 
-run-parts: executing /workspace/ci/hooks/00-showenv
-/workspace
-+ pwd
-+ ls -la
-total 500
-drwxrwxr-x 10 1003 1003   4096 Aug 22 16:29 .
-drwxr-xr-x  1 root root   4096 Aug 22 16:29 ..
--rw-rw-r--  1 1003 1003 389633 Aug 22 16:29 build.log
--rw-rw-r--  1 1003 1003   2119 Aug 22 16:24 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Aug 22 16:23 ci
-drwxrwxr-x  9 1003 1003   4096 Aug 22 16:22 docker
-drwxrwxr-x  8 1003 1003   4096 Aug 22 16:22 .git
--rw-rw-r--  1 1003 1003    412 Aug 22 16:24 git_apply.log
-drwxrwxr-x  4 1003 1003   4096 Aug 22 16:22 .github
--rw-rw-r--  1 1003 1003    233 Aug 22 16:22 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Aug 22 16:29 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Aug 22 16:29 kernel
--rw-rw-r--  1 1003 1003  20849 Aug 22 16:24 kernel.mbox
--rw-rw-r--  1 1003 1003  26091 Aug 22 16:25 kunit.log
--rw-rw-r--  1 1003 1003     48 Aug 22 16:24 parent.tag
-drwxrwxr-x 45 1003 1003   4096 Aug 22 16:22 pipelines
--rw-rw-r--  1 1003 1003    793 Aug 22 16:22 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Aug 22 16:22 scripts
-drwxrwxr-x  2 1003 1003   4096 Aug 22 16:22 .vscode
-+ uname -a
-Linux e7f9953472b7 5.4.0-149-generic #166-Ubuntu SMP Tue Apr 18 16:51:45 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64"
-declare -x CI_KERNEL_IMAGES_DIR="/workspace/kernel/archive/boot"
-declare -x CI_KERNEL_MODULES_DIR="/workspace/kernel/archive"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-a3b91acf7 drm/xe/uapi: Support pinning of userptr vmas
-38f9e2a58 drm/xe/vm: Perform accounting of userptr pinned pages
-9826a6e5a drm/xe/vm: Implement userptr page pinning
-889380a52 drm/xe/vm: Use onion unwind for xe_vma_userptr_pin_pages()
-779f35314 drm/xe: madvise_funcs should use value not property
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64 ']'
-+ BUILD_DIR=/workspace/kernel/build64
-+ cd /workspace/kernel
-+ grep -q -e '^CONFIG_DRM_XE_DISPLAY=[yY]' /workspace/kernel/build64/.config
-+ RESTORE_DISPLAY_CONFIG=1
-+ trap cleanup EXIT
-+ ./scripts/config --file /workspace/kernel/build64/.config --disable CONFIG_DRM_XE_DISPLAY
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64'
-  SYNC    include/config/auto.conf.cmd
-  GEN     Makefile
-  GEN     Makefile
-  UPD     include/config/kernel.release
-  UPD     include/generated/compile.h
-  UPD     include/generated/utsrelease.h
-  DESCEND objtool
-  CALL    ../scripts/checksyscalls.sh
-  HOSTCC  /workspace/kernel/build64/tools/objtool/fixdep.o
-  HOSTLD  /workspace/kernel/build64/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64/tools/objtool/weak.o
-  CC      /workspace/kernel/build64/tools/objtool/check.o
-  CC      /workspace/kernel/build64/tools/objtool/special.o
-  CC      /workspace/kernel/build64/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64/tools/objtool/elf.o
-  CC      /workspace/kernel/build64/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64 M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_device_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec_queue.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_idle_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_range_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm_madvise.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_range_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_madvise.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  MODPOST drivers/gpu/drm/xe/Module.symvers
-  CC [M]  drivers/gpu/drm/xe/xe.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.mod.o
-  LD [M]  drivers/gpu/drm/xe/tests/xe_wa_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_bo_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_pci_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.ko
-  LD [M]  drivers/gpu/drm/xe/xe.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.ko
-make[1]: Leaving directory '/workspace/kernel/build64'
-+ cleanup
-+ '[' 1 -eq 1 ']'
-+ ./scripts/config --file /workspace/kernel/build64/.config --enable CONFIG_DRM_XE_DISPLAY
-run-parts: executing /workspace/ci/hooks/20-kernel-doc
-+ SRC_DIR=/workspace/kernel
-+ cd /workspace/kernel
-+ find drivers/gpu/drm/xe/ -name '*.[ch]' -not -path 'drivers/gpu/drm/xe/display/*'
-+ xargs ./scripts/kernel-doc -Werror -none include/uapi/drm/xe_drm.h
-drivers/gpu/drm/xe/xe_vm.h:148: warning: Function parameter or member 'vma' not described in 'xe_vma_is_pinned'
-1 warnings as Errors
-run-parts: /workspace/ci/hooks/20-kernel-doc exited with return code 123
+Well, we're not really in control of it.  We can control our base pushbuf
+size and that's something we can tune but we're still limited by the
+client.  We have to submit another pushbuf whenever:
+
+ 1. We run out of space (power-of-two growth is also possible but the size
+is limited to a maximum of about 4MiB due to hardware limitations.)
+ 2. The client calls a secondary command buffer.
+ 3. Any usage of indirect draw or dispatch on pre-Turing hardware.
+
+At some point we need to tune our BO size a bit to avoid (1) while also
+avoiding piles of tiny BOs.  However, (2) and (3) are out of our control.
+
+This is basically identical to what AMD has (well on newer hw there is an
+> extension in the CP packets to JUMP/CALL subsequent IBs, but this isn't
+> widely used as far as I know).
+>
+
+According to Bas, RADV chains on recent hardware.
 
 
+> Previously the limit was something like 4 which we extended to because Ba=
+s
+> came up with similar requirements for the AMD side from RADV.
+>
+> But essentially those approaches with 100dreds of IBs doesn't sound like =
+a
+> good idea to me.
+>
+
+No one's arguing that they like it.  Again, the hardware isn't designed to
+have a kernel in the way. It's designed to be fed by userspace. But we're
+going to have the kernel in the middle for a while so we need to make it
+not suck too bad.
+
+~Faith
+
+It gets worse on pre-Turing hardware where we have to split the batch for
+> every single DrawIndirect or DispatchIndirect.
+>
+> Lest you think NVIDIA is just crazy here, it's a perfectly reasonable
+> model if you assume that userspace is feeding the firmware.  When that's
+> happening, you just have a userspace thread that sits there and feeds the
+> ringbuffer with whatever is next and you can marshal as much data through
+> as you want. Sure, it'd be nice to have a 2nd level batch thing that gets
+> launched from the FW ring and has all the individual launch commands but
+> it's not at all necessary.
+>
+> What does that mean from a gpu_scheduler PoV? Basically, it means a
+> variable packet size.
+>
+> What does this mean for implementation? IDK.  One option would be to teac=
+h
+> the scheduler about actual job sizes. Another would be to virtualize it a=
+nd
+> have another layer underneath the scheduler that does the actual feeding =
+of
+> the ring. Another would be to decrease the job size somewhat and then hav=
+e
+> the front-end submit as many jobs as it needs to service userspace and on=
+ly
+> put the out-fences on the last job. All the options kinda suck.
+>
+>
+> Yeah, agree. The job size Danilo suggested is still the least painful.
+>
+> Christian.
+>
+>
+> ~Faith
+>
+>
+>
+
+--0000000000006f5dda060385dcec
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Tue, Aug 22, 2023 at 4:51=E2=80=AFAM Christian K=C3=B6nig &lt;<a =
+href=3D"mailto:christian.koenig@amd.com">christian.koenig@amd.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
+x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+
+ =20
+  <div>
+    Am 21.08.23 um 21:46 schrieb Faith Ekstrand:<br>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div class=3D"gmail_quote">
+          <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 21, 2023 at
+            1:13=E2=80=AFPM Christian K=C3=B6nig &lt;<a href=3D"mailto:chri=
+stian.koenig@amd.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">[SNIP]<br>
+            So as long as nobody from userspace comes and says we
+            absolutely need to <br>
+            optimize this use case I would rather not do it.<br>
+          </blockquote>
+          <div><br>
+          </div>
+          <div>This is a place where nouveau&#39;s needs are legitimately
+            different from AMD or Intel, I think.=C2=A0 NVIDIA&#39;s comman=
+d
+            streamer model is very different from AMD and Intel.=C2=A0 On A=
+MD
+            and Intel, each EXEC turns into a single small packet (on
+            the order of 16B) which kicks off a command buffer.=C2=A0 There
+            may be a bit of cache management or something around it but
+            that&#39;s it.=C2=A0 From there, it&#39;s userspace&#39;s job t=
+o make one
+            command buffer chain to another until it&#39;s finally done and
+            then do a &quot;return&quot;, whatever that looks like.=C2=A0</=
+div>
+          <div><br>
+          </div>
+          <div>NVIDIA&#39;s model is much more static.=C2=A0 Each packet in=
+ the
+            HW/FW ring is an address and a size and that much data is
+            processed and then it grabs the next packet and processes.
+            The result is that, if we use multiple buffers of commands,
+            there&#39;s no way to chain them together.=C2=A0 We just have t=
+o pass
+            the whole list of buffers to the kernel.</div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    So far that is actually completely identical to what AMD has.<br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_quote">
+          <div>A single EXEC ioctl / job may have 500 such addr+size
+            packets depending on how big the command buffer is.</div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    And that is what I don&#39;t understand. Why would you need 100dreds of
+    such addr+size packets?<br></div></blockquote><div><br></div><div>Well,=
+ we&#39;re not really in control of it.=C2=A0 We can control our base pushb=
+uf size and that&#39;s something we can tune but we&#39;re still limited by=
+ the client.=C2=A0 We have to submit another pushbuf whenever:</div><div><b=
+r></div><div>=C2=A01. We run out of space (power-of-two growth is also poss=
+ible but the size is limited to a maximum of about 4MiB due to hardware lim=
+itations.)<br></div><div>=C2=A02. The client calls a secondary command buff=
+er.</div><div>=C2=A03. Any usage of indirect draw or dispatch on pre-Turing=
+ hardware.</div><div><br></div><div>At some point we need to tune our BO si=
+ze a bit to avoid (1) while also avoiding piles of tiny BOs.=C2=A0 However,=
+ (2) and (3) are out of our control.<br></div><div><br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex"><div>
+    This is basically identical to what AMD has (well on newer hw there
+    is an extension in the CP packets to JUMP/CALL subsequent IBs, but
+    this isn&#39;t widely used as far as I know).<br></div></blockquote><di=
+v><br></div><div>According to Bas, RADV chains on recent hardware.<br></div=
+><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
+    Previously the limit was something like 4 which we extended to
+    because Bas came up with similar requirements for the AMD side from
+    RADV.<br>
+    <br>
+    But essentially those approaches with 100dreds of IBs doesn&#39;t sound
+    like a good idea to me.<br></div></blockquote><div><br></div><div>No on=
+e&#39;s arguing that they like it.=C2=A0 Again, the hardware isn&#39;t desi=
+gned to have a kernel in the way. It&#39;s designed to be fed by userspace.=
+ But we&#39;re going to have the kernel in the middle for a while so we nee=
+d to make it not suck too bad.<br></div><div><br></div><div>~Faith<br></div=
+><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_quote">
+          <div>It gets worse on pre-Turing hardware where we have to
+            split the batch for every single DrawIndirect or
+            DispatchIndirect.</div>
+          <div><br>
+          </div>
+          <div>Lest you think NVIDIA is just crazy here, it&#39;s a
+            perfectly reasonable model if you assume that userspace is
+            feeding the firmware.=C2=A0 When that&#39;s happening, you just=
+ have
+            a userspace thread that sits there and feeds the ringbuffer
+            with whatever is next and you can marshal as much data
+            through as you want. Sure, it&#39;d be nice to have a 2nd level
+            batch thing that gets launched from the FW ring and has all
+            the individual launch commands but it&#39;s not at all
+            necessary.</div>
+          <div><br>
+          </div>
+          <div>What does that mean from a gpu_scheduler PoV? Basically,
+            it means a variable packet size.<br>
+          </div>
+          <div><br>
+          </div>
+          <div>What does this mean for implementation? IDK.=C2=A0 One optio=
+n
+            would be to teach the scheduler about actual job sizes.
+            Another would be to virtualize it and have another layer
+            underneath the scheduler that does the actual feeding of the
+            ring. Another would be to decrease the job size somewhat and
+            then have the front-end submit as many jobs as it needs to
+            service userspace and only put the out-fences on the last
+            job. All the options kinda suck.</div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    Yeah, agree. The job size Danilo suggested is still the least
+    painful.<br>
+    <br>
+    Christian.<br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_quote">
+          <div><br>
+          </div>
+          <div>~Faith<br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </div>
+
+</blockquote></div></div>
+
+--0000000000006f5dda060385dcec--
