@@ -4,74 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC0D1EE4996
-	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 16:55:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0C27BEE4996
+	for <intel-xe@archiver.kernel.org>; Tue, 22 Aug 2023 16:56:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 604DA10E064;
-	Tue, 22 Aug 2023 16:55:28 +0000 (UTC)
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com
- [IPv6:2a00:1450:4864:20::22a])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DB8310E064
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 16:55:26 +0000 (UTC)
-Received: by mail-lj1-x22a.google.com with SMTP id
- 38308e7fff4ca-2b9cdba1228so74372081fa.2
- for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 09:55:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gfxstrand-net.20221208.gappssmtp.com; s=20221208; t=1692723324; x=1693328124;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=b/b+LsneC35f8QtKhZiamb+k090rLGqkrC31BsSX3zE=;
- b=blpzMVaP/nkHWbkM5FpKmrOo/MO6oaf31SQUUrtU4LpyGyS8DbWcHOBGPXTs9nWhZy
- uFcrP0Wzkbjf8toZs2epwgEYozS1YP+/uKhZ3nLxiWkhGCpVGLvLFBG4dkb/na15pdA/
- NGT2nI/6IBxA5HPKmhBpKg3Ck+T0idkI1EXBlDbMWGqU1bCs7owms4uso6144wB3Do4r
- 1qtSclBF1FB4uJ78q633Bhqp9UgAWbW796p03leGREaKHlrdix/Yjj7OM0NqQmtvISGi
- joyJ1kMQCEp25KWUNnQefoK3TLkkPcf60B0pY9fE8KrYcpdzoCDbc4hMvu0gXcfuayu7
- 1PGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1692723324; x=1693328124;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=b/b+LsneC35f8QtKhZiamb+k090rLGqkrC31BsSX3zE=;
- b=k+4zUKh0CHWDilASUbg9jNwHYeMTmKLAeBkL48+tL8hlsW10t0H2wnAglF8WzDxDKB
- yTr5qjfH3QRY8s8+uSZ56YUKPC2g1UPDex9y1EGc5r315/t+r63R0b2ctlQ/1o2oSvkA
- Pg8x10yVVjD/7chsmHfvITTVlET5cghFd4o8zSYI6jQLoWyTXkRpX9EP6xAOlVNaa5ko
- 8Lu3ya5pJBUduAQ6Y8FCubfMliSO/yghYlSo7SuAqmTbHlNdy32cBuYseOcd0kheJ6Kk
- V77pfGjvLHtGks1vuFBfy1ZYHitKq8ZF51oTh8TE5MjiQjiT9t9T+GMbaZip0tBt41Ds
- xwug==
-X-Gm-Message-State: AOJu0YwaP09Pobz/uozhhweTR1pKYBYKNJybJfqjPA97kquA7uGqUdJw
- WnZ0e7vbjMJMZqAmIC24Cv4Agpa+iKW9EkFzvxgl0w==
-X-Google-Smtp-Source: AGHT+IHjgFS8m6Ms3ZJuELgv6kfJH6YrkwTJ+qDUUKWjvX4S6ed1cceGKMM+4VRcsTiuibRVs3BMgBOHSpNdQpPL5vs=
-X-Received: by 2002:a2e:9d08:0:b0:2b9:cc8e:8729 with SMTP id
- t8-20020a2e9d08000000b002b9cc8e8729mr7130835lji.26.1692723324073; Tue, 22 Aug
- 2023 09:55:24 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B33F610E064;
+	Tue, 22 Aug 2023 16:56:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62D1B10E064
+ for <intel-xe@lists.freedesktop.org>; Tue, 22 Aug 2023 16:56:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692723361; x=1724259361;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=qHs/Ns6AB3n6zJyxiFAIWbIF9pxPKp13h4ZGdZg4pN0=;
+ b=RtoX317LBFzrSUQDpRpJpZho4ZbB9iG7eLawJRa0zxLxISl0OvEDAmwG
+ /oPuKCRmpAsKqIjMPa0R4QNxCKLG3QRG1MtGXeq+SX2FcPN8Ue2l/L5Dq
+ AX3m4LWz4ON+L/B0ZxrcIBomtAsjbGmvVwlqhPtP/Ch1yp8DzAuWxoNIo
+ PnsVLQXQAROv821d47om00z/aMwYcMbXY3WaP1il8sK9kfeis0JOy+vkr
+ lojp/DzoaZasiR1zcZXQx7SiT2TGm594fip+c2UazRYe+gbwhEwrpK34n
+ 4DDrmdCac6R4MmQEW0L0N3Vby2iKFmBIM2/yCmT9Eb42i93Kiryb+MAw2 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10809"; a="358926112"
+X-IronPort-AV: E=Sophos;i="6.01,193,1684825200"; d="scan'208";a="358926112"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Aug 2023 09:55:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="880019989"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga001.fm.intel.com with ESMTP; 22 Aug 2023 09:55:59 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 22 Aug 2023 09:55:53 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Tue, 22 Aug 2023 09:55:53 -0700
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
+ edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Tue, 22 Aug 2023 09:55:53 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=cwiMjvRXr2N9TV/NNa7st96jNlf69Kkf/l/4ezW3NzU4oB1Nsov1MX8M1J63DJdPc5JyxYj3x8BWTYUV9ppCRUZOVLspCmLOiakUCeOny7BefVwiTXCjXxO9xVGvDyJLrv0947EtIG+iU54qSlOVZ/6MzrUAoHD2mJT2VszGLZx+cswzwRnzQEaK9MHJVa8bKfE52RPzh103L48JB0yEa2CkVgtHl5fGJNsSMNfJc2vJOnReCH7ui3rSidKje0YZhDzRb5CisillUtJEHa9L4OzRg1gWSnGqPhETk8gFvdFAnsZ4icOD77ERypZKhC1lMg6zNkPGPadxrXqHLLVSPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=i5pWo1ivd+HQtiYlm9Igrd0f4aBS48QhQyZ9PUE+wyA=;
+ b=N7fM1C/I3jv2KZf0Py8OrJ7P5PQG2tXOxqSN84sFz0WoIzy8W1ZqaPuSHAIZz1g5rmRbwsxJ9dLcMI3fJAk5OjjV9RFJTr0gV3SEmaW4U65UsPVDiDoNzdQX4HsfFnXVwVoeXcw3VxEEn0Noyq8ioH2L2tr6lV1H7VALyvl9cf0UIclUpZsUdXi0r471gRIbNjajD+MxmKJf3RNIs1KHhNPdPIFv57FNC9gMGTdY2t4mdSlWeLqxd6yqobANDFLckBmFpWwIYPjGor7RrilR8/TG+KmoIP81PcONXCC5pECBW+/3Zfm+8ebJ4YdA65KCHyZmhrOIOKNHlXLMg7tZbA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN2PR11MB4239.namprd11.prod.outlook.com (2603:10b6:208:192::20)
+ by CYYPR11MB8431.namprd11.prod.outlook.com (2603:10b6:930:c7::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.24; Tue, 22 Aug
+ 2023 16:55:51 +0000
+Received: from MN2PR11MB4239.namprd11.prod.outlook.com
+ ([fe80::18a6:cbff:9bcd:4acc]) by MN2PR11MB4239.namprd11.prod.outlook.com
+ ([fe80::18a6:cbff:9bcd:4acc%4]) with mapi id 15.20.6699.022; Tue, 22 Aug 2023
+ 16:55:51 +0000
+Date: Tue, 22 Aug 2023 09:55:38 -0700
+From: Matt Atwood <matthew.s.atwood@intel.com>
+To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
+ <lucas.demarchi@intel.com>, <matthew.d.roper@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+Message-ID: <ZOTois9cch4GZpfX@msatwood-mobl>
+References: <20230818220824.700519-1-lucas.demarchi@intel.com>
+ <20230818220824.700519-4-lucas.demarchi@intel.com>
+ <ZON1ew4Z2aRBG0oG@bvivekan-mobl>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <ZON1ew4Z2aRBG0oG@bvivekan-mobl>
+X-ClientProxiedBy: MW4PR04CA0370.namprd04.prod.outlook.com
+ (2603:10b6:303:81::15) To MN2PR11MB4239.namprd11.prod.outlook.com
+ (2603:10b6:208:192::20)
 MIME-Version: 1.0
-References: <20230811023137.659037-1-matthew.brost@intel.com>
- <20230811023137.659037-2-matthew.brost@intel.com>
- <69b648f8-c6b3-5846-0d03-05a380d010d8@redhat.com>
- <069e6cd0-abd3-fdd9-217d-173e8f8e1d29@amd.com>
- <b9a6493c-243b-1078-afbc-d9270cac904a@redhat.com>
- <982800c1-e7d3-f276-51d0-1a431f92eacb@amd.com>
- <5fdf7d59-3323-24b5-a35a-bd60b06b4ce5@redhat.com>
- <0bf839df-db7f-41fa-8b34-59792d2ba8be@amd.com>
- <e8fa305a-0ac8-ece7-efeb-f9cec2892d44@redhat.com>
- <ef4d2c78-6927-3d3b-7aac-27d013af7ea6@amd.com>
- <a80be2c1-132e-5ee1-4278-47655916494a@redhat.com>
- <0d5af79a-ba3a-d4be-938f-81627db65b50@amd.com>
- <a3937c17-eaa5-e0e9-e0ac-1610e0652982@redhat.com>
- <1820cb54-5f1e-d2e6-38fa-7161465ed061@amd.com>
- <9072642e-f4f6-4ff1-e11f-9bda8730750c@redhat.com>
- <85107169-8a24-441f-6631-d99472d810f0@amd.com>
- <CAOFGe94JC8V2GS5L2iCaD9=X-sbbcvrvijck8ivieko=LGBSbg@mail.gmail.com>
- <2498b1a3-6597-c112-82cd-58b44ca188f0@amd.com>
-In-Reply-To: <2498b1a3-6597-c112-82cd-58b44ca188f0@amd.com>
-From: Faith Ekstrand <faith@gfxstrand.net>
-Date: Tue, 22 Aug 2023 11:55:12 -0500
-Message-ID: <CAOFGe97ZEy_fstHK+Hm5rJpfXJmw0ODhq0uoC6JAXDYkWpMpWQ@mail.gmail.com>
-To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-Content-Type: multipart/alternative; boundary="0000000000006f5dda060385dcec"
-Subject: Re: [Intel-xe] [PATCH v2 1/9] drm/sched: Convert drm scheduler to
- use a work queue rather than kthread
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN2PR11MB4239:EE_|CYYPR11MB8431:EE_
+X-MS-Office365-Filtering-Correlation-Id: 246fc420-45b2-4f4e-4eaa-08dba330a420
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: lskIz6nmZYFuBCj0Ho3VllJJr6CJ1AIvpMA65KmuLpTNewL6AY2taOXzSnpMu2EV8yVYGhuBwys2lOSJSpWF1hCb5AVSpeBixueWu0HBHltigznXG9DOUPUNb6MHl49wDN4wG3BTFy+3WZk/rDItH1HFVBnX+wWfIvoL5IuV4xL1xjytsKi4Qu15PMQbsBHGP3cTODutylUalZBdATxhWhkVY4dQK+hHhdueYbJOoi6sy9RPACABN/zjP6w3kloay7Xr6MB/2jXIwF0ivq/65dlc1uyeREbatw4EOPV45J/luXum7N3YQupiWFWUMuCDGnnfSVSFmLu/kbNOW/6L1ioGVR0SwtHS1RAhnHFwLd21cGoC9bjwad+k74y91FLPAZkidYMsmI9PwklpiFJNeOGGs19ukmPSqAgxlcub0g8QqcA0YMsdYox6s92e0uoMGnTpkYz6A+7k6FU9yGWSIQeQXnEvj0ZA/l+Bo77DvxZ15q7gBUOQmZjmAaxnYxbtdB0JXOOfUqPjg6/GrzqtjzXHGvOPW6WGvaMvRO/EvDHW+ZxgiiEWfbiefDkV1GYP
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN2PR11MB4239.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(39860400002)(396003)(136003)(346002)(366004)(376002)(186009)(1800799009)(451199024)(54906003)(66476007)(66556008)(9686003)(6512007)(316002)(66946007)(82960400001)(8676002)(8936002)(107886003)(4326008)(33716001)(41300700001)(478600001)(6666004)(38100700002)(6486002)(53546011)(6506007)(83380400001)(2906002)(86362001)(5660300002)(26005);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZUllV3lUSXM3TnM5OFBNQ1o5L2Z3cTNwT0ZISjhscnp2OURJUXV0L0ZPTHBR?=
+ =?utf-8?B?dllueVhHeDZzd3h3eTFlVHJPK3RRZ01ZYWx5VmhjdW1kYk0zQmVmUmJaR2Nw?=
+ =?utf-8?B?dUFjN0FteGZGaU9sK2pxT3RUR1ZCckdoTXJvSGtkbkRjaEtzOXJkeHQ5dzc3?=
+ =?utf-8?B?S1NVT2YxWC9oeUdiRXBhSXZBYUVmZjd5d01jYi9VNGtTVldvQ3piNVM4VzRP?=
+ =?utf-8?B?bzlxdE5EN2Z2bnNCSFJTTnBUdW1GOXNqTGlMZmpTenRFYWNUaHh5NG1kVjhV?=
+ =?utf-8?B?QXNJOHRqSndxdFhXd2o5U1Q5a0hsdUg2cjlCK3JIcUFLcERmeXZuNmhtaFI3?=
+ =?utf-8?B?V0twRTA5YVExT0xnNWFxQktkTXVpL25sK1BDdjlqU0pPRFFTYWNqbk5oeFJo?=
+ =?utf-8?B?WDNmeEFQQytZSFhMRExaM0ZsOHMzTmtsV3lZVGtxK0FOWVpTMm5BNXBOSnJP?=
+ =?utf-8?B?ZUlKNjZaQjBWWkUyV1NSTFl6a1JDSUVZanh5em12ajJweUx1OElHRk5jcTkz?=
+ =?utf-8?B?YTdhcGozT0I3T3N1RFE5dWl5VG52dXFyTlBkUDZVTWV1UkV4UmRucWZTNXY1?=
+ =?utf-8?B?Ym5TZGd4bXdwOE9qNVhjajlzNDJxWEtlbVhJM1kzejU3VTczVEZ4ZFhvaHdW?=
+ =?utf-8?B?S1dMeFUwdGYwNlNsSS8vMDgyUHJiWW0yR2o4T1c4YmY0WWhGNUlJQ1BsTkVp?=
+ =?utf-8?B?WTlaMVMvUEhrd21UcWs4UER6cGthcDBrNWg2YnlnSHRjOEp5ZHZrZFgya1ND?=
+ =?utf-8?B?cXJUT3hJbW4xQlhjeG9ZalNkeDExbm1hanJ5UzNqcksrdG1xdjVUY0JpcFdi?=
+ =?utf-8?B?cXZxV2dodFhtVDBMb2o5MXlLSzEwN3Z4WkpNNDhPWERLcWRFUnk2aUJWaVY3?=
+ =?utf-8?B?SzdiQXZ6ZTdMU0lFbFVjNWpQZmN1T3dsclkrYUpYMWQ1SWUyUG5SbEZXcEpQ?=
+ =?utf-8?B?VzZDTnd3eWtBM1VNUzJvWVE2dnZmeTN3RjB5elBSYXQxMVNid0NrTmsxVjFL?=
+ =?utf-8?B?WG9yZi9tUVJDTWk3aHRxT3ZVM2hreUMzTTcwMnJzdi8rQXNldkZSdHkwU3Uz?=
+ =?utf-8?B?STE3dHhoTnRtNVVnc2lDaTNOZW1FYlVWVSs0c29Qa2JaUVd1cFViOWR2Smkx?=
+ =?utf-8?B?ckVOQW1Nb1MxRGJpazNWUGpXMTJxVFhVZ1d0VnB3YU1wc0FGQ0RyVStrRXJM?=
+ =?utf-8?B?cndZWFFwaDVzQUhZbTFtc1EvUnVTN2E1OTd5UTByMGIySjg1MzJLMkNUMk5p?=
+ =?utf-8?B?cWpJY2UwZGorMUZFRnZNNWd6R3ZqSVQrNysyejgxZzBWOW96cEo2N2ozcmVt?=
+ =?utf-8?B?YjlnelF1cHl5WlNLNEJNMWNQWkV1bU4vQUY4cnJ0MnVXL3BmV05GS0ZsaFA4?=
+ =?utf-8?B?ZTA5Ymt2bFpWeFR3aTFvUGFmVFUwQ053a0xOMHRnOFM0Uy9ZTndaU0Nhdldn?=
+ =?utf-8?B?SVQ1aExiSS9VYk1JSlRtQk1UT25wN3YxSE9lei9EYWhxUGhHa0NpTW5MeUtY?=
+ =?utf-8?B?SkxiaEpQdHgwYTI4YU40MkJHMEY0cGIxVGU0cmtJcFBQY1Y4cGlTV2VTZ2lX?=
+ =?utf-8?B?OXl0bFVrYTBDVmRQOE9WR2MwRXhNK1k1UmFJZTV6aFJtS2l2a01Oajg4TXZS?=
+ =?utf-8?B?L3RaOEpjT1ZBZk9BQkdtQUw0YW5GSmlOUy9MN25jU1V1cDBFblhzKzA4Kzh4?=
+ =?utf-8?B?cWRlM2tYay9jRG1XRDdtcVo4eUZjMHdBV3VweEljN0ZUWEt2ZHhBeHA0LzNn?=
+ =?utf-8?B?cDRIT1BYRmRqTlpXMTF3a1dDWFJIVXgxTmQ1clQzbnFVcGxISUN3ME9EaWxI?=
+ =?utf-8?B?WmZGVEpxUm9JYnRuYXpqS1Y0SmlRN21EZHFHK1pjZ0UxckJHMjhjdUl0S0VF?=
+ =?utf-8?B?YytnRkZNSjBnS24zUFhzamhxRlUwZEdSOFFRcXZtT1FzMVIzNFhNd3pDZXZy?=
+ =?utf-8?B?eGNISkRHVUU4WXdVemlKYlJjQzkrNmpFOS9DaXJoZjhTYVNCYWVrL0ZLUW1E?=
+ =?utf-8?B?VitiZCtVdStjNThDMVFCVUtCbmtESmcwd25EOVJ5bllISnpyVFFDY1NDSXph?=
+ =?utf-8?B?UGpTc2UyUFBvc3RIYXJSUnpwWTkxT0M5Zkt4RVBXWUJmaGhCNC9tejdJOGo4?=
+ =?utf-8?B?Q0Z5UzVLNW9lM2RZSDVmSno5dWVLRXQ0bVc3MEtpZGlhNEh0cDlpRmI3VXIz?=
+ =?utf-8?B?Q3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 246fc420-45b2-4f4e-4eaa-08dba330a420
+X-MS-Exchange-CrossTenant-AuthSource: MN2PR11MB4239.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Aug 2023 16:55:51.4038 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yTnmpNyP3tpwH7xuoZS2hbWthKuDLZY82ux61CS3urZClIIhrx7akT5FvqlUDEUFPJq/jVjqMcY/Bcd/cvWdDYu5hPtFdgW+ZFhUDpVD1Gc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYYPR11MB8431
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2 03/15] drm/xe/xe2: Add MCR register
+ steering for primary GT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,289 +154,161 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
- luben.tuikov@amd.com, Danilo Krummrich <dakr@redhat.com>,
- donald.robson@imgtec.com, boris.brezillon@collabora.com,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---0000000000006f5dda060385dcec
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Aug 22, 2023 at 4:51=E2=80=AFAM Christian K=C3=B6nig <christian.koe=
-nig@amd.com>
-wrote:
-
-> Am 21.08.23 um 21:46 schrieb Faith Ekstrand:
->
-> On Mon, Aug 21, 2023 at 1:13=E2=80=AFPM Christian K=C3=B6nig <christian.k=
-oenig@amd.com>
-> wrote:
->
->> [SNIP]
->> So as long as nobody from userspace comes and says we absolutely need to
->> optimize this use case I would rather not do it.
->>
->
-> This is a place where nouveau's needs are legitimately different from AMD
-> or Intel, I think.  NVIDIA's command streamer model is very different fro=
-m
-> AMD and Intel.  On AMD and Intel, each EXEC turns into a single small
-> packet (on the order of 16B) which kicks off a command buffer.  There may
-> be a bit of cache management or something around it but that's it.  From
-> there, it's userspace's job to make one command buffer chain to another
-> until it's finally done and then do a "return", whatever that looks like.
->
-> NVIDIA's model is much more static.  Each packet in the HW/FW ring is an
-> address and a size and that much data is processed and then it grabs the
-> next packet and processes. The result is that, if we use multiple buffers
-> of commands, there's no way to chain them together.  We just have to pass
-> the whole list of buffers to the kernel.
->
->
-> So far that is actually completely identical to what AMD has.
->
-> A single EXEC ioctl / job may have 500 such addr+size packets depending o=
-n
-> how big the command buffer is.
->
->
-> And that is what I don't understand. Why would you need 100dreds of such
-> addr+size packets?
->
-
-Well, we're not really in control of it.  We can control our base pushbuf
-size and that's something we can tune but we're still limited by the
-client.  We have to submit another pushbuf whenever:
-
- 1. We run out of space (power-of-two growth is also possible but the size
-is limited to a maximum of about 4MiB due to hardware limitations.)
- 2. The client calls a secondary command buffer.
- 3. Any usage of indirect draw or dispatch on pre-Turing hardware.
-
-At some point we need to tune our BO size a bit to avoid (1) while also
-avoiding piles of tiny BOs.  However, (2) and (3) are out of our control.
-
-This is basically identical to what AMD has (well on newer hw there is an
-> extension in the CP packets to JUMP/CALL subsequent IBs, but this isn't
-> widely used as far as I know).
->
-
-According to Bas, RADV chains on recent hardware.
-
-
-> Previously the limit was something like 4 which we extended to because Ba=
-s
-> came up with similar requirements for the AMD side from RADV.
->
-> But essentially those approaches with 100dreds of IBs doesn't sound like =
-a
-> good idea to me.
->
-
-No one's arguing that they like it.  Again, the hardware isn't designed to
-have a kernel in the way. It's designed to be fed by userspace. But we're
-going to have the kernel in the middle for a while so we need to make it
-not suck too bad.
-
-~Faith
-
-It gets worse on pre-Turing hardware where we have to split the batch for
-> every single DrawIndirect or DispatchIndirect.
->
-> Lest you think NVIDIA is just crazy here, it's a perfectly reasonable
-> model if you assume that userspace is feeding the firmware.  When that's
-> happening, you just have a userspace thread that sits there and feeds the
-> ringbuffer with whatever is next and you can marshal as much data through
-> as you want. Sure, it'd be nice to have a 2nd level batch thing that gets
-> launched from the FW ring and has all the individual launch commands but
-> it's not at all necessary.
->
-> What does that mean from a gpu_scheduler PoV? Basically, it means a
-> variable packet size.
->
-> What does this mean for implementation? IDK.  One option would be to teac=
-h
-> the scheduler about actual job sizes. Another would be to virtualize it a=
-nd
-> have another layer underneath the scheduler that does the actual feeding =
-of
-> the ring. Another would be to decrease the job size somewhat and then hav=
-e
-> the front-end submit as many jobs as it needs to service userspace and on=
-ly
-> put the out-fences on the last job. All the options kinda suck.
->
->
-> Yeah, agree. The job size Danilo suggested is still the least painful.
->
-> Christian.
->
->
-> ~Faith
->
->
->
-
---0000000000006f5dda060385dcec
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Tue, Aug 22, 2023 at 4:51=E2=80=AFAM Christian K=C3=B6nig &lt;<a =
-href=3D"mailto:christian.koenig@amd.com">christian.koenig@amd.com</a>&gt; w=
-rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-
- =20
-  <div>
-    Am 21.08.23 um 21:46 schrieb Faith Ekstrand:<br>
-    <blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div dir=3D"ltr" class=3D"gmail_attr">On Mon, Aug 21, 2023 at
-            1:13=E2=80=AFPM Christian K=C3=B6nig &lt;<a href=3D"mailto:chri=
-stian.koenig@amd.com" target=3D"_blank">christian.koenig@amd.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">[SNIP]<br>
-            So as long as nobody from userspace comes and says we
-            absolutely need to <br>
-            optimize this use case I would rather not do it.<br>
-          </blockquote>
-          <div><br>
-          </div>
-          <div>This is a place where nouveau&#39;s needs are legitimately
-            different from AMD or Intel, I think.=C2=A0 NVIDIA&#39;s comman=
-d
-            streamer model is very different from AMD and Intel.=C2=A0 On A=
-MD
-            and Intel, each EXEC turns into a single small packet (on
-            the order of 16B) which kicks off a command buffer.=C2=A0 There
-            may be a bit of cache management or something around it but
-            that&#39;s it.=C2=A0 From there, it&#39;s userspace&#39;s job t=
-o make one
-            command buffer chain to another until it&#39;s finally done and
-            then do a &quot;return&quot;, whatever that looks like.=C2=A0</=
-div>
-          <div><br>
-          </div>
-          <div>NVIDIA&#39;s model is much more static.=C2=A0 Each packet in=
- the
-            HW/FW ring is an address and a size and that much data is
-            processed and then it grabs the next packet and processes.
-            The result is that, if we use multiple buffers of commands,
-            there&#39;s no way to chain them together.=C2=A0 We just have t=
-o pass
-            the whole list of buffers to the kernel.</div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    So far that is actually completely identical to what AMD has.<br>
-    <br>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div>A single EXEC ioctl / job may have 500 such addr+size
-            packets depending on how big the command buffer is.</div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    And that is what I don&#39;t understand. Why would you need 100dreds of
-    such addr+size packets?<br></div></blockquote><div><br></div><div>Well,=
- we&#39;re not really in control of it.=C2=A0 We can control our base pushb=
-uf size and that&#39;s something we can tune but we&#39;re still limited by=
- the client.=C2=A0 We have to submit another pushbuf whenever:</div><div><b=
-r></div><div>=C2=A01. We run out of space (power-of-two growth is also poss=
-ible but the size is limited to a maximum of about 4MiB due to hardware lim=
-itations.)<br></div><div>=C2=A02. The client calls a secondary command buff=
-er.</div><div>=C2=A03. Any usage of indirect draw or dispatch on pre-Turing=
- hardware.</div><div><br></div><div>At some point we need to tune our BO si=
-ze a bit to avoid (1) while also avoiding piles of tiny BOs.=C2=A0 However,=
- (2) and (3) are out of our control.<br></div><div><br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex"><div>
-    This is basically identical to what AMD has (well on newer hw there
-    is an extension in the CP packets to JUMP/CALL subsequent IBs, but
-    this isn&#39;t widely used as far as I know).<br></div></blockquote><di=
-v><br></div><div>According to Bas, RADV chains on recent hardware.<br></div=
-><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
-    Previously the limit was something like 4 which we extended to
-    because Bas came up with similar requirements for the AMD side from
-    RADV.<br>
-    <br>
-    But essentially those approaches with 100dreds of IBs doesn&#39;t sound
-    like a good idea to me.<br></div></blockquote><div><br></div><div>No on=
-e&#39;s arguing that they like it.=C2=A0 Again, the hardware isn&#39;t desi=
-gned to have a kernel in the way. It&#39;s designed to be fed by userspace.=
- But we&#39;re going to have the kernel in the middle for a while so we nee=
-d to make it not suck too bad.<br></div><div><br></div><div>~Faith<br></div=
-><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div>It gets worse on pre-Turing hardware where we have to
-            split the batch for every single DrawIndirect or
-            DispatchIndirect.</div>
-          <div><br>
-          </div>
-          <div>Lest you think NVIDIA is just crazy here, it&#39;s a
-            perfectly reasonable model if you assume that userspace is
-            feeding the firmware.=C2=A0 When that&#39;s happening, you just=
- have
-            a userspace thread that sits there and feeds the ringbuffer
-            with whatever is next and you can marshal as much data
-            through as you want. Sure, it&#39;d be nice to have a 2nd level
-            batch thing that gets launched from the FW ring and has all
-            the individual launch commands but it&#39;s not at all
-            necessary.</div>
-          <div><br>
-          </div>
-          <div>What does that mean from a gpu_scheduler PoV? Basically,
-            it means a variable packet size.<br>
-          </div>
-          <div><br>
-          </div>
-          <div>What does this mean for implementation? IDK.=C2=A0 One optio=
-n
-            would be to teach the scheduler about actual job sizes.
-            Another would be to virtualize it and have another layer
-            underneath the scheduler that does the actual feeding of the
-            ring. Another would be to decrease the job size somewhat and
-            then have the front-end submit as many jobs as it needs to
-            service userspace and only put the out-fences on the last
-            job. All the options kinda suck.</div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    Yeah, agree. The job size Danilo suggested is still the least
-    painful.<br>
-    <br>
-    Christian.<br>
-    <br>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_quote">
-          <div><br>
-          </div>
-          <div>~Faith<br>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </div>
-
-</blockquote></div></div>
-
---0000000000006f5dda060385dcec--
+On Mon, Aug 21, 2023 at 08:02:27PM +0530, Balasubramani Vivekanandan wrote:
+> On 18.08.2023 15:08, Lucas De Marchi wrote:
+> > From: Matt Roper <matthew.d.roper@intel.com>
+> > 
+> > Xe2 uses the same steering control register and steering semaphore
+> > register as MTL.  As with recent platforms, group/instance 0,0 is
+> > sufficient to target a non-terminated instance for most classes of MCR
+> > registers; the only types of ranges that need to consider platform
+> > fusing to find a non-terminated instance are SLICE/DSS ranges and a new
+> > SQIDI_PSMI type of range.
+> > 
+> > Note that the range of valid bits in XE2_NODE_ENABLE_MASK may be reduced
+> > for some Xe2 SKUs.  However the lowest bits are always valid and only
+> > the lowest instance is obtained via __ffs(), so there's no need to
+> > complicate the masking with extra platform/subplatform checks.
+> > 
+> > Also note that Wa_14017387313 suggests skipping MCR lock acquisition
+> > around GAM and GAMWKR registers to prevent MCR register accesses in an
+> > interrupt handler from deadlocking when the steering semaphore is
+> > already held outside the interrupt context.  At this time Xe never
+> > issues MCR accesses from within an interrupt handler so the workaround
+> > is not currently needed.
+> > 
+> > v2:
+> >   - [0x008700-0x0087FF] range to extend up to 0x887F (Matt Attwood)
+> >   - [0x00EF00-0x00F4FF] -> [0x00F000, 0xFFFF] to follow latest
+> >     bspec version (Bala)
+> > 
+> > Bspec: 71185
+> > Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matt Atwood <matthew.s.atwood@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  1 +
+> >  drivers/gpu/drm/xe/xe_gt_mcr.c       | 50 +++++++++++++++++++++++++++-
+> >  drivers/gpu/drm/xe/xe_gt_types.h     |  1 +
+> >  3 files changed, 51 insertions(+), 1 deletion(-)
+> 
+> Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+> 
+> Regards,
+> Bala
+> 
+> > 
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > index 55367dcca603..366818127317 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > @@ -143,6 +143,7 @@
+> >  #define   EN_32B_ACCESS				REG_BIT(30)
+> >  
+> >  #define	MIRROR_FUSE3				XE_REG(0x9118)
+> > +#define   XE2_NODE_ENABLE_MASK			REG_GENMASK(31, 16)
+> >  #define   L3BANK_PAIR_COUNT			4
+> >  #define   L3BANK_MASK				REG_GENMASK(3, 0)
+> >  /* on Xe_HP the same fuses indicates mslices instead of L3 banks */
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > index 9eb7a6a1348d..26f69e52b120 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > +++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
+> > @@ -181,6 +181,39 @@ static const struct xe_mmio_range dg2_implicit_steering_table[] = {
+> >  	{},
+> >  };
+> >  
+> > +static const struct xe_mmio_range xe2lpg_dss_steering_table[] = {
+> > +	{ 0x005200, 0x0052FF },         /* SLICE */
+> > +	{ 0x005500, 0x007FFF },         /* SLICE */
+> > +	{ 0x008140, 0x00815F },         /* SLICE (0x8140-0x814F), DSS (0x8150-0x815F) */
+> > +	{ 0x0094D0, 0x00955F },         /* SLICE (0x94D0-0x951F), DSS (0x9520-0x955F) */
+> > +	{ 0x009680, 0x0096FF },         /* DSS */
+> > +	{ 0x00D800, 0x00D87F },         /* SLICE */
+> > +	{ 0x00DC00, 0x00DCFF },         /* SLICE */
+> > +	{ 0x00DE80, 0x00E8FF },         /* DSS (0xE000-0xE0FF reserved) */
+> > +	{ 0x00E980, 0x00E9FF },         /* SLICE */
+> > +	{ 0x013000, 0x0133FF },         /* DSS (0x13000-0x131FF), SLICE (0x13200-0x133FF) */
+> > +	{},
+> > +};
+> > +
+> > +static const struct xe_mmio_range xe2lpg_sqidi_psmi_steering_table[] = {
+> > +	{ 0x000B00, 0x000BFF },
+> > +	{ 0x001000, 0x001FFF },
+> > +	{},
+> > +};
+> > +
+> > +static const struct xe_mmio_range xe2lpg_instance0_steering_table[] = {
+> > +	{ 0x004000, 0x004AFF },         /* GAM, rsvd, GAMWKR */
+> > +	{ 0x008700, 0x00887F },         /* SQIDI, MEMPIPE */
+> > +	{ 0x00B000, 0x00B3FF },         /* NODE, L3BANK */
+> > +	{ 0x00C800, 0x00CFFF },         /* GAM */
+> > +	{ 0x00D880, 0x00D8FF },         /* NODE */
+> > +	{ 0x00DD00, 0x00DDFF },         /* MEMPIPE */
+> > +	{ 0x00E900, 0x00E97F },         /* MEMPIPE */
+> > +	{ 0x00F000, 0x00FFFF },         /* GAM, GAMWKR */
+> > +	{ 0x013400, 0x0135FF },         /* MEMPIPE */
+> > +	{},
+> > +};
+> > +
+> >  static void init_steering_l3bank(struct xe_gt *gt)
+> >  {
+> >  	if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1270) {
+> > @@ -265,6 +298,16 @@ static void init_steering_oaddrm(struct xe_gt *gt)
+> >  	gt->steering[DSS].instance_target = 0;		/* unused */
+> >  }
+> >  
+> > +static void init_steering_sqidi_psmi(struct xe_gt *gt)
+> > +{
+> > +	u32 mask = REG_FIELD_GET(XE2_NODE_ENABLE_MASK,
+> > +				 xe_mmio_read32(gt, MIRROR_FUSE3));
+> > +	u32 select = __ffs(mask);
+> > +
+> > +	gt->steering[SQIDI_PSMI].group_target = select >> 1;
+> > +	gt->steering[SQIDI_PSMI].instance_target = select & 0x1;
+> > +}
+> > +
+> >  static void init_steering_inst0(struct xe_gt *gt)
+> >  {
+> >  	gt->steering[DSS].group_target = 0;		/* unused */
+> > @@ -280,6 +323,7 @@ static const struct {
+> >  	[LNCF] =	{ "LNCF",	NULL }, /* initialized by mslice init */
+> >  	[DSS] =		{ "DSS",	init_steering_dss },
+> >  	[OADDRM] =	{ "OADDRM",	init_steering_oaddrm },
+> > +	[SQIDI_PSMI] =  { "SQIDI_PSMI", init_steering_sqidi_psmi },
+> >  	[INSTANCE0] =	{ "INSTANCE 0",	init_steering_inst0 },
+> >  	[IMPLICIT_STEERING] = { "IMPLICIT", NULL },
+> >  };
+> > @@ -298,7 +342,11 @@ void xe_gt_mcr_init(struct xe_gt *gt)
+> >  
+> >  		gt->steering[OADDRM].ranges = xelpmp_oaddrm_steering_table;
+> >  	} else {
+> > -		if (GRAPHICS_VERx100(xe) >= 1270) {
+> > +		if (GRAPHICS_VER(xe) >= 20) {
+> > +			gt->steering[DSS].ranges = xe2lpg_dss_steering_table;
+> > +			gt->steering[SQIDI_PSMI].ranges = xe2lpg_sqidi_psmi_steering_table;
+> > +			gt->steering[INSTANCE0].ranges = xe2lpg_instance0_steering_table;
+> > +		} else if (GRAPHICS_VERx100(xe) >= 1270) {
+> >  			gt->steering[INSTANCE0].ranges = xelpg_instance0_steering_table;
+> >  			gt->steering[L3BANK].ranges = xelpg_l3bank_steering_table;
+> >  			gt->steering[DSS].ranges = xelpg_dss_steering_table;
+> > diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> > index 48fd698ff62a..d4310be3e1e7 100644
+> > --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> > +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> > @@ -55,6 +55,7 @@ enum xe_steering_type {
+> >  	LNCF,
+> >  	DSS,
+> >  	OADDRM,
+> > +	SQIDI_PSMI,
+> >  
+> >  	/*
+> >  	 * On some platforms there are multiple types of MCR registers that
+> > -- 
+> > 2.40.1
+> > 
