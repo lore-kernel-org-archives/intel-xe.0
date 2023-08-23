@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D7BAC3DA66
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70000C7EE43
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20F0010E496;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B679B10E491;
 	Wed, 23 Aug 2023 17:09:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4912910E475;
- Wed, 23 Aug 2023 17:09:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F4BD10E485;
+ Wed, 23 Aug 2023 17:09:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692810557; x=1724346557;
+ t=1692810560; x=1724346560;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xHjGrz8uVwHQ0vV1apRVPUGllxYn+iOJNuhzVj5Xhps=;
- b=QCOdr5T5sdR+tn+dP+XR+gUr+aw/H69rSh78bv2AG3zq1CfcYue2EHZK
- nMLg5QNeGmOhOyhPBy+hoHQTNjmzxrYp9+4K5afiHqzv2LDnfovi/1fas
- 2h4Du6SZytIvFpjbektW/xZ4SgBXzi330mdbhXr8vZrvioZ5As25FmAAZ
- FarQAO9Z4HGxg/E8JNIbZPkWKBucU2xKdLqQyu4+sWLsd38Q22Rt9DU1Y
- PjrzfMnU6cKJoiaP+IXDEkd2RTeIPAdtf+Gikygx2zbX43X2RIly0jsFI
- 5wAm6r9PzLQrSDW+R3kBuqfEKRrBftclqVc9f9mqU2FSDxU49qzHnqh0p g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147473"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147473"
+ bh=xbqoFV6B5UMZ7XLeWlIItIOEbPaIEyFLPGmGgVJ8xes=;
+ b=TIoOaBbQ4Mk2g0gBmTZNKvCa10kEWKzuMzk8lUC8sJJ/9we2k7MRu9/Z
+ o/YTg2cV1naIb9yIWuuYIpMBBNf/T3QY+L7I/UanGhha3q8Nf8go1K+fs
+ dGg37C81XJX+Y30X0vWLENX0ulyCsCLCc5xSabEoV1bLDpT58287NeiR1
+ g70vu1FLWKLbf6dHcn9rGnsh9R7djf25a91nPqcjS29PX7gH9K+ZLSCj3
+ 66fPiibgb03uyzL5oj+aM2H30miJD/ohUnLn6L2Ln6Ng/IA8Ynxa4f+6a
+ iLCDwKBoYGYIZCuLNJrn+fcFbxJTj7MYrXGkwG0UiyGAMNbgH3wkKPVwI Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147494"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147494"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:16 -0700
+ 23 Aug 2023 10:09:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204791"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204791"
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204839"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204839"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:16 -0700
+ 23 Aug 2023 10:09:19 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 10:07:09 -0700
-Message-Id: <20230823170740.1180212-12-lucas.demarchi@intel.com>
+Date: Wed, 23 Aug 2023 10:07:23 -0700
+Message-Id: <20230823170740.1180212-26-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 11/42] drm/xe/lnl: Add IS_LUNARLAKE
+Subject: [Intel-xe] [PATCH 25/42] drm/i915/xe2lpd: Add support for DP aux
+ channels
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,32 +58,83 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+From: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Add IS_LUNARLAKE in the compat-i915-headers. That macro, to be used by
-the xe driver, checks for the platform, whereas the macro on the i915
-side is always false.
+The location of aux channels registers for Xe2 display changed w.r.t.
+the previous version.
 
-Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+BSpec: 69010
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 43 ++++++++++++++++++++-
+ 1 file changed, 42 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index d64d34181790..38b64ff6b9ea 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -79,6 +79,7 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
- #define IS_DG2(dev_priv)	IS_PLATFORM(dev_priv, XE_DG2)
- #define IS_PONTEVECCHIO(dev_priv) IS_PLATFORM(dev_priv, XE_PVC)
- #define IS_METEORLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_METEORLAKE)
-+#define IS_LUNARLAKE(dev_priv) IS_PLATFORM(dev_priv, XE_LUNARLAKE)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 3fcf609a1444..1ab6964ee1c2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -714,6 +714,44 @@ static i915_reg_t xelpdp_aux_data_reg(struct intel_dp *intel_dp, int index)
+ 	}
+ }
  
- #define IS_HSW_ULT(dev_priv) (dev_priv && 0)
- #define IS_BDW_ULT(dev_priv) (dev_priv && 0)
++static i915_reg_t xe2lpd_aux_ctl_reg(struct intel_dp *intel_dp)
++{
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
++	enum aux_ch aux_ch = dig_port->aux_ch;
++
++	switch (aux_ch) {
++	case AUX_CH_A:
++	case AUX_CH_B:
++	case AUX_CH_USBC1:
++	case AUX_CH_USBC2:
++	case AUX_CH_USBC3:
++	case AUX_CH_USBC4:
++		return XE2LPD_DP_AUX_CH_CTL(aux_ch);
++	default:
++		MISSING_CASE(aux_ch);
++		return XE2LPD_DP_AUX_CH_CTL(AUX_CH_A);
++	}
++}
++
++static i915_reg_t xe2lpd_aux_data_reg(struct intel_dp *intel_dp, int index)
++{
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
++	enum aux_ch aux_ch = dig_port->aux_ch;
++
++	switch (aux_ch) {
++	case AUX_CH_A:
++	case AUX_CH_B:
++	case AUX_CH_USBC1:
++	case AUX_CH_USBC2:
++	case AUX_CH_USBC3:
++	case AUX_CH_USBC4:
++		return XE2LPD_DP_AUX_CH_DATA(aux_ch, index);
++	default:
++		MISSING_CASE(aux_ch);
++		return XE2LPD_DP_AUX_CH_DATA(AUX_CH_A, index);
++	}
++}
++
+ void intel_dp_aux_fini(struct intel_dp *intel_dp)
+ {
+ 	if (cpu_latency_qos_request_active(&intel_dp->pm_qos))
+@@ -731,7 +769,10 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
+ 	struct intel_encoder *encoder = &dig_port->base;
+ 	enum aux_ch aux_ch = dig_port->aux_ch;
+ 
+-	if (DISPLAY_VER(dev_priv) >= 14) {
++	if (DISPLAY_VER(dev_priv) >= 20) {
++		intel_dp->aux_ch_ctl_reg = xe2lpd_aux_ctl_reg;
++		intel_dp->aux_ch_data_reg = xe2lpd_aux_data_reg;
++	} else if (DISPLAY_VER(dev_priv) >= 14) {
+ 		intel_dp->aux_ch_ctl_reg = xelpdp_aux_ctl_reg;
+ 		intel_dp->aux_ch_data_reg = xelpdp_aux_data_reg;
+ 	} else if (DISPLAY_VER(dev_priv) >= 12) {
 -- 
 2.40.1
 
