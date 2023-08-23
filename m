@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39B7EC3DA6F
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60AA6C71145
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 273B210E47B;
-	Wed, 23 Aug 2023 17:09:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DDE410E47F;
+	Wed, 23 Aug 2023 17:09:20 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC6D210E0CF;
- Wed, 23 Aug 2023 17:09:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7AA1E10E47A;
+ Wed, 23 Aug 2023 17:09:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692810555; x=1724346555;
+ t=1692810557; x=1724346557;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fqSGclm/6MXCOWaDXstdiPt4LIsmXeDJ0QssT09zLfM=;
- b=mGB+TzGe5HD9iD4fB++pQrCjZ1DnoMNP6GN3NTxmDpfD5kQ6N/DM745T
- 3PrVDJOkbKL3xpQzUZZTGI7yXduXLhZJqwPp5mJpDttUeqjzIO5Ewfch5
- 0enHszf5I6Yh6+d02osEqcbNNTBngQpaD9voTtrONeDJ8YwG2T8e8azOG
- QsICW/2rc27cTpozpUYm/Wx/o0vC/4d9KfB2UJdo8wp0vmsQ5CE5grMJJ
- rkO0F2c1GOsYgQKauffYAXz/lLmm/99++10YQnQEHF+2LPkrlGK9qoM7C
- C8uIwkdeIu2ozRxLdVdyWjYIhpXJJHhUaFwTrx1jnG5QTGwHVrSZzIwaU A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147463"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147463"
+ bh=HNdvGLFQ7mpOX1YmDKmhoEocnlkD2A+3rezhu1l9Afg=;
+ b=dcoinlCjoQncePNh5SZbU22CmZmA15jbj7Igbd/aKBbkVLsETCagMUdC
+ bzaYhNSUDrtd2J7s5fMj5oKat7eQeNGBCHlht53OYPx/v3wL+TXR9HOKC
+ 7NtRCNaMGPDpEp20OHu4ywkhp2lxRdyMxUgD0tm6L4ykKX4NBlcY1+ED2
+ I5jH3yIRYNpnCb/pTaaqKYkKd474Rc2+REgyXi3JniaJjcPjdYlUhjboc
+ cU8dZS12ObGnRz5JsJOntahxlk4dTEKbLgJDP8SF4Z9Lj1gWvTnBqJovZ
+ 4Zt+EUhEoayzFmgX7hmHUCXzyVrQQI2gqlHhnaWoviIy/+sGo3B+2j3e/ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147476"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147476"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:15 -0700
+ 23 Aug 2023 10:09:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204768"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204768"
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204799"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204799"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:14 -0700
+ 23 Aug 2023 10:09:16 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 10:07:02 -0700
-Message-Id: <20230823170740.1180212-5-lucas.demarchi@intel.com>
+Date: Wed, 23 Aug 2023 10:07:11 -0700
+Message-Id: <20230823170740.1180212-14-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 04/42] drm/i915: Simplify
- intel_cx0_program_phy_lane() with loop
+Subject: [Intel-xe] [PATCH 13/42] drm/i915: Re-order if/else ladder in
+ intel_detect_pch()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,134 +58,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
- Mika Kahola <mika.kahola@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Gustavo Sousa <gustavo.sousa@intel.com>
+Follow the convention of checking the last platform first and reword the
+comment to convey there are more platforms than just DG1.
 
-It is possible to generalize the "disable" value for the transmitters to
-be a bit mask based on the port width and the port reversal boolean,
-with a small exception for DP-alt mode with "x1" port width.
-
-Simplify the code by using such a mask and a for-loop instead of using
-switch-case statements.
-
-v2:
-  - Use (i < 2) instead of (i / 2 == 0) for PHY lane mask selection.
-    (Jani)
-
-BSpec: 64539
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230814131331.69516-3-gustavo.sousa@intel.com
-(cherry picked from commit 0f5c2e5bd2fc8d2e09043b6bb3c81a889a483997)
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cx0_phy.c | 79 +++++---------------
- 1 file changed, 20 insertions(+), 59 deletions(-)
+ drivers/gpu/drm/i915/soc/intel_pch.c | 13 ++++++++-----
+ 1 file changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-index b903ceb0b56a..2b112ed78943 100644
---- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
-@@ -2604,7 +2604,8 @@ static void intel_cx0_program_phy_lane(struct drm_i915_private *i915,
- 				       struct intel_encoder *encoder, int lane_count,
- 				       bool lane_reversal)
- {
--	u8 l0t1, l0t2, l1t1, l1t2;
-+	int i;
-+	u8 disables;
- 	bool dp_alt_mode = intel_tc_port_in_dp_alt_mode(enc_to_dig_port(encoder));
- 	enum port port = encoder->port;
+diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
+index ba9843cb1b13..cf795ecdcc26 100644
+--- a/drivers/gpu/drm/i915/soc/intel_pch.c
++++ b/drivers/gpu/drm/i915/soc/intel_pch.c
+@@ -216,13 +216,16 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ 	unsigned short id;
+ 	enum intel_pch pch_type;
  
-@@ -2614,66 +2615,26 @@ static void intel_cx0_program_phy_lane(struct drm_i915_private *i915,
- 			      C10_VDR_CTRL_MSGBUS_ACCESS,
- 			      MB_WRITE_COMMITTED);
- 
--	/* TODO: DP-alt MFD case where only one PHY lane should be programmed. */
--	l0t1 = intel_cx0_read(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(1, 2));
--	l0t2 = intel_cx0_read(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(2, 2));
--	l1t1 = intel_cx0_read(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(1, 2));
--	l1t2 = intel_cx0_read(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(2, 2));
--
--	l0t1 |= CONTROL2_DISABLE_SINGLE_TX;
--	l0t2 |= CONTROL2_DISABLE_SINGLE_TX;
--	l1t1 |= CONTROL2_DISABLE_SINGLE_TX;
--	l1t2 |= CONTROL2_DISABLE_SINGLE_TX;
--
--	if (lane_reversal) {
--		switch (lane_count) {
--		case 4:
--			l0t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
--			fallthrough;
--		case 3:
--			l0t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
--			fallthrough;
--		case 2:
--			l1t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
--			fallthrough;
--		case 1:
--			l1t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
--			break;
--		default:
--			MISSING_CASE(lane_count);
--		}
--	} else {
--		switch (lane_count) {
--		case 4:
--			l1t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
--			fallthrough;
--		case 3:
--			l1t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
--			fallthrough;
--		case 2:
--			l0t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
--			l0t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
--			break;
--		case 1:
--			if (dp_alt_mode)
--				l0t2 &= ~CONTROL2_DISABLE_SINGLE_TX;
--			else
--				l0t1 &= ~CONTROL2_DISABLE_SINGLE_TX;
--			break;
--		default:
--			MISSING_CASE(lane_count);
--		}
-+	if (lane_reversal)
-+		disables = REG_GENMASK8(3, 0) >> lane_count;
-+	else
-+		disables = REG_GENMASK8(3, 0) << lane_count;
-+
-+	if (dp_alt_mode && lane_count == 1) {
-+		disables &= ~REG_GENMASK8(1, 0);
-+		disables |= REG_FIELD_PREP8(REG_GENMASK8(1, 0), 0x1);
+-	/* DG1 has south engine display on the same PCI device */
+-	if (IS_DG1(dev_priv)) {
+-		dev_priv->pch_type = PCH_DG1;
+-		return;
+-	} else if (IS_DG2(dev_priv)) {
++	/*
++	 * South display engine on the same PCI device: just assign the fake
++	 * PCH.
++	 */
++	if (IS_DG2(dev_priv)) {
+ 		dev_priv->pch_type = PCH_DG2;
+ 		return;
++	} else if (IS_DG1(dev_priv)) {
++		dev_priv->pch_type = PCH_DG1;
++		return;
  	}
  
--	/* disable MLs */
--	intel_cx0_write(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(1, 2),
--			l0t1, MB_WRITE_COMMITTED);
--	intel_cx0_write(i915, port, INTEL_CX0_LANE0, PHY_CX0_TX_CONTROL(2, 2),
--			l0t2, MB_WRITE_COMMITTED);
--	intel_cx0_write(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(1, 2),
--			l1t1, MB_WRITE_COMMITTED);
--	intel_cx0_write(i915, port, INTEL_CX0_LANE1, PHY_CX0_TX_CONTROL(2, 2),
--			l1t2, MB_WRITE_COMMITTED);
-+	/* TODO: DP-alt MFD case where only one PHY lane should be programmed. */
-+	for (i = 0; i < 4; i++) {
-+		int tx = i % 2 + 1;
-+		u8 lane_mask = i < 2 ? INTEL_CX0_LANE0 : INTEL_CX0_LANE1;
-+
-+		intel_cx0_rmw(i915, port, lane_mask, PHY_CX0_TX_CONTROL(tx, 2),
-+			      CONTROL2_DISABLE_SINGLE_TX,
-+			      disables & BIT(i) ? CONTROL2_DISABLE_SINGLE_TX : 0,
-+			      MB_WRITE_COMMITTED);
-+	}
- 
- 	if (intel_is_c10phy(i915, intel_port_to_phy(i915, port)))
- 		intel_cx0_rmw(i915, port, INTEL_CX0_BOTH_LANES,
+ 	/*
 -- 
 2.40.1
 
