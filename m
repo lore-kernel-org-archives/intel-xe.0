@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24342C71153
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 969DBC71145
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7E0F10E48C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E61FC10E48D;
 	Wed, 23 Aug 2023 17:09:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC25D10E47B;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A08A10E479;
  Wed, 23 Aug 2023 17:09:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1692810557; x=1724346557;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hM+v4npjlgGN1vDM7jqFqun0BdQpElLZIwaf7Mi+nBA=;
- b=cw3pDYI6hjKO5NhXZJwfSNDflgYffe49KH+klKE1oQ1FrKOjL+rEzCbC
- qGFS+tecMs0IBOuHrWPPMEE+NN7yY8zsUfbhtUAVNs7O+MJQfuBoYD1pC
- lIx615EbShQMjeODvyadsMt1o5nGGselKhN9VlCI8Z9758b6x0OfSSTLk
- AajGyjcHEjg5kBIhVjXWmhJ91LPAVhS9DGplbORVbliA97bjVwvx5u2Vr
- NBVnRSQVQ9b8WkloxoaKMy2W2/35ff/5Q2pj+gGLC4bmcUzCECFzk2Eac
- Crb0hJUAwI2JybFmKgPZZcY8iI+jwGQ9MbvgK9dFzDa+WZUlxGzAU0DT2 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147477"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147477"
+ bh=n57d2N3BPiG7D8aEYD9UPVnfU0/qgSS9xOIqEgVeeEE=;
+ b=blLQIwjNN7PA7aZlDU0xWHnSgvLr+9fbYhCKNyAfLziHnnQZKPnebZQ+
+ ZqxaB4JkJptKptifGUQ02Anf2SjbEVJ8Bg4evqEeUiiZqlg/q+i/PDS74
+ KMiHh93yckBhpu4jOxXmrEavyEXbtU3aZ7BKRdt77SOZXPEP6KJEgEfcV
+ ZJMIO/nMyGeS0kXDReSDNzb8eJ4uJe+PDRHlX4QJey1n0pUmI6MtySP3U
+ 0Er9Re4hO9gVxuGrIPZgDfyNGTKUAhIC/xQ33ELIqSMNORz8kik0j7Fw7
+ ndHEhqPjvq5E9vEZmJOoNCzr4HaSMJj+kbl0FyeJK4wVqNGKCvMFNIEvD A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147474"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147474"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:17 -0700
+ 23 Aug 2023 10:09:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204804"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204804"
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204795"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204795"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:17 -0700
+ 23 Aug 2023 10:09:16 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 10:07:12 -0700
-Message-Id: <20230823170740.1180212-15-lucas.demarchi@intel.com>
+Date: Wed, 23 Aug 2023 10:07:10 -0700
+Message-Id: <20230823170740.1180212-13-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 14/42] drm/i915/lnl: Add fake PCH
+Subject: [Intel-xe] [PATCH 12/42] drm/i915/lnl: Add display definitions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,54 +61,65 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Gustavo Sousa <gustavo.sousa@intel.com>
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-LNL has south display on the same SoC. As such, define a new fake PCH
-entry for it.
+Add Lunar Lake platform definitions for i915 display. The support for
+LNL will be added to the xe driver, with i915 only driving the display
+side. Therefore define IS_LUNARLAKE to 0 to disable it when building the
+i915 module.
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/soc/intel_pch.c | 5 ++++-
- drivers/gpu/drm/i915/soc/intel_pch.h | 2 ++
- 2 files changed, 6 insertions(+), 1 deletion(-)
+ .../gpu/drm/i915/display/intel_display_device.c   | 15 +++++++++++++++
+ drivers/gpu/drm/i915/i915_drv.h                   |  1 +
+ 2 files changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
-index cf795ecdcc26..5b9a01d26cab 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.c
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.c
-@@ -220,7 +220,10 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
- 	 * South display engine on the same PCI device: just assign the fake
- 	 * PCH.
- 	 */
--	if (IS_DG2(dev_priv)) {
-+	if (IS_LUNARLAKE(dev_priv)) {
-+		dev_priv->pch_type = PCH_LNL;
-+		return;
-+	} else if (IS_DG2(dev_priv)) {
- 		dev_priv->pch_type = PCH_DG2;
- 		return;
- 	} else if (IS_DG1(dev_priv)) {
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.h b/drivers/gpu/drm/i915/soc/intel_pch.h
-index 32aff5a70d04..1b03ea60a7a8 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.h
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.h
-@@ -30,6 +30,7 @@ enum intel_pch {
- 	/* Fake PCHs, functionality handled on the same PCI dev */
- 	PCH_DG1 = 1024,
- 	PCH_DG2,
-+	PCH_LNL,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index f87470da25d0..b853cd0c704a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -727,6 +727,20 @@ static const struct intel_display_device_info xe_lpdp_display = {
+ 		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4),
  };
  
- #define INTEL_PCH_DEVICE_ID_MASK		0xff80
-@@ -66,6 +67,7 @@ enum intel_pch {
++static const struct intel_display_device_info xe2_lpd_display = {
++	XE_LPD_FEATURES,
++	.has_cdclk_crawl = 1,
++	.has_cdclk_squash = 1,
++
++	.__runtime_defaults.ip.ver = 20,
++	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),
++	.__runtime_defaults.cpu_transcoder_mask =
++		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
++		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
++	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |
++		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4),
++};
++
+ __diag_pop();
  
- #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
- #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
-+#define HAS_PCH_LNL(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_LNL)
- #define HAS_PCH_MTP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MTP)
- #define HAS_PCH_DG2(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG2)
- #define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
+ #undef INTEL_VGA_DEVICE
+@@ -795,6 +809,7 @@ static const struct {
+ 	const struct intel_display_device_info *display;
+ } gmdid_display_map[] = {
+ 	{ 14,  0, &xe_lpdp_display },
++	{ 20,  0, &xe2_lpd_display },
+ };
+ 
+ static const struct intel_display_device_info *
+diff --git a/drivers/gpu/drm/i915/i915_drv.h b/drivers/gpu/drm/i915/i915_drv.h
+index 07f79b1028e1..96ac9a9cc155 100644
+--- a/drivers/gpu/drm/i915/i915_drv.h
++++ b/drivers/gpu/drm/i915/i915_drv.h
+@@ -574,6 +574,7 @@ IS_SUBPLATFORM(const struct drm_i915_private *i915,
+ #define IS_DG2(i915)	IS_PLATFORM(i915, INTEL_DG2)
+ #define IS_PONTEVECCHIO(i915) IS_PLATFORM(i915, INTEL_PONTEVECCHIO)
+ #define IS_METEORLAKE(i915) IS_PLATFORM(i915, INTEL_METEORLAKE)
++#define IS_LUNARLAKE(dev_priv)  0
+ 
+ #define IS_METEORLAKE_M(i915) \
+ 	IS_SUBPLATFORM(i915, INTEL_METEORLAKE, INTEL_SUBPLATFORM_M)
 -- 
 2.40.1
 
