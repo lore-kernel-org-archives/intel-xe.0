@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5186AEE4993
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 08:53:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3350CEE49B1
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 09:00:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1372D10E3FA;
-	Wed, 23 Aug 2023 08:53:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A38710E3FA
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Aug 2023 08:53:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692780819; x=1724316819;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=1H1EptTvdAzApOVi5D48xIPYLIM5GkGJ68No2jVLVvI=;
- b=VZYBCt/dvIoH1rNKxm/peB6aAMqSw1wvn8Gg2gOEZ6AjK+B735fp4rzM
- sbPYlyjJwDmas1/T6DuMuh8bNf04AMSX7xFDRIjhh/CzUaOOR0JQU/1ly
- U/AAhu75PhfNQYbclyE3Hcix2a+/3J2VJtzppzY/m5Cg0BxpEH6BCaTSg
- N08R7h8JSYhhBowdW4BLrcE5/Lj3vmNnLoRbi1HKrW5esyUL8IQR+nC5o
- w7OJaEQsHIqqsS68AQb2yPf1QQUe7ThfM6sHbLihN0qUIvCYwK/60Fl+s
- QFy4/U9LphDpg0EKMN8XG1ZQvx9D5JDhdOXP0Kr0uQGmtuIbT7QTFfrV8 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="377868551"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="377868551"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 01:53:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="713497242"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="713497242"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga006.jf.intel.com with ESMTP; 23 Aug 2023 01:53:12 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 14:28:42 +0530
-Message-Id: <20230823085842.1440523-5-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230823085842.1440523-1-himal.prasad.ghimiray@intel.com>
-References: <20230823085842.1440523-1-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BBE2E10E3FA;
+	Wed, 23 Aug 2023 09:00:06 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id C250110E3FE;
+ Wed, 23 Aug 2023 09:00:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id BD8C2AADD6;
+ Wed, 23 Aug 2023 09:00:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v5 4/4] drm/xe: Process fatal hardware errors.
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Date: Wed, 23 Aug 2023 09:00:03 -0000
+Message-ID: <169278120377.16624.2253686517095135059@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230823085842.1440523-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20230823085842.1440523-1-himal.prasad.ghimiray@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Supporting_RAS_on_XE_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,122 +39,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Matt Roper <matthew.d.roper@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fatal errors are reported as PCIe errors. When a PCIe error is asserted,
-the OS will perform a device warm reset which causes the driver to reload.
-The error registers are sticky and the values are maintained through a
-warm reset. We read these registers during the boot flow of the driver and
-increment the respective error counters.
+== Series Details ==
 
-Bspec: 53076
+Series: Supporting RAS on XE (rev4)
+URL   : https://patchwork.freedesktop.org/series/122257/
+State : success
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_regs.h |  3 +++
- drivers/gpu/drm/xe/xe_hw_error.c  | 37 ++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_hw_error.h  |  3 ++-
- drivers/gpu/drm/xe/xe_irq.c       |  2 +-
- 4 files changed, 42 insertions(+), 3 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index e223975a5acf..b8f2b1762d3f 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -90,5 +90,8 @@
- #define   GT_DW_IRQ(x)				REG_BIT(x)
- #define   XE_ERROR_IRQ(x)			REG_BIT(26 + (x))
- 
-+#define DEV_PCIEERR_STATUS			XE_REG(0x100180)
-+#define   DEV_PCIEERR_IS_FATAL(x)		REG_BIT(x * 4 + 2)
-+
- #define PVC_RP_STATE_CAP			XE_REG(0x281014)
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index deb020a509d2..9595e3369656 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -183,7 +183,7 @@ static const struct err_msg_cntr_pair err_stat_gt_correctable_vectr_reg[] = {
- 	[2 ... 3]         = {"L3BANK",		XE_GT_HW_ERR_L3BANK_CORR},
- };
- 
--void xe_assign_hw_err_regs(struct xe_device *xe)
-+static void xe_assign_hw_err_regs(struct xe_device *xe)
- {
- 	const struct err_msg_cntr_pair **dev_err_stat = xe->hw_err_regs.dev_err_stat;
- 	const struct err_msg_cntr_pair **err_stat_gt = xe->hw_err_regs.err_stat_gt;
-@@ -417,3 +417,38 @@ xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
- 			xe_hw_error_source_handler(tile, hw_err);
- 	}
- }
-+
-+/**
-+ * process_hw_errors - checks for the occurrence of HW errors
-+ *
-+ * This checks for the HW Errors including FATAL errors that might
-+ * have occurred in the previous boot of the driver which will
-+ * initiate PCIe FLR reset of the device and cause the
-+ * driver to reload.
-+ */
-+void xe_process_hw_errors(struct xe_device *xe)
-+{
-+	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
-+	struct xe_gt *root_mmio = root_tile->primary_gt;
-+
-+	u32 dev_pcieerr_status, master_ctl;
-+	struct xe_tile *tile;
-+	int i;
-+
-+	xe_assign_hw_err_regs(xe);
-+
-+	dev_pcieerr_status = xe_mmio_read32(root_mmio, DEV_PCIEERR_STATUS);
-+
-+	for_each_tile(tile, xe, i) {
-+		struct xe_gt *mmio = tile->primary_gt;
-+
-+		if (dev_pcieerr_status & DEV_PCIEERR_IS_FATAL(i))
-+			xe_hw_error_source_handler(tile, HARDWARE_ERROR_FATAL);
-+
-+		master_ctl = xe_mmio_read32(mmio, GFX_MSTR_IRQ);
-+		xe_hw_error_irq_handler(tile, master_ctl);
-+		xe_mmio_write32(mmio, GFX_MSTR_IRQ, master_ctl);
-+	}
-+	if (dev_pcieerr_status)
-+		xe_mmio_write32(root_mmio, DEV_PCIEERR_STATUS, dev_pcieerr_status);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-index 3fcbbcc338fe..2812407dd4bf 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.h
-+++ b/drivers/gpu/drm/xe/xe_hw_error.h
-@@ -104,5 +104,6 @@ struct xe_device;
- struct xe_tile;
- 
- void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
--void xe_assign_hw_err_regs(struct xe_device *xe);
-+void xe_process_hw_errors(struct xe_device *xe);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 48b933234342..be152ebd6ce9 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -573,7 +573,7 @@ int xe_irq_install(struct xe_device *xe)
- 		return -EINVAL;
- 	}
- 
--	xe_assign_hw_err_regs(xe);
-+	xe_process_hw_errors(xe);
- 
- 	xe->irq.enabled = true;
- 
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 3a964d065 drm/xe/lnl: Hook up MOCS table
+=== git am output follows ===
+Applying: drm/xe: Handle errors from various components.
+Applying: drm/xe: Log and count the GT hardware errors.
+Applying: drm/xe: Support GT hardware error reporting for PVC.
+Applying: drm/xe: Process fatal hardware errors.
+
 
