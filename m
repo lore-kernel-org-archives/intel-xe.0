@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 882F5C3DA6F
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 18:00:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC13BC3DA6F
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 18:00:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29E9D10E09E;
-	Wed, 23 Aug 2023 18:00:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A293E10E0AC;
+	Wed, 23 Aug 2023 18:00:37 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CE51B10E09E;
- Wed, 23 Aug 2023 18:00:25 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2735110E0A1;
+ Wed, 23 Aug 2023 18:00:36 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BBC48AA01E;
- Wed, 23 Aug 2023 18:00:25 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 235CBAA01E;
+ Wed, 23 Aug 2023 18:00:36 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Wed, 23 Aug 2023 18:00:25 -0000
-Message-ID: <169281362574.16626.14378934534288441504@emeril.freedesktop.org>
+Date: Wed, 23 Aug 2023 18:00:36 -0000
+Message-ID: <169281363614.16629.339004520764003030@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230823175551.230686-3-matthew.auld@intel.com>
 In-Reply-To: <20230823175551.230686-3-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_series_starting_with_=5B1/2=5D_drm/xe/ct=3A_fix_resv=5Fspace?=
- =?utf-8?q?_print?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_se?=
+ =?utf-8?q?ries_starting_with_=5B1/2=5D_drm/xe/ct=3A_fix_resv=5Fspace_prin?=
+ =?utf-8?q?t?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,14 +49,34 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/2] drm/xe/ct: fix resv_space print
 URL   : https://patchwork.freedesktop.org/series/122800/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 8ca78f69c drm/xe: Drop xe_mmio_write64()
-=== git am output follows ===
-Applying: drm/xe/ct: fix resv_space print
-Applying: drm/xe: nuke GuC on unload
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e700ea2f248a75138759bcb443affeef4a2d1991
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fb419a98e08bbbce754d6541eb923e12a4a1855c
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Wed Aug 23 18:55:53 2023 +0100
+
+    drm/xe: nuke GuC on unload
+    
+    On PVC unloading followed by reloading the module often results in a
+    completely dead machine (seems to be plaguing CI). Resetting the GuC
+    like we do at load seems to cure it at least when locally testing this.
+    
+    References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/542
+    References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/597
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 8ca78f69c23d5f68a24bdacc014f82eff9719980 drm-intel
+/mt/dim: line 50: /root/.dimrc: No such file or directory
 
 
