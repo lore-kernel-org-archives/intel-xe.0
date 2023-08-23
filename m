@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81396EE49B0
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 06:26:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19C23EE49AB
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 06:26:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E4DB10E060;
-	Wed, 23 Aug 2023 06:26:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC48610E239;
+	Wed, 23 Aug 2023 06:26:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id B7BE110E060;
- Wed, 23 Aug 2023 06:26:33 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1681210E239;
+ Wed, 23 Aug 2023 06:26:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B3094A7DFB;
- Wed, 23 Aug 2023 06:26:33 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 126C9A7DFB;
+ Wed, 23 Aug 2023 06:26:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Date: Wed, 23 Aug 2023 06:26:33 -0000
-Message-ID: <169277199372.16625.6097502190631584693@emeril.freedesktop.org>
+Date: Wed, 23 Aug 2023 06:26:44 -0000
+Message-ID: <169277200407.16629.7437875518681371824@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230823054015.1427461-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20230823054015.1427461-1-himal.prasad.ghimiray@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Supporting_RAS_on_XE_=28rev3=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Su?=
+ =?utf-8?q?pporting_RAS_on_XE_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,16 +48,40 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Supporting RAS on XE (rev3)
 URL   : https://patchwork.freedesktop.org/series/122257/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 3a964d065 drm/xe/lnl: Hook up MOCS table
-=== git am output follows ===
-Applying: drm/xe: Handle errors from various components.
-Applying: drm/xe: Log and count the GT hardware errors.
-Applying: drm/xe: Support GT hardware error reporting for PVC.
-Applying: drm/xe: Process fatal hardware errors.
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e700ea2f248a75138759bcb443affeef4a2d1991
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 16ad0150648e72eb8a9a040784873092b2c04765
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Wed Aug 23 11:10:15 2023 +0530
+
+    drm/xe: Process fatal hardware errors.
+    
+    Fatal errors are reported as PCIe errors. When a PCIe error is asserted,
+    the OS will perform a device warm reset which causes the driver to reload.
+    The error registers are sticky and the values are maintained through a
+    warm reset. We read these registers during the boot flow of the driver and
+    increment the respective error counters.
+    
+    Bspec: 53076
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 3a964d06598874329aab6f8db7fd52840135d568 drm-intel
+/mt/dim: line 50: /root/.dimrc: No such file or directory
 
 
