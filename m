@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74D0EC6FA8F
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60B11C71134
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2D8110E424;
-	Wed, 23 Aug 2023 17:09:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47D0410E47E;
+	Wed, 23 Aug 2023 17:09:19 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FB3C10E0CF;
- Wed, 23 Aug 2023 17:09:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6275710E424;
+ Wed, 23 Aug 2023 17:09:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692810556; x=1724346556;
+ t=1692810555; x=1724346555;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=CCtIqmq8XfbJkRAHV2ZW22zNg25Sd2NJJ0O3iABXhHk=;
- b=V4m9WhhjwgVrlxWuOX14NwkpttK5zJojZ9D6vSILKbsWylSqY+lnYPAD
- GqFwuB/EKBP+g89Nn9kHCH/rUtQQVqJqm/J+dKSZu0ml+mZAkylrw9/mB
- 1TBHcnoRoqJp348hD5I9I7ycgI7K4WGCxSN3w2Wb5m8ViABIvRUGtUpQ+
- 2E5s/L/a3TEQEWW88EsPWf3ieUA99brxv1fs9SGjmwAziExwED/7bgVWP
- bj8ZHS8u+jLeAV9Oj2YCZ8kacNGHm/yB3iahW6upGIgoUgYlGxLoX6D0E
- y5TKilGQHTm+aQMZCflz1a2P2iKdEWCGtFGljoEU6l5B4dldUwxivgLP2 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147467"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147467"
+ bh=sQvshacgWLZYQh3bIVBJHujYi9ED1Vfk+HGL42hyZSA=;
+ b=eY9jpd5eK39EoLOCHAOL2FPWGh7V6kI7i7LJKRusntSQgywjFHk22i8p
+ Ry6EgYtilCPXL0mMjspOtXkm7J7z072rAeFe1Z4JOfUGltlrEqzjru7IB
+ 8TL35guK4mcm1juvMaHqkZFUktFDnm8BxlyubQ0EXS18LF3P/OBPYPLh4
+ sEgt5nEouUGobgt45pNZbbFIN8L4aPowEGSNJYN6tl898sZPL5uVa+xtm
+ qXQC8akAqByWI2zvkvGpXECjUaQPDtlEH85ipphL5ZyakKo9cjwJMD+LB
+ 6ovF0p+nTluH55WSQQkK5iqFGtpDVqXhDNQZNpsBJRP9KlfJ8/tz3/Y9F A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147458"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147458"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:15 -0700
+ 23 Aug 2023 10:09:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204777"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204777"
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204756"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204756"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:15 -0700
+ 23 Aug 2023 10:09:13 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 10:07:05 -0700
-Message-Id: <20230823170740.1180212-8-lucas.demarchi@intel.com>
+Date: Wed, 23 Aug 2023 10:06:59 -0700
+Message-Id: <20230823170740.1180212-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 07/42] drm/i915/tc: rename
- mtl_tc_port_get_pin_assignment_mask()
+Subject: [Intel-xe] [PATCH 01/42] drm/i915: Start using plane scale factor
+ for relative data rate
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,48 +58,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Luca Coelho <luciano.coelho@intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+	Garg@freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Luca Coelho <luciano.coelho@intel.com>
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-This function doesn't really return the pin assignment mask, but the
-max lane count derived from that.  So rename the function to
-mtl_tc_port_get_max_lane_count() to better reflect what it really does.
+BSpec clearly instructs us to use plane scale factor when calculating
+relative data rate to be used when allocating DDB blocks for each plane.
+For some reason we use scale factor for data_rate calculation, which is
+used for BW calculations, however we are not using it for DDB calculations.
+So lets fix it as described in BSpec 68907.
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Link: https://lore.kernel.org/r/20230721111121.369227-2-luciano.coelho@intel.com
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+Reviewed-by: Garg, Nemesa <nemesa.garg@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230719104833.25366-1-stanislav.lisovskiy@intel.com
+(cherry picked from commit a86c75dcdd0374444514c1e40411177ff7afe9bd)
 ---
- drivers/gpu/drm/i915/display/intel_tc.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 3ebf41859043..71bbc2b16a0e 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -290,7 +290,7 @@ u32 intel_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port)
- 	       DP_PIN_ASSIGNMENT_SHIFT(tc->phy_fia_idx);
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index edee71664332..cb60165bc415 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -217,6 +217,7 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+ 	int width, height;
++	unsigned int rel_data_rate;
+ 
+ 	if (plane->id == PLANE_CURSOR)
+ 		return 0;
+@@ -246,7 +247,11 @@ intel_plane_relative_data_rate(const struct intel_crtc_state *crtc_state,
+ 		height /= 2;
+ 	}
+ 
+-	return width * height * fb->format->cpp[color_plane];
++	rel_data_rate = width * height * fb->format->cpp[color_plane];
++
++	return intel_adjusted_rate(&plane_state->uapi.src,
++				   &plane_state->uapi.dst,
++				   rel_data_rate);
  }
  
--static int mtl_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port)
-+static int mtl_tc_port_get_max_lane_count(struct intel_digital_port *dig_port)
- {
- 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
- 	intel_wakeref_t wakeref;
-@@ -325,7 +325,7 @@ int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
- 	assert_tc_cold_blocked(tc);
- 
- 	if (DISPLAY_VER(i915) >= 14)
--		return mtl_tc_port_get_pin_assignment_mask(dig_port);
-+		return mtl_tc_port_get_max_lane_count(dig_port);
- 
- 	lane_mask = 0;
- 	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref)
+ int intel_plane_calc_min_cdclk(struct intel_atomic_state *state,
 -- 
 2.40.1
 
