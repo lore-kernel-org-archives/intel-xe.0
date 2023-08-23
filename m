@@ -4,151 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3B8DEE49AB
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 07:17:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB64AEE49A0
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 07:22:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D3B710E389;
-	Wed, 23 Aug 2023 07:17:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 987D010E3BC;
+	Wed, 23 Aug 2023 07:22:12 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90D0710E3BC
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Aug 2023 07:17:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34D2110E2D1
+ for <intel-xe@lists.freedesktop.org>; Wed, 23 Aug 2023 07:22:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692775043; x=1724311043;
+ t=1692775330; x=1724311330;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=lbT/RpCd7WGNMmc1O+lPdwdzKkhNZuI1WWS1egA9BCI=;
- b=TuJ6Nae+eYhjr/MnWtN+WOq0cvENVcB0p66vJzPosdH0lu0eIluUBtz1
- ZPGW5TqTNlpX1wCO1GbTNg5aattKeoDtnBl8gaCUJMMTl6SJG+vmuMLlT
- +bGGd2xk3Oqvnk+EhWPYu/eQkPpuJ/cWuDfPtzn3U4RWqpxxHoEXMdt+o
- 1rlS4TvN4aFcbdQJppj0Mb3o8fR4mhswYcDqbKiUc6BdoCVByB9kjFdEx
- MPvrwI2QJJz8dCWQvItONZuVtJRnZie4sF9GsPuwpTOXN5S9QoZ+/4FxL
- F90TevZdBFUSH60D9eRnUwlp+HBx1QM8knm3YG7jdOnkpw4IDVi7CuyYA Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="377849418"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="377849418"
+ bh=jnjurYcMA351ZyaV2j8rgisrsMHqYxNYgxkjIV1N1YA=;
+ b=YNhKtaKLsJE+04vwbmnMXO2ouzwbHqNunZ1fqHihnMUiHiarmXYSCKCj
+ 9FQYHxUhKTuH+9LCzNX9/u+z4Ey1YK2GtPBmKAv9P8WrmT7i1u0aViLRl
+ 8V7lJJ6/hvwh6mIu1t8ebR5cG9Y+QruuZAY12b2cWFj3RcmuPxuivQ24a
+ CNWJoInYuF+MarunV4MefFLEn/zs1RpElXS6y2N/w+0JpI7mdcSmGP/WZ
+ 6Bk42q+iiGQPCAflB0vnBnqRkFAykIkOGwuPkTmf3JgyyJFclMHZNytG7
+ bgITKAkWsPvk26lSnlo87pLUpvRelunY+VukIFmrzdykiE1dxGWctwmSm Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="377850252"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="377850252"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 00:17:22 -0700
+ 23 Aug 2023 00:22:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="801996069"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="801996069"
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="801997800"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="801997800"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga008.fm.intel.com with ESMTP; 23 Aug 2023 00:17:22 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ by fmsmga008.fm.intel.com with ESMTP; 23 Aug 2023 00:22:09 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 23 Aug 2023 00:17:21 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 23 Aug 2023 00:17:21 -0700
+ 15.1.2507.27; Wed, 23 Aug 2023 00:22:08 -0700
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Wed, 23 Aug 2023 00:17:21 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.175)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Wed, 23 Aug 2023 00:22:08 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.43) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Wed, 23 Aug 2023 00:17:21 -0700
+ 15.1.2507.27; Wed, 23 Aug 2023 00:22:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fJ1eY0kvlr8hWkd5FUU97qd1EuvgWJ6gffqzJkeosiNySJ/MJW3pyOPuPkyMeapLZcgUB9YypjwKmM0spwkg7boDnD5ztIWswjRFaENn6UwfUF3TQdaHlit5F8RIrQnNGKNBkShVXyKgUp+I0KNr9VSy79JNrCAhsyJjt9kzLc0HSuVrcWE7HVY4NPKVovZcfekJMqZOCFMGuUCbpxTQ2iyrt0WojgCYRcBk29+/pgiMLjRotAlaeyWUdy/KttVN4misALT7Iqx+wP3Cr1JHFGQz4BAANbD0Eukn13jW6b448mWxubREZUHhV+VUHHUe0r8od5eqL2lsLjVz0Wv1Bg==
+ b=T6gjTtYlUlGqiR+5brk/A9YnJ4LoK/gH2u5kmGsN4p9mVsnvrlDfiekcrgqEqBvHJAXEUr77Pm6twpFFuarKKNRuAfjP3W+IjkJYKxfzEHLgVh1UFnqjKEv+zTg13lh6+7/duT8SbpE8yARhjOaLAk39TsxEy+rCafXqJmJH2o93M0Emr52W8reLf+Nvoxfhd5KWquqYBA2lWQM9Kpu9bJ2M3u0lc0p7ncPDoY6qB0UkL9PrdEZXi0fTm3SiATMH4r4FgPvfgosH0klqqFbs6702BndSTx3U0JFtrYHcPhrJkcNd64Nvj/WLF8ZpBTDcQSwReVlJ375VvaL02Cv5gw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=o5yr9RZ0hFxmZEsbR309Lg89YmF63pHc0FjD45sraHM=;
- b=Dih0ubVPmGjMP30eOB/5izqhhxXD0FgHpy67995DYFZc1TVUSIlfLnNOgY54UqBS058pp/pRDKpy0H99eNIbsCcKooYJKzt3vZOXR5tt0lli9NkZGeauDJI11SkZjfkt1GhO/UHS/z2pNo22khLypzbR4AoiSsyTDaCyakMV+zrIddzBQB90nFqpElzpgIqQgztyEwHQCymrUZ007TcjddO376DNSYG/vJLi7YlBg+H0H3NygI3mt0SD8zPescr4vaRpSLku4QLQ6X1TwaHxk3g6HIwKpY/GVB493Kog8n+7hRBPAe95Ts62jLSOyZSZGjCH1gKIC4RyiWdTwTM4YQ==
+ bh=sZYtGLXmSlDcirf99uVbvah1oe5mEJPymQcib6fD8iM=;
+ b=DWorAj0Mpu6Qi/tTanxkA4n3E3wa8v0iYFlma4/gKIFo887FsE+nDy5yv5JKEb8R5tx45RxHuK4PmcsNfFK2CrzTCUmMQUPenXfx0wQlcxlM8077Vu8ngHrkZ9LfG73kBsvZrXgDDRmBhdQNe8ui//G4aeEc+0/wx5M+AHdAyT365BvjZXwOOCUGRKpjUvVWr+90tQxA4JxiOrgH5lroZ/vH6WRFfg/XMWnAEj14YChaCsQMlgPwh7S67icss2I3HRNSWy6hQKnm/cBkoVuIAC85+xMXRLXbQ2sHsZVkMpQ3m2KbRA2KrDlgNAMCaW2gcSgpXbM/cfEE79jT+jkyxQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com (2603:10b6:8:f9::19) by
- IA1PR11MB7727.namprd11.prod.outlook.com (2603:10b6:208:3f1::17) with
+ SA1PR11MB8427.namprd11.prod.outlook.com (2603:10b6:806:373::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.26; Wed, 23 Aug
- 2023 07:17:19 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.20; Wed, 23 Aug
+ 2023 07:22:06 +0000
 Received: from DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::6b9:384:8202:b294]) by DS0PR11MB7958.namprd11.prod.outlook.com
  ([fe80::6b9:384:8202:b294%7]) with mapi id 15.20.6699.025; Wed, 23 Aug 2023
- 07:17:19 +0000
-Message-ID: <802ff062-1030-aa8e-754b-ea2c3a2f9ee4@intel.com>
-Date: Wed, 23 Aug 2023 12:47:08 +0530
+ 07:22:06 +0000
+Message-ID: <11b1121b-8c53-7818-dfed-9b26fd89d6f8@intel.com>
+Date: Wed, 23 Aug 2023 12:51:58 +0530
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Firefox/102.0 Thunderbird/102.14.0
 Content-Language: en-US
 To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
  <intel-xe@lists.freedesktop.org>
 References: <20230823050955.1226024-1-riana.tauro@intel.com>
- <20230823050955.1226024-3-riana.tauro@intel.com>
- <ZOWpNQhjHinmzzk9@bvivekan-mobl>
+ <20230823050955.1226024-2-riana.tauro@intel.com>
+ <ZOWn9E+FKZ3NVCiX@bvivekan-mobl>
 From: Riana Tauro <riana.tauro@intel.com>
-In-Reply-To: <ZOWpNQhjHinmzzk9@bvivekan-mobl>
+In-Reply-To: <ZOWn9E+FKZ3NVCiX@bvivekan-mobl>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN3PR01CA0090.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:9a::9) To DS0PR11MB7958.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN2PR01CA0207.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:e9::18) To DS0PR11MB7958.namprd11.prod.outlook.com
  (2603:10b6:8:f9::19)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|IA1PR11MB7727:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3c22da32-5963-43f1-e6f2-08dba3a8fc69
+X-MS-TrafficTypeDiagnostic: DS0PR11MB7958:EE_|SA1PR11MB8427:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0036de5f-c099-4bf1-bb07-08dba3a9a7df
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8FTe9q4puaXbidLAx7jPtEmgN3NLRNOYTB9S62yQz2avtR5h8Kv43AtNUaPVA+0i97bx2YNYj7La9gvZwLLQLvGRPKw+F3/o3WcvzjPXH+8FrEF6/TRvUpBqTFbZuiM6IINz0sqSO2/qoCzLHFZlEUoJd/+VeY8jSyZbjwvSiRY08jMa/4Vvk50OzfWU2C+Fge3F4HmhtyfeF7YfBd+vR1e0P3BxyYMfnP2kidoRelQp+Y94xKJ9ovF5ZJG5+FbfkCTS5PWQQ7tiVs0953+zNszXlqX4gQfft8l0bdhjnZhOtEYQScbD9Exmp8J/LwR81MKLFbnCHPvTzC6+erNwIhNk3ltF6azDdhEw9k7LUK9PBU2mofJFmSRKMVWKQt1+ryF9VFe1SCx0MZdb6Y0T9HMbk6Ang1590qJYj/S0lkXuQXSCLFD13zV2+dxMjJif3C4M446r1tLmm5t95MRR6IYTRVzh+/NmWhWuYd6LpRjwtp7wD5r7wLxOKGMV5tfER8IIM3bPCUZImnxiixHB2Q/FrOpmeAt62MSRpLC0JuDx9YwD3mypJicyj4cTNnOgaACk/xAviPEi7gk+tV2xlVKDCzbpsD3LrOgGuij3UK6J+3Fto0wYOwF4RFiDog932SzNUqsSVI2POZwCw4eMM4yB8isSrWHcnq3rBeisC1U=
+X-Microsoft-Antispam-Message-Info: BiwHpNsG8OqMiG7m0pZxOGjP3cGCGYmwPVqnWidrPJiqHIap1HlfQbJBrjUJfMF+OCN8SP1RWuQGYHWLKF6KUyNBsYiXQPAs3iwhAX79PM8vrr768js8a/iq3l4JokqK1604s0HijJ9fMKPTgw+5rXZeKqCjHzgvd8Qgflrtz+2xfFBwDOrlxsYxj12HbRpT4U8VliHP9tUE2IkuZSBx4TLzR2SsQc3kp3dN1hCFgCxcsqnMCtWMxuGmSGA13y5uPDskI2kspo8wOOtBfFGMgDVdaKNeEVThsFIvD+sWBddW5YnGNXuZ/k9x79eMtOtQssF8AaFFonY9ssjAlopOeT49FdoJjWVi2p2CP25dpyJeoI/wgx+fi5gM+fqDBPwh4RJc3qfAKZI0fe52dCy5c2L14PXK9fjWTKmoF8m+nnjiz6ChgtFo0KtURzUhUd2YE58gronI+fs8R86ovd+q/n1nOxO5p1IdK/OdxswL85Ok6ifdaZViHoU6vdpyBXttcsSWrGmWcxzBzyOPULCZzKyEs424Nnfly59JTfN3+tbZ5pJp+s5nsIa60s0GG8NlxLFrwhAT1OLiUH5SQqPjffWrPA7NGAxcPCd6PJLYT0O3W6jmDujiSwy07pDl6cQJp9enbZPOATNEFFmHksj92g==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB7958.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(346002)(366004)(136003)(376002)(39860400002)(186009)(451199024)(1800799009)(2616005)(6506007)(6486002)(316002)(53546011)(8676002)(8936002)(66946007)(66556008)(66476007)(41300700001)(6512007)(26005)(5660300002)(44832011)(6666004)(478600001)(31686004)(83380400001)(31696002)(36756003)(86362001)(82960400001)(2906002)(38100700002)(32563001)(45980500001)(43740500002);
+ SFS:(13230031)(396003)(136003)(39860400002)(376002)(346002)(366004)(186009)(1800799009)(451199024)(66476007)(66556008)(66946007)(6512007)(316002)(82960400001)(8676002)(8936002)(2616005)(36756003)(41300700001)(478600001)(6666004)(38100700002)(6506007)(6486002)(53546011)(83380400001)(2906002)(31686004)(31696002)(86362001)(44832011)(5660300002)(26005)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NHhhZTJDN21QQVdwc2lCbDJPVXM4Z1pwYlVEU0ZqREhjSjkvaDk1dlJkZ293?=
- =?utf-8?B?K3d5RCtrN3dTR0NWbytwRkxlQ1p6NzNEbm1heW83K0hCaHVSbXRkZ1o3VVJs?=
- =?utf-8?B?ejdFV3JPWFFNZjFoWUVJSGlhMU15YVhBc3NaY1FNZzJSRC9YclYwOEVKcHQ2?=
- =?utf-8?B?TEFQZkEzY044Vk95Y010ams3cG5OR2x4OTdsdTY4ZVZOTVdaS0szcVo5M05p?=
- =?utf-8?B?ZzZTQXI1VGc1N29qd0YyajI2b29vczJqTjQrK2lENWs1OSt5a2FQQktESjRI?=
- =?utf-8?B?STJkQVFwaEE5VldnOVpUVFlheEVCK2xHYVE4cDBsT2w2cnpCM0hodHBDVEV0?=
- =?utf-8?B?Um1Cb2xLTFZmLzRwUktOTzh3OEo5RVY5eG9uRDEvMEVYVGJGNk9yS3RGR1E1?=
- =?utf-8?B?ZFNqUG9RZVBkOFROZnluS3I5cTZpZ2hVRUEyL1hlc05HVFNFRS9XOFFldVBU?=
- =?utf-8?B?eUo0a2NlaytGNW1HV0VSMFBkbmdMdnBBVGNRVHpkOTh5dHNNaTFPZ0FBRmZk?=
- =?utf-8?B?MmpmeFM3WkQydGhNcllFV3hLdTBTc1NTamI2UEJOWC9DZVl3dGxkWTNmc1Nw?=
- =?utf-8?B?bjE5dXR6S1Uyd0lNcnBLV01jS2JIZXR1aDN4NkhOcHM3dk5vNFJnRUdxRFgy?=
- =?utf-8?B?YlNoK3l6Z1M4dDhIeGlOREx4NVRHaWxDMW5mVzlVckwydXhtd25SRGV1enA1?=
- =?utf-8?B?ZUgxMXdzTXpDRi9lS2pkSGZxOWV6aTdPTkJvby96WHFXWWRjTnFzS1dteWJH?=
- =?utf-8?B?OXBSU0JyMEFCSDJvbC82SlR1eXV3cElYY3IwV1dCdlovVERBZisxYWV0UnZQ?=
- =?utf-8?B?ek9iSlVDVDNCNWNFcFVLeGZibmlRVVRnSmZDTk1qcFdmOWtSYzBmZUlyVWFR?=
- =?utf-8?B?KzF1enhCL0xOY0tmQzFpZUwrb0ZGSWFoemhKTjkraXJUSmRuRXJSd2E2SnFL?=
- =?utf-8?B?ZHB2dmpsaE8wZVZiUitUaEhQVkVWTENRS3Bwcm5SWURYejFRWmQzZXZMV00x?=
- =?utf-8?B?VW96Y1EvdnRwRGIyNjJsSDRJdVVUNXRNOENtL21VVExOWVpGaGFqeXlZWDlS?=
- =?utf-8?B?ZlppZ1dRV1FzbmZBK2grWDhBNmxVeU1YTU1POVBkWmFOR0FZOGlIaWhxcmt1?=
- =?utf-8?B?QTNPSFFSVHJKR3RtVmNJNW5XOWNPVmU2cjFBanhNRkdoV2svb2dGcUpyTWJM?=
- =?utf-8?B?NFpDN0EvSFpTV0xPSUlJUUZ0SDEyejdHd0dWL3ArZUtOT2xIL1dwcS9CY1l4?=
- =?utf-8?B?TUpSVWVtZ2VIMkREY3NqMCtRUFVtblhodGFqVnhJN3AvVzQ2amJpd1FRSlNz?=
- =?utf-8?B?WndVdzd1dWQ0NmlxbTZlVXdDUUVNVGowM3ppZlV3a1krQmdmNjVRNkpyZ1ZX?=
- =?utf-8?B?eldHbXFwOWFudjYxbVNHYkUzeTZxZ3JZK2ZoeE01V2tuNjMxY2dZUjFLdjJM?=
- =?utf-8?B?VkxoVjh4SlZzM09wQnl4TEpnbmJ5aTRFUWVQem81cWFUNTVhK0w4dmNUTHNE?=
- =?utf-8?B?eDlJY0Nja3JhRUZuQmJHdGpkQ3RLSVRkTHdvZzFxTHlGQ3p0cE55NzU2MzBj?=
- =?utf-8?B?aGRKbGZ5eWF1V2Y3VUVwVmZsdzR0bEpTZytxOFZscitqYWloR1JRdlJiU2Fk?=
- =?utf-8?B?eFd4TmdRa3NHU2k4UVZqNytnM1V2aDhkY01MR05HTmpVdFJ4Q3VWWDZWMGRN?=
- =?utf-8?B?Z2tXMVdqREZMTTRqbER6QUJYQU91aUZOaHBoT0hMOXZWaCttYTczajE3a1Rs?=
- =?utf-8?B?L1gwVWdPMkVYbFFWdkhzM1F2NkVCOVdsamlOdm9CZHBsYTNPUXA3WnR4YVc5?=
- =?utf-8?B?NlFuTEV5SVJOS0Fhd3RsTDA4MUdoeDd4Y0syQmdIb0JFZGI3TG9TUzBHY3B2?=
- =?utf-8?B?S2EyZzd5N2xYNWM0RkJLZmFMOFF6WDlIdmcrUzBCN3dvSW51TC9BSDI2WUFB?=
- =?utf-8?B?Z29INWJ2anJDSGtKTHV0bnFpVkNpUlpMZ2Y4TUJHMXl0RExCaXZWWUE1ZTNW?=
- =?utf-8?B?V1p6NUhGWVk5MXBLZ0RsdVA4bGFmclRnazVtL1lyQVg5N2VpeTVCYUZoVUVC?=
- =?utf-8?B?elVkMGVocDFIR3lJUmN6UnlTUXFsTFpYNHhlYU9Pck1hM2pLQTVZeEpZM3BU?=
- =?utf-8?Q?CsjK4whFYcA8DP99o5bh7DxDx?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3c22da32-5963-43f1-e6f2-08dba3a8fc69
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?am9vbFlwelZyYWdVNkF4WXg5T25lQVdjUkdJOXE1cENDS2RwbnhJNDdQcXF2?=
+ =?utf-8?B?b0xDNzhhU1psQ1JjOTVCaWowN1dWU0Z4MTFvanQ3eDhORXFxd3Evc1FFMFF3?=
+ =?utf-8?B?ZzF1a2tRUEZuRVpkbDNLYVJqbDFFaDRjT0hGaGwwcXJXd1FyaWJZTGhxM1dR?=
+ =?utf-8?B?Tm5mcFFEeEdYQzRZZ0d0KzcvU0RVVWV6M0grWS96eU10T3NSSzVtMFVuenE0?=
+ =?utf-8?B?NDZmMkJJYjhudjZucmpndWU5V0ZPSWVmT0c0anpMOXN3dVVQT1ZRTjkza3lh?=
+ =?utf-8?B?TitBSmp5bTYvTVBkNEJmekMreC9lVUxFbTY2SmZzSFF0OWg4MWdyUkVIcExG?=
+ =?utf-8?B?ZnM2MEFxWUZmY1UxNHNYcFZTOE0wS1dwTFhtc2hlcmFyYkFaUFhBQzhVZEJP?=
+ =?utf-8?B?QVlLcU5wU0Y0UVNFV3F1bFRpTy9SNnlpK0ZPc3diT1FwRFkvT25WWXhSMnFT?=
+ =?utf-8?B?ZjBGbHA0bzU5RHd1RE5OSEdOYmZuWDlFa2FIeTNvYkpiYWlXK2xLL0tkOW1j?=
+ =?utf-8?B?THRwU3NoZ1BiNDJrVzJ1V0wwQTBwd1N3eUlRemZyT25OYm1CSGdtM2hJQVNK?=
+ =?utf-8?B?ZXpOc3ZqSncrQTZ5YkZvZkRtU0xzcXFkZjc5Y3k5NkhCS0lzUFhoZW83U1o3?=
+ =?utf-8?B?RXBBcmJaUi9kRVhZdUo5Sm8zL2NQREVOSXVVMDh3eEN1c3RYNDhYL0RCc0tj?=
+ =?utf-8?B?QUU0ZGxjWjVoMVd4QStlMHdwZUpINEd2K0JoTVpLeGtCekUranlJUHJNV2hF?=
+ =?utf-8?B?eWxPenNzcXh0K3kxSFdwbmlLU2FCeWtzd3ZMT21SeTBremNaZEZsNEhXY0M1?=
+ =?utf-8?B?eGZ1ckJrQ1QyNFJuRmxZNERFS0hoanVzdHFxek5IenVlWTB3TVZ6d01KU2lw?=
+ =?utf-8?B?ZUp4RkFzUUNweWRJM25YOE9DWnlka0t0WjlMdGR4aTZDVzhhWFhEYzFWRlBD?=
+ =?utf-8?B?a3VuamlFZ3NVaW9GUTRBay92YlVHbVUwcW9Wa2RNY3p2VTRjeVY0eWt4eGJD?=
+ =?utf-8?B?a0hWYlozYkl2SDVWTDZjbWtiT2N4VzlQRXVJMVg5QW9rVzZMV1Z3QXp0K3dN?=
+ =?utf-8?B?YlZITFZEbDlPaHZldzBydmYveEMxTkZXTGZ3a2pRTGFoRVVQOTVzR2VOUTYz?=
+ =?utf-8?B?WFFrY0R5ZnFmUEhacEJRekU4OU8rU2lmTWdHWVB6SENKZS9GYUJWYjM3eW9X?=
+ =?utf-8?B?Vkw2UERyQnZPS2ZUTzkyK0NHYnBwaFRpUkw5Zk5iYVJnS0RKOG1hVExPMUNn?=
+ =?utf-8?B?WGFzcnEzdGl1cldKcFNWb2pMMGJ0L2EyRko5dkFVZVNyN3BiMWZQS2pvTkk0?=
+ =?utf-8?B?UmZSZ01HTDJ3MmRVT0F3Vno0eWZvNVRTbE5jQ3h6dTVOM0xZY2RWejRiU3lK?=
+ =?utf-8?B?SWxuNVBBV3c2YURHeHpQT01zcFFzN2NHSnRJS0I0dUREeVp5TlNwVit0eXRr?=
+ =?utf-8?B?dmFOSlNpd0ZuNzFvZmQ4RUI4b1R3WXVhUElOSm5iMjQ5OWEzM0QxOWg3bCtx?=
+ =?utf-8?B?R0hXbnh5cTlRQmZtckZuNDBOaWRBNUY3UnNFRFdEMGRpRHhtSHcyUDhDUTYr?=
+ =?utf-8?B?N2paL05DUzRMYVVrK1ZTVUJXQ28ybUFyV1U5NkFaRm11TWlpb2ZpNnFRTUxI?=
+ =?utf-8?B?YzZyRzMzMG5GdEhMWEF0RXhjbnFnV1VCKytJYnFIOG5iL1B5ak9TRjQzeDdL?=
+ =?utf-8?B?WTIxbFZHeVhxVVdnbnNXVmxDSVBHQXNsVzd0YkxyL2JJVGt3OXpzR2gwNUFH?=
+ =?utf-8?B?Ym1DZXllTjZxK0FuRi8vTFdvUXBOZmRjTlcwaWswUzFEalNPa1ZRdFZhWDZ5?=
+ =?utf-8?B?aUxadjh5SDlwMWxWM1hCZ2I3LzAwbjlGamVTRWI2eG1NUDJ1T1k3Zlo0dm1R?=
+ =?utf-8?B?VkNvV0NKS0VxYXRFazdCekRwSE54TXFRdkFPSjJhc0V2OU0yWUtubnJxNlZS?=
+ =?utf-8?B?QzNuTmJCTXozSnFyRFY3S0pZcDM1SEtIdjhyWjhabkgvcUI4UkZlWVU0cTky?=
+ =?utf-8?B?ZnRySzF0dy9QSzVGazBKcHFQQVFGMGgvNjJRd0lMVTBGZWRYYVppVThMUVV1?=
+ =?utf-8?B?bXpldWh4UDBzSDl3MjVBdEhSdjJha0JlTnB1OWd0eWxsYXR0R21RT2ljdFlY?=
+ =?utf-8?Q?LLmwhQoS+7xZ9SUszTJRcK+2x?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0036de5f-c099-4bf1-bb07-08dba3a9a7df
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7958.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 07:17:19.1727 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 07:22:06.8122 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: B3g4wHNXcafKSgOhKeZYSiWbHjL2WH0aZmPX6igCC6JFbLrV9NuP6rpCQcqaCJK1zhHjZRGOqX0yNwf1rEpG+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7727
+X-MS-Exchange-CrossTenant-UserPrincipalName: c5gYhueZDqBB3Z8dYogjnE8FOPUwtCkrGuqoyCCpACqKCCt6CdtB+vu9BGQNIcJ9YTB7vkH1py7mpvM6GSl9ew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8427
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/2] RFC drm/xe: Disable GuC CT communication
- for D3Hot Transition
+Subject: Re: [Intel-xe] [PATCH 1/2] RFC drm/xe: Disable ctb communication
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,215 +162,122 @@ Hi Bala
 
 Thanks for the review
 
-On 8/23/2023 12:07 PM, Balasubramani Vivekanandan wrote:
+On 8/23/2023 12:02 PM, Balasubramani Vivekanandan wrote:
 > On 23.08.2023 10:39, Riana Tauro wrote:
 >> During Runtime suspend, GuC is reset for both D0->D3hot/D3Cold
 >> transistions. It is not necessary for GuC to reset for D0 -> D3hot,
 >> only enable/disable ctb communication.
 >>
->> Add a function that enables/disables CT communication when d3cold
->> is not allowed.
+>> Modify the existing ct disable function to send a request
+>> to disable ct communication if firmware is running.
+>> Add a function to disable guc communication.
 >>
 >> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_gt.c | 56 ++++++++++++++++++++++++++++++++++++++
->>   drivers/gpu/drm/xe/xe_gt.h |  2 ++
->>   drivers/gpu/drm/xe/xe_pm.c | 10 +++++--
->>   drivers/gpu/drm/xe/xe_uc.c | 18 ++++++++++++
->>   drivers/gpu/drm/xe/xe_uc.h |  2 ++
->>   5 files changed, 85 insertions(+), 3 deletions(-)
+>>   drivers/gpu/drm/xe/xe_guc.c    | 15 +++++++++++++++
+>>   drivers/gpu/drm/xe/xe_guc.h    |  1 +
+>>   drivers/gpu/drm/xe/xe_guc_ct.c | 11 ++++++++++-
+>>   drivers/gpu/drm/xe/xe_guc_ct.h |  2 +-
+>>   4 files changed, 27 insertions(+), 2 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> index 13320af4ddd3..0d52621ce64d 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.c
->> +++ b/drivers/gpu/drm/xe/xe_gt.c
->> @@ -676,6 +676,62 @@ int xe_gt_resume(struct xe_gt *gt)
+>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>> index 2493c5859948..3e4c00bee6bf 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>> @@ -557,6 +557,21 @@ int xe_guc_enable_communication(struct xe_guc *guc)
+>>   	return 0;
+>>   }
+>>   
+>> +int xe_guc_disable_communication(struct xe_guc *guc)
+>> +{
+>> +	int err;
+>> +	struct xe_guc_ct *ct = &guc->ct;
+>> +
+>> +	err = xe_guc_ct_disable(ct);
+>> +	if (err)
+>> +		return err;
+>> +
+>> +	/* Check for messages received during/after the CT disable */
+>> +	guc_handle_mmio_msg(guc);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   int xe_guc_suspend(struct xe_guc *guc)
+>>   {
+>>   	int ret;
+>> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+>> index 3addd8fc674a..18cf5d02eea7 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc.h
+>> @@ -18,6 +18,7 @@ int xe_guc_post_load_init(struct xe_guc *guc);
+>>   int xe_guc_reset(struct xe_guc *guc);
+>>   int xe_guc_upload(struct xe_guc *guc);
+>>   int xe_guc_min_load_for_hwconfig(struct xe_guc *guc);
+>> +int xe_guc_disable_communication(struct xe_guc *guc);
+>>   int xe_guc_enable_communication(struct xe_guc *guc);
+>>   int xe_guc_suspend(struct xe_guc *guc);
+>>   void xe_guc_notify(struct xe_guc *guc);
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> index 59136b6a7c6f..64c2029b2752 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> @@ -21,6 +21,7 @@
+>>   #include "xe_map.h"
+>>   #include "xe_pm.h"
+>>   #include "xe_trace.h"
+>> +#include "xe_uc_fw.h"
+>>   
+>>   /* Used when a CT send wants to block and / or receive data */
+>>   struct g2h_fence {
+>> @@ -319,15 +320,23 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
 >>   	return err;
 >>   }
 >>   
->> +int xe_gt_runtime_suspend(struct xe_gt *gt)
->> +{
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	int err;
->> +
->> +	if (xe->d3cold.allowed)
->> +		return xe_gt_suspend(gt);
->> +
->> +	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->> +	if (err)
->> +		return err;
->> +
->> +	err = xe_uc_disable_communication(&gt->uc);
->> +	if (err)
->> +		goto err_force_wake;
->> +
->> +	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
->> +	xe_gt_info(gt, "suspended\n");
->> +
->> +	return 0;
->> +
->> +err_force_wake:
->> +	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
->> +	xe_gt_err(gt, "suspend failed (%pe)\n", ERR_PTR(err));
->> +
->> +	return err;
-> 
-> Can this be simplified to
-> 
-> =====
-> 	err = xe_uc_disable_communication(&gt->uc);
-> 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
-> 	if (err)
-> 		xe_gt_err(gt, "suspend failed (%pe)\n", ERR_PTR(err));
-> 	else
-> 		xe_gt_info(gt, "suspended\n");
-> 
-> 	return err;
-> ====
-Followed the pattern in the file.
-Can be simplified
-Will make changes in the next rev
->> +}
->> +
->> +int xe_gt_runtime_resume(struct xe_gt *gt)
->> +{
->> +	struct xe_device *xe = gt_to_xe(gt);
->> +	int err;
->> +
->> +	if (xe->d3cold.allowed)
->> +		return xe_gt_resume(gt);
->> +
->> +	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
->> +	if (err)
->> +		return err;
->> +
->> +	err = xe_uc_resume(&gt->uc);
->> +	if (err)
->> +		goto err_force_wake;
->> +
->> +	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
->> +	xe_gt_info(gt, "resumed\n");
->> +
->> +	return 0;
->> +
->> +err_force_wake:
->> +	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
->> +	xe_gt_err(gt, "resume failed (%pe)\n", ERR_PTR(err));
->> +
->> +	return err;
-> 
-> Same comment as above.
->> +}
->> +
->>   struct xe_hw_engine *xe_gt_hw_engine(struct xe_gt *gt,
->>   				     enum xe_engine_class class,
->>   				     u16 instance, bool logical)
->> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
->> index caded203a8a0..e6574e51004f 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.h
->> +++ b/drivers/gpu/drm/xe/xe_gt.h
->> @@ -37,6 +37,8 @@ int xe_gt_record_default_lrcs(struct xe_gt *gt);
->>   void xe_gt_suspend_prepare(struct xe_gt *gt);
->>   int xe_gt_suspend(struct xe_gt *gt);
->>   int xe_gt_resume(struct xe_gt *gt);
->> +int xe_gt_runtime_suspend(struct xe_gt *gt);
->> +int xe_gt_runtime_resume(struct xe_gt *gt);
->>   void xe_gt_reset_async(struct xe_gt *gt);
->>   void xe_gt_sanitize(struct xe_gt *gt);
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
->> index 0f06d8304e17..6bc01bb45fc2 100644
->> --- a/drivers/gpu/drm/xe/xe_pm.c
->> +++ b/drivers/gpu/drm/xe/xe_pm.c
->> @@ -245,7 +245,7 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
->>   	}
->>   
->>   	for_each_gt(gt, xe, id) {
->> -		err = xe_gt_suspend(gt);
->> +		err = xe_gt_runtime_suspend(gt);
->>   		if (err)
->>   			goto out;
->>   	}
->> @@ -294,14 +294,18 @@ int xe_pm_runtime_resume(struct xe_device *xe)
->>   
->>   	xe_irq_resume(xe);
->>   
->> -	for_each_gt(gt, xe, id)
->> -		xe_gt_resume(gt);
->> +	for_each_gt(gt, xe, id) {
->> +		err = xe_gt_runtime_resume(gt);
->> +		if (err)
->> +			goto out;
->> +	}
->>   
->>   	if (xe->d3cold.allowed && xe->d3cold.power_lost) {
->>   		err = xe_bo_restore_user(xe);
->>   		if (err)
->>   			goto out;
->>   	}
->> +
->>   out:
->>   	lock_map_release(&xe_device_mem_access_lockdep_map);
->>   	xe_pm_write_callback_task(xe, NULL);
->> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
->> index addd6f2681b9..b5b53c8c3edb 100644
->> --- a/drivers/gpu/drm/xe/xe_uc.c
->> +++ b/drivers/gpu/drm/xe/xe_uc.c
->> @@ -216,6 +216,15 @@ static void uc_reset_wait(struct xe_uc *uc)
->>   		goto again;
->>   }
->>   
->> +int xe_uc_disable_communication(struct xe_uc *uc)
->> +{
->> +	/* GuC submission not enabled, nothing to do */
->> +	if (!xe_device_guc_submission_enabled(uc_to_xe(uc)))
->> +		return 0;
->> +
->> +	return xe_guc_disable_communication(&uc->guc);
->> +}
->> +
->>   int xe_uc_suspend(struct xe_uc *uc)
+>> -void xe_guc_ct_disable(struct xe_guc_ct *ct)
+>> +int xe_guc_ct_disable(struct xe_guc_ct *ct)
 >>   {
->>   	int ret;
->> @@ -232,3 +241,12 @@ int xe_uc_suspend(struct xe_uc *uc)
->>   
->>   	return xe_guc_suspend(&uc->guc);
->>   }
+>> +	struct xe_guc *guc = ct_to_guc(ct);
+>> +	int ret = 0;
 >> +
->> +int xe_uc_resume(struct xe_uc *uc)
+>>   	mutex_lock(&ct->lock); /* Serialise dequeue_one_g2h() */
+>>   	spin_lock_irq(&ct->fast_lock); /* Serialise CT fast-path */
+>>   	ct->enabled = false; /* Finally disable CT communication */
+>>   	spin_unlock_irq(&ct->fast_lock);
+>>   	mutex_unlock(&ct->lock);
+>>   
+>> +	if (xe_uc_fw_is_running(&guc->fw))
+>> +		ret = guc_ct_control_toggle(ct, false);
 > 
-> why not xe_uc_enable_communication?
-Added a generic name to allow adding any other functions.
-
+> ct->enabled holds incorrect status (false) if guc_ct_control_toggle()
+> fails.
+> 
+Will reorder this and send out a new rev
 
 Thanks
 Riana
-> 
 > Regards,
 > Bala
-> 
->> +{
->> +	/* GuC submission not enabled, nothing to do */
->> +	if (!xe_device_guc_submission_enabled(uc_to_xe(uc)))
->> +		return 0;
 >> +
->> +	return xe_guc_enable_communication(&uc->guc);
->> +}
->> diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
->> index 42219b361df5..29bd692d8800 100644
->> --- a/drivers/gpu/drm/xe/xe_uc.h
->> +++ b/drivers/gpu/drm/xe/xe_uc.h
->> @@ -12,8 +12,10 @@ int xe_uc_init(struct xe_uc *uc);
->>   int xe_uc_init_hwconfig(struct xe_uc *uc);
->>   int xe_uc_init_post_hwconfig(struct xe_uc *uc);
->>   int xe_uc_init_hw(struct xe_uc *uc);
->> +int xe_uc_disable_communication(struct xe_uc *uc);
->>   void xe_uc_gucrc_disable(struct xe_uc *uc);
->>   int xe_uc_reset_prepare(struct xe_uc *uc);
->> +int xe_uc_resume(struct xe_uc *uc);
->>   void xe_uc_stop_prepare(struct xe_uc *uc);
->>   int xe_uc_stop(struct xe_uc *uc);
->>   int xe_uc_start(struct xe_uc *uc);
+>>   	xa_destroy(&ct->fence_lookup);
+>> +
+>> +	return ret;
+>>   }
+>>   
+>>   static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+>> index f15f8a4857e0..1ad150c19ae3 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+>> @@ -12,7 +12,7 @@ struct drm_printer;
+>>   
+>>   int xe_guc_ct_init(struct xe_guc_ct *ct);
+>>   int xe_guc_ct_enable(struct xe_guc_ct *ct);
+>> -void xe_guc_ct_disable(struct xe_guc_ct *ct);
+>> +int xe_guc_ct_disable(struct xe_guc_ct *ct);
+>>   void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
+>>   
+>>   struct xe_guc_ct_snapshot *
 >> -- 
 >> 2.40.0
 >>
