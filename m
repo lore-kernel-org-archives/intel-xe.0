@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2A9BC88CB2
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:10:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BE5FC3DA66
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:12:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11AAA10E47E;
-	Wed, 23 Aug 2023 17:09:46 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10CC210E485;
- Wed, 23 Aug 2023 17:09:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692810562; x=1724346562;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XMl+FDob2i9WE+IJzlNFuYCaGCAxPVCJejakDJz35PE=;
- b=bKAmNK5v88XYYSQwLKU53eN2e413mt0yWp1VSReksOtX2eTG7iSq6/Wx
- XH/X+gWriUb9UFtCEnaB6UxxsaEc8A3U1u9fzd4kf+/OhdRaW/tqGUipK
- brbN95d8zz1dyExqaao8F3lFS5LOohNF06sTYJfU3POCVK0gRBT1yksne
- YGVNiHMl/0SEFHuIEJw0Ksw7yeC/PhRc6GFvZNQSpQQ8X+PZgF3gUi71a
- R8zJknHBBKWRnZMYksEnGhZjhkoTD9HGg6Wlzp0Ik4994V/T34XbMAiJt
- q02zX4bJVKcs40KZl68FHg6GPzobJ/4rLgZdnrx/uBsBh1E95FFBl3wmJ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147507"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147507"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204864"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204864"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:21 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 10:07:30 -0700
-Message-Id: <20230823170740.1180212-33-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230823170740.1180212-1-lucas.demarchi@intel.com>
-References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50B3189B57;
+	Wed, 23 Aug 2023 17:12:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9ABB689B57;
+ Wed, 23 Aug 2023 17:12:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9245EA47E9;
+ Wed, 23 Aug 2023 17:12:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 32/42] drm/i915/lnl: Introduce MDCLK
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Wed, 23 Aug 2023 17:12:33 -0000
+Message-ID: <169281075359.16624.2977613319919861925@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230823170740.1180212-1-lucas.demarchi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Enable_Lunar_Lake_display?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,104 +39,63 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+== Series Details ==
 
-In Lunar Lake we now separate MDCLK from CDLCK, which used to be before
-always 2 times CDCLK.  Now we might afford lower CDCLK, while having
-higher memory clock, so improving bandwidth and power consumption at the
-same time.  This is prep work required to enable that.
+Series: Enable Lunar Lake display
+URL   : https://patchwork.freedesktop.org/series/122798/
+State : success
 
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c | 30 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_cdclk.h |  2 +-
- 2 files changed, 31 insertions(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index fdd8d04fe12c..3e566f45996d 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1223,6 +1223,7 @@ static void skl_cdclk_uninit_hw(struct drm_i915_private *dev_priv)
- 
- struct intel_cdclk_vals {
- 	u32 cdclk;
-+	u32 mdclk;
- 	u16 refclk;
- 	u16 waveform;
- 	u8 divider;	/* CD2X divider * 2 */
-@@ -1524,6 +1525,8 @@ static void bxt_de_pll_readout(struct drm_i915_private *dev_priv,
- static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
- 			  struct intel_cdclk_config *cdclk_config)
- {
-+	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
-+	int i, ratio, tbl_waveform = 0;
- 	u32 squash_ctl = 0;
- 	u32 divider;
- 	int div;
-@@ -1574,10 +1577,36 @@ static void bxt_get_cdclk(struct drm_i915_private *dev_priv,
- 
- 		cdclk_config->cdclk = DIV_ROUND_CLOSEST(hweight16(waveform) *
- 							cdclk_config->vco, size * div);
-+		tbl_waveform = squash_ctl & CDCLK_SQUASH_WAVEFORM_MASK;
- 	} else {
- 		cdclk_config->cdclk = DIV_ROUND_CLOSEST(cdclk_config->vco, div);
- 	}
- 
-+	ratio = cdclk_config->vco / cdclk_config->ref;
-+
-+	for (i = 0; table[i].refclk; i++) {
-+		if (table[i].refclk != cdclk_config->ref)
-+			continue;
-+
-+		if (table[i].divider != div)
-+			continue;
-+
-+		if (table[i].waveform != tbl_waveform)
-+			continue;
-+
-+		if (table[i].ratio != ratio)
-+			continue;
-+
-+		/*
-+		 * Supported from LunarLake HW onwards, however considering that
-+		 * besides this the whole procedure is the same, we keep this
-+		 * for all the platforms.
-+		 */
-+		cdclk_config->mdclk = table[i].mdclk;
-+
-+		break;
-+	}
-+
-  out:
- 	/*
- 	 * Can't read this out :( Let's assume it's
-@@ -2191,6 +2220,7 @@ bool intel_cdclk_needs_modeset(const struct intel_cdclk_config *a,
- 			       const struct intel_cdclk_config *b)
- {
- 	return a->cdclk != b->cdclk ||
-+		a->mdclk != b->mdclk ||
- 		a->vco != b->vco ||
- 		a->ref != b->ref;
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm/i915/display/intel_cdclk.h
-index 48fd7d39e0cd..3e7eabd4d7b6 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.h
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
-@@ -16,7 +16,7 @@ struct intel_atomic_state;
- struct intel_crtc_state;
- 
- struct intel_cdclk_config {
--	unsigned int cdclk, vco, ref, bypass;
-+	unsigned int cdclk, mdclk, vco, ref, bypass;
- 	u8 voltage_level;
- };
- 
--- 
-2.40.1
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 8ca78f69c drm/xe: Drop xe_mmio_write64()
+=== git am output follows ===
+Applying: drm/i915: Start using plane scale factor for relative data rate
+Applying: drm/i915/display: Remove unused POWER_DOMAIN_MASK
+Applying: drm/i915/cx0: Add intel_cx0_get_owned_lane_mask()
+Applying: drm/i915: Simplify intel_cx0_program_phy_lane() with loop
+Applying: drm/i915/cx0: Enable/disable TX only for owned PHY lanes
+Applying: drm/i915/cx0: Program vswing only for owned lanes
+Applying: drm/i915/tc: rename mtl_tc_port_get_pin_assignment_mask()
+Applying: drm/i915/tc: make intel_tc_port_get_lane_mask() static
+Applying: drm/i915/tc: move legacy code out of the main _max_lane_count() func
+Applying: drm/i915/tc: remove "fia" from intel_tc_port_fia_max_lane_count()
+Applying: drm/xe/lnl: Add IS_LUNARLAKE
+Applying: drm/i915/lnl: Add display definitions
+Applying: drm/i915: Re-order if/else ladder in intel_detect_pch()
+Applying: drm/i915/lnl: Add fake PCH
+Applying: drm/i915/xe2lpd: Treat cursor plane as regular plane for DDB allocation
+Applying: drm/i915/xe2lpd: Move D2D enable/disable
+Applying: drm/i915/xe2lpd: D2D Enable preserve bits in DDI_BUF_CTL
+Applying: drm/i915/xe2lpd: Move registers to PICA
+Applying: drm/i915/xe2lpd: Don't try to program PLANE_AUX_DIST
+Applying: drm/i915/xe2lpd: Register DE_RRMR has been removed
+Applying: drm/i915/xe2lpd: Add display power well
+Applying: drm/i915/xe2lpd: Add DC state support
+Applying: drm/i915/xe2lpd: FBC is now supported on all pipes
+Applying: drm/i915/display: Remove FBC capability from fused off pipes
+Applying: drm/i915/xe2lpd: Add support for DP aux channels
+Applying: drm/i915/xe2lpd: Handle port AUX interrupts
+Applying: drm/i915/xe2lpd: Read pin assignment from IOM
+Applying: drm/i915/xe2lpd: enable odd size and panning for planar yuv on xe2lpd
+Applying: drm/i915/xe2lpd: Add support for HPD
+Applying: drm/i915/xe2lpd: Extend Wa_15010685871
+Applying: drm/i915/lnl: Add gmbus/ddc support
+Applying: drm/i915/lnl: Introduce MDCLK
+Applying: drm/i915/lnl: Add CDCLK table
+Applying: drm/i915/lnl: Start using CDCLK through PLL
+Applying: drm/i915/lnl: Introduce MDCLK_CDCLK ratio to DBuf
+Applying: drm/i915/lnl: Add support for CDCLK initialization sequence
+Applying: drm/i915/xe2lpd: Write DBuf after CDCLK change in post plane
+Applying: drm/i915/lnl: Serialize global state if mdclk/cdclk ratio changes.
+Applying: drm/i915/lnl: Add pll table for LNL platform
+Applying: drm/i915/lnl: Add support to check c10 phy link rate
+Applying: drm/i915/xe2lpd: Update mbus on post plane updates
+Applying: drm/xe/lnl: Enable the display support
+
 
