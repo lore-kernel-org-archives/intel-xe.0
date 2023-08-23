@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05E9BEE4993
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C49FDC7113B
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D543E10E475;
-	Wed, 23 Aug 2023 17:09:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCF2010E4B3;
+	Wed, 23 Aug 2023 17:09:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB5EA10E0CF;
- Wed, 23 Aug 2023 17:09:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BAE210E483;
+ Wed, 23 Aug 2023 17:09:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692810556; x=1724346556;
+ t=1692810560; x=1724346560;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fsjJMle76+ET9nOfxhMDdy0/yqa/SuINsWlBgqxkdfs=;
- b=VMAPvwzyZCxcJm1QJlL+oQG8dhSy13WdylrDkG3xqXyOnaxw9nOnKICg
- 4h7YH2eMjw6w6wmZd5yy+nu7/beRmKsaF4qKp5IsQkiVuNN7T4fwe1Xho
- 3fdO261ch4q0eoCfWYsofuUmpZ7XtUPvaE8KFhhxaSuZEdiPhYYukdCiz
- 3FiSWpGrt7yk4ll5nFT09eDw8Kw5zvPhDrws3m9K7mLfMEn4NaIBT/z4d
- 6Q5fJpkjZ1Y74ROvxJApOTm2wk2z9AdyRpzLaCcnQrX6F/svfbPJIjQKB
- 31BI8ybpb0BgjfBbyRxo6/fXyAh7qBxlYuEtLtkg1rCiXC4PJvexmIUes A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147470"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147470"
+ bh=JEEQdNfJ5gPUtbx0nbdVwDQtSviot8E6c114GT8eoew=;
+ b=PRgD/BlbP1p1COT3cSigF6yQ2S4h+EpEpj04TaujIO9ZRXyWQut2X3Ur
+ kX90DtC57SsW52qS4qobEZ2BKCmapTPZTLQWNXZaUpiFfhGfIF54nxPB7
+ G75vlhIN4p9gC4htejZrI/MABIflVtD3AXaXbTzHvBe81WDJNXjMoeuPz
+ 6qwZUQkjun4IfmbxLJj7ocKHzB4dwNTnZUXqa4HrR8CX1buvws25CzgKA
+ NimG3jPPzSm44L99Pfvb0Z0jOi3qHco5uRlzQ8ga8dBZCNvq2UnVe2Tub
+ Bs62G7fLRghm5ipXnurjwQLprCkHvEn8sx5xZE8WFO/ovvEj1ckMyvXBG g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147490"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147490"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:15 -0700
+ 23 Aug 2023 10:09:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204784"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204784"
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204830"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204830"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:15 -0700
+ 23 Aug 2023 10:09:18 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 10:07:07 -0700
-Message-Id: <20230823170740.1180212-10-lucas.demarchi@intel.com>
+Date: Wed, 23 Aug 2023 10:07:20 -0700
+Message-Id: <20230823170740.1180212-23-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 09/42] drm/i915/tc: move legacy code out of the
- main _max_lane_count() func
+Subject: [Intel-xe] [PATCH 22/42] drm/i915/xe2lpd: Add DC state support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,75 +57,76 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Luca Coelho <luciano.coelho@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Anusha Srivatsa <anusha.srivatsa@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Luca Coelho <luciano.coelho@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-This makes the code a bit more symmetric and readable, especially when
-we start adding more display version-specific alternatives.
+Xe2_LPD supports DC5, DC6, and DC9 (DC3CO no longer exists).  The
+overall programming and requirements to enter DC states are similar to
+those of Xe_LPD+ although AUX transactions do not require DC5/DC6 exit
+as they did previously.
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-Link: https://lore.kernel.org/r/20230721111121.369227-4-luciano.coelho@intel.com
+Bspec: 68851, 68857, 68886, 69115
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_tc.c | 32 +++++++++++++++----------
- 1 file changed, 19 insertions(+), 13 deletions(-)
+ .../drm/i915/display/intel_display_power.c    |  4 +++-
+ .../i915/display/intel_display_power_map.c    | 19 +++++++++++++++++++
+ 2 files changed, 22 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index de848b329f4b..43b8eeba26f8 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -311,23 +311,12 @@ static int mtl_tc_port_get_max_lane_count(struct intel_digital_port *dig_port)
- 	}
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 7e2059abae9a..508a3225d9f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -944,7 +944,9 @@ static u32 get_allowed_dc_mask(const struct drm_i915_private *dev_priv,
+ 	if (!HAS_DISPLAY(dev_priv))
+ 		return 0;
  
--int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
-+static int intel_tc_port_get_max_lane_count(struct intel_digital_port *dig_port)
- {
- 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
--	struct intel_tc_port *tc = to_tc_port(dig_port);
--	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
- 	intel_wakeref_t wakeref;
--	u32 lane_mask;
--
--	if (!intel_phy_is_tc(i915, phy) || tc->mode != TC_PORT_DP_ALT)
--		return 4;
-+	u32 lane_mask = 0;
+-	if (IS_DG2(dev_priv))
++	if (DISPLAY_VER(dev_priv) >= 20)
++		max_dc = 2;
++	else if (IS_DG2(dev_priv))
+ 		max_dc = 1;
+ 	else if (IS_DG1(dev_priv))
+ 		max_dc = 3;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+index cef3b313c9f5..d74a742437c3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+@@ -1570,9 +1570,28 @@ static const struct i915_power_well_desc xe2lpd_power_wells_pica[] = {
+ 	},
+ };
  
--	assert_tc_cold_blocked(tc);
--
--	if (DISPLAY_VER(i915) >= 14)
--		return mtl_tc_port_get_max_lane_count(dig_port);
--
--	lane_mask = 0;
- 	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref)
- 		lane_mask = intel_tc_port_get_lane_mask(dig_port);
- 
-@@ -348,6 +337,23 @@ int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
- 	}
- }
- 
-+int intel_tc_port_fia_max_lane_count(struct intel_digital_port *dig_port)
-+{
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	struct intel_tc_port *tc = to_tc_port(dig_port);
-+	enum phy phy = intel_port_to_phy(i915, dig_port->base.port);
++I915_DECL_PW_DOMAINS(xe2lpd_pwdoms_dc_off,
++	POWER_DOMAIN_DC_OFF,
++	XELPD_PW_C_POWER_DOMAINS,
++	XELPD_PW_D_POWER_DOMAINS,
++	POWER_DOMAIN_AUDIO_MMIO,
++	POWER_DOMAIN_MODESET,
++	POWER_DOMAIN_INIT);
 +
-+	if (!intel_phy_is_tc(i915, phy) || tc->mode != TC_PORT_DP_ALT)
-+		return 4;
++static const struct i915_power_well_desc xe2lpd_power_wells_dcoff[] = {
++	{
++		.instances = &I915_PW_INSTANCES(
++			I915_PW("DC_off", &xe2lpd_pwdoms_dc_off,
++				.id = SKL_DISP_DC_OFF),
++		),
++		.ops = &gen9_dc_off_power_well_ops,
++	},
++};
 +
-+	assert_tc_cold_blocked(tc);
-+
-+	if (DISPLAY_VER(i915) >= 14)
-+		return mtl_tc_port_get_max_lane_count(dig_port);
-+
-+	return intel_tc_port_get_max_lane_count(dig_port);
-+}
-+
- void intel_tc_port_set_fia_lane_count(struct intel_digital_port *dig_port,
- 				      int required_lanes)
- {
+ static const struct i915_power_well_desc_list xe2lpd_power_wells[] = {
+ 	I915_PW_DESCRIPTORS(i9xx_power_wells_always_on),
+ 	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
++	I915_PW_DESCRIPTORS(xe2lpd_power_wells_dcoff),
+ 	I915_PW_DESCRIPTORS(xelpdp_power_wells_main),
+ 	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
+ };
 -- 
 2.40.1
 
