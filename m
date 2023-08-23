@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 70000C7EE43
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21A0EC71153
 	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 17:09:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B679B10E491;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68AB910E49A;
 	Wed, 23 Aug 2023 17:09:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F4BD10E485;
- Wed, 23 Aug 2023 17:09:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08CEA10E0A9;
+ Wed, 23 Aug 2023 17:09:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692810560; x=1724346560;
+ t=1692810556; x=1724346556;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xbqoFV6B5UMZ7XLeWlIItIOEbPaIEyFLPGmGgVJ8xes=;
- b=TIoOaBbQ4Mk2g0gBmTZNKvCa10kEWKzuMzk8lUC8sJJ/9we2k7MRu9/Z
- o/YTg2cV1naIb9yIWuuYIpMBBNf/T3QY+L7I/UanGhha3q8Nf8go1K+fs
- dGg37C81XJX+Y30X0vWLENX0ulyCsCLCc5xSabEoV1bLDpT58287NeiR1
- g70vu1FLWKLbf6dHcn9rGnsh9R7djf25a91nPqcjS29PX7gH9K+ZLSCj3
- 66fPiibgb03uyzL5oj+aM2H30miJD/ohUnLn6L2Ln6Ng/IA8Ynxa4f+6a
- iLCDwKBoYGYIZCuLNJrn+fcFbxJTj7MYrXGkwG0UiyGAMNbgH3wkKPVwI Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147494"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147494"
+ bh=hE0xGQPtyfoEXdLOUbk/bCqqBwsqWrT4r2csZCF5NBI=;
+ b=M0vTEMqpcRGvlH1yrTBU9pka1AbPpeRSLH2RJneiWVd6TrfhO2ai6PYw
+ ZuTPKRGz5gfDNeYrq7H1JUNGe4NUqwfqC/rcSw/Tghivoa5wK+lSDeB7z
+ PHVuhxsj9s8gu9+Ls15UcUkUXVDiM5Xjp7iqR2Oekn4N74ypoWwGpUNAa
+ qcht3DnioVrCFov4u0fdbwX5yaRMbxpPoH2lGko+h0GM4wwaUSNuvczXl
+ Owchog8U6qpI2AJBWHlle97GadQmQZBMOfzyzrX88MK5P9d4aAThpU1/w
+ GuHvNR7nKJSGeS62lX9OGpDYuQ+Gnsmwr9wP1tLlPn0cWu8Ra/XdJWnie A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="438147464"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="438147464"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:19 -0700
+ 23 Aug 2023 10:09:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204839"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204839"
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802204771"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802204771"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 10:09:19 -0700
+ 23 Aug 2023 10:09:14 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 10:07:23 -0700
-Message-Id: <20230823170740.1180212-26-lucas.demarchi@intel.com>
+Date: Wed, 23 Aug 2023 10:07:03 -0700
+Message-Id: <20230823170740.1180212-6-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 25/42] drm/i915/xe2lpd: Add support for DP aux
- channels
+Subject: [Intel-xe] [PATCH 05/42] drm/i915/cx0: Enable/disable TX only for
+ owned PHY lanes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,83 +58,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>, Mika Kahola <mika.kahola@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 
-The location of aux channels registers for Xe2 display changed w.r.t.
-the previous version.
+Display must not enable or disable transmitters for not-owned PHY lanes.
 
-BSpec: 69010
+BSpec: 64539
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230814131331.69516-4-gustavo.sousa@intel.com
+(cherry picked from commit 6a62986bb52e3c96372d92486f9461190144a66b)
 ---
- drivers/gpu/drm/i915/display/intel_dp_aux.c | 43 ++++++++++++++++++++-
- 1 file changed, 42 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index 3fcf609a1444..1ab6964ee1c2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -714,6 +714,44 @@ static i915_reg_t xelpdp_aux_data_reg(struct intel_dp *intel_dp, int index)
+diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+index 2b112ed78943..93d3a63fe89a 100644
+--- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
+@@ -2607,10 +2607,11 @@ static void intel_cx0_program_phy_lane(struct drm_i915_private *i915,
+ 	int i;
+ 	u8 disables;
+ 	bool dp_alt_mode = intel_tc_port_in_dp_alt_mode(enc_to_dig_port(encoder));
++	u8 owned_lane_mask = intel_cx0_get_owned_lane_mask(i915, encoder);
+ 	enum port port = encoder->port;
+ 
+ 	if (intel_is_c10phy(i915, intel_port_to_phy(i915, port)))
+-		intel_cx0_rmw(i915, port, INTEL_CX0_BOTH_LANES,
++		intel_cx0_rmw(i915, port, owned_lane_mask,
+ 			      PHY_C10_VDR_CONTROL(1), 0,
+ 			      C10_VDR_CTRL_MSGBUS_ACCESS,
+ 			      MB_WRITE_COMMITTED);
+@@ -2625,11 +2626,13 @@ static void intel_cx0_program_phy_lane(struct drm_i915_private *i915,
+ 		disables |= REG_FIELD_PREP8(REG_GENMASK8(1, 0), 0x1);
  	}
- }
  
-+static i915_reg_t xe2lpd_aux_ctl_reg(struct intel_dp *intel_dp)
-+{
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	enum aux_ch aux_ch = dig_port->aux_ch;
-+
-+	switch (aux_ch) {
-+	case AUX_CH_A:
-+	case AUX_CH_B:
-+	case AUX_CH_USBC1:
-+	case AUX_CH_USBC2:
-+	case AUX_CH_USBC3:
-+	case AUX_CH_USBC4:
-+		return XE2LPD_DP_AUX_CH_CTL(aux_ch);
-+	default:
-+		MISSING_CASE(aux_ch);
-+		return XE2LPD_DP_AUX_CH_CTL(AUX_CH_A);
-+	}
-+}
-+
-+static i915_reg_t xe2lpd_aux_data_reg(struct intel_dp *intel_dp, int index)
-+{
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	enum aux_ch aux_ch = dig_port->aux_ch;
-+
-+	switch (aux_ch) {
-+	case AUX_CH_A:
-+	case AUX_CH_B:
-+	case AUX_CH_USBC1:
-+	case AUX_CH_USBC2:
-+	case AUX_CH_USBC3:
-+	case AUX_CH_USBC4:
-+		return XE2LPD_DP_AUX_CH_DATA(aux_ch, index);
-+	default:
-+		MISSING_CASE(aux_ch);
-+		return XE2LPD_DP_AUX_CH_DATA(AUX_CH_A, index);
-+	}
-+}
-+
- void intel_dp_aux_fini(struct intel_dp *intel_dp)
- {
- 	if (cpu_latency_qos_request_active(&intel_dp->pm_qos))
-@@ -731,7 +769,10 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
- 	struct intel_encoder *encoder = &dig_port->base;
- 	enum aux_ch aux_ch = dig_port->aux_ch;
+-	/* TODO: DP-alt MFD case where only one PHY lane should be programmed. */
+ 	for (i = 0; i < 4; i++) {
+ 		int tx = i % 2 + 1;
+ 		u8 lane_mask = i < 2 ? INTEL_CX0_LANE0 : INTEL_CX0_LANE1;
  
--	if (DISPLAY_VER(dev_priv) >= 14) {
-+	if (DISPLAY_VER(dev_priv) >= 20) {
-+		intel_dp->aux_ch_ctl_reg = xe2lpd_aux_ctl_reg;
-+		intel_dp->aux_ch_data_reg = xe2lpd_aux_data_reg;
-+	} else if (DISPLAY_VER(dev_priv) >= 14) {
- 		intel_dp->aux_ch_ctl_reg = xelpdp_aux_ctl_reg;
- 		intel_dp->aux_ch_data_reg = xelpdp_aux_data_reg;
- 	} else if (DISPLAY_VER(dev_priv) >= 12) {
++		if (!(owned_lane_mask & lane_mask))
++			continue;
++
+ 		intel_cx0_rmw(i915, port, lane_mask, PHY_CX0_TX_CONTROL(tx, 2),
+ 			      CONTROL2_DISABLE_SINGLE_TX,
+ 			      disables & BIT(i) ? CONTROL2_DISABLE_SINGLE_TX : 0,
+@@ -2637,7 +2640,7 @@ static void intel_cx0_program_phy_lane(struct drm_i915_private *i915,
+ 	}
+ 
+ 	if (intel_is_c10phy(i915, intel_port_to_phy(i915, port)))
+-		intel_cx0_rmw(i915, port, INTEL_CX0_BOTH_LANES,
++		intel_cx0_rmw(i915, port, owned_lane_mask,
+ 			      PHY_C10_VDR_CONTROL(1), 0,
+ 			      C10_VDR_CTRL_UPDATE_CFG,
+ 			      MB_WRITE_COMMITTED);
 -- 
 2.40.1
 
