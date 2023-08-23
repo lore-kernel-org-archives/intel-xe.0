@@ -4,146 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55CDBC27C40
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 19:46:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 214B7C7EE2C
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 19:47:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 089E310E0DF;
-	Wed, 23 Aug 2023 19:46:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEF6C10E0DF;
+	Wed, 23 Aug 2023 19:47:08 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E679A10E0DF
- for <intel-xe@lists.freedesktop.org>; Wed, 23 Aug 2023 19:46:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1860910E0F0;
+ Wed, 23 Aug 2023 19:47:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692820011; x=1724356011;
+ t=1692820027; x=1724356027;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=XHgfV5w8TbVsb+yU9h4BfCiNIRr3WjmkuzF9DMNXUWY=;
- b=DweHmpEsIunLnslLHqeEOEDRLdA9lOm+TjvJz5unGR9mKsKXnR70Otqy
- 2kz2PZBuhUnVgqwEybC9MD+0izXZlv2ffLydhmGHPMdUeo48OscwGShXT
- oYP5T2+evGJ22+sHjHAhpT78SJF0FLPDi1UQ4xV+3r/Pkef/EovKrSij0
- XN7pYuDnS9gsbz76+HPvTImp62uGWBQwy2qY+u2ME8g6Ljul2U5lH0qqA
- EQ2F51s4hpi2xcL801KxwsdLPBLvM/Ei7FnwUifiC7iuCVqE+N7/s2OLv
- 8BzrPF4SeqVWAF8E/REGPyaIGuJdyYh+tN3G5eR+pdGmjN/fdPi555ezZ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="405259960"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="405259960"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ bh=q4kDt1U3ehXyYyu8C8nkWbNtOcc/VMPg+KEJ53OBkik=;
+ b=jmhasaDnZHua/PiaDIfrWf1qOmHm2klRzSqy6HR+sdNoteQ3vWkRFzXd
+ yT3i/Kne1wKp1JAL0N4kvqsa4YzmPyVjB55C3PUGeFjVps7Uy1pHq25EC
+ tNyifgHZkU2p6tbLMLjhjH2EiNEHLJhHaNZ7aAdGgb7fbEOnME9XuZL60
+ CkLAfxLl9WuIdUAreUxuoO13hRNykBe0kTaanM70O5g0/0VGNEa0vMJ7D
+ rDzHNeG5fp0LFSnyViK6/udA3osz6V7usBXPF8IACmkzxn9X0ajAYdK8N
+ nc6KU+f7Ud1fgCDJd70bPA0d8JhzkuAzYurMbqoek9U4P0EawK4V8UL64 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="405260016"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="405260016"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Aug 2023 12:46:51 -0700
+ 23 Aug 2023 12:47:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10811"; a="802262104"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="802262104"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga008.fm.intel.com with ESMTP; 23 Aug 2023 12:46:51 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="880511546"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga001.fm.intel.com with ESMTP; 23 Aug 2023 12:47:10 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 23 Aug 2023 12:46:50 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.27; Wed, 23 Aug 2023 12:47:05 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 23 Aug 2023 12:46:50 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.27; Wed, 23 Aug 2023 12:47:04 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Wed, 23 Aug 2023 12:46:50 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.42) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Wed, 23 Aug 2023 12:47:04 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.177)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Wed, 23 Aug 2023 12:46:50 -0700
+ 15.1.2507.27; Wed, 23 Aug 2023 12:47:04 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PRO8Hg2ToCAk8T3RMC7u/ZFF82+04DRRqnaFblEJuyD9yUxga+6aUslirYVZ6eOiGkMZU8Mge0qvhMrLW0zb/bjx2NIWX85M7R2mZQFzjPkapldL/W32+MBWH9iVAPyvjwqRCRw/TzdR9nw2LguyGeJ4Dea3tyBiAGK6M7zIMC2jEiM5sc0GNQ3zAFtLe4dHI9Nz0wj3iJWnRZudrBNBCKHx3LcgBFFcmUf7QAysYVToA984ENTAoEkT/BDKmV6bj0tiDHVDJzilz90yFP90LvPWINT0NbCqDWGKuewryCUGNM5ksael/Ivnt3xJqbT5FLmCgff07zR8rjIOrlR7pg==
+ b=JxNnL93EyAkJ4MvTdwpNeO+PpSn3fXX6INJGcoYkJtjjSrlJq0kc3swWzfxy3z19ty3JrNSccx8amY11Mc/4R/64cJY+b98a1cP0955zKad3XnRj7k453FxfA6SIDYxbMtFimbobQGkC3u5z5SyvDz4uCEfHihPGA+gEn3WeOq6OfdmjwUzdBT6PuOuhkMFOO2iWBVcf4B9zvIAq92fM9qK+w9hj4ayHJVD/tPL7b6Svr6xUPl1cPyAeJ+utV+Q9rpQuOaMqN98vnl0x/RG1gUO4I7ripI+6Rmw221sFnBkIdHzLa9xenIOiVzkuC7EmVJUJYTda0VHBT8dzEjXm3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Pk2Gt+DmSHpNfgQcsLQ+oEVfFyJ14IGS2lfjBaqp5zM=;
- b=RDpYHMG3SHwTsGO69F7Sl4pKyA+ZRrECPVYuLGW9ufPRfOu9+y5o4hRYkR8T3zdpZP7vLbSgE4c3xCUCN6UV2anC4sDSq2fnaBkdPbIS4R/ack2pmlZ0lhe+bECte9DeU+pjMvqwQeR3iKKpwWfxConkbRGpOrgu8XZT4kur2i9/i86qu/VlGzmEjGkyjaG21oqsKsHu3A/ubk7603pRJ7qEwcyut8RefDDjSmwgsnxYMFpfwA+jSrJT+0mAdNJtLqr/m95/tFxJc6UCQYjM4THjTbHjMZJRAIVegWhLphwQzoHDbilOyGlCtPdnaXRJ7RuNUyFHanC7cLXP6gYLWw==
+ bh=UthjKrAJTWiWiVxV//W6d+F8BEc5W6Pyt8fGrfVzEoY=;
+ b=CUO/+TQg5v62T5RiioxoULPV56ppxCTTgrEJgcU4KwkweOQbuXxlm9QGUVekUiczFxGiGA/T2ZSB/x/YunP/y4Kq64PHhZI+Okb+K8nWJ/qYmc3B/YLUmoTuLOdhGz1rTPOxwMO8gepjOQW5NwPyr8ruQDuTXRM4rtBckykPE/S/FqzPHunvkvAAAL0ESQWtO4uP+/pETDtu1rzZi7QAcChyMH/A6m9pPuGKD3heebwAYGN1tbEgYV3XqC3ClmZgsLYwVoZwuYyone596lZzaT797PqOysdzMYieX92vzzzq2ka3QezqEvYH2f2u24Ma1hZifWl0od3c5EM0tmws/g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
- SA1PR11MB7131.namprd11.prod.outlook.com (2603:10b6:806:2b0::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6631.47; Wed, 23 Aug 2023 19:46:48 +0000
-Received: from DM6PR11MB2987.namprd11.prod.outlook.com
- ([fe80::55d8:709a:ac58:ae0e]) by DM6PR11MB2987.namprd11.prod.outlook.com
- ([fe80::55d8:709a:ac58:ae0e%3]) with mapi id 15.20.6699.022; Wed, 23 Aug 2023
- 19:46:48 +0000
-Date: Wed, 23 Aug 2023 12:46:45 -0700
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Message-ID: <ZOZiJae52mnaeIxp@orsosgc001>
-References: <20230808013159.38811-1-ashutosh.dixit@intel.com>
- <20230808013159.38811-10-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ PH8PR11MB7070.namprd11.prod.outlook.com (2603:10b6:510:216::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.25; Wed, 23 Aug
+ 2023 19:47:02 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6699.025; Wed, 23 Aug 2023
+ 19:47:01 +0000
+Date: Wed, 23 Aug 2023 12:46:58 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20230823194658.GK6080@mdroper-desk1.amr.corp.intel.com>
+References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
+ <20230823170740.1180212-22-lucas.demarchi@intel.com>
+ <20230823194453.GD1529860@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230808013159.38811-10-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: MW3PR05CA0001.namprd05.prod.outlook.com
- (2603:10b6:303:2b::6) To DM6PR11MB2987.namprd11.prod.outlook.com
- (2603:10b6:5:65::14)
+In-Reply-To: <20230823194453.GD1529860@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: BYAPR02CA0028.namprd02.prod.outlook.com
+ (2603:10b6:a02:ee::41) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|SA1PR11MB7131:EE_
-X-MS-Office365-Filtering-Correlation-Id: d35bac33-35db-49e0-1f15-08dba411b021
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|PH8PR11MB7070:EE_
+X-MS-Office365-Filtering-Correlation-Id: 51d0942c-5461-43f4-d464-08dba411b857
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QShgi7IK1dE3Q5nbi5E4yN/Ht/uuRDzx6nkNQH+/aTN3im+/i2KUHBkP+Q0EwQAQ8n9OpLyIvbzVd5dC0Nphmc9t0oKHT6O8FlV22w0xt9/a9Qu0ork01935P8p4TmbrO+eXa/29xQ3FU4n6Ydd5T7lucWGM1CRl8Y+NtenYzUW7X+AiLJgKnF3OkySsLfb0xcAH6yaj0+E2jSRnEeCmK9WoYmOZINvw8w1jdpFy1d2NwyFEmAL97elYkZPsTwEd7apU3TTiDxqk+GOenExqFCGynFgfG2rj5MSmHjMwTk6fzNf5LSxb/rE+X0Y6+LMurthJoNrLSAyfGsqQtNt/GCzkJ5cHH78ySRajzEACbgGEw/SbzHf+4MuCTvw2nxjA93sYfy2HuYYYPOKsB969Zi36xyK0HVPxLL61/AEquiz/2nu4/UqukJHSTg9q6wgquVxsGWT+S04vrhpT0BXHF5XIZCm3B8PucnBNqcQHrAaq0TJtqlC7ruf3SF8HdVyMijXRtJQLmLye+bC8gg7AvrWM95+p8/9rzc3IGMgusxVj5o8hQF9oqXdYHEQuDwcL
+X-Microsoft-Antispam-Message-Info: SYLAXwS8hF+jj0XXVvjof5XSdrvvgKF942wE4TLIqAipv7B4zNS8iJ8Zg+56gXr22CPW5o9LFQt4y211K2PbKuQWD0zj4g55/iMSEf/ILu/ZRVYr7o37V5OfKSseukWPi2Wvpyb5XRqDc0bnaNP9acLKUC76hlts5GxmdUVmwoY4fW+e+pBqfkFYf4oTWXp9E8+jGUL3hFyIfofETDmLhLfVFADz6kEmEsG7PludwtA/1snp7ug7QGys1po4uJh7QKpq7lIxLxUaKRozvVaV2biAAzsMKAUrYd6Cfkqz61TpTiJXODss0mIcHqYxfq3uZbIelR5W2T9bdhlp6RC5dxLzMZ+kP8gHIIxir00l++IQyGnbkTeWdbDox2xhGPA70s7TyutTLu4ewBALQtEd59NQuQY4lb5QAaztLszLop3S55JDKG3dDTV3paWQvfVSr/33Dfcn9TetpD90rkYN8uroDjj0u1rHGz+rV8DMNRFwCLtiRGBRYrICYDux61rFs5FnYrS1eA7j/S5+XcOnZ/B3ftqDfvGL6wMSmrgcP88QUH8+zbjS2cQTZYqbdohK
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(39860400002)(376002)(366004)(396003)(136003)(346002)(186009)(451199024)(1800799009)(66946007)(316002)(6636002)(66476007)(5660300002)(41300700001)(66556008)(38100700002)(6862004)(8676002)(4326008)(8936002)(82960400001)(33716001)(26005)(2906002)(83380400001)(6486002)(478600001)(86362001)(6512007)(9686003)(6666004)(6506007);
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(376002)(366004)(136003)(396003)(346002)(1800799009)(186009)(451199024)(6666004)(6486002)(6506007)(1076003)(6512007)(86362001)(66556008)(33656002)(5660300002)(4326008)(30864003)(2906002)(38100700002)(82960400001)(450100002)(6636002)(8676002)(66946007)(8936002)(66476007)(41300700001)(6862004)(316002)(478600001)(83380400001)(26005);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bjhZRGNkNHAvL2o4eTR2eFRZaGZLZURaSU1nbjk4VkZXNCtGZEY0UmdUVktU?=
- =?utf-8?B?TUtwMkgzVzB0a3pBVmdDV2FteW5RWEhSRlVBNG5oUWJ5bnNZcGIyWFVWemth?=
- =?utf-8?B?aDBlSkhBMUpXQ0IzVndlMVpOLzBVMkhLWjhzWlpMUmxuMkR3R2tzbURQM2xZ?=
- =?utf-8?B?b0ZtR0xNU0g0NHRoMkxYWnpOMFdLUXR3ZnE1bkdJLzJ2RkVRYmdvbkExTWk5?=
- =?utf-8?B?WjNib2RuL3Z3YlpZd1FhdHFQL2d2SE1ndFIvUW0vbWdXZElBMHI5ZWk5WXpT?=
- =?utf-8?B?ejNRMHV4Yjk2KzU1ZlNEd09QaUVMTmJnWWRtS05MbjJ4K2t3eGsxNkFwN3Bi?=
- =?utf-8?B?cjNNUFMzZ1ppV2pVcXZFU210c2FDeVRlaTNocVdKU1hiYkdkQmU4cG5kV2dN?=
- =?utf-8?B?ckU1Ty9yTTUxWVFtMnBBcVhsUnhQU1ZTcUNjTlRGNjlUZ2pYaHhwQWlNR0xQ?=
- =?utf-8?B?dzNvT09wVFVuM01HRlJ2cGVBSmVsM01LRDZrd1dQY0dRL2J5SGJneWJCSzk2?=
- =?utf-8?B?a3M3U0IvbXFoTGIrUGs5dm1DQXJhTFYvTGoxREtvT2M3TEJQOHQyQUZNdSs4?=
- =?utf-8?B?STZkVVRZOHlMck1WTE0vZllGL0NoRjJCN1AwVXBXdUozRTlpU05QSE5DSmdR?=
- =?utf-8?B?RlhuR3hoWkpPaEJSbjVRUmZsK1k4bWpCYlphQVJQa2NCMlluc2VwZ3crMjM3?=
- =?utf-8?B?cVFlcGU1RVNHODkza0FSeFBYSnZrTnpVd0g1enlYZXJDM0ZHSEgvWlFXdDR3?=
- =?utf-8?B?UHA4QmtmM3gwR1RTQkNJRzFtS2NmODFLZzJuRm8yZEtIaFYycGRNMHM5bWl4?=
- =?utf-8?B?R1E2bzZaM2ZkTFAzaGtrYUg2UGNqOGJlVUFiN1o2QWtZWUlTR3dzVEs0L09U?=
- =?utf-8?B?eCtHQ0Z6aE51QTJnNE9hYzByekhmcWhidEx4R013NFVmMmM0czBnR3JidTBI?=
- =?utf-8?B?Mm05WTRLamg3bTRqbkQrdEc5MHN1V01WOVpYTE9FL0RVbk12eXV0NmFzZGlZ?=
- =?utf-8?B?RllGYklqSDRjQm1oSDFzc3dpSWlYNU9oaGxNWUpYc285eVorZVZYc0xYUHhS?=
- =?utf-8?B?U0pKZFNid2daelBhSlhsTVZ6SFBwNi9HT3NDQUNrNHNkMVMzKzAzZDRkWU9s?=
- =?utf-8?B?bWhudlNSa2NSbG5YaDJPUWhYS3JYYVJmeEFxZzN5M1VqcjdINGhnejd4WWdr?=
- =?utf-8?B?ejgrU0cxTEVSUFNoYXduL0FtUzB0SzJaMlNCZDNhaDcyWHFlQVNVTzYrV0Nh?=
- =?utf-8?B?WE9IZ0pNMm1admN1d2hNQ2JsN2xpV2xqalhDNGVMQnIvNTU3aHpmL0NGSDBV?=
- =?utf-8?B?bEl6akJnN2ZRb0RmRTgwbkx3NGl4VWcvb0djcmtSMk5ENmt2QzMzV3ZPTy9q?=
- =?utf-8?B?MEdBNVZsaU9FYnpVZ0V3MGRsQXJacHRxc1ZqNjQxVmpna0t5b1dTKzV5VWJ6?=
- =?utf-8?B?Q3MyZVRiVm0yVm15dVhXOTlTZFRpeTF1d3pkcUtCWXJRcXF3TWxoYW1vMklu?=
- =?utf-8?B?YXlvMHJGaDM4WjhmWGVKaVNCZVhmZS9DUHJxVUc4ck5JcU16U0lMZmxMMjYy?=
- =?utf-8?B?b1dnc1dMczBiRXN6bUg3VzE4cjBtbG0yZ1ZUQ3JWT00waHgrN0RtWUxwaEk4?=
- =?utf-8?B?aGJRYmxrak1yQm9LSjBKdEhjVjAxYSs1QkpnZ05zMGtpWmlTOTJZd0RXQXJu?=
- =?utf-8?B?OFdyWjUwT0R5N0p2d2Z6bmtka3FBVm9zY21WcE9ETVJHeFJ2WVVBM0VlajRB?=
- =?utf-8?B?SThFUzBTNW9pb1VqUVpHNitsTjVnU1ArSjJ3dzhrcmhNKzhFUGFGU2FydTdS?=
- =?utf-8?B?MytJcXdEM3JoZWxsL09LQTYwY3BNeXUvS3YwYm5WMFBtMFQ0dnorelNyaEta?=
- =?utf-8?B?U2V2eVVqNHJTcytCZ2h2QmN5RnYyMWEyQnZEcVpNd21Dc25MQmtDWE94amNL?=
- =?utf-8?B?UjlXcDR6VzV5S1ZUSXNFbWk5MUpLcm90MFEra05sUXVnMkFOSnRaOWV4SGpG?=
- =?utf-8?B?SHF0N3lia25XYVI5RmpXM09NOEttcW1YNHJ5cEZNRisvc1drc0VJTVRjeWpT?=
- =?utf-8?B?R2dJdVFpNXpxZW5wN1pJR1c0NGg0MTM4RzZkWWoxRTNvejhSN2ZiaVl5R2pu?=
- =?utf-8?B?cnZDUTNUaTBnbFI3RWlNdUtMOGQ3UEcrM2U1VXZKa0p5cjRWTW1NNWNTUlg0?=
- =?utf-8?Q?eyIIO44dBuh+pPdcG5pA6QQ=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d35bac33-35db-49e0-1f15-08dba411b021
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?il2f/uQcNfFM1QBZcme+JV5vPvBJIJdBE78bjKOQW6aFJHR84pd5AcwkqEwl?=
+ =?us-ascii?Q?WnLzaS/jTX1vGl7um0zP8gcXpRnOp9YA8f2d85pjC8AWwC9/g8fl21OlwGIO?=
+ =?us-ascii?Q?apa5nKloRaBkv2eLgCNZUukTJrRrIGXGBE9BbSRVaXMjiuK0iOY+itGPA7FU?=
+ =?us-ascii?Q?J4U6CwKhPQcHaXbDD+D9AjJDVIls2F2Zutpa5m2enp7p8oFzi+cbDhfDZojg?=
+ =?us-ascii?Q?5jGb2XuGfjRE4K4GF0gfcD4mVB7CrwWVswtRdKGt4wvlD+tKiNZ9AEQaDuSk?=
+ =?us-ascii?Q?hrVTLETVes7ViWWXRIEDYpovdTs/8rVOQdiFKVBBjEooq/ie9gZNYfIGeXmW?=
+ =?us-ascii?Q?rMvz0RIjbZTPuYVFTmpFkoiD8t0nyboByyOq/zpKaPpUqBWEJ34oaPdJv72j?=
+ =?us-ascii?Q?6MgsNeZm+upS/SIZ8Z1lyQ+KQV+hKi7QYDpC1Eo8UHMdsWBBJ48aYe6mj1kx?=
+ =?us-ascii?Q?zjcqj5a9D/7iAE+vUGuhN7U9y45mbujo4rshMV5xISZVautUK75OzVjYD6tZ?=
+ =?us-ascii?Q?WcRvC8/tYAHDXx07UUvmVsPzIeipjxAEms+2xb3V+RQKGo2s/yAePbZcJJl/?=
+ =?us-ascii?Q?hYfB/MR2gsKQDIt/yThfkMsPohYxT5u4mZJm4PdBuOVmA+YTmgDkulvY8sQm?=
+ =?us-ascii?Q?akHREVFhbmuY04XKJJw9O/LW4kuZsoMYTBeWbCB8LPzFF++C/Or+VL0hubiE?=
+ =?us-ascii?Q?5eTW+JbKcNKvt/+0XdpsXtMZqv8DZ/w192FZvR58Syf0bMBnzgRk1Dzsks3p?=
+ =?us-ascii?Q?4QL9blzsND1xHUxBfm0CPHe2X7oDWQceBxCvjhKdhNgnajyFpbdibhlcneOk?=
+ =?us-ascii?Q?oEg3b2mq+BKwc7J3MIvSJWEYZ2EtnDTHtVQnEinSee8NNX+m8GKwRanP5rA/?=
+ =?us-ascii?Q?XVXG8VWLaK6SOccgMTWv6Ow+G7ZEYr5a0QY0zNu7H7Oa2x8l+1WmEFZIiQLY?=
+ =?us-ascii?Q?9kLhfTKZnnesftrw/lkc+hlR/wS6IUVR6q5WlZ1v0OPW+i5HzGU538zavgei?=
+ =?us-ascii?Q?eyol66ZNuk9ix3YPkwF8ne0/e/8QbkF2OwSZlbRCi/scvGSasYnSbs7Ss/Bc?=
+ =?us-ascii?Q?NilSyU0YTDRqW/VQSnj67EW3lpuJS+k+wk1hmhTMnPPZ989Xqdn109uBGYTL?=
+ =?us-ascii?Q?glchkUZ3GdL8XAvBqOHmI2Osd5Yzg6ELpvdQgsysN9XFmYcYALd02IK04WD1?=
+ =?us-ascii?Q?rUS7I4TqCt3yZ5ouzPxALEnU46na+Ch7QhyIGMd5Bcc6xqHLiKC4FgWy4kIG?=
+ =?us-ascii?Q?/WyVk8qN0TU2tJjploVtt8AqWUnUfTIQ9t+fmL2Q5QjMFhhk66MtTmMYByoN?=
+ =?us-ascii?Q?O21g9dZza/zVrH01QaxtEnkkuBl0eU9WOd5mnbd8hxTzh/vR0zQC7fGXXBbd?=
+ =?us-ascii?Q?xX0rMCR2yp34Ja2Hti7sAMyzfQm/rEQlahSp+eaVX/11CgD3oW+IH7r//mY1?=
+ =?us-ascii?Q?T8dx445MbuubSBKS7LWwSZlQbGUuL00nanxHi6QZXUmAToSpdenh0o2xrzti?=
+ =?us-ascii?Q?og+NTHECjSFtZz20r0bItvUG2As3jvheAE7sckyo5b97LHcISorRAaJ+FUup?=
+ =?us-ascii?Q?qWh7XN3zdWIxa/94Bj/szI+Vsq0c7JebTqAceWM90MPUTgMRsg/i/MBPz+pO?=
+ =?us-ascii?Q?Rg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51d0942c-5461-43f4-d464-08dba411b857
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 19:46:48.0988 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Aug 2023 19:47:01.8860 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6S/rdVLx5jH9joQ2heMcwAByPaDGk4oFhOG0bwqWxSz9Ai7eu4mLKeNRXzwo+jbmCuOr7ksUOPja+CdM1tsJZAR7ZEwprcnofxqMk8rOZEw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7131
+X-MS-Exchange-CrossTenant-UserPrincipalName: eZm4wj+aBhtbf+a5KsNBGaVTWQC/bB/gYvJF0RB7hEoe65eP0DxLBMAjrg5qdTqFWbrPlZ06UyDLLJA2dQcsyeKfBHqfyFzhVKdryFqhHQk=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7070
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 09/10] drm/xe/oa: Read file_operation
+Subject: Re: [Intel-xe] [PATCH 21/42] drm/i915/xe2lpd: Add display power well
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,183 +146,278 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 07, 2023 at 06:31:58PM -0700, Ashutosh Dixit wrote:
->Finally implement the OA stream read file_operation which was the only fop
->missing in the previous commit. Both blocking and non-blocking reads are
->supported. The read copies OA perf data from the OA buffer to the user
->buffer provided as part of read system call.
->
->Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
->---
-> drivers/gpu/drm/xe/xe_oa.c | 359 +++++++++++++++++++++++++++++++++++++
-> 1 file changed, 359 insertions(+)
->
->diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
->index c97180997427e..fcbb352f36a48 100644
->--- a/drivers/gpu/drm/xe/xe_oa.c
->+++ b/drivers/gpu/drm/xe/xe_oa.c
->@@ -146,6 +146,29 @@ static u64 oa_report_id(struct xe_oa_stream *stream, void *report)
-> 	return oa_report_header_64bit(stream) ? *(u64 *)report : *(u32 *)report;
-> }
->
->+#define OAREPORT_REASON_MASK_EXTENDED	GENMASK(25, 19)
->+#define OAREPORT_REASON_TIMER		BIT(0)
->+#define OAREPORT_REASON_CTX_SWITCH	BIT(3)
->+#define OAREPORT_REASON_CLK_RATIO	BIT(5)
->+
->+static u64 oa_report_reason(struct xe_oa_stream *stream, void *report)
->+{
->+	return FIELD_GET(OAREPORT_REASON_MASK_EXTENDED, oa_report_id(stream, report));
->+}
->+
->+static void oa_report_id_clear(struct xe_oa_stream *stream, u32 *report)
->+{
->+	if (oa_report_header_64bit(stream))
->+		*(u64 *)report = 0;
->+	else
->+		*report = 0;
->+}
->+
->+static bool oa_report_ctx_invalid(struct xe_oa_stream *stream, void 
->*report)
->+{
->+	return false;
->+}
+On Wed, Aug 23, 2023 at 12:44:56PM -0700, Matt Roper wrote:
+> On Wed, Aug 23, 2023 at 10:07:19AM -0700, Lucas De Marchi wrote:
+> > From: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+> > 
+> > Add Display Power Well for LNL platform, mostly it is same as MTL
+> > platform so reused the code
+> > 
+> > Changes are:
+> > 1. AUX_CH_CTL and AUX_CH_DATA1 are different from MTL so added extra
+> >    logic xelpdp_aux_power_well_ops functions.
+> > 2. PGPICA1 contains type-C capable port slices which requires the well
+> >    to power powered up, so added new power well definition for PGPICA1
+> > 
+> > BSpec: 68886
+> > Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+> > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > ---
+> >  .../i915/display/intel_display_power_map.c    | 36 ++++++++++-
+> >  .../i915/display/intel_display_power_well.c   | 63 ++++++++++++++++++-
+> >  .../i915/display/intel_display_power_well.h   |  1 +
+> >  .../gpu/drm/i915/display/intel_dp_aux_regs.h  | 27 ++++++++
+> >  4 files changed, 123 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_map.c b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> > index 5ad04cd42c15..cef3b313c9f5 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_map.c
+> > @@ -1545,6 +1545,38 @@ static const struct i915_power_well_desc_list xelpdp_power_wells[] = {
+> >  	I915_PW_DESCRIPTORS(xelpdp_power_wells_main),
+> >  };
+> >  
+> > +I915_DECL_PW_DOMAINS(xe2lpd_pwdoms_pica_tc,
+> > +		     POWER_DOMAIN_PORT_DDI_LANES_TC1,
+> > +		     POWER_DOMAIN_PORT_DDI_LANES_TC2,
+> > +		     POWER_DOMAIN_PORT_DDI_LANES_TC3,
+> > +		     POWER_DOMAIN_PORT_DDI_LANES_TC4,
+> > +		     POWER_DOMAIN_AUX_USBC1,
+> > +		     POWER_DOMAIN_AUX_USBC2,
+> > +		     POWER_DOMAIN_AUX_USBC3,
+> > +		     POWER_DOMAIN_AUX_USBC4,
+> > +		     POWER_DOMAIN_AUX_TBT1,
+> > +		     POWER_DOMAIN_AUX_TBT2,
+> > +		     POWER_DOMAIN_AUX_TBT3,
+> > +		     POWER_DOMAIN_AUX_TBT4,
+> > +		     POWER_DOMAIN_INIT);
+> > +
+> > +static const struct i915_power_well_desc xe2lpd_power_wells_pica[] = {
+> > +	{
+> > +		.instances = &I915_PW_INSTANCES(I915_PW("PICA_TC",
+> > +							&xe2lpd_pwdoms_pica_tc,
+> > +							.id = DISP_PW_ID_NONE),
+> > +					       ),
+> > +		.ops = &xe2lpd_pica_power_well_ops,
+> > +	},
+> > +};
+> > +
+> > +static const struct i915_power_well_desc_list xe2lpd_power_wells[] = {
+> > +	I915_PW_DESCRIPTORS(i9xx_power_wells_always_on),
+> > +	I915_PW_DESCRIPTORS(icl_power_wells_pw_1),
+> > +	I915_PW_DESCRIPTORS(xelpdp_power_wells_main),
+> > +	I915_PW_DESCRIPTORS(xe2lpd_power_wells_pica),
+> > +};
+> 
+> Are we missing a "dc_off" power well here?  This patch might have
+> originally been written before we separated dc_off out from main.
+> 
+> Assuming the DC state requirements are the same for Xe2_LPD as they were
+> for Xe_LPD and Xe_LPD+ (I haven't checked), then adding
+> 
+>         I915_PW_DESCRIPTORS(xelpd_power_wells_dc_off),
+> 
+> immediately before xelpdp_power_wells_main should be sufficient.
 
-I think I had posted an updated patch for i915. The context valid bit is 
-applicable to gen12 as well, so we should implement the context id 
-valid/invalid helper.
+Okay, this is actually taken care of by the next patch in the series.
+Disregard this comment.
 
->+
-> static u64 oa_timestamp(struct xe_oa_stream *stream, void *report)
-> {
-> 	return oa_report_header_64bit(stream) ?
->@@ -153,6 +176,29 @@ static u64 oa_timestamp(struct xe_oa_stream *stream, void *report)
-> 		*((u32 *)report + 1);
-> }
->
->+static void oa_timestamp_clear(struct xe_oa_stream *stream, u32 *report)
->+{
->+	if (oa_report_header_64bit(stream))
->+		*(u64 *)&report[2] = 0;
->+	else
->+		report[1] = 0;
->+}
->+
->+static u32 oa_context_id(struct xe_oa_stream *stream, u32 *report)
->+{
->+	u32 ctx_id = oa_report_header_64bit(stream) ? report[4] : report[2];
->+
->+	return ctx_id & stream->specific_ctx_id_mask;
->+}
->+
->+static void oa_context_id_squash(struct xe_oa_stream *stream, u32 *report)
->+{
->+	if (oa_report_header_64bit(stream))
->+		report[4] = INVALID_CTX_ID;
->+	else
->+		report[2] = INVALID_CTX_ID;
->+}
->+
-> static bool xe_oa_buffer_check_unlocked(struct xe_oa_stream *stream)
-> {
-> 	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
->@@ -234,6 +280,199 @@ static enum hrtimer_restart xe_oa_poll_check_timer_cb(struct hrtimer *hrtimer)
-> 	return HRTIMER_RESTART;
-> }
->
->+static int xe_oa_append_status(struct xe_oa_stream *stream, char __user *buf,
->+			       size_t count, size_t *offset,
->+			       enum drm_xe_oa_record_type type)
->+{
->+	struct drm_xe_oa_record_header header = { type, 0, sizeof(header) };
->+
->+	if ((count - *offset) < header.size)
->+		return -ENOSPC;
->+
->+	if (copy_to_user(buf + *offset, &header, sizeof(header)))
->+		return -EFAULT;
->+
->+	*offset += header.size;
->+
->+	return 0;
->+}
->+
->+static int xe_oa_append_sample(struct xe_oa_stream *stream, char __user *buf,
->+			       size_t count, size_t *offset, const u8 *report)
->+{
->+	int report_size = stream->oa_buffer.format->size;
->+	struct drm_xe_oa_record_header header;
->+	int report_size_partial;
->+	u8 *oa_buf_end;
->+
->+	header.type = DRM_XE_OA_RECORD_SAMPLE;
->+	header.pad = 0;
->+	header.size = stream->sample_size;
->+
->+	if ((count - *offset) < header.size)
->+		return -ENOSPC;
->+
->+	buf += *offset;
->+	if (copy_to_user(buf, &header, sizeof(header)))
->+		return -EFAULT;
->+	buf += sizeof(header);
->+
->+	oa_buf_end = stream->oa_buffer.vaddr + OA_BUFFER_SIZE;
->+	report_size_partial = oa_buf_end - report;
->+
->+	if (report_size_partial < report_size) {
->+		if (copy_to_user(buf, report, report_size_partial))
->+			return -EFAULT;
->+		buf += report_size_partial;
->+
->+		if (copy_to_user(buf, stream->oa_buffer.vaddr,
->+				 report_size - report_size_partial))
->+			return -EFAULT;
->+	} else if (copy_to_user(buf, report, report_size)) {
->+		return -EFAULT;
->+	}
->+
->+	*offset += header.size;
->+
->+	return 0;
->+}
->+
->+static int xe_oa_append_reports(struct xe_oa_stream *stream, char __user *buf,
->+				size_t count, size_t *offset)
->+{
->+	int report_size = stream->oa_buffer.format->size;
->+	u8 *oa_buf_base = stream->oa_buffer.vaddr;
->+	u32 gtt_offset = xe_bo_ggtt_addr(stream->oa_buffer.bo);
->+	u32 mask = (OA_BUFFER_SIZE - 1);
->+	size_t start_offset = *offset;
->+	unsigned long flags;
->+	u32 head, tail;
->+	int ret = 0;
->+
->+	if (drm_WARN_ON(&stream->oa->xe->drm, !stream->enabled))
->+		return -EIO;
->+
->+	spin_lock_irqsave(&stream->oa_buffer.ptr_lock, flags);
->+
->+	head = stream->oa_buffer.head;
->+	tail = stream->oa_buffer.tail;
->+
->+	spin_unlock_irqrestore(&stream->oa_buffer.ptr_lock, flags);
->+
->+	/* An out of bounds or misaligned head or tail pointer implies a driver bug */
->+	if (drm_WARN_ONCE(&stream->oa->xe->drm,
->+			  head > OA_BUFFER_SIZE || tail > OA_BUFFER_SIZE,
->+			  "Inconsistent OA buffer pointers: head = %u, tail = %u\n",
->+			  head, tail))
->+		return -EIO;
->+
->+	for (/* none */; OA_TAKEN(tail, head); head = (head + report_size) & mask) {
 
-We can drop the 'none' comment. 
+Matt
 
-Umesh
+> 
+> > +
+> >  static void init_power_well_domains(const struct i915_power_well_instance *inst,
+> >  				    struct i915_power_well *power_well)
+> >  {
+> > @@ -1652,7 +1684,9 @@ int intel_display_power_map_init(struct i915_power_domains *power_domains)
+> >  		return 0;
+> >  	}
+> >  
+> > -	if (DISPLAY_VER(i915) >= 14)
+> > +	if (DISPLAY_VER(i915) >= 20)
+> > +		return set_power_wells(power_domains, xe2lpd_power_wells);
+> > +	else if (DISPLAY_VER(i915) >= 14)
+> >  		return set_power_wells(power_domains, xelpdp_power_wells);
+> >  	else if (IS_DG2(i915))
+> >  		return set_power_wells(power_domains, xehpd_power_wells);
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > index 916009894d89..e1fb0bd7b3bf 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> > @@ -1795,7 +1795,11 @@ static void xelpdp_aux_power_well_enable(struct drm_i915_private *dev_priv,
+> >  {
+> >  	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
+> >  
+> > -	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(aux_ch),
+> > +	i915_reg_t aux_ch_ctl = DISPLAY_VER(dev_priv) >= 20 ?
+> > +				XE2LPD_DP_AUX_CH_CTL(aux_ch) :
+> > +				XELPDP_DP_AUX_CH_CTL(aux_ch);
+> > +
+> > +	intel_de_rmw(dev_priv, aux_ch_ctl,
+> >  		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
+> >  		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST);
+> >  
+> > @@ -1813,7 +1817,11 @@ static void xelpdp_aux_power_well_disable(struct drm_i915_private *dev_priv,
+> >  {
+> >  	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
+> >  
+> > -	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(aux_ch),
+> > +	i915_reg_t aux_ch_ctl = DISPLAY_VER(dev_priv) >= 20 ?
+> > +				XE2LPD_DP_AUX_CH_CTL(aux_ch) :
+> > +				XELPDP_DP_AUX_CH_CTL(aux_ch);
+> > +
+> > +	intel_de_rmw(dev_priv, aux_ch_ctl,
+> >  		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
+> >  		     0);
+> >  	usleep_range(10, 30);
+> > @@ -1823,11 +1831,53 @@ static bool xelpdp_aux_power_well_enabled(struct drm_i915_private *dev_priv,
+> >  					  struct i915_power_well *power_well)
+> >  {
+> >  	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
+> > +	i915_reg_t aux_ch_ctl;
+> >  
+> > -	return intel_de_read(dev_priv, XELPDP_DP_AUX_CH_CTL(aux_ch)) &
+> > +	aux_ch_ctl = DISPLAY_VER(dev_priv) >= 20 ?
+> > +		     XE2LPD_DP_AUX_CH_CTL(aux_ch) :
+> > +		     XELPDP_DP_AUX_CH_CTL(aux_ch);
+> > +
+> > +	return intel_de_read(dev_priv, aux_ch_ctl) &
+> >  		XELPDP_DP_AUX_CH_CTL_POWER_STATUS;
+> >  }
+> >  
+> > +static void xe2lpd_pica_power_well_enable(struct drm_i915_private *dev_priv,
+> > +					  struct i915_power_well *power_well)
+> > +{
+> > +	intel_de_rmw(dev_priv, XE2LPD_PICA_PW_CTL,
+> > +		     XE2LPD_PICA_CTL_POWER_REQUEST,
+> > +		     XE2LPD_PICA_CTL_POWER_REQUEST);
+> > +
+> > +	if (intel_de_wait_for_set(dev_priv, XE2LPD_PICA_PW_CTL,
+> > +				  XE2LPD_PICA_CTL_POWER_STATUS, 1)) {
+> > +		drm_dbg_kms(&dev_priv->drm, "pica power well enable timeout\n");
+> > +
+> > +		drm_WARN(&dev_priv->drm, 1, "Power well PICA timeout when enabled");
+> > +	}
+> > +}
+> > +
+> > +static void xe2lpd_pica_power_well_disable(struct drm_i915_private *dev_priv,
+> > +					   struct i915_power_well *power_well)
+> > +{
+> > +	intel_de_rmw(dev_priv, XE2LPD_PICA_PW_CTL,
+> > +		     XE2LPD_PICA_CTL_POWER_REQUEST,
+> > +		     0);
+> > +
+> > +	if (intel_de_wait_for_clear(dev_priv, XE2LPD_PICA_PW_CTL,
+> > +				    XE2LPD_PICA_CTL_POWER_STATUS, 1)) {
+> > +		drm_dbg_kms(&dev_priv->drm, "pica power well disable timeout\n");
+> > +
+> > +		drm_WARN(&dev_priv->drm, 1, "Power well PICA timeout when disabled");
+> > +	}
+> > +}
+> > +
+> > +static bool xe2lpd_pica_power_well_enabled(struct drm_i915_private *dev_priv,
+> > +					   struct i915_power_well *power_well)
+> > +{
+> > +	return intel_de_read(dev_priv, XE2LPD_PICA_PW_CTL) &
+> > +		XE2LPD_PICA_CTL_POWER_STATUS;
+> > +}
+> > +
+> >  const struct i915_power_well_ops i9xx_always_on_power_well_ops = {
+> >  	.sync_hw = i9xx_power_well_sync_hw_noop,
+> >  	.enable = i9xx_always_on_power_well_noop,
+> > @@ -1947,3 +1997,10 @@ const struct i915_power_well_ops xelpdp_aux_power_well_ops = {
+> >  	.disable = xelpdp_aux_power_well_disable,
+> >  	.is_enabled = xelpdp_aux_power_well_enabled,
+> >  };
+> > +
+> > +const struct i915_power_well_ops xe2lpd_pica_power_well_ops = {
+> > +	.sync_hw = i9xx_power_well_sync_hw_noop,
+> > +	.enable = xe2lpd_pica_power_well_enable,
+> > +	.disable = xe2lpd_pica_power_well_disable,
+> > +	.is_enabled = xe2lpd_pica_power_well_enabled,
+> > +};
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.h b/drivers/gpu/drm/i915/display/intel_display_power_well.h
+> > index a8736588314d..9357a9a73c06 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.h
+> > @@ -176,5 +176,6 @@ extern const struct i915_power_well_ops icl_aux_power_well_ops;
+> >  extern const struct i915_power_well_ops icl_ddi_power_well_ops;
+> >  extern const struct i915_power_well_ops tgl_tc_cold_off_ops;
+> >  extern const struct i915_power_well_ops xelpdp_aux_power_well_ops;
+> > +extern const struct i915_power_well_ops xe2lpd_pica_power_well_ops;
+> >  
+> >  #endif
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
+> > index 5185345277c7..d855f3730381 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
+> > @@ -83,4 +83,31 @@
+> >  #define   DP_AUX_CH_CTL_SYNC_PULSE_SKL_MASK	REG_GENMASK(4, 0) /* skl+ */
+> >  #define   DP_AUX_CH_CTL_SYNC_PULSE_SKL(c)	REG_FIELD_PREP(DP_AUX_CH_CTL_SYNC_PULSE_SKL_MASK, (c) - 1)
+> >  
+> > +#define _XE2LPD_DPA_AUX_CH_CTL		0x16FA10
+> > +#define _XE2LPD_DPB_AUX_CH_CTL		0x16FC10
+> > +#define _XE2LPD_DPA_AUX_CH_DATA1	0x16FA14
+> > +#define _XE2LPD_DPB_AUX_CH_DATA1	0x16FC14
+> 
+> We're generally trying to standardize on lowercase hex for register
+> offsets these days.
+> 
+> > +#define XE2LPD_DP_AUX_CH_CTL(aux_ch)		_MMIO(_PICK(aux_ch, \
+> > +						       _XE2LPD_DPA_AUX_CH_CTL, \
+> > +						       _XE2LPD_DPB_AUX_CH_CTL, \
+> > +						       0, /* port/aux_ch C is non-existent */ \
+> > +						       _XELPDP_USBC1_AUX_CH_CTL, \
+> > +						       _XELPDP_USBC2_AUX_CH_CTL, \
+> > +						       _XELPDP_USBC3_AUX_CH_CTL, \
+> > +						       _XELPDP_USBC4_AUX_CH_CTL))
+> > +#define XE2LPD_DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PICK(aux_ch, \
+> > +						       _XE2LPD_DPA_AUX_CH_DATA1, \
+> > +						       _XE2LPD_DPB_AUX_CH_DATA1, \
+> > +						       0, /* port/aux_ch C is non-existent */ \
+> > +						       _XELPDP_USBC1_AUX_CH_DATA1, \
+> > +						       _XELPDP_USBC2_AUX_CH_DATA1, \
+> > +						       _XELPDP_USBC3_AUX_CH_DATA1, \
+> > +						       _XELPDP_USBC4_AUX_CH_DATA1) + (i) * 4)
+> 
+> It looks like these PICA registers are following the same general layout
+> change as the ones we modified a couple patches ago ("drm/i915/xe2lpd:
+> Move registers to PICA").  We should probably handle these the same way
+> for consistency (or maybe even squash the register movement here into
+> that previous patch?).
+> 
+> > +
+> > +/* PICA Power Well Control register for Xe2 platforms*/
+> > +#define XE2LPD_PICA_PW_CTL	_MMIO(0x16FE04)
+> > +
+> 
+> Unwanted blank line?
+> 
+> 
+> Matt
+> 
+> > +#define   XE2LPD_PICA_CTL_POWER_REQUEST BIT(31)
+> > +#define   XE2LPD_PICA_CTL_POWER_STATUS  BIT(30)
+> > +
+> >  #endif /* __INTEL_DP_AUX_REGS_H__ */
+> > -- 
+> > 2.40.1
+> > 
+> 
+> -- 
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
