@@ -4,48 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D5CEE49A0
-	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 11:40:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51F9CEE49B2
+	for <intel-xe@archiver.kernel.org>; Wed, 23 Aug 2023 11:40:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94D8210E080;
-	Wed, 23 Aug 2023 11:40:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1034110E410;
+	Wed, 23 Aug 2023 11:40:49 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D47010E080
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17B7410E410
  for <intel-xe@lists.freedesktop.org>; Wed, 23 Aug 2023 11:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1692790847; x=1724326847;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=9RGnxiBzu9GwmBV64yO6CjWY3wvtAxGVb4saNfpQ0Z8=;
- b=XJt49STky8RBaaLX2464N7VUQX8lzpCrwQBVKgERYGk9L1lfdlU9gxCY
- Tiu0SZFHZ30xhR59Qs+uIqWeDWCTEN/u8iXAdTQPGkb0aWAqTaJhIPQ7g
- s/xRFBHOHYpu4xoL/VFHBvilxpvqLcXyA+EnWMnFs22mdCTeaGaAGd343
- iYc7BACDE5524b4UKoxrVBKof9Itl+PEcaeMS6BkI2Jj5BO2i64t8G2LN
- S9wSrjqxIthFOxJovHnlnmHeoFGorKXBihwotNUE7B+gPxQo/tvMb0Jxz
- 9x3a+zCbuAli9BdCccwKz/ZzKrfcUXbJombgr6HriMyQcym4KWCjNyaYT g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="460506110"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="460506110"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Z1S1fkb9ynGn+zWXp+spZlt3jog9udD8hfID4RbBsh4=;
+ b=Hp3Ts313vTJMbuPE6eI91eh+Bujk5c5xgPZnx03x41/DBV1qS7Jhopii
+ DtH3/lszE6jXAJEOqH8EzbntmuBIgy9KYMAS0NjXWvUpp74XNEJmV0KCU
+ l3gHvW2uYiOvFzUGmUhutz7+NAsujednbgDdhZNKs+Qvkw/GOrwER6N1q
+ nw8rCGNEQeQjhixBFdl3jiWNbmit73F1dZfyHESoDoeOkN0vDsAeMfVWS
+ Cp/FvVYyhSZ+Mz73N++wzE/7FqVsnH5OoZpRDDjMMGb8qKEP7e1J9AQ4k
+ DD9MF79+bUyhmBdaxkO0V6V0Ff1IAPqL8PBHwqxNb+awkYDDNUrAly1k1 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="460506107"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="460506107"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Aug 2023 04:40:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="910481346"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="910481346"
+X-IronPort-AV: E=McAfee;i="6600,9927,10810"; a="910481337"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; d="scan'208";a="910481337"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Aug 2023 04:40:44 -0700
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 23 Aug 2023 04:40:39 -0700
-Message-Id: <20230823114040.31769-3-niranjana.vishwanathapura@intel.com>
+Date: Wed, 23 Aug 2023 04:40:37 -0700
+Message-Id: <20230823114040.31769-1-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
-In-Reply-To: <20230823114040.31769-1-niranjana.vishwanathapura@intel.com>
-References: <20230823114040.31769-1-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 2/3] drm/xe/pvc: Force even num engines to use
- 64B
+Subject: [Intel-xe] [PATCH v3 0/3] drm/xe/pvc: Add Wa_16017236439
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,53 +58,30 @@ Cc: lucas.demarchi@intel.com, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wa_16017236439 requires that we update BCS_SWCTRL
-(via indirect context batch buffer) to set 64B
-transfers when running on an even-numbered BCS
-engine and 256B on an odd-numbered BCS engine.
+Add workaround 16017236439 on PVC which makes even copy engine instances
+to use 64B transfers instead of 256B, hence making it bit slower than
+odd copy engine instances.
+Update migrate engine to use the faster odd copy engine instances along
+with the reserved copy engine for a better throughput.
 
-v2: Move WA from engine_was[] to lrc_was[]
+v2: Blacklist BCS_SWCTRL register
+v3: Use lrc_was[] and OOB WA,
+    update migration engine logical mask selection
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
- drivers/gpu/drm/xe/xe_wa.c               | 10 ++++++++++
- 2 files changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 1a366d8070f3..806755f31241 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -64,6 +64,7 @@
- #define RING_BBADDR_UDW(base)			XE_REG((base) + 0x168)
- 
- #define BCS_SWCTRL(base)			XE_REG((base) + 0x200, XE_REG_OPTION_MASKED)
-+#define BCS_SWCTRL_DISABLE_256B			REG_BIT(2)
- 
- /* Handling MOCS value in BLIT_CCTL like it was done CMD_CCTL */
- #define BLIT_CCTL(base)				XE_REG((base) + 0x204)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index e2b6e17d7ec4..f45e9452ba0e 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -604,6 +604,16 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	  XE_RTP_ACTIONS(SET(CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE))
- 	},
- 
-+	/* PVC */
-+
-+	{ XE_RTP_NAME("16017236439"),
-+	  XE_RTP_RULES(PLATFORM(PVC), ENGINE_CLASS(COPY),
-+		       FUNC(xe_rtp_match_even_instance)),
-+	  XE_RTP_ACTIONS(SET(BCS_SWCTRL(0),
-+			     BCS_SWCTRL_DISABLE_256B,
-+			     XE_RTP_ACTION_FLAG(ENGINE_BASE))),
-+	},
-+
- 	/* Xe_LPG */
- 	{ XE_RTP_NAME("18019271663"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1270, 1271)),
+Niranjana Vishwanathapura (3):
+  drm/xe/pvc: Blacklist BCS_SWCTRL register
+  drm/xe/pvc: Force even num engines to use 64B
+  drm/xe/pvc: Use fast copy engines as migrate engine on PVC
+
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |  3 ++
+ drivers/gpu/drm/xe/xe_migrate.c          | 39 ++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_reg_whitelist.c    |  6 ++++
+ drivers/gpu/drm/xe/xe_wa.c               | 10 ++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules       |  1 +
+ 5 files changed, 56 insertions(+), 3 deletions(-)
+
 -- 
 2.21.0.rc0.32.g243a4c7e27
 
