@@ -4,46 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A5E4C3DA6F
-	for <intel-xe@archiver.kernel.org>; Thu, 24 Aug 2023 17:39:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6095C6FA8F
+	for <intel-xe@archiver.kernel.org>; Thu, 24 Aug 2023 17:48:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2482710E052;
-	Thu, 24 Aug 2023 17:39:42 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B20410E052
- for <intel-xe@lists.freedesktop.org>; Thu, 24 Aug 2023 17:39:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71C3610E58F;
+	Thu, 24 Aug 2023 17:48:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D19110E58F
+ for <intel-xe@lists.freedesktop.org>; Thu, 24 Aug 2023 17:48:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692898779; x=1724434779;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ZLi2pdPLp66cCrIw2DfgEW5+tmjTz+AjX8PPyxRvsDQ=;
- b=dbdfcCksgHeKUNXh2ll4oDd7r9qmJxEEu9oicwFW8y2DUJsQ8xqYSqSv
- rZQVTgSY+dfF9gKRWqZcxH08jX9yepQu+n4xQ5LKjyGO5IzSStc5uy/cL
- dXN1jeP2wY2Vy2SzHCtUqwAmPquU2BVEh7uHHudRcGSX0FK1/jI0gLhsv
- j3st8V3iepD1btGw2JJIXVXquwx7v8tm/swuDPBRobTStFHZpPP8XyHzx
- xB9IGt3fHtNgq0kalE+l6bB38sI/EDbAPNcPJ8HXUdKlXoMOCgsN45m7K
- B4dXRoUMdLUbLnoKAngJxTv85z6iucEnrUqPS/9b+p8/6or1+YtfahO+q A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="440865186"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="440865186"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 10:39:39 -0700
+ t=1692899296; x=1724435296;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=gZZPMEo75PbG0SPlsEQoGwinRvVrDg2+YNfuOWz0ZX4=;
+ b=Vff1NSVKE1u0VQeqK+FPD3S5mD0MSU4PCxbombvMflAwR77CerB/3ISO
+ WEsaCrbPbswO43Rkk18cds7QXKus4V2L+dQZMuJMIf2KHOLfIZ8k4nspP
+ 7Z23canaCegkTnSg9kCTGqhTEdyVG6eHQsD0qBaLDyYIsk5Ma/uJgnpBw
+ 8/BxqJsvA776Qfr+Fv4oDeva0wgKSSwmIV8OaT/zNa/Q2dsbZLlssUAcT
+ rdDnZvCfpD1Gs8SCHZxZWL+O0yJSDzUqP8EsRnqPApLyyPaXbmQWTf+yq
+ pIxsihvd+TJ94ChWftGMe9e/nd2D6Aijt94Yv+4YyKz8jgvAjpzZPkfps w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="438461722"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="438461722"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Aug 2023 10:48:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="730739848"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="730739848"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Aug 2023 10:39:37 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu, 24 Aug 2023 23:16:18 +0530
-Message-Id: <20230824174618.1560317-1-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="1067926039"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="1067926039"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga005.fm.intel.com with ESMTP; 24 Aug 2023 10:47:56 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 24 Aug 2023 10:47:55 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 24 Aug 2023 10:47:55 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Thu, 24 Aug 2023 10:47:55 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Thu, 24 Aug 2023 10:47:54 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Caqg0C3T0rAQLxEN0d/eeT8eFx/5O3o3AOM/HWYpV4z4OYgo8LiDanISJCR3Ik63BiGhpwB4gevYqwr0PdicXALRca0DRnLkk3dsxqobyxH9tyvNZQ/JaFsf2arCwUGWghjMNLur2TRsChX49nJsrjCdPsMxDWA7ZeUFMwoW5sex51qRDe87tSTCj2htjCReaOeyfIFzRvdl58KoBtFqyw9QWaZG+2wD90v4k1guFT585BMr98Gsw2FYGUSwRKEqtyb2ztmA+wSLT5XneR90fk9fy4HXA9ZDvCGl1hBcFAMIuXSPPc1ikSIUOJc1XrTBLzy3OzOREMrFL842HvjlOA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=L03ftClMJNXa3Qv8wSLOvc6QiOkeOoE4hz75tFkgm4w=;
+ b=V8n/3Z9EfI3gwqJlo56Z9v/h22Z8SKR7kRVtGY0nqXaT5W1U0JcLH3QnKiCtkmXkpwOahhOpCz4dcBKkHS654/WjIeAQeE8DR2aawOCRYWRS9P2IBamC/tsaIh23xudHJBPJPffANCQzR/ckKFph8RIHsDCo7QmdiOMRu/YQM+rO/b/aL/M7k2nIBmdEIBtS4omjqVlUV0X9JQXoMvwEt0/DH9ymyXMR2W2SaZRQNlZMTuv0cEJxOJfBoNXmNjj58Skj3GNC90Txi37xfIjaiWw2bp8LTYS78w2UhwI42qU6hfYMDKNUnjjHXsxlqQ/+aXC6fr1/fOUxkSHdL7h+PA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
+ by PH0PR11MB7423.namprd11.prod.outlook.com (2603:10b6:510:282::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Thu, 24 Aug
+ 2023 17:47:52 +0000
+Received: from BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::a9b6:9a74:51f5:2d2b]) by BL3PR11MB6508.namprd11.prod.outlook.com
+ ([fe80::a9b6:9a74:51f5:2d2b%4]) with mapi id 15.20.6699.027; Thu, 24 Aug 2023
+ 17:47:52 +0000
+Date: Thu, 24 Aug 2023 17:46:29 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <ZOeXdQhWgx8yhhQK@DUT025-TGLU.fm.intel.com>
+References: <20230824160444.494648-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230824160444.494648-2-matthew.auld@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0129.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c6::14) To BL3PR11MB6508.namprd11.prod.outlook.com
+ (2603:10b6:208:38f::5)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC PATCH] drm/xe/dgfx: Release mmap mappings on rpm
- suspend
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|PH0PR11MB7423:EE_
+X-MS-Office365-Filtering-Correlation-Id: d374f082-f8b9-4ebf-ae7a-08dba4ca3d4d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: s39J4AWHvZ2OCB3EyNrLo3bS88hppHHZR2qViJVKNOVxpg73EoY67mS/mXjqqG5tDWeoLIk1Nhp2ezT1uLKvR1T2a7qJyi9QepUNdgGd4HbDHLxq5Ec0xGt61hUbTXFkPdyZKb0iOlmG/8czFCU2hjkJ+HX9rxvscUnYPk+uM4IZ2PwH6ZQkL+XdfP7Pm6XKihvEvq1EWceQqfVb7lhH6TQP8H92P79px3D1Vk7BltENA1Nd61ctWr2EJQH+MMyyEM0pj/qo+T0mfGxg+6Jf06iB+YPq6jO//3qARC/8ddxdA6+9JzG1KbgAy7HCjLXT5DNdaEQeN8ZSWq1meNdr8dB/ZpaaA4t3cvvOvoNKX9+XSAPlxLqP+NcmAj9bdqTd/xQRJvhW+V3f+OHFuHgjLaOWvYqVajFNUyWmUMDr5iykP0VSmgDKa+ccwj3aePR8hVClMEFCFCyTlD1R8+D5IVSsvN3XJBUNI7zVPV9BSVON4KblZWDkN1KWIQ9+EDx3Vrt/fZBTskagSXGuBNNX3KuAjKU2+ihqO5rNPKl4RaNueAD26k9HDgkLvI9KFAIjPDPOK+vagkDCm4jXs64JEw==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(376002)(366004)(346002)(396003)(136003)(186009)(1800799009)(451199024)(66476007)(66946007)(66556008)(6636002)(316002)(82960400001)(478600001)(26005)(6666004)(38100700002)(41300700001)(6506007)(6486002)(86362001)(2906002)(6512007)(966005)(4326008)(6862004)(8676002)(8936002)(83380400001)(107886003)(5660300002)(44832011);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?tkOx3qMdam33B57bzhWRVwsr+gNwz/OSPZ0hFI+w6cIoHyL6tp5IoBJhmt2z?=
+ =?us-ascii?Q?m3VH0/0sjtEV6LXcZuovXy7WtaUhEHBHawoWji765FTD3EMYZSsjnP9E0uu5?=
+ =?us-ascii?Q?uyu3vbp8VBQyB3S+C7G/RqMoKWfWkFTCnrIr2YvC/7xXuRPsGpOllE1yc9mi?=
+ =?us-ascii?Q?BDMivkon/KXcVhKUMW4zLeYBvTao9IQZm44D9iDG1na9Nn2cqf1KiVvQjpX6?=
+ =?us-ascii?Q?41gjqKcmDpTrKkNVg9crystvpH917y1Ps1ja2sUSI7YOXhOo+f3Ruvhk89iA?=
+ =?us-ascii?Q?HCNV0RLfe9dHCdTALU5dF8WLIlO0mxmUSbw5MIz0iVaTmDV4ORZ7Piji0/zZ?=
+ =?us-ascii?Q?gAGFMi8ZRi0oxftO4a/oODQSVXqYvZt6/k9YBoCDiSRCKAabmfb4AAdnyGT9?=
+ =?us-ascii?Q?PR2fIMsfgkenUMKIdJMocBB1c+sxntigZORfNhdPZnIsMghRK9NLfyzbExWr?=
+ =?us-ascii?Q?Sj9IKiAocY772m+tglyRTVEDnJcdIfmDsNe/+WQgyaXlIiBjtym+oaa9rQLE?=
+ =?us-ascii?Q?uLb96g7Lqwshbrc2gI4rdqOSud4AcrefleLEyN7Sj37VCNbN1E5EY92GZsmW?=
+ =?us-ascii?Q?S8AiWAWrxu0kTeAzPaD9bppezyt0vc/ATdyIK9GFblmpgEDktdsj1yLghK+F?=
+ =?us-ascii?Q?fTLAPyQfhMgmiRToyD3HlT/Y1IBVPmQ61jb2SV5aBG3ogfWh/V3+usYRLmzg?=
+ =?us-ascii?Q?iuY8YshUkeqg5rly6VVXLvOLVtHAP9RoF2djIYyNo7kJtPWBpRDwSXXXGeh1?=
+ =?us-ascii?Q?8fE06L/lUdFU3iTYqFw17MJc9BGoO71Pc/gxr7VUSoJiS25Iz4G+ISGWFnm/?=
+ =?us-ascii?Q?BZutVLUzo2Z+MMRZKOwHs860bP3yjFjhwapAG73dnayzj/wRNbZNvCqAwhq9?=
+ =?us-ascii?Q?dL545n6rRLHsqQyQygQTAI2PWeM/0GI/lg6UKlel6Hfy6pqfQjQkuxtIR6Rg?=
+ =?us-ascii?Q?wz81vwuxi6o6Q9ig1hKI2fltv6U2FYLsO/sNVge0lWenK1kjJBUrjfKPslD7?=
+ =?us-ascii?Q?M4zpsleHI99/yfImJxGQLQt4jT3Cd+KTEMr5/9N0zcgNadHT8a671xYGuUQh?=
+ =?us-ascii?Q?IzD1eqPFf6tg+chec+ecWFTIto7sOv9awbTTkb7QjNQ3g/brPHRTKx3whXAz?=
+ =?us-ascii?Q?e1+FGQya3MV7hwfTc+rVnp9HWravuUBNFNRwEQrRXTgz1ZpbOkqy/bOPF5KC?=
+ =?us-ascii?Q?qSUrAkiYcXAblxev9ZTj8agh+OQ4EJtC5ccq+aF5hKuS+tAcO8T4wwX3z2Xx?=
+ =?us-ascii?Q?/aSjJGC6rxMRnFHBTTNubESfuJR15t3mxk1tok2aSlu5V8XKVaHLR9ocXHZ7?=
+ =?us-ascii?Q?LDi9f953w46iA/D6eSZyms1iIBADi1AkG7+pScOBKtD6LjJwtQNq6CCx7BTK?=
+ =?us-ascii?Q?QR4veVr+FlE29RJx+0WIYOId2sr1WD77t9XtL8VLgdmn37D0Iv9K6xhN7xOG?=
+ =?us-ascii?Q?R/8YT2KAYbRluKotqhaVAOvUDjIpo6G3TA32AalR7550h9am8Q9NgciVxfo+?=
+ =?us-ascii?Q?R8VE0kuZrRFmvJdpmhj/pvp0/LKJvbfUplOh8KpT2/WNooKQ7guo8TdmSi5L?=
+ =?us-ascii?Q?YCr04zfLwh6tZpechIAJOaEqoFuOaSdGloTSf9xjGbJPEQBx8vRkNtW+51Ib?=
+ =?us-ascii?Q?7w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d374f082-f8b9-4ebf-ae7a-08dba4ca3d4d
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Aug 2023 17:47:52.4154 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XyPQRVlcTCXgj5BaFp7Zmy47lgeHlPjcJaWOWZdLQH7JPwnZkU/nYtfraaz6sC9WwSKmV70vkhNeh7JsMQd9nw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB7423
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2] drm/xe: nuke GuC on unload
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,218 +145,153 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com, rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Release all mmap mappings for all vram objects which are associated
-with userfault such that, while pcie function in D3hot, any access
-to memory mappings will raise a userfault.
+On Thu, Aug 24, 2023 at 05:04:45PM +0100, Matthew Auld wrote:
+> On PVC unloading followed by reloading the module often results in a
+> completely dead machine (seems to be plaguing CI). Resetting the GuC
+> like we do at load seems to cure it at least when locally testing this.
+> 
+> v2:
+>   - Move pc_fini into guc_fini. We want to do the GuC reset just after
+>     calling pc_fini, otherwise we encounter communication failures. It
+>     also seems like a good idea to do the reset before we start releasing
+>     the various other GuC resources. In the case of pc_fini there is an
+>     explicit stop, but for other stuff like logs, ads, ctb there is not.
+> 
+> References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/542
+> References: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/597
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-Upon userfault, in order to access memory mappings, if graphics
-function is in D3 then runtime resume of dgpu will be triggered to
-transition to D0.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
----
- drivers/gpu/drm/xe/xe_bo.c           | 53 ++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_bo.h           |  2 ++
- drivers/gpu/drm/xe/xe_bo_types.h     |  6 ++++
- drivers/gpu/drm/xe/xe_device_types.h | 20 +++++++++++
- drivers/gpu/drm/xe/xe_pm.c           |  7 ++++
- 5 files changed, 85 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 1ab682d61e3c..4192bfcd8013 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -776,6 +776,18 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
- 		dma_fence_put(fence);
- 	}
- 
-+	/*
-+	* TTM has already nuked the mmap for us (see ttm_bo_unmap_virtual),
-+	* so if we moved from VRAM make sure to unlink this from the userfault
-+	* tracking.
-+	*/
-+	if (mem_type_is_vram(old_mem_type)) {
-+		spin_lock(&xe->mem_access.vram_userfault_lock);
-+		if (!list_empty(&bo->vram_userfault_link))
-+			list_del_init(&bo->vram_userfault_link);
-+		spin_unlock(&xe->mem_access.vram_userfault_lock);
-+	}
-+
- 	xe_device_mem_access_put(xe);
- 	trace_printk("new_mem->mem_type=%d\n", new_mem->mem_type);
- 
-@@ -1100,6 +1112,8 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- {
- 	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
- 	struct drm_device *ddev = tbo->base.dev;
-+	struct xe_bo *bo = ttm_to_xe_bo(tbo);
-+	struct xe_device *xe = to_xe_device(ddev);
- 	vm_fault_t ret;
- 	int idx, r = 0;
- 
-@@ -1107,9 +1121,10 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	if (ret)
- 		return ret;
- 
--	if (drm_dev_enter(ddev, &idx)) {
--		struct xe_bo *bo = ttm_to_xe_bo(tbo);
-+	if (tbo->resource->bus.is_iomem)
-+		xe_device_mem_access_get(xe);
- 
-+	if (drm_dev_enter(ddev, &idx)) {
- 		trace_xe_bo_cpu_fault(bo);
- 
- 		if (should_migrate_to_system(bo)) {
-@@ -1127,10 +1142,25 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
- 	} else {
- 		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
- 	}
-+
- 	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
--		return ret;
-+		goto out_rpm;
-+	/*
-+	 * ttm_bo_vm_reserve() already has dma_resv_lock.
-+	 * vram_userfault_count is protected by dma_resv lock and rpm wakeref.
-+	 */
-+	if (ret == VM_FAULT_NOPAGE && xe_device_mem_access_ongoing(xe) && !bo->vram_userfault_count) {
-+		bo->vram_userfault_count = 1;
-+		spin_lock(&xe->mem_access.vram_userfault_lock);
-+		list_add(&bo->vram_userfault_link, &xe->mem_access.vram_userfault_list);
-+		spin_unlock(&xe->mem_access.vram_userfault_lock);
- 
-+		XE_WARN_ON(!tbo->resource->bus.is_iomem);
-+	}
- 	dma_resv_unlock(tbo->base.resv);
-+out_rpm:
-+	if(tbo->resource->bus.is_iomem && xe_device_mem_access_ongoing(xe))
-+		xe_device_mem_access_put(xe);
- 	return ret;
- }
- 
-@@ -2108,6 +2138,23 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
- 	return err;
- }
- 
-+void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
-+{
-+	struct ttm_buffer_object *tbo = &bo->ttm;
-+	struct ttm_device *bdev = tbo->bdev;
-+
-+	drm_vma_node_unmap(&tbo->base.vma_node, bdev->dev_mapping);
-+
-+	/*
-+	 * We have exclusive access here via runtime suspend. All other callers
-+	 * must first grab the rpm wakeref.
-+	 */
-+	XE_WARN_ON(!bo->vram_userfault_count);
-+	list_del(&bo->vram_userfault_link);
-+	bo->vram_userfault_count = 0;
-+}
-+
-+
- #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
- #include "tests/xe_bo.c"
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 0823dda0f31b..6b86f326c700 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -247,6 +247,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
- 			struct drm_file *file);
- int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
- 			     struct drm_file *file);
-+void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
-+
- int xe_bo_dumb_create(struct drm_file *file_priv,
- 		      struct drm_device *dev,
- 		      struct drm_mode_create_dumb *args);
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index f6ee920303af..cdca91a378c4 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -68,6 +68,12 @@ struct xe_bo {
- 	struct llist_node freed;
- 	/** @created: Whether the bo has passed initial creation */
- 	bool created;
-+	/**
-+	 * Whether the object is currently in fake offset mmap backed by vram.
-+	 */
-+	unsigned int vram_userfault_count;
-+	struct list_head vram_userfault_link;
-+
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 750e1f0d3339..c345fb483af1 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -328,6 +328,26 @@ struct xe_device {
- 	struct {
- 		/** @ref: ref count of memory accesses */
- 		atomic_t ref;
-+		/*
-+		 *  Protects access to vram usefault list.
-+		 *  It is required, if we are outside of the runtime suspend path,
-+		 *  access to @vram_userfault_list requires always first grabbing the
-+		 *  runtime pm, to ensure we can't race against runtime suspend.
-+		 *  Once we have that we also need to grab @vram_userfault_lock,
-+		 *  at which point we have exclusive access.
-+		 *  The runtime suspend path is special since it doesn't really hold any locks,
-+		 *  but instead has exclusive access by virtue of all other accesses requiring
-+		 *  holding the runtime pm wakeref.
-+		 */
-+		spinlock_t vram_userfault_lock;
-+
-+		/*
-+		 *  Keep list of userfaulted gem obj, which require to release their
-+		 *  mmap mappings at runtime suspend path.
-+		 */
-+		struct list_head vram_userfault_list;
-+
-+		bool vram_userfault_ongoing;
- 	} mem_access;
- 
- 	/** @d3cold: Encapsulate d3cold related stuff */
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 0f06d8304e17..51cde1db930e 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -172,6 +172,8 @@ void xe_pm_init(struct xe_device *xe)
- 	}
- 
- 	xe_pm_runtime_init(xe);
-+	INIT_LIST_HEAD(&xe->mem_access.vram_userfault_list);
-+	spin_lock_init(&xe->mem_access.vram_userfault_lock);
- }
- 
- void xe_pm_runtime_fini(struct xe_device *xe)
-@@ -205,6 +207,7 @@ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe)
- 
- int xe_pm_runtime_suspend(struct xe_device *xe)
- {
-+	struct xe_bo *bo, *on;
- 	struct xe_gt *gt;
- 	u8 id;
- 	int err = 0;
-@@ -238,6 +241,10 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
- 	 */
- 	lock_map_acquire(&xe_device_mem_access_lockdep_map);
- 
-+	list_for_each_entry_safe(bo, on,
-+				 &xe->mem_access.vram_userfault_list, vram_userfault_link)
-+		xe_bo_runtime_pm_release_mmap_offset(bo);
-+
- 	if (xe->d3cold.allowed) {
- 		err = xe_bo_evict_all(xe);
- 		if (err)
--- 
-2.25.1
-
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc.c    | 17 +++++++++++++++++
+>  drivers/gpu/drm/xe/xe_guc_pc.c |  8 +-------
+>  drivers/gpu/drm/xe/xe_guc_pc.h |  1 +
+>  drivers/gpu/drm/xe/xe_uc.c     |  5 +++++
+>  drivers/gpu/drm/xe/xe_uc.h     |  1 +
+>  5 files changed, 25 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index e102637c0695..3cea4323113f 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -5,6 +5,8 @@
+>  
+>  #include "xe_guc.h"
+>  
+> +#include <drm/drm_managed.h>
+> +
+>  #include "generated/xe_wa_oob.h"
+>  #include "regs/xe_gt_regs.h"
+>  #include "regs/xe_guc_regs.h"
+> @@ -20,6 +22,7 @@
+>  #include "xe_guc_submit.h"
+>  #include "xe_mmio.h"
+>  #include "xe_platform_types.h"
+> +#include "xe_uc.h"
+>  #include "xe_uc_fw.h"
+>  #include "xe_wa.h"
+>  #include "xe_wopcm.h"
+> @@ -217,6 +220,16 @@ static void guc_write_params(struct xe_guc *guc)
+>  		xe_mmio_write32(gt, SOFT_SCRATCH(1 + i), guc->params[i]);
+>  }
+>  
+> +static void guc_fini(struct drm_device *drm, void *arg)
+> +{
+> +	struct xe_guc *guc = arg;
+> +
+> +	xe_force_wake_get(gt_to_fw(guc_to_gt(guc)), XE_FORCEWAKE_ALL);
+> +	xe_guc_pc_fini(&guc->pc);
+> +	xe_uc_fini_hw(&guc_to_gt(guc)->uc);
+> +	xe_force_wake_put(gt_to_fw(guc_to_gt(guc)), XE_FORCEWAKE_ALL);
+> +}
+> +
+>  int xe_guc_init(struct xe_guc *guc)
+>  {
+>  	struct xe_device *xe = guc_to_xe(guc);
+> @@ -244,6 +257,10 @@ int xe_guc_init(struct xe_guc *guc)
+>  	if (ret)
+>  		goto out;
+>  
+> +	ret = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, guc_fini, guc);
+> +	if (ret)
+> +		return ret;
+> +
+>  	guc_init_params(guc);
+>  
+>  	if (xe_gt_is_media_type(gt))
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index c03bb58e7049..87de1ce40e07 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -884,10 +884,8 @@ int xe_guc_pc_stop(struct xe_guc_pc *pc)
+>  	return ret;
+>  }
+>  
+> -static void pc_fini(struct drm_device *drm, void *arg)
+> +void xe_guc_pc_fini(struct xe_guc_pc *pc)
+>  {
+> -	struct xe_guc_pc *pc = arg;
+> -
+>  	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
+>  	XE_WARN_ON(xe_guc_pc_stop(pc));
+>  	sysfs_remove_files(pc_to_gt(pc)->sysfs, pc_attrs);
+> @@ -925,9 +923,5 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+>  	if (err)
+>  		return err;
+>  
+> -	err = drmm_add_action_or_reset(&xe->drm, pc_fini, pc);
+> -	if (err)
+> -		return err;
+> -
+>  	return 0;
+>  }
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
+> index 81833a53b3c9..43ea582545b5 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.h
+> @@ -9,6 +9,7 @@
+>  #include "xe_guc_pc_types.h"
+>  
+>  int xe_guc_pc_init(struct xe_guc_pc *pc);
+> +void xe_guc_pc_fini(struct xe_guc_pc *pc);
+>  int xe_guc_pc_start(struct xe_guc_pc *pc);
+>  int xe_guc_pc_stop(struct xe_guc_pc *pc);
+>  int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc);
+> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+> index addd6f2681b9..9c8ce504f4da 100644
+> --- a/drivers/gpu/drm/xe/xe_uc.c
+> +++ b/drivers/gpu/drm/xe/xe_uc.c
+> @@ -167,6 +167,11 @@ int xe_uc_init_hw(struct xe_uc *uc)
+>  	return 0;
+>  }
+>  
+> +int xe_uc_fini_hw(struct xe_uc *uc)
+> +{
+> +	return xe_uc_sanitize_reset(uc);
+> +}
+> +
+>  int xe_uc_reset_prepare(struct xe_uc *uc)
+>  {
+>  	/* GuC submission not enabled, nothing to do */
+> diff --git a/drivers/gpu/drm/xe/xe_uc.h b/drivers/gpu/drm/xe/xe_uc.h
+> index 42219b361df5..4109ae7028af 100644
+> --- a/drivers/gpu/drm/xe/xe_uc.h
+> +++ b/drivers/gpu/drm/xe/xe_uc.h
+> @@ -12,6 +12,7 @@ int xe_uc_init(struct xe_uc *uc);
+>  int xe_uc_init_hwconfig(struct xe_uc *uc);
+>  int xe_uc_init_post_hwconfig(struct xe_uc *uc);
+>  int xe_uc_init_hw(struct xe_uc *uc);
+> +int xe_uc_fini_hw(struct xe_uc *uc);
+>  void xe_uc_gucrc_disable(struct xe_uc *uc);
+>  int xe_uc_reset_prepare(struct xe_uc *uc);
+>  void xe_uc_stop_prepare(struct xe_uc *uc);
+> -- 
+> 2.41.0
+> 
