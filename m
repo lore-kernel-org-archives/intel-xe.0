@@ -4,120 +4,151 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD96CC3DA6F
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Aug 2023 13:46:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C8588C3DA6F
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Aug 2023 17:06:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A77EB10E69D;
-	Fri, 25 Aug 2023 13:46:02 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on20600.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7eae::600])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CBAC310E69C;
- Fri, 25 Aug 2023 13:46:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6CC7C10E0F7;
+	Fri, 25 Aug 2023 17:06:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40F9510E0F7
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Aug 2023 17:06:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1692983179; x=1724519179;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=sWeDdXui5boHzpL+4OZJNdXmdY7MYeNyGTv7BxHzfqA=;
+ b=CjPQsmYUKtBUCU7SGalt1I03bEWsOXF39VOn20he5lRnX17SxNo6eTMA
+ Nz3yKNGIkwWNGJ103rzxkppM94sbFvnTr/9ZyANycTfvbHYgACIDT6UrM
+ Do2uxeSJHtWzZo1r6Hk3My91SGz7o82wYMI7Ejd5ipS7M+yL3cqD/eGCq
+ MLJ/Yve/ak/Mi6LOKEVn70k/pljeFTpyrnr1GiWHy/aQBE3TcDzas2RfQ
+ ElqFsb2DXcWFVQEfWtouuKZZGt8pDz+M3vVv12moMr/vy1/RLzJ87Pypq
+ 5BpUoBnn6jxcumB4gR4wR1oKvqt08hPVAz0uuZ/Ol7YORIP5pHs6FeN3k Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="378539324"
+X-IronPort-AV: E=Sophos;i="6.02,201,1688454000"; d="scan'208";a="378539324"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2023 10:06:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="731119215"
+X-IronPort-AV: E=Sophos;i="6.02,201,1688454000"; d="scan'208";a="731119215"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga007.jf.intel.com with ESMTP; 25 Aug 2023 10:06:13 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Fri, 25 Aug 2023 10:06:12 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Fri, 25 Aug 2023 10:06:11 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Fri, 25 Aug 2023 10:06:11 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Fri, 25 Aug 2023 10:06:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J/lKYkDnBeA5rOY8LkaDYqUUs/SR4Wkfdm+/bZP8AlQN45VwOIxJ1xH7cKp7gDgoAUNByDKZVHyotPN4DVtH3gUwMZEft5Zh0DywT/qMuK4HaRnbXv/5Ku/TR4jaJr6oyHpEzPV4N5Z+y6w3Jb1f/sO5+WwgLGhQMMne5obDE1tP8SYj99nmyuxVmAew+x4kF9fjGh6wR2Nba5xuFsBS1bu50qGN+WoOVyLDloMkvn7u8JyE/q81RY661mc8sRqtWvRdiBvLXZi9bLi9fnSHp6v8rBbUi/qcoI+wHtTTwF4nAsZupVFUj0WQs4Hy0ugiA/9gsEfkaOpXyEeon12xCg==
+ b=RY1eBWUN4MhpfocZzGYZ5+O1vPS93LKWcGHP1k+dNfS0GowVhJj2ogNKINmBzCTNqkqBdhQ3KSxbrix3/DZ1a1qJqaICC59KPdXihc3WTVBH/G5aWg5/yfM356TIVLvkH7Th+75CNcwAudXhVzH5Pim7C+XJiLS0E+yzaZaPc9Rbt/622MSxe1RTJUSt68mf4p/wsLzNLtsCwweIyOwwHTUY+eRuKJNV0Cjovupj5xTUNfsb08yB3efC0lhEnIjskrDo7iZJz/lVOMwBy6xSArimcl3jjz0W0DMyouz6Gt2SIv1lM23EoATMwj5kmqx0tJApbdpQhE/IbU93lSFY3A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4j4hqLQohh58UmhpZEK7xmBLvtXZ5Iu9nUxU+g2a2OI=;
- b=JPgNsI77VbG8RjUkPwXpIam7JTj0yIwHmYWGLGl+r6Ar9Zh6zvShaXDMNmGDrC5NW/0HMS0WISEavFeI4NQHZPo3zFmEH/5NbORqO3csuidoXxD87cwiYTkCSOef94oCG9lNqBOENobPEaSXzIQ30hkpwc5j4MBi46qdtw4mMKCqmqcqMut9qzx7hcVf7/eyNAhDVJ0KbmGHBoC/EAHpVMrd4fmczbPhr1wIhegbEDbExyO+QS6dgMuezjzbAYsIeoqPqhN1girIvkwiv11jRWm/TEPcCZ25bVdiUNvELxB2ged1nc7l9z0FTllh4hJgwYVeF9HBg1eSNwADfW/5rQ==
+ bh=7uQvOxqHdvFSq+uxEQTSIDqafCR9zwFRDtb/2wEx1NE=;
+ b=MedC0mkzOAv693iB4yyYRTfm3TMcL0i4v0UB0XktNexhUGijCNYk2qESNYQUWLhiZZlF6k3a/s0y6qAHGSpuoJobzLHLPb7BSlrQObLSfExE6MDYSeSRUG5df1nffEsaEseextxIpStUQzmjf4KT/cjnjxOq59y0erIf0Tmxny0xpejeThz27foPVfB3Z5nlngPsMbq9f9MF/m9p1QADVu9Hox5J8XOrnIe9OoK9cmsn5tzSOom8gIksn21iwff+otTErEd09/kUpzy8YShq1BOMn1ppJu1rMt1LrGnOeL5cD5Yqpghf6MU1EXFnkfE8BxMb6bop4IPXV0Ih5bT2zQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4j4hqLQohh58UmhpZEK7xmBLvtXZ5Iu9nUxU+g2a2OI=;
- b=Pjr17AjFJv1+grnYQ2pT1epFgZFO+FrCShBkf7KdmXvEgx48es5EAmt605H7u472RmixH/Qeq12x6qCJz+xa/6gK3FxFi3rj28ChMgF+d6KMOAFx9YQ/827FZCLTDu3uE+YlxibPcyD4vNwjEC8/G9BTOrWdAXmgRC4CEDXE1+g=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by SJ1PR12MB6340.namprd12.prod.outlook.com (2603:10b6:a03:453::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.27; Fri, 25 Aug
- 2023 13:45:57 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::3d:c14:667a:1c81]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::3d:c14:667a:1c81%4]) with mapi id 15.20.6699.028; Fri, 25 Aug 2023
- 13:45:57 +0000
-Message-ID: <ee56b9ee-36c7-5935-c319-c8d1ad412c7c@amd.com>
-Date: Fri, 25 Aug 2023 15:45:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM8PR11MB5624.namprd11.prod.outlook.com (2603:10b6:8:35::16) by
+ BN9PR11MB5387.namprd11.prod.outlook.com (2603:10b6:408:11c::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.29; Fri, 25 Aug
+ 2023 17:06:08 +0000
+Received: from DM8PR11MB5624.namprd11.prod.outlook.com
+ ([fe80::b9a3:5861:febd:8ecd]) by DM8PR11MB5624.namprd11.prod.outlook.com
+ ([fe80::b9a3:5861:febd:8ecd%6]) with mapi id 15.20.6699.027; Fri, 25 Aug 2023
+ 17:06:07 +0000
+Message-ID: <33e816c1-e99c-62ec-9266-f0e827e08a12@intel.com>
+Date: Fri, 25 Aug 2023 22:35:58 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.14.0
+To: Matthew Auld <matthew.william.auld@gmail.com>
+References: <20230821144504.236122-1-ravi.kumar.vodapalli@intel.com>
+ <CAM0jSHPpezh52jzkON3H1_MGfP-Q152Jb5p-vBBJThdtEdWpdQ@mail.gmail.com>
+ <CAM0jSHOWtqjcwP1CFyq5_E6=-m1OVEk8TCK+8w9G5AS6ef5gTw@mail.gmail.com>
 Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20230811023137.659037-1-matthew.brost@intel.com>
- <20230811023137.659037-5-matthew.brost@intel.com> <ZOfh6o2EaGuIqZVe@pollux>
- <ZOgYu1fZQUHeneJC@DUT025-TGLU.fm.intel.com>
- <6ae84066-b690-1562-0598-4694b022c960@amd.com>
- <ZOiuWcFDImBvJtnO@DUT025-TGLU.fm.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <ZOiuWcFDImBvJtnO@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: "Vodapalli, Ravi Kumar" <ravi.kumar.vodapalli@intel.com>
+In-Reply-To: <CAM0jSHOWtqjcwP1CFyq5_E6=-m1OVEk8TCK+8w9G5AS6ef5gTw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0107.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:a8::20) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+X-ClientProxiedBy: PN3PR01CA0022.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:97::23) To DM8PR11MB5624.namprd11.prod.outlook.com
+ (2603:10b6:8:35::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|SJ1PR12MB6340:EE_
-X-MS-Office365-Filtering-Correlation-Id: 75e20bb3-a8b7-4c7d-d3a5-08dba5719c0a
+X-MS-TrafficTypeDiagnostic: DM8PR11MB5624:EE_|BN9PR11MB5387:EE_
+X-MS-Office365-Filtering-Correlation-Id: 07e9bdda-05c7-4ae8-9655-08dba58d92d5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eg7Fv8V2jQqZ0e5teOJSNXaYzOTBCm7TIYVmAGg/VByyaGZxkYttc8CktoRZ0NzpUL2r5H39maDTNTaaFH6gjECXSpBLYRyvU9Mf5uYTt68IHOZ+cHG+JHUC0wR8ouImn1BeznfJ93xYLmoPHzSwxqnMQdNwurtthZ5LQ+r3df+3Bzi+fZ8ojpPjrK55SMY9l6Ot/amwUMQsriW3Fgr4bDkHrwV+/N3ZeIrmWWF78VvwhkqR5JLTSAl9iKBjjKbt7Vmihp9OFwG9dmqYIfvupM0TyOfMlIWOpy+XO3DjEX7cJVy44RbWmXPdCG7ImSwAIVyXL/HFymPIrYQGrDyKZtYMflQS1kpTHiaflQsQekv4ZkiGgUDddeO+ijzmEv5zfsnvuE1ktGWqOk2LqXcRs4r6r5HaiBNl1tiC4CCrIylUw/OFiFDbDGEfkAgLTWZnAsTBztUxDOzMjyhXFZiTBM2j5nGXH7edMl9Q7V8d/h1/yzmCs2slQfl82J53BwqaQuG5PXo+ECg1taATnW8vcF3C1/Nh2ghApXul+NbzmvKdkwiHB8p4pWm9tKAM8YV7iTT+6qNt0ty9pVFGRl1+6nRUDBmYTGzp4UFBJ9O8Lg20jMyz5LZ0BPSlxHrgxY4++iYKYDo1HHlMXZXG/wsMSA==
+X-Microsoft-Antispam-Message-Info: kmZ1C1K/PsufEGPxanLY9ojrI4UvP3Op6okrSb63n0abJt/9XovfMvzNp/Lj0ZAfa8s1sWbRlvghxT45C1w8EHEm0nNpEX7alo0z535+qj0bY50r6xKvdN5IMs5y0NEwnNu80bfSu0EzlZJ7vR1JDJ4s7Nt4lvX2B3/2YcT5csmZq4X2XLiOn7pv7oyb56kZaocEcsfB8gXXvbbWJMyW3S5Ajdy8tVEhEFbH+X2uBoXjgjNyXxwGvA37xXCkLJi7CgkD9d2qmDFOWttpJLBOR1t8P74msePr+9hdyBZmfV+7FhSbNdhoPAj8A++W0ZyCYbmKZ6xo/6dNHNFAvHmt6U5WrualpFLIuc1sNhD4GQVUMr22uZjXbQ1Gn3k/rTRk7XT4V14L6bOyLbxcPIrpasQNoFz7oisP18ixHvxh4mqA+9q1PZdtMjFh5G2QY2EQpyYKJWLP6RcJfbJxJZKDOkF2Dt99FSoT8/4vRXeedIFMsWohxfEkOJvlZy+UdXEkyN3EYeqbCZcJ+6kKHJmLzPVpTk/33RzbaEOmHH50R6/aiSdkBpkd3jQ5c6jgPRla7mgucz18s+svaPvkR+cfI6v7uCENrVs8hoJaPdMk9DszMN6KLrtv2WuluDv4/hv9rCTBxZ+3fkk1IX+HcWb15w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(366004)(39860400002)(396003)(136003)(346002)(186009)(1800799009)(451199024)(2616005)(5660300002)(8936002)(8676002)(4326008)(30864003)(36756003)(66574015)(83380400001)(7416002)(26005)(6666004)(38100700002)(66556008)(6512007)(66946007)(66476007)(6506007)(6916009)(316002)(478600001)(31686004)(41300700001)(2906002)(86362001)(6486002)(31696002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5624.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(39860400002)(376002)(396003)(136003)(346002)(451199024)(1800799009)(186009)(82960400001)(38100700002)(8676002)(4326008)(8936002)(31696002)(41300700001)(6506007)(6486002)(53546011)(316002)(6666004)(36756003)(66946007)(6916009)(66476007)(66556008)(86362001)(6512007)(26005)(478600001)(83380400001)(31686004)(2906002)(30864003)(2616005)(107886003)(5660300002)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bkhSekpZSFI2aGFZcUpPSGRLUGZ1TlFQUC81MHJROWUrZUtVWWhRc0VRUk9Q?=
- =?utf-8?B?dytWZCtURitid2tWMUxFa0lvcEt4YVZiWkVFMEFSb1YrWm92NmtBbjE5UDBB?=
- =?utf-8?B?Q0ZlaFBmdVFLQ2RyWFk4WkNuaEFJZDhuOWVDQW5jbUJ2MWwvMjRwc1BtaXVC?=
- =?utf-8?B?RWtmVUtOTTFGVG5nRlRad0xIeEhlUDhRb1IvWm5BTExIdjdJdkk2YUxnVlNX?=
- =?utf-8?B?elZ5cHZRZ1lnS3M2Y1JVVFlscW1LWnBkajNuUU9TZHpyU0gzRk9nQ3Q4YVhx?=
- =?utf-8?B?YnpuenpXdUdhWGxpRUNKU2Z5bXhiRVB4WHcrSyt3cHNvbjd3bHlJcjVaRW1D?=
- =?utf-8?B?d0kzSGhmNEJBWktxdXpkWWNTRWxhZ3BQK3VZYkY5STdxUWtQVkczcVJPenhC?=
- =?utf-8?B?bXkzMFgwVHBKaWFkMWlRaWRIc1hjRERFaFZpL1JIRGxvL254NFdJbm1XOXBK?=
- =?utf-8?B?R2tnVG5JQy9nRklwc2VpQWVnT3VvZGNUU0xvTERNNnkwb2xuM1J4bE80ZW5I?=
- =?utf-8?B?UXdEVGtBL2o2OUhQemo0bmhQRUpRUWxEUExha1J0Y1g5QTYrc254Vk9UYnds?=
- =?utf-8?B?YUFudzZLb09admhhYzVrMkxTcWxxSm1HM1JOY0R4akp0SEVGb2hkQ3BKZStG?=
- =?utf-8?B?QlJKOE1LM3A3NzFyZ0hGWVpkNXZZWmI4b3dpSG93K2h2WFRDS20rekFzTWM0?=
- =?utf-8?B?Ry9QdE5UQmJ3L2l5dHk2UGNxOXQ1VXAxYmxla2NOblRUcGpOdmxGa3FPZGYw?=
- =?utf-8?B?RVlCelBKK2J4cnp3cCtHVW15SW9WTXFvTXJYbEl0R3lwdS9wLzVFWHE4Mjlu?=
- =?utf-8?B?anp1RzRVS1pGODlWTkZzRDRYazdYdE1MeitsWDdKd0Z2KzhyZDBxcmRKTnVI?=
- =?utf-8?B?MzlMVTVpY1Qwd1ZxbW9wa1M4cWUzMUJBNkhlWWdtMGZ1Nmk5N1dKMUs4M0N3?=
- =?utf-8?B?M0lENUxPV0RHa1ZNTnFVZi9IQW1FcFZETExXbGEwckk1SkFiRCt5SWJkTTY0?=
- =?utf-8?B?c284UUZ1OUZ4QmZrVVZPNmQrWWxDcFVxMWlWeklSSDg4ZlB2Tm1abmowa2Ru?=
- =?utf-8?B?ck9mWlpxd0lQbWxiQXFXOUFJVHhDZ0RjajEvTU5mQ0JIV1htWWhPdTVwUEVJ?=
- =?utf-8?B?SmNIempvWi9pSGQxTUlJckJvN0Y5c0pkcXJWNFFCbVpHRUVlcDlQOUpLQXha?=
- =?utf-8?B?UDkzUXpnQkt0WWpxVUUyVDZtSDRsZHpwNE55M1NzYjhoZko3YWFVK2NBcWVL?=
- =?utf-8?B?Mjh0Mk50TDNPcnBTOUdJSjhmUStiZTY5NlZNTkxyaXQzWW4ybk1HOVFDRXRy?=
- =?utf-8?B?dW1iUjZTSmVWWU9FVWF1RHhqU3RrVk92MXVZQ0xSQzFDVVI0QkFwQUNTMXhD?=
- =?utf-8?B?bms4RE9zQ2RSUVlVYUhaSjlqbit6L3JhZzBsdHNSVUNXOUszNTYrYXpwMXkx?=
- =?utf-8?B?SVppN1pOVCtENytHN2M3Z3k5ZVJzK0Z6QzcxRjBBQlIyWEIzNG53SmFyc2Rq?=
- =?utf-8?B?cVJxVFE4RE54U0JhM3E4MlM5ZlFFNVFSVWttUWkyL3ZWOTZhSitLMFlac1Qy?=
- =?utf-8?B?aDJpS3RKTXFpTi9POEJRODdxZjFNaEEwRk5Sa3NCRXRaUGUxaXhVZlRFczkx?=
- =?utf-8?B?MjRQTHNWUmVTMW1SNzBINE81UE1oMUhZTVozMmVvTVFPNzA5Q2kwSyttdGpp?=
- =?utf-8?B?OGFib1FhczhHRkk3UDQweitkWStMRXQ3NGdTWXBuMmIzMVpkazdSVlg5eE5H?=
- =?utf-8?B?YXFGc3dMQ1MrTXZ4TnpxYW80UUVwcHlUd0V4ci91a0hqSGFpWDBPb0x0Q2xG?=
- =?utf-8?B?RFdXNVpoRkdRaDdHTTdXS2x2akg5WXVOVFllandJQjhwQWtWRjVFRVByb3Bl?=
- =?utf-8?B?WkhtdVdDalNJeU96dEdVYW1ueHFDbWNubXNPUStrby9USUI0R252VUEzNHN1?=
- =?utf-8?B?QnAzNDFFaWxSZFBPV0o5Y0hUOGx4Q3ZZQUMyS2NhSDNTcUVFb2ZwSmFMZjk4?=
- =?utf-8?B?dUtyaktNWE05WndObmg2ZWFXT1grUFJjbXcvYW5xUUptTndyZ203SStScHpz?=
- =?utf-8?B?YWJjQ3RrcW81N1hVYkZJMFBucEpPK2FGVnpOUFpVN05VdGJoRUNjekVnWSsw?=
- =?utf-8?Q?F1Wl1eVsML9q9NsqFrp6qm0io?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 75e20bb3-a8b7-4c7d-d3a5-08dba5719c0a
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bWJrK0U1TUpoM3hUYm9yOGdPZ2hMamwyZzAzVktNMWNLOS9YVm90SXV3aVgw?=
+ =?utf-8?B?a0o1cHZ5aXlIMUcwT0x4SVVTOTdrTVFQS3ZUcXdBME9tNXRJQlpwSXQ5bUNV?=
+ =?utf-8?B?WU0yYm0vbkplS29TRzVvUjIwY1YrZmhPZVVwUmVDY2NUMlhKaWZGV0hJWG5v?=
+ =?utf-8?B?TDQ2RjZPMWN5dXZacUN3ZXVIRWNxeFhTQU1FUUZCdW1xRnc1TW5iVlVTcWp1?=
+ =?utf-8?B?SEU0Zm90Ky9qbHUzSnY5M0lzamNYTFdnZURScGMxalAzcUpVL0FZOWVsektT?=
+ =?utf-8?B?YUNBUmZIdkVVeW1zayticUJyVFJiejJ1L0lycUx0VEo3YlY2U2sweE1lTzBZ?=
+ =?utf-8?B?MlNQbXRFcDRjaXRscTIzUmxWa1RxajZiVDRZZHJMS2Zzd1VpRU5OZDhGUVF2?=
+ =?utf-8?B?TTc0S0l4SFUzRE5CNTBEbitqN2hmb2M5a1JQN2xHUm8yUTlmakE3ME9rTCta?=
+ =?utf-8?B?b3hvdjhUWloxTWdaTUJITTh4RmxIcC9ITWE4SW5mbFRxWTlxdncyYi80eXBU?=
+ =?utf-8?B?d3Rrc2V3LzQ2dlMvQ3JLY25WbVlyZW0wTEQ2VlJEUXJsYzdFTlJqT2p6VHdQ?=
+ =?utf-8?B?TW9UR3Ztd1ptL2xzcGRvdC9GZmRscW9wcW1tQkJHMDRMOHd0L2VHVUIwc0hm?=
+ =?utf-8?B?eHlIZjNydHhyK0ZlWEtQMFdDUERtV2lFZHlqRERDWjVPS0hFTkU3M05UcWlk?=
+ =?utf-8?B?eDVtU293cTczb2lzRDMyWS9ZeC9TTEt4SnlKanlBQnZDTkZxWVFTRXA3VTlS?=
+ =?utf-8?B?YnlBWStsQmtHcnRYTDR1QTVSbm0xRElLbHZxZDYvcDR6WVdKaGRGNjNsMkMr?=
+ =?utf-8?B?UFVvTHh4QnhNOTR3MFF2c3hldExVTTV5RThaU1hOMjBZU3d2Y1ZMbkJpRDZu?=
+ =?utf-8?B?dVRwRGtCRTRNc2JDOFB5L0s1WGw3MDlWcUlmMzB1cXduOVN4OVc5eGV1dlRO?=
+ =?utf-8?B?UXNTaVRDWWVmQm41azN6TWFWeTdzTExKNkxMbjZyLzRXOStERFdEUVNlSTJE?=
+ =?utf-8?B?VXVsRGxVZXJwQmhDNUNiVjJMSkN4N1BsVHlPclBBbVNPN2s3YklSOTNTZkRW?=
+ =?utf-8?B?NGJKc05RSWZuZ1FSM21hMUdWR21nTDhkMVo2eUtaVExEQUR5YmxXSFBMejZC?=
+ =?utf-8?B?RFUxZEIxM05mTElyc3BIOTU5SHAxNUt5eWN5bDVQWjV1cVRQWnQ0ZzQ5aGM3?=
+ =?utf-8?B?R2RCNXo4Um5LMFZKSStlejZqUTl6OWU2c0VZTjZlT3BLMXZBMmk5bmVWRmZm?=
+ =?utf-8?B?UGdiTjJMWk5rd2RvSXV1cVB1eXFPM05MQklEeVQ3Qnp4d1QvbWx0MzZUMFYv?=
+ =?utf-8?B?cWxYekdUa1RiMmhQejhLcittWk1IT2lLQkR3M290allhYzczYXRqeFAySEp1?=
+ =?utf-8?B?UHd2cnZSRHR4ejY1N1FpSWtVVU10VWdJcEpKMzdUMHdIN2Fld1VjZDRQK2k0?=
+ =?utf-8?B?QitSbTBIVlFMUDN4VnhHZEFlV3RsZXVoNXNINVBqSVVJMUhuZDZ3aVFaT0hQ?=
+ =?utf-8?B?a3E2Y1VwekczQXVyZ0gvaW9VQnNEejQ1Rm8yblJON3ExVC8zZDgyeWJxQktG?=
+ =?utf-8?B?SllQbWw1OVNUN2lzOCszK0hjZmphWUF5YzluajJtM3hkeXZyNXhqaVlFc0J2?=
+ =?utf-8?B?azRhcEYxYzRPNlRZb3dVd0RIM0VkZENwb0xHSHY3dVBiR1Q5cFJsRTM2VnpS?=
+ =?utf-8?B?QnM3MTNtWS9mdG1jaUl1VGFReDh6WlFZSWhuYVlPeHBrUktwclhSc3pFc241?=
+ =?utf-8?B?MDNRS3pJSytlSmhnN0p1blZEQWxObmJvL1BOcUkyeUs0Y0VrVGVrUzBkM2ls?=
+ =?utf-8?B?Y0J1bHMvekR0a0Y0UHNPQVJaSXVkSVUrV2JLTzlyOTlQWFBaNHNRTER3MzhZ?=
+ =?utf-8?B?NENTSVVmdGs2SVdkQVdUOVVoU3R0cTYrd01sa3dXUTRwbmxkTGZ2L2ppbW9T?=
+ =?utf-8?B?TlZ3YmhHOFBUYmhucW9TWGpmWVkrZXFHSlBXazBKc1pSQUljb2RndHhBRFJN?=
+ =?utf-8?B?MVJHeEYzTmN5cm1tcUxIaXBDVEVDWlh4dlNvRmQ0L0h1eE16YWpWT2NtR01J?=
+ =?utf-8?B?bmFyTDVhVkhBY25ZTzJ4NUxxcEtPeGFVSGsxdURLa3ZtVmllOHZnYkFPcnUr?=
+ =?utf-8?B?bkpoZTlPaDJGclF0ZkdQZVlGRDNOMjhScEpmNVhXdUVVNlozUkI4VjlsZFd4?=
+ =?utf-8?Q?JSOcpbLeJz75C+zWHFDQX5o=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 07e9bdda-05c7-4ae8-9655-08dba58d92d5
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5624.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2023 13:45:57.3075 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2023 17:06:07.9028 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: GzWKONt1aWJ5lQg+aPIZwhCSIuhmmj3hKHUbotg4ekRHHw5OESMRnbowrdfHj0Rm
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6340
-Subject: Re: [Intel-xe] [PATCH v2 4/9] drm/sched: Split free_job into own
- work item
+X-MS-Exchange-CrossTenant-UserPrincipalName: I1VWPJPELgCQ6sxS2702YyIVvGOPqLHI0VUVpEC1gVVZUy3hX23TNrP/MGPoEe++XOqygMRVkgL+LKoTH/jzBMhorRIy6pDkZpA5eTyguX4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5387
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Add support for PAT encoding in PTE
+ and PDE
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -129,426 +160,461 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
- luben.tuikov@amd.com, Danilo Krummrich <dakr@redhat.com>,
- donald.robson@imgtec.com, boris.brezillon@collabora.com,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: lucas.demarchi@intel.com, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 25.08.23 um 15:36 schrieb Matthew Brost:
-> On Fri, Aug 25, 2023 at 10:02:32AM +0200, Christian König wrote:
->> Am 25.08.23 um 04:58 schrieb Matthew Brost:
->>> On Fri, Aug 25, 2023 at 01:04:10AM +0200, Danilo Krummrich wrote:
->>>> On Thu, Aug 10, 2023 at 07:31:32PM -0700, Matthew Brost wrote:
->>>>> Rather than call free_job and run_job in same work item have a dedicated
->>>>> work item for each. This aligns with the design and intended use of work
->>>>> queues.
->>>>>
->>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>>> ---
->>>>>    drivers/gpu/drm/scheduler/sched_main.c | 137 ++++++++++++++++++-------
->>>>>    include/drm/gpu_scheduler.h            |   8 +-
->>>>>    2 files changed, 106 insertions(+), 39 deletions(-)
->>>>>
->>>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
->>>>> index cede47afc800..b67469eac179 100644
->>>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
->>>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->>>>> @@ -213,11 +213,12 @@ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
->>>>>     * drm_sched_rq_select_entity_rr - Select an entity which could provide a job to run
->>>>>     *
->>>>>     * @rq: scheduler run queue to check.
->>>>> + * @dequeue: dequeue selected entity
->>>>>     *
->>>>>     * Try to find a ready entity, returns NULL if none found.
->>>>>     */
->>>>>    static struct drm_sched_entity *
->>>>> -drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
->>>>> +drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq, bool dequeue)
->>>>>    {
->>>>>    	struct drm_sched_entity *entity;
->>>>> @@ -227,8 +228,10 @@ drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
->>>>>    	if (entity) {
->>>>>    		list_for_each_entry_continue(entity, &rq->entities, list) {
->>>>>    			if (drm_sched_entity_is_ready(entity)) {
->>>>> -				rq->current_entity = entity;
->>>>> -				reinit_completion(&entity->entity_idle);
->>>>> +				if (dequeue) {
->>>>> +					rq->current_entity = entity;
->>>>> +					reinit_completion(&entity->entity_idle);
->>>>> +				}
->>>>>    				spin_unlock(&rq->lock);
->>>>>    				return entity;
->>>>>    			}
->>>>> @@ -238,8 +241,10 @@ drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
->>>>>    	list_for_each_entry(entity, &rq->entities, list) {
->>>>>    		if (drm_sched_entity_is_ready(entity)) {
->>>>> -			rq->current_entity = entity;
->>>>> -			reinit_completion(&entity->entity_idle);
->>>>> +			if (dequeue) {
->>>>> +				rq->current_entity = entity;
->>>>> +				reinit_completion(&entity->entity_idle);
->>>>> +			}
->>>>>    			spin_unlock(&rq->lock);
->>>>>    			return entity;
->>>>>    		}
->>>>> @@ -257,11 +262,12 @@ drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
->>>>>     * drm_sched_rq_select_entity_fifo - Select an entity which provides a job to run
->>>>>     *
->>>>>     * @rq: scheduler run queue to check.
->>>>> + * @dequeue: dequeue selected entity
->>>>>     *
->>>>>     * Find oldest waiting ready entity, returns NULL if none found.
->>>>>     */
->>>>>    static struct drm_sched_entity *
->>>>> -drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
->>>>> +drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq, bool dequeue)
->>>>>    {
->>>>>    	struct rb_node *rb;
->>>>> @@ -271,8 +277,10 @@ drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
->>>>>    		entity = rb_entry(rb, struct drm_sched_entity, rb_tree_node);
->>>>>    		if (drm_sched_entity_is_ready(entity)) {
->>>>> -			rq->current_entity = entity;
->>>>> -			reinit_completion(&entity->entity_idle);
->>>>> +			if (dequeue) {
->>>>> +				rq->current_entity = entity;
->>>>> +				reinit_completion(&entity->entity_idle);
->>>>> +			}
->>>>>    			break;
->>>>>    		}
->>>>>    	}
->>>>> @@ -282,13 +290,54 @@ drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
->>>>>    }
->>>>>    /**
->>>>> - * drm_sched_submit_queue - scheduler queue submission
->>>>> + * drm_sched_run_job_queue - queue job submission
->>>>>     * @sched: scheduler instance
->>>>>     */
->>>>> -static void drm_sched_submit_queue(struct drm_gpu_scheduler *sched)
->>>>> +static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sched)
->>>>>    {
->>>>>    	if (!READ_ONCE(sched->pause_submit))
->>>>> -		queue_work(sched->submit_wq, &sched->work_submit);
->>>>> +		queue_work(sched->submit_wq, &sched->work_run_job);
->>>>> +}
->>>>> +
->>>>> +static struct drm_sched_entity *
->>>>> +drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequeue);
->>>>> +
->>>>> +/**
->>>>> + * drm_sched_run_job_queue_if_ready - queue job submission if ready
->>>>> + * @sched: scheduler instance
->>>>> + */
->>>>> +static void drm_sched_run_job_queue_if_ready(struct drm_gpu_scheduler *sched)
->>>>> +{
->>>>> +	if (drm_sched_select_entity(sched, false))
->>>>> +		drm_sched_run_job_queue(sched);
->>>>> +}
->>>>> +
->>>>> +/**
->>>>> + * drm_sched_free_job_queue - queue free job
->>>>> + *
->>>>> + * @sched: scheduler instance to queue free job
->>>>> + */
->>>>> +static void drm_sched_free_job_queue(struct drm_gpu_scheduler *sched)
->>>>> +{
->>>>> +	if (!READ_ONCE(sched->pause_submit))
->>>>> +		queue_work(sched->submit_wq, &sched->work_free_job);
->>>>> +}
->>>>> +
->>>>> +/**
->>>>> + * drm_sched_free_job_queue_if_ready - queue free job if ready
->>>>> + *
->>>>> + * @sched: scheduler instance to queue free job
->>>>> + */
->>>>> +static void drm_sched_free_job_queue_if_ready(struct drm_gpu_scheduler *sched)
->>>>> +{
->>>>> +	struct drm_sched_job *job;
->>>>> +
->>>>> +	spin_lock(&sched->job_list_lock);
->>>>> +	job = list_first_entry_or_null(&sched->pending_list,
->>>>> +				       struct drm_sched_job, list);
->>>>> +	if (job && dma_fence_is_signaled(&job->s_fence->finished))
->>>>> +		drm_sched_free_job_queue(sched);
->>>>> +	spin_unlock(&sched->job_list_lock);
->>>>>    }
->>>>>    /**
->>>>> @@ -310,7 +359,7 @@ static void drm_sched_job_done(struct drm_sched_job *s_job, int result)
->>>>>    	dma_fence_get(&s_fence->finished);
->>>>>    	drm_sched_fence_finished(s_fence, result);
->>>>>    	dma_fence_put(&s_fence->finished);
->>>>> -	drm_sched_submit_queue(sched);
->>>>> +	drm_sched_free_job_queue(sched);
->>>>>    }
->>>>>    /**
->>>>> @@ -906,18 +955,19 @@ static bool drm_sched_can_queue(struct drm_gpu_scheduler *sched)
->>>>>    void drm_sched_wakeup_if_can_queue(struct drm_gpu_scheduler *sched)
->>>>>    {
->>>>>    	if (drm_sched_can_queue(sched))
->>>>> -		drm_sched_submit_queue(sched);
->>>>> +		drm_sched_run_job_queue(sched);
->>>>>    }
->>>>>    /**
->>>>>     * drm_sched_select_entity - Select next entity to process
->>>>>     *
->>>>>     * @sched: scheduler instance
->>>>> + * @dequeue: dequeue selected entity
->>>>>     *
->>>>>     * Returns the entity to process or NULL if none are found.
->>>>>     */
->>>>>    static struct drm_sched_entity *
->>>>> -drm_sched_select_entity(struct drm_gpu_scheduler *sched)
->>>>> +drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequeue)
->>>>>    {
->>>>>    	struct drm_sched_entity *entity;
->>>>>    	int i;
->>>>> @@ -935,8 +985,10 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
->>>>>    	/* Kernel run queue has higher priority than normal run queue*/
->>>>>    	for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
->>>>>    		entity = sched->sched_policy == DRM_SCHED_POLICY_FIFO ?
->>>>> -			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i]) :
->>>>> -			drm_sched_rq_select_entity_rr(&sched->sched_rq[i]);
->>>>> +			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i],
->>>>> +							dequeue) :
->>>>> +			drm_sched_rq_select_entity_rr(&sched->sched_rq[i],
->>>>> +						      dequeue);
->>>>>    		if (entity)
->>>>>    			break;
->>>>>    	}
->>>>> @@ -1024,30 +1076,44 @@ drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
->>>>>    EXPORT_SYMBOL(drm_sched_pick_best);
->>>>>    /**
->>>>> - * drm_sched_main - main scheduler thread
->>>>> + * drm_sched_free_job_work - worker to call free_job
->>>>>     *
->>>>> - * @param: scheduler instance
->>>>> + * @w: free job work
->>>>>     */
->>>>> -static void drm_sched_main(struct work_struct *w)
->>>>> +static void drm_sched_free_job_work(struct work_struct *w)
->>>>>    {
->>>>>    	struct drm_gpu_scheduler *sched =
->>>>> -		container_of(w, struct drm_gpu_scheduler, work_submit);
->>>>> -	struct drm_sched_entity *entity;
->>>>> +		container_of(w, struct drm_gpu_scheduler, work_free_job);
->>>>>    	struct drm_sched_job *cleanup_job;
->>>>> -	int r;
->>>>>    	if (READ_ONCE(sched->pause_submit))
->>>>>    		return;
->>>>>    	cleanup_job = drm_sched_get_cleanup_job(sched);
->>>> I tried this patch with Nouveau and found a race condition:
->>>>
->>>> In drm_sched_run_job_work() the job is added to the pending_list via
->>>> drm_sched_job_begin(), then the run_job() callback is called and the scheduled
->>>> fence is signaled.
->>>>
->>>> However, in parallel drm_sched_get_cleanup_job() might be called from
->>>> drm_sched_free_job_work(), which picks the first job from the pending_list and
->>>> for the next job on the pending_list sets the scheduled fence' timestamp field.
->> Well why can this happen in parallel? Either the work items are scheduled to
->> a single threaded work queue or you have protected the pending list with
->> some locks.
+
+
+On 8/24/2023 8:14 PM, Matthew Auld wrote:
+> On Thu, 24 Aug 2023 at 15:37, Matthew Auld
+> <matthew.william.auld@gmail.com> wrote:
+>> Hi,
 >>
-> Xe uses a single-threaded work queue, Nouveau does not (desired
-> behavior).
->
-> The list of pending jobs is protected by a lock (safe), the race is:
->
-> add job to pending list
-> run_job
-> signal scheduled fence
->
-> dequeue from pending list
-> free_job
-> update timestamp
->
-> Once a job is on the pending list its timestamp can be accessed which
-> can blow up if scheduled fence isn't signaled or more specifically unless
-> DMA_FENCE_FLAG_TIMESTAMP_BIT is set.
-
-Ah, that problem again. No that is actually quite harmless.
-
-You just need to double check if the DMA_FENCE_FLAG_TIMESTAMP_BIT is 
-already set and if it's not set don't do anything.
-
-Regards,
-Christian.
-
-
->   Logically it makes sense for the
-> job to be in the pending list before run_job and signal the scheduled
-> fence after run_job so I think we need to live with this race.
->
->> Just moving the free_job into a separate work item without such precautions
->> won't work because of quite a bunch of other reasons as well.
+>> I started adding the vm_bind + pat_index stuff on top of this. Just
+>> some comments below.
 >>
-> Yes, free_job might not be safe to run in parallel with run_job
-> depending on the driver vfuncs. Mention this in the cover letter.
->
-> Certainly this should be safe in the scheduler code though and I think
-> it will be after fixing this.
->
-> Matt
->
->>>> The job can be on the pending_list, but the scheduled fence might not yet be
->>>> signaled. The call to actually signal the fence will subsequently fault because
->>>> it will try to dereference the timestamp.
->>>>
->>>> I'm not sure what's the best way to fix this, maybe it's enough to re-order
->>>> signalling the scheduled fence and adding the job to the pending_list. Not sure
->>>> if this has other implications though.
->>>>
->>> We really want the job on the pending list before calling run_job.
+>> On Mon, 21 Aug 2023 at 15:43, Ravi Kumar Vodapalli
+>> <ravi.kumar.vodapalli@intel.com> wrote:
+>>> Different platforms has different PAT encoding in PTE and PDE format
+>>> of PPGTT and GGTT, add correct PAT encoding for
+>>> pre-Xe2 platforms (XELP, XEHPC, XELPG).
 >>>
->>> I'm thinking we just delete the updating of the timestamp, not sure why
->>> this is useful.
->> This is used for calculating how long each job has spend on the hw, so big
->> NAK to deleting this.
+>>> Bspec: 45101, 71582
+>>> Signed-off-by: Ravi Kumar Vodapalli <ravi.kumar.vodapalli@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_device.c       |  3 ++
+>>>   drivers/gpu/drm/xe/xe_device_types.h |  3 ++
+>>>   drivers/gpu/drm/xe/xe_ggtt.c         | 28 ++++++++++++++---
+>>>   drivers/gpu/drm/xe/xe_ggtt_types.h   |  7 +++++
+>>>   drivers/gpu/drm/xe/xe_pat.c          | 38 +++++++++++++++++++++-
+>>>   drivers/gpu/drm/xe/xe_pat.h          | 22 +++++++++++++
+>>>   drivers/gpu/drm/xe/xe_pt.c           | 31 +++++++-----------
+>>>   drivers/gpu/drm/xe/xe_pt_types.h     |  4 ++-
+>>>   drivers/gpu/drm/xe/xe_vm.c           | 47 ++++++++++++++++++++++++++++
+>>>   drivers/gpu/drm/xe/xe_vm_types.h     |  7 +++++
+>>>   10 files changed, 163 insertions(+), 27 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>>> index 766df07de979..e952bb2d021c 100644
+>>> --- a/drivers/gpu/drm/xe/xe_device.c
+>>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>>> @@ -25,6 +25,7 @@
+>>>   #include "xe_irq.h"
+>>>   #include "xe_mmio.h"
+>>>   #include "xe_module.h"
+>>> +#include "xe_pat.h"
+>>>   #include "xe_pcode.h"
+>>>   #include "xe_pm.h"
+>>>   #include "xe_query.h"
+>>> @@ -292,6 +293,8 @@ int xe_device_probe(struct xe_device *xe)
+>>>                          goto err_irq_shutdown;
+>>>          }
+>>>
+>>> +       xe_pte_pat_init(xe);
+>>> +
+>>>          err = xe_mmio_probe_vram(xe);
+>>>          if (err)
+>>>                  goto err_irq_shutdown;
+>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>>> index 303447c093c5..fda435ae5ef0 100644
+>>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>>> @@ -355,6 +355,9 @@ struct xe_device {
+>>>                  struct mutex lock;
+>>>          } d3cold;
+>>>
+>>> +       struct {
+>>> +               const u32 *pte_pat_table;
+>>> +       } pat_table;
+>>>          /**
+>>>           * @pm_callback_task: Track the active task that is running in either
+>>>           * the runtime_suspend or runtime_resume callbacks.
+>>> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+>>> index 3ce2dce844b9..209fa053d9fb 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+>>> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+>>> @@ -18,6 +18,7 @@
+>>>   #include "xe_gt_tlb_invalidation.h"
+>>>   #include "xe_map.h"
+>>>   #include "xe_mmio.h"
+>>> +#include "xe_pat.h"
+>>>   #include "xe_wopcm.h"
+>>>
+>>>   /* FIXME: Common file, preferably auto-gen */
+>>> @@ -30,6 +31,7 @@
+>>>   u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
+>>>   {
+>>>          struct xe_device *xe = xe_bo_device(bo);
+>>> +       struct xe_ggtt *ggtt = (bo->tile)->mem.ggtt;
+>> Why the extra brackets?
+for readability i have added
 >>
-> Ah, I see that AMDGPU uses this. Previously just checked the scheduler
-> code.
->
-> The below patch should work just fine then.
->
-> Matt
->
->> Regards,
->> Christian.
+>>>          u64 pte;
+>>>
+>>>          pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
+>>> @@ -38,11 +40,8 @@ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
+>>>          if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
+>>>                  pte |= XE_GGTT_PTE_DM;
+>>>
+>>> -       /* FIXME: vfunc + pass in caching rules */
+>>> -       if (xe->info.platform == XE_METEORLAKE) {
+>>> -               pte |= MTL_GGTT_PTE_PAT0;
+>>> -               pte |= MTL_GGTT_PTE_PAT1;
+>>> -       }
+>>> +       if ((ggtt->pat_encode).pte_encode)
+>> Ditto here. Also in a bunch of places below.
 >>
->>> Or we could do something like this where we try to update the timestamp,
->>> if we can't update the timestamp run_job worker will do it anyways.
+>>> +               pte = (ggtt->pat_encode).pte_encode(xe, pte, XE_CACHE_WB_1_WAY);
 >>>
->>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
->>> index 67e0fb6e7d18..54bd3e88f139 100644
->>> --- a/drivers/gpu/drm/scheduler/sched_main.c
->>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->>> @@ -1074,8 +1074,10 @@ drm_sched_get_cleanup_job(struct drm_gpu_scheduler *sched)
->>>                                                   typeof(*next), list);
+>>>          return pte;
+>>>   }
+>>> @@ -102,6 +101,22 @@ static void primelockdep(struct xe_ggtt *ggtt)
+>>>          fs_reclaim_release(GFP_KERNEL);
+>>>   }
 >>>
->>>                   if (next) {
->>> -                       next->s_fence->scheduled.timestamp =
->>> -                               job->s_fence->finished.timestamp;
->>> +                       if (test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT,
->>> +                                    &next->s_fence->scheduled.flags))
->>> +                               next->s_fence->scheduled.timestamp =
->>> +                                       job->s_fence->finished.timestamp;
->>>                           /* start TO timer for next job */
->>>                           drm_sched_start_timeout(sched);
->>>                   }
+>>> +static u64 xelpg_ggtt_pte_encode_pat(struct xe_device *xe, u64 pte_pat,
+>>> +                                               enum xe_cache_level cache)
+>>> +{
+>>> +       u32 pat_index = xe_pat_get_index(xe, cache);
+>>> +
+>>> +       pte_pat &= ~(XELPG_GGTT_PTE_PAT_MASK);
+>>> +
+>>> +       if (pat_index & BIT(0))
+>>> +               pte_pat |= BIT(52);
+>>> +
+>>> +       if (pat_index & BIT(1))
+>>> +               pte_pat |= BIT(53);
+>>> +
+>>> +       return pte_pat;
+>>> +}
+>>> +
+>>>   int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
+>>>   {
+>>>          struct xe_device *xe = tile_to_xe(ggtt->tile);
+>>> @@ -120,6 +135,9 @@ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
+>>>          if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+>>>                  ggtt->flags |= XE_GGTT_FLAGS_64K;
 >>>
->>> I guess I'm leaning towards the latter option.
+>>> +       if (GRAPHICS_VERx100(xe) >= 1270)
+>>> +               (ggtt->pat_encode).pte_encode = xelpg_ggtt_pte_encode_pat;
+>>> +
+>>>          /*
+>>>           * 8B per entry, each points to a 4KB page.
+>>>           *
+>>> diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+>>> index d34b3e733945..7e55fac1a8a9 100644
+>>> --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+>>> @@ -7,9 +7,11 @@
+>>>   #define _XE_GGTT_TYPES_H_
 >>>
->>> Matt
+>>>   #include <drm/drm_mm.h>
+>>> +#include "xe_pt_types.h"
 >>>
->>>> - Danilo
->>>>
->>>>> -	entity = drm_sched_select_entity(sched);
->>>>> +	if (cleanup_job) {
->>>>> +		sched->ops->free_job(cleanup_job);
->>>>> +
->>>>> +		drm_sched_free_job_queue_if_ready(sched);
->>>>> +		drm_sched_run_job_queue_if_ready(sched);
->>>>> +	}
->>>>> +}
->>>>> -	if (!entity && !cleanup_job)
->>>>> -		return;	/* No more work */
->>>>> +/**
->>>>> + * drm_sched_run_job_work - worker to call run_job
->>>>> + *
->>>>> + * @w: run job work
->>>>> + */
->>>>> +static void drm_sched_run_job_work(struct work_struct *w)
->>>>> +{
->>>>> +	struct drm_gpu_scheduler *sched =
->>>>> +		container_of(w, struct drm_gpu_scheduler, work_run_job);
->>>>> +	struct drm_sched_entity *entity;
->>>>> +	int r;
->>>>> -	if (cleanup_job)
->>>>> -		sched->ops->free_job(cleanup_job);
->>>>> +	if (READ_ONCE(sched->pause_submit))
->>>>> +		return;
->>>>> +	entity = drm_sched_select_entity(sched, true);
->>>>>    	if (entity) {
->>>>>    		struct dma_fence *fence;
->>>>>    		struct drm_sched_fence *s_fence;
->>>>> @@ -1056,9 +1122,7 @@ static void drm_sched_main(struct work_struct *w)
->>>>>    		sched_job = drm_sched_entity_pop_job(entity);
->>>>>    		if (!sched_job) {
->>>>>    			complete_all(&entity->entity_idle);
->>>>> -			if (!cleanup_job)
->>>>> -				return;	/* No more work */
->>>>> -			goto again;
->>>>> +			return;	/* No more work */
->>>>>    		}
->>>>>    		s_fence = sched_job->s_fence;
->>>>> @@ -1088,10 +1152,8 @@ static void drm_sched_main(struct work_struct *w)
->>>>>    		}
->>>>>    		wake_up(&sched->job_scheduled);
->>>>> +		drm_sched_run_job_queue_if_ready(sched);
->>>>>    	}
->>>>> -
->>>>> -again:
->>>>> -	drm_sched_submit_queue(sched);
->>>>>    }
->>>>>    /**
->>>>> @@ -1150,7 +1212,8 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->>>>>    	spin_lock_init(&sched->job_list_lock);
->>>>>    	atomic_set(&sched->hw_rq_count, 0);
->>>>>    	INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
->>>>> -	INIT_WORK(&sched->work_submit, drm_sched_main);
->>>>> +	INIT_WORK(&sched->work_run_job, drm_sched_run_job_work);
->>>>> +	INIT_WORK(&sched->work_free_job, drm_sched_free_job_work);
->>>>>    	atomic_set(&sched->_score, 0);
->>>>>    	atomic64_set(&sched->job_id_count, 0);
->>>>>    	sched->pause_submit = false;
->>>>> @@ -1275,7 +1338,8 @@ EXPORT_SYMBOL(drm_sched_submit_ready);
->>>>>    void drm_sched_submit_stop(struct drm_gpu_scheduler *sched)
->>>>>    {
->>>>>    	WRITE_ONCE(sched->pause_submit, true);
->>>>> -	cancel_work_sync(&sched->work_submit);
->>>>> +	cancel_work_sync(&sched->work_run_job);
->>>>> +	cancel_work_sync(&sched->work_free_job);
->>>>>    }
->>>>>    EXPORT_SYMBOL(drm_sched_submit_stop);
->>>>> @@ -1287,6 +1351,7 @@ EXPORT_SYMBOL(drm_sched_submit_stop);
->>>>>    void drm_sched_submit_start(struct drm_gpu_scheduler *sched)
->>>>>    {
->>>>>    	WRITE_ONCE(sched->pause_submit, false);
->>>>> -	queue_work(sched->submit_wq, &sched->work_submit);
->>>>> +	queue_work(sched->submit_wq, &sched->work_run_job);
->>>>> +	queue_work(sched->submit_wq, &sched->work_free_job);
->>>>>    }
->>>>>    EXPORT_SYMBOL(drm_sched_submit_start);
->>>>> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
->>>>> index 04eec2d7635f..fbc083a92757 100644
->>>>> --- a/include/drm/gpu_scheduler.h
->>>>> +++ b/include/drm/gpu_scheduler.h
->>>>> @@ -487,9 +487,10 @@ struct drm_sched_backend_ops {
->>>>>     *                 finished.
->>>>>     * @hw_rq_count: the number of jobs currently in the hardware queue.
->>>>>     * @job_id_count: used to assign unique id to the each job.
->>>>> - * @submit_wq: workqueue used to queue @work_submit
->>>>> + * @submit_wq: workqueue used to queue @work_run_job and @work_free_job
->>>>>     * @timeout_wq: workqueue used to queue @work_tdr
->>>>> - * @work_submit: schedules jobs and cleans up entities
->>>>> + * @work_run_job: schedules jobs
->>>>> + * @work_free_job: cleans up jobs
->>>>>     * @work_tdr: schedules a delayed call to @drm_sched_job_timedout after the
->>>>>     *            timeout interval is over.
->>>>>     * @pending_list: the list of jobs which are currently in the job queue.
->>>>> @@ -518,7 +519,8 @@ struct drm_gpu_scheduler {
->>>>>    	atomic64_t			job_id_count;
->>>>>    	struct workqueue_struct		*submit_wq;
->>>>>    	struct workqueue_struct		*timeout_wq;
->>>>> -	struct work_struct		work_submit;
->>>>> +	struct work_struct		work_run_job;
->>>>> +	struct work_struct		work_free_job;
->>>>>    	struct delayed_work		work_tdr;
->>>>>    	struct list_head		pending_list;
->>>>>    	spinlock_t			job_list_lock;
->>>>> -- 
->>>>> 2.34.1
->>>>>
+>>>   struct xe_bo;
+>>>   struct xe_gt;
+>>> +extern struct xe_device *xe;
+>> What is this for? I think we just need something like:
+>>
+>> struct xe_device;
+Thought of since it was defined in other place used extern
+>>
+>>>   struct xe_ggtt {
+>>>          struct xe_tile *tile;
+>>> @@ -26,6 +28,11 @@ struct xe_ggtt {
+>>>          u64 __iomem *gsm;
+>>>
+>>>          struct drm_mm mm;
+>>> +
+>>> +       struct {
+>>> +               u64 (*pte_encode)(struct xe_device *xe, u64 pte_pat,
+>>> +                                               enum xe_cache_level cache);
+>>> +       } pat_encode;
+>>>   };
+>>>
+>>>   #endif
+>>> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+>>> index b56a65779d26..a468655db956 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pat.c
+>>> +++ b/drivers/gpu/drm/xe/xe_pat.c
+>>> @@ -3,12 +3,13 @@
+>>>    * Copyright © 2023 Intel Corporation
+>>>    */
+>>>
+>>> -#include "xe_pat.h"
+>>>
+>>>   #include "regs/xe_reg_defs.h"
+>>>   #include "xe_gt.h"
+>>>   #include "xe_gt_mcr.h"
+>>>   #include "xe_mmio.h"
+>>> +#include "xe_pat.h"
+>>> +#include "xe_pt_types.h"
+>>>
+>>>   #define _PAT_INDEX(index)                      _PICK_EVEN_2RANGES(index, 8, \
+>>>                                                                     0x4800, 0x4804, \
+>>> @@ -62,6 +63,31 @@ static const u32 mtl_pat_table[] = {
+>>>          [4] = MTL_PAT_0_WB | MTL_3_COH_2W,
+>>>   };
+>>>
+>>> +static const u32 xelp_pte_pat_table[XE_CACHE_LAST] = {
+>>> +       [XE_CACHE_NONE] = XELP_PAT_UNCACHE,
+>>> +       [XE_CACHE_WT] = XELP_PAT_WT_CACHE,
+>>> +       [XE_CACHE_WB] = XELP_PAT_WB_CACHE,
+>>> +};
+>>> +
+>>> +static const u32 xehpc_pte_pat_table[XE_CACHE_LAST] = {
+>>> +       [XE_CACHE_NONE] = XEHPC_PAT_CLOS0_UNCACHE,
+>>> +       [XE_CACHE_WT] = XEHPC_PAT_CLOS0_WT_CACHE,
+>>> +       [XE_CACHE_WB] = XEHPC_PAT_CLOS0_WB_CACHE,
+>>> +};
+>>> +
+>>> +static const u32 xelpg_pte_pat_table[XE_CACHE_LAST] = {
+>>> +       [XE_CACHE_NONE] = XELPG_PAT_UNCACHE,
+>>> +       [XE_CACHE_WT] = XELPG_PAT_WT_CACHE,
+>>> +       [XE_CACHE_WB] = XELPG_PAT_WB_CACHE,
+>>> +       [XE_CACHE_WB_1_WAY] = XELPG_PAT_WB_CACHE_1_WAY,
+>> Wondering if we need XE_CACHE_WB_1_WAY for every platform, or just
+>> make XE_CACHE_WB the equivalent of 1-way or something? There might be
+>> some more kernel internal spots where we want to use XE_CACHE_WB_1_WAY
+>> across various platforms.
+> Actually maybe just making XE_CACHE_WB use the 1_WAY on xelpg is best?
+> What do you think?
+Yes discussed with Matt Roper he also suggested to use 1_WAY for XE_CACHE_WB
+>
+>>> +};
+>>> +
+>>> +unsigned int xe_pat_get_index(struct xe_device *xe, enum xe_cache_level cache)
+>>> +{
+>>> +       WARN_ON(cache >= XE_CACHE_LAST);
+>> What happens with XE_CACHE_WB_1_WAY on non-xelpg?
+If we use 1_WAY for XE_CACHE_WB this will go off
+>>
+>>> +       return (xe->pat_table).pte_pat_table[cache];
+>>> +}
+>>> +>  static void program_pat(struct xe_gt *gt, const u32 table[], int n_entries)
+>>>   {
+>>>          for (int i = 0; i < n_entries; i++) {
+>>> @@ -111,3 +137,13 @@ void xe_pat_init(struct xe_gt *gt)
+>>>                          GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
+>>>          }
+>>>   }
+>>> +
+>>> +void xe_pte_pat_init(struct xe_device *xe)
+>>> +{
+>>> +       if (GRAPHICS_VERx100(xe) >= 1270)
+>>> +               (xe->pat_table).pte_pat_table = xelpg_pte_pat_table;
+>>> +       else if (GRAPHICS_VERx100(xe) >= 1260)
+>>> +               (xe->pat_table).pte_pat_table = xehpc_pte_pat_table;
+>>> +       else
+>>> +               (xe->pat_table).pte_pat_table = xelp_pte_pat_table;
+>>> +}
+>>> diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+>>> index 659de4008131..54022f591621 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pat.h
+>>> +++ b/drivers/gpu/drm/xe/xe_pat.h
+>>> @@ -6,8 +6,30 @@
+>>>   #ifndef _XE_PAT_H_
+>>>   #define _XE_PAT_H_
+>>>
+>>> +#include "xe_pt_types.h"
+>>> +
+>>> +#define XELP_PTE_PAT_MASK              (BIT_ULL(7) | BIT_ULL(4) | BIT_ULL(3))
+>>> +#define XELP_PDE_PAT_MASK              (BIT_ULL(12) | BIT_ULL(4) | BIT_ULL(3))
+>>> +#define XELPG_GGTT_PTE_PAT_MASK                (BIT_ULL(53) | BIT_ULL(52))
+>>> +
+>>> +#define XELP_PAT_WB_CACHE              0
+>>> +#define XELP_PAT_WT_CACHE              2
+>>> +#define XELP_PAT_UNCACHE               3
+>>> +
+>>> +#define XEHPC_PAT_CLOS0_UNCACHE        0
+>>> +#define XEHPC_PAT_CLOS0_WT_CACHE       2
+>>> +#define XEHPC_PAT_CLOS0_WB_CACHE       3
+>>> +
+>>> +#define XELPG_PAT_WB_CACHE             0
+>>> +#define XELPG_PAT_WT_CACHE             1
+>>> +#define XELPG_PAT_UNCACHE              2
+>>> +#define XELPG_PAT_WB_CACHE_1_WAY       3
+>>> +
+>>>   struct xe_gt;
+>>> +extern struct xe_device *xe;
+>> DItto with the extern.
+>>
+>>>   void xe_pat_init(struct xe_gt *gt);
+>>> +void xe_pte_pat_init(struct xe_device *xe);
+>>> +unsigned int xe_pat_get_index(struct xe_device *xe, enum xe_cache_level cache);
+>>>
+>>>   #endif
+>>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+>>> index 5709518e314b..64713f400d94 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pt.c
+>>> +++ b/drivers/gpu/drm/xe/xe_pt.c
+>>> @@ -58,19 +58,18 @@ static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
+>>>    * Return: An encoded page directory entry. No errors.
+>>>    */
+>>>   u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
+>>> -                 const enum xe_cache_level level)
+>>> +                 const enum xe_cache_level cache)
+>>>   {
+>>>          u64 pde;
+>>> +       struct xe_vm *vm = bo->vm;
+>>> +       struct xe_device *xe = vm->xe;
+>>> +
+>>>
+>>>          pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
+>>>          pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
+>>>
+>>> -       /* FIXME: I don't think the PPAT handling is correct for MTL */
+>>> -
+>>> -       if (level != XE_CACHE_NONE)
+>>> -               pde |= PPAT_CACHED_PDE;
+>>> -       else
+>>> -               pde |= PPAT_UNCACHED;
+>>> +       if ((vm->pat_encode).pde_encode)
+>>> +               pde = (vm->pat_encode).pde_encode(xe, pde, cache);
+>>>
+>>>          return pde;
+>>>   }
+>>> @@ -78,6 +77,9 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
+>>>   static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
+>>>                          struct xe_vma *vma, u32 pt_level)
+>>>   {
+>>> +       struct xe_vm *vm = xe_vma_vm(vma);
+>>> +       struct xe_device *xe = vm->xe;
+>>> +
+>>>          pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
+>>>
+>>>          if (unlikely(vma && xe_vma_read_only(vma)))
+>>> @@ -86,19 +88,8 @@ static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
+>>>          if (unlikely(vma && xe_vma_is_null(vma)))
+>>>                  pte |= XE_PTE_NULL;
+>>>
+>>> -       /* FIXME: I don't think the PPAT handling is correct for MTL */
+>>> -
+>>> -       switch (cache) {
+>>> -       case XE_CACHE_NONE:
+>>> -               pte |= PPAT_UNCACHED;
+>>> -               break;
+>>> -       case XE_CACHE_WT:
+>>> -               pte |= PPAT_DISPLAY_ELLC;
+>>> -               break;
+>>> -       default:
+>>> -               pte |= PPAT_CACHED;
+>>> -               break;
+>>> -       }
+>>> +       if ((vm->pat_encode).pte_encode)
+>>> +               pte = (vm->pat_encode).pte_encode(xe, pte, cache);
+>>>
+>>>          if (pt_level == 1)
+>>>                  pte |= XE_PDE_PS_2M;
+>>> diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
+>>> index 2ed64c0a4485..075040b8a2d4 100644
+>>> --- a/drivers/gpu/drm/xe/xe_pt_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_pt_types.h
+>>> @@ -9,9 +9,11 @@
+>>>   #include "xe_pt_walk.h"
+>>>
+>>>   enum xe_cache_level {
+>>> -       XE_CACHE_NONE,
+>>> +       XE_CACHE_NONE = 0,
+>>>          XE_CACHE_WT,
+>>>          XE_CACHE_WB,
+>>> +       XE_CACHE_WB_1_WAY,
+>>> +       XE_CACHE_LAST,
+>>>   };
+>>>
+>>>   #define XE_VM_MAX_LEVEL 4
+>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>>> index 2e99f865d7ec..3f8675e9a62c 100644
+>>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>>> @@ -23,6 +23,7 @@
+>>>   #include "xe_gt_pagefault.h"
+>>>   #include "xe_gt_tlb_invalidation.h"
+>>>   #include "xe_migrate.h"
+>>> +#include "xe_pat.h"
+>>>   #include "xe_pm.h"
+>>>   #include "xe_preempt_fence.h"
+>>>   #include "xe_pt.h"
+>>> @@ -1192,6 +1193,44 @@ static struct drm_gpuva_fn_ops gpuva_ops = {
+>>>   static void xe_vma_op_work_func(struct work_struct *w);
+>>>   static void vm_destroy_work_func(struct work_struct *w);
+>>>
+>>> +static u64 xelp_ppgtt_pde_encode_pat(struct xe_device *xe, u64 pde_pat,
+>>> +                                               enum xe_cache_level cache)
+>>> +{
+>>> +       u32 pat_index = xe_pat_get_index(xe, cache);
+>>> +
+>>> +       pde_pat &= ~(XELP_PDE_PAT_MASK);
+>>> +
+>>> +       if (pat_index & BIT(0))
+>>> +               pde_pat |= BIT(3);
+>>> +
+>>> +       if (pat_index & BIT(1))
+>>> +               pde_pat |= BIT(4);
+>>> +
+>>> +       if (pat_index & BIT(2))
+>>> +               pde_pat |= BIT(12);
+>>> +
+>>> +       return pde_pat;
+>>> +}
+>>> +
+>>> +static u64 xelp_ppgtt_pte_encode_pat(struct xe_device *xe, u64 pte_pat,
+>>> +                                               enum xe_cache_level cache)
+>>> +{
+>>> +       u32 pat_index = xe_pat_get_index(xe, cache);
+>>> +
+>>> +       pte_pat &= ~(XELP_PTE_PAT_MASK);
+>>> +
+>>> +       if (pat_index & BIT(0))
+>>> +               pte_pat |= BIT(3);
+>>> +
+>>> +       if (pat_index & BIT(1))
+>>> +               pte_pat |= BIT(4);
+>>> +
+>>> +       if (pat_index & BIT(2))
+>>> +               pte_pat |= BIT(7);
+>>> +
+>>> +       return pte_pat;
+>>> +}
+>>> +
+>>>   struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+>>>   {
+>>>          struct xe_vm *vm;
+>>> @@ -1249,6 +1288,14 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+>>>          if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+>>>                  vm->flags |= XE_VM_FLAG_64K;
+>>>
+>>> +       if (GRAPHICS_VERx100(xe) >= 1200) {
+>>> +               /* __xelp_pte_encode applies to xelp, xehpc and xelpg platform*/
+>>> +               (vm->pat_encode).pte_encode = xelp_ppgtt_pte_encode_pat;
+>>> +
+>>> +               /* __xelp_pde_encode applies to xelp, xehpc and xelpg platform*/
+>>> +               (vm->pat_encode).pde_encode = xelp_ppgtt_pde_encode_pat;
+>>> +       }
+>>> +
+>>>          for_each_tile(tile, xe, id) {
+>>>                  if (flags & XE_VM_FLAG_MIGRATION &&
+>>>                      tile->id != XE_VM_FLAG_TILE_ID(flags))
+>>> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+>>> index 3681a5ff588b..83a1f87b6537 100644
+>>> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+>>> @@ -336,6 +336,13 @@ struct xe_vm {
+>>>
+>>>          /** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+>>>          bool batch_invalidate_tlb;
+>>> +
+>>> +       struct {
+>>> +               u64 (*pte_encode)(struct xe_device *xe, u64 pte_pat,
+>>> +                                               enum xe_cache_level cache);
+>>> +               u64 (*pde_encode)(struct xe_device *xe, u64 pde_pat,
+>>> +                                               enum xe_cache_level cache);
+>>> +       } pat_encode;
+>>>   };
+>>>
+>>>   /** struct xe_vma_op_map - VMA map operation */
+>>> --
+>>> 2.25.1
+>>>
 
