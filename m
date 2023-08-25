@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1CA4DC3DA66
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Aug 2023 11:51:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84884C7EE2C
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Aug 2023 11:51:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EC0210E65C;
-	Fri, 25 Aug 2023 11:51:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAE7910E661;
+	Fri, 25 Aug 2023 11:51:38 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E104910E657;
- Fri, 25 Aug 2023 11:51:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F186410E657;
+ Fri, 25 Aug 2023 11:51:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692964287; x=1724500287;
+ t=1692964290; x=1724500290;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wKHZ+H0RX22mjKLCpVzDePMWx/0S/BQ56m7W+AHgUPY=;
- b=C/ysAkikwzA+Vd6KS/HuVaWvlz1bdywRERtRPiz2lHYrfp97y81lD761
- 6+JV/uR8ry9Ki6KhenuDZfeDLuO0FEPfGBX6GJqI7+01MYaPH7R+XvtCb
- ZefNw5L8B7XV7GJIqf2s/0EOoJCJqtmmANA/0Ep2+J0LNpytKfaCmfMUk
- u1g+r4aOE/LTSFVFg6IR6neHx8tXNwOQsw0+cZI9U6Z4071rOO/qN/v1u
- KNfD+jVL9zAT/SQfLWvZ2BIVKj8a+EjdPz3kx3PATEiLoifExEBO3wOWc
- xJwx7zSLyHtYgxqrtNs0yh3ejiXhOb1vfC+DYWB4wpwXtXrjhLoUpy/M0 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="359694724"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="359694724"
+ bh=pFxauHBh+GSrYfgND+Inj6pnrsaswwoQUZB/c9h2j2Y=;
+ b=EDX3J3Trx664EAY084PYQWjGNYME1JVf8kP4cAhzhsJirjjoSHfrc8cA
+ G34cxRvlzUTL67AJKbyOEPegigqE5ZzQvN2Q/zUkq+vD/f05jimt/h1DH
+ //rbrlahQFKgItle8JgA0HPf+hARQE6siW7Xmpw+o6sN5LqVuuSf3ZHF7
+ FdK1S6khgFIBM/AVNp836rIigMZHL7QBrHn6UTfh+Uy66gjN2ZC57+EdT
+ ghkmrbc0O7I6dIGxHLg9jn8860ZR/GZZWKW7y9QhQnhtGrL9TudSRDndH
+ nk2TVbjZ0ASgzHz1vrXGx5C1lIJjhL+ss+ba/yQ8xxwjhuN+a6Bn9ufqf A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="359694745"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="359694745"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2023 04:51:26 -0700
+ 25 Aug 2023 04:51:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="881153538"
+X-IronPort-AV: E=Sophos;i="6.01,202,1684825200"; d="scan'208";a="881153540"
 Received: from aravind-dev.iind.intel.com ([10.145.162.80])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2023 04:51:30 -0700
+ 25 Aug 2023 04:51:33 -0700
 From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 25 Aug 2023 17:25:28 +0530
-Message-Id: <20230825115531.800574-3-aravind.iddamsetty@linux.intel.com>
+Date: Fri, 25 Aug 2023 17:25:30 +0530
+Message-Id: <20230825115531.800574-5-aravind.iddamsetty@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230825115531.800574-1-aravind.iddamsetty@linux.intel.com>
 References: <20230825115531.800574-1-aravind.iddamsetty@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC v2 2/5] drm/xe/RAS: Register netlink capability
+Subject: [Intel-xe] [RFC v2 4/5] drm/netlink: Define multicast groups
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,105 +59,73 @@ Cc: dri-devel@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Register netlink capability with the DRM and register the driver
-callbacks to DRM RAS netlink commands.
+Netlink subsystem supports event notifications to userspace. we define
+two multicast groups for correctable and uncorrectable errors to which
+userspace can subscribe and be notified when any of those errors happen.
+The group names are local to the driver's genl netlink family.
 
-v2:
-Move the netlink registration parts to DRM susbsytem (Tomer Tayar)
-
-Cc: Tomer Tayar <ttayar@habana.ai>
 Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 ---
- drivers/gpu/drm/xe/Makefile          |  1 +
- drivers/gpu/drm/xe/xe_device.c       |  6 +++++-
- drivers/gpu/drm/xe/xe_device_types.h |  1 +
- drivers/gpu/drm/xe/xe_netlink.c      | 22 ++++++++++++++++++++++
- 4 files changed, 29 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/xe_netlink.c
+ drivers/gpu/drm/drm_netlink.c  |  2 ++
+ include/drm/drm_netlink.h      | 10 ++++++++++
+ include/uapi/drm/drm_netlink.h |  3 +++
+ 3 files changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index b84e191ba14f..2b42165bc824 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -67,6 +67,7 @@ xe-y += xe_bb.o \
- 	xe_mmio.o \
- 	xe_mocs.o \
- 	xe_module.o \
-+	xe_netlink.o \
- 	xe_pat.o \
- 	xe_pci.o \
- 	xe_pcode.o \
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 323356a44e7f..42a3b50069b6 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -124,6 +124,8 @@ static void xe_driver_release(struct drm_device *dev)
- 	pci_set_drvdata(to_pci_dev(xe->drm.dev), NULL);
+diff --git a/drivers/gpu/drm/drm_netlink.c b/drivers/gpu/drm/drm_netlink.c
+index e41127963968..6895b8741eaf 100644
+--- a/drivers/gpu/drm/drm_netlink.c
++++ b/drivers/gpu/drm/drm_netlink.c
+@@ -118,6 +118,8 @@ static void drm_genl_family_init(struct drm_device *dev)
+ 	dev->drm_genl_family.ops = drm_genl_ops;
+ 	dev->drm_genl_family.n_ops = ARRAY_SIZE(drm_genl_ops);
+ 	dev->drm_genl_family.maxattr = DRM_ATTR_MAX;
++	dev->drm_genl_family.mcgrps = drm_event_mcgrps;
++	dev->drm_genl_family.n_mcgrps = ARRAY_SIZE(drm_event_mcgrps);
+ 	dev->drm_genl_family.module = dev->dev->driver->owner;
  }
  
-+extern const struct driver_genl_ops xe_genl_ops[];
-+
- static struct drm_driver driver = {
- 	/* Don't use MTRRs here; the Xserver or userspace app should
- 	 * deal with them for Intel hardware.
-@@ -131,7 +133,8 @@ static struct drm_driver driver = {
- 	.driver_features =
- 	    DRIVER_GEM |
- 	    DRIVER_RENDER | DRIVER_SYNCOBJ |
--	    DRIVER_SYNCOBJ_TIMELINE,
-+	    DRIVER_SYNCOBJ_TIMELINE |
-+	    DRIVER_NETLINK,
- 	.open = xe_file_open,
- 	.postclose = xe_file_close,
+diff --git a/include/drm/drm_netlink.h b/include/drm/drm_netlink.h
+index 60f7ee39ae0a..876f73087b18 100644
+--- a/include/drm/drm_netlink.h
++++ b/include/drm/drm_netlink.h
+@@ -28,6 +28,16 @@ static const struct nla_policy drm_attr_policy_read_one[DRM_ATTR_MAX + 1] = {
+ 	[DRM_RAS_ATTR_ERROR_ID] = { .type = NLA_U64 },
+ };
  
-@@ -143,6 +146,7 @@ static struct drm_driver driver = {
- 	.dumb_create = xe_bo_dumb_create,
- 	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
- 	.release = &xe_driver_release,
-+	.genl_ops = xe_genl_ops,
- 
- 	.ioctls = xe_ioctls,
- 	.num_ioctls = ARRAY_SIZE(xe_ioctls),
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 682ebdd1c09e..b19053fb3130 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -10,6 +10,7 @@
- 
- #include <drm/drm_device.h>
- #include <drm/drm_file.h>
-+#include <drm/drm_netlink.h>
- #include <drm/ttm/ttm_device.h>
- 
- #include "xe_gt_types.h"
-diff --git a/drivers/gpu/drm/xe/xe_netlink.c b/drivers/gpu/drm/xe/xe_netlink.c
-new file mode 100644
-index 000000000000..81d785455632
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_netlink.c
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+#include "xe_device.h"
-+
-+static int xe_genl_list_errors(struct drm_device *drm, struct sk_buff *msg, struct genl_info *info)
-+{
-+	return 0;
-+}
-+
-+static int xe_genl_read_error(struct drm_device *drm, struct sk_buff *msg, struct genl_info *info)
-+{
-+	return 0;
-+}
-+
-+/* driver callbacks to DRM netlink commands*/
-+const struct driver_genl_ops xe_genl_ops[] = {
-+	[DRM_RAS_CMD_QUERY] =		{ .doit = xe_genl_list_errors },
-+	[DRM_RAS_CMD_READ_ONE] =	{ .doit = xe_genl_read_error },
-+	[DRM_RAS_CMD_READ_ALL] =	{ .doit = xe_genl_list_errors, },
++enum mcgrps_events {
++	DRM_GENL_MCAST_CORR_ERR,
++	DRM_GENL_MCAST_UNCORR_ERR,
 +};
++
++static const struct genl_multicast_group drm_event_mcgrps[] = {
++	[DRM_GENL_MCAST_CORR_ERR] = { .name = DRM_GENL_MCAST_GROUP_NAME_CORR_ERR, },
++	[DRM_GENL_MCAST_UNCORR_ERR] = { .name = DRM_GENL_MCAST_GROUP_NAME_UNCORR_ERR, },
++};
++
+ int drm_genl_register(struct drm_device *dev);
+ void drm_genl_exit(void);
+ int drm_genl_send(struct sk_buff *msg, struct genl_info *info, void *usrhdr);
+diff --git a/include/uapi/drm/drm_netlink.h b/include/uapi/drm/drm_netlink.h
+index a3ccc68f782d..b37f952953db 100644
+--- a/include/uapi/drm/drm_netlink.h
++++ b/include/uapi/drm/drm_netlink.h
+@@ -25,6 +25,8 @@
+ #define _DRM_NETLINK_H_
+ 
+ #define DRM_GENL_VERSION 1
++#define DRM_GENL_MCAST_GROUP_NAME_CORR_ERR	"drm_corr_err"
++#define DRM_GENL_MCAST_GROUP_NAME_UNCORR_ERR	"drm_uncorr_err"
+ 
+ #if defined(__cplusplus)
+ extern "C" {
+@@ -38,6 +40,7 @@ enum error_cmds {
+ 	DRM_RAS_CMD_READ_ONE,
+ 	/* command to get counters of all errors */
+ 	DRM_RAS_CMD_READ_ALL,
++	DRM_RAS_CMD_ERROR_EVENT,
+ 
+ 	__DRM_CMD_MAX,
+ 	DRM_CMD_MAX = __DRM_CMD_MAX - 1,
 -- 
 2.25.1
 
