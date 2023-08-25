@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87A08C3DA6F
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Aug 2023 11:53:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96AA0C3DA6F
+	for <intel-xe@archiver.kernel.org>; Fri, 25 Aug 2023 11:53:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65E8410E663;
-	Fri, 25 Aug 2023 11:53:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8C310E666;
+	Fri, 25 Aug 2023 11:53:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE70210E663
- for <intel-xe@lists.freedesktop.org>; Fri, 25 Aug 2023 11:53:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75ECD10E663
+ for <intel-xe@lists.freedesktop.org>; Fri, 25 Aug 2023 11:53:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1692964396; x=1724500396;
+ t=1692964394; x=1724500394;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1Fd2KdoCWosxGXquM7S9XTWtp+xi19xu3U7G65PEMx8=;
- b=Wn0JTq59EmZCyqezkKtqmV6+89O0QA+tD/GB5bs04KDzeTwdhAyXXVba
- KspSyn1ZIPqQzZ2okZJzkD+8iLdPZH1xVa8/jj1Fl5acyywamzNODIYQ1
- YqARgNExKxI7TskvKEmnNWf9UIB+36OA8TliKMTynZ3vawRKVTVFPMyOU
- tO3ZE7Fpv+/6psVj+srzr6/EhV4vMwL3KAcqhqsqtRDFutrzBDCEOCh5O
- CxGvnsG4QaUE4Ea6sKMrVX6kKuIhfk8FxL++zyIT7kKzxPb1FLg5l2NyG
- j2ozs8oOvcrp6IsGLKGG1BheDwyQFBLkZMBKXvcMt8gNdPmOwQftI07hb Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="405696134"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="405696134"
+ bh=7g1GE3oWDHJDBf0wT2nXVwygGh0NGVsfvuLbN8h356M=;
+ b=H6S9QfUBbaB52+cfsLRbS2yxqFnKxBkN6q6a9Nt7Z5Vl2OnyqO5V9xbS
+ 9nIVNpYwxo0qPtn5dhOuw0yDYPcv4m95UfLONjJV81hGhIjXmJ8s9GnOe
+ XUoGeakPxgl38omSj1SNKW2pm8zoekKqcWkaeJWynkiAUip3UTOKMTuZj
+ xOQsHMt5dtglt2S8QMm/aUK2oUpjsh6kFyZhtoA33oJH+5419KVCvRzEJ
+ Ol4ATya4OCfMrab9PN247R/ZBQihbDG46rfa7kSayl3EKiBAzrdFUgmiX
+ N5VTC81Xe/kLEoD/DrxdDyOinrUMtrQUzK1VE7EBFDSmp1gfNQbgrWCb4 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="405696126"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="405696126"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2023 04:53:16 -0700
+ 25 Aug 2023 04:53:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="827569058"
-X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="827569058"
+X-IronPort-AV: E=McAfee;i="6600,9927,10812"; a="827569050"
+X-IronPort-AV: E=Sophos;i="6.02,195,1688454000"; d="scan'208";a="827569050"
 Received: from janlundk-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.252.56.87])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2023 04:53:15 -0700
+ 25 Aug 2023 04:53:12 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 25 Aug 2023 14:52:55 +0300
-Message-Id: <20230825115255.1319907-6-jouni.hogander@intel.com>
+Date: Fri, 25 Aug 2023 14:52:53 +0300
+Message-Id: <20230825115255.1319907-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230825115255.1319907-1-jouni.hogander@intel.com>
 References: <20230825115255.1319907-1-jouni.hogander@intel.com>
@@ -47,8 +47,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 5/5] drm/xe: Add Xe implementation for fence
- checks used by fbc code
+Subject: [Intel-xe] [PATCH 3/5] drm/xe: Xe stolen memory handling for fbc
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,54 +64,115 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe doesn't support legacy fences. Implement legacy fence and fence
-id checks accordingly.
+Add Xe stolen memory handling for fbc.
+
+v2:
+  - define i915_gem_stolen_area_address/size as !WARN_ON(1)
+  - squash common type addition into this patch
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h     |  1 +
- drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h     |  1 +
- .../gpu/drm/xe/compat-i915-headers/intel_gt_types.h   | 11 +++++++++++
- 3 files changed, 13 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  1 +
+ .../xe/compat-i915-headers/i915_gem_stolen.h  | 79 +++++++++++++++++++
+ 2 files changed, 80 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
 
 diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 55d0d5c7a386..94ab0354185e 100644
+index d629fd48a14c..6607c5a374cc 100644
 --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
 +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -19,6 +19,7 @@
- #include "i915_gem_stolen.h"
+@@ -15,6 +15,7 @@
+ #include "xe_bo.h"
+ #include "xe_pm.h"
+ #include "xe_step.h"
++#include "i915_gem_stolen.h"
  #include "i915_reg_defs.h"
  #include "i915_utils.h"
-+#include "intel_gt_types.h"
  #include "intel_uncore.h"
- #include <linux/pm_runtime.h>
- 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index 4547aac8b6fa..b008fc4fd66d 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -16,4 +16,5 @@ struct i915_vma {
- 	struct drm_mm_node node;
- };
- 
-+#define i915_vma_fence_id(vma) -1
- #endif
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
 new file mode 100644
-index 000000000000..c15806d6c4f7
+index 000000000000..cde902201c1f
 --- /dev/null
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
-@@ -0,0 +1,11 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
+@@ -0,0 +1,79 @@
++#ifndef _I915_GEM_OBJECT_H_
++#define _I915_GEM_OBJECT_H_
 +
-+#ifndef __INTEL_GT_TYPES__
-+#define __INTEL_GT_TYPES__
++#include "xe_ttm_stolen_mgr.h"
++#include "xe_res_cursor.h"
 +
-+#define intel_gt_support_legacy_fencing(gt) 0
++struct xe_bo;
++
++struct i915_stolen_fb {
++	struct xe_bo *bo;
++};
++
++static inline int i915_gem_stolen_insert_node_in_range(struct xe_device *xe,
++						       struct i915_stolen_fb *fb,
++						       u32 size, u32 align,
++						       u32 start, u32 end)
++{
++	struct xe_bo *bo;
++	int err;
++	u32 flags = XE_BO_CREATE_PINNED_BIT | XE_BO_CREATE_STOLEN_BIT;
++
++	bo = xe_bo_create_locked_range(xe, xe_device_get_root_tile(xe),
++				       NULL, size, start, end,
++				       ttm_bo_type_kernel, flags);
++	if (IS_ERR(bo)) {
++		err = PTR_ERR(bo);
++		bo = NULL;
++		return err;
++	}
++	err = xe_bo_pin(bo);
++	xe_bo_unlock_vm_held(bo);
++
++	if (err) {
++		xe_bo_put(fb->bo);
++		bo = NULL;
++	}
++
++	fb->bo = bo;
++
++	return err;
++}
++
++static inline int i915_gem_stolen_insert_node(struct xe_device *xe,
++					      struct i915_stolen_fb *fb,
++					      u32 size, u32 align)
++{
++	/* Not used on xe */
++	BUG_ON(1);
++	return -ENODEV;
++}
++
++static inline void i915_gem_stolen_remove_node(struct xe_device *xe,
++					       struct i915_stolen_fb *fb)
++{
++	xe_bo_unpin_map_no_vm(fb->bo);
++	fb->bo = NULL;
++}
++
++#define i915_gem_stolen_initialized(xe) (!!ttm_manager_type(&(xe)->ttm, XE_PL_STOLEN))
++#define i915_gem_stolen_node_allocated(fb) (!!(fb.bo))
++
++static inline u32 i915_gem_stolen_node_offset(struct i915_stolen_fb *fb)
++{
++	struct xe_res_cursor res;
++
++	xe_res_first(fb->bo->ttm.resource, 0, 4096, &res);
++	return res.start;
++}
++
++/* Used for < gen4. These are not supported by Xe */
++#define i915_gem_stolen_area_address(xe) (!WARN_ON(1))
++/* Used for gen9 specific WA. Gen9 is not supported by Xe */
++#define i915_gem_stolen_area_size(xe) (!WARN_ON(1))
++
++#define i915_gem_stolen_node_address(xe, fb) (xe_ttm_stolen_gpu_offset(xe) + \
++					 i915_gem_stolen_node_offset(fb))
++#define i915_gem_stolen_node_size(fb) ((u64)((fb)->bo->ttm.base.size))
 +
 +#endif
 -- 
