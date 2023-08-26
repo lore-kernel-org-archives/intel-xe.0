@@ -4,141 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12C29C83F01
-	for <intel-xe@archiver.kernel.org>; Fri, 25 Aug 2023 22:36:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08604C83F0C
+	for <intel-xe@archiver.kernel.org>; Sat, 26 Aug 2023 00:14:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8145D10E6F3;
-	Fri, 25 Aug 2023 22:36:21 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0387310E6F0;
- Fri, 25 Aug 2023 22:36:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F04A10E6F1;
+	Sat, 26 Aug 2023 00:14:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0D3110E6F1
+ for <intel-xe@lists.freedesktop.org>; Sat, 26 Aug 2023 00:14:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693002979; x=1724538979;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=zbRUWgtcWM75eOi8DmV/iLZyNNBUshcdBtSktU+HpxY=;
- b=aT0zrVfTtuGuwomi6JrxPcMEeAh0IEX89YTBs/+o0fnAsRBR90l1iJ1/
- WUr2mrZrGVv0UAo/CNO7Svf3lvusiVlaMCNdDGgIGkoz5MhekEm6tOIgG
- etZlmvLuVwtk1MpS6RPXbqUu3YQLZ0Fclm622dazT93+apepiJiYPQJQ6
- UnIheBf4rTfpU3jX7cPXZEwXfwi8954E0sXEykt6+kU6t56GK7p9sl8A/
- CVzqejIyRS/uaGfS3qdtv0am7Ac3JKDhbGcb09V1R6kaKOp54gmRYsXcq
- FqaqNaBfNWR7hkBt+Lu7xfPudPLXxv0SNItQuRe+6p+LuKS6TlVIXCh8X w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="441163192"
-X-IronPort-AV: E=Sophos;i="6.02,202,1688454000"; d="scan'208";a="441163192"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Aug 2023 15:36:18 -0700
+ t=1693008859; x=1724544859;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rDVl392AquIr5Tq2UrKy//P8p1JkHOTpfTxgtmIOK9Y=;
+ b=iPEZuG81TYBgoFJJOE27s81RF1U/bIKcHj6jl75eiFrXf+fd9q07WjXQ
+ RsEUildH2gKJiPs1ceIiehfBpFoBcwb5BvRRwYnVX/87PV/7DkQzBVbwk
+ c8or4+1Fiw9VxBbjYcWCiVhMUuInEqjSPvoWpv3n88hsEAJ4UuHWkGFPC
+ XUIIFeOLGKiRwUAr8YW/kkjroXgJWHFCUXtzEpv0L81UdcHEGG30Nx132
+ /RWNxf+Tb8PfLyqMypS+jmpWd12qGc1DYNFMSf3jI1QC90KYf5TA60Vnn
+ Dd0bn3hwBfb3yJr+OrZ6E7DLh8uOR6zggRqOrWpipHrCD9srj7R8CZaVI Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="373702165"
+X-IronPort-AV: E=Sophos;i="6.02,202,1688454000"; d="scan'208";a="373702165"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2023 17:14:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="740760780"
-X-IronPort-AV: E=Sophos;i="6.02,202,1688454000"; d="scan'208";a="740760780"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga007.fm.intel.com with ESMTP; 25 Aug 2023 15:36:17 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 25 Aug 2023 15:36:17 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Fri, 25 Aug 2023 15:36:17 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Fri, 25 Aug 2023 15:36:17 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Fri, 25 Aug 2023 15:36:15 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SDnXXS2bkdFKs57/IrfAKHqwuKzz/Hc9SSQeAV/EL2QUIHfMfjGYYvtz62samKTrHRCNRtlzp0X818Qp0Py3A3YvcQ4JOZEVJe/DfvwHaN4qGl5DngeqlTg04igl8sU/TCDyKeeLclpFzt168tTL5IhheLbWRUm1zceYCEU1i1Z+6OTSdRzaxxYldt/9jdJ1hQSNUgxWRnG3FaRPAa+cgKOR3Rg8ix+rkBh5Tdu5QLNXpifESHM/Drcv/WOGhaDUQbSfZg7EQs1ktaRsSbyNjsHwX1ERAuKlajzAtagIiNMabkZ/+uqJnNw8maPH3VNRzO/ww5SVs+Z8ed9V4x6NFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b+9d7o2G0FSzo8B/uAtqqQ6iKECH06P8A1PO3fxfO9E=;
- b=KRwUtf6rWdorjePPnEGrTnW3e7E9xa2WW6G84yiww/Hh/VtbzrqxUazqxbs9KxeqqXW9fxYsqYt7RIko2RSNuVSsFebfFHayqQ53uWR4OXWbnqtw8GL1Z9d6F+wi5UXT/GfZnsidBCSnH6qEohHFkKhyjWJ0IxFFIN8IwRzg8PERjljnE1+Mol08LPq/NqkTdqIgPp9ULe5y+yjcqodvVF/1ZX0VtoBnn43Ser0ZffSBF5cIZ3l/qgbKAakghhWLRSHq17I23Kb02vu62vjGddwJONmDwU/Wtn3jFy9AtzAz3gcsdn+VwcOglZJ1frQsVKSrjbxY3EwZPmb9OXKiVQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ0PR11MB6768.namprd11.prod.outlook.com (2603:10b6:a03:47f::8)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6678.24; Fri, 25 Aug
- 2023 22:36:13 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6699.028; Fri, 25 Aug 2023
- 22:36:13 +0000
-Date: Fri, 25 Aug 2023 15:36:11 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <qktozcvyxzd34njw23r4or5celal5rwgjrhvgmz3mne7mfcxz7@idxlu6rvnn6m>
-X-Patchwork-Hint: comment
-References: <20230823170740.1180212-1-lucas.demarchi@intel.com>
- <20230823170740.1180212-32-lucas.demarchi@intel.com>
- <20230823204921.GL1529860@mdroper-desk1.amr.corp.intel.com>
- <sydv7bpb3ov6nemwjcmbf5f5eojpdcul6bz43lsjmshgmo4pxg@utjuv4nyyerf>
- <20230825215533.GH1529860@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20230825215533.GH1529860@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: MW4P221CA0011.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:303:8b::16) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=McAfee;i="6600,9927,10813"; a="803122316"
+X-IronPort-AV: E=Sophos;i="6.02,202,1688454000"; d="scan'208";a="803122316"
+Received: from dut731pvc.fm.intel.com ([10.1.40.30])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Aug 2023 17:14:19 -0700
+From: "Chang, Bruce" <yu.bruce.chang@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Sat, 26 Aug 2023 00:14:12 +0000
+Message-Id: <20230826001412.6949-1-yu.bruce.chang@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB6768:EE_
-X-MS-Office365-Filtering-Correlation-Id: 08657d88-7745-43e4-354c-08dba5bbb00d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Wsca96s/3l/S3GNj8VEoGuDVoekKcE5114FasFKvctAntG2bRfG/APKRBhM0fLYTVbuXMljBhtgjgp1D00jAzKSqP7KITx6RixyP0sB0Q4HxUJf2yom5W3XlOgNdKISSOjjiKpDULXbsXd2otK0TlDuAIbbRb1GlFs53FYQdd80cmGHxFpO3ZQx6XPDk9jFt97ZVG6ajgrc7Ac5HfxwHXcC5ZWcPxUODakWRIl/NoMAwMMQ0zuNKGodtLS/P9m4KgVQoaPX+PNj/zTjCabvX+dRirgYW83H2I8ugurmspc5yAEbm7qHGwPzERUzmRSKHcuTi0cgwN7RPwCjdhKs1t7WverRWaueXjNrTCtRRPD43nSH4p3ZgGXLOa52faPHpgoWHy9KqXd4FQls1IqIHFPmlEhU1CY4WxpNVqwOiM75/uWN5F60PgB7+3jbdLmeoPv8RX1/WToyKLHN0d/FzfK12d0rsXMgVAQOap/X1UG4FJbMF5S4qJw3ikN5h6dfaUb+NasX511znv0vKorNmU4BoJWFG8i7M1xZyGJLj+e2EFgBlvB06kr9PL+O9JU51
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(376002)(396003)(136003)(346002)(366004)(39860400002)(186009)(451199024)(1800799009)(450100002)(66476007)(66556008)(66946007)(41300700001)(478600001)(9686003)(6512007)(6506007)(6486002)(6636002)(316002)(5660300002)(8676002)(6862004)(8936002)(4326008)(26005)(83380400001)(82960400001)(86362001)(33716001)(2906002)(38100700002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WxRmoShBQEweas89QrY9BFzOI23oSZIRuudLHp2UWGzrm0uU4VBO2SI64ZKh?=
- =?us-ascii?Q?gHZJRBNdPmA7PpDJB+8qPeMx2rl1Mis7H08kOpTP21rMhIGYXeLRA/71t1ry?=
- =?us-ascii?Q?10I7Py8R5o4Rzoj9XWJiQl5EgTBIKa7No9L1AeL0ODR4BMue6WAhZNjyTIle?=
- =?us-ascii?Q?pck0ly3i38eKYxfw/jpi9gDP14UD60q62HgOqpUpU/m4zfzxpCk/ntcKKUuf?=
- =?us-ascii?Q?WdZvHTOeQaKpzbO5AP/mtuEK0Bwsq4gkEVbF5FWwZGzOH7tSyX9bHQyiarrx?=
- =?us-ascii?Q?TN3KFiEud55UZcNvFlkCaOeGvvsfDc0ZNZcGUpoRnOmyliE9TfHC0jQxJqIQ?=
- =?us-ascii?Q?IwuJoLYKFy1Uc1qJUxkWSy4m6POmHzyusF2ztVQf7ZCBHKS3D/UYhSt4Nvrf?=
- =?us-ascii?Q?93ZfV1g6W4qX9nTGbRSfEV9tSp+Plgsn3kE77WXsQrBBVsGoaK4RbqnF6OwK?=
- =?us-ascii?Q?mxEjwhHEdtMm+36KD5kydn7dlG7oH87P4aby1mSyEAS628hpLWjiMG7xB79V?=
- =?us-ascii?Q?30Q6KKxoI5FwgdsvTKpuHjX2twey2jQMJg+7s7XEv/0dWqwe2KAJE2QEespU?=
- =?us-ascii?Q?J9mIuBIBx8vfyYP3qWMMEdMeds4y4Nv1eaKtnODxEJn5NJRg8979rN0r+O/w?=
- =?us-ascii?Q?hHXnnrWwLuqZV5iA6qpVEqSgshrL4IZR7TzPs4jbb6CsLlHs0Y7zggaZ6vDx?=
- =?us-ascii?Q?Ek4wr6U+5srhd0jtLy543yXB7EmEjLl5tmf3v9XGGH+txIXz8VtKSiRbfbg7?=
- =?us-ascii?Q?u/sr37fEAruD80aYx/m9SZiSe4Fds1aUb7CnjoC9q0w0TXd929uE/S+dHYpl?=
- =?us-ascii?Q?jGTvkgOOL8sNIiVkOw5pDO0PlCl6gig+sSLUKwctvgPogFok0XfZjt7x2m4x?=
- =?us-ascii?Q?nWGveX4TLAiK7ZI8t4++XGEt5qhREXjWq/pkeJ/O53H09PqiA3+13TYHlCz1?=
- =?us-ascii?Q?CbWXK/iSpC2edcxYugXphwfNT6L+ED8goQ3X6JywwpHzUHtC55mlRAT1dO43?=
- =?us-ascii?Q?pd5TAs5mkVDGC3JwijHSO1zx0BVoTmE1zze6DKSinTojZQ7D8bMlxPTuLNwe?=
- =?us-ascii?Q?+soLpq/yR+q1A49QhHsCteSR5qmpfPGvH+U7EerXt2khW4GxCHOdw19jooU7?=
- =?us-ascii?Q?FW/VAR/rvIS3CuogMUgCqA6ZvzxZXEU6+lG9IdJj6CbHqIE32tdEm1F7Dqk6?=
- =?us-ascii?Q?MA+693VGnTDDLvz+xRAyf+36hoKj9/6nl5eAzwfX8/1AJ1PrSdtdUNwUD4LU?=
- =?us-ascii?Q?cXitXiinxytchVNl/BPgJItMEKBy6qzdvf0KNb3KD2NDba3RVHJJw2vMJX9m?=
- =?us-ascii?Q?Hw9IgXXjbbOPyYy1t16nmpN3Rt1EbBVCZpGnK3eUC9Ro2EDE0q3UjwH3JoeD?=
- =?us-ascii?Q?JZiYxjm7Kwwu3mBdNoY7NhsVvimz0y1eVzbkJRipPEDqqSOYerPkex9Lg1ni?=
- =?us-ascii?Q?Mzj1Dbo1FDXTMKv79LT7kFPVwTImJwBbslYVkH1UFInUNytOIMCZZp8eyTLX?=
- =?us-ascii?Q?Ay/8A2NC6bqe/ha4lOwZU1pyfDWBelBU2594YtxHP0wL1wvgQg369OBCZEKG?=
- =?us-ascii?Q?APq1HF4fv0/K/Ctn7+NWnNIddu43l65CmxcNBlWHEATcp7cuYWxUjLu9LM8l?=
- =?us-ascii?Q?yw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08657d88-7745-43e4-354c-08dba5bbb00d
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Aug 2023 22:36:13.6067 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5PsjV9EB82eWgR+Aj3WS34fptXoZ3Z7N6pftIqTKT9y5/1D+FwDzbYczSWkRzZAogpeS7BNb8FH1Gt6c3wntKTe8PFxkoTmmuBNA032Byjs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6768
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 31/42] drm/i915/lnl: Add gmbus/ddc support
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Enable scratch page when page fault is
+ enabled
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,113 +55,171 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org,
- Anusha Srivatsa <anusha.srivatsa@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Stuart Summers <stuart.summers@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Aug 25, 2023 at 02:55:33PM -0700, Matt Roper wrote:
->On Thu, Aug 24, 2023 at 09:25:54PM -0700, Lucas De Marchi wrote:
->> On Wed, Aug 23, 2023 at 01:49:21PM -0700, Matt Roper wrote:
->> > On Wed, Aug 23, 2023 at 10:07:29AM -0700, Lucas De Marchi wrote:
->> > > LNL's south display uses the same table as MTP. Check for LNL's fake PCH
->> > > to make it consistent with the other checks.
->> > >
->> > > The VBT table doesn't contain the VBT -> spec mapping for LNL. Like in
->> > > other cases, uses the same as the previous platform.
->> > >
->> > > Bspec: 68971, 20124
->> > > Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
->> > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> > > ---
->> > >  drivers/gpu/drm/i915/display/intel_bios.c  | 2 +-
->> > >  drivers/gpu/drm/i915/display/intel_gmbus.c | 5 ++++-
->> > >  2 files changed, 5 insertions(+), 2 deletions(-)
->> > >
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
->> > > index 097c1f23d3ae..3772b91e155c 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_bios.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> > > @@ -2195,7 +2195,7 @@ static u8 map_ddc_pin(struct drm_i915_private *i915, u8 vbt_pin)
->> > >  	const u8 *ddc_pin_map;
->> > >  	int i, n_entries;
->> > >
->> > > -	if (HAS_PCH_MTP(i915) || IS_ALDERLAKE_P(i915)) {
->> > > +	if (HAS_PCH_MTP(i915) || IS_ALDERLAKE_P(i915) || IS_LUNARLAKE(i915)) {
->> >
->> > The LUNARLAKE here vs PCH_LNL below seems inconsistent.  Either way, we
->> > should probably put the newer platform first in the condition.
->> >
->> > Aside from those
->>
->> If we drop IS_LUNARLAKE, then we need to check for something else here.
->> What about doing this?
->>
->>
->> 	if (INTEL_PCH_TYPE(i915) >= PCH_LNL || HAS_PCH_MTP(i915) || IS_ALDERLAKE_P(i915)) {
->>
->> ?
->
->Yeah, that's fine in the short term.  Although I wonder if moving
->PCH_LNL before the discrete GPUs might simplify the various conditions
->that need to match on SDE behavior since it's probably closer to the MTL
->SDE than to the discrete SDEs?  I haven't looked through all the
->conditions to see which order is simplest overall.
->
->Longer term I think we need to replace the whole intel_pch enum with an
->intel_sde enum or something since this stuff generally isn't related to
->PCH anymore, and we should be looking at different things to determine
->the exact version of the SDE logic.
->
-> - For MTL, both NDE and SDE live on the same die (SOC); PCH isn't
->   involved.
-> - For LNL, NDE lives on the compute die and SDE lives on the SOC die
->   (as does the PICA, so the PICA ID can be used to fingerprint a
->   specific version).
+i915 can use scratch page even when page fault is enabled, this patch
+is trying to port this feature over.
 
-Yeah, agreed.
+The current i915 solution changes page table directly which may be hard
+to make to upstream, so a more complex solution is needed to apply to the
+current Xe framework if following the existing i915 solution.
 
-Lucas De Marchi
+This patch is trying to make the minimum impact to the existing driver,
+but still enable the scratch page support.
 
->
->
->Matt
->
->>
->> >
->> >        Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
->> >
->> > >  		ddc_pin_map = adlp_ddc_pin_map;
->> > >  		n_entries = ARRAY_SIZE(adlp_ddc_pin_map);
->> > >  	} else if (IS_ALDERLAKE_S(i915)) {
->> > > diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
->> > > index e95ddb580ef6..801fabbccf7e 100644
->> > > --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
->> > > +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
->> > > @@ -155,7 +155,10 @@ static const struct gmbus_pin *get_gmbus_pin(struct drm_i915_private *i915,
->> > >  	const struct gmbus_pin *pins;
->> > >  	size_t size;
->> > >
->> > > -	if (INTEL_PCH_TYPE(i915) >= PCH_DG2) {
->> > > +	if (INTEL_PCH_TYPE(i915) >= PCH_LNL) {
->> > > +		pins = gmbus_pins_mtp;
->> > > +		size = ARRAY_SIZE(gmbus_pins_mtp);
->> > > +	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG2) {
->> > >  		pins = gmbus_pins_dg2;
->> > >  		size = ARRAY_SIZE(gmbus_pins_dg2);
->> > >  	} else if (INTEL_PCH_TYPE(i915) >= PCH_DG1) {
->> > > --
->> > > 2.40.1
->> > >
->> >
->> > --
->> > Matt Roper
->> > Graphics Software Engineer
->> > Linux GPU Platform Enablement
->> > Intel Corporation
->
->-- 
->Matt Roper
->Graphics Software Engineer
->Linux GPU Platform Enablement
->Intel Corporation
+So, the idea is to bind a scratch vma if the page fault is from an
+invalid access. This patch is taking advantage of null pte at this
+point, we may introduce a special vma for scratch vma if needed.
+After the bind, the user app can continue to run without causing a
+fatal failure or reset and stop.
+
+In case the app will bind this scratch vma to a valid address, it will
+fail the bind, this patch will handle the failre and unbind the scrach
+vma[s], so that the user binding will be retried to the valid address.
+
+This patch only kicks in when there is a failure for both page fault
+and bind, so it should has no impact to the exiating code path. On
+another hand, it uses actual page tables instead of special scratch
+page tables, so it enables potential not to invalidate TLBs when doing
+unbind if all upper layer page tables are still being used.
+
+tested on new scratch igt tests which will be sent out for review.
+
+Cc: Oak Zeng <oak.zeng@intel.com>
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Cc: Stuart Summers <stuart.summers@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c |  9 ++++--
+ drivers/gpu/drm/xe/xe_vm.c           | 48 +++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_vm.h           |  2 ++
+ 3 files changed, 49 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index b6f781b3d9d7..524b38df3d7a 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -137,8 +137,13 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 	write_locked = true;
+ 	vma = lookup_vma(vm, pf->page_addr);
+ 	if (!vma) {
+-		ret = -EINVAL;
+-		goto unlock_vm;
++		if (vm->flags & XE_VM_FLAG_SCRATCH_PAGE)
++			vma = xe_bind_scratch_vma(vm, pf->page_addr, SZ_64K);
++
++		if (!vma) {
++			ret = -EINVAL;
++			goto unlock_vm;
++		}
+ 	}
+ 
+ 	if (!xe_vma_is_userptr(vma) || !xe_vma_userptr_check_repin(vma)) {
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 389ac5ba8ddf..4c3d5d781b58 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1262,7 +1262,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 		}
+ 	}
+ 
+-	if (flags & XE_VM_FLAG_SCRATCH_PAGE) {
++	if (flags & XE_VM_FLAG_SCRATCH_PAGE &&
++	    (!(flags & XE_VM_FLAG_FAULT_MODE))) {
+ 		for_each_tile(tile, xe, id) {
+ 			if (!vm->pt_root[id])
+ 				continue;
+@@ -1998,10 +1999,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, args->flags & ~ALL_DRM_XE_VM_CREATE_FLAGS))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_SCRATCH_PAGE &&
+-			 args->flags & DRM_XE_VM_CREATE_FAULT_MODE))
+-		return -EINVAL;
+-
+ 	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_COMPUTE_MODE &&
+ 			 args->flags & DRM_XE_VM_CREATE_FAULT_MODE))
+ 		return -EINVAL;
+@@ -2783,6 +2780,39 @@ static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
+ 	return err;
+ }
+ 
++struct xe_vma *xe_bind_scratch_vma(struct xe_vm *vm, u64 addr, u64 size)
++{
++	struct xe_vma *vma = 0;
++
++	if (!vm->size)
++		return 0;
++
++	vma = xe_vma_create(vm, NULL, 0, addr, addr + size - 1, false, true, 0);
++	if (!vma)
++		return 0;
++	xe_vm_insert_vma(vm, vma);
++
++	/* fault will handle the bind */
++
++	return vma;
++}
++
++int xe_unbind_scratch_vma(struct xe_vm *vm, u64 addr, u64 range)
++{
++	struct xe_vma *vma;
++
++	vma = xe_vm_find_overlapping_vma(vm, addr, range);
++	if (!vma)
++		return -ENXIO;
++
++	if (xe_vma_is_null(vma)) {
++		prep_vma_destroy(vm, vma, true);
++		xe_vm_unbind(vm, vma, NULL, NULL, 0, NULL, true, false);
++	}
++
++	return 0;
++}
++
+ static int xe_vma_op_execute(struct xe_vm *vm, struct xe_vma_op *op)
+ {
+ 	int ret = 0;
+@@ -3205,7 +3235,6 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	err = vm_bind_ioctl_check_args(xe, args, &bind_ops, &async);
+ 	if (err)
+ 		return err;
+-
+ 	if (args->exec_queue_id) {
+ 		q = xe_exec_queue_lookup(xef, args->exec_queue_id);
+ 		if (XE_IOCTL_DBG(xe, !q)) {
+@@ -3352,10 +3381,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		u64 range = bind_ops[i].range;
+ 		u64 addr = bind_ops[i].addr;
+ 		u32 op = bind_ops[i].op;
+-
++retry:
+ 		err = vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op);
+-		if (err)
++		if (err) {
++			if (!xe_unbind_scratch_vma(vm, addr, range))
++				goto retry;
+ 			goto free_syncs;
++		}
+ 	}
+ 
+ 	for (i = 0; i < args->num_binds; ++i) {
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 6de6e3edb24a..6447bed427b1 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -212,6 +212,8 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma);
+ 
+ int xe_vma_userptr_check_repin(struct xe_vma *vma);
+ 
++struct xe_vma *xe_bind_scratch_vma(struct xe_vm *vm, u64 addr, u64 size);
++
+ /*
+  * XE_ONSTACK_TV is used to size the tv_onstack array that is input
+  * to xe_vm_lock_dma_resv() and xe_vm_unlock_dma_resv().
+-- 
+2.25.1
+
