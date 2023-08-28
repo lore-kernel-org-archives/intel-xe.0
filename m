@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC05AC83F13
-	for <intel-xe@archiver.kernel.org>; Mon, 28 Aug 2023 06:21:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85D8CC83F12
+	for <intel-xe@archiver.kernel.org>; Mon, 28 Aug 2023 09:00:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BE1F810E20E;
-	Mon, 28 Aug 2023 06:21:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49E5110E256;
+	Mon, 28 Aug 2023 09:00:28 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C924210E210;
- Mon, 28 Aug 2023 06:21:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2ADE10E258;
+ Mon, 28 Aug 2023 09:00:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693203666; x=1724739666;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uDSnkAcF64QyjTLR04sJ09Xw9NIiOgD3VXjY7Lx1ni8=;
- b=FS4kst/V4Ce3sr0Fsb9QrlG71gtzMGgHIy6ffiJjsuBko4BPxqJemM2F
- cRMBjksuxXj1oP+7653ku6rod0AqfG1gHx5DpBEjsPyDQmHyIVogFpK63
- upjizCeMPyFOG8zFsbnTixjBMQ6ztONgzgbuZcFvEGup37RkBji24vdho
- 0FKYocFfQCyl/tLRX5jqSmO8RqxVPR92ZPb70MvTvE4Uh62X2jArlUXKq
- RJ/LJSTeyEkBFgrga7JBkBxb0dI3nHVKeq4FYWLrpMbh4LjDMHDGDLs4Q
- oLszXzoK/rMgJ2Wgt9cHewiQ7GX07oYvgwzTaBfw6p8uCHVRmakY4ANOT Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10815"; a="438973566"
-X-IronPort-AV: E=Sophos;i="6.02,206,1688454000"; d="scan'208";a="438973566"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ t=1693213226; x=1724749226;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=rZyQDvcQgEDqoVMUiEVwNpykcBHY1OKfMVxDnFZCEVc=;
+ b=MDcPd1HMBTR+nYPISFQdzzDEaeZkgIaluMI4ox/GA6ht+S2wDLYcgc9x
+ mb39bcumC9asfgj73ixSu1XoyqzJa43+Yt0MZwjsa1weCU3k509l/UpfI
+ vrvbVSLTABLQ4Fb7eNPe0RA7GJtOmDIoxbfTk2iyjAj1CWjh5xdsSaWvG
+ M6LjSslXUn2ceUyrzkmnboTuOiyxGDeecGhzm1qZVBr33wg1MoTr8X+La
+ PD7Y2gxssn39rzV61xhhtHAgwbq6tC2KFcQzdLlbza6COpjG9fKuYq5bW
+ U5BESGbO7rjCONHS/imJ4PP6B6YgDBGdwuJjZH2llLksBtFWdyprVmxQK g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10815"; a="439001992"
+X-IronPort-AV: E=Sophos;i="6.02,207,1688454000"; d="scan'208";a="439001992"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2023 23:21:06 -0700
+ 28 Aug 2023 02:00:24 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10815"; a="861709835"
-X-IronPort-AV: E=Sophos;i="6.02,206,1688454000"; d="scan'208";a="861709835"
-Received: from dmocuta-mobl2.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.249.42.5])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Aug 2023 23:21:04 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 28 Aug 2023 09:20:35 +0300
-Message-Id: <20230828062035.6906-5-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230828062035.6906-1-vinod.govindapillai@intel.com>
-References: <20230828062035.6906-1-vinod.govindapillai@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10815"; a="911966520"
+X-IronPort-AV: E=Sophos;i="6.02,207,1688454000"; d="scan'208";a="911966520"
+Received: from golubevv-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.57.84])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Aug 2023 02:00:20 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20230828062035.6906-4-vinod.govindapillai@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 4/4] drm/i915/lnl: FBC is supported with per
- pixel alpha
+References: <20230828062035.6906-1-vinod.govindapillai@intel.com>
+ <20230828062035.6906-4-vinod.govindapillai@intel.com>
+Date: Mon, 28 Aug 2023 12:00:18 +0300
+Message-ID: <87h6oj35jx.fsf@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 3/4] drm/i915/lnl: support FBC on any plane
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,29 +63,25 @@ Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For LNL onwards, FBC can be supported on planes with per
-pixel alpha
+On Mon, 28 Aug 2023, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
+> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+> index aefad14ab27a..b207774f3c33 100644
+> --- a/drivers/gpu/drm/i915/i915_reg.h
+> +++ b/drivers/gpu/drm/i915/i915_reg.h
+> @@ -1327,6 +1327,10 @@
+>  #define   DPFC_CTL_PLANE_IVB(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_IVB, (i9xx_plane))
+>  #define   DPFC_CTL_FENCE_EN_IVB			REG_BIT(28) /* ivb+ */
+>  #define   DPFC_CTL_PERSISTENT_MODE		REG_BIT(25) /* g4x-snb */
+> +#define   DPFC_CTL_PLANE_BINDING_MASK		REG_GENMASK(12, 11) /* XE */
+> +#define   DPFC_CTL_PLANE_BINDING_1		REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, 0) /* XE */
+> +#define   DPFC_CTL_PLANE_BINDING_2		REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, 1) /* XE */
+> +#define   DPFC_CTL_PLANE_BINDING_3		REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, 2) /* XE */
 
-Bspec: 69560
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+What's with the /* XE */ comments?
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 62f59630d410..f36eb8652d3c 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1224,7 +1224,8 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 		return 0;
- 	}
- 
--	if (plane_state->hw.pixel_blend_mode != DRM_MODE_BLEND_PIXEL_NONE &&
-+	if (DISPLAY_VER(i915) < 20 &&
-+	    plane_state->hw.pixel_blend_mode != DRM_MODE_BLEND_PIXEL_NONE &&
- 	    fb->format->has_alpha) {
- 		plane_state->no_fbc_reason = "per-pixel alpha not supported";
- 		return 0;
+BR,
+Jani.
+
+
 -- 
-2.34.1
-
+Jani Nikula, Intel Open Source Graphics Center
