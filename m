@@ -4,52 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 159D8C83F14
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Aug 2023 17:31:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8006EC71153
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Aug 2023 17:36:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAE5E10E474;
-	Tue, 29 Aug 2023 17:31:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1440D10E3EA;
+	Tue, 29 Aug 2023 17:36:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5EA410E474
- for <intel-xe@lists.freedesktop.org>; Tue, 29 Aug 2023 17:31:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 887F610E025;
+ Tue, 29 Aug 2023 17:36:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693330294; x=1724866294;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=XSeoq64ThG2/EbANve7yazSJKtsUvKoaLYOYr1u8sWo=;
- b=hg2JYuJ1TW5l9QP7ht+Tsg0KSjbTLeMxS7+xUgIJA8ml4sHJWHmawWVi
- O2J+c85KOeht/34g8OB5Q47ARIxW0kOKv61rYcq/zDUHs/XEh6h1+u8BH
- Zc3llW8N1dt2PcNSbHgHED/RIWLT/UW4vB4P/RNpoz2L8qH7SaCC8MtjN
- 7JujjN21xeTGy5+LU4NMIJqZFrbwYupKoowY6iE4Gr8aWKljqL/8w+sZB
- 8CwXuVbWtEo8Cs7CV9Jbb8dMqkn4eKerthue8tHqbjDBOw3QhFsxahZnf
- JNK2DC7nrDqmIpfjWcURqXJ4dUmeCMFPioywGCQx7ZshV7ehIkM4zNBxi w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="374336024"
-X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="374336024"
+ t=1693330589; x=1724866589;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=lrsyL4c6jaIWyEsDL9d8kLaoRsJM8gAsYDgGI1Z4o54=;
+ b=P0rznyvmKd+jURBTEf8R1f0EGOFccpsD+IjNeFAMRXzxSVLnckVGNDBF
+ 9iZQtmFOWG58Fqz2P7kBR1Wd/JlwMAxUhspKEMigY1YKps4lkZX+E2Y1y
+ O3d0S83akQbp5MpyDjnjuhcC1tjzBbYcRi30upcwEcuuC4sCMLYNI3Flw
+ sPNF1BI0iAMrZlXQgF/mZsfnpK0m179swJQ9wRrv9kC5xw4Tg97sGhtNx
+ lZuHS2GLwylvVAaxLH6jcFr6QPjtDpMX88g1jx7wjdVekyVriWep9aoYh
+ aoWOqLLc5zxl6ss43AmDDmEZwasDO/+rUlKfCG5N40vqFxyeb09o9osoi g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="374337460"
+X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="374337460"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2023 10:31:34 -0700
+ 29 Aug 2023 10:35:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="804212573"
-X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="804212573"
-Received: from gtmcgeac-mobl.ger.corp.intel.com (HELO [10.252.21.125])
- ([10.252.21.125])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Aug 2023 10:31:33 -0700
-Message-ID: <0347eda8-33f1-1007-72ab-17640ebb9880@intel.com>
-Date: Tue, 29 Aug 2023 18:31:30 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="804213468"
+X-IronPort-AV: E=Sophos;i="6.02,210,1688454000"; d="scan'208";a="804213468"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga008.fm.intel.com with ESMTP; 29 Aug 2023 10:35:15 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 29 Aug 2023 10:35:14 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Tue, 29 Aug 2023 10:35:14 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Tue, 29 Aug 2023 10:35:14 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.109)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Tue, 29 Aug 2023 10:35:14 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GovHESIJDDO/hgXvOb86tek1lGu+Gz0ANVrHxZnow9Cl5VSQCKDXxhOuhMfefn3Xd1kclD5yE8vNFP/0/rGjmGKJQ3i35C7y/Qn3Kd5r2tc1Oi+qZlWfiSNYKGkVsWXq+G424AIQL4gLM3zGgY/F/WGx5hft8n7lOtu6mL+OkYwmtNK9RqrrhtudBdBz9UocrLzGFtVh/pYlylIiW5iiuSwuztR+ycAj7Dcba9tO22Pyrx6VAFJuR77MmYWCWz7nss63c3x5g4MoYXngwiTE5xBT6lNU4wrEpHW0klM/ipGNLsGip9cCCeH3U1QcWcL0sLH8uv6bBNoN+DExtGFyAw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=yEOF2fUb3SyQrQSzMJQ7nflpXMDImgqJh2d/Moomf8c=;
+ b=kFPoz/3mbXuwhwqZ1By4vp8QONN06EB+b9NE4Vz7CNUv6GvFtl1xg/5pKhWAtt4jk6fDIDrPcGx78/7rcuCIFXdIYUYZdA481Lta+b/IxWluiNLeTZZTRry3A3NycMrP/jo62p5F7cNIwovPqCG4a1k51t7v78CrLSqdQ88VVyAF5ccOHiFTAOiwHe6OP0DzmhytytggrMOsnHNiMhsndxq70ga79JR7AFmQGaZLGGCnygZ5olDxnH75zZzI6oORD62DfpK+STa1UJOSFLxh05CJ20xobbeJibwZzNBmbWjA099cvodfKou7SG8ORvhTYAjRNK6Lt6nnTprDQQol0A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by DM6PR11MB4660.namprd11.prod.outlook.com (2603:10b6:5:2ad::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.18; Tue, 29 Aug
+ 2023 17:35:11 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6699.035; Tue, 29 Aug 2023
+ 17:35:11 +0000
+Date: Tue, 29 Aug 2023 10:35:08 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <7ikyjewddyvfkf4fasop7ehfrj7xrifzlhftp7vfr4twbggcky@2ozpnk7fg7co>
+X-Patchwork-Hint: comment
+References: <20230829163005.54067-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230829163005.54067-1-rodrigo.vivi@intel.com>
+X-ClientProxiedBy: MW4PR04CA0104.namprd04.prod.outlook.com
+ (2603:10b6:303:83::19) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
-To: Badal Nilawar <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230824174618.1560317-1-badal.nilawar@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20230824174618.1560317-1-badal.nilawar@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [RFC PATCH] drm/xe/dgfx: Release mmap mappings on
- rpm suspend
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM6PR11MB4660:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5b21fdb6-ce5b-4fdc-8332-08dba8b64b99
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: zHpE3765OwThEl1PkIL1uK30s5wzkDiq5GrN92HRzoa0YBL01IJakwsyQg4KCoH6EZJbUrcg71wUaIz6BhJ6mpEzBjHDlKKdj7T7U72Tt2NBdek7ivlYhT0SK89JnkzTsmYnojEdCqfqpv5Vqb4CbFKTvcP/vicssGa69KaeBdp9h4fGrhO0wfdA2hnQ+5EdhHQjmC9oHOwL79tcipk3QwyRkDevKP53yJIl7A9uCp1c9uGCrzy1X1knT0H6u1v7TwmyukSbHn74WvO67S4oUDBeN8Q3eEeIj+NPPEiKPFQlFa+n5zJNVVTlHQ4vHgBx3qqmpHUFMM0Fq0kOehhVi0M7w9CyEIBmcB3ylXmrPJzRypp34uGcbu/lEgYzyWUMrZ1DJ1vfcygEZ/nfBddRkBGJi25NJzNqw7i1/bUQA1oGolQQG5IXHlA7bG9x3Sfd4h9O7px2iu6JXiPDGKLmnG5B2wrjDQeUDjX1fnMl5musC41FjHV1A/A4+ixJfFkdyVMX9qbQPTeA6Bebe2lgnB+F6hjIWfoGxRHWjS5IAGY=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(136003)(376002)(396003)(346002)(366004)(39860400002)(1800799009)(186009)(451199024)(8936002)(6666004)(478600001)(6506007)(66556008)(66476007)(66946007)(6486002)(966005)(6636002)(316002)(38100700002)(41300700001)(82960400001)(9686003)(6512007)(26005)(5660300002)(8676002)(83380400001)(2906002)(33716001)(86362001)(4326008)(6862004);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SjJmU2F4cHVybHlUaWdzN3ZCVzRUS1B0eEhGdEtGT21UUVFKN0dNSitUdUFj?=
+ =?utf-8?B?c3liU1kwaWJmWHI3QzdOV3Y4TkRjTkYwRElNSDdGT1ZEV0xHSzZIdjFpNG5s?=
+ =?utf-8?B?eVU4RmhUeVh2bG9YTDNQblVVeDdVZGFISkNaRzdMaWZQRDBQOHZ6Y2pwblRJ?=
+ =?utf-8?B?OEI4OFBYMTFMNmNrYnQzOE1zNHR5UG9VUXBpb0ppUm5KVGx6SERxYUx4L3Fu?=
+ =?utf-8?B?VjEyNGdkOGJNd2pZaTNwcnFFRWt2eEJQejFob2g0RWdmV1hIRzVZT0dQYXE4?=
+ =?utf-8?B?cko0cW5XQkZtMmhUR2Fsc2E3SGJES1B4VUQ2OUVwZDcwOEZleWNtczlDQ1hT?=
+ =?utf-8?B?UW1YY2NYZ2VEL0NnOCtZbFRRSmdkbzN0Y1ZMMEhwd3VhaWVmTlBVem5SbGxO?=
+ =?utf-8?B?Q0QyM1I4NVNVaEZlbWk2bmhNTUowU1hxbTlPTGFDa3J1ZEx0S1R6WG1rYnhj?=
+ =?utf-8?B?N3pvSkNkL29hNElwekxRbmNnSEdDZ3JVMmlETEs1a0xyTXY2amMwR3F0WmRx?=
+ =?utf-8?B?TWxLb2ZzQ0REeVp5TDlPeFduaWo3T0lhaThmVnNPVFkzWEV3N1VHTFlyQ2NO?=
+ =?utf-8?B?ZFVKOE4waVVaREx5NkE1TXdPd25VbXo1bTRCUVoyUUNndmtMYW9idTUrMWRC?=
+ =?utf-8?B?K28xU3VCdzZHbmpDY3U3ZXZzN0RFT1lNWFUwK2tESno0Mk9vMzhHdVZpcmUy?=
+ =?utf-8?B?cTdYUWtOZEhnZGczTWUzbmV4cGpGZjhLVVlsUjdEMHpmK0J2Q3B2b0JPZWZJ?=
+ =?utf-8?B?SUJQTksvQ3AxWTIzTWxsVUR6cjdHSm0zTDJ5VjRnUncwdVRtYlQzUzNDbVV5?=
+ =?utf-8?B?NDlRK2U5S211RnV1U296Y2txN2dHamxSU1RTSjBnZnpKUlEyUlhob3UzRC9O?=
+ =?utf-8?B?MUZ0YUZjclFhNDF6QnNtQmtIRXorVVJkdXNtaUpGdUI4ZVB6UlZYd0ZsWEd3?=
+ =?utf-8?B?OCthNysyUGV1djduYkJSWlIvbzJUTDlZcFVETkM5cWlLSDRXYS9IVERJWXVz?=
+ =?utf-8?B?ZGpqdjNrelArOWYwd2dnVXNwSVdrZlRTTS8yZUdwdWc2dGJTREZldkJHODRG?=
+ =?utf-8?B?UENrSzRNTzhYeFpsY1lvbWFRTG9jNnVCR3F3Y0xoamZJS0kyZW5FeUl2UUR1?=
+ =?utf-8?B?TzN5VGRiUGpBUDNVK2lLTzhsVzVnMUJrSGNCSHh0azcvN1dmL3B3ZDdCa2xj?=
+ =?utf-8?B?S0EvM2VUL2Rnb2RNMGhIZWFmUm50UTEzdDZwbE1sVmdQNDByTnl0OGZ2dk9m?=
+ =?utf-8?B?b2lZWm1YRXFNZWp6ajd5L0JOL3RNZUdMMFVrOTVKOHcxeHR3bm5XK2ptTEZG?=
+ =?utf-8?B?enk3UkVkSTRGU3RHMVVZYndid2VsdEVqU3FSUERLQnBEQnNNUGZndW52M2Ru?=
+ =?utf-8?B?eldGU095cDdUZUlkQ1I4NXJrbkZMbHM4cUFaQVAxdXFOMUpxNnhYbG9wRnk3?=
+ =?utf-8?B?ZjVpbTFIOFVGOXZuYWN4Nkh1TWlrSTBrZzczVXhlMW1jTDhSbWEvc0hYN0Fy?=
+ =?utf-8?B?TC9sU1RPZTZNQnI2L2lzZm1UamNka3FTbUZrZEhhcW9yTHBHM1pIa3FXQjJ0?=
+ =?utf-8?B?ZGxOWWtsMjNjWEJ4d0E0dFVLeHhMTk5IWW02YmduTjIxaVEwVzNYT2FLdFR3?=
+ =?utf-8?B?TXJLaCtucml3M05wUGZsbEpVSXA5RTFnd0hEMitRSjl1T1FZa0RXdUtlbkhv?=
+ =?utf-8?B?SWlKcjlIRGptbldyaldSUWVENEtBbXc2UG1adzdkWHFBN251Tk9wLzF1eU44?=
+ =?utf-8?B?Y3BwNFZFcnQvMXFuTHBwRWNwUDJLa2g4eTN5cEtsb1pNblIxS0s0US9DVVFL?=
+ =?utf-8?B?bkYxSGtyTm9mT053RGN0NTI0bHA4SkFaTUh2MVh4RXJoa2d3eUh4dHRxZStl?=
+ =?utf-8?B?Q1p3VSt1KzFldGhlcHVVL2NRaUpwU3p6Y0kycy9jWWlrS3RmTmhhejJ5L09W?=
+ =?utf-8?B?K2x1RENvTjc5Y0NGMkhxRmlVUk4wamp2Q3ZQUndDdlZVOGg4RVk3TnJuZmw0?=
+ =?utf-8?B?cHhQa3kzUnJ2c2s1S082bGtsRlluUUEzWFJFL25sbVBMSWticUN4MXVqQVJq?=
+ =?utf-8?B?dVhuV3FXSXdGbTM0Wk1rT29IczZtU284ZG9odlB2R3VVMXlBRlpwUDFURlVZ?=
+ =?utf-8?B?Z1BmSEVwSGtqa0gxUHpoVkt2V0o4c1pSVTNxWDZiT29YVjVwcVpMYjMrVXhZ?=
+ =?utf-8?B?K3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b21fdb6-ce5b-4fdc-8332-08dba8b64b99
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2023 17:35:11.0363 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lnbQZ41V+Ie/tz5QtwRf5CkLcraH5soCYoMJZnX4AX/i5B5GSDUTdByOJOc5oTlfAEMe2bBjcQ2WgtaSsif+PltpuKeQRMuJ0IrWhg+Bz9Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4660
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 1/4] drm/doc/rfc: No STAGING out of
+ drivers/staging.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,228 +157,48 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Cc: daniel.vetter@ffwll.ch, airlied@gmail.com, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 24/08/2023 18:46, Badal Nilawar wrote:
-> Release all mmap mappings for all vram objects which are associated
-> with userfault such that, while pcie function in D3hot, any access
-> to memory mappings will raise a userfault.
-> 
-> Upon userfault, in order to access memory mappings, if graphics
-> function is in D3 then runtime resume of dgpu will be triggered to
-> transition to D0.
-> 
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_bo.c           | 53 ++++++++++++++++++++++++++--
->   drivers/gpu/drm/xe/xe_bo.h           |  2 ++
->   drivers/gpu/drm/xe/xe_bo_types.h     |  6 ++++
->   drivers/gpu/drm/xe/xe_device_types.h | 20 +++++++++++
->   drivers/gpu/drm/xe/xe_pm.c           |  7 ++++
->   5 files changed, 85 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 1ab682d61e3c..4192bfcd8013 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -776,6 +776,18 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->   		dma_fence_put(fence);
->   	}
->   
-> +	/*
-> +	* TTM has already nuked the mmap for us (see ttm_bo_unmap_virtual),
-> +	* so if we moved from VRAM make sure to unlink this from the userfault
-> +	* tracking.
-> +	*/
-> +	if (mem_type_is_vram(old_mem_type)) {
-> +		spin_lock(&xe->mem_access.vram_userfault_lock);
-> +		if (!list_empty(&bo->vram_userfault_link))
-> +			list_del_init(&bo->vram_userfault_link);
-> +		spin_unlock(&xe->mem_access.vram_userfault_lock);
-> +	}
-> +
->   	xe_device_mem_access_put(xe);
->   	trace_printk("new_mem->mem_type=%d\n", new_mem->mem_type);
->   
-> @@ -1100,6 +1112,8 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->   {
->   	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
->   	struct drm_device *ddev = tbo->base.dev;
-> +	struct xe_bo *bo = ttm_to_xe_bo(tbo);
-> +	struct xe_device *xe = to_xe_device(ddev);
->   	vm_fault_t ret;
->   	int idx, r = 0;
->   
-> @@ -1107,9 +1121,10 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->   	if (ret)
->   		return ret;
->   
-> -	if (drm_dev_enter(ddev, &idx)) {
-> -		struct xe_bo *bo = ttm_to_xe_bo(tbo);
-> +	if (tbo->resource->bus.is_iomem)
-> +		xe_device_mem_access_get(xe);
+On Tue, Aug 29, 2023 at 12:30:01PM -0400, Rodrigo Vivi wrote:
+>Also the uapi should be reviewed and scrutinized before xe
+>is accepted upstream and we shouldn't cause regression.
+>
+>Link: https://lore.kernel.org/all/20230630100059.122881-1-thomas.hellstrom@linux.intel.com
+>Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-It looks like we can be migrated to system memory after this point, see 
-should_migrate_to_system(). I think we need to move this check?
+Agreed. The STAGING config is something specifically for drivers/staging
+as noted in the previous discussion. If other subsystems want to re-use
+it, then there would be more to do to cause a taint.  It could also be
+confusing to cause that taint for drivers outside drivers/staging.
 
->   
-> +	if (drm_dev_enter(ddev, &idx)) {
->   		trace_xe_bo_cpu_fault(bo);
->   
->   		if (should_migrate_to_system(bo)) {
-> @@ -1127,10 +1142,25 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->   	} else {
->   		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
->   	}
-> +
->   	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
-> -		return ret;
-> +		goto out_rpm;
-> +	/*
-> +	 * ttm_bo_vm_reserve() already has dma_resv_lock.
-> +	 * vram_userfault_count is protected by dma_resv lock and rpm wakeref.
-> +	 */
-> +	if (ret == VM_FAULT_NOPAGE && xe_device_mem_access_ongoing(xe) && !bo->vram_userfault_count) {
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Even if we did not call xe_device_mem_access_get() the access_ongoing 
-can return true. I guess we should rather move the iomem check here?
+Lucas De Marchi
 
-> +		bo->vram_userfault_count = 1;
-> +		spin_lock(&xe->mem_access.vram_userfault_lock);
-> +		list_add(&bo->vram_userfault_link, &xe->mem_access.vram_userfault_list);
-> +		spin_unlock(&xe->mem_access.vram_userfault_lock);
->   
-> +		XE_WARN_ON(!tbo->resource->bus.is_iomem);
-> +	}
->   	dma_resv_unlock(tbo->base.resv);
-> +out_rpm:
-> +	if(tbo->resource->bus.is_iomem && xe_device_mem_access_ongoing(xe))
-> +		xe_device_mem_access_put(xe);
->   	return ret;
->   }
->   
-> @@ -2108,6 +2138,23 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
->   	return err;
->   }
->   
-> +void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
-> +{
-> +	struct ttm_buffer_object *tbo = &bo->ttm;
-> +	struct ttm_device *bdev = tbo->bdev;
-> +
-> +	drm_vma_node_unmap(&tbo->base.vma_node, bdev->dev_mapping);
-> +
-> +	/*
-> +	 * We have exclusive access here via runtime suspend. All other callers
-> +	 * must first grab the rpm wakeref.
-> +	 */
-> +	XE_WARN_ON(!bo->vram_userfault_count);
-> +	list_del(&bo->vram_userfault_link);
-> +	bo->vram_userfault_count = 0;
-
-I think bo destruction will need to remove itself from the list. Maybe 
-somewhere in xe_gem_object_free() or xe_ttm_bo_destroy().
-
-> +}
-> +
-> +
->   #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
->   #include "tests/xe_bo.c"
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 0823dda0f31b..6b86f326c700 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -247,6 +247,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->   			struct drm_file *file);
->   int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
->   			     struct drm_file *file);
-> +void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
-> +
->   int xe_bo_dumb_create(struct drm_file *file_priv,
->   		      struct drm_device *dev,
->   		      struct drm_mode_create_dumb *args);
-> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-> index f6ee920303af..cdca91a378c4 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> @@ -68,6 +68,12 @@ struct xe_bo {
->   	struct llist_node freed;
->   	/** @created: Whether the bo has passed initial creation */
->   	bool created;
-> +	/**
-> +	 * Whether the object is currently in fake offset mmap backed by vram.
-> +	 */
-> +	unsigned int vram_userfault_count;
-> +	struct list_head vram_userfault_link;
-> +
->   };
->   
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 750e1f0d3339..c345fb483af1 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -328,6 +328,26 @@ struct xe_device {
->   	struct {
->   		/** @ref: ref count of memory accesses */
->   		atomic_t ref;
-> +		/*
-> +		 *  Protects access to vram usefault list.
-> +		 *  It is required, if we are outside of the runtime suspend path,
-> +		 *  access to @vram_userfault_list requires always first grabbing the
-> +		 *  runtime pm, to ensure we can't race against runtime suspend.
-> +		 *  Once we have that we also need to grab @vram_userfault_lock,
-> +		 *  at which point we have exclusive access.
-> +		 *  The runtime suspend path is special since it doesn't really hold any locks,
-> +		 *  but instead has exclusive access by virtue of all other accesses requiring
-> +		 *  holding the runtime pm wakeref.
-> +		 */
-> +		spinlock_t vram_userfault_lock;
-> +
-> +		/*
-> +		 *  Keep list of userfaulted gem obj, which require to release their
-> +		 *  mmap mappings at runtime suspend path.
-> +		 */
-> +		struct list_head vram_userfault_list;
-> +
-> +		bool vram_userfault_ongoing;
->   	} mem_access;
->   
->   	/** @d3cold: Encapsulate d3cold related stuff */
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index 0f06d8304e17..51cde1db930e 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -172,6 +172,8 @@ void xe_pm_init(struct xe_device *xe)
->   	}
->   
->   	xe_pm_runtime_init(xe);
-> +	INIT_LIST_HEAD(&xe->mem_access.vram_userfault_list);
-> +	spin_lock_init(&xe->mem_access.vram_userfault_lock);
->   }
->   
->   void xe_pm_runtime_fini(struct xe_device *xe)
-> @@ -205,6 +207,7 @@ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe)
->   
->   int xe_pm_runtime_suspend(struct xe_device *xe)
->   {
-> +	struct xe_bo *bo, *on;
->   	struct xe_gt *gt;
->   	u8 id;
->   	int err = 0;
-> @@ -238,6 +241,10 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
->   	 */
->   	lock_map_acquire(&xe_device_mem_access_lockdep_map);
->   
-> +	list_for_each_entry_safe(bo, on,
-> +				 &xe->mem_access.vram_userfault_list, vram_userfault_link)
-> +		xe_bo_runtime_pm_release_mmap_offset(bo);
-> +
->   	if (xe->d3cold.allowed) {
->   		err = xe_bo_evict_all(xe);
->   		if (err)
+>---
+> Documentation/gpu/rfc/xe.rst | 6 ------
+> 1 file changed, 6 deletions(-)
+>
+>diff --git a/Documentation/gpu/rfc/xe.rst b/Documentation/gpu/rfc/xe.rst
+>index 2516fe141db6..3d2181bf3dad 100644
+>--- a/Documentation/gpu/rfc/xe.rst
+>+++ b/Documentation/gpu/rfc/xe.rst
+>@@ -67,12 +67,6 @@ platforms.
+>
+> When the time comes for Xe, the protection will be lifted on Xe and kept in i915.
+>
+>-Xe driver will be protected with both STAGING Kconfig and force_probe. Changes in
+>-the uAPI are expected while the driver is behind these protections. STAGING will
+>-be removed when the driver uAPI gets to a mature state where we can guarantee the
+>-‘no regression’ rule. Then force_probe will be lifted only for future platforms
+>-that will be productized with Xe driver, but not with i915.
+>-
+> Xe – Pre-Merge Goals
+> ====================
+>
+>-- 
+>2.41.0
+>
