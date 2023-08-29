@@ -4,134 +4,82 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 539B5C83F12
-	for <intel-xe@archiver.kernel.org>; Tue, 29 Aug 2023 00:16:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01211C83F13
+	for <intel-xe@archiver.kernel.org>; Tue, 29 Aug 2023 01:20:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0252810E0DD;
-	Tue, 29 Aug 2023 00:16:14 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFAF910E0DD;
- Tue, 29 Aug 2023 00:16:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693268172; x=1724804172;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=w4f8PeIWzrIPjH49/ONXn5S39x5jvsp4D3g0tdTFhKU=;
- b=fg4qyV/LEkNm3mS1hY8Jtq0ftaPSXhTQstae4VFlHMQMVXpY6bN2x9Q1
- ZHzm0vz3ospkQA8MTfHyU/+jFekRkeFExtgpkwGUHzIKt0nDDegaoNl4d
- Z7Sd5BoD8yyUpFOc3QTMJovrFqpDeck5HOHiGemrW/P3j1hmP+MkpohxQ
- gLCblYWPxPSAfs0uaYIMfYrQX7ctYZXGG+dqpFE8AblNEpFqrO9M74eDN
- cQlwe4D+6o3tn2kfqq5ff3Tabi0cgxq7avQ9lDpz0BapMVvBlyFGiJVdA
- NCG13H7mud/4DYjA738msmaizmtkB/Dr1eJIIJXiNzkQJlARsQs4GqOZC A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="360240504"
-X-IronPort-AV: E=Sophos;i="6.02,208,1688454000"; d="scan'208";a="360240504"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Aug 2023 17:16:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10816"; a="741607234"
-X-IronPort-AV: E=Sophos;i="6.02,208,1688454000"; d="scan'208";a="741607234"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga007.fm.intel.com with ESMTP; 28 Aug 2023 17:16:11 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Mon, 28 Aug 2023 17:16:10 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Mon, 28 Aug 2023 17:16:10 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Mon, 28 Aug 2023 17:16:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D1LKJDp6lELa9oR5DCiwUE6bXn4CizkEJmWuMTdZ3IZrDzR+P2m1un+XJxBRBu5VEm6wMWOll6D5KLyy5sZgjodJ9SupfM7O+0CYqHgr/bwWKuzyqw2VNG8OVkAo60Pr9pnk0I4hAv7+4lOPDxYCqvfM3wBn0D4ftFfdrcK+iaGPo5M0RwC9SQQ7nxG06hUKMasKAxe8LilfYBD+IleaCR9o00bt1WYatG6TQG6FVw9P2EUyYhWVDXbu/N1tX5H+6oXBhaHITPbOrOMT3+5McySsZnzJ3a6HAmt1gShB8l9rLJRC9kR8jXrR/dOEE6djeL+fTRBDmEeKIJFxqm31fg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SK/BoETZ49g2tcNSf5/NxnMx/ZWtLo1Nw9UrAk8LIqg=;
- b=dOFHpQ2vCTO6Pq7oKa1FcbQerOGhTq/PGkblrULdD0qu63eLZeRjq+BwLMLbsVfTl4MzHglzIlEcYYUFF+9SR/4qBdM51rIAHSQLt+ibE4MGqMZCrQ+MtVaNENlak0/xc3BP8FkNPJBxADLUetEgwOyPQvIzKuJTl3g5Yo3vfZ/nZUQ0VjN1HNA/TRM8nwediNYHLf5dua/ehamwCKlgwecB74PtOI/PeNjpdazXYZRJmRK4BMpZ/sQEJyDh65/Io6WOXxxs+WNvvHiDJePAzDDmuf+z6BPDxP7KRrz62EP5nwcUHY4dfek/AXilv50uTmCoog9hpi8YqPEEDlomMA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- MW5PR11MB5858.namprd11.prod.outlook.com (2603:10b6:303:193::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6699.35; Tue, 29 Aug
- 2023 00:16:07 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6699.034; Tue, 29 Aug 2023
- 00:16:07 +0000
-Date: Mon, 28 Aug 2023 17:16:04 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Message-ID: <20230829001604.GQ6080@mdroper-desk1.amr.corp.intel.com>
-References: <20230828062035.6906-1-vinod.govindapillai@intel.com>
- <20230828062035.6906-4-vinod.govindapillai@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230828062035.6906-4-vinod.govindapillai@intel.com>
-X-ClientProxiedBy: BYAPR21CA0001.namprd21.prod.outlook.com
- (2603:10b6:a03:114::11) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A2A9510E2C9;
+	Tue, 29 Aug 2023 01:20:45 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C75810E0DD
+ for <intel-xe@lists.freedesktop.org>; Tue, 29 Aug 2023 01:20:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1693272043;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=JxhVIhrfzzCN5tfByAy0BZtSYrapryIHOGLgCPrh8zI=;
+ b=S2ZXbK+ooplGk+nSVy8fjPDhnGDg/vjvkPuF6R3BNGwm/2Z/Bw4EhOj8XILCQc+oTSN/tJ
+ FMIEjvCGId6DvRmvSOxScWaRxVuV8nSsne5iO2pwlPRtkctQ5zvZWJgO/IlKKhEad8Yy0U
+ bkiC27cMuK2c56QnG9jPelE3uGGpJxA=
+Received: from mail-lf1-f69.google.com (mail-lf1-f69.google.com
+ [209.85.167.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-484-STcKtmuYP9eFAmPkMw2w7A-1; Mon, 28 Aug 2023 21:20:41 -0400
+X-MC-Unique: STcKtmuYP9eFAmPkMw2w7A-1
+Received: by mail-lf1-f69.google.com with SMTP id
+ 2adb3069b0e04-5009f4c933cso4239452e87.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 28 Aug 2023 18:20:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693272040; x=1693876840;
+ h=content-transfer-encoding:in-reply-to:organization:from:references
+ :cc:to:content-language:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=JxhVIhrfzzCN5tfByAy0BZtSYrapryIHOGLgCPrh8zI=;
+ b=MKEWy5e43ycjUufP3azX4szmPrs9FXwLIT30lIwU0xB/tqizoGWhrG1nB8zPHhjl2t
+ 4xkylaWZaNLEf2Lmqt9uGiMCFAE+SWxDwGwkUZsvfOSXIsTPz2eN+wNjUDSZltxSB+HW
+ qcqrS3umzX5kDrH4Xvz2KYIKtiC98+cavAuBWrGHGbXwJ4a50V284H9gPYHjAXDoztEf
+ kLpPljTjygQG4+nw9pb+5nxgUoV1A0uvgRFMxmOP/NnPi5rrb7aFwf3vJCcSeaBZypUw
+ ruKw/ez5kXDdaIUB9wlgmxati6+iBrKJi1wrfocNbitxHJVQNHAE93GS9IebfASnFPTU
+ RPSA==
+X-Gm-Message-State: AOJu0YwGuF+u6DkbQ8CH1lUxgbyQqhea5jX5xvXlsmQUVpC9ED49DvP4
+ 55Uvn1S0iqFdbL4vFnB+KgRW39cykgu7GItXRJ5WKN3pWE+IZBo1XdnbL4m/docGUr+DdcUD+ya
+ mrP7vsrucJyKC/6XD6jRnWKlDsaw=
+X-Received: by 2002:ac2:562f:0:b0:4f9:5519:78b8 with SMTP id
+ b15-20020ac2562f000000b004f9551978b8mr16155462lff.63.1693272039845; 
+ Mon, 28 Aug 2023 18:20:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEN5OOFFzVHea4mzP9EGBMjC276p5Tl/QTjRKvdJf/AjW490tpIMzq9zGF96d4RWaEAD0duXw==
+X-Received: by 2002:ac2:562f:0:b0:4f9:5519:78b8 with SMTP id
+ b15-20020ac2562f000000b004f9551978b8mr16155454lff.63.1693272039446; 
+ Mon, 28 Aug 2023 18:20:39 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
+ ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
+ by smtp.gmail.com with ESMTPSA id
+ e10-20020aa7d7ca000000b005256994e335sm5056892eds.92.2023.08.28.18.20.38
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Mon, 28 Aug 2023 18:20:39 -0700 (PDT)
+Message-ID: <fe3e6d7b-8915-e6c5-43db-ddb778bfea9c@redhat.com>
+Date: Tue, 29 Aug 2023 03:20:37 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|MW5PR11MB5858:EE_
-X-MS-Office365-Filtering-Correlation-Id: 688a5789-631f-4f1d-5b1f-08dba8252403
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Z/pLcLpcN/ozmzV/5xDpj1TMC6yF8JrxdvhBVgB+q+odepe6l1WxeGs051+X1cCm75EGdJelO2PNt8GDaUYCBzg7JwHPKI48r6knRKtHtAaRBdd6va9fyM8ChLrUUyzHbWAObB9Q7TM9BTzYWI9mhZE+tQEuPiMZVipNIUyLmyYc2HS5kE3slsjhIrA6f64RGeFsf03ObJ9yZLuBn8QvHG+nBbrBmnmMtwnRplwp0Xn2ELifYvCRZ1g5GpagHGpvVWd/et5cxfyDAXh9VpwOpaUrQe8LvnkEXT1wvqPRvLpk5DRtgJkldi3Ef4ZcnC7QT4nmsyXPCDZgbby7DzdWJPcKpQ74Pg8/eHEbbZsypqGBTSEmxVzZY0BdPgmQghb9tt7XVr5JWKeNeJkPncikk5o8pWR3sEZZ1xnwuE/Amtp0OS5fmW/uvjJ0HWH9Stc4zfbVbU+avcXLr1skigA1Jn7mwKa1RvvGwnLVgZpjEaoYqSl5y6UohbrCAossn4Lfnf7QAwcg/FiZk6WYh/vqDWVPULO5AXefL7DOQUhtlnUnYP56hnCzIy6g1DhJAKkv
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(39860400002)(136003)(366004)(396003)(346002)(186009)(451199024)(1800799009)(6666004)(6512007)(6506007)(6486002)(478600001)(83380400001)(107886003)(1076003)(26005)(2906002)(316002)(6636002)(66476007)(66946007)(66556008)(41300700001)(6862004)(8936002)(5660300002)(450100002)(4326008)(8676002)(33656002)(82960400001)(38100700002)(86362001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zN8yxlFu/PMnID8/oQ43kf8RjNY0ELQk3REGWf2/5zQQ0tZATx2aErTn2xI/?=
- =?us-ascii?Q?HNycbgk5cThVPskESQhHbDg2YZfFbnjmqHLThzfLBaf4Zb7ApmEObs5youJr?=
- =?us-ascii?Q?VtHkUdG4MPfHMRGraCubSnSd7R6Fr1GTyuM/USWsBFgxVNDzq7Rj1CE114oE?=
- =?us-ascii?Q?zYBtQR+AgPKeXKck2qbasu9M3i7BSzEW2kdCSNeI9Kpb872wMuJDWUSlRH8M?=
- =?us-ascii?Q?FKB9ETRZy14G0StVA9CNtjcs26MXoFSl1FJdgDNzGubdT0Jyf6udx1ZAc1fn?=
- =?us-ascii?Q?iJyf9y3jv7pgRHfOXdPEcUDJKYOvnvd0qZT7C7hWOIYikg/ZnOZdogbaABm5?=
- =?us-ascii?Q?rAr3W6XTZNWk0ei90vCTW3PVx//HlRFFpTymsfxy7L0L53e9Ox07b5rURm1R?=
- =?us-ascii?Q?HKTBO5YoOxaT5i2WpZmAmsGysOwSXTgLtrmb22gY39xh93Zujk2DOESLFO4f?=
- =?us-ascii?Q?oBnHIXr+4+Oz7NjoL14c/4ZQgbbCT43pO5YiBX9s9f3Xu1aOluqhao/Fxloy?=
- =?us-ascii?Q?+p8zhGVscGyMdrcONFYbvJnK2+dYpxD4dsG2KZRQj8A8OfvSY+GOiI4CoB+I?=
- =?us-ascii?Q?+ix8cH/yjjro6/Cg8xEJUg7gJrboe5CeZLph/++1Z/w/imKwyUiJayGDiGRf?=
- =?us-ascii?Q?yAiNOwdUoLsiwiFmHXafyaFAy6HlrAc3fJzmG3EY+q6NUSB6L4sZOkMaoXzC?=
- =?us-ascii?Q?fqrBaGXoGyt08y5jXmIEwl99XFlAkKp7cnlX1W/FhjpQ5ShhJXOnHh4Kwz6C?=
- =?us-ascii?Q?v5q3ii+URukFPe/kG/X4b2mdK5vi18kJI+bfQolk2BE3lIOJy3xBIoa5mYWg?=
- =?us-ascii?Q?adjia8TRRoJ/gkAqmDCxOunNXC1JM2hH1B+sO3khWCnL+/9dPSFfIWaQGEi0?=
- =?us-ascii?Q?RvbtbJS1vIH4qNbiIW8vmhzshB6+yDgPmy5UZvOHZdb6IfJjL/d6Ga/ZfQox?=
- =?us-ascii?Q?KvC7IsHXjIlvflTqG+r9REKPmT3mnQEDLGlsDzZNMQCHqpNJIq7xEIhkaIN3?=
- =?us-ascii?Q?fk6BSqRbStsAkvqnXS2JB4Kzhg3z4NxnQMVdPVCPfluuU1IheQm80VTKEI4z?=
- =?us-ascii?Q?10ghkGnX8q3D5jvYe9VTToRARHen9nWW0wt2uv1HmkAhd0h11YYr/og1IHtQ?=
- =?us-ascii?Q?+Yi3pFIQDTx1ECeBIfk3m0OAlwB4MBWUET5ff1O0a8pYB+N4ZAecIYvwfKec?=
- =?us-ascii?Q?MeH+JowLZhD5z1XAKMaclL5VgU0TO5PK7ve1Hrw6Hxxzp6cB3Iw2LQ2xik66?=
- =?us-ascii?Q?JxpnzOhr/loM0oihQ8TbnWnonntg2QVrDvHiLabIsOROpLq19XO9OLMX1xpU?=
- =?us-ascii?Q?nn5F7KceXNUUsnE1MUL4O2MRURRE78WK02a02cHKqSMI03hwo4xkS3jAQGnZ?=
- =?us-ascii?Q?GtoUCWuyqEeo+U53xy869jwbsupOaQKXGoxWwCNUnvbxpPgdOVnoERKo+WFA?=
- =?us-ascii?Q?pjifVys+Bm1TDTNU4zsJ2VhmCrOYVI/nzsOnxJFdW4VnxYT+0tbGA9NpgdlX?=
- =?us-ascii?Q?kObp7MuuO89KdP3eOpw8XtuND1miqrF+1r7WgiFufE9eYpcxJgd+wO30iWen?=
- =?us-ascii?Q?jkaTV1MYFRU80uE9UMPPPJuou04OwInmX7Gva/J/KzNB0BRYie+UvV6IDZ0j?=
- =?us-ascii?Q?9A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 688a5789-631f-4f1d-5b1f-08dba8252403
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2023 00:16:07.6800 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XWGAvACXIES2j1rjq6Rsgt47QYtUDAmDj7IuLTD27VGQTaMXG+qENy4QEKZHgqeyGWLd/LDtZcFByZdFYQgaFPSwTK6xTDbP69PREiOevqA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW5PR11MB5858
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 3/4] drm/i915/lnl: support FBC on any plane
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-5-matthew.brost@intel.com>
+ <bbb7fe74-bc75-8fc0-0a33-88ff86b81e00@redhat.com>
+ <ZOzqUtgXj0J4muYQ@DUT025-TGLU.fm.intel.com>
+From: Danilo Krummrich <dakr@redhat.com>
+Organization: RedHat
+In-Reply-To: <ZOzqUtgXj0J4muYQ@DUT025-TGLU.fm.intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v2 4/9] drm/sched: Split free_job into own
+ work item
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,156 +91,124 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, ville.syrjala@intel.com,
- intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, luben.tuikov@amd.com, donald.robson@imgtec.com,
+ boris.brezillon@collabora.com, christian.koenig@amd.com,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Aug 28, 2023 at 09:20:34AM +0300, Vinod Govindapillai wrote:
-> In LNL onwards, FBC can be associated to the first three planes.
-
-The title of this patch shouldn't say "any plane" when the reality is
-that only the first three support FBC (the upper two do not).
-
-> The FBC will be enabled for first FBC capable visible plane
-> until the userspace can select one of these FBC capable plane
-> explicitly
-
-Even if we add new Intel-specific uapi to select this explicitly, is any
-userspace actually going to use it?  Would it make more sense to try to
-come up with a heuristic to guess which plane would benefit the most and
-switch to that automatically without userspace needing to be involved in
-the decision?  For that matter, do we have a real-world use case lined
-up where we can see that switching FBC to a higher plane is beneficial?
-Even if the hardware suddenly has this capability, it isn't necessarily
-worth adding the extra complexity to the driver if we don't expect to
-get real-world benefit from it.
-
-BTW, I'm not super familiar with all the FBC-specific details, but it
-feels like if we do go forward with this, the decision to select a
-specific plane for FBC usage should be handled more deliberately during
-the atomic check phase.  Right now it doesn't seem like we're really
-making a firm decision on which plane to use, and we're probably not
-handling all the cases where the register needs to be reprogrammed
-if/when the FBC moves from one plane to another (potentially on a
-per-frame basis).
-
+On 8/28/23 20:41, Matthew Brost wrote:
+> On Mon, Aug 28, 2023 at 08:04:31PM +0200, Danilo Krummrich wrote:
+>> On 8/11/23 04:31, Matthew Brost wrote:
+>>> Rather than call free_job and run_job in same work item have a dedicated
+>>> work item for each. This aligns with the design and intended use of work
+>>> queues.
+>>>
+>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>> ---
+>>>    drivers/gpu/drm/scheduler/sched_main.c | 137 ++++++++++++++++++-------
+>>>    include/drm/gpu_scheduler.h            |   8 +-
+>>>    2 files changed, 106 insertions(+), 39 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+>>> index cede47afc800..b67469eac179 100644
+>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>>> @@ -1275,7 +1338,8 @@ EXPORT_SYMBOL(drm_sched_submit_ready);
+>>>    void drm_sched_submit_stop(struct drm_gpu_scheduler *sched)
+>>
+>> I was wondering what the scheduler teardown sequence looks like for
+>> DRM_SCHED_POLICY_SINGLE_ENTITY and how XE does that.
+>>
+>> In Nouveau, userspace can ask the kernel to create a channel (or multiple),
+>> where each channel represents a ring feeding the firmware scheduler. Userspace
+>> can forcefully close channels via either a dedicated IOCTL or by just closing
+>> the FD which subsequently closes all channels opened through this FD.
+>>
+>> When this happens the scheduler needs to be teared down. Without keeping track of
+>> things in a driver specific way, the only thing I could really come up with is the
+>> following.
+>>
+>> /* Make sure no more jobs are fetched from the entity. */
+>> drm_sched_submit_stop();
+>>
+>> /* Wait for the channel to be idle, namely jobs in flight to complete. */
+>> nouveau_channel_idle();
+>>
+>> /* Stop the scheduler to free jobs from the pending_list. Ring must be idle at this
+>>   * point, otherwise me might leak jobs. Feels more like a workaround to free
+>>   * finished jobs.
+>>   */
+>> drm_sched_stop();
+>>
+>> /* Free jobs from the entity queue. */
+>> drm_sched_entity_fini();
+>>
+>> /* Probably not even needed in this case. */
+>> drm_sched_fini();
+>>
+>> This doesn't look very straightforward though. I wonder if other drivers feeding
+>> firmware schedulers have similar cases. Maybe something like drm_sched_teardown(),
+>> which would stop job submission, wait for pending jobs to finish and subsequently
+>> free them up would makes sense?
+>>
 > 
-> Bspec: 69560
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fbc.c      | 29 +++++++++++++++++++
->  .../drm/i915/display/skl_universal_plane.c    |  5 +++-
->  drivers/gpu/drm/i915/i915_reg.h               |  4 +++
->  3 files changed, 37 insertions(+), 1 deletion(-)
+> exec queue == gpu scheduler + entity in Xe
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> index 45e205a0f740..62f59630d410 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> @@ -649,6 +649,21 @@ static void skl_fbc_program_cfb_stride(struct intel_fbc *fbc)
->  		     CHICKEN_FBC_STRIDE_MASK, val);
->  }
->  
-> +static u32 lnl_plane_binding(struct intel_fbc *fbc)
-> +{
-> +	switch (fbc->state.plane->id) {
-> +	default:
-> +		MISSING_CASE(fbc->state.plane->id);
-> +		fallthrough;
-> +	case 0:
-> +		return DPFC_CTL_PLANE_BINDING_1;
-> +	case 1:
-> +		return DPFC_CTL_PLANE_BINDING_2;
-> +	case 2:
-> +		return DPFC_CTL_PLANE_BINDING_3;
-> +	}
-> +}
-> +
->  static u32 ivb_dpfc_ctl(struct intel_fbc *fbc)
->  {
->  	const struct intel_fbc_state *fbc_state = &fbc->state;
-> @@ -660,6 +675,9 @@ static u32 ivb_dpfc_ctl(struct intel_fbc *fbc)
->  	if (IS_IVYBRIDGE(i915))
->  		dpfc_ctl |= DPFC_CTL_PLANE_IVB(fbc_state->plane->i9xx_plane);
->  
-> +	if (DISPLAY_VER(i915) >= 20)
-> +		dpfc_ctl |= lnl_plane_binding(fbc);
-> +
->  	if (fbc_state->fence_id >= 0)
->  		dpfc_ctl |= DPFC_CTL_FENCE_EN_IVB;
->  
-> @@ -1250,6 +1268,17 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
->  		}
->  	}
->  
-> +	/*
-> +	 * From LNL, FBC can be assigned on any plane. Until a provision is
-> +	 * provided for the userspace to select a plane for FBC, lets select
-> +	 * the first visible plane that is FBC capable.
-> +	 */
-> +	if (DISPLAY_VER(i915) >= 20 && fbc->state.plane &&
+> We kinda invented our own flow with reference counting + use the TDR for
+> cleanup.
 
-Isn't the fbc->state.plane here redundant with the plane check on the
-next line (since a NULL plane wouldn't match there either)?
+Thanks for the detailed explanation. In case of making it driver specific
+I thought about something similar, pretty much the same reference counting,
+but instead of the TDR, let jobs from the entity just return -ECANCELED from
+job_run() and also signal pending jobs with the same error code.
 
-> +	    fbc->state.plane != plane) {
-> +		plane_state->no_fbc_reason = "fbc enabled on another plane";
+On the other hand, I don't really want scheduler and job structures to
+potentially outlive the channel. Which is where I think I'd be nice to avoid
+consuming all the queued up jobs from the entity in the first place, stop the
+schdeduler with drm_sched_submit_stop(), signal all pending_jobs with
+-ECANCELED and call the free_job() callbacks right away.
 
-If you set this here...
+The latter I could probably do in Nouveau as well, however, it kinda feels
+wrong to do all that within the driver.
 
-> +		return 0;
-> +	}
-> +
->  	plane_state->no_fbc_reason = NULL;
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index 4d01c7ae4485..1291351c9941 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -1962,7 +1962,10 @@ static bool skl_plane_has_fbc(struct drm_i915_private *dev_priv,
->  	if ((DISPLAY_RUNTIME_INFO(dev_priv)->fbc_mask & BIT(fbc_id)) == 0)
->  		return false;
->  
-> -	return plane_id == PLANE_PRIMARY;
-> +	if (DISPLAY_VER(dev_priv) >= 20)
-> +		return plane_id <= PLANE_SPRITE1;
-> +	else
-> +		return plane_id == PLANE_PRIMARY;
-
-...and also point all three FBC-capable planes at the pipe's FBC
-structure, then won't intel_fbc_update() see the non-NULL reason and try
-to turn off the pipe's FBC (even though it's being used on a different
-plane)?
-
-
-Matt
-
->  }
->  
->  static struct intel_fbc *skl_plane_fbc(struct drm_i915_private *dev_priv,
-> diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-> index aefad14ab27a..b207774f3c33 100644
-> --- a/drivers/gpu/drm/i915/i915_reg.h
-> +++ b/drivers/gpu/drm/i915/i915_reg.h
-> @@ -1327,6 +1327,10 @@
->  #define   DPFC_CTL_PLANE_IVB(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_IVB, (i9xx_plane))
->  #define   DPFC_CTL_FENCE_EN_IVB			REG_BIT(28) /* ivb+ */
->  #define   DPFC_CTL_PERSISTENT_MODE		REG_BIT(25) /* g4x-snb */
-> +#define   DPFC_CTL_PLANE_BINDING_MASK		REG_GENMASK(12, 11) /* XE */
-> +#define   DPFC_CTL_PLANE_BINDING_1		REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, 0) /* XE */
-> +#define   DPFC_CTL_PLANE_BINDING_2		REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, 1) /* XE */
-> +#define   DPFC_CTL_PLANE_BINDING_3		REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK, 2) /* XE */
->  #define   DPFC_CTL_FALSE_COLOR			REG_BIT(10) /* ivb+ */
->  #define   DPFC_CTL_SR_EN			REG_BIT(10) /* g4x only */
->  #define   DPFC_CTL_SR_EXIT_DIS			REG_BIT(9) /* g4x only */
-> -- 
-> 2.34.1
+Also, I was wondering how existing drivers using the GPU scheduler handle
+that. It seems like they just rely on the pending_list of the scheduler being
+empty once drm_sched_fini() is called. Admittedly, that's pretty likely (never
+to happen) since it's typically called on driver remove, but I don't see how
+that's actually ensured. Am I missing something?
 > 
+> We have a creation ref for the exec queue plus each job takes a ref to
+> the exec queue. On exec queue close [1][2] (whether that be IOCTL or FD
+> close) we drop the creation reference and call a vfunc for killing thr
+> exec queue. The firmware implementation is here [3].
+> 
+> If you read through it just sets the TDR to the minimum value [4], the
+> TDR will kick any running jobs the off the hardware, signals the jobs
+> fences, any jobs waiting on dependencies eventually flush out via
+> run_job + TDR for cleanup without going on the hardware, the exec queue
+> reference count goes to zero once all jobs are flushed out, we trigger
+> the exec queue clean up flow and finally free all memory for the exec
+> queue.
+> 
+> Using the TDR in this way is how we teardown an exec queue for other
+> reasons too (user page fault, user job times out, user job hang detected
+> by firmware, device reset, etc...).
+> 
+> This all works rather nicely and is a single code path for all of these
+> cases. I'm no sure if this can be made any more generic nor do I really
+> see the need too (at least I don't see Xe needing a generic solution).
+> 
+> Hope this helps,
+> Matt
+> 
+> [1] https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-next/drivers/gpu/drm/xe/xe_exec_queue.c#L911
+> [2] https://gitlab.freedesktop.org/drm/xe/kernel/-/blob/drm-xe-next/drivers/gpu/drm/xe/xe_device.c#L77
+> [3] https://gitlab.freedesktop.org/drm/xe/kernel/-/tree/drm-xe-next/drivers/gpu/drm/xe#L1184
+> [4] https://gitlab.freedesktop.org/drm/xe/kernel/-/tree/drm-xe-next/drivers/gpu/drm/xe#L789
+> 
+>> - Danilo
+>>
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
