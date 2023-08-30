@@ -4,45 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D55ADC83F01
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Aug 2023 09:17:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C74BC83F01
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Aug 2023 09:24:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70C6F10E124;
-	Wed, 30 Aug 2023 09:17:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB30A10E124
- for <intel-xe@lists.freedesktop.org>; Wed, 30 Aug 2023 09:17:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693387043; x=1724923043;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=24wPbrOvGx7rS/mBMl3TXSK0qm70a4itwbR6V0zxP18=;
- b=VVxZbi/+MPJQCyIzMP8EH2muHVNwMIhtTXIDbr2ZhFeNb4xM3UV0afeF
- oPIkYKCZ5e213CBdC93W44PtmohrYLoyEfI9Vxmmi8nsIgu4V8k0wVS4L
- MPV/Lh57GV0YD4C85RtuazLqW/1V50Owf2DpREutRcJEm3G2fecGpKxk2
- obPBnPCKdMLNaDGcIaH4ySQw0TOOH1R4hOkB8WZfX+/aHRg2WptmGKWcg
- lqbRvHBvY7ryG2wmYA+EFjKP+bAxm0hjWmcu9DhO+X52gxxiMfs8Pf6p2
- VIGBOAMQWzqHMO31eNRaqTU2VaPYhKWAJ+h15Slj2+khVYGPmJlDRy1EM g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="372996235"
-X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; d="scan'208";a="372996235"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2023 02:17:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10817"; a="912714769"
-X-IronPort-AV: E=Sophos;i="6.02,213,1688454000"; d="scan'208";a="912714769"
-Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2023 02:17:22 -0700
-From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 30 Aug 2023 02:17:17 -0700
-Message-Id: <20230830091717.19617-1-niranjana.vishwanathapura@intel.com>
-X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF4E310E4DE;
+	Wed, 30 Aug 2023 09:23:59 +0000 (UTC)
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com
+ [IPv6:2a00:1450:4864:20::534])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5192510E4DE
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Aug 2023 09:23:58 +0000 (UTC)
+Received: by mail-ed1-x534.google.com with SMTP id
+ 4fb4d7f45d1cf-521e046f6c7so8114a12.1
+ for <intel-xe@lists.freedesktop.org>; Wed, 30 Aug 2023 02:23:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20221208; t=1693387436; x=1693992236;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=f87wpIwnIdp5jK4VU9hV3ezTDAO/CjMAt2B4bQ7eJM4=;
+ b=Ifc4xjuUfCH3s+Iovj/NIpOD0TKnhPmr68TXtjzLuCTZf7in/ocWbALaZg2UEMShNU
+ 6Z/EsXeDFV76QRPtnxC4JPKCXHqMD2wLJ6/tSL1zAi19VQHD7kjtqexuc2q8BiWnI+In
+ rlQvwGLZWgmJZEb8l7ODszo7HebGBMsB1eaDStwV7GhULqNNzbqkWi7JRQG9Sacu2jDP
+ Epq87K7LI1ZNqtGQwRkPoGHWNMbbhez89XfW25qknIejCcfh02kPAmjdocknJBMPZn4Q
+ BxvfFshNEQ+aTiVxGBcgcPD7MuHuXHPwbLnL5bYqgg3gilTngJNnA2E2ItMmc9cQBgWZ
+ TMoQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693387436; x=1693992236;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=f87wpIwnIdp5jK4VU9hV3ezTDAO/CjMAt2B4bQ7eJM4=;
+ b=PMr0ZSqIPqmyd83V4J2lv84QQB9bYlb2nDnHckj7y9hkUFtCFl3P4wuN7SyRDMcH+K
+ 2QF8FisgsWb+RiecJGangoYuyBbLenx3u84XuLUbChce1SLaz7MYad66ipDmcEejXvTg
+ VplCp4hOKZF4/v4pzRLQ9mFkNq2bLK7T1a8y4oxtQsumCEqAfokniWHP15ftF3rjKQSA
+ GUF8GyZsi+eycIBO/nVng6gv+3jY0gTEDOG9iJYRkerQJt+JQNmsfIRZQTz07FcdEoOb
+ XZjLw5QKiFZ1g5iEkMk/z4nPAQPeQVUI2sqmXtOhkewc1rAPMgA0kSqYXByEbYKe5Pob
+ VYBQ==
+X-Gm-Message-State: AOJu0YzhiH3P9IwCIHvvNHb39QQKWl9jShMaDYxRn2cl31rGWLE6f1de
+ vA6DnlFo+btwpK3H1ls57DvIqGp1EiBPllMpEcs9PA==
+X-Google-Smtp-Source: AGHT+IGOJG82AqayPq+IxKbRBB40elSpvQTlRy7vOTWosx4d5Qhj0S+ZM0SHNfmz+GoPS+zKtRMKS53mt/wgVFu7huo=
+X-Received: by 2002:a50:aadd:0:b0:525:573c:6444 with SMTP id
+ r29-20020a50aadd000000b00525573c6444mr269015edc.1.1693387436517; Wed, 30 Aug
+ 2023 02:23:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2] fixup! drm/xe: Rename engine to exec_queue
+References: <20230830075419.26484-2-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20230830075419.26484-2-janusz.krzysztofik@linux.intel.com>
+From: David Gow <davidgow@google.com>
+Date: Wed, 30 Aug 2023 17:23:43 +0800
+Message-ID: <CABVgOSmZ56p8BBFHNXqigNrH95O_YjMZxfpbhWcZJFrSMS3CDA@mail.gmail.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+ micalg=sha-256; boundary="000000000000a5f9eb0604207c48"
+Subject: Re: [Intel-xe] [RFC PATCH] kunit: Fix test log size limit too low
+ for some tests
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,218 +68,134 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: francois.dugast@intel.com
+Cc: intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Brendan Higgins <brendan.higgins@linux.dev>, drm-devel@lists.freedesktop.org,
+ linux-kselftest@vger.kernel.org, intel-xe@lists.freedesktop.org,
+ kunit-dev@googlegroups.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rename vm's preempt queue list name from vm->preempt.engines
-to vm->preempt.exec_queues as it is a list of exec queues.
+--000000000000a5f9eb0604207c48
+Content-Type: text/plain; charset="UTF-8"
 
-v2: s/queues/exec_queues/
+On Wed, 30 Aug 2023 at 15:55, Janusz Krzysztofik
+<janusz.krzysztofik@linux.intel.com> wrote:
+>
+> Now we have memory space available to a kunit test case log exposed via
+> debugfs limited to 2048 bytes, while some parametrized test cases, e.g.,
+> drm_framebuffer.drm_test_framebuffer_create, need more.  For this reason,
+> debugfs results from affected test cases get truncated silently, and
+> external tools that rely on parsing of debugfs results can fail.
+>
+> Increase kunit test case log size limit to 4096 bytes.
+>
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> ---
 
-Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c       |  2 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  4 +--
- drivers/gpu/drm/xe/xe_vm.c               | 32 ++++++++++++------------
- drivers/gpu/drm/xe/xe_vm_types.h         | 10 ++++----
- 4 files changed, 24 insertions(+), 24 deletions(-)
+There's a patch series we're hoping to take for 6.7 which allows the
+log to grow to fit whatever's written into it, which should make this
+patch obsolete:
+https://lore.kernel.org/linux-kselftest/20230828104111.2394344-1-rf@opensource.cirrus.com/T/
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 25216ef93781..e44d71c679cc 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -812,7 +812,7 @@ static void exec_queue_kill_compute(struct xe_exec_queue *q)
- 
- 	down_write(&q->vm->lock);
- 	list_del(&q->compute.link);
--	--q->vm->preempt.num_engines;
-+	--q->vm->preempt.num_exec_queues;
- 	if (q->compute.pfence) {
- 		dma_fence_enable_sw_signaling(q->compute.pfence);
- 		dma_fence_put(q->compute.pfence);
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 4a9a46d8a759..347d28442701 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -126,7 +126,7 @@ struct xe_exec_queue {
- 		u32 preempt_timeout_us;
- 	} sched_props;
- 
--	/** @compute: compute engine state */
-+	/** @compute: compute exec queue state */
- 	struct {
- 		/** @pfence: preemption fence */
- 		struct dma_fence *pfence;
-@@ -134,7 +134,7 @@ struct xe_exec_queue {
- 		u64 context;
- 		/** @seqno: preemption fence seqno */
- 		u32 seqno;
--		/** @link: link into VM's list of engines */
-+		/** @link: link into VM's list of exec queues */
- 		struct list_head link;
- 		/** @lock: preemption fences lock */
- 		spinlock_t lock;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 15bff0783ec9..9cbf2f63d641 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -172,7 +172,7 @@ static bool preempt_fences_waiting(struct xe_vm *vm)
- 	lockdep_assert_held(&vm->lock);
- 	xe_vm_assert_held(vm);
- 
--	list_for_each_entry(q, &vm->preempt.engines, compute.link) {
-+	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link) {
- 		if (!q->compute.pfence ||
- 		    (q->compute.pfence && test_bit(DMA_FENCE_FLAG_ENABLE_SIGNAL_BIT,
- 						   &q->compute.pfence->flags))) {
-@@ -197,10 +197,10 @@ static int alloc_preempt_fences(struct xe_vm *vm, struct list_head *list,
- 	lockdep_assert_held(&vm->lock);
- 	xe_vm_assert_held(vm);
- 
--	if (*count >= vm->preempt.num_engines)
-+	if (*count >= vm->preempt.num_exec_queues)
- 		return 0;
- 
--	for (; *count < vm->preempt.num_engines; ++(*count)) {
-+	for (; *count < vm->preempt.num_exec_queues; ++(*count)) {
- 		struct xe_preempt_fence *pfence = xe_preempt_fence_alloc();
- 
- 		if (IS_ERR(pfence))
-@@ -218,7 +218,7 @@ static int wait_for_existing_preempt_fences(struct xe_vm *vm)
- 
- 	xe_vm_assert_held(vm);
- 
--	list_for_each_entry(q, &vm->preempt.engines, compute.link) {
-+	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link) {
- 		if (q->compute.pfence) {
- 			long timeout = dma_fence_wait(q->compute.pfence, false);
- 
-@@ -237,7 +237,7 @@ static bool xe_vm_is_idle(struct xe_vm *vm)
- 	struct xe_exec_queue *q;
- 
- 	xe_vm_assert_held(vm);
--	list_for_each_entry(q, &vm->preempt.engines, compute.link) {
-+	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link) {
- 		if (!xe_exec_queue_is_idle(q))
- 			return false;
- 	}
-@@ -250,7 +250,7 @@ static void arm_preempt_fences(struct xe_vm *vm, struct list_head *list)
- 	struct list_head *link;
- 	struct xe_exec_queue *q;
- 
--	list_for_each_entry(q, &vm->preempt.engines, compute.link) {
-+	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link) {
- 		struct dma_fence *fence;
- 
- 		link = list->next;
-@@ -270,11 +270,11 @@ static int add_preempt_fences(struct xe_vm *vm, struct xe_bo *bo)
- 	struct ww_acquire_ctx ww;
- 	int err;
- 
--	err = xe_bo_lock(bo, &ww, vm->preempt.num_engines, true);
-+	err = xe_bo_lock(bo, &ww, vm->preempt.num_exec_queues, true);
- 	if (err)
- 		return err;
- 
--	list_for_each_entry(q, &vm->preempt.engines, compute.link)
-+	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link)
- 		if (q->compute.pfence) {
- 			dma_resv_add_fence(bo->ttm.base.resv,
- 					   q->compute.pfence,
-@@ -311,7 +311,7 @@ static void resume_and_reinstall_preempt_fences(struct xe_vm *vm)
- 	lockdep_assert_held(&vm->lock);
- 	xe_vm_assert_held(vm);
- 
--	list_for_each_entry(q, &vm->preempt.engines, compute.link) {
-+	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link) {
- 		q->ops->resume(q);
- 
- 		dma_resv_add_fence(&vm->resv, q->compute.pfence,
-@@ -346,8 +346,8 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
- 		goto out_unlock;
- 	}
- 
--	list_add(&q->compute.link, &vm->preempt.engines);
--	++vm->preempt.num_engines;
-+	list_add(&q->compute.link, &vm->preempt.exec_queues);
-+	++vm->preempt.num_exec_queues;
- 	q->compute.pfence = pfence;
- 
- 	down_read(&vm->userptr.notifier_lock);
-@@ -528,7 +528,7 @@ static void xe_vm_kill(struct xe_vm *vm)
- 	vm->flags |= XE_VM_FLAG_BANNED;
- 	trace_xe_vm_kill(vm);
- 
--	list_for_each_entry(q, &vm->preempt.engines, compute.link)
-+	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link)
- 		q->ops->kill(q);
- 	xe_vm_unlock(vm, &ww);
- 
-@@ -586,7 +586,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
- 	}
- 
- 	err = xe_vm_lock_dma_resv(vm, &ww, tv_onstack, &tv, &objs,
--				  false, vm->preempt.num_engines);
-+				  false, vm->preempt.num_exec_queues);
- 	if (err)
- 		goto out_unlock_outer;
- 
-@@ -1229,7 +1229,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 
- 	INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
- 
--	INIT_LIST_HEAD(&vm->preempt.engines);
-+	INIT_LIST_HEAD(&vm->preempt.exec_queues);
- 	vm->preempt.min_run_period_ms = 10;	/* FIXME: Wire up to uAPI */
- 
- 	for_each_tile(tile, xe, id)
-@@ -1416,7 +1416,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
- 	struct drm_gpuva *gpuva, *next;
- 	u8 id;
- 
--	XE_WARN_ON(vm->preempt.num_engines);
-+	XE_WARN_ON(vm->preempt.num_exec_queues);
- 
- 	xe_vm_close(vm);
- 	flush_async_ops(vm);
-@@ -2083,7 +2083,7 @@ int xe_vm_destroy_ioctl(struct drm_device *dev, void *data,
- 	vm = xa_load(&xef->vm.xa, args->vm_id);
- 	if (XE_IOCTL_DBG(xe, !vm))
- 		err = -ENOENT;
--	else if (XE_IOCTL_DBG(xe, vm->preempt.num_engines))
-+	else if (XE_IOCTL_DBG(xe, vm->preempt.num_exec_queues))
- 		err = -EBUSY;
- 	else
- 		xa_erase(&xef->vm.xa, args->vm_id);
-diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-index 3681a5ff588b..fd2178dbde3a 100644
---- a/drivers/gpu/drm/xe/xe_vm_types.h
-+++ b/drivers/gpu/drm/xe/xe_vm_types.h
-@@ -285,10 +285,10 @@ struct xe_vm {
- 		 * an engine again
- 		 */
- 		s64 min_run_period_ms;
--		/** @engines: list of engines attached to this VM */
--		struct list_head engines;
--		/** @num_engines: number user engines attached to this VM */
--		int num_engines;
-+		/** @exec_queues: list of exec queues attached to this VM */
-+		struct list_head exec_queues;
-+		/** @num_exec_queues: number exec queues attached to this VM */
-+		int num_exec_queues;
- 		/**
- 		 * @rebind_deactivated: Whether rebind has been temporarily deactivated
- 		 * due to no work available. Protected by the vm resv.
-@@ -393,7 +393,7 @@ struct xe_vma_op {
- 	 * operations is processed
- 	 */
- 	struct drm_gpuva_ops *ops;
--	/** @engine: engine for this operation */
-+	/** @q: exec queue for this operation */
- 	struct xe_exec_queue *q;
- 	/**
- 	 * @syncs: syncs for this operation, only used on first and last
--- 
-2.21.0.rc0.32.g243a4c7e27
+Would that work for you?
 
+-- David
+
+>  include/kunit/test.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/include/kunit/test.h b/include/kunit/test.h
+> index d33114097d0d0..d20eb1884edfa 100644
+> --- a/include/kunit/test.h
+> +++ b/include/kunit/test.h
+> @@ -34,7 +34,7 @@ DECLARE_STATIC_KEY_FALSE(kunit_running);
+>  struct kunit;
+>
+>  /* Size of log associated with test. */
+> -#define KUNIT_LOG_SIZE 2048
+> +#define KUNIT_LOG_SIZE 4096
+>
+>  /* Maximum size of parameter description string. */
+>  #define KUNIT_PARAM_DESC_SIZE 128
+> --
+> 2.41.0
+>
+
+--000000000000a5f9eb0604207c48
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
+
+MIIPnwYJKoZIhvcNAQcCoIIPkDCCD4wCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0BBwGg
+ggz5MIIEtjCCA56gAwIBAgIQeAMYYHb81ngUVR0WyMTzqzANBgkqhkiG9w0BAQsFADBMMSAwHgYD
+VQQLExdHbG9iYWxTaWduIFJvb3QgQ0EgLSBSMzETMBEGA1UEChMKR2xvYmFsU2lnbjETMBEGA1UE
+AxMKR2xvYmFsU2lnbjAeFw0yMDA3MjgwMDAwMDBaFw0yOTAzMTgwMDAwMDBaMFQxCzAJBgNVBAYT
+AkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMSowKAYDVQQDEyFHbG9iYWxTaWduIEF0bGFz
+IFIzIFNNSU1FIENBIDIwMjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCvLe9xPU9W
+dpiHLAvX7kFnaFZPuJLey7LYaMO8P/xSngB9IN73mVc7YiLov12Fekdtn5kL8PjmDBEvTYmWsuQS
+6VBo3vdlqqXZ0M9eMkjcKqijrmDRleudEoPDzTumwQ18VB/3I+vbN039HIaRQ5x+NHGiPHVfk6Rx
+c6KAbYceyeqqfuJEcq23vhTdium/Bf5hHqYUhuJwnBQ+dAUcFndUKMJrth6lHeoifkbw2bv81zxJ
+I9cvIy516+oUekqiSFGfzAqByv41OrgLV4fLGCDH3yRh1tj7EtV3l2TngqtrDLUs5R+sWIItPa/4
+AJXB1Q3nGNl2tNjVpcSn0uJ7aFPbAgMBAAGjggGKMIIBhjAOBgNVHQ8BAf8EBAMCAYYwHQYDVR0l
+BBYwFAYIKwYBBQUHAwIGCCsGAQUFBwMEMBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFHzM
+CmjXouseLHIb0c1dlW+N+/JjMB8GA1UdIwQYMBaAFI/wS3+oLkUkrk1Q+mOai97i3Ru8MHsGCCsG
+AQUFBwEBBG8wbTAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL3Jvb3Ry
+MzA7BggrBgEFBQcwAoYvaHR0cDovL3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvcm9vdC1y
+My5jcnQwNgYDVR0fBC8wLTAroCmgJ4YlaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9yb290LXIz
+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
+ddIn9n5Jt6Z1o79zxraLMEwGA1UdIARFMEMwQQYJKwYBBAGgMgEoMDQwMgYIKwYBBQUHAgEWJmh0
+dHBzOi8vd3d3Lmdsb2JhbHNpZ24uY29tL3JlcG9zaXRvcnkvMAwGA1UdEwEB/wQCMAAwgZoGCCsG
+AQUFBwEBBIGNMIGKMD4GCCsGAQUFBzABhjJodHRwOi8vb2NzcC5nbG9iYWxzaWduLmNvbS9jYS9n
+c2F0bGFzcjNzbWltZWNhMjAyMDBIBggrBgEFBQcwAoY8aHR0cDovL3NlY3VyZS5nbG9iYWxzaWdu
+LmNvbS9jYWNlcnQvZ3NhdGxhc3Izc21pbWVjYTIwMjAuY3J0MB8GA1UdIwQYMBaAFHzMCmjXouse
+LHIb0c1dlW+N+/JjMEYGA1UdHwQ/MD0wO6A5oDeGNWh0dHA6Ly9jcmwuZ2xvYmFsc2lnbi5jb20v
+Y2EvZ3NhdGxhc3Izc21pbWVjYTIwMjAuY3JsMA0GCSqGSIb3DQEBCwUAA4IBAQBtHFwIgQZjer5K
+H+4Q+wns10k7qN+4wN2Uf+JsyOYjukaMEgdLErfA1wwtQ9uHkoYQZcWBuVVkQFa5hI+sqI2m1Weq
+riMCFSiU38s1tADdMX12IMfJRN60Nznhrw+nPyDRZqRhUTW24TwnHorkDnFPW8PHo7fAw4FrpI0n
+impZAng7ccvvK09K3ZuhwTIxJMsPXCZYsrXWORTw5sczRAP6XvKbPBJnsJoSTe5dFBPBHOQJOGhU
+qWfEfWnWMJPF3LxSGLpLFQXO3RwQqmxv08avwXfVPouh1xuB3FX7rpDabT8YDhu9JgIZkLEKko7L
+yQt6zWwng7k8YF/jGbiAta6VMYICajCCAmYCAQEwaDBUMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQ
+R2xvYmFsU2lnbiBudi1zYTEqMCgGA1UEAxMhR2xvYmFsU2lnbiBBdGxhcyBSMyBTTUlNRSBDQSAy
+MDIwAhABzgV+4+mJnUzG7XDy6d2uMA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCBM
+oGPBtOPnseLS9lzxGDKOW8GhlJlou5pq2kxiNEPpWzAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcB
+MBwGCSqGSIb3DQEJBTEPFw0yMzA4MzAwOTIzNTZaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUD
+BAEqMAsGCWCGSAFlAwQBFjALBglghkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsG
+CSqGSIb3DQEBBzALBglghkgBZQMEAgEwDQYJKoZIhvcNAQEBBQAEggEAOhyd5wTdAOg9E36yzql1
+08A696uwIM/jfK3Lt9zjgMeGIoxluVtsKqaGHlBD4tQKUripRLWvYAkXSax1+F9Ec3PZJ//rNety
+8uDQZB6Q5iUOe+hRN22x1U2rZ6grrhIf4oS+uKa1H+71CRfvzsB/EY0cbeY+lUav83O3GqwIUwDH
+GHkTkooEzGOTFx/bNO8iCbVGg+REJ5w/72B1UCBw+eDRtP2sUkwFdJ9FbXVhticslBFuuDvjRPSB
+A0pElLbr9nqk6FghDXpWEG8x9iRildf24k7T4hVKmk9skvglXffiJunJzZ+nbm/B+NFaZ5zOJlS/
++325laUAysdZKIy9tw==
+--000000000000a5f9eb0604207c48--
