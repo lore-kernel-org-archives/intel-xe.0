@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3195BC83F15
-	for <intel-xe@archiver.kernel.org>; Wed, 30 Aug 2023 17:04:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74292C83F15
+	for <intel-xe@archiver.kernel.org>; Wed, 30 Aug 2023 17:04:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00FEC10E562;
-	Wed, 30 Aug 2023 17:04:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37DC110E0D7;
+	Wed, 30 Aug 2023 17:04:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A7E3B10E562;
- Wed, 30 Aug 2023 17:04:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id A756210E0D7;
+ Wed, 30 Aug 2023 17:04:42 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A4A06AADE0;
- Wed, 30 Aug 2023 17:04:18 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A3ADEAADE0;
+ Wed, 30 Aug 2023 17:04:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Wed, 30 Aug 2023 17:04:18 -0000
-Message-ID: <169341505867.15234.5320166465569484521@emeril.freedesktop.org>
+Date: Wed, 30 Aug 2023 17:04:42 -0000
+Message-ID: <169341508266.15233.15610472243224011964@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230830161124.81799-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20230830161124.81799-1-rodrigo.vivi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
- =?utf-8?q?m/xe/uapi=3A_Typo_lingo_and_other_small_backwards_compatible_fi?=
- =?utf-8?q?xes=2E?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/?=
+ =?utf-8?q?uapi=3A_Typo_lingo_and_other_small_backwards_compatible_fixes?=
+ =?utf-8?q?=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,33 +49,41 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/uapi: Typo lingo and other small backwards compatible fixes.
 URL   : https://patchwork.freedesktop.org/series/123076/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-e700ea2f248a75138759bcb443affeef4a2d1991
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 05b904a7bc77d7400ba5cfacc751ce33ecb51a78
-Author: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date:   Wed Aug 30 12:11:24 2023 -0400
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_query.c: In function ‘query_config’:
+../drivers/gpu/drm/xe/xe_query.c:198:15: error: ‘XE_QUERY_CONFIG_MIN_ALIGNEMENT’ undeclared (first use in this function); did you mean ‘XE_QUERY_CONFIG_MIN_ALIGNMENT’?
+  198 |  config->info[XE_QUERY_CONFIG_MIN_ALIGNEMENT] =
+      |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |               XE_QUERY_CONFIG_MIN_ALIGNMENT
+../drivers/gpu/drm/xe/xe_query.c:198:15: note: each undeclared identifier is reported only once for each function it appears in
+make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_query.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:480: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:480: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:480: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:480: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:2032: .] Error 2
+make[1]: *** [/kernel/Makefile:234: __sub-make] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-    drm/xe/uapi: Typo lingo and other small backwards compatible fixes.
-    
-    Fix typos, lingo and other small things identified during uapi
-    review.
-    
-    Link: https://lore.kernel.org/all/863bebd0c624d6fc2b38c0a06b63e468b4185128.camel@linux.intel.com/
-    Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-+ /mt/dim checkpatch 2c728d192daf742a57749f4fdfee53d8d7b75817 drm-intel
-/mt/dim: line 50: /root/.dimrc: No such file or directory
+[17:04:19] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[17:04:23] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
