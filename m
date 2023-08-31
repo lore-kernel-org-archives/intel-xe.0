@@ -4,138 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5E20C83F37
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 18:29:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40BF7C83F2F
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 18:34:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9675010E1A0;
-	Thu, 31 Aug 2023 18:29:32 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A8A810E1A0
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Aug 2023 18:29:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0162010E08C;
+	Thu, 31 Aug 2023 18:34:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BE0E10E08C
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Aug 2023 18:34:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693506570; x=1725042570;
+ t=1693506879; x=1725042879;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=aUfOqySTcrb/GXhmQwSJ3mHl7sSSd6xm4AZwGg9yKSQ=;
- b=WbY6QlXKgPj4fjlojQZuMQBKRstNldBR5v9pfMKabb5LzAWayDv/aUiP
- ehyXvhGXFlMw+cdIMjqoEmd/0YLQ6w925PPG5E9vfOtxbE5urSibBYSPL
- VxCPdgoLw+kxR0ka5AKggKSfqiTNOn1mgYCyvEX6YYpamXwP94G7a9JVW
- jrvu7od9vOqHjy79bivyhjhXrD+danq/pW3zIvhcLb9TN/eSgc/mWbGix
- Hm5vChvN9rH99RIH0uxwDv0iYyO1WOOkwvqMCR43RPzzDXDa5+D8568Bn
- ZjNOa2cn4oHwdVTlqGJstZesxSPLW/DvIZwcTH8JTMfFzWqk++ZAr0uCa g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="375967817"
-X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="375967817"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2023 11:29:29 -0700
+ bh=M5CPhlF+PPSAzlKoh5D+i+xHjzlGiOfj88RYl2Byqv0=;
+ b=Tk8FEGWgoVNyAjLr/+/sqdd3Ntbx/w7STfqc2/fS0PG+Y7/p0Jp7q1T1
+ DzZn9SwDYUs5z4K1o5zmUX2OETiIVsPjCAjKJhcJcxSRIQIjDwuXFM3tB
+ ECCz92NJw3KZ1s2T82vYWdUSgfIMM6tfnPxeTMD4A0idk3+BHyfwqQZyn
+ vF0NbkyQbE/+pwi+UH/zlK7WX4TKVU8wChSUcgmb8nJbS5zpJHlVt5pUs
+ N9ClZdXDgrVvORZYO7evNj8E+yXpz3YPPZ+R++mYFq/BuLPgF62WauLV3
+ 4qQBQI+dqGmJyrmuY9LswScf7WUkV0fJrg8jZTVgNjiz7ruy+xsn3wUFL Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="407025463"
+X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="407025463"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2023 11:34:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="689453776"
-X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="689453776"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 31 Aug 2023 11:29:29 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="742819293"
+X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="742819293"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 31 Aug 2023 11:34:04 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 31 Aug 2023 11:29:28 -0700
-Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.27; Thu, 31 Aug 2023 11:34:04 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 31 Aug 2023 11:29:28 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ 15.1.2507.27; Thu, 31 Aug 2023 11:34:03 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 31 Aug 2023 11:29:28 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.105)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Thu, 31 Aug 2023 11:34:03 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.174)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 31 Aug 2023 11:29:26 -0700
+ 15.1.2507.27; Thu, 31 Aug 2023 11:34:03 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bmVZ5SqUAPWopyWGjKkYMTAaxuIW0oUWjEv8AGHX9z/L9xx2Gw1ol/GrCoxG9Ao/t7mW1LJwT3BzgS0gO8mpqIomU8914Ob52Nk95cFO4oKBJ+UyhrvppuWY/hYZCpCO3zUUUTH91fi9KFSBiHB6HklUyfUZVJbJKJsq98fSif8CLsFELkgR9RCkzsP7X+0hNhJgDSZpDafTj+IKXWgl3MoD0iHn3Z9fWYxOGeKg6NlPWJUtdclMSZL9yl2pGQ1UxhhgR3/GFe9OZkeY+8/sjpujcTmK8klALdH3MRTtUUZRk6nGg0s5svw81HaKuNrAxJAEc6umJvSV/lQdrhlxjg==
+ b=FdOag0gA4+SDWrJtyy1bf8VCr9rBi22Jpnj2Y1FlqiviantuaxJ/0XG6ZHysE/XB9pOUOlZKHTETJZEPH2rQpFbxyguV/+F+4WdRiQG+4O9W+35bqjsPbgUTHyAFV4JslctC+WgTeDKRMprGujvPMwFARPKfhdt7fNTUqyZ24+d0DsffY5fGW9oH/wX3iwDHcZgl6UbkzlN94rJY6XJuhLTXbUVbV8iIci0ILn54uaWjBuQfhycDIhafE+s669pZOMsC3/fVKmIlP5OtumnqWBLU5Nd9iMiVKYpudKk6ZrpcfY1JNqvaZKiT5sxBkJtkqF8NKGjuIHtMN0V4MBTi/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HmqEstmMQDfmwBlhyzvLdPMBcDOID4WFVUuXO72GemQ=;
- b=GSREB42v9qJgiue9Am7ssJhvZyZ/tfuarWmE7kYAXw/Kl1MNuIJ29XCF/nrfiiGK/34ym8QQ3pyaD4oeqCJ5nlUS0xBaadxK5CmTr93cnda0fhjKA1NgLiHqAx2G3M3Wd+b84KECNxDoPS43B5FEL/L43Ej7w5I56H+nj7T/fIwUGTjluz0oGpi51NxcKzClqgtZGAzBMk1GbwkeNAURK6deex9xnJlbiC8VNnHtVjKru8rMzHzjMW6m2p9iDd86E8UI+nDyjSLIbQz30zcqmsa9rvITcMPYAwKz8ZkLzEx5StXy8+tiwnmZJepCrkCqKglMy+74KlD7TlQw90v8eQ==
+ bh=7zRJXGNloYzQtPLrf03jLs2+W3cQ8cTN3tNwBB/76y0=;
+ b=HOTmMShNBruzcPQvVpULX4G0Nr4kAaVJk3i40GOXulwK3cL+MZrWWJMHgcsur1pCbqri09AVgxVXGvzGxOsq3hYEuEJAdmJ463T6JhJrooCKeepOga7zX217mEZM9ht+EyWdMRZpY0TgbVhkfCPMCYg73lyW1gJmekokZC8elFKsYQd+vWMC3RFiSCMfMiAd9dHj3/vDUnCCBlEC6eTV99iqdGq20BWmt1sgkpHJVDe4zDLC60OYZ837RYBZ936OXCE9OJ3YfIA33DaW8XE50RCQ2bpcyPPHKiZeFj0pfeb1bNliQccYL1MqnCbGx9XPOivIQv5cLBJ/IBvk32jX4w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by IA1PR11MB8176.namprd11.prod.outlook.com (2603:10b6:208:452::7)
+ by LV8PR11MB8723.namprd11.prod.outlook.com (2603:10b6:408:1f8::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.20; Thu, 31 Aug
- 2023 18:29:24 +0000
+ 2023 18:34:02 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6745.020; Thu, 31 Aug 2023
- 18:29:24 +0000
-Date: Thu, 31 Aug 2023 14:29:19 -0400
+ 18:34:02 +0000
+Date: Thu, 31 Aug 2023 14:33:56 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <ZPDb/1DentGfPqbB@intel.com>
+Message-ID: <ZPDdFHCmB1TD2H+x@intel.com>
 References: <20230831150048.1760018-1-matthew.brost@intel.com>
- <20230831150048.1760018-5-matthew.brost@intel.com>
+ <20230831150048.1760018-4-matthew.brost@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230831150048.1760018-5-matthew.brost@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0002.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::7) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <20230831150048.1760018-4-matthew.brost@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0191.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::16) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|IA1PR11MB8176:EE_
-X-MS-Office365-Filtering-Correlation-Id: 10c83099-f990-48f9-4f57-08dbaa50333f
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|LV8PR11MB8723:EE_
+X-MS-Office365-Filtering-Correlation-Id: c1247810-a02b-470e-2490-08dbaa50d8f7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: iSQDN4wExAHhSdA3pAMzk1IzfKG72kN5BevZY1R7uijFYHwJeol9VDNbJPqIctQ71syQiuXK9NOFiMkv6a97PK+4mJl2yD1EGN8S/53omVCXHNgqVcqbZFqYlASXcSa2+hCcIE63ce5vv9y4L6g7OwUgxbZd/kNTIseKjy8dHFy1Oa1XB6/q2KBZqq84dkayjBzUS3cdWEpV+r0+1N5bzBAf3pKmzzqbAM7vgsLMJ/APoZ7BTkzJnSW0tdRFYg447B5sHSEpcgFNKxMUOGaTZILbPamR6naSTYdYhythCfTtgHu8nLPBioeHA/PfIYgocmIaLI9H2mNPGkTbXz5gUNFgb7hINur/OtRP4/2oRks3Z2KZIC5esrijgSy/7X+b7UcrbDTfqe1pY+puago2TngUqZk7FszHV7sJ6r7mD/mUFQvN/CwfR/8fuUtGC7aB2aDx1ISfIS+zgTBaJehuCp0x/M08eesrF/VjTQX/ImxwRsON0FtWfzyVYZAJTDVV/6/QPh2Y772iGBEPtuHe67Wv77OPHn0AGgocVrnq+rdtpRroCu0bmmXVTWKtOIfH
+X-Microsoft-Antispam-Message-Info: N0m+CGOkOT2iRngjMqnTIceXoP0rA5Lv69VeC9itJddXe6jKp0uq5/OdZJqzBmQifEcwqpx78Nl09bVNHw+Hge+HbnsnVj4WHLSHg6qXYvZ3fH0YfGTHwCeZYCR6tAoxiDU6ng/ScNuVWMVUi9/UFlfK/mJhXZJATPfB/oB96LUuru33ojhPVg/GNhS11XwVk2lPb5XBwzvHn2gq3ehf8yGkeFhoqEcZhhU3/5pWHy18LLS8Q6s7fDFSXoP5wrUru+1B2QVGlrocHhu8rlg1rwVIJLhK1vK4oq0WhQSiLaNr7A2niC9N0ggn0FlxQwN8lA6y3d34mK9oE1y0yAZAucPOtVou0Qsawsj2pMZ/tkCj5cPuYA5gIlkFVYUWSFizcjk/Gq/45oHLXBrXgAO8CxdF5SOWTd8pyCKjmRKSHrsBi8Z9QVSuwtpqXta0DT3XntbhZpGs3Of4DLun/5eODE6RMjUYKome0+ljfJ3QxQT5Kg/Qz730ZS4AldHs3SbpLRcJcNrb8N9JNK06gE4sV3IzmwJVLqhGeZwg1VeZ0Ekqg8DQhWLSps/k0Edtdllq2R6wa7lFvR0smka4ZA3Gcfd5kTsRzeW+pz876xXOZTg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(396003)(376002)(136003)(366004)(39860400002)(451199024)(186009)(1800799009)(36756003)(38100700002)(478600001)(4326008)(6512007)(44832011)(8676002)(2616005)(41300700001)(5660300002)(6862004)(8936002)(86362001)(6666004)(26005)(6506007)(6486002)(83380400001)(316002)(2906002)(82960400001)(66476007)(6636002)(66946007)(66556008)(37006003)(30864003);
+ SFS:(13230031)(366004)(39860400002)(136003)(376002)(396003)(346002)(1800799009)(451199024)(186009)(38100700002)(478600001)(6636002)(37006003)(66556008)(66946007)(66476007)(82960400001)(316002)(2906002)(83380400001)(2616005)(41300700001)(8676002)(86362001)(8936002)(6862004)(5660300002)(4326008)(44832011)(6512007)(6486002)(6666004)(6506007)(26005)(36756003)(67856001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?i18YgW3FucTYRWxNrQ3Es5OfKnsrYRa7GSzq04DSb5zNubMGb7BLxzK9Ttqs?=
- =?us-ascii?Q?sR566BjSIO51/ChBbsSXe1BDBTy73V+EZaV2VUjLOflrovjagE+ClBZ0auhx?=
- =?us-ascii?Q?fU0v23IT4tOLeTLI9GuPrQgD+ALu7WB1zWjzKBKcwXFHPQDBIOIQ/KzJWZoy?=
- =?us-ascii?Q?xySpRcIRBGgn1+QN4Co2khYa9GYkOr2rP2EPHPIVN60wRL3tsfkcYS9asSad?=
- =?us-ascii?Q?kxfnVfuh+5qIeQtgcjGvsyB7VtH1rjcGZPTlEMIGQ1SgLxz/lkbpzqrNzLGS?=
- =?us-ascii?Q?rUtikkc7ayb+DCbmYjes5q5RckB5rYL3oHEWwPrr/CQk/4NwylZzT/QfdIPv?=
- =?us-ascii?Q?iolpcfpc3ZLneevLh3uMA8u15BPVKouXQoMdVX425Y8ENpg4pWTrUrtBAqzP?=
- =?us-ascii?Q?ZDFx5QsFdNAWs6OdBjDCIzfBcCWpbgh9PJaOEMa5toeGGrcRUeQ8x0TqaxhB?=
- =?us-ascii?Q?9UqIand+qe7AMvFZOAIwWwDdcSegtoOMjRiChUuewmmSYYdRPNfzgxhPyi78?=
- =?us-ascii?Q?wZs3AoQb2/yWJxkd9+W2xj7A25zKQ7SkmLzipgeLdGZ5Mv0eY4vvjtVGOUJh?=
- =?us-ascii?Q?dbXN4knxP7cl7vHFKBGUWQeV7PsrTFWshBPq3veW8BnXoCz3RsNbRJzZgU7D?=
- =?us-ascii?Q?r2JNim9TSDDCZUI9gsE8nYioOXoQJg6nEhiltKy46QeCBBk2EIvBY3JM2Cxe?=
- =?us-ascii?Q?qGix6joc2ScgCbvF9jxyHgvbr9GKkjaHs2VBD+mtClJg3daIgjnegCUt77Ww?=
- =?us-ascii?Q?K4BCQyQwJwCua+D+jqO5H1EoEIyItAbdabu2F8xPwmk8pP3oK5q+CCBUF7OI?=
- =?us-ascii?Q?OH+Ro6wAMWi6fSitz0eaJkFVEj1zoyWgFMc7p5LAWndK4qIdaIJVkmoOEiNE?=
- =?us-ascii?Q?yJx+XVHB4U9t8CG8QmZtpIo1DPbUUINyFUmz/H/hB57KiZlfnu7EmLhYdt3L?=
- =?us-ascii?Q?y3FKbW9i6MeFiaR1DCRxP8rCBVS7JAp1XGvtnHALG9pDKHrHwBYmexpVwIcP?=
- =?us-ascii?Q?+A2xfhP/yShBXfeUaQ5BkBWc+3xQMJiz3RlmihqV0koHuNgcYaDuwAcAN/GL?=
- =?us-ascii?Q?fOjSkS6cPl8p6KycE6XC45TdUt8zYUP1uOOyoDT4cBaw05opDa1zakRUEhUg?=
- =?us-ascii?Q?sZlyzAiqdkIidJYNeDuPeuldGJ1wzZdOULupIRT1oqFiuUvYhne8fmHcqPkC?=
- =?us-ascii?Q?CBMjG9rO2dvVYGM3ptsQhiXxEpLgFmL0fEAuKPf0gpxmwAX9zHbyAM4qBE6G?=
- =?us-ascii?Q?eTzECNxkFKzS3LCrEMvZQhz4Wwg/LcLakWwUJqFyVWNE3T5L9EAGpmQ9fIW7?=
- =?us-ascii?Q?6CDUcU4M/43UGzHiq8tNKaKIVXXo81GIwfHinGwcSevBnUXbYMo6DjnfQ84K?=
- =?us-ascii?Q?OgRRPUD9yPt9boaKcNNkpmPWbpgB0/6F1vDCwvH9A8gd3paasOkD/W4RRSEu?=
- =?us-ascii?Q?kg0Sx369AXyuCXShZmAddjYuiHKNLF8OEIlzjGXAVBbEw3gOH7aOZ6MFRwWo?=
- =?us-ascii?Q?czVlbBKqpecZSuj4cpC8XL/Q/3eVFqlPZ0vLv6pP2gmUwnXH05rbDaD8W+EB?=
- =?us-ascii?Q?VPpbx+D1h+rCA/6csHhAq7/8M+NDPfBax9wLLlf3GHQ2VoTPRYaNE/MPaRs5?=
- =?us-ascii?Q?UQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 10c83099-f990-48f9-4f57-08dbaa50333f
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TyoCIXVwPST+6WlXuEG2hT8dEhe6aYnVIGOomLrdCROC8vz/syaZ14futy9L?=
+ =?us-ascii?Q?wSm8yHxuJ8T13l0e5SuRquqH4uBDaz2+j+rie++we/FnQ0dKjizQsdR9v8bt?=
+ =?us-ascii?Q?n0+G0lnCuLHSkcxfil921yn/CLE1H+WfeegyVrMJT+eFqrUti3AgBxW0DXD7?=
+ =?us-ascii?Q?R//Vg2ruo5MSqmwhLpBZbFyi3yk7yu0TIyX54MlHM/3M4q6x0nyl+Mb30QSQ?=
+ =?us-ascii?Q?9wscdytA4LS3/Jt8eXV5eeEzWrysWCuyfHr8IGhYyLSNsjzCgV66lOv0GX4Y?=
+ =?us-ascii?Q?2N3jm4U10QUKHaGIIcFDBHWZTLaxsIo8t+ej1XEim51Ulqa5HIXEZxdneHxv?=
+ =?us-ascii?Q?DqEmPQV3oXV+2W8QxvJyvToOW+X9cqzWoLF4ifo89N031WZY25BUHhWwU95O?=
+ =?us-ascii?Q?eocMXMyr7bwmj0Df+2UmLtbmiFuYFL6cFWYR8UXGy/fBKCWmrueT1Kmq1WWL?=
+ =?us-ascii?Q?KKbNJbevD27Ov1JY1Ngunm2iv8UGZq4jNSz1+tlzImG1d3YTR80winwPUWIN?=
+ =?us-ascii?Q?3k4ojyNam0Gj5tvBm7HxRf1TSL35Zc2SafkOGsZ7ymLNkXX5qDBhZz6hT8ZT?=
+ =?us-ascii?Q?Ayu4hQGnLqjJ/D6oKod4oUswq4BVJG2ivZkYFK5u7LcbIa961iUsrmZQiDZO?=
+ =?us-ascii?Q?fR0jdbfTzKav39hg1AtX6sdzQA6Ig2zPfxWz2bpDES4cZdIT2fzSlk5UchPu?=
+ =?us-ascii?Q?yUkxKB20fKe1EfPIEFXIJqvM9smcIBGeRzOo8EIu+TCaqwUeqPBFDwNDIPBt?=
+ =?us-ascii?Q?WPRPiUwXA05WxKW72INVcbSssg09xMAXXmYqQosJw0PmLGvzTSCU4eCpmtqf?=
+ =?us-ascii?Q?OSW7smtLlalbTw3Ub7hYsYDxSFUsZ750zLaLzO18bQEM03CoLbYJ9AF95ou+?=
+ =?us-ascii?Q?5ePUYB/HT/FnGGIXGzsyHFe6fPr+3+FbTK+cs+R5Gt0yFqE6S6kKGaszzIvu?=
+ =?us-ascii?Q?cKUx+QL9iqEsUR4LBi1lUD3eAJ4j9bIadSGruBgVMAswnWZJPV5uOSKa0dU+?=
+ =?us-ascii?Q?QmHwxW21iTW8TBvLQhkccd357eN8EpSFyFx+2XdQqxCDQmpnMoJUb/Lf4CXp?=
+ =?us-ascii?Q?0dP+R3I8ug3V5kltPnsZwG/0Pb88Az9omvEx1JUZBqqBGwAHfZ4Al27mfgJ6?=
+ =?us-ascii?Q?dJ3yFEcFECWvn+GvYPfllc908r9QADWSQhUUaadFByhmdhGwaTPbZk2kgeH1?=
+ =?us-ascii?Q?uvHkiwoZCleYmK/YTKqB264A51xXUBEKHewOGv/AS2VQDtJObkWtNgPB9o0S?=
+ =?us-ascii?Q?J86p27R2h/URDVVXSzDHBKHdOZeaoB7c3H+hXiOZ7DXN++/vYG8JyQAyWL1f?=
+ =?us-ascii?Q?BZo69n096LK1uzqKVckuPaqbyE98eONak3S87SOHHzUZ35ni8VO41dr/n+zw?=
+ =?us-ascii?Q?T2wr5uw2qzfv7gPr1kVcDPRTIRc/mXdMEteLfI1Z/K+QvdqGL4shhrC4f8m9?=
+ =?us-ascii?Q?p92w3WvR43yTTchnal8hXXBhT3ax+M+za9vGzUHiN4tchYasCpZKHV00Y78W?=
+ =?us-ascii?Q?Y26Yn/5NHjMjcWB/E8Au2Ii4L/9tpJUVyYQ0QCOFSMD9Wz3d/EWb+x0b02Oy?=
+ =?us-ascii?Q?fOg1lzX0sFaRSoJBL/Ormfyd/1TrUNu2WZuHf4XPWfSpm8kJPvG/lyynC755?=
+ =?us-ascii?Q?hQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c1247810-a02b-470e-2490-08dbaa50d8f7
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2023 18:29:23.9694 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2023 18:34:01.9947 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xtUuzrwGn2LOjSV/h5CTH80you/0CcmoqYZzZoXJrGuRdSMgPSSQgAtcE5NFVj4fhUmcVmMUjgtrif0GjKM9Vw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8176
+X-MS-Exchange-CrossTenant-UserPrincipalName: cPmcxfAkCZxY2GOQG1YGrD7GrDDDEUtV6nWtMd78cHlB515wHqUoZbS6GcmnnJ6ezSq/1Lk/5B3mxYUHr2VBHg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8723
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 4/4] drm/xe: Fix array of binds
+Subject: Re: [Intel-xe] [PATCH 3/4] drm/gpuva: Add
+ drm_gpuva_for_each_op_reverse
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,556 +152,50 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 31, 2023 at 08:00:48AM -0700, Matthew Brost wrote:
-> If multiple bind ops in an array of binds touch the same address range
-> invalid GPUVA operations are generated as each GPUVA operation is
-> generated based on the orignal GPUVA state. To fix this, after each
-> GPUVA operations is generated, commit the GPUVA operation updating the
-> GPUVA state so subsequent bind ops can see a current GPUVA state.
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+On Thu, Aug 31, 2023 at 08:00:47AM -0700, Matthew Brost wrote:
+> Xe will make use of this, add helper to walk op list in reverse when
+> unwinding GPUVA operations.
 
+I'm no native, but I got confused here. Would it be better if we
+change the order like:
+
+Add a helper to walk op list in reverse. Xe will make use of this
+when unwinding GPUVA operations.
+
+with the msg changed:
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-> ---
->  drivers/gpu/drm/xe/xe_vm.c | 418 +++++++++++++++++++------------------
->  1 file changed, 212 insertions(+), 206 deletions(-)
+This is a patch that is likely better to be propagated with
+Xe and not earlier with drm-misc. We will need an explicit ack
+from Dave/Daniel on this.
+
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 7d64da0b3b70..b8c50ffbb623 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2426,24 +2426,73 @@ static u64 xe_vma_set_pte_size(struct xe_vma *vma, u64 size)
->  	return SZ_4K;
->  }
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  include/drm/drm_gpuva_mgr.h | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/include/drm/drm_gpuva_mgr.h b/include/drm/drm_gpuva_mgr.h
+> index ed8d50200cc3..b2024ae19fd4 100644
+> --- a/include/drm/drm_gpuva_mgr.h
+> +++ b/include/drm/drm_gpuva_mgr.h
+> @@ -557,6 +557,16 @@ struct drm_gpuva_ops {
+>  #define drm_gpuva_for_each_op_from_reverse(op, ops) \
+>  	list_for_each_entry_from_reverse(op, &(ops)->list, entry)
 >  
-> -/*
-> - * Parse operations list and create any resources needed for the operations
-> - * prior to fully committing to the operations. This setup can fail.
-> - */
-> +static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
-> +{
-> +	int err = 0;
+> +/**
+> + * drm_gpuva_for_each_op_reverse - iterator to walk over &drm_gpuva_ops in reverse
+> + * @op: &drm_gpuva_op to assign in each iteration step
+> + * @ops: &drm_gpuva_ops to walk
+> + *
+> + * This iterator walks over all ops within a given list of operations in reverse
+> + */
+> +#define drm_gpuva_for_each_op_reverse(op, ops) \
+> +	list_for_each_entry_reverse(op, &(ops)->list, entry)
 > +
-> +	lockdep_assert_held_write(&vm->lock);
-> +
-> +	switch (op->base.op) {
-> +	case DRM_GPUVA_OP_MAP:
-> +		err |= xe_vm_insert_vma(vm, op->map.vma);
-> +		if (!err)
-> +			op->flags |= XE_VMA_OP_COMMITTED;
-> +		break;
-> +	case DRM_GPUVA_OP_REMAP:
-> +		prep_vma_destroy(vm, gpuva_to_vma(op->base.remap.unmap->va),
-> +				 true);
-> +		op->flags |= XE_VMA_OP_COMMITTED;
-> +
-> +		if (op->remap.prev) {
-> +			err |= xe_vm_insert_vma(vm, op->remap.prev);
-> +			if (!err)
-> +				op->flags |= XE_VMA_OP_PREV_COMMITTED;
-> +			if (!err && op->remap.skip_prev)
-> +				op->remap.prev = NULL;
-> +		}
-> +		if (op->remap.next) {
-> +			err |= xe_vm_insert_vma(vm, op->remap.next);
-> +			if (!err)
-> +				op->flags |= XE_VMA_OP_NEXT_COMMITTED;
-> +			if (!err && op->remap.skip_next)
-> +				op->remap.next = NULL;
-> +		}
-> +
-> +		/* Adjust for partial unbind after removin VMA from VM */
-> +		if (!err) {
-> +			op->base.remap.unmap->va->va.addr = op->remap.start;
-> +			op->base.remap.unmap->va->va.range = op->remap.range;
-> +		}
-> +		break;
-> +	case DRM_GPUVA_OP_UNMAP:
-> +		prep_vma_destroy(vm, gpuva_to_vma(op->base.unmap.va), true);
-> +		op->flags |= XE_VMA_OP_COMMITTED;
-> +		break;
-> +	case DRM_GPUVA_OP_PREFETCH:
-> +		op->flags |= XE_VMA_OP_COMMITTED;
-> +		break;
-> +	default:
-> +		XE_WARN_ON("NOT POSSIBLE");
-> +	}
-> +
-> +	return err;
-> +}
-> +
-> +
->  static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
-> -				   struct drm_gpuva_ops **ops, int num_ops_list,
-> +				   struct drm_gpuva_ops *ops,
->  				   struct xe_sync_entry *syncs, u32 num_syncs,
-> -				   struct list_head *ops_list, bool async)
-> +				   struct list_head *ops_list, bool last,
-> +				   bool async)
->  {
->  	struct xe_vma_op *last_op = NULL;
-> -	struct list_head *async_list = NULL;
->  	struct async_op_fence *fence = NULL;
-> -	int err, i;
-> +	struct drm_gpuva_op *__op;
-> +	int err = 0;
->  
->  	lockdep_assert_held_write(&vm->lock);
-> -	XE_WARN_ON(num_ops_list > 1 && !async);
->  
-> -	if (num_syncs && async) {
-> +	if (last && num_syncs && async) {
->  		u64 seqno;
->  
->  		fence = kmalloc(sizeof(*fence), GFP_KERNEL);
-> @@ -2462,145 +2511,145 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->  		}
->  	}
->  
-> -	for (i = 0; i < num_ops_list; ++i) {
-> -		struct drm_gpuva_ops *__ops = ops[i];
-> -		struct drm_gpuva_op *__op;
-> +	drm_gpuva_for_each_op(__op, ops) {
-> +		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-> +		bool first = list_empty(ops_list);
->  
-> -		drm_gpuva_for_each_op(__op, __ops) {
-> -			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-> -			bool first = !async_list;
-> +		XE_WARN_ON(!first && !async);
-> +
-> +		INIT_LIST_HEAD(&op->link);
-> +		list_add_tail(&op->link, ops_list);
->  
-> -			XE_WARN_ON(!first && !async);
-> +		if (first) {
-> +			op->flags |= XE_VMA_OP_FIRST;
-> +			op->num_syncs = num_syncs;
-> +			op->syncs = syncs;
-> +		}
->  
-> -			INIT_LIST_HEAD(&op->link);
-> -			if (first)
-> -				async_list = ops_list;
-> -			list_add_tail(&op->link, async_list);
-> +		op->q = q;
-> +
-> +		switch (op->base.op) {
-> +		case DRM_GPUVA_OP_MAP:
-> +		{
-> +			struct xe_vma *vma;
->  
-> -			if (first) {
-> -				op->flags |= XE_VMA_OP_FIRST;
-> -				op->num_syncs = num_syncs;
-> -				op->syncs = syncs;
-> +			vma = new_vma(vm, &op->base.map,
-> +				      op->tile_mask, op->map.read_only,
-> +				      op->map.is_null);
-> +			if (IS_ERR(vma)) {
-> +				err = PTR_ERR(vma);
-> +				goto free_fence;
->  			}
->  
-> -			op->q = q;
-> +			op->map.vma = vma;
-> +			break;
-> +		}
-> +		case DRM_GPUVA_OP_REMAP:
-> +		{
-> +			struct xe_vma *old =
-> +				gpuva_to_vma(op->base.remap.unmap->va);
->  
-> -			switch (op->base.op) {
-> -			case DRM_GPUVA_OP_MAP:
-> -			{
-> -				struct xe_vma *vma;
-> +			op->remap.start = xe_vma_start(old);
-> +			op->remap.range = xe_vma_size(old);
->  
-> -				vma = new_vma(vm, &op->base.map,
-> -					      op->tile_mask, op->map.read_only,
-> -					      op->map.is_null);
-> +			if (op->base.remap.prev) {
-> +				struct xe_vma *vma;
-> +				bool read_only =
-> +					op->base.remap.unmap->va->flags &
-> +					XE_VMA_READ_ONLY;
-> +				bool is_null =
-> +					op->base.remap.unmap->va->flags &
-> +					DRM_GPUVA_SPARSE;
-> +
-> +				vma = new_vma(vm, op->base.remap.prev,
-> +					      op->tile_mask, read_only,
-> +					      is_null);
->  				if (IS_ERR(vma)) {
->  					err = PTR_ERR(vma);
->  					goto free_fence;
->  				}
->  
-> -				op->map.vma = vma;
-> -				break;
-> +				op->remap.prev = vma;
-> +
-> +				/*
-> +				 * Userptr creates a new SG mapping so
-> +				 * we must also rebind.
-> +				 */
-> +				op->remap.skip_prev = !xe_vma_is_userptr(old) &&
-> +					IS_ALIGNED(xe_vma_end(vma),
-> +						   xe_vma_max_pte_size(old));
-> +				if (op->remap.skip_prev) {
-> +					xe_vma_set_pte_size(vma, xe_vma_max_pte_size(old));
-> +					op->remap.range -=
-> +						xe_vma_end(vma) -
-> +						xe_vma_start(old);
-> +					op->remap.start = xe_vma_end(vma);
-> +				}
->  			}
-> -			case DRM_GPUVA_OP_REMAP:
-> -			{
-> -				struct xe_vma *old =
-> -					gpuva_to_vma(op->base.remap.unmap->va);
-> -
-> -				op->remap.start = xe_vma_start(old);
-> -				op->remap.range = xe_vma_size(old);
-> -
-> -				if (op->base.remap.prev) {
-> -					struct xe_vma *vma;
-> -					bool read_only =
-> -						op->base.remap.unmap->va->flags &
-> -						XE_VMA_READ_ONLY;
-> -					bool is_null =
-> -						op->base.remap.unmap->va->flags &
-> -						DRM_GPUVA_SPARSE;
-> -
-> -					vma = new_vma(vm, op->base.remap.prev,
-> -						      op->tile_mask, read_only,
-> -						      is_null);
-> -					if (IS_ERR(vma)) {
-> -						err = PTR_ERR(vma);
-> -						goto free_fence;
-> -					}
-> -
-> -					op->remap.prev = vma;
-> -
-> -					/*
-> -					 * Userptr creates a new SG mapping so
-> -					 * we must also rebind.
-> -					 */
-> -					op->remap.skip_prev = !xe_vma_is_userptr(old) &&
-> -						IS_ALIGNED(xe_vma_end(vma),
-> -							   xe_vma_max_pte_size(old));
-> -					if (op->remap.skip_prev) {
-> -						xe_vma_set_pte_size(vma, xe_vma_max_pte_size(old));
-> -						op->remap.range -=
-> -							xe_vma_end(vma) -
-> -							xe_vma_start(old);
-> -						op->remap.start = xe_vma_end(vma);
-> -					}
-> +
-> +			if (op->base.remap.next) {
-> +				struct xe_vma *vma;
-> +				bool read_only =
-> +					op->base.remap.unmap->va->flags &
-> +					XE_VMA_READ_ONLY;
-> +
-> +				bool is_null =
-> +					op->base.remap.unmap->va->flags &
-> +					DRM_GPUVA_SPARSE;
-> +
-> +				vma = new_vma(vm, op->base.remap.next,
-> +					      op->tile_mask, read_only,
-> +					      is_null);
-> +				if (IS_ERR(vma)) {
-> +					err = PTR_ERR(vma);
-> +					goto free_fence;
->  				}
->  
-> -				if (op->base.remap.next) {
-> -					struct xe_vma *vma;
-> -					bool read_only =
-> -						op->base.remap.unmap->va->flags &
-> -						XE_VMA_READ_ONLY;
-> -
-> -					bool is_null =
-> -						op->base.remap.unmap->va->flags &
-> -						DRM_GPUVA_SPARSE;
-> -
-> -					vma = new_vma(vm, op->base.remap.next,
-> -						      op->tile_mask, read_only,
-> -						      is_null);
-> -					if (IS_ERR(vma)) {
-> -						err = PTR_ERR(vma);
-> -						goto free_fence;
-> -					}
-> -
-> -					op->remap.next = vma;
-> -
-> -					/*
-> -					 * Userptr creates a new SG mapping so
-> -					 * we must also rebind.
-> -					 */
-> -					op->remap.skip_next = !xe_vma_is_userptr(old) &&
-> -						IS_ALIGNED(xe_vma_start(vma),
-> -							   xe_vma_max_pte_size(old));
-> -					if (op->remap.skip_next) {
-> -						xe_vma_set_pte_size(vma, xe_vma_max_pte_size(old));
-> -						op->remap.range -=
-> -							xe_vma_end(old) -
-> -							xe_vma_start(vma);
-> -					}
-> +				op->remap.next = vma;
-> +
-> +				/*
-> +				 * Userptr creates a new SG mapping so
-> +				 * we must also rebind.
-> +				 */
-> +				op->remap.skip_next = !xe_vma_is_userptr(old) &&
-> +					IS_ALIGNED(xe_vma_start(vma),
-> +						   xe_vma_max_pte_size(old));
-> +				if (op->remap.skip_next) {
-> +					xe_vma_set_pte_size(vma, xe_vma_max_pte_size(old));
-> +					op->remap.range -=
-> +						xe_vma_end(old) -
-> +						xe_vma_start(vma);
->  				}
-> -				break;
-> -			}
-> -			case DRM_GPUVA_OP_UNMAP:
-> -			case DRM_GPUVA_OP_PREFETCH:
-> -				/* Nothing to do */
-> -				break;
-> -			default:
-> -				XE_WARN_ON("NOT POSSIBLE");
->  			}
-> -
-> -			last_op = op;
-> +			break;
-> +		}
-> +		case DRM_GPUVA_OP_UNMAP:
-> +		case DRM_GPUVA_OP_PREFETCH:
-> +			/* Nothing to do */
-> +			break;
-> +		default:
-> +			XE_WARN_ON("NOT POSSIBLE");
->  		}
->  
-> -		last_op->ops = __ops;
-> +		last_op = op;
-> +
-> +		err = xe_vma_op_commit(vm, op);
-> +		if (err)
-> +			goto free_fence;
->  	}
->  
-> -	if (!last_op)
-> -		return -ENODATA;
-> +	/* FIXME: Unhandled corner case */
-> +	XE_WARN_ON(!last_op && last && !list_empty(ops_list));
->  
-> -	last_op->flags |= XE_VMA_OP_LAST;
-> -	last_op->num_syncs = num_syncs;
-> -	last_op->syncs = syncs;
-> -	last_op->fence = fence;
-> +	if (!last_op)
-> +		goto free_fence;
-> +	last_op->ops = ops;
-> +	if (last) {
-> +		last_op->flags |= XE_VMA_OP_LAST;
-> +		last_op->num_syncs = num_syncs;
-> +		last_op->syncs = syncs;
-> +		last_op->fence = fence;
-> +	}
->  
->  	return 0;
->  
-> @@ -2609,58 +2658,6 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->  	return err;
->  }
->  
-> -static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
-> -{
-> -	int err = 0;
-> -
-> -	lockdep_assert_held_write(&vm->lock);
-> -
-> -	switch (op->base.op) {
-> -	case DRM_GPUVA_OP_MAP:
-> -		err |= xe_vm_insert_vma(vm, op->map.vma);
-> -		if (!err)
-> -			op->flags |= XE_VMA_OP_COMMITTED;
-> -		break;
-> -	case DRM_GPUVA_OP_REMAP:
-> -		prep_vma_destroy(vm, gpuva_to_vma(op->base.remap.unmap->va),
-> -				 true);
-> -		op->flags |= XE_VMA_OP_COMMITTED;
-> -
-> -		if (op->remap.prev) {
-> -			err |= xe_vm_insert_vma(vm, op->remap.prev);
-> -			if (!err)
-> -				op->flags |= XE_VMA_OP_PREV_COMMITTED;
-> -			if (!err && op->remap.skip_prev)
-> -				op->remap.prev = NULL;
-> -		}
-> -		if (op->remap.next) {
-> -			err |= xe_vm_insert_vma(vm, op->remap.next);
-> -			if (!err)
-> -				op->flags |= XE_VMA_OP_NEXT_COMMITTED;
-> -			if (!err && op->remap.skip_next)
-> -				op->remap.next = NULL;
-> -		}
-> -
-> -		/* Adjust for partial unbind after removin VMA from VM */
-> -		if (!err) {
-> -			op->base.remap.unmap->va->va.addr = op->remap.start;
-> -			op->base.remap.unmap->va->va.range = op->remap.range;
-> -		}
-> -		break;
-> -	case DRM_GPUVA_OP_UNMAP:
-> -		prep_vma_destroy(vm, gpuva_to_vma(op->base.unmap.va), true);
-> -		op->flags |= XE_VMA_OP_COMMITTED;
-> -		break;
-> -	case DRM_GPUVA_OP_PREFETCH:
-> -		op->flags |= XE_VMA_OP_COMMITTED;
-> -		break;
-> -	default:
-> -		XE_WARN_ON("NOT POSSIBLE");
-> -	}
-> -
-> -	return err;
-> -}
-> -
->  static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
->  			       struct xe_vma_op *op)
->  {
-> @@ -2878,11 +2875,13 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
->  	{
->  		struct xe_vma *vma = gpuva_to_vma(op->base.unmap.va);
->  
-> -		down_read(&vm->userptr.notifier_lock);
-> -		vma->gpuva.flags &= ~XE_VMA_DESTROYED;
-> -		up_read(&vm->userptr.notifier_lock);
-> -		if (post_commit)
-> -			xe_vm_insert_vma(vm, vma);
-> +		if (vma) {
-> +			down_read(&vm->userptr.notifier_lock);
-> +			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
-> +			up_read(&vm->userptr.notifier_lock);
-> +			if (post_commit)
-> +				xe_vm_insert_vma(vm, vma);
-> +		}
->  		break;
->  	}
->  	case DRM_GPUVA_OP_REMAP:
-> @@ -2897,11 +2896,13 @@ static void xe_vma_op_unwind(struct xe_vm *vm, struct xe_vma_op *op,
->  			prep_vma_destroy(vm, op->remap.next, next_post_commit);
->  			xe_vma_destroy_unlocked(op->remap.next);
->  		}
-> -		down_read(&vm->userptr.notifier_lock);
-> -		vma->gpuva.flags &= ~XE_VMA_DESTROYED;
-> -		up_read(&vm->userptr.notifier_lock);
-> -		if (post_commit)
-> -			xe_vm_insert_vma(vm, vma);
-> +		if (vma) {
-> +			down_read(&vm->userptr.notifier_lock);
-> +			vma->gpuva.flags &= ~XE_VMA_DESTROYED;
-> +			up_read(&vm->userptr.notifier_lock);
-> +			if (post_commit)
-> +				xe_vm_insert_vma(vm, vma);
-> +		}
->  		break;
->  	}
->  	case DRM_GPUVA_OP_PREFETCH:
-> @@ -2990,20 +2991,16 @@ static void xe_vma_op_work_func(struct work_struct *w)
->  	}
->  }
->  
-> -static int vm_bind_ioctl_ops_commit(struct xe_vm *vm,
-> -				    struct list_head *ops_list, bool async)
-> +static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
-> +				     struct list_head *ops_list, bool async)
->  {
->  	struct xe_vma_op *op, *last_op, *next;
->  	int err;
->  
->  	lockdep_assert_held_write(&vm->lock);
->  
-> -	list_for_each_entry(op, ops_list, link) {
-> +	list_for_each_entry(op, ops_list, link)
->  		last_op = op;
-> -		err = xe_vma_op_commit(vm, op);
-> -		if (err)
-> -			goto unwind;
-> -	}
->  
->  	if (!async) {
->  		err = xe_vma_op_execute(vm, last_op);
-> @@ -3042,28 +3039,29 @@ static int vm_bind_ioctl_ops_commit(struct xe_vm *vm,
->  	return err;
->  }
->  
-> -/*
-> - * Unwind operations list, called after a failure of vm_bind_ioctl_ops_create or
-> - * vm_bind_ioctl_ops_parse.
-> - */
->  static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
->  				     struct drm_gpuva_ops **ops,
->  				     int num_ops_list)
->  {
->  	int i;
->  
-> -	for (i = 0; i < num_ops_list; ++i) {
-> +	for (i = num_ops_list - 1; i; ++i) {
->  		struct drm_gpuva_ops *__ops = ops[i];
->  		struct drm_gpuva_op *__op;
->  
->  		if (!__ops)
->  			continue;
->  
-> -		drm_gpuva_for_each_op(__op, __ops) {
-> +		drm_gpuva_for_each_op_reverse(__op, __ops) {
->  			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
->  
-> -			xe_vma_op_unwind(vm, op, false, false, false);
-> +			xe_vma_op_unwind(vm, op,
-> +					 op->flags & XE_VMA_OP_COMMITTED,
-> +					 op->flags & XE_VMA_OP_PREV_COMMITTED,
-> +					 op->flags & XE_VMA_OP_NEXT_COMMITTED);
->  		}
-> +
-> +		drm_gpuva_ops_free(&vm->mgr, __ops);
->  	}
->  }
->  
-> @@ -3384,14 +3382,22 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  			ops[i] = NULL;
->  			goto unwind_ops;
->  		}
-> +
-> +		err = vm_bind_ioctl_ops_parse(vm, q, ops[i], syncs, num_syncs,
-> +					      &ops_list,
-> +					      i == args->num_binds - 1,
-> +					      async);
-> +		if (err)
-> +			goto unwind_ops;
->  	}
->  
-> -	err = vm_bind_ioctl_ops_parse(vm, q, ops, args->num_binds,
-> -				      syncs, num_syncs, &ops_list, async);
-> -	if (err)
-> +	/* Nothing to do */
-> +	if (list_empty(&ops_list)) {
-> +		err = -ENODATA;
->  		goto unwind_ops;
-> +	}
->  
-> -	err = vm_bind_ioctl_ops_commit(vm, &ops_list, async);
-> +	err = vm_bind_ioctl_ops_execute(vm, &ops_list, async);
->  	up_write(&vm->lock);
->  
->  	for (i = 0; i < args->num_binds; ++i)
+>  /**
+>   * drm_gpuva_first_op() - returns the first &drm_gpuva_op from &drm_gpuva_ops
+>   * @ops: the &drm_gpuva_ops to get the fist &drm_gpuva_op from
 > -- 
 > 2.34.1
 > 
