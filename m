@@ -4,140 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AC3CC83F2F
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 17:15:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72DA5C83F35
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 17:48:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D363D10E6AE;
-	Thu, 31 Aug 2023 17:15:12 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 063DE10E6A6;
- Thu, 31 Aug 2023 17:15:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19E8E10E192;
+	Thu, 31 Aug 2023 17:48:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6A8710E192
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Aug 2023 17:48:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693502110; x=1725038110;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=97upQnxcMKzQj72BKQWA+3JZFSQ2q3wS+RncWWwJ+WI=;
- b=Vh0mPTiEJVUF20uXLToUMvxYOvZ8QSrwxRbJRvwP2EeYS5MOlMp91m2+
- 4wNXD3y0KE+hjYBsTftmiFsXbtFbHm3ZlZ/Ck2DLw7TMsZkxQFHlWZ29H
- K4OFrh7l06naC4+eQ+qw74B4Q76HUzDi0V7/fm1UMgLNaAD/Agx6OVe8a
- IW4AxggswnXUQQ3ggPwdczPred8vamvRdcw9xQDD5VV9pWWLp31jbIDwV
- ws3rfYYw4SVqIKCmn0WYzFnl6fEQoRXLeGSGl9KmxuCk69Vp9TsIw2KiP
- BA9OiPJfUvqKuFDICcFsLBMI80y9gx7hy+kMm0z5FCh9RrBDCv46QSWhX g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="356323342"
-X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="356323342"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2023 10:15:09 -0700
+ t=1693504086; x=1725040086;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=r1hRZvU2UYfl5jPCub9oVm+OAFEoJH/B1BZNQ/59ctc=;
+ b=FA+gKxMhztA5lh23/W1tadlYTkVmM7EX6mGTIjHFGTsZ9hrSUw/WNseZ
+ GKew2HAqYuvaZLur+IO6MlUUrh/xjaZ4WqBva/dbtqoeR6xCS+Wex0GVm
+ skGPL6rulr3pJqYmG7tLgWgAARmP0DsZRT1JYXY33Q0mYTtjvVAK8lUOS
+ 3P2cRzZoYPrA//tZch4k6v1S1iPqCEN9GyzR5vxTHCO+KYt+A47AvNj5P
+ aRka9CqT4tRLU3IRfQE+ehX3d5TQQyWYUB4rYiaJjPo50o13rEOdymvoC
+ U3PMMITtfTrOxPdPmXTeaxAs2h7rI9NZMfNNhSDpZlW6fTvRTqdZ7/vg5 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="442415087"
+X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="442415087"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2023 10:48:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="805088431"
-X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="805088431"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 31 Aug 2023 10:15:09 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 31 Aug 2023 10:15:08 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Thu, 31 Aug 2023 10:15:08 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Thu, 31 Aug 2023 10:15:08 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Thu, 31 Aug 2023 10:15:08 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SYx8QDMv51kzq0Td14E2f5PcY7eZ8yP4Gq2INooIF5ok2tEgpyZHHJJfSTrGTrL+Fls6etjvRXrn3UYbUPv/qgKeTREKXCTG43TsTJk0mDPVxDrQFzm1F9U+oN4m8iRl20mECSHey7UIY0d3Dr9BAS+HgtSnMJAF3Ao+InycW1MjY8kDOLRPaVg8O9GyHucZH1F+T4SQ4zvUx0MUUT/iNzdPiV6UBQQvxD33h9jBc13oKs6qmqlZxSG3gWrzGsRLNr9yVnxhm3OFm2Spdi2k4iQ643NoUeEHhOloYDPiM/BPFAVkyFNLsR7oiDG7CJMMs+aywh4MN+eNTGNXJA/3YQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B4LvtlLthuHbb4S0htpZSS9qmtURV1OuVJbudXMjgnA=;
- b=G7OeROcXbCWhyYdoljYpv9HM/ZypRR63diLvp0L9UXrqhxXCpra1H83pm/y1YIrfjiwW3XUiUxaBXGOt6HBdUSmKceZxybiLVd79rHhjON24hj4tCuHPVtNIXp2NHdH1kgSSQVKGzu+zVoobzq0jMIlki+E//P8GzTqCR3tOTCn5cRNHQWf1TDvGTqWcxHcGUBJOSEo2f09MakZonbMehbhkDN6QQs4HxXG8cn3BhowFWk7emlKdbMhRWDsfIyM9hGmkdgmnEwVuItFUMzhLVXYj4PSDzzKOutQjQv5hH1R0FiUxO/ukjONVLdMUVaQ73q/4WArNXXoOCh4yTd7Wyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- BN9PR11MB5545.namprd11.prod.outlook.com (2603:10b6:408:102::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.21; Thu, 31 Aug
- 2023 17:15:06 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6745.020; Thu, 31 Aug 2023
- 17:15:06 +0000
-Date: Thu, 31 Aug 2023 10:15:03 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Message-ID: <20230831171503.GA2706891@mdroper-desk1.amr.corp.intel.com>
-References: <20230829141107.1505705-1-lucas.demarchi@intel.com>
- <20230829141107.1505705-3-lucas.demarchi@intel.com>
- <ZPA3tuQCuZkPKntS@bvivekan-mobl>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZPA3tuQCuZkPKntS@bvivekan-mobl>
-X-ClientProxiedBy: BYAPR01CA0047.prod.exchangelabs.com (2603:10b6:a03:94::24)
- To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="774674392"
+X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="774674392"
+Received: from krchrist-mobl2.ger.corp.intel.com (HELO [10.249.254.164])
+ ([10.249.254.164])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2023 10:48:04 -0700
+Message-ID: <d8b63ee2-99ad-b9e2-04f8-f8da56ca3a04@linux.intel.com>
+Date: Thu, 31 Aug 2023 19:48:01 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|BN9PR11MB5545:EE_
-X-MS-Office365-Filtering-Correlation-Id: 649d3b49-5c67-4621-4e40-08dbaa45d25d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xhuDM/abrRK/KpJWEp6nzj6oWNWRiEiEqWIzutYfCuraIlITwPIUjRH2ldLbN+o83W+ZvizG9gA6aLcL4gEj/XszzeDgVQYI1aWWcTVnsM5tSgO88+H2O/03rQwAdT1K+/CRh0akqbvvlmQuR3BXWfLLRgGxL/LnfQn2KSZj5UHOS3Ik4sK8N8Jte3AFHWGgPMg/8WHI0+rz4vTmvjTBe9IkAZbddkWI+TbxbXk1FKf9oSfP8wWwd9EqRFNqeUcYt57PIk5tbaVrGs530sap3jr8wwdNU3orXBwqRWw9mkgFDBUkaL9yfWIPV9YjSsxd1cgXItoFkAze+E8bqmkLijv0SYa4fq+VzSvTbz20UymYKhH61SwuzqQ2QoHOFmjUHvclMAzBBjVlzdFOyCPdGg+Nv+peBd3OE5/3CFk/6qYoVI1WgvK/qo9kIjUhdmSn/7O4Kpk41AxCVmW6T3GrY4PbOPp4zvo9my3jwwPlNc8gaAwQPPnBp/fWQLt8xIvF4swvQwc7X4rDXPy6LX9ubmTFZIvZJmK3MnlMTxO57zG6PogcfTC4DRSyDS/8Y7G/
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(366004)(396003)(346002)(376002)(39860400002)(1800799009)(451199024)(186009)(6512007)(6666004)(6506007)(6486002)(82960400001)(33656002)(38100700002)(86362001)(1076003)(107886003)(2906002)(26005)(53546011)(83380400001)(478600001)(4326008)(8936002)(8676002)(6862004)(66946007)(54906003)(5660300002)(450100002)(66556008)(6636002)(41300700001)(316002)(66476007);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?KCPy8frndD4so1qy8iQW/c8ht3K5/i3rvJIS0Rn/yD74Gf/5sNGDU1L4xKfe?=
- =?us-ascii?Q?J+xecOM5V9olNs6oMnOeNGAsyVhyC4J7DMIGK8kdCWrmpCijOByFOFevsjLH?=
- =?us-ascii?Q?qi1AspxClcH9DbxkH5lzpjaxKsyf0O8poN7j4UOmSpkVH/ZfoFlm7yOsVnqT?=
- =?us-ascii?Q?2eBQrp7My1oJ6Kf5/gPOSgntsfi9DcIBUgYNWFBLBlvdT1HWK5wCmtlZYPpw?=
- =?us-ascii?Q?5LWSBlRTYSLoAnna6JL8yn2nMbU42U0i+KqRHvZdGCqsZjIPjeZ1mAV1DAOO?=
- =?us-ascii?Q?rZCbuz6rnoJR7dhzyfVkp+q20WhyLwOXypaf8kMdsQ6gpC5bR6B4C1NzuffH?=
- =?us-ascii?Q?ppukFEi8YPAyNcxmR3PwrFpJnWEwO+5V6szKmUjVtiMBfwR33icKwItQrN1g?=
- =?us-ascii?Q?JkMLZ0qznUV6QWIqu+sAemzsqOLDE+tMVmEZTGR6Fg5EociWeEGmpKPzpZza?=
- =?us-ascii?Q?5l08ZQ/Czxvbj3n+a7cK2Zgxkt7oUpi325T3Rk8eNXquUT7k1XqPf3jZRWfP?=
- =?us-ascii?Q?ChI/jHVyZlZjqBo29cph3q9CW/uJiDYTTbWlXQKgeL29pMzN7U+nVvD0IGza?=
- =?us-ascii?Q?vKh1OxfE+N7XQhR/af712TJGl9W9Gg1oAgJl0K7Jgj3Ii+o5gEbrFY5YKp7R?=
- =?us-ascii?Q?m5MzH9choVIZfDNrWLFvHxymd8qxfURAh+LPHWbiU8nYhFszcOOvSDiaQkQ7?=
- =?us-ascii?Q?3kqbuLzNWbkWmHiZXy3uo9PAWrsriLJ2FAtAeraACPLgZ20wCLueoRpMQmML?=
- =?us-ascii?Q?wf1i0xpKQn59FIBZ4X91Aycn4Tlb1MKnhhNXmz9k3z+peK7cwYe4K0WK4K5H?=
- =?us-ascii?Q?zEvYV0FZ2Tecx5hANCiBZHD8lxGZGjv1EhGEva7/8f6T3jdy8970Nv8vXIE2?=
- =?us-ascii?Q?vjvraIFYocK5/mbU71r9vt+ttnkshecWOJcqXPiwLKUTlCNDaJm+E7FbbhMe?=
- =?us-ascii?Q?v2Gi/KjdrhZHIAFL0lLpcsOVW35dIcmhFuYsratU0Vcd9+lwofhwJFSwauTo?=
- =?us-ascii?Q?ILgu9tEQAsvTV+Yqghe0rqactOyDGGozjVvxRwPnbPdP8VBMsME6hUyxGhT1?=
- =?us-ascii?Q?Pnw9rU2pAXLNtKLQLOTxjgqAd1HvKdUNfkBXwm/oNuqC7MeUVtDf1TfXobC3?=
- =?us-ascii?Q?YQrROcSiPsQRkGAVaH6IbQsY6O2D49dTRfllwIdSVHaRteI9BMBvbHVjndOs?=
- =?us-ascii?Q?f4GJhzkuOSefRuWqgEL5I5KeRxUY9Eb+8Jp40DC+fy3puuIZGCKKVNvMWO7q?=
- =?us-ascii?Q?5xaqzBHdRuk32MLjhkVW0vgqY7GvsULgkTVlZLbLyl1kA6ZEXc5AmaD9RAJL?=
- =?us-ascii?Q?N9gTNaSqnZzWwiav1Qwe12BBE3C9frHjOJjs68rMbD0xBnUKGfFVnDun26js?=
- =?us-ascii?Q?64FOEsB1xr3QNvcpC2IOkXkfxjpO7BxaHgla56jomXa80QD3L7RXBxk21l/G?=
- =?us-ascii?Q?DBpXpNxiK3BpdIVdAwBFLtRr+ORQ1KFJPfURVE0m0r8/1nLsoYeH3dUGcjHL?=
- =?us-ascii?Q?S3fMGJ90RTY2mAqf1L5aulhqmVEo5OjDo0xR5eBSwi93g1C2/13Qpl0GgmWY?=
- =?us-ascii?Q?Ovjf7nukBOWn0LrIylknytC39/VkBA1z5NwLToB2ACS7sTOrnGemPEcTrU5h?=
- =?us-ascii?Q?tw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 649d3b49-5c67-4621-4e40-08dbaa45d25d
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2023 17:15:06.3246 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: frwm86OxzQH1NbMNZd6QSiKr8T2XcBrU5VbBERPdZWJiD0Kn+RUB4KcnnWnim4C4Dyhwm6pIcPICLY3U54zcO5dAZJ69K3kMulEtsyAUBnc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5545
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH igt 2/4] lib/intel_chipset: Add Lunar Lake
- support
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20230831092937.2197-1-thomas.hellstrom@linux.intel.com>
+ <20230831092937.2197-2-thomas.hellstrom@linux.intel.com>
+ <4e7045b07c2b09f011ed8f1bc0009296a850f7e0.camel@linux.intel.com>
+ <ZPDHfKJo2o+I2Bg6@DUT025-TGLU.fm.intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <ZPDHfKJo2o+I2Bg6@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v3 1/6] drm/xe/bo: Simplify xe_bo_lock()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,115 +63,651 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-xe@lists.freedesktop.org, Swati Sharma <swati2.sharma@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Aug 31, 2023 at 12:18:22PM +0530, Balasubramani Vivekanandan wrote:
-> On 29.08.2023 07:11, Lucas De Marchi wrote:
-> > Add basic definition for the Lunar Lake platform. This uses the PCI ID
-> > from the xe_pciids.h which has a macro in a slighlty different form.
-> > 
-> > Going forward we could also trim down a little bit the the info struct
-> > like was done in the kernel, relying on gmdid and IP version checks.
-> > This is left for later.
-> > 
-> > Cc: Swati Sharma <swati2.sharma@intel.com>
-> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > ---
-> >  lib/intel_chipset.h     |  5 +++++
-> >  lib/intel_device_info.c | 12 ++++++++++++
-> >  2 files changed, 17 insertions(+)
-> > 
-> > diff --git a/lib/intel_chipset.h b/lib/intel_chipset.h
-> > index 84cf1799e..52b15ccea 100644
-> > --- a/lib/intel_chipset.h
-> > +++ b/lib/intel_chipset.h
-> > @@ -46,6 +46,7 @@ struct intel_device_info {
-> >  	bool has_4tile : 1;
-> >  	bool has_flatccs : 1;
-> >  	bool has_oam : 1;
-> > +	bool has_gmdid : 1;
-> >  	bool is_mobile : 1;
-> >  	bool is_whitney : 1;
-> >  	bool is_almador : 1;
-> > @@ -90,6 +91,7 @@ struct intel_device_info {
-> >  	bool is_alderlake_n : 1;
-> >  	bool is_meteorlake : 1;
-> >  	bool is_pontevecchio : 1;
-> > +	bool is_lunarlake : 1;
-> >  	const struct intel_cmds_info *cmds_info;
-> >  	const char *codename;
-> >  };
-> > @@ -203,6 +205,7 @@ void intel_check_pch(void);
-> >  #define IS_ALDERLAKE_N(devid)	(intel_get_device_info(devid)->is_alderlake_n)
-> >  #define IS_METEORLAKE(devid)	(intel_get_device_info(devid)->is_meteorlake)
-> >  #define IS_PONTEVECCHIO(devid)	(intel_get_device_info(devid)->is_pontevecchio)
-> > +#define IS_LUNARLAKE(devid)	(intel_get_device_info(devid)->is_lunarlake)
-> >  
-> >  #define IS_GEN(devid, x)	(intel_get_device_info(devid)->graphics_ver == x)
-> >  #define AT_LEAST_GEN(devid, x)	(intel_get_device_info(devid)->graphics_ver >= x)
-> > @@ -236,4 +239,6 @@ void intel_check_pch(void);
-> >  
-> >  #define HAS_OAM(devid)		(intel_get_device_info(devid)->has_oam)
-> >  
-> > +#define HAS_GMDID(devid)	(intel_get_device_info(devid)->has_gmdid)
-> > +
-> >  #endif /* _INTEL_CHIPSET_H */
-> > diff --git a/lib/intel_device_info.c b/lib/intel_device_info.c
-> > index 5d53d2906..86a8b3650 100644
-> > --- a/lib/intel_device_info.c
-> > +++ b/lib/intel_device_info.c
-> > @@ -504,6 +504,16 @@ static const struct intel_device_info intel_pontevecchio_info = {
-> >  	.cmds_info = &gen12_pvc_cmds_info,
-> >  };
-> >  
-> > +static const struct intel_device_info intel_lunarlake_info = {
-> > +	.graphics_ver = 20,
-> > +	.graphics_rel = 4,
-> > +	.display_ver = 20,
-> > +	.has_4tile = true,
-> > +	.has_gmdid = true,
-> 
-> has_gmdid should be set true even for Meteorlake. If not in this patch,
-> in a follow up.
 
-Yeah, we probably shouldn't even be introducing has_gmdid / HAS_GMDID in
-this patch since it isn't used anywhere yet (and since userspace doesn't
-have any interface to query the GMD_ID values from yet).  That support
-should probably come in a separate series, and be paired with XeKMD
-changes that allow userspace to access those values.
+On 8/31/23 19:01, Matthew Brost wrote:
+> On Thu, Aug 31, 2023 at 04:43:57PM +0200, Thomas Hellström wrote:
+>> On Thu, 2023-08-31 at 11:29 +0200, Thomas Hellström wrote:
+>>> xe_bo_lock() was, although it only grabbed a single lock,
+>>> unnecessarily
+>>> using ttm_eu_reserve_buffers(). Simplify and document the interface.
+>>>
+>>> v2:
+>>> - Update also the xe_display subsysem.
+>>>
+>>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>> ---
+>>>   drivers/gpu/drm/i915/display/intel_display.c |  5 +--
+>>>   drivers/gpu/drm/xe/tests/xe_bo.c             | 24 +++++------
+>>>   drivers/gpu/drm/xe/xe_bo.c                   | 42 ++++++++++++------
+>>> --
+>>>   drivers/gpu/drm/xe/xe_bo.h                   |  5 +--
+>>>   drivers/gpu/drm/xe/xe_bo_evict.c             | 19 ++++-----
+>>>   drivers/gpu/drm/xe/xe_gt_pagefault.c         | 41 +++++++-----------
+>>> -
+>>>   drivers/gpu/drm/xe/xe_vm.c                   | 22 +++++-----
+>>>   drivers/gpu/drm/xe/xe_vm_madvise.c           | 30 ++++++--------
+>>>   8 files changed, 85 insertions(+), 103 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+>>> b/drivers/gpu/drm/i915/display/intel_display.c
+>>> index d6b481f33b45..9df8081f78d9 100644
+>>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>>> @@ -6938,11 +6938,10 @@ static int
+>>> i915_gem_object_read_from_page(struct xe_bo *bo,
+>>>          void *virtual;
+>>>          bool is_iomem;
+>>>          int ret;
+>>> -       struct ww_acquire_ctx ww;
+>>>   
+>>>          XE_WARN_ON(size != 8);
+>>>   
+>>> -       ret = xe_bo_lock(bo, &ww, 0, true);
+>>> +       ret = xe_bo_lock(bo, true);
+>>>          if (ret)
+>>>                  return ret;
+>>>   
+>>> @@ -6959,7 +6958,7 @@ static int
+>>> i915_gem_object_read_from_page(struct xe_bo *bo,
+>>>   
+>>>          ttm_bo_kunmap(&map);
+>>>   out_unlock:
+>>> -       xe_bo_unlock(bo, &ww);
+>>> +       xe_bo_unlock(bo);
+>>>          return ret;
+>>>   }
+>>>   #endif
+>>> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c
+>>> b/drivers/gpu/drm/xe/tests/xe_bo.c
+>>> index b32a9068d76c..31fd4f9b2d5b 100644
+>>> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
+>>> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
+>>> @@ -203,9 +203,9 @@ static int evict_test_run_gt(struct xe_device
+>>> *xe, struct xe_gt *gt, struct kuni
+>>>                          goto cleanup_bo;
+>>>                  }
+>>>   
+>>> -               xe_bo_lock(external, &ww, 0, false);
+>>> +               xe_bo_lock(external, false);
+>>>                  err = xe_bo_pin_external(external);
+>>> -               xe_bo_unlock(external, &ww);
+>>> +               xe_bo_unlock(external);
+>>>                  if (err) {
+>>>                          KUNIT_FAIL(test, "external bo pin err=%pe\n",
+>>>                                     ERR_PTR(err));
+>>> @@ -268,9 +268,9 @@ static int evict_test_run_gt(struct xe_device
+>>> *xe, struct xe_gt *gt, struct kuni
+>>>                                             ERR_PTR(err));
+>>>                                  goto cleanup_all;
+>>>                          }
+>>> -                       xe_bo_lock(external, &ww, 0, false);
+>>> +                       xe_bo_lock(external, false);
+>>>                          err = xe_bo_validate(external, NULL, false);
+>>> -                       xe_bo_unlock(external, &ww);
+>>> +                       xe_bo_unlock(external);
+>>>                          if (err) {
+>>>                                  KUNIT_FAIL(test, "external bo valid
+>>> err=%pe\n",
+>>>                                             ERR_PTR(err));
+>>> @@ -278,28 +278,28 @@ static int evict_test_run_gt(struct xe_device
+>>> *xe, struct xe_gt *gt, struct kuni
+>>>                          }
+>>>                  }
+>>>   
+>>> -               xe_bo_lock(external, &ww, 0, false);
+>>> +               xe_bo_lock(external, false);
+>>>                  xe_bo_unpin_external(external);
+>>> -               xe_bo_unlock(external, &ww);
+>>> +               xe_bo_unlock(external);
+>>>   
+>>>                  xe_bo_put(external);
+>>>   
+>>> -               xe_bo_lock(bo, &ww, 0, false);
+>>> +               xe_bo_lock(bo, false);
+>>>                  __xe_bo_unset_bulk_move(bo);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>                  xe_bo_put(bo);
+>>>                  continue;
+>>>   
+>>>   cleanup_all:
+>>> -               xe_bo_lock(external, &ww, 0, false);
+>>> +               xe_bo_lock(external, false);
+>>>                  xe_bo_unpin_external(external);
+>>> -               xe_bo_unlock(external, &ww);
+>>> +               xe_bo_unlock(external);
+>>>   cleanup_external:
+>>>                  xe_bo_put(external);
+>>>   cleanup_bo:
+>>> -               xe_bo_lock(bo, &ww, 0, false);
+>>> +               xe_bo_lock(bo, false);
+>>>                  __xe_bo_unset_bulk_move(bo);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>                  xe_bo_put(bo);
+>>>                  break;
+>>>          }
+>>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>>> index 6a8a41dafe88..9d70d12e79b1 100644
+>>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>>> +++ b/drivers/gpu/drm/xe/xe_bo.c
+>>> @@ -1079,13 +1079,11 @@ static void xe_gem_object_close(struct
+>>> drm_gem_object *obj,
+>>>          struct xe_bo *bo = gem_to_xe_bo(obj);
+>>>   
+>>>          if (bo->vm && !xe_vm_in_fault_mode(bo->vm)) {
+>>> -               struct ww_acquire_ctx ww;
+>>> -
+>>>                  XE_WARN_ON(!xe_bo_is_user(bo));
+>>>   
+>>> -               xe_bo_lock(bo, &ww, 0, false);
+>>> +               xe_bo_lock(bo, false);
+>>>                  ttm_bo_set_bulk_move(&bo->ttm, NULL);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>          }
+>>>   }
+>>>   
+>>> @@ -1863,26 +1861,36 @@ int xe_gem_mmap_offset_ioctl(struct
+>>> drm_device *dev, void *data,
+>>>          return 0;
+>>>   }
+>>>   
+>>> -int xe_bo_lock(struct xe_bo *bo, struct ww_acquire_ctx *ww,
+>>> -              int num_resv, bool intr)
+>>> +/**
+>>> + * xe_bo_lock() - Lock the buffer object's dma_resv object
+>>> + * @bo: The struct xe_bo whose lock is to be taken
+>>> + * @intr: Whether to perform any wait interruptible
+>>> + *
+>>> + * Locks the buffer object's dma_resv object. If the buffer object
+>>> is
+>>> + * pointing to a shared dma_resv object, that shared lock is locked.
+>>> + *
+>>> + * Return: 0 on success, -EINTR if @intr is true and the wait for a
+>>> + * contended lock was interrupted.
+> Probably should add in kernel doc that it is ok for the call to not
+> check the return value if intr == false && number fence reservation
+> slots == 0. The existing code I think follows this pattern but it is not
+> documented.
+Sure, although see below about the fence slots.
+>>> + */
+>>> +int xe_bo_lock(struct xe_bo *bo, bool intr)
+>>>   {
+>>> -       struct ttm_validate_buffer tv_bo;
+>>> -       LIST_HEAD(objs);
+>>> -       LIST_HEAD(dups);
+>>> +       if (intr)
+>>> +               return dma_resv_lock_interruptible(bo->ttm.base.resv,
+>>> NULL);
+>>>   
+>>> -       XE_WARN_ON(!ww);
+>>> +       dma_resv_lock(bo->ttm.base.resv, NULL);
+>>>   
+>>> -       tv_bo.num_shared = num_resv;
+>>> -       tv_bo.bo = &bo->ttm;
+>>> -       list_add_tail(&tv_bo.head, &objs);
+>>> -
+>>> -       return ttm_eu_reserve_buffers(ww, &objs, intr, &dups);
+>>> +       return 0;
+>>>   }
+>>>   
+>>> -void xe_bo_unlock(struct xe_bo *bo, struct ww_acquire_ctx *ww)
+>>> +/**
+>>> + * xe_bo_unlock() - Unlock the buffer object's dma_resv object
+>>> + * @bo: The struct xe_bo whose lock is to be released.
+>>> + *
+>>> + * Unlock a buffer object lock that was locked by xe_bo_lock().
+>>> + */
+>>> +void xe_bo_unlock(struct xe_bo *bo)
+>>>   {
+>>>          dma_resv_unlock(bo->ttm.base.resv);
+>>> -       ww_acquire_fini(ww);
+>>>   }
+>>>   
+>>>   /**
+>>> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+>>> index 0823dda0f31b..a7b9e7084225 100644
+>>> --- a/drivers/gpu/drm/xe/xe_bo.h
+>>> +++ b/drivers/gpu/drm/xe/xe_bo.h
+>>> @@ -149,10 +149,9 @@ static inline void xe_bo_assert_held(struct
+>>> xe_bo *bo)
+>>>                  dma_resv_assert_held((bo)->ttm.base.resv);
+>>>   }
+>>>   
+>>> -int xe_bo_lock(struct xe_bo *bo, struct ww_acquire_ctx *ww,
+>>> -              int num_resv, bool intr);
+>>> +int xe_bo_lock(struct xe_bo *bo, bool intr);
+>>>   
+>>> -void xe_bo_unlock(struct xe_bo *bo, struct ww_acquire_ctx *ww);
+>>> +void xe_bo_unlock(struct xe_bo *bo);
+>>>   
+>>>   static inline void xe_bo_unlock_vm_held(struct xe_bo *bo)
+>>>   {
+>>> diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c
+>>> b/drivers/gpu/drm/xe/xe_bo_evict.c
+>>> index 0d5c3a208ab4..49c05ddea164 100644
+>>> --- a/drivers/gpu/drm/xe/xe_bo_evict.c
+>>> +++ b/drivers/gpu/drm/xe/xe_bo_evict.c
+>>> @@ -27,7 +27,6 @@
+>>>   int xe_bo_evict_all(struct xe_device *xe)
+>>>   {
+>>>          struct ttm_device *bdev = &xe->ttm;
+>>> -       struct ww_acquire_ctx ww;
+>>>          struct xe_bo *bo;
+>>>          struct xe_tile *tile;
+>>>          struct list_head still_in_list;
+>>> @@ -62,9 +61,9 @@ int xe_bo_evict_all(struct xe_device *xe)
+>>>                  list_move_tail(&bo->pinned_link, &still_in_list);
+>>>                  spin_unlock(&xe->pinned.lock);
+>>>   
+>>> -               xe_bo_lock(bo, &ww, 0, false);
+>>> +               xe_bo_lock(bo, false);
+>>>                  ret = xe_bo_evict_pinned(bo);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>                  xe_bo_put(bo);
+>>>                  if (ret) {
+>>>                          spin_lock(&xe->pinned.lock);
+>>> @@ -96,9 +95,9 @@ int xe_bo_evict_all(struct xe_device *xe)
+>>>                  list_move_tail(&bo->pinned_link, &xe-
+>>>> pinned.evicted);
+>>>                  spin_unlock(&xe->pinned.lock);
+>>>   
+>>> -               xe_bo_lock(bo, &ww, 0, false);
+>>> +               xe_bo_lock(bo, false);
+>>>                  ret = xe_bo_evict_pinned(bo);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>                  xe_bo_put(bo);
+>>>                  if (ret)
+>>>                          return ret;
+>>> @@ -123,7 +122,6 @@ int xe_bo_evict_all(struct xe_device *xe)
+>>>    */
+>>>   int xe_bo_restore_kernel(struct xe_device *xe)
+>>>   {
+>>> -       struct ww_acquire_ctx ww;
+>>>          struct xe_bo *bo;
+>>>          int ret;
+>>>   
+>>> @@ -140,9 +138,9 @@ int xe_bo_restore_kernel(struct xe_device *xe)
+>>>                  list_move_tail(&bo->pinned_link, &xe-
+>>>> pinned.kernel_bo_present);
+>>>                  spin_unlock(&xe->pinned.lock);
+>>>   
+>>> -               xe_bo_lock(bo, &ww, 0, false);
+>>> +               xe_bo_lock(bo, false);
+>>>                  ret = xe_bo_restore_pinned(bo);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>                  if (ret) {
+>>>                          xe_bo_put(bo);
+>>>                          return ret;
+>>> @@ -184,7 +182,6 @@ int xe_bo_restore_kernel(struct xe_device *xe)
+>>>    */
+>>>   int xe_bo_restore_user(struct xe_device *xe)
+>>>   {
+>>> -       struct ww_acquire_ctx ww;
+>>>          struct xe_bo *bo;
+>>>          struct xe_tile *tile;
+>>>          struct list_head still_in_list;
+>>> @@ -206,9 +203,9 @@ int xe_bo_restore_user(struct xe_device *xe)
+>>>                  xe_bo_get(bo);
+>>>                  spin_unlock(&xe->pinned.lock);
+>>>   
+>>> -               xe_bo_lock(bo, &ww, 0, false);
+>>> +               xe_bo_lock(bo, false);
+>>>                  ret = xe_bo_restore_pinned(bo);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>                  xe_bo_put(bo);
+>>>                  if (ret) {
+>>>                          spin_lock(&xe->pinned.lock);
+>>> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>>> b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>>> index b6f781b3d9d7..73fc9389a663 100644
+>>> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>>> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>>> @@ -171,20 +171,18 @@ static int handle_pagefault(struct xe_gt *gt,
+>>> struct pagefault *pf)
+>>>   
+>>>          /* Lock VM and BOs dma-resv */
+>>>          bo = xe_vma_bo(vma);
+>>> -       if (only_needs_bo_lock(bo)) {
+>>> -               /* This path ensures the BO's LRU is updated */
+>>> -               ret = xe_bo_lock(bo, &ww, xe->info.tile_count,
+>>> false);
+>>> -       } else {
+>>> +       if (!only_needs_bo_lock(bo)) {
+>>>                  tv_vm.num_shared = xe->info.tile_count;
+>>>                  tv_vm.bo = xe_vm_ttm_bo(vm);
+>>>                  list_add(&tv_vm.head, &objs);
+>>> -               if (bo) {
+>>> -                       tv_bo.bo = &bo->ttm;
+>>> -                       tv_bo.num_shared = xe->info.tile_count;
+>>> -                       list_add(&tv_bo.head, &objs);
+>>> -               }
+>>> -               ret = ttm_eu_reserve_buffers(&ww, &objs, false,
+>>> &dups);
+>>>          }
+>>> +       if (bo) {
+>>> +               tv_bo.bo = &bo->ttm;
+>>> +               tv_bo.num_shared = xe->info.tile_count;
+>>> +               list_add(&tv_bo.head, &objs);
+>>> +       }
+>>> +
+>>> +       ret = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
+>>>          if (ret)
+>>>                  goto unlock_vm;
+>>>   
+>>> @@ -227,10 +225,7 @@ static int handle_pagefault(struct xe_gt *gt,
+>>> struct pagefault *pf)
+>>>          vma->usm.tile_invalidated &= ~BIT(gt_to_tile(gt)->id);
+>>>   
+>>>   unlock_dma_resv:
+>>> -       if (only_needs_bo_lock(bo))
+>>> -               xe_bo_unlock(bo, &ww);
+>>> -       else
+>>> -               ttm_eu_backoff_reservation(&ww, &objs);
+>>> +       ttm_eu_backoff_reservation(&ww, &objs);
+>>>   unlock_vm:
+>>>          if (!ret)
+>>>                  vm->usm.last_fault_vma = vma;
+>>> @@ -534,28 +529,22 @@ static int handle_acc(struct xe_gt *gt, struct
+>>> acc *acc)
+>>>   
+>>>          /* Lock VM and BOs dma-resv */
+>>>          bo = xe_vma_bo(vma);
+>>> -       if (only_needs_bo_lock(bo)) {
+>>> -               /* This path ensures the BO's LRU is updated */
+>>> -               ret = xe_bo_lock(bo, &ww, xe->info.tile_count,
+>>> false);
+>>> -       } else {
+>>> +       if (!only_needs_bo_lock(bo)) {
+>>>                  tv_vm.num_shared = xe->info.tile_count;
+>>>                  tv_vm.bo = xe_vm_ttm_bo(vm);
+>>>                  list_add(&tv_vm.head, &objs);
+>>> -               tv_bo.bo = &bo->ttm;
+>>> -               tv_bo.num_shared = xe->info.tile_count;
+>>> -               list_add(&tv_bo.head, &objs);
+>>> -               ret = ttm_eu_reserve_buffers(&ww, &objs, false,
+>>> &dups);
+>>>          }
+>>> +       tv_bo.bo = &bo->ttm;
+>>> +       tv_bo.num_shared = xe->info.tile_count;
+>>> +       list_add(&tv_bo.head, &objs);
+>>> +       ret = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
+>>>          if (ret)
+>>>                  goto unlock_vm;
+>>>   
+>>>          /* Migrate to VRAM, move should invalidate the VMA first */
+>>>          ret = xe_bo_migrate(bo, XE_PL_VRAM0 + tile->id);
+>>>   
+>>> -       if (only_needs_bo_lock(bo))
+>>> -               xe_bo_unlock(bo, &ww);
+>>> -       else
+>>> -               ttm_eu_backoff_reservation(&ww, &objs);
+>>> +       ttm_eu_backoff_reservation(&ww, &objs);
+>>>   unlock_vm:
+>>>          up_read(&vm->lock);
+>>>          xe_vm_put(vm);
+>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>>> index 9cbf2f63d641..5679c47f47ca 100644
+>>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>>> @@ -267,10 +267,9 @@ static void arm_preempt_fences(struct xe_vm *vm,
+>>> struct list_head *list)
+>>>   static int add_preempt_fences(struct xe_vm *vm, struct xe_bo *bo)
+>>>   {
+>>>          struct xe_exec_queue *q;
+>>> -       struct ww_acquire_ctx ww;
+>>>          int err;
+>>>   
+>>> -       err = xe_bo_lock(bo, &ww, vm->preempt.num_exec_queues, true);
+>>> +       err = xe_bo_lock(bo, true);
+>> Looks like the fence slot reservation got lost in the rebase here. Will
+>> fix in next revision.
+>>
+> Yep, please add that back in.
+
+To be clear, that was an open-coded fence reservation, and this is the 
+only spot where it's needed. Otherwise if a fence reservation is indeed 
+needed, the I think xe_bo_lock() is not the correct interface, and a 
+drm_exec variant should be used instead.
+
+Ideally, we'd require an (initially unused) drm_exec * parameter to 
+xe_bo_validate, and track backwards so all callers indeed use a drm_exec 
+variant for their locking.
+
+/Thomas
 
 
-Matt
-
-> 
-> Regards,
-> Bala
-> 
-> > +	.is_lunarlake = true,
-> > +	.codename = "lunarlake"
-> > +};
-> > +
-> >  static const struct pci_id_match intel_device_match[] = {
-> >  	INTEL_I810_IDS(&intel_i810_info),
-> >  	INTEL_I815_IDS(&intel_i815_info),
-> > @@ -607,6 +617,8 @@ static const struct pci_id_match intel_device_match[] = {
-> >  
-> >  	INTEL_PVC_IDS(&intel_pontevecchio_info),
-> >  
-> > +	XE_LNL_IDS(INTEL_VGA_DEVICE, &intel_lunarlake_info),
-> > +
-> >  	INTEL_VGA_DEVICE(PCI_MATCH_ANY, &intel_generic_info),
-> >  };
-> >  
-> > -- 
-> > 2.40.1
-> > 
-
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+>
+> Matt
+>
+>> /Thomas
+>>
+>>
+>>>          if (err)
+>>>                  return err;
+>>>   
+>>> @@ -281,8 +280,8 @@ static int add_preempt_fences(struct xe_vm *vm,
+>>> struct xe_bo *bo)
+>>>                                             DMA_RESV_USAGE_BOOKKEEP);
+>>>                  }
+>>>   
+>>> -       xe_bo_unlock(bo, &ww);
+>>> -       return 0;
+>>> +       xe_bo_unlock(bo);
+>>> +       return err;
+>>>   }
+>>>   
+>>>   /**
+>>> @@ -1021,12 +1020,11 @@ bo_has_vm_references_locked(struct xe_bo *bo,
+>>> struct xe_vm *vm,
+>>>   static bool bo_has_vm_references(struct xe_bo *bo, struct xe_vm *vm,
+>>>                                   struct xe_vma *ignore)
+>>>   {
+>>> -       struct ww_acquire_ctx ww;
+>>>          bool ret;
+>>>   
+>>> -       xe_bo_lock(bo, &ww, 0, false);
+>>> +       xe_bo_lock(bo, false);
+>>>          ret = !!bo_has_vm_references_locked(bo, vm, ignore);
+>>> -       xe_bo_unlock(bo, &ww);
+>>> +       xe_bo_unlock(bo);
+>>>   
+>>>          return ret;
+>>>   }
+>>> @@ -2267,7 +2265,6 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm,
+>>> struct xe_bo *bo,
+>>>                           u32 operation, u8 tile_mask, u32 region)
+>>>   {
+>>>          struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
+>>> -       struct ww_acquire_ctx ww;
+>>>          struct drm_gpuva_ops *ops;
+>>>          struct drm_gpuva_op *__op;
+>>>          struct xe_vma_op *op;
+>>> @@ -2325,11 +2322,11 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm,
+>>> struct xe_bo *bo,
+>>>          case XE_VM_BIND_OP_UNMAP_ALL:
+>>>                  XE_WARN_ON(!bo);
+>>>   
+>>> -               err = xe_bo_lock(bo, &ww, 0, true);
+>>> +               err = xe_bo_lock(bo, true);
+>>>                  if (err)
+>>>                          return ERR_PTR(err);
+>>>                  ops = drm_gpuva_gem_unmap_ops_create(&vm->mgr, obj);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>                  if (IS_ERR(ops))
+>>>                          return ops;
+>>>   
+>>> @@ -2365,13 +2362,12 @@ static struct xe_vma *new_vma(struct xe_vm
+>>> *vm, struct drm_gpuva_op_map *op,
+>>>   {
+>>>          struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) :
+>>> NULL;
+>>>          struct xe_vma *vma;
+>>> -       struct ww_acquire_ctx ww;
+>>>          int err;
+>>>   
+>>>          lockdep_assert_held_write(&vm->lock);
+>>>   
+>>>          if (bo) {
+>>> -               err = xe_bo_lock(bo, &ww, 0, true);
+>>> +               err = xe_bo_lock(bo, true);
+>>>                  if (err)
+>>>                          return ERR_PTR(err);
+>>>          }
+>>> @@ -2380,7 +2376,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm,
+>>> struct drm_gpuva_op_map *op,
+>>>                              op->va.range - 1, read_only, is_null,
+>>>                              tile_mask);
+>>>          if (bo)
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>   
+>>>          if (xe_vma_is_userptr(vma)) {
+>>>                  err = xe_vma_userptr_pin_pages(vma);
+>>> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c
+>>> b/drivers/gpu/drm/xe/xe_vm_madvise.c
+>>> index c9bc59be5094..05081fa0fbed 100644
+>>> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
+>>> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+>>> @@ -28,16 +28,15 @@ static int madvise_preferred_mem_class(struct
+>>> xe_device *xe, struct xe_vm *vm,
+>>>   
+>>>          for (i = 0; i < num_vmas; ++i) {
+>>>                  struct xe_bo *bo;
+>>> -               struct ww_acquire_ctx ww;
+>>>   
+>>>                  bo = xe_vma_bo(vmas[i]);
+>>>   
+>>> -               err = xe_bo_lock(bo, &ww, 0, true);
+>>> +               err = xe_bo_lock(bo, true);
+>>>                  if (err)
+>>>                          return err;
+>>>                  bo->props.preferred_mem_class = value;
+>>>                  xe_bo_placement_for_flags(xe, bo, bo->flags);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>          }
+>>>   
+>>>          return 0;
+>>> @@ -53,16 +52,15 @@ static int madvise_preferred_gt(struct xe_device
+>>> *xe, struct xe_vm *vm,
+>>>   
+>>>          for (i = 0; i < num_vmas; ++i) {
+>>>                  struct xe_bo *bo;
+>>> -               struct ww_acquire_ctx ww;
+>>>   
+>>>                  bo = xe_vma_bo(vmas[i]);
+>>>   
+>>> -               err = xe_bo_lock(bo, &ww, 0, true);
+>>> +               err = xe_bo_lock(bo, true);
+>>>                  if (err)
+>>>                          return err;
+>>>                  bo->props.preferred_gt = value;
+>>>                  xe_bo_placement_for_flags(xe, bo, bo->flags);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>          }
+>>>   
+>>>          return 0;
+>>> @@ -89,17 +87,16 @@ static int madvise_preferred_mem_class_gt(struct
+>>> xe_device *xe,
+>>>   
+>>>          for (i = 0; i < num_vmas; ++i) {
+>>>                  struct xe_bo *bo;
+>>> -               struct ww_acquire_ctx ww;
+>>>   
+>>>                  bo = xe_vma_bo(vmas[i]);
+>>>   
+>>> -               err = xe_bo_lock(bo, &ww, 0, true);
+>>> +               err = xe_bo_lock(bo, true);
+>>>                  if (err)
+>>>                          return err;
+>>>                  bo->props.preferred_mem_class = mem_class;
+>>>                  bo->props.preferred_gt = gt_id;
+>>>                  xe_bo_placement_for_flags(xe, bo, bo->flags);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>          }
+>>>   
+>>>          return 0;
+>>> @@ -112,13 +109,12 @@ static int madvise_cpu_atomic(struct xe_device
+>>> *xe, struct xe_vm *vm,
+>>>   
+>>>          for (i = 0; i < num_vmas; ++i) {
+>>>                  struct xe_bo *bo;
+>>> -               struct ww_acquire_ctx ww;
+>>>   
+>>>                  bo = xe_vma_bo(vmas[i]);
+>>>                  if (XE_IOCTL_DBG(xe, !(bo->flags &
+>>> XE_BO_CREATE_SYSTEM_BIT)))
+>>>                          return -EINVAL;
+>>>   
+>>> -               err = xe_bo_lock(bo, &ww, 0, true);
+>>> +               err = xe_bo_lock(bo, true);
+>>>                  if (err)
+>>>                          return err;
+>>>                  bo->props.cpu_atomic = !!value;
+>>> @@ -130,7 +126,7 @@ static int madvise_cpu_atomic(struct xe_device
+>>> *xe, struct xe_vm *vm,
+>>>                   */
+>>>                  if (bo->props.cpu_atomic)
+>>>                          ttm_bo_unmap_virtual(&bo->ttm);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>          }
+>>>   
+>>>          return 0;
+>>> @@ -143,18 +139,17 @@ static int madvise_device_atomic(struct
+>>> xe_device *xe, struct xe_vm *vm,
+>>>   
+>>>          for (i = 0; i < num_vmas; ++i) {
+>>>                  struct xe_bo *bo;
+>>> -               struct ww_acquire_ctx ww;
+>>>   
+>>>                  bo = xe_vma_bo(vmas[i]);
+>>>                  if (XE_IOCTL_DBG(xe, !(bo->flags &
+>>> XE_BO_CREATE_VRAM0_BIT) &&
+>>>                                   !(bo->flags &
+>>> XE_BO_CREATE_VRAM1_BIT)))
+>>>                          return -EINVAL;
+>>>   
+>>> -               err = xe_bo_lock(bo, &ww, 0, true);
+>>> +               err = xe_bo_lock(bo, true);
+>>>                  if (err)
+>>>                          return err;
+>>>                  bo->props.device_atomic = !!value;
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>          }
+>>>   
+>>>          return 0;
+>>> @@ -174,16 +169,15 @@ static int madvise_priority(struct xe_device
+>>> *xe, struct xe_vm *vm,
+>>>   
+>>>          for (i = 0; i < num_vmas; ++i) {
+>>>                  struct xe_bo *bo;
+>>> -               struct ww_acquire_ctx ww;
+>>>   
+>>>                  bo = xe_vma_bo(vmas[i]);
+>>>   
+>>> -               err = xe_bo_lock(bo, &ww, 0, true);
+>>> +               err = xe_bo_lock(bo, true);
+>>>                  if (err)
+>>>                          return err;
+>>>                  bo->ttm.priority = value;
+>>>                  ttm_bo_move_to_lru_tail(&bo->ttm);
+>>> -               xe_bo_unlock(bo, &ww);
+>>> +               xe_bo_unlock(bo);
+>>>          }
+>>>   
+>>>          return 0;
