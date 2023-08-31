@@ -4,58 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85738C83F29
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 04:05:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63189C83F2B
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 04:50:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34D1910E036;
-	Thu, 31 Aug 2023 04:05:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 803B510E036
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Aug 2023 04:05:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04C3110E666;
+	Thu, 31 Aug 2023 04:50:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B10AA10E665
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Aug 2023 04:50:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693454736; x=1724990736;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to;
- bh=0Z2zujOfg2w0yxEJwf6sID0oYCls/xA6wzrb3tHl99o=;
- b=Bq24KyTPlsy+C86xQH83yPy0ZkAJD0aYuq+b8U3uu9oqGyLc5GIIPEjm
- NWPjjYG43tFkzMxvIEHkkDOtBhXo/eV+97cuk7MKdyfYhdhtTuZEj9SUT
- HB6vInOGaCDmMKBDvtfYKmQEP9llVyd8zYnSwb7LQGVMzRWwpToy5hrA4
- aJwf4EChi5FtdmWQ8ohAR8hUMrXBv4oZiX2gpAT7SOA6akQ+R+C2achix
- m1oDvmdW6vUtLylEui8HxRLK/5fo5kYHwrMgsxLhaljFXSQriRafGP3lc
- 1vpEUMHQB62dGg+gIqRNj2tiiOWSQyhb6JHmci1HFXV0Z6WJU2pZMq32/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="442166030"
-X-IronPort-AV: E=Sophos;i="6.02,215,1688454000"; 
- d="scan'208,217";a="442166030"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2023 21:05:35 -0700
+ t=1693457434; x=1724993434;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=klviQpz7RaAUnwce9Ia3ov04a6t2Ut8RmOOzO4JLc40=;
+ b=BYN23wJaoIlhoGyKBFKaAtydasityWr2LtH9orTIBacTgmmQonrUJt++
+ o9OiFVS9YFm9EiPFJhbBKhLN12kQ/toygShDTWgr7dd4fWv/m9ZIHpsg3
+ Z0lzQbIpj96ISRCEIDl1JoonGUbZVWspfY51ZMjg390POu4x/O41WxxjP
+ E86nn4sde1h8oNhcHtRfvoCcbTiXCwe8Z8mkvkDH813hW/fs7JY2N0rV0
+ +dRDrwoCzX0a757YKGtNSFZlq4kjU62z5c3Y0jLl0WAChCEhZ2eA3u4ig
+ 6ARgjttb9c1VrYmzYUQ2bkBLxtzyCFwmbOkwKBfyCIgGzOgxuIJQXhmX7 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="355310364"
+X-IronPort-AV: E=Sophos;i="6.02,215,1688454000"; d="scan'208";a="355310364"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2023 21:50:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="862866403"
-X-IronPort-AV: E=Sophos;i="6.02,215,1688454000"; 
- d="scan'208,217";a="862866403"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.80])
- ([10.145.162.80])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Aug 2023 21:05:34 -0700
-Content-Type: multipart/alternative;
- boundary="------------czFrZRS0JHIMuGWZL0V6lDej"
-Message-ID: <a805ff93-2a30-7f5a-de95-fdc2eea23027@linux.intel.com>
-Date: Thu, 31 Aug 2023 09:43:57 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20230830051544.369643-1-aravind.iddamsetty@linux.intel.com>
- <20230830051544.369643-3-aravind.iddamsetty@linux.intel.com>
- <87cyz514dt.wl-ashutosh.dixit@intel.com> <ZO+tGbmexPz6sI30@intel.com>
- <87bkeo18df.wl-ashutosh.dixit@intel.com>
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <87bkeo18df.wl-ashutosh.dixit@intel.com>
-Subject: Re: [Intel-xe] [PATCH 2/3] drm/xe: Use spinlock in forcewake
- instead of mutex
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="1070084063"
+X-IronPort-AV: E=Sophos;i="6.02,215,1688454000"; d="scan'208";a="1070084063"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.93.94])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Aug 2023 21:50:33 -0700
+Date: Wed, 30 Aug 2023 21:48:13 -0700
+Message-ID: <87a5u724xe.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <20230830051544.369643-4-aravind.iddamsetty@linux.intel.com>
+References: <20230830051544.369643-1-aravind.iddamsetty@linux.intel.com>	<20230830051544.369643-4-aravind.iddamsetty@linux.intel.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH v5 3/3] drm/xe/pmu: Enable PMU interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,126 +60,378 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ intel-xe@lists.freedesktop.org, Tvrtko Ursulin <tvrtko.ursulin@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------czFrZRS0JHIMuGWZL0V6lDej
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-
-On 31/08/23 03:49, Dixit, Ashutosh wrote:
-
-> On Wed, 30 Aug 2023 13:56:57 -0700, Rodrigo Vivi wrote:
->> On Tue, Aug 29, 2023 at 10:33:02PM -0700, Dixit, Ashutosh wrote:
->>> On Tue, 29 Aug 2023 22:15:43 -0700, Aravind Iddamsetty wrote:
->>> Hi Aravind,
->>>
->>>> @@ -162,7 +162,7 @@ int xe_force_wake_get(struct xe_force_wake *fw,
->>>> 				   domain->id, ret);
->>>> 	}
->>>> 	fw->awake_domains |= woken;
->>>> -	mutex_unlock(&fw->lock);
->>>> +	spin_unlock(&fw->lock);
->>> No need to change anything yet, but let's get some more opinion on this: is
->>> it ok to (a) just replace the mutex with a spinlock in these force_wake
->>> functions, or, (b) should we have a second set of functions to be called in
->>> atomic context, say: xe_force_wake_get/put_atomic? So we should use (b) in
->>> atomic contexts and everywhere else we just continue to use the previous
->>> set of non-atomic functions? Or just converting the default set of
->>> functions to use spin lock (as is done in this patch) is ok?
->> It looks okay to me,
->> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Still thinking about this, maybe some time (not part of this series) we
-> should do a power measurement comparison between mutex and spinlock and see
-> if there's an appreciable difference (unless we already know?). But till we
-> do that, this is fine, so this is also:
+On Tue, 29 Aug 2023 22:15:44 -0700, Aravind Iddamsetty wrote:
 >
-> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-Thanks Rodrigo and Ashutosh for your r-b.
-
-Regards,
-
-Aravind.
-
---------------czFrZRS0JHIMuGWZL0V6lDej
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">
-      <pre>On 31/08/23 03:49, Dixit, Ashutosh wrote:</pre>
-    </div>
-    <blockquote type="cite"
-      cite="mid:87bkeo18df.wl-ashutosh.dixit@intel.com">
-      <pre class="moz-quote-pre" wrap="">On Wed, 30 Aug 2023 13:56:57 -0700, Rodrigo Vivi wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">
-On Tue, Aug 29, 2023 at 10:33:02PM -0700, Dixit, Ashutosh wrote:
-</pre>
-        <blockquote type="cite">
-          <pre class="moz-quote-pre" wrap="">On Tue, 29 Aug 2023 22:15:43 -0700, Aravind Iddamsetty wrote:
-</pre>
-          <blockquote type="cite">
-            <pre class="moz-quote-pre" wrap="">
-</pre>
-          </blockquote>
-          <pre class="moz-quote-pre" wrap="">
 Hi Aravind,
 
-</pre>
-          <blockquote type="cite">
-            <pre class="moz-quote-pre" wrap="">@@ -162,7 +162,7 @@ int xe_force_wake_get(struct xe_force_wake *fw,
-				   domain-&gt;id, ret);
+> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+> new file mode 100644
+> index 000000000000..41dd422812ff
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_pmu.c
+> @@ -0,0 +1,679 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =A9 2023 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_drv.h>
+> +#include <drm/drm_managed.h>
+> +#include <drm/xe_drm.h>
+> +
+> +#include "regs/xe_gt_regs.h"
+> +#include "xe_device.h"
+> +#include "xe_gt_clock.h"
+> +#include "xe_mmio.h"
+> +
+> +static cpumask_t xe_pmu_cpumask;
+> +static unsigned int xe_pmu_target_cpu =3D -1;
+> +
+> +static unsigned int config_gt_id(const u64 config)
+> +{
+> +	return config >> __XE_PMU_GT_SHIFT;
+> +}
+> +
+> +static u64 config_counter(const u64 config)
+> +{
+> +	return config & ~(~0ULL << __XE_PMU_GT_SHIFT);
+> +}
+> +
+> +static int engine_busyness_sample_type(u64 config)
+> +{
+> +	int type =3D 0;
+
+Why initialize? The switch statement should have a default with a BUG/WARN_=
+ON
+below? Also see the comment below.
+
+> +
+> +	switch (config) {
+> +	case XE_PMU_RENDER_GROUP_BUSY(0):
+> +		type =3D __XE_SAMPLE_RENDER_GROUP_BUSY;
+> +		break;
+> +	case XE_PMU_COPY_GROUP_BUSY(0):
+> +		type =3D __XE_SAMPLE_COPY_GROUP_BUSY;
+> +		break;
+> +	case XE_PMU_MEDIA_GROUP_BUSY(0):
+> +		type =3D __XE_SAMPLE_MEDIA_GROUP_BUSY;
+> +		break;
+> +	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+> +		type =3D __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY;
+> +		break;
+> +	}
+> +
+> +	return type;
+> +}
+
+I am thinking this function is not really needed. We can just do:
+
+	int sample_type =3D config - 1;
+
+or
+
+	int sample_type =3D config_counter(config) - 1;
+
+in engine_group_busyness_read? See comment at __xe_pmu_event_read below.
+
+> +
+> +static void xe_pmu_event_destroy(struct perf_event *event)
+> +{
+> +	struct xe_device *xe =3D
+> +		container_of(event->pmu, typeof(*xe), pmu.base);
+> +
+> +	drm_WARN_ON(&xe->drm, event->parent);
+> +
+> +	drm_dev_put(&xe->drm);
+> +}
+> +
+> +static u64 __engine_group_busyness_read(struct xe_gt *gt, int sample_typ=
+e)
+> +{
+> +	u64 val =3D 0;
+> +
+> +	switch (sample_type) {
+> +	case __XE_SAMPLE_RENDER_GROUP_BUSY:
+> +		val =3D xe_mmio_read32(gt, XE_OAG_RENDER_BUSY_FREE);
+> +		break;
+> +	case __XE_SAMPLE_COPY_GROUP_BUSY:
+> +		val =3D xe_mmio_read32(gt, XE_OAG_BLT_BUSY_FREE);
+> +		break;
+> +	case __XE_SAMPLE_MEDIA_GROUP_BUSY:
+> +		val =3D xe_mmio_read32(gt, XE_OAG_ANY_MEDIA_FF_BUSY_FREE);
+> +		break;
+> +	case __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY:
+> +		val =3D xe_mmio_read32(gt, XE_OAG_RC0_ANY_ENGINE_BUSY_FREE);
+> +		break;
+> +	default:
+> +		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
+> +	}
+> +
+> +	return xe_gt_clock_cycles_to_ns(gt, val * 16);
+> +}
+> +
+> +static u64 engine_group_busyness_read(struct xe_gt *gt, u64 config)
+> +{
+> +	int sample_type =3D engine_busyness_sample_type(config);
+
+If config is event->attr.config, this can just be 'config_counter(config) -=
+ 1'.
+See comment at __xe_pmu_event_read below.
+
+> +	const unsigned int gt_id =3D gt->info.id;
+> +	struct xe_device *xe =3D gt->tile->xe;
+> +	struct xe_pmu *pmu =3D &xe->pmu;
+> +	unsigned long flags;
+> +	bool device_awake;
+> +	u64 val;
+> +
+> +	device_awake =3D xe_device_mem_access_get_if_ongoing(xe);
+> +	if (device_awake) {
+> +		XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
+> +		val =3D __engine_group_busyness_read(gt, sample_type);
+> +		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
+> +		xe_device_mem_access_put(xe);
+> +	}
+> +
+> +	spin_lock_irqsave(&pmu->lock, flags);
+> +
+> +	if (device_awake)
+> +		pmu->sample[gt_id][sample_type] =3D val;
+> +	else
+> +		val =3D pmu->sample[gt_id][sample_type];
+> +
+> +	spin_unlock_irqrestore(&pmu->lock, flags);
+> +
+> +	return val;
+> +}
+> +
+> +static void engine_group_busyness_store(struct xe_gt *gt)
+> +{
+> +	struct xe_pmu *pmu =3D &gt->tile->xe->pmu;
+> +	unsigned int gt_id =3D gt->info.id;
+> +	unsigned long flags;
+> +	int i;
+> +
+> +	spin_lock_irqsave(&pmu->lock, flags);
+> +
+> +	for (i =3D __XE_SAMPLE_RENDER_GROUP_BUSY; i <=3D __XE_SAMPLE_ANY_ENGINE=
+_GROUP_BUSY; i++) {
+> +		pmu->sample[gt_id][i] =3D __engine_group_busyness_read(gt, i);
+
+This is not quite right. At the minimum we need to take forcewake
+here. Also since this is called in both suspend and runtime_suspend code
+paths we might also need to the take the runtime_pm reference.
+
+I think the simplest might be to just construct 'config'
+(event->attr.config) here and call engine_group_busyness_read? Something
+like:
+
+	for (i =3D __XE_SAMPLE_RENDER_GROUP_BUSY; i <=3D __XE_SAMPLE_ANY_ENGINE_GR=
+OUP_BUSY; i++) {
+		config =3D ; // Construct config using gt_id and i
+		engine_group_busyness_read(gt, i);
 	}
-	fw-&gt;awake_domains |= woken;
--	mutex_unlock(&amp;fw-&gt;lock);
-+	spin_unlock(&amp;fw-&gt;lock);
-</pre>
-          </blockquote>
-          <pre class="moz-quote-pre" wrap="">
-No need to change anything yet, but let's get some more opinion on this: is
-it ok to (a) just replace the mutex with a spinlock in these force_wake
-functions, or, (b) should we have a second set of functions to be called in
-atomic context, say: xe_force_wake_get/put_atomic? So we should use (b) in
-atomic contexts and everywhere else we just continue to use the previous
-set of non-atomic functions? Or just converting the default set of
-functions to use spin lock (as is done in this patch) is ok?
-</pre>
-        </blockquote>
-        <pre class="moz-quote-pre" wrap="">
-It looks okay to me,
-Reviewed-by: Rodrigo Vivi <a class="moz-txt-link-rfc2396E" href="mailto:rodrigo.vivi@intel.com">&lt;rodrigo.vivi@intel.com&gt;</a>
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-Still thinking about this, maybe some time (not part of this series) we
-should do a power measurement comparison between mutex and spinlock and see
-if there's an appreciable difference (unless we already know?). But till we
-do that, this is fine, so this is also:
 
-Reviewed-by: Ashutosh Dixit <a class="moz-txt-link-rfc2396E" href="mailto:ashutosh.dixit@intel.com">&lt;ashutosh.dixit@intel.com&gt;</a></pre>
-    </blockquote>
-    <pre>Thanks Rodrigo and Ashutosh for your r-b.</pre>
-    <pre>Regards,</pre>
-    <pre>Aravind.
-</pre>
-    <blockquote type="cite"
-      cite="mid:87bkeo18df.wl-ashutosh.dixit@intel.com">
-      <pre class="moz-quote-pre" wrap="">
-</pre>
-    </blockquote>
-  </body>
-</html>
+This will automatically save the read values in pmu->sample[][] if the
+device is awake. Thoughts?
 
---------------czFrZRS0JHIMuGWZL0V6lDej--
+> +	}
+> +
+> +	spin_unlock_irqrestore(&pmu->lock, flags);
+> +}
+> +
+> +static int
+> +config_status(struct xe_device *xe, u64 config)
+> +{
+> +	unsigned int max_gt_id =3D xe->info.gt_count > 1 ? 1 : 0;
+
+What is this for? See below.
+
+> +	unsigned int gt_id =3D config_gt_id(config);
+> +	struct xe_gt *gt =3D xe_device_get_gt(xe, gt_id);
+> +
+> +	if (gt_id > max_gt_id)
+
+Maybe this can just be:
+
+	if (gt_id >=3D XE_PMU_MAX_GT)
+
+> +		return -ENOENT;
+> +
+> +	switch (config_counter(config)) {
+> +	case XE_PMU_INTERRUPTS(0):
+> +		if (gt_id)
+> +			return -ENOENT;
+> +		break;
+> +	case XE_PMU_RENDER_GROUP_BUSY(0):
+> +	case XE_PMU_COPY_GROUP_BUSY(0):
+> +	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+> +		if (gt->info.type =3D=3D XE_GT_TYPE_MEDIA)
+> +			return -ENOENT;
+> +		break;
+> +	case XE_PMU_MEDIA_GROUP_BUSY(0):
+> +		if (!(gt->info.engine_mask & (BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGIN=
+E_VECS0))))
+> +			return -ENOENT;
+> +		break;
+> +	default:
+> +		return -ENOENT;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int xe_pmu_event_init(struct perf_event *event)
+> +{
+> +	struct xe_device *xe =3D
+> +		container_of(event->pmu, typeof(*xe), pmu.base);
+> +	struct xe_pmu *pmu =3D &xe->pmu;
+> +	int ret;
+> +
+> +	if (pmu->closed)
+> +		return -ENODEV;
+> +
+> +	if (event->attr.type !=3D event->pmu->type)
+> +		return -ENOENT;
+> +
+> +	/* unsupported modes and filters */
+> +	if (event->attr.sample_period) /* no sampling */
+> +		return -EINVAL;
+> +
+> +	if (has_branch_stack(event))
+> +		return -EOPNOTSUPP;
+> +
+> +	if (event->cpu < 0)
+> +		return -EINVAL;
+> +
+> +	/* only allow running on one cpu at a time */
+> +	if (!cpumask_test_cpu(event->cpu, &xe_pmu_cpumask))
+> +		return -EINVAL;
+> +
+> +	ret =3D config_status(xe, event->attr.config);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!event->parent) {
+> +		drm_dev_get(&xe->drm);
+> +		event->destroy =3D xe_pmu_event_destroy;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static u64 __xe_pmu_event_read(struct perf_event *event)
+> +{
+> +	struct xe_device *xe =3D
+> +		container_of(event->pmu, typeof(*xe), pmu.base);
+> +	const unsigned int gt_id =3D config_gt_id(event->attr.config);
+> +	const u64 config =3D config_counter(event->attr.config);
+
+Probably nit but this config being different from event->attr.config is
+confusing. Let's use 'event->attr.config' throughout as argument to
+functions and use config_counter() to get rid of gt_id. So get rid of this
+config variable.
+
+> +	struct xe_gt *gt =3D xe_device_get_gt(xe, gt_id);
+> +	struct xe_pmu *pmu =3D &xe->pmu;
+> +	u64 val =3D 0;
+> +
+> +	switch (config) {
+
+switch (config_counter(event->attr.config))
+
+> +	case XE_PMU_INTERRUPTS(0):
+> +		val =3D READ_ONCE(pmu->irq_count);
+> +		break;
+> +	case XE_PMU_RENDER_GROUP_BUSY(0):
+> +	case XE_PMU_COPY_GROUP_BUSY(0):
+> +	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+> +	case XE_PMU_MEDIA_GROUP_BUSY(0):
+> +		val =3D engine_group_busyness_read(gt, config);
+
+engine_group_busyness_read(gt, event->attr.config);
+
+Also, need a default case.
+
+> +	}
+> +
+> +	return val;
+> +}
+> +
+> +static void xe_pmu_event_read(struct perf_event *event)
+> +{
+> +	struct xe_device *xe =3D
+> +		container_of(event->pmu, typeof(*xe), pmu.base);
+> +	struct hw_perf_event *hwc =3D &event->hw;
+> +	struct xe_pmu *pmu =3D &xe->pmu;
+> +	u64 prev, new;
+> +
+> +	if (pmu->closed) {
+> +		event->hw.state =3D PERF_HES_STOPPED;
+> +		return;
+> +	}
+> +again:
+> +	prev =3D local64_read(&hwc->prev_count);
+> +	new =3D __xe_pmu_event_read(event);
+> +
+> +	if (local64_cmpxchg(&hwc->prev_count, prev, new) !=3D prev)
+> +		goto again;
+> +
+> +	local64_add(new - prev, &event->count);
+> +}
+> +
+> +static void xe_pmu_enable(struct perf_event *event)
+> +{
+> +	/*
+> +	 * Store the current counter value so we can report the correct delta
+> +	 * for all listeners. Even when the event was already enabled and has
+> +	 * an existing non-zero value.
+> +	 */
+> +	local64_set(&event->hw.prev_count, __xe_pmu_event_read(event));
+
+Right now nothing is being enabled here (unlike i915) so the function name
+xe_pmu_enable looks weird. Not sure, maybe leave as is for when things get
+added in the future?
+
+> +static int xe_pmu_cpu_online(unsigned int cpu, struct hlist_node *node)
+> +{
+> +	struct xe_pmu *pmu =3D hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
+> +
+> +	BUG_ON(!pmu->base.event_init);
+> +
+> +	/* Select the first online CPU as a designated reader. */
+> +	if (cpumask_empty(&xe_pmu_cpumask))
+> +		cpumask_set_cpu(cpu, &xe_pmu_cpumask);
+> +
+> +	return 0;
+> +}
+> +
+> +static int xe_pmu_cpu_offline(unsigned int cpu, struct hlist_node *node)
+> +{
+> +	struct xe_pmu *pmu =3D hlist_entry_safe(node, typeof(*pmu), cpuhp.node);
+> +	unsigned int target =3D xe_pmu_target_cpu;
+> +
+> +	BUG_ON(!pmu->base.event_init);
+
+nit but wondering if we should remove these two BUG_ON's (and save a couple
+of checkpatch warnings even though the BUG_ON's are in i915) and just do
+something like:
+
+	  if (!pmu->base.event_init)
+		return 0;
+
+The reason for the BUG_ON's seems to be that these functions can be called
+after module_init but before probe.
+
+xe_pmu_cpu_online() doesn't depend on pmu at all so looks like the BUG_ON
+can just be dropped?
+
+Thanks.
+--
+Ashutosh
