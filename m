@@ -4,127 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA85DC83F2F
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 19:52:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DF2BC83F37
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 19:52:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B86210E6D9;
-	Thu, 31 Aug 2023 19:52:27 +0000 (UTC)
-Received: from outbound.mail.protection.outlook.com
- (mail-mw2nam12on2043.outbound.protection.outlook.com [40.107.244.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C50C310E6D8;
- Thu, 31 Aug 2023 19:52:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0AB6110E6D9;
+	Thu, 31 Aug 2023 19:52:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AF8E10E6D9
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Aug 2023 19:52:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693511564; x=1725047564;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=U89SokjHGom6yrcb6u/RVYlp+a1Yjri7wf0AkzUvebE=;
+ b=Vpy9CTczsmL8XwEloa+VvJWK8PygG61LHS/t1fXI2V/VJeJvGXbIgk47
+ 7dlsxzvkmDBgY5oWsxv7CaPxaz/A3wuJF1FU/oAGmAFXlWaTbyNEzqqAr
+ sqYrGPX7QNS5uBt48s9eTjBdPp9pvPK+F9eTTAGF0/gzMnwVTSZaKAO2y
+ cNWAPIlcbHdwkwIrbQah8hioTVLRXygrye2kVuhso2dA4op4B1R/1qQpJ
+ 8JPJ+473LyfIAw42X7y71l7FOf5CZood3wIWNCAW57bZtbj3yDTjAMchb
+ 1zZ23XRQTWn1F7za7tAltWpK10HQTaFkS8AiCLMuDjaqbr7FvUSuQfIQ9 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="379836971"
+X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="379836971"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2023 12:52:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="805144571"
+X-IronPort-AV: E=Sophos;i="6.02,217,1688454000"; d="scan'208";a="805144571"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 31 Aug 2023 12:52:28 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 31 Aug 2023 12:52:27 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Thu, 31 Aug 2023 12:52:27 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Thu, 31 Aug 2023 12:52:27 -0700
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.44) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Thu, 31 Aug 2023 12:52:26 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aSot0sa2A9PbfCow6uGvhd2CI1fGN+AkEcK9iCI9o7pAjVUQJ6aNbwsstDVSA4F9xJW+p8xBMculfHdequnjRdIDSc35g33AaQG4Sq6SBG+zW5+OdD7qRuPKRO8lEPUK8OduMTTYX5U9LVPLNd08lr5N/DzB/IhSDNp/V7dEtSohmOdg3l1xhHOittCHPZ9AMEvrGkKP13zMDAHOtdTBiB0MV86TiLA5U4V985nefqoNwdzEOo+uQWbnzOEzZkcP9996ZxWoAI9+KU7/R5sz9Dcxer0ig5tPvRD91mU/9odXMwO86dpmbAFxp8FD/9dvDpsn9wM4NcRmG8rN6i5Ywg==
+ b=FmM+fJIrGOR1JtiE8Pj5RG6CujmIFXL+cAGaxZb3UFz0OaSz+hhMN5/RuB/kK2MGZrmL+C0pdTJvjo2K8kt9vWjMhAljW2CUhxk9cEIJraPt7Zpoe9Ja2dHfmpexa1DveSb9oXGviKKX3BVke75061CXrTtaUpZaZP4Vq3ohpOUnHnZ8km8RtaDBYUnFr+2PyqTpvqQXBhCm1nQrj5ycXkaWlKsIVGaFXfaGiDqMSQVoVJx5q9t8rjB9vBUWBmhZ0kDS9vm6yUWUmAvP4pvitg4FrNManzMTKQ5IKmJyTMxUKI9d/+OXlqjjL995Op/CSfEydhcBCBU6S4ZI0W5Rgg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WgJMti/n8LPKaI2JQ1y7zKwqF8VYZ8VkpdlLs6iKhoo=;
- b=VV5rdGGg6EODkoFg0OXjX7EKmXDbjUdHc5drRyf5JPuQLyNT6RaRXrhfLhhXXWR/HFEPkKqNiwwZSr3m7pZTT9WRBPFxh0xZsBKANMAtX2XPSWgpjq7Ws1XF1Qn/S3nkSmtlpHzXi5MigOc7/z+cVKWxkkgvXANs+jCgh52Je+gNTVAS29RKvz9q3XhcLbczYi2Q+krQn7Zw25duP6pNKaevhuw7D5Il0U64lsB2KUgLQpy/hk2ZhWAVvpQSmZY/576YnwlMimuKdRkDmS8drWJKiyggKwM+syPhsYOPQr6sjCm6cyuxr/odDl9qs5xLxmxMD163TxHxIIuoOmJLDA==
+ bh=R2icNBrOSTe5Em1v/7OKKlTJ1skUC/s+mGRICif683M=;
+ b=HlLoxZ/oDgnLk/I6h5IQD7hLmNW/POfPr3DnG9cpG4XgZ1QssFkvrmvTV4E/qhhYR0aOCC0iSTpK2udR4qS9QQgiMWTb1NjbqGagVUPba0lbNZZmk40PGmpfizZFSfFnIQaiCsaI7H8Bb/aLC5xjrjYGsmVHlrL1c9WVHg/rKepwAHBT/Sj6qP/O7gjWv6OFPxo1RwvMKUsYrzPWbGtQfMkz4eqR132NPQKF2qCDoeAZXRwrF91PnlvE2TQDjtOxpfin4h/bEBo49G24xvg/pSn3/krG5sAMYTmOiXBd9cABYBJmH6hRfjpil1HMfjLC8XQd7H6yKASN1YI91HpuKw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WgJMti/n8LPKaI2JQ1y7zKwqF8VYZ8VkpdlLs6iKhoo=;
- b=GPfUyMJGFk7Y28GBfTNOOAL3zPieoxb7bF+OzfdnBXZDxJ8hExwR1KVZBtcsHvaskSZTfo8KtwZsDDhe8MUbE6XVd99SH1WFZjlAxCchHqOKwdA74ZmbZ42rOGFnuG/8f53CDLj5NrU9fZaIlddUR7sd9wA7tafAQtSGWBgVuNA=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com (2603:10b6:5:38::25) by
- CY5PR12MB6274.namprd12.prod.outlook.com (2603:10b6:930:21::14) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6699.35; Thu, 31 Aug 2023 19:52:23 +0000
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::8a67:3bbe:8309:4f87]) by DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::8a67:3bbe:8309:4f87%3]) with mapi id 15.20.6745.022; Thu, 31 Aug 2023
- 19:52:23 +0000
-Message-ID: <256c3dad-e84f-4a9f-9785-7742648777f7@amd.com>
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by BL1PR11MB5509.namprd11.prod.outlook.com (2603:10b6:208:31f::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.21; Thu, 31 Aug
+ 2023 19:52:25 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6745.020; Thu, 31 Aug 2023
+ 19:52:25 +0000
 Date: Thu, 31 Aug 2023 15:52:19 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
- Thunderbird/115.2.0
-Content-Language: en-CA, en-US
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20230404002211.3611376-1-matthew.brost@intel.com>
- <20230404002211.3611376-8-matthew.brost@intel.com>
- <4b35059a-4a98-13e3-29f7-83d309b721e5@amd.com>
- <ZMcJuvz/z38snXjr@DUT025-TGLU.fm.intel.com>
-From: Luben Tuikov <luben.tuikov@amd.com>
-Autocrypt: addr=luben.tuikov@amd.com; keydata=
- xjMEY1i6jxYJKwYBBAHaRw8BAQdAhfD+Cc+P5t/fiF08Vw25EMLiwUuxULYRiDQAP6H50MTN
- I0x1YmVuIFR1aWtvdiA8bHViZW4udHVpa292QGFtZC5jb20+wpkEExYKAEEWIQQyyR05VSHw
- x45E/SoppxulNG8HhgUCY1i6jwIbAwUJCWYBgAULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIX
- gAAKCRAppxulNG8Hhk53AP4k4UY5xfcje0c5OF1k22pNv8tErxtVpgKKZgvfetA4xwD+OoAh
- vesLIYumBDxP0BoLiLN84udxdT15HwPFUGiDmwDOOARjWLqPEgorBgEEAZdVAQUBAQdAzSxY
- a2EtvvIwd09NckBLSTarSLNDkUthmqPnwolwiDYDAQgHwn4EGBYKACYWIQQyyR05VSHwx45E
- /SoppxulNG8HhgUCY1i6jwIbDAUJCWYBgAAKCRAppxulNG8HhnBLAP4yjSGpK6PE1mapKhrq
- 8bSl9reo+F6EqdhE8X2TTHPycAEAt8EkTEstSiaOpM66gneU7r+xxzOYULo1b1XjXayGvwM=
-In-Reply-To: <ZMcJuvz/z38snXjr@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR0101CA0028.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c00::41) To DM6PR12MB3370.namprd12.prod.outlook.com
- (2603:10b6:5:38::25)
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+Message-ID: <ZPDvcy6oHm+WDtwl@intel.com>
+References: <20230821120728.3871527-1-sujaritha.sundaresan@intel.com>
+ <20230821120728.3871527-3-sujaritha.sundaresan@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230821120728.3871527-3-sujaritha.sundaresan@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0342.namprd03.prod.outlook.com
+ (2603:10b6:a03:39c::17) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3370:EE_|CY5PR12MB6274:EE_
-X-MS-Office365-Filtering-Correlation-Id: e6c16e78-f7c3-4d4d-fcbc-08dbaa5bcb35
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|BL1PR11MB5509:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1660aa5d-b23b-498c-3c3c-08dbaa5bcc0a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0iJ2f7ded6Dq5+a3ztC9VmYpBlEDuh3IQg7kwDSooWw3KbpJTjHrFwflFw5DZ0IK/TLIFT7oRRjxyd5osqxa29oMSw5peMWgXcCV5I/cJe3E4SqmntinKaWBxJhn6JElXMPluVD20/X+tSKmmA7GrPfBm4ZbnjfcWeD3stY/ZuonMYISwX/MRh3WWhONAGtpXnRMhDwp8UJ0072HmVjsPmc5LVQo9+No35ez2bPIRK7zedMmAW2JJ62NB+kC9z9IWaJqkFasNAqQBRuO8hIuun+nEzALlgyZz2yEbcieWqX6f8szDdHJIOdAAu5GuUWJeT5sSX2BWPJv5qB5TKmxjqM9EIzEetonzIprNdjpFNTW0zrcGUEF0CTnV/nRpIMeSe/Of2mkudTpibg/eqc9CUaPXfisuKFNO+gl4V1xbEfjgjnzBpHdPMdF9Qeq79nZWyNzAIiyoIvYjxcYIauU5xs5xt6yTGMAUG2umVA/UbmTvLoiy/aPCh0UiXAe1/D1o2T88Ga4oUxNosilWCVNIhVB2aRCpuDhDG4pzgzoFjbuLuSDYjhTMQII/0WfbaVKsGIC7lbOKIISMFRxbwY1LTaJbaqIdYjhopFH54s+DVdCCgtZIhg1duZNiGyzO/7CPHafpY22YNFHSOnz3SrjaQ==
+X-Microsoft-Antispam-Message-Info: Q/CF+633yA74X/Dho/EQY5ZKEyNxk6p1e4LwEMp6yYlgMis2AICnq63eRnJUxho4eyIW4CLtbIyLgWVuoytZZf8hqPCgyBBNchBS9IZorsL7OLFvPdJUKfAFTNxCUSB+RRc3395duCzdQFMjfanz0uemMRu5v96bdOS8umbj+lfBh3o6kPhp7GfPW7pWtrHrYFIuI2pqmzyP7FlJuFHxGAR++GlZZIuzk2dncY0yITtg3E70+7tTLWXbX4goizP7YMaRT0psPyhRQkqox02YpdzpJXdqCR8T5pdIceShvy0BD9mLYHSdKochujRE5PJ57elF77V9LthB/SV90igqOY1sokupStvKArKD1oBhQF1Jvqfb4l6dLsSOGkPtlF5cMlv3XFzppw+A4Lct3qJ26p9ZJSA6TAYBzP85wu8Lk42fRJO7rtDSpQrYSY8EHXqaw3bZ2R4mgCPseSahAcsImq3TdeZeMxbKx7insXUqfAu0zfDC8+qYkgvZPrNo02RVrsjZkPlT4PhmKn7H8uaFrCPcll5dHUZh7M8GmZ5VBrpWCw4gOSu4IwUnNKnnnCy3keQOU1omknyLENZVRItlwLVv2m0P1umffsiGhWg0V7A=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3370.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(346002)(136003)(366004)(376002)(396003)(451199024)(1800799009)(186009)(31686004)(6506007)(6512007)(6486002)(6666004)(36756003)(38100700002)(31696002)(86362001)(2616005)(2906002)(26005)(53546011)(83380400001)(478600001)(66946007)(8676002)(66556008)(8936002)(4326008)(5660300002)(316002)(41300700001)(44832011)(66476007)(6916009)(45980500001)(43740500002);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(376002)(366004)(346002)(396003)(39860400002)(451199024)(186009)(1800799009)(6512007)(6506007)(6486002)(6666004)(478600001)(83380400001)(2616005)(2906002)(107886003)(26005)(66476007)(6636002)(316002)(41300700001)(66556008)(8936002)(44832011)(5660300002)(37006003)(4326008)(6862004)(8676002)(66946007)(36756003)(82960400001)(86362001)(38100700002)(67856001);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WWw0OUFLWDRwL3N6bFk4OUtlU3hsY0VpQWRhdjhjdGxmelRFNWQ2TE1XUm5t?=
- =?utf-8?B?RGRWQml1SFpZdEVUUmwxV01Ya2w4eitTQ1BOZUxTU01EUW1xeHZZaVRwcXBW?=
- =?utf-8?B?WkhNWG1pZ2dSUGgxbDBlWnZDWVByN2EyTWVEQ2tGRzk2aXJZOFpySFo0VElG?=
- =?utf-8?B?d0ZNK1pCeHhvSDVJSXBYMUt2V2JlNzhpNnpxc3V3b0JHK0VLK0d6Umtwclh6?=
- =?utf-8?B?b1BVSGVWYXo0ZVRzb3N2MzVlMFVRUzJoOVpBSHIrRmptR1RxdVFGeUd0Q3Rk?=
- =?utf-8?B?cnplQ2pMNGpEazIzbkdRQmFsczkxb3NuN25vQWsyYS9ickprc0wyaGdRa0RS?=
- =?utf-8?B?cG1MWEJsSDI0czFrSTRIWEljQnJ5Qy9FbXlZRnh5VWtFdXAyL2EvcldGNUVB?=
- =?utf-8?B?QlBqUW9tWmJlUTFJcExmdVAzNVNJdEU4aXR3dTRSWlpoOU04cHZDUVNNc2ow?=
- =?utf-8?B?dGc1VHRJNUNqblEyY1lPdTB6d25rVVpWaDJsdWVjMmh2L3Nnd3JCUlVZdEJY?=
- =?utf-8?B?R1RhdmhtWHo2VXdhcGUwQjc3cDVJSzY1cVlQWEl0Lzl6T3VBNHBQbkhKWTBw?=
- =?utf-8?B?MEE4ZGFHV3NGUEt3UjdIc0JrbFFsVjVMZnYwdWV4TVNFRnRrQ0EvKzkzRHp0?=
- =?utf-8?B?K0NLNy9rdC9uNFZwa2ZKSW50QmdUbFROZkJIKytDaW1QMzhnVjhiUTM2QjZH?=
- =?utf-8?B?bklMcnJSRS9MU0psUHorUEl4dGxTS1VYb0xVckVseHVGYkVQS2c2Uy91RDVB?=
- =?utf-8?B?c09yejAvQ3dsNnVyNE44R0tlRW9LLzd5WGxIbEZFbzZTa0t2Z1ZxRGdTSFVY?=
- =?utf-8?B?bTlQNy9GWUUxSzFoeVpPb3F2MW0yM2kzNU1YbWwxWnZwRjNIYWhNSXpjbFFI?=
- =?utf-8?B?UXdGZ3h5aitIK08ycWtaaWNoc2E5Wm9tRzFINmdGUzJuTE5hV1kwa2k4ZWtI?=
- =?utf-8?B?b2phTlFBRDhURTFzWHRNcUQ5L0hwRUwvN2ExV3dlOENsaWVxbFloOWE1WVRC?=
- =?utf-8?B?N3p0WmVJSDd0Q2JpM215c1ZRNGpMTkFUYnhoZ0tieWNjVG5CQnZueWltYkNN?=
- =?utf-8?B?MjB0eDdQQURHenVHUTZsK2xpcnp0RkRUSkozSjFoSE5HSkN0RGVMTDRXQTlR?=
- =?utf-8?B?MjdtSysyNUp1MWsrOW9rSjcxVWx2SjE2WDFFN3ZwRytxbkwrb2UwV0s3V3Z2?=
- =?utf-8?B?M1ZscldldnBWSzAzSTdEVEFoaGVWWTFIZjlzakYxY2xoYUZEaE0zcUJLSFVY?=
- =?utf-8?B?ZUNSbG13Z0lnQ3huQzJ1a0g3VkN0My9IT1R2UGhYZCtZK015M1VUOWEycm45?=
- =?utf-8?B?RXJjZHlzQm1OWWRtVVdDMEwxeTRSR2VpcmJ4TU8wQXhvclpyQ2UzM0JrM1dD?=
- =?utf-8?B?b2NYeVRwYnVBRVdCeGJTenpXOUJxS3NZcjBjdHg3TWVKS0JnaUVrVEwxYWlW?=
- =?utf-8?B?dHJnaU9yVzYzVlgzenhEZDBRWDJ4dlE4ZXV4d1hHZ2R2NVIyNlRhOVV4S3A1?=
- =?utf-8?B?NllISmpvVS9Rb01VK21IVDNaeG1PSnd0cHNlOVY4MzRNWjdGUlMrMUxFeDVY?=
- =?utf-8?B?cStKUXNnYkZyaWZrYXNPR0JFL0xFRjdNVXM2Ri9aK1o4L1ZTUmRRbHJmcFVG?=
- =?utf-8?B?VmZlVjNYSWVDNmFZYUlaVkhUMUttSUxNYzJXUkRkU0Q1eWdoLzNjV2dxSFZR?=
- =?utf-8?B?eVNZTXp0ckl0eG5XVFB4TEN0aDVrVjgvalR3aVBpa0dtYzZhSHpMZzRTVUpl?=
- =?utf-8?B?VUZUUFZKeG8zMVZJSGlqVkgrTVJjZHpkWEp3OWlMcE4yclZHNGhuUjhMb2hL?=
- =?utf-8?B?MEFtSWI2b2lPMHVmVi9uaTVHUkZXWGZMUHpaYXJ3dFJGbWJycGlqTEd6empX?=
- =?utf-8?B?SlJVdklTT1BrU0JMdDJkemV2c3lCYmppbHlndWF5MUJzY3pIaS9ON0dGeTJS?=
- =?utf-8?B?MFNDMnRQL2tvamNCVDUvODgwNmtsR0o3TmhsTDh0dVh4MkJOWm42ZytRMDZn?=
- =?utf-8?B?WGFaZGsrWUpaMTNUZmY5L3RES3F4dko0cmJLNCs1Wml2c1pwQ0hoSE1uOVhK?=
- =?utf-8?B?QmxRTklHMmdiVFBURHlqT1ZsZ1BaaWFDWERjRXVid0h2aWtKUnoxUkVvYjFa?=
- =?utf-8?Q?pU4I9ku7twsEVlweg+UecxWxQ?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6c16e78-f7c3-4d4d-fcbc-08dbaa5bcb35
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3370.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?iehGw5RqZp622AfTOWfdhAWspv2ISXMq9QwHzH098PVbz3OmZya55g1+g2IJ?=
+ =?us-ascii?Q?DGDrghDXnGXtzgolxUcLv2c73LzmmDt7pqAaLiQ42+FwEgqUFKmVFjSmeYQk?=
+ =?us-ascii?Q?FIYJkNk9cAMe6tybIm3+U0mGyNS0C7GFCX4odKUt2dwLKRAUpQpcNdj15dML?=
+ =?us-ascii?Q?ZyuryLpCJtsFQoiZKecl2H940NEeEVitU8f7i+XLkXrTXpzY8iHd9bVYQckS?=
+ =?us-ascii?Q?W8I47tCZZApn+Y+uHfZJaqfBPEGqt9aEDt9t84coK+cLILTQYmmiVgGn5C66?=
+ =?us-ascii?Q?awB/hsqti2LRhFYbv5HN5HcT+s/cORwN2PhNzkxv62bLUnbr2hjRORtc5h85?=
+ =?us-ascii?Q?2lDqO/zY/ZNl2g/vl9wLTNe6nEfb56vokPKwA67LA6AmtylBkOCHWlgVGRDi?=
+ =?us-ascii?Q?cSXTwWjPeJb8L+JY08ouTwFMGtK6WXdnlastuBylQc0WwV/Snwix/j0L63Iu?=
+ =?us-ascii?Q?tu8rii1QS5A+cwlhg35dod+krAaj/ubou56Lq93/Mm7KQ7ZemdVpPU7CIs8x?=
+ =?us-ascii?Q?ossKHugETPzCYMiG0T7tfsO6PVBctk2NTxYRVmu5/z6XCOH7tR281Ciskypj?=
+ =?us-ascii?Q?x/u9yYhVRw7zeFpqwdOQfbIVHJQblm4V2fSBYlc5SfpmnhNUoVjyjVRLfTgT?=
+ =?us-ascii?Q?K2sFmGZljdVIfvCrhllwwy9A2QDxwE10BQUy/KW7qBd0mqI0TJiLTaAQkQsO?=
+ =?us-ascii?Q?F8oLqxkoHkyQXZFt3mjJ3PeHbDdfUHbuUk5aqs60XeNpgoYRFIM4vYUyWAyC?=
+ =?us-ascii?Q?20iJYY1Jr3rd+kd85uvr/GcK0KxIO59l5efQN1yftvNSgLRAPjS4TMWAmrKu?=
+ =?us-ascii?Q?oShocE0Pq8FLrXvue6hvwT0ovXG6BXvBcW5OmmxeKzIdlhRjyBrBlKMEmsMp?=
+ =?us-ascii?Q?0l7A+eu3hrjRuU+xTHd6ZUw4J0uwoCS51m3HjAaQyrRfIi1SMpYOD1rQlUD1?=
+ =?us-ascii?Q?I6nfmIb5JYfI2iTecQ5xNBcx36D8NIg+FbOthP/f9owmYaq83/xQau2CoeJa?=
+ =?us-ascii?Q?2oWEjobrbKiPc6yJoKnRMselEZlq838xViQ9VHdRugtnU30hfwjv0HGSgbbt?=
+ =?us-ascii?Q?QsSMNcFgF+liSgz0y/pMRO175H4zV8J0SINEbvDEwEQHJq0DfGokHy8q/KFJ?=
+ =?us-ascii?Q?9q2NFuNf97kiaA4P0AX1VbJdrZ8TJx+bGyMs6HkDovpm0cLGFo/K2ny4+a8P?=
+ =?us-ascii?Q?rQjNxD72WdpPno23URf4z8NE6MaYrEW6zDd32hwWLfty7yzBFEfrsxTgzKrG?=
+ =?us-ascii?Q?bbItOuuHtPnGbok4P/RDRPTVpnpD69TJdHLvvdRGibz5QylFzrUSUo/4LSHk?=
+ =?us-ascii?Q?ixjM4YlyH4aSfuaR/5pdvrLN4Jz3PEYU38YF8AUkA/mL0eAG8SOjBRs3qPri?=
+ =?us-ascii?Q?9G0LLAkzAVNYvg9XWv7027YvUKdlKSvtMKB61DHYl9h8ZyY5SvU2uGSKLOyg?=
+ =?us-ascii?Q?mOTJRBh3JtzGpFCdNQZTjN8h2M/Vs/z6KCi3pBmJNZlxBNZbAcuwFdDt3ezd?=
+ =?us-ascii?Q?V8y+ZQ0y9C+ZAKrQQyqG9pAWn1vbShBpD+hKhSIOD22UBJDd4QHxUvLwXUSm?=
+ =?us-ascii?Q?OM8VeGbsoVgY5zTOVDeFUTK10vYleFIwhcXGva3BU/cegJGDzdQJwRPL7a7t?=
+ =?us-ascii?Q?UQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1660aa5d-b23b-498c-3c3c-08dbaa5bcc0a
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2023 19:52:23.2568 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Aug 2023 19:52:24.9610 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 003drOSG0bjQ7v4qnQhPPFxny9Zqwq56MXvuDEFvXLtVBDVpPj3TCi9YPhU0Qmm+
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR12MB6274
-Subject: Re: [Intel-xe] [RFC PATCH 07/10] drm/sched: Add helper to set TDR
- timeout
+X-MS-Exchange-CrossTenant-UserPrincipalName: BQTCOI+0TwiJ8PfUXT3HO0IIEurT1YcxZ8AmZ6ghMvkXCaS6f4l9G8y3hVguBo1tL5hU+K9H2Wt+vXe70UneOw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5509
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe: Sysfs entries to query vram
+ fused min, max frequency
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,100 +148,124 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, airlied@linux.ie, lina@asahilina.net,
- dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
- boris.brezillon@collabora.com, intel-xe@lists.freedesktop.org,
- faith.ekstrand@collabora.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2023-07-30 21:09, Matthew Brost wrote:
-> On Thu, May 04, 2023 at 01:28:12AM -0400, Luben Tuikov wrote:
->> On 2023-04-03 20:22, Matthew Brost wrote:
->>> Add helper to set TDR timeout and restart the TDR with new timeout
->>> value. This will be used in XE, new Intel GPU driver, to trigger the TDR
->>> to cleanup drm_sched_entity that encounter errors.
->>>
->>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>> ---
->>>  drivers/gpu/drm/scheduler/sched_main.c | 18 ++++++++++++++++++
->>>  include/drm/gpu_scheduler.h            |  1 +
->>>  2 files changed, 19 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
->>> index 4eac02d212c1..d61880315d8d 100644
->>> --- a/drivers/gpu/drm/scheduler/sched_main.c
->>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->>> @@ -370,6 +370,24 @@ static void drm_sched_start_timeout(struct drm_gpu_scheduler *sched)
->>>  		queue_delayed_work(sched->timeout_wq, &sched->work_tdr, sched->timeout);
->>>  }
->>>  
->>> +/**
->>> + * drm_sched_set_timeout - set timeout for reset worker
->>> + *
->>> + * @sched: scheduler instance to set and (re)-start the worker for
->>> + * @timeout: timeout period
->>> + *
->>> + * Set and (re)-start the timeout for the given scheduler.
->>> + */
->>> +void drm_sched_set_timeout(struct drm_gpu_scheduler *sched, long timeout)
->>> +{
->>> +	spin_lock(&sched->job_list_lock);
->>> +	sched->timeout = timeout;
->>> +	cancel_delayed_work(&sched->work_tdr);
->>
->> I see that the comment says "(re-)start"(sic). Is the rest of the logic
->> stable in that we don't need to use _sync() version, and/or at least
->> inspect the return value of the one currently used?
->>
+On Mon, Aug 21, 2023 at 05:37:28PM +0530, Sujaritha Sundaresan wrote:
+> Add sysfs entries to query fused min and max frequency of vram
 > 
-> Sorry for the delayed response, just reviving this series now and seeing
-> this comment.
+> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_pc.c    | 55 +++++++++++++++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_pcode_api.h |  8 +++++
+>  2 files changed, 63 insertions(+)
 > 
-> We don't care if the TDR is currently executing (at least in Xe which
-> makes use of this function), that is totally fine we only care to change
-> the future timeout values. I believe we actually call this from the TDR
-> in Xe to set the timeout value to zero so using a sync version would
-> deadlock. We do this as a mechanism to kill the drm_gpu_scheduler and
-> immediately timeout all remaining jobs. We also call this in a few other
-> places too with a value of zero for the same reason (kill the
-> drm_gpu_scheduler).
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index c03bb58e7049..d7e9609c74c0 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -20,6 +20,7 @@
+>  #include "xe_map.h"
+>  #include "xe_mmio.h"
+>  #include "xe_pcode.h"
+> +#include "xe_pcode_api.h"
+>  
+>  #define MCHBAR_MIRROR_BASE_SNB	0x140000
+>  
+> @@ -568,6 +569,54 @@ static ssize_t freq_max_store(struct device *dev, struct device_attribute *attr,
+>  }
+>  static DEVICE_ATTR_RW(freq_max);
+>  
+> +static ssize_t freq_vram_rp0_show(struct device *dev, struct device_attribute *attr,
+> +				  char *buff)
+> +{
+> +	struct xe_guc_pc *pc = dev_to_pc(dev);
+> +	struct xe_gt *gt = pc_to_gt(pc);
+> +	u32 val;
+> +	int err;
+> +
+> +	err = xe_pcode_read_p(gt, XEHP_PCODE_FREQUENCY_CONFIG,
+> +			      PCODE_MBOX_FC_SC_READ_FUSED_P0,
+> +			      PCODE_MBOX_DOMAIN_HBM, &val);
 
-(Catching up chronologically after vacation...)
+This is clearly in the wrong file/component.
 
-Okay, that's fine, but this shows a need for an interface/logic to simply
-kill the DRM gpu scheduler. So perhaps we need to provide that kind
-of functionality, as opposed to gaming the scheduler--setting the timeout to 0
-to kill the scheduler. Perhaps that would be simpler...?
--- 
-Regards,
-Luben
+It looks like we need a new xe_freq component, that then connects with
+both xe_guc_pc for the gt freq and with xe_pcode for the vram freq.
 
+> +	if (err)
+> +		return err;
+> +
+> +	/* data_out - Fused P0 for domain ID in units of 50 MHz */
+> +	val *= GT_FREQUENCY_MULTIPLIER;
+> +
+> +	return sysfs_emit(buff, "%u\n", val);
+> +}
+> +static DEVICE_ATTR_RO(freq_vram_rp0);
+> +
+> +static ssize_t freq_vram_rpn_show(struct device *dev, struct device_attribute *attr,
+> +				  char *buff)
+> +{
+> +	struct xe_guc_pc *pc = dev_to_pc(dev);
+> +	struct xe_gt *gt = pc_to_gt(pc);
+> +	u32 val;
+> +	int err;
+> +
+> +	err = xe_pcode_read_p(gt, XEHP_PCODE_FREQUENCY_CONFIG,
+> +			      PCODE_MBOX_FC_SC_READ_FUSED_PN,
+> +			      PCODE_MBOX_DOMAIN_HBM, &val);
+> +	if (err)
+> +		return err;
+> +
+> +	/* data_out - Fused P0 for domain ID in units of 50 MHz */
+> +	val *= GT_FREQUENCY_MULTIPLIER;
+> +
+> +	return sysfs_emit(buff, "%u\n", val);
+> +}
+> +static DEVICE_ATTR_RO(freq_vram_rpn);
+> +
+> +static const struct attribute *vram_freq_attrs[] = {
+> +	&dev_attr_freq_vram_rp0.attr,
+> +	&dev_attr_freq_vram_rpn.attr,
+> +	NULL
+> +};
+> +
+>  /**
+>   * xe_guc_pc_c_status - get the current GT C state
+>   * @pc: XE_GuC_PC instance
+> @@ -921,6 +970,12 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+>  
+>  	pc_init_fused_rp_values(pc);
+>  
+> +	if (IS_DGFX(xe) && xe->info.platform != XE_DG2) {
+> +		err = sysfs_create_files(gt->sysfs, vram_freq_attrs);
+> +		if (err)
+> +			return err;
+> +	}
+> +
+>  	err = sysfs_create_files(gt->sysfs, pc_attrs);
+>  	if (err)
+>  		return err;
+> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
+> index 837ff7c71280..846c99aba3bc 100644
+> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
+> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+> @@ -25,6 +25,14 @@
+>  #define PCODE_DATA0			XE_REG(0x138128)
+>  #define PCODE_DATA1			XE_REG(0x13812C)
+>  
+> +#define   XEHP_PCODE_FREQUENCY_CONFIG		0x6e	/* xehp, pvc */
+> +/* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
+> +#define     PCODE_MBOX_FC_SC_READ_FUSED_P0	0x0
+> +#define     PCODE_MBOX_FC_SC_READ_FUSED_PN	0x1
+> +/* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
+> +/*   XEHP_PCODE_FREQUENCY_CONFIG param2 */
+> +#define     PCODE_MBOX_DOMAIN_HBM		0x2
+> +
+>  /* Min Freq QOS Table */
+>  #define   PCODE_WRITE_MIN_FREQ_TABLE	0x8
+>  #define   PCODE_READ_MIN_FREQ_TABLE	0x9
+> -- 
+> 2.25.1
 > 
-> Matt
-> 
->> Regards,
->> Luben
->>
->>> +	drm_sched_start_timeout(sched);
->>> +	spin_unlock(&sched->job_list_lock);
->>> +}
->>> +EXPORT_SYMBOL(drm_sched_set_timeout);
->>> +
->>>  /**
->>>   * drm_sched_fault - immediately start timeout handler
->>>   *
->>> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
->>> index 18172ae63ab7..6258e324bd7c 100644
->>> --- a/include/drm/gpu_scheduler.h
->>> +++ b/include/drm/gpu_scheduler.h
->>> @@ -593,6 +593,7 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
->>>  				    struct drm_gpu_scheduler **sched_list,
->>>                                     unsigned int num_sched_list);
->>>  
->>> +void drm_sched_set_timeout(struct drm_gpu_scheduler *sched, long timeout);
->>>  void drm_sched_job_cleanup(struct drm_sched_job *job);
->>>  void drm_sched_wakeup(struct drm_gpu_scheduler *sched);
->>>  void drm_sched_add_msg(struct drm_gpu_scheduler *sched,
->>
-
