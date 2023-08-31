@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CE35C83F32
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 12:38:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 558A1C83F01
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 12:39:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1070910E657;
-	Thu, 31 Aug 2023 12:38:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 057EB10E669;
+	Thu, 31 Aug 2023 12:39:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E093210E657;
- Thu, 31 Aug 2023 12:38:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4A05410E669;
+ Thu, 31 Aug 2023 12:39:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DD1C1AADDA;
- Thu, 31 Aug 2023 12:38:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 46313AADDA;
+ Thu, 31 Aug 2023 12:39:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Thu, 31 Aug 2023 12:38:51 -0000
-Message-ID: <169348553190.12508.1197255825537146126@emeril.freedesktop.org>
+Date: Thu, 31 Aug 2023 12:39:02 -0000
+Message-ID: <169348554228.12509.17654506519438954463@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230831095154.3121578-1-jouni.hogander@intel.com>
 In-Reply-To: <20230831095154.3121578-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_FBC_refactoring_=28rev3=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_FB?=
+ =?utf-8?q?C_refactoring_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,17 +48,30 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: FBC refactoring (rev3)
 URL   : https://patchwork.freedesktop.org/series/122905/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 72da4b45f drm/xe: Prevent return with locked vm
-=== git am output follows ===
-Applying: Revert "drm/i915/display: Implement FBC support"
-Applying: fixup! drm/i915/display: Remaining changes to make xe compile
-Applying: drm/xe: Xe stolen memory handling for fbc support
-Applying: drm/xe: Add i915_gem.h compatibility header
-Applying: drm/xe: Add Xe implementation for fence checks used by fbc code
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e700ea2f248a75138759bcb443affeef4a2d1991
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a446493a5669cfb5931cf5a7f1a1923097324193
+Author: Jouni Högander <jouni.hogander@intel.com>
+Date:   Thu Aug 31 12:51:54 2023 +0300
+
+    drm/xe: Add Xe implementation for fence checks used by fbc code
+    
+    Xe doesn't support legacy fences. Implement legacy fence and fence
+    id checks accordingly.
+    
+    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
++ /mt/dim checkpatch 72da4b45f58f2a95d45743801a10e1f1e1dcce05 drm-intel
+/mt/dim: line 50: /root/.dimrc: No such file or directory
 
 
