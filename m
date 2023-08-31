@@ -4,30 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8501EC83F2E
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 15:14:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEE7BC83F10
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 15:17:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FBAA10E68D;
-	Thu, 31 Aug 2023 15:14:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id CE8F810E68D;
- Thu, 31 Aug 2023 15:14:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C65EFAADE1;
- Thu, 31 Aug 2023 15:14:25 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ADD910E68D;
+	Thu, 31 Aug 2023 15:17:52 +0000 (UTC)
+X-Greylist: delayed 340 seconds by postgrey-1.36 at gabe;
+ Thu, 31 Aug 2023 15:17:50 UTC
+Received: from ts201-smtpout72.ddc.teliasonera.net
+ (ts201-smtpout72.ddc.teliasonera.net [81.236.60.177])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1D59110E18D;
+ Thu, 31 Aug 2023 15:17:50 +0000 (UTC)
+X-RG-Rigid: 63C2593509529826
+X-Originating-IP: [81.229.73.173]
+X-RazorGate-Vade: gggruggvucftvghtrhhoucdtuddrgedviedrudegtddgkeehucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuvffgnffktefuhgdpggftfghnshhusghstghrihgsvgdpqfgfvfenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhepkfffgggfvfevhffutgfgsehtjeertddtfeejnecuhfhrohhmpefvhhhomhgrshcujfgvlhhlshhtrhpnmhcuoehthhhomhgrshesshhhihhpmhgrihhlrdhorhhgqeenucggtffrrghtthgvrhhnpefgudeltdeltdeuvdevjeetleelkefhiefgudfhueefvdevhedtvdejfeffvddutdenucfkphepkedurddvvdelrdejfedrudejfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhephhgvlhhopehmrghilhdurdhshhhiphhmrghilhdrohhrghdpihhnvghtpeekuddrvddvledrjeefrddujeefpdhmrghilhhfrhhomhepthhhohhmrghssehshhhiphhmrghilhdrohhrghdpnhgspghrtghpthhtohepgedprhgtphhtthhopegthhhrihhsthhirghnrdhkohgvnhhighesrghmugdrtghomhdprhgtphhtthhopegurghkrhesrhgvughhrghtrdgtohhmpdhrtghpthhtohepughrihdquggvvhgvlheslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrghdprhgtphhtthhopehinhhtvghlqdigvgeslhhishhtshdrfhhrvggvuggvshhkthhophdrohhrgh
+X-RazorGate-Vade-Verdict: clean 0
+X-RazorGate-Vade-Classification: clean
+Received: from mail1.shipmail.org (81.229.73.173) by
+ ts201-smtpout72.ddc.teliasonera.net (5.8.716)
+ id 63C2593509529826; Thu, 31 Aug 2023 17:12:03 +0200
+Received: from [192.168.0.121] (81-229-73-173-no17.tbcn.telia.com
+ [81.229.73.173])
+ by mail1.shipmail.org (Postfix) with ESMTPSA id BB7A63631E2;
+ Thu, 31 Aug 2023 17:12:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=shipmail.org; s=mail;
+ t=1693494722; bh=PPADEB91LWCpzYBSuDHClvkj3a/W+nAar2kRfR+auwY=;
+ h=Date:To:Cc:From:Subject:From;
+ b=bhSeEQnvoSMBA+YcWQLLkSPhktG5PIXi+A8FVb7O1abtubiuFv9awhma7E3Ecr+35
+ panIrP4tAenouU2cutuuYe608h6L8puG+Nbfmb/Yg7h8il2e7fhdEO0Ok5bGxXITlx
+ 86k752pw4XXCx6SAbip63XxiRtqz2e5R0qv1gFvU=
+Message-ID: <343997f1-d164-84cb-d7ed-3141620a63e4@shipmail.org>
+Date: Thu, 31 Aug 2023 17:12:02 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>,
+ Danilo Krummrich <dakr@redhat.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas@shipmail.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 31 Aug 2023 15:14:25 -0000
-Message-ID: <169349486578.12508.695935441571342980@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230831150048.1760018-1-matthew.brost@intel.com>
-In-Reply-To: <20230831150048.1760018-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_Fix_array_of_binds_=28rev2=29?=
+Subject: [Intel-xe] Refcounting in drm_exec
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,25 +56,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ DRI Development <dri-devel@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi, Christian, Danilo
 
-Series: Fix array of binds (rev2)
-URL   : https://patchwork.freedesktop.org/series/122548/
-State : failure
+Looking at the drm_exec code it seems we refcount *all* locked objects 
+until drm_exec_fini(). Are callers supposed to be able to *rely* on 
+this? I'm asking because refcounting appears only strictly necessary for 
+contended- and prelocked objects, and callers would otherwise need to 
+make sure they don't drop a locked object across the lock? It's going to 
+be pretty hard to change this in the future if we want for added 
+efficiency if people start to rely on it.
 
-== Summary ==
+Also seems drm_exec_unlock_all() drops the prelocked object without 
+unlocking. I'll put together a patch.
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 62acaf965 drm/xe: fix has_llc on rkl
-=== git am output follows ===
-Applying: drm/xe: Covert xe_vma_op_flags to BIT macros
-Applying: drm/xe: Fixup unwind on VM ops errors
-Applying: drm/gpuva: Add drm_gpuva_for_each_op_reverse
-Applying: drm/xe: Fix array of binds
+Thanks,
 
+Thomas'
 
