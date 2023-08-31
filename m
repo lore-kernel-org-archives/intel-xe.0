@@ -4,30 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5AEC6C83F10
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 09:30:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D387CC83F34
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 09:30:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3503210E5E1;
-	Thu, 31 Aug 2023 09:30:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5B1AC10E5E1;
- Thu, 31 Aug 2023 09:30:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 358B7AADE1;
- Thu, 31 Aug 2023 09:30:06 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE1D010E5E7;
+	Thu, 31 Aug 2023 09:30:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 33AFD10E5E1
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Aug 2023 09:30:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693474204; x=1725010204;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=MIXPFi7NTgKtdDccANJFoi2wrLJigLpClPJqIDitMdI=;
+ b=cwceNjxWstDc1MWu0MdwMAsvm5gkDRhJysIsmacez3r4teeS7PzKSkli
+ 8bCGfzAgEAATky0k91y9yKdvlx1al+2gmGiXtubk8qOYahYsPyT0odBPb
+ JOvIqXiw8N+/QvatjrydhqIJGrkWCyVA7uoteBcxmlN2rI53ddgtQYYaq
+ ta4czyoAiGrkR+LhWXbAihHbOnT9S5KPpqXbbzeyk4MAYGUC2oe1bbA78
+ xDFbQQvZPDfo0Y5nzBhiow6m/2a0XMJu+oYy5yAro27ZQUPHG2+fvDPB1
+ uGpXmscmBH8+FXODwbBwkYD5JV1IcakAT5XT18a8L0fCxTHhLW8lMGUcG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="442241485"
+X-IronPort-AV: E=Sophos;i="6.02,216,1688454000"; d="scan'208";a="442241485"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2023 02:30:04 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="774465694"
+X-IronPort-AV: E=Sophos;i="6.02,216,1688454000"; d="scan'208";a="774465694"
+Received: from zhanfan-mobl2.ccr.corp.intel.com (HELO fedora..)
+ ([10.249.254.112])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Aug 2023 02:30:01 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 31 Aug 2023 11:29:36 +0200
+Message-ID: <20230831092937.2197-6-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230831092937.2197-1-thomas.hellstrom@linux.intel.com>
+References: <20230831092937.2197-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Date: Thu, 31 Aug 2023 09:30:06 -0000
-Message-ID: <169347420621.12506.468440141970476145@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230831090536.2949934-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20230831090536.2949934-1-tejas.upadhyay@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_drm/xe?=
- =?utf-8?q?=3A_fdinfo_memory_stats?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3 5/6] drm/xe: Convert pagefaulting code to use
+ drm_exec
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,80 +59,228 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Replace the calls into ttm_eu_reserve_buffers with the drm_exec helpers.
+Also reuse some code.
 
-Series: drm/xe: fdinfo memory stats
-URL   : https://patchwork.freedesktop.org/series/123102/
-State : failure
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 106 ++++++++++++---------------
+ drivers/gpu/drm/xe/xe_vm.c           |  15 ++++
+ drivers/gpu/drm/xe/xe_vm.h           |   3 +
+ 3 files changed, 64 insertions(+), 60 deletions(-)
 
-== Summary ==
-
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ pwd
-+ ls -la
-/workspace
-total 892
-drwxrwxr-x 10 1003 1003   4096 Aug 31 09:30 .
-drwxr-xr-x  1 root root   4096 Aug 31 09:30 ..
--rw-rw-r--  1 1003 1003 787718 Aug 31 09:29 build.log
--rw-rw-r--  1 1003 1003   1223 Aug 31 09:21 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Aug 31 09:20 ci
-drwxrwxr-x  9 1003 1003   4096 Aug 31 09:20 docker
-drwxrwxr-x  8 1003 1003   4096 Aug 31 09:20 .git
--rw-rw-r--  1 1003 1003    561 Aug 31 09:21 git_apply.log
-drwxrwxr-x  4 1003 1003   4096 Aug 31 09:20 .github
--rw-rw-r--  1 1003 1003    233 Aug 31 09:20 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Aug 31 09:30 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Aug 31 09:29 kernel
--rw-rw-r--  1 1003 1003  24713 Aug 31 09:21 kernel.mbox
--rw-rw-r--  1 1003 1003  26482 Aug 31 09:22 kunit.log
--rw-rw-r--  1 1003 1003     48 Aug 31 09:21 parent.tag
-drwxrwxr-x 45 1003 1003   4096 Aug 31 09:20 pipelines
--rw-rw-r--  1 1003 1003    793 Aug 31 09:20 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Aug 31 09:20 scripts
-drwxrwxr-x  2 1003 1003   4096 Aug 31 09:20 .vscode
-+ uname -a
-Linux 04d2d3f4978f 5.4.0-149-generic #166-Ubuntu SMP Tue Apr 18 16:51:45 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64"
-declare -x CI_KERNEL_IMAGES_DIR="/workspace/kernel/archive/boot"
-declare -x CI_KERNEL_MODULES_DIR="/workspace/kernel/archive"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-129e11bb3 drm/xe: Implement fdinfo memory stats printing
-1749c9b82 drm/xe: Account ring buffer and context state storage
-5f84f5c28 drm/xe: Track page table memory usage for client
-0455e5eb5 drm/xe: Record each drm client with its VM
-5820e7b5e drm/xe: Add tracking support for bos per client
-a36a95b2a drm/xe: Interface xe drm client with fdinfo interface
-d2f332447 drm/xe: Add drm-client infrastructure
-72da4b45f drm/xe: Prevent return with locked vm
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64 ']'
-+ BUILD_DIR=/workspace/kernel/build64
-+ cd /workspace/kernel
-+ grep -q -e '^CONFIG_DRM_XE_DISPLAY=[yY]' /workspace/kernel/build64/.config
-grep: /workspace/kernel/build64/.config: No such file or directory
-+ trap cleanup EXIT
-+ ./scripts/config --file /workspace/kernel/build64/.config --disable CONFIG_DRM_XE_DISPLAY
-grep: /workspace/kernel/build64/.config: No such file or directory
-./scripts/config: line 116: /workspace/kernel/build64/.config: No such file or directory
-+ cleanup
-+ '[' 0 -eq 1 ']'
-run-parts: /workspace/ci/hooks/10-build-W1 exited with return code 1
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index 73fc9389a663..e6197ec6f72f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -8,6 +8,7 @@
+ #include <linux/bitfield.h>
+ #include <linux/circ_buf.h>
+ 
++#include <drm/drm_exec.h>
+ #include <drm/drm_managed.h>
+ #include <drm/ttm/ttm_execbuf_util.h>
+ 
+@@ -84,11 +85,6 @@ static bool vma_matches(struct xe_vma *vma, u64 page_addr)
+ 	return true;
+ }
+ 
+-static bool only_needs_bo_lock(struct xe_bo *bo)
+-{
+-	return bo && bo->vm;
+-}
+-
+ static struct xe_vma *lookup_vma(struct xe_vm *vm, u64 page_addr)
+ {
+ 	struct xe_vma *vma = NULL;
+@@ -103,17 +99,44 @@ static struct xe_vma *lookup_vma(struct xe_vm *vm, u64 page_addr)
+ 	return vma;
+ }
+ 
++static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
++		       unsigned int num_shared, bool atomic, unsigned int id)
++{
++	struct xe_bo *bo = xe_vma_bo(vma);
++	struct xe_vm *vm = xe_vma_vm(vma);
++	int err;
++
++	err = xe_vm_prepare_vma(exec, vma, num_shared);
++	if (err)
++		return err;
++
++	if (atomic) {
++		if (xe_vma_is_userptr(vma)) {
++			err = -EACCES;
++			return err;
++		}
++
++		/* Migrate to VRAM, move should invalidate the VMA first */
++		err = xe_bo_migrate(bo, XE_PL_VRAM0 + id);
++		if (err)
++			return err;
++	} else if (bo) {
++		/* Create backing store if needed */
++		err = xe_bo_validate(bo, vm, true);
++		if (err)
++			return err;
++	}
++
++	return 0;
++}
++
+ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_tile *tile = gt_to_tile(gt);
++	struct drm_exec exec;
+ 	struct xe_vm *vm;
+ 	struct xe_vma *vma = NULL;
+-	struct xe_bo *bo;
+-	LIST_HEAD(objs);
+-	LIST_HEAD(dups);
+-	struct ttm_validate_buffer tv_bo, tv_vm;
+-	struct ww_acquire_ctx ww;
+ 	struct dma_fence *fence;
+ 	bool write_locked;
+ 	int ret = 0;
+@@ -170,35 +193,10 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 	}
+ 
+ 	/* Lock VM and BOs dma-resv */
+-	bo = xe_vma_bo(vma);
+-	if (!only_needs_bo_lock(bo)) {
+-		tv_vm.num_shared = xe->info.tile_count;
+-		tv_vm.bo = xe_vm_ttm_bo(vm);
+-		list_add(&tv_vm.head, &objs);
+-	}
+-	if (bo) {
+-		tv_bo.bo = &bo->ttm;
+-		tv_bo.num_shared = xe->info.tile_count;
+-		list_add(&tv_bo.head, &objs);
+-	}
+-
+-	ret = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
+-	if (ret)
+-		goto unlock_vm;
+-
+-	if (atomic) {
+-		if (xe_vma_is_userptr(vma)) {
+-			ret = -EACCES;
+-			goto unlock_dma_resv;
+-		}
+-
+-		/* Migrate to VRAM, move should invalidate the VMA first */
+-		ret = xe_bo_migrate(bo, XE_PL_VRAM0 + tile->id);
+-		if (ret)
+-			goto unlock_dma_resv;
+-	} else if (bo) {
+-		/* Create backing store if needed */
+-		ret = xe_bo_validate(bo, vm, true);
++	drm_exec_init(&exec, 0);
++	drm_exec_until_all_locked(&exec) {
++		ret = xe_pf_begin(&exec, vma, xe->info.tile_count, atomic, tile->id);
++		drm_exec_retry_on_contention(&exec);
+ 		if (ret)
+ 			goto unlock_dma_resv;
+ 	}
+@@ -225,7 +223,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 	vma->usm.tile_invalidated &= ~BIT(gt_to_tile(gt)->id);
+ 
+ unlock_dma_resv:
+-	ttm_eu_backoff_reservation(&ww, &objs);
++	drm_exec_fini(&exec);
+ unlock_vm:
+ 	if (!ret)
+ 		vm->usm.last_fault_vma = vma;
+@@ -490,13 +488,9 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_tile *tile = gt_to_tile(gt);
++	struct drm_exec exec;
+ 	struct xe_vm *vm;
+ 	struct xe_vma *vma;
+-	struct xe_bo *bo;
+-	LIST_HEAD(objs);
+-	LIST_HEAD(dups);
+-	struct ttm_validate_buffer tv_bo, tv_vm;
+-	struct ww_acquire_ctx ww;
+ 	int ret = 0;
+ 
+ 	/* We only support ACC_TRIGGER at the moment */
+@@ -528,23 +522,15 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
+ 		goto unlock_vm;
+ 
+ 	/* Lock VM and BOs dma-resv */
+-	bo = xe_vma_bo(vma);
+-	if (!only_needs_bo_lock(bo)) {
+-		tv_vm.num_shared = xe->info.tile_count;
+-		tv_vm.bo = xe_vm_ttm_bo(vm);
+-		list_add(&tv_vm.head, &objs);
++	drm_exec_init(&exec, 0);
++	drm_exec_until_all_locked(&exec) {
++		ret = xe_pf_begin(&exec, vma, xe->info.tile_count, true, tile->id);
++		drm_exec_retry_on_contention(&exec);
++		if (ret)
++			break;
+ 	}
+-	tv_bo.bo = &bo->ttm;
+-	tv_bo.num_shared = xe->info.tile_count;
+-	list_add(&tv_bo.head, &objs);
+-	ret = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
+-	if (ret)
+-		goto unlock_vm;
+-
+-	/* Migrate to VRAM, move should invalidate the VMA first */
+-	ret = xe_bo_migrate(bo, XE_PL_VRAM0 + tile->id);
+ 
+-	ttm_eu_backoff_reservation(&ww, &objs);
++	drm_exec_fini(&exec);
+ unlock_vm:
+ 	up_read(&vm->lock);
+ 	xe_vm_put(vm);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index b95a43d0af59..1547467c7d92 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1085,6 +1085,21 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+ 	}
+ }
+ 
++int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
++		      unsigned int num_shared)
++{
++	struct xe_vm *vm = xe_vma_vm(vma);
++	struct xe_bo *bo = xe_vma_bo(vma);
++	int err;
++
++	XE_WARN_ON(!vm);
++	err = drm_exec_prepare_obj(exec, &xe_vm_ttm_bo(vm)->base, num_shared);
++	if (!err && bo && !bo->vm)
++		err = drm_exec_prepare_obj(exec, &bo->ttm.base, num_shared);
++
++	return err;
++}
++
+ static void xe_vma_destroy_unlocked(struct xe_vma *vma)
+ {
+ 	struct ttm_validate_buffer tv[2];
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 4a1dd11f71c5..5608e4e33169 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -222,6 +222,9 @@ void xe_vm_fence_all_extobjs(struct xe_vm *vm, struct dma_fence *fence,
+ 
+ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id);
+ 
++int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
++		      unsigned int num_shared);
++
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
+ #define vm_dbg drm_dbg
+ #else
+-- 
+2.41.0
 
