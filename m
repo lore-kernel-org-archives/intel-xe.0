@@ -4,47 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FC3BC83F17
-	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 08:58:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 799E7C83F10
+	for <intel-xe@archiver.kernel.org>; Thu, 31 Aug 2023 08:58:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E125A10E1AC;
-	Thu, 31 Aug 2023 08:58:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51B7F10E5D0;
+	Thu, 31 Aug 2023 08:58:18 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4CD910E1AC
- for <intel-xe@lists.freedesktop.org>; Thu, 31 Aug 2023 08:58:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BEEA10E5D0
+ for <intel-xe@lists.freedesktop.org>; Thu, 31 Aug 2023 08:58:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693472292; x=1725008292;
+ t=1693472296; x=1725008296;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Cmjf9CrsKoagyU+hI74YoEZ8W266RuUT5BHGqvV7bF4=;
- b=JYR3IPzZl5oeCN5I4fi53BW/PN8aHIVnpIlBdsddBRfqchimpXN/oHed
- UQZ50vrgE5qcY/6tGzaovAuiM90k+Jth8HcZ/9s/p89uS2oVPIuufv8Og
- 4KCUHVU2csoJstAqSt6tSvKLRI1S3CQB8IjKFHh1r2fe1FyI0uZFq0mZN
- anxBqz748fZNkAFXQnxlT7hxVyuo4nxR6zAJ/n2rN++W1kvURaO38XMS1
- jXnjU9+BEUOji1sOX+ghuxKFRw5rQ3XjaQ+QEe5KN52KvtV5i05lbm77g
- 0I6G2PRJwLFd/V7Sw4nHSRZmH5rQ98F9SyzjBZ/bRc7UtmZcXiF6GdP4E w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="375814157"
-X-IronPort-AV: E=Sophos;i="6.02,216,1688454000"; d="scan'208";a="375814157"
+ bh=wFsIAgdKsEmSR2Re3Pd11/QpHbBgwaVpJ9fxISJyBFo=;
+ b=fbSXhj5BBXhiRHB6uMyNtvA3gEcvrGp74K52bqZvuTDwrktORSHN7nd+
+ TWDmejxDH2Pi7XclHgQH0ROxOwwM7kFZaF/RSBSrP47HSE4k0eCtHzjEN
+ fzyGio4CRWcer+sIwklsxPw3RlrXGVQJz3a97lC7HmlSaMjyHLAoVWNFt
+ Wu3SnHgsrw53GVJaLxPtQ8jZugxiLbyo3WZI5Q0eawnBVezWU1V4HE4qG
+ GHZbQuKdkVrUbN40y16tqaArMnkQl4TtJ3xQE240vVygjr8MKEE+sgK6b
+ Mh1EDtbs0f50wsiHcn6TnM/AQyteFoV1vWh5jaw0vrBiGov7YIQ2ySgB0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="375814179"
+X-IronPort-AV: E=Sophos;i="6.02,216,1688454000"; d="scan'208";a="375814179"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Aug 2023 01:58:12 -0700
+ 31 Aug 2023 01:58:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="716257357"
-X-IronPort-AV: E=Sophos;i="6.02,216,1688454000"; d="scan'208";a="716257357"
+X-IronPort-AV: E=McAfee;i="6600,9927,10818"; a="716257380"
+X-IronPort-AV: E=Sophos;i="6.02,216,1688454000"; d="scan'208";a="716257380"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orsmga006.jf.intel.com with ESMTP; 31 Aug 2023 01:58:10 -0700
+ by orsmga006.jf.intel.com with ESMTP; 31 Aug 2023 01:58:14 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 31 Aug 2023 14:35:31 +0530
-Message-Id: <20230831090536.2949934-3-tejas.upadhyay@intel.com>
+Date: Thu, 31 Aug 2023 14:35:33 +0530
+Message-Id: <20230831090536.2949934-5-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230831090536.2949934-1-tejas.upadhyay@intel.com>
 References: <20230831090536.2949934-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/7] drm/xe: Interface xe drm client with fdinfo
- interface
+Subject: [Intel-xe] [PATCH 4/7] drm/xe: Record each drm client with its VM
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,77 +58,39 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-DRM core driver has introduced recently fdinfo interface to
-show memory stats of individual drm client. Lets interface
-xe drm client to fdinfo interface.
+Enable accounting of indirect client memory usage.
 
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c     |  4 ++++
- drivers/gpu/drm/xe/xe_drm_client.c | 17 +++++++++++++++++
- drivers/gpu/drm/xe/xe_drm_client.h |  4 +++-
- 3 files changed, 24 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 1 +
+ drivers/gpu/drm/xe/xe_vm_types.h | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index cf59c7b74eaf..1aae352a982c 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -138,6 +138,9 @@ static const struct file_operations xe_driver_fops = {
- 	.read = drm_read,
- 	.compat_ioctl = drm_compat_ioctl,
- 	.llseek = noop_llseek,
-+#ifdef CONFIG_PROC_FS
-+	.show_fdinfo = drm_show_fdinfo,
-+#endif
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 9cbf2f63d641..f5f832c8ed42 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2057,6 +2057,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 	}
+ 
+ 	args->vm_id = id;
++	vm->xef = xef;
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+ 	/* Warning: Security issue - never enable by default */
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index fd2178dbde3a..db8523d81d0f 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -336,6 +336,8 @@ struct xe_vm {
+ 
+ 	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+ 	bool batch_invalidate_tlb;
++	/** @xef: XE file handle for tracking this VM's drm client */
++	struct xe_file *xef;
  };
  
- static void xe_driver_release(struct drm_device *dev)
-@@ -162,6 +165,7 @@ static struct drm_driver driver = {
- 
- 	.dumb_create = xe_bo_dumb_create,
- 	.dumb_map_offset = drm_gem_ttm_dumb_map_offset,
-+	.show_fdinfo = PTR_IF(IS_ENABLED(CONFIG_PROC_FS), xe_drm_client_fdinfo),
- 	.release = &xe_driver_release,
- 
- 	.ioctls = xe_ioctls,
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index ea7993338076..b5dc024b5dd0 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -50,3 +50,20 @@ void __xe_drm_client_free(struct kref *kref)
- 
- 	kfree(client);
- }
-+
-+#ifdef CONFIG_PROC_FS
-+/**
-+ * xe_drm_client_fdinfo() - Callback for fdinfo interface
-+ * @p: The drm_printer ptr
-+ * @file: The drm_file ptr
-+ *
-+ * This is callabck for drm fdinfo interface. Register this callback
-+ * in drm driver ops for show_fdinfo.
-+ *
-+ * Return: void
-+ */
-+void xe_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file)
-+{
-+	/* show_meminfo() will be developed here */
-+}
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.h b/drivers/gpu/drm/xe/xe_drm_client.h
-index be097cdf5d12..dbe3a083c9df 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.h
-+++ b/drivers/gpu/drm/xe/xe_drm_client.h
-@@ -39,5 +39,7 @@ struct xe_drm_client *xe_drm_client_alloc(void);
- static inline struct xe_drm_client *
- xe_drm_client_get(struct xe_drm_client *client);
- static inline void xe_drm_client_put(struct xe_drm_client *client);
--
-+#ifdef CONFIG_PROC_FS
-+void xe_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file);
-+#endif
- #endif
+ /** struct xe_vma_op_map - VMA map operation */
 -- 
 2.25.1
 
