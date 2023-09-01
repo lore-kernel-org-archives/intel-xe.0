@@ -4,50 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0065CA0FE8
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Sep 2023 13:00:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 666C1CA0FE6
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Sep 2023 13:02:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A22510E7C1;
-	Fri,  1 Sep 2023 13:00:16 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B36C410E7C0;
- Fri,  1 Sep 2023 13:00:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32E2910E1C9;
+	Fri,  1 Sep 2023 13:02:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB24110E1C9
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Sep 2023 13:02:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693573213; x=1725109213;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=acbrfvgFxeEHNb3r8TtH3yGFJzi2EVvtls/pVHiReoQ=;
- b=n2cykauLuMbfUsFf34ixJLd9gpca4rQxia6OVvVvpZiRNuu7oPmTX75+
- 7gdrzr4DiXaIIdB/G4rGBhYkiqbkfE4btHpO/IKc5T3+cOmJ8jqiPzgiq
- gyXuU2iqLAaom8OO9wNHVQonqC86OfLOWsLJr2dN54H62SB2S3zu841u7
- zi29wWA8ql92K9W77grl+8ErXVRK4mv1ed+j1DPUPETSZPUSrAZxDMFpk
- e87HTE/pXTkKd41RyD0ZcE0LTbcbxeVSmZWlNy6o24Gm1/jLzHpAchIpC
- uciHZxnZDaBBRmrZXWytFIwlq92V2zoUoK/ucVLnivA07MzFum4mM3pNL g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="442607808"
-X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="442607808"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2023 06:00:13 -0700
+ t=1693573322; x=1725109322;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5Gw0JG4YPFiH6MD0xTmJjHqELE5jeUg9HR16WrQBNQk=;
+ b=c/8TNIXekCYvJqFk+/vvZskbmAywpAAS8yva1wTDwKMjvYUBbrWvzUN8
+ vXNjZrBjFCOp9vzxt7iVFsBijwNNAuWTthY1zg912AAQuTUpcO9OP2i6V
+ n8h/Uhelgkb4SWsqZyzl8xVXPy5XoiYCzzLMDVv0sdlPSVuQpJVWIiuKZ
+ FZLmSZwqF2/Y8YvEOFQ86axjZHx1OURhDFGSOr9/8SJCqK1TOBvEqxqqA
+ 5faT9QSTKjPtiRYkV/BLjhf47f29nrokTn3mMfKndavAo0EljcmIESqGO
+ hFNTl22PsBB4bxCWo6jLDOZtVWU2BTV+5nEoJ6EQVKbuUk6aFrwMy1LZ3 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="361239935"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="361239935"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2023 06:01:58 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="913681936"
-X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="913681936"
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="739924537"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="739924537"
 Received: from jeroenke-mobl.ger.corp.intel.com (HELO
  vgovind2-mobl3.intel.com) ([10.252.59.110])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2023 06:00:10 -0700
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Sep 2023 06:01:57 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri,  1 Sep 2023 15:59:50 +0300
-Message-Id: <20230901125950.76088-2-vinod.govindapillai@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	ville.syrajala@intel.com
+Date: Fri,  1 Sep 2023 16:01:43 +0300
+Message-Id: <20230901130144.76152-1-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230901125950.76088-1-vinod.govindapillai@intel.com>
-References: <20230901125950.76088-1-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/1] drm/i915/lnl: possibility to enable FBC
- on first three planes
+Subject: [Intel-xe] [PATCH v2 0/1] fbc on any plane
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,83 +57,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, matthew.d.roper@intel.com,
- ville.syraja@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In LNL onwards, FBC can be associated to the first three planes.
-FBC will be enabled on planes first come first served basis
-until the userspace can select one of these FBC capable plane
-explicitly. FBC can be supported in planes with per pixel alpha
+FBC can be supported in first three planes in lnl
 
-v2:
- - avoid fbc->state.plane check in intel_fbc_check_plane (Ville)
- - simplify plane binding register writes (Matt)
- - Update the subject to reflect that fbc can be enabled only in
-   the first three planes (Matt)
+Matt pointed out that FBC + PSR2 combination require few more condition
+checks and also a WA also need to be impleteds. So patch to enabled FBC
+in case of PSR2 is removed from this version.  Also per pizel alpha
+condition is removed for FBC in LNL.
 
-Bspec: 69560
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
+Vinod Govindapillai (1):
+  drm/i915/lnl: possibility to enable FBC on first three planes
+
  drivers/gpu/drm/i915/display/intel_fbc.c           | 7 ++++++-
  drivers/gpu/drm/i915/display/skl_universal_plane.c | 5 ++++-
  drivers/gpu/drm/i915/i915_reg.h                    | 1 +
  3 files changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 66c8aed07bbc..f1537bb63775 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -660,6 +660,10 @@ static u32 ivb_dpfc_ctl(struct intel_fbc *fbc)
- 	if (IS_IVYBRIDGE(i915))
- 		dpfc_ctl |= DPFC_CTL_PLANE_IVB(fbc_state->plane->i9xx_plane);
- 
-+	if (DISPLAY_VER(i915) >= 20)
-+		dpfc_ctl |= REG_FIELD_PREP(DPFC_CTL_PLANE_BINDING_MASK,
-+					   fbc_state->plane->id);
-+
- 	if (fbc_state->fence_id >= 0)
- 		dpfc_ctl |= DPFC_CTL_FENCE_EN_IVB;
- 
-@@ -1206,7 +1210,8 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 		return 0;
- 	}
- 
--	if (plane_state->hw.pixel_blend_mode != DRM_MODE_BLEND_PIXEL_NONE &&
-+	if (DISPLAY_VER(i915) < 20 &&
-+	    plane_state->hw.pixel_blend_mode != DRM_MODE_BLEND_PIXEL_NONE &&
- 	    fb->format->has_alpha) {
- 		plane_state->no_fbc_reason = "per-pixel alpha not supported";
- 		return 0;
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 4d01c7ae4485..1291351c9941 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1962,7 +1962,10 @@ static bool skl_plane_has_fbc(struct drm_i915_private *dev_priv,
- 	if ((DISPLAY_RUNTIME_INFO(dev_priv)->fbc_mask & BIT(fbc_id)) == 0)
- 		return false;
- 
--	return plane_id == PLANE_PRIMARY;
-+	if (DISPLAY_VER(dev_priv) >= 20)
-+		return plane_id <= PLANE_SPRITE1;
-+	else
-+		return plane_id == PLANE_PRIMARY;
- }
- 
- static struct intel_fbc *skl_plane_fbc(struct drm_i915_private *dev_priv,
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index aefad14ab27a..aadcc630cb52 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -1327,6 +1327,7 @@
- #define   DPFC_CTL_PLANE_IVB(i9xx_plane)	REG_FIELD_PREP(DPFC_CTL_PLANE_MASK_IVB, (i9xx_plane))
- #define   DPFC_CTL_FENCE_EN_IVB			REG_BIT(28) /* ivb+ */
- #define   DPFC_CTL_PERSISTENT_MODE		REG_BIT(25) /* g4x-snb */
-+#define   DPFC_CTL_PLANE_BINDING_MASK		REG_GENMASK(12, 11) /* lnl */
- #define   DPFC_CTL_FALSE_COLOR			REG_BIT(10) /* ivb+ */
- #define   DPFC_CTL_SR_EN			REG_BIT(10) /* g4x only */
- #define   DPFC_CTL_SR_EXIT_DIS			REG_BIT(9) /* g4x only */
 -- 
 2.34.1
 
