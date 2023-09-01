@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35A02CA0FE3
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Sep 2023 03:28:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 851E5CA0FE3
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Sep 2023 03:28:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D705E10E030;
-	Fri,  1 Sep 2023 03:28:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55B9910E121;
+	Fri,  1 Sep 2023 03:28:35 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E3EFB10E030;
- Fri,  1 Sep 2023 03:28:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9CA7610E121;
+ Fri,  1 Sep 2023 03:28:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DBB1EAADF1;
- Fri,  1 Sep 2023 03:28:21 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 99149AADF1;
+ Fri,  1 Sep 2023 03:28:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Date: Fri, 01 Sep 2023 03:28:21 -0000
-Message-ID: <169353890187.9816.6887465277484144092@emeril.freedesktop.org>
+Date: Fri, 01 Sep 2023 03:28:32 -0000
+Message-ID: <169353891262.9815.8646617862996602096@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230828062035.6906-1-vinod.govindapillai@intel.com>
 In-Reply-To: <20230828062035.6906-1-vinod.govindapillai@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_fbc_on_any_plane_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_fb?=
+ =?utf-8?q?c_on_any_plane_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,16 +48,31 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: fbc on any plane (rev2)
 URL   : https://patchwork.freedesktop.org/series/122957/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: bca3262d2 drm/xe: Fix array of binds
-=== git am output follows ===
-Applying: drm/i915/lnl: FBC can be enabled with PSR2
-Applying: drm/i915/lnl: update FBC debugfs to include plane information
-Applying: drm/i915/lnl: support FBC on any plane
-Applying: drm/i915/lnl: FBC is supported with per pixel alpha
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+e700ea2f248a75138759bcb443affeef4a2d1991
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6bb4863130b9bbadfb39707c4ce8eadbefc1b8b4
+Author: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Date:   Mon Aug 28 09:20:35 2023 +0300
+
+    drm/i915/lnl: FBC is supported with per pixel alpha
+    
+    For LNL onwards, FBC can be supported on planes with per
+    pixel alpha
+    
+    Bspec: 69560
+    Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
++ /mt/dim checkpatch bca3262d221e1402c03a89bb4ba520d6aa610505 drm-intel
+/mt/dim: line 50: /root/.dimrc: No such file or directory
 
 
