@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 122C7CA0FE5
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Sep 2023 14:26:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F87FCA0FE1
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Sep 2023 14:26:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5AAF10E7F3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 575C010E7F1;
 	Fri,  1 Sep 2023 14:26:55 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC91310E7F1
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Sep 2023 14:26:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79DF610E7F1
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Sep 2023 14:26:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693578413; x=1725114413;
+ t=1693578412; x=1725114412;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VCJbzt0Is6SW5m13qnlqMTSjNKrFmnCjXXADcSDryFU=;
- b=WVgrJD+JswYj2jc+08L/O1pQIQa7746u4Hvc3pii6d4MPJb6Idvpmorv
- X+3hMpicgS++IoxJQL8VskLNOaO7fSKHRXFoOKl0IlhhnRYVzwXmcJfvI
- TfkIU+FQ1I1bLTXmgjTFXnuvtZmbl/i6O83q41JENN1K6eH/UGCPg13/g
- drQEeDhOpdey9Aw4u0B0g5cnzwRy12L0I81xc99EsD5GZlgzIc1WOt/M3
- uEiz88gkIuI1N+TmQNLv4b97t53N8ba1opdjutdar7tQuAxaGNI+jEPSy
- ABkji0TrLfsRWmxNkd9rKUmEsps4/SSVFy997BWFoZf+qcTUX0qlnHM4D A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="366456607"
-X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="366456607"
+ bh=NgdFPpxuQSs2n/TLxuCPLz/gtnBqZOHbapOKT+dtEN8=;
+ b=azPIsFzqtIt3SREAEVV6BEXjLuefZ+jDTFr2Gw86bLMJxwKtj1XCPBK4
+ e5xY6TjMSMdBBgfZOpHAIMtx0c+aSpe855irLCu/J9VtfNwjQTV6Pem9e
+ UyPbM7z+Ih5sVorSFiOlLMHqjWgOduwbglZtapTAdq7wp7LDihKFxFtJn
+ Gwphdow/Mv1ltXwi5vnfFtWoKMXU4HPaLNa7Zig4qL2N9JNwMXAM+/eGr
+ LLySvmu8I9Myt8CrBUMBgi+F33j/96nl99hu3GBjhl2whK6L/wfnzz7qj
+ m8vonGnWzTTe1FMsFaQhVRs2CKTZLCbn733ojsmG7/ArIM/8H5IcNT9Hz w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="366456602"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="366456602"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2023 07:26:53 -0700
+ 01 Sep 2023 07:26:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="1070766852"
-X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="1070766852"
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="1070766848"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="1070766848"
 Received: from nabdull7-mobl1.gar.corp.intel.com (HELO fedora..)
  ([10.249.254.112])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2023 07:26:52 -0700
+ 01 Sep 2023 07:26:50 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  1 Sep 2023 16:26:28 +0200
-Message-ID: <20230901142629.4125-6-thomas.hellstrom@linux.intel.com>
+Date: Fri,  1 Sep 2023 16:26:27 +0200
+Message-ID: <20230901142629.4125-5-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230901142629.4125-1-thomas.hellstrom@linux.intel.com>
 References: <20230901142629.4125-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 5/6] drm/xe: Convert pagefaulting code to use
- drm_exec
+Subject: [Intel-xe] [PATCH v4 4/6] drm/xe: Rework xe_exec and the VM rebind
+ worker to use the drm_exec helper
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,241 +62,612 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Replace the calls into ttm_eu_reserve_buffers with the drm_exec helpers.
-Also reuse some code.
+Replace the calls to ttm_eu_reserve_buffers() by using the drm_exec
+helper instead. Also make sure the locking loop covers any calls to
+xe_bo_validate() / ttm_bo_validate() so that these function calls may
+easily benefit from being called from within an unsealed locking
+transaction and may thus perform blocking dma_resv locks in the future.
 
-v4:
-- Kerneldoc xe_vm_prepare_vma().
+For the unlock we remove an assert that the vm->rebind_list is empty
+when locks are released. Since if the error path is hit with a partly
+locked list, that assert may no longer hold true we chose to remove it.
+
+v3:
+- Don't accept duplicate bo locks in the rebind worker.
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 106 ++++++++++++---------------
- drivers/gpu/drm/xe/xe_vm.c           |  27 +++++++
- drivers/gpu/drm/xe/xe_vm.h           |   3 +
- 3 files changed, 76 insertions(+), 60 deletions(-)
+ drivers/gpu/drm/xe/Kconfig   |   1 +
+ drivers/gpu/drm/xe/xe_exec.c |  71 +++------
+ drivers/gpu/drm/xe/xe_vm.c   | 280 ++++++++++++++++-------------------
+ drivers/gpu/drm/xe/xe_vm.h   |  22 +--
+ 4 files changed, 157 insertions(+), 217 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 73fc9389a663..e6197ec6f72f 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -8,6 +8,7 @@
- #include <linux/bitfield.h>
- #include <linux/circ_buf.h>
+diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+index 0a4ea965645b..096bd066afa8 100644
+--- a/drivers/gpu/drm/xe/Kconfig
++++ b/drivers/gpu/drm/xe/Kconfig
+@@ -8,6 +8,7 @@ config DRM_XE
+ 	select SHMEM
+ 	select TMPFS
+ 	select DRM_BUDDY
++	select DRM_EXEC
+ 	select DRM_KMS_HELPER
+ 	select DRM_PANEL
+ 	select DRM_SUBALLOC_HELPER
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 8a5b614df090..b5058fb8b575 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -6,6 +6,7 @@
+ #include "xe_exec.h"
  
+ #include <drm/drm_device.h>
 +#include <drm/drm_exec.h>
- #include <drm/drm_managed.h>
- #include <drm/ttm/ttm_execbuf_util.h>
+ #include <drm/drm_file.h>
+ #include <drm/xe_drm.h>
+ #include <linux/delay.h>
+@@ -93,25 +94,18 @@
+  *	Unlock all
+  */
  
-@@ -84,11 +85,6 @@ static bool vma_matches(struct xe_vma *vma, u64 page_addr)
- 	return true;
+-#define XE_EXEC_BIND_RETRY_TIMEOUT_MS 1000
+-
+-static int xe_exec_begin(struct xe_exec_queue *q, struct ww_acquire_ctx *ww,
+-			 struct ttm_validate_buffer tv_onstack[],
+-			 struct ttm_validate_buffer **tv,
+-			 struct list_head *objs)
++static int xe_exec_begin(struct drm_exec *exec, struct xe_vm *vm)
+ {
+-	struct xe_vm *vm = q->vm;
+ 	struct xe_vma *vma;
+ 	LIST_HEAD(dups);
+ 	ktime_t end = 0;
+ 	int err = 0;
+ 
+-	*tv = NULL;
+-	if (xe_vm_no_dma_fences(q->vm))
++	if (xe_vm_no_dma_fences(vm))
+ 		return 0;
+ 
+ retry:
+-	err = xe_vm_lock_dma_resv(vm, ww, tv_onstack, tv, objs, true, 1);
++	err = xe_vm_lock_dma_resv(vm, exec, 1, true);
+ 	if (err)
+ 		return err;
+ 
+@@ -127,42 +121,16 @@ static int xe_exec_begin(struct xe_exec_queue *q, struct ww_acquire_ctx *ww,
+ 			continue;
+ 
+ 		err = xe_bo_validate(xe_vma_bo(vma), vm, false);
+-		if (err) {
+-			xe_vm_unlock_dma_resv(vm, tv_onstack, *tv, ww, objs);
+-			*tv = NULL;
++		if (err)
+ 			break;
+-		}
+ 	}
+ 
+-	/*
+-	 * With multiple active VMs, under memory pressure, it is possible that
+-	 * ttm_bo_validate() run into -EDEADLK and in such case returns -ENOMEM.
+-	 * Until ttm properly handles locking in such scenarios, best thing the
+-	 * driver can do is retry with a timeout.
+-	 */
+-	if (err == -ENOMEM) {
+-		ktime_t cur = ktime_get();
+-
+-		end = end ? : ktime_add_ms(cur, XE_EXEC_BIND_RETRY_TIMEOUT_MS);
+-		if (ktime_before(cur, end)) {
+-			msleep(20);
+-			goto retry;
+-		}
+-	}
++	if (err && xe_vm_validate_should_retry(exec, err, &end))
++		goto retry;
+ 
+ 	return err;
  }
  
--static bool only_needs_bo_lock(struct xe_bo *bo)
+-static void xe_exec_end(struct xe_exec_queue *q,
+-			struct ttm_validate_buffer *tv_onstack,
+-			struct ttm_validate_buffer *tv,
+-			struct ww_acquire_ctx *ww,
+-			struct list_head *objs)
 -{
--	return bo && bo->vm;
+-	if (!xe_vm_no_dma_fences(q->vm))
+-		xe_vm_unlock_dma_resv(q->vm, tv_onstack, tv, ww, objs);
 -}
 -
- static struct xe_vma *lookup_vma(struct xe_vm *vm, u64 page_addr)
+ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
  {
- 	struct xe_vma *vma = NULL;
-@@ -103,17 +99,44 @@ static struct xe_vma *lookup_vma(struct xe_vm *vm, u64 page_addr)
- 	return vma;
- }
- 
-+static int xe_pf_begin(struct drm_exec *exec, struct xe_vma *vma,
-+		       unsigned int num_shared, bool atomic, unsigned int id)
-+{
-+	struct xe_bo *bo = xe_vma_bo(vma);
-+	struct xe_vm *vm = xe_vma_vm(vma);
-+	int err;
-+
-+	err = xe_vm_prepare_vma(exec, vma, num_shared);
-+	if (err)
-+		return err;
-+
-+	if (atomic) {
-+		if (xe_vma_is_userptr(vma)) {
-+			err = -EACCES;
-+			return err;
-+		}
-+
-+		/* Migrate to VRAM, move should invalidate the VMA first */
-+		err = xe_bo_migrate(bo, XE_PL_VRAM0 + id);
-+		if (err)
-+			return err;
-+	} else if (bo) {
-+		/* Create backing store if needed */
-+		err = xe_bo_validate(bo, vm, true);
-+		if (err)
-+			return err;
-+	}
-+
-+	return 0;
-+}
-+
- static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct xe_device *xe = to_xe_device(dev);
+@@ -173,14 +141,11 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	struct xe_exec_queue *q;
+ 	struct xe_sync_entry *syncs = NULL;
+ 	u64 addresses[XE_HW_ENGINE_MAX_INSTANCE];
+-	struct ttm_validate_buffer tv_onstack[XE_ONSTACK_TV];
+-	struct ttm_validate_buffer *tv = NULL;
 +	struct drm_exec exec;
+ 	u32 i, num_syncs = 0;
+ 	struct xe_sched_job *job;
+ 	struct dma_fence *rebind_fence;
  	struct xe_vm *vm;
- 	struct xe_vma *vma = NULL;
--	struct xe_bo *bo;
--	LIST_HEAD(objs);
--	LIST_HEAD(dups);
--	struct ttm_validate_buffer tv_bo, tv_vm;
 -	struct ww_acquire_ctx ww;
- 	struct dma_fence *fence;
+-	struct list_head objs;
  	bool write_locked;
- 	int ret = 0;
-@@ -170,35 +193,10 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
+ 	int err = 0;
+ 
+@@ -294,26 +259,30 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			goto err_unlock_list;
  	}
  
- 	/* Lock VM and BOs dma-resv */
--	bo = xe_vma_bo(vma);
--	if (!only_needs_bo_lock(bo)) {
--		tv_vm.num_shared = xe->info.tile_count;
--		tv_vm.bo = xe_vm_ttm_bo(vm);
--		list_add(&tv_vm.head, &objs);
--	}
--	if (bo) {
--		tv_bo.bo = &bo->ttm;
--		tv_bo.num_shared = xe->info.tile_count;
--		list_add(&tv_bo.head, &objs);
--	}
--
--	ret = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
--	if (ret)
--		goto unlock_vm;
--
--	if (atomic) {
--		if (xe_vma_is_userptr(vma)) {
--			ret = -EACCES;
--			goto unlock_dma_resv;
--		}
--
--		/* Migrate to VRAM, move should invalidate the VMA first */
--		ret = xe_bo_migrate(bo, XE_PL_VRAM0 + tile->id);
--		if (ret)
--			goto unlock_dma_resv;
--	} else if (bo) {
--		/* Create backing store if needed */
--		ret = xe_bo_validate(bo, vm, true);
-+	drm_exec_init(&exec, 0);
+-	err = xe_exec_begin(q, &ww, tv_onstack, &tv, &objs);
+-	if (err)
+-		goto err_unlock_list;
++	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
 +	drm_exec_until_all_locked(&exec) {
-+		ret = xe_pf_begin(&exec, vma, xe->info.tile_count, atomic, tile->id);
++		err = xe_exec_begin(&exec, vm);
 +		drm_exec_retry_on_contention(&exec);
- 		if (ret)
- 			goto unlock_dma_resv;
++		if (err)
++			goto err_exec;
++	}
+ 
+ 	if (xe_vm_is_closed_or_banned(q->vm)) {
+ 		drm_warn(&xe->drm, "Trying to schedule after vm is closed or banned\n");
+ 		err = -ECANCELED;
+-		goto err_exec_queue_end;
++		goto err_exec;
  	}
-@@ -225,7 +223,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 	vma->usm.tile_invalidated &= ~BIT(gt_to_tile(gt)->id);
  
- unlock_dma_resv:
--	ttm_eu_backoff_reservation(&ww, &objs);
-+	drm_exec_fini(&exec);
- unlock_vm:
- 	if (!ret)
- 		vm->usm.last_fault_vma = vma;
-@@ -490,13 +488,9 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
- {
- 	struct xe_device *xe = gt_to_xe(gt);
- 	struct xe_tile *tile = gt_to_tile(gt);
-+	struct drm_exec exec;
- 	struct xe_vm *vm;
- 	struct xe_vma *vma;
--	struct xe_bo *bo;
--	LIST_HEAD(objs);
--	LIST_HEAD(dups);
--	struct ttm_validate_buffer tv_bo, tv_vm;
--	struct ww_acquire_ctx ww;
- 	int ret = 0;
- 
- 	/* We only support ACC_TRIGGER at the moment */
-@@ -528,23 +522,15 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
- 		goto unlock_vm;
- 
- 	/* Lock VM and BOs dma-resv */
--	bo = xe_vma_bo(vma);
--	if (!only_needs_bo_lock(bo)) {
--		tv_vm.num_shared = xe->info.tile_count;
--		tv_vm.bo = xe_vm_ttm_bo(vm);
--		list_add(&tv_vm.head, &objs);
-+	drm_exec_init(&exec, 0);
-+	drm_exec_until_all_locked(&exec) {
-+		ret = xe_pf_begin(&exec, vma, xe->info.tile_count, true, tile->id);
-+		drm_exec_retry_on_contention(&exec);
-+		if (ret)
-+			break;
+ 	if (xe_exec_queue_is_lr(q) && xe_exec_queue_ring_full(q)) {
+ 		err = -EWOULDBLOCK;
+-		goto err_exec_queue_end;
++		goto err_exec;
  	}
--	tv_bo.bo = &bo->ttm;
--	tv_bo.num_shared = xe->info.tile_count;
--	list_add(&tv_bo.head, &objs);
--	ret = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
--	if (ret)
--		goto unlock_vm;
--
--	/* Migrate to VRAM, move should invalidate the VMA first */
--	ret = xe_bo_migrate(bo, XE_PL_VRAM0 + tile->id);
  
--	ttm_eu_backoff_reservation(&ww, &objs);
+ 	job = xe_sched_job_create(q, xe_exec_queue_is_parallel(q) ?
+ 				  addresses : &args->address);
+ 	if (IS_ERR(job)) {
+ 		err = PTR_ERR(job);
+-		goto err_exec_queue_end;
++		goto err_exec;
+ 	}
+ 
+ 	/*
+@@ -412,8 +381,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ err_put_job:
+ 	if (err)
+ 		xe_sched_job_put(job);
+-err_exec_queue_end:
+-	xe_exec_end(q, tv_onstack, tv, &ww, &objs);
++err_exec:
 +	drm_exec_fini(&exec);
- unlock_vm:
- 	up_read(&vm->lock);
- 	xe_vm_put(vm);
+ err_unlock_list:
+ 	if (write_locked)
+ 		up_write(&vm->lock);
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 19cacbe43ec6..d6179a46157a 100644
+index c84f0fb56e39..19cacbe43ec6 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1090,6 +1090,33 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+@@ -7,6 +7,7 @@
+ 
+ #include <linux/dma-fence-array.h>
+ 
++#include <drm/drm_exec.h>
+ #include <drm/drm_print.h>
+ #include <drm/ttm/ttm_execbuf_util.h>
+ #include <drm/ttm/ttm_tt.h>
+@@ -327,10 +328,7 @@ static void resume_and_reinstall_preempt_fences(struct xe_vm *vm)
+ 
+ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ {
+-	struct ttm_validate_buffer tv_onstack[XE_ONSTACK_TV];
+-	struct ttm_validate_buffer *tv;
+-	struct ww_acquire_ctx ww;
+-	struct list_head objs;
++	struct drm_exec exec;
+ 	struct dma_fence *pfence;
+ 	int err;
+ 	bool wait;
+@@ -338,10 +336,13 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 	XE_WARN_ON(!xe_vm_in_compute_mode(vm));
+ 
+ 	down_write(&vm->lock);
+-
+-	err = xe_vm_lock_dma_resv(vm, &ww, tv_onstack, &tv, &objs, true, 1);
+-	if (err)
+-		goto out_unlock_outer;
++	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
++	drm_exec_until_all_locked(&exec) {
++		err = xe_vm_lock_dma_resv(vm, &exec, 1, true);
++		drm_exec_retry_on_contention(&exec);
++		if (err)
++			goto out_unlock;
++	}
+ 
+ 	pfence = xe_preempt_fence_create(q, q->compute.context,
+ 					 ++q->compute.seqno);
+@@ -373,8 +374,7 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 	up_read(&vm->userptr.notifier_lock);
+ 
+ out_unlock:
+-	xe_vm_unlock_dma_resv(vm, tv_onstack, tv, &ww, &objs);
+-out_unlock_outer:
++	drm_exec_fini(&exec);
+ 	up_write(&vm->lock);
+ 
+ 	return err;
+@@ -403,68 +403,36 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm)
+  * xe_vm_lock_dma_resv() - Lock the vm dma_resv object and the dma_resv
+  * objects of the vm's external buffer objects.
+  * @vm: The vm.
+- * @ww: Pointer to a struct ww_acquire_ctx locking context.
+- * @tv_onstack: Array size XE_ONSTACK_TV of storage for the struct
+- * ttm_validate_buffers used for locking.
+- * @tv: Pointer to a pointer that on output contains the actual storage used.
+- * @objs: List head for the buffer objects locked.
+- * @intr: Whether to lock interruptible.
++ * @exec: Pointer to a struct drm_exec locking context.
+  * @num_shared: Number of dma-fence slots to reserve in the locked objects.
++ * @lock_vm: Lock also the vm's dma_resv.
+  *
+  * Locks the vm dma-resv objects and all the dma-resv objects of the
+- * buffer objects on the vm external object list. The TTM utilities require
+- * a list of struct ttm_validate_buffers pointing to the actual buffer
+- * objects to lock. Storage for those struct ttm_validate_buffers should
+- * be provided in @tv_onstack, and is typically reserved on the stack
+- * of the caller. If the size of @tv_onstack isn't sufficient, then
+- * storage will be allocated internally using kvmalloc().
+- *
+- * The function performs deadlock handling internally, and after a
+- * successful return the ww locking transaction should be considered
+- * sealed.
++ * buffer objects on the vm external object list.
+  *
+  * Return: 0 on success, Negative error code on error. In particular if
+- * @intr is set to true, -EINTR or -ERESTARTSYS may be returned. In case
+- * of error, any locking performed has been reverted.
++ * @intr is set to true, -EINTR or -ERESTARTSYS may be returned.
+  */
+-int xe_vm_lock_dma_resv(struct xe_vm *vm, struct ww_acquire_ctx *ww,
+-			struct ttm_validate_buffer *tv_onstack,
+-			struct ttm_validate_buffer **tv,
+-			struct list_head *objs,
+-			bool intr,
+-			unsigned int num_shared)
+-{
+-	struct ttm_validate_buffer *tv_vm, *tv_bo;
++int xe_vm_lock_dma_resv(struct xe_vm *vm, struct drm_exec *exec,
++			unsigned int num_shared, bool lock_vm)
++{
+ 	struct xe_vma *vma, *next;
+-	LIST_HEAD(dups);
+-	int err;
++	int err = 0;
+ 
+ 	lockdep_assert_held(&vm->lock);
+ 
+-	if (vm->extobj.entries < XE_ONSTACK_TV) {
+-		tv_vm = tv_onstack;
+-	} else {
+-		tv_vm = kvmalloc_array(vm->extobj.entries + 1, sizeof(*tv_vm),
+-				       GFP_KERNEL);
+-		if (!tv_vm)
+-			return -ENOMEM;
++	if (lock_vm) {
++		err = drm_exec_prepare_obj(exec, &xe_vm_ttm_bo(vm)->base,
++					   num_shared);
++		if (err)
++			return err;
  	}
+-	tv_bo = tv_vm + 1;
+ 
+-	INIT_LIST_HEAD(objs);
+ 	list_for_each_entry(vma, &vm->extobj.list, extobj.link) {
+-		tv_bo->num_shared = num_shared;
+-		tv_bo->bo = &xe_vma_bo(vma)->ttm;
+-
+-		list_add_tail(&tv_bo->head, objs);
+-		tv_bo++;
++		err = drm_exec_prepare_obj(exec, &xe_vma_bo(vma)->ttm.base, num_shared);
++		if (err)
++			return err;
+ 	}
+-	tv_vm->num_shared = num_shared;
+-	tv_vm->bo = xe_vm_ttm_bo(vm);
+-	list_add_tail(&tv_vm->head, objs);
+-	err = ttm_eu_reserve_buffers(ww, objs, intr, &dups);
+-	if (err)
+-		goto out_err;
+ 
+ 	spin_lock(&vm->notifier.list_lock);
+ 	list_for_each_entry_safe(vma, next, &vm->notifier.rebind_list,
+@@ -478,45 +446,7 @@ int xe_vm_lock_dma_resv(struct xe_vm *vm, struct ww_acquire_ctx *ww,
+ 	}
+ 	spin_unlock(&vm->notifier.list_lock);
+ 
+-	*tv = tv_vm;
+ 	return 0;
+-
+-out_err:
+-	if (tv_vm != tv_onstack)
+-		kvfree(tv_vm);
+-
+-	return err;
+-}
+-
+-/**
+- * xe_vm_unlock_dma_resv() - Unlock reservation objects locked by
+- * xe_vm_lock_dma_resv()
+- * @vm: The vm.
+- * @tv_onstack: The @tv_onstack array given to xe_vm_lock_dma_resv().
+- * @tv: The value of *@tv given by xe_vm_lock_dma_resv().
+- * @ww: The ww_acquire_context used for locking.
+- * @objs: The list returned from xe_vm_lock_dma_resv().
+- *
+- * Unlocks the reservation objects and frees any memory allocated by
+- * xe_vm_lock_dma_resv().
+- */
+-void xe_vm_unlock_dma_resv(struct xe_vm *vm,
+-			   struct ttm_validate_buffer *tv_onstack,
+-			   struct ttm_validate_buffer *tv,
+-			   struct ww_acquire_ctx *ww,
+-			   struct list_head *objs)
+-{
+-	/*
+-	 * Nothing should've been able to enter the list while we were locked,
+-	 * since we've held the dma-resvs of all the vm's external objects,
+-	 * and holding the dma_resv of an object is required for list
+-	 * addition, and we shouldn't add ourselves.
+-	 */
+-	XE_WARN_ON(!list_empty(&vm->notifier.rebind_list));
+-
+-	ttm_eu_backoff_reservation(ww, objs);
+-	if (tv && tv != tv_onstack)
+-		kvfree(tv);
+ }
+ 
+ #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
+@@ -538,18 +468,108 @@ static void xe_vm_kill(struct xe_vm *vm)
+ 	/* TODO: Inform user the VM is banned */
  }
  
 +/**
-+ * xe_vm_prepare_vma() - drm_exec utility to lock a vma
-+ * @exec: The drm_exec object we're currently locking for.
-+ * @vma: The vma for witch we want to lock the vm resv and any attached
-+ * object's resv.
-+ * @num_shared: The number of dma-fence slots to pre-allocate in the
-+ * objects' reservation objects.
++ * xe_vm_validate_should_retry() - Whether to retry after a validate error.
++ * @exec: The drm_exec object used for locking before validation.
++ * @err: The error returned from ttm_bo_validate().
++ * @end: A ktime_t cookie that should be set to 0 before first use and
++ * that should be reused on subsequent calls.
 + *
-+ * Return: 0 on success, negative error code on error. In particular
-+ * may return -EDEADLK on WW transaction contention and -EINTR if
-+ * an interruptible wait is terminated by a signal.
++ * With multiple active VMs, under memory pressure, it is possible that
++ * ttm_bo_validate() run into -EDEADLK and in such case returns -ENOMEM.
++ * Until ttm properly handles locking in such scenarios, best thing the
++ * driver can do is retry with a timeout. Check if that is necessary, and
++ * if so unlock the drm_exec's objects while keeping the ticket to prepare
++ * for a rerun.
++ *
++ * Return: true if a retry after drm_exec_init() is recommended;
++ * false otherwise.
 + */
-+int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
-+		      unsigned int num_shared)
++bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end)
 +{
-+	struct xe_vm *vm = xe_vma_vm(vma);
-+	struct xe_bo *bo = xe_vma_bo(vma);
++	struct drm_gem_object *obj;
++	unsigned long index;
++	ktime_t cur;
++
++	if (err != -ENOMEM)
++		return false;
++
++	cur = ktime_get();
++	*end = *end ? : ktime_add_ms(cur, XE_VM_REBIND_RETRY_TIMEOUT_MS);
++	if (!ktime_before(cur, *end))
++		return false;
++
++	/*
++	 * FIXME: Open-code drm_exec_unlock_all().
++	 * We don't want to release the ww ticket.
++	 */
++	drm_exec_for_each_locked_object(exec, index, obj) {
++		dma_resv_unlock(obj->resv);
++		drm_gem_object_put(obj);
++	}
++	drm_gem_object_put(exec->prelocked);
++	exec->prelocked = NULL;
++	exec->num_objects = 0;
++
++	msleep(20);
++	return true;
++}
++
++static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
++				 bool *done)
++{
++	struct xe_vma *vma;
++	ktime_t end = 0;
 +	int err;
 +
-+	XE_WARN_ON(!vm);
-+	err = drm_exec_prepare_obj(exec, &xe_vm_ttm_bo(vm)->base, num_shared);
-+	if (!err && bo && !bo->vm)
-+		err = drm_exec_prepare_obj(exec, &bo->ttm.base, num_shared);
++retry:
++	err = drm_exec_prepare_obj(exec, &xe_vm_ttm_bo(vm)->base,
++				   vm->preempt.num_exec_queues);
++	if (err)
++		return err;
++
++	if (xe_vm_is_idle(vm)) {
++		vm->preempt.rebind_deactivated = true;
++		*done = true;
++		return 0;
++	}
++
++	if (!preempt_fences_waiting(vm)) {
++		*done = true;
++		return 0;
++	}
++
++	err = xe_vm_lock_dma_resv(vm, exec, vm->preempt.num_exec_queues, false);
++	if (err)
++		return err;
++
++	err = wait_for_existing_preempt_fences(vm);
++	if (err)
++		return err;
++
++	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
++		if (xe_vma_has_no_bo(vma) ||
++		    vma->gpuva.flags & XE_VMA_DESTROYED)
++			continue;
++
++		err = xe_bo_validate(xe_vma_bo(vma), vm, false);
++		if (err)
++			break;
++	}
++
++	if (err && xe_vm_validate_should_retry(exec, err, &end))
++		goto retry;
 +
 +	return err;
 +}
 +
- static void xe_vma_destroy_unlocked(struct xe_vma *vma)
+ static void preempt_rebind_work_func(struct work_struct *w)
  {
- 	struct ttm_validate_buffer tv[2];
+ 	struct xe_vm *vm = container_of(w, struct xe_vm, preempt.rebind_work);
+-	struct xe_vma *vma;
+-	struct ttm_validate_buffer tv_onstack[XE_ONSTACK_TV];
+-	struct ttm_validate_buffer *tv;
+-	struct ww_acquire_ctx ww;
+-	struct list_head objs;
++	struct drm_exec exec;
+ 	struct dma_fence *rebind_fence;
+ 	unsigned int fence_count = 0;
+ 	LIST_HEAD(preempt_fences);
+-	ktime_t end = 0;
+ 	int err;
+ 	long wait;
+ 	int __maybe_unused tries = 0;
+@@ -588,42 +608,21 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 			goto out_unlock_outer;
+ 	}
+ 
+-	err = xe_vm_lock_dma_resv(vm, &ww, tv_onstack, &tv, &objs,
+-				  false, vm->preempt.num_exec_queues);
+-	if (err)
+-		goto out_unlock_outer;
+-
+-	if (xe_vm_is_idle(vm)) {
+-		vm->preempt.rebind_deactivated = true;
+-		goto out_unlock;
+-	}
++	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
+ 
+-	/* Fresh preempt fences already installed. Everyting is running. */
+-	if (!preempt_fences_waiting(vm))
+-		goto out_unlock;
++	drm_exec_until_all_locked(&exec) {
++		bool done = false;
+ 
+-	/*
+-	 * This makes sure vm is completely suspended and also balances
+-	 * xe_engine suspend- and resume; we resume *all* vm engines below.
+-	 */
+-	err = wait_for_existing_preempt_fences(vm);
+-	if (err)
+-		goto out_unlock;
++		err = xe_preempt_work_begin(&exec, vm, &done);
++		drm_exec_retry_on_contention(&exec);
++		if (err || done)
++			goto out_unlock;
++	}
+ 
+ 	err = alloc_preempt_fences(vm, &preempt_fences, &fence_count);
+ 	if (err)
+ 		goto out_unlock;
+ 
+-	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
+-		if (xe_vma_has_no_bo(vma) ||
+-		    vma->gpuva.flags & XE_VMA_DESTROYED)
+-			continue;
+-
+-		err = xe_bo_validate(xe_vma_bo(vma), vm, false);
+-		if (err)
+-			goto out_unlock;
+-	}
+-
+ 	rebind_fence = xe_vm_rebind(vm, true);
+ 	if (IS_ERR(rebind_fence)) {
+ 		err = PTR_ERR(rebind_fence);
+@@ -668,30 +667,13 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 	up_read(&vm->userptr.notifier_lock);
+ 
+ out_unlock:
+-	xe_vm_unlock_dma_resv(vm, tv_onstack, tv, &ww, &objs);
++	drm_exec_fini(&exec);
+ out_unlock_outer:
+ 	if (err == -EAGAIN) {
+ 		trace_xe_vm_rebind_worker_retry(vm);
+ 		goto retry;
+ 	}
+ 
+-	/*
+-	 * With multiple active VMs, under memory pressure, it is possible that
+-	 * ttm_bo_validate() run into -EDEADLK and in such case returns -ENOMEM.
+-	 * Until ttm properly handles locking in such scenarios, best thing the
+-	 * driver can do is retry with a timeout. Killing the VM or putting it
+-	 * in error state after timeout or other error scenarios is still TBD.
+-	 */
+-	if (err == -ENOMEM) {
+-		ktime_t cur = ktime_get();
+-
+-		end = end ? : ktime_add_ms(cur, XE_VM_REBIND_RETRY_TIMEOUT_MS);
+-		if (ktime_before(cur, end)) {
+-			msleep(20);
+-			trace_xe_vm_rebind_worker_retry(vm);
+-			goto retry;
+-		}
+-	}
+ 	if (err) {
+ 		drm_warn(&vm->xe->drm, "VM worker error: %d\n", err);
+ 		xe_vm_kill(vm);
 diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index 4a1dd11f71c5..5608e4e33169 100644
+index d7d8fd7bd8da..4a1dd11f71c5 100644
 --- a/drivers/gpu/drm/xe/xe_vm.h
 +++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -222,6 +222,9 @@ void xe_vm_fence_all_extobjs(struct xe_vm *vm, struct dma_fence *fence,
+@@ -21,6 +21,7 @@ struct ttm_validate_buffer;
+ struct xe_exec_queue;
+ struct xe_file;
+ struct xe_sync_entry;
++struct drm_exec;
  
- int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id);
+ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags);
+ void xe_vm_free(struct kref *ref);
+@@ -211,23 +212,10 @@ int xe_vma_userptr_pin_pages(struct xe_vma *vma);
  
-+int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
-+		      unsigned int num_shared);
+ int xe_vma_userptr_check_repin(struct xe_vma *vma);
+ 
+-/*
+- * XE_ONSTACK_TV is used to size the tv_onstack array that is input
+- * to xe_vm_lock_dma_resv() and xe_vm_unlock_dma_resv().
+- */
+-#define XE_ONSTACK_TV 20
+-int xe_vm_lock_dma_resv(struct xe_vm *vm, struct ww_acquire_ctx *ww,
+-			struct ttm_validate_buffer *tv_onstack,
+-			struct ttm_validate_buffer **tv,
+-			struct list_head *objs,
+-			bool intr,
+-			unsigned int num_shared);
+-
+-void xe_vm_unlock_dma_resv(struct xe_vm *vm,
+-			   struct ttm_validate_buffer *tv_onstack,
+-			   struct ttm_validate_buffer *tv,
+-			   struct ww_acquire_ctx *ww,
+-			   struct list_head *objs);
++bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end);
 +
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
- #define vm_dbg drm_dbg
- #else
++int xe_vm_lock_dma_resv(struct xe_vm *vm, struct drm_exec *exec,
++			unsigned int num_shared, bool lock_vm);
+ 
+ void xe_vm_fence_all_extobjs(struct xe_vm *vm, struct dma_fence *fence,
+ 			     enum dma_resv_usage usage);
 -- 
 2.41.0
 
