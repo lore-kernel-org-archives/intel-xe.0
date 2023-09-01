@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFB5ACA0FE4
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Sep 2023 14:26:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 83E13CA0FE5
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Sep 2023 14:26:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8E1810E7ED;
-	Fri,  1 Sep 2023 14:26:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EFC210E7EE;
+	Fri,  1 Sep 2023 14:26:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7DFDB10E7ED
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Sep 2023 14:26:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E566D10E7ED
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Sep 2023 14:26:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693578407; x=1725114407;
+ t=1693578408; x=1725114408;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ePOrIFer+8Yi942HGxeOwOVFt04cZYEV7jn9ENo8bQI=;
- b=HNdwVARhCTS84UjW0qK4ubo98K9pJTI4x3vCWvtPe1R2M/wjfIZLRSRh
- 6aYQv/JKXE4zeFdSvqNOkYamhaXRAijkBQh4LGweRAFHDenYKT5JGIS3s
- zPWonfw5snTMXmjD1i2m31BJwKyYKRH9EGwEcnXGcuqX//O9GUZxMfBlh
- AMm7/iz+9EVCRWkfZE3vkBQEmfZ2L9EY4GVmCxJ0n3k4n/WBdn0Ine3YM
- uG279ZXisfLRzriNa7mSGy8bbMN3j/KXELNMxP5CHDBSwog5rx9CKRJIs
- XTW4VcUxn1nueGm1nPFJIeW8q/tBpmjM+ajtTtEw5y+5As2U5nBfAfNQT Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="366456580"
-X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="366456580"
+ bh=eiTKtbgf/HtUaFK8fyJrPLQnb0IzBZp0Lie9zgBDVSU=;
+ b=JOPyHQjsQvD2E5KeOuo2UJdQOoURbXrnT+l2MMOJ55ZbjCVAMEXyv6Pd
+ 41v+D5LHV4pLYGven6FbSKAe7yacjcbHL3z2NLNrRVjuCVM1YkCzI1f1T
+ jlM4KYqumOWGy5SdsFT7pwEvAgC41VaLUt9Wn1ingjAUQENyEFTPI4Ple
+ gutGnbUx+zG243XA4gf+jNGYTKwXzXp1ewfSGOwYJdRoGDYIzP9eWBUu+
+ OOTRPuHuc45r0dcgfKQv5O1iL4PVC/kchZC3HXkwSmH3+An63l8Gh1WGU
+ QTd95BOiInBewiPH9z/FktCtVKHxKPQJI6WDUFwoJCcEO5paSy2B57evg Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="366456586"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="366456586"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2023 07:26:47 -0700
+ 01 Sep 2023 07:26:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="1070766832"
-X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="1070766832"
+X-IronPort-AV: E=McAfee;i="6600,9927,10819"; a="1070766837"
+X-IronPort-AV: E=Sophos;i="6.02,219,1688454000"; d="scan'208";a="1070766837"
 Received: from nabdull7-mobl1.gar.corp.intel.com (HELO fedora..)
  ([10.249.254.112])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Sep 2023 07:26:45 -0700
+ 01 Sep 2023 07:26:47 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  1 Sep 2023 16:26:24 +0200
-Message-ID: <20230901142629.4125-2-thomas.hellstrom@linux.intel.com>
+Date: Fri,  1 Sep 2023 16:26:25 +0200
+Message-ID: <20230901142629.4125-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230901142629.4125-1-thomas.hellstrom@linux.intel.com>
 References: <20230901142629.4125-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 1/6] drm/xe/bo: Simplify xe_bo_lock()
+Subject: [Intel-xe] [PATCH v4 2/6] drm/xe/vm: Simplify and document
+ xe_vm_lock()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,584 +62,342 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_bo_lock() was, although it only grabbed a single lock, unnecessarily
-using ttm_eu_reserve_buffers(). Simplify and document the interface.
+The xe_vm_lock() function was unnecessarily using ttm_eu_reserve_buffers().
+Simplify and document the interface.
 
-v2:
-- Update also the xe_display subsystem.
 v4:
-- Reinstate a lost dma_resv_reserve_fences().
-- Improve on xe_bo_lock() documentation (Matthew Brost)
+- Improve on xe_vm_lock() documentation (Matthew Brost)
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  5 +--
- drivers/gpu/drm/xe/tests/xe_bo.c             | 24 +++++------
- drivers/gpu/drm/xe/xe_bo.c                   | 43 ++++++++++++--------
- drivers/gpu/drm/xe/xe_bo.h                   |  5 +--
- drivers/gpu/drm/xe/xe_bo_evict.c             | 19 ++++-----
- drivers/gpu/drm/xe/xe_gt_pagefault.c         | 41 +++++++------------
- drivers/gpu/drm/xe/xe_vm.c                   | 27 ++++++------
- drivers/gpu/drm/xe/xe_vm_madvise.c           | 30 ++++++--------
- 8 files changed, 91 insertions(+), 103 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_bo.c      |  9 +++--
+ drivers/gpu/drm/xe/tests/xe_migrate.c |  5 ++-
+ drivers/gpu/drm/xe/xe_bo.c            |  5 ++-
+ drivers/gpu/drm/xe/xe_exec_queue.c    |  5 ++-
+ drivers/gpu/drm/xe/xe_lrc.c           |  6 ++--
+ drivers/gpu/drm/xe/xe_migrate.c       | 10 +++---
+ drivers/gpu/drm/xe/xe_vm.c            | 51 +++++++++++++--------------
+ drivers/gpu/drm/xe/xe_vm.h            |  5 ++-
+ 8 files changed, 43 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d6b481f33b45..9df8081f78d9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6938,11 +6938,10 @@ static int i915_gem_object_read_from_page(struct xe_bo *bo,
- 	void *virtual;
- 	bool is_iomem;
- 	int ret;
--	struct ww_acquire_ctx ww;
- 
- 	XE_WARN_ON(size != 8);
- 
--	ret = xe_bo_lock(bo, &ww, 0, true);
-+	ret = xe_bo_lock(bo, true);
- 	if (ret)
- 		return ret;
- 
-@@ -6959,7 +6958,7 @@ static int i915_gem_object_read_from_page(struct xe_bo *bo,
- 
- 	ttm_bo_kunmap(&map);
- out_unlock:
--	xe_bo_unlock(bo, &ww);
-+	xe_bo_unlock(bo);
- 	return ret;
- }
- #endif
 diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-index b32a9068d76c..31fd4f9b2d5b 100644
+index 31fd4f9b2d5b..c6025404042d 100644
 --- a/drivers/gpu/drm/xe/tests/xe_bo.c
 +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-@@ -203,9 +203,9 @@ static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kuni
- 			goto cleanup_bo;
- 		}
+@@ -180,17 +180,16 @@ static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kuni
+ 	unsigned int bo_flags = XE_BO_CREATE_USER_BIT |
+ 		XE_BO_CREATE_VRAM_IF_DGFX(gt_to_tile(gt));
+ 	struct xe_vm *vm = xe_migrate_get_vm(xe_device_get_root_tile(xe)->migrate);
+-	struct ww_acquire_ctx ww;
+ 	int err, i;
  
--		xe_bo_lock(external, &ww, 0, false);
-+		xe_bo_lock(external, false);
- 		err = xe_bo_pin_external(external);
--		xe_bo_unlock(external, &ww);
-+		xe_bo_unlock(external);
- 		if (err) {
- 			KUNIT_FAIL(test, "external bo pin err=%pe\n",
- 				   ERR_PTR(err));
-@@ -268,9 +268,9 @@ static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kuni
- 					   ERR_PTR(err));
- 				goto cleanup_all;
- 			}
--			xe_bo_lock(external, &ww, 0, false);
-+			xe_bo_lock(external, false);
- 			err = xe_bo_validate(external, NULL, false);
--			xe_bo_unlock(external, &ww);
-+			xe_bo_unlock(external);
+ 	kunit_info(test, "Testing device %s gt id %u vram id %u\n",
+ 		   dev_name(xe->drm.dev), gt->info.id, gt_to_tile(gt)->id);
+ 
+ 	for (i = 0; i < 2; ++i) {
+-		xe_vm_lock(vm, &ww, 0, false);
++		xe_vm_lock(vm, false);
+ 		bo = xe_bo_create(xe, NULL, vm, 0x10000, ttm_bo_type_device,
+ 				  bo_flags);
+-		xe_vm_unlock(vm, &ww);
++		xe_vm_unlock(vm);
+ 		if (IS_ERR(bo)) {
+ 			KUNIT_FAIL(test, "bo create err=%pe\n", bo);
+ 			break;
+@@ -259,9 +258,9 @@ static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kuni
+ 
+ 		if (i) {
+ 			down_read(&vm->lock);
+-			xe_vm_lock(vm, &ww, 0, false);
++			xe_vm_lock(vm, false);
+ 			err = xe_bo_validate(bo, bo->vm, false);
+-			xe_vm_unlock(vm, &ww);
++			xe_vm_unlock(vm);
+ 			up_read(&vm->lock);
  			if (err) {
- 				KUNIT_FAIL(test, "external bo valid err=%pe\n",
- 					   ERR_PTR(err));
-@@ -278,28 +278,28 @@ static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kuni
- 			}
- 		}
+ 				KUNIT_FAIL(test, "bo valid err=%pe\n",
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 5c8d5e78d9bc..8bb081086ca2 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -396,14 +396,13 @@ static int migrate_test_run_device(struct xe_device *xe)
  
--		xe_bo_lock(external, &ww, 0, false);
-+		xe_bo_lock(external, false);
- 		xe_bo_unpin_external(external);
--		xe_bo_unlock(external, &ww);
-+		xe_bo_unlock(external);
+ 	for_each_tile(tile, xe, id) {
+ 		struct xe_migrate *m = tile->migrate;
+-		struct ww_acquire_ctx ww;
  
- 		xe_bo_put(external);
- 
--		xe_bo_lock(bo, &ww, 0, false);
-+		xe_bo_lock(bo, false);
- 		__xe_bo_unset_bulk_move(bo);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 		xe_bo_put(bo);
- 		continue;
- 
- cleanup_all:
--		xe_bo_lock(external, &ww, 0, false);
-+		xe_bo_lock(external, false);
- 		xe_bo_unpin_external(external);
--		xe_bo_unlock(external, &ww);
-+		xe_bo_unlock(external);
- cleanup_external:
- 		xe_bo_put(external);
- cleanup_bo:
--		xe_bo_lock(bo, &ww, 0, false);
-+		xe_bo_lock(bo, false);
- 		__xe_bo_unset_bulk_move(bo);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 		xe_bo_put(bo);
- 		break;
+ 		kunit_info(test, "Testing tile id %d.\n", id);
+-		xe_vm_lock(m->q->vm, &ww, 0, true);
++		xe_vm_lock(m->q->vm, true);
+ 		xe_device_mem_access_get(xe);
+ 		xe_migrate_sanity_test(m, test);
+ 		xe_device_mem_access_put(xe);
+-		xe_vm_unlock(m->q->vm, &ww);
++		xe_vm_unlock(m->q->vm);
  	}
+ 
+ 	return 0;
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 6a8a41dafe88..a3ddd6575793 100644
+index a3ddd6575793..25fdc04627ca 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1079,13 +1079,11 @@ static void xe_gem_object_close(struct drm_gem_object *obj,
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
- 
- 	if (bo->vm && !xe_vm_in_fault_mode(bo->vm)) {
--		struct ww_acquire_ctx ww;
--
- 		XE_WARN_ON(!xe_bo_is_user(bo));
- 
--		xe_bo_lock(bo, &ww, 0, false);
-+		xe_bo_lock(bo, false);
- 		ttm_bo_set_bulk_move(&bo->ttm, NULL);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
+@@ -1749,7 +1749,6 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	struct xe_device *xe = to_xe_device(dev);
+ 	struct xe_file *xef = to_xe_file(file);
+ 	struct drm_xe_gem_create *args = data;
+-	struct ww_acquire_ctx ww;
+ 	struct xe_vm *vm = NULL;
+ 	struct xe_bo *bo;
+ 	unsigned int bo_flags = XE_BO_CREATE_USER_BIT;
+@@ -1802,7 +1801,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 		vm = xe_vm_lookup(xef, args->vm_id);
+ 		if (XE_IOCTL_DBG(xe, !vm))
+ 			return -ENOENT;
+-		err = xe_vm_lock(vm, &ww, 0, true);
++		err = xe_vm_lock(vm, true);
+ 		if (err) {
+ 			xe_vm_put(vm);
+ 			return err;
+@@ -1830,7 +1829,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	xe_bo_put(bo);
+ out_vm:
+ 	if (vm) {
+-		xe_vm_unlock(vm, &ww);
++		xe_vm_unlock(vm);
+ 		xe_vm_put(vm);
  	}
+ 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index e44d71c679cc..6725157d8c1d 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -111,18 +111,17 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
+ 					   u32 logical_mask, u16 width,
+ 					   struct xe_hw_engine *hwe, u32 flags)
+ {
+-	struct ww_acquire_ctx ww;
+ 	struct xe_exec_queue *q;
+ 	int err;
+ 
+ 	if (vm) {
+-		err = xe_vm_lock(vm, &ww, 0, true);
++		err = xe_vm_lock(vm, true);
+ 		if (err)
+ 			return ERR_PTR(err);
+ 	}
+ 	q = __xe_exec_queue_create(xe, vm, logical_mask, width, hwe, flags);
+ 	if (vm)
+-		xe_vm_unlock(vm, &ww);
++		xe_vm_unlock(vm);
+ 
+ 	return q;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 2b4219c38359..434fbb364b4b 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -789,16 +789,14 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 
+ void xe_lrc_finish(struct xe_lrc *lrc)
+ {
+-	struct ww_acquire_ctx ww;
+-
+ 	xe_hw_fence_ctx_finish(&lrc->fence_ctx);
+ 	if (lrc->bo->vm)
+-		xe_vm_lock(lrc->bo->vm, &ww, 0, false);
++		xe_vm_lock(lrc->bo->vm, false);
+ 	else
+ 		xe_bo_lock_no_vm(lrc->bo, NULL);
+ 	xe_bo_unpin(lrc->bo);
+ 	if (lrc->bo->vm)
+-		xe_vm_unlock(lrc->bo->vm, &ww);
++		xe_vm_unlock(lrc->bo->vm);
+ 	else
+ 		xe_bo_unlock_no_vm(lrc->bo);
+ 	xe_bo_put(lrc->bo);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index a782ea282cb6..ee8bc5f3ba3d 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -88,13 +88,12 @@ struct xe_exec_queue *xe_tile_migrate_engine(struct xe_tile *tile)
+ static void xe_migrate_fini(struct drm_device *dev, void *arg)
+ {
+ 	struct xe_migrate *m = arg;
+-	struct ww_acquire_ctx ww;
+ 
+-	xe_vm_lock(m->q->vm, &ww, 0, false);
++	xe_vm_lock(m->q->vm, false);
+ 	xe_bo_unpin(m->pt_bo);
+ 	if (m->cleared_bo)
+ 		xe_bo_unpin(m->cleared_bo);
+-	xe_vm_unlock(m->q->vm, &ww);
++	xe_vm_unlock(m->q->vm);
+ 
+ 	dma_fence_put(m->fence);
+ 	if (m->cleared_bo)
+@@ -338,7 +337,6 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+ 	struct xe_gt *primary_gt = tile->primary_gt;
+ 	struct xe_migrate *m;
+ 	struct xe_vm *vm;
+-	struct ww_acquire_ctx ww;
+ 	int err;
+ 
+ 	m = drmm_kzalloc(&xe->drm, sizeof(*m), GFP_KERNEL);
+@@ -353,9 +351,9 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+ 	if (IS_ERR(vm))
+ 		return ERR_CAST(vm);
+ 
+-	xe_vm_lock(vm, &ww, 0, false);
++	xe_vm_lock(vm, false);
+ 	err = xe_migrate_prepare_vm(tile, m, vm);
+-	xe_vm_unlock(vm, &ww);
++	xe_vm_unlock(vm);
+ 	if (err) {
+ 		xe_vm_close_and_put(vm);
+ 		return ERR_PTR(err);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 8462f6321351..c84f0fb56e39 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -523,18 +523,17 @@ void xe_vm_unlock_dma_resv(struct xe_vm *vm,
+ 
+ static void xe_vm_kill(struct xe_vm *vm)
+ {
+-	struct ww_acquire_ctx ww;
+ 	struct xe_exec_queue *q;
+ 
+ 	lockdep_assert_held(&vm->lock);
+ 
+-	xe_vm_lock(vm, &ww, 0, false);
++	xe_vm_lock(vm, false);
+ 	vm->flags |= XE_VM_FLAG_BANNED;
+ 	trace_xe_vm_kill(vm);
+ 
+ 	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link)
+ 		q->ops->kill(q);
+-	xe_vm_unlock(vm, &ww);
++	xe_vm_unlock(vm);
+ 
+ 	/* TODO: Inform user the VM is banned */
+ }
+@@ -1412,7 +1411,6 @@ static void xe_vm_close(struct xe_vm *vm)
+ void xe_vm_close_and_put(struct xe_vm *vm)
+ {
+ 	LIST_HEAD(contested);
+-	struct ww_acquire_ctx ww;
+ 	struct xe_device *xe = vm->xe;
+ 	struct xe_tile *tile;
+ 	struct xe_vma *vma, *next_vma;
+@@ -1435,7 +1433,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	}
+ 
+ 	down_write(&vm->lock);
+-	xe_vm_lock(vm, &ww, 0, false);
++	xe_vm_lock(vm, false);
+ 	drm_gpuva_for_each_va_safe(gpuva, next, &vm->mgr) {
+ 		vma = gpuva_to_vma(gpuva);
+ 
+@@ -1476,7 +1474,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 					      NULL);
+ 		}
+ 	}
+-	xe_vm_unlock(vm, &ww);
++	xe_vm_unlock(vm);
+ 
+ 	/*
+ 	 * VM is now dead, cannot re-add nodes to vm->vmas if it's NULL
+@@ -1514,7 +1512,6 @@ static void vm_destroy_work_func(struct work_struct *w)
+ {
+ 	struct xe_vm *vm =
+ 		container_of(w, struct xe_vm, destroy_work);
+-	struct ww_acquire_ctx ww;
+ 	struct xe_device *xe = vm->xe;
+ 	struct xe_tile *tile;
+ 	u8 id;
+@@ -1539,14 +1536,14 @@ static void vm_destroy_work_func(struct work_struct *w)
+ 	 * is needed for xe_vm_lock to work. If we remove that dependency this
+ 	 * can be moved to xe_vm_close_and_put.
+ 	 */
+-	xe_vm_lock(vm, &ww, 0, false);
++	xe_vm_lock(vm, false);
+ 	for_each_tile(tile, xe, id) {
+ 		if (vm->pt_root[id]) {
+ 			xe_pt_destroy(vm->pt_root[id], vm->flags, NULL);
+ 			vm->pt_root[id] = NULL;
+ 		}
+ 	}
+-	xe_vm_unlock(vm, &ww);
++	xe_vm_unlock(vm);
+ 
+ 	trace_xe_vm_free(vm);
+ 	dma_fence_put(vm->rebind_fence);
+@@ -3422,30 +3419,32 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	return err == -ENODATA ? 0 : err;
  }
  
-@@ -1863,26 +1861,37 @@ int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
- 	return 0;
- }
- 
--int xe_bo_lock(struct xe_bo *bo, struct ww_acquire_ctx *ww,
--	       int num_resv, bool intr)
+-/*
+- * XXX: Using the TTM wrappers for now, likely can call into dma-resv code
+- * directly to optimize. Also this likely should be an inline function.
 +/**
-+ * xe_bo_lock() - Lock the buffer object's dma_resv object
-+ * @bo: The struct xe_bo whose lock is to be taken
++ * xe_vm_lock() - Lock the vm's dma_resv object
++ * @vm: The struct xe_vm whose lock is to be locked
 + * @intr: Whether to perform any wait interruptible
 + *
-+ * Locks the buffer object's dma_resv object. If the buffer object is
-+ * pointing to a shared dma_resv object, that shared lock is locked.
-+ *
 + * Return: 0 on success, -EINTR if @intr is true and the wait for a
-+ * contended lock was interrupted. If @intr is set to false, the
-+ * function always returns 0.
-+ */
-+int xe_bo_lock(struct xe_bo *bo, bool intr)
++ * contended lock was interrupted. If @intr is false, the function
++ * always returns 0.
+  */
+-int xe_vm_lock(struct xe_vm *vm, struct ww_acquire_ctx *ww,
+-	       int num_resv, bool intr)
++int xe_vm_lock(struct xe_vm *vm, bool intr)
  {
--	struct ttm_validate_buffer tv_bo;
+-	struct ttm_validate_buffer tv_vm;
 -	LIST_HEAD(objs);
 -	LIST_HEAD(dups);
-+	if (intr)
-+		return dma_resv_lock_interruptible(bo->ttm.base.resv, NULL);
- 
--	XE_WARN_ON(!ww);
-+	dma_resv_lock(bo->ttm.base.resv, NULL);
- 
--	tv_bo.num_shared = num_resv;
--	tv_bo.bo = &bo->ttm;
--	list_add_tail(&tv_bo.head, &objs);
 -
+-	XE_WARN_ON(!ww);
+-
+-	tv_vm.num_shared = num_resv;
+-	tv_vm.bo = xe_vm_ttm_bo(vm);
+-	list_add_tail(&tv_vm.head, &objs);
++	if (intr)
++		return dma_resv_lock_interruptible(&vm->resv, NULL);
+ 
 -	return ttm_eu_reserve_buffers(ww, &objs, intr, &dups);
-+	return 0;
++	return dma_resv_lock(&vm->resv, NULL);
  }
  
--void xe_bo_unlock(struct xe_bo *bo, struct ww_acquire_ctx *ww)
+-void xe_vm_unlock(struct xe_vm *vm, struct ww_acquire_ctx *ww)
 +/**
-+ * xe_bo_unlock() - Unlock the buffer object's dma_resv object
-+ * @bo: The struct xe_bo whose lock is to be released.
++ * xe_vm_unlock() - Unlock the vm's dma_resv object
++ * @vm: The struct xe_vm whose lock is to be released.
 + *
-+ * Unlock a buffer object lock that was locked by xe_bo_lock().
++ * Unlock a buffer object lock that was locked by xe_vm_lock().
 + */
-+void xe_bo_unlock(struct xe_bo *bo)
++void xe_vm_unlock(struct xe_vm *vm)
  {
- 	dma_resv_unlock(bo->ttm.base.resv);
+ 	dma_resv_unlock(&vm->resv);
 -	ww_acquire_fini(ww);
  }
  
  /**
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 0823dda0f31b..a7b9e7084225 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -149,10 +149,9 @@ static inline void xe_bo_assert_held(struct xe_bo *bo)
- 		dma_resv_assert_held((bo)->ttm.base.resv);
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 6de6e3edb24a..d7d8fd7bd8da 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -39,10 +39,9 @@ static inline void xe_vm_put(struct xe_vm *vm)
+ 	kref_put(&vm->refcount, xe_vm_free);
  }
  
--int xe_bo_lock(struct xe_bo *bo, struct ww_acquire_ctx *ww,
+-int xe_vm_lock(struct xe_vm *vm, struct ww_acquire_ctx *ww,
 -	       int num_resv, bool intr);
-+int xe_bo_lock(struct xe_bo *bo, bool intr);
++int xe_vm_lock(struct xe_vm *vm, bool intr);
  
--void xe_bo_unlock(struct xe_bo *bo, struct ww_acquire_ctx *ww);
-+void xe_bo_unlock(struct xe_bo *bo);
+-void xe_vm_unlock(struct xe_vm *vm, struct ww_acquire_ctx *ww);
++void xe_vm_unlock(struct xe_vm *vm);
  
- static inline void xe_bo_unlock_vm_held(struct xe_bo *bo)
+ static inline bool xe_vm_is_closed(struct xe_vm *vm)
  {
-diff --git a/drivers/gpu/drm/xe/xe_bo_evict.c b/drivers/gpu/drm/xe/xe_bo_evict.c
-index 0d5c3a208ab4..49c05ddea164 100644
---- a/drivers/gpu/drm/xe/xe_bo_evict.c
-+++ b/drivers/gpu/drm/xe/xe_bo_evict.c
-@@ -27,7 +27,6 @@
- int xe_bo_evict_all(struct xe_device *xe)
- {
- 	struct ttm_device *bdev = &xe->ttm;
--	struct ww_acquire_ctx ww;
- 	struct xe_bo *bo;
- 	struct xe_tile *tile;
- 	struct list_head still_in_list;
-@@ -62,9 +61,9 @@ int xe_bo_evict_all(struct xe_device *xe)
- 		list_move_tail(&bo->pinned_link, &still_in_list);
- 		spin_unlock(&xe->pinned.lock);
- 
--		xe_bo_lock(bo, &ww, 0, false);
-+		xe_bo_lock(bo, false);
- 		ret = xe_bo_evict_pinned(bo);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 		xe_bo_put(bo);
- 		if (ret) {
- 			spin_lock(&xe->pinned.lock);
-@@ -96,9 +95,9 @@ int xe_bo_evict_all(struct xe_device *xe)
- 		list_move_tail(&bo->pinned_link, &xe->pinned.evicted);
- 		spin_unlock(&xe->pinned.lock);
- 
--		xe_bo_lock(bo, &ww, 0, false);
-+		xe_bo_lock(bo, false);
- 		ret = xe_bo_evict_pinned(bo);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 		xe_bo_put(bo);
- 		if (ret)
- 			return ret;
-@@ -123,7 +122,6 @@ int xe_bo_evict_all(struct xe_device *xe)
-  */
- int xe_bo_restore_kernel(struct xe_device *xe)
- {
--	struct ww_acquire_ctx ww;
- 	struct xe_bo *bo;
- 	int ret;
- 
-@@ -140,9 +138,9 @@ int xe_bo_restore_kernel(struct xe_device *xe)
- 		list_move_tail(&bo->pinned_link, &xe->pinned.kernel_bo_present);
- 		spin_unlock(&xe->pinned.lock);
- 
--		xe_bo_lock(bo, &ww, 0, false);
-+		xe_bo_lock(bo, false);
- 		ret = xe_bo_restore_pinned(bo);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 		if (ret) {
- 			xe_bo_put(bo);
- 			return ret;
-@@ -184,7 +182,6 @@ int xe_bo_restore_kernel(struct xe_device *xe)
-  */
- int xe_bo_restore_user(struct xe_device *xe)
- {
--	struct ww_acquire_ctx ww;
- 	struct xe_bo *bo;
- 	struct xe_tile *tile;
- 	struct list_head still_in_list;
-@@ -206,9 +203,9 @@ int xe_bo_restore_user(struct xe_device *xe)
- 		xe_bo_get(bo);
- 		spin_unlock(&xe->pinned.lock);
- 
--		xe_bo_lock(bo, &ww, 0, false);
-+		xe_bo_lock(bo, false);
- 		ret = xe_bo_restore_pinned(bo);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 		xe_bo_put(bo);
- 		if (ret) {
- 			spin_lock(&xe->pinned.lock);
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index b6f781b3d9d7..73fc9389a663 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -171,20 +171,18 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 
- 	/* Lock VM and BOs dma-resv */
- 	bo = xe_vma_bo(vma);
--	if (only_needs_bo_lock(bo)) {
--		/* This path ensures the BO's LRU is updated */
--		ret = xe_bo_lock(bo, &ww, xe->info.tile_count, false);
--	} else {
-+	if (!only_needs_bo_lock(bo)) {
- 		tv_vm.num_shared = xe->info.tile_count;
- 		tv_vm.bo = xe_vm_ttm_bo(vm);
- 		list_add(&tv_vm.head, &objs);
--		if (bo) {
--			tv_bo.bo = &bo->ttm;
--			tv_bo.num_shared = xe->info.tile_count;
--			list_add(&tv_bo.head, &objs);
--		}
--		ret = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
- 	}
-+	if (bo) {
-+		tv_bo.bo = &bo->ttm;
-+		tv_bo.num_shared = xe->info.tile_count;
-+		list_add(&tv_bo.head, &objs);
-+	}
-+
-+	ret = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
- 	if (ret)
- 		goto unlock_vm;
- 
-@@ -227,10 +225,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 	vma->usm.tile_invalidated &= ~BIT(gt_to_tile(gt)->id);
- 
- unlock_dma_resv:
--	if (only_needs_bo_lock(bo))
--		xe_bo_unlock(bo, &ww);
--	else
--		ttm_eu_backoff_reservation(&ww, &objs);
-+	ttm_eu_backoff_reservation(&ww, &objs);
- unlock_vm:
- 	if (!ret)
- 		vm->usm.last_fault_vma = vma;
-@@ -534,28 +529,22 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
- 
- 	/* Lock VM and BOs dma-resv */
- 	bo = xe_vma_bo(vma);
--	if (only_needs_bo_lock(bo)) {
--		/* This path ensures the BO's LRU is updated */
--		ret = xe_bo_lock(bo, &ww, xe->info.tile_count, false);
--	} else {
-+	if (!only_needs_bo_lock(bo)) {
- 		tv_vm.num_shared = xe->info.tile_count;
- 		tv_vm.bo = xe_vm_ttm_bo(vm);
- 		list_add(&tv_vm.head, &objs);
--		tv_bo.bo = &bo->ttm;
--		tv_bo.num_shared = xe->info.tile_count;
--		list_add(&tv_bo.head, &objs);
--		ret = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
- 	}
-+	tv_bo.bo = &bo->ttm;
-+	tv_bo.num_shared = xe->info.tile_count;
-+	list_add(&tv_bo.head, &objs);
-+	ret = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
- 	if (ret)
- 		goto unlock_vm;
- 
- 	/* Migrate to VRAM, move should invalidate the VMA first */
- 	ret = xe_bo_migrate(bo, XE_PL_VRAM0 + tile->id);
- 
--	if (only_needs_bo_lock(bo))
--		xe_bo_unlock(bo, &ww);
--	else
--		ttm_eu_backoff_reservation(&ww, &objs);
-+	ttm_eu_backoff_reservation(&ww, &objs);
- unlock_vm:
- 	up_read(&vm->lock);
- 	xe_vm_put(vm);
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 9cbf2f63d641..8462f6321351 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -267,13 +267,16 @@ static void arm_preempt_fences(struct xe_vm *vm, struct list_head *list)
- static int add_preempt_fences(struct xe_vm *vm, struct xe_bo *bo)
- {
- 	struct xe_exec_queue *q;
--	struct ww_acquire_ctx ww;
- 	int err;
- 
--	err = xe_bo_lock(bo, &ww, vm->preempt.num_exec_queues, true);
-+	err = xe_bo_lock(bo, true);
- 	if (err)
- 		return err;
- 
-+	err = dma_resv_reserve_fences(bo->ttm.base.resv, vm->preempt.num_exec_queues);
-+	if (err)
-+		goto out_unlock;
-+
- 	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link)
- 		if (q->compute.pfence) {
- 			dma_resv_add_fence(bo->ttm.base.resv,
-@@ -281,8 +284,9 @@ static int add_preempt_fences(struct xe_vm *vm, struct xe_bo *bo)
- 					   DMA_RESV_USAGE_BOOKKEEP);
- 		}
- 
--	xe_bo_unlock(bo, &ww);
--	return 0;
-+out_unlock:
-+	xe_bo_unlock(bo);
-+	return err;
- }
- 
- /**
-@@ -1021,12 +1025,11 @@ bo_has_vm_references_locked(struct xe_bo *bo, struct xe_vm *vm,
- static bool bo_has_vm_references(struct xe_bo *bo, struct xe_vm *vm,
- 				 struct xe_vma *ignore)
- {
--	struct ww_acquire_ctx ww;
- 	bool ret;
- 
--	xe_bo_lock(bo, &ww, 0, false);
-+	xe_bo_lock(bo, false);
- 	ret = !!bo_has_vm_references_locked(bo, vm, ignore);
--	xe_bo_unlock(bo, &ww);
-+	xe_bo_unlock(bo);
- 
- 	return ret;
- }
-@@ -2267,7 +2270,6 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 			 u32 operation, u8 tile_mask, u32 region)
- {
- 	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
--	struct ww_acquire_ctx ww;
- 	struct drm_gpuva_ops *ops;
- 	struct drm_gpuva_op *__op;
- 	struct xe_vma_op *op;
-@@ -2325,11 +2327,11 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 	case XE_VM_BIND_OP_UNMAP_ALL:
- 		XE_WARN_ON(!bo);
- 
--		err = xe_bo_lock(bo, &ww, 0, true);
-+		err = xe_bo_lock(bo, true);
- 		if (err)
- 			return ERR_PTR(err);
- 		ops = drm_gpuva_gem_unmap_ops_create(&vm->mgr, obj);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 		if (IS_ERR(ops))
- 			return ops;
- 
-@@ -2365,13 +2367,12 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
- {
- 	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) : NULL;
- 	struct xe_vma *vma;
--	struct ww_acquire_ctx ww;
- 	int err;
- 
- 	lockdep_assert_held_write(&vm->lock);
- 
- 	if (bo) {
--		err = xe_bo_lock(bo, &ww, 0, true);
-+		err = xe_bo_lock(bo, true);
- 		if (err)
- 			return ERR_PTR(err);
- 	}
-@@ -2380,7 +2381,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
- 			    op->va.range - 1, read_only, is_null,
- 			    tile_mask);
- 	if (bo)
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 
- 	if (xe_vma_is_userptr(vma)) {
- 		err = xe_vma_userptr_pin_pages(vma);
-diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-index c9bc59be5094..05081fa0fbed 100644
---- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-+++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-@@ -28,16 +28,15 @@ static int madvise_preferred_mem_class(struct xe_device *xe, struct xe_vm *vm,
- 
- 	for (i = 0; i < num_vmas; ++i) {
- 		struct xe_bo *bo;
--		struct ww_acquire_ctx ww;
- 
- 		bo = xe_vma_bo(vmas[i]);
- 
--		err = xe_bo_lock(bo, &ww, 0, true);
-+		err = xe_bo_lock(bo, true);
- 		if (err)
- 			return err;
- 		bo->props.preferred_mem_class = value;
- 		xe_bo_placement_for_flags(xe, bo, bo->flags);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 	}
- 
- 	return 0;
-@@ -53,16 +52,15 @@ static int madvise_preferred_gt(struct xe_device *xe, struct xe_vm *vm,
- 
- 	for (i = 0; i < num_vmas; ++i) {
- 		struct xe_bo *bo;
--		struct ww_acquire_ctx ww;
- 
- 		bo = xe_vma_bo(vmas[i]);
- 
--		err = xe_bo_lock(bo, &ww, 0, true);
-+		err = xe_bo_lock(bo, true);
- 		if (err)
- 			return err;
- 		bo->props.preferred_gt = value;
- 		xe_bo_placement_for_flags(xe, bo, bo->flags);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 	}
- 
- 	return 0;
-@@ -89,17 +87,16 @@ static int madvise_preferred_mem_class_gt(struct xe_device *xe,
- 
- 	for (i = 0; i < num_vmas; ++i) {
- 		struct xe_bo *bo;
--		struct ww_acquire_ctx ww;
- 
- 		bo = xe_vma_bo(vmas[i]);
- 
--		err = xe_bo_lock(bo, &ww, 0, true);
-+		err = xe_bo_lock(bo, true);
- 		if (err)
- 			return err;
- 		bo->props.preferred_mem_class = mem_class;
- 		bo->props.preferred_gt = gt_id;
- 		xe_bo_placement_for_flags(xe, bo, bo->flags);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 	}
- 
- 	return 0;
-@@ -112,13 +109,12 @@ static int madvise_cpu_atomic(struct xe_device *xe, struct xe_vm *vm,
- 
- 	for (i = 0; i < num_vmas; ++i) {
- 		struct xe_bo *bo;
--		struct ww_acquire_ctx ww;
- 
- 		bo = xe_vma_bo(vmas[i]);
- 		if (XE_IOCTL_DBG(xe, !(bo->flags & XE_BO_CREATE_SYSTEM_BIT)))
- 			return -EINVAL;
- 
--		err = xe_bo_lock(bo, &ww, 0, true);
-+		err = xe_bo_lock(bo, true);
- 		if (err)
- 			return err;
- 		bo->props.cpu_atomic = !!value;
-@@ -130,7 +126,7 @@ static int madvise_cpu_atomic(struct xe_device *xe, struct xe_vm *vm,
- 		 */
- 		if (bo->props.cpu_atomic)
- 			ttm_bo_unmap_virtual(&bo->ttm);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 	}
- 
- 	return 0;
-@@ -143,18 +139,17 @@ static int madvise_device_atomic(struct xe_device *xe, struct xe_vm *vm,
- 
- 	for (i = 0; i < num_vmas; ++i) {
- 		struct xe_bo *bo;
--		struct ww_acquire_ctx ww;
- 
- 		bo = xe_vma_bo(vmas[i]);
- 		if (XE_IOCTL_DBG(xe, !(bo->flags & XE_BO_CREATE_VRAM0_BIT) &&
- 				 !(bo->flags & XE_BO_CREATE_VRAM1_BIT)))
- 			return -EINVAL;
- 
--		err = xe_bo_lock(bo, &ww, 0, true);
-+		err = xe_bo_lock(bo, true);
- 		if (err)
- 			return err;
- 		bo->props.device_atomic = !!value;
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 	}
- 
- 	return 0;
-@@ -174,16 +169,15 @@ static int madvise_priority(struct xe_device *xe, struct xe_vm *vm,
- 
- 	for (i = 0; i < num_vmas; ++i) {
- 		struct xe_bo *bo;
--		struct ww_acquire_ctx ww;
- 
- 		bo = xe_vma_bo(vmas[i]);
- 
--		err = xe_bo_lock(bo, &ww, 0, true);
-+		err = xe_bo_lock(bo, true);
- 		if (err)
- 			return err;
- 		bo->ttm.priority = value;
- 		ttm_bo_move_to_lru_tail(&bo->ttm);
--		xe_bo_unlock(bo, &ww);
-+		xe_bo_unlock(bo);
- 	}
- 
- 	return 0;
 -- 
 2.41.0
 
