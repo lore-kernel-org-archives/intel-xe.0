@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EFD86CA0FE1
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Sep 2023 15:56:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 672DECA0FE5
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Sep 2023 15:57:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7465710E772;
-	Fri,  1 Sep 2023 15:56:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18CE510E721;
+	Fri,  1 Sep 2023 15:57:49 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 07AC710E772;
- Fri,  1 Sep 2023 15:56:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1A81C10E721;
+ Fri,  1 Sep 2023 15:57:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EA69EAADF2;
- Fri,  1 Sep 2023 15:56:09 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0087890420168011845=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 15D80AADF2;
+ Fri,  1 Sep 2023 15:57:48 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Date: Fri, 01 Sep 2023 15:56:09 -0000
-Message-ID: <169358376990.9813.7251133489494166621@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 01 Sep 2023 15:57:48 -0000
+Message-ID: <169358386808.9814.3321597899279659041@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230901142709.269161-1-vinod.govindapillai@intel.com>
-In-Reply-To: <20230901142709.269161-1-vinod.govindapillai@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_fbc_on_an?=
- =?utf-8?q?y_planes?=
+References: <20230901142824.316711-3-matthew.auld@intel.com>
+In-Reply-To: <20230901142824.316711-3-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/2=5D_drm/xe/selftests=3A_consider_?=
+ =?utf-8?q?multi-GT_for_eviction_test?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,106 +45,18 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0087890420168011845==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: fbc on any planes
-URL   : https://patchwork.freedesktop.org/series/123179/
+Series: series starting with [1/2] drm/xe/selftests: consider multi-GT for eviction test
+URL   : https://patchwork.freedesktop.org/series/123181/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-353-e4a0387635ffa6ccbc6207c9195896bcc4e59de2_BAT -> xe-pw-123179v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: e4a038763 fixup! drm/xe: Add min/max cap for engine scheduler properties
+=== git am output follows ===
+Applying: drm/xe/selftests: consider multi-GT for eviction test
+Applying: drm/xe/selftests: make eviction test tile centric
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_7463 -> IGT_7464
-  * Linux: xe-353-e4a0387635ffa6ccbc6207c9195896bcc4e59de2 -> xe-pw-123179v1
-
-  IGT_7463: 7463
-  IGT_7464: 7464
-  xe-353-e4a0387635ffa6ccbc6207c9195896bcc4e59de2: e4a0387635ffa6ccbc6207c9195896bcc4e59de2
-  xe-pw-123179v1: 123179v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe//index.html
-
---===============0087890420168011845==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fbc on any planes</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123179/">https://patchwork.freedesktop.org/series/123179/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe//index.html">https://intel-gfx-ci.01.org/tree/intel-xe//index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-353-e4a0387635ffa6ccbc6207c9195896bcc4e59de2_BAT -&gt; xe-pw-123179v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7463 -&gt; IGT_7464</li>
-<li>Linux: xe-353-e4a0387635ffa6ccbc6207c9195896bcc4e59de2 -&gt; xe-pw-123179v1</li>
-</ul>
-<p>IGT_7463: 7463<br />
-  IGT_7464: 7464<br />
-  xe-353-e4a0387635ffa6ccbc6207c9195896bcc4e59de2: e4a0387635ffa6ccbc6207c9195896bcc4e59de2<br />
-  xe-pw-123179v1: 123179v1</p>
-
-</body>
-</html>
-
---===============0087890420168011845==--
