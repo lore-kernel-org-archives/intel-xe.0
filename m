@@ -4,50 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFEC0C83F3F
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Sep 2023 11:56:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 398C4C83F33
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Sep 2023 12:08:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5485410E1D7;
-	Mon,  4 Sep 2023 11:56:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D38DD10E200;
- Mon,  4 Sep 2023 11:56:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693828560; x=1725364560;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rYjuDHSs2XLGaWwzMSPtadryxwjYWm6Gs4cz1KtjuQo=;
- b=LyMNZV30oEn1YsODqJaWQ+M1aujiS7zmyHacs5wtgBEBLRu7ENcjjU7L
- 8ZfeQqeETnz3HTLwco4t7W/X8+bJ0sQQPuNfb8G+eHkgUSHgD9K87RGKk
- TfkWdF1pgF6bOD8Zr9SMf+g+KbVHlnuC/QOOkIlQdBEp+rOs+G69wlZ+k
- 36cVk04bj2O9B6U9q3BsgZBO4ksKaENC+drPI/ITEKNE2NWRDr4e09kQq
- pcnV1F+kBTmI254G+HW2ty6UXimN4zxmPxxNed0TPRG8FP0h2M8mUmrA6
- /+19rwiM4X4f5ijU49soBkB/8BuSBNqNZ+SPhpyWUrrEoqzeBV2HQ+065 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10822"; a="440549094"
-X-IronPort-AV: E=Sophos;i="6.02,226,1688454000"; d="scan'208";a="440549094"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2023 04:56:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10822"; a="810882583"
-X-IronPort-AV: E=Sophos;i="6.02,226,1688454000"; d="scan'208";a="810882583"
-Received: from bagbokpo-mobl1.ger.corp.intel.com (HELO
- vgovind2-mobl3.intel.com) ([10.251.215.150])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Sep 2023 04:55:52 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon,  4 Sep 2023 14:55:17 +0300
-Message-Id: <20230904115517.458662-3-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230904115517.458662-1-vinod.govindapillai@intel.com>
-References: <20230904115517.458662-1-vinod.govindapillai@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C83AB10E131;
+	Mon,  4 Sep 2023 12:08:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0D21610E131;
+ Mon,  4 Sep 2023 12:08:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 04825A02F0;
+ Mon,  4 Sep 2023 12:08:23 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 2/2] drm/i915/lnl: FBC is supported with per
- pixel alpha
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Date: Mon, 04 Sep 2023 12:08:22 -0000
+Message-ID: <169382930298.21387.14045373635871669139@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230904115517.458662-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20230904115517.458662-1-vinod.govindapillai@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_fbc_on_any_planes_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,34 +39,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, intel-gfx@lists.freedesktop.org,
- ville.syrjala@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For LNL onwards, FBC can be supported on planes with per
-pixel alpha
+== Series Details ==
 
-Bspec: 69560
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_fbc.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Series: fbc on any planes (rev2)
+URL   : https://patchwork.freedesktop.org/series/123179/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index a3999ad95a19..c0e4caec03ea 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1209,7 +1209,8 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 		return 0;
- 	}
- 
--	if (plane_state->hw.pixel_blend_mode != DRM_MODE_BLEND_PIXEL_NONE &&
-+	if (DISPLAY_VER(i915) < 20 &&
-+	    plane_state->hw.pixel_blend_mode != DRM_MODE_BLEND_PIXEL_NONE &&
- 	    fb->format->has_alpha) {
- 		plane_state->no_fbc_reason = "per-pixel alpha not supported";
- 		return 0;
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 7ec520d3a drm/xe/selftests: make eviction test tile centric
+=== git am output follows ===
+Applying: drm/i915/lnl: possibility to enable FBC on first three planes
+Applying: drm/i915/lnl: FBC is supported with per pixel alpha
+
 
