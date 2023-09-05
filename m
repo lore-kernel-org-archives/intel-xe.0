@@ -4,55 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79350C83F33
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 14:30:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AAABC83F33
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 14:31:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35AC910E542;
-	Tue,  5 Sep 2023 14:30:07 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07AD610E541;
- Tue,  5 Sep 2023 14:30:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDEAA10E542;
+	Tue,  5 Sep 2023 14:31:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF77210E542
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Sep 2023 14:31:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693924205; x=1725460205;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=Z+BiVkXI2KSHQq5poTdeoEuU+DEH+Sr3NnpKHGTTo24=;
- b=acapXMQdmmQnM4RvvzHHTAeVoFcPafdN4DFKa/ZzGznKoOl2Wq+V0xq2
- S6wuZbLWe/mcOYaKf2gWWmUvI6EPsE47CtWa51ioqN7vpqsNKVcmBdyHT
- duSL4F8RgseeiNWyf2dkc11P2bPbMDD6+DEYdyvt63fdXmYNw+VEbwy97
- U+/7+fghmflHDmAiKQGUjiEKXP0oJ0XWazGAE0uk6SAMByJ1BZpybGes/
- 1HDyLt0gaPt37jFyzOoM87GxadAIKx8/zBYcNCPHZorcN8r+MEV8qPqGX
- 4wMwZUZd9WrnPP+KSXBzoWC8y8DhzIFt5RaY9RaR75xLB/SUlQrYX3zNr Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="440778586"
-X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="440778586"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 07:30:04 -0700
+ t=1693924304; x=1725460304;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=cRempwPxOu28UoH+9U0smeRZy+1d9lBcQFLUm3QjBgY=;
+ b=UWw1L1qmzROla7xWF1SGhpvng2my+zZOVg6iIvAMxqArpEzSDUBJIxNf
+ ngq1kZG7UkRFX55lVgvM23pmVqrQ/OI/MaET3lFl3ypjbM7giXfcoxuI+
+ lG+fxmaFwZ4x2txxvVqYP++0gJHo41cqIp5VrObDvy8wgOH19mBvM5xrq
+ IwiDGWfUJwj+mraqU2zYBoJmK3tgsGtiFnZgtpMp80fQhTlQ66vLe6KDX
+ wDc6zQL7KQlpndwi/SkztvBSro3mPxudMOFsO6/CEsGXDSS9/hhrgMKYZ
+ jdwYyqJlhA7zCu7rEKUWAdeoR8B6FjJ/vmkf1F1lKlgFQhxM+Aqv7/mAR A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="407798196"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="407798196"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2023 07:31:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="884320656"
-X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="884320656"
-Received: from chenxi4-mobl1.ccr.corp.intel.com (HELO [10.249.254.154])
- ([10.249.254.154])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 07:29:54 -0700
-Message-ID: <2457e9ba-ecdb-b427-692b-a5c85f9e8828@linux.intel.com>
-Date: Tue, 5 Sep 2023 16:29:59 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="856008686"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="856008686"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2023 07:31:40 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue,  5 Sep 2023 07:31:42 -0700
+Message-Id: <20230905143144.1706967-2-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230905143144.1706967-1-lucas.demarchi@intel.com>
+References: <20230905143144.1706967-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230905085832.2103-1-thomas.hellstrom@linux.intel.com>
- <20230905085832.2103-4-thomas.hellstrom@linux.intel.com>
- <eabe3626-9fd1-c56f-5405-44653d2aab33@gmail.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <eabe3626-9fd1-c56f-5405-44653d2aab33@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 3/3] drm/drm_exec: Work around a WW mutex
- lockdep oddity
+Subject: [Intel-xe] [PATCH 1/3] drm/xe/reg_sr: Simplify check for masked
+ registers
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,175 +57,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>,
- Danilo Krummrich <dakr@redhat.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Christian
+For all RTP actions, clr_bits is a superset of the bits being modified.
+That's also why the check for "changing all bits" can be done with
+`clr_bits + 1`. So always use clr_bits for setting the upper bits of a
+masked register.
 
-On 9/5/23 15:14, Christian König wrote:
-> Am 05.09.23 um 10:58 schrieb Thomas Hellström:
->> If *any* object of a certain WW mutex class is locked, lockdep will
->> consider *all* mutexes of that class as locked. Also the lock allocation
->> tracking code will apparently register only the address of the first
->> mutex locked in a sequence.
->> This has the odd consequence that if that first mutex is unlocked and
->> its memory then freed, the lock alloc tracking code will assume that 
->> memory
->> is freed with a held lock in there.
->>
->> For now, work around that for drm_exec by releasing the first grabbed
->> object lock last.
->>
->> Related lock alloc tracking warning:
->> [  322.660067] =========================
->> [  322.660070] WARNING: held lock freed!
->> [  322.660074] 6.5.0-rc7+ #155 Tainted: G     U           N
->> [  322.660078] -------------------------
->> [  322.660081] kunit_try_catch/4981 is freeing memory 
->> ffff888112adc000-ffff888112adc3ff, with a lock still held there!
->> [  322.660089] ffff888112adc1a0 
->> (reservation_ww_class_mutex){+.+.}-{3:3}, at: 
->> drm_exec_lock_obj+0x11a/0x600 [drm_exec]
->> [  322.660104] 2 locks held by kunit_try_catch/4981:
->> [  322.660108]  #0: ffffc9000343fe18 
->> (reservation_ww_class_acquire){+.+.}-{0:0}, at: 
->> test_early_put+0x22f/0x490 [drm_exec_test]
->> [  322.660123]  #1: ffff888112adc1a0 
->> (reservation_ww_class_mutex){+.+.}-{3:3}, at: 
->> drm_exec_lock_obj+0x11a/0x600 [drm_exec]
->> [  322.660135]
->>                 stack backtrace:
->> [  322.660139] CPU: 7 PID: 4981 Comm: kunit_try_catch Tainted: G     
->> U           N 6.5.0-rc7+ #155
->> [  322.660146] Hardware name: ASUS System Product Name/PRIME B560M-A 
->> AC, BIOS 0403 01/26/2021
->> [  322.660152] Call Trace:
->> [  322.660155]  <TASK>
->> [  322.660158]  dump_stack_lvl+0x57/0x90
->> [  322.660164]  debug_check_no_locks_freed+0x20b/0x2b0
->> [  322.660172]  slab_free_freelist_hook+0xa1/0x160
->> [  322.660179]  ? drm_exec_unlock_all+0x168/0x2a0 [drm_exec]
->> [  322.660186]  __kmem_cache_free+0xb2/0x290
->> [  322.660192]  drm_exec_unlock_all+0x168/0x2a0 [drm_exec]
->> [  322.660200]  drm_exec_fini+0xf/0x1c0 [drm_exec]
->> [  322.660206]  test_early_put+0x289/0x490 [drm_exec_test]
->> [  322.660215]  ? __pfx_test_early_put+0x10/0x10 [drm_exec_test]
->> [  322.660222]  ? __kasan_check_byte+0xf/0x40
->> [  322.660227]  ? __ksize+0x63/0x140
->> [  322.660233]  ? drmm_add_final_kfree+0x3e/0xa0 [drm]
->> [  322.660289]  ? _raw_spin_unlock_irqrestore+0x30/0x60
->> [  322.660294]  ? lockdep_hardirqs_on+0x7d/0x100
->> [  322.660301]  ? __pfx_kunit_try_run_case+0x10/0x10 [kunit]
->> [  322.660310]  ? __pfx_kunit_generic_run_threadfn_adapter+0x10/0x10 
->> [kunit]
->> [  322.660319]  kunit_generic_run_threadfn_adapter+0x4a/0x90 [kunit]
->> [  322.660328]  kthread+0x2e7/0x3c0
->> [  322.660334]  ? __pfx_kthread+0x10/0x10
->> [  322.660339]  ret_from_fork+0x2d/0x70
->> [  322.660345]  ? __pfx_kthread+0x10/0x10
->> [  322.660349]  ret_from_fork_asm+0x1b/0x30
->> [  322.660358]  </TASK>
->> [  322.660818]     ok 8 test_early_put
->>
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: Boris Brezillon <boris.brezillon@collabora.com>
->> Cc: Danilo Krummrich <dakr@redhat.com>
->> Cc: dri-devel@lists.freedesktop.org
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> ---
->>   drivers/gpu/drm/drm_exec.c |  2 +-
->>   include/drm/drm_exec.h     | 35 +++++++++++++++++++++++++++++++----
->>   2 files changed, 32 insertions(+), 5 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
->> index ff69cf0fb42a..5d2809de4517 100644
->> --- a/drivers/gpu/drm/drm_exec.c
->> +++ b/drivers/gpu/drm/drm_exec.c
->> @@ -56,7 +56,7 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
->>       struct drm_gem_object *obj;
->>       unsigned long index;
->>   -    drm_exec_for_each_locked_object(exec, index, obj) {
->> +    drm_exec_for_each_locked_object_reverse(exec, index, obj) {
->
-> Well that's a really good catch, just one more additional thought below.
->
->>           dma_resv_unlock(obj->resv);
->>           drm_gem_object_put(obj);
->>       }
->> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
->> index e0462361adf9..55764cf7c374 100644
->> --- a/include/drm/drm_exec.h
->> +++ b/include/drm/drm_exec.h
->> @@ -51,6 +51,20 @@ struct drm_exec {
->>       struct drm_gem_object *prelocked;
->>   };
->>   +/**
->> + * drm_exec_obj() - Return the object for a give drm_exec index
->> + * @exec: Pointer to the drm_exec context
->> + * @index: The index.
->> + *
->> + * Return: Pointer to the locked object corresponding to @index if
->> + * index is within the number of locked objects. NULL otherwise.
->> + */
->> +static inline struct drm_gem_object *
->> +drm_exec_obj(struct drm_exec *exec, unsigned long index)
->> +{
->> +    return index < exec->num_objects ? exec->objects[index] : NULL;
->> +}
->> +
->>   /**
->>    * drm_exec_for_each_locked_object - iterate over all the locked 
->> objects
->>    * @exec: drm_exec object
->> @@ -59,10 +73,23 @@ struct drm_exec {
->>    *
->>    * Iterate over all the locked GEM objects inside the drm_exec object.
->>    */
->> -#define drm_exec_for_each_locked_object(exec, index, obj)    \
->> -    for (index = 0, obj = (exec)->objects[0];        \
->> -         index < (exec)->num_objects;            \
->> -         ++index, obj = (exec)->objects[index])
->> +#define drm_exec_for_each_locked_object(exec, index, obj)        \
->> +    for ((index) = 0; ((obj) = drm_exec_obj(exec, index)); ++(index))
->
-> Mhm, that makes it possible to modify the number of objects while 
-> inside the loop, doesn't it?
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_reg_sr.c    | 8 ++++----
+ drivers/gpu/drm/xe/xe_rtp_types.h | 5 ++++-
+ 2 files changed, 8 insertions(+), 5 deletions(-)
 
-Sorry, you lost me a bit there. Isn't that possible with the previous 
-code as well?
+diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+index 7c88352636d2..264520015861 100644
+--- a/drivers/gpu/drm/xe/xe_reg_sr.c
++++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+@@ -153,15 +153,15 @@ static void apply_one_mmio(struct xe_gt *gt, struct xe_reg_sr_entry *entry)
+ 	u32 val;
+ 
+ 	/*
+-	 * If this is a masked register, need to figure what goes on the upper
+-	 * 16 bits: it's either the clr_bits (when using FIELD_SET and WR) or
+-	 * the set_bits, when using SET.
++	 * If this is a masked register, need to set the upper 16 bits.
++	 * Set them to clr_bits since that is always a superset of the bits
++	 * being modified.
+ 	 *
+ 	 * When it's not masked, we have to read it from hardware, unless we are
+ 	 * supposed to set all bits.
+ 	 */
+ 	if (reg.masked)
+-		val = (entry->clr_bits ?: entry->set_bits) << 16;
++		val = entry->clr_bits << 16;
+ 	else if (entry->clr_bits + 1)
+ 		val = (reg.mcr ?
+ 		       xe_gt_mcr_unicast_read_any(gt, reg_mcr) :
+diff --git a/drivers/gpu/drm/xe/xe_rtp_types.h b/drivers/gpu/drm/xe/xe_rtp_types.h
+index d170532a98a5..637acc7626a4 100644
+--- a/drivers/gpu/drm/xe/xe_rtp_types.h
++++ b/drivers/gpu/drm/xe/xe_rtp_types.h
+@@ -22,7 +22,10 @@ struct xe_gt;
+ struct xe_rtp_action {
+ 	/** @reg: Register */
+ 	struct xe_reg		reg;
+-	/** @clr_bits: bits to clear when updating register */
++	/**
++	 * @clr_bits: bits to clear when updating register. It's always a
++	 * superset of bits being modified
++	 */
+ 	u32			clr_bits;
+ 	/** @set_bits: bits to set when updating register */
+ 	u32			set_bits;
+-- 
+2.40.1
 
-/Thanks,
-
-Thomas
-
-
-
->
-> I'm not sure if that's a good idea or not.
->
-> Regards,
-> Christian.
->
->> +
->> +/**
->> + * drm_exec_for_each_locked_object_reverse - iterate over all the 
->> locked
->> + * objects in reverse locking order
->> + * @exec: drm_exec object
->> + * @index: unsigned long index for the iteration
->> + * @obj: the current GEM object
->> + *
->> + * Iterate over all the locked GEM objects inside the drm_exec 
->> object in
->> + * reverse locking order. Note that @index may go below zero and wrap,
->> + * but that will be caught by drm_exec_object(), returning a NULL 
->> object.
->> + */
->> +#define drm_exec_for_each_locked_object_reverse(exec, index, obj)    \
->> +    for ((index) = (exec)->num_objects - 1;                \
->> +         ((obj) = drm_exec_obj(exec, index)); --(index))
->>     /**
->>    * drm_exec_until_all_locked - loop until all GEM objects are locked
->
