@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A048CA101A
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 22:39:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AB67CCF9EC
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 23:45:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5736710E104;
-	Tue,  5 Sep 2023 22:39:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD39910E10C;
+	Tue,  5 Sep 2023 23:45:36 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2F26410E104;
- Tue,  5 Sep 2023 22:39:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DB94A10E10C;
+ Tue,  5 Sep 2023 23:45:33 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2272FAADFA;
- Tue,  5 Sep 2023 22:39:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C0FDBA00E8;
+ Tue,  5 Sep 2023 23:45:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-Date: Tue, 05 Sep 2023 22:39:44 -0000
-Message-ID: <169395358413.19170.8666419199989495883@emeril.freedesktop.org>
+Date: Tue, 05 Sep 2023 23:45:33 -0000
+Message-ID: <169395753375.19171.11257129619314567873@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230831002931.2327568-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20230831002931.2327568-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_Add_child_contexts_to_the_GuC_context_lookup_=28rev2?=
- =?utf-8?q?=29?=
+References: <20230829233053.2264563-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230829233053.2264563-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_fixup!_drm/xe/guc=3A_Report_submission_version_of_GuC_firmwa?=
+ =?utf-8?b?cmUgKHJldjIp?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,31 +47,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Add child contexts to the GuC context lookup (rev2)
-URL   : https://patchwork.freedesktop.org/series/123091/
+Series: fixup! drm/xe/guc: Report submission version of GuC firmware (rev2)
+URL   : https://patchwork.freedesktop.org/series/123043/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 7ec520d3a63b6e95174329108cd44359a70907ba
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 7ec520d3a drm/xe/selftests: make eviction test tile centric
+=== git am output follows ===
+Applying: fixup! drm/xe/guc: Report submission version of GuC firmware
 
 
