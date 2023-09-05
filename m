@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7F5C5CA101A
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 22:29:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7E50CA101A
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 22:30:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16C0110E099;
-	Tue,  5 Sep 2023 22:29:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A663610E104;
+	Tue,  5 Sep 2023 22:30:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7611A10E099;
- Tue,  5 Sep 2023 22:29:56 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A7B3D10E562;
+ Tue,  5 Sep 2023 22:30:07 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6DA3DAADDD;
- Tue,  5 Sep 2023 22:29:56 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A3572A47E9;
+ Tue,  5 Sep 2023 22:30:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ceraolo Spurio, Daniele" <daniele.ceraolospurio@intel.com>
-Date: Tue, 05 Sep 2023 22:29:56 -0000
-Message-ID: <169395299641.19170.13398090090475961041@emeril.freedesktop.org>
+Date: Tue, 05 Sep 2023 22:30:07 -0000
+Message-ID: <169395300766.19171.5369064714472053427@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230831002931.2327568-1-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20230831002931.2327568-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Add_child_contexts_to_the_GuC_context_lookup_=28re?=
- =?utf-8?b?djIp?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Add_child_contexts_to_the_GuC_context_lookup_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,9 +52,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 7ec520d3a drm/xe/selftests: make eviction test tile centric
-=== git am output follows ===
-Applying: drm/xe: Add child contexts to the GuC context lookup
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e5b02aa80035b306b5dc4dc5c1a6ba4f022d123b
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Wed Aug 30 17:29:31 2023 -0700
+
+    drm/xe: Add child contexts to the GuC context lookup
+    
+    The CAT_ERROR message from the GuC provides the guc id of the context
+    that caused the problem, which can be a child context. We therefore
+    need to be able to match that id to the exec_queue that owns it, which
+    we do by adding child context to the context lookup.
+    
+    While at it, fix the error path of the guc id allocation code to
+    correctly free the ids allocated for parallel queues.
+    
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/590
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: John Harrison <John.C.Harrison@Intel.com>
++ /mt/dim checkpatch 7ec520d3a63b6e95174329108cd44359a70907ba drm-intel
+e5b02aa80 drm/xe: Add child contexts to the GuC context lookup
 
 
