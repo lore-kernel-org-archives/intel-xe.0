@@ -4,54 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBB50C83F33
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 12:32:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D080C83F33
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 12:43:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65FD510E4D5;
-	Tue,  5 Sep 2023 12:32:45 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3951310E4D1;
- Tue,  5 Sep 2023 12:32:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18C8F10E4D5;
+	Tue,  5 Sep 2023 12:43:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58FD610E4D5;
+ Tue,  5 Sep 2023 12:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693917164; x=1725453164;
+ t=1693917786; x=1725453786;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=n2mhV4VNjGycYKGCjbcPq/0PRvd+ydIi1PpdqTBsHsE=;
- b=ZNQRjY24fk+U3eU/k2F+Z7776J+Q0oR1F84jj7ENX4hEzP3fBzhf0iVI
- vTryIEj0tYRtB2MSsPCWCmKo8GXfuYa2BxcDBnph3nJBdW+7cJuM1K002
- LFARrVLzOC08u57gJpS0y6pAsLlKGjYaD6YEA2qWU8Pf2MgO//i9aSGLx
- MVKav5hP5MRDq/9ObcAyEO5q+J2p+AySieXAKSJxQ3n6gB2H3HjHZzmhC
- D1LY+pMcfOwcSb5lREI9i8Le7BGqnTtEKYGvPdLsmXwmj3UoPkYTg57rN
- G3IbSKiP66LyL2dB8gQ32lVh+h5NSp0hrxQlx372axVTzGxPfIlean2Hr g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10823"; a="380591909"
-X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="380591909"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 05:32:43 -0700
+ bh=yuqfW6KMONGTZx0VrGCYvcb9sS/O7YkdSF45EMmz/y0=;
+ b=NK0R32wjLe+8LOlovpa2MxxQ5p+0psIISdfAXQqxg1We2bYvv29hiABG
+ eLlDlpRhCptMtIBdZ56LEEHMoD/kx+0gfcZU6FazVUuX9/hfD0mBBm64U
+ lzKnh52B1qEO+bMGIwFSRcuwzpjARvmLfS9OuJeBtDurrZy5J1i+Dc+rR
+ H6RQsGR/3NgzL/Thq4493HG3xmaRm7jM3lkMoObk0uRvbq+ECkbDHt5am
+ C2HkpycvanUkTyIzBnJKiNgwalF8aTvrvxExoZnNwAlQYE9RKYVY4txZl
+ pyaYkeegBE7iPoJZEmbwWkqohiAgQWW2QCor0gcLsUs8K5Eb6VqMyHAV8 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10823"; a="375674148"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="375674148"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2023 05:43:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10823"; a="770318174"
-X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="770318174"
+X-IronPort-AV: E=McAfee;i="6600,9927,10823"; a="831235171"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="831235171"
 Received: from chenxi4-mobl1.ccr.corp.intel.com (HELO [10.249.254.154])
  ([10.249.254.154])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 05:32:41 -0700
-Message-ID: <7116926a-af9a-9a14-b6df-a7f4442d90a5@linux.intel.com>
-Date: Tue, 5 Sep 2023 14:32:38 +0200
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2023 05:43:03 -0700
+Message-ID: <0cb8a51c-a1a8-ba03-03b1-8cdabade0353@linux.intel.com>
+Date: Tue, 5 Sep 2023 14:43:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
 Content-Language: en-US
-To: Maxime Ripard <mripard@redhat.com>
+To: Maxime Ripard <mripard@kernel.org>
 References: <20230905085832.2103-1-thomas.hellstrom@linux.intel.com>
- <20230905085832.2103-3-thomas.hellstrom@linux.intel.com>
- <vz5bvqnxk5n73dxhbsps77i7aqa3nk5vnytnkszlx3ty7klaz3@gllrfksqstwu>
+ <20230905085832.2103-2-thomas.hellstrom@linux.intel.com>
+ <efarj6smmvuqlredgy5aelgvm43xovnqo5fywsindq3bhggvul@3rqq27vmatcm>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <vz5bvqnxk5n73dxhbsps77i7aqa3nk5vnytnkszlx3ty7klaz3@gllrfksqstwu>
+In-Reply-To: <efarj6smmvuqlredgy5aelgvm43xovnqo5fywsindq3bhggvul@3rqq27vmatcm>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 2/3] drm/tests/drm_exec: Add a test for
- object freeing within drm_exec_fini()
+Subject: Re: [Intel-xe] [PATCH 1/3] drm/kunit: Avoid a driver uaf
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,88 +62,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+Hi maxime,
 
-On 9/5/23 14:05, Maxime Ripard wrote:
-> Hi,
+On 9/5/23 14:06, Maxime Ripard wrote:
+> On Tue, Sep 05, 2023 at 10:58:30AM +0200, Thomas Hellström wrote:
+>> when using __drm_kunit_helper_alloc_drm_device() the driver may be
+>> dereferenced by device-managed resources up until the device is
+>> freed, which is typically later than the kunit-managed resource code
+>> frees it.
+> I'd like to have a bit more context on how a driver can end up in that
+> situation?
+
+I interpret the attached traces as follows.
+
+INIT:
+
+Code allocates a struct device as a kunit-managed resource.
+Code allocates a drm driver as a kunit-managed resource.
+Code allocates a drm device as a device-managed resource.
+
+EXIT:
+
+Kunit resource cleanup frees the drm driver
+Kunit resource cleanup frees the struct device, which starts a 
+device-managed resource cleanup
+device-managed cleanup calls drm_dev_put()
+drm_dev_put() dereferences the (now freed) drm driver -> Boom.
+
+It should be sufficient to enable KASAN and run the drm_exec_test kunit 
+test to trigger this.
+
+Thanks,
+Thomas
+
+
 >
-> On Tue, Sep 05, 2023 at 10:58:31AM +0200, Thomas Hellström wrote:
->> Check that object freeing from within drm_exec_fini() works as expected
->> and doesn't generate any warnings.
->>
->> Cc: Christian König <christian.koenig@amd.com>
->> Cc: dri-devel@lists.freedesktop.org
->> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> ---
->>   drivers/gpu/drm/tests/drm_exec_test.c | 47 +++++++++++++++++++++++++++
->>   1 file changed, 47 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/tests/drm_exec_test.c b/drivers/gpu/drm/tests/drm_exec_test.c
->> index 563949d777dd..294c25f49cc7 100644
->> --- a/drivers/gpu/drm/tests/drm_exec_test.c
->> +++ b/drivers/gpu/drm/tests/drm_exec_test.c
->> @@ -170,6 +170,52 @@ static void test_prepare_array(struct kunit *test)
->>   	drm_gem_private_object_fini(&gobj2);
->>   }
->>   
->> +static const struct drm_gem_object_funcs put_funcs = {
->> +	.free = (void *)kfree,
->> +};
->> +
->> +/*
->> + * Check that freeing objects from within drm_exec_fini()
->> + * behaves as expected.
->> + */
->> +static void test_early_put(struct kunit *test)
->> +{
->> +	struct drm_exec_priv *priv = test->priv;
->> +	struct drm_gem_object *gobj1;
->> +	struct drm_gem_object *gobj2;
->> +	struct drm_gem_object *array[2];
->> +	struct drm_exec exec;
->> +	int ret;
->> +
->> +	gobj1 = kzalloc(sizeof(*gobj1), GFP_KERNEL);
->> +	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, gobj1);
->> +	if (!gobj1)
->> +		return;
->> +
->> +	gobj2 = kzalloc(sizeof(*gobj2), GFP_KERNEL);
->> +	KUNIT_EXPECT_NOT_ERR_OR_NULL(test, gobj2);
->> +	if (!gobj2) {
->> +		kfree(gobj1);
->> +		return;
->> +	}
->> +
->> +	gobj1->funcs = &put_funcs;
->> +	gobj2->funcs = &put_funcs;
->> +	array[0] = gobj1;
->> +	array[1] = gobj2;
->> +	drm_gem_private_object_init(priv->drm, gobj1, PAGE_SIZE);
->> +	drm_gem_private_object_init(priv->drm, gobj2, PAGE_SIZE);
->> +
->> +	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
->> +	drm_exec_until_all_locked(&exec)
->> +		ret = drm_exec_prepare_array(&exec, array, ARRAY_SIZE(array),
->> +					     1);
->> +	KUNIT_EXPECT_EQ(test, ret, 0);
->> +	drm_gem_object_put(gobj1);
->> +	drm_gem_object_put(gobj2);
->> +	drm_exec_fini(&exec);
-> It doesn't look like you actually check that "freeing objects from
-> within drm_exec_fini() behaves as expected." What is the expectation
-> here, and how is it checked?
-
-Hm. Good question, I've been manually checking dmesg for lockdep splats. 
-Is there a way to automate that?
-
-/Thomas
-
-
-
 > Maxime
