@@ -4,46 +4,70 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD586C83F3E
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 14:14:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3700CA0FF3
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 14:14:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9916D10E52C;
-	Tue,  5 Sep 2023 14:14:19 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB9F210E4D0;
- Tue,  5 Sep 2023 12:06:26 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by dfw.source.kernel.org (Postfix) with ESMTPS id 572DB602F8;
- Tue,  5 Sep 2023 12:06:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C891C433C8;
- Tue,  5 Sep 2023 12:06:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1693915585;
- bh=QJ1iipHIRhF00nMJB2wW93b1ptiinoSXBygyLb8REK8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=RctXaLCXofN3ki4Y6ObCQk2kp73doFDmWoave5WhmMBx+WBtObr+URhm3DQ8phlK7
- KSFgbPafDpM+onmjQU8eCBsyHg/dlrqNzsKNMCjXkuAZFn/ke4WbgRb6glpwHx1Gml
- cH5RROnixdAwNZ7ldMrcfxluRjXGtYu8Woo5Qb2n6u88sz0jaJxvFZ+phEu5T2TvaA
- 083qeq/oa4DtShjAnQOLltbe4U0exGi3zQ2U12/J4YEL2X/UQgnMJVcXIrP0nec4Tt
- Btgu53ecGDWCURVzarTokT9GdLPklgRzLARb6Vwg8FOuk1Ke/iqSL2MuH1EluA8lJ2
- 7OaO9oi/0oa9A==
-Date: Tue, 5 Sep 2023 14:06:22 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <efarj6smmvuqlredgy5aelgvm43xovnqo5fywsindq3bhggvul@3rqq27vmatcm>
-References: <20230905085832.2103-1-thomas.hellstrom@linux.intel.com>
- <20230905085832.2103-2-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BC0C10E52D;
+	Tue,  5 Sep 2023 14:14:21 +0000 (UTC)
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com
+ [IPv6:2a00:1450:4864:20::433])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75E2B10E4FE;
+ Tue,  5 Sep 2023 13:14:30 +0000 (UTC)
+Received: by mail-wr1-x433.google.com with SMTP id
+ ffacd0b85a97d-307d58b3efbso1960435f8f.0; 
+ Tue, 05 Sep 2023 06:14:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20221208; t=1693919669; x=1694524469; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=vgZXtOARO9wS9f0ETJL17w2QqDQzfDL0fVd+c8r96ZA=;
+ b=HYwt9i+oFo6SJ777CL9fTebQlkj5wDtQI5dj3AB+petzy0zP4xF2rZcNT0kwSQ9cNO
+ 1KnDTATnuZY+6z/MqbBmCSLJ53lVlWkEOhuvCQAH2PNRFI++MtbYMa7dluwIXiSw28tm
+ goWr1HL6NlhiCcD2LuXwrSQ0kFbwwegWmtBY9zQIEi9qGAlrcaXg9dAyJs6Cf8nRB/81
+ 6wUYLAdEv+1D35cP5Y2GY0YQc6NC5di63X/wt8OLfoLUta1oIo+2HfvXVf0RJ6ckdmnK
+ 2HBpkGMo7ZB3R7QkocxT/LO/zsJAmKGt5yyqlO9KJ+BuNkN+5lr7SDrbhtuyiL+Bo/Qp
+ gxTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20221208; t=1693919669; x=1694524469;
+ h=content-transfer-encoding:in-reply-to:from:references:cc:to
+ :content-language:subject:user-agent:mime-version:date:message-id
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=vgZXtOARO9wS9f0ETJL17w2QqDQzfDL0fVd+c8r96ZA=;
+ b=OHQg5r02z3R7zuQE2YB5H0DBLBmsiREOqrrT42e2l9aRJWBno944PL7AbeGH0Rpw9U
+ g70Ueyicmdew1m3/0Pm4i3zn1Il7gx3IpFTh2Z+Qw4J+/tTuxuXjS54A0QrkhH2qUBUj
+ 4mWriUJxzlgqNdLeys3D2oOyQG2eh6E/eBvWjhpxshmoGFfreEHbQhmxwEeCOwngFbLZ
+ J4hQZoSFMZO4yloN6/6vzxzm+pcyxdGXPEaWwvB5ajDeWRyG4QcI3XT1ZZHJ2Xl//Ucl
+ 1lGp4ObetpsMSWwc7b7Gs2TZPRcZ+XadEmPz3NISS3WeOPdC3fGT94pDdQfThM/4wbAy
+ CESg==
+X-Gm-Message-State: AOJu0Yzc/F7/yW6br+iGDjQs71Rp9w2jghV0NKnXtONOVIthiM8EhlYa
+ sr0VZcc76zMY4azZBGK9mjU=
+X-Google-Smtp-Source: AGHT+IGanZtGUCDjYCzQQzrf9NVxOyz0XsPOEPMkR8finEGEyFb9EmLL9/B8oc/nCsv1P63tR/pS1g==
+X-Received: by 2002:a5d:4b87:0:b0:319:74b5:b67d with SMTP id
+ b7-20020a5d4b87000000b0031974b5b67dmr10787341wrt.66.1693919668554; 
+ Tue, 05 Sep 2023 06:14:28 -0700 (PDT)
+Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
+ by smtp.gmail.com with ESMTPSA id
+ w2-20020adff9c2000000b00317ddccb0d1sm17431265wrr.24.2023.09.05.06.14.26
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 05 Sep 2023 06:14:27 -0700 (PDT)
+Message-ID: <eabe3626-9fd1-c56f-5405-44653d2aab33@gmail.com>
+Date: Tue, 5 Sep 2023 15:14:24 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="55v4cmmahj7hcxid"
-Content-Disposition: inline
-In-Reply-To: <20230905085832.2103-2-thomas.hellstrom@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20230905085832.2103-1-thomas.hellstrom@linux.intel.com>
+ <20230905085832.2103-4-thomas.hellstrom@linux.intel.com>
+From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
+In-Reply-To: <20230905085832.2103-4-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Mailman-Approved-At: Tue, 05 Sep 2023 14:14:18 +0000
-Subject: Re: [Intel-xe] [PATCH 1/3] drm/kunit: Avoid a driver uaf
+Subject: Re: [Intel-xe] [PATCH 3/3] drm/drm_exec: Work around a WW mutex
+ lockdep oddity
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,38 +79,150 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+ Danilo Krummrich <dakr@redhat.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Am 05.09.23 um 10:58 schrieb Thomas Hellström:
+> If *any* object of a certain WW mutex class is locked, lockdep will
+> consider *all* mutexes of that class as locked. Also the lock allocation
+> tracking code will apparently register only the address of the first
+> mutex locked in a sequence.
+> This has the odd consequence that if that first mutex is unlocked and
+> its memory then freed, the lock alloc tracking code will assume that memory
+> is freed with a held lock in there.
+>
+> For now, work around that for drm_exec by releasing the first grabbed
+> object lock last.
+>
+> Related lock alloc tracking warning:
+> [  322.660067] =========================
+> [  322.660070] WARNING: held lock freed!
+> [  322.660074] 6.5.0-rc7+ #155 Tainted: G     U           N
+> [  322.660078] -------------------------
+> [  322.660081] kunit_try_catch/4981 is freeing memory ffff888112adc000-ffff888112adc3ff, with a lock still held there!
+> [  322.660089] ffff888112adc1a0 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x11a/0x600 [drm_exec]
+> [  322.660104] 2 locks held by kunit_try_catch/4981:
+> [  322.660108]  #0: ffffc9000343fe18 (reservation_ww_class_acquire){+.+.}-{0:0}, at: test_early_put+0x22f/0x490 [drm_exec_test]
+> [  322.660123]  #1: ffff888112adc1a0 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x11a/0x600 [drm_exec]
+> [  322.660135]
+>                 stack backtrace:
+> [  322.660139] CPU: 7 PID: 4981 Comm: kunit_try_catch Tainted: G     U           N 6.5.0-rc7+ #155
+> [  322.660146] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 0403 01/26/2021
+> [  322.660152] Call Trace:
+> [  322.660155]  <TASK>
+> [  322.660158]  dump_stack_lvl+0x57/0x90
+> [  322.660164]  debug_check_no_locks_freed+0x20b/0x2b0
+> [  322.660172]  slab_free_freelist_hook+0xa1/0x160
+> [  322.660179]  ? drm_exec_unlock_all+0x168/0x2a0 [drm_exec]
+> [  322.660186]  __kmem_cache_free+0xb2/0x290
+> [  322.660192]  drm_exec_unlock_all+0x168/0x2a0 [drm_exec]
+> [  322.660200]  drm_exec_fini+0xf/0x1c0 [drm_exec]
+> [  322.660206]  test_early_put+0x289/0x490 [drm_exec_test]
+> [  322.660215]  ? __pfx_test_early_put+0x10/0x10 [drm_exec_test]
+> [  322.660222]  ? __kasan_check_byte+0xf/0x40
+> [  322.660227]  ? __ksize+0x63/0x140
+> [  322.660233]  ? drmm_add_final_kfree+0x3e/0xa0 [drm]
+> [  322.660289]  ? _raw_spin_unlock_irqrestore+0x30/0x60
+> [  322.660294]  ? lockdep_hardirqs_on+0x7d/0x100
+> [  322.660301]  ? __pfx_kunit_try_run_case+0x10/0x10 [kunit]
+> [  322.660310]  ? __pfx_kunit_generic_run_threadfn_adapter+0x10/0x10 [kunit]
+> [  322.660319]  kunit_generic_run_threadfn_adapter+0x4a/0x90 [kunit]
+> [  322.660328]  kthread+0x2e7/0x3c0
+> [  322.660334]  ? __pfx_kthread+0x10/0x10
+> [  322.660339]  ret_from_fork+0x2d/0x70
+> [  322.660345]  ? __pfx_kthread+0x10/0x10
+> [  322.660349]  ret_from_fork_asm+0x1b/0x30
+> [  322.660358]  </TASK>
+> [  322.660818]     ok 8 test_early_put
+>
+> Cc: Christian König <christian.koenig@amd.com>
+> Cc: Boris Brezillon <boris.brezillon@collabora.com>
+> Cc: Danilo Krummrich <dakr@redhat.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> ---
+>   drivers/gpu/drm/drm_exec.c |  2 +-
+>   include/drm/drm_exec.h     | 35 +++++++++++++++++++++++++++++++----
+>   2 files changed, 32 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+> index ff69cf0fb42a..5d2809de4517 100644
+> --- a/drivers/gpu/drm/drm_exec.c
+> +++ b/drivers/gpu/drm/drm_exec.c
+> @@ -56,7 +56,7 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
+>   	struct drm_gem_object *obj;
+>   	unsigned long index;
+>   
+> -	drm_exec_for_each_locked_object(exec, index, obj) {
+> +	drm_exec_for_each_locked_object_reverse(exec, index, obj) {
 
---55v4cmmahj7hcxid
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Well that's a really good catch, just one more additional thought below.
 
-On Tue, Sep 05, 2023 at 10:58:30AM +0200, Thomas Hellstr=F6m wrote:
-> when using __drm_kunit_helper_alloc_drm_device() the driver may be
-> dereferenced by device-managed resources up until the device is
-> freed, which is typically later than the kunit-managed resource code
-> frees it.
+>   		dma_resv_unlock(obj->resv);
+>   		drm_gem_object_put(obj);
+>   	}
+> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+> index e0462361adf9..55764cf7c374 100644
+> --- a/include/drm/drm_exec.h
+> +++ b/include/drm/drm_exec.h
+> @@ -51,6 +51,20 @@ struct drm_exec {
+>   	struct drm_gem_object *prelocked;
+>   };
+>   
+> +/**
+> + * drm_exec_obj() - Return the object for a give drm_exec index
+> + * @exec: Pointer to the drm_exec context
+> + * @index: The index.
+> + *
+> + * Return: Pointer to the locked object corresponding to @index if
+> + * index is within the number of locked objects. NULL otherwise.
+> + */
+> +static inline struct drm_gem_object *
+> +drm_exec_obj(struct drm_exec *exec, unsigned long index)
+> +{
+> +	return index < exec->num_objects ? exec->objects[index] : NULL;
+> +}
+> +
+>   /**
+>    * drm_exec_for_each_locked_object - iterate over all the locked objects
+>    * @exec: drm_exec object
+> @@ -59,10 +73,23 @@ struct drm_exec {
+>    *
+>    * Iterate over all the locked GEM objects inside the drm_exec object.
+>    */
+> -#define drm_exec_for_each_locked_object(exec, index, obj)	\
+> -	for (index = 0, obj = (exec)->objects[0];		\
+> -	     index < (exec)->num_objects;			\
+> -	     ++index, obj = (exec)->objects[index])
+> +#define drm_exec_for_each_locked_object(exec, index, obj)		\
+> +	for ((index) = 0; ((obj) = drm_exec_obj(exec, index)); ++(index))
 
-I'd like to have a bit more context on how a driver can end up in that
-situation?
+Mhm, that makes it possible to modify the number of objects while inside 
+the loop, doesn't it?
 
-Maxime
+I'm not sure if that's a good idea or not.
 
---55v4cmmahj7hcxid
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
+Christian.
 
------BEGIN PGP SIGNATURE-----
+> +
+> +/**
+> + * drm_exec_for_each_locked_object_reverse - iterate over all the locked
+> + * objects in reverse locking order
+> + * @exec: drm_exec object
+> + * @index: unsigned long index for the iteration
+> + * @obj: the current GEM object
+> + *
+> + * Iterate over all the locked GEM objects inside the drm_exec object in
+> + * reverse locking order. Note that @index may go below zero and wrap,
+> + * but that will be caught by drm_exec_object(), returning a NULL object.
+> + */
+> +#define drm_exec_for_each_locked_object_reverse(exec, index, obj)	\
+> +	for ((index) = (exec)->num_objects - 1;				\
+> +	     ((obj) = drm_exec_obj(exec, index)); --(index))
+>   
+>   /**
+>    * drm_exec_until_all_locked - loop until all GEM objects are locked
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZPcZvgAKCRDj7w1vZxhR
-xWcIAQCXDn2sCXCH3mjCpXwaUPkdU0oOF7rFmGECwTMEwFLUAgD/fhSpZ9+mYXwL
-bBsoWPZYRj0p51E98K5o0ywQDq0ZrAs=
-=Sn0p
------END PGP SIGNATURE-----
-
---55v4cmmahj7hcxid--
