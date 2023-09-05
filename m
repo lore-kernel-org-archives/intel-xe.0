@@ -4,31 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 207CAC83F3E
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 06:55:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2AF6FC83F33
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 08:59:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8A6F10E18B;
-	Tue,  5 Sep 2023 06:55:29 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id BB37210E43D;
- Tue,  5 Sep 2023 06:55:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B313CA47E9;
- Tue,  5 Sep 2023 06:55:27 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id E579510E46D;
+	Tue,  5 Sep 2023 08:59:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C14B510E46B;
+ Tue,  5 Sep 2023 08:59:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1693904343; x=1725440343;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jGv/zmUrrZpk/cV6dpatnnCoaFnOOBoMyp6AEK5XBy4=;
+ b=D+5wrM/qlIrk1qeA4sYn9VhFC41mxyyPW4sbCgJTJfc9MsqdPiAMhNPt
+ jv8Cs/chjkyLCBEMZVufePBPwYLv+OT+IlX+MNEQdDhp7x4y4fdMfND7q
+ kOIS8+tCp1iJQL2ccIKM+VmR5qWXgXOCP1XkM8iODEXATZI57v8ukC2xj
+ QhS+WrXzIo5A3pm3IA3hT4oGpVBmN5CPQPvQw/wBVQjW/PxpCqPQVd2mG
+ 5Qs8H2Uc3/lF1kDkxCyzcKXnWT5a4tMxBBUDiicO1Cp3LH6eiIUS6aBbi
+ D/VlscJ9TktgHIi0myGIxO3D3T2Psja1+JGJaE7lGhCz8HS026ymNrXic Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10823"; a="407732471"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="407732471"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2023 01:59:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10823"; a="744203595"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="744203595"
+Received: from chenxi4-mobl1.ccr.corp.intel.com (HELO fedora..)
+ ([10.249.254.154])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2023 01:59:01 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Tue,  5 Sep 2023 10:58:29 +0200
+Message-ID: <20230905085832.2103-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Date: Tue, 05 Sep 2023 06:55:27 -0000
-Message-ID: <169389692772.19170.13347646605111762840@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230905063833.3159191-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20230905063833.3159191-1-tejas.upadhyay@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_tests/xe=5Fdrm=5Ffdinfo=3A_Add_tests_to_read_and_verify_fdin?=
- =?utf-8?q?fo?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 0/3] drm/drm_exec,
+ drm/drm_kunit: Fix / WA for uaf and lock alloc tracking.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,28 +58,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+ Danilo Krummrich <dakr@redhat.com>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+While trying to replicate a weird drm_exec lock alloc tracking warning
+using the drm_exec kunit test, the warning was shadowed by a UAF warning
+due to a bug in the drm kunit helpers.
 
-Series: tests/xe_drm_fdinfo: Add tests to read and verify fdinfo
-URL   : https://patchwork.freedesktop.org/series/123265/
-State : failure
+Patch 1 fixes that drm kunit UAF.
+Patch 2 introduces a drm_exec kunit subtest that shows the weird lock
+alloc tracking warning if CONFIG_DEBUG_LOCK_ALLOC is set.
+Patch 3 modifies drm_exec to avoid that lock alloc tracking warning. Although
+the proper fix would probably be to modify lockdep to track the lock held
+status differently, this workaround at pushes the problem out of drm_exec,
+so that any drm_exec users relying on its refcounting don't run into this.
 
-== Summary ==
+Cc: Christian König <christian.koenig@amd.com>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: Danilo Krummrich <dakr@redhat.com>
+Cc: dri-devel@lists.freedesktop.org
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 7ec520d3a drm/xe/selftests: make eviction test tile centric
-=== git am output follows ===
-error: tests/meson.build: does not exist in index
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: tests/xe_drm_fdinfo: Add tests to read and verify fdinfo
-Patch failed at 0001 tests/xe_drm_fdinfo: Add tests to read and verify fdinfo
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Thomas Hellström (3):
+  drm/kunit: Avoid a driver uaf
+  drm/tests/drm_exec: Add a test for object freeing within
+    drm_exec_fini()
+  drm/drm_exec: Work around a WW mutex lockdep oddity
 
+ drivers/gpu/drm/drm_exec.c            |  2 +-
+ drivers/gpu/drm/tests/drm_exec_test.c | 47 +++++++++++++++++++++++++++
+ include/drm/drm_exec.h                | 35 +++++++++++++++++---
+ include/drm/drm_kunit_helpers.h       |  4 ++-
+ 4 files changed, 82 insertions(+), 6 deletions(-)
+
+-- 
+2.41.0
 
