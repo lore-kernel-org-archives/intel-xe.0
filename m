@@ -4,47 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EDBCC83F3E
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 14:14:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3911CCA0FF6
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 14:14:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E774E10E52C;
-	Tue,  5 Sep 2023 14:14:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC60210E52D;
+	Tue,  5 Sep 2023 14:14:08 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B219910E033
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Sep 2023 14:14:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 163DA10E52D
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Sep 2023 14:14:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693923243; x=1725459243;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=995mJN3w5SiewKF+aJIZssh93ZaB6U6v2UbO3oZtvFk=;
- b=NAGXJDKH3Xxpjq5oyYkCc9xsWMjoYr4VtSk3T6kJ/SeUCZlo3+wxaMng
- ZRpMogcdlpym7o3PMGFpe5zKIW/+/sAdm76WOmUpjyw8xsufNrVy5Q6Ku
- a0qkJ0LVpd9dSqztnTM6eKhntVU+vUIWK1Pyn6wyfIdJNw18c/C5kwj0Z
- zViOC2lU5z7hxZLr5dLcSsVtue+Zijy+NZqoAZWy3OWEVQzRq6LWNbWNj
- x6KBiETr9g80swNRaBFAwKTbLpFT+3/PPNY8VCfYl13RSmcPuWwrIl6hS
- DXtUhyKUqvVj9ZpRcHw7eR0+QpxNNw4kmEXvlQgRmG8P6CHS4+G/SHnv1 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="380611076"
-X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="380611076"
+ t=1693923247; x=1725459247;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NBJP2l7i0HHBMmd+Rwr0c8/usr4uYrMDkU0C/MUTVfg=;
+ b=Mvmeb+qEUgH502GCmZHHQceNjyZa6rdZLjfWphUQk3KElTHjDGQ/aEGR
+ C+7TgIn05IRWBfKUSfc/AFDj+6ywPRtAHTwvzczwS54hunPZ0p1YRkkka
+ wAKojCyOS+YVDxS93smab2SV/Em8B8/2yjd/z0cohs+Ktej8lYtZUSO9I
+ e55mdh4S5lD2/J6U5Tzqu5lR+0C3tL1Qz9ZJMDHMzXmsl8n72QTzuVmLr
+ 8gyh3+CIG9+e5p8k5B/BurbMWJamEdIiBfsexw5luppnLJdqD4v3jmYMi
+ 4c5L4EuGSaZKqwEc+l3FiR6K86Cw41dj8ygnXbe6BrdS9o19YFX4idFDz g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="380611082"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="380611082"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 07:14:03 -0700
+ 05 Sep 2023 07:14:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="811245371"
-X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="811245371"
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="811245388"
+X-IronPort-AV: E=Sophos;i="6.02,229,1688454000"; d="scan'208";a="811245388"
 Received: from amyachev-mobl3.ccr.corp.intel.com (HELO localhost)
  ([10.252.60.152])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 07:14:01 -0700
+ 05 Sep 2023 07:14:05 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  5 Sep 2023 17:13:42 +0300
-Message-Id: <20230905141347.1027082-1-jani.nikula@intel.com>
+Date: Tue,  5 Sep 2023 17:13:43 +0300
+Message-Id: <20230905141347.1027082-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230905141347.1027082-1-jani.nikula@intel.com>
+References: <20230905141347.1027082-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/5] drm/xe: drop unnecessary i915 display commits
+Subject: [Intel-xe] [PATCH 1/5] Revert "FIXME: drm/i915:
+ display/intel_display_types.h random whitespace changes"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,29 +64,25 @@ Cc: Jani Nikula <jani.nikula@intel.com>, lucas.demarchi@intel.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Revert five unnecessary commits.
+This reverts commit d323a84d0d791f2f3006f507efeb0f2cffdbf1c2.
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
-The rebased version with all the commits just thrown away is at
-[1]. That also drops "drm/i915/display: Make FBC check stolen at use
-time." which has become an empty commit.
-
-[1] https://gitlab.freedesktop.org/jani/xe/-/commits/xe-drop-unnecessary-commits-2023-09-05
-
-
-Jani Nikula (5):
-  Revert "FIXME: drm/i915: display/intel_display_types.h random
-    whitespace changes"
-  Revert "FIXME: drm/i915: include i915_utils.h from
-    intel_display_types.h"
-  Revert "FIXME: drm/i915: revert the earlier mmio_offset change"
-  Revert "FIXME: drm/i915/display: Prefer i915->uncore over plain
-    uncore"
-  Revert "FIXME: drm/i915/display: Set DISPLAY_MMIO_BASE to 0 for xe"
-
- drivers/gpu/drm/i915/display/intel_bios.c          | 13 ++++++-------
- drivers/gpu/drm/i915/display/intel_display_types.h |  3 ++-
- 2 files changed, 8 insertions(+), 8 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 9310f8f2d940..23ca68fd359c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -765,7 +765,9 @@ struct intel_plane_state {
+ 	 * this plane. They're calculated by the linked plane's wm code.
+ 	 */
+ 	u32 planar_slave;
++
+ 	struct drm_intel_sprite_colorkey ckey;
++
+ 	struct drm_rect psr2_sel_fetch_area;
+ 
+ 	/* Clear Color Value */
 -- 
 2.39.2
 
