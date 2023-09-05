@@ -4,81 +4,81 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F05DC83F3E
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 10:59:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C06C5C83F2C
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Sep 2023 11:10:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 273E410E4AD;
-	Tue,  5 Sep 2023 10:59:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADB8F10E4B4;
+	Tue,  5 Sep 2023 11:10:47 +0000 (UTC)
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E887C10E4AD
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Sep 2023 10:59:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4645610E4B2
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Sep 2023 11:10:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1693911590;
+ s=mimecast20190719; t=1693912244;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=7iBpgfm+C9weL01umlHsYnfkc7J7aGl9MICIpLEHOqo=;
- b=JMKr6OJp+RIGOZ7weAiFrPw079ZR02sZVXvEirwFnXAOY83kDq+OjLLOme0SdSQ11QtHP5
- FSA/JTkOBx2jdsKy9nDMkutBgUpEBdqSDJg247dsck/rbSuO6SgFaJjaH4K2xcndJlQEWD
- Uvnk61ZDIMstsyjEMzF+xQd5V7S1FGA=
-Received: from mail-ed1-f70.google.com (mail-ed1-f70.google.com
- [209.85.208.70]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=VJAyU7o7DHbWBQQHfmNhixXt3tkacDNjtsJbnS1LdrM=;
+ b=ArrzkhPh44Wvyf6mArhr2Y3Ghr8CkR3vO1hAEMmy+kFPtAIKwsX9D5sXflI56VLZCEK3Fc
+ iip6Aj4t1/N6Y7u6NAVXQ/WWm7E/++XU6H5EFQ9zd4/k+ieFqTryzQw0ffVhbrSkooe33j
+ BVf+a5gwfeBYz0j9j2hYxVAXk71n1E4=
+Received: from mail-ej1-f69.google.com (mail-ej1-f69.google.com
+ [209.85.218.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-454-MEM6DRWZPF62rCoHbHhNAg-1; Tue, 05 Sep 2023 06:59:48 -0400
-X-MC-Unique: MEM6DRWZPF62rCoHbHhNAg-1
-Received: by mail-ed1-f70.google.com with SMTP id
- 4fb4d7f45d1cf-50daa85e940so1700440a12.0
- for <intel-xe@lists.freedesktop.org>; Tue, 05 Sep 2023 03:59:48 -0700 (PDT)
+ us-mta-562-yPhgST8SN-yyU_7j_054QQ-1; Tue, 05 Sep 2023 07:10:42 -0400
+X-MC-Unique: yPhgST8SN-yyU_7j_054QQ-1
+Received: by mail-ej1-f69.google.com with SMTP id
+ a640c23a62f3a-9a59528f7d2so154424866b.2
+ for <intel-xe@lists.freedesktop.org>; Tue, 05 Sep 2023 04:10:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693911588; x=1694516388;
- h=content-transfer-encoding:in-reply-to:organization:from:references
- :cc:to:content-language:subject:user-agent:mime-version:date
+ d=1e100.net; s=20221208; t=1693912241; x=1694517041;
+ h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+ :from:content-language:subject:user-agent:mime-version:date
  :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=7iBpgfm+C9weL01umlHsYnfkc7J7aGl9MICIpLEHOqo=;
- b=b44tMOVhUlnV4iLQVPLj6a9p7wyfQIJeod0zjGKbU07s3Uw5/2KlTG0zXJqM6trhFv
- rhyG3kOw4OBRloJmBWKe+YK2wWc/JRvtRZGlbVN/j1ctXPzLTdWPo9h92lx42AazhMI9
- UXWN8F5EARwoC1nek92QVC9jOZMfsDX2JHvmoSU0drmfBUTkA2sVieUb4dxWiUGchC6z
- TNXIHQMqwX83B1LBsembQ1GGVhMIARTLNNNKKNJEbTpwARUl3BOqjE42PlJ3eee7HWAM
- rgYomrePptZjpwmTOmo0fbpWorcQuco7ksZ80LZXke50ADpQWvJAtkPvYgcV3DB/YYNl
- 73eA==
-X-Gm-Message-State: AOJu0Yxt8bRHWnUPoQdpHA5294HjAsStsTkrNAw62px6EiJytGcseIrj
- kE+r0DWHiwG0+avNMD6nOdKSRN3wBSBsovB25vdTWroE1fG+5l26LrCNvOfJfyAYlZyNRTUE4CJ
- vYkWVAoxOwZizKjBd9K0or+x1V2o=
-X-Received: by 2002:aa7:c155:0:b0:523:b225:701a with SMTP id
- r21-20020aa7c155000000b00523b225701amr9290406edp.11.1693911587866; 
- Tue, 05 Sep 2023 03:59:47 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGq1wI1gVIChbfPr11BxRu2iM0hvXopO96caHzmRiGOtHRAHQ32PGJJXhkIpAsdjbSlUxZsZQ==
-X-Received: by 2002:aa7:c155:0:b0:523:b225:701a with SMTP id
- r21-20020aa7c155000000b00523b225701amr9290397edp.11.1693911587460; 
- Tue, 05 Sep 2023 03:59:47 -0700 (PDT)
+ bh=VJAyU7o7DHbWBQQHfmNhixXt3tkacDNjtsJbnS1LdrM=;
+ b=jgpGdyquneA8R07J2B/kBwIzg8rRna/03UJVLQGrsyaK69MV/yN9Hs8IbqczZjSmdG
+ HX9FutxVmqAzoQ+6qcyq8npKYRwjWoUoXFZxYy1sK+2bIRdW35DiqjmFK7sJLjtMObY/
+ z7I64WJOznMNUh3a07aJSHRvDeGMz1VQ2q2PsuT28CEFAq4wAuRu1YyHInJaJM+AG7NV
+ BKlebkkDGmCWn2X3WFsCcBvWFsDhlTNPiR8+2+WtYRrKo6R7Xj52x+EiJJtFdUf5l/6V
+ 8gx6dA1wEU9UfQwf0UEYCbAhInru1TmrhTmhJ6J6J0RrLjshI2KpvaTvkAdhH/YPaOEi
+ LwBA==
+X-Gm-Message-State: AOJu0YyT5npaUEfDf0lDxKgE53hdHKvxIZdX2HQs5UBVcybAspDEr/OE
+ Bykt8MCl+nAVcy3zj+MIBk4p2rOjULCW3pm5OUs2mlvvcAzV9N5A6Qb9syFuZMJjylmdJ0xl/zZ
+ h1xEEhtcMR9umYm51VIyv/yoH3D8=
+X-Received: by 2002:a17:907:2e19:b0:9a1:ce57:8e47 with SMTP id
+ ig25-20020a1709072e1900b009a1ce578e47mr8989463ejc.68.1693912241443; 
+ Tue, 05 Sep 2023 04:10:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHiyCrwIp99NNlIPA8mXFJr1CFUi9Wgt6Qfy6kpIScWYSNriec6vGpr+h4ED1J1zE9IObFSTw==
+X-Received: by 2002:a17:907:2e19:b0:9a1:ce57:8e47 with SMTP id
+ ig25-20020a1709072e1900b009a1ce578e47mr8989444ejc.68.1693912240989; 
+ Tue, 05 Sep 2023 04:10:40 -0700 (PDT)
 Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
  ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
  by smtp.gmail.com with ESMTPSA id
- a9-20020aa7d749000000b005257da6be23sm7055479eds.75.2023.09.05.03.59.46
+ jw26-20020a17090776ba00b00982a92a849asm7485462ejc.91.2023.09.05.04.10.39
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 05 Sep 2023 03:59:47 -0700 (PDT)
-Message-ID: <6643ca62-1462-0d33-3edb-1330a714bfac@redhat.com>
-Date: Tue, 5 Sep 2023 12:59:45 +0200
+ Tue, 05 Sep 2023 04:10:40 -0700 (PDT)
+Message-ID: <f2e87279-e2c3-db5c-0fe6-51ad77d7afb5@redhat.com>
+Date: Tue, 5 Sep 2023 13:10:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230905085832.2103-1-thomas.hellstrom@linux.intel.com>
- <20230905085832.2103-4-thomas.hellstrom@linux.intel.com>
 From: Danilo Krummrich <dakr@redhat.com>
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-4-matthew.brost@intel.com>
+ <21b82a4e-ded8-cb63-0013-72e4043c3344@redhat.com>
 Organization: RedHat
-In-Reply-To: <20230905085832.2103-4-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <21b82a4e-ded8-cb63-0013-72e4043c3344@redhat.com>
 X-Mimecast-Spam-Score: 0
 X-Mimecast-Originator: redhat.com
 Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 3/3] drm/drm_exec: Work around a WW mutex
- lockdep oddity
+Subject: Re: [Intel-xe] [PATCH v2 3/9] drm/sched: Add
+ DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,146 +90,457 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>,
- =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, luben.tuikov@amd.com, donald.robson@imgtec.com,
+ boris.brezillon@collabora.com, christian.koenig@amd.com,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 9/5/23 10:58, Thomas Hellström wrote:
-> If *any* object of a certain WW mutex class is locked, lockdep will
-> consider *all* mutexes of that class as locked. Also the lock allocation
-> tracking code will apparently register only the address of the first
-> mutex locked in a sequence.
-> This has the odd consequence that if that first mutex is unlocked and
-> its memory then freed, the lock alloc tracking code will assume that memory
-> is freed with a held lock in there.
+On 8/29/23 19:37, Danilo Krummrich wrote:
+> On 8/11/23 04:31, Matthew Brost wrote:
+>> DRM_SCHED_POLICY_SINGLE_ENTITY creates a 1 to 1 relationship between
+>> scheduler and entity. No priorities or run queue used in this mode.
+>> Intended for devices with firmware schedulers.
+>>
+>> v2:
+>>    - Drop sched / rq union (Luben)
+>>
+>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>> ---
+>>   drivers/gpu/drm/scheduler/sched_entity.c | 69 ++++++++++++++++++------
+>>   drivers/gpu/drm/scheduler/sched_fence.c  |  2 +-
+>>   drivers/gpu/drm/scheduler/sched_main.c   | 63 +++++++++++++++++++---
+>>   include/drm/gpu_scheduler.h              |  8 +++
+>>   4 files changed, 119 insertions(+), 23 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
+>> index 65a972b52eda..1dec97caaba3 100644
+>> --- a/drivers/gpu/drm/scheduler/sched_entity.c
+>> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
+>> @@ -83,6 +83,7 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
+>>       memset(entity, 0, sizeof(struct drm_sched_entity));
+>>       INIT_LIST_HEAD(&entity->list);
+>>       entity->rq = NULL;
+>> +    entity->single_sched = NULL;
+>>       entity->guilty = guilty;
+>>       entity->num_sched_list = num_sched_list;
+>>       entity->priority = priority;
+>> @@ -90,8 +91,17 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
+>>       RCU_INIT_POINTER(entity->last_scheduled, NULL);
+>>       RB_CLEAR_NODE(&entity->rb_tree_node);
+>> -    if(num_sched_list)
+>> -        entity->rq = &sched_list[0]->sched_rq[entity->priority];
+>> +    if (num_sched_list) {
+>> +        if (sched_list[0]->sched_policy !=
+>> +            DRM_SCHED_POLICY_SINGLE_ENTITY) {
+>> +            entity->rq = &sched_list[0]->sched_rq[entity->priority];
+>> +        } else {
+>> +            if (num_sched_list != 1 || sched_list[0]->single_entity)
+>> +                return -EINVAL;
+>> +            sched_list[0]->single_entity = entity;
+>> +            entity->single_sched = sched_list[0];
+>> +        }
+>> +    }
+>>       init_completion(&entity->entity_idle);
+>> @@ -124,7 +134,8 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
+>>                       struct drm_gpu_scheduler **sched_list,
+>>                       unsigned int num_sched_list)
+>>   {
+>> -    WARN_ON(!num_sched_list || !sched_list);
+>> +    WARN_ON(!num_sched_list || !sched_list ||
+>> +        !!entity->single_sched);
+>>       entity->sched_list = sched_list;
+>>       entity->num_sched_list = num_sched_list;
+>> @@ -231,13 +242,15 @@ static void drm_sched_entity_kill(struct drm_sched_entity *entity)
+>>   {
+>>       struct drm_sched_job *job;
+>>       struct dma_fence *prev;
+>> +    bool single_entity = !!entity->single_sched;
+>> -    if (!entity->rq)
+>> +    if (!entity->rq && !single_entity)
+>>           return;
+>>       spin_lock(&entity->rq_lock);
+>>       entity->stopped = true;
+>> -    drm_sched_rq_remove_entity(entity->rq, entity);
+>> +    if (!single_entity)
+>> +        drm_sched_rq_remove_entity(entity->rq, entity);
 > 
-> For now, work around that for drm_exec by releasing the first grabbed
-> object lock last.
+> Looks like nothing prevents drm_sched_run_job_work() to fetch more jobs from the entity,
+> hence if this is called for an entity still having queued up jobs and a still running
+> scheduler, drm_sched_entity_kill() and drm_sched_run_job_work() would race for jobs, right?
+
+I worked around this with:
+
+diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+index 9a5e9b7032da..0687da57757d 100644
+--- a/drivers/gpu/drm/scheduler/sched_main.c
++++ b/drivers/gpu/drm/scheduler/sched_main.c
+@@ -1025,7 +1025,8 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequeue)
+                 return NULL;
+  
+         if (sched->single_entity) {
+-               if (drm_sched_entity_is_ready(sched->single_entity))
++               if (drm_sched_entity_is_ready(sched->single_entity) &&
++                   !READ_ONCE(sched->single_entity->stopped))
+                         return sched->single_entity;
+  
+                 return NULL;
+
 > 
-> Related lock alloc tracking warning:
-> [  322.660067] =========================
-> [  322.660070] WARNING: held lock freed!
-> [  322.660074] 6.5.0-rc7+ #155 Tainted: G     U           N
-> [  322.660078] -------------------------
-> [  322.660081] kunit_try_catch/4981 is freeing memory ffff888112adc000-ffff888112adc3ff, with a lock still held there!
-> [  322.660089] ffff888112adc1a0 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x11a/0x600 [drm_exec]
-> [  322.660104] 2 locks held by kunit_try_catch/4981:
-> [  322.660108]  #0: ffffc9000343fe18 (reservation_ww_class_acquire){+.+.}-{0:0}, at: test_early_put+0x22f/0x490 [drm_exec_test]
-> [  322.660123]  #1: ffff888112adc1a0 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x11a/0x600 [drm_exec]
-> [  322.660135]
->                 stack backtrace:
-> [  322.660139] CPU: 7 PID: 4981 Comm: kunit_try_catch Tainted: G     U           N 6.5.0-rc7+ #155
-> [  322.660146] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 0403 01/26/2021
-> [  322.660152] Call Trace:
-> [  322.660155]  <TASK>
-> [  322.660158]  dump_stack_lvl+0x57/0x90
-> [  322.660164]  debug_check_no_locks_freed+0x20b/0x2b0
-> [  322.660172]  slab_free_freelist_hook+0xa1/0x160
-> [  322.660179]  ? drm_exec_unlock_all+0x168/0x2a0 [drm_exec]
-> [  322.660186]  __kmem_cache_free+0xb2/0x290
-> [  322.660192]  drm_exec_unlock_all+0x168/0x2a0 [drm_exec]
-> [  322.660200]  drm_exec_fini+0xf/0x1c0 [drm_exec]
-> [  322.660206]  test_early_put+0x289/0x490 [drm_exec_test]
-> [  322.660215]  ? __pfx_test_early_put+0x10/0x10 [drm_exec_test]
-> [  322.660222]  ? __kasan_check_byte+0xf/0x40
-> [  322.660227]  ? __ksize+0x63/0x140
-> [  322.660233]  ? drmm_add_final_kfree+0x3e/0xa0 [drm]
-> [  322.660289]  ? _raw_spin_unlock_irqrestore+0x30/0x60
-> [  322.660294]  ? lockdep_hardirqs_on+0x7d/0x100
-> [  322.660301]  ? __pfx_kunit_try_run_case+0x10/0x10 [kunit]
-> [  322.660310]  ? __pfx_kunit_generic_run_threadfn_adapter+0x10/0x10 [kunit]
-> [  322.660319]  kunit_generic_run_threadfn_adapter+0x4a/0x90 [kunit]
-> [  322.660328]  kthread+0x2e7/0x3c0
-> [  322.660334]  ? __pfx_kthread+0x10/0x10
-> [  322.660339]  ret_from_fork+0x2d/0x70
-> [  322.660345]  ? __pfx_kthread+0x10/0x10
-> [  322.660349]  ret_from_fork_asm+0x1b/0x30
-> [  322.660358]  </TASK>
-> [  322.660818]     ok 8 test_early_put
+> Not sure if this is by intention because we don't expect the driver to drm_sched_entity_fini()
+> as long as there are still queued up jobs. At least this is inconsistant to what
+> drm_sched_entity_kill() does without DRM_SCHED_POLICY_SINGLE_ENTITY and should either be fixed
+> or documented if we agree nothing else makes sense.
 > 
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Boris Brezillon <boris.brezillon@collabora.com>
-> Cc: Danilo Krummrich <dakr@redhat.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-
-Reviewed-by: Danilo Krummrich <dakr@redhat.com>
-
-One typo below.
-
-> ---
->   drivers/gpu/drm/drm_exec.c |  2 +-
->   include/drm/drm_exec.h     | 35 +++++++++++++++++++++++++++++++----
->   2 files changed, 32 insertions(+), 5 deletions(-)
+> I think it also touches my question on how to tear down the scheduler once a ring is removed
+> or deinitialized.
 > 
-> diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
-> index ff69cf0fb42a..5d2809de4517 100644
-> --- a/drivers/gpu/drm/drm_exec.c
-> +++ b/drivers/gpu/drm/drm_exec.c
-> @@ -56,7 +56,7 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
->   	struct drm_gem_object *obj;
->   	unsigned long index;
->   
-> -	drm_exec_for_each_locked_object(exec, index, obj) {
-> +	drm_exec_for_each_locked_object_reverse(exec, index, obj) {
->   		dma_resv_unlock(obj->resv);
->   		drm_gem_object_put(obj);
->   	}
-> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-> index e0462361adf9..55764cf7c374 100644
-> --- a/include/drm/drm_exec.h
-> +++ b/include/drm/drm_exec.h
-> @@ -51,6 +51,20 @@ struct drm_exec {
->   	struct drm_gem_object *prelocked;
->   };
->   
-> +/**
-> + * drm_exec_obj() - Return the object for a give drm_exec index
-> + * @exec: Pointer to the drm_exec context
-> + * @index: The index.
-> + *
-> + * Return: Pointer to the locked object corresponding to @index if
-> + * index is within the number of locked objects. NULL otherwise.
-> + */
-> +static inline struct drm_gem_object *
-> +drm_exec_obj(struct drm_exec *exec, unsigned long index)
-> +{
-> +	return index < exec->num_objects ? exec->objects[index] : NULL;
-> +}
-> +
->   /**
->    * drm_exec_for_each_locked_object - iterate over all the locked objects
->    * @exec: drm_exec object
-> @@ -59,10 +73,23 @@ struct drm_exec {
->    *
->    * Iterate over all the locked GEM objects inside the drm_exec object.
->    */
-> -#define drm_exec_for_each_locked_object(exec, index, obj)	\
-> -	for (index = 0, obj = (exec)->objects[0];		\
-> -	     index < (exec)->num_objects;			\
-> -	     ++index, obj = (exec)->objects[index])
-> +#define drm_exec_for_each_locked_object(exec, index, obj)		\
-> +	for ((index) = 0; ((obj) = drm_exec_obj(exec, index)); ++(index))
-> +
-> +/**
-> + * drm_exec_for_each_locked_object_reverse - iterate over all the locked
-> + * objects in reverse locking order
-> + * @exec: drm_exec object
-> + * @index: unsigned long index for the iteration
-> + * @obj: the current GEM object
-> + *
-> + * Iterate over all the locked GEM objects inside the drm_exec object in
-> + * reverse locking order. Note that @index may go below zero and wrap,
-> + * but that will be caught by drm_exec_object(), returning a NULL object.
-
-drm_exec_obj()
-
-> + */
-> +#define drm_exec_for_each_locked_object_reverse(exec, index, obj)	\
-> +	for ((index) = (exec)->num_objects - 1;				\
-> +	     ((obj) = drm_exec_obj(exec, index)); --(index))
->   
->   /**
->    * drm_exec_until_all_locked - loop until all GEM objects are locked
+> I know XE is going its own way in this respect, but I also feel like we're leaving drivers
+> potentially being interested in DRM_SCHED_POLICY_SINGLE_ENTITY a bit alone on that. I think
+> we should probably give drivers a bit more guidance on how to do that.
+> 
+> Currently, I see two approaches.
+> 
+> (1) Do what XE does, which means letting the scheduler run dry, which includes both the
+>      entity's job queue and the schedulers pending_list. While jobs from the entity's queue
+>      aren't pushing any more work to the ring on tear down, but just "flow through" to get
+>      freed up eventually. (Hopefully I got that right.)
+> 
+> (2) Kill the entity to cleanup jobs from the entity's queue, stop the scheduler and either
+>      just wait for pending jobs or signal them right away and finally free them up.
+> 
+> Actually there'd also be (3), which could be a mix of both, discard the entity's queued jobs,
+> but let the pending_list run dry.
+> 
+> I'm not saying we should provide a whole bunch of infrastructure for drivers, e.g. for (1)
+> as you've mentioned already as well, there is probably not much to generalize anyway. However,
+> I think we should document the options drivers have to tear things down and do enough to
+> enable drivers using any option (as long as we agree it is reasonable).
+> 
+> For Nouveau specifically, I'd probably like to go with (3).
+> 
+> - Danilo
+> 
+>>       spin_unlock(&entity->rq_lock);
+>>       /* Make sure this entity is not used by the scheduler at the moment */
+>> @@ -259,6 +272,20 @@ static void drm_sched_entity_kill(struct drm_sched_entity *entity)
+>>       dma_fence_put(prev);
+>>   }
+>> +/**
+>> + * drm_sched_entity_to_scheduler - Schedule entity to GPU scheduler
+>> + * @entity: scheduler entity
+>> + *
+>> + * Returns GPU scheduler for the entity
+>> + */
+>> +struct drm_gpu_scheduler *
+>> +drm_sched_entity_to_scheduler(struct drm_sched_entity *entity)
+>> +{
+>> +    bool single_entity = !!entity->single_sched;
+>> +
+>> +    return single_entity ? entity->single_sched : entity->rq->sched;
+>> +}
+>> +
+>>   /**
+>>    * drm_sched_entity_flush - Flush a context entity
+>>    *
+>> @@ -276,11 +303,12 @@ long drm_sched_entity_flush(struct drm_sched_entity *entity, long timeout)
+>>       struct drm_gpu_scheduler *sched;
+>>       struct task_struct *last_user;
+>>       long ret = timeout;
+>> +    bool single_entity = !!entity->single_sched;
+>> -    if (!entity->rq)
+>> +    if (!entity->rq && !single_entity)
+>>           return 0;
+>> -    sched = entity->rq->sched;
+>> +    sched = drm_sched_entity_to_scheduler(entity);
+>>       /**
+>>        * The client will not queue more IBs during this fini, consume existing
+>>        * queued IBs or discard them on SIGKILL
+>> @@ -373,7 +401,7 @@ static void drm_sched_entity_wakeup(struct dma_fence *f,
+>>           container_of(cb, struct drm_sched_entity, cb);
+>>       drm_sched_entity_clear_dep(f, cb);
+>> -    drm_sched_wakeup_if_can_queue(entity->rq->sched);
+>> +    drm_sched_wakeup_if_can_queue(drm_sched_entity_to_scheduler(entity));
+>>   }
+>>   /**
+>> @@ -387,6 +415,8 @@ static void drm_sched_entity_wakeup(struct dma_fence *f,
+>>   void drm_sched_entity_set_priority(struct drm_sched_entity *entity,
+>>                      enum drm_sched_priority priority)
+>>   {
+>> +    WARN_ON(!!entity->single_sched);
+>> +
+>>       spin_lock(&entity->rq_lock);
+>>       entity->priority = priority;
+>>       spin_unlock(&entity->rq_lock);
+>> @@ -399,7 +429,7 @@ EXPORT_SYMBOL(drm_sched_entity_set_priority);
+>>    */
+>>   static bool drm_sched_entity_add_dependency_cb(struct drm_sched_entity *entity)
+>>   {
+>> -    struct drm_gpu_scheduler *sched = entity->rq->sched;
+>> +    struct drm_gpu_scheduler *sched = drm_sched_entity_to_scheduler(entity);
+>>       struct dma_fence *fence = entity->dependency;
+>>       struct drm_sched_fence *s_fence;
+>> @@ -501,7 +531,8 @@ struct drm_sched_job *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
+>>        * Update the entity's location in the min heap according to
+>>        * the timestamp of the next job, if any.
+>>        */
+>> -    if (entity->rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO) {
+>> +    if (drm_sched_entity_to_scheduler(entity)->sched_policy ==
+>> +        DRM_SCHED_POLICY_FIFO) {
+>>           struct drm_sched_job *next;
+>>           next = to_drm_sched_job(spsc_queue_peek(&entity->job_queue));
+>> @@ -524,6 +555,8 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
+>>       struct drm_gpu_scheduler *sched;
+>>       struct drm_sched_rq *rq;
+>> +    WARN_ON(!!entity->single_sched);
+>> +
+>>       /* single possible engine and already selected */
+>>       if (!entity->sched_list)
+>>           return;
+>> @@ -573,12 +606,13 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
+>>   void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
+>>   {
+>>       struct drm_sched_entity *entity = sched_job->entity;
+>> -    bool first, fifo = entity->rq->sched->sched_policy ==
+>> -        DRM_SCHED_POLICY_FIFO;
+>> +    bool single_entity = !!entity->single_sched;
+>> +    bool first;
+>>       ktime_t submit_ts;
+>>       trace_drm_sched_job(sched_job, entity);
+>> -    atomic_inc(entity->rq->sched->score);
+>> +    if (!single_entity)
+>> +        atomic_inc(entity->rq->sched->score);
+>>       WRITE_ONCE(entity->last_user, current->group_leader);
+>>       /*
+>> @@ -591,6 +625,10 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
+>>       /* first job wakes up scheduler */
+>>       if (first) {
+>> +        struct drm_gpu_scheduler *sched =
+>> +            drm_sched_entity_to_scheduler(entity);
+>> +        bool fifo = sched->sched_policy == DRM_SCHED_POLICY_FIFO;
+>> +
+>>           /* Add the entity to the run queue */
+>>           spin_lock(&entity->rq_lock);
+>>           if (entity->stopped) {
+>> @@ -600,13 +638,14 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
+>>               return;
+>>           }
+>> -        drm_sched_rq_add_entity(entity->rq, entity);
+>> +        if (!single_entity)
+>> +            drm_sched_rq_add_entity(entity->rq, entity);
+>>           spin_unlock(&entity->rq_lock);
+>>           if (fifo)
+>>               drm_sched_rq_update_fifo(entity, submit_ts);
+>> -        drm_sched_wakeup_if_can_queue(entity->rq->sched);
+>> +        drm_sched_wakeup_if_can_queue(sched);
+>>       }
+>>   }
+>>   EXPORT_SYMBOL(drm_sched_entity_push_job);
+>> diff --git a/drivers/gpu/drm/scheduler/sched_fence.c b/drivers/gpu/drm/scheduler/sched_fence.c
+>> index 06cedfe4b486..f6b926f5e188 100644
+>> --- a/drivers/gpu/drm/scheduler/sched_fence.c
+>> +++ b/drivers/gpu/drm/scheduler/sched_fence.c
+>> @@ -225,7 +225,7 @@ void drm_sched_fence_init(struct drm_sched_fence *fence,
+>>   {
+>>       unsigned seq;
+>> -    fence->sched = entity->rq->sched;
+>> +    fence->sched = drm_sched_entity_to_scheduler(entity);
+>>       seq = atomic_inc_return(&entity->fence_seq);
+>>       dma_fence_init(&fence->scheduled, &drm_sched_fence_ops_scheduled,
+>>                  &fence->lock, entity->fence_context, seq);
+>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+>> index 545d5298c086..cede47afc800 100644
+>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>> @@ -32,7 +32,8 @@
+>>    * backend operations to the scheduler like submitting a job to hardware run queue,
+>>    * returning the dependencies of a job etc.
+>>    *
+>> - * The organisation of the scheduler is the following:
+>> + * The organisation of the scheduler is the following for scheduling policies
+>> + * DRM_SCHED_POLICY_RR and DRM_SCHED_POLICY_FIFO:
+>>    *
+>>    * 1. Each hw run queue has one scheduler
+>>    * 2. Each scheduler has multiple run queues with different priorities
+>> @@ -43,6 +44,23 @@
+>>    *
+>>    * The jobs in a entity are always scheduled in the order that they were pushed.
+>>    *
+>> + * The organisation of the scheduler is the following for scheduling policy
+>> + * DRM_SCHED_POLICY_SINGLE_ENTITY:
+>> + *
+>> + * 1. One to one relationship between scheduler and entity
+>> + * 2. No priorities implemented per scheduler (single job queue)
+>> + * 3. No run queues in scheduler rather jobs are directly dequeued from entity
+>> + * 4. The entity maintains a queue of jobs that will be scheduled on the
+>> + * hardware
+>> + *
+>> + * The jobs in a entity are always scheduled in the order that they were pushed
+>> + * regardless of scheduling policy.
+>> + *
+>> + * A policy of DRM_SCHED_POLICY_RR or DRM_SCHED_POLICY_FIFO is expected to used
+>> + * when the KMD is scheduling directly on the hardware while a scheduling policy
+>> + * of DRM_SCHED_POLICY_SINGLE_ENTITY is expected to be used when there is a
+>> + * firmware scheduler.
+>> + *
+>>    * Note that once a job was taken from the entities queue and pushed to the
+>>    * hardware, i.e. the pending queue, the entity must not be referenced anymore
+>>    * through the jobs entity pointer.
+>> @@ -96,6 +114,8 @@ static inline void drm_sched_rq_remove_fifo_locked(struct drm_sched_entity *enti
+>>   void drm_sched_rq_update_fifo(struct drm_sched_entity *entity, ktime_t ts)
+>>   {
+>> +    WARN_ON(!!entity->single_sched);
+>> +
+>>       /*
+>>        * Both locks need to be grabbed, one to protect from entity->rq change
+>>        * for entity from within concurrent drm_sched_entity_select_rq and the
+>> @@ -126,6 +146,8 @@ void drm_sched_rq_update_fifo(struct drm_sched_entity *entity, ktime_t ts)
+>>   static void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
+>>                     struct drm_sched_rq *rq)
+>>   {
+>> +    WARN_ON(sched->sched_policy == DRM_SCHED_POLICY_SINGLE_ENTITY);
+>> +
+>>       spin_lock_init(&rq->lock);
+>>       INIT_LIST_HEAD(&rq->entities);
+>>       rq->rb_tree_root = RB_ROOT_CACHED;
+>> @@ -144,6 +166,8 @@ static void drm_sched_rq_init(struct drm_gpu_scheduler *sched,
+>>   void drm_sched_rq_add_entity(struct drm_sched_rq *rq,
+>>                    struct drm_sched_entity *entity)
+>>   {
+>> +    WARN_ON(!!entity->single_sched);
+>> +
+>>       if (!list_empty(&entity->list))
+>>           return;
+>> @@ -166,6 +190,8 @@ void drm_sched_rq_add_entity(struct drm_sched_rq *rq,
+>>   void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
+>>                   struct drm_sched_entity *entity)
+>>   {
+>> +    WARN_ON(!!entity->single_sched);
+>> +
+>>       if (list_empty(&entity->list))
+>>           return;
+>> @@ -641,7 +667,7 @@ int drm_sched_job_init(struct drm_sched_job *job,
+>>                  struct drm_sched_entity *entity,
+>>                  void *owner)
+>>   {
+>> -    if (!entity->rq)
+>> +    if (!entity->rq && !entity->single_sched)
+>>           return -ENOENT;
+>>       job->entity = entity;
+>> @@ -674,13 +700,16 @@ void drm_sched_job_arm(struct drm_sched_job *job)
+>>   {
+>>       struct drm_gpu_scheduler *sched;
+>>       struct drm_sched_entity *entity = job->entity;
+>> +    bool single_entity = !!entity->single_sched;
+>>       BUG_ON(!entity);
+>> -    drm_sched_entity_select_rq(entity);
+>> -    sched = entity->rq->sched;
+>> +    if (!single_entity)
+>> +        drm_sched_entity_select_rq(entity);
+>> +    sched = drm_sched_entity_to_scheduler(entity);
+>>       job->sched = sched;
+>> -    job->s_priority = entity->rq - sched->sched_rq;
+>> +    if (!single_entity)
+>> +        job->s_priority = entity->rq - sched->sched_rq;
+>>       job->id = atomic64_inc_return(&sched->job_id_count);
+>>       drm_sched_fence_init(job->s_fence, job->entity);
+>> @@ -896,6 +925,13 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
+>>       if (!drm_sched_can_queue(sched))
+>>           return NULL;
+>> +    if (sched->single_entity) {
+>> +        if (drm_sched_entity_is_ready(sched->single_entity))
+>> +            return sched->single_entity;
+>> +
+>> +        return NULL;
+>> +    }
+>> +
+>>       /* Kernel run queue has higher priority than normal run queue*/
+>>       for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
+>>           entity = sched->sched_policy == DRM_SCHED_POLICY_FIFO ?
+>> @@ -1091,6 +1127,7 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+>>           return -EINVAL;
+>>       sched->ops = ops;
+>> +    sched->single_entity = NULL;
+>>       sched->hw_submission_limit = hw_submission;
+>>       sched->name = name;
+>>       sched->submit_wq = submit_wq ? : system_wq;
+>> @@ -1103,7 +1140,9 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+>>           sched->sched_policy = default_drm_sched_policy;
+>>       else
+>>           sched->sched_policy = sched_policy;
+>> -    for (i = DRM_SCHED_PRIORITY_MIN; i < DRM_SCHED_PRIORITY_COUNT; i++)
+>> +    for (i = DRM_SCHED_PRIORITY_MIN; sched_policy !=
+>> +         DRM_SCHED_POLICY_SINGLE_ENTITY && i < DRM_SCHED_PRIORITY_COUNT;
+>> +         i++)
+>>           drm_sched_rq_init(sched, &sched->sched_rq[i]);
+>>       init_waitqueue_head(&sched->job_scheduled);
+>> @@ -1135,7 +1174,15 @@ void drm_sched_fini(struct drm_gpu_scheduler *sched)
+>>       drm_sched_submit_stop(sched);
+>> -    for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
+>> +    if (sched->single_entity) {
+>> +        spin_lock(&sched->single_entity->rq_lock);
+>> +        sched->single_entity->stopped = true;
+>> +        spin_unlock(&sched->single_entity->rq_lock);
+>> +    }
+>> +
+>> +    for (i = DRM_SCHED_PRIORITY_COUNT - 1; sched->sched_policy !=
+>> +         DRM_SCHED_POLICY_SINGLE_ENTITY && i >= DRM_SCHED_PRIORITY_MIN;
+>> +         i--) {
+>>           struct drm_sched_rq *rq = &sched->sched_rq[i];
+>>           spin_lock(&rq->lock);
+>> @@ -1176,6 +1223,8 @@ void drm_sched_increase_karma(struct drm_sched_job *bad)
+>>       struct drm_sched_entity *entity;
+>>       struct drm_gpu_scheduler *sched = bad->sched;
+>> +    WARN_ON(sched->sched_policy == DRM_SCHED_POLICY_SINGLE_ENTITY);
+>> +
+>>       /* don't change @bad's karma if it's from KERNEL RQ,
+>>        * because sometimes GPU hang would cause kernel jobs (like VM updating jobs)
+>>        * corrupt but keep in mind that kernel jobs always considered good.
+>> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
+>> index 897d52a4ff4f..04eec2d7635f 100644
+>> --- a/include/drm/gpu_scheduler.h
+>> +++ b/include/drm/gpu_scheduler.h
+>> @@ -79,6 +79,7 @@ enum drm_sched_policy {
+>>       DRM_SCHED_POLICY_DEFAULT,
+>>       DRM_SCHED_POLICY_RR,
+>>       DRM_SCHED_POLICY_FIFO,
+>> +    DRM_SCHED_POLICY_SINGLE_ENTITY,
+>>       DRM_SCHED_POLICY_COUNT,
+>>   };
+>> @@ -112,6 +113,9 @@ struct drm_sched_entity {
+>>        */
+>>       struct drm_sched_rq        *rq;
+>> +    /** @single_sched: Single scheduler */
+>> +    struct drm_gpu_scheduler    *single_sched;
+>> +
+>>       /**
+>>        * @sched_list:
+>>        *
+>> @@ -473,6 +477,7 @@ struct drm_sched_backend_ops {
+>>    * struct drm_gpu_scheduler - scheduler instance-specific data
+>>    *
+>>    * @ops: backend operations provided by the driver.
+>> + * @single_entity: Single entity for the scheduler
+>>    * @hw_submission_limit: the max size of the hardware queue.
+>>    * @timeout: the time after which a job is removed from the scheduler.
+>>    * @name: name of the ring for which this scheduler is being used.
+>> @@ -503,6 +508,7 @@ struct drm_sched_backend_ops {
+>>    */
+>>   struct drm_gpu_scheduler {
+>>       const struct drm_sched_backend_ops    *ops;
+>> +    struct drm_sched_entity        *single_entity;
+>>       uint32_t            hw_submission_limit;
+>>       long                timeout;
+>>       const char            *name;
+>> @@ -585,6 +591,8 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
+>>                 struct drm_gpu_scheduler **sched_list,
+>>                 unsigned int num_sched_list,
+>>                 atomic_t *guilty);
+>> +struct drm_gpu_scheduler *
+>> +drm_sched_entity_to_scheduler(struct drm_sched_entity *entity);
+>>   long drm_sched_entity_flush(struct drm_sched_entity *entity, long timeout);
+>>   void drm_sched_entity_fini(struct drm_sched_entity *entity);
+>>   void drm_sched_entity_destroy(struct drm_sched_entity *entity);
 
