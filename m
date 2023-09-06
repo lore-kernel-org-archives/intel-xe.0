@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 43CDBEB8FA5
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 06:02:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C3165EB8FA5
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 06:03:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C7C9610E04A;
-	Wed,  6 Sep 2023 06:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99FF710E3A4;
+	Wed,  6 Sep 2023 06:03:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 771B610E565;
- Wed,  6 Sep 2023 06:02:48 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DEE2E10E04A;
+ Wed,  6 Sep 2023 06:03:12 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 75CE6A3ECB;
- Wed,  6 Sep 2023 06:02:48 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DDF9EA3ECB;
+ Wed,  6 Sep 2023 06:03:12 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
-Date: Wed, 06 Sep 2023 06:02:48 -0000
-Message-ID: <169398016847.17390.2785880836813398647@emeril.freedesktop.org>
+Date: Wed, 06 Sep 2023 06:03:12 -0000
+Message-ID: <169398019290.17390.11770143798787108154@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230906060400.4144425-1-balasubramani.vivekanandan@intel.com>
 In-Reply-To: <20230906060400.4144425-1-balasubramani.vivekanandan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
- =?utf-8?q?m/xe/display=3A_Print_display_ip_version?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe/?=
+ =?utf-8?q?display=3A_Print_display_ip_version?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,29 +48,64 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/display: Print display ip version
 URL   : https://patchwork.freedesktop.org/series/123311/
-State : success
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 7efa0f8400e2f88241caefd383337b6e3c8b7e32
-Author: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-Date:   Wed Sep 6 11:34:00 2023 +0530
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:In file included from ../include/drm/ttm/ttm_resource.h:34,
+                 from ../include/drm/ttm/ttm_device.h:30,
+                 from ../drivers/gpu/drm/xe/xe_device_types.h:13,
+                 from ../drivers/gpu/drm/xe/xe_device.h:15,
+                 from ../drivers/gpu/drm/xe/xe_pci.c:19:
+../drivers/gpu/drm/xe/xe_pci.c: In function ‘xe_pci_probe’:
+../drivers/gpu/drm/xe/xe_pci.c:723:12: error: ‘struct intel_device_info’ has no member named ‘display_runtime’
+  723 |    xe->info.display_runtime.ip.ver,
+      |            ^
+../include/drm/drm_print.h:410:39: note: in definition of macro ‘drm_dev_dbg’
+  410 |  __drm_dev_dbg(NULL, dev, cat, fmt, ##__VA_ARGS__)
+      |                                       ^~~~~~~~~~~
+../include/drm/drm_print.h:510:32: note: in expansion of macro ‘drm_dbg_driver’
+  510 | #define drm_dbg(drm, fmt, ...) drm_dbg_driver(drm, fmt, ##__VA_ARGS__)
+      |                                ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pci.c:722:3: note: in expansion of macro ‘drm_dbg’
+  722 |   drm_dbg(&xe->drm, "Display: %d.%02d\n",
+      |   ^~~~~~~
+../drivers/gpu/drm/xe/xe_pci.c:724:12: error: ‘struct intel_device_info’ has no member named ‘display_runtime’
+  724 |    xe->info.display_runtime.ip.rel);
+      |            ^
+../include/drm/drm_print.h:410:39: note: in definition of macro ‘drm_dev_dbg’
+  410 |  __drm_dev_dbg(NULL, dev, cat, fmt, ##__VA_ARGS__)
+      |                                       ^~~~~~~~~~~
+../include/drm/drm_print.h:510:32: note: in expansion of macro ‘drm_dbg_driver’
+  510 | #define drm_dbg(drm, fmt, ...) drm_dbg_driver(drm, fmt, ##__VA_ARGS__)
+      |                                ^~~~~~~~~~~~~~
+../drivers/gpu/drm/xe/xe_pci.c:722:3: note: in expansion of macro ‘drm_dbg’
+  722 |   drm_dbg(&xe->drm, "Display: %d.%02d\n",
+      |   ^~~~~~~
+make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_pci.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:480: drivers/gpu/drm/xe] Error 2
+make[5]: *** [../scripts/Makefile.build:480: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:480: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:480: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:2032: .] Error 2
+make[1]: *** [/kernel/Makefile:234: __sub-make] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-    drm/xe/display: Print display ip version
-    
-    Print display ip version during module load
-    
-    Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-+ /mt/dim checkpatch 7ec520d3a63b6e95174329108cd44359a70907ba drm-intel
-7efa0f840 drm/xe/display: Print display ip version
+[06:02:49] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[06:02:53] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
