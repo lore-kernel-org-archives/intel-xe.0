@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A175EB8FA5
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 05:10:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68D61EB8FAD
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 05:14:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 057DC10E1C6;
-	Wed,  6 Sep 2023 05:10:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7163610E1C6
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Sep 2023 05:10:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 053DD10E1DA;
+	Wed,  6 Sep 2023 05:14:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DAB2410E1D5
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Sep 2023 05:14:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693977035; x=1725513035;
+ t=1693977252; x=1725513252;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=bAizoj7hErtjpkYk/wGxIhUq/QY7MeRzLIy16LZKlgs=;
- b=WFGrUQ/b+IHxIaVyNCWMcuRpdj9Z9DAG9dAQ7vzdWUYtF/UCyHoBg8D9
- YDM2s7Fzm+QC2yy3UKnIfDfGyJBydGw4Z4wwgJTpIgSeCPYH73CtD0Qmm
- /2ZqvpAq6AlxfsXb0md7jH2vqWkiq/xr4MKowa2E6HT3C/tluw9xWX0Cz
- uX1hg8LjvNP/aY0aqu47yvbk4+P53MimOFq6znMMJXcGb84epqfy8CAbW
- dbVt2w4ISrDDY8K7/O54kjNzMNVMJGruJXn1XZT/libKiK0THTl0BMYAJ
- J7GeSl8YXl+jWBNGAkYCs777vMp4ML8xUtnz8GwuNq48IUoZNFAPCn9Dw Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="443368808"
-X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="443368808"
+ bh=oMU/kGo2t1lbXfwwfiJ9c8qeckymNNkkQHv4Jgx30/M=;
+ b=l+yvvYjxiQaZsv8KTzmt3ofntnHHNsia9afuri7DgWMARPilyW+hwcWr
+ zwbZdlhAZh5C8Z9hX3oczi38IDdeDXY1If26fISKn/8HY1tWanRWrykrj
+ FyNSLB2exG7+PzAEmFelqX/PNXsDt4e/l3GHbPAmIYsCO5lZvVmijAGFw
+ RLcpQfG5I/Wz4+0FoaHyiO0iVdvgZTW+IvRd6OIWadYLwB/ZblYr8+hAW
+ IcMLRT7M3i1yuG4JZldTiN4Tn4K/o91um+AMeD1hsMpILZm4TGUyI9pwZ
+ 8s7xJXDWtQWF7z0YqYKDxWotWRIJHFzMjXCD5meL/Ytkz97rG2BKvprDm w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="374365378"
+X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="374365378"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Sep 2023 22:10:34 -0700
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Sep 2023 22:14:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="806874023"
-X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="806874023"
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="806874487"
+X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="806874487"
 Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
  by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Sep 2023 22:10:34 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ 05 Sep 2023 22:14:11 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
  fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 5 Sep 2023 22:10:33 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.32; Tue, 5 Sep 2023 22:14:10 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Tue, 5 Sep 2023 22:10:33 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27 via Frontend Transport; Tue, 5 Sep 2023 22:10:33 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.172)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.27 via Frontend Transport; Tue, 5 Sep 2023 22:14:10 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.102)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Tue, 5 Sep 2023 22:10:33 -0700
+ 15.1.2507.27; Tue, 5 Sep 2023 22:14:10 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tsmpt8Gb8cKKUsNsZCyQ+GJbXs/or/OfuUgo2FazKSqOYDOgkGJeXmadlF/PFl3lFcMpCNNoUJeIkCgVf/O/fkTKCYBIUMqBnVHduYYB3g4ZVww0neFa6TKb0V876cOXhnQ39h/N/4NxTWCrjLakKw30/cBtIqLz/xDzE1A4jTTsBAYw6gY89Xtb2JBL2hxwFJih3tpPRAMlXBxmKy6xOUNCbY699bbWFWKmhMZU0ISTJEbjSasRX0+NX7x1Fu6h68nPjqES/ybtx4QnHSJ7DltjimpC8xYMJbfX1805FVZuqva/4kqikg/040iQ65nSJjSE312bK/ca0OdTeIpJPQ==
+ b=GdFmSaEQaOjnVK4kw+nWkgxqsU72otAKwSRNBSluAUNKBDrbbMJ+l/r3PR6l5eabrAmGtGFFkagvo8w7AKA0QDLn7s2UEo1yEi/sr4fqboCQ6wfzkkO+m0ZGxnVKVBPNbBdhXmWKzX+nYjHPJygyoGs8HaisvVXG20C+eCB6tpWxrb6fuTfPM7ZDsCYyc6HmfKVUN0Fc2xnK35FuLO/boIDF6DadF71hmnTevHIOzD7yXq32uV22FYkGHfquQsmxqiPX4G8ESN3T9WKH7K+QPHqLPK+SKJCCpHtye1oNGDKKQBJjFDIxH7mKpKEQLSvr8CQZRhYgKRVcYCBu2mIMcQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mWrnwainGFCoXBKerH2tiGmDVT3b6s5I7Zeu6/T87bE=;
- b=LeTamS9ajYNWNr20HuGuUamuSvvhkYBslo3GvFkngeEglaWkrZkWk7fUfyOx5Fvt7iTVDAaEQf+4A/ZUSgm0eAWbpaQGBixcWnVEm7SAgBy3re4eqSDYA0vEB6HI37/Z1p11JJHWMwenhaXwuEmsmOJPcxdEyEex50L+XyAHpjTZAE56g+QGHCZdVxxeDc2l7HjBZbY5Wb9GATwPKoI0wip15FafJSq+AaSbTmIvXmH8FG+xhNsbORi6I94JWAeeXmq5IKBc6PaQRLBv4PMdpfbpZg7ylxGtp0oOqmvXUeqiUgi8/CCZQwXp3m4eFJYC/lm3K94gOMGRgfqnGA6WAw==
+ bh=MMAudnAjq7vsCbHKGLzL5Q91OqmCVoAJLZFwDXB97Do=;
+ b=S6MkaB+969a83FpfUWQT6ha1Iqq3YYYDUq5VqL31TyNWTk0buEv1K+5nwyEh8wroaDNhieHuWllTuLSUhhAsyVXDEDKbW4mPqIWVDw2565Vxr88fwJS2erdPbffDL1Yar6tQPx6mnVLMLrKh6LY+bapl7xsvIjkq21mC825Ku49NCOqgGxbzbuGc/sk6Yc2eFpDH2lBIfsfvP7emuCbH8ezsPR+5FhNtGFhWDWwkDaB+aRfJLyU4FAz8aBbcrgeJeNLcBOC4tK0hj7/r6J6nCVuqQl3/4ZJvHJp+wKvhvIcEeaU6a0L8BsywBPOpfGGYTofN2ziWO0bXDwwMnknHbA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,78 +63,78 @@ Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
  by SN7PR11MB6897.namprd11.prod.outlook.com (2603:10b6:806:2a5::11)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Wed, 6 Sep
- 2023 05:10:30 +0000
+ 2023 05:14:09 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::99cc:830:3ea5:d42b]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::99cc:830:3ea5:d42b%3]) with mapi id 15.20.6745.030; Wed, 6 Sep 2023
- 05:10:30 +0000
-Date: Wed, 6 Sep 2023 05:09:11 +0000
+ 05:14:09 +0000
+Date: Wed, 6 Sep 2023 05:12:50 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <ZPgJd8AFmJZIfupz@DUT025-TGLU.fm.intel.com>
+Message-ID: <ZPgKUviWLPAz24Mj@DUT025-TGLU.fm.intel.com>
 References: <20230901142629.4125-1-thomas.hellstrom@linux.intel.com>
- <20230901142629.4125-3-thomas.hellstrom@linux.intel.com>
+ <20230901142629.4125-7-thomas.hellstrom@linux.intel.com>
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230901142629.4125-3-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: BY5PR13CA0024.namprd13.prod.outlook.com
- (2603:10b6:a03:180::37) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20230901142629.4125-7-thomas.hellstrom@linux.intel.com>
+X-ClientProxiedBy: SJ0PR03CA0067.namprd03.prod.outlook.com
+ (2603:10b6:a03:331::12) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SN7PR11MB6897:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3998b7b8-58ec-4858-4809-08dbae97975d
+X-MS-Office365-Filtering-Correlation-Id: 9a47e658-7ea8-4656-1a85-08dbae981953
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qdYbYG1o+RZSteF6iGi3KvSeasSO8aocQKOSBqCPfOy+xR24sjkH15l96pwqVOQ0IhhYjKHmMjebbFSkK4cVXgbr9RYbanIfS9GKfxWNrTkG+NNmWtYEQcSzgUCUk1eQW16gZprx3hL3riDdyEhxGa16+IT/8F2EfYOl3wiJrBmOf4OZQLmu3OYR48p8q6H/gcb3UsVNcDA5j7+4WVPMc6yPWgu8ExL9g2C+YQKd3zsoRlV8q6mnatiihRbgms5ATQefzu1zJG/GjGmSRDUsttPpiPWIrcLIZho2gwIl8TGIvEuizcN7DnNsPIxaiTqrqQffZb0qqBfWQNxFyDYTEINR+ZhQOGGqhgir7kwXjelUS9dFicHQd5PviErAtoQBhOLboZThyDtxa6yuneNqcJZd6+qCDok3nTZWaWClZWRb5KGWOKQbhI6iumE+Ka0BVp/buugKqA/QqfweMPX5N4H7DoYLtjZzgowW2sNNp2hjlBrhpVJLzY4AOQ33vL0VfF+FZ1b3qG//xvtW4CQmJsuO8Qb4iDWwKlzHcYEH/Ob4iIUIpJGhM1G1KsB2Yhk/92EIFpPBtR3Ch7zmNM7mMrHqU2/0Bn/4ecPHJNNqwfg=
+X-Microsoft-Antispam-Message-Info: P/zagzXv3A+b/LbFTHWUrQTvobogaPxhpq9n+E2snE2sXpU/sfPOk4YEA+r07q9rbb75N2Q7dmlOCuxyJITW/qMtrHIw8L2OHOPcznyTsLFyelbRhtPvQKIolQSe3o1+8YB+OqtP3QFE5zFRfMicj0FcJ2MjsLSC++ny20Dv9jbEszvSdshkzf3cpog7MGvAhZ82tWkEhP/lNVzzcqRBEA5J9mJK1bA2u11HZAWsRJejOtzbXeNx49zQtXeFkArKpqXO6dYBNKgeEd+pyA+6q3cxtAo3dhD4WnQEbJGW3vBiz/dcztaiSLuBIc24rRaic82PAIHJSLQWZrM0YxZWLDiYmJbMGKY73NbWzx8Y29+DIxw84KSdbsTxuLypH+cWdCWXTFnsxttCM0RzPFAPWzJiiwB+vSv0sqnFPaAlk/i+6pNGxEdc7u+aCyMinQVT4Ds4g8rSNZSXpOlWatB9BGRriOsIIJBLZ+QtZGVwbOmDDr2q1oPgSEbdSjgmA70iFuguMkkDf08Hgjxx40FtSwx/aPybHG4kbYTU/VR2Gw0MGY5OAl7hUsMVtI6yuHLQ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(376002)(366004)(39860400002)(396003)(136003)(1800799009)(186009)(451199024)(83380400001)(38100700002)(30864003)(82960400001)(66574015)(2906002)(66476007)(66556008)(316002)(6512007)(41300700001)(6916009)(86362001)(66946007)(6486002)(6506007)(6666004)(478600001)(8676002)(8936002)(5660300002)(44832011)(4326008)(26005)(21314003);
+ SFS:(13230031)(346002)(376002)(366004)(39860400002)(396003)(136003)(1800799009)(186009)(451199024)(83380400001)(38100700002)(82960400001)(66574015)(2906002)(66476007)(66556008)(316002)(6512007)(41300700001)(6916009)(86362001)(66946007)(6486002)(6506007)(6666004)(478600001)(8676002)(8936002)(5660300002)(44832011)(4326008)(26005);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?CeeCypQ6hhZciNyYZcBkATmL3vMN++s5aGpXyJKH1Siph3ZXqf5nux9cNa?=
- =?iso-8859-1?Q?iiO3ToJXoRakZLtJ9RdjZfF+szj2CjdB4kQQEPrdtgnH5VLeXTiVsyrAcu?=
- =?iso-8859-1?Q?9WFNXTSl/TrL8SrqFYSkfUY+9A5AqpOkLzocovPFqjJhLSRmv2qndbzKd1?=
- =?iso-8859-1?Q?iCWfFSaiw1IQJKO4+PhIjjDwbA59kDB7K1s6j5X3cql/09vAjl+y7K8z5k?=
- =?iso-8859-1?Q?oa+XhGfM6qBrIW3iAqu+935+54cPsYwBoEQo6ObKr42DVM/MptAnYFLY2w?=
- =?iso-8859-1?Q?s9JGPBfNdVcDYnJU/BcMIK892OFIG0X1KfTobNmfk7S/5wmhAcjRCnNsNV?=
- =?iso-8859-1?Q?gVRRnHbj79pG1qLIfW1JRo+hLUj1krL4O+G5TAHTotMUzYDucN671K7mvF?=
- =?iso-8859-1?Q?4XKad+AIOpDm8LIYScyKbRSV0eEbLNHnRJPkjcV0y87oKC7Fy63aSc22d6?=
- =?iso-8859-1?Q?17TXgI2BPJ+lZOP0ARpUGpW7rthApqVxZR20rdJSv/tWzdsxGTkmBNV6Ps?=
- =?iso-8859-1?Q?HAKMyNY4NJaaKw5ayCN4vFQktWaMgPzIAsCqLo0u1zf1oWVim6ySjepj3M?=
- =?iso-8859-1?Q?4UY2Xt4VrWahP6FSWNzwSEl9MJyqInoaKN+tnkOGb7DeXxlAZri/nCMf5R?=
- =?iso-8859-1?Q?VUGXVyDTV2zqf9tKXn+xxYgwsQJ9HYDWIPBXtZW2r495OrIDPuePRBJSip?=
- =?iso-8859-1?Q?4OhhHfV6aIGhGACHXCtwrUGlSu+8drQc6+4lO3RTiu8ltMv6iIw+8UDIZa?=
- =?iso-8859-1?Q?fAySMbuOZvaZXU05IlC8ohPTT1NnX0W6L0Xs7TRjMhkBgmF2xNhQSrq5rr?=
- =?iso-8859-1?Q?tjmIZeW8vBclsWm9+uXQQ8Xx4eiV6T37ZVl4T7Wag9xJUY63M/VUq3AgeX?=
- =?iso-8859-1?Q?QSh06OEJGUw5TCYT4ED8VLr5D3RQaLrQlHG73jfJZoObr9uHTCBU5riD1V?=
- =?iso-8859-1?Q?59Pv11N6BrB9CZLBlx3A+3/WE6C3m3jwyUmGgaxEx72XtXeZghpg2HFjoQ?=
- =?iso-8859-1?Q?WTY0GalFFPcS9oSfpXz2zMF1bW3AHwmhNiTIP/Kj2G8KBmvyA1nbAugWkJ?=
- =?iso-8859-1?Q?a9nP0uY2PJmDFwT3hysyZ/uSQxEEtDOv9DIL2wmgh0Vd4Sx6bxlvUoK5mG?=
- =?iso-8859-1?Q?6xqUBB2JJbCXt1S4466K23iX+RE51q/owzy+8Q8DhrUSKI3T3xMleX9/Sr?=
- =?iso-8859-1?Q?1erEZCCSG9nnY8ix7TtScad8Lr7DhB/08EGxY0nSxbOZ7faU0wMvmeG78k?=
- =?iso-8859-1?Q?mRAyc1ukU254PeAls29qCJzDaSARDPlJ7WbBp/ej8L4Y7VsIVn0fHj3OVt?=
- =?iso-8859-1?Q?vLavsWUac1uQWlqDdPPb+sIm0C6IUcsmVgUMZlYgh5jIH0Xa/yP2RY8Kyy?=
- =?iso-8859-1?Q?kKZl8GtVdN1p//qZNU4r/p1EagpeHxlaGResQwCqf73JnvpijhAfvdqIuW?=
- =?iso-8859-1?Q?IvdhgRqcjivRxXUxbgDI2clbbJySDBTpadTiNpum8V4lnsHvtrvs1AFFMs?=
- =?iso-8859-1?Q?vfQL0ABRA41KwQ5GhuRnOCXcRS2gSfme9Zjg4kmugiOtZnY+q7V+ZDdwUG?=
- =?iso-8859-1?Q?EaMhEsylnTtGuf7Fc9QX0QYpIer+F0GUeJOrWL1IRjUg4TFQHl6bi10n66?=
- =?iso-8859-1?Q?yfMy0kjzWaQREItMUn3pVlg0GTKHe/mSCRJQlMPDchrt02OoR9FsD2sw?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Ooinrb1eNFLw4SX188ywoxdW1DoUJiB/quaees+h0C0DHv3puiFl8dnw4R?=
+ =?iso-8859-1?Q?TDE5KJU6AcVFhmEuvS/TdZZBQI2kKq0a9G914r5CfeOLfTMWEBTyl+JP+6?=
+ =?iso-8859-1?Q?742Qpc2P6fywq4fFUAyy39qqyWxg1tUbghxGWsHYysixfEbKNuqePYfn+X?=
+ =?iso-8859-1?Q?OFt6d5BctYi+ILASBcQzq9D9VSdLSGaFlBiAj6+BVPq3G3nohVQhRsa3Us?=
+ =?iso-8859-1?Q?uqm9SWY/VfMBAoTDmwx0+bRf2reCmzWOZOEfnt+AsYBBJkiq/SOJmMFXa1?=
+ =?iso-8859-1?Q?O0V/Fjo/qW8bYAg155hWMxPiESXM5hbRHPZCnfb9tYODKGl1TXvaOhahlj?=
+ =?iso-8859-1?Q?6xgWv6yZIkoH4sJyiFI1gPYZtO0US5ugFB/XE4HPyd4e7bEXdtiv/uyPfu?=
+ =?iso-8859-1?Q?xGMf0cJrn60CljWlgktScADw7ZN5mbn9sSb1Sed1aeRKxXmA/MzGnZZ2Sf?=
+ =?iso-8859-1?Q?bbji4efvbkd7ytL/fGtlH+P+g++ASlI7Loy+R193T59Zns3LrMiC8Y2gws?=
+ =?iso-8859-1?Q?6GEQEEi3PjfgcFCvpQz5/T9a8mDBvwa/Yo+OlO3egudyEz/xIxDF3HrHuS?=
+ =?iso-8859-1?Q?dgzqBCMfyrJxmE6Ob3ysuzhBpFj8p074crqBYWsHTODgUNWz24BYR5XTL9?=
+ =?iso-8859-1?Q?VSc5cArpmHulVVpJ2NGtxvhiA1R8KPsGUUcERKKNOuyWA9P8g9cacB/UsX?=
+ =?iso-8859-1?Q?zPlohIhRPIofPEydhhjVBPUnR2IV3RyTo+OW8gE+s/amqGG0LPbgpu8TAU?=
+ =?iso-8859-1?Q?KVzjt7csqDMTldbqZdvfT+hJj5anml2JagvddyjyOBY91wx/2DnGnUMg3d?=
+ =?iso-8859-1?Q?anGnzP/0YYh6AnV45EpNPKosUhdDEmF1HRPGZHvDXP4Jxeo1JODikMPfn8?=
+ =?iso-8859-1?Q?w1wqNMZ1Qlaqo6QkGmaXpxsEcTIvK2uDli3XIubUfUhOzULTGgYObB3rwK?=
+ =?iso-8859-1?Q?k/sGmzoMIzELK0L6LS+EX2jXLhYYCit1ucXW+uq+RuCEYC8C/fmkMtTD2o?=
+ =?iso-8859-1?Q?ZzSGRVQs1n9o6Ki455UAT1FovUpK1ZC4ak9lUjIRwboQe228pGXMRAwO8N?=
+ =?iso-8859-1?Q?K+6erygyPtiQgYxtCU83PoRNwIcxot9PeO/SEcb5tqbH4uR62RkZuFyj+a?=
+ =?iso-8859-1?Q?GH1nVXF/t3+3PlC5qovwk5OuUpXj5l17KknvIfuyhOX/H3dAiMSayRXa+4?=
+ =?iso-8859-1?Q?mIH34msyYYK1kQf5W//Pj1v8fTF2k9h4s47isOnla8uhOtXw/iclNIAtzx?=
+ =?iso-8859-1?Q?gwcxQfBghCJKoxtxMrHdMw0OT1TdxxEbpjBDs/sVM5ZXo1N++xOfJWlU+K?=
+ =?iso-8859-1?Q?0FpwYYoYWDY2ZLjdN5qoALWuRXf2qn1PgCqqa4W6BnEV1t4T9FW7cmRCSe?=
+ =?iso-8859-1?Q?OPs/cJX051f7B5BGRh96MF4lkaHHHSLZ9a4tpHCj7zcS8K7eIKPXSflFHS?=
+ =?iso-8859-1?Q?q5fX7I5uOdS0BpS2FEcwMgeQua5YmJ2c4I6oEOMaNdcDKM4zqQo+5ZkOQE?=
+ =?iso-8859-1?Q?n2sE8QKTzVtzBzoAwLXGgd60/Enaa6a9YuzRsh9ZJIvY6PY1EmH+Y2Sy6x?=
+ =?iso-8859-1?Q?EqKqet5bkpvMgS9NFAj8apRunwntgYAuns4KYf1K4kUORBRR3SrZxTVVN2?=
+ =?iso-8859-1?Q?wGcoUWld6tK9QTRrZt0I6NZsfT2njuwPWH3Z16NJhvuTbDs/EkSsWrTw?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3998b7b8-58ec-4858-4809-08dbae97975d
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9a47e658-7ea8-4656-1a85-08dbae981953
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2023 05:10:30.7773 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2023 05:14:08.8997 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: NdXSlAOJFrYNAvpz/sJM6Fg8DviXjpLrLjQVN4xnu9vtFXhSpfXjuDvkCZhbPR6s9Z+5NtkD+it6v604KAMicw==
+X-MS-Exchange-CrossTenant-UserPrincipalName: EJ9JsDw3UtLlE1zMlCjxQcopzaDtw2mOBI0/0y0jVignLeRHhCncRP29oWSNIBGuAcljcFyvzo/BFN/JexlA4A==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6897
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v4 2/6] drm/xe/vm: Simplify and document
- xe_vm_lock()
+Subject: Re: [Intel-xe] [PATCH v4 6/6] drm/xe: Convert remaining instances
+ of ttm_eu_reserve_buffers to drm_exec
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,346 +150,168 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 01, 2023 at 04:26:25PM +0200, Thomas Hellström wrote:
-> The xe_vm_lock() function was unnecessarily using ttm_eu_reserve_buffers().
-> Simplify and document the interface.
+On Fri, Sep 01, 2023 at 04:26:29PM +0200, Thomas Hellström wrote:
+> The VM_BIND functionality and vma destruction was locking
+> potentially multiple dma_resv objects using the
+> ttm_eu_reserve_buffers() function. Rework those to use the drm_exec
+> helper, taking care that any calls to xe_bo_validate() ends up
+> inside an unsealed locking transaction.
 > 
 > v4:
-> - Improve on xe_vm_lock() documentation (Matthew Brost)
+> - Remove an unbalanced xe_bo_put() (igt and Matthew Brost)
 > 
 > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 > ---
->  drivers/gpu/drm/xe/tests/xe_bo.c      |  9 +++--
->  drivers/gpu/drm/xe/tests/xe_migrate.c |  5 ++-
->  drivers/gpu/drm/xe/xe_bo.c            |  5 ++-
->  drivers/gpu/drm/xe/xe_exec_queue.c    |  5 ++-
->  drivers/gpu/drm/xe/xe_lrc.c           |  6 ++--
->  drivers/gpu/drm/xe/xe_migrate.c       | 10 +++---
->  drivers/gpu/drm/xe/xe_vm.c            | 51 +++++++++++++--------------
->  drivers/gpu/drm/xe/xe_vm.h            |  5 ++-
->  8 files changed, 43 insertions(+), 53 deletions(-)
+>  drivers/gpu/drm/xe/xe_vm.c | 94 +++++++++++++++-----------------------
+>  1 file changed, 36 insertions(+), 58 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_bo.c b/drivers/gpu/drm/xe/tests/xe_bo.c
-> index 31fd4f9b2d5b..c6025404042d 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_bo.c
-> @@ -180,17 +180,16 @@ static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kuni
->  	unsigned int bo_flags = XE_BO_CREATE_USER_BIT |
->  		XE_BO_CREATE_VRAM_IF_DGFX(gt_to_tile(gt));
->  	struct xe_vm *vm = xe_migrate_get_vm(xe_device_get_root_tile(xe)->migrate);
-> -	struct ww_acquire_ctx ww;
->  	int err, i;
->  
->  	kunit_info(test, "Testing device %s gt id %u vram id %u\n",
->  		   dev_name(xe->drm.dev), gt->info.id, gt_to_tile(gt)->id);
->  
->  	for (i = 0; i < 2; ++i) {
-> -		xe_vm_lock(vm, &ww, 0, false);
-> +		xe_vm_lock(vm, false);
->  		bo = xe_bo_create(xe, NULL, vm, 0x10000, ttm_bo_type_device,
->  				  bo_flags);
-> -		xe_vm_unlock(vm, &ww);
-> +		xe_vm_unlock(vm);
->  		if (IS_ERR(bo)) {
->  			KUNIT_FAIL(test, "bo create err=%pe\n", bo);
->  			break;
-> @@ -259,9 +258,9 @@ static int evict_test_run_gt(struct xe_device *xe, struct xe_gt *gt, struct kuni
->  
->  		if (i) {
->  			down_read(&vm->lock);
-> -			xe_vm_lock(vm, &ww, 0, false);
-> +			xe_vm_lock(vm, false);
->  			err = xe_bo_validate(bo, bo->vm, false);
-> -			xe_vm_unlock(vm, &ww);
-> +			xe_vm_unlock(vm);
->  			up_read(&vm->lock);
->  			if (err) {
->  				KUNIT_FAIL(test, "bo valid err=%pe\n",
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> index 5c8d5e78d9bc..8bb081086ca2 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> @@ -396,14 +396,13 @@ static int migrate_test_run_device(struct xe_device *xe)
->  
->  	for_each_tile(tile, xe, id) {
->  		struct xe_migrate *m = tile->migrate;
-> -		struct ww_acquire_ctx ww;
->  
->  		kunit_info(test, "Testing tile id %d.\n", id);
-> -		xe_vm_lock(m->q->vm, &ww, 0, true);
-> +		xe_vm_lock(m->q->vm, true);
->  		xe_device_mem_access_get(xe);
->  		xe_migrate_sanity_test(m, test);
->  		xe_device_mem_access_put(xe);
-> -		xe_vm_unlock(m->q->vm, &ww);
-> +		xe_vm_unlock(m->q->vm);
->  	}
->  
->  	return 0;
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index a3ddd6575793..25fdc04627ca 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1749,7 +1749,6 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->  	struct xe_device *xe = to_xe_device(dev);
->  	struct xe_file *xef = to_xe_file(file);
->  	struct drm_xe_gem_create *args = data;
-> -	struct ww_acquire_ctx ww;
->  	struct xe_vm *vm = NULL;
->  	struct xe_bo *bo;
->  	unsigned int bo_flags = XE_BO_CREATE_USER_BIT;
-> @@ -1802,7 +1801,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->  		vm = xe_vm_lookup(xef, args->vm_id);
->  		if (XE_IOCTL_DBG(xe, !vm))
->  			return -ENOENT;
-> -		err = xe_vm_lock(vm, &ww, 0, true);
-> +		err = xe_vm_lock(vm, true);
->  		if (err) {
->  			xe_vm_put(vm);
->  			return err;
-> @@ -1830,7 +1829,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->  	xe_bo_put(bo);
->  out_vm:
->  	if (vm) {
-> -		xe_vm_unlock(vm, &ww);
-> +		xe_vm_unlock(vm);
->  		xe_vm_put(vm);
->  	}
->  	return err;
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index e44d71c679cc..6725157d8c1d 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -111,18 +111,17 @@ struct xe_exec_queue *xe_exec_queue_create(struct xe_device *xe, struct xe_vm *v
->  					   u32 logical_mask, u16 width,
->  					   struct xe_hw_engine *hwe, u32 flags)
->  {
-> -	struct ww_acquire_ctx ww;
->  	struct xe_exec_queue *q;
->  	int err;
->  
->  	if (vm) {
-> -		err = xe_vm_lock(vm, &ww, 0, true);
-> +		err = xe_vm_lock(vm, true);
->  		if (err)
->  			return ERR_PTR(err);
->  	}
->  	q = __xe_exec_queue_create(xe, vm, logical_mask, width, hwe, flags);
->  	if (vm)
-> -		xe_vm_unlock(vm, &ww);
-> +		xe_vm_unlock(vm);
->  
->  	return q;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-> index 2b4219c38359..434fbb364b4b 100644
-> --- a/drivers/gpu/drm/xe/xe_lrc.c
-> +++ b/drivers/gpu/drm/xe/xe_lrc.c
-> @@ -789,16 +789,14 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
->  
->  void xe_lrc_finish(struct xe_lrc *lrc)
->  {
-> -	struct ww_acquire_ctx ww;
-> -
->  	xe_hw_fence_ctx_finish(&lrc->fence_ctx);
->  	if (lrc->bo->vm)
-> -		xe_vm_lock(lrc->bo->vm, &ww, 0, false);
-> +		xe_vm_lock(lrc->bo->vm, false);
->  	else
->  		xe_bo_lock_no_vm(lrc->bo, NULL);
->  	xe_bo_unpin(lrc->bo);
->  	if (lrc->bo->vm)
-> -		xe_vm_unlock(lrc->bo->vm, &ww);
-> +		xe_vm_unlock(lrc->bo->vm);
->  	else
->  		xe_bo_unlock_no_vm(lrc->bo);
->  	xe_bo_put(lrc->bo);
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index a782ea282cb6..ee8bc5f3ba3d 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -88,13 +88,12 @@ struct xe_exec_queue *xe_tile_migrate_engine(struct xe_tile *tile)
->  static void xe_migrate_fini(struct drm_device *dev, void *arg)
->  {
->  	struct xe_migrate *m = arg;
-> -	struct ww_acquire_ctx ww;
->  
-> -	xe_vm_lock(m->q->vm, &ww, 0, false);
-> +	xe_vm_lock(m->q->vm, false);
->  	xe_bo_unpin(m->pt_bo);
->  	if (m->cleared_bo)
->  		xe_bo_unpin(m->cleared_bo);
-> -	xe_vm_unlock(m->q->vm, &ww);
-> +	xe_vm_unlock(m->q->vm);
->  
->  	dma_fence_put(m->fence);
->  	if (m->cleared_bo)
-> @@ -338,7 +337,6 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
->  	struct xe_gt *primary_gt = tile->primary_gt;
->  	struct xe_migrate *m;
->  	struct xe_vm *vm;
-> -	struct ww_acquire_ctx ww;
->  	int err;
->  
->  	m = drmm_kzalloc(&xe->drm, sizeof(*m), GFP_KERNEL);
-> @@ -353,9 +351,9 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
->  	if (IS_ERR(vm))
->  		return ERR_CAST(vm);
->  
-> -	xe_vm_lock(vm, &ww, 0, false);
-> +	xe_vm_lock(vm, false);
->  	err = xe_migrate_prepare_vm(tile, m, vm);
-> -	xe_vm_unlock(vm, &ww);
-> +	xe_vm_unlock(vm);
->  	if (err) {
->  		xe_vm_close_and_put(vm);
->  		return ERR_PTR(err);
 > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 8462f6321351..c84f0fb56e39 100644
+> index d6179a46157a..031ac2843b4c 100644
 > --- a/drivers/gpu/drm/xe/xe_vm.c
 > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -523,18 +523,17 @@ void xe_vm_unlock_dma_resv(struct xe_vm *vm,
+> @@ -1119,29 +1119,20 @@ int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
 >  
->  static void xe_vm_kill(struct xe_vm *vm)
+>  static void xe_vma_destroy_unlocked(struct xe_vma *vma)
 >  {
+> -	struct ttm_validate_buffer tv[2];
 > -	struct ww_acquire_ctx ww;
->  	struct xe_exec_queue *q;
->  
->  	lockdep_assert_held(&vm->lock);
->  
-> -	xe_vm_lock(vm, &ww, 0, false);
-> +	xe_vm_lock(vm, false);
->  	vm->flags |= XE_VM_FLAG_BANNED;
->  	trace_xe_vm_kill(vm);
->  
->  	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link)
->  		q->ops->kill(q);
-> -	xe_vm_unlock(vm, &ww);
-> +	xe_vm_unlock(vm);
->  
->  	/* TODO: Inform user the VM is banned */
->  }
-> @@ -1412,7 +1411,6 @@ static void xe_vm_close(struct xe_vm *vm)
->  void xe_vm_close_and_put(struct xe_vm *vm)
->  {
->  	LIST_HEAD(contested);
-> -	struct ww_acquire_ctx ww;
->  	struct xe_device *xe = vm->xe;
->  	struct xe_tile *tile;
->  	struct xe_vma *vma, *next_vma;
-> @@ -1435,7 +1433,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
->  	}
->  
->  	down_write(&vm->lock);
-> -	xe_vm_lock(vm, &ww, 0, false);
-> +	xe_vm_lock(vm, false);
->  	drm_gpuva_for_each_va_safe(gpuva, next, &vm->mgr) {
->  		vma = gpuva_to_vma(gpuva);
->  
-> @@ -1476,7 +1474,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
->  					      NULL);
->  		}
->  	}
-> -	xe_vm_unlock(vm, &ww);
-> +	xe_vm_unlock(vm);
->  
->  	/*
->  	 * VM is now dead, cannot re-add nodes to vm->vmas if it's NULL
-> @@ -1514,7 +1512,6 @@ static void vm_destroy_work_func(struct work_struct *w)
->  {
->  	struct xe_vm *vm =
->  		container_of(w, struct xe_vm, destroy_work);
-> -	struct ww_acquire_ctx ww;
->  	struct xe_device *xe = vm->xe;
->  	struct xe_tile *tile;
->  	u8 id;
-> @@ -1539,14 +1536,14 @@ static void vm_destroy_work_func(struct work_struct *w)
->  	 * is needed for xe_vm_lock to work. If we remove that dependency this
->  	 * can be moved to xe_vm_close_and_put.
->  	 */
-> -	xe_vm_lock(vm, &ww, 0, false);
-> +	xe_vm_lock(vm, false);
->  	for_each_tile(tile, xe, id) {
->  		if (vm->pt_root[id]) {
->  			xe_pt_destroy(vm->pt_root[id], vm->flags, NULL);
->  			vm->pt_root[id] = NULL;
->  		}
->  	}
-> -	xe_vm_unlock(vm, &ww);
-> +	xe_vm_unlock(vm);
->  
->  	trace_xe_vm_free(vm);
->  	dma_fence_put(vm->rebind_fence);
-> @@ -3422,30 +3419,32 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  	return err == -ENODATA ? 0 : err;
->  }
->  
-> -/*
-> - * XXX: Using the TTM wrappers for now, likely can call into dma-resv code
-> - * directly to optimize. Also this likely should be an inline function.
-> +/**
-> + * xe_vm_lock() - Lock the vm's dma_resv object
-> + * @vm: The struct xe_vm whose lock is to be locked
-> + * @intr: Whether to perform any wait interruptible
-> + *
-> + * Return: 0 on success, -EINTR if @intr is true and the wait for a
-> + * contended lock was interrupted. If @intr is false, the function
-> + * always returns 0.
->   */
-> -int xe_vm_lock(struct xe_vm *vm, struct ww_acquire_ctx *ww,
-> -	       int num_resv, bool intr)
-> +int xe_vm_lock(struct xe_vm *vm, bool intr)
->  {
-> -	struct ttm_validate_buffer tv_vm;
+> -	struct xe_bo *bo = xe_vma_bo(vma);
 > -	LIST_HEAD(objs);
 > -	LIST_HEAD(dups);
+> +	struct drm_exec exec;
+>  	int err;
+>  
+> -	memset(tv, 0, sizeof(tv));
+> -	tv[0].bo = xe_vm_ttm_bo(xe_vma_vm(vma));
+> -	list_add(&tv[0].head, &objs);
 > -
-> -	XE_WARN_ON(!ww);
+> -	if (bo) {
+> -		tv[1].bo = &xe_bo_get(bo)->ttm;
+> -		list_add(&tv[1].head, &objs);
+> +	drm_exec_init(&exec, 0);
+> +	drm_exec_until_all_locked(&exec) {
+> +		err = xe_vm_prepare_vma(&exec, vma, 0);
+> +		drm_exec_retry_on_contention(&exec);
+> +		if (XE_WARN_ON(err))
+> +			break;
+>  	}
+> -	err = ttm_eu_reserve_buffers(&ww, &objs, false, &dups);
+> -	XE_WARN_ON(err);
+>  
+>  	xe_vma_destroy(vma, NULL);
+>  
+> -	ttm_eu_backoff_reservation(&ww, &objs);
+> -	if (bo)
+> -		xe_bo_put(bo);
+> +	drm_exec_fini(&exec);
+>  }
+>  
+>  struct xe_vma *
+> @@ -2155,12 +2146,6 @@ struct ttm_buffer_object *xe_vm_ttm_bo(struct xe_vm *vm)
+>  	return &vm->pt_root[idx]->bo->ttm;
+>  }
+>  
+> -static void xe_vm_tv_populate(struct xe_vm *vm, struct ttm_validate_buffer *tv)
+> -{
+> -	tv->num_shared = 1;
+> -	tv->bo = xe_vm_ttm_bo(vm);
+> -}
 > -
-> -	tv_vm.num_shared = num_resv;
-> -	tv_vm.bo = xe_vm_ttm_bo(vm);
+>  static void vm_set_async_error(struct xe_vm *vm, int err)
+>  {
+>  	lockdep_assert_held(&vm->lock);
+> @@ -2661,42 +2646,16 @@ static int xe_vma_op_commit(struct xe_vm *vm, struct xe_vma_op *op)
+>  	return err;
+>  }
+>  
+> -static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
+> -			       struct xe_vma_op *op)
+> +static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
+> +		      struct xe_vma *vma, struct xe_vma_op *op)
+>  {
+> -	LIST_HEAD(objs);
+> -	LIST_HEAD(dups);
+> -	struct ttm_validate_buffer tv_bo, tv_vm;
+> -	struct ww_acquire_ctx ww;
+> -	struct xe_bo *vbo;
+>  	int err;
+>  
+>  	lockdep_assert_held_write(&vm->lock);
+>  
+> -	xe_vm_tv_populate(vm, &tv_vm);
 > -	list_add_tail(&tv_vm.head, &objs);
-> +	if (intr)
-> +		return dma_resv_lock_interruptible(&vm->resv, NULL);
+> -	vbo = xe_vma_bo(vma);
+> -	if (vbo) {
+> -		/*
+> -		 * An unbind can drop the last reference to the BO and
+> -		 * the BO is needed for ttm_eu_backoff_reservation so
+> -		 * take a reference here.
+> -		 */
+> -		xe_bo_get(vbo);
+> -
+> -		if (!vbo->vm) {
+> -			tv_bo.bo = &vbo->ttm;
+> -			tv_bo.num_shared = 1;
+> -			list_add(&tv_bo.head, &objs);
+> -		}
+> -	}
+> -
+> -again:
+> -	err = ttm_eu_reserve_buffers(&ww, &objs, true, &dups);
+> -	if (err) {
+> -		xe_bo_put(vbo);
+> +	err = xe_vm_prepare_vma(exec, vma, 1);
+> +	if (err)
+>  		return err;
+> -	}
 >  
-> -	return ttm_eu_reserve_buffers(ww, &objs, intr, &dups);
-> +	return dma_resv_lock(&vm->resv, NULL);
+>  	xe_vm_assert_held(vm);
+>  	xe_bo_assert_held(xe_vma_bo(vma));
+> @@ -2775,17 +2734,36 @@ static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
+>  		XE_WARN_ON("NOT POSSIBLE");
+>  	}
+>  
+> -	ttm_eu_backoff_reservation(&ww, &objs);
+> +	if (err)
+> +		trace_xe_vma_fail(vma);
+> +
+> +	return err;
+> +}
+> +
+> +static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
+> +			       struct xe_vma_op *op)
+> +{
+> +	struct drm_exec exec;
+> +	int err;
+> +
+> +retry_userptr:
+> +	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
+> +	drm_exec_until_all_locked(&exec) {
+> +		err = op_execute(&exec, vm, vma, op);
+> +		drm_exec_retry_on_contention(&exec);
+> +		if (err)
+> +			break;
+> +	}
+> +	drm_exec_fini(&exec);
+> +
+>  	if (err == -EAGAIN && xe_vma_is_userptr(vma)) {
+>  		lockdep_assert_held_write(&vm->lock);
+>  		err = xe_vma_userptr_pin_pages(vma);
+>  		if (!err)
+> -			goto again;
+> -	}
+> -	xe_bo_put(vbo);
+> +			goto retry_userptr;
+>  
+> -	if (err)
+>  		trace_xe_vma_fail(vma);
+> +	}
+>  
+>  	return err;
 >  }
->  
-> -void xe_vm_unlock(struct xe_vm *vm, struct ww_acquire_ctx *ww)
-> +/**
-> + * xe_vm_unlock() - Unlock the vm's dma_resv object
-> + * @vm: The struct xe_vm whose lock is to be released.
-> + *
-> + * Unlock a buffer object lock that was locked by xe_vm_lock().
-> + */
-> +void xe_vm_unlock(struct xe_vm *vm)
->  {
->  	dma_resv_unlock(&vm->resv);
-> -	ww_acquire_fini(ww);
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-> index 6de6e3edb24a..d7d8fd7bd8da 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.h
-> +++ b/drivers/gpu/drm/xe/xe_vm.h
-> @@ -39,10 +39,9 @@ static inline void xe_vm_put(struct xe_vm *vm)
->  	kref_put(&vm->refcount, xe_vm_free);
->  }
->  
-> -int xe_vm_lock(struct xe_vm *vm, struct ww_acquire_ctx *ww,
-> -	       int num_resv, bool intr);
-> +int xe_vm_lock(struct xe_vm *vm, bool intr);
->  
-> -void xe_vm_unlock(struct xe_vm *vm, struct ww_acquire_ctx *ww);
-> +void xe_vm_unlock(struct xe_vm *vm);
->  
->  static inline bool xe_vm_is_closed(struct xe_vm *vm)
->  {
 > -- 
 > 2.41.0
 > 
