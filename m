@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4056EE14A0
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 15:42:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE108EE14A5
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 15:42:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78E6D10E6A0;
-	Wed,  6 Sep 2023 15:42:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 775B710E6A4;
+	Wed,  6 Sep 2023 15:42:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 220D410E6A0;
- Wed,  6 Sep 2023 15:42:24 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CCCEF10E6A2;
+ Wed,  6 Sep 2023 15:42:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1A821A00E6;
- Wed,  6 Sep 2023 15:42:24 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id C9E44A00E6;
+ Wed,  6 Sep 2023 15:42:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 06 Sep 2023 15:42:24 -0000
-Message-ID: <169401494410.17389.15378505307594266386@emeril.freedesktop.org>
+Date: Wed, 06 Sep 2023 15:42:44 -0000
+Message-ID: <169401496482.17390.10513061907854205307@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230906153916.5665-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20230906153916.5665-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Convert_to_drm=5Fexec_=28rev4=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Convert_to_drm=5Fexec_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,14 +52,40 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 62fe9fa9a drm/drm_exec: Work around a WW mutex lockdep oddity
-=== git am output follows ===
-Applying: drm/xe/bo: Simplify xe_bo_lock()
-Applying: drm/xe/vm: Simplify and document xe_vm_lock()
-Applying: drm/xe/bo: Remove the lock_no_vm()/unlock_no_vm() interface
-Applying: drm/xe: Rework xe_exec and the VM rebind worker to use the drm_exec helper
-Applying: drm/xe: Convert pagefaulting code to use drm_exec
-Applying: drm/xe: Convert remaining instances of ttm_eu_reserve_buffers to drm_exec
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 56f7493e1f9a8dba984af398d0763f967aa62d0c
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Wed Sep 6 17:39:16 2023 +0200
+
+    drm/xe: Convert remaining instances of ttm_eu_reserve_buffers to drm_exec
+    
+    The VM_BIND functionality and vma destruction was locking
+    potentially multiple dma_resv objects using the
+    ttm_eu_reserve_buffers() function. Rework those to use the drm_exec
+    helper, taking care that any calls to xe_bo_validate() ends up
+    inside an unsealed locking transaction.
+    
+    v4:
+    - Remove an unbalanced xe_bo_put() (igt and Matthew Brost)
+    v5:
+    - Rebase conflict
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 62fe9fa9afd1a2065c9e762e9da1216ac04b042f drm-intel
+89928ff37 drm/xe/bo: Simplify xe_bo_lock()
+fcfbb5d8a drm/xe/vm: Simplify and document xe_vm_lock()
+71ac7d6aa drm/xe/bo: Remove the lock_no_vm()/unlock_no_vm() interface
+7979834cc drm/xe: Rework xe_exec and the VM rebind worker to use the drm_exec helper
+ff105298a drm/xe: Convert pagefaulting code to use drm_exec
+56f7493e1 drm/xe: Convert remaining instances of ttm_eu_reserve_buffers to drm_exec
 
 
