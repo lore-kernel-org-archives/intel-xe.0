@@ -4,51 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 541D9EB8FB4
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 09:51:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6E3DEB8FAF
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 09:55:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DFA8310E5C2;
-	Wed,  6 Sep 2023 09:51:13 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E17A410E5C4;
- Wed,  6 Sep 2023 09:51:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8178F10E1DF;
+	Wed,  6 Sep 2023 09:55:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BCB9510E1DF
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Sep 2023 09:55:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693993869; x=1725529869;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=0LiL6j2H7g+1uLIOL4Mqaz9i+xRnNyJ9avg5ksWEiFM=;
- b=iq4PX1Rb26VV/OXGf+CyYgskgx7Jv7j4+Re57e5hn2sKb0BzeYqmfJ3Z
- wPC9+v2naY9DJpQw5IG9C6WQJ/Bzy8gw6lUb75u6meYnzlhGpsXzXX+s7
- P7vXXX/k0epCeM83i/+rOND++k5/hH4HQBUKTQAZkrq+0rbYojHcakLsX
- IH+4RlTVGzKUM7dwbN+vOclefllPLzfkBszC/2mmYHLXfdezvBPhZk2zh
- /5e02tqLExkSsvbqxKUvea4Q61oEofBSL1mIe7mrDHe6hY5+vAjm9vkXz
- XmsCq9FBi2Mk1jHti7z3tVElDuDCdA/as9qgyvi2JdQctjk912jOKWOm/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="357331495"
-X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="357331495"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 02:51:09 -0700
+ t=1693994111; x=1725530111;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=5EehhKN1DnwRzbGzC4egj0VTOeGcrJ0I5Ek+g1nHk0Y=;
+ b=Xc41Z5gFchIQzYb3tYYyEBz8cVl0O0JXevbr1Z+hy1/T28kkpe7lk+Tr
+ gf+Wfq940YrUXs5qkMvAWF++ROYqW7kCElczGGoZarNsk3aBFpDTSfQ71
+ 09RAzXBEr260yrTjUyPRbiPcSIsqDV4kA1S19FFbKqoABktqpmvAz66HY
+ nVt4wibA8mN1gVL01jTapp7Y1+A0vmTip1Zbi/A+jFiE5LMRbaqe4MM5L
+ BQu8QCX0iFVkYnrrjrh5XW8MA//NAw2/nufWItCXJmbnDRtUiDK5lrJie
+ FyTIcvXRoZGdALmWMm+cQGL1dgYgRnahTIdZ6Hy8DJh97SFUcbCggCSiO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="376934955"
+X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="376934955"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 02:55:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="806948111"
-X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="806948111"
-Received: from igorhaza-mobl1.ger.corp.intel.com (HELO fedora..)
- ([10.249.254.161])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 02:51:08 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Wed,  6 Sep 2023 11:50:39 +0200
-Message-ID: <20230906095039.3320-4-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230906095039.3320-1-thomas.hellstrom@linux.intel.com>
-References: <20230906095039.3320-1-thomas.hellstrom@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="811594150"
+X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; d="scan'208";a="811594150"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Sep 2023 02:55:10 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 6 Sep 2023 02:55:10 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27; Wed, 6 Sep 2023 02:55:10 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Wed, 6 Sep 2023 02:55:10 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.177)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Wed, 6 Sep 2023 02:55:10 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EI1lc9g8C+h5iqLY8xFo8GPVZZWK+jVNfqJz1d7ZW/NxkMS+pPnqImXp49rDEljgvthczCqb+NRkHM4Qinv9Ra4Vf4OIvHSYtcW50SBFJeU7CrKEijZQJIkS4xekbjUFRdqscdRtMJbzeM1QDR0XU7n96top5h2SOU0+9Pa1hH+v/VwVX6yb7Z6mnG+c/c+fmJdzfChJR4uaCAMHF1QWhHIEZJMDfz0n/FHud+5r+MhKNKRbIm+FrtKxgS12g4q2pNvALAP6DN9ohh2AbHsUOzBlM82KFJ39BndJXka/MYDZyXuf4tCdVhIjGtn1SXM00jDcoy7spxCYdURFd8r58w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JsO+3jLbQOVyFuMssvF9bjIpzyIhzTb2irOTH7GhiIc=;
+ b=bCNbBVouRVO8nfwSvqUySAI0KJVVrB5olLoj9LUgsVggN8CSHXT5kR8xByhH07jz+6dWHh3lvA3BbcDLPFQEa8d2YuGEmG48DHyWsgLJHXa5e96dYU/QNq2/a+DP5lSrgCdG3REJ7cdmJIYU0L/bCsCf9WbLdIlIdL3F45kKuZyDFT2NLus3dQR61SIcgMq72AINrj6uPI9nN1vuPLFzWmCv4KAdUkkMEklUMtVKm3lYCEYb0RqvpDNzIpjV0/VhJYnT+qMjlVhZlTB1NR5k64hu/x/uGlKoZ+9ANdIPz9jltj01OoV5tCY62qsJ9E6u/8SsV+tL43c5dMLBeqvIzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
+ by SA1PR11MB6781.namprd11.prod.outlook.com (2603:10b6:806:25d::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Wed, 6 Sep
+ 2023 09:55:08 +0000
+Received: from MW4PR11MB7056.namprd11.prod.outlook.com
+ ([fe80::1ed2:437d:1d6c:da25]) by MW4PR11MB7056.namprd11.prod.outlook.com
+ ([fe80::1ed2:437d:1d6c:da25%6]) with mapi id 15.20.6745.034; Wed, 6 Sep 2023
+ 09:55:08 +0000
+Message-ID: <f42a5b92-63b1-4adb-bbc6-4d479dbb0d37@intel.com>
+Date: Wed, 6 Sep 2023 15:24:58 +0530
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Tejas Upadhyay <tejas.upadhyay@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20230831090536.2949934-1-tejas.upadhyay@intel.com>
+ <20230831090536.2949934-6-tejas.upadhyay@intel.com>
+From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20230831090536.2949934-6-tejas.upadhyay@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0193.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:be::22) To MW4PR11MB7056.namprd11.prod.outlook.com
+ (2603:10b6:303:21a::12)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 3/3] drm/drm_exec: Work around a WW mutex
- lockdep oddity
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|SA1PR11MB6781:EE_
+X-MS-Office365-Filtering-Correlation-Id: ea45cba1-fc75-4d23-d12c-08dbaebf5a21
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: e8xCXUNSE5tQf1VXFN7Wcf0ROIJmZOQeZdgzsSKtLlpsTq4WXqaEVVM5so8d2zbrYSELKBckVFwEu90NSmAWuJ6Vw3Rgt2AqmdlyDjtOJkVpRXVjfm6Bt8KGUUZLSyOzhYGAXKDl9X9Qet0VPF3/6gDfJBidxCgD2Zu8rMqXi7zBHJkJ427+SmGyzbi3SU6mIJclRlf3kAJ3InFbxB/o1m9e4dP7EqZvp20tnF376Rby3cIC28ilkzLPNJgLcjxxxNTxOHtItdxfJT34vIlctXum67h7cOJZhpizwfijg6XxY6E+4+v8ajVqo2IrHkPsdehakVspMai7HuR5tP9qFvvSvmTC9Ug/KNWqiy1hpO5G/2HxvZirnpe1Lc3GDtyEZLrEdCZRnluCSwBJh/tF7if3h72Ho3U+VbHcS21GR6MaGZtEZg8P3Vb+YXYjO8KVK24Ef1xvhjbsVBxnqjy0BelaYvibrH6MTe8+REvBYTuU4BjaZiNf2SqEIsUw+GO0Hmmhzi8699daha5OvvL/VXmKVYcT44+AokUDeMoMtNi0bGXyPBno4n/pBqokFr4oSXSnqEMmj7FtkLsjeOQ94xRvJjgBETJ56eoh52C8XRv1PM7R5q83dJdT+IJntHGoVBQRnUFnE03wm/axMGi8Hg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(136003)(39860400002)(366004)(396003)(346002)(1800799009)(186009)(451199024)(6666004)(53546011)(38100700002)(6512007)(82960400001)(86362001)(6486002)(2616005)(31696002)(26005)(107886003)(478600001)(66476007)(66556008)(6506007)(83380400001)(5660300002)(8936002)(4326008)(36756003)(316002)(41300700001)(8676002)(66946007)(2906002)(31686004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TXkzZ3lqVUV4VlMwWEN1SHNZcldEZ2RKTC92c2lqRStNSit5c3JNdFNUTysr?=
+ =?utf-8?B?SFAzSzVGYkhWUWxXTmh5MDhvdGN1NkFpVHJuK2Mxc3lHWTl5REljSldBR2lQ?=
+ =?utf-8?B?UkRuOHJvL3lWLzJrazVSU0RDdGhiYmRBMUZpQzZSNXdES255QUo4dXlZMk42?=
+ =?utf-8?B?dnc2d3h2NEdGUzVQTFhYc3dkeHZJOEI3ZndPQ1lTTzJYVUpnbUlJYmU1QkJz?=
+ =?utf-8?B?M3IzTUhLcENEN1NCSzd5dGpmZGkxNFNKczUxYkoxalcxcDBXcGlLWGs0bmRY?=
+ =?utf-8?B?aXZ4SThsVnVYeGdjb3kySnQ4YllNcFNrRjZFc01CQytCNnRacnlsd1FDbEVo?=
+ =?utf-8?B?UzgzWlhudHJhMVlOT2l0TDhBMlpnZjRUMi83MnlFTzBnOWRXQUVwbUdwVTRr?=
+ =?utf-8?B?cUVwbElqWmdpVEcrUjl0REVGTlNqOEN4My9QNnovZ0gyVld6djFBeUo3OWN5?=
+ =?utf-8?B?MExPaVg5OC9nMGJOY3p3eDFjVHpCMmdCeDliMVk0dVBoNkJUUG5HNE4vK1ha?=
+ =?utf-8?B?bFJDOHBzNlAzSzVDcitna0M2YTY1dWpvSXdWNWtkemlwUUVQYmk0SzY5d0tT?=
+ =?utf-8?B?Rmg1aFpDVndYRC9KVDBxZ1BpVGlWRFlMck1pVFk3VDcvRENiUkZLM2pLZEVU?=
+ =?utf-8?B?WGhQdC9JNGpPaVBvVEwycHpiK3VBNnlvYXBJaDlCbHBITHN6eVNIaVVmc1By?=
+ =?utf-8?B?dDhzdTFKMVFtSDFIdjJIc2ZGbjFGQjErM1A5amxqSGQwQlpVaURmeEtiSk9r?=
+ =?utf-8?B?UG5seit2VkdBbVpZOW1BRDRITE9uSU1NS3BlY0trWkI3SkdtQkNCZEl5ZVk5?=
+ =?utf-8?B?NTZadTh4L0trWUhzeTFUZk4yOFB4RzlVMUh0ZnNXUzZ1K3pNUDl6blNabzc3?=
+ =?utf-8?B?bHJTSEVMUzhlUW5FVDFnVFFZOWdsemJibFF4cXlkTTdvR3luUnFaNCthN3V1?=
+ =?utf-8?B?T1hFdmNmVWhIc2IyQ1JuUEZnTUdPQ0Z6ank1eEhseEFxblYwNmQ4TWlTSGpC?=
+ =?utf-8?B?TkljdlJnNHhJMHYzT2xPTk5USVkwN25LbTFGK1JBcnlmQXJPZVcxUDJjQUtE?=
+ =?utf-8?B?WGo0SktMWnhMWCtqTStVejhYdW90TnpsRHVCQ0lsbmlrK1BCNjA2RGU2UVFw?=
+ =?utf-8?B?SkNmSE5tbnJLYlZyaVpnZUFmVGIxTUQveTd1dWxQOTE0M2VSdXY5bXJZUVgx?=
+ =?utf-8?B?YzQ3d05YelR4ZWV5ZG1WRDNYR0dwbm1hdEthWVVKOVFweWNQSEM2SXUvcU1w?=
+ =?utf-8?B?MUQzNHlMT01NRXA1NERiMWZjL2M0TkVCdnVPckd3czEzR3drendJdnowNHh4?=
+ =?utf-8?B?a1NWUksxMkd6YUpib1pTZytVSG14MUpTTURBbXFPL0Y1SnkzcXZGZjM1Nld0?=
+ =?utf-8?B?K3BpNTBQNVBWV2xFOUZySU15eHFsOUtiNG5FajVQVFozUXVWNTNhYnJpQkxH?=
+ =?utf-8?B?K08rTWdqUTZFanlHS3FxemVlSVpISVNHZ2YrZTZ6UFR6VHU3T1RUMzBCeTkz?=
+ =?utf-8?B?R2NwL2JGc1hkZGtLclJpUkFIa21sZ2NDSzhxdWtMRnJOUWI1MkFoOHBQTFJ0?=
+ =?utf-8?B?ckdFaXI2ZkpDNStNb1ltbGJBRklzam5wSkxvcUVGeE1xd0NVTUpsUkVxd1Jo?=
+ =?utf-8?B?WkhRVU1LcEh3aGhXT2NHYWhFRHByK1ZXUEEyY0VFeFY2ZmFaMklBREpxK0Jy?=
+ =?utf-8?B?U3hDUUFBRjZjVm9IL0x3amJmZVFaRzBCK0dKeFFBdjd2cG8zcVdVMzNOTnRC?=
+ =?utf-8?B?Q0pCZFZYZ3B2am1KTGp3L0JZWllDTTRBSzc1eEYyZTMvMGh1QlBpclVMNmNu?=
+ =?utf-8?B?Z1VlcktaeXBZd3lJYXZOOFYrbGFaNGdpbGptTit5NXpQcWsrcVNiZXhKbFYz?=
+ =?utf-8?B?T2w2R3FidnlvSnplakcrVHZlc25qSTM5eDg2WUg3Q0loMmhMZkQ3cTAyQUoy?=
+ =?utf-8?B?V092MzA4SXY1eHBuWGkyRGxOSmhPTmJ6SVk0MjM1eTQ5cDc5WW5NdnZMbEkv?=
+ =?utf-8?B?UE9uM1NlRk50OUlKRkhLdVBsVnNwWS9tOXRkU3VPWHE0dnd5ako5QXNqR2k4?=
+ =?utf-8?B?NEtYQjdoemtQTG42ZEp3c0t3VW9ZNll5eWM0WEJBdG5UZk9IN3dPMmZQTHJx?=
+ =?utf-8?B?ellHMXJpZlQ3R2hPN2RvMC9LYlNvRkh6TnhhSDhScjhzMmtsa1JqMHFiMk11?=
+ =?utf-8?Q?MdF3FT0G6rdtgiuLlEthS8o=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ea45cba1-fc75-4d23-d12c-08dbaebf5a21
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2023 09:55:08.0587 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: yrbtCguP8Kp/jc/reSHA8Dz1uJ88rCjHAmibnvYwi2i69gXIfT+sStRKhP+I7pIS2Ivutnm5clIop2ifmn1VIgyt4ijdNFV5G4c3ftiOr3k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6781
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 5/7] drm/xe: Track page table memory usage
+ for client
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,150 +159,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>,
- Danilo Krummrich <dakr@redhat.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If *any* object of a certain WW mutex class is locked, lockdep will
-consider *all* mutexes of that class as locked. Also the lock allocation
-tracking code will apparently register only the address of the first
-mutex of a given class locked in a sequence.
-This has the odd consequence that if that first mutex is unlocked while
-other mutexes of the same class remain locked and then its memory then
-freed, the lock alloc tracking code will incorrectly assume that memory
-is freed with a held lock in there.
 
-For now, work around that for drm_exec by releasing the first grabbed
-object lock last.
+On 31-08-2023 14:35, Tejas Upadhyay wrote:
+> Account page table memory usage in the owning client
+> memory usage stats.
+>
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_pt.c | 4 +++-
+>   drivers/gpu/drm/xe/xe_vm.c | 9 ++++++++-
+>   2 files changed, 11 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+> index 5709518e314b..8df83241c5fe 100644
+> --- a/drivers/gpu/drm/xe/xe_pt.c
+> +++ b/drivers/gpu/drm/xe/xe_pt.c
+> @@ -7,6 +7,7 @@
+>   
+>   #include "xe_bo.h"
+>   #include "xe_device.h"
+> +#include "xe_drm_client.h"
+>   #include "xe_gt.h"
+>   #include "xe_gt_tlb_invalidation.h"
+>   #include "xe_migrate.h"
+> @@ -195,7 +196,8 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
+>   	pt->bo = bo;
+>   	pt->level = level;
+>   	pt->base.dir = level ? &as_xe_pt_dir(pt)->dir : NULL;
+> -
+> +	if (vm->xef)
+> +		xe_drm_client_add_bo(vm->xef->client, pt->bo);
+>   	XE_WARN_ON(level > XE_VM_MAX_LEVEL);
+>   
+>   	return pt;
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index f5f832c8ed42..84fb1069fdbb 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -18,6 +18,7 @@
+>   
+>   #include "xe_bo.h"
+>   #include "xe_device.h"
+> +#include "xe_drm_client.h"
+>   #include "xe_exec_queue.h"
+>   #include "xe_gt.h"
+>   #include "xe_gt_pagefault.h"
+> @@ -1980,6 +1981,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+>   	struct xe_device *xe = to_xe_device(dev);
+>   	struct xe_file *xef = to_xe_file(file);
+>   	struct drm_xe_vm_create *args = data;
+> +	struct xe_tile *tile;
+>   	struct xe_vm *vm;
+>   	u32 id, asid;
+>   	int err;
+> @@ -2058,7 +2060,12 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+>   
+>   	args->vm_id = id;
+>   	vm->xef = xef;
+> -
+> +	/* Record BO memory for VM pagetable create aginst client */
+> +	for_each_tile(tile, xe, id) {
+> +		if (!vm->pt_root[id])
+> +			continue;
+> +		xe_drm_client_add_bo(vm->xef->client, vm->pt_root[id]->bo);
 
-v2:
-- Fix a typo (Danilo Krummrich)
-- Reword the commit message a bit.
-- Add a Fixes: tag
+can be changed to
 
-Related lock alloc tracking warning:
-[  322.660067] =========================
-[  322.660070] WARNING: held lock freed!
-[  322.660074] 6.5.0-rc7+ #155 Tainted: G     U           N
-[  322.660078] -------------------------
-[  322.660081] kunit_try_catch/4981 is freeing memory ffff888112adc000-ffff888112adc3ff, with a lock still held there!
-[  322.660089] ffff888112adc1a0 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x11a/0x600 [drm_exec]
-[  322.660104] 2 locks held by kunit_try_catch/4981:
-[  322.660108]  #0: ffffc9000343fe18 (reservation_ww_class_acquire){+.+.}-{0:0}, at: test_early_put+0x22f/0x490 [drm_exec_test]
-[  322.660123]  #1: ffff888112adc1a0 (reservation_ww_class_mutex){+.+.}-{3:3}, at: drm_exec_lock_obj+0x11a/0x600 [drm_exec]
-[  322.660135]
-               stack backtrace:
-[  322.660139] CPU: 7 PID: 4981 Comm: kunit_try_catch Tainted: G     U           N 6.5.0-rc7+ #155
-[  322.660146] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 0403 01/26/2021
-[  322.660152] Call Trace:
-[  322.660155]  <TASK>
-[  322.660158]  dump_stack_lvl+0x57/0x90
-[  322.660164]  debug_check_no_locks_freed+0x20b/0x2b0
-[  322.660172]  slab_free_freelist_hook+0xa1/0x160
-[  322.660179]  ? drm_exec_unlock_all+0x168/0x2a0 [drm_exec]
-[  322.660186]  __kmem_cache_free+0xb2/0x290
-[  322.660192]  drm_exec_unlock_all+0x168/0x2a0 [drm_exec]
-[  322.660200]  drm_exec_fini+0xf/0x1c0 [drm_exec]
-[  322.660206]  test_early_put+0x289/0x490 [drm_exec_test]
-[  322.660215]  ? __pfx_test_early_put+0x10/0x10 [drm_exec_test]
-[  322.660222]  ? __kasan_check_byte+0xf/0x40
-[  322.660227]  ? __ksize+0x63/0x140
-[  322.660233]  ? drmm_add_final_kfree+0x3e/0xa0 [drm]
-[  322.660289]  ? _raw_spin_unlock_irqrestore+0x30/0x60
-[  322.660294]  ? lockdep_hardirqs_on+0x7d/0x100
-[  322.660301]  ? __pfx_kunit_try_run_case+0x10/0x10 [kunit]
-[  322.660310]  ? __pfx_kunit_generic_run_threadfn_adapter+0x10/0x10 [kunit]
-[  322.660319]  kunit_generic_run_threadfn_adapter+0x4a/0x90 [kunit]
-[  322.660328]  kthread+0x2e7/0x3c0
-[  322.660334]  ? __pfx_kthread+0x10/0x10
-[  322.660339]  ret_from_fork+0x2d/0x70
-[  322.660345]  ? __pfx_kthread+0x10/0x10
-[  322.660349]  ret_from_fork_asm+0x1b/0x30
-[  322.660358]  </TASK>
-[  322.660818]     ok 8 test_early_put
+if (vm->pt_root[id])
+	xe_drm_client_add_bo(vm->xef->client, vm->pt_root[id]->bo);
 
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Danilo Krummrich <dakr@redhat.com>
-Cc: dri-devel@lists.freedesktop.org
-Fixes: 09593216bff1 ("drm: execution context for GEM buffers v7")
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
-Reviewed-by: Danilo Krummrich <dakr@redhat.com>
-Reviewed-by: Christian König <christian.koenig@amd.com>
----
- drivers/gpu/drm/drm_exec.c |  2 +-
- include/drm/drm_exec.h     | 35 +++++++++++++++++++++++++++++++----
- 2 files changed, 32 insertions(+), 5 deletions(-)
+BR
+Himal
 
-diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
-index ff69cf0fb42a..5d2809de4517 100644
---- a/drivers/gpu/drm/drm_exec.c
-+++ b/drivers/gpu/drm/drm_exec.c
-@@ -56,7 +56,7 @@ static void drm_exec_unlock_all(struct drm_exec *exec)
- 	struct drm_gem_object *obj;
- 	unsigned long index;
- 
--	drm_exec_for_each_locked_object(exec, index, obj) {
-+	drm_exec_for_each_locked_object_reverse(exec, index, obj) {
- 		dma_resv_unlock(obj->resv);
- 		drm_gem_object_put(obj);
- 	}
-diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
-index e0462361adf9..b5bf0b6da791 100644
---- a/include/drm/drm_exec.h
-+++ b/include/drm/drm_exec.h
-@@ -51,6 +51,20 @@ struct drm_exec {
- 	struct drm_gem_object *prelocked;
- };
- 
-+/**
-+ * drm_exec_obj() - Return the object for a give drm_exec index
-+ * @exec: Pointer to the drm_exec context
-+ * @index: The index.
-+ *
-+ * Return: Pointer to the locked object corresponding to @index if
-+ * index is within the number of locked objects. NULL otherwise.
-+ */
-+static inline struct drm_gem_object *
-+drm_exec_obj(struct drm_exec *exec, unsigned long index)
-+{
-+	return index < exec->num_objects ? exec->objects[index] : NULL;
-+}
-+
- /**
-  * drm_exec_for_each_locked_object - iterate over all the locked objects
-  * @exec: drm_exec object
-@@ -59,10 +73,23 @@ struct drm_exec {
-  *
-  * Iterate over all the locked GEM objects inside the drm_exec object.
-  */
--#define drm_exec_for_each_locked_object(exec, index, obj)	\
--	for (index = 0, obj = (exec)->objects[0];		\
--	     index < (exec)->num_objects;			\
--	     ++index, obj = (exec)->objects[index])
-+#define drm_exec_for_each_locked_object(exec, index, obj)		\
-+	for ((index) = 0; ((obj) = drm_exec_obj(exec, index)); ++(index))
-+
-+/**
-+ * drm_exec_for_each_locked_object_reverse - iterate over all the locked
-+ * objects in reverse locking order
-+ * @exec: drm_exec object
-+ * @index: unsigned long index for the iteration
-+ * @obj: the current GEM object
-+ *
-+ * Iterate over all the locked GEM objects inside the drm_exec object in
-+ * reverse locking order. Note that @index may go below zero and wrap,
-+ * but that will be caught by drm_exec_obj(), returning a NULL object.
-+ */
-+#define drm_exec_for_each_locked_object_reverse(exec, index, obj)	\
-+	for ((index) = (exec)->num_objects - 1;				\
-+	     ((obj) = drm_exec_obj(exec, index)); --(index))
- 
- /**
-  * drm_exec_until_all_locked - loop until all GEM objects are locked
--- 
-2.41.0
-
+> +	}
+>   #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+>   	/* Warning: Security issue - never enable by default */
+>   	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, XE_PAGE_SIZE);
