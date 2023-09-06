@@ -4,59 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1DE1EB8FD7
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 14:10:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FE66EB8FDB
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 14:34:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 691A810E666;
-	Wed,  6 Sep 2023 14:10:04 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79C6D10E660;
- Wed,  6 Sep 2023 14:10:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A3D110E683;
+	Wed,  6 Sep 2023 14:34:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C9A610E683
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Sep 2023 14:34:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694009401; x=1725545401;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=2aHrkL0oyKVUnnvZBnpegupvgPJNGCaYmkEBB3jgoB0=;
- b=LTLLxL9eeeGStB+VbMihachqcnEiQxnOSv3tJBPDY0j3j2JtSBcgEs9Q
- UQsSkgtJHywYe9PSk3hHqFKEZaoz1DEmc+L+cVwMnHRNHpMQMNje9EFT/
- zGyah51QzfM5hh2qrioyIIdPeMLQMoK4i8xniRKugD+xtCOdYPwbwghWn
- 0S1KhTIgRGY38/amWrU/Aj/eQhngChE4AP4ROx/hCPT0BgM6ekxWIXIOc
- ytCB1iii9WCJM3pfEU5pwM726iIrBB/XUmnJBSC9tfQQ4b+4yOCG9H8Oe
- praZgumNapnaRHbcShKLFOLtwWw0ACPpXNhrQA6aqKtdfr/HKpvkmfWx7 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="408078122"
-X-IronPort-AV: E=Sophos;i="6.02,232,1688454000"; d="scan'208";a="408078122"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 07:08:14 -0700
+ t=1694010885; x=1725546885;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Y//U98zDWxyENbFxNfEKBb+avl9mBo1KJVa5Z3mbCYQ=;
+ b=DSFvumm3DypAUqkKEe76/3gkauknLF2/YUMtssP8Qg+YdXToOOxEqgRc
+ 9wxwqFt2lvB2bIfVYF2YgbF4ybMdle2t38wdu/yoPs6I8ti3lGJ37s/vt
+ yzCBr1dZfMNW4spTuc3XEyHqCk4+vZpUVynlubVtcU9E7xgAUSX0JM3i2
+ nRLjXxSpk9ec6EHgbyadzdEWvmJ5PTCcdkHs8rUBsk5C9IqlJ7lTZ0N0E
+ N/ttL7pJ6e52shGLAjwxZZFYIlzEa1cRj6Wtks1buegYXXjPeugAaOHbl
+ NGo04ZPMy1ZHMojaxMfkslXWiRhjDtH03TSvUe63cf4sWQQ9B+Rc/ihoI g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="362112171"
+X-IronPort-AV: E=Sophos;i="6.02,232,1688454000"; d="scan'208";a="362112171"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 07:34:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="1072400539"
-X-IronPort-AV: E=Sophos;i="6.02,232,1688454000"; d="scan'208";a="1072400539"
-Received: from yinbingc-mobl.ccr.corp.intel.com (HELO [10.249.254.11])
- ([10.249.254.11])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 07:08:09 -0700
-Message-ID: <a2c14db7-caed-2467-4ebf-5d66e3b970bd@linux.intel.com>
-Date: Wed, 6 Sep 2023 16:08:07 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="884732250"
+X-IronPort-AV: E=Sophos;i="6.02,232,1688454000"; d="scan'208";a="884732250"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Sep 2023 07:34:34 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 6 Sep 2023 07:34:44 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.27 via Frontend Transport; Wed, 6 Sep 2023 07:34:44 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Wed, 6 Sep 2023 07:34:44 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hjBkdDndrHjJL3LJNC2HuRqxUlOEyteQAq/hSb0vviiBKeqJ5EzyYeLIDL4lJ4UKf5ZO9dNwLOOAJChlf8B4FQdz/T5KXX9xxJ6+BjHLcGADLoxnOwAETkjlkaJjIkvcs0QB9aVrzJdyvJM9FunQiRQQOWDl9ImuRNxAoXbcEEz2KIBW7UpQ6AkJCVevWgLlTVZ3ZVeZMSsxAYw7PMDxP0yo0modLJZAzhmTgwUdzo2GqCwjmj2tkBePM+M0Nvhe/pd9RQDJ+J1Eemm2lghaPy49i3NJAaBJn1nIYjkfyeL00+iIyNPGlw02KrByEQPF1J/PMUtyLVlgkc8wcgRNqA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9kC8NAD3TRsmhZwvZYRfVId9WgVnfp0MXHAv+TFlKLM=;
+ b=FNDVTM7sy5VbK1jLU3vQrTRSK3sEH+6NAF3VuwZBoEaemsae0tsn8xKwdDYBj3JNxu2WvWVnhS9q8P/j7qBauCKSjv1jezmcRUcnb+gE9tn7jwq1Dfy+vYI7OiP0wccxWIBWN25hCf9UU3IXfGUs0tWuB9cb//z2zLHDRHJV61BWTwucrBQameiEFPcb2zx6KFrJM+QxbVL87vnmizm86DyHIoDDUEalPxOjcZ2D1RGHsBRrek+Uqc79ZlLljiVwS6K+K27n0+v1ZhfFE/wBcakpM1x+ICdlLyNhWpfK+Z870kn+SZJFUK/1el14fA9oU7Gnr9N7XEPmIRwuQiqDZg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by SJ0PR11MB5183.namprd11.prod.outlook.com (2603:10b6:a03:2d9::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Wed, 6 Sep
+ 2023 14:34:42 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7f94:b6c4:1ce2:294]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::7f94:b6c4:1ce2:294%5]) with mapi id 15.20.6745.034; Wed, 6 Sep 2023
+ 14:34:41 +0000
+Date: Wed, 6 Sep 2023 10:34:35 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+Message-ID: <ZPiN+6aGD6U5CNbf@intel.com>
+References: <20230906134924.7-1-francois.dugast@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230906134924.7-1-francois.dugast@intel.com>
+X-ClientProxiedBy: SJ0P220CA0028.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:41b::11) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Boris Brezillon <boris.brezillon@collabora.com>
-References: <20230816091547.2982-1-thomas.hellstrom@linux.intel.com>
- <ZPeGld0mBwbWptV9@cassiopeiae>
- <4e7a2b2e-1ab5-09b6-b2de-9b2a82a8a32e@linux.intel.com>
- <1c6cbf97-7e85-a48f-9e6a-ed716ab5b05d@redhat.com>
- <1a2965a4-943f-0ba7-b082-155d75b94d59@linux.intel.com>
- <20230906130929.74e3c6cc@collabora.com>
- <e44c93dd-68b2-b8af-6f9a-4d7c6370f105@linux.intel.com>
- <20230906150038.30936ae2@collabora.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230906150038.30936ae2@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2] Documentation/gpu: VM_BIND locking
- document
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SJ0PR11MB5183:EE_
+X-MS-Office365-Filtering-Correlation-Id: dbcd8540-6965-4419-a457-08dbaee66636
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TBfbkQvXkeWBvuzXxvwIHEcEscNnhNieQTwdMMqEJvcNsx08QM0kNZrETmGWfIrcfyc9p4w6FOl/t2k67LOCz60qYnwQTtkFXelY6HSl2+oj73jIZCRy6Oj/OiTrlKpp4QBNCSqreuWg7/7ZYDU+0KqX052zzRv5VUTml2QICx4ReMITubSrjJExeCJjjyshbfJS6L7o5GSq8CDartk4fQWae5amxe3/UTJ+rj3gLslG8qDVxzNiT7QHU6bz8xTGvzowWvpxk//UqMSv2S6pSsnFDZU1/SEKNHz97kVSc9v/iZUVLWUSoVCVOSdh7R/5/4/1G6HjQbG048wGRtt0/spQsZhKSlUYfv8OTm+B9eSiPZFJNsoHFZqMhQ1Di5e66f7PtLXXvithJiSdUSFetBzkt5Vogx4fpK7EsjJbUnC/GUPhx36LjlzreuhA/QSdN0BWmxv9GJFZcta5JBQiRFCbf+tPaUkI8Ky9uHGPNnoRtAwjp3YMO2B6Q19/dSsThjQAUj4qyNGy3VarVfjwkzP4jmP1/U5Sc//ijRA46ixZsNy2Pavx67ujKEYAFTNlj/bUvUYBzL/os4dbC+H+V1hviTP5Aq/0zM7tHAlRBw8=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(376002)(366004)(39860400002)(346002)(396003)(1800799009)(186009)(451199024)(41300700001)(478600001)(86362001)(82960400001)(38100700002)(6666004)(2616005)(83380400001)(6512007)(26005)(6506007)(6486002)(66476007)(2906002)(36756003)(37006003)(6636002)(66946007)(66556008)(316002)(8936002)(5660300002)(4326008)(8676002)(6862004)(44832011)(67856001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GIwak65EHQcK8VVJpJ+OImucYWo9SmNQVJE+No+XUS9p5OCHIN2frBXpIs1w?=
+ =?us-ascii?Q?GKFtSX+JAHqTfG95HQFTEJhKc3CZQaen5FZF0hN161gsP730WtY3SVovIJ63?=
+ =?us-ascii?Q?tvTBoNq9u2bwbGvBfEAfYzEeFkfkTJvF6e82eYfCy6A3yZqw05GSJSgfxX1G?=
+ =?us-ascii?Q?raKv6vnIoxIfVgHXAetWnj0RV4prN5IB3nlObJqs4J7gQMEF2CA9GJ1fCTei?=
+ =?us-ascii?Q?GhAgXrJv1YIh0Qo6ZsFGA1ZlGE/sChbts+mnYiZZbSzewWVTg/3dIJJOjXIz?=
+ =?us-ascii?Q?s/G/ZTxMequubC2fyAKVEU4n16M5jNB5jt0KZROdC91Wyd5rAguZrd1KlEhc?=
+ =?us-ascii?Q?s/MNlRw2nolaZyVgxjWHCqZogd6irRByai0+lyTsWCzDapcgXEhpMFwIlhp+?=
+ =?us-ascii?Q?AdSdEY2v1m57VWvUGyKlAoPmsTlbnDGxVXx+ic1SCg+7+Jn8l5IiJnsl6S7V?=
+ =?us-ascii?Q?m/iKWGpYJZKsteKICQs5cPvfld3s24rZKgv4PTJWbxjhHo7jFJ398xGANrGd?=
+ =?us-ascii?Q?h1bTLEHsBwaTXaXjzGHoI8NjTP/KWubreZ7AZpdDLztDa0Kvj4N9vwlifYQg?=
+ =?us-ascii?Q?Y9ZDIyM9gLL++/KCS4ik7rT4zO+SyBzMCx+F3IUqbhO3HK/n9YR8B6ya5xtD?=
+ =?us-ascii?Q?SmoL2jpzUlj7imKvOmS4T/rC++UFn93Uf9wCdXWTWFoXCAJtwUaLoWHtXBDB?=
+ =?us-ascii?Q?azCU8UAnn7LRY6zV+bOmYuBIISiEOghyGD0ZWEuOkiimMWaTRta1Ks/gVCE/?=
+ =?us-ascii?Q?11ff5tolTxpyuplbPT+RmX1539jRotrhbzAzKwpzrP7MBKbXfuMkh9QE7+3t?=
+ =?us-ascii?Q?CixBmbNX9hwWILqIYVVAm4kTjRRqM/wF13qUGkUKN0lFmhaMTS5o9QyKECpk?=
+ =?us-ascii?Q?dZcbWt/DPRBwwIMy2FlXkFwnyYvhL4b/o4M9J5QjYYhHdN8i2rEB2Yd3ZAkb?=
+ =?us-ascii?Q?tq528SmXO20ukp4zerJyQDCKGapN4+xhFHbUI/UeFs2oseE0sN1RT6+uoPPz?=
+ =?us-ascii?Q?nt0ONL7aSssZ5y9GvXJ8BcQ80n5t+/rKkle61tN2m8U/5oz6yzecB4ebNnlq?=
+ =?us-ascii?Q?q3Z4MVDNB1rGlY+54xQPAsB7BF/agRy1Z0UTaK1+qDVXngw42Pr/NDzdFLiH?=
+ =?us-ascii?Q?1GRj1e51CoTdfyihJ7afM2gsoWKgHvwYhwHjKmWZpVOiNlQLhhRzPpGEc9Pm?=
+ =?us-ascii?Q?bkn+hZoiOmrvHJpZq6lUBHqCYd2LAo9K5+VoF+vR9EMLo8UCOWQmKvQEB2/Y?=
+ =?us-ascii?Q?/8ITls2dVV65SNgPtBRV4UBiJF4gZm7BzllIDxFN8OzQHvdnnNqij/Rq45Bu?=
+ =?us-ascii?Q?EvMLc98WUPzP7fRHAYHZzIRS+LUog68nilnar+iH0X9rA1KfYkgIQEmLY8//?=
+ =?us-ascii?Q?ti0wZ+Xy+PUIHj+rqlBVcAhGucUacr67KsRm5SwNiGVrNQudvKj0ZskNniK6?=
+ =?us-ascii?Q?jq4oN7x0E2VoqxXrw4g2PnaID0lwYhBk1idnuEXybgpxH8LKw5yiK4grCYtu?=
+ =?us-ascii?Q?YQstQwEyqMwzmzzx/fREB7JPh3IfjnTxBRM9aNfm9DPbFkLzpLoZbnFVY6HA?=
+ =?us-ascii?Q?ZNrrWu/bAnXoPNsHxsoEEqJ/bZJBrcRsQzzu8lFJyeECkxHf2SjbaPts/pw0?=
+ =?us-ascii?Q?yw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: dbcd8540-6965-4419-a457-08dbaee66636
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2023 14:34:40.9486 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mSZEyzDSiB3Z94jKuvfUK9NKau+ioVtiaKZ5cA9fWPswyb/AGZCC7E0HzwZcRtYPiB6KNG8msi6q1m2jNOzhvQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5183
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH] drm/xe/uapi: Separate VM_BIND's operation
+ and flag
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,214 +143,148 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Danilo Krummrich <dakr@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi, Boris,
+On Wed, Sep 06, 2023 at 01:49:24PM +0000, Francois Dugast wrote:
+> Use different members in the drm_xe_vm_bind_op for op and for flags as
+> it is done in other structures.
+> 
+> Type is left to u32 to leave enough room for future operations and flags.
+> 
+> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_vm.c | 29 ++++++++++++++++-------------
+>  include/uapi/drm/xe_drm.h  |  6 ++++--
+>  2 files changed, 20 insertions(+), 15 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 1d9aa5c40659..d0e5974b5292 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2159,11 +2159,11 @@ static void vm_set_async_error(struct xe_vm *vm, int err)
+>  }
+>  
+>  static int vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
+> -				    u64 addr, u64 range, u32 op)
+> +				    u64 addr, u64 range, u32 op, u32 flags)
+>  {
+>  	struct xe_device *xe = vm->xe;
+>  	struct xe_vma *vma;
+> -	bool async = !!(op & XE_VM_BIND_FLAG_ASYNC);
+> +	bool async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
+>  
+>  	lockdep_assert_held(&vm->lock);
+>  
+> @@ -2264,7 +2264,7 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
+>  static struct drm_gpuva_ops *
+>  vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+>  			 u64 bo_offset_or_userptr, u64 addr, u64 range,
+> -			 u32 operation, u8 tile_mask, u32 region)
+> +			 u32 operation, u32 flags, u8 tile_mask, u32 region)
+>  {
+>  	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
+>  	struct ww_acquire_ctx ww;
+> @@ -2293,10 +2293,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+>  
+>  			op->tile_mask = tile_mask;
+>  			op->map.immediate =
+> -				operation & XE_VM_BIND_FLAG_IMMEDIATE;
+> +				flags & XE_VM_BIND_FLAG_IMMEDIATE;
+>  			op->map.read_only =
+> -				operation & XE_VM_BIND_FLAG_READONLY;
+> -			op->map.is_null = operation & XE_VM_BIND_FLAG_NULL;
+> +				flags & XE_VM_BIND_FLAG_READONLY;
+> +			op->map.is_null = flags & XE_VM_BIND_FLAG_NULL;
+>  		}
+>  		break;
+>  	case XE_VM_BIND_OP_UNMAP:
+> @@ -3116,15 +3116,16 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+>  		u64 range = (*bind_ops)[i].range;
+>  		u64 addr = (*bind_ops)[i].addr;
+>  		u32 op = (*bind_ops)[i].op;
+> +		u32 flags = (*bind_ops)[i].flags;
+>  		u32 obj = (*bind_ops)[i].obj;
+>  		u64 obj_offset = (*bind_ops)[i].obj_offset;
+>  		u32 region = (*bind_ops)[i].region;
+> -		bool is_null = op & XE_VM_BIND_FLAG_NULL;
+> +		bool is_null = flags & XE_VM_BIND_FLAG_NULL;
+>  
+>  		if (i == 0) {
+> -			*async = !!(op & XE_VM_BIND_FLAG_ASYNC);
+> +			*async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
+>  		} else if (XE_IOCTL_DBG(xe, !*async) ||
+> -			   XE_IOCTL_DBG(xe, !(op & XE_VM_BIND_FLAG_ASYNC)) ||
+> +			   XE_IOCTL_DBG(xe, !(flags & XE_VM_BIND_FLAG_ASYNC)) ||
+>  			   XE_IOCTL_DBG(xe, VM_BIND_OP(op) ==
+>  					XE_VM_BIND_OP_RESTART)) {
+>  			err = -EINVAL;
+> @@ -3145,7 +3146,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+>  
+>  		if (XE_IOCTL_DBG(xe, VM_BIND_OP(op) >
+>  				 XE_VM_BIND_OP_PREFETCH) ||
+> -		    XE_IOCTL_DBG(xe, op & ~SUPPORTED_FLAGS) ||
+> +		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
+>  		    XE_IOCTL_DBG(xe, obj && is_null) ||
+>  		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
+>  		    XE_IOCTL_DBG(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
+> @@ -3360,8 +3361,9 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  		u64 range = bind_ops[i].range;
+>  		u64 addr = bind_ops[i].addr;
+>  		u32 op = bind_ops[i].op;
+> +		u32 flags = bind_ops[i].flags;
+>  
+> -		err = vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op);
+> +		err = vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op, flags);
+>  		if (err)
+>  			goto free_syncs;
+>  	}
+> @@ -3370,13 +3372,14 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>  		u64 range = bind_ops[i].range;
+>  		u64 addr = bind_ops[i].addr;
+>  		u32 op = bind_ops[i].op;
+> +		u32 flags = bind_ops[i].flags;
+>  		u64 obj_offset = bind_ops[i].obj_offset;
+>  		u8 tile_mask = bind_ops[i].tile_mask;
+>  		u32 region = bind_ops[i].region;
+>  
+>  		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
+> -						  addr, range, op, tile_mask,
+> -						  region);
+> +						  addr, range, op, flags,
+> +						  tile_mask, region);
+>  		if (IS_ERR(ops[i])) {
+>  			err = PTR_ERR(ops[i]);
+>  			ops[i] = NULL;
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 86f16d50e9cc..54123ee736b5 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -591,6 +591,8 @@ struct drm_xe_vm_bind_op {
+>  #define XE_VM_BIND_OP_RESTART		0x3
+>  #define XE_VM_BIND_OP_UNMAP_ALL		0x4
+>  #define XE_VM_BIND_OP_PREFETCH		0x5
+> +	/** @op: Bind operation to perform */
+> +	__u32 op;
+>  
+>  #define XE_VM_BIND_FLAG_READONLY	(0x1 << 16)
+>  	/*
+> @@ -631,8 +633,8 @@ struct drm_xe_vm_bind_op {
+>  	 * intended to implement VK sparse bindings.
+>  	 */
+>  #define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
+> -	/** @op: Operation to perform (lower 16 bits) and flags (upper 16 bits) */
 
-On 9/6/23 15:00, Boris Brezillon wrote:
-> On Wed, 6 Sep 2023 13:57:03 +0200
-> Thomas Hellström <thomas.hellstrom@linux.intel.com> wrote:
->
->> Hi, Boris
->>
->> On 9/6/23 13:09, Boris Brezillon wrote:
->>> On Wed, 6 Sep 2023 10:32:24 +0200
->>> Thomas Hellström <thomas.hellstrom@linux.intel.com> wrote:
->>>
->>>   
->>>>>>>> +Introducing external (or shared) buffer objects
->>>>>>>> +===============================================
->>>>>>>> +
->>>>>>>> +Since shared buffer objects may be shared by multiple gpu_vm's they
->>>>>>>> +can't share their reservation object with a single gpu_vm, but
->>>>>>>> will rather
->>>>>>>> +have a reservation object of their own. The shared objects bound to a
->>>>>>>> +gpu_vm using one or many
->>>>>>>> +gpu_vmas are therefore typically put on a per-gpu_vm list which is
->>>>>>>> +protected by the gpu_vm lock. One could in theory protect it also
->>>>>>>> with
->>>>>>>> +the ``gpu_vm->resv``, but since the list of dma_resvs to take is
->>>>>>>> typically
->>>>>>>> +built before the ``gpu_vm->resv`` is locked due to a limitation in
->>>>>>>> +the current locking helpers, that is typically not done. Also see
->>>>>>>> +below for userptr gpu_vmas.
->>>>>>>> +
->>>>>>>> +At eviction time we now need to invalidate *all* gpu_vmas of a shared
->>>>>>>> +object, but we can no longer be certain that we hold the gpu_vm's
->>>>>>>> +dma_resv of all the object's gpu_vmas. We can only be certain that we
->>>>>>> I need to think a bit more about locking of extobj and evicted
->>>>>>> object tracking
->>>>>>> in the case of processing 'drm_gpuva_ops' directly through callbacks
->>>>>>> within the
->>>>>>> fence signalling critical path as mentioend in [1].
->>>>>>>
->>>>>>> In order to support that, we'd need to protect extobjs with a
->>>>>>> separate lock,
->>>>>>> and while iterating extobjs to acquire the dma-resv lock drop the
->>>>>>> lock within
->>>>>>> the loop before we actually acquire the dma-resv lock. Maple tree
->>>>>>> supports that
->>>>>>> already and this can be fully done within the GPUVA manager; no need
->>>>>>> for the
->>>>>>> driver to care about that.
->>>>>> So do I understand correctly that this because you want to update the
->>>>>> gpuvm state while operations are progressing asynchronously?
->>>>>>
->>>>>> If so, I wonder whether that could really be done? For example to
->>>>>> allocate enough memory for page-tables etc, you need to know the
->>>>>> details of the operations at IOCTL execution time, and to know the
->>>>>> details you need to know the state from the previous operation?
->>>>> Right, sync and async bind can't run fully concurrently, but you could
->>>>> "inject" a
->>>>> sync one between two async ones such that the sync ones executed from
->>>>> the IOCTL
->>>>> directly while async execution is stalled meanwhile. This would be
->>>>> possible because
->>>>> the actual drm_gpuva_ops would be calculated within the async
->>>>> execution path rather
->>>>> than in the IOCTL. But yes, page-table management must be desinged to
->>>>> support that.
->>> FWIW, the panthor driver is designed this way (note that I'm not
->>> supporting GEM eviction yet, so there might be subtleties I missed).
->> The problem is that once you've published your VM_BIND out-fence, any
->> code path required to signal that fence may notallocate memory nor or
->> grab any locks that allows allocating memory while held including
->> dma_resv locks, and that means all required page-table memory needs to
->> be allocated synchronously in the IOCTL,
-> Yep, that's already what I do, by over-provisioning for the worst case
-> scenario (page table tree is empty), and returning unused pages after
-> the operation is done.
->
->> and all evicted bos need to be
->> made resident in the IOCTL,
-> Yep, I'm pinning memory to BOs in that path too.
->
->> and at least in the xe driver the amount of
->> memory we need to allocate depends on the vm state, so we can't really
->> update the vm state asynchronously either.
-> For Mali, we can calculate the maximum amount of pages we'll need for a
-> MAP operation, by assuming the page table is empty. Then it's just a
-> matter of returning unused pages to a fast-alloc pool so we can
-> speed-up further page table allocations (we're using a kmem_cache here,
-> since the page table update is done by the CPU and memory is shared on
-> Arm, but there's no reason you can't have your own cache
-> implementation).
->
->> But as long as any async binding work required for signalling the
->> VM_BIND out-fence is properly annotated with
->> dma_fence_begin_signalling() and dma_fence_end_signalling() and there
->> aren't any lockdep splats, things should be good. It would trigger on
->> both memory allocation and attempts to grab a dma_resv lock.
-> I have dma_fence_{begin,end}_signalling() annotations in the
-> ::run_job() path, and no lockdep complaint spotted so far.
->
->>
->>>   
->>>> OK, well one of the main motivations for Xe is to be able to pipeline
->>>> interleaving binds and execs if needed, like so:
->>>>
->>>> - Bind vmas for scene 1.
->>>> - Submit scene 1.
->>>> - Unbind vmas for scene 1.
->>>> - Bind vmas for scene 2.
->>>> - Submit scene 2.
->>>> - Unbind vmas for scene 2.
->>>>
->>>> And being able to *submit* all of the above while the async binding of
->>>> vmas for scene (step 1) has not yet completed.
->>>> I can't really see how this could be done, while obeying dma-fence
->>>> rules, unless state is updated synchronously while submitting?
->>> The idea in this case is to detect when a GPU job dependency is a
->>> VM_BIND out-fence, turn drm_sched_fence->parent into an
->>> xxx_vm_bind_job_fence object that's holding the GEM that's about to be
->>> mapped (AFAICT, we don't need to do anything for unmap operations), and
->>> then add our GPU job fence to this BO. This should not only guarantee
->>> that the GEMs we depend on are mapped before the GPU job is executed
->>> (the fence wait does that), but also that such yet-to-be-mapped GEMs
->>> won't be evicted just after they've been mapped and before the GPU had
->>> a chance to execute (unless I'm missing something, adding our GPU job
->>> fence to the BO being targeted by a pending VM_BIND(async,map) operation
->>> solves this problem).
-> It's not exactly that, because we'd need to add a GEMs of all the
-> pending VM_BIND(map) jobs that come before the expressed dependency, not
-> just the one attached to the dependency itself. But after chatting with
-> Danilo, I realized we might not even need to track the GEMs being
-> mapped at the fence level if we call drm_gpuva_extobj_insert() in the
-> ioctl(VM_BIND) path:
->
-> - drm_gpuva_extobj_insert() will make sure the GEM is added to
->    the ext-object map even before it's actually mapped to the VM (for
->    private GEMs, it doesn't matter, because they are using the VM resv,
->    so any private GEM mapped will automatically receive the VM resv
->    updates).
->
-> Now, when a GPU job is queued, we do all the VM GEM preparation, which
-> includes the following steps:
->
-> - drm_gpuva_manager_validate() will make already-bound-but-evicted GEMs
->    resident
-> - Iterate over all ext-objs to add our fence (I'm skipping the slot
->    reservation step that's implied). Because drm_gpuva_extobj_insert()
->    was called early, we also get all the GEMs that are not yet mapped,
->    but are about to be mapped. This means they won't be evicted until
->    after our job is done
-> - add our fence to the VM resv
->
-> Unless I'm missing something, this should guarantee that all GEMs are
-> resident and mapped when the job is executed.
->
->> Yes, we're essentially doing the same. The issue here is that when we,
->> for example *submit* Bind vmas for scene 2,
->> we need to know how much page-table memory to allocate,
-> This is solved with over-provisioning in our case.
->
->> and what BOs to
->> make resident to be able to publish the out-fence.
-> That's basically what Danilo's latest gpuva_mgr patchset tries to
-> provide generic helpers for, by exposing functions to iterate over all
-> evicted GEMs (so we can make them resident) and adding a way to add
-> fences to all GEMs currently bound to the VM. That leaves external GEMs
-> that are about to be mapped, which, I think, is addressed by the
-> solution detailed above.
->
->> That means we need to
->> know what the VM state would look like at the end of "Unbind vmas for
->> scene 1".
-> Not necessarily, as long as you know all the GEMs that are currently
-> mapped and those that are about to be mapped. The extobj set provides
-> exactly that for external GEMs.
->
->> If the VM state is updated at submission time, that's all ok
->> but if it's updated at execution time, we'd have to guess what resources
->> to pre-allocate.
-> As long as you have enough resources pre-allocated to do the VM update
-> (not saying this is easy to guess on Intel, but it's doable on Mali,
-> and the page table caching makes over-provisioning not too bad, as long
-> as we limit the number of in-flight VM_BIND jobs).
+besides adding the flags, I believe it would be better if we stop shifting
+the operation in the same patch.
 
-OK, then it sounds we're on the same page. I guess it would i theory be 
-possible to pre-allocate all needed resources on xe as well, but if the 
-vm state lock is made an inner lock in order for us to be able to grab 
-it within the dma-fence critical section, then it comes with a number of 
-drawbacks as well:
-* Over-allocation of resources.
-* Need to spawn a cpu-thread for the async part (currently we utilize 
-the GPU for that).
-* Probably looking at locking inversions wrt userptr?
-* Probably looking at locking inversions wrt recoverable pagefaults?
-* Mismatch with the cpu mmap() / munmap() interface where the mmap_sem 
-is the outermost lock.
-
-So for us currently it currently looks like the sync state update is the 
-preferred one... But OTOH we haven't fully implemented the unwinding yet...
-
-/Thomas
-
-
-
-
-
+> -	__u32 op;
+> +	/** @flags: Bind flags */
+> +	__u32 flags;
+>  
+>  	/** @mem_region: Memory region to prefetch VMA to, instance not a mask */
+>  	__u32 region;
+> -- 
+> 2.34.1
+> 
