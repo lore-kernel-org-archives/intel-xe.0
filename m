@@ -4,152 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B659EB8FAF
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 09:38:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2492DEB8FAF
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Sep 2023 09:47:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E981110E1B5;
-	Wed,  6 Sep 2023 09:38:53 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7768210E184
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Sep 2023 09:38:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDDC710E5B9;
+	Wed,  6 Sep 2023 09:47:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 713A810E5B9
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Sep 2023 09:47:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1693993131; x=1725529131;
+ t=1693993674; x=1725529674;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:mime-version;
- bh=WPg3wu4zxY4jUFPpnJXVtNvWlhKnoFeqcPjr89KcgS4=;
- b=bL15EU5yXkg0/PjLYd40REymp+gYlX8nWIE2xWCi/fMtXrea5cIpr9OF
- uTiGB7bY6nvRsByRymLMKm/g4LlL3Pq0HqhaaEHtYBnajGvvbuwxx3e3O
- +Dt5Wf144NeUTU158pHPJsz87VLRUW2dEdzwXpRNCUhZIZGyxPGcqBFDR
- p9D68kyhdLlY5Q5j74gew9uJbEeapZM5Q0nlilkYIM4bJLQ56O8sO7JDR
- uE0LJeTpQXjfGrOHxMQb1mZavnBb13KvSXA/6xZa3nOv0sm8XxtQ1BAYv
- JZy7yiv5MZcNzQCOUuH2EuC3zfFDFOEc3CFasUEXTBw3bh4nLuYzhQv82 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="375920302"
+ bh=ocyMS4yezyo1kMIWRPv3S2SjHj5AyGUAvJGWot40/9o=;
+ b=cb9x86kYHKuMv1V4dVq7eejcKZkGnlDKVGaZVhK/E1REWSYDvZqLlqa0
+ EweWTXRMR7XFi79N0zfjn007CaPqKrOecaNjzt5pJqkt8bmj3eVFqPRKN
+ Sa6ul57jB7jtlkK9vzHkLUtPsDxdMy/zHGJzmJG9kPM4f15ep6KGyfY76
+ pWBH9WEM+Ddz+Uxt4gctt9totxCtR9/Xkz8gQZxPFCVq6Ew7V/SXZwtcy
+ EjCne1vHP2ujzZ8jeR9Z6LZfXinL2JobV2XIj/+E1ZnY52mnrrk1GNEhE
+ q+yZisyGYF3NfvuycrI/vQZBYurKsm1VYP4teJkaMJVDtqP9R+8ulXrcZ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="380821710"
 X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; 
- d="scan'208,217";a="375920302"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Sep 2023 02:38:50 -0700
+ d="scan'208,217";a="380821710"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Sep 2023 02:47:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="884623741"
+X-IronPort-AV: E=McAfee;i="6600,9927,10824"; a="741471897"
 X-IronPort-AV: E=Sophos;i="6.02,231,1688454000"; 
- d="scan'208,217";a="884623741"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Sep 2023 02:38:40 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 6 Sep 2023 02:38:50 -0700
+ d="scan'208,217";a="741471897"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Sep 2023 02:47:53 -0700
 Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.27; Wed, 6 Sep 2023 02:38:49 -0700
+ 15.1.2507.32; Wed, 6 Sep 2023 02:47:52 -0700
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Wed, 6 Sep 2023 02:38:49 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.103)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Wed, 6 Sep 2023 02:47:52 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.43) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.27; Wed, 6 Sep 2023 02:38:49 -0700
+ 15.1.2507.27; Wed, 6 Sep 2023 02:47:51 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MziPR0IS+TEF0Z6sNzmTC23I29efkCyIrYwmfzbaztFhVOLfqbVnF1NUQLoUa2V83qLe3bwx9FhySg6h0+N3jP9iySrHYcuQIQJHc3GtmAj3r9+fW0pqQjPDgN2blVfmnYL4jS7l02Psow/XCfw2jXQZ4mc0F46WhH3J7JZy7Wgjkww7/dBD70f90DuVDHuA079Fc7IsYCvsKDxoexTEwtumgXNab4orGAwrM+qSVfZ747JZfp91NxrRSJoGRLiV2Ly7wZgL/YdLAjrz9AD2whhJxqO9mf/vrasTaoggKAdPPpu7yXSy9OsMwE3GQJfgqK+jxjoOaMFePXne0bvFtQ==
+ b=QMT+y13b1Tq/xY2Gp/3epjjq+nLP3FM4OWGqF6kiMZOEZa+ekZilYUz+XySs48m+jkW5v4HhhY3GtAuJFBtVe36dmWyVyCeAhPFPaCAdaD9ZozZjwyppGeYYHmBOUzb4z0jbPRqWbWPoUMF5Sx9iiUWw1neLoUEyyQiEwNN6PHFeq/dZGLQWiVPoUS8oAGH3A7kRvWeRaouAIJdgUlJx9nk5kt8OAGk/Fc1I/MGTQTjjJ0aKtdepqa7cKgPJWPs0t+8slr77yBTrJbZvDX/vf0VTYucsUz9gIAgbHumi8BukUlx3TXMJfbgONkT3gPQIp9iaySBbcdzFuVLa4OLCcg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aBmxB0LW97e/osXpXXEabfdhVK1yJ/g3UFKKzL73/Ck=;
- b=TuA9tfAzP+C7Lvc26gF+I/0WZaw3+vtQ32UmtW1aqZrx35QWqiHVm1ddO3kozQMnSe5u5f5XXcE3jgpXvVWrIsi8nfer1SjeV6JoRtcNx3eb4gPIJFkegGl51uGywE7PL0iWYGvV5Ch5KivmEjwHW+y0K+8tP/GZGwkzUVh9Sp6qd1Cvzibh7C+7x3ziwxfxzKnRojxQKC3b//JZDOw0AfwAAM4Rc83BYyA1VNRuSD1M7pH7S6r4S9uSW+c1UtE8iaP1IxwVjOQCIUKwtSSj7V2aU/+6I6arpajgFWkvBnOcBw7V82oMcM0k0FxZd2YhIzYbtCuk8d7xmeu48/K78g==
+ bh=gRoEUkv17gJBOpuqokwMB8FWrGv+VBTyJUdyMUNagUo=;
+ b=JFdyGdPk7mVuRBAizKUxzQTdCZAElExjaSIUSu3jiakBNqlE9ARsXSaUsQ5HAWcCSkrnIVtLBe/N3PiUa718RGuW7xQQSzzLFdkbO9g1bwe1V1EBu4yfZcFLIg1yfJShP4307zu04wmSraDAa7WrOpCbS165av4gziVXNHlxE8APYWyoO7sLoHADiblIjkS5U14pzf17VDC2m3Kf3VY14650Y/rg3Vdm7sZBkUud5bdE4+xI8iKbZkFNabCPZCO0055OTuaSJN9FWzKcPxTE87t/H08561JdGOP41EHUFI16w7pLdUSHZlggC4cTuNf8NV0Ba1Z3qEWICJzLO4k0ow==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
- by CH0PR11MB5473.namprd11.prod.outlook.com (2603:10b6:610:d4::17)
+ by SJ0PR11MB5631.namprd11.prod.outlook.com (2603:10b6:a03:3ae::14)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.33; Wed, 6 Sep
- 2023 09:38:45 +0000
+ 2023 09:47:49 +0000
 Received: from MW4PR11MB7056.namprd11.prod.outlook.com
  ([fe80::1ed2:437d:1d6c:da25]) by MW4PR11MB7056.namprd11.prod.outlook.com
  ([fe80::1ed2:437d:1d6c:da25%6]) with mapi id 15.20.6745.034; Wed, 6 Sep 2023
- 09:38:45 +0000
+ 09:47:49 +0000
 Content-Type: multipart/alternative;
- boundary="------------EkiMTV0KpNOwvYhJDJntPONx"
-Message-ID: <42fb6950-bc66-449b-bd9b-138f25f2354d@intel.com>
-Date: Wed, 6 Sep 2023 15:08:35 +0530
+ boundary="------------IkWuBJHKOQxApQOEHAJIdB1X"
+Message-ID: <f02954b6-ad66-4040-bc24-ac1035d345c7@intel.com>
+Date: Wed, 6 Sep 2023 15:17:39 +0530
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
 To: Tejas Upadhyay <tejas.upadhyay@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20230831090536.2949934-1-tejas.upadhyay@intel.com>
- <20230831090536.2949934-4-tejas.upadhyay@intel.com>
+ <20230831090536.2949934-5-tejas.upadhyay@intel.com>
 From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20230831090536.2949934-4-tejas.upadhyay@intel.com>
-X-ClientProxiedBy: PN3PR01CA0122.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:96::8) To MW4PR11MB7056.namprd11.prod.outlook.com
+In-Reply-To: <20230831090536.2949934-5-tejas.upadhyay@intel.com>
+X-ClientProxiedBy: PN3PR01CA0154.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:c8::7) To MW4PR11MB7056.namprd11.prod.outlook.com
  (2603:10b6:303:21a::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|CH0PR11MB5473:EE_
-X-MS-Office365-Filtering-Correlation-Id: ecbb7e18-21ae-4d5a-61e1-08dbaebd104f
+X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|SJ0PR11MB5631:EE_
+X-MS-Office365-Filtering-Correlation-Id: d2d9aa87-ed1a-476c-31a2-08dbaebe547d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WiFY38fswS144Ic4PpIab5sxyyFNwsBDEzR8lfPSqy5FFsYasvFhMppiVwnJaoYwwJKySAn+VMagPHar1fbb47WnPomSzBIl12OTGeOGyjrlXq+L3GEup5u8FEiF6I1m7YdQ4/MD+hu9QfXZTWfHZmkVbmWwXqzZzFaJPz9NQacp3CyH/o1gOmK8Gl4nmPlV54tkTl8s0J6naXn0Gw4ik/4txepelkFntQzT4m0jZ8FlbP/H6+vs6aG/A+9fR9DPtZcJHqJhASZrgWEVbVjrzTW6mBjcHVbwX/z5IjXI2m+PNlga0WZz/YGigMGRC0pb1EFcUdS/iu7/zaQdAf/pim8hDQ5suT9SVvl6hhuqnPL5EbSdJRvCclfsyfkNFZfUIRKRQYh/iK+qZIYQ9Mnu3xdRYqt2fmOYrD18soaW07lPTIH08fYd/ZyJy3YzUmbVzbFZRl1Q2Ool7PU1gUzR6miOm+t41GEC7BvFHNRPmJPMas2P0sYCZrUu88HYhnI+h8f7coYRGgMb3wlswvH16Df4HeLH06aA+JE0eUowdJEk0l365SG+0kfNOplsh0AK+GkHUwypQWGWq4soVfr2VgOzMaT0GkN7E58A6qQekmZrH6QvAUF524Nc6OKDoETgWydNfWEuQzmzYRGk7SgUXg==
+X-Microsoft-Antispam-Message-Info: CLBRGd5Is4Scpm5Oj7QdQYkhQpzVU6wUdAlnSRbZ6Jh2vLCtgDzLyII4gMGkwioGaxeZhNRZtfLKywjsZbb9F4tmJNG6NLqq8aCBfVoCBM0xMOqC3xtGWFTUY34+LQrlHPhTGhzrqicGknxnaLMQQFB1mx49oxDifQczOXm0QXWHJSa19Xo7lwOYm/1KqUN3biq0mupUQcrGUvr/VIM7m9uN/5tjg29zMfvUtFQwC1F7oF+KEm2vhFjTuFslW0OhtD2oed21z6E3MBWb3XqxUGXLEoTubaQW0Ol3hnuPIOUJ05+z5btXVtnCgHAAMTvN4CbursqknHpfAR4rACT0b7QH75R1R0sxwFdycyAJFYncpdjGAbmUMp2/LgF+flBV1FrzY4BlKTVcygS/nSPI4yzV8ESDQPhE6fFwmilrE3tWE/U8A45E+Z2aSRlgboE10STXJarBlBTb/STkNYcXSlgtQsVovrBC2F+5q1mGSoTTvqCvPIk4oBeA7VzPPD2kIe1gpf1zGAhso5C8qoiM2r4xssuaoo68Ds21WuFQxXqv7PqMdkdvqdTq8731nmXM+OXI1gXMAClTnlFPR8oxNc8hZ8n/m3C3DJFiPIzs08cdw5xcWYZ8/cfGtB9cNL4JN98HNvknpx2cyq/Ebd6qRw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(39860400002)(396003)(346002)(376002)(366004)(1800799009)(186009)(451199024)(30864003)(2906002)(38100700002)(82960400001)(36756003)(31696002)(86362001)(2616005)(107886003)(4326008)(6666004)(8676002)(8936002)(26005)(5660300002)(53546011)(66476007)(41300700001)(66556008)(66946007)(6506007)(33964004)(316002)(6512007)(6486002)(83380400001)(478600001)(31686004)(45980500001)(43740500002);
+ SFS:(13230031)(346002)(136003)(396003)(366004)(39860400002)(376002)(1800799009)(186009)(451199024)(2906002)(38100700002)(82960400001)(36756003)(31696002)(86362001)(107886003)(8936002)(4326008)(6666004)(8676002)(53546011)(26005)(5660300002)(2616005)(66476007)(41300700001)(66556008)(33964004)(66946007)(6506007)(6512007)(316002)(6486002)(83380400001)(478600001)(31686004)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?c1dETW85QWNhbFFUMTIrQUV4SmpUbVdQOWVJSWQ2REhUTG14Unp5bGhUdDht?=
- =?utf-8?B?Y05ENkRsWU4yZnQzWW5UTzY0cWR2K0pvVGpsMmJYbXdzOTd5dFp1OHcxbUtt?=
- =?utf-8?B?U2hDaE5MMXc3RjdxOXJHaFV4NHFlaWk2WG9GMEF2eEVZY3F1TjNkYjBWRkFk?=
- =?utf-8?B?SHVxSE4rYmQ3MnZ4bVBteWxsSEZuRXNlcUE5TmdQV0NxejV0UTgwTWF0cTVy?=
- =?utf-8?B?NGNpNVZOSUQvUUd6L0EzWjVRVXh3YVg2WDk3QzdJRG1EY1FZUWVGL1hza2or?=
- =?utf-8?B?LzNVb2Z6NHNpZEcwOXo3dmVDZHpobnNxZDhqVTJOQjdaajhWcnQ3UDY1U1NM?=
- =?utf-8?B?UCtTV256b1dVaFpYM092ZVNTYzdlZ2xnZ1JUbThkVXpRRk8vUzl0K1I0ZXhm?=
- =?utf-8?B?SzFoZEdPWENYSW1BaHYrZGVWWHpRUjIvSkZDZzA5WXJsT0FKMTlURmNkU3Ft?=
- =?utf-8?B?V1RTZDc4TUlOR004cG5wVDBCNjFrbVZiRU9NT3VuZ3N5aHU4U2VLT3ZoQ0NM?=
- =?utf-8?B?T0VKbG16MnhhK2xMUzFIVTNvSGkxYXhha3JTUHRldHh2ckhMVTVTQWl2M2NJ?=
- =?utf-8?B?bGJJK1JTR0RLWFRnSkhQakhLVWJocDJpVUMyWGJRcUdkMTRuU1l4S3R3bEk1?=
- =?utf-8?B?dW9WM1NqeC9ROTRxcFBzZzhUTjUxME5uNldnUTRVWno5OFdzc1VhUE5kZDdU?=
- =?utf-8?B?YmxRVFBsZkM1UWRsdVhsTlRvd1RtQ3RvelVHVHBoa2x5YUVFdWdORjJIWUJx?=
- =?utf-8?B?UzgwZ1BmQkFsK1h3NkJRS1FVK1c0UnpvWXZrMXVHNlZLWEhpTzRRelZINGJK?=
- =?utf-8?B?cVZOSmF0ZVpWYXFDTUxPSyt6TXdYTXRuSFhpeGVuSWpRWDNHSXFPZ2RuTTcv?=
- =?utf-8?B?YTRRLzBIMHdHT3Y1SytWTE8rNTdoRWo4VkI1STJ0N0praHhjUEw0SldXa1Ey?=
- =?utf-8?B?Q3lFdFZLQ0lJQkx6K25rTlhsdVdzUUZvVFdBL2pBRHB3cWpUWHhCN1Q2eVlv?=
- =?utf-8?B?SFFwOHBaK24zTS8rbjdTWmxyTmlWd0JodUNFRlJ1aWt3QjdIL1FuNFpJSUVE?=
- =?utf-8?B?azdRcFBMYzc0TUw3dUNGR0dWWW15UHB0VjhXT2dLQzJhWCt4ZEMrZG5YRkoz?=
- =?utf-8?B?RWppQS9BRXFhejNzOUlxbGlvUitlSnRNcWg1amp1Rm42MTZuTGl5WWF6OXI1?=
- =?utf-8?B?UE5HYmlNZ3M1NXplYndqQ3NpTVdjZWk4QlNLRm5XMUVRVjAyMEtyMU05SWIw?=
- =?utf-8?B?L0w1T3pLQzRkM2JqSVc1Rk4vRUJSSWN3clUrWTdwK3JiM1lhb0VsY1IwdkFn?=
- =?utf-8?B?TklyejQ3MXRzNkNWaDFSdzFsUlhKbmdqcU9GS0krWWErdU1NVE1jekN1cG1N?=
- =?utf-8?B?UW5lQm44Y3FZb0FJUHpLZ2lsUTA2Ny9rWXZoc2Z4QnRVaEJRaDB4V1IybnBo?=
- =?utf-8?B?NTlGQTRJR1lJRllqSTIrMTVVQktCandRTVhSU003b1VoL1daWXRzbVVVZmo3?=
- =?utf-8?B?cmw4Sms3U0ZITkNJZTZHUGl1TnlORHJyS3FVUmd6QjZJamluRkJMNkVIRC9E?=
- =?utf-8?B?aXdIU09SeWdzcmI5NTdQeHNua0c2Qkp3MEMrNC9JZk4rNVpNRmtMaDlPTGVn?=
- =?utf-8?B?QjVEMGRLQ3F3R050YncxQ0hSUHAzb2FWQVR5MmdnMmYyOUxtYmcvdWF6bVMx?=
- =?utf-8?B?ME5Ia1dmZEFlV1RRSlp6Z3JjRjF6d093eGZDTm9YTDlhSlp4VUJXcDg5VEtN?=
- =?utf-8?B?TjhieUkwdzRrbGZVMHoxbWlPNVloYXlETmJNYjJ3M0ZwdGdxWDZObzYwVGc3?=
- =?utf-8?B?SHpDQkFNd2RnYXR4SnNZUVJTQmY1UTZkM1VKN2diS0NGUCs5SHY5WW13bUlJ?=
- =?utf-8?B?QXhVYWNqTUJDN0JRWlZwaStJeXA1UGFGbGNmMHYyM0N3OVk4SitqU2FiQ1Y5?=
- =?utf-8?B?ZDJLTlhHSXFTRk52L1R1WkthcVVzS2JBc1ZsWXhpaU9IT2xjdkZvaFBwdzFo?=
- =?utf-8?B?dFhtQnk0d3NRWTA1N1duaHpETUdpVlFxa2tLY0diT2JOaDBwWFB5d2JMUG1q?=
- =?utf-8?B?cVNmTTJXSjN6dXg3YllFSWVkbjc3REd2U1orTEN5L2hXK0d6ZTlRVUtXR2pz?=
- =?utf-8?B?UmhIbGhDUDlSUU8yMnZhc1E3MDVoNkV0R0EyYURIdnRSWjB6UmYyVFlYUXhE?=
- =?utf-8?Q?94LJwjVaiUFWNXoQkWGQ9/Q=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ecbb7e18-21ae-4d5a-61e1-08dbaebd104f
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bHM3V1hDVk5nVEJTYk1FQ0R4NTJPVm9rL2taVk9RYkpZbXphYTJCWm45WTZz?=
+ =?utf-8?B?ck0zNFo2cERVTk1iODhMZnBjSVdTSDVuaUYxd0J1U3VobktVZFlGRElFMTJS?=
+ =?utf-8?B?Ymc0b2xsY2I1Z3hCZGIzZm1ZTWVVZDZTOXhFOGdMc1ZjMkdtczVzL0RDN1Nx?=
+ =?utf-8?B?aVZBOWZQQmhxRWV2Z05Hc2ZOY3dvTDRDcjZGT2ZiMUVZZnNzQ0Raa1FFemlC?=
+ =?utf-8?B?NTV2L2wvOU8rcW5FZ0haampJbC94eVowYmRlOS95cnFwSW1heXd4SGoza0cz?=
+ =?utf-8?B?cHVtYS9YcGNHWEI2RGI1T3J0TzdLZm1yWGhhSWlzcitCcWg0Y0pYRU9MNktp?=
+ =?utf-8?B?VEdTdHF2VFZEdm4yL3NtRFFnR1NTQTR2UCtCNWFGUERCRlp2d1NzRFFyekls?=
+ =?utf-8?B?RVN4NHAxWWlsWXBiSDZjdWJOcUxNNFlIMlhpWXFyOUVzVlkvU1NBdVhUL3B4?=
+ =?utf-8?B?Tysxc0g1c3E2a0ordU80eE1xVXA5ODY0NjZybk1MY2oxMzMyZVNLUEJoeEx2?=
+ =?utf-8?B?Q2hlZVBxdUNMQ3dVWHQzcWtlQktsZUxPOXJpOTQ2azM3Nk9qNjFiL2p5WGVG?=
+ =?utf-8?B?bjVsZ1JjNDlWRzV2elFyV3VnU1dPMDlBaTlFdGlvRlljeXB5QkdHaHE2clhM?=
+ =?utf-8?B?RXhxRlY1VGdZbC9GY3VlZ01rTmF5MkhUbHhueG12ZDdLOTJETmZTanpiQ2lD?=
+ =?utf-8?B?OTl0cTFZc2lJNUhDNlp6U3BiMk9JbTV3cnRkVUdSMGI2L0p2NEdYWFlYeTdU?=
+ =?utf-8?B?TzkwTksrMzFNYUlvcDRodnZjT0N2eE4yRVpEaW5wUGxVd044ekREZTdMSHll?=
+ =?utf-8?B?OUYvbkcyT054c0I0ODlSUlRKMmVSYmdlQmY1K2Zid0JGTEFSNFFjQ2VqdldU?=
+ =?utf-8?B?Smg1UzVGMlV4c2xBNnk2c1pheE5DUWdjQVV2S1Q0K1FKVE9HYVZETC9yWUJU?=
+ =?utf-8?B?ZHZxNlJ0bFVvNkY2Mk4rR0pySkdUWXcxUjA4NGlKd010dmV1azhxMnQxZ24v?=
+ =?utf-8?B?dTZLbmk1cmcyNW84ZjBLVEVXNC93a0lxTXU3WjFhcloySVpYTDRiQ29YNDUr?=
+ =?utf-8?B?M2F0YmZqNjVRZk5LUFo0Wm9kMmJIb3ZocUZ3ZDFENDBpRXFvOVVmUzBidkF2?=
+ =?utf-8?B?Uy82YTR0U1RmM1NvQmxSbFVsSGVEeHN1enM1elhYQ0xVUkFJMjdMa2VJYmUr?=
+ =?utf-8?B?aDh0bElNM1B5ZUdVRlVvTUZmQmZCREMxbCtxNVorQlFOUFREakJZWHBOcjl6?=
+ =?utf-8?B?Yk9IRTBQd1Qxam1tcm1kUFhORWRwSDBQVG9HWnYwQnNrclNMeUJnTHNiakdv?=
+ =?utf-8?B?QUtpZHVSbjl0UDNnQ3FRWEY2d3RWQXdSMmJ2WGZGOFhIa1liaU1KR3BoeGh4?=
+ =?utf-8?B?MkhINHk1bWordjg3a1pnNEtkOWUyTFFkaHM4NXVuZjlNR1VLQjYwbUVqT0Yv?=
+ =?utf-8?B?UjNYa2FSOWRaaVgreUJGM3lwUGJPd2pKbzd4WitVaXRPK0U2dHF4cjlaQ0dJ?=
+ =?utf-8?B?WVZubGQzM1lzUyttaFBPdTJISDFxenNxY0d6blhMUDhGU0MvUVpROURnazgy?=
+ =?utf-8?B?UVNHcEFGbG52QXFwOXlzbFJxSGNwNjhkbmpZN2ZBb2gxSkY4eWlwekdlckps?=
+ =?utf-8?B?NUhMcSttK1lXZ1grZDgrQXpjbHFwZnNScGhXWlBSM2J5bUNTZTBBbCtXL09H?=
+ =?utf-8?B?VHBlcjFaTmxaRzh5TlZlY2pKVFVaV2Zybnc3cXJzc0ViQXR2TS9zemRtd1dm?=
+ =?utf-8?B?czBvQVlXZFBrMEJSQjFYbkEzb2hPelY5MjBwa3RoTU56UXU0VlpzK01yb1Mz?=
+ =?utf-8?B?MGV3VXRhV1dLWGFKVlhDQ1ZGTWZvK0JuNUVuTU4wZmFGcUdsci93Y3Q0Nk91?=
+ =?utf-8?B?a25xbFZYQlkzVFFUOHo5R1NWcnBwSk9qYlo2T2UvLzU4ZnNOaWdLN3RVNkxh?=
+ =?utf-8?B?SC9JOWVKMDVYaGVPU041c1E2Q1ZzeEdGTGI5SmZJdS9PUUQvazN1Z21lQ252?=
+ =?utf-8?B?QkZ1bmY3Q3F2S0VJMERMcWVjbjhDaU5abGhrL2l4bjd6RTJDVjBORW13OE9W?=
+ =?utf-8?B?VG5CN0wzaXRUZEVtY3VYYmNkSTJvS3NZdFBpc2JCSnFCcUlCcHFiNGJRYWU2?=
+ =?utf-8?B?U3BQNGtEUmxjZ3N1SGZUaUJBaHdUd3JVSW5ZVjg4ak5EYzhtMkdsREd5RVpV?=
+ =?utf-8?Q?vj9j1VIdBl4rbYVCjmx1yOs=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d2d9aa87-ed1a-476c-31a2-08dbaebe547d
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2023 09:38:45.2220 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Sep 2023 09:47:49.0442 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XHRVJEaQGFsYNmuTzvuYNJ5XhQXKP9LfCKcRXVyd0gS/yfklVwwAGiHI3SOgpm1RB9tUMjaioGaQZiX65j+XrtNsDaoa1TtcDhYrK7AXt/o=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5473
+X-MS-Exchange-CrossTenant-UserPrincipalName: eyCJQ3/CeGbmvr6vn0FcYYyVzc87Q6eGsVMhitb/k/Fpvg9aaeSa0hmr3LxKmOPUQCFEZVo5kHxOZjm1hTHtceC+xm418G81s5w/VFEPehI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5631
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 3/7] drm/xe: Add tracking support for bos per
- client
+Subject: Re: [Intel-xe] [PATCH 4/7] drm/xe: Record each drm client with its
+ VM
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,221 +160,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------EkiMTV0KpNOwvYhJDJntPONx
+--------------IkWuBJHKOQxApQOEHAJIdB1X
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 
 On 31-08-2023 14:35, Tejas Upadhyay wrote:
-> In order to show per client memory consumption, we
-> need tracking support APIs to add at every bo consumption
-> and removal. Adding APIs here to add tracking calls at
-> places wherever it is applicable.
+> Enable accounting of indirect client memory usage.
 >
 > Signed-off-by: Tejas Upadhyay<tejas.upadhyay@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_bo.c         |  7 ++++
->   drivers/gpu/drm/xe/xe_bo_types.h   | 10 ++++++
->   drivers/gpu/drm/xe/xe_drm_client.c | 58 ++++++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_drm_client.h | 26 ++++++++++++++
->   4 files changed, 101 insertions(+)
+>   drivers/gpu/drm/xe/xe_vm.c       | 1 +
+>   drivers/gpu/drm/xe/xe_vm_types.h | 2 ++
+>   2 files changed, 3 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 6a8a41dafe88..cde91c3601d1 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -16,6 +16,7 @@
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index 9cbf2f63d641..f5f832c8ed42 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -2057,6 +2057,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+>   	}
 >   
->   #include "xe_device.h"
->   #include "xe_dma_buf.h"
-> +#include "xe_drm_client.h"
->   #include "xe_ggtt.h"
->   #include "xe_gt.h"
->   #include "xe_map.h"
-> @@ -1051,6 +1052,9 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
->   	if (bo->vm && xe_bo_is_user(bo))
->   		xe_vm_put(bo->vm);
+>   	args->vm_id = id;
+> +	vm->xef = xef;
+shouldn't it be applicable only if |CONFIG_PROC_FS is enabled ? |
 >   
-> +	if (bo->client)
-> +		xe_drm_client_remove_bo(bo);
-API returns bool, handle it or use void return type.
-> +
->   	kfree(bo);
->   }
+>   #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+>   	/* Warning: Security issue - never enable by default */
+> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+> index fd2178dbde3a..db8523d81d0f 100644
+> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+> @@ -336,6 +336,8 @@ struct xe_vm {
 >   
-> @@ -1230,6 +1234,9 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->   	bo->ttm.priority = DRM_XE_VMA_PRIORITY_NORMAL;
->   	INIT_LIST_HEAD(&bo->vmas);
->   	INIT_LIST_HEAD(&bo->pinned_link);
-> +#ifdef CONFIG_PROC_FS
-> +	INIT_LIST_HEAD(&bo->client_link);
-> +#endif
->   
->   	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
->   
-> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-> index f6ee920303af..1aef413b6f8a 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> @@ -45,6 +45,16 @@ struct xe_bo {
->   	struct ttm_bo_kmap_obj kmap;
->   	/** @pinned_link: link to present / evicted list of pinned BO */
->   	struct list_head pinned_link;
-> +#ifdef CONFIG_PROC_FS
-> +	/**
-> +	 * @client: @xe_drm_client which created the bo
-> +	 */
-> +	struct xe_drm_client *client;
-> +	/**
-> +	 * @client_link: Link into @xe_drm_client.objects_list
-> +	 */
-> +	struct list_head client_link;
-> +#endif
->   	/** @props: BO user controlled properties */
->   	struct {
->   		/** @preferred_mem: preferred memory class for this BO */
-> diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-> index b5dc024b5dd0..00b28a08909f 100644
-> --- a/drivers/gpu/drm/xe/xe_drm_client.c
-> +++ b/drivers/gpu/drm/xe/xe_drm_client.c
-> @@ -8,8 +8,11 @@
->   #include <linux/slab.h>
->   #include <linux/types.h>
->   
-> +#include "xe_bo_types.h"
->   #include "xe_device_types.h"
->   #include "xe_drm_client.h"
-> +#include "xe_device_types.h"
-> +#include "xe_trace.h"
->   
->   /**
->    * xe_drm_client_alloc() - Allocate drm client
-> @@ -31,6 +34,10 @@ struct xe_drm_client *xe_drm_client_alloc(void)
->   
->   	kref_init(&client->kref);
->   
-> +#ifdef CONFIG_PROC_FS
-> +	spin_lock_init(&client->bos_lock);
-> +	INIT_LIST_HEAD(&client->bos_list);
-> +#endif
->   	return client;
->   }
->   
-> @@ -52,6 +59,57 @@ void __xe_drm_client_free(struct kref *kref)
->   }
->   
->   #ifdef CONFIG_PROC_FS
-> +/**
-> + * xe_drm_client_add_bo() - Add BO for tracking client mem usage
-> + * @client: The drm client ptr
-> + * @bo: The xe BO ptr
-> + *
-> + * Add all BO created by individual drm client by calling this function.
-> + * This helps in tracking client memory usage.
-> + *
-> + * Return: void
-> + */
-> +void xe_drm_client_add_bo(struct xe_drm_client *client,
-> +			  struct xe_bo *bo)
-> +{
-> +	unsigned long flags;
-> +
-> +	XE_WARN_ON(bo->client);
-> +	XE_WARN_ON(!list_empty(&bo->client_link));
-> +
-> +	spin_lock_irqsave(&client->bos_lock, flags);
-> +	bo->client = xe_drm_client_get(client);
-> +	list_add_tail_rcu(&bo->client_link, &client->bos_list);
-> +	spin_unlock_irqrestore(&client->bos_lock, flags);
-> +}
-> +
-> +/**
-> + * xe_drm_client_remove_bo() - Remove BO for tracking client mem usage
-> + * @bo: The xe BO ptr
-> + *
-> + * Remove all BO removed by individual drm client by calling this function.
-> + * This helps in tracking client memory usage.
-> + *
-> + * Return: void
-Wrong return type in comment.
-> + */
-> +bool xe_drm_client_remove_bo(struct xe_bo *bo)
-> +{
-> +	struct xe_drm_client *client = bo->client;
-> +	unsigned long flags;
-> +
-> +	/* Object may not be associated with a client. */
-> +	if (!client)
-> +		return false;
-
-This call is redundant.  API is being called only if client exists, make 
-sure to check for bo->client_link too.
-
-Himal
-
-> +
-> +	spin_lock_irqsave(&client->bos_lock, flags);
-> +	list_del_rcu(&bo->client_link);
-> +	spin_unlock_irqrestore(&client->bos_lock, flags);
-> +
-> +	xe_drm_client_put(client);
-> +
-> +	return true;
-> +}
-> +
->   /**
->    * xe_drm_client_fdinfo() - Callback for fdinfo interface
->    * @p: The drm_printer ptr
-> diff --git a/drivers/gpu/drm/xe/xe_drm_client.h b/drivers/gpu/drm/xe/xe_drm_client.h
-> index dbe3a083c9df..bbbc5d6ce3ae 100644
-> --- a/drivers/gpu/drm/xe/xe_drm_client.h
-> +++ b/drivers/gpu/drm/xe/xe_drm_client.h
-> @@ -15,10 +15,23 @@
->   
->   struct drm_file;
->   struct drm_printer;
-> +struct xe_bo;
->   
->   struct xe_drm_client {
->   	struct kref kref;
->   	unsigned int id;
-> +#ifdef CONFIG_PROC_FS
-> +	/**
-> +	 * @bos_lock: lock protecting @bos_list
-> +	 */
-> +	spinlock_t bos_lock;
-> +	/**
-> +	 * @bos_list: list of bos created by this client
-> +	 *
-> +	 * Protected by @bos_lock.
-> +	 */
-> +	struct list_head bos_list;
-> +#endif
+>   	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+>   	bool batch_invalidate_tlb;
+> +	/** @xef: XE file handle for tracking this VM's drm client */
+> +	struct xe_file *xef;
+Same comment as above.
 >   };
 >   
->   	static inline struct xe_drm_client *
-> @@ -41,5 +54,18 @@ xe_drm_client_get(struct xe_drm_client *client);
->   static inline void xe_drm_client_put(struct xe_drm_client *client);
->   #ifdef CONFIG_PROC_FS
->   void xe_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file);
-> +void xe_drm_client_add_bo(struct xe_drm_client *client,
-> +		struct xe_bo *bo);
-> +bool xe_drm_client_remove_bo(struct xe_bo *bo);
-> +#else
-> +static inline void xe_drm_client_add_bo(struct xe_drm_client *client,
-> +		struct xe_bo *bo)
-> +{
-> +}
-> +
-> +static inline bool xe_drm_client_remove_bo(struct xe_bo *bo)
-> +{
-> +}
->   #endif
-> +
->   #endif
---------------EkiMTV0KpNOwvYhJDJntPONx
+>   /** struct xe_vma_op_map - VMA map operation */
+--------------IkWuBJHKOQxApQOEHAJIdB1X
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 <!DOCTYPE html><html><head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -389,223 +214,51 @@ Content-Transfer-Encoding: 8bit
     <div class="moz-cite-prefix">On 31-08-2023 14:35, Tejas Upadhyay
       wrote:<br>
     </div>
-    <blockquote type="cite" cite="mid:20230831090536.2949934-4-tejas.upadhyay@intel.com">
-      <pre class="moz-quote-pre" wrap="">In order to show per client memory consumption, we
-need tracking support APIs to add at every bo consumption
-and removal. Adding APIs here to add tracking calls at
-places wherever it is applicable.
+    <blockquote type="cite" cite="mid:20230831090536.2949934-5-tejas.upadhyay@intel.com">
+      <pre class="moz-quote-pre" wrap="">Enable accounting of indirect client memory usage.
 
 Signed-off-by: Tejas Upadhyay <a class="moz-txt-link-rfc2396E" href="mailto:tejas.upadhyay@intel.com">&lt;tejas.upadhyay@intel.com&gt;</a>
 ---
- drivers/gpu/drm/xe/xe_bo.c         |  7 ++++
- drivers/gpu/drm/xe/xe_bo_types.h   | 10 ++++++
- drivers/gpu/drm/xe/xe_drm_client.c | 58 ++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_drm_client.h | 26 ++++++++++++++
- 4 files changed, 101 insertions(+)
+ drivers/gpu/drm/xe/xe_vm.c       | 1 +
+ drivers/gpu/drm/xe/xe_vm_types.h | 2 ++
+ 2 files changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 6a8a41dafe88..cde91c3601d1 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -16,6 +16,7 @@
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 9cbf2f63d641..f5f832c8ed42 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2057,6 +2057,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 	}
  
- #include &quot;xe_device.h&quot;
- #include &quot;xe_dma_buf.h&quot;
-+#include &quot;xe_drm_client.h&quot;
- #include &quot;xe_ggtt.h&quot;
- #include &quot;xe_gt.h&quot;
- #include &quot;xe_map.h&quot;
-@@ -1051,6 +1052,9 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
- 	if (bo-&gt;vm &amp;&amp; xe_bo_is_user(bo))
- 		xe_vm_put(bo-&gt;vm);
- 
-+	if (bo-&gt;client)
-+		xe_drm_client_remove_bo(bo);</pre>
+ 	args-&gt;vm_id = id;
++	vm-&gt;xef = xef;</pre>
     </blockquote>
-    API returns bool, handle it or use void return type. <br>
-    <blockquote type="cite" cite="mid:20230831090536.2949934-4-tejas.upadhyay@intel.com">
+    shouldn't it be applicable only if <code style="padding: 0px; tab-size: 8; white-space: pre-wrap;" class="hljs diff language-diff">CONFIG_PROC_FS is enabled ? </code>
+    <blockquote type="cite" cite="mid:20230831090536.2949934-5-tejas.upadhyay@intel.com">
       <pre class="moz-quote-pre" wrap="">
-+
- 	kfree(bo);
- }
  
-@@ -1230,6 +1234,9 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 	bo-&gt;ttm.priority = DRM_XE_VMA_PRIORITY_NORMAL;
- 	INIT_LIST_HEAD(&amp;bo-&gt;vmas);
- 	INIT_LIST_HEAD(&amp;bo-&gt;pinned_link);
-+#ifdef CONFIG_PROC_FS
-+	INIT_LIST_HEAD(&amp;bo-&gt;client_link);
-+#endif
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
+ 	/* Warning: Security issue - never enable by default */
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index fd2178dbde3a..db8523d81d0f 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -336,6 +336,8 @@ struct xe_vm {
  
- 	drm_gem_private_object_init(&amp;xe-&gt;drm, &amp;bo-&gt;ttm.base, size);
- 
-diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-index f6ee920303af..1aef413b6f8a 100644
---- a/drivers/gpu/drm/xe/xe_bo_types.h
-+++ b/drivers/gpu/drm/xe/xe_bo_types.h
-@@ -45,6 +45,16 @@ struct xe_bo {
- 	struct ttm_bo_kmap_obj kmap;
- 	/** @pinned_link: link to present / evicted list of pinned BO */
- 	struct list_head pinned_link;
-+#ifdef CONFIG_PROC_FS
-+	/**
-+	 * @client: @xe_drm_client which created the bo
-+	 */
-+	struct xe_drm_client *client;
-+	/**
-+	 * @client_link: Link into @xe_drm_client.objects_list
-+	 */
-+	struct list_head client_link;
-+#endif
- 	/** @props: BO user controlled properties */
- 	struct {
- 		/** @preferred_mem: preferred memory class for this BO */
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.c b/drivers/gpu/drm/xe/xe_drm_client.c
-index b5dc024b5dd0..00b28a08909f 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.c
-+++ b/drivers/gpu/drm/xe/xe_drm_client.c
-@@ -8,8 +8,11 @@
- #include &lt;linux/slab.h&gt;
- #include &lt;linux/types.h&gt;
- 
-+#include &quot;xe_bo_types.h&quot;
- #include &quot;xe_device_types.h&quot;
- #include &quot;xe_drm_client.h&quot;
-+#include &quot;xe_device_types.h&quot;
-+#include &quot;xe_trace.h&quot;
- 
- /**
-  * xe_drm_client_alloc() - Allocate drm client
-@@ -31,6 +34,10 @@ struct xe_drm_client *xe_drm_client_alloc(void)
- 
- 	kref_init(&amp;client-&gt;kref);
- 
-+#ifdef CONFIG_PROC_FS
-+	spin_lock_init(&amp;client-&gt;bos_lock);
-+	INIT_LIST_HEAD(&amp;client-&gt;bos_list);
-+#endif
- 	return client;
- }
- 
-@@ -52,6 +59,57 @@ void __xe_drm_client_free(struct kref *kref)
- }
- 
- #ifdef CONFIG_PROC_FS
-+/**
-+ * xe_drm_client_add_bo() - Add BO for tracking client mem usage
-+ * @client: The drm client ptr
-+ * @bo: The xe BO ptr
-+ *
-+ * Add all BO created by individual drm client by calling this function.
-+ * This helps in tracking client memory usage.
-+ *
-+ * Return: void
-+ */
-+void xe_drm_client_add_bo(struct xe_drm_client *client,
-+			  struct xe_bo *bo)
-+{
-+	unsigned long flags;
-+
-+	XE_WARN_ON(bo-&gt;client);
-+	XE_WARN_ON(!list_empty(&amp;bo-&gt;client_link));
-+
-+	spin_lock_irqsave(&amp;client-&gt;bos_lock, flags);
-+	bo-&gt;client = xe_drm_client_get(client);
-+	list_add_tail_rcu(&amp;bo-&gt;client_link, &amp;client-&gt;bos_list);
-+	spin_unlock_irqrestore(&amp;client-&gt;bos_lock, flags);
-+}
-+
-+/**
-+ * xe_drm_client_remove_bo() - Remove BO for tracking client mem usage
-+ * @bo: The xe BO ptr
-+ *
-+ * Remove all BO removed by individual drm client by calling this function.
-+ * This helps in tracking client memory usage.
-+ *
-+ * Return: void</pre>
+ 	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+ 	bool batch_invalidate_tlb;
++	/** @xef: XE file handle for tracking this VM's drm client */
++	struct xe_file *xef;</pre>
     </blockquote>
-    Wrong return type in comment.<br>
-    <blockquote type="cite" cite="mid:20230831090536.2949934-4-tejas.upadhyay@intel.com">
+    Same comment as above.<br>
+    <blockquote type="cite" cite="mid:20230831090536.2949934-5-tejas.upadhyay@intel.com">
       <pre class="moz-quote-pre" wrap="">
-+ */
-+bool xe_drm_client_remove_bo(struct xe_bo *bo)
-+{
-+	struct xe_drm_client *client = bo-&gt;client;
-+	unsigned long flags;
-+
-+	/* Object may not be associated with a client. */
-+	if (!client)
-+		return false;</pre>
-    </blockquote>
-    <p>This call is redundant.&nbsp; API is being called only if client
-      exists, make sure to check for <span style="white-space: pre-wrap">bo-&gt;client_link too.</span></p>
-    <p><span style="white-space: pre-wrap">Himal
-</span></p>
-    <blockquote type="cite" cite="mid:20230831090536.2949934-4-tejas.upadhyay@intel.com">
-      <pre class="moz-quote-pre" wrap="">
-+
-+	spin_lock_irqsave(&amp;client-&gt;bos_lock, flags);
-+	list_del_rcu(&amp;bo-&gt;client_link);
-+	spin_unlock_irqrestore(&amp;client-&gt;bos_lock, flags);
-+
-+	xe_drm_client_put(client);
-+
-+	return true;
-+}
-+
- /**
-  * xe_drm_client_fdinfo() - Callback for fdinfo interface
-  * @p: The drm_printer ptr
-diff --git a/drivers/gpu/drm/xe/xe_drm_client.h b/drivers/gpu/drm/xe/xe_drm_client.h
-index dbe3a083c9df..bbbc5d6ce3ae 100644
---- a/drivers/gpu/drm/xe/xe_drm_client.h
-+++ b/drivers/gpu/drm/xe/xe_drm_client.h
-@@ -15,10 +15,23 @@
- 
- struct drm_file;
- struct drm_printer;
-+struct xe_bo;
- 
- struct xe_drm_client {
- 	struct kref kref;
- 	unsigned int id;
-+#ifdef CONFIG_PROC_FS
-+	/**
-+	 * @bos_lock: lock protecting @bos_list
-+	 */
-+	spinlock_t bos_lock;
-+	/**
-+	 * @bos_list: list of bos created by this client
-+	 *
-+	 * Protected by @bos_lock.
-+	 */
-+	struct list_head bos_list;
-+#endif
  };
  
- 	static inline struct xe_drm_client *
-@@ -41,5 +54,18 @@ xe_drm_client_get(struct xe_drm_client *client);
- static inline void xe_drm_client_put(struct xe_drm_client *client);
- #ifdef CONFIG_PROC_FS
- void xe_drm_client_fdinfo(struct drm_printer *p, struct drm_file *file);
-+void xe_drm_client_add_bo(struct xe_drm_client *client,
-+		struct xe_bo *bo);
-+bool xe_drm_client_remove_bo(struct xe_bo *bo);
-+#else
-+static inline void xe_drm_client_add_bo(struct xe_drm_client *client,
-+		struct xe_bo *bo)
-+{
-+}
-+
-+static inline bool xe_drm_client_remove_bo(struct xe_bo *bo)
-+{
-+}
- #endif
-+
- #endif
+ /** struct xe_vma_op_map - VMA map operation */
 </pre>
     </blockquote>
   </body>
 </html>
 
---------------EkiMTV0KpNOwvYhJDJntPONx--
+--------------IkWuBJHKOQxApQOEHAJIdB1X--
