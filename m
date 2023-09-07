@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 005C2EC8754
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 19:19:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CCD5EC8750
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 19:20:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8B26110E083;
-	Thu,  7 Sep 2023 19:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDD3710E083;
+	Thu,  7 Sep 2023 19:20:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 88DB110E083;
- Thu,  7 Sep 2023 19:19:09 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2168F10E083;
+ Thu,  7 Sep 2023 19:20:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 856E3AADF2;
- Thu,  7 Sep 2023 19:19:09 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 17DD8AA3D8;
+ Thu,  7 Sep 2023 19:20:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 07 Sep 2023 19:19:09 -0000
-Message-ID: <169411434954.17902.1022026561010063707@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Date: Thu, 07 Sep 2023 19:20:58 -0000
+Message-ID: <169411445806.17902.5401483231463220804@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230906095039.3320-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230906095039.3320-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_drm/drm=5Fexec=2C_drm/tests=3A_Fix_/_WA_for_uaf_and_lock_all?=
- =?utf-8?q?oc_tracking_=28rev2=29?=
+References: <20230907073953.7-1-francois.dugast@intel.com>
+In-Reply-To: <20230907073953.7-1-francois.dugast@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/uapi=3A_Separate_VM=5FBIND=27s_operation_and_flag_=28?=
+ =?utf-8?q?rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,26 +47,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/drm_exec, drm/tests: Fix / WA for uaf and lock alloc tracking (rev2)
-URL   : https://patchwork.freedesktop.org/series/123322/
-State : failure
+Series: drm/xe/uapi: Separate VM_BIND's operation and flag (rev3)
+URL   : https://patchwork.freedesktop.org/series/123333/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: bae46e59a drm/xe/pat: Use 0 instead of space on error
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/drm_exec.c:56
-error: drivers/gpu/drm/drm_exec.c: patch does not apply
-error: patch failed: include/drm/drm_exec.h:51
-error: include/drm/drm_exec.h: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/tests: helpers: Avoid a driver uaf
-Applying: drm/tests/drm_exec: Add a test for object freeing within drm_exec_fini()
-Applying: drm/drm_exec: Work around a WW mutex lockdep oddity
-Patch failed at 0003 drm/drm_exec: Work around a WW mutex lockdep oddity
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe/uapi: Separate VM_BIND's operation and flag
 
 
