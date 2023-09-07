@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C1E45EC873F
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 15:40:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D777EC873A
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 15:40:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C71010E814;
-	Thu,  7 Sep 2023 15:40:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 71E7610E84A;
+	Thu,  7 Sep 2023 15:40:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2022F10E811;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 880E310E818;
  Thu,  7 Sep 2023 15:40:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1694101206; x=1725637206;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=tVufYfDuZhdyMhwFDhCwqaDdFunxT7ZC5jh2SgUCOqo=;
- b=B4dVGGBIK62o44O5YvGmYdMU1ir0m8qlGR/i7vTRyNV4DBhdhquUZXNh
- Br1R069tUqfoMj6vKN7MEShxnXJGdPgBJ0qCjwnB6s78HFR2HLkypm3N8
- +QrELkjEyMFMCfZAQXEH7l7nfT3CqBk9grvuOjTMe99CdH2UDjxmN+vHT
- qLumoqI+s1Cll3RxOn65GA9IweXs20+3O+WPnjiEgXDJJqqKG1vUvZkn4
- 1IrBhd68VTLSWbQ3rnnL7+eFc23w7IY4o6k/fpPd87423n6D+f7pCNle3
- tdGgKVDG7qizc+KySStyCwglwWHA9jE5bvEgMJMwEBVh1wq61eHnqlqDn A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="362445770"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="362445770"
+ bh=TFdrYwlX6SImQR8CREdBQOFX0DX6x6IPtsRyOADM4yw=;
+ b=eNe0yqKLKqg/hf6K6hXMIkK4auS07ACCRgAXlDR/o5hBYAJ/KAZvIX7S
+ R3DX2PIUIbDrHqGFc7G/JysJUQbQb1pxYwfALYIc66lM3oFBT7VFDw9hA
+ SbfwgP9hwiD5decbxlXR9CNe6JgrSOf0BrIeCueuTX0Go7mqYCvy7EuUP
+ iWeuRjBPyTQfpBWhurcak5ikrBDuUFOkXvEVHAr0SsjLeHMacRViDz7HR
+ d5nd12Zt/MZW95Wu+sjjGHH5JRY4WPzaqwb3nlt4UE2b9vmSNWjbrFn/2
+ ANC9AkRXhCWDG2rnR8z/yzvcRSGu2Qw5n+HMJIHbtDrMYNKsuqrJsOPS2 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="362445791"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="362445791"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 08:38:16 -0700
+ 07 Sep 2023 08:38:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="1072930260"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="1072930260"
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="1072930277"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="1072930277"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 08:38:15 -0700
+ 07 Sep 2023 08:38:17 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Thu,  7 Sep 2023 08:37:41 -0700
-Message-Id: <20230907153757.2249452-12-lucas.demarchi@intel.com>
+Date: Thu,  7 Sep 2023 08:37:45 -0700
+Message-Id: <20230907153757.2249452-16-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230907153757.2249452-1-lucas.demarchi@intel.com>
 References: <20230907153757.2249452-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 11/27] drm/i915/xe2lpd: Register DE_RRMR has
- been removed
+Subject: [Intel-xe] [PATCH v2 15/27] FIXME: drm/i915/xe2lpd: Add support for
+ DP aux channels
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,41 +58,86 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Clint Taylor <clinton.a.taylor@intel.com>,
- Anusha Srivatsa <anusha.srivatsa@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Clint Taylor <clinton.a.taylor@intel.com>
+From: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Do not read DE_RRMR register after display version 20. This register
-contains display state information during GFX state dumps.
+The location of aux channels registers for Xe2 display changed w.r.t.
+the previous version.
 
-Bspec: 69456
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+FIXME: make this commit and "drm/i915/xe2lpd: Move registers to PICA"
+ to use a similar approach
+
+BSpec: 69010
+Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/i915_gpu_error.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp_aux.c | 43 ++++++++++++++++++++-
+ 1 file changed, 42 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-index 4008bb09fdb5..a28681c15354 100644
---- a/drivers/gpu/drm/i915/i915_gpu_error.c
-+++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-@@ -1757,7 +1757,7 @@ static void gt_record_display_regs(struct intel_gt_coredump *gt)
- 	struct intel_uncore *uncore = gt->_gt->uncore;
- 	struct drm_i915_private *i915 = uncore->i915;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+index 2d173bd495a3..929cada982ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+@@ -714,6 +714,44 @@ static i915_reg_t xelpdp_aux_data_reg(struct intel_dp *intel_dp, int index)
+ 	}
+ }
  
--	if (GRAPHICS_VER(i915) >= 6)
-+	if (DISPLAY_VER(i915) >= 6 && DISPLAY_VER(i915) < 20)
- 		gt->derrmr = intel_uncore_read(uncore, DERRMR);
++static i915_reg_t xe2lpd_aux_ctl_reg(struct intel_dp *intel_dp)
++{
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
++	enum aux_ch aux_ch = dig_port->aux_ch;
++
++	switch (aux_ch) {
++	case AUX_CH_A:
++	case AUX_CH_B:
++	case AUX_CH_USBC1:
++	case AUX_CH_USBC2:
++	case AUX_CH_USBC3:
++	case AUX_CH_USBC4:
++		return XE2LPD_DP_AUX_CH_CTL(aux_ch);
++	default:
++		MISSING_CASE(aux_ch);
++		return XE2LPD_DP_AUX_CH_CTL(AUX_CH_A);
++	}
++}
++
++static i915_reg_t xe2lpd_aux_data_reg(struct intel_dp *intel_dp, int index)
++{
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
++	enum aux_ch aux_ch = dig_port->aux_ch;
++
++	switch (aux_ch) {
++	case AUX_CH_A:
++	case AUX_CH_B:
++	case AUX_CH_USBC1:
++	case AUX_CH_USBC2:
++	case AUX_CH_USBC3:
++	case AUX_CH_USBC4:
++		return XE2LPD_DP_AUX_CH_DATA(aux_ch, index);
++	default:
++		MISSING_CASE(aux_ch);
++		return XE2LPD_DP_AUX_CH_DATA(AUX_CH_A, index);
++	}
++}
++
+ void intel_dp_aux_fini(struct intel_dp *intel_dp)
+ {
+ 	if (cpu_latency_qos_request_active(&intel_dp->pm_qos))
+@@ -729,7 +767,10 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
+ 	struct intel_encoder *encoder = &dig_port->base;
+ 	enum aux_ch aux_ch = dig_port->aux_ch;
  
- 	if (GRAPHICS_VER(i915) >= 8)
+-	if (DISPLAY_VER(dev_priv) >= 14) {
++	if (DISPLAY_VER(dev_priv) >= 20) {
++		intel_dp->aux_ch_ctl_reg = xe2lpd_aux_ctl_reg;
++		intel_dp->aux_ch_data_reg = xe2lpd_aux_data_reg;
++	} else if (DISPLAY_VER(dev_priv) >= 14) {
+ 		intel_dp->aux_ch_ctl_reg = xelpdp_aux_ctl_reg;
+ 		intel_dp->aux_ch_data_reg = xelpdp_aux_data_reg;
+ 	} else if (DISPLAY_VER(dev_priv) >= 12) {
 -- 
 2.40.1
 
