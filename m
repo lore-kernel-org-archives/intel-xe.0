@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F4C7EE14DF
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 10:37:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18D58EE14DF
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 10:37:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3654910E228;
-	Thu,  7 Sep 2023 10:37:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDB5810E22B;
+	Thu,  7 Sep 2023 10:37:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1290A10E228;
- Thu,  7 Sep 2023 10:37:38 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A3DC610E22B;
+ Thu,  7 Sep 2023 10:37:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0F452AADE0;
- Thu,  7 Sep 2023 10:37:38 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A0954AADE0;
+ Thu,  7 Sep 2023 10:37:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Thu, 07 Sep 2023 10:37:38 -0000
-Message-ID: <169408305805.17901.8779441806060199798@emeril.freedesktop.org>
+Date: Thu, 07 Sep 2023 10:37:48 -0000
+Message-ID: <169408306865.17903.17461762381846498947@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230829233053.2264563-1-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20230829233053.2264563-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_fixup!_drm/xe/guc=3A_Report_submission_version_of_GuC_firmwa?=
- =?utf-8?b?cmUgKHJldjMp?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_fi?=
+ =?utf-8?q?xup!_drm/xe/guc=3A_Report_submission_version_of_GuC_firmware_?=
+ =?utf-8?b?KHJldjMp?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,9 +53,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: bae46e59a drm/xe/pat: Use 0 instead of space on error
-=== git am output follows ===
-Applying: fixup! drm/xe/guc: Report submission version of GuC firmware
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c8621445b9f6450c832480a7e29fad20c4eb4787
+Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Date:   Tue Aug 29 16:30:53 2023 -0700
+
+    fixup! drm/xe/guc: Report submission version of GuC firmware
+    
+    Major GuC versions greater than 70 will have the submission version in
+    the herader irrespective of their minor version number.
+    
+    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: John Harrison <John.C.Harrison@Intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch bae46e59a7f667734376ddb0d2451967dfb264f1 drm-intel
+c8621445b fixup! drm/xe/guc: Report submission version of GuC firmware
 
 
