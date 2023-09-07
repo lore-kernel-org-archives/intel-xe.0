@@ -4,51 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93206EC8727
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 13:59:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C137EC8730
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 14:06:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D65410E7E7;
-	Thu,  7 Sep 2023 13:59:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3153910E7DA;
- Thu,  7 Sep 2023 13:59:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694095190; x=1725631190;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=KRpj1V5n8BOxdlw9LM3sE/BGTs1SZYbw+0NHS+qJbtA=;
- b=XLUewpMoSGqF/2x74G2FvkDkjPelUbeYQKkZf/HNYoCaq+Nvq+Y0G202
- z5NG/72j6l/erFDCxKwVB/ZPH7XgMdXR5igab/LBhFkYro70BpP7s/d0A
- EWMaETVbrS4OmlDaDeoqXKa1Mo1vciTEdPW+c8YLU8v1bAiA/VAltUqSH
- abxcaZnPkpHMBgB6lftj+tXCq6m1EZWRGklXNn+TPGXjj8DAiFJ4jbmWP
- BixmjqyYi/z1koEYZm/HzOkBgVyQYv/0rbw/N+YfT24i4kcSulNNggqiH
- cuXQaFBamfoAkQJNx1n6KcquP8/3mSOCNGrGPguSUXJGwH5VdA3dugaum g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="367599090"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="367599090"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 06:53:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="856845221"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="856845221"
-Received: from yuyingfa-mobl.ccr.corp.intel.com (HELO fedora..)
- ([10.249.254.26])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 06:53:54 -0700
-From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-To: intel-xe@lists.freedesktop.org,
-	dri-devel@lists.freedesktop.org
-Date: Thu,  7 Sep 2023 15:53:39 +0200
-Message-ID: <20230907135339.7971-3-thomas.hellstrom@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230907135339.7971-1-thomas.hellstrom@linux.intel.com>
-References: <20230907135339.7971-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29D5B10E0C5;
+	Thu,  7 Sep 2023 14:06:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A5C1B10E0C5;
+ Thu,  7 Sep 2023 14:06:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A5058A73C7;
+ Thu,  7 Sep 2023 14:06:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0010803013489822560=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 2/2] drm/tests/drm_exec: Add a test for object
- freeing within drm_exec_fini()
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Thu, 07 Sep 2023 14:06:16 -0000
+Message-ID: <169409557664.17900.8707008454775870242@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230831002931.2327568-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230831002931.2327568-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A?=
+ =?utf-8?q?_Add_child_contexts_to_the_GuC_context_lookup_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,134 +39,176 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Maxime Ripard <mripard@kernel.org>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Check that object freeing from within drm_exec_fini() works as expected
-and is unlikely to generate any warnings.
+--===============0010803013489822560==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v3:
-- Condition the test on CONFIG_DEBUG_LOCK_ALLOC
-- Make the test fail if the situation that generates the lockdep
-  warning occurs. (Maxime Ripard)
+== Series Details ==
 
-Cc: Maxime Ripard <mripard@kernel.org>
-Cc: Christian König <christian.koenig@amd.com>
-Cc: dri-devel@lists.freedesktop.org
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/tests/drm_exec_test.c | 82 +++++++++++++++++++++++++++
- 1 file changed, 82 insertions(+)
+Series: drm/xe: Add child contexts to the GuC context lookup (rev3)
+URL   : https://patchwork.freedesktop.org/series/123091/
+State : success
 
-diff --git a/drivers/gpu/drm/tests/drm_exec_test.c b/drivers/gpu/drm/tests/drm_exec_test.c
-index 563949d777dd..83fddc6fe1ae 100644
---- a/drivers/gpu/drm/tests/drm_exec_test.c
-+++ b/drivers/gpu/drm/tests/drm_exec_test.c
-@@ -21,6 +21,9 @@
- struct drm_exec_priv {
- 	struct device *dev;
- 	struct drm_device *drm;
-+#ifdef CONFIG_DEBUG_LOCK_ALLOC
-+	struct drm_exec *exec;
-+#endif
- };
- 
- static int drm_exec_test_init(struct kunit *test)
-@@ -170,6 +173,82 @@ static void test_prepare_array(struct kunit *test)
- 	drm_gem_private_object_fini(&gobj2);
- }
- 
-+#ifdef CONFIG_DEBUG_LOCK_ALLOC
-+static void drm_exec_test_obj_free(struct drm_gem_object *gem)
-+{
-+	struct kunit *test = current->kunit_test;
-+	struct drm_exec_priv *priv = test->priv;
-+	bool resv_class_held;
-+	bool first_object_locked;
-+
-+	/*
-+	 * The lock alloc tracking code may warn if the dma_resv lock
-+	 * class is still held, and we're freeing the first object we
-+	 * locked.
-+	 */
-+	resv_class_held = (lockdep_is_held(&gem->resv->lock.base) ==
-+			   LOCK_STATE_HELD);
-+	first_object_locked = (gem == priv->exec->objects[0]);
-+	KUNIT_EXPECT_FALSE(current->kunit_test,
-+			   resv_class_held && first_object_locked);
-+
-+	dma_resv_fini(gem->resv);
-+	kfree(gem);
-+}
-+
-+static const struct drm_gem_object_funcs put_funcs = {
-+	.free = drm_exec_test_obj_free,
-+};
-+
-+/*
-+ * Check that freeing objects from within drm_exec_fini()
-+ * doesn't trigger a false lock alloc warning due to
-+ * the dma_resv lock *class* still being held and we're
-+ * freeing the first object locked, which *might* be
-+ * registered as the address of the held lock of that
-+ * lock class.
-+ */
-+static void test_early_put(struct kunit *test)
-+{
-+	struct drm_exec_priv *priv = test->priv;
-+	struct drm_gem_object *gobj1;
-+	struct drm_gem_object *gobj2;
-+	struct drm_gem_object *array[2];
-+	struct drm_exec exec;
-+	int ret;
-+
-+	priv->exec = &exec;
-+
-+	gobj1 = kzalloc(sizeof(*gobj1), GFP_KERNEL);
-+	KUNIT_EXPECT_NOT_NULL(test, gobj1);
-+	if (!gobj1)
-+		return;
-+
-+	gobj2 = kzalloc(sizeof(*gobj2), GFP_KERNEL);
-+	KUNIT_EXPECT_NOT_NULL(test, gobj2);
-+	if (!gobj2) {
-+		kfree(gobj1);
-+		return;
-+	}
-+
-+	gobj1->funcs = &put_funcs;
-+	gobj2->funcs = &put_funcs;
-+	drm_gem_private_object_init(priv->drm, gobj1, PAGE_SIZE);
-+	drm_gem_private_object_init(priv->drm, gobj2, PAGE_SIZE);
-+	array[0] = gobj1;
-+	array[1] = gobj2;
-+
-+	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
-+	drm_exec_until_all_locked(&exec)
-+		ret = drm_exec_prepare_array(&exec, array, ARRAY_SIZE(array),
-+					     1);
-+	KUNIT_EXPECT_EQ(test, ret, 0);
-+	drm_gem_object_put(gobj1);
-+	drm_gem_object_put(gobj2);
-+	drm_exec_fini(&exec);
-+}
-+#endif
-+
- static void test_multiple_loops(struct kunit *test)
- {
- 	struct drm_exec exec;
-@@ -198,6 +277,9 @@ static struct kunit_case drm_exec_tests[] = {
- 	KUNIT_CASE(test_prepare),
- 	KUNIT_CASE(test_prepare_array),
- 	KUNIT_CASE(test_multiple_loops),
-+#ifdef CONFIG_DEBUG_LOCK_ALLOC
-+	KUNIT_CASE(test_early_put),
-+#endif
- 	{}
- };
- 
--- 
-2.41.0
+== Summary ==
 
+CI Bug Log - changes from xe-357-bae46e59a7f667734376ddb0d2451967dfb264f1_BAT -> xe-pw-123091v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-123091v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-357-bae46e59a7f667734376ddb0d2451967dfb264f1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123091v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc:
+    - bat-atsm-2:         NOTRUN -> [SKIP][3] ([Intel XE#537] / [i915#1836])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123091v3/bat-atsm-2/igt@kms_pipe_crc_basic@hang-read-crc.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [FAIL][4] ([Intel XE#480]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-357-bae46e59a7f667734376ddb0d2451967dfb264f1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123091v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/483
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+  [Intel XE#531]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/531
+  [Intel XE#532]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/532
+  [Intel XE#533]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/533
+  [Intel XE#535]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/535
+  [Intel XE#536]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/536
+  [Intel XE#537]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/537
+  [Intel XE#538]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/538
+  [Intel XE#539]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/539
+  [Intel XE#540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/540
+  [Intel XE#541]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/541
+  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7472 -> IGT_7474
+  * Linux: xe-357-bae46e59a7f667734376ddb0d2451967dfb264f1 -> xe-pw-123091v3
+
+  IGT_7472: b9d6f8dd0f69d0091e349ddc9d9f1425b2f36ec9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-357-bae46e59a7f667734376ddb0d2451967dfb264f1: bae46e59a7f667734376ddb0d2451967dfb264f1
+  xe-pw-123091v3: 123091v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123091v3/index.html
+
+--===============0010803013489822560==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add child contexts to the GuC context lookup (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123091/">https://patchwork.freedesktop.org/series/123091/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123091v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123091v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-357-bae46e59a7f667734376ddb0d2451967dfb264f1_BAT -&gt; xe-pw-123091v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-123091v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-357-bae46e59a7f667734376ddb0d2451967dfb264f1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123091v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
+<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123091v3/bat-atsm-2/igt@kms_pipe_crc_basic@hang-read-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/537">Intel XE#537</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/1836">i915#1836</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-357-bae46e59a7f667734376ddb0d2451967dfb264f1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123091v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7472 -&gt; IGT_7474</li>
+<li>Linux: xe-357-bae46e59a7f667734376ddb0d2451967dfb264f1 -&gt; xe-pw-123091v3</li>
+</ul>
+<p>IGT_7472: b9d6f8dd0f69d0091e349ddc9d9f1425b2f36ec9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-357-bae46e59a7f667734376ddb0d2451967dfb264f1: bae46e59a7f667734376ddb0d2451967dfb264f1<br />
+  xe-pw-123091v3: 123091v3</p>
+
+</body>
+</html>
+
+--===============0010803013489822560==--
