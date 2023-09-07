@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D777EC873A
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 15:40:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AD74EC873C
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 15:40:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 71E7610E84A;
-	Thu,  7 Sep 2023 15:40:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BA9310E237;
+	Thu,  7 Sep 2023 15:40:24 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 880E310E818;
- Thu,  7 Sep 2023 15:40:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2960410E820;
+ Thu,  7 Sep 2023 15:40:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694101206; x=1725637206;
+ t=1694101207; x=1725637207;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TFdrYwlX6SImQR8CREdBQOFX0DX6x6IPtsRyOADM4yw=;
- b=eNe0yqKLKqg/hf6K6hXMIkK4auS07ACCRgAXlDR/o5hBYAJ/KAZvIX7S
- R3DX2PIUIbDrHqGFc7G/JysJUQbQb1pxYwfALYIc66lM3oFBT7VFDw9hA
- SbfwgP9hwiD5decbxlXR9CNe6JgrSOf0BrIeCueuTX0Go7mqYCvy7EuUP
- iWeuRjBPyTQfpBWhurcak5ikrBDuUFOkXvEVHAr0SsjLeHMacRViDz7HR
- d5nd12Zt/MZW95Wu+sjjGHH5JRY4WPzaqwb3nlt4UE2b9vmSNWjbrFn/2
- ANC9AkRXhCWDG2rnR8z/yzvcRSGu2Qw5n+HMJIHbtDrMYNKsuqrJsOPS2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="362445791"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="362445791"
+ bh=1/+GlIdBLvHBAuj10wH2xeOHRmIM+mRadCKqyrKLdgU=;
+ b=ZddohOZT550OEzFMAmRGZ3hE+vms1geXncKBGgSXAtPhzKKZMCbBDdTN
+ +sntPFJmYuxDPOkYz303yiFaKLcHSAxT+NjTsAoeYMOWPbcadfOJbbd0O
+ uwbmtbNYZ1wtZr4tklxxpD99ajN/m+ErC1DXhqNAJenwGiUUkbS6EvlaB
+ EXQcfAaXNtviuGFFdoNSdauIwjiOxDHyZvYZyNeZrdu7dHF8MNYc2a8RX
+ L8OeLr+eauMtWEnSLt4G5EjfDJi3JBPEoAw991uIx47STMt4CuifIP8gl
+ wIQNPkyIDSQnRChujDGwvyIHL3eTfvvg0U4JL7HPauzlhzsVyNOsOr9xt w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="362445803"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="362445803"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Sep 2023 08:38:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="1072930277"
-X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="1072930277"
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="1072930297"
+X-IronPort-AV: E=Sophos;i="6.02,235,1688454000"; d="scan'208";a="1072930297"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 08:38:17 -0700
+ 07 Sep 2023 08:38:18 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Thu,  7 Sep 2023 08:37:45 -0700
-Message-Id: <20230907153757.2249452-16-lucas.demarchi@intel.com>
+Date: Thu,  7 Sep 2023 08:37:50 -0700
+Message-Id: <20230907153757.2249452-21-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230907153757.2249452-1-lucas.demarchi@intel.com>
 References: <20230907153757.2249452-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 15/27] FIXME: drm/i915/xe2lpd: Add support for
- DP aux channels
+Subject: [Intel-xe] [PATCH v2 20/27] drm/i915/xe2lpd: Extend Wa_15010685871
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,82 +61,33 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Gustavo Sousa <gustavo.sousa@intel.com>
+Xe2_LPD also needs workaround 15010685871. While adding the new display
+version, also re-order the condition to follow the convention of new
+version first.
 
-The location of aux channels registers for Xe2 display changed w.r.t.
-the previous version.
-
-FIXME: make this commit and "drm/i915/xe2lpd: Move registers to PICA"
- to use a similar approach
-
-BSpec: 69010
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_aux.c | 43 ++++++++++++++++++++-
- 1 file changed, 42 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index 2d173bd495a3..929cada982ac 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -714,6 +714,44 @@ static i915_reg_t xelpdp_aux_data_reg(struct intel_dp *intel_dp, int index)
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index ad5251ba6fe1..cfd01050f7f1 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -1841,9 +1841,10 @@ static bool cdclk_compute_crawl_and_squash_midpoint(struct drm_i915_private *i91
+ 
+ static bool pll_enable_wa_needed(struct drm_i915_private *dev_priv)
+ {
+-	return ((IS_DG2(dev_priv) || DISPLAY_VER_FULL(dev_priv) == IP_VER(14, 0)) &&
+-		dev_priv->display.cdclk.hw.vco > 0 &&
+-		HAS_CDCLK_SQUASH(dev_priv));
++	return (DISPLAY_VER_FULL(dev_priv) == IP_VER(20, 0) ||
++		DISPLAY_VER_FULL(dev_priv) == IP_VER(14, 0) ||
++		IS_DG2(dev_priv)) && dev_priv->display.cdclk.hw.vco > 0 &&
++		HAS_CDCLK_SQUASH(dev_priv);
  }
  
-+static i915_reg_t xe2lpd_aux_ctl_reg(struct intel_dp *intel_dp)
-+{
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	enum aux_ch aux_ch = dig_port->aux_ch;
-+
-+	switch (aux_ch) {
-+	case AUX_CH_A:
-+	case AUX_CH_B:
-+	case AUX_CH_USBC1:
-+	case AUX_CH_USBC2:
-+	case AUX_CH_USBC3:
-+	case AUX_CH_USBC4:
-+		return XE2LPD_DP_AUX_CH_CTL(aux_ch);
-+	default:
-+		MISSING_CASE(aux_ch);
-+		return XE2LPD_DP_AUX_CH_CTL(AUX_CH_A);
-+	}
-+}
-+
-+static i915_reg_t xe2lpd_aux_data_reg(struct intel_dp *intel_dp, int index)
-+{
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	enum aux_ch aux_ch = dig_port->aux_ch;
-+
-+	switch (aux_ch) {
-+	case AUX_CH_A:
-+	case AUX_CH_B:
-+	case AUX_CH_USBC1:
-+	case AUX_CH_USBC2:
-+	case AUX_CH_USBC3:
-+	case AUX_CH_USBC4:
-+		return XE2LPD_DP_AUX_CH_DATA(aux_ch, index);
-+	default:
-+		MISSING_CASE(aux_ch);
-+		return XE2LPD_DP_AUX_CH_DATA(AUX_CH_A, index);
-+	}
-+}
-+
- void intel_dp_aux_fini(struct intel_dp *intel_dp)
- {
- 	if (cpu_latency_qos_request_active(&intel_dp->pm_qos))
-@@ -729,7 +767,10 @@ void intel_dp_aux_init(struct intel_dp *intel_dp)
- 	struct intel_encoder *encoder = &dig_port->base;
- 	enum aux_ch aux_ch = dig_port->aux_ch;
- 
--	if (DISPLAY_VER(dev_priv) >= 14) {
-+	if (DISPLAY_VER(dev_priv) >= 20) {
-+		intel_dp->aux_ch_ctl_reg = xe2lpd_aux_ctl_reg;
-+		intel_dp->aux_ch_data_reg = xe2lpd_aux_data_reg;
-+	} else if (DISPLAY_VER(dev_priv) >= 14) {
- 		intel_dp->aux_ch_ctl_reg = xelpdp_aux_ctl_reg;
- 		intel_dp->aux_ch_data_reg = xelpdp_aux_data_reg;
- 	} else if (DISPLAY_VER(dev_priv) >= 12) {
+ static void _bxt_set_cdclk(struct drm_i915_private *dev_priv,
 -- 
 2.40.1
 
