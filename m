@@ -4,47 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A111EE14D3
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 07:40:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A90D7EE14D3
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 07:53:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CD7A310E77E;
-	Thu,  7 Sep 2023 07:40:08 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E797010E77E
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Sep 2023 07:40:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694072406; x=1725608406;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=WihMUpS/fyLcyqMFiVR1J+ILRFHLk2NLsBKk9v+qIVE=;
- b=DfLmvq4apyffX6ED0yEFs8AEjIlRw1EjwORelCxc8nHkOztr323wvi2G
- xLz1bkznQaERYLdvI2ft+LN4Mrup7JYesmWTlnkppDoJje4uyOl+MwEgd
- 7T+tky97eTLEuso2B7UJ9VCyWQ4mreGJ9pYm8+bt3n0tqnbaoyEyHUPg1
- /6XFeohJtMFgSspCmLDdgjnZIEvVCy4hQw9WAOF+6b+z1KNw2zmDhvphz
- zYHhZR3YsqOqqwjgjag9c4b3uEYqDVCN2FiMCCCZf9P2kPCYfzT8+8cCI
- f2EFA02uMVSGwIojSwQG+WizmG3ia7zjVxQQ8bnyLYeaS/MA7N9+7KAtq g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="367507146"
-X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="367507146"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 00:40:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10825"; a="776964610"
-X-IronPort-AV: E=Sophos;i="6.02,234,1688454000"; d="scan'208";a="776964610"
-Received: from rbhaumik-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
- ([10.252.62.72])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 00:40:05 -0700
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu,  7 Sep 2023 07:39:53 +0000
-Message-Id: <20230907073953.7-1-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7145410E782;
+	Thu,  7 Sep 2023 07:53:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3FDEA10E780;
+ Thu,  7 Sep 2023 07:53:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 369D0AADF3;
+ Thu,  7 Sep 2023 07:53:03 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/uapi: Separate VM_BIND's operation and
- flag
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Date: Thu, 07 Sep 2023 07:53:03 -0000
+Message-ID: <169407318319.17900.10557548576081921637@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230907073953.7-1-francois.dugast@intel.com>
+In-Reply-To: <20230907073953.7-1-francois.dugast@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/uapi=3A_Separate_VM=5FBIND=27s_operation_and_flag_=28?=
+ =?utf-8?q?rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,165 +40,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use different members in the drm_xe_vm_bind_op for op and for flags as
-it is done in other structures.
+== Series Details ==
 
-Type is left to u32 to leave enough room for future operations and flags.
+Series: drm/xe/uapi: Separate VM_BIND's operation and flag (rev2)
+URL   : https://patchwork.freedesktop.org/series/123333/
+State : success
 
-v2: Remove the XE_VM_BIND_* flags shift (Rodrigo Vivi)
+== Summary ==
 
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 29 ++++++++++++++++-------------
- include/uapi/drm/xe_drm.h  | 14 ++++++++------
- 2 files changed, 24 insertions(+), 19 deletions(-)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: bae46e59a drm/xe/pat: Use 0 instead of space on error
+=== git am output follows ===
+Applying: drm/xe/uapi: Separate VM_BIND's operation and flag
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 1d9aa5c40659..d0e5974b5292 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2159,11 +2159,11 @@ static void vm_set_async_error(struct xe_vm *vm, int err)
- }
- 
- static int vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
--				    u64 addr, u64 range, u32 op)
-+				    u64 addr, u64 range, u32 op, u32 flags)
- {
- 	struct xe_device *xe = vm->xe;
- 	struct xe_vma *vma;
--	bool async = !!(op & XE_VM_BIND_FLAG_ASYNC);
-+	bool async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
- 
- 	lockdep_assert_held(&vm->lock);
- 
-@@ -2264,7 +2264,7 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
- static struct drm_gpuva_ops *
- vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 			 u64 bo_offset_or_userptr, u64 addr, u64 range,
--			 u32 operation, u8 tile_mask, u32 region)
-+			 u32 operation, u32 flags, u8 tile_mask, u32 region)
- {
- 	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
- 	struct ww_acquire_ctx ww;
-@@ -2293,10 +2293,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 
- 			op->tile_mask = tile_mask;
- 			op->map.immediate =
--				operation & XE_VM_BIND_FLAG_IMMEDIATE;
-+				flags & XE_VM_BIND_FLAG_IMMEDIATE;
- 			op->map.read_only =
--				operation & XE_VM_BIND_FLAG_READONLY;
--			op->map.is_null = operation & XE_VM_BIND_FLAG_NULL;
-+				flags & XE_VM_BIND_FLAG_READONLY;
-+			op->map.is_null = flags & XE_VM_BIND_FLAG_NULL;
- 		}
- 		break;
- 	case XE_VM_BIND_OP_UNMAP:
-@@ -3116,15 +3116,16 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		u64 range = (*bind_ops)[i].range;
- 		u64 addr = (*bind_ops)[i].addr;
- 		u32 op = (*bind_ops)[i].op;
-+		u32 flags = (*bind_ops)[i].flags;
- 		u32 obj = (*bind_ops)[i].obj;
- 		u64 obj_offset = (*bind_ops)[i].obj_offset;
- 		u32 region = (*bind_ops)[i].region;
--		bool is_null = op & XE_VM_BIND_FLAG_NULL;
-+		bool is_null = flags & XE_VM_BIND_FLAG_NULL;
- 
- 		if (i == 0) {
--			*async = !!(op & XE_VM_BIND_FLAG_ASYNC);
-+			*async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
- 		} else if (XE_IOCTL_DBG(xe, !*async) ||
--			   XE_IOCTL_DBG(xe, !(op & XE_VM_BIND_FLAG_ASYNC)) ||
-+			   XE_IOCTL_DBG(xe, !(flags & XE_VM_BIND_FLAG_ASYNC)) ||
- 			   XE_IOCTL_DBG(xe, VM_BIND_OP(op) ==
- 					XE_VM_BIND_OP_RESTART)) {
- 			err = -EINVAL;
-@@ -3145,7 +3146,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 
- 		if (XE_IOCTL_DBG(xe, VM_BIND_OP(op) >
- 				 XE_VM_BIND_OP_PREFETCH) ||
--		    XE_IOCTL_DBG(xe, op & ~SUPPORTED_FLAGS) ||
-+		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
- 		    XE_IOCTL_DBG(xe, obj && is_null) ||
- 		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
- 		    XE_IOCTL_DBG(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
-@@ -3360,8 +3361,9 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		u64 range = bind_ops[i].range;
- 		u64 addr = bind_ops[i].addr;
- 		u32 op = bind_ops[i].op;
-+		u32 flags = bind_ops[i].flags;
- 
--		err = vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op);
-+		err = vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op, flags);
- 		if (err)
- 			goto free_syncs;
- 	}
-@@ -3370,13 +3372,14 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		u64 range = bind_ops[i].range;
- 		u64 addr = bind_ops[i].addr;
- 		u32 op = bind_ops[i].op;
-+		u32 flags = bind_ops[i].flags;
- 		u64 obj_offset = bind_ops[i].obj_offset;
- 		u8 tile_mask = bind_ops[i].tile_mask;
- 		u32 region = bind_ops[i].region;
- 
- 		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
--						  addr, range, op, tile_mask,
--						  region);
-+						  addr, range, op, flags,
-+						  tile_mask, region);
- 		if (IS_ERR(ops[i])) {
- 			err = PTR_ERR(ops[i]);
- 			ops[i] = NULL;
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 86f16d50e9cc..e0ece7d9d95e 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -591,8 +591,10 @@ struct drm_xe_vm_bind_op {
- #define XE_VM_BIND_OP_RESTART		0x3
- #define XE_VM_BIND_OP_UNMAP_ALL		0x4
- #define XE_VM_BIND_OP_PREFETCH		0x5
-+	/** @op: Bind operation to perform */
-+	__u32 op;
- 
--#define XE_VM_BIND_FLAG_READONLY	(0x1 << 16)
-+#define XE_VM_BIND_FLAG_READONLY	(0x1 << 0)
- 	/*
- 	 * A bind ops completions are always async, hence the support for out
- 	 * sync. This flag indicates the allocation of the memory for new page
-@@ -617,12 +619,12 @@ struct drm_xe_vm_bind_op {
- 	 * configured in the VM and must be set if the VM is configured with
- 	 * DRM_XE_VM_CREATE_ASYNC_BIND_OPS and not in an error state.
- 	 */
--#define XE_VM_BIND_FLAG_ASYNC		(0x1 << 17)
-+#define XE_VM_BIND_FLAG_ASYNC		(0x1 << 1)
- 	/*
- 	 * Valid on a faulting VM only, do the MAP operation immediately rather
- 	 * than differing the MAP to the page fault handler.
- 	 */
--#define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 18)
-+#define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 2)
- 	/*
- 	 * When the NULL flag is set, the page tables are setup with a special
- 	 * bit which indicates writes are dropped and all reads return zero.  In
-@@ -630,9 +632,9 @@ struct drm_xe_vm_bind_op {
- 	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
- 	 * intended to implement VK sparse bindings.
- 	 */
--#define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
--	/** @op: Operation to perform (lower 16 bits) and flags (upper 16 bits) */
--	__u32 op;
-+#define XE_VM_BIND_FLAG_NULL		(0x1 << 3)
-+	/** @flags: Bind flags */
-+	__u32 flags;
- 
- 	/** @mem_region: Memory region to prefetch VMA to, instance not a mask */
- 	__u32 region;
--- 
-2.34.1
 
