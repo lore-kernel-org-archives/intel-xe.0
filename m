@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 388ACEC8759
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 20:50:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0AFCEC8758
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Sep 2023 20:50:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A1FB10E09F;
-	Thu,  7 Sep 2023 20:50:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC73910E09F;
+	Thu,  7 Sep 2023 20:50:34 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BD78E10E09F;
- Thu,  7 Sep 2023 20:50:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E730B10E0A3;
+ Thu,  7 Sep 2023 20:50:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B8269A02F0;
- Thu,  7 Sep 2023 20:50:20 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E0F05A02F0;
+ Thu,  7 Sep 2023 20:50:32 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Thu, 07 Sep 2023 20:50:20 -0000
-Message-ID: <169411982075.17900.13754733198846010988@emeril.freedesktop.org>
+Date: Thu, 07 Sep 2023 20:50:32 -0000
+Message-ID: <169411983291.17901.1791641185364921600@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230906212333.61119-1-gustavo.sousa@intel.com>
 In-Reply-To: <20230906212333.61119-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Properly_return_-EPROBE=5FDEFER_if_xe=5Fdisplay=5Fdriver=5Fp?=
- =?utf-8?b?cm9iZV9kZWZlcigpIChyZXYyKQ==?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Pr?=
+ =?utf-8?q?operly_return_-EPROBE=5FDEFER_if_xe=5Fdisplay=5Fdriver=5Fprobe?=
+ =?utf-8?b?X2RlZmVyKCkgKHJldjIp?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,9 +53,39 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: bae46e59a drm/xe/pat: Use 0 instead of space on error
-=== git am output follows ===
-Applying: fixup! drm/xe/display: Implement display support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a5932559f85cd4c814983bf63daf2c9b68fd1be5
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Wed Sep 6 18:23:33 2023 -0300
+
+    fixup! drm/xe/display: Implement display support
+    
+    The function xe_display_driver_probe_defer() was supposed to return
+    -EPROBE_DEFER when not yet ready to continue the probing, but the
+    current implementation is actually returning 1 instead of the proper
+    value, which would probably keep the probe operation to be attempted
+    again.
+    
+    Fix that by making xe_display_driver_probe_defer() return a boolean just
+    like intel_display_driver_probe_defer() and return -EPROBE_DEFER on the
+    caller if necessary.
+    
+    v2:
+      - Make xe_display_driver_probe_defer() return a boolean and return
+        -EPROBE_DEFER on the caller. (Lucas)
+    
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch bae46e59a7f667734376ddb0d2451967dfb264f1 drm-intel
+a5932559f fixup! drm/xe/display: Implement display support
 
 
