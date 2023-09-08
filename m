@@ -4,30 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C80DDEE57EC
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 10:09:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A884EE57EE
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 10:11:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8EC1310E060;
-	Fri,  8 Sep 2023 10:09:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2E4C410E060;
- Fri,  8 Sep 2023 10:09:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 29696AADDC;
- Fri,  8 Sep 2023 10:09:54 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4205463869302038466=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 256E710E04B;
+	Fri,  8 Sep 2023 10:11:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1A0E10E04B
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Sep 2023 10:11:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694167890; x=1725703890;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=c4rtocTN1WJT8o+/EVktYt83qoNzSY1VSE+rD6CKyhE=;
+ b=QI6IuxlmPEaN69BYMZwD8jI4NQdo/yUTiptFVvrVRtGwn1kKN7S7sg2s
+ ngNObLh13fl9jnfGIMda1TjircdWCJtaHvRVgcVGokMI5p1ztvIIk5Qp+
+ 0BJTo9qsjFtlsaEN+yzYmtlWIDV7XfizoFfw/rz9bKh/VQYiNg4cS3yb2
+ yqrbduEvle1M6G1hI4iKaYVWzXmpbQhgACKS2TQMXr+e8rymZ1Z8hIfIt
+ g3/Wzs67XZGpupr+COUYv1rm5r6jGdgckfcV5yjuknG4CYcXPjnTnvHjZ
+ hAc8qJEWUdaRawkS2DAKOHtsVv0vmyFFv4fzQyZDHushaG8hSgMGhyXRJ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="357916685"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="357916685"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2023 03:11:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="916123109"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="916123109"
+Received: from hieule-mobl2.amr.corp.intel.com (HELO localhost)
+ ([10.252.34.174])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2023 03:11:28 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Balasubramani Vivekanandan
+ <balasubramani.vivekanandan@intel.com>
+In-Reply-To: <ZPjHWcv10MhWgnYf@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230906060400.4144425-1-balasubramani.vivekanandan@intel.com>
+ <ZPjHWcv10MhWgnYf@intel.com>
+Date: Fri, 08 Sep 2023 13:11:23 +0300
+Message-ID: <874jk5gek4.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Fri, 08 Sep 2023 10:09:54 -0000
-Message-ID: <169416779414.14898.18042031631176062029@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230908091716.36984-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230908091716.36984-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A?=
- =?utf-8?q?_Convert_to_drm=5Fexec_=28rev7=29?=
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH] drm/xe/display: Print display ip version
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,132 +59,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4205463869302038466==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 06 Sep 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Wed, Sep 06, 2023 at 11:34:00AM +0530, Balasubramani Vivekanandan wrote:
+>> Print display ip version during module load
+>
+> Isn't this useful on i915 side as well?
 
-== Series Details ==
+https://lore.kernel.org/r/87r0nbheil.fsf@intel.com
 
-Series: drm/xe: Convert to drm_exec (rev7)
-URL   : https://patchwork.freedesktop.org/series/123100/
-State : success
+>
+>> 
+>> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_pci.c | 5 +++++
+>>  1 file changed, 5 insertions(+)
+>> 
+>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+>> index 60f3474844e2..fc01544346d5 100644
+>> --- a/drivers/gpu/drm/xe/xe_pci.c
+>> +++ b/drivers/gpu/drm/xe/xe_pci.c
+>> @@ -844,6 +844,11 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>>  		str_yes_no(xe->info.enable_display),
+>>  		xe->info.dma_mask_size, xe->info.tile_count);
+>>  
+>> +	if (xe->info.enable_display)
+>> +		drm_dbg(&xe->drm, "Display: %d.%02d\n",
+>> +			xe->info.display_runtime.ip.ver,
+>> +			xe->info.display_runtime.ip.rel);
+>> +
+>>  	drm_dbg(&xe->drm, "Stepping = (G:%s, M:%s, D:%s, B:%s)\n",
+>>  		xe_step_name(xe->info.step.graphics),
+>>  		xe_step_name(xe->info.step.media),
+>> -- 
+>> 2.25.1
+>> 
 
-== Summary ==
-
-CI Bug Log - changes from xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf_BAT -> xe-pw-123100v7_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-123100v7_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
-    - bat-adlp-7:         [FAIL][1] ([Intel XE#480]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123100v7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-
-
-Build changes
--------------
-
-  * Linux: xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf -> xe-pw-123100v7
-
-  IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf: 758f01ec2a6774fda1e8f8075d31f42b81783caf
-  xe-pw-123100v7: 123100v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123100v7/index.html
-
---===============4205463869302038466==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Convert to drm_exec (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123100/">https://patchwork.freedesktop.org/series/123100/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123100v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123100v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf_BAT -&gt; xe-pw-123100v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-123100v7_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123100v7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf -&gt; xe-pw-123100v7</li>
-</ul>
-<p>IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf: 758f01ec2a6774fda1e8f8075d31f42b81783caf<br />
-  xe-pw-123100v7: 123100v7</p>
-
-</body>
-</html>
-
---===============4205463869302038466==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
