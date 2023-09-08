@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D83C4EEB562
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 19:10:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDDD4EEB562
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 19:11:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C1AA10E0F5;
-	Fri,  8 Sep 2023 19:10:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A243110E0FD;
+	Fri,  8 Sep 2023 19:11:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0126710E008;
- Fri,  8 Sep 2023 19:10:52 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 21CDF10E0FB;
+ Fri,  8 Sep 2023 19:11:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 014EAAADE0;
- Fri,  8 Sep 2023 19:10:52 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 217F8AADE0;
+ Fri,  8 Sep 2023 19:11:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Fri, 08 Sep 2023 19:10:52 -0000
-Message-ID: <169420025200.14895.4932861569548944640@emeril.freedesktop.org>
+Date: Fri, 08 Sep 2023 19:11:03 -0000
+Message-ID: <169420026313.14898.11150999976565859370@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230908184928.65815-1-gustavo.sousa@intel.com>
 In-Reply-To: <20230908184928.65815-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Remove_redundant_call_to_intel=5Finit=5Fdisplay=5Fhooks=28?=
- =?utf-8?q?=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Re?=
+ =?utf-8?q?move_redundant_call_to_intel=5Finit=5Fdisplay=5Fhooks=28=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,9 +52,36 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 92bbb0596 drm/xe/uapi: Remove useless max_page_size
-=== git am output follows ===
-Applying: fixup! drm/xe/display: Implement display support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6bb23effcbe04a23feb120ffd7136ef18acfd56f
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Fri Sep 8 15:49:28 2023 -0300
+
+    fixup! drm/xe/display: Implement display support
+    
+    In Xe initialization path, the function intel_init_display_hooks() is
+    being called twice, which is redundant. To remove redundancy, let's
+    remove one of the calls.
+    
+    That function sets up hooks that are called from: (i) later in the
+    initialization path (i.e. intel_display_driver_probe_nogem()), (ii)
+    resume, or (iii) mode set commits.
+    
+    In both call sites, none of the scenarios above are reached yet, so it
+    would be safe to remove the redundant call from either of the two.
+    However, since intel_display_driver_early_probe() is shared by both i915
+    and Xe, prefer to remove the call done from xe_display_init_nommio().
+    
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 92bbb05964b2237a76a8a68020896bdbe0cab459 drm-intel
+6bb23effc fixup! drm/xe/display: Implement display support
 
 
