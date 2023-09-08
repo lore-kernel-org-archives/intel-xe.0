@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36D8AEE7FE7
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 12:34:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56733EE7FE8
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 12:34:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 53FA510E8AB;
-	Fri,  8 Sep 2023 12:34:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 374B710E8B2;
+	Fri,  8 Sep 2023 12:34:31 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B272310E8A7;
- Fri,  8 Sep 2023 12:34:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DEAF710E8AB;
+ Fri,  8 Sep 2023 12:34:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694176463; x=1725712463;
+ t=1694176465; x=1725712465;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NgGrmVyyZfFDm3AIzeCAssCCd7sLa2xWlFx06MXCHiE=;
- b=KqIxj5WH0LwMh+Rc8YT6dJzvH7JRTCpCCkrjmQ92tv34eH6/7sV92hMY
- PlxsHo6wxukrWuV29iRV11vyPYKXp+//l396oU1zm4MTc0iZLumMLJApm
- JTMmGVPzZkXP/+jgIfIETNPFKasBjOg9z3reo0DAVm0RF6PzFyPdhMEHk
- 9y/IP9vAGXXWpH3/jwGlH9+hpltYcRsf6xOCd61umgfYs0vMSDzTE7j0o
- /XNpMNbpe5A9TZAExWrH6dJ1T+6LVLsQUtyEl3F6SLPrt1VLwpP3H2Rz7
- a4q98Ntq1+NDuTlJerGc+UVEib3MQu2O7/X9TnZPPahsPQhzniPKCNrsv Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="375014947"
-X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; d="scan'208";a="375014947"
+ bh=4ALvskPNi3LaMw5KVy7vYqgxxd2v3zPfVa4OMNirJ8E=;
+ b=B5gNlxswJNmnzaDHaoqVPajCJ21+B/Hf629CvwjGdDaXN4zc2T96DClb
+ /YPFQZqsPhsy1c+xUNsP+xB0oo9Zy6pJZwPsYetsooSxQYKDWt7JKRqGN
+ OvmF2vKU0xhQebpOPVLrI9PI7TFBxQ5Ig1d97VtMRTPT35OEmxiGu18dH
+ Ya5XwlqzcIqqTlj5h5e58NXvM6wGyME9Kp8/xQLJ61XQOS9pF8Yh6xg2E
+ 39s2cHPHa+0n2L8fuFR6piVn7wNRjOSPkBWzU6Fnw8CIlfberZ84sZJ6B
+ atawzbYHgSn69WL7i4kxzBoreSZJYOpnelceF6zUTMGe6+lVdMRUS+bYw w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="375014953"
+X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; d="scan'208";a="375014953"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 05:34:23 -0700
+ 08 Sep 2023 05:34:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="857381915"
-X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; d="scan'208";a="857381915"
+X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="857381926"
+X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; d="scan'208";a="857381926"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.28.201])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 05:34:21 -0700
+ 08 Sep 2023 05:34:23 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri,  8 Sep 2023 14:32:36 +0200
-Message-ID: <20230908123233.137134-21-janusz.krzysztofik@linux.intel.com>
+Date: Fri,  8 Sep 2023 14:32:37 +0200
+Message-ID: <20230908123233.137134-22-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230908123233.137134-19-janusz.krzysztofik@linux.intel.com>
 References: <20230908123233.137134-19-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH i-g-t v2 02/17] lib/kunit: Stop loading kunit
- module explicitly
+Subject: [Intel-xe] [PATCH i-g-t v2 03/17] lib/kunit: Fix struct kmod_module
+ kunit_kmod not freed
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,34 +66,26 @@ Cc: intel-gfx@lists.freedesktop.org,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Since kmod functions we use for module loading can process module
-dependencies, there is no need to load the "kunit" module explicitly
-before loading a kunit test module.  For the same reason we already don't
-unload the "kunit" module explicitly on cleanup.  Drop the unnecessary
-operation.
+We obtain a kmod_module structure for kunit module in order to check if
+it is modular or built-in, then we never release that structure.  Fix it.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- lib/igt_kmod.c | 6 ------
- 1 file changed, 6 deletions(-)
+ lib/igt_kmod.c | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index 97667a896f..faf31afabc 100644
+index faf31afabc..34ddec3fad 100644
 --- a/lib/igt_kmod.c
 +++ b/lib/igt_kmod.c
-@@ -789,12 +789,6 @@ static void __igt_kunit(const char *module_name, const char *opts)
- 		goto unload;
+@@ -797,6 +797,7 @@ static void __igt_kunit(const char *module_name, const char *opts)
  	}
  
--	/* The KUnit module is required for running any KUnit tests */
--	ret = igt_kmod_load("kunit", NULL);
--	if (ret) {
--		skip = ret;
--		goto unload;
--	}
- 	ret = kmod_module_new_from_name(kmod_ctx(), "kunit", &kunit_kmod);
- 	if (ret) {
- 		igt_warn("Unable to load KUnit\n");
+ 	is_builtin = kmod_module_get_initstate(kunit_kmod) == KMOD_MODULE_BUILTIN;
++	kmod_module_unref(kunit_kmod);
+ 
+ 	results = ktap_parser_start(tst.kmsg, is_builtin);
+ 
 -- 
 2.41.0
 
