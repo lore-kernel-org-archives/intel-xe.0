@@ -4,51 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81B3AEE57EE
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 10:11:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9EF2EE57EB
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 10:46:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5054210E060;
-	Fri,  8 Sep 2023 10:11:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 771E810E88E;
+	Fri,  8 Sep 2023 10:46:29 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1ADB10E060
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Sep 2023 10:11:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E201310E0A6;
+ Fri,  8 Sep 2023 10:46:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694167910; x=1725703910;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=TG8fNXqO05m93BQUQgwTyunFAK6dXLIqAIguWPlpDk8=;
- b=mFMITUPI3O+vhf4t6LcVy731IXxUjiNDFPm7ojphntEANRtNKU9Y+IEU
- 2ys5uoid5CtEPSb0c+lrCXW+uPkG/urilFuDEbtFlULnnPuXsKN53j4Xh
- MawKcW2cwUIB0fZ6E7yH2tGomXDLS/onMUL8oEkGfqlv091K7iWVyfzqy
- twR3mJSaAaFuvZWFjw9R2hnbKvC49PkeXArbHagrpd3cJKVZKo6cDcX78
- C3LBwM1bfiSaMYXINAUbXbbc0f8V0kgRSG8OEEqxahz2T5MON5h8osbCA
- 0zeFmdj2VUhmWCdHmBLWHR74IZgRXydSbRIRlnhG3rbMpHo+0pl7JM4lf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="357916766"
-X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="357916766"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1694169986; x=1725705986;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zhxQIZQ2Wjo4+jihA0ID4pCtNuLYo1E+i4NekAsq508=;
+ b=TCHM/l4PhH64p/cd3BGlnjdrtASNPKdM/MG+uwx81fiDmRI7MNshDUvy
+ ycJhD69LbZlsS9wTClaW1G2bnmNTf/bLCeP9devJXUArAJWFJLwgSk5O6
+ 7XuvlVOeenuFwjsSza8bH9aLZyqdIwIjCSDMwVq/SkZJRHg4XdS0HxbpM
+ +rw/SRVh7yqOG8bb0DpB3gn8MMBpUnkRxn9d0XtSuMRUcwghm6bpRiN9t
+ 9flOwQzKOyafajq2GNcakCtcu4EBoyqVE/vwTZKbcgz/L/0LGnfG1i3r/
+ bQqWbSPMHWy0HEsGex0c6Z+doJIRcWPqKiGS1WgPzRm0Cfa6LnZJij6PY Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="357922542"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="357922542"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 03:11:50 -0700
+ 08 Sep 2023 03:46:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="916123125"
-X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="916123125"
-Received: from hieule-mobl2.amr.corp.intel.com (HELO localhost)
- ([10.252.34.174])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 03:11:48 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, Matt Roper
- <matthew.d.roper@intel.com>
-In-Reply-To: <26hcp33tuu24jtl2tyo7iyqaucnkbww3sd4na4k5boa577eof4@axnzegfuxdya>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230906060400.4144425-1-balasubramani.vivekanandan@intel.com>
- <20230906180457.GF2706891@mdroper-desk1.amr.corp.intel.com>
- <26hcp33tuu24jtl2tyo7iyqaucnkbww3sd4na4k5boa577eof4@axnzegfuxdya>
-Date: Fri, 08 Sep 2023 13:11:43 +0300
-Message-ID: <871qf9gejk.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="812531544"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="812531544"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.28.201])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Sep 2023 03:46:24 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Date: Fri,  8 Sep 2023 12:44:39 +0200
+Message-ID: <20230908104438.125454-19-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH] drm/xe/display: Print display ip version
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH i-g-t 00/17] Fix IGT Kunit implementation issues
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,63 +54,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ =?UTF-8?q?Dominik=20Karol=20Pi=C4=85tkowski?=
+ <dominik.karol.piatkowski@intel.com>,
+ Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Isabella Basso <isabbasso@riseup.net>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 06 Sep 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> On Wed, Sep 06, 2023 at 11:04:57AM -0700, Matt Roper wrote:
->>On Wed, Sep 06, 2023 at 11:34:00AM +0530, Balasubramani Vivekanandan wrote:
->>> Print display ip version during module load
->>>
->>> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
->>> ---
->>>  drivers/gpu/drm/xe/xe_pci.c | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
->>> index 60f3474844e2..fc01544346d5 100644
->>> --- a/drivers/gpu/drm/xe/xe_pci.c
->>> +++ b/drivers/gpu/drm/xe/xe_pci.c
->>> @@ -844,6 +844,11 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->>>  		str_yes_no(xe->info.enable_display),
->>>  		xe->info.dma_mask_size, xe->info.tile_count);
->>>
->>> +	if (xe->info.enable_display)
->>> +		drm_dbg(&xe->drm, "Display: %d.%02d\n",
->>> +			xe->info.display_runtime.ip.ver,
->>> +			xe->info.display_runtime.ip.rel);
->>> +
->>
->>Rather than printing the display version here, it might be better to
->>call intel_display_device_info_print() somewhere appropriate which will
->
-> Somewhere appropriate would be xe_display.c, so it only gets printed if
-> there is display.... or if it's moved to a shared function in i915
-> itself that we already call.
+Janusz Krzysztofik (17):
+  lib/kunit: Drop unused file stream
+  lib/kunit: Stop loading kunit module explicitly
+  lib/kunit: Fix struct kmod_module kunit_kmod not freed
+  lib/kunit: Optimize calls to igt_success/skip/fail()
+  lib/kunit: Fix illegal igt_fail() calls inside subtest body
+  lib/ktap: Make sure we fail on premature cancel
+  lib/ktap: Don't ignore interrupt signals
+  lib/kunit: Cancel KTP parser on module load failure
+  lib/ktap: Drop is_running flag
+  lib/ktap: Read /dev/kmsg in blocking mode
+  lib/kunit: Fail / skip on kernel taint
+  lib/ktap: Use IGT linked lists for storing KTAP results
+  lib/ktap: Reimplement KTAP parser
+  lib/kunit: Load test modules in background
+  lib/kunit: Parse KTAP report from the main process thread
+  lib/kunit: Strip "_test" or "_kunit" suffix from subtest names
+  lib/kunit: Omit suite name prefix if the same as subtest name
 
-https://lore.kernel.org/r/87r0nbheil.fsf@intel.com
-
->
-> Lucas De Marchi
->
->>dump not only the IP version, but also the relevant feature flags.
->>
->>
->>Matt
->>
->>>  	drm_dbg(&xe->drm, "Stepping = (G:%s, M:%s, D:%s, B:%s)\n",
->>>  		xe_step_name(xe->info.step.graphics),
->>>  		xe_step_name(xe->info.step.media),
->>> --
->>> 2.25.1
->>>
->>
->>-- 
->>Matt Roper
->>Graphics Software Engineer
->>Linux GPU Platform Enablement
->>Intel Corporation
+ lib/igt_kmod.c              | 284 ++++++++----
+ lib/igt_ktap.c              | 833 ++++++++++++------------------------
+ lib/igt_ktap.h              |  28 +-
+ lib/tests/igt_ktap_parser.c | 235 ++++++++++
+ lib/tests/meson.build       |   1 +
+ tests/drm_mm.c              |  42 +-
+ 6 files changed, 728 insertions(+), 695 deletions(-)
+ create mode 100644 lib/tests/igt_ktap_parser.c
 
 -- 
-Jani Nikula, Intel Open Source Graphics Center
+2.41.0
+
