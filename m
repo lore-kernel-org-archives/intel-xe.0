@@ -4,48 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 323DBEE7FE1
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BD73EE7FE3
 	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 12:24:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C786F10E04D;
-	Fri,  8 Sep 2023 12:24:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B22FE10E89D;
+	Fri,  8 Sep 2023 12:24:35 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07AE110E04D
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Sep 2023 12:24:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9104B10E04D
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Sep 2023 12:24:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694175872; x=1725711872;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nD75WkGkc8neipwTDoPhCTRzBtTtbuHotb7U5fvcXSU=;
- b=F6B4YQ79IFm5wS3nP2fn7QG9zyqzDNCVkz8xG+iADLnaklzmSJRH68O7
- 5j0N416djKb5cqzfGxrwPSrzmXbbkDiJ7rNY/Tk76ojFzpJN+OvMkoe7Q
- 7lPawCMBj2Dcpuf662ydmt6VqjlhHhU8VSbhQ0ybnnqWkID6e0/Y4Zgy8
- Ppq2Qp0KpJXZshK2VePZZRfPUOjiiTz5GHioRsPjJWvU/EGpMAE7i97z0
- 2qDYXtLi5UVKwLyn4191wNpb/r2JUFQyM3d42zaRTg19oIjnoI4V5MjLx
- A1NVqo2URis+8x+t7LC/Cf/H00qKg1vBPU4n9O7fxynvkuRB0QDnGToei Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="441650045"
-X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; d="scan'208";a="441650045"
+ t=1694175873; x=1725711873;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=MA/f5KUmHmCRvVSx1pfe3ZbvGoF/ON3ECXYIfKP1ias=;
+ b=OogNXZ1/gaC1gOvainuFOXZS3GT7iwqjK2KCVXj6wDZW7iIg1UzSKzY5
+ RXw5yJqP1HGeMItEbdDoNQ/kvLeNtbnXZj6eVw1rh1A3pXlZct/QQc7/s
+ ewlNMYPPG6es6ywOijgcqvvnagPNa+Rh3tIeFlRrH31nwkeDBl+wLJcFK
+ Y0aQUD/+Rthz913S0kxgt435lO1FOx8bqBxCIJHcYpb9Cbq589iWCdYrL
+ ZllYTTcisNmvLYKZxdfYXd/3apCF+aR5cNf5xdHSD2jEp9hgZftUgyGcn
+ LrTFbX/OycfdSIiFo/iJ9CIRJ/aD0y6en2oJM82Nzt2nbrBWYRsEBeEhh A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="441650046"
+X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; d="scan'208";a="441650046"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 05:24:31 -0700
+ 08 Sep 2023 05:24:33 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="692244150"
-X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; d="scan'208";a="692244150"
+X-IronPort-AV: E=McAfee;i="6600,9927,10827"; a="692244168"
+X-IronPort-AV: E=Sophos;i="6.02,237,1688454000"; d="scan'208";a="692244168"
 Received: from akorchin-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl1.ger.corp.intel.com) ([10.252.62.73])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 05:24:28 -0700
+ 08 Sep 2023 05:24:31 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  8 Sep 2023 15:24:04 +0300
-Message-Id: <20230908122415.1886366-1-jouni.hogander@intel.com>
+Date: Fri,  8 Sep 2023 15:24:05 +0300
+Message-Id: <20230908122415.1886366-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230908122415.1886366-1-jouni.hogander@intel.com>
+References: <20230908122415.1886366-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 00/11] Frontbuffer tracking refactoring
+Subject: [Intel-xe] [PATCH v2 01/11] drm/i915/display: Move releasing gem
+ object away from fb tacking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,49 +60,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-These patches are cleaning up all #ifdefs added into
-intel_frontbuffer.[ch] for Xe build. I915 part of the refactoring is
-already merged into drm-tip and these patches are implementing or
-adding empty defines for Xe.
+As a preparation for Xe we want to remove all i915_gem_object details away
+from frontbuffer tacking code. Due to this mobe releasing gem object
+reference to i915_gem_object_set_frontbuffer.
 
-v2:
-  - xe_bo get/put handling changed
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_frontbuffer.c | 2 --
+ drivers/gpu/drm/i915/gem/i915_gem_object.h       | 1 +
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Jouni Högander (11):
-  drm/i915/display: Move releasing gem object away from fb tacking
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  drm/xe: Add macro to get i915 device from xe_bo
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  drm/xe: Add frontbuffer setter/getter for xe_bo
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  drm/xe: Add i915_active.h compatibility header
-  drm/xe/display: Include i916_active header
-  drm/xe: Add struct i915_active for Xe
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  drm/xe: Add empty define for i915_ggtt_clear_scanout
-
- .../gpu/drm/i915/display/intel_frontbuffer.c  | 27 +++----------------
- .../gpu/drm/i915/display/intel_frontbuffer.h  |  2 --
- drivers/gpu/drm/i915/gem/i915_gem_object.h    |  1 +
- .../drm/xe/compat-i915-headers/i915_active.h  | 22 +++++++++++++++
- .../compat-i915-headers/i915_active_types.h   | 13 +++++++++
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  2 ++
- drivers/gpu/drm/xe/xe_bo.h                    | 10 +++++++
- drivers/gpu/drm/xe/xe_bo_types.h              |  3 +++
- 8 files changed, 54 insertions(+), 26 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_active.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+index 4f077b222b36..a9a8c75b8236 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+@@ -244,8 +244,6 @@ static void frontbuffer_release(struct kref *ref)
+ 
+ #ifdef I915
+ 	i915_active_fini(&front->write);
+-
+-	i915_gem_object_put(obj);
+ #endif
+ 	kfree_rcu(front, rcu);
+ }
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.h b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+index f607b87890dd..525cb440cc15 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object.h
+@@ -943,6 +943,7 @@ i915_gem_object_set_frontbuffer(struct drm_i915_gem_object *obj,
+ 
+ 	if (!front) {
+ 		RCU_INIT_POINTER(obj->frontbuffer, NULL);
++		i915_gem_object_put(obj);
+ 	} else if (rcu_access_pointer(obj->frontbuffer)) {
+ 		cur = rcu_dereference_protected(obj->frontbuffer, true);
+ 		kref_get(&cur->ref);
 -- 
 2.34.1
 
