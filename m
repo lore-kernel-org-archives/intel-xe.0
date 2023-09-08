@@ -4,30 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32101EE57C4
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 05:10:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 69E09EE57C5
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 05:39:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B0D210E85F;
-	Fri,  8 Sep 2023 05:10:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D86BC10E0A9;
- Fri,  8 Sep 2023 05:10:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CEA60AADF2;
- Fri,  8 Sep 2023 05:10:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1757626719262585826=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4DCC10E0E9;
+	Fri,  8 Sep 2023 05:39:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8501810E0A9;
+ Fri,  8 Sep 2023 05:39:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694151593; x=1725687593;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=glgtHq1QwROrQYCTiOUtKBaSqROmN1sZY6mGBF+1mqc=;
+ b=RxKuOQi2h0nvC1DLyX2canJGczQlCXmM85abzeejGlHlOzBugEpSwXZ7
+ ffsCdZTcMicADruOuB/H4DNvyJ4tihDQdmUTJSgPzVKlIuDlhYOz6TpFt
+ 29vdZaiT0kvAb0knqDVdzO3eDRsu7hFbFputmiTCW8qqLdIHlS8nigU0w
+ i4sP1bQLknrOui4IubS7DyZE5/9k8LTaxk9FVCSZTz+USl6LCaSglGl+a
+ lTOej3XT+IqygV91Q+Nzp8u3+RpxkNzu59Ajf6mV/U2Yl5YzMtfvb0Vl9
+ lgEhv0CN+WL0lydWG9d8E6XiHvDSwoe43SLp9EBXzHSragvF4pKXtUnBm Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="367828452"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="367828452"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2023 22:39:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="885522546"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="885522546"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by fmsmga001.fm.intel.com with SMTP; 07 Sep 2023 22:39:33 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 08 Sep 2023 08:39:48 +0300
+Date: Fri, 8 Sep 2023 08:39:48 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <ZPqzpNlTWiLrRXCy@intel.com>
+References: <20230907153757.2249452-1-lucas.demarchi@intel.com>
+ <20230907153757.2249452-6-lucas.demarchi@intel.com>
+ <20230907170442.GK2706891@mdroper-desk1.amr.corp.intel.com>
+ <oxqzybmceob67inunbnnvjna7sgbpjjhb4kwqzfwc7rz5hir6u@x4warrnufecs>
+ <20230908005719.GU2706891@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Date: Fri, 08 Sep 2023 05:10:17 -0000
-Message-ID: <169414981780.14895.12026633836111579449@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230908042348.1592535-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20230908042348.1592535-1-ashutosh.dixit@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Add_OA_fu?=
- =?utf-8?q?nctionality_to_Xe_=28rev5=29?=
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230908005719.GU2706891@mdroper-desk1.amr.corp.intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v2 05/27] drm/i915/xe2lpd: Add
+ fake PCH
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,399 +64,199 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1757626719262585826==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, Sep 07, 2023 at 05:57:19PM -0700, Matt Roper wrote:
+> On Thu, Sep 07, 2023 at 03:43:59PM -0500, Lucas De Marchi wrote:
+> > On Thu, Sep 07, 2023 at 10:04:42AM -0700, Matt Roper wrote:
+> > > On Thu, Sep 07, 2023 at 08:37:35AM -0700, Lucas De Marchi wrote:
+> > > > From: Gustavo Sousa <gustavo.sousa@intel.com>
+> > > > 
+> > > > Xe2_LPD has sourth display on the same SOC. As such, define a new fake
+> > > 
+> > > s/sourth/south/
+> > > 
+> > > You might also want to drop the word "same" from the description here
+> > > since NDE and SDE are technically on different dies in this case (NDE is
+> > > on the compute die, whereas SDE is on the SoC die).  To be 100% accurate
+> > > we'd want to identify SDE behavior via the PICA's GMD_ID (since PICA
+> > > also lives on the SoC die for this platform).  But since we've just been
+> > 
+> > I'd not re-architect this based on where the PICA lives as it seems very
+> > easy to change in future.... tying the SDE behavior to the PICA behavior
+> > because they are on the same die, doesn't seem very future proof.
+> 
+> The point is that tying it to any one thing for every platform is
+> incorrect; figuring out a) which die is relevant to SDE behavior and b)
+> how to fingerprint the variant and stepping of that die is very platform
+> specific.  Art specifically suggested using the PICA ID in cases where
+> the PICA lives on the die that we need to fingerprint but the NDE does
+> not.  But again, that's not a silver bullet that can be used on every
+> single platform.  Nor is using the ISA bus ID like we've done for a long
+> time.  Nor is using the display version.  Nor is using just the PCI ID.
+> There's no single answer here, which is why we need a major rethink of
+> our strategy at some point in the future.  But that overhaul can wait
+> for a future series; I just want to make sure that the commit messages
+> here aren't causing further confusion.
+> 
+> > 
+> > Here the real reason for the change is that from the SW perspective they
+> > are under the same PCI device and there's no reason to look for a
+> > different one. Maybe rewording it a "Xe2_LPD has south display on the
+> > same PCI device" would be simpler?
+> 
+> No, that would be even less correct; PCI device isn't really related to
+> any of this.  Obviously at the register level, everything our driver
+> cares about (NDE, SDE, GT, etc.) is accessed through the same PCI device
+> (e.g., 00:02.0 on an igpu).  Under the hood the various pieces of that
+> PCI device (NDE, SDE, render GT, media GT, etc.) might be located
+> together on a single chip, or may be spread across different dies.  When
+> spread across different dies, those dies can be mixed-and-matched in
+> various ways (and it seems like hardware design is trending toward more
+> flexibility in mix-and-match).  
+> 
+> The register interface to the SDE (i.e., which registers exist and what
+> bitfields they have inside) hasn't had any meaningful changes in a long
+> time.  And if it does change in the future, the _interface_ changes are
+> probably more tied to the display IP version than to anything else.
+> However there's some important SDE handling that the driver needs to do
+> that may vary based on the identity of the specific die that's
+> responsible for doing SDE I/O on a given platform.  I.e., there may be
+> I/O-related defects+workarounds that require special SDE programming
+> when a certain die variant and/or stepping is present.  There can also
+> be differences in how lanes are physically wired up, resulting in pin
+> mapping changes.  In these cases we need to be able to fingerprint the
+> identity of the specific die handling the I/O (which might be a compute
+> die, an SoC die, and IOE die, a PCH die, etc.) and make our decisions
+> accordingly.  If the SDE I/O happens on the same die as the north
+> display functionality, then using the display version might be an
+> effective way to fingerprint.  If the SDE I/O happens on a different die
+> from the NDE, but on the same die the PICA lives on, the display
+> architects suggested using the PICA ID in that case.  If neither of
+> those cases are true, then we may need to look at PCI IDs or something.
+> 
+> In the past, the PCH was often where the SDE I/O responsibility was so
+> we needed a way to identify exactly which PCH variant was present.  The
+> "PCH ID" that we try to match on during driver startup is entirely
+> unrelated to the SDE; it's just a random bus that we know was always
+> part of every PCH and always present in the same predictable PCI slot,
+> so it's handy for identification purposes.  The fact that we're still
+> looking at the ISA bus on MTL today is 100% wrong because most (maybe
+> all?) MTL platforms don't even have a PCH (so that ISA bus might be on a
+> different die that we really don't care about at all).  For MTL I
+> believe the NDE and the SDE's I/O are both on the same SoC die, so we
+> should really just be making our decisions based on IP version and/or
+> graphics device ID.
 
-== Series Details ==
+I think ideally SDE would have its own IP version/etc. we could
+use to identify it.
 
-Series: Add OA functionality to Xe (rev5)
-URL   : https://patchwork.freedesktop.org/series/121084/
-State : failure
+I'm not really sure why we even started down this "fake PCH" route
+since we never added that for BXT/GLK either, and they managed just
+fine without it despite keeping a bunch of the logic in the SDE
+register range (instead of moving it back to the NDE range).
 
-== Summary ==
+> If I remember correctly, LNL moved the NDE display
+> to the compute die, but left the PICA on the SoC die.  So assuming the
+> SoC die is still where the I/O happens (I don't have the platform docs
+> open at the moment), the PICA ID could potentially be used to
+> fingerprint the die for the purposes of die-specific workarounds.  It
+> might even vary between different SKUs of LNL, MTL, etc. so we really
+> need to dig into the platform specs to figure out the right course of
+> action (the graphics bspec doesn't cover that high-level platform
+> layout).
+> 
+> 
+> Matt
+> 
+> > 
+> > Lucas De Marchi
+> > 
+> > > able to get by so far with just matching PICA behavior on the display
+> > > version rather than on its own version, we can just use display version
+> > > for this as well, at least for now.  We may need to revisit this all
+> > > down the road once we have platforms with more possible combinations of
+> > > these components.  Of course we really need to rework the SDE handling
+> > > in general (and break its assumption that SDE behavior is tied to PCH on
+> > > modern platforms), but that's work for a future patch series.
+> > > 
+> > > I was originally wondering if we could just reuse PCH_MTP here, but it
+> > > looks like there's one place where we setup HPD interrupts that needs
+> > > different handling.  So this should be good enough for now, and we can
+> > > revisit the whole SDE design separately down the road.
+> > > 
+> > > With the minor commit message fix above,
+> > > 
+> > > Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> > > 
+> > > 
+> > > > PCH entry for it.
+> > > > 
+> > > > v2: Match on display IP version rather than on platform (Matt Roper)
+> > > > 
+> > > > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> > > > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > 
+> > > > ---
+> > > >  drivers/gpu/drm/i915/soc/intel_pch.c | 5 ++++-
+> > > >  drivers/gpu/drm/i915/soc/intel_pch.h | 2 ++
+> > > >  2 files changed, 6 insertions(+), 1 deletion(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
+> > > > index dfffdfa50b97..240beafb38ed 100644
+> > > > --- a/drivers/gpu/drm/i915/soc/intel_pch.c
+> > > > +++ b/drivers/gpu/drm/i915/soc/intel_pch.c
+> > > > @@ -222,7 +222,10 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+> > > >  	 * South display engine on the same PCI device: just assign the fake
+> > > >  	 * PCH.
+> > > >  	 */
+> > > > -	if (IS_DG2(dev_priv)) {
+> > > > +	if (DISPLAY_VER(dev_priv) >= 20) {
+> > > > +		dev_priv->pch_type = PCH_LNL;
+> > > > +		return;
+> > > > +	} else if (IS_DG2(dev_priv)) {
+> > > >  		dev_priv->pch_type = PCH_DG2;
+> > > >  		return;
+> > > >  	} else if (IS_DG1(dev_priv)) {
+> > > > diff --git a/drivers/gpu/drm/i915/soc/intel_pch.h b/drivers/gpu/drm/i915/soc/intel_pch.h
+> > > > index 32aff5a70d04..1b03ea60a7a8 100644
+> > > > --- a/drivers/gpu/drm/i915/soc/intel_pch.h
+> > > > +++ b/drivers/gpu/drm/i915/soc/intel_pch.h
+> > > > @@ -30,6 +30,7 @@ enum intel_pch {
+> > > >  	/* Fake PCHs, functionality handled on the same PCI dev */
+> > > >  	PCH_DG1 = 1024,
+> > > >  	PCH_DG2,
+> > > > +	PCH_LNL,
+> > > >  };
+> > > > 
+> > > >  #define INTEL_PCH_DEVICE_ID_MASK		0xff80
+> > > > @@ -66,6 +67,7 @@ enum intel_pch {
+> > > > 
+> > > >  #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
+> > > >  #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
+> > > > +#define HAS_PCH_LNL(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_LNL)
+> > > >  #define HAS_PCH_MTP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MTP)
+> > > >  #define HAS_PCH_DG2(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG2)
+> > > >  #define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
+> > > > --
+> > > > 2.40.1
+> > > > 
+> > > 
+> > > -- 
+> > > Matt Roper
+> > > Graphics Software Engineer
+> > > Linux GPU Platform Enablement
+> > > Intel Corporation
+> 
+> -- 
+> Matt Roper
+> Graphics Software Engineer
+> Linux GPU Platform Enablement
+> Intel Corporation
 
-CI Bug Log - changes from xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf_BAT -> xe-pw-121084v5_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-121084v5_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-121084v5_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-121084v5_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_addfb_basic@invalid-set-prop:
-    - bat-adlp-7:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@kms_addfb_basic@invalid-set-prop.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-adlp-7/igt@kms_addfb_basic@invalid-set-prop.html
-
-  * igt@xe_exec_balancer@twice-cm-virtual-rebind:
-    - bat-adlp-7:         [PASS][3] -> [FAIL][4] +43 other tests fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@xe_exec_balancer@twice-cm-virtual-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-adlp-7/igt@xe_exec_balancer@twice-cm-virtual-rebind.html
-
-  * igt@xe_exec_balancer@twice-virtual-userptr-invalidate:
-    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6] +38 other tests fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_exec_balancer@twice-virtual-userptr-invalidate.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_exec_balancer@twice-virtual-userptr-invalidate.html
-
-  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
-    - bat-atsm-2:         [PASS][7] -> [FAIL][8] +38 other tests fail
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-
-  * igt@xe_exec_threads@threads-mixed-basic:
-    - bat-dg2-oem2:       [PASS][9] -> [TIMEOUT][10] +3 other tests timeout
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-basic.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-basic.html
-    - bat-atsm-2:         [PASS][11] -> [TIMEOUT][12] +2 other tests timeout
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_exec_threads@threads-mixed-basic.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_exec_threads@threads-mixed-basic.html
-
-  * igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race:
-    - bat-adlp-7:         [PASS][13] -> [TIMEOUT][14] +5 other tests timeout
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-adlp-7/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
-    - bat-dg2-oem2:       [PASS][15] -> [INCOMPLETE][16]
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html
-
-  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
-    - bat-atsm-2:         [PASS][17] -> [INCOMPLETE][18]
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@xe_create@create-execqueues-leak}:
-    - bat-atsm-2:         [PASS][19] -> [WARN][20] +1 other test warn
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-    - {bat-pvc-2}:        [PASS][21] -> [WARN][22] +1 other test warn
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_create@create-execqueues-leak.html
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_create@create-execqueues-leak.html
-
-  * {igt@xe_create@create-execqueues-noleak}:
-    - bat-adlp-7:         [PASS][23] -> [WARN][24] +1 other test warn
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-    - bat-dg2-oem2:       [PASS][25] -> [WARN][26] +1 other test warn
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_create@create-execqueues-noleak.html
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_create@create-execqueues-noleak.html
-
-  * igt@xe_evict@evict-beng-small-external:
-    - {bat-pvc-2}:        [FAIL][27] ([Intel XE#389]) -> [FAIL][28] +3 other tests fail
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
-
-  * igt@xe_evict@evict-small-cm:
-    - {bat-pvc-2}:        [DMESG-FAIL][29] ([Intel XE#482]) -> [FAIL][30] +3 other tests fail
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_evict@evict-small-cm.html
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_evict@evict-small-cm.html
-
-  * {igt@xe_exec_basic@no-exec-bindexecqueue}:
-    - bat-dg2-oem2:       [PASS][31] -> [FAIL][32] +10 other tests fail
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_exec_basic@no-exec-bindexecqueue.html
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_exec_basic@no-exec-bindexecqueue.html
-
-  * {igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind}:
-    - bat-atsm-2:         [PASS][33] -> [FAIL][34] +10 other tests fail
-   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html
-   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
-    - {bat-pvc-2}:        [PASS][35] -> [FAIL][36] +90 other tests fail
-   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
-
-  * igt@xe_exec_threads@threads-basic:
-    - {bat-pvc-2}:        [PASS][37] -> [INCOMPLETE][38]
-   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_exec_threads@threads-basic.html
-   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_exec_threads@threads-basic.html
-
-  * igt@xe_module_load@load:
-    - {bat-pvc-2}:        [PASS][39] -> [DMESG-WARN][40]
-   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_module_load@load.html
-   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_module_load@load.html
-
-  * {igt@xe_vm@bind-execqueues-independent}:
-    - bat-adlp-7:         [PASS][41] -> [FAIL][42] +11 other tests fail
-   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@xe_vm@bind-execqueues-independent.html
-   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-adlp-7/igt@xe_vm@bind-execqueues-independent.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-121084v5_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_threads@threads-mixed-fd-basic:
-    - bat-dg2-oem2:       [PASS][43] -> [TIMEOUT][44] ([Intel XE#280] / [Intel XE#474])
-   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html
-   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html
-    - bat-atsm-2:         [PASS][45] -> [TIMEOUT][46] ([Intel XE#280])
-   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_exec_threads@threads-mixed-fd-basic.html
-   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_exec_threads@threads-mixed-fd-basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#280]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/280
-  [Intel XE#389]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/389
-  [Intel XE#474]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/474
-  [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
-
-
-Build changes
--------------
-
-  * Linux: xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf -> xe-pw-121084v5
-
-  IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf: 758f01ec2a6774fda1e8f8075d31f42b81783caf
-  xe-pw-121084v5: 121084v5
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/index.html
-
---===============1757626719262585826==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add OA functionality to Xe (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/121084/">https://patchwork.freedesktop.org/series/121084/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf_BAT -&gt; xe-pw-121084v5_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-121084v5_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-121084v5_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-121084v5_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@invalid-set-prop:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@kms_addfb_basic@invalid-set-prop.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-adlp-7/igt@kms_addfb_basic@invalid-set-prop.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@twice-cm-virtual-rebind:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@xe_exec_balancer@twice-cm-virtual-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-adlp-7/igt@xe_exec_balancer@twice-cm-virtual-rebind.html">FAIL</a> +43 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@twice-virtual-userptr-invalidate:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_exec_balancer@twice-virtual-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_exec_balancer@twice-virtual-userptr-invalidate.html">FAIL</a> +38 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_compute_mode@twice-userptr-invalidate:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">FAIL</a> +38 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-mixed-basic:</p>
-<ul>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-basic.html">TIMEOUT</a> +3 other tests timeout</p>
-</li>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_exec_threads@threads-mixed-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_exec_threads@threads-mixed-basic.html">TIMEOUT</a> +2 other tests timeout</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race:</p>
-<ul>
-<li>
-<p>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-adlp-7/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">TIMEOUT</a> +5 other tests timeout</p>
-</li>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-shared-vm-userptr-invalidate-race.html">INCOMPLETE</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-mixed-userptr-invalidate:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>{igt@xe_create@create-execqueues-leak}:</p>
-<ul>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">WARN</a> +1 other test warn</p>
-</li>
-<li>
-<p>{bat-pvc-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_create@create-execqueues-leak.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_create@create-execqueues-leak.html">WARN</a> +1 other test warn</p>
-</li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_create@create-execqueues-noleak}:</p>
-<ul>
-<li>
-<p>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">WARN</a> +1 other test warn</p>
-</li>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_create@create-execqueues-noleak.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_create@create-execqueues-noleak.html">WARN</a> +1 other test warn</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small-external:</p>
-<ul>
-<li>{bat-pvc-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/389">Intel XE#389</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-cm:</p>
-<ul>
-<li>{bat-pvc-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_evict@evict-small-cm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/482">Intel XE#482</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_evict@evict-small-cm.html">FAIL</a> +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_exec_basic@no-exec-bindexecqueue}:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_exec_basic@no-exec-bindexecqueue.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_exec_basic@no-exec-bindexecqueue.html">FAIL</a> +10 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind}:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html">FAIL</a> +10 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
-<ul>
-<li>{bat-pvc-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">FAIL</a> +90 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-basic:</p>
-<ul>
-<li>{bat-pvc-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_exec_threads@threads-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_exec_threads@threads-basic.html">INCOMPLETE</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>{bat-pvc-2}:        <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-pvc-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-pvc-2/igt@xe_module_load@load.html">DMESG-WARN</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_vm@bind-execqueues-independent}:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-adlp-7/igt@xe_vm@bind-execqueues-independent.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-adlp-7/igt@xe_vm@bind-execqueues-independent.html">FAIL</a> +11 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-121084v5_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@xe_exec_threads@threads-mixed-fd-basic:</p>
-<ul>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-dg2-oem2/igt@xe_exec_threads@threads-mixed-fd-basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/280">Intel XE#280</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/474">Intel XE#474</a>)</p>
-</li>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf/bat-atsm-2/igt@xe_exec_threads@threads-mixed-fd-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-121084v5/bat-atsm-2/igt@xe_exec_threads@threads-mixed-fd-basic.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/280">Intel XE#280</a>)</p>
-</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf -&gt; xe-pw-121084v5</li>
-</ul>
-<p>IGT_7474: 9d91cf2c6e7bb64d60c2030d1535e40ca0ad53ee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-362-758f01ec2a6774fda1e8f8075d31f42b81783caf: 758f01ec2a6774fda1e8f8075d31f42b81783caf<br />
-  xe-pw-121084v5: 121084v5</p>
-
-</body>
-</html>
-
---===============1757626719262585826==--
+-- 
+Ville Syrjälä
+Intel
