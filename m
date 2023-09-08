@@ -4,55 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F6E7EE57D5
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 06:51:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92505EE57D5
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 06:55:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1936F10E86C;
-	Fri,  8 Sep 2023 06:51:29 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D0E110E054
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Sep 2023 06:51:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD91D10E0DD;
+	Fri,  8 Sep 2023 06:55:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B84610E054;
+ Fri,  8 Sep 2023 06:55:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694155886; x=1725691886;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=G3k8gE6dBYIZS+hyap5UnvgC3gw0jqZwa/ZSxcAbLko=;
- b=fTDfeezA6ziIdnWU+kfxPvuosu3uDWKHGhQuLzds8Kziyo6aXRsnhlnv
- lqW0qdrOzzZb6dI4+T3Gxb8wrieL/pv9mvtuXddfkAYydpFAZGv80D7SC
- 16sMNIn/+NqcGA2B/XKLvKSrR6AZetYUrkSF/jmRgd1nL9Y5OZoOG1vun
- DdL/m++WEEoY49NRM4t2Gqv3/cZwsKFKbgXWtQsP5j//E2KW3tgRmdGOe
- 3Srg4baQVKPballyzHbQ+GZh/bk8RfA2oW5knTcjASczQenj7Ciubcocz
- MkPlHpghfyMd4AHDIAfkwDRzJzkUmHIwzhiRMqLrAJ5wLk2kJEaWlepqz g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="357880703"
-X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="357880703"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 23:51:25 -0700
+ t=1694156124; x=1725692124;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=PvF6b/18oWT4YANUGDRY5K1BjaAmryckV2G1yg55xcI=;
+ b=etWt6iH6wLip15HpKmfD/fYjZjgPcmr5ow+HrHbmP410NMa3hwrAEjod
+ Suw+Fkg52FSP9Kn11vIpglcBCQfM4EsxsFGC48iA8szf0ZqpZU/UTq2ae
+ J31nixAhycRBF5++csGF14HzelGzM0RRVVjsnc/YA74WXkPXkLEYYQBZY
+ r3CKNO9lrEDYEPvOKCQB484DotdtjLxmKkwowKU6cjfwU6sIDrLnkpQQi
+ +q4ub0Vn5lIporNxHvY3MEXnG2OqJ/fMYmQTSv8sC8gThngVH4FXE5nkG
+ pZdveMsZDaxStR1Ro5/R2teSmf8AZUz2LK1u24aaNbTbLifoMzXdooa78 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="408567794"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="408567794"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Sep 2023 23:55:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="742393834"
-X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="742393834"
-Received: from ddoohan-mobl.ger.corp.intel.com (HELO [10.252.24.149])
- ([10.252.24.149])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Sep 2023 23:51:16 -0700
-Message-ID: <3b6f7fc0-4a3a-e295-9bc4-45ccb6e7c6f0@intel.com>
-Date: Fri, 8 Sep 2023 07:51:13 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="989133832"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="989133832"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Sep 2023 23:55:22 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Thu, 7 Sep 2023 23:55:22 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Thu, 7 Sep 2023 23:55:22 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.27; Thu, 7 Sep 2023 23:55:22 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=en1J7kQ1w88EJ3H0TCKslnbof+N/8V8Yp/Cu4caO0Droxo1LolLl8UzlEZFvLlIdbkgkL6vytu34KSROxxD1hACOt5QnS8hYQa1X5W8C7/6UhLNpAiC4ckkexwrTLAU8LnHXGs4qE+2qaHqyEo9Vpj/dQI+fgsXtspZs3BriEOJhdP1e3Sfl9OI/W/BkTWjyCHY0J0ltErFTtmPK2CPnH5NAq9Yxa4TSsXLPIbOFgdheGZVWWq2q5GlsRQ7rdCZBTcL4gYZUKG2aVojVIUGkF1UoTFDW2CnxPKUSjF4N4Pc7SEdy3WIvsSxvTOPJf1kvgSlG4kZFkTCUCG3ZmaQ0sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PvF6b/18oWT4YANUGDRY5K1BjaAmryckV2G1yg55xcI=;
+ b=eCVYfCCWw6x19LyYoMIYZ/IY9VtjqbrTIBy2WJLUmeVwo/4ZdwtpSxB+pyKQfKkVBD/wbuR3dxoRs3Kp9b41FPDtattyXm6jU9ym6WkcsQcFUeGGRC7blKjgvo3Ck2IQK+qeNiAAMEPZBpliz/wFKZ+5njLxe7d5URbYZM6IUGY821GzzO1toXfJ5EGiLB9WSO/egKPa4TsXzuAD27smHfX0IETQ37tjigx2S6PYL4SHaG30jltZFdP9DKpRi0izhcDlgQFrg3b/qHmrRgzesWJBi40SnEe7WJ579WBbyFC+3+EyJTzciayI5JQJb//tx4sMif25H5TPrQjyaKL96w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from MW4PR11MB7054.namprd11.prod.outlook.com (2603:10b6:303:219::20)
+ by CH0PR11MB5562.namprd11.prod.outlook.com (2603:10b6:610:d5::18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.30; Fri, 8 Sep
+ 2023 06:55:20 +0000
+Received: from MW4PR11MB7054.namprd11.prod.outlook.com
+ ([fe80::b1c3:d00a:b24a:65b]) by MW4PR11MB7054.namprd11.prod.outlook.com
+ ([fe80::b1c3:d00a:b24a:65b%7]) with mapi id 15.20.6768.029; Fri, 8 Sep 2023
+ 06:55:20 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [PATCH v2 17/27] drm/i915/xe2lpd: Read pin assignment from IOM
+Thread-Index: AQHZ4aFXdwWS9SLpp06Jhb0viplfgLAQfyrA
+Date: Fri, 8 Sep 2023 06:55:19 +0000
+Message-ID: <MW4PR11MB7054F40BF8C08921DDA50403EFEDA@MW4PR11MB7054.namprd11.prod.outlook.com>
+References: <20230907153757.2249452-1-lucas.demarchi@intel.com>
+ <20230907153757.2249452-18-lucas.demarchi@intel.com>
+In-Reply-To: <20230907153757.2249452-18-lucas.demarchi@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MW4PR11MB7054:EE_|CH0PR11MB5562:EE_
+x-ms-office365-filtering-correlation-id: 95b61284-3689-49c0-0328-08dbb03890ff
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: alR4kg3qzST3xuYYEnNz0748odYUokgPP22Q+Bdj+BxGoTU74B6r7lyZUFPxI5CtLXOKMiWoGuHBB1iLPsUpOSB2v+Qo+dUXBDc865oFSRvCAQpkkiokYhMyjtqM4MjBBHKUhbYupg179CRnyrQHJnT+6GozQJTU4aMtGkv0IvSRO9O5ke6soJibV4cB8f/w0zxdGAEmPNURw8d8G16R/RqV/YVC1twSlSzwn3bWmd1TO4UrksOFiTiL0DqHuZyluV5ltguIdbKx0yNx2qkW9xMce5oKxNqaiv1Uf84TJ8XljRFBST7KVkMkwdOGeDNwALA/GiuGbQwK7dks6IcWbRF2Q9N1BeE/M9a7ZVVFWAFvPRmrg/dsmHjhtDZLyEcsA4ddvQmu8XoPyiYVDyu5nFaipvAoAqywkBEoUMCjZGRyPVrInh+NTjtm2WFpMfqk9u2whwILS6frbUlIpNywVxSj10NkkC8kptuc4e3XPZm8zdNbsnD3eeXyt6rWte4T07WVQYKSgMVAWNOPqsh0exeBC0WX9Yn8dAnngbNfMI3U/r75NsKrWQjfMlo+Ez7p4wxFEZmQlnjmAidU+CI8DfCqwTT1vZcivlR/OykTofKHHqvmOmk0485W1IlEGhiy
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MW4PR11MB7054.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(376002)(346002)(136003)(39860400002)(366004)(451199024)(1800799009)(186009)(2906002)(64756008)(54906003)(5660300002)(478600001)(8936002)(9686003)(4326008)(8676002)(71200400001)(107886003)(110136005)(26005)(66476007)(53546011)(66446008)(66556008)(6506007)(7696005)(41300700001)(450100002)(66946007)(52536014)(83380400001)(316002)(76116006)(38070700005)(82960400001)(122000001)(38100700002)(86362001)(33656002)(55016003);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NW0zd0JWWWtQRFFqdGRzYzdqNWJRU1BaTFYvcFF1djFsSWlueEh1MTZRTFlP?=
+ =?utf-8?B?cXZMa3ZsNUZtWTZGdmFkVlVIN0FyYUtuRSsyTEdhVmFOVWtMS0MvUWpyQys4?=
+ =?utf-8?B?bUUxWm0yQ1R5RkxNYlUxZythU3VBV2duOWUxZ3JJUGVpcWxPdW4vYWxEN2d3?=
+ =?utf-8?B?WlprMjBMcWxwODFqNlhqTm5ISTZSYkNOdHBWazROdmxscTk2NE9Dd3BTeWs0?=
+ =?utf-8?B?RFAxVDVVOUJ6R0hDN2lhSEZmY0tmQlIwa201ZDU3ejdXQkxMWnY5cmppWUQ3?=
+ =?utf-8?B?bXVjSVZhYzFaRjVZNHh3VGM3ZFNnU1BnQlBSM2ZIeG9EcGs4ZjlDdTRLTlNF?=
+ =?utf-8?B?dVhEV1RGSEVTUzVobjZ5MHcwL2FTV1lPbW9hV0w2SnltTExTaTJmVDI1UmVO?=
+ =?utf-8?B?ZERtU1VKd2p5R09nRkRubHhiVjI5alVtVE8yNzRXYkIrdko3L0laZVFiNjBM?=
+ =?utf-8?B?aHRSY0VnNlMrZmhWMm9ITmsxaGUxYmovaVpTeEJhdlVBVlpBUFNSQ3BYcDBQ?=
+ =?utf-8?B?WG1DOEhKKzZHTEc5Z1dXV3U4Q0hCdDEzWGlaYWoyZUhYalVGcy9naTd2Unho?=
+ =?utf-8?B?aUxVNGdnTlIvMGRablhSeStvRjkxcysvaUhULzBuWVUvckF2R2daZlllbkdY?=
+ =?utf-8?B?cjRCYmVLRURxNHZ5RklvQ2gvOTdPN1hYcmNHeUg3c0lPRGNLemxOSzVMNjZp?=
+ =?utf-8?B?MFNXb0ZVM2VxT2QyVzk1eGgzaW02NGFQR2psUVNsRG9ieWQ0RHdLbnRCS1VJ?=
+ =?utf-8?B?NGQ2VGlScW1rU3Z1ZFNUd3JNZnE2UjVnU3QvQmJDUmw3Z1hlYzZnL01tL3ov?=
+ =?utf-8?B?NDBsd21HUGlkMlAwSEw4MG9DRVA2aG9od0VCWWZicGRhMml4by90NVptV2RO?=
+ =?utf-8?B?bktHSlBPdUtpMHJGaWxPZ0owZEIvZGhtNjNyZU5VcktxaUtxRmVURVNla0Ru?=
+ =?utf-8?B?SFFtVjNEWm1VcFBEYmxBWWJnVU9rOTVGTldSNzhYMHlJbDd0UXhyZkl4UEFu?=
+ =?utf-8?B?ZjFRL2t1czJvUnljM3h6TURFSzBUQ0RtSTZQZ0dvK2lEMVRiWjhiYW5ocW53?=
+ =?utf-8?B?ekRob0k0NHB4bnIwai95WXU2Wm11aHk2LzZ5MG9VQ0FOTDhzSTFvdXpFY2xK?=
+ =?utf-8?B?MFNHOC9BZktrQXFIOFo1dVZLZjM0bm96SWgvaGxFenZtTVdpQWxET0JFYVhR?=
+ =?utf-8?B?Sk1yOWV0VjZRL3phMWJTMW54MTZTZ3J1QWswRzJsSGVvYW9Xc3gvZnRXRE1o?=
+ =?utf-8?B?UEpYaFRKMm9Jbk5vMVNNT0tVd2N6UFNBYTFzeldyOXhWRTd3S3pLSG9HekFt?=
+ =?utf-8?B?R2dGL2R6WlZMTEI4Rm9lbnRGYklMcFp2ZXY1UTl2VmZuNkx5Mk4wbThSQ2ds?=
+ =?utf-8?B?bDl4L1NsT0R5QldFMk04Zm5HdEFLckFMZlFoWHBWSUxFdHlzSksyR2daTUw0?=
+ =?utf-8?B?czFlNktFTm9YKysycmJYOS9nM0hzZU5xSWtDd25ZNjdOZC9SMU5EeGhiWVJs?=
+ =?utf-8?B?VjczTG5KVjlxa2JGMjZxS25OeFFibHdFM3FpcEcydWh3ZkV4b1pFMkEvZjFS?=
+ =?utf-8?B?VG0wdFllTDN1S0tQSXkxU0J0RlhqOEpERjlVQzRMRFpzdjNPV0dTWjhzbXhx?=
+ =?utf-8?B?K0ZuMGNYYXcycUkzRXJnN1l1c01VMWhPY2w4d2RseERjckU4WDVURGlHa3ph?=
+ =?utf-8?B?VHJ2SUprUXUwUnNnSWhUYlpSSUlHS1piNVkzZ0FJemt3bjBDUzlLQ0w3OVNh?=
+ =?utf-8?B?TEZQcUVwSXltRUxKSW1QcTRBS2E5akhKSDlqbWx3aDk1RW5WUHJlczZZMWlV?=
+ =?utf-8?B?NmsvbVJDRCtwMkIyVTNYem5zZWVMSHVTWEkyVjliREMxT1c1TG1ZZ2VaM2ZZ?=
+ =?utf-8?B?VG9ueWxqSFVWUXRTaXYza3IvMkxrUHYvNFVFV3kwcEZuZDh3aHg4RTNsYWhP?=
+ =?utf-8?B?NUlXRXRMWkgwOFU4dU5wcHZBUWFKaVpLeXpzMHFwTU03NjlVajZ0c1ZGOEtk?=
+ =?utf-8?B?Nm95VWZVKzkyMThqcDNQTk1za1RxZnJMK0R2d0d5TVZab0UzM1FOQlcrMllR?=
+ =?utf-8?B?c2dyYmEyUzJ3c0lJbUFsSXdTMnhlcjFYMTlBUmltY0t4L2dEYis4dk5GNHdm?=
+ =?utf-8?Q?IzRU2ozi5yV5DQ7JgA1RvHtX5?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.13.0
-To: "Souza, Jose" <jose.souza@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20230829162840.73444-7-matthew.auld@intel.com>
- <20230829162840.73444-12-matthew.auld@intel.com>
- <43819243fdde89dcccd93350c154bb738de697eb.camel@intel.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <43819243fdde89dcccd93350c154bb738de697eb.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [RFC 5/5] drm/xe/uapi: support pat_index selection
- with vm_bind
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7054.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 95b61284-3689-49c0-0328-08dbb03890ff
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Sep 2023 06:55:19.9938 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: FG8n9swDJCORMl6kpP063irfYmBrpGqwFEm7P1/D+jOlYAjvpUs+MoOBtvamATqmsxRb0cEzJQfRg7czLM+oYg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5562
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2 17/27] drm/i915/xe2lpd: Read pin
+ assignment from IOM
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,651 +157,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>, "Coelho,
+ Luciano" <luciano.coelho@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 07/09/2023 19:56, Souza, Jose wrote:
-> On Tue, 2023-08-29 at 17:28 +0100, Matthew Auld wrote:
->> Allow userspace to directly control the pat_index for a given vm
->> binding. This should allow directly controlling the coherency, caching
->> and potentially other stuff in the future for the ppGTT binding.
->>
->> The exact meaning behind the pat_index is very platform specific (see
->> BSpec or PRMs) but effectively maps to some predefined memory
->> attributes. From the KMD pov we only care about the coherency that is
->> provided by the pat_index, which falls into either NONE, 1WAY or 2WAY.
->> The vm_bind coherency mode for the given pat_index needs to match the
->> given coh_mode that was set at object creation. For platforms that lack
->> the explicit coherency mode, we treat UC/WT/WC as NONE and WB as 2WAY.
->>
->> For userptr mappings we lack a corresponding gem object, so the expected
->> coherency mode is instead implicit and must fall into either 1WAY or
->> 2WAY. Trying to use NONE will be rejected by the kernel. For imported
->> dma-buf (from a different device) the coherency mode is also implicit
->> and must also be either 1WAY or 2WAY.
->>
->> As part of adding pat_index support with vm_bind we also need stop using
->> xe_cache_level and instead use the pat_index in various places. We still
->> make use of xe_cache_level, but only as a convenience for kernel
->> internal objectsi (internally it maps to some reasonable pat_index). For
->> now this is just a 1:1 conversion of the existing code, however for
->> platforms like MTL+ we might need to give more control through bo_create
->> or stop using WB on the CPU side if we need CPU access.
-> 
-> xe_ttm_tt_create() caching should not also take into consideration the PAT index?
-
-Which PAT index? At least for userspace objects we might not know the 
-pat_index at this stage, also the pat_index is more per vma, while the 
-CPU caching mode in xe_ttm_tt_create() is per object. At gem create we 
-only need to consider the overall coh_mode of every pat_index that will 
-map the object to determine if the CPU caching mode is "valid".
-
-> 
->>
->> Bspec: 45101, 44235 #xe
->> Bspec: 70552, 71582, 59400 #xe2
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Pallavi Mishra <pallavi.mishra@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Cc: José Roberto de Souza <jose.souza@intel.com>
->> Cc: Filip Hazubski <filip.hazubski@intel.com>
->> Cc: Carl Zhang <carl.zhang@intel.com>
->> Cc: Effie Yu <effie.yu@intel.com>
->> ---
->>   drivers/gpu/drm/i915/gt/intel_gtt.h   |  2 +-
->>   drivers/gpu/drm/xe/tests/xe_migrate.c |  2 +-
->>   drivers/gpu/drm/xe/xe_ggtt.c          |  7 ++-
->>   drivers/gpu/drm/xe/xe_ggtt_types.h    |  2 +-
->>   drivers/gpu/drm/xe/xe_migrate.c       | 14 ++---
->>   drivers/gpu/drm/xe/xe_pt.c            | 32 +++++-------
->>   drivers/gpu/drm/xe/xe_pt.h            |  6 +--
->>   drivers/gpu/drm/xe/xe_vm.c            | 73 +++++++++++++++++++++------
->>   drivers/gpu/drm/xe/xe_vm_types.h      | 13 +++--
->>   include/uapi/drm/xe_drm.h             | 41 ++++++++++++++-
->>   10 files changed, 134 insertions(+), 58 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
->> index 4d6296cdbcfd..bb4c182048c3 100644
->> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
->> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
->> @@ -302,7 +302,7 @@ struct i915_address_space {
->>   		(*alloc_scratch_dma)(struct i915_address_space *vm, int sz);
->>   
->>   	u64 (*pte_encode)(dma_addr_t addr,
->> -			  unsigned int pat_index,
->> +			  u32 pat_index,
->>   			  u32 flags); /* Create a valid PTE */
->>   #define PTE_READ_ONLY	BIT(0)
->>   #define PTE_LM		BIT(1)
->> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
->> index 5c8d5e78d9bc..7a128fd20a29 100644
->> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
->> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
->> @@ -301,7 +301,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
->>   	/* First part of the test, are we updating our pagetable bo with a new entry? */
->>   	xe_map_wr(xe, &bo->vmap, XE_PAGE_SIZE * (NUM_KERNEL_PDE - 1), u64,
->>   		  0xdeaddeadbeefbeef);
->> -	expected = xe_pte_encode(pt, 0, XE_CACHE_WB, 0);
->> +	expected = xe_pte_encode(pt, 0, xe_pat_get_index(xe, XE_CACHE_WB), 0);
->>   	if (m->q->vm->flags & XE_VM_FLAG_64K)
->>   		expected |= XE_PTE_PS64;
->>   	if (xe_bo_is_vram(pt))
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
->> index 209fa053d9fb..4134c26150a5 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt.c
->> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
->> @@ -41,7 +41,8 @@ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
->>   		pte |= XE_GGTT_PTE_DM;
->>   
->>   	if ((ggtt->pat_encode).pte_encode)
->> -		pte = (ggtt->pat_encode).pte_encode(xe, pte, XE_CACHE_WB_1_WAY);
->> +		pte = (ggtt->pat_encode).pte_encode(xe, pte,
->> +						    xe_pat_get_index(xe, XE_CACHE_WB_1_WAY));
->>   
->>   	return pte;
->>   }
->> @@ -102,10 +103,8 @@ static void primelockdep(struct xe_ggtt *ggtt)
->>   }
->>   
->>   static u64 xelpg_ggtt_pte_encode_pat(struct xe_device *xe, u64 pte_pat,
->> -						enum xe_cache_level cache)
->> +				     u32 pat_index)
->>   {
->> -	u32 pat_index = xe_pat_get_index(xe, cache);
->> -
->>   	pte_pat &= ~(XELPG_GGTT_PTE_PAT_MASK);
->>   
->>   	if (pat_index & BIT(0))
->> diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
->> index 7e55fac1a8a9..0bc40cb072e3 100644
->> --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
->> +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
->> @@ -31,7 +31,7 @@ struct xe_ggtt {
->>   
->>   	struct {
->>   		u64 (*pte_encode)(struct xe_device *xe, u64 pte_pat,
->> -						enum xe_cache_level cache);
->> +				  u32 pat_index);
->>   	} pat_encode;
->>   };
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
->> index a782ea282cb6..54585e98452a 100644
->> --- a/drivers/gpu/drm/xe/xe_migrate.c
->> +++ b/drivers/gpu/drm/xe/xe_migrate.c
->> @@ -24,6 +24,7 @@
->>   #include "xe_lrc.h"
->>   #include "xe_map.h"
->>   #include "xe_mocs.h"
->> +#include "xe_pat.h"
->>   #include "xe_pt.h"
->>   #include "xe_res_cursor.h"
->>   #include "xe_sched_job.h"
->> @@ -162,6 +163,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->>   	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
->>   	u32 map_ofs, level, i;
->>   	struct xe_bo *bo, *batch = tile->mem.kernel_bb_pool->bo;
->> +	u32 pat_index = xe_pat_get_index(xe, XE_CACHE_WB);
->>   	u64 entry;
->>   	int ret;
->>   
->> @@ -189,14 +191,14 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->>   		return ret;
->>   	}
->>   
->> -	entry = xe_pde_encode(bo, bo->size - XE_PAGE_SIZE, XE_CACHE_WB);
->> +	entry = xe_pde_encode(bo, bo->size - XE_PAGE_SIZE, pat_index);
->>   	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
->>   
->>   	map_ofs = (num_entries - num_level) * XE_PAGE_SIZE;
->>   
->>   	/* Map the entire BO in our level 0 pt */
->>   	for (i = 0, level = 0; i < num_entries; level++) {
->> -		entry = xe_pte_encode(bo, i * XE_PAGE_SIZE, XE_CACHE_WB, 0);
->> +		entry = xe_pte_encode(bo, i * XE_PAGE_SIZE, pat_index, 0);
->>   
->>   		xe_map_wr(xe, &bo->vmap, map_ofs + level * 8, u64, entry);
->>   
->> @@ -214,7 +216,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->>   		for (i = 0; i < batch->size;
->>   		     i += vm->flags & XE_VM_FLAG_64K ? XE_64K_PAGE_SIZE :
->>   		     XE_PAGE_SIZE) {
->> -			entry = xe_pte_encode(batch, i, XE_CACHE_WB, 0);
->> +			entry = xe_pte_encode(batch, i, pat_index, 0);
->>   
->>   			xe_map_wr(xe, &bo->vmap, map_ofs + level * 8, u64,
->>   				  entry);
->> @@ -239,7 +241,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->>   			flags = XE_PDE_64K;
->>   
->>   		entry = xe_pde_encode(bo, map_ofs + (level - 1) *
->> -					XE_PAGE_SIZE, XE_CACHE_WB);
->> +					XE_PAGE_SIZE, pat_index);
->>   		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE * level, u64,
->>   			  entry | flags);
->>   	}
->> @@ -247,7 +249,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->>   	/* Write PDE's that point to our BO. */
->>   	for (i = 0; i < num_entries - num_level; i++) {
->>   		entry = xe_pde_encode(bo, i * XE_PAGE_SIZE,
->> -				      XE_CACHE_WB);
->> +				      pat_index);
->>   
->>   		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE +
->>   			  (i + 1) * 8, u64, entry);
->> @@ -1256,7 +1258,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
->>   
->>   			XE_WARN_ON(pt_bo->size != SZ_4K);
->>   
->> -			addr = xe_pte_encode(pt_bo, 0, XE_CACHE_WB, 0);
->> +			addr = xe_pte_encode(pt_bo, 0, xe_pat_get_index(xe, XE_CACHE_WB), 0);
->>   			bb->cs[bb->len++] = lower_32_bits(addr);
->>   			bb->cs[bb->len++] = upper_32_bits(addr);
->>   		}
->> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
->> index 64713f400d94..019af2920078 100644
->> --- a/drivers/gpu/drm/xe/xe_pt.c
->> +++ b/drivers/gpu/drm/xe/xe_pt.c
->> @@ -10,6 +10,7 @@
->>   #include "xe_gt.h"
->>   #include "xe_gt_tlb_invalidation.h"
->>   #include "xe_migrate.h"
->> +#include "xe_pat.h"
->>   #include "xe_pt_types.h"
->>   #include "xe_pt_walk.h"
->>   #include "xe_res_cursor.h"
->> @@ -57,24 +58,22 @@ static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
->>    *
->>    * Return: An encoded page directory entry. No errors.
->>    */
->> -u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
->> -		  const enum xe_cache_level cache)
->> +u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset, u32 pat_index)
->>   {
->>   	u64 pde;
->>   	struct xe_vm *vm = bo->vm;
->>   	struct xe_device *xe = vm->xe;
->>   
->> -
->>   	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
->>   	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
->>   
->>   	if ((vm->pat_encode).pde_encode)
->> -		pde = (vm->pat_encode).pde_encode(xe, pde, cache);
->> +		pde = (vm->pat_encode).pde_encode(xe, pde, pat_index);
->>   
->>   	return pde;
->>   }
->>   
->> -static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
->> +static u64 __pte_encode(u64 pte, u32 pat_index,
->>   			struct xe_vma *vma, u32 pt_level)
->>   {
->>   	struct xe_vm *vm = xe_vma_vm(vma);
->> @@ -89,7 +88,7 @@ static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
->>   		pte |= XE_PTE_NULL;
->>   
->>   	if ((vm->pat_encode).pte_encode)
->> -		pte = (vm->pat_encode).pte_encode(xe, pte, cache);
->> +		pte = (vm->pat_encode).pte_encode(xe, pte, pat_index);
->>   
->>   	if (pt_level == 1)
->>   		pte |= XE_PDE_PS_2M;
->> @@ -112,7 +111,7 @@ static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
->>    *
->>    * Return: An encoded page-table entry. No errors.
->>    */
->> -u64 xe_pte_encode(struct xe_bo *bo, u64 offset, enum xe_cache_level cache,
->> +u64 xe_pte_encode(struct xe_bo *bo, u64 offset, u32 pat_index,
->>   		  u32 pt_level)
->>   {
->>   	u64 pte;
->> @@ -121,7 +120,7 @@ u64 xe_pte_encode(struct xe_bo *bo, u64 offset, enum xe_cache_level cache,
->>   	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
->>   		pte |= XE_PPGTT_PTE_DM;
->>   
->> -	return __pte_encode(pte, cache, NULL, pt_level);
->> +	return __pte_encode(pte, pat_index, NULL, pt_level);
->>   }
->>   
->>   static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
->> @@ -134,12 +133,12 @@ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
->>   
->>   	if (level == 0) {
->>   		u64 empty = xe_pte_encode(vm->scratch_bo[id], 0,
->> -					  XE_CACHE_WB, 0);
->> +					  xe_pat_get_index(vm->xe, XE_CACHE_WB), 0);
->>   
->>   		return empty;
->>   	} else {
->>   		return xe_pde_encode(vm->scratch_pt[id][level - 1]->bo, 0,
->> -				     XE_CACHE_WB);
->> +				     xe_pat_get_index(vm->xe, XE_CACHE_WB));
->>   	}
->>   }
->>   
->> @@ -368,8 +367,6 @@ struct xe_pt_stage_bind_walk {
->>   	struct xe_vm *vm;
->>   	/** @tile: The tile we're building for. */
->>   	struct xe_tile *tile;
->> -	/** @cache: Desired cache level for the ptes */
->> -	enum xe_cache_level cache;
->>   	/** @default_pte: PTE flag only template. No address is associated */
->>   	u64 default_pte;
->>   	/** @dma_offset: DMA offset to add to the PTE. */
->> @@ -604,7 +601,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
->>   
->>   		pte = __pte_encode(is_null ? 0 :
->>   				   xe_res_dma(curs) + xe_walk->dma_offset,
->> -				   xe_walk->cache, xe_walk->vma, level);
->> +				   xe_walk->vma->pat_index, xe_walk->vma, level);
->>   		pte |= xe_walk->default_pte;
->>   
->>   		/*
->> @@ -669,7 +666,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
->>   			xe_child->is_compact = true;
->>   		}
->>   
->> -		pte = xe_pde_encode(xe_child->bo, 0, xe_walk->cache) | flags;
->> +		pte = xe_pde_encode(xe_child->bo, 0, xe_walk->vma->pat_index) | flags;
->>   		ret = xe_pt_insert_entry(xe_walk, xe_parent, offset, xe_child,
->>   					 pte);
->>   	}
->> @@ -730,13 +727,8 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
->>   		if (vma && vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT)
->>   			xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
->>   		xe_walk.dma_offset = vram_region_gpu_offset(bo->ttm.resource);
->> -		xe_walk.cache = XE_CACHE_WB;
->> -	} else {
->> -		if (!xe_vma_has_no_bo(vma) && bo->flags & XE_BO_SCANOUT_BIT)
->> -			xe_walk.cache = XE_CACHE_WT;
->> -		else
->> -			xe_walk.cache = XE_CACHE_WB;
->>   	}
->> +
->>   	if (!xe_vma_has_no_bo(vma) && xe_bo_is_stolen(bo))
->>   		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
->>   
->> diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
->> index 01be7ab08f87..1d433a5a96b4 100644
->> --- a/drivers/gpu/drm/xe/xe_pt.h
->> +++ b/drivers/gpu/drm/xe/xe_pt.h
->> @@ -45,10 +45,8 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
->>   
->>   bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
->>   
->> -u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
->> -		  const enum xe_cache_level level);
->> +u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset, u32 pat_index);
->>   
->> -u64 xe_pte_encode(struct xe_bo *bo, u64 offset, enum xe_cache_level cache,
->> -		  u32 pt_level);
->> +u64 xe_pte_encode(struct xe_bo *bo, u64 offset, u32 pat_index, u32 pt_level);
->>   
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index 7eeeed0411f3..34603a7e84b0 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -6,6 +6,7 @@
->>   #include "xe_vm.h"
->>   
->>   #include <linux/dma-fence-array.h>
->> +#include <linux/nospec.h>
->>   
->>   #include <drm/drm_print.h>
->>   #include <drm/ttm/ttm_execbuf_util.h>
->> @@ -874,7 +875,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
->>   				    u64 start, u64 end,
->>   				    bool read_only,
->>   				    bool is_null,
->> -				    u8 tile_mask)
->> +				    u8 tile_mask,
->> +				    u32 pat_index)
->>   {
->>   	struct xe_vma *vma;
->>   	struct xe_tile *tile;
->> @@ -913,6 +915,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
->>   			vma->tile_mask |= 0x1 << id;
->>   	}
->>   
->> +	vma->pat_index = pat_index;
->> +
->>   	if (vm->xe->info.platform == XE_PVC)
->>   		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
->>   
->> @@ -1194,10 +1198,8 @@ static void xe_vma_op_work_func(struct work_struct *w);
->>   static void vm_destroy_work_func(struct work_struct *w);
->>   
->>   static u64 xelp_ppgtt_pde_encode_pat(struct xe_device *xe, u64 pde_pat,
->> -						enum xe_cache_level cache)
->> +				     u32 pat_index)
->>   {
->> -	u32 pat_index = xe_pat_get_index(xe, cache);
->> -
->>   	pde_pat &= ~(XELP_PDE_PAT_MASK);
->>   
->>   	if (pat_index & BIT(0))
->> @@ -1213,10 +1215,8 @@ static u64 xelp_ppgtt_pde_encode_pat(struct xe_device *xe, u64 pde_pat,
->>   }
->>   
->>   static u64 xelp_ppgtt_pte_encode_pat(struct xe_device *xe, u64 pte_pat,
->> -						enum xe_cache_level cache)
->> +				     u32 pat_index)
->>   {
->> -	u32 pat_index = xe_pat_get_index(xe, cache);
->> -
->>   	pte_pat &= ~(XELP_PTE_PAT_MASK);
->>   
->>   	if (pat_index & BIT(0))
->> @@ -1622,7 +1622,7 @@ struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
->>   u64 xe_vm_pdp4_descriptor(struct xe_vm *vm, struct xe_tile *tile)
->>   {
->>   	return xe_pde_encode(vm->pt_root[tile->id]->bo, 0,
->> -			     XE_CACHE_WB);
->> +			     xe_pat_get_index(vm->xe, XE_CACHE_WB));
->>   }
->>   
->>   static struct dma_fence *
->> @@ -2311,7 +2311,7 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
->>   static struct drm_gpuva_ops *
->>   vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->>   			 u64 bo_offset_or_userptr, u64 addr, u64 range,
->> -			 u32 operation, u8 tile_mask, u32 region)
->> +			 u32 operation, u8 tile_mask, u32 region, u32 pat_index)
->>   {
->>   	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
->>   	struct ww_acquire_ctx ww;
->> @@ -2339,6 +2339,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->>   			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
->>   
->>   			op->tile_mask = tile_mask;
->> +			op->pat_index = pat_index;
->>   			op->map.immediate =
->>   				operation & XE_VM_BIND_FLAG_IMMEDIATE;
->>   			op->map.read_only =
->> @@ -2366,6 +2367,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->>   			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
->>   
->>   			op->tile_mask = tile_mask;
->> +			op->pat_index = pat_index;
->>   			op->prefetch.region = region;
->>   		}
->>   		break;
->> @@ -2408,7 +2410,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->>   }
->>   
->>   static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
->> -			      u8 tile_mask, bool read_only, bool is_null)
->> +			      u8 tile_mask, bool read_only, bool is_null,
->> +			      u32 pat_index)
->>   {
->>   	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) : NULL;
->>   	struct xe_vma *vma;
->> @@ -2425,7 +2428,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
->>   	vma = xe_vma_create(vm, bo, op->gem.offset,
->>   			    op->va.addr, op->va.addr +
->>   			    op->va.range - 1, read_only, is_null,
->> -			    tile_mask);
->> +			    tile_mask, pat_index);
->>   	if (bo)
->>   		xe_bo_unlock(bo, &ww);
->>   
->> @@ -2539,7 +2542,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->>   
->>   				vma = new_vma(vm, &op->base.map,
->>   					      op->tile_mask, op->map.read_only,
->> -					      op->map.is_null);
->> +					      op->map.is_null, op->pat_index);
->>   				if (IS_ERR(vma)) {
->>   					err = PTR_ERR(vma);
->>   					goto free_fence;
->> @@ -2567,7 +2570,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->>   
->>   					vma = new_vma(vm, op->base.remap.prev,
->>   						      op->tile_mask, read_only,
->> -						      is_null);
->> +						      is_null, op->pat_index);
->>   					if (IS_ERR(vma)) {
->>   						err = PTR_ERR(vma);
->>   						goto free_fence;
->> @@ -2603,7 +2606,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->>   
->>   					vma = new_vma(vm, op->base.remap.next,
->>   						      op->tile_mask, read_only,
->> -						      is_null);
->> +						      is_null, op->pat_index);
->>   					if (IS_ERR(vma)) {
->>   						err = PTR_ERR(vma);
->>   						goto free_fence;
->> @@ -3158,8 +3161,14 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->>   		u32 obj = (*bind_ops)[i].obj;
->>   		u64 obj_offset = (*bind_ops)[i].obj_offset;
->>   		u32 region = (*bind_ops)[i].region;
->> +		u32 pat_index = (*bind_ops)[i].pat_index;
->>   		bool is_null = op & XE_VM_BIND_FLAG_NULL;
->>   
->> +		if (XE_IOCTL_DBG(xe, pat_index >= xe->info.pat_table_n_entries)) {
->> +			err = -EINVAL;
->> +			goto free_bind_ops;
->> +		}
->> +
->>   		if (i == 0) {
->>   			*async = !!(op & XE_VM_BIND_FLAG_ASYNC);
->>   		} else if (XE_IOCTL_DBG(xe, !*async) ||
->> @@ -3346,8 +3355,25 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>   		struct drm_gem_object *gem_obj;
->>   		u64 range = bind_ops[i].range;
->>   		u64 addr = bind_ops[i].addr;
->> +		u32 op = bind_ops[i].op;
->>   		u32 obj = bind_ops[i].obj;
->>   		u64 obj_offset = bind_ops[i].obj_offset;
->> +		u32 pat_index = bind_ops[i].pat_index;
->> +		u16 coh_mode;
->> +
->> +		pat_index = array_index_nospec(pat_index,
->> +					       xe->info.pat_table_n_entries);
->> +		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
->> +		if (XE_IOCTL_DBG(xe, !coh_mode)) {
->> +			err = -EINVAL;
->> +			goto put_obj;
->> +		}
->> +
->> +		if (XE_IOCTL_DBG(xe, VM_BIND_OP(op) == XE_VM_BIND_OP_MAP_USERPTR &&
->> +				 coh_mode == XE_GEM_COHERENCY_NONE)) {
->> +			err = -EINVAL;
->> +			goto put_obj;
->> +		}
->>   
->>   		if (!obj)
->>   			continue;
->> @@ -3375,6 +3401,22 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>   				goto put_obj;
->>   			}
->>   		}
->> +
->> +		if (bos[i]->coh_mode) {
->> +			if (XE_IOCTL_DBG(xe, bos[i]->coh_mode != coh_mode)) {
->> +				err = -EINVAL;
->> +				goto put_obj;
->> +			}
->> +		} else if (XE_IOCTL_DBG(xe, coh_mode == XE_GEM_COHERENCY_NONE)) {
->> +			/*
->> +			 * Imported dma-buf from a different device should
->> +			 * require 1way or 2way coherency since we don't know
->> +			 * how it was mapped on CPU. Just assume is it
->> +			 * potentially cached on CPU side.
->> +			 */
->> +			err = -EINVAL;
->> +			goto put_obj;
->> +		}
->>   	}
->>   
->>   	if (args->num_syncs) {
->> @@ -3412,10 +3454,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->>   		u64 obj_offset = bind_ops[i].obj_offset;
->>   		u8 tile_mask = bind_ops[i].tile_mask;
->>   		u32 region = bind_ops[i].region;
->> +		u32 pat_index = bind_ops[i].pat_index;
->>   
->>   		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
->>   						  addr, range, op, tile_mask,
->> -						  region);
->> +						  region, pat_index);
->>   		if (IS_ERR(ops[i])) {
->>   			err = PTR_ERR(ops[i]);
->>   			ops[i] = NULL;
->> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
->> index 83a1f87b6537..508679ed3c74 100644
->> --- a/drivers/gpu/drm/xe/xe_vm_types.h
->> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
->> @@ -111,6 +111,11 @@ struct xe_vma {
->>   	 */
->>   	u8 tile_present;
->>   
->> +	/**
->> +	 * @pat_index: The pat index to use when encoding the PTEs for this vma.
->> +	 */
->> +	u32 pat_index;
->> +
->>   	struct {
->>   		struct list_head rebind_link;
->>   	} notifier;
->> @@ -338,10 +343,8 @@ struct xe_vm {
->>   	bool batch_invalidate_tlb;
->>   
->>   	struct {
->> -		u64 (*pte_encode)(struct xe_device *xe, u64 pte_pat,
->> -						enum xe_cache_level cache);
->> -		u64 (*pde_encode)(struct xe_device *xe, u64 pde_pat,
->> -						enum xe_cache_level cache);
->> +		u64 (*pte_encode)(struct xe_device *xe, u64 pte_pat, u32 pat_index);
->> +		u64 (*pde_encode)(struct xe_device *xe, u64 pde_pat, u32 pat_index);
->>   	} pat_encode;
->>   };
->>   
->> @@ -417,6 +420,8 @@ struct xe_vma_op {
->>   	struct async_op_fence *fence;
->>   	/** @tile_mask: gt mask for this operation */
->>   	u8 tile_mask;
->> +	/** @pat_index: The pat index to use for this operation. */
->> +	u32 pat_index;
->>   	/** @flags: operation flags */
->>   	enum xe_vma_op_flags flags;
->>   
->> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->> index 64bc66d4b550..0c15b6f32447 100644
->> --- a/include/uapi/drm/xe_drm.h
->> +++ b/include/uapi/drm/xe_drm.h
->> @@ -600,8 +600,45 @@ struct drm_xe_vm_bind_op {
->>   	 */
->>   	__u32 obj;
->>   
->> -	/** @pad: MBZ */
->> -	__u32 pad;
->> +	/**
->> +	 * @pat_index: The platform defined @pat_index to use for this mapping.
->> +	 * The index basically maps to some predefined memory attributes,
->> +	 * including things like caching, coherency and likely other stuff in
->> +	 * the future.  The exact meaning of the pat_index is platform specific
->> +	 * and defined in the Bspec and PRMs.  When the KMD sets up the binding
->> +	 * the index here is encoded into the ppGTT PTE.
->> +	 *
->> +	 * For coherency the @pat_index needs to match the
->> +	 * drm_xe_gem_create.coh_mode, so either XE_GEM_COHERENCY_NONE,
->> +	 * XE_GEM_COHERENCY_1WAY or XE_GEM_COHERENCY_2WAY. The KMD will extract
->> +	 * the coherency mode from the @pat_index and reject if there is a
->> +	 * mismatch (see note below for pre-MTL platforms).
->> +	 *
->> +	 * Note: On pre-MTL platforms there is only a caching mode and no
->> +	 * explicit coherency mode, but on such hardware there is always a
->> +	 * shared-LLC (or is dgpu) so all GT memory accesses are coherent with
->> +	 * CPU caches even with the caching mode set as uncached.  It's only the
->> +	 * display engine that is incoherent (on dgpu it must be in VRAM which
->> +	 * is always mapped as WC on the CPU). However to keep the uapi somewhat
->> +	 * consistent with newer platforms the KMD groups the different cache
->> +	 * levels into the following coherency buckets on all pre-MTL platforms:
->> +	 *
->> +	 *	ppGTT UC -> XE_GEM_COHERENCY_NONE
->> +	 *	ppGTT WC -> XE_GEM_COHERENCY_NONE
->> +	 *	ppGTT WT -> XE_GEM_COHERENCY_NONE
->> +	 *	ppGTT WB -> XE_GEM_COHERENCY_2WAY
->> +	 *
->> +	 * In practice UC/WC/WT should only ever used for scanout surfaces on
->> +	 * such platforms since it is only the display engine that is actually
->> +	 * incoherent. Everything else should typically use WB given that we
->> +	 * have a shared-LLC.  On MTL+ this completely changes (also potentially
->> +	 * no shared-LLC) and the HW defines the coherency mode as part of the
->> +	 * @pat_index.
->> +	 *
->> +	 * Note: For userptr and externally imported dma-buf the kernel expects
->> +	 * either 1WAY or 2WAY for the @pat_index.
->> +	 */
->> +	__u32 pat_index;
->>   
->>   	union {
->>   		/**
-> 
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBEZSBNYXJjaGksIEx1Y2FzIDxs
+dWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+DQo+IFNlbnQ6IFRodXJzZGF5LCBTZXB0ZW1iZXIgNywg
+MjAyMyA2OjM4IFBNDQo+IFRvOiBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGludGVs
+LWdmeEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IENvZWxobywgTHVjaWFubyA8bHVjaWFu
+by5jb2VsaG9AaW50ZWwuY29tPjsgS2Fob2xhLCBNaWthIDxtaWthLmthaG9sYUBpbnRlbC5jb20+
+OyBSb3BlciwgTWF0dGhldyBEDQo+IDxtYXR0aGV3LmQucm9wZXJAaW50ZWwuY29tPjsgRGUgTWFy
+Y2hpLCBMdWNhcyA8bHVjYXMuZGVtYXJjaGlAaW50ZWwuY29tPg0KPiBTdWJqZWN0OiBbUEFUQ0gg
+djIgMTcvMjddIGRybS9pOTE1L3hlMmxwZDogUmVhZCBwaW4gYXNzaWdubWVudCBmcm9tIElPTQ0K
+PiANCj4gRnJvbTogTHVjYSBDb2VsaG8gPGx1Y2lhbm8uY29lbGhvQGludGVsLmNvbT4NCj4gDQo+
+IFN0YXJ0aW5nIGZyb20gZGlzcGxheSB2ZXJzaW9uIDIwLCB3ZSBuZWVkIHRvIHJlYWQgdGhlIHBp
+biBhc3NpZ25tZW50IGZyb20gdGhlIElPTSBUQ1NTX0RESV9TVEFUVVMgcmVnaXN0ZXIgaW5zdGVh
+ZCBvZiByZWFkaW5nIGl0DQo+IGZyb20gdGhlIEZJQS4NCj4gDQo+IFdlIHVzZSB0aGUgcGluIGFz
+c2lnbm1lbnQgdG8gZGVjaWRlIHRoZSBtYXhpbXVtIGxhbmUgY291bnQuICBTbywgdG8gc3VwcG9y
+dCB0aGlzIGNoYW5nZSwgYWRkIGEgbmV3DQo+IGxubF90Y19wb3J0X2dldF9tYXhfbGFuZV9jb3Vu
+dCgpIGZ1bmN0aW9uIHRoYXQgcmVhZHMgZnJvbSB0aGUgVENTU19ERElfU1RBVFVTIHJlZ2lzdGVy
+IGFuZCBkZWNpZGVzIHRoZSBtYXhpbXVtIGxhbmUgY291bnQNCj4gYmFzZWQgb24gdGhhdC4NCj4g
+DQo+IEJTcGVjOiA2OTU5NA0KPiBDYzogTWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xhQGludGVsLmNv
+bT4NCj4gU2lnbmVkLW9mZi1ieTogTHVjYSBDb2VsaG8gPGx1Y2lhbm8uY29lbGhvQGludGVsLmNv
+bT4NCj4gUmV2aWV3ZWQtYnk6IE1hdHQgUm9wZXIgPG1hdHRoZXcuZC5yb3BlckBpbnRlbC5jb20+
+DQo+IFNpZ25lZC1vZmYtYnk6IEx1Y2FzIERlIE1hcmNoaSA8bHVjYXMuZGVtYXJjaGlAaW50ZWwu
+Y29tPg0KDQpSZXZpZXdlZC1ieTogTWlrYSBLYWhvbGEgPG1pa2Eua2Fob2xhQGludGVsLmNvbT4N
+Cg0KPiAtLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMuYyB8IDI4
+ICsrKysrKysrKysrKysrKysrKysrKysrKysNCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2k5MTVf
+cmVnLmggICAgICAgICB8ICAxICsNCj4gIDIgZmlsZXMgY2hhbmdlZCwgMjkgaW5zZXJ0aW9ucygr
+KQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+dGMuYyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfdGMuYw0KPiBpbmRleCA2
+Nzg2OTM5Nzg4OTIuLmU5Y2VkMjUxYzE3MCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJt
+L2k5MTUvZGlzcGxheS9pbnRlbF90Yy5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rp
+c3BsYXkvaW50ZWxfdGMuYw0KPiBAQCAtMjkwLDYgKzI5MCwzMSBAQCB1MzIgaW50ZWxfdGNfcG9y
+dF9nZXRfcGluX2Fzc2lnbm1lbnRfbWFzayhzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0ICpkaWdf
+cG9ydCkNCj4gIAkgICAgICAgRFBfUElOX0FTU0lHTk1FTlRfU0hJRlQodGMtPnBoeV9maWFfaWR4
+KTsNCj4gIH0NCj4gDQo+ICtzdGF0aWMgaW50IGxubF90Y19wb3J0X2dldF9tYXhfbGFuZV9jb3Vu
+dChzdHJ1Y3QgaW50ZWxfZGlnaXRhbF9wb3J0DQo+ICsqZGlnX3BvcnQpIHsNCj4gKwlzdHJ1Y3Qg
+ZHJtX2k5MTVfcHJpdmF0ZSAqaTkxNSA9IHRvX2k5MTUoZGlnX3BvcnQtPmJhc2UuYmFzZS5kZXYp
+Ow0KPiArCWVudW0gdGNfcG9ydCB0Y19wb3J0ID0gaW50ZWxfcG9ydF90b190YyhpOTE1LCBkaWdf
+cG9ydC0+YmFzZS5wb3J0KTsNCj4gKwlpbnRlbF93YWtlcmVmX3Qgd2FrZXJlZjsNCj4gKwl1MzIg
+dmFsLCBwaW5fYXNzaWdubWVudDsNCj4gKw0KPiArCXdpdGhfaW50ZWxfZGlzcGxheV9wb3dlcihp
+OTE1LCBQT1dFUl9ET01BSU5fRElTUExBWV9DT1JFLCB3YWtlcmVmKQ0KPiArCQl2YWwgPSBpbnRl
+bF9kZV9yZWFkKGk5MTUsIFRDU1NfRERJX1NUQVRVUyh0Y19wb3J0KSk7DQo+ICsNCj4gKwlwaW5f
+YXNzaWdubWVudCA9DQo+ICsJCVJFR19GSUVMRF9HRVQoVENTU19ERElfU1RBVFVTX1BJTl9BU1NJ
+R05NRU5UX01BU0ssIHZhbCk7DQo+ICsNCj4gKwlzd2l0Y2ggKHBpbl9hc3NpZ25tZW50KSB7DQo+
+ICsJZGVmYXVsdDoNCj4gKwkJTUlTU0lOR19DQVNFKHBpbl9hc3NpZ25tZW50KTsNCj4gKwkJZmFs
+bHRocm91Z2g7DQo+ICsJY2FzZSBEUF9QSU5fQVNTSUdOTUVOVF9EOg0KPiArCQlyZXR1cm4gMjsN
+Cj4gKwljYXNlIERQX1BJTl9BU1NJR05NRU5UX0M6DQo+ICsJY2FzZSBEUF9QSU5fQVNTSUdOTUVO
+VF9FOg0KPiArCQlyZXR1cm4gNDsNCj4gKwl9DQo+ICt9DQo+ICsNCj4gIHN0YXRpYyBpbnQgbXRs
+X3RjX3BvcnRfZ2V0X21heF9sYW5lX2NvdW50KHN0cnVjdCBpbnRlbF9kaWdpdGFsX3BvcnQgKmRp
+Z19wb3J0KSAgew0KPiAgCXN0cnVjdCBkcm1faTkxNV9wcml2YXRlICppOTE1ID0gdG9faTkxNShk
+aWdfcG9ydC0+YmFzZS5iYXNlLmRldik7IEBAIC0zNDgsNiArMzczLDkgQEAgaW50DQo+IGludGVs
+X3RjX3BvcnRfbWF4X2xhbmVfY291bnQoc3RydWN0IGludGVsX2RpZ2l0YWxfcG9ydCAqZGlnX3Bv
+cnQpDQo+IA0KPiAgCWFzc2VydF90Y19jb2xkX2Jsb2NrZWQodGMpOw0KPiANCj4gKwlpZiAoRElT
+UExBWV9WRVIoaTkxNSkgPj0gMjApDQo+ICsJCXJldHVybiBsbmxfdGNfcG9ydF9nZXRfbWF4X2xh
+bmVfY291bnQoZGlnX3BvcnQpOw0KPiArDQo+ICAJaWYgKERJU1BMQVlfVkVSKGk5MTUpID49IDE0
+KQ0KPiAgCQlyZXR1cm4gbXRsX3RjX3BvcnRfZ2V0X21heF9sYW5lX2NvdW50KGRpZ19wb3J0KTsN
+Cj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oIGIvZHJp
+dmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaCBpbmRleCAyZjExNWQzMzk5MTMuLmVmY2YxNDYx
+OTg4ZiAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvaTkxNV9yZWcuaA0KPiAr
+KysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9pOTE1X3JlZy5oDQo+IEBAIC02MzUxLDYgKzYzNTEs
+NyBAQCBlbnVtIHNrbF9wb3dlcl9nYXRlIHsNCj4gICNkZWZpbmUgVENTU19ERElfU1RBVFVTKHRj
+KQkJCV9NTUlPKF9QSUNLX0VWRU4odGMsIFwNCj4gIAkJCQkJCQkJIF9UQ1NTX0RESV9TVEFUVVNf
+MSwgXA0KPiAgCQkJCQkJCQkgX1RDU1NfRERJX1NUQVRVU18yKSkNCj4gKyNkZWZpbmUgIFRDU1Nf
+RERJX1NUQVRVU19QSU5fQVNTSUdOTUVOVF9NQVNLCVJFR19HRU5NQVNLKDI4LCAyNSkNCj4gICNk
+ZWZpbmUgIFRDU1NfRERJX1NUQVRVU19SRUFEWQkJCVJFR19CSVQoMikNCj4gICNkZWZpbmUgIFRD
+U1NfRERJX1NUQVRVU19IUERfTElWRV9TVEFUVVNfVEJUCVJFR19CSVQoMSkNCj4gICNkZWZpbmUg
+IFRDU1NfRERJX1NUQVRVU19IUERfTElWRV9TVEFUVVNfQUxUCVJFR19CSVQoMCkNCj4gLS0NCj4g
+Mi40MC4xDQoNCg==
