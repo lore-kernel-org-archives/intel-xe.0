@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23F28EE57F1
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 10:46:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B390BEE57EB
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Sep 2023 10:46:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1C2510E89C;
-	Fri,  8 Sep 2023 10:46:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4BA0510E8AA;
+	Fri,  8 Sep 2023 10:46:56 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 867BA10E89A;
- Fri,  8 Sep 2023 10:46:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1D1310E0A6;
+ Fri,  8 Sep 2023 10:46:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694170012; x=1725706012;
+ t=1694170014; x=1725706014;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nXREkvPA82Us23UqpnMo3Rm7aWMcQPg5Crt1sUMTIM4=;
- b=D2brvC/t/KQm+xAoJEB8uN3On8QObD6R5XlYS8Nwec46NrkEzqoDvlBt
- MFArXE4xsOIwP5XLerB//dyTbUAZ6TilIQjASv0RAycbP+Jg3eUPOUa2g
- PaQB4XqWpsTdYT+7/dCs2VFd1riZdfgNcYtIhId6pqyiSoUKrXM4KOenS
- DG9T1qUhqEK9mOR1JVsmTQrnKX2QaZ06OBcb4Oqh4g3F7u7LbBuPNHeTV
- S9r+GduvPFHwMee0zTDdxiCn51dGwMexTKSH6mBhhv6R/ZM4SSFp2MCAt
- 1RqqUS/pKc+K+c0XBaQRBQL/cvDqvDpjRy1QCofngoI/ZjgzOrr56CZji w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="357922636"
-X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="357922636"
+ bh=7JwD+XeooPOPHuA1WH62ZC7XBAnCsiTezdkxLExk9wQ=;
+ b=W7OTAeYufY95KzzGaja1LsNphm7qsFW4s7O6Q2k8n9AbJvFYIc4XE1Dw
+ PphPU0S1gq6dJ+SZwB6az95A2yD2vQDBEfOPzN8L0aGtkbpAIgphpYmGq
+ bd++DX8t7XT7/pQYZPzZZt9RfJ7SMClWRsN5ZhXOGtexcUD6Of9E11N/K
+ Jynslr3BQEYQIFc3ge0uvaXEad2IU8fWlkV5dLuGBcba5IgOzkJI+3e6c
+ od3eFscLDIHI8ni4CZwru51nKZfeW2+8Lg4IHQeKjifzcmu6ME+z6SOIW
+ kA7uVuxZYo7H+4bK2ZPvsDGc8y9m/2/t7GLy8I5S596KYlvkJMPMajkTY g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="357922655"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="357922655"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 03:46:50 -0700
+ 08 Sep 2023 03:46:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="812531596"
-X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="812531596"
+X-IronPort-AV: E=McAfee;i="6600,9927,10826"; a="812531613"
+X-IronPort-AV: E=Sophos;i="6.02,236,1688454000"; d="scan'208";a="812531613"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.28.201])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Sep 2023 03:46:44 -0700
+ 08 Sep 2023 03:46:51 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri,  8 Sep 2023 12:44:47 +0200
-Message-ID: <20230908104438.125454-27-janusz.krzysztofik@linux.intel.com>
+Date: Fri,  8 Sep 2023 12:44:50 +0200
+Message-ID: <20230908104438.125454-30-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230908104438.125454-19-janusz.krzysztofik@linux.intel.com>
 References: <20230908104438.125454-19-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH i-g-t 08/17] lib/kunit: Cancel KTP parser on
- module load failure
+Subject: [Intel-xe] [PATCH i-g-t 11/17] lib/kunit: Fail / skip on kernel
+ taint
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,63 +66,57 @@ Cc: intel-gfx@lists.freedesktop.org,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For our KTAP parser to be running in parallel with kunit test module
-loading, we now start it in a separate thread before we load the module.
-If the module loading fails then we join the KTAP parser thread right
-after that failure.  If the KTAP thread sleeps for some reason then we
-can fail to break the test immediately.
-
-Cancel the KTAP parser thread right after module load error and before
-joining it.
+Similar to how igt_kselftest() handles kernel taints, fail current dynamic
+sub-subtest and skip remaining ones when a kernel taint is detected during
+execution of kunit test cases.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- lib/igt_kmod.c | 1 +
- lib/igt_ktap.c | 6 ++++++
- lib/igt_ktap.h | 1 +
- 3 files changed, 8 insertions(+)
+ lib/igt_kmod.c | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
 
 diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
-index 78b8eb8f53..fb0bd21ee5 100644
+index 020df286b8..988ac164cb 100644
 --- a/lib/igt_kmod.c
 +++ b/lib/igt_kmod.c
-@@ -773,6 +773,7 @@ static void __igt_kunit(struct igt_ktest *tst, const char *opts)
- 	results = ktap_parser_start(tst->kmsg, is_builtin);
+@@ -761,6 +761,7 @@ static void __igt_kunit(struct igt_ktest *tst, const char *opts)
+ 	bool is_builtin;
+ 	struct ktap_test_results *results;
+ 	struct ktap_test_results_element *temp;
++	unsigned long taints;
+ 	int flags, ret;
  
- 	if (igt_debug_on(igt_kmod_load(tst->module_name, opts) < 0)) {
-+		ktap_parser_cancel();
- 		igt_ignore_warn(ktap_parser_stop());
- 		igt_skip("Unable to load %s module\n", tst->module_name);
- 	}
-diff --git a/lib/igt_ktap.c b/lib/igt_ktap.c
-index 3cfb55ec97..1e75b2ec23 100644
---- a/lib/igt_ktap.c
-+++ b/lib/igt_ktap.c
-@@ -602,6 +602,12 @@ struct ktap_test_results *ktap_parser_start(int fd, bool is_builtin)
- 	return &results;
+ 	igt_skip_on_f(tst->kmsg < 0, "Could not open /dev/kmsg\n");
+@@ -785,12 +786,20 @@ static void __igt_kunit(struct igt_ktest *tst, const char *opts)
+ 
+ 	while (READ_ONCE(results->still_running) || READ_ONCE(results->head) != NULL)
+ 	{
++		if (igt_kernel_tainted(&taints)) {
++			ktap_parser_cancel();
++			break;
++		}
++
+ 		if (READ_ONCE(results->head) != NULL) {
+ 			pthread_mutex_lock(&results->mutex);
+ 
+-			igt_dynamic(results->head->test_name)
++			igt_dynamic(results->head->test_name) {
+ 				igt_assert(READ_ONCE(results->head->passed));
+ 
++				igt_fail_on(igt_kernel_tainted(&taints));
++			}
++
+ 			temp = results->head;
+ 			results->head = results->head->next;
+ 			free(temp);
+@@ -801,6 +810,7 @@ static void __igt_kunit(struct igt_ktest *tst, const char *opts)
+ 
+ 	ret = ktap_parser_stop();
+ 
++	igt_skip_on(igt_kernel_tainted(&taints));
+ 	igt_skip_on_f(ret, "KTAP parser failed\n");
  }
  
-+void ktap_parser_cancel(void)
-+{
-+	ktap_args.is_running = false;
-+	pthread_cancel(ktap_parser_thread);
-+}
-+
- int ktap_parser_stop(void)
- {
- 	ktap_args.is_running = false;
-diff --git a/lib/igt_ktap.h b/lib/igt_ktap.h
-index ea57c2bb9b..991800e912 100644
---- a/lib/igt_ktap.h
-+++ b/lib/igt_ktap.h
-@@ -45,6 +45,7 @@ struct ktap_test_results {
- 
- 
- struct ktap_test_results *ktap_parser_start(int fd, bool is_builtin);
-+void ktap_parser_cancel(void);
- int ktap_parser_stop(void);
- 
- #endif /* IGT_KTAP_H */
 -- 
 2.41.0
 
