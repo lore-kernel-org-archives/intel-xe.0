@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36999EEB57F
-	for <intel-xe@archiver.kernel.org>; Sat,  9 Sep 2023 05:24:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D2E2EEB57F
+	for <intel-xe@archiver.kernel.org>; Sat,  9 Sep 2023 05:24:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2CB110E254;
-	Sat,  9 Sep 2023 05:24:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2948210E259;
+	Sat,  9 Sep 2023 05:24:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id C081810E253;
- Sat,  9 Sep 2023 05:24:31 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A8AE010E255;
+ Sat,  9 Sep 2023 05:24:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B77BDAA3D8;
- Sat,  9 Sep 2023 05:24:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A4B4DAA3D8;
+ Sat,  9 Sep 2023 05:24:43 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ashutosh Dixit" <ashutosh.dixit@intel.com>
-Date: Sat, 09 Sep 2023 05:24:31 -0000
-Message-ID: <169423707171.13823.14594653792386187068@emeril.freedesktop.org>
+Date: Sat, 09 Sep 2023 05:24:43 -0000
+Message-ID: <169423708367.13821.14706760096026896377@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230909052153.1669790-1-ashutosh.dixit@intel.com>
 In-Reply-To: <20230909052153.1669790-1-ashutosh.dixit@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/uapi=3A_Use_common_drm=5Fxe=5Fext=5Fset=5Fproperty_ex?=
- =?utf-8?q?tension?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/uapi=3A_Use_common_drm=5Fxe=5Fext=5Fset=5Fproperty_extensi?=
+ =?utf-8?q?on?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,9 +53,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: e51e857ff drm/xe/uapi: Remove useless max_page_size
-=== git am output follows ===
-Applying: drm/xe/uapi: Use common drm_xe_ext_set_property extension
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 15df84889f6f5f14b1f6da077c6e2961c5745a1d
+Author: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Date:   Fri Sep 8 22:21:53 2023 -0700
+
+    drm/xe/uapi: Use common drm_xe_ext_set_property extension
+    
+    There really is no difference between 'struct drm_xe_ext_vm_set_property'
+    and 'struct drm_xe_ext_exec_queue_set_property', they are extensions which
+    specify a <property, value> pair. Replace the two extensions with a single
+    common 'struct drm_xe_ext_set_property' extension. The rationale is that
+    rather than have each XE module (including future modules) invent their own
+    property/value extensions, all XE modules use a common set_property
+    extension when possible.
+    
+    Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
++ /mt/dim checkpatch e51e857ffad411e1b78821866e9f02187345a11a drm-intel
+15df84889 drm/xe/uapi: Use common drm_xe_ext_set_property extension
 
 
