@@ -4,30 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C7E76EE7FF4
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 14:34:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F35BAEE57DF
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 14:35:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C05410E307;
-	Mon, 11 Sep 2023 14:34:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 91A2D10E307;
- Mon, 11 Sep 2023 14:34:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8F891A0093;
- Mon, 11 Sep 2023 14:34:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4540202567096960952=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id BC31010E307;
+	Mon, 11 Sep 2023 14:35:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62F0E10E307
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Sep 2023 14:35:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694442912; x=1725978912;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=jzhnvz3gU0Mcda8rinnn9FFmYNZjIRC7mv1oiJ/T1Gc=;
+ b=iErZqan0bMwF2R3/JSBjuLdOo5tsPNdTv/qSsO+7r04PBUCsBR3ECcGy
+ fsYCgGNSI4xDB9nT/GYIfzFCOG1K6FsT5/k/dpBIW1byCAsbozCYj/pY7
+ Yr1EyYQHrmaiKQ9FsQyPieO2HiwTbAc0bT/B50bNUI0ePeJX3ZZPZN89u
+ 48wPTMcS6DKerMgVWtTiQc86yvGOinz8DfXhKfNGP43ZZ9Vh45Gav98tL
+ f+noLDfUf+boNFHmnCFt8777wwqexL6C6hRljIZRK4SJFOIWASeX8w/u7
+ TbRu5hphzQcUTvg89mDV7XUUB/SIdqvb8prwsJ+pUv459Bs/fXQ/9iSsw Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="464466411"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="464466411"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 07:35:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="858338849"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="858338849"
+Received: from kschuele-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.119])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 07:35:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <ZPuR8zorq32uh3Bn@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230905141347.1027082-1-jani.nikula@intel.com>
+ <ZPuR8zorq32uh3Bn@intel.com>
+Date: Mon, 11 Sep 2023 17:35:07 +0300
+Message-ID: <87zg1seq1w.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
-Date: Mon, 11 Sep 2023 14:34:07 -0000
-Message-ID: <169444284755.31366.10450132288569012357@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230911130323.7037-2-janusz.krzysztofik@linux.intel.com>
-In-Reply-To: <20230911130323.7037-2-janusz.krzysztofik@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/tests?=
- =?utf-8?q?=3A_Fix_incorrect_argument_in_drm=5Ftest=5Fmm=5Finsert=5Frange?=
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 0/5] drm/xe: drop unnecessary i915 display
+ commits
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,111 +59,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: lucas.demarchi@intel.com, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4540202567096960952==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 08 Sep 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Tue, Sep 05, 2023 at 05:13:42PM +0300, Jani Nikula wrote:
+>> Revert five unnecessary commits.
+>> 
+>> The rebased version with all the commits just thrown away is at
+>> [1]. That also drops "drm/i915/display: Make FBC check stolen at use
+>> time." which has become an empty commit.
+>> 
+>> [1] https://gitlab.freedesktop.org/jani/xe/-/commits/xe-drop-unnecessary-commits-2023-09-05
+>> 
+>> 
+>> Jani Nikula (5):
+>>   Revert "FIXME: drm/i915: display/intel_display_types.h random
+>>     whitespace changes"
+>>   Revert "FIXME: drm/i915: include i915_utils.h from
+>>     intel_display_types.h"
+>>   Revert "FIXME: drm/i915: revert the earlier mmio_offset change"
+>>   Revert "FIXME: drm/i915/display: Prefer i915->uncore over plain
+>>     uncore"
+>>   Revert "FIXME: drm/i915/display: Set DISPLAY_MMIO_BASE to 0 for xe"
+>
+> I honestly confess that I got a bit lost here, but the end result
+> makes sense, so I just force-pushed the removal of these 6 patches.
 
-== Series Details ==
+Thanks. So I sent these as reverts to get CI results, and the branch was
+just the reverted patches removed altogether.
 
-Series: drm/tests: Fix incorrect argument in drm_test_mm_insert_range
-URL   : https://patchwork.freedesktop.org/series/123542/
-State : success
+BR,
+Jani.
 
-== Summary ==
+>
+>> 
+>>  drivers/gpu/drm/i915/display/intel_bios.c          | 13 ++++++-------
+>>  drivers/gpu/drm/i915/display/intel_display_types.h |  3 ++-
+>>  2 files changed, 8 insertions(+), 8 deletions(-)
+>> 
+>> -- 
+>> 2.39.2
+>> 
 
-CI Bug Log - changes from xe-365-0533b5d42b2f8ec916646c10715ac45215e87689_BAT -> xe-pw-123542v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 3)
-------------------------------
-
-  Missing    (1): bat-adlp-7 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_7478 -> IGT_7479
-  * Linux: xe-365-0533b5d42b2f8ec916646c10715ac45215e87689 -> xe-pw-123542v1
-
-  IGT_7478: 605d1288086602b23d0d73fee5022dcd329d9d3e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7479: 84ec7fe5b86ca4c7449d63ca833ca8cbe350f1f2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-365-0533b5d42b2f8ec916646c10715ac45215e87689: 0533b5d42b2f8ec916646c10715ac45215e87689
-  xe-pw-123542v1: 123542v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123542v1/index.html
-
---===============4540202567096960952==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/tests: Fix incorrect argument in drm_test_mm_insert_range</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123542/">https://patchwork.freedesktop.org/series/123542/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123542v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123542v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-365-0533b5d42b2f8ec916646c10715ac45215e87689_BAT -&gt; xe-pw-123542v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 3)</h2>
-<p>Missing    (1): bat-adlp-7 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7478 -&gt; IGT_7479</li>
-<li>Linux: xe-365-0533b5d42b2f8ec916646c10715ac45215e87689 -&gt; xe-pw-123542v1</li>
-</ul>
-<p>IGT_7478: 605d1288086602b23d0d73fee5022dcd329d9d3e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7479: 84ec7fe5b86ca4c7449d63ca833ca8cbe350f1f2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-365-0533b5d42b2f8ec916646c10715ac45215e87689: 0533b5d42b2f8ec916646c10715ac45215e87689<br />
-  xe-pw-123542v1: 123542v1</p>
-
-</body>
-</html>
-
---===============4540202567096960952==--
+-- 
+Jani Nikula, Intel Open Source Graphics Center
