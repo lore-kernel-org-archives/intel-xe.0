@@ -4,50 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3033EE57DF
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 08:06:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82044EE57DF
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 08:41:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AF2510E19F;
-	Mon, 11 Sep 2023 08:06:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F403110E19B;
- Mon, 11 Sep 2023 08:06:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4ADBB10E19E;
+	Mon, 11 Sep 2023 08:41:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 967D910E19E;
+ Mon, 11 Sep 2023 08:41:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694419613; x=1725955613;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=sJ3Mo9mfZsbqoZ9Ri+SM5GXsnQyGh0vqV/vtCu8MRO8=;
- b=YvaWdub+RKtHtzd6AIyL17rdnmtSqtCfdN489dec0LH9h53pcEwJBEhM
- mdr7jAM01NQd/6xX4qqGqGFf6AZyUd+XOh0AA/jQciT1EhI6vqJ3DOyqG
- HiiDmm4NFLJCqDJMRHBDbcfFyUbB3o3W0V1G6HRuQIo51jfLotFun8jhB
- kSHEeZtx96XeCQJdl70IYTqWOeERD5fa1kG8WfKPSUS+haktIR5Ur9D2g
- lgzvnlVHf/6PT/bkQrcolUMWhn8zReINV4uhYNWF6h5eOfQfq1BKHixde
- ojcZvLQfNNjCOb9XtJZJGZeOBb8Q394HgynNRgDio1R/udfOAUol3h/Sm g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="464396347"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="464396347"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 01:06:53 -0700
+ t=1694421697; x=1725957697;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=XyQqE6ua6KWD89cngxqd4htyditGGfSXApdeUeV+fL0=;
+ b=NDkJiBO8SZ+Q4FF/JNMmtUa7/yAlT4w0CCVXbgEiJGzPamc+2hNcY2mX
+ 040oeRvm5iX34kYjaGzHtwsVz4z9j7u26l6EXkZF2oca25EfZUVSGnUSc
+ AZ8pbSmm20vzxWhudS4jqsi3fpg/061LE8F8o2VPDsFZ/L/wB/521NBi2
+ rZHUkeBDZVm4Y2RhwS3n0MbZp7+aW46bCLvBDho9CK6b2t68R1mdTQUAG
+ iI88ZSJlbMTq6fY2Zerc69Ud2IsbeaV9oadtZGtYGbFtlDETTrh+mMSqo
+ +OKbhYaZ5IBLV5V9fpJ/73VuWWeMP1fU6U4f/Kwgn7M7b1Idxoms2kZQd Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="442024224"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="442024224"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 01:41:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="833408845"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="833408845"
-Received: from unknown (HELO intel.com) ([10.237.72.65])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 01:06:51 -0700
-Date: Mon, 11 Sep 2023 11:06:42 +0300
-From: "Lisovskiy, Stanislav" <stanislav.lisovskiy@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>
-Message-ID: <ZP7Kkk/HXhuBZzMV@intel.com>
-References: <20230907153757.2249452-1-lucas.demarchi@intel.com>
- <20230907153757.2249452-25-lucas.demarchi@intel.com>
- <20230908224303.GX2706891@mdroper-desk1.amr.corp.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="1074063909"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="1074063909"
+Received: from djustese-mobl.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.185])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 01:41:12 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: linux-kernel@vger.kernel.org
+Date: Mon, 11 Sep 2023 10:40:42 +0200
+Message-ID: <20230911084042.5160-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230908224303.GX2706891@mdroper-desk1.amr.corp.intel.com>
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v2 24/27] drm/i915/lnl: Introduce
- MDCLK_CDCLK ratio to DBuf
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [RFC PATCH] locking/ww_mutex: Adjust to lockdep
+ nest_lock requirements
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,240 +57,92 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, Lucas De Marchi <lucas.demarchi@intel.com>,
- intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedestkop.org, intel-gfx@lists.freedesktop.org,
+ Peter Zijlstra <peterz@infradead.org>, Boqun Feng <boqun.feng@gmail.com>,
+ intel-xe@lists.freedesktop.org, Ingo Molnar <mingo@redhat.com>,
+ Daniel Vetter <daniel.vetter@intel.com>, Waiman Long <longman@redhat.com>,
+ Will Deacon <will@kernel.org>,
+ =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 08, 2023 at 03:43:03PM -0700, Matt Roper wrote:
-> On Thu, Sep 07, 2023 at 08:37:54AM -0700, Lucas De Marchi wrote:
-> > From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > 
-> > When we change MDCLK/CDCLK the BSpec now instructs us to write a ratio
-> > between MDCLK/CDCLK to MBUS CTL and DBUF CTL registers during that
-> > change.
-> > 
-> > Previsouly DBuf state and CDCLK were not anyhow coupled together.  Now
-> > at compute stage when we know which CDCLK/MDCLK we are going to use, we
-> > need to update the DBuf state with that ratio, being properly encoded,
-> > so that it gets written to those registers, once DBuf state is being
-> > update. The criteria for updating DBuf state is also a CDCLK/MDCLK ratio
-> > change now.
-> > 
-> > v2:
-> >   - Remove condition check for display version 20 since it's compatible
-> >     with previous versions (Matt Roper)
-> >   - Squash the serialization of global state when mdclk_cdclk_ratio
-> >     changes
-> 
-> I'm not sure I follow the serialization change here; can you add some
-> more explanation of that to the commit message?  If the mdclk:cdclk
-> ratio changes then that means we're changing the cdclk (either on its
-> own if only the squashing waveform is changing, or along with the mdclk
-> if the PLL is also getting reprogrammed).  In either case we should
-> already be serializing in intel_cdclk_need_serialize() due to the cdclk
-> change, right?  Is the new check added here actually important somehow?
+When using mutex_acquire_nest() with a nest_lock, lockdep refcounts the
+number of acquired lockdep_maps of mutexes of the same class, and also
+keeps a pointer to the first acquired lockdep_map of a class. That pointer
+is then used for various comparison-, printing- and checking purposes,
+but there is no mechanism to actively ensure that lockdep_map stays in
+memory. Instead, a warning is printed if the lockdep_map is freed and
+there are still held locks of the same lock class, even if the lockdep_map
+itself has been released.
 
-I agree, in theory whenever mdclk:cdclk ratio changes, we also probably
-would be changing cdclk as well, so it is just based on our rule:
-"whenever global data changes, we lock the global state", "whenever
-hw needs to be written, we serialize the global state".
-Calling this twice, just adds all crtcs into state, if it wasn't already
-there, so shouldn't be harmful(anyway we have other places, where we might
-call this again) however we can remove it also.
-I have written this patch, somewhile ago, at least now I can't recall any
-other reasons or cases when mdclk:cdclk ratio might change..
-However I see that there is that other function called get_mbus_mdclk_cdclk_ratio
-and its result is used for writing DBUF_CTL_S* regs and it seems to depend not
-only on mdclk:cdclk ratio, but also if mbus_join is enabled or not.
+In the context of WW/WD transactions that means that if a user unlocks
+and frees a ww_mutex from within an ongoing ww transaction, and that
+mutex happens to be the first ww_mutex grabbed in the transaction,
+such a warning is printed and there might be a risk of a UAF.
 
-Could be that we actually need to make sure, we serialize in that case?
+Note that this is only problem when lockdep is enabled and affects only
+dereferences of struct lockdep_map.
 
-Stan
+Adjust to this by adding a fake lockdep_map to the acquired context and
+make sure it is the first acquired lockdep map of the associated
+ww_mutex class. Then hold it for the duration of the WW/WD transaction.
 
-> 
-> 
-> Matt
-> 
-> > 
-> > Bspec: 68864, 69482, 69445
-> > Cc: Mika Kahola <mika.kahola@intel.com>
-> > Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_cdclk.c    | 28 +++++++++++++++++++
-> >  drivers/gpu/drm/i915/display/skl_watermark.c  | 28 ++++++++++++++++---
-> >  drivers/gpu/drm/i915/display/skl_watermark.h  |  1 +
-> >  .../gpu/drm/i915/display/skl_watermark_regs.h |  2 ++
-> >  4 files changed, 55 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > index abe845906c7c..677a50c28dae 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> > @@ -39,6 +39,7 @@
-> >  #include "intel_pcode.h"
-> >  #include "intel_psr.h"
-> >  #include "intel_vdsc.h"
-> > +#include "skl_watermark.h"
-> >  #include "vlv_sideband.h"
-> >  
-> >  /**
-> > @@ -1800,6 +1801,16 @@ static bool cdclk_pll_is_unknown(unsigned int vco)
-> >  	return vco == ~0;
-> >  }
-> >  
-> > +/* Return the MBUS_CTL's encoding of the mdclk/cdclk ratio */
-> > +static int get_mdclk_cdclk_ratio(struct drm_i915_private *i915,
-> > +				 const struct intel_cdclk_config *cdclk_config)
-> > +{
-> > +	if (DISPLAY_VER(i915) >= 20)
-> > +		return DIV_ROUND_UP(cdclk_config->vco, cdclk_config->cdclk) - 1;
-> > +
-> > +	return 1;
-> > +}
-> > +
-> >  static int cdclk_squash_divider(u16 waveform)
-> >  {
-> >  	return hweight16(waveform ?: 0xffff);
-> > @@ -2735,6 +2746,8 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
-> >  	struct intel_crtc_state *crtc_state;
-> >  	int min_cdclk, i;
-> >  	enum pipe pipe;
-> > +	struct intel_dbuf_state *new_dbuf_state;
-> > +	struct intel_dbuf_state *old_dbuf_state;
-> >  
-> >  	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
-> >  		int ret;
-> > @@ -2768,6 +2781,21 @@ static int intel_compute_min_cdclk(struct intel_cdclk_state *cdclk_state)
-> >  		}
-> >  	}
-> >  
-> > +	new_dbuf_state = intel_atomic_get_new_dbuf_state(state);
-> > +	old_dbuf_state = intel_atomic_get_old_dbuf_state(state);
-> > +	if (new_dbuf_state && old_dbuf_state) {
-> > +		new_dbuf_state->mdclk_cdclk_ratio =
-> > +			get_mdclk_cdclk_ratio(dev_priv, &cdclk_state->actual);
-> > +
-> > +		if (new_dbuf_state->mdclk_cdclk_ratio != old_dbuf_state->mdclk_cdclk_ratio) {
-> > +			int ret;
-> > +
-> > +			ret = intel_atomic_serialize_global_state(&new_dbuf_state->base);
-> > +			if (ret)
-> > +				return ret;
-> > +		}
-> > +	}
-> > +
-> >  	min_cdclk = max(cdclk_state->force_min_cdclk,
-> >  			cdclk_state->bw_min_cdclk);
-> >  	for_each_pipe(dev_priv, pipe)
-> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > index 64a122d3c9c0..1fefb02876c8 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_watermark.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-> > @@ -3472,6 +3472,16 @@ int intel_dbuf_init(struct drm_i915_private *i915)
-> >  	return 0;
-> >  }
-> >  
-> > +static int get_mbus_mdclk_cdclk_ratio(struct drm_i915_private *i915,
-> > +				      int mdclk_cdclk_ratio,
-> > +				      int mbus_joined)
-> > +{
-> > +	if (mbus_joined)
-> > +		return (mdclk_cdclk_ratio << 1) + 1;
-> > +
-> > +	return mdclk_cdclk_ratio;
-> > +}
-> > +
-> >  /*
-> >   * Configure MBUS_CTL and all DBUF_CTL_S of each slice to join_mbus state before
-> >   * update the request state of all DBUS slices.
-> > @@ -3483,10 +3493,16 @@ static void update_mbus_pre_enable(struct intel_atomic_state *state)
-> >  	enum dbuf_slice slice;
-> >  	const struct intel_dbuf_state *dbuf_state =
-> >  		intel_atomic_get_new_dbuf_state(state);
-> > +	int tracker_state_service;
-> >  
-> >  	if (!HAS_MBUS_JOINING(i915))
-> >  		return;
-> >  
-> > +	tracker_state_service =
-> > +		get_mbus_mdclk_cdclk_ratio(i915,
-> > +					   dbuf_state->mdclk_cdclk_ratio,
-> > +					   dbuf_state->joined_mbus);
-> > +
-> >  	/*
-> >  	 * TODO: Implement vblank synchronized MBUS joining changes.
-> >  	 * Must be properly coordinated with dbuf reprogramming.
-> > @@ -3494,13 +3510,15 @@ static void update_mbus_pre_enable(struct intel_atomic_state *state)
-> >  	if (dbuf_state->joined_mbus) {
-> >  		mbus_ctl = MBUS_HASHING_MODE_1x4 | MBUS_JOIN |
-> >  			MBUS_JOIN_PIPE_SELECT_NONE;
-> > -		dbuf_min_tracker_val = DBUF_MIN_TRACKER_STATE_SERVICE(3);
-> >  	} else {
-> >  		mbus_ctl = MBUS_HASHING_MODE_2x2 |
-> >  			MBUS_JOIN_PIPE_SELECT_NONE;
-> > -		dbuf_min_tracker_val = DBUF_MIN_TRACKER_STATE_SERVICE(1);
-> >  	}
-> >  
-> > +	dbuf_min_tracker_val = DBUF_MIN_TRACKER_STATE_SERVICE(tracker_state_service);
-> > +
-> > +	mbus_ctl |= MBUS_TRANS_THROTTLE_MIN_SELECT(dbuf_state->mdclk_cdclk_ratio);
-> > +
-> >  	intel_de_rmw(i915, MBUS_CTL,
-> >  		     MBUS_HASHING_MODE_MASK | MBUS_JOIN |
-> >  		     MBUS_JOIN_PIPE_SELECT_MASK, mbus_ctl);
-> > @@ -3521,7 +3539,8 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
-> >  
-> >  	if (!new_dbuf_state ||
-> >  	    (new_dbuf_state->enabled_slices == old_dbuf_state->enabled_slices &&
-> > -	     new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus))
-> > +	     new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus &&
-> > +	     new_dbuf_state->mdclk_cdclk_ratio == old_dbuf_state->mdclk_cdclk_ratio))
-> >  		return;
-> >  
-> >  	WARN_ON(!new_dbuf_state->base.changed);
-> > @@ -3542,7 +3561,8 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
-> >  
-> >  	if (!new_dbuf_state ||
-> >  	    (new_dbuf_state->enabled_slices == old_dbuf_state->enabled_slices &&
-> > -	     new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus))
-> > +	     new_dbuf_state->joined_mbus == old_dbuf_state->joined_mbus &&
-> > +	     new_dbuf_state->mdclk_cdclk_ratio == old_dbuf_state->mdclk_cdclk_ratio))
-> >  		return;
-> >  
-> >  	WARN_ON(!new_dbuf_state->base.changed);
-> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark.h b/drivers/gpu/drm/i915/display/skl_watermark.h
-> > index f91a3d4ddc07..54db5c7d517e 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_watermark.h
-> > +++ b/drivers/gpu/drm/i915/display/skl_watermark.h
-> > @@ -56,6 +56,7 @@ struct intel_dbuf_state {
-> >  	u8 slices[I915_MAX_PIPES];
-> >  	u8 enabled_slices;
-> >  	u8 active_pipes;
-> > +	u8 mdclk_cdclk_ratio;
-> >  	bool joined_mbus;
-> >  };
-> >  
-> > diff --git a/drivers/gpu/drm/i915/display/skl_watermark_regs.h b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> > index 628c5920ad49..4c820f1d351d 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> > +++ b/drivers/gpu/drm/i915/display/skl_watermark_regs.h
-> > @@ -38,6 +38,8 @@
-> >  #define MBUS_HASHING_MODE_2x2		REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 0)
-> >  #define MBUS_HASHING_MODE_1x4		REG_FIELD_PREP(MBUS_HASHING_MODE_MASK, 1)
-> >  #define MBUS_JOIN_PIPE_SELECT_MASK	REG_GENMASK(28, 26)
-> > +#define MBUS_TRANS_THROTTLE_MIN_MASK	REG_GENMASK(15, 13)
-> > +#define MBUS_TRANS_THROTTLE_MIN_SELECT(ratio)	REG_FIELD_PREP(MBUS_TRANS_THROTTLE_MIN_MASK, ratio)
-> >  #define MBUS_JOIN_PIPE_SELECT(pipe)	REG_FIELD_PREP(MBUS_JOIN_PIPE_SELECT_MASK, pipe)
-> >  #define MBUS_JOIN_PIPE_SELECT_NONE	MBUS_JOIN_PIPE_SELECT(7)
-> >  
-> > -- 
-> > 2.40.1
-> > 
-> 
-> -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+Cc: Peter Zijlstra <peterz@infradead.org>
+Cc: Ingo Molnar <mingo@redhat.com>
+Cc: Will Deacon <will@kernel.org>
+Cc: Waiman Long <longman@redhat.com>
+Cc: Boqun Feng <boqun.feng@gmail.com>
+Cc: Daniel Vetter <daniel.vetter@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Christian König <christian.koenig@amd.com>
+Cc: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedestkop.org
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ include/linux/ww_mutex.h | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/include/linux/ww_mutex.h b/include/linux/ww_mutex.h
+index bb763085479a..a401a2f31a77 100644
+--- a/include/linux/ww_mutex.h
++++ b/include/linux/ww_mutex.h
+@@ -65,6 +65,16 @@ struct ww_acquire_ctx {
+ #endif
+ #ifdef CONFIG_DEBUG_LOCK_ALLOC
+ 	struct lockdep_map dep_map;
++	/**
++	 * @first_lock_dep_map: fake lockdep_map for first locked ww_mutex.
++	 *
++	 * lockdep requires the lockdep_map for the first locked ww_mutex
++	 * in a ww transaction to remain in memory until all ww_mutexes of
++	 * the transaction have been unlocked. Ensure this by keeping a
++	 * fake locked ww_mutex lockdep map between ww_acquire_init() and
++	 * ww_acquire_fini().
++	 */
++	struct lockdep_map first_lock_dep_map;
+ #endif
+ #ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
+ 	unsigned int deadlock_inject_interval;
+@@ -146,7 +156,10 @@ static inline void ww_acquire_init(struct ww_acquire_ctx *ctx,
+ 	debug_check_no_locks_freed((void *)ctx, sizeof(*ctx));
+ 	lockdep_init_map(&ctx->dep_map, ww_class->acquire_name,
+ 			 &ww_class->acquire_key, 0);
++	lockdep_init_map(&ctx->first_lock_dep_map, ww_class->mutex_name,
++			 &ww_class->mutex_key, 0);
+ 	mutex_acquire(&ctx->dep_map, 0, 0, _RET_IP_);
++	mutex_acquire_nest(&ctx->first_lock_dep_map, 0, 0, &ctx->dep_map, _RET_IP_);
+ #endif
+ #ifdef CONFIG_DEBUG_WW_MUTEX_SLOWPATH
+ 	ctx->deadlock_inject_interval = 1;
+@@ -185,6 +198,7 @@ static inline void ww_acquire_done(struct ww_acquire_ctx *ctx)
+ static inline void ww_acquire_fini(struct ww_acquire_ctx *ctx)
+ {
+ #ifdef CONFIG_DEBUG_LOCK_ALLOC
++	mutex_release(&ctx->first_lock_dep_map, _THIS_IP_);
+ 	mutex_release(&ctx->dep_map, _THIS_IP_);
+ #endif
+ #ifdef DEBUG_WW_MUTEXES
+-- 
+2.41.0
+
