@@ -4,49 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D442EE7FF4
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 11:04:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9AFDDEE7FF4
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 11:25:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D544110E2C2;
-	Mon, 11 Sep 2023 11:04:49 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F63310E2C2
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Sep 2023 11:04:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694430287; x=1725966287;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=3E6wYPKMduDG+a3qrs5X/mctPdj6MDUj0C7nNfjsEGk=;
- b=bcz1XnTTYL2m/+pTxMFjvI0abqvs1cJaTX8sID2v5+dJrmMzo6SVMD1w
- sJBJ+uOnVb3+62Yh6knf5W/BOECiZ/Ye1aQc2YpIvOuyHwlDz2O0O63+7
- +HdZgfYv+54TRjiVasvBV9pp+55P4bvuUF7YKaMHi9WUAqIE8pAcFuGoM
- iMgq0RixvWdogScVlVeUqdLcM7aQte9gYqmuoNcNdrOKvTmu+ZQcwfvdU
- xSLgqTtZHpX4ZZ/DVi7fTOEwfBR+SG07qNr6vOt/JNzG4GqWguvtiP5Dn
- rN0X+atnzqOjpyQSKcdjt5A3jMN+qB+hrE8SkTn5fzWgl5GnRKMSbSPm2 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="368294247"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="368294247"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 04:04:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="916983918"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="916983918"
-Received: from kschuele-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.63.119])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 04:04:34 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20230911104134.431670-1-balasubramani.vivekanandan@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230911104134.431670-1-balasubramani.vivekanandan@intel.com>
-Date: Mon, 11 Sep 2023 14:04:30 +0300
-Message-ID: <87cyypezsx.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5572310E2C5;
+	Mon, 11 Sep 2023 11:25:20 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2286710E2CA;
+ Mon, 11 Sep 2023 11:25:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0BD89AADEB;
+ Mon, 11 Sep 2023 11:25:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1275103254263120528=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH v3] drm/xe/display: Print display ip version
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
+Date: Mon, 11 Sep 2023 11:25:19 -0000
+Message-ID: <169443151904.31367.3415122924349231574@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230911104134.431670-1-balasubramani.vivekanandan@intel.com>
+In-Reply-To: <20230911104134.431670-1-balasubramani.vivekanandan@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/di?=
+ =?utf-8?q?splay=3A_Print_display_ip_version_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,112 +39,132 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 11 Sep 2023, Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com> wrote:
-> Print display ip version and flags during module load
->
-> v3:
-> Use the existing intel_display_device_info_print() function to print the
-> display information. (Jani)
+--===============1275103254263120528==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-So this is an improvement in the sense that xe core doesn't poke at
-display data directly to print the info.
+== Series Details ==
 
-However, I still think the interface between xe (or i915) core and
-display should be minimal. I don't see why we'd need to add a function
-at the top level probe to print display stuff... the display code should
-do it internally, in some other high level probe call, when it's done.
+Series: drm/xe/display: Print display ip version (rev4)
+URL   : https://patchwork.freedesktop.org/series/123311/
+State : success
 
-Even having the function adds complexity, because the call site now
-needs to be aware about display probe order, and ensure it's all done
-before you can safely and accurately print display info. And that's
-display code implementation details.
+== Summary ==
 
-Superficially this is all benign, but this stuff adds up. We've been
-trying to untangle i915 core and display for a long time, and the i915
-probe is still a huge mess, with a bunch of random calls to display at
-random times, and there seems to be no end to this. It's all so
-intertwined.
+CI Bug Log - changes from xe-365-0533b5d42b2f8ec916646c10715ac45215e87689_BAT -> xe-pw-123311v4_BAT
+====================================================
 
-Perhaps in the future all of the calls need to go through a framework,
-maybe aux bus. Do we really want to put all of this to that interface?
+Summary
+-------
 
-So the direction should be to reduce and minimize the interfaces between
-the high level components, not add more.
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-123311v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-365-0533b5d42b2f8ec916646c10715ac45215e87689/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123311v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
 
 
-BR,
-Jani.
+Build changes
+-------------
+
+  * Linux: xe-365-0533b5d42b2f8ec916646c10715ac45215e87689 -> xe-pw-123311v4
+
+  IGT_7478: 605d1288086602b23d0d73fee5022dcd329d9d3e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-365-0533b5d42b2f8ec916646c10715ac45215e87689: 0533b5d42b2f8ec916646c10715ac45215e87689
+  xe-pw-123311v4: 123311v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123311v4/index.html
+
+--===============1275103254263120528==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
->
-> Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_display.c | 9 +++++++++
->  drivers/gpu/drm/xe/xe_display.h | 4 ++++
->  drivers/gpu/drm/xe/xe_pci.c     | 2 ++
->  3 files changed, 15 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-> index a453946ad108..45ffc418e636 100644
-> --- a/drivers/gpu/drm/xe/xe_display.c
-> +++ b/drivers/gpu/drm/xe/xe_display.c
-> @@ -417,6 +417,15 @@ void xe_display_pm_resume(struct xe_device *xe)
->  	intel_power_domains_enable(xe);
->  }
->  
-> +void xe_display_info_print(struct xe_device *xe)
-> +{
-> +	struct drm_printer p = drm_info_printer(xe->drm.dev);
-> +
-> +	if (xe->info.enable_display)
-> +		intel_display_device_info_print(xe->info.display,
-> +						&xe->info.display_runtime, &p);
-> +}
-> +
->  /* Display info initialization */
->  __diag_push();
->  __diag_ignore_all("-Woverride-init", "Allow field overrides in table");
-> diff --git a/drivers/gpu/drm/xe/xe_display.h b/drivers/gpu/drm/xe/xe_display.h
-> index 9e29de012df7..b18bf5583229 100644
-> --- a/drivers/gpu/drm/xe/xe_display.h
-> +++ b/drivers/gpu/drm/xe/xe_display.h
-> @@ -19,6 +19,8 @@ int xe_display_create(struct xe_device *xe);
->  
->  void xe_display_info_init(struct xe_device *xe);
->  
-> +void xe_display_info_print(struct xe_device *xe);
-> +
->  int xe_display_init_nommio(struct xe_device *xe);
->  void xe_display_fini_nommio(struct drm_device *dev, void *dummy);
->  
-> @@ -57,6 +59,8 @@ xe_display_create(struct xe_device *xe) { return 0; }
->  
->  static inline void xe_display_info_init(struct xe_device *xe) { }
->  
-> +static inline void xe_display_info_print(struct xe_device *xe) { }
-> +
->  static inline int
->  xe_display_enable(struct pci_dev *pdev, struct drm_driver *driver) { return 0; }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index 24b16863bf3d..a4886ea8794f 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -724,6 +724,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  		xe_step_name(xe->info.step.display),
->  		xe_step_name(xe->info.step.basedie));
->  
-> +	xe_display_info_print(xe);
-> +
->  	err = xe_device_probe(xe);
->  	if (err)
->  		goto err_pci_disable;
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
--- 
-Jani Nikula, Intel Open Source Graphics Center
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/display: Print display ip version (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123311/">https://patchwork.freedesktop.org/series/123311/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123311v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123311v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-365-0533b5d42b2f8ec916646c10715ac45215e87689_BAT -&gt; xe-pw-123311v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-123311v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-365-0533b5d42b2f8ec916646c10715ac45215e87689/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123311v4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-365-0533b5d42b2f8ec916646c10715ac45215e87689 -&gt; xe-pw-123311v4</li>
+</ul>
+<p>IGT_7478: 605d1288086602b23d0d73fee5022dcd329d9d3e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-365-0533b5d42b2f8ec916646c10715ac45215e87689: 0533b5d42b2f8ec916646c10715ac45215e87689<br />
+  xe-pw-123311v4: 123311v4</p>
+
+</body>
+</html>
+
+--===============1275103254263120528==--
