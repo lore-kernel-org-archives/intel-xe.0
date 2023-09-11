@@ -4,137 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60B64C71153
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 03:47:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 25E9AC71153
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 03:52:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16EDD10E06B;
-	Mon, 11 Sep 2023 03:47:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1651D10E06B
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Sep 2023 03:47:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E6D7D10E104;
+	Mon, 11 Sep 2023 03:52:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5FE910E104
+ for <intel-xe@lists.freedesktop.org>; Mon, 11 Sep 2023 03:52:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694404056; x=1725940056;
+ t=1694404350; x=1725940350;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=CBGAotRUQ1SFvgPWOZbb0pT6XooPQJ+UHgVbZRNqZh8=;
- b=gYk2a+9q/c0HlMmNpWNJ5Faq0Zim8Uq6uPbkrJ+0igI8G34c9X3SPPRQ
- tPapDOgGXKKQEAuyDdKj3XSpNdHJxkBJILBDWWgvylam35ARqDgtMUF7L
- UV5sSjyRHRcYHkniDoDdPUa2bKuE2mWi2lH/y+RNY0NsCm/JLfkJwQTHy
- J41GotF+D/204+ZjgDvcxewOMk89mTZaidXdb3nAPD7Y/OQilz5G40y00
- UOLrYoekqj0I4ersNZwtbx67nXenYH8VGfYmUnA0AvyQ/nSgU4Agq4lvW
- 3nvD6hH6KA2/hL2fGUZdOaIXkDkAWN/ztYR7BJ5jh4O+SF2Az5e5GUpYJ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="368223136"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="368223136"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Sep 2023 20:47:35 -0700
+ bh=SlXLKbmi9GVALxF5CpDTCIBAPxOOrF/t2fdjcZqApuc=;
+ b=C9Qio7FVLup/zU3g3lZSPOSziQ2QHaBjuQCrn06vmVqOYq+P0Xg57rHd
+ SF0aJ5UHnGbxDcmjX2SH9EA33aNBIKzA3KAulvaMb+X1U/BhRDpcU6534
+ Z3pRtW6WGD1MjfO5NWsmWskcI1jiaTLy+ekBYA9XXGQ1husQhhkP442mS
+ 0/IjOWHo/u5MOQrjPgpS2iYlHomA/A8ceIZUsgnDuoJXuVMYmy6c7sNdH
+ 6gbHwmtTgQlOCWvvbcI14euj8E6VEyCO2kw8C0l8zCR7PNdNrueY92N//
+ YqyvLvsvkErk9+chBtNcq0exRjnyCaWnvMJxz6FhAymGc092USQdMOzDA w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="376900920"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="376900920"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Sep 2023 20:52:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="1073990144"
-X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="1073990144"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Sep 2023 20:47:35 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Sun, 10 Sep 2023 20:47:34 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10829"; a="736633060"
+X-IronPort-AV: E=Sophos;i="6.02,243,1688454000"; d="scan'208";a="736633060"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 10 Sep 2023 20:52:29 -0700
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Sun, 10 Sep 2023 20:47:34 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ 15.1.2507.32; Sun, 10 Sep 2023 20:52:28 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Sun, 10 Sep 2023 20:47:34 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.48) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Sun, 10 Sep 2023 20:52:28 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.109)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Sun, 10 Sep 2023 20:47:34 -0700
+ 15.1.2507.32; Sun, 10 Sep 2023 20:52:27 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FVrm+adQrR+P4jDiZLgK1doGRDM09AtjfB1JX1ADpt9RFwe9k0mwBQEA69kOYmVBmddx/YSvGKESaX2T01lhLuD9yfkcAsAdF3FXDGTG4qd64MeeO5X5QMhCXhctNdCPhbk6TwjP46dcRJpRjiWNpWWK4oOMZ83GQ7gxU5V2kQ1bIvwz/xK6YdxCPt/WQ2OX1pjb0cr9s1bKv5+seyNc3TozKYlEipJ2YY9DC7kVQIGjUO4irf9Vk/fsW5A9XQWAjK7otIgiuBuxt+e0KBOLuzZpJ63tCAe0h6srpfUGjYl8oD2YhfbH6U8+bRTr5bUPaRn1Yp25WuMYUyW9bXVqVg==
+ b=DTC38wkJ5YKJbVZu/UKAzv4mvdbbF9NsFlxorYDQYEESCNa+vfgoC5IMaJWNjdFvXvGnflgo5TShOL9h8TKSkMXMFX0Kf5vlq//nB/mhb/UMjeuEFcW1YScvEJya3wmaVS6mcMlvKtojYR2kwi9j99LDLazydj2Z1Ugb2KM0v//t3Yl4c2NHkX+p+9EQbvOTioBlzAxsEtLBHqDPbiH4KEZ2iAhwig7la9YHMlGDMKBqBqEgTzI3h8hw1cHf7lYLdpmucgIyoVj00+7IpjvSqYJx2gppMYtS0ukR/9LkHMfFa+bVJp13Ea0TakuRD5xzXGNhkaQUDwG3yJ9Qh7VI2A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5dcZnRBAqSezRed8qxMklGRXYZOn/T7aXC85t4OZH/c=;
- b=Ds6geXvBhsKX6L/vm8oWs1xbda1yrCC1ABTjUFGelYA2zbU4GZ2a1OdqtLGCvyqhUK75XrYJR1uIvy/0JIm33zsyjA0yqwfTzjH0bpKKQ4R+MOKncShpALoO9+rqcsKnJYhACSxnBSd8eHfVayUguvVpguXQP3n9L8S5y4fhCHU9H2gA5G5ThEJNAuzdYvbCsMYIGcDwIPdouOo+mAE59EGiv6kl1Tr5B4QxK18+pWqGT6QsjiPP2RTSmzXsZv/UjVLbxqKm8w7OCUsgvMNekJg+3iLrCtGpdm89zDvkGVSYBU1R3ld8ZgKIwvnXUPncxTE2UKTi2abAt4xj+nbkZQ==
+ bh=SlXLKbmi9GVALxF5CpDTCIBAPxOOrF/t2fdjcZqApuc=;
+ b=noIz8It1XJCDgubZF0b+wCqcgdcINCGe/LpNAwRDL1f24Hb0QE6hmuJu/AcfyMdn/xRR/WS4Qtt/0Z0eiI29+MqitxuN9TFq0Cu/f+xopH9rD592Qk0E50ZjfM43lduNi0wTMGkjOD5CtA/LrqFHTaRhS+WlhZJQeBEZe92T19gAVdFz/5AdPhD5ZqB6ZwvQwzuPGW/I/5qHILlao3ja76PE+guvkVTRQ7sCya7iHwKZjvfqyP6bWMVI0PLflv0y2CvK9KGGxoKCqK+SGgXT87mSMftvN+JY/o0LoUg7wFilFlwGvkMEv67Ju+lA33ICjea3mswQ6kFnWnrDiYzsLg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DM6PR11MB4547.namprd11.prod.outlook.com (2603:10b6:5:2a1::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.33; Mon, 11 Sep
- 2023 03:47:32 +0000
+ by PH8PR11MB6904.namprd11.prod.outlook.com (2603:10b6:510:227::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6745.34; Mon, 11 Sep
+ 2023 03:52:25 +0000
 Received: from CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::cc12:ab15:1d0:af79]) by CY5PR11MB6139.namprd11.prod.outlook.com
  ([fe80::cc12:ab15:1d0:af79%5]) with mapi id 15.20.6768.029; Mon, 11 Sep 2023
- 03:47:32 +0000
-Date: Sun, 10 Sep 2023 22:47:29 -0500
+ 03:52:25 +0000
+Date: Sun, 10 Sep 2023 22:52:23 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Francois Dugast <francois.dugast@intel.com>
-Message-ID: <uuo6ymgwte45hhifxo43wblq3oe745g72k3jblopzl2qtmch43@achez6wz62k3>
-References: <20230907193515.7-1-francois.dugast@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <omy64zd5iw6sjbaiiu4qofwrlwxqdnmi7itmcz32sp3smjcqd3@wuasza73b2bu>
+References: <20230908225227.1276610-1-lucas.demarchi@intel.com>
+ <20230908230215.GZ2706891@mdroper-desk1.amr.corp.intel.com>
 Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <20230907193515.7-1-francois.dugast@intel.com>
-X-ClientProxiedBy: SJ0P220CA0014.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::22) To CY5PR11MB6139.namprd11.prod.outlook.com
+In-Reply-To: <20230908230215.GZ2706891@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: BY5PR04CA0003.namprd04.prod.outlook.com
+ (2603:10b6:a03:1d0::13) To CY5PR11MB6139.namprd11.prod.outlook.com
  (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM6PR11MB4547:EE_
-X-MS-Office365-Filtering-Correlation-Id: bcf5e024-301c-42a6-1374-08dbb279d3fa
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH8PR11MB6904:EE_
+X-MS-Office365-Filtering-Correlation-Id: 440a6b2c-2136-46ee-b3a6-08dbb27a82df
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 46l8hNxS4Rk5RsJlTQjzL59gp/qE7wEdIFkK1DNDkbZpSB+nYNoN5k6IQV9gIir+DCvsz4/GKOqDM55ZFdYMWq21Gsilgha/8dEb7aZ3Bokccll/9B0xay5Dg+sgnh9WDEocZgsJMJGLt2z+eI53SBAqb5UYL/4Rd3e/1g2sAvWlWjTDkx3qJmkjjdTg3KrJyMc/QoIL0zGvpye8DDdPbyI/896eXK5vpkr6L2dFtFoczNtKkcjQ4c1MqooH90vr2iCvrzFA02Qh20KXWT7pQslowk25FKNmaFQ0gM9FKMHs7Zi8Ld4kBL32DurgMhqOFFsrO0JWSSA5vkdwtvOivQj0PyCrUsPy/wp6Im2v/EiaNAAr1jlUqFkmeYNW413+fvvqXwEoBxpNu9QYciYlMGmReXyA2wRa0WJk/4uaXtlLZJzlUuQqpNHBgOmKNsxA+4veVQcLITspX4cQEY4xr1M5lZJafapc/UpcqDVmZpS8QFoSiitKS4pKnSCNKKS4NUE3MJ598a5FcoJ4Ct1P6Vzth6tkOaBkNJV74JVD5//ydh55xEsrcFNXBYdiMv3OaJZN72AfRFpJKi0EnKz4LQ==
+X-Microsoft-Antispam-Message-Info: ogriXGCg8i6P39MgaAry+HWkzcv40xh7AJnxsvaptJyGCxQ4NmV7NnhN2n/uAzuf+iyOfYFM6ZBiy1eevMAYXIXTXIlJ0V7x70xIXU0cfJknf9ExmFjPg6Xw4uT42Msn/32gZePcbW0IEif+vakNJPYEg4tnKV2rSRVrCpgYDvCJy9Fptmeu7eGBoegm/2b5Ww1xNd5di+GUY6ifaEZxzjqldgpJqfD5QjrZkVFSZFbrZDWUHW/JQ+aitJcUz5TNFYrCBYuwXBd3VVwUqRypwmvdYxYFv7Q0pT4PCjUu7ST2GxyEgdfDKV6M7C/ELgooDYmt+A+Z0GXAkX3Q4B+uVo+BdKgcAauAUBlNOau2j9rxR4WYa3ciQ+l/cL7yCyQAHy9ydNfk9qpe3MmEIqGfH5bMZKdp91U8LHmuA1dllQXDwEXMXFgnAOuIusPP4On9f0nGAPgP/DzbgsiV9+hntcmBOhQjm9Jt5+WDIBO4T+cNIgay+4Y3Mt6Q9Q6eTVMM+wN0Axe8KJ9F2wBWfOztuHFR01bdrIJxsA7NWmfVhKU7RX5wfSZHIb5koaEtaP3r
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(346002)(136003)(396003)(366004)(39860400002)(376002)(186009)(1800799009)(451199024)(6506007)(6486002)(6666004)(6512007)(9686003)(966005)(478600001)(83380400001)(26005)(33716001)(66476007)(66556008)(66946007)(316002)(6636002)(4326008)(41300700001)(5660300002)(6862004)(8936002)(8676002)(2906002)(82960400001)(86362001)(38100700002);
+ SFS:(13230031)(7916004)(376002)(366004)(39860400002)(346002)(136003)(396003)(451199024)(186009)(1800799009)(6486002)(6506007)(86362001)(38100700002)(82960400001)(15650500001)(4744005)(2906002)(6512007)(9686003)(83380400001)(478600001)(41300700001)(6636002)(316002)(6862004)(8676002)(8936002)(4326008)(5660300002)(26005)(66946007)(66556008)(66476007)(33716001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ojR/duS49kF/cduFgXB/R2ONHg/N+PUDgZ9qrbnTO0JjG5quxFikIyb3jAco?=
- =?us-ascii?Q?oCpx5D/fZLtuXuR5L65xu0IPFhkRDcHAaNN3yrh1/N5R0/nHMCmxoBfxrWtA?=
- =?us-ascii?Q?/ihP7uFRr+QhlgGY5pLmUP30uzfMAKTTcBS+XFFwqy6YVlzogoPWkbPfTqmj?=
- =?us-ascii?Q?J3umpMMymjV7SKKNI2OmucPClFdEv1aPLH/YTvW/lEDxo8E6HhgdSB/PIgy3?=
- =?us-ascii?Q?Qew6fzHgEc027I3khmrGN1qDKbMn5rJSv0d0Xd32wRLd77mBI68RYxKig1bW?=
- =?us-ascii?Q?u+LBnME4JQXUZZwANVMmYZwieBO0mTA+MyjTxoIzEKsi6ZWJpKgu9gWPgXZ4?=
- =?us-ascii?Q?ltR0Yby9O4hnViWhXMEocTZtnccHwU7kxYr7FvDVkznmhY0rSnXTxlO5zYRJ?=
- =?us-ascii?Q?hbZsiEdLNH9oqXOunQAElI2ZbvYzoMoxm1dqRqQ8uHxDQoWblIRX9lNzYMEC?=
- =?us-ascii?Q?xjDCjgCNvaQzg3uGqlzd15/hiAyeuqzbGPNsyvRsUZwutkXzQcTPFabvXcmV?=
- =?us-ascii?Q?Dnaew6zEoD5np60wNLinVQ7US4e2JsWa5o+q/SZU6wldEFPTq0eRk59Tpksf?=
- =?us-ascii?Q?sl3e23o0coin587KLXsPn1izy8IU+KGI3D6xlDJjskt71QieEMIKQYG7wMDM?=
- =?us-ascii?Q?BWZyxGZO33a9CwO0p0bo6Xq92bdg3SRuE21fVmNESD5Aa5rDIlfqNuDXYPQ1?=
- =?us-ascii?Q?eTfXesGZIoBRUMVQnOPJEuzLcpVlgBo1nFhJuFtWHx6p+P8btSlw5yd7DzDE?=
- =?us-ascii?Q?J99bTO85uOxlm40wPbmLIs6fe3gzAyrxxbUA3hSD5jZjB956Y31DuP9dSyoo?=
- =?us-ascii?Q?nBSk8dCUlklQs0lpQ6N9xS2RBBaKs846rSOLy2T1YfF3G5T9CvUDKIwlQQHr?=
- =?us-ascii?Q?ruX+uaqxgA1MRZF+/FGL5uem78mol9DBpNoWvkOHuEI80vQD8EOYGCiFKNP8?=
- =?us-ascii?Q?6RrsiQxlX0K2dGUsuTQp2ge/v8/cSFWKNPDpcUQ1geUdAZZLjthj/k++k+52?=
- =?us-ascii?Q?iT3bFgeTmXIcownnCYAmwSfrEFN3mc5ojo0O43XKQgnQ29l6GojnT7zTCr/S?=
- =?us-ascii?Q?wPucExWliEJgT/sP60M2HgejbNYqSDill3g7ERFkF7VEmtZYxHPgqJHzyz2s?=
- =?us-ascii?Q?vA6BBF1I3O+GLVxIvBlvWZizRjU19jK3erhQU2Io87qN2wKU8rXfIHBP2M+a?=
- =?us-ascii?Q?VJo8uoDvvdVuQx+lS5v9+elROdiBoZVGXc5pyGw4oBBgl7GyjZKKhx8U1eC5?=
- =?us-ascii?Q?EFQ/iysoX1nJKiG+3Efy63LfL9sChbw9LJHG+hbs8LFowDKJkirGxFAv0KMC?=
- =?us-ascii?Q?w+IUcazBQixVrKp6v3yxGvmz7vCIfMtTBIeLOmIsn5zUJbc7L5JDhiL1CiSZ?=
- =?us-ascii?Q?svWZUUtDbd29Wr56q/fMPxkEDBgJAN2ZEsd3Ue+unHPOpanHmVSb7zK2tAzP?=
- =?us-ascii?Q?hkC2PoaGBbgQAKAK+QVc+lGOBdzMAW0iMrsDWUxWR3JTbGGXXTW/AxipGzVH?=
- =?us-ascii?Q?Oes1PUbOyH5YHQwsK6WIwrqGWeVU40a2A1tIglg05SMrPOlyBELTgA6Aay5T?=
- =?us-ascii?Q?o2Vcv6Af4eXS/B6Nvq8WTujXtFe0h9gjsDPS3xnMimK5ihnnPbBn/Y2Fusmj?=
- =?us-ascii?Q?Pg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: bcf5e024-301c-42a6-1374-08dbb279d3fa
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TOXl41P0m8SKwOUTVJm9UujPuZFCGRL6Ks26+bc5/muyr/Iaw30MEBvcssk/?=
+ =?us-ascii?Q?46RyaikO+fVx4NOFWIO4TmQbugl6pfn+SiHbu0lFrZb9B4pxtWjSs2roqiiP?=
+ =?us-ascii?Q?tMYlGY+WCrBglWBEgw1xHpPqNV12UvxlLE48jUxoeWrEPMaLKHxUx/RmH6NU?=
+ =?us-ascii?Q?CgUeNYg3WswEfpjxn7HU5nzjLh722j6F0jXFRQPJr/Sxja1RMriNLt7FL8lS?=
+ =?us-ascii?Q?FPilTP88PL9h7U4Au7OmWq5C4D5Qt36KblKIflWlzORIjf1XswoBZQ1xt3kP?=
+ =?us-ascii?Q?eK/+zFFQpuSooNL6XiVPNZGqVvNH44GijQmqiZ0RavSDwrG/ErtaLZhBki6E?=
+ =?us-ascii?Q?dVMPdyYxTxPFlo1dq8JEFopt6iKplIq0RQrhbcWleqaYZ98c0FgZ3jjhCnz9?=
+ =?us-ascii?Q?PNyR0/OVLgKWTz7tt/GnXpdBsjDKTxqQLtSEn6En86QxIUvOZJr3LtTIXGqC?=
+ =?us-ascii?Q?cT+x/yaXvWskLhGAoIYNyAnVBEMQM2jGb+kv8GNpgBmVBhQ6uoJSUcHylc5l?=
+ =?us-ascii?Q?FZsERY3rDFJbIAi6lLMJLosdSnJA8AOjEwgTH1m8wQJU2J+W0VlK/vF0S15l?=
+ =?us-ascii?Q?0dHsKZfjZiqPdf8yxmXyCx+whHzVGYIkGrxeL+gL8sBIxjjYDToYyMl6DpZs?=
+ =?us-ascii?Q?1kEDohluLTdrzMNlc0/54452HiI2L4M4yUhDP/LaEdqV0OFAak7Bnl8iNPY2?=
+ =?us-ascii?Q?FHV7jm5eal/5uNsB8w4LZgfHuAq9jPOixAdi5zmdMOLz9fbVmBoa7F0tV0D/?=
+ =?us-ascii?Q?kckbEpk4f/WL8P/bF70Xd7Lvem7mtoGCfhe1gOoV2BMUKd5TQKazCjK3Vrlo?=
+ =?us-ascii?Q?w+lAZJ252hLeIUwi7tayeDvZI47PJxadUa9OG6jD1VXlRGBjDvwYdeu6MPjX?=
+ =?us-ascii?Q?Txm4ZC0C416ZAWgm2y7LNVTG1+hoaINMn1KnELNC0BM9cbU5bkPsfYFL9xa5?=
+ =?us-ascii?Q?5UPm9/DiPWlGrsqXiCOabq91AF4CCUedlyb8IuiTY0EruvdRid+rQRlxV58f?=
+ =?us-ascii?Q?djtChpKNaHeKWAn+ySIeemkjeRmG3TyEUKL6G0j1iuoqvLxBQ+LfzUxDezOT?=
+ =?us-ascii?Q?k9sHpB2fZLk/L4JGhTkBgx3/WrxPcqgt+FosIlrEwCgUCUOnG9YTs+kLz75y?=
+ =?us-ascii?Q?pKLtcO+32qCem8Aa2HkkJlj8w0S+eORnknKIB66RedEraJCjVmrAiCsgb2aO?=
+ =?us-ascii?Q?A31wDhRXp+s6LUChi+FALYqLCqXtagOlEyQksE6vSBuLTGKdCvIIa0iYQ85W?=
+ =?us-ascii?Q?nVIqlYqhQyiWw0E0AHNGzGqaUVD3hM8GPz51hyNh6nhmOxZ60do8dQvzPlN+?=
+ =?us-ascii?Q?WNIW4PfQDbMEbJndcttYGGjglYOyXaE1zSxsmp1YjWgLEJ9JZ3qR+u94+L6d?=
+ =?us-ascii?Q?dqHtuksxXXc+GlZR1V+LcLJTlV+Ls0RfCkZrkEbYFxR6mCxTyAq5IXxseB9g?=
+ =?us-ascii?Q?SodXOiRh54+CBYpKU3oY4WRdiJz89QU6j+Xi8pqNx8bDQyrn5G/MZeVZr7hW?=
+ =?us-ascii?Q?I9qjNt5Nih3cwPFBygl72Gv2HT08RKjNU+wyhKJCGg9Oafy6XS1vvZFGj7yj?=
+ =?us-ascii?Q?OypT3bx0iNdlZx98vYuGxWd5YBiPZbcupLFvv05kh+whIMUlUt+XryyxWR8E?=
+ =?us-ascii?Q?uw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 440a6b2c-2136-46ee-b3a6-08dbb27a82df
 X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2023 03:47:32.1871 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2023 03:52:25.6648 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fVEEaF9Su91f8dWEzXHf5Geqo3pU2iLVQvIibC+mWHyWhi4SWOvKcbhETEOcyZ4iUOArqMJ13VP5sV4vy1JQHA6ZxkQlsKKTuFFEvjBW034=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4547
+X-MS-Exchange-CrossTenant-UserPrincipalName: avkwAsLpUKnX1NY8hHhJ15FVjhu2N3tUMK7tRT95UadvS9T8qxfIaOB5VzDlMiz9LmaBFfL+6jkjyK+A75AakVoAxUW/0Gll6EWjJHc2x9Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB6904
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe/uapi: Remove MMIO ioctl
+Subject: Re: [Intel-xe] [PATCH] drm/xe/mmio: Account for GSI offset when
+ checking ranges
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,207 +148,16 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 07, 2023 at 07:35:15PM +0000, Francois Dugast wrote:
->This was previously used in UMD for timestamp correlation, which can now
->be done with DRM_XE_QUERY_CS_CYCLES.
+On Fri, Sep 08, 2023 at 04:02:15PM -0700, Matt Roper wrote:
+>On Fri, Sep 08, 2023 at 03:52:27PM -0700, Lucas De Marchi wrote:
+>> Change xe_mmio_in_range() to use the same logic to account for the GT's
+>> adj_offset as the read and write functions. This is needed when checking
+>> ranges for the MCR registers if the GT has an offset to adjust.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>
+>Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-as a breaking uapi/uabi, "can be done" is not sufficient. We need to
-get acks from the UMDs that were/are using this interface. And we can
-only do this before merging upstream.
+CI regressions are unrelated. Applied, thanks.
 
 Lucas De Marchi
-
->
->Link: https://lore.kernel.org/all/20230706042044.GR6953@mdroper-desk1.amr.corp.intel.com/
->Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/636
->Signed-off-by: Francois Dugast <francois.dugast@intel.com>
->---
-> drivers/gpu/drm/xe/xe_device.c |   1 -
-> drivers/gpu/drm/xe/xe_mmio.c   | 102 ---------------------------------
-> include/uapi/drm/xe_drm.h      |  31 ++--------
-> 3 files changed, 4 insertions(+), 130 deletions(-)
->
->diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
->index 109aeb25d19c..10fa1b55578a 100644
->--- a/drivers/gpu/drm/xe/xe_device.c
->+++ b/drivers/gpu/drm/xe/xe_device.c
->@@ -107,7 +107,6 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
-> 	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_DESTROY, xe_exec_queue_destroy_ioctl,
-> 			  DRM_RENDER_ALLOW),
-> 	DRM_IOCTL_DEF_DRV(XE_EXEC, xe_exec_ioctl, DRM_RENDER_ALLOW),
->-	DRM_IOCTL_DEF_DRV(XE_MMIO, xe_mmio_ioctl, DRM_RENDER_ALLOW),
-> 	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_SET_PROPERTY, xe_exec_queue_set_property_ioctl,
-> 			  DRM_RENDER_ALLOW),
-> 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
->diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
->index 3ccc0af4430b..e636e3f3456d 100644
->--- a/drivers/gpu/drm/xe/xe_mmio.c
->+++ b/drivers/gpu/drm/xe/xe_mmio.c
->@@ -422,108 +422,6 @@ int xe_mmio_init(struct xe_device *xe)
-> 	return 0;
-> }
->
->-#define VALID_MMIO_FLAGS (\
->-	DRM_XE_MMIO_BITS_MASK |\
->-	DRM_XE_MMIO_READ |\
->-	DRM_XE_MMIO_WRITE)
->-
->-static const struct xe_reg mmio_read_whitelist[] = {
->-	RING_TIMESTAMP(RENDER_RING_BASE),
->-};
->-
->-int xe_mmio_ioctl(struct drm_device *dev, void *data,
->-		  struct drm_file *file)
->-{
->-	struct xe_device *xe = to_xe_device(dev);
->-	struct xe_gt *gt = xe_root_mmio_gt(xe);
->-	struct drm_xe_mmio *args = data;
->-	unsigned int bits_flag, bytes;
->-	struct xe_reg reg;
->-	bool allowed;
->-	int ret = 0;
->-
->-	if (XE_IOCTL_DBG(xe, args->extensions) ||
->-	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
->-		return -EINVAL;
->-
->-	if (XE_IOCTL_DBG(xe, args->flags & ~VALID_MMIO_FLAGS))
->-		return -EINVAL;
->-
->-	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_MMIO_WRITE) && args->value))
->-		return -EINVAL;
->-
->-	allowed = capable(CAP_SYS_ADMIN);
->-	if (!allowed && ((args->flags & ~DRM_XE_MMIO_BITS_MASK) == DRM_XE_MMIO_READ)) {
->-		unsigned int i;
->-
->-		for (i = 0; i < ARRAY_SIZE(mmio_read_whitelist); i++) {
->-			if (mmio_read_whitelist[i].addr == args->addr) {
->-				allowed = true;
->-				break;
->-			}
->-		}
->-	}
->-
->-	if (XE_IOCTL_DBG(xe, !allowed))
->-		return -EPERM;
->-
->-	bits_flag = args->flags & DRM_XE_MMIO_BITS_MASK;
->-	bytes = 1 << bits_flag;
->-	if (XE_IOCTL_DBG(xe, args->addr + bytes > xe->mmio.size))
->-		return -EINVAL;
->-
->-	/*
->-	 * TODO: migrate to xe_gt_mcr to lookup the mmio range and handle
->-	 * multicast registers. Steering would need uapi extension.
->-	 */
->-	reg = XE_REG(args->addr);
->-
->-	xe_device_mem_access_get(xe);
->-	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->-
->-	if (args->flags & DRM_XE_MMIO_WRITE) {
->-		switch (bits_flag) {
->-		case DRM_XE_MMIO_32BIT:
->-			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
->-				ret = -EINVAL;
->-				goto exit;
->-			}
->-			xe_mmio_write32(gt, reg, args->value);
->-			break;
->-		default:
->-			drm_dbg(&xe->drm, "Invalid MMIO bit size");
->-			fallthrough;
->-		case DRM_XE_MMIO_8BIT: /* TODO */
->-		case DRM_XE_MMIO_16BIT: /* TODO */
->-			ret = -EOPNOTSUPP;
->-			goto exit;
->-		}
->-	}
->-
->-	if (args->flags & DRM_XE_MMIO_READ) {
->-		switch (bits_flag) {
->-		case DRM_XE_MMIO_32BIT:
->-			args->value = xe_mmio_read32(gt, reg);
->-			break;
->-		case DRM_XE_MMIO_64BIT:
->-			args->value = xe_mmio_read64_2x32(gt, reg);
->-			break;
->-		default:
->-			drm_dbg(&xe->drm, "Invalid MMIO bit size");
->-			fallthrough;
->-		case DRM_XE_MMIO_8BIT: /* TODO */
->-		case DRM_XE_MMIO_16BIT: /* TODO */
->-			ret = -EOPNOTSUPP;
->-		}
->-	}
->-
->-exit:
->-	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
->-	xe_device_mem_access_put(xe);
->-
->-	return ret;
->-}
->-
-> /**
->  * xe_mmio_read64_2x32() - Read a 64-bit register as two 32-bit reads
->  * @gt: MMIO target GT
->diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->index 86f16d50e9cc..6c6d1cfa415a 100644
->--- a/include/uapi/drm/xe_drm.h
->+++ b/include/uapi/drm/xe_drm.h
->@@ -106,11 +106,10 @@ struct xe_user_extension {
-> #define DRM_XE_EXEC_QUEUE_CREATE		0x06
-> #define DRM_XE_EXEC_QUEUE_DESTROY		0x07
-> #define DRM_XE_EXEC			0x08
->-#define DRM_XE_MMIO			0x09
->-#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0a
->-#define DRM_XE_WAIT_USER_FENCE		0x0b
->-#define DRM_XE_VM_MADVISE		0x0c
->-#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0d
->+#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x09
->+#define DRM_XE_WAIT_USER_FENCE		0x0a
->+#define DRM_XE_VM_MADVISE		0x0b
->+#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0c
->
-> /* Must be kept compact -- no holes */
-> #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
->@@ -123,7 +122,6 @@ struct xe_user_extension {
-> #define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
-> #define DRM_IOCTL_XE_EXEC_QUEUE_DESTROY		 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_DESTROY, struct drm_xe_exec_queue_destroy)
-> #define DRM_IOCTL_XE_EXEC			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
->-#define DRM_IOCTL_XE_MMIO			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_MMIO, struct drm_xe_mmio)
-> #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
-> #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
-> #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
->@@ -883,27 +881,6 @@ struct drm_xe_exec {
-> 	__u64 reserved[2];
-> };
->
->-struct drm_xe_mmio {
->-	/** @extensions: Pointer to the first extension struct, if any */
->-	__u64 extensions;
->-
->-	__u32 addr;
->-
->-#define DRM_XE_MMIO_8BIT	0x0
->-#define DRM_XE_MMIO_16BIT	0x1
->-#define DRM_XE_MMIO_32BIT	0x2
->-#define DRM_XE_MMIO_64BIT	0x3
->-#define DRM_XE_MMIO_BITS_MASK	0x3
->-#define DRM_XE_MMIO_READ	0x4
->-#define DRM_XE_MMIO_WRITE	0x8
->-	__u32 flags;
->-
->-	__u64 value;
->-
->-	/** @reserved: Reserved */
->-	__u64 reserved[2];
->-};
->-
-> /**
->  * struct drm_xe_wait_user_fence - wait user fence
->  *
->-- 
->2.34.1
->
