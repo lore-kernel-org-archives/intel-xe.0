@@ -4,45 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E21A3CA0EC6
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 21:18:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65E8FCA0EC1
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 21:27:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BD9210E1EB;
-	Mon, 11 Sep 2023 21:18:43 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9441D10E1EB
- for <intel-xe@lists.freedesktop.org>; Mon, 11 Sep 2023 21:18:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694467121; x=1726003121;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HNcwUOV26qU/g2lr/06XezfYISGWlx6wzhhF7MFZvyY=;
- b=PYV3epggPOxcTZhAWJKHX05u/VSBMXe1EIT6eI0b3enjK73FzDnfBb0g
- v9l8kDltJzlr8cSn0zrZGTfNgzN320XKrtfxM+J7YxHEb3SU33mjpZ99G
- KzKa/TA/NnBq7lUgX0QJwXZTWxHtdrsvT80IKcdR5Ps8iDE8S8LxwlWJl
- TsjuXgRCGicb1rA9X9DAdD50UjPWbho4/bVw+xreuZbNJp8WvcirhCIJX
- Z5zSoWbXzSt4sah0ctUosEe2Dqc8JXNa6TQ1fJefZqwYcbwGxqJovUsYZ
- Dy6tOgq2EzXjnfqHogcnmeg8sDc3gw4ULpFzqnmycQYDa7AZ2k88YOLrt g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="464573241"
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="464573241"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 14:18:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="778543313"
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="778543313"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 14:18:17 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Date: Mon, 11 Sep 2023 14:18:29 -0700
-Message-Id: <20230911211829.2049126-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E09610E076;
+	Mon, 11 Sep 2023 21:27:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 99BEA10E076;
+ Mon, 11 Sep 2023 21:27:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 903A9AA01E;
+ Mon, 11 Sep 2023 21:27:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7604112850488692060=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2] drm/xe: Fix fence reservation accouting
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Mon, 11 Sep 2023 21:27:54 -0000
+Message-ID: <169446767455.31366.17125028956180062250@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230911194712.34387-1-gustavo.sousa@intel.com>
+In-Reply-To: <20230911194712.34387-1-gustavo.sousa@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Turn_disp?=
+ =?utf-8?q?lay_finalizers_into_static_functions_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,60 +39,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Both execs and the preempt rebind worker can issue rebinds. Rebinds
-require a fence, per tile, inserted into dma-resv slots of the VM and
-BO (if external). The fence reservation accouting did not take into
-account the number of fences required for rebinds, fix this.
+--===============7604112850488692060==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Rebase
+== Series Details ==
 
-Reported-by: Christopher Snowhill <kode54@gmail.com>
-Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/518
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c | 6 +++++-
- drivers/gpu/drm/xe/xe_vm.c   | 7 ++++++-
- 2 files changed, 11 insertions(+), 2 deletions(-)
+Series: Turn display finalizers into static functions (rev3)
+URL   : https://patchwork.freedesktop.org/series/123443/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 890fadb0a93e..eaf826f1b2a0 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -103,7 +103,11 @@ static int xe_exec_begin(struct drm_exec *exec, struct xe_vm *vm)
- 	if (xe_vm_no_dma_fences(vm))
- 		return 0;
- 
--	err = xe_vm_lock_dma_resv(vm, exec, 1, true);
-+	/*
-+	 * 1 fence for job from exec plus a fence for each tile from a possible
-+	 * rebind
-+	 */
-+	err = xe_vm_lock_dma_resv(vm, exec, 1 + vm->xe->info.tile_count, true);
- 	if (err)
- 		return err;
- 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index a6a0f17fec1d..03ee6993e7c7 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -515,8 +515,13 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
- 	struct xe_vma *vma;
- 	int err;
- 
-+	/*
-+	 * 1 fence for each preempt fence plus a fence for each tile from a
-+	 * possible rebind
-+	 */
- 	err = drm_exec_prepare_obj(exec, &xe_vm_ttm_bo(vm)->base,
--				   vm->preempt.num_exec_queues);
-+				   vm->preempt.num_exec_queues +
-+				   vm->xe->info.tile_count);
- 	if (err)
- 		return err;
- 
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-366-8b1dfde2899992006000b358a282173604338f88_BAT -> xe-pw-123443v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-123443v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +2 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-366-8b1dfde2899992006000b358a282173604338f88/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123443v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+
+
+Build changes
+-------------
+
+  * Linux: xe-366-8b1dfde2899992006000b358a282173604338f88 -> xe-pw-123443v3
+
+  IGT_7480: a8d38db9ac258d7fd71b2cf7607e259a864f95be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-366-8b1dfde2899992006000b358a282173604338f88: 8b1dfde2899992006000b358a282173604338f88
+  xe-pw-123443v3: 123443v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123443v3/index.html
+
+--===============7604112850488692060==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Turn display finalizers into static functions (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123443/">https://patchwork.freedesktop.org/series/123443/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123443v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123443v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-366-8b1dfde2899992006000b358a282173604338f88_BAT -&gt; xe-pw-123443v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-123443v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-366-8b1dfde2899992006000b358a282173604338f88/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123443v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +2 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-366-8b1dfde2899992006000b358a282173604338f88 -&gt; xe-pw-123443v3</li>
+</ul>
+<p>IGT_7480: a8d38db9ac258d7fd71b2cf7607e259a864f95be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-366-8b1dfde2899992006000b358a282173604338f88: 8b1dfde2899992006000b358a282173604338f88<br />
+  xe-pw-123443v3: 123443v3</p>
+
+</body>
+</html>
+
+--===============7604112850488692060==--
