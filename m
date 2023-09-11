@@ -4,72 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6D5F4EE57DF
-	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 12:33:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ACF0EE7FF4
+	for <intel-xe@archiver.kernel.org>; Mon, 11 Sep 2023 12:40:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37C4310E2E0;
-	Mon, 11 Sep 2023 12:33:50 +0000 (UTC)
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com
- [IPv6:2a00:1450:4864:20::32d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3900910E07C;
- Wed,  6 Sep 2023 08:34:05 +0000 (UTC)
-Received: by mail-wm1-x32d.google.com with SMTP id
- 5b1f17b1804b1-3ff1c397405so33711085e9.3; 
- Wed, 06 Sep 2023 01:34:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20221208; t=1693989243; x=1694594043; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=WXUiG0N/v5C+H/IW/AbWw2gVJrJnScZs8V5H+ZsKEsQ=;
- b=lgeqgSfaDXuQ+f191BGez4XxSoWRhP93e7iVFB7SOMlUeUfCpFPUAhIGMXAlbQIDZW
- 0COg9dZJSIAA9euH2NzVrYBYNHi2mdwJHY/AKbR0YkqczrM44Kw6cUXTFMBZtffmIYzZ
- yne4EfH5SJo7vbyqYtNwjP3APgtil8M7hflB14MYxoTQCvqZ9TRoWbT2D+qAciL0qA34
- 33aYbxlPzH4ftyC2O0Qeu4Bk1C7PlvcvxgS7vKucWR1Eekvo2ZMUR6XnFUN4usNaUrVs
- 07bEEnGp+ytS0C9XbnuY7Jj6CJ/2tHikVSxQlVzjLQuiWCJf+0RFAR3cxSG+eGovhnii
- 2RSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20221208; t=1693989243; x=1694594043;
- h=content-transfer-encoding:in-reply-to:from:references:cc:to
- :content-language:subject:user-agent:mime-version:date:message-id
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=WXUiG0N/v5C+H/IW/AbWw2gVJrJnScZs8V5H+ZsKEsQ=;
- b=bGHJjwunSkQlS1l99Xz0De2zO2B8kzqMLqE6Pog+vjHNVZEmhk67KceGtaLYiZuEy2
- ZcoraQgOOGEkQIY2zCFYIrdmYV7YuFYKat0HmLj+pjvJm5NAQS+NT65RE8WbG2BWAolC
- yshzKDFoUhDZLHT1W6/7ofVEFGRFUq/2dmSECnYG0hJBeO/eqbaQR9cSEM2IjX4w9F5b
- Fcv6qNCwdlnXot1e236H7k9R9swVhALqx0oiJ47UxIxLtUJ/Qoirqkw1T+dElphq6cb6
- pdtkGe+O2TjfAXflkvfC7KTh3ZTeZhhA67m1ZsfG9+aunrSpJ/Sts454gh/mDvVHa1Jq
- BQ0w==
-X-Gm-Message-State: AOJu0Ywk0dgZE6ksC//EV/yvgcyatoR+/8JRizCVnoECWNsbHLbJbqas
- QNfpsk79QeYL3iZwDusDQVGHuNChllmMiw==
-X-Google-Smtp-Source: AGHT+IFG7kInihoWZiZVzvnKai9uupXkq31UCB5s1VkCReYepFkIhZ1IE/OwCNGJCZEPR0fJHPZk5g==
-X-Received: by 2002:a05:600c:d5:b0:401:aa8f:756f with SMTP id
- u21-20020a05600c00d500b00401aa8f756fmr1676433wmm.17.1693989243344; 
- Wed, 06 Sep 2023 01:34:03 -0700 (PDT)
-Received: from [10.254.108.106] (munvpn.amd.com. [165.204.72.6])
- by smtp.gmail.com with ESMTPSA id
- x9-20020adfdd89000000b003196b1bb528sm19872279wrl.64.2023.09.06.01.34.01
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 06 Sep 2023 01:34:02 -0700 (PDT)
-Message-ID: <13c39e75-2ba7-2a1c-ab9b-acf10ad23a3f@gmail.com>
-Date: Wed, 6 Sep 2023 10:34:00 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20230905085832.2103-1-thomas.hellstrom@linux.intel.com>
- <20230905085832.2103-4-thomas.hellstrom@linux.intel.com>
- <eabe3626-9fd1-c56f-5405-44653d2aab33@gmail.com>
- <2457e9ba-ecdb-b427-692b-a5c85f9e8828@linux.intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <ckoenig.leichtzumerken@gmail.com>
-In-Reply-To: <2457e9ba-ecdb-b427-692b-a5c85f9e8828@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+	by gabe.freedesktop.org (Postfix) with ESMTP id 931D210E2DD;
+	Mon, 11 Sep 2023 12:40:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65A8410E2D4;
+ Mon, 11 Sep 2023 12:40:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694436037; x=1725972037;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=uA7/uuJH+DamdyK+hQI04MseMpyNnZgG5t/+7pVeONE=;
+ b=eGGW2SjVXn1w8InGmrafrebX3gmnXOX2j4tfLbWlwB9lniW+9ycqSve3
+ FhkBbSD2SjFiTGgF7+BdYbbCqRuUdyeezASiWk8wHa/lNcUu0dvCAXLCP
+ 8oQdtcOGB0/Dm96Wpzv3sd2Rwqz2HvHEoFqncuYZhg4wTmCVTrl6ylKHH
+ RdaY44mciXMaxcO7RPcCKFKaoPbeneOdUkIEYGuCp8v4rkdQ02TnQS8+6
+ l3d3+18QlsB8OGUw5GH+0lxZT5jjWFLynGdFDfV/fAxuot0TLIj6TmuOV
+ ZAcZoxmzceHoI+zD9fgzQ4gFFbhgvZrjMK4qiyIGQ20JhHh1JhZeLC5q0 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="409036879"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="409036879"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 05:40:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="886505757"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="886505757"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Sep 2023 05:40:12 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Mon, 11 Sep 2023 05:40:36 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Mon, 11 Sep 2023 05:40:35 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Mon, 11 Sep 2023 05:40:35 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.108)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Mon, 11 Sep 2023 05:40:35 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Md0u8h+FPhQPRFs9ImYsdALg/G6Qxw++wd+67sSmZ06RkrS3sucgU1K3H+IXEkquzFJ9mwcEyeT0orvpU3YnoxAYfcRtpGQfkv5EhuorZJyD7BqcGe7NuUR/iVHN/sIWjNxq5oBny77Fxh5RuX9op0zSwgHl4je1/JqD5efjrqQFAYMNEORaAoYHCxbsYPx2GDq/6MS+rrdaC6qi/EKP6X0/EocFkLlV0gzibCv+SGxrRQmB9sxSiiqqx5inRNjszhL5UvkhjVA3dqUBRQKbZtDHu4cB7yv416/AZTfd5ud2wCkeeHVSOHiexjkRrCHvid58Yvvm/2EH5HJxjgGuSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=mEWzU+zWZHHOAuCWjwibdWlOs+JMaORUy8wS7NVykR8=;
+ b=Z9NX7CN6Kh7sUGU8P/1LBBmzyV9M4Nmxv4iVu4dZLgnvMrWMCJxycfaErEmp55ItjEev841nXhCTOcduCGxuDXgA9KsdnFqE4j7kaQSUg7qpchRjsTSPYd9t8RTT8SQQcJ+N+9aRvlTMgpnZBZaxgg3hHYBnRTsisBPAFu7vCZzyBpuzsYLAlT5VcFJ6UapxgDRPhwQ4TNshxy/8eLHB6hegDCX9rzVGJn5zck9iitxe99kV2RQ0VimyD2pNtSm0jwyjPLjT6Mg7V41L1YKuZlDty3d+0VJiJS2TUpUWQJMffvQzI2yAtjvjx9BW/bsyOIl5hVcNsfAqLYZmpXIvHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from CY8PR11MB7828.namprd11.prod.outlook.com (2603:10b6:930:78::8)
+ by SN7PR11MB6946.namprd11.prod.outlook.com (2603:10b6:806:2a9::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.31; Mon, 11 Sep
+ 2023 12:40:33 +0000
+Received: from CY8PR11MB7828.namprd11.prod.outlook.com
+ ([fe80::5772:f514:b746:5723]) by CY8PR11MB7828.namprd11.prod.outlook.com
+ ([fe80::5772:f514:b746:5723%5]) with mapi id 15.20.6768.029; Mon, 11 Sep 2023
+ 12:40:33 +0000
+Date: Mon, 11 Sep 2023 14:40:25 +0200
+From: Francois Dugast <francois.dugast@intel.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZP8KuXoyS8RbRWws@fdugast-desk.home>
+References: <20230907135339.7971-1-thomas.hellstrom@linux.intel.com>
+ <20230907135339.7971-2-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 11 Sep 2023 12:33:48 +0000
-Subject: Re: [Intel-xe] [PATCH 3/3] drm/drm_exec: Work around a WW mutex
- lockdep oddity
+In-Reply-To: <20230907135339.7971-2-thomas.hellstrom@linux.intel.com>
+Organization: Intel Corporation
+X-ClientProxiedBy: FR0P281CA0233.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:b2::6) To CY8PR11MB7828.namprd11.prod.outlook.com
+ (2603:10b6:930:78::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY8PR11MB7828:EE_|SN7PR11MB6946:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8100cddc-eb26-4527-1fce-08dbb2c44a59
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RMVDfxnRjOyueCbtYrpkoBGY9eKFyqAH2YS1Cy9IcN3Uc3TGPCSwNk5J9nQTH+5Cgfn5sTmMGzSWSGiiulT+tXVswNtzNWS18GhUmyVPJJ1GKlwFRIOCZFccnRKbB9bYsOC6mKerDeoapatH5Q7XCcv6bpf0C4WpX38wyOA72BkVWTJ+od2x7irBpmhVAramJwpcXN0Elp58Z6StWiymGarb3j1Wg6tN6WZsybA9dlycV12B3I3MF1w6ODJJw38AijdcXBQnPTqZD0hxWA2XYaB7sM6HDX6XgLTwo4gjhThbOsFnjKNItoulsl5LL/RVOdM63ArYHMGl+5Rch2W5q5K1ZVqEEgwglFMcm0Ht2kIYIUC/h0pJpf1U4FlCYqagXMSgnK7IWgwvPMV+CPK1MbLeJZFkGcVEld2cPxeWrRSVGLl4/+TCeMOktSxEcjDqDhBHwU/2le7Fof3Udb1zH+fC3LK0D/xGzE/wZ2xyVPdMOVbdZ5iEwdULKEpLF8aBA4LVzCNiCwoTo21yqkX+oFLvILmY91G+lKR38kdEkZ0vyjaWw9aeqefUWQX2mvRa
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY8PR11MB7828.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(136003)(396003)(366004)(346002)(376002)(451199024)(1800799009)(186009)(83380400001)(9686003)(82960400001)(6512007)(44832011)(36756003)(2906002)(8676002)(5660300002)(54906003)(8936002)(66946007)(4326008)(316002)(41300700001)(66476007)(66556008)(6916009)(6486002)(478600001)(6506007)(6666004)(38100700002)(86362001)(36916002)(66574015)(26005);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?CeM+wxEyHbweX1MzEpNiQv46N5eOMCNCQthjfAOi6xSK8G+L2MwPoyvwE2?=
+ =?iso-8859-1?Q?ZFKjy0loPr9uOX3453kVf08vDjvlizK/O/sgfxbrZ7jmG6hs6KULgdIxlQ?=
+ =?iso-8859-1?Q?hW+28ZRP7HwzOP7Yw16grQmEF8w3Pp0p11KkU5bsuHVxPgw7NyLoa+b9fX?=
+ =?iso-8859-1?Q?ARFx8G2ZehhM/Uqfbtv4mOFyieNmn0MFKm/mceghEnt/o5vTKTrhzZY+6c?=
+ =?iso-8859-1?Q?qJMJY8Ih0fTZPUx8Pizo0MXcrbgU1/5F2GtNsIPxJfmuvmSe28yBfFDPIF?=
+ =?iso-8859-1?Q?cUn+8vP5IfGTLUb1w0L/5vWtzZXWij+XmPGj2+HRoDosSjiXbBtRJPhoem?=
+ =?iso-8859-1?Q?VkbhwUZRMesqwIA5qR2k/bzvv7Q/17LEKTX6ofdGBAkij2Kncs2qPZtW9Q?=
+ =?iso-8859-1?Q?0htXd1BGf5sAuBcizmEmf+jnpgOhuZA4Y2YB8xEuMpsoamSY6pvyj2aaZw?=
+ =?iso-8859-1?Q?i0+fPr93dxAV0fsdf6qqFUNCoEPen0nAQ8u5yzxeCj1CPBiyNPz9QIGTa/?=
+ =?iso-8859-1?Q?lzFu6fbWt7TrZ7Qw0d5qdM51LFUUjFAhyMEH0bdAMUar34dfH5oLW78noU?=
+ =?iso-8859-1?Q?RmgNSzwLIHf29tX9uRbBVvIRe8BGq3mOTs0lc3lVwakrbB/M0A+wuhCXtD?=
+ =?iso-8859-1?Q?khEJuZUxQP1GYC54u1LcKvdNDD5ZdXAcX4pCPUBEyU3Mmk7By6IaV/KxPH?=
+ =?iso-8859-1?Q?dR7Xmu/So+G1lItIsBBE0Zgl99Nkek1c/Y/X0mJg2tMKxO8vGS8O9gZEHV?=
+ =?iso-8859-1?Q?GmxE3XMG5+JWjIQMuNcUrET9PoAnJWAJf4TtAVAikt8HZdWyxES2UOKBwN?=
+ =?iso-8859-1?Q?4u1XV0wz3MRSB4rkgzGfhtbtYlWipFqJyDKUXfAqqCELH3yYX/kwm1hYVv?=
+ =?iso-8859-1?Q?wUOZuV5AnfPQ7NJg3CwJEjalJ5GH+rlFWC1acD+kJNTNzCRCUahZ9hsn9C?=
+ =?iso-8859-1?Q?RgSgDmYYa5vYI3z44qzW6IYxnYJM6VdmcruEQie9nTzcP7ajZQPiGIdCfv?=
+ =?iso-8859-1?Q?j4mZxmUKXYdXSX87tDYkyGenCpSuowe6sooSa8wMPSaPRH8PapLQ1FCgoB?=
+ =?iso-8859-1?Q?vTFwe/+cvDm8jF1OZy74yGcWgR2OrSl9u8iki4NIzDhL1iMQsjjhISA6Hu?=
+ =?iso-8859-1?Q?bZqXSLTXCXdAyEDjsV0lrZJnlLZQE/2ddXcgeNZkaYsrZyRlHw30nNkJcj?=
+ =?iso-8859-1?Q?4r0PdL0fE/T8K3doKBzO/soM5szQFQ9aVAcK7orMWUfLv8XV5p8j1Hj2de?=
+ =?iso-8859-1?Q?fclA6CAod186nDnCoY2Qn8BXyEQ/cN0jWZZNurrDKt1LLaVsuU+CqaMsHC?=
+ =?iso-8859-1?Q?haCRJ2r/yqlhbqsKtCTNd9zGwi9G/bQx1AX45X/6g5Bqc5aH/uQY02QQPb?=
+ =?iso-8859-1?Q?X4y7Qq1MF/iQSgy3jeXsaC6Pr5LomNkWjEJ0rTrMkpUDwvgAMPHR+f0dbV?=
+ =?iso-8859-1?Q?8wzbHnIXXh/lgDyppFNl39ffYCUU0uM9peL2UK7avQnmQdkVMVk7W+mcm9?=
+ =?iso-8859-1?Q?jhMsOnAa3+RdDplJRsDsMtmPoJ68qgCohTRij6ozCPoH9rkWxm7CLTnv6v?=
+ =?iso-8859-1?Q?09uhXtJJnigp9uCwBpV3b0EoJCpTbfeGUmBD/fUcOM7o46BIbLUZkm753a?=
+ =?iso-8859-1?Q?7Ndq2Y+V77cLeLfExofmoJZqUD9sBW+X91Tp2QzoME+pt1uU/u3Q1IDQ?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8100cddc-eb26-4527-1fce-08dbb2c44a59
+X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7828.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Sep 2023 12:40:33.5575 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4yfNuvaA9HJwPadfpVKqI4M2R7WAwRR/kA8TC8F1xf6mL2FV0sZQkz39PHDfCXhTkCgUlSdLRErCDuAmrbNIAewTNLb87cr7KZLRGS5K9sc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6946
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v3 1/2] drm/tests: helpers: Avoid a driver uaf
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,186 +150,170 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>,
- Danilo Krummrich <dakr@redhat.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, dri-devel@lists.freedesktop.org,
+ Maxime Ripard <mripard@kernel.org>, stable@vger.kernel.org,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 05.09.23 um 16:29 schrieb Thomas Hellström:
-> Hi, Christian
->
-> On 9/5/23 15:14, Christian König wrote:
->> Am 05.09.23 um 10:58 schrieb Thomas Hellström:
->>> If *any* object of a certain WW mutex class is locked, lockdep will
->>> consider *all* mutexes of that class as locked. Also the lock 
->>> allocation
->>> tracking code will apparently register only the address of the first
->>> mutex locked in a sequence.
->>> This has the odd consequence that if that first mutex is unlocked and
->>> its memory then freed, the lock alloc tracking code will assume that 
->>> memory
->>> is freed with a held lock in there.
->>>
->>> For now, work around that for drm_exec by releasing the first grabbed
->>> object lock last.
->>>
->>> Related lock alloc tracking warning:
->>> [  322.660067] =========================
->>> [  322.660070] WARNING: held lock freed!
->>> [  322.660074] 6.5.0-rc7+ #155 Tainted: G     U           N
->>> [  322.660078] -------------------------
->>> [  322.660081] kunit_try_catch/4981 is freeing memory 
->>> ffff888112adc000-ffff888112adc3ff, with a lock still held there!
->>> [  322.660089] ffff888112adc1a0 
->>> (reservation_ww_class_mutex){+.+.}-{3:3}, at: 
->>> drm_exec_lock_obj+0x11a/0x600 [drm_exec]
->>> [  322.660104] 2 locks held by kunit_try_catch/4981:
->>> [  322.660108]  #0: ffffc9000343fe18 
->>> (reservation_ww_class_acquire){+.+.}-{0:0}, at: 
->>> test_early_put+0x22f/0x490 [drm_exec_test]
->>> [  322.660123]  #1: ffff888112adc1a0 
->>> (reservation_ww_class_mutex){+.+.}-{3:3}, at: 
->>> drm_exec_lock_obj+0x11a/0x600 [drm_exec]
->>> [  322.660135]
->>>                 stack backtrace:
->>> [  322.660139] CPU: 7 PID: 4981 Comm: kunit_try_catch Tainted: G     
->>> U           N 6.5.0-rc7+ #155
->>> [  322.660146] Hardware name: ASUS System Product Name/PRIME B560M-A 
->>> AC, BIOS 0403 01/26/2021
->>> [  322.660152] Call Trace:
->>> [  322.660155]  <TASK>
->>> [  322.660158]  dump_stack_lvl+0x57/0x90
->>> [  322.660164]  debug_check_no_locks_freed+0x20b/0x2b0
->>> [  322.660172]  slab_free_freelist_hook+0xa1/0x160
->>> [  322.660179]  ? drm_exec_unlock_all+0x168/0x2a0 [drm_exec]
->>> [  322.660186]  __kmem_cache_free+0xb2/0x290
->>> [  322.660192]  drm_exec_unlock_all+0x168/0x2a0 [drm_exec]
->>> [  322.660200]  drm_exec_fini+0xf/0x1c0 [drm_exec]
->>> [  322.660206]  test_early_put+0x289/0x490 [drm_exec_test]
->>> [  322.660215]  ? __pfx_test_early_put+0x10/0x10 [drm_exec_test]
->>> [  322.660222]  ? __kasan_check_byte+0xf/0x40
->>> [  322.660227]  ? __ksize+0x63/0x140
->>> [  322.660233]  ? drmm_add_final_kfree+0x3e/0xa0 [drm]
->>> [  322.660289]  ? _raw_spin_unlock_irqrestore+0x30/0x60
->>> [  322.660294]  ? lockdep_hardirqs_on+0x7d/0x100
->>> [  322.660301]  ? __pfx_kunit_try_run_case+0x10/0x10 [kunit]
->>> [  322.660310]  ? __pfx_kunit_generic_run_threadfn_adapter+0x10/0x10 
->>> [kunit]
->>> [  322.660319]  kunit_generic_run_threadfn_adapter+0x4a/0x90 [kunit]
->>> [  322.660328]  kthread+0x2e7/0x3c0
->>> [  322.660334]  ? __pfx_kthread+0x10/0x10
->>> [  322.660339]  ret_from_fork+0x2d/0x70
->>> [  322.660345]  ? __pfx_kthread+0x10/0x10
->>> [  322.660349]  ret_from_fork_asm+0x1b/0x30
->>> [  322.660358]  </TASK>
->>> [  322.660818]     ok 8 test_early_put
->>>
->>> Cc: Christian König <christian.koenig@amd.com>
->>> Cc: Boris Brezillon <boris.brezillon@collabora.com>
->>> Cc: Danilo Krummrich <dakr@redhat.com>
->>> Cc: dri-devel@lists.freedesktop.org
->>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>> ---
->>>   drivers/gpu/drm/drm_exec.c |  2 +-
->>>   include/drm/drm_exec.h     | 35 +++++++++++++++++++++++++++++++----
->>>   2 files changed, 32 insertions(+), 5 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
->>> index ff69cf0fb42a..5d2809de4517 100644
->>> --- a/drivers/gpu/drm/drm_exec.c
->>> +++ b/drivers/gpu/drm/drm_exec.c
->>> @@ -56,7 +56,7 @@ static void drm_exec_unlock_all(struct drm_exec 
->>> *exec)
->>>       struct drm_gem_object *obj;
->>>       unsigned long index;
->>>   -    drm_exec_for_each_locked_object(exec, index, obj) {
->>> +    drm_exec_for_each_locked_object_reverse(exec, index, obj) {
->>
->> Well that's a really good catch, just one more additional thought below.
->>
->>>           dma_resv_unlock(obj->resv);
->>>           drm_gem_object_put(obj);
->>>       }
->>> diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
->>> index e0462361adf9..55764cf7c374 100644
->>> --- a/include/drm/drm_exec.h
->>> +++ b/include/drm/drm_exec.h
->>> @@ -51,6 +51,20 @@ struct drm_exec {
->>>       struct drm_gem_object *prelocked;
->>>   };
->>>   +/**
->>> + * drm_exec_obj() - Return the object for a give drm_exec index
->>> + * @exec: Pointer to the drm_exec context
->>> + * @index: The index.
->>> + *
->>> + * Return: Pointer to the locked object corresponding to @index if
->>> + * index is within the number of locked objects. NULL otherwise.
->>> + */
->>> +static inline struct drm_gem_object *
->>> +drm_exec_obj(struct drm_exec *exec, unsigned long index)
->>> +{
->>> +    return index < exec->num_objects ? exec->objects[index] : NULL;
->>> +}
->>> +
->>>   /**
->>>    * drm_exec_for_each_locked_object - iterate over all the locked 
->>> objects
->>>    * @exec: drm_exec object
->>> @@ -59,10 +73,23 @@ struct drm_exec {
->>>    *
->>>    * Iterate over all the locked GEM objects inside the drm_exec 
->>> object.
->>>    */
->>> -#define drm_exec_for_each_locked_object(exec, index, obj) \
->>> -    for (index = 0, obj = (exec)->objects[0];        \
->>> -         index < (exec)->num_objects;            \
->>> -         ++index, obj = (exec)->objects[index])
->>> +#define drm_exec_for_each_locked_object(exec, index, obj)        \
->>> +    for ((index) = 0; ((obj) = drm_exec_obj(exec, index)); ++(index))
->>
->> Mhm, that makes it possible to modify the number of objects while 
->> inside the loop, doesn't it?
->
-> Sorry, you lost me a bit there. Isn't that possible with the previous 
-> code as well?
+On Thu, Sep 07, 2023 at 03:53:38PM +0200, Thomas Hellstr�m wrote:
+> when using __drm_kunit_helper_alloc_drm_device() the driver may be
+> dereferenced by device-managed resources up until the device is
+> freed, which is typically later than the kunit-managed resource code
+> frees it. Fix this by simply make the driver device-managed as well.
+> 
+> In short, the sequence leading to the UAF is as follows:
+> 
+> INIT:
+> Code allocates a struct device as a kunit-managed resource.
+> Code allocates a drm driver as a kunit-managed resource.
+> Code allocates a drm device as a device-managed resource.
+> 
+> EXIT:
+> Kunit resource cleanup frees the drm driver
+> Kunit resource cleanup puts the struct device, which starts a
+>       device-managed resource cleanup
+> device-managed cleanup calls drm_dev_put()
+> drm_dev_put() dereferences the (now freed) drm driver -> Boom.
+> 
+> Related KASAN message:
+> [55272.551542] ==================================================================
+> [55272.551551] BUG: KASAN: slab-use-after-free in drm_dev_put.part.0+0xd4/0xe0 [drm]
+> [55272.551603] Read of size 8 at addr ffff888127502828 by task kunit_try_catch/10353
+> 
+> [55272.551612] CPU: 4 PID: 10353 Comm: kunit_try_catch Tainted: G     U           N 6.5.0-rc7+ #155
+> [55272.551620] Hardware name: ASUS System Product Name/PRIME B560M-A AC, BIOS 0403 01/26/2021
+> [55272.551626] Call Trace:
+> [55272.551629]  <TASK>
+> [55272.551633]  dump_stack_lvl+0x57/0x90
+> [55272.551639]  print_report+0xcf/0x630
+> [55272.551645]  ? _raw_spin_lock_irqsave+0x5f/0x70
+> [55272.551652]  ? drm_dev_put.part.0+0xd4/0xe0 [drm]
+> [55272.551694]  kasan_report+0xd7/0x110
+> [55272.551699]  ? drm_dev_put.part.0+0xd4/0xe0 [drm]
+> [55272.551742]  drm_dev_put.part.0+0xd4/0xe0 [drm]
+> [55272.551783]  devres_release_all+0x15d/0x1f0
+> [55272.551790]  ? __pfx_devres_release_all+0x10/0x10
+> [55272.551797]  device_unbind_cleanup+0x16/0x1a0
+> [55272.551802]  device_release_driver_internal+0x3e5/0x540
+> [55272.551808]  ? kobject_put+0x5d/0x4b0
+> [55272.551814]  bus_remove_device+0x1f1/0x3f0
+> [55272.551819]  device_del+0x342/0x910
+> [55272.551826]  ? __pfx_device_del+0x10/0x10
+> [55272.551830]  ? lock_release+0x339/0x5e0
+> [55272.551836]  ? kunit_remove_resource+0x128/0x290 [kunit]
+> [55272.551845]  ? __pfx_lock_release+0x10/0x10
+> [55272.551851]  platform_device_del.part.0+0x1f/0x1e0
+> [55272.551856]  ? _raw_spin_unlock_irqrestore+0x30/0x60
+> [55272.551863]  kunit_remove_resource+0x195/0x290 [kunit]
+> [55272.551871]  ? _raw_spin_unlock_irqrestore+0x30/0x60
+> [55272.551877]  kunit_cleanup+0x78/0x120 [kunit]
+> [55272.551885]  ? __kthread_parkme+0xc1/0x1f0
+> [55272.551891]  ? __pfx_kunit_try_run_case_cleanup+0x10/0x10 [kunit]
+> [55272.551900]  ? __pfx_kunit_generic_run_threadfn_adapter+0x10/0x10 [kunit]
+> [55272.551909]  kunit_generic_run_threadfn_adapter+0x4a/0x90 [kunit]
+> [55272.551919]  kthread+0x2e7/0x3c0
+> [55272.551924]  ? __pfx_kthread+0x10/0x10
+> [55272.551929]  ret_from_fork+0x2d/0x70
+> [55272.551935]  ? __pfx_kthread+0x10/0x10
+> [55272.551940]  ret_from_fork_asm+0x1b/0x30
+> [55272.551948]  </TASK>
+> 
+> [55272.551953] Allocated by task 10351:
+> [55272.551956]  kasan_save_stack+0x1c/0x40
+> [55272.551962]  kasan_set_track+0x21/0x30
+> [55272.551966]  __kasan_kmalloc+0x8b/0x90
+> [55272.551970]  __kmalloc+0x5e/0x160
+> [55272.551976]  kunit_kmalloc_array+0x1c/0x50 [kunit]
+> [55272.551984]  drm_exec_test_init+0xfa/0x2c0 [drm_exec_test]
+> [55272.551991]  kunit_try_run_case+0xdd/0x250 [kunit]
+> [55272.551999]  kunit_generic_run_threadfn_adapter+0x4a/0x90 [kunit]
+> [55272.552008]  kthread+0x2e7/0x3c0
+> [55272.552012]  ret_from_fork+0x2d/0x70
+> [55272.552017]  ret_from_fork_asm+0x1b/0x30
+> 
+> [55272.552024] Freed by task 10353:
+> [55272.552027]  kasan_save_stack+0x1c/0x40
+> [55272.552032]  kasan_set_track+0x21/0x30
+> [55272.552036]  kasan_save_free_info+0x27/0x40
+> [55272.552041]  __kasan_slab_free+0x106/0x180
+> [55272.552046]  slab_free_freelist_hook+0xb3/0x160
+> [55272.552051]  __kmem_cache_free+0xb2/0x290
+> [55272.552056]  kunit_remove_resource+0x195/0x290 [kunit]
+> [55272.552064]  kunit_cleanup+0x78/0x120 [kunit]
+> [55272.552072]  kunit_generic_run_threadfn_adapter+0x4a/0x90 [kunit]
+> [55272.552080]  kthread+0x2e7/0x3c0
+> [55272.552085]  ret_from_fork+0x2d/0x70
+> [55272.552089]  ret_from_fork_asm+0x1b/0x30
+> 
+> [55272.552096] The buggy address belongs to the object at ffff888127502800
+>                 which belongs to the cache kmalloc-512 of size 512
+> [55272.552105] The buggy address is located 40 bytes inside of
+>                 freed 512-byte region [ffff888127502800, ffff888127502a00)
+> 
+> [55272.552115] The buggy address belongs to the physical page:
+> [55272.552119] page:00000000af6c70ff refcount:1 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x127500
+> [55272.552127] head:00000000af6c70ff order:3 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+> [55272.552133] anon flags: 0x17ffffc0010200(slab|head|node=0|zone=2|lastcpupid=0x1fffff)
+> [55272.552141] page_type: 0xffffffff()
+> [55272.552145] raw: 0017ffffc0010200 ffff888100042c80 0000000000000000 dead000000000001
+> [55272.552152] raw: 0000000000000000 0000000080200020 00000001ffffffff 0000000000000000
+> [55272.552157] page dumped because: kasan: bad access detected
+> 
+> [55272.552163] Memory state around the buggy address:
+> [55272.552167]  ffff888127502700: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+> [55272.552173]  ffff888127502780: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+> [55272.552178] >ffff888127502800: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+> [55272.552184]                                   ^
+> [55272.552187]  ffff888127502880: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+> [55272.552193]  ffff888127502900: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+> [55272.552198] ==================================================================
+> [55272.552203] Disabling lock debugging due to kernel taint
+> 
+> v2:
+> - Update commit message, add Fixes: tag and Cc stable.
+> v3:
+> - Further commit message updates (Maxime Ripard).
+> 
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: <stable@vger.kernel.org> # v6.3+
+> Fixes: d98780310719 ("drm/tests: helpers: Allow to pass a custom drm_driver")
+> Signed-off-by: Thomas Hellstr�m <thomas.hellstrom@linux.intel.com>
 
-Yeah, indeed. Reviewed-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Francois Dugast <francois.dugast@intel.com>
 
-Regards,
-Christian.
-
->
-> /Thanks,
->
-> Thomas
->
->
->
->>
->> I'm not sure if that's a good idea or not.
->>
->> Regards,
->> Christian.
->>
->>> +
->>> +/**
->>> + * drm_exec_for_each_locked_object_reverse - iterate over all the 
->>> locked
->>> + * objects in reverse locking order
->>> + * @exec: drm_exec object
->>> + * @index: unsigned long index for the iteration
->>> + * @obj: the current GEM object
->>> + *
->>> + * Iterate over all the locked GEM objects inside the drm_exec 
->>> object in
->>> + * reverse locking order. Note that @index may go below zero and wrap,
->>> + * but that will be caught by drm_exec_object(), returning a NULL 
->>> object.
->>> + */
->>> +#define drm_exec_for_each_locked_object_reverse(exec, index, obj)    \
->>> +    for ((index) = (exec)->num_objects - 1; \
->>> +         ((obj) = drm_exec_obj(exec, index)); --(index))
->>>     /**
->>>    * drm_exec_until_all_locked - loop until all GEM objects are locked
->>
-
+> ---
+>  include/drm/drm_kunit_helpers.h | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
+> diff --git a/include/drm/drm_kunit_helpers.h b/include/drm/drm_kunit_helpers.h
+> index 514c8a7a32f0..ba483c87f0e7 100644
+> --- a/include/drm/drm_kunit_helpers.h
+> +++ b/include/drm/drm_kunit_helpers.h
+> @@ -3,6 +3,8 @@
+>  #ifndef DRM_KUNIT_HELPERS_H_
+>  #define DRM_KUNIT_HELPERS_H_
+>  
+> +#include <linux/device.h>
+> +
+>  #include <kunit/test.h>
+>  
+>  struct drm_device;
+> @@ -51,7 +53,7 @@ __drm_kunit_helper_alloc_drm_device(struct kunit *test,
+>  {
+>  	struct drm_driver *driver;
+>  
+> -	driver = kunit_kzalloc(test, sizeof(*driver), GFP_KERNEL);
+> +	driver = devm_kzalloc(dev, sizeof(*driver), GFP_KERNEL);
+>  	KUNIT_ASSERT_NOT_NULL(test, driver);
+>  
+>  	driver->driver_features = features;
+> -- 
+> 2.41.0
+> 
