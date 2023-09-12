@@ -4,49 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75C5CCA0ED8
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:49:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D0EBCA0EC9
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:51:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B993F10E3B5;
-	Tue, 12 Sep 2023 04:49:05 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E60710E38B;
- Tue, 12 Sep 2023 04:48:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694494118; x=1726030118;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=2hAswdojYQeUw1rZps9euU4MYmnJT2szXWg44XGT3pg=;
- b=UkqGwFkTbuHcplt9BMSFpJ4l51CIFGltYpFU5jmM/4WViMEMp4eMdLqf
- 92hLHp0ghDCJyUQdC7umklfA118ndxcCpQXEm1sGcgU4yNiAWDp5xvJ22
- LmPEMUlflqHkF4w72em3DoJk1CWwNzvmmzxwHxY31LJb5J/XfU6B50BRq
- D8TB6J0MurONCwDCR4FxmMNkExOxB41uiUkJFzbt+xEru3OCH7XDpSPst
- bLRIKEcB8QmumpKdPbMrbpyuxhUNX7AESYOHcG2V5Q/y8jKpZP1JZJ+Nk
- K0aVG0NuQQlwdePBr66Rzm97lvmneAqt+FZo5Auwy/Qgx+0nQpPxu1wTA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182349"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182349"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419992"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419992"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:37 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Sep 2023 21:48:36 -0700
-Message-Id: <20230912044837.1672060-29-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230912044837.1672060-1-lucas.demarchi@intel.com>
-References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04F1010E03A;
+	Tue, 12 Sep 2023 04:51:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E30FC10E03A;
+ Tue, 12 Sep 2023 04:51:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DAB59A00E6;
+ Tue, 12 Sep 2023 04:51:35 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 28/29] drm/i915/xe2lpd: Write DBuf after CDCLK
- change in post plane
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vodapalli, Ravi Kumar" <ravi.kumar.vodapalli@intel.com>
+Date: Tue, 12 Sep 2023 04:51:35 -0000
+Message-ID: <169449429586.31793.4796618837274427522@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230912044837.1672060-1-lucas.demarchi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_Enable_Lunar_Lake_display_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,55 +39,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Mika Kahola <mika.kahola@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
+== Series Details ==
 
-Previously we always updated DBuf MBUS CTL and DBUF CTL regs after
-CDCLK has been changed(CDCLK_CTL), however for Xe2-LPD we can't do like
-that anymore. According to BSpec, we have to first update DBuf regs and
-then write CDCLK regs, when CDCLK is decreased, which we do in post
-plane.
+Series: Enable Lunar Lake display (rev4)
+URL   : https://patchwork.freedesktop.org/series/122798/
+State : failure
 
-So now we do CDCLK post plane update only after DBuf regs are
-written (CDCLK/MDCLK separation requires MDCLK/CDCLK ratio to be written
-to DBuf regs).
+== Summary ==
 
-Cc: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: b4ddac861 fixup! drm/xe/display: Implement display support
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/i915/display/intel_cx0_phy.c:133
+error: drivers/gpu/drm/i915/display/intel_cx0_phy.c: patch does not apply
+error: patch failed: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h:114
+error: drivers/gpu/drm/i915/display/intel_cx0_phy_regs.h: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/i915/xelpdp: Add XE_LPDP_FEATURES
+Applying: drm/i915/lnl: Add display definitions
+Applying: drm/i915/xe2lpd: FBC is now supported on all pipes
+Applying: drm/i915/display: Remove FBC capability from fused off pipes
+Applying: drm/i915: Re-order if/else ladder in intel_detect_pch()
+Applying: drm/i915/xe2lpd: Add fake PCH
+Applying: drm/i915/xe2lpd: Treat cursor plane as regular plane for DDB allocation
+Applying: drm/i915/display: Consolidate saved port bits in intel_digital_port
+Applying: drm/i915/xe2lpd: Move D2D enable/disable
+Applying: drm/i915/xe2lpd: Move registers to PICA
+Patch failed at 0010 drm/i915/xe2lpd: Move registers to PICA
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 83e1bc858b9f..b0455d5d9bfd 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7039,7 +7039,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
- 	dev_priv->display.funcs.display->commit_modeset_enables(state);
- 
--	if (state->modeset)
-+	if (state->modeset && DISPLAY_VER(dev_priv) < 20)
- 		intel_set_cdclk_post_plane_update(state);
- 
- 	intel_wait_for_vblank_workers(state);
-@@ -7086,6 +7086,9 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	intel_dbuf_post_plane_update(state);
- 	intel_psr_post_plane_update(state);
- 
-+	if (state->modeset && DISPLAY_VER(dev_priv) >= 20)
-+		intel_set_cdclk_post_plane_update(state);
-+
- 	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
- 		intel_post_plane_update(state, crtc);
- 
--- 
-2.40.1
 
