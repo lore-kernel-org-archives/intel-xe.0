@@ -4,30 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95FD9CA0EC3
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 07:35:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68F14CA0EC3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 07:37:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66D0910E39F;
-	Tue, 12 Sep 2023 07:35:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 422FA10E39F;
- Tue, 12 Sep 2023 07:35:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 30737AADDC;
- Tue, 12 Sep 2023 07:35:26 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7404892210488136521=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3649E10E39C;
+	Tue, 12 Sep 2023 07:37:12 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8794B10E39C;
+ Tue, 12 Sep 2023 07:37:10 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 8C4BC6607318;
+ Tue, 12 Sep 2023 08:37:08 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1694504229;
+ bh=WxTh9Y0mrhqkDiw4zX/gU4Nyzj3bJHVnSTm4chUHTo8=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=kn+9RL/4TK4L1oci79IUZqIOkXOa8Ni21MT3Yz4WWJNP6FUm/xxo1uU3HTlRNKNkI
+ ZtSOAOspQvC0Zhz1ORyLagUPsqmwJvcmY783i4Xki7M+EHiC+WnJutjpbtAfAlqOed
+ GH3d4PApA+6MwrY7Nbvq819RcezWACMS/+Eede3uZYr+FPygwzm4Icox/GwmFtpS5x
+ 2HjRdFhBUAqvle8tqD4Njt4lUgQ3CHr9JMTB9+VNRtxln9vFSRrL8BKVOYBUhF9TF+
+ QKTeuuRhnPFnL0NxkcHE4CCUa+3hn2x7g5tB3zjnZx0MLHdW+DZwLbExDiUUAILfTB
+ 5v6E8836LTdtQ==
+Date: Tue, 12 Sep 2023 09:37:06 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <20230912093706.54d3af77@collabora.com>
+In-Reply-To: <20230912021615.2086698-4-matthew.brost@intel.com>
+References: <20230912021615.2086698-1-matthew.brost@intel.com>
+ <20230912021615.2086698-4-matthew.brost@intel.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Tue, 12 Sep 2023 07:35:26 -0000
-Message-ID: <169450412616.31793.3894152164601175108@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230912064709.2802305-1-jouni.hogander@intel.com>
-In-Reply-To: <20230912064709.2802305-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Frontbuff?=
- =?utf-8?q?er_tracking_refactoring_=28rev8=29?=
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v3 03/13] drm/sched: Move schedule policy to
+ scheduler / entity
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,132 +54,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ Liviu.Dudau@arm.com, mcanal@igalia.com, frank.binns@imgtec.com,
+ dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
+ luben.tuikov@amd.com, donald.robson@imgtec.com, daniel@ffwll.ch,
+ lina@asahilina.net, airlied@gmail.com, intel-xe@lists.freedesktop.org,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7404892210488136521==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 11 Sep 2023 19:16:05 -0700
+Matthew Brost <matthew.brost@intel.com> wrote:
 
-== Series Details ==
+> Rather than a global modparam for scheduling policy, move the scheduling
+> policy to scheduler / entity so user can control each scheduler / entity
+> policy.
 
-Series: Frontbuffer tracking refactoring (rev8)
-URL   : https://patchwork.freedesktop.org/series/122899/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-367-b4ddac861881e66a4af06531a7a72345c086bac1_BAT -> xe-pw-122899v8_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-122899v8_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [FAIL][1] ([Intel XE#480]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-367-b4ddac861881e66a4af06531a7a72345c086bac1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122899v8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-
-
-Build changes
--------------
-
-  * Linux: xe-367-b4ddac861881e66a4af06531a7a72345c086bac1 -> xe-pw-122899v8
-
-  IGT_7480: a8d38db9ac258d7fd71b2cf7607e259a864f95be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-367-b4ddac861881e66a4af06531a7a72345c086bac1: b4ddac861881e66a4af06531a7a72345c086bac1
-  xe-pw-122899v8: 122899v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122899v8/index.html
-
---===============7404892210488136521==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Frontbuffer tracking refactoring (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122899/">https://patchwork.freedesktop.org/series/122899/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122899v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122899v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-367-b4ddac861881e66a4af06531a7a72345c086bac1_BAT -&gt; xe-pw-122899v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-122899v8_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-367-b4ddac861881e66a4af06531a7a72345c086bac1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122899v8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-367-b4ddac861881e66a4af06531a7a72345c086bac1 -&gt; xe-pw-122899v8</li>
-</ul>
-<p>IGT_7480: a8d38db9ac258d7fd71b2cf7607e259a864f95be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-367-b4ddac861881e66a4af06531a7a72345c086bac1: b4ddac861881e66a4af06531a7a72345c086bac1<br />
-  xe-pw-122899v8: 122899v8</p>
-
-</body>
-</html>
-
---===============7404892210488136521==--
+I'm a bit confused by the commit message (I think I'm okay with the
+diff though). Sounds like entity is involved in the sched policy
+choice, but AFAICT, it just has to live with the scheduler policy chosen
+by the driver at init time. If my understanding is correct, I'd just
+drop the ' / entity'.
