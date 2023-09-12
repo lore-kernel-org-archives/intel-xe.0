@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C166ECA0ECA
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 11:45:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B58ECA0ECA
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 11:45:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FDAB10E40C;
-	Tue, 12 Sep 2023 11:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B96B10E401;
+	Tue, 12 Sep 2023 11:45:35 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C07310E40B
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 11:45:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D550410E401
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 11:45:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694519106; x=1726055106;
+ t=1694519133; x=1726055133;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ZWEd8PLI3p5RV1oJ7/ixY0SLxMC39sNrt7cTns07hu0=;
- b=OEvzMQEDg4I959T+OyZmY3FyFUxCqYFwK7NhM6/J5Pefhz1E1dF37pIO
- 2VYZTxklm3JecFssFuhSZi9ns+VbjVUGh1WFyU2tXRXrOMY+cyxc8hpS4
- RVgkgmXFpZ5PsIQ6GMqzn04fTbnyoboBXuz1Rx6VbsA+Ca4Gi9vXnVj2S
- OMoBFSdf7SVrawNhqZdGymato7Utd5ktZB3aC0yex4Wg+cRZJYZqwv8ub
- +ad4HmnGPIa0tib9v4Oy+cutsD3AZU40xINccvK2my9vrkE1fFBgYos+s
- yA7a0fAMYIbTYQczmKuLWizu80Gu51/R5geLs3gRpFTen63cRibYusK6R w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="381050215"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="381050215"
+ bh=qrBJeNm36FDXXfKT9d2aGiyEOeR5vmxdf3paGh9Uaoc=;
+ b=Rec3wm2v6dpHDRZDvhFWsu5XEujjaiqvn0y2VzO25jv6X49VUTvkTC06
+ ki7EjF7bM4XHTBs6k3y0vqPfER1maedJjVY+t8lOTxF9BwkWmRws/u0yC
+ vvEOHvF4r6Rlru1ZGssH9vZf79YtuSdyI0WSXQFICGwYuyAoFnWIGfG6p
+ /Byj78nFLmOuC3pLwnDrNJ7ibKRwo8Bh7Co8ZE8mUVyECmEVwIbJpRFO9
+ /Z9SowqzjQs39Hvlzmdapw8I7/uSvIhRvdJJ/UKYDrhb2hn8Iq6NkhSYW
+ KKM8Ews4n+i/uS+1kc+N/MdqtvAlXHeJ4evkwUY+tsAnt42iMVlEhlmFC A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="381050228"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="381050228"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 04:45:06 -0700
+ 12 Sep 2023 04:45:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="743700069"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="743700069"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="743700075"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="743700075"
 Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orsmga002.jf.intel.com with ESMTP; 12 Sep 2023 04:45:04 -0700
+ by orsmga002.jf.intel.com with ESMTP; 12 Sep 2023 04:45:06 -0700
 From: Tejas Upadhyay <tejas.upadhyay@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 12 Sep 2023 17:22:37 +0530
-Message-Id: <20230912115239.3554341-6-tejas.upadhyay@intel.com>
+Date: Tue, 12 Sep 2023 17:22:38 +0530
+Message-Id: <20230912115239.3554341-7-tejas.upadhyay@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230912115239.3554341-1-tejas.upadhyay@intel.com>
 References: <20230912115239.3554341-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH V2 5/7] drm/xe: Track page table memory usage for
- client
+Subject: [Intel-xe] [PATCH V2 6/7] drm/xe: Account ring buffer and context
+ state storage
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,72 +59,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Account page table memory usage in the owning client
+Account ring buffers and logical context space against the owning client
 memory usage stats.
 
-V2:
-  - Minor tweak to if (vm->pt_root[id]) check - Himal
-
+Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com
 Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 4 +++-
- drivers/gpu/drm/xe/xe_vm.c | 7 ++++++-
- 2 files changed, 9 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_lrc.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 5709518e314b..8df83241c5fe 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -7,6 +7,7 @@
- 
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 6f899b6a4877..8518cccdf4e1 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -12,6 +12,7 @@
+ #include "regs/xe_regs.h"
  #include "xe_bo.h"
  #include "xe_device.h"
 +#include "xe_drm_client.h"
+ #include "xe_exec_queue_types.h"
  #include "xe_gt.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_migrate.h"
-@@ -195,7 +196,8 @@ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
- 	pt->bo = bo;
- 	pt->level = level;
- 	pt->base.dir = level ? &as_xe_pt_dir(pt)->dir : NULL;
--
-+	if (vm->xef)
-+		xe_drm_client_add_bo(vm->xef->client, pt->bo);
- 	XE_WARN_ON(level > XE_VM_MAX_LEVEL);
+ #include "xe_hw_fence.h"
+@@ -739,9 +740,13 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 		kfree(init_data);
+ 	}
  
- 	return pt;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 92d8c78c9284..4eae641fc79f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -19,6 +19,7 @@
+-	if (vm)
++	if (vm) {
+ 		xe_lrc_set_ppgtt(lrc, vm);
  
- #include "xe_bo.h"
- #include "xe_device.h"
-+#include "xe_drm_client.h"
- #include "xe_exec_queue.h"
- #include "xe_gt.h"
- #include "xe_gt_pagefault.h"
-@@ -1974,6 +1975,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 	struct xe_device *xe = to_xe_device(dev);
- 	struct xe_file *xef = to_xe_file(file);
- 	struct drm_xe_vm_create *args = data;
-+	struct xe_tile *tile;
- 	struct xe_vm *vm;
- 	u32 id, asid;
- 	int err;
-@@ -2052,7 +2054,10 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 
- 	args->vm_id = id;
- 	vm->xef = xef;
--
-+	/* Record BO memory for VM pagetable create against client */
-+	for_each_tile(tile, xe, id)
-+		if (vm->pt_root[id])
-+			xe_drm_client_add_bo(vm->xef->client, vm->pt_root[id]->bo);
- #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_MEM)
- 	/* Warning: Security issue - never enable by default */
- 	args->reserved[0] = xe_bo_main_addr(vm->pt_root[0]->bo, XE_PAGE_SIZE);
++		if (vm->xef)
++			xe_drm_client_add_bo(vm->xef->client, lrc->bo);
++	}
++
+ 	xe_lrc_write_ctx_reg(lrc, CTX_RING_START, __xe_lrc_ring_ggtt_addr(lrc));
+ 	xe_lrc_write_ctx_reg(lrc, CTX_RING_HEAD, 0);
+ 	xe_lrc_write_ctx_reg(lrc, CTX_RING_TAIL, lrc->ring.tail);
 -- 
 2.25.1
 
