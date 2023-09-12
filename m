@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34139CA0ECA
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:48:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 411A3CA0EC3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:48:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5A61110E389;
-	Tue, 12 Sep 2023 04:48:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F41110E321;
+	Tue, 12 Sep 2023 04:48:39 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 21C1F10E33B;
- Tue, 12 Sep 2023 04:48:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D42610E03A;
+ Tue, 12 Sep 2023 04:48:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694494113; x=1726030113;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=+VG9ESQlNzM9HtZpmCeE/wWAypMARShXKl9W9qAoV3A=;
- b=HXtigwbYcrHqhDsMMhFnnGC6FwmpdSt1RR8SRjRu4PtCbEYrVye8BzR/
- dE7fiOvhVOKdjJUn8s2ORuRkMKa6I24OgdwkDGN2SRjaxMPst67AiUzeB
- DSPnZoU/8rfRckVLnILNuzAE3WO7bGMYyv/TXRTVAvAY5YJeVf8RE+AMJ
- pInyRJMsLDfada+yVe6sgkAyzCEBxq9E1SPmnGoR/e3/7WVE/E39kpf9g
- 9tdERe/NICAMxOedhU+ec5tuY5y//ESzKfFZaTP8xvcZKDf/abCepxcTX
- QZBGc+ho6yUHbs/c7riIfbyk1Yxo/W+jttlsvjjlY2yLGBeGf05qrmONT g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182314"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182314"
+ t=1694494112; x=1726030112;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vSlQY2uJZfDYWVt8rTH0UbhvScbwniWow+0gbSHQ99c=;
+ b=BxFdWGd2eTh/1BKR4gfX335M33U+gYXoYRWJMxFlOa08CLPlsk94ssUQ
+ IaNMWLueZe7rrw5JTJut/LHxtBghm46w5y0fllFAr8kgpcdwpiJGsa3bZ
+ 3AbTdJcaXBjqS+ldGHGKfVy/A/o2V3parhivmwNQ1sENAKZ4eyJb27F7X
+ GBLa1xKYR4C+xof00FwGNXhbwYERycqIuVaSwrExGvWJv6Whc+BussiLC
+ w7V7LxHx65RnZk7g1ONvB7fwhUt+h8K9mfGyiW2jDyu9vtgkbFRTJ5O1F
+ d1mr4iT6G0asdY5C6mnqmEm2bLbBWXZ5ztZNYJfKTL7P/qV9EWGpq1Z7g Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182303"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182303"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:32 -0700
+ 11 Sep 2023 21:48:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419926"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419926"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419908"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419908"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:32 -0700
+ 11 Sep 2023 21:48:30 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Sep 2023 21:48:14 -0700
-Message-Id: <20230912044837.1672060-7-lucas.demarchi@intel.com>
+Date: Mon, 11 Sep 2023 21:48:08 -0700
+Message-Id: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230912044837.1672060-1-lucas.demarchi@intel.com>
-References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 06/29] drm/i915/xe2lpd: Add fake PCH
+Subject: [Intel-xe] [PATCH v3 00/29] Enable Lunar Lake display
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,72 +56,108 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Gustavo Sousa <gustavo.sousa@intel.com>
+Cross posting this to the i915 and xe mailing lists. The basic platform
+enabling for Lunar Lake is already applied in the xe driver[1].
+This patch series adds the display support in the i915 driver, that is
+going to be shared with xe.
 
-Xe2_LPD doesn't have south display engine on a PCH, it's actually
-on the SoC die (while north display engine is on compute die). As
-such it makes no sense to go through the PCI devices looking for
-an ISA bridge. The approach used by BXT/GLK can't be used here since
-leaving it with PCH_NONE would mean taking the wrong code paths.
+Differently than v1, this v2 is based off drm-intel-next so we can start
+applying the patches. Since drm-xe-next is now much closer to
+drm-intel-next, the patches apply cleanly there too.
 
-For the places we currently use a PCH check, it's enough for now to just
-check the north display version. Use that to define a fake PCH to be
-used across the driver. Eventually these PCH checks may need to be
-re-designed as this is already the third platform using/needing a
-fake PCH.
+Another difference from v1 is that the prerequisite patches are all
+applied already, so we can drop them from this series. Also dropped from
+the series is the final patch to xe driver enabling the display, since
+that doesn't apply to drm-intel-next.
 
-v2: Match on display IP version rather than on platform (Matt Roper)
-v3: Extend and clarify commit message (Matt Roper / Ville)
+I went a few times through all the review comments and adapt the patches
+according to what we discussed. Ther's 1 patch with a FIXME that I was
+not entirely sure what to do. I will handle that later separately.
+The other FIXME patches in v2 are now gone as we settle the discussion
+on how to support the registers that moved.
 
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/i915/soc/intel_pch.c | 5 ++++-
- drivers/gpu/drm/i915/soc/intel_pch.h | 2 ++
- 2 files changed, 6 insertions(+), 1 deletion(-)
+Balasubramani Vivekanandan (1):
+  drm/i915/lnl: Add display definitions
 
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
-index dfffdfa50b97..240beafb38ed 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.c
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.c
-@@ -222,7 +222,10 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
- 	 * South display engine on the same PCI device: just assign the fake
- 	 * PCH.
- 	 */
--	if (IS_DG2(dev_priv)) {
-+	if (DISPLAY_VER(dev_priv) >= 20) {
-+		dev_priv->pch_type = PCH_LNL;
-+		return;
-+	} else if (IS_DG2(dev_priv)) {
- 		dev_priv->pch_type = PCH_DG2;
- 		return;
- 	} else if (IS_DG1(dev_priv)) {
-diff --git a/drivers/gpu/drm/i915/soc/intel_pch.h b/drivers/gpu/drm/i915/soc/intel_pch.h
-index 32aff5a70d04..1b03ea60a7a8 100644
---- a/drivers/gpu/drm/i915/soc/intel_pch.h
-+++ b/drivers/gpu/drm/i915/soc/intel_pch.h
-@@ -30,6 +30,7 @@ enum intel_pch {
- 	/* Fake PCHs, functionality handled on the same PCI dev */
- 	PCH_DG1 = 1024,
- 	PCH_DG2,
-+	PCH_LNL,
- };
- 
- #define INTEL_PCH_DEVICE_ID_MASK		0xff80
-@@ -66,6 +67,7 @@ enum intel_pch {
- 
- #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
- #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
-+#define HAS_PCH_LNL(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_LNL)
- #define HAS_PCH_MTP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MTP)
- #define HAS_PCH_DG2(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG2)
- #define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
+Clint Taylor (3):
+  drm/i915/display: Remove FBC capability from fused off pipes
+  drm/i915/display: Consolidate saved port bits in intel_digital_port
+  drm/i915/xe2lpd: Register DE_RRMR has been removed
+
+Gustavo Sousa (3):
+  drm/i915/xe2lpd: Add fake PCH
+  drm/i915/xe2lpd: Handle port AUX interrupts
+  drm/i915/xe2lpd: Add support for HPD
+
+Juha-Pekka Heikkilä (1):
+  drm/i915/xe2lpd: Enable odd size and panning for planar yuv
+
+Luca Coelho (1):
+  drm/i915/xe2lpd: Read pin assignment from IOM
+
+Lucas De Marchi (9):
+  drm/i915/xelpdp: Add XE_LPDP_FEATURES
+  drm/i915: Re-order if/else ladder in intel_detect_pch()
+  drm/i915/xe2lpd: Move D2D enable/disable
+  drm/i915/xe2lpd: Move registers to PICA
+  drm/i915/display: Fix style and conventions for DP AUX regs
+  drm/i915/display: Use _PICK_EVEN_2RANGES() in DP AUX regs
+  drm/i915/xe2lpd: Re-order DP AUX regs
+  drm/i915/xe2lpd: Extend Wa_15010685871
+  drm/i915/lnl: Add gmbus/ddc support
+
+Matt Roper (3):
+  drm/i915/xe2lpd: FBC is now supported on all pipes
+  drm/i915/xe2lpd: Don't try to program PLANE_AUX_DIST
+  drm/i915/xe2lpd: Add DC state support
+
+Ravi Kumar Vodapalli (2):
+  drm/i915/xe2lpd: Add display power well
+  drm/i915/lnl: Add programming for CDCLK change
+
+Stanislav Lisovskiy (6):
+  drm/i915/xe2lpd: Treat cursor plane as regular plane for DDB
+    allocation
+  drm/i915/lnl: Add CDCLK table
+  drm/i915/lnl: Start using CDCLK through PLL
+  FIXME: drm/i915/lnl: Introduce MDCLK_CDCLK ratio to DBuf
+  drm/i915/xe2lpd: Write DBuf after CDCLK change in post plane
+  drm/i915/xe2lpd: Update mbus on post plane updates
+
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  14 +-
+ drivers/gpu/drm/i915/display/intel_bios.c     |   3 +-
+ drivers/gpu/drm/i915/display/intel_cdclk.c    | 120 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  85 +++++++------
+ .../gpu/drm/i915/display/intel_cx0_phy_regs.h |  63 +++++++--
+ drivers/gpu/drm/i915/display/intel_ddi.c      |  98 ++++++++------
+ drivers/gpu/drm/i915/display/intel_display.c  |   5 +-
+ .../drm/i915/display/intel_display_device.c   |  68 ++++++++--
+ .../gpu/drm/i915/display/intel_display_irq.c  |   4 +-
+ .../drm/i915/display/intel_display_power.c    |   4 +-
+ .../i915/display/intel_display_power_map.c    |  54 +++++++-
+ .../i915/display/intel_display_power_well.c   |  50 +++++++-
+ .../i915/display/intel_display_power_well.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |   2 +-
+ drivers/gpu/drm/i915/display/intel_dp_aux.c   |   8 +-
+ .../gpu/drm/i915/display/intel_dp_aux_regs.h  |  80 ++++++------
+ drivers/gpu/drm/i915/display/intel_fbc.h      |   2 +
+ drivers/gpu/drm/i915/display/intel_gmbus.c    |   5 +-
+ .../gpu/drm/i915/display/intel_hotplug_irq.c  |  24 +++-
+ drivers/gpu/drm/i915/display/intel_tc.c       |  44 ++++++-
+ .../drm/i915/display/skl_universal_plane.c    |   2 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  51 ++++++--
+ drivers/gpu/drm/i915/display/skl_watermark.h  |   1 +
+ .../gpu/drm/i915/display/skl_watermark_regs.h |   2 +
+ drivers/gpu/drm/i915/i915_gpu_error.c         |   2 +-
+ drivers/gpu/drm/i915/i915_reg.h               |   9 +-
+ drivers/gpu/drm/i915/soc/intel_pch.c          |  12 +-
+ drivers/gpu/drm/i915/soc/intel_pch.h          |   2 +
+ 28 files changed, 629 insertions(+), 186 deletions(-)
+
 -- 
 2.40.1
 
