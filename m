@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E949CA0ECF
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:48:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 66DC8CA0ED3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:49:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4779910E38B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 891AF10E398;
 	Tue, 12 Sep 2023 04:48:49 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AE2710E265;
- Tue, 12 Sep 2023 04:48:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADDF010E38D;
+ Tue, 12 Sep 2023 04:48:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694494112; x=1726030112;
+ t=1694494118; x=1726030118;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1XGs7mV3mkyfWEJjXL8dku/tFXqcBjz3ttUpoE5xAMw=;
- b=lqfOsZCBUwI0ljgNxEZHJzpo510kWMBzVCesSBEWG2rt1V9SQVkmQ4Ee
- bCOf7ny5J9XQ1gkJPaRFJPLl1hsw89uZU/YqPX0whavlL+NnIAML9CiwQ
- e6st21kYKDQa4uNXZwg1Z4qTmT0T4LzjazXGLkVEaz+ORcr21NFiGZibQ
- NqB3133V/WBK4ZQv73hHguMQaksXANcLPIlGJwjHeZar0sgZ2CGYVXbpd
- vAMstccwgcCaFcQpeWGVKtMQLeRHAEUzQ+pzFRQwzEvBgX+wmvAIcuz1s
- XumsyODe6VivPbvA3DmvoJg/4bXeoumigqBan0cgnHnTnyEaaASl49KIj g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182304"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182304"
+ bh=AssikX67Dy4A+aoEXSq9fSPghpAPBhmX4ysYH4Tib8A=;
+ b=Aij17jj5rs8wPO0n5977n1lxmGUfJWWXBZ6yz3VXHYZuqYy82G9KWfh0
+ YaVgoTFgVgXfFKDC0M0sfai7aBE+Omt5+z8sU/FkXDmJsS3JO8C1Mpj5f
+ pOqKfWSLTiNeKEcesNJkz85Y6lfRMZrhohGm7675H4sxR05BwGZbqH3im
+ THnRSDSUc7nFM3C3CejEV+Bd8f4OLTFD7hP1LqWNVftUEls5MZb+Hm3k6
+ IFk5MUvTcdgDBui5xgR1eh19flCrLnh09igbp9XzpkBI3lDlCWAkW91kz
+ mR0i7hBfZRg7ARX9cdLeNx61W/wAS8VfJZcpYbkUgDfFSrWtAgnaivX4H w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182350"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182350"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:31 -0700
+ 11 Sep 2023 21:48:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419911"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419911"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419995"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419995"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:31 -0700
+ 11 Sep 2023 21:48:38 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Sep 2023 21:48:09 -0700
-Message-Id: <20230912044837.1672060-2-lucas.demarchi@intel.com>
+Date: Mon, 11 Sep 2023 21:48:37 -0700
+Message-Id: <20230912044837.1672060-30-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 01/29] drm/i915/xelpdp: Add XE_LPDP_FEATURES
+Subject: [Intel-xe] [PATCH v3 29/29] drm/i915/xe2lpd: Update mbus on post
+ plane updates
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,91 +58,61 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Mika Kahola <mika.kahola@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a FEATURES macro for XE_LPD+ as this is expected to be the baseline
-for Xe2_LPD and will allow to see the delta more easily.
+From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 
-v2: Move everything from xe_lpdp_display to the new macro and remove
-    the version setting: it's not needed with GMD_ID.
+According to BSpec we need to write the MBUS CTL and DBUF CTL both for
+increasing CDCLK case (pre plane) and for decreasing CDCLK case (post
+plane). Make sure those updates are in place for Xe2-LPD.
 
+Since the mbus update is not only on pre-enable anymore, also rename the
+function accordingly.
+
+Cc: Mika Kahola <mika.kahola@intel.com>
+Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Mika Kahola <mika.kahola@intel.com>
 ---
- .../drm/i915/display/intel_display_device.c   | 58 +++++++++++++++----
- 1 file changed, 47 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index c39f8a15d8aa..ddd938bfe7d9 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -710,18 +710,54 @@ static const struct intel_display_device_info xe_hpd_display = {
- 		BIT(PORT_TC1),
- };
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 1fefb02876c8..955a8fb7ba19 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -3486,7 +3486,7 @@ static int get_mbus_mdclk_cdclk_ratio(struct drm_i915_private *i915,
+  * Configure MBUS_CTL and all DBUF_CTL_S of each slice to join_mbus state before
+  * update the request state of all DBUS slices.
+  */
+-static void update_mbus_pre_enable(struct intel_atomic_state *state)
++static void update_mbus(struct intel_atomic_state *state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ 	u32 mbus_ctl, dbuf_min_tracker_val;
+@@ -3545,7 +3545,7 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
  
--static const struct intel_display_device_info xe_lpdp_display = {
--	XE_LPD_FEATURES,
--	.has_cdclk_crawl = 1,
--	.has_cdclk_squash = 1,
-+#define XE_LPDP_FEATURES							\
-+	.abox_mask = GENMASK(1, 0),						\
-+	.color = {								\
-+		.degamma_lut_size = 129, .gamma_lut_size = 1024,		\
-+		.degamma_lut_tests = DRM_COLOR_LUT_NON_DECREASING |		\
-+		DRM_COLOR_LUT_EQUAL_CHANNELS,					\
-+	},									\
-+	.dbuf.size = 4096,							\
-+	.dbuf.slice_mask = BIT(DBUF_S1) | BIT(DBUF_S2) | BIT(DBUF_S3) |		\
-+		BIT(DBUF_S4),							\
-+	.has_cdclk_crawl = 1,							\
-+	.has_cdclk_squash = 1,							\
-+	.has_ddi = 1,								\
-+	.has_dp_mst = 1,							\
-+	.has_dsb = 1,								\
-+	.has_fpga_dbg = 1,							\
-+	.has_hotplug = 1,							\
-+	.has_ipc = 1,								\
-+	.has_psr = 1,								\
-+	.pipe_offsets = {							\
-+		[TRANSCODER_A] = PIPE_A_OFFSET,					\
-+		[TRANSCODER_B] = PIPE_B_OFFSET,					\
-+		[TRANSCODER_C] = PIPE_C_OFFSET,					\
-+		[TRANSCODER_D] = PIPE_D_OFFSET,					\
-+	},									\
-+	.trans_offsets = {							\
-+		[TRANSCODER_A] = TRANSCODER_A_OFFSET,				\
-+		[TRANSCODER_B] = TRANSCODER_B_OFFSET,				\
-+		[TRANSCODER_C] = TRANSCODER_C_OFFSET,				\
-+		[TRANSCODER_D] = TRANSCODER_D_OFFSET,				\
-+	},									\
-+	TGL_CURSOR_OFFSETS,							\
-+										\
-+	.__runtime_defaults.cpu_transcoder_mask =				\
-+		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |				\
-+		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),				\
-+	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),	\
-+	.__runtime_defaults.has_dmc = 1,					\
-+	.__runtime_defaults.has_dsc = 1,					\
-+	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A),			\
-+	.__runtime_defaults.has_hdcp = 1,					\
-+	.__runtime_defaults.pipe_mask =						\
-+		BIT(PIPE_A) | BIT(PIPE_B) | BIT(PIPE_C) | BIT(PIPE_D),		\
-+	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |		\
-+		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4)
+ 	WARN_ON(!new_dbuf_state->base.changed);
  
--	.__runtime_defaults.ip.ver = 14,
--	.__runtime_defaults.fbc_mask = BIT(INTEL_FBC_A) | BIT(INTEL_FBC_B),
--	.__runtime_defaults.cpu_transcoder_mask =
--		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
--		BIT(TRANSCODER_C) | BIT(TRANSCODER_D),
--	.__runtime_defaults.port_mask = BIT(PORT_A) | BIT(PORT_B) |
--		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) | BIT(PORT_TC4),
-+static const struct intel_display_device_info xe_lpdp_display = {
-+	XE_LPDP_FEATURES,
- };
+-	update_mbus_pre_enable(state);
++	update_mbus(state);
+ 	gen9_dbuf_slices_update(i915,
+ 				old_dbuf_state->enabled_slices |
+ 				new_dbuf_state->enabled_slices);
+@@ -3567,6 +3567,9 @@ void intel_dbuf_post_plane_update(struct intel_atomic_state *state)
  
- /*
+ 	WARN_ON(!new_dbuf_state->base.changed);
+ 
++	if (DISPLAY_VER(i915) >= 20)
++		update_mbus(state);
++
+ 	gen9_dbuf_slices_update(i915,
+ 				new_dbuf_state->enabled_slices);
+ }
 -- 
 2.40.1
 
