@@ -4,135 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A177CA0EF2
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 15:06:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 055D1CA0EF1
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 15:11:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B97A310E42E;
-	Tue, 12 Sep 2023 15:06:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B927810E42E;
+	Tue, 12 Sep 2023 15:11:23 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06B7210E42C;
- Tue, 12 Sep 2023 15:06:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA46910E42E
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 15:11:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694531194; x=1726067194;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=HhCi4A8Xu/LC1zVGfUtYYtONEBrlXe2QWKO4x+fEDSI=;
- b=dGGUWEnldzWd6aXPeWtMcseq3S+lvJ9YoDMwHaQVyawew0zQRlGGGDUj
- 1dbCylHriFQvxLnO90FSTOKLnsTiBE7TIoQ9+aBUfwX8jD7zsW+nYqI7R
- FmXKLROEbcM2MDpmBti8BNlhRzaHJT3Q+0m0IJViLpXki6jYvNgDCuPcN
- Q5WulNyq2guLLql2imYKYGfVirCXlwXbBQlXWPBGRUX8moJ05baYQw4uj
- j8HqXidScONKkQ+q2WNn6K/dvDHn4eL10HeRoMME2ZoImvJhWQa9Hp9lo
- pnPR+UUUaklCkEn4o7UyOH6Q4tlQH16ignX8oWmunNLHZZUI7pM/ey5Mk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="381104458"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="381104458"
+ t=1694531481; x=1726067481;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=sLp9W8t0sPmLBnLJ/Cqzhq5d+JV/dxkIKb200uYG9Y8=;
+ b=Da5gqa6UWtBtZJKo63RWnnN9dojxgP7kxGcGxxsI1jIyJHbhu/mUT21x
+ /7dGYjKb8Mrrr00DWEnQFtUK/XLqEwgAkTWEcSNdP72Ta87ky3VO0CosY
+ Yo5TPpGiDuImoWAnCjWo0yhgCuGen/aNNTWGNdMUZkizcARPYSCxoqaug
+ ArEq5/MrdM/ARlbb51v5xsgZAPUitru+N89/PS+uxNHP+hbbA0cMQaY8j
+ XC6nryu3rpmv0X9BJPUMBDFUo8OJoXlY0NqqPS4ISzILlBrbfCq1OzSqg
+ C1mA1rnnyxx9wlT5SgBx4FKjvg8daRC8aAj/S+y+xlJ+d57jHWv9zLMPK A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="381106359"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="381106359"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 08:05:57 -0700
+ 12 Sep 2023 08:11:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="1074579307"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="1074579307"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Sep 2023 08:05:57 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:05:57 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 12 Sep 2023 08:05:57 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.104)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:05:57 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fw64XzOl3JyG3T31DaX9SFlbbltzD1JhSlc/TO/HsEmN+WUPqU+NcOdVrl55ggWRpDhUQVx4cngSOrYcGWrEnIGSH6uYwSZj+TrZ5B8EnC3ub7sPhlIpMn6x6DA/ZfGhzfxlp0bN/GYhKdPvGovn1FV+7OqFaGjO6zwpnGfDuKrAucwmDyrjl1IHA/zo9RLafZgHM1AIwhjvTQ6uVHDj9RPUIg2Z93qudRAQ6W6Aq17OIGOA+GKlJoA24jQ6EQwPVu5CYtlI5JCsPdt38bnRIeZecYagN+lsxi/BVUh9+JSB0ta9xlymyMS6aBGpblYhtI5NIulvXdcLFpe5ymRF+g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+dvtU01tw9heH80tzsGYtoZNeWTrrs68b7qxYOSMTeY=;
- b=VD8Ge9dTwrdQyc7XwTMFZfLORnL8oz+KSp2sZhq+DvBjBM1CISkiDAHcV/EGBGrv4Xdt8iHNs5DyrLb6yxKyHlfF+BFXHWX2aN/yCaYFK3NeTt03I5Yv50fsqd+tGJjnRbyN5g1B5OwmlVeBi7gSRFuBW7s/tiulDtLgHWO9z2I4ZgJ7d3PeS6vmnIRU5+f8gPls4SHG+UM5l5pZgKwsH6Hhqz55oNLlES/ePO1HvbSgiBXX7auex2vEwhCepo45u2pxNuz0EGlwzIfcVQTuFOS3aiMjchF2oWq/UuWwiJSoX+d9dcLZelHOolEtKJCMeTwj/ncNVIqjSaesyhgM6A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- CYXPR11MB8691.namprd11.prod.outlook.com (2603:10b6:930:d5::22) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6768.31; Tue, 12 Sep 2023 15:05:55 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6768.029; Tue, 12 Sep 2023
- 15:05:55 +0000
-Date: Tue, 12 Sep 2023 08:05:51 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20230912150551.GF2706891@mdroper-desk1.amr.corp.intel.com>
-References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
- <20230912044837.1672060-25-lucas.demarchi@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230912044837.1672060-25-lucas.demarchi@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0203.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::28) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="1074580495"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="1074580495"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmsmga005.fm.intel.com with ESMTP; 12 Sep 2023 08:11:16 -0700
+Received: from [10.249.142.144] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.142.144])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 8A737312E1;
+ Tue, 12 Sep 2023 16:11:14 +0100 (IST)
+Message-ID: <85abfd0d-0eef-b90d-37d2-297cfb53db1e@intel.com>
+Date: Tue, 12 Sep 2023 17:11:13 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CYXPR11MB8691:EE_
-X-MS-Office365-Filtering-Correlation-Id: 93710c40-7047-477c-288a-08dbb3a1c333
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: OHYcJFmg1Ftk7Z3rWp6ehuAUriobMVGIaRKJG3vKCiFVYJ5IKEvhfFrmFaFtOnSBmLpYclW8ibpC+ty31ZcSMjZu5dQ0649YHTYwgJcI02Soe677rPgTqcBE3A3KcfZD+YXNIxOA+UyYrlNfjPE3cQYs8qboVWpOaW/+9HdEExWKGquJmKIPhAy3eKDF5su4L3KrykZy7rO3pEDCuTFccfnAqRTGF6xnVxE8twXCUnX8glP72RM/hMMtrit+OtVKosbz0XQFd1JtDXg4/rYr6IPZ1BT4Xo0qIg5NUwsclUOfN+KibipJo81rAarKzeR/dlkb/ntIbycqEVb/rg3CQfQoysThwqhBCVWqvFyR/fpsy4/oq9tr8MKUBn3iPAYJkobE+UrENIMv4JUb7wohF/mjk8/IkzusSKWTeP0LVxWyrV1zUm8bxSstrRlJhsWA/ti2w1zJDm7JSTJpD2hag+YFgQYn5lBNrKZWD3xSmkXcfQTPWtZ30dFOS7+h1PmdCAhfJI/DSPuxaLkmTZlZS7dM/jnddjI/VHY2ICqw0CGLkbLEtxU4SxzwqHmorCOL
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(366004)(396003)(376002)(346002)(39860400002)(186009)(1800799009)(451199024)(6486002)(6506007)(6512007)(6666004)(83380400001)(33656002)(86362001)(82960400001)(38100700002)(1076003)(26005)(66556008)(66476007)(6636002)(316002)(41300700001)(66946007)(2906002)(4326008)(450100002)(6862004)(8676002)(8936002)(5660300002)(478600001);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wgeLbr3i5XkGa5VuvEHvyDNVirhS0NbpCrtFXDV07LyyOTMVv+nZAcn2q2hy?=
- =?us-ascii?Q?7lQjIzBUJ+lqH5l4SG7ww+BQSLHpAX4ZyXCnwy4lhJ78rFTuaam8T9vSTe2k?=
- =?us-ascii?Q?F02n//Q/UNL+z7wlQm8i99gsxr3If52XCm+QarjI+PS5wp5dZIBmlTHiF36h?=
- =?us-ascii?Q?fTG5pMNf3g35HDWEHVPp3cqdKxPiKwI0NpRnkJLuzTabGt2u3Wrh3aTMjbMC?=
- =?us-ascii?Q?hjWccmrt25kGFD7bpwuZufzjXPUnvyfjeLJsby0D8ncihm6cbRVOeALjhkVR?=
- =?us-ascii?Q?sCcXKtkCkGVMF1fjDbrko6Pph6dAjIhTGX9RGEJaJesrte27vLm7rSox6lYB?=
- =?us-ascii?Q?tAxynOgBNOJZe6CI/4xii84xd9PUL0n3wdFlN+mdkfttQO5ohazR3YfPY0Zk?=
- =?us-ascii?Q?dduchGQ7gsQ+wHkmwVOUKR0XDwYymf+dg/yL+dfE2qgE3fK+dn3+gaiBREOg?=
- =?us-ascii?Q?bB9q/LsTMRpzkiNNkCwkfBBm4q53O/0SoWdd5aoJ2hp8ibLi03ej+77ZwrQk?=
- =?us-ascii?Q?ou2p+Pku0hrdbXMHs6qx9XZBZI9hazCDqkf2s2xIiNm4EIT9G9InNKaXm7oK?=
- =?us-ascii?Q?pl3zGzbHOs+9vgvEB3OESdHaGOMD4sQQAI6NXMpPehnZqP4OUFRNFve8dWA+?=
- =?us-ascii?Q?tZIWJi3x0ASRVq+CeOSL6aXzFPVWhmbf3VjE40rDOk8jPYecj5urbFUoW937?=
- =?us-ascii?Q?Dhz2uoorN9VBfOFFEJwNVgF/SaHc/sirTYCTqjyjwKtEF+CSstsu/ZYNDVZz?=
- =?us-ascii?Q?/YmIFWbpWboGUYkoFNPveiTLJ9fa7LtypsElZxz607qszKZyPHDLPxWFYZ4n?=
- =?us-ascii?Q?czE6idljSHyodhRkEJPC0sRPgBFNb730jvNLbgATx3t3mU1tQcYX16+3N22D?=
- =?us-ascii?Q?0kfs8+0Feq9b9zYROVyYfUpwDyO7b+Inf1i6WJARQ0h4p/FKfXJxuGWkha4L?=
- =?us-ascii?Q?QtDWdPqZQZ6FPLY5pTyZm0pz2nvPtJVPHJD8nXrNjLFj95tQMoY3x1meLVT5?=
- =?us-ascii?Q?lTU6MnqopsPhAoEUdk2VRiXILGCVyRCW9+epiKhz+SrFOHDktKPOCT7dWyRu?=
- =?us-ascii?Q?V6axOcZPb9/5pMX8bCtcXX3j5taNhDR1LJ3KyE7Qfxs+9DYgFIihqZdCxAlD?=
- =?us-ascii?Q?hLMPFSp9V+y/JUBaJc1p30Neq9ei3pGN4ZHE4WJP3VHIT60D+mUGBiZg3tLm?=
- =?us-ascii?Q?kIQ7+WdAm0ExYZZtAXUR5I4kVjebxPkPRlEmyQe03PVtA1O27ncbk+Xfj/dd?=
- =?us-ascii?Q?Aow/n2hOh1bKsrBtA5mDrhz7WMy1cqClErtJ4tnm20CyQp/PmaOr8tJIRZ/k?=
- =?us-ascii?Q?ihV3hE5D3SC5KmnU3OWdWVsXJ/bzeB2vLH7/RUkuoJg3xvQkZ4P2B2Bir0yV?=
- =?us-ascii?Q?URBGTSAL/iJxGFcnyw3tX0GTiOwwgmMd0rGicVvJQuRqSaKMvSC4WjdRQsuq?=
- =?us-ascii?Q?hP+IUgoRmwyYwfEIj1+rPRGjR99ExZ3ErQJ5J1laYSG3i3VHBwV5wsMrYFCp?=
- =?us-ascii?Q?5WNRYETc7sb/KD5RWhjgAoo9ImQwkOs5PsCuFioxz8cyBOf+6jD/oj52E4RZ?=
- =?us-ascii?Q?O0bD184tBCxAWKiL0ztcKJik13VrDUSZnILDnmgJYuw4CiD0/+iwk5CMYwQw?=
- =?us-ascii?Q?Ww=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 93710c40-7047-477c-288a-08dbb3a1c333
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 15:05:55.1024 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OMIGCEtLpm/mONP33nII41GpRInQCCR02K30E7IdvziNzgjpQAoIlWlshyHT49oHHPIovhVegjisdIBTeHfVzAtwZ18NaaCVpb0I8IBJ8ZQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8691
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v3 24/29] drm/i915/lnl: Add CDCLK
- table
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.15.0
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20230912083635.7-1-francois.dugast@intel.com>
+ <20230912083635.7-3-francois.dugast@intel.com> <87pm2nd3p1.fsf@intel.com>
+ <b9a8df25-d070-9339-fdb7-2b4cd9d66fb3@intel.com> <871qf3y0qa.fsf@intel.com>
+ <268cacb5-2feb-b43f-325f-5aef9cf8951f@intel.com> <ZQBz0Mk3O71oebl+@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <ZQBz0Mk3O71oebl+@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v4 2/3] drm/xe: Introduce Xe assert macros
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,89 +65,349 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 11, 2023 at 09:48:32PM -0700, Lucas De Marchi wrote:
-> From: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> 
-> Add a new CDCLK table for Lunar Lake.
-> 
-> v2:
->   - Remove mdclk from the table as it's not needed (Matt Roper)
->   - Update waveform values to the latest from spec (Matt Roper)
->   - Rename functions and calculation to match by pixel rate (Lucas)
-> v3: Keep only the table: as far as intel_pixel_rate_to_cdclk()
->     is concerned, the minimum cdclk should still be half the pixel
->     rate on Xe2 (bspec 68858:
->     "Pipe maximum pixel rate = 2 * CDCLK frequency * Pipe Ratio")
->     (Matt Roper)
-> 
-> Bspec: 68861, 68858
-> Signed-off-by: Stanislav Lisovskiy <stanislav.lisovskiy@intel.com>
-> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 30 +++++++++++++++++++++-
->  1 file changed, 29 insertions(+), 1 deletion(-)
+On 12.09.2023 16:21, Rodrigo Vivi wrote:
+> On Tue, Sep 12, 2023 at 03:48:01PM +0200, Michal Wajdeczko wrote:
+>>
+>>
+>> On 12.09.2023 15:34, Jani Nikula wrote:
+>>> On Tue, 12 Sep 2023, Michal Wajdeczko <michal.wajdeczko@intel.com> wrote:
+>>>> On 12.09.2023 13:35, Jani Nikula wrote:
+>>>>> On Tue, 12 Sep 2023, Francois Dugast <francois.dugast@intel.com> wrote:
+>>>>>> From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>>>>
+>>>>>> As we are moving away from the controversial XE_BUG_ON macro,
+>>>>>> relying just on WARN_ON or drm_err does not cover the cases
+>>>>>> where we want to annotate functions with additional detailed
+>>>>>> debug checks to assert that all prerequisites are satisfied,
+>>>>>> without paying footprint or performance penalty on non-debug
+>>>>>> builds, where all misuses introduced during code integration
+>>>>>> were already fixed.
+>>>>>>
+>>>>>> Introduce family of Xe assert macros that try to follow classic
+>>>>>> assert() utility and can be compiled out on non-debug builds.
+>>>>>>
+>>>>>> Macros are based on drm_WARN, but unlikely to origin, disallow
+>>>>>> use in expressions since we will compile that code out.
+>>>>>>
+>>>>>> As we are operating on the xe pointers, we can print additional
+>>>>>> information about the device, like tile or GT identifier, that
+>>>>>> is not available from generic WARN report:
+>>>>>>
+>>>>>> [ ] xe 0000:00:02.0: [drm] Assertion `true == false` failed!
+>>>>>>     platform: 1 subplatform: 1
+>>>>>>     graphics: Xe_LP 12.00 step B0
+>>>>>>     media: Xe_M 12.00 step B0
+>>>>>>     display: enabled step D0
+>>>>>>     tile: 0 VRAM 0 B
+>>>>>>     GT: 0 type 1
+>>>>>>
+>>>>>> [ ] xe 0000:b3:00.0: [drm] Assertion `true == false` failed!
+>>>>>>     platform: 7 subplatform: 3
+>>>>>>     graphics: Xe_HPG 12.55 step A1
+>>>>>>     media: Xe_HPM 12.55 step A1
+>>>>>>     display: disabled step **
+>>>>>>     tile: 0 VRAM 14.0 GiB
+>>>>>>     GT: 0 type 1
+>>>>>>
+>>>>>> [ ] WARNING: CPU: 0 PID: 2687 at drivers/gpu/drm/xe/xe_device.c:281 xe_device_probe+0x374/0x520 [xe]
+>>>>>> [ ] RIP: 0010:xe_device_probe+0x374/0x520 [xe]
+>>>>>> [ ] Call Trace:
+>>>>>> [ ]  ? __warn+0x7b/0x160
+>>>>>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>>>>>> [ ]  ? report_bug+0x1c3/0x1d0
+>>>>>> [ ]  ? handle_bug+0x42/0x70
+>>>>>> [ ]  ? exc_invalid_op+0x14/0x70
+>>>>>> [ ]  ? asm_exc_invalid_op+0x16/0x20
+>>>>>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>>>>>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>>>>>> [ ]  xe_pci_probe+0x6e3/0x950 [xe]
+>>>>>> [ ]  ? lockdep_hardirqs_on+0xc7/0x140
+>>>>>> [ ]  pci_device_probe+0x9e/0x160
+>>>>>> [ ]  really_probe+0x19d/0x400
+>>>>>>
+>>>>>> v2: use lowercase names
+>>>>>> v3: apply xe coding style
+>>>>>>
+>>>>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>>>> Cc: Oded Gabbay <ogabbay@kernel.org>
+>>>>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>>>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>>>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>>>>>> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>>>>>> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>>> ---
+>>>>>>  drivers/gpu/drm/xe/xe_assert.h | 177 +++++++++++++++++++++++++++++++++
+>>>>>>  1 file changed, 177 insertions(+)
+>>>>>>  create mode 100644 drivers/gpu/drm/xe/xe_assert.h
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_assert.h
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..b2d3c9b82b31
+>>>>>> --- /dev/null
+>>>>>> +++ b/drivers/gpu/drm/xe/xe_assert.h
+>>>>>> @@ -0,0 +1,177 @@
+>>>>>> +/* SPDX-License-Identifier: MIT */
+>>>>>> +/*
+>>>>>> + * Copyright © 2023 Intel Corporation
+>>>>>> + */
+>>>>>> +
+>>>>>> +#ifndef _XE_ASSERT_H_
+>>>>>> +#define _XE_ASSERT_H_
+>>>>>> +
+>>>>>> +#include <linux/string_helpers.h>
+>>>>>> +
+>>>>>> +#include <drm/drm_print.h>
+>>>>>> +
+>>>>>> +#include "xe_device_types.h"
+>>>>>> +#include "xe_step.h"
+>>>>>> +
+>>>>>> +/**
+>>>>>> + * DOC: Xe ASSERTs
+>>>>>> + *
+>>>>>> + * While Xe driver aims to be simpler than legacy i915 driver it is still
+>>>>>> + * complex enough that some changes introduced while adding new functionality
+>>>>>> + * could break the existing code.
+>>>>>> + *
+>>>>>> + * Adding &drm_WARN or &drm_err to catch unwanted programming usage could lead
+>>>>>> + * to undesired increased driver footprint and may impact production driver
+>>>>>> + * performance as this additional code will be always present.
+>>>>>> + *
+>>>>>> + * To allow annotate functions with additional detailed debug checks to assert
+>>>>>> + * that all prerequisites are satisfied, without worrying about footprint or
+>>>>>> + * performance penalty on production builds where all potential misuses
+>>>>>> + * introduced during code integration were already fixed, we introduce family
+>>>>>> + * of Xe assert macros that try to follow classic assert() utility:
+>>>>>> + *
+>>>>>> + *  * &xe_assert
+>>>>>> + *  * &xe_tile_assert
+>>>>>> + *  * &xe_gt_assert
+>>>>>> + *
+>>>>>> + * These macros are implemented on top of &drm_WARN, but unlikely to the origin,
+>>>>>> + * warning is triggered when provided condition is false. Additionally all above
+>>>>>> + * assert macros cannot be used in expressions or as a condition, since
+>>>>>> + * underlying code will be compiled out on non-debug builds.
+>>>>>> + *
+>>>>>> + * Note that these macros are not intended for use to cover known gaps in the
+>>>>>> + * implementation; for such cases use regular &drm_WARN or &drm_err and provide
+>>>>>> + * valid safe fallback.
+>>>>>> + *
+>>>>>> + * Also in cases where performance or footprint is not an issue, developers
+>>>>>> + * should continue to use the regular &drm_WARN or &drm_err to ensure that bug
+>>>>>> + * reports from production builds will contain meagningful diagnostics data.
+>>>>>> + *
+>>>>>> + * Below code shows how asserts could help in debug to catch unplanned use::
+>>>>>> + *
+>>>>>> + *	static void one_igfx(struct xe_device *xe)
+>>>>>> + *	{
+>>>>>> + *		xe_assert(xe, xe->info.is_dgfx == false);
+>>>>>> + *		xe_assert(xe, xe->info.tile_count == 1);
+>>>>>> + *	}
+>>>>>> + *
+>>>>>> + *	static void two_dgfx(struct xe_device *xe)
+>>>>>> + *	{
+>>>>>> + *		xe_assert(xe, xe->info.is_dgfx);
+>>>>>> + *		xe_assert(xe, xe->info.tile_count == 2);
+>>>>>> + *	}
+>>>>>> + *
+>>>>>> + *	void foo(struct xe_device *xe)
+>>>>>> + *	{
+>>>>>> + *		if (xe->info.dgfx)
+>>>>>> + *			return two_dgfx(xe);
+>>>>>> + *		return one_igfx(xe);
+>>>>>> + *	}
+>>>>>> + *
+>>>>>> + *	void bar(struct xe_device *xe)
+>>>>>> + *	{
+>>>>>> + *		if (drm_WARN_ON(xe->drm, xe->info.tile_count > 2))
+>>>>>> + *			return;
+>>>>>> + *
+>>>>>> + *		if (xe->info.tile_count == 2)
+>>>>>> + *			return two_dgfx(xe);
+>>>>>> + *		return one_igfx(xe);
+>>>>>> + *	}
+>>>>>> + */
+>>>>>> +
+>>>>>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>>>>>> +#define __xe_assert_msg(xe, condition, msg, arg...) ({						\
+>>>>>> +	(void)drm_WARN(&(xe)->drm, !(condition), "[" DRM_NAME "] Assertion `%s` failed!\n" msg,	\
+>>>>>> +		       __stringify(condition), ## arg);						\
+>>>>>> +})
+>>>>>> +#else
+>>>>>> +#define __xe_assert_msg(xe, condition, msg, arg...) ({						\
+>>>>>> +	typecheck(struct xe_device *, xe);							\
+>>>>>> +	BUILD_BUG_ON_INVALID(condition);							\
+>>>>>> +})
+>>>>>> +#endif
+>>>>>> +
+>>>>>> +/**
+>>>>>> + * xe_assert - warn if condition is false when debugging.
+>>>>>> + * @xe: the &struct xe_device pointer to which &condition applies
+>>>>>> + * @condition: condition to check
+>>>>>> + *
+>>>>>> + * xe_assert() uses &drm_WARN to emit a warning and print additional information
+>>>>>> + * that could be read from the &xe pointer if provided &condition is false.
+>>>>>> + *
+>>>>>> + * Contrary to &drm_WARN, xe_assert() is effective only on debug builds
+>>>>>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
+>>>>>> + * or as a condition.
+>>>>>> + *
+>>>>>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>>>>>> + */
+>>>>>> +#define xe_assert(xe, condition) xe_assert_msg((xe), condition, "")
+>>>>>> +#define xe_assert_msg(xe, condition, msg, arg...) ({						\
+>>>>>> +	struct xe_device *__xe = (xe);								\
+>>>>>> +	__xe_assert_msg(__xe, condition,							\
+>>>>>> +			"platform: %d subplatform: %d\n"					\
+>>>>>> +			"graphics: %s %u.%02u step %s\n"					\
+>>>>>> +			"media: %s %u.%02u step %s\n"						\
+>>>>>> +			"display: %s step %s\n"							\
+>>>>>> +			msg,									\
+>>>>>> +			__xe->info.platform, __xe->info.subplatform,				\
+>>>>>> +			__xe->info.graphics_name,						\
+>>>>>> +			__xe->info.graphics_verx100 / 100,					\
+>>>>>> +			__xe->info.graphics_verx100 % 100,					\
+>>>>>> +			xe_step_name(__xe->info.step.graphics),					\
+>>>>>> +			__xe->info.media_name,							\
+>>>>>> +			__xe->info.media_verx100 / 100,						\
+>>>>>> +			__xe->info.media_verx100 % 100,						\
+>>>>>> +			xe_step_name(__xe->info.step.media),					\
+>>>>>> +			str_enabled_disabled(__xe->info.enable_display),			\
+>>>>>> +			xe_step_name(__xe->info.step.display),					\
+>>>>>> +			## arg);								\
+>>>>>> +})
+>>>>>
+>>>>> I guess I have missed this huge splat all along... Why is it necessary?
+>>>>> If you print the device id, all the information should be there already,
+>>>>> right?
+>>>>
+>>>> somewhere in the dmesg (if someone/CI was clever enough) maybe yes
+>>>>
+>>>> but in bug reports usually only the WARN is included, so exposing some
+>>>> basic info here for quicker triage
+>>>
+>>> I just think it's unnecessary duplication. 
+>>
+>> but what if assert() fires before driver print welcome messages ;)
+>>
+>> IMO we should try to collect whatever is possible and comes almost at no
+>> extra cost (you don't need to type anything, macro takes care of that)
+>>
+>>> Most likely this will only be
+>>> enabled in CI only anyway.
+>>
+>> I assume asserts will fire mostly during pre-merge testing (either on CI
+>> or on tested manually on DUT machines)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 656ff50def39..4cde78db83a1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -1382,6 +1382,31 @@ static const struct intel_cdclk_vals mtl_cdclk_table[] = {
->  	{}
->  };
->  
-> +static const struct intel_cdclk_vals lnl_cdclk_table[] = {
-> +	{ .refclk = 38400, .cdclk = 153600, .divider = 2, .ratio = 16, .waveform = 0xaaaa },
-> +	{ .refclk = 38400, .cdclk = 172800, .divider = 2, .ratio = 16, .waveform = 0xad5a },
-> +	{ .refclk = 38400, .cdclk = 192000, .divider = 2, .ratio = 16, .waveform = 0xb6b6 },
-> +	{ .refclk = 38400, .cdclk = 211200, .divider = 2, .ratio = 16, .waveform = 0xdbb6 },
-> +	{ .refclk = 38400, .cdclk = 230400, .divider = 2, .ratio = 16, .waveform = 0xeeee },
-> +	{ .refclk = 38400, .cdclk = 249600, .divider = 2, .ratio = 16, .waveform = 0xf7de },
-> +	{ .refclk = 38400, .cdclk = 268800, .divider = 2, .ratio = 16, .waveform = 0xfefe },
-> +	{ .refclk = 38400, .cdclk = 288000, .divider = 2, .ratio = 16, .waveform = 0xfffe },
-> +	{ .refclk = 38400, .cdclk = 307200, .divider = 2, .ratio = 16, .waveform = 0xffff },
-> +	{ .refclk = 38400, .cdclk = 330000, .divider = 2, .ratio = 25, .waveform = 0xdbb6 },
-> +	{ .refclk = 38400, .cdclk = 360000, .divider = 2, .ratio = 25, .waveform = 0xeeee },
-> +	{ .refclk = 38400, .cdclk = 390000, .divider = 2, .ratio = 25, .waveform = 0xf7de },
-> +	{ .refclk = 38400, .cdclk = 420000, .divider = 2, .ratio = 25, .waveform = 0xfefe },
-> +	{ .refclk = 38400, .cdclk = 450000, .divider = 2, .ratio = 25, .waveform = 0xfffe },
-> +	{ .refclk = 38400, .cdclk = 480000, .divider = 2, .ratio = 25, .waveform = 0xffff },
-> +	{ .refclk = 38400, .cdclk = 487200, .divider = 2, .ratio = 29, .waveform = 0xfefe },
-> +	{ .refclk = 38400, .cdclk = 522000, .divider = 2, .ratio = 29, .waveform = 0xfffe },
-> +	{ .refclk = 38400, .cdclk = 556800, .divider = 2, .ratio = 29, .waveform = 0xffff },
-> +	{ .refclk = 38400, .cdclk = 571200, .divider = 2, .ratio = 34, .waveform = 0xfefe },
-> +	{ .refclk = 38400, .cdclk = 612000, .divider = 2, .ratio = 34, .waveform = 0xfffe },
-> +	{ .refclk = 38400, .cdclk = 652800, .divider = 2, .ratio = 34, .waveform = 0xffff },
-> +	{}
-> +};
-> +
->  static int bxt_calc_cdclk(struct drm_i915_private *dev_priv, int min_cdclk)
->  {
->  	const struct intel_cdclk_vals *table = dev_priv->display.cdclk.table;
-> @@ -3591,7 +3616,10 @@ static const struct intel_cdclk_funcs i830_cdclk_funcs = {
->   */
->  void intel_init_cdclk_hooks(struct drm_i915_private *dev_priv)
->  {
-> -	if (DISPLAY_VER(dev_priv) >= 14) {
-> +	if (DISPLAY_VER(dev_priv) >= 20) {
-> +		dev_priv->display.funcs.cdclk = &mtl_cdclk_funcs;
-> +		dev_priv->display.cdclk.table = lnl_cdclk_table;
-> +	} else if (DISPLAY_VER(dev_priv) >= 14) {
->  		dev_priv->display.funcs.cdclk = &mtl_cdclk_funcs;
->  		dev_priv->display.cdclk.table = mtl_cdclk_table;
->  	} else if (IS_DG2(dev_priv)) {
-> -- 
-> 2.40.1
+> I'm with Jani here. In all of these cases you already know the PCI ID of
+> that specific machine, so all this extra information should already be known.
 > 
+> The only benefit would be to get user reports when we get just that debug
+> msg. But also asking for a lspci -nn | grep VGA was never that complicated.
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+but lspci will not show you the GMDID, so how you will know IP version?
+likely same problem with VRAM size as you will see just BAR size, no?
+and in the near future how to distinguish between native and PF mode?
+
+> 
+> My recommendation is to remove the duplication of this information here.
+
+honestly I don't understand why are we aiming to have totally silent
+driver that makes any debug just harder and clueless - maybe it's time
+to help early adopters and feature enablers by providing more, even if
+duplicated, data which is still better than nothing - like in case when
+the driver decides to fail the probe ... you may just start guessing why
+
+> But this is not a blocker in my opinion and we could go with this patch as is.
+> 
+> Jani, do you see this as a blocker and a new version needed?
+> 
+> maybe a follow-up later so we don't block this entire series?
+> 
+> Thanks,
+> Rodrigo.
+> 
+>>
+>>>
+>>>>
+>>>>>
+>>>>> This also makes it impossible to use xe_assert() with a NULL xe device
+>>>>> pointer in contexts where you don't have the device available.
+>>>>
+>>>> there was no such requirement (but we can add that if needed)
+>>>>
+>>>> note that code is based on drm_WARN() which also doesn't work with NULL
+>>>
+>>> Ah, true. The drm_dbg and friends do.
+>>
+>> true, so do you want xe_assert() and family to also accept NULL ?
+>>
+>>>
+>>>>
+>>>> Michal
+>>>>
+>>>>>
+>>>>> BR,
+>>>>> Jani.
+>>>>>
+>>>>>
+>>>>>> +
+>>>>>> +/**
+>>>>>> + * xe_tile_assert - warn if condition is false when debugging.
+>>>>>> + * @tile: the &struct xe_tile pointer to which &condition applies
+>>>>>> + * @condition: condition to check
+>>>>>> + *
+>>>>>> + * xe_tile_assert() uses &drm_WARN to emit a warning and print additional
+>>>>>> + * information that could be read from the &tile pointer if provided &condition
+>>>>>> + * is false.
+>>>>>> + *
+>>>>>> + * Contrary to &drm_WARN, xe_tile_assert() is effective only on debug builds
+>>>>>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
+>>>>>> + * or as a condition.
+>>>>>> + *
+>>>>>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>>>>>> + */
+>>>>>> +#define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
+>>>>>> +#define xe_tile_assert_msg(tile, condition, msg, arg...) ({					\
+>>>>>> +	struct xe_tile *__tile = (tile);							\
+>>>>>> +	char __buf[10];										\
+>>>>>> +	xe_assert_msg(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg,			\
+>>>>>> +		      __tile->id, ({ string_get_size(__tile->mem.vram.actual_physical_size, 1,	\
+>>>>>> +				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
+>>>>>> +})
+>>>>>> +
+>>>>>> +/**
+>>>>>> + * xe_gt_assert - warn if condition is false when debugging.
+>>>>>> + * @gt: the &struct xe_gt pointer to which &condition applies
+>>>>>> + * @condition: condition to check
+>>>>>> + *
+>>>>>> + * xe_gt_assert() uses &drm_WARN to emit a warning and print additional
+>>>>>> + * information that could be safetely read from the &gt pointer if provided
+>>>>>> + * &condition is false.
+>>>>>> + *
+>>>>>> + * Contrary to &drm_WARN, xe_gt_assert() is effective only on debug builds
+>>>>>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
+>>>>>> + * or as a condition.
+>>>>>> + *
+>>>>>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>>>>>> + */
+>>>>>> +#define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
+>>>>>> +#define xe_gt_assert_msg(gt, condition, msg, arg...) ({						\
+>>>>>> +	struct xe_gt *__gt = (gt);								\
+>>>>>> +	xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,			\
+>>>>>> +			   __gt->info.id, __gt->info.type, ## arg);				\
+>>>>>> +})
+>>>>>> +
+>>>>>> +#endif
+>>>>>
+>>>
