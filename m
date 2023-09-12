@@ -4,30 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04B86CA0EC3
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 08:40:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1825ECA0ECE
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 08:43:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3D310E3BD;
-	Tue, 12 Sep 2023 08:40:54 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9E2A010E3BE;
- Tue, 12 Sep 2023 08:40:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9B2BAAADEB;
- Tue, 12 Sep 2023 08:40:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D426510E21C;
+	Tue, 12 Sep 2023 08:43:31 +0000 (UTC)
+Received: from cluster-b.mailcontrol.com (cluster-b.mailcontrol.com
+ [85.115.56.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5F910E21C
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 08:43:30 +0000 (UTC)
+Received: (from mailcontrol@localhost)
+ by rly48b.srv.mailcontrol.com (MailControl) with ESMTP id 38C8hRpF070975
+ for intel-xe@lists.freedesktop.org; Tue, 12 Sep 2023 09:43:27 +0100
+Received: from rly48b.srv.mailcontrol.com (localhost [127.0.0.1])
+ by localhost (envelope-sender obitton@habana.ai) (MIMEDefang) with ESMTP id
+ 38C8hNAU068487 (TLS bits=256 verify=OK)
+ for intel-xe@lists.freedesktop.org; Tue, 12 Sep 2023 09:43:27 +0100 (BST)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+ by rly48b.srv.mailcontrol.com (MailControl) id 38C8hGIu066954
+ for intel-xe@lists.freedesktop.org; Tue, 12 Sep 2023 09:43:16 +0100
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com
+ (mail-am7eur03lp2236.outbound.protection.outlook.com [104.47.51.236])
+ by rly48b-eth0.srv.mailcontrol.com (envelope-sender obitton@habana.ai)
+ (MIMEDefang) with ESMTP id 38C8h9l9064975 (TLS bits=256 verify=OK)
+ for intel-xe@lists.freedesktop.org; Tue, 12 Sep 2023 09:43:16 +0100 (BST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=flqukK25C819F+Sv633BP0A/TmiGn2HYvTSGsDm7UTkSI406eZpmXeeAjTmw9mKLv3OcNLXihCwbleDRpIoro4wTrAVFiTLzQG/Vy8PPGaLFABPIoLMHA7RoFkLTs0u4hIDToLZjsaqvRVF35/vXD+kdJytPf6ZX+wPGeMU0NC7AMYJRUqYstMVtAuqQDDxpLXi3varxJ3U77X5uAsadSWKxdVmywiDYzN1mIn2F2u4LssHiY72V13dDfr0jqGjxyD8e7stbn8pXIF/s3DyLe2AsiYNwMQyckapDrj2cYjSgCDC7EWQaVRuMc432OaD4Bs4Uo4dvXDRMp52vjCa3rQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=YW+ULhe6fDJsRnwr1sXUrBLsv6twJZunjpWkpeAkNyg=;
+ b=oH0to8dYhYDdCBaMtA0CF46scJgy+OQP2Ny86OHvLsHNZFUPuJYXmZKryMkqDVUQw52c1at8SLtJKoTsNXQIhuCVeuPg1nwNjqfMO7KH6CL7AcmHhYfjheKH6pm0IzzvGPAqfR+nJff2pcNoGkFX3A3pgoJd6sjtryoHwAcubSiaG+qPY+j8bbvqGLqrilWmFnXPR4csg9iqLqxPkWSyYIlGVx5ZsScrwh5n9dJcC2ZxYdOYRCnaYUZV+Vt2OB7DoxMClTlElehI5EYfjixihW2mQ9kGeeDxK1+nx3lMvt096sJHVm4rzvO98p1go6uWqHVc96tvemcJgLJyzO5Aqw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=habana.ai; dmarc=pass action=none header.from=habana.ai;
+ dkim=pass header.d=habana.ai; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=habana.ai; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YW+ULhe6fDJsRnwr1sXUrBLsv6twJZunjpWkpeAkNyg=;
+ b=nwc/erahLM+yXXjLlGre7IutOYuZLm5uKxSK5XHV53NXaoRUtCaPYAzS4EGWufkrXu9CPFYWJ8x5qG2dgPsnmsElevDnL5amXoOmj4sVQfmhGcyt/ktuWYfZdH1KFMC/wnYfEaFfc3LCOdS3v3FA5WBgfDiIhxX6hgiAKYWKorHK0axwuoq7hEpjnRDnxtU+tkjudiP5oMc6WkvdVzsfz3aD774ed0OFJFbCbyuLBn59bGOWyEoW5JCYginAh3lXS3a43MnD4BzabKEfXDioMFk/+5Cw+8u2iAoDfT1kJj89Sxk7PGUtD1Zm7IlmSSNnF14xWmm4CH2023IsKjlULw==
+Received: from DB9PR02MB6619.eurprd02.prod.outlook.com (2603:10a6:10:211::10)
+ by GV2PR02MB9446.eurprd02.prod.outlook.com (2603:10a6:150:e3::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.31; Tue, 12 Sep
+ 2023 08:43:06 +0000
+Received: from DB9PR02MB6619.eurprd02.prod.outlook.com
+ ([fe80::6623:3577:f97f:22c3]) by DB9PR02MB6619.eurprd02.prod.outlook.com
+ ([fe80::6623:3577:f97f:22c3%7]) with mapi id 15.20.6768.036; Tue, 12 Sep 2023
+ 08:43:06 +0000
+From: Ofir Bitton <obitton@habana.ai>
+To: Matt Roper <matthew.d.roper@intel.com>
+Thread-Topic: [Intel-xe] [PATCH] drm/xe/uapi: Remove MMIO ioctl
+Thread-Index: AQHZ4cJ38SDN4jXuXEKkP+/AO6NU1bAURcqAgAC7nwCAAAn5AIABUGuAgACK+YA=
+Date: Tue, 12 Sep 2023 08:43:06 +0000
+Message-ID: <23515ffe-c397-21a9-94b5-e28f5b26fd64@habana.ai>
+References: <20230907193515.7-1-francois.dugast@intel.com>
+ <ef36eb06-d65b-6ad4-ac4f-f1fb2ba7a544@habana.ai>
+ <tl37n5qledvt7yxce5sl4byon6puewxvs3ymfebsndnolwstg3@3fjfvpuzna5b>
+ <fede72f2-e542-8308-fcb4-ad37ae058154@habana.ai>
+ <20230912002541.GD2706891@mdroper-desk1.amr.corp.intel.com>
+In-Reply-To: <20230912002541.GD2706891@mdroper-desk1.amr.corp.intel.com>
+Accept-Language: he-IL, en-US
+Content-Language: he-IL
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.0
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=habana.ai;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DB9PR02MB6619:EE_|GV2PR02MB9446:EE_
+x-ms-office365-filtering-correlation-id: 7896a0bd-35cf-4e62-0361-08dbb36c48d2
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: B5bkjSXQ8SIe7PTazrcsiiEr2XOXZiL2YlFbudT+nNUu+Erpb7uEKa5oGPdwFcaNTh4GTJtbT6Oa8MA4u4laCI1wmyQWbtuBuzBjDPcaDk29JDoCMQCQ7TPwIgUOa4BK4nyJb4jmajN2RIYRYNTnRyY9ReundILc+vyoHszmsFnARq0+En8rBrPFYxwsy7k7++ai5NP2RvWGCPpBlXKLI7wuVrT1XqQA/asTt9uUvSHzD5Sr/w/qj1DLTb5fhV/Q/qEUcBC4mZ/Dxh1db1ZcpXXuZw9pvDI2nPWE7pwkjZbmFjK5nKIM/rG4ZSuaOlA9eQWq5BGNeisFZ/mX4a8TRwtwEZ9HEuWCQHtGqJilsX0Aw/iPFMuX1Wygr4Bkd23gjx1sktUqFJsslgVt9ig7qUTEgUeBTe8UW/dLq7Qmi8OG8fiTppXiVd6W4ZWr4xQGQ+g/poI8+c2LxJHiDQrubKfSsSUFoZer7qRYWXjLkPyez4TPv75+7y1eIgZHvceBw5T314uNcc46qQYxnlRYHxapkNGN6BDiDVjYSr45Zo9w0sXFEdzG1fBOvh7q23WkJeMIMS5aQTrrXnBMe2S8o2M6a7bBMVuWpajymln4XWyOasx24Fgkd4B7FoIQsIus+b+cvcxxggZl9y6+pIYoFcBXQcvik7jT1GXOjCv7/xI=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DB9PR02MB6619.eurprd02.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(396003)(376002)(136003)(346002)(39850400004)(451199024)(186009)(1800799009)(31686004)(122000001)(71200400001)(6506007)(53546011)(6486002)(31696002)(86362001)(82960400001)(38070700005)(38100700002)(36756003)(2616005)(26005)(30864003)(2906002)(966005)(6512007)(478600001)(45080400002)(83380400001)(5660300002)(91956017)(4326008)(8936002)(41300700001)(8676002)(66476007)(54906003)(66946007)(66556008)(76116006)(6916009)(66446008)(64756008)(316002)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RDJRdDlEQkxMa0ZMV1JlSVJCSms1QjVsQmZsTWRCQVREUWR6SnR6ZklieXhi?=
+ =?utf-8?B?eEx5dGxDK3I3cUsrUnluL0JydE5xMk1ydjNtZjIwdFk4Z1liWEJkV285aTVY?=
+ =?utf-8?B?M0VhR2FPN0E3Vk1tY0JxVEVMcEY3Yi9aYXdiMGlhK3oxNEVIV1FPRXdMdDlS?=
+ =?utf-8?B?OTQ3SHVNVXNBaFlCS2RIamZLS3hpeWo5TTRLWkc2Mnl3QjRyU1pxTXJaZW1t?=
+ =?utf-8?B?UlRQUnN0M3pTMUE3UGJiL3VteXlYMjQ3cCtwSEZkQU5wclhSNU4wYXdSeEhB?=
+ =?utf-8?B?N2VkNklHT3BDUkNOekdNT1FOWWtiWFZjd3k1RVZTeFUvS2hMdG5XOG9ySlc4?=
+ =?utf-8?B?UG9xVzdCVyt0SFRFOENtY1N0THlzREwwc0hhZ0F2TWVsTHFaRk1WVDFFTENW?=
+ =?utf-8?B?UC9xS2VSb2R6STdiV1FVeS9LZ3J5RjhIZStDUFl3SFpFZzh0SVNTeHk1RVlX?=
+ =?utf-8?B?Y1A5ZFAxZUtxWVBiL0U4UmVLSVFBUkRJdXdkVldNaGJzMVhrZWpySENWOGI3?=
+ =?utf-8?B?RWJPVmJKQjJNWHlTUVV5QW91V1BRdXZTdXdUUC8vSTFYakNudUhFblVKcmhq?=
+ =?utf-8?B?Rjc5YlhDK0kyZzNvUmY4cUYyVHdtY1lhZkVrR2lVOHd0VjBjTFMzY3BjdWFV?=
+ =?utf-8?B?RGRKbmpkM2xtUk9QaCtpc2J1VjJjUnh1UWNjZ21pSnZleDdqSzRKYklyVUJu?=
+ =?utf-8?B?b1hUeTRJV2xnOUk1NUhRY3c2YjExd3BKb25pRjRlQ2R0M1Z2SG5NVmYyOTVU?=
+ =?utf-8?B?SWswUEdqTmcrZEZmd3dFYzdmRGFUOUR1R1BhTjByK3JSeGNmNW5rV2U4Mml0?=
+ =?utf-8?B?T0p2RzdhZ2FrZm9jbkE2RFpoZXB3NTRLeW51Qi9iNmg2emRSRHVXTnBJOGlp?=
+ =?utf-8?B?ZVdtZkZzWGZBTEloUG83NU5zVHVza3AyckJiY2gvWWpuQnVXdnN0T05wUVNE?=
+ =?utf-8?B?UGlyTmM3a05yOElQc3d3NEQzS1Z2djZjWSs3R01BNitsNFJiaUhJd2pROCti?=
+ =?utf-8?B?WWoweXhJSVM1TWxzc1Y5TWMybldwS2pnRXJJczB1OGxYVnh1OU5rVmc0ZkFo?=
+ =?utf-8?B?R29SbzNjdkxWM1ZQMFI0MkJpZGNURHo2OUE4WWRYY2F2OXZKTDRrMkVDNXRU?=
+ =?utf-8?B?OTBqdXlEbEQwUysrSmE0eEpmUENOVWw5a1BFU2tNMVJtM1N5UzZ1OEYrbEJl?=
+ =?utf-8?B?ayt5RS9rcC9vN0hGNkZDN21xNEx4WG1uV1FJSWVRZFVVT3piYWo1b3FiL3k1?=
+ =?utf-8?B?cnpTZ0tUVjlqY2JWUTdWcG9oL1VKeG5pNXA3ZW5RSUhsMHZ1cDkxQXBCTWtn?=
+ =?utf-8?B?NlU2UVFUYm9OOVhnQmpDY0hqd3F0ajE1NEU5aXVkMHJrbnhWRTVJL3lXWXVU?=
+ =?utf-8?B?a0NKaFMxWnVHUHZnek1yc1IvZ0M0TnpiRTQvQ2pFZENLdi9mODM5empmUy8y?=
+ =?utf-8?B?YUJmeTJYZWpaeU1tRmtLNEZNdk5SR0dKQkZwTXRwR05zU0xKWDdSNS9JMWM1?=
+ =?utf-8?B?MlhwYThkKzZLRFBETmFiZUg0dEg5SlFvcmR1b3krcXlXWjZOeHl4a3VhRUxn?=
+ =?utf-8?B?QWh1OGZNSFBSVDVuendVSEJsa0dQNS9YY3d3QjZORVJvTFhFbVBGay9wWjdK?=
+ =?utf-8?B?aS9tZ0hUYjVxWWFTODRra2JQQlczc1F3aHNwZE9JME5KSGx3Tkh6ZVFCNmp1?=
+ =?utf-8?B?MUVhaDFBWlNua25OOUV2c281cHhySGlMZm9RZDIwdXE2K2ZaZ0YyWEFhSUxU?=
+ =?utf-8?B?K05IVU9yemxYek5mejFqdHNvNi9lN1V0SXFTNTZYNERCVFJ0dko4bzNiRVJk?=
+ =?utf-8?B?YyttRlRqNGt2TFVzVnpEeHc0MWFMcURjZEVPT3JSWWErSHpjcXRQbS9sZi8x?=
+ =?utf-8?B?VTRYaUYrNUpGaVFSNFBBTVJlYU9uVFdSUkdlWnVuRzlEUmRBdHJIWStBajRG?=
+ =?utf-8?B?OEp2RUFLa2ZVMzN1RVN3S01pbzdoWXFiekVWeTRJUmd2WG1yTXlZVHdMUUM3?=
+ =?utf-8?B?ME9HanBjbFE5NE1vYkRFVGdYWXphajZsdS9HSmwzTWhYY3R0dDRwem45REox?=
+ =?utf-8?B?elYwUkJpa1JqSk5mb3YvVnpzWjBQU0l2SXNJN1dWb2p1TzhxbFVIbjYzSnVV?=
+ =?utf-8?Q?wxqk=3D?=
 Content-Type: text/plain; charset="utf-8"
+Content-ID: <93E26B1C620AA249819BDF3EA3D5B32E@eurprd02.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Tue, 12 Sep 2023 08:40:53 -0000
-Message-ID: <169450805362.31796.12189013697015318418@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230912083635.7-1-francois.dugast@intel.com>
-In-Reply-To: <20230912083635.7-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_Use_Xe_?=
- =?utf-8?q?assert_macros_instead_of_XE=5FWARN=5FON_macro_=28rev4=29?=
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: WXadETxhRpQ6HbgwOWDJaDjjLSHVksRJZG0sO7diQ+HkZklqvHVqBRq3RqKSNR8wNNe3rmPe7vaKz6IiCAXxTkazWWkiN/+Y3OuFubecTdTErcKcmS0+gi7qJn67FVMi7BO4TSXttI/vf3FR6bMgMNkUiEpZtmVaxYoyFz5MjQTIk1T6lQhhnXmNXGcug+M8deJst+McHZyTbEBLHcMBNhBBCHZ9DhGFfV03q4EpEKj6RzVe8Qnlj9xW48tLAdud6auHPee4dTaNHF5131bjsp/m6LG36Mk2gEdKE2gdQpNTqe+794m+tUrm3n1Gsc2VOINzeY4VpE9iZ5tX4Ssj+aK4CGJpBJ6wdFcne6PjOmLt/nhCj9s4xTXGwS/Hc6NmvGhVf3iu34eVe6e0Uete612iOxE1CE2QnNIl4rKA0DyaWKvYYz8tpC2AxQonXIBFj/oxebHOi62zYtF19tm8G4vdrcJGGE0XVuZMJbBI7aJG5stv48xz9/p6Y5YDn0yPtNyuskxYLpEzaZlY206agIWRJrbs0mO0OG/fVRY3RQVsp/qZ4z9MeHIeoWlB7WHqP8GLomy4u6/zB4RrzqlaGWvq1B9MLoniAwStfV4J2HS2ZYk6tXxwolIIACuaBUdYoKGzl2B99+ODZfJSje+t7kJrev6ZhbF+AjwHib7HmVArNRmPKnx+g4so9RkXW/29a2zgoTtUuoHrcNa+0oTHnXb3Tr8X5aOKrmG4hI7NPXszpU7cQc4lQRfw4t/dR4oiDJGFJ0AUU4ttrUfi2OxyzDvpCqVQbwTNKdYZdLwhH9Y=
+X-OriginatorOrg: habana.ai
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR02MB6619.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7896a0bd-35cf-4e62-0361-08dbb36c48d2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Sep 2023 08:43:06.2280 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0d4d4539-213c-4ed8-a251-dc9766ba127a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: EW3L4qkDiNcG3Lk5AuDnuYxfncUbJyrbgJt1rWkdn5pLWWxDZROcmXdu0qlrU+U8dlS5uI/O71xAmVASPN8x6A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR02MB9446
+X-MailControlDKIMCheck: cGFzcyBoYWJhbmEuYWkgW3Bhc3Nd
+X-MailControl-OutInfo: MTY5NDUwODIwNTpGUEtleTEucHJpdjq0qDan/OUHzX5K+V0egEWZwR6V9+m0t17OtOsaZJx6Jr3tO7fghI+BBzOlh/mrXkn3B2ZPNXIFfh2vJNkNOtC4RkSCvXuOH4JQV7/dEfD9b2UGYGdj6YMZNAha/v/61xrbSkhDbX1dr/Pm2P70v/uGGi42prArGgW9H+3g9nP3cWRfDhlNz2PXRE2yut/cM5t/ZYakIMmgGoRpbzNMicSp7eYDIuKEvo2EyMS65WZoVajJ93+NBJ/kyPEpSZLURUxFjICBubg0AnNwB7nsQSqQFDtxKUAZbNhRIUkMeHMgXttaMgBdER2RGr8MtZsHbsVveVoiR7N6QZ6ieB6RGUOE
+X-Scanned-By: MailControl 44278.2141 (www.mailcontrol.com) on 104.47.51.236
+X-Mailcontrol-Refers-To: 38C8hNAU068487
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=habana.ai;
+ h=from:to:cc:subject:date:message-id:references:in-reply-to:content-type:content-id:content-transfer-encoding:mime-version;
+ s=fpkey81949-1; bh=YW+ULhe6fDJsRnwr1sXUrBLsv6twJZunjpWkpeAkNyg=;
+ b=LQ7xqch1BcQTAV1NmffTHuqpEYuhsFm2M3c2mmX16QYV6VDwLM4BLrfVAUsuSFEFU1FVQ+Qb5czwdY91vsthhr63glMrGKzsrCISxmvUNij6GYpGzNItPuZxyfKQzG16Bq5O5mvbvDl8L/HQMiH3sQrDle8NmBUAFrQZLCN6xglMayaCc1cdnFEGFVkTI7z8a7GZH6q0UrBeGv0jSKjvJBBOu9z0/WlmyKzhFBZnpxsqibPwX7bG37op4/qydYCn96wRS0Bg13LT3VsWdAG/H9a925jDuD/Y7P/3R45PQ1GIIEaPtQXVePt5j2/tpMNFHQ2iwLzV+EnOzJ7SALfHFA==
+Subject: Re: [Intel-xe] [PATCH] drm/xe/uapi: Remove MMIO ioctl
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,3080 +155,242 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
-
-Series: Use Xe assert macros instead of XE_WARN_ON macro (rev4)
-URL   : https://patchwork.freedesktop.org/series/122906/
-State : success
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[08:39:41] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:39:45] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_bb.c:9:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bb.c: In function ‘__xe_bb_create_job’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bb.c:69:2: note: in expansion of macro ‘xe_gt_assert’
-   69 |  xe_gt_assert(q->gt, bb->len * 4 + bb_prefetch(q->gt) <= size);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bb.c: In function ‘xe_bb_create_migration_job’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bb.c:87:2: note: in expansion of macro ‘xe_gt_assert’
-   87 |  xe_gt_assert(q->gt, second_idx <= bb->len);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bb.c:88:2: note: in expansion of macro ‘xe_gt_assert’
-   88 |  xe_gt_assert(q->gt, q->vm->flags & XE_VM_FLAG_MIGRATION);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bb.c: In function ‘xe_bb_create_job’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bb.c:98:2: note: in expansion of macro ‘xe_gt_assert’
-   98 |  xe_gt_assert(q->gt, !(q->vm && q->vm->flags & XE_VM_FLAG_MIGRATION));
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_bo.c:17:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c: In function ‘xe_bo_move’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_bo.c:711:2: note: in expansion of macro ‘xe_tile_assert’
-  711 |  xe_tile_assert(tile, tile->migrate);
-      |  ^~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_bo_evict.c:9:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_debugfs.c:14:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/tests/xe_pci_test.c:13:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/tests/xe_rtp_test.c:16:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/tests/xe_wa_test.c:11:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_devcoredump.c:12:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_device.c:6:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_device_sysfs.c:12:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_exec.c:15:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_dma_buf.c:18:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_execlist.c:15:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_execlist.c:15:
-../drivers/gpu/drm/xe/xe_execlist.c: In function ‘__start_lrc’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_execlist.c:54:3: note: in expansion of macro ‘xe_gt_assert’
-   54 |   xe_gt_assert(hwe->gt, FIELD_FIT(XEHP_SW_CTX_ID, ctx_id));
-      |   ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_execlist.c:57:3: note: in expansion of macro ‘xe_gt_assert’
-   57 |   xe_gt_assert(hwe->gt, FIELD_FIT(GEN11_SW_CTX_ID, ctx_id));
-      |   ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_exec_queue.c:14:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.c:6:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.c: In function ‘xe_force_wake_init_gt’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.c:48:2: note: in expansion of macro ‘xe_gt_assert’
-   48 |  xe_gt_assert(gt, GRAPHICS_VER(gt_to_xe(gt)) >= 11);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.c: In function ‘xe_force_wake_init_engines’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.c:70:2: note: in expansion of macro ‘xe_gt_assert’
-   70 |  xe_gt_assert(gt, GRAPHICS_VER(gt_to_xe(gt)) >= 11);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_ggtt.c:16:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_ggtt.c:16:
-../drivers/gpu/drm/xe/xe_ggtt.c: In function ‘xe_ggtt_set_pte’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c:61:2: note: in expansion of macro ‘xe_tile_assert’
-   61 |  xe_tile_assert(ggtt->tile, !(addr & XE_PTE_MASK));
-      |  ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c:62:2: note: in expansion of macro ‘xe_tile_assert’
-   62 |  xe_tile_assert(ggtt->tile, addr < ggtt->size);
-      |  ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c: In function ‘xe_ggtt_clear’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c:72:2: note: in expansion of macro ‘xe_tile_assert’
-   72 |  xe_tile_assert(ggtt->tile, start < end);
-      |  ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c: In function ‘ggtt_invalidate_gt_tlb’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c:233:3: note: in expansion of macro ‘xe_gt_assert’
-  233 |   xe_gt_assert(gt, seqno > 0);
-      |   ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c: In function ‘xe_ggtt_printk’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c:269:3: note: in expansion of macro ‘xe_tile_assert’
-  269 |   xe_tile_assert(ggtt->tile, addr <= U32_MAX);
-      |   ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c: In function ‘__xe_ggtt_insert_bo_at’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c:322:3: note: in expansion of macro ‘xe_tile_assert’
-  322 |   xe_tile_assert(ggtt->tile, bo->ggtt_node.size == bo->size);
-      |   ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c: In function ‘xe_ggtt_remove_bo’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ggtt.c:374:2: note: in expansion of macro ‘xe_tile_assert’
-  374 |  xe_tile_assert(ggtt->tile, bo->ggtt_node.size == bo->size);
-      |  ^~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_gt.c:14:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_gt_clock.c:10:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_clock.c: In function ‘xe_gt_clock_init’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_clock.c:61:2: note: in expansion of macro ‘xe_gt_assert’
-   61 |  xe_gt_assert(gt, GRAPHICS_VER(gt_to_xe(gt)) >= 11);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_gt_debugfs.c:11:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_debugfs.c: In function ‘xe_gt_debugfs_register’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_debugfs.c:161:2: note: in expansion of macro ‘xe_gt_assert’
-  161 |  xe_gt_assert(gt, minor->debugfs_root);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_gt_idle_sysfs.c:8:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_trace.h:21,
-                 from ../drivers/gpu/drm/xe/xe_gt_pagefault.c:22:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:8:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:8:
-../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c: In function ‘xe_gt_tlb_invalidation_vma’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:253:2: note: in expansion of macro ‘xe_gt_assert’
-  253 |  xe_gt_assert(gt, vma);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:291:3: note: in expansion of macro ‘xe_gt_assert’
-  291 |   xe_gt_assert(gt, length >= SZ_4K);
-      |   ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:292:3: note: in expansion of macro ‘xe_gt_assert’
-  292 |   xe_gt_assert(gt, is_power_of_2(length));
-      |   ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:293:3: note: in expansion of macro ‘xe_gt_assert’
-  293 |   xe_gt_assert(gt, !(length & GENMASK(ilog2(SZ_16M) - 1, ilog2(SZ_2M) + 1)));
-      |   ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:294:3: note: in expansion of macro ‘xe_gt_assert’
-  294 |   xe_gt_assert(gt, IS_ALIGNED(start, length));
-      |   ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:303:2: note: in expansion of macro ‘xe_gt_assert’
-  303 |  xe_gt_assert(gt, len <= MAX_TLB_INVALIDATION_LEN);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_guc_ads.c:18:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_guc_ads.c:18:
-../drivers/gpu/drm/xe/xe_guc_ads.c: In function ‘xe_guc_ads_init_post_hwconfig’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c:314:2: note: in expansion of macro ‘xe_gt_assert’
-  314 |  xe_gt_assert(gt, ads->bo);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c:319:2: note: in expansion of macro ‘xe_gt_assert’
-  319 |  xe_gt_assert(gt, ads->golden_lrc_size +
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c: In function ‘guc_mmio_reg_state_init’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c:522:2: note: in expansion of macro ‘xe_gt_assert’
-  522 |  xe_gt_assert(gt, regset_used <= ads->regset_size);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c: In function ‘xe_guc_ads_populate_minimal’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c:577:2: note: in expansion of macro ‘xe_gt_assert’
-  577 |  xe_gt_assert(gt, ads->bo);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c: In function ‘xe_guc_ads_populate’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c:601:2: note: in expansion of macro ‘xe_gt_assert’
-  601 |  xe_gt_assert(gt, ads->bo);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c: In function ‘guc_populate_golden_lrc’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c:648:3: note: in expansion of macro ‘xe_gt_assert’
-  648 |   xe_gt_assert(gt, gt->default_lrc[class]);
-      |   ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_ads.c:677:2: note: in expansion of macro ‘xe_gt_assert’
-  677 |  xe_gt_assert(gt, total_size == ads->golden_lrc_size);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc_ct.c:15:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc_debugfs.c:11:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc_hwconfig.c:11:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_guc_log.c:12:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_guc_submit.c:17:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc_pc.c:15:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_hw_engine.c:13:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_hw_engine.c:13:
-../drivers/gpu/drm/xe/xe_hw_engine.c: In function ‘hw_engine_mmio_write32’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_hw_engine.c:248:2: note: in expansion of macro ‘xe_gt_assert’
-  248 |  xe_gt_assert(hwe->gt, !(reg.addr & hwe->mmio_base));
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_hw_engine.c: In function ‘hw_engine_mmio_read32’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_hw_engine.c:258:2: note: in expansion of macro ‘xe_gt_assert’
-  258 |  xe_gt_assert(hwe->gt, !(reg.addr & hwe->mmio_base));
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_hw_engine.c: In function ‘hw_engine_init_early’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_hw_engine.c:378:2: note: in expansion of macro ‘xe_gt_assert’
-  378 |  xe_gt_assert(gt, !hwe->gt);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_hw_engine.c: In function ‘hw_engine_init’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_hw_engine.c:419:2: note: in expansion of macro ‘xe_gt_assert’
-  419 |  xe_gt_assert(gt, id < ARRAY_SIZE(engine_infos) && engine_infos[id].name);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_hw_engine.c:420:2: note: in expansion of macro ‘xe_gt_assert’
-  420 |  xe_gt_assert(gt, gt->info.engine_mask & BIT(id));
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc_pc.c:15:
-../drivers/gpu/drm/xe/xe_guc_pc.c: In function ‘xe_guc_pc_start’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_guc_pc.c:819:2: note: in expansion of macro ‘xe_gt_assert’
-  819 |  xe_gt_assert(gt, xe_device_guc_submission_enabled(xe));
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_hw_fence.c:12:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_huc.c:9:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_huc_debugfs.c:11:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_irq.c:14:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_lrc.c:14:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_lrc.c:14:
-../drivers/gpu/drm/xe/xe_lrc.c: In function ‘set_offsets’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_lrc.c:119:3: note: in expansion of macro ‘xe_gt_assert’
-  119 |   xe_gt_assert(hwe->gt, count);
-      |   ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_mmio.c:17:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_mocs.c:10:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_pci.c:19:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_pm.c:15:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_preempt_fence.c:11:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_pt.c:9:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_pt.c:9:
-../drivers/gpu/drm/xe/xe_pt.c: In function ‘xe_pt_create’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pt.c:199:2: note: in expansion of macro ‘xe_tile_assert’
-  199 |  xe_tile_assert(tile, level <= XE_VM_MAX_LEVEL);
-      |  ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pt.c: In function ‘xe_pt_prepare_bind’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pt.c:1007:3: note: in expansion of macro ‘xe_tile_assert’
- 1007 |   xe_tile_assert(tile, *num_entries);
-      |   ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pt.c: In function ‘invalidation_fence_init’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pt.c:1279:2: note: in expansion of macro ‘xe_gt_assert’
- 1279 |  xe_gt_assert(gt, !ret || ret == -ENOENT);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pt.c: In function ‘__xe_pt_bind_vma’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pt.c:1359:2: note: in expansion of macro ‘xe_tile_assert’
- 1359 |  xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
-      |  ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pt.c: In function ‘__xe_pt_unbind_vma’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pt.c:1710:2: note: in expansion of macro ‘xe_tile_assert’
- 1710 |  xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
-      |  ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_pt.c:1776:3: note: in expansion of macro ‘xe_tile_assert’
- 1776 |   xe_tile_assert(tile, xe_vma_is_userptr(vma));
-      |   ^~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_query.c:14:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_reg_sr.c:19:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_step.c:10:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_tile.c:8:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_ring_ops.c:19:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_sched_job.c:11:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ring_ops.c: In function ‘__emit_job_gen12_simple’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ring_ops.c:238:2: note: in expansion of macro ‘xe_gt_assert’
-  238 |  xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ring_ops.c: In function ‘__emit_job_gen12_video’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ring_ops.c:298:2: note: in expansion of macro ‘xe_gt_assert’
-  298 |  xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ring_ops.c: In function ‘__emit_job_gen12_render_compute’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ring_ops.c:346:2: note: in expansion of macro ‘xe_gt_assert’
-  346 |  xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ring_ops.c: In function ‘emit_migration_job_gen12’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ring_ops.c:376:2: note: in expansion of macro ‘xe_gt_assert’
-  376 |  xe_gt_assert(job->q->gt, i <= MAX_JOB_SIZE_DW);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ring_ops.c: In function ‘emit_job_gen12_gsc’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_ring_ops.c:385:2: note: in expansion of macro ‘xe_gt_assert’
-  385 |  xe_gt_assert(gt, job->q->width <= 1); /* no parallel submission for GSCCS */
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_sa.c:13:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_trace.h:21,
-                 from ../drivers/gpu/drm/xe/xe_trace.c:8:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c:16:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:13:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_uc.c:8:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_uc.c: In function ‘xe_uc_init_hw’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_uc.c:165:2: note: in expansion of macro ‘xe_gt_assert’
-  165 |  xe_gt_assert(uc_to_gt(uc), !ret);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.c:6:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_uc_fw.c:14:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm_madvise.c:14:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_uc_fw.c:14:
-../drivers/gpu/drm/xe/xe_uc_fw.c: In function ‘guc_read_css_info’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_uc_fw.c:252:2: note: in expansion of macro ‘xe_gt_assert’
-  252 |  xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_uc_fw.c:253:2: note: in expansion of macro ‘xe_gt_assert’
-  253 |  xe_gt_assert(gt, uc_fw->major_ver_found >= 70);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_wait_user_fence.c:13:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_wa.c:17:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_wopcm.c:9:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc.c:14:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_migrate.c:18:
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_ref’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:27:2: note: in expansion of macro ‘xe_gt_assert’
-   27 |  xe_gt_assert(fw->gt, domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h: In function ‘xe_force_wake_assert_held’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_force_wake.h:35:2: note: in expansion of macro ‘xe_gt_assert’
-   35 |  xe_gt_assert(fw->gt, fw->awake_domains & domain);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c: In function ‘xe_migrate_prepare_vm’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:176:2: note: in expansion of macro ‘xe_tile_assert’
-  176 |  xe_tile_assert(tile, m->batch_base_ofs + batch->size < SZ_2M);
-      |  ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:210:3: note: in expansion of macro ‘xe_tile_assert’
-  210 |   xe_tile_assert(tile, !xe->info.supports_usm);
-      |   ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c: In function ‘emit_pte’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:491:6: note: in expansion of macro ‘xe_tile_assert’
-  491 |      xe_tile_assert(m->tile, IS_ALIGNED(addr, SZ_64K));
-      |      ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c: In function ‘emit_copy_ccs’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:520:2: note: in expansion of macro ‘xe_gt_assert’
-  520 |  xe_gt_assert(gt, num_ccs_blks <= NUM_CCS_BLKS_PER_XFER);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c: In function ‘emit_copy’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:540:2: note: in expansion of macro ‘xe_gt_assert’
-  540 |  xe_gt_assert(gt, size / pitch <= S16_MAX);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:541:2: note: in expansion of macro ‘xe_gt_assert’
-  541 |  xe_gt_assert(gt, pitch / 4 <= S16_MAX);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:542:2: note: in expansion of macro ‘xe_gt_assert’
-  542 |  xe_gt_assert(gt, pitch <= U16_MAX);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c: In function ‘xe_migrate_ccs_copy’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:602:3: note: in expansion of macro ‘xe_gt_assert’
-  602 |   xe_gt_assert(gt, src_is_vram || dst_is_vram);
-      |   ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c: In function ‘emit_clear_link_copy’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:814:2: note: in expansion of macro ‘xe_gt_assert’
-  814 |  xe_gt_assert(gt, cs - bb->cs == len + bb->len);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c: In function ‘emit_clear_main_copy’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:173:2: note: in expansion of macro ‘xe_tile_assert_msg’
-  173 |  xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,   \
-      |  ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:170:37: note: in expansion of macro ‘xe_gt_assert_msg’
-  170 | #define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
-      |                                     ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:852:2: note: in expansion of macro ‘xe_gt_assert’
-  852 |  xe_gt_assert(gt, cs - bb->cs == len + bb->len);
-      |  ^~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c: In function ‘write_pgtable’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1027:2: note: in expansion of macro ‘xe_tile_assert’
- 1027 |  xe_tile_assert(tile, update->qwords <= 0x1ff);
-      |  ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c: In function ‘xe_migrate_update_pgtables’:
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1217:2: note: in expansion of macro ‘xe_tile_assert’
- 1217 |  xe_tile_assert(tile, batch_size < SZ_128K);
-      |  ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1227:4: note: in expansion of macro ‘xe_tile_assert’
- 1227 |    xe_tile_assert(tile, num_updates <= NUM_VMUSA_WRITES_PER_UNIT);
-      |    ^~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_assert.h:149:7: warning: unused variable ‘__buf’ [-Wunused-variable]
-  149 |  char __buf[10];          \
-      |       ^~~~~
-../drivers/gpu/drm/xe/xe_assert.h:146:41: note: in expansion of macro ‘xe_tile_assert_msg’
-  146 | #define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
-      |                                         ^~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_migrate.c:1256:4: note: in expansion of macro ‘xe_tile_assert’
- 1256 |    xe_tile_assert(tile, pt_bo->size == SZ_4K);
-      |    ^~~~~~~~~~~~~~
-stty: 'standard input': Inappropriate ioctl for device
-
-[08:40:05] Starting KUnit Kernel (1/1)...
-[08:40:05] ============================================================
-[08:40:05] ==================== xe_bo (2 subtests) ====================
-[08:40:05] [SKIPPED] xe_ccs_migrate_kunit
-[08:40:05] [SKIPPED] xe_bo_evict_kunit
-[08:40:05] ===================== [SKIPPED] xe_bo ======================
-[08:40:05] ================== xe_dma_buf (1 subtest) ==================
-[08:40:05] [SKIPPED] xe_dma_buf_kunit
-[08:40:05] =================== [SKIPPED] xe_dma_buf ===================
-[08:40:05] ================== xe_migrate (1 subtest) ==================
-[08:40:05] [SKIPPED] xe_migrate_sanity_kunit
-[08:40:05] =================== [SKIPPED] xe_migrate ===================
-[08:40:05] =================== xe_pci (2 subtests) ====================
-[08:40:05] [PASSED] xe_gmdid_graphics_ip
-[08:40:05] [PASSED] xe_gmdid_media_ip
-[08:40:05] ===================== [PASSED] xe_pci ======================
-[08:40:05] ==================== xe_rtp (1 subtest) ====================
-[08:40:05] ================== xe_rtp_process_tests  ===================
-[08:40:05] [PASSED] coalesce-same-reg
-[08:40:05] [PASSED] no-match-no-add
-[08:40:05] [PASSED] no-match-no-add-multiple-rules
-[08:40:05] [PASSED] two-regs-two-entries
-[08:40:05] [PASSED] clr-one-set-other
-[08:40:05] [PASSED] set-field
-[08:40:05] [PASSED] conflict-duplicate
-[08:40:05] [PASSED] conflict-not-disjoint
-[08:40:05] [PASSED] conflict-reg-type
-[08:40:05] ============== [PASSED] xe_rtp_process_tests ===============
-[08:40:05] ===================== [PASSED] xe_rtp ======================
-[08:40:05] ==================== xe_wa (1 subtest) =====================
-[08:40:05] ======================== xe_wa_gt  =========================
-[08:40:05] [PASSED] TIGERLAKE (B0)
-[08:40:05] [PASSED] DG1 (A0)
-[08:40:05] [PASSED] DG1 (B0)
-[08:40:05] [PASSED] ALDERLAKE_S (A0)
-[08:40:05] [PASSED] ALDERLAKE_S (B0)
-[08:40:05] [PASSED] ALDERLAKE_S (C0)
-[08:40:05] [PASSED] ALDERLAKE_S (D0)
-[08:40:05] [PASSED] ALDERLAKE_P (A0)
-[08:40:05] [PASSED] ALDERLAKE_P (B0)
-[08:40:05] [PASSED] ALDERLAKE_P (C0)
-[08:40:05] [PASSED] DG2_G10 (A0)
-[08:40:05] [PASSED] DG2_G10 (A1)
-[08:40:05] [PASSED] DG2_G10 (B0)
-[08:40:05] [PASSED] DG2_G10 (C0)
-[08:40:05] [PASSED] DG2_G11 (A0)
-[08:40:05] [PASSED] DG2_G11 (B0)
-[08:40:05] [PASSED] DG2_G11 (B1)
-[08:40:05] [PASSED] DG2_G12 (A0)
-[08:40:05] [PASSED] DG2_G12 (A1)
-[08:40:05] [PASSED] PVC (B0)
-[08:40:05] [PASSED] PVC (B1)
-[08:40:05] [PASSED] PVC (C0)
-[08:40:05] ==================== [PASSED] xe_wa_gt =====================
-[08:40:05] ====================== [PASSED] xe_wa ======================
-[08:40:05] ============================================================
-[08:40:05] Testing complete. Ran 37 tests: passed: 33, skipped: 4
-[08:40:05] Elapsed time: 24.183s total, 4.174s configuring, 19.890s building, 0.096s running
-
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[08:40:05] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:40:07] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[08:40:26] Starting KUnit Kernel (1/1)...
-[08:40:26] ============================================================
-[08:40:26] ============ drm_test_pick_cmdline (2 subtests) ============
-[08:40:26] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
-[08:40:26] =============== drm_test_pick_cmdline_named  ===============
-[08:40:26] [PASSED] NTSC
-[08:40:26] [PASSED] NTSC-J
-[08:40:26] [PASSED] PAL
-[08:40:26] [PASSED] PAL-M
-[08:40:26] =========== [PASSED] drm_test_pick_cmdline_named ===========
-[08:40:26] ============== [PASSED] drm_test_pick_cmdline ==============
-[08:40:26] ================== drm_buddy (6 subtests) ==================
-[08:40:26] [PASSED] drm_test_buddy_alloc_limit
-[08:40:26] [PASSED] drm_test_buddy_alloc_range
-[08:40:26] [PASSED] drm_test_buddy_alloc_optimistic
-[08:40:26] [PASSED] drm_test_buddy_alloc_pessimistic
-[08:40:26] [PASSED] drm_test_buddy_alloc_smoke
-[08:40:26] [PASSED] drm_test_buddy_alloc_pathological
-[08:40:26] ==================== [PASSED] drm_buddy ====================
-[08:40:26] ============= drm_cmdline_parser (40 subtests) =============
-[08:40:26] [PASSED] drm_test_cmdline_force_d_only
-[08:40:26] [PASSED] drm_test_cmdline_force_D_only_dvi
-[08:40:26] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[08:40:26] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[08:40:26] [PASSED] drm_test_cmdline_force_e_only
-[08:40:26] [PASSED] drm_test_cmdline_res
-[08:40:26] [PASSED] drm_test_cmdline_res_vesa
-[08:40:26] [PASSED] drm_test_cmdline_res_vesa_rblank
-[08:40:26] [PASSED] drm_test_cmdline_res_rblank
-[08:40:26] [PASSED] drm_test_cmdline_res_bpp
-[08:40:26] [PASSED] drm_test_cmdline_res_refresh
-[08:40:26] [PASSED] drm_test_cmdline_res_bpp_refresh
-[08:40:26] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[08:40:26] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[08:40:26] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[08:40:26] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[08:40:26] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[08:40:26] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[08:40:26] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[08:40:26] [PASSED] drm_test_cmdline_res_margins_force_on
-[08:40:26] [PASSED] drm_test_cmdline_res_vesa_margins
-[08:40:26] [PASSED] drm_test_cmdline_name
-[08:40:26] [PASSED] drm_test_cmdline_name_bpp
-[08:40:26] [PASSED] drm_test_cmdline_name_option
-[08:40:26] [PASSED] drm_test_cmdline_name_bpp_option
-[08:40:26] [PASSED] drm_test_cmdline_rotate_0
-[08:40:26] [PASSED] drm_test_cmdline_rotate_90
-[08:40:26] [PASSED] drm_test_cmdline_rotate_180
-[08:40:26] [PASSED] drm_test_cmdline_rotate_270
-[08:40:26] [PASSED] drm_test_cmdline_hmirror
-[08:40:26] [PASSED] drm_test_cmdline_vmirror
-[08:40:26] [PASSED] drm_test_cmdline_margin_options
-[08:40:26] [PASSED] drm_test_cmdline_multiple_options
-[08:40:26] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[08:40:26] [PASSED] drm_test_cmdline_extra_and_option
-[08:40:26] [PASSED] drm_test_cmdline_freestanding_options
-[08:40:26] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[08:40:26] [PASSED] drm_test_cmdline_panel_orientation
-[08:40:26] ================ drm_test_cmdline_invalid  =================
-[08:40:26] [PASSED] margin_only
-[08:40:26] [PASSED] interlace_only
-[08:40:26] [PASSED] res_missing_x
-[08:40:26] [PASSED] res_missing_y
-[08:40:26] [PASSED] res_bad_y
-[08:40:26] [PASSED] res_missing_y_bpp
-[08:40:26] [PASSED] res_bad_bpp
-[08:40:26] [PASSED] res_bad_refresh
-[08:40:26] [PASSED] res_bpp_refresh_force_on_off
-[08:40:26] [PASSED] res_invalid_mode
-[08:40:26] [PASSED] res_bpp_wrong_place_mode
-[08:40:26] [PASSED] name_bpp_refresh
-[08:40:26] [PASSED] name_refresh
-[08:40:26] [PASSED] name_refresh_wrong_mode
-[08:40:26] [PASSED] name_refresh_invalid_mode
-[08:40:26] [PASSED] rotate_multiple
-[08:40:26] [PASSED] rotate_invalid_val
-[08:40:26] [PASSED] rotate_truncated
-[08:40:26] [PASSED] invalid_option
-[08:40:26] [PASSED] invalid_tv_option
-[08:40:26] [PASSED] truncated_tv_option
-[08:40:26] ============ [PASSED] drm_test_cmdline_invalid =============
-[08:40:26] =============== drm_test_cmdline_tv_options  ===============
-[08:40:26] [PASSED] NTSC
-[08:40:26] [PASSED] NTSC_443
-[08:40:26] [PASSED] NTSC_J
-[08:40:26] [PASSED] PAL
-[08:40:26] [PASSED] PAL_M
-[08:40:26] [PASSED] PAL_N
-[08:40:26] [PASSED] SECAM
-[08:40:26] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[08:40:26] =============== [PASSED] drm_cmdline_parser ================
-[08:40:26] ========== drm_get_tv_mode_from_name (2 subtests) ==========
-[08:40:26] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[08:40:26] [PASSED] NTSC
-[08:40:26] [PASSED] NTSC-443
-[08:40:26] [PASSED] NTSC-J
-[08:40:26] [PASSED] PAL
-[08:40:26] [PASSED] PAL-M
-[08:40:26] [PASSED] PAL-N
-[08:40:26] [PASSED] SECAM
-[08:40:26] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[08:40:26] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[08:40:26] ============ [PASSED] drm_get_tv_mode_from_name ============
-[08:40:26] ============= drm_damage_helper (21 subtests) ==============
-[08:40:26] [PASSED] drm_test_damage_iter_no_damage
-[08:40:26] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[08:40:26] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[08:40:26] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[08:40:26] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[08:40:26] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[08:40:26] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[08:40:26] [PASSED] drm_test_damage_iter_simple_damage
-[08:40:26] [PASSED] drm_test_damage_iter_single_damage
-[08:40:26] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[08:40:26] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[08:40:26] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[08:40:26] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[08:40:26] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[08:40:26] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[08:40:26] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[08:40:26] [PASSED] drm_test_damage_iter_damage
-[08:40:26] [PASSED] drm_test_damage_iter_damage_one_intersect
-[08:40:26] [PASSED] drm_test_damage_iter_damage_one_outside
-[08:40:26] [PASSED] drm_test_damage_iter_damage_src_moved
-[08:40:26] [PASSED] drm_test_damage_iter_damage_not_visible
-[08:40:26] ================ [PASSED] drm_damage_helper ================
-[08:40:26] ============== drm_dp_mst_helper (2 subtests) ==============
-[08:40:26] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[08:40:26] [PASSED] Clock 154000 BPP 30 DSC disabled
-[08:40:26] [PASSED] Clock 234000 BPP 30 DSC disabled
-[08:40:26] [PASSED] Clock 297000 BPP 24 DSC disabled
-[08:40:26] [PASSED] Clock 332880 BPP 24 DSC enabled
-[08:40:26] [PASSED] Clock 324540 BPP 24 DSC enabled
-[08:40:26] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[08:40:26] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[08:40:26] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[08:40:26] [PASSED] DP_POWER_UP_PHY with port number
-[08:40:26] [PASSED] DP_POWER_DOWN_PHY with port number
-[08:40:26] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[08:40:26] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[08:40:26] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[08:40:26] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[08:40:26] [PASSED] DP_QUERY_PAYLOAD with port number
-[08:40:26] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[08:40:26] [PASSED] DP_REMOTE_DPCD_READ with port number
-[08:40:26] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[08:40:26] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[08:40:26] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[08:40:26] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[08:40:26] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[08:40:26] [PASSED] DP_REMOTE_I2C_READ with port number
-[08:40:26] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[08:40:26] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[08:40:26] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[08:40:26] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[08:40:26] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[08:40:26] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[08:40:26] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[08:40:26] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[08:40:26] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[08:40:26] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[08:40:26] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[08:40:26] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[08:40:26] ================ [PASSED] drm_dp_mst_helper ================
-[08:40:26] =========== drm_format_helper_test (11 subtests) ===========
-[08:40:26] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[08:40:26] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[08:40:26] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[08:40:26] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[08:40:26] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[08:40:26] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[08:40:26] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[08:40:26] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[08:40:26] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[08:40:26] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[08:40:26] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[08:40:26] [PASSED] single_pixel_source_buffer
-[08:40:26] [PASSED] single_pixel_clip_rectangle
-[08:40:26] [PASSED] well_known_colors
-[08:40:26] [PASSED] destination_pitch
-[08:40:26] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[08:40:26] ============= [PASSED] drm_format_helper_test ==============
-[08:40:26] ================= drm_format (18 subtests) =================
-[08:40:26] [PASSED] drm_test_format_block_width_invalid
-[08:40:26] [PASSED] drm_test_format_block_width_one_plane
-[08:40:26] [PASSED] drm_test_format_block_width_two_plane
-[08:40:26] [PASSED] drm_test_format_block_width_three_plane
-[08:40:26] [PASSED] drm_test_format_block_width_tiled
-[08:40:26] [PASSED] drm_test_format_block_height_invalid
-[08:40:26] [PASSED] drm_test_format_block_height_one_plane
-[08:40:26] [PASSED] drm_test_format_block_height_two_plane
-[08:40:26] [PASSED] drm_test_format_block_height_three_plane
-[08:40:26] [PASSED] drm_test_format_block_height_tiled
-[08:40:26] [PASSED] drm_test_format_min_pitch_invalid
-[08:40:26] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[08:40:26] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[08:40:26] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[08:40:26] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[08:40:26] [PASSED] drm_test_format_min_pitch_two_plane
-[08:40:26] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[08:40:26] [PASSED] drm_test_format_min_pitch_tiled
-[08:40:26] =================== [PASSED] drm_format ====================
-[08:40:26] =============== drm_framebuffer (1 subtest) ================
-[08:40:26] =============== drm_test_framebuffer_create  ===============
-[08:40:26] [PASSED] ABGR8888 normal sizes
-[08:40:26] [PASSED] ABGR8888 max sizes
-[08:40:26] [PASSED] ABGR8888 pitch greater than min required
-[08:40:26] [PASSED] ABGR8888 pitch less than min required
-[08:40:26] [PASSED] ABGR8888 Invalid width
-[08:40:26] [PASSED] ABGR8888 Invalid buffer handle
-[08:40:26] [PASSED] No pixel format
-[08:40:26] [PASSED] ABGR8888 Width 0
-[08:40:26] [PASSED] ABGR8888 Height 0
-[08:40:26] [PASSED] ABGR8888 Out of bound height * pitch combination
-[08:40:26] [PASSED] ABGR8888 Large buffer offset
-[08:40:26] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[08:40:26] [PASSED] ABGR8888 Valid buffer modifier
-[08:40:26] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[08:40:26] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[08:40:26] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[08:40:26] [PASSED] NV12 Normal sizes
-[08:40:26] [PASSED] NV12 Max sizes
-[08:40:26] [PASSED] NV12 Invalid pitch
-[08:40:26] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[08:40:26] [PASSED] NV12 different  modifier per-plane
-[08:40:26] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[08:40:26] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[08:40:26] [PASSED] NV12 Modifier for inexistent plane
-[08:40:26] [PASSED] NV12 Handle for inexistent plane
-[08:40:26] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[08:40:26] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[08:40:26] [PASSED] YVU420 Normal sizes
-[08:40:26] [PASSED] YVU420 Max sizes
-[08:40:26] [PASSED] YVU420 Invalid pitch
-[08:40:26] [PASSED] YVU420 Different pitches
-[08:40:26] [PASSED] YVU420 Different buffer offsets/pitches
-[08:40:26] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[08:40:26] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[08:40:26] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[08:40:26] [PASSED] YVU420 Valid modifier
-[08:40:26] [PASSED] YVU420 Different modifiers per plane
-[08:40:26] [PASSED] YVU420 Modifier for inexistent plane
-[08:40:26] [PASSED] X0L2 Normal sizes
-[08:40:26] [PASSED] X0L2 Max sizes
-[08:40:26] [PASSED] X0L2 Invalid pitch
-[08:40:26] [PASSED] X0L2 Pitch greater than minimum required
-stty: 'standard input': Inappropriate ioctl for device
-[08:40:26] [PASSED] X0L2 Handle for inexistent plane
-[08:40:26] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[08:40:26] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[08:40:26] [PASSED] X0L2 Valid modifier
-[08:40:26] [PASSED] X0L2 Modifier for inexistent plane
-[08:40:26] =========== [PASSED] drm_test_framebuffer_create ===========
-[08:40:26] ================= [PASSED] drm_framebuffer =================
-[08:40:26] =============== drm-test-managed (1 subtest) ===============
-[08:40:26] [PASSED] drm_test_managed_run_action
-[08:40:26] ================ [PASSED] drm-test-managed =================
-[08:40:26] =================== drm_mm (19 subtests) ===================
-[08:40:26] [PASSED] drm_test_mm_init
-[08:40:26] [PASSED] drm_test_mm_debug
-[08:40:36] [PASSED] drm_test_mm_reserve
-[08:40:45] [PASSED] drm_test_mm_insert
-[08:40:46] [PASSED] drm_test_mm_replace
-[08:40:46] [PASSED] drm_test_mm_insert_range
-[08:40:46] [PASSED] drm_test_mm_frag
-[08:40:46] [PASSED] drm_test_mm_align
-[08:40:46] [PASSED] drm_test_mm_align32
-[08:40:47] [PASSED] drm_test_mm_align64
-[08:40:47] [PASSED] drm_test_mm_evict
-[08:40:47] [PASSED] drm_test_mm_evict_range
-[08:40:47] [PASSED] drm_test_mm_topdown
-[08:40:47] [PASSED] drm_test_mm_bottomup
-[08:40:47] [PASSED] drm_test_mm_lowest
-[08:40:47] [PASSED] drm_test_mm_highest
-[08:40:48] [PASSED] drm_test_mm_color
-[08:40:48] [PASSED] drm_test_mm_color_evict
-[08:40:48] [PASSED] drm_test_mm_color_evict_range
-[08:40:48] ===================== [PASSED] drm_mm ======================
-[08:40:48] ============= drm_modes_analog_tv (4 subtests) =============
-[08:40:48] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[08:40:48] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[08:40:48] [PASSED] drm_test_modes_analog_tv_pal_576i
-[08:40:48] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[08:40:48] =============== [PASSED] drm_modes_analog_tv ===============
-[08:40:48] ============== drm_plane_helper (2 subtests) ===============
-[08:40:48] =============== drm_test_check_plane_state  ================
-[08:40:48] [PASSED] clipping_simple
-[08:40:48] [PASSED] clipping_rotate_reflect
-[08:40:48] [PASSED] positioning_simple
-[08:40:48] [PASSED] upscaling
-[08:40:48] [PASSED] downscaling
-[08:40:48] [PASSED] rounding1
-[08:40:48] [PASSED] rounding2
-[08:40:48] [PASSED] rounding3
-[08:40:48] [PASSED] rounding4
-[08:40:48] =========== [PASSED] drm_test_check_plane_state ============
-[08:40:48] =========== drm_test_check_invalid_plane_state  ============
-[08:40:48] [PASSED] positioning_invalid
-[08:40:48] [PASSED] upscaling_invalid
-[08:40:48] [PASSED] downscaling_invalid
-[08:40:48] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[08:40:48] ================ [PASSED] drm_plane_helper =================
-[08:40:48] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
-[08:40:48] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[08:40:48] [PASSED] None
-[08:40:48] [PASSED] PAL
-[08:40:48] [PASSED] NTSC
-[08:40:48] [PASSED] Both, NTSC Default
-[08:40:48] [PASSED] Both, PAL Default
-[08:40:48] [PASSED] Both, NTSC Default, with PAL on command-line
-[08:40:48] [PASSED] Both, PAL Default, with NTSC on command-line
-[08:40:48] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[08:40:48] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[08:40:48] ================== drm_rect (9 subtests) ===================
-[08:40:48] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[08:40:48] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[08:40:48] [PASSED] drm_test_rect_clip_scaled_clipped
-[08:40:48] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-[08:40:48] ================= drm_test_rect_intersect  =================
-[08:40:48] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
-[08:40:48] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
-[08:40:48] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
-[08:40:48] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
-[08:40:48] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
-[08:40:48] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
-[08:40:48] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
-[08:40:48] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
-[08:40:48] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
-[08:40:48] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
-[08:40:48] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
-[08:40:48] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
-[08:40:48] [PASSED] far away: 1x1+0+0 x 1x1+3+6
-[08:40:48] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
-[08:40:48] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
-[08:40:48] ============= [PASSED] drm_test_rect_intersect =============
-[08:40:48] ================ drm_test_rect_calc_hscale  ================
-[08:40:48] [PASSED] normal use
-[08:40:48] [PASSED] out of max range
-[08:40:48] [PASSED] out of min range
-[08:40:48] [PASSED] zero dst
-[08:40:48] [PASSED] negative src
-[08:40:48] [PASSED] negative dst
-[08:40:48] ============ [PASSED] drm_test_rect_calc_hscale ============
-[08:40:48] ================ drm_test_rect_calc_vscale  ================
-[08:40:48] [PASSED] normal use
-[08:40:48] [PASSED] out of max range
-[08:40:48] [PASSED] out of min range
-[08:40:48] [PASSED] zero dst
-[08:40:48] [PASSED] negative src
-[08:40:48] [PASSED] negative dst
-[08:40:48] ============ [PASSED] drm_test_rect_calc_vscale ============
-[08:40:48] ================== drm_test_rect_rotate  ===================
-[08:40:48] [PASSED] reflect-x
-[08:40:48] [PASSED] reflect-y
-[08:40:48] [PASSED] rotate-0
-[08:40:48] [PASSED] rotate-90
-[08:40:48] [PASSED] rotate-180
-[08:40:48] [PASSED] rotate-270
-[08:40:48] ============== [PASSED] drm_test_rect_rotate ===============
-[08:40:48] ================ drm_test_rect_rotate_inv  =================
-[08:40:48] [PASSED] reflect-x
-[08:40:48] [PASSED] reflect-y
-[08:40:48] [PASSED] rotate-0
-[08:40:48] [PASSED] rotate-90
-[08:40:48] [PASSED] rotate-180
-[08:40:48] [PASSED] rotate-270
-[08:40:48] ============ [PASSED] drm_test_rect_rotate_inv =============
-[08:40:48] ==================== [PASSED] drm_rect =====================
-[08:40:48] ================== drm_exec (7 subtests) ===================
-[08:40:48] [PASSED] sanitycheck
-[08:40:48] [PASSED] test_lock
-[08:40:48] [PASSED] test_lock_unlock
-[08:40:48] [PASSED] test_duplicates
-[08:40:48] [PASSED] test_prepare
-[08:40:48] [PASSED] test_prepare_array
-[08:40:48] [PASSED] test_multiple_loops
-[08:40:48] ==================== [PASSED] drm_exec =====================
-[08:40:48] ============================================================
-[08:40:48] Testing complete. Ran 340 tests: passed: 340
-[08:40:48] Elapsed time: 43.269s total, 1.679s configuring, 19.314s building, 22.254s running
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+T24gMTIvMDkvMjAyMyAzOjI1LCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBPbiBNb24sIFNlcCAxMSwg
+MjAyMyBhdCAwNDoyMTozN0FNICswMDAwLCBPZmlyIEJpdHRvbiB3cm90ZToNCj4+IE9uIDExLzA5
+LzIwMjMgNjo0NSwgTHVjYXMgRGUgTWFyY2hpIHdyb3RlOg0KPj4+IE9uIFN1biwgU2VwIDEwLCAy
+MDIzIGF0IDA0OjM0OjI0UE0gKzAwMDAsIE9maXIgQml0dG9uIHdyb3RlOg0KPj4+PiBPbiAwNy8w
+OS8yMDIzIDIyOjM1LCBGcmFuY29pcyBEdWdhc3Qgd3JvdGU6DQo+Pj4+PiBUaGlzIHdhcyBwcmV2
+aW91c2x5IHVzZWQgaW4gVU1EIGZvciB0aW1lc3RhbXAgY29ycmVsYXRpb24sIHdoaWNoIGNhbiBu
+b3cNCj4+Pj4+IGJlIGRvbmUgd2l0aCBEUk1fWEVfUVVFUllfQ1NfQ1lDTEVTLg0KPj4+Pj4NCj4+
+Pj4+IExpbms6DQo+Pj4+PiBodHRwczovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyMzA3MDYwNDIw
+NDQuR1I2OTUzQG1kcm9wZXItZGVzazEuYW1yLmNvcnAuaW50ZWwuY29tLw0KPj4+Pj4gQ2xvc2Vz
+Og0KPj4+Pj4gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2RybS94ZS9rZXJuZWwvLS9p
+c3N1ZXMvNjM2DQo+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBGcmFuY29pcyBEdWdhc3QgPGZyYW5jb2lz
+LmR1Z2FzdEBpbnRlbC5jb20+DQo+Pj4+PiAtLS0NCj4+Pj4+ICAgIGRyaXZlcnMvZ3B1L2RybS94
+ZS94ZV9kZXZpY2UuYyB8ICAgMSAtDQo+Pj4+PiAgICBkcml2ZXJzL2dwdS9kcm0veGUveGVfbW1p
+by5jICAgfCAxMDIgLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+Pj4+PiAgICBp
+bmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oICAgICAgfCAgMzEgKystLS0tLS0tLQ0KPj4+Pj4gICAg
+MyBmaWxlcyBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKyksIDEzMCBkZWxldGlvbnMoLSkNCj4+Pj4+
+DQo+Pj4+PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2RldmljZS5jDQo+Pj4+
+PiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2UuYw0KPj4+Pj4gaW5kZXggMTA5YWViMjVk
+MTljLi4xMGZhMWI1NTU3OGEgMTAwNjQ0DQo+Pj4+PiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUv
+eGVfZGV2aWNlLmMNCj4+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2UuYw0K
+Pj4+Pj4gQEAgLTEwNyw3ICsxMDcsNiBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9pb2N0bF9k
+ZXNjIHhlX2lvY3Rsc1tdID0gew0KPj4+Pj4gICAgICAgIERSTV9JT0NUTF9ERUZfRFJWKFhFX0VY
+RUNfUVVFVUVfREVTVFJPWSwNCj4+Pj4+IHhlX2V4ZWNfcXVldWVfZGVzdHJveV9pb2N0bCwNCj4+
+Pj4+ICAgICAgICAgICAgICAgICAgRFJNX1JFTkRFUl9BTExPVyksDQo+Pj4+PiAgICAgICAgRFJN
+X0lPQ1RMX0RFRl9EUlYoWEVfRVhFQywgeGVfZXhlY19pb2N0bCwgRFJNX1JFTkRFUl9BTExPVyks
+DQo+Pj4+PiAtICAgIERSTV9JT0NUTF9ERUZfRFJWKFhFX01NSU8sIHhlX21taW9faW9jdGwsIERS
+TV9SRU5ERVJfQUxMT1cpLA0KPj4+Pj4gICAgICAgIERSTV9JT0NUTF9ERUZfRFJWKFhFX0VYRUNf
+UVVFVUVfU0VUX1BST1BFUlRZLA0KPj4+Pj4geGVfZXhlY19xdWV1ZV9zZXRfcHJvcGVydHlfaW9j
+dGwsDQo+Pj4+PiAgICAgICAgICAgICAgICAgIERSTV9SRU5ERVJfQUxMT1cpLA0KPj4+Pj4gICAg
+ICAgIERSTV9JT0NUTF9ERUZfRFJWKFhFX1dBSVRfVVNFUl9GRU5DRSwgeGVfd2FpdF91c2VyX2Zl
+bmNlX2lvY3RsLA0KPj4+Pj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9tbWlv
+LmMgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfbW1pby5jDQo+Pj4+PiBpbmRleCAzY2NjMGFmNDQz
+MGIuLmU2MzZlM2YzNDU2ZCAxMDA2NDQNCj4+Pj4+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94
+ZV9tbWlvLmMNCj4+Pj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9tbWlvLmMNCj4+Pj4+
+IEBAIC00MjIsMTA4ICs0MjIsNiBAQCBpbnQgeGVfbW1pb19pbml0KHN0cnVjdCB4ZV9kZXZpY2Ug
+KnhlKQ0KPj4+Pj4gICAgICAgIHJldHVybiAwOw0KPj4+Pj4gICAgfQ0KPj4+Pj4NCj4+Pj4+IC0j
+ZGVmaW5lIFZBTElEX01NSU9fRkxBR1MgKFwNCj4+Pj4+IC0gICAgRFJNX1hFX01NSU9fQklUU19N
+QVNLIHxcDQo+Pj4+PiAtICAgIERSTV9YRV9NTUlPX1JFQUQgfFwNCj4+Pj4+IC0gICAgRFJNX1hF
+X01NSU9fV1JJVEUpDQo+Pj4+PiAtDQo+Pj4+PiAtc3RhdGljIGNvbnN0IHN0cnVjdCB4ZV9yZWcg
+bW1pb19yZWFkX3doaXRlbGlzdFtdID0gew0KPj4+Pj4gLSAgICBSSU5HX1RJTUVTVEFNUChSRU5E
+RVJfUklOR19CQVNFKSwNCj4+Pj4+IC19Ow0KPj4+Pj4gLQ0KPj4+Pj4gLWludCB4ZV9tbWlvX2lv
+Y3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQgKmRhdGEsDQo+Pj4+PiAtICAgICAgICAg
+IHN0cnVjdCBkcm1fZmlsZSAqZmlsZSkNCj4+Pj4+IC17DQo+Pj4+PiAtICAgIHN0cnVjdCB4ZV9k
+ZXZpY2UgKnhlID0gdG9feGVfZGV2aWNlKGRldik7DQo+Pj4+PiAtICAgIHN0cnVjdCB4ZV9ndCAq
+Z3QgPSB4ZV9yb290X21taW9fZ3QoeGUpOw0KPj4+Pj4gLSAgICBzdHJ1Y3QgZHJtX3hlX21taW8g
+KmFyZ3MgPSBkYXRhOw0KPj4+Pj4gLSAgICB1bnNpZ25lZCBpbnQgYml0c19mbGFnLCBieXRlczsN
+Cj4+Pj4+IC0gICAgc3RydWN0IHhlX3JlZyByZWc7DQo+Pj4+PiAtICAgIGJvb2wgYWxsb3dlZDsN
+Cj4+Pj4+IC0gICAgaW50IHJldCA9IDA7DQo+Pj4+PiAtDQo+Pj4+PiAtICAgIGlmIChYRV9JT0NU
+TF9EQkcoeGUsIGFyZ3MtPmV4dGVuc2lvbnMpIHx8DQo+Pj4+PiAtICAgICAgICBYRV9JT0NUTF9E
+QkcoeGUsIGFyZ3MtPnJlc2VydmVkWzBdIHx8IGFyZ3MtPnJlc2VydmVkWzFdKSkNCj4+Pj4+IC0g
+ICAgICAgIHJldHVybiAtRUlOVkFMOw0KPj4+Pj4gLQ0KPj4+Pj4gLSAgICBpZiAoWEVfSU9DVExf
+REJHKHhlLCBhcmdzLT5mbGFncyAmIH5WQUxJRF9NTUlPX0ZMQUdTKSkNCj4+Pj4+IC0gICAgICAg
+IHJldHVybiAtRUlOVkFMOw0KPj4+Pj4gLQ0KPj4+Pj4gLSAgICBpZiAoWEVfSU9DVExfREJHKHhl
+LCAhKGFyZ3MtPmZsYWdzICYgRFJNX1hFX01NSU9fV1JJVEUpICYmDQo+Pj4+PiBhcmdzLT52YWx1
+ZSkpDQo+Pj4+PiAtICAgICAgICByZXR1cm4gLUVJTlZBTDsNCj4+Pj4+IC0NCj4+Pj4+IC0gICAg
+YWxsb3dlZCA9IGNhcGFibGUoQ0FQX1NZU19BRE1JTik7DQo+Pj4+PiAtICAgIGlmICghYWxsb3dl
+ZCAmJiAoKGFyZ3MtPmZsYWdzICYgfkRSTV9YRV9NTUlPX0JJVFNfTUFTSykgPT0NCj4+Pj4+IERS
+TV9YRV9NTUlPX1JFQUQpKSB7DQo+Pj4+PiAtICAgICAgICB1bnNpZ25lZCBpbnQgaTsNCj4+Pj4+
+IC0NCj4+Pj4+IC0gICAgICAgIGZvciAoaSA9IDA7IGkgPCBBUlJBWV9TSVpFKG1taW9fcmVhZF93
+aGl0ZWxpc3QpOyBpKyspIHsNCj4+Pj4+IC0gICAgICAgICAgICBpZiAobW1pb19yZWFkX3doaXRl
+bGlzdFtpXS5hZGRyID09IGFyZ3MtPmFkZHIpIHsNCj4+Pj4+IC0gICAgICAgICAgICAgICAgYWxs
+b3dlZCA9IHRydWU7DQo+Pj4+PiAtICAgICAgICAgICAgICAgIGJyZWFrOw0KPj4+Pj4gLSAgICAg
+ICAgICAgIH0NCj4+Pj4+IC0gICAgICAgIH0NCj4+Pj4+IC0gICAgfQ0KPj4+Pj4gLQ0KPj4+Pj4g
+LSAgICBpZiAoWEVfSU9DVExfREJHKHhlLCAhYWxsb3dlZCkpDQo+Pj4+PiAtICAgICAgICByZXR1
+cm4gLUVQRVJNOw0KPj4+Pj4gLQ0KPj4+Pj4gLSAgICBiaXRzX2ZsYWcgPSBhcmdzLT5mbGFncyAm
+IERSTV9YRV9NTUlPX0JJVFNfTUFTSzsNCj4+Pj4+IC0gICAgYnl0ZXMgPSAxIDw8IGJpdHNfZmxh
+ZzsNCj4+Pj4+IC0gICAgaWYgKFhFX0lPQ1RMX0RCRyh4ZSwgYXJncy0+YWRkciArIGJ5dGVzID4g
+eGUtPm1taW8uc2l6ZSkpDQo+Pj4+PiAtICAgICAgICByZXR1cm4gLUVJTlZBTDsNCj4+Pj4+IC0N
+Cj4+Pj4+IC0gICAgLyoNCj4+Pj4+IC0gICAgICogVE9ETzogbWlncmF0ZSB0byB4ZV9ndF9tY3Ig
+dG8gbG9va3VwIHRoZSBtbWlvIHJhbmdlIGFuZCBoYW5kbGUNCj4+Pj4+IC0gICAgICogbXVsdGlj
+YXN0IHJlZ2lzdGVycy4gU3RlZXJpbmcgd291bGQgbmVlZCB1YXBpIGV4dGVuc2lvbi4NCj4+Pj4+
+IC0gICAgICovDQo+Pj4+PiAtICAgIHJlZyA9IFhFX1JFRyhhcmdzLT5hZGRyKTsNCj4+Pj4+IC0N
+Cj4+Pj4+IC0gICAgeGVfZGV2aWNlX21lbV9hY2Nlc3NfZ2V0KHhlKTsNCj4+Pj4+IC0gICAgeGVf
+Zm9yY2Vfd2FrZV9nZXQoZ3RfdG9fZncoZ3QpLCBYRV9GT1JDRVdBS0VfQUxMKTsNCj4+Pj4+IC0N
+Cj4+Pj4+IC0gICAgaWYgKGFyZ3MtPmZsYWdzICYgRFJNX1hFX01NSU9fV1JJVEUpIHsNCj4+Pj4+
+IC0gICAgICAgIHN3aXRjaCAoYml0c19mbGFnKSB7DQo+Pj4+PiAtICAgICAgICBjYXNlIERSTV9Y
+RV9NTUlPXzMyQklUOg0KPj4+Pj4gLSAgICAgICAgICAgIGlmIChYRV9JT0NUTF9EQkcoeGUsIGFy
+Z3MtPnZhbHVlID4gVTMyX01BWCkpIHsNCj4+Pj4+IC0gICAgICAgICAgICAgICAgcmV0ID0gLUVJ
+TlZBTDsNCj4+Pj4+IC0gICAgICAgICAgICAgICAgZ290byBleGl0Ow0KPj4+Pj4gLSAgICAgICAg
+ICAgIH0NCj4+Pj4+IC0gICAgICAgICAgICB4ZV9tbWlvX3dyaXRlMzIoZ3QsIHJlZywgYXJncy0+
+dmFsdWUpOw0KPj4+Pj4gLSAgICAgICAgICAgIGJyZWFrOw0KPj4+Pj4gLSAgICAgICAgZGVmYXVs
+dDoNCj4+Pj4+IC0gICAgICAgICAgICBkcm1fZGJnKCZ4ZS0+ZHJtLCAiSW52YWxpZCBNTUlPIGJp
+dCBzaXplIik7DQo+Pj4+PiAtICAgICAgICAgICAgZmFsbHRocm91Z2g7DQo+Pj4+PiAtICAgICAg
+ICBjYXNlIERSTV9YRV9NTUlPXzhCSVQ6IC8qIFRPRE8gKi8NCj4+Pj4+IC0gICAgICAgIGNhc2Ug
+RFJNX1hFX01NSU9fMTZCSVQ6IC8qIFRPRE8gKi8NCj4+Pj4+IC0gICAgICAgICAgICByZXQgPSAt
+RU9QTk9UU1VQUDsNCj4+Pj4+IC0gICAgICAgICAgICBnb3RvIGV4aXQ7DQo+Pj4+PiAtICAgICAg
+ICB9DQo+Pj4+PiAtICAgIH0NCj4+Pj4+IC0NCj4+Pj4+IC0gICAgaWYgKGFyZ3MtPmZsYWdzICYg
+RFJNX1hFX01NSU9fUkVBRCkgew0KPj4+Pj4gLSAgICAgICAgc3dpdGNoIChiaXRzX2ZsYWcpIHsN
+Cj4+Pj4+IC0gICAgICAgIGNhc2UgRFJNX1hFX01NSU9fMzJCSVQ6DQo+Pj4+PiAtICAgICAgICAg
+ICAgYXJncy0+dmFsdWUgPSB4ZV9tbWlvX3JlYWQzMihndCwgcmVnKTsNCj4+Pj4+IC0gICAgICAg
+ICAgICBicmVhazsNCj4+Pj4+IC0gICAgICAgIGNhc2UgRFJNX1hFX01NSU9fNjRCSVQ6DQo+Pj4+
+PiAtICAgICAgICAgICAgYXJncy0+dmFsdWUgPSB4ZV9tbWlvX3JlYWQ2NF8yeDMyKGd0LCByZWcp
+Ow0KPj4+Pj4gLSAgICAgICAgICAgIGJyZWFrOw0KPj4+Pj4gLSAgICAgICAgZGVmYXVsdDoNCj4+
+Pj4+IC0gICAgICAgICAgICBkcm1fZGJnKCZ4ZS0+ZHJtLCAiSW52YWxpZCBNTUlPIGJpdCBzaXpl
+Iik7DQo+Pj4+PiAtICAgICAgICAgICAgZmFsbHRocm91Z2g7DQo+Pj4+PiAtICAgICAgICBjYXNl
+IERSTV9YRV9NTUlPXzhCSVQ6IC8qIFRPRE8gKi8NCj4+Pj4+IC0gICAgICAgIGNhc2UgRFJNX1hF
+X01NSU9fMTZCSVQ6IC8qIFRPRE8gKi8NCj4+Pj4+IC0gICAgICAgICAgICByZXQgPSAtRU9QTk9U
+U1VQUDsNCj4+Pj4+IC0gICAgICAgIH0NCj4+Pj4+IC0gICAgfQ0KPj4+Pj4gLQ0KPj4+Pj4gLWV4
+aXQ6DQo+Pj4+PiAtICAgIHhlX2ZvcmNlX3dha2VfcHV0KGd0X3RvX2Z3KGd0KSwgWEVfRk9SQ0VX
+QUtFX0FMTCk7DQo+Pj4+PiAtICAgIHhlX2RldmljZV9tZW1fYWNjZXNzX3B1dCh4ZSk7DQo+Pj4+
+PiAtDQo+Pj4+PiAtICAgIHJldHVybiByZXQ7DQo+Pj4+PiAtfQ0KPj4+Pj4gLQ0KPj4+Pj4gICAg
+LyoqDQo+Pj4+PiAgICAgKiB4ZV9tbWlvX3JlYWQ2NF8yeDMyKCkgLSBSZWFkIGEgNjQtYml0IHJl
+Z2lzdGVyIGFzIHR3byAzMi1iaXQgcmVhZHMNCj4+Pj4+ICAgICAqIEBndDogTU1JTyB0YXJnZXQg
+R1QNCj4+Pj4+IGRpZmYgLS1naXQgYS9pbmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oIGIvaW5jbHVk
+ZS91YXBpL2RybS94ZV9kcm0uaA0KPj4+Pj4gaW5kZXggODZmMTZkNTBlOWNjLi42YzZkMWNmYTQx
+NWEgMTAwNjQ0DQo+Pj4+PiAtLS0gYS9pbmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oDQo+Pj4+PiAr
+KysgYi9pbmNsdWRlL3VhcGkvZHJtL3hlX2RybS5oDQo+Pj4+PiBAQCAtMTA2LDExICsxMDYsMTAg
+QEAgc3RydWN0IHhlX3VzZXJfZXh0ZW5zaW9uIHsNCj4+Pj4+ICAgICNkZWZpbmUgRFJNX1hFX0VY
+RUNfUVVFVUVfQ1JFQVRFICAgICAgICAweDA2DQo+Pj4+PiAgICAjZGVmaW5lIERSTV9YRV9FWEVD
+X1FVRVVFX0RFU1RST1kgICAgICAgIDB4MDcNCj4+Pj4+ICAgICNkZWZpbmUgRFJNX1hFX0VYRUMg
+ICAgICAgICAgICAweDA4DQo+Pj4+PiAtI2RlZmluZSBEUk1fWEVfTU1JTyAgICAgICAgICAgIDB4
+MDkNCj4+Pj4+IC0jZGVmaW5lIERSTV9YRV9FWEVDX1FVRVVFX1NFVF9QUk9QRVJUWSAgICAweDBh
+DQo+Pj4+PiAtI2RlZmluZSBEUk1fWEVfV0FJVF9VU0VSX0ZFTkNFICAgICAgICAweDBiDQo+Pj4+
+PiAtI2RlZmluZSBEUk1fWEVfVk1fTUFEVklTRSAgICAgICAgMHgwYw0KPj4+Pj4gLSNkZWZpbmUg
+RFJNX1hFX0VYRUNfUVVFVUVfR0VUX1BST1BFUlRZICAgIDB4MGQNCj4+Pj4+ICsjZGVmaW5lIERS
+TV9YRV9FWEVDX1FVRVVFX1NFVF9QUk9QRVJUWSAgICAweDA5DQo+Pj4+PiArI2RlZmluZSBEUk1f
+WEVfV0FJVF9VU0VSX0ZFTkNFICAgICAgICAweDBhDQo+Pj4+PiArI2RlZmluZSBEUk1fWEVfVk1f
+TUFEVklTRSAgICAgICAgMHgwYg0KPj4+Pj4gKyNkZWZpbmUgRFJNX1hFX0VYRUNfUVVFVUVfR0VU
+X1BST1BFUlRZICAgIDB4MGMNCj4+Pj4+DQo+Pj4+PiAgICAvKiBNdXN0IGJlIGtlcHQgY29tcGFj
+dCAtLSBubyBob2xlcyAqLw0KPj4+Pj4gICAgI2RlZmluZSBEUk1fSU9DVExfWEVfREVWSUNFX1FV
+RVJZICAgICAgICBEUk1fSU9XUihEUk1fQ09NTUFORF9CQVNFDQo+Pj4+PiArIERSTV9YRV9ERVZJ
+Q0VfUVVFUlksIHN0cnVjdCBkcm1feGVfZGV2aWNlX3F1ZXJ5KQ0KPj4+Pj4gQEAgLTEyMyw3ICsx
+MjIsNiBAQCBzdHJ1Y3QgeGVfdXNlcl9leHRlbnNpb24gew0KPj4+Pj4gICAgI2RlZmluZSBEUk1f
+SU9DVExfWEVfRVhFQ19RVUVVRV9HRVRfUFJPUEVSVFkNCj4+Pj4+IERSTV9JT1dSKERSTV9DT01N
+QU5EX0JBU0UgKyBEUk1fWEVfRVhFQ19RVUVVRV9HRVRfUFJPUEVSVFksIHN0cnVjdA0KPj4+Pj4g
+ZHJtX3hlX2V4ZWNfcXVldWVfZ2V0X3Byb3BlcnR5KQ0KPj4+Pj4gICAgI2RlZmluZSBEUk1fSU9D
+VExfWEVfRVhFQ19RVUVVRV9ERVNUUk9ZDQo+Pj4+PiBEUk1fSU9XKERSTV9DT01NQU5EX0JBU0Ug
+KyBEUk1fWEVfRVhFQ19RVUVVRV9ERVNUUk9ZLCBzdHJ1Y3QNCj4+Pj4+IGRybV94ZV9leGVjX3F1
+ZXVlX2Rlc3Ryb3kpDQo+Pj4+PiAgICAjZGVmaW5lIERSTV9JT0NUTF9YRV9FWEVDICAgICAgICAg
+ICAgIERSTV9JT1coRFJNX0NPTU1BTkRfQkFTRSArDQo+Pj4+PiBEUk1fWEVfRVhFQywgc3RydWN0
+IGRybV94ZV9leGVjKQ0KPj4+Pj4gLSNkZWZpbmUgRFJNX0lPQ1RMX1hFX01NSU8gICAgICAgICAg
+ICBEUk1fSU9XUihEUk1fQ09NTUFORF9CQVNFICsNCj4+Pj4+IERSTV9YRV9NTUlPLCBzdHJ1Y3Qg
+ZHJtX3hlX21taW8pDQo+Pj4+PiAgICAjZGVmaW5lIERSTV9JT0NUTF9YRV9FWEVDX1FVRVVFX1NF
+VF9QUk9QRVJUWQ0KPj4+Pj4gRFJNX0lPVyhEUk1fQ09NTUFORF9CQVNFICsgRFJNX1hFX0VYRUNf
+UVVFVUVfU0VUX1BST1BFUlRZLCBzdHJ1Y3QNCj4+Pj4+IGRybV94ZV9leGVjX3F1ZXVlX3NldF9w
+cm9wZXJ0eSkNCj4+Pj4+ICAgICNkZWZpbmUgRFJNX0lPQ1RMX1hFX1dBSVRfVVNFUl9GRU5DRQ0K
+Pj4+Pj4gRFJNX0lPV1IoRFJNX0NPTU1BTkRfQkFTRSArIERSTV9YRV9XQUlUX1VTRVJfRkVOQ0Us
+IHN0cnVjdA0KPj4+Pj4gZHJtX3hlX3dhaXRfdXNlcl9mZW5jZSkNCj4+Pj4+ICAgICNkZWZpbmUg
+RFJNX0lPQ1RMX1hFX1ZNX01BRFZJU0UNCj4+Pj4+IERSTV9JT1coRFJNX0NPTU1BTkRfQkFTRSAr
+IERSTV9YRV9WTV9NQURWSVNFLCBzdHJ1Y3QgZHJtX3hlX3ZtX21hZHZpc2UpDQo+Pj4+PiBAQCAt
+ODgzLDI3ICs4ODEsNiBAQCBzdHJ1Y3QgZHJtX3hlX2V4ZWMgew0KPj4+Pj4gICAgICAgIF9fdTY0
+IHJlc2VydmVkWzJdOw0KPj4+Pj4gICAgfTsNCj4+Pj4+DQo+Pj4+PiAtc3RydWN0IGRybV94ZV9t
+bWlvIHsNCj4+Pj4+IC0gICAgLyoqIEBleHRlbnNpb25zOiBQb2ludGVyIHRvIHRoZSBmaXJzdCBl
+eHRlbnNpb24gc3RydWN0LCBpZiBhbnkgKi8NCj4+Pj4+IC0gICAgX191NjQgZXh0ZW5zaW9uczsN
+Cj4+Pj4+IC0NCj4+Pj4+IC0gICAgX191MzIgYWRkcjsNCj4+Pj4+IC0NCj4+Pj4+IC0jZGVmaW5l
+IERSTV9YRV9NTUlPXzhCSVQgICAgMHgwDQo+Pj4+PiAtI2RlZmluZSBEUk1fWEVfTU1JT18xNkJJ
+VCAgICAweDENCj4+Pj4+IC0jZGVmaW5lIERSTV9YRV9NTUlPXzMyQklUICAgIDB4Mg0KPj4+Pj4g
+LSNkZWZpbmUgRFJNX1hFX01NSU9fNjRCSVQgICAgMHgzDQo+Pj4+PiAtI2RlZmluZSBEUk1fWEVf
+TU1JT19CSVRTX01BU0sgICAgMHgzDQo+Pj4+PiAtI2RlZmluZSBEUk1fWEVfTU1JT19SRUFEICAg
+IDB4NA0KPj4+Pj4gLSNkZWZpbmUgRFJNX1hFX01NSU9fV1JJVEUgICAgMHg4DQo+Pj4+PiAtICAg
+IF9fdTMyIGZsYWdzOw0KPj4+Pj4gLQ0KPj4+Pj4gLSAgICBfX3U2NCB2YWx1ZTsNCj4+Pj4+IC0N
+Cj4+Pj4+IC0gICAgLyoqIEByZXNlcnZlZDogUmVzZXJ2ZWQgKi8NCj4+Pj4+IC0gICAgX191NjQg
+cmVzZXJ2ZWRbMl07DQo+Pj4+PiAtfTsNCj4+Pj4+IC0NCj4+Pj4+ICAgIC8qKg0KPj4+Pj4gICAg
+ICogc3RydWN0IGRybV94ZV93YWl0X3VzZXJfZmVuY2UgLSB3YWl0IHVzZXIgZmVuY2UNCj4+Pj4+
+ICAgICAqDQo+Pj4+DQo+Pj4+IEkgd291bGQgcHJlZmVyIHRvIGtlZXAgdGhpcyBpb2N0bCBmb3Ig
+ZGVidWcsIG9yIGFuIGVxdWl2YXZsZW50DQo+Pj4+IGFsdGVybmF0aXZlLiBXZSBjYW4gcmVtb3Zl
+IHRoZSB0aW1lc3RtYXAgcGFydCBidXQga2VlcCB0aGUgZ2VuZXJhbCBtbWlvDQo+Pj4+IGlvY3Rs
+IGludGVyZmFjZSBmb3IgJ0NBUF9TWVNfQURNSU4nIGFjY2VzcyBvbmx5Lg0KPj4+PiBBbnkgb2Jq
+ZWN0aW9ucz8NCj4NCj4gV2VsbCwgb25lIGdlbmVyYWwgcm9hZGJsb2NrIGlzIHRoYXQgdGhlIERS
+TSBzdWJzeXN0ZW0gcnVsZXMgZG9uJ3QgYWxsb3cNCj4gYWRkaW5nIEFCSSB3aXRob3V0IGEgcmVh
+bCwgb3Blbi1zb3VyY2UgdXNlcnNwYWNlIGNvbnN1bWVyLiAgTm90IG9ubHkgZG8NCj4gd2Ugbm90
+IGhhdmUgYSAicmVhbCIgY29uc3VtZXIgZm9yIHRoaXMgaW9jdGwgaXRzZWxmLCBidXQgd2UgYWxz
+byBkb24ndA0KPiBldmVuIHdhbnQgdG8gZ2l2ZSBhbnlvbmUgdGhlIGltcHJlc3Npb24gdGhhdCB3
+ZSBoYXZlIGEgYmFja2Rvb3INCj4gaW50ZXJmYWNlIHRvIGFsbG93IG5vbi1vcGVuc291cmNlIHVz
+ZXJzcGFjZSB0byBnbyBiZWhpbmQgdGhlIGRyaXZlcidzDQo+IGJhY2sgYW5kIHN0YXJ0IGNvbnRy
+b2xsaW5nIHRoZSBoYXJkd2FyZS4gIFVzZXJzcGFjZSBjYW4gc3RpbGwgb2J2aW91c2x5DQo+IGRv
+IHRoYXQgYnkgcnVubmluZyBhcyByb290IGFuZCBtYXBwaW5nIHRoZSBCQVIgZGlyZWN0bHksIGJ1
+dCB0aGV5J3JlIG5vdA0KPiB1c2luZyBvZmZpY2lhbCBkcml2ZXIgdWFwaSBhdCB0aGF0IHBvaW50
+LCBhbmQgdGhlcmUgYXJlIHBvdGVudGlhbGx5DQo+IG90aGVyIHdheXMgdGhhdCBhIHN5c2FkbWlu
+IGNhbiBjbG9zZSB0aG9zZSBob2xlcyBpZiBuZWNlc3NhcnkuDQoNCkhleSBNYXR0LCBJIHRvdGFs
+bHkgdW5kZXNyc3RhbmQgeW91ciBjb25jZXJuLCBJIG1pZ2h0IGhhdmUgYW5vdGhlcg0Kc3VnZ2Vz
+dGlvbi4gV2UgY2FuIGNyZWF0ZSBhbm90aGVyIEZEIGluIGRlYnVnZnMgYW5kIG1vdmUgdGhpcyBp
+b2N0bA0KdGhlcmUgKEkgY2FuIHRha2Ugb3duZXJzaGlwIG9uIHRoaXMpLCBUaGlzIHdheSBBQkkg
+aXMgbm90IGFuIGlzc3VlLg0KDQo+DQo+Pj4NCj4+PiBDQVBfU1lTX0FETUlOIGNhbiBhbHJlYWR5
+IG1hcCB0aGUgYmFyIGFuZCBkbyB0aGUgcmVhZHMgYW5kDQo+Pj4gd3JpdGVzLiBXaGF0J3MgdGhl
+IGJlbmVmaXQgb2YgZ29pbmcgdGhyb3VnaCB0aGUga2VybmVsPw0KPj4+DQo+Pj4gTHVjYXMgRGUg
+TWFyY2hpDQo+Pj4NCj4+Pj4NCj4+Pj4gT2Zpcg0KPj4NCj4+IFNvbWUgcmVnaXN0ZXIgcmVhZC93
+cml0ZSByZXF1aXJlcyBkcml2ZXIgaW52b2x2ZW1lbnQsIGZvciBleGFtcGxlDQo+PiBkaXNhYmxp
+bmcgY2xvY2sgZ2F0aW5nIG9yIGdvaW5nIHRocm91Z2ggYSByZWdpc3RlciBnYXRld2F5Lg0KPj4g
+SW4gYWRkaXRpb24sIGlmIGEgdXNlciB3b3VsZCBsaWtlIHRvIGFjY2VzcyBkaXJlY3RseSB0aHJv
+dWdoIHRoZSBiYXIgaGUNCj4+IHdpbGwgbmVlZCB0byBiZSBhd2FyZSBvZiB0aGUgZXhhY3QgYmFy
+IG1hcHBpbmcuIEl0IGlzIHByZWZlcmFibGUgdGhhdA0KPj4gdGhlIHVzZXIgd2lsbCBiZSBhYmxl
+IHRvIGFzayBmb3IgcmVhZC93cml0ZSBmcm9tL3RvIGEgc3BlY2lmaWMgTU1JTw0KPj4gYWRkcmVz
+cyBhbmQgdGhlIGRyaXZlciB3aWxsIG1hcCBpdCB0byB0aGUgcHJvcGVyIG9mZnNldCBpbiBiYXIu
+DQo+DQo+IEFyZSB5b3UgdXNpbmcgdGhlIHRlcm0gInVzZXIiIHRvIGRlc2NyaWJlIHRoZSB1c2Vy
+c3BhY2UgX3NvZnR3YXJlXyBvcg0KPiB0aGUgcGVyc29uIHNpdHRpbmcgYXQgdGhlIGNvbXB1dGVy
+PyAgSWYgdGhlIGxhdHRlciwgdGhlbiB3ZSBkb24ndCBuZWVkDQo+IHRoaXMgaW9jdGwgYXQgYWxs
+OyB0aGUgImludGVsX3JlZyIgdG9vbCBmcm9tIElHVCBoYXMgcHJvdmlkZWQgdGhpcyBraW5kDQo+
+IG9mIGZ1bmN0aW9uYWxpdHkgb24gaTkxNSBmb3IgeWVhcnM7IGl0J3MgYSBzaW1wbGUgY29tbWFu
+ZC1saW5lIHRvb2wgdGhhdA0KPiBjYW4gYmUgdXNlZCB3aXRoIGNvbW1hbmRzIGxpa2U6DQo+DQo+
+ICAgICAgICAgIGludGVsX3JlZyByZWFkIDB4MTIzNA0KPiAgICAgICAgICBpbnRlbF9yZWcgd3Jp
+dGUgMHg1Njc4IDB4YWJjZA0KPg0KPiBUaGUgdG9vbCB1c2VzIGxpYnBjaWFjY2VzcyB1bmRlciB0
+aGUgaG9vZCB0byBtYXAgdGhlIEJBUiwgYW5kIGNhbg0KPiBwZXJmb3JtIG90aGVyIG5lY2Vzc2Fy
+eSBwcmUvcG9zdCBvcGVyYXRpb25zIChsaWtlIGdyYWJiaW5nIHJlbGVhc2luZw0KPiBmb3JjZXdh
+a2UgdG8gbWFrZSBzdXJlIHRoZSByZWdpc3RlciBpcyBhY2Nlc3NpYmxlKS4NCg0KQnkgJ3VzZXIn
+IEkgZG8gbWVhbiB1c2Vyc3BhY2UgcHJvY2Vzcy4gSW50ZWxfcmVnIHRvb2wgY2FuIHdvcmsgYnV0
+IGl0DQpoYXMgaXRzIG93biBsaW1pdGF0aW9ucy4NCg0KPg0KPiBJZiB5b3UncmUgdXNpbmcgInVz
+ZXIiIHRvIHJlZmVyIHRvIHRoZSB1c2Vyc3BhY2UgX3NvZnR3YXJlXyAoZS5nLiwgSUdUJ3MNCj4g
+eGVfcmVnIGRlYnVnIHRvb2wgd2hpY2ggaXMgdXNpbmcgdGhlIGlvY3RsIHJpZ2h0IG5vdyksIHRo
+ZW4gdGhlcmUncyBldmVuDQo+IG1vcmUgaW5jZW50aXZlIHRvIG1vdmUgYXdheSBmcm9tIHRoZSBp
+b2N0bCAtLS0gdGhlIGlvY3RsIGludGVyZmFjZSB3ZQ0KPiBoYXZlIHRvZGF5IGFscmVhZHkgaGFz
+IGEgYnVuY2ggb2YgbGltaXRhdGlvbnMgdGhhdCBtYWtlIGl0IGxlc3MgdXNlZnVsDQo+IHRoYW4g
+aXQgc2hvdWxkIGJlIGZvciBkZWJ1Z2dpbmc6DQo+DQo+ICAgKiBUaGVyZSdzIG5vIHdheSB0byBz
+cGVjaWZ5L2FjY2VzcyByZWdpc3RlcnMgb24gbm9uLXRpbGUwLg0KDQpJIGFtIGF3YXJlLCBJIHdp
+bGwgYWRkIHN1cHBvcnQgZm9yIG11bHRpLXRpbGUgZGV2aWNlcy4NCg0KPiAgICogVGhlcmUncyBu
+byB3YXkgdG8gc3BlY2lmeSB0aGF0IHlvdSBkby9kb24ndCB3YW50IGl0IHRvIGRvIHRoZSAiZXh0
+cmEiDQo+ICAgICBzdGVwcyBsaWtlIHlvdSBkZXNjcmliZSAoZS5nLiwgYXV0b21hdGljYWxseSBn
+cmFiYmluZyBmb3JjZXdha2UgaXMNCj4gICAgIGNvbnZlbmllbnQgYSBsb3Qgb2YgdGhlIHRpbWUs
+IGJ1dCBpZiB5b3UncmUgYWN0dWFsbHkgdHJ5aW5nIHRvIGRlYnVnDQo+ICAgICBmb3JjZXdha2Ug
+aXRzZWxmLCB0aGVuIHRoZSBpb2N0bCdzIGF1dG9tYXRpYyBiZWhhdmlvciBqdXN0IGdldHMgaW4N
+Cj4gICAgIHlvdXIgd2F5KS4NCj4NCg0KVW5kZXJzdG9vZCwgZm9yIHRoZXNlIGtpbmQgb2YgZGVi
+dWdzIHRoZSBtbWlvIGlvY3RsIGlzIGlycmVsZXZhbnQuDQoNCj4gV2hpbGUgdGhlIGlvY3RsIGNv
+dWxkIHRoZW9yZXRpY2FsbHkgYmUgZXh0ZW5kZWQgdG8gb3ZlcmNvbWUgdGhlc2UNCj4gbGltaXRh
+dGlvbnMsIHdlIHN0aWxsIHNob3VsZG4ndCByZWFsbHkgYmUgYnVpbGRpbmcgdXAgQUJJIGxpa2Ug
+dGhhdCBmb3INCj4gZGVidWcgcHVycG9zZXMgd2l0aG91dCByZWFsIHVzZXJzcGFjZSBjb25zdW1l
+cnMsIGVzcGVjaWFsbHkgaWYgd2UgaGF2ZSBhDQo+IHZpYWJsZSBhbHRlcm5hdGl2ZSB0aGF0J3Mg
+YmVlbiB1c2VkIGZvciBhIGxvbmcgdGltZS4gIEl0J3MgcmVsYXRpdmVseQ0KPiBzaW1wbGUgZm9y
+IHRvb2xzIGxpa2UgaW50ZWxfcmVnIGFuZCB4ZV9yZWcgdG8ganVzdCB1c2UgbGlicGNpYWNjZXNz
+IHRvDQo+IG1hcCB0aGUgQkFSLCBmaWd1cmUgb3V0IHRoZSBhcHByb3ByaWF0ZSBvZmZzZXQsIGFu
+ZCB0aGVuIG9wdGlvbmFsbHkNCj4gcGVyZm9ybSBvdGhlciBvcGVyYXRpb25zIChsaWtlIGZvcmNl
+d2FrZSkgYWNjb3JkaW5nIHRvIHdoYXRldmVyIG9wdGlvbnMNCj4gd2VyZSBwYXNzZWQgb24gdGhl
+IGNvbW1hbmQgbGluZS4gIFdpdGggZGVidWcgdG9vbHMgaXQncyBlc3BlY2lhbGx5DQo+IGxpa2Vs
+eSB0aGF0IHdlJ2xsIGNvbWUgdXAgd2l0aCBuZXcgYmVoYXZpb3JzIHRoYXQgd2Ugd2FudCB0byBh
+ZGQgKGUuZy4sDQo+IGhhbmRsZSBkaXNwbGF5IHJlZ2lzdGVyIGFjY2Vzc2VzIHZpYSBtc2didXMg
+dHJhbnNhY3Rpb25zIG9uIE1UTC9MTkw/KQ0KPiBhbmQgaXQgd291bGQgYmUgYmV0dGVyIGlmIHdl
+IGRpZG4ndCBuZWVkIHRvIGtlZXAgZXh0ZW5kaW5nIHRoZSBpb2N0bA0KPiB1YXBpIGFuZCBBQkkg
+Zm9yIHRoZXNlIGRlYnVnLW9ubHkgcHVycG9zZXMpLg0KDQpJIGFncmVlIHdlIG5lZWQgYW4gaW50
+ZXJmYWNlIHRoYXQgd2lsbCBub3QgYmUgb2JsaWdhdGVkIHRvIGFueSBBQkkgYXMNCnRoaXMgaXMg
+Zm9yIHB1cmUgZGVidWcsIHNvIHdlIGFyZSBsZWZ0IHdpdGggMiBvcHRpb25zOg0KMS4gTXkgc3Vn
+Z2VzdGlvbiB0byBjcmVhdGUgYSBkZWJ1Z2ZzIEZEIGFuZCB1c2UgdGhlIGlvY3RsIHRoZXJlLg0K
+Mi4gTW92ZSBjb2RlIHRvIGlubmVyc291cmNlDQoNCkkgcHJlZmVyIG9wdGlvbiAjMSBhcyB0aGUg
+bGF0dGVyIHdpbGwgbm90IGJlIGF2YWlsYWJsZSBmb3IgY3VzdG9tZXJzIHdobw0KdXNlcyB0aGUg
+b3BlbnNvdXJjZSBkcml2ZXIuDQoNCk9maXIuDQoNCj4NCj4NCj4gTWF0dA0KPg0KDQo=
