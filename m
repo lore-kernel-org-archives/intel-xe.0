@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 914BDCA0ED3
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 10:14:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 20308CA0EC3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 10:17:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5337810E3D2;
-	Tue, 12 Sep 2023 10:14:05 +0000 (UTC)
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA54D10E3D2;
- Tue, 12 Sep 2023 10:14:02 +0000 (UTC)
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested) (Authenticated sender: bbrezillon)
- by madras.collabora.co.uk (Postfix) with ESMTPSA id D4DF1660731E;
- Tue, 12 Sep 2023 11:14:00 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1694513641;
- bh=WuNFHn/io85Yv37Z2p6EDUALHH/EtdHaTdeD8u8A070=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=m8lBBDfKkl+6XZe5KldNFTIxYdtMLe5gHlfEOxnuVIyrNZpWkpKcrVm7/wzBJ65T3
- mrNrzPZm7lads4ucEPU3z10h0dEaVP3u8yfbu0r5LiQGOihcFbuY0sH7j04h/pekwv
- qa1hl0Y+DZ9L80flxBcFrQ0Jwc6kLLCPtj77gQqoqidJoPG1SjqEMmPAXxkgSgtoHP
- 5eTt9KgpmV2s7lpaQSp0VkGwY+UPKT021JBEAkasYr0rVxzQs69VbrD+1m6upSp02d
- VvQLWfoPApU1Aqb07TjELC6sjY6ZvPLZSz/zqZ8eKM31fHZla9IoZrUA4UJ406mYdM
- 5pgTwm+y/d6IA==
-Date: Tue, 12 Sep 2023 12:13:57 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- donald.robson@imgtec.com
-Message-ID: <20230912121357.4cc10dec@collabora.com>
-In-Reply-To: <ee56b9ee-36c7-5935-c319-c8d1ad412c7c@amd.com>
-References: <20230811023137.659037-1-matthew.brost@intel.com>
- <20230811023137.659037-5-matthew.brost@intel.com>
- <ZOfh6o2EaGuIqZVe@pollux>
- <ZOgYu1fZQUHeneJC@DUT025-TGLU.fm.intel.com>
- <6ae84066-b690-1562-0598-4694b022c960@amd.com>
- <ZOiuWcFDImBvJtnO@DUT025-TGLU.fm.intel.com>
- <ee56b9ee-36c7-5935-c319-c8d1ad412c7c@amd.com>
-Organization: Collabora
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D087210E1D1;
+	Tue, 12 Sep 2023 10:17:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A138E10E1D1
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 10:17:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694513853; x=1726049853;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=wWNl++Y4maVxB/ZM0d5rUlowuj73XPkqw1QxH1TqBSg=;
+ b=BCZpIY1CsCzqQ+jiNcDwMVrdcwV732sh0sv3tuuOAR11e+qf8H7/l2cI
+ T7TmctMhhH9nUdBE3+2T8HYepcvM7K8OGkUPi7QLyfTrfDeBaQ7eH6lJa
+ Zq1r8ZNCHTE36E6vC9TXqDLiKaXmh5LXfnj8K52RakDsXuYlqfW/og0QH
+ Zf+qj4IEZAE954CUEOKnS1jU/VSc24O49vJCQyg0lmkCrLPvSjfkviOPI
+ Ovx2AVrYFa2t/jByW19Vufq2yhMILtyPpnWzIipcrYpKfr/HfyH60t4YW
+ b6JyWOaOrSUo712uTWEwprbyTRCqDbRlvH6ScYmjWkM0ew2nAYQyGhXWA g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="381034534"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="381034534"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2023 03:17:33 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="809187700"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="809187700"
+Received: from kscholl-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.252.63.206])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2023 03:17:30 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>, Michal Wajdeczko
+ <michal.wajdeczko@intel.com>
+In-Reply-To: <ZQArJ0mDJRMWFgIk@fdugast-desk.home>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230912083635.7-1-francois.dugast@intel.com>
+ <20230912083635.7-3-francois.dugast@intel.com>
+ <ZQArJ0mDJRMWFgIk@fdugast-desk.home>
+Date: Tue, 12 Sep 2023 13:17:28 +0300
+Message-ID: <87y1hbd7bb.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [PATCH v2 4/9] drm/sched: Split free_job into own
- work item
+Subject: Re: [Intel-xe] [PATCH v4 2/3] drm/xe: Introduce Xe assert macros
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,288 +61,324 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
- luben.tuikov@amd.com, Danilo Krummrich <dakr@redhat.com>,
- intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 25 Aug 2023 15:45:49 +0200
-Christian K=C3=B6nig <christian.koenig@amd.com> wrote:
+On Tue, 12 Sep 2023, Francois Dugast <francois.dugast@intel.com> wrote:
+> Hi Michal,
+>
+> On Tue, Sep 12, 2023 at 08:36:34AM +0000, Francois Dugast wrote:
+>> From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>=20
+>> As we are moving away from the controversial XE_BUG_ON macro,
+>> relying just on WARN_ON or drm_err does not cover the cases
+>> where we want to annotate functions with additional detailed
+>> debug checks to assert that all prerequisites are satisfied,
+>> without paying footprint or performance penalty on non-debug
+>> builds, where all misuses introduced during code integration
+>> were already fixed.
+>>=20
+>> Introduce family of Xe assert macros that try to follow classic
+>> assert() utility and can be compiled out on non-debug builds.
+>>=20
+>> Macros are based on drm_WARN, but unlikely to origin, disallow
+>> use in expressions since we will compile that code out.
+>>=20
+>> As we are operating on the xe pointers, we can print additional
+>> information about the device, like tile or GT identifier, that
+>> is not available from generic WARN report:
+>>=20
+>> [ ] xe 0000:00:02.0: [drm] Assertion `true =3D=3D false` failed!
+>>     platform: 1 subplatform: 1
+>>     graphics: Xe_LP 12.00 step B0
+>>     media: Xe_M 12.00 step B0
+>>     display: enabled step D0
+>>     tile: 0 VRAM 0 B
+>>     GT: 0 type 1
+>>=20
+>> [ ] xe 0000:b3:00.0: [drm] Assertion `true =3D=3D false` failed!
+>>     platform: 7 subplatform: 3
+>>     graphics: Xe_HPG 12.55 step A1
+>>     media: Xe_HPM 12.55 step A1
+>>     display: disabled step **
+>>     tile: 0 VRAM 14.0 GiB
+>>     GT: 0 type 1
+>>=20
+>> [ ] WARNING: CPU: 0 PID: 2687 at drivers/gpu/drm/xe/xe_device.c:281 xe_d=
+evice_probe+0x374/0x520 [xe]
+>> [ ] RIP: 0010:xe_device_probe+0x374/0x520 [xe]
+>> [ ] Call Trace:
+>> [ ]  ? __warn+0x7b/0x160
+>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>> [ ]  ? report_bug+0x1c3/0x1d0
+>> [ ]  ? handle_bug+0x42/0x70
+>> [ ]  ? exc_invalid_op+0x14/0x70
+>> [ ]  ? asm_exc_invalid_op+0x16/0x20
+>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>> [ ]  xe_pci_probe+0x6e3/0x950 [xe]
+>> [ ]  ? lockdep_hardirqs_on+0xc7/0x140
+>> [ ]  pci_device_probe+0x9e/0x160
+>> [ ]  really_probe+0x19d/0x400
+>>=20
+>> v2: use lowercase names
+>> v3: apply xe coding style
+>>=20
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Oded Gabbay <ogabbay@kernel.org>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_assert.h | 177 +++++++++++++++++++++++++++++++++
+>>  1 file changed, 177 insertions(+)
+>>  create mode 100644 drivers/gpu/drm/xe/xe_assert.h
+>>=20
+>> diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_asse=
+rt.h
+>> new file mode 100644
+>> index 000000000000..b2d3c9b82b31
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_assert.h
+>> @@ -0,0 +1,177 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright =C2=A9 2023 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_ASSERT_H_
+>> +#define _XE_ASSERT_H_
+>> +
+>> +#include <linux/string_helpers.h>
+>> +
+>> +#include <drm/drm_print.h>
+>> +
+>> +#include "xe_device_types.h"
+>> +#include "xe_step.h"
+>> +
+>> +/**
+>> + * DOC: Xe ASSERTs
+>> + *
+>> + * While Xe driver aims to be simpler than legacy i915 driver it is sti=
+ll
+>> + * complex enough that some changes introduced while adding new functio=
+nality
+>> + * could break the existing code.
+>> + *
+>> + * Adding &drm_WARN or &drm_err to catch unwanted programming usage cou=
+ld lead
+>> + * to undesired increased driver footprint and may impact production dr=
+iver
+>> + * performance as this additional code will be always present.
+>> + *
+>> + * To allow annotate functions with additional detailed debug checks to=
+ assert
+>> + * that all prerequisites are satisfied, without worrying about footpri=
+nt or
+>> + * performance penalty on production builds where all potential misuses
+>> + * introduced during code integration were already fixed, we introduce =
+family
+>> + * of Xe assert macros that try to follow classic assert() utility:
+>> + *
+>> + *  * &xe_assert
+>> + *  * &xe_tile_assert
+>> + *  * &xe_gt_assert
+>> + *
+>> + * These macros are implemented on top of &drm_WARN, but unlikely to th=
+e origin,
+>> + * warning is triggered when provided condition is false. Additionally =
+all above
+>> + * assert macros cannot be used in expressions or as a condition, since
+>> + * underlying code will be compiled out on non-debug builds.
+>> + *
+>> + * Note that these macros are not intended for use to cover known gaps =
+in the
+>> + * implementation; for such cases use regular &drm_WARN or &drm_err and=
+ provide
+>> + * valid safe fallback.
+>> + *
+>> + * Also in cases where performance or footprint is not an issue, develo=
+pers
+>> + * should continue to use the regular &drm_WARN or &drm_err to ensure t=
+hat bug
+>> + * reports from production builds will contain meagningful diagnostics =
+data.
+>> + *
+>> + * Below code shows how asserts could help in debug to catch unplanned =
+use::
+>> + *
+>> + *	static void one_igfx(struct xe_device *xe)
+>> + *	{
+>> + *		xe_assert(xe, xe->info.is_dgfx =3D=3D false);
+>> + *		xe_assert(xe, xe->info.tile_count =3D=3D 1);
+>> + *	}
+>> + *
+>> + *	static void two_dgfx(struct xe_device *xe)
+>> + *	{
+>> + *		xe_assert(xe, xe->info.is_dgfx);
+>> + *		xe_assert(xe, xe->info.tile_count =3D=3D 2);
+>> + *	}
+>> + *
+>> + *	void foo(struct xe_device *xe)
+>> + *	{
+>> + *		if (xe->info.dgfx)
+>> + *			return two_dgfx(xe);
+>> + *		return one_igfx(xe);
+>> + *	}
+>> + *
+>> + *	void bar(struct xe_device *xe)
+>> + *	{
+>> + *		if (drm_WARN_ON(xe->drm, xe->info.tile_count > 2))
+>> + *			return;
+>> + *
+>> + *		if (xe->info.tile_count =3D=3D 2)
+>> + *			return two_dgfx(xe);
+>> + *		return one_igfx(xe);
+>> + *	}
+>> + */
+>> +
+>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>> +#define __xe_assert_msg(xe, condition, msg, arg...) ({						\
+>> +	(void)drm_WARN(&(xe)->drm, !(condition), "[" DRM_NAME "] Assertion `%s=
+` failed!\n" msg,	\
+>> +		       __stringify(condition), ## arg);						\
+>> +})
+>> +#else
+>> +#define __xe_assert_msg(xe, condition, msg, arg...) ({						\
+>> +	typecheck(struct xe_device *, xe);							\
+>> +	BUILD_BUG_ON_INVALID(condition);							\
+>> +})
+>> +#endif
+>> +
+>> +/**
+>> + * xe_assert - warn if condition is false when debugging.
+>> + * @xe: the &struct xe_device pointer to which &condition applies
+>> + * @condition: condition to check
+>> + *
+>> + * xe_assert() uses &drm_WARN to emit a warning and print additional in=
+formation
+>> + * that could be read from the &xe pointer if provided &condition is fa=
+lse.
+>> + *
+>> + * Contrary to &drm_WARN, xe_assert() is effective only on debug builds
+>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in express=
+ions
+>> + * or as a condition.
+>> + *
+>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>> + */
+>> +#define xe_assert(xe, condition) xe_assert_msg((xe), condition, "")
+>> +#define xe_assert_msg(xe, condition, msg, arg...) ({						\
+>> +	struct xe_device *__xe =3D (xe);								\
+>> +	__xe_assert_msg(__xe, condition,							\
+>> +			"platform: %d subplatform: %d\n"					\
+>> +			"graphics: %s %u.%02u step %s\n"					\
+>> +			"media: %s %u.%02u step %s\n"						\
+>> +			"display: %s step %s\n"							\
+>> +			msg,									\
+>> +			__xe->info.platform, __xe->info.subplatform,				\
+>> +			__xe->info.graphics_name,						\
+>> +			__xe->info.graphics_verx100 / 100,					\
+>> +			__xe->info.graphics_verx100 % 100,					\
+>> +			xe_step_name(__xe->info.step.graphics),					\
+>> +			__xe->info.media_name,							\
+>> +			__xe->info.media_verx100 / 100,						\
+>> +			__xe->info.media_verx100 % 100,						\
+>> +			xe_step_name(__xe->info.step.media),					\
+>> +			str_enabled_disabled(__xe->info.enable_display),			\
+>> +			xe_step_name(__xe->info.step.display),					\
+>> +			## arg);								\
+>> +})
+>> +
+>> +/**
+>> + * xe_tile_assert - warn if condition is false when debugging.
+>> + * @tile: the &struct xe_tile pointer to which &condition applies
+>> + * @condition: condition to check
+>> + *
+>> + * xe_tile_assert() uses &drm_WARN to emit a warning and print addition=
+al
+>> + * information that could be read from the &tile pointer if provided &c=
+ondition
+>> + * is false.
+>> + *
+>> + * Contrary to &drm_WARN, xe_tile_assert() is effective only on debug b=
+uilds
+>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in express=
+ions
+>> + * or as a condition.
+>> + *
+>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>> + */
+>> +#define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), cond=
+ition, "")
 
-> Am 25.08.23 um 15:36 schrieb Matthew Brost:
-> > On Fri, Aug 25, 2023 at 10:02:32AM +0200, Christian K=C3=B6nig wrote: =
-=20
-> >> Am 25.08.23 um 04:58 schrieb Matthew Brost: =20
-> >>> On Fri, Aug 25, 2023 at 01:04:10AM +0200, Danilo Krummrich wrote: =20
-> >>>> On Thu, Aug 10, 2023 at 07:31:32PM -0700, Matthew Brost wrote: =20
-> >>>>> Rather than call free_job and run_job in same work item have a dedi=
-cated
-> >>>>> work item for each. This aligns with the design and intended use of=
- work
-> >>>>> queues.
-> >>>>>
-> >>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> >>>>> ---
-> >>>>>    drivers/gpu/drm/scheduler/sched_main.c | 137 ++++++++++++++++++-=
-------
-> >>>>>    include/drm/gpu_scheduler.h            |   8 +-
-> >>>>>    2 files changed, 106 insertions(+), 39 deletions(-)
-> >>>>>
-> >>>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/d=
-rm/scheduler/sched_main.c
-> >>>>> index cede47afc800..b67469eac179 100644
-> >>>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> >>>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> >>>>> @@ -213,11 +213,12 @@ void drm_sched_rq_remove_entity(struct drm_sc=
-hed_rq *rq,
-> >>>>>     * drm_sched_rq_select_entity_rr - Select an entity which could =
-provide a job to run
-> >>>>>     *
-> >>>>>     * @rq: scheduler run queue to check.
-> >>>>> + * @dequeue: dequeue selected entity
-> >>>>>     *
-> >>>>>     * Try to find a ready entity, returns NULL if none found.
-> >>>>>     */
-> >>>>>    static struct drm_sched_entity *
-> >>>>> -drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
-> >>>>> +drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq, bool dequeu=
-e)
-> >>>>>    {
-> >>>>>    	struct drm_sched_entity *entity;
-> >>>>> @@ -227,8 +228,10 @@ drm_sched_rq_select_entity_rr(struct drm_sched=
-_rq *rq)
-> >>>>>    	if (entity) {
-> >>>>>    		list_for_each_entry_continue(entity, &rq->entities, list) {
-> >>>>>    			if (drm_sched_entity_is_ready(entity)) {
-> >>>>> -				rq->current_entity =3D entity;
-> >>>>> -				reinit_completion(&entity->entity_idle);
-> >>>>> +				if (dequeue) {
-> >>>>> +					rq->current_entity =3D entity;
-> >>>>> +					reinit_completion(&entity->entity_idle);
-> >>>>> +				}
-> >>>>>    				spin_unlock(&rq->lock);
-> >>>>>    				return entity;
-> >>>>>    			}
-> >>>>> @@ -238,8 +241,10 @@ drm_sched_rq_select_entity_rr(struct drm_sched=
-_rq *rq)
-> >>>>>    	list_for_each_entry(entity, &rq->entities, list) {
-> >>>>>    		if (drm_sched_entity_is_ready(entity)) {
-> >>>>> -			rq->current_entity =3D entity;
-> >>>>> -			reinit_completion(&entity->entity_idle);
-> >>>>> +			if (dequeue) {
-> >>>>> +				rq->current_entity =3D entity;
-> >>>>> +				reinit_completion(&entity->entity_idle);
-> >>>>> +			}
-> >>>>>    			spin_unlock(&rq->lock);
-> >>>>>    			return entity;
-> >>>>>    		}
-> >>>>> @@ -257,11 +262,12 @@ drm_sched_rq_select_entity_rr(struct drm_sche=
-d_rq *rq)
-> >>>>>     * drm_sched_rq_select_entity_fifo - Select an entity which prov=
-ides a job to run
-> >>>>>     *
-> >>>>>     * @rq: scheduler run queue to check.
-> >>>>> + * @dequeue: dequeue selected entity
-> >>>>>     *
-> >>>>>     * Find oldest waiting ready entity, returns NULL if none found.
-> >>>>>     */
-> >>>>>    static struct drm_sched_entity *
-> >>>>> -drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
-> >>>>> +drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq, bool dequ=
-eue)
-> >>>>>    {
-> >>>>>    	struct rb_node *rb;
-> >>>>> @@ -271,8 +277,10 @@ drm_sched_rq_select_entity_fifo(struct drm_sch=
-ed_rq *rq)
-> >>>>>    		entity =3D rb_entry(rb, struct drm_sched_entity, rb_tree_node);
-> >>>>>    		if (drm_sched_entity_is_ready(entity)) {
-> >>>>> -			rq->current_entity =3D entity;
-> >>>>> -			reinit_completion(&entity->entity_idle);
-> >>>>> +			if (dequeue) {
-> >>>>> +				rq->current_entity =3D entity;
-> >>>>> +				reinit_completion(&entity->entity_idle);
-> >>>>> +			}
-> >>>>>    			break;
-> >>>>>    		}
-> >>>>>    	}
-> >>>>> @@ -282,13 +290,54 @@ drm_sched_rq_select_entity_fifo(struct drm_sc=
-hed_rq *rq)
-> >>>>>    }
-> >>>>>    /**
-> >>>>> - * drm_sched_submit_queue - scheduler queue submission
-> >>>>> + * drm_sched_run_job_queue - queue job submission
-> >>>>>     * @sched: scheduler instance
-> >>>>>     */
-> >>>>> -static void drm_sched_submit_queue(struct drm_gpu_scheduler *sched)
-> >>>>> +static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sche=
-d)
-> >>>>>    {
-> >>>>>    	if (!READ_ONCE(sched->pause_submit))
-> >>>>> -		queue_work(sched->submit_wq, &sched->work_submit);
-> >>>>> +		queue_work(sched->submit_wq, &sched->work_run_job);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static struct drm_sched_entity *
-> >>>>> +drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequ=
-eue);
-> >>>>> +
-> >>>>> +/**
-> >>>>> + * drm_sched_run_job_queue_if_ready - queue job submission if ready
-> >>>>> + * @sched: scheduler instance
-> >>>>> + */
-> >>>>> +static void drm_sched_run_job_queue_if_ready(struct drm_gpu_schedu=
-ler *sched)
-> >>>>> +{
-> >>>>> +	if (drm_sched_select_entity(sched, false))
-> >>>>> +		drm_sched_run_job_queue(sched);
-> >>>>> +}
-> >>>>> +
-> >>>>> +/**
-> >>>>> + * drm_sched_free_job_queue - queue free job
-> >>>>> + *
-> >>>>> + * @sched: scheduler instance to queue free job
-> >>>>> + */
-> >>>>> +static void drm_sched_free_job_queue(struct drm_gpu_scheduler *sch=
-ed)
-> >>>>> +{
-> >>>>> +	if (!READ_ONCE(sched->pause_submit))
-> >>>>> +		queue_work(sched->submit_wq, &sched->work_free_job);
-> >>>>> +}
-> >>>>> +
-> >>>>> +/**
-> >>>>> + * drm_sched_free_job_queue_if_ready - queue free job if ready
-> >>>>> + *
-> >>>>> + * @sched: scheduler instance to queue free job
-> >>>>> + */
-> >>>>> +static void drm_sched_free_job_queue_if_ready(struct drm_gpu_sched=
-uler *sched)
-> >>>>> +{
-> >>>>> +	struct drm_sched_job *job;
-> >>>>> +
-> >>>>> +	spin_lock(&sched->job_list_lock);
-> >>>>> +	job =3D list_first_entry_or_null(&sched->pending_list,
-> >>>>> +				       struct drm_sched_job, list);
-> >>>>> +	if (job && dma_fence_is_signaled(&job->s_fence->finished))
-> >>>>> +		drm_sched_free_job_queue(sched);
-> >>>>> +	spin_unlock(&sched->job_list_lock);
-> >>>>>    }
-> >>>>>    /**
-> >>>>> @@ -310,7 +359,7 @@ static void drm_sched_job_done(struct drm_sched=
-_job *s_job, int result)
-> >>>>>    	dma_fence_get(&s_fence->finished);
-> >>>>>    	drm_sched_fence_finished(s_fence, result);
-> >>>>>    	dma_fence_put(&s_fence->finished);
-> >>>>> -	drm_sched_submit_queue(sched);
-> >>>>> +	drm_sched_free_job_queue(sched);
-> >>>>>    }
-> >>>>>    /**
-> >>>>> @@ -906,18 +955,19 @@ static bool drm_sched_can_queue(struct drm_gp=
-u_scheduler *sched)
-> >>>>>    void drm_sched_wakeup_if_can_queue(struct drm_gpu_scheduler *sch=
-ed)
-> >>>>>    {
-> >>>>>    	if (drm_sched_can_queue(sched))
-> >>>>> -		drm_sched_submit_queue(sched);
-> >>>>> +		drm_sched_run_job_queue(sched);
-> >>>>>    }
-> >>>>>    /**
-> >>>>>     * drm_sched_select_entity - Select next entity to process
-> >>>>>     *
-> >>>>>     * @sched: scheduler instance
-> >>>>> + * @dequeue: dequeue selected entity
-> >>>>>     *
-> >>>>>     * Returns the entity to process or NULL if none are found.
-> >>>>>     */
-> >>>>>    static struct drm_sched_entity *
-> >>>>> -drm_sched_select_entity(struct drm_gpu_scheduler *sched)
-> >>>>> +drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequ=
-eue)
-> >>>>>    {
-> >>>>>    	struct drm_sched_entity *entity;
-> >>>>>    	int i;
-> >>>>> @@ -935,8 +985,10 @@ drm_sched_select_entity(struct drm_gpu_schedul=
-er *sched)
-> >>>>>    	/* Kernel run queue has higher priority than normal run queue*/
-> >>>>>    	for (i =3D DRM_SCHED_PRIORITY_COUNT - 1; i >=3D DRM_SCHED_PRIOR=
-ITY_MIN; i--) {
-> >>>>>    		entity =3D sched->sched_policy =3D=3D DRM_SCHED_POLICY_FIFO ?
-> >>>>> -			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i]) :
-> >>>>> -			drm_sched_rq_select_entity_rr(&sched->sched_rq[i]);
-> >>>>> +			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i],
-> >>>>> +							dequeue) :
-> >>>>> +			drm_sched_rq_select_entity_rr(&sched->sched_rq[i],
-> >>>>> +						      dequeue);
-> >>>>>    		if (entity)
-> >>>>>    			break;
-> >>>>>    	}
-> >>>>> @@ -1024,30 +1076,44 @@ drm_sched_pick_best(struct drm_gpu_schedule=
-r **sched_list,
-> >>>>>    EXPORT_SYMBOL(drm_sched_pick_best);
-> >>>>>    /**
-> >>>>> - * drm_sched_main - main scheduler thread
-> >>>>> + * drm_sched_free_job_work - worker to call free_job
-> >>>>>     *
-> >>>>> - * @param: scheduler instance
-> >>>>> + * @w: free job work
-> >>>>>     */
-> >>>>> -static void drm_sched_main(struct work_struct *w)
-> >>>>> +static void drm_sched_free_job_work(struct work_struct *w)
-> >>>>>    {
-> >>>>>    	struct drm_gpu_scheduler *sched =3D
-> >>>>> -		container_of(w, struct drm_gpu_scheduler, work_submit);
-> >>>>> -	struct drm_sched_entity *entity;
-> >>>>> +		container_of(w, struct drm_gpu_scheduler, work_free_job);
-> >>>>>    	struct drm_sched_job *cleanup_job;
-> >>>>> -	int r;
-> >>>>>    	if (READ_ONCE(sched->pause_submit))
-> >>>>>    		return;
-> >>>>>    	cleanup_job =3D drm_sched_get_cleanup_job(sched); =20
-> >>>> I tried this patch with Nouveau and found a race condition:
-> >>>>
-> >>>> In drm_sched_run_job_work() the job is added to the pending_list via
-> >>>> drm_sched_job_begin(), then the run_job() callback is called and the=
- scheduled
-> >>>> fence is signaled.
-> >>>>
-> >>>> However, in parallel drm_sched_get_cleanup_job() might be called from
-> >>>> drm_sched_free_job_work(), which picks the first job from the pendin=
-g_list and
-> >>>> for the next job on the pending_list sets the scheduled fence' times=
-tamp field. =20
-> >> Well why can this happen in parallel? Either the work items are schedu=
-led to
-> >> a single threaded work queue or you have protected the pending list wi=
-th
-> >> some locks.
-> >> =20
-> > Xe uses a single-threaded work queue, Nouveau does not (desired
-> > behavior).
+Side note, why's the message "" instead of, say, __stringify(condition)?
 
-I'm a bit worried that leaving this single vs multi-threaded wq
-decision to drivers is going to cause unnecessary pain, because what
-was previously a granted in term of run/cleanup execution order (thanks
-to the kthread+static-drm_sched_main-workflow approach) is now subject
-to the wq ordering guarantees, which depend on the wq type picked by
-the driver.
+>> +#define xe_tile_assert_msg(tile, condition, msg, arg...) ({					\
+>> +	struct xe_tile *__tile =3D (tile);							\
+>> +	char __buf[10];										\
+>
+> Just realized the build fails when CONFIG_DRM_XE_DEBUG=3Dn due to:
+>
+> 	drivers/gpu/drm/xe/xe_assert.h:149:14: error: unused variable =E2=80=98_=
+_buf=E2=80=99 [-Werror=3Dunused-variable]
+> 	149 |         char __buf[10];
+>
+> We probably need to make this variable also depend on CONFIG_DRM_XE_DEBUG.
 
-> >
-> > The list of pending jobs is protected by a lock (safe), the race is:
-> >
-> > add job to pending list
-> > run_job
-> > signal scheduled fence
-> >
-> > dequeue from pending list
-> > free_job
-> > update timestamp
-> >
-> > Once a job is on the pending list its timestamp can be accessed which
-> > can blow up if scheduled fence isn't signaled or more specifically unle=
-ss
-> > DMA_FENCE_FLAG_TIMESTAMP_BIT is set.=20
+__maybe_unused is better here.
 
-Ah, so that's the reason for the TIMESTAMP test added in v3. Sorry for
-the noise in my v3 review, but I still think it'd be beneficial to have
-that change moved to its own commit.
+BR,
+Jani.
+
+>
+> Francois
+>
+>> +	xe_assert_msg(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg,=
+			\
+>> +		      __tile->id, ({ string_get_size(__tile->mem.vram.actual_physical=
+_size, 1,	\
+>> +				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
+>> +})
+>> +
+>> +/**
+>> + * xe_gt_assert - warn if condition is false when debugging.
+>> + * @gt: the &struct xe_gt pointer to which &condition applies
+>> + * @condition: condition to check
+>> + *
+>> + * xe_gt_assert() uses &drm_WARN to emit a warning and print additional
+>> + * information that could be safetely read from the &gt pointer if prov=
+ided
+>> + * &condition is false.
+>> + *
+>> + * Contrary to &drm_WARN, xe_gt_assert() is effective only on debug bui=
+lds
+>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in express=
+ions
+>> + * or as a condition.
+>> + *
+>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>> + */
+>> +#define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "=
+")
+>> +#define xe_gt_assert_msg(gt, condition, msg, arg...) ({						\
+>> +	struct xe_gt *__gt =3D (gt);								\
+>> +	xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg=
+,			\
+>> +			   __gt->info.id, __gt->info.type, ## arg);				\
+>> +})
+>> +
+>> +#endif
+>> --=20
+>> 2.34.1
+>>=20
+
+--=20
+Jani Nikula, Intel
