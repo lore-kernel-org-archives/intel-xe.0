@@ -4,30 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 382D1CA0EC3
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 02:20:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81046CA0EC9
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:48:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E41E210E265;
-	Tue, 12 Sep 2023 02:20:18 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3AABB10E265;
- Tue, 12 Sep 2023 02:20:16 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2964BAADE3;
- Tue, 12 Sep 2023 02:20:16 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 667F910E03A;
+	Tue, 12 Sep 2023 04:48:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3A2C10E2A8;
+ Tue, 12 Sep 2023 04:48:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694494112; x=1726030112;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=yTyl5epY44h6yKWbP9EBJyHQs2200MBy2CmXN2VRQMc=;
+ b=CkYH7uSdQ5cbysRDWt34MEupTiLO/Eg01PPDkN+UBsgGYGkmF45FQUba
+ JNtWTFV8f7aQ+0h/LAvqQ2nJ+bofl/QHAvH6HPVFgQEO7AzA+BGnBglUY
+ BxHu3ZQCz14qhnRncQlvZemLXQ3covyNOlqFG2CTC9iAL9RlvIHQd94Qb
+ DwtDrl8l73wP47GAVqAhK34dXgbuasFLmEimW5s9qDE4hopNBBXJSKJ8K
+ rRgwhggNao/9BvP+54A8Mcp136RiKL4/beuddj2uXP6t1Qtv6JeBn8/9t
+ hyojBQgq2nbaScWL7Vw//wxXJS0was2bpBofvFo9SHab7LlUObIgt5cmB w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182306"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182306"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 21:48:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419914"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419914"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 21:48:31 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Date: Mon, 11 Sep 2023 21:48:10 -0700
+Message-Id: <20230912044837.1672060-3-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20230912044837.1672060-1-lucas.demarchi@intel.com>
+References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Danilo Krummrich" <dakr@redhat.com>
-Date: Tue, 12 Sep 2023 02:20:16 -0000
-Message-ID: <169448521613.31796.4838554843286835596@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230912021615.2086698-1-matthew.brost@intel.com>
-In-Reply-To: <20230912021615.2086698-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_DRM_scheduler_changes_for_Xe_=28rev5=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3 02/29] drm/i915/lnl: Add display definitions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,39 +57,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 
-Series: DRM scheduler changes for Xe (rev5)
-URL   : https://patchwork.freedesktop.org/series/121744/
-State : failure
+Add Lunar Lake platform definitions for i915 display. The support for
+LNL will be added to the xe driver, with i915 only driving the display
+side. Xe2 display is derived from the Xe_LPD+ IP; additional feature
+deltas will be introduced in subsequent patches, so here it's just
+adding a separate xe2_lpd_display struct.
 
-== Summary ==
+v2: Use a LPDP_FEATURES macro (Matt Roper)
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: b4ddac861 fixup! drm/xe/display: Implement display support
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c:290
-error: drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c: patch does not apply
-error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1659
-error: drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c: patch does not apply
-error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4614
-error: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c: patch does not apply
-error: patch failed: drivers/gpu/drm/msm/adreno/adreno_device.c:809
-error: drivers/gpu/drm/msm/adreno/adreno_device.c: patch does not apply
-error: patch failed: drivers/gpu/drm/scheduler/sched_main.c:439
-error: drivers/gpu/drm/scheduler/sched_main.c: patch does not apply
-error: patch failed: include/drm/gpu_scheduler.h:550
-error: include/drm/gpu_scheduler.h: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/sched: Add drm_sched_submit_* helpers
-Patch failed at 0001 drm/sched: Add drm_sched_submit_* helpers
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_device.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
+index ddd938bfe7d9..c915c53068c3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_device.c
++++ b/drivers/gpu/drm/i915/display/intel_display_device.c
+@@ -760,6 +760,10 @@ static const struct intel_display_device_info xe_lpdp_display = {
+ 	XE_LPDP_FEATURES,
+ };
+ 
++static const struct intel_display_device_info xe2_lpd_display = {
++	XE_LPDP_FEATURES,
++};
++
+ /*
+  * Separate detection for no display cases to keep the display id array simple.
+  *
+@@ -839,6 +843,7 @@ static const struct {
+ 	const struct intel_display_device_info *display;
+ } gmdid_display_map[] = {
+ 	{ 14,  0, &xe_lpdp_display },
++	{ 20,  0, &xe2_lpd_display },
+ };
+ 
+ static const struct intel_display_device_info *
+-- 
+2.40.1
 
