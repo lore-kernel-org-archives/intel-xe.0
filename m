@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAB74CA0ECF
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:48:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4CFC8CA0EC3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:48:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB48510E396;
-	Tue, 12 Sep 2023 04:48:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 19AA210E03A;
+	Tue, 12 Sep 2023 04:48:49 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 085CC10E369;
- Tue, 12 Sep 2023 04:48:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C49C10E2CA;
+ Tue, 12 Sep 2023 04:48:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694494115; x=1726030115;
+ t=1694494114; x=1726030114;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RXQAD9xnpxsnSTA18+Ki+73n1pFbFg5JDewct68lyN8=;
- b=CSJvb4Ji7USRxCmeDg3jobcUbai437F45FMkP5iv9wc2wBs64WhAc1ok
- JRDJIR5QRlfFdBjLsNRNnYWruEv4kaCm9pYJb/o53jMC0ZyLvLz3C6X4M
- runRhoszyw/RhWO3RDOpw5JQk+XPShplCQzeMFYNRLDjBr/GjLA0GvoAk
- l5iBW+vQLCeqB//vWiRbNQ4Y3LHSkvufb4fKC4qtlVoV0phgqKcSfXNUA
- O9AsbCenrITQrpfuQJp0P/InkXm4VwYRGbPsbF7HaJAlLwgtKtV8BtCf3
- kEEtHxkCXBh21oFt5xsHq2fwdqnYBMDQLFSKEf9JYpzv7HvlJjI8ZZr7M Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182328"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182328"
+ bh=tVufYfDuZhdyMhwFDhCwqaDdFunxT7ZC5jh2SgUCOqo=;
+ b=fLwJqsSKlrNhRknN3v/tfxFPt5SVdbNe+BY32yeFXbIqE3BlpfeXj9/J
+ e91N3m0iIGn/l4vNPxnKdYO/SI1t0lGpEfL9VNbXE3ExajhXgWnOo4Zav
+ FfHXoqzeKuvMHqdBiG9NeibDUp1k8xGXD1/QFDanikZP/M2CWXeSZEh6U
+ Pdqdl4o33rRFukyXAg/EmSAPUYs9K6t4KCrgPnQoZOH8g4GrZHiyzYTDc
+ jyIl0fGLDpjVuXZ9sYsVGkvg/KnocneNrzthIG+kNXTvWAeSpinYK3QN1
+ CoolHpwooYXnEy6j7rE4NwHlJs/fQvrngimKVWMWghw+a76Axj9TCruG1 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182322"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182322"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2023 21:48:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419953"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419953"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419944"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419944"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:34 -0700
+ 11 Sep 2023 21:48:33 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Sep 2023 21:48:23 -0700
-Message-Id: <20230912044837.1672060-16-lucas.demarchi@intel.com>
+Date: Mon, 11 Sep 2023 21:48:20 -0700
+Message-Id: <20230912044837.1672060-13-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 15/29] drm/i915/xe2lpd: Re-order DP AUX regs
+Subject: [Intel-xe] [PATCH v3 12/29] drm/i915/xe2lpd: Register DE_RRMR has
+ been removed
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,135 +58,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Clint Taylor <clinton.a.taylor@intel.com>,
+ Anusha Srivatsa <anusha.srivatsa@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The address of CTL and DATA registers for DP AUX were changed in Xe2_LPD:
-now they are all in a single range, with CH_A and CH_B coming right after
-the USBC instances. Like was done when moving registers to PICA, use
-a helper macro to remap the ch passed to an index that can be used to
-calculate the right offset.
+From: Clint Taylor <clinton.a.taylor@intel.com>
 
+Do not read DE_RRMR register after display version 20. This register
+contains display state information during GFX state dumps.
+
+Bspec: 69456
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- .../i915/display/intel_display_power_well.c   |  6 +++---
- drivers/gpu/drm/i915/display/intel_dp_aux.c   |  8 ++++----
- .../gpu/drm/i915/display/intel_dp_aux_regs.h  | 19 +++++++++++++++++--
- 3 files changed, 24 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/i915_gpu_error.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 820b7d41a0a8..ca0714eba17a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -1800,7 +1800,7 @@ static void xelpdp_aux_power_well_enable(struct drm_i915_private *dev_priv,
- 		icl_tc_port_assert_ref_held(dev_priv, power_well,
- 					    aux_ch_to_digital_port(dev_priv, aux_ch));
+diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
+index 4008bb09fdb5..a28681c15354 100644
+--- a/drivers/gpu/drm/i915/i915_gpu_error.c
++++ b/drivers/gpu/drm/i915/i915_gpu_error.c
+@@ -1757,7 +1757,7 @@ static void gt_record_display_regs(struct intel_gt_coredump *gt)
+ 	struct intel_uncore *uncore = gt->_gt->uncore;
+ 	struct drm_i915_private *i915 = uncore->i915;
  
--	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(aux_ch),
-+	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(dev_priv, aux_ch),
- 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
- 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST);
+-	if (GRAPHICS_VER(i915) >= 6)
++	if (DISPLAY_VER(i915) >= 6 && DISPLAY_VER(i915) < 20)
+ 		gt->derrmr = intel_uncore_read(uncore, DERRMR);
  
-@@ -1818,7 +1818,7 @@ static void xelpdp_aux_power_well_disable(struct drm_i915_private *dev_priv,
- {
- 	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
- 
--	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(aux_ch),
-+	intel_de_rmw(dev_priv, XELPDP_DP_AUX_CH_CTL(dev_priv, aux_ch),
- 		     XELPDP_DP_AUX_CH_CTL_POWER_REQUEST,
- 		     0);
- 	usleep_range(10, 30);
-@@ -1829,7 +1829,7 @@ static bool xelpdp_aux_power_well_enabled(struct drm_i915_private *dev_priv,
- {
- 	enum aux_ch aux_ch = i915_power_well_instance(power_well)->xelpdp.aux_ch;
- 
--	return intel_de_read(dev_priv, XELPDP_DP_AUX_CH_CTL(aux_ch)) &
-+	return intel_de_read(dev_priv, XELPDP_DP_AUX_CH_CTL(dev_priv, aux_ch)) &
- 		XELPDP_DP_AUX_CH_CTL_POWER_STATUS;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-index 2d173bd495a3..b90cad7f567b 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
-@@ -687,10 +687,10 @@ static i915_reg_t xelpdp_aux_ctl_reg(struct intel_dp *intel_dp)
- 	case AUX_CH_USBC2:
- 	case AUX_CH_USBC3:
- 	case AUX_CH_USBC4:
--		return XELPDP_DP_AUX_CH_CTL(aux_ch);
-+		return XELPDP_DP_AUX_CH_CTL(dev_priv, aux_ch);
- 	default:
- 		MISSING_CASE(aux_ch);
--		return XELPDP_DP_AUX_CH_CTL(AUX_CH_A);
-+		return XELPDP_DP_AUX_CH_CTL(dev_priv, AUX_CH_A);
- 	}
- }
- 
-@@ -707,10 +707,10 @@ static i915_reg_t xelpdp_aux_data_reg(struct intel_dp *intel_dp, int index)
- 	case AUX_CH_USBC2:
- 	case AUX_CH_USBC3:
- 	case AUX_CH_USBC4:
--		return XELPDP_DP_AUX_CH_DATA(aux_ch, index);
-+		return XELPDP_DP_AUX_CH_DATA(dev_priv, aux_ch, index);
- 	default:
- 		MISSING_CASE(aux_ch);
--		return XELPDP_DP_AUX_CH_DATA(AUX_CH_A, index);
-+		return XELPDP_DP_AUX_CH_DATA(dev_priv, AUX_CH_A, index);
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
-index 1e9e018a2a48..b4e96baae25a 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
-@@ -14,6 +14,13 @@
-  * registers
-  */
- 
-+/*
-+ * Wrapper macro to convert from aux_ch to the index used in some of the
-+ * registers, similarly to __xe2lpd_port_idx().
-+ */
-+#define __xe2lpd_aux_ch_idx(aux_ch)						\
-+       (aux_ch >= AUX_CH_USBC1 ? aux_ch : AUX_CH_USBC4 + 1 + aux_ch - AUX_CH_A)
-+
- /* TODO: Remove implicit dev_priv */
- #define _DPA_AUX_CH_CTL			(DISPLAY_MMIO_BASE(dev_priv) + 0x64010)
- #define _DPB_AUX_CH_CTL			(DISPLAY_MMIO_BASE(dev_priv) + 0x64110)
-@@ -21,11 +28,15 @@
- #define _XELPDP_USBC2_AUX_CH_CTL	0x16f410
- #define DP_AUX_CH_CTL(aux_ch)		_MMIO_PORT(aux_ch, _DPA_AUX_CH_CTL,	\
- 						   _DPB_AUX_CH_CTL)
--#define XELPDP_DP_AUX_CH_CTL(aux_ch)						\
-+#define _XELPDP_DP_AUX_CH_CTL(aux_ch)						\
- 		_MMIO(_PICK_EVEN_2RANGES(aux_ch, AUX_CH_USBC1,			\
- 					 _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL,	\
- 					 _XELPDP_USBC1_AUX_CH_CTL,		\
- 					 _XELPDP_USBC2_AUX_CH_CTL))
-+#define XELPDP_DP_AUX_CH_CTL(i915__, aux_ch)					\
-+		(DISPLAY_VER(i915__) >= 20 ?					\
-+		 _XELPDP_DP_AUX_CH_CTL(__xe2lpd_aux_ch_idx(aux_ch)) :		\
-+		 _XELPDP_DP_AUX_CH_CTL(aux_ch))
- #define   DP_AUX_CH_CTL_SEND_BUSY		REG_BIT(31)
- #define   DP_AUX_CH_CTL_DONE			REG_BIT(30)
- #define   DP_AUX_CH_CTL_INTERRUPT		REG_BIT(29)
-@@ -65,10 +76,14 @@
- #define _XELPDP_USBC2_AUX_CH_DATA1	0x16f414
- #define DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PORT(aux_ch, _DPA_AUX_CH_DATA1,	\
- 						    _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
--#define XELPDP_DP_AUX_CH_DATA(aux_ch, i)					\
-+#define _XELPDP_DP_AUX_CH_DATA(aux_ch, i)					\
- 		_MMIO(_PICK_EVEN_2RANGES(aux_ch, AUX_CH_USBC1,			\
- 					 _DPA_AUX_CH_DATA1, _DPB_AUX_CH_DATA1,	\
- 					 _XELPDP_USBC1_AUX_CH_DATA1,		\
- 					 _XELPDP_USBC2_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
-+#define XELPDP_DP_AUX_CH_DATA(i915__, aux_ch, i)				\
-+		(DISPLAY_VER(i915__) >= 20 ?					\
-+		 _XELPDP_DP_AUX_CH_DATA(__xe2lpd_aux_ch_idx(aux_ch), i) :	\
-+		 _XELPDP_DP_AUX_CH_DATA(aux_ch, i))
- 
- #endif /* __INTEL_DP_AUX_REGS_H__ */
+ 	if (GRAPHICS_VER(i915) >= 8)
 -- 
 2.40.1
 
