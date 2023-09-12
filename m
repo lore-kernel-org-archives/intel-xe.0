@@ -4,118 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F921CA0ECA
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 09:57:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 914BDCA0ED3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 10:14:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F38B010E071;
-	Tue, 12 Sep 2023 09:57:49 +0000 (UTC)
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam04on2060f.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:7e8d::60f])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CDA510E071;
- Tue, 12 Sep 2023 09:57:48 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QRh/CYOpgXxDmV4aczIqn+O8uGsI4uTY7frVpX5BtvvhUSUkLaIgXCp5vlcjytJmgMfTI7KHj3glPj7w9OcoZbEGd/YYtT8KfuGA+lhAF4Hno0VTXDxcNmfjNvMDjmccEiV0CSXmv3zc2mjmU+jMbuH6ooXlteIgxuPxc4S0GS7dM8T4p70WySDrq/egd0T+JyceKETSvnQCk2VNdINtj6yaAOaDGKQhO6XvjOZQ18uXtSjCy0u//hgsQMUtpGc0p2aBPv73OR4Jr0TyDo3XoiK8Q29Sp6AM1VmL+UlTdTb7ez9an/z/TyiW2gMcP7epZlL5vHr9FtPztbXoqONZXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ePF04S2XmPIIqLwbKWTS2Mw7tGuytVsv6g9/JE5qFd0=;
- b=f/6kjyks+MCIO9o126T1NDWW6KcA+yABoQW/2vLlDkI7xcjK2/M9a+daPvJ70reGZM7BQ3gSEAjxZmBVQ11665GSzNDTtyw1KNJRJrBKM9hmYUitJeNGUNhS+jtUEfkQIy+iu6JOSs452dhZwYpoB/Hw2tjI0CkzRtUlQuyrjfDJHqOo4nwJLxSq0p6tUXcXBe8D/ML4gKZ0sbg3HrG92l+tKGqI2+GXpnQQq7D+gweCeGnn1Ns6pOa7NxPRFdLYkm3OWlQC4cr1xg/n66iuaY5rq+AeHEMJsKfEKx1Pz5RBCfaTCyh4hk9+3ZzhG1e/TezXUPFmeMc3lF3x+GpILQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ePF04S2XmPIIqLwbKWTS2Mw7tGuytVsv6g9/JE5qFd0=;
- b=4YkxzA3ixUZgD5CVWsf+URHoDbtda6Kn0973T2x95xT7wsXtqVbv1uMc06vj2EujiSHT1zhcx3ZmgRvGqb0l/SHY+3p9NCU7fwB/dDNWHiVslCznOV6xAKJ8OHj+Gm8B6ZBCIEG87sx7x3umi8P2FwBRo/p4UE+9H9ETXm1b27M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by PH0PR12MB7791.namprd12.prod.outlook.com (2603:10b6:510:280::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.33; Tue, 12 Sep
- 2023 09:57:45 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::55cb:215b:389e:eced]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::55cb:215b:389e:eced%5]) with mapi id 15.20.6768.029; Tue, 12 Sep 2023
- 09:57:38 +0000
-Message-ID: <2b5c148c-51e6-c9f4-b950-fe16db5bad17@amd.com>
-Date: Tue, 12 Sep 2023 11:57:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.0
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-References: <20230912021615.2086698-1-matthew.brost@intel.com>
- <20230912021615.2086698-12-matthew.brost@intel.com>
-From: =?UTF-8?Q?Christian_K=c3=b6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20230912021615.2086698-12-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0062.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ce::19) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5337810E3D2;
+	Tue, 12 Sep 2023 10:14:05 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA54D10E3D2;
+ Tue, 12 Sep 2023 10:14:02 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id D4DF1660731E;
+ Tue, 12 Sep 2023 11:14:00 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1694513641;
+ bh=WuNFHn/io85Yv37Z2p6EDUALHH/EtdHaTdeD8u8A070=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=m8lBBDfKkl+6XZe5KldNFTIxYdtMLe5gHlfEOxnuVIyrNZpWkpKcrVm7/wzBJ65T3
+ mrNrzPZm7lads4ucEPU3z10h0dEaVP3u8yfbu0r5LiQGOihcFbuY0sH7j04h/pekwv
+ qa1hl0Y+DZ9L80flxBcFrQ0Jwc6kLLCPtj77gQqoqidJoPG1SjqEMmPAXxkgSgtoHP
+ 5eTt9KgpmV2s7lpaQSp0VkGwY+UPKT021JBEAkasYr0rVxzQs69VbrD+1m6upSp02d
+ VvQLWfoPApU1Aqb07TjELC6sjY6ZvPLZSz/zqZ8eKM31fHZla9IoZrUA4UJ406mYdM
+ 5pgTwm+y/d6IA==
+Date: Tue, 12 Sep 2023 12:13:57 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ donald.robson@imgtec.com
+Message-ID: <20230912121357.4cc10dec@collabora.com>
+In-Reply-To: <ee56b9ee-36c7-5935-c319-c8d1ad412c7c@amd.com>
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-5-matthew.brost@intel.com>
+ <ZOfh6o2EaGuIqZVe@pollux>
+ <ZOgYu1fZQUHeneJC@DUT025-TGLU.fm.intel.com>
+ <6ae84066-b690-1562-0598-4694b022c960@amd.com>
+ <ZOiuWcFDImBvJtnO@DUT025-TGLU.fm.intel.com>
+ <ee56b9ee-36c7-5935-c319-c8d1ad412c7c@amd.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|PH0PR12MB7791:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1530a094-20c8-4f60-f777-08dbb376b1cc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8MRsuuRPZIlNww0tDFNhJA1RWXBKfSF6aX75bS42zLWUVMgzgmYqtwL8cyGxLOJ/vY9TlT/EtPBo6QrU8BVINI9A5MREq4nZx/IqSI4pAxQGxKQBZ+JPp89RGEWSDNSGyjY1AsjwhIdR67KSgu0aWrHAI4/9MJeHKYAca5dd3WSKyJdyH+lDLUKEwTmo1vN/IME4qtR8IEG+8JD834vJLIfNAfd887jEQTAvgcnNALrlX3rbunjW/BSxA3+TIBX8I/JLZN0Wi9lDVA66NAsQz1TesUKvy2P5wzPeAamFOXAXpHPX2xcfFterQNQTnbaZ2pE25MBN3Zrm25Rl9lFGBO1D+xhH9vUyj+jsiQyJz49Q4//dQTm0dqpGwgV7cmx+FnO8HT6D/Qt49CLCtT7shOsB9+M/csolh1LKm1Uu4JQzMu3/ntWZByxJxlqnrCKn03z2Ue3Vp/Xsp7Xb5WpaI6XSA8CGO321YKj9xOCw0mwk/VdrVq+OyaPGkUrATziAyXF/2watIXli3KS4tpAMB8ZO0SBVHZAhiNRkGadqMNgRT5nYtdxna30dTHMmGiQE9Qt3mJ3CruVoo/7NQFTauzTmdkYTRWH3ckysFdJtfbiJdNAw/uT3xS39dcpVIPIq0z3f7d9V8Kh4tUEri12kEg==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(376002)(136003)(396003)(366004)(346002)(1800799009)(186009)(451199024)(6486002)(6666004)(6506007)(6512007)(83380400001)(2616005)(2906002)(26005)(66556008)(66476007)(66946007)(5660300002)(7416002)(478600001)(4326008)(316002)(8936002)(8676002)(31696002)(86362001)(36756003)(38100700002)(31686004)(41300700001)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UzQ1ZGVrNm5EYUhKSVZMZXE0b0NiYkd3Vm9mU2lwZnByZGpteEhpUkpXemJ6?=
- =?utf-8?B?aUc5cHdYQTFtZ00wanFxUk9RRTRxaU90YlcrMllwemZGeTltVDFYbi9kYnVx?=
- =?utf-8?B?SWNFSVllZFZDQ0c0OUVPdG1xTktzbVk1V0QvdUJ6SFRNa1FyRmxHbW9nZ0xI?=
- =?utf-8?B?UEJLbWlOQWo3YnFJbkdYbGFoTWJGZGRIUXdWRUdkenpzcm5Wbjg0ejZhdGxa?=
- =?utf-8?B?VVdSMW9JbzZIa05ZdHA1MFBWa1N5UUJKSE90aGJkSVp5dFJVOFQvUGM3RVFz?=
- =?utf-8?B?TmNaNmtDaXVORGFQSEE4L1dZcGFwOEhuV0M5Y0pLclhsZnl4dEtBSEIydEQ1?=
- =?utf-8?B?QmdpaTFiYWN3dHFKQWhLUDI5dldoeXo5RXpSdWlxeVF6UlhGUmN3bVAydlUy?=
- =?utf-8?B?OHI5a2lNL0szaFk5MEJEMmdvemxaUTZxdml3cXVmaE5KdG1BRkphOXpQZHdl?=
- =?utf-8?B?U0JacCt3L3hYalNHTDhiUHVaZWhzdTlPUlp2Wm1ISXFVY25hM3p0czRvWlRv?=
- =?utf-8?B?Mmt3T0VLVzM4eTYySWE1R0V5RzBIRGJFcGxTMEhMK3dseDVLaUltUlhPZ1pO?=
- =?utf-8?B?TUNLUzc0VU9JVmkzNU53cUl6WE9HUEczWldTNjBNclpHblh0UFNoamxtWWNu?=
- =?utf-8?B?TEEzZmNWZGZIeHlkSGtFZ3pkQTJoVm1YN09yNEJjbC8wTTNJV3NkSnh3RTAz?=
- =?utf-8?B?UXRGVVVDUUJuTmExamVFV0lpV2NTVmdwVzVaaTRRbUhPOE1UWlE5Nm1TOTFX?=
- =?utf-8?B?L05LNW83OVhCZGVMWFQ0Z1d5eHhSeUt6aG1uOHI4Mk03U0kvQ1VmdCtTdHpn?=
- =?utf-8?B?ZjVReWpHeXdyNE9BcEowaXlQL1VuWDVtZktDbUFDRm5ucGZLUlZxQlRrT3R2?=
- =?utf-8?B?WEZJTm53aElLdjdxdjhSU3BGcW80ZnBxUmJDb3ptOTBhUGdsRjhxY2UxTXhV?=
- =?utf-8?B?cXU4dUdralkvSDZXZXA3djV1VjJwazJqb014ZWphUGtVdUQ0QmYwRkFtYmZQ?=
- =?utf-8?B?SSt5SGJsQ2tQZGVZWEdZWXpPZlZNREtoYmdWczB6VUgxbGUxKzBmYzRxeGRO?=
- =?utf-8?B?UE11TnNRaVNDMEhOcStWWW5HckZLTWQ3VGxwaEw1cnA4WUp2T24rRXNxT0xU?=
- =?utf-8?B?bnhNbHI4RlVoeDdGazFRQzd2RWdqc3Z2a1hBd2JWdk1XaTF2QnRmWU5WcTNu?=
- =?utf-8?B?R0FBUmVrd0NQU2IvQ1p6ZFJCUUpwTE5ZbG03M1ZPai8rd3dYdnRxUzRQWDdX?=
- =?utf-8?B?NkJhZVNScjlCaUFqZmlKZmtSbXBzSkhWZmNqZ2lxT2NUQTZoMGs2TDNwSXRU?=
- =?utf-8?B?NjJYYWcrTEVYd3JZOWhRMEo2Z3ZKOS9NdlZ3aWRuR3RHaTFqdFdJeENTeDVC?=
- =?utf-8?B?RFhWS2p0cFg5OE12bksxb0lueU0vdHdjbGxib25QRXlDUG5Wdm5saHRDZlZE?=
- =?utf-8?B?ZjF1WWN6SmJHOGdmbnU3ZHpnVHVMUUVYdW1rZklsK05sbllVTEdIOUlvV2JW?=
- =?utf-8?B?ZDhjOEp3WmNjWFJmTXdibWIzVWZwUTdObHIrUDc2Q2xtM2FWaVdOMFBVR1Z1?=
- =?utf-8?B?SnlwY3FvdFBBNi9lWnlqdkd2a3l1d1VaZzBBL1RDOE5GOUJnNTVKQWNmR1Mr?=
- =?utf-8?B?SktENnlWb3plWkhMM01QWVVTZk1HRzhnN1ZsRzVpWEdsZlNSM1ZmWUpXOVFE?=
- =?utf-8?B?NVlYd3o2eTRXS0FOYVRFZktpMHNVSDJsVjlNRHRVMSs5N3VuMHBCdDZOTFBv?=
- =?utf-8?B?QXZlZ2RjcW9wNGR0blU0UzBBdVdxUWNHdkxmTUo1R3RGSE9nd29samJtOUEw?=
- =?utf-8?B?WmZlZFRYSjdudjVwSkV0TmRPZ0Zqc1RvUmxGeU5mdlBkWUZZRjcyenluc0hn?=
- =?utf-8?B?MG5QZ09LU0xZc1I4amFTVWxBd1JIblBUVno0M245cjd3RTgvNDhFY0ZBS0xM?=
- =?utf-8?B?bFVuM1NxbGhSam1QRlErRjRqZURvT05JNmxKcXAxUG14SFMvUktReElmUGhm?=
- =?utf-8?B?QTRYYlRRdmFsL3lXaUhjaVZDNDE5M2QvVTdOTGs1QzdVRDRGdm02T1YzWDB4?=
- =?utf-8?B?K0ZReVBtVllxMXVaVzB0d2RhaFplTnNoTW9vT2RBTEpmeTc1ai94SzNwY2xI?=
- =?utf-8?Q?wBWMj1wa34MJ2UrC1/GLDW8Qt?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1530a094-20c8-4f60-f777-08dbb376b1cc
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 09:57:37.9406 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6dFcBpSqzWHcjMTIznXuNnpKzf3PlPN8pH2jEMf5kmPe3Ry//veuWz3v+8lIJH4f
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7791
-Subject: Re: [Intel-xe] [PATCH v3 11/13] drm/sched: Waiting for pending jobs
- to complete in scheduler kill
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH v2 4/9] drm/sched: Split free_job into own
+ work item
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -128,232 +60,287 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- frank.binns@imgtec.com, mcanal@igalia.com, Liviu.Dudau@arm.com,
- luben.tuikov@amd.com, lina@asahilina.net, donald.robson@imgtec.com,
- daniel@ffwll.ch, boris.brezillon@collabora.com, airlied@gmail.com,
- faith.ekstrand@collabora.com
+ lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ luben.tuikov@amd.com, Danilo Krummrich <dakr@redhat.com>,
+ intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 12.09.23 um 04:16 schrieb Matthew Brost:
-> Wait for pending jobs to be complete before signaling queued jobs. This
-> ensures dma-fence signaling order correct and also ensures the entity is
-> not running on the hardware after drm_sched_entity_flush or
-> drm_sched_entity_fini returns.
+On Fri, 25 Aug 2023 15:45:49 +0200
+Christian K=C3=B6nig <christian.koenig@amd.com> wrote:
 
-Entities are *not* supposed to outlive the submissions they carry and we 
-absolutely *can't* wait for submissions to finish while killing the entity.
+> Am 25.08.23 um 15:36 schrieb Matthew Brost:
+> > On Fri, Aug 25, 2023 at 10:02:32AM +0200, Christian K=C3=B6nig wrote: =
+=20
+> >> Am 25.08.23 um 04:58 schrieb Matthew Brost: =20
+> >>> On Fri, Aug 25, 2023 at 01:04:10AM +0200, Danilo Krummrich wrote: =20
+> >>>> On Thu, Aug 10, 2023 at 07:31:32PM -0700, Matthew Brost wrote: =20
+> >>>>> Rather than call free_job and run_job in same work item have a dedi=
+cated
+> >>>>> work item for each. This aligns with the design and intended use of=
+ work
+> >>>>> queues.
+> >>>>>
+> >>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> >>>>> ---
+> >>>>>    drivers/gpu/drm/scheduler/sched_main.c | 137 ++++++++++++++++++-=
+------
+> >>>>>    include/drm/gpu_scheduler.h            |   8 +-
+> >>>>>    2 files changed, 106 insertions(+), 39 deletions(-)
+> >>>>>
+> >>>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/d=
+rm/scheduler/sched_main.c
+> >>>>> index cede47afc800..b67469eac179 100644
+> >>>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> >>>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> >>>>> @@ -213,11 +213,12 @@ void drm_sched_rq_remove_entity(struct drm_sc=
+hed_rq *rq,
+> >>>>>     * drm_sched_rq_select_entity_rr - Select an entity which could =
+provide a job to run
+> >>>>>     *
+> >>>>>     * @rq: scheduler run queue to check.
+> >>>>> + * @dequeue: dequeue selected entity
+> >>>>>     *
+> >>>>>     * Try to find a ready entity, returns NULL if none found.
+> >>>>>     */
+> >>>>>    static struct drm_sched_entity *
+> >>>>> -drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq)
+> >>>>> +drm_sched_rq_select_entity_rr(struct drm_sched_rq *rq, bool dequeu=
+e)
+> >>>>>    {
+> >>>>>    	struct drm_sched_entity *entity;
+> >>>>> @@ -227,8 +228,10 @@ drm_sched_rq_select_entity_rr(struct drm_sched=
+_rq *rq)
+> >>>>>    	if (entity) {
+> >>>>>    		list_for_each_entry_continue(entity, &rq->entities, list) {
+> >>>>>    			if (drm_sched_entity_is_ready(entity)) {
+> >>>>> -				rq->current_entity =3D entity;
+> >>>>> -				reinit_completion(&entity->entity_idle);
+> >>>>> +				if (dequeue) {
+> >>>>> +					rq->current_entity =3D entity;
+> >>>>> +					reinit_completion(&entity->entity_idle);
+> >>>>> +				}
+> >>>>>    				spin_unlock(&rq->lock);
+> >>>>>    				return entity;
+> >>>>>    			}
+> >>>>> @@ -238,8 +241,10 @@ drm_sched_rq_select_entity_rr(struct drm_sched=
+_rq *rq)
+> >>>>>    	list_for_each_entry(entity, &rq->entities, list) {
+> >>>>>    		if (drm_sched_entity_is_ready(entity)) {
+> >>>>> -			rq->current_entity =3D entity;
+> >>>>> -			reinit_completion(&entity->entity_idle);
+> >>>>> +			if (dequeue) {
+> >>>>> +				rq->current_entity =3D entity;
+> >>>>> +				reinit_completion(&entity->entity_idle);
+> >>>>> +			}
+> >>>>>    			spin_unlock(&rq->lock);
+> >>>>>    			return entity;
+> >>>>>    		}
+> >>>>> @@ -257,11 +262,12 @@ drm_sched_rq_select_entity_rr(struct drm_sche=
+d_rq *rq)
+> >>>>>     * drm_sched_rq_select_entity_fifo - Select an entity which prov=
+ides a job to run
+> >>>>>     *
+> >>>>>     * @rq: scheduler run queue to check.
+> >>>>> + * @dequeue: dequeue selected entity
+> >>>>>     *
+> >>>>>     * Find oldest waiting ready entity, returns NULL if none found.
+> >>>>>     */
+> >>>>>    static struct drm_sched_entity *
+> >>>>> -drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
+> >>>>> +drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq, bool dequ=
+eue)
+> >>>>>    {
+> >>>>>    	struct rb_node *rb;
+> >>>>> @@ -271,8 +277,10 @@ drm_sched_rq_select_entity_fifo(struct drm_sch=
+ed_rq *rq)
+> >>>>>    		entity =3D rb_entry(rb, struct drm_sched_entity, rb_tree_node);
+> >>>>>    		if (drm_sched_entity_is_ready(entity)) {
+> >>>>> -			rq->current_entity =3D entity;
+> >>>>> -			reinit_completion(&entity->entity_idle);
+> >>>>> +			if (dequeue) {
+> >>>>> +				rq->current_entity =3D entity;
+> >>>>> +				reinit_completion(&entity->entity_idle);
+> >>>>> +			}
+> >>>>>    			break;
+> >>>>>    		}
+> >>>>>    	}
+> >>>>> @@ -282,13 +290,54 @@ drm_sched_rq_select_entity_fifo(struct drm_sc=
+hed_rq *rq)
+> >>>>>    }
+> >>>>>    /**
+> >>>>> - * drm_sched_submit_queue - scheduler queue submission
+> >>>>> + * drm_sched_run_job_queue - queue job submission
+> >>>>>     * @sched: scheduler instance
+> >>>>>     */
+> >>>>> -static void drm_sched_submit_queue(struct drm_gpu_scheduler *sched)
+> >>>>> +static void drm_sched_run_job_queue(struct drm_gpu_scheduler *sche=
+d)
+> >>>>>    {
+> >>>>>    	if (!READ_ONCE(sched->pause_submit))
+> >>>>> -		queue_work(sched->submit_wq, &sched->work_submit);
+> >>>>> +		queue_work(sched->submit_wq, &sched->work_run_job);
+> >>>>> +}
+> >>>>> +
+> >>>>> +static struct drm_sched_entity *
+> >>>>> +drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequ=
+eue);
+> >>>>> +
+> >>>>> +/**
+> >>>>> + * drm_sched_run_job_queue_if_ready - queue job submission if ready
+> >>>>> + * @sched: scheduler instance
+> >>>>> + */
+> >>>>> +static void drm_sched_run_job_queue_if_ready(struct drm_gpu_schedu=
+ler *sched)
+> >>>>> +{
+> >>>>> +	if (drm_sched_select_entity(sched, false))
+> >>>>> +		drm_sched_run_job_queue(sched);
+> >>>>> +}
+> >>>>> +
+> >>>>> +/**
+> >>>>> + * drm_sched_free_job_queue - queue free job
+> >>>>> + *
+> >>>>> + * @sched: scheduler instance to queue free job
+> >>>>> + */
+> >>>>> +static void drm_sched_free_job_queue(struct drm_gpu_scheduler *sch=
+ed)
+> >>>>> +{
+> >>>>> +	if (!READ_ONCE(sched->pause_submit))
+> >>>>> +		queue_work(sched->submit_wq, &sched->work_free_job);
+> >>>>> +}
+> >>>>> +
+> >>>>> +/**
+> >>>>> + * drm_sched_free_job_queue_if_ready - queue free job if ready
+> >>>>> + *
+> >>>>> + * @sched: scheduler instance to queue free job
+> >>>>> + */
+> >>>>> +static void drm_sched_free_job_queue_if_ready(struct drm_gpu_sched=
+uler *sched)
+> >>>>> +{
+> >>>>> +	struct drm_sched_job *job;
+> >>>>> +
+> >>>>> +	spin_lock(&sched->job_list_lock);
+> >>>>> +	job =3D list_first_entry_or_null(&sched->pending_list,
+> >>>>> +				       struct drm_sched_job, list);
+> >>>>> +	if (job && dma_fence_is_signaled(&job->s_fence->finished))
+> >>>>> +		drm_sched_free_job_queue(sched);
+> >>>>> +	spin_unlock(&sched->job_list_lock);
+> >>>>>    }
+> >>>>>    /**
+> >>>>> @@ -310,7 +359,7 @@ static void drm_sched_job_done(struct drm_sched=
+_job *s_job, int result)
+> >>>>>    	dma_fence_get(&s_fence->finished);
+> >>>>>    	drm_sched_fence_finished(s_fence, result);
+> >>>>>    	dma_fence_put(&s_fence->finished);
+> >>>>> -	drm_sched_submit_queue(sched);
+> >>>>> +	drm_sched_free_job_queue(sched);
+> >>>>>    }
+> >>>>>    /**
+> >>>>> @@ -906,18 +955,19 @@ static bool drm_sched_can_queue(struct drm_gp=
+u_scheduler *sched)
+> >>>>>    void drm_sched_wakeup_if_can_queue(struct drm_gpu_scheduler *sch=
+ed)
+> >>>>>    {
+> >>>>>    	if (drm_sched_can_queue(sched))
+> >>>>> -		drm_sched_submit_queue(sched);
+> >>>>> +		drm_sched_run_job_queue(sched);
+> >>>>>    }
+> >>>>>    /**
+> >>>>>     * drm_sched_select_entity - Select next entity to process
+> >>>>>     *
+> >>>>>     * @sched: scheduler instance
+> >>>>> + * @dequeue: dequeue selected entity
+> >>>>>     *
+> >>>>>     * Returns the entity to process or NULL if none are found.
+> >>>>>     */
+> >>>>>    static struct drm_sched_entity *
+> >>>>> -drm_sched_select_entity(struct drm_gpu_scheduler *sched)
+> >>>>> +drm_sched_select_entity(struct drm_gpu_scheduler *sched, bool dequ=
+eue)
+> >>>>>    {
+> >>>>>    	struct drm_sched_entity *entity;
+> >>>>>    	int i;
+> >>>>> @@ -935,8 +985,10 @@ drm_sched_select_entity(struct drm_gpu_schedul=
+er *sched)
+> >>>>>    	/* Kernel run queue has higher priority than normal run queue*/
+> >>>>>    	for (i =3D DRM_SCHED_PRIORITY_COUNT - 1; i >=3D DRM_SCHED_PRIOR=
+ITY_MIN; i--) {
+> >>>>>    		entity =3D sched->sched_policy =3D=3D DRM_SCHED_POLICY_FIFO ?
+> >>>>> -			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i]) :
+> >>>>> -			drm_sched_rq_select_entity_rr(&sched->sched_rq[i]);
+> >>>>> +			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i],
+> >>>>> +							dequeue) :
+> >>>>> +			drm_sched_rq_select_entity_rr(&sched->sched_rq[i],
+> >>>>> +						      dequeue);
+> >>>>>    		if (entity)
+> >>>>>    			break;
+> >>>>>    	}
+> >>>>> @@ -1024,30 +1076,44 @@ drm_sched_pick_best(struct drm_gpu_schedule=
+r **sched_list,
+> >>>>>    EXPORT_SYMBOL(drm_sched_pick_best);
+> >>>>>    /**
+> >>>>> - * drm_sched_main - main scheduler thread
+> >>>>> + * drm_sched_free_job_work - worker to call free_job
+> >>>>>     *
+> >>>>> - * @param: scheduler instance
+> >>>>> + * @w: free job work
+> >>>>>     */
+> >>>>> -static void drm_sched_main(struct work_struct *w)
+> >>>>> +static void drm_sched_free_job_work(struct work_struct *w)
+> >>>>>    {
+> >>>>>    	struct drm_gpu_scheduler *sched =3D
+> >>>>> -		container_of(w, struct drm_gpu_scheduler, work_submit);
+> >>>>> -	struct drm_sched_entity *entity;
+> >>>>> +		container_of(w, struct drm_gpu_scheduler, work_free_job);
+> >>>>>    	struct drm_sched_job *cleanup_job;
+> >>>>> -	int r;
+> >>>>>    	if (READ_ONCE(sched->pause_submit))
+> >>>>>    		return;
+> >>>>>    	cleanup_job =3D drm_sched_get_cleanup_job(sched); =20
+> >>>> I tried this patch with Nouveau and found a race condition:
+> >>>>
+> >>>> In drm_sched_run_job_work() the job is added to the pending_list via
+> >>>> drm_sched_job_begin(), then the run_job() callback is called and the=
+ scheduled
+> >>>> fence is signaled.
+> >>>>
+> >>>> However, in parallel drm_sched_get_cleanup_job() might be called from
+> >>>> drm_sched_free_job_work(), which picks the first job from the pendin=
+g_list and
+> >>>> for the next job on the pending_list sets the scheduled fence' times=
+tamp field. =20
+> >> Well why can this happen in parallel? Either the work items are schedu=
+led to
+> >> a single threaded work queue or you have protected the pending list wi=
+th
+> >> some locks.
+> >> =20
+> > Xe uses a single-threaded work queue, Nouveau does not (desired
+> > behavior).
 
-In other words it is perfectly expected that entities doesn't exists any 
-more while the submissions they carried are still running on the hardware.
+I'm a bit worried that leaving this single vs multi-threaded wq
+decision to drivers is going to cause unnecessary pain, because what
+was previously a granted in term of run/cleanup execution order (thanks
+to the kthread+static-drm_sched_main-workflow approach) is now subject
+to the wq ordering guarantees, which depend on the wq type picked by
+the driver.
 
-I somehow better need to document how this working and especially why it 
-is working like that.
+> >
+> > The list of pending jobs is protected by a lock (safe), the race is:
+> >
+> > add job to pending list
+> > run_job
+> > signal scheduled fence
+> >
+> > dequeue from pending list
+> > free_job
+> > update timestamp
+> >
+> > Once a job is on the pending list its timestamp can be accessed which
+> > can blow up if scheduled fence isn't signaled or more specifically unle=
+ss
+> > DMA_FENCE_FLAG_TIMESTAMP_BIT is set.=20
 
-This approach came up like four or five times now and we already applied 
-and reverted patches doing this.
-
-For now let's take a look at the source code of drm_sched_entity_kill():
-
-        /* The entity is guaranteed to not be used by the scheduler */
-         prev = rcu_dereference_check(entity->last_scheduled, true);
-         dma_fence_get(prev);
-
-         while ((job = 
-to_drm_sched_job(spsc_queue_pop(&entity->job_queue)))) {
-                 struct drm_sched_fence *s_fence = job->s_fence;
-
-                 dma_fence_get(&s_fence->finished);
-                 if (!prev || dma_fence_add_callback(prev, &job->finish_cb,
-drm_sched_entity_kill_jobs_cb))
-                         drm_sched_entity_kill_jobs_cb(NULL, 
-&job->finish_cb);
-
-                 prev = &s_fence->finished;
-         }
-         dma_fence_put(prev);
-
-This ensures the dma-fence signaling order by delegating signaling of 
-the scheduler fences into callbacks.
-
-Regards,
-Christian.
-
->
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c |  2 +-
->   drivers/gpu/drm/scheduler/sched_entity.c    |  7 ++-
->   drivers/gpu/drm/scheduler/sched_main.c      | 50 ++++++++++++++++++---
->   include/drm/gpu_scheduler.h                 | 18 ++++++++
->   4 files changed, 70 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> index fb5dad687168..7835c0da65c5 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> @@ -1873,7 +1873,7 @@ static void amdgpu_ib_preempt_mark_partial_job(struct amdgpu_ring *ring)
->   	list_for_each_entry_safe(s_job, tmp, &sched->pending_list, list) {
->   		if (dma_fence_is_signaled(&s_job->s_fence->finished)) {
->   			/* remove job from ring_mirror_list */
-> -			list_del_init(&s_job->list);
-> +			drm_sched_remove_pending_job(s_job);
->   			sched->ops->free_job(s_job);
->   			continue;
->   		}
-> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-> index 1dec97caaba3..37557fbb96d0 100644
-> --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-> @@ -104,9 +104,11 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
->   	}
->   
->   	init_completion(&entity->entity_idle);
-> +	init_completion(&entity->jobs_done);
->   
-> -	/* We start in an idle state. */
-> +	/* We start in an idle and jobs done state. */
->   	complete_all(&entity->entity_idle);
-> +	complete_all(&entity->jobs_done);
->   
->   	spin_lock_init(&entity->rq_lock);
->   	spsc_queue_init(&entity->job_queue);
-> @@ -256,6 +258,9 @@ static void drm_sched_entity_kill(struct drm_sched_entity *entity)
->   	/* Make sure this entity is not used by the scheduler at the moment */
->   	wait_for_completion(&entity->entity_idle);
->   
-> +	/* Make sure all pending jobs are done */
-> +	wait_for_completion(&entity->jobs_done);
-> +
->   	/* The entity is guaranteed to not be used by the scheduler */
->   	prev = rcu_dereference_check(entity->last_scheduled, true);
->   	dma_fence_get(prev);
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index 689fb6686e01..ed6f5680793a 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -510,12 +510,52 @@ void drm_sched_resume_timeout(struct drm_gpu_scheduler *sched,
->   }
->   EXPORT_SYMBOL(drm_sched_resume_timeout);
->   
-> +/**
-> + * drm_sched_add_pending_job - Add pending job to scheduler
-> + *
-> + * @job: scheduler job to add
-> + * @tail: add to tail of pending list
-> + */
-> +void drm_sched_add_pending_job(struct drm_sched_job *job, bool tail)
-> +{
-> +	struct drm_gpu_scheduler *sched = job->sched;
-> +	struct drm_sched_entity *entity = job->entity;
-> +
-> +	lockdep_assert_held(&sched->job_list_lock);
-> +
-> +	if (tail)
-> +		list_add_tail(&job->list, &sched->pending_list);
-> +	else
-> +		list_add(&job->list, &sched->pending_list);
-> +	if (!entity->pending_job_count++)
-> +		reinit_completion(&entity->jobs_done);
-> +}
-> +EXPORT_SYMBOL(drm_sched_add_pending_job);
-> +
-> +/**
-> + * drm_sched_remove_pending_job - Remove pending job from` scheduler
-> + *
-> + * @job: scheduler job to remove
-> + */
-> +void drm_sched_remove_pending_job(struct drm_sched_job *job)
-> +{
-> +	struct drm_gpu_scheduler *sched = job->sched;
-> +	struct drm_sched_entity *entity = job->entity;
-> +
-> +	lockdep_assert_held(&sched->job_list_lock);
-> +
-> +	list_del_init(&job->list);
-> +	if (!--entity->pending_job_count)
-> +		complete_all(&entity->jobs_done);
-> +}
-> +EXPORT_SYMBOL(drm_sched_remove_pending_job);
-> +
->   static void drm_sched_job_begin(struct drm_sched_job *s_job)
->   {
->   	struct drm_gpu_scheduler *sched = s_job->sched;
->   
->   	spin_lock(&sched->job_list_lock);
-> -	list_add_tail(&s_job->list, &sched->pending_list);
-> +	drm_sched_add_pending_job(s_job, true);
->   	spin_unlock(&sched->job_list_lock);
->   }
->   
-> @@ -538,7 +578,7 @@ static void drm_sched_job_timedout(struct work_struct *work)
->   		 * drm_sched_cleanup_jobs. It will be reinserted back after sched->thread
->   		 * is parked at which point it's safe.
->   		 */
-> -		list_del_init(&job->list);
-> +		drm_sched_remove_pending_job(job);
->   		spin_unlock(&sched->job_list_lock);
->   
->   		status = job->sched->ops->timedout_job(job);
-> @@ -589,7 +629,7 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
->   		 * Add at the head of the queue to reflect it was the earliest
->   		 * job extracted.
->   		 */
-> -		list_add(&bad->list, &sched->pending_list);
-> +		drm_sched_add_pending_job(bad, false);
->   
->   	/*
->   	 * Iterate the job list from later to  earlier one and either deactive
-> @@ -611,7 +651,7 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
->   			 * Locking here is for concurrent resume timeout
->   			 */
->   			spin_lock(&sched->job_list_lock);
-> -			list_del_init(&s_job->list);
-> +			drm_sched_remove_pending_job(s_job);
->   			spin_unlock(&sched->job_list_lock);
->   
->   			/*
-> @@ -1066,7 +1106,7 @@ drm_sched_get_cleanup_job(struct drm_gpu_scheduler *sched)
->   
->   	if (job && dma_fence_is_signaled(&job->s_fence->finished)) {
->   		/* remove job from pending_list */
-> -		list_del_init(&job->list);
-> +		drm_sched_remove_pending_job(job);
->   
->   		/* cancel this job's TO timer */
->   		cancel_delayed_work(&sched->work_tdr);
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index b7b818cd81b6..7c628f36fe78 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -233,6 +233,21 @@ struct drm_sched_entity {
->   	 */
->   	struct completion		entity_idle;
->   
-> +	/**
-> +	 * @pending_job_count:
-> +	 *
-> +	 * Number of pending jobs.
-> +	 */
-> +	unsigned int                    pending_job_count;
-> +
-> +	/**
-> +	 * @jobs_done:
-> +	 *
-> +	 * Signals when entity has no pending jobs, used to sequence entity
-> +	 * cleanup in drm_sched_entity_fini().
-> +	 */
-> +	struct completion		jobs_done;
-> +
->   	/**
->   	 * @oldest_job_waiting:
->   	 *
-> @@ -656,4 +671,7 @@ struct drm_gpu_scheduler *
->   drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
->   		     unsigned int num_sched_list);
->   
-> +void drm_sched_add_pending_job(struct drm_sched_job *job, bool tail);
-> +void drm_sched_remove_pending_job(struct drm_sched_job *job);
-> +
->   #endif
-
+Ah, so that's the reason for the TIMESTAMP test added in v3. Sorry for
+the noise in my v3 review, but I still think it'd be beneficial to have
+that change moved to its own commit.
