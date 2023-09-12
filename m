@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 146F7CA0EC3
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 13:20:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16638CA0EC3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 13:27:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D855B10E22F;
-	Tue, 12 Sep 2023 13:20:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D0ED10E22F
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 13:20:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694524801; x=1726060801;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=L3/Mx729Z39ujJVC0aM0hvv2c5b7n9Wj3Pu7QE65T4w=;
- b=JwFgB5xTviMr+h+Fi2KHf7kHGDKutUcP/4dEf/OxgMynn5dl/QkVashP
- vn50QRxdmvLwSbMEO/rjIJ15qTSR02HwjF8j1iU1zdIpSQ3j4ccS9/RvD
- JUEgRdkN0wPO+JW90gJZpdCB1MCVsxdvl4Dr0/OBryR9WmTOcJFUUL23B
- tAvnPPGdsOfU8o/e7yRkWHTKbiGd3IATnS6tO6ZHX8rPvpEwX5tSfiEqE
- MjaD/uqrvHIaarz/RsW4dy3jsJy2m8uUj2ai/3Imh/y5ZE/chxMhnmdOI
- N+JWszNE9F8utP0WNjxlQv6cG9z1uggbso4XYgSPLtHZbc/KH4g1Q58wM g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="368629250"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="368629250"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 06:20:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="917435432"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="917435432"
-Received: from dhermamx-mobl1.amr.corp.intel.com (HELO [10.249.254.193])
- ([10.249.254.193])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 06:19:59 -0700
-Message-ID: <46ca9378-e333-1a42-c8ca-0d3434e3a832@linux.intel.com>
-Date: Tue, 12 Sep 2023 15:19:57 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id B065E10E22F;
+	Tue, 12 Sep 2023 13:27:12 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6933E10E22F;
+ Tue, 12 Sep 2023 13:27:10 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 85A616607326;
+ Tue, 12 Sep 2023 14:27:08 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1694525229;
+ bh=BT7shNG2qiSabyiU3Q+WBPZn8RemrMpyRzjMjj6LNV4=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=QGa+6paFAlgt+E59sbend+Qfg8Xk5VG3cw3jel1mqUB+EJ+ERLPMZro9b0mt2RK1+
+ gui7fIP6j7K8fyYV0vIKuRezOHlc9rMeABJGbENr6hNN8HyXxKqsdsEVqZqZ/krkSg
+ HtJZxm93IyUMYcSyOWqtz9mjKJzpPvvvlUgFz4gGmUA0D+BVdAm43tIluusXNQtCnx
+ x5cEzV47M7X+39f0IdYC/CwiY55CSdRJSE9KL66fjwQA+1r17gR0YArEIe+qyARnKX
+ JMax000RMx2PCcBwMo4jyOKfji5jSzcFmEsyv6vgpY8RGE8C6fVssBzzgC8ynUuoYL
+ IiiXTctlScx1Q==
+Date: Tue, 12 Sep 2023 15:27:05 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>
+Message-ID: <20230912152705.70064f9f@collabora.com>
+In-Reply-To: <ee56b9ee-36c7-5935-c319-c8d1ad412c7c@amd.com>
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-5-matthew.brost@intel.com>
+ <ZOfh6o2EaGuIqZVe@pollux>
+ <ZOgYu1fZQUHeneJC@DUT025-TGLU.fm.intel.com>
+ <6ae84066-b690-1562-0598-4694b022c960@amd.com>
+ <ZOiuWcFDImBvJtnO@DUT025-TGLU.fm.intel.com>
+ <ee56b9ee-36c7-5935-c319-c8d1ad412c7c@amd.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230911211829.2049126-1-matthew.brost@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230911211829.2049126-1-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2] drm/xe: Fix fence reservation accouting
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH v2 4/9] drm/sched: Split free_job into own
+ work item
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,64 +59,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ luben.tuikov@amd.com, Danilo Krummrich <dakr@redhat.com>,
+ donald.robson@imgtec.com, intel-xe@lists.freedesktop.org,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Fri, 25 Aug 2023 15:45:49 +0200
+Christian K=C3=B6nig <christian.koenig@amd.com> wrote:
 
-On 9/11/23 23:18, Matthew Brost wrote:
-> Both execs and the preempt rebind worker can issue rebinds. Rebinds
-> require a fence, per tile, inserted into dma-resv slots of the VM and
-> BO (if external). The fence reservation accouting did not take into
-> account the number of fences required for rebinds, fix this.
->
-> v2: Rebase
->
-> Reported-by: Christopher Snowhill <kode54@gmail.com>
-> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/518
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> >>>> I tried this patch with Nouveau and found a race condition:
+> >>>>
+> >>>> In drm_sched_run_job_work() the job is added to the pending_list via
+> >>>> drm_sched_job_begin(), then the run_job() callback is called and the=
+ scheduled
+> >>>> fence is signaled.
+> >>>>
+> >>>> However, in parallel drm_sched_get_cleanup_job() might be called from
+> >>>> drm_sched_free_job_work(), which picks the first job from the pendin=
+g_list and
+> >>>> for the next job on the pending_list sets the scheduled fence' times=
+tamp field. =20
+> >> Well why can this happen in parallel? Either the work items are schedu=
+led to
+> >> a single threaded work queue or you have protected the pending list wi=
+th
+> >> some locks.
+> >> =20
+> > Xe uses a single-threaded work queue, Nouveau does not (desired
+> > behavior).
+> >
+> > The list of pending jobs is protected by a lock (safe), the race is:
+> >
+> > add job to pending list
+> > run_job
+> > signal scheduled fence
+> >
+> > dequeue from pending list
+> > free_job
+> > update timestamp
+> >
+> > Once a job is on the pending list its timestamp can be accessed which
+> > can blow up if scheduled fence isn't signaled or more specifically unle=
+ss
+> > DMA_FENCE_FLAG_TIMESTAMP_BIT is set. =20
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+I'm a bit lost. How can this lead to a NULL deref? Timestamp is a
+ktime_t embedded in dma_fence, and finished/scheduled are both
+dma_fence objects embedded in drm_sched_fence. So, unless
+{job,next_job}->s_fence is NULL, or {job,next_job} itself is NULL, I
+don't really see where the NULL deref is. If s_fence is NULL, that means
+drm_sched_job_init() wasn't called (unlikely to be detected that late),
+or ->free_job()/drm_sched_job_cleanup() was called while the job was
+still in the pending list. I don't really see a situation where job
+could NULL to be honest.
 
+While I agree that updating the timestamp before the fence has been
+flagged as signaled/timestamped is broken (timestamp will be
+overwritten when dma_fence_signal(scheduled) is called) I don't see a
+situation where it would cause a NULL/invalid pointer deref. So I
+suspect there's another race causing jobs to be cleaned up while
+they're still in the pending_list.
 
-> ---
->   drivers/gpu/drm/xe/xe_exec.c | 6 +++++-
->   drivers/gpu/drm/xe/xe_vm.c   | 7 ++++++-
->   2 files changed, 11 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index 890fadb0a93e..eaf826f1b2a0 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -103,7 +103,11 @@ static int xe_exec_begin(struct drm_exec *exec, struct xe_vm *vm)
->   	if (xe_vm_no_dma_fences(vm))
->   		return 0;
->   
-> -	err = xe_vm_lock_dma_resv(vm, exec, 1, true);
-> +	/*
-> +	 * 1 fence for job from exec plus a fence for each tile from a possible
-> +	 * rebind
-> +	 */
-> +	err = xe_vm_lock_dma_resv(vm, exec, 1 + vm->xe->info.tile_count, true);
->   	if (err)
->   		return err;
->   
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index a6a0f17fec1d..03ee6993e7c7 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -515,8 +515,13 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
->   	struct xe_vma *vma;
->   	int err;
->   
-> +	/*
-> +	 * 1 fence for each preempt fence plus a fence for each tile from a
-> +	 * possible rebind
-> +	 */
->   	err = drm_exec_prepare_obj(exec, &xe_vm_ttm_bo(vm)->base,
-> -				   vm->preempt.num_exec_queues);
-> +				   vm->preempt.num_exec_queues +
-> +				   vm->xe->info.tile_count);
->   	if (err)
->   		return err;
->   
+>=20
+> Ah, that problem again. No that is actually quite harmless.
+>=20
+> You just need to double check if the DMA_FENCE_FLAG_TIMESTAMP_BIT is=20
+> already set and if it's not set don't do anything.
