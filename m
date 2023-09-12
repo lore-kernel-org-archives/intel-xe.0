@@ -4,30 +4,80 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C597CA0ECA
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 12:49:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEF50CA0ECA
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 12:56:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 584C710E074;
-	Tue, 12 Sep 2023 12:49:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 77C4710E074;
- Tue, 12 Sep 2023 12:49:17 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7A5EFA73C7;
- Tue, 12 Sep 2023 12:49:17 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1972836264816446068=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 77A1110E24E;
+	Tue, 12 Sep 2023 12:56:15 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B65B10E40B
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 12:56:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1694523372;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=+oYNFFHMBlFm+6kDdqZGy0XeJscfTu0yR7jOWVod7Kc=;
+ b=Rfv+oDcxmusfUKLs/u7TD93ebLB1ADkofYzrzGNA67PjAliVKw1LnmwKMJZOWzc4fpnpNm
+ 06cufm4vz4xNuqME1i7kaQ8Fc3WE6NGmkbO/wdwOUQ8Vk3bg1s4oi79qB/6+89fFAnQjhD
+ LBpjs/SwGUnZaBJd9EQR6CZOES0Zj6s=
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
+ [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-394-8yS0nS4HOwyLSpo4hFzedw-1; Tue, 12 Sep 2023 08:56:10 -0400
+X-MC-Unique: 8yS0nS4HOwyLSpo4hFzedw-1
+Received: by mail-ej1-f71.google.com with SMTP id
+ a640c23a62f3a-99c8bbc902eso385242566b.1
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 05:56:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1694523369; x=1695128169;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=+oYNFFHMBlFm+6kDdqZGy0XeJscfTu0yR7jOWVod7Kc=;
+ b=P6ZBirCuMmg7zxMzAAF0aa0HK67XEo/2Mgc/Mmjsw7ZjU58zvUHO6up4ivosN7aIjs
+ IW8WRGm7cY0qZnfPxipoiFHRAGfdgtVHfDj20veDSh+hi2ZqRPjT+mBn7bTThGyjzAXr
+ dYuhkBcTqt468JIN55yf2+k+NzNTN6OlN5Ds8+rXObCO0MFQEafbk6Rdx1R4UCwtNJSe
+ AVOBCcpSA41nKeAB/qqKlmGRa93kG/YBkLZW+1EZYB5PcP+6Va8oK6SN2z2YXe0rYFma
+ +5Yk02vYnZFXs48HJGoQWm5Y5fI1hRagVUxt/cLv0lmcTeWGyfV6GdQD154wIhxgllub
+ LYCg==
+X-Gm-Message-State: AOJu0YxPimUVwFrraFZCgVOGFGMEwfRVmiNLULs7tY+Y/FICrGBQz0sG
+ f9oFe4cBCeojxyaX2Ynyd1uhmiyzztArBMrjqTq6alGYkoS7lws1Lrjgsd0FV09a5bRD2NFV17c
+ kynzsU7YOFt/B/AXr+NUfPew9M0s=
+X-Received: by 2002:a17:906:18a9:b0:9aa:e07:d421 with SMTP id
+ c9-20020a17090618a900b009aa0e07d421mr9001890ejf.43.1694523369542; 
+ Tue, 12 Sep 2023 05:56:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFimnJfL1fH26SfDL3A/xE5HrTmKvjbt3mnWI1n3FgwWISvzSwPMyb29Yvm5h1lu64/nOSAcg==
+X-Received: by 2002:a17:906:18a9:b0:9aa:e07:d421 with SMTP id
+ c9-20020a17090618a900b009aa0e07d421mr9001876ejf.43.1694523369152; 
+ Tue, 12 Sep 2023 05:56:09 -0700 (PDT)
+Received: from pollux ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
+ by smtp.gmail.com with ESMTPSA id
+ n3-20020a17090695c300b0099bc8bd9066sm6860069ejy.150.2023.09.12.05.56.07
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 12 Sep 2023 05:56:08 -0700 (PDT)
+Date: Tue, 12 Sep 2023 14:56:06 +0200
+From: Danilo Krummrich <dakr@redhat.com>
+To: Boris Brezillon <boris.brezillon@collabora.com>
+Message-ID: <ZQBf5vFhRGrNBINj@pollux>
+References: <20230811023137.659037-1-matthew.brost@intel.com>
+ <20230811023137.659037-5-matthew.brost@intel.com>
+ <ZOfh6o2EaGuIqZVe@pollux>
+ <ZOgYu1fZQUHeneJC@DUT025-TGLU.fm.intel.com>
+ <6ae84066-b690-1562-0598-4694b022c960@amd.com>
+ <ZOiuWcFDImBvJtnO@DUT025-TGLU.fm.intel.com>
+ <ee56b9ee-36c7-5935-c319-c8d1ad412c7c@amd.com>
+ <20230912121357.4cc10dec@collabora.com> <ZQBBgsrohAqIAppA@pollux>
+ <20230912141818.10827d1d@collabora.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Date: Tue, 12 Sep 2023 12:49:17 -0000
-Message-ID: <169452295749.31793.7712157919961978844@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230912115239.3554341-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20230912115239.3554341-1-tejas.upadhyay@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A?=
- =?utf-8?q?_fdinfo_memory_stats_=28rev2=29?=
+In-Reply-To: <20230912141818.10827d1d@collabora.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [Intel-xe] [PATCH v2 4/9] drm/sched: Split free_job into own
+ work item
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,126 +89,144 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ lina@asahilina.net, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ luben.tuikov@amd.com, donald.robson@imgtec.com, intel-xe@lists.freedesktop.org,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1972836264816446068==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Sep 12, 2023 at 02:18:18PM +0200, Boris Brezillon wrote:
+> On Tue, 12 Sep 2023 12:46:26 +0200
+> Danilo Krummrich <dakr@redhat.com> wrote:
+> 
+> > > I'm a bit worried that leaving this single vs multi-threaded wq
+> > > decision to drivers is going to cause unnecessary pain, because what
+> > > was previously a granted in term of run/cleanup execution order (thanks
+> > > to the kthread+static-drm_sched_main-workflow approach) is now subject
+> > > to the wq ordering guarantees, which depend on the wq type picked by
+> > > the driver.  
+> > 
+> > Not sure if this ends up to be much different. The only thing I could think of
+> > is that IIRC with the kthread implementation cleanup was always preferred over
+> > run.
+> 
+> Given the sequence in drm_sched_main(), I'd say that cleanup and run
+> operations are naturally interleaved when both are available, but I
+> might be wrong.
 
-== Series Details ==
+From drm_sched_main():
 
-Series: drm/xe: fdinfo memory stats (rev2)
-URL   : https://patchwork.freedesktop.org/series/123102/
-State : success
+	wait_event_interruptible(sched->wake_up_worker,
+				 (cleanup_job = drm_sched_get_cleanup_job(sched)) ||
+				 (!drm_sched_blocked(sched) &&
+				  (entity = drm_sched_select_entity(sched))) ||
+				 kthread_should_stop());
 
-== Summary ==
+	if (cleanup_job)
+		sched->ops->free_job(cleanup_job);
 
-CI Bug Log - changes from xe-367-b4ddac861881e66a4af06531a7a72345c086bac1_BAT -> xe-pw-123102v2_BAT
-====================================================
+	if (!entity)
+		continue;
 
-Summary
--------
+If cleanup_job is not NULL the rest shouldn't be evaluated I guess. Hence entity
+would be NULL and we'd loop until there are no more cleanup_jobs if I don't miss
+anything here.
 
-  **SUCCESS**
+> 
+> > With a single threaded wq this should be a bit more balanced.
+> 
+> With a single threaded wq, it's less clear, because each work
+> reschedules itself for further processing, but it's likely to be more
+> or less interleaved. Anyway, I'm not too worried about cleanup taking
+> precedence on run or the other way around, because the limited amount
+> of HW slots (size of the ring-buffer) will regulate that.
 
-  No regressions found.
+Yeah, that's what I meant, with to work items rescheduling themselves it starts
+to be interleaved. Which I'm not worried about as well.
 
-  
+> 
+> > 
+> > With a multi-threaded wq it's still the same, but run and cleanup can run
+> > concurrently,
+> 
+> What I'm worried about is that ^. I'm not saying it's fundamentally
+> unsafe, but I'm saying drm_sched hasn't been designed with this
+> concurrency in mind, and I fear we'll face subtle bugs if we go from
+> kthread to multi-threaded-wq+run-and-cleanup-split-in-2-work-items.
+> 
 
-Participating hosts (4 -> 4)
-------------------------------
+Yeah, so what we get with that is that job_run() of job A and job_free() of job
+B can run in parallel. Unless drivers do weird things there, I'm not seeing an
+issue with that as well at a first glance.
 
-  No changes in participating hosts
+> > which has the nice side effect that free_job() gets out of the
+> > fence signaling path. At least as long as the workqueue has max_active > 1.
+> 
+> Oh, yeah, I don't deny using a multi-threaded workqueue has some
+> benefits, just saying it might be trickier than it sounds.
+> 
+> > Which is one reason why I'm using a multi-threaded wq in Nouveau.
+> 
+> Note that I'm using a multi-threaded workqueue internally at the moment
+> to deal with all sort of interactions with the FW (Mali HW only has a
+> limited amount of scheduling slots, and we need to rotate entities
+> having jobs to execute so every one gets a chance to run on the GPU),
+> but this has been designed this way from the ground up, unlike
+> drm_sched_main() operations, which were mostly thought as a fixed
+> sequential set of operations. That's not to say it's impossible to get
+> right, but I fear we'll face weird/unexpected behavior if we go from
+> completely-serialized to multi-threaded-with-pseudo-random-processing
+> order.
 
-Known issues
-------------
+From a per job perspective it's still all sequential and besides fence
+dependencies, which are still resolved, I don't see where jobs could have cross
+dependencies that make this racy. But agree that it's probably worth to think
+through it a bit more.
 
-  Here are the changes found in xe-pw-123102v2_BAT that come from known issues:
+> 
+> > 
+> > That latter seems a bit subtile, we probably need to document this aspect of
+> > under which conditions free_job() is or is not within the fence signaling path.
+> 
+> Well, I'm not even sure it can be clearly defined when the driver is
+> using the submit_wq for its own work items (which can be done since we
+> pass an optional submit_wq when calling drm_sched_init()). Sure, having
+> max_active >= 2 should be enough to guarantee that the free_job work
+> won't block the run_job one when these are the 2 only works being
+> queued, but what if you have many other work items being queued by the
+> driver to this wq, and some of those try to acquire resv locks? Could
+> this prevent execution of the run_job() callback, thus preventing
+> signaling of fences? I'm genuinely asking, don't know enough about the
+> cmwq implementation to tell what's happening when work items are
+> blocked (might be that the worker pool is extended to unblock the
+> situation).
 
-### IGT changes ###
+Yes, I think so. If max_active would be 2 and you have two jobs running on this
+workqueue already waiting on allocations then the 3rd job signaling the fence
+the allocation is blocked by would be stuck and we'd have a deadlock I guess.
 
-#### Possible fixes ####
+But that's where I start to see the driver being responsible not to pass a
+workqueue to the driver where it queues up other work, either at all, or that
+interferes with fence signaling paths.
 
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [FAIL][1] ([Intel XE#480]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-367-b4ddac861881e66a4af06531a7a72345c086bac1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123102v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+So, I guess the message here would be something like: free_job() must be
+considered to be in the fence signaling path, unless the submit_wq is a
+multi-threaded workqueue with max_active > 1 *dedicated* to the DRM scheduler.
+Otherwise it's the drivers full resposibility to make sure it doesn't violate
+the rules.
 
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+> 
+> Anyway, documenting when free_job() is in the dma signalling path should
+> be doable (single-threaded wq), but at this point, are we not better
+> off considering anything called from the submit_wq as being part of the
+> dma signalling path, so we can accommodate with both cases. And if
+> there is cleanup processing that require taking dma_resv locks, I'd be
+> tempted to queue that to a driver-specific wq (which is what I'm doing
+> right now), just to be safe.
+> 
 
+It's not only the dma-resv lock, it's any lock under which allocations may be
+performed.
 
-Build changes
--------------
-
-  * Linux: xe-367-b4ddac861881e66a4af06531a7a72345c086bac1 -> xe-pw-123102v2
-
-  IGT_7480: a8d38db9ac258d7fd71b2cf7607e259a864f95be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-367-b4ddac861881e66a4af06531a7a72345c086bac1: b4ddac861881e66a4af06531a7a72345c086bac1
-  xe-pw-123102v2: 123102v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123102v2/index.html
-
---===============1972836264816446068==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: fdinfo memory stats (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123102/">https://patchwork.freedesktop.org/series/123102/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123102v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123102v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-367-b4ddac861881e66a4af06531a7a72345c086bac1_BAT -&gt; xe-pw-123102v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-123102v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-367-b4ddac861881e66a4af06531a7a72345c086bac1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123102v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-367-b4ddac861881e66a4af06531a7a72345c086bac1 -&gt; xe-pw-123102v2</li>
-</ul>
-<p>IGT_7480: a8d38db9ac258d7fd71b2cf7607e259a864f95be @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-367-b4ddac861881e66a4af06531a7a72345c086bac1: b4ddac861881e66a4af06531a7a72345c086bac1<br />
-  xe-pw-123102v2: 123102v2</p>
-
-</body>
-</html>
-
---===============1972836264816446068==--
