@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFC01CA0ED3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86A7FCA0ECF
 	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 06:47:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 621C610E36D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E0D110E35C;
 	Tue, 12 Sep 2023 06:47:44 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF86D10E350
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 06:47:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89E1F10E370
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 06:47:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694501257; x=1726037257;
+ t=1694501256; x=1726037256;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wGbUP7YIlqiQ2L5phhUodMtWOOaJDd2XZOMtDIMysVg=;
- b=YiqmlWXzoaHxurf86nvvNHXe+ZespcR8gqtwSY0HndTqYNiHvmQfwkOZ
- URY4gfsm6AD2Gf0He3u8h07e2tYI5gFY+FoFHyt8iKZ5wYcKX5GImghlr
- ml9rRGxNpULh+8EJ9ymohjJ4yJfub7XNmiajcEecAkFV7HR+ze2swNrjR
- psPn9TM0p09dHUdhiQcxoHEnkgL0KQwwFGP7Ou8z7cSYBBjdbD7HQNgCc
- UbFaks+Jw54003cAGqI+n8sJoLio9OQG2Trlgj2O3mcLcX/kNWZiZcNdW
- o8XYyVnU21APMy1bprys48uQBLot6UPF267oWieC1QIwSJS+sTpUdvNst g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="444730359"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="444730359"
+ bh=35vldF29ShW2ESNo2VEtQgsmJfgg5tL8zTrPD5G1hmk=;
+ b=KCDpUTVJZ/PiGKdqFdA7UGiDGHgdzFasxsOwXg7ZtRjiCRc6yKRKJ9Ub
+ ocEgdJbdwdKS/roEOimFJacQDQM6lzW9Of7PXq2joK0EVumiXqyTTSUlu
+ yjMKogW8bQsX8dx+JO4x8Bl8AdTqk1h5XUyK3nL5FG63KeKfkZsNjsqS9
+ Y4cUqprtEWZIUB7SfBWQ4MelPyKvy2zRncepKEEaL+9FuZAgWYF8ttyKZ
+ R+cjTRIZFUGNitwY1zCLzmM8RtsNxLNDeORasSsI7lR4f9f7U447mIyBI
+ HH5pvtAstWnZAqjnG9DzSqQqJFU5BeEilByMliV85jfCbL92DbXgD0X0+ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="444730358"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="444730358"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 23:47:37 -0700
+ 11 Sep 2023 23:47:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="813699077"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="813699077"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="813699070"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="813699070"
 Received: from sptommas-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.216.207])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 23:47:36 -0700
+ 11 Sep 2023 23:47:34 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 12 Sep 2023 09:47:08 +0300
-Message-Id: <20230912064709.2802305-12-jouni.hogander@intel.com>
+Date: Tue, 12 Sep 2023 09:47:07 +0300
+Message-Id: <20230912064709.2802305-11-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230912064709.2802305-1-jouni.hogander@intel.com>
 References: <20230912064709.2802305-1-jouni.hogander@intel.com>
@@ -47,8 +47,7 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 11/12] fixup! drm/i915/display: Remaining
- changes to make xe compile
+Subject: [Intel-xe] [PATCH v3 10/12] drm/xe: Add struct i915_active for Xe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,27 +63,32 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fixups related to "drm/xe: Add empty define for i915_ggtt_clear_scanout".
+Add empty definition for struct i915_active to kill ifdefs from
+frontbuffer tracking code.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_frontbuffer.c | 2 --
- 1 file changed, 2 deletions(-)
+ .../drm/xe/compat-i915-headers/i915_active_types.h  | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-index d70c941dcb67..15302ea9cc4e 100644
---- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-+++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-@@ -230,9 +230,7 @@ static void frontbuffer_release(struct kref *ref)
- 
- 	drm_WARN_ON(&intel_bo_to_i915(obj)->drm, atomic_read(&front->bits));
- 
--#ifdef I915
- 	i915_ggtt_clear_scanout(obj);
--#endif
- 	(void) i915_gem_object_set_frontbuffer(obj, NULL);
- 	spin_unlock(&intel_bo_to_i915(obj)->display.fb_tracking.lock);
- 
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_active_types.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_active_types.h
+index e69de29bb2d1..8c31f9a8b168 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_active_types.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_active_types.h
+@@ -0,0 +1,13 @@
++/*
++ * SPDX-License-Identifier: MIT
++ *
++ * Copyright © 2019 Intel Corporation
++ */
++
++#ifndef _I915_ACTIVE_TYPES_H_
++#define _I915_ACTIVE_TYPES_H_
++
++struct i915_active {};
++#define I915_ACTIVE_RETIRE_SLEEPS 0
++
++#endif /* _I915_ACTIVE_TYPES_H_ */
 -- 
 2.34.1
 
