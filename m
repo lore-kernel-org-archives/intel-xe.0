@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 833ACCA0EC9
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:49:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6CBB5CA0EC3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 04:49:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DEAB10E3AC;
-	Tue, 12 Sep 2023 04:48:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F5D210E3B2;
+	Tue, 12 Sep 2023 04:48:55 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C246910E360;
- Tue, 12 Sep 2023 04:48:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6596010E36D;
+ Tue, 12 Sep 2023 04:48:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694494114; x=1726030114;
+ t=1694494116; x=1726030116;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5gZLVSUggKyAY2/jJ/mx9X7wWQHUETfqJ5GtztTFe4w=;
- b=k4XWPCWnMI50frL9yEcHHxwIy6oppBXszFUxtAR0NRiwiUgatTVsWJF/
- sgWVJdRSvtGBQhOY2vGoLMPBpG7CeP7CnhQxdBPCboSNoDD/JWlVut6Ha
- Q2s11a8BRI52AXc+sKDafWUIDh9ekNi/20l1hs3B2nkwJuhKDnOd0wc+S
- AyzCFodsWHehppgzRW013B5ONDPM2rjgLlh7WApCCfkgf7A87C7c6J5Em
- EYZAuxDH6sd12sOWlwuug6FpFBCu2oGVJI3JNoHOekWo60kiyJv8nt4lw
- 0hkzC8ga/cQ+XZsA+1Bv0R2wcHrryRKtyrhAhzrAW8NjY7RQHtWbw0zD9 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182324"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182324"
+ bh=wMhognfuhmnzyC+G0kAy+YIuiBEM/O/I11llUTHQ71c=;
+ b=QTW0qq5+QOoh3EcMUJ296lgwC3x59dHQV9Y4+qd+TC0PVODQiGlqW62Y
+ /UwRqkjjJZN+zW4N919TmiH3btc94hDZquujNa5ve/MM0IAUwIEC3YCW1
+ t3R+x0wNM/5RGmU8oLl5p5QD7JddunckqK1XaUNpJVDz3o3MY8viz24fh
+ /CpU2fWAcBIJBJ4Aq3XH7c/d+mbjUfl48F243EbDK9leVMXW1xPoK6KMD
+ 75F/gJVzBLv2XGiMHFO7tWcPQ6u2t6Y1DccwWDz9zOl9ULAMGaXGGwHqB
+ baG1bI4Asr5cnjZ2Kq9RsAs0GawlV+OVwAym2IKk/fg4MXKA58PYxa4xV A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="378182338"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="378182338"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:34 -0700
+ 11 Sep 2023 21:48:36 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419947"
-X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419947"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="1074419968"
+X-IronPort-AV: E=Sophos;i="6.02,245,1688454000"; d="scan'208";a="1074419968"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 21:48:34 -0700
+ 11 Sep 2023 21:48:35 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Date: Mon, 11 Sep 2023 21:48:21 -0700
-Message-Id: <20230912044837.1672060-14-lucas.demarchi@intel.com>
+Date: Mon, 11 Sep 2023 21:48:28 -0700
+Message-Id: <20230912044837.1672060-21-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 References: <20230912044837.1672060-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 13/29] drm/i915/display: Fix style and
- conventions for DP AUX regs
+Subject: [Intel-xe] [PATCH v3 20/29] drm/i915/xe2lpd: Enable odd size and
+ panning for planar yuv
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,115 +59,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix some whitespace issues for register definitions and keep the defines
-for DP_AUX_CH_CTL and DP_AUX_CH_DATA in the right place: together with
-the bit definition.
+From: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
 
-While at it add a TODO entry that those defines shouldn't be using an
-implicit dev_priv.
+Enable odd size and panning for planar yuv formats.
 
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- .../gpu/drm/i915/display/intel_dp_aux_regs.h  | 72 +++++++++----------
- 1 file changed, 35 insertions(+), 37 deletions(-)
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
-index 5185345277c7..4503d94115d7 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_aux_regs.h
-@@ -13,48 +13,28 @@
-  * packet size supported is 20 bytes in each direction, hence the 5 fixed data
-  * registers
-  */
--#define _DPA_AUX_CH_CTL		(DISPLAY_MMIO_BASE(dev_priv) + 0x64010)
--#define _DPA_AUX_CH_DATA1	(DISPLAY_MMIO_BASE(dev_priv) + 0x64014)
--
--#define _DPB_AUX_CH_CTL		(DISPLAY_MMIO_BASE(dev_priv) + 0x64110)
--#define _DPB_AUX_CH_DATA1	(DISPLAY_MMIO_BASE(dev_priv) + 0x64114)
--
--#define DP_AUX_CH_CTL(aux_ch)	_MMIO_PORT(aux_ch, _DPA_AUX_CH_CTL, _DPB_AUX_CH_CTL)
--#define DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PORT(aux_ch, _DPA_AUX_CH_DATA1, _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
--
--#define _XELPDP_USBC1_AUX_CH_CTL	0x16F210
--#define _XELPDP_USBC2_AUX_CH_CTL	0x16F410
--#define _XELPDP_USBC3_AUX_CH_CTL	0x16F610
--#define _XELPDP_USBC4_AUX_CH_CTL	0x16F810
--
--#define XELPDP_DP_AUX_CH_CTL(aux_ch)		_MMIO(_PICK(aux_ch, \
--						       _DPA_AUX_CH_CTL, \
--						       _DPB_AUX_CH_CTL, \
--						       0, /* port/aux_ch C is non-existent */ \
--						       _XELPDP_USBC1_AUX_CH_CTL, \
--						       _XELPDP_USBC2_AUX_CH_CTL, \
--						       _XELPDP_USBC3_AUX_CH_CTL, \
--						       _XELPDP_USBC4_AUX_CH_CTL))
--
--#define _XELPDP_USBC1_AUX_CH_DATA1      0x16F214
--#define _XELPDP_USBC2_AUX_CH_DATA1      0x16F414
--#define _XELPDP_USBC3_AUX_CH_DATA1      0x16F614
--#define _XELPDP_USBC4_AUX_CH_DATA1      0x16F814
--
--#define XELPDP_DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PICK(aux_ch, \
--						       _DPA_AUX_CH_DATA1, \
--						       _DPB_AUX_CH_DATA1, \
--						       0, /* port/aux_ch C is non-existent */ \
--						       _XELPDP_USBC1_AUX_CH_DATA1, \
--						       _XELPDP_USBC2_AUX_CH_DATA1, \
--						       _XELPDP_USBC3_AUX_CH_DATA1, \
--						       _XELPDP_USBC4_AUX_CH_DATA1) + (i) * 4)
- 
-+/* TODO: Remove implicit dev_priv */
-+#define _DPA_AUX_CH_CTL			(DISPLAY_MMIO_BASE(dev_priv) + 0x64010)
-+#define _DPB_AUX_CH_CTL			(DISPLAY_MMIO_BASE(dev_priv) + 0x64110)
-+#define _XELPDP_USBC1_AUX_CH_CTL	0x16f210
-+#define _XELPDP_USBC2_AUX_CH_CTL	0x16f410
-+#define _XELPDP_USBC3_AUX_CH_CTL	0x16f610
-+#define _XELPDP_USBC4_AUX_CH_CTL	0x16f810
-+#define DP_AUX_CH_CTL(aux_ch)		_MMIO_PORT(aux_ch, _DPA_AUX_CH_CTL,	\
-+						   _DPB_AUX_CH_CTL)
-+#define XELPDP_DP_AUX_CH_CTL(aux_ch)	_MMIO(_PICK(aux_ch, \
-+						    _DPA_AUX_CH_CTL, \
-+						    _DPB_AUX_CH_CTL, \
-+						    0, /* port/aux_ch C is non-existent */ \
-+						    _XELPDP_USBC1_AUX_CH_CTL, \
-+						    _XELPDP_USBC2_AUX_CH_CTL, \
-+						    _XELPDP_USBC3_AUX_CH_CTL, \
-+						    _XELPDP_USBC4_AUX_CH_CTL))
- #define   DP_AUX_CH_CTL_SEND_BUSY		REG_BIT(31)
- #define   DP_AUX_CH_CTL_DONE			REG_BIT(30)
- #define   DP_AUX_CH_CTL_INTERRUPT		REG_BIT(29)
- #define   DP_AUX_CH_CTL_TIME_OUT_ERROR		REG_BIT(28)
--
- #define   DP_AUX_CH_CTL_TIME_OUT_MASK		REG_GENMASK(27, 26)
- #define   DP_AUX_CH_CTL_TIME_OUT_400us		REG_FIELD_PREP(DP_AUX_CH_CTL_TIME_OUT_MASK, 0)
- #define   DP_AUX_CH_CTL_TIME_OUT_600us		REG_FIELD_PREP(DP_AUX_CH_CTL_TIME_OUT_MASK, 1)
-@@ -83,4 +63,22 @@
- #define   DP_AUX_CH_CTL_SYNC_PULSE_SKL_MASK	REG_GENMASK(4, 0) /* skl+ */
- #define   DP_AUX_CH_CTL_SYNC_PULSE_SKL(c)	REG_FIELD_PREP(DP_AUX_CH_CTL_SYNC_PULSE_SKL_MASK, (c) - 1)
- 
-+/* TODO: Remove implicit dev_priv */
-+#define _DPA_AUX_CH_DATA1		(DISPLAY_MMIO_BASE(dev_priv) + 0x64014)
-+#define _DPB_AUX_CH_DATA1		(DISPLAY_MMIO_BASE(dev_priv) + 0x64114)
-+#define _XELPDP_USBC1_AUX_CH_DATA1	0x16f214
-+#define _XELPDP_USBC2_AUX_CH_DATA1	0x16f414
-+#define _XELPDP_USBC3_AUX_CH_DATA1	0x16f614
-+#define _XELPDP_USBC4_AUX_CH_DATA1	0x16f814
-+#define DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PORT(aux_ch, _DPA_AUX_CH_DATA1,	\
-+						    _DPB_AUX_CH_DATA1) + (i) * 4) /* 5 registers */
-+#define XELPDP_DP_AUX_CH_DATA(aux_ch, i)	_MMIO(_PICK(aux_ch, \
-+							    _DPA_AUX_CH_DATA1, \
-+							    _DPB_AUX_CH_DATA1, \
-+							    0, /* port/aux_ch C is non-existent */ \
-+							    _XELPDP_USBC1_AUX_CH_DATA1, \
-+							    _XELPDP_USBC2_AUX_CH_DATA1, \
-+							    _XELPDP_USBC3_AUX_CH_DATA1, \
-+							    _XELPDP_USBC4_AUX_CH_DATA1) + (i) * 4)
-+
- #endif /* __INTEL_DP_AUX_REGS_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index d7a0bd686e49..b1074350616c 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -981,6 +981,14 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
+ 	if (fb->format->format == DRM_FORMAT_RGB565 && rotated) {
+ 		hsub = 2;
+ 		vsub = 2;
++	} else if (DISPLAY_VER(i915) >= 20 &&
++		   intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
++		/*
++		 * This allows NV12 and P0xx formats to have odd size and/or odd
++		 * source coordinates on DISPLAY_VER(i915) >= 20
++		 */
++		hsub = 1;
++		vsub = 1;
+ 	} else {
+ 		hsub = fb->format->hsub;
+ 		vsub = fb->format->vsub;
 -- 
 2.40.1
 
