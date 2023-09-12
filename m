@@ -4,151 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84B94CA0EC6
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 00:10:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACCA4CA0EC6
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 00:12:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1714110E00C;
-	Tue, 12 Sep 2023 00:10:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FB0E10E00C
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 00:10:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6BB2F10E00C;
+	Tue, 12 Sep 2023 00:12:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 602A310E00C
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 00:12:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694477445; x=1726013445;
+ t=1694477570; x=1726013570;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=gmbO9iiwSnPqrTy1VYCQPWq8kpQNngBL2yECA9hRXps=;
- b=FSBrOffcMEUN8pMIHHUAZwC28SOVFNNHsPzSorr0rFw62UCpK9PvqjI1
- U4Xi2xl0A6zQU07dzmI+jxnc2W5n1CgOQPAnx3akZIY8cLud5Lyr4ECJ3
- vowIQNN7n8+JoRzahDEnLkmTamRB1oM5DZf/6BzakczhVQL6XuZdnW6hd
- hyqRE6rm1Im+nxqTJS4nG9jE1b7XeBRwW+8qAERsYhJfQMSSJu7GUtOoV
- 01ipkNRVXzhBvN6DtOGI7eg/GPVIUGyx+/Of4J5aZo+9mA+cbMA/1MkbB
- svu3Rr5zFm5cbxhR8t6dlJCTEe7O+HuF6HTg/IUg8HzQdm3qDQi48QYWk g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="382051752"
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="382051752"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 17:10:45 -0700
+ bh=wmtaYxDHW3P5oLeneVTpVczKwEEZ9KqtEe6WDBB4ZiQ=;
+ b=VaCloSwgJdrWNoVGuhiYn1ZzR4az3+QyOYO0Z7ywMs9r7qZOsbdMGwUS
+ GtSFkFgbssKRb4F+3bk7xhFYnDPNPiJiLvbMcbEdOrkcxG04y5yeWmu7X
+ Cq1Efh6/xFsO0gcnSkysYVHdsuXOhmQZvd+XDvROmx5klVCRhm8S1ifj5
+ Uhn173mbhEJiTR5LfYtjkgDU/oatbDdadL1AWJw0p8FznBrr9FFfYHbPt
+ ++LRsJm3aTkWgvcrdSHL3hSt40Hddjvmg7uAnXHSgADTEf1vppgh88d/6
+ jJzYX3Ywxfbo3byCpNMyu2zPECj/VT6hvqyCPMq3XjkmNjzCV4WDULdvA w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="375572383"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="375572383"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Sep 2023 17:12:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="833692635"
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="833692635"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by FMSMGA003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 11 Sep 2023 17:10:45 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="809020787"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="809020787"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 11 Sep 2023 17:12:49 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 11 Sep 2023 17:10:44 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.32; Mon, 11 Sep 2023 17:12:49 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 11 Sep 2023 17:10:44 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.32; Mon, 11 Sep 2023 17:12:48 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Mon, 11 Sep 2023 17:10:44 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.107)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Mon, 11 Sep 2023 17:12:48 -0700
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.169)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Mon, 11 Sep 2023 17:10:44 -0700
+ 15.1.2507.32; Mon, 11 Sep 2023 17:12:48 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UNNjUWC3PSVnPDGZeJ165pFPoQq61pb0m+CV9WeFc9x93bPR5lJW/GVimu9Lt2ynWazSCKdStVVJX6RE33Z2neGaup8J9IcPGYUU53AwXSzX4TzC2UbEilqzKVcWW3YU/R0EBHbrtO9YHqiyb/xFx5T5Gu/Pwj0s/vi/sf+bw4ZsvOohsekntczLfgqSu/Ku6+Zjjo5Vh7g/XtU5t/G1CI8Zi4ctZDDpG5vpFYsV7PtNq2kzKkz9cMBPlLwLaHQFkZr4QZOv+rodnb0PO3zRDOHoWVAmDpjdmZpnWfI0Z+KQV+nt1kF9/FVQhLSp2pySfv7JHo+OaBiH3sBj+Rgdgg==
+ b=EbuYSidnW7tbDmQo7CmuXtS1N/nHZOQ63udldEKtG3l+cYV0oZcqHKBezgyAX2Taactd+QyGy0+b3onuzbTJ4pFSmnUO3bFW+xuj4IYmIUAjaGfiuIOcx03kpJ3Kd1UgWuWpDmTW70CZLBMX5NsROI/Ff6kL1Ces0eRCBqeINNuzH8iwCgiD+0w9/w6KxKKtQ26+wmzCWMpcuA9e8SDRvmc1FG6ynYAC778qhWUZoRXu+5GNp+Ta4kUrI2+S7nIaGhYs1+hjdccrubPa5NNYXCIH/NCTZx6MaAjyVfr8U3HRjoKEmf+RB9J36Yaf9vBPkz0ZnP5NhahcjvzZs05fgQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QZL2lz664ADqm95rYENVouGjvMkxkyRyc9vufXAbu08=;
- b=gP+R7JZ4A1nry2zZnyZTaQCkTs7zcsm6Nb0JvSFtQhWF1ja2Kea6PIJYhwi8NSiY5TErU/Vf8Uv2j4PDtUel+EO1LCsl1FQ/aFYkQ6xFYOSa2H6NXXD6ymLs+Ghpcfw5BPm+hRX/+v73KZ4cWtTEAyuHOFj1Z8nV6/+zQ+77W/d6sIZ68GFv+VyNPYYcKz5olM34rF3e5w2Ohzuie/lur3eUKb16ZpJOzH0bpkKkh/FrDilihPUdV5Vq0RjApO6W8ivCe2gl1XmUn5whtkRBVJW2QHHmbtx9BAUuFRNzeSqO1tuZ5Yjw7qIOmfYH6dtfGkFzyUfgDE7U74ZQ9ttfXw==
+ bh=2pegzSwpSe4/Apo/3MAhgTuLJMSrySzDGNLonatD+y4=;
+ b=kgEysZjhuhFSeUsB4kk5N0bA8s1GZMMObAAX08Qj0V/L7RI47sXdf5JLGwFutWe9CkHqet66OlX3UpGxVgKf19HEqAhpQn8tAcb0ND7J6kbB1oeg11vGgLBBQ2OJxJ1z7eted1qYGBkVs94yZ45s6QNjkG647MKMQcjO8/FwZWtxxCTIDHyzMWxyqNmetC4vJXtMk0N4uqEdHIeMfMRxH7XenT2vDo5SVONHdR32BftxcXrtT6XTlCfW4weJauhSF1liWJLpSsynTXlEcjsiBY+7pNYweL6R3mz8CaPT1rR4T2IW966Z1K9N6BxQtQux7S151UZw6LQ5XAepHJnNoQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by IA1PR11MB8198.namprd11.prod.outlook.com (2603:10b6:208:453::20)
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
+ by BN9PR11MB5466.namprd11.prod.outlook.com (2603:10b6:408:11f::7)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.34; Tue, 12 Sep
- 2023 00:10:42 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::4b20:e34:71f:139f]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::4b20:e34:71f:139f%4]) with mapi id 15.20.6768.029; Tue, 12 Sep 2023
- 00:10:42 +0000
-Message-ID: <6a7efd35-773e-4b61-8f61-8ef733c7edf8@intel.com>
-Date: Mon, 11 Sep 2023 17:10:39 -0700
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, <intel-xe@lists.freedesktop.org>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.35; Tue, 12 Sep
+ 2023 00:12:46 +0000
+Received: from BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::6bdd:6fe1:4045:c26f]) by BY5PR11MB3911.namprd11.prod.outlook.com
+ ([fe80::6bdd:6fe1:4045:c26f%6]) with mapi id 15.20.6768.029; Tue, 12 Sep 2023
+ 00:12:46 +0000
+Message-ID: <e7fab04f-6391-4899-55b6-4f0c4a3c6b53@intel.com>
+Date: Mon, 11 Sep 2023 17:12:43 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.15.0
+Content-Language: en-GB
+To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ <intel-xe@lists.freedesktop.org>
 References: <20230802212646.838717-1-daniele.ceraolospurio@intel.com>
- <20230802212646.838717-2-daniele.ceraolospurio@intel.com>
- <5ca76588-9822-cc1e-3c91-5f14918312ea@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <5ca76588-9822-cc1e-3c91-5f14918312ea@intel.com>
+ <ba6018b2-ba65-99be-ab77-2b1b2b663fca@intel.com>
+ <54ec3096-452c-4eba-982a-b36fc8e7d7c6@intel.com>
+From: John Harrison <john.c.harrison@intel.com>
+In-Reply-To: <54ec3096-452c-4eba-982a-b36fc8e7d7c6@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BY3PR03CA0022.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::27) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+X-ClientProxiedBy: MW4PR04CA0151.namprd04.prod.outlook.com
+ (2603:10b6:303:85::6) To BY5PR11MB3911.namprd11.prod.outlook.com
+ (2603:10b6:a03:18d::29)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|IA1PR11MB8198:EE_
-X-MS-Office365-Filtering-Correlation-Id: 53110994-8764-488e-299b-08dbb324b3d1
+X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|BN9PR11MB5466:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8b6fc8b5-4472-4c9b-6047-08dbb324fdf4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: D01bFG5l5HQdRT0EJpGROXAWY+eU5iynRgAVFcu7qwSd0CLFpkBeoaXWpQIpNHqyU6VdpTvEcBxAFnsXAaadDoCvBLK8fAU7Hkh7e+uMJMEuxNyXsRhs4w/xYS9/96xvJwCmgWCI4yj/LuK1x/vFHU3S/KVaOE4IKrr+hO2enjxwcmcagFhW0vw2sCY94z58KYhsJ4sO2ovfebxpetPerFw7l8NZgTMfRG3tajYCaQHUUSSaxVrYSWAwsSSgoBmdYgwmeN4Knt16+jDAobjPGyb2LN6MvT9cwHFXFPyaS7qP5c54cK8sGsHm14XI8r0QGjIX8/1fSnSTY/eN81C136VJc+n9swlSuoS6cqAKQc17TeKOf7XgUE8yyoqYbefIgRWEW1Yw5C7J1Up4w3iMgYXcuxuBDfKLl7LjSzi+2BxSQX7xvapg6p5OXjWLEQFC6b61iJLapcNp2fqQ+iz/PwZ0jvaI61QvEBCMNGvqIfOpOG7431YHbK7KSb6vQRZJrIpyu6Ijb/gJK8mIxOHi4uL2f8LfPMDdrynuiO2Qz/gNP8lU//KqvN9Unb68XKZOBbX6se7+Xh7PjPkLA89ZQnEXDc10AQADq8lZjRb/4ydOR+y/GQKJ9g35mgOv+ygIYepud3J5hLxcjx0eX0fIQA==
+X-Microsoft-Antispam-Message-Info: sJk/h5TN6Nb0bXHkjh06JF6UMkQa1940b2reH+DiJf/CuU3w73RRwAZqovgQvd0VRW6xgY/bdaJZNsS1tczKWxY4jKi2ZfsWJZ/X7kSN8Qa4f7j15Y25heYjHMp74VzSq1zMrKhUDSfBrqGQ+0xYqDgoGUL7hThA+6Tw3daL197Ms4OIdcEuZX+2T4wP2lxwonk27svQkJT24icaXR42qnY92lIkJsPahS/7YMDpzMcI0Meo10PpBLTUvAi2zJNzvEn4NN4Zv8SA7ZTdhE+dvFLhZAB+jD4PDqioyJ5kRTzTOhyFfskIo4zBQ9AnDjRL8ZWiQ4rUDIRiArQr5A9ALnVi3k7Zj5JbEzBY1FV+DKcXMtfMwNvy9qU6mG+TmwWVHByySq5AetxgP02yyHm89cC5yjrKrmh//rUcxidzamq7orHmI3PC5qcrQpfWNV4zIDXwn0kBaDNa3llUuCatyX3/OOAtclY0ZoCsaRjvxZK8d5ZYEpfqsT55PHii53sI3pZiZnANN1sCaHmKgazPKTGZv363SYIOnfzBmi6MyV8NG3KG8cTwWP5E/0q8dGggQDbtAdpivVb2LE6Q3tkr64KNXPFUDNaab5Qp36A2eBQnPJCwYDlRUmlpPsC+vWY95uLijPyZPu/fMFCXsrjncA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(136003)(376002)(396003)(346002)(366004)(186009)(451199024)(1800799009)(41300700001)(316002)(26005)(107886003)(31686004)(478600001)(8676002)(8936002)(66556008)(66476007)(66946007)(4326008)(5660300002)(2906002)(6666004)(53546011)(6486002)(6506007)(6512007)(36756003)(2616005)(83380400001)(38100700002)(86362001)(82960400001)(31696002)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(39860400002)(396003)(366004)(346002)(136003)(451199024)(1800799009)(186009)(5660300002)(41300700001)(66946007)(66476007)(4326008)(8936002)(31686004)(8676002)(66556008)(316002)(31696002)(38100700002)(36756003)(86362001)(478600001)(53546011)(6506007)(2906002)(83380400001)(26005)(107886003)(2616005)(6512007)(82960400001)(6666004)(6486002)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aVVlYnFwbTI3WFNiMHA0N0lrdE43Z05jMEdyc2phUG9TWXIweTdSMGxTNnRO?=
- =?utf-8?B?WnA5eUo0MDdrRmJVdm84a2pMalI5OWhNOSt2bmN1WUlTa0N1TDhWeW84R0pm?=
- =?utf-8?B?c3g0ZHp1bkZNbFU4ZjQ2WVMwdVB5alRCekl0R01Qam9IOFI0Z3hGY0FLbWtn?=
- =?utf-8?B?SHRrcVpKOFh5NHkzWkI2ZmN2NitueGVEcEtnYmRhanRrODF5U1FoNSs5ZDNn?=
- =?utf-8?B?SkZ0ZklrUlV1L1lwOXpMai9LZmtURkZzMmdDV3VxdksrNUthVGRuZ2F2KzYz?=
- =?utf-8?B?REtsVXA5dDdPT2hmd05lUWEyWURCanpsL0dCMVpiRXlHaXNZSDBvVU1pWklp?=
- =?utf-8?B?OXVSU3paVDBmN0gyY05sMHNBcFl5M3VwdFBSSy9ydE1BYVBYSWs4RmRDWHg1?=
- =?utf-8?B?MG12MjFvZWh1a1luYXlPNjR5bkg1cFBKZWd2UnpXMENBTEFNSFF1ZzcwNkZl?=
- =?utf-8?B?eDEyeVFlRCswRjcrZWNQZnUzRG5lMTNQTTBWSEFPcExaREFCZ1NnUDZUaUYy?=
- =?utf-8?B?bmYrbGlLL0FuRS9YQ3psb2RRQkxRWXB4QW40c2dPdWMzWVc4N0tWYVNSQzcr?=
- =?utf-8?B?Sk14VHFzdGlkSTJ6MUJQV1JrZ0tMMlY0K2lkdy9iSW8wWWI0dDh2ZUp6UUFY?=
- =?utf-8?B?aFJzVzVqVjM1cDdXb3psWG9Ed0NDYXdiR3VrR1llbEw3c3lpa3lGbHpLUU9m?=
- =?utf-8?B?MGF3TnlhUlBQWTRVSDZkbExHeE56STdQbkVRSTdneW9UODhMajQwMSs1U1Fs?=
- =?utf-8?B?cUJsaENVL1UvOGN3UmYxMXBNMVEwdkRkMTIwTTNyZDhGUkZpYUlXbGRCRDFL?=
- =?utf-8?B?VWZqTEovUm1MM3Rnd2FmRTFhZStQSVJza2J4ejdmRXhHQTk2ZXBBTWlOU1ky?=
- =?utf-8?B?elQvZkcvVnlpdTRUbjJMQmZTcjZhYlB3MWhvdGNndmZZUDVXSGZzSWIvL2Fo?=
- =?utf-8?B?N0Z2V2xpbGZCVnNGaldTOVBibnp6cjJoMnJXQm1nYkRtZ0kwMmJmbmRseURF?=
- =?utf-8?B?dFlsL3VmbVhpWjRldlVxQ21WRlhpN1VmN2xlOFR6eENWWEFsTlNjTTJwdUs1?=
- =?utf-8?B?NExnMVp4U0FaSmFhTWFjR3YrZjY0ZUR5d1h3WE9MaGZLY2tjM3dSeTBMSzJk?=
- =?utf-8?B?KzZQTHR3NlpacWE0UEgzbHNkaFVJelZxOGYrYzFaWTN4eENlM3BRMHR2UjRD?=
- =?utf-8?B?U1UxS28zb01ZaXdxdUg1TlJId2RlczBUZFBxS1dGVjNZK0V2a29VZW9kaVAv?=
- =?utf-8?B?ZE1yd3AzYkhYUklSeHpkOUFJVGsxSDJUa2VDdno3ZkFjQTd6NlhmaEgzTmQ1?=
- =?utf-8?B?ZHNrbFNvZ1pBNzlIdUZYbmdUd0REU2ZQMFhJQzQ4d3ovQXlQYnllaGRtVHdC?=
- =?utf-8?B?Zi9CNlhzYWlFLzZzanlEckxFMTlUUVpzNTUzaFdjS210dTBvaGlkb3BHSTBC?=
- =?utf-8?B?YzdFSmtlWGIrWXBacVRoN01ybE1NWlVYd2duSlkrQ3N6eGIvd2V1cGg4QWkr?=
- =?utf-8?B?c0UyOGlrcnpQcXB3cG9zellsajVjeEZCTll0RTBGRi9NVmtoakttMDVzRFdo?=
- =?utf-8?B?WkxqajF0aVJsREh6TlhJbVhRZHZiY1lselJaZWRudGJ1dENaa1JadHRuV3Yz?=
- =?utf-8?B?d0hFQnhaNWtVWlV3L2VabG94TThkR2I0aGxSWXQ0d1dMYVgwbjUzcWF3RU40?=
- =?utf-8?B?cEhBMkNRa0lvQ0dhOCt1WjN0VUw2VHZNZXdSNC9RZUNXQVp6ZmFXN0tYaHFl?=
- =?utf-8?B?QXBPQlJIVmx1MXZCQWJmZkhqdzNLQnpDc0VxVjdrWFIxbU5jb1o2RHhHZ0x3?=
- =?utf-8?B?Ums5ZDJmSHhSY2lKeWlMTTRMVmFlaXBEL0Y2MTVsb0dpV1lUamhacUczeFIx?=
- =?utf-8?B?cmUraDBHVFh6N2RoQmc3WGFIUFdqaXFzbWozN0x3elBQTzcwWWh3UEovRkF1?=
- =?utf-8?B?MzRpcENzUHZmZE43UHZ1SENRUnhPendCYk5VeTZkOUQxV3FUeXZjTFlyTGhx?=
- =?utf-8?B?cGd2VTVUL1c3bHZXR3NrYzBmb0I3dzFObnlxckE3RllKRVhkOENaSlR0VUh3?=
- =?utf-8?B?azNUWVRvL1Bldnh2NTlnRUl2aVBYc1VtV24zVjZ1U2tySGVCZkllZjJ3RjJj?=
- =?utf-8?B?aDE5VitEcGw5TWJDTmh2RTBoMzB1cFViU1d5Q1hwZTZvbGh6U0oxSjlIK213?=
- =?utf-8?Q?o7UL3dN2QAQm0da+TAWAV2g=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 53110994-8764-488e-299b-08dbb324b3d1
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TzE4RjFBVmRnQmp2TllYNmpEWU5JSFUvUjZEb1JRZEJ0RzVPVzFjTDgrcDA3?=
+ =?utf-8?B?b0szMWhvckJYZWkwNTcrSzYyZGlJWnhrZ2lOd0pWTS91dmhRL2hPY250RmtD?=
+ =?utf-8?B?YjZrelc0YU9sMWp2bi9uTjRZZk5TRm5QYVh6VnE0aXJaWDlyY0hzUkhMeWY2?=
+ =?utf-8?B?TGtSZThYa1FwUEhGOERZK3l5ZTQvdEdLU295VHhudTBPR1F6M1pYSy9VVFk0?=
+ =?utf-8?B?eUtPRkUzT2ZXbGxWODFESGNycHJVT0lvTEprUWxJQzBNcllDemtaZzNCOHp6?=
+ =?utf-8?B?UEZRMHBLMkJmV056RDRYNDQ2Z0FuWUxGeU9EVkdRQVA0VCtnMkpvUW5Oc04x?=
+ =?utf-8?B?cWVtUHp4SGNVVUZyeU9KQVBIMmNPZWNhcDJOVlZMSEJ1T203UUFWaEl1WllI?=
+ =?utf-8?B?SnRrYS9UdjNtR25qblBZNWJoNzkyaDdjcis5SDdtZjY5VWRYek5nU3Ztd3A1?=
+ =?utf-8?B?NnB1Nm1JYk8rejZMRG9sZ1dIaHFVMDdlWjBnY0NjblZCMGFZSGZDTHBnT1pC?=
+ =?utf-8?B?TXBmU05yMXNIZ3NsNURJWTVHb05tQ2w4bm1zeWRuQlpvODlkVEpzeERWWjJq?=
+ =?utf-8?B?SDE5ck9TNzcrSXRPai9QU2tDNG9BZnNZV3Jkbld3L1N2aVdvU1MweUpnQjlD?=
+ =?utf-8?B?dCtLeGltdmRHRGFxa2prUlBuRWJWOFRsUk4vczhMTklMeUtlOVZXOGI3U1FM?=
+ =?utf-8?B?SndwSXpyMVgzUFhPVjUzVDkrY2dwNlpVNTg3d1o0MzlhNEo5UzV5OU5MS2lt?=
+ =?utf-8?B?cDdVWGtJTkp2dG9Sa09yaEhnMmZIZi9zSkhrYmNTYWcrNFZxeVhBNU05K0Vo?=
+ =?utf-8?B?bUVTMDJXZzZIVTNzR2h5RFluU1BWWk1HdEtLeEdJcGYraVRldTc5VHN1MzlG?=
+ =?utf-8?B?OFVTK1BrZjVFN0ErL2VhZ1hMdjBJZ2kxdnBzbXBTK2VoL1kzSFV0RHBVbC9X?=
+ =?utf-8?B?cGZSdmdYbElkQTVtTjZueVV3SWdpaitNWDVWZEpyRTBXZ1pCYmZYSjQzV255?=
+ =?utf-8?B?RDF4Smcrek1HSDU0TWUxY3E0V1BJQStvRFpPMFBkVm9QTW9uZ1RuSnRxS0FH?=
+ =?utf-8?B?SnY5bW4vTzFURnhtUE1rVkYrV0VCd1B4NWVSNFQ2SFM5dlorVlZ5Ylg1RU1D?=
+ =?utf-8?B?QkJUU1BnaC8vYUJNWjgyNHhFSUN0L2J4cFZQTXlQeFJnVTV1RHhyRFZoN0hJ?=
+ =?utf-8?B?Qk51OUdnSks0RVB0bTZQbDJXUXBXUjBpdUs5dDRZQmd1QVBHa0R1NVNQUjJh?=
+ =?utf-8?B?MW1ZTFFRamdVSXJ1WmIxYnZoZTVzRkF5VmJrMW1NSGhhcExTMzdpMnR0aExk?=
+ =?utf-8?B?ekhUTzI0U3JhZUNIc3g3L0RYTUMzSjZYWk8wa2tndVZ6YUYvSit1MURWbWU2?=
+ =?utf-8?B?cHdjZXNzNmxCNXVUQVN2NktIRUt3RE1aVHdVK09pZE9sR1oyb0tpRkFCN2Iw?=
+ =?utf-8?B?ZHhVLzN2TWgyNDI5STA5SHhwclFEaXhxdjN4TmxuMmkraWVhQ3h5YWc5ZGpY?=
+ =?utf-8?B?SVZiMUNlQkhpT21MaDNlNitsQ3M3VHo4NXJubDBrUndXaE5NSzAzcnQwVG5i?=
+ =?utf-8?B?NlpkSWxlOVlBbGJQUG9teU1jRHpZQWNBTzRKN0dhUGpDVUFBbDdhQnpRdFlP?=
+ =?utf-8?B?cW5vQWZDbjFoNzJRR3E2M29WTDZkSHlTS3A5R2tMNzhzWWRSWmRsM3Z6Vmw4?=
+ =?utf-8?B?cUlidjRLSjlVQjBsN00xdXJtYVlNbThzaXRhcGVmUWsxY3JJbnAyNm1sbzhQ?=
+ =?utf-8?B?Z2pOcHRYOUJqZ2NROGVhUGYvV2dBTzJZWUVxUHNVWnY4bFVwMURZVlkxc1RP?=
+ =?utf-8?B?TTVhQ09rRTNPNVFaQXN3Yzh0Q2JXZUxnaXdzbys3QWJ4TmV5RExEV2NBQ25j?=
+ =?utf-8?B?bnlvWFI0QnVIOWhYSzZ5TmxwMXowQVNCamlGTUltS05ZcjZnT0RPL3NnOGN3?=
+ =?utf-8?B?MUxJZGxGZUlBSVFYU0tiZitXMVNIcEx1VmJWMG9OZVkyVnZhVjhnNDBHKy8x?=
+ =?utf-8?B?Qi9FS0VKSWQ1R3JlNHk3QVFOYWhUNzU5alJPTm5zSk1XWXA5UDkzKzFQSzVJ?=
+ =?utf-8?B?cEZlTzZBN3Yzc3l2MmVhMkREVVY2UzZ3akFRSkI5bDNmOHBNTXVQdC9oVk9I?=
+ =?utf-8?B?WEJUbXhPekE1eURScnRHbmY3cUo4LzNTanMrcmFuc2pHdk5KMjh2cDh4UzJK?=
+ =?utf-8?B?dnc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8b6fc8b5-4472-4c9b-6047-08dbb324fdf4
+X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 00:10:42.1398 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 00:12:46.4951 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Iz/Hu+4bLwq/wNiEWvk+TSyW2q+n0496pd0v69nMm2RHxgHkrWUyWb2bZgdOsdw9QF93KnP5eYS80LfddzkzxhS9rJmuKm+1CbHBBDfCEeM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8198
+X-MS-Exchange-CrossTenant-UserPrincipalName: esAOIVRYGmCUVm3Y2GQk4W3xnQXsjspgJN9PZYj4mzlZqF09w/op2XVjEr82RgBG9TYc5QPldZGZYAIrge9kGcoheWUxbKokIqmYrXCbLv8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5466
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe/uc: Add GuC/HuC firmware path
- overrides
+Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe/uc: Fix uC status tracking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,146 +164,191 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 9/11/2023 17:03, Daniele Ceraolo Spurio wrote:
+> On 9/11/2023 4:54 PM, John Harrison wrote:
+>> On 8/2/2023 14:26, Daniele Ceraolo Spurio wrote:
+>>> The current uC status tracking has a few issues:
+>>>
+>>> 1) the HuC is moved to "disabled" instead of "not supported"
+>>>
+>>> 2) the status is left uninitialized instead of "disabled" when the
+>>>     modparam is used to disable support
+>>>
+>>> 3) due to #1, a number of checks are done against "disabled" instead of
+>>>     the appropriate status.
+>>>
+>>> Address all of those by making sure to follow the appropriate state
+>>> transition and checking against the required state.
+>>>
+>>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/xe_guc.c   |  3 +++
+>>>   drivers/gpu/drm/xe/xe_huc.c   | 15 +++++++--------
+>>>   drivers/gpu/drm/xe/xe_uc.c    | 10 +++++++---
+>>>   drivers/gpu/drm/xe/xe_uc_fw.c | 14 ++++++++------
+>>>   drivers/gpu/drm/xe/xe_wopcm.c |  3 +--
+>>>   5 files changed, 26 insertions(+), 19 deletions(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+>>> index 2493c5859948..7cef5dcf571e 100644
+>>> --- a/drivers/gpu/drm/xe/xe_guc.c
+>>> +++ b/drivers/gpu/drm/xe/xe_guc.c
+>>> @@ -228,6 +228,9 @@ int xe_guc_init(struct xe_guc *guc)
+>>>       if (ret)
+>>>           goto out;
+>>>   +    if (!xe_uc_fw_is_enabled(&guc->fw))
+>>> +        return 0;
+>>> +
+>>>       ret = xe_guc_log_init(&guc->log);
+>>>       if (ret)
+>>>           goto out;
+>>> diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
+>>> index 177cda14864e..35e2fdd07f69 100644
+>>> --- a/drivers/gpu/drm/xe/xe_huc.c
+>>> +++ b/drivers/gpu/drm/xe/xe_huc.c
+>>> @@ -42,22 +42,21 @@ int xe_huc_init(struct xe_huc *huc)
+>>>       if (ret)
+>>>           goto out;
+>>>   +    if (!xe_uc_fw_is_enabled(&huc->fw))
+>>> +        return 0;
+>>> +
+>>>       xe_uc_fw_change_status(&huc->fw, XE_UC_FIRMWARE_LOADABLE);
+>>>         return 0;
+>>>     out:
+>>> -    if (xe_uc_fw_is_disabled(&huc->fw)) {
+>>> -        drm_info(&xe->drm, "HuC disabled\n");
+>>> -        return 0;
+>>> -    }
+>>>       drm_err(&xe->drm, "HuC init failed with %d", ret);
+>>>       return ret;
+>>>   }
+>>>     int xe_huc_upload(struct xe_huc *huc)
+>>>   {
+>>> -    if (xe_uc_fw_is_disabled(&huc->fw))
+>>> +    if (!xe_uc_fw_is_loadable(&huc->fw))
+>>>           return 0;
+>>>       return xe_uc_fw_upload(&huc->fw, 0, HUC_UKERNEL);
+>>>   }
+>>> @@ -69,7 +68,7 @@ int xe_huc_auth(struct xe_huc *huc)
+>>>       struct xe_guc *guc = huc_to_guc(huc);
+>>>       int ret;
+>>>   -    if (xe_uc_fw_is_disabled(&huc->fw))
+>>> +    if (!xe_uc_fw_is_loadable(&huc->fw))
+>>>           return 0;
+>>>         XE_WARN_ON(xe_uc_fw_is_running(&huc->fw));
+>>> @@ -106,7 +105,7 @@ int xe_huc_auth(struct xe_huc *huc)
+>>>     void xe_huc_sanitize(struct xe_huc *huc)
+>>>   {
+>>> -    if (xe_uc_fw_is_disabled(&huc->fw))
+>>> +    if (!xe_uc_fw_is_loadable(&huc->fw))
+>>>           return;
+>>>       xe_uc_fw_change_status(&huc->fw, XE_UC_FIRMWARE_LOADABLE);
+>>>   }
+>>> @@ -118,7 +117,7 @@ void xe_huc_print_info(struct xe_huc *huc, 
+>>> struct drm_printer *p)
+>>>         xe_uc_fw_print(&huc->fw, p);
+>>>   -    if (xe_uc_fw_is_disabled(&huc->fw))
+>>> +    if (!xe_uc_fw_is_enabled(&huc->fw))
+>>>           return;
+>>>         err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+>>> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+>>> index addd6f2681b9..368e4feb57db 100644
+>>> --- a/drivers/gpu/drm/xe/xe_uc.c
+>>> +++ b/drivers/gpu/drm/xe/xe_uc.c
+>>> @@ -31,9 +31,10 @@ int xe_uc_init(struct xe_uc *uc)
+>>>   {
+>>>       int ret;
+>>>   -    /* GuC submission not enabled, nothing to do */
+>>> -    if (!xe_device_guc_submission_enabled(uc_to_xe(uc)))
+>>> -        return 0;
+>>> +    /*
+>>> +     * We call the GuC/HuC init functions even if GuC submission is 
+>>> off to
+>>> +     * correctly move our tracking of the FW state to "disabled".
+>>> +     */
+>>>         ret = xe_guc_init(&uc->guc);
+>>>       if (ret)
+>>> @@ -43,6 +44,9 @@ int xe_uc_init(struct xe_uc *uc)
+>>>       if (ret)
+>>>           goto err;
+>>>   +    if (!xe_device_guc_submission_enabled(uc_to_xe(uc)))
+>>> +        return 0;
+>>> +
+>>>       ret = xe_wopcm_init(&uc->wopcm);
+>>>       if (ret)
+>>>           goto err;
+>>> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c 
+>>> b/drivers/gpu/drm/xe/xe_uc_fw.c
+>>> index 2e70dd4880f6..fd53ef9e5c99 100644
+>>> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
+>>> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+>>> @@ -339,17 +339,19 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+>>>       XE_WARN_ON(uc_fw->path);
+>>>         uc_fw_auto_select(xe, uc_fw);
+>>> -    xe_uc_fw_change_status(uc_fw, uc_fw->path ? *uc_fw->path ?
+>>> +    xe_uc_fw_change_status(uc_fw, uc_fw->path ?
+>>>                      XE_UC_FIRMWARE_SELECTED :
+>>> -                   XE_UC_FIRMWARE_DISABLED :
+>>>                      XE_UC_FIRMWARE_NOT_SUPPORTED);
+>>>   -    /* Transform no huc in the list into firmware disabled */
+>>> -    if (uc_fw->type == XE_UC_FW_TYPE_HUC && 
+>>> !xe_uc_fw_is_supported(uc_fw)) {
+>>> +    if (!xe_uc_fw_is_supported(uc_fw))
+>>> +        return 0;
+>>> +
+>>> +    if (!xe_device_guc_submission_enabled(xe)) {
+>> This is generic code for all firmware types. So why specifically 
+>> check for GuC submission? Can't we still load the HuC even with GuC 
+>> submission disabled?
+>
+> This is an unfortunately named function that is not actually GuC (or 
+> even submission) specific, but it is actually used to track usage of 
+> all FWs and related features (see e.g. xe_uc_init). I agree that it 
+> could be renamed, but that's out of scope for this patch.
+I would argue that correct naming of functions is a critical 
+requirement. Otherwise it makes it impossible to understand what the 
+code is doing! Either when developing or when reviewing patches.
 
+John.
 
-On 9/11/2023 5:00 PM, John Harrison wrote:
-> On 8/2/2023 14:26, Daniele Ceraolo Spurio wrote:
->> When testing a new binary and/or debugging binary-related issues, it is
->> useful to have the option to change which binary is loaded without
->> having to update and re-compile the kernel. To support this option, this
->> patch adds 2 new modparams to override the FW path for GuC and HuC. The
->> HuC modparam can also be set to an empty string to disable HuC loading.
-> Why the difference between GuC & HuC? And is 'disabled' significantly 
-> different to just setting it to a non-existent file?
-
-There is the global switch (the one you commented on in the previous 
-patch) that can be used to turn off all the FWs. I see no reason for 
-wanting an additional switch to turn off just the GuC, as the other FWs 
-won't work without it.
-
-Also, Xe aborts the driver load if any FW file is not found, so yes 
-disabled is different than not found.
-
+> Note that there is no way in Xe to load HuC without GuC submission, 
+> nor there is a plan to add it AFAIK, and even this existing switch is 
+> only there to turn off the FWs for debug.
+>
+> Daniele
 >
 >>
->> Note that those modparams only take effect on platforms where we already
->> have a default FW, so we're sure there is support for FW loading and the
->> kernel isn't going to explode in an undefined path.
+>> John.
 >>
->> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->> Cc: John Harrison <John.C.Harrison@Intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_module.c | 10 ++++++++++
->>   drivers/gpu/drm/xe/xe_module.h |  2 ++
->>   drivers/gpu/drm/xe/xe_uc_fw.c  | 30 +++++++++++++++++++++++++++++-
->>   3 files changed, 41 insertions(+), 1 deletion(-)
+>>>           xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_DISABLED);
+>>> -        err = -ENOPKG;
+>>> -        return err;
+>>> +        drm_dbg(&xe->drm, "%s disabled", 
+>>> xe_uc_fw_type_repr(uc_fw->type));
+>>> +        return 0;
+>>>       }
+>>> +
+>>>       err = request_firmware(&fw, uc_fw->path, dev);
+>>>       if (err)
+>>>           goto fail;
+>>> diff --git a/drivers/gpu/drm/xe/xe_wopcm.c 
+>>> b/drivers/gpu/drm/xe/xe_wopcm.c
+>>> index 9a85bcc18830..bf85d4fa56cc 100644
+>>> --- a/drivers/gpu/drm/xe/xe_wopcm.c
+>>> +++ b/drivers/gpu/drm/xe/xe_wopcm.c
+>>> @@ -139,8 +139,7 @@ static int __wopcm_init_regs(struct xe_device 
+>>> *xe, struct xe_gt *gt,
+>>>   {
+>>>       u32 base = wopcm->guc.base;
+>>>       u32 size = wopcm->guc.size;
+>>> -    u32 huc_agent = xe_uc_fw_is_disabled(&gt->uc.huc.fw) ? 0 :
+>>> -        HUC_LOADING_AGENT_GUC;
+>>> +    u32 huc_agent = xe_uc_fw_is_available(&gt->uc.huc.fw) ? 
+>>> HUC_LOADING_AGENT_GUC : 0;
+>>>       u32 mask;
+>>>       int err;
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_module.c 
->> b/drivers/gpu/drm/xe/xe_module.c
->> index de85494e2280..0660017c3e83 100644
->> --- a/drivers/gpu/drm/xe/xe_module.c
->> +++ b/drivers/gpu/drm/xe/xe_module.c
->> @@ -30,6 +30,16 @@ int xe_guc_log_level = 5;
->>   module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
->>   MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level 
->> (0=disable, 1..5=enable with verbosity min..max)");
->>   +char *xe_guc_firmware_path = NULL;
->> +module_param_named_unsafe(guc_firmware_path, xe_guc_firmware_path, 
->> charp, 0400);
->> +MODULE_PARM_DESC(guc_firmware_path,
->> +         "GuC firmware path to use instead of the default one");
->> +
->> +char *xe_huc_firmware_path = NULL;
->> +module_param_named_unsafe(huc_firmware_path, xe_huc_firmware_path, 
->> charp, 0400);
->> +MODULE_PARM_DESC(huc_firmware_path,
->> +         "HuC firmware path to use instead of the default one - 
->> empty string disables");
->> +
->>   char *xe_param_force_probe = CONFIG_DRM_XE_FORCE_PROBE;
->>   module_param_named_unsafe(force_probe, xe_param_force_probe, charp, 
->> 0400);
->>   MODULE_PARM_DESC(force_probe,
->> diff --git a/drivers/gpu/drm/xe/xe_module.h 
->> b/drivers/gpu/drm/xe/xe_module.h
->> index 2c1f9199f909..e1da1e9ca5cb 100644
->> --- a/drivers/gpu/drm/xe/xe_module.h
->> +++ b/drivers/gpu/drm/xe/xe_module.h
->> @@ -10,4 +10,6 @@ extern bool force_execlist;
->>   extern bool enable_display;
->>   extern u32 xe_force_vram_bar_size;
->>   extern int xe_guc_log_level;
->> +extern char *xe_guc_firmware_path;
->> +extern char *xe_huc_firmware_path;
->>   extern char *xe_param_force_probe;
->> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c 
->> b/drivers/gpu/drm/xe/xe_uc_fw.c
->> index fd53ef9e5c99..ef873e894714 100644
->> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
->> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
->> @@ -15,6 +15,7 @@
->>   #include "xe_gt.h"
->>   #include "xe_map.h"
->>   #include "xe_mmio.h"
->> +#include "xe_module.h"
->>   #include "xe_uc_fw.h"
->>     /*
->> @@ -209,6 +210,30 @@ uc_fw_auto_select(struct xe_device *xe, struct 
->> xe_uc_fw *uc_fw)
->>       }
->>   }
->>   +static void
->> +uc_fw_override(struct xe_uc_fw *uc_fw)
->> +{
->> +    char *path_override = NULL;
->> +
->> +    /* empty string disables, but it's not allowed for GuC */
->> +    switch (uc_fw->type) {
->> +    case XE_UC_FW_TYPE_GUC:
->> +        if (xe_guc_firmware_path && *xe_guc_firmware_path)
->> +            path_override = xe_guc_firmware_path;
->> +        break;
->> +    case XE_UC_FW_TYPE_HUC:
->> +        path_override = xe_huc_firmware_path;
->> +        break;
->> +    default:
->> +        break;
->> +    }
->> +
->> +    if (path_override) {
->> +        uc_fw->path = path_override;
->> +        uc_fw->user_overridden = true;
->> +    }
->> +}
->> +
->>   /**
->>    * xe_uc_fw_copy_rsa - copy fw RSA to buffer
->>    *
->> @@ -346,7 +371,10 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
->>       if (!xe_uc_fw_is_supported(uc_fw))
->>           return 0;
->>   -    if (!xe_device_guc_submission_enabled(xe)) {
->> +    uc_fw_override(uc_fw);
->> +
->> +    /* user can provide an empty string via the override to disable */
-> But only for HuC?
-
-And for GSC once I get around to add support for that. I wanted to keep 
-the sentence general here, since there is no visibility of which FW it 
-is and there is already a proper description of the override in the 
-modparam definition, but I can add a "non-GuC FWs" at the end if you 
-think it makes things clearer.
-
-Daniele
-
->
-> John.
->
->> +    if (!xe_device_guc_submission_enabled(xe) || !(*uc_fw->path)) {
->>           xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_DISABLED);
->>           drm_dbg(&xe->drm, "%s disabled", 
->> xe_uc_fw_type_repr(uc_fw->type));
->>           return 0;
 >
 
