@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA120CA0ECB
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 02:17:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51A13CA0EC3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 02:17:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D451910E321;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E99DF10E33B;
 	Tue, 12 Sep 2023 02:17:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B971D10E265;
- Tue, 12 Sep 2023 02:17:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A454910E265;
+ Tue, 12 Sep 2023 02:17:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694485040; x=1726021040;
+ t=1694485039; x=1726021039;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Us4juk9vLxwmBOxY65h/Q2t/xrSK6awx9pmmX3UUDWU=;
- b=U+XpxMHF/eIUHMK0Daf4s2nUigX7FdXfBwRtsu+WEg32nwG0c2yxevQZ
- un2vCZwHQtsINQsRVi9zQYAtC5AjcnX1tLAuuJJweaP53DIPOqzRwvw6E
- g5GEfZzHqviWAOYUmgOgz9lgPENS3EkZm1I614coZ/ujtdxk3ca47jVti
- wToYnVwrBI/bR0KZDvrU/p7aNvd2X49h/ntJSNljUfketf2mAxY9Ktfi8
- DnFNOPZoMwbkXCC+kaGrnTfeK9s/Lr5h8jqSA2k1IBRHbrcuARvnofLh5
- re54KHreXFAaUagwBQSBVmDplEOMLJ/ng8oqKaC0hbVsjlt4z/tu/0zCN g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="377172547"
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="377172547"
+ bh=IoOZzXMGH+WqJZOoqJK8+yG4nUFPLgpY/yidQ7923hM=;
+ b=hIvK6sBfYOrTMGpMDjQZ3kkJCOn5UT8qsJv63olYRjAI8CBieMqkqkrk
+ t3DDYIUVxRW1AqsLXr/mVd8AX8PtwLmMFSuuQJ+EQHuI0oCQiZHA5DNFk
+ TEfnBW3WaNrnODipfc6jDxh5LpoOrIbZT6nogv1slTwwZrijDB8/ZGq27
+ ZGstFKNF5IBDMVsjz5Al4DwRNoPdk0vnTTM+/feynSWd+o2Y/7Yt4Ek82
+ o5bK8bN1dRh8dZyrijd/vRlDgMs397gCWRbM5CF3IphNig6pz+QDFA4YE
+ d/JTfBkhRN3UZdcz8uutt2/Ua0nDEhTWCCBUBMptfdjcRJs06IEknYCvC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="377172503"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="377172503"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Sep 2023 19:16:04 -0700
+ 11 Sep 2023 19:16:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="917255572"
-X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="917255572"
+X-IronPort-AV: E=McAfee;i="6600,9927,10830"; a="917255556"
+X-IronPort-AV: E=Sophos;i="6.02,244,1688454000"; d="scan'208";a="917255556"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Sep 2023 19:16:03 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Date: Mon, 11 Sep 2023 19:16:08 -0700
-Message-Id: <20230912021615.2086698-7-matthew.brost@intel.com>
+Date: Mon, 11 Sep 2023 19:16:03 -0700
+Message-Id: <20230912021615.2086698-2-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230912021615.2086698-1-matthew.brost@intel.com>
 References: <20230912021615.2086698-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 06/13] drm/sched: Add generic scheduler
- message interface
+Subject: [Intel-xe] [PATCH v3 01/13] drm/sched: Add drm_sched_submit_*
+ helpers
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,264 +66,246 @@ Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add generic schedule message interface which sends messages to backend
-from the drm_gpu_scheduler main submission thread. The idea is some of
-these messages modify some state in drm_sched_entity which is also
-modified during submission. By scheduling these messages and submission
-in the same thread their is not race changing states in
-drm_sched_entity.
-
-This interface will be used in Xe, new Intel GPU driver, to cleanup,
-suspend, resume, and change scheduling properties of a drm_sched_entity.
-
-The interface is designed to be generic and extendable with only the
-backend understanding the messages.
-
-v2:
- - (Christian) We dedicated work item
+Add scheduler submit ready, stop, and start helpers to hide the
+implementation details of the scheduler from the drivers.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/scheduler/sched_main.c | 98 ++++++++++++++++++++++++++
- include/drm/gpu_scheduler.h            | 34 ++++++++-
- 2 files changed, 131 insertions(+), 1 deletion(-)
+ .../drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c   |  2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   | 15 +++----
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 12 +++---
+ drivers/gpu/drm/msm/adreno/adreno_device.c    |  6 ++-
+ drivers/gpu/drm/scheduler/sched_main.c        | 40 ++++++++++++++++++-
+ include/drm/gpu_scheduler.h                   |  3 ++
+ 6 files changed, 60 insertions(+), 18 deletions(-)
 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
+index 625db444df1c..36a1accbc846 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
+@@ -290,7 +290,7 @@ static int suspend_resume_compute_scheduler(struct amdgpu_device *adev, bool sus
+ 	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
+ 		struct amdgpu_ring *ring = &adev->gfx.compute_ring[i];
+ 
+-		if (!(ring && ring->sched.thread))
++		if (!(ring && drm_sched_submit_ready(&ring->sched)))
+ 			continue;
+ 
+ 		/* stop secheduler and drain ring. */
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+index a4faea4fa0b5..fb5dad687168 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
+@@ -1659,9 +1659,9 @@ static int amdgpu_debugfs_test_ib_show(struct seq_file *m, void *unused)
+ 	for (i = 0; i < AMDGPU_MAX_RINGS; i++) {
+ 		struct amdgpu_ring *ring = adev->rings[i];
+ 
+-		if (!ring || !ring->sched.thread)
++		if (!ring || !drm_sched_submit_ready(&ring->sched))
+ 			continue;
+-		kthread_park(ring->sched.thread);
++		drm_sched_submit_stop(&ring->sched);
+ 	}
+ 
+ 	seq_puts(m, "run ib test:\n");
+@@ -1675,9 +1675,9 @@ static int amdgpu_debugfs_test_ib_show(struct seq_file *m, void *unused)
+ 	for (i = 0; i < AMDGPU_MAX_RINGS; i++) {
+ 		struct amdgpu_ring *ring = adev->rings[i];
+ 
+-		if (!ring || !ring->sched.thread)
++		if (!ring || !drm_sched_submit_ready(&ring->sched))
+ 			continue;
+-		kthread_unpark(ring->sched.thread);
++		drm_sched_submit_start(&ring->sched);
+ 	}
+ 
+ 	up_write(&adev->reset_domain->sem);
+@@ -1897,7 +1897,8 @@ static int amdgpu_debugfs_ib_preempt(void *data, u64 val)
+ 
+ 	ring = adev->rings[val];
+ 
+-	if (!ring || !ring->funcs->preempt_ib || !ring->sched.thread)
++	if (!ring || !ring->funcs->preempt_ib ||
++	    !drm_sched_submit_ready(&ring->sched))
+ 		return -EINVAL;
+ 
+ 	/* the last preemption failed */
+@@ -1915,7 +1916,7 @@ static int amdgpu_debugfs_ib_preempt(void *data, u64 val)
+ 		goto pro_end;
+ 
+ 	/* stop the scheduler */
+-	kthread_park(ring->sched.thread);
++	drm_sched_submit_stop(&ring->sched);
+ 
+ 	/* preempt the IB */
+ 	r = amdgpu_ring_preempt_ib(ring);
+@@ -1949,7 +1950,7 @@ static int amdgpu_debugfs_ib_preempt(void *data, u64 val)
+ 
+ failure:
+ 	/* restart the scheduler */
+-	kthread_unpark(ring->sched.thread);
++	drm_sched_submit_start(&ring->sched);
+ 
+ 	up_read(&adev->reset_domain->sem);
+ 
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+index 3f001a50b34a..1f8a794704d0 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+@@ -4614,7 +4614,7 @@ bool amdgpu_device_has_job_running(struct amdgpu_device *adev)
+ 	for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
+ 		struct amdgpu_ring *ring = adev->rings[i];
+ 
+-		if (!ring || !ring->sched.thread)
++		if (!ring || !drm_sched_submit_ready(&ring->sched))
+ 			continue;
+ 
+ 		spin_lock(&ring->sched.job_list_lock);
+@@ -4753,7 +4753,7 @@ int amdgpu_device_pre_asic_reset(struct amdgpu_device *adev,
+ 	for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
+ 		struct amdgpu_ring *ring = adev->rings[i];
+ 
+-		if (!ring || !ring->sched.thread)
++		if (!ring || !drm_sched_submit_ready(&ring->sched))
+ 			continue;
+ 
+ 		/* Clear job fence from fence drv to avoid force_completion
+@@ -5292,7 +5292,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
+ 		for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
+ 			struct amdgpu_ring *ring = tmp_adev->rings[i];
+ 
+-			if (!ring || !ring->sched.thread)
++			if (!ring || !drm_sched_submit_ready(&ring->sched))
+ 				continue;
+ 
+ 			drm_sched_stop(&ring->sched, job ? &job->base : NULL);
+@@ -5367,7 +5367,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
+ 		for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
+ 			struct amdgpu_ring *ring = tmp_adev->rings[i];
+ 
+-			if (!ring || !ring->sched.thread)
++			if (!ring || !drm_sched_submit_ready(&ring->sched))
+ 				continue;
+ 
+ 			drm_sched_start(&ring->sched, true);
+@@ -5693,7 +5693,7 @@ pci_ers_result_t amdgpu_pci_error_detected(struct pci_dev *pdev, pci_channel_sta
+ 		for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
+ 			struct amdgpu_ring *ring = adev->rings[i];
+ 
+-			if (!ring || !ring->sched.thread)
++			if (!ring || !drm_sched_submit_ready(&ring->sched))
+ 				continue;
+ 
+ 			drm_sched_stop(&ring->sched, NULL);
+@@ -5821,7 +5821,7 @@ void amdgpu_pci_resume(struct pci_dev *pdev)
+ 	for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
+ 		struct amdgpu_ring *ring = adev->rings[i];
+ 
+-		if (!ring || !ring->sched.thread)
++		if (!ring || !drm_sched_submit_ready(&ring->sched))
+ 			continue;
+ 
+ 		drm_sched_start(&ring->sched, true);
+diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
+index fa527935ffd4..e046dc5ff72a 100644
+--- a/drivers/gpu/drm/msm/adreno/adreno_device.c
++++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
+@@ -809,7 +809,8 @@ static void suspend_scheduler(struct msm_gpu *gpu)
+ 	 */
+ 	for (i = 0; i < gpu->nr_rings; i++) {
+ 		struct drm_gpu_scheduler *sched = &gpu->rb[i]->sched;
+-		kthread_park(sched->thread);
++
++		drm_sched_submit_stop(sched);
+ 	}
+ }
+ 
+@@ -819,7 +820,8 @@ static void resume_scheduler(struct msm_gpu *gpu)
+ 
+ 	for (i = 0; i < gpu->nr_rings; i++) {
+ 		struct drm_gpu_scheduler *sched = &gpu->rb[i]->sched;
+-		kthread_unpark(sched->thread);
++
++		drm_sched_submit_start(sched);
+ 	}
+ }
+ 
 diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index d28b6751256e..13697f45bd7b 100644
+index 506371c42745..e4fa62abca41 100644
 --- a/drivers/gpu/drm/scheduler/sched_main.c
 +++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -340,6 +340,35 @@ static void drm_sched_free_job_queue_if_ready(struct drm_gpu_scheduler *sched)
- 	spin_unlock(&sched->job_list_lock);
- }
+@@ -439,7 +439,7 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
+ {
+ 	struct drm_sched_job *s_job, *tmp;
  
-+/**
-+ * drm_sched_process_msg_queue - queue process msg worker
-+ *
-+ * @sched: scheduler instance to queue process_msg worker
-+ */
-+static void drm_sched_process_msg_queue(struct drm_gpu_scheduler *sched)
-+{
-+	if (!READ_ONCE(sched->pause_submit))
-+		queue_work(sched->submit_wq, &sched->work_process_msg);
-+}
-+
-+/**
-+ * drm_sched_process_msg_queue_if_ready - queue process msg worker if ready
-+ *
-+ * @sched: scheduler instance to queue process_msg worker
-+ */
-+static void
-+drm_sched_process_msg_queue_if_ready(struct drm_gpu_scheduler *sched)
-+{
-+	struct drm_sched_msg *msg;
-+
-+	spin_lock(&sched->job_list_lock);
-+	msg = list_first_entry_or_null(&sched->msgs,
-+				       struct drm_sched_msg, link);
-+	if (msg)
-+		drm_sched_process_msg_queue(sched);
-+	spin_unlock(&sched->job_list_lock);
-+}
-+
- /**
-  * drm_sched_job_done - complete a job
-  * @s_job: pointer to the job which is done
-@@ -1078,6 +1107,71 @@ drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
- }
- EXPORT_SYMBOL(drm_sched_pick_best);
+-	kthread_park(sched->thread);
++	drm_sched_submit_stop(sched);
  
-+/**
-+ * drm_sched_add_msg - add scheduler message
-+ *
-+ * @sched: scheduler instance
-+ * @msg: message to be added
-+ *
-+ * Can and will pass an jobs waiting on dependencies or in a runnable queue.
-+ * Messages processing will stop if schedule run wq is stopped and resume when
-+ * run wq is started.
-+ */
-+void drm_sched_add_msg(struct drm_gpu_scheduler *sched,
-+		       struct drm_sched_msg *msg)
-+{
-+	spin_lock(&sched->job_list_lock);
-+	list_add_tail(&msg->link, &sched->msgs);
-+	spin_unlock(&sched->job_list_lock);
-+
-+	drm_sched_process_msg_queue(sched);
-+}
-+EXPORT_SYMBOL(drm_sched_add_msg);
+ 	/*
+ 	 * Reinsert back the bad job here - now it's safe as
+@@ -552,7 +552,7 @@ void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery)
+ 		spin_unlock(&sched->job_list_lock);
+ 	}
+ 
+-	kthread_unpark(sched->thread);
++	drm_sched_submit_start(sched);
+ }
+ EXPORT_SYMBOL(drm_sched_start);
+ 
+@@ -1206,3 +1206,39 @@ void drm_sched_increase_karma(struct drm_sched_job *bad)
+ 	}
+ }
+ EXPORT_SYMBOL(drm_sched_increase_karma);
 +
 +/**
-+ * drm_sched_get_msg - get scheduler message
++ * drm_sched_submit_ready - scheduler ready for submission
 + *
 + * @sched: scheduler instance
 + *
-+ * Returns NULL or message
++ * Returns true if submission is ready
 + */
-+static struct drm_sched_msg *
-+drm_sched_get_msg(struct drm_gpu_scheduler *sched)
++bool drm_sched_submit_ready(struct drm_gpu_scheduler *sched)
 +{
-+	struct drm_sched_msg *msg;
++	return !!sched->thread;
 +
-+	spin_lock(&sched->job_list_lock);
-+	msg = list_first_entry_or_null(&sched->msgs,
-+				       struct drm_sched_msg, link);
-+	if (msg)
-+		list_del(&msg->link);
-+	spin_unlock(&sched->job_list_lock);
-+
-+	return msg;
 +}
++EXPORT_SYMBOL(drm_sched_submit_ready);
 +
 +/**
-+ * drm_sched_process_msg_work - worker to call process_msg
++ * drm_sched_submit_stop - stop scheduler submission
 + *
-+ * @w: process msg work
++ * @sched: scheduler instance
 + */
-+static void drm_sched_process_msg_work(struct work_struct *w)
++void drm_sched_submit_stop(struct drm_gpu_scheduler *sched)
 +{
-+	struct drm_gpu_scheduler *sched =
-+		container_of(w, struct drm_gpu_scheduler, work_process_msg);
-+	struct drm_sched_msg *msg;
-+
-+	if (READ_ONCE(sched->pause_submit))
-+		return;
-+
-+	msg = drm_sched_get_msg(sched);
-+	if (msg) {
-+		sched->ops->process_msg(msg);
-+
-+		drm_sched_process_msg_queue_if_ready(sched);
-+	}
++	kthread_park(sched->thread);
 +}
++EXPORT_SYMBOL(drm_sched_submit_stop);
 +
- /**
-  * drm_sched_free_job_work - worker to call free_job
-  *
-@@ -1212,11 +1306,13 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
- 
- 	init_waitqueue_head(&sched->job_scheduled);
- 	INIT_LIST_HEAD(&sched->pending_list);
-+	INIT_LIST_HEAD(&sched->msgs);
- 	spin_lock_init(&sched->job_list_lock);
- 	atomic_set(&sched->hw_rq_count, 0);
- 	INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
- 	INIT_WORK(&sched->work_run_job, drm_sched_run_job_work);
- 	INIT_WORK(&sched->work_free_job, drm_sched_free_job_work);
-+	INIT_WORK(&sched->work_process_msg, drm_sched_process_msg_work);
- 	atomic_set(&sched->_score, 0);
- 	atomic64_set(&sched->job_id_count, 0);
- 	sched->pause_submit = false;
-@@ -1343,6 +1439,7 @@ void drm_sched_submit_stop(struct drm_gpu_scheduler *sched)
- 	WRITE_ONCE(sched->pause_submit, true);
- 	cancel_work_sync(&sched->work_run_job);
- 	cancel_work_sync(&sched->work_free_job);
-+	cancel_work_sync(&sched->work_process_msg);
- }
- EXPORT_SYMBOL(drm_sched_submit_stop);
- 
-@@ -1356,5 +1453,6 @@ void drm_sched_submit_start(struct drm_gpu_scheduler *sched)
- 	WRITE_ONCE(sched->pause_submit, false);
- 	queue_work(sched->submit_wq, &sched->work_run_job);
- 	queue_work(sched->submit_wq, &sched->work_free_job);
-+	queue_work(sched->submit_wq, &sched->work_process_msg);
- }
- EXPORT_SYMBOL(drm_sched_submit_start);
++/**
++ * drm_sched_submit_start - start scheduler submission
++ *
++ * @sched: scheduler instance
++ */
++void drm_sched_submit_start(struct drm_gpu_scheduler *sched)
++{
++	kthread_unpark(sched->thread);
++}
++EXPORT_SYMBOL(drm_sched_submit_start);
 diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index fbc083a92757..5d753ecb5d71 100644
+index f9544d9b670d..f12c5aea5294 100644
 --- a/include/drm/gpu_scheduler.h
 +++ b/include/drm/gpu_scheduler.h
-@@ -394,6 +394,23 @@ enum drm_gpu_sched_stat {
- 	DRM_GPU_SCHED_STAT_ENODEV,
- };
- 
-+/**
-+ * struct drm_sched_msg - an in-band (relative to GPU scheduler run queue)
-+ * message
-+ *
-+ * Generic enough for backend defined messages, backend can expand if needed.
-+ */
-+struct drm_sched_msg {
-+	/** @link: list link into the gpu scheduler list of messages */
-+	struct list_head		link;
-+	/**
-+	 * @private_data: opaque pointer to message private data (backend defined)
-+	 */
-+	void				*private_data;
-+	/** @opcode: opcode of message (backend defined) */
-+	unsigned int			opcode;
-+};
-+
- /**
-  * struct drm_sched_backend_ops - Define the backend operations
-  *	called by the scheduler
-@@ -471,6 +488,12 @@ struct drm_sched_backend_ops {
-          * and it's time to clean it up.
- 	 */
- 	void (*free_job)(struct drm_sched_job *sched_job);
-+
-+	/**
-+	 * @process_msg: Process a message. Allowed to block, it is this
-+	 * function's responsibility to free message if dynamically allocated.
-+	 */
-+	void (*process_msg)(struct drm_sched_msg *msg);
- };
- 
- /**
-@@ -482,15 +505,18 @@ struct drm_sched_backend_ops {
-  * @timeout: the time after which a job is removed from the scheduler.
-  * @name: name of the ring for which this scheduler is being used.
-  * @sched_rq: priority wise array of run queues.
-+ * @msgs: list of messages to be processed in @work_process_msg
-  * @job_scheduled: once @drm_sched_entity_do_release is called the scheduler
-  *                 waits on this wait queue until all the scheduled jobs are
-  *                 finished.
-  * @hw_rq_count: the number of jobs currently in the hardware queue.
-  * @job_id_count: used to assign unique id to the each job.
-- * @submit_wq: workqueue used to queue @work_run_job and @work_free_job
-+ * @submit_wq: workqueue used to queue @work_run_job, @work_free_job, and
-+ *             @work_process_msg
-  * @timeout_wq: workqueue used to queue @work_tdr
-  * @work_run_job: schedules jobs
-  * @work_free_job: cleans up jobs
-+ * @work_process_msg: processes messages
-  * @work_tdr: schedules a delayed call to @drm_sched_job_timedout after the
-  *            timeout interval is over.
-  * @pending_list: the list of jobs which are currently in the job queue.
-@@ -502,6 +528,8 @@ struct drm_sched_backend_ops {
-  * @sched_policy: Schedule policy for scheduler
-  * @ready: marks if the underlying HW is ready to work
-  * @free_guilty: A hit to time out handler to free the guilty job.
-+ * @pause_submit: pause queuing of @work_run_job, @work_free_job, and
-+ *                @work_process_msg on @submit_wq
-  * @pause_submit: pause queuing of @work_submit on @submit_wq
-  * @dev: system &struct device
-  *
-@@ -514,6 +542,7 @@ struct drm_gpu_scheduler {
- 	long				timeout;
- 	const char			*name;
- 	struct drm_sched_rq		sched_rq[DRM_SCHED_PRIORITY_COUNT];
-+	struct list_head		msgs;
- 	wait_queue_head_t		job_scheduled;
- 	atomic_t			hw_rq_count;
- 	atomic64_t			job_id_count;
-@@ -521,6 +550,7 @@ struct drm_gpu_scheduler {
- 	struct workqueue_struct		*timeout_wq;
- 	struct work_struct		work_run_job;
- 	struct work_struct		work_free_job;
-+	struct work_struct		work_process_msg;
- 	struct delayed_work		work_tdr;
- 	struct list_head		pending_list;
- 	spinlock_t			job_list_lock;
-@@ -568,6 +598,8 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
+@@ -550,6 +550,9 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
  
  void drm_sched_job_cleanup(struct drm_sched_job *job);
  void drm_sched_wakeup_if_can_queue(struct drm_gpu_scheduler *sched);
-+void drm_sched_add_msg(struct drm_gpu_scheduler *sched,
-+		       struct drm_sched_msg *msg);
- bool drm_sched_submit_ready(struct drm_gpu_scheduler *sched);
- void drm_sched_submit_stop(struct drm_gpu_scheduler *sched);
- void drm_sched_submit_start(struct drm_gpu_scheduler *sched);
++bool drm_sched_submit_ready(struct drm_gpu_scheduler *sched);
++void drm_sched_submit_stop(struct drm_gpu_scheduler *sched);
++void drm_sched_submit_start(struct drm_gpu_scheduler *sched);
+ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad);
+ void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery);
+ void drm_sched_resubmit_jobs(struct drm_gpu_scheduler *sched);
 -- 
 2.34.1
 
