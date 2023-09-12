@@ -4,50 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 345A8CA0ED3
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 13:13:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E362CCA0EC3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 13:18:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E78C910E419;
-	Tue, 12 Sep 2023 13:13:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD32410E22F;
+	Tue, 12 Sep 2023 13:18:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E64F610E419
- for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 13:13:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D755010E22F
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 13:18:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694524402; x=1726060402;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=I849JyADgwOcl+HG+SklpbtTKTR89WyZMLdhnLssDt8=;
- b=EzSfK5iL6n2OLvcYukKr/lOK1DQEnqJ3Plbc8/nVRMXl1zDOPYWcFsXZ
- 01+DeQLYMfYb34jAbWXXSbjGbEvm5oQDfcJvKe91/mVMoxIflLyEayOt4
- rIVHCMQAtTG753tnNGn3zjtT8CwMfy9PAFdnv6EEGODc+Gdup+G3iQi7m
- rKlL4tDL8PzXmGdKLq7OOV5aHQepWOxaU4FioMnXZz0KNbs6S9hx0bzKp
- 9SByBzAk3bBslyqujILl3PFZ5EeyyCxucMq4vJ0oalHRXfwMjRlE6SieO
- O60ZJ0GjTNEo2D45+FG0flxASp4O+WsWFFiiHjB4ArMlFnNZc77g8AB0F Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="464740129"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="464740129"
+ t=1694524710; x=1726060710;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=B2O8+8zZPBYfT0OLQRp8OPHDNDNsaWTjS5K99MOXi80=;
+ b=Wsq1iFe4Z2eZHQ9gvYtSglPkWxzbOoJVoa3wn+pNMhhWoXKqWhtgseCN
+ KV7aMGxEEvnuKykiTTtSVYg3lO6S5ZyZfHF0zE/o093Ne4uhAs6QD7YGq
+ 2n6Qg90LeWH4ZBzBfipSAIF4Ruk29XfSa9RdOEg3f5qQMlEdnOtraT5XO
+ 9Lq8qxp+aYP1sf5zak6xhVesuM9vE9IsGaq8aP8ICf17/X7Is9cZfrOAY
+ TikZWIPHBknUMl32sm9IRq2ybLW84oXh6pzZQj/fHUGVt4BN6CO0usyF5
+ IsHJaxv1b0b1mNJxoVNyt6RxyUd2z6vM+2eZ5aGLbofzQYb4MIQOI2Otz Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="464741551"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="464741551"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 06:13:21 -0700
+ 12 Sep 2023 06:18:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="737116353"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="737116353"
-Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 06:13:18 -0700
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Tue, 12 Sep 2023 16:08:34 +0300
-Message-Id: <20230912130835.2488728-4-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230912130835.2488728-1-alexander.usyskin@intel.com>
-References: <20230912130835.2488728-1-alexander.usyskin@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="737117840"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="737117840"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orsmga007.jf.intel.com with ESMTP; 12 Sep 2023 06:18:26 -0700
+Received: from [10.249.142.144] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.142.144])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 6244F332B6;
+ Tue, 12 Sep 2023 14:18:25 +0100 (IST)
+Message-ID: <b9a8df25-d070-9339-fdb7-2b4cd9d66fb3@intel.com>
+Date: Tue, 12 Sep 2023 15:18:23 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.15.0
+Content-Language: en-US
+To: Jani Nikula <jani.nikula@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230912083635.7-1-francois.dugast@intel.com>
+ <20230912083635.7-3-francois.dugast@intel.com> <87pm2nd3p1.fsf@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <87pm2nd3p1.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/4] drm/xe/gsc: add gsc device support
+Subject: Re: [Intel-xe] [PATCH v4 2/3] drm/xe: Introduce Xe assert macros
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,408 +64,291 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Tomas Winkler <tomas.winkler@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Vitaly Lubart <vitaly.lubart@intel.com>
 
-Create mei-gscfi auxiliary device and configure interrupts
-to be consumed by mei-gsc device driver.
 
-Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
- drivers/gpu/drm/xe/Kconfig       |   1 +
- drivers/gpu/drm/xe/Makefile      |   1 +
- drivers/gpu/drm/xe/xe_gt.c       |   4 +
- drivers/gpu/drm/xe/xe_gt_gsc.c   | 218 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_gsc.h   |  36 +++++
- drivers/gpu/drm/xe/xe_gt_types.h |   4 +
- drivers/gpu/drm/xe/xe_irq.c      |  11 +-
- 7 files changed, 273 insertions(+), 2 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_gsc.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_gsc.h
+On 12.09.2023 13:35, Jani Nikula wrote:
+> On Tue, 12 Sep 2023, Francois Dugast <francois.dugast@intel.com> wrote:
+>> From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>
+>> As we are moving away from the controversial XE_BUG_ON macro,
+>> relying just on WARN_ON or drm_err does not cover the cases
+>> where we want to annotate functions with additional detailed
+>> debug checks to assert that all prerequisites are satisfied,
+>> without paying footprint or performance penalty on non-debug
+>> builds, where all misuses introduced during code integration
+>> were already fixed.
+>>
+>> Introduce family of Xe assert macros that try to follow classic
+>> assert() utility and can be compiled out on non-debug builds.
+>>
+>> Macros are based on drm_WARN, but unlikely to origin, disallow
+>> use in expressions since we will compile that code out.
+>>
+>> As we are operating on the xe pointers, we can print additional
+>> information about the device, like tile or GT identifier, that
+>> is not available from generic WARN report:
+>>
+>> [ ] xe 0000:00:02.0: [drm] Assertion `true == false` failed!
+>>     platform: 1 subplatform: 1
+>>     graphics: Xe_LP 12.00 step B0
+>>     media: Xe_M 12.00 step B0
+>>     display: enabled step D0
+>>     tile: 0 VRAM 0 B
+>>     GT: 0 type 1
+>>
+>> [ ] xe 0000:b3:00.0: [drm] Assertion `true == false` failed!
+>>     platform: 7 subplatform: 3
+>>     graphics: Xe_HPG 12.55 step A1
+>>     media: Xe_HPM 12.55 step A1
+>>     display: disabled step **
+>>     tile: 0 VRAM 14.0 GiB
+>>     GT: 0 type 1
+>>
+>> [ ] WARNING: CPU: 0 PID: 2687 at drivers/gpu/drm/xe/xe_device.c:281 xe_device_probe+0x374/0x520 [xe]
+>> [ ] RIP: 0010:xe_device_probe+0x374/0x520 [xe]
+>> [ ] Call Trace:
+>> [ ]  ? __warn+0x7b/0x160
+>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>> [ ]  ? report_bug+0x1c3/0x1d0
+>> [ ]  ? handle_bug+0x42/0x70
+>> [ ]  ? exc_invalid_op+0x14/0x70
+>> [ ]  ? asm_exc_invalid_op+0x16/0x20
+>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>> [ ]  ? xe_device_probe+0x374/0x520 [xe]
+>> [ ]  xe_pci_probe+0x6e3/0x950 [xe]
+>> [ ]  ? lockdep_hardirqs_on+0xc7/0x140
+>> [ ]  pci_device_probe+0x9e/0x160
+>> [ ]  really_probe+0x19d/0x400
+>>
+>> v2: use lowercase names
+>> v3: apply xe coding style
+>>
+>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> Cc: Oded Gabbay <ogabbay@kernel.org>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>> Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_assert.h | 177 +++++++++++++++++++++++++++++++++
+>>  1 file changed, 177 insertions(+)
+>>  create mode 100644 drivers/gpu/drm/xe/xe_assert.h
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_assert.h b/drivers/gpu/drm/xe/xe_assert.h
+>> new file mode 100644
+>> index 000000000000..b2d3c9b82b31
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_assert.h
+>> @@ -0,0 +1,177 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_ASSERT_H_
+>> +#define _XE_ASSERT_H_
+>> +
+>> +#include <linux/string_helpers.h>
+>> +
+>> +#include <drm/drm_print.h>
+>> +
+>> +#include "xe_device_types.h"
+>> +#include "xe_step.h"
+>> +
+>> +/**
+>> + * DOC: Xe ASSERTs
+>> + *
+>> + * While Xe driver aims to be simpler than legacy i915 driver it is still
+>> + * complex enough that some changes introduced while adding new functionality
+>> + * could break the existing code.
+>> + *
+>> + * Adding &drm_WARN or &drm_err to catch unwanted programming usage could lead
+>> + * to undesired increased driver footprint and may impact production driver
+>> + * performance as this additional code will be always present.
+>> + *
+>> + * To allow annotate functions with additional detailed debug checks to assert
+>> + * that all prerequisites are satisfied, without worrying about footprint or
+>> + * performance penalty on production builds where all potential misuses
+>> + * introduced during code integration were already fixed, we introduce family
+>> + * of Xe assert macros that try to follow classic assert() utility:
+>> + *
+>> + *  * &xe_assert
+>> + *  * &xe_tile_assert
+>> + *  * &xe_gt_assert
+>> + *
+>> + * These macros are implemented on top of &drm_WARN, but unlikely to the origin,
+>> + * warning is triggered when provided condition is false. Additionally all above
+>> + * assert macros cannot be used in expressions or as a condition, since
+>> + * underlying code will be compiled out on non-debug builds.
+>> + *
+>> + * Note that these macros are not intended for use to cover known gaps in the
+>> + * implementation; for such cases use regular &drm_WARN or &drm_err and provide
+>> + * valid safe fallback.
+>> + *
+>> + * Also in cases where performance or footprint is not an issue, developers
+>> + * should continue to use the regular &drm_WARN or &drm_err to ensure that bug
+>> + * reports from production builds will contain meagningful diagnostics data.
+>> + *
+>> + * Below code shows how asserts could help in debug to catch unplanned use::
+>> + *
+>> + *	static void one_igfx(struct xe_device *xe)
+>> + *	{
+>> + *		xe_assert(xe, xe->info.is_dgfx == false);
+>> + *		xe_assert(xe, xe->info.tile_count == 1);
+>> + *	}
+>> + *
+>> + *	static void two_dgfx(struct xe_device *xe)
+>> + *	{
+>> + *		xe_assert(xe, xe->info.is_dgfx);
+>> + *		xe_assert(xe, xe->info.tile_count == 2);
+>> + *	}
+>> + *
+>> + *	void foo(struct xe_device *xe)
+>> + *	{
+>> + *		if (xe->info.dgfx)
+>> + *			return two_dgfx(xe);
+>> + *		return one_igfx(xe);
+>> + *	}
+>> + *
+>> + *	void bar(struct xe_device *xe)
+>> + *	{
+>> + *		if (drm_WARN_ON(xe->drm, xe->info.tile_count > 2))
+>> + *			return;
+>> + *
+>> + *		if (xe->info.tile_count == 2)
+>> + *			return two_dgfx(xe);
+>> + *		return one_igfx(xe);
+>> + *	}
+>> + */
+>> +
+>> +#if IS_ENABLED(CONFIG_DRM_XE_DEBUG)
+>> +#define __xe_assert_msg(xe, condition, msg, arg...) ({						\
+>> +	(void)drm_WARN(&(xe)->drm, !(condition), "[" DRM_NAME "] Assertion `%s` failed!\n" msg,	\
+>> +		       __stringify(condition), ## arg);						\
+>> +})
+>> +#else
+>> +#define __xe_assert_msg(xe, condition, msg, arg...) ({						\
+>> +	typecheck(struct xe_device *, xe);							\
+>> +	BUILD_BUG_ON_INVALID(condition);							\
+>> +})
+>> +#endif
+>> +
+>> +/**
+>> + * xe_assert - warn if condition is false when debugging.
+>> + * @xe: the &struct xe_device pointer to which &condition applies
+>> + * @condition: condition to check
+>> + *
+>> + * xe_assert() uses &drm_WARN to emit a warning and print additional information
+>> + * that could be read from the &xe pointer if provided &condition is false.
+>> + *
+>> + * Contrary to &drm_WARN, xe_assert() is effective only on debug builds
+>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
+>> + * or as a condition.
+>> + *
+>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>> + */
+>> +#define xe_assert(xe, condition) xe_assert_msg((xe), condition, "")
+>> +#define xe_assert_msg(xe, condition, msg, arg...) ({						\
+>> +	struct xe_device *__xe = (xe);								\
+>> +	__xe_assert_msg(__xe, condition,							\
+>> +			"platform: %d subplatform: %d\n"					\
+>> +			"graphics: %s %u.%02u step %s\n"					\
+>> +			"media: %s %u.%02u step %s\n"						\
+>> +			"display: %s step %s\n"							\
+>> +			msg,									\
+>> +			__xe->info.platform, __xe->info.subplatform,				\
+>> +			__xe->info.graphics_name,						\
+>> +			__xe->info.graphics_verx100 / 100,					\
+>> +			__xe->info.graphics_verx100 % 100,					\
+>> +			xe_step_name(__xe->info.step.graphics),					\
+>> +			__xe->info.media_name,							\
+>> +			__xe->info.media_verx100 / 100,						\
+>> +			__xe->info.media_verx100 % 100,						\
+>> +			xe_step_name(__xe->info.step.media),					\
+>> +			str_enabled_disabled(__xe->info.enable_display),			\
+>> +			xe_step_name(__xe->info.step.display),					\
+>> +			## arg);								\
+>> +})
+> 
+> I guess I have missed this huge splat all along... Why is it necessary?
+> If you print the device id, all the information should be there already,
+> right?
 
-diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
-index 0a4ea965645b..9d396ca7708a 100644
---- a/drivers/gpu/drm/xe/Kconfig
-+++ b/drivers/gpu/drm/xe/Kconfig
-@@ -36,6 +36,7 @@ config DRM_XE
- 	select DRM_SCHED
- 	select MMU_NOTIFIER
- 	select WANT_DEV_COREDUMP
-+	select AUXILIARY_BUS
- 	help
- 	  Experimental driver for Intel Xe series GPUs
- 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 9a2245ffede2..9ba9389a2cfd 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -65,6 +65,7 @@ xe-y += xe_bb.o \
- 	xe_gt_sysfs.o \
- 	xe_gt_tlb_invalidation.o \
- 	xe_gt_topology.o \
-+	xe_gt_gsc.o \
- 	xe_guc.o \
- 	xe_guc_ads.o \
- 	xe_guc_ct.o \
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 4c7f66647a04..f373c139e1a1 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -76,6 +76,8 @@ static void gt_fini(struct drm_device *drm, void *arg)
- 
- 	destroy_workqueue(gt->ordered_wq);
- 
-+	xe_gsc_fini(&gt->gsc);
-+
- 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
- 		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
- }
-@@ -460,6 +462,8 @@ int xe_gt_init(struct xe_gt *gt)
- 	if (err)
- 		return err;
- 
-+	xe_gsc_init(&gt->gsc, gt_to_xe(gt));
-+
- 	err = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_gt_gsc.c b/drivers/gpu/drm/xe/xe_gt_gsc.c
-new file mode 100644
-index 000000000000..ed825c883da7
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_gsc.c
-@@ -0,0 +1,218 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright(c) 2023, Intel Corporation. All rights reserved.
-+ */
-+
-+#include <linux/irq.h>
-+#include <linux/mei_aux.h>
-+#include <linux/pci.h>
-+#include <linux/sizes.h>
-+
-+#include "regs/xe_regs.h"
-+#include "xe_drv.h"
-+#include "xe_gt_gsc.h"
-+#include "xe_gt_types.h"
-+#include "xe_device_types.h"
-+#include "xe_platform_types.h"
-+
-+#define GSC_BAR_LENGTH  0x00000FFC
-+
-+static void gsc_irq_mask(struct irq_data *d)
-+{
-+	/* generic irq handling */
-+}
-+
-+static void gsc_irq_unmask(struct irq_data *d)
-+{
-+	/* generic irq handling */
-+}
-+
-+static struct irq_chip gsc_irq_chip = {
-+	.name = "gsc_irq_chip",
-+	.irq_mask = gsc_irq_mask,
-+	.irq_unmask = gsc_irq_unmask,
-+};
-+
-+static inline struct xe_gt *gsc_to_gt(struct xe_gsc *gsc)
-+{
-+	return container_of(gsc, struct xe_gt, gsc);
-+}
-+
-+static int gsc_irq_init(int irq)
-+{
-+	irq_set_chip_and_handler_name(irq, &gsc_irq_chip,
-+				      handle_simple_irq, "gsc_irq_handler");
-+
-+	return irq_set_chip_data(irq, NULL);
-+}
-+
-+/**
-+ * struct gsc_def - graphics security controller heci interface definistions
-+ *
-+ * @name: name of the heci device
-+ * @bar: address of the mmio bar
-+ * @bar_size: size of the mmio bar
-+ * @use_polling: indication of using polling mode for the device
-+ * @slow_firmware: indication of whether the device is slow (needs longer timeouts)
-+ */
-+struct gsc_def {
-+	const char *name;
-+	unsigned long bar;
-+	size_t bar_size;
-+	bool use_polling;
-+	bool slow_firmware;
-+};
-+
-+/* gsc resources and definitions */
-+static const struct gsc_def gsc_def_dg1 = {
-+	.name = "mei-gscfi",
-+	.bar = DG1_GSC_HECI2_BASE,
-+	.bar_size = GSC_BAR_LENGTH,
-+};
-+
-+static const struct gsc_def gsc_def_dg2 = {
-+	.name = "mei-gscfi",
-+	.bar = DG2_GSC_HECI2_BASE,
-+	.bar_size = GSC_BAR_LENGTH,
-+};
-+
-+static void gsc_release_dev(struct device *dev)
-+{
-+	struct auxiliary_device *aux_dev = to_auxiliary_dev(dev);
-+	struct mei_aux_device *adev = auxiliary_dev_to_mei_aux_dev(aux_dev);
-+
-+	kfree(adev);
-+}
-+
-+void xe_gsc_fini(struct xe_gsc *gsc)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+
-+	if (!HAS_HECI_GSCFI(gt_to_xe(gt)))
-+		return;
-+
-+	if (gsc->adev) {
-+		struct auxiliary_device *aux_dev = &gsc->adev->aux_dev;
-+
-+		auxiliary_device_delete(aux_dev);
-+		auxiliary_device_uninit(aux_dev);
-+		gsc->adev = NULL;
-+	}
-+
-+	if (gsc->irq >= 0)
-+		irq_free_desc(gsc->irq);
-+	gsc->irq = -1;
-+}
-+
-+void xe_gsc_init(struct xe_gsc *gsc, struct xe_device *xe)
-+{
-+	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
-+	struct mei_aux_device *adev;
-+	struct auxiliary_device *aux_dev;
-+	const struct gsc_def *def;
-+	int ret;
-+
-+	if (!HAS_HECI_GSCFI(xe))
-+		return;
-+
-+	gsc->irq = -1;
-+
-+	/*
-+	 * On the multi-tile setups the GSC is functional on the first tile only
-+	 */
-+	if (gsc_to_gt(gsc)->info.id != 0) {
-+		drm_dbg(&xe->drm, "Not initializing gsc for remote tiles\n");
-+		return;
-+	}
-+
-+	if (xe->info.platform == XE_DG1) {
-+		def = &gsc_def_dg1;
-+	} else if (xe->info.platform == XE_DG2) {
-+		def = &gsc_def_dg2;
-+	} else {
-+		drm_warn_once(&xe->drm, "Unknown platform\n");
-+		return;
-+	}
-+
-+	if (!def->name) {
-+		drm_warn_once(&xe->drm, "HECI is not implemented!\n");
-+		return;
-+	}
-+
-+	/* skip irq initialization */
-+	if (def->use_polling)
-+		goto add_device;
-+
-+	gsc->irq = irq_alloc_desc(0);
-+	if (gsc->irq < 0) {
-+		drm_err(&xe->drm, "gsc irq error %d\n", gsc->irq);
-+		goto fail;
-+	}
-+
-+	ret = gsc_irq_init(gsc->irq);
-+	if (ret < 0) {
-+		drm_err(&xe->drm, "gsc irq init failed %d\n", ret);
-+		goto fail;
-+	}
-+
-+add_device:
-+	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
-+	if (!adev)
-+		goto fail;
-+	adev->irq = gsc->irq;
-+	adev->bar.parent = &pdev->resource[0];
-+	adev->bar.start = def->bar + pdev->resource[0].start;
-+	adev->bar.end = adev->bar.start + def->bar_size - 1;
-+	adev->bar.flags = IORESOURCE_MEM;
-+	adev->bar.desc = IORES_DESC_NONE;
-+	adev->slow_firmware = def->slow_firmware;
-+
-+	aux_dev = &adev->aux_dev;
-+	aux_dev->name = def->name;
-+	aux_dev->id = (pci_domain_nr(pdev->bus) << 16) |
-+		      PCI_DEVID(pdev->bus->number, pdev->devfn);
-+	aux_dev->dev.parent = &pdev->dev;
-+	aux_dev->dev.release = gsc_release_dev;
-+
-+	ret = auxiliary_device_init(aux_dev);
-+	if (ret < 0) {
-+		drm_err(&xe->drm, "gsc aux init failed %d\n", ret);
-+		kfree(adev);
-+		goto fail;
-+	}
-+
-+	gsc->adev = adev; /* needed by the notifier */
-+	ret = auxiliary_device_add(aux_dev);
-+	if (ret < 0) {
-+		drm_err(&xe->drm, "gsc aux add failed %d\n", ret);
-+		gsc->adev = NULL;
-+
-+		/* adev will be freed with the put_device() and .release sequence */
-+		auxiliary_device_uninit(aux_dev);
-+		goto fail;
-+	}
-+
-+	return;
-+fail:
-+	xe_gsc_fini(gsc);
-+}
-+
-+void xe_gsc_irq_handler(struct xe_gt *gt, u32 iir)
-+{
-+	int ret;
-+
-+	if ((iir & GSC_IRQ_INTF(1)) == 0)
-+		return;
-+
-+	if (!HAS_HECI_GSCFI(gt_to_xe(gt))) {
-+		drm_warn_once(&gt_to_xe(gt)->drm, "GSC irq: not supported");
-+		return;
-+	}
-+
-+	if (gt->gsc.irq < 0)
-+		return;
-+
-+	ret = generic_handle_irq(gt->gsc.irq);
-+	if (ret)
-+		drm_err_ratelimited(&gt_to_xe(gt)->drm, "error handling GSC irq: %d\n", ret);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_gsc.h b/drivers/gpu/drm/xe/xe_gt_gsc.h
-new file mode 100644
-index 000000000000..91dba19e47c1
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_gt_gsc.h
-@@ -0,0 +1,36 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright(c) 2023, Intel Corporation. All rights reserved.
-+ */
-+#ifndef __XE_GSC_DEV_H__
-+#define __XE_GSC_DEV_H__
-+
-+#include <linux/types.h>
-+
-+struct xe_device;
-+struct xe_gt;
-+struct mei_aux_device;
-+
-+/*
-+ * The HECI1 bit corresponds to bit15 and HECI2 to bit14.
-+ * The reason for this is to allow growth for more interfaces in the future.
-+ */
-+#define GSC_IRQ_INTF(_x)  BIT(15 - (_x))
-+
-+/**
-+ * struct xe_gsc - graphics security controller for xe
-+ *
-+ * @adev : pointer to mei auxiliary device structure
-+ * @irq : irq number
-+ *
-+ */
-+struct xe_gsc {
-+	struct mei_aux_device *adev;
-+	int irq;
-+};
-+
-+void xe_gsc_init(struct xe_gsc *gsc, struct xe_device *xe);
-+void xe_gsc_fini(struct xe_gsc *gsc);
-+void xe_gsc_irq_handler(struct xe_gt *gt, u32 iir);
-+
-+#endif /* __XE_GSC_DEV_H__ */
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index f11da12d3146..1b8ab32b488d 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -13,6 +13,7 @@
- #include "xe_reg_sr_types.h"
- #include "xe_sa_types.h"
- #include "xe_uc_types.h"
-+#include "xe_gt_gsc.h"
- 
- struct xe_exec_queue_ops;
- struct xe_migrate;
-@@ -267,6 +268,9 @@ struct xe_gt {
- 	/** @uc: micro controllers on the GT */
- 	struct xe_uc uc;
- 
-+	/** @gsc: graphics security controller */
-+	struct xe_gsc gsc;
-+
- 	/** @gtidle: idle properties of GT */
- 	struct xe_gt_idle gtidle;
- 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 1dee3e832eb5..1ae4cc9f1522 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -128,6 +128,7 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u32 ccs_mask, bcs_mask;
- 	u32 irqs, dmask, smask;
-+	u32 gsc_mask = GSC_IRQ_INTF(1);
- 
- 	if (xe_device_guc_submission_enabled(xe)) {
- 		irqs = GT_RENDER_USER_INTERRUPT |
-@@ -180,6 +181,9 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
- 		if (xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_OTHER)) {
- 			xe_mmio_write32(gt, GUNIT_GSC_INTR_ENABLE, irqs);
- 			xe_mmio_write32(gt, GUNIT_GSC_INTR_MASK, ~irqs);
-+		} else if (HAS_HECI_GSCFI(xe)) {
-+			xe_mmio_write32(gt, GUNIT_GSC_INTR_ENABLE, gsc_mask);
-+			xe_mmio_write32(gt, GUNIT_GSC_INTR_MASK, ~gsc_mask);
- 		}
- 	}
- }
-@@ -227,6 +231,8 @@ gt_other_irq_handler(struct xe_gt *gt, const u8 instance, const u16 iir)
- 		return xe_guc_irq_handler(&gt->uc.guc, iir);
- 	if (instance == OTHER_MEDIA_GUC_INSTANCE && xe_gt_is_media_type(gt))
- 		return xe_guc_irq_handler(&gt->uc.guc, iir);
-+	if (instance == OTHER_GSC_INSTANCE)
-+		return xe_gsc_irq_handler(gt, iir);
- 
- 	if (instance != OTHER_GUC_INSTANCE &&
- 	    instance != OTHER_MEDIA_GUC_INSTANCE) {
-@@ -470,8 +476,9 @@ static void gt_irq_reset(struct xe_tile *tile)
- 	if (ccs_mask & (BIT(2)|BIT(3)))
- 		xe_mmio_write32(mmio,  CCS2_CCS3_INTR_MASK, ~0);
- 
--	if (tile->media_gt &&
--	    xe_hw_engine_mask_per_class(tile->media_gt, XE_ENGINE_CLASS_OTHER)) {
-+	if ((tile->media_gt &&
-+	     xe_hw_engine_mask_per_class(tile->media_gt, XE_ENGINE_CLASS_OTHER)) ||
-+	    HAS_HECI_GSCFI(tile_to_xe(tile))) {
- 		xe_mmio_write32(mmio, GUNIT_GSC_INTR_ENABLE, 0);
- 		xe_mmio_write32(mmio, GUNIT_GSC_INTR_MASK, ~0);
- 	}
--- 
-2.34.1
+somewhere in the dmesg (if someone/CI was clever enough) maybe yes
 
+but in bug reports usually only the WARN is included, so exposing some
+basic info here for quicker triage
+
+> 
+> This also makes it impossible to use xe_assert() with a NULL xe device
+> pointer in contexts where you don't have the device available.
+
+there was no such requirement (but we can add that if needed)
+
+note that code is based on drm_WARN() which also doesn't work with NULL
+
+Michal
+
+> 
+> BR,
+> Jani.
+> 
+> 
+>> +
+>> +/**
+>> + * xe_tile_assert - warn if condition is false when debugging.
+>> + * @tile: the &struct xe_tile pointer to which &condition applies
+>> + * @condition: condition to check
+>> + *
+>> + * xe_tile_assert() uses &drm_WARN to emit a warning and print additional
+>> + * information that could be read from the &tile pointer if provided &condition
+>> + * is false.
+>> + *
+>> + * Contrary to &drm_WARN, xe_tile_assert() is effective only on debug builds
+>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
+>> + * or as a condition.
+>> + *
+>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>> + */
+>> +#define xe_tile_assert(tile, condition) xe_tile_assert_msg((tile), condition, "")
+>> +#define xe_tile_assert_msg(tile, condition, msg, arg...) ({					\
+>> +	struct xe_tile *__tile = (tile);							\
+>> +	char __buf[10];										\
+>> +	xe_assert_msg(tile_to_xe(__tile), condition, "tile: %u VRAM %s\n" msg,			\
+>> +		      __tile->id, ({ string_get_size(__tile->mem.vram.actual_physical_size, 1,	\
+>> +				     STRING_UNITS_2, __buf, sizeof(__buf)); __buf; }), ## arg);	\
+>> +})
+>> +
+>> +/**
+>> + * xe_gt_assert - warn if condition is false when debugging.
+>> + * @gt: the &struct xe_gt pointer to which &condition applies
+>> + * @condition: condition to check
+>> + *
+>> + * xe_gt_assert() uses &drm_WARN to emit a warning and print additional
+>> + * information that could be safetely read from the &gt pointer if provided
+>> + * &condition is false.
+>> + *
+>> + * Contrary to &drm_WARN, xe_gt_assert() is effective only on debug builds
+>> + * (&CONFIG_DRM_XE_DEBUG must be enabled) and cannot be used in expressions
+>> + * or as a condition.
+>> + *
+>> + * See `Xe ASSERTs`_ for general usage guidelines.
+>> + */
+>> +#define xe_gt_assert(gt, condition) xe_gt_assert_msg((gt), condition, "")
+>> +#define xe_gt_assert_msg(gt, condition, msg, arg...) ({						\
+>> +	struct xe_gt *__gt = (gt);								\
+>> +	xe_tile_assert_msg(gt_to_tile(__gt), condition, "GT: %u type %d\n" msg,			\
+>> +			   __gt->info.id, __gt->info.type, ## arg);				\
+>> +})
+>> +
+>> +#endif
+> 
