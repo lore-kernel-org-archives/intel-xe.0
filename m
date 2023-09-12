@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 62D36EE3F29
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 20:34:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51214EE3F31
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 21:09:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3287610E083;
-	Tue, 12 Sep 2023 20:34:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2310A10E0BF;
+	Tue, 12 Sep 2023 21:09:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id DC04110E083;
- Tue, 12 Sep 2023 20:34:37 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 17CC810E0AA;
+ Tue, 12 Sep 2023 21:09:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DE309AADE4;
- Tue, 12 Sep 2023 20:34:37 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 19419AA917;
+ Tue, 12 Sep 2023 21:09:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Tue, 12 Sep 2023 20:34:37 -0000
-Message-ID: <169455087790.31796.6728688517041234652@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Tue, 12 Sep 2023 21:09:24 -0000
+Message-ID: <169455296410.31796.4996512860035637431@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230912182956.253-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20230912182956.253-1-michal.wajdeczko@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_Introduce_Xe_assert_macros_=28rev3=29?=
+References: <20230912193257.2103764-1-matthew.brost@intel.com>
+In-Reply-To: <20230912193257.2103764-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Deprecate_XE=5FEXEC=5FQUEUE=5FSET=5FPROPERTY=5FCOM?=
+ =?utf-8?q?PUTE=5FMODE_implementation?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,31 +47,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Introduce Xe assert macros (rev3)
-URL   : https://patchwork.freedesktop.org/series/122240/
+Series: drm/xe: Deprecate XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE implementation
+URL   : https://patchwork.freedesktop.org/series/123613/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast da184d0771450c366fa6499d42b49eba733a67f8
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: da184d077 drm/xe: Fix fence reservation accouting
+=== git am output follows ===
+Applying: drm/xe: Deprecate XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE implementation
 
 
