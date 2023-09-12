@@ -4,136 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96891CA0EF1
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 15:04:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B76FFCA0EEB
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 15:06:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C37E410E43F;
-	Tue, 12 Sep 2023 15:04:47 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 66D6510E429;
- Tue, 12 Sep 2023 15:04:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83B0A10E42C;
+	Tue, 12 Sep 2023 15:06:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA9FA10E42C
+ for <intel-xe@lists.freedesktop.org>; Tue, 12 Sep 2023 15:06:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694531085; x=1726067085;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=ZiZVz2+1gixrpiznD6g+wDsHkHtJxVyGU4ka0o4j7ko=;
- b=cCnKHvTNfjQSqW+gn80eYJGwCFQUoWqCVcFBeY9nA39WgkilXc0oy7Li
- xRXXcX4D1MB2tsyMFzz74dF905jcvHcf/5HCziHZWufVT9ggifiXMS/Pf
- 3yNtLZOH+EHmiRE3VR2II63fZ7ACP+3KpJttLLcWt7y1fdoyOPAozxx1t
- jVR6YVNsT+w2OOpuMom3enhrTUqMEL1eWkm7AaXh4k4JFvzCoyg5cByvq
- p0x/VqM5XPvcwU8jALeXZtSWHwR5sFtuV1IOXXwUnrbjklTwiz+JaCt7V
- BQLs6fjRqf8M9N6etJmAleMUW9Y22pdmw1cwfzshUluP2YHW5BPIe67nS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="358676689"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="358676689"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Sep 2023 08:04:14 -0700
+ t=1694531179; x=1726067179;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Y1EwiLn55memF6BEhBO+KbsZJyctVBaVPdfY3mjLNw4=;
+ b=Dz/kj3AAwJBuY4IPVgxd+acioXO2k0Rwb+3AiFB4BiY0IC+5D6nAQGq9
+ rk1tT1sPakLeQoJs4XPjLgkhiz5ZB2si0c2SHRcNGZ2h9lq7i5CvZgUey
+ 2yfDNGyXGZZ54xLxdAZ2dbguZNl2N2s81ICgtMEf6r4HE57+SPEQsGEOV
+ N/ffN50by8e3M6Wa6DZIdNPMoof+xTgA3N9VtqWaUmqYeGckDDaXDxEoW
+ A2Y2vIKpNEsY4XzKtUIKkqEXlHcHXuhPgMCqrFgeeKm58ksoS2Pq3BCCx
+ yQqngcLB0If83xZxIPiEghowL/M1YwfGQfPot7JjnwJoprNcZV5gNXC1K Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="382210789"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="382210789"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Sep 2023 08:05:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="809301809"
-X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="809301809"
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="917452655"
+X-IronPort-AV: E=Sophos;i="6.02,139,1688454000"; d="scan'208";a="917452655"
 Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Sep 2023 08:04:08 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Sep 2023 08:05:26 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:04:08 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.32; Tue, 12 Sep 2023 08:05:25 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 12 Sep 2023 08:04:08 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.171)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Tue, 12 Sep 2023 08:05:25 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 12 Sep 2023 08:04:08 -0700
+ 15.1.2507.32; Tue, 12 Sep 2023 08:05:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nfxSC+Yeqt15IH7dCKM/EHvJa+eFgN/eRsP0PsyOMxOQ1774rFU6PFIgRG8hCzDAbZpqyEkXt6HBsautg198/DTJja9txmiIWD9BVM0hR7K2GTDogvr/iY7jfkAIMQddkY6H60kxMI/Yfbw9a7NZIP4AKC3rETu9ATnRxxXKog5h6QcN6mGD9z53tBwxftGmVa8PLqgibcupbjg7lPob0vzs7TgJk0MCU10xP4QFbArZdZRdzc9YpKT5SO/WUuY75egDGJsRLZ9r1fA9Y/WGkjuZ8XBuodbapsgTuNABtjOAMAGyksDHNWV6QMJ3wK3rRV3p6fq5mVRGiYL1M3HbEA==
+ b=ib8EVOJ8pATfyi7v2Azkvhaagj6nUQAPMW1tDjvprFHN03jsH3+uN/yA4blgfYLbmiCdi4UsawjNFC4l8sIKVbNrvGK5NASBLCMd8q2VkJcOfn4sur29tkg1BiDdR/+1AMQDrHQrY48Nr1c5iHvY9kH+TcMEb6RpjnlBsKougIDvUorDeqfPy4V1PH3fzspVLyM8KoQrbuH5sBd5XABIHvZiMyLSgTL2rUPBxn97ySApWydBpyBB7laT3LxgDUMO0Ym41dOxG+bXMF6YZljn6CafpWZB4HQg6D/NENnzkyZI64z9/uHaaY+n8UMwhOLclhfsXNKvJDAEWUlo8hxPYg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UMb/QPABDwmlhFwiq519MWFFDc/yACl/sRLiwzVpf7A=;
- b=OAqOscIPYDplgl/BEHkD9sPCK0iIm5bJEsK8fyGmgALLIP/mwP4tNolvDS8fA+qwQ7swSGIXEriMir2kBcXZAaZqMjxFVaOPw8DVA8CeZX/fBEbiZuuULmKqTxak2aqoeUHZlBnU7Q0I/rZNGOUr/sVH+SUkRvx1wzuwS/dmpVn1YgQnop1UZaM1/SuZ8/dqwvg1YyglhTdKRJqgS20Gx/R0ybNVeMvNYcXRGl/86Ar9u+iEHwjQVFEdqA2qrN2EdWYDEMFTJkuyy0cWw+Hf5Xpha2tS81G/t9vGZ5fy0EZaCyugT4bVRS+FxoYVh8eYicjAY7BAtVEZex+AZBxqXA==
+ bh=DkP9B5UUEJ+5lLDjNQ8j3GxtqpPqiyrV1Un76y2YVSs=;
+ b=GO0ubMuTm30K3M7W3w6Tmr6QQqQka899aZ5RM9jeMZA/JB54hFrKNG5eYoQLLMYIQjwXpvwRoV1uDfKz47IKhns3pqUezNLt65YmhLLf0yuy8ygrYpNcEV9QdKH2iWJ6GMRwJqvy8qTjj8oMQfChEr6OmkqZI/gfDAbaVSrmOX9jXWFj5SjzeMOH5YS6NrbJIO6CK/SFwXv9RUXLI7IJWgK+1BmRW3cOiS1VfqTiJTpJ0KiLz9JcYC7vQjDJmoTw65MKSoCHOfCiamSCjtbJkywfmPeixIXQJKVQHj21959cRWvGrXpjGdU8AJ4Ncq6ttqDpZJZu8m6ALHWR2bn0aQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by DM4PR11MB8129.namprd11.prod.outlook.com (2603:10b6:8:183::9) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
+ by SA0PR11MB4591.namprd11.prod.outlook.com (2603:10b6:806:9c::23)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6768.35; Tue, 12 Sep
- 2023 15:04:06 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::99cc:830:3ea5:d42b]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::99cc:830:3ea5:d42b%3]) with mapi id 15.20.6745.035; Tue, 12 Sep 2023
- 15:04:05 +0000
-Date: Tue, 12 Sep 2023 15:02:21 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Message-ID: <ZQB9fVvxWULKj1Jn@DUT025-TGLU.fm.intel.com>
-References: <20230912021615.2086698-1-matthew.brost@intel.com>
- <20230912021615.2086698-3-matthew.brost@intel.com>
- <20230912092953.36a7cdf1@collabora.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230912092953.36a7cdf1@collabora.com>
-X-ClientProxiedBy: BY3PR03CA0014.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::19) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+ 2023 15:05:21 +0000
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::4b20:e34:71f:139f]) by PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::4b20:e34:71f:139f%4]) with mapi id 15.20.6768.029; Tue, 12 Sep 2023
+ 15:05:21 +0000
+Message-ID: <5521adaf-724e-4de8-ae56-74dc349b66c8@intel.com>
+Date: Tue, 12 Sep 2023 08:05:19 -0700
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Alexander Usyskin <alexander.usyskin@intel.com>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20230912130835.2488728-1-alexander.usyskin@intel.com>
+ <20230912130835.2488728-4-alexander.usyskin@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <20230912130835.2488728-4-alexander.usyskin@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BYAPR07CA0104.namprd07.prod.outlook.com
+ (2603:10b6:a03:12b::45) To PH7PR11MB7605.namprd11.prod.outlook.com
+ (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|DM4PR11MB8129:EE_
-X-MS-Office365-Filtering-Correlation-Id: e781751f-09be-47f9-8093-08dbb3a1821a
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|SA0PR11MB4591:EE_
+X-MS-Office365-Filtering-Correlation-Id: deb31454-86eb-4f3e-5bfa-08dbb3a1af43
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +TM2OB5A9f6YgPqvVDun+KkDzH1NE0P0VSMHxVfo6eIsPpn8TF+DO4VfEBbCJ2mkvBxG9Ww1g/rwmjMklbZPks3wQrmliDW2n1GIraGxn2hKBxbYrBxD4emCFpBuZIXKv+SioQDdk+EIuPKVNw108VRs9JZQ/sFHFOWYSmLQcTTQI0SZW1S+YCtuLXQITKe5ew85drO8C5yU/frN4qcB/AxblAg1Sdskt4gqpemzsbZzJPFcpgeKQ2+CXHWDjlUORFvMe3my6YijhIYL2tfR6LJGCtIX3Gfwspe5yOIgI+fw2qLBseSmqqCEUDwShJR3OLRzgWLUdscSJi4mDLH/2DhhO5Aeq3jFFBB/oj9bwUcHlMXXZqyxKrlj3NdLJNleRunknK/CxrFt1VzeyQIJZNTxKeFN9K74xifMRyDObIfP8Sq+g9zz+Lus7McoAdf5lezNBQ0XIMRwZ7UIhOm9eRv67DwSRnv8dVfHpnCHBsXzaGuQTFM5/8ATw/LALGQJhqp6noaJ53cUm31vnihaKPHq35RgAbsoULNK9/6iSEN25sD5dU3pl80xWiVlDwz+
+X-Microsoft-Antispam-Message-Info: LdQb+RuA8DrBrClsC9NFln7GmUT8Pngk1ebZFCeBAH8OV2/ee4qACMaA1Ev9Rw3iswTiMu2DkKKDF73iMOv5fDuAf2bBstcerOwH7oTYpuPR3m2zlpNT/u1016VQgeWRnhyjhga4iXDpaVxU3OT5m0NfgOSdRTU7aXjVqORAFwtun1LfWxEwftrroXMiJi1y+LM/L7HDvUTCMqz3bRUwxGvy7ILXTfAJ2wtZG0GCef0MUr+M/NSl1rqdaPB+8Oj7QGUpiz6ldPQnctt3XFv23cFuHiwd1sOA+VU/GLYscx0tV1g1OLMDapnNIoCmKr1pLFAnAa3RNVUDNrq3YTIO6q3km5b2ii4F6umhsmBGtqhp2vOTcpTPdiOyQhW8d6HsMFwOZL0ZrTDAAikfhcC6IgjfGSKk0k7eJ+KFZrcuhmWZM1DYmrK8+UUdXsogYaG9tyD+y8fx/3hCk7fmxlxE2W8SqzFzy8g91ycAAIBhH/cG4ts7delmHtcXOEZ7HxOrOcETuC16iafQKDmVCAepjL5kJa7MZx07apRlMdBjjBhz2S+Z7du7JBryeJFTojE5goOHX2NvoWemTsmenJhJTxoJyTQ/YAaDdYMXnLEIPUXt2VN+USOQS/SnM116oi9c
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(366004)(346002)(136003)(39860400002)(396003)(1800799009)(186009)(451199024)(6512007)(86362001)(83380400001)(2906002)(6486002)(7416002)(6506007)(26005)(6666004)(82960400001)(38100700002)(478600001)(5660300002)(8676002)(8936002)(66556008)(66476007)(4326008)(6916009)(66946007)(44832011)(316002)(41300700001);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(346002)(366004)(136003)(39860400002)(396003)(186009)(1800799009)(451199024)(66476007)(41300700001)(478600001)(83380400001)(4326008)(5660300002)(8676002)(8936002)(6486002)(6506007)(6512007)(53546011)(6636002)(26005)(316002)(110136005)(54906003)(66556008)(2616005)(82960400001)(2906002)(31696002)(38100700002)(30864003)(86362001)(66946007)(36756003)(31686004)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4/fDRSDYGjMGZGTOgEsoh1cElhQfW5khwyDCI97fym7ASjjumDuHGtaM/yua?=
- =?us-ascii?Q?1f5oQluPcq/8XsInU9tmoN1wTsXyblnoJ9WmtumAa58J6eGEQnjOzqdXroYn?=
- =?us-ascii?Q?Blod9OtKub40E0NSFVcR0iGNkFHHYylPaRi1CeQFLWUZrZE4tUQ0l2eWGidw?=
- =?us-ascii?Q?hX2nsnQ5tEftcZ1F/olV1tswJbUhRZ/EG3QYKt738M1drXen9anN6RUYcHbZ?=
- =?us-ascii?Q?M76jjPb6S1TzKl87w9i5G4K/fwmL965o2RK5TZVm4XYXaq0NRAiBCeEYwOLa?=
- =?us-ascii?Q?y/JS9bIM5oYOzHbyoKXheOM9hBJoReoTpzqvqjTTCk0zvQDJ0r9OSQEZFfXv?=
- =?us-ascii?Q?dgDExgDU5etj7pVlHUfnJbMyI3IIQ8lLh95pDGIsLageVhNCe/qjFDSctVp8?=
- =?us-ascii?Q?jsGx8pZ24piPem+Ev0X5rDTZkFmPkxzVAq1oKZn/lm4ZZWU49d1V3xwkYNDc?=
- =?us-ascii?Q?Y3ugDr0Zgq0nUFeLNqNs4Lbm+McehQIH0uyt/7wnGgYLV8fQ1q6qJB1HUt6R?=
- =?us-ascii?Q?PmK8/OAltNIsVnSvtGs1Mm2+6iM0RDAAlqIV/TwI46yHcNZwNEMDoG3wDds1?=
- =?us-ascii?Q?mva18xlUW78b5IpQyOn2VSpIH+sd0fa9r+bdxMCbIFGT4iSMnygnTG6APB3p?=
- =?us-ascii?Q?vUSnDZ2h3JvQP/62+YRzVLbTHXSMj/fRUNWz6QwNsuo7TvQ03pVfJyDM5sUY?=
- =?us-ascii?Q?O7FmmxDW8s0BR3g/0zm2gf53e9zyWYAOTqEAlX0qdJC9nKM6eoBKE+VlDecs?=
- =?us-ascii?Q?SWnaFdQiIVSzdVBOEyUNx5OgSZl6eu1ixoXpevOvC+My9iMBcNuyOxDEcLwQ?=
- =?us-ascii?Q?bbo+eLH+6EksGfKPTDVRIRdc+4gdnMzJnI0hiyov8HfCkS0MaBQtOBXrrXU7?=
- =?us-ascii?Q?ausBn9cuPGg5D00CQlqdze8Yqpspm0ZQruj2WvuRIr606JQm3KFwBAkpZN90?=
- =?us-ascii?Q?XAS23VSsFHrVF/65sNkK6HWiHj9BQ0U/IVF/W6kgZcQWB00T3AAfX3MYIHfb?=
- =?us-ascii?Q?TvedhT/3T+zW9lKthlVQrSdkirK/BBKzlbO/H+IMQrSNYvsTt6F5I0AeV2Na?=
- =?us-ascii?Q?SZQPDeQCA7Y2nw6v8XFqxe5jkcqt0fNncDOOid2TXwM3jxtGFiqgG04vJJ2f?=
- =?us-ascii?Q?u3SB9MlN+FqlvpXOtfT+z0ivqwSH/B40cEf1SPnN/rmJ93PbkJEjul4TnYwD?=
- =?us-ascii?Q?SpORLFuBHwk+rE6JuptyVGL/NfZLBUlcmGqAs+APFcNP0QkftNI/EZRlKjRn?=
- =?us-ascii?Q?SKNnlcox7Mex72HCUTKFbOnPDnLPev/Og83lxKWVoKnX6N9gYwpkrXXBfsRc?=
- =?us-ascii?Q?02K2qw/8kK04rO1Fy3Y37zxsl/DmGdRMuHd5nGEb9k+lyzXONYhGQGlMLzf1?=
- =?us-ascii?Q?2Zl2R2szqMEAuTanPL/weIv5xbiilGQi0bytgUTCkROfQcrkT0gG6g43QFDw?=
- =?us-ascii?Q?cohvWvFWSEyRQx5FOsqwGPmqloPpKQ30uS0xLu2KPe6IZrV67QR6ZWYrqDno?=
- =?us-ascii?Q?jxQBqhsRlh+rKCjoNUPYjHotvXOTArs/gHsVH8vRVR+7nKunChW3fxURN24F?=
- =?us-ascii?Q?qlhYXBMDlqvh+YL43txM1Vtfn6e83Q6vRvU7xZpo/McQfx/tbiAioVt3MRcf?=
- =?us-ascii?Q?Pw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e781751f-09be-47f9-8093-08dbb3a1821a
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RzljT3FpZjgyb3V4OHVTSFd0UzNQbzhyL2dWYXZhTndlMWN2SExXdjMzSk5L?=
+ =?utf-8?B?bktTOU9DeVZvOGpvenduZ1FyYnI0MDNjTVlnaVhTMGRzMnlQVC9BNE10MGJt?=
+ =?utf-8?B?dVlkdWJMZ1lFY0xBbGk4UjJJcTl5L2wyZWRkcXRjNmZGcXZYaEhJZVBxQlhh?=
+ =?utf-8?B?bTBYUVltTGYzc2UzcGozbkZpZ0hMNUp3QnVhbGZEOXpZblFiM2YwUjF2Tkky?=
+ =?utf-8?B?U29aMFZTTjNVaTdwV3YzcDhZYXA0bXRlWUZXbHNLb3VpQ2VmMzAyam9MTXBh?=
+ =?utf-8?B?QmUxM2U5YlZ5aXpQWHc4VTMwaTVLUElsRFp4N2tRQUo2bGo1aldCRERhNlZl?=
+ =?utf-8?B?SmxFV1V6Zk81VjRNRHFGbXI5TndDd2pZZVlIYTFCL2NodTVvV1I4ZUdQQWFB?=
+ =?utf-8?B?WEJEelBDckszNG9SdWY1NGV3WjNpcnNhSDEydnA1MUUxUjdRZ0NoQ1c4SGFa?=
+ =?utf-8?B?anRHbVFNbnBHNEx2KysvS1VtakJIK1p6QlpTZUpIT2ljdjROYnpIU1dnNkNR?=
+ =?utf-8?B?dW5MMzVVdlNoTVFHQmRSSUFMNXBHWG5CeVZVQjFhNmlaUjNuUjdKa3pHbllS?=
+ =?utf-8?B?eWNORG9sQU53cmx3dEFPQVB3akUzRmNRU3lKd0pLUDlNQTF6T2Q2dEVncDR4?=
+ =?utf-8?B?Z0JuTTIvTi90dHJIMTgwM0pZRExqZjVvU2V3TTZvNklST0ZUVERmUloxQkMw?=
+ =?utf-8?B?c25QRWlHQzZYMlp6VDBkQmlQejdxKzBDWFE2M04zdkU1YytRU0RvdGRvVC9X?=
+ =?utf-8?B?U29RQUZNWU1ROUQ2Q2dmWVhTRHUrdml5blJKQzFFaVcrejBhdmNFaHZTbWdE?=
+ =?utf-8?B?UlFDL3NMTXUrMDNxTmQ3eEQwb1ZybG13M2N1TC9Sczdha29QSHMzL0orOGNm?=
+ =?utf-8?B?TnBLMU53MFNJMkZZcVpjOHVGRmVoQW5FWlA1bU5tbzNVbVpWWDdKZWFaZ1Nu?=
+ =?utf-8?B?eFMxVlg3UkFPZGZjOVdTbHRNRHNaUUtwOXE5T0s2emFrNVQzV0h0d2xCYU1i?=
+ =?utf-8?B?clg0UG5SbFNhZ0NZZ0VrQmc2Z05nZjNUYVN6dWZFa0w2anUwVTZTT2hENXRC?=
+ =?utf-8?B?Y3dmUWJrRENqbFRIV1MvUC9QY1FMSGJxemViaGMyamtKcXZYREVRdzk3SDdZ?=
+ =?utf-8?B?UjREZWcveXA4WXJuSzBhajZ2SlRKNWxhZ3hvdTBRVWdyS2U1aUVvaGswV0ZV?=
+ =?utf-8?B?U3RNdHdZU3NiSm9LS0RabjN6T2J3cnc4K3lqSUlxVUI3R2ppTWJHeUpvY0tl?=
+ =?utf-8?B?OEJnV3pacSsrblhVWWRDN0g1ZTRpOGZxazBlcW5paE1BSyt1UkxlN2g4c296?=
+ =?utf-8?B?MnlNVFBxZXlxcmluQ0s4MUtnak85VUw0bGxNbGFyOVJlRGttQVJnbE9OL3lD?=
+ =?utf-8?B?bkl0WmNkUlBCUHNEVGxpcHh2UnZ2b3ZYSXZpeHBVSXMyemROTDh1dlhOM245?=
+ =?utf-8?B?YWRqY2E5OEkwK3ZyeHR6bDBISW5vNlIvUmFKTndBM3ZuU09BRW5oQ2lIYkRT?=
+ =?utf-8?B?RTFrTHNkZ2hwZnRQSmVFQTgySVdjOUtUYTZHV0pTdUMrbTkwTUNVekxhNWdY?=
+ =?utf-8?B?OGNwOVNTc0ZYdGk0YUVTZ091V3QvdkpVc29nc0k0S0RWYVg3KzU3YTEyODM0?=
+ =?utf-8?B?YjgycVhnR0ljYno3K1N0c1VaTSthbGRFWnZmTTVVUjFHMVZKbThSQWYxdVk0?=
+ =?utf-8?B?WjdLTy9IRGpYMHZxcFZ5K1Vac0EzZk5oQWFkS2g2MUdqK0RMNWFnQWMxZFpq?=
+ =?utf-8?B?cXRnZ1oyaGY1a3hUZndrc0hpbGNGTTByR2ZiR2dQM2ZBNTMyazlwVDM5eVdN?=
+ =?utf-8?B?aDVhaXV2K05TUVJ5Y2FMdEUwWlAyVTJ3RnQ3UEFQVG9rMG9WLzZoWm0zenVZ?=
+ =?utf-8?B?dGFEMGducm5SdjBidGRodUdxbHBlUm5HQ3V3NWE2V2g0aUNDa2ZGOUJtUDNr?=
+ =?utf-8?B?THFubUdXczByUVVGMjMxc1M1ODFvQUI5RFEyeTFYNS9WZVcyQlpqenBHOVNU?=
+ =?utf-8?B?blF2QURDRURSRS9KL2RaYzRCcjk2Y3FyMFRtNlpmcUlLMDVBK3BKbjRaLzdl?=
+ =?utf-8?B?NVZoVzh3M1Q5Sm1Uc3p4enRxTWErUWsyUm1XYnhIc0pvRVNlTXRZT1NIV1FT?=
+ =?utf-8?B?UDF4azlMYVltTGZSL0o4RW81c3gwYVhlSzdnRWFKLzJrY1RNaUdiY2pFSU5R?=
+ =?utf-8?Q?1jWsJmG1I8eLe2668VfO81I=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: deb31454-86eb-4f3e-5bfa-08dbb3a1af43
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 15:04:05.8544 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Sep 2023 15:05:21.6998 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BI8mSCXZKGs4hs59eJmzmqkEV3o9Xsq4bXG4EBoMttedq/Y/aVbs5Z5CSO20SfUcufnX1e0CXXZPwe7tiOGO0w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB8129
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0hTTuHCEcjanaQU81LRDe0fuPfhrnzNMlFMf04JzScEYd52ksRkM+ugqthcy2NIsrXLhdSNEKAKUdYyTmVmA/2BCHbMG5COTlz0lamDu+jc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4591
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v3 02/13] drm/sched: Convert drm scheduler to
- use a work queue rather than kthread
+Subject: Re: [Intel-xe] [PATCH 3/4] drm/xe/gsc: add gsc device support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,92 +156,436 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- lina@asahilina.net, mcanal@igalia.com, Liviu.Dudau@arm.com,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- luben.tuikov@amd.com, donald.robson@imgtec.com, christian.koenig@amd.com,
- faith.ekstrand@collabora.com
+Cc: linux-kernel@vger.kernel.org, Tomas Winkler <tomas.winkler@intel.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 12, 2023 at 09:29:53AM +0200, Boris Brezillon wrote:
-> On Mon, 11 Sep 2023 19:16:04 -0700
-> Matthew Brost <matthew.brost@intel.com> wrote:
-> 
-> > @@ -1071,6 +1063,7 @@ static int drm_sched_main(void *param)
-> >   *
-> >   * @sched: scheduler instance
-> >   * @ops: backend operations for this scheduler
-> > + * @submit_wq: workqueue to use for submission. If NULL, the system_wq is used
-> >   * @hw_submission: number of hw submissions that can be in flight
-> >   * @hang_limit: number of times to allow a job to hang before dropping it
-> >   * @timeout: timeout value in jiffies for the scheduler
-> > @@ -1084,14 +1077,16 @@ static int drm_sched_main(void *param)
-> >   */
-> >  int drm_sched_init(struct drm_gpu_scheduler *sched,
-> >  		   const struct drm_sched_backend_ops *ops,
-> > +		   struct workqueue_struct *submit_wq,
-> >  		   unsigned hw_submission, unsigned hang_limit,
-> >  		   long timeout, struct workqueue_struct *timeout_wq,
-> >  		   atomic_t *score, const char *name, struct device *dev)
-> >  {
-> > -	int i, ret;
-> > +	int i;
-> >  	sched->ops = ops;
-> >  	sched->hw_submission_limit = hw_submission;
-> >  	sched->name = name;
-> > +	sched->submit_wq = submit_wq ? : system_wq;
-> 
-> My understanding is that the new design is based on the idea of
-> splitting the drm_sched_main function into work items that can be
-> scheduled independently so users/drivers can insert their own
-> steps/works without requiring changes to drm_sched. This approach is
-> relying on the properties of ordered workqueues (1 work executed at a
-> time, FIFO behavior) to guarantee that these steps are still executed
-> in order, and one at a time.
-> 
-> Given what you're trying to achieve I think we should create an ordered
-> workqueue instead of using the system_wq when submit_wq is NULL,
-> otherwise you lose this ordering/serialization guarantee which both
-> the dedicated kthread and ordered wq provide. It will probably work for
-> most drivers, but might lead to subtle/hard to spot ordering issues.
-> 
 
-I debated chosing between a system_wq or creating an ordered-wq by
-default myself. Indeed using the system_wq by default subtlety changes
-the behavior as run_job & free_job workers can run in parallel. To be
-safe, agree the default use be an ordered-wq. If drivers are fine with
-run_job() and free_job() running in parallel, they are free to set
-submit_wq == system_wq. Will change in next rev.
 
-Matt
+On 9/12/2023 6:08 AM, Alexander Usyskin wrote:
+> From: Vitaly Lubart <vitaly.lubart@intel.com>
+>
+> Create mei-gscfi auxiliary device and configure interrupts
+> to be consumed by mei-gsc device driver.
+>
+> Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
+> Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
+> ---
+>   drivers/gpu/drm/xe/Kconfig       |   1 +
+>   drivers/gpu/drm/xe/Makefile      |   1 +
+>   drivers/gpu/drm/xe/xe_gt.c       |   4 +
+>   drivers/gpu/drm/xe/xe_gt_gsc.c   | 218 +++++++++++++++++++++++++++++++
+>   drivers/gpu/drm/xe/xe_gt_gsc.h   |  36 +++++
+>   drivers/gpu/drm/xe/xe_gt_types.h |   4 +
+>   drivers/gpu/drm/xe/xe_irq.c      |  11 +-
+>   7 files changed, 273 insertions(+), 2 deletions(-)
+>   create mode 100644 drivers/gpu/drm/xe/xe_gt_gsc.c
+>   create mode 100644 drivers/gpu/drm/xe/xe_gt_gsc.h
+>
+> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+> index 0a4ea965645b..9d396ca7708a 100644
+> --- a/drivers/gpu/drm/xe/Kconfig
+> +++ b/drivers/gpu/drm/xe/Kconfig
+> @@ -36,6 +36,7 @@ config DRM_XE
+>   	select DRM_SCHED
+>   	select MMU_NOTIFIER
+>   	select WANT_DEV_COREDUMP
+> +	select AUXILIARY_BUS
+>   	help
+>   	  Experimental driver for Intel Xe series GPUs
+>   
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 9a2245ffede2..9ba9389a2cfd 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -65,6 +65,7 @@ xe-y += xe_bb.o \
+>   	xe_gt_sysfs.o \
+>   	xe_gt_tlb_invalidation.o \
+>   	xe_gt_topology.o \
+> +	xe_gt_gsc.o \
 
-> >  	sched->timeout = timeout;
-> >  	sched->timeout_wq = timeout_wq ? : system_wq;
-> >  	sched->hang_limit = hang_limit;
-> > @@ -1100,23 +1095,15 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
-> >  	for (i = DRM_SCHED_PRIORITY_MIN; i < DRM_SCHED_PRIORITY_COUNT; i++)
-> >  		drm_sched_rq_init(sched, &sched->sched_rq[i]);
-> >  
-> > -	init_waitqueue_head(&sched->wake_up_worker);
-> >  	init_waitqueue_head(&sched->job_scheduled);
-> >  	INIT_LIST_HEAD(&sched->pending_list);
-> >  	spin_lock_init(&sched->job_list_lock);
-> >  	atomic_set(&sched->hw_rq_count, 0);
-> >  	INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
-> > +	INIT_WORK(&sched->work_submit, drm_sched_main);
-> >  	atomic_set(&sched->_score, 0);
-> >  	atomic64_set(&sched->job_id_count, 0);
-> > -
-> > -	/* Each scheduler will run on a seperate kernel thread */
-> > -	sched->thread = kthread_run(drm_sched_main, sched, sched->name);
-> > -	if (IS_ERR(sched->thread)) {
-> > -		ret = PTR_ERR(sched->thread);
-> > -		sched->thread = NULL;
-> > -		DRM_DEV_ERROR(sched->dev, "Failed to create scheduler for %s.\n", name);
-> > -		return ret;
-> > -	}
-> > +	sched->pause_submit = false;
-> >  
-> >  	sched->ready = true;
-> >  	return 0;
+I don't think this should be inside GT. The HECI GSC is not inside GT in 
+HW and the only reason it was added there in i915 was because it made 
+the interrupt management easier. This is no longer the case for Xe, so 
+this can be added directly under the xe_device and match the HW.
+
+>   	xe_guc.o \
+>   	xe_guc_ads.o \
+>   	xe_guc_ct.o \
+> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+> index 4c7f66647a04..f373c139e1a1 100644
+> --- a/drivers/gpu/drm/xe/xe_gt.c
+> +++ b/drivers/gpu/drm/xe/xe_gt.c
+> @@ -76,6 +76,8 @@ static void gt_fini(struct drm_device *drm, void *arg)
+>   
+>   	destroy_workqueue(gt->ordered_wq);
+>   
+> +	xe_gsc_fini(&gt->gsc);
+
+I'm not sure this is safe. gt_fini is called from the drmm cleanup, 
+which means it is called after the Xe driver has already been detached 
+from the PCI device. That seems too late to destroy the child device, 
+IMO that should be removed before we detach from the PCI device.
+
+> +
+>   	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
+>   		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
+>   }
+> @@ -460,6 +462,8 @@ int xe_gt_init(struct xe_gt *gt)
+>   	if (err)
+>   		return err;
+>   
+> +	xe_gsc_init(&gt->gsc, gt_to_xe(gt));
+> +
+>   	err = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
+>   	if (err)
+>   		return err;
+> diff --git a/drivers/gpu/drm/xe/xe_gt_gsc.c b/drivers/gpu/drm/xe/xe_gt_gsc.c
+> new file mode 100644
+> index 000000000000..ed825c883da7
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_gsc.c
+> @@ -0,0 +1,218 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright(c) 2023, Intel Corporation. All rights reserved.
+> + */
+> +
+> +#include <linux/irq.h>
+> +#include <linux/mei_aux.h>
+> +#include <linux/pci.h>
+> +#include <linux/sizes.h>
+> +
+> +#include "regs/xe_regs.h"
+> +#include "xe_drv.h"
+> +#include "xe_gt_gsc.h"
+> +#include "xe_gt_types.h"
+> +#include "xe_device_types.h"
+> +#include "xe_platform_types.h"
+> +
+> +#define GSC_BAR_LENGTH  0x00000FFC
+> +
+> +static void gsc_irq_mask(struct irq_data *d)
+> +{
+> +	/* generic irq handling */
+> +}
+> +
+> +static void gsc_irq_unmask(struct irq_data *d)
+> +{
+> +	/* generic irq handling */
+> +}
+> +
+> +static struct irq_chip gsc_irq_chip = {
+> +	.name = "gsc_irq_chip",
+> +	.irq_mask = gsc_irq_mask,
+> +	.irq_unmask = gsc_irq_unmask,
+> +};
+> +
+> +static inline struct xe_gt *gsc_to_gt(struct xe_gsc *gsc)
+> +{
+> +	return container_of(gsc, struct xe_gt, gsc);
+> +}
+> +
+> +static int gsc_irq_init(int irq)
+> +{
+> +	irq_set_chip_and_handler_name(irq, &gsc_irq_chip,
+> +				      handle_simple_irq, "gsc_irq_handler");
+> +
+> +	return irq_set_chip_data(irq, NULL);
+> +}
+> +
+> +/**
+> + * struct gsc_def - graphics security controller heci interface definistions
+> + *
+> + * @name: name of the heci device
+> + * @bar: address of the mmio bar
+> + * @bar_size: size of the mmio bar
+> + * @use_polling: indication of using polling mode for the device
+> + * @slow_firmware: indication of whether the device is slow (needs longer timeouts)
+> + */
+> +struct gsc_def {
+> +	const char *name;
+> +	unsigned long bar;
+> +	size_t bar_size;
+> +	bool use_polling;
+> +	bool slow_firmware;
+> +};
+> +
+> +/* gsc resources and definitions */
+> +static const struct gsc_def gsc_def_dg1 = {
+> +	.name = "mei-gscfi",
+> +	.bar = DG1_GSC_HECI2_BASE,
+> +	.bar_size = GSC_BAR_LENGTH,
+> +};
+> +
+> +static const struct gsc_def gsc_def_dg2 = {
+> +	.name = "mei-gscfi",
+> +	.bar = DG2_GSC_HECI2_BASE,
+> +	.bar_size = GSC_BAR_LENGTH,
+> +};
+> +
+> +static void gsc_release_dev(struct device *dev)
+> +{
+> +	struct auxiliary_device *aux_dev = to_auxiliary_dev(dev);
+> +	struct mei_aux_device *adev = auxiliary_dev_to_mei_aux_dev(aux_dev);
+> +
+> +	kfree(adev);
+> +}
+> +
+> +void xe_gsc_fini(struct xe_gsc *gsc)
+> +{
+> +	struct xe_gt *gt = gsc_to_gt(gsc);
+> +
+> +	if (!HAS_HECI_GSCFI(gt_to_xe(gt)))
+> +		return;
+> +
+> +	if (gsc->adev) {
+> +		struct auxiliary_device *aux_dev = &gsc->adev->aux_dev;
+> +
+> +		auxiliary_device_delete(aux_dev);
+> +		auxiliary_device_uninit(aux_dev);
+> +		gsc->adev = NULL;
+> +	}
+> +
+> +	if (gsc->irq >= 0)
+> +		irq_free_desc(gsc->irq);
+> +	gsc->irq = -1;
+> +}
+> +
+> +void xe_gsc_init(struct xe_gsc *gsc, struct xe_device *xe)
+> +{
+> +	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> +	struct mei_aux_device *adev;
+> +	struct auxiliary_device *aux_dev;
+> +	const struct gsc_def *def;
+> +	int ret;
+> +
+> +	if (!HAS_HECI_GSCFI(xe))
+> +		return;
+> +
+> +	gsc->irq = -1;
+> +
+> +	/*
+> +	 * On the multi-tile setups the GSC is functional on the first tile only
+> +	 */
+> +	if (gsc_to_gt(gsc)->info.id != 0) {
+> +		drm_dbg(&xe->drm, "Not initializing gsc for remote tiles\n");
+> +		return;
+> +	}
+> +
+> +	if (xe->info.platform == XE_DG1) {
+> +		def = &gsc_def_dg1;
+> +	} else if (xe->info.platform == XE_DG2) {
+> +		def = &gsc_def_dg2;
+> +	} else {
+> +		drm_warn_once(&xe->drm, "Unknown platform\n");
+> +		return;
+> +	}
+> +
+> +	if (!def->name) {
+> +		drm_warn_once(&xe->drm, "HECI is not implemented!\n");
+> +		return;
+> +	}
+> +
+> +	/* skip irq initialization */
+> +	if (def->use_polling)
+> +		goto add_device;
+> +
+> +	gsc->irq = irq_alloc_desc(0);
+> +	if (gsc->irq < 0) {
+> +		drm_err(&xe->drm, "gsc irq error %d\n", gsc->irq);
+> +		goto fail;
+> +	}
+> +
+> +	ret = gsc_irq_init(gsc->irq);
+> +	if (ret < 0) {
+> +		drm_err(&xe->drm, "gsc irq init failed %d\n", ret);
+> +		goto fail;
+> +	}
+> +
+> +add_device:
+> +	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
+> +	if (!adev)
+> +		goto fail;
+> +	adev->irq = gsc->irq;
+> +	adev->bar.parent = &pdev->resource[0];
+> +	adev->bar.start = def->bar + pdev->resource[0].start;
+> +	adev->bar.end = adev->bar.start + def->bar_size - 1;
+> +	adev->bar.flags = IORESOURCE_MEM;
+> +	adev->bar.desc = IORES_DESC_NONE;
+> +	adev->slow_firmware = def->slow_firmware;
+> +
+> +	aux_dev = &adev->aux_dev;
+> +	aux_dev->name = def->name;
+> +	aux_dev->id = (pci_domain_nr(pdev->bus) << 16) |
+> +		      PCI_DEVID(pdev->bus->number, pdev->devfn);
+> +	aux_dev->dev.parent = &pdev->dev;
+> +	aux_dev->dev.release = gsc_release_dev;
+> +
+> +	ret = auxiliary_device_init(aux_dev);
+> +	if (ret < 0) {
+> +		drm_err(&xe->drm, "gsc aux init failed %d\n", ret);
+> +		kfree(adev);
+> +		goto fail;
+> +	}
+> +
+> +	gsc->adev = adev; /* needed by the notifier */
+> +	ret = auxiliary_device_add(aux_dev);
+> +	if (ret < 0) {
+> +		drm_err(&xe->drm, "gsc aux add failed %d\n", ret);
+> +		gsc->adev = NULL;
+> +
+> +		/* adev will be freed with the put_device() and .release sequence */
+> +		auxiliary_device_uninit(aux_dev);
+> +		goto fail;
+> +	}
+> +
+> +	return;
+> +fail:
+> +	xe_gsc_fini(gsc);
+> +}
+> +
+> +void xe_gsc_irq_handler(struct xe_gt *gt, u32 iir)
+> +{
+> +	int ret;
+> +
+> +	if ((iir & GSC_IRQ_INTF(1)) == 0)
+> +		return;
+> +
+> +	if (!HAS_HECI_GSCFI(gt_to_xe(gt))) {
+> +		drm_warn_once(&gt_to_xe(gt)->drm, "GSC irq: not supported");
+> +		return;
+> +	}
+> +
+> +	if (gt->gsc.irq < 0)
+> +		return;
+> +
+> +	ret = generic_handle_irq(gt->gsc.irq);
+> +	if (ret)
+> +		drm_err_ratelimited(&gt_to_xe(gt)->drm, "error handling GSC irq: %d\n", ret);
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_gt_gsc.h b/drivers/gpu/drm/xe/xe_gt_gsc.h
+> new file mode 100644
+> index 000000000000..91dba19e47c1
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_gt_gsc.h
+> @@ -0,0 +1,36 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright(c) 2023, Intel Corporation. All rights reserved.
+> + */
+> +#ifndef __XE_GSC_DEV_H__
+> +#define __XE_GSC_DEV_H__
+> +
+> +#include <linux/types.h>
+> +
+> +struct xe_device;
+> +struct xe_gt;
+> +struct mei_aux_device;
+> +
+> +/*
+> + * The HECI1 bit corresponds to bit15 and HECI2 to bit14.
+> + * The reason for this is to allow growth for more interfaces in the future.
+> + */
+> +#define GSC_IRQ_INTF(_x)  BIT(15 - (_x))
+> +
+> +/**
+> + * struct xe_gsc - graphics security controller for xe
+> + *
+> + * @adev : pointer to mei auxiliary device structure
+> + * @irq : irq number
+> + *
+> + */
+> +struct xe_gsc {
+
+Please use a different name for this instead of just xe_gsc. In Xe we're 
+likely never going to fully use the GSC via HECI, only the GSCFI/CSC 
+part. In MTL and newer we also have the actual GSC part being split off 
+and placed inside GT (behind the GSCCS), so if we call this just xe_gsc 
+as well it'll be confusing. I suggest calling this something like 
+xe_heci_gsc, xe_heci_interface or something like that. I had actually 
+suggested this for i915 as well 
+(https://patchwork.freedesktop.org/patch/509653/) but Tomas was 
+concerned it might make backporting fixes difficult, so I dropped it; 
+this is not a concern for Xe right now.
+
+Note that this means renaming all the exposed functions as well.
+
+Daniele
+
+> +	struct mei_aux_device *adev;
+> +	int irq;
+> +};
+> +
+> +void xe_gsc_init(struct xe_gsc *gsc, struct xe_device *xe);
+> +void xe_gsc_fini(struct xe_gsc *gsc);
+> +void xe_gsc_irq_handler(struct xe_gt *gt, u32 iir);
+> +
+> +#endif /* __XE_GSC_DEV_H__ */
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index f11da12d3146..1b8ab32b488d 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -13,6 +13,7 @@
+>   #include "xe_reg_sr_types.h"
+>   #include "xe_sa_types.h"
+>   #include "xe_uc_types.h"
+> +#include "xe_gt_gsc.h"
+>   
+>   struct xe_exec_queue_ops;
+>   struct xe_migrate;
+> @@ -267,6 +268,9 @@ struct xe_gt {
+>   	/** @uc: micro controllers on the GT */
+>   	struct xe_uc uc;
+>   
+> +	/** @gsc: graphics security controller */
+> +	struct xe_gsc gsc;
+> +
+>   	/** @gtidle: idle properties of GT */
+>   	struct xe_gt_idle gtidle;
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+> index 1dee3e832eb5..1ae4cc9f1522 100644
+> --- a/drivers/gpu/drm/xe/xe_irq.c
+> +++ b/drivers/gpu/drm/xe/xe_irq.c
+> @@ -128,6 +128,7 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+>   	struct xe_device *xe = gt_to_xe(gt);
+>   	u32 ccs_mask, bcs_mask;
+>   	u32 irqs, dmask, smask;
+> +	u32 gsc_mask = GSC_IRQ_INTF(1);
+>   
+>   	if (xe_device_guc_submission_enabled(xe)) {
+>   		irqs = GT_RENDER_USER_INTERRUPT |
+> @@ -180,6 +181,9 @@ void xe_irq_enable_hwe(struct xe_gt *gt)
+>   		if (xe_hw_engine_mask_per_class(gt, XE_ENGINE_CLASS_OTHER)) {
+>   			xe_mmio_write32(gt, GUNIT_GSC_INTR_ENABLE, irqs);
+>   			xe_mmio_write32(gt, GUNIT_GSC_INTR_MASK, ~irqs);
+> +		} else if (HAS_HECI_GSCFI(xe)) {
+> +			xe_mmio_write32(gt, GUNIT_GSC_INTR_ENABLE, gsc_mask);
+> +			xe_mmio_write32(gt, GUNIT_GSC_INTR_MASK, ~gsc_mask);
+>   		}
+>   	}
+>   }
+> @@ -227,6 +231,8 @@ gt_other_irq_handler(struct xe_gt *gt, const u8 instance, const u16 iir)
+>   		return xe_guc_irq_handler(&gt->uc.guc, iir);
+>   	if (instance == OTHER_MEDIA_GUC_INSTANCE && xe_gt_is_media_type(gt))
+>   		return xe_guc_irq_handler(&gt->uc.guc, iir);
+> +	if (instance == OTHER_GSC_INSTANCE)
+> +		return xe_gsc_irq_handler(gt, iir);
+>   
+>   	if (instance != OTHER_GUC_INSTANCE &&
+>   	    instance != OTHER_MEDIA_GUC_INSTANCE) {
+> @@ -470,8 +476,9 @@ static void gt_irq_reset(struct xe_tile *tile)
+>   	if (ccs_mask & (BIT(2)|BIT(3)))
+>   		xe_mmio_write32(mmio,  CCS2_CCS3_INTR_MASK, ~0);
+>   
+> -	if (tile->media_gt &&
+> -	    xe_hw_engine_mask_per_class(tile->media_gt, XE_ENGINE_CLASS_OTHER)) {
+> +	if ((tile->media_gt &&
+> +	     xe_hw_engine_mask_per_class(tile->media_gt, XE_ENGINE_CLASS_OTHER)) ||
+> +	    HAS_HECI_GSCFI(tile_to_xe(tile))) {
+>   		xe_mmio_write32(mmio, GUNIT_GSC_INTR_ENABLE, 0);
+>   		xe_mmio_write32(mmio, GUNIT_GSC_INTR_MASK, ~0);
+>   	}
+
