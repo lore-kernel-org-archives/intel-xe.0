@@ -4,30 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78C0ECA0EC3
-	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 07:00:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0AB2CCA0EC3
+	for <intel-xe@archiver.kernel.org>; Tue, 12 Sep 2023 07:30:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B8A610E2F1;
-	Tue, 12 Sep 2023 07:00:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 28E1210E2F1;
- Tue, 12 Sep 2023 07:00:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 2B23AA7DFB;
- Tue, 12 Sep 2023 07:00:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6B4410E39C;
+	Tue, 12 Sep 2023 07:30:00 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 543BA10E39C;
+ Tue, 12 Sep 2023 07:29:58 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 592926607315;
+ Tue, 12 Sep 2023 08:29:56 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1694503796;
+ bh=DpKolNldcgJlfpHVvzfjM78q4A9TJEYoCEe0si/xC2Y=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=B1GMdcIWRuoxHfGwTXDOxDPJHTGuP3GU0g5LEB3y2EsNZOEAVFylHPwM0gL5vUrzO
+ PTOJ6sIz3PORk486fk0+tru10BS5lzAt2TxI++7Hmf0Zgg8BbHVHhgcjenJ19KEBvk
+ xFBvcpcbbzPDb8g2aVvUStjh7SIDr3M/0+L14N8TXAvIJVSBqbVQc19xFhafzXNbUP
+ NeByBzjSJQ8u5d2pTFIhS7n0kB+X90+foJTMl0KBnA4LQz6cup1gKJcufxT7+oL94w
+ +snnLNzBo7IvjMZYXjkIFtShQct//eei/yP/3pxQZqjPKJRfYgs2b+bszWooHUbBnv
+ xjrI/EhGe/ZLA==
+Date: Tue, 12 Sep 2023 09:29:53 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <20230912092953.36a7cdf1@collabora.com>
+In-Reply-To: <20230912021615.2086698-3-matthew.brost@intel.com>
+References: <20230912021615.2086698-1-matthew.brost@intel.com>
+ <20230912021615.2086698-3-matthew.brost@intel.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Tue, 12 Sep 2023 07:00:34 -0000
-Message-ID: <169450203417.31793.15685222284147876731@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230912064709.2802305-1-jouni.hogander@intel.com>
-In-Reply-To: <20230912064709.2802305-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_F?=
- =?utf-8?q?rontbuffer_tracking_refactoring_=28rev8=29?=
+Subject: Re: [Intel-xe] [PATCH v3 02/13] drm/sched: Convert drm scheduler to
+ use a work queue rather than kthread
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,36 +53,82 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ Liviu.Dudau@arm.com, mcanal@igalia.com, frank.binns@imgtec.com,
+ dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
+ luben.tuikov@amd.com, donald.robson@imgtec.com, daniel@ffwll.ch,
+ lina@asahilina.net, airlied@gmail.com, intel-xe@lists.freedesktop.org,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 11 Sep 2023 19:16:04 -0700
+Matthew Brost <matthew.brost@intel.com> wrote:
 
-Series: Frontbuffer tracking refactoring (rev8)
-URL   : https://patchwork.freedesktop.org/series/122899/
-State : warning
+> @@ -1071,6 +1063,7 @@ static int drm_sched_main(void *param)
+>   *
+>   * @sched: scheduler instance
+>   * @ops: backend operations for this scheduler
+> + * @submit_wq: workqueue to use for submission. If NULL, the system_wq is used
+>   * @hw_submission: number of hw submissions that can be in flight
+>   * @hang_limit: number of times to allow a job to hang before dropping it
+>   * @timeout: timeout value in jiffies for the scheduler
+> @@ -1084,14 +1077,16 @@ static int drm_sched_main(void *param)
+>   */
+>  int drm_sched_init(struct drm_gpu_scheduler *sched,
+>  		   const struct drm_sched_backend_ops *ops,
+> +		   struct workqueue_struct *submit_wq,
+>  		   unsigned hw_submission, unsigned hang_limit,
+>  		   long timeout, struct workqueue_struct *timeout_wq,
+>  		   atomic_t *score, const char *name, struct device *dev)
+>  {
+> -	int i, ret;
+> +	int i;
+>  	sched->ops = ops;
+>  	sched->hw_submission_limit = hw_submission;
+>  	sched->name = name;
+> +	sched->submit_wq = submit_wq ? : system_wq;
 
-== Summary ==
+My understanding is that the new design is based on the idea of
+splitting the drm_sched_main function into work items that can be
+scheduled independently so users/drivers can insert their own
+steps/works without requiring changes to drm_sched. This approach is
+relying on the properties of ordered workqueues (1 work executed at a
+time, FIFO behavior) to guarantee that these steps are still executed
+in order, and one at a time.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast b4ddac861881e66a4af06531a7a72345c086bac1
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Given what you're trying to achieve I think we should create an ordered
+workqueue instead of using the system_wq when submit_wq is NULL,
+otherwise you lose this ordering/serialization guarantee which both
+the dedicated kthread and ordered wq provide. It will probably work for
+most drivers, but might lead to subtle/hard to spot ordering issues.
 
-
+>  	sched->timeout = timeout;
+>  	sched->timeout_wq = timeout_wq ? : system_wq;
+>  	sched->hang_limit = hang_limit;
+> @@ -1100,23 +1095,15 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
+>  	for (i = DRM_SCHED_PRIORITY_MIN; i < DRM_SCHED_PRIORITY_COUNT; i++)
+>  		drm_sched_rq_init(sched, &sched->sched_rq[i]);
+>  
+> -	init_waitqueue_head(&sched->wake_up_worker);
+>  	init_waitqueue_head(&sched->job_scheduled);
+>  	INIT_LIST_HEAD(&sched->pending_list);
+>  	spin_lock_init(&sched->job_list_lock);
+>  	atomic_set(&sched->hw_rq_count, 0);
+>  	INIT_DELAYED_WORK(&sched->work_tdr, drm_sched_job_timedout);
+> +	INIT_WORK(&sched->work_submit, drm_sched_main);
+>  	atomic_set(&sched->_score, 0);
+>  	atomic64_set(&sched->job_id_count, 0);
+> -
+> -	/* Each scheduler will run on a seperate kernel thread */
+> -	sched->thread = kthread_run(drm_sched_main, sched, sched->name);
+> -	if (IS_ERR(sched->thread)) {
+> -		ret = PTR_ERR(sched->thread);
+> -		sched->thread = NULL;
+> -		DRM_DEV_ERROR(sched->dev, "Failed to create scheduler for %s.\n", name);
+> -		return ret;
+> -	}
+> +	sched->pause_submit = false;
+>  
+>  	sched->ready = true;
+>  	return 0;
