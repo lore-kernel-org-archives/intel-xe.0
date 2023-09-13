@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EF1ACA5537
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Sep 2023 10:36:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CA9FCA5537
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Sep 2023 10:37:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2262410E4A0;
-	Wed, 13 Sep 2023 10:36:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFDBF10E497;
+	Wed, 13 Sep 2023 10:37:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 423DF10E497;
- Wed, 13 Sep 2023 10:36:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id AD5EA10E497;
+ Wed, 13 Sep 2023 10:37:07 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3BF90A00E6;
- Wed, 13 Sep 2023 10:36:53 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AAC06A00E6;
+ Wed, 13 Sep 2023 10:37:07 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Wed, 13 Sep 2023 10:36:53 -0000
-Message-ID: <169460141322.31251.7546082881867769019@emeril.freedesktop.org>
+Date: Wed, 13 Sep 2023 10:37:07 -0000
+Message-ID: <169460142769.31249.12729575075961668008@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230913095412.3427407-1-jouni.hogander@intel.com>
 In-Reply-To: <20230913095412.3427407-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_FBC_refactoring_=28rev4=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_FB?=
+ =?utf-8?q?C_refactoring_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,17 +48,74 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: FBC refactoring (rev4)
 URL   : https://patchwork.freedesktop.org/series/122905/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 3b0f2e574 drm/xe: Add empty define for i915_ggtt_clear_scanout
-=== git am output follows ===
-Applying: Revert "drm/i915/display: Implement FBC support"
-Applying: fixup! drm/i915/display: Remaining changes to make xe compile
-Applying: drm/xe: Xe stolen memory handling for fbc support
-Applying: drm/xe: Add i915_gem.h compatibility header
-Applying: drm/xe: Add Xe implementation for fence checks used by fbc code
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 1c0bf2e7d445fef945a4389f68282396d492e2ba
+Author: Jouni Högander <jouni.hogander@intel.com>
+Date:   Wed Sep 13 12:54:12 2023 +0300
+
+    drm/xe: Add Xe implementation for fence checks used by fbc code
+    
+    Xe doesn't support legacy fences. Implement legacy fence and fence
+    id checks accordingly.
+    
+    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
++ /mt/dim checkpatch 3b0f2e57451e0e979640cb1a005b28ae45439d60 drm-intel
+f11e0bab0 Revert "drm/i915/display: Implement FBC support"
+-:9: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '62074302224cee194f642a811a2b70687fe2e6cc', maybe rebased or not pulled?
+#9: 
+This reverts commit 62074302224cee194f642a811a2b70687fe2e6cc.
+
+-:35: WARNING:LONG_LINE: line length of 121 exceeds 100 columns
+#35: FILE: drivers/gpu/drm/i915/display/intel_fbc.c:66:
++static int i915_gem_stolen_insert_node_in_range(struct xe_device *xe, void *ptr, u32 size, u32 align, u32 start, u32 end)
+
+total: 0 errors, 2 warnings, 0 checks, 90 lines checked
+bfa0bdbf5 fixup! drm/i915/display: Remaining changes to make xe compile
+035d21120 drm/xe: Xe stolen memory handling for fbc support
+-:33: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#33: 
+new file mode 100644
+
+-:38: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#38: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h:1:
++#ifndef _I915_GEM_OBJECT_H_
+
+-:85: WARNING:AVOID_BUG: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#85: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h:48:
++	BUG_ON(1);
+
+total: 0 errors, 3 warnings, 0 checks, 86 lines checked
+8ba84475d drm/xe: Add i915_gem.h compatibility header
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:27: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#27: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 16 lines checked
+1c0bf2e7d drm/xe: Add Xe implementation for fence checks used by fbc code
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:38: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#38: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 23 lines checked
 
 
