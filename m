@@ -4,31 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51781EDEC4A
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Sep 2023 12:28:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C690EDEC49
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Sep 2023 12:31:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13AB310E4AE;
-	Wed, 13 Sep 2023 12:28:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3C02110E00F;
- Wed, 13 Sep 2023 12:28:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 37C50AADDA;
- Wed, 13 Sep 2023 12:28:51 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0204610E4AF;
+	Wed, 13 Sep 2023 12:31:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 427E088D18;
+ Wed, 13 Sep 2023 12:31:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694608310; x=1726144310;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=HrD1kau9wT3KEsqQTKdQ+/wu8yACK1Fs2bkBjLcV3V0=;
+ b=bWCzpCPWxoSt5jLFA7fO6gfKiYNOBwcGTa1Ws+9Fa5H9MdcqXuDDSoLI
+ DwM6Qnm7+cc2LSYUcxWpbmBhOV2cqZPKWLtfoawq1iue7YsaNb/7B/OzM
+ A3u7Qua/+Tx+84n7oASOW3vGcw6IoYobqW6mgpTfYb81dlaW27fkuyjwo
+ hD5Lgv6kK0EL4RTSjE+RUGp12ThD2W1MX+Hg40vq5ogvkDPHLk2gfneug
+ 1RaXpvTHn9jE+vzwG3nFt/MhkqLL9ErnXnQg7nZdkNOy1+cmWnAzcr2hw
+ lK+RU2lvcKhx41hfGpnHbKH1ZkxKRsfKTLT/gQGP3o0rtSb6mrwzk600e w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="375975564"
+X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="375975564"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2023 05:31:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="779171258"
+X-IronPort-AV: E=Sophos;i="6.02,143,1688454000"; d="scan'208";a="779171258"
+Received: from lkp-server02.sh.intel.com (HELO 9ef86b2655e5) ([10.239.97.151])
+ by orsmga001.jf.intel.com with ESMTP; 13 Sep 2023 05:31:44 -0700
+Received: from kbuild by 9ef86b2655e5 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qgP1x-000034-0k;
+ Wed, 13 Sep 2023 12:31:41 +0000
+Date: Wed, 13 Sep 2023 20:30:58 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Message-ID: <202309132041.76l2uKon-lkp@intel.com>
+References: <20230912021615.2086698-5-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Wed, 13 Sep 2023 12:28:51 -0000
-Message-ID: <169460813119.31249.7648083959494727330@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230912114641.2990078-1-jouni.hogander@intel.com>
-In-Reply-To: <20230912114641.2990078-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_Remove_extra_headers_added_into_intel=5Fdisplay=5Fpower=2Eh_?=
- =?utf-8?b?KHJldjMp?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230912021615.2086698-5-matthew.brost@intel.com>
+Subject: Re: [Intel-xe] [PATCH v3 04/13] drm/sched: Add
+ DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,23 +60,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, mcanal@igalia.com, sarah.walker@imgtec.com,
+ ketil.johnsen@arm.com, lina@asahilina.net, oe-kbuild-all@lists.linux.dev,
+ Liviu.Dudau@arm.com, luben.tuikov@amd.com, boris.brezillon@collabora.com,
+ donald.robson@imgtec.com, christian.koenig@amd.com,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Matthew,
 
-Series: Remove extra headers added into intel_display_power.h (rev3)
-URL   : https://patchwork.freedesktop.org/series/123598/
-State : failure
+kernel test robot noticed the following build warnings:
 
-== Summary ==
+[auto build test WARNING on drm/drm-next]
+[also build test WARNING on drm-exynos/exynos-drm-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.6-rc1 next-20230913]
+[cannot apply to drm-misc/drm-misc-next drm-intel/for-linux-next]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 89b671db4 drm/xe: Use Xe assert macros instead of XE_WARN_ON macro
-=== git am output follows ===
-Applying: fixup! drm/xe/display: Implement display support
-Applying: Revert "FIXME: drm/i915: add a lot of includes in intel_display_power.h"
+url:    https://github.com/intel-lab-lkp/linux/commits/Matthew-Brost/drm-sched-Add-drm_sched_submit_-helpers/20230912-102001
+base:   git://anongit.freedesktop.org/drm/drm drm-next
+patch link:    https://lore.kernel.org/r/20230912021615.2086698-5-matthew.brost%40intel.com
+patch subject: [PATCH v3 04/13] drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
+reproduce: (https://download.01.org/0day-ci/archive/20230913/202309132041.76l2uKon-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202309132041.76l2uKon-lkp@intel.com/
 
+All warnings (new ones prefixed by >>):
+
+>> Documentation/gpu/drm-mm:552: ./drivers/gpu/drm/scheduler/sched_main.c:52: WARNING: Enumerated list ends without a blank line; unexpected unindent.
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
