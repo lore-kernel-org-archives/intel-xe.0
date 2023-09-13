@@ -4,30 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB710CA5534
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Sep 2023 09:48:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2DC32CA5534
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Sep 2023 09:54:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76BB610E48D;
-	Wed, 13 Sep 2023 09:48:58 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8187D10E48D;
- Wed, 13 Sep 2023 09:48:56 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7AC09AADF2;
- Wed, 13 Sep 2023 09:48:56 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5888373810057414628=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90F5F10E496;
+	Wed, 13 Sep 2023 09:54:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9F2D10E493
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Sep 2023 09:54:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694598890; x=1726134890;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ZPlVVNZVqWlSCkdpjEtbzqsCd85lPXVI+HeVYPhFV3o=;
+ b=n2hgxOHDnikFLbOMx/0GqzfVSsGRxQLGz/g2HhAYTk7uplSAq+/cYuR0
+ IgJsfJ5CvxLaF4s+pbnupB5cqoADxAsBxL43hokxdoQ8DydEGRdur61Hi
+ T5A8hT5SkBECq3yyF3qJPi5KawEiJryobqiBtIuKRIJorSBSX1Tg7gM7z
+ JofrKTVpbHb/41Y/qL1k8ocxjbYS9GP4ZBY8q8SVui+HK8RCqJUSvVmYS
+ waqqMmBMk2d13nxH/GtL3I2MRJPPiBJeRW7aYxl6kdef51gTyFXL6U2wK
+ eoXk4xt6lbuRhUjr9j2j+hpsoUvEN5u5OvkX3HSvhZ5kuiTAB4GMVWzCE w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="409564890"
+X-IronPort-AV: E=Sophos;i="6.02,142,1688454000"; d="scan'208";a="409564890"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2023 02:54:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="720749315"
+X-IronPort-AV: E=Sophos;i="6.02,142,1688454000"; d="scan'208";a="720749315"
+Received: from seanpaul-mobl1.ger.corp.intel.com (HELO
+ jhogande-mobl1.intel.com) ([10.249.45.158])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2023 02:54:32 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 13 Sep 2023 12:54:12 +0300
+Message-Id: <20230913095412.3427407-6-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230913095412.3427407-1-jouni.hogander@intel.com>
+References: <20230913095412.3427407-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Wed, 13 Sep 2023 09:48:56 -0000
-Message-ID: <169459853647.31252.8289126121333979840@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230912195945.7-1-francois.dugast@intel.com>
-In-Reply-To: <20230912195945.7-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Use_Xe_as?=
- =?utf-8?q?sert_macros_instead_of_XE=5FWARN=5FON_macro_=28rev8=29?=
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3 5/5] drm/xe: Add Xe implementation for fence
+ checks used by fbc code
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,272 +60,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5888373810057414628==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Xe doesn't support legacy fences. Implement legacy fence and fence
+id checks accordingly.
 
-== Series Details ==
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h     |  1 +
+ drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h     |  1 +
+ .../gpu/drm/xe/compat-i915-headers/intel_gt_types.h   | 11 +++++++++++
+ 3 files changed, 13 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
 
-Series: Use Xe assert macros instead of XE_WARN_ON macro (rev8)
-URL   : https://patchwork.freedesktop.org/series/122906/
-State : failure
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 55d0d5c7a386..94ab0354185e 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -19,6 +19,7 @@
+ #include "i915_gem_stolen.h"
+ #include "i915_reg_defs.h"
+ #include "i915_utils.h"
++#include "intel_gt_types.h"
+ #include "intel_uncore.h"
+ #include <linux/pm_runtime.h>
+ 
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index 3d8a1cc0b132..9424144b1b5a 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -18,4 +18,5 @@ struct i915_vma {
+ 
+ #define i915_ggtt_clear_scanout(bo) do { } while (0)
+ 
++#define i915_vma_fence_id(vma) -1
+ #endif
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
+new file mode 100644
+index 000000000000..c15806d6c4f7
+--- /dev/null
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
+@@ -0,0 +1,11 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef __INTEL_GT_TYPES__
++#define __INTEL_GT_TYPES__
++
++#define intel_gt_support_legacy_fencing(gt) 0
++
++#endif
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-369-da184d0771450c366fa6499d42b49eba733a67f8_BAT -> xe-pw-122906v8_BAT
-====================================================
-
-Summary
--------
-
-  **WARNING**
-
-  Minor unknown changes coming with xe-pw-122906v8_BAT need to be verified
-  manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-122906v8_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-122906v8_BAT:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@xe_evict@evict-beng-small-external:
-    - bat-adlp-7:         [SKIP][1] ([Intel XE#261]) -> [SKIP][2] +15 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-adlp-7/igt@xe_evict@evict-beng-small-external.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-adlp-7/igt@xe_evict@evict-beng-small-external.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-122906v8_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3:
-    - bat-dg2-oem2:       NOTRUN -> [FAIL][3] ([Intel XE#400])
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3.html
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][4] ([i915#1072]) +2 other tests skip
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html
-
-  * igt@xe_live_ktest@bo:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][5] ([Intel XE#483]) +2 other tests skip
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@xe_live_ktest@bo.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
-    - bat-adlp-7:         [FAIL][6] ([Intel XE#480]) -> [PASS][7] +2 other tests pass
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - bat-dg2-oem2:       [TIMEOUT][8] ([Intel XE#430]) -> [PASS][9] +2 other tests pass
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc:
-    - bat-dg2-oem2:       [INCOMPLETE][10] ([Intel XE#545]) -> [PASS][11] +1 other test pass
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html
-
-  
-#### Warnings ####
-
-  * igt@kms_flip@basic-flip-vs-dpms:
-    - bat-pvc-2:          [SKIP][12] ([Intel XE#541]) -> [SKIP][13] ([Intel XE#275] / [Intel XE#541]) +3 other tests skip
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-pvc-2/igt@kms_flip@basic-flip-vs-dpms.html
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-pvc-2/igt@kms_flip@basic-flip-vs-dpms.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:
-    - bat-dg2-oem2:       [TIMEOUT][14] ([Intel XE#430]) -> [FAIL][15] ([Intel XE#400])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-3:
-    - bat-dg2-oem2:       [DMESG-FAIL][16] ([Intel XE#530]) -> [FAIL][17] ([Intel XE#400])
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-3.html
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-3.html
-
-  
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#275]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/275
-  [Intel XE#400]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/400
-  [Intel XE#430]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/430
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#483]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/483
-  [Intel XE#530]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/530
-  [Intel XE#541]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/541
-  [Intel XE#545]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/545
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
-
-
-Build changes
--------------
-
-  * IGT: IGT_7482 -> IGT_7483
-  * Linux: xe-369-da184d0771450c366fa6499d42b49eba733a67f8 -> xe-pw-122906v8
-
-  IGT_7482: beccb244183d5839c2464b856cd0b541f105e2ad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7483: 7483
-  xe-369-da184d0771450c366fa6499d42b49eba733a67f8: da184d0771450c366fa6499d42b49eba733a67f8
-  xe-pw-122906v8: 122906v8
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/index.html
-
---===============5888373810057414628==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Use Xe assert macros instead of XE_WARN_ON macro (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/122906/">https://patchwork.freedesktop.org/series/122906/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-369-da184d0771450c366fa6499d42b49eba733a67f8_BAT -&gt; xe-pw-122906v8_BAT</h1>
-<h2>Summary</h2>
-<p><strong>WARNING</strong></p>
-<p>Minor unknown changes coming with xe-pw-122906v8_BAT need to be verified<br />
-  manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-122906v8_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-122906v8_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@xe_evict@evict-beng-small-external:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-adlp-7/igt@xe_evict@evict-beng-small-external.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-adlp-7/igt@xe_evict@evict-beng-small-external.html">SKIP</a> +15 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-122906v8_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@bo:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@xe_live_ktest@bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/483">Intel XE#483</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/430">Intel XE#430</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/545">Intel XE#545</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-pvc-2/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/541">Intel XE#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-pvc-2/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/275">Intel XE#275</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/541">Intel XE#541</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/430">Intel XE#430</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-3:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-369-da184d0771450c366fa6499d42b49eba733a67f8/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-3.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/530">Intel XE#530</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-122906v8/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-b-dp-3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7482 -&gt; IGT_7483</li>
-<li>Linux: xe-369-da184d0771450c366fa6499d42b49eba733a67f8 -&gt; xe-pw-122906v8</li>
-</ul>
-<p>IGT_7482: beccb244183d5839c2464b856cd0b541f105e2ad @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7483: 7483<br />
-  xe-369-da184d0771450c366fa6499d42b49eba733a67f8: da184d0771450c366fa6499d42b49eba733a67f8<br />
-  xe-pw-122906v8: 122906v8</p>
-
-</body>
-</html>
-
---===============5888373810057414628==--
