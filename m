@@ -4,48 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26827CA5534
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Sep 2023 09:54:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A4B7CA5534
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Sep 2023 09:58:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4E7D10E499;
-	Wed, 13 Sep 2023 09:54:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9484210E493
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Sep 2023 09:54:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694598890; x=1726134890;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fy/DidxqimpLgLy0NoAH4YGu71lL8b5RIk8N9/0JjkY=;
- b=d5AJO7tFrYxyFHqiVZENAhnoveyNMvZcrUtr7eTRHLnJXQ41FXw9EVwD
- irii8bXMkQrs+/LOcMZrACFpvZtZZx7esHUVUOdyoXc1vpHjGfKvD5ISX
- A2seGJFlH1Ufjb6Xl0UsIqd5RwyHji0K0+WiCRhThosalbF3Zt86nrqDS
- iH4Iq0v4Re7JBKUkCXtwXiit2lXaMrwZRpNGX8qiya1rxRDyjU0G0zE+U
- PBlFujnMXE955HULFlnLDGRRrpIjGdndhx8nxYt9SCBtiVQQwe8xRoGky
- 4DH49enFyyB3fn2fcjuFJEZJ5Di1RCxxRRWLAnOvRtmy/5xQC2Zxj+qkK w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="409564880"
-X-IronPort-AV: E=Sophos;i="6.02,142,1688454000"; d="scan'208";a="409564880"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2023 02:54:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10831"; a="720749282"
-X-IronPort-AV: E=Sophos;i="6.02,142,1688454000"; d="scan'208";a="720749282"
-Received: from seanpaul-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.249.45.158])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2023 02:54:24 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0417F10E0A1;
+	Wed, 13 Sep 2023 09:58:27 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1D8810E495
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Sep 2023 09:58:25 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1694599078; bh=ms5qEbr6HMk40SmXByBku5LSZTBil9cNdkspZi/5MQY=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+ b=WMhVhGsSxMRQoM0uYEaCzEhCFCSJgPt6NE5LVX49PLawFIav+mYr34GpJWaYoFPIC
+ OClACQ3GZErtKLNxNwbl9NLDeu6zR+DcVTdxJp6jFKo+ymFeXyXU+hQYqXv4Ewhb8G
+ pPz3VaLgGeqO1LfO+Ntsqe/B9Vuq8I0TEjnIhqFQyzvexaXhe6GqOT+NEyWnJNxncx
+ IYOHJqqdeyOlK38RQGQ0yYfofPG3zEPb63vitdeZ4FEfyLPw/ac+9xBhTqYiRZAXTo
+ u+einuFwuH5vXrFgBAndrgPKA23WPefKPskoFqdhYhrN42CJ3P72YIy32ei0N92B3U
+ aeM1MJlzqQr5g==
+Received: from kelbaz-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by kelbaz-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 38D9w0R01661142; Wed, 13 Sep 2023 12:58:13 +0300
+From: Koby Elbaz <kelbaz@habana.ai>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Sep 2023 12:54:07 +0300
-Message-Id: <20230913095412.3427407-1-jouni.hogander@intel.com>
+Date: Wed, 13 Sep 2023 12:57:56 +0300
+Message-Id: <20230913095800.1661119-3-kelbaz@habana.ai>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230913095800.1661119-1-kelbaz@habana.ai>
+References: <20230913095800.1661119-1-kelbaz@habana.ai>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 0/5] FBC refactoring
+Subject: [Intel-xe] [PATCH 2/6] drm/xe: add read/write support for MMIO
+ extension space
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,43 +47,60 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: Moti Haimovski <mhaimovski@habana.ai>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-These patches are cleaning up all #ifdefs added into intel_fbc.c for
-Xe build.  I915 part of the refactoring is already merged into drm-tip
-and these patches are implementing interfaces or adding empty defines
-for Xe.
+A distinction has to be made when addressing the MMIO space or
+the additional MMIO extension space.
 
-v3: Rebase 
-v2: Add parenthesis around parameter in i915_gem_stolen_node_allocated
+Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
+Reviewed-by: Ofir Bitton <obitton@habana.ai>
+Reviewed-by: Moti Haimovski <mhaimovski@habana.ai>
+---
+ drivers/gpu/drm/xe/xe_mmio.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Jouni Högander (5):
-  Revert "drm/i915/display: Implement FBC support"
-  fixup! drm/i915/display: Remaining changes to make xe compile
-  drm/xe: Xe stolen memory handling for fbc support
-  drm/xe: Add i915_gem.h compatibility header
-  drm/xe: Add Xe implementation for fence checks used by fbc code
-
- drivers/gpu/drm/i915/display/intel_fbc.c      | 101 +++---------------
- .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   3 +
- .../gpu/drm/xe/compat-i915-headers/i915_gem.h |   9 ++
- .../xe/compat-i915-headers/i915_gem_stolen.h  |  79 ++++++++++++++
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |   1 +
- .../xe/compat-i915-headers/intel_gt_types.h   |  11 ++
- 6 files changed, 115 insertions(+), 89 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+index 9e0fd4a6fb29..ae09f777d711 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.h
++++ b/drivers/gpu/drm/xe/xe_mmio.h
+@@ -29,7 +29,7 @@ static inline u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
+ 	if (reg.addr < gt->mmio.adj_limit)
+ 		reg.addr += gt->mmio.adj_offset;
+ 
+-	return readb(tile->mmio.regs + reg.addr);
++	return readb((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
+ }
+ 
+ static inline u16 xe_mmio_read16(struct xe_gt *gt, struct xe_reg reg)
+@@ -39,7 +39,7 @@ static inline u16 xe_mmio_read16(struct xe_gt *gt, struct xe_reg reg)
+ 	if (reg.addr < gt->mmio.adj_limit)
+ 		reg.addr += gt->mmio.adj_offset;
+ 
+-	return readw(tile->mmio.regs + reg.addr);
++	return readw((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
+ }
+ 
+ static inline void xe_mmio_write32(struct xe_gt *gt,
+@@ -50,7 +50,7 @@ static inline void xe_mmio_write32(struct xe_gt *gt,
+ 	if (reg.addr < gt->mmio.adj_limit)
+ 		reg.addr += gt->mmio.adj_offset;
+ 
+-	writel(val, tile->mmio.regs + reg.addr);
++	writel(val, (reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
+ }
+ 
+ static inline u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
+@@ -60,7 +60,7 @@ static inline u32 xe_mmio_read32(struct xe_gt *gt, struct xe_reg reg)
+ 	if (reg.addr < gt->mmio.adj_limit)
+ 		reg.addr += gt->mmio.adj_offset;
+ 
+-	return readl(tile->mmio.regs + reg.addr);
++	return readl((reg.ext ? tile->mmio_ext.regs : tile->mmio.regs) + reg.addr);
+ }
+ 
+ static inline u32 xe_mmio_rmw32(struct xe_gt *gt, struct xe_reg reg, u32 clr,
 -- 
 2.34.1
 
