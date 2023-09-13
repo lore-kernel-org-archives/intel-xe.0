@@ -4,37 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC524CA5534
-	for <intel-xe@archiver.kernel.org>; Wed, 13 Sep 2023 09:58:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9D5CCA5531
+	for <intel-xe@archiver.kernel.org>; Wed, 13 Sep 2023 09:58:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9090810E495;
-	Wed, 13 Sep 2023 09:58:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82F4B10E496;
+	Wed, 13 Sep 2023 09:58:30 +0000 (UTC)
 Received: from mail02.habana.ai (habanamailrelay02.habana.ai [62.90.112.121])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A2CDE10E0A1
- for <intel-xe@lists.freedesktop.org>; Wed, 13 Sep 2023 09:58:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 593F410E495
+ for <intel-xe@lists.freedesktop.org>; Wed, 13 Sep 2023 09:58:26 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1694599078; bh=IgXOEd+v0EvQNdd09iwfgwpmR0UXxaWp79jEl7MMHoc=;
+ t=1694599079; bh=lX486ehpxkhlpLk3Be13brrZLuy7q9e/9FTI3soFgck=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=k/+Gb6bBewfOsqqienVXOtHxy5IZv+/+Uljn+b7gK3NBAS92/HG7eWe2lMlxxCaay
- WFQltTVkltIOpXjac+VBQ0BX/nolASQMr8fZOKmNOXVA+I8qDGC9r46LWGXKpCEf6z
- ANBfOLiw3E/tv2Id/yGcVfUQgcmDPC7c9Z+nCdTDuVvMKqwEXRW5YSmXQLFI8mqgY1
- yKHAtKiMyzZC3BJL5umrCLO75cuUzOZT4D/McXSA4nJom2HGwgBxeTlcSZNDGtzgpw
- v3Kurw1e+8Xwkuk1DlQuFDk2S+yx7s2G3Jyw/DIJCsqLmu2pcjPWZavV9OCgsWDAQA
- tjRa6sCKfwmPg==
+ b=L32hZ7VHUmC7Qdzfk5bx5KXwMKSE72gPDYwj5fkqittltSA1xevOjAM+ei3HMGJta
+ B9VfcB1R35w0IFg2NKyYyO0jIBgnswea8UgXjeA/5Akm2DBmCOQlXEiS0q67i+M90P
+ BGtSKAGQrfyoOzETZUWfs1ZXzAHYp4vaS//brvGJ54r0KH2V+ROqSks1Fh6NXTjG9+
+ arFoDlDMaJ9eqcl9umbqyzILlS5H9N9q4GW1lUA/9VFbMNTfjBwyADBF67UD9pIS2P
+ bj9ONXVn7Or61mqTXE+lzO+6Osa7FCg4pSSmTL9bmbQefEglPL3478Auh/pcctA3Sp
+ FY/pLNNDC3rxQ==
 Received: from kelbaz-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by kelbaz-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
- id 38D9w0R21661142; Wed, 13 Sep 2023 12:58:13 +0300
+ id 38D9w0R41661142; Wed, 13 Sep 2023 12:58:13 +0300
 From: Koby Elbaz <kelbaz@habana.ai>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 13 Sep 2023 12:57:58 +0300
-Message-Id: <20230913095800.1661119-5-kelbaz@habana.ai>
+Date: Wed, 13 Sep 2023 12:58:00 +0300
+Message-Id: <20230913095800.1661119-7-kelbaz@habana.ai>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230913095800.1661119-1-kelbaz@habana.ai>
 References: <20230913095800.1661119-1-kelbaz@habana.ai>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 4/6] drm/xe: add MMIO extension support flags
+Subject: [Intel-xe] [PATCH 6/6] drm/xe: refactor xe_mmio_probe_tiles to
+ support MMIO extension
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,75 +51,103 @@ Cc: Moti Haimovski <mhaimovski@habana.ai>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Besides the regular MMIO space that exists by default, MMIO
-extension support & MMIO extension tile size should both be
-defined per device, and updated from the device's descriptor.
+In future ASICs, there will be an additional MMIO extension space
+for all tiles altogether, residing on top of MMIO address space.
 
 Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
 Reviewed-by: Ofir Bitton <obitton@habana.ai>
 Reviewed-by: Moti Haimovski <mhaimovski@habana.ai>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 4 ++++
- drivers/gpu/drm/xe/xe_pci.c          | 3 +++
- drivers/gpu/drm/xe/xe_pci_types.h    | 2 ++
- 3 files changed, 9 insertions(+)
+ drivers/gpu/drm/xe/xe_mmio.c | 64 ++++++++++++++++++------------------
+ 1 file changed, 32 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 7b8852c5ea4c..d4516def3f9d 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -203,6 +203,8 @@ struct xe_device {
- 		const char *graphics_name;
- 		/** @media_name: media IP name */
- 		const char *media_name;
-+		/** @tile_mmio_ext_size: size of MMIO extension space, per-tile */
-+		u32 tile_mmio_ext_size;
- 		/** @graphics_verx100: graphics IP version */
- 		u32 graphics_verx100;
- 		/** @media_verx100: media IP version */
-@@ -252,6 +254,8 @@ struct xe_device {
- 		u8 enable_display:1;
- 		/** @bypass_mtcfg: Bypass Multi-Tile configuration from MTCFG register */
- 		u8 bypass_mtcfg:1;
-+		/** @supports_mmio_ext: supports MMIO extension/s */
-+		u8 supports_mmio_ext:1;
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 52e4572e3c4a..6c5e649bb6f4 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -318,50 +318,50 @@ int xe_mmio_probe_vram(struct xe_device *xe)
  
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- 		const struct intel_display_device_info *display;
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 4e7fbabca6a5..f0d56c5b11f5 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -60,6 +60,7 @@ struct xe_device_desc {
+ static void xe_mmio_probe_tiles(struct xe_device *xe)
+ {
+-	u8 adj_tile_count = xe->info.tile_count;
++	size_t tile_mmio_size = SZ_16M, tile_mmio_ext_size = xe->info.tile_mmio_ext_size;
++	u8 id, tile_count = xe->info.tile_count;
+ 	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	const int mmio_bar = 0;
++	struct xe_tile *tile;
++	void *regs;
+ 	u32 mtcfg;
+-	u8 id;
  
- 	u8 has_llc:1;
- 	u8 bypass_mtcfg:1;
-+	u8 supports_mmio_ext:1;
- };
+-	if (xe->info.tile_count == 1)
+-		return;
++	if (tile_count == 1)
++		goto add_mmio_ext;
  
- __diag_push();
-@@ -567,6 +568,8 @@ static int xe_info_init(struct xe_device *xe,
- 	xe->info.media_name = media_desc ? media_desc->name : "none";
- 	xe->info.has_llc = desc->has_llc;
- 	xe->info.bypass_mtcfg = desc->bypass_mtcfg;
-+	xe->info.supports_mmio_ext = desc->supports_mmio_ext;
-+	xe->info.tile_mmio_ext_size = graphics_desc->tile_mmio_ext_size;
+ 	if (!xe->info.bypass_mtcfg) {
+ 		mtcfg = xe_mmio_read64_2x32(gt, XEHP_MTCFG_ADDR);
+-		adj_tile_count = xe->info.tile_count =
+-			REG_FIELD_GET(TILE_COUNT, mtcfg) + 1;
+-
+-		/*
+-		 * FIXME: Needs some work for standalone media, but should be impossible
+-		 * with multi-tile for now.
+-		 */
+-		xe->info.gt_count = xe->info.tile_count;
+-
+-		drm_info(&xe->drm, "tile_count: %d, adj_tile_count %d\n",
+-			 xe->info.tile_count, adj_tile_count);
+-	}
+-
+-	if (xe->info.tile_count > 1) {
+-		const int mmio_bar = 0;
+-		struct xe_tile *tile;
+-		size_t size;
+-		void *regs;
+-
+-		if (adj_tile_count > 1) {
++		tile_count = REG_FIELD_GET(TILE_COUNT, mtcfg) + 1;
++		if (tile_count < xe->info.tile_count) {
++			drm_info(&xe->drm, "tile_count: %d, reduced_tile_count %d\n",
++				xe->info.tile_count, tile_count);
+ 			pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
+-			xe->mmio.size = SZ_16M * adj_tile_count;
+-			xe->mmio.regs = pci_iomap(to_pci_dev(xe->drm.dev),
+-						  mmio_bar, xe->mmio.size);
++			xe->mmio.size = (tile_mmio_size + tile_mmio_ext_size) * tile_count;
++			xe->mmio.regs = pci_iomap(to_pci_dev(xe->drm.dev), mmio_bar, xe->mmio.size);
++			xe->info.tile_count = tile_count;
+ 		}
++	}
  
- 	xe->info.dma_mask_size = graphics_desc->dma_mask_size;
- 	xe->info.vram_flags = graphics_desc->vram_flags;
-diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-index df6ddbc52d7f..d784e6057249 100644
---- a/drivers/gpu/drm/xe/xe_pci_types.h
-+++ b/drivers/gpu/drm/xe/xe_pci_types.h
-@@ -20,6 +20,8 @@ struct xe_graphics_desc {
- 
- 	u64 hw_engine_mask;	/* hardware engines provided by graphics IP */
- 
-+	u32 tile_mmio_ext_size; /* size of MMIO extension space, per-tile */
+-		size = xe->mmio.size / adj_tile_count;
+-		regs = xe->mmio.regs;
++	regs = xe->mmio.regs;
++	for_each_tile(tile, xe, id) {
++		tile->mmio.size = tile_mmio_size;
++		tile->mmio.regs = regs;
++		regs += tile_mmio_size;
++	}
 +
- 	u8 max_remote_tiles:2;
++add_mmio_ext:
++	/* By design, there's a contiguous multi-tile MMIO space (16MB hard coded per tile).
++	 * When supported, there could be an additional contiguous multi-tile MMIO extension
++	 * space ON TOP of it, and hence the necessity for distinguished MMIO spaces.
++	 */
++	if (xe->info.supports_mmio_ext) {
++		regs = xe->mmio.regs + tile_mmio_size * tile_count;
  
- 	u8 has_asid:1;
+ 		for_each_tile(tile, xe, id) {
+-			tile->mmio.size = size;
+-			tile->mmio.regs = regs;
++			tile->mmio_ext.size = tile_mmio_ext_size;
++			tile->mmio_ext.regs = regs;
+ 
+-			regs += size;
++			regs += tile_mmio_ext_size;
+ 		}
+ 	}
+ }
 -- 
 2.34.1
 
