@@ -4,56 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA0C3EDE990
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 08:43:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECFEBEDE997
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 08:49:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B039E10E51E;
-	Thu, 14 Sep 2023 08:43:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A437510E51E
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 08:43:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694681032; x=1726217032;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=zKpJ4AP91G+dqxw3q4ytPfBTpgdue0LFP0qFpkSg1aE=;
- b=RRwU3Zt0I8e1zlTmqEcfaxR2/NJ6yWCC3VW3X/51HEfALn4SIl1s9poV
- VnuyrfBVIztoTMICPmddjzs45MubkRqGCDxe9EYJ/3fwWuB3GRwLP6pHk
- u78+ZdGngl6IUttlyXanUgSFF6GBSboLay49rs4GGCA/a8WFgA9H2RemW
- w9x7IOl+bbzneqk0+jpyEPT5jpX9LnoYNiNt7UgzpKDpocM64PJHaJcyF
- hbBt0L1JOti+3QUHuY51AR4SdZRem1algPZGXW/eiJeb+bSmCTFVKNGdx
- zl2NcMX164UpUcV4W2Wyh3J6O2kUf1ZKfdyn4PpMnmmOclWvsQwrYgWu/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="465262210"
-X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="465262210"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2023 01:43:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="779550197"
-X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="779550197"
-Received: from haslam-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.49.56])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2023 01:43:49 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Francois Dugast <francois.dugast@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-In-Reply-To: <ZQG_erefoFhzg6sd@fdugast-desk.home>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230907193515.7-1-francois.dugast@intel.com>
- <ef36eb06-d65b-6ad4-ac4f-f1fb2ba7a544@habana.ai>
- <tl37n5qledvt7yxce5sl4byon6puewxvs3ymfebsndnolwstg3@3fjfvpuzna5b>
- <fede72f2-e542-8308-fcb4-ad37ae058154@habana.ai>
- <20230912002541.GD2706891@mdroper-desk1.amr.corp.intel.com>
- <23515ffe-c397-21a9-94b5-e28f5b26fd64@habana.ai>
- <oglhtekjfa3i2mfbfks4peoc4ap2y4yvflwsf5ri2za2jvrcsy@ttkz4mxz6xwr>
- <ZQG_erefoFhzg6sd@fdugast-desk.home>
-Date: Thu, 14 Sep 2023 11:43:47 +0300
-Message-ID: <87edj1w3ek.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF24810E551;
+	Thu, 14 Sep 2023 08:49:04 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6592E10E550;
+ Thu, 14 Sep 2023 08:49:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 67AD3AADF3;
+ Thu, 14 Sep 2023 08:49:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2054424538805561912=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH] drm/xe/uapi: Remove MMIO ioctl
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Date: Thu, 14 Sep 2023 08:49:03 -0000
+Message-ID: <169468134341.29166.5588724081561895016@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230914063211.5210-1-jouni.hogander@intel.com>
+In-Reply-To: <20230914063211.5210-1-jouni.hogander@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Remove_ex?=
+ =?utf-8?q?tra_headers_added_into_intel=5Fdisplay=5Fpower=2Eh_=28rev5=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,69 +39,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 13 Sep 2023, Francois Dugast <francois.dugast@intel.com> wrote:
-> On Tue, Sep 12, 2023 at 09:42:41AM -0500, Lucas De Marchi wrote:
->> On Tue, Sep 12, 2023 at 03:43:06AM -0500, Ofir Bitton wrote:
->> > Hey Matt, I totally undesrstand your concern, I might have another
->> > suggestion. We can create another FD in debugfs and move this ioctl
->> > there (I can take ownership on this), This way ABI is not an issue.
->> 
->> an interface in debugfs would be better than keeping the ioctl.
+--===============2054424538805561912==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-A regular debugfs interface, or an ioctl on a debugfs file? [1]
+== Series Details ==
 
-[1] https://lore.kernel.org/r/87h6nxw3rl.fsf@intel.com
+Series: Remove extra headers added into intel_display_power.h (rev5)
+URL   : https://patchwork.freedesktop.org/series/123598/
+State : success
 
->> We seem to have some consensus now to go ahead and remove this.
->> 
->> 	Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> 
->> Please record the Acked-by from UMD when you get them and before
->> merging.  And we will also need to change IGT ahead of merging this.
->
-> Sure, do we rely on intel_reg only or do we also keep xe_reg?
+== Summary ==
 
-xe_reg?! TIL.
+CI Bug Log - changes from xe-372-baea10eb27d49a2b8a526d87a70532ab201d140b_BAT -> xe-pw-123598v5_BAT
+====================================================
 
-A long time ago we used to have 10+ tools in IGT to access registers. It
-was horrible and unmaintainable. Please let's focus on having *one* tool
-for this:
+Summary
+-------
 
+  **SUCCESS**
 
-commit dfda0b6aeccef464cc6f1af60d8ea16c11fb13f7
-Author: Jani Nikula <jani.nikula@intel.com>
-Date:   Wed Dec 10 14:27:07 2014 +0200
+  No regressions found.
 
-    intel_reg: introduce one intel_reg tool to rule them all
-    
-            Three Tools for the Elven-kings under the sky,
-            Seven for the Dwarf-lords in their halls of stone,
-            Nine for Mortal Men doomed to die,
-            One for the Dark Lord on his dark throne
-            In the Land of Mordor where the Shadows lie.
-            One Tool to rule them all, One Tool to find them,
-            One Tool to bring them all and in the darkness bind them
-            In the Land of Mordor where the Shadows lie.
-    
-                    J.R.R. Tolkien's epigraph to The Lord of The Tools
-                     | sed 's/Ring/Tool/g'
-    
-    Introduce intel_reg as the one Intel graphics register multitool to
-    replace intel_reg_read, intel_reg_write, intel_iosf_sb_read,
-    intel_iosf_sb_write, intel_vga_read, intel_vga_write, intel_reg_dumper,
-    intel_reg_snapshot, and quick_dump.py.
-    
-    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+  
 
+Participating hosts (4 -> 4)
+------------------------------
 
-BR,
-Jani.
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-123598v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-372-baea10eb27d49a2b8a526d87a70532ab201d140b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123598v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#480]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-372-baea10eb27d49a2b8a526d87a70532ab201d140b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123598v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
 
 
--- 
-Jani Nikula, Intel
+Build changes
+-------------
+
+  * IGT: IGT_7486 -> IGT_7487
+  * Linux: xe-372-baea10eb27d49a2b8a526d87a70532ab201d140b -> xe-pw-123598v5
+
+  IGT_7486: afd9a940c8247291baadd1977fe881d4f2edf0c7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7487: 77e606dea60110c869ad9f9cc88994a0048845c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-372-baea10eb27d49a2b8a526d87a70532ab201d140b: baea10eb27d49a2b8a526d87a70532ab201d140b
+  xe-pw-123598v5: 123598v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123598v5/index.html
+
+--===============2054424538805561912==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Remove extra headers added into intel_display_power.h (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123598/">https://patchwork.freedesktop.org/series/123598/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123598v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123598v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-372-baea10eb27d49a2b8a526d87a70532ab201d140b_BAT -&gt; xe-pw-123598v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-123598v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-372-baea10eb27d49a2b8a526d87a70532ab201d140b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123598v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-372-baea10eb27d49a2b8a526d87a70532ab201d140b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123598v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7486 -&gt; IGT_7487</li>
+<li>Linux: xe-372-baea10eb27d49a2b8a526d87a70532ab201d140b -&gt; xe-pw-123598v5</li>
+</ul>
+<p>IGT_7486: afd9a940c8247291baadd1977fe881d4f2edf0c7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7487: 77e606dea60110c869ad9f9cc88994a0048845c4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-372-baea10eb27d49a2b8a526d87a70532ab201d140b: baea10eb27d49a2b8a526d87a70532ab201d140b<br />
+  xe-pw-123598v5: 123598v5</p>
+
+</body>
+</html>
+
+--===============2054424538805561912==--
