@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBE90EEAA78
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 365E2EEAA71
 	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 20:40:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8FF1C10E586;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01F7E10E583;
 	Thu, 14 Sep 2023 20:40:46 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A68910E15D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CE0310E57E
  for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 20:40:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1694724041; x=1726260041;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5sJjyDg8N4mSgR0xMgb/8HBxvJfgLUv37agJAouBopQ=;
- b=D7q7vShUGZiXIu8ra1vYVQH57JkI/1X2eiPCyFwyEHsRfIYruG+Fo3hx
- sdcqoIZpH/qcWXCcwWQ3KdQmYUfH11CIkPaaa9y7Ea0m+KL6ucE8w3sQ3
- tLko4Vx6mWO12OijbHDl3poOBWbg8CpBdACVQgauWfBqkv0NJEZ6q8OLM
- WSYgH5TJmoKEQFRR/Fn3k/LYHlIG6dgAq2LD2wWNa8Jp/ytIqQBJcqf1m
- B8/sdF2xWjeiZP57+wtBjzKo6vFYJOczVECiZxeBvLqIyJMq8IYsI4Xqu
- G0fgxFm8b7BaeklKqFP/pyHVsbYlnfW+qJ88VDRFatSQ1B0GEzORzWthC Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="369369363"
-X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="369369363"
+ bh=Kug0bUj/T1lkwgMmsBXOPjEOYg6B0d+TkZqQCfI3Zdw=;
+ b=C8kocfzdlC4+UwVLY6Zu7DfVn5/5ORGJLQ7GLoIZDyxq9j3Pd4LeArTc
+ KaWhAEgW6UvgE5pZZwOGOmV1TlyahPrtdCw/4gYdCS5aR6b9zPnwOvhAO
+ pe90kaqWksMuXPeZjM/KCRkkIX786u6yte6clo9IpmBlzHETiktRZGhHq
+ 6jatREJZ/qajg5fDVWOrR+GPnVwlwpKmD+b2jWWL6OYH/IvJSE0kiWhpE
+ mYgfeiMBg42/rAYYnnBekhllH9Mb7zi+mdlwmHpjStNP9VeODeolrzMjD
+ /66Pd0nppjHK+Byb/js13G7pTjGPFDF1nX1h0q1xreVOmXk+MDqpfbDVA A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="369369367"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="369369367"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2023 13:40:39 -0700
+ 14 Sep 2023 13:40:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="694453573"
-X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="694453573"
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="694453587"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="694453587"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Sep 2023 13:40:39 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Thu, 14 Sep 2023 13:40:48 -0700
-Message-Id: <20230914204053.2220281-2-matthew.brost@intel.com>
+Date: Thu, 14 Sep 2023 13:40:53 -0700
+Message-Id: <20230914204053.2220281-7-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230914204053.2220281-1-matthew.brost@intel.com>
 References: <20230914204053.2220281-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/6] drm/xe/uapi: Kill
- XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS extension
+Subject: [Intel-xe] [PATCH 6/6] drm/xe: Allow num_batch_buffer == 0 in exec
+ IOCTL
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,255 +57,164 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+The idea being out-syncs can signal indicating all previous operations
+on the exec queue are complete. An example use case of this would be
+support for implementing vkQueueWaitForIdle easily.
 
-This extension is currently not used and it is not aligned with
-the error handling on async VM_BIND. Let's remove it and along with
-that, since it was the only extension for the vm_create, remove VM
-extension entirely.
+v2: Don't add last_fence for VM's that do not support dma fences
 
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 129 +------------------------------------
- include/uapi/drm/xe_drm.h  |  42 +-----------
- 2 files changed, 4 insertions(+), 167 deletions(-)
+ drivers/gpu/drm/xe/xe_exec.c             | 22 +++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  5 ++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  5 +++--
+ drivers/gpu/drm/xe/xe_sync.c             |  5 ++++-
+ drivers/gpu/drm/xe/xe_sync.h             |  2 +-
+ drivers/gpu/drm/xe/xe_vm.c               |  2 +-
+ 6 files changed, 32 insertions(+), 9 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 28e84a0bbeb0..4666f5b145f7 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -161,7 +161,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (XE_IOCTL_DBG(xe, q->flags & EXEC_QUEUE_FLAG_VM))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, q->width != args->num_batch_buffer))
++	if (XE_IOCTL_DBG(xe, args->num_batch_buffer &&
++			 q->width != args->num_batch_buffer))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_DBG(xe, q->flags & EXEC_QUEUE_FLAG_BANNED)) {
+@@ -182,12 +183,13 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	for (i = 0; i < args->num_syncs; i++) {
+ 		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs++],
+ 					  &syncs_user[i], true,
+-					  xe_vm_no_dma_fences(vm));
++					  xe_vm_no_dma_fences(vm),
++					  !args->num_batch_buffer);
+ 		if (err)
+ 			goto err_syncs;
+ 	}
+ 
+-	if (xe_exec_queue_is_parallel(q)) {
++	if (args->num_batch_buffer && xe_exec_queue_is_parallel(q)) {
+ 		err = __copy_from_user(addresses, addresses_user, sizeof(u64) *
+ 				       q->width);
+ 		if (err) {
+@@ -234,6 +236,18 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto err_exec;
+ 	}
+ 
++	if (!args->num_batch_buffer) {
++		if (!xe_vm_no_dma_fences(vm)) {
++			struct dma_fence *fence =
++				xe_exec_queue_last_fence_get(q, vm);
++
++			for (i = 0; i < num_syncs; i++)
++				xe_sync_entry_signal(&syncs[i], NULL, fence);
++		}
++
++		goto err_exec;
++	}
++
+ 	if (xe_exec_queue_is_lr(q) && xe_exec_queue_ring_full(q)) {
+ 		err = -EWOULDBLOCK;
+ 		goto err_exec;
+@@ -327,6 +341,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 
+ 	if (xe_exec_queue_is_lr(q))
+ 		q->ring_ops->emit_job(job);
++	if (!xe_vm_no_dma_fences(vm))
++		xe_exec_queue_last_fence_set(q, vm, &job->drm.s_fence->finished);
+ 	xe_sched_job_push(job);
+ 	xe_vm_reactivate_rebind(vm);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 8722ab6ba00a..9fe91f66f776 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -964,7 +964,10 @@ int xe_exec_queue_set_property_ioctl(struct drm_device *dev, void *data,
+ static void xe_exec_queue_last_fence_lockdep_assert(struct xe_exec_queue *q,
+ 						    struct xe_vm *vm)
+ {
+-	lockdep_assert_held_write(&vm->lock);
++	if (q->flags & EXEC_QUEUE_FLAG_VM)
++		lockdep_assert_held_write(&vm->lock);
++	else
++		xe_vm_assert_held(vm);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 71ed8d22a8a1..9648b2bbabc9 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -53,8 +53,9 @@ struct xe_exec_queue {
+ 	struct xe_hw_fence_irq *fence_irq;
+ 
+ 	/**
+-	 * @last_fence: last fence on engine, protected by vm->lock in write
+-	 * mode if bind engine
++	 * @last_fence: last fence on exec queue, protected by vm->lock in write
++	 * mode if bind exec queue, protected by dma resv lock if non-bind exec
++	 * queue
+ 	 */
+ 	struct dma_fence *last_fence;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index 73ef259aa387..2461e7d4814c 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -100,7 +100,7 @@ static void user_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
+ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+ 			struct xe_sync_entry *sync,
+ 			struct drm_xe_sync __user *sync_user,
+-			bool exec, bool no_dma_fences)
++			bool exec, bool no_dma_fences, bool exec_nop)
+ {
+ 	struct drm_xe_sync sync_in;
+ 	int err;
+@@ -171,6 +171,9 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+ 		break;
+ 
+ 	case DRM_XE_SYNC_USER_FENCE:
++		if (XE_IOCTL_DBG(xe, exec_nop))
++			return -EOPNOTSUPP;
++
+ 		if (XE_IOCTL_DBG(xe, !signal))
+ 			return -EOPNOTSUPP;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
+index 30958ddc4cdc..98f02bb34637 100644
+--- a/drivers/gpu/drm/xe/xe_sync.h
++++ b/drivers/gpu/drm/xe/xe_sync.h
+@@ -15,7 +15,7 @@ struct xe_sched_job;
+ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+ 			struct xe_sync_entry *sync,
+ 			struct drm_xe_sync __user *sync_user,
+-			bool exec, bool compute_mode);
++			bool exec, bool compute_mode, bool exec_nop);
+ int xe_sync_entry_wait(struct xe_sync_entry *sync);
+ int xe_sync_entry_add_deps(struct xe_sync_entry *sync,
+ 			   struct xe_sched_job *job);
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 2b225c0692a6..2a69302304e2 100644
+index 0e2f3ab453ea..c2526950cf60 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1369,37 +1369,6 @@ static void flush_async_ops(struct xe_vm *vm)
- 	flush_work(&vm->async_ops.work);
- }
- 
--static void vm_error_capture(struct xe_vm *vm, int err,
--			     u32 op, u64 addr, u64 size)
--{
--	struct drm_xe_vm_bind_op_error_capture capture;
--	u64 __user *address =
--		u64_to_user_ptr(vm->async_ops.error_capture.addr);
--	bool in_kthread = !current->mm;
--
--	capture.error = err;
--	capture.op = op;
--	capture.addr = addr;
--	capture.size = size;
--
--	if (in_kthread) {
--		if (!mmget_not_zero(vm->async_ops.error_capture.mm))
--			goto mm_closed;
--		kthread_use_mm(vm->async_ops.error_capture.mm);
--	}
--
--	if (copy_to_user(address, &capture, sizeof(capture)))
--		drm_warn(&vm->xe->drm, "Copy to user failed");
--
--	if (in_kthread) {
--		kthread_unuse_mm(vm->async_ops.error_capture.mm);
--		mmput(vm->async_ops.error_capture.mm);
--	}
--
--mm_closed:
--	wake_up_all(&vm->async_ops.error_capture.wq);
--}
--
- static void xe_vm_close(struct xe_vm *vm)
- {
- 	down_write(&vm->lock);
-@@ -1883,91 +1852,6 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
- 	return 0;
- }
- 
--static int vm_set_error_capture_address(struct xe_device *xe, struct xe_vm *vm,
--					u64 value)
--{
--	if (XE_IOCTL_DBG(xe, !value))
--		return -EINVAL;
--
--	if (XE_IOCTL_DBG(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
--		return -EOPNOTSUPP;
--
--	if (XE_IOCTL_DBG(xe, vm->async_ops.error_capture.addr))
--		return -EOPNOTSUPP;
--
--	vm->async_ops.error_capture.mm = current->mm;
--	vm->async_ops.error_capture.addr = value;
--	init_waitqueue_head(&vm->async_ops.error_capture.wq);
--
--	return 0;
--}
--
--typedef int (*xe_vm_set_property_fn)(struct xe_device *xe, struct xe_vm *vm,
--				     u64 value);
--
--static const xe_vm_set_property_fn vm_set_property_funcs[] = {
--	[XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS] =
--		vm_set_error_capture_address,
--};
--
--static int vm_user_ext_set_property(struct xe_device *xe, struct xe_vm *vm,
--				    u64 extension)
--{
--	u64 __user *address = u64_to_user_ptr(extension);
--	struct drm_xe_ext_vm_set_property ext;
--	int err;
--
--	err = __copy_from_user(&ext, address, sizeof(ext));
--	if (XE_IOCTL_DBG(xe, err))
--		return -EFAULT;
--
--	if (XE_IOCTL_DBG(xe, ext.property >=
--			 ARRAY_SIZE(vm_set_property_funcs)) ||
--	    XE_IOCTL_DBG(xe, ext.pad) ||
--	    XE_IOCTL_DBG(xe, ext.reserved[0] || ext.reserved[1]))
--		return -EINVAL;
--
--	return vm_set_property_funcs[ext.property](xe, vm, ext.value);
--}
--
--typedef int (*xe_vm_user_extension_fn)(struct xe_device *xe, struct xe_vm *vm,
--				       u64 extension);
--
--static const xe_vm_set_property_fn vm_user_extension_funcs[] = {
--	[XE_VM_EXTENSION_SET_PROPERTY] = vm_user_ext_set_property,
--};
--
--#define MAX_USER_EXTENSIONS	16
--static int vm_user_extensions(struct xe_device *xe, struct xe_vm *vm,
--			      u64 extensions, int ext_number)
--{
--	u64 __user *address = u64_to_user_ptr(extensions);
--	struct xe_user_extension ext;
--	int err;
--
--	if (XE_IOCTL_DBG(xe, ext_number >= MAX_USER_EXTENSIONS))
--		return -E2BIG;
--
--	err = __copy_from_user(&ext, address, sizeof(ext));
--	if (XE_IOCTL_DBG(xe, err))
--		return -EFAULT;
--
--	if (XE_IOCTL_DBG(xe, ext.pad) ||
--	    XE_IOCTL_DBG(xe, ext.name >=
--			 ARRAY_SIZE(vm_user_extension_funcs)))
--		return -EINVAL;
--
--	err = vm_user_extension_funcs[ext.name](xe, vm, extensions);
--	if (XE_IOCTL_DBG(xe, err))
--		return err;
--
--	if (ext.next_extension)
--		return vm_user_extensions(xe, vm, ext.next_extension,
--					  ++ext_number);
--
--	return 0;
--}
--
- #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_SCRATCH_PAGE | \
- 				    DRM_XE_VM_CREATE_COMPUTE_MODE | \
- 				    DRM_XE_VM_CREATE_ASYNC_BIND_OPS | \
-@@ -1984,6 +1868,9 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 	int err;
- 	u32 flags = 0;
- 
-+	if (XE_IOCTL_DBG(xe, args->extensions))
-+		return -EINVAL;
-+
- 	if (XE_WA(xe_root_mmio_gt(xe), 14016763929))
- 		args->flags |= DRM_XE_VM_CREATE_SCRATCH_PAGE;
- 
-@@ -2026,14 +1913,6 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 	if (IS_ERR(vm))
- 		return PTR_ERR(vm);
- 
--	if (args->extensions) {
--		err = vm_user_extensions(xe, vm, args->extensions, 0);
--		if (XE_IOCTL_DBG(xe, err)) {
--			xe_vm_close_and_put(vm);
--			return err;
--		}
--	}
--
- 	mutex_lock(&xef->vm.lock);
- 	err = xa_alloc(&xef->vm.xa, &id, vm, xa_limit_32b, GFP_KERNEL);
- 	mutex_unlock(&xef->vm.lock);
-@@ -2931,8 +2810,6 @@ static void xe_vma_op_work_func(struct work_struct *w)
- 				vm_set_async_error(vm, err);
- 				up_write(&vm->lock);
- 
--				if (vm->async_ops.error_capture.addr)
--					vm_error_capture(vm, err, 0, 0, 0);
- 				break;
- 			}
- 			up_write(&vm->lock);
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 00d5cb4ef85e..5cbbb433ce68 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -480,44 +480,7 @@ struct drm_xe_gem_mmap_offset {
- 	__u64 reserved[2];
- };
- 
--/**
-- * struct drm_xe_vm_bind_op_error_capture - format of VM bind op error capture
-- */
--struct drm_xe_vm_bind_op_error_capture {
--	/** @error: errno that occurred */
--	__s32 error;
--
--	/** @op: operation that encounter an error */
--	__u32 op;
--
--	/** @addr: address of bind op */
--	__u64 addr;
--
--	/** @size: size of bind */
--	__u64 size;
--};
--
--/** struct drm_xe_ext_vm_set_property - VM set property extension */
--struct drm_xe_ext_vm_set_property {
--	/** @base: base user extension */
--	struct xe_user_extension base;
--
--#define XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS		0
--	/** @property: property to set */
--	__u32 property;
--
--	/** @pad: MBZ */
--	__u32 pad;
--
--	/** @value: property value */
--	__u64 value;
--
--	/** @reserved: Reserved */
--	__u64 reserved[2];
--};
--
- struct drm_xe_vm_create {
--#define XE_VM_EXTENSION_SET_PROPERTY	0
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
- 
-@@ -600,10 +563,7 @@ struct drm_xe_vm_bind_op {
- 	 * practice the bind op is good and will complete.
- 	 *
- 	 * If this flag is set and doesn't return an error, the bind op can
--	 * still fail and recovery is needed. If configured, the bind op that
--	 * caused the error will be captured in drm_xe_vm_bind_op_error_capture.
--	 * Once the user sees the error (via a ufence +
--	 * XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS), it should free memory
-+	 * still fail and recovery is needed. It should free memory
- 	 * via non-async unbinds, and then restart all queued async binds op via
- 	 * XE_VM_BIND_OP_RESTART. Or alternatively the user should destroy the
- 	 * VM.
+@@ -2916,7 +2916,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	for (num_syncs = 0; num_syncs < args->num_syncs; num_syncs++) {
+ 		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs],
+ 					  &syncs_user[num_syncs], false,
+-					  xe_vm_no_dma_fences(vm));
++					  xe_vm_no_dma_fences(vm), false);
+ 		if (err)
+ 			goto free_syncs;
+ 	}
 -- 
 2.34.1
 
