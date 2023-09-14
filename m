@@ -4,52 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A367EDE98F
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 07:53:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03223EDE98C
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 07:54:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C77B10E511;
-	Thu, 14 Sep 2023 07:53:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AAA910E518
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 07:53:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2C8C10E516;
+	Thu, 14 Sep 2023 07:54:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCE4D10E516
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 07:54:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694678033; x=1726214033;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=CJvDsDWpWoGjz50uoy0FU0iXTuUw4Lapxufsh+4V2Jc=;
- b=TXcFWJ4f1D4HmXpE7FK/ljDcfAowwPH/ah4zzGr6pz77oZMIvJWyUPHu
- 8cmRiNbgPvzqDJduHviRlwz1OqsaJoIFLJO4L1LGxc5P5uloTeR0G19Lf
- bvHGT6evqy3nfrrnianABLyIBns8k/kh1cBt2CYlH6zhAL5d3Rk8mm4Vq
- kSPrHY0hrqNkXZsrJ/gmo0rvBfYvI5+cNlK32IdTjSzUHYdsa91WGycGs
- Kv0RnvTQzUD2dFbZ8Q4aeZdL9vmegLw/rOC7pKVV2rpXPdiopCu/tR8vD
- 6XZrraVcHmm786nUminESORCxy5RYNecYnmYHyxldpa7hfyRPnfHUkaOc g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="363921615"
-X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="363921615"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2023 00:53:44 -0700
+ t=1694678046; x=1726214046;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5eJGXa1v1MRD4Vd+K/1mmYn4XMt3u5KZ0tXMYyhVsPc=;
+ b=CgpKOcRPvHO1sc0CMBBeZbDEdqYJq47NtxDTJZir7qi48bMIcdqF87PF
+ nN0w8cYBry3sbyCZ6xYTfIdHAujQWqMU65BqdTIX8IyPSZMhW+NtYvcyR
+ KzT7MpgIIYPkHBKxKeFxBSm7258f+4r+PlZd3grpHxE/KTgs6Erm7+Nr8
+ B1PKPHwKetKQVTBydNsIANtuURlRIvBjYCk7eaUNLdv/JbNp072lkRC11
+ Y0zoHj+v1fVq1ISwI2Hbq+6MMh+if1BQmjEWlB2vPs+QF3A/ylY+ee9IJ
+ FugDoe4MO5V9GV5fmTKpEz+kuqtt9YIdeOa5ZQm0CHADR1ULD/UyV+mY7 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="465252900"
+X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="465252900"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 00:54:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="773799979"
-X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="773799979"
-Received: from haslam-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.49.56])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Sep 2023 00:53:42 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- intel-xe@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-In-Reply-To: <20230913232837.2811049-4-daniele.ceraolospurio@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230913232837.2811049-1-daniele.ceraolospurio@intel.com>
- <20230913232837.2811049-4-daniele.ceraolospurio@intel.com>
-Date: Thu, 14 Sep 2023 10:53:40 +0300
-Message-ID: <87msxpw5q3.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="747632322"
+X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="747632322"
+Received: from skallurr-mobl1.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.49])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 00:54:04 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 14 Sep 2023 09:53:24 +0200
+Message-ID: <20230914075325.1936-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH v3 3/3] drm/xe/uc: Add GuC/HuC firmware path
- overrides
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Reinstate pipelined fence
+ enable_signaling
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,71 +60,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+With the GPUVA conversion, the xe_bo::vmas member became replaced with
+drm_gem_object::gpuva.list, however there was a couple of usage instances
+left using the old member. Most notably the pipelined fence
+enable_signaling.
 
-[hijacking the thread a bit, sorry]
+Remove the xe_bo::vmas member completely, fix usage instances and
+also enable this pipelined fence enable_signaling even for faulting
+VM:s since we actually wait for bind fences to complete.
 
-On Wed, 13 Sep 2023, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> wrote:
-> diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-> index de85494e2280..0660017c3e83 100644
-> --- a/drivers/gpu/drm/xe/xe_module.c
-> +++ b/drivers/gpu/drm/xe/xe_module.c
-> @@ -30,6 +30,16 @@ int xe_guc_log_level = 5;
->  module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
->  MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=disable, 1..5=enable with verbosity min..max)");
->  
-> +char *xe_guc_firmware_path = NULL;
-> +module_param_named_unsafe(guc_firmware_path, xe_guc_firmware_path, charp, 0400);
-> +MODULE_PARM_DESC(guc_firmware_path,
-> +		 "GuC firmware path to use instead of the default one");
-> +
-> +char *xe_huc_firmware_path = NULL;
-> +module_param_named_unsafe(huc_firmware_path, xe_huc_firmware_path, charp, 0400);
-> +MODULE_PARM_DESC(huc_firmware_path,
-> +		 "HuC firmware path to use instead of the default one - empty string disables");
-> +
->  char *xe_param_force_probe = CONFIG_DRM_XE_FORCE_PROBE;
->  module_param_named_unsafe(force_probe, xe_param_force_probe, charp, 0400);
->  MODULE_PARM_DESC(force_probe,
+Cc: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c       | 5 ++---
+ drivers/gpu/drm/xe/xe_bo_types.h | 2 --
+ drivers/gpu/drm/xe/xe_pt.c       | 2 +-
+ 3 files changed, 3 insertions(+), 6 deletions(-)
 
-Not related to this patch specifically, but, uh, why does xe collect all
-module parameters in one file like this?
-
-IMO there's two reasonable ways of defining module paramers:
-
-1) Module parameters defined for static variables in each .c file where
-needed, and avoid the need to access them in multiple .c files.
-
-2) Module parameters defined in a single file, wrapped in a global
-struct. (This is what i915 does.)
-
-Putting all of the variables in a single file, and exposing them
-globally is not cool. You want to limit the number of module global
-variables in big drivers like this.
-
-(Of course, primarily module parameters should be avoided altogether.)
-
-> diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-> index 2c1f9199f909..e1da1e9ca5cb 100644
-> --- a/drivers/gpu/drm/xe/xe_module.h
-> +++ b/drivers/gpu/drm/xe/xe_module.h
-> @@ -10,4 +10,6 @@ extern bool force_execlist;
->  extern bool enable_display;
->  extern u32 xe_force_vram_bar_size;
->  extern int xe_guc_log_level;
-> +extern char *xe_guc_firmware_path;
-> +extern char *xe_huc_firmware_path;
->  extern char *xe_param_force_probe;
-
-Basically *every* extern in a big driver is a sign of a problem. Data is
-not an interface.
-
-Yes, also i915_modparams violates this, but it groups the stuff together
-under *one* extern struct with a "namespace", if you will.
-
-
-BR,
-Jani.
-
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 25fdc04627ca..3fdd0bab2fd5 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -455,7 +455,7 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 
+ 	dma_resv_assert_held(bo->ttm.base.resv);
+ 
+-	if (!xe_device_in_fault_mode(xe) && !list_empty(&bo->vmas)) {
++	if (!list_empty(&bo->ttm.base.gpuva.list)) {
+ 		dma_resv_iter_begin(&cursor, bo->ttm.base.resv,
+ 				    DMA_RESV_USAGE_BOOKKEEP);
+ 		dma_resv_for_each_fence_unlocked(&cursor, fence)
+@@ -1043,7 +1043,7 @@ static void xe_ttm_bo_destroy(struct ttm_buffer_object *ttm_bo)
+ 		drm_prime_gem_destroy(&bo->ttm.base, NULL);
+ 	drm_gem_object_release(&bo->ttm.base);
+ 
+-	WARN_ON(!list_empty(&bo->vmas));
++	WARN_ON(!list_empty(&ttm_bo->base.gpuva.list));
+ 
+ 	if (bo->ggtt_node.size)
+ 		xe_ggtt_remove_bo(bo->tile->mem.ggtt, bo);
+@@ -1226,7 +1226,6 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	bo->props.preferred_gt = XE_BO_PROPS_INVALID;
+ 	bo->props.preferred_mem_type = XE_BO_PROPS_INVALID;
+ 	bo->ttm.priority = DRM_XE_VMA_PRIORITY_NORMAL;
+-	INIT_LIST_HEAD(&bo->vmas);
+ 	INIT_LIST_HEAD(&bo->pinned_link);
+ 
+ 	drm_gem_private_object_init(&xe->drm, &bo->ttm.base, size);
+diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
+index f6ee920303af..27fe72129ee6 100644
+--- a/drivers/gpu/drm/xe/xe_bo_types.h
++++ b/drivers/gpu/drm/xe/xe_bo_types.h
+@@ -31,8 +31,6 @@ struct xe_bo {
+ 	struct xe_vm *vm;
+ 	/** @tile: Tile this BO is attached to (kernel BO only) */
+ 	struct xe_tile *tile;
+-	/** @vmas: List of VMAs for this BO */
+-	struct list_head vmas;
+ 	/** @placements: valid placements for this BO */
+ 	struct ttm_place placements[XE_BO_MAX_PLACEMENTS];
+ 	/** @placement: current placement for this BO */
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 5709518e314b..5e4d8f89d8e1 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -265,7 +265,7 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+ 	if (!pt)
+ 		return;
+ 
+-	XE_WARN_ON(!list_empty(&pt->bo->vmas));
++	XE_WARN_ON(!list_empty(&pt->bo->ttm.base.gpuva.list));
+ 	xe_bo_unpin(pt->bo);
+ 	xe_bo_put_deferred(pt->bo, deferred);
+ 
 -- 
-Jani Nikula, Intel
+2.41.0
+
