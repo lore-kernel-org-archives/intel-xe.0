@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CD57EDE983
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 377D4EDE985
 	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 06:05:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE09D10E506;
+	by gabe.freedesktop.org (Postfix) with ESMTP id D87DD10E507;
 	Thu, 14 Sep 2023 06:05:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B9EE10E507
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 09F0710E506
  for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 06:05:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1694671547; x=1726207547;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QKc4QloaMumCgdR/CfMk8lw+nO9UwwwK/au6lJrTB+8=;
- b=cbIQwLftYiJMpoeyJmGPAeo7wOP7YeGNKVFvjD60wbUnDxSGc3UBVTgj
- l0XqLmt+m1zMtlotkCa16aAoDcG1E/rssEze5AHVANLjLrA6dF/2213zE
- BcaXr/d5Oss0d3DyBLcP3bqCcf+tzwjE0W4xN3fvyHKnAE+eMhooC7dPV
- C6aRsNffRM++3x0WidQnU1/OuXDM4Hk8jeuvOkoKjdjeWj+0JP8DEV4nu
- IO178FXkK58qL+g75Wnh6sub3okCykXKsU1sr9IxEQgtkkLFbn69jU43K
- iPzc2ulIqj2Ve3rSp2qeBC75il5CGCBhTqkJ804C3+CmBYUkn8VB4kW/Q Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="381547245"
-X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="381547245"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=BWniwdDNtk8A3HQgb6lWGmgRbzVCWuUsVmmxeLHxAaw=;
+ b=aTcqBWrzbsGBTSOtcWg+M/qXZbQiGBcQJje0YTP1ca/HSHIzJ6yhhsiW
+ sTmPoUWusiscKjAw3aQhyCrjvnyKHFCpjnW9xNCzFIh/92q+Tq8DQ2Eem
+ KEVdJDVeQtkMvtlc5aDRUFxhJJbg8bHvRA5+XLZnJJJ7q1QkD90DIikD+
+ Nlxf0kJ/yL+y+yl2jFJjVkZlWDhWVX/zPWCLQKeddYis1HmthpK+aRezW
+ 3kruoUvVknNvz8p5uNxjLTXBT1x8j0P083hz6Si1/XAPw+fiGST3BYdOp
+ VOy5gDz6WJdEIjjt6ovbUKTpBpY4f6j9p3QrBFuZjU1K8poaxNfZPejKe g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="381547246"
+X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="381547246"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2023 23:04:49 -0700
+ 13 Sep 2023 23:04:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="773770146"
-X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="773770146"
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="773770177"
+X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="773770177"
 Received: from aravind-dev.iind.intel.com ([10.145.162.80])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Sep 2023 23:04:47 -0700
+ 13 Sep 2023 23:04:48 -0700
 From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 14 Sep 2023 11:43:14 +0530
-Message-Id: <20230914061317.1024579-1-aravind.iddamsetty@linux.intel.com>
+Date: Thu, 14 Sep 2023 11:43:15 +0530
+Message-Id: <20230914061317.1024579-2-aravind.iddamsetty@linux.intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230914061317.1024579-1-aravind.iddamsetty@linux.intel.com>
+References: <20230914061317.1024579-1-aravind.iddamsetty@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v7 0/3] drm/xe/pmu: Enable PMU interface
+Subject: [Intel-xe] [PATCH v3 1/3] drm/xe: Get GT clock to nanosecs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,94 +60,48 @@ Cc: rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are a set of engine group busyness counters provided by HW which are
-perfect fit to be exposed via PMU perf events.
+Helper to convert GT clock cycles to nanoseconds.
 
-BSPEC: 46559, 46560, 46722, 46729, 52071, 71028
+v2: Use DIV_ROUND_CLOSEST_ULL helper(Ashutosh)
+v3: rename xe_gt_clock_interval_to_ns to xe_gt_clock_cycles_to_ns
 
-events can be listed using:
-perf list
-  xe_0000_03_00.0/any-engine-group-busy-gt0/         [Kernel PMU event]
-  xe_0000_03_00.0/copy-group-busy-gt0/               [Kernel PMU event]
-  xe_0000_03_00.0/interrupts/                        [Kernel PMU event]
-  xe_0000_03_00.0/media-group-busy-gt0/              [Kernel PMU event]
-  xe_0000_03_00.0/render-group-busy-gt0/             [Kernel PMU event]
+Reviewed-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_clock.c | 5 +++++
+ drivers/gpu/drm/xe/xe_gt_clock.h | 4 +++-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
 
-and can be read using:
-
-perf stat -e "xe_0000_8c_00.0/render-group-busy-gt0/" -I 1000
-           time             counts unit events
-     1.001139062                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-     2.003294678                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-     3.005199582                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-     4.007076497                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-     5.008553068                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-     6.010531563              43520 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-     7.012468029              44800 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-     8.013463515                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-     9.015300183                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-    10.017233010                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-    10.971934120                  0 ns  xe_0000_8c_00.0/render-group-busy-gt0/
-
-The pmu base implementation is taken from i915.
-
-v7:
-1. update UAPI documentation
-2. drop MEDIA_GT specific change for media busyness counter.
-
-v6:
-1. drop engine_busyness_sample_type
-2. update UAPI documentation
-
-v5:
-1. Use spinlock in forcewake instead of mutex
-2. take forcewake when accessing the OAG registers
-
-v4: minor nits.
-
-v3:
-1. drop init_samples, as storing counters before going to suspend should
-be sufficient.
-2. ported the "drm/i915/pmu: Make PMU sample array two-dimensional" and
-dropped helpers to store and read samples.
-3. use xe_device_mem_access_get_if_ongoing to check if device is active
-before reading the OA registers.
-4. dropped format attr as no longer needed
-5. introduce xe_pmu_suspend to call engine_group_busyness_store
-6. few other nits.
-
-v2:
-Store last known value when device is awake return that while the GT is
-suspended and then update the driver copy when read during awake.
-
-Cc: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Aravind Iddamsetty (3):
-  drm/xe: Get GT clock to nanosecs
-  drm/xe: Use spinlock in forcewake instead of mutex
-  drm/xe/pmu: Enable PMU interface
-
- drivers/gpu/drm/xe/Makefile              |   2 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h     |   5 +
- drivers/gpu/drm/xe/xe_device.c           |   2 +
- drivers/gpu/drm/xe/xe_device_types.h     |   4 +
- drivers/gpu/drm/xe/xe_force_wake.c       |  14 +-
- drivers/gpu/drm/xe/xe_force_wake_types.h |   2 +-
- drivers/gpu/drm/xe/xe_gt.c               |   2 +
- drivers/gpu/drm/xe/xe_gt_clock.c         |   5 +
- drivers/gpu/drm/xe/xe_gt_clock.h         |   4 +-
- drivers/gpu/drm/xe/xe_irq.c              |  18 +
- drivers/gpu/drm/xe/xe_module.c           |   5 +
- drivers/gpu/drm/xe/xe_pmu.c              | 654 +++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pmu.h              |  25 +
- drivers/gpu/drm/xe/xe_pmu_types.h        |  76 +++
- include/uapi/drm/xe_drm.h                |  38 ++
- 15 files changed, 847 insertions(+), 9 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/xe_pmu.c
- create mode 100644 drivers/gpu/drm/xe/xe_pmu.h
- create mode 100644 drivers/gpu/drm/xe/xe_pmu_types.h
-
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.c b/drivers/gpu/drm/xe/xe_gt_clock.c
+index 9136937324f3..25a18eaad9c4 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.c
++++ b/drivers/gpu/drm/xe/xe_gt_clock.c
+@@ -78,3 +78,8 @@ int xe_gt_clock_init(struct xe_gt *gt)
+ 	gt->info.clock_freq = freq;
+ 	return 0;
+ }
++
++u64 xe_gt_clock_cycles_to_ns(const struct xe_gt *gt, u64 count)
++{
++	return DIV_ROUND_CLOSEST_ULL(count * NSEC_PER_SEC, gt->info.clock_freq);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_clock.h b/drivers/gpu/drm/xe/xe_gt_clock.h
+index 511923afd224..aa162722f859 100644
+--- a/drivers/gpu/drm/xe/xe_gt_clock.h
++++ b/drivers/gpu/drm/xe/xe_gt_clock.h
+@@ -6,8 +6,10 @@
+ #ifndef _XE_GT_CLOCK_H_
+ #define _XE_GT_CLOCK_H_
+ 
++#include <linux/types.h>
++
+ struct xe_gt;
+ 
+ int xe_gt_clock_init(struct xe_gt *gt);
+-
++u64 xe_gt_clock_cycles_to_ns(const struct xe_gt *gt, u64 count);
+ #endif
 -- 
 2.25.1
 
