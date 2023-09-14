@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC875EDE99E
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 09:25:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E02C1EDE99C
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 09:27:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9119510E26B;
-	Thu, 14 Sep 2023 09:25:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB0C010E26B;
+	Thu, 14 Sep 2023 09:27:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5B37210E26B;
- Thu, 14 Sep 2023 09:25:29 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5755310E26B;
+ Thu, 14 Sep 2023 09:27:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 600C3AADD7;
- Thu, 14 Sep 2023 09:25:29 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5B76CAADD7;
+ Thu, 14 Sep 2023 09:27:18 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 14 Sep 2023 09:25:29 -0000
-Message-ID: <169468352938.29166.8440688135309824046@emeril.freedesktop.org>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
+Date: Thu, 14 Sep 2023 09:27:18 -0000
+Message-ID: <169468363837.29165.14299330205385114705@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230914075325.1936-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230914075325.1936-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_drm/xe=3A_Reinstate_pipelined_fence_enable=5Fsignaling?=
+References: <20230914080138.4178295-1-alexander.usyskin@intel.com>
+In-Reply-To: <20230914080138.4178295-1-alexander.usyskin@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/gsc=3A_add_initial_gsc_support_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,22 +46,18 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Reinstate pipelined fence enable_signaling
-URL   : https://patchwork.freedesktop.org/series/123669/
-State : failure
+Series: drm/xe/gsc: add initial gsc support (rev2)
+URL   : https://patchwork.freedesktop.org/series/123603/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: baea10eb2 drm/xe: Add Xe implementation for fence checks used by fbc code
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_bo.c:1043
-error: drivers/gpu/drm/xe/xe_bo.c: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe: Reinstate pipelined fence enable_signaling
-Patch failed at 0001 drm/xe: Reinstate pipelined fence enable_signaling
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe/gsc: add HECI2 register offsets
+Applying: drm/xe/gsc: add has_heci_gscfi indication to device
+Applying: drm/xe/gsc: add gsc device support
+Applying: mei: gsc: add support for auxiliary device created by Xe driver
 
 
