@@ -4,26 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A96ACEEAA40
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 14:19:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC1D1EEAA44
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 14:22:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 687FF10E572;
-	Thu, 14 Sep 2023 14:19:18 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 471F910E572
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 14:19:14 +0000 (UTC)
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Date: Thu, 14 Sep 2023 16:18:56 +0200
-Message-Id: <20230914141856.5647-5-dev@lankhorst.se>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230914141856.5647-1-dev@lankhorst.se>
-References: <20230914141856.5647-1-dev@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FC7A10E296;
+	Thu, 14 Sep 2023 14:22:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1A1110E296
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 14:22:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694701376; x=1726237376;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=8WrxVRs6F9ENaHWXu8uasqRGuN4jnCf8Zg/dONw2GR0=;
+ b=V8wwAlyo+YwUR5Yai5XVksLpqTSvN/k1yFxP+W+mfaWvRUlKm7nDlyyL
+ 9XVmkfrsJuAYsyQmBFg+yZ9sIuf8kT93dwFsKQo5X6Ow9siXbTPCWqQ+l
+ +rTndeRJU75iUyJgYI4YMebNo3QbxY+y4v4w5fUBy13j+fj3RUeiCKZcE
+ j8FDskfuwUFdyy8OPTDBaXIywKchduZXX9piFyLLVW2AcIln32/ZiTKpF
+ YVQF4+dZDwtbXjHkHwosl20aC/LANkSRrHTCCtgxw8/+6p4RN5bJVlN4+
+ e+dVjPZSYkNUwY6tbJ9hsozjqKLQf1eF6ZkJ9DDJSY7+ir47D6AKnvofF w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="376301346"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="376301346"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 07:22:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="814685830"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="814685830"
+Received: from jnikula-mobl4.fi.intel.com (HELO localhost) ([10.237.66.162])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 07:22:53 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+In-Reply-To: <ZQMSfcP5O8bRpkwO@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230913232837.2811049-1-daniele.ceraolospurio@intel.com>
+ <20230913232837.2811049-4-daniele.ceraolospurio@intel.com>
+ <87msxpw5q3.fsf@intel.com> <ZQMSfcP5O8bRpkwO@intel.com>
+Date: Thu, 14 Sep 2023 17:22:50 +0300
+Message-ID: <871qf0x29x.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 4/4] drm/i915: Handle legacy cursor update as normal
- update
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH v3 3/3] drm/xe/uc: Add GuC/HuC firmware path
+ overrides
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,172 +59,105 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+On Thu, 14 Sep 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Thu, Sep 14, 2023 at 10:53:40AM +0300, Jani Nikula wrote:
+>> 
+>> [hijacking the thread a bit, sorry]
+>> 
+>> On Wed, 13 Sep 2023, Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com> wrote:
+>> > diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+>> > index de85494e2280..0660017c3e83 100644
+>> > --- a/drivers/gpu/drm/xe/xe_module.c
+>> > +++ b/drivers/gpu/drm/xe/xe_module.c
+>> > @@ -30,6 +30,16 @@ int xe_guc_log_level = 5;
+>> >  module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
+>> >  MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=disable, 1..5=enable with verbosity min..max)");
+>> >  
+>> > +char *xe_guc_firmware_path = NULL;
+>> > +module_param_named_unsafe(guc_firmware_path, xe_guc_firmware_path, charp, 0400);
+>> > +MODULE_PARM_DESC(guc_firmware_path,
+>> > +		 "GuC firmware path to use instead of the default one");
+>> > +
+>> > +char *xe_huc_firmware_path = NULL;
+>> > +module_param_named_unsafe(huc_firmware_path, xe_huc_firmware_path, charp, 0400);
+>> > +MODULE_PARM_DESC(huc_firmware_path,
+>> > +		 "HuC firmware path to use instead of the default one - empty string disables");
+>> > +
+>> >  char *xe_param_force_probe = CONFIG_DRM_XE_FORCE_PROBE;
+>> >  module_param_named_unsafe(force_probe, xe_param_force_probe, charp, 0400);
+>> >  MODULE_PARM_DESC(force_probe,
+>> 
+>> Not related to this patch specifically, but, uh, why does xe collect all
+>> module parameters in one file like this?
+>> 
+>> IMO there's two reasonable ways of defining module paramers:
+>> 
+>> 1) Module parameters defined for static variables in each .c file where
+>> needed, and avoid the need to access them in multiple .c files.
+>> 
+>> 2) Module parameters defined in a single file, wrapped in a global
+>> struct. (This is what i915 does.)
+>> 
+>> Putting all of the variables in a single file, and exposing them
+>> globally is not cool. You want to limit the number of module global
+>> variables in big drivers like this.
+>> 
+>> (Of course, primarily module parameters should be avoided altogether.)
+>
+> Well, I believe this is my fault. I explicitly asked folks to avoid doing
+> what i915 was doing. Well, when I asked that I was more focused on avoiding
+> the macros and doing in the same way that other drivers were doing.
+>
+> I really hated the explosion of parameters in our internal version of i915.
+> We need to do our best to avoid, or at least minimize the amount of params
+> and I believe the macros is like an incentive/invitation to bring more.
+>
+> Then while checking other big drivers around we see that there are many
+> drivers doing the same extern exports as xe.
+>
+> Would something like iwlwifi_mod_params from
+> drivers/net/wireless/intel/iwlwifi/iwl-modparams.h ease your concerns?
 
-Abuse the vblank worker to make the changes as small as possible. We
-need a way to sync flip_done, but if we wait on flip_done, all async
-tests start failing.
+I think that's exactly 2) above. i915 having macro wrappers for this is
+an implementation detail that's neither here nor there.
 
-Changes since v1:
-- Prevent null deref when crtc is inactive.
+BR,
+Jani.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c    | 28 +++++++++++++-------
- drivers/gpu/drm/i915/display/intel_crtc.h    |  6 +++--
- drivers/gpu/drm/i915/display/intel_display.c | 10 ++++---
- 3 files changed, 30 insertions(+), 14 deletions(-)
+>
+> Thanks,
+> Rodrigo.
+>
+>> 
+>> > diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
+>> > index 2c1f9199f909..e1da1e9ca5cb 100644
+>> > --- a/drivers/gpu/drm/xe/xe_module.h
+>> > +++ b/drivers/gpu/drm/xe/xe_module.h
+>> > @@ -10,4 +10,6 @@ extern bool force_execlist;
+>> >  extern bool enable_display;
+>> >  extern u32 xe_force_vram_bar_size;
+>> >  extern int xe_guc_log_level;
+>> > +extern char *xe_guc_firmware_path;
+>> > +extern char *xe_huc_firmware_path;
+>> >  extern char *xe_param_force_probe;
+>> 
+>> Basically *every* extern in a big driver is a sign of a problem. Data is
+>> not an interface.
+>> 
+>> Yes, also i915_modparams violates this, but it groups the stuff together
+>> under *one* extern struct with a "namespace", if you will.
+>> 
+>> 
+>> BR,
+>> Jani.
+>> 
+>> 
+>> -- 
+>> Jani Nikula, Intel
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index f06b987f5558..be6959c6eb0d 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -389,11 +389,17 @@ int intel_crtc_init(struct drm_i915_private *dev_priv, enum pipe pipe)
- 	return ret;
- }
- 
--static bool intel_crtc_needs_vblank_work(const struct intel_crtc_state *crtc_state)
-+static bool intel_crtc_needs_vblank_work(const struct intel_atomic_state *state,
-+					 const struct intel_crtc_state *crtc_state)
- {
--	return crtc_state->hw.active &&
--		!intel_crtc_needs_modeset(crtc_state) &&
--		!crtc_state->preload_luts &&
-+	if (!crtc_state->hw.active || intel_crtc_needs_modeset(crtc_state))
-+		return false;
-+
-+	/* Init for legacy cursor update, so we can sync on teardown */
-+	if (state->base.legacy_cursor_update)
-+		return true;
-+
-+	return !crtc_state->preload_luts &&
- 		intel_crtc_needs_color_update(crtc_state);
- }
- 
-@@ -438,7 +444,7 @@ void intel_wait_for_vblank_workers(struct intel_atomic_state *state)
- 	int i;
- 
- 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
--		if (!intel_crtc_needs_vblank_work(crtc_state))
-+		if (!intel_crtc_needs_vblank_work(state, crtc_state))
- 			continue;
- 
- 		drm_vblank_work_flush(&crtc_state->vblank_work);
-@@ -470,6 +476,7 @@ static int intel_mode_vblank_start(const struct drm_display_mode *mode)
- 
- /**
-  * intel_pipe_update_start() - start update of a set of display registers
-+ * @state: the intel atomic state
-  * @new_crtc_state: the new crtc state
-  *
-  * Mark the start of an update to pipe registers that should be updated
-@@ -480,7 +487,8 @@ static int intel_mode_vblank_start(const struct drm_display_mode *mode)
-  * until a subsequent call to intel_pipe_update_end(). That is done to
-  * avoid random delays.
-  */
--void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state)
-+void intel_pipe_update_start(struct intel_atomic_state *state,
-+			     struct intel_crtc_state *new_crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
-@@ -497,7 +505,7 @@ void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state)
- 	if (new_crtc_state->do_async_flip)
- 		return;
- 
--	if (intel_crtc_needs_vblank_work(new_crtc_state))
-+	if (intel_crtc_needs_vblank_work(state, new_crtc_state))
- 		intel_crtc_vblank_work_init(new_crtc_state);
- 
- 	if (new_crtc_state->vrr.enable) {
-@@ -635,13 +643,15 @@ static void dbg_vblank_evade(struct intel_crtc *crtc, ktime_t end) {}
- 
- /**
-  * intel_pipe_update_end() - end update of a set of display registers
-+ * @state: the intel atomic state
-  * @new_crtc_state: the new crtc state
-  *
-  * Mark the end of an update started with intel_pipe_update_start(). This
-  * re-enables interrupts and verifies the update was actually completed
-  * before a vblank.
-  */
--void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
-+void intel_pipe_update_end(struct intel_atomic_state *state,
-+			   struct intel_crtc_state *new_crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(new_crtc_state->uapi.crtc);
- 	enum pipe pipe = crtc->pipe;
-@@ -669,7 +679,7 @@ void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state)
- 	 * Would be slightly nice to just grab the vblank count and arm the
- 	 * event outside of the critical section - the spinlock might spin for a
- 	 * while ... */
--	if (intel_crtc_needs_vblank_work(new_crtc_state)) {
-+	if (intel_crtc_needs_vblank_work(state, new_crtc_state)) {
- 		drm_vblank_work_schedule(&new_crtc_state->vblank_work,
- 					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
- 					 false);
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
-index 51a4c8df9e65..ca7f45a454a0 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.h
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.h
-@@ -36,8 +36,10 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
- u32 intel_crtc_get_vblank_counter(struct intel_crtc *crtc);
- void intel_crtc_vblank_on(const struct intel_crtc_state *crtc_state);
- void intel_crtc_vblank_off(const struct intel_crtc_state *crtc_state);
--void intel_pipe_update_start(struct intel_crtc_state *new_crtc_state);
--void intel_pipe_update_end(struct intel_crtc_state *new_crtc_state);
-+void intel_pipe_update_start(struct intel_atomic_state *state,
-+			     struct intel_crtc_state *new_crtc_state);
-+void intel_pipe_update_end(struct intel_atomic_state *state,
-+			   struct intel_crtc_state *new_crtc_state);
- void intel_wait_for_vblank_workers(struct intel_atomic_state *state);
- struct intel_crtc *intel_first_crtc(struct drm_i915_private *i915);
- struct intel_crtc *intel_crtc_for_pipe(struct drm_i915_private *i915,
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9df8081f78d9..413e598dbcfc 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6610,7 +6610,7 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 	intel_crtc_planes_update_noarm(state, crtc);
- 
- 	/* Perform vblank evasion around commit operation */
--	intel_pipe_update_start(new_crtc_state);
-+	intel_pipe_update_start(state, new_crtc_state);
- 
- 	commit_pipe_pre_planes(state, crtc);
- 
-@@ -6618,7 +6618,7 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 
- 	commit_pipe_post_planes(state, crtc);
- 
--	intel_pipe_update_end(new_crtc_state);
-+	intel_pipe_update_end(state, new_crtc_state);
- 
- 	/*
- 	 * We usually enable FIFO underrun interrupts as part of the
-@@ -6920,6 +6920,9 @@ static void intel_atomic_cleanup_work(struct work_struct *work)
- 	struct intel_crtc *crtc;
- 	int i;
- 
-+	if (state->base.legacy_cursor_update)
-+		intel_wait_for_vblank_workers(state);
-+
- 	for_each_old_intel_crtc_in_state(state, crtc, old_crtc_state, i)
- 		intel_color_cleanup_commit(old_crtc_state);
- 
-@@ -7114,7 +7117,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	if (state->modeset)
- 		intel_set_cdclk_post_plane_update(state);
- 
--	intel_wait_for_vblank_workers(state);
-+	if (!state->base.legacy_cursor_update)
-+		intel_wait_for_vblank_workers(state);
- 
- 	/* FIXME: We should call drm_atomic_helper_commit_hw_done() here
- 	 * already, but still need the state for the delayed optimization. To
 -- 
-2.40.1
-
+Jani Nikula, Intel
