@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A23EEEAA77
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7192EEAA76
 	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 20:40:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEFD010E582;
-	Thu, 14 Sep 2023 20:40:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9E5010E587;
+	Thu, 14 Sep 2023 20:40:46 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5D310E15D
- for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 20:40:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E714710E2B3
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 20:40:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694724041; x=1726260041;
+ t=1694724040; x=1726260040;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gC4hhyPTJ+DYN4h1AexakS6COwqqjdR/TZTOCtMdWiw=;
- b=LyU4lQ3miEqFf6Z9OyhyJHvlJPrOhDCHDoj22UCHBxShrxkNh8zICbjF
- kPttgtEO24Y5jFfGYz221oJkqyjxXxHXjtBuXZFetB5HE3iGbg65bHV/u
- cOBMQPR+WxPKYDCRSxf3V7HUYqLM3TMAx14tKYrS49+4NuWD/MCj9+LNn
- ii7BDV19sXLAvJ6vF9NSNvrgn1xwoVlLZ1tVnrPtTP3z0NFhfCSVS5c2E
- 2llNQq5v8GRSu5gs6GNySfKldEvHTokM8RtcMaOPYse0oVyByng61zjyJ
- kV7WkNkcOMDRNhCGUTAquV7CLrapL8EuQWTge6ELWAVwvqV9iNo+BgM51 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="369369366"
-X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="369369366"
+ bh=skAI4lZe2mF5e+wVqrnu1Q3DCYvVion+bmw5htie5d8=;
+ b=amI+gKdQW7Hh42B89tcZoKDS7N3c/JphFzeJTEkNS1102FW/MWmL/Q0n
+ /kU1SQOIdUrUymQrSquIg1PH5ZkMk/WdZqmN5sjezDkepnDQupeLXk9yr
+ Hg0/vBQZ/4ywI7B1nrl+PrFjdo5TcG9eShT96gpGmjtcvXJArRsDZP78q
+ PcaokCOuDfKVqz2yKgdC4k2cET/8U/X48L+rlA5rMHumlXf9cTULE3Po2
+ kDxSka+S8g7K9pJxzNivLsvvkZtwZy9e+Bl1XR9Wx1BbuKLEY1kLQPJ5c
+ 28C2qbLMMt1qR9n4RYZJfssWdr66ZJ9SqLAQWHjADxwPQXYDDnem19xiQ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="369369362"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="369369362"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Sep 2023 13:40:39 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="694453584"
-X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="694453584"
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="694453575"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="694453575"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  14 Sep 2023 13:40:39 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Thu, 14 Sep 2023 13:40:52 -0700
-Message-Id: <20230914204053.2220281-6-matthew.brost@intel.com>
+Date: Thu, 14 Sep 2023 13:40:49 -0700
+Message-Id: <20230914204053.2220281-3-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230914204053.2220281-1-matthew.brost@intel.com>
 References: <20230914204053.2220281-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 5/6] drm/xe: Allow num_binds == 0 in VM bind IOCTL
+Subject: [Intel-xe] [PATCH 2/6] drm/xe/uapi: Kill DRM_XE_UFENCE_WAIT_VM_ERROR
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,85 +59,186 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The idea being out-syncs can signal indicating all previous operations
-on the bind queue are complete. An example use case of this would be
-support for implementing vkQueueWaitForIdle easily.
+This is not used nor does it align VM async document, kill this.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 30 ++++++++++++++++++------------
- 1 file changed, 18 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c              |  3 --
+ drivers/gpu/drm/xe/xe_vm_types.h        | 11 -------
+ drivers/gpu/drm/xe/xe_wait_user_fence.c | 43 +++----------------------
+ include/uapi/drm/xe_drm.h               | 17 +++-------
+ 4 files changed, 9 insertions(+), 65 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 49c745d53b41..0e2f3ab453ea 100644
+index 2a69302304e2..ea1f089549b1 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2678,7 +2678,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 	int i;
+@@ -1455,9 +1455,6 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 		xe_vma_destroy_unlocked(vma);
+ 	}
  
- 	if (XE_IOCTL_DBG(xe, args->extensions) ||
--	    XE_IOCTL_DBG(xe, !args->num_binds) ||
- 	    XE_IOCTL_DBG(xe, args->num_binds > MAX_BINDS))
+-	if (vm->async_ops.error_capture.addr)
+-		wake_up_all(&vm->async_ops.error_capture.wq);
+-
+ 	xe_assert(xe, list_empty(&vm->extobj.list));
+ 	up_write(&vm->lock);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 52e5eaed91c3..3dc3da1386cb 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -222,17 +222,6 @@ struct xe_vm {
+ 		struct work_struct work;
+ 		/** @lock: protects list of pending async VM ops and fences */
+ 		spinlock_t lock;
+-		/** @error_capture: error capture state */
+-		struct {
+-			/** @mm: user MM */
+-			struct mm_struct *mm;
+-			/**
+-			 * @addr: user pointer to copy error capture state too
+-			 */
+-			u64 addr;
+-			/** @wq: user fence wait queue for VM errors */
+-			wait_queue_head_t wq;
+-		} error_capture;
+ 		/** @fence: fence state */
+ 		struct {
+ 			/** @context: context of async fence */
+diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+index 761eed3a022f..b47e9464c115 100644
+--- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
++++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+@@ -13,7 +13,6 @@
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_macros.h"
+-#include "xe_vm.h"
+ 
+ static int do_compare(u64 addr, u64 value, u64 mask, u16 op)
+ {
+@@ -81,8 +80,7 @@ static int check_hw_engines(struct xe_device *xe,
+ }
+ 
+ #define VALID_FLAGS	(DRM_XE_UFENCE_WAIT_SOFT_OP | \
+-			 DRM_XE_UFENCE_WAIT_ABSTIME | \
+-			 DRM_XE_UFENCE_WAIT_VM_ERROR)
++			 DRM_XE_UFENCE_WAIT_ABSTIME)
+ #define MAX_OP		DRM_XE_UFENCE_WAIT_LTE
+ 
+ static unsigned long to_jiffies_timeout(struct drm_xe_wait_user_fence *args)
+@@ -109,11 +107,9 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 	struct drm_xe_engine_class_instance eci[XE_HW_ENGINE_MAX_INSTANCE];
+ 	struct drm_xe_engine_class_instance __user *user_eci =
+ 		u64_to_user_ptr(args->instances);
+-	struct xe_vm *vm = NULL;
+ 	u64 addr = args->addr;
+ 	int err;
+-	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_SOFT_OP ||
+-		args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR;
++	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_SOFT_OP;
+ 	unsigned long timeout;
+ 	ktime_t start;
+ 
+@@ -134,8 +130,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, !no_engines && !args->num_engines))
  		return -EINVAL;
  
-@@ -2805,7 +2804,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 			goto put_exec_queue;
- 		}
+-	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR) &&
+-			 addr & 0x7))
++	if (XE_IOCTL_DBG(xe, addr & 0x7))
+ 		return -EINVAL;
  
--		if (XE_IOCTL_DBG(xe, async !=
-+		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
- 				 !!(q->flags & EXEC_QUEUE_FLAG_VM_ASYNC))) {
- 			err = -EINVAL;
- 			goto put_exec_queue;
-@@ -2819,7 +2818,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (XE_IOCTL_DBG(xe, args->num_engines > XE_HW_ENGINE_MAX_INSTANCE))
+@@ -153,22 +148,6 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 			return -EINVAL;
  	}
  
- 	if (!args->exec_queue_id) {
--		if (XE_IOCTL_DBG(xe, async !=
-+		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
- 				 !!(vm->flags & XE_VM_FLAG_ASYNC_DEFAULT))) {
- 			err = -EINVAL;
- 			goto put_vm;
-@@ -2856,16 +2855,18 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		}
- 	}
- 
--	bos = kzalloc(sizeof(*bos) * args->num_binds, GFP_KERNEL);
--	if (!bos) {
--		err = -ENOMEM;
--		goto release_vm_lock;
+-	if (args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR) {
+-		if (XE_IOCTL_DBG(xe, args->vm_id >> 32))
+-			return -EINVAL;
+-
+-		vm = xe_vm_lookup(to_xe_file(file), args->vm_id);
+-		if (XE_IOCTL_DBG(xe, !vm))
+-			return -ENOENT;
+-
+-		if (XE_IOCTL_DBG(xe, !vm->async_ops.error_capture.addr)) {
+-			xe_vm_put(vm);
+-			return -EOPNOTSUPP;
+-		}
+-
+-		addr = vm->async_ops.error_capture.addr;
 -	}
-+	if (args->num_binds) {
-+		bos = kzalloc(sizeof(*bos) * args->num_binds, GFP_KERNEL);
-+		if (!bos) {
-+			err = -ENOMEM;
-+			goto release_vm_lock;
-+		}
+-
+ 	/*
+ 	 * For negative timeout we want to wait "forever" by setting
+ 	 * MAX_SCHEDULE_TIMEOUT. But we have to assign this value also
+@@ -188,15 +167,8 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 	 * hardware engine. Open coding as 'do_compare' can sleep which doesn't
+ 	 * work with the wait_event_* macros.
+ 	 */
+-	if (vm)
+-		add_wait_queue(&vm->async_ops.error_capture.wq, &w_wait);
+-	else
+-		add_wait_queue(&xe->ufence_wq, &w_wait);
++	add_wait_queue(&xe->ufence_wq, &w_wait);
+ 	for (;;) {
+-		if (vm && xe_vm_is_closed(vm)) {
+-			err = -ENODEV;
+-			break;
+-		}
+ 		err = do_compare(addr, args->value, args->mask, args->op);
+ 		if (err <= 0)
+ 			break;
+@@ -213,12 +185,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
  
--	ops = kzalloc(sizeof(*ops) * args->num_binds, GFP_KERNEL);
--	if (!ops) {
--		err = -ENOMEM;
--		goto release_vm_lock;
-+		ops = kzalloc(sizeof(*ops) * args->num_binds, GFP_KERNEL);
-+		if (!ops) {
-+			err = -ENOMEM;
-+			goto release_vm_lock;
-+		}
+ 		timeout = wait_woken(&w_wait, TASK_INTERRUPTIBLE, timeout);
  	}
+-	if (vm) {
+-		remove_wait_queue(&vm->async_ops.error_capture.wq, &w_wait);
+-		xe_vm_put(vm);
+-	} else {
+-		remove_wait_queue(&xe->ufence_wq, &w_wait);
+-	}
++	remove_wait_queue(&xe->ufence_wq, &w_wait);
  
- 	for (i = 0; i < args->num_binds; ++i) {
-@@ -2920,6 +2921,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 			goto free_syncs;
- 	}
+ 	if (!(args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)) {
+ 		args->timeout -= ktime_to_ns(ktime_sub(ktime_get(), start));
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 5cbbb433ce68..d0259865717a 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -873,18 +873,10 @@ struct drm_xe_wait_user_fence {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
  
-+	if (!args->num_binds) {
-+		err = -ENODATA;
-+		goto free_syncs;
-+	}
-+
- 	for (i = 0; i < args->num_binds; ++i) {
- 		u64 range = bind_ops[i].range;
- 		u64 addr = bind_ops[i].addr;
+-	union {
+-		/**
+-		 * @addr: user pointer address to wait on, must qword aligned
+-		 */
+-		__u64 addr;
+-
+-		/**
+-		 * @vm_id: The ID of the VM which encounter an error used with
+-		 * DRM_XE_UFENCE_WAIT_VM_ERROR. Upper 32 bits must be clear.
+-		 */
+-		__u64 vm_id;
+-	};
++	/**
++	 * @addr: user pointer address to wait on, must qword aligned
++	 */
++	__u64 addr;
+ 
+ #define DRM_XE_UFENCE_WAIT_EQ	0
+ #define DRM_XE_UFENCE_WAIT_NEQ	1
+@@ -897,7 +889,6 @@ struct drm_xe_wait_user_fence {
+ 
+ #define DRM_XE_UFENCE_WAIT_SOFT_OP	(1 << 0)	/* e.g. Wait on VM bind */
+ #define DRM_XE_UFENCE_WAIT_ABSTIME	(1 << 1)
+-#define DRM_XE_UFENCE_WAIT_VM_ERROR	(1 << 2)
+ 	/** @flags: wait flags */
+ 	__u16 flags;
+ 
 -- 
 2.34.1
 
