@@ -4,128 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1DB6CA0EF3
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 04:23:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47D7ACA0ECD
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 04:34:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4A9BE10E4F4;
-	Thu, 14 Sep 2023 04:23:42 +0000 (UTC)
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com
- (mail-mw2nam12on20621.outbound.protection.outlook.com
- [IPv6:2a01:111:f400:fe5a::621])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31FE110E4F4;
- Thu, 14 Sep 2023 04:23:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SePJvEgh5KBqsWwp/kSCHau58b82/+iaQWpBL6Jpcc/gwpwLZzUqJoyDGvj8yMnlCxrpADCBf1xThlGCbqFxK5CoQLqtPWtIgvMXGEvOUAED2N0yficcA6tD9JYlywUOc+B76U9ivau2Ro7p9+PYuyB9DdzGpB1JZ+2VM3xjE2gOvOMJyuylJquC0QS4n8xzWeejjefVYSHDoaFLxEUpothaIC8TMk70K/4MpJzHuSKb4BVEzJcwaarf55bGcek4KKQ2aJRr7PY4XWxKl0GMmqftVBGLKF4DoY9f1nIam7XsP5Ni/uM0xEyWACo0/L2POhJasyeQA2uU/Zv0M+DveA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CYhUyDM0tLbVrFr0qauW0g81FRIDqN9xE0Cj5VjxBWY=;
- b=J8vFbmkrwycqSWRMbcWNf/r8oKcULGR447Xt4br8FPRs9Hajlo+EAg2HfqWB+Befg7KQ5wrDcr48KCkCriWVkC52MnbfqN3sYU8nseEwHfNiKTzSGE/Px74D76H4IrH//bqOV6gTpyhrKbjV+jhVcz2ZztBPeahNoRxbXWrBh1MHlXEJm8rtd6gAni4zXQoXVbZfUFSQ3VWUPntoGprWhrPud+OapekBZyTGM7dcpfPFdV0OIMq8Vtb2EPhSA2siKhjms6kbbC4n++AYaujmGvi3oBg7zNa+blyMJnvqP//qtlDZOg6DpBgdVyIPBwwZDodJ+WiOjJ58VhaaoGZwRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CYhUyDM0tLbVrFr0qauW0g81FRIDqN9xE0Cj5VjxBWY=;
- b=u2gkWk9P674wCvdOwdp1rCAJuNcEX6rGnrHygkeEFWhbq1RNutkBJ1ShVVYKSff7TN055WlsvdsUSDvBil/EI59scOpYqyFrUMeIJ1HC6uzI2rXfW6bXgvZh9rfLrZH5X+IZ9bvo3otA4GQ6iBBZyD9q/0KA4Mmr7kJiV5B1mGw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com (2603:10b6:5:38::25) by
- CH3PR12MB7715.namprd12.prod.outlook.com (2603:10b6:610:151::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.19; Thu, 14 Sep
- 2023 04:23:38 +0000
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::8a67:3bbe:8309:4f87]) by DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::8a67:3bbe:8309:4f87%3]) with mapi id 15.20.6768.029; Thu, 14 Sep 2023
- 04:23:38 +0000
-Message-ID: <7c54b2d7-0a17-43e8-9da2-766b0464f4f8@amd.com>
-Date: Thu, 14 Sep 2023 00:23:35 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
- Thunderbird/115.2.2
-Content-Language: en-CA, en-US
-From: Luben Tuikov <luben.tuikov@amd.com>
-To: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-References: <20230912021615.2086698-1-matthew.brost@intel.com>
- <20230912021615.2086698-4-matthew.brost@intel.com>
- <da5a4c90-5a8d-4248-bc8e-b0bd2a03aa5f@amd.com>
-Autocrypt: addr=luben.tuikov@amd.com; keydata=
- xjMEY1i6jxYJKwYBBAHaRw8BAQdAhfD+Cc+P5t/fiF08Vw25EMLiwUuxULYRiDQAP6H50MTN
- I0x1YmVuIFR1aWtvdiA8bHViZW4udHVpa292QGFtZC5jb20+wpkEExYKAEEWIQQyyR05VSHw
- x45E/SoppxulNG8HhgUCY1i6jwIbAwUJCWYBgAULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIX
- gAAKCRAppxulNG8Hhk53AP4k4UY5xfcje0c5OF1k22pNv8tErxtVpgKKZgvfetA4xwD+OoAh
- vesLIYumBDxP0BoLiLN84udxdT15HwPFUGiDmwDOOARjWLqPEgorBgEEAZdVAQUBAQdAzSxY
- a2EtvvIwd09NckBLSTarSLNDkUthmqPnwolwiDYDAQgHwn4EGBYKACYWIQQyyR05VSHwx45E
- /SoppxulNG8HhgUCY1i6jwIbDAUJCWYBgAAKCRAppxulNG8HhnBLAP4yjSGpK6PE1mapKhrq
- 8bSl9reo+F6EqdhE8X2TTHPycAEAt8EkTEstSiaOpM66gneU7r+xxzOYULo1b1XjXayGvwM=
-In-Reply-To: <da5a4c90-5a8d-4248-bc8e-b0bd2a03aa5f@amd.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DF11410E4F4;
+	Thu, 14 Sep 2023 04:34:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3214410E4F4
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 04:34:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694666077; x=1726202077;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=KmiKF2eT1lHVNHL6RrSq5sciSuTw3Aw8NCSq6qK19fA=;
+ b=l7CdXiZEi2hjhaQGGG/0QAVq6Z5Pafmy5cWC3/3jJseHQveSFw7flZSk
+ eWj64qJnfN/kkWaY06PwMVoGRNVf360RDXVo/WAMmjWC+GicHPsFAwjl1
+ p2xWSfKkBX3YJyi/VgkmPqRldry/7mugtv3EbS3chxWelydFpiMEsYkWr
+ w1ytLJDrXIOBVLvWc/FchlsZiAYx0XzxinWw7MYg8B2I9IFAyVAyRIqOa
+ QKz6MWC8KtEzQHZFEuvhAX+w7vupzbhvOS1Yxrm0z+j4oaXihlp+klhxI
+ 6ZtJEB9Nic0r7JXKH8436qFuo6g7HhomHtnUeZAuXspfaWBL9BMdKmHNw w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="377757619"
+X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="377757619"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2023 21:34:35 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="809909047"
+X-IronPort-AV: E=Sophos;i="6.02,145,1688454000"; d="scan'208";a="809909047"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.80])
+ ([10.145.162.80])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Sep 2023 21:34:33 -0700
+Message-ID: <a681fe7a-4487-a8a6-1830-bdc23cc98ff9@linux.intel.com>
+Date: Thu, 14 Sep 2023 10:11:59 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20230901070648.1100049-1-aravind.iddamsetty@linux.intel.com>
+ <20230901070648.1100049-4-aravind.iddamsetty@linux.intel.com>
+ <87wmx9yxsm.wl-ashutosh.dixit@intel.com>
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <87wmx9yxsm.wl-ashutosh.dixit@intel.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YT4PR01CA0470.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:b01:d6::17) To DM6PR12MB3370.namprd12.prod.outlook.com
- (2603:10b6:5:38::25)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3370:EE_|CH3PR12MB7715:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3ca6596c-a309-43ed-0246-08dbb4da5e5c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: s/7bayFnotTNczfdi4BxXpbbzcQWjUHqq/NuLJoXi7C9V+k4qHLi/SSQy2i9vyx8XwtMefQDz75NYw0InBMo7zZdRXDtdavfKr3xU65pDTXqEABzBRVSTmjAGb+6DHsaowhmubAsZDo6PBL/bwkaLusB5trgjiiuliaLnRYorMtNF57+Cf1yyFJazH9X21vdvZvuVzgPMzqVhOTxf2AzEe2w/xPEGo3iEYrCreBR3U7uKJSZ4D703q2FfmxWcRz2qLAanQwGkr1gkrGNurshOJSIeweIL9lahLBfeIUXOoFndmVn7AdTEx75UQrjiAmjMFibWL6AoFcub//FOjBry7Q/BJM38wv6vhg3JxC/Hbv1854aM+oPO9WCzBK5ufsRgIzErMQEOmviy5j2ojMsXEp6f6LAiWEmpCNmObuUKXF9Q4npnyLIjO2QcifwWildslWGiA68bCU3rn9v69NaUm4Wkp8I/q7MEM2gJE753KJ4qNIm6qaBjSwboqLiJvKlgZXW58T64KXssJvynExOEkoa7wweCsFClVrrr/TdH8W5Sf3Pqs9MOmunJzbiUTKbiytOpcNTdA67MgVEkqkbkmYPVPXflDkx3m/aTGIP+2BKWLw0u0+/0sdL4Wmf7eExTd/A5fm4fHGDsFvc6+Gj8g==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3370.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(39860400002)(396003)(136003)(346002)(376002)(451199024)(1800799009)(186009)(31686004)(6666004)(6486002)(53546011)(478600001)(6506007)(38100700002)(7416002)(30864003)(41300700001)(83380400001)(26005)(6512007)(2616005)(4326008)(86362001)(36756003)(31696002)(66556008)(66946007)(316002)(66476007)(8676002)(44832011)(8936002)(5660300002)(2906002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aUZyTW5xUElJenJnVHh5T3VDZzFQVE8vQ2RaM3hubXZ4cVdXSE8rUjNxV3JU?=
- =?utf-8?B?M3RWU1owMjZ3NEgzUUh2N3c4TzdYN0tsUXlvK2M4NXNoVEoyWHpMd3RTbW0x?=
- =?utf-8?B?SVVXMFFJTmE5ZDJJWUZpSXhYcTl1VjVrODZ3MlFDTW55N2FLM2tOaHR6ZFVK?=
- =?utf-8?B?NVhDbG53TUdhN0l0SDNibGkzRzJjRkNCSlZhU3NiR2RVZkQzUHZNYmpvd25S?=
- =?utf-8?B?ZmdVUDV0MG5sdUxrYnhRSGlMRFFXSG9UNHF3TGtTTjc5bUZhYWswV3JXL01i?=
- =?utf-8?B?Qlh5VUJoaFJSSTdVVnZaQnZZcis4QlBWd2txaUZIb3VQMHhsNURkMUt2dzMz?=
- =?utf-8?B?YWloeVhTbUZ2L1RnQ0JTbkRaeXF0UWRZdnlTRFg0SmVVZmVXcU5CRi8vTGtC?=
- =?utf-8?B?RWhESG9RSHRjSWlsK25uNkkwUS9ZVGk2NDc1SzZkM0p4YVBURlNYalpEVyta?=
- =?utf-8?B?NkZDb2JOZGlicGV2TkU5VlVXZGhZZmIybFEvbUJ3bVZubHRjTklXZDFFNVBX?=
- =?utf-8?B?UjZjc2ZpM01zNUFKbkF0MW8reUdseVJJcjFlQ1BmUFF4d09EbklwMWh2ZnlC?=
- =?utf-8?B?ZUlpRmJocjNWSFlxMEZTVW84bGZhV1RPY3Vrc01MY2p2YjIyeEp5MUF5QWJh?=
- =?utf-8?B?a0dzM05vVTZNUXUyNGVFY0lCclJKZEw1bGhjUFkveHVvWGJxOVlVSjF4TGdG?=
- =?utf-8?B?T0YxSENVZGFsWUFqWTk5MVB1a2FmOXdzNy9pS25oWEVYRG9GY29STVhjT1pY?=
- =?utf-8?B?NmJ0d3hERUo5MnV5aXVTOERWL0FrdVRkSkYwQXNhL3VrN2Q3WElMaTNvcVFo?=
- =?utf-8?B?SGRtR1lCa3JSSC9jUEoyNjlPMVJnK2Uva0lDY2NGaUpQUThMdkZadXdQcGVU?=
- =?utf-8?B?bnZZUHFoaFR1bVVJYzltMU84c3hEOEFCTkRnZkJ2M09rN3E0M3pUVjc3a0Nq?=
- =?utf-8?B?OHRrMzJMUmsvczBvQkwva1dOR3J3bVlGNjBRQmpiOXR4Q21KUUI3V2dzdjB0?=
- =?utf-8?B?Qk9TVHVrczJSQ0RxQVJia1hQaks2amRJcnFrYlBJSHhRL2ZBQXRHVnFlMEhY?=
- =?utf-8?B?TVZLSjNYREpxUmhvaTBNNmUwa0NoUUVvdVRFd0NOZzN4cEovOGdyN2VNWUZj?=
- =?utf-8?B?Zk1JeFltMkNqMWR2RmRmZ25OWXFIU2kwYndkb01PekJ5d3owWUI3UndtTlR4?=
- =?utf-8?B?WkRvVGs4MWJldzZwYzRtc2ZxTHJCdFpoU3poZ1hFYXZZc0ROL2xjbU5kUDlM?=
- =?utf-8?B?K2wrcmxvK2hiSDUwamVBWlRSTzhxZGVyMkE1aTdWbk53SEFwT3BlQVUvWU1k?=
- =?utf-8?B?TnNKVkFrL1BhV0g0Z1ZPMVErcSt2WEhqWVFrODNLVEpNNFFGRmZzQXY4eWd6?=
- =?utf-8?B?NTQreXNITFM3LzBodS96TkpkdmN6Vyt4U2UzZkhWNGJqNkhsYkxtb0tpenYr?=
- =?utf-8?B?cTVFbEErc3ZoMjdiMW1mS0hRS3BheVRYN0FiUnpjWC9QM3N0NDlLTkh1RW1o?=
- =?utf-8?B?RlB1WklEKzROeFhncXFtUS93L28yaTdnbjVUbDBBL08wUUlkczgrM1ZWMnpa?=
- =?utf-8?B?cHZRRzFDcnMzWlh1N2NITDJodjFSOUY1SjFodmtGODhVYk53TmpkTEN2SER1?=
- =?utf-8?B?bXFxNXNPOG15VXcwcmdrVHdFNnVZblBIdHJKL0NKWE43ZGczUDdraE9oN2Rp?=
- =?utf-8?B?ZUR5MnlNOEpIR3RnM2VRK29LSENLSWFDNXBlQXFMeHE0R3V6QXdYTVpsaTlL?=
- =?utf-8?B?ZjFxM1AzbE85NnVvV0l3dkk4NDhTSmxCajNnZzNncjVBalVEQ1MzeEVvM1JQ?=
- =?utf-8?B?ejN6SW1PUzdmOU1CbmgySkgyU29sUWxLeW02RjRuTTVtL3ZmMUJmMDBPVkRJ?=
- =?utf-8?B?WFRRTFd1d3I4UU0wR0ZxRUgrK3Z3Q2tSbGJwTzVrR1dBdnlNNE9DOWtUa3dI?=
- =?utf-8?B?RnR5MEpwZnNyd0ptWkYxZjY3UFNLSzRUVzZ0RHVRSCtZbld5dlRtMUlJUE9l?=
- =?utf-8?B?WFp2dzdQOE9VNFlzRGI2VnMwdTBUL0gvQ2krbmlyNlhsY1J4aE1JVUlPeUhn?=
- =?utf-8?B?L09YRlp3MTRCM3Q4MFBEVTN0RXJNUmtQUTd0K3B3eWFqMW1JTVVVOC95czF0?=
- =?utf-8?Q?5GIHiO+G4q9pJFt+L0RDEiqsp?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3ca6596c-a309-43ed-0246-08dbb4da5e5c
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3370.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Sep 2023 04:23:38.3362 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /TUEi7bxynI/Bx4x70PqBzuVLal0QePcouF9oPV89LPc8VuavOBAcsb+iwtjq5+a
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7715
-Subject: Re: [Intel-xe] [PATCH v3 03/13] drm/sched: Move schedule policy to
- scheduler / entity
+Subject: Re: [Intel-xe] [PATCH v6 3/3] drm/xe/pmu: Enable PMU interface
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -137,286 +62,214 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- frank.binns@imgtec.com, mcanal@igalia.com, Liviu.Dudau@arm.com,
- boris.brezillon@collabora.com, donald.robson@imgtec.com, daniel@ffwll.ch,
- lina@asahilina.net, airlied@gmail.com, christian.koenig@amd.com,
- faith.ekstrand@collabora.com
+Cc: Bommu Krishnaiah <krishnaiah.bommu@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>, intel-xe@lists.freedesktop.org,
+ rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2023-09-14 00:18, Luben Tuikov wrote:
-> On 2023-09-11 22:16, Matthew Brost wrote:
->> Rather than a global modparam for scheduling policy, move the scheduling
->> policy to scheduler / entity so user can control each scheduler / entity
->> policy.
->>
->> v2:
->>   - s/DRM_SCHED_POLICY_MAX/DRM_SCHED_POLICY_COUNT (Luben)
->>   - Only include policy in scheduler (Luben)
->>
->> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->> ---
->>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  1 +
->>  drivers/gpu/drm/etnaviv/etnaviv_sched.c    |  3 ++-
->>  drivers/gpu/drm/lima/lima_sched.c          |  3 ++-
->>  drivers/gpu/drm/msm/msm_ringbuffer.c       |  3 ++-
->>  drivers/gpu/drm/nouveau/nouveau_sched.c    |  3 ++-
->>  drivers/gpu/drm/panfrost/panfrost_job.c    |  3 ++-
->>  drivers/gpu/drm/scheduler/sched_entity.c   | 24 ++++++++++++++++++----
->>  drivers/gpu/drm/scheduler/sched_main.c     | 23 +++++++++++++++------
->>  drivers/gpu/drm/v3d/v3d_sched.c            | 15 +++++++++-----
->>  include/drm/gpu_scheduler.h                | 20 ++++++++++++------
->>  10 files changed, 72 insertions(+), 26 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> index c83a76bccc1d..ecb00991dd51 100644
->> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->> @@ -2309,6 +2309,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
->>  				   ring->num_hw_submission, 0,
->>  				   timeout, adev->reset_domain->wq,
->>  				   ring->sched_score, ring->name,
->> +				   DRM_SCHED_POLICY_DEFAULT,
->>  				   adev->dev);
->>  		if (r) {
->>  			DRM_ERROR("Failed to create scheduler on ring %s.\n",
->> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
->> index 618a804ddc34..3646f995ca94 100644
->> --- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
->> +++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
->> @@ -137,7 +137,8 @@ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
->>  	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops, NULL,
->>  			     etnaviv_hw_jobs_limit, etnaviv_job_hang_limit,
->>  			     msecs_to_jiffies(500), NULL, NULL,
->> -			     dev_name(gpu->dev), gpu->dev);
->> +			     dev_name(gpu->dev), DRM_SCHED_POLICY_DEFAULT,
->> +			     gpu->dev);
->>  	if (ret)
->>  		return ret;
->>  
->> diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
->> index 8d858aed0e56..465d4bf3882b 100644
->> --- a/drivers/gpu/drm/lima/lima_sched.c
->> +++ b/drivers/gpu/drm/lima/lima_sched.c
->> @@ -491,7 +491,8 @@ int lima_sched_pipe_init(struct lima_sched_pipe *pipe, const char *name)
->>  	return drm_sched_init(&pipe->base, &lima_sched_ops, NULL, 1,
->>  			      lima_job_hang_limit,
->>  			      msecs_to_jiffies(timeout), NULL,
->> -			      NULL, name, pipe->ldev->dev);
->> +			      NULL, name, DRM_SCHED_POLICY_DEFAULT,
->> +			      pipe->ldev->dev);
->>  }
->>  
->>  void lima_sched_pipe_fini(struct lima_sched_pipe *pipe)
->> diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
->> index b8865e61b40f..f45e674a0aaf 100644
->> --- a/drivers/gpu/drm/msm/msm_ringbuffer.c
->> +++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
->> @@ -96,7 +96,8 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
->>  
->>  	ret = drm_sched_init(&ring->sched, &msm_sched_ops, NULL,
->>  			num_hw_submissions, 0, sched_timeout,
->> -			NULL, NULL, to_msm_bo(ring->bo)->name, gpu->dev->dev);
->> +			NULL, NULL, to_msm_bo(ring->bo)->name,
->> +			DRM_SCHED_POLICY_DEFAULT, gpu->dev->dev);
->>  	if (ret) {
->>  		goto fail;
->>  	}
->> diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
->> index d458c2227d4f..70e497e40c70 100644
->> --- a/drivers/gpu/drm/nouveau/nouveau_sched.c
->> +++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
->> @@ -431,7 +431,8 @@ int nouveau_sched_init(struct nouveau_drm *drm)
->>  
->>  	return drm_sched_init(sched, &nouveau_sched_ops, NULL,
->>  			      NOUVEAU_SCHED_HW_SUBMISSIONS, 0, job_hang_limit,
->> -			      NULL, NULL, "nouveau_sched", drm->dev->dev);
->> +			      NULL, NULL, "nouveau_sched",
->> +			      DRM_SCHED_POLICY_DEFAULT, drm->dev->dev);
->>  }
->>  
->>  void nouveau_sched_fini(struct nouveau_drm *drm)
->> diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
->> index 326ca1ddf1d7..ad36bf3a4699 100644
->> --- a/drivers/gpu/drm/panfrost/panfrost_job.c
->> +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
->> @@ -835,7 +835,8 @@ int panfrost_job_init(struct panfrost_device *pfdev)
->>  				     nentries, 0,
->>  				     msecs_to_jiffies(JOB_TIMEOUT_MS),
->>  				     pfdev->reset.wq,
->> -				     NULL, "pan_js", pfdev->dev);
->> +				     NULL, "pan_js", DRM_SCHED_POLICY_DEFAULT,
->> +				     pfdev->dev);
->>  		if (ret) {
->>  			dev_err(pfdev->dev, "Failed to create scheduler: %d.", ret);
->>  			goto err_sched;
->> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
->> index a42763e1429d..65a972b52eda 100644
->> --- a/drivers/gpu/drm/scheduler/sched_entity.c
->> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
->> @@ -33,6 +33,20 @@
->>  #define to_drm_sched_job(sched_job)		\
->>  		container_of((sched_job), struct drm_sched_job, queue_node)
->>  
->> +static bool bad_policies(struct drm_gpu_scheduler **sched_list,
->> +			 unsigned int num_sched_list)
-> 
-> Rename the function to the status quo,
-> 	drm_sched_policy_mismatch(...
-> 
+
+On 02/09/23 10:30, Dixit, Ashutosh wrote:
+
+Hi Ashutosh,
+> On Fri, 01 Sep 2023 00:06:48 -0700, Aravind Iddamsetty wrote:
+> Hi Aravind,
+>
+>> +static u64 __engine_group_busyness_read(struct xe_gt *gt, int sample_type)
 >> +{
->> +	enum drm_sched_policy sched_policy = sched_list[0]->sched_policy;
->> +	unsigned int i;
+>> +	u64 val;
 >> +
->> +	/* All schedule policies must match */
->> +	for (i = 1; i < num_sched_list; ++i)
->> +		if (sched_policy != sched_list[i]->sched_policy)
->> +			return true;
+>> +	switch (sample_type) {
+>> +	case __XE_SAMPLE_RENDER_GROUP_BUSY:
+>> +		val = xe_mmio_read32(gt, XE_OAG_RENDER_BUSY_FREE);
+>> +		break;
+>> +	case __XE_SAMPLE_COPY_GROUP_BUSY:
+>> +		val = xe_mmio_read32(gt, XE_OAG_BLT_BUSY_FREE);
+>> +		break;
+>> +	case __XE_SAMPLE_MEDIA_GROUP_BUSY:
+>> +		/*
+>> +		 * This GSI offset is not replicated in media specific range
+>> +		 * BSPEC: 67789, 46559
+>> +		 */
+>> +		if (gt->info.type == XE_GT_TYPE_MEDIA)
+>> +			val = xe_mmio_read32(gt->tile->primary_gt, XE_OAG_ANY_MEDIA_FF_BUSY_FREE);
+> Hmm, this appeared in this version. Is this really needed? Did you test
+> this on MTL media gt?
+>
+> E.g. if this is needed we'd need to do similar stuff in freq_act_show()
+> when reading MTL_MIRROR_TARGET_WP1, but we don't do this there. So we don't
+> see this done anywhere else in XE.
+>
+> I don't understand this multicast steering but appears XE mmio read/write
+> functions might already be taking care of this via:
+>
+> 	if (reg.addr < gt->mmio.adj_limit)
+
+As per the BSPEC: 67789, 46559 the XE_OAG_ANY_MEDIA_FF_BUSY_FREE register falls in the range
+0038D120 - 0038DFFF but this belongs to DVPMEDIAVCCRO3D, means the above register is not
+replicated for media gt hencethe above register math is not valid in these case.
+
+I did verify on MTL but the register is not updating properly the same was reported by windows folks as well,
+so I can do one thing can make this change as separate patch and track that for MTL.
+>
+> So could you please check this out and take out this code if not needed.
+>
+>> +		else
+>> +			val = xe_mmio_read32(gt, XE_OAG_ANY_MEDIA_FF_BUSY_FREE);
+>> +		break;
+>> +	case __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY:
+>> +		val = xe_mmio_read32(gt, XE_OAG_RC0_ANY_ENGINE_BUSY_FREE);
+>> +		break;
+>> +	default:
+>> +		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
+>> +	}
 >> +
->> +	return false;
+>> +	return xe_gt_clock_cycles_to_ns(gt, val * 16);
 >> +}
 >> +
->>  /**
->>   * drm_sched_entity_init - Init a context entity used by scheduler when
->>   * submit to HW ring.
->> @@ -62,7 +76,8 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
->>  			  unsigned int num_sched_list,
->>  			  atomic_t *guilty)
->>  {
->> -	if (!(entity && sched_list && (num_sched_list == 0 || sched_list[0])))
->> +	if (!(entity && sched_list && (num_sched_list == 0 || sched_list[0])) ||
->> +	    bad_policies(sched_list, num_sched_list))
->>  		return -EINVAL;
->>  
->>  	memset(entity, 0, sizeof(struct drm_sched_entity));
->> @@ -486,7 +501,7 @@ struct drm_sched_job *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
->>  	 * Update the entity's location in the min heap according to
->>  	 * the timestamp of the next job, if any.
->>  	 */
->> -	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO) {
->> +	if (entity->rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO) {
->>  		struct drm_sched_job *next;
->>  
->>  		next = to_drm_sched_job(spsc_queue_peek(&entity->job_queue));
->> @@ -558,7 +573,8 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
->>  void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
->>  {
->>  	struct drm_sched_entity *entity = sched_job->entity;
->> -	bool first;
->> +	bool first, fifo = entity->rq->sched->sched_policy ==
->> +		DRM_SCHED_POLICY_FIFO;
->>  	ktime_t submit_ts;
->>  
->>  	trace_drm_sched_job(sched_job, entity);
->> @@ -587,7 +603,7 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
->>  		drm_sched_rq_add_entity(entity->rq, entity);
->>  		spin_unlock(&entity->rq_lock);
->>  
->> -		if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
->> +		if (fifo)
->>  			drm_sched_rq_update_fifo(entity, submit_ts);
->>  
->>  		drm_sched_wakeup_if_can_queue(entity->rq->sched);
->> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
->> index 614e8c97a622..545d5298c086 100644
->> --- a/drivers/gpu/drm/scheduler/sched_main.c
->> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->> @@ -66,14 +66,14 @@
->>  #define to_drm_sched_job(sched_job)		\
->>  		container_of((sched_job), struct drm_sched_job, queue_node)
->>  
->> -int drm_sched_policy = DRM_SCHED_POLICY_FIFO;
->> +int default_drm_sched_policy = DRM_SCHED_POLICY_FIFO;
->>  
->>  /**
->>   * DOC: sched_policy (int)
->>   * Used to override default entities scheduling policy in a run queue.
->>   */
->> -MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO (default).");
->> -module_param_named(sched_policy, drm_sched_policy, int, 0444);
->> +MODULE_PARM_DESC(sched_policy, "Specify the default scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO (default).");
-> 
-> Note, that you don't need to add "default" in the text as it is already there at the very end "FIFO (default)."
-> Else, it gets confusing what is meant by "default". Like this:
-> 
-> 	Specify the default scheduling policy for entities on a run-queue, 1 = Round Robin, 2 = FIFO (default).
-> 
-> See "default" appear twice and it creates confusion? We don't need our internal "default" play to get
-> exported all the way to the casual user reading this. It is much clear, however,
-> 
-> 	Specify the scheduling policy for entities on a run-queue, 1 = Round Robin, 2 = FIFO (default).
-> 
-> To mean, if unset, the default one would be used. But this is all internal code stuff.
-> 
-> So I'd say leave this one alone.
-> 
->> +module_param_named(sched_policy, default_drm_sched_policy, int, 0444);
-> 
-> Put "default" as a postfix:
-> default_drm_sched_policy --> drm_sched_policy_default
-> 
->>  
->>  static __always_inline bool drm_sched_entity_compare_before(struct rb_node *a,
->>  							    const struct rb_node *b)
->> @@ -177,7 +177,7 @@ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
->>  	if (rq->current_entity == entity)
->>  		rq->current_entity = NULL;
->>  
->> -	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
->> +	if (rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO)
->>  		drm_sched_rq_remove_fifo_locked(entity);
->>  
->>  	spin_unlock(&rq->lock);
->> @@ -898,7 +898,7 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
->>  
->>  	/* Kernel run queue has higher priority than normal run queue*/
->>  	for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
->> -		entity = drm_sched_policy == DRM_SCHED_POLICY_FIFO ?
->> +		entity = sched->sched_policy == DRM_SCHED_POLICY_FIFO ?
->>  			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i]) :
->>  			drm_sched_rq_select_entity_rr(&sched->sched_rq[i]);
->>  		if (entity)
->> @@ -1071,6 +1071,7 @@ static void drm_sched_main(struct work_struct *w)
->>   *		used
->>   * @score: optional score atomic shared with other schedulers
->>   * @name: name used for debugging
->> + * @sched_policy: schedule policy
->>   * @dev: target &struct device
->>   *
->>   * Return 0 on success, otherwise error code.
->> @@ -1080,9 +1081,15 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->>  		   struct workqueue_struct *submit_wq,
->>  		   unsigned hw_submission, unsigned hang_limit,
->>  		   long timeout, struct workqueue_struct *timeout_wq,
->> -		   atomic_t *score, const char *name, struct device *dev)
->> +		   atomic_t *score, const char *name,
->> +		   enum drm_sched_policy sched_policy,
->> +		   struct device *dev)
->>  {
->>  	int i;
+>> +static u64 engine_group_busyness_read(struct xe_gt *gt, u64 config)
+>> +{
+>> +	int sample_type = config_counter(config) - 1;
+>> +	const unsigned int gt_id = gt->info.id;
+>> +	struct xe_device *xe = gt->tile->xe;
+>> +	struct xe_pmu *pmu = &xe->pmu;
+>> +	unsigned long flags;
+>> +	bool device_awake;
+>> +	u64 val;
 >> +
->> +	if (sched_policy >= DRM_SCHED_POLICY_COUNT)
->> +		return -EINVAL;
+>> +	device_awake = xe_device_mem_access_get_if_ongoing(xe);
+>> +	if (device_awake) {
+>> +		XE_WARN_ON(xe_force_wake_get(gt_to_fw(gt), XE_FW_GT));
+>> +		val = __engine_group_busyness_read(gt, sample_type);
+>> +		XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FW_GT));
+>> +		xe_device_mem_access_put(xe);
+>> +	}
 >> +
->>  	sched->ops = ops;
->>  	sched->hw_submission_limit = hw_submission;
->>  	sched->name = name;
->> @@ -1092,6 +1099,10 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->>  	sched->hang_limit = hang_limit;
->>  	sched->score = score ? score : &sched->_score;
->>  	sched->dev = dev;
->> +	if (sched_policy == DRM_SCHED_POLICY_DEFAULT)
->> +		sched->sched_policy = default_drm_sched_policy;
+>> +	spin_lock_irqsave(&pmu->lock, flags);
+>> +
+>> +	if (device_awake)
+>> +		pmu->sample[gt_id][sample_type] = val;
 >> +	else
->> +		sched->sched_policy = sched_policy;
+>> +		val = pmu->sample[gt_id][sample_type];
+>> +
+>> +	spin_unlock_irqrestore(&pmu->lock, flags);
+>> +
+>> +	return val;
+>> +}
+>> +
+>> +static void engine_group_busyness_store(struct xe_gt *gt)
+>> +{
+>> +	struct xe_pmu *pmu = &gt->tile->xe->pmu;
+>> +	unsigned int gt_id = gt->info.id;
+>> +	unsigned long flags;
+>> +	int i;
+>> +
+>> +	spin_lock_irqsave(&pmu->lock, flags);
+>> +
+>> +	for (i = __XE_SAMPLE_RENDER_GROUP_BUSY; i <= __XE_SAMPLE_ANY_ENGINE_GROUP_BUSY; i++)
+>> +		pmu->sample[gt_id][i] = __engine_group_busyness_read(gt, i);
+> Just a reminder about what we discussed about this earlier. Here we are
+> saving all these samples unconditionally, whether or not PMU will ever be
+> used. We have deferred the optimization to only save enabled counters to a
+> later patch. So we might still come back and do that.
+OK
+>
+>> +static void xe_pmu_event_read(struct perf_event *event)
+>> +{
+>> +	struct xe_device *xe =
+>> +		container_of(event->pmu, typeof(*xe), pmu.base);
+>> +	struct hw_perf_event *hwc = &event->hw;
+>> +	struct xe_pmu *pmu = &xe->pmu;
+>> +	u64 prev, new;
+>> +
+>> +	if (pmu->closed) {
+>> +		event->hw.state = PERF_HES_STOPPED;
+>> +		return;
+>> +	}
+>> +again:
+>> +	prev = local64_read(&hwc->prev_count);
+>> +	new = __xe_pmu_event_read(event);
+>> +
+>> +	if (local64_cmpxchg(&hwc->prev_count, prev, new) != prev)
+>> +		goto again;
+>> +
+>> +	local64_add(new - prev, &event->count);
+> Just curious, in case you know, why do we do this here rather than just a:
+>
+> 	local64_set(new, &event->count);
+>
+> The code is the same as i915 so is likely correct, so no issue, if you
+> don't know just ignore this comment. No changes needed here.
+So a PMU counter can be opened by multiple clients simultaneously in which case
+we shall always report the relative value per the clients view, hence that math.
+>
+>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+>> index 86f16d50e9cc..8a59350b3cea 100644
+>> --- a/include/uapi/drm/xe_drm.h
+>> +++ b/include/uapi/drm/xe_drm.h
+>> @@ -1056,6 +1056,45 @@ struct drm_xe_vm_madvise {
+>> 	__u64 reserved[2];
+>>  };
+>>
+>> +/* PMU event config IDs */
+>> +
+>> +/*
+>> + * The below config IDs needs to be filled in the struct perf_even_attr field
+>> + * as part of perf_event_open call to read a particular event.
+>> + *
+>> + * check man perf_event_open.
+>> + *
+>> + * example on how to open an event:
+>> + * .. code-block:: C
+>> + *	struct perf_event_attr pe;
+>> + *	long long count;
+>> + *	int cpu = 0;
+>> + *	int fd;
+>> + *
+>> + *	memset(&pe, 0, sizeof(struct perf_event_attr));
+>> + *	pe.type = type // eg: /sys/bus/event_source/devices/xe_0000_56_00.0/type
+>> + *	pe.read_format = PERF_FORMAT_TOTAL_TIME_ENABLED;
+>> + *	pe.use_clockid = 1;
+>> + *	pe.clockid = CLOCK_MONOTONIC;
+>> + *	pe.config = XE_PMU_INTERRUPTS(0);
+>> + *
+>> + *	fd = perf_event_open(&pe, -1, cpu, -1, 0);
+>> + */
+> Pretty good, let me fix up the formatting, style and some typos. But please
+> check.
+>
+> /**
+>  * XE PMU event config ID's
+>  *
+>  * Check 'man perf_event_open' to use these ID's in 'struct
+>  * perf_event_attr' as part of perf_event_open syscall to read particular
+>  * event counts.
+>  *
+>  * For example, to open the XE_PMU_INTERRUPTS(0) event:
+>  *
+>  * .. code-block:: C
+>  *
+>  *	struct perf_event_attr attr = {};
+>  *	long long count;
+>  *	int cpu = 0;
+>  *	int fd;
+>  *
+>  *	attr.type = type; /* /sys/bus/event_source/devices/xe_0000_56_00.0/type */
+>  *	attr.read_format = PERF_FORMAT_TOTAL_TIME_ENABLED;
+>  *	attr.use_clockid = 1;
+>  *	attr.clockid = CLOCK_MONOTONIC;
+>  *	attr.config = XE_PMU_INTERRUPTS(0);
+>  *
+>  *	fd = syscall(__NR_perf_event_open, &attr, -1, cpu, -1, 0);
+>  */
+we have a perf_event_open API we needn't use syscall so i'll mention that, but rest of the text looks good.
+>
+> Apart from the couple of things above to be fixed up, I don't want to hold
+> onto this review any longer, so this is now:
+>
+> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 
-Note also that here you can use a ternary operator as opposed to an if-control.
+thanks, so will respin the series by nuking the MTL change.
 
-	sched->sched_policy = sched_policy == DRM_SCHED_POLICY_UNSET ?
-				drm_sched_policy_default : sched_policy;
-
--- 
 Regards,
-Luben
-
+Aravind.
