@@ -4,46 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7425EDE9AD
-	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 11:59:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 096BDEDE9B4
+	for <intel-xe@archiver.kernel.org>; Thu, 14 Sep 2023 12:11:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A180010E569;
-	Thu, 14 Sep 2023 11:59:31 +0000 (UTC)
-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95E7C10E568;
- Thu, 14 Sep 2023 11:59:29 +0000 (UTC)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits))
- (No client certificate requested)
- by sin.source.kernel.org (Postfix) with ESMTPS id 75219CE21D1;
- Thu, 14 Sep 2023 11:59:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EAB7C433C7;
- Thu, 14 Sep 2023 11:59:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1694692765;
- bh=gssHXPbJz0czz/j6r72eiOm6doPN5TsZmH8mlKsgcDk=;
- h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
- b=FxkcUmh2KpdyeHOsKSAohYWvVqmSAApyXLB1F0DdTIRaqWXrG/0cldwaGBAOCgODb
- TJYCGzoHZi7dsiPahtYeIyJ6VX0klyR5YWpOxF6pjNX1bdFp+vzot0PV5aZ6DsKtN1
- SUmtM8C0hA2RMcejE21hh7eEnEHeXiMEX+eLKFR0t3CX0aTodbQfjxu+6FfGEU6LGW
- T2sBD5QJU9kyxEEJJQEWDZ1/KJSadcXmTsffYgO3Sry/p7iqkhWPCDiRl4PCVrt66B
- kfiflZxJXeBm54W507E8+Xx63k7XsgYc2iDqvrx/LwO70S7b9AZYu22M5/LaSRvIlf
- iTrQjdI0V9Gcg==
-From: Maxime Ripard <mripard@kernel.org>
-To: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230907135339.7971-2-thomas.hellstrom@linux.intel.com>
-References: <20230907135339.7971-1-thomas.hellstrom@linux.intel.com>
- <20230907135339.7971-2-thomas.hellstrom@linux.intel.com>
-Message-Id: <169469276263.950625.147303108903470167.b4-ty@kernel.org>
-Date: Thu, 14 Sep 2023 13:59:22 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id C80F110E562;
+	Thu, 14 Sep 2023 12:11:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2ED1710E562
+ for <intel-xe@lists.freedesktop.org>; Thu, 14 Sep 2023 12:11:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1694693484; x=1726229484;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=m1ydN73zbm6Ph5t4iA9PRqGJZY0ixK710v+XOgSKpYY=;
+ b=evr5CqSYpylxj6Y/b25S1mtSc/rmWfCLhtON6AsbKdXeIvcGYSOjkLeU
+ OLV5zrxp2M/+E4qmKWzvs6DVwLe4FOOgk6Sh2v12hN0xrq25jqXdZUGVV
+ I7FDBTWLa1/jff8dLKnWst/8XqeA8N6rQDwiXigPvwyXMyVlOvrE5tUmh
+ AkFK9+XDOE9JxHiW8lQZmGJt5ndlTVu12NzyVhvAJF3n+ur3XssF2cuOD
+ hUH7jw/h2uC42ZiuTGRIM2l/N90Oqc6TBI9GrhTVMBFxsM49AN6QxwnSv
+ 1WtHKqcBT1eugKKT9cQe8xck7xzJxaDTtV8eCSCEzEiwThTANu8mtad33 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="377838115"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="377838115"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Sep 2023 05:11:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10832"; a="918223757"
+X-IronPort-AV: E=Sophos;i="6.02,146,1688454000"; d="scan'208";a="918223757"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga005.jf.intel.com with ESMTP; 14 Sep 2023 05:11:21 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 14 Sep 2023 17:49:02 +0530
+Message-Id: <20230914121909.3860392-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.3
-Subject: Re: [Intel-xe] (subset) [PATCH v3 1/2] drm/tests: helpers: Avoid a
- driver uaf
+Subject: [Intel-xe] [PATCH V3 0/7] drm/xe: fdinfo memory stats
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,23 +53,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: David Airlie <airlied@gmail.com>, stable@vger.kernel.org,
- Daniel Vetter <daniel@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 07 Sep 2023 15:53:38 +0200, Thomas Hellström wrote:
-> when using __drm_kunit_helper_alloc_drm_device() the driver may be
-> dereferenced by device-managed resources up until the device is
-> freed, which is typically later than the kunit-managed resource code
-> frees it. Fix this by simply make the driver device-managed as well.
-> 
-> In short, the sequence leading to the UAF is as follows:
-> 
-> [...]
+This series enables enables fdinfo memory stats for xe.
 
-Applied to drm/drm-misc (drm-misc-fixes).
+I added tracking of most classes of bo (user bo, page tables, ring, lrc)
+which contribute to client's memory usage. This follows similar lines to
+what Rob's msm code and tvrtko's i915 code is doing with some xe way
+of showing and tracking/fecthing objects which adds to client memory
+stats.
 
-Thanks!
-Maxime
+Example fdinfo format:
+
+#cat /proc/4620/fdinfo/3
+pos:    0
+flags:  0100002
+mnt_id: 23
+ino:    1140
+drm-driver:     xe
+drm-client-id:  19
+drm-pdev:       0000:4d:00.0
+drm-total-system:       0
+drm-shared-system:      0
+drm-active-system:      0
+drm-resident-system:    0
+drm-purgeable-system:   0
+drm-total-gtt:  4 KiB
+drm-shared-gtt: 0
+drm-active-gtt: 0
+drm-resident-gtt:       4 KiB
+drm-total-vram0:        20 KiB
+drm-shared-vram0:       0
+drm-active-vram0:       0
+drm-resident-vram0:     20 KiB
+drm-total-vram1:        20 KiB
+drm-shared-vram1:       0
+drm-active-vram1:       0
+drm-resident-vram1:     20 KiB
+
+Testcase: https://patchwork.freedesktop.org/series/123264/#rev3
+
+Tejas Upadhyay (7):
+  drm/xe: Add drm-client infrastructure
+  drm/xe: Interface xe drm client with fdinfo interface
+  drm/xe: Add tracking support for bos per client
+  drm/xe: Record each drm client with its VM
+  drm/xe: Track page table memory usage for client
+  drm/xe: Account ring buffer and context state storage
+  drm/xe: Implement fdinfo memory stats printing
+
+ drivers/gpu/drm/xe/Makefile          |   1 +
+ drivers/gpu/drm/xe/xe_bo.c           |   9 ++
+ drivers/gpu/drm/xe/xe_bo.h           |  11 ++
+ drivers/gpu/drm/xe/xe_bo_types.h     |  10 ++
+ drivers/gpu/drm/xe/xe_device.c       |  21 ++-
+ drivers/gpu/drm/xe/xe_device_types.h |   6 +
+ drivers/gpu/drm/xe/xe_drm_client.c   | 202 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_drm_client.h   |  71 ++++++++++
+ drivers/gpu/drm/xe/xe_lrc.c          |   7 +-
+ drivers/gpu/drm/xe/xe_pt.c           |   3 +
+ drivers/gpu/drm/xe/xe_vm.c           |   8 ++
+ drivers/gpu/drm/xe/xe_vm_types.h     |   2 +
+ 12 files changed, 349 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_drm_client.c
+ create mode 100644 drivers/gpu/drm/xe/xe_drm_client.h
+
+-- 
+2.25.1
 
