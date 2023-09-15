@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B4E9EED627
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 17:47:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E717EED628
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 17:47:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D420D10E670;
-	Fri, 15 Sep 2023 17:47:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4D2B10E67D;
+	Fri, 15 Sep 2023 17:47:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB91110E669;
- Fri, 15 Sep 2023 17:46:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8985F10E670;
+ Fri, 15 Sep 2023 17:46:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694800011; x=1726336011;
+ t=1694800012; x=1726336012;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9VSrD+gfijch7hJR9MjxcxHLG40wvU47zS0qiXMqZoE=;
- b=AP7AIdhO9xykyvzhO7M0S4GxCFxPgGJnSzCPjcc2iiPN4VO+2J0xZ+o4
- G82pgwKqGy8WwBSIP1CQPOsroJH8+Gg+D4M0eCOz88TadrF4OqwFPMTQX
- F7PespmIBaoQp/h40aTFMdIEUybfVLZrzEycgEeFMLiRnfUi7wzgWHw3+
- mw0BVgzcYFyHT6KyM7q7xJmmwGAFWbhckk3rNY1q6UlxBaLqF5J3TSxYd
- HoPt4EAgS0V8QTi9Wmm6imQ6eIpaNcEQ32krAeN7/W2lVdCl0yRC4QC7h
- 1ZR8mOqgQz+Alihjzruk1fTHfEcP4c9zGBtsqLGGxrIRUHvAgiU/kxxvV w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445779270"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445779270"
+ bh=wMhognfuhmnzyC+G0kAy+YIuiBEM/O/I11llUTHQ71c=;
+ b=P27Hrhe1jQFmkfUywlc55F4xzRCj3J2fDNgVZpMBqd1vofX8UxQbGuzB
+ QUtXMwVKHTIGFjUc27NwdyMPFsr3/PCJBGhcZ1d/tHoBmHF3W4O1630r+
+ NK2hPjvcafJWVjLk9lRY7PnsXoULyYtrw6kUJ+Fgbf1dhqM9lbSwwGfKU
+ DmJ6ifUwl8l5cuSXtDg0WReu7ADoZnNpuO9MKv/XoyHTbIb8DTdJuGPN/
+ 3RXikgMfYOZedMfZC33SSAqnPrC3N3MYSzmmlI8dsZGuzM8ckqZSQRaDF
+ KMg8OPPdyICOsxLCIPu6kJS1KzrT07BPhogJBKp9Ocvd38h6cHSd7BAd6 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445779279"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445779279"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Sep 2023 10:46:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="868818265"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="868818265"
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="868818287"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="868818287"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Sep 2023 10:46:50 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Sep 2023 10:46:33 -0700
-Message-Id: <20230915174651.1928176-13-lucas.demarchi@intel.com>
+Date: Fri, 15 Sep 2023 10:46:40 -0700
+Message-Id: <20230915174651.1928176-20-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230915174651.1928176-1-lucas.demarchi@intel.com>
 References: <20230915174651.1928176-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 12/30] drm/i915/xe2lpd: Move D2D enable/disable
+Subject: [Intel-xe] [PATCH v4 19/30] drm/i915/xe2lpd: Enable odd size and
+ panning for planar yuv
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,108 +58,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
+ =?UTF-8?q?Juha-Pekka=20Heikkil=C3=A4?= <juha-pekka.heikkila@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Bits to enable/disable and check state for D2D moved from
-XELPDP_PORT_BUF_CTL1 to DDI_BUF_CTL (now named DDI_CTL_DE in the spec).
-Make the functions mtl_ddi_disable_d2d() and mtl_ddi_enable_d2d generic
-to work with multiple reg location and bitfield layout.
+From: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
 
-v2: Set/Clear XE2LPD_DDI_BUF_D2D_LINK_ENABLE in saved_port_bits when
-    enabling/disabling D2D so DDI_BUF_CTL is correctly programmed in
-    other places without overriding these bits (Clint)
+Enable odd size and panning for planar yuv formats.
 
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Signed-off-by: Juha-Pekka Heikkilä <juha-pekka.heikkila@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 46 +++++++++++++++++-------
- drivers/gpu/drm/i915/i915_reg.h          |  2 ++
- 2 files changed, 36 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_atomic_plane.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 29c9386659ff..b09c00f8f346 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -2355,14 +2355,25 @@ static void
- mtl_ddi_enable_d2d(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	enum port port = encoder->port;
-+	i915_reg_t reg;
-+	u32 set_bits, wait_bits;
-+
-+	if (DISPLAY_VER(dev_priv) >= 20) {
-+		reg = DDI_BUF_CTL(port);
-+		set_bits = XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
-+		wait_bits = XE2LPD_DDI_BUF_D2D_LINK_STATE;
-+		dig_port->saved_port_bits |= XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
-+	} else {
-+		reg = XELPDP_PORT_BUF_CTL1(port);
-+		set_bits = XELPDP_PORT_BUF_D2D_LINK_ENABLE;
-+		wait_bits = XELPDP_PORT_BUF_D2D_LINK_STATE;
-+	}
- 
--	intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(port), 0,
--		     XELPDP_PORT_BUF_D2D_LINK_ENABLE);
--
--	if (wait_for_us((intel_de_read(dev_priv, XELPDP_PORT_BUF_CTL1(port)) &
--			 XELPDP_PORT_BUF_D2D_LINK_STATE), 100)) {
--		drm_err(&dev_priv->drm, "Timeout waiting for D2D Link enable for PORT_BUF_CTL %c\n",
-+	intel_de_rmw(dev_priv, reg, 0, set_bits);
-+	if (wait_for_us(intel_de_read(dev_priv, reg) & wait_bits, 100)) {
-+		drm_err(&dev_priv->drm, "Timeout waiting for D2D Link enable for DDI/PORT_BUF_CTL %c\n",
- 			port_name(port));
- 	}
- }
-@@ -2808,14 +2819,25 @@ static void
- mtl_ddi_disable_d2d_link(struct intel_encoder *encoder)
- {
- 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
-+	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
- 	enum port port = encoder->port;
-+	i915_reg_t reg;
-+	u32 clr_bits, wait_bits;
-+
-+	if (DISPLAY_VER(dev_priv) >= 20) {
-+		reg = DDI_BUF_CTL(port);
-+		clr_bits = XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
-+		wait_bits = XE2LPD_DDI_BUF_D2D_LINK_STATE;
-+		dig_port->saved_port_bits &= ~XE2LPD_DDI_BUF_D2D_LINK_ENABLE;
-+	} else {
-+		reg = XELPDP_PORT_BUF_CTL1(port);
-+		clr_bits = XELPDP_PORT_BUF_D2D_LINK_ENABLE;
-+		wait_bits = XELPDP_PORT_BUF_D2D_LINK_STATE;
-+	}
- 
--	intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(port),
--		     XELPDP_PORT_BUF_D2D_LINK_ENABLE, 0);
--
--	if (wait_for_us(!(intel_de_read(dev_priv, XELPDP_PORT_BUF_CTL1(port)) &
--			  XELPDP_PORT_BUF_D2D_LINK_STATE), 100))
--		drm_err(&dev_priv->drm, "Timeout waiting for D2D Link disable for PORT_BUF_CTL %c\n",
-+	intel_de_rmw(dev_priv, reg, clr_bits, 0);
-+	if (wait_for_us(!(intel_de_read(dev_priv, reg) & wait_bits), 100))
-+		drm_err(&dev_priv->drm, "Timeout waiting for D2D Link disable for DDI/PORT_BUF_CTL %c\n",
- 			port_name(port));
- }
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index e00e4d569ba9..2f5dd5361263 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -5678,6 +5678,8 @@ enum skl_power_gate {
- /* Known as DDI_CTL_DE in MTL+ */
- #define DDI_BUF_CTL(port) _MMIO_PORT(port, _DDI_BUF_CTL_A, _DDI_BUF_CTL_B)
- #define  DDI_BUF_CTL_ENABLE			(1 << 31)
-+#define  XE2LPD_DDI_BUF_D2D_LINK_ENABLE		REG_BIT(29)
-+#define  XE2LPD_DDI_BUF_D2D_LINK_STATE		REG_BIT(28)
- #define  DDI_BUF_TRANS_SELECT(n)	((n) << 24)
- #define  DDI_BUF_EMP_MASK			(0xf << 24)
- #define  DDI_BUF_PHY_LINK_RATE(r)		((r) << 20)
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index d7a0bd686e49..b1074350616c 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -981,6 +981,14 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
+ 	if (fb->format->format == DRM_FORMAT_RGB565 && rotated) {
+ 		hsub = 2;
+ 		vsub = 2;
++	} else if (DISPLAY_VER(i915) >= 20 &&
++		   intel_format_info_is_yuv_semiplanar(fb->format, fb->modifier)) {
++		/*
++		 * This allows NV12 and P0xx formats to have odd size and/or odd
++		 * source coordinates on DISPLAY_VER(i915) >= 20
++		 */
++		hsub = 1;
++		vsub = 1;
+ 	} else {
+ 		hsub = fb->format->hsub;
+ 		vsub = fb->format->vsub;
 -- 
 2.40.1
 
