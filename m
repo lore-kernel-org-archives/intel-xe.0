@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C5C4EED61A
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 17:29:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F1C7CEED61A
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 17:29:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB4A310E65A;
-	Fri, 15 Sep 2023 17:29:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B344110E65B;
+	Fri, 15 Sep 2023 17:29:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D641810E662;
- Fri, 15 Sep 2023 17:29:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E843B10E65B;
+ Fri, 15 Sep 2023 17:29:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D46CBAADEB;
- Fri, 15 Sep 2023 17:29:15 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id ECA43AADEB;
+ Fri, 15 Sep 2023 17:29:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Fri, 15 Sep 2023 17:29:15 -0000
-Message-ID: <169479895586.32040.3683577356256374763@emeril.freedesktop.org>
+Date: Fri, 15 Sep 2023 17:29:27 -0000
+Message-ID: <169479896796.32039.10223124522368210875@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230915172606.14436-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20230915172606.14436-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Reinstate_pipelined_fence_enable=5Fsignaling_=28re?=
- =?utf-8?b?djMp?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Reinstate_pipelined_fence_enable=5Fsignaling_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,9 +52,39 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 4a9681392 drm/xe/pmu: Enable PMU interface
-=== git am output follows ===
-Applying: drm/xe: Reinstate pipelined fence enable_signaling
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 96dee6a96e0194b6861f201ba602b829aa50081c
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri Sep 15 19:26:06 2023 +0200
+
+    drm/xe: Reinstate pipelined fence enable_signaling
+    
+    With the GPUVA conversion, the xe_bo::vmas member became replaced with
+    drm_gem_object::gpuva.list, however there was a couple of usage instances
+    left using the old member. Most notably the pipelined fence
+    enable_signaling.
+    
+    Remove the xe_bo::vmas member completely, fix usage instances and
+    also enable this pipelined fence enable_signaling even for faulting
+    VM:s since we actually wait for bind fences to complete.
+    
+    v2:
+    - Rebase.
+    v3:
+    - Fix display code build error.
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 4a9681392cecd56a372d06b648f7b3a37fdd5c63 drm-intel
+96dee6a96 drm/xe: Reinstate pipelined fence enable_signaling
 
 
