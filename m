@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9F24EED600
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 15:06:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5967EEED600
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 15:07:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C41C10E640;
-	Fri, 15 Sep 2023 15:06:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A17210E63D;
+	Fri, 15 Sep 2023 15:07:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8B10010E640;
- Fri, 15 Sep 2023 15:06:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id AC86010E63D;
+ Fri, 15 Sep 2023 15:07:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 85A9DA00E6;
- Fri, 15 Sep 2023 15:06:56 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A7557A00E6;
+ Fri, 15 Sep 2023 15:07:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Fri, 15 Sep 2023 15:06:56 -0000
-Message-ID: <169479041654.32041.14203800227109555659@emeril.freedesktop.org>
+Date: Fri, 15 Sep 2023 15:07:20 -0000
+Message-ID: <169479044068.32042.7886889436237197807@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230915143958.37222-1-jose.souza@intel.com>
 In-Reply-To: <20230915143958.37222-1-jose.souza@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
- =?utf-8?q?m/xe=3A_Add_uAPI_to_query_micro-controler_firmware_version?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe?=
+ =?utf-8?q?=3A_Add_uAPI_to_query_micro-controler_firmware_version?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,50 +48,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add uAPI to query micro-controler firmware version
 URL   : https://patchwork.freedesktop.org/series/123779/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 9f34bb456bfbac104f8b4da73c8b409828277bd8
-Author: José Roberto de Souza <jose.souza@intel.com>
-Date:   Fri Sep 15 07:39:58 2023 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_query.c: In function ‘query_uc_fw_version’:
+../drivers/gpu/drm/xe/xe_query.c:386:3: error: a label can only be part of a statement and a declaration is not a statement
+  386 |   struct xe_guc *guc = &xe->tiles[0].primary_gt->uc.guc;
+      |   ^~~~~~
+make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_query.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:480: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:480: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:480: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:480: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:2032: .] Error 2
+make[1]: *** [/kernel/Makefile:234: __sub-make] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-    drm/xe: Add uAPI to query micro-controler firmware version
-    
-    Due to a bug in GuC firmware, Mesa can't enable by default the usage of
-    compute engines in DG2 and newer.
-    
-    A new GuC firmware fixed the issue but until now there was no way
-    for Mesa to know if KMD was running with the fixed GuC version or not,
-    so this uAPI is required.
-    
-    It may be expanded in future to query other firmware versions too.
-    
-    More information: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23661
-    Mesa usage: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25233
-    
-    v2:
-    - changed to submission version
-    - added branch version to be future proof
-    - checking if pads and reserved are zero
-    
-    Cc: John Harrison <John.C.Harrison@Intel.com>
-    Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-+ /mt/dim checkpatch 4a9681392cecd56a372d06b648f7b3a37fdd5c63 drm-intel
-9f34bb456 drm/xe: Add uAPI to query micro-controler firmware version
--:18: WARNING:COMMIT_LOG_LONG_LINE: Possible unwrapped commit description (prefer a maximum 75 chars per line)
-#18: 
-More information: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/23661
-
-total: 0 errors, 1 warnings, 0 checks, 107 lines checked
+[15:06:57] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[15:07:01] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
