@@ -4,46 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 76D99CD37AA
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 19:47:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA47CCD379F
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 19:47:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CBA010E678;
-	Fri, 15 Sep 2023 19:47:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B526210E66F;
+	Fri, 15 Sep 2023 19:47:21 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C19B110E66F
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Sep 2023 19:47:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 71B2610E66F
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Sep 2023 19:47:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694807236; x=1726343236;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tUx/r4NdUtxaN3iGPB8+F0Wako51IkZl7NOPU21YhLM=;
- b=jaAMQoBQ4W8L/hTvHUFCgvOtDVr3C2x0fziSLjWH00eR5OStDkZ2aLLF
- oEGAZSRBvrqUx3iVKSoQt+WWw/luVXVAC7BvUMVgo7/s/TgX99kzE1Q4O
- D7C09VgN/8jTigqbuF3L23RnCp8hKKZCAS5yUL9sOEHjiz2Z5YsOoRsSu
- c67QwXSQQdmXMS/mUN+9tNA1Sn6HafpkSoZ+q/pXBCJSIJSu8DmcdSceQ
- V9jRjYZCMIay4CeN77K5odw4oCPkxryvQmob8HDSV5Iw1mwIFqUpQt0O1
- h9qmmTDu6lzZa8ED45iOJuJ8ORtKmWsWy7j7yks0VM+rpyLxjGy7CxMpA g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="382063296"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="382063296"
+ t=1694807237; x=1726343237;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=79xddMz8YUUEeljQc9GUnzz0ItiNpunZL84YP/fur7Y=;
+ b=EGpfE8accM1LwVtvGeeWtNRtLX6s4bFB8GCrv6ycdsIOZccykCuAcq7V
+ FFktRTmdYsWvJUzwGQO4TsyMsy6zoflIm6HYQxmjk0kh3sxhLICkHMJI0
+ c83SBA6CctouO4uY3BBJKVD1TWgqXmmhHk3pwDL9w9FhI4gi9L/jwT/Cg
+ bOhxHMjW7vBgfdHCfVtgeZArQUflwjhfv61VtXU9YHXGbPhiXPnVn8Y3G
+ cRvCc2OJwIvTCudJWvTqdisl5xZPCKl8/PkQqGXzh+OH3q/EQdxCNHii2
+ LmapqoSgYRpI2sXCs2NtVkFyRgAEGimRhPKFFAovtVxENeOvadgaao8BV w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="382063298"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="382063298"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 12:47:16 -0700
+ 15 Sep 2023 12:47:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="888324500"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="888324500"
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="888324509"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="888324509"
 Received: from jmanzo-mobl.amr.corp.intel.com (HELO anushasr-mobl7.intel.com)
  ([10.209.15.212])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 12:46:39 -0700
+ 15 Sep 2023 12:46:40 -0700
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 15 Sep 2023 12:46:56 -0700
-Message-Id: <20230915194700.184626-1-anusha.srivatsa@intel.com>
+Date: Fri, 15 Sep 2023 12:46:57 -0700
+Message-Id: <20230915194700.184626-2-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230915194700.184626-1-anusha.srivatsa@intel.com>
+References: <20230915194700.184626-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/4] Add Raptorlake Support
+Subject: [Intel-xe] [PATCH 1/4] drm/xe/rplu: s/ADLP/ALDERLAKE_P
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,30 +61,71 @@ Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Keep the naming convention consistent with i915.
-As part of it making some consistent naming changes
-so we can continue to use some macro magic moving forward.
-It does make the name bigger - ALDERLAKE instead of
-just ADL. But this way the platform name is ALDERLAKE_P
-everywhere which is easier to remember and use.(previosuly
-the driver had ADLP_ usages for some defines - like ADLP_RPLU_* etc)
+i915 now uses full names for platforms. So we now have
+ALDERLAKE instead of ADL. Extend this to xe driver as well.
+This will make it easier for macro magic usages.
 
-While at it also adding some missing support in kunit for the
-some subplatforms.
+Cc: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+---
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 2 +-
+ drivers/gpu/drm/xe/xe_pci.c                       | 2 +-
+ drivers/gpu/drm/xe/xe_platform_types.h            | 2 +-
+ drivers/gpu/drm/xe/xe_step.c                      | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-Anusha Srivatsa (4):
-  drm/xe/rplu: s/ADLP/ALDERLAKE_P
-  drm/xe/rpls: Add RPLS Support
-  drm/xe/rpls: Add Stepping info for RPLS
-  drm/xe: Add missing ADL entries to xe_test_wa
-
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h |  2 +-
- drivers/gpu/drm/xe/tests/xe_wa_test.c             |  2 ++
- drivers/gpu/drm/xe/xe_pci.c                       |  9 ++++++++-
- drivers/gpu/drm/xe/xe_platform_types.h            |  3 ++-
- drivers/gpu/drm/xe/xe_step.c                      | 10 +++++++++-
- 5 files changed, 22 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 03ac39efba38..012d15565727 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -144,7 +144,7 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+ #define IS_DG2_G10(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G10)
+ #define IS_DG2_G11(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G11)
+ #define IS_DG2_G12(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G12)
+-#define IS_RAPTORLAKE_U(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_ADLP_RPLU)
++#define IS_RAPTORLAKE_U(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_ALDERLAKE_P_RPLU)
+ #define IS_ICL_WITH_PORT_F(xe) (xe && 0)
+ #define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
+ #define to_intel_bo(x) gem_to_xe_bo((x))
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index dc233a1226bd..96a34d9197a8 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -241,7 +241,7 @@ static const struct xe_device_desc adl_p_desc = {
+ 	.has_llc = true,
+ 	.require_force_probe = true,
+ 	.subplatforms = (const struct xe_subplatform_desc[]) {
+-		{ XE_SUBPLATFORM_ADLP_RPLU, "RPLU", adlp_rplu_ids },
++		{ XE_SUBPLATFORM_ALDERLAKE_P_RPLU, "RPLU", adlp_rplu_ids },
+ 		{},
+ 	},
+ };
+diff --git a/drivers/gpu/drm/xe/xe_platform_types.h b/drivers/gpu/drm/xe/xe_platform_types.h
+index e378a64a0f86..b6fe4342f9f6 100644
+--- a/drivers/gpu/drm/xe/xe_platform_types.h
++++ b/drivers/gpu/drm/xe/xe_platform_types.h
+@@ -27,7 +27,7 @@ enum xe_platform {
+ enum xe_subplatform {
+ 	XE_SUBPLATFORM_UNINITIALIZED = 0,
+ 	XE_SUBPLATFORM_NONE,
+-	XE_SUBPLATFORM_ADLP_RPLU,
++	XE_SUBPLATFORM_ALDERLAKE_P_RPLU,
+ 	XE_SUBPLATFORM_DG2_G10,
+ 	XE_SUBPLATFORM_DG2_G11,
+ 	XE_SUBPLATFORM_DG2_G12,
+diff --git a/drivers/gpu/drm/xe/xe_step.c b/drivers/gpu/drm/xe/xe_step.c
+index 371cac951e0f..903c65405d3a 100644
+--- a/drivers/gpu/drm/xe/xe_step.c
++++ b/drivers/gpu/drm/xe/xe_step.c
+@@ -143,7 +143,7 @@ struct xe_step_info xe_step_pre_gmdid_get(struct xe_device *xe)
+ 	} else if (xe->info.platform == XE_ALDERLAKE_N) {
+ 		revids = adln_revids;
+ 		size = ARRAY_SIZE(adln_revids);
+-	} else if (xe->info.subplatform == XE_SUBPLATFORM_ADLP_RPLU) {
++	} else if (xe->info.subplatform == XE_SUBPLATFORM_ALDERLAKE_P_RPLU) {
+ 		revids = adlp_rpl_revids;
+ 		size = ARRAY_SIZE(adlp_rpl_revids);
+ 	} else if (xe->info.platform == XE_ALDERLAKE_P) {
 -- 
 2.25.1
 
