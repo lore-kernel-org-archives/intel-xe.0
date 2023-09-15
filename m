@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC656EED62B
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 17:47:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ACE3FEED61A
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 17:47:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93B9810E68C;
-	Fri, 15 Sep 2023 17:47:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6506E10E66C;
+	Fri, 15 Sep 2023 17:47:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 49C8310E66E;
- Fri, 15 Sep 2023 17:46:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3812088D18;
+ Fri, 15 Sep 2023 17:46:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694800012; x=1726336012;
+ t=1694800011; x=1726336011;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=BCfFcplIfu7E4BwgrlcVWNFbT+X+Q5CneihKMfjaHS0=;
- b=g8Uf+ud6f5XbJR5i+2GASIs5H1X2BV7WvdT5GcD4qUv3QcKucrN/1Beo
- +xIeZJQ4knqP0G5sPx3aqiqb8P1iYKRFqTURkoZnUM1My1chhtiCb4hZe
- cS5halCj+TjjiqMih5nBMMJ2weap/krdncIOFXzAXIlrwIw+aeAzAPqrm
- ge8tIavKXdFI3tK0V1iQuaw0URi5xiFucmkK1IBhKDGGTum/oI+pf9jX/
- /FFolETsEVxQdS46/GDVgT57XB7BJRY/zZ6uAWMktJwJHAQ8j1CWFD79W
- J8BpOHqwQa+USV5/S0cqLWyTAQj8oh8KHrC75rEw10M0XAsD4OcYn04QG A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445779276"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445779276"
+ bh=+VG9ESQlNzM9HtZpmCeE/wWAypMARShXKl9W9qAoV3A=;
+ b=YFLtifgf9ipwDp1508Z4bXt2yD5Mi6vKL8vTMu2bj7fS9m14FGI6bon/
+ FkjtA4eeTfhA0DWOFBWYDlfeCGIoGvqCpz9K/eXr1Mugb4ZES4xuA69dn
+ 8UrWm7DZtU77Uc4wPvFlZnNidXEluiW7AqomZCWl2fexfp0tlAn2jd1Os
+ 2D4jbT53861PjaAV8eL+bZjZpvL0hrO42zvgp1Lj2mY0W5GVrKMxPppRf
+ Ittxle35WExVRqL/iM4tN5COHjrzlHbAI33A/kpjd53DVeHyYMkW0XHcN
+ Ftlwn2A82CpYb9WVx2iX4c655rMh2VhCGU6P70AKaGO7uG3L67BG46h5t Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445779265"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445779265"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Sep 2023 10:46:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="868818281"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="868818281"
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="868818246"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="868818246"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 10:46:50 -0700
+ 15 Sep 2023 10:46:49 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Sep 2023 10:46:38 -0700
-Message-Id: <20230915174651.1928176-18-lucas.demarchi@intel.com>
+Date: Fri, 15 Sep 2023 10:46:27 -0700
+Message-Id: <20230915174651.1928176-7-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230915174651.1928176-1-lucas.demarchi@intel.com>
 References: <20230915174651.1928176-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 17/30] drm/i915/xe2lpd: Handle port AUX
- interrupts
+Subject: [Intel-xe] [PATCH v4 06/30] drm/i915/xe2lpd: Add fake PCH
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,77 +56,72 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Gustavo Sousa <gustavo.sousa@intel.com>
 
-Differently from previous version, Xe2_LPD groups all port AUX interrupt
-bits into PICA interrupt registers.
+Xe2_LPD doesn't have south display engine on a PCH, it's actually
+on the SoC die (while north display engine is on compute die). As
+such it makes no sense to go through the PCI devices looking for
+an ISA bridge. The approach used by BXT/GLK can't be used here since
+leaving it with PCH_NONE would mean taking the wrong code paths.
 
-While at it, drop some trailing newlines.
+For the places we currently use a PCH check, it's enough for now to just
+check the north display version. Use that to define a fake PCH to be
+used across the driver. Eventually these PCH checks may need to be
+re-designed as this is already the third platform using/needing a
+fake PCH.
 
-BSpec: 68958, 69697
+v2: Match on display IP version rather than on platform (Matt Roper)
+v3: Extend and clarify commit message (Matt Roper / Ville)
+
 Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_irq.c | 4 +++-
- drivers/gpu/drm/i915/display/intel_hotplug_irq.c | 3 +++
- drivers/gpu/drm/i915/i915_reg.h                  | 5 ++---
- 3 files changed, 8 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/soc/intel_pch.c | 5 ++++-
+ drivers/gpu/drm/i915/soc/intel_pch.h | 2 ++
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 62ce55475554..bff4a76310c0 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -792,7 +792,9 @@ static u32 gen8_de_port_aux_mask(struct drm_i915_private *dev_priv)
- {
- 	u32 mask;
+diff --git a/drivers/gpu/drm/i915/soc/intel_pch.c b/drivers/gpu/drm/i915/soc/intel_pch.c
+index dfffdfa50b97..240beafb38ed 100644
+--- a/drivers/gpu/drm/i915/soc/intel_pch.c
++++ b/drivers/gpu/drm/i915/soc/intel_pch.c
+@@ -222,7 +222,10 @@ void intel_detect_pch(struct drm_i915_private *dev_priv)
+ 	 * South display engine on the same PCI device: just assign the fake
+ 	 * PCH.
+ 	 */
+-	if (IS_DG2(dev_priv)) {
++	if (DISPLAY_VER(dev_priv) >= 20) {
++		dev_priv->pch_type = PCH_LNL;
++		return;
++	} else if (IS_DG2(dev_priv)) {
+ 		dev_priv->pch_type = PCH_DG2;
+ 		return;
+ 	} else if (IS_DG1(dev_priv)) {
+diff --git a/drivers/gpu/drm/i915/soc/intel_pch.h b/drivers/gpu/drm/i915/soc/intel_pch.h
+index 32aff5a70d04..1b03ea60a7a8 100644
+--- a/drivers/gpu/drm/i915/soc/intel_pch.h
++++ b/drivers/gpu/drm/i915/soc/intel_pch.h
+@@ -30,6 +30,7 @@ enum intel_pch {
+ 	/* Fake PCHs, functionality handled on the same PCI dev */
+ 	PCH_DG1 = 1024,
+ 	PCH_DG2,
++	PCH_LNL,
+ };
  
--	if (DISPLAY_VER(dev_priv) >= 14)
-+	if (DISPLAY_VER(dev_priv) >= 20)
-+		return 0;
-+	else if (DISPLAY_VER(dev_priv) >= 14)
- 		return TGL_DE_PORT_AUX_DDIA |
- 			TGL_DE_PORT_AUX_DDIB;
- 	else if (DISPLAY_VER(dev_priv) >= 13)
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-index 95a7ea94f417..3398cc21bd26 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-@@ -514,6 +514,9 @@ void xelpdp_pica_irq_handler(struct drm_i915_private *i915, u32 iir)
- 	u32 trigger_aux = iir & XELPDP_AUX_TC_MASK;
- 	u32 pin_mask = 0, long_mask = 0;
+ #define INTEL_PCH_DEVICE_ID_MASK		0xff80
+@@ -66,6 +67,7 @@ enum intel_pch {
  
-+	if (DISPLAY_VER(i915) >= 20)
-+		trigger_aux |= iir & XE2LPD_AUX_DDI_MASK;
-+
- 	for (pin = HPD_PORT_TC1; pin <= HPD_PORT_TC4; pin++) {
- 		u32 val;
- 
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 2f5dd5361263..2f115d339913 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -4467,13 +4467,12 @@
- #define PICAINTERRUPT_IMR			_MMIO(0x16FE54)
- #define PICAINTERRUPT_IIR			_MMIO(0x16FE58)
- #define PICAINTERRUPT_IER			_MMIO(0x16FE5C)
--
- #define  XELPDP_DP_ALT_HOTPLUG(hpd_pin)		REG_BIT(16 + _HPD_PIN_TC(hpd_pin))
- #define  XELPDP_DP_ALT_HOTPLUG_MASK		REG_GENMASK(19, 16)
--
- #define  XELPDP_AUX_TC(hpd_pin)			REG_BIT(8 + _HPD_PIN_TC(hpd_pin))
- #define  XELPDP_AUX_TC_MASK			REG_GENMASK(11, 8)
--
-+#define  XE2LPD_AUX_DDI(hpd_pin)		REG_BIT(6 + _HPD_PIN_DDI(hpd_pin))
-+#define  XE2LPD_AUX_DDI_MASK			REG_GENMASK(7, 6)
- #define  XELPDP_TBT_HOTPLUG(hpd_pin)		REG_BIT(_HPD_PIN_TC(hpd_pin))
- #define  XELPDP_TBT_HOTPLUG_MASK		REG_GENMASK(3, 0)
- 
+ #define INTEL_PCH_TYPE(dev_priv)		((dev_priv)->pch_type)
+ #define INTEL_PCH_ID(dev_priv)			((dev_priv)->pch_id)
++#define HAS_PCH_LNL(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_LNL)
+ #define HAS_PCH_MTP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_MTP)
+ #define HAS_PCH_DG2(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_DG2)
+ #define HAS_PCH_ADP(dev_priv)			(INTEL_PCH_TYPE(dev_priv) == PCH_ADP)
 -- 
 2.40.1
 
