@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37413EED61A
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 18:13:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B06EEED61E
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 18:14:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0901510E669;
-	Fri, 15 Sep 2023 18:13:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F33010E663;
+	Fri, 15 Sep 2023 18:14:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 03A1310E669;
- Fri, 15 Sep 2023 18:13:47 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E255B10E663;
+ Fri, 15 Sep 2023 18:14:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 04056AADE3;
- Fri, 15 Sep 2023 18:13:47 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E7B1CAADE3;
+ Fri, 15 Sep 2023 18:14:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Fri, 15 Sep 2023 18:13:46 -0000
-Message-ID: <169480162698.32039.15441174486651767935@emeril.freedesktop.org>
+Date: Fri, 15 Sep 2023 18:14:00 -0000
+Message-ID: <169480164094.32041.15464907400591948521@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230915173646.116724-1-maarten.lankhorst@linux.intel.com>
 In-Reply-To: <20230915173646.116724-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_series_starting_with_=5B1/3=5D_fixup!_drm/xe/display=3A_Impl?=
- =?utf-8?q?ement_display_support?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_se?=
+ =?utf-8?q?ries_starting_with_=5B1/3=5D_fixup!_drm/xe/display=3A_Implement?=
+ =?utf-8?q?_display_support?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,15 +49,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/3] fixup! drm/xe/display: Implement display support
 URL   : https://patchwork.freedesktop.org/series/123787/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 4a9681392 drm/xe/pmu: Enable PMU interface
-=== git am output follows ===
-Applying: fixup! drm/xe/display: Implement display support
-Applying: drm/i915: Swap ggtt_vma during legacy cursor update
-Applying: drm/i915: Block in cleanup for legacy cursor updates
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 922a402e38da9094a767bcb2ee52cbeca9cd68bf
+Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Date:   Fri Sep 15 19:36:46 2023 +0200
+
+    drm/i915: Block in cleanup for legacy cursor updates
+    
+    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
++ /mt/dim checkpatch 4a9681392cecd56a372d06b648f7b3a37fdd5c63 drm-intel
+55c64a575 fixup! drm/xe/display: Implement display support
+ce32dd55d drm/i915: Swap ggtt_vma during legacy cursor update
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 11 lines checked
+922a402e3 drm/i915: Block in cleanup for legacy cursor updates
+-:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+-:125: WARNING:LONG_LINE: line length of 105 exceeds 100 columns
+#125: FILE: drivers/gpu/drm/i915/display/intel_crtc.c:712:
++							 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
+
+total: 0 errors, 2 warnings, 0 checks, 145 lines checked
 
 
