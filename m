@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 998DCEED61E
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 18:55:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 656E8EED61E
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 18:56:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 571C410E66F;
-	Fri, 15 Sep 2023 18:55:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 314DC10E66F;
+	Fri, 15 Sep 2023 18:56:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D9C7110E66F;
- Fri, 15 Sep 2023 18:55:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0481D10E033;
+ Fri, 15 Sep 2023 18:56:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CF895AA01E;
- Fri, 15 Sep 2023 18:55:01 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4440955487435376375=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 043EAAA01E;
+ Fri, 15 Sep 2023 18:56:54 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Fri, 15 Sep 2023 18:55:01 -0000
-Message-ID: <169480410182.32039.1625851051605150017@emeril.freedesktop.org>
+To: "Vodapalli, Ravi Kumar" <ravi.kumar.vodapalli@intel.com>
+Date: Fri, 15 Sep 2023 18:56:53 -0000
+Message-ID: <169480421398.32040.7501399193912797496@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230915173646.116724-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20230915173646.116724-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_st?=
- =?utf-8?q?arting_with_=5B1/3=5D_fixup!_drm/xe/display=3A_Implement_displa?=
- =?utf-8?q?y_support?=
+References: <20230915174651.1928176-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230915174651.1928176-1-lucas.demarchi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_Enable_Lunar_Lake_display_=28rev5=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,125 +44,34 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4440955487435376375==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: series starting with [1/3] fixup! drm/xe/display: Implement display support
-URL   : https://patchwork.freedesktop.org/series/123787/
-State : success
+Series: Enable Lunar Lake display (rev5)
+URL   : https://patchwork.freedesktop.org/series/122798/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63_BAT -> xe-pw-123787v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-123787v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123787v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 4a9681392 drm/xe/pmu: Enable PMU interface
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/i915/display/g4x_dp.c:145
+error: drivers/gpu/drm/i915/display/g4x_dp.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/i915/xelpdp: Add XE_LPDP_FEATURES
+Applying: drm/i915/lnl: Add display definitions
+Applying: drm/i915/xe2lpd: FBC is now supported on all pipes
+Applying: drm/i915/display: Remove FBC capability from fused off pipes
+Applying: drm/i915: Re-order if/else ladder in intel_detect_pch()
+Applying: drm/i915/xe2lpd: Add fake PCH
+Applying: drm/i915/xe2lpd: Treat cursor plane as regular plane for DDB allocation
+Applying: drm/i915/xe2lpd: Don't try to program PLANE_AUX_DIST
+Applying: drm/i915/xe2lpd: Register DE_RRMR has been removed
+Applying: drm/i915/display: Consolidate saved port bits in intel_digital_port
+Applying: drm/i915/display: Rename intel_dp->DP
+Patch failed at 0011 drm/i915/display: Rename intel_dp->DP
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-Build changes
--------------
-
-  * IGT: IGT_7488 -> IGT_7490
-  * Linux: xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63 -> xe-pw-123787v1
-
-  IGT_7488: 099e058c5dfb7a49942edf03cae88a52a77077a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7490: 7490
-  xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63: 4a9681392cecd56a372d06b648f7b3a37fdd5c63
-  xe-pw-123787v1: 123787v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123787v1/index.html
-
---===============4440955487435376375==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/3] fixup! drm/xe/display: Implement display support</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123787/">https://patchwork.freedesktop.org/series/123787/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123787v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123787v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63_BAT -&gt; xe-pw-123787v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-123787v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123787v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7488 -&gt; IGT_7490</li>
-<li>Linux: xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63 -&gt; xe-pw-123787v1</li>
-</ul>
-<p>IGT_7488: 099e058c5dfb7a49942edf03cae88a52a77077a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7490: 7490<br />
-  xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63: 4a9681392cecd56a372d06b648f7b3a37fdd5c63<br />
-  xe-pw-123787v1: 123787v1</p>
-
-</body>
-</html>
-
---===============4440955487435376375==--
