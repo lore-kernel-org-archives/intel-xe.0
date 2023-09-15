@@ -4,48 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 766BECD37B0
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 23:20:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11048CD37B1
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 23:20:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 07EAE10E6B0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD47010E6B1;
 	Fri, 15 Sep 2023 23:20:11 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47E8410E6B0
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B20610E09C
  for <intel-xe@lists.freedesktop.org>; Fri, 15 Sep 2023 23:20:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1694820009; x=1726356009;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sO/NibLCd3bcEpDFPLNR9BZoVeP6QY/xgCn4aF8Zu0k=;
- b=aLoProHn5j8b0TRJfIdMlhqjnxwWvuA3HBfkY1uo1EEAMl8BzGvaFnYz
- i2t6GrM2XG6zLQmq4kqT7YGGWP6DPcuphWom2W/uw74HbRRC/VGzB08nN
- l5NGVs8HtfXnJZbbYCehVSVYy7lq1fT+ZIKhaoppUpPRsQwPbUK5QtbaS
- 0DEUqp/OvczZoSYh7tHs371daAXo77X4X5MsblzLu7lqfF5mtsqYrhafG
- L9qxJdS0SQq/zf931Qdm39SoQwJaIVSnM+CPfJoPktnY1XcM+oT7W0/x6
- 8Sk+czDokETKhhUIcX1Pw7mu5Xxq1SEDTEnifZ4biRKz25oNx4+TUi8yz w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="382095165"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="382095165"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=H5bt8PZhVYDINoujYp7/k3j6ziiySeHEhNmn3VMZ18I=;
+ b=dGfDRGa9po2r2LEK7khwbSvS7ejW5khGwgYKbNTUi2GgaGxakBtI0DDZ
+ aQ3HoDm0sphRwrdgZX8wb4e3th+jvZPeN8i+YLe/lszLgNv//30Fn5/2x
+ B21+1Rkd6SaTtGnYpgUDMK8aBlSJbcKsdh5IzibKVVMbQmX/oUtvtyQ8g
+ uCdfXx/yItAoSQQyDg10OIE/js5da5K1SM3LPv0ySKw+tG34OUOJco9MP
+ jNG6ruWQl6/fjWOo7y0qU58exKlviOduHEgpUNdWEBWrTS40QdHp1lCTz
+ 2rOWc07AqALBNB1KjZi19yRor1E04KykMVLbua7iWkqEIjrbwTZZcV+en A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="382095164"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="382095164"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Sep 2023 16:20:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="835374314"
-X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="835374314"
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="835374311"
+X-IronPort-AV: E=Sophos;i="6.02,150,1688454000"; d="scan'208";a="835374311"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Sep 2023 16:20:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Fri, 15 Sep 2023 16:20:20 -0700
-Message-Id: <20230915232021.2241094-2-matthew.brost@intel.com>
+Date: Fri, 15 Sep 2023 16:20:19 -0700
+Message-Id: <20230915232021.2241094-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230915232021.2241094-1-matthew.brost@intel.com>
-References: <20230915232021.2241094-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/3] drm/xe: Deprecate
- XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE implementation
+Subject: [Intel-xe] [PATCH 1/3] drm/xe: Fix xe_exec_queue_is_idle for
+ parallel exec queues
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,140 +58,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are going to remove XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE from the
-uAPI, deprecate the implementation first by making
-XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE a NOP. After removal of
-XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE the proper is simply inherented
-from the VM.
-
-v2:
- - Update commit message with explaination of removal (Niranjana)
+Last little piece to support parallel exec queue is compute mode.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c       | 57 ++++++------------------
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  6 +--
- 2 files changed, 16 insertions(+), 47 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index eee64ba87d50..93d2f0591c34 100644
+index 6725157d8c1d..eee64ba87d50 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -323,39 +323,6 @@ static int exec_queue_set_preemption_timeout(struct xe_device *xe,
- static int exec_queue_set_compute_mode(struct xe_device *xe, struct xe_exec_queue *q,
- 				       u64 value, bool create)
+@@ -867,8 +867,17 @@ bool xe_exec_queue_ring_full(struct xe_exec_queue *q)
+  */
+ bool xe_exec_queue_is_idle(struct xe_exec_queue *q)
  {
--	if (XE_IOCTL_DBG(xe, !create))
--		return -EINVAL;
--
--	if (XE_IOCTL_DBG(xe, q->flags & EXEC_QUEUE_FLAG_COMPUTE_MODE))
--		return -EINVAL;
--
--	if (XE_IOCTL_DBG(xe, q->flags & EXEC_QUEUE_FLAG_VM))
--		return -EINVAL;
--
--	if (value) {
--		struct xe_vm *vm = q->vm;
--		int err;
--
--		if (XE_IOCTL_DBG(xe, xe_vm_in_fault_mode(vm)))
--			return -EOPNOTSUPP;
--
--		if (XE_IOCTL_DBG(xe, !xe_vm_in_compute_mode(vm)))
--			return -EOPNOTSUPP;
--
--		if (XE_IOCTL_DBG(xe, q->width != 1))
--			return -EINVAL;
--
--		q->compute.context = dma_fence_context_alloc(1);
--		spin_lock_init(&q->compute.lock);
--
--		err = xe_vm_add_compute_exec_queue(vm, q);
--		if (XE_IOCTL_DBG(xe, err))
--			return err;
--
--		q->flags |= EXEC_QUEUE_FLAG_COMPUTE_MODE;
--		q->flags &= ~EXEC_QUEUE_FLAG_PERSISTENT;
--	}
--
- 	return 0;
- }
- 
-@@ -365,7 +332,7 @@ static int exec_queue_set_persistence(struct xe_device *xe, struct xe_exec_queue
- 	if (XE_IOCTL_DBG(xe, !create))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_DBG(xe, q->flags & EXEC_QUEUE_FLAG_COMPUTE_MODE))
-+	if (XE_IOCTL_DBG(xe, xe_vm_in_compute_mode(q->vm)))
- 		return -EINVAL;
- 
- 	if (value)
-@@ -742,18 +709,21 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 		xe_vm_put(vm);
- 		if (IS_ERR(q))
- 			return PTR_ERR(q);
+-	if (XE_WARN_ON(xe_exec_queue_is_parallel(q)))
+-		return false;
++	if (xe_exec_queue_is_parallel(q)) {
++		int i;
 +
-+		if (xe_vm_in_compute_mode(vm)) {
-+			q->compute.context = dma_fence_context_alloc(1);
-+			spin_lock_init(&q->compute.lock);
-+
-+			err = xe_vm_add_compute_exec_queue(vm, q);
-+			if (XE_IOCTL_DBG(xe, err))
-+				goto put_exec_queue;
++		for (i = 0; i < q->width; ++i) {
++			if (xe_lrc_seqno(&q->lrc[i]) !=
++			    q->lrc[i].fence_ctx.next_seqno - 1)
++				return false;
 +		}
- 	}
++
++		return true;
++	}
  
- 	if (args->extensions) {
- 		err = exec_queue_user_extensions(xe, q, args->extensions, 0, true);
- 		if (XE_IOCTL_DBG(xe, err))
--			goto put_exec_queue;
--	}
--
--	if (XE_IOCTL_DBG(xe, q->vm && xe_vm_in_compute_mode(q->vm) !=
--			 !!(q->flags & EXEC_QUEUE_FLAG_COMPUTE_MODE))) {
--		err = -EOPNOTSUPP;
--		goto put_exec_queue;
-+			goto kill_exec_queue;
- 	}
- 
- 	q->persistent.xef = xef;
-@@ -762,14 +732,15 @@ int xe_exec_queue_create_ioctl(struct drm_device *dev, void *data,
- 	err = xa_alloc(&xef->exec_queue.xa, &id, q, xa_limit_32b, GFP_KERNEL);
- 	mutex_unlock(&xef->exec_queue.lock);
- 	if (err)
--		goto put_exec_queue;
-+		goto kill_exec_queue;
- 
- 	args->exec_queue_id = id;
- 
- 	return 0;
- 
--put_exec_queue:
-+kill_exec_queue:
- 	xe_exec_queue_kill(q);
-+put_exec_queue:
- 	xe_exec_queue_put(q);
- 	return err;
- }
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-index 347d28442701..f73b9e80b25a 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
-+++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
-@@ -60,12 +60,10 @@ struct xe_exec_queue {
- #define EXEC_QUEUE_FLAG_PERMANENT		BIT(2)
- /* queue keeps running pending jobs after destroy ioctl */
- #define EXEC_QUEUE_FLAG_PERSISTENT		BIT(3)
--/* queue for use with compute VMs */
--#define EXEC_QUEUE_FLAG_COMPUTE_MODE		BIT(4)
- /* for VM jobs. Caller needs to hold rpm ref when creating queue with this flag */
--#define EXEC_QUEUE_FLAG_VM			BIT(5)
-+#define EXEC_QUEUE_FLAG_VM			BIT(4)
- /* child of VM queue for multi-tile VM jobs */
--#define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(6)
-+#define EXEC_QUEUE_FLAG_BIND_ENGINE_CHILD	BIT(5)
- 
- 	/**
- 	 * @flags: flags for this exec queue, should statically setup aside from ban
+ 	return xe_lrc_seqno(&q->lrc[0]) ==
+ 		q->lrc[0].fence_ctx.next_seqno - 1;
 -- 
 2.34.1
 
