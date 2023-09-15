@@ -4,30 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5967EEED600
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 15:07:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B33C0EED615
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 15:40:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A17210E63D;
-	Fri, 15 Sep 2023 15:07:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id AC86010E63D;
- Fri, 15 Sep 2023 15:07:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A7557A00E6;
- Fri, 15 Sep 2023 15:07:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E27510E649;
+	Fri, 15 Sep 2023 15:40:59 +0000 (UTC)
+Received: from mx1.riseup.net (mx1.riseup.net [198.252.153.129])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4329B10E02B;
+ Fri, 15 Sep 2023 14:01:37 +0000 (UTC)
+Received: from fews01-sea.riseup.net (fews01-sea-pn.riseup.net [10.0.1.109])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mx1.riseup.net (Postfix) with ESMTPS id 4RnG805hhHzDqxc;
+ Fri, 15 Sep 2023 14:01:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=riseup.net; s=squak;
+ t=1694786497; bh=MI98SM5+oIIZ1M8pFYjcc+BLWFeGwbKK+O7tzV7KOxM=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=H/0xbQDojJ9PqAIpuYOvPW/2v51NTDOmiXWDHOUtooveB53TaEK3NCEJ/ynBes0LK
+ MNnrnbHAAi+TlBzZv3CyqXG3dwoNFTyPaENNDyEdJM8BBjSOKqQGLCdDAIGa6JVdyT
+ CXxYAMeSVtOea7pPqUw4jl053DVTJvGS+BFC9La8=
+X-Riseup-User-ID: BD85FA056706F238D9D8FBF4100C612ADFDC3F7F8EB4E34EFD2C83A48B0CEC69
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+ by fews01-sea.riseup.net (Postfix) with ESMTPSA id 4RnG7x6mt5zJmpf;
+ Fri, 15 Sep 2023 14:01:33 +0000 (UTC)
+Message-ID: <4fb393ff-3b2a-369a-5e9f-f96d802b2d87@riseup.net>
+Date: Fri, 15 Sep 2023 11:01:31 -0300
 MIME-Version: 1.0
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ dri-devel@lists.freedesktop.org
+References: <20230911130323.7037-2-janusz.krzysztofik@linux.intel.com>
+Content-Language: en-US
+From: Maira Canal <mairacanal@riseup.net>
+In-Reply-To: <20230911130323.7037-2-janusz.krzysztofik@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Fri, 15 Sep 2023 15:07:20 -0000
-Message-ID: <169479044068.32042.7886889436237197807@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230915143958.37222-1-jose.souza@intel.com>
-In-Reply-To: <20230915143958.37222-1-jose.souza@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_drm/xe?=
- =?utf-8?q?=3A_Add_uAPI_to_query_micro-controler_firmware_version?=
+X-Mailman-Approved-At: Fri, 15 Sep 2023 15:40:58 +0000
+Subject: Re: [Intel-xe] [PATCH] drm/tests: Fix incorrect argument in
+ drm_test_mm_insert_range
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,48 +53,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Daniel Latypov <dlatypov@google.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Arthur Grillo <arthurgrillo@riseup.net>, igt-dev@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, intel-xe@lists.freedesktop.org,
+ David Airlie <airlied@gmail.com>, intel-gfx@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi,
 
-Series: drm/xe: Add uAPI to query micro-controler firmware version
-URL   : https://patchwork.freedesktop.org/series/123779/
-State : failure
+On 9/11/23 10:03, Janusz Krzysztofik wrote:
+> While drm_mm test was converted form igt selftest to kunit, unexpected
+> value of "end" argument equal "start" was introduced to one of calls to a
+> function that executes the drm_test_mm_insert_range for specific start/end
+> pair of arguments.  As a consequence, DRM_MM_BUG_ON(end <= start) is
+> triggered.  Fix it by restoring the original value.
+> 
+> Fixes: fc8d29e298cf ("drm: selftest: convert drm_mm selftest to KUnit")
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-== Summary ==
+Reviewed-by: Maíra Canal <mairacanal@riseup.net>
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/xe/xe_query.c: In function ‘query_uc_fw_version’:
-../drivers/gpu/drm/xe/xe_query.c:386:3: error: a label can only be part of a statement and a declaration is not a statement
-  386 |   struct xe_guc *guc = &xe->tiles[0].primary_gt->uc.guc;
-      |   ^~~~~~
-make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_query.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:480: drivers/gpu/drm/xe] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:480: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:480: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:480: drivers] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [/kernel/Makefile:2032: .] Error 2
-make[1]: *** [/kernel/Makefile:234: __sub-make] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
+Do you need me to push it to drm-misc-fixes?
 
-[15:06:57] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[15:07:01] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Best Regards,
+- Maíra
 
-
+> Cc: "Maíra Canal" <mairacanal@riseup.net>
+> Cc: Arthur Grillo <arthurgrillo@riseup.net>
+> Cc: Javier Martinez Canillas <javierm@redhat.com>
+> Cc: Daniel Latypov <dlatypov@google.com>
+> Cc: stable@vger.kernel.org # v6.1+
+> ---
+>   drivers/gpu/drm/tests/drm_mm_test.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/tests/drm_mm_test.c b/drivers/gpu/drm/tests/drm_mm_test.c
+> index 186b28dc70380..05d5e7af6d250 100644
+> --- a/drivers/gpu/drm/tests/drm_mm_test.c
+> +++ b/drivers/gpu/drm/tests/drm_mm_test.c
+> @@ -939,7 +939,7 @@ static void drm_test_mm_insert_range(struct kunit *test)
+>   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, size, 0, max - 1));
+>   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, size, 0, max / 2));
+>   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, size,
+> -								    max / 2, max / 2));
+> +								    max / 2, max));
+>   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, size,
+>   								    max / 4 + 1, 3 * max / 4 - 1));
+>   
