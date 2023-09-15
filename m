@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A963EE6432
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0FF6EE6431
 	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 07:49:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52BCA10E5CE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54EC010E5CF;
 	Fri, 15 Sep 2023 07:49:12 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E8FA10E5C6
- for <intel-xe@lists.freedesktop.org>; Fri, 15 Sep 2023 07:49:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 550D910E5C9
+ for <intel-xe@lists.freedesktop.org>; Fri, 15 Sep 2023 07:49:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694764146; x=1726300146;
+ t=1694764148; x=1726300148;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f8PR2IGCWDdVuOjZuFBGXagtFnIzkkIIC+7qib21t8M=;
- b=RtmDOsgXkPLj4CQV/GgtU3hOzFf/2II38hWSoXO4R+0/ksJl/kg0aYgY
- iyzgZFFNAah/zabpIr2FrKFxfxOqQlWiveQjVEwX+3s7tXnx7ydXCX+/1
- Dvnlaqtz/eKTjwEn5Q+pfzn+ds6s/WFbJc5KJcIYNjODUo1LKa6nnmpgi
- VI3NOsufLfU3bg8JK0xGLVUcev6iRSXqqS8eWLmV9hQbJE8HHOvM+jtwX
- qrzeWs9fui9nUAtceaiYPw4GayIR0uUUXZ2iTe2X21bzAefuG3rYbB4fq
- +myybqLNTIpX35lWRTZZ2hDdx+xaiLdcEL5t7jMfEFucbtu/L8I7/7o6u A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="369507582"
-X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; d="scan'208";a="369507582"
+ bh=4z/brZm+SiGkqxHnCbu1RHRr3+olPnMo02hdqGn6WS4=;
+ b=P0vA7qvS5NHTWnSf18Pkm/3GKe6M9asaguF9BLsDKSsKgV/e1ZooXL+5
+ nvx51Do1kyrDkjKFsMHzfIFGePHvSS7OAoE7CfHB42Fa0YUdITF/HSlvL
+ iL7jLnhCZ55KE2tyv6fAeSvCNH+oua3md4xKIqQg+N7Qc98uw4d+MMW37
+ C/1qkheEZWcMvtXSZGDvWWzMSyVSOgj39Off0gvRbBDSrKEHVCNBJ/wkF
+ 8xZHFz/ioqdddQH3XCTrWz7lcXf9q6TsLCAlEHHyU7O3+s5TuWdJiBhXO
+ 6YGiSUOkAru034ENDJhqgiPDVNKPlcI+DueVbRRjr+qzYAXOuSEvgxR4x Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="369507591"
+X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; d="scan'208";a="369507591"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 00:48:42 -0700
+ 15 Sep 2023 00:48:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="1075711615"
-X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; d="scan'208";a="1075711615"
+X-IronPort-AV: E=McAfee;i="6600,9927,10833"; a="1075711647"
+X-IronPort-AV: E=Sophos;i="6.02,148,1688454000"; d="scan'208";a="1075711647"
 Received: from cohrs-mobl1.ger.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.252.48.100])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 00:48:41 -0700
+ 15 Sep 2023 00:48:44 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 15 Sep 2023 10:48:14 +0300
-Message-Id: <20230915074818.903353-4-jouni.hogander@intel.com>
+Date: Fri, 15 Sep 2023 10:48:16 +0300
+Message-Id: <20230915074818.903353-6-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230915074818.903353-1-jouni.hogander@intel.com>
 References: <20230915074818.903353-1-jouni.hogander@intel.com>
@@ -47,8 +47,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/7] drm/i915/fbc: Clear frontbuffer busy bits on
- flip
+Subject: [Intel-xe] [PATCH 5/7] drm/i915: Add new frontbuffer tracking
+ interface to queue flush
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,42 +60,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Luca Coelho <luciano.coelho@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are planning to move flush performed from work queue. This
-means it is possible to have invalidate -> flip -> flush sequence.
-Handle this by clearing possible busy bits on flip.
+We want to wait dma fences in dirtyfb ioctl. As we don't want to make
+dirtyfb ioctl as blocking call we need to use
+dma_fence_add_callback. Callback used for dma_fence_add_callback is
+called from atomic context. Due to this we need to add a new
+frontbuffer tracking interface to queue flush.
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+v3:
+ - Check schedule work success rather than work being pending
+ - Init flush work when frontbuffer struct is initialized
+v2: Check if flush work is already pending
+
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230901093500.3463046-2-jouni.hogander@intel.com
-(cherry picked from commit 4f89df198dc17070831af21b74e69ee17352619f)
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230901093500.3463046-4-jouni.hogander@intel.com
+(cherry picked from commit 40320844ca8bda4def0f04d2bd8c2022c867ed86)
 ---
- drivers/gpu/drm/i915/display/intel_fbc.c | 6 ++----
- 1 file changed, 2 insertions(+), 4 deletions(-)
+ .../gpu/drm/i915/display/intel_frontbuffer.c  | 29 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_frontbuffer.h  |  4 +++
+ 2 files changed, 33 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 7f70166f7035..85f6524833ca 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -1309,11 +1309,9 @@ static void __intel_fbc_post_update(struct intel_fbc *fbc)
- 	lockdep_assert_held(&fbc->lock);
- 
- 	fbc->flip_pending = false;
-+	fbc->busy_bits = 0;
- 
--	if (!fbc->busy_bits)
--		intel_fbc_activate(fbc);
--	else
--		intel_fbc_deactivate(fbc, "frontbuffer write");
-+	intel_fbc_activate(fbc);
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+index 15302ea9cc4e..b90f616e9033 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+@@ -203,6 +203,33 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
+ 		frontbuffer_flush(i915, frontbuffer_bits, origin);
  }
  
- void intel_fbc_post_update(struct intel_atomic_state *state,
++static void intel_frontbuffer_flush_work(struct work_struct *work)
++{
++	struct intel_frontbuffer *front =
++		container_of(work, struct intel_frontbuffer, flush_work);
++
++	i915_gem_object_flush_if_display(front->obj);
++	intel_frontbuffer_flush(front, ORIGIN_DIRTYFB);
++	intel_frontbuffer_put(front);
++}
++
++/**
++ * intel_frontbuffer_queue_flush - queue flushing frontbuffer object
++ * @front: GEM object to flush
++ *
++ * This function is targeted for our dirty callback for queueing flush when
++ * dma fence is signales
++ */
++void intel_frontbuffer_queue_flush(struct intel_frontbuffer *front)
++{
++	if (!front)
++		return;
++
++	kref_get(&front->ref);
++	if (!schedule_work(&front->flush_work))
++		intel_frontbuffer_put(front);
++}
++
+ static int frontbuffer_active(struct i915_active *ref)
+ {
+ 	struct intel_frontbuffer *front =
+@@ -259,6 +286,8 @@ intel_frontbuffer_get(struct drm_i915_gem_object *obj)
+ 			 frontbuffer_active,
+ 			 frontbuffer_retire,
+ 			 I915_ACTIVE_RETIRE_SLEEPS);
++	INIT_WORK(&front->flush_work, intel_frontbuffer_flush_work);
++
+ 	spin_lock(&i915->display.fb_tracking.lock);
+ 	cur = i915_gem_object_set_frontbuffer(obj, front);
+ 	spin_unlock(&i915->display.fb_tracking.lock);
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+index fe6764eb7942..00467d513e74 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+@@ -50,6 +50,8 @@ struct intel_frontbuffer {
+ 	struct i915_active write;
+ 	struct drm_i915_gem_object *obj;
+ 	struct rcu_head rcu;
++
++	struct work_struct flush_work;
+ };
+ 
+ /*
+@@ -139,6 +141,8 @@ static inline void intel_frontbuffer_flush(struct intel_frontbuffer *front,
+ 	__intel_fb_flush(front, origin, frontbuffer_bits);
+ }
+ 
++void intel_frontbuffer_queue_flush(struct intel_frontbuffer *front);
++
+ void intel_frontbuffer_track(struct intel_frontbuffer *old,
+ 			     struct intel_frontbuffer *new,
+ 			     unsigned int frontbuffer_bits);
 -- 
 2.34.1
 
