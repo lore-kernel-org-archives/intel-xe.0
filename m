@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21148EDE988
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C360DEE3F2F
 	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 13:23:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7427810E644;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA10910E646;
 	Fri, 15 Sep 2023 13:23:46 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C96DE10E62E;
- Fri, 15 Sep 2023 13:23:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 473C810E62B;
+ Fri, 15 Sep 2023 13:23:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694784218; x=1726320218;
+ t=1694784219; x=1726320219;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ay4dsMDDLLFfhAI45d/UujVWO8VvMD/wdnUx8NUuIMM=;
- b=Ohnuou1YmEZ76uloACmuinHEXlHyzJlR+m+B345QMF78uemyEM3bON7D
- 3wQVyREeZv0R8hooGoktI9EDO73sp9qRQmqwPuOus+E/2NBGxECF4/g7Y
- DS/7j11sJuy/TFdj2UHnC/9fGwegRm1m9itVdC+8oZM/XNzcZKq82Tj3B
- XXaYU94/zDYQ3SstRMpfZ7z4MpTqD+eWmYYe5rfdHBnf1mWnVVSAJ0Pes
- 8j2zPqlGJVgIR/j2oz/c7PbuVjbvav3evupcwyOKOHkP1o+f+sGhkVFGb
- GnWl5EwY+qp07174gY3h3dA+xxJ4a8rj06IHpH0h+6IGAW7qf/rXHeHfH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="364292137"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="364292137"
+ bh=+8qXsvl10LtqZT5zJCC1t4ZyucXg47lhH9oYrSjyfz0=;
+ b=nHGMEnUIJL6UxEPdVF+Oyv5sJK0l29cRKbR5Y3fi9mh/uTfCvlGfk525
+ VJESNCTl2DrK39FcojroVkY7qcxac7En+F3w/1oW4n1MS4w59Mthjr5zU
+ Wok/WOf7GWz6n0jNiPsLBXGCj4AgGtV+XQ4Wkpfy+s6NiuZv0uoWZljJE
+ iFLCj/S46UeNbAYZpN7ovgcVLkBovsGvpvU+6oSpbNy2hjPUBCLZVH/QI
+ urlUWZdfx5YTdH/BbTy2puzgErbAXFmIQfF2WgVU48QyyLKN5nILYbpHA
+ 86GmxoQlFrabVQiwspFoT3rud551MO0+XNmBLn38LCGOPh94lWjTyzaeG w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="364292141"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="364292141"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Sep 2023 06:23:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="810515427"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="810515427"
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="810515442"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="810515442"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 06:23:37 -0700
+ 15 Sep 2023 06:23:38 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Fri, 15 Sep 2023 06:23:37 -0700
-Message-Id: <20230915132346.1845909-6-lucas.demarchi@intel.com>
+Date: Fri, 15 Sep 2023 06:23:41 -0700
+Message-Id: <20230915132346.1845909-10-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230915132346.1845909-1-lucas.demarchi@intel.com>
 References: <20230915132346.1845909-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH i-g-t 05/14] lib/gpu_cmds: Reduce scope of
- xehp_fill_surface_state()
+Subject: [Intel-xe] [PATCH i-g-t 09/14] lib/igt_draw: Add Xe2 mocs to
+ XY_FAST_COLOR_BLT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,58 +61,41 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-gpu_cmds.h is the interface to other igt components: don't use it
-to declare functions not supposed to be used from outside.
-
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- lib/gpu_cmds.c | 8 +++++++-
- lib/gpu_cmds.h | 6 ------
- 2 files changed, 7 insertions(+), 7 deletions(-)
+ lib/igt_draw.c  | 6 +++++-
+ lib/intel_reg.h | 1 +
+ 2 files changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/lib/gpu_cmds.c b/lib/gpu_cmds.c
-index 83d2302f9..e53580e65 100644
---- a/lib/gpu_cmds.c
-+++ b/lib/gpu_cmds.c
-@@ -25,6 +25,12 @@
- #include "gpu_cmds.h"
- #include "intel_mocs.h"
+diff --git a/lib/igt_draw.c b/lib/igt_draw.c
+index d7c3ac64c..9a7664a37 100644
+--- a/lib/igt_draw.c
++++ b/lib/igt_draw.c
+@@ -716,7 +716,11 @@ static void draw_rect_blt(int fd, struct cmd_data *cmd_data,
+ 		}
  
-+static uint32_t
-+xehp_fill_surface_state(struct intel_bb *ibb,
-+			struct intel_buf *buf,
-+			uint32_t format,
-+			int is_dst);
+ 		pitch = tiling ? buf->stride / 4 : buf->stride;
+-		mocs = intel_get_uc_mocs_index(fd) << XY_FAST_COLOR_BLT_MOCS_INDEX_SHIFT;
 +
- uint32_t
- gen7_fill_curbe_buffer_data(struct intel_bb *ibb, uint8_t color)
- {
-@@ -873,7 +879,7 @@ xehp_fill_interface_descriptor(struct intel_bb *ibb,
- 	idd->desc5.num_threads_in_tg = 1;
- }
++		if (ver >= 20)
++			mocs = intel_get_uc_mocs_index(fd) << XE2_XY_FAST_COLOR_BLT_MOCS_INDEX_SHIFT;
++		else
++			mocs = intel_get_uc_mocs_index(fd) << XY_FAST_COLOR_BLT_MOCS_INDEX_SHIFT;
  
--uint32_t
-+static uint32_t
- xehp_fill_surface_state(struct intel_bb *ibb,
- 			struct intel_buf *buf,
- 			uint32_t format,
-diff --git a/lib/gpu_cmds.h b/lib/gpu_cmds.h
-index b7ed64f84..5ac007cc4 100644
---- a/lib/gpu_cmds.h
-+++ b/lib/gpu_cmds.h
-@@ -116,12 +116,6 @@ xehp_fill_interface_descriptor(struct intel_bb *ibb,
- 			       size_t size,
- 			       struct xehp_interface_descriptor_data *idd);
+ 		intel_bb_out(ibb, XY_FAST_COLOR_BLT | blt_cmd_depth);
+ 		intel_bb_out(ibb, blt_cmd_tiling | mocs | (pitch-1));
+diff --git a/lib/intel_reg.h b/lib/intel_reg.h
+index f97154d2b..ea463376b 100644
+--- a/lib/intel_reg.h
++++ b/lib/intel_reg.h
+@@ -2564,6 +2564,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  
--uint32_t
--xehp_fill_surface_state(struct intel_bb *ibb,
--			struct intel_buf *buf,
--			uint32_t format,
--			int is_dst);
--
- void
- xehp_emit_state_compute_mode(struct intel_bb *ibb);
+ #define XY_FAST_COLOR_BLT				((0x2<<29)|(0x44<<22)|0xe)
+ #define   XY_FAST_COLOR_BLT_MOCS_INDEX_SHIFT		22
++#define   XE2_XY_FAST_COLOR_BLT_MOCS_INDEX_SHIFT	24
  
+ #define XY_FAST_COPY_BLT				((2<<29)|(0x42<<22)|0x8)
+ /* dword 0 */
 -- 
 2.40.1
 
