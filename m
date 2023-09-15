@@ -4,54 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0883EEED61A
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 18:32:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 998DCEED61E
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 18:55:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C879C10E021;
-	Fri, 15 Sep 2023 18:31:59 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26BFD10E021;
- Fri, 15 Sep 2023 18:31:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694802718; x=1726338718;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=j58zNPJRrigHIdyHdXY008rH6ymZ+hM8ZO+Wz3ozsts=;
- b=YQkfKvQYeFmAQu1w1C2zi1izq5schZtJWAm41JHZmnzH//CnEJf7VaoV
- wSFxQ8allDC4Ph+QJAJQ6rJxkdjKt1m6sc6NxL2etUH+asZexw5lXk5UV
- fKqYrC1Z3PFs8J7IAbnafUWajIc1NbzfOrabivesM7qzjdchW6r2rSb1H
- X6G9Y2fuh90Hx+scQmNjBWuAyCHGmqgFjwOOw/Q6FBzy7liDHcT3WUj7a
- HuXHBrDvHNt4WOcWR2Om5L58pMmIhE7ckQRCGUOTegVKHJiFWyxxc6oHX
- U+TaAYg2RTDLXFeFXUO5+BaD2DPXr8Wyvh9f2+bYfMJgfKXtjvPntUmf7 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445789407"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445789407"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 11:31:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="991950051"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="991950051"
-Received: from cschimpe-mobl1.ger.corp.intel.com (HELO [10.249.254.223])
- ([10.249.254.223])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 11:31:55 -0700
-Message-ID: <e02934dc-0366-ba4c-c27a-758169a12380@linux.intel.com>
-Date: Fri, 15 Sep 2023 20:31:52 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 571C410E66F;
+	Fri, 15 Sep 2023 18:55:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D9C7110E66F;
+ Fri, 15 Sep 2023 18:55:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CF895AA01E;
+ Fri, 15 Sep 2023 18:55:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4440955487435376375=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20230822162136.25895-1-thomas.hellstrom@linux.intel.com>
- <169416265636.18944.11104812487971466589@jlahtine-mobl.ger.corp.intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <169416265636.18944.11104812487971466589@jlahtine-mobl.ger.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v2 0/4] drm/xe: Support optional pinning of
- userptr pages
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Fri, 15 Sep 2023 18:55:01 -0000
+Message-ID: <169480410182.32039.1625851051605150017@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230915173646.116724-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20230915173646.116724-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_st?=
+ =?utf-8?q?arting_with_=5B1/3=5D_fixup!_drm/xe/display=3A_Implement_displa?=
+ =?utf-8?q?y_support?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,84 +40,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+--===============4440955487435376375==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 9/8/23 10:44, Joonas Lahtinen wrote:
-> Quoting Thomas Hellström (2023-08-22 19:21:32)
->> This series adds a flag at VM_BIND time to pin the memory backing a VMA.
->> Initially this is needed for long-running workloads on hardware that
->> neither support mid-thread preemption nor pagefaults, since without it
->> the userptr MMU notifier will wait for preemption until preemption times
->> out.
->  From terminology perspective we have a lot of folks in the userspace and
-> kernel developers who have come to understand pinned memory as something
-> that is locked in place while a dependent context is active on the
-> hardware. And that has been related to lack of page-fault support.
->
-> As here the plan is to go a step forward and never move that memory, would
-> it be worthy to call such memory LOCKED (would also align with CPU side).
-> And per my understanding the aspiration is to keep supporting locking
-> memory in place (within sysadmin configured limits) even if page-faults
-> will become de-facto usage.
->
-> So, in short, should we do s/pinned/locked/, to avoid terminology
-> confusion between new and old drivers which userspace may have to deal
-> from same codebase?
+== Series Details ==
 
-This is mainly a problem for people used to i915 pinning where we at 
-some point used the term "short term pinning" and "long term pinning".
+Series: series starting with [1/3] fixup! drm/xe/display: Implement display support
+URL   : https://patchwork.freedesktop.org/series/123787/
+State : success
 
-There are some discussions about the terminology here:
-https://lwn.net/Articles/600502/
-although I'm not sure what the outcome of that patchset was, but in this 
-patchset, we're at least using pin_user_pages() for these VMAS. TTM and 
-dma-buf also uses the term pinning.
+== Summary ==
 
-The Linux distinction appears to be that locked pages are never paged 
-out but may be migrated, (allowed to cause minor but not major 
-pagefaults). Pinned pages are neither swapped nor migrated, and we're 
-using the latter.
+CI Bug Log - changes from xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63_BAT -> xe-pw-123787v1_BAT
+====================================================
 
-So I think pinning is the correct terminology?
+Summary
+-------
 
-(As a side note, Maarten was spending considerable time trying to remove 
-the short term pinning from upstream i915 before xe work started).
+  **SUCCESS**
 
-Anyway, this patch series is on hold until we've merged Xe and can 
-follow up with a discussion on exactly how we can support pinning in drm.
+  No regressions found.
 
-/Thomas
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-123787v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123787v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
 
 
->
-> Regards, Joonas
->
->> Moving forward this could be supported also for bo-backed VMAs given
->> a proper accounting takes place. A sysadmin could then optionally configure
->> a system to be optimized for dealing with a single GPU application
->> at a time.
->>
->> The series will be followed up with an igt series to exercise the uAPI.
->>
->> v2:
->> - Address review comments by Matthew Brost.
->>
->> Thomas Hellström (4):
->>    drm/xe/vm: Use onion unwind for xe_vma_userptr_pin_pages()
->>    drm/xe/vm: Implement userptr page pinning
->>    drm/xe/vm: Perform accounting of userptr pinned pages
->>    drm/xe/uapi: Support pinning of userptr vmas
->>
->>   drivers/gpu/drm/xe/xe_vm.c       | 194 ++++++++++++++++++++++++-------
->>   drivers/gpu/drm/xe/xe_vm.h       |   9 ++
->>   drivers/gpu/drm/xe/xe_vm_types.h |  14 +++
->>   include/uapi/drm/xe_drm.h        |  18 +++
->>   4 files changed, 190 insertions(+), 45 deletions(-)
->>
->> -- 
->> 2.41.0
->>
+Build changes
+-------------
+
+  * IGT: IGT_7488 -> IGT_7490
+  * Linux: xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63 -> xe-pw-123787v1
+
+  IGT_7488: 099e058c5dfb7a49942edf03cae88a52a77077a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7490: 7490
+  xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63: 4a9681392cecd56a372d06b648f7b3a37fdd5c63
+  xe-pw-123787v1: 123787v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123787v1/index.html
+
+--===============4440955487435376375==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/3] fixup! drm/xe/display: Implement display support</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123787/">https://patchwork.freedesktop.org/series/123787/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123787v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123787v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63_BAT -&gt; xe-pw-123787v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-123787v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123787v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7488 -&gt; IGT_7490</li>
+<li>Linux: xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63 -&gt; xe-pw-123787v1</li>
+</ul>
+<p>IGT_7488: 099e058c5dfb7a49942edf03cae88a52a77077a3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7490: 7490<br />
+  xe-375-4a9681392cecd56a372d06b648f7b3a37fdd5c63: 4a9681392cecd56a372d06b648f7b3a37fdd5c63<br />
+  xe-pw-123787v1: 123787v1</p>
+
+</body>
+</html>
+
+--===============4440955487435376375==--
