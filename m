@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 508A2EE645C
-	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 13:36:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A26E0EE645D
+	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 14:17:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E984310E62F;
-	Fri, 15 Sep 2023 13:36:00 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 114AB10E62F;
- Fri, 15 Sep 2023 13:35:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FAF310E63C;
+	Fri, 15 Sep 2023 14:17:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F40810E638;
+ Fri, 15 Sep 2023 14:17:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694784959; x=1726320959;
+ t=1694787472; x=1726323472;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WXN4IOj0jj0F3H/j7Hv8IYKDXWx5EeCoMpKWvzf3uOY=;
- b=CijpuFZlD4q6lQgbp9JqT21suX2Sl5LpOt2wo6u+t00snzfavSucdEUz
- ELpWvUHJLSZNlx+qZRlCCX4Uy3+YRLcL2LpXQdpJVgH2AYp80v0AFzD2D
- DItmDsg+EaTWKI7yc2/poYV5IJ/9PDO+sZrXE8waCW0RB1lefkU9IlYFX
- YMdsTGB8VlAg80Nt96UOAZaeqNJ1dS0BcLSn14cilgJZ9X3drK5yb3SLm
- 88+Ar3NVGRNEHOP7E5zgTpe1CeF5OE6HoBOrpnRKX1/MoRSTy2A3yjxs5
- 0y9X5mbZ2WFPOqWC2q/CrXymK5u3Kxe2mkO+vrUAXxggIQMDCghziQW/G g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="465611411"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="465611411"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 06:35:58 -0700
+ bh=cx41cKa/RBYb6E2/xEb8yE9p/WzNj4Uug7P74vjnNdg=;
+ b=gLfzPe/dS5ZvC8wnY2ZolfLUD64sq1yfH+6oS9XPxkbOW/BpB/WWjvUQ
+ 9zhqf3CJGzxfhELCU9//6NZOlumPNONw68khwgWOWM9ULIom/ST1bXWQe
+ dHBhQ1cD7FVN2HOn3u2yzUL1/WHnFEYyGDX6VQRh3Gn3RV0DomVJz9COE
+ Egs7vFIlsfRa1OSG70My6Zl9BIsjPOT09s0ANU/8YbDuWVlIEs/OdPMLv
+ A96qyoQuzYIm4J/koV5h/GRhadWpRPTz3J8etOMk77/ITOIZcsQ/okBTL
+ lbC7l3IRFEUKW6IG2sbxCLNA3r0x0aUYYkcMln1Nza22KoJ60+A7uuKrP Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445715520"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445715520"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 07:17:51 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="780095156"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="780095156"
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="810535659"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="810535659"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.213.6.122])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 06:35:56 -0700
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Sep 2023 07:17:49 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-Date: Fri, 15 Sep 2023 15:35:53 +0200
-Message-ID: <1795725.3VsfAaAtOV@jkrzyszt-mobl2.ger.corp.intel.com>
+To: dri-devel@lists.freedesktop.org, Maira Canal <mairacanal@riseup.net>
+Date: Fri, 15 Sep 2023 16:17:46 +0200
+Message-ID: <3244709.oiGErgHkdL@jkrzyszt-mobl2.ger.corp.intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
  80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-In-Reply-To: <23874386.ouqheUzb2q@jkrzyszt-mobl2.ger.corp.intel.com>
-References: <20230908123233.137134-19-janusz.krzysztofik@linux.intel.com>
- <20230915142849.5c620a00@maurocar-mobl2>
- <23874386.ouqheUzb2q@jkrzyszt-mobl2.ger.corp.intel.com>
+In-Reply-To: <4fb393ff-3b2a-369a-5e9f-f96d802b2d87@riseup.net>
+References: <20230911130323.7037-2-janusz.krzysztofik@linux.intel.com>
+ <4fb393ff-3b2a-369a-5e9f-f96d802b2d87@riseup.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH i-g-t v2 13/17] lib/ktap:
- Reimplement KTAP parser
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+Subject: Re: [Intel-xe] [PATCH] drm/tests: Fix incorrect argument in
+ drm_test_mm_insert_range
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,49 +60,77 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Isabella Basso <isabbasso@riseup.net>,
- Dominik Karol =?utf-8?B?UGnEhXRrb3dza2k=?=
- <dominik.karol.piatkowski@intel.com>
+Cc: Daniel Latypov <dlatypov@google.com>,
+ Javier Martinez Canillas <javierm@redhat.com>,
+ Arthur Grillo <arthurgrillo@riseup.net>, igt-dev@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-xe@lists.freedesktop.org, David Airlie <airlied@gmail.com>,
+ intel-gfx@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Friday, 15 September 2023 15:09:58 CEST Janusz Krzysztofik wrote:
-> Hi Mauro,
-> 
-> On Friday, 15 September 2023 14:28:49 CEST Mauro Carvalho Chehab wrote:
-> > On Fri,  8 Sep 2023 14:32:47 +0200
-> > Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
-> > 
-> > Forgot to mention on my past review:
-> > 
-> > > +				       &n, &len) == 1 && len == 
-strlen(buf))) {
-> > > +		/*
-> > > +		 * TODO: drop the following workaround as soon as
-> > > +		 * kernel side issue of missing lines with top level
-> > > +		 * KTAP version and test suite plan is fixed.
-> > > +		 */
-> > 
-> > Please add a link to lore with the thread discussing the issue upstream,
-> > as it can be helpful while this workaround is here.
-> > 
-> > Also, I would place the workaround on a separate patch, to make
-> > easier to revert it when upstream fixes it.
-> 
-> Thanks for pointing that out.  Since we already have those kernel changes 
-> included in v6.6-rc1, then in drm-tip, I'll drop the workaround now.
+Hi Ma=EDra,
 
-Or would you like, Mauro, to keep the workaround for CI testing of linux-xe 
-not yet updated to v6.6-rc1?
+Thanks for review.
+
+On Friday, 15 September 2023 16:01:31 CEST Maira Canal wrote:
+> Hi,
+>=20
+> On 9/11/23 10:03, Janusz Krzysztofik wrote:
+> > While drm_mm test was converted form igt selftest to kunit, unexpected
+> > value of "end" argument equal "start" was introduced to one of calls to=
+ a
+> > function that executes the drm_test_mm_insert_range for specific start/=
+end
+> > pair of arguments.  As a consequence, DRM_MM_BUG_ON(end <=3D start) is
+> > triggered.  Fix it by restoring the original value.
+> >=20
+> > Fixes: fc8d29e298cf ("drm: selftest: convert drm_mm selftest to KUnit")
+> > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+>=20
+> Reviewed-by: Ma=EDra Canal <mairacanal@riseup.net>
+>=20
+> Do you need me to push it to drm-misc-fixes?
+
+Yes, please do if you can.
 
 Thanks,
 Janusz
 
-> 
-> Thanks,
-> Janusz
-> 
+>=20
+> Best Regards,
+> - Ma=EDra
+>=20
+> > Cc: "Ma=EDra Canal" <mairacanal@riseup.net>
+> > Cc: Arthur Grillo <arthurgrillo@riseup.net>
+> > Cc: Javier Martinez Canillas <javierm@redhat.com>
+> > Cc: Daniel Latypov <dlatypov@google.com>
+> > Cc: stable@vger.kernel.org # v6.1+
+> > ---
+> >   drivers/gpu/drm/tests/drm_mm_test.c | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/tests/drm_mm_test.c b/drivers/gpu/drm/test=
+s/drm_mm_test.c
+> > index 186b28dc70380..05d5e7af6d250 100644
+> > --- a/drivers/gpu/drm/tests/drm_mm_test.c
+> > +++ b/drivers/gpu/drm/tests/drm_mm_test.c
+> > @@ -939,7 +939,7 @@ static void drm_test_mm_insert_range(struct kunit *=
+test)
+> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
+ze, 0, max - 1));
+> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
+ze, 0, max / 2));
+> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
+ze,
+> > -								    max / 2, max / 2));
+> > +								    max / 2, max));
+> >   		KUNIT_ASSERT_FALSE(test, __drm_test_mm_insert_range(test, count, si=
+ze,
+> >   								    max / 4 + 1, 3 * max / 4 - 1));
+> >  =20
+>=20
 
 
 
