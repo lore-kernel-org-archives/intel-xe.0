@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48FBFEED621
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F9E7EED62A
 	for <intel-xe@archiver.kernel.org>; Fri, 15 Sep 2023 17:47:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 122C010E685;
-	Fri, 15 Sep 2023 17:47:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4D6810E680;
+	Fri, 15 Sep 2023 17:47:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E62C10E66F;
- Fri, 15 Sep 2023 17:46:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D6C3610E660;
+ Fri, 15 Sep 2023 17:46:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1694800012; x=1726336012;
+ t=1694800011; x=1726336011;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=hClkUmKNtPwN+1T8/LZ1sd9IsLmMBSP6cw8gCzsPxPs=;
- b=UtQnqMnsSNwmlTXe3kJG7afus7NQAXRQd+ZfsVi3Y7Vq1uJsYX8yqAZN
- Vt8GQNHVShMoXr4sBn2qBpQgbkyFkhJQiQd1kQpG2Mk26N7704L1dnfqa
- TGJJvJziU9nXw27p3g1/6wbOOop7u1Xcujo5kqvsuPEGjkqPvG7ilbggY
- LOpmndI+lM/qEyfDCyMZFp23g0+Z7YPdz1Vphn4xFL5N7M7u0gC0hBUyR
- 4a2c9wFNEODvCEP//E5FYRgeVAQx4B+RWMhw0oUI5vjiyqSyS2HaI83O+
- u42sb4DbmFZdNoQPbisvBkl52Y39GG/b7XCpDj3Fbai6aupM16ZIeNA1r A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445779278"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445779278"
+ bh=CTiEmAyehKIGB5zvu9MRGTnsfDKr8d87soig08HBp/U=;
+ b=Kw8arm7BdF1Sl6QdZ28ZocFJIKqaMn98ay4AvV1WqPekf8CejFLfg/oj
+ byqE3Kpc0ivzTXdfktlu/BS8Nrub3ZAJWkj3hBrFqByXH7V1r8al0zsbX
+ gUZ6/4lKI/YGtCRwU7+OPvonL89kyOAJXVHl0xOkcY3y4C51/efgB81Le
+ jlAW51IFP0eJO05A7tNFpFmbNbH5lCS4GVwTe6AZObh7CoPAmNz+MLHh1
+ JpWhYNMFJUzRStEMjH0xfUm+cuFeYJdpxuhyDKsr2bAMK9h2p+oFRBCZZ
+ eKQYnY0FoT1rz8pRFO5VKboR3lA5nmQ12IBJAOngraDSap7gqtM8v1fRu g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="445779271"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="445779271"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  15 Sep 2023 10:46:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="868818284"
-X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="868818284"
+X-IronPort-AV: E=McAfee;i="6600,9927,10834"; a="868818258"
+X-IronPort-AV: E=Sophos;i="6.02,149,1688454000"; d="scan'208";a="868818258"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Sep 2023 10:46:50 -0700
+ 15 Sep 2023 10:46:49 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 Sep 2023 10:46:39 -0700
-Message-Id: <20230915174651.1928176-19-lucas.demarchi@intel.com>
+Date: Fri, 15 Sep 2023 10:46:31 -0700
+Message-Id: <20230915174651.1928176-11-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230915174651.1928176-1-lucas.demarchi@intel.com>
 References: <20230915174651.1928176-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 18/30] drm/i915/xe2lpd: Read pin assignment
- from IOM
+Subject: [Intel-xe] [PATCH v4 10/30] drm/i915/display: Consolidate saved
+ port bits in intel_digital_port
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,92 +57,158 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Luca Coelho <luciano.coelho@intel.com>,
- intel-xe@lists.freedesktop.org, Mika Kahola <mika.kahola@intel.com>
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Clint Taylor <clinton.a.taylor@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Luca Coelho <luciano.coelho@intel.com>
+From: Clint Taylor <clinton.a.taylor@intel.com>
 
-Starting from display version 20, we need to read the pin assignment
-from the IOM TCSS_DDI_STATUS register instead of reading it from the
-FIA.
+We use multiple variables for HDMI and DisplayPort to store the value of
+DDI_BUF_CTL register (now called DDI_CTL_DE in the spec). Consolidate it
+to just one in struct intel_digital_port. This is a preparation step for
+future changes in D2D enable/disable sequence for xe2lpd that need to
+save some additional bits.
 
-We use the pin assignment to decide the maximum lane count.  So, to
-support this change, add a new lnl_tc_port_get_max_lane_count() function
-that reads from the TCSS_DDI_STATUS register and decides the maximum
-lane count based on that.
-
-BSpec: 69594
-Cc: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Mika Kahola <mika.kahola@intel.com>
+Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
+Cc: Gustavo Sousa <gustavo.sousa@intel.com>
+Cc: Radhakrishna Sripada <radhakrishna.sripada@intel.com>
+Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_tc.c | 28 +++++++++++++++++++++++++
- drivers/gpu/drm/i915/i915_reg.h         |  1 +
- 2 files changed, 29 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 36 +++++++++++-------------
+ drivers/gpu/drm/i915/display/intel_dp.c  |  2 +-
+ 2 files changed, 18 insertions(+), 20 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index 678693978892..e9ced251c170 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -290,6 +290,31 @@ u32 intel_tc_port_get_pin_assignment_mask(struct intel_digital_port *dig_port)
- 	       DP_PIN_ASSIGNMENT_SHIFT(tc->phy_fia_idx);
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 4668de45d6fe..29c9386659ff 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -325,26 +325,25 @@ static void intel_ddi_init_dp_buf_reg(struct intel_encoder *encoder,
+ 				      const struct intel_crtc_state *crtc_state)
+ {
+ 	struct drm_i915_private *i915 = to_i915(encoder->base.dev);
+-	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	enum phy phy = intel_port_to_phy(i915, encoder->port);
+ 
+ 	/* DDI_BUF_CTL_ENABLE will be set by intel_ddi_prepare_link_retrain() later */
+-	intel_dp->DP = dig_port->saved_port_bits |
++	dig_port->saved_port_bits |=
+ 		DDI_PORT_WIDTH(crtc_state->lane_count) |
+ 		DDI_BUF_TRANS_SELECT(0);
+ 
+ 	if (DISPLAY_VER(i915) >= 14) {
+ 		if (intel_dp_is_uhbr(crtc_state))
+-			intel_dp->DP |= DDI_BUF_PORT_DATA_40BIT;
++			dig_port->saved_port_bits |= DDI_BUF_PORT_DATA_40BIT;
+ 		else
+-			intel_dp->DP |= DDI_BUF_PORT_DATA_10BIT;
++			dig_port->saved_port_bits |= DDI_BUF_PORT_DATA_10BIT;
+ 	}
+ 
+ 	if (IS_ALDERLAKE_P(i915) && intel_phy_is_tc(i915, phy)) {
+-		intel_dp->DP |= ddi_buf_phy_link_rate(crtc_state->port_clock);
++		dig_port->saved_port_bits |= ddi_buf_phy_link_rate(crtc_state->port_clock);
+ 		if (!intel_tc_port_in_tbt_alt_mode(dig_port))
+-			intel_dp->DP |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
++			dig_port->saved_port_bits |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+ 	}
  }
  
-+static int lnl_tc_port_get_max_lane_count(struct intel_digital_port *dig_port)
-+{
-+	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-+	enum tc_port tc_port = intel_port_to_tc(i915, dig_port->base.port);
-+	intel_wakeref_t wakeref;
-+	u32 val, pin_assignment;
-+
-+	with_intel_display_power(i915, POWER_DOMAIN_DISPLAY_CORE, wakeref)
-+		val = intel_de_read(i915, TCSS_DDI_STATUS(tc_port));
-+
-+	pin_assignment =
-+		REG_FIELD_GET(TCSS_DDI_STATUS_PIN_ASSIGNMENT_MASK, val);
-+
-+	switch (pin_assignment) {
-+	default:
-+		MISSING_CASE(pin_assignment);
-+		fallthrough;
-+	case DP_PIN_ASSIGNMENT_D:
-+		return 2;
-+	case DP_PIN_ASSIGNMENT_C:
-+	case DP_PIN_ASSIGNMENT_E:
-+		return 4;
-+	}
-+}
-+
- static int mtl_tc_port_get_max_lane_count(struct intel_digital_port *dig_port)
+@@ -1450,7 +1449,7 @@ hsw_set_signal_levels(struct intel_encoder *encoder,
+ 		      const struct intel_crtc_state *crtc_state)
  {
- 	struct drm_i915_private *i915 = to_i915(dig_port->base.base.dev);
-@@ -348,6 +373,9 @@ int intel_tc_port_max_lane_count(struct intel_digital_port *dig_port)
+ 	struct drm_i915_private *dev_priv = to_i915(encoder->base.dev);
+-	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	int level = intel_ddi_level(encoder, crtc_state, 0);
+ 	enum port port = encoder->port;
+ 	u32 signal_levels;
+@@ -1467,10 +1466,10 @@ hsw_set_signal_levels(struct intel_encoder *encoder,
+ 	drm_dbg_kms(&dev_priv->drm, "Using signal levels %08x\n",
+ 		    signal_levels);
  
- 	assert_tc_cold_blocked(tc);
+-	intel_dp->DP &= ~DDI_BUF_EMP_MASK;
+-	intel_dp->DP |= signal_levels;
++	dig_port->saved_port_bits &= ~DDI_BUF_EMP_MASK;
++	dig_port->saved_port_bits |= signal_levels;
  
-+	if (DISPLAY_VER(i915) >= 20)
-+		return lnl_tc_port_get_max_lane_count(dig_port);
-+
- 	if (DISPLAY_VER(i915) >= 14)
- 		return mtl_tc_port_get_max_lane_count(dig_port);
+-	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
++	intel_de_write(dev_priv, DDI_BUF_CTL(port), dig_port->saved_port_bits);
+ 	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
+ }
  
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 2f115d339913..efcf1461988f 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -6351,6 +6351,7 @@ enum skl_power_gate {
- #define TCSS_DDI_STATUS(tc)			_MMIO(_PICK_EVEN(tc, \
- 								 _TCSS_DDI_STATUS_1, \
- 								 _TCSS_DDI_STATUS_2))
-+#define  TCSS_DDI_STATUS_PIN_ASSIGNMENT_MASK	REG_GENMASK(28, 25)
- #define  TCSS_DDI_STATUS_READY			REG_BIT(2)
- #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_TBT	REG_BIT(1)
- #define  TCSS_DDI_STATUS_HPD_LIVE_STATUS_ALT	REG_BIT(0)
+@@ -3145,7 +3144,6 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
+ 	struct drm_connector *connector = conn_state->connector;
+ 	enum port port = encoder->port;
+ 	enum phy phy = intel_port_to_phy(dev_priv, port);
+-	u32 buf_ctl;
+ 
+ 	if (!intel_hdmi_handle_sink_scrambling(encoder, connector,
+ 					       crtc_state->hdmi_high_tmds_clock_ratio,
+@@ -3211,7 +3209,7 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
+ 	 * is filled with lane count, already set in the crtc_state.
+ 	 * The same is required to be filled in PORT_BUF_CTL for C10/20 Phy.
+ 	 */
+-	buf_ctl = dig_port->saved_port_bits | DDI_BUF_CTL_ENABLE;
++	dig_port->saved_port_bits |= DDI_BUF_CTL_ENABLE;
+ 	if (DISPLAY_VER(dev_priv) >= 14) {
+ 		u8  lane_count = mtl_get_port_width(crtc_state->lane_count);
+ 		u32 port_buf = 0;
+@@ -3224,13 +3222,13 @@ static void intel_enable_ddi_hdmi(struct intel_atomic_state *state,
+ 		intel_de_rmw(dev_priv, XELPDP_PORT_BUF_CTL1(port),
+ 			     XELPDP_PORT_WIDTH_MASK | XELPDP_PORT_REVERSAL, port_buf);
+ 
+-		buf_ctl |= DDI_PORT_WIDTH(lane_count);
++		dig_port->saved_port_bits |= DDI_PORT_WIDTH(lane_count);
+ 	} else if (IS_ALDERLAKE_P(dev_priv) && intel_phy_is_tc(dev_priv, phy)) {
+ 		drm_WARN_ON(&dev_priv->drm, !intel_tc_port_in_legacy_mode(dig_port));
+-		buf_ctl |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
++		dig_port->saved_port_bits |= DDI_BUF_CTL_TC_PHY_OWNERSHIP;
+ 	}
+ 
+-	intel_de_write(dev_priv, DDI_BUF_CTL(port), buf_ctl);
++	intel_de_write(dev_priv, DDI_BUF_CTL(port), dig_port->saved_port_bits);
+ 
+ 	intel_wait_ddi_buf_active(dev_priv, port);
+ 
+@@ -3448,8 +3446,8 @@ static void mtl_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+ 	mtl_port_buf_ctl_program(encoder, crtc_state);
+ 
+ 	/* 6.i Configure and enable DDI_CTL_DE to start sending valid data to port slice */
+-	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
+-	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
++	dig_port->saved_port_bits |= DDI_BUF_CTL_ENABLE;
++	intel_de_write(dev_priv, DDI_BUF_CTL(port), dig_port->saved_port_bits);
+ 	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
+ 
+ 	/* 6.j Poll for PORT_BUF_CTL Idle Status == 0, timeout after 100 us */
+@@ -3499,8 +3497,8 @@ static void intel_ddi_prepare_link_retrain(struct intel_dp *intel_dp,
+ 	    (intel_tc_port_in_dp_alt_mode(dig_port) || intel_tc_port_in_legacy_mode(dig_port)))
+ 		adlp_tbt_to_dp_alt_switch_wa(encoder);
+ 
+-	intel_dp->DP |= DDI_BUF_CTL_ENABLE;
+-	intel_de_write(dev_priv, DDI_BUF_CTL(port), intel_dp->DP);
++	dig_port->saved_port_bits |= DDI_BUF_CTL_ENABLE;
++	intel_de_write(dev_priv, DDI_BUF_CTL(port), dig_port->saved_port_bits);
+ 	intel_de_posting_read(dev_priv, DDI_BUF_CTL(port));
+ 
+ 	intel_wait_ddi_buf_active(dev_priv, port);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 189c5737e63a..2346cd32f5a7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6025,7 +6025,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
+ 	intel_dp->pps.active_pipe = INVALID_PIPE;
+ 
+ 	/* Preserve the current hw state. */
+-	intel_dp->DP = intel_de_read(dev_priv, intel_dp->output_reg);
++	dig_port->saved_port_bits = intel_de_read(dev_priv, intel_dp->output_reg);
+ 	intel_dp->attached_connector = intel_connector;
+ 
+ 	if (_intel_dp_is_port_edp(dev_priv, intel_encoder->devdata, port)) {
 -- 
 2.40.1
 
