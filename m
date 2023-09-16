@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96C3BCD37AF
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Sep 2023 00:25:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1854FCD37B0
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Sep 2023 02:27:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A74C10E035;
-	Sat, 16 Sep 2023 00:25:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C35E910E0A2;
+	Sat, 16 Sep 2023 02:27:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5A40510E035;
- Sat, 16 Sep 2023 00:25:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 18AF910E0A2;
+ Sat, 16 Sep 2023 02:27:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4C367AADF3;
- Sat, 16 Sep 2023 00:25:50 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 12328A00E6;
+ Sat, 16 Sep 2023 02:27:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Sat, 16 Sep 2023 00:25:50 -0000
-Message-ID: <169482395030.10846.12648816599444278688@emeril.freedesktop.org>
+To: "Matthew Brost" <matthew.brost@intel.com>
+Date: Sat, 16 Sep 2023 02:27:24 -0000
+Message-ID: <169483124407.10847.1739196077920393004@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230915220233.59736-1-gustavo.sousa@intel.com>
-In-Reply-To: <20230915220233.59736-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_Simplify_final_return_from_xe=5Firq=5Finstall=28=29?=
+References: <20230915232021.2241094-1-matthew.brost@intel.com>
+In-Reply-To: <20230915232021.2241094-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/3=5D_drm/xe=3A_Fix_xe=5Fexec=5Fque?=
+ =?utf-8?q?ue=5Fis=5Fidle_for_parallel_exec_queues?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,31 +47,17 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Simplify final return from xe_irq_install()
-URL   : https://patchwork.freedesktop.org/series/123814/
+Series: series starting with [1/3] drm/xe: Fix xe_exec_queue_is_idle for parallel exec queues
+URL   : https://patchwork.freedesktop.org/series/123820/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 9da40abcc drm/xe/uc: Add GuC/HuC firmware path overrides
+=== git am output follows ===
+Applying: drm/xe: Fix xe_exec_queue_is_idle for parallel exec queues
+Applying: drm/xe: Deprecate XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE implementation
+Applying: drm/xe: Rename exec_queue_kill_compute to xe_vm_remove_compute_exec_queue
 
 
