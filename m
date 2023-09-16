@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A6F9CD37B5
-	for <intel-xe@archiver.kernel.org>; Sat, 16 Sep 2023 06:56:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23C29CD37B7
+	for <intel-xe@archiver.kernel.org>; Sat, 16 Sep 2023 06:56:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C8A8F10E0C6;
-	Sat, 16 Sep 2023 06:56:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDD8810E0D2;
+	Sat, 16 Sep 2023 06:56:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6CA6910E0C6;
- Sat, 16 Sep 2023 06:56:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3490010E0D2;
+ Sat, 16 Sep 2023 06:56:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 392CBAADE3;
- Sat, 16 Sep 2023 06:56:32 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2E9B4AADE3;
+ Sat, 16 Sep 2023 06:56:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Sat, 16 Sep 2023 06:56:32 -0000
-Message-ID: <169484739220.10846.594373058825708091@emeril.freedesktop.org>
+Date: Sat, 16 Sep 2023 06:56:44 -0000
+Message-ID: <169484740418.10848.4988735018140689921@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230915172606.14436-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20230915172606.14436-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Reinstate_pipelined_fence_enable=5Fsignaling_=28re?=
- =?utf-8?b?djQp?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Reinstate_pipelined_fence_enable=5Fsignaling_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,9 +52,39 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 9da40abcc drm/xe/uc: Add GuC/HuC firmware path overrides
-=== git am output follows ===
-Applying: drm/xe: Reinstate pipelined fence enable_signaling
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f9f31f04db2bd6880723d337cb4c96b7f3d4cf16
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri Sep 15 19:26:06 2023 +0200
+
+    drm/xe: Reinstate pipelined fence enable_signaling
+    
+    With the GPUVA conversion, the xe_bo::vmas member became replaced with
+    drm_gem_object::gpuva.list, however there was a couple of usage instances
+    left using the old member. Most notably the pipelined fence
+    enable_signaling.
+    
+    Remove the xe_bo::vmas member completely, fix usage instances and
+    also enable this pipelined fence enable_signaling even for faulting
+    VM:s since we actually wait for bind fences to complete.
+    
+    v2:
+    - Rebase.
+    v3:
+    - Fix display code build error.
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch 9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d drm-intel
+f9f31f04d drm/xe: Reinstate pipelined fence enable_signaling
 
 
