@@ -4,30 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30E94CD37B0
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 09:25:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10509CD13D1
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 09:54:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECBD210E07A;
-	Mon, 18 Sep 2023 09:25:13 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E8BCA10E07A;
- Mon, 18 Sep 2023 09:25:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E3E37A0093;
- Mon, 18 Sep 2023 09:25:11 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1211949028062691836=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4B2710E250;
+	Mon, 18 Sep 2023 09:54:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CBDB610E250
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Sep 2023 09:54:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695030892; x=1726566892;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=XLwEhEQX6LKUo3EmoaSBctTC28i4dSBO8md74X4DWmI=;
+ b=FvNafgqAA4rA7Fbrh/6Ly9A0qwt302Pj4rgY0yykP2Yb2oujcH2jh/xq
+ 7/DGoC2qMEhifrb7grI2/surydvf9DM3REicDpMuafLQoLFLnATll/nJo
+ RXciEcmxq2NUR9+R/CaMyJY8fXhroWaAQiuP9OtqubjYPkqXLYblEPc7G
+ WRJiE8N8L8jjHf2k+ENVo91ysZpMLw06TBk3fqvJqIDPY/10P5lrQ3Os9
+ b7c0AUQx0Oi/kQ63syARSehZL1DMPyTn8gC5syYZIlcXcnowR/tXMiwMe
+ b9GOP+KQ4DILsOJ82mZ7VAZuoGF9et0bzRcni3JOc4rpNN+4ceYcV5xTS A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="359030072"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="359030072"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 02:54:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="919389536"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="919389536"
+Received: from mkhokhlx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.38.60])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 02:54:49 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ofir Bitton <obitton@habana.ai>, Daniel Vetter <daniel.vetter@ffwll.ch>,
+ "airlied@gmail.com" <airlied@gmail.com>
+In-Reply-To: <bf33b2c3-5111-e4ed-0a3d-5616ce0fc9f6@habana.ai>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230907193515.7-1-francois.dugast@intel.com>
+ <ef36eb06-d65b-6ad4-ac4f-f1fb2ba7a544@habana.ai>
+ <tl37n5qledvt7yxce5sl4byon6puewxvs3ymfebsndnolwstg3@3fjfvpuzna5b>
+ <fede72f2-e542-8308-fcb4-ad37ae058154@habana.ai>
+ <20230912002541.GD2706891@mdroper-desk1.amr.corp.intel.com>
+ <23515ffe-c397-21a9-94b5-e28f5b26fd64@habana.ai>
+ <87v8cfd4t7.fsf@intel.com>
+ <d763fd15-0732-8cd2-a24f-055a5855544a@habana.ai>
+ <87h6nxw3rl.fsf@intel.com>
+ <0d208249-a467-9c35-4c38-2bd9dd56f611@habana.ai>
+ <CAKMK7uETpBgGGBesKZjBB+aYbfN3UA29OSksADY8FVvFKL=wtw@mail.gmail.com>
+ <bf33b2c3-5111-e4ed-0a3d-5616ce0fc9f6@habana.ai>
+Date: Mon, 18 Sep 2023 12:54:47 +0300
+Message-ID: <874jjrvmag.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sujaritha Sundaresan" <sujaritha.sundaresan@intel.com>
-Date: Mon, 18 Sep 2023 09:25:11 -0000
-Message-ID: <169502911190.32415.16564459217230798817@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230918071757.1132362-1-sujaritha.sundaresan@intel.com>
-In-Reply-To: <20230918071757.1132362-1-sujaritha.sundaresan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/re?=
- =?utf-8?q?gs=3A_Add_definition_for_the_PERF=5FLIMIT=5FREASONS_register?=
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH] drm/xe/uapi: Remove MMIO ioctl
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,151 +69,104 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Francois Dugast <francois.dugast@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1211949028062691836==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 18 Sep 2023, Ofir Bitton <obitton@habana.ai> wrote:
+> On 14/09/2023 23:47, Daniel Vetter wrote:
+>> On Thu, 14 Sept 2023 at 16:21, Ofir Bitton <obitton@habana.ai> wrote:
+>>>
+>>> On 14/09/2023 11:35, Jani Nikula wrote:
+>>>> On Tue, 12 Sep 2023, Ofir Bitton <obitton@habana.ai> wrote:
+>>>>> On 12/09/2023 14:11, Jani Nikula wrote:
+>>>>>> On Tue, 12 Sep 2023, Ofir Bitton <obitton@habana.ai> wrote:
+>>>>>>> On 12/09/2023 3:25, Matt Roper wrote:
+>>>>>>> Hey Matt, I totally undesrstand your concern, I might have another
+>>>>>>> suggestion. We can create another FD in debugfs and move this ioctl
+>>>>>>> there (I can take ownership on this), This way ABI is not an issue.
+>>>>>>
+>>>>>> FD or ioctl in debugfs? Or do you just mean adding a debugfs file for
+>>>>>> register access?
+>>>>>>
+>>>>>> BR,
+>>>>>> Jani.
+>>>>>>
+>>>>>
+>>>>> Add a new file in debugfs to which we will send debug ioctls such as the
+>>>>> mmio ioctl.
+>>>>
+>>>> It's so rare to do ioctl on debugfs files that I first had to check it's
+>>>> possible, and then try to find examples in the kernel. I found one so
+>>>> far, though there are probably more.
+>>>>
+>>>> If it's that rare, usually the question is, does it make sense?
+>>>>
+>>>>
+>>>> BR,
+>>>> Jani.
+>>>>
+>>>>
+>>>
+>>> I actually got this idea from Daniel few months back during a different
+>>> discussion. Daniel any thoughts on this?
+>>
+>> So the backstory is that some simulation interface for gaudi used a
+>> chardev node, for the efficiency/flexibilty of ioctl. Which for
+>> upstream is a no-go, we really don't want to make val/sim stuff stable
+>> uapi. But in general I'm very much welcome to upstreaming
+>> debug/sim/val infrastructure, anything that's reasonable and reduces
+>> the delta against internal/downstream trees is good, and the ioctl
+>> interface seems like the right fit, and the stable uapi issue can be
+>> avoided by moving it all into debugfs.
+>>
+>> That's how the debugfs-with-ioctl idea was born.
+>>
+>> Now since it's debugfs I really don't care much (but maybe
+>> double-check with Dave Airlie), as long as we don't go overboard and
+>> use ioctl for absolutely everything just because we can. Because in
+>> general I think debugfs should be human readable and useable with just
+>> commandline, very often that's really the most convenient interface.
+>> But if we need something where ioctl is just the better fit, then yeah
+>> ioctl in debugfs is imo ok.
+>>
+>> Cheers!
+>>
+>
+> Thanks Daniel for the detailed input! I think in our case we can use
+> a debugfs ioctl ONLY for the mmio case, as indeed here it is the best
+> fit. Jani, any objection?
 
-== Series Details ==
+Ack on the plan.
 
-Series: drm/xe/regs: Add definition for the PERF_LIMIT_REASONS register
-URL   : https://patchwork.freedesktop.org/series/123835/
-State : success
+And since it's debugfs, we can actually change it afterwards. :)
 
-== Summary ==
-
-CI Bug Log - changes from xe-376-9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d_BAT -> xe-pw-123835v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-123835v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-376-9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123835v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#480]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-376-9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123835v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-
-
-Build changes
--------------
-
-  * IGT: IGT_7490 -> IGT_7493
-  * Linux: xe-376-9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d -> xe-pw-123835v1
-
-  IGT_7490: 7490
-  IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-376-9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d: 9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d
-  xe-pw-123835v1: 123835v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123835v1/index.html
-
---===============1211949028062691836==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+>
+>>> If you are uncomfortable with the ioctl approach we can go with a
+>>> different approach, for example what we did in the habanalabs driver:
+>>>
+>>> setting read/write address:
+>>> https://elixir.bootlin.com/linux/v6.6-rc1/source/drivers/accel/habanalabs/common/debugfs.c#L1630
+>>>
+>>> read32:
+>>> https://elixir.bootlin.com/linux/v6.6-rc1/source/drivers/accel/habanalabs/common/debugfs.c#L844
+>>>
+>>> I liked the ioctl approach so much because it requires a single system
+>>> call instead of 2 and the implementation is much cleaner.
+>>>
+>>> Ofir.
+>>>
+>>>
+>>
+>>
+>
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/regs: Add definition for the PERF_LIMIT_REASONS register</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123835/">https://patchwork.freedesktop.org/series/123835/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123835v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123835v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-376-9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d_BAT -&gt; xe-pw-123835v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-123835v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-376-9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123835v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-376-9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123835v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7490 -&gt; IGT_7493</li>
-<li>Linux: xe-376-9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d -&gt; xe-pw-123835v1</li>
-</ul>
-<p>IGT_7490: 7490<br />
-  IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-376-9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d: 9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d<br />
-  xe-pw-123835v1: 123835v1</p>
-
-</body>
-</html>
-
---===============1211949028062691836==--
+-- 
+Jani Nikula, Intel
