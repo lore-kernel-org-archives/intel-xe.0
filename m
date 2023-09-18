@@ -4,44 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A61BC46CA1
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 12:07:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 273CCC46CA1
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 12:08:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F303210E044;
-	Mon, 18 Sep 2023 12:07:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E3AA410E044;
+	Mon, 18 Sep 2023 12:08:10 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0990D10E044
- for <intel-xe@lists.freedesktop.org>; Mon, 18 Sep 2023 12:07:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E895A10E044
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Sep 2023 12:08:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695038873; x=1726574873;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=RtCKORDAYqkwJPDIAd62pDfh1qPs6+UAaDA2N7rEfqo=;
- b=GCUQ1Chc0C9tFN2IDPTCtrv385SUdTi93gl0Wr31hlSnlHYqXPIEY2mT
- dn/hFvLY812CdtCVtL4CdsdEuKK0bn33uvGSn1OI3UbdP9TuG0dk9Uuyy
- XP+csdvDZdMRvOZ+TurC5cm0oWa2Q1UbnTTnXy2xcVkrN79M1LelZ/+Lc
- 5AYl916HRXz3poN0n2zASmHT/ZqeAG0zBNnB1/AW8Jh3A/y88ZZGIquiT
- niuXDCEuuVJ2ni4aHG7yfMpr5mbqmgkRuC5ds4nEnYKdHl8++twKNpHcX
- 23u6uEj9hPU3ALDCNA+XNJkgDAr9oUWLBDZVEAjU/Eq/f+9hSs+RS/qVB w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="359887424"
-X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="359887424"
+ t=1695038887; x=1726574887;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=PF7U11B3FIJ1NSEdF4FdIHfBWgHfEsurcNZrg8Lw+zU=;
+ b=NaoPNIMs1itE3XpXAOIRdegybcPUT8RSYabj4d/aghEXiDvZ208LG2Re
+ T1/AwIVB7OPeoYfY+s9gc7HYQp/zfAhLX79qHP3YjVw1RifjEoHvbmnLh
+ QfRsukum6/5BhhkXjRAEkjZ19BSxpzqwwlZcfe3uqqK0zkoD+LqqNATbx
+ FsABupBEeC74r1WevTZGjEaPbjC2mGx+ExrXBoZjAU6Cu/obr4mJYlX45
+ DLjhIcdIeLMT9ToZp5bFFuloYp05iotM62yCcP2ut+kvEAOnDunybQq1s
+ /tS87AcD1jH7ZDotVVrzV79Sm+xa/74DmZX0jeOhqVeSe47EBhKNIMcXO A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="359887481"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="359887481"
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2023 05:07:52 -0700
+ 18 Sep 2023 05:08:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="835992476"
-X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="835992476"
+X-IronPort-AV: E=McAfee;i="6600,9927,10836"; a="835992498"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="835992498"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by FMSMGA003.fm.intel.com with ESMTP; 18 Sep 2023 05:07:50 -0700
+ by FMSMGA003.fm.intel.com with ESMTP; 18 Sep 2023 05:08:06 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 18 Sep 2023 17:32:26 +0530
-Message-Id: <20230918120229.338270-1-chaitanya.kumar.borah@intel.com>
+Date: Mon, 18 Sep 2023 17:32:27 +0530
+Message-Id: <20230918120229.338270-2-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230918120229.338270-1-chaitanya.kumar.borah@intel.com>
+References: <20230918120229.338270-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC 0/3] Use common wrapper to get step name
+Subject: [Intel-xe] [RFC 1/3] drm/i915: Add wrapper for xe compatibility
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,27 +58,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use wrapper common for both xe and i915 to get the display step name.
+Add a wrapper around intel_step_name to maintain compatibility
+with xe driver. The wrapper will share the same name as the one
+to be used by xe while both drivers include different files as
+needed during compilation.
 
-This patch partially reverts the changes made in
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+---
+ drivers/gpu/drm/i915/intel_step.c | 5 +++++
+ drivers/gpu/drm/i915/intel_step.h | 1 +
+ 2 files changed, 6 insertions(+)
 
-commit 8c4154824537 ("FIXME: drm/i915/dmc: xe way of getting at stepping")
-
-TODO: Find cleaner solution for rest(not stepping related) of the Fixme
-      patch
-
-Chaitanya Kumar Borah (3):
-  drm/i915: Add wrapper for xe compatibility
-  drm/xe: Add wrapper over intel_step_name
-  drm/i915/dmc: Use common wrapper to get step name
-
- drivers/gpu/drm/i915/display/intel_dmc.c | 7 ++-----
- drivers/gpu/drm/i915/intel_step.c        | 5 +++++
- drivers/gpu/drm/i915/intel_step.h        | 1 +
- drivers/gpu/drm/xe/xe_step.c             | 5 +++++
- drivers/gpu/drm/xe/xe_step.h             | 1 +
- 5 files changed, 14 insertions(+), 5 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
+index c02a6f156a00..6b62b5fcc792 100644
+--- a/drivers/gpu/drm/i915/intel_step.c
++++ b/drivers/gpu/drm/i915/intel_step.c
+@@ -352,3 +352,8 @@ const char *intel_step_name(enum intel_step step)
+ 		return "**";
+ 	}
+ }
++
++const char *intel_get_step_name(struct drm_i915_private *i915)
++{
++	return intel_step_name(RUNTIME_INFO(i915)->step.display_step);
++}
+diff --git a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/intel_step.h
+index 96dfca4cba73..25a1b1948a43 100644
+--- a/drivers/gpu/drm/i915/intel_step.h
++++ b/drivers/gpu/drm/i915/intel_step.h
+@@ -78,5 +78,6 @@ enum intel_step {
+ 
+ void intel_step_init(struct drm_i915_private *i915);
+ const char *intel_step_name(enum intel_step step);
++const char *intel_get_step_name(struct drm_i915_private *i915);
+ 
+ #endif /* __INTEL_STEP_H__ */
 -- 
 2.25.1
 
