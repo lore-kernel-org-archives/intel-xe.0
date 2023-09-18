@@ -4,30 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3049EC46CA1
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 14:18:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C1D1CD37B0
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 14:18:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D21E710E04D;
-	Mon, 18 Sep 2023 14:18:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 67A3B10E011;
- Mon, 18 Sep 2023 14:18:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6659AA0169;
- Mon, 18 Sep 2023 14:18:05 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 151B110E011;
+	Mon, 18 Sep 2023 14:18:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EABA10E011
+ for <intel-xe@lists.freedesktop.org>; Mon, 18 Sep 2023 14:18:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695046736; x=1726582736;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=8FwFtDsbYN2dGrH65oUatK7jtvOQG7dtvexOY5r/6bo=;
+ b=aGgQvOaCZFdwoVR6lWrZH+r2MIBjGBQbW2dBCG7aOnIs40uzTIRWt1ri
+ 16EhAm7ukSQO2/STQgH24MlgvFrMVAHeei+lw/wGfMQs66tJ4NMP/osEz
+ 0YPTi6VpoEdWOVBF6xFF1hdEXmqfYlnmxL1Bwv12LpADv3wf8Y5aVg8D9
+ s7QFfznWwaHm1PyUnYmcNJAaH1v/QJ04CYRk9Sa7fMjvXjp7tIrY8VWvo
+ R1GZlerQVcKmVYH9KDpO0NjaNZpOr8ME06sPXrW5jiqxdZcsM1tIgdOKZ
+ OXbW4XdQRR8BZDnXMwIpZH9SeRJup5WQwrSOJF6WE/eljFq5Nnt9hl/Gf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="466015720"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="466015720"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 07:18:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="1076605058"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="1076605058"
+Received: from clanggaa-mobl.ger.corp.intel.com (HELO [10.249.254.250])
+ ([10.249.254.250])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 07:18:54 -0700
+Message-ID: <510b7135-3583-e3de-6403-aaef5a7616e9@linux.intel.com>
+Date: Mon, 18 Sep 2023 16:18:52 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230915180610.39266-1-thomas.hellstrom@linux.intel.com>
+ <f7eeee26-03b4-f0b3-333d-111be65c76fa@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <f7eeee26-03b4-f0b3-333d-111be65c76fa@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Date: Mon, 18 Sep 2023 14:18:05 -0000
-Message-ID: <169504668541.32417.7693288629226242288@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230918120229.338270-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20230918120229.338270-1-chaitanya.kumar.borah@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_Use_com?=
- =?utf-8?q?mon_wrapper_to_get_step_name?=
+Subject: Re: [Intel-xe] [RFC PATCH] drm/xe/display: Select some missing
+ configs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,477 +63,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: Use common wrapper to get step name
-URL   : https://patchwork.freedesktop.org/series/123857/
-State : failure
+On 9/18/23 16:17, Maarten Lankhorst wrote:
+>
+>
+> On 2023-09-15 20:06, Thomas Hellström wrote:
+>> When selecting CONFIG_XE_DISPLAY, the following missing symbols can be
+>> seen unless something else has selected the corresponding configs.
+>>
+>> ERROR: modpost: "cfb_copyarea" [drivers/gpu/drm/xe/xe.ko] undefined!
+>> ERROR: modpost: "cfb_fillrect" [drivers/gpu/drm/xe/xe.ko] undefined!
+>> ERROR: modpost: "cfb_imageblit" [drivers/gpu/drm/xe/xe.ko] undefined
+>>
+>> Make sure these are included in the Xe Display build.
+>>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/Kconfig | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/Kconfig b/drivers/gpu/drm/xe/Kconfig
+>> index 096bd066afa8..ed2dd73f153b 100644
+>> --- a/drivers/gpu/drm/xe/Kconfig
+>> +++ b/drivers/gpu/drm/xe/Kconfig
+>> @@ -45,6 +45,9 @@ config DRM_XE
+>>   config DRM_XE_DISPLAY
+>>       bool "Enable display support"
+>>       depends on DRM_XE && EXPERT
+>> +    select FB_CFB_COPYAREA
+>> +    select FB_CFB_FILLRECT
+>> +    select FB_CFB_IMAGEBLIT
+>>       select I2C
+>>       select I2C_ALGOBIT
+>>       default y
+> Make that FB_IOMEM_HELPERS, and you can add my r-b. :-)
+>
+> Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-== Summary ==
+Thanks! I'll fix up.
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-[14:17:42] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[14:17:46] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-ERROR:root:In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/tests/xe_pci_test.c:13:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/tests/xe_rtp_test.c:16:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/tests/xe_wa_test.c:11:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_bb.c:9:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_bo.c:17:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_bo_evict.c:9:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_debugfs.c:14:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_devcoredump.c:12:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_device.c:6:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_device_sysfs.c:12:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_dma_buf.c:18:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_exec.c:15:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_execlist.c:15:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_exec_queue.c:14:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.c:6:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_ggtt.c:16:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_gt.c:14:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_gt_clock.c:10:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_gt_debugfs.c:11:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_gt_idle_sysfs.c:8:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_trace.h:21,
-                 from ../drivers/gpu/drm/xe/xe_gt_pagefault.c:22:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c:8:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_guc_ads.c:18:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc_ct.c:15:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc_debugfs.c:11:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc_hwconfig.c:11:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_guc_log.c:12:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc_pc.c:15:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_guc_submit.c:17:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_hw_engine.c:13:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_hw_fence.c:12:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_step.c:6:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_huc.c:9:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_huc_debugfs.c:11:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_irq.c:14:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_lrc.c:14:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_mmio.c:17:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_mocs.c:10:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_pci.c:19:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_pm.c:15:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_preempt_fence.c:11:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_reg_sr.c:19:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_pt.c:9:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_query.c:14:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_sa.c:13:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_ring_ops.c:19:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_sched_job.c:11:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_step.c:258:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-  258 | const char *intel_get_step_name(struct drm_i915_private *i915)
-      |                                        ^~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_step.c:258:13: error: conflicting types for ‘intel_get_step_name’
-  258 | const char *intel_get_step_name(struct drm_i915_private *i915)
-      |             ^~~~~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_step.c:6:
-../drivers/gpu/drm/xe/xe_step.h:20:13: note: previous declaration of ‘intel_get_step_name’ was here
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |             ^~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/xe/xe_step.c: In function ‘intel_get_step_name’:
-../drivers/gpu/drm/xe/xe_step.c:260:26: error: dereferencing pointer to incomplete type ‘struct drm_i915_private’
-  260 |  return xe_step_name(i915->info.step.display);
-      |                          ^~
-../drivers/gpu/drm/xe/xe_step.c:261:1: error: control reaches end of non-void function [-Werror=return-type]
-  261 | }
-      | ^
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_step.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_tile.c:8:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_trace.h:21,
-                 from ../drivers/gpu/drm/xe/xe_trace.c:8:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c:16:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_ttm_vram_mgr.c:13:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_uc.c:8:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_uc_fw.c:14:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_wait_user_fence.c:13:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.c:6:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_wopcm.c:9:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_wa.c:17:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_map.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm.h:11,
-                 from ../drivers/gpu/drm/xe/xe_vm_madvise.c:14:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_migrate.c:18:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-In file included from ../drivers/gpu/drm/xe/xe_assert.h:14,
-                 from ../drivers/gpu/drm/xe/xe_force_wake.h:9,
-                 from ../drivers/gpu/drm/xe/xe_device.h:16,
-                 from ../drivers/gpu/drm/xe/xe_guc.c:14:
-../drivers/gpu/drm/xe/xe_step.h:20:40: warning: ‘struct drm_i915_private’ declared inside parameter list will not be visible outside of this definition or declaration
-   20 | const char *intel_get_step_name(struct drm_i915_private *i915);
-      |                                        ^~~~~~~~~~~~~~~~
-make[6]: *** [../scripts/Makefile.build:480: drivers/gpu/drm/xe] Error 2
-make[5]: *** [../scripts/Makefile.build:480: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:480: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:480: drivers] Error 2
-make[2]: *** [/kernel/Makefile:2032: .] Error 2
-make[1]: *** [/kernel/Makefile:234: __sub-make] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+/Thomas
 
 
