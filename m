@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C138CD13D3
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 07:27:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 78FACCD13D1
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 07:28:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 482F510E1C8;
-	Mon, 18 Sep 2023 07:27:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39D1210E1F2;
+	Mon, 18 Sep 2023 07:28:14 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 75E8D10E200;
- Mon, 18 Sep 2023 07:27:56 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8489610E1F8;
+ Mon, 18 Sep 2023 07:28:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6A878A0BA8;
- Mon, 18 Sep 2023 07:27:56 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7EFE1A0BA8;
+ Mon, 18 Sep 2023 07:28:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Mon, 18 Sep 2023 07:27:56 -0000
-Message-ID: <169502207640.32415.15319816432949084430@emeril.freedesktop.org>
+Date: Mon, 18 Sep 2023 07:28:11 -0000
+Message-ID: <169502209151.32417.4528747543796660673@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230918070100.1387082-1-jouni.hogander@intel.com>
 In-Reply-To: <20230918070100.1387082-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Xe_runtime_pm_refactoring?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Xe?=
+ =?utf-8?q?_runtime_pm_refactoring?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,16 +48,37 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Xe runtime pm refactoring
 URL   : https://patchwork.freedesktop.org/series/123834/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 9da40abcc drm/xe/uc: Add GuC/HuC firmware path overrides
-=== git am output follows ===
-Applying: Revert "FIXME: drm/i915: runtime pm changes"
-Applying: drm/i915: Remove runtime suspended boolean from intel_runtime_pm struct
-Applying: fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
-Applying: fixup! drm/xe/display: Implement display support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d06afc45f9c54d3751358a336329de86485507b9
+Author: Jouni Högander <jouni.hogander@intel.com>
+Date:   Mon Sep 18 10:01:00 2023 +0300
+
+    fixup! drm/xe/display: Implement display support
+    
+    xe_runtime_pm changed to intel_runtime_pm.
+    
+    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
++ /mt/dim checkpatch 9da40abcc0ccdf8fdfed4e21d76060bfcd35fe7d drm-intel
+8f2674e1a Revert "FIXME: drm/i915: runtime pm changes"
+-:9: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '742e449ddca435897eec6d9c21d4d2573b77242d', maybe rebased or not pulled?
+#9: 
+This reverts commit 742e449ddca435897eec6d9c21d4d2573b77242d.
+
+total: 0 errors, 1 warnings, 0 checks, 75 lines checked
+c20e65ca9 drm/i915: Remove runtime suspended boolean from intel_runtime_pm struct
+238ded340 fixup! drm/xe: Introduce a new DRM driver for Intel GPUs
+d06afc45f fixup! drm/xe/display: Implement display support
 
 
