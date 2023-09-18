@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E2C28C46CA1
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 12:29:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07DAFCD37B0
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 12:30:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFEEC10E0A6;
-	Mon, 18 Sep 2023 12:29:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D4D5110E272;
+	Mon, 18 Sep 2023 12:30:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 790F110E07F;
- Mon, 18 Sep 2023 12:29:46 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D876210E07F;
+ Mon, 18 Sep 2023 12:29:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7E895AADE4;
- Mon, 18 Sep 2023 12:29:46 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DDBFBAADE4;
+ Mon, 18 Sep 2023 12:29:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Dani Liberman" <dliberman@habana.ai>
-Date: Mon, 18 Sep 2023 12:29:46 -0000
-Message-ID: <169504018651.32417.7752450706672280591@emeril.freedesktop.org>
+Date: Mon, 18 Sep 2023 12:29:58 -0000
+Message-ID: <169504019890.32416.2857507650068890878@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230918114848.67712-1-dliberman@habana.ai>
 In-Reply-To: <20230918114848.67712-1-dliberman@habana.ai>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_series_starting_with_=5B1/3=5D_drm/xe=3A_proper_setting_of_i?=
- =?utf-8?q?rq_enabled_flag?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_se?=
+ =?utf-8?q?ries_starting_with_=5B1/3=5D_drm/xe=3A_proper_setting_of_irq_en?=
+ =?utf-8?q?abled_flag?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,11 +53,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 717f01815 drm/xe: Reinstate pipelined fence enable_signaling
-=== git am output follows ===
-Applying: drm/xe: proper setting of irq enabled flag
-Applying: drm/xe: change old msi irq api to a new one
-Applying: drm/xe: add msix support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f176fc5a89875149b11bac8e2014d930b712a619
+Author: Dani Liberman <dliberman@habana.ai>
+Date:   Mon Sep 18 14:48:48 2023 +0300
+
+    drm/xe: add msix support
+    
+    In future devices we will need to support msix interrupts.
+    
+    Reviewed-by: Ohad Sharabi <osharabi@habana.ai>
+    Signed-off-by: Dani Liberman <dliberman@habana.ai>
++ /mt/dim checkpatch 717f01815b20bde3f081a18f42f31673ce1f107f drm-intel
+9119be542 drm/xe: proper setting of irq enabled flag
+b73bf0d7a drm/xe: change old msi irq api to a new one
+f176fc5a8 drm/xe: add msix support
 
 
