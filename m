@@ -4,52 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF48FC46CA1
-	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 15:17:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 474ECCD37B0
+	for <intel-xe@archiver.kernel.org>; Mon, 18 Sep 2023 15:19:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 414A510E098;
-	Mon, 18 Sep 2023 15:17:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB51410E013;
- Mon, 18 Sep 2023 15:17:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0496310E28A;
+	Mon, 18 Sep 2023 15:19:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 188FF10E098;
+ Mon, 18 Sep 2023 15:19:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695050237; x=1726586237;
+ t=1695050365; x=1726586365;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=r/RDHVcx/O8Y1B9cQbxgCJtrTAuyPqlE4+OfYDxrPvk=;
- b=VvPwn0fBaKwEoEsyGyQxJ3IP/VHmy4Tl45VKn9i4+wfADMOo2i5PASHN
- j64DHaSi2d/XimP2/HgN9K5ZF3A0GpBoS1boGxzaz9aTJ4V4Bouclmv1P
- nMVUz+X8SiNLI/wbh2k/2ijktsd/aFjcj1Vj067Ec2tOBMSgpm4Hc4+xc
- vYQhZ7fA+Z9opV/nm/hsjnHvdUH6AB7SVEOeTCj8bL+bIUnLYstIrwE0w
- DLcn68+bta4g7TGwPtpGDlb3552B/BbnFBYU2A/djzZAGXccXuEUqHlIF
- PUHv73OMlRujI/wPUIzYHjHq/k+zQGGnV4kUiuffDbzj7zSwjAFPnUJCR A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="378593781"
-X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="378593781"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2023 08:17:16 -0700
+ mime-version:in-reply-to;
+ bh=7i1/dNWgmYS0t8WY7RLYhTPBTDW5jJpIE+83oH7l+FY=;
+ b=QHxy/gsFB4HwKQiPaCvb41zoq/B/Ccd3GoLBPlzhjKjzbGCU3dgGkzl5
+ Zts0fGBacH8tTDU3c08z74I2Pn9Y/eXfS4E2UcGpgDsbXsGF5JBmo4Stk
+ mlrHklTMz+sS0dRk5Bd1tfxPZc9EhqE88lNNL29hditMj1sMLLCzuesN8
+ vJ/e6XnFVgT3RgyE86yF4zX4goR/DtpvqapmnrspgXDld4FzRJhXkHq1C
+ YEUn/PAwKSltHxdfjPNPp9ooOGIgX0AGkc4MynETRP/7EZmvHCttRNK+J
+ xIdIntnykV5easas8iOTEBK+LRyoDFh30otWO+LlwATMtO0qQwGtYAmZQ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="379587573"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="379587573"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 08:09:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="745854742"
-X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="745854742"
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="861095433"
+X-IronPort-AV: E=Sophos;i="6.02,156,1688454000"; d="scan'208";a="861095433"
 Received: from ldmartin-desk2.corp.intel.com (HELO
  ldmartin-desk2.attlocal.net) ([10.212.23.222])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2023 08:17:16 -0700
-Date: Mon, 18 Sep 2023 10:17:12 -0500
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 08:09:07 -0700
+Date: Mon, 18 Sep 2023 10:09:03 -0500
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Message-ID: <acuibqhswa7alrjto7uokpwcfzisbyxmrnkvbb3usdyco2kuct@wdtecpkkythn>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <s4pd63isa3zc5p6roa23gg74puas7m5irxlvolg54f67zcrua6@v7ah2t3b5sqp>
 References: <20230915132346.1845909-1-lucas.demarchi@intel.com>
- <20230915132346.1845909-14-lucas.demarchi@intel.com>
- <20230918075740.gswvt6joydhzbyfc@zkempczy-mobl2>
+ <20230915132346.1845909-3-lucas.demarchi@intel.com>
+ <20230915174346.GC2706891@mdroper-desk1.amr.corp.intel.com>
+ <20230915174712.GD2706891@mdroper-desk1.amr.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=us-ascii; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230918075740.gswvt6joydhzbyfc@zkempczy-mobl2>
-Subject: Re: [Intel-xe] [igt-dev] [PATCH i-g-t 13/14] lib/intel_blt: Support
- xe2 in xy-fast-copy command
+In-Reply-To: <20230915174712.GD2706891@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [Intel-xe] [PATCH i-g-t 02/14] lib/gpu_cmds: Remove prefix from
+ gen7_fill_binding_table()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,170 +65,96 @@ Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 18, 2023 at 09:57:40AM +0200, Zbigniew Kempczyński wrote:
->On Fri, Sep 15, 2023 at 06:23:45AM -0700, Lucas De Marchi wrote:
->> Xe2 xy-fast-copy command is slightly different, with dw01 and dw07
->> having a few differences: 1) different bitrange for mocs (it was
->> previously absent in dw07); 2) no dst_memory, src_memory;
->> 3) hardcoded dst_type_y and src_type_y to 1.
+On Fri, Sep 15, 2023 at 10:47:12AM -0700, Matt Roper wrote:
+>On Fri, Sep 15, 2023 at 10:43:50AM -0700, Matt Roper wrote:
+>> On Fri, Sep 15, 2023 at 06:23:34AM -0700, Lucas De Marchi wrote:
+>> > This function is used by pretty much all versions. It's odd to have a
+>> > gen7 function end up calling next-gen functions and it's error prone:
+>> > when adding something to e.g. a gen8 function to realize that behavior
+>> > breaks previous platforms.
 >>
->> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
->> ---
->>  lib/intel_blt.c | 76 +++++++++++++++++++++++++++++++++++--------------
->>  1 file changed, 55 insertions(+), 21 deletions(-)
->>
->> diff --git a/lib/intel_blt.c b/lib/intel_blt.c
->> index 0658d67f4..508c2de46 100644
->> --- a/lib/intel_blt.c
->> +++ b/lib/intel_blt.c
->> @@ -1149,16 +1149,27 @@ struct gen12_fast_copy_data {
->>  		uint32_t client:			BITRANGE(29, 31);
->>  	} dw00;
->>
->> -	struct {
->> -		uint32_t dst_pitch:			BITRANGE(0, 15);
->> -		uint32_t rsvd1:				BITRANGE(16, 23);
->> -		uint32_t color_depth:			BITRANGE(24, 26);
->> -		uint32_t rsvd0:				BITRANGE(27, 27);
->> -		uint32_t dst_memory:			BITRANGE(28, 28);
->> -		uint32_t src_memory:			BITRANGE(29, 29);
->> -		uint32_t dst_type_y:			BITRANGE(30, 30);
->> -		uint32_t src_type_y:			BITRANGE(31, 31);
->> -	} dw01;
->> +	union {
->> +		struct {
->> +			uint32_t dst_pitch:			BITRANGE(0, 15);
->> +			uint32_t rsvd1:				BITRANGE(16, 23);
->> +			uint32_t color_depth:			BITRANGE(24, 26);
->> +			uint32_t rsvd0:				BITRANGE(27, 27);
->> +			uint32_t dst_memory:			BITRANGE(28, 28);
->> +			uint32_t src_memory:			BITRANGE(29, 29);
->> +			uint32_t dst_type_y:			BITRANGE(30, 30);
->> +			uint32_t src_type_y:			BITRANGE(31, 31);
->> +		} dw01;
->> +		struct {
->> +			uint32_t dst_pitch:			BITRANGE(0, 15);
->> +			uint32_t rsvd1:				BITRANGE(16, 19);
+>> Even more confusing is that we have a gen11_filling_binding_table
+>> function as well, but Xe_HP still uses the older "gen7" variant.  Maybe
+>> we should incorporate the gen11-specific logic into the single
+>> fill_binding_table function as well?  It looks like it only gets used in
+>> one path (which winds up being ICL-specific, not even used for EHL/JSL
+>> due to lack of media samplers).
 >
->Similar to block-copy bit 17 is not described here for Xe2.
+>Hmm, I guess the signature of the gen11 function doesn't match since it
+>takes separate src/dst buffers.
 
-same reason to merge the fields as explained there.
+yep, I hit this issue when trying that abstraction. I think we can leave
+it to be done on top.
 
->
->> +			uint32_t dst_mocs:			BITRANGE(20, 23);
->> +			uint32_t color_depth:			BITRANGE(24, 26);
->> +			uint32_t rsvd0:				BITRANGE(27, 29);
->> +			uint32_t dst_type_y_mb1:		BITRANGE(30, 30);
->> +			uint32_t src_type_y_mb1:		BITRANGE(31, 31);
->> +		} dw01_xe2;
->> +	};
->>
->>  	struct {
->>  		int32_t dst_x1:				BITRANGE(0, 15);
->> @@ -1183,10 +1194,18 @@ struct gen12_fast_copy_data {
->>  		int32_t src_y1:				BITRANGE(16, 31);
->>  	} dw06;
->>
->> -	struct {
->> -		uint32_t src_pitch:			BITRANGE(0, 15);
->> -		uint32_t rsvd0:				BITRANGE(16, 31);
->> -	} dw07;
->> +	union {
->> +		struct {
->> +			uint32_t src_pitch:			BITRANGE(0, 15);
->> +			uint32_t rsvd0:				BITRANGE(16, 31);
->> +		} dw07;
->> +		struct {
->> +			uint32_t src_pitch:			BITRANGE(0, 15);
->> +			uint32_t rsvd0:				BITRANGE(16, 19);
->> +			uint32_t src_mocs:			BITRANGE(20, 23);
->> +			uint32_t rsvd1:				BITRANGE(24, 31);
->> +		} dw07_xe2;
->> +	};
->>
->>  	struct {
->>  		uint32_t src_address_lo;
->> @@ -1285,11 +1304,13 @@ uint64_t emit_blt_fast_copy(int fd,
->>  			    uint64_t bb_pos,
->>  			    bool emit_bbe)
->>  {
->> +	unsigned int ip_ver = intel_graphics_ver(intel_get_drm_devid(fd));
->>  	struct gen12_fast_copy_data data = {};
->>  	uint64_t dst_offset, src_offset, bb_offset, alignment;
->>  	uint32_t bbe = MI_BATCH_BUFFER_END;
->>  	uint32_t *bb;
->>
->> +
->>  	alignment = get_default_alignment(fd, blt->driver);
->>
->>  	data.dw00.client = 0x2;
->> @@ -1298,12 +1319,20 @@ uint64_t emit_blt_fast_copy(int fd,
->>  	data.dw00.src_tiling = __fast_tiling(blt->src.tiling);
->>  	data.dw00.length = 8;
->>
->> -	data.dw01.dst_pitch = blt->dst.pitch;
->> -	data.dw01.color_depth = __fast_color_depth(blt->color_depth);
->> -	data.dw01.dst_memory = __memory_type(blt->fd, blt->driver, blt->dst.region);
->> -	data.dw01.src_memory = __memory_type(blt->fd, blt->driver, blt->src.region);
->> -	data.dw01.dst_type_y = __new_tile_y_type(blt->dst.tiling) ? 1 : 0;
->> -	data.dw01.src_type_y = __new_tile_y_type(blt->src.tiling) ? 1 : 0;
->> +	if (ip_ver >= IP_VER(20, 0)) {
->> +		data.dw01_xe2.dst_pitch = blt->dst.pitch;
->> +		data.dw01_xe2.dst_mocs = blt->dst.mocs;
->> +		data.dw01_xe2.color_depth = __fast_color_depth(blt->color_depth);
->> +		data.dw01_xe2.dst_type_y_mb1 = 1;
->> +		data.dw01_xe2.src_type_y_mb1 = 1;
->
->I would rather use:
->
->src_type_y = 1; /* Must be programmed to on Xe2 */
->...
->
->mb1 - ambiguous for me, megabytes first, lesser 'must be'.
-
-yeah, usually we have "mbz" as "must be zero", so tried to extend it to
-"must be one".
-
-
-I will change this on next version.
-
->
->> +	} else {
->> +		data.dw01.dst_pitch = blt->dst.pitch;
->> +		data.dw01.color_depth = __fast_color_depth(blt->color_depth);
->> +		data.dw01.dst_memory = __memory_type(blt->fd, blt->driver, blt->dst.region);
->> +		data.dw01.src_memory = __memory_type(blt->fd, blt->driver, blt->src.region);
->> +		data.dw01.dst_type_y = __new_tile_y_type(blt->dst.tiling) ? 1 : 0;
->> +		data.dw01.src_type_y = __new_tile_y_type(blt->src.tiling) ? 1 : 0;
->> +	}
->>
->>  	data.dw02.dst_x1 = blt->dst.x1;
->>  	data.dw02.dst_y1 = blt->dst.y1;
->> @@ -1323,7 +1352,12 @@ uint64_t emit_blt_fast_copy(int fd,
->>  	data.dw06.src_x1 = blt->src.x1;
->>  	data.dw06.src_y1 = blt->src.y1;
->>
->> -	data.dw07.src_pitch = blt->src.pitch;
->> +	if (ip_ver >= IP_VER(20, 0)) {
->> +		data.dw07_xe2.src_pitch = blt->src.pitch;
->> +		data.dw07_xe2.src_mocs = blt->src.mocs;
->> +	} else {
->> +		data.dw07.src_pitch = blt->src.pitch;
->> +	}
->>
->>  	data.dw08.src_address_lo = src_offset;
->>  	data.dw09.src_address_hi = src_offset >> 32;
->> --
->> 2.40.1
->>
->
->With my minor comment addressed:
->
->Reviewed-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-
-thanks
 Lucas De Marchi
 
 >
->--
->Zbigniew
+>
+>Matt
+>
+>>
+>>
+>> Matt
+>>
+>> >
+>> > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> > ---
+>> >  lib/gpu_cmds.c | 9 ++++-----
+>> >  1 file changed, 4 insertions(+), 5 deletions(-)
+>> >
+>> > diff --git a/lib/gpu_cmds.c b/lib/gpu_cmds.c
+>> > index bb35204fb..648451f74 100644
+>> > --- a/lib/gpu_cmds.c
+>> > +++ b/lib/gpu_cmds.c
+>> > @@ -259,8 +259,7 @@ gen11_fill_surface_state(struct intel_bb *ibb,
+>> >  }
+>> >
+>> >  static uint32_t
+>> > -gen7_fill_binding_table(struct intel_bb *ibb,
+>> > -			struct intel_buf *buf)
+>> > +fill_binding_table(struct intel_bb *ibb, struct intel_buf *buf)
+>> >  {
+>> >  	uint32_t binding_table_offset;
+>> >  	uint32_t *binding_table;
+>> > @@ -321,7 +320,7 @@ gen7_fill_interface_descriptor(struct intel_bb *ibb,
+>> >  	uint32_t offset;
+>> >  	uint32_t binding_table_offset, kernel_offset;
+>> >
+>> > -	binding_table_offset = gen7_fill_binding_table(ibb, buf);
+>> > +	binding_table_offset = fill_binding_table(ibb, buf);
+>> >  	kernel_offset = gen7_fill_kernel(ibb, kernel, size);
+>> >
+>> >  	intel_bb_ptr_align(ibb, 64);
+>> > @@ -357,7 +356,7 @@ gen8_fill_interface_descriptor(struct intel_bb *ibb,
+>> >  	uint32_t offset;
+>> >  	uint32_t binding_table_offset, kernel_offset;
+>> >
+>> > -	binding_table_offset = gen7_fill_binding_table(ibb, buf);
+>> > +	binding_table_offset = fill_binding_table(ibb, buf);
+>> >  	kernel_offset = gen7_fill_kernel(ibb, kernel, size);
+>> >
+>> >  	intel_bb_ptr_align(ibb, 64);
+>> > @@ -803,7 +802,7 @@ xehp_fill_interface_descriptor(struct intel_bb *ibb,
+>> >  {
+>> >  	uint32_t binding_table_offset, kernel_offset;
+>> >
+>> > -	binding_table_offset = gen7_fill_binding_table(ibb, dst);
+>> > +	binding_table_offset = fill_binding_table(ibb, dst);
+>> >  	kernel_offset = gen7_fill_kernel(ibb, kernel, size);
+>> >
+>> >  	memset(idd, 0, sizeof(*idd));
+>> > --
+>> > 2.40.1
+>> >
+>>
+>> --
+>> Matt Roper
+>> Graphics Software Engineer
+>> Linux GPU Platform Enablement
+>> Intel Corporation
+>
+>-- 
+>Matt Roper
+>Graphics Software Engineer
+>Linux GPU Platform Enablement
+>Intel Corporation
