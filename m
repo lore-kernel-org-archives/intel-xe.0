@@ -4,49 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EAF3ACD54AB
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 09:48:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0C7CCD54A9
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 10:04:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BED4010E362;
-	Tue, 19 Sep 2023 09:48:04 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E14F210E261
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 09:47:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695116879; x=1726652879;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=IoU3LefYFNMEjG8KaBkNvd4eBzVVtLNSNV1K5UpGOPw=;
- b=KgZw9xFEnLznZTVvinde9OdBoMqgDMADACcv06MwUtCtdJZ5w3jsMWtq
- E6v+Nn4lsOha1GVpnqnLU9nfe6eKGM4pfSVp9+RYHGjlOMT9gpQA7rCat
- toVknjM2k+M8QGVUJ+rl+XR8uPlL9MOTN0GxWAgZZ6DcZxK3Ege3/odnS
- SzHRRrhn+6xtZhyaX/NaIFT8rU/nUklpEudq5vD1AysFeIiJH5odwvmGe
- kDs39cI3YqGSHSANeAm1CoGTRMWI6jPpt6PkVYx7kDsPlvMSZPjOm8yb+
- Kk6NdZsHr7AhAxvogXcp49u0rFzvDNpZMtPAAF33fw4woXTX6wmm8Z+Y/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="466225456"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="466225456"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 02:47:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="739621371"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="739621371"
-Received: from danilova-mobl.ger.corp.intel.com (HELO hazy.ger.corp.intel.com)
- ([10.251.219.3])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 02:47:58 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Sep 2023 12:47:37 +0300
-Message-Id: <20230919094737.743358-3-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230919094737.743358-1-luciano.coelho@intel.com>
-References: <20230919094737.743358-1-luciano.coelho@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB65210E363;
+	Tue, 19 Sep 2023 10:04:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B6C8F10E363;
+ Tue, 19 Sep 2023 10:04:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id AE493AADD8;
+ Tue, 19 Sep 2023 10:04:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6962643122018611648=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/i915: handle uncore spinlock when not
- available
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Tue, 19 Sep 2023 10:04:14 -0000
+Message-ID: <169511785467.3667.16054711558675944282@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230919084609.15768-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20230919084609.15768-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A?=
+ =?utf-8?q?_Disallow_pinning_dma-bufs_in_VRAM?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,133 +39,131 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The uncore code may not always be available (e.g. when we build the
-display code with Xe), so we can't always rely on having the uncore's
-spinlock.
+--===============6962643122018611648==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To handle this, split the spin_lock/unlock_irqsave/restore() into
-spin_lock/unlock() followed by a call to local_irq_save/restore() and
-create wrapper functions for locking and unlocking the uncore's
-spinlock.  In these functions, we have a condition check and only
-actually try to lock/unlock the spinlock when I915 is defined, and
-thus uncore is available.
+== Series Details ==
 
-This keeps the ifdefs contained in these new functions and all such
-logic inside the display code.
+Series: drm/xe: Disallow pinning dma-bufs in VRAM
+URL   : https://patchwork.freedesktop.org/series/123897/
+State : success
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.h | 20 +++++++++++++
- drivers/gpu/drm/i915/display/intel_vblank.c  | 31 +++++++-------------
- 2 files changed, 30 insertions(+), 21 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 51eb65109d39..fdf9ff68a8a6 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -565,4 +565,24 @@ bool assert_port_valid(struct drm_i915_private *i915, enum port port);
- 
- bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915);
- 
-+/*
-+ * The uncore version of the spin lock functions is used to decide
-+ * whether we need to lock the uncore lock or not.  This is only
-+ * needed in i915, not in Xe.  Keep the decision-making centralized
-+ * here.
-+ */
-+static inline void uncore_spin_lock(spinlock_t *lock)
-+{
-+#ifdef I915
-+	spin_lock(lock);
-+#endif
-+}
-+
-+static inline void uncore_spin_unlock(spinlock_t *lock)
-+{
-+#ifdef I915
-+	spin_unlock(lock);
-+#endif
-+}
-+
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 416aa6749eaf..97841fcf5b0f 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -292,11 +292,9 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 	 * register reads, potentially with preemption disabled, so the
- 	 * following code must not block on uncore.lock.
- 	 */
--#ifdef I915
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--#else
-+	uncore_spin_lock(&dev_priv->uncore.lock);
- 	local_irq_save(irqflags);
--#endif
-+
- 	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
- 
- 	/* Get optional system timestamp before query. */
-@@ -363,11 +361,9 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 
- 	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
- 
--#ifdef I915
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
--#else
-+	uncore_spin_unlock(&dev_priv->uncore.lock);
- 	local_irq_restore(irqflags);
--#endif
-+
- 	/*
- 	 * While in vblank, position will be negative
- 	 * counting up towards 0 at vbl_end. And outside
-@@ -402,17 +398,14 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
- {
- 	unsigned long irqflags;
- 	int position;
--#ifdef I915
--	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
--	position = __intel_get_crtc_scanline(crtc);
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
--#else
-+	uncore_spin_lock(&to_i915(crtc->base.dev)->uncore.lock);
- 	local_irq_save(irqflags);
- 	position = __intel_get_crtc_scanline(crtc);
- 	local_irq_restore(irqflags);
--#endif
-+
-+	uncore_spin_unlock(&to_i915(crtc->base.dev)->uncore.lock);
-+
- 	return position;
- }
- 
-@@ -534,9 +527,7 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
- 	 * Need to audit everything to make sure it's safe.
- 	 */
- 	spin_lock_irqsave(&i915->drm.vblank_time_lock, irqflags);
--#ifdef I915
--	spin_lock(&i915->uncore.lock);
--#endif
-+	uncore_spin_lock(&i915->uncore.lock);
- 
- 	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
- 
-@@ -545,8 +536,6 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
- 	crtc->mode_flags = mode_flags;
- 
- 	crtc->scanline_offset = intel_crtc_scanline_offset(crtc_state);
--#ifdef I915
--	spin_unlock(&i915->uncore.lock);
--#endif
-+	uncore_spin_unlock(&i915->uncore.lock);
- 	spin_unlock_irqrestore(&i915->drm.vblank_time_lock, irqflags);
- }
--- 
-2.39.2
+CI Bug Log - changes from xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed_BAT -> xe-pw-123897v1_BAT
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-123897v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * {igt@xe_create@create-execqueues-noleak}:
+    - bat-atsm-2:         [FAIL][1] ([Intel XE#524]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123897v1/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+
+
+Build changes
+-------------
+
+  * Linux: xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed -> xe-pw-123897v1
+
+  IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed: 3d7e02fb9c40263a989c4c19d2dc5a07659965ed
+  xe-pw-123897v1: 123897v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123897v1/index.html
+
+--===============6962643122018611648==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Disallow pinning dma-bufs in VRAM</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123897/">https://patchwork.freedesktop.org/series/123897/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123897v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123897v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed_BAT -&gt; xe-pw-123897v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-123897v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>{igt@xe_create@create-execqueues-noleak}:<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123897v1/bat-atsm-2/igt@xe_create@create-execqueues-noleak.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed -&gt; xe-pw-123897v1</li>
+</ul>
+<p>IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed: 3d7e02fb9c40263a989c4c19d2dc5a07659965ed<br />
+  xe-pw-123897v1: 123897v1</p>
+
+</body>
+</html>
+
+--===============6962643122018611648==--
