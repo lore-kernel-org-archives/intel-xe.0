@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67C65CE79AF
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 16:16:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04889CE79AA
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 16:16:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F71C10E293;
-	Tue, 19 Sep 2023 16:16:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CADD510E288;
+	Tue, 19 Sep 2023 16:16:26 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13BB510E13B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CC80C10E13B
  for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 16:16:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1695140179; x=1726676179;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lQf+xWgbRytWGTjU+lTdX9WyH0EOi81cVqKRMdE3ag8=;
- b=iEK9TBD8aAdqwwagt6TqraXvXwI08gDJvIIPFmz5tAdCTjR1UP8r+UE5
- TNlJU/XaSrbRslJw8tzZreaD7lwj2CjPoAcMqJPuAxcYgxjZXMh0PsnJl
- VoNupvLKlOpRwrYFOdSIywYzq9bkk9oGSRJWUZMjcmaJieg92m+3P/WUH
- D4cuYyL9AX+L3onTdrcjepZBhBDYSPbqADVrvb+IszRS4ecVejsfWjshI
- W2G6fj4pgBGtqpfh391jNCNFPqw4XjM5lAGuMZqCH061ogIuew+tsDYPo
- WzCgbw5ZXGA+8tFt40MSMugi1mQMXz/QGW2+hb9G1hAF4TMY/YaHDp2aU g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="410913528"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="410913528"
+ bh=UzYO5LbpS+NoC/6MdC8bq+SYv/L9TZwVlqFOMTGdlvs=;
+ b=BQiZJK6fqdP38IrbkTZ4J6U6+vQvA0e96QbnOWaik0525fFh03eZ9Cis
+ CK6cDVk8kzy6K60ENC6Vc9G6FVB/7Cvf/Fq39XNAx0NThwL8AvShcVZJh
+ hweWLtKnKN6wL6lImRvI6H9vmM3dCfqIh353bOrbNgIBMvNjmn+EH8Lf5
+ SiGDx822NYHLbPpas8YQpo2uCFdSizYx1UrciU18707AxBUin+ROW8U8x
+ 0wIKDyCjtO5sbDrfxTefay8LePtWuGlg37aqEOpPixshkikFxGvrKiVDf
+ iVpwAFk6wGpN44twX/xZQDVmepGtTYcwKB3mXmS0ubFoTqvosxH2HfW8C w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="410913543"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="410913543"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 09:10:53 -0700
+ 19 Sep 2023 09:10:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="870016505"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="870016505"
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="870016517"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="870016517"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Sep 2023 09:10:53 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Sep 2023 09:10:30 -0700
-Message-ID: <20230919161049.2307855-3-ashutosh.dixit@intel.com>
+Date: Tue, 19 Sep 2023 09:10:34 -0700
+Message-ID: <20230919161049.2307855-7-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230919161049.2307855-1-ashutosh.dixit@intel.com>
 References: <20230919161049.2307855-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 02/21] drm/xe/oa: Add OA types
+Subject: [Intel-xe] [PATCH 06/21] drm/xe/oa: Start implementing OA stream
+ open ioctl
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,321 +61,314 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add types and data structs used by OA. The data structs maintain device and
-gt level information, information about the open OA stream and OA buffer
-used internally to capture OA counters written by HW as well as capture
-configurations which can be selected for an OA stream.
+Start implementing OA stream open ioctl and parse properties passed in as
+part of OA stream open. The remaining operations associated with OA stream
+open continue in subsequent patches.
 
-v2: Add linux includes to fix build
-v3: Change oa_unit_id to u16 (Umesh)
+v2: Include PVC in xe_oa_timestamp_frequency
+    Remove forcewake_get from reading RPM_CONFIG0
 
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa_types.h | 295 +++++++++++++++++++++++++++++++
- 1 file changed, 295 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_oa_types.h
+ drivers/gpu/drm/xe/xe_device.c |   1 +
+ drivers/gpu/drm/xe/xe_oa.c     | 239 +++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_oa.h     |   2 +
+ 3 files changed, 242 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-new file mode 100644
-index 0000000000000..4063c81e353ff
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -0,0 +1,295 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index aacca14e52b11..7a179c4515633 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -115,6 +115,7 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_VM_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
+ 
++	DRM_IOCTL_DEF_DRV(XE_OA_OPEN, xe_oa_stream_open_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_OA_ADD_CONFIG, xe_oa_add_config_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_OA_REMOVE_CONFIG, xe_oa_remove_config_ioctl, DRM_RENDER_ALLOW),
+ 
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 1963bc6fad10e..c0ff8c2319ac0 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -11,11 +11,16 @@
+ #include <drm/xe_drm.h>
+ #include <drm/drm_drv.h>
+ 
++#include "regs/xe_gt_regs.h"
+ #include "regs/xe_oa_regs.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
++#include "xe_mmio.h"
+ #include "xe_oa.h"
+ 
++#define DEFAULT_POLL_FREQUENCY_HZ 200
++#define DEFAULT_POLL_PERIOD_NS (NSEC_PER_SEC / DEFAULT_POLL_FREQUENCY_HZ)
 +
-+#ifndef _XE_OA_TYPES_H_
-+#define _XE_OA_TYPES_H__
+ static u32 xe_oa_stream_paranoid = true;
+ static int xe_oa_sample_rate_hard_limit;
+ static u32 xe_oa_max_sample_rate = 100000;
+@@ -31,6 +36,21 @@ static const struct xe_oa_format oa_formats[] = {
+ 	[XE_OAM_FORMAT_MPEC8u32_B8_C8]		= { 2, 128, TYPE_OAM, HDR_64_BIT },
+ };
+ 
++struct xe_oa_open_properties {
++	bool sample;
++	bool single_exec_q;
++	u64 exec_q_id;
 +
-+#include <linux/idr.h>
-+#include <linux/kobject.h>
-+#include <linux/poll.h>
-+#include <linux/sysfs.h>
-+#include <drm/xe_drm.h>
-+#include "regs/xe_reg_defs.h"
++	int metrics_set;
++	int oa_format;
++	bool oa_periodic;
++	int oa_period_exponent;
 +
-+struct drm_device;
-+struct drm_file;
-+
-+enum {
-+	OA_GROUP_OAG = 0,
-+	OA_GROUP_OAM_SAMEDIA_0 = 0,
-+
-+	OA_GROUP_MAX,
-+	OA_GROUP_INVALID = U32_MAX,
-+};
-+
-+enum oa_type {
-+	TYPE_OAG,
-+	TYPE_OAM,
-+};
-+
-+enum report_header {
-+	HDR_32_BIT = 0,
-+	HDR_64_BIT,
-+};
-+
-+struct xe_oa_format {
-+	u32 format;
-+	int size;
-+	int type;
-+	enum report_header header;
-+};
-+
-+struct xe_oa_reg {
-+	struct xe_reg addr;
-+	u32 value;
-+};
-+
-+struct xe_oa_config {
-+	struct xe_oa *oa;
-+
-+	char uuid[UUID_STRING_LEN + 1];
-+	int id;
-+
-+	const struct xe_oa_reg *mux_regs;
-+	u32 mux_regs_len;
-+	const struct xe_oa_reg *b_counter_regs;
-+	u32 b_counter_regs_len;
-+	const struct xe_oa_reg *flex_regs;
-+	u32 flex_regs_len;
-+
-+	struct attribute_group sysfs_metric;
-+	struct attribute *attrs[2];
-+	struct kobj_attribute sysfs_metric_id;
-+
-+	struct kref ref;
-+	struct rcu_head rcu;
-+};
-+
-+struct xe_oa_regs {
-+	u32 base;
-+	struct xe_reg oa_head_ptr;
-+	struct xe_reg oa_tail_ptr;
-+	struct xe_reg oa_buffer;
-+	struct xe_reg oa_ctx_ctrl;
-+	struct xe_reg oa_ctrl;
-+	struct xe_reg oa_debug;
-+	struct xe_reg oa_status;
-+	u32 oa_ctrl_counter_format_shift;
-+};
-+
-+/**
-+ * struct xe_oa_group - OA group representing one hardware OA unit
-+ */
-+struct xe_oa_group {
-+	/** @oa_unit_id: identifier for the OA unit */
-+	u16 oa_unit_id;
-+
-+	/**
-+	 * @exclusive_stream: The stream currently using the OA unit. This is
-+	 * sometimes accessed outside a syscall associated to its file
-+	 * descriptor.
-+	 */
-+	struct xe_oa_stream *exclusive_stream;
-+
-+	/** @num_engines: number of engines using this OA unit */
-+	u32 num_engines;
-+
-+	/** @regs: OA buffer register group for programming the OA unit */
-+	struct xe_oa_regs regs;
-+
-+	/** @type: Type of OA unit - OAM, OAG etc. */
-+	enum oa_type type;
-+};
-+
-+/**
-+ * struct xe_oa_gt - OA per-gt information
-+ */
-+struct xe_oa_gt {
-+	/** @lock: lock associated with anything below within this structure */
-+	struct mutex lock;
-+
-+	/** @num_oa_groups: number of oa groups per gt */
-+	u32 num_oa_groups;
-+
-+	/** @group: list of OA groups - one for each OA buffer */
-+	struct xe_oa_group *group;
-+};
-+
-+/**
-+ * struct xe_oa - OA device level information
-+ */
-+struct xe_oa {
-+	/** @xe: back pointer to xe device */
-+	struct xe_device *xe;
-+
-+	/** @metrics_kobj: kobj for metrics sysfs */
-+	struct kobject *metrics_kobj;
-+
-+	/**
-+	 * @metrics_lock: lock associated with adding/modifying/removing OA
-+	 * configs in oa->metrics_idr.
-+	 */
-+	struct mutex metrics_lock;
-+
-+	/**
-+	 * @metrics_idr: List of dynamic configurations (struct xe_oa_config)
-+	 */
-+	struct idr metrics_idr;
-+
-+	/** @ctx_oactxctrl_offset: offset of OACTXCONTROL register in context image */
-+	u32 ctx_oactxctrl_offset;
-+
-+	/** @oa_formats: tracks all OA formats across platforms */
-+	const struct xe_oa_format *oa_formats;
-+
-+#define FORMAT_MASK_SIZE DIV_ROUND_UP(XE_OA_FORMAT_MAX - 1, BITS_PER_LONG)
-+
-+	/** @format_mask: tracks valid OA formats for a platform */
-+	unsigned long format_mask[FORMAT_MASK_SIZE];
-+
-+	/** @oa_unit_ids: tracks oa unit ids assigned across gt's */
-+	u16 oa_unit_ids;
-+};
-+
-+/**
-+ * struct xe_oa_stream - state for a single open stream FD
-+ */
-+struct xe_oa_stream {
-+	/** @oa: xe_oa backpointer */
-+	struct xe_oa *oa;
-+
-+	/** @gt: gt associated with the oa stream */
-+	struct xe_gt *gt;
-+
-+	/**
-+	 * @hwe: hardware engine associated with this performance stream.
-+	 */
 +	struct xe_hw_engine *hwe;
 +
-+	/** @lock: Lock associated with operations on stream */
-+	struct mutex lock;
-+
-+	/**
-+	 * @sample: true when DRM_XE_OA_PROP_SAMPLE_OA is given when
-+	 * opening a stream, representing the contents of a single sample
-+	 * as read() by userspace.
-+	 */
-+	bool sample;
-+
-+	/**
-+	 * @sample_size: Considering the configured contents of a sample
-+	 * combined with the required header size, this is the total size
-+	 * of a single sample record.
-+	 */
-+	int sample_size;
-+
-+	/**
-+	 * @exec_q: %NULL if measuring system-wide across all exec_q's or a
-+	 * specific exec_q that is being monitored.
-+	 */
-+	struct xe_exec_queue *exec_q;
-+
-+	/**
-+	 * @enabled: Whether the stream is currently enabled, considering
-+	 * whether the stream was opened in a disabled state and based
-+	 * on `XE_OA_IOCTL_ENABLE` and `XE_OA_IOCTL_DISABLE` calls.
-+	 */
-+	bool enabled;
-+
-+	/** @oa_config: The OA configuration used by the stream */
-+	struct xe_oa_config *oa_config;
-+
-+	/**
-+	 * @oa_config_bos: A list of struct i915_oa_config_bo allocated lazily
-+	 * each time @oa_config changes.
-+	 */
-+	struct llist_head oa_config_bos;
-+
-+	/** @specific_ctx_id: id of the context used for filtering reports */
-+	u32 specific_ctx_id;
-+
-+	/** @specific_ctx_id_mask: The mask used to masking specific_ctx_id bits */
-+	u32 specific_ctx_id_mask;
-+
-+	/**
-+	 * @poll_check_timer: High resolution timer that will periodically
-+	 * check for data in the circular OA buffer for notifying userspace
-+	 * (e.g. during a read() or poll()).
-+	 */
-+	struct hrtimer poll_check_timer;
-+
-+	/**
-+	 * @poll_wq: The wait queue that hrtimer callback wakes when it
-+	 * sees data ready to read in the circular OA buffer.
-+	 */
-+	wait_queue_head_t poll_wq;
-+
-+	/** @pollin: Whether there is data available to read */
-+	bool pollin;
-+
-+	/** @periodic: Whether periodic sampling is currently enabled */
-+	bool periodic;
-+
-+	/** @period_exponent: The OA unit sampling frequency is derived from this */
-+	int period_exponent;
-+
-+	/** @oa_buffer: State of the OA buffer */
-+	struct {
-+		/** @format: data format */
-+		const struct xe_oa_format *format;
-+
-+		/** @format: xe_bo backing the OA buffer */
-+		struct xe_bo *bo;
-+
-+		/** @vaddr: mapped vaddr of the OA buffer */
-+		u8 *vaddr;
-+
-+		/** @last_ctx_id: last context id for OA data added */
-+		u32 last_ctx_id;
-+
-+		/**
-+		 * @ptr_lock: Locks reads and writes to all head/tail state
-+		 *
-+		 * Consider: the head and tail pointer state needs to be read
-+		 * consistently from a hrtimer callback (atomic context) and
-+		 * read() fop (user context) with tail pointer updates happening
-+		 * in atomic context and head updates in user context and the
-+		 * (unlikely) possibility of read() errors needing to reset all
-+		 * head/tail state.
-+		 *
-+		 * Note: Contention/performance aren't currently a significant
-+		 * concern here considering the relatively low frequency of
-+		 * hrtimer callbacks (5ms period) and that reads typically only
-+		 * happen in response to a hrtimer event and likely complete
-+		 * before the next callback.
-+		 *
-+		 * Note: This lock is not held *while* reading and copying data
-+		 * to userspace so the value of head observed in htrimer
-+		 * callbacks won't represent any partial consumption of data.
-+		 */
-+		spinlock_t ptr_lock;
-+
-+		/**
-+		 * @head: Although we can always read back the head pointer register,
-+		 * we prefer to avoid trusting the HW state, just to avoid any
-+		 * risk that some hardware condition could somehow bump the
-+		 * head pointer unpredictably and cause us to forward the wrong
-+		 * OA buffer data to userspace.
-+		 */
-+		u32 head;
-+
-+		/**
-+		 * @tail: The last verified tail that can be read by userspace.
-+		 */
-+		u32 tail;
-+	} oa_buffer;
-+
-+	/**
-+	 * @poll_oa_period: The period in nanoseconds at which the OA
-+	 * buffer should be checked for available data.
-+	 */
 +	u64 poll_oa_period;
 +};
-+#endif
++
+ static struct ctl_table_header *sysctl_header;
+ 
+ static void xe_oa_config_release(struct kref *ref)
+@@ -53,6 +73,225 @@ static void xe_oa_config_put(struct xe_oa_config *oa_config)
+ 	kref_put(&oa_config->ref, xe_oa_config_release);
+ }
+ 
++/*
++ * OA timestamp frequency = CS timestamp frequency in most platforms. On some
++ * platforms OA unit ignores the CTC_SHIFT and the 2 timestamps differ. In such
++ * cases, return the adjusted CS timestamp frequency to the user.
++ */
++u32 xe_oa_timestamp_frequency(struct xe_device *xe)
++{
++	u32 reg, shift;
++
++	/*
++	 * Wa_18013179988:dg2
++	 * Wa_14015568240:pvc
++	 * Wa_14015846243:mtl
++	 */
++	switch (xe->info.platform) {
++	case XE_DG2:
++	case XE_PVC:
++	case XE_METEORLAKE:
++		xe_device_mem_access_get(xe);
++		reg = xe_mmio_read32(xe_root_mmio_gt(xe), RPM_CONFIG0);
++		xe_device_mem_access_put(xe);
++
++		shift = REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
++		return xe_root_mmio_gt(xe)->info.clock_freq << (3 - shift);
++
++	default:
++		return xe_root_mmio_gt(xe)->info.clock_freq;
++	}
++}
++
++static u64 oa_exponent_to_ns(struct xe_oa *oa, int exponent)
++{
++	u64 nom = (2ULL << exponent) * NSEC_PER_SEC;
++	u32 den = xe_oa_timestamp_frequency(oa->xe);
++
++	return div_u64(nom + den - 1, den);
++}
++
++static bool oa_format_valid(struct xe_oa *oa, u64 format)
++{
++	if (format >= XE_OA_FORMAT_MAX)
++		return false;
++	return test_bit(format, oa->format_mask);
++}
++
++static bool engine_supports_oa(const struct xe_hw_engine *hwe)
++{
++	return hwe->oa_group;
++}
++
++static bool engine_supports_oa_format(const struct xe_hw_engine *hwe, int type)
++{
++	return hwe->oa_group && hwe->oa_group->type == type;
++}
++
++#define OA_EXPONENT_MAX 31
++
++static int xe_oa_read_properties_unlocked(struct xe_oa *oa, u64 __user *uprops,
++					  u32 n_props,
++					  struct xe_oa_open_properties *props)
++{
++	const struct xe_oa_format *f;
++	u64 __user *uprop = uprops;
++	bool config_instance = false;
++	bool config_class = false;
++	u8 class, instance;
++	struct xe_gt *gt;
++	u32 i;
++	int ret;
++
++	if (!n_props || n_props >= DRM_XE_OA_PROP_MAX) {
++		drm_dbg(&oa->xe->drm, "Invalid number of xe perf properties given\n");
++		return -EINVAL;
++	}
++
++	props->poll_oa_period = DEFAULT_POLL_PERIOD_NS;
++
++	/* Defaults when class:instance is not passed */
++	class = XE_ENGINE_CLASS_RENDER;
++	instance = 0;
++
++	for (i = 0; i < n_props; i++) {
++		u64 oa_period, oa_freq_hz;
++		u64 id, value;
++
++		ret = get_user(id, uprop);
++		if (ret)
++			return ret;
++
++		ret = get_user(value, uprop + 1);
++		if (ret)
++			return ret;
++
++		switch ((enum drm_xe_oa_property_id)id) {
++		case DRM_XE_OA_PROP_EXEC_QUEUE_ID:
++			props->single_exec_q = true;
++			props->exec_q_id = value;
++			break;
++		case DRM_XE_OA_PROP_SAMPLE_OA:
++			props->sample = value;
++			break;
++		case DRM_XE_OA_PROP_OA_METRICS_SET:
++			if (!value) {
++				drm_dbg(&oa->xe->drm, "Unknown OA metric set ID\n");
++				return -EINVAL;
++			}
++			props->metrics_set = value;
++			break;
++		case DRM_XE_OA_PROP_OA_FORMAT:
++			if (!oa_format_valid(oa, value)) {
++				drm_dbg(&oa->xe->drm, "Unsupported OA report format %llu\n",
++					value);
++				return -EINVAL;
++			}
++			props->oa_format = value;
++			break;
++		case DRM_XE_OA_PROP_OA_EXPONENT:
++			if (value > OA_EXPONENT_MAX) {
++				drm_dbg(&oa->xe->drm, "OA timer exponent too high (> %u)\n",
++					OA_EXPONENT_MAX);
++				return -EINVAL;
++			}
++
++			BUILD_BUG_ON(sizeof(oa_period) != 8);
++			oa_period = oa_exponent_to_ns(oa, value);
++
++			oa_freq_hz = div64_u64(NSEC_PER_SEC, oa_period);
++			if (oa_freq_hz > xe_oa_max_sample_rate && !perfmon_capable()) {
++				drm_dbg(&oa->xe->drm,
++					"OA exponent would exceed the max sampling frequency (sysctl dev.xe.oa_max_sample_rate) %uHz without CAP_PERFMON or CAP_SYS_ADMIN privileges\n",
++					  xe_oa_max_sample_rate);
++				return -EACCES;
++			}
++
++			props->oa_periodic = true;
++			props->oa_period_exponent = value;
++			break;
++		case DRM_XE_OA_PROP_POLL_OA_PERIOD:
++			if (value < 100000 /* 100us */) {
++				drm_dbg(&oa->xe->drm, "OA timer too small (%lluns < 100us)\n",
++					value);
++				return -EINVAL;
++			}
++			props->poll_oa_period = value;
++			break;
++		case DRM_XE_OA_PROP_OA_ENGINE_CLASS:
++			class = (u8)value;
++			config_class = true;
++			break;
++		case DRM_XE_OA_PROP_OA_ENGINE_INSTANCE:
++			instance = (u8)value;
++			config_instance = true;
++			break;
++		default:
++			drm_dbg(&oa->xe->drm, "Unknown xe oa property ID %lld\n", id);
++			return -EINVAL;
++		}
++
++		uprop += 2;
++	}
++
++	if ((config_class && !config_instance) ||
++	    (config_instance && !config_class)) {
++		drm_dbg(&oa->xe->drm, "OA engine class/instance parameters must be passed together\n");
++		return -EINVAL;
++	}
++
++	for_each_gt(gt, oa->xe, i) {
++		props->hwe = xe_gt_hw_engine(gt, class, instance, false);
++		if (props->hwe)
++			break;
++	}
++	if (!props->hwe) {
++		drm_dbg(&oa->xe->drm, "OA engine class and instance invalid %d:%d\n",
++			class, instance);
++		return -EINVAL;
++	}
++
++	if (!engine_supports_oa(props->hwe)) {
++		drm_dbg(&oa->xe->drm, "Engine not supported by OA %d:%d\n",
++			class, instance);
++		return -EINVAL;
++	}
++
++	f = &oa->oa_formats[props->oa_format];
++	if (!props->oa_format || !f->size ||
++	    !engine_supports_oa_format(props->hwe, f->type)) {
++		drm_dbg(&oa->xe->drm, "Invalid OA format %d type %d size %d for class %d\n",
++			props->oa_format, f->type, f->size, props->hwe->class);
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++int xe_oa_stream_open_ioctl(struct drm_device *dev, void *data,
++			    struct drm_file *file)
++{
++	struct xe_oa *oa = &to_xe_device(dev)->oa;
++	struct drm_xe_oa_open_param *param = data;
++	struct xe_oa_open_properties props = {};
++	u32 known_open_flags;
++
++	if (!oa->xe) {
++		drm_dbg(&oa->xe->drm, "xe oa interface not available for this system\n");
++		return -ENODEV;
++	}
++
++	known_open_flags = XE_OA_FLAG_FD_CLOEXEC | XE_OA_FLAG_FD_NONBLOCK | XE_OA_FLAG_DISABLED;
++	if (param->flags & ~known_open_flags) {
++		drm_dbg(&oa->xe->drm, "Unknown drm_xe_oa_open_param flag\n");
++		return -EINVAL;
++	}
++
++	return xe_oa_read_properties_unlocked(oa, u64_to_user_ptr(param->properties_ptr),
++					      param->num_properties,
++					      &props);
++}
++
+ static bool xe_oa_is_valid_flex_addr(struct xe_oa *oa, u32 addr)
+ {
+ 	static const struct xe_reg flex_eu_regs[] = {
+diff --git a/drivers/gpu/drm/xe/xe_oa.h b/drivers/gpu/drm/xe/xe_oa.h
+index 79f77f445deb0..fd6caf652047a 100644
+--- a/drivers/gpu/drm/xe/xe_oa.h
++++ b/drivers/gpu/drm/xe/xe_oa.h
+@@ -16,6 +16,8 @@ int xe_oa_ioctl_version(struct xe_device *xe);
+ int xe_oa_sysctl_register(void);
+ void xe_oa_sysctl_unregister(void);
+ 
++int xe_oa_stream_open_ioctl(struct drm_device *dev, void *data,
++			    struct drm_file *file);
+ int xe_oa_add_config_ioctl(struct drm_device *dev, void *data,
+ 			   struct drm_file *file);
+ int xe_oa_remove_config_ioctl(struct drm_device *dev, void *data,
 -- 
 2.41.0
 
