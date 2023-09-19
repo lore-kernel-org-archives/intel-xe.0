@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9207CD5BCA
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 14:25:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D10ACD5BC9
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 14:25:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6A70310E288;
-	Tue, 19 Sep 2023 14:25:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D0FA10E28E;
+	Tue, 19 Sep 2023 14:25:14 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F22B210E3D7;
- Tue, 19 Sep 2023 14:25:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A12210E292
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 14:25:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695133509; x=1726669509;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=+41jdCMj6+WcaxBbShEAaQFp2ECvG8K4s0WMNW3sEjg=;
- b=XuHs21EMjor0mjNDZthnhNfBJSfXOJjAI+h04Hom6MOm1wWwOEWlW1V0
- vZSRpeaqXhJZzyHS2hs3+LtAhC6aVFd6AkNQXWj896N+C9RmwV3MDKhiv
- adGG2z/ABKfxuB5qZr2luMluRnxp/mFdKP06U2h8MvCnTE0h/rhy+4A8G
- Rb5g6YiSDhBuAY6vPzIftcaOcVOLgsww9LgYuY3vGT3SEI7g3GkOR9O83
- /3eqr0sU8EUReinHrphMORKfiQ+fjzfO9AxCK2C8n9A0iNB8JyXCxggCU
- C2ijhDT4NnpWMzmxRT+lBH9lS+W99SbKwl39CdLJZ9NEne7YsuLi20KLI w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="466278426"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="466278426"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ t=1695133512; x=1726669512;
+ h=from:to:cc:subject:date:message-id:
+ content-transfer-encoding:mime-version;
+ bh=tJBNHAVyGMEoei+IfsnLp9pzeBbhKftaEtJwG+Pp8jE=;
+ b=a7TOU4Cb2gz8L2hdzIEWCJfGTG2lJ8V5Jd7HsyAcmAALb5GDf3PWALKK
+ JYyLSFbViXrPQ5ARu6rXKn1vjNN4dBMe9NQHmzicAeUvikdnCYrG/MHH5
+ NNgLztJtv2WoG6+39HoDOP/4nAMegtEW5E/0X9Dkp2clyXZVEphi6hqIW
+ BKPIOF0AfxxKltXKoovY1PYfWBbyaP8wlvlk9HYvTux8uw5ZFt4u5+TTw
+ 4Kt4QkPRS22wmVimmPW7TA8pPvOlNP55tBPNWBC7afAflCVnoU0mnUkFn
+ oSQi7E0+MSE3PNG1pHA8R5lIuerMnvUyg9ksj+KxKI42LEbFtHD/JblJ6 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="466278459"
+X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="466278459"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 07:25:08 -0700
+ 19 Sep 2023 07:25:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="775573857"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="775573857"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Sep 2023 07:25:07 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="695924267"
+X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="695924267"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Sep 2023 07:25:11 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 19 Sep 2023 07:25:06 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.32; Tue, 19 Sep 2023 07:25:11 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 19 Sep 2023 07:25:06 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 19 Sep 2023 07:25:06 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Tue, 19 Sep 2023 07:25:11 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 19 Sep 2023 07:25:05 -0700
+ 15.1.2507.32; Tue, 19 Sep 2023 07:25:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=F7Omzn3hxSFeLVyBXsXCFbxqsJo2nbw4aGMCDMK82/agtmvWvNPgUjktex1GIFDpW+WhZTaL9nB9PPYO3rlw+w5uHyxlpcQbLpn3j+0dcP1s2d3JpxIOFi9vzFTNBvXfNTWhzquNeBlEDg0mm/jcKyjnrWaP3Rszun8OHYINlTsQoxpe1GWj8gcF6SlN8tWGWGv5w/sNiZp2TFq7kiQfXtmXl+wZ8WAd2icbYmHESPX8kUitrmzevkQapYBIYvJivm/SIy1xOLP1pf53Tg+XJqhr9/bUr5bNU1p2Kl47IsCukRc8m7633vnzhZgVseWiIm4hjvzG4dVjQ1u32YmcRg==
+ b=Y55vsfpTyTN9jTzjcMX6PwgT/HI8G34jH3HbEvrTvlENYU4O7SCEJis39N1A31QoNONO1uVAip39TW/bg3gXIMbGdbMVYV84yy8OOyhAJC7/NYX/o9QHySy5995wWtZ6ZvjJvgpw8kNQRNEX65yse/dIQFeIu5sJulRovW+eS5351wF66iAehgh+nMZMdBAMywJ1L14hsSK+IE4Nm3rjrrwP+qgAsmcEihhLw7DHo1/OeFmeCfsV77yCxvtG34NtW40tWcqjUBpZgyNAX+TwG5PmH4BrpnngriFiyArbhmLj+cNlt9UhKNeQOCHl6IveciSF9jLI48CeccO6lWKAqQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=aevKsj+msu85qaAWp0A2zL6D4a9rxAVsryNEGSh9HGo=;
- b=E1k1JGLJfx5+yVRRI6AD8JwQ3b6pvTNu5ic8bmvr3ZAd4RqXfjO+EtG2bN9zox4UhrKePU17fOyhW1jzrdJRpG5nRvtDzbPC+KX1Yg6xb4yj+2PiKVF58r+sNbPsWyEAiWlf/ZXyPpc8tlXYOuW6l4hIX9xuaXSiXpJnI22XF7qpr1BC1v9lxsqshWclNJRNQfDnTQm2V5eULRYVtguUVtjkh4k4b+fJ6MPMoC6CTCrb+SVBY6rhgRjoFvRXKMLFq44/itfK53gCKsAxG75eOn738A9Xxb7psxmPvlN8yk/OhbmIDKTDNxqSOFHc9MIY/HPSXsUUARAAp3OoAVaYAQ==
+ bh=XolFd9tah46MTceTU7hBICPpYFDbKABN81eh5LJQNFc=;
+ b=f63UnckhntjSpAnjAOvN4noOXkMtYf1yp5h33L+6LvdiZalcsUmWyoj96Z7/j0XM0chrtr/Zk3EooUTI1kjbD4QK0o1qO/dntcNh/P3uYNcb5l562P9ShMPCQE4nKa3QaBJDN9HjThaTVAbLh+jJJlwQahIi3d7HzOXZJlyFepSc7+/6mShHlyJuygruplZvmD8LtJ9wsvmhUPi06ztt+FaOu5KBtcYaAT8+bMq6Xxacjub6pwZYbMsKmvX8iaYoNO+mYCwSWTSMI/GX6aXMD7kjB1Qz1F+Thrl5oY33OkscX6zmgmVIEwvKAxnk2H3wtq0aCCs+a4LT2G85yqGwNw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,76 +63,82 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by CH3PR11MB7914.namprd11.prod.outlook.com (2603:10b6:610:12c::10)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27; Tue, 19 Sep
- 2023 14:24:53 +0000
+ 2023 14:25:08 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::6d0b:5bc6:8723:593%6]) with mapi id 15.20.6792.022; Tue, 19 Sep 2023
- 14:24:53 +0000
+ 14:25:08 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: <intel-xe@lists.freedesktop.org>, <igt-dev@lists.freedesktop.org>
-Date: Tue, 19 Sep 2023 10:19:46 -0400
-Message-ID: <20230919142000.91363-4-rodrigo.vivi@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Tue, 19 Sep 2023 10:24:47 -0400
+Message-ID: <20230919142504.91652-1-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230919142000.91363-1-rodrigo.vivi@intel.com>
-References: <20230919142000.91363-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BYAPR02CA0001.namprd02.prod.outlook.com
- (2603:10b6:a02:ee::14) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: SJ0PR13CA0083.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::28) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CH3PR11MB7914:EE_
-X-MS-Office365-Filtering-Correlation-Id: 396c8f8b-ef92-4a26-daea-08dbb91c3106
+X-MS-Office365-Filtering-Correlation-Id: 5f457061-66fa-461f-9293-08dbb91c3a05
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ljncTZ78nhIx1AGX0qs4yVkLA84CIkAb+PIqSpk1Z7kXTlOT/5k+ypegdyZLG982m3czQhBQK4AYtFnBD8QHlzwY6d6V5q9RwAbXgJvDbzhX0q7ov8WoTrtOFxyajvte8ZSbYxbaSY/1PnrCko/h8bNOMazvJ7EwhtOQbokx+SY3XkHK43zY54Qh1F1rPHF1mcWOAX7bSQS0y13AyQUtk6P50EVRQnG4dVG72FVGO83RSp2afDN7Za70tVfvEAecyehuqjVlBtxnARgYseaqa9PnelDM54ptu068sgR/J4A9ecUMablV3+YApb8p+G6/5Bpbn/8rcuJEQ9oKsMhc/7kCDd2OYlAwR/AH/EWUUPulc9Z1n3ZArJSte0TPg2xyshsI7b1rCBAZf2EQ28YDoXBJtj7Wc5NnOGJPo4fTDrHOa/k9MR5jpcjwZ5ZuLZf5nzQqifklDCBp4zxWLUBJ1kOMZzVEIJbSNK/Jq15zROLWGdwy1e5L/ZqB1noXnLa5c5241euJPS88AD3E2mH9rXfQwMBOx1D23xWumvPskv6D9GjJgF0NUIKQY8TrDtOM
+X-Microsoft-Antispam-Message-Info: T8s1eBpQLzHw5HILX3STkIraGyNPcDqDIKPcyc2uoE2AL9ihBUcarmpiyZ59FS36SPLj/uqPQx5UJgcva5A0qw+lcT2OavrVsGzMrb+KomMYtsb86r95TyewRaM2MWkktzRUxcIO5k6ZM+s7ZTM4ZTfcu96PRGjNVpuhE3pY9TYTq1EwmVqXccYolqbG5/KRzCcz5FgKk5pMQj49CdNI+57HmsDL3nWkf4U7jYuN1a06a1gOQG54k5C7SWgOnyz1FRkjSBvtCNZbHlI8iCBO6mcFIT0tdxD0KscynCTn6TPATAYv5aeUaAFdT+ofCP3Mcg7bxWOYQ049bBfvrJHMJFIVKSQe1cqmE0ONyZ7wwzwguGMXYeNwacwAAyjXEzf7SP1b/pGTLdxPtoTp5+CdOHMDNbSlGupvkN8covWs/PLssgKt0JEbJZmI5huk3TRm18jmhJW4DIA7hbdWSyUtFm2qNpNYJ7K68VN0r4b3qCgTMSt73Xliu484U9QvgwkVR13z5gvzY6cPJ9bmvYGe5fNvxvhYVU8+vAvpxcXtr3W6oiq24EeQ3wuHDHYsX/Mf0dg3KJIiA1BUttiUf2zObA==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(376002)(39860400002)(366004)(136003)(346002)(451199024)(186009)(1800799009)(30864003)(478600001)(41300700001)(450100002)(83380400001)(44832011)(5660300002)(6666004)(2906002)(316002)(66946007)(54906003)(66556008)(66476007)(8676002)(4326008)(8936002)(6506007)(6486002)(6512007)(1076003)(26005)(2616005)(107886003)(36756003)(82960400001)(86362001)(38100700002);
+ SFS:(13230031)(396003)(376002)(39860400002)(366004)(136003)(346002)(451199024)(186009)(1800799009)(478600001)(966005)(41300700001)(83380400001)(44832011)(5660300002)(6666004)(2906002)(316002)(66946007)(6916009)(66556008)(66476007)(8676002)(4326008)(8936002)(6506007)(6486002)(6512007)(1076003)(26005)(2616005)(107886003)(36756003)(82960400001)(86362001)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IA84H2fLcuHzSZE3TPvUxPK8v5tPxoLvOcQ+vcizqKkgU20EbD4LhfbR7Nc+?=
- =?us-ascii?Q?pG3Ze8guZlRPjme4IPtyyBzh4/AGJDCSlJ3WNQQNlamporx/X967d2DdPq6k?=
- =?us-ascii?Q?cifRgU1WKhM60uROJ7+D8TZeMgsh7dgoRHCfxoocuZoP6amAihw2B4+itI8t?=
- =?us-ascii?Q?E+pdRXugQMhT2F8KKainDHyJQiJGTBtXOJtDuqmM6YDNkhsN4RWnikXGFDTf?=
- =?us-ascii?Q?PYYwC9rl/73xZ5V7l0QA8vPYBPGprc75+QsWuQxRV5CUYTGHZ3n4pYTrdg05?=
- =?us-ascii?Q?B4pWShvVsxfWCCbkpxnnVnnmTwZdkTm1u5wcJZLEaxpFXY3wsnFLBN/8KJ54?=
- =?us-ascii?Q?lTG9jg88Vr+845xACxinZ45ajeWLPse4DZflAMkq7yepmTTdoz379xcbx7+x?=
- =?us-ascii?Q?B2i4hgKo5MxMzHbnv2HB1lkq1GMa6S9Eyri2G6GQJUm8O5EHMSHXZpJAOZ+D?=
- =?us-ascii?Q?bsNgMZ4+BVUBuPStTa39cQrX4rAy7dy7PNmikV5p5js0fGh+RNPLxiTL7vMl?=
- =?us-ascii?Q?Ji08EgyJ/4X5UkQ78lPNUGAPCLt84N+j7ajMs7i1ErZnmz3s+GORapAJTMnn?=
- =?us-ascii?Q?ji2u9hkuaCuYp50mEbp1F7ZvGRQ79B8MLo48spf4GL6e/UxOPQA0FkVDs2+7?=
- =?us-ascii?Q?s9WfbT80oXZSX4q++tERsMuGDum07dgcykWbmzVhdnq+Uo02fazyjUdKkcGF?=
- =?us-ascii?Q?rku+VpdWGEMwhO4EqXi4nM2qoAto7KJoU39jcQnJir9Mh1R8WsiugdvuNr2w?=
- =?us-ascii?Q?xZZFHOeCbP56CX96O8ZWQa8Kaji3b8i4dZREinu4MlVWEZ82eMXWyNyJ8itT?=
- =?us-ascii?Q?I6gieHALH/E3GO1EGD7F0SAdoTva9uTfiIeSXHB2lgFHegL1KgNMfCHhTG81?=
- =?us-ascii?Q?q/h96qm7YL1CpCtCCUSGsO4MP+LkzRdrNna7I73SF5bxm1h09q5YsyKfffhY?=
- =?us-ascii?Q?vM204elvEvVVRP8JLUEO6WMjv5zwYPkBOxodiJ5TPB7v+hEvJ1qG6vpz7azA?=
- =?us-ascii?Q?KDQ9JtDDmwg0WrbyV/mqSmIQ7PpIV2u52a/Nw8DCINEYOJjVeWD8LPQWOuAe?=
- =?us-ascii?Q?mI38B3dBQcqYsdfl4PQAStROc53ickpY7zt3Jx4xkGmWsiNVf2kkb+6ElNAi?=
- =?us-ascii?Q?3D0BkRH9r0PH+wiZt7U+wRtikT0V847G9dCqstKUX0bhaM0aY85vAEL/W52c?=
- =?us-ascii?Q?VD+NjwH/LXt/vpQ/t0teAIadT+U2OUjYtnMqjphveDQYWBBkp0jLLf1ylPWN?=
- =?us-ascii?Q?7TPno1Tv6SNLPv6C2mYfgnDxE7JcWgPQ7vSbgb0cjGzC1M4zmW7YIeR580oV?=
- =?us-ascii?Q?kfvnyJrcMUozkdNd+YwJay8ZKnoULtVrfdIq0d5FotJQPrccCwLcBYtls6OM?=
- =?us-ascii?Q?RjVA0M9vOSpx1KjJ40JnU8JdGQlOTvMgU0E++DPPWeOmxu+3njaq5mzXXCLM?=
- =?us-ascii?Q?uyXH50DGRtC0FIFXV31czREbhBCKmVZo93qSGZe+FlCdAKjH2CkSggcklD0m?=
- =?us-ascii?Q?ILtKi9hzstWHipR6eBaV0+JpqeuT2vhJglx/ppnE9fbC6X3Nx/ekpmbBvzVK?=
- =?us-ascii?Q?y7JS2LRI7/DRMrzFuHXnzGZ0VfRy19kUOw0xiGSiOc14sN6wYkW7Lgiy8UrG?=
- =?us-ascii?Q?CQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 396c8f8b-ef92-4a26-daea-08dbb91c3106
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RW1oM0M5M1dDWGQvSHNUU3ZycHZwZXM0WllYamJuYm5DUmUra3dMNmgyNEdZ?=
+ =?utf-8?B?UXZ0TUtNcjJ5WkFVWlJlNEdYVjdzaXVleW85MjVMdWVyNWxacTc4bExVaGRZ?=
+ =?utf-8?B?Q2czclRFd083bllKYkhIZzlkN203cG9uSVBXZVVoZGxEVFhSWkVLSW9VOUxw?=
+ =?utf-8?B?U3VlcW8vb1dMSTVkM3gyM25keFNDZHM3cXVQN0NrSmtDc05kTjVYeUQ5SU9v?=
+ =?utf-8?B?U21odkVaR0Z0Tnh2MUhBZm9TdWdvR21za2Z1NDhtTmlJeTB0U0cxNFNLVXVP?=
+ =?utf-8?B?d0pFZmFLZTUxWUpQM21McW9ja2duVnRJMklRcExUTnRBQUlONGJ4cHk2Y1h2?=
+ =?utf-8?B?SU9URTNhTy9OcWdBL0VFVUFxcFVjTVNZVnhVRUhSNWtLK2IyR1ZpNHNFWUJI?=
+ =?utf-8?B?ZU5VNTJUNDVHYVE0RkZmRnJWeHcwbXE3bEo1ZnNSaUFURDJuLzFCRFFEVEtT?=
+ =?utf-8?B?aWd0WFBiRWxjd1ZWY1Y5QVJhY3RMdHBTYzJMNmw2ZWdYa2M4T1V0ejBSOW1X?=
+ =?utf-8?B?K2pCcTlPQnlacTBURCtwdWQxdlFBYzFQSXBnb2tqeTZFM3EzT1U0cllwdEpJ?=
+ =?utf-8?B?bldoZndjcmd0b043QVdIdS82NnRtdDhuNTBVSDRCdE9ISjlzK0FTSDF3cjNM?=
+ =?utf-8?B?NGVHUExlWjBCV3RSMjNuNjhFWVl3TnJCUWtxTUMyTGlKTlJiWEpDRHd4V1A5?=
+ =?utf-8?B?SXZHYTVzSU5hR0xqS0EvdGM3YWsyYzBMY3FCdis0NE5Kb3RZcUVVblFucXR5?=
+ =?utf-8?B?c0p1NVFnR0E5QnpOMFkrRjBhTXI3NUhsb2tNL21tK1dDREtBdGtjbXZXL2VY?=
+ =?utf-8?B?RzZ0aGNRYkIwTmlnSERTK29wSFJ2dHNNUVFZZVdBWGtSOTJidmxYSlNLWkJo?=
+ =?utf-8?B?N3JZcnp5dkFDUWcxTTdZeGVTMFdnS2JJQ1lxZDByZ09wZkZUdGZzdytaeUlB?=
+ =?utf-8?B?OHV0YzNsU3h1a0xId3AxeEo4Y2VCa2piUVZwSkhaZXJRZHdkak9Ja3NybFhh?=
+ =?utf-8?B?dGJLY0FkNGlrR09zOTZwdE92dkRTc1c0WktCODZ4RHNCZ1lNZ1JnUVFqUm14?=
+ =?utf-8?B?Z2JoSzdjaUVEdFl2aEZMcEFKbXNvOGNCOElVUWJWdkNoTHFYT1crOHFEVG1K?=
+ =?utf-8?B?YUFMRVlJdEhVdmtqQVUvbFBDdFk1Szg4S3Y2YU5ValpzdGNWT3dRN25yMk1v?=
+ =?utf-8?B?V3JJRWxWenJsenNyMzJGNTFsVVZsWXlVY21PTWh4ZkhjWjFMQTV5L09KZ0I0?=
+ =?utf-8?B?WUl6TE9TMnpBeFlpMHd4Uks5dXcvQWxhdWpnYWc4Zmd0MUxxclZZa1c0VVlB?=
+ =?utf-8?B?eG9aY2szT0lER1BvNGhvamNqQUJ4QVU1OUoydWdEMVF5SzhHcDdpMmdlY2Er?=
+ =?utf-8?B?ZmlFck14TXlicG93ZncyREpQUVJWVTRyVml5Y2xpK1YycklEWENsYVJtSndC?=
+ =?utf-8?B?di9tUEpTQXpyT0NPdHpObGJVZ0NqNGg3Mmt1TXM1MUE0aW1HeWNiV1B3djBj?=
+ =?utf-8?B?VkwwLzdMZkVTcm1kdSt1Mk44ZTF0bnAxbFZDKzRYcUpNR3VNekJWcXlGRkl3?=
+ =?utf-8?B?K2dPa1Z5allDdEp2ZEpITXN3cC9UTENrWUtzb2RIU2RNclhFZm9hRmJ6T0M2?=
+ =?utf-8?B?Y2JYYXhWTkZ5c2h3dW9IN1ZBSWtiUUJsR25ZL0VPeUQ5QUI5VUJpWnBEZ1FU?=
+ =?utf-8?B?bjFhRm90ZkRKbTAya3E0eWlqZ3dSd01oWjNKcDZzUXdlcVdnNVBuaXFXZFdQ?=
+ =?utf-8?B?K2VJbUtCNkRzeTBuMHdzODg4bmlTOE0yRVF4THFveUVDWUh0ZTRCOHVkd0p6?=
+ =?utf-8?B?SDBOZU9JMHVDa3Jwd1pyYXcrb3dxWE5SdXdZcmJSMGRoYTNXeEU5Y3BrV3E5?=
+ =?utf-8?B?cXd4R1VGNVVlREdYWExqUTN5SEtNQ1BzZ3Z2UGVUMWR3N3A3akh2cFRBOWdi?=
+ =?utf-8?B?WFQ1WHVRV28xM2o2ZHc3aXZuMVJmSkpzOW01Uk5wbktOeFBWVmV3V3E4LzZT?=
+ =?utf-8?B?MW1XWE0vSTFqK2ZpN2NaR0VnSGM5RHZHcnVZNzNVdXp0a0xQMDRwSDhHR2Jq?=
+ =?utf-8?B?UjY0U3VicldrRmpqblc1ejVVS25YdHR1Um1JM09EZkF6UDhZaWlvNWhNOWpF?=
+ =?utf-8?B?QmJ5T2NYMnAxKy9zSzUrQlJxQ0FWcTZHcEl0V0l4dzFCWXNidnVxdjhkcUNa?=
+ =?utf-8?B?bmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5f457061-66fa-461f-9293-08dbb91c3a05
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2023 14:24:53.7581 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2023 14:25:08.8594 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jOBmTCwf5wKOWj8X5+u0Hh8/+R4wFhjjzI5wlYme6i4g9BimrBovpcOG1/0KjOnS5uQCfo7jcmfmQ06vsZwYPQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: M9xQQQp2hufhaf8b3kySajhFgbKuqt/TqSUqiVRw/oFpgIb5/27JTo/53i4XVyALyQHXO/xCNkgaCyGSakfNUg==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7914
 X-OriginatorOrg: intel.com
-Subject: [Intel-xe] [PATCH i-g-t 03/16] drm-uapi/xe_drm: Separate VM_BIND's
- operation and flag, align with latest uapi
+Subject: [Intel-xe] [PATCH 00/17] uAPI Alignment - take 1
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,391 +150,67 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: kamil.kopryk@intel.com, filip.hazubski@intel.com, jakub.chaberek@intel.com,
+ effie.yu@intel.com, bartosz.dunajski@intel.com,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, carl.zhang@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Francois Dugast <francois.dugast@intel.com>
+As a result of the uAPI review efforts started by Thomas[1],
+we have identified many updates on our uAPI that would lead to
+breakage in the compatibility. What it is not acceptable after
+we are merged upstream. So, let's break it before it is too late,
+and start upstreaming a good, reliable and clean uapi.
 
-Align with commit ("drm/xe/uapi: Separate VM_BIND's operation and flag")
+Most of this work on putting these patches together for a single
+shot was led by Francois.
 
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- include/drm-uapi/xe_drm.h     | 14 ++++++++------
- lib/intel_batchbuffer.c       | 11 +++++++----
- lib/xe/xe_ioctl.c             | 31 ++++++++++++++++---------------
- lib/xe/xe_ioctl.h             |  6 +++---
- lib/xe/xe_util.c              |  9 ++++++---
- tests/intel/xe_exec_basic.c   |  2 +-
- tests/intel/xe_exec_threads.c |  2 +-
- tests/intel/xe_vm.c           | 16 +++++++++-------
- 8 files changed, 51 insertions(+), 40 deletions(-)
+The IGT counter part of this series is available as well[2].
 
-diff --git a/include/drm-uapi/xe_drm.h b/include/drm-uapi/xe_drm.h
-index f96c84a98..078edd9f8 100644
---- a/include/drm-uapi/xe_drm.h
-+++ b/include/drm-uapi/xe_drm.h
-@@ -663,8 +663,10 @@ struct drm_xe_vm_bind_op {
- #define XE_VM_BIND_OP_RESTART		0x3
- #define XE_VM_BIND_OP_UNMAP_ALL		0x4
- #define XE_VM_BIND_OP_PREFETCH		0x5
-+	/** @op: Bind operation to perform */
-+	__u32 op;
- 
--#define XE_VM_BIND_FLAG_READONLY	(0x1 << 16)
-+#define XE_VM_BIND_FLAG_READONLY	(0x1 << 0)
- 	/*
- 	 * A bind ops completions are always async, hence the support for out
- 	 * sync. This flag indicates the allocation of the memory for new page
-@@ -689,12 +691,12 @@ struct drm_xe_vm_bind_op {
- 	 * configured in the VM and must be set if the VM is configured with
- 	 * DRM_XE_VM_CREATE_ASYNC_BIND_OPS and not in an error state.
- 	 */
--#define XE_VM_BIND_FLAG_ASYNC		(0x1 << 17)
-+#define XE_VM_BIND_FLAG_ASYNC		(0x1 << 1)
- 	/*
- 	 * Valid on a faulting VM only, do the MAP operation immediately rather
- 	 * than deferring the MAP to the page fault handler.
- 	 */
--#define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 18)
-+#define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 2)
- 	/*
- 	 * When the NULL flag is set, the page tables are setup with a special
- 	 * bit which indicates writes are dropped and all reads return zero.  In
-@@ -702,9 +704,9 @@ struct drm_xe_vm_bind_op {
- 	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
- 	 * intended to implement VK sparse bindings.
- 	 */
--#define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
--	/** @op: Operation to perform (lower 16 bits) and flags (upper 16 bits) */
--	__u32 op;
-+#define XE_VM_BIND_FLAG_NULL		(0x1 << 3)
-+	/** @flags: Bind flags */
-+	__u32 flags;
- 
- 	/** @mem_region: Memory region to prefetch VMA to, instance not a mask */
- 	__u32 region;
-diff --git a/lib/intel_batchbuffer.c b/lib/intel_batchbuffer.c
-index e7b1b755f..6e668d28c 100644
---- a/lib/intel_batchbuffer.c
-+++ b/lib/intel_batchbuffer.c
-@@ -1281,7 +1281,8 @@ void intel_bb_destroy(struct intel_bb *ibb)
- }
- 
- static struct drm_xe_vm_bind_op *xe_alloc_bind_ops(struct intel_bb *ibb,
--						   uint32_t op, uint32_t region)
-+						   uint32_t op, uint32_t flags,
-+						   uint32_t region)
- {
- 	struct drm_i915_gem_exec_object2 **objects = ibb->objects;
- 	struct drm_xe_vm_bind_op *bind_ops, *ops;
-@@ -1298,6 +1299,7 @@ static struct drm_xe_vm_bind_op *xe_alloc_bind_ops(struct intel_bb *ibb,
- 			ops->obj = objects[i]->handle;
- 
- 		ops->op = op;
-+		ops->flags = flags;
- 		ops->obj_offset = 0;
- 		ops->addr = objects[i]->offset;
- 		ops->range = objects[i]->rsvd1;
-@@ -1323,9 +1325,10 @@ static void __unbind_xe_objects(struct intel_bb *ibb)
- 
- 	if (ibb->num_objects > 1) {
- 		struct drm_xe_vm_bind_op *bind_ops;
--		uint32_t op = XE_VM_BIND_OP_UNMAP | XE_VM_BIND_FLAG_ASYNC;
-+		uint32_t op = XE_VM_BIND_OP_UNMAP;
-+		uint32_t flags = XE_VM_BIND_FLAG_ASYNC;
- 
--		bind_ops = xe_alloc_bind_ops(ibb, op, 0);
-+		bind_ops = xe_alloc_bind_ops(ibb, op, flags, 0);
- 		xe_vm_bind_array(ibb->fd, ibb->vm_id, 0, bind_ops,
- 				 ibb->num_objects, syncs, 2);
- 		free(bind_ops);
-@@ -2354,7 +2357,7 @@ __xe_bb_exec(struct intel_bb *ibb, uint64_t flags, bool sync)
- 
- 	syncs[0].handle = syncobj_create(ibb->fd, 0);
- 	if (ibb->num_objects > 1) {
--		bind_ops = xe_alloc_bind_ops(ibb, XE_VM_BIND_OP_MAP | XE_VM_BIND_FLAG_ASYNC, 0);
-+		bind_ops = xe_alloc_bind_ops(ibb, XE_VM_BIND_OP_MAP, XE_VM_BIND_FLAG_ASYNC, 0);
- 		xe_vm_bind_array(ibb->fd, ibb->vm_id, 0, bind_ops,
- 				 ibb->num_objects, syncs, 1);
- 		free(bind_ops);
-diff --git a/lib/xe/xe_ioctl.c b/lib/xe/xe_ioctl.c
-index 730dcfd16..48cd185de 100644
---- a/lib/xe/xe_ioctl.c
-+++ b/lib/xe/xe_ioctl.c
-@@ -67,7 +67,7 @@ void xe_vm_unbind_all_async(int fd, uint32_t vm, uint32_t exec_queue,
- 			    uint32_t num_syncs)
- {
- 	__xe_vm_bind_assert(fd, vm, exec_queue, bo, 0, 0, 0,
--			    XE_VM_BIND_OP_UNMAP_ALL | XE_VM_BIND_FLAG_ASYNC,
-+			    XE_VM_BIND_OP_UNMAP_ALL, XE_VM_BIND_FLAG_ASYNC,
- 			    sync, num_syncs, 0, 0);
- }
- 
-@@ -91,8 +91,8 @@ void xe_vm_bind_array(int fd, uint32_t vm, uint32_t exec_queue,
- 
- int  __xe_vm_bind(int fd, uint32_t vm, uint32_t exec_queue, uint32_t bo,
- 		  uint64_t offset, uint64_t addr, uint64_t size, uint32_t op,
--		  struct drm_xe_sync *sync, uint32_t num_syncs, uint32_t region,
--		  uint64_t ext)
-+		  uint32_t flags, struct drm_xe_sync *sync, uint32_t num_syncs,
-+		  uint32_t region, uint64_t ext)
- {
- 	struct drm_xe_vm_bind bind = {
- 		.extensions = ext,
-@@ -103,6 +103,7 @@ int  __xe_vm_bind(int fd, uint32_t vm, uint32_t exec_queue, uint32_t bo,
- 		.bind.range = size,
- 		.bind.addr = addr,
- 		.bind.op = op,
-+		.bind.flags = flags,
- 		.bind.region = region,
- 		.num_syncs = num_syncs,
- 		.syncs = (uintptr_t)sync,
-@@ -117,11 +118,11 @@ int  __xe_vm_bind(int fd, uint32_t vm, uint32_t exec_queue, uint32_t bo,
- 
- void  __xe_vm_bind_assert(int fd, uint32_t vm, uint32_t exec_queue, uint32_t bo,
- 			  uint64_t offset, uint64_t addr, uint64_t size,
--			  uint32_t op, struct drm_xe_sync *sync,
-+			  uint32_t op, uint32_t flags, struct drm_xe_sync *sync,
- 			  uint32_t num_syncs, uint32_t region, uint64_t ext)
- {
- 	igt_assert_eq(__xe_vm_bind(fd, vm, exec_queue, bo, offset, addr, size,
--				   op, sync, num_syncs, region, ext), 0);
-+				   op, flags, sync, num_syncs, region, ext), 0);
- }
- 
- void xe_vm_bind(int fd, uint32_t vm, uint32_t bo, uint64_t offset,
-@@ -129,7 +130,7 @@ void xe_vm_bind(int fd, uint32_t vm, uint32_t bo, uint64_t offset,
- 		struct drm_xe_sync *sync, uint32_t num_syncs)
- {
- 	__xe_vm_bind_assert(fd, vm, 0, bo, offset, addr, size,
--			    XE_VM_BIND_OP_MAP, sync, num_syncs, 0, 0);
-+			    XE_VM_BIND_OP_MAP, 0, sync, num_syncs, 0, 0);
- }
- 
- void xe_vm_unbind(int fd, uint32_t vm, uint64_t offset,
-@@ -137,7 +138,7 @@ void xe_vm_unbind(int fd, uint32_t vm, uint64_t offset,
- 		  struct drm_xe_sync *sync, uint32_t num_syncs)
- {
- 	__xe_vm_bind_assert(fd, vm, 0, 0, offset, addr, size,
--			    XE_VM_BIND_OP_UNMAP, sync, num_syncs, 0, 0);
-+			    XE_VM_BIND_OP_UNMAP, 0, sync, num_syncs, 0, 0);
- }
- 
- void xe_vm_prefetch_async(int fd, uint32_t vm, uint32_t exec_queue, uint64_t offset,
-@@ -146,7 +147,7 @@ void xe_vm_prefetch_async(int fd, uint32_t vm, uint32_t exec_queue, uint64_t off
- 			  uint32_t region)
- {
- 	__xe_vm_bind_assert(fd, vm, exec_queue, 0, offset, addr, size,
--			    XE_VM_BIND_OP_PREFETCH | XE_VM_BIND_FLAG_ASYNC,
-+			    XE_VM_BIND_OP_PREFETCH, XE_VM_BIND_FLAG_ASYNC,
- 			    sync, num_syncs, region, 0);
- }
- 
-@@ -155,7 +156,7 @@ void xe_vm_bind_async(int fd, uint32_t vm, uint32_t exec_queue, uint32_t bo,
- 		      struct drm_xe_sync *sync, uint32_t num_syncs)
- {
- 	__xe_vm_bind_assert(fd, vm, exec_queue, bo, offset, addr, size,
--			    XE_VM_BIND_OP_MAP | XE_VM_BIND_FLAG_ASYNC, sync,
-+			    XE_VM_BIND_OP_MAP, XE_VM_BIND_FLAG_ASYNC, sync,
- 			    num_syncs, 0, 0);
- }
- 
-@@ -165,7 +166,7 @@ void xe_vm_bind_async_flags(int fd, uint32_t vm, uint32_t exec_queue, uint32_t b
- 			    uint32_t flags)
- {
- 	__xe_vm_bind_assert(fd, vm, exec_queue, bo, offset, addr, size,
--			    XE_VM_BIND_OP_MAP | XE_VM_BIND_FLAG_ASYNC | flags,
-+			    XE_VM_BIND_OP_MAP, XE_VM_BIND_FLAG_ASYNC | flags,
- 			    sync, num_syncs, 0, 0);
- }
- 
-@@ -174,7 +175,7 @@ void xe_vm_bind_userptr_async(int fd, uint32_t vm, uint32_t exec_queue,
- 			      struct drm_xe_sync *sync, uint32_t num_syncs)
- {
- 	__xe_vm_bind_assert(fd, vm, exec_queue, 0, userptr, addr, size,
--			    XE_VM_BIND_OP_MAP_USERPTR | XE_VM_BIND_FLAG_ASYNC,
-+			    XE_VM_BIND_OP_MAP_USERPTR, XE_VM_BIND_FLAG_ASYNC,
- 			    sync, num_syncs, 0, 0);
- }
- 
-@@ -184,7 +185,7 @@ void xe_vm_bind_userptr_async_flags(int fd, uint32_t vm, uint32_t exec_queue,
- 				    uint32_t num_syncs, uint32_t flags)
- {
- 	__xe_vm_bind_assert(fd, vm, exec_queue, 0, userptr, addr, size,
--			    XE_VM_BIND_OP_MAP_USERPTR | XE_VM_BIND_FLAG_ASYNC |
-+			    XE_VM_BIND_OP_MAP_USERPTR, XE_VM_BIND_FLAG_ASYNC |
- 			    flags, sync, num_syncs, 0, 0);
- }
- 
-@@ -193,7 +194,7 @@ void xe_vm_unbind_async(int fd, uint32_t vm, uint32_t exec_queue,
- 			struct drm_xe_sync *sync, uint32_t num_syncs)
- {
- 	__xe_vm_bind_assert(fd, vm, exec_queue, 0, offset, addr, size,
--			    XE_VM_BIND_OP_UNMAP | XE_VM_BIND_FLAG_ASYNC, sync,
-+			    XE_VM_BIND_OP_UNMAP, XE_VM_BIND_FLAG_ASYNC, sync,
- 			    num_syncs, 0, 0);
- }
- 
-@@ -205,8 +206,8 @@ static void __xe_vm_bind_sync(int fd, uint32_t vm, uint32_t bo, uint64_t offset,
- 		.handle = syncobj_create(fd, 0),
- 	};
- 
--	__xe_vm_bind_assert(fd, vm, 0, bo, offset, addr, size, op, &sync, 1, 0,
--			    0);
-+	__xe_vm_bind_assert(fd, vm, 0, bo, offset, addr, size, op, 0, &sync, 1,
-+			    0, 0);
- 
- 	igt_assert(syncobj_wait(fd, &sync.handle, 1, INT64_MAX, 0, NULL));
- 	syncobj_destroy(fd, sync.handle);
-diff --git a/lib/xe/xe_ioctl.h b/lib/xe/xe_ioctl.h
-index 6c281b3bf..f0e4109dc 100644
---- a/lib/xe/xe_ioctl.h
-+++ b/lib/xe/xe_ioctl.h
-@@ -19,11 +19,11 @@ uint32_t xe_cs_prefetch_size(int fd);
- uint32_t xe_vm_create(int fd, uint32_t flags, uint64_t ext);
- int  __xe_vm_bind(int fd, uint32_t vm, uint32_t exec_queue, uint32_t bo,
- 		  uint64_t offset, uint64_t addr, uint64_t size, uint32_t op,
--		  struct drm_xe_sync *sync, uint32_t num_syncs, uint32_t region,
--		  uint64_t ext);
-+		  uint32_t flags, struct drm_xe_sync *sync, uint32_t num_syncs,
-+		  uint32_t region, uint64_t ext);
- void  __xe_vm_bind_assert(int fd, uint32_t vm, uint32_t exec_queue, uint32_t bo,
- 			  uint64_t offset, uint64_t addr, uint64_t size,
--			  uint32_t op, struct drm_xe_sync *sync,
-+			  uint32_t op, uint32_t flags, struct drm_xe_sync *sync,
- 			  uint32_t num_syncs, uint32_t region, uint64_t ext);
- void xe_vm_bind(int fd, uint32_t vm, uint32_t bo, uint64_t offset,
- 		uint64_t addr, uint64_t size,
-diff --git a/lib/xe/xe_util.c b/lib/xe/xe_util.c
-index 2f9ffe2f1..5fa4d4610 100644
---- a/lib/xe/xe_util.c
-+++ b/lib/xe/xe_util.c
-@@ -116,7 +116,7 @@ static struct drm_xe_vm_bind_op *xe_alloc_bind_ops(struct igt_list_head *obj_lis
- {
- 	struct drm_xe_vm_bind_op *bind_ops, *ops;
- 	struct xe_object *obj;
--	uint32_t num_objects = 0, i = 0, op;
-+	uint32_t num_objects = 0, i = 0, op, flags;
- 
- 	igt_list_for_each_entry(obj, obj_list, link)
- 		num_objects++;
-@@ -134,13 +134,16 @@ static struct drm_xe_vm_bind_op *xe_alloc_bind_ops(struct igt_list_head *obj_lis
- 		ops = &bind_ops[i];
- 
- 		if (obj->bind_op == XE_OBJECT_BIND) {
--			op = XE_VM_BIND_OP_MAP | XE_VM_BIND_FLAG_ASYNC;
-+			op = XE_VM_BIND_OP_MAP;
-+			flags = XE_VM_BIND_FLAG_ASYNC;
- 			ops->obj = obj->handle;
- 		} else {
--			op = XE_VM_BIND_OP_UNMAP | XE_VM_BIND_FLAG_ASYNC;
-+			op = XE_VM_BIND_OP_UNMAP;
-+			flags = XE_VM_BIND_FLAG_ASYNC;
- 		}
- 
- 		ops->op = op;
-+		ops->flags = flags;
- 		ops->obj_offset = 0;
- 		ops->addr = obj->offset;
- 		ops->range = obj->size;
-diff --git a/tests/intel/xe_exec_basic.c b/tests/intel/xe_exec_basic.c
-index a4414e052..e29398aaa 100644
---- a/tests/intel/xe_exec_basic.c
-+++ b/tests/intel/xe_exec_basic.c
-@@ -170,7 +170,7 @@ test_exec(int fd, struct drm_xe_engine_class_instance *eci,
- 		if (flags & SPARSE)
- 			__xe_vm_bind_assert(fd, vm[i], bind_exec_queues[i],
- 					    0, 0, sparse_addr[i], bo_size,
--					    XE_VM_BIND_OP_MAP |
-+					    XE_VM_BIND_OP_MAP,
- 					    XE_VM_BIND_FLAG_ASYNC |
- 					    XE_VM_BIND_FLAG_NULL, sync,
- 					    1, 0, 0);
-diff --git a/tests/intel/xe_exec_threads.c b/tests/intel/xe_exec_threads.c
-index 12e76874e..1f9af894f 100644
---- a/tests/intel/xe_exec_threads.c
-+++ b/tests/intel/xe_exec_threads.c
-@@ -609,7 +609,7 @@ test_legacy_mode(int fd, uint32_t vm, uint64_t addr, uint64_t userptr,
- 			if (rebind_error_inject == i)
- 				__xe_vm_bind_assert(fd, vm, bind_exec_queues[e],
- 						    0, 0, addr, bo_size,
--						    XE_VM_BIND_OP_UNMAP |
-+						    XE_VM_BIND_OP_UNMAP,
- 						    XE_VM_BIND_FLAG_ASYNC |
- 						    INJECT_ERROR, sync_all,
- 						    n_exec_queues, 0, 0);
-diff --git a/tests/intel/xe_vm.c b/tests/intel/xe_vm.c
-index 4952ea786..f96305851 100644
---- a/tests/intel/xe_vm.c
-+++ b/tests/intel/xe_vm.c
-@@ -316,7 +316,7 @@ static void userptr_invalid(int fd)
- 	vm = xe_vm_create(fd, 0, 0);
- 	munmap(data, size);
- 	ret = __xe_vm_bind(fd, vm, 0, 0, to_user_pointer(data), 0x40000,
--			   size, XE_VM_BIND_OP_MAP_USERPTR, NULL, 0, 0, 0);
-+			   size, XE_VM_BIND_OP_MAP_USERPTR, 0, NULL, 0, 0, 0);
- 	igt_assert(ret == -EFAULT);
- 
- 	xe_vm_destroy(fd, vm);
-@@ -437,7 +437,7 @@ static void vm_async_ops_err(int fd, bool destroy)
- 		if (i == N_BINDS / 8)	/* Inject error on this bind */
- 			__xe_vm_bind_assert(fd, vm, 0, bo, 0,
- 					    addr + i * bo_size * 2,
--					    bo_size, XE_VM_BIND_OP_MAP |
-+					    bo_size, XE_VM_BIND_OP_MAP,
- 					    XE_VM_BIND_FLAG_ASYNC |
- 					    INJECT_ERROR, &sync, 1, 0, 0);
- 		else
-@@ -451,7 +451,7 @@ static void vm_async_ops_err(int fd, bool destroy)
- 		if (i == N_BINDS / 8)
- 			__xe_vm_bind_assert(fd, vm, 0, 0, 0,
- 					    addr + i * bo_size * 2,
--					    bo_size, XE_VM_BIND_OP_UNMAP |
-+					    bo_size, XE_VM_BIND_OP_UNMAP,
- 					    XE_VM_BIND_FLAG_ASYNC |
- 					    INJECT_ERROR, &sync, 1, 0, 0);
- 		else
-@@ -465,7 +465,7 @@ static void vm_async_ops_err(int fd, bool destroy)
- 		if (i == N_BINDS / 8)
- 			__xe_vm_bind_assert(fd, vm, 0, bo, 0,
- 					    addr + i * bo_size * 2,
--					    bo_size, XE_VM_BIND_OP_MAP |
-+					    bo_size, XE_VM_BIND_OP_MAP,
- 					    XE_VM_BIND_FLAG_ASYNC |
- 					    INJECT_ERROR, &sync, 1, 0, 0);
- 		else
-@@ -479,7 +479,7 @@ static void vm_async_ops_err(int fd, bool destroy)
- 		if (i == N_BINDS / 8)
- 			__xe_vm_bind_assert(fd, vm, 0, 0, 0,
- 					    addr + i * bo_size * 2,
--					    bo_size, XE_VM_BIND_OP_UNMAP |
-+					    bo_size, XE_VM_BIND_OP_UNMAP,
- 					    XE_VM_BIND_FLAG_ASYNC |
- 					    INJECT_ERROR, &sync, 1, 0, 0);
- 		else
-@@ -928,7 +928,8 @@ test_bind_array(int fd, struct drm_xe_engine_class_instance *eci, int n_execs,
- 		bind_ops[i].range = bo_size;
- 		bind_ops[i].addr = addr;
- 		bind_ops[i].tile_mask = 0x1 << eci->gt_id;
--		bind_ops[i].op = XE_VM_BIND_OP_MAP | XE_VM_BIND_FLAG_ASYNC;
-+		bind_ops[i].op = XE_VM_BIND_OP_MAP;
-+		bind_ops[i].flags = XE_VM_BIND_FLAG_ASYNC;
- 		bind_ops[i].region = 0;
- 		bind_ops[i].reserved[0] = 0;
- 		bind_ops[i].reserved[1] = 0;
-@@ -972,7 +973,8 @@ test_bind_array(int fd, struct drm_xe_engine_class_instance *eci, int n_execs,
- 
- 	for (i = 0; i < n_execs; ++i) {
- 		bind_ops[i].obj = 0;
--		bind_ops[i].op = XE_VM_BIND_OP_UNMAP | XE_VM_BIND_FLAG_ASYNC;
-+		bind_ops[i].op = XE_VM_BIND_OP_UNMAP;
-+		bind_ops[i].flags = XE_VM_BIND_FLAG_ASYNC;
- 	}
- 
- 	syncobj_reset(fd, &sync[0].handle, 1);
--- 
+[1] - https://lore.kernel.org/all/863bebd0c624d6fc2b38c0a06b63e468b4185128.camel@l\
+inux.intel.com/
+[2] - https://lore.kernel.org/all/20230919142000.91363-1-rodrigo.vivi@intel.com
+
+Ashutosh Dixit (1):
+  drm/xe/uapi: Use common drm_xe_ext_set_property extension
+
+Francois Dugast (4):
+  drm/xe/uapi: Separate VM_BIND's operation and flag
+  drm/xe/vm: Remove VM_BIND_OP macro
+  drm/xe/uapi: Remove MMIO ioctl
+  drm/xe/uapi: Fix naming of XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY
+
+Matthew Brost (4):
+  drm/xe: Fix xe_exec_queue_is_idle for parallel exec queues
+  drm/xe: Deprecate XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE
+    implementation
+  drm/xe: Rename exec_queue_kill_compute to
+    xe_vm_remove_compute_exec_queue
+  drm/xe: Remove XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE from uAPI
+
+Rodrigo Vivi (5):
+  drm/xe: Kill XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS extension
+  drm/xe/uapi: Document drm_xe_query_gt
+  drm/xe/uapi: Replace useless 'instance' per unique gt_id
+  drm/xe/uapi: Remove unused field of drm_xe_query_gt
+  drm/xe/uapi: Rename gts to gt_list
+
+Umesh Nerlige Ramappa (3):
+  drm/xe: Fix array bounds check for queries
+  drm/xe: Set the correct type for xe_to_user_engine_class
+  drm/xe: Correlate engine and cpu timestamps with better accuracy
+
+ drivers/gpu/drm/xe/xe_device.c           |   1 -
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  99 +++-----
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |   6 +-
+ drivers/gpu/drm/xe/xe_gt_types.h         |   2 +-
+ drivers/gpu/drm/xe/xe_mmio.c             | 102 ---------
+ drivers/gpu/drm/xe/xe_pci.c              |   4 -
+ drivers/gpu/drm/xe/xe_query.c            | 187 +++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.c               | 221 +++++-------------
+ drivers/gpu/drm/xe/xe_vm.h               |   1 +
+ include/uapi/drm/xe_drm.h                | 280 ++++++++++++-----------
+ 10 files changed, 402 insertions(+), 501 deletions(-)
+
+--
 2.41.0
-
