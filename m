@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6AAB7CD5BC9
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 14:26:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 467EACD5BCB
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 14:26:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D52910E28E;
-	Tue, 19 Sep 2023 14:26:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08D9110E292;
+	Tue, 19 Sep 2023 14:26:09 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C050610E28E
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 14:26:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC20810E28D;
+ Tue, 19 Sep 2023 14:26:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1695133563; x=1726669563;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=zsj9EBNiWL38slq+96nepsKdeO7HqozsoGKtRAVAnMA=;
- b=NKAkfH6gdXcUeQ+2keOuTr32TSiVn4pontdzAjC8+DIZGOu+Pq7hlFfg
- ytEUuFfpGjgNFuVvs9OBSqnxYSAUSKv6A0HgU8yFrMolZHoAorPF526DM
- dMEtB7LHyL1UoVtgjNTbPSSP5RGAnpDVzeLbccVFdayLXGpxnqoJofJPT
- 97Vy0TJjKFRyYZEgf/ogwYK7UlfKjM2j/xpCvkTAx8pUvi0erOEAlUiCd
- xk4J4Ujq2neUetvtzAn7N3JEzDVXuDlr+3cmxq/eox2rO/3aZfeZYSb+4
- eWD6zcHeBkB3NmLJ2zYwUr9tc7zgxtt355Km7mw9uitLQjtC18mcSSMGz g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="466278709"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="466278709"
+ bh=Cf3Umxzvi4e6qjGHQ9kxXg7S1O30hQH9HHEGrN+XjBE=;
+ b=ZVXT3VZ1UOvqcGl8GKZvCcqaCcXG6fxSL4jldcoRj1DwYWivxGz+8B2K
+ /VG7qGf4DI6JYOnhPAWgFrFJe/Lns2sCWqL7Ulf9gmysvLA+yXOsbZvnq
+ ma1gyAH15gCAl9hqu78N+kI+3V3LppKSHgT4akSGa8ry13AvaWaMUEwgH
+ oqitvU+tJkgUjkL8hOdhSQHRi9mNmIYK5sVpVY0ogdJ2/31aYk8Zy9hZv
+ QziLc3C+Ht6GoYODEk6der3m+SRENQsKnE5E2pO2dLl84+iey5ixcf8QU
+ cvPC7K0Yjhw6ZPF1qKL+MmSmlRUxIsiv/flkrRVCRzB6PUubPOd+cRJUQ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="466278711"
+X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="466278711"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Sep 2023 07:26:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="695924353"
-X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="695924353"
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="695924354"
+X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="695924354"
 Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
  by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Sep 2023 07:26:02 -0700
+ 19 Sep 2023 07:26:03 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 19 Sep 2023 07:26:02 -0700
+ 15.1.2507.32; Tue, 19 Sep 2023 07:26:03 -0700
 Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 19 Sep 2023 07:26:02 -0700
+ 15.1.2507.32 via Frontend Transport; Tue, 19 Sep 2023 07:26:03 -0700
 Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.173)
  by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 19 Sep 2023 07:26:01 -0700
+ 15.1.2507.32; Tue, 19 Sep 2023 07:26:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BFqAcxMCYU8uyaoLbA+dvGT9D1lLwoWpUwdbKrxGFkuvpuKO5q3q/nnPcFRXm6WDiCvNpGUXepDLSFvtHt+5XL9DAMMnbZ/Iwp4WaUH6a7u8dMj73QfAUWCEPZc1ImqIlxu7WF3yHSPR6F3cf+bKyiOTJHEoghe76AXCbiQZ2gk2ZYXMh1tLaByVlw6ydRPEzhfpE7uuFFAt4CCghPGx5EyL9FC64gY1l4j0bSYqIgnuyUw+6Q1ur+8Rs0Vp1LmCZ0x9HTQ+ysiG8vvwHK2kZMAWgi9/AT4jygSNSt2YcjqqBK2WORSZvRpNM9IDBCBqOTKaZSpYlBRSa7HHAGtfhQ==
+ b=RiVBTJH9M7VLAPXx7E3bKFHCbch1rsjBXSrgBhYVkH7fulrGI4zbYFOPUsl3328NusrSIRpaZa9hI1Gkk2CmdBMqH4rghcXMwcw3DWiDeWf4VmxDLwHCkNLfShxBDFaoajTdDFjwGSZcgFw9FINN09i7zs20a3v31F4OmzqhEVWvp4WoPRpSMoD4CFSJJgKMHmzUtGZiSKYnm8YQy8Q4VRmEESAPULSW2Drc7Ax7JPsyK+m+aPoyZL02uBe5HhFUe6e7A4hdsTQAWfX22PwdflXRH6djctAxW+gtOS2rhcGNlhh3SVDNBQCi3fE9Sh2tE+ES5fVZSOd2A2pQ42qufw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bflC0149s2QuPGYhTZLf28QJk7+K0jVAhgfvp9kwr58=;
- b=i40fpaCCBraf+UYWaBvrls2X0Ie375yqA1IWwTUlt/ohPhnY4mojMT4mSMaJ8GZEHDxRpzOUT5zhxVIXM+0oj+ASfbJJCvHY8VmWI15BoPv4HmbI/ja1ZWTyGiCQxl/6TbR/8P556F1t7bno07XLY2EzIFFFBachyDCz1dSbH6ka6VojIIwAjWmVf3CyvcrvpdeJq2FbgojpXD1bn/hqDLL1Hd1W5V2SVrTibNvFt/zMHgl9xaNAHvwOu6hOtcaZrNosUCxy2DAEa2ZI7biZqzcMw8kPA6+5ngXKMUCjDX+3b+yqCoqsjLuuQYQ7gF/h1WXzeyRTLpJNxgMINpw9JQ==
+ bh=ZtQtPcZIG/Pl4eUrUCojQicu8dOZ3y0MwhQtjZJAsB8=;
+ b=XpSLVKLOLdDGoPC/tlbMOPnreg2Ygi6qzHqr4xXAWyQndbW96Yab1FEsQI8LBFyNjUclBSO4075D6EDtJlrogLkLaRfBu4lJJ3p3+VSnSIXmx9/93nw6wcAfpA4uDWhuiREv59j3iIBdQtaUxfh+cBS1w+FFRc+brkOORM1+whuL86p3zz1Wk+Xx81ZTwhWNDZLYyJSr7FeIN94g7QYM8T71fDTmOOqdbJ46omNQkn3u1Gs/r8YM4GeM1gtQQeenIH6efesLPLmqMuY4icvHyCQDGwy4TzDkFAAHx/zjZQQSf73ThnWzwjICnU+OxoSAyHp7XexT/0An17SijF/KnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -63,75 +63,76 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by CO6PR11MB5585.namprd11.prod.outlook.com (2603:10b6:5:356::23) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Tue, 19 Sep
- 2023 14:25:58 +0000
+ 2023 14:25:55 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::6d0b:5bc6:8723:593%6]) with mapi id 15.20.6792.022; Tue, 19 Sep 2023
- 14:25:57 +0000
+ 14:25:55 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Date: Tue, 19 Sep 2023 10:24:52 -0400
-Message-ID: <20230919142504.91652-6-rodrigo.vivi@intel.com>
+To: <intel-xe@lists.freedesktop.org>, <igt-dev@lists.freedesktop.org>
+Date: Tue, 19 Sep 2023 10:19:50 -0400
+Message-ID: <20230919142000.91363-8-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230919142504.91652-1-rodrigo.vivi@intel.com>
-References: <20230919142504.91652-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20230919142000.91363-1-rodrigo.vivi@intel.com>
+References: <20230919142000.91363-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR05CA0181.namprd05.prod.outlook.com
- (2603:10b6:a03:330::6) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: BYAPR11CA0097.namprd11.prod.outlook.com
+ (2603:10b6:a03:f4::38) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CO6PR11MB5585:EE_
-X-MS-Office365-Filtering-Correlation-Id: e035c883-53b5-4efb-4b03-08dbb91c5734
+X-MS-Office365-Filtering-Correlation-Id: 713aca99-3c36-4bfb-1058-08dbb91c5580
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: +lPsX6JKtW6ARiTELMmasiu/JcTfFH2HgFmP/JwZKY4At38s5YUUhp97pLQCAm/v14DouVah8Qax4OiSa2e5c7ezcmqoYVxlE322jfZMNk1er98ndI/K+ROTouJRSPlT1Vqw+Z9hKUqBNxxVLrZrfvAU9VkIrnDF3cy8NZzBpnRQfgzOPC3wOI+PiNkqodRhikpIApqBu7v5DSm67Pw7wFS8CUs/hGvtrmFqzHjtKHafKKGJ7irKSaytJiMg9EGRu4/EvTGuaOJ3iPH0gTlbMvByTuOkW6ipvz6//ug9dJ6pGQ/nSH0HM2syoP520FXGE3Lz+yk/wGVqyJIsFoZp4J9jEAOx5BTQmliFALhX+KoH3E17++b9MqGZVeRvh4Mq8XJTDdZ5QR1ReT9PZh7g1QRY6/6CpIBuWMXapiiiwVtQ9HHyljgqV14ZqcuS1WdItn14dU9o1DWTxLVn3M2hjUMQOt60KzlaKdqW/f6+q2oYoLFujydaJccpJH1aMhCeJXk074+hhkcRXQcUtLnAvJS3kJVvCRSS+CPr94m+ELD8ckW1PxDcKz32E/D5AWfo
+X-Microsoft-Antispam-Message-Info: fjsS2TSBlQqJQLBnxQz03VI2OPO1KRlkp3f00VVnNe4KVXThWF70azu3sWmWl3PSE833b/4nSXbAiWAogGmmOrPhC0iSFR1BCtLmFkvKj12RwiCyOjyD9XxZyEu7qwoMIc9c7KvBPg6710sYrp9k/vHCLsvpEIATlHeM7b3gEotWobJlPiyP3FVLTtKhwWMTIVUvUDzrNu6r0Oc3+jDOveweVSdY2X+VzmUxoPGLGprK0MlrY2tAJ7MMJNz+DLhR411Qu4eumWIDqqQ8hsVqml5HPkT28DZsbdPM6pUcHn+bJWMRgGQn2KYlP0yS6kNqBEQe8L2gKPF6posZ2tl+UP6QgTiwxHypjHBPU2TgFOCHQ4VILOZvw3ETQhzbsWj48Bt4+UtAIwcR+WGJUyQ0qdzxgKtkCybazvTIjQYFRO+R11FoiNhhYDwIm0RXmVv6jhH++UcrFmcVgXERUOWJ0XAYVHdqytMFHVMmfUW3fmSKgVJAIKkR6OJauGBScJIhvoSskN3DfjclYEDuYwwmuXXWFVilGEYmfaHVW4oAXn15hfV+hYP2XhnhbcIVYwY7
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(136003)(396003)(39860400002)(346002)(376002)(451199024)(1800799009)(186009)(36756003)(44832011)(5660300002)(83380400001)(86362001)(4326008)(8936002)(8676002)(41300700001)(6506007)(6486002)(6666004)(82960400001)(107886003)(26005)(1076003)(2616005)(6512007)(66946007)(478600001)(2906002)(38100700002)(6916009)(316002)(66476007)(66556008)(54906003);
+ SFS:(13230031)(366004)(136003)(396003)(39860400002)(346002)(376002)(451199024)(1800799009)(186009)(36756003)(44832011)(5660300002)(83380400001)(86362001)(15650500001)(4326008)(8936002)(8676002)(41300700001)(450100002)(6506007)(6486002)(6666004)(82960400001)(107886003)(26005)(1076003)(2616005)(6512007)(66946007)(478600001)(2906002)(38100700002)(316002)(66476007)(66556008)(54906003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?LC1zUqF8VbFrikq5CaDLLS+pI7nwz2VmP3sIh+8+lx7ZKmlpTesTIreZWxKf?=
- =?us-ascii?Q?dS1I0KcG9p7shmKB6dgH8/z1DzcL0sKiTFcz6rEBcLkxnALL/TN1CrKKN/mE?=
- =?us-ascii?Q?a3h0BhaeGeIGHw8F0TGkusRM5miGr+q7Qr9Aw2Lync3akW7z2WuUSvQW01s+?=
- =?us-ascii?Q?k/g9nU3t4JJBzXs3GZWHl5mJyj7cOuW7gAv7mS+q3BtVUIHMqK1SvX5kH6TA?=
- =?us-ascii?Q?SFrekM2ehWhnenZ5bjcl8H+bogfdad6UmhH1hgjmV0OjVFNg9CAdKXjZXvxN?=
- =?us-ascii?Q?AIh5nbH6UrbLBZ/Cs/ydPnMO5JbwUTXOxeJ5vhvNXfNbyImnf211J/bLu/p6?=
- =?us-ascii?Q?pk8NwfHCnH+Kl6OwguJncem0TBU1ESs1UJJfL3U8kRfczZaiEucMqdrOPCMy?=
- =?us-ascii?Q?DXiQJc/eMtNzgTE05NAH5H+64YhpXHXzi/m9QZ/efyYAeOn1vzDh4REPIaDO?=
- =?us-ascii?Q?XsegII14kEMe7wnw2I4lUOsoCRjA//FZRNCGvPLFMH/2vukx3gkThlZGZzms?=
- =?us-ascii?Q?0jTh8yOQTogQgEUOXgqpbJlvBGkQcGy6V6zYO00w1SwQm62AogxgmVoIVmpU?=
- =?us-ascii?Q?GfKPWMk/yDTQciwgyXplBqSghj8pfTwIFHwcJc7hwLqbWtRtPGJGg+qVNoH1?=
- =?us-ascii?Q?U1EyKBdp7aOSohd97nRkR/HJRYjKOHEO1oeGzUeIKnFxZ5/c7616m+wMYe1l?=
- =?us-ascii?Q?nPtVThUTCWnNZ4Md7hGaq3g7zFlYVSjXmUIQFdNaswSv8BaE7rGLsGclpvvD?=
- =?us-ascii?Q?o7FZcAnYPVrZBaCMLaDxoDprRRm3EaZf1HwbtHx4WDSL8dL08yKl15EnglS2?=
- =?us-ascii?Q?ZhDCn7h9n49XYUyve9GubfK0p5kOnjiXucAJp/pIjHSythSXVSpTdRGNvORu?=
- =?us-ascii?Q?tn0cThXIVWGj5pscKYZiY3FfV97+YTm/ife7CTpxDPBIDNbm2c3EpCFR1xHB?=
- =?us-ascii?Q?pP8oQhKCePk9bheWA2Cf6qwVxIMJCDTBsAP9laQxCyNBSdvghdJkStJmNyKT?=
- =?us-ascii?Q?3JvcPBzcMQ10dWrvCpVlakp4CSvITSonfHQp1iBdVNqn0C3jlegX68tEGHxw?=
- =?us-ascii?Q?PS7C/vtpaGYj5pBUD8ru6u/KLnlhxysEog1lfy4p6n8PCKnDHEzheLSu/Tna?=
- =?us-ascii?Q?PxS8et/eBZZdsPy5BTBUdNfoeLXyxjeKXAZ2M5tqD5B43AUwdGPa13BqYuR+?=
- =?us-ascii?Q?LkrwtjqqQcXUVxvoBc4e775S0F0ccXMjb4GjS/YrEq21tqRd+0qCootNVQEO?=
- =?us-ascii?Q?PUe4Uufg9+N2vesZOE4f3HA7q5/Ozka2P/tiLns/QYmZ+7XZTowurG2T/DzC?=
- =?us-ascii?Q?tiqtKr7FgTm0Iq5bvE+HDix5n+BzOspt0F05zFNidl0FR5xbmOQdM5uCTuWl?=
- =?us-ascii?Q?UVZLpyQFyBNV8CXU43IWbJJ7VD4foOvipjISGe4NPUVfel4kU2sSG7CRqgvL?=
- =?us-ascii?Q?gMkCWejgY7XEsH/xN4fgw1LomN5nAHcKdVl/b+j53PC46Mt7gjTSpPtf2yXQ?=
- =?us-ascii?Q?JKw6EZFicVmb/SG54jgpUrG4WzFjXhrR5/CXX/mEnFPqpGFW5UFSH6saUSdY?=
- =?us-ascii?Q?n6RElvxWV/aulGBYHsDgPBkH55c1Fn1fa7d+VPj9vCsH6+92kQeAYUkl5wBo?=
- =?us-ascii?Q?nw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: e035c883-53b5-4efb-4b03-08dbb91c5734
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?rl2IqoSb7uunYNxRYvYieBmGRvE8wNW+XhsJH36dGGKTxIyPs8T0dDY5dUf0?=
+ =?us-ascii?Q?smCmWbRfol/qIsSKTFyaN12ljDiVXxfjLzS/w+6p9wLmJfW6bRYjhwdmHB5k?=
+ =?us-ascii?Q?uTnVerzdcxR4wfMY+MwbDr28J00q6QRp1WTXgEkfIFxgUxDWFwDCGsnMzjDv?=
+ =?us-ascii?Q?Oyl0wDxYOzk8hOmEBk9nETvSnFlE51smuJ/THjfY7qvSgty5FU752H7qfAZf?=
+ =?us-ascii?Q?aiON9b/QoLscmk8Xte5WFV6f8bSbw5uCRLBXjp9tLJVc1MIFoSTWhO6UfX4F?=
+ =?us-ascii?Q?ylNxbHJWGPcVeGKC9oUbA63xVSPZc1d0ygbnh8pkIMtxcoRWMPCY7Q2diH6e?=
+ =?us-ascii?Q?hKhwTf/RMpwfaZS90kJNurwLwQaoP/c3Ox9eI9MowAQQoHI4GRHg8tIzJqNe?=
+ =?us-ascii?Q?ZAHkqUMwP9S+YDJOHwr//qkbWkzYQY0nLtG//9tOFc2UVXDyzpDP80+HHBav?=
+ =?us-ascii?Q?irfQf6zZE0KKiZR+dSuwAU782oQdk3RehrsUr8ARg77PBzBP+rUHxSxvxoC6?=
+ =?us-ascii?Q?eSq+B9UyZANyZmc9neJoRYxHtXVkQ8u01Oux1lupegl6C9Flmpy2eAIushXJ?=
+ =?us-ascii?Q?DjMfWeBWJuv7Rs0B7kc7Lbh503qXJlZepH6QhwRY+BaS1Bum9QVIsadYRq6K?=
+ =?us-ascii?Q?TAnJPVvZIsT4LzEFEZ4f1J0KUaiXS0cq7TgN/RxUSpMh/NW7BojC4ioMVM/A?=
+ =?us-ascii?Q?L7lPhNhTuiUFPIESWLjlaBM/+oLKw1rLVirWnwi7MH784hiEk/WgsTMm+6xZ?=
+ =?us-ascii?Q?91EyqsM0CvyirfGLXDvGScFkBVpzih+n4TSNw6oRqG+Rlwo+91skp1BWE5Qc?=
+ =?us-ascii?Q?skBZqkiAxBRnegsBE6oHEgosIhu84waDVB5CAL/Fel8uaDjOFDrdFuZN3YEN?=
+ =?us-ascii?Q?hJ2XO8wyTtN0CxopOFic3iEzQbF5uaWz78QFk9U1q/AklD6ihSzHh8x/N2Jy?=
+ =?us-ascii?Q?URCLUCbJ0zVW6A1+Jyby2FlYmQSOh45HroR2e12BM0sqBxv3QnLgZac9OMjE?=
+ =?us-ascii?Q?gX80wm969NZoK2bo0gmFtdCgnetwOBOqwcREbDFio+8jIaY0wC7857kNGjaH?=
+ =?us-ascii?Q?CtkoHJgcXGTSlNq/Lm5/nTkEEAMT9L9OWB9ZnT0hNk1+wZN5BnF/vBI1lWkw?=
+ =?us-ascii?Q?Uw2qYa1W/VfA3Z72+LczMWgPGemTYVKfEPPxvt7b5uW/otbYkPSFn/aKsvSs?=
+ =?us-ascii?Q?Ci0nlUglxlx6rQoQwMLq5ocISStPsC6iLNLkjjYI01Zh9XYncdPB9Qg5PZzo?=
+ =?us-ascii?Q?/P8TPy4vKLMG4WIvSVLYSUIZ7L6vWzXmHxWa2Mh4wOU71IhT83zCDW1qfjUb?=
+ =?us-ascii?Q?o1z+83bWRsBHTgcYYnMLlOXoogT/1OjumLxAzyEdIg3DOC3/pcQuPSVtyLur?=
+ =?us-ascii?Q?nvbFdIhzUp/jfooXu13wDZx71Qnnnct8dEok4brcTicDBteu/zvrD4r45GDt?=
+ =?us-ascii?Q?oaIPnLooocxiLlDW4xj9r98xfqFZN52o8wy/j0MfIpSH7DeMQ6eCmgFmoV37?=
+ =?us-ascii?Q?ShHsu0Df35zVKtud0IOZ1Cl29w1jpHL5tnCAuZ25U0rKgL5LhRsw+2CYnxRh?=
+ =?us-ascii?Q?lSjfiengljp1bbGj0GEq+UtgDBYunnn1RWQMiecCbiXI7vdZ7WkAnxlzN4YU?=
+ =?us-ascii?Q?6w=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 713aca99-3c36-4bfb-1058-08dbb91c5580
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2023 14:25:57.9041 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2023 14:25:55.0035 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CEt5ux7WBF+6RSw6aeRuFuHTJr3+my9xuL/AJs0QwwsAawZ0FOrh2VrMfqvJhLG49qWyxQckmc56r407qY2Qpg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: Qocw0hNtrFUGLAyISc9kuAs8MCpyPXVA8ReFv260nsuYZv3FJRURltQQ58hcIHdcjV1J8sdw5if8W0kqerLr3A==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO6PR11MB5585
 X-OriginatorOrg: intel.com
-Subject: [Intel-xe] [PATCH 05/17] drm/xe/vm: Remove VM_BIND_OP macro
+Subject: [Intel-xe] [PATCH i-g-t 07/16] xe: Update uAPI and remove
+ XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,144 +144,247 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: kamil.kopryk@intel.com, filip.hazubski@intel.com,
- Francois Dugast <francois.dugast@intel.com>, jakub.chaberek@intel.com,
- effie.yu@intel.com, bartosz.dunajski@intel.com,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, carl.zhang@intel.com
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Francois Dugast <francois.dugast@intel.com>
+From: Matthew Brost <matthew.brost@intel.com>
 
-This macro was necessary when bind operations were shifted but this
-is no longer the case, so removing to simplify code.
+XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE has been removed from uAPI,
+remove all references in Xe tests.
 
+Align with commits
+ ("drm/xe: Remove XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE from uAPI") and
+("drm/xe: Deprecate XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE implementation")
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+[Rodrigo updated header with built version from make header_install]
+[Rodrigo added the commit subjects of the kernel uapi changes]
 ---
- drivers/gpu/drm/xe/xe_vm.c | 42 +++++++++++++++++---------------------
- 1 file changed, 19 insertions(+), 23 deletions(-)
+ include/drm-uapi/xe_drm.h          | 21 +++++++--------------
+ tests/intel/xe_evict.c             | 14 +++-----------
+ tests/intel/xe_exec_balancer.c     |  8 +-------
+ tests/intel/xe_exec_compute_mode.c | 20 ++------------------
+ tests/intel/xe_exec_reset.c        | 10 ++--------
+ tests/intel/xe_exec_threads.c      | 13 ++-----------
+ tests/intel/xe_noexec_ping_pong.c  | 10 +---------
+ 7 files changed, 18 insertions(+), 78 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 7579c9537bfa..ab132b88c135 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2134,8 +2134,6 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
- 	}
- }
+diff --git a/include/drm-uapi/xe_drm.h b/include/drm-uapi/xe_drm.h
+index 1d869f5e8..a9060bcf8 100644
+--- a/include/drm-uapi/xe_drm.h
++++ b/include/drm-uapi/xe_drm.h
+@@ -784,21 +784,14 @@ struct drm_xe_exec_queue_set_property {
+ 	/** @exec_queue_id: Exec queue ID */
+ 	__u32 exec_queue_id;
  
--#define VM_BIND_OP(op)	(op & 0xffff)
+-#define XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY			0
++#define XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
+ #define XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
+ #define XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
+-	/*
+-	 * Long running or ULLS engine mode. DMA fences not allowed in this
+-	 * mode. Must match the value of DRM_XE_VM_CREATE_COMPUTE_MODE, serves
+-	 * as a sanity check the UMD knows what it is doing. Can only be set at
+-	 * engine create time.
+-	 */
+-#define XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE		3
+-#define XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		4
+-#define XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		5
+-#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		6
+-#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		7
+-#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY		8
++#define XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		3
++#define XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		4
++#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
++#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
++#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY	7
+ 	/** @property: property to set */
+ 	__u32 property;
+ 
+@@ -1092,7 +1085,7 @@ struct drm_xe_vm_madvise {
+ };
+ 
+ /**
+- * XE PMU event config IDs
++ * DOC: XE PMU event config IDs
+  *
+  * Check 'man perf_event_open' to use these ID's in 'struct perf_event_attr'
+  * as part of perf_event_open syscall to read a particular event.
+diff --git a/tests/intel/xe_evict.c b/tests/intel/xe_evict.c
+index 5b64e56b4..5d8981f8d 100644
+--- a/tests/intel/xe_evict.c
++++ b/tests/intel/xe_evict.c
+@@ -252,19 +252,11 @@ test_evict_cm(int fd, struct drm_xe_engine_class_instance *eci,
+ 	}
+ 
+ 	for (i = 0; i < n_exec_queues; i++) {
+-		struct drm_xe_ext_exec_queue_set_property ext = {
+-			.base.next_extension = 0,
+-			.base.name = XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY,
+-			.property = XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE,
+-			.value = 1,
+-		};
 -
- struct ttm_buffer_object *xe_vm_ttm_bo(struct xe_vm *vm)
- {
- 	int idx = vm->flags & XE_VM_FLAG_MIGRATION ?
-@@ -2160,7 +2158,7 @@ static int vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
- 
- 	lockdep_assert_held(&vm->lock);
- 
--	switch (VM_BIND_OP(op)) {
-+	switch (op) {
- 	case XE_VM_BIND_OP_MAP:
- 	case XE_VM_BIND_OP_MAP_USERPTR:
- 		vma = xe_vm_find_overlapping_vma(vm, addr, range);
-@@ -2269,10 +2267,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 
- 	vm_dbg(&vm->xe->drm,
- 	       "op=%d, addr=0x%016llx, range=0x%016llx, bo_offset_or_userptr=0x%016llx",
--	       VM_BIND_OP(operation), (ULL)addr, (ULL)range,
-+	       operation, (ULL)addr, (ULL)range,
- 	       (ULL)bo_offset_or_userptr);
- 
--	switch (VM_BIND_OP(operation)) {
-+	switch (operation) {
- 	case XE_VM_BIND_OP_MAP:
- 	case XE_VM_BIND_OP_MAP_USERPTR:
- 		ops = drm_gpuva_sm_map_ops_create(&vm->mgr, addr, range,
-@@ -3110,50 +3108,48 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 			*async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
- 		} else if (XE_IOCTL_DBG(xe, !*async) ||
- 			   XE_IOCTL_DBG(xe, !(flags & XE_VM_BIND_FLAG_ASYNC)) ||
--			   XE_IOCTL_DBG(xe, VM_BIND_OP(op) ==
--					XE_VM_BIND_OP_RESTART)) {
-+			   XE_IOCTL_DBG(xe, op == XE_VM_BIND_OP_RESTART)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
- 		if (XE_IOCTL_DBG(xe, !*async &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL)) {
-+				 op == XE_VM_BIND_OP_UNMAP_ALL)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
- 		if (XE_IOCTL_DBG(xe, !*async &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH)) {
-+				 op == XE_VM_BIND_OP_PREFETCH)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
--		if (XE_IOCTL_DBG(xe, VM_BIND_OP(op) >
--				 XE_VM_BIND_OP_PREFETCH) ||
-+		if (XE_IOCTL_DBG(xe, op > XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
- 		    XE_IOCTL_DBG(xe, obj && is_null) ||
- 		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
--		    XE_IOCTL_DBG(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
-+		    XE_IOCTL_DBG(xe, op != XE_VM_BIND_OP_MAP &&
- 				 is_null) ||
- 		    XE_IOCTL_DBG(xe, !obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP &&
-+				 op == XE_VM_BIND_OP_MAP &&
- 				 !is_null) ||
- 		    XE_IOCTL_DBG(xe, !obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
-+				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
- 		    XE_IOCTL_DBG(xe, addr &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
-+				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
- 		    XE_IOCTL_DBG(xe, range &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
-+				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
- 		    XE_IOCTL_DBG(xe, obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP_USERPTR) ||
-+				 op == XE_VM_BIND_OP_MAP_USERPTR) ||
- 		    XE_IOCTL_DBG(xe, obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH) ||
-+				 op == XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, region &&
--				 VM_BIND_OP(op) != XE_VM_BIND_OP_PREFETCH) ||
-+				 op != XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, !(BIT(region) &
- 				       xe->info.mem_region_mask)) ||
- 		    XE_IOCTL_DBG(xe, obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP)) {
-+				 op == XE_VM_BIND_OP_UNMAP)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
-@@ -3161,9 +3157,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		if (XE_IOCTL_DBG(xe, obj_offset & ~PAGE_MASK) ||
- 		    XE_IOCTL_DBG(xe, addr & ~PAGE_MASK) ||
- 		    XE_IOCTL_DBG(xe, range & ~PAGE_MASK) ||
--		    XE_IOCTL_DBG(xe, !range && VM_BIND_OP(op) !=
-+		    XE_IOCTL_DBG(xe, !range && op !=
- 				 XE_VM_BIND_OP_RESTART &&
--				 VM_BIND_OP(op) != XE_VM_BIND_OP_UNMAP_ALL)) {
-+				 op != XE_VM_BIND_OP_UNMAP_ALL)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
-@@ -3227,7 +3223,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		goto release_vm_lock;
+ 		if (flags & MULTI_VM)
+-			exec_queues[i] = xe_exec_queue_create(fd, i & 1 ? vm2 : vm, eci,
+-						      to_user_pointer(&ext));
++			exec_queues[i] = xe_exec_queue_create(fd, i & 1 ? vm2 :
++							      vm, eci, 0);
+ 		else
+-			exec_queues[i] = xe_exec_queue_create(fd, vm, eci,
+-						      to_user_pointer(&ext));
++			exec_queues[i] = xe_exec_queue_create(fd, vm, eci, 0);
  	}
  
--	if (VM_BIND_OP(bind_ops[0].op) == XE_VM_BIND_OP_RESTART) {
-+	if (bind_ops[0].op == XE_VM_BIND_OP_RESTART) {
- 		if (XE_IOCTL_DBG(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
- 			err = -EOPNOTSUPP;
- 		if (XE_IOCTL_DBG(xe, !err && args->num_syncs))
+ 	for (i = 0; i < n_execs; i++) {
+diff --git a/tests/intel/xe_exec_balancer.c b/tests/intel/xe_exec_balancer.c
+index a4a438db7..f4f5440f4 100644
+--- a/tests/intel/xe_exec_balancer.c
++++ b/tests/intel/xe_exec_balancer.c
+@@ -458,18 +458,12 @@ test_cm(int fd, int gt, int class, int n_exec_queues, int n_execs,
+ 	memset(data, 0, bo_size);
+ 
+ 	for (i = 0; i < n_exec_queues; i++) {
+-		struct drm_xe_ext_exec_queue_set_property ext = {
+-			.base.next_extension = 0,
+-			.base.name = XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY,
+-			.property = XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE,
+-			.value = 1,
+-		};
+ 		struct drm_xe_exec_queue_create create = {
+ 			.vm_id = vm,
+ 			.width = flags & PARALLEL ? num_placements : 1,
+ 			.num_placements = flags & PARALLEL ? 1 : num_placements,
+ 			.instances = to_user_pointer(eci),
+-			.extensions = to_user_pointer(&ext),
++			.extensions = 0,
+ 		};
+ 
+ 		igt_assert_eq(igt_ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE,
+diff --git a/tests/intel/xe_exec_compute_mode.c b/tests/intel/xe_exec_compute_mode.c
+index 6d1084727..02e7ef201 100644
+--- a/tests/intel/xe_exec_compute_mode.c
++++ b/tests/intel/xe_exec_compute_mode.c
+@@ -120,15 +120,7 @@ test_exec(int fd, struct drm_xe_engine_class_instance *eci,
+ 			xe_get_default_alignment(fd));
+ 
+ 	for (i = 0; (flags & EXEC_QUEUE_EARLY) && i < n_exec_queues; i++) {
+-		struct drm_xe_ext_exec_queue_set_property ext = {
+-			.base.next_extension = 0,
+-			.base.name = XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY,
+-			.property = XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE,
+-			.value = 1,
+-		};
+-
+-		exec_queues[i] = xe_exec_queue_create(fd, vm, eci,
+-					      to_user_pointer(&ext));
++		exec_queues[i] = xe_exec_queue_create(fd, vm, eci, 0);
+ 		if (flags & BIND_EXECQUEUE)
+ 			bind_exec_queues[i] =
+ 				xe_bind_exec_queue_create(fd, vm, 0);
+@@ -156,15 +148,7 @@ test_exec(int fd, struct drm_xe_engine_class_instance *eci,
+ 	memset(data, 0, bo_size);
+ 
+ 	for (i = 0; !(flags & EXEC_QUEUE_EARLY) && i < n_exec_queues; i++) {
+-		struct drm_xe_ext_exec_queue_set_property ext = {
+-			.base.next_extension = 0,
+-			.base.name = XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY,
+-			.property = XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE,
+-			.value = 1,
+-		};
+-
+-		exec_queues[i] = xe_exec_queue_create(fd, vm, eci,
+-					      to_user_pointer(&ext));
++		exec_queues[i] = xe_exec_queue_create(fd, vm, eci, 0);
+ 		if (flags & BIND_EXECQUEUE)
+ 			bind_exec_queues[i] =
+ 				xe_bind_exec_queue_create(fd, vm, 0);
+diff --git a/tests/intel/xe_exec_reset.c b/tests/intel/xe_exec_reset.c
+index 6e3f0aa4b..68e17cc98 100644
+--- a/tests/intel/xe_exec_reset.c
++++ b/tests/intel/xe_exec_reset.c
+@@ -540,14 +540,8 @@ test_compute_mode(int fd, struct drm_xe_engine_class_instance *eci,
+ 	memset(data, 0, bo_size);
+ 
+ 	for (i = 0; i < n_exec_queues; i++) {
+-		struct drm_xe_ext_exec_queue_set_property compute = {
+-			.base.next_extension = 0,
+-			.base.name = XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY,
+-			.property = XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE,
+-			.value = 1,
+-		};
+ 		struct drm_xe_ext_exec_queue_set_property preempt_timeout = {
+-			.base.next_extension = to_user_pointer(&compute),
++			.base.next_extension = 0,
+ 			.base.name = XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY,
+ 			.property = XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT,
+ 			.value = 1000,
+@@ -557,7 +551,7 @@ test_compute_mode(int fd, struct drm_xe_engine_class_instance *eci,
+ 		if (flags & EXEC_QUEUE_RESET)
+ 			ext = to_user_pointer(&preempt_timeout);
+ 		else
+-			ext = to_user_pointer(&compute);
++			ext = 0;
+ 
+ 		exec_queues[i] = xe_exec_queue_create(fd, vm, eci, ext);
+ 	};
+diff --git a/tests/intel/xe_exec_threads.c b/tests/intel/xe_exec_threads.c
+index d19708f80..306d8113d 100644
+--- a/tests/intel/xe_exec_threads.c
++++ b/tests/intel/xe_exec_threads.c
+@@ -313,17 +313,8 @@ test_compute_mode(int fd, uint32_t vm, uint64_t addr, uint64_t userptr,
+ 	}
+ 	memset(data, 0, bo_size);
+ 
+-	for (i = 0; i < n_exec_queues; i++) {
+-		struct drm_xe_ext_exec_queue_set_property ext = {
+-			.base.next_extension = 0,
+-			.base.name = XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY,
+-			.property = XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE,
+-			.value = 1,
+-		};
+-
+-		exec_queues[i] = xe_exec_queue_create(fd, vm, eci,
+-					      to_user_pointer(&ext));
+-	};
++	for (i = 0; i < n_exec_queues; i++)
++		exec_queues[i] = xe_exec_queue_create(fd, vm, eci, 0);
+ 
+ 	pthread_barrier_wait(&barrier);
+ 
+diff --git a/tests/intel/xe_noexec_ping_pong.c b/tests/intel/xe_noexec_ping_pong.c
+index 3f486adf9..88b22ed11 100644
+--- a/tests/intel/xe_noexec_ping_pong.c
++++ b/tests/intel/xe_noexec_ping_pong.c
+@@ -64,13 +64,6 @@ static void test_ping_pong(int fd, struct drm_xe_engine_class_instance *eci)
+ 	 * stats.
+ 	 */
+ 	for (i = 0; i < NUM_VMS; ++i) {
+-		struct drm_xe_ext_exec_queue_set_property ext = {
+-			.base.next_extension = 0,
+-			.base.name = XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY,
+-			.property = XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE,
+-			.value = 1,
+-		};
+-
+ 		vm[i] = xe_vm_create(fd, DRM_XE_VM_CREATE_COMPUTE_MODE, 0);
+ 		for (j = 0; j < NUM_BOS; ++j) {
+ 			igt_debug("Creating bo size %lu for vm %u\n",
+@@ -82,8 +75,7 @@ static void test_ping_pong(int fd, struct drm_xe_engine_class_instance *eci)
+ 			xe_vm_bind(fd, vm[i], bo[i][j], 0, 0x40000 + j*bo_size,
+ 				   bo_size, NULL, 0);
+ 		}
+-		exec_queues[i] = xe_exec_queue_create(fd, vm[i], eci,
+-					      to_user_pointer(&ext));
++		exec_queues[i] = xe_exec_queue_create(fd, vm[i], eci, 0);
+ 	}
+ 
+ 	igt_info("Now sleeping for %ds.\n", SECONDS_TO_WAIT);
 -- 
 2.41.0
 
