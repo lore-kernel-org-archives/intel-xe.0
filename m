@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 52279CD5BD1
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 14:45:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB95ACD5BD0
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 14:46:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FFCF10E124;
-	Tue, 19 Sep 2023 14:45:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FDB610E284;
+	Tue, 19 Sep 2023 14:46:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2507210E124;
- Tue, 19 Sep 2023 14:45:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E4C3910E284;
+ Tue, 19 Sep 2023 14:45:57 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 24AA2A73C7;
- Tue, 19 Sep 2023 14:45:47 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E7B22A73C7;
+ Tue, 19 Sep 2023 14:45:57 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Tue, 19 Sep 2023 14:45:47 -0000
-Message-ID: <169513474711.3666.3329008100325158445@emeril.freedesktop.org>
+Date: Tue, 19 Sep 2023 14:45:57 -0000
+Message-ID: <169513475794.3667.13421162217331000040@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230919144111.32702-1-gustavo.sousa@intel.com>
 In-Reply-To: <20230919144111.32702-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/irq=3A_Clear_GFX=5FMSTR=5FIRQ_as_part_of_IRQ_reset?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/irq=3A_Clear_GFX=5FMSTR=5FIRQ_as_part_of_IRQ_reset?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,38 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: fac2e20c7 Revert "FIXME: drm/i915/hpd: skip intel_hpd_poll_fini() for non-display paths"
-=== git am output follows ===
-Applying: drm/xe/irq: Clear GFX_MSTR_IRQ as part of IRQ reset
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 87ffce994c4dc049274056a33911e142071a40c4
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Tue Sep 19 11:41:10 2023 -0300
+
+    drm/xe/irq: Clear GFX_MSTR_IRQ as part of IRQ reset
+    
+    Starting with Xe_LP+, GFX_MSTR_IRQ contains status bits that have W1C
+    behavior. If we do not properly reset them, we would miss delivery of
+    interrupts if a pending bit is set when enabling IRQs.
+    
+    As an example, the display part of our probe routine contains paths
+    where we wait for vblank interrupts. If a display interrupt was already
+    pending when enabling IRQs, we would time out waiting for the vblank.
+    
+    That in fact happened recently when modprobing Xe on a Lunar Lake with a
+    specific configuration; and that's how we found out we were missing this
+    step in the IRQ enabling logic.
+    
+    Fix the issue by clearing GFX_MSTR_IRQ as part of the IRQ reset.
+    
+    BSpec: 50875, 54028, 62357
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch fac2e20c785bd790c250e4f4799dfa28e44e7082 drm-intel
+87ffce994 drm/xe/irq: Clear GFX_MSTR_IRQ as part of IRQ reset
 
 
