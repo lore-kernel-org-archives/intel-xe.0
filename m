@@ -4,30 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FC14CD54AF
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 11:39:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF564CD54B6
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 11:44:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1058C10E1FD;
-	Tue, 19 Sep 2023 11:39:04 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 47C7510E1FD;
- Tue, 19 Sep 2023 11:39:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 47D12A00CC;
- Tue, 19 Sep 2023 11:39:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4232701446214335744=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F51410E3A5;
+	Tue, 19 Sep 2023 11:44:37 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 02C7D10E1FD
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 11:44:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1695123873;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=x5pwn72HQRzsVFwPaRta5T6PBnbYzefmc+nMyv5CIgg=;
+ b=L8e75JJhOpq65AT6AgB3FlFgbius5H2VrY3Kt/7lWOsrkk8HVCafvVjyEX9ESmS4/0iezu
+ mvXAA0niANQNLEhUWxQNxmDvmXTzvPg7nJus2FADc6k3DTi3QqZPifgXrjLlg6Uztb5P0l
+ Zqh+xPuN2tv48BtioOSZtxclg/aT64Y=
+Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
+ [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-67-HWUvInH7MqSs56abeUNdKw-1; Tue, 19 Sep 2023 07:44:32 -0400
+X-MC-Unique: HWUvInH7MqSs56abeUNdKw-1
+Received: by mail-ej1-f71.google.com with SMTP id
+ a640c23a62f3a-9adad8f306fso407940266b.0
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 04:44:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1695123871; x=1695728671;
+ h=content-transfer-encoding:in-reply-to:organization:from:references
+ :cc:to:content-language:subject:user-agent:mime-version:date
+ :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=x5pwn72HQRzsVFwPaRta5T6PBnbYzefmc+nMyv5CIgg=;
+ b=Xd3JFY4keYzEYf9hgFNooV0Qi8eIcnXvuY7P3N4r+5bnFhHoLMs07tbgiR9c9bQvg1
+ Z39mu5EubkblNcHP5XWgGOYGo4OV4O7o8UrRmzq0TAQ1KdnnK5CB4fJhEW0uXqAUov6V
+ kV2d+UiN99+B+nV8B44/pkZQH3EB+dQX+7VM6cS+zEbeb/GkWMk+CllBnEhLY2/CoduP
+ sIdbZQ28yFDloEm/uhmImRAeKffJdJozq5vJdaX38qoPDGgvh4O3Rv544bexR7YgiWJV
+ tqjtRs2tbufre/GiE9LQCrXgb8+uU9AcE7OOQqkAnR081JIKUyvgjS/7zzerAbo2l1DX
+ FYCw==
+X-Gm-Message-State: AOJu0YxaFJEMAJ36hb/X3v+QMmuVAqmmfb3RvorkBsAYC2Y9+Mqzg+Xi
+ WOLuFGklmrsymoVA3Hs8tPRyn6XYKxhh02zIsxKwOArROncgEubi4uNTci7waytyYKmbJ7aIioo
+ BPmqP1klfX5a48JJHJ1xEs1ihQZY=
+X-Received: by 2002:a17:907:2ced:b0:9a9:e858:e72f with SMTP id
+ hz13-20020a1709072ced00b009a9e858e72fmr10380673ejc.45.1695123871401; 
+ Tue, 19 Sep 2023 04:44:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IELPiuH2JGuaH0W0ls9v0iJdmS/GLmnx2FjMcFju9VG6E3ysZfi7X2AMaZX4S8exsxPeTdTWA==
+X-Received: by 2002:a17:907:2ced:b0:9a9:e858:e72f with SMTP id
+ hz13-20020a1709072ced00b009a9e858e72fmr10380651ejc.45.1695123871061; 
+ Tue, 19 Sep 2023 04:44:31 -0700 (PDT)
+Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
+ ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
+ by smtp.gmail.com with ESMTPSA id
+ bj26-20020a170906b05a00b00997e99a662bsm7572235ejb.20.2023.09.19.04.44.29
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 19 Sep 2023 04:44:30 -0700 (PDT)
+Message-ID: <7739a88e-28e9-27fb-8d2a-4f294fdfe672@redhat.com>
+Date: Tue, 19 Sep 2023 13:44:28 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sujaritha Sundaresan" <sujaritha.sundaresan@intel.com>
-Date: Tue, 19 Sep 2023 11:39:02 -0000
-Message-ID: <169512354228.3667.13755062764202534216@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230919110541.1243785-1-sujaritha.sundaresan@intel.com>
-In-Reply-To: <20230919110541.1243785-1-sujaritha.sundaresan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Add_throt?=
- =?utf-8?q?tle_reasons_sysfs?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+To: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+References: <20230919050155.2647172-1-matthew.brost@intel.com>
+From: Danilo Krummrich <dakr@redhat.com>
+Organization: RedHat
+In-Reply-To: <20230919050155.2647172-1-matthew.brost@intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v4 00/10] DRM scheduler changes for Xe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,126 +88,97 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ frank.binns@imgtec.com, mcanal@igalia.com, Liviu.Dudau@arm.com,
+ luben.tuikov@amd.com, lina@asahilina.net, donald.robson@imgtec.com,
+ daniel@ffwll.ch, boris.brezillon@collabora.com, airlied@gmail.com,
+ christian.koenig@amd.com, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4232701446214335744==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Matt,
 
-== Series Details ==
+On 9/19/23 07:01, Matthew Brost wrote:
+> As a prerequisite to merging the new Intel Xe DRM driver [1] [2], we
+> have been asked to merge our common DRM scheduler patches first.
+> 
+> This a continuation of a RFC [3] with all comments addressed, ready for
+> a full review, and hopefully in state which can merged in the near
+> future. More details of this series can found in the cover letter of the
+> RFC [3].
+> 
+> These changes have been tested with the Xe driver.
+> 
+> v2:
+>   - Break run job, free job, and process message in own work items
+>   - This might break other drivers as run job and free job now can run in
+>     parallel, can fix up if needed
+> 
+> v3:
+>   - Include missing patch 'drm/sched: Add drm_sched_submit_* helpers'
+>   - Fix issue with setting timestamp to early
+>   - Don't dequeue jobs for single entity after calling entity fini
+>   - Flush pending jobs on entity fini
+>   - Add documentation for entity teardown
+>   - Add Matthew Brost to maintainers of DRM scheduler
+> 
+> v4:
+>   - Drop message interface
+>   - Drop 'Flush pending jobs on entity fini'
+>   - Drop 'Add documentation for entity teardown'
+>   - Address all feedback
 
-Series: Add throttle reasons sysfs
-URL   : https://patchwork.freedesktop.org/series/123906/
-State : success
+There is some feedback from V3 that doesn't seem to be addressed yet.
 
-== Summary ==
+(1) Document tear down of struct drm_gpu_scheduler. [1]
+(2) Implement helpers to tear down struct drm_gpu_scheduler. [2]
+(3) Document implications of using a workqueue in terms of free_job() being
+     or not being part of the fence signaling path respectively. [3]
 
-CI Bug Log - changes from xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed_BAT -> xe-pw-123906v1_BAT
-====================================================
+I think at least (1) and (3) should be part of this series. I think (2) could
+also happen subsequently. Christian's idea [2] how to address this is quite
+interesting, but might exceed the scope of this series.
 
-Summary
--------
+I will try to rebase my Nouveau changes onto your V4 tomorrow for a quick test.
 
-  **SUCCESS**
+- Danilo
 
-  No regressions found.
+[1] https://lore.kernel.org/all/20230912021615.2086698-1-matthew.brost@intel.com/T/#m2e8c1c1e68e8127d5dd62509b5e424a12217300b
+[2] https://lore.kernel.org/all/20230912021615.2086698-1-matthew.brost@intel.com/T/#m16a0d6fa2e617383776515af45d3c6b9db543d47
+[3] https://lore.kernel.org/all/20230912021615.2086698-1-matthew.brost@intel.com/T/#m807ff95284089fdb51985f1c187666772314bd8a
 
-  
+> 
+> Matt
+> 
+> Matthew Brost (10):
+>    drm/sched: Add drm_sched_submit_* helpers
+>    drm/sched: Convert drm scheduler to use a work queue rather than
+>      kthread
+>    drm/sched: Move schedule policy to scheduler
+>    drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
+>    drm/sched: Split free_job into own work item
+>    drm/sched: Add drm_sched_start_timeout_unlocked helper
+>    drm/sched: Start submission before TDR in drm_sched_start
+>    drm/sched: Submit job before starting TDR
+>    drm/sched: Add helper to queue TDR immediately for current and future
+>      jobs
+>    drm/sched: Update maintainers of GPU scheduler
+> 
+>   MAINTAINERS                                   |   1 +
+>   .../drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c   |   2 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |  15 +-
+>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  15 +-
+>   drivers/gpu/drm/etnaviv/etnaviv_sched.c       |   5 +-
+>   drivers/gpu/drm/lima/lima_sched.c             |   5 +-
+>   drivers/gpu/drm/msm/adreno/adreno_device.c    |   6 +-
+>   drivers/gpu/drm/msm/msm_ringbuffer.c          |   5 +-
+>   drivers/gpu/drm/nouveau/nouveau_sched.c       |   5 +-
+>   drivers/gpu/drm/panfrost/panfrost_job.c       |   5 +-
+>   drivers/gpu/drm/scheduler/sched_entity.c      |  85 ++-
+>   drivers/gpu/drm/scheduler/sched_fence.c       |   2 +-
+>   drivers/gpu/drm/scheduler/sched_main.c        | 491 ++++++++++++------
+>   drivers/gpu/drm/v3d/v3d_sched.c               |  25 +-
+>   include/drm/gpu_scheduler.h                   |  48 +-
+>   15 files changed, 495 insertions(+), 220 deletions(-)
+> 
 
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-123906v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123906v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-
-
-Build changes
--------------
-
-  * Linux: xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed -> xe-pw-123906v1
-
-  IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed: 3d7e02fb9c40263a989c4c19d2dc5a07659965ed
-  xe-pw-123906v1: 123906v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123906v1/index.html
-
---===============4232701446214335744==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add throttle reasons sysfs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123906/">https://patchwork.freedesktop.org/series/123906/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123906v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123906v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed_BAT -&gt; xe-pw-123906v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-123906v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123906v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed -&gt; xe-pw-123906v1</li>
-</ul>
-<p>IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-380-3d7e02fb9c40263a989c4c19d2dc5a07659965ed: 3d7e02fb9c40263a989c4c19d2dc5a07659965ed<br />
-  xe-pw-123906v1: 123906v1</p>
-
-</body>
-</html>
-
---===============4232701446214335744==--
