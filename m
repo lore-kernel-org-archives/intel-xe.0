@@ -4,30 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29679CD343F
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 06:29:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09D88CD3440
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 06:30:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0030610E33E;
-	Tue, 19 Sep 2023 06:29:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A18D310E33E;
- Tue, 19 Sep 2023 06:29:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9D5FBAADEB;
- Tue, 19 Sep 2023 06:29:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD6DE10E315;
+	Tue, 19 Sep 2023 06:30:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7025010E315;
+ Tue, 19 Sep 2023 06:30:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695105018; x=1726641018;
+ h=date:from:to:cc:subject:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=F+RvAmesUVTeC11lgoF0UpM357+0PxVyjCxUnNYyALU=;
+ b=fDqo48UStb9qTtlQ/KRZBu8RAVZ/vpaunPEiWxnDDae478oYNsrG8WRA
+ 72gymiAafm8PF1AMghhjPL5UFpuUtVRFw2xsT1EX+avoJ1YRHnhZRhdjX
+ uVXH8tLuJuErVVaF3Akk18rOdfjeiVklvM6Q2RCypLW0vnANzIKR2HE33
+ lTLpAYc2tt2uaYA/doIVvX6N0kkIbfqik/tUN7IYdjv/t+D3nkMyjtBho
+ qwM4R7+wF1PnwX+ULTyeuIdD0g1Nw//Bdjo+FnkSxenehTDL3lsaonbAF
+ HR5tIYptuW0y1SmI43xT9HkKy6UBEb9X8PWZL3ZdjHud/Fg9Asb4WBvVz g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="364911416"
+X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; d="scan'208";a="364911416"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 23:30:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="695805540"
+X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; d="scan'208";a="695805540"
+Received: from linux.intel.com ([10.54.29.200])
+ by orsmga003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Sep 2023 23:30:17 -0700
+Received: from maurocar-mobl2 (aalfero-mobl2.ger.corp.intel.com
+ [10.252.25.249])
+ (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ (No client certificate requested)
+ by linux.intel.com (Postfix) with ESMTPS id 74575580DAE;
+ Mon, 18 Sep 2023 23:30:15 -0700 (PDT)
+Date: Tue, 19 Sep 2023 08:30:12 +0200
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Message-ID: <20230919083012.6d83fd34@maurocar-mobl2>
+In-Reply-To: <20230918134249.31645-26-janusz.krzysztofik@linux.intel.com>
+References: <20230918134249.31645-19-janusz.krzysztofik@linux.intel.com>
+ <20230918134249.31645-26-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aravind Iddamsetty" <aravind.iddamsetty@linux.intel.com>
-Date: Tue, 19 Sep 2023 06:29:26 -0000
-Message-ID: <169510496664.3669.5219729187690800912@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230919063611.14236-1-aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20230919063611.14236-1-aravind.iddamsetty@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
- =?utf-8?q?m/xe=3A_Fix_kernel_doc_warning_for_PMU_events?=
+Subject: Re: [Intel-xe] [Intel-gfx] [PATCH i-g-t v3 07/17] lib/ktap: Drop
+ checks for EINTR on read() failures
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,46 +64,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org, Dominik Karol =?UTF-8?B?UGnEhXRrb3dza2k=?=
+ <dominik.karol.piatkowski@intel.com>, igt-dev@lists.freedesktop.org,
+ Isabella Basso <isabbasso@riseup.net>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, 18 Sep 2023 15:42:57 +0200
+Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com> wrote:
 
-Series: drm/xe: Fix kernel doc warning for PMU events
-URL   : https://patchwork.freedesktop.org/series/123887/
-State : warning
+> While reading KTAP data from /dev/kmsg we now ignore EINTR failures that
+> may occur during read() and we continue reading the data.  No explanation
+> has been provided on what that could be needed for.
+> 
+> Since we use default SIGINT signal handler, read() should never fail with
+> errno set to EINTR on user interrupt, only the whole process should be
+> terminated.  Drop checks for errno == EINTR as not applicable.
 
-== Summary ==
+This explanation makes sense to me.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 3d0f8656f521163a9c3a6d0952fefca8fdb353f2
-Author: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Date:   Tue Sep 19 12:06:11 2023 +0530
-
-    drm/xe: Fix kernel doc warning for PMU events
-    
-    Add DOC keyword to PMU events comment in include/drm/xe_drm.h to make it
-    kernel doc format.
-    
-    Fixes: 4a9681392cec ("drm/xe/pmu: Enable PMU interface")
-    
-    Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-+ /mt/dim checkpatch 22df933d86d3e15520b5ef409396a6f507f4ae53 drm-intel
-3d0f8656f drm/xe: Fix kernel doc warning for PMU events
--:9: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '4a9681392cec', maybe rebased or not pulled?
-#9: 
-Fixes: 4a9681392cec ("drm/xe/pmu: Enable PMU interface")
-
-total: 0 errors, 1 warnings, 0 checks, 8 lines checked
+Acked-by: Mauro Carvalho Chehab <mchehab@kernel.org>
 
 
+> 
+> v2: Drop handling of EINTR completely, update commit message and
+>     descripion.
+> 
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Cc: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+
+> ---
+>  lib/igt_ktap.c | 15 ---------------
+>  1 file changed, 15 deletions(-)
+> 
+> diff --git a/lib/igt_ktap.c b/lib/igt_ktap.c
+> index 84fb13218f..ce07f9aed7 100644
+> --- a/lib/igt_ktap.c
+> +++ b/lib/igt_ktap.c
+> @@ -66,9 +66,6 @@ static int log_to_end(enum igt_log_level level, int fd,
+>  				return -2;
+>  			}
+>  
+> -			if (errno == EINTR)
+> -				continue;
+> -
+>  			if (errno == EPIPE) {
+>  				igt_warn("kmsg truncated: too many messages. You may want to increase log_buf_len in kmcdline\n");
+>  				return -2;
+> @@ -188,9 +185,6 @@ static int find_next_tap_subtest(int fd, char *record, char *test_name, bool is_
+>  				return -2;
+>  			}
+>  
+> -			if (errno == EINTR)
+> -				continue;
+> -
+>  			if (errno == EPIPE) {
+>  				igt_warn("kmsg truncated: too many messages. You may want to increase log_buf_len in kmcdline\n");
+>  				return -2;
+> @@ -232,9 +226,6 @@ static int find_next_tap_subtest(int fd, char *record, char *test_name, bool is_
+>  				return -2;
+>  			}
+>  
+> -			if (errno == EINTR)
+> -				continue;
+> -
+>  			if (errno == EPIPE) {
+>  				igt_warn("kmsg truncated: too many messages. You may want to increase log_buf_len in kmcdline\n");
+>  				return -2;
+> @@ -387,9 +378,6 @@ static int parse_tap_level(int fd, char *base_test_name, int test_count, bool *f
+>  				return -1;
+>  			}
+>  
+> -			if (errno == EINTR)
+> -				continue;
+> -
+>  			if (errno == EAGAIN)
+>  				/* No records available */
+>  				continue;
+> @@ -540,9 +528,6 @@ igt_ktap_parser_start:
+>  			/* No records available */
+>  			continue;
+>  
+> -		if (errno == EINTR)
+> -			continue;
+> -
+>  		if (errno == EPIPE) {
+>  			igt_warn("kmsg truncated: too many messages. You may want to increase log_buf_len in kmcdline\n");
+>  			goto igt_ktap_parser_end;
