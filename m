@@ -4,139 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BFF3CE79A9
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 20:41:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C405ACE79A9
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 20:42:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1849410E28D;
-	Tue, 19 Sep 2023 20:41:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E524D10E28D
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 20:41:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C41A10E1BD;
+	Tue, 19 Sep 2023 20:42:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC52D10E1BD
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 20:42:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695156081; x=1726692081;
+ t=1695156167; x=1726692167;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=3ImqGwEPlXYxPI43yNldDZNqt+OxZGSSJ1f2x8BYV58=;
- b=SdptQpibjGsOjyQC49RHIHMvUDdLjdUn2uWJLbUxDgrvAjEE8Kdf17Ib
- trVzk+bujKQ44DqCZpQVh/BtglxkobeJNVnfEeWV948oKTdEumPh4QI9j
- wlxVAj0sbCEtjfkX2yYmwwZ71OzP8Wazshn193fl9C3I6sSfTIMTJB3Sd
- MPKmmtNz1juVucnBe+jq6QsMRSf4iA1SfYJVGAWNc9JNPuUO0wGgwsree
- 6gMaaY0po+RinEJAQAofgoVJTgkmwSnWprapNP8UhX3AhHoJK+MobdfiL
- T1noVv3doYvjG/yO+8HMnP0DEfbpAncb8IZ+WVcOwC99tujdjg30c2+3e g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="410978052"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="410978052"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 13:41:02 -0700
+ bh=rFIsaruRTnK9loLY/fWzuFSDf4O2RA7CfvxvcJhYLsY=;
+ b=JCxz0ItSKe2bvGGtATA76+WPIu8TSZ7eP3IGfLDcqQNRA66lVQC947Tp
+ LIOQSyLt/QIty1gCX452rWv/0WEbkugRJFZlX/INR6wqaY8McyvQbjGQ4
+ jNVR5o9peRlCiUgkaE7sATEd7NURIOWe7/u8XRSQj3406jYIpJWuONURd
+ xNT7WMpBO9tRxCyMwgdUOSh8tmqr7O5RfVBipUmXlblzbuwdm/tPVG9QX
+ omp4W5ggdpbwZ17QwF0btgHl3tg5cy7eD3vQrqcZtNqjoHzWpZaMSvmQx
+ lvZXjWfvpmG7Fi3ELqpDrpSoVDi6TqllRbT0mMMszVx4eK36S0sUZYWeC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="378938411"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="378938411"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2023 13:42:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="746364392"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="746364392"
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="920013261"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="920013261"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Sep 2023 13:41:02 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Sep 2023 13:42:46 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 19 Sep 2023 13:41:01 -0700
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 19 Sep 2023 13:41:01 -0700
+ 15.1.2507.32; Tue, 19 Sep 2023 13:42:46 -0700
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 19 Sep 2023 13:41:01 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.177)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Tue, 19 Sep 2023 13:42:46 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.44) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 19 Sep 2023 13:41:01 -0700
+ 15.1.2507.32; Tue, 19 Sep 2023 13:42:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EeNvCB9/tZZzTTdJmDNGp6HoUAaPwx6V1vgrDNOtHOCzPdEpuwODhf4hibhiO5dWJsXeTYyW40Bb4KQQQUvQisYX6jAi13S3p87bs0XsBorWu4WpEnCp3uht53Ck//4GWkaOMaaK3UYWqCRG9qmZLynkmFFTu2AYX276Y7V4VoNxi0hIIMArx1GBjevjb55vYnkEz+Bo9obr+o+RVr2FP3SLhqZa9RMFuOC6C3h1CzSHrXilvorx1vTeSfJs5XRNytGkn29QbQF9dAvs7wfGdrCNodHlYzOxDEtAHYX4YIawYxLf9tsF1PS/vJzV9miNDHTuX7anHid8mmk4DgbYcw==
+ b=H2MSqU5/nMf+eeZXwZL9N85rtR2b/KCkslCnC1dDfKmzRdob4/OyeGINMgV2MrgZO3AwzEznL3/ACMIZpia4ko8D1R9ND1ee8eZennxkeuPXcgYLjN/8CtlqaD6ouBVB47V31QNWOOOPwcRPIQirnTWhaGs2cdc+XYWpL+mQVnyFjB3iGZZDN7XN1S1EyjsqwwXbAacIdOBfWMNTMNmwVzlcw3bQ+0ziz1GeON5QO39p5OxFv4zktR8Ghl42wUFHENK1QS7uew+Egafk5ylOf/DP4guzRHUlEGIAuxbOFq400kPsgtNUtVs9Os9e/7s7ut6Bk+n1XYbpwr+H5oA6Pw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fveVY2f21NIsaB3LRRxhIblTdJ0kNecvqyIziKdUFb0=;
- b=UGac1EXFD+VqVNk9lYoh86Ary1Y9cU2IUOAdcONygJA9hXSZX1d09yv8Ro4IUU84r3p6R0Y5vmUn7o8N2BijFPzbIQeY0z3AsvA6+Vqq/0iZUNbStilI8XvFtw19XQVmeElIpCu0QRjRwx3wC4SIGjdTCa+LJQvGyLChP66t14axy4Qfrt6sIirUoOFIUIcM/+aATduMMl/dler8PC521Vh/m0lXzJ3imucy+toBLjK/L5RMUy+Yll5FA7+CY5ktiz+CFmjTyR6pmwlWbrerimA93wFMZTsTUJDO5AvHzYWot97iHjGAct49kR8TzUInazbCqaQrGVWbJJOJJgCtnQ==
+ bh=I+aVY2GJb3lbeyYyQRg+KNhTbhBrTbIEK+fAT4aS+PU=;
+ b=mG5SeZToNsWy9tOgHPA74Rw+pF+uQibnlsCMV+M+j5ywrPFFJqntfx9uAkwp88ke9QVVI9WcNLZ3+RoWHbM9tSpWfwCcB2erhBTv2yHMVnlLqEVSn/ZLP7LYsnqmYu0h/EhZC3rwl6zXz0DwLfmYnVtfKhvmL33E9807mbnY0gadqZF3/qYmpNRkkxm0nUTaCbaM5l/kZ8DPkWWwmQuaEGcxvNeM7SGZHmCrftJ+NgITBnDIp/034zwIXK1U2JBe+u2Pxkr11YOPe0nvofFp2pNvOH46S7zKRSC5nISUz6BHXA0Hd+4xJeBSs046K9K2lq+yFfcOuPWB/Og4ZRRz6w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by SN7PR11MB7509.namprd11.prod.outlook.com (2603:10b6:806:346::9)
+ by SA1PR11MB6711.namprd11.prod.outlook.com (2603:10b6:806:25b::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Tue, 19 Sep
- 2023 20:40:56 +0000
+ 2023 20:42:43 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::99cc:830:3ea5:d42b]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::99cc:830:3ea5:d42b%3]) with mapi id 15.20.6792.026; Tue, 19 Sep 2023
- 20:40:56 +0000
-Date: Tue, 19 Sep 2023 20:39:48 +0000
+ 20:42:43 +0000
+Date: Tue, 19 Sep 2023 20:41:35 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <ZQoHFKaBYRYXh1rf@DUT025-TGLU.fm.intel.com>
+Message-ID: <ZQoHfzRgLricNE3U@DUT025-TGLU.fm.intel.com>
 References: <20230919142504.91652-1-rodrigo.vivi@intel.com>
- <20230919142504.91652-5-rodrigo.vivi@intel.com>
+ <20230919142504.91652-12-rodrigo.vivi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230919142504.91652-5-rodrigo.vivi@intel.com>
-X-ClientProxiedBy: BYAPR05CA0025.namprd05.prod.outlook.com
- (2603:10b6:a03:c0::38) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20230919142504.91652-12-rodrigo.vivi@intel.com>
+X-ClientProxiedBy: BYAPR02CA0004.namprd02.prod.outlook.com
+ (2603:10b6:a02:ee::17) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SN7PR11MB7509:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2285e694-dfc3-43d9-3c25-08dbb950b94d
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SA1PR11MB6711:EE_
+X-MS-Office365-Filtering-Correlation-Id: 28750587-aa3b-4c0a-77c8-08dbb950f945
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: f2LlckG7C2hK3X4c/a6705WM9tW8l1S2IO1O4AKDm0kRCrPVfOLibkzyzenlhtsSAlzkk+gYphSkEgiI1hLlEsWIOcY0woCLX5S4IiAvrQx1ru0ppROvQwKiKe/Np/2gH1k98lkR3rzrqxFqBGGGH0aM8MdWOfgXMZuDRRj601tltnEj9UHa/n0Yl0PYM7ERO8+JOt+anEAqZhU7tE2QkDci/3W6v35OFwzpU1oYSH9eiVOsrVVkga8HflOaQx8d36dc7urgIuLRvBWAiawWhuH8GCM2YqjMXXvRqzHgnn7rxfX4ukps6j1LUjpeHG8o5hps4130JJS8Tw8hF4X5poF7UwfB+cNpnqg6pI9RDZ+mgypnwB8bOrDrtFgrFUxlK8Ry4P/k/S0KT+MgQNjVHpdcCmNDsLiGp2bILY5ADCPvjsAZdNJn/qGI1Ahpp6dxsudpALDThbRcUyplrRuu2BAShKcZdj8lGiW0YvxCMSITcUtQOblN2lalzOusiUsuc0kK4GU564p2OaI9iGmatbNN4+Dogc9zCGXOhiTKhBI=
+X-Microsoft-Antispam-Message-Info: B2zwKlkI/V15sMeSC+7C611Q3v6eK10I3ks4Og6Bcv7agi8cZay261NBIHwK/8KGXCJuRzG7yoP+OE2FgbNoLCzm5D0vlBZyLlbDnR5ABPYDoP+5cnuu/leYEgJN5rQpvJF3o71qojXgTnFtbOwkB6hkBNQeq4JATK7ST0woxvW3AKGIBGOzQjVBM+zL7s7GmrrMJyacDHu/Jpm9EveMzKOCRtu/i3G0pNCuxS5WgFMneGOXb87J5SA6qAmSRJ6TOPfjYGhMeQH7J5QEyHger5n9mQrSw2H1br9oOyUlK10/66+3yH8ZC6qO3AtYF4T7eyTAZKoUQSjoeXEnpVAmYY8PIYDA8xCi3TZd3bnIzbeg5c28IlinoyS7kkxJgQ7SYR1mheKU8RdYYmvuCxaUqPKwWZaJs1ljhwsCX7tA93zpfoR+rGpKgAo+7rqF6h0+ksR9+QD2/PitZB7N3eOYVTP0CyYXo83frTX+YB5cTnVfqN+Y4OYQMJc47DFD2mn34WGPosJNad7CDmys0CO6TKJ1NrfIr35iU4QB014QJhAbQE7dpJ/NfGUDTRqGltmr
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(396003)(136003)(376002)(366004)(346002)(186009)(451199024)(1800799009)(316002)(66556008)(6636002)(66476007)(66946007)(478600001)(966005)(38100700002)(2906002)(8676002)(4326008)(8936002)(6862004)(41300700001)(44832011)(5660300002)(83380400001)(86362001)(6512007)(82960400001)(6666004)(6486002)(6506007)(107886003)(26005);
+ SFS:(13230031)(366004)(346002)(136003)(39860400002)(376002)(396003)(1800799009)(186009)(451199024)(6506007)(6486002)(6666004)(6512007)(478600001)(4326008)(83380400001)(26005)(107886003)(6862004)(2906002)(44832011)(66556008)(66476007)(316002)(6636002)(66946007)(5660300002)(8676002)(8936002)(41300700001)(38100700002)(82960400001)(86362001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?S5a6e/qNFZUtVlKquNUOe8A1PyRozr6ANXYk10JPbJdd5lR4YQhrFQTFoe6B?=
- =?us-ascii?Q?ZPFUQFfuqjn6iagFrQhjXpKc+vYAxGQJnEJNgXx2I9RdwnrFOu18NJE8VHmY?=
- =?us-ascii?Q?l7UQq5SFBbsm77e+xzxH31hadhKO6GID18eBFjPstmedK0NgjUTUsD+2/A/z?=
- =?us-ascii?Q?qgGuL2EnKi6ITrFF0MnUxg/42r6t9o5ljAq2bAgPkFdyjE/xM7JBdTtrCk8R?=
- =?us-ascii?Q?wo8fQX0wor1V7eZ/FjhnJXkSwYfQZIzlddDD9R7W9GseJfGqevophssz9daP?=
- =?us-ascii?Q?z3VlXq8JCytQSQPf+rGXn00SbyT8hMltbCS5VSEEVUqldXTsa065mxIg/Bu9?=
- =?us-ascii?Q?KEadIxqGYh0c3rm5pDXcoRJaqsi4YVQmKPKe17QxtJbaFnhQx9X6wqTtpjLr?=
- =?us-ascii?Q?9/5LdwKBnbW9/+F246BIdgDBnAkTPWGBaMLJ2fhgGeTZfUsAkrC+uZudXh/P?=
- =?us-ascii?Q?OxrYYCBXpo4ly1VBVIxc+Hnp33UPpUZ4k3Qowpuain0d+6W1bytOgmQvGg5V?=
- =?us-ascii?Q?/2E2DGe/9S4aop7XQerhoL3C34LFBml2i4OrE7U9axx41K8r2EvNqbYDlGbN?=
- =?us-ascii?Q?+vg642s2W3jPCVm8N35DAwE7aLYRy+j8FVJM5CzU3R6B3owUVZDelbjqflWN?=
- =?us-ascii?Q?rY27stowpA9nlK2KCOqrTJ36ADcmIvnP7kSiX5S4OWO2W5lZPUUC+bERnA13?=
- =?us-ascii?Q?kR7xv2V/kbk6ixO8lzlCYSJgjSOpXKVCRoiKpOMT8DLKYxYE2tnTXcEDu+zH?=
- =?us-ascii?Q?7bctR2495kMqBTFqZjgH7eh50XStYjWznfPZf8Io8H++AmAKxyyaCDCJin+a?=
- =?us-ascii?Q?siLoMdCN4TKs7Llv1BE0SckmwucLqaVMU1nTZYFyqpRlbSXklslxrMWRcjur?=
- =?us-ascii?Q?H6+6M/9HnfNMt9/d1zVTKvqPACBAMhEDWcDj8oWwTO9dHCZbZTggy+RkPWMf?=
- =?us-ascii?Q?alnEdiyrziVlPbcuYcx9omgqRdS/et282+xPZ6RVswM0wh9FRGy4fU/vOmsv?=
- =?us-ascii?Q?ZuPnEMKcBIhKqnpeWrWOcHcvX/01Ibb9BIUhledKhEwIrjwEBD4rzx7jou6y?=
- =?us-ascii?Q?913tVu3CYL1a5JCp9GuI50KK3eyuYfBxIDw4k5dno6SN1o6olyH1QKqFHR0F?=
- =?us-ascii?Q?06QQa2IiEF+kBCZjEJ0D+Ub402is57FWqCT23Leuz/lF4ib8JSNUgw3cUCXI?=
- =?us-ascii?Q?nkUD5hOKx13lFjFBZsPOLUHZ7HmfixTEfKZkEtThmXFTy4UCUvxwqTH9ZxAq?=
- =?us-ascii?Q?S9esJoHTLlLMAvBI6UM/jzhauiqu8dsM31F+n9i9Gqsod+l4kb+jq6nPDBMr?=
- =?us-ascii?Q?3l9ZgcpKZY78OWx+Z18cvOwFDBEDb9e5nJM4sIlbt1Ckgp7jI4sWZi9tm3ZI?=
- =?us-ascii?Q?yELB+h89gIEtNDwsAmdgzW6EDl1RlNFd1/DM6/MenPGnqZKmXB5ffjvMChUv?=
- =?us-ascii?Q?hD8afQEQZJ3uPR2y9Cwzz0TE6J2R3DKl6CleD8iYS+F9kwwv0T9weTTtbf3d?=
- =?us-ascii?Q?YWiiPWyzv4XB7RAuP/ud2pJYjcsCzmlnCpqOkQzNS91b4vB16snBpPSG0iOX?=
- =?us-ascii?Q?DysaAjOxuAm2KDoT2gG1UstXw/Ejd9xlo6zI/iwHNyLXBRY9bHhkWuKp8nDY?=
- =?us-ascii?Q?5A=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2285e694-dfc3-43d9-3c25-08dbb950b94d
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?zLHi29ftqP+GN5QZnE0ZSyASQ4eKdBbZQJhpexQtPbb2hcFxmw1ndvnGmvWl?=
+ =?us-ascii?Q?YEuEnCW78+v1rG7ljkZLQS3rQwVPzHZMxHvx7a6X7NYjTJ7fT+1E5En1kOB5?=
+ =?us-ascii?Q?7GLNmKxmQgobRPEevl1aGDshssI9Ol5Uw5p2srDr92GQyJS8DvHxkdRbS9vZ?=
+ =?us-ascii?Q?b7QRNgC1HMUczIE6QhLtRO+AlEfMuXQknbKQ6Jmj48qsBRhQzS96JRqfE9iH?=
+ =?us-ascii?Q?uRGT4nauzzgvBgB1KqHs3BiZkNaKV9rLHFWY7vX3zANkAxIfrJHduR2O6K9U?=
+ =?us-ascii?Q?dkP/wOoDMvAZmJnkNSDs+ccYqQMNXIkZWmLv6JycLODHJIVutrufQ85sLLRo?=
+ =?us-ascii?Q?A6UlQLlXijVFPqM7tLaW7bX5mPj9cd6WyAv/VltzwKOzCg3ukJ6ayraEngb1?=
+ =?us-ascii?Q?BXeGNPpvg1XBDLameg2/ztRy3fFShov2+0CI6+5wyEuGbch/SEOacDsRPH8U?=
+ =?us-ascii?Q?bDjDr3O7NaKJH/pFDjrmgtmrAtTlcGo8BD1BAugEsRneKiR09SUXa+sG/zZb?=
+ =?us-ascii?Q?K2zxFAa/wAUAw6U0ZfOL7T6uxMAPPaNm8JadBsdL0wiCXEttb1r0ic085FBo?=
+ =?us-ascii?Q?HvPvev71Rl6L/igyyTL0j4zlFCvj6c/yKW7d9ms6mw4Nuj1L74no9cb+rHE4?=
+ =?us-ascii?Q?w+NGA2Dl+ENfrqsCvIgBhsRYQTEJSZWRIO2tJ4ubse2sA20INhtIhK5ieIu5?=
+ =?us-ascii?Q?w/1OUVipiIkt2VYsRvoszyioGJIhw/QAfJV1qQSkX8+13zy0y177MGZJQlDI?=
+ =?us-ascii?Q?yYlP7ROwr4ZeYsTCi/X8x6/qehbo4Wy99545aHKAjkJzxJKuf3mXeJRohvjz?=
+ =?us-ascii?Q?ubJifb+PPDaUczRwyIQU4bcPik/hTxnkfcNBGp5/R5NG3IwFGujqlrD4oEZV?=
+ =?us-ascii?Q?45fXr4IDxSrbdLE7vlQDnEwFnaKrW21DnYHS9KANWjlBXbbCCBvPIDMeonp3?=
+ =?us-ascii?Q?XPFbo8Dr37QrtUKfAH3pJ5U/8KBCkaQLPyZBtIhBTK/+GBlxSiO4QNqfVqJy?=
+ =?us-ascii?Q?gdrnF3yESEztEQMjQe+GdFInPbPirYaZwgn0ztMMe9eJqpbX8j7HUoKdkihi?=
+ =?us-ascii?Q?5/0+Iftez0tCwjKlyEyut0P+3ip9MHRVLmPo2fcIfxgTSGqkHMH4zVTsg2u1?=
+ =?us-ascii?Q?yp2r+p7xQI4jBcJbt5vMaT7yf8zqujl6wzYLrIWhCVt1icYWfzQTtPbaMPXp?=
+ =?us-ascii?Q?kcXGrlOoMJnZ07PEQwWXqwcpsl41kwn2l+YP9ED4+EO978zBMww+bxVPnfTA?=
+ =?us-ascii?Q?DdhwXQHb6UtseEy955sWzPZ85ceGdkqIyDgYrKl7K6d/ME7h9tQ8JXE9KnO4?=
+ =?us-ascii?Q?nI0u+wGGm5PuLbdrAlbK6MpufbWB7jImcS8MEY6SGsyW4Vw4KpRRRw6o90tH?=
+ =?us-ascii?Q?5l2q2xf/U2fopr4XhledD0GDw8cen/A0NggB95M6hfG5uKYMW1uVI6bzzlJD?=
+ =?us-ascii?Q?xzJXM0zThf3E1m+GxjokH9CKt2CXSUnTtrKSzOb/WRF1jTY33BaQyoNydQgn?=
+ =?us-ascii?Q?VSk+iJHhazCefKc3vM+Sd7ontGMKj1RsRT+C3APCBqh9SqWo8ltYPVFn+ZgE?=
+ =?us-ascii?Q?zuZB4kWxc4NpUrx0cTxzR5CJDjtSKRLnowJJRqr6lY/A/oGmknhflQUfpTFv?=
+ =?us-ascii?Q?aw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 28750587-aa3b-4c0a-77c8-08dbb950f945
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2023 20:40:56.2331 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2023 20:42:43.5450 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: F+6bYfpEi3RabBY/SltV3vA1yrtGv+VjbijnUTeDUX6KIV+SaUe9sqECWmsCha/bwvECy4T/orzsfxehCPxPKQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7509
+X-MS-Exchange-CrossTenant-UserPrincipalName: udWS3+/B+I5Alpxgr8eVTE9CoW8UdKZ2/b6eWfH755ztpAy3MJL4y7lzbEvId1FFwbE8vgUnsRhtcuewcUjNwA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB6711
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 04/17] drm/xe/uapi: Separate VM_BIND's
- operation and flag
+Subject: Re: [Intel-xe] [PATCH 11/17] drm/xe/uapi: Use common
+ drm_xe_ext_set_property extension
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,174 +151,104 @@ Cc: kamil.kopryk@intel.com, filip.hazubski@intel.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 19, 2023 at 10:24:51AM -0400, Rodrigo Vivi wrote:
-> From: Francois Dugast <francois.dugast@intel.com>
+On Tue, Sep 19, 2023 at 10:24:58AM -0400, Rodrigo Vivi wrote:
+> From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > 
-> Use different members in the drm_xe_vm_bind_op for op and for flags as
-> it is done in other structures.
+> There really is no difference between 'struct drm_xe_ext_vm_set_property'
+> and 'struct drm_xe_ext_exec_queue_set_property', they are extensions which
+> specify a <property, value> pair. Replace the two extensions with a single
+> common 'struct drm_xe_ext_set_property' extension. The rationale is that
+> rather than have each XE module (including future modules) invent their own
+> property/value extensions, all XE modules use a common set_property
+> extension when possible.
 > 
-> Type is left to u32 to leave enough room for future operations and flags.
-> 
-> v2: Remove the XE_VM_BIND_* flags shift (Rodrigo Vivi)
-> 
-> Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/303
+> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-This patch LGTM but noticed in xe_drm.h we probably should do this:
-
-s/define XE_/define DRM_XE_/
-
-As I said this patch is fine though, with that:
 Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
 > ---
->  drivers/gpu/drm/xe/xe_vm.c | 29 ++++++++++++++++-------------
->  include/uapi/drm/xe_drm.h  | 14 ++++++++------
->  2 files changed, 24 insertions(+), 19 deletions(-)
+>  drivers/gpu/drm/xe/xe_exec_queue.c |  2 +-
+>  drivers/gpu/drm/xe/xe_vm.c         |  2 +-
+>  include/uapi/drm/xe_drm.h          | 21 +++------------------
+>  3 files changed, 5 insertions(+), 20 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index f70332986c73..411ba38cb2b8 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -418,7 +418,7 @@ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+>  					    bool create)
+>  {
+>  	u64 __user *address = u64_to_user_ptr(extension);
+> -	struct drm_xe_ext_exec_queue_set_property ext;
+> +	struct drm_xe_ext_set_property ext;
+>  	int err;
+>  	u32 idx;
+>  
 > diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 2b225c0692a6..7579c9537bfa 100644
+> index 2af331cf2d35..33a02aca8971 100644
 > --- a/drivers/gpu/drm/xe/xe_vm.c
 > +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2152,11 +2152,11 @@ static void vm_set_async_error(struct xe_vm *vm, int err)
->  }
->  
->  static int vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
-> -				    u64 addr, u64 range, u32 op)
-> +				    u64 addr, u64 range, u32 op, u32 flags)
+> @@ -1935,7 +1935,7 @@ static int vm_user_ext_set_property(struct xe_device *xe, struct xe_vm *vm,
+>  				    u64 extension)
 >  {
->  	struct xe_device *xe = vm->xe;
->  	struct xe_vma *vma;
-> -	bool async = !!(op & XE_VM_BIND_FLAG_ASYNC);
-> +	bool async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
+>  	u64 __user *address = u64_to_user_ptr(extension);
+> -	struct drm_xe_ext_vm_set_property ext;
+> +	struct drm_xe_ext_set_property ext;
+>  	int err;
 >  
->  	lockdep_assert_held(&vm->lock);
->  
-> @@ -2257,7 +2257,7 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
->  static struct drm_gpuva_ops *
->  vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->  			 u64 bo_offset_or_userptr, u64 addr, u64 range,
-> -			 u32 operation, u8 tile_mask, u32 region)
-> +			 u32 operation, u32 flags, u8 tile_mask, u32 region)
->  {
->  	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
->  	struct drm_gpuva_ops *ops;
-> @@ -2285,10 +2285,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->  
->  			op->tile_mask = tile_mask;
->  			op->map.immediate =
-> -				operation & XE_VM_BIND_FLAG_IMMEDIATE;
-> +				flags & XE_VM_BIND_FLAG_IMMEDIATE;
->  			op->map.read_only =
-> -				operation & XE_VM_BIND_FLAG_READONLY;
-> -			op->map.is_null = operation & XE_VM_BIND_FLAG_NULL;
-> +				flags & XE_VM_BIND_FLAG_READONLY;
-> +			op->map.is_null = flags & XE_VM_BIND_FLAG_NULL;
->  		}
->  		break;
->  	case XE_VM_BIND_OP_UNMAP:
-> @@ -3100,15 +3100,16 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->  		u64 range = (*bind_ops)[i].range;
->  		u64 addr = (*bind_ops)[i].addr;
->  		u32 op = (*bind_ops)[i].op;
-> +		u32 flags = (*bind_ops)[i].flags;
->  		u32 obj = (*bind_ops)[i].obj;
->  		u64 obj_offset = (*bind_ops)[i].obj_offset;
->  		u32 region = (*bind_ops)[i].region;
-> -		bool is_null = op & XE_VM_BIND_FLAG_NULL;
-> +		bool is_null = flags & XE_VM_BIND_FLAG_NULL;
->  
->  		if (i == 0) {
-> -			*async = !!(op & XE_VM_BIND_FLAG_ASYNC);
-> +			*async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
->  		} else if (XE_IOCTL_DBG(xe, !*async) ||
-> -			   XE_IOCTL_DBG(xe, !(op & XE_VM_BIND_FLAG_ASYNC)) ||
-> +			   XE_IOCTL_DBG(xe, !(flags & XE_VM_BIND_FLAG_ASYNC)) ||
->  			   XE_IOCTL_DBG(xe, VM_BIND_OP(op) ==
->  					XE_VM_BIND_OP_RESTART)) {
->  			err = -EINVAL;
-> @@ -3129,7 +3130,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->  
->  		if (XE_IOCTL_DBG(xe, VM_BIND_OP(op) >
->  				 XE_VM_BIND_OP_PREFETCH) ||
-> -		    XE_IOCTL_DBG(xe, op & ~SUPPORTED_FLAGS) ||
-> +		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
->  		    XE_IOCTL_DBG(xe, obj && is_null) ||
->  		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
->  		    XE_IOCTL_DBG(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
-> @@ -3344,8 +3345,9 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  		u64 range = bind_ops[i].range;
->  		u64 addr = bind_ops[i].addr;
->  		u32 op = bind_ops[i].op;
-> +		u32 flags = bind_ops[i].flags;
->  
-> -		err = vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op);
-> +		err = vm_bind_ioctl_lookup_vma(vm, bos[i], addr, range, op, flags);
->  		if (err)
->  			goto free_syncs;
->  	}
-> @@ -3354,13 +3356,14 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  		u64 range = bind_ops[i].range;
->  		u64 addr = bind_ops[i].addr;
->  		u32 op = bind_ops[i].op;
-> +		u32 flags = bind_ops[i].flags;
->  		u64 obj_offset = bind_ops[i].obj_offset;
->  		u8 tile_mask = bind_ops[i].tile_mask;
->  		u32 region = bind_ops[i].region;
->  
->  		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
-> -						  addr, range, op, tile_mask,
-> -						  region);
-> +						  addr, range, op, flags,
-> +						  tile_mask, region);
->  		if (IS_ERR(ops[i])) {
->  			err = PTR_ERR(ops[i]);
->  			ops[i] = NULL;
+>  	err = __copy_from_user(&ext, address, sizeof(ext));
 > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 3e249f197d90..59e9f2f87074 100644
+> index fb7c3a8ac572..8be3b25928bd 100644
 > --- a/include/uapi/drm/xe_drm.h
 > +++ b/include/uapi/drm/xe_drm.h
-> @@ -663,8 +663,10 @@ struct drm_xe_vm_bind_op {
->  #define XE_VM_BIND_OP_RESTART		0x3
->  #define XE_VM_BIND_OP_UNMAP_ALL		0x4
->  #define XE_VM_BIND_OP_PREFETCH		0x5
-> +	/** @op: Bind operation to perform */
-> +	__u32 op;
+> @@ -572,12 +572,11 @@ struct drm_xe_vm_bind_op_error_capture {
+>  	__u64 size;
+>  };
 >  
-> -#define XE_VM_BIND_FLAG_READONLY	(0x1 << 16)
-> +#define XE_VM_BIND_FLAG_READONLY	(0x1 << 0)
->  	/*
->  	 * A bind ops completions are always async, hence the support for out
->  	 * sync. This flag indicates the allocation of the memory for new page
-> @@ -689,12 +691,12 @@ struct drm_xe_vm_bind_op {
->  	 * configured in the VM and must be set if the VM is configured with
->  	 * DRM_XE_VM_CREATE_ASYNC_BIND_OPS and not in an error state.
->  	 */
-> -#define XE_VM_BIND_FLAG_ASYNC		(0x1 << 17)
-> +#define XE_VM_BIND_FLAG_ASYNC		(0x1 << 1)
->  	/*
->  	 * Valid on a faulting VM only, do the MAP operation immediately rather
->  	 * than deferring the MAP to the page fault handler.
->  	 */
-> -#define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 18)
-> +#define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 2)
->  	/*
->  	 * When the NULL flag is set, the page tables are setup with a special
->  	 * bit which indicates writes are dropped and all reads return zero.  In
-> @@ -702,9 +704,9 @@ struct drm_xe_vm_bind_op {
->  	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
->  	 * intended to implement VK sparse bindings.
->  	 */
-> -#define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
-> -	/** @op: Operation to perform (lower 16 bits) and flags (upper 16 bits) */
-> -	__u32 op;
-> +#define XE_VM_BIND_FLAG_NULL		(0x1 << 3)
-> +	/** @flags: Bind flags */
-> +	__u32 flags;
+> -/** struct drm_xe_ext_vm_set_property - VM set property extension */
+> -struct drm_xe_ext_vm_set_property {
+> +/** struct drm_xe_ext_set_property - XE set property extension */
+> +struct drm_xe_ext_set_property {
+>  	/** @base: base user extension */
+>  	struct xe_user_extension base;
 >  
->  	/** @mem_region: Memory region to prefetch VMA to, instance not a mask */
->  	__u32 region;
+> -#define XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS		0
+>  	/** @property: property to set */
+>  	__u32 property;
+>  
+> @@ -593,6 +592,7 @@ struct drm_xe_ext_vm_set_property {
+>  
+>  struct drm_xe_vm_create {
+>  #define XE_VM_EXTENSION_SET_PROPERTY	0
+> +#define XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS		0
+>  	/** @extensions: Pointer to the first extension struct, if any */
+>  	__u64 extensions;
+>  
+> @@ -757,21 +757,6 @@ struct drm_xe_vm_bind {
+>  	__u64 reserved[2];
+>  };
+>  
+> -/** struct drm_xe_ext_exec_queue_set_property - exec queue set property extension */
+> -struct drm_xe_ext_exec_queue_set_property {
+> -	/** @base: base user extension */
+> -	struct xe_user_extension base;
+> -
+> -	/** @property: property to set */
+> -	__u32 property;
+> -
+> -	/** @pad: MBZ */
+> -	__u32 pad;
+> -
+> -	/** @value: property value */
+> -	__u64 value;
+> -};
+> -
+>  /**
+>   * struct drm_xe_exec_queue_set_property - exec queue set property
+>   *
 > -- 
 > 2.41.0
 > 
