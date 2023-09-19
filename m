@@ -4,52 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 703C7CD3443
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 06:57:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D91F8CD3445
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 07:10:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2CD9710E1A8;
-	Tue, 19 Sep 2023 06:57:44 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D59E810E1A8
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 06:57:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695106662; x=1726642662;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=biC38LaYB1oiivZe4kSBaesZ3YU/h2UqUq6FgV1tydM=;
- b=EXjoigW9BE5yWfH9Udrbm9cfagPLb9s+4Cv+9pNQLdRYWPpaX72+wJXF
- tdusbmE2FL725ogsiMWUzPBJ7yr2PWy/XTU2iGWFaeVeJZb+dnXDGOQsm
- C1jS5QiWSYTInknbVirIA6nTLU7s+pkKAKO2HuSjFQydEpBp4eAL7rjdv
- DU3yNJ+9FAfeih1P1ReWtCv/ms8I6WZoVmIABrdTCXzOJPnA/U3DPumQe
- LWKSKqPNIJ38vxMCY76EXVZCKqCipnXovxUSsbovEpPlpZWkGvrSxw66d
- TAuWAdemHQypxlAcYiTu18FswV3P5TdjCgAejYf0toMh1GrAZZ9ZCbhlQ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="410799787"
-X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; d="scan'208";a="410799787"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2023 23:57:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="775433769"
-X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; d="scan'208";a="775433769"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.80])
- ([10.145.162.80])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2023 23:57:40 -0700
-Message-ID: <27edfabf-7df3-c952-2491-e1c6538ef3c6@linux.intel.com>
-Date: Tue, 19 Sep 2023 12:37:26 +0530
+	by gabe.freedesktop.org (Postfix) with ESMTP id A92CC10E34E;
+	Tue, 19 Sep 2023 07:10:57 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1A3FC10E34E;
+ Tue, 19 Sep 2023 07:10:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0F6E5AADD8;
+ Tue, 19 Sep 2023 07:10:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1562383353518164720=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Aravind Iddamsetty" <aravind.iddamsetty@linux.intel.com>
+Date: Tue, 19 Sep 2023 07:10:56 -0000
+Message-ID: <169510745605.3666.3729303066292572566@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20230919063611.14236-1-aravind.iddamsetty@linux.intel.com>
- <87h6nqy80h.wl-ashutosh.dixit@intel.com>
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <87h6nqy80h.wl-ashutosh.dixit@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Fix kernel doc warning for PMU events
+In-Reply-To: <20230919063611.14236-1-aravind.iddamsetty@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A?=
+ =?utf-8?q?_Fix_kernel_doc_warning_for_PMU_events?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,45 +39,107 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============1562383353518164720==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 19/09/23 12:17, Dixit, Ashutosh wrote:
-> On Mon, 18 Sep 2023 23:36:11 -0700, Aravind Iddamsetty wrote:
->> Add DOC keyword to PMU events comment in include/drm/xe_drm.h to make it
->> kernel doc format.
->>
->> Fixes: 4a9681392cec ("drm/xe/pmu: Enable PMU interface")
-> Maybe make this a fixup! patch so it can get merged with the original
-> patch? With that this is:
+== Series Details ==
 
-Ok, will do that.
->
-> Reviewed-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Series: drm/xe: Fix kernel doc warning for PMU events
+URL   : https://patchwork.freedesktop.org/series/123887/
+State : success
 
-Thanks,
-Aravind.
->
->> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
->> ---
->>  include/uapi/drm/xe_drm.h | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->> index 63863eda8355..6ab85c7fed36 100644
->> --- a/include/uapi/drm/xe_drm.h
->> +++ b/include/uapi/drm/xe_drm.h
->> @@ -1054,7 +1054,7 @@ struct drm_xe_vm_madvise {
->>  };
->>
->>  /**
->> - * XE PMU event config IDs
->> + * DOC: XE PMU event config IDs
->>   *
->>   * Check 'man perf_event_open' to use these ID's in 'struct perf_event_attr'
->>   * as part of perf_event_open syscall to read a particular event.
->> --
->> 2.25.1
->>
+== Summary ==
+
+CI Bug Log - changes from xe-379-22df933d86d3e15520b5ef409396a6f507f4ae53_BAT -> xe-pw-123887v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: xe-379-22df933d86d3e15520b5ef409396a6f507f4ae53 -> xe-pw-123887v1
+
+  IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-379-22df933d86d3e15520b5ef409396a6f507f4ae53: 22df933d86d3e15520b5ef409396a6f507f4ae53
+  xe-pw-123887v1: 123887v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123887v1/index.html
+
+--===============1562383353518164720==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Fix kernel doc warning for PMU events</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/123887/">https://patchwork.freedesktop.org/series/123887/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123887v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-123887v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-379-22df933d86d3e15520b5ef409396a6f507f4ae53_BAT -&gt; xe-pw-123887v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-379-22df933d86d3e15520b5ef409396a6f507f4ae53 -&gt; xe-pw-123887v1</li>
+</ul>
+<p>IGT_7493: 2517e42d612e0c1ca096acf8b5f6177f7ef4bce7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-379-22df933d86d3e15520b5ef409396a6f507f4ae53: 22df933d86d3e15520b5ef409396a6f507f4ae53<br />
+  xe-pw-123887v1: 123887v1</p>
+
+</body>
+</html>
+
+--===============1562383353518164720==--
