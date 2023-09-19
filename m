@@ -4,79 +4,133 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF564CD54B6
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 11:44:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F5F8CD5BB9
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 13:14:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F51410E3A5;
-	Tue, 19 Sep 2023 11:44:37 +0000 (UTC)
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02C7D10E1FD
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 11:44:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1695123873;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=x5pwn72HQRzsVFwPaRta5T6PBnbYzefmc+nMyv5CIgg=;
- b=L8e75JJhOpq65AT6AgB3FlFgbius5H2VrY3Kt/7lWOsrkk8HVCafvVjyEX9ESmS4/0iezu
- mvXAA0niANQNLEhUWxQNxmDvmXTzvPg7nJus2FADc6k3DTi3QqZPifgXrjLlg6Uztb5P0l
- Zqh+xPuN2tv48BtioOSZtxclg/aT64Y=
-Received: from mail-ej1-f71.google.com (mail-ej1-f71.google.com
- [209.85.218.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-67-HWUvInH7MqSs56abeUNdKw-1; Tue, 19 Sep 2023 07:44:32 -0400
-X-MC-Unique: HWUvInH7MqSs56abeUNdKw-1
-Received: by mail-ej1-f71.google.com with SMTP id
- a640c23a62f3a-9adad8f306fso407940266b.0
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 04:44:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695123871; x=1695728671;
- h=content-transfer-encoding:in-reply-to:organization:from:references
- :cc:to:content-language:subject:user-agent:mime-version:date
- :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=x5pwn72HQRzsVFwPaRta5T6PBnbYzefmc+nMyv5CIgg=;
- b=Xd3JFY4keYzEYf9hgFNooV0Qi8eIcnXvuY7P3N4r+5bnFhHoLMs07tbgiR9c9bQvg1
- Z39mu5EubkblNcHP5XWgGOYGo4OV4O7o8UrRmzq0TAQ1KdnnK5CB4fJhEW0uXqAUov6V
- kV2d+UiN99+B+nV8B44/pkZQH3EB+dQX+7VM6cS+zEbeb/GkWMk+CllBnEhLY2/CoduP
- sIdbZQ28yFDloEm/uhmImRAeKffJdJozq5vJdaX38qoPDGgvh4O3Rv544bexR7YgiWJV
- tqjtRs2tbufre/GiE9LQCrXgb8+uU9AcE7OOQqkAnR081JIKUyvgjS/7zzerAbo2l1DX
- FYCw==
-X-Gm-Message-State: AOJu0YxaFJEMAJ36hb/X3v+QMmuVAqmmfb3RvorkBsAYC2Y9+Mqzg+Xi
- WOLuFGklmrsymoVA3Hs8tPRyn6XYKxhh02zIsxKwOArROncgEubi4uNTci7waytyYKmbJ7aIioo
- BPmqP1klfX5a48JJHJ1xEs1ihQZY=
-X-Received: by 2002:a17:907:2ced:b0:9a9:e858:e72f with SMTP id
- hz13-20020a1709072ced00b009a9e858e72fmr10380673ejc.45.1695123871401; 
- Tue, 19 Sep 2023 04:44:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IELPiuH2JGuaH0W0ls9v0iJdmS/GLmnx2FjMcFju9VG6E3ysZfi7X2AMaZX4S8exsxPeTdTWA==
-X-Received: by 2002:a17:907:2ced:b0:9a9:e858:e72f with SMTP id
- hz13-20020a1709072ced00b009a9e858e72fmr10380651ejc.45.1695123871061; 
- Tue, 19 Sep 2023 04:44:31 -0700 (PDT)
-Received: from ?IPV6:2a02:810d:4b3f:de9c:642:1aff:fe31:a15c?
- ([2a02:810d:4b3f:de9c:642:1aff:fe31:a15c])
- by smtp.gmail.com with ESMTPSA id
- bj26-20020a170906b05a00b00997e99a662bsm7572235ejb.20.2023.09.19.04.44.29
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Tue, 19 Sep 2023 04:44:30 -0700 (PDT)
-Message-ID: <7739a88e-28e9-27fb-8d2a-4f294fdfe672@redhat.com>
-Date: Tue, 19 Sep 2023 13:44:28 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6421F10E3C0;
+	Tue, 19 Sep 2023 13:14:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B94810E3C0
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 13:14:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695129259; x=1726665259;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=oqVOL3sXBsjO37hdWfJHJklS6w72Sz04JXS9YwJbEpc=;
+ b=BXso5XWQddGreheK6pk4bLQy7PwHtCTu+9nuD4q35iJAVZ/TLX/L3ew2
+ kZ3gKsr14RQ891laRedn3eyEZXg3lyq5cYhN0pTX/MZmPiJNYH0L5Zfbh
+ 7HhVY53k2X8OUDZ8pj8+kdNWliKnHcvR0Y8Lf98MI03x9Y7Kf7ACITsdF
+ g6RnKMZiaLl3uuAwr852iOIE0ACNMkdzvCXh6YdQ0qgXyUx+di+0PSko9
+ DqNw3k2mvHVN09+nqhA/Nl2abVrrsDoFnmaJ4y3ybAsjRaJB7Uyuk6XbU
+ ypq88nQb72Ke4+/5FtgydsB6F+sUFb6t7YobJtvuslTTBHKwVHIv4mnLm g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="370251360"
+X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="370251360"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Sep 2023 06:14:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="861541900"
+X-IronPort-AV: E=Sophos;i="6.02,159,1688454000"; d="scan'208";a="861541900"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Sep 2023 06:14:18 -0700
+Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Tue, 19 Sep 2023 06:14:18 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Tue, 19 Sep 2023 06:14:18 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.173)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Tue, 19 Sep 2023 06:14:17 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=i/I3uNpYTMXHbLmsDCoJO07UqIvZZZWeAudO2wn6uCPiQPtSWoVYhc+i76vy9Tvb68YM213yfd7bvOr3mE1HCO/i9CbA4CwrNCzonjKnjLSwTr1YNSvqO8wWT0JNXNK+TacXyauEoNUvLng+lfsXmuRvFM1D4ZpmzPpQpv+eGTzJD4Vc0KoYxfwFC0P71mmikuDCuY5ryahk1ihYXCOPLglW8p7QWaiZquJWLLj5TN/7GCXSwlzFL8TPKfBarI44MmUixgRY3ugy0zp8RdQi02JebpOHh2zVLonyxttI+AH7E5osfbCgeCsg9EzYZOZYCArVhTCdr0+KrTx6L8JeHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=WzRn4xyKg5MO3DKPP8Gb9YFZSI1jfe+iNUsHeYWnYWg=;
+ b=eF+I/mikJ6D/yBY4uuzptie5VjkhwslcJGvUh8HU6CVS8IDLHnqfEqRdksO4gq/hdZuYOK1eA0PJ/EaeA/icMFZXCfc21nYDTTZke7gNVJB385Ay8BO8P39w3JGtT6qIwoym5uQjHHD8rszl8Se8nMa18bsaxVvYS/WpT2cMyol6jI+Y5XkjIPG4/YVz325tP3LgAxfac+Owppm4ypPxWE59bKtmt+N9QTolCL+7o153ZmcoCqzWjDC+JvuP7EXN7jAN01Ju4dKQ2rn7rzsaG4Uesa3uqOlfmuNHqNtM1q1V/OmZM46OHi18YgRUUmskmhslAVARlFZW7WIKT5+wiA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by IA0PR11MB7912.namprd11.prod.outlook.com (2603:10b6:208:3dd::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Tue, 19 Sep
+ 2023 13:14:10 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::6d0b:5bc6:8723:593%6]) with mapi id 15.20.6792.022; Tue, 19 Sep 2023
+ 13:14:10 +0000
+Date: Tue, 19 Sep 2023 09:14:06 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <ZQmenqsn4JVHeoDr@intel.com>
+References: <20230915233445.2241554-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230915233445.2241554-1-matthew.brost@intel.com>
+X-ClientProxiedBy: SJ0PR13CA0161.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c7::16) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-To: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-References: <20230919050155.2647172-1-matthew.brost@intel.com>
-From: Danilo Krummrich <dakr@redhat.com>
-Organization: RedHat
-In-Reply-To: <20230919050155.2647172-1-matthew.brost@intel.com>
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: redhat.com
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH v4 00/10] DRM scheduler changes for Xe
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|IA0PR11MB7912:EE_
+X-MS-Office365-Filtering-Correlation-Id: 916c7511-d5dd-4a20-0ee4-08dbb9124f95
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: KZErOcUKTurMRgQAg//0Xp7msrDp8N+4d6MPMAOvvKsr702hNRXdCS5oLRgW4GboMzKxJgDeR5fHWO+tano0hox5aiKj58Kjpi/go4sHizLthjPotHp136vkM7GB0VM/7HDBxiXqq7f/JHsojb5MntqDoOlamApZF81ccVunGEVAEH3qPyrljuP2kV3YEH3BtJAVEdlei/KvADtOJa6pU8ThyRbQyC9DrNOLS+m0Nw7n/Cci5n9TnFrfVbAzwUZzYko6+LUJNkMOKXEUUI6jslpAnU+vw6YFjZ9VleOMmyLzNigbmf/Ua8sua/rQ1A4s3jWMCH8/GaoIBT0BlCs9sM4uxkCLK3WGbpDrJ6I3V75vCS1KVmqtp3YEWlHDRZxlNcwiuH4kPwQN5m1UQhujIBFWQcV4UvPEDjQye+xC6/H/1rImRHYbm4So+4QsIzPEctBuo6DJj1xlw3/3f2ssyEh5T4Z7kz8Rzpwrg+us5FHS/Le4UVjcijBq/plZgFjH0W6chu+J845jLwGqhVvEscm2c6wdPH+5sYhJl/xQJOgOoYXVmZzEg5GO21w1sEL0G57BzCK95gitD64ams9uMg==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(376002)(136003)(346002)(396003)(366004)(1800799009)(186009)(451199024)(6506007)(6486002)(6666004)(36756003)(38100700002)(86362001)(82960400001)(2616005)(26005)(2906002)(6512007)(966005)(478600001)(83380400001)(44832011)(8676002)(6862004)(5660300002)(4326008)(41300700001)(8936002)(66946007)(66476007)(66556008)(6636002)(316002)(37006003);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Z9UIQVLSGGFawJMxV5K9rzrm08qdue5W9w4cy1FdIgWqhiDotYls/9ZHZocB?=
+ =?us-ascii?Q?uI7l4AxPWVZETJeZQCIlpUSPrhgQYX2Suf3bQIEsuna0bgRhMUNNC3vfRaIQ?=
+ =?us-ascii?Q?jgZ8iPbSchFvyYjZt5eCYSfMAru1wTtnS4PlDAyiQSrkFAzbxTlT7yGicLFG?=
+ =?us-ascii?Q?NTX+maFCroO8Zl1T6lj7N2GbLmhL344X7FMzcSpKUXsSCp8EKynrOJ5NgSl2?=
+ =?us-ascii?Q?tpo90uNN1rLafzYodbA64DBICKHAdGr0IyVGyVfy3HC31F/7YXTm46o4gK3/?=
+ =?us-ascii?Q?yggS5u4BvsW1xP6qyG8ij/d+3pnlBlXwlJfzVAjQvXtLu2ehrR8fkIbuyFyy?=
+ =?us-ascii?Q?bwpLVzV4zCP84QFqMAljECvi/XUQgP1fcLMXhbfYBYE1AabbKOrhkrVGAsMy?=
+ =?us-ascii?Q?vbZfUH8/V1hLM6TojJrpjcR/TePNEOD+QqpKSaBMjbWi4igDz/KvaHBsJYhA?=
+ =?us-ascii?Q?ogGf2E+o+4lc6q+gNyAIlGxE0l5A9Nep+2tpr9xqcasZ+BQWFXnHDdgMa8YP?=
+ =?us-ascii?Q?zkYMb9l0wS0MDS31zx4A3qi/wOHDq0kI9EgsmHF+Fny3TcvJP8tJ6u+k2XfB?=
+ =?us-ascii?Q?0um3b//fapiBguAIfBEo8ipbyU5YRM5cyWQRs0oDLyHmKIVrb1quQwUdiAZC?=
+ =?us-ascii?Q?1Re8sffUvDW3dc4g6YNLBiOsg5wamrTcHsu7JNsVQV/imXPFG9n2aC7fCzx0?=
+ =?us-ascii?Q?n/SC1yAHFvRWvl9OAk+G83YLwqg7jgt9RxRWklnuesAhqoKoVj9SUVL8Gc9s?=
+ =?us-ascii?Q?LVI/Ea0uWqVGRxiNW+ReMUEoWsi4v7v/2P4Lzzl2bOiTwE342LE0YQg/5E8L?=
+ =?us-ascii?Q?02g/8V5rh5CHTWPdxQRvuo6B5Ms7rEDny2NwARaH9Z6BOQ3fiDqJMVRPeQJK?=
+ =?us-ascii?Q?zsoku3G1o55nju10h3VfKXDmJLt3SOp89u85gkGgygpzZuEcRaZCBbPZGQDO?=
+ =?us-ascii?Q?E5aQX92qF4r7sQqaI3nqCO1/Y/Xh4zRwP3yXZwf8K2sFgXyrIWcRmoe43y8h?=
+ =?us-ascii?Q?lecLbtcnX8ZsAX1QgKPO8CddxzuMbrfI0iD9ApVoQRjUGYVuTcltSrI60Mhm?=
+ =?us-ascii?Q?zkVPpYIQZ9lsSY/8Q6o2cS/Mw3OEYl68SAuqJN/l9FHkc39PaRnlK1SVR/Mx?=
+ =?us-ascii?Q?3YAAiFwhaYhGFbhRd0VrOU1Yy0Gnkvm1XAYlkfTMjRsJfCMr931Y7+3iWWr4?=
+ =?us-ascii?Q?aDkCF0aR4mq8dxxh51h76mlJAPajBDMBsI4MKO6N5Ie6Or2RhwpmeamIqWWn?=
+ =?us-ascii?Q?r6DPFzxO5aKLE5nq94aR/GhFwERdkusnkg/DdBMjA9Rst+VSzfjbWr1hgrHw?=
+ =?us-ascii?Q?x3KPXoi4dzS63NSz2OBptqBtMymDP/e+RBP7ng52Oji3MkcrOc+Xaaqo47n5?=
+ =?us-ascii?Q?EszRv5ijY25qHS/DSoJHrqGpA8y+8JMgh0LdSoy55BaN5yXfMVUTZxYj3397?=
+ =?us-ascii?Q?QovmWlYrQIVtx+mvibbRyTrOKGjABPovSfx4BMN8TOU+nrNp6wLpzxNKhFnp?=
+ =?us-ascii?Q?Rzhv5uyjA137vM5O34Q1P/8EneVoK19BoE2DGVs/qGt5usJ7jsCFzN4HwMLP?=
+ =?us-ascii?Q?H80Nemb2ETYuEq9VeTTBaeI1WVtvtRqMAZCkXP04?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 916c7511-d5dd-4a20-0ee4-08dbb9124f95
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Sep 2023 13:14:10.1451 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: XrxTjw7nxPJ4VV+jOn4IyFpL5KYliDhc2IEs/diDFdV8WwR0oyxb9znZV63MvDMwYuuHUjTqupxhYk3bhZArlQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7912
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2 0/4] Remove
+ XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,97 +142,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- frank.binns@imgtec.com, mcanal@igalia.com, Liviu.Dudau@arm.com,
- luben.tuikov@amd.com, lina@asahilina.net, donald.robson@imgtec.com,
- daniel@ffwll.ch, boris.brezillon@collabora.com, airlied@gmail.com,
- christian.koenig@amd.com, faith.ekstrand@collabora.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matt,
+On Fri, Sep 15, 2023 at 04:34:41PM -0700, Matthew Brost wrote:
+> Backwards backing uAPI changes, getting on the list.
 
-On 9/19/23 07:01, Matthew Brost wrote:
-> As a prerequisite to merging the new Intel Xe DRM driver [1] [2], we
-> have been asked to merge our common DRM scheduler patches first.
+Patch 2 breaks compatibility.
+
 > 
-> This a continuation of a RFC [3] with all comments addressed, ready for
-> a full review, and hopefully in state which can merged in the near
-> future. More details of this series can found in the cover letter of the
-> RFC [3].
+> First 3 patches already on the list [1] and free to merge as soon as it
+> gets an RB.
+
+Please do not merge this today as I'm getting these patches with
+the others that Francois and myself are collecting to have a one-time
+shot on breaking the compatibility.
+
 > 
-> These changes have been tested with the Xe driver.
-> 
-> v2:
->   - Break run job, free job, and process message in own work items
->   - This might break other drivers as run job and free job now can run in
->     parallel, can fix up if needed
-> 
-> v3:
->   - Include missing patch 'drm/sched: Add drm_sched_submit_* helpers'
->   - Fix issue with setting timestamp to early
->   - Don't dequeue jobs for single entity after calling entity fini
->   - Flush pending jobs on entity fini
->   - Add documentation for entity teardown
->   - Add Matthew Brost to maintainers of DRM scheduler
-> 
-> v4:
->   - Drop message interface
->   - Drop 'Flush pending jobs on entity fini'
->   - Drop 'Add documentation for entity teardown'
->   - Address all feedback
-
-There is some feedback from V3 that doesn't seem to be addressed yet.
-
-(1) Document tear down of struct drm_gpu_scheduler. [1]
-(2) Implement helpers to tear down struct drm_gpu_scheduler. [2]
-(3) Document implications of using a workqueue in terms of free_job() being
-     or not being part of the fence signaling path respectively. [3]
-
-I think at least (1) and (3) should be part of this series. I think (2) could
-also happen subsequently. Christian's idea [2] how to address this is quite
-interesting, but might exceed the scope of this series.
-
-I will try to rebase my Nouveau changes onto your V4 tomorrow for a quick test.
-
-- Danilo
-
-[1] https://lore.kernel.org/all/20230912021615.2086698-1-matthew.brost@intel.com/T/#m2e8c1c1e68e8127d5dd62509b5e424a12217300b
-[2] https://lore.kernel.org/all/20230912021615.2086698-1-matthew.brost@intel.com/T/#m16a0d6fa2e617383776515af45d3c6b9db543d47
-[3] https://lore.kernel.org/all/20230912021615.2086698-1-matthew.brost@intel.com/T/#m807ff95284089fdb51985f1c187666772314bd8a
-
+> The required IGT changes are also on the list [2].
 > 
 > Matt
 > 
-> Matthew Brost (10):
->    drm/sched: Add drm_sched_submit_* helpers
->    drm/sched: Convert drm scheduler to use a work queue rather than
->      kthread
->    drm/sched: Move schedule policy to scheduler
->    drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
->    drm/sched: Split free_job into own work item
->    drm/sched: Add drm_sched_start_timeout_unlocked helper
->    drm/sched: Start submission before TDR in drm_sched_start
->    drm/sched: Submit job before starting TDR
->    drm/sched: Add helper to queue TDR immediately for current and future
->      jobs
->    drm/sched: Update maintainers of GPU scheduler
+> [1] https://patchwork.freedesktop.org/series/123820/
+> [2] https://patchwork.freedesktop.org/series/123821/
 > 
->   MAINTAINERS                                   |   1 +
->   .../drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c   |   2 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |  15 +-
->   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  15 +-
->   drivers/gpu/drm/etnaviv/etnaviv_sched.c       |   5 +-
->   drivers/gpu/drm/lima/lima_sched.c             |   5 +-
->   drivers/gpu/drm/msm/adreno/adreno_device.c    |   6 +-
->   drivers/gpu/drm/msm/msm_ringbuffer.c          |   5 +-
->   drivers/gpu/drm/nouveau/nouveau_sched.c       |   5 +-
->   drivers/gpu/drm/panfrost/panfrost_job.c       |   5 +-
->   drivers/gpu/drm/scheduler/sched_entity.c      |  85 ++-
->   drivers/gpu/drm/scheduler/sched_fence.c       |   2 +-
->   drivers/gpu/drm/scheduler/sched_main.c        | 491 ++++++++++++------
->   drivers/gpu/drm/v3d/v3d_sched.c               |  25 +-
->   include/drm/gpu_scheduler.h                   |  48 +-
->   15 files changed, 495 insertions(+), 220 deletions(-)
+> Matthew Brost (4):
+>   drm/xe: Fix xe_exec_queue_is_idle for parallel exec queues
+>   drm/xe: Deprecate XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE
+>     implementation
+>   drm/xe: Rename exec_queue_kill_compute to
+>     xe_vm_remove_compute_exec_queue
+>   drm/xe: Remove XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE from uAPI
 > 
-
+>  drivers/gpu/drm/xe/xe_exec_queue.c       | 97 +++++++-----------------
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  6 +-
+>  drivers/gpu/drm/xe/xe_vm.c               | 21 +++++
+>  drivers/gpu/drm/xe/xe_vm.h               |  1 +
+>  include/uapi/drm/xe_drm.h                | 19 ++---
+>  5 files changed, 57 insertions(+), 87 deletions(-)
+> 
+> -- 
+> 2.34.1
+> 
