@@ -4,49 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3458BCD343C
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 05:02:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBA04CD343C
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 05:32:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9609B10E3CB;
-	Tue, 19 Sep 2023 05:01:56 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3480010E3B9;
- Tue, 19 Sep 2023 05:01:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695099706; x=1726635706;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=hokkMqBWd22VPksfbisYj6lGNWQVb0bhIpXczh/+jC8=;
- b=Nc2z6/xEFhsHDU9ldXZgs3/pqOX4tKdk3At8Rdbh7SLRTLHrRqwMOVRX
- 1RTJ1OpEkqZHRRduFsYpxWpFJCLm7zuCxYTFA7P3vzkd71DReQdT3vLuU
- 2E8H2Mqh4PEpOY7imH3Z0HO3+xdWW3zBgRAwQL7jCWxvfotThWEXTdBuC
- DVa9xvZo7mls2oYhek9BufaXz3QdYmEt2AbVMTx/bIclWiv9FGaUDgzYG
- w64l5h4ua+qqcTnGWw1U9tV4qFhOdJwZFx6qhZtg/52JDPkHNzJs9WtZr
- H7Gxu9VWbxc2ueeeKWNlHj3LtedoVEYFwnpjA+8WFUK16i3Sq2x0RKeI6 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="377163532"
-X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; d="scan'208";a="377163532"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2023 22:01:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="775409087"
-X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; d="scan'208";a="775409087"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2023 22:01:40 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: dri-devel@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Date: Mon, 18 Sep 2023 22:01:55 -0700
-Message-Id: <20230919050155.2647172-11-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230919050155.2647172-1-matthew.brost@intel.com>
-References: <20230919050155.2647172-1-matthew.brost@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E81210E3C3;
+	Tue, 19 Sep 2023 05:32:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DDC7110E3C3;
+ Tue, 19 Sep 2023 05:32:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id DBD86A00E6;
+ Tue, 19 Sep 2023 05:32:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 10/10] drm/sched: Update maintainers of GPU
- scheduler
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Danilo Krummrich" <dakr@redhat.com>
+Date: Tue, 19 Sep 2023 05:32:33 -0000
+Message-ID: <169510155389.3668.5517513788164981468@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230919050155.2647172-1-matthew.brost@intel.com>
+In-Reply-To: <20230919050155.2647172-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_DRM_scheduler_changes_for_Xe_=28rev6=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,33 +39,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, lina@asahilina.net, sarah.walker@imgtec.com,
- ketil.johnsen@arm.com, Liviu.Dudau@arm.com, mcanal@igalia.com,
- frank.binns@imgtec.com, luben.tuikov@amd.com, dakr@redhat.com,
- donald.robson@imgtec.com, daniel@ffwll.ch, boris.brezillon@collabora.com,
- airlied@gmail.com, christian.koenig@amd.com, faith.ekstrand@collabora.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add Matthew Brost to maintainers of GPU scheduler
+== Series Details ==
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+Series: DRM scheduler changes for Xe (rev6)
+URL   : https://patchwork.freedesktop.org/series/121744/
+State : failure
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 60c2d97e427b..43c51d1abee5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7134,6 +7134,7 @@ F:	drivers/gpu/drm/xlnx/
- 
- DRM GPU SCHEDULER
- M:	Luben Tuikov <luben.tuikov@amd.com>
-+M:	Matthew Brost <matthew.brost@intel.com>
- L:	dri-devel@lists.freedesktop.org
- S:	Maintained
- T:	git git://anongit.freedesktop.org/drm/drm-misc
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 22df933d8 drm/xe: Rename exec_queue_kill_compute to xe_vm_remove_compute_exec_queue
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c:290
+error: drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c: patch does not apply
+error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1659
+error: drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c: patch does not apply
+error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4588
+error: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c: patch does not apply
+error: patch failed: drivers/gpu/drm/msm/adreno/adreno_device.c:809
+error: drivers/gpu/drm/msm/adreno/adreno_device.c: patch does not apply
+error: patch failed: drivers/gpu/drm/scheduler/sched_main.c:439
+error: drivers/gpu/drm/scheduler/sched_main.c: patch does not apply
+error: patch failed: include/drm/gpu_scheduler.h:550
+error: include/drm/gpu_scheduler.h: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/sched: Add drm_sched_submit_* helpers
+Patch failed at 0001 drm/sched: Add drm_sched_submit_* helpers
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
