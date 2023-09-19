@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98672CE79B3
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 16:16:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5176CE79A9
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 16:16:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 691EC10E3D4;
-	Tue, 19 Sep 2023 16:16:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9AEE010E13B;
+	Tue, 19 Sep 2023 16:16:58 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B776B10E288
- for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 16:16:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCD3410E143
+ for <intel-xe@lists.freedesktop.org>; Tue, 19 Sep 2023 16:16:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695140180; x=1726676180;
+ t=1695140179; x=1726676179;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fqC+gzBpA39EA/fDj8Tyefk2IiKGzRQERRjz8E9qiL8=;
- b=Jku4jZELmUVoVCKgHPaO3ahnJixYLZkGWYq40D1k+gfMslNE0da8XYPX
- 1t3sP4ry5ifUFhijJka2+5XX5GfVUAaojYc2mX6jlAJzivEfQM5vSM1mv
- QoJQYMOz18/JDy6DmxZElq4O5UDWaJGIDtko/fsl88dKKEiID+SMbWyJG
- 1TyiBJ4LKPvI8bsuViQjoBXt/IckqmTRd28/Ut435iMeFqgIyp5jWPLdm
- GCKKCMGjbct5akGLTSC7ZeMj9yk7qnKoJtDhO4W4qSjIr6E2DoTnSAZ+H
- PvNCvbMbPLU2ZDI2p+ZBMFkWFKYRtc97TmCqymkg8c5nIPI73vHSs2CaL w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="410913561"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="410913561"
+ bh=3jiPFMVzDpXyp1oPAFeqAflIxXTxZnUwmpd0jCQMILw=;
+ b=E6+fYK1+rVfwtnB7LlpUjKxMSK3m6olWeSFcPAuG8wCTZ4Teud1wE3tM
+ kMQpAQPO/0qnWhQljLka1EPPtLWObk+sF2CO/0+Ez3CvO+axB2caIzXC1
+ 00+j+0Cd+P9zuCM8d7DvUdqHWLk037+R86b1JgltCEohwDaDTOOJcdUPs
+ b+FmarOOaITwYVjD3Qe3sqP/Sk5xsLdpizJLA16JLNWDLq4BVYR4jobd8
+ OhbARtprMJNStI0WI3X/SBEhozRMCT9ts2XD4iDSIJ/mKv5aszGPwT7fJ
+ VMrPbjvwchfGdO6fN13VaWO9dGYj6KjRe5+k6VYNGFZq1/b/I6/3nk8eG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="410913538"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="410913538"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  19 Sep 2023 09:10:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="870016533"
-X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="870016533"
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="870016514"
+X-IronPort-AV: E=Sophos;i="6.02,160,1688454000"; d="scan'208";a="870016514"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Sep 2023 09:10:54 -0700
+ 19 Sep 2023 09:10:53 -0700
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 19 Sep 2023 09:10:39 -0700
-Message-ID: <20230919161049.2307855-12-ashutosh.dixit@intel.com>
+Date: Tue, 19 Sep 2023 09:10:33 -0700
+Message-ID: <20230919161049.2307855-6-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230919161049.2307855-1-ashutosh.dixit@intel.com>
 References: <20230919161049.2307855-1-ashutosh.dixit@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 11/21] drm/xe/oa: Override GuC RC with OA on PVC
+Subject: [Intel-xe] [PATCH 05/21] drm/xe/oa: Add/remove config ioctl's
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,190 +60,462 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On PVC, a w/a resets RCS/CCS before it goes into RC6. This breaks OA since
-OA does not expect engine resets during its use. Fix it by disabling RC6.
+OA configurations consist of a set of event and counter select registers.
+The add_config ioctl validates and stores such configurations and also
+exposes them in the metrics sysfs. These configurations will be programmed
+to OA unit HW when an OA stream using a configuration is opened. The OA
+stream can also switch to other stored configurations.
 
 Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc_pc.c   | 60 ++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_pc.h   |  3 ++
- drivers/gpu/drm/xe/xe_oa.c       | 26 +++++++++++++-
- drivers/gpu/drm/xe/xe_oa_types.h |  6 ++++
- 4 files changed, 94 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_device.c |   4 +
+ drivers/gpu/drm/xe/xe_oa.c     | 379 ++++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_oa.h     |   5 +
+ 3 files changed, 387 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 8a4d299d6cb02..a91de057f6246 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -225,6 +225,27 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
- 	return ret;
- }
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 2c3dac6340f04..aacca14e52b11 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -114,6 +114,10 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_VM_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
++
++	DRM_IOCTL_DEF_DRV(XE_OA_ADD_CONFIG, xe_oa_add_config_ioctl, DRM_RENDER_ALLOW),
++	DRM_IOCTL_DEF_DRV(XE_OA_REMOVE_CONFIG, xe_oa_remove_config_ioctl, DRM_RENDER_ALLOW),
++
+ };
  
-+static int pc_action_unset_param(struct xe_guc_pc *pc, u8 id)
-+{
-+	struct xe_guc_ct *ct = &pc_to_guc(pc)->ct;
-+	int ret;
-+	u32 action[] = {
-+		GUC_ACTION_HOST2GUC_PC_SLPC_REQUEST,
-+		SLPC_EVENT(SLPC_EVENT_PARAMETER_UNSET, 1),
-+		id,
-+	};
-+
-+	if (wait_for_pc_state(pc, SLPC_GLOBAL_STATE_RUNNING))
-+		return -EAGAIN;
-+
-+	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
-+	if (ret)
-+		drm_err(&pc_to_xe(pc)->drm, "GuC PC unset param failed: %pe",
-+			ERR_PTR(ret));
-+
-+	return ret;
-+}
-+
- static int pc_action_setup_gucrc(struct xe_guc_pc *pc, u32 mode)
- {
- 	struct xe_guc_ct *ct = &pc_to_guc(pc)->ct;
-@@ -768,6 +789,45 @@ int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc)
- 	return ret;
- }
- 
-+/**
-+ * xe_guc_pc_override_gucrc_mode() - override GUCRC mode
-+ * @pc: Xe_GuC_PC instance
-+ * @mode: new value of the mode.
-+ *
-+ * Override the GUCRC mode.
-+ *
-+ * Return: 0 on success, negative error code on error.
-+ */
-+int xe_guc_pc_override_gucrc_mode(struct xe_guc_pc *pc, enum slpc_gucrc_mode mode)
-+{
-+	int ret;
-+
-+	xe_device_mem_access_get(pc_to_xe(pc));
-+	ret = pc_action_set_param(pc, SLPC_PARAM_PWRGATE_RC_MODE, mode);
-+	xe_device_mem_access_put(pc_to_xe(pc));
-+
-+	return ret;
-+}
-+
-+/**
-+ * xe_guc_pc_override_gucrc_mode() - override GUCRC mode
-+ * @pc: Xe_GuC_PC instance
-+ *
-+ * Unset the GUCRC mode override
-+ *
-+ * Return: 0 on success, negative error code on error.
-+ */
-+int xe_guc_pc_unset_gucrc_mode(struct xe_guc_pc *pc)
-+{
-+	int ret;
-+
-+	xe_device_mem_access_get(pc_to_xe(pc));
-+	ret = pc_action_unset_param(pc, SLPC_PARAM_PWRGATE_RC_MODE);
-+	xe_device_mem_access_put(pc_to_xe(pc));
-+
-+	return ret;
-+}
-+
- static void pc_init_pcode_freq(struct xe_guc_pc *pc)
- {
- 	u32 min = DIV_ROUND_CLOSEST(pc->rpn_freq, GT_FREQUENCY_MULTIPLIER);
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
-index 43ea582545b57..0a2c7b9a4dc97 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.h
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.h
-@@ -7,12 +7,15 @@
- #define _XE_GUC_PC_H_
- 
- #include "xe_guc_pc_types.h"
-+#include "abi/guc_actions_slpc_abi.h"
- 
- int xe_guc_pc_init(struct xe_guc_pc *pc);
- void xe_guc_pc_fini(struct xe_guc_pc *pc);
- int xe_guc_pc_start(struct xe_guc_pc *pc);
- int xe_guc_pc_stop(struct xe_guc_pc *pc);
- int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc);
-+int xe_guc_pc_override_gucrc_mode(struct xe_guc_pc *pc, enum slpc_gucrc_mode mode);
-+int xe_guc_pc_unset_gucrc_mode(struct xe_guc_pc *pc);
- 
- enum xe_gt_idle_state xe_guc_pc_c_status(struct xe_guc_pc *pc);
- u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
+ static const struct file_operations xe_driver_fops = {
 diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index fc0159543dc74..506dd056805b2 100644
+index fae067e73c027..1963bc6fad10e 100644
 --- a/drivers/gpu/drm/xe/xe_oa.c
 +++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -23,6 +23,7 @@
- #include "xe_exec_queue.h"
- #include "xe_gt.h"
- #include "xe_gt_mcr.h"
-+#include "xe_guc_pc.h"
- #include "xe_lrc.h"
- #include "xe_migrate.h"
- #include "xe_mmio.h"
-@@ -909,6 +910,10 @@ static void xe_oa_stream_destroy(struct xe_oa_stream *stream)
- 	xe_device_mem_access_put(stream->oa->xe);
+@@ -12,8 +12,8 @@
+ #include <drm/drm_drv.h>
  
- 	xe_oa_free_oa_buffer(stream);
-+	/* Wa_1509372804:pvc: * Unset the override of GUCRC mode to enable rc6 */
-+	if (stream->override_gucrc)
-+		XE_WARN_ON(xe_guc_pc_unset_gucrc_mode(&gt->uc.guc.pc));
+ #include "regs/xe_oa_regs.h"
+-#include "xe_gt.h"
+ #include "xe_device.h"
++#include "xe_gt.h"
+ #include "xe_oa.h"
+ 
+ static u32 xe_oa_stream_paranoid = true;
+@@ -33,6 +33,376 @@ static const struct xe_oa_format oa_formats[] = {
+ 
+ static struct ctl_table_header *sysctl_header;
+ 
++static void xe_oa_config_release(struct kref *ref)
++{
++	struct xe_oa_config *oa_config =
++		container_of(ref, typeof(*oa_config), ref);
 +
- 	xe_oa_free_configs(stream);
- }
- 
-@@ -1344,9 +1349,25 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
- 		goto exit;
- 	}
- 
-+	/*
-+	 * Wa_1509372804:pvc
-+	 *
-+	 * GuC reset of engines causes OA to lose configuration
-+	 * state. Prevent this by overriding GUCRC mode.
-+	 *
-+	 */
-+	if (gt->tile->xe->info.platform == XE_PVC) {
-+		ret = xe_guc_pc_override_gucrc_mode(&gt->uc.guc.pc,
-+						    SLPC_GUCRC_MODE_GUCRC_NO_RC6);
-+		if (ret)
-+			goto err_free_configs;
++	kfree(oa_config->flex_regs);
++	kfree(oa_config->b_counter_regs);
++	kfree(oa_config->mux_regs);
 +
-+		stream->override_gucrc = true;
++	kfree_rcu(oa_config, rcu);
++}
++
++static void xe_oa_config_put(struct xe_oa_config *oa_config)
++{
++	if (!oa_config)
++		return;
++
++	kref_put(&oa_config->ref, xe_oa_config_release);
++}
++
++static bool xe_oa_is_valid_flex_addr(struct xe_oa *oa, u32 addr)
++{
++	static const struct xe_reg flex_eu_regs[] = {
++		EU_PERF_CNTL0,
++		EU_PERF_CNTL1,
++		EU_PERF_CNTL2,
++		EU_PERF_CNTL3,
++		EU_PERF_CNTL4,
++		EU_PERF_CNTL5,
++		EU_PERF_CNTL6,
++	};
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(flex_eu_regs); i++) {
++		if (flex_eu_regs[i].addr == addr)
++			return true;
++	}
++	return false;
++}
++
++static bool xe_oa_reg_in_range_table(u32 addr, const struct xe_mmio_range *table)
++{
++	while (table->start || table->end) {
++		if (addr >= table->start && addr <= table->end)
++			return true;
++
++		table++;
 +	}
 +
- 	ret = xe_oa_alloc_oa_buffer(stream);
- 	if (ret)
--		goto err_free_configs;
-+		goto err_unset_gucrc;
- 
- 	/* Take runtime pm ref and forcewake to disable RC6 */
- 	xe_device_mem_access_get(stream->oa->xe);
-@@ -1377,6 +1398,9 @@ static int xe_oa_stream_init(struct xe_oa_stream *stream,
- 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 	xe_device_mem_access_put(stream->oa->xe);
- 	xe_oa_free_oa_buffer(stream);
-+err_unset_gucrc:
-+	if (stream->override_gucrc)
-+		XE_WARN_ON(xe_guc_pc_unset_gucrc_mode(&gt->uc.guc.pc));
- err_free_configs:
- 	xe_oa_free_configs(stream);
- exit:
-diff --git a/drivers/gpu/drm/xe/xe_oa_types.h b/drivers/gpu/drm/xe/xe_oa_types.h
-index 4063c81e353ff..126692718c888 100644
---- a/drivers/gpu/drm/xe/xe_oa_types.h
-+++ b/drivers/gpu/drm/xe/xe_oa_types.h
-@@ -291,5 +291,11 @@ struct xe_oa_stream {
- 	 * buffer should be checked for available data.
- 	 */
- 	u64 poll_oa_period;
++	return false;
++}
 +
-+	/**
-+	 * @override_gucrc: GuC RC has been overridden for the perf stream,
-+	 * and we need to restore the default configuration on release.
++static const struct xe_mmio_range xehp_oa_b_counters[] = {
++	{ .start = 0xdc48, .end = 0xdc48 },	/* OAA_ENABLE_REG */
++	{ .start = 0xdd00, .end = 0xdd48 },	/* OAG_LCE0_0 - OAA_LENABLE_REG */
++	{}
++};
++
++static const struct xe_mmio_range gen12_oa_b_counters[] = {
++	{ .start = 0x2b2c, .end = 0x2b2c },	/* GEN12_OAG_OA_PESS */
++	{ .start = 0xd900, .end = 0xd91c },	/* GEN12_OAG_OASTARTTRIG[1-8] */
++	{ .start = 0xd920, .end = 0xd93c },	/* GEN12_OAG_OAREPORTTRIG1[1-8] */
++	{ .start = 0xd940, .end = 0xd97c },	/* GEN12_OAG_CEC[0-7][0-1] */
++	{ .start = 0xdc00, .end = 0xdc3c },	/* GEN12_OAG_SCEC[0-7][0-1] */
++	{ .start = 0xdc40, .end = 0xdc40 },	/* GEN12_OAG_SPCTR_CNF */
++	{ .start = 0xdc44, .end = 0xdc44 },	/* GEN12_OAA_DBG_REG */
++	{}
++};
++
++static const struct xe_mmio_range mtl_oam_b_counters[] = {
++	{ .start = 0x393000, .end = 0x39301c },	/* GEN12_OAM_STARTTRIG1[1-8] */
++	{ .start = 0x393020, .end = 0x39303c },	/* GEN12_OAM_REPORTTRIG1[1-8] */
++	{ .start = 0x393040, .end = 0x39307c },	/* GEN12_OAM_CEC[0-7][0-1] */
++	{ .start = 0x393200, .end = 0x39323C },	/* MPES[0-7] */
++	{}
++};
++
++static bool xe_oa_is_valid_b_counter_addr(struct xe_oa *oa, u32 addr)
++{
++	return xe_oa_reg_in_range_table(addr, xehp_oa_b_counters) ||
++		xe_oa_reg_in_range_table(addr, gen12_oa_b_counters) ||
++		xe_oa_reg_in_range_table(addr, mtl_oam_b_counters);
++}
++
++/*
++ * Ref: 14010536224:
++ * 0x20cc is repurposed on MTL, so use a separate array for MTL.
++ */
++static const struct xe_mmio_range mtl_oa_mux_regs[] = {
++	{ .start = 0x0d00, .end = 0x0d04 },	/* RPM_CONFIG[0-1] */
++	{ .start = 0x0d0c, .end = 0x0d2c },	/* NOA_CONFIG[0-8] */
++	{ .start = 0x9840, .end = 0x9840 },	/* GDT_CHICKEN_BITS */
++	{ .start = 0x9884, .end = 0x9888 },	/* NOA_WRITE */
++	{ .start = 0x38d100, .end = 0x38d114},	/* VISACTL */
++	{}
++};
++
++static const struct xe_mmio_range gen12_oa_mux_regs[] = {
++	{ .start = 0x0d00, .end = 0x0d04 },     /* RPM_CONFIG[0-1] */
++	{ .start = 0x0d0c, .end = 0x0d2c },     /* NOA_CONFIG[0-8] */
++	{ .start = 0x9840, .end = 0x9840 },	/* GDT_CHICKEN_BITS */
++	{ .start = 0x9884, .end = 0x9888 },	/* NOA_WRITE */
++	{ .start = 0x20cc, .end = 0x20cc },	/* WAIT_FOR_RC6_EXIT */
++	{}
++};
++
++static bool xe_oa_is_valid_mux_addr(struct xe_oa *oa, u32 addr)
++{
++	if (oa->xe->info.platform == XE_METEORLAKE)
++		return xe_oa_reg_in_range_table(addr, mtl_oa_mux_regs);
++	else
++		return xe_oa_reg_in_range_table(addr, gen12_oa_mux_regs);
++}
++
++static u32 mask_reg_value(u32 reg, u32 val)
++{
++	/*
++	 * HALF_SLICE_CHICKEN2 is programmed with a the WaDisableSTUnitPowerOptimization
++	 * workaround. Make sure the value programmed by userspace doesn't change this.
 +	 */
-+	bool override_gucrc;
- };
++	if (REG_EQUAL_MCR(reg, HALF_SLICE_CHICKEN2))
++		val = val & ~_MASKED_BIT_ENABLE(GEN8_ST_PO_DISABLE);
++
++	/*
++	 * WAIT_FOR_RC6_EXIT has only one bit fullfilling the function indicated by its
++	 * name and a bunch of selection fields used by OA configs.
++	 */
++	if (REG_EQUAL(reg, WAIT_FOR_RC6_EXIT))
++		val = val & ~_MASKED_BIT_ENABLE(HSW_WAIT_FOR_RC6_EXIT_ENABLE);
++
++	return val;
++}
++
++static struct xe_oa_reg *
++xe_oa_alloc_regs(struct xe_oa *oa, bool (*is_valid)(struct xe_oa *oa, u32 addr),
++		 u32 __user *regs, u32 n_regs)
++{
++	struct xe_oa_reg *oa_regs;
++	int err;
++	u32 i;
++
++	if (!n_regs || WARN_ON(!is_valid))
++		return NULL;
++
++	oa_regs = kmalloc_array(n_regs, sizeof(*oa_regs), GFP_KERNEL);
++	if (!oa_regs)
++		return ERR_PTR(-ENOMEM);
++
++	for (i = 0; i < n_regs; i++) {
++		u32 addr, value;
++
++		err = get_user(addr, regs);
++		if (err)
++			goto addr_err;
++
++		if (!is_valid(oa, addr)) {
++			drm_dbg(&oa->xe->drm, "Invalid oa_reg address: %X\n", addr);
++			err = -EINVAL;
++			goto addr_err;
++		}
++
++		err = get_user(value, regs + 1);
++		if (err)
++			goto addr_err;
++
++		oa_regs[i].addr = XE_REG(addr);
++		oa_regs[i].value = mask_reg_value(addr, value);
++
++		regs += 2;
++	}
++
++	return oa_regs;
++
++addr_err:
++	kfree(oa_regs);
++	return ERR_PTR(err);
++}
++
++static ssize_t show_dynamic_id(struct kobject *kobj,
++			       struct kobj_attribute *attr,
++			       char *buf)
++{
++	struct xe_oa_config *oa_config =
++		container_of(attr, typeof(*oa_config), sysfs_metric_id);
++
++	return sprintf(buf, "%d\n", oa_config->id);
++}
++
++static int create_dynamic_oa_sysfs_entry(struct xe_oa *oa,
++					 struct xe_oa_config *oa_config)
++{
++	sysfs_attr_init(&oa_config->sysfs_metric_id.attr);
++	oa_config->sysfs_metric_id.attr.name = "id";
++	oa_config->sysfs_metric_id.attr.mode = 0444;
++	oa_config->sysfs_metric_id.show = show_dynamic_id;
++	oa_config->sysfs_metric_id.store = NULL;
++
++	oa_config->attrs[0] = &oa_config->sysfs_metric_id.attr;
++	oa_config->attrs[1] = NULL;
++
++	oa_config->sysfs_metric.name = oa_config->uuid;
++	oa_config->sysfs_metric.attrs = oa_config->attrs;
++
++	return sysfs_create_group(oa->metrics_kobj, &oa_config->sysfs_metric);
++}
++
++int xe_oa_add_config_ioctl(struct drm_device *dev, void *data,
++			   struct drm_file *file)
++{
++	struct xe_oa *oa = &to_xe_device(dev)->oa;
++	struct drm_xe_oa_config *arg = data;
++	struct xe_oa_config *oa_config, *tmp;
++	struct xe_oa_reg *regs;
++	int err, id;
++
++	if (!oa->xe) {
++		drm_dbg(&oa->xe->drm, "xe oa interface not available for this system\n");
++		return -ENODEV;
++	}
++
++	if (xe_oa_stream_paranoid && !perfmon_capable()) {
++		drm_dbg(&oa->xe->drm, "Insufficient privileges to add xe OA config\n");
++		return -EACCES;
++	}
++
++	if ((!arg->mux_regs_ptr || !arg->n_mux_regs) &&
++	    (!arg->boolean_regs_ptr || !arg->n_boolean_regs) &&
++	    (!arg->flex_regs_ptr || !arg->n_flex_regs)) {
++		drm_dbg(&oa->xe->drm, "No OA registers given\n");
++		return -EINVAL;
++	}
++
++	oa_config = kzalloc(sizeof(*oa_config), GFP_KERNEL);
++	if (!oa_config)
++		return -ENOMEM;
++
++	oa_config->oa = oa;
++	kref_init(&oa_config->ref);
++
++	if (!uuid_is_valid(arg->uuid)) {
++		drm_dbg(&oa->xe->drm, "Invalid uuid format for OA config\n");
++		err = -EINVAL;
++		goto reg_err;
++	}
++
++	/* Last character in oa_config->uuid will be 0 because oa_config is kzalloc */
++	memcpy(oa_config->uuid, arg->uuid, sizeof(arg->uuid));
++
++	oa_config->mux_regs_len = arg->n_mux_regs;
++	regs = xe_oa_alloc_regs(oa, xe_oa_is_valid_mux_addr,
++				u64_to_user_ptr(arg->mux_regs_ptr),
++				arg->n_mux_regs);
++	if (IS_ERR(regs)) {
++		drm_dbg(&oa->xe->drm, "Failed to create OA config for mux_regs\n");
++		err = PTR_ERR(regs);
++		goto reg_err;
++	}
++	oa_config->mux_regs = regs;
++
++	oa_config->b_counter_regs_len = arg->n_boolean_regs;
++	regs = xe_oa_alloc_regs(oa, xe_oa_is_valid_b_counter_addr,
++				u64_to_user_ptr(arg->boolean_regs_ptr),
++				arg->n_boolean_regs);
++	if (IS_ERR(regs)) {
++		drm_dbg(&oa->xe->drm, "Failed to create OA config for b_counter_regs\n");
++		err = PTR_ERR(regs);
++		goto reg_err;
++	}
++	oa_config->b_counter_regs = regs;
++
++	oa_config->flex_regs_len = arg->n_flex_regs;
++	regs = xe_oa_alloc_regs(oa, xe_oa_is_valid_flex_addr,
++				u64_to_user_ptr(arg->flex_regs_ptr),
++				arg->n_flex_regs);
++	if (IS_ERR(regs)) {
++		drm_dbg(&oa->xe->drm, "Failed to create OA config for flex_regs\n");
++		err = PTR_ERR(regs);
++		goto reg_err;
++	}
++	oa_config->flex_regs = regs;
++
++	err = mutex_lock_interruptible(&oa->metrics_lock);
++	if (err)
++		goto reg_err;
++
++	/* We shouldn't have too many configs, so this iteration shouldn't be too costly */
++	idr_for_each_entry(&oa->metrics_idr, tmp, id) {
++		if (!strcmp(tmp->uuid, oa_config->uuid)) {
++			drm_dbg(&oa->xe->drm, "OA config already exists with this uuid\n");
++			err = -EADDRINUSE;
++			goto sysfs_err;
++		}
++	}
++
++	err = create_dynamic_oa_sysfs_entry(oa, oa_config);
++	if (err) {
++		drm_dbg(&oa->xe->drm, "Failed to create sysfs entry for OA config\n");
++		goto sysfs_err;
++	}
++
++	/* Config id 0 is invalid, id 1 for kernel stored test config. */
++	oa_config->id = idr_alloc(&oa->metrics_idr, oa_config, 2, 0, GFP_KERNEL);
++	if (oa_config->id < 0) {
++		drm_dbg(&oa->xe->drm, "Failed to create sysfs entry for OA config\n");
++		err = oa_config->id;
++		goto sysfs_err;
++	}
++
++	mutex_unlock(&oa->metrics_lock);
++
++	drm_dbg(&oa->xe->drm, "Added config %s id=%i\n", oa_config->uuid, oa_config->id);
++
++	return oa_config->id;
++
++sysfs_err:
++	mutex_unlock(&oa->metrics_lock);
++reg_err:
++	xe_oa_config_put(oa_config);
++	drm_dbg(&oa->xe->drm, "Failed to add new OA config\n");
++	return err;
++}
++
++int xe_oa_remove_config_ioctl(struct drm_device *dev, void *data,
++			      struct drm_file *file)
++{
++	struct xe_oa *oa = &to_xe_device(dev)->oa;
++	struct xe_oa_config *oa_config;
++	u64 *arg = data;
++	int ret;
++
++	if (!oa->xe) {
++		drm_dbg(&oa->xe->drm, "xe oa interface not available for this system\n");
++		return -ENODEV;
++	}
++
++	if (xe_oa_stream_paranoid && !perfmon_capable()) {
++		drm_dbg(&oa->xe->drm, "Insufficient privileges to remove xe OA config\n");
++		return -EACCES;
++	}
++
++	ret = mutex_lock_interruptible(&oa->metrics_lock);
++	if (ret)
++		return ret;
++
++	oa_config = idr_find(&oa->metrics_idr, *arg);
++	if (!oa_config) {
++		drm_dbg(&oa->xe->drm, "Failed to remove unknown OA config\n");
++		ret = -ENOENT;
++		goto err_unlock;
++	}
++
++	WARN_ON(*arg != oa_config->id);
++
++	sysfs_remove_group(oa->metrics_kobj, &oa_config->sysfs_metric);
++
++	idr_remove(&oa->metrics_idr, *arg);
++
++	mutex_unlock(&oa->metrics_lock);
++
++	drm_dbg(&oa->xe->drm, "Removed config %s id=%i\n", oa_config->uuid, oa_config->id);
++
++	xe_oa_config_put(oa_config);
++
++	return 0;
++
++err_unlock:
++	mutex_unlock(&oa->metrics_lock);
++	return ret;
++}
++
+ void xe_oa_register(struct xe_device *xe)
+ {
+ 	struct xe_oa *oa = &xe->oa;
+@@ -258,6 +628,12 @@ int xe_oa_init(struct xe_device *xe)
+ 	return 0;
+ }
+ 
++static int destroy_config(int id, void *p, void *data)
++{
++	xe_oa_config_put(p);
++	return 0;
++}
++
+ void xe_oa_fini(struct xe_device *xe)
+ {
+ 	struct xe_oa *oa = &xe->oa;
+@@ -270,6 +646,7 @@ void xe_oa_fini(struct xe_device *xe)
+ 	for_each_gt(gt, xe, i)
+ 		kfree(gt->oa.group);
+ 
++	idr_for_each(&oa->metrics_idr, destroy_config, oa);
+ 	idr_destroy(&oa->metrics_idr);
+ 
+ 	oa->xe = NULL;
+diff --git a/drivers/gpu/drm/xe/xe_oa.h b/drivers/gpu/drm/xe/xe_oa.h
+index ba4ba80fd34cb..79f77f445deb0 100644
+--- a/drivers/gpu/drm/xe/xe_oa.h
++++ b/drivers/gpu/drm/xe/xe_oa.h
+@@ -12,7 +12,12 @@ int xe_oa_init(struct xe_device *xe);
+ void xe_oa_fini(struct xe_device *xe);
+ void xe_oa_register(struct xe_device *xe);
+ void xe_oa_unregister(struct xe_device *xe);
++int xe_oa_ioctl_version(struct xe_device *xe);
+ int xe_oa_sysctl_register(void);
+ void xe_oa_sysctl_unregister(void);
+ 
++int xe_oa_add_config_ioctl(struct drm_device *dev, void *data,
++			   struct drm_file *file);
++int xe_oa_remove_config_ioctl(struct drm_device *dev, void *data,
++			      struct drm_file *file);
  #endif
 -- 
 2.41.0
