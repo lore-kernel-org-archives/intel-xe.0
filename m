@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F494CD343B
-	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 05:02:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3458BCD343C
+	for <intel-xe@archiver.kernel.org>; Tue, 19 Sep 2023 05:02:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57E2110E3C8;
-	Tue, 19 Sep 2023 05:01:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9609B10E3CB;
+	Tue, 19 Sep 2023 05:01:56 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12F2010E153;
- Tue, 19 Sep 2023 05:01:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3480010E3B9;
+ Tue, 19 Sep 2023 05:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695099703; x=1726635703;
+ t=1695099706; x=1726635706;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=gCUgj5GtbeqGQza2Thpm0Y+Xnah9QfgxdX7hmQD7Qjo=;
- b=A3OsyK1zKm5e+JFZResewa7W945c/eo7AQyUZrIbBLkyXsWoE1gK2ICX
- rf/H/yMHMzILvPthT0Spk1rsZFkb4kgF26Vveves6F7C7ka3awIT6fGyl
- hTpUkhH/O0NrIPxmeRJGvUbJCfQoMrilpoC4oKby8pQSk4dnIIc+Y9WIO
- I4jsa6Z2BgGn5kVVsSIcagd4QK68oxzoKZgByjO2EZGt2T8wGbszYgCH8
- P3uh1JsoLcQUtU32L17S8NWZtI0lpLTxvBujpcZkPQHvIsHjfC+pBLQgl
- cUQJ8Ah6PYqU0AxI5QNdF7YwedMnteLqFMQTcUOuL5GzXfgqqsGpcyiPB A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="377163454"
-X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; d="scan'208";a="377163454"
+ bh=hokkMqBWd22VPksfbisYj6lGNWQVb0bhIpXczh/+jC8=;
+ b=Nc2z6/xEFhsHDU9ldXZgs3/pqOX4tKdk3At8Rdbh7SLRTLHrRqwMOVRX
+ 1RTJ1OpEkqZHRRduFsYpxWpFJCLm7zuCxYTFA7P3vzkd71DReQdT3vLuU
+ 2E8H2Mqh4PEpOY7imH3Z0HO3+xdWW3zBgRAwQL7jCWxvfotThWEXTdBuC
+ DVa9xvZo7mls2oYhek9BufaXz3QdYmEt2AbVMTx/bIclWiv9FGaUDgzYG
+ w64l5h4ua+qqcTnGWw1U9tV4qFhOdJwZFx6qhZtg/52JDPkHNzJs9WtZr
+ H7Gxu9VWbxc2ueeeKWNlHj3LtedoVEYFwnpjA+8WFUK16i3Sq2x0RKeI6 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="377163532"
+X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; d="scan'208";a="377163532"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Sep 2023 22:01:41 -0700
+ 18 Sep 2023 22:01:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="775409062"
-X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; d="scan'208";a="775409062"
+X-IronPort-AV: E=McAfee;i="6600,9927,10837"; a="775409087"
+X-IronPort-AV: E=Sophos;i="6.02,158,1688454000"; d="scan'208";a="775409087"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  18 Sep 2023 22:01:40 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Date: Mon, 18 Sep 2023 22:01:48 -0700
-Message-Id: <20230919050155.2647172-4-matthew.brost@intel.com>
+Date: Mon, 18 Sep 2023 22:01:55 -0700
+Message-Id: <20230919050155.2647172-11-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230919050155.2647172-1-matthew.brost@intel.com>
 References: <20230919050155.2647172-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 03/10] drm/sched: Move schedule policy to
+Subject: [Intel-xe] [PATCH v4 10/10] drm/sched: Update maintainers of GPU
  scheduler
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -66,359 +66,25 @@ Cc: robdclark@chromium.org, lina@asahilina.net, sarah.walker@imgtec.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Rather than a global modparam for scheduling policy, move the scheduling
-policy to scheduler so user can control each scheduler policy.
-
-v2:
-  - s/DRM_SCHED_POLICY_MAX/DRM_SCHED_POLICY_COUNT (Luben)
-  - Only include policy in scheduler (Luben)
-v3:
-  - use a ternary operator as opposed to an if-control (Luben)
-  - s/DRM_SCHED_POLICY_DEFAULT/DRM_SCHED_POLICY_UNSET/ (Luben)
-  - s/default_drm_sched_policy/drm_sched_policy_default/ (Luben)
-  - Update commit message (Boris)
-  - Fix v3d build (CI)
-  - s/bad_policies/drm_sched_policy_mismatch/ (Luben)
-  - Don't update modparam doc (Luben)
+Add Matthew Brost to maintainers of GPU scheduler
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  1 +
- drivers/gpu/drm/etnaviv/etnaviv_sched.c    |  3 ++-
- drivers/gpu/drm/lima/lima_sched.c          |  3 ++-
- drivers/gpu/drm/msm/msm_ringbuffer.c       |  3 ++-
- drivers/gpu/drm/nouveau/nouveau_sched.c    |  3 ++-
- drivers/gpu/drm/panfrost/panfrost_job.c    |  3 ++-
- drivers/gpu/drm/scheduler/sched_entity.c   | 24 ++++++++++++++++++----
- drivers/gpu/drm/scheduler/sched_main.c     | 19 ++++++++++++-----
- drivers/gpu/drm/v3d/v3d_sched.c            | 15 +++++++++-----
- include/drm/gpu_scheduler.h                | 20 ++++++++++++------
- 10 files changed, 69 insertions(+), 25 deletions(-)
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 16f3cfe1574a..d937e0c71486 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -2283,6 +2283,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
- 				   ring->num_hw_submission, 0,
- 				   timeout, adev->reset_domain->wq,
- 				   ring->sched_score, ring->name,
-+				   DRM_SCHED_POLICY_UNSET,
- 				   adev->dev);
- 		if (r) {
- 			DRM_ERROR("Failed to create scheduler on ring %s.\n",
-diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-index 618a804ddc34..15b0e2f1abe5 100644
---- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-+++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-@@ -137,7 +137,8 @@ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
- 	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops, NULL,
- 			     etnaviv_hw_jobs_limit, etnaviv_job_hang_limit,
- 			     msecs_to_jiffies(500), NULL, NULL,
--			     dev_name(gpu->dev), gpu->dev);
-+			     dev_name(gpu->dev), DRM_SCHED_POLICY_UNSET,
-+			     gpu->dev);
- 	if (ret)
- 		return ret;
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 60c2d97e427b..43c51d1abee5 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -7134,6 +7134,7 @@ F:	drivers/gpu/drm/xlnx/
  
-diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
-index 8d858aed0e56..50c2075228aa 100644
---- a/drivers/gpu/drm/lima/lima_sched.c
-+++ b/drivers/gpu/drm/lima/lima_sched.c
-@@ -491,7 +491,8 @@ int lima_sched_pipe_init(struct lima_sched_pipe *pipe, const char *name)
- 	return drm_sched_init(&pipe->base, &lima_sched_ops, NULL, 1,
- 			      lima_job_hang_limit,
- 			      msecs_to_jiffies(timeout), NULL,
--			      NULL, name, pipe->ldev->dev);
-+			      NULL, name, DRM_SCHED_POLICY_UNSET,
-+			      pipe->ldev->dev);
- }
- 
- void lima_sched_pipe_fini(struct lima_sched_pipe *pipe)
-diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
-index b8865e61b40f..a1c8834c359d 100644
---- a/drivers/gpu/drm/msm/msm_ringbuffer.c
-+++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
-@@ -96,7 +96,8 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
- 
- 	ret = drm_sched_init(&ring->sched, &msm_sched_ops, NULL,
- 			num_hw_submissions, 0, sched_timeout,
--			NULL, NULL, to_msm_bo(ring->bo)->name, gpu->dev->dev);
-+			NULL, NULL, to_msm_bo(ring->bo)->name,
-+			DRM_SCHED_POLICY_UNSET, gpu->dev->dev);
- 	if (ret) {
- 		goto fail;
- 	}
-diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
-index d458c2227d4f..f26a814a9920 100644
---- a/drivers/gpu/drm/nouveau/nouveau_sched.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
-@@ -431,7 +431,8 @@ int nouveau_sched_init(struct nouveau_drm *drm)
- 
- 	return drm_sched_init(sched, &nouveau_sched_ops, NULL,
- 			      NOUVEAU_SCHED_HW_SUBMISSIONS, 0, job_hang_limit,
--			      NULL, NULL, "nouveau_sched", drm->dev->dev);
-+			      NULL, NULL, "nouveau_sched",
-+			      DRM_SCHED_POLICY_UNSET, drm->dev->dev);
- }
- 
- void nouveau_sched_fini(struct nouveau_drm *drm)
-diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
-index 326ca1ddf1d7..241e62801586 100644
---- a/drivers/gpu/drm/panfrost/panfrost_job.c
-+++ b/drivers/gpu/drm/panfrost/panfrost_job.c
-@@ -835,7 +835,8 @@ int panfrost_job_init(struct panfrost_device *pfdev)
- 				     nentries, 0,
- 				     msecs_to_jiffies(JOB_TIMEOUT_MS),
- 				     pfdev->reset.wq,
--				     NULL, "pan_js", pfdev->dev);
-+				     NULL, "pan_js", DRM_SCHED_POLICY_UNSET,
-+				     pfdev->dev);
- 		if (ret) {
- 			dev_err(pfdev->dev, "Failed to create scheduler: %d.", ret);
- 			goto err_sched;
-diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-index a42763e1429d..cf42e2265d64 100644
---- a/drivers/gpu/drm/scheduler/sched_entity.c
-+++ b/drivers/gpu/drm/scheduler/sched_entity.c
-@@ -33,6 +33,20 @@
- #define to_drm_sched_job(sched_job)		\
- 		container_of((sched_job), struct drm_sched_job, queue_node)
- 
-+static bool drm_sched_policy_mismatch(struct drm_gpu_scheduler **sched_list,
-+				      unsigned int num_sched_list)
-+{
-+	enum drm_sched_policy sched_policy = sched_list[0]->sched_policy;
-+	unsigned int i;
-+
-+	/* All schedule policies must match */
-+	for (i = 1; i < num_sched_list; ++i)
-+		if (sched_policy != sched_list[i]->sched_policy)
-+			return true;
-+
-+	return false;
-+}
-+
- /**
-  * drm_sched_entity_init - Init a context entity used by scheduler when
-  * submit to HW ring.
-@@ -62,7 +76,8 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
- 			  unsigned int num_sched_list,
- 			  atomic_t *guilty)
- {
--	if (!(entity && sched_list && (num_sched_list == 0 || sched_list[0])))
-+	if (!(entity && sched_list && (num_sched_list == 0 || sched_list[0])) ||
-+	    drm_sched_policy_mismatch(sched_list, num_sched_list))
- 		return -EINVAL;
- 
- 	memset(entity, 0, sizeof(struct drm_sched_entity));
-@@ -486,7 +501,7 @@ struct drm_sched_job *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
- 	 * Update the entity's location in the min heap according to
- 	 * the timestamp of the next job, if any.
- 	 */
--	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO) {
-+	if (entity->rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO) {
- 		struct drm_sched_job *next;
- 
- 		next = to_drm_sched_job(spsc_queue_peek(&entity->job_queue));
-@@ -558,7 +573,8 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
- void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- {
- 	struct drm_sched_entity *entity = sched_job->entity;
--	bool first;
-+	bool first, fifo = entity->rq->sched->sched_policy ==
-+		DRM_SCHED_POLICY_FIFO;
- 	ktime_t submit_ts;
- 
- 	trace_drm_sched_job(sched_job, entity);
-@@ -587,7 +603,7 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
- 		drm_sched_rq_add_entity(entity->rq, entity);
- 		spin_unlock(&entity->rq_lock);
- 
--		if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
-+		if (fifo)
- 			drm_sched_rq_update_fifo(entity, submit_ts);
- 
- 		drm_sched_wakeup_if_can_queue(entity->rq->sched);
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index ee6281942e36..f645f32977ed 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -66,14 +66,14 @@
- #define to_drm_sched_job(sched_job)		\
- 		container_of((sched_job), struct drm_sched_job, queue_node)
- 
--int drm_sched_policy = DRM_SCHED_POLICY_FIFO;
-+int drm_sched_policy_default = DRM_SCHED_POLICY_FIFO;
- 
- /**
-  * DOC: sched_policy (int)
-  * Used to override default entities scheduling policy in a run queue.
-  */
- MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO (default).");
--module_param_named(sched_policy, drm_sched_policy, int, 0444);
-+module_param_named(sched_policy, drm_sched_policy_default, int, 0444);
- 
- static __always_inline bool drm_sched_entity_compare_before(struct rb_node *a,
- 							    const struct rb_node *b)
-@@ -177,7 +177,7 @@ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
- 	if (rq->current_entity == entity)
- 		rq->current_entity = NULL;
- 
--	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
-+	if (rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO)
- 		drm_sched_rq_remove_fifo_locked(entity);
- 
- 	spin_unlock(&rq->lock);
-@@ -898,7 +898,7 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
- 
- 	/* Kernel run queue has higher priority than normal run queue*/
- 	for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
--		entity = drm_sched_policy == DRM_SCHED_POLICY_FIFO ?
-+		entity = sched->sched_policy == DRM_SCHED_POLICY_FIFO ?
- 			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i]) :
- 			drm_sched_rq_select_entity_rr(&sched->sched_rq[i]);
- 		if (entity)
-@@ -1072,6 +1072,7 @@ static void drm_sched_main(struct work_struct *w)
-  *		used
-  * @score: optional score atomic shared with other schedulers
-  * @name: name used for debugging
-+ * @sched_policy: schedule policy
-  * @dev: target &struct device
-  *
-  * Return 0 on success, otherwise error code.
-@@ -1081,9 +1082,15 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
- 		   struct workqueue_struct *submit_wq,
- 		   unsigned hw_submission, unsigned hang_limit,
- 		   long timeout, struct workqueue_struct *timeout_wq,
--		   atomic_t *score, const char *name, struct device *dev)
-+		   atomic_t *score, const char *name,
-+		   enum drm_sched_policy sched_policy,
-+		   struct device *dev)
- {
- 	int i;
-+
-+	if (sched_policy >= DRM_SCHED_POLICY_COUNT)
-+		return -EINVAL;
-+
- 	sched->ops = ops;
- 	sched->hw_submission_limit = hw_submission;
- 	sched->name = name;
-@@ -1102,6 +1109,8 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
- 	sched->hang_limit = hang_limit;
- 	sched->score = score ? score : &sched->_score;
- 	sched->dev = dev;
-+	sched->sched_policy = sched_policy == DRM_SCHED_POLICY_UNSET ?
-+		drm_sched_policy_default : sched_policy;
- 	for (i = DRM_SCHED_PRIORITY_MIN; i < DRM_SCHED_PRIORITY_COUNT; i++)
- 		drm_sched_rq_init(sched, &sched->sched_rq[i]);
- 
-diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
-index 38e092ea41e6..dec89c5b8cb1 100644
---- a/drivers/gpu/drm/v3d/v3d_sched.c
-+++ b/drivers/gpu/drm/v3d/v3d_sched.c
-@@ -391,7 +391,8 @@ v3d_sched_init(struct v3d_dev *v3d)
- 			     &v3d_bin_sched_ops, NULL,
- 			     hw_jobs_limit, job_hang_limit,
- 			     msecs_to_jiffies(hang_limit_ms), NULL,
--			     NULL, "v3d_bin", v3d->drm.dev);
-+			     NULL, "v3d_bin", DRM_SCHED_POLICY_UNSET,
-+			     v3d->drm.dev);
- 	if (ret)
- 		return ret;
- 
-@@ -399,7 +400,8 @@ v3d_sched_init(struct v3d_dev *v3d)
- 			     &v3d_render_sched_ops, NULL,
- 			     hw_jobs_limit, job_hang_limit,
- 			     msecs_to_jiffies(hang_limit_ms), NULL,
--			     NULL, "v3d_render", v3d->drm.dev);
-+			     NULL, "v3d_render", DRM_SCHED_POLICY_UNSET,
-+			     v3d->drm.dev);
- 	if (ret)
- 		goto fail;
- 
-@@ -407,7 +409,8 @@ v3d_sched_init(struct v3d_dev *v3d)
- 			     &v3d_tfu_sched_ops, NULL,
- 			     hw_jobs_limit, job_hang_limit,
- 			     msecs_to_jiffies(hang_limit_ms), NULL,
--			     NULL, "v3d_tfu", v3d->drm.dev);
-+			     NULL, "v3d_tfu", DRM_SCHED_POLICY_UNSET,
-+			     v3d->drm.dev);
- 	if (ret)
- 		goto fail;
- 
-@@ -416,7 +419,8 @@ v3d_sched_init(struct v3d_dev *v3d)
- 				     &v3d_csd_sched_ops, NULL,
- 				     hw_jobs_limit, job_hang_limit,
- 				     msecs_to_jiffies(hang_limit_ms), NULL,
--				     NULL, "v3d_csd", v3d->drm.dev);
-+				     NULL, "v3d_csd", DRM_SCHED_POLICY_UNSET,
-+				     v3d->drm.dev);
- 		if (ret)
- 			goto fail;
- 
-@@ -424,7 +428,8 @@ v3d_sched_init(struct v3d_dev *v3d)
- 				     &v3d_cache_clean_sched_ops, NULL,
- 				     hw_jobs_limit, job_hang_limit,
- 				     msecs_to_jiffies(hang_limit_ms), NULL,
--				     NULL, "v3d_cache_clean", v3d->drm.dev);
-+				     NULL, "v3d_cache_clean",
-+				     DRM_SCHED_POLICY_UNSET, v3d->drm.dev);
- 		if (ret)
- 			goto fail;
- 	}
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 95927c52383c..9f830ff84bad 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -72,11 +72,15 @@ enum drm_sched_priority {
- 	DRM_SCHED_PRIORITY_UNSET = -2
- };
- 
--/* Used to chose between FIFO and RR jobs scheduling */
--extern int drm_sched_policy;
--
--#define DRM_SCHED_POLICY_RR    0
--#define DRM_SCHED_POLICY_FIFO  1
-+/* Used to chose default scheduling policy*/
-+extern int default_drm_sched_policy;
-+
-+enum drm_sched_policy {
-+	DRM_SCHED_POLICY_UNSET,
-+	DRM_SCHED_POLICY_RR,
-+	DRM_SCHED_POLICY_FIFO,
-+	DRM_SCHED_POLICY_COUNT,
-+};
- 
- /**
-  * struct drm_sched_entity - A wrapper around a job queue (typically
-@@ -489,6 +493,7 @@ struct drm_sched_backend_ops {
-  *              guilty and it will no longer be considered for scheduling.
-  * @score: score to help loadbalancer pick a idle sched
-  * @_score: score used when the driver doesn't provide one
-+ * @sched_policy: Schedule policy for scheduler
-  * @ready: marks if the underlying HW is ready to work
-  * @free_guilty: A hit to time out handler to free the guilty job.
-  * @pause_submit: pause queuing of @work_submit on @submit_wq
-@@ -515,6 +520,7 @@ struct drm_gpu_scheduler {
- 	int				hang_limit;
- 	atomic_t                        *score;
- 	atomic_t                        _score;
-+	enum drm_sched_policy		sched_policy;
- 	bool				ready;
- 	bool				free_guilty;
- 	bool				pause_submit;
-@@ -527,7 +533,9 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
- 		   struct workqueue_struct *submit_wq,
- 		   uint32_t hw_submission, unsigned hang_limit,
- 		   long timeout, struct workqueue_struct *timeout_wq,
--		   atomic_t *score, const char *name, struct device *dev);
-+		   atomic_t *score, const char *name,
-+		   enum drm_sched_policy sched_policy,
-+		   struct device *dev);
- 
- void drm_sched_fini(struct drm_gpu_scheduler *sched);
- int drm_sched_job_init(struct drm_sched_job *job,
+ DRM GPU SCHEDULER
+ M:	Luben Tuikov <luben.tuikov@amd.com>
++M:	Matthew Brost <matthew.brost@intel.com>
+ L:	dri-devel@lists.freedesktop.org
+ S:	Maintained
+ T:	git git://anongit.freedesktop.org/drm/drm-misc
 -- 
 2.34.1
 
