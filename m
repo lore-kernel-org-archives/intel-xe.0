@@ -4,142 +4,137 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E258C27C7B
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Sep 2023 21:11:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F3885C05024
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Sep 2023 21:15:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 631C410E568;
-	Wed, 20 Sep 2023 21:11:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E890710E55F
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Sep 2023 21:11:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A58F210E472;
+	Wed, 20 Sep 2023 21:15:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A502710E472
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Sep 2023 21:15:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695244264; x=1726780264;
+ t=1695244503; x=1726780503;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=i63uwOnecm++OO/iActMo1IrdkbIg3uqI0dLhgPHIIo=;
- b=IxQ3aMqgTsZJ8Dg62H4SxZ2tBbNhvpZ64YCjlxtsbGL3189ec+stQqjX
- qwodKOyLa8c9Y9VA9JuDjp6Xp6x6T9SUFgVoT8v/rphbr70TtPESok1/Y
- DfQ68P4GSv3qGZRrP35AfugSMPgMMguIyvAqwMS/8ahZyr41dNAyetWtk
- tdN0Vhtk95lGBJzX7pbsrkqtznPTOPnXNFIXScuvHK2GntbJ0S4s+0IvP
- WdxfNYGQNV9ySk5/E8OCm7EeaIuaaSdF3iIONNtodxkh7F1OUngfwcLky
- mWb4zzOVBV4PdZJ0RPjuhCcxxfTNV3R6zykUmuNEpC1BebWU+lrJjQHvf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="411287768"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="411287768"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 13:58:37 -0700
+ in-reply-to:mime-version;
+ bh=k43UGwkhd5d3cva/cIilce5WN5M/zs8Hrm+xdKTN/sI=;
+ b=JZ1OmMhr1ZCice2VAcLoSNsAnDKIM830wisT0IfHhxSukaxGWwh/s/bG
+ 6vIuP5LiEdsGb5ektzvRvikwlJ7bUBQvHr21gMypRQN7aQNMLaiCJyRpx
+ CbiYmxIoF5kZJmZlC8IQoijqRWQu6y9hrm9CgRrv/as0vBzaVOSpJBPH/
+ M9BM8BY1ucbis+5eNNI6NkFlYHGPwRZSWPCLv/jnEfV7snALJbMchfaSG
+ IFIP5lWhPmUqNQQiuQXK3Nim9iDE3o389I4iQMBkvOkj8nc58yMXYBNH3
+ lSAUf2q3K+VddGtQzuPBWz0hyuS2mViuuZJVJsjlKP1oSeeoHlrx9VZ75 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="370658077"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="370658077"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 14:15:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="746793274"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="746793274"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 20 Sep 2023 13:58:37 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="750095003"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="750095003"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 20 Sep 2023 14:15:02 -0700
 Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 20 Sep 2023 13:58:37 -0700
+ 15.1.2507.32; Wed, 20 Sep 2023 14:15:02 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Wed, 20 Sep 2023 13:58:37 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ 15.1.2507.32; Wed, 20 Sep 2023 14:15:02 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Wed, 20 Sep 2023 13:58:37 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.171)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Wed, 20 Sep 2023 14:15:02 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Wed, 20 Sep 2023 13:58:36 -0700
+ 15.1.2507.32; Wed, 20 Sep 2023 14:15:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VjyyTW7Ct6xhShBJisb62yyEAfcZ7MYCQgUFFXyv/RyfL50WX+SNKr/o+ZbUfhJlVNXP2kMBA5hmrK8sCHLSQYBYDF8ZjpEYbNBO11fFWhmuLGPM2k7NjF6hGVKdWLsfE0kRGolKoKp1Ht3KqLwQC21Nq63ZQkiMWXc6uTA25zRU/fOsdQoh9Y6bSBGrrzw0R38+zXWSPPzWYJ5igHbU+r5H817NAmD944fmUpPo6u98qbKh6hz1WS4kAwJhcc/MMJ3uHAuwa3Lkrbr6ZVdIWOsKcCdkGAEFTUHOs0TGI7uAGVol4Tw4kRht/ICGVEUFaNNzoGKAwqj1VUl29/psDA==
+ b=HaFOZzKHFpQAv39Qug9aT6agdWAMm1lbvcibGS6iyGy1MO30elKfq26OKv8H35JF3+2681xhPNLZ9fX2yKFGJKfM+rnUry02gezol7C0QpgVFUx0eGd4ZeQg3CT2dlE0zc07La2plJp84ZvhWttjeFfd/0G6o0dBicvraTDHcvkDS12fOnwMzaLvY7RPvlXCUFfeMFsOu0ye/Iuyh4J+2nmC531JRQw27SFTKck41gR6TK5ZlCaFo51hzNhqXznUF2xrqitPeFUeI288ckbCB0q3VYF/Bq7gaySguepUkOZS5NxIJSG6L0WUFglCAZxNT8sLTGN6PKMXT5fc+j5KzA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5cVxcF7F5qV8qB/TQHjfhRPkwfjxWyxQzd9MUuXHYXk=;
- b=BosCBuEAW1Br1w3Cj8gV1nN1octt4Opw+q5mmmlM6k3VAILLd1u4KZ2YQ9o/TsGfX3TmbFy6jtUISQ3ZtBLAT0e13Q96f6e6mSYEPdK0q6pMVqdg5WlNCzLgB+85b2WZXIl1Di7oxA7NrHZ2kUWv9VZGnmkbvd0ypr4A6/E0ky8/55SRisrgqlMIYDjHbAvxsLWN7XN2JBrMyXr0u874E9TIE25mvzhEdKYW14OqF7ipnSPrRS39jI6rm0XBzFbTN1VeKHIiUH9z5S5BySg7jpSHsjlOVpYkDHWrpEGhhyfGle4EyOs9su1fIer09T1WSK44VTrFi7VCbT5d6IhKeQ==
+ bh=uzCK83D2sAaLUkfuK2Dq42ruSgbQLAP4luBQkkB5QZI=;
+ b=EgoHqd9dsvutNKBYxNoT4/C6xsmB2fnPJBE4LyxV8Mr2NVoaMfPcYmp0qShSXO5mzYdjD6do9SR86bjuyoS5CdrV8tVi6Vh+zlsuxntFe8BgNTvlQkmVt8U1QnPFBuwll321BXrf7mOy1T5SQNRVMOU8n1ACHH6cLeUupiR9YiSjYfjj2+0WCU2LDwQte7f3NNwR+DrC6QT22J6gUu0yFjfFIHbTezLv34rYC0Y0wyyd05CcSyqXBkQ6MimgiD9oCiJGSMsrwJ9mNbWKeoStJHq/uKzNVlI9dVQgsGCN61KRPpWq+l4o3sSZmlnxd79en+/QjDQkXyYY3gaSKNpxew==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DM4PR11MB5551.namprd11.prod.outlook.com (2603:10b6:5:392::24) with
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ MN0PR11MB5961.namprd11.prod.outlook.com (2603:10b6:208:381::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Wed, 20 Sep
- 2023 20:58:28 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593%6]) with mapi id 15.20.6792.022; Wed, 20 Sep 2023
- 20:58:28 +0000
-Date: Wed, 20 Sep 2023 16:58:24 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <ZQtc8NUtdAHuHdol@intel.com>
-References: <20230920082217.2093-1-thomas.hellstrom@linux.intel.com>
- <ZQtLTgnMqyKNSb5j@intel.com>
- <b954e58e-88ae-fba4-74cb-6f5c5919a4ca@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.19; Wed, 20 Sep
+ 2023 21:14:59 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6768.029; Wed, 20 Sep 2023
+ 21:14:59 +0000
+Date: Wed, 20 Sep 2023 14:14:55 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Message-ID: <20230920211455.GJ233750@mdroper-desk1.amr.corp.intel.com>
+References: <20230920192940.135004-1-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b954e58e-88ae-fba4-74cb-6f5c5919a4ca@linux.intel.com>
-X-ClientProxiedBy: BY3PR10CA0002.namprd10.prod.outlook.com
- (2603:10b6:a03:255::7) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+In-Reply-To: <20230920192940.135004-1-rodrigo.vivi@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0113.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::28) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB5551:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4688ea6b-300c-4ddf-8d6b-08dbba1c56c5
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|MN0PR11MB5961:EE_
+X-MS-Office365-Filtering-Correlation-Id: 056deb9e-9f40-4204-d43e-08dbba1ea52f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7DUnVf0AWyUzQhxCbVAq3laCeGbvV3VqBcX89Ppj9OGCIej1wxKguQxW5NsVXk+33zC8ePLW7wufDygYZzmlB5slO/wTcFkuA/TgyrXNOqyK3QkHEJncAg5zGgKFyO9eZaCtG4CuDjltBkHE3S0SUIFrUNxTwDtGtdib2qb572+OsCvxqiW9dFlztD2X+RLv3SJJ6WH/wN+YWDtdESK9zesoP+BvZRSBLsS+RebMcxUtVsZSg0xu9j1sn0uSI3k1uPtqi4YWl0+mqOnxn1Urt8vATVOaEcU6KEcgl2UTbwloPxfLhAaH4CYV+aW0/zsb7RVb30vkoEB9L+Fllf7/k7yC7SJa5v3a0LTMW9Z3rfojXyCyU+/nCPcUkfmH5c7MJnxm6Fyqb5HQ6KJjqg8+V56/mx//4vBVPC4+8dLFAHAh74xKIHiM9TGCFB16BKKQ2xtlRcYNIPPSGO9qy+VgVThVMPdVEs691//HqfjIfwdJvtWGVS44rWi1eilQrd6c7nRn1Qn8ZnWeQjgp/AUFE53cugM11Nwo8uMJuUSxOIq6ZwR3H47x3qKdzMVlZvX0
+X-Microsoft-Antispam-Message-Info: t5csgBp7JdcvYKZtket8Mx5YW/++zpvjobSr6hfCJ8/yE1IsCDaWGVeV5BIaJgcay52RCXq1QL7wa021Dohjzx9Tekan/b5uKIAzHZBL+NBfwgYFBFkZCbqribQoqJRcm/PiNSdjEU/tJb2kYhfUR1N+W50XA3djvPM/A6u1bSrfI0nzf6GK1Q2sYHPJRdusSPCnOLkzf8pnmsh+CQ0Ck3s07xq2Qu20GHMetJcM5DpDCWXhmqeescSqXCNKnNgn7fsy0MII3IT7U8dYrTZas7pc9ad0QAQpZDTWBr+HhvpcBVQzSCf9z4Ik63LOWCsZKpD+ct2KBVE3yiEPf7y71RlBpaOasatep7CgjM+yZLAJfmqXrKbmDaHH7HudKyCverrhwT+IDO29ONVslRUMJ9aNmPXj6dhwJ3NrwfyvmUkviZNbAqlh9RdPrxsdDwDzNI41E6gOVNOq4A7q95L5yh0HEIbMiAYuwr2U9PlpZX73Fjq9sNkJff7hSFMf994nOF3CI12B5SDhhBHWdG/Nj6DuM4T1rzLeHUDPkN2Q0HJdx6Rhb8WhgjYgKPwF7UdYflCh5YD4SANQZdS+NwbRgw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(136003)(396003)(376002)(346002)(366004)(186009)(1800799009)(451199024)(8676002)(6486002)(44832011)(66556008)(66476007)(6916009)(316002)(478600001)(6506007)(2906002)(38100700002)(66946007)(8936002)(41300700001)(86362001)(5660300002)(83380400001)(66574015)(2616005)(6512007)(82960400001)(53546011)(6666004)(4326008)(26005)(36756003);
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(396003)(346002)(376002)(39860400002)(366004)(186009)(451199024)(1800799009)(83380400001)(478600001)(6506007)(6486002)(6666004)(6512007)(1076003)(2906002)(26005)(6636002)(66556008)(66946007)(66476007)(6862004)(316002)(41300700001)(4326008)(5660300002)(8676002)(8936002)(82960400001)(86362001)(33656002)(38100700002)(966005);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?hcLBIW09+X+CbkMmH7NY6nPLMNn1m75EeFM6wYo4m/VEds1VX8AhajNCBC?=
- =?iso-8859-1?Q?pzMVGUbheR4Rll2cdGaE7tMULjPPE0LLey0zzkr9Czo28QywRHhN41kGxS?=
- =?iso-8859-1?Q?/ERX8cSJji1EJPwFQ+vPL7yD1K2NMSgRJXTWQVge0xm9vtu1Nb5Imjm/EM?=
- =?iso-8859-1?Q?V+X1lNQ8KJ291F76xZ9tR+ok0eKNm6hqsgI7ssmNRzzaTuYoK4RLtfcP3Z?=
- =?iso-8859-1?Q?CY/Likq4zkPle7cxrLLZFgR0FSqjIJQvfQvqVGnosw9NjTDuedDdf0LEw4?=
- =?iso-8859-1?Q?vV1yuZpAUnbG0sbmR8wiaR4+IhFOmKP7UaUoNZglZKfVE4uUdKgEgvNpPI?=
- =?iso-8859-1?Q?dPqLdqzDAVz1OirlHqTRL9TwZtTcT9oUiyYroEoQX8Wg1IaeI5akXt5bMh?=
- =?iso-8859-1?Q?LMkMJ4/JKtqtLUkK5iNEhrlirVxVCDdlKhO0lMdgX6VhlKxNnjsAvlLoYO?=
- =?iso-8859-1?Q?aha692OmnbTz52zIKY/iWw9MVE9caWRoac1ijzH/ZVCHaF/+kDga+Kbkte?=
- =?iso-8859-1?Q?lM20SdfHDd4Yw+JqYD2BcqbSrEjqoKicEaPRKGkQRunLwKqVWisXQE5yOR?=
- =?iso-8859-1?Q?SkLGMm/NQ/+c2ccbM3BdtXwfMmUlc9MyjxFRxhW+iwmk/HX9XOEo705iWE?=
- =?iso-8859-1?Q?VLlVp7QpVd+TBnVT45Z071tpDI9IfhvijUkBtcn9Izbx/+U5f4dlrf5oeo?=
- =?iso-8859-1?Q?FSE380pNIM7C2x3k93Hpv4smG95xMbAhKXwpIctNP9dphh48PjkaU2PcCQ?=
- =?iso-8859-1?Q?64JgFIF6tAa9Qf+AJe/geauD5kX9AI4TKjcUoJaC1Q80uXtQbVFQHggfMr?=
- =?iso-8859-1?Q?1vcNze+K4xr/PRVrzlBt+EtDTR0Cj4i3MvJ3NsuMnEXrvtC0vXOi8Fjupf?=
- =?iso-8859-1?Q?v+So6Pn8+JU/O8lN7C0mzfT+lBp6g9fhFQZxpHBFQGIqr1600VdJD3r9Ay?=
- =?iso-8859-1?Q?sRv3wyuq4wl+C69seOwlDHYBzit1wMy5cTxi+hK7YCH1HSB2GMaqquZ0w0?=
- =?iso-8859-1?Q?yD80qzfvfefhuRobzrHfZ2xaq1gYvsluGiZV2Y1jN3EWffmPR2UT1C4XI3?=
- =?iso-8859-1?Q?uh1ulp+ZT8AJZrgOHezvMUSVSfTP+Ig9EuC42B5EqRs4azF9UtS1K46Cc8?=
- =?iso-8859-1?Q?QXiFnVNGHSwL1W44L4b/vQXS89usaJ2emmN6udpbxF5xKsHUkqUqwRVj+L?=
- =?iso-8859-1?Q?3BGwnd20A+HAMKJghWrtcujY+Qg5XXck+51/7BdSbvRha6XUrmys0wTkVP?=
- =?iso-8859-1?Q?P5KHHwk7zLFc6PtQn1IMbuN0fGbCY5z04MperxebEa1afh3Pp0D5pELO/F?=
- =?iso-8859-1?Q?Wd/BxqkR+GHv3yStdOWm5d0Xc+iz37GRq1rMSyKQ+epgDJfDSf73dYVp3q?=
- =?iso-8859-1?Q?RP0MCQyrBpjeIsLinIOBxu4CZOkpI85kIupW1+9dwL2Ot581dSX3qVetJU?=
- =?iso-8859-1?Q?J+mgTWBQlX088VaSllZuK3gW1UGAPYjL+W5mAyJUK9KjJjx6Ulp8SSxKhU?=
- =?iso-8859-1?Q?5NP2oXLyO91J/BkguNgClrGrEeqJzyrryo5Qtsji/d4lIm73/j6Y2ipLDL?=
- =?iso-8859-1?Q?hpA3MhL54t/ztfM7RCe6S0CE8BJBTE2ond0ChLyaM+L3beO6SWUBOfcFbU?=
- =?iso-8859-1?Q?DRE5ebjzjFXacZmLL8vvISEfYT1T4Rj/Ikt82UeCAp1Nj3S2pI3TlYMw?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4688ea6b-300c-4ddf-8d6b-08dbba1c56c5
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?JdY55PGjc1bkNE3/jufjyKyUjyyaz4Y8suVkQQyoD4fZZjqZHJN4L4ceR37g?=
+ =?us-ascii?Q?AN6WsdQD4zvEKwjWbWvrzmyta90m6KxJQ5iwHXhcVEeHSByd72S7Gmk9+Hpr?=
+ =?us-ascii?Q?WUdLGgXdjEIU6YREt+b3IAw3VXfBiMBm8DQ2LKsU2PgjyP+hP5m4tLhCQe+j?=
+ =?us-ascii?Q?/nfOTQnOWKKz12hZQ3txg0eJ5GzlOhSmV4dBWARgh0+ou4i2WssoulVCIzO0?=
+ =?us-ascii?Q?QHgLJ3YjA7BDFdc4DwcIAmu/CSJQZHGV/ibUPsj8y7b2xGb5CwFRhjXIXu6N?=
+ =?us-ascii?Q?Dkp6lLEyrhwZ9PkpiC/kuz+QBvUwxbbNSb+hyB7a7i4F0IOOJ2IawEmJtHpl?=
+ =?us-ascii?Q?G9dIaYwVN3tx8FqDDgMa4ongpqkX4FcHweTZI6WidF/cfvLmyAOOx8PFtAXd?=
+ =?us-ascii?Q?K9QA3FhhTzB8lhU1kI74Wv3vjr5mRTnFVne/rp/3+mMbb4xwHGoOuhyQoBk5?=
+ =?us-ascii?Q?YcWPDzuSkHfCYRcU/Po4y9YCU2L7QuxjFouy36VL2s3VPumkIxU3qrzU0EuJ?=
+ =?us-ascii?Q?lDl7XtlbLhVQUs4hh8CVyT0XRL1NA3U365wd+hs6QQfxEPBPD/NxVUyY6iOu?=
+ =?us-ascii?Q?q6fqYVDJsc4Vhht0c0u19vGTZlcpf2S4t9VyLPvCCb5hIvC20klBh+3fr/7g?=
+ =?us-ascii?Q?PY8RXd0sjWU6rRW2aERQ6fOd/2MAHpDKgLkRh/yAccXViZ3FKnhHrXWdMWmQ?=
+ =?us-ascii?Q?aefj9JUTi9MzYFCKTas9fkxQR5WSY7Xs2ONjZ4HdI2DMJjJipENB3oNCksj6?=
+ =?us-ascii?Q?W1bPXa0iHG8DEMuOWLXNytQM/qGgP5GiZC7mW6nnNTiHAGL86LGWDcVEylUc?=
+ =?us-ascii?Q?nk+gFCh2EOwbCFOoT+mYszFlrxIdFKxHm+pXMYun90eCzvQL3uW4rA1e70ln?=
+ =?us-ascii?Q?TTdBHAxGphlnrBQykiHWEk3wAYTt+b6zFnDqPOYBwcHEEjBaPqdywBqUjhLe?=
+ =?us-ascii?Q?3DZhYg2fk9aCrsrzT79CAbhT6eE3cMxASVMrdsaI4IJIiHRn1zia6ogRG1HH?=
+ =?us-ascii?Q?5TFZGNUB03KkQn4rx7s63J5ReZh1cf45WChdFqLrK1Dea4gG3t84x3Ao1Z7W?=
+ =?us-ascii?Q?dRJrh8E6uAw2J5FvNPD3t9UBwIWm92t7/ljIpjMXTMwQbLDx5w7cLiYteBBj?=
+ =?us-ascii?Q?CHtRlZMaZAR2+0jGzFTMg2aUAiJ0b+Pr4EZcNMpYtcZEK6CzZGuv/F5sbQ1j?=
+ =?us-ascii?Q?OOIoIT7AmbdOujR9BPUrDt+uoopddaINu6SM1koHpjArv9AiEbuPFaH+vVyM?=
+ =?us-ascii?Q?UuHhrUhxUHHKct9/KRjYRXNVHHW3cMZdQN26l9zMw0AtZQ1UODoOkVgoOd7i?=
+ =?us-ascii?Q?LKSzfQhynDePtMCxpn7SZS/6rFdVIc9qiOnk7R+O7rzd45l3i/jxYdYihZu5?=
+ =?us-ascii?Q?4XLoWUV/QAyAym7Ck1DNRVVjOKHylpoBB3GSVZkfLvp+UBY9fU4GFh0Auvov?=
+ =?us-ascii?Q?xZYWZgfsjXDAztUs9c3bawFR4V3zZq5vQN9mZV5SUIN42jxFoF9cwQBj7qsq?=
+ =?us-ascii?Q?4frA4pQeh50Dm6FEACEZ89BHKlheSZuYLyp7foqLYYW1QSCmzhC8JGYuC5oy?=
+ =?us-ascii?Q?Bv+alBnl63DBn4edQTpXF5lfWhlcB5rE4LuiMSL6OPlGsrby5O/9fGQyVZjl?=
+ =?us-ascii?Q?Jg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 056deb9e-9f40-4204-d43e-08dbba1ea52f
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 20:58:28.7525 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Sep 2023 21:14:58.8172 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nJCvYxyuvdTB09wyndWrHx5UJgcft0Bal1mYakzQV8RQ+BMBbtn2exbgQ2zbmFX46nqShNJlSwXxbpwSEHjOLg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5551
+X-MS-Exchange-CrossTenant-UserPrincipalName: GqavpjJ++ubj3ZUpkCRbxuTdf3WfHoLtNVmk0tUhQRIAj4gSNbaVjz4xMqZt5FZ8sgTZZD2ebKu3FSNlfFDAQ61B1mrFdG6BL+LVOkTH3zM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB5961
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] fixup! drm/xe/bo: Evict VRAM to TT rather
- than to system
+Subject: Re: [Intel-xe] [PATCH v2 00/20] uAPI Alignment - take 1 v2
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,125 +150,117 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Sep 20, 2023 at 10:07:18PM +0200, Thomas Hellström wrote:
-> 
-> On 9/20/23 21:43, Rodrigo Vivi wrote:
-> > On Wed, Sep 20, 2023 at 10:22:17AM +0200, Thomas Hellström wrote:
-> > > The dma-buf kunit test and to some extent the dma-buf code assumed
-> > > that all bos were evicted to system. Fix this by having the dma-buf
-> > > code not assume anything about eviction placement and the test
-> > > code assume that VRAM bos are evicted to TT.
-> > I believe that we should minimize the fixup patches now and use that
-> > only for the display ones that still need a lot of work.
-> > 
-> > This could be a simple Fixes: case. And even the commit message is
-> > very good for a standalone patch.
-> 
-> Thanks for reviewing, Rodrigo.
-> 
-> So are we done rebasing, so that the commit hashes are stable? Like
+As a follow-up to this series I just noticed one other uapi thing that
+doesn't make sense:
 
-oh dang.. good point... because display code will move up that hash will
-change. let's go with fixup for this case. sorry for the noise.
+        struct drm_xe_vm_madvise {
+        ...
+                /*                                                                                                     
+                 * Setting the preferred location will trigger a migrate of the VMA                                    
+                 * backing store to new location if the backing store is already                                       
+                 * allocated.                                                                                          
+                 *                                                                                                     
+                 * For DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS usage, see enum                                           
+                 * drm_xe_memory_class.                                                                                
+                 */                                                                                                    
+        #define DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS   0                                                              
+        #define DRM_XE_VM_MADVISE_PREFERRED_GT          1
+                /*                                                                                                     
+                 * In this case lower 32 bits are mem class, upper 32 are GT.                                          
+                 * Combination provides a single IOCTL plus migrate VMA to preferred                                   
+                 * location.                                                                                           
+                 */                                                                                                    
+        #define DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS_GT        2                                                      
 
+memory-specific stuff like madvise should be operating on tiles, not
+GTs.  From a quick glance at the code, it seems to be comparing the
+value it gets against tile_count (which is good), but we still don't
+want someone passing in a GT ID instead of a tile ID for something like
+this.
+
+
+Matt
+
+On Wed, Sep 20, 2023 at 03:29:20PM -0400, Rodrigo Vivi wrote:
+> v2:
+> This v2 has 3 extra patches that was missing on yesterday's submission.
+> But that aligns with the IGT series sent yesterday.
 > 
-> Fixes: <stable commit hash>
+> Also I'm glad that Mesa reacted super fast and we already have the MR
+> ready that aligns with v1 sent yesterday:
 > 
-> /Thomas
+> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25300
 > 
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > 
-> > > The patch applies using automerge conflict resolution.
-> > > 
-> > > This fixes the following errors:
-> > > 
-> > > [  102.102086]     KTAP version 1
-> > > [  102.102102]     # Subtest: xe_dma_buf
-> > > [  102.102113]     1..1
-> > > [  102.102377]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.106167]     # xe_dma_buf_kunit: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_dma_buf.c:76
-> > >                 Importer wasn't properly evicted.
-> > > [  102.106327]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.107136]     # xe_dma_buf_kunit: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_dma_buf.c:98
-> > >                     Expected xe_bo_is_mem_type(exported, mem_type) to be true, but is false
-> > > [  102.107691]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.108099]     # xe_dma_buf_kunit: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_dma_buf.c:76
-> > >                 Importer wasn't properly evicted.
-> > > [  102.108158]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.108294]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.108742]     # xe_dma_buf_kunit: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_dma_buf.c:76
-> > >                 Importer wasn't properly evicted.
-> > > [  102.108800]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.108908]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.109080]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.109842]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.109941]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.110131]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.110236]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.110402]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.110731]     # xe_dma_buf_kunit: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_dma_buf.c:76
-> > >                 Importer wasn't properly evicted.
-> > > [  102.110790]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.111498]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.111793]     # xe_dma_buf_kunit: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_dma_buf.c:76
-> > >                 Importer wasn't properly evicted.
-> > > [  102.111851]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.112302]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.112580]     # xe_dma_buf_kunit: EXPECTATION FAILED at drivers/gpu/drm/xe/tests/xe_dma_buf.c:76
-> > >                 Importer wasn't properly evicted.
-> > > [  102.112638]     # xe_dma_buf_kunit: running xe_test_dmabuf_import_same_driver
-> > > [  102.113292]     not ok 1 xe_dma_buf_kunit
-> > > [  102.113296] not ok 1 xe_dma_buf
-> > > 
-> > > Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> > > ---
-> > >   drivers/gpu/drm/xe/tests/xe_dma_buf.c |  5 ++---
-> > >   drivers/gpu/drm/xe/xe_dma_buf.c       | 11 ++++-------
-> > >   2 files changed, 6 insertions(+), 10 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> > > index 1c3f4bc72b99..1c4d8751be69 100644
-> > > --- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> > > +++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-> > > @@ -72,7 +72,7 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
-> > >   	}
-> > >   	/* Verify that also importer has been evicted to SYSTEM */
-> > > -	if (!xe_bo_is_mem_type(imported, XE_PL_SYSTEM)) {
-> > > +	if (exported != imported && !xe_bo_is_mem_type(imported, XE_PL_SYSTEM)) {
-> > >   		KUNIT_FAIL(test, "Importer wasn't properly evicted.\n");
-> > >   		return;
-> > >   	}
-> > > @@ -91,8 +91,7 @@ static void check_residency(struct kunit *test, struct xe_bo *exported,
-> > >   	 * possible, saving a migration step as the transfer is just
-> > >   	 * likely as fast from system memory.
-> > >   	 */
-> > > -	if (params->force_different_devices &&
-> > > -	    params->mem_mask & XE_BO_CREATE_SYSTEM_BIT)
-> > > +	if (params->mem_mask & XE_BO_CREATE_SYSTEM_BIT)
-> > >   		KUNIT_EXPECT_TRUE(test, xe_bo_is_mem_type(exported, XE_PL_TT));
-> > >   	else
-> > >   		KUNIT_EXPECT_TRUE(test, xe_bo_is_mem_type(exported, mem_type));
-> > > diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
-> > > index bd8d51e7f93f..cfde3be3b0dc 100644
-> > > --- a/drivers/gpu/drm/xe/xe_dma_buf.c
-> > > +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
-> > > @@ -98,13 +98,10 @@ static struct sg_table *xe_dma_buf_map(struct dma_buf_attachment *attach,
-> > >   		return ERR_PTR(-EOPNOTSUPP);
-> > >   	if (!xe_bo_is_pinned(bo)) {
-> > > -		if (!attach->peer2peer ||
-> > > -		    bo->ttm.resource->mem_type == XE_PL_SYSTEM) {
-> > > -			if (xe_bo_can_migrate(bo, XE_PL_TT))
-> > > -				r = xe_bo_migrate(bo, XE_PL_TT);
-> > > -			else
-> > > -				r = xe_bo_validate(bo, NULL, false);
-> > > -		}
-> > > +		if (!attach->peer2peer)
-> > > +			r = xe_bo_migrate(bo, XE_PL_TT);
-> > > +		else
-> > > +			r = xe_bo_validate(bo, NULL, false);
-> > >   		if (r)
-> > >   			return ERR_PTR(r);
-> > >   	}
-> > > -- 
-> > > 2.41.0
-> > > 
+> Thank you Jose!
+> 
+> v1:
+> As a result of the uAPI review efforts started by Thomas[1],
+> we have identified many updates on our uAPI that would lead to
+> breakage in the compatibility. What it is not acceptable after
+> we are merged upstream. So, let's break it before it is too late,
+> and start upstreaming a good, reliable and clean uapi.
+> 
+> Most of this work on putting these patches together for a single
+> shot was led by Francois.
+> 
+> The IGT counter part of this series is available as well[2].
+> 
+> [1] - https://lore.kernel.org/all/863bebd0c624d6fc2b38c0a06b63e468b4185128.camel@l\
+> inux.intel.com/
+> [2] - https://lore.kernel.org/all/20230919142000.91363-1-rodrigo.vivi@intel.com
+> 
+> Ashutosh Dixit (1):
+>   drm/xe/uapi: Use common drm_xe_ext_set_property extension
+> 
+> Francois Dugast (5):
+>   drm/xe/uapi: Separate VM_BIND's operation and flag
+>   drm/xe/vm: Remove VM_BIND_OP macro
+>   drm/xe/uapi: Remove MMIO ioctl
+>   drm/xe/uapi: Fix naming of XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY
+>   drm/xe/uapi: Add documentation for query
+> 
+> Matthew Brost (4):
+>   drm/xe: Fix xe_exec_queue_is_idle for parallel exec queues
+>   drm/xe: Deprecate XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE
+>     implementation
+>   drm/xe: Rename exec_queue_kill_compute to
+>     xe_vm_remove_compute_exec_queue
+>   drm/xe: Remove XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE from uAPI
+> 
+> Mika Kuoppala (1):
+>   drm/xe: Extend drm_xe_vm_bind_op
+> 
+> Rodrigo Vivi (6):
+>   drm/xe: Kill XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS extension
+>   drm/xe/uapi: Document drm_xe_query_gt
+>   drm/xe/uapi: Replace useless 'instance' per unique gt_id
+>   drm/xe/uapi: Remove unused field of drm_xe_query_gt
+>   drm/xe/uapi: Rename gts to gt_list
+>   drm/xe/uapi: Crystal Reference Clock updates
+> 
+> Umesh Nerlige Ramappa (3):
+>   drm/xe: Fix array bounds check for queries
+>   drm/xe: Set the correct type for xe_to_user_engine_class
+>   drm/xe: Correlate engine and cpu timestamps with better accuracy
+> 
+>  drivers/gpu/drm/xe/xe_device.c           |   1 -
+>  drivers/gpu/drm/xe/xe_exec_queue.c       |  99 ++-----
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |   6 +-
+>  drivers/gpu/drm/xe/xe_gt_types.h         |   2 +-
+>  drivers/gpu/drm/xe/xe_mmio.c             | 102 -------
+>  drivers/gpu/drm/xe/xe_pci.c              |   4 -
+>  drivers/gpu/drm/xe/xe_query.c            | 186 +++++++++++--
+>  drivers/gpu/drm/xe/xe_vm.c               | 221 +++++-----------
+>  drivers/gpu/drm/xe/xe_vm.h               |   1 +
+>  include/uapi/drm/xe_drm.h                | 322 +++++++++++++----------
+>  10 files changed, 440 insertions(+), 504 deletions(-)
+> 
+> -- 
+> 2.41.0
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
