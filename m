@@ -4,50 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B592BC04ABA
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Sep 2023 17:27:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1D082C04AB8
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Sep 2023 17:48:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82A5410E527;
-	Wed, 20 Sep 2023 17:27:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 242DE10E522
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Sep 2023 17:27:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D786210E525;
+	Wed, 20 Sep 2023 17:48:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B5B2210E525
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Sep 2023 17:48:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695230875; x=1726766875;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=8YbRjCcU9FnZ/GMVClYnU2+myFoSk/cvyTqMQVUuoY8=;
- b=nhQV2NwKz/FJ/fcFkEhSO2Cm1GZ9oqLeLNOpi+RQp+qB3BKTA6Tx0YAc
- w4uy9S2ZSjdImFKvLPmTI5uaFTMN650KrteGnJFOcX4uictE4UK1hs2wn
- 5520bug1C5h5+IiM/IOOrSmryBJTTMv4kNuKfSrbVUDDJ1VPlS/4xF7z6
- AGS8WtbZSd4Pk8Mn5fVrbkYPCv029N39pc1ZeeYh/adwdhiBPBTqu58gx
- wkzMRtOJWnXW9y9Jzs9BSc/ncM6ZT0pEcpd/CJSxJq0YlyqgpVeQkyUb5
- S04QY4Fi6T8hzrp+tjvB6Jsli/crwggsOtVGMvuHys11CkzQuhv3n19qQ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="411236553"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="411236553"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 10:27:54 -0700
+ t=1695232103; x=1726768103;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=l0SjxEjHLy3uJDIB3N0b2PKV5vbG7MLUDV+3qI8GYWg=;
+ b=EVmhvg4z+36lkYgvC4Qe7Gwh3gQUmmPjx7W1t0as72o220Ii5mLmbMxI
+ wdu+Nzdjf+nPZo4SAL+FlZiEG0Yq+5g+TUGAF4/GRy3PRfWZnH6sIwVd0
+ ALfa1t3pDKxMPmSVk7TtY+Po6L4Xz4zK1P/lf+HgkOkgPB/8nd2IHwbai
+ S+6M3zKuJeAt27HHxY7MjPhhnzNPhdXgVQAKbAD8XvStJsgKE+Dx+DZ3g
+ q4zXSVgpcy20+BGCC3yi8SrcAvxdTWtI5MCXeHhDN5g/InyINr2AOfLW1
+ FgAGP/arVLgXG/H02u50mIF941dNDonkwX1rBY8PTuSHxi3S/eIKwscwZ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="380209576"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="380209576"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 10:48:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="750006663"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="750006663"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by fmsmga007.fm.intel.com with SMTP; 20 Sep 2023 10:27:52 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Wed, 20 Sep 2023 20:27:51 +0300
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="890026411"
+X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="890026411"
+Received: from pallavim-desk.iind.intel.com ([10.145.162.180])
+ by fmsmga001.fm.intel.com with ESMTP; 20 Sep 2023 10:47:16 -0700
+From: Pallavi Mishra <pallavi.mishra@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 20 Sep 2023 20:27:51 +0300
-Message-ID: <20230920172751.31395-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230920140339.28322-3-ville.syrjala@linux.intel.com>
-References: <20230920140339.28322-3-ville.syrjala@linux.intel.com>
+Date: Wed, 20 Sep 2023 23:24:31 +0530
+Message-Id: <20230920175431.3381076-1-pallavi.mishra@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 3/3] maybe xe is broken enough that it gives
- you a new vma every time?
+Subject: [Intel-xe] [PATCH] drm/xe: Align size to PAGE_SIZE
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,29 +53,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: stuart.summers@intel.com, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Ensure alignment with PAGE_SIZE for the size parameter
+passed to __xe_bo_create_locked()
 
-v2: drop the warn to let testing proceed w/o taint
+Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_bo.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index afe1d0fa0537..ea464bc99a7b 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -752,7 +752,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 1ab682d61e3c..014d084632f2 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1199,6 +1199,9 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	/* Only kernel objects should set GT */
+ 	XE_WARN_ON(tile && type != ttm_bo_type_kernel);
  
- 	local_irq_enable();
- 
--	if (old_plane_state->hw.fb != new_plane_state->hw.fb) {
-+	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
- 		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
- 				     intel_cursor_unpin_work);
- 
++	if ((size & (PAGE_SIZE - 1)) != 0)
++		size = (size + (PAGE_SIZE - 1)) & ~(PAGE_SIZE - 1);
++
+ 	if (XE_WARN_ON(!size)) {
+ 		xe_bo_free(bo);
+ 		return ERR_PTR(-EINVAL);
 -- 
-2.41.0
+2.25.1
 
