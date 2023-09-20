@@ -4,51 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14034CE79AC
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Sep 2023 09:46:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4B1FCE79AD
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Sep 2023 09:48:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D818D10E477;
-	Wed, 20 Sep 2023 09:46:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B79810E260
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Sep 2023 09:46:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695203182; x=1726739182;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=dZu45T376T/X7r3FJumZkOqnP5mgPwgQVYAJTdBtTgs=;
- b=E+0Ijbti425s0S6MrGPEW/ZqwlGGPXr814VwjJIXOLAeEDcv+rKa/978
- aghneUvmSEGEHWHSxNWBipUhiHqVbEsIGUHvIn52fmOSLz6Eio+VLGUIB
- vpUOXRYR/RAoeWtSNJM83cSiOSA80McbQSAI5vVqm6DjzlT0v/Mk8V2vX
- mlX/2KfK6N4Uh+pepXtqB5xrcBWZ1AjX3QU00uoI2Y86SDNrLTqESVsXK
- vBBAjEoXb6VHF5MRx93JWd2rKWBICd+jsU5SW7SSx7CdD4mhQ6l4ruZcL
- h37W75pL3L8eWG0hP1kdKzF2N6azj56J58zoPiXUAYgpFyIQLFv0jmqps A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="370491750"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="370491750"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 02:46:22 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="861911799"
-X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="861911799"
-Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 02:46:19 -0700
-From: Alexander Usyskin <alexander.usyskin@intel.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Wed, 20 Sep 2023 12:41:51 +0300
-Message-Id: <20230920094151.1593505-5-alexander.usyskin@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230920094151.1593505-1-alexander.usyskin@intel.com>
-References: <20230920094151.1593505-1-alexander.usyskin@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8105310E240;
+	Wed, 20 Sep 2023 09:48:15 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 014A310E486;
+ Wed, 20 Sep 2023 09:48:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 02E24AADE4;
+ Wed, 20 Sep 2023 09:48:14 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 4/4] mei: gsc: add support for auxiliary
- device created by Xe driver
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Alexander Usyskin" <alexander.usyskin@intel.com>
+Date: Wed, 20 Sep 2023 09:48:14 -0000
+Message-ID: <169520329400.6467.2240496218401088622@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230920094151.1593505-1-alexander.usyskin@intel.com>
+In-Reply-To: <20230920094151.1593505-1-alexander.usyskin@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/gsc=3A_add_initial_gsc_support_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,44 +39,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-kernel@vger.kernel.org, Tomas Winkler <tomas.winkler@intel.com>,
- Alexander Usyskin <alexander.usyskin@intel.com>,
- intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Vitaly Lubart <vitaly.lubart@intel.com>
+== Series Details ==
 
-Add support for gsc mei auxiliary device created by Xe driver
+Series: drm/xe/gsc: add initial gsc support (rev4)
+URL   : https://patchwork.freedesktop.org/series/123603/
+State : success
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Vitaly Lubart <vitaly.lubart@intel.com>
-Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
----
- drivers/misc/mei/gsc-me.c | 5 +++++
- 1 file changed, 5 insertions(+)
+== Summary ==
 
-diff --git a/drivers/misc/mei/gsc-me.c b/drivers/misc/mei/gsc-me.c
-index e63cabd0818d..63525778a4e0 100644
---- a/drivers/misc/mei/gsc-me.c
-+++ b/drivers/misc/mei/gsc-me.c
-@@ -292,6 +292,10 @@ static const struct auxiliary_device_id mei_gsc_id_table[] = {
- 		.name = "i915.mei-gscfi",
- 		.driver_data = MEI_ME_GSCFI_CFG,
- 	},
-+	{
-+		.name = "xe.mei-gscfi",
-+		.driver_data = MEI_ME_GSCFI_CFG,
-+	},
- 	{
- 		/* sentinel */
- 	}
-@@ -312,4 +316,5 @@ module_auxiliary_driver(mei_gsc_driver);
- MODULE_AUTHOR("Intel Corporation");
- MODULE_ALIAS("auxiliary:i915.mei-gsc");
- MODULE_ALIAS("auxiliary:i915.mei-gscfi");
-+MODULE_ALIAS("auxiliary:xe.mei-gscfi");
- MODULE_LICENSE("GPL");
--- 
-2.34.1
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: b3b5f51b6 fixup! drm/xe/display: Implement display support
+=== git am output follows ===
+Applying: drm/xe/gsc: add HECI2 register offsets
+Applying: drm/xe/gsc: add has_heci_gscfi indication to device
+Applying: drm/xe/gsc: add gsc device support
+Applying: mei: gsc: add support for auxiliary device created by Xe driver
+
 
