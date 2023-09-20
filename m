@@ -4,30 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F11ECE79AC
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Sep 2023 08:55:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4E83CE79AB
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Sep 2023 08:59:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67F3E10E465;
-	Wed, 20 Sep 2023 08:55:32 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4557C10E465;
- Wed, 20 Sep 2023 08:55:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4A37EA0003;
- Wed, 20 Sep 2023 08:55:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C94310E467;
+	Wed, 20 Sep 2023 08:59:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 875B010E468
+ for <intel-xe@lists.freedesktop.org>; Wed, 20 Sep 2023 08:59:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695200388; x=1726736388;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=LrcgJVF1vCKTlYrt1zXSzwWaQVX0z4FWqg9nLabaI58=;
+ b=fo4sIo0HRm4RJ9Z7Tx+P5jFmkVEEatdFlWaysuuFCr5JaC2gau/HJgTc
+ QXUcubpzfD03yO9nFjimMIt3K1AnzNtkxqKJHSceKWrvDUJirE4IU++M9
+ WOZfyR2f3P0Dpv2nL960PatR8b5tdDvYk4kXGN3c+4oAs7bQdeFEe+qv+
+ IPEe0FmS3WkZP2g20/qaY1ccVaxQahXMBY4oVahae6UUxX5exh0Ocv+11
+ 1pAwjjVcc0MxGo/uwbfGBYftHKVTVQKfbavA5B1UHMiZ8CihHx6wFDHRZ
+ J4tnk5F6vHZVR0e8ZZHWUWv+bBB0vv16RpfDDHLj/fkS0Xdz6yfh2Q6je g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="446639335"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="446639335"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 01:59:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10838"; a="749815723"
+X-IronPort-AV: E=Sophos;i="6.02,161,1688454000"; d="scan'208";a="749815723"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 20 Sep 2023 01:59:46 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 20 Sep 2023 01:59:45 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Wed, 20 Sep 2023 01:59:45 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Wed, 20 Sep 2023 01:59:45 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TdKUJzz6+Drp8osnsEIGzIsYjBCom4sy+2YPR/ol5qCWxSN6/l+O6wqTPY6MFl1c4SsGsR+q7jYR4QXpJpmaRxy/K1YkfWX8uq9OSD64MJkIsb8dNwbP32gjQSNgOmQcamgnn3cyhiA1UBjExS8n8fqJLA/BSvZHZaUoadmRrm5jTVADTFnfF31qCOn7QvBuA0RrgqkQbqDdlfoIY0XUdoYa45k5Pl6gycqgFFmh/LdUq9Y6WPXP69LUp0olmTQ1K1CtSFa0LorQFX0dccsQCkVoxx9Gsh0snn4rpn0Fs0XDbh6K6wBs9VrVNQSEj6R9y8G3yXmklCuLCOUEY7ZNdQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uQMYs7qz+pel8ZOeCWsXXV2beIL5piXpVtnOXmjO9Jk=;
+ b=O9xjM7/JBw5dSp7ustv3iG0mGK1trXKWR3s0DxSilIeC7JPuXCHbgUy4NCGx7ILaoanC2BNecif5XHVa+MvalXf8pWRtF7aWggrwvtdKly9raRuDc3geHnPQcgToa6UkG71t3DBQl8cCtzFvM5Jk/pl8k8VpInfGKp7HQz0JVfJ4uwaNbP9kk+6+/cFiDezrDPp0l+QN49MLYTlCs7/wP/svoJY3oQqh67ItH0oO6ZoSkUZV9xXVvKj7AEE7EVAQh0OtUR10xSE1DHF2C+/d2LqDfB7iZ2YjVXW35vjVM/BodkcygO22cG5cclX6c/cpAfvE5+Eviavxor3hIMLZzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from CY5PR11MB6366.namprd11.prod.outlook.com (2603:10b6:930:3a::8)
+ by CO1PR11MB5011.namprd11.prod.outlook.com (2603:10b6:303:6d::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27; Wed, 20 Sep
+ 2023 08:59:44 +0000
+Received: from CY5PR11MB6366.namprd11.prod.outlook.com
+ ([fe80::f8a8:855c:2d19:9ac1]) by CY5PR11MB6366.namprd11.prod.outlook.com
+ ([fe80::f8a8:855c:2d19:9ac1%6]) with mapi id 15.20.6792.026; Wed, 20 Sep 2023
+ 08:59:44 +0000
+From: "Usyskin, Alexander" <alexander.usyskin@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Thread-Topic: [Intel-xe] [PATCH v2 3/4] drm/xe/gsc: add gsc device support
+Thread-Index: AQHZ5uJbRP0g67a/70au1c8G9s9n77Agy6SAgAFwF1CAATeVsA==
+Date: Wed, 20 Sep 2023 08:59:44 +0000
+Message-ID: <CY5PR11MB6366C4C1A604269109E1073DEDF9A@CY5PR11MB6366.namprd11.prod.outlook.com>
+References: <20230914080138.4178295-1-alexander.usyskin@intel.com>
+ <20230914080138.4178295-4-alexander.usyskin@intel.com>
+ <ZQh5628W52y5JkZt@intel.com>
+ <CY5PR11MB6366B55F5A0EB8EABBE999BCEDFAA@CY5PR11MB6366.namprd11.prod.outlook.com>
+In-Reply-To: <CY5PR11MB6366B55F5A0EB8EABBE999BCEDFAA@CY5PR11MB6366.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: CY5PR11MB6366:EE_|CO1PR11MB5011:EE_
+x-ms-office365-filtering-correlation-id: 8aa447d2-aa58-49a8-0fbb-08dbb9b7eee6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: c18w7PZFPSvykdm1ZfyPhvTM+nPCLmRyrDGQlU7kNKPQDPG7HGuiT6Y8k2WoXoo2pXhf+apKQf6KaJtKhwMV1hklGInDr/orXLHpJkMIV7Bmqqtlv8CiYnPAeYe2qtIq6Pc1m01ad8+mVNEOZvrN1h7GBjlBdW8xl6dnJTCSMMP6pfPfNKu/JMZ0Gx7zBzvodF5PYDoqPPczTLx8RZggK/2lWMwuoBgA7JcPZCoQyvFsgCdQ6dzshRr354q04MrRQUrJ+2OnXO4BMzHsSQYmBz8ONVsuVN06rWp+hTPbmBiiR4cLqVD0CvK57OJ7Q7H7ovSvFbBFqdyddzDJckt4pMSfmBkorjsCUxvG+aqQTN8ARpBL01bXI5/37+/Cz6gNQQNzx302H4Izo2Hzsiw+rSfZeuCLwF1PuX+D8HJ1ZE5r+crRuD0ju30JcbzhjHzMh0d58zzO9jsbVIArJ+M0p1DdhV6ZN76YoeVgKFH+DvjDQP9Cmgvfu+huw6CjAz6Rt2TAwUd+BDb5/0Uk8BGL1Nrri9SSNAsNLJX/A8jw7AhcHm+mdyrU9xmOAqvWSB7/pAmXWVPeMaINAb+X1TFATD65oOBYyz6zgf7JkxUUd8Oyy/fvg286eeDMPEwMyIzJ
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6366.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(346002)(376002)(396003)(136003)(39860400002)(186009)(1800799009)(451199024)(4744005)(2906002)(52536014)(5660300002)(6862004)(4326008)(55016003)(26005)(41300700001)(316002)(6636002)(54906003)(64756008)(76116006)(66476007)(8936002)(66556008)(66946007)(66446008)(6506007)(71200400001)(38070700005)(7696005)(478600001)(83380400001)(9686003)(8676002)(33656002)(122000001)(38100700002)(82960400001)(86362001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?Tfwj181oHZILyM74efThAlVxnuZQWSA+vXZ+GRoZzuonYRF2GDX617LiYOnY?=
+ =?us-ascii?Q?dalfJkKG4qGQfXkae+MxlmhdcGpv0uqDh0F+w+PSIeutkk11eEBZq5YDPt7X?=
+ =?us-ascii?Q?o4q762NWuVnua7Zlx5qbwdL6OMJh68zJo+NIml2sPQdpoLDosuix/GidkjQq?=
+ =?us-ascii?Q?Lzjq819YMM38/GR59OtpveKSnKQeb+OBXPYqRGGZB4c+Pa6yTtAP/l9KY3E4?=
+ =?us-ascii?Q?UdTcRQseO4TStbbJ9NNLeHilZMmrtQJl347kbI+NfFoZflmIrKiJs242E2gD?=
+ =?us-ascii?Q?RkfDnxgokxzQey+RR7RuQKW36Z+rb3vUKjZCUMRDAYThT4gzPyF/NfLX/Zqi?=
+ =?us-ascii?Q?43sh0ftgBQmkaKmtqqnbcAyNw2nmLsBBWKmD8Hty7NYRMor2Lj8Ge9pk3rtY?=
+ =?us-ascii?Q?u1W6PsrhrullBou2cirw8EdZsrfoIfA3AZnl6OFiI908i05pBmWPZogxOZbH?=
+ =?us-ascii?Q?K6LS5OtKU+bl7aXhDIYJ2tHQklS8m0De4RCokXpfBcbyWOS820l8sx178QRD?=
+ =?us-ascii?Q?TTeSXrXFAQ42tKQuS7WDgdM6UIqhqW0eRke9gaRieHQj7ojXibuSUPixHnZj?=
+ =?us-ascii?Q?zS5wqz7a9sfCQlzTH2wAm/e+HVoh8N1p/nQVpzsY/KpQqmAjuq6g/ss7JdYq?=
+ =?us-ascii?Q?2wdLUMdUy+6EUV+6TfDpPtS6YrW2lD4VayZvboTwwU/ChbYc5pBEr5nqHBqS?=
+ =?us-ascii?Q?ca/2xjnP0lwIAIFril6CAPByC7ez2KnbfU/Or9OE7Mm1qcrD7+aDYTQC0CwA?=
+ =?us-ascii?Q?nJAOGJMuaxLqUTsNhHk6HvZHAAMA7IzRNlygHa3SzjSjUSLcLg0SSGXq52Uy?=
+ =?us-ascii?Q?XQkAoDROo/qjmu8Dj1oZHnNFiBpxDgVwncUQveN3YQCsZLWOjBhvzckCi3z3?=
+ =?us-ascii?Q?NIff4GnfqJs9jZLeDIZ6LY70bpnrt89H75DL9MZU0DmXwot3THOZqjHmtvhk?=
+ =?us-ascii?Q?U/unEpDxyxf7C9nFkkWINU+La3AiQtYbowG4vn+hMav6yS2Au/n60WN6rivE?=
+ =?us-ascii?Q?DpTbX/3Dx0PE9CQzCqYlDZqrkQkTmxJif9qN21VP0reHKtFS/3E8MfphMg3r?=
+ =?us-ascii?Q?+U5/RdtsexZ7hhUVD0Zx+3k6U4fBgH+d9/NhW9jIhWv7sQT3UgzUSZkjGqQL?=
+ =?us-ascii?Q?rjeJvLBgI8GZGlHmS3NXPt43BDOp+KxrYkR+roUuRgBhUW1aKKQe1COBjiZQ?=
+ =?us-ascii?Q?rBE17MWB48gNtktKgqPWUntSDA5exog8vQbmUXsBsfgou9DD/vpkcphY3mme?=
+ =?us-ascii?Q?xDMluy9y223pYvww/tOjazinYzFNdnwe/N5RLmOUUFP0aWMTUdy+ov9DLy+k?=
+ =?us-ascii?Q?ZOPiURc9DMaGLs23Ez+jOIIHTZNM0O0gQMaRVd1jl/4f62HmUM+4sTsy4Utm?=
+ =?us-ascii?Q?73phRAaBKdBMU7LhKlOzRZC6+1XmVGSra4nmu1HjcRwCEZFSNqD1OETjYkvX?=
+ =?us-ascii?Q?UTqjyDikQ7qVF9yeHyV8XpHVcHeuOaeRlJF9ZHg1Vcpnn09pnAzMsVidKcbU?=
+ =?us-ascii?Q?AqA9YjaZYTJ9Y+j2NRPIoxAqndrOUpfHEnIUSRJR4xd0CiR2SQjUc3tLpH3d?=
+ =?us-ascii?Q?L5KDITYtn8M2xZO3SsIznn/vISXIizgFMKfa7MF6iTdrg0NuC+kyidXSPP39?=
+ =?us-ascii?Q?MA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 20 Sep 2023 08:55:31 -0000
-Message-ID: <169520013129.6465.8243930039506716242@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230920082217.2093-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20230920082217.2093-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_fixup!_?=
- =?utf-8?q?drm/xe/bo=3A_Evict_VRAM_to_TT_rather_than_to_system?=
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6366.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8aa447d2-aa58-49a8-0fbb-08dbb9b7eee6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Sep 2023 08:59:44.1000 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yqHeNYRAVPsbDVnWyopDa+wooEpc5ww9ZLQk8PAx9rePL2D2KfTWf5RvIKz1FHB0m3AAijCqacTDlJSJNzlpL4OhW2L8SwJyw321CZgqzNo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5011
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2 3/4] drm/xe/gsc: add gsc device support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,533 +148,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "De Marchi,
+ Lucas" <lucas.demarchi@intel.com>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "Winkler,
+ Tomas" <tomas.winkler@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+> > > diff --git a/drivers/gpu/drm/xe/xe_device.c
+> > b/drivers/gpu/drm/xe/xe_device.c
+> > > index d6fc06d4c9dc..4d6e2f2b281f 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > > @@ -323,6 +323,8 @@ int xe_device_probe(struct xe_device *xe)
+> > >  			goto err_irq_shutdown;
+> > >  	}
+> > >
+> > > +	xe_heci_gsc_init(xe);
+> > > +
+> >
+> > could we place this call earlier in the flow? maybe right after setting=
+ up
+> mmio?
+> > or maybe after pcode init where we confirmed the boot can proceed on
+> > discrete?
+>=20
+> Right after xe_irq_install will be ok (as we need working irq to setup)?
+> Will try, if this works.
+>=20
 
-Series: fixup! drm/xe/bo: Evict VRAM to TT rather than to system
-URL   : https://patchwork.freedesktop.org/series/123960/
-State : success
+Right after xe_irq_install - not working, but after xe_gt_init_early - it w=
+orks, will move there in V2
 
-== Summary ==
+> >
+> > >  	err =3D xe_display_init(xe);
+> > >  	if (err)
+> > >  		goto err_irq_shutdown;
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-stty: 'standard input': Inappropriate ioctl for device
-[08:54:19] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:54:23] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[08:54:43] Starting KUnit Kernel (1/1)...
-[08:54:43] ============================================================
-[08:54:43] ==================== xe_bo (2 subtests) ====================
-[08:54:43] [SKIPPED] xe_ccs_migrate_kunit
-[08:54:43] [SKIPPED] xe_bo_evict_kunit
-[08:54:43] ===================== [SKIPPED] xe_bo ======================
-[08:54:43] ================== xe_dma_buf (1 subtest) ==================
-[08:54:43] [SKIPPED] xe_dma_buf_kunit
-[08:54:43] =================== [SKIPPED] xe_dma_buf ===================
-[08:54:43] ================== xe_migrate (1 subtest) ==================
-[08:54:43] [SKIPPED] xe_migrate_sanity_kunit
-[08:54:43] =================== [SKIPPED] xe_migrate ===================
-[08:54:43] =================== xe_pci (2 subtests) ====================
-[08:54:43] [PASSED] xe_gmdid_graphics_ip
-[08:54:43] [PASSED] xe_gmdid_media_ip
-[08:54:43] ===================== [PASSED] xe_pci ======================
-[08:54:43] ==================== xe_rtp (1 subtest) ====================
-[08:54:43] ================== xe_rtp_process_tests  ===================
-[08:54:43] [PASSED] coalesce-same-reg
-[08:54:43] [PASSED] no-match-no-add
-[08:54:43] [PASSED] no-match-no-add-multiple-rules
-[08:54:43] [PASSED] two-regs-two-entries
-[08:54:43] [PASSED] clr-one-set-other
-[08:54:43] [PASSED] set-field
-[08:54:43] [PASSED] conflict-duplicate
-[08:54:43] [PASSED] conflict-not-disjoint
-[08:54:43] [PASSED] conflict-reg-type
-[08:54:43] ============== [PASSED] xe_rtp_process_tests ===============
-[08:54:43] ===================== [PASSED] xe_rtp ======================
-[08:54:43] ==================== xe_wa (1 subtest) =====================
-[08:54:43] ======================== xe_wa_gt  =========================
-[08:54:43] [PASSED] TIGERLAKE (B0)
-[08:54:43] [PASSED] DG1 (A0)
-[08:54:43] [PASSED] DG1 (B0)
-[08:54:43] [PASSED] ALDERLAKE_S (A0)
-[08:54:43] [PASSED] ALDERLAKE_S (B0)
-[08:54:43] [PASSED] ALDERLAKE_S (C0)
-[08:54:43] [PASSED] ALDERLAKE_S (D0)
-[08:54:43] [PASSED] ALDERLAKE_P (A0)
-[08:54:43] [PASSED] ALDERLAKE_P (B0)
-[08:54:43] [PASSED] ALDERLAKE_P (C0)
-[08:54:43] [PASSED] DG2_G10 (A0)
-[08:54:43] [PASSED] DG2_G10 (A1)
-[08:54:43] [PASSED] DG2_G10 (B0)
-[08:54:43] [PASSED] DG2_G10 (C0)
-[08:54:43] [PASSED] DG2_G11 (A0)
-[08:54:43] [PASSED] DG2_G11 (B0)
-[08:54:43] [PASSED] DG2_G11 (B1)
-[08:54:43] [PASSED] DG2_G12 (A0)
-[08:54:43] [PASSED] DG2_G12 (A1)
-[08:54:43] [PASSED] PVC (B0)
-[08:54:43] [PASSED] PVC (B1)
-[08:54:43] [PASSED] PVC (C0)
-[08:54:43] ==================== [PASSED] xe_wa_gt =====================
-[08:54:43] ====================== [PASSED] xe_wa ======================
-[08:54:43] ============================================================
-[08:54:43] Testing complete. Ran 37 tests: passed: 33, skipped: 4
-[08:54:43] Elapsed time: 23.870s total, 4.189s configuring, 19.561s building, 0.097s running
-
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[08:54:43] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[08:54:45] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[08:55:04] Starting KUnit Kernel (1/1)...
-[08:55:04] ============================================================
-[08:55:04] ============ drm_test_pick_cmdline (2 subtests) ============
-[08:55:04] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
-[08:55:04] =============== drm_test_pick_cmdline_named  ===============
-[08:55:04] [PASSED] NTSC
-[08:55:04] [PASSED] NTSC-J
-[08:55:04] [PASSED] PAL
-[08:55:04] [PASSED] PAL-M
-[08:55:04] =========== [PASSED] drm_test_pick_cmdline_named ===========
-[08:55:04] ============== [PASSED] drm_test_pick_cmdline ==============
-[08:55:04] ================== drm_buddy (6 subtests) ==================
-[08:55:04] [PASSED] drm_test_buddy_alloc_limit
-[08:55:04] [PASSED] drm_test_buddy_alloc_range
-[08:55:04] [PASSED] drm_test_buddy_alloc_optimistic
-[08:55:04] [PASSED] drm_test_buddy_alloc_pessimistic
-[08:55:04] [PASSED] drm_test_buddy_alloc_smoke
-[08:55:04] [PASSED] drm_test_buddy_alloc_pathological
-[08:55:04] ==================== [PASSED] drm_buddy ====================
-[08:55:04] ============= drm_cmdline_parser (40 subtests) =============
-[08:55:04] [PASSED] drm_test_cmdline_force_d_only
-[08:55:04] [PASSED] drm_test_cmdline_force_D_only_dvi
-[08:55:04] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[08:55:04] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[08:55:04] [PASSED] drm_test_cmdline_force_e_only
-[08:55:04] [PASSED] drm_test_cmdline_res
-[08:55:04] [PASSED] drm_test_cmdline_res_vesa
-[08:55:04] [PASSED] drm_test_cmdline_res_vesa_rblank
-[08:55:04] [PASSED] drm_test_cmdline_res_rblank
-[08:55:04] [PASSED] drm_test_cmdline_res_bpp
-[08:55:04] [PASSED] drm_test_cmdline_res_refresh
-[08:55:04] [PASSED] drm_test_cmdline_res_bpp_refresh
-[08:55:04] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[08:55:04] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[08:55:04] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[08:55:04] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[08:55:04] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[08:55:04] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[08:55:04] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[08:55:04] [PASSED] drm_test_cmdline_res_margins_force_on
-[08:55:04] [PASSED] drm_test_cmdline_res_vesa_margins
-[08:55:04] [PASSED] drm_test_cmdline_name
-[08:55:04] [PASSED] drm_test_cmdline_name_bpp
-[08:55:04] [PASSED] drm_test_cmdline_name_option
-[08:55:04] [PASSED] drm_test_cmdline_name_bpp_option
-[08:55:04] [PASSED] drm_test_cmdline_rotate_0
-[08:55:04] [PASSED] drm_test_cmdline_rotate_90
-[08:55:04] [PASSED] drm_test_cmdline_rotate_180
-[08:55:04] [PASSED] drm_test_cmdline_rotate_270
-[08:55:04] [PASSED] drm_test_cmdline_hmirror
-[08:55:04] [PASSED] drm_test_cmdline_vmirror
-[08:55:04] [PASSED] drm_test_cmdline_margin_options
-[08:55:04] [PASSED] drm_test_cmdline_multiple_options
-[08:55:04] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[08:55:04] [PASSED] drm_test_cmdline_extra_and_option
-[08:55:04] [PASSED] drm_test_cmdline_freestanding_options
-[08:55:04] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[08:55:04] [PASSED] drm_test_cmdline_panel_orientation
-[08:55:04] ================ drm_test_cmdline_invalid  =================
-[08:55:04] [PASSED] margin_only
-[08:55:04] [PASSED] interlace_only
-[08:55:04] [PASSED] res_missing_x
-[08:55:04] [PASSED] res_missing_y
-[08:55:04] [PASSED] res_bad_y
-[08:55:04] [PASSED] res_missing_y_bpp
-[08:55:04] [PASSED] res_bad_bpp
-[08:55:04] [PASSED] res_bad_refresh
-[08:55:04] [PASSED] res_bpp_refresh_force_on_off
-[08:55:04] [PASSED] res_invalid_mode
-[08:55:04] [PASSED] res_bpp_wrong_place_mode
-[08:55:04] [PASSED] name_bpp_refresh
-[08:55:04] [PASSED] name_refresh
-[08:55:04] [PASSED] name_refresh_wrong_mode
-[08:55:04] [PASSED] name_refresh_invalid_mode
-[08:55:04] [PASSED] rotate_multiple
-[08:55:04] [PASSED] rotate_invalid_val
-[08:55:04] [PASSED] rotate_truncated
-[08:55:04] [PASSED] invalid_option
-[08:55:04] [PASSED] invalid_tv_option
-[08:55:04] [PASSED] truncated_tv_option
-[08:55:04] ============ [PASSED] drm_test_cmdline_invalid =============
-[08:55:04] =============== drm_test_cmdline_tv_options  ===============
-[08:55:04] [PASSED] NTSC
-[08:55:04] [PASSED] NTSC_443
-[08:55:04] [PASSED] NTSC_J
-[08:55:04] [PASSED] PAL
-[08:55:04] [PASSED] PAL_M
-[08:55:04] [PASSED] PAL_N
-[08:55:04] [PASSED] SECAM
-[08:55:04] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[08:55:04] =============== [PASSED] drm_cmdline_parser ================
-[08:55:04] ========== drm_get_tv_mode_from_name (2 subtests) ==========
-[08:55:04] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[08:55:04] [PASSED] NTSC
-[08:55:04] [PASSED] NTSC-443
-[08:55:04] [PASSED] NTSC-J
-[08:55:04] [PASSED] PAL
-[08:55:04] [PASSED] PAL-M
-[08:55:04] [PASSED] PAL-N
-[08:55:04] [PASSED] SECAM
-[08:55:04] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[08:55:04] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[08:55:04] ============ [PASSED] drm_get_tv_mode_from_name ============
-[08:55:04] ============= drm_damage_helper (21 subtests) ==============
-[08:55:04] [PASSED] drm_test_damage_iter_no_damage
-[08:55:04] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[08:55:04] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[08:55:04] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[08:55:04] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[08:55:04] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[08:55:04] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[08:55:04] [PASSED] drm_test_damage_iter_simple_damage
-[08:55:04] [PASSED] drm_test_damage_iter_single_damage
-[08:55:04] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[08:55:04] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[08:55:04] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[08:55:04] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[08:55:04] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[08:55:04] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[08:55:04] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[08:55:04] [PASSED] drm_test_damage_iter_damage
-[08:55:04] [PASSED] drm_test_damage_iter_damage_one_intersect
-[08:55:04] [PASSED] drm_test_damage_iter_damage_one_outside
-[08:55:04] [PASSED] drm_test_damage_iter_damage_src_moved
-[08:55:04] [PASSED] drm_test_damage_iter_damage_not_visible
-[08:55:04] ================ [PASSED] drm_damage_helper ================
-[08:55:04] ============== drm_dp_mst_helper (2 subtests) ==============
-[08:55:04] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[08:55:04] [PASSED] Clock 154000 BPP 30 DSC disabled
-[08:55:04] [PASSED] Clock 234000 BPP 30 DSC disabled
-[08:55:04] [PASSED] Clock 297000 BPP 24 DSC disabled
-[08:55:04] [PASSED] Clock 332880 BPP 24 DSC enabled
-[08:55:04] [PASSED] Clock 324540 BPP 24 DSC enabled
-[08:55:04] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[08:55:04] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[08:55:04] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[08:55:04] [PASSED] DP_POWER_UP_PHY with port number
-[08:55:04] [PASSED] DP_POWER_DOWN_PHY with port number
-[08:55:04] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[08:55:04] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[08:55:04] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[08:55:04] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[08:55:04] [PASSED] DP_QUERY_PAYLOAD with port number
-[08:55:04] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[08:55:04] [PASSED] DP_REMOTE_DPCD_READ with port number
-[08:55:04] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[08:55:04] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[08:55:04] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[08:55:04] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[08:55:04] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[08:55:04] [PASSED] DP_REMOTE_I2C_READ with port number
-[08:55:04] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[08:55:04] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[08:55:04] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[08:55:04] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[08:55:04] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[08:55:04] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[08:55:04] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[08:55:04] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[08:55:04] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[08:55:04] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[08:55:04] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[08:55:04] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[08:55:04] ================ [PASSED] drm_dp_mst_helper ================
-[08:55:04] =========== drm_format_helper_test (11 subtests) ===========
-[08:55:04] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[08:55:04] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[08:55:04] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[08:55:04] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[08:55:04] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[08:55:04] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[08:55:04] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[08:55:04] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[08:55:04] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[08:55:04] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[08:55:04] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[08:55:04] [PASSED] single_pixel_source_buffer
-[08:55:04] [PASSED] single_pixel_clip_rectangle
-[08:55:04] [PASSED] well_known_colors
-[08:55:04] [PASSED] destination_pitch
-[08:55:04] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[08:55:04] ============= [PASSED] drm_format_helper_test ==============
-[08:55:04] ================= drm_format (18 subtests) =================
-[08:55:04] [PASSED] drm_test_format_block_width_invalid
-[08:55:04] [PASSED] drm_test_format_block_width_one_plane
-[08:55:04] [PASSED] drm_test_format_block_width_two_plane
-[08:55:04] [PASSED] drm_test_format_block_width_three_plane
-[08:55:04] [PASSED] drm_test_format_block_width_tiled
-[08:55:04] [PASSED] drm_test_format_block_height_invalid
-[08:55:04] [PASSED] drm_test_format_block_height_one_plane
-[08:55:04] [PASSED] drm_test_format_block_height_two_plane
-[08:55:04] [PASSED] drm_test_format_block_height_three_plane
-[08:55:04] [PASSED] drm_test_format_block_height_tiled
-[08:55:04] [PASSED] drm_test_format_min_pitch_invalid
-[08:55:04] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[08:55:04] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[08:55:04] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[08:55:04] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[08:55:04] [PASSED] drm_test_format_min_pitch_two_plane
-[08:55:04] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[08:55:04] [PASSED] drm_test_format_min_pitch_tiled
-[08:55:04] =================== [PASSED] drm_format ====================
-[08:55:04] =============== drm_framebuffer (1 subtest) ================
-[08:55:04] =============== drm_test_framebuffer_create  ===============
-[08:55:04] [PASSED] ABGR8888 normal sizes
-[08:55:04] [PASSED] ABGR8888 max sizes
-[08:55:04] [PASSED] ABGR8888 pitch greater than min required
-[08:55:04] [PASSED] ABGR8888 pitch less than min required
-[08:55:04] [PASSED] ABGR8888 Invalid width
-[08:55:04] [PASSED] ABGR8888 Invalid buffer handle
-[08:55:04] [PASSED] No pixel format
-[08:55:04] [PASSED] ABGR8888 Width 0
-[08:55:04] [PASSED] ABGR8888 Height 0
-[08:55:04] [PASSED] ABGR8888 Out of bound height * pitch combination
-[08:55:04] [PASSED] ABGR8888 Large buffer offset
-[08:55:04] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[08:55:04] [PASSED] ABGR8888 Valid buffer modifier
-[08:55:04] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[08:55:04] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[08:55:04] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[08:55:04] [PASSED] NV12 Normal sizes
-[08:55:04] [PASSED] NV12 Max sizes
-[08:55:04] [PASSED] NV12 Invalid pitch
-[08:55:04] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[08:55:04] [PASSED] NV12 different  modifier per-plane
-[08:55:04] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[08:55:04] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[08:55:04] [PASSED] NV12 Modifier for inexistent plane
-[08:55:04] [PASSED] NV12 Handle for inexistent plane
-[08:55:04] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[08:55:04] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[08:55:04] [PASSED] YVU420 Normal sizes
-[08:55:04] [PASSED] YVU420 Max sizes
-[08:55:04] [PASSED] YVU420 Invalid pitch
-[08:55:04] [PASSED] YVU420 Different pitches
-[08:55:04] [PASSED] YVU420 Different buffer offsets/pitches
-[08:55:04] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[08:55:04] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[08:55:04] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[08:55:04] [PASSED] YVU420 Valid modifier
-[08:55:04] [PASSED] YVU420 Different modifiers per plane
-[08:55:04] [PASSED] YVU420 Modifier for inexistent plane
-[08:55:04] [PASSED] X0L2 Normal sizes
-[08:55:04] [PASSED] X0L2 Max sizes
-[08:55:04] [PASSED] X0L2 Invalid pitch
-[08:55:04] [PASSED] X0L2 Pitch greater than minimum required
-stty: 'standard input': Inappropriate ioctl for device
-[08:55:04] [PASSED] X0L2 Handle for inexistent plane
-[08:55:04] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[08:55:04] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[08:55:04] [PASSED] X0L2 Valid modifier
-[08:55:04] [PASSED] X0L2 Modifier for inexistent plane
-[08:55:04] =========== [PASSED] drm_test_framebuffer_create ===========
-[08:55:04] ================= [PASSED] drm_framebuffer =================
-[08:55:04] =============== drm-test-managed (1 subtest) ===============
-[08:55:04] [PASSED] drm_test_managed_run_action
-[08:55:04] ================ [PASSED] drm-test-managed =================
-[08:55:04] =================== drm_mm (19 subtests) ===================
-[08:55:04] [PASSED] drm_test_mm_init
-[08:55:05] [PASSED] drm_test_mm_debug
-[08:55:14] [PASSED] drm_test_mm_reserve
-[08:55:24] [PASSED] drm_test_mm_insert
-[08:55:24] [PASSED] drm_test_mm_replace
-[08:55:24] [PASSED] drm_test_mm_insert_range
-[08:55:24] [PASSED] drm_test_mm_frag
-[08:55:24] [PASSED] drm_test_mm_align
-[08:55:24] [PASSED] drm_test_mm_align32
-[08:55:25] [PASSED] drm_test_mm_align64
-[08:55:25] [PASSED] drm_test_mm_evict
-[08:55:25] [PASSED] drm_test_mm_evict_range
-[08:55:25] [PASSED] drm_test_mm_topdown
-[08:55:25] [PASSED] drm_test_mm_bottomup
-[08:55:25] [PASSED] drm_test_mm_lowest
-[08:55:25] [PASSED] drm_test_mm_highest
-[08:55:26] [PASSED] drm_test_mm_color
-[08:55:26] [PASSED] drm_test_mm_color_evict
-[08:55:26] [PASSED] drm_test_mm_color_evict_range
-[08:55:26] ===================== [PASSED] drm_mm ======================
-[08:55:26] ============= drm_modes_analog_tv (4 subtests) =============
-[08:55:26] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[08:55:26] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[08:55:26] [PASSED] drm_test_modes_analog_tv_pal_576i
-[08:55:26] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[08:55:26] =============== [PASSED] drm_modes_analog_tv ===============
-[08:55:26] ============== drm_plane_helper (2 subtests) ===============
-[08:55:26] =============== drm_test_check_plane_state  ================
-[08:55:26] [PASSED] clipping_simple
-[08:55:26] [PASSED] clipping_rotate_reflect
-[08:55:26] [PASSED] positioning_simple
-[08:55:26] [PASSED] upscaling
-[08:55:26] [PASSED] downscaling
-[08:55:26] [PASSED] rounding1
-[08:55:26] [PASSED] rounding2
-[08:55:26] [PASSED] rounding3
-[08:55:26] [PASSED] rounding4
-[08:55:26] =========== [PASSED] drm_test_check_plane_state ============
-[08:55:26] =========== drm_test_check_invalid_plane_state  ============
-[08:55:26] [PASSED] positioning_invalid
-[08:55:26] [PASSED] upscaling_invalid
-[08:55:26] [PASSED] downscaling_invalid
-[08:55:26] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[08:55:26] ================ [PASSED] drm_plane_helper =================
-[08:55:26] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
-[08:55:26] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[08:55:26] [PASSED] None
-[08:55:26] [PASSED] PAL
-[08:55:26] [PASSED] NTSC
-[08:55:26] [PASSED] Both, NTSC Default
-[08:55:26] [PASSED] Both, PAL Default
-[08:55:26] [PASSED] Both, NTSC Default, with PAL on command-line
-[08:55:26] [PASSED] Both, PAL Default, with NTSC on command-line
-[08:55:26] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[08:55:26] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[08:55:26] ================== drm_rect (9 subtests) ===================
-[08:55:26] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[08:55:26] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[08:55:26] [PASSED] drm_test_rect_clip_scaled_clipped
-[08:55:26] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-[08:55:26] ================= drm_test_rect_intersect  =================
-[08:55:26] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
-[08:55:26] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
-[08:55:26] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
-[08:55:26] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
-[08:55:26] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
-[08:55:26] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
-[08:55:26] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
-[08:55:26] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
-[08:55:26] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
-[08:55:26] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
-[08:55:26] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
-[08:55:26] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
-[08:55:26] [PASSED] far away: 1x1+0+0 x 1x1+3+6
-[08:55:26] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
-[08:55:26] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
-[08:55:26] ============= [PASSED] drm_test_rect_intersect =============
-[08:55:26] ================ drm_test_rect_calc_hscale  ================
-[08:55:26] [PASSED] normal use
-[08:55:26] [PASSED] out of max range
-[08:55:26] [PASSED] out of min range
-[08:55:26] [PASSED] zero dst
-[08:55:26] [PASSED] negative src
-[08:55:26] [PASSED] negative dst
-[08:55:26] ============ [PASSED] drm_test_rect_calc_hscale ============
-[08:55:26] ================ drm_test_rect_calc_vscale  ================
-[08:55:26] [PASSED] normal use
-[08:55:26] [PASSED] out of max range
-[08:55:26] [PASSED] out of min range
-[08:55:26] [PASSED] zero dst
-[08:55:26] [PASSED] negative src
-[08:55:26] [PASSED] negative dst
-[08:55:26] ============ [PASSED] drm_test_rect_calc_vscale ============
-[08:55:26] ================== drm_test_rect_rotate  ===================
-[08:55:26] [PASSED] reflect-x
-[08:55:26] [PASSED] reflect-y
-[08:55:26] [PASSED] rotate-0
-[08:55:26] [PASSED] rotate-90
-[08:55:26] [PASSED] rotate-180
-[08:55:26] [PASSED] rotate-270
-[08:55:26] ============== [PASSED] drm_test_rect_rotate ===============
-[08:55:26] ================ drm_test_rect_rotate_inv  =================
-[08:55:26] [PASSED] reflect-x
-[08:55:26] [PASSED] reflect-y
-[08:55:26] [PASSED] rotate-0
-[08:55:26] [PASSED] rotate-90
-[08:55:26] [PASSED] rotate-180
-[08:55:26] [PASSED] rotate-270
-[08:55:26] ============ [PASSED] drm_test_rect_rotate_inv =============
-[08:55:26] ==================== [PASSED] drm_rect =====================
-[08:55:26] ================== drm_exec (7 subtests) ===================
-[08:55:26] [PASSED] sanitycheck
-[08:55:26] [PASSED] test_lock
-[08:55:26] [PASSED] test_lock_unlock
-[08:55:26] [PASSED] test_duplicates
-[08:55:26] [PASSED] test_prepare
-[08:55:26] [PASSED] test_prepare_array
-[08:55:26] [PASSED] test_multiple_loops
-[08:55:26] ==================== [PASSED] drm_exec =====================
-[08:55:26] ============================================================
-[08:55:26] Testing complete. Ran 340 tests: passed: 340
-[08:55:27] Elapsed time: 43.312s total, 1.680s configuring, 19.353s building, 22.239s running
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+--=20
+Thanks,
+Sasha
 
 
