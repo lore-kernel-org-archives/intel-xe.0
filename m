@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3ED78C04FEE
-	for <intel-xe@archiver.kernel.org>; Wed, 20 Sep 2023 19:46:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 197BFC04FEE
+	for <intel-xe@archiver.kernel.org>; Wed, 20 Sep 2023 19:52:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10DB710E545;
-	Wed, 20 Sep 2023 19:46:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDAC110E552
- for <intel-xe@lists.freedesktop.org>; Wed, 20 Sep 2023 19:46:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695239181; x=1726775181;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=pi6rFCQz1Lx0lnyBaICd2o622k+soLMIA86+4ihKSis=;
- b=Od7Ywj4GPdQ6Xtz+i7D3n3/FczdU4VVwKigrXIA6aGCeHdT7YujmLV/6
- IHgVATckNt2c7yLlc7jKft9OuJlE3iyRajauvWE0bBtVC9sogJTQlGONs
- 6pocn9BipIfiHvLTW69AkudFSSDJFd68eEvphWyz/cfKUZy83xWMl/6Fo
- lfQactjodCboAM18MqCJeSxcgwn9/BHkKXE9Vpuo2O85YdLBdayMGb6/H
- ls1diMz2WkxZLI5cBFXji7qOddLM5p2YwPrBpPFzKNqVwjKWc0z1YrKeW
- SxMWln4oMvGMuIHo/brEZPKo8dxT/Kto1U9vv16lWR6CaNpWFBhmUWHUB g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="360573442"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="360573442"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 12:46:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="817054179"
-X-IronPort-AV: E=Sophos;i="6.03,162,1694761200"; d="scan'208";a="817054179"
-Received: from baguirre-mobl.amr.corp.intel.com (HELO gjsousa-mobl2.intel.com)
- ([10.213.162.6])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 12:46:19 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 20 Sep 2023 16:45:35 -0300
-Message-ID: <20230920194534.57856-2-gustavo.sousa@intel.com>
-X-Mailer: git-send-email 2.42.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id C188D10E089;
+	Wed, 20 Sep 2023 19:52:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5FBFD10E53B;
+ Wed, 20 Sep 2023 19:52:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 62EDFA00E6;
+ Wed, 20 Sep 2023 19:52:02 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2] drm/xe/irq: Clear GFX_MSTR_IRQ as part of IRQ
- reset
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Date: Wed, 20 Sep 2023 19:52:02 -0000
+Message-ID: <169523952240.6465.13283262615462840883@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230920192940.135004-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20230920192940.135004-1-rodrigo.vivi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_uAPI_Alignment_-_take_1_v2?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,72 +39,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting with Xe_LP+, GFX_MSTR_IRQ contains status bits that have W1C
-behavior. If we do not properly reset them, we would miss delivery of
-interrupts if a pending bit is set when enabling IRQs.
+== Series Details ==
 
-As an example, the display part of our probe routine contains paths
-where we wait for vblank interrupts. If a display interrupt was already
-pending when enabling IRQs, we would time out waiting for the vblank.
+Series: uAPI Alignment - take 1 v2
+URL   : https://patchwork.freedesktop.org/series/124000/
+State : success
 
-That in fact happened recently when modprobing Xe on a Lunar Lake with a
-specific configuration; and that's how we found out we were missing this
-step in the IRQ enabling logic.
+== Summary ==
 
-Fix the issue by clearing GFX_MSTR_IRQ as part of the IRQ reset.
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 805557401 fixup! drm/xe/display: Implement display support
+=== git am output follows ===
+Applying: drm/xe: Fix array bounds check for queries
+Applying: drm/xe: Set the correct type for xe_to_user_engine_class
+Applying: drm/xe: Correlate engine and cpu timestamps with better accuracy
+Applying: drm/xe/uapi: Separate VM_BIND's operation and flag
+Applying: drm/xe/vm: Remove VM_BIND_OP macro
+Applying: drm/xe/uapi: Remove MMIO ioctl
+Applying: drm/xe: Fix xe_exec_queue_is_idle for parallel exec queues
+Applying: drm/xe: Deprecate XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE implementation
+Applying: drm/xe: Rename exec_queue_kill_compute to xe_vm_remove_compute_exec_queue
+Applying: drm/xe: Remove XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE from uAPI
+Applying: drm/xe/uapi: Use common drm_xe_ext_set_property extension
+Applying: drm/xe: Kill XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS extension
+Applying: drm/xe/uapi: Document drm_xe_query_gt
+Applying: drm/xe/uapi: Replace useless 'instance' per unique gt_id
+Applying: drm/xe/uapi: Remove unused field of drm_xe_query_gt
+Applying: drm/xe/uapi: Rename gts to gt_list
+Applying: drm/xe/uapi: Fix naming of XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY
+Applying: drm/xe/uapi: Add documentation for query
+Applying: drm/xe/uapi: Crystal Reference Clock updates
+Applying: drm/xe: Extend drm_xe_vm_bind_op
 
-v2:
-  - Make resetting GFX_MSTR_IRQ be the last step to avoid bit
-    re-latching. (Ville)
-
-BSpec: 50875, 54028, 62357
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
----
- drivers/gpu/drm/xe/xe_irq.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
-
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index ccb934f8fa34..cb03f40df272 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -519,6 +519,13 @@ static void dg1_irq_reset(struct xe_tile *tile)
- 	mask_and_disable(tile, PCU_IRQ_OFFSET);
- }
- 
-+static void dg1_irq_reset_mstr(struct xe_tile *tile)
-+{
-+	struct xe_gt *mmio = tile->primary_gt;
-+
-+	xe_mmio_write32(mmio, GFX_MSTR_IRQ, ~0);
-+}
-+
- static void xe_irq_reset(struct xe_device *xe)
- {
- 	struct xe_tile *tile;
-@@ -534,6 +541,15 @@ static void xe_irq_reset(struct xe_device *xe)
- 	tile = xe_device_get_root_tile(xe);
- 	mask_and_disable(tile, GU_MISC_IRQ_OFFSET);
- 	xe_display_irq_reset(xe);
-+
-+	/*
-+	 * The tile's top-level status register should be the last one
-+	 * to be reset to avoid possible bit re-latching from lower
-+	 * level interrupts.
-+	 */
-+	for_each_tile(tile, xe, id)
-+		if (GRAPHICS_VERx100(xe) >= 1210)
-+			dg1_irq_reset_mstr(tile);
- }
- 
- static void xe_irq_postinstall(struct xe_device *xe)
--- 
-2.42.0
 
