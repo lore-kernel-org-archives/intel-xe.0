@@ -4,135 +4,140 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 914A7E7D0AB
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 20:46:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A054CE7D0A2
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 20:49:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59A1A10E608;
-	Thu, 21 Sep 2023 20:46:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D22F810E608
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Sep 2023 20:46:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70EAA10E18B;
+	Thu, 21 Sep 2023 20:49:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1DE9F10E18B
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Sep 2023 20:49:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695329180; x=1726865180;
+ t=1695329352; x=1726865352;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=xCw77G0AuIU4vAs+pTvD08iS8gU7OaQafyJ9biMBfTM=;
- b=WdrSQdVeKTkMNV3mEvxDsRWe6DN+RO8R76MPXs8Rx1W+DFWXqGTI7hBh
- +ue+cBfxUFz5bOMihe91Wdj8zcWerOsc3FpL4PfjDsd9ycEoW5qV8yZ/+
- u6goIJ+NpZ5RW4INT+lY2RrZnbGWo+EdvfyaDueNUXZUnWNCUTdQfZUOL
- kX+lTVuTSsXsVC/KVdyvB2orPUPN1HhQPG803rwJEZEpMd/+Wl6AN0n1q
- fPoMNdReT41TDudWmG4oCijZFdcbJVz6FOUwHTanPZrt7+Vfx4NHSNJxG
- sCUzyFQ8UgI+VvAxbc62o+IS1P2WVK4KFesflfnAQ/QK5O1JOms+qBNtN A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="380564330"
-X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; d="scan'208";a="380564330"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 13:46:01 -0700
+ bh=X/dJTjzDr39ljsmPWH1fW0M9zQVAMSUabp1YPzVw21A=;
+ b=VSdD7H8+zc2MmT6GwqKU1fH6DapGpuQQPFxoNavRJUgtJyw9Z/BF5rl8
+ bDKCL6hedF8Ts2/OL0v9hqK+5VdFPpphkLRM1A4q4pckEbYA7/dyFLJDg
+ QU0rV+ueGdBBq0OllbZAOMQuGK2lYBw10b6jtUrd1rqkNHzwwYtd62hea
+ 5pF/DPKsvzRtsUrGSSIdcqtve3WX1ksIHBCLmAw71Xittvwe8EVn+y2r/
+ CYX2obn0MOgyWlsRh4myx0WdIivGLVjWmR77OfaZ3YaFWBFJG7yC5TwDo
+ oGnECtQ7U5mufqGg9epmhSU4qcyopMLxMHVtQ0AqXvlT3MQB4W3aO10/Y Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="379536290"
+X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; d="scan'208";a="379536290"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 13:49:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="750547193"
-X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; d="scan'208";a="750547193"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 21 Sep 2023 13:46:01 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="817533713"
+X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; d="scan'208";a="817533713"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 21 Sep 2023 13:49:11 -0700
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 21 Sep 2023 13:46:00 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ 15.1.2507.32; Thu, 21 Sep 2023 13:49:10 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Thu, 21 Sep 2023 13:46:00 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.174)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.32; Thu, 21 Sep 2023 13:49:10 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Thu, 21 Sep 2023 13:49:10 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Thu, 21 Sep 2023 13:46:00 -0700
+ 15.1.2507.32; Thu, 21 Sep 2023 13:49:09 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Sz4T83LERH5TQcyIINB86ABzrvkcWWK9KQR3DBWc1magBYJmWouszmALdSP3RbbkCF5M12HnlemToDjIYYb8nKr1tJ6vRLMi2M4fl66pe2Ocds4AVVJnwnqg3SRxFKqL39akQf61eG/CSBqQ4SMN3KsOBjf8hbgPWYlk8rjQEutKcxk4hiIeCqoYqOXQ3ZACh0A5XUD9iNyg+c7gYdnCc9ps9kzTw4j1DHWcbDTPEJocOcaJgMEBOrdjgh1cL1O7du1LzBpA3kyhW4BRp/+TWC7zrwmHS42+l8hmeVkZIopRdER2DUyY1fNgo57OoJDOUNS0WFX/2TOSLRcsMkowAw==
+ b=dP47rUMozO31ExJnZXuMP63a9vSbrgTqUOlhLZhc1Uwq+oILghw/T47g5QGsHxjd607wXKhN9bn3QETMONufxDYLBToXRdKRbpQuNQgXL1nxEBH1UblYjEOVYVM2UN0JnCt4BWQFnFnXVRRnf/xT0zfwEV+5yR3hKrm8XXsrrZBXnQZGqjqsSF9d1ld5j2HBe8CqCQOcfXnBpX4THq2144y2VnFDtzKk18ncIX4Cq7qv5BA5Af9oaueA3FOa3DgPSvYBQXKZ+krgb2fzP+ee9uZARTvYs0l/RV6pJML5cVHF7+6A/Wqkz1lLTbp/inF6xaE5QJnvQoGRq/LspsPGLg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eQn3ewH98PNPiC23TL5UzJ3dzVPYGkmHXdNB/IML4so=;
- b=SxI3Ofg337ltBBEGAtIiG5NFoUnUZIQjImCVfdNs3PXAhWgsref3GsRG9b7CU1ntCZs0rkJi7wOBE7yEFaZLwL4+/ORPuAri273y69DRsJFJhY4hqALx3fLxB5U1cNs2BzVksmLRyWeXAmb1i3o1g5qEaJ6z2KruV1xwSRB35waXdTy3LPdJABDlv1IGlG/GiVQjzK8Gwy/IMsu+rNVT+MusH70rv07ukxVpFcGz1miLNIeCAlT71ybVAwdXXD30BF06W25i32DxavBs+PN3J+0UkmrgSjxWOXEHdfWLi9Pb5v5xZf+OddP9na3pT1+cuSIDaoh5XKRFfsrrkHM3Dw==
+ bh=F/MZaT2lBO01OSKcSDwwjOCiaU+OwqSeoe0czKa7GUI=;
+ b=nf+cNeBNKlIE831rO5mT56C/il+wKTxsK7WhGKAEwIK6gpfQoiV1jRN/dbmuibM9nAWOfi7cLX7NakjwbQC30KMg93sJwHeSi0GrcBq79Sia3KpTz3fEOkc5NZrn0h0vIjCMLAHkgX84msFiK/Apk6mJCA/t/D2vpSjf/afBdnEXrCEuyY5qPBktivlMz4C0guGjAaXDswU8L2+UnMdhXvHARtX/DcDXtR6aZ/uytHoLIfttZX/Mki7dXbqGd4XkHvxWTiHLQddbA8Iz+FM1UztA51oHBemB8t5SyV76AVUccdDhO9XmUA2VqdlgfmxOZzRs8JwnQ5ZgiMb6UgMkDQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by MN0PR11MB6255.namprd11.prod.outlook.com (2603:10b6:208:3c4::13)
+ by CH0PR11MB5523.namprd11.prod.outlook.com (2603:10b6:610:d6::15)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27; Thu, 21 Sep
- 2023 20:45:58 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Thu, 21 Sep
+ 2023 20:49:07 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::6d0b:5bc6:8723:593%6]) with mapi id 15.20.6792.022; Thu, 21 Sep 2023
- 20:45:58 +0000
-Date: Thu, 21 Sep 2023 16:45:54 -0400
+ 20:49:06 +0000
+Date: Thu, 21 Sep 2023 16:49:03 -0400
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Ashutosh Dixit <ashutosh.dixit@intel.com>
-Message-ID: <ZQyrgm74zjHjdr3x@intel.com>
-References: <20230919161049.2307855-1-ashutosh.dixit@intel.com>
- <20230919161049.2307855-17-ashutosh.dixit@intel.com>
+To: "Souza, Jose" <jose.souza@intel.com>, <ashutosh.dixit@intel.com>
+Message-ID: <ZQysPzeenUYVVIDr@intel.com>
+References: <20230920192940.135004-1-rodrigo.vivi@intel.com>
+ <20230920192940.135004-20-rodrigo.vivi@intel.com>
+ <6e8dc2efb800a305bb651f576d0ef22c5aea1cf0.camel@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230919161049.2307855-17-ashutosh.dixit@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0222.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::17) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <6e8dc2efb800a305bb651f576d0ef22c5aea1cf0.camel@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0034.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::9) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|MN0PR11MB6255:EE_
-X-MS-Office365-Filtering-Correlation-Id: 145a7715-fc5b-48ec-3759-08dbbae3c1df
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CH0PR11MB5523:EE_
+X-MS-Office365-Filtering-Correlation-Id: c85e7fcf-5f9a-4609-b947-08dbbae4328a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: rqlDa7yccMnSOEbOBxNTQs9ucwNhOite26CyrseestQfZFnFqE5PTIEM54LLU2o0yQR5nOZvg4Y3z6HetUAnLdR/ozxpKE7rgFPw8ZODj+OtrabaqjV0jz6Gkz9BxF2324ILGunPRpGGfJedM/iEYG+j0kHuJSmfCy9osj1QgA+qfg552uEDJGT7UOLEnr3GiWXjyJro0am4IRzEF+oM8YCleHfcokkwit/CmsW1hCttl86tsexidZ3RcHqDqQ8ds/9c7z0cT9v0EqiPWaiuBEjnWTU2ulL0ySQQP/yinjzNPlPTeukZIigot0a+awAfS8YDXuVc4LEGoLRCtWo92CiXwmV7AqaGbCNRWQp5gXoGhvd1dJaSe+12hGDp7iD21kGnXfTpavbPL4q0CxCbRffDihFsCWdaBgUCBLuXwznvzsJZeFfsv3JSEkRB2lhmYKz+pSUo5uLsp/rhf5Qtt7fX2pJNp2K1oulJA2V+o2v7Ld3jdPYa83j+VqGjj53x3k/Td+fqp5JJUZ20VetihbDlGflS8I427VXCI+lS+WY=
+X-Microsoft-Antispam-Message-Info: nPl+CXZ931XDQCqlJNOktNkLfS365wI4XMK1utoqT3U9GTHmSERS6t4Yz2WV6P07dZIOm0z6Z00wUdx1/Bhhrxq1kipLehPXT3CXsRmJkkSgNku4Hu1DlJtp27hWGms8spWgqWZ74mIdSbVFFWlTWQj6Kc6UIZHBW0rC0XWf98S0acODccn0VLl8QNWqSq/vYdN103Li3TtDjUBqV/QpfbMmRyuwMduNJw4T3EYuUzi2ZeVri/a7nR9GFs78M8IUowOVXXwW0XBuT1u6E3xKF8diqYbPfikOwTADclUnhicLaSFOcFLXSuN1MWRktXXSNYnMbLMwl+6CD8G7zMMHNOqyq98X4jRZpTMJhl95Dwd5c7/stq8waGjGDcHBU6qEMGg2C4jY9Kbnf8SJVR+Dg1QBNWV0+cxxLf233behZxukclLixeCZL6vGBw4el13Uj99DO62XlLvUZvJ/nSj8v++78jk2Bnq1mkKn2rgmVOnaJ/pya7ZvBJt9BhWq00j4+c6XIbguNket8Vxgsp+KkXRyDoQSklAIe5JGVMLSpGY=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(376002)(346002)(396003)(366004)(136003)(451199024)(1800799009)(186009)(6486002)(966005)(44832011)(6506007)(86362001)(6512007)(38100700002)(66476007)(66556008)(66946007)(5660300002)(6666004)(37006003)(478600001)(316002)(6636002)(8936002)(82960400001)(2616005)(83380400001)(41300700001)(26005)(2906002)(36756003)(6862004)(4326008)(8676002);
+ SFS:(13230031)(39860400002)(366004)(396003)(376002)(346002)(136003)(186009)(451199024)(1800799009)(478600001)(6486002)(6506007)(6666004)(966005)(83380400001)(6512007)(26005)(5660300002)(107886003)(2906002)(66556008)(44832011)(6636002)(54906003)(66476007)(316002)(2616005)(41300700001)(4326008)(66946007)(8676002)(8936002)(86362001)(36756003)(82960400001)(38100700002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?87jnT1fQJvydsoDay8ZBuY2mXkmcYJZe1I5bG1jp55AcdvQsiPCm82v4D/ob?=
- =?us-ascii?Q?6pycL4NoT25NJl90aJuDmQUCxu8KAa1fZjKSE7aNA93ihK0rOVugmTP8KDz2?=
- =?us-ascii?Q?kSjA3HrVVhvsUTrR6sLNZkctI58PJPJa/E/l4JbqZMf+coztteriF9w2Loqh?=
- =?us-ascii?Q?9Tc/8sVhA/WjHahWuXhmC2CHzZUnC8Nw+Mgneb22VHBLz81GkEUYNW8EDTHK?=
- =?us-ascii?Q?K9Ho4ts84yKD+RvaMEhX53F51jZO2aMCTSN1INshZctfvBUn2CJNtsNMas6V?=
- =?us-ascii?Q?Pg9SvmIY2KYFTu3NcoD0qTFR7+V4VerIF8iQ22674X6ToEU0rhUFeMcUdsGQ?=
- =?us-ascii?Q?LKGRtVvbz9rnyGM5IKilyPRgi8k8TSOAiNjnWwTa7l2Kmlzyn0ToPBbQIfD+?=
- =?us-ascii?Q?JO/6uIg95IsihQ+LUJrOGfhsBro/ca48QQoFZq8AHCB9xhBNEkfuy0+JcQJi?=
- =?us-ascii?Q?zxi0UJyAsgSPvn0gsLyB8De6lYsj5rv/K+rVFqXip0dhl4tRde99A4LlP1Xu?=
- =?us-ascii?Q?ls4jMpP3S9MuOa7OqUB1jNrr9RTWGzj6ADDK7LUh9GhdtVmiSN4Y5gb3e6ka?=
- =?us-ascii?Q?xBaNL+lyaT1vqYWLGnRxgK8svPUOQt4IPzjSMEIEDuCF9bvXj0Ri+tfXLJUu?=
- =?us-ascii?Q?/zgKlvOekX6veCWFpodfSBztRstpEi2rDegXAT8LLdpKrsBHI3IUGk13vbgp?=
- =?us-ascii?Q?F5MFk0ri8/FJ7ll88zSDwvfZdDCeDXyYx18x2YNoyuJQz5qlHEq1vIOZxTUU?=
- =?us-ascii?Q?l1nGp/d/2348DOcYOuR9GU7vWpMhv6TeMKbJ2IRuYyGh3RXF1xw2mpjBaoYd?=
- =?us-ascii?Q?FrQ4nzr4NO344gE4q/rRbM71/ZnCCtquoJ+b19lhkPITe4FdOJKXmuYa9yjR?=
- =?us-ascii?Q?ko5ekTmGsa+NMuFBvb/FvX0wDGb6MDmy6t7FoiywbatRW2PmVWZRPPDJ9kz3?=
- =?us-ascii?Q?is5oaY16XINAjDmxXVr6A/CHPenScsEwDkEWXVaYZryQGSWswR+2Y7kX8ZwI?=
- =?us-ascii?Q?ez4br2vSQKkj/LOpch+etRdAeaRjJiSc//qgp5kKoizmPqzVJ18L9IJa5IdV?=
- =?us-ascii?Q?7U2fOscM60+RXGEm3oYSRvJZ/DvEqsY42SAMULRkz+pcYjUJVykc7HZbZ0mb?=
- =?us-ascii?Q?FV4edyb7WE7A9MDWKKX8+u4khlHAMTiOKi9FbjA6Xlq2zg5e2+5jmIg7flUJ?=
- =?us-ascii?Q?Te+m5ovt1rCtbI2bmoRbBnulRQowWN7axcEQtDvj2QUpA9e3UWhTOjQqcUEC?=
- =?us-ascii?Q?q6RVGvra/2uOmTSznTIfnmGtye5/QoB0nAlHOjjqRyTeKE458vbTnSBNANkJ?=
- =?us-ascii?Q?JSnXXfaDJx4NDwBNa+GmgP8VBSNzOnBfhTvQzSWyaaxIZPQfamhpR/lKp3rR?=
- =?us-ascii?Q?0RoNO+YMp3t1PSBYo2V4T7lycKaNyYb6+SuKdgmyZA25DG/0/yd1xHrk8Z48?=
- =?us-ascii?Q?RPhPx5Vuvid4wvgkBeYP2mYfG0zP8/imZi2AQPPgsK2lpLR0oV+MSyp2N9cL?=
- =?us-ascii?Q?OEuVJsHoDtF9t4GNOwp5KfKCshfmuK5vr6j4uZpD52Dbew/AbnWATLEttyp0?=
- =?us-ascii?Q?DMMQh1BEND75J3LWC5uKthZZGmTa4gF0cl9LvJ1RuY0EzW4/34t+KU7DPmpI?=
- =?us-ascii?Q?rg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 145a7715-fc5b-48ec-3759-08dbbae3c1df
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/Uc9zIUQsTi8vDbaJ8luS6yMsEhKx49WLB3O2by+bxsrMJy0/qW7oAebOed6?=
+ =?us-ascii?Q?qiyyEUVFKdVSbnqsxLZ4JrjtgCw05+4pA8ZEb5F9K2UKPQRvVzB6iErYypwg?=
+ =?us-ascii?Q?Ywm2bp7NObNbZCldX3MuOl5aqM8yUc9ZwG5u1r2ack2iiYypUVe6Wzfxerf4?=
+ =?us-ascii?Q?xegWsj37y35FpOQ1asiLfzKfi8u2JI5Xu6Ld9jQl3q4yJzTx7dWedXjCDvsj?=
+ =?us-ascii?Q?lg5vX2OnNp76wFTgb3RoX+ronCO8RBgzbkbpzaoc1uWr48r/FiSFwPKwQTL6?=
+ =?us-ascii?Q?j0CLfYkJpM3lmlsEUFt911wmE+Wc7goMDa0/CWQxSGbNKsDzu0vCy+SwCJSE?=
+ =?us-ascii?Q?vi5WmGotrMfEKtMY2AI73bRmQJRrjUnQhN+9izwRJ8pQL5+Etc07mkOLX3qV?=
+ =?us-ascii?Q?JixTkzXAUQGybtQzpX64J7GiOo+Vf5oklW8yPmKpz1uCz3ybEb+jBhwsrab2?=
+ =?us-ascii?Q?nATtS5A/0hHSsZPZZetTFVvk9+rMmu/B/JSHi27ziDPZDTt3A8ozhfix6I8F?=
+ =?us-ascii?Q?NDBp/B5ta1bU6pgt6T85Ftc/4T3AjQq1Xn9TWrLTEq/H2a8pNk5HL/wFbthH?=
+ =?us-ascii?Q?cXTL75CJHsPw+0U/N4RAG6WEqBB+mnqZVsVFEYQQ6Yrt4uwQdK8Mlaek8qmH?=
+ =?us-ascii?Q?iAVBowVWOlIAwtEu7r4gs812kAfOmmyH1I0IU2pwHB/gSCSc5nXxanbYpA8I?=
+ =?us-ascii?Q?8Uyo9W0Qj4S/YyRr8wy7gkh5LAJCZdLi6/4b/4SLTTIx2FUetoreggVxUijb?=
+ =?us-ascii?Q?dDwmuovB5w4ZZNE5Ru924q4ONkLLd/Y5ynSG53OmAcA3VqjxB0wpUqX59rhv?=
+ =?us-ascii?Q?0bMO0XE5fnltOYcwKgd09yfvox7ZDGFaRywLX5dKA34BpDu/5gt6pEqCQ3ja?=
+ =?us-ascii?Q?BNeLcI5a0E5+CUlifP2zLM5MV1rA8bnS5yGgdgoxEFnkRYpxTekeUVFfWT9Z?=
+ =?us-ascii?Q?NhaEPsBJ5lgaiPLiNzjjnFEnHosgy3F2dM2Ub0Qr/xld597qgTzETwUusIoH?=
+ =?us-ascii?Q?Zl8/6bXQEpgsTQtQYezxrAda4e4glW4VrOU4wA+of3zYyUvwpYVuphJOC547?=
+ =?us-ascii?Q?pYv9R6WF7wklYUdt2D/xI3vvRCbm6mUI4D2xubCmS6LSNb2VUFd1hHGbPAI1?=
+ =?us-ascii?Q?aNBLzUW8mbSODv4BRzmFhqPYLZX6twmsl+XkW4AR4HgiYWHg4aU0wk1EUUqE?=
+ =?us-ascii?Q?FJmKuQlQAEFnmjgv2E8p+6VE76QaYPvbzS7XHocxVNlrCpK9/BPhe1U0b3gK?=
+ =?us-ascii?Q?ZMSOGkrChoEGLfR7+E6MqC9FAVdAHdmd36DqlESawickRJhXXCPn0GcfTyMs?=
+ =?us-ascii?Q?KRDN18+Vonk5SjFaI+/EhtTteD3v23/r/xbCPFcRDEfUfet06j46JMfmcBKk?=
+ =?us-ascii?Q?Z9R8zZ1nGMqZweBleouJl44aHOSYS/Dp2cttOjWOk7x6Tk+XHUbtDoHMEKTJ?=
+ =?us-ascii?Q?YULRFao2B4IjFTs13BX+3fehnBnPsUQi9D/WMqSjMxBBrGnxHfHLu0pS7Zrw?=
+ =?us-ascii?Q?Hs86GX0aPhQ65HRrKH/AzoIhuK1mXpnQCOzRbBS04gKsoEkh2fCxKfWSCN6d?=
+ =?us-ascii?Q?fx+NHRbYJE4iB7rEei3j5cg0vnqFoNG0lzgTsrYeY3n39X6Ow6KQrNi6tYce?=
+ =?us-ascii?Q?gA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: c85e7fcf-5f9a-4609-b947-08dbbae4328a
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2023 20:45:57.8928 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2023 20:49:06.8755 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YomU8XALsRuVjgg1V3C5TeUNsELV9X2z7Vplp2GWO2PhNEpJuckCpgtuLST5dWe0KUXsONzlCHTms6kbga5lKA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6255
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y+J8i2emAqv4iGM5/8dtFzC/r+Tvj+c1WUy6EJ/68nxXblNG/fOHK8bOZyaBTb0FgQKncsCWk6jMVtAntIHlUA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5523
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 16/21] drm/xe/oa: Make
- xe_oa_timestamp_frequency per gt
+Subject: Re: [Intel-xe] [PATCH v2 19/20] drm/xe/uapi: Crystal Reference
+ Clock updates
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,155 +149,111 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: "Dugast, Francois" <francois.dugast@intel.com>, "Roper,
+ Matthew D" <matthew.d.roper@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 19, 2023 at 09:10:44AM -0700, Ashutosh Dixit wrote:
-> Clock freq's can be different for different gt's.
+On Thu, Sep 21, 2023 at 03:50:07PM +0000, Souza, Jose wrote:
+> On Wed, 2023-09-20 at 15:29 -0400, Rodrigo Vivi wrote:
+> > First of all, let's remove the duplication.
+> > But also, let's rename it to remove the word 'frequency'
+> > out of it. In general, the first thing people think of frequency
+> > is the frequency in which the GTs are operating to execute the
+> > GPU instructions.
+> > 
+> > While this frequency here is a crystal reference clock frequency
+> > which is the base of everything else, and in this case of this
+> > uAPI it is used to calculate a better and precise timestamp.
+> > 
+> > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+> > Cc: Francois Dugast <francois.dugast@intel.com>
+> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+> > ---
+> >  drivers/gpu/drm/xe/xe_query.c |  5 ++---
+> >  include/uapi/drm/xe_drm.h     | 10 ++++------
+> >  2 files changed, 6 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> > index a27b10583f5a..8184df4abde1 100644
+> > --- a/drivers/gpu/drm/xe/xe_query.c
+> > +++ b/drivers/gpu/drm/xe/xe_query.c
+> > @@ -149,7 +149,7 @@ query_cs_cycles(struct xe_device *xe,
+> >  	if (!hwe)
+> >  		return -EINVAL;
+> >  
+> > -	resp.cs_frequency = gt->info.clock_freq;
+> > +	resp.cs_reference_clock = gt->info.clock_freq;
+> >  
+> >  	xe_device_mem_access_get(xe);
+> >  	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+> > @@ -167,7 +167,7 @@ query_cs_cycles(struct xe_device *xe,
+> >  	resp.width = 36;
+> >  
+> >  	/* Only write to the output fields of user query */
+> > -	if (put_user(resp.cs_frequency, &query_ptr->cs_frequency))
+> > +	if (put_user(resp.cs_reference_clock, &query_ptr->cs_reference_clock))
+> >  		return -EFAULT;
+> >  
+> >  	if (put_user(resp.cpu_timestamp, &query_ptr->cpu_timestamp))
+> > @@ -380,7 +380,6 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
+> >  		else
+> >  			gt_list->gt_list[id].type = XE_QUERY_GT_TYPE_MAIN;
+> >  		gt_list->gt_list[id].gt_id = gt->info.id;
+> > -		gt_list->gt_list[id].clock_freq = gt->info.clock_freq;
+> >  		if (!IS_DGFX(xe))
+> >  			gt_list->gt_list[id].native_mem_regions = 0x1;
+> >  		else
+> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > index 45ec20c2765d..5156bac84f20 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -248,8 +248,8 @@ struct drm_xe_query_mem_region {
+> >   * relevant GPU timestamp. clockid is used to return the specific CPU
+> >   * timestamp.
+> >   *
+> > - * The query returns the command streamer cycles and the frequency that can
+> > - * be used to calculate the command streamer timestamp. In addition the
+> > + * The query returns the command streamer cycles and the reference clock that
+> > + * can be used to calculate the command streamer timestamp. In addition the
+> >   * query returns a set of cpu timestamps that indicate when the command
+> >   * streamer cycle count was captured.
+> >   */
+> > @@ -266,8 +266,8 @@ struct drm_xe_query_cs_cycles {
+> >  	 */
+> >  	__u64 cs_cycles;
+> >  
+> > -	/** Frequency of the cs cycles in Hz. */
+> > -	__u64 cs_frequency;
+> > +	/** Reference Clock of the cs cycles in Hz. */
+> > +	__u64 cs_reference_clock;
+> >  
+> >  	/**
+> >  	 * CPU timestamp in ns. The timestamp is captured before reading the
+> > @@ -381,8 +381,6 @@ struct drm_xe_query_gt {
+> >  	__u16 type;
+> >  	/** @gt_id: Unique ID of this GT within the PCI Device */
+> >  	__u16 gt_id;
+> > -	/** @clock_freq: A clock frequency for timestamp */
+> > -	__u32 clock_freq;
 > 
-> Suggested-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_oa.c    | 44 +++++++++++++++++------------------
->  drivers/gpu/drm/xe/xe_oa.h    |  2 +-
->  drivers/gpu/drm/xe/xe_query.c |  2 +-
->  3 files changed, 24 insertions(+), 24 deletions(-)
+> This needs to be brought back, if you want to remove the duplication remove it from drm_xe_query_cs_cycles then.
+> DRM_XE_QUERY_CS_CYCLES will fail when running in SRIOV VF as it can't do mmio reads.
+
+So, does the CS_CYLES make sense then? or all that information could/should
+be inside the gt info here?
+
+Let's take OA into consideration as well here.
+https://lore.kernel.org/all/20230919161049.2307855-17-ashutosh.dixit@intel.com
+
+Cc: Ashutosh.
+Anything from OA that we could do to unify these data?
+
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-> index d49debe732bbd..8648652e05aa5 100644
-> --- a/drivers/gpu/drm/xe/xe_oa.c
-> +++ b/drivers/gpu/drm/xe/xe_oa.c
-> @@ -1496,7 +1496,7 @@ xe_oa_stream_open_ioctl_locked(struct xe_oa *oa,
->   * platforms OA unit ignores the CTC_SHIFT and the 2 timestamps differ. In such
->   * cases, return the adjusted CS timestamp frequency to the user.
->   */
-> -u32 xe_oa_timestamp_frequency(struct xe_device *xe)
-> +u32 xe_oa_timestamp_frequency(struct xe_gt *gt)
->  {
->  	u32 reg, shift;
->  
-> @@ -1505,26 +1505,26 @@ u32 xe_oa_timestamp_frequency(struct xe_device *xe)
->  	 * Wa_14015568240:pvc
->  	 * Wa_14015846243:mtl
->  	 */
-> -	switch (xe->info.platform) {
-> +	switch (gt->tile->xe->info.platform) {
->  	case XE_DG2:
->  	case XE_PVC:
->  	case XE_METEORLAKE:
-> -		xe_device_mem_access_get(xe);
-> -		reg = xe_mmio_read32(xe_root_mmio_gt(xe), RPM_CONFIG0);
-> -		xe_device_mem_access_put(xe);
-> +		xe_device_mem_access_get(gt->tile->xe);
-> +		reg = xe_mmio_read32(gt, RPM_CONFIG0);
-> +		xe_device_mem_access_put(gt->tile->xe);
->  
->  		shift = REG_FIELD_GET(RPM_CONFIG0_CTC_SHIFT_PARAMETER_MASK, reg);
-> -		return xe_root_mmio_gt(xe)->info.clock_freq << (3 - shift);
-> +		return gt->info.clock_freq << (3 - shift);
->  
->  	default:
-> -		return xe_root_mmio_gt(xe)->info.clock_freq;
-> +		return gt->info.clock_freq;
->  	}
->  }
->  
-> -static u64 oa_exponent_to_ns(struct xe_oa *oa, int exponent)
-> +static u64 oa_exponent_to_ns(struct xe_gt *gt, int exponent)
->  {
->  	u64 nom = (2ULL << exponent) * NSEC_PER_SEC;
-> -	u32 den = xe_oa_timestamp_frequency(oa->xe);
-> +	u32 den = xe_oa_timestamp_frequency(gt);
->  
->  	return div_u64(nom + den - 1, den);
->  }
-> @@ -1591,7 +1591,6 @@ static int xe_oa_read_properties_unlocked(struct xe_oa *oa, u64 __user *uprops,
->  	instance = 0;
->  
->  	for (i = 0; i < n_props; i++) {
-> -		u64 oa_period, oa_freq_hz;
->  		u64 id, value;
->  
->  		ret = get_user(id, uprop);
-> @@ -1631,18 +1630,6 @@ static int xe_oa_read_properties_unlocked(struct xe_oa *oa, u64 __user *uprops,
->  					OA_EXPONENT_MAX);
->  				return -EINVAL;
->  			}
-> -
-> -			BUILD_BUG_ON(sizeof(oa_period) != 8);
-> -			oa_period = oa_exponent_to_ns(oa, value);
-> -
-> -			oa_freq_hz = div64_u64(NSEC_PER_SEC, oa_period);
-> -			if (oa_freq_hz > xe_oa_max_sample_rate && !perfmon_capable()) {
-> -				drm_dbg(&oa->xe->drm,
-> -					"OA exponent would exceed the max sampling frequency (sysctl dev.xe.oa_max_sample_rate) %uHz without CAP_PERFMON or CAP_SYS_ADMIN privileges\n",
-> -					  xe_oa_max_sample_rate);
-> -				return -EACCES;
-> -			}
-> -
->  			props->oa_periodic = true;
->  			props->oa_period_exponent = value;
->  			break;
-> @@ -1701,6 +1688,19 @@ static int xe_oa_read_properties_unlocked(struct xe_oa *oa, u64 __user *uprops,
->  		return -EINVAL;
->  	}
->  
-> +	if (props->oa_periodic) {
-> +		u64 oa_period, oa_freq_hz;
-> +
-> +		oa_period = oa_exponent_to_ns(props->hwe->gt, props->oa_period_exponent);
-> +		oa_freq_hz = div64_u64(NSEC_PER_SEC, oa_period);
-> +		if (oa_freq_hz > xe_oa_max_sample_rate && !perfmon_capable()) {
-> +			drm_dbg(&oa->xe->drm,
-> +				"OA exponent would exceed the max sampling frequency (sysctl dev.xe.oa_max_sample_rate) %uHz without CAP_PERFMON or CAP_SYS_ADMIN privileges\n",
-> +				xe_oa_max_sample_rate);
-> +			return -EACCES;
-> +		}
-> +	}
-> +
->  	return 0;
->  }
->  
-> diff --git a/drivers/gpu/drm/xe/xe_oa.h b/drivers/gpu/drm/xe/xe_oa.h
-> index 1f3d05067f19d..cc6f64bc24ddf 100644
-> --- a/drivers/gpu/drm/xe/xe_oa.h
-> +++ b/drivers/gpu/drm/xe/xe_oa.h
-> @@ -22,7 +22,7 @@ int xe_oa_add_config_ioctl(struct drm_device *dev, void *data,
->  			   struct drm_file *file);
->  int xe_oa_remove_config_ioctl(struct drm_device *dev, void *data,
->  			      struct drm_file *file);
-> -u32 xe_oa_timestamp_frequency(struct xe_device *xe);
-> +u32 xe_oa_timestamp_frequency(struct xe_gt *gt);
->  u16 xe_oa_unit_id(struct xe_hw_engine *hwe);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index 4a3a9c11e8cc4..ad280bac9eed4 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -244,7 +244,7 @@ static int query_gts(struct xe_device *xe, struct drm_xe_device_query *query)
->  			gts->gts[id].type = XE_QUERY_GT_TYPE_MAIN;
->  		gts->gts[id].instance = id;
->  		gts->gts[id].clock_freq = gt->info.clock_freq;
-
-first look it here                      ^
-
-> -		gts->gts[id].oa_timestamp_freq = xe_oa_timestamp_frequency(xe);
-> +		gts->gts[id].oa_timestamp_freq = xe_oa_timestamp_frequency(gt);
-
-Then please notice that we are trying to kill the duplications on the uapi [1]
-and now notice that this series is adding yet another duplication:
-
-+u32 xe_oa_timestamp_frequency(struct xe_gt *gt)
-+               return gt->info.clock_freq;
-(copied from above)
-
-[1] - https://lore.kernel.org/all/20230920192940.135004-20-rodrigo.vivi@intel.com/
-
->  		if (!IS_DGFX(xe))
->  			gts->gts[id].native_mem_regions = 0x1;
->  		else
-> -- 
-> 2.41.0
+> >  	/**
+> >  	 * @native_mem_regions: Bit mask of instances from
+> >  	 * drm_xe_query_mem_usage that lives on the same GPU/Tile and have
 > 
