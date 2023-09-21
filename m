@@ -4,52 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B1BAE706FB
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 09:32:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 880D6E706FD
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 09:36:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3788410E595;
-	Thu, 21 Sep 2023 09:32:29 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E86910E5AF
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Sep 2023 09:32:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695288747; x=1726824747;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=3/PMhMGu4GoPLX0YRn7Dl8gas6u624GTN5a16NKSo9M=;
- b=OZf5O19jNMHonlgemlg+cIKAP+xk/Fuyloc07mx/TRhRrZbHO2Siq/D4
- kFUd0ptatd0gtxdZWPxkVRCmmK6QKrffJ8KSaVIRLqjDNDYWBFc0ym7S7
- tfmUCFPWBzhm8/FDLUXbkbbmi6ZS431iNscFHHEkBoS6LBCJVxMjdwx+L
- qVTKJpXkBehApX4h+BsxetFEsPl3fxQSf6NsFyDOeYABhqCOcCY67L3iX
- 87BH55i0fpgmmG5Vt0BbHJ5Qmf1T28TUwCwQtdMp55XIzEiE9u0IAzvp/
- wMjSznSgVFE3rhobm0VnT35bm4Zwjg038YF1DJiw0hwgaNxbdb2wtbjSM g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="377762157"
-X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="377762157"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 02:32:21 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="994011817"
-X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="994011817"
-Received: from kinstrum-mobl.ger.corp.intel.com (HELO [10.249.254.152])
- ([10.249.254.152])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 02:32:20 -0700
-Message-ID: <55c806c5a41472fd063faae222ef74ece36945b4.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-Date: Thu, 21 Sep 2023 11:32:17 +0200
-In-Reply-To: <20230914204053.2220281-6-matthew.brost@intel.com>
-References: <20230914204053.2220281-1-matthew.brost@intel.com>
- <20230914204053.2220281-6-matthew.brost@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FF2410E5A5;
+	Thu, 21 Sep 2023 09:36:13 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 10F9510E5A3;
+ Thu, 21 Sep 2023 09:36:12 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0F062A66C9;
+ Thu, 21 Sep 2023 09:36:12 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [PATCH 5/6] drm/xe: Allow num_binds == 0 in VM bind
- IOCTL
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Date: Thu, 21 Sep 2023 09:36:12 -0000
+Message-ID: <169528897202.7232.2708201077664984568@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230915182457.3951938-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20230915182457.3951938-1-tejas.upadhyay@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_drm/xe=3A_fdinfo_memory_stats_=28rev5=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,80 +39,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-SGksIE1hdHQhCgpPbiBUaHUsIDIwMjMtMDktMTQgYXQgMTM6NDAgLTA3MDAsIE1hdHRoZXcgQnJv
-c3Qgd3JvdGU6Cj4gVGhlIGlkZWEgYmVpbmcgb3V0LXN5bmNzIGNhbiBzaWduYWwgaW5kaWNhdGlu
-ZyBhbGwgcHJldmlvdXMKPiBvcGVyYXRpb25zCj4gb24gdGhlIGJpbmQgcXVldWUgYXJlIGNvbXBs
-ZXRlLiBBbiBleGFtcGxlIHVzZSBjYXNlIG9mIHRoaXMgd291bGQgYmUKPiBzdXBwb3J0IGZvciBp
-bXBsZW1lbnRpbmcgdmtRdWV1ZVdhaXRGb3JJZGxlIGVhc2lseS4KPiAKPiBTaWduZWQtb2ZmLWJ5
-OiBNYXR0aGV3IEJyb3N0IDxtYXR0aGV3LmJyb3N0QGludGVsLmNvbT4KCk9uZSBxdWVzdGlvbiBi
-ZWxvdy4KCj4gLS0tCj4gwqBkcml2ZXJzL2dwdS9kcm0veGUveGVfdm0uYyB8IDMwICsrKysrKysr
-KysrKysrKysrKy0tLS0tLS0tLS0tLQo+IMKgMSBmaWxlIGNoYW5nZWQsIDE4IGluc2VydGlvbnMo
-KyksIDEyIGRlbGV0aW9ucygtKQo+IAo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUv
-eGVfdm0uYyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV92bS5jCj4gaW5kZXggNDljNzQ1ZDUzYjQx
-Li4wZTJmM2FiNDUzZWEgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3ZtLmMK
-PiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfdm0uYwo+IEBAIC0yNjc4LDcgKzI2NzgsNiBA
-QCBzdGF0aWMgaW50IHZtX2JpbmRfaW9jdGxfY2hlY2tfYXJncyhzdHJ1Y3QKPiB4ZV9kZXZpY2Ug
-KnhlLAo+IMKgwqDCoMKgwqDCoMKgwqBpbnQgaTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqBpZiAo
-WEVfSU9DVExfREJHKHhlLCBhcmdzLT5leHRlbnNpb25zKSB8fAo+IC3CoMKgwqDCoMKgwqDCoMKg
-wqDCoCBYRV9JT0NUTF9EQkcoeGUsICFhcmdzLT5udW1fYmluZHMpIHx8Cj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBYRV9JT0NUTF9EQkcoeGUsIGFyZ3MtPm51bV9iaW5kcyA+IE1BWF9CSU5EUykp
-Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gLUVJTlZBTDsKPiDCoAo+
-IEBAIC0yODA1LDcgKzI4MDQsNyBAQCBpbnQgeGVfdm1fYmluZF9pb2N0bChzdHJ1Y3QgZHJtX2Rl
-dmljZSAqZGV2LAo+IHZvaWQgKmRhdGEsIHN0cnVjdCBkcm1fZmlsZSAqZmlsZSkKPiDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBnb3RvIHB1dF9leGVjX3F1
-ZXVlOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfQo+IMKgCj4gLcKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChYRV9JT0NUTF9EQkcoeGUsIGFzeW5jICE9Cj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmIChYRV9JT0NUTF9EQkcoeGUsIGFyZ3MtPm51
-bV9iaW5kcyAmJiBhc3luYyAhPQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgISEocS0+ZmxhZ3MgJgo+IEVYRUNfUVVFVUVf
-RkxBR19WTV9BU1lOQykpKSB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgZXJyID0gLUVJTlZBTDsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBnb3RvIHB1dF9leGVjX3F1ZXVlOwo+IEBAIC0yODE5LDcgKzI4
-MTgsNyBAQCBpbnQgeGVfdm1fYmluZF9pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LAo+IHZv
-aWQgKmRhdGEsIHN0cnVjdCBkcm1fZmlsZSAqZmlsZSkKPiDCoMKgwqDCoMKgwqDCoMKgfQo+IMKg
-Cj4gwqDCoMKgwqDCoMKgwqDCoGlmICghYXJncy0+ZXhlY19xdWV1ZV9pZCkgewo+IC3CoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAoWEVfSU9DVExfREJHKHhlLCBhc3luYyAhPQo+ICvC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBpZiAoWEVfSU9DVExfREJHKHhlLCBhcmdzLT5u
-dW1fYmluZHMgJiYgYXN5bmMgIT0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICEhKHZtLT5mbGFncyAmCj4gWEVfVk1fRkxB
-R19BU1lOQ19ERUZBVUxUKSkpIHsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBlcnIgPSAtRUlOVkFMOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoGdvdG8gcHV0X3ZtOwo+IEBAIC0yODU2LDE2ICsyODU1LDE4
-IEBAIGludCB4ZV92bV9iaW5kX2lvY3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsCj4gdm9pZCAq
-ZGF0YSwgc3RydWN0IGRybV9maWxlICpmaWxlKQo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgfQo+IMKgwqDCoMKgwqDCoMKgwqB9Cj4gwqAKPiAtwqDCoMKgwqDCoMKgwqBib3MgPSBr
-emFsbG9jKHNpemVvZigqYm9zKSAqIGFyZ3MtPm51bV9iaW5kcywgR0ZQX0tFUk5FTCk7Cj4gLcKg
-wqDCoMKgwqDCoMKgaWYgKCFib3MpIHsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-ZXJyID0gLUVOT01FTTsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ290byByZWxl
-YXNlX3ZtX2xvY2s7Cj4gLcKgwqDCoMKgwqDCoMKgfQo+ICvCoMKgwqDCoMKgwqDCoGlmIChhcmdz
-LT5udW1fYmluZHMpIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYm9zID0ga3ph
-bGxvYyhzaXplb2YoKmJvcykgKiBhcmdzLT5udW1fYmluZHMsCj4gR0ZQX0tFUk5FTCk7Cj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICghYm9zKSB7Cj4gK8KgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBlcnIgPSAtRU5PTUVNOwo+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ290byByZWxlYXNlX3ZtX2xv
-Y2s7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH0KPiDCoAo+IC3CoMKgwqDCoMKg
-wqDCoG9wcyA9IGt6YWxsb2Moc2l6ZW9mKCpvcHMpICogYXJncy0+bnVtX2JpbmRzLCBHRlBfS0VS
-TkVMKTsKPiAtwqDCoMKgwqDCoMKgwqBpZiAoIW9wcykgewo+IC3CoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqBlcnIgPSAtRU5PTUVNOwo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqBnb3RvIHJlbGVhc2Vfdm1fbG9jazsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-b3BzID0ga3phbGxvYyhzaXplb2YoKm9wcykgKiBhcmdzLT5udW1fYmluZHMsCj4gR0ZQX0tFUk5F
-TCk7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICghb3BzKSB7Cj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBlcnIgPSAtRU5PTUVNOwo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ290byByZWxl
-YXNlX3ZtX2xvY2s7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH0KPiDCoMKgwqDC
-oMKgwqDCoMKgfQo+IMKgCj4gwqDCoMKgwqDCoMKgwqDCoGZvciAoaSA9IDA7IGkgPCBhcmdzLT5u
-dW1fYmluZHM7ICsraSkgewo+IEBAIC0yOTIwLDYgKzI5MjEsMTEgQEAgaW50IHhlX3ZtX2JpbmRf
-aW9jdGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwKPiB2b2lkICpkYXRhLCBzdHJ1Y3QgZHJtX2Zp
-bGUgKmZpbGUpCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgZ290byBmcmVlX3N5bmNzOwo+IMKgwqDCoMKgwqDCoMKgwqB9Cj4gwqAKPiArwqDCoMKgwqDC
-oMKgwqBpZiAoIWFyZ3MtPm51bV9iaW5kcykgewo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqBlcnIgPSAtRU5PREFUQTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZ290
-byBmcmVlX3N5bmNzOwo+ICvCoMKgwqDCoMKgwqDCoH0KPiArCgpIbW0uIEhlcmUgaXQgYXBwZWFy
-cyB3ZSByZWplY3QgbnVtX2JpbmRzID09IDA/IAoKPiDCoMKgwqDCoMKgwqDCoMKgZm9yIChpID0g
-MDsgaSA8IGFyZ3MtPm51bV9iaW5kczsgKytpKSB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqB1NjQgcmFuZ2UgPSBiaW5kX29wc1tpXS5yYW5nZTsKPiDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHU2NCBhZGRyID0gYmluZF9vcHNbaV0uYWRkcjsKCg==
+== Series Details ==
+
+Series: drm/xe: fdinfo memory stats (rev5)
+URL   : https://patchwork.freedesktop.org/series/123102/
+State : failure
+
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 57039c55b fixup! drm/xe/bo: Evict VRAM to TT rather than to system
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/xe_bo.c:1231
+error: drivers/gpu/drm/xe/xe_bo.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe: Add drm-client infrastructure
+Applying: drm/xe: Interface xe drm client with fdinfo interface
+Applying: drm/xe: Add tracking support for bos per client
+Patch failed at 0003 drm/xe: Add tracking support for bos per client
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+
 
