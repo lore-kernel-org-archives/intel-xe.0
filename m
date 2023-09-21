@@ -4,55 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34992CD495B
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 06:44:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2486BCD495F
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 06:51:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB39E10E56F;
-	Thu, 21 Sep 2023 06:44:42 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75D7D10E0C2
- for <intel-xe@lists.freedesktop.org>; Thu, 21 Sep 2023 06:44:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E48B510E55E;
+	Thu, 21 Sep 2023 06:50:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD8A010E564
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Sep 2023 06:50:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695278680; x=1726814680;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=wWgV4w8pjiffjPaktClDY20rftmKBucjm+GPUWncanI=;
- b=ZLseff1At+L5IuKGfK0GNAkHDh9X5V6fmzZtvDFR0PF/cyidKP7cB34N
- 9UWQDKmZ8+fKb4m1dbbLGQx2oD/Ij+DNZ8hQFT3pCWbxfIiMJPGjNm4ap
- 5+zobsMOUaW+lU1Uuj8wHFR1oVnCwIwYSj35G/TvZF2oH27Wl+O5vhVnY
- NUs50SCJDMSlf88d9zuZHySY/rXJ7zlTY9/S8LVRLEW+eaXFGm21Nv1Ri
- GY8HZlWKEBwm92bf5jOCZrJuuGsDLZKzh8PYEOWWQlmWjNhysRdtuxske
- xH3Q+uYSQqnhnZ9Kjn3igLWJDTZfxMUjHcrPaYgf6eAoMwAwBMZJPQQs7 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="377732665"
-X-IronPort-AV: E=Sophos;i="6.03,164,1694761200"; d="scan'208";a="377732665"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Sep 2023 23:44:39 -0700
+ t=1695279057; x=1726815057;
+ h=date:from:to:subject:message-id:references:in-reply-to:
+ mime-version; bh=UXx9IBHmxjjbynh9T18knBqTtSQngw+Gkj6PVMOcvSw=;
+ b=BqQKtfNb1delwuuO4b+0FR1PrkvmrM5VaJ2H79R1///IGKZdtA1K0sv8
+ PbqRzdzi2ON8Jqe68xF8mwNLlYJXkIsSFxLYJ07dXFTbdMRtYqbyj2u3z
+ cJhXs706mD53tBK/6wCBe6aMKbv4zmqV1BibjQTqKT4P4TRPeLB2CDMxh
+ ABpNQzLCD7RGVJSuLL8sl55tgbNOxR5Cu1VYZvHkyEdm8Vln3luKIwG3H
+ Yl4yf8KKa4jwDGXosgUA98bHFEWJQ0r95/lMt02lspiFCt0d5mTSqVCI1
+ RaUpfhUORYNcKtx+NdejFciGcAYk59IavCAn1vsXsRoQoZ39RDcCeqbze Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="360687382"
+X-IronPort-AV: E=Sophos;i="6.03,164,1694761200"; d="scan'208";a="360687382"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Sep 2023 23:50:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="870677960"
-X-IronPort-AV: E=Sophos;i="6.03,164,1694761200"; d="scan'208";a="870677960"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by orsmga004.jf.intel.com with ESMTP; 20 Sep 2023 23:44:37 -0700
-Received: from [10.249.129.91] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.129.91])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 45930333D5;
- Thu, 21 Sep 2023 07:44:35 +0100 (IST)
-Message-ID: <db2ee607-2f4e-b7b5-9bf7-b306eea198f0@intel.com>
-Date: Thu, 21 Sep 2023 08:44:31 +0200
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="837206106"
+X-IronPort-AV: E=Sophos;i="6.03,164,1694761200"; d="scan'208";a="837206106"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by FMSMGA003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 20 Sep 2023 23:50:56 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 20 Sep 2023 23:50:56 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 20 Sep 2023 23:50:56 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Wed, 20 Sep 2023 23:50:56 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.172)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Wed, 20 Sep 2023 23:50:56 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Wx4Yki9XXJ+C+uzXP7G8wjFezhX7Hvo3GknwwXqP6jiuY+KuqX6zmNP3Dk92dflK6fy/ZqZo6/j17XtFbWcmguFj+Hwg8Zddhhi0CL/VOz7BklI1rRM3l6CHMSHUHt78oejje7gkVVWxSMTqVBD0PDtfsohtepqrKIR0/tgYtp7V4V8eRcpmPp0n94JCb8RySf7dtsTaR2ow5jGEQRGHnoRNZAT3nam9EojhY1dMh1OMSyR+QdjChPWLO0fdS14Nb618PYibgThoN8KmETkim4QdG8wAFkbGhVeD4dMVTFGMX9+gd3U/ByI5j+tK0lhkF6BFVpWpy5GTtquja1GyTw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7ExmkVG2mr+pXXNT+UTwz5Lnr+Z5UnoEOlqRbnGTo+o=;
+ b=JtZFezWD9Q6+iDv5Nt2PTO/CHu/k9chtJBcR+Rb7QAkq+tkAyPtCJNVl9gBV+aG5aatInHT8ZnbdUryemFoRpfOJZ65P6s7I2y/GGzVUJ5S2GU+p9DNm1fi1QKCW4hUycIiF4J+cTVG6lTdivcci3rzNEzgmStGywKRF+RcndeSOAdEUIqEnvY67ymfOeiST87JVZSzYRhw9V4YWX/yn6u+qzJiYKAp/sdMtTemRbP0RmS3ltrKUyjPkdzn/POyWFbR7fufrtLRWuWb6C6LHCB6wrTsUOJT6N46F3esAoZM3vhUFb2KxNZ5bKoBSsMFzKCtntNHxcefWItWGAM58HQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB6974.namprd11.prod.outlook.com (2603:10b6:510:225::16)
+ by SJ0PR11MB4925.namprd11.prod.outlook.com (2603:10b6:a03:2df::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.20; Thu, 21 Sep
+ 2023 06:50:50 +0000
+Received: from PH8PR11MB6974.namprd11.prod.outlook.com
+ ([fe80::15c8:5319:c6bb:323c]) by PH8PR11MB6974.namprd11.prod.outlook.com
+ ([fe80::15c8:5319:c6bb:323c%7]) with mapi id 15.20.6745.035; Thu, 21 Sep 2023
+ 06:50:49 +0000
+Date: Thu, 21 Sep 2023 12:20:38 +0530
+From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+To: Gustavo Sousa <gustavo.sousa@intel.com>, <intel-xe@lists.freedesktop.org>
+Message-ID: <ZQvnvvJBYlaYwoQe@bvivekan-mobl>
+References: <20230908184928.65815-1-gustavo.sousa@intel.com>
+ <20230908184928.65815-2-gustavo.sousa@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+In-Reply-To: <20230908184928.65815-2-gustavo.sousa@intel.com>
+X-ClientProxiedBy: PN2PR01CA0167.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:26::22) To PH8PR11MB6974.namprd11.prod.outlook.com
+ (2603:10b6:510:225::16)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.15.1
-Content-Language: en-US
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org
-References: <20230921060314.5933-1-tejas.upadhyay@intel.com>
- <20230921060314.5933-2-tejas.upadhyay@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20230921060314.5933-2-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe: Indroduce low level driver error
- counting APIs
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB6974:EE_|SJ0PR11MB4925:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6c824d4a-4565-484d-ffe9-08dbba6f1740
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: CYBBLOv3VTgT14iN+ilvU+jriL2E5LRaJ+KhmHghfgQsYsBqjcYs/uTZfeLUmvgu220jQ/RmohRf1VUJ5efHKCffTcbU/glBUWjEf+/yoz2bmvjgDfGUnHcuXni/UL7LaEqNn7HWqVwJ+KyBPm7tvp1wPbnV+VCfcPVs52onRkg5f9zR1+kuPn1hzxyRY/UVlkpN/93Mfd5lu8Dk2R/1u+Bs0L2iGP6fDfrO7viTTkslcXBenlPePucoMGwcYyG4E8BT/32vh9pqgZkSRNeQiTEoFZYDofpQyNmaZs+2cxhWLaOaoRNri0z2Ay6RltthjtbqZQr+yLVdVk7XQZvAPhLBI+tn2Y/FPRO1E8xJbjTAGHA1fATyH4TG3sWHa8aB2e9xD1xHevQluG0/RAq1/zlR/wkOyjOTy3SKCS6O5mth7ZRF00jfuOwAS1IhwMplyQYHp1WnqdY+NVUVkruhi+njCsQVy54LerIHjGRHu6TksQTtrGdO9BRHRNywyCkoqTpKZjuW4ON+simWWu3M4YGG+00htn4N0yjcE/TpdZwl+jsFXMKKDhsM9zilrxJL
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB6974.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(376002)(396003)(136003)(39860400002)(346002)(366004)(451199024)(186009)(1800799009)(53546011)(6506007)(6512007)(6666004)(9686003)(6486002)(83380400001)(478600001)(26005)(2906002)(33716001)(41300700001)(66476007)(66556008)(8676002)(66946007)(5660300002)(8936002)(44832011)(316002)(86362001)(82960400001)(38100700002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cHArVmlYdlVvbS9zTHlEaThUOStMSUpCeDFXWnBRMDI3T09wSkhLVVZ4YXBk?=
+ =?utf-8?B?ZmtET0xNd2VtLzdMWXJxdURqN3NidlVkbDhXb1JOem1WZzNRaW1UVzBTNkVH?=
+ =?utf-8?B?Y2ZUZkpLRUI1bk9GdXllTUFRbUpMdTkrWmFFV21XcTU5RURIMitYQ0lKenk1?=
+ =?utf-8?B?dGJDWmtMRjZuZ0JaaktuYzFuWFZLNzhIanIwV0ZyWGJsNXhBSmo0dDcwZzl1?=
+ =?utf-8?B?c2dPSW9xUm9ITUc5VzUyeEp1ZVVWMERNNzlIM3FUYU1Cb0JwZzNiRzhDZUk5?=
+ =?utf-8?B?MFBvc204bzdOeHRZRmtoMDc1RzlzbDdLdTdpZXlLTkozeGpwNi9nL0J2bTdO?=
+ =?utf-8?B?Zm11ZXpIcDZIUTFmaEtIazZKV3luM3ZpR3RMUGF1NWF1N3BFNVlWNDZ0cTZy?=
+ =?utf-8?B?WHJrSDN5TEpybzFSYnB4VTFsZUIvMmFsVVovUGtwM0p6eVN4T1JyUW1GVGZC?=
+ =?utf-8?B?QTVLdFh5bktnb3piNmdkeTNJdE5kSlN4QnJPLzhja05HZUgwWU13emhkZnBU?=
+ =?utf-8?B?OHRmREJMUXkrWjZZaEFQUmR4M3ZVTjBqWklBN3YzUWozc2R5aitIY3NBR0NN?=
+ =?utf-8?B?TlNFOVVsblNMd3pqSmpTa2RqcW9NYjdGRXEybFhSYk9EL2laWXdiK3ZwSFRN?=
+ =?utf-8?B?QnZYV3RsaVN0RDlTQ09vTENJRVhhMVp1QmdTNE1hZGZYc2hRSlNzT2ltd3Rs?=
+ =?utf-8?B?OEkzOFhnR1JocXc1OTlKWEhzZ3o3Njg5MmU4WSt6MXBrNDZJWGFsblZzWk5p?=
+ =?utf-8?B?OE00Wm9MZ0dHTmpiNFdLZXNHeTBoWEhQaGtRSGNRdTRRRmFabmtud2Jzc1M2?=
+ =?utf-8?B?QWZYbHAxK0t2dlNlY01CaVVjdjRiNzN6bWZqZllseU9vamlzbllCbWpqT1Aw?=
+ =?utf-8?B?U0MydnI1R3NTTHQ4SGZKczF3YzJtVFdZb0o4Rkx3Z09TYXFDUzUwaGJkRGZu?=
+ =?utf-8?B?elhPZy9TYWZmNUNqQndXV1ZQS2lUdEVNS1ArMGtCamV0Z1daOVV1YjNTTWRF?=
+ =?utf-8?B?K3VEbFhPZTZDZm5BTGkzUWlGTzdwZUQveWFTL1ZkS2JWZXo2ZVpaSUoxUHJt?=
+ =?utf-8?B?WWVtc2N6SE5uY3Y5aFRJL1ZwbjVNY0dLeGcrQzZydHNHMWExMXQvR205b1JQ?=
+ =?utf-8?B?aG1TVHVzKzZoOU5Hd3JZcENLM2M0UFhqcW0xY0xIemRTRzBqVk52QXA5and6?=
+ =?utf-8?B?b0hMZEliUG5oQ0wwOUtTRE8zQ2tQWHMzeU5rVHBjWnAvZVNuTThaY2hNU2R1?=
+ =?utf-8?B?YkpYQXdxbGRTamxONW9DeXZxdUNFUGM3K0lOQndPcTNXNm1TclN4RjlFb0cr?=
+ =?utf-8?B?cjhCOWN1Qjd0T3FYQklmTkFwWGRyQjljUzdRZGVXcGhlVkwxd2VZL3E5MmIv?=
+ =?utf-8?B?akV6ak9GeWtnd2hlN1hwRHdUOFU5UVFyeElsT0JTczVMdUZxZGxzWUdXZWl5?=
+ =?utf-8?B?S2VYVzNqUUZDQU51QXlpV2VXdUhZZTZqeWhLYm15Wk9SOUNTbTZLbUxudDZ1?=
+ =?utf-8?B?ZmxLRGtVU0orU05ianFFQ3ZZeFZqOFhvcEZzL0I4UVNxKzI1RG42amdyYWtL?=
+ =?utf-8?B?M0ZHc1NEbitHT2p4SWJNcDlNdFFpM0xGbnM5Mm1nTEdEUCsxM1AzZklXU3Ri?=
+ =?utf-8?B?RTBFelVva0RMR1oxREp1eE1wcHc5ZitnTW5wbjBJOHBCSThLZHlaS3Vtcm9t?=
+ =?utf-8?B?T0paZmxMd2c5NFNReHEvNzdSRGloK3l0VUhUTzN6YXkwdUJDS2RIVjRDVG1k?=
+ =?utf-8?B?ME1XWDVlWmMzQmdvUS85cy9ZUVBnWnppczQ5alVCNWc1b25oZ0NqUlFuZEJZ?=
+ =?utf-8?B?eE1FL2Zvc0dLV093OGhMVlVuMHE4MkRaZVo4VHNxdFBqbklVbGFBWXJWUXF3?=
+ =?utf-8?B?UlBMSEkxWFZHTmlqLzdPR3ZRZEtsbTNpSXo0WG1TMVpGODFNNHl6SGN1WGpk?=
+ =?utf-8?B?ZmZ0bW00VmFucDBiaDZDblpFbS9OZndiWXJWVlp2enRYTUNqdktWVkJPejJw?=
+ =?utf-8?B?UnJ0NlFRMTdyUnRQOVVBRU9lM1RUL2RrR0lHNS9FNkNOZnhjcVRFZ0ZJdDNx?=
+ =?utf-8?B?SFphL0VRYXBWSTJZaFdGN2xDQWNTVzVOeE1Dc0w3UmlrVHJsU2VUMDVKdzB1?=
+ =?utf-8?B?cG0ra01oMGJ1UVArdGdxME8xdEM0bUVReW43Q21LRThML3lXNkFhZDZtWGUv?=
+ =?utf-8?Q?29ZJupLK3YCcjiAdO6ggPpw=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6c824d4a-4565-484d-ffe9-08dbba6f1740
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6974.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2023 06:50:49.8909 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ncf6YpdCyxs6ewWnXzluJ/9XVTMtmhEi62WEFKYbm9w1fOhTEVHQx5aIALjqo6Ntwb6P+duRieU6IkIZ/fNMZZAkjpCV/6iFHtuwGZEn0ySxvNy8jpum4rW8STmSghTQ
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4925
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 1/1] fixup! drm/xe/display: Implement display
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,232 +156,47 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 21.09.2023 08:03, Tejas Upadhyay wrote:
-> Low level driver error that might have power or performance
-> impact on the system, we are adding a new error counter to GT
-> and tile and increment on each occurrance. Lets introcuce APIs
-
-typos
-
-> to define and increment each error type counter.
+On 08.09.2023 15:49, Gustavo Sousa wrote:
+> In Xe initialization path, the function intel_init_display_hooks() is
+> being called twice, which is redundant. To remove redundancy, let's
+> remove one of the calls.
 > 
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> That function sets up hooks that are called from: (i) later in the
+> initialization path (i.e. intel_display_driver_probe_nogem()), (ii)
+> resume, or (iii) mode set commits.
+> 
+> In both call sites, none of the scenarios above are reached yet, so it
+> would be safe to remove the redundant call from either of the two.
+> However, since intel_display_driver_early_probe() is shared by both i915
+> and Xe, prefer to remove the call done from xe_display_init_nommio().
+> 
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+
+Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+
+Regards,
+Bala
+
 > ---
->  drivers/gpu/drm/xe/xe_device_types.h | 13 +++++++++++++
->  drivers/gpu/drm/xe/xe_gt.c           | 24 ++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_gt_types.h     | 12 ++++++++++++
->  drivers/gpu/drm/xe/xe_tile.c         | 25 +++++++++++++++++++++++++
->  4 files changed, 74 insertions(+)
+>  drivers/gpu/drm/xe/xe_display.c | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index a82f28c6a3a0..14f477412581 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -57,6 +57,13 @@ struct xe_ggtt;
->  		 const struct xe_tile * : (const struct xe_device *)((tile__)->xe),	\
->  		 struct xe_tile * : (tile__)->xe)
+> diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+> index a453946ad108..5823e3f2de1c 100644
+> --- a/drivers/gpu/drm/xe/xe_display.c
+> +++ b/drivers/gpu/drm/xe/xe_display.c
+> @@ -159,8 +159,6 @@ int xe_display_init_nommio(struct xe_device *xe)
+>  	if (err)
+>  		return err;
 >  
-> +enum xe_tile_err_type {
-
-to follow enum name, below enumerator names likely should start with:
-
-	XE_TILE_ERR_..
-
-or change enum type name to:
-
-	xe_tile_drv_err_type
-
-> +	XE_TILE_DRV_ERR_GGTT = 0,
-
-value of first enumerator is 0 by default, no need to set explicitly
-
-> +	XE_TILE_DRV_ERR_GUC_COMM,
-
-GuC is per GT, not per tile, so why here?
-
-> +	XE_TILE_DRV_ERR_INTR,
-> +	XE_TILE_DRV_ERR_MAX
-
-while this is common practice to have "MAX" as part of the enum, it is
-breaking the one of the benefit of allowing only explicit constants as
-params - note that if someone passes "MAX" it wont be treated as error
-by the compiler ...
-
-maybe at least name that enumerator differently to avoid mistakes ?
-or best make it as #define outside enum definition ?
-
-> +};
-> +
->  /**
->   * struct xe_mem_region - memory region structure
->   * This is used to describe a memory region in xe
-> @@ -173,8 +180,14 @@ struct xe_tile {
+> -	intel_init_display_hooks(xe);
+> -
+>  	return drmm_add_action_or_reset(&xe->drm, xe_display_fini_nommio, xe);
+>  }
 >  
->  	/** @sysfs: sysfs' kobj used by xe_tile_sysfs */
->  	struct kobject *sysfs;
-> +
-> +	/** @drv_err_cnt: driver error counter for this tile */
-> +	u32 drv_err_cnt[XE_TILE_DRV_ERR_MAX];
->  };
->  
-> +void xe_tile_cnt_drv_err(struct xe_tile *tile,
-> +			 const enum xe_tile_err_type err);
-
-this _types.h header, no forward decls here, please
-move it to xe_device.h
-
-> +
->  /**
->   * struct xe_device - Top level struct of XE device
->   */
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 1aa44d4f9ac1..61e4d0222836 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -47,6 +47,30 @@
->  #include "xe_wa.h"
->  #include "xe_wopcm.h"
->  
-> +static const char *const xe_gt_drv_err_to_str[] = {
-> +	[XE_GT_DRV_ERR_ENGINE] = "ENGINE OTHER",
-> +	[XE_GT_DRV_ERR_OTHERS] = "GT OTHER"
-
-nit: bkm is to have trailing , to minimize diff once we add new item ;)
-
-nit: why all names are upper-case ?
-
-hmm, and starting only with "other" items does not sound promising, are
-there no specific class of errors that we want to show?
-
-> +};
-
-and this whole table seems to be unused in this patch
-
-> +
-> +/**
-> + * xe_gt_cnt_drv_err - Count driver err for gt
-
-maybe xe_gt_report_driver_error() will be a better name?
-
-from coding-style.rst
-
-" If you have a function that counts the number of active users, you
-should call that ``count_active_users()`` or similar, you should **not**
-call it ``cntusr()``. "
-
-> + * @gt: GT to count error for
-> + * @err: enum error type
-> + *
-> + * Increment the driver error counter in respective error
-> + * category for this GT.
-> + *
-> + * Returns void.
-> + */
-> +void xe_gt_cnt_drv_err(struct xe_gt *gt,
-> +		       const enum xe_gt_err_type err)
-> +{
-> +	if (err >= ARRAY_SIZE(gt->drv_err_cnt))
-> +		return;
-
-with correctly defined enums that wouldn't be possible ;)
-
-and since this is only possible due to our coding mistake, we should use
-xe_gt_assert() here rather then silently ignore the problem
-
-> +	WRITE_ONCE(gt->drv_err_cnt[err],
-> +		   READ_ONCE(gt->drv_err_cnt[err]) + 1);
-
-maybe there is already some helper that inc given counter ?
-
-> +}
-> +
->  struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
->  {
->  	struct xe_gt *gt;
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index d4310be3e1e7..cb71aff16a0b 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -24,6 +24,12 @@ enum xe_gt_type {
->  	XE_GT_TYPE_MEDIA,
->  };
->  
-> +enum xe_gt_err_type {
-> +	XE_GT_DRV_ERR_ENGINE = 0,
-> +	XE_GT_DRV_ERR_OTHERS,
-> +	XE_GT_DRV_ERR_MAX
-
-ditto
-
-> +};
-> +
->  #define XE_MAX_DSS_FUSE_REGS	3
->  #define XE_MAX_EU_FUSE_REGS	1
->  
-> @@ -347,6 +353,12 @@ struct xe_gt {
->  		/** @oob: bitmap with active OOB workaroudns */
->  		unsigned long *oob;
->  	} wa_active;
-> +
-> +	/** @drv_err_cnt: driver error counter for this GT */
-> +	u32 drv_err_cnt[XE_GT_DRV_ERR_MAX];
->  };
->  
-> +void xe_gt_cnt_drv_err(struct xe_gt *gt,
-> +		       const enum xe_gt_err_type err);
-
-wrong header, move it to xe_gt.h
-
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index 131752a57f65..c6dfcb4431f0 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -71,6 +71,31 @@
->   *  - MOCS and PAT programming
->   */
->  
-> +static const char *const xe_tile_drv_err_to_str[] = {
-> +	[XE_TILE_DRV_ERR_GGTT] = "GGTT",
-> +	[XE_TILE_DRV_ERR_GUC_COMM] = "GUC COMMUNICATION",
-> +	[XE_TILE_DRV_ERR_INTR] = "INTERRUPT"
-> +};
-
-ditto
-
-> +
-> +/**
-> + * xe_tile_cnt_drv_err - Count driver err for tile
-
-maybe xe_tile_report_driver_error() will be a better name?
-
-> + * @tile: Tile to count error for
-> + * @err: enum error type
-> + *
-> + * Increment the driver error counter in respective error
-> + * category for this tile.
-> + *
-> + * Returns void.
-> + */
-> +void xe_tile_cnt_drv_err(struct xe_tile *tile,
-> +			 const enum xe_tile_err_type err)
-> +{
-> +	if (err >= ARRAY_SIZE(tile->drv_err_cnt))
-> +		return;
-
-ditto
-
-> +	WRITE_ONCE(tile->drv_err_cnt[err],
-> +		   READ_ONCE(tile->drv_err_cnt[err]) + 1);
-> +}
-> +
->  /**
->   * xe_tile_alloc - Perform per-tile memory allocation
->   * @tile: Tile to perform allocations for
+> -- 
+> 2.41.0
+> 
