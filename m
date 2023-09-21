@@ -4,48 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF531E7D0AF
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 22:03:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A52CCE7D0AB
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 22:03:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C05C910E0C4;
-	Thu, 21 Sep 2023 22:03:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65BB210E191;
+	Thu, 21 Sep 2023 22:03:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78FFE10E058
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A4A6F10E06F
  for <intel-xe@lists.freedesktop.org>; Thu, 21 Sep 2023 22:02:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1695333779; x=1726869779;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=f3kuUKiliauLWIOnDgLjSWiR4i6UQHPw8M1KivmMdz8=;
- b=EQaExON69RVBAu8oPF4jsBMCFJCmV4r9MuibSv2HfId1Dy7x97RGaJ6B
- yXs2FvDoyRz5LyjPmHFHxo/qit88cyirY+M34qixq702gYdTD4h1vsxZr
- 1zxDOYsh5lA+qL0HWUBNR+WXt6CSa7blFE3grkEOJBuUkNBTlK3nUSYoK
- rLlho5pDur2yRc4D2SaDnHuqVmKLsDsddi8kjMJyJ1O/07rNZnMx9r0Q9
- w/IYFxAUVvHSfjxzAcR/rs1AO9o67OVk1EwPCxNdKK3yJxcNKEdJ4aXFf
- EqcndXOxTtpz4Rkfkkh27Nf01KGD6C4Rdc4qmkDNDwtDPaJtPFARKDxKw Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="365737746"
-X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; d="scan'208";a="365737746"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lnThR8nfG8lb6Ta+ie+Fji/6jbSqOdtriZkwCScym78=;
+ b=fVy4lmolOIN6Wi6v6Vs2LLEbFsiXHoVggMM0WySZ62rkaQicgBGZN878
+ 2ekz9kFxP7EYpD9og/Q3lkrGi96DImCAgG0I9VgUFqBp6G261rNyB0QUq
+ 5ZGaNu0BHyUXGV+a5DgFrj8W2Fe5/OW47rsADf+jAlzBW/2ecVIjBpJr/
+ JTLkIZDWq0oa9zR9TU4tZSfvhBmPTw5Tl3Y2TUmC1UrzXF6a0L55OXgcX
+ 44kO3u7o/Unbdl0rvh2XG2dAVBahI0RLEr4Jlp3vDc7cmCrL0i1lKZGfA
+ /Q6wTVT8P5XdiAhtB9JhIMAwpfXOSe3mr7cPa+hwh7Z5qvf2AP3Q1cFku Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="365737743"
+X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; d="scan'208";a="365737743"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Sep 2023 15:02:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="1078109436"
-X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; d="scan'208";a="1078109436"
+X-IronPort-AV: E=McAfee;i="6600,9927,10840"; a="1078109419"
+X-IronPort-AV: E=Sophos;i="6.03,166,1694761200"; d="scan'208";a="1078109419"
 Received: from fyang16-desk.jf.intel.com ([10.24.96.243])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  21 Sep 2023 15:02:44 -0700
 From: fei.yang@intel.com
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 21 Sep 2023 15:05:00 -0700
-Message-Id: <20230921220500.994558-2-fei.yang@intel.com>
+Date: Thu, 21 Sep 2023 15:04:59 -0700
+Message-Id: <20230921220500.994558-1-fei.yang@intel.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230921220500.994558-1-fei.yang@intel.com>
-References: <20230921220500.994558-1-fei.yang@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/1] drm/xe: timeout needs to be a signed value
+Subject: [Intel-xe] [PATCH 0/1] drm/xe: timeout needs to be a signed value
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,98 +112,12 @@ unsigned long which gets used as signed long.
 [ 187.762753] R13: 0000000000000000 R14: 0000000000000000 R15: 00007f4e65d19ce0
 [ 187.763694] </TASK>
 
-Fixes: 9f801f10c0d6 ("drm/xe: Use nanoseconds instead of jiffies in uapi for user fence")
-Signed-off-by: Fei Yang <fei.yang@intel.com>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
----
+Fei Yang (1):
+  drm/xe: timeout needs to be a signed value
+
  drivers/gpu/drm/xe/xe_wait_user_fence.c | 55 +++++++++++++++++--------
  1 file changed, 37 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-index 761eed3a022f..3ac4cd24d5b4 100644
---- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
-+++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-@@ -85,17 +85,45 @@ static int check_hw_engines(struct xe_device *xe,
- 			 DRM_XE_UFENCE_WAIT_VM_ERROR)
- #define MAX_OP		DRM_XE_UFENCE_WAIT_LTE
- 
--static unsigned long to_jiffies_timeout(struct drm_xe_wait_user_fence *args)
-+static long to_jiffies_timeout(struct xe_device *xe,
-+			       struct drm_xe_wait_user_fence *args)
- {
--	unsigned long timeout;
-+	unsigned long long t;
-+	long timeout;
- 
--	if (args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)
--		return drm_timeout_abs_to_jiffies(args->timeout);
-+	/*
-+	 * For negative timeout we want to wait "forever" by setting
-+	 * MAX_SCHEDULE_TIMEOUT. But we have to assign this value also
-+	 * to args->timeout to avoid being zeroed on the signal delivery
-+	 * (see arithmetics after wait).
-+	 */
-+	if (args->timeout < 0) {
-+		args->timeout = MAX_SCHEDULE_TIMEOUT;
-+		return MAX_SCHEDULE_TIMEOUT;
-+	}
- 
--	if (args->timeout == MAX_SCHEDULE_TIMEOUT || args->timeout == 0)
--		return args->timeout;
-+	if (args->timeout == 0)
-+		return 0;
- 
--	timeout = nsecs_to_jiffies(args->timeout);
-+	/*
-+	 * Save the timeout to an u64 variable because nsecs_to_jiffies
-+	 * might return a value that overflows s32 variable.
-+	 */
-+	if (args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)
-+		t = drm_timeout_abs_to_jiffies(args->timeout);
-+	else
-+		t = nsecs_to_jiffies(args->timeout);
-+
-+	/*
-+	 * Anything greater then MAX_SCHEDULE_TIMEOUT is meaningless,
-+	 * also we don't want to cap it at MAX_SCHEDULE_TIMEOUT because
-+	 * apparently user doesn't mean to wait forever, otherwise the
-+	 * args->timeout should have been set to a negative value.
-+	 */
-+	if (t > MAX_SCHEDULE_TIMEOUT)
-+		timeout = MAX_SCHEDULE_TIMEOUT - 1;
-+	else
-+		timeout = t;
- 
- 	return timeout ?: 1;
- }
-@@ -114,7 +142,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
- 	int err;
- 	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_SOFT_OP ||
- 		args->flags & DRM_XE_UFENCE_WAIT_VM_ERROR;
--	unsigned long timeout;
-+	long timeout;
- 	ktime_t start;
- 
- 	if (XE_IOCTL_DBG(xe, args->extensions) || XE_IOCTL_DBG(xe, args->pad) ||
-@@ -169,16 +197,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
- 		addr = vm->async_ops.error_capture.addr;
- 	}
- 
--	/*
--	 * For negative timeout we want to wait "forever" by setting
--	 * MAX_SCHEDULE_TIMEOUT. But we have to assign this value also
--	 * to args->timeout to avoid being zeroed on the signal delivery
--	 * (see arithmetics after wait).
--	 */
--	if (args->timeout < 0)
--		args->timeout = MAX_SCHEDULE_TIMEOUT;
--
--	timeout = to_jiffies_timeout(args);
-+	timeout = to_jiffies_timeout(xe, args);
- 
- 	start = ktime_get();
- 
 -- 
 2.25.1
 
