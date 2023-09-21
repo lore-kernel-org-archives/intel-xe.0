@@ -4,54 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15ED4E7071F
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 11:37:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93A40C04AAC
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 11:42:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8CB310E5CC;
-	Thu, 21 Sep 2023 11:37:43 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECE2B10E5CC;
- Thu, 21 Sep 2023 11:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E26610E5D0;
+	Thu, 21 Sep 2023 11:42:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E898610E5CA
+ for <intel-xe@lists.freedesktop.org>; Thu, 21 Sep 2023 11:42:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695296262; x=1726832262;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=/eChMH4km1X10RI9fRsuqKUGU8Ofxq3VkLONpi7T2/o=;
- b=V/bCfGLfMKrCorS6y/XzFbCt2xYr0ke133tMvKptlz+NAekJsSjrF+le
- bcADOecX6XMouHj9hDhHAdb2Cq6aQegp+M2x2sUwlyQobXlTaf1ARNwEq
- CpoXvIlqvI855gpFpbJd8t8AVetqdN+eERv+TFVJlwQ1cVkn/N95AIw1/
- Fep9Xf8uY7B0OShDlEonQ1EEAdnXy9MLVWLwZzor6EhmIbDVhPunTvONM
- 1m1aFkLZoEskye2Zwb5zSzY9SzEEnwYy/4rWAGTWuIUMmkfc9pbYLCsmB
- PU6q9Qj1rJy9kQre+XRHMR2iqykAcTENG1yrmTmbbmIWARbIq6YAg6mkX g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="365549078"
-X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="365549078"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Sep 2023 04:37:42 -0700
+ t=1695296527; x=1726832527;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uL0A/up68glASDV5iFUR8xyIruKxSJ2HKczqDLTHESQ=;
+ b=h4bqWxx2g2I8a/mqkyYG6snK536X//Wv7SgjJtxjiTorUKFoHQKYdP+4
+ 53fcCEfY8m9LzApRVUVIB9YroYxURujWGlBUNfrzyNIxU9xqpDcYuRO4p
+ raz5+GVR6TZXp2KXJLnK8RFgSU3wnacS7Zxc+BLKp5qIuDxBdcuodqWkI
+ wzFI4K5I7/Yrfu667lonUj5cE2/cVMedazqc5OKD8vuAB8QnEAVw6Yzbq
+ 55ZG/9rmwPb9DpW6BCbv3/BWOy86obxwxIIBB8jHDxdpCJ9ONmizlkwyA
+ 8fpeHxDOu17CXT+gcoMtKIJXBbjvhEQfqhMHsASPdJaTWgqiyba0JebtV A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="370812809"
+X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="370812809"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Sep 2023 04:42:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="723715544"
-X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="723715544"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by orsmga006.jf.intel.com with SMTP; 21 Sep 2023 04:37:39 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Thu, 21 Sep 2023 14:37:38 +0300
-Date: Thu, 21 Sep 2023 14:37:38 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-Message-ID: <ZQwrAp2paV0Y2WVk@intel.com>
-References: <20230904115517.458662-1-vinod.govindapillai@intel.com>
- <20230904115517.458662-3-vinod.govindapillai@intel.com>
- <ZQGRH4aWpp078lBl@intel.com>
- <61df0ad61e419d4c59bfe6052a564e1a5e8a3f21.camel@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10839"; a="696697308"
+X-IronPort-AV: E=Sophos;i="6.03,165,1694761200"; d="scan'208";a="696697308"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga003.jf.intel.com with ESMTP; 21 Sep 2023 04:42:05 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 21 Sep 2023 17:19:55 +0530
+Message-Id: <20230921115002.22884-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <61df0ad61e419d4c59bfe6052a564e1a5e8a3f21.camel@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v4 2/2] drm/i915/lnl: FBC is
- supported with per pixel alpha
+Subject: [Intel-xe] [PATCH V5 0/7] drm/xe: fdinfo memory stats
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,51 +53,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Syrjala, Ville" <ville.syrjala@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 21, 2023 at 08:34:35AM +0000, Govindapillai, Vinod wrote:
-> On Wed, 2023-09-13 at 13:38 +0300, Ville Syrjälä wrote:
-> > On Mon, Sep 04, 2023 at 02:55:17PM +0300, Vinod Govindapillai wrote:
-> > > For LNL onwards, FBC can be supported on planes with per
-> > > pixel alpha
-> > > 
-> > > Bspec: 69560
-> > > Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_fbc.c | 3 ++-
-> > >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > index a3999ad95a19..c0e4caec03ea 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-> > > @@ -1209,7 +1209,8 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
-> > >                 return 0;
-> > >         }
-> > >  
-> > > -       if (plane_state->hw.pixel_blend_mode != DRM_MODE_BLEND_PIXEL_NONE &&
-> > > +       if (DISPLAY_VER(i915) < 20 &&
-> > 
-> > Bspec still says 15. Someone needs to figure this mess out for
-> > all LNL patches.
-> > 
-> > > +           plane_state->hw.pixel_blend_mode != DRM_MODE_BLEND_PIXEL_NONE &&
-> > >             fb->format->has_alpha) {
-> > 
-> > We would have already rejected the pixel format earlier, so atm this
-> > check is redundant.
-> 
-> Hi,
-> 
-> Could you please clarify this.
+This series enables enables fdinfo memory stats for xe.
 
-pixel_format_is_valid()
+I added tracking of most classes of bo (user bo, page tables, ring, lrc)
+which contribute to client's memory usage. This follows similar lines to
+what Rob's msm code and tvrtko's i915 code is doing with some xe way
+of showing and tracking/fecthing objects which adds to client memory
+stats.
+
+Example fdinfo format:
+
+#cat /proc/4620/fdinfo/3
+pos:    0
+flags:  0100002
+mnt_id: 23
+ino:    1140
+drm-driver:     xe
+drm-client-id:  19
+drm-pdev:       0000:4d:00.0
+drm-total-system:       0
+drm-shared-system:      0
+drm-active-system:      0
+drm-resident-system:    0
+drm-purgeable-system:   0
+drm-total-gtt:  4 KiB
+drm-shared-gtt: 0
+drm-active-gtt: 0
+drm-resident-gtt:       4 KiB
+drm-total-vram0:        20 KiB
+drm-shared-vram0:       0
+drm-active-vram0:       0
+drm-resident-vram0:     20 KiB
+drm-total-vram1:        20 KiB
+drm-shared-vram1:       0
+drm-active-vram1:       0
+drm-resident-vram1:     20 KiB
+
+V5 :
+   - Rebase on top
+
+Testcase: https://patchwork.freedesktop.org/series/123264/#rev4
+
+Tejas Upadhyay (7):
+  drm/xe: Add drm-client infrastructure
+  drm/xe: Interface xe drm client with fdinfo interface
+  drm/xe: Add tracking support for bos per client
+  drm/xe: Record each drm client with its VM
+  drm/xe: Track page table memory usage for client
+  drm/xe: Account ring buffer and context state storage
+  drm/xe: Implement fdinfo memory stats printing
+
+ drivers/gpu/drm/xe/Makefile          |   1 +
+ drivers/gpu/drm/xe/xe_bo.c           |   9 ++
+ drivers/gpu/drm/xe/xe_bo.h           |  11 ++
+ drivers/gpu/drm/xe/xe_bo_types.h     |  10 ++
+ drivers/gpu/drm/xe/xe_device.c       |  21 ++-
+ drivers/gpu/drm/xe/xe_device_types.h |   6 +
+ drivers/gpu/drm/xe/xe_drm_client.c   | 204 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_drm_client.h   |  70 +++++++++
+ drivers/gpu/drm/xe/xe_lrc.c          |   7 +-
+ drivers/gpu/drm/xe/xe_pt.c           |   3 +
+ drivers/gpu/drm/xe/xe_vm.c           |   8 ++
+ drivers/gpu/drm/xe/xe_vm_types.h     |   2 +
+ 12 files changed, 350 insertions(+), 2 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_drm_client.c
+ create mode 100644 drivers/gpu/drm/xe/xe_drm_client.h
 
 -- 
-Ville Syrjälä
-Intel
+2.25.1
+
