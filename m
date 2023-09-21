@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EDEAE71062
-	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 12:38:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 887A4E7106C
+	for <intel-xe@archiver.kernel.org>; Thu, 21 Sep 2023 13:28:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F5CE10E0C1;
-	Thu, 21 Sep 2023 12:38:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 512C610E0EF;
+	Thu, 21 Sep 2023 13:28:47 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id ED25610E0C1;
- Thu, 21 Sep 2023 12:38:16 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 901E510E0EE;
+ Thu, 21 Sep 2023 13:28:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E364FAADDC;
- Thu, 21 Sep 2023 12:38:16 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 869FAAADD5;
+ Thu, 21 Sep 2023 13:28:45 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Aravind Iddamsetty" <aravind.iddamsetty@linux.intel.com>
-Date: Thu, 21 Sep 2023 12:38:16 -0000
-Message-ID: <169529989692.7235.4674146305437421665@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Date: Thu, 21 Sep 2023 13:28:45 -0000
+Message-ID: <169530292554.7232.1334135561871751524@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230921113637.386651-1-aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20230921113637.386651-1-aravind.iddamsetty@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_fixup!_fixup!_drm/xe/pmu=3A_Enable_PMU_interface?=
+References: <20230921115002.22884-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20230921115002.22884-1-tejas.upadhyay@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_fdinfo_memory_stats_=28rev6=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,15 +46,21 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: fixup! fixup! drm/xe/pmu: Enable PMU interface
-URL   : https://patchwork.freedesktop.org/series/124050/
-State : failure
+Series: drm/xe: fdinfo memory stats (rev6)
+URL   : https://patchwork.freedesktop.org/series/123102/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 7e0d40e7a fixup! drm/xe/display: Implement display support
 === git am output follows ===
-Applying: fixup! fixup! drm/xe/pmu: Enable PMU interface
+Applying: drm/xe: Add drm-client infrastructure
+Applying: drm/xe: Interface xe drm client with fdinfo interface
+Applying: drm/xe: Add tracking support for bos per client
+Applying: drm/xe: Record each drm client with its VM
+Applying: drm/xe: Track page table memory usage for client
+Applying: drm/xe: Account ring buffer and context state storage
+Applying: drm/xe: Implement fdinfo memory stats printing
 
 
