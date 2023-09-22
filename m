@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B269CE6FE36
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Sep 2023 14:17:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5EED6E6FE36
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Sep 2023 14:17:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CC5F10E675;
-	Fri, 22 Sep 2023 14:17:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB03610E1D8;
+	Fri, 22 Sep 2023 14:17:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A03BD10E66B;
- Fri, 22 Sep 2023 14:17:00 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4819710E679;
+ Fri, 22 Sep 2023 14:17:14 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 83541AADDD;
- Fri, 22 Sep 2023 14:17:00 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 458BEAADDD;
+ Fri, 22 Sep 2023 14:17:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Date: Fri, 22 Sep 2023 14:17:00 -0000
-Message-ID: <169539222050.5196.7788815625687066860@emeril.freedesktop.org>
+Date: Fri, 22 Sep 2023 14:17:14 -0000
+Message-ID: <169539223428.5199.6928223160403957642@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230922115122.305107-1-juhapekka.heikkila@gmail.com>
 In-Reply-To: <20230922115122.305107-1-juhapekka.heikkila@gmail.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Enable_remapped_display_page_table_on_Xe_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_En?=
+ =?utf-8?q?able_remapped_display_page_table_on_Xe_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,11 +52,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 6149acb94 drm/xe: Implement fdinfo memory stats printing
-=== git am output follows ===
-Applying: drm/xe/display: Add writing of remapped dpt
-Applying: drm/xe/display: Enable remapped display page tables
-Applying: drm/xe/display: Don't try to use vram if not available
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b2f730f8fb34c5717918004195bb36f8e7e59908
+Author: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Date:   Fri Sep 22 14:51:22 2023 +0300
+
+    drm/xe/display: Don't try to use vram if not available
+    
+    Trying to get bo from vram when vram not available will cause
+    WARN_ON() hence avoid touching vram if not available.
+    
+    Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
++ /mt/dim checkpatch 6149acb947f2f8b65ee1a058982a5d6fce3124ec drm-intel
+dd7200d88 drm/xe/display: Add writing of remapped dpt
+5b9cacede drm/xe/display: Enable remapped display page tables
+b2f730f8f drm/xe/display: Don't try to use vram if not available
 
 
