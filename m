@@ -4,64 +4,64 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 163C5E70719
-	for <intel-xe@archiver.kernel.org>; Fri, 22 Sep 2023 11:51:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEDEBC04AAB
+	for <intel-xe@archiver.kernel.org>; Fri, 22 Sep 2023 11:51:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B09F510E65D;
-	Fri, 22 Sep 2023 11:51:35 +0000 (UTC)
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com
- [IPv6:2a00:1450:4864:20::12d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFFBC10E65B
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9138A10E65E;
+	Fri, 22 Sep 2023 11:51:41 +0000 (UTC)
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com
+ [IPv6:2a00:1450:4864:20::12f])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E20D10E65B
  for <intel-xe@lists.freedesktop.org>; Fri, 22 Sep 2023 11:51:31 +0000 (UTC)
-Received: by mail-lf1-x12d.google.com with SMTP id
- 2adb3069b0e04-50317080342so3477240e87.2
+Received: by mail-lf1-x12f.google.com with SMTP id
+ 2adb3069b0e04-5043120ffbcso2474261e87.2
  for <intel-xe@lists.freedesktop.org>; Fri, 22 Sep 2023 04:51:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1695383490; x=1695988290; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1695383489; x=1695988289; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=ysd5SG7KtAev+0mH6WMW1YHGkhbY6sSXhZjqUeVLPfY=;
- b=JW+wmEbsr5rJLVdr2155NahJQBjNhlCV6bG+JMU69OQpoqqLz/P3TrGNCboJTyc6Fm
- G0NVCLLO7XYgilfHlG9uVij0dGjT0e8VsLSiP02hy62w5B9sDzn85tgIRFA3jKNyN5CF
- y48zL96MS26TwQaxk+LU2zn0kwPHauvsOMPp94YjOZIGD9WojVU5GXvEM+4oS0sHwPd2
- S8SfOxCnzEy/gwaCqae+xW3jSV36071Slk2VwNbYGRlVvGAM1rdo1AJThhe14metBUcf
- MuH9UxI3wbCNRc1nkulkOwucw3xPq/0q+DFDgZG+BByvmn8U4h4DOMdnofw3gGBbUA/m
- 6MGg==
+ bh=KRDgWsNUHFkjq7tT8CRIKUn5C9J0DoHXcTZsqyekmRY=;
+ b=Ss+7ibbv68atjikeBu7l1RBs2GR2CmhV4nAWTj6hbX9fLSndvG/rRPYh2OMFsIf4Bg
+ Ix+Zx252wwtA+Puv84LU5FaQ6Y6NqvYZGM6dpI2DGq5QocoMdFhGvEJrk1myTTN1TS3n
+ QpX3M8v7DQri1qVqY5pcXWdbskzurICSNXSU2MwTGr5qPZ8rqQycE64PJxqJTFg6bLoB
+ ujUpgxrIJDBagZF+uC+KBVZBVh9aLp+RmD80g7wCfdY2CMYZTtKnuNhky3HhlML0GWss
+ zpqAn+lXFgVCtHO/s7WPxtOsczaohWQvnqcFsYYwskm98PlyE19EN8C8uVZ7hw9oJsA5
+ 50vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1695383490; x=1695988290;
+ d=1e100.net; s=20230601; t=1695383489; x=1695988289;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=ysd5SG7KtAev+0mH6WMW1YHGkhbY6sSXhZjqUeVLPfY=;
- b=hkbtRaqwHNbCLQYcsUaE/0WgABGmG8+hM+BBWwGFEzvT1axZ1EaksoObyf61haJSHX
- PDj0ofroCTGU6N/tkfuNHlJoTKVGPAKp5h20tIGSGHy3QSCDmKysFVMakrkATSVWwTQP
- IOh0hUm0aZG+mcyJjBcRN7F9+zXVENyCeFD1M8fRkbGlmc4iSmsaHgYB3JUS9nLJNrqx
- vaj4Axx7TwLQ0qPi575vzhaH0IPkOeLdKNFROoVzYyl1dka3WFISAxOy9v5/ShtuWPLD
- f73Di+pjpBGE8awv0jhC9dP1y5/YrSNcNUIsH/CuO5F8HyXQ5d8TqeelgNY3PJwL/qUE
- YcHQ==
-X-Gm-Message-State: AOJu0YwWmuE114ipxDd+qNixwJpZ8ApOOE9/DZzJDu3AHRzIA9I5CThd
- uwnK4I2xcV/LBBEIqekDB0V37KAE+fPMUvmb
-X-Google-Smtp-Source: AGHT+IHY3zqpJGmehfK+khjw30IIv0QxDXhXTFD/gqlHr/CK0wVc+Uin3cabcbDYhX5WHl3UmZVduA==
-X-Received: by 2002:ac2:4eca:0:b0:503:28cb:c073 with SMTP id
- p10-20020ac24eca000000b0050328cbc073mr6790910lfr.58.1695383489501; 
- Fri, 22 Sep 2023 04:51:29 -0700 (PDT)
+ bh=KRDgWsNUHFkjq7tT8CRIKUn5C9J0DoHXcTZsqyekmRY=;
+ b=SU5B71j/cvfLVJoYpBLEck3UROLfKTxZRRvqJ5KU9wQTYWHWgGwzTSQom3n6acT5gI
+ Nge176VQfQkg6YqVt9SG4xW2VP8bxU6qgSC3vygf/rlCaIgukCsqlM6KGMMSSokDZqNi
+ hlp6cOVHh0YPXmp8tAgWdxTsBv6iJUR2g7LMfL7b4r6fpHGANsyf4bvtIU1S5vd6OZhC
+ tcjFEDy7aQbtWb337FS0iLVKKM7TMkNde6SdJTkPZla8Jfebk6PDHz3Hdr+6HRknUmd0
+ nuBfkhIko57xfvYBbAcwjWN4UpyYEvpY+8ANTDpWdUWEgYPye5zc7+TFPkgab1p+qm+z
+ HT3A==
+X-Gm-Message-State: AOJu0YwP4xZHBLxAxA9pFOiqTBbx+Y9Zc6CrhP8X8lrRudAf7K5nxkYi
+ btAUAzw+jDeBNyXGf5fyPI8JF8oUdlJWd+wk
+X-Google-Smtp-Source: AGHT+IHQyBnjf0+kT+8czEjf470hqdBP1iIy6zsTPot1yjTG8OjtaGJfnESeqMKYKsCbHuCGDFHblw==
+X-Received: by 2002:a05:6512:758:b0:4fb:91c5:fd38 with SMTP id
+ c24-20020a056512075800b004fb91c5fd38mr6400445lfs.0.1695383488623; 
+ Fri, 22 Sep 2023 04:51:28 -0700 (PDT)
 Received: from jheikkil-mobl1.. ([2001:998:22:0:a3c1:45a8:51d0:6c6a])
  by smtp.gmail.com with ESMTPSA id
- m7-20020a195207000000b005009d5aaaedsm700508lfb.172.2023.09.22.04.51.28
+ m7-20020a195207000000b005009d5aaaedsm700508lfb.172.2023.09.22.04.51.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 22 Sep 2023 04:51:29 -0700 (PDT)
+ Fri, 22 Sep 2023 04:51:28 -0700 (PDT)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 22 Sep 2023 14:51:21 +0300
-Message-Id: <20230922115122.305107-3-juhapekka.heikkila@gmail.com>
+Date: Fri, 22 Sep 2023 14:51:20 +0300
+Message-Id: <20230922115122.305107-2-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230922115122.305107-1-juhapekka.heikkila@gmail.com>
 References: <20230922115122.305107-1-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 2/3] drm/xe/display: Enable remapped display
- page tables
+Subject: [Intel-xe] [PATCH v2 1/3] drm/xe/display: Add writing of remapped
+ dpt
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,59 +76,50 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable usage of remapped display page tables where needed.
+Xe need to use remapped display page table for tiled framebuffers
+on anywhere else than DG2. Here add function to write such dpt
 
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 21 +++++++++++++++------
- 1 file changed, 15 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index b64670a35588..ce52861a7dd4 100644
+index 3422942a9951..b64670a35588 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -76,6 +76,9 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+@@ -40,6 +40,31 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
+ 	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
+ }
  
- 	if (view->type == I915_GTT_VIEW_NORMAL)
- 		dpt_size = ALIGN(size / XE_PAGE_SIZE * 8, XE_PAGE_SIZE);
-+	else if  (view->type == I915_GTT_VIEW_REMAPPED)
-+		dpt_size = ALIGN(intel_remapped_info_size(&fb->remapped_view.gtt.remapped) * 8,
-+				 XE_PAGE_SIZE);
- 	else
- 		/* display uses 4K tiles instead of bytes here, convert to entries.. */
- 		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
-@@ -104,6 +107,18 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 		for (x = 0; x < size / XE_PAGE_SIZE; x++)
- 			iosys_map_wr(&dpt->vmap, x * 8, u64,
- 				     xe_ggtt_pte_encode(bo, x * XE_PAGE_SIZE));
-+	} else if (view->type == I915_GTT_VIEW_REMAPPED) {
-+		const struct intel_remapped_info *remap_info = &view->remapped;
-+		u32 i, dpt_ofs = 0;
++static void
++write_dpt_remapped(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs,
++		   u32 bo_ofs, u32 width, u32 height, u32 src_stride,
++		   u32 dst_stride)
++{
++	u32 column, row;
 +
-+		for (i = 0; i < ARRAY_SIZE(remap_info->plane); i++)
-+			write_dpt_remapped(bo, &dpt->vmap, &dpt_ofs,
-+					   remap_info->plane[i].offset,
-+					   remap_info->plane[i].width,
-+					   remap_info->plane[i].height,
-+					   remap_info->plane[i].src_stride,
-+					   remap_info->plane[i].dst_stride);
++	for (row = 0; row < height; row++) {
++		u32 src_idx = src_stride * row + bo_ofs;
 +
- 	} else {
- 		const struct intel_rotation_info *rot_info = &view->rotated;
- 		u32 i, dpt_ofs = 0;
-@@ -220,12 +235,6 @@ static struct i915_vma *__xe_pin_fb_vma(struct intel_framebuffer *fb,
- 	if (!vma)
- 		return ERR_PTR(-ENODEV);
- 
--	/* Remapped view is only required on ADL-P, which xe doesn't support. */
--	if (XE_WARN_ON(view->type == I915_GTT_VIEW_REMAPPED)) {
--		ret = -ENODEV;
--		goto err;
--	}
--
- 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
- 	    intel_fb_rc_ccs_cc_plane(&fb->base) >= 0 &&
- 	    !(bo->flags & XE_BO_NEEDS_CPU_ACCESS)) {
++		for (column = 0; column < width; column++) {
++			iosys_map_wr(map, *dpt_ofs, u64,
++				     xe_ggtt_pte_encode(bo, src_idx * XE_PAGE_SIZE));
++			*dpt_ofs += 8;
++			src_idx++;
++		}
++
++		/* The DE ignores the PTEs for the padding tiles */
++		*dpt_ofs += (dst_stride - width) * 8;
++	}
++
++	/* Align to next page */
++	*dpt_ofs = ALIGN(*dpt_ofs, 4096);
++}
++
+ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
+ 			       const struct i915_gtt_view *view,
+ 			       struct i915_vma *vma)
 -- 
 2.25.1
 
