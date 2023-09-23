@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2717FCE7A81
-	for <intel-xe@archiver.kernel.org>; Sat, 23 Sep 2023 00:16:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21E13CE7A8C
+	for <intel-xe@archiver.kernel.org>; Sat, 23 Sep 2023 07:53:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE2F489056;
-	Sat, 23 Sep 2023 00:16:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FAEA10E095;
+	Sat, 23 Sep 2023 07:53:12 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9EAE810E021;
- Sat, 23 Sep 2023 00:16:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 890EE10E095;
+ Sat, 23 Sep 2023 07:53:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6D758A00E6;
- Sat, 23 Sep 2023 00:16:48 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 70427A0003;
+ Sat, 23 Sep 2023 07:53:08 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Sat, 23 Sep 2023 00:16:48 -0000
-Message-ID: <169542820844.3504.8845205581750939778@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Date: Sat, 23 Sep 2023 07:53:08 -0000
+Message-ID: <169545558842.3505.13543618913072875700@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230922211323.1672907-2-matthew.d.roper@intel.com>
-In-Reply-To: <20230922211323.1672907-2-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_Infer_service_copy_functionality_from_engine_list_=28r?=
- =?utf-8?q?ev2=29?=
+References: <20230922115122.305107-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20230922115122.305107-1-juhapekka.heikkila@gmail.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Enable_remapped_display_page_table_on_Xe_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,31 +46,17 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Infer service copy functionality from engine list (rev2)
-URL   : https://patchwork.freedesktop.org/series/124143/
+Series: Enable remapped display page table on Xe (rev3)
+URL   : https://patchwork.freedesktop.org/series/124108/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 16e2c940ef53f81b2c68e16ec39cf5772894a625
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 16e2c940e drm/xe: Accept a const xe device
+=== git am output follows ===
+Applying: drm/xe/display: Add writing of remapped dpt
+Applying: drm/xe/display: Enable remapped display page tables
+Applying: drm/xe/display: Don't try to use vram if not available
 
 
