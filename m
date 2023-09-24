@@ -4,51 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8F27CE7A89
-	for <intel-xe@archiver.kernel.org>; Sun, 24 Sep 2023 01:18:25 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12BF6CE7A88
+	for <intel-xe@archiver.kernel.org>; Sun, 24 Sep 2023 14:57:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93A0810E01F;
-	Sun, 24 Sep 2023 01:18:24 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1108D10E01F;
- Sun, 24 Sep 2023 01:18:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1BA688A72;
+	Sun, 24 Sep 2023 14:56:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 113E310E12C
+ for <intel-xe@lists.freedesktop.org>; Sun, 24 Sep 2023 14:56:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695518303; x=1727054303;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=UQj8s4YVJVoEfVoqixE6d2BVAipzZTUWqi0a6wZkX94=;
- b=OEWT7P8MGyeLz5F2kLotFlVl/TlW5KHiCnyoV0IapXk2xr73rJ612/Xe
- AO6CLZTJ/Udrf6bBDOW6PN5UqVK29+Nzw5lha/aNxsf/99lnRaE/3twMZ
- +lEZ14ArmQK7rLvLo+XkTUchjr5FwvRxzZp66PkL0uVoHqVPdZbFfOoCx
- 896HLKoOstXt71fNNJX6nbQDKlpai67ekXrA4Al5ux4B46Jc1cIwu+2zD
- qEOqjFP2ipvZvvkUl/RR3NK++4U4oGp+GgsBMJim8HgSTPOpEzQKf8KFP
- QZZ6qsNRVpFVO0GA4Wfxq2XvP/TUDEPAV/LMjkrUx75eSi3nl5ii3+FPJ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10842"; a="411998605"
-X-IronPort-AV: E=Sophos;i="6.03,171,1694761200"; d="scan'208";a="411998605"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Sep 2023 18:18:21 -0700
+ t=1695567410; x=1727103410;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=OZQ8PE9M3IUrO4ipqqegvB1dJ3yps6T7v9TxI8raZic=;
+ b=UGF0OekU1IJb66f1aQ+HFr/mWB1ly4d10hLAlOZ6sjg4j4ocplui/sU8
+ TYIRg47AsxYCmO+1SZDgkX348Nme9u5NXRkfVxmEwHNlVgEgKVRP8P6jM
+ RGf845+H80VEnf8QcD1VSMahqUyVDpqTghtxa9i2a0CpJ9a0WKPe72RvW
+ D1KEFkUVmrDau9MeoLV8MTgUsjAHyGab1so3broxwV16Cz0WuEhJtKF/l
+ rjhBVVhZ4bo6W6s3z/pZuXhnt8I3jYCVKF3d2LGMOM4ltQForpuocK01U
+ 3/86yDHZkv8Ag7Oll1B7UnTIpy6g0dJePoPjoMkaJT47d37IzzpkyBV5H A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="467383724"
+X-IronPort-AV: E=Sophos;i="6.03,173,1694761200"; d="scan'208";a="467383724"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Sep 2023 07:56:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10842"; a="813521585"
-X-IronPort-AV: E=Sophos;i="6.03,171,1694761200"; d="scan'208";a="813521585"
-Received: from lkp-server02.sh.intel.com (HELO 493f6c7fed5d) ([10.239.97.151])
- by fmsmga008.fm.intel.com with ESMTP; 23 Sep 2023 18:18:18 -0700
-Received: from kbuild by 493f6c7fed5d with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qkDlI-00034W-05;
- Sun, 24 Sep 2023 01:18:16 +0000
-Date: Sun, 24 Sep 2023 09:18:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Message-ID: <202309240829.jXx6CtQ0-lkp@intel.com>
-References: <20230919050155.2647172-4-matthew.brost@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="741641668"
+X-IronPort-AV: E=Sophos;i="6.03,173,1694761200"; d="scan'208";a="741641668"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by orsmga007.jf.intel.com with ESMTP; 24 Sep 2023 07:56:47 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Sun, 24 Sep 2023 20:17:50 +0530
+Message-Id: <20230924144751.446446-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230919050155.2647172-4-matthew.brost@intel.com>
-Subject: Re: [Intel-xe] [PATCH v4 03/10] drm/sched: Move schedule policy to
- scheduler
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 1/2] drm/xe: Add module parameter 'fastboot'
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,41 +53,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, mcanal@igalia.com, sarah.walker@imgtec.com,
- ketil.johnsen@arm.com, lina@asahilina.net, oe-kbuild-all@lists.linux.dev,
- Liviu.Dudau@arm.com, boris.brezillon@collabora.com, luben.tuikov@amd.com,
- dakr@redhat.com, donald.robson@imgtec.com, christian.koenig@amd.com,
- faith.ekstrand@collabora.com
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Matthew,
+Fastboot is by default enabled on all Display 9+ platforms.
+Module param is added in xe for controlling the same.
 
-kernel test robot noticed the following build warnings:
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 1 +
+ drivers/gpu/drm/xe/xe_display.c      | 1 +
+ 2 files changed, 2 insertions(+)
 
-[auto build test WARNING on drm/drm-next]
-[also build test WARNING on drm-exynos/exynos-drm-next drm-intel/for-linux-next drm-intel/for-linux-next-fixes drm-tip/drm-tip linus/master v6.6-rc2 next-20230921]
-[cannot apply to drm-misc/drm-misc-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Matthew-Brost/drm-sched-Add-drm_sched_submit_-helpers/20230919-130353
-base:   git://anongit.freedesktop.org/drm/drm drm-next
-patch link:    https://lore.kernel.org/r/20230919050155.2647172-4-matthew.brost%40intel.com
-patch subject: [PATCH v4 03/10] drm/sched: Move schedule policy to scheduler
-config: i386-randconfig-063-20230924 (https://download.01.org/0day-ci/archive/20230924/202309240829.jXx6CtQ0-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20230924/202309240829.jXx6CtQ0-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202309240829.jXx6CtQ0-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/gpu/drm/scheduler/sched_main.c:69:5: sparse: sparse: symbol 'drm_sched_policy_default' was not declared. Should it be static?
-
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index a82f28c6a3a0..f73c0672bd54 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -458,6 +458,7 @@ struct xe_device {
+ 		s32 panel_use_ssc;
+ 		const char *vbt_firmware;
+ 		u32 lvds_channel_mode;
++		int fastboot;
+ 	} params;
+ #endif
+ };
+diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+index bb4938a84f47..8a80d85eb104 100644
+--- a/drivers/gpu/drm/xe/xe_display.c
++++ b/drivers/gpu/drm/xe/xe_display.c
+@@ -123,6 +123,7 @@ int xe_display_create(struct xe_device *xe)
+ 	xe->params.enable_psr2_sel_fetch = -1;
+ 	xe->params.enable_sagv = true;
+ 	xe->params.panel_use_ssc = -1;
++	xe->params.fastboot = -1;
+ 
+ 	err = drmm_add_action_or_reset(&xe->drm, display_destroy, NULL);
+ 	if (err)
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
