@@ -4,30 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3CCACE7A81
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 09:04:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA247CE7A81
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 09:05:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5B0110E1E1;
-	Mon, 25 Sep 2023 09:04:03 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 220C610E1E1;
- Mon, 25 Sep 2023 09:04:02 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 1BFD3AADE1;
- Mon, 25 Sep 2023 09:04:02 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4423511254656120764=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Badal Nilawar" <badal.nilawar@intel.com>
-Date: Mon, 25 Sep 2023 09:04:02 -0000
-Message-ID: <169563264211.21533.11462280124972429157@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
+	by gabe.freedesktop.org (Postfix) with ESMTP id B347810E21F;
+	Mon, 25 Sep 2023 09:05:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD24910E223
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 09:05:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695632712; x=1727168712;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=EEWZ0EeqzOB2C0Vpo++IaI9ugxEkMrrby8NqcJ6b2u0=;
+ b=UkBu21RYOAoT2v2XdRxEYWgAxKulM93NE+rnzdDNOKrZCqiEN82H1YgH
+ Ao8OY2sKvAyRJZPPJeQUoqb3HcPnrNwqKNpPVZugC7W6pVUwwB9W5pO5c
+ AcvTEA+hz6PLdOMczoHZqQL6AVRE+KBmSBuBDOCcTgh51idCWz1I76s9L
+ O+sRfPrI7wW7DHpzMZtPuro489QtbeJOVDI3n9YcsiQyfgqoWe68GCMiS
+ FNk95HFdSMEisjqbKrKKv2QRZtjxkpA5s1ZcA4FK+EdgHAt0X328SEgby
+ KcPqm5gKzkFnhfDzuQn9K5Rzzj6yrH2ZbyWI3sWd8ggnLirxH5j6lT8GZ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="360586832"
+X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="360586832"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 02:05:12 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="891596865"
+X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="891596865"
+Received: from nurqayrx-mobl2.gar.corp.intel.com (HELO intel.com)
+ ([10.213.34.118])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 02:04:03 -0700
+Date: Mon, 25 Sep 2023 11:04:58 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Badal Nilawar <badal.nilawar@intel.com>
+Message-ID: <ZRFNOv82woWkWF/h@ashyti-mobl2.lan>
 References: <20230925081842.3566834-1-badal.nilawar@intel.com>
-In-Reply-To: <20230925081842.3566834-1-badal.nilawar@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Add_HWMON?=
- =?utf-8?q?_support_for_DGFX_=28rev6=29?=
+ <20230925081842.3566834-4-badal.nilawar@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230925081842.3566834-4-badal.nilawar@intel.com>
+Subject: Re: [Intel-xe] [PATCH v6 3/5] drm/xe/hwmon: Expose input voltage
+ attribute
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,148 +59,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: linux-hwmon@vger.kernel.org, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org, linux@roeck-us.net
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4423511254656120764==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Badal,
 
-== Series Details ==
+On Mon, Sep 25, 2023 at 01:48:40PM +0530, Badal Nilawar wrote:
+> Use Xe HWMON subsystem to display the input voltage.
+> 
+> v2:
+>   - Rename hwm_get_vltg to hwm_get_voltage (Riana)
+>   - Use scale factor SF_VOLTAGE (Riana)
+> v3:
+>   - %s/gt_perf_status/REG_GT_PERF_STATUS/
+>   - Remove platform check from hwmon_get_voltage()
+> v4:
+>   - Fix review comments (Andi)
+> 
+> Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Reviewed-by: Riana Tauro <riana.tauro@intel.com>
+> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
 
-Series: Add HWMON support for DGFX (rev6)
-URL   : https://patchwork.freedesktop.org/series/118934/
-State : failure
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
 
-== Summary ==
-
-CI Bug Log - changes from xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3_BAT -> xe-pw-118934v6_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-118934v6_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-118934v6_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-118934v6_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-atsm-2:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118934v6/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-dg2-oem2:       [PASS][3] -> [INCOMPLETE][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118934v6/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
-
-  
-
-
-Build changes
--------------
-
-  * IGT: IGT_7499 -> IGT_7501
-  * Linux: xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3 -> xe-pw-118934v6
-
-  IGT_7499: d991240f6c6751e9480456c20de785cfc6e6ff15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7501: f95083bb410e7a5521cca9c6908760a2de6f6591 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3: 6378241543c29ce3a7df5828323f1684b4bb19e3
-  xe-pw-118934v6: 118934v6
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118934v6/index.html
-
---===============4423511254656120764==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add HWMON support for DGFX (rev6)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/118934/">https://patchwork.freedesktop.org/series/118934/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118934v6/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118934v6/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3_BAT -&gt; xe-pw-118934v6_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-118934v6_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-118934v6_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-118934v6_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118934v6/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-118934v6/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7499 -&gt; IGT_7501</li>
-<li>Linux: xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3 -&gt; xe-pw-118934v6</li>
-</ul>
-<p>IGT_7499: d991240f6c6751e9480456c20de785cfc6e6ff15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7501: f95083bb410e7a5521cca9c6908760a2de6f6591 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3: 6378241543c29ce3a7df5828323f1684b4bb19e3<br />
-  xe-pw-118934v6: 118934v6</p>
-
-</body>
-</html>
-
---===============4423511254656120764==--
+Andi
