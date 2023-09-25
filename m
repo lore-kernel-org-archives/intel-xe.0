@@ -4,151 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67EF5CE7A81
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 13:01:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6861CE7A94
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 13:12:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 332A410E170;
-	Mon, 25 Sep 2023 13:01:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A74510E045;
- Mon, 25 Sep 2023 13:01:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B70B610E170;
+	Mon, 25 Sep 2023 13:12:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA78110E170
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 13:12:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695646915; x=1727182915;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=fn5bE6uyNaS/GO/yK1AvbaZ0LLLz8+PYg+gz3zExYYE=;
- b=ONFfmt/Iyi6bnt8hAJwluwyYikwenvfDm90+0cavHsE51BZmMIgGHd7A
- Wcee/dxdYEtnU+a8JFlXkEZ532TmkkkVdT12eiv+U6+ec4cdZ0volaKA2
- Qv2gRehadTZbGKrUMcC2YU7qSew7ZdARwnF7O3VyqZxobEcwnTa7iN1+x
- hfUYV/Lrg6kWWtD6s2payKiGaw+0L20Avhg2pJ4TYoAUC7BVe2zDaWeOZ
- rLmfYehbBW0v+qBrpVJ33dWQbwzaty/Vbzv7AErnbENsIqiXL4LnRridM
- GXQzjj9fUqqiMNEg5d+JLJPV9MzooL+BFLoXcrssapTdTv1ZyJqKMCu+z w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="380118881"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="380118881"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 06:01:53 -0700
+ t=1695647562; x=1727183562;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=++du6zrTKqbJ6H6/DVHB3rriIpqQB18X4GU5OeIFYDA=;
+ b=XLxXLt6edZOTSkwvXXBL4kHUxs4Sk6IiLRiEpWd9wXz0Rj8sL7zx9cPV
+ NtJkBqTYg8AQYq63fDqhJgsGqK/eGfJGmwi5DudghOTefjCDjQ5rW7bDa
+ R+Lap3tMrSuwhF3yLRWaqHgvABEw9evwcckomT/ez0pKHMD9HFicAnNgV
+ aCkTncG+W9DkcMFKzbTy6G6JoZ2dwq7crFE7mIoJa2Allny63FQ1jCufo
+ 6pAW1XkLzE2MnIan2IRU3/cB+XucSgTcq3ePBWw4jXTB0tZQw1Rt5VeFs
+ BWASYXNz2yZP5cRWQSe9M7j1eP3KHfhrVYPRQaTT7ttTiFDvWF0ckaPbu g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="445356679"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="445356679"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 06:12:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="748336320"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="748336320"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 25 Sep 2023 06:01:53 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 25 Sep 2023 06:01:52 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Mon, 25 Sep 2023 06:01:52 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Mon, 25 Sep 2023 06:01:52 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Fp7LJsJguEmxKU38+602WspeCoG3wvQGVbFIWTQrRmkGdLnE8gBf8sFTazSKwjv8xqpqKQS/ajnAZhc5lg33ucgGX/FaTXhpQpybBMPoQj61AYe3YXYDkfncAuA6WFhAv6SD1BnNQxIaZJyXuiQGq8OJ44+3NSUBEPacipBp4Iiy8kjIit48HjGh4xz9E/8t7OV62nIY6MIlh6uXStWMX6mIa5EaCAa8DPCZk/j+B4jp3nGQdcZgH873yV52PdgC8VJFzu8rQay79Tsj0ibLyKz1l3uMW0ciUUtDfdiYYqpSoj8arUa8sXPwdB6/5Er/fcQoVtTnijUKME5Nv4DBpA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fn5bE6uyNaS/GO/yK1AvbaZ0LLLz8+PYg+gz3zExYYE=;
- b=hWD6i6/hmCpc1KpB0t+hKsxUHaKSJAKdOp5TNxqPzVIO2Y/FKRP6+q93ZJBV6lzuOhuiWlzVhkxSM1qNnUCBbm07DzJa7rJPBu6YIgBJLk/UcO/7NA47VLCTTWuu05UImcrSwah8YMrkqm8WcNhP5HsZR2+rCyMAp1cvweNz+u4uIwl6n6DPQFqrXatMqTjmoP8jdWa9E96hr4UVk62aWDfNQ+R9Mt0llWwbCTxbL0NILVzaNE8BpqETBRMqQyqjjN+kIH5aooEjNMONnaCRcaPkRGlWbnNgDhfCUhIMDNEN+jvIOmoVUXFJAF3+3Mk3pNb1Mk83pKTRALHBydsyhg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14)
- by DS0PR11MB8071.namprd11.prod.outlook.com (2603:10b6:8:12e::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 25 Sep
- 2023 13:01:50 +0000
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::cf28:4320:6c5e:aec]) by CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::cf28:4320:6c5e:aec%5]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
- 13:01:49 +0000
-From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-To: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>, "De Marchi,
- Lucas" <lucas.demarchi@intel.com>
-Thread-Topic: [Intel-xe] [PATCH v5 0/2] fbc on any planes
-Thread-Index: AQHZ7VkJPjp5QDRNkUm2zRwx58d6SLAreYYAgAAMqgA=
-Date: Mon, 25 Sep 2023 13:01:49 +0000
-Message-ID: <660dcc0d9e69a1ba538b397bd0943abe462db294.camel@intel.com>
-References: <20230922133003.150578-1-vinod.govindapillai@intel.com>
- <87sf72morn.fsf@intel.com>
-In-Reply-To: <87sf72morn.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.44.4-0ubuntu2 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR11MB7777:EE_|DS0PR11MB8071:EE_
-x-ms-office365-filtering-correlation-id: 37f9f225-8fb2-4527-b7fc-08dbbdc794f2
-x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: xtrjM51gUunH/xlg8RHIHkR8409ZZfMgf+U+LNc1NhX9X9YqeRKjrPt1YLSobjMCWx7DWa4+5EIXJRdLffvgU4MfE8jtCbmXVjUKb+wGykk7RGF1nJDFJVY7aqcGbDY3JVX3l3OkExwG37qBz0OuHBFS8JY31x4k4ru7TTtBaE0nEqmgTX8S9bgiT6yLecMUrdM+Nn7cQTXFZ+cy9mur/BWEqIMDgybacvk3gWsagCtd/PPQ4wNS7iCbnZZNnlvM1ub4FAW1S45xV4wVfwidQj2lTQktNUqTVnGYJuMK5DU3XG7Ej/u6unoTvCA2GxwShqYZwwO7aLRHAvqed5PJzo2+5H3CNXhv8XfO1smLzRlTvpSAoau3sz1qmVw8dXWszc+Bv5qgR9qOHHAA4jdp3LkZdcBv+KNCD4zwPd/+TJAb8iTWrPBnrK9E7aCSfra02rgDu5TsnE7Ld8oi+qrInn/XRtk1yy1dbM5p1XhreuwloXiJGj8gfYdZQZB6bA2NqTCK+uNLDI+ax8yPxgEqfvJUh6VEGPJNSzK6I/HEt/CXitPUQTXT+QLGdikPnLLibXHnjK4g9XiWXZyVjfcGtHxN91fjXmXrzHMvLctZX/w=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7777.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(396003)(39860400002)(136003)(366004)(346002)(230922051799003)(451199024)(1800799009)(186009)(6486002)(83380400001)(26005)(36756003)(5660300002)(8676002)(8936002)(4326008)(122000001)(2906002)(71200400001)(86362001)(38070700005)(38100700002)(91956017)(110136005)(478600001)(76116006)(316002)(64756008)(66446008)(66476007)(6636002)(54906003)(66556008)(66946007)(41300700001)(2616005)(6506007)(6512007)(82960400001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?UUpkSThBWjhMVUgvaVQrZmc3Q3cwTGxjWWRUZU5PMUxZREhOVHc5bGo3Zlhh?=
- =?utf-8?B?R3VJdE4ySFRtSGlPUlF5TzBLMFZ3cVFra3VjMkcrVHhBdGZSKzh6dTRRZTJU?=
- =?utf-8?B?dzNIbENCUW1TQXRieGQ1eUg1VExQTXNnOGhvT3VkK0Z1ZHYvSFRZOU1YWGE0?=
- =?utf-8?B?L01QRFQ5VFQydUpDZ3lRNCsraWllUnBQK1ZNMzIyV2VkNjZYaGF4WWRETjhT?=
- =?utf-8?B?a1YyVUJHQVViVXZiWlN4cXNPcmpmUllXWmI4b29udFFOWVd5TjdscUZVR3dF?=
- =?utf-8?B?Q1llRlYxSm51R3ZvVnh0WE43UUYvWlN6RlhqejVCUG44dWZSbkR2KytST3Iw?=
- =?utf-8?B?TkhYcVdVT0xrV3pGYXh6WHJCU3FiRSs4WnFEckdRV1lTOXozY3haSXpNL0lJ?=
- =?utf-8?B?Z0M0aFVxa3UyNmxYWEpWREtPODkyL1F4TXpIWm9MM2prTWZaRXJFUWNyeDhu?=
- =?utf-8?B?WVVkM2cwZmdJaExWVHRpNmNYeXRXM2VFWkFNVm5IU0JQZ3dra0ZXM2ZoMEdh?=
- =?utf-8?B?RGNUVmdIVVB1UXhpQ08va0xXaDR2UWgzM3dodkJBdGtUSGRWZ2d2REkvamxQ?=
- =?utf-8?B?SGwwckV1UmpobzFoT2xhV2ZJcithVi9McGdLREgydXViTUFIMlpIYWpWYUM5?=
- =?utf-8?B?RmpTcE5saEhUTkNTKzlYNDJvZ3J2VXBEZW5PMFVsdDVCdVhWK2FyYTk2Mi93?=
- =?utf-8?B?RGJ5K1hGT3J4L3U4bUlGdGVCZmJPWDE1NlJGYzU0VTZYNHcwUXQyN3lERGxL?=
- =?utf-8?B?T3FGOE9SQ0FXMjh1cENjNzk3cmtQaCs5c0x1OUtKbjR0N2M4ZjM0b2psM2Ni?=
- =?utf-8?B?d1dKenFyVFNYVFRheUpGQTVwbXFaVC9TMUNLQnZCczFpZ0xPNlAxYk42QXhk?=
- =?utf-8?B?RlNxd0JoN2VaMjc4dzg5VjF3aENmOU9wNm4xcDVXdWFXbFBpUFBJaHExSG5C?=
- =?utf-8?B?NGRxL2x6d1d4ajVEOERVcC9BRVpiYnA1cVZJNlgzTjR2QU0yeU9scThmTzBK?=
- =?utf-8?B?bEh0Zm9qeWJrcjc1UmsrbStUeUIrekZ4ZXVZOFBZNy92YjlpK1FOckdBNUpv?=
- =?utf-8?B?U2NodUlpNit4M3U4Qm1pQno3OUZGMGFwUHVCVUJZTWsvTklJTStWMHo5K3J4?=
- =?utf-8?B?N05TUFFNTUpLZTEraFFZU2tFQjRwSWNJbXZaSnRFNUZwN0pBK2IweWVIQ3dO?=
- =?utf-8?B?Q3F6OEpBQndiS28wUGp6ZE00UGlPeFY0UGZJQ2dMQjdRSnAyZDZkT0lNc0tM?=
- =?utf-8?B?TEwxSmtlUHhudEJ4c3NKekRxNnFRSmt3dGhQdVlyYTN3RWZVb2dBZy9iOFJT?=
- =?utf-8?B?dTE1Mnkzc1p2S3pGb1B3UFVLNXZRQXNXMUd3Q0tSM2ppWFpOR3FCb3hDVk5n?=
- =?utf-8?B?cXRRRzhQRFIyV3c5ZVFDTTF1M2s0d1o2TEJWWFkydThqWWkySnMyR05JRVFF?=
- =?utf-8?B?WXNBcFhFS0U4TnhFQ05jZXVEazZLckhnbDFTY05HWjMwMlk4TFJJR0daSkEw?=
- =?utf-8?B?eFJVMlZzVCs5QncrSmRORnNyNDdvN2ppNk5iT3VldnFtNFRBN0tjd3JURFJP?=
- =?utf-8?B?WjUrZytWWWVWMS8zNFE5bGRia2Y4dVdkOFRtNmhCeE1IbFoyL2FCTGNOQmw1?=
- =?utf-8?B?eWZ2S2wwZGRaMHNhRHVqYzNwdExjZ21BbGNDR2IzcjBsSWVYQTRWVWZsbTc5?=
- =?utf-8?B?d3ZZNVY0SnRVMlRVY3hpZFd1clg1SXhydmF2aDNGSFBaUXMwdWN1YkNlMDQ0?=
- =?utf-8?B?TlpYOVhSemh4OEUrT25QczZEa2dOSFJibXIzM3NBcjl1dWVrb1o4UFVZWUd0?=
- =?utf-8?B?QjhuWElRZFMxU2xGdnltbm9TdDRIMTRHWGk2Mm1Kb3dQSEF1RGR3N3J0dnh3?=
- =?utf-8?B?UGtRN1haK0QvOWNxWlROOTd0Y2M3dFdjeDhVMTlRWGFVQzZzMFdjT2JwS0Zn?=
- =?utf-8?B?VkZEMDd1c3NodUcyRlJ2K0hpSWk0ZFBxbGd5YzhHUERNOWVNc1BCM1BicXhB?=
- =?utf-8?B?bUxXSHg3UGFlREdiTXE5WGYwSGRCTVRMTWgySDFlem05WS9ETEgvcXcvVTFL?=
- =?utf-8?B?UTZPU1NtYm5hVHZHeXJsT2xlSXFveWJXZERSUVNxdXBMUWZLU1VQQlA4YlJB?=
- =?utf-8?B?UDBnZTZXdnlRQXFUeWErZjFkd2pZVjZpanJUcmtkMmtBb1NYNnExQzJtUmFu?=
- =?utf-8?Q?sMcdx29rRcNKqfjZsM657l4=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <F6B2828A5FDECB4E9EB4786C7AAA9B31@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="1079199283"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="1079199283"
+Received: from ngorb-mobl.ger.corp.intel.com (HELO [10.252.27.97])
+ ([10.252.27.97])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 06:12:40 -0700
+Message-ID: <2b2bfa52-bffd-1adc-8f63-16d2bfcda51a@intel.com>
+Date: Mon, 25 Sep 2023 14:12:38 +0100
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7777.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 37f9f225-8fb2-4527-b7fc-08dbbdc794f2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2023 13:01:49.7941 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: YsQ4Rg449Hmlwn4lffRywehNmoM6ztJlrgYYVLVeyeRBoNLiDzluMBVD5g6xoR/+T3sE8vuzVqr1Py14IDYEsR+NVQVWkRYUpLY+5W5YAUM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB8071
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v5 0/2] fbc on any planes
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.13.0
+Content-Language: en-GB
+To: "Souza, Jose" <jose.souza@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+References: <20230914153112.455547-8-matthew.auld@intel.com>
+ <8130c42f6a0a562a7fe8578f0e8e1f93da609577.camel@intel.com>
+ <14454c9aa6b951cecd5832e4d8549c0699bdea56.camel@intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <14454c9aa6b951cecd5832e4d8549c0699bdea56.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v2 0/6] PAT and cache coherency support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,34 +63,184 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Syrjala, Ville" <ville.syrjala@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIzLTA5LTI1IGF0IDE1OjE2ICswMzAwLCBKYW5pIE5pa3VsYSB3cm90ZToNCj4g
-T24gRnJpLCAyMiBTZXAgMjAyMywgVmlub2QgR292aW5kYXBpbGxhaSA8dmlub2QuZ292aW5kYXBp
-bGxhaUBpbnRlbC5jb20+IHdyb3RlOg0KPiA+IEZCQyBjYW4gYmUgc3VwcG9ydGVkIGluIGZpcnN0
-IHRocmVlIHBsYW5lcyBpbiBsbmwNCj4gDQo+IFdoZW4geW91J3JlIGNyb3NzLXBvc3RpbmcgdG8g
-aW50ZWwteGUgYW5kIGludGVsLWdmeCBsaXN0cywgeW91IG5lZWQgdG8NCj4gYWN0dWFsbHkgc2F5
-IHdoYXQgeW91IHdhbnQgZG9uZSB3aXRoIHRoZXNlIHBhdGNoZXMuIE90aGVyd2lzZSB3ZSB3b24n
-dA0KPiBrbm93Lg0KPiANCj4gQmVmb3JlIHhlIGlzIHVwc3RyZWFtLCB0aGUgb3JkZXIgb2YgYnVz
-aW5lc3MgZm9yIGk5MTUgY2hhbmdlcyBzaG91bGQgYmU6DQo+IA0KPiAxKSBHZXQgdGhlbSBtZXJn
-ZWQgdG8gdXBzdHJlYW0gaTkxNSAoc2VuZCB0byBpbnRlbC1nZngpDQo+IA0KPiAyKSBHZXQgdGhl
-IG1lcmdlZCBjb21taXRzIGJhY2twb3J0ZWQgdG8geGUgKHNlbmQgdG8gaW50ZWwteGUpDQo+IA0K
-PiANCj4gQlIsDQo+IEphbmkuDQoNCk9rYXkuIEkgd2FzIGZvbGxvd2luZyB0aGUgW2h0dHBzOi8v
-Z2Z4LWxpbnV4LmludGVsLmNvbS94ZS5odG1sXQ0KSGVyZSBJIGFzc3VtZWQgdGhlIGZsb3cgYXMg
-eW91IGhhdmUgbWVudGlvbmVkLg0KDQpMdWNhcyBoYXMgYXNrZWQgdG8gaG9sZCBvZmYgbWVyZ2lu
-ZyB1bnRpbCB0aGUgaW5pdGlhbCBkaXNwbGF5IHN1cHBvcnQgaXMgbWVyZ2VkLg0KDQpTbyB3b25k
-ZXIgaWYgSSBzaG91bGQgdGFrZSBmaXJzdCBpbnRlcm5hbCBhbmQgdGhlbiB1cHN0cmVhbSByb3V0
-ZSBmb3IgdGhpcy4NCg0KDQpCUg0KVmlub2QNCg0KPiANCj4gPiANCj4gPiBWaW5vZCBHb3ZpbmRh
-cGlsbGFpICgyKToNCj4gPiDCoCBkcm0vaTkxNS9sbmw6IHBvc3NpYmlsaXR5IHRvIGVuYWJsZSBG
-QkMgb24gZmlyc3QgdGhyZWUgcGxhbmVzDQo+ID4gwqAgZHJtL2k5MTUvbG5sOiB1cGRhdGUgdGhl
-IHN1cHBvcnRlZCBwbGFuZSBmb3JtYXRzIHdpdGggRkJDDQo+ID4gDQo+ID4gwqBkcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiYy5jwqDCoMKgwqDCoMKgwqDCoMKgwqAgfCAxMSAr
-KysrKysrKysrLQ0KPiA+IMKgZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfdW5pdmVy
-c2FsX3BsYW5lLmMgfMKgIDkgKysrKysrLS0tDQo+ID4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9p
-OTE1X3JlZy5owqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgIDIgKysN
-Cj4gPiDCoDMgZmlsZXMgY2hhbmdlZCwgMTggaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkN
-Cj4gDQoNCg==
+On 21/09/2023 18:19, Souza, Jose wrote:
+> On Mon, 2023-09-18 at 15:51 +0000, Souza, Jose wrote:
+>> On Thu, 2023-09-14 at 16:31 +0100, Matthew Auld wrote:
+>>> Branch available here (lightly tested):
+>>> https://gitlab.freedesktop.org/mwa/kernel/-/tree/xe-pat-index?ref_type=heads
+>>>
+>>> Series still needs some more testing. Also note that the series directly depends
+>>> on the WIP patch here: https://patchwork.freedesktop.org/series/122708/
+>>>
+>>> Goal here is to allow userspace to directly control the pat_index when mapping
+>>> memory via the ppGTT, in addtion to the CPU caching mode for system memory. This
+>>> is very much needed on newer igpu platforms which allow incoherent GT access,
+>>> where the choice over the cache level and expected coherency is best left to
+>>> userspace depending on their usecase.  In the future there may also be other
+>>> stuff encoded in the pat_index, so giving userspace direct control will also be
+>>> needed there.
+>>>
+>>> To support this we added new gem_create uAPI for selecting the CPU cache
+>>> mode to use for system memory, including the expected GPU coherency mode. There
+>>> are various restrictions here for the selected coherency mode and compatible CPU
+>>> cache modes.  With that in place the actual pat_index can now be provided as
+>>> part of vm_bind. The only restriction is that the coherency mode of the
+>>> pat_index must be at least as coherent as the gem_create coherency mode. There
+>>> are also some special cases like with userptr and dma-buf.
+>>>
+>>> v2:
+>>>    - Loads of improvements/tweaks. Main changes are to now allow
+>>>      gem_create.coh_mode <= coh_mode(pat_index), rather than it needing to match
+>>>      exactly. This simplifies the dma-buf policy from userspace pov. Also we now
+>>>      only consider COH_NONE and COH_AT_LEAST_1WAY.
+>>>
+>>
+>>
+>> Getting constant DMAR errors after loading Xe KMD on TGL with your branch in framebuffer console, logs attached.
+>>
+>>
+> 
+> Another issue report, when starting Xorg I'm getting this KMD crash with your branch:
+
+Thanks for the reports Jose. Hopefully both issues are now fixed. Just 
+pushed an updated branch.
+
+> 
+> [ 2376.624393] xe 0000:00:02.0: [drm:intel_hdmi_detect [xe]] [CONNECTOR:347:HDMI-A-3]
+> [ 2376.624465] [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:347:HDMI-A-3] disconnected
+> [ 2376.726753] xe 0000:00:02.0: [drm:intel_power_well_disable [xe]] disabling TC_cold_off
+> [ 2376.727183] xe 0000:00:02.0: [drm:__intel_display_power_put_domain [xe]] TC cold unblock succeeded
+> [ 2378.896672] dmar_fault: 915847 callbacks suppressed
+> [ 2378.896675] DMAR: DRHD: handling fault status reg 3
+> [ 2378.896684] DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x70600000 [fault reason 0x0c] non-zero reserved fields in PTE
+> [ 2378.896711] DMAR: DRHD: handling fault status reg 3
+> [ 2378.896715] DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x70603000 [fault reason 0x0c] non-zero reserved fields in PTE
+> [ 2378.896722] DMAR: DRHD: handling fault status reg 3
+> [ 2378.896726] DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x70607000 [fault reason 0x0c] non-zero reserved fields in PTE
+> [ 2378.896737] DMAR: DRHD: handling fault status reg 3
+> [ 2379.479148] xe 0000:00:02.0: [drm:drm_mode_addfb2] [FB:353]
+> [ 2379.480368] xe 0000:00:02.0: [drm:skl_compute_wm [xe]] [PLANE:31:plane 1A]   level *wm0,*wm1,*wm2,*wm3,*wm4,*wm5,*wm6,*wm7,*twm,*swm,*stwm ->
+> *wm0,*wm1,*wm2,*wm3,*wm4,*wm5,*wm6,*wm7,*twm,*swm,*stwm
+> [ 2379.480464] xe 0000:00:02.0: [drm:skl_compute_wm [xe]] [PLANE:31:plane 1A]   lines    1,   4,   4,   4,   4,   5,   8,   8,   0,   2,    0 ->    4,
+> 4,   4,   4,   4,   5,   8,   8,   0,   4,    0
+> [ 2379.480535] xe 0000:00:02.0: [drm:skl_compute_wm [xe]] [PLANE:31:plane 1A]  blocks   16,  65,  65,  65,  65,  81, 129, 129,  30,  19,   33 ->   62,
+> 62,  62,  62,  62,  78, 123, 123, 137,  62,  137
+> [ 2379.480604] xe 0000:00:02.0: [drm:skl_compute_wm [xe]] [PLANE:31:plane 1A] min_ddb   19,  73,  73,  73,  73,  91, 143, 143,  31,  22,   34 ->  123,
+> 123, 123, 123, 123, 184, 184, 184, 138, 123,  138
+> [ 2379.481280] BUG: kernel NULL pointer dereference, address: 0000000000000068
+> [ 2379.481286] #PF: supervisor read access in kernel mode
+> [ 2379.481289] #PF: error_code(0x0000) - not-present page
+> [ 2379.481291] PGD 0 P4D 0
+> [ 2379.481296] Oops: 0000 [#1] PREEMPT SMP NOPTI
+> [ 2379.481300] CPU: 7 PID: 24658 Comm: gnome-shell Not tainted 6.5.0-rc7+zeh-xe+ #1108
+> [ 2379.481304] Hardware name: Dell Inc. Latitude 5420/01M3M4, BIOS 1.27.0 03/17/2023
+> [ 2379.481306] RIP: 0010:xe_ggtt_pte_encode+0x1c/0x90 [xe]
+> [ 2379.481382] Code: 90 90 90 90 90 90 90 90 90 90 90 90 90 90 41 55 ba 00 10 00 00 41 54 55 53 48 8b 87 d0 02 00 00 48 89 fb 4c 8b a7 20 02 00 00
+> <4c> 8b 68 68 e8 bb 4e ff ff 48 89 df 48 89 c5 e8 20 24 ff ff 84 c0
+> [ 2379.481385] RSP: 0018:ffffc90001b0bb20 EFLAGS: 00010206
+> [ 2379.481390] RAX: 0000000000000000 RBX: ffff8881071fe800 RCX: 0000000000000000
+> [ 2379.481394] RDX: 0000000000001000 RSI: 0000000000000000 RDI: ffff8881071fe800
+> [ 2379.481396] RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+> [ 2379.481397] R10: 0000000000000001 R11: 0000000000000659 R12: ffff8881133f0f78
+> [ 2379.481399] R13: 0000000000001000 R14: 0000000000809000 R15: ffff888134feb850
+> [ 2379.481400] FS:  00007f47ff7335c0(0000) GS:ffff888287b80000(0000) knlGS:0000000000000000
+> [ 2379.481402] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [ 2379.481404] CR2: 0000000000000068 CR3: 0000000183252001 CR4: 0000000000770ee0
+> [ 2379.481406] PKRU: 55555554
+> [ 2379.481407] Call Trace:
+> [ 2379.481409]  <TASK>
+> [ 2379.481411]  ? __die+0x1a/0x60
+> [ 2379.481415]  ? page_fault_oops+0x158/0x450
+> [ 2379.481419]  ? drm_atomic_commit+0x8e/0xc0
+> [ 2379.481423]  ? drm_mode_atomic_ioctl+0x96a/0xbd0
+> [ 2379.481426]  ? drm_ioctl+0x212/0x470
+> [ 2379.481428]  ? do_user_addr_fault+0x61/0x7c0
+> [ 2379.481432]  ? exc_page_fault+0x6a/0x1b0
+> [ 2379.481436]  ? asm_exc_page_fault+0x22/0x30
+> [ 2379.481440]  ? xe_ggtt_pte_encode+0x1c/0x90 [xe]
+> [ 2379.481492]  __xe_pin_fb_vma+0x396/0x840 [xe]
+> [ 2379.481570]  intel_plane_pin_fb+0x34/0x90 [xe]
+> [ 2379.481647]  intel_prepare_plane_fb+0x2c/0x70 [xe]
+> [ 2379.481753]  drm_atomic_helper_prepare_planes+0x6b/0x210
+> [ 2379.481764]  intel_atomic_commit+0x4d/0x360 [xe]
+> [ 2379.481885]  drm_atomic_commit+0x8e/0xc0
+> [ 2379.481889]  ? __pfx___drm_printfn_info+0x10/0x10
+> [ 2379.481894]  drm_mode_atomic_ioctl+0x96a/0xbd0
+> [ 2379.481902]  ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
+> [ 2379.481906]  drm_ioctl_kernel+0xc0/0x170
+> [ 2379.481909]  drm_ioctl+0x212/0x470
+> [ 2379.481912]  ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
+> [ 2379.481918]  __x64_sys_ioctl+0x8d/0xb0
+> [ 2379.481924]  do_syscall_64+0x38/0x90
+> [ 2379.481928]  entry_SYSCALL_64_after_hwframe+0x6e/0xd8
+> [ 2379.481932] RIP: 0033:0x7f4802b1aaff
+> [ 2379.481935] Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05
+> <41> 89 c0 3d 00 f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+> [ 2379.481939] RSP: 002b:00007ffc8bafb730 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+> [ 2379.481943] RAX: ffffffffffffffda RBX: 00007ffc8bafb7d0 RCX: 00007f4802b1aaff
+> [ 2379.481946] RDX: 00007ffc8bafb7d0 RSI: 00000000c03864bc RDI: 0000000000000009
+> [ 2379.481948] RBP: 00000000c03864bc R08: 0000000000000026 R09: 0000000000000026
+> [ 2379.481950] R10: 0000000000000001 R11: 0000000000000246 R12: 000055fe14331f40
+> [ 2379.481953] R13: 0000000000000009 R14: 000055fe1430f4c0 R15: 000055fe1430d6f0
+> [ 2379.481958]  </TASK>
+> [ 2379.481959] Modules linked in: xe drm_ttm_helper drm_exec gpu_sched drm_suballoc_helper i2c_algo_bit drm_buddy ttm drm_display_helper btusb btrtl
+> btbcm btintel bluetooth snd_hda_codec_hdmi cdc_ncm cdc_ether usbnet mii ecdh_generic ecc snd_ctl_led mei_pxp mei_hdcp snd_hda_codec_realtek
+> snd_hda_codec_generic ledtrig_audio wmi_bmof x86_pkg_temp_thermal snd_hda_intel coretemp crct10dif_pclmul snd_intel_dspcfg crc32_pclmul snd_hda_codec
+> ghash_clmulni_intel snd_hwdep snd_hda_core e1000e kvm_intel video ptp snd_pcm i2c_i801 mei_me pps_core i2c_smbus mei wmi pinctrl_tigerlake fuse
+> [ 2379.482015] CR2: 0000000000000068
+> [ 2379.482018] ---[ end trace 0000000000000000 ]---
+> [ 2379.661641] xe 0000:00:02.0: [drm:intel_pps_vdd_off_sync_unlocked [xe]] [ENCODER:307:DDI A/PHY A] PPS 0 turning VDD off
+> [ 2379.661861] xe 0000:00:02.0: [drm:intel_pps_vdd_off_sync_unlocked [xe]] [ENCODER:307:DDI A/PHY A] PPS 0 PP_STATUS: 0x80000008 PP_CONTROL:
+> 0x00000067
+> [ 2379.873152] RIP: 0010:xe_ggtt_pte_encode+0x1c/0x90 [xe]
+> [ 2379.873325] Code: 90 90 90 90 90 90 90 90 90 90 90 90 90 90 41 55 ba 00 10 00 00 41 54 55 53 48 8b 87 d0 02 00 00 48 89 fb 4c 8b a7 20 02 00 00
+> <4c> 8b 68 68 e8 bb 4e ff ff 48 89 df 48 89 c5 e8 20 24 ff ff 84 c0
+> [ 2379.873328] RSP: 0018:ffffc90001b0bb20 EFLAGS: 00010206
+> [ 2379.873330] RAX: 0000000000000000 RBX: ffff8881071fe800 RCX: 0000000000000000
+> [ 2379.873332] RDX: 0000000000001000 RSI: 0000000000000000 RDI: ffff8881071fe800
+> [ 2379.873333] RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+> [ 2379.873334] R10: 0000000000000001 R11: 0000000000000659 R12: ffff8881133f0f78
+> [ 2379.873335] R13: 0000000000001000 R14: 0000000000809000 R15: ffff888134feb850
+> [ 2379.873336] FS:  00007f47ff7335c0(0000) GS:ffff888287b80000(0000) knlGS:0000000000000000
+> [ 2379.873338] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [ 2379.873339] CR2: 0000000000000068 CR3: 0000000183252001 CR4: 0000000000770ee0
+> [ 2379.873340] PKRU: 55555554
+> [ 2379.873342] note: gnome-shell[24658] exited with irqs disabled
+> [ 2383.896731] dmar_fault: 1159924 callbacks suppressed
+> [ 2383.896733] DMAR: DRHD: handling fault status reg 3
+> [ 2383.896739] DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x70617000 [fault reason 0x0c] non-zero reserved fields in PTE
+> [ 2383.896749] DMAR: DRHD: handling fault status reg 3
+> [ 2383.896751] DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x70619000 [fault reason 0x0c] non-zero reserved fields in PTE
+> [ 2383.896757] DMAR: DRHD: handling fault status reg 3
+> [ 2383.896759] DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x7061b000 [fault reason 0x0c] non-zero reserved fields in PTE
+> [ 2383.896762] DMAR: DRHD: handling fault status reg 2
+> [ 2388.897730] dmar_fault: 1298750 callbacks suppressed
+> [ 2388.897733] DMAR: DRHD: handling fault status reg 3
+> [ 2388.897738] DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x706a5000 [fault reason 0x0c] non-zero reserved fields in PTE
+> [ 2388.897747] DMAR: DRHD: handling fault status reg 3
+> [ 2388.897748] DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x706a6000 [fault reason 0x0c] non-zero reserved fields in PTE
+> [ 2388.897752] DMAR: DRHD: handling fault status reg 3
+> [ 2388.897754] DMAR: [DMA Read NO_PASID] Request device [00:02.0] fault addr 0x706a8000 [fault reason 0x0c] non-zero reserved fields in PTE
+> [ 2388.897757] DMAR: DRHD: handling fault status reg 3
+> [ 2393.898732] dmar_fault: 1164851 callbacks suppressed
+> 
+> 
+> 
+> This might help debug:
+> (gdb) list *(xe_ggtt_pte_encode+0x1c)
+> 0x101fc is in xe_ggtt_pte_encode (drivers/gpu/drm/xe/xe_ggtt.c:34).
+> 29	#define GUC_GGTT_TOP	0xFEE00000
+> 30
+> 31	u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
+> 32	{
+> 33	        struct xe_device *xe = xe_bo_device(bo);
+> 34	        struct xe_ggtt *ggtt = (bo->tile)->mem.ggtt;
+> 35	        u64 pte;
+> 
+> 
+> 
+> 
+> 
