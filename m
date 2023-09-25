@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 15A79CE7A94
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CA0B2CE7A96
 	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 13:21:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D15F910E24E;
-	Mon, 25 Sep 2023 13:21:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E11510E24D;
+	Mon, 25 Sep 2023 13:21:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C76EF10E1C3
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 13:21:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DF2010E1C3
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 13:21:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695648088; x=1727184088;
+ t=1695648094; x=1727184094;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VD5QdWY8+pxYiYDlBlIKi8vauRhYCto/Q/HfFIRhP/g=;
- b=G1kIYmwBrB3zohYe8JGYzLKGwCxq3QOpYprw0M66v3Dx2zB4EK/G2aqO
- S/jaSJBCmcj+zO3ItgmNKXTntkDQX5/zgobRsO+2j27HhGdpUd5JY873Z
- UBuCZldYljqzAyCouKFRF2a08Og3ukpRux4OnuKzuVCHvUnIrxRvJqDLK
- 35wlfEvx8qO9gCb8nHjgZKwTq1lFw1Op+fEl5hnPA9KYmppXbdaAure36
- MVoz1Z+d11WFUEP/XoPYqrQK+vcGLzAOwdWjADYVbfcri0KmxBz4MbuNL
- i1tWRrx5Pj6NtedvUJV0+pM5uJpzwqEeFGl7GUBsRayY/kCdQWbf9NOzd w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="378521503"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="378521503"
+ bh=qZKhVyT4bpMjFlV0AiQeX/28qsK+f8GVM9gZkjDcnyg=;
+ b=ZdCxHeh0wIfW/KOyIiBmcaeF+8nPBo0H9j69c8Wor4XpjsTN8Z6WvZPJ
+ LdOzhGzDtyZ02gLr+E0kAz4+TWDH0cfHS+kKi5OXXbKCcBhXSEYtJBk8Z
+ 3HoAgl/rdAI1NSnF2Sgo3DWDrpBrr1oLM12MmFWnd7MRF4qb2qRrUG3Ut
+ rOHKn6quuMpNCD287THSYHa/jH4Px6C6t113qDcFpYD6uTsPsElZKe3Yz
+ BhhtuwMW1wcfAySVvFpTMx1RPKv7MbUXICeC1KJegCHndu44i2rMdbls2
+ r5JnuqCPtp9Z0tTYA+0vNj/rKdqclIRjGCa+Lu6RqOl+MF6iPwfxmNHAG g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="378521522"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="378521522"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 06:21:28 -0700
+ 25 Sep 2023 06:21:34 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="751679108"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="751679108"
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="751679142"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="751679142"
 Received: from ngorb-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.27.97])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 06:21:27 -0700
+ 25 Sep 2023 06:21:32 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 25 Sep 2023 14:21:15 +0100
-Message-ID: <20230925132113.59900-11-matthew.auld@intel.com>
+Date: Mon, 25 Sep 2023 14:21:18 +0100
+Message-ID: <20230925132113.59900-14-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230925132113.59900-9-matthew.auld@intel.com>
 References: <20230925132113.59900-9-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 2/7] drm/xe: move pat_table into device info
+Subject: [Intel-xe] [PATCH v3 5/7] drm/xe/migrate: rather use pte_encode
+ helpers
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,19 +63,12 @@ Cc: Matt Roper <matthew.d.roper@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We need to able to know the max pat_index range for a given platform, as
-well being able to lookup the pat_index for a given platform in upcoming
-vm_bind uapi, where userspace can directly provide the pat_index. Move
-the platform definition of the pat_table into the device info with the
-idea of encoding more information about each pat_index in a future
-patch.
+We need to avoid using stuff like PPAT_CACHED directly, which is no
+longer going to work on newer platforms. At some point we can just
+directly use the pat_index, but for now just use XE_CACHE_WB.
 
-v2 (Lucas):
-  - s/ENODEV/ENOTSUPP/
-  - s/xe_pat_fill_info/xe_pat_init_early/
-  - Prefer new pat substruct in xe_info.
-v3 (Matt Roper):
-  - Some small tweaks
+v2 (Matt Roper):
+  - Rather use the 'level' local variable.
 
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
 Cc: Pallavi Mishra <pallavi.mishra@intel.com>
@@ -82,144 +76,85 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 15 +++++++++++
- drivers/gpu/drm/xe/xe_pat.c          | 39 ++++++++++++++++++----------
- drivers/gpu/drm/xe/xe_pat.h          |  1 +
- drivers/gpu/drm/xe/xe_pci.c          |  7 +++++
- 4 files changed, 48 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_migrate.c |  7 ++++---
+ drivers/gpu/drm/xe/xe_pt.c      | 12 ++++++------
+ drivers/gpu/drm/xe/xe_pt.h      |  2 ++
+ 3 files changed, 12 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 27edc4cf0f68..cf941d56a6c9 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -239,6 +239,21 @@ struct xe_device {
- 		/** @enable_display: display enabled */
- 		u8 enable_display:1;
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 46f88f3a8c58..ebae0117f577 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -257,8 +257,9 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
  
-+		/**
-+		 * @pat: Platform information related to PAT (Page Attribute
-+		 * Table) settings.
-+		 */
-+		struct {
-+			/**
-+			 * @table: The PAT table encoding for every pat_index
-+			 * supported by the platform.
-+			 */
-+			const u32 *table;
+ 		level = 2;
+ 		ofs = map_ofs + XE_PAGE_SIZE * level + 256 * 8;
+-		flags = XE_PAGE_RW | XE_PAGE_PRESENT | PPAT_CACHED |
+-			XE_PPGTT_PTE_DM | XE_PDPE_PS_1G;
 +
-+			/** @n_entries: The number of entries in the @table */
-+			int n_entries;
-+		} pat;
-+
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
- 		const struct intel_display_device_info *display;
- 		struct intel_display_runtime_info display_runtime;
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 32b0c922e7fa..aa2c5eb88266 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -106,24 +106,17 @@ static void program_pat_mcr(struct xe_gt *gt, const u32 table[], int n_entries)
- 	}
- }
++		flags = XE_PPGTT_PTE_DM;
++		flags = __xe_pte_encode(flags, XE_CACHE_WB, vm, NULL, level);
  
--void xe_pat_init(struct xe_gt *gt)
-+int xe_pat_init_early(struct xe_device *xe)
- {
--	struct xe_device *xe = gt_to_xe(gt);
--
- 	if (xe->info.platform == XE_METEORLAKE) {
--		/*
--		 * SAMedia register offsets are adjusted by the write methods
--		 * and they target registers that are not MCR, while for normal
--		 * GT they are MCR
--		 */
--		if (xe_gt_is_media_type(gt))
--			program_pat(gt, mtl_pat_table, ARRAY_SIZE(mtl_pat_table));
--		else
--			program_pat_mcr(gt, mtl_pat_table, ARRAY_SIZE(mtl_pat_table));
-+		xe->info.pat.table = mtl_pat_table;
-+		xe->info.pat.n_entries = ARRAY_SIZE(mtl_pat_table);
- 	} else if (xe->info.platform == XE_PVC || xe->info.platform == XE_DG2) {
--		program_pat_mcr(gt, pvc_pat_table, ARRAY_SIZE(pvc_pat_table));
-+		xe->info.pat.table = pvc_pat_table;
-+		xe->info.pat.n_entries = ARRAY_SIZE(pvc_pat_table);
- 	} else if (GRAPHICS_VERx100(xe) <= 1210) {
--		program_pat(gt, tgl_pat_table, ARRAY_SIZE(tgl_pat_table));
-+		xe->info.pat.table = tgl_pat_table;
-+		xe->info.pat.n_entries = ARRAY_SIZE(tgl_pat_table);
- 	} else {
  		/*
- 		 * Going forward we expect to need new PAT settings for most
-@@ -135,7 +128,25 @@ void xe_pat_init(struct xe_gt *gt)
- 		 */
- 		drm_err(&xe->drm, "Missing PAT table for platform with graphics version %d.%02d!\n",
- 			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
-+		return -ENOTSUPP;
- 	}
-+
-+	return 0;
-+}
-+
-+void xe_pat_init(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	/*
-+	 * SAMedia register offsets are adjusted by the write methods
-+	 * and they target registers that are not MCR, while for normal
-+	 * GT they are MCR.
-+	 */
-+	if (xe_gt_is_media_type(gt) || GRAPHICS_VERx100(xe) < 1255)
-+		program_pat(gt, xe->info.pat.table, xe->info.pat.n_entries);
-+	else
-+		program_pat_mcr(gt, xe->info.pat.table, xe->info.pat.n_entries);
+ 		 * Use 1GB pages, it shouldn't matter the physical amount of
+@@ -493,7 +494,7 @@ static void emit_pte(struct xe_migrate *m,
+ 				addr += vram_region_gpu_offset(bo->ttm.resource);
+ 				addr |= XE_PPGTT_PTE_DM;
+ 			}
+-			addr |= PPAT_CACHED | XE_PAGE_PRESENT | XE_PAGE_RW;
++			addr = __xe_pte_encode(addr, XE_CACHE_WB, m->q->vm, NULL, 0);
+ 			bb->cs[bb->len++] = lower_32_bits(addr);
+ 			bb->cs[bb->len++] = upper_32_bits(addr);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 397ef2573c05..ddb4d9c33181 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -68,8 +68,8 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset)
+ 	return pde;
  }
  
- void xe_pte_pat_init(struct xe_device *xe)
-diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-index 5e71bd98d787..2f89503233b9 100644
---- a/drivers/gpu/drm/xe/xe_pat.h
-+++ b/drivers/gpu/drm/xe/xe_pat.h
-@@ -28,6 +28,7 @@
- struct xe_gt;
- struct xe_device;
+-static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
+-			struct xe_vm *vm, struct xe_vma *vma, u32 pt_level)
++u64 __xe_pte_encode(u64 pte, enum xe_cache_level cache,
++		    struct xe_vm *vm, struct xe_vma *vma, u32 pt_level)
+ {
+ 	struct xe_device *xe = vm->xe;
  
-+int xe_pat_init_early(struct xe_device *xe);
- void xe_pat_init(struct xe_gt *gt);
- void xe_pte_pat_init(struct xe_device *xe);
- unsigned int xe_pat_get_index(struct xe_device *xe, enum xe_cache_level cache);
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index a11163b89a3f..d170461bc981 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -22,6 +22,7 @@
- #include "xe_gt.h"
- #include "xe_macros.h"
- #include "xe_module.h"
-+#include "xe_pat.h"
- #include "xe_pci_types.h"
- #include "xe_pm.h"
- #include "xe_step.h"
-@@ -531,6 +532,7 @@ static int xe_info_init(struct xe_device *xe,
- 	struct xe_tile *tile;
- 	struct xe_gt *gt;
- 	u8 id;
-+	int err;
+@@ -113,7 +113,7 @@ u64 xe_pte_encode(struct xe_vm *vm, struct xe_bo *bo, u64 offset, enum xe_cache_
+ 	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
+ 		pte |= XE_PPGTT_PTE_DM;
  
- 	xe->info.platform = desc->platform;
- 	xe->info.subplatform = subplatform_desc ?
-@@ -579,6 +581,11 @@ static int xe_info_init(struct xe_device *xe,
- 	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
- 				  enable_display &&
- 				  desc->has_display;
-+
-+	err = xe_pat_init_early(xe);
-+	if (err)
-+		return err;
-+
- 	/*
- 	 * All platforms have at least one primary GT.  Any platform with media
- 	 * version 13 or higher has an additional dedicated media GT.  And
+-	return __pte_encode(pte, cache, vm, NULL, pt_level);
++	return __xe_pte_encode(pte, cache, vm, NULL, pt_level);
+ }
+ 
+ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
+@@ -595,9 +595,9 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 
+ 		XE_WARN_ON(xe_walk->va_curs_start != addr);
+ 
+-		pte = __pte_encode(is_null ? 0 :
+-				   xe_res_dma(curs) + xe_walk->dma_offset,
+-				   xe_walk->cache, xe_walk->vm, xe_walk->vma, level);
++		pte = __xe_pte_encode(is_null ? 0 :
++				      xe_res_dma(curs) + xe_walk->dma_offset,
++				      xe_walk->cache, xe_walk->vm, xe_walk->vma, level);
+ 		pte |= xe_walk->default_pte;
+ 
+ 		/*
+diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+index 4a9143bc6628..0e66436d707d 100644
+--- a/drivers/gpu/drm/xe/xe_pt.h
++++ b/drivers/gpu/drm/xe/xe_pt.h
+@@ -49,5 +49,7 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset);
+ 
+ u64 xe_pte_encode(struct xe_vm *vm, struct xe_bo *bo, u64 offset, enum xe_cache_level cache,
+ 		  u32 pt_level);
++u64 __xe_pte_encode(u64 pte, enum xe_cache_level cache,
++		    struct xe_vm *vm, struct xe_vma *vma, u32 pt_level);
+ 
+ #endif
 -- 
 2.41.0
 
