@@ -4,138 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 59F62CE79A7
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 23:27:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F993CE79A7
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 23:38:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23CEC10E337;
-	Mon, 25 Sep 2023 23:27:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3814310E337
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 23:27:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1321710E260;
+	Mon, 25 Sep 2023 23:38:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C73B810E260
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 23:38:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695684449; x=1727220449;
+ t=1695685100; x=1727221100;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=GMxSVUjcpXkInLMgNT+jq+vBR+7R/Iblqwyp+ASKVLg=;
- b=UjALbZpwJLcmVEM7vp9Mm0DFk3A+ZvsA/HHgW9FlNkyTgBBlME9tOFUM
- +gjrWeG4mMEnRkPA0SMCUd8IPZO+8Bcv8i+PLKtMcQ1rCKhVjT3GLwbEo
- 01KJ/8b7DXVL5tyNCpqUPk8NSMziGq6qZfybO6su7sf4yUeEMKPtOFGh/
- iUeRZr49EhZWOql1DO5G/opkTQAE5DKY+55kpLabkjKTuksvpiLk8U1Sz
- 8cYzDIKqA+aE9fMv6emTUEFeiC7kvAZs1BjJEVPSVCYwMixFjwcUb/ALb
- jDmXjU06BbhHZAOjJpdk2gM1RHH8NHkfp9he77fnY8LyW6VeBS56tM1Xu Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="380303407"
-X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="380303407"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 16:27:28 -0700
+ bh=XXVQUGTi5mIiW9yRHLzs9uy+b+ZTj+/x1hKQL9Pg+Rs=;
+ b=JtRj5EyF3CWRB2civVexzBOONjEiB+0NXHD3mzEQxRY69DrSCw0cT6KJ
+ NRQ0aLSJt42bqNNats+uiNWaPgFL2ANq6SLj5TfnhlWnR2mSyBaF6FWch
+ 9xntKtj4fMMywrF0Efk+YfoysIeOR8JJoXRLtQBPPIO1J0jMOwaNswy6u
+ rSBre9aPAUoPbVMh9xQ+uOMaVQMJIOjRtvf56owXVfD1LGbvgnXWxwjmJ
+ z/pFB7JS7o1yh2X2biWAJu/QCZ1qhEhowzyuilIHBH0v51hFDkbba8/EE
+ QvSDAtqMHAn9zS5j1e8yZ25rJvH2YH8BrPQAK7IhYctOdENo5l5tI/MVI w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="412355758"
+X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="412355758"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 16:38:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="838774266"
-X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="838774266"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by FMSMGA003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 25 Sep 2023 16:27:28 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="748589892"
+X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="748589892"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Sep 2023 16:38:03 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 25 Sep 2023 16:27:28 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.32; Mon, 25 Sep 2023 16:38:02 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 25 Sep 2023 16:27:27 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Mon, 25 Sep 2023 16:27:27 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Mon, 25 Sep 2023 16:38:02 -0700
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.109)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Mon, 25 Sep 2023 16:27:26 -0700
+ 15.1.2507.32; Mon, 25 Sep 2023 16:38:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=f/+MniPYfQxAUpRU36WS8HO8/ZuBM0wUiuMtXgjAdWTfUikELn3T1MGMinOjUnQAzscFpMTH7KP/jqdtuMit37k7NaUaUL6fiXWa2xD/gGQmGAlHkTTnHSDkzUnWxSRtOQIFzektfk2ad+yWDIeibuGG2yRRf8+bzvwdLa6ExNzF+eb2eDGwWmGy2zaGJNbuaEUaqckWgbmwXTMiFExYyT4eE1uuha93oL1h5oySWxt1uxp23cx0wW9LfNMViPYCpOh27QxX+lefXNgtDBwScZi5D5AWETzR/uluScv4PcN3ILURIVeMvk8IfW3Ki6SznnXHlvx42MduKUKEO9+Opw==
+ b=QYnT67jVHdwKERaoBPyPbjhinJJmBGRldftuhHya6cGKOOJ8QTNVrN2YbKto/eODjFWAbHPXbuGiIAz1A0e4bFC5tfnDtdGsnA5T8q+0SqOnZL7+TvbPJ5EG5BwJU3o3lOvAGAjzLmNgtTcANIcBYcrLQKRjVrk8c5f9l6RU1g2LOOLINikdCARB0yBAyTA713LjlZRn4QJ8OOgKTLpsdDCU1FpSSZxlAhx3ualtLfW7t5pvnyjtztPY8kOhmNtq3gG/jawLvjg+AGs5tmNk6DBXbFNtSPkKe/7ivpPgBzB22RhOfWxe1UxpMF7RJPg70cOdpBnJEfgwRUP2nXBYCA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LFpb1RWDQJajhG5FMd7eEzbbLsgn59P2nrrojM28PS8=;
- b=LnbTegIVzen+MTfKFWA3hcUeg4NjjTWUuIsqc8O/oC7JU3emvi2GZAtyM1y82GKKlJVVTIkPLQvuf6yaVYywIfWAET/0hcWZVzpVQDo8n699Krpar91m+4RwbVebcwW0BcwJToH2NZ4dy1zmQtGIEiCQ/YtrGfL3Dy9xuwgaPomKc2xDa58X7CfWpyiyO3csTDY4a5NEionbH0KmqJQnCoZd8YPpspLMc4v4oHOoT8SrXL3Fxwd6E00sCJyPLrsmsskalfVE7pGXgzxMoGzTQudy0k/e9pQmsb1vs10OuANDKbpWJMQXPUeqpXQSVeqQfhAaaiQLCJdh4sHCCX6kpA==
+ bh=F9iTKgxPXVkV/wAfyeUiM2jph0cKthpq6UyoDtz+4fU=;
+ b=OdTAlOJgm7Xya4sN2udAXZeMeL6KtJdVfa1bpEU0ngpF1D6w9Rmt3SuL4WU/gX1a6RJP3wXZciaVOrTd11+Ki2+5myCCsylhDlF0UPAk+1ctXPkwuacFNnZXEfFI5OeO75HNS4vSwJqI66AU+j72+V9CbKrDQyegjJWAPWEj/K29ktRUxNewCM8eQUgnOH/HPoyOUvUENf5opqTLqq7a7ggPV7RoQaWvHo04M3B+ykT1S140h9uOziTm80fWQyqfoehNMyb/OhPQ375maZYETaIhC0CIkxog0C9Mw9JCJJ3BxdYttKVnp2Te26XJqV+pHLWWdUWN/92VWq8i5ScCpw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- SA1PR11MB7087.namprd11.prod.outlook.com (2603:10b6:806:2b5::14) with
+ SA1PR11MB8278.namprd11.prod.outlook.com (2603:10b6:806:25b::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 25 Sep
- 2023 23:27:23 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.23; Mon, 25 Sep
+ 2023 23:38:00 +0000
 Received: from DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::48d9:4c34:35b:f66]) by DS7PR11MB7859.namprd11.prod.outlook.com
  ([fe80::48d9:4c34:35b:f66%4]) with mapi id 15.20.6768.029; Mon, 25 Sep 2023
- 23:27:23 +0000
-Date: Mon, 25 Sep 2023 16:27:20 -0700
+ 23:38:00 +0000
+Date: Mon, 25 Sep 2023 16:37:57 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <20230925232720.GD2706891@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20230925233757.GE2706891@mdroper-desk1.amr.corp.intel.com>
 References: <20230925221049.2681491-1-lucas.demarchi@intel.com>
- <20230925221049.2681491-8-lucas.demarchi@intel.com>
+ <20230925221049.2681491-9-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230925221049.2681491-8-lucas.demarchi@intel.com>
-X-ClientProxiedBy: BYAPR05CA0090.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::31) To DS7PR11MB7859.namprd11.prod.outlook.com
+In-Reply-To: <20230925221049.2681491-9-lucas.demarchi@intel.com>
+X-ClientProxiedBy: BY3PR04CA0009.namprd04.prod.outlook.com
+ (2603:10b6:a03:217::14) To DS7PR11MB7859.namprd11.prod.outlook.com
  (2603:10b6:8:da::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SA1PR11MB7087:EE_
-X-MS-Office365-Filtering-Correlation-Id: ba296530-c022-44d6-36ae-08dbbe1ef875
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SA1PR11MB8278:EE_
+X-MS-Office365-Filtering-Correlation-Id: b3c7b542-8fc7-4674-b57c-08dbbe207409
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: s0UVTkpX6ZBNoJqSmDTb0/uMuQEZVbXyr6E37S0+WRpHa/T4UwWQFRrVKy08cxos/Gv0olWsBR29EaVPxVPAsT0ia+la/TkdYCdCiKAXVo0gFf0iDAlbrlbVCx0wT4lEt0Sv06ElAzFBPgJCxEQfAlIs0kU/8/MKB59Uk2yldNOryFmyveRwMaLn6lLbRed3C1j9GYbzzT9RYKSSkA7nq4N9ephzz6KE14sFySfa89e083W8YDn57fQAAWYX24Qzqt+iOjr/Y2UAIJol5zf9/cQ77efarKAe6tF2USu9T0OlngzslJUNzzbLRMzT03YMh4kx/sMd7VNt4Mrla0xGWBH223aROI2GmvZpRYlwrLacSHR60mCmkT0JzbWU21IO7W3ra1695pvPxLM1t5jRwnviG18d+pFYv4paN9vhU19gzqW+pFajERsgIiYAFbfvoQ1J/h4/+Op3bDkSCrI0aq2MESCcJda9oa9lJJBSNVfEQFSVRgavCsqj8L678E5XF92RsErCJPhw1LiSbfDBqtHDP4BtDbCMIpmv2nsbdaJj9CNvFvPYLJ8qbDaBkBFM
+X-Microsoft-Antispam-Message-Info: odvYKng1MujeOMdBYv5rIcfI/s/iwB+e2VVF29NfuON9bekfWKhpBozsoDmHJvQky+sn1e7wVNV/Jh2W4IWZGk66ca78HHlt1sNBnPmoxpWPQibImp2dTMXLCJhLSMUE5+yU8oHvg8vlGRyRvZbIyy+jgMwBe9vda/14VesAlWNmmUaZBwSP2xhlnIn2Mxbc+8a8BXnZd+vRrgJeVo/Wg1ZPadZ5x37pCwe3P7LRit26ei7FvkowoWm5LRMFeebLyhYYMvO6GnCKdbCfC06mK7eaadd+oFDGjNuPqEYMsJ9BtLokSAXDpOIVb+nWsEwIeu420WFwqVWOA0KVMdzNzK6tPstT/w/8+8tWqlmCCa8Iy3zWUHkM+tqVHeQLlbjt3NcnZrxfcdcB2UG7VmvpBlvezrjpWX9n3Q6q4vkjthU7lT/lp5HWfIDyQUGuTB0ZYtxrclFYdOnLzQTKyc+bCm0vIT78soWgQdRJCbIQFAMgjm8uTB+LZ9FXS+vVnbuy3ez3UY/kxrYrslWnIcEJCoA69Zh0vMmkO4mXNeN+jnRD3RKAIS7z9QSrP9EM+Beq
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(136003)(39860400002)(366004)(396003)(376002)(230922051799003)(186009)(451199024)(1800799009)(2906002)(86362001)(33656002)(6512007)(6506007)(5660300002)(38100700002)(83380400001)(82960400001)(478600001)(6486002)(4326008)(8676002)(6862004)(8936002)(1076003)(107886003)(41300700001)(26005)(66476007)(66556008)(66946007)(6636002)(316002);
+ SFS:(13230031)(366004)(39860400002)(136003)(376002)(346002)(396003)(230922051799003)(451199024)(186009)(1800799009)(2906002)(5660300002)(4326008)(6862004)(8936002)(41300700001)(8676002)(6636002)(66476007)(316002)(66946007)(66556008)(478600001)(6666004)(6486002)(6512007)(107886003)(1076003)(26005)(6506007)(83380400001)(82960400001)(86362001)(38100700002)(33656002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?CkexQATHPgFQsuLyV/zOmCsZI1nh4j9mFQP+DovS7pPteIUctIx2Ft+HDJWx?=
- =?us-ascii?Q?QXduRV2E3k4d9OjK6043mpR2NN7pQQ3HQFIdjAD8sB0uQknh1ldEexvoOc3A?=
- =?us-ascii?Q?k8PPFSQQXosPRrQrvCtIDbulrornh8BXgm6+YGK1uKpDCjIUwgeP7GgGHX8o?=
- =?us-ascii?Q?/oZinzJZlYq4QCk36bLfnsxkuuWn0uc1BCaD+qMCQ21m7Mm1680pTVnTrsFw?=
- =?us-ascii?Q?hzdZKg3gxIT4cj9s+AW5Jucciw6uZH7UawlY+FJcRrYPxbQ9uFKnMgw3YJOU?=
- =?us-ascii?Q?h3V7zw+AIjwxvPAyhsYR9WyNGKUQHCLiBKEQ8s1QjOd+iu7Ktm2WU+rE85Hg?=
- =?us-ascii?Q?u0fdeNdsaSKWbwDR/yTrThppruzAuvoNdRTVPnUiG2z1E5Qm79c0+NzPHwZQ?=
- =?us-ascii?Q?joomB0rQHoF0ZIMGxGNUchffxtiOFrc+IZFpCFWRLsWwIVbo7uu8xpzhRCWO?=
- =?us-ascii?Q?hPchziHAzPFbNfMEsXvAM/riTo130WswKshjtYwOlOi3tHLiyOLqJaVdTOfG?=
- =?us-ascii?Q?mjVVJHTjbGviyDS1KLWD7sJ/DRr3vXvXEh/xK4rnt01Aa2kBFAd22izhTxnB?=
- =?us-ascii?Q?ytN7cY0QHXmGytUh3PccztZG4Zm1Cr+W0FOyddOn3rXbBJJWA2UXTHTjV0oo?=
- =?us-ascii?Q?o3plu1Lzfn08MVSkKH4Sec+JW6f2OVDfJpgTZNSWoWhyonf9OhjiYMO2lxiV?=
- =?us-ascii?Q?Yz2fxWTXEq4N2BAn7fDIVLpPwJg5Z+3YvnUAhrn93FXfNQz+hkJ4utPEn8ds?=
- =?us-ascii?Q?T0iYcI8RVP1xUs7Ufg7e/MsBQ6tjjbPI4pOn5v405y4W5trNMrtzfNMjllcq?=
- =?us-ascii?Q?GZuUPcAkjOQy8XtEfgamsQOKxFi5gP1g8yGQ+4IAe3EdkooKN0hkKNq/F77F?=
- =?us-ascii?Q?+5XEiXMajQHCDnLRi3dvcoEAewEDsitTgnUvg+8VAESwExeV+kSGfW4AlcKQ?=
- =?us-ascii?Q?4MRGMTEt/qDOx8043dCQ0UiKLrMdTR2WKE9dYB1RDn6ycIz0TjuRgDBXIijw?=
- =?us-ascii?Q?JMej8lMq5AF0+55aFmh4bbLeDcNN7km2hZOlrBJB0mUUOvocLIN4A7gxLKMc?=
- =?us-ascii?Q?khRNlbSJnwmLpyyZ6SGsQX9A4aHjuQuSwE/kVW2B0NY/zrvohVEdQIk0orz9?=
- =?us-ascii?Q?EDHiB7cRbiiAoeS9s894ahPXFgf2O5E2IF9kSSCAt5SSbH0pTHAr5qf5eERm?=
- =?us-ascii?Q?nnfHKTCwxan2yHjXYRG0kvYSYGeHM5ERrZrDs9UnlEkw499UW4b/5usMiHnq?=
- =?us-ascii?Q?pbeNhZCCMwHpzPQYiLTur80crWE2HBDZqyMApQmIJfByafDnVOIxY/O/jAAY?=
- =?us-ascii?Q?XA6//WbPncXqwvCfeD5PRrJ0Yvc15pj6ZI0M67Khhkjw2rR+p3E6n72xm9gR?=
- =?us-ascii?Q?fPi2jOQqZfUIx91NZirguFZpvBPjKHPpip/jkXug8IOfYiyCVcfCYHh6xg1p?=
- =?us-ascii?Q?zAKwryhX7yrGHKZ3jQsawHHPEWnq/0P2nX2UUth2AbjAbfJNWaA2GvELnaj0?=
- =?us-ascii?Q?HfNHiI632CfxmOitoTiOb/Y5K3gyeBJGBBssPvA3qVX/a3G6ms8dnoaCV/zI?=
- =?us-ascii?Q?DZ+FIvRFGYCl9qs4Igo6WXgM8ANlklpZFQKaOV6qHlWSjdU9KIvIUj85mR3O?=
- =?us-ascii?Q?nQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: ba296530-c022-44d6-36ae-08dbbe1ef875
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4mPYm2pAw9E/usxXQbUGk+z56oUhT+Eei5lfN/360b5VxzODhdPB5r7jbZ2g?=
+ =?us-ascii?Q?UXjhyek/Dgj+UODs2V7IFNeMp5Thf+a9LMZ+T2m4Q9gDjeyx0ZMxtyuxVQY9?=
+ =?us-ascii?Q?X4jxmzE4UB+7R37u7rgsGX8IYwdpj3u+NI6G6t4gfArNiW5h8Kf82g2uU5pT?=
+ =?us-ascii?Q?lWi5OmC6PQtCLzfQ7CaAD/5OD0YBhuNbSODKCrvuYtB6rBEpMFEe1akwLasI?=
+ =?us-ascii?Q?bzrpG6xXpSR77C7HXhVVNhdzUfSeebe/RY6XMjBzZ4gXuNUE/IEawVmzlnyI?=
+ =?us-ascii?Q?NeeBHa6FqiaOrvhjeLFDV3IYKbRpQ9LqJBDRgEldycaXMx7fPL4+VqcCtYcd?=
+ =?us-ascii?Q?ZsDxNNST5eECuu999A0lbBbDVRFkqA6XiPheppzA0TnpcjCvFcVv/AfTFwQz?=
+ =?us-ascii?Q?jB8xzvc5a63W+CYtxAlkzqusNstM9vVInGLgFSC2r4B89m+27ETpoH51eHdo?=
+ =?us-ascii?Q?wOka48fYORCCb7kSPdLTEfnt8KiBBH51S3k/RwnGpWg/PXnpad5x0uqyIxR5?=
+ =?us-ascii?Q?TIW1lAx75zIpzbKR/0v3nF0BypvzBwiQEqGGj0UvaCIK0+L+byWZPU86O3Yh?=
+ =?us-ascii?Q?zhia/Hm0Ttdn1mGfp2QiS8KfVgA3zaUZDuzDQxvSA9z9kQO/2WFltbukwQQz?=
+ =?us-ascii?Q?rqorUQSMflBiNW77xFCcVP1dJfAjvdkeTcheUMr5VXas5S+lgUdAenA0/V8c?=
+ =?us-ascii?Q?j0ld1CYeFtYQo2HZPPeDD9AA0cyg+d8mQLNoAYYUu7e2Kwy62mORCRy46zdE?=
+ =?us-ascii?Q?3Aj00tuX+Gbe69Zm6Bn0txuzmCy3p3yjouF3Jyk2RXnKetZhPCKi+DM+9p8f?=
+ =?us-ascii?Q?ecN/304T8XaH/EgesJ3EQkBfB/j3I3cHynU7Jaw1W4QUDCaap3ZVeB1Mt2AD?=
+ =?us-ascii?Q?ba9JHBU2Buv6ODvZ1gbcScfshS0+4zG94rVMYzOJlnM4QwO2PxQYM4vvDmiT?=
+ =?us-ascii?Q?+nT8yZFr6Rk7paS//yzppKWzQtr3cbsThLvl58+n4me1rSVA/TThkS4DKYES?=
+ =?us-ascii?Q?mwVyL7ekt8prhDKFBBPN/h8rCDIMiXmJVw5knf2dDfpYvTD9od0Gwi/NtDNI?=
+ =?us-ascii?Q?Sb/nWg2hh3k89lLdkqTRlsjkThV0zWBHOC0ZC2KPTe7R7QUxPmiSwqNYXEPk?=
+ =?us-ascii?Q?V/BVAhHckFCN40fXMbILqgUjT6LdsyEAjTDJY5j+o+EAs8Ion0iu4es2PfuQ?=
+ =?us-ascii?Q?VrsEZevVEcKebvSUI3aOpb4gLuLgq2R8Clv8jIGQdnEcOdzI4bGo6ypR6/bw?=
+ =?us-ascii?Q?ILBdGZa4kMXHGgJ9pFZ0/JkhKdjEBg+Ne9Xs2wr2I+VPB+1RABCNQYFbAasX?=
+ =?us-ascii?Q?LAcPBohM8ltntSmklEw/IRgch7oQKin+sfDNBHpohFNY1nPr6GLru2JiwsTE?=
+ =?us-ascii?Q?uCRQsJ6A46K+cK5mbKiOZdmI7VDphspPVn2NrkuwDHu9kxOp6t/jwZqLlqfl?=
+ =?us-ascii?Q?bMUo+oIbYUxOJXCrcqEkl1Xmla/rdFH5qgt2noUoVWG/I1nD799dyOQWtYEo?=
+ =?us-ascii?Q?O4ZpJ7r19sfee/zUmQYlB3sn46jmZcIPl5wfD1BUP+8mzYhgu4XTapkSl4f0?=
+ =?us-ascii?Q?1EIoEx8/di77t0IIh3yoxwdMGCRj77Hb2dVV9tQRA2ePhw1sCCpmzTlpcYQ6?=
+ =?us-ascii?Q?hQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3c7b542-8fc7-4674-b57c-08dbbe207409
 X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 23:27:23.1721 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 23:38:00.4412 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: duYjGZDnvrAYHVDwEZKuBi1XoHiRdc5/nd+k5gkFRGpU1qlpwagbFzLJeckBhslQcpeq3j8akGAe/F1pI61E1NnWwLvORKrZguT8hwLoleo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB7087
+X-MS-Exchange-CrossTenant-UserPrincipalName: iicA8lYzeCwiN2feLaOzeebPX48mHlFklF6x6rj0f4qlt1ZIikiwVFlH7aEXighrs6BBmgQD70UTdoZ9uWVicpxl+cAsze0/qYcPei1kok0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8278
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 7/9] drm/xe: Use pat_index to encode pte
+Subject: Re: [Intel-xe] [PATCH 8/9] drm/xe: Use vfunc for ggtt pte encoding
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,220 +147,193 @@ Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Sep 25, 2023 at 03:10:47PM -0700, Lucas De Marchi wrote:
-> Change the xelp_pte_encode() function to use the platform-dependent
-> pat_index.  The same function can be used for all platforms as they only
-> need to encode the pat_index bits in the same pte layout. For platforms
-> that don't have the most significant bit, as long as they don't return a
-> bogus index they should be fine.
-> 
-> To maintain consistency, also add xe argument to pde_encode_cache().
-> This will be needed for Xe2 later.
+On Mon, Sep 25, 2023 at 03:10:48PM -0700, Lucas De Marchi wrote:
+> Use 2 different functions for encoding the ggtt's pte, assigning them
+> during initialization. Main difference is that before Xe-LPG, the pte
+> didn't have the cache bits.
 > 
 > Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_bo.h       | 11 ++++---
->  drivers/gpu/drm/xe/xe_migrate.c  |  6 ++--
->  drivers/gpu/drm/xe/xe_pt_types.h |  4 ++-
->  drivers/gpu/drm/xe/xe_vm.c       | 50 +++++++++++++++++++-------------
->  4 files changed, 44 insertions(+), 27 deletions(-)
+>  drivers/gpu/drm/xe/xe_ggtt.c       | 53 +++++++++++++++++++++++-------
+>  drivers/gpu/drm/xe/xe_ggtt.h       |  1 -
+>  drivers/gpu/drm/xe/xe_ggtt_types.h |  9 +++++
+>  3 files changed, 50 insertions(+), 13 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index e3c90d45e723..885412581158 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -39,10 +39,13 @@
->  #define XE_BO_INTERNAL_TEST		BIT(30)
->  #define XE_BO_INTERNAL_64K		BIT(31)
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+> index 54baaffc7235..09c6bd46f097 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+> @@ -20,16 +20,31 @@
+>  #include "xe_mmio.h"
+>  #include "xe_wopcm.h"
 >  
-> -#define PPAT_UNCACHED                   GENMASK_ULL(4, 3)
-> -#define PPAT_CACHED_PDE                 0
-> -#define PPAT_CACHED                     BIT_ULL(7)
-> -#define PPAT_DISPLAY_ELLC               BIT_ULL(4)
-> +#define XE_PPGTT_PDE_UNCACHED		GENMASK_ULL(4, 3)
-> +#define XE_PPGTT_PDE_CACHED		0
-
-Shouldn't these two be going away?  Indices 0 and 3 are only correct for
-certain platforms.  The PDE uses the same PAT encoding as the PTE, as
-documented in the bspec's PTF_COMMON_BITS (55730) and referenced from
-pages 62361, 55731, etc.
-
+> -/* FIXME: Common file, preferably auto-gen */
+> -#define MTL_GGTT_PTE_PAT0	BIT_ULL(52)
+> -#define MTL_GGTT_PTE_PAT1	BIT_ULL(53)
+> +#define XELPG_GGTT_PTE_PAT0	BIT_ULL(52)
+> +#define XELPG_GGTT_PTE_PAT1	BIT_ULL(53)
+>  
+>  /* GuC addresses above GUC_GGTT_TOP also don't map through the GTT */
+>  #define GUC_GGTT_TOP	0xFEE00000
+>  
+> -u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
+> +static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
+> +				   enum xe_cache_level cache)
+> +{
+> +	u64 pte;
 > +
-> +#define XELPG_PPGTT_PTE_PAT3		BIT_ULL(62)
-> +#define XE_PPGTT_PTE_PAT2		BIT_ULL(7)
-> +#define XE_PPGTT_PTE_PAT1		BIT_ULL(4)
-> +#define XE_PPGTT_PTE_PAT0		BIT_ULL(3)
->  
->  #define XE_PTE_SHIFT			12
->  #define XE_PAGE_SIZE			(1 << XE_PTE_SHIFT)
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index f22356d69ae3..11dc3b0e0350 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -261,7 +261,8 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->  
->  		level = 2;
->  		ofs = map_ofs + XE_PAGE_SIZE * level + 256 * 8;
-> -		flags = vm->pt_ops->pte_encode_addr(0, XE_CACHE_WB, level, true, 0);
-> +		flags = vm->pt_ops->pte_encode_addr(xe, 0, XE_CACHE_WB, level,
-> +						    true, 0);
->  
->  		/*
->  		 * Use 1GB pages, it shouldn't matter the physical amount of
-> @@ -498,7 +499,8 @@ static void emit_pte(struct xe_migrate *m,
->  				devmem = true;
->  			}
->  
-> -			addr |= m->q->vm->pt_ops->pte_encode_addr(addr, XE_CACHE_WB,
-> +			addr |= m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
-> +								  addr, XE_CACHE_WB,
->  								  0, devmem, flags);
->  			bb->cs[bb->len++] = lower_32_bits(addr);
->  			bb->cs[bb->len++] = upper_32_bits(addr);
-> diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-> index bf5000499251..bd6645295fe6 100644
-> --- a/drivers/gpu/drm/xe/xe_pt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_pt_types.h
-> @@ -11,6 +11,7 @@
->  #include "xe_pt_walk.h"
->  
->  struct xe_bo;
-> +struct xe_device;
->  struct xe_vma;
->  
->  enum xe_cache_level {
-> @@ -40,7 +41,8 @@ struct xe_pt_ops {
->  			     enum xe_cache_level cache, u32 pt_level);
->  	u64 (*pte_encode_vma)(u64 pte, struct xe_vma *vma,
->  			      enum xe_cache_level cache, u32 pt_level);
-> -	u64 (*pte_encode_addr)(u64 addr, enum xe_cache_level cache,
-> +	u64 (*pte_encode_addr)(struct xe_device *xe, u64 addr,
-> +			       enum xe_cache_level cache,
->  			       u32 pt_level, bool devmem, u64 flags);
->  	u64 (*pde_encode_bo)(struct xe_bo *bo, u64 bo_offset,
->  			     const enum xe_cache_level cache);
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 23452b98d853..ab9cf1de566a 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1191,27 +1191,32 @@ static struct drm_gpuva_fn_ops gpuva_ops = {
->  	.op_alloc = xe_vm_op_alloc,
->  };
->  
-> -static u64 pde_encode_cache(enum xe_cache_level cache)
-> +static u64 pde_encode_cache(struct xe_device *xe, enum xe_cache_level cache)
+> +	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
+> +	pte |= XE_PAGE_PRESENT;
+> +
+> +	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
+> +		pte |= XE_GGTT_PTE_DM;
+> +
+> +	return pte;
+> +}
+> +
+> +static u64 xelpg_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
+> +				    enum xe_cache_level cache)
 >  {
-> -	/* FIXME: I don't think the PPAT handling is correct for MTL */
-> -
->  	if (cache != XE_CACHE_NONE)
-> -		return PPAT_CACHED_PDE;
-> +		return XE_PPGTT_PDE_CACHED;
->  
-> -	return PPAT_UNCACHED;
-> +	return XE_PPGTT_PDE_UNCACHED;
 
-As noted above, we're getting different behavior from these on different
-platforms.  We should be encoding the same way we do for the PTE.
+Since the two functions are basically the same aside from PAT, should we
+just implement this by calling the xelp version and then add the
+PAT-specific stuff at the end?
+
+        pte = xelp_ggtt_pte_encode_bo(bo, bo_offset, cache);
+
+        xe_assert(xe, pat_index <= 3);
+        if (pat_index & BIT(0))
+                pte |= XELPG_GGTT_PTE_PAT0;
+        if (pat_index & BIT(1))
+                pte |= XELPG_GGTT_PTE_PAT1;
+
+        return pte;
+
+Either way,
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
 
 Matt
 
->  }
->  
-> -static u64 pte_encode_cache(enum xe_cache_level cache)
-> +static u64 pte_encode_cache(struct xe_device *xe, enum xe_cache_level cache)
->  {
-> -	/* FIXME: I don't think the PPAT handling is correct for MTL */
-> -	switch (cache) {
-> -	case XE_CACHE_NONE:
-> -		return PPAT_UNCACHED;
-> -	case XE_CACHE_WT:
-> -		return PPAT_DISPLAY_ELLC;
-> -	default:
-> -		return PPAT_CACHED;
-> -	}
+>  	struct xe_device *xe = xe_bo_device(bo);
 > +	u32 pat_index = xe->pat.idx[cache];
-> +	u64 pte = 0;
-> +
-> +	if (pat_index & BIT(0))
-> +		pte |= XE_PPGTT_PTE_PAT0;
-> +
-> +	if (pat_index & BIT(1))
-> +		pte |= XE_PPGTT_PTE_PAT1;
-> +
-> +	if (pat_index & BIT(2))
-> +		pte |= XE_PPGTT_PTE_PAT2;
-> +
-> +	if (pat_index & BIT(3))
-> +		pte |= XELPG_PPGTT_PTE_PAT3;
-> +
-> +	return pte;
->  }
->  
->  static u64 pte_encode_ps(u32 pt_level)
-> @@ -1229,11 +1234,12 @@ static u64 pte_encode_ps(u32 pt_level)
->  static u64 xelp_pde_encode_bo(struct xe_bo *bo, u64 bo_offset,
->  			      const enum xe_cache_level cache)
->  {
-> +	struct xe_device *xe = xe_bo_device(bo);
->  	u64 pde;
->  
->  	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
->  	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
-> -	pde |= pde_encode_cache(cache);
-> +	pde |= pde_encode_cache(xe, cache);
->  
->  	return pde;
->  }
-> @@ -1241,11 +1247,12 @@ static u64 xelp_pde_encode_bo(struct xe_bo *bo, u64 bo_offset,
->  static u64 xelp_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
->  			      enum xe_cache_level cache, u32 pt_level)
->  {
-> +	struct xe_device *xe = xe_bo_device(bo);
 >  	u64 pte;
 >  
 >  	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
->  	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
-> -	pte |= pte_encode_cache(cache);
-> +	pte |= pte_encode_cache(xe, cache);
->  	pte |= pte_encode_ps(pt_level);
->  
+> @@ -38,11 +53,11 @@ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
 >  	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
-> @@ -1257,12 +1264,14 @@ static u64 xelp_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
->  static u64 xelp_pte_encode_vma(u64 pte, struct xe_vma *vma,
->  			       enum xe_cache_level cache, u32 pt_level)
->  {
-> +	struct xe_device *xe = xe_vma_vm(vma)->xe;
+>  		pte |= XE_GGTT_PTE_DM;
+>  
+> -	/* FIXME: vfunc + pass in caching rules */
+> -	if (xe->info.platform == XE_METEORLAKE) {
+> -		pte |= MTL_GGTT_PTE_PAT0;
+> -		pte |= MTL_GGTT_PTE_PAT1;
+> -	}
+> +	if (pat_index & BIT(0))
+> +		pte |= XELPG_GGTT_PTE_PAT0;
 > +
->  	pte |= XE_PAGE_PRESENT;
+> +	if (pat_index & BIT(1))
+> +		pte |= XELPG_GGTT_PTE_PAT1;
 >  
->  	if (likely(!xe_vma_read_only(vma)))
->  		pte |= XE_PAGE_RW;
->  
-> -	pte |= pte_encode_cache(cache);
-> +	pte |= pte_encode_cache(xe, cache);
->  	pte |= pte_encode_ps(pt_level);
->  
->  	if (unlikely(xe_vma_is_null(vma)))
-> @@ -1271,7 +1280,8 @@ static u64 xelp_pte_encode_vma(u64 pte, struct xe_vma *vma,
 >  	return pte;
 >  }
+> @@ -72,7 +87,8 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+>  	xe_tile_assert(ggtt->tile, start < end);
 >  
-> -static u64 xelp_pte_encode_addr(u64 addr, enum xe_cache_level cache,
-> +static u64 xelp_pte_encode_addr(struct xe_device *xe, u64 addr,
-> +				enum xe_cache_level cache,
->  				u32 pt_level, bool devmem, u64 flags)
+>  	if (ggtt->scratch)
+> -		scratch_pte = xe_ggtt_pte_encode(ggtt->scratch, 0);
+> +		scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0,
+> +							  XE_CACHE_WB);
+>  	else
+>  		scratch_pte = 0;
+>  
+> @@ -102,6 +118,14 @@ static void primelockdep(struct xe_ggtt *ggtt)
+>  	fs_reclaim_release(GFP_KERNEL);
+>  }
+>  
+> +static const struct xe_ggtt_pt_ops xelp_pt_ops = {
+> +	.pte_encode_bo = xelp_ggtt_pte_encode_bo,
+> +};
+> +
+> +static const struct xe_ggtt_pt_ops xelpg_pt_ops = {
+> +	.pte_encode_bo = xelpg_ggtt_pte_encode_bo,
+> +};
+> +
+>  int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
 >  {
->  	u64 pte;
-> @@ -1281,7 +1291,7 @@ static u64 xelp_pte_encode_addr(u64 addr, enum xe_cache_level cache,
+>  	struct xe_device *xe = tile_to_xe(ggtt->tile);
+> @@ -146,6 +170,11 @@ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
+>  	if (ggtt->size > GUC_GGTT_TOP)
+>  		ggtt->size = GUC_GGTT_TOP;
 >  
->  	pte = addr;
->  	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
-> -	pte |= pte_encode_cache(cache);
-> +	pte |= pte_encode_cache(xe, cache);
->  	pte |= pte_encode_ps(pt_level);
+> +	if (GRAPHICS_VERx100(xe) >= 1270)
+> +		ggtt->pt_ops = &xelpg_pt_ops;
+> +	else
+> +		ggtt->pt_ops = &xelp_pt_ops;
+> +
+>  	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
+>  		    ggtt->size - xe_wopcm_size(xe));
+>  	mutex_init(&ggtt->lock);
+> @@ -260,7 +289,7 @@ void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix)
+>  {
+>  	u64 addr, scratch_pte;
 >  
->  	if (devmem)
+> -	scratch_pte = xe_ggtt_pte_encode(ggtt->scratch, 0);
+> +	scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0, XE_CACHE_WB);
+>  
+>  	printk("%sGlobal GTT:", prefix);
+>  	for (addr = 0; addr < ggtt->size; addr += XE_PAGE_SIZE) {
+> @@ -301,7 +330,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+>  	u64 offset, pte;
+>  
+>  	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
+> -		pte = xe_ggtt_pte_encode(bo, offset);
+> +		pte = ggtt->pt_ops->pte_encode_bo(bo, offset, XE_CACHE_WB);
+>  		xe_ggtt_set_pte(ggtt, start + offset, pte);
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+> index 205a6d058bbd..3faa3c6d0375 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt.h
+> @@ -10,7 +10,6 @@
+>  
+>  struct drm_printer;
+>  
+> -u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset);
+>  void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte);
+>  void xe_ggtt_invalidate(struct xe_ggtt *ggtt);
+>  int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt);
+> diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+> index d34b3e733945..486016ea5b67 100644
+> --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+> @@ -8,9 +8,16 @@
+>  
+>  #include <drm/drm_mm.h>
+>  
+> +#include "xe_pt_types.h"
+> +
+>  struct xe_bo;
+>  struct xe_gt;
+>  
+> +struct xe_ggtt_pt_ops {
+> +	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset,
+> +			     enum xe_cache_level cache);
+> +};
+> +
+>  struct xe_ggtt {
+>  	struct xe_tile *tile;
+>  
+> @@ -25,6 +32,8 @@ struct xe_ggtt {
+>  
+>  	u64 __iomem *gsm;
+>  
+> +	const struct xe_ggtt_pt_ops *pt_ops;
+> +
+>  	struct drm_mm mm;
+>  };
+>  
 > -- 
 > 2.40.1
 > 
