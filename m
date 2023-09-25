@@ -4,47 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8883CE79A4
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADC32CE79A5
 	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 22:11:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9538310E33B;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7683110E339;
 	Mon, 25 Sep 2023 22:11:53 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B15910E338
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AD8010E335
  for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 22:11:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1695679890; x=1727215890;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=3g/3VKBXbT9l1ysyM8taQZtpjwTtfsZOTVJUJcOXo5I=;
- b=nbR5cdzK2l/Xsc/AnG7gnDJmpfW8Qr7bjAQLw8hYW8wJsn/vMhf6V0cD
- exDWKizuyY1ODazplWRr383CPoAs0GKIfjp8Z+KV53ThQG+3vVumd8RsE
- GUjDU45a76F9vqgnCIFv33w1Qbd7rGLUGaAiP6XRwq5Huaili7AEkjsiV
- gjcZ8+pKxvvlYTZ1GpOuio8Rwu/hoWhN40mKSz+ojbvnQf2I+ocvbI98j
- ct9FLnb5QQKyvkwINvBk599LvLYfG/Sud3ta9dhIzrQvm4BQiRztH9WiO
- hwkjB2vgKFYExh/PKmHkdYSD/hF0CG9HUCZoas/spmHRKK+cmfLEFmE+s w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="412333011"
-X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="412333011"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=fhSADDTdr818DSv1gopdN+qgkeG3zMztqb6NOULdIFw=;
+ b=CAv7f+NAnquuBzMRTT/XUx/ulwZH5E9l+erO/DB9qVjgRC5e6V9X44cY
+ rxeTUWEC0nosMwLhlGyD1w4PGkv6nhTadnsTguAeOFXeqobJ7Sc4Vnu13
+ qtqO4pccWjJTxwIBDQjPvtJrp+2I6jRNUOzARCsi6AgfbyrevTuDiuhO3
+ TaOfLI85gaYIBIqlBy6zNCmKViilrr9BsaLTi0M5Hh0YVpU9hvkU+NLG2
+ 2zIMCyl6zccgK+z0JenbDHOAVzK9yVIF0cVJDf2dtnBIhXA6xpk2TbFav
+ 7+SD/oy4AZOTYA/p/8k9wBXhQDrMu4lehxyIAEHrjV7aM1g39vHYdmzZ2 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="412332997"
+X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="412332997"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 15:11:13 -0700
+ 25 Sep 2023 15:11:12 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="742087767"
-X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="742087767"
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="742087743"
+X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="742087743"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2023 15:11:12 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 25 Sep 2023 15:10:48 -0700
-Message-Id: <20230925221049.2681491-9-lucas.demarchi@intel.com>
+Date: Mon, 25 Sep 2023 15:10:40 -0700
+Message-Id: <20230925221049.2681491-1-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230925221049.2681491-1-lucas.demarchi@intel.com>
-References: <20230925221049.2681491-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 8/9] drm/xe: Use vfunc for ggtt pte encoding
+Subject: [Intel-xe] [PATCH 0/9] Refactor kernel setting of PAT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,171 +59,48 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use 2 different functions for encoding the ggtt's pte, assigning them
-during initialization. Main difference is that before Xe-LPG, the pte
-didn't have the cache bits.
+This reworks how we set PAT bits in both PPGTT and GGTT with the kernel
+users in mind only. Allowing to set PAT by userspace is being added by
+https://lore.kernel.org/all/20230829162840.73444-7-matthew.auld@intel.com/T/.
+This can be seen as a follow up to the WIP patch that series depends on,
+https://patchwork.freedesktop.org/series/122708/
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- drivers/gpu/drm/xe/xe_ggtt.c       | 53 +++++++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_ggtt.h       |  1 -
- drivers/gpu/drm/xe/xe_ggtt_types.h |  9 +++++
- 3 files changed, 50 insertions(+), 13 deletions(-)
+I'm using that patch as a starting point, but as noted in my review
+comments there, I think the overall abstraction we had and the ones we
+were adding were not optimal. This is my attempt to translate my review
+comments into the abstraction I was thinking of.
 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 54baaffc7235..09c6bd46f097 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -20,16 +20,31 @@
- #include "xe_mmio.h"
- #include "xe_wopcm.h"
- 
--/* FIXME: Common file, preferably auto-gen */
--#define MTL_GGTT_PTE_PAT0	BIT_ULL(52)
--#define MTL_GGTT_PTE_PAT1	BIT_ULL(53)
-+#define XELPG_GGTT_PTE_PAT0	BIT_ULL(52)
-+#define XELPG_GGTT_PTE_PAT1	BIT_ULL(53)
- 
- /* GuC addresses above GUC_GGTT_TOP also don't map through the GTT */
- #define GUC_GGTT_TOP	0xFEE00000
- 
--u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
-+static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
-+				   enum xe_cache_level cache)
-+{
-+	u64 pte;
-+
-+	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
-+	pte |= XE_PAGE_PRESENT;
-+
-+	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
-+		pte |= XE_GGTT_PTE_DM;
-+
-+	return pte;
-+}
-+
-+static u64 xelpg_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
-+				    enum xe_cache_level cache)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
-+	u32 pat_index = xe->pat.idx[cache];
- 	u64 pte;
- 
- 	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
-@@ -38,11 +53,11 @@ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
- 	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
- 		pte |= XE_GGTT_PTE_DM;
- 
--	/* FIXME: vfunc + pass in caching rules */
--	if (xe->info.platform == XE_METEORLAKE) {
--		pte |= MTL_GGTT_PTE_PAT0;
--		pte |= MTL_GGTT_PTE_PAT1;
--	}
-+	if (pat_index & BIT(0))
-+		pte |= XELPG_GGTT_PTE_PAT0;
-+
-+	if (pat_index & BIT(1))
-+		pte |= XELPG_GGTT_PTE_PAT1;
- 
- 	return pte;
- }
-@@ -72,7 +87,8 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
- 	xe_tile_assert(ggtt->tile, start < end);
- 
- 	if (ggtt->scratch)
--		scratch_pte = xe_ggtt_pte_encode(ggtt->scratch, 0);
-+		scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0,
-+							  XE_CACHE_WB);
- 	else
- 		scratch_pte = 0;
- 
-@@ -102,6 +118,14 @@ static void primelockdep(struct xe_ggtt *ggtt)
- 	fs_reclaim_release(GFP_KERNEL);
- }
- 
-+static const struct xe_ggtt_pt_ops xelp_pt_ops = {
-+	.pte_encode_bo = xelp_ggtt_pte_encode_bo,
-+};
-+
-+static const struct xe_ggtt_pt_ops xelpg_pt_ops = {
-+	.pte_encode_bo = xelpg_ggtt_pte_encode_bo,
-+};
-+
- int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
- {
- 	struct xe_device *xe = tile_to_xe(ggtt->tile);
-@@ -146,6 +170,11 @@ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
- 	if (ggtt->size > GUC_GGTT_TOP)
- 		ggtt->size = GUC_GGTT_TOP;
- 
-+	if (GRAPHICS_VERx100(xe) >= 1270)
-+		ggtt->pt_ops = &xelpg_pt_ops;
-+	else
-+		ggtt->pt_ops = &xelp_pt_ops;
-+
- 	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
- 		    ggtt->size - xe_wopcm_size(xe));
- 	mutex_init(&ggtt->lock);
-@@ -260,7 +289,7 @@ void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix)
- {
- 	u64 addr, scratch_pte;
- 
--	scratch_pte = xe_ggtt_pte_encode(ggtt->scratch, 0);
-+	scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0, XE_CACHE_WB);
- 
- 	printk("%sGlobal GTT:", prefix);
- 	for (addr = 0; addr < ggtt->size; addr += XE_PAGE_SIZE) {
-@@ -301,7 +330,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- 	u64 offset, pte;
- 
- 	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
--		pte = xe_ggtt_pte_encode(bo, offset);
-+		pte = ggtt->pt_ops->pte_encode_bo(bo, offset, XE_CACHE_WB);
- 		xe_ggtt_set_pte(ggtt, start + offset, pte);
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
-index 205a6d058bbd..3faa3c6d0375 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt.h
-@@ -10,7 +10,6 @@
- 
- struct drm_printer;
- 
--u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset);
- void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte);
- void xe_ggtt_invalidate(struct xe_ggtt *ggtt);
- int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt);
-diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-index d34b3e733945..486016ea5b67 100644
---- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-@@ -8,9 +8,16 @@
- 
- #include <drm/drm_mm.h>
- 
-+#include "xe_pt_types.h"
-+
- struct xe_bo;
- struct xe_gt;
- 
-+struct xe_ggtt_pt_ops {
-+	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset,
-+			     enum xe_cache_level cache);
-+};
-+
- struct xe_ggtt {
- 	struct xe_tile *tile;
- 
-@@ -25,6 +32,8 @@ struct xe_ggtt {
- 
- 	u64 __iomem *gsm;
- 
-+	const struct xe_ggtt_pt_ops *pt_ops;
-+
- 	struct drm_mm mm;
- };
- 
+Lightly tested on DG2.
+
+Lucas De Marchi (9):
+  drm/xe: Normalize pte/pde encoding
+  drm/xe: Remove check for vma == NULL
+  drm/xe: Use vfunc for pte/pde ppgtt encoding
+  drm/xe/migrate: Do not hand-encode pte
+  drm/xe: Use vfunc to initialize PAT
+  drm/xe/pat: Keep track of relevant indexes
+  drm/xe: Use pat_index to encode pte
+  drm/xe: Use vfunc for ggtt pte encoding
+  fixup! drm/xe/display: Implement display support
+
+ drivers/gpu/drm/xe/display/xe_fb_pin.c |  32 +++++--
+ drivers/gpu/drm/xe/tests/xe_migrate.c  |   2 +-
+ drivers/gpu/drm/xe/xe_bo.h             |  11 ++-
+ drivers/gpu/drm/xe/xe_device.c         |   3 +
+ drivers/gpu/drm/xe/xe_device_types.h   |  15 +++
+ drivers/gpu/drm/xe/xe_ggtt.c           |  53 ++++++++---
+ drivers/gpu/drm/xe/xe_ggtt.h           |   1 -
+ drivers/gpu/drm/xe/xe_ggtt_types.h     |   9 ++
+ drivers/gpu/drm/xe/xe_migrate.c        |  34 ++++---
+ drivers/gpu/drm/xe/xe_pat.c            |  68 +++++++++++---
+ drivers/gpu/drm/xe/xe_pat.h            |  11 +++
+ drivers/gpu/drm/xe/xe_pt.c             | 109 ++--------------------
+ drivers/gpu/drm/xe/xe_pt.h             |   6 --
+ drivers/gpu/drm/xe/xe_pt_types.h       |  19 ++++
+ drivers/gpu/drm/xe/xe_vm.c             | 124 ++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_vm_types.h       |   2 +
+ 16 files changed, 337 insertions(+), 162 deletions(-)
+
 -- 
 2.40.1
 
