@@ -4,150 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 713D9CE7A8C
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 15:34:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A628CE7A95
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 15:36:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3483A10E27B;
-	Mon, 25 Sep 2023 15:34:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1021610E27B
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 15:34:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33FE210E280;
+	Mon, 25 Sep 2023 15:36:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8631A10E280
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 15:36:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695656044; x=1727192044;
+ t=1695656174; x=1727192174;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=c70/3XcadDLF+wyTCkQwu7rfleyFGb9QYQZjntvBHb8=;
- b=EmmYehqQEaNOdVjI/MmKYEb+8uQjh4Z8Ex7Ccpj+R9x0ZmrDJY6jridd
- SJWyw75h/Lk6ox+7XalnHm08/02O7CwE5WPr96jXkr9A0RYIrCmhs+Oc6
- hMLnOiRiLqa/z8EveuB9KWANAZzkH3ByX3iGf1llYZkpFgT5A4lQbfq85
- c3iVDJgFOOPSMqjXE3tjPb9/PqpuN+G/H7koFnTS0SlhG0H9h5BOWoONU
- uCDQFyRcZHOaNBvsv4PHFuRQoSL3KI+U+/sy0PofXTMIlLlC6HCgEEwCK
- EZSgt4nwfKYszYRJrjQEl6NAM8MM29babPJ5boM7NvTFWCytm/d0C4zOG g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="361534361"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="361534361"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 08:34:02 -0700
+ bh=3Xag3SU/aTZfgPyhfzO4X9XiVlUZ84NZZwZ0UJhWd80=;
+ b=WV4YR5zxCvyW/kmr3SxTnzK28zIVQfTqzkZ4GMI6AH5WrUygGtuhP8US
+ 0k2aMlXSAaQSpIIDevX7BJxqlaTi6EAB6/0KKRkcVNXhGqHoqpuCEXOZZ
+ FJIoXiawgorzSgmnY0OOIRQFixq2kRQPvYv6z2pCss7LxXQ6bqcladQG0
+ ss+AkPcI2nzg6DrHN0cJgJ3gM/W4PxeJC6nYnuL483ymTP5mbzepdhRGU
+ 9Es/MUNFzJMJQftaRcVxjhGpo7pmC7u014zA1owDBdwR8VJCmrvCIh6X4
+ diX/bucef+7AD18CP2mzL/abIQjReqMIUHohyyw2YW7ZgCPsxbl4Dwozq w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="445389706"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="445389706"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 08:36:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="725023591"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="725023591"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 25 Sep 2023 08:34:02 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="814015988"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="814015988"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Sep 2023 08:36:13 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 25 Sep 2023 08:34:01 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.32; Mon, 25 Sep 2023 08:36:13 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 25 Sep 2023 08:34:01 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ 15.1.2507.32; Mon, 25 Sep 2023 08:36:12 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Mon, 25 Sep 2023 08:34:00 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Mon, 25 Sep 2023 08:36:12 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Mon, 25 Sep 2023 08:34:00 -0700
+ 15.1.2507.32; Mon, 25 Sep 2023 08:36:12 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aNzCIO0aoon8MvaVjHXzgxGrCJ/X732RJQNbeSqIssN6zPoeKg0ul/xS3Yr7Cs4kuTdRzfmdST/N+0axh7Q8j/m6EuZ/COnf4h3qXGF6WmcBZcrR7PWa3/eF5A29GjXwhTWI8b71m90dpBifacOuv6pD69Dyw8sgd2Bep8IMga2TsJF0cpRlkuOz7BTjq+fks7p6JzTp3/T7x+ZKUNrYYXdAsBhuC16Zv3uwYOVB2WG4BzUGkSZZ0Ipg7YcizVBpD4QxN5T1hh3vf4lHDkzEZPCv/7sbf8SqzwxACbniOCV8qHl+mTEETTe/q+QRW29dhLBZizz/bYxeE6y4Wi1q0g==
+ b=E0nmgCbgjb0TJHmHU4j5e2oUjc/Q0qDEmtIIh9m9H42myecjqstmRNq6SHHRgflMvxd52+WG05NjtFUv3dcqU/ie+/t2WiCe79jlHk999VXQZOv9JP9YYCcemB+XLLOh5nLI7FUqYP6F90wvHho4luNEniqKnV0ICETp2FcvLXZKOkU8w+DPGLCLDh3ZrQLPy0Bev2O19H19tKJQMFizyFnkyCy1NJsqYSuZ6CzsvdXA0PyExssT58kjIE0uZqLcYMALGpeEU4YOstcooyyEd1mDsikX93zTuiPW6DcJ+OxV0HKuJYQS0fHVZ5QjuRt34cJhhWPq0YDm2Tdixs0Afw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=JS7TqEr2+fq7DQTFPNwrbtZIRQ9f1oNPLRMaGDzz9AA=;
- b=Ll7BE7Kj9s/pXSXdDi6UQUidXXUMAVvD35Ohl/1FPdNEiHGEkpqHdulUvdVirqw1MqWmVbE/GpoN0x1uqnjzFOpioj6zjL8aVju59gMa8PnTWRibHCPkcjFF0J7CDs9x5n1kW1tUulgcPRtBDlon0eaKbDosxCTi2yi4HX3xupQqgILU2HI0Q6qBtUk2dp1DVyt07j8YUOGFRW9EZTg0CH/KUO9xHMS2Jmp7ofJ14QRENtdUI1Q+cKdrh5pCIRhdwapOPQcrsljdhJWP+Nmcs7o5yec9CHIwIdZm15ujP3QcOB9RZcTacaNbnDvVawBZ1TyZn1JHU1a4Cwxxcvcs4w==
+ bh=pxRUEXg33/Ki3mKS9N8PL/MRrJ2cL8iHs2s9jREdfrA=;
+ b=L34BOn3cl6tOHgaaHG6ECNk+B81n+ijK4zPCGMswuSSWURq5l//jTgLYEg0hmSzcni/qUmVhvWIfn80UfFpgh9M81dJb6Im+86CIA4xx3pOJapW6euIqFxeA0M7i2KwOSw6sSBn3uT7aeRD3aGGXhmqrSM5Y4dt694cTjb3jY8BUDp1f6acg8BphFukiPDDjH5iBuPAuqOAOi/0ybxs0oZShubfx3cYYRrWGf/UtytoxTpL8jX6rr54ZkMarkBF51sfBYDnYEv5JDE3ay0s6rify0tTpPjT0VZDcf4JTN31W3hlbAZgPO+tCnth2grVuyUrtFKz+kXQRhAc3oQiejA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
- by CO1PR11MB5106.namprd11.prod.outlook.com (2603:10b6:303:93::17)
+ by SJ0PR11MB5214.namprd11.prod.outlook.com (2603:10b6:a03:2df::22)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.28; Mon, 25 Sep
- 2023 15:33:59 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 25 Sep
+ 2023 15:36:09 +0000
 Received: from MW4PR11MB7056.namprd11.prod.outlook.com
  ([fe80::82e:c2f3:6b0f:3586]) by MW4PR11MB7056.namprd11.prod.outlook.com
  ([fe80::82e:c2f3:6b0f:3586%4]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
- 15:33:57 +0000
-Message-ID: <cc8160c0-9054-49ea-ad07-944dcccfe561@intel.com>
-Date: Mon, 25 Sep 2023 21:03:47 +0530
+ 15:36:09 +0000
+Message-ID: <49f3218e-d0d4-468e-b9f2-0de244c6f792@intel.com>
+Date: Mon, 25 Sep 2023 21:06:00 +0530
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
 To: <intel-xe@lists.freedesktop.org>
 References: <20230925144359.192835-1-tejas.upadhyay@intel.com>
- <20230925144359.192835-2-tejas.upadhyay@intel.com>
+ <20230925144359.192835-3-tejas.upadhyay@intel.com>
 From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20230925144359.192835-2-tejas.upadhyay@intel.com>
+In-Reply-To: <20230925144359.192835-3-tejas.upadhyay@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0192.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:e8::17) To MW4PR11MB7056.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN2PR01CA0074.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:23::19) To MW4PR11MB7056.namprd11.prod.outlook.com
  (2603:10b6:303:21a::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|CO1PR11MB5106:EE_
-X-MS-Office365-Filtering-Correlation-Id: c37018ad-d1d8-4549-6f84-08dbbddcd552
+X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|SJ0PR11MB5214:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5318dd31-fbaf-47a9-cd42-08dbbddd2418
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dyZBuY7/nB3Nhf3sua3izGfHu76sZN7SO7a5jvg6xxnxwGCm2cHpkKMym4vjwXnTtaZYSrQh+Hu7+7BkthXJlA0nhak7q0eC1IznecFrtcZQXbw5YBgmM3rfFhTBuc0TQ1cS/qRU9WrXXEX5H0VHSK4ziMRz0Jvvbuup1mL0likZlPDjOuK33U0ZL1bADGvTd5INDnMgwVRqE5ZCfGQgMFfBLG7hEPMZgqMMpTfDV4g8O58OMr9XoimIXq4emcjZEBtBYMyERebg4YXYyeTdvvB1P9CeI8r2BaTbkhJr/zubo9l4XFBw9LN/ebT1lge3qF4jHXFy6XNFXmP33iJ2XaZ1iSJNLIQ6mndSeDNdR/L/5AQP+0HMcusCkxqSjF7Q6qMSMxm5LovXX93+OeIum8lhhPRNEMr0MZNWmbphyQmyeziV/ZR1h61bdIIOz+Ukh+SCvoZIwhfJK6wBqjUgR2sHfpx5o/mVWHmRSvxcpyeLgnqvbce6nV7CD2jQUb1XcI0AXC+wIa6kpRkPTdBIiiUUe2Rnphpc7ZFnYsznxIeFsuO1CLfA6/Z18c+VRj4tfu82NcdOSM/igXDFbI95ZRoi0UwutbfDexXHMd/fK0PmYXa4AAuxeGzfL03peqS5FJbnL1Zz0uT77g9G/0s6/g==
+X-Microsoft-Antispam-Message-Info: TaxDEXduzYSTwnKDpLlecBSVI4CnWtyD8nBrIJJBQwmiQmoUnh25QBgihBLqytmoBKDNceNmFYHs6SBrvM0zdBtfzkXXcTCYBSiReVEAfI8+Ns7N/y2JWp5XH0r0Ou/DLCG1kGqrXyHn0+8tnfFY1J8yToPaxGMvGQzgubKxh+FhuQrsFxAkDU8NXN6iQE/WaN55k5yTt2B2KTMItgzfs7RIqm3TeaZhLZXfKHMN7CwZ/gY9WXXyM7bIs6yn1mgdZ7j7VlMF/3oWct2tnTwuWQ9rCZI9U5BmEAAocGzxYnslJ01+l3yjK0ve4l5lRmxK1QLpzwqoVWgQACU38VzK/BT+BF+vc+//YCbtFNDW2Ja1kDMEZxxjuB17Y1U+SKEtJ1V9ogu40mH4dJhpfJscJGlRfKSvQyFvPhpmYsLOyYVKvjV9cCgq4huDlu2MingGHfGAsbeY+bMBuBis2Cw9YQkw5jWyOP7jvcKopS2fiXqhJT+6p39EXgHjyPWdrDz3FirM6Bf/YP4mI5LJ+hyapZmghsqGGQVwl+byqtTcycxx5d7ug5ClUtCDXtjoY4wKUDxLvfSNJFj6TNKrt9YVlA2H8ygw7lhNQvJwMTLDvqNtQbznvl19ADS/QW4yI/dA2XxbTMEB+YXatlq/bp1B3w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(366004)(136003)(346002)(39860400002)(376002)(230922051799003)(186009)(1800799009)(451199024)(6666004)(53546011)(6506007)(6486002)(83380400001)(41300700001)(478600001)(66556008)(5660300002)(8676002)(8936002)(26005)(316002)(66476007)(6916009)(2616005)(66946007)(6512007)(82960400001)(36756003)(86362001)(38100700002)(2906002)(31696002)(31686004)(43740500002)(45980500001);
+ SFS:(13230031)(39850400004)(346002)(136003)(396003)(376002)(366004)(230922051799003)(186009)(1800799009)(451199024)(2616005)(26005)(6486002)(6506007)(6512007)(53546011)(38100700002)(36756003)(82960400001)(31696002)(86362001)(83380400001)(8936002)(8676002)(316002)(41300700001)(6916009)(66476007)(66556008)(66946007)(5660300002)(15650500001)(30864003)(31686004)(2906002)(6666004)(478600001)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VmdkcVJyc01VNUVaQWZmcDVVOWJJL3FEWHdOMWN0U01uUnpQNUJGZEpCMHl0?=
- =?utf-8?B?QkpBamJ6bi9OQ2N6eXRvSUhDcllDNFhwK0tORHBDT040ZFF5Qm5FSlkxRXpz?=
- =?utf-8?B?NWpLMmI1WUxZVC9RV011cGhScW00TGRIZHRTOGlWQTB5eDUwUWhDNGRwY1RL?=
- =?utf-8?B?c1dRUk9lN0p1ZFRULzkwK1Fqa3M3TTBLZHFYZ21ObDd6Z3hzWUVMem9qQXJj?=
- =?utf-8?B?TGsxMEJUZjc3R3J2WG1JK1lZT1FISGgwZFlPY0YwSVZSOWFIaW00UFRNQ2tX?=
- =?utf-8?B?Z2xrWFJaYnF5T1NHRmVJaERLY2FqTFl1Z1lrY3QzS3J0VnZxblZBZElGUUVK?=
- =?utf-8?B?azBOZHJuN0JtOVc0ZFZ0ZzZmRURjZVl0Z0c1ZUhhbmVEc2FpYXh2REthdjBX?=
- =?utf-8?B?N0xzdEVicWlZdER3RUlnSXdvenIwL0JoT0lPMnIrL3VXYVRlVk4yOU9QSlVa?=
- =?utf-8?B?bnY5Q0c4bTJWYld1WmdZNlI4YlJzNlcyU29HQ2RZTEFMemZwL1V5NWx4UENh?=
- =?utf-8?B?MWNQQnBKRExrUUZkbG1CQ0FCRTIyOU53c1JSbXdMcjlVYW44djEwN1lSL092?=
- =?utf-8?B?b3drYjlzYU5ZTmxYV0FOejhKVmtnTm5ZYlFGeXFtVjR3ZnMwU1c2OEwrU3Av?=
- =?utf-8?B?N3psSE9iZ2xUU0ZtemxKWk5yTHNTTkdINHJSMzl6cFlQTHJqOGdNbzZRa2xw?=
- =?utf-8?B?SElNTkdCb0ZoaFdmWUNTMDdPd0JKK3J1RWw3TW9Lamp0UlNNVDBJWmJWT3lW?=
- =?utf-8?B?NXV1QURPaG55MkwwUnorR0RqbUlwdW9TNllCMXRpTFA5b0gwaE9qdEw2REZR?=
- =?utf-8?B?dEd6U0pXWml0NnZiOHJwdjA0ZjMxcWZEMXlHeXJLa2s5bnB6K0s3RHprR3pJ?=
- =?utf-8?B?aEVBV0hGM0sxWlVpQ3lPVUVhQ2hzWTlnb2wvdW04OW5CZjd5dk00R3FzcUdm?=
- =?utf-8?B?TzVLZE9EbGNRclZwdHpWcForTWRmaTByYW1IZlE2OE9oM0VqamhVYzdOQXIy?=
- =?utf-8?B?dStaWTR1WXlyWU9EM3hqYWJRbnJiQUhuM2lGUEFnWnB6anQzTURNQ1NiVjJk?=
- =?utf-8?B?K0tpc1ZUbUtOZ2NPRUdnQ0dKVkROZFpuRStjdks4NVAzamh0SG5VbHlqZSsy?=
- =?utf-8?B?VmQ1OXN5VGpHaDJVY0l5dE83THEwQjdqbmxKaWIxT1FPT0k4bkV3Q1NJRVZl?=
- =?utf-8?B?MXd3RjFhOFpsM3licFFUSm84UFVkMUwwMWpJZzhpRWY5aGtIUitIekFES1cw?=
- =?utf-8?B?djI4ZTRjYmQvd1I4ZHNjaHJoUlE1MnNmVVBid0ZDMFpMQU1HdHc2MXo1aFRF?=
- =?utf-8?B?UWJGMDN3aDZlWlJSUkVEbks1RUZuek1ndUk3dk5hb2hHUTVOK3JRR3ZmTVcz?=
- =?utf-8?B?WmVTSEFVc0NQOXdqL0diQXVRbHlSYXdNTk4zZHZsanlQY3luaGVIenRSNUc2?=
- =?utf-8?B?SlhDRmdKcEdrSml6WUVOZkhuaXBVRlNybTFsNDI3ZG9ZeUcxNlhoZFFQN0ZG?=
- =?utf-8?B?N2V2VEhPTmVsVlpUTU9uK1pRTWdzREwycWd4bHNpZExZL1pjWXdHM3QwL0cw?=
- =?utf-8?B?Y3dLMWV3UFh3Q242KytYZm5IKzNCWllPN3NFWmpGcS80S0tsd1BqTFBvVzQx?=
- =?utf-8?B?K2FPNzMvYUVXOHYvNXJQSGcxa0lpRmIvdWFNTFlNVVA2NnA2VmFFMlBWVnlH?=
- =?utf-8?B?RVdJeE5SYi95QjBiNjlIQVA0TVE1TEFXNGxxMjdna2c3Q1BsTE9EYlAwRlR3?=
- =?utf-8?B?L0Y1T0tiQ0R2U3Jxa2EyaGZhRldaOUQ1VkdlZmFEUHRqdlpwRUl0YXZyZ00z?=
- =?utf-8?B?eGRwVng1SzRuL3MrUXJWYzdWMDZlTUVzU2hPVFdMajdtMUFtZWloNitmdVRs?=
- =?utf-8?B?aG5rMVkxTkdJcUFIZkRXOHhORUVOd1Fsc2pRMzU4ejZoUmd0SXNlVFFaZk5Z?=
- =?utf-8?B?L0g5dUFSZzRYT3Y4d1RZNGNkS1J0eXY2REJXazBGOUlkVGtkT3J5dExJSnBL?=
- =?utf-8?B?eXRpYWMweURKS0RubzBORFNoYWVKZEVKMmEvR1lDQ1NNYjFHWDVaVUQ4b0tJ?=
- =?utf-8?B?ek9DVVYzcG9FRzhLb0RRVmI3K0lCaHlnTWMrR0l5OS80RkFCMURJWUwzMklN?=
- =?utf-8?B?cWlTV3JqS1d0dEZrU1ZTQnppWElibFBSejVZK0x3SXZDZGdMeHRUUVlWQURr?=
- =?utf-8?Q?OoitNp1UNZe+2P1fDOOn+Ig=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c37018ad-d1d8-4549-6f84-08dbbddcd552
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TlVNNWVqQk1FQkVBSGpwcXZIeEdvRnBvZ1U3bC9vQkZJYkxPUzc5eHBTQlVq?=
+ =?utf-8?B?dEFGSEgza1dXUzQ2Si8vdCs1QnBQNlAzckIrTGZwMDNvSUFrTW9mV3YxMkNW?=
+ =?utf-8?B?NCszUEkyOHoxOUozTWdNS1BJNCtxb1NRVlBoUURnZXNNVS9VcDBwSU5VNjVZ?=
+ =?utf-8?B?ajRzTUo4ZDgyTUdMbjlnajlTV2dxOFJpRDJFNDF0dXYvZHdDUWhwdTdSMStN?=
+ =?utf-8?B?MlVYY1ZJN095NWFZaVBHUWNGYzZnanhzL3djY2pCemlNRkFYcnE1eVNRZitr?=
+ =?utf-8?B?Sm5UL3g1bGt6ZVFIOXpqOThrU2dxQXRqZ2VSU1RHcnJab1hqTG9aMTJETlJx?=
+ =?utf-8?B?QlFsUDgzaUZWOGdHdnhQV21ZazlVOFRuVUwwZjZBeE5IcVd1QWRUWjluQTVT?=
+ =?utf-8?B?Y2hRbEFGaUlmS3Y3UkN0TzRSTk15Wm54UTBXdDBFOEZRekg1aHZNRkZKUTBE?=
+ =?utf-8?B?ejFhekJoRTV3Mk1EbXB3eDdRaWx0dFZxY0ZtaWROM0c4cHZJZmdZVDNYQTJv?=
+ =?utf-8?B?MlhqdUJiMTgyNkJrcEJxeE5oQlFKUzVpVlFnaDZDQ0tEeXhlTnNPY3J5V0E2?=
+ =?utf-8?B?VXBBRzUxdTR2ZzRWQ1g3UENzVUpNT2FhRW1UcFJoaFBmMkI1QXlEVVdJNHp3?=
+ =?utf-8?B?MVUweDVZTnYwOEpYckRZYThrbWp2UUxUS0xCQmRWMWgxWnh3U2cvdVAyUDdq?=
+ =?utf-8?B?MVE1cXpLUmtnTmUxREJTUHphelQrQmtLZ1d2a0JZa293a2VXYkdOVkF1QjE1?=
+ =?utf-8?B?VjZ5aWVaWWY1VUx5WUtKTzlZWFNKOXJkTTFnaG94R25DWHhXeldlWjRGK2E5?=
+ =?utf-8?B?bVpqNkVKY0dlZ2lvRGJhNklhclQxM2JnNWtwTjBtYm5YWDNFRjFoNnpLbE5q?=
+ =?utf-8?B?djZjbytRVFZLNkJPbGY4U0F2ckdlNmJrNFJRQTFzZWxIMWpqYUpUWVV6LzV5?=
+ =?utf-8?B?d09ndVpXWlVJWUhuUUpKVHVLMEh2empqUmlaRVkzS0g5VkZaMDFUQjZhMGQv?=
+ =?utf-8?B?OEtjdTdDNHd1TjBMN0pOUGZlaDFwSEh6bVg1dVJZclZyMHNZQ3V0M2dTaUlj?=
+ =?utf-8?B?RkRFQ3prcFdCMEc5R2Nya0lDcXpab2hjY2h0dXZGTDlGV3EzTTBzN2Q5eEI5?=
+ =?utf-8?B?VUxVSUltSW9LOXNveTY0b1VuKzlHcllXQXBjOHlNQjVxaHY2ZjhjbXVYMnJk?=
+ =?utf-8?B?N1FBTTRjQWRRTWN5d0FjV0JFUkdvVVZNTGdOR1ZPSDdVd01DYzU2SVl0TzFX?=
+ =?utf-8?B?SGdLU0ZTVG02VFF0MEg5d0R5SzdYT3hhMFg0RmxjUWdHSFlwakQvejM4QVJr?=
+ =?utf-8?B?dXlTc2xjVWpDOVc0Q0FiMDV1YVpVd3lyQlc5VmFXR090MS8rbXJ4NzRnSDRO?=
+ =?utf-8?B?Z21mNkZmOTVDRWZkWG5YdlYzZUJxYnZISlpaVHZORG5ieHZjb1M0N3FtbTNT?=
+ =?utf-8?B?Yjhnb1hKS0FhTjRsaSswT3BtYnpQcEV3YXdkbVpRSTh2Vko1Q3Z1aXZadkdi?=
+ =?utf-8?B?aVJhSkF0VFczT0dvYmVFbXovU3hyTTI4Yk5tWlAzVDYzK2VkMkFVaXdFZmJK?=
+ =?utf-8?B?YjJQVlhuNUYraXhlSE5adm1sQ0IwRXFoVjgzaTdYV3VyRXJlUzI2a3dCMGFO?=
+ =?utf-8?B?WjEyb0luclpzRzQvMmdBSzJHSjdCckY3VUp2N2FPN0hYcHJMM2ZCM2NXZ2FK?=
+ =?utf-8?B?ZloxYWhFTnZ1N2FDZnFMS1RvUnVIdGJRL1lIVlNOS2lPWUo0ZFNscjZtWUdk?=
+ =?utf-8?B?M1FIRVpMWENhYnFZVi9rMkxDMVk5YXVTQnVqTmZ3WUlrMTd6OGNSS1QrYkJY?=
+ =?utf-8?B?OG1KemVRQjE0S2ppekY3QTBMRytFazUxN3AyNTNXbWNML1FLODU4N1c4eE1v?=
+ =?utf-8?B?TVUrSHNLQyttQnpUaTBwYldSSTRSNWE3V0U4NzRERXZ1UGhoNGE3WUUvRWlE?=
+ =?utf-8?B?K3Y4bjB3anlIODlvS2gyN21PKzh4OTkwM2QyeXliRzgxbnhCTE8xdURWUk0r?=
+ =?utf-8?B?SHg0eTlZbGYxTkVWQjFqR2lDQzQ1UFlEb2xpT1pkL0FYODZMc2lmT005UkpU?=
+ =?utf-8?B?U1hDMjlyM0d4YkxZTVZvRDJZL2ZPMXovMWNxRmVEUHlkcXo1ZEJkYkI5ZjFt?=
+ =?utf-8?B?ZUUwVkFCY0hHM20wbVY4VFhnZkxqRGViZGZFdG8xR1JnZVFqd01JSmZERkFs?=
+ =?utf-8?Q?MUsZSa9Uzw4zH0F7zIlhV10=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5318dd31-fbaf-47a9-cd42-08dbbddd2418
 X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 15:33:57.5847 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 15:36:09.7871 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Zkx2lZkAEIKKkDEU7Zu8JaN2WkYuWtNmsd3Qr6Rei+ukhXikZEZrUdwKpi9ZyutAM6vhgmTc4idYEZn+pQy9mmDLFZ9P2b5jXFeiFV32b60=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5106
+X-MS-Exchange-CrossTenant-UserPrincipalName: +2Ie4t0DIa8b2rS5dqSAzwZj5kdIh4Ug5YvO0k3fIv8jCUzdYBuvSKIYhCtHADFEcPeJGBpQ7RNk3DfU7D02pkf7rf2BNMSw3XSykzlXcBA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5214
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH V3 1/2] drm/xe: Indroduce low level driver
- error counting APIs
+Subject: Re: [Intel-xe] [PATCH V3 2/2] drm/xe: Update counter for low level
+ driver errors
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,169 +164,324 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 On 25-09-2023 20:13, Tejas Upadhyay wrote:
-> Low level driver error that might have power or performance
-> impact on the system, we are adding a new error counter to GT
-> and tile and increment on each occurrance. Lets introduce APIs
-> to define and increment each error type counter.
-fix typo in commit message.
-> V3:
->    - correct #define max value
+> we added a low level driver error counter and incrementing on
+> each occurrance. Focus is on errors that are not functionally
+> affecting the system and might otherwise go unnoticed and cause
+> power/performance regressions, so checking for the error
+> counters should help.
+>
+> Importantly the intention is not to go adding new error checks,
+> but to make sure the existing important error conditions are
+> propagated in terms of counter under respective categories like
+> below :
+> Under GT:
+> driver_gt_guc_communication,
+> driver_gt_other_engine,
+> driver_gt_other
+>
+> Under Tile:
+> driver_ggtt,
+> driver_interrupt
+>
+> TODO: Currently this is just a counting of errors, later these
+> counters will be reported through netlink interface when it is
+> implemented and ready.
+>
 > V2:
->    - Move some code to its related patch - Michal
->    - Renaming if API and enum - Michal
->    - GUC errors are moved per GT - Michal
->    - Some nits - Michal
+>    - Use modified APIs
 >
 > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
 > ---
->   drivers/gpu/drm/xe/xe_device.h       |  2 ++
->   drivers/gpu/drm/xe/xe_device_types.h |  9 +++++++++
->   drivers/gpu/drm/xe/xe_gt.c           | 18 ++++++++++++++++++
->   drivers/gpu/drm/xe/xe_gt.h           |  3 +++
->   drivers/gpu/drm/xe/xe_gt_types.h     | 10 ++++++++++
->   drivers/gpu/drm/xe/xe_tile.c         | 18 ++++++++++++++++++
->   6 files changed, 60 insertions(+)
+>   drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  2 ++
+>   drivers/gpu/drm/xe/xe_guc.c                 |  3 +++
+>   drivers/gpu/drm/xe/xe_guc_ct.c              | 11 ++++++++++-
+>   drivers/gpu/drm/xe/xe_guc_pc.c              |  8 ++++++--
+>   drivers/gpu/drm/xe/xe_guc_submit.c          | 10 ++++++++++
+>   drivers/gpu/drm/xe/xe_irq.c                 |  1 +
+>   drivers/gpu/drm/xe/xe_reg_sr.c              |  4 ++++
+>   7 files changed, 36 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> index c4232de40ae0..b44c91d1cec9 100644
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -159,5 +159,7 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
+> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> index bd6005b9d498..0a9c96316599 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+> @@ -37,6 +37,7 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
+>   		trace_xe_gt_tlb_invalidation_fence_timeout(fence);
+>   		drm_err(&gt_to_xe(gt)->drm, "gt%d: TLB invalidation fence timeout, seqno=%d recv=%d",
+>   			gt->info.id, fence->seqno, gt->tlb_invalidation.seqno_recv);
+
+How about embedding the info related to error category in drm_err too ? 
+This way apart from counters logs can also be reporting the error type.
+
+> +		xe_tile_report_driver_error(gt_to_tile(gt), XE_TILE_DRV_ERR_GGTT);
+>   
+>   		list_del(&fence->link);
+>   		fence->base.error = -ETIME;
+> @@ -331,6 +332,7 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
+>   	if (!ret) {
+>   		drm_err(&xe->drm, "gt%d: TLB invalidation time'd out, seqno=%d, recv=%d\n",
+>   			gt->info.id, seqno, gt->tlb_invalidation.seqno_recv);
+> +		xe_tile_report_driver_error(gt_to_tile(gt), XE_TILE_DRV_ERR_GGTT);
+>   		return -ETIME;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index 84f0b5488783..2f3f3b814455 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -665,6 +665,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+>   timeout:
+>   		drm_err(&xe->drm, "mmio request %#x: no reply %#x\n",
+>   			request[0], reply);
+> +		xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_GUC_COMM);
+>   		return ret;
+>   	}
+>   
+> @@ -699,6 +700,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+>   
+>   		drm_err(&xe->drm, "mmio request %#x: failure %#x/%#x\n",
+>   			request[0], error, hint);
+> +		xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_GUC_COMM);
+>   		return -ENXIO;
+>   	}
+>   
+> @@ -707,6 +709,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+>   proto:
+>   		drm_err(&xe->drm, "mmio request %#x: unexpected reply %#x\n",
+>   			request[0], header);
+> +		xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_GUC_COMM);
+>   		return -EPROTO;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 2046bd269bbd..1dbfea2f39ac 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -734,6 +734,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>   	if (!ret) {
+>   		drm_err(&xe->drm, "Timed out wait for G2H, fence %u, action %04x",
+>   			g2h_fence.seqno, action[0]);
+> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM);
+>   		xa_erase_irq(&ct->fence_lookup, g2h_fence.seqno);
+>   		return -ETIME;
+>   	}
+> @@ -746,6 +747,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>   	if (g2h_fence.fail) {
+>   		drm_err(&xe->drm, "Send failed, action 0x%04x, error %d, hint %d",
+>   			action[0], g2h_fence.error, g2h_fence.hint);
+> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM);
+>   		ret = -EIO;
+>   	}
+>   
+> @@ -842,6 +844,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>   		drm_err(&xe->drm,
+>   			"G2H channel broken on read, origin=%d, reset required\n",
+>   			origin);
+> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM);
+>   		ct->ctbs.g2h.info.broken = true;
+>   
+>   		return -EPROTO;
+> @@ -861,6 +864,7 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>   		drm_err(&xe->drm,
+>   			"G2H channel broken on read, type=%d, reset required\n",
+>   			type);
+> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM);
+>   		ct->ctbs.g2h.info.broken = true;
+>   
+>   		ret = -EOPNOTSUPP;
+> @@ -919,11 +923,13 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>   		break;
+>   	default:
+>   		drm_err(&xe->drm, "unexpected action 0x%04x\n", action);
+> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM);
+>   	}
+>   
+>   	if (ret)
+>   		drm_err(&xe->drm, "action 0x%04x failed processing, ret=%d\n",
+>   			action, ret);
+> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM);
+>   
+>   	return 0;
+>   }
+> @@ -960,6 +966,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+>   		drm_err(&xe->drm,
+>   			"G2H channel broken on read, avail=%d, len=%d, reset required\n",
+>   			avail, len);
+> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM);
+>   		g2h->info.broken = true;
+>   
+>   		return -EPROTO;
+> @@ -1026,9 +1033,11 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>   		drm_warn(&xe->drm, "NOT_POSSIBLE");
+>   	}
+>   
+> -	if (ret)
+> +	if (ret) {
+>   		drm_err(&xe->drm, "action 0x%04x failed processing, ret=%d\n",
+>   			action, ret);
+> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM);
+> +	}
 >   }
 >   
->   u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
-> +void xe_tile_report_driver_error(struct xe_tile *tile,
-> +				 const enum xe_tile_drv_err_type err);
->   
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 32ab0fea04ee..a28e140f9e64 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -57,6 +57,12 @@ struct xe_ggtt;
->   		 const struct xe_tile * : (const struct xe_device *)((tile__)->xe),	\
->   		 struct xe_tile * : (tile__)->xe)
->   
-> +#define XE_TILE_DRV_ERR_MAX	2
-> +enum xe_tile_drv_err_type {
-> +	XE_TILE_DRV_ERR_GGTT,
-> +	XE_TILE_DRV_ERR_INTR
-> +};
-> +
 >   /**
->    * struct xe_mem_region - memory region structure
->    * This is used to describe a memory region in xe
-> @@ -173,6 +179,9 @@ struct xe_tile {
+> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+> index 8a4d299d6cb0..c9501229a0ac 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+> @@ -196,9 +196,11 @@ static int pc_action_query_task_state(struct xe_guc_pc *pc)
 >   
->   	/** @sysfs: sysfs' kobj used by xe_tile_sysfs */
->   	struct kobject *sysfs;
-> +
-> +	/** @drv_err_cnt: driver error counter for this tile */
-> +	u32 drv_err_cnt[XE_TILE_DRV_ERR_MAX];
->   };
+>   	/* Blocking here to ensure the results are ready before reading them */
+>   	ret = xe_guc_ct_send_block(ct, action, ARRAY_SIZE(action));
+> -	if (ret)
+> +	if (ret) {
+>   		drm_err(&pc_to_xe(pc)->drm,
+>   			"GuC PC query task state failed: %pe", ERR_PTR(ret));
+> +		xe_gt_report_driver_error(pc_to_gt(pc), XE_GT_DRV_ERR_GUC_COMM);
+> +	}
 >   
->   /**
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 1aa44d4f9ac1..a1a0eb59ecc5 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -47,6 +47,24 @@
->   #include "xe_wa.h"
->   #include "xe_wopcm.h"
+>   	return ret;
+>   }
+> @@ -218,9 +220,11 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
+>   		return -EAGAIN;
 >   
-> +/**
-> + * xe_gt_report_driver_error - Count driver err for gt
-> + * @gt: GT to count error for
-> + * @err: enum error type
-> + *
-> + * Increment the driver error counter in respective error
-> + * category for this GT.
-> + *
-> + * Returns void.
-> + */
-> +void xe_gt_report_driver_error(struct xe_gt *gt,
-> +			       const enum xe_gt_drv_err_type err)
-
-Actually the api is not reporting the error. xe_gt_update_error_counter 
-will be more logical.
-
-Will leave it up to you to decide.
-
-> +{
-> +	xe_gt_assert(gt, err >= ARRAY_SIZE(gt->drv_err_cnt));
-> +	WRITE_ONCE(gt->drv_err_cnt[err],
-> +		   READ_ONCE(gt->drv_err_cnt[err]) + 1);
-> +}
-> +
->   struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
->   {
->   	struct xe_gt *gt;
-> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-> index caded203a8a0..9442d615042f 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.h
-> +++ b/drivers/gpu/drm/xe/xe_gt.h
-> @@ -67,4 +67,7 @@ static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
->   		hwe->instance == gt->usm.reserved_bcs_instance;
+>   	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
+> -	if (ret)
+> +	if (ret) {
+>   		drm_err(&pc_to_xe(pc)->drm, "GuC PC set param failed: %pe",
+>   			ERR_PTR(ret));
+> +		xe_gt_report_driver_error(pc_to_gt(pc), XE_GT_DRV_ERR_GUC_COMM);
+> +	}
+>   
+>   	return ret;
+>   }
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 19abd2628ad6..ba4494c3981b 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -1497,12 +1497,14 @@ g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
+>   
+>   	if (unlikely(guc_id >= GUC_ID_MAX)) {
+>   		drm_err(&xe->drm, "Invalid guc_id %u", guc_id);
+> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM);
+>   		return NULL;
+>   	}
+>   
+>   	q = xa_load(&guc->submission_state.exec_queue_lookup, guc_id);
+>   	if (unlikely(!q)) {
+>   		drm_err(&xe->drm, "Not engine present for guc_id %u", guc_id);
+> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM);
+>   		return NULL;
+>   	}
+>   
+> @@ -1532,6 +1534,7 @@ int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   
+>   	if (unlikely(len < 2)) {
+>   		drm_err(&xe->drm, "Invalid length %u", len);
+> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM);
+>   		return -EPROTO;
+>   	}
+>   
+> @@ -1543,6 +1546,7 @@ int xe_guc_sched_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   		     !exec_queue_pending_disable(q))) {
+>   		drm_err(&xe->drm, "Unexpected engine state 0x%04x",
+>   			atomic_read(&q->guc->state));
+> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM);
+>   		return -EPROTO;
+>   	}
+>   
+> @@ -1577,6 +1581,7 @@ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   
+>   	if (unlikely(len < 1)) {
+>   		drm_err(&xe->drm, "Invalid length %u", len);
+> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM);
+>   		return -EPROTO;
+>   	}
+>   
+> @@ -1588,6 +1593,7 @@ int xe_guc_deregister_done_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   	    exec_queue_pending_enable(q) || exec_queue_enabled(q)) {
+>   		drm_err(&xe->drm, "Unexpected engine state 0x%04x",
+>   			atomic_read(&q->guc->state));
+> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM);
+>   		return -EPROTO;
+>   	}
+>   
+> @@ -1611,6 +1617,7 @@ int xe_guc_exec_queue_reset_handler(struct xe_guc *guc, u32 *msg, u32 len)
+>   
+>   	if (unlikely(len < 1)) {
+>   		drm_err(&xe->drm, "Invalid length %u", len);
+> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM);
+>   		return -EPROTO;
+>   	}
+>   
+> @@ -1646,6 +1653,7 @@ int xe_guc_exec_queue_memory_cat_error_handler(struct xe_guc *guc, u32 *msg,
+>   
+>   	if (unlikely(len < 1)) {
+>   		drm_err(&xe->drm, "Invalid length %u", len);
+> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM);
+>   		return -EPROTO;
+>   	}
+>   
+> @@ -1672,6 +1680,7 @@ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 le
+>   
+>   	if (unlikely(len != 3)) {
+>   		drm_err(&xe->drm, "Invalid length %u", len);
+> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM);
+>   		return -EPROTO;
+>   	}
+>   
+> @@ -1682,6 +1691,7 @@ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 le
+>   	/* Unexpected failure of a hardware feature, log an actual error */
+>   	drm_err(&xe->drm, "GuC engine reset request failed on %d:%d because 0x%08X",
+>   		guc_class, instance, reason);
+> +	xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_ENGINE);
+>   
+>   	xe_gt_reset_async(guc_to_gt(guc));
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+> index 504cb94d0ee8..654c9f34b162 100644
+> --- a/drivers/gpu/drm/xe/xe_irq.c
+> +++ b/drivers/gpu/drm/xe/xe_irq.c
+> @@ -224,6 +224,7 @@ gt_engine_identity(struct xe_device *xe,
+>   	if (unlikely(!(ident & INTR_DATA_VALID))) {
+>   		drm_err(&xe->drm, "INTR_IDENTITY_REG%u:%u 0x%08x not valid!\n",
+>   			bank, bit, ident);
+> +		xe_tile_report_driver_error(gt_to_tile(mmio), XE_TILE_DRV_ERR_INTR);
+>   		return 0;
+>   	}
+>   
+> diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
+> index 87adefb56024..2b3fe4ff2009 100644
+> --- a/drivers/gpu/drm/xe/xe_reg_sr.c
+> +++ b/drivers/gpu/drm/xe/xe_reg_sr.c
+> @@ -131,6 +131,7 @@ int xe_reg_sr_add(struct xe_reg_sr *sr,
+>   		  str_yes_no(e->reg.masked),
+>   		  str_yes_no(e->reg.mcr),
+>   		  ret);
+> +	xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_OTHERS);
+>   	reg_sr_inc_error(sr);
+>   
+>   	return ret;
+> @@ -208,6 +209,7 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
+>   
+>   err_force_wake:
+>   	xe_gt_err(gt, "Failed to apply, err=%d\n", err);
+> +	xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_OTHERS);
 >   }
 >   
-> +void xe_gt_report_driver_error(struct xe_gt *gt,
-> +			       const enum xe_gt_drv_err_type err);
-> +
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index d4310be3e1e7..4645ea9b7893 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -24,6 +24,13 @@ enum xe_gt_type {
->   	XE_GT_TYPE_MEDIA,
->   };
+>   void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
+> @@ -237,6 +239,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
+>   			xe_gt_err(gt,
+>   				  "hwe %s: maximum register whitelist slots (%d) reached, refusing to add more\n",
+>   				  hwe->name, RING_MAX_NONPRIV_SLOTS);
+> +			xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_ENGINE);
+>   			break;
+>   		}
 >   
-> +#define XE_GT_DRV_ERR_MAX	3
-> +enum xe_gt_drv_err_type {
-> +	XE_GT_DRV_ERR_GUC_COMM,
-> +	XE_GT_DRV_ERR_ENGINE,
-> +	XE_GT_DRV_ERR_OTHERS
-> +};
-> +
->   #define XE_MAX_DSS_FUSE_REGS	3
->   #define XE_MAX_EU_FUSE_REGS	1
+> @@ -260,6 +263,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
 >   
-> @@ -347,6 +354,9 @@ struct xe_gt {
->   		/** @oob: bitmap with active OOB workaroudns */
->   		unsigned long *oob;
->   	} wa_active;
-> +
-> +	/** @drv_err_cnt: driver error counter for this GT */
-> +	u32 drv_err_cnt[XE_GT_DRV_ERR_MAX];
->   };
+>   err_force_wake:
+>   	drm_err(&xe->drm, "Failed to apply, err=%d\n", err);
+> +	xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_OTHERS);
+>   }
 >   
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index 131752a57f65..4090798aff4c 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -71,6 +71,24 @@
->    *  - MOCS and PAT programming
->    */
->   
-> +/**
-> + * xe_tile_report_driver_error - Count driver err for tile
-> + * @tile: Tile to count error for
-> + * @err: enum error type
-> + *
-> + * Increment the driver error counter in respective error
-> + * category for this tile.
-> + *
-> + * Returns void.
-> + */
-> +void xe_tile_report_driver_error(struct xe_tile *tile,
-> +				 const enum xe_tile_drv_err_type err)
-> +{
-> +	xe_assert(tile_to_xe(tile), err >= ARRAY_SIZE(tile->drv_err_cnt));
-> +	WRITE_ONCE(tile->drv_err_cnt[err],
-> +		   READ_ONCE(tile->drv_err_cnt[err]) + 1);
-> +}
-> +
 >   /**
->    * xe_tile_alloc - Perform per-tile memory allocation
->    * @tile: Tile to perform allocations for
