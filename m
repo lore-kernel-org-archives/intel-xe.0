@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3865CE7A81
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 11:49:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D78B3CE7A81
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 11:57:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DB6D10E146;
-	Mon, 25 Sep 2023 11:49:51 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2F76F10E146
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 11:49:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8495F89128;
+	Mon, 25 Sep 2023 11:57:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B26AD89128
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 11:57:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695642589; x=1727178589;
+ t=1695643021; x=1727179021;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=VCN2e5xdiiG7txEAnPBrcuAfaaYBHGqBdD5y+41cyfQ=;
- b=MSvrmdOhN1Ri95yRGQ9OabjViGf/80s0vKhQowEUg0sKq4X3IZZfaMzk
- +WVgRYi/KcnW6c/wxVaQtQ1CxOLSPLjbXb4zuubVLh4TU7gaD8ulBCHuC
- bPAgACPUk1ru0s6FxDvuGyQk0m4dqgPyr2YYwTHF34xrS0UywMX/dqsfx
- /yB2Kl08Cp0kAiqvR/l9MV4kWNHrzSaP8wpgtD3y8yFKs/V/LYc7LmhaW
- AkMGmmUhhT338zmGLc7giOek5rATTBzi9DuDU5Tyla38UinWuymaPmS3K
- cBE9vGfoEDtLsHQq9yixm+7x3AWjom4BPloG7Gw+UR50wsHqG44NfGQ5X Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="445340372"
-X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="445340372"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 04:49:37 -0700
+ bh=iKmcxrBTKRQniQjUYkXRgNdZm/YyFEElXABxPdax5tg=;
+ b=NXjf5zGufix5vrv7770aPJlEywboj3rqhoHDlmLipPdV6MciwPLl2ylH
+ svOoAZZ2GuIUNo4dni3dXAOFBgR+ZvJ4ErnD2WN3v1P5+q7O05ddUem7S
+ hvW8BgEpD6+JRK/VMxfGa2v22P6L7DSZUlQumY/EyVaWDxw56svIP3WpS
+ 6thfV7z+6JI88NVBB6DQ0I5IdvGbYyLNLcGcgUOKo9zvn8q0RW4XrUyDy
+ AJJk7KLFGoSkPILoagKSrqH6Ryy9FCSnn4Q4HXTxW3GJdJxVd8nRsitIn
+ nKN9PevBORpPK1YxKJoFigpFJkIG4AWe96jPkP4u6VXdXP0vhtHN8rDGu g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="385061183"
+X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="385061183"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 04:57:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="863852567"
-X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="863852567"
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="891655869"
+X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="891655869"
 Received: from nurqayrx-mobl2.gar.corp.intel.com (HELO intel.com)
  ([10.213.34.118])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 04:49:30 -0700
-Date: Mon, 25 Sep 2023 13:49:23 +0200
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 04:55:52 -0700
+Date: Mon, 25 Sep 2023 13:56:47 +0200
 From: Andi Shyti <andi.shyti@linux.intel.com>
 To: Badal Nilawar <badal.nilawar@intel.com>
-Message-ID: <ZRFzw4BJNhb0v5mu@ashyti-mobl2.lan>
+Message-ID: <ZRF1f2OsC1pr5hFd@ashyti-mobl2.lan>
 References: <20230925081842.3566834-1-badal.nilawar@intel.com>
- <20230925081842.3566834-5-badal.nilawar@intel.com>
+ <20230925081842.3566834-6-badal.nilawar@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230925081842.3566834-5-badal.nilawar@intel.com>
-Subject: Re: [Intel-xe] [PATCH v6 4/5] drm/xe/hwmon: Expose hwmon energy
- attribute
+In-Reply-To: <20230925081842.3566834-6-badal.nilawar@intel.com>
+Subject: Re: [Intel-xe] [PATCH v6 5/5] drm/xe/hwmon: Expose
+ power1_max_interval
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -68,34 +68,73 @@ Hi Badal,
 
 [...]
 
-> +/*
-> + * xe_hwmon_energy_get - Obtain energy value
-> + *
-> + * The underlying energy hardware register is 32-bits and is subject to
-> + * overflow. How long before overflow? For example, with an example
-> + * scaling bit shift of 14 bits (see register *PACKAGE_POWER_SKU_UNIT) and
-> + * a power draw of 1000 watts, the 32-bit counter will overflow in
-> + * approximately 4.36 minutes.
-> + *
-> + * Examples:
-> + *    1 watt:  (2^32 >> 14) /    1 W / (60 * 60 * 24) secs/day -> 3 days
-> + * 1000 watts: (2^32 >> 14) / 1000 W / 60             secs/min -> 4.36 minutes
-> + *
-> + * The function significantly increases overflow duration (from 4.36
-> + * minutes) by accumulating the energy register into a 'long' as allowed by
-> + * the hwmon API. Using x86_64 128 bit arithmetic (see mul_u64_u32_shr()),
-> + * a 'long' of 63 bits, SF_ENERGY of 1e6 (~20 bits) and
-> + * hwmon->scl_shift_energy of 14 bits we have 57 (63 - 20 + 14) bits before
-> + * energy1_input overflows. This at 1000 W is an overflow duration of 278 years.
-> + */
-> +static void
-> +xe_hwmon_energy_get(struct xe_hwmon *hwmon, long *energy)
+> +static ssize_t
+> +xe_hwmon_power1_max_interval_store(struct device *dev, struct device_attribute *attr,
+> +				   const char *buf, size_t count)
+> +{
+> +	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
+> +	u32 x, y, rxy, x_w = 2; /* 2 bits */
+> +	u64 tau4, r, max_win;
+> +	unsigned long val;
+> +	int ret;
+> +
+> +	ret = kstrtoul(buf, 0, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/*
+> +	 * Max HW supported tau in '1.x * power(2,y)' format, x = 0, y = 0x12
+> +	 * The hwmon->scl_shift_time default of 0xa results in a max tau of 256 seconds
+> +	 */
+> +#define PKG_MAX_WIN_DEFAULT 0x12ull
+> +
+> +	/*
+> +	 * val must be < max in hwmon interface units. The steps below are
+> +	 * explained in xe_hwmon_power1_max_interval_show()
+> +	 */
+> +	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
+> +	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
+> +	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
+> +	tau4 = ((1 << x_w) | x) << y;
+> +	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
+> +
+> +	if (val > max_win)
+> +		return -EINVAL;
+> +
+> +	/* val in hw units */
+> +	val = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_time, SF_TIME);
+> +	/* Convert to 1.x * power(2,y) */
+> +	if (!val) {
+> +		/* Avoid ilog2(0) */
+> +		y = 0;
+> +		x = 0;
+> +	} else {
+> +		y = ilog2(val);
+> +		/* x = (val - (1 << y)) >> (y - 2); */
 
-can we call it rather xe_hwmon_energy_update() as this is not
-sending anything, but just updating the energy values.
+this is some spurious development comment, can you please remove
+it?
 
-Anyway...
+> +		x = (val - (1ul << y)) << x_w >> y;
+> +	}
+> +
+> +	rxy = REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_X, x) | REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_Y, y);
+> +
+> +	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
+> +
+> +	mutex_lock(&hwmon->hwmon_lock);
+> +
+> +	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW, (u32 *)&r,
+> +			     PKG_PWR_LIM_1_TIME, rxy);
+> +
+> +	mutex_unlock(&hwmon->hwmon_lock);
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com> 
+why are we locking here?
 
 Andi
+
+> +
+> +	xe_device_mem_access_put(gt_to_xe(hwmon->gt));
+> +
+> +	return count;
+> +}
