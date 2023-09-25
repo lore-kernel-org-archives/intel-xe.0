@@ -4,48 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 145CFCE7A89
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 08:12:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57D08CE7A89
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 08:13:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C19EF10E1E1;
-	Mon, 25 Sep 2023 08:12:04 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD9DE10E1EA
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 08:12:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1987710E1CF;
+	Mon, 25 Sep 2023 08:13:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62BE010E1E1
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 08:13:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695629520; x=1727165520;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=y3FVVrVBalT1td+i/pTx7P/Z6Mwu2YTm/Dc4+2F3eVw=;
- b=emu0D46KIiGoO6ZwkHKj5ZDLwkn4EZ0KO/ex3PRa3yqMMzP8zUdfAHGB
- ePayVbCv5JNjUxPdCLR5xzwRkuuNbTHA7YhXNe/SZhyLB7wTH/LFtCykg
- FRAocA6OmA6R8Kneb1HO3V8SqcGjwfhV1PktnPQ6xEJ5KI0rgNwRpHnlM
- Vbg4GPVkeRDHhHdTH/dwouMNe5E2F1jKWBIeUFA678qrWCIjZ/XO0lADF
- P0fKfEz/MXxdLfTvmVG7WRADF4VuQmxc7h8v+fUItJTlrE4D07jC9OMwR
- 8qTVvYp6qvHJqbz6XkBIBTNmBk++p4oIYV6f+9dM5CdiJfw1M9PZsnSJF A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="467482534"
-X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="467482534"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 01:11:39 -0700
+ t=1695629604; x=1727165604;
+ h=message-id:date:subject:from:to:cc:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=vXvCz1UBv2g7MdXO8/3cqrYWq1noh/hJI29aEVJJ52w=;
+ b=ZTtTGxVuRB5fvdQ/GBR8B0HsCE/jBD6dEFg0NTg8OyKkL95n4bXB9BJD
+ +peTAm4xYFpStMsQTBVws+oT9Vh8Pxkbhv3COHoGknqmkhMnzEgj3uq2o
+ nuJ9JQWy8UuYPIYUx66kXi9i7mRv1tezd+pkTzaqCio5+Jy7Bk1iQERBU
+ AjHLZphsei4CKJ2HwblK+9PX4ydiFGrqeOFH12XJOWwUL7N56ANymfbx9
+ 2tllBhrEUuGqKrNtfYAfrN2li3SNzB5Q1aExV5z2UIDA1vElAJ1PLMy+o
+ Y3MaRBA/SqWG7wwy1ApuMRyP+93s5lIRWHjkEPtvcZ9+5RVnQB6r+cJmM w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="361449888"
+X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="361449888"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 01:13:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="1079126972"
-X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="1079126972"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 01:11:36 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	linux-hwmon@vger.kernel.org
-Date: Mon, 25 Sep 2023 13:48:42 +0530
-Message-Id: <20230925081842.3566834-6-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230925081842.3566834-1-badal.nilawar@intel.com>
-References: <20230925081842.3566834-1-badal.nilawar@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="724906900"
+X-IronPort-AV: E=Sophos;i="6.03,174,1694761200"; d="scan'208";a="724906900"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Sep 2023 01:13:19 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Mon, 25 Sep 2023 01:13:18 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Mon, 25 Sep 2023 01:13:18 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.105)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Mon, 25 Sep 2023 01:13:18 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=agF41s/IOt/SZ40Yw8nRQmXsiPBOpkY5ej4RngwnTDh+bWYj2CWF/ir6FLPeyqDL4wJcAKUNZW3ERaFVlgE5ZwkibwaXSfyaI+ztRue8TX55vwwTX8eQo5YrmSubXAS9pdJTS3yLbat3N9Kq43Zea8U1Bkh/iX7hbwizr1jUtxmm3rFW5lP8lDXn0KM5ZXx//AVLAwIXS1xVeOx3LRzfjzSCbQmw07uNJDXtvJXGqn0XTfNktjAkJkhwkA44XlrMjJif8Mx/AHDZXQkdpuS0sBN+VcHa2TMUAd7C3ezJY70tT1PnsxUsQUlNBPbMiOjcu8WPfVPpsSyFL89uatAOKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=44umFcHnz1G5JBY0SyfIeU50XdK2aTBIuFbjhZwDhjc=;
+ b=bLLt0rYz386J8/iv4worIdMjiW4J0wbqNMxBVcJUT8a+sdmXj4fHYfpChdBWTYxbB5vlwEVesGP96u3USD+5Y4JbhwXRHhiDsOUEb0PZThWHedUi5IacYq+zQQW2rnbfggApimGq1a7QwYqXL161Mi+8UElVVMTfiHSZu4DGmINLJt1YLSXJwSrtGQksf4lZf1+RuLR88RChMxvl2nCOwSKESOn7NHnGUFDJC2WTGrg1Rzqk2rLe2npe3ypeSoBa2Q4F6NysKXhXlNigZaeK0hVa/xe7+ye6X+iKwKIjtSTa7WHFotxUN/yPdyxk3ljZ8czhS7JDJMbICGlAQGGVXA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM8PR11MB5653.namprd11.prod.outlook.com (2603:10b6:8:25::8) by
+ SJ0PR11MB5054.namprd11.prod.outlook.com (2603:10b6:a03:2d3::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 25 Sep
+ 2023 08:13:17 +0000
+Received: from DM8PR11MB5653.namprd11.prod.outlook.com
+ ([fe80::c5ac:9134:7e53:b45c]) by DM8PR11MB5653.namprd11.prod.outlook.com
+ ([fe80::c5ac:9134:7e53:b45c%7]) with mapi id 15.20.6813.027; Mon, 25 Sep 2023
+ 08:13:17 +0000
+Message-ID: <38cc4b43-788e-9680-c416-8cd02831624c@intel.com>
+Date: Mon, 25 Sep 2023 13:43:07 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+From: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20230901121545.361436-1-sujaritha.sundaresan@intel.com>
+ <20230901121545.361436-2-sujaritha.sundaresan@intel.com>
+ <ZPJK5iahuG41pvcF@intel.com> <42c5b687-7827-9ca3-abc5-66d094e726e6@intel.com>
+ <27a95bc6-59de-42ec-5633-3b82cc09aedd@intel.com> <ZQB20IN6ngi94/Oh@intel.com>
+ <f4e47704-6a12-db83-084d-a529a3988597@intel.com>
+In-Reply-To: <f4e47704-6a12-db83-084d-a529a3988597@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v6 5/5] drm/xe/hwmon: Expose power1_max_interval
+X-ClientProxiedBy: PN3PR01CA0184.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:be::13) To DM8PR11MB5653.namprd11.prod.outlook.com
+ (2603:10b6:8:25::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM8PR11MB5653:EE_|SJ0PR11MB5054:EE_
+X-MS-Office365-Filtering-Correlation-Id: a1ee2857-8c10-4daf-909b-08dbbd9f4558
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SCq6P7OoDI+kkL8tookLXGJH28i5M4uUErcWo5hX1HM2+NmgGwOzdeJdI/P3/h5gmvREk54htp332Y2QoptFHzHwzhvBxEO4lgTKvXPJXY61M9NO73unPMQ4nCyxhbnuSRmKEPsq/kq6OjkKFrEsU43tZVQpCHW7GMlgynYHceVGYfcQSVO0Kl13vHJi8x0jC/zOkCD9+ws5mUv25hT+c4d0qnUyoEcKaJAMJ1mRDto9dZZeoEsdTGqcxb1eTyBGplsdPxn9Cb4jL6H/7VdHPryqK24+zfSF03gKCg6zqkOCnp+omYxni/ok2tjvakJgEypYhI9aHP/asJiqQ89kUKwx/DD5U/73omio6Df00dvyKdrgYNCuwimGorLtm9gW6adv+lHC5LAKtnnZ8aoee5NaF4Uw/z6ehw82ddf53TnmFwDNDtLJBeoEYzjK0WW8Hsc4OAhEIxpAD8maVHaPaayKr3hWP5Hgz8P8AUodozUj2Us+m0jpmzBhRvqSWrKmmQrlG50ORdYGzQk5OtknNqL2ZTlJZsdnAesnyoLAAtg+EhHUVBKKYkRZQckrYbdBp9Vb+TpYFfkYSTzxLXxBotwaCtIfL/L9S6f+GOhGbYcHDGSBELU1930veD9GLY1bP3d0xoWGCyyrxSSYBVqQcQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5653.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(376002)(136003)(346002)(396003)(39860400002)(230922051799003)(1800799009)(451199024)(186009)(41300700001)(2906002)(86362001)(31696002)(36756003)(6666004)(53546011)(6486002)(38100700002)(6506007)(478600001)(6512007)(82960400001)(2616005)(6636002)(37006003)(66556008)(66476007)(316002)(66946007)(26005)(8936002)(8676002)(6862004)(4326008)(5660300002)(31686004)(83380400001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UjNkT24zRWZ1SUowNTNDdko2UEhjSEpuS1Q5WloxazJJR0F2ZTR5YmljNTdo?=
+ =?utf-8?B?dnZaN202NzJKa3pzR0tlbHFxNmhLTGhSV0tQZFdaeG5lMXZCcGtoM1p6YjZL?=
+ =?utf-8?B?dWFWZDNSa0hlV0ptaEtObWhBbDZSM1JSOE1hckJMdVlGQ0x4T2dZcjRIUDVy?=
+ =?utf-8?B?a3ZwNnhUTkdicDlpSHFlZElhOVpvV2RXY1lJNmh0YWRPR3dRdEFFczk0bndr?=
+ =?utf-8?B?Z2NRYk4rTnpmeHBPRTRFeVhKcjFQTm5HVGZxLytLbzJGSmpOR2N4eHBTd2xF?=
+ =?utf-8?B?bERwZTJZYXd2Y2tldEZGQVBOTGk3YjlZVDBOeFZTM29sS3BkVU1heWVjNktz?=
+ =?utf-8?B?V25FaUtSUjc2MXhNWlZ3WjZFcXlkeHByMmNZZXFBOWc5RWlZbzBiWU05ZnBH?=
+ =?utf-8?B?TUEzQkJlU3JaVk04RHVMTkVrZW1hZngzbEpGUWtvV2FKN25iV2JvVU9Fc2I0?=
+ =?utf-8?B?bmJCUjRKdUl3NUNwMnAxOEtadld4TkhLamdXQ1AxZUpENDJadXlhRXl4b3FH?=
+ =?utf-8?B?UVVOMG8xaGYyVXhxSmtGY2FWZXlJY2s5Z2Q4eUJTZ2pELzBicHlPZGFsSTNL?=
+ =?utf-8?B?UUV1SUo2NVhmVzhqTzZFK0tWL0FuNWx1blA2eFFuZTdGWVNpcnM1SXpHZ1JQ?=
+ =?utf-8?B?ck11Nk16UFFKVHRhaW82cXdlUWdJZGkzaUw4V016b29RQkdha3RBcFBsQ3hy?=
+ =?utf-8?B?WFpKYzN1RjNCSTREUDRJZWdEajF2TjBFd3hFT29DUWZBOFB0MFNHYUpTWHZh?=
+ =?utf-8?B?eU5WdXl3ekxieWkvUUdRSUJkWFFPV1hseW94MjJHL2loZmkyNGRDQzVkTzBh?=
+ =?utf-8?B?d3RNUnJmSEtPOFI2a1FEeXZxbld5TDFkNXpNanl6ZjNNYXFQcDRQL0owaEVt?=
+ =?utf-8?B?SE4zakk0S0R2U3pYaTN6WHFoSzlqTHdUNHVGb3FHM2xXb011UjAwNktKS2ZK?=
+ =?utf-8?B?MVhTYVJpcnY2Q21LQnBXVlhnMnF5Y1VWY1lQeGpnN0wrTVV1RGFHS0Q2Nmdj?=
+ =?utf-8?B?Sy9jV056djBoRVlNN1RMZDNNY2kyYTFmRHJqTVYzWEZXdEs1VDAyRTB5WHhV?=
+ =?utf-8?B?Zm11UVpMSGJwa2hkM3AvYktQNkNpRzVDTEtEWTBRMHFOaXpwRHpKcDI4Y1Mw?=
+ =?utf-8?B?bWRzK1c2TVROSzArdG9LU1VZNFYxZ2ZsbkRVQXBnR2IyZXBTRnBWOFdNcW5Y?=
+ =?utf-8?B?dUxtQW5WT1hieFVhY3JKU3B3OTg0Qk1oOTZkUXltVzN0WUZacmJIaUZRUUNm?=
+ =?utf-8?B?K2hVNUhnZDJDUyswVzlGcTRPOERJUEpTUlBsWTJVby9EQmxRSkNBNjF2MkNn?=
+ =?utf-8?B?dncvWFA3UFdFY1JVWGlHTkFoUzU2dkJkdHlGZExnTk16SVRPRDRuYnNSQ3ZP?=
+ =?utf-8?B?ckFTQ3ZDakxvTVM1N1Z5ajY5V1NqTStmTDc4MFZGZWwrN1c3OGpuWm9ldmZr?=
+ =?utf-8?B?Q3Y2MHM4d3Q2eVdzcnV5d2Z5czNZSXNYb256TkczbHdmRytNVXgzNGRTZ1No?=
+ =?utf-8?B?MTdoWHh5MTd1aTRzcmMxTjVmWTV0MzZQcCtOZUswMkNLM01WbVNmajBuT1Bu?=
+ =?utf-8?B?TDF3ek5YenFOd1dDUmNPT1lueFdmSUxzYUQ3K3Ard09WRFhER3Y4eXdpM3Yx?=
+ =?utf-8?B?d2kzeEFEcDJSWGtHSlRNQmdXNDhyUkt4WGluRzY2OUxIeWZCajlmS3htdWdT?=
+ =?utf-8?B?Y1NPSTZ3dGFwbDdENUpPYVlBZW1xWjAvNFRCaFFITS9Xb0tLOEMrZFhPdGM0?=
+ =?utf-8?B?WlgvV01vZVVkYU82eno4WTFSY00rMXpZYjI2U2RJOFlGbVdVaEhjT3MwM3RG?=
+ =?utf-8?B?VFJTcXVTd1I4bzVCZ1JjeE9kMlF1RVpGcjA2dnNIVFpHSmtybUtpbmh5Q3dO?=
+ =?utf-8?B?Mk9uQkVVOFJKMUliVFBhcEgwWURQOXJpRFh2aWJ6eVZOTmU2SUpnK0RKRnlV?=
+ =?utf-8?B?WGRpYmJwVFFpNDBRdmc0L2MxRi91ZDM5THJHYU85UkxCa0xRZVRkZkFJTGVu?=
+ =?utf-8?B?UU54K2U2dThnSjJ2WW9xS3M3ejVXMUJrSkgzZGNGSEtud1g5dG5ZZXo4WHBo?=
+ =?utf-8?B?RVpUMjBYaGYrMDBPNnFtbzBSRFhpSkFzbW9BdzZoSXBGNmVOUFlxYVlkNlZP?=
+ =?utf-8?B?cHhqemxBMmZxMjNQSm1hOFhlWUhTK0RxYVQ3bVhwRHdpV1lpSDVWNFNFVXBw?=
+ =?utf-8?Q?07nletEX8tpx05278K0ux3g=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: a1ee2857-8c10-4daf-909b-08dbbd9f4558
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5653.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 08:13:16.7850 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c/tWo1aYa7Iq6D9WKHO5TcwOwwR4dARFhCwFo6VOrD/2Dil2a/V0ABPDdW5iZoIng38xXsIkGVahtJc1Ng54VBzvcj/xrT61riwr/Ze2BrI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB5054
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 1/3] drm/xe: Add a couple of pcode helpers
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,251 +158,143 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux@roeck-us.net, rodrigo.vivi@intel.com
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose power1_max_interval, that is the tau corresponding to PL1, as a
-custom hwmon attribute. Some bit manipulation is needed because of the
-format of PKG_PWR_LIM_1_TIME in
-PACKAGE_RAPL_LIMIT register (1.x * power(2,y))
 
-v2: Get rpm wake ref while accessing power1_max_interval
-v3: %s/hwmon/xe_hwmon/
+On 9/13/2023 9:33 AM, Sundaresan, Sujaritha wrote:
+>
+> On 9/12/2023 8:03 PM, Rodrigo Vivi wrote:
+>> On Tue, Sep 12, 2023 at 10:38:50AM +0530, Sundaresan, Sujaritha wrote:
+>>> On 9/3/2023 7:00 PM, Sundaresan, Sujaritha wrote:
+>>>> On 9/2/2023 2:04 AM, Rodrigo Vivi wrote:
+>>>>> On Fri, Sep 01, 2023 at 05:45:43PM +0530, Sujaritha Sundaresan wrote:
+>>>>>> Some pcode commands take additional sub-commands and parameters. 
+>>>>>> Add a
+>>>>>> couple of helpers to help formatting these commands to improve code
+>>>>>> readability.
+>>>>>>
+>>>>>> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+>>>>>> ---
+>>>>>>    drivers/gpu/drm/xe/xe_pcode.c | 28 ++++++++++++++++++++++++++++
+>>>>>>    drivers/gpu/drm/xe/xe_pcode.h |  3 +++
+>>>>>>    2 files changed, 31 insertions(+)
+>>>>>>
+>>>>>> diff --git a/drivers/gpu/drm/xe/xe_pcode.c
+>>>>>> b/drivers/gpu/drm/xe/xe_pcode.c
+>>>>>> index 7f1bf2297f51..e45169f47500 100644
+>>>>>> --- a/drivers/gpu/drm/xe/xe_pcode.c
+>>>>>> +++ b/drivers/gpu/drm/xe/xe_pcode.c
+>>>>>> @@ -104,6 +104,34 @@ int xe_pcode_read(struct xe_gt *gt, u32
+>>>>>> mbox, u32 *val, u32 *val1)
+>>>>>>        return err;
+>>>>>>    }
+>>>>> a doc would be required...
+>>>>>
+>>>>>> +int xe_pcode_read_p(struct xe_gt *gt, u32 mbcmd, u32 p1, u32
+>>>>>> p2, u32 *val)
+>>>>> a better name would be nice....
+>>>>>
+>>>>>> +{
+>>>>>> +    u32 mbox;
+>>>>>> +    int err;
+>>>>>> +
+>>>>>> +    mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, mbcmd)
+>>>>>> +        | REG_FIELD_PREP(PCODE_MB_PARAM1, p1)
+>>>>>> +        | REG_FIELD_PREP(PCODE_MB_PARAM2, p2);
+>>>>>> +
+>>>>>> +    err = xe_pcode_read(gt, mbox, val, NULL);
+>>>>> but why not simply modifying the existent one to accept 2 params?
+>>>>>
+>>>>> int xe_pcode_read(struct xe_gt *gt, u32 mbox_param1, u32 mbox_param2,
+>>>>>                 u32 *val, u32 *val1)
+>>>>>
+>>>>> and the equivalent write...
+>>>>>
+>>>>> oh, and while doing that, could you please add the missing 
+>>>>> documentation
+>>>>> to these 2 functions?
+>>>>>
+>>>>> Thanks,
+>>>>> Rodrigo.
+>>>> Sure that would work. Will add the docs as well.
+>>>>
+>>>> Thanks,
+>>>>
+>>>> Suja
+>>> Hi Rodrigo,
+>>>
+>>> Another question,
+>>>
+>>> I can change the existing pcode_read function, but would it be 
+>>> better to
+>>> have a separate new write equivalent ?
+>> I wonder if we should do s/xe_pcode_write_timeout(/xe_pcode_write(
+>>
+>> where timeout is still an argument but it can be null.
+>> And then we merge with your options here and make a single write fn.
+>
+> I'll see if this works out.
+>
+> Thanks,
+>
+> Suja
+>
+Hi Rodrigo,
 
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
----
- .../ABI/testing/sysfs-driver-intel-xe-hwmon   |  11 ++
- drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |   8 +
- drivers/gpu/drm/xe/xe_hwmon.c                 | 138 +++++++++++++++++-
- 3 files changed, 156 insertions(+), 1 deletion(-)
+As I am making the final fixes, looks like it would be better to have 
+separate new read/write functions.
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-index 1a7a6c23e141..9ceb9c04b52b 100644
---- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-@@ -59,3 +59,14 @@ Contact:	intel-xe@lists.freedesktop.org
- Description:	RO. Energy input of device in microjoules.
- 
- 		Only supported for particular Intel xe graphics platforms.
-+
-+What:		/sys/devices/.../hwmon/hwmon<i>/power1_max_interval
-+Date:		September 2023
-+KernelVersion:	6.5
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:	RW. Sustained power limit interval (Tau in PL1/Tau) in
-+		milliseconds over which sustained power is averaged.
-+
-+		Only supported for particular Intel xe graphics platforms.
-+
-+
-diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-index d8ecbe1858d1..519dd1067a19 100644
---- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-@@ -22,15 +22,23 @@
- #define   PKG_TDP				GENMASK_ULL(14, 0)
- #define   PKG_MIN_PWR				GENMASK_ULL(30, 16)
- #define   PKG_MAX_PWR				GENMASK_ULL(46, 32)
-+#define   PKG_MAX_WIN				GENMASK_ULL(54, 48)
-+#define     PKG_MAX_WIN_X			GENMASK_ULL(54, 53)
-+#define     PKG_MAX_WIN_Y			GENMASK_ULL(52, 48)
-+
- 
- #define PCU_CR_PACKAGE_POWER_SKU_UNIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5938)
- #define   PKG_PWR_UNIT				REG_GENMASK(3, 0)
- #define   PKG_ENERGY_UNIT			REG_GENMASK(12, 8)
-+#define   PKG_TIME_UNIT				REG_GENMASK(19, 16)
- 
- #define PCU_CR_PACKAGE_ENERGY_STATUS		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x593c)
- 
- #define PCU_CR_PACKAGE_RAPL_LIMIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
- #define   PKG_PWR_LIM_1				REG_GENMASK(14, 0)
- #define   PKG_PWR_LIM_1_EN			REG_BIT(15)
-+#define   PKG_PWR_LIM_1_TIME			REG_GENMASK(23, 17)
-+#define   PKG_PWR_LIM_1_TIME_X			REG_GENMASK(23, 22)
-+#define   PKG_PWR_LIM_1_TIME_Y			REG_GENMASK(21, 17)
- 
- #endif /* _XE_MCHBAR_REGS_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 1deb5007e1e2..5bd5e5e9958b 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -38,6 +38,7 @@ enum xe_hwmon_reg_operation {
- #define SF_CURR		1000		/* milliamperes */
- #define SF_VOLTAGE	1000		/* millivolts */
- #define SF_ENERGY	1000000		/* microjoules */
-+#define SF_TIME		1000		/* milliseconds */
- 
- struct xe_hwmon_energy_info {
- 	u32 reg_val_prev;
-@@ -50,6 +51,7 @@ struct xe_hwmon {
- 	struct mutex hwmon_lock; /* rmw operations*/
- 	int scl_shift_power;
- 	int scl_shift_energy;
-+	int scl_shift_time;
- 	struct xe_hwmon_energy_info ei;	/*  Energy info for energy1_input */
- };
- 
-@@ -256,6 +258,138 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, long *energy)
- 	xe_device_mem_access_put(gt_to_xe(hwmon->gt));
- }
- 
-+static ssize_t
-+xe_hwmon_power1_max_interval_show(struct device *dev, struct device_attribute *attr,
-+				  char *buf)
-+{
-+	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
-+	u32 r, x, y, x_w = 2; /* 2 bits */
-+	u64 tau4, out;
-+
-+	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
-+
-+	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT,
-+			     REG_READ, &r, 0, 0);
-+
-+	xe_device_mem_access_put(gt_to_xe(hwmon->gt));
-+
-+	x = REG_FIELD_GET(PKG_PWR_LIM_1_TIME_X, r);
-+	y = REG_FIELD_GET(PKG_PWR_LIM_1_TIME_Y, r);
-+	/*
-+	 * tau = 1.x * power(2,y), x = bits(23:22), y = bits(21:17)
-+	 *     = (4 | x) << (y - 2)
-+	 * where (y - 2) ensures a 1.x fixed point representation of 1.x
-+	 * However because y can be < 2, we compute
-+	 *     tau4 = (4 | x) << y
-+	 * but add 2 when doing the final right shift to account for units
-+	 */
-+	tau4 = ((1 << x_w) | x) << y;
-+	/* val in hwmon interface units (millisec) */
-+	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
-+
-+	return sysfs_emit(buf, "%llu\n", out);
-+}
-+
-+static ssize_t
-+xe_hwmon_power1_max_interval_store(struct device *dev, struct device_attribute *attr,
-+				   const char *buf, size_t count)
-+{
-+	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
-+	u32 x, y, rxy, x_w = 2; /* 2 bits */
-+	u64 tau4, r, max_win;
-+	unsigned long val;
-+	int ret;
-+
-+	ret = kstrtoul(buf, 0, &val);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Max HW supported tau in '1.x * power(2,y)' format, x = 0, y = 0x12
-+	 * The hwmon->scl_shift_time default of 0xa results in a max tau of 256 seconds
-+	 */
-+#define PKG_MAX_WIN_DEFAULT 0x12ull
-+
-+	/*
-+	 * val must be < max in hwmon interface units. The steps below are
-+	 * explained in xe_hwmon_power1_max_interval_show()
-+	 */
-+	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
-+	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
-+	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
-+	tau4 = ((1 << x_w) | x) << y;
-+	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
-+
-+	if (val > max_win)
-+		return -EINVAL;
-+
-+	/* val in hw units */
-+	val = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_time, SF_TIME);
-+	/* Convert to 1.x * power(2,y) */
-+	if (!val) {
-+		/* Avoid ilog2(0) */
-+		y = 0;
-+		x = 0;
-+	} else {
-+		y = ilog2(val);
-+		/* x = (val - (1 << y)) >> (y - 2); */
-+		x = (val - (1ul << y)) << x_w >> y;
-+	}
-+
-+	rxy = REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_X, x) | REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_Y, y);
-+
-+	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
-+
-+	mutex_lock(&hwmon->hwmon_lock);
-+
-+	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW, (u32 *)&r,
-+			     PKG_PWR_LIM_1_TIME, rxy);
-+
-+	mutex_unlock(&hwmon->hwmon_lock);
-+
-+	xe_device_mem_access_put(gt_to_xe(hwmon->gt));
-+
-+	return count;
-+}
-+
-+static SENSOR_DEVICE_ATTR(power1_max_interval, 0664,
-+			  xe_hwmon_power1_max_interval_show,
-+			  xe_hwmon_power1_max_interval_store, 0);
-+
-+static struct attribute *hwmon_attributes[] = {
-+	&sensor_dev_attr_power1_max_interval.dev_attr.attr,
-+	NULL
-+};
-+
-+static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
-+					   struct attribute *attr, int index)
-+{
-+	struct device *dev = kobj_to_dev(kobj);
-+	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
-+	u32 reg_val;
-+	int ret = 0;
-+
-+	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
-+
-+	if (attr == &sensor_dev_attr_power1_max_interval.dev_attr.attr)
-+		ret =  xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT,
-+					    REG_READ, &reg_val, 0, 0) ? 0 : attr->mode;
-+
-+	xe_device_mem_access_put(gt_to_xe(hwmon->gt));
-+
-+	return ret;
-+}
-+
-+static const struct attribute_group hwmon_attrgroup = {
-+	.attrs = hwmon_attributes,
-+	.is_visible = xe_hwmon_attributes_visible,
-+};
-+
-+static const struct attribute_group *hwmon_groups[] = {
-+	&hwmon_attrgroup,
-+	NULL
-+};
-+
- static const struct hwmon_channel_info *hwmon_info[] = {
- 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
- 	HWMON_CHANNEL_INFO(curr, HWMON_C_CRIT),
-@@ -574,6 +708,7 @@ xe_hwmon_get_preregistration_info(struct xe_device *xe)
- 	if (!ret) {
- 		hwmon->scl_shift_power = REG_FIELD_GET(PKG_PWR_UNIT, val_sku_unit);
- 		hwmon->scl_shift_energy = REG_FIELD_GET(PKG_ENERGY_UNIT, val_sku_unit);
-+		hwmon->scl_shift_time = REG_FIELD_GET(PKG_TIME_UNIT, val_sku_unit);
- 	}
- 
- 	/*
-@@ -611,7 +746,8 @@ void xe_hwmon_register(struct xe_device *xe)
- 	/*  hwmon_dev points to device hwmon<i> */
- 	hwmon->hwmon_dev = devm_hwmon_device_register_with_info(dev, "xe", hwmon,
- 								&hwmon_chip_info,
--								NULL);
-+								hwmon_groups);
-+
- 	if (IS_ERR(hwmon->hwmon_dev)) {
- 		drm_warn(&xe->drm, "Failed to register xe hwmon (%pe)\n", hwmon->hwmon_dev);
- 		xe->hwmon = NULL;
--- 
-2.25.1
+With changing the existing read/write functions, we are having to change 
+the pcode_mailbox_rw function.
 
+That is causing issues with other existing functions. Shall I keep the 
+new functions defined separately ?
+
+Thanks,
+
+Suja
+
+>>
+>>>>>> +
+>>>>>> +    return err;
+>>>>>> +}
+>>>>>> +
+>>>>>> +int xe_pcode_write_p(struct xe_gt *gt, u32 mbcmd, u32 p1, u32
+>>>>>> p2, u32 val)
+>>>>>> +{
+>>>>>> +    u32 mbox;
+>>>>>> +    int err;
+>>>>>> +
+>>>>>> +    mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, mbcmd)
+>>>>>> +        | REG_FIELD_PREP(PCODE_MB_PARAM1, p1)
+>>>>>> +        | REG_FIELD_PREP(PCODE_MB_PARAM2, p2);
+>>>>>> +
+>>>>>> +    err = xe_pcode_write(gt, mbox, val);
+>>>>>> +
+>>>>>> +    return err;
+>>>>>> +}
+>>>>>> +
+>>>>>>    static int xe_pcode_try_request(struct xe_gt *gt, u32 mbox,
+>>>>>>                    u32 request, u32 reply_mask, u32 reply,
+>>>>>>                    u32 *status, bool atomic, int timeout_us)
+>>>>>> diff --git a/drivers/gpu/drm/xe/xe_pcode.h
+>>>>>> b/drivers/gpu/drm/xe/xe_pcode.h
+>>>>>> index 3b4aa8c1a3ba..8d4103afd7e0 100644
+>>>>>> --- a/drivers/gpu/drm/xe/xe_pcode.h
+>>>>>> +++ b/drivers/gpu/drm/xe/xe_pcode.h
+>>>>>> @@ -19,6 +19,9 @@ int xe_pcode_write_timeout(struct xe_gt *gt,
+>>>>>> u32 mbox, u32 val,
+>>>>>>    #define xe_pcode_write(gt, mbox, val) \
+>>>>>>        xe_pcode_write_timeout(gt, mbox, val, 1)
+>>>>>>    +int xe_pcode_read_p(struct xe_gt *gt, u32 mbcmd, u32 p1, u32
+>>>>>> p2, u32 *val);
+>>>>>> +int xe_pcode_write_p(struct xe_gt *gt, u32 mbcmd, u32 p1, u32
+>>>>>> p2, u32 val);
+>>>>>> +
+>>>>>>    int xe_pcode_request(struct xe_gt *gt, u32 mbox, u32 request,
+>>>>>>                 u32 reply_mask, u32 reply, int timeout_ms);
+>>>>>>    --
+>>>>>> 2.25.1
+>>>>>>
