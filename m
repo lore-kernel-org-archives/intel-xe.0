@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 971B5CE79A4
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 22:11:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CE30CE79A5
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 22:11:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6053910E335;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AB6610E338;
 	Mon, 25 Sep 2023 22:11:31 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D600210E335
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D8E810E335
  for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 22:11:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1695679889; x=1727215889;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=YTlyI9DM9bbXAyZBhFYJjUbsS/kOYvIb/dvpAfuPW6I=;
- b=Yn3hKWmAamRBVyLlq3qriSOYOky8YQkDNYUbypG02GtZCBujJQrCc7t+
- WrYvNg7BUBuXhxM1x7XuxbRZDQlTsxRoDWzDTKRJbJXeXKsYLLnxjRq44
- piXAZO56RBERnbrGftq73scGsxbzEf9ocZ4GV4MOvbZ4XLgxyyBn/uUxK
- pEVTBmM902Lf947UIaWJowh0uR58TJnfyqtXPJFlIxVTtxi44exijCvdQ
- zUwonnj7eg96jvULY5rAxFEB/N2Fd9sC16rj5U8OPwnE46EADUJupurFm
- zcOpGDSkf9hXnGwVVQTkmzDWQ2TyDRA572Z0vjanC8gWi2/+RAEqruXGb w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="412333007"
-X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="412333007"
+ bh=hOPD/1lnIDk/RcuDIv5I0Zd/eAk0oWOI6+9CmE+SKKo=;
+ b=Z9sj9CjtS3vyryUgA5IiydKADwYUWhYZwE4YxIML0pJy5VJP/HC48Koc
+ uuO8yiJK9aM2ZGcZN8Ije+8UB0Wf01DBh4weT9hFm2t4fkSqTP7LVkfV6
+ cnyQOtNlNbvlL8n+p2VLRHkjhyDurqVA0s8NwYgAv/6waZpTVJZ5fHOt6
+ EvBw/vv8BT492ZHy+8rQiW/QXuBvZRvODO2iazCUZRELjWUjGUQlOKTBw
+ iim+0YxOL4NFVJEToi42JSVjHqO+0aoFyvv7guSFrd8R7ViixptDS136d
+ JBKI7Hal45W5lnZaGR8JjBNxhkUO8bK3/+PMe3eLWhRJwfIOXNZ6l+fxb A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="412333000"
+X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="412333000"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2023 15:11:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="742087761"
-X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="742087761"
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="742087746"
+X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="742087746"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Sep 2023 15:11:12 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 25 Sep 2023 15:10:46 -0700
-Message-Id: <20230925221049.2681491-7-lucas.demarchi@intel.com>
+Date: Mon, 25 Sep 2023 15:10:41 -0700
+Message-Id: <20230925221049.2681491-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230925221049.2681491-1-lucas.demarchi@intel.com>
 References: <20230925221049.2681491-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 6/9] drm/xe/pat: Keep track of relevant indexes
+Subject: [Intel-xe] [PATCH 1/9] drm/xe: Normalize pte/pde encoding
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,77 +61,192 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some of the PAT entries are relevant for own driver use, which varies
-per platform. Let the PAT early initialization set what they should
-point to so the rest of the driver can use them where needed.
+Split functions that do only part of the pde/pte encoding and that can
+be called by the different places. This normalizes how pde/pte are
+encoded so they can be moved elsewhere in a subsequent change.
+
+xe_pte_encode() was calling __pte_encode() with a NULL vma, which is the
+opposite of what xe_pt_stage_bind_entry() does. Stop passing a NULL vma
+and just split another function that deals with a vma rather than a bo.
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h | 2 ++
- drivers/gpu/drm/xe/xe_pat.c          | 9 +++++++++
- drivers/gpu/drm/xe/xe_pt_types.h     | 1 +
- 3 files changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_pt.c | 119 +++++++++++++++++++++----------------
+ 1 file changed, 67 insertions(+), 52 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 98835ee058f5..7d0f2109c23a 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -15,6 +15,7 @@
- #include "xe_devcoredump_types.h"
- #include "xe_gt_types.h"
- #include "xe_platform_types.h"
-+#include "xe_pt_types.h"
- #include "xe_pmu.h"
- #include "xe_step_types.h"
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index aec469842471..afadd399684c 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -47,91 +47,106 @@ static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
+ 	return container_of(pt_dir->dir.entries[index], struct xe_pt, base);
+ }
  
-@@ -342,6 +343,7 @@ struct xe_device {
- 		const u32 *table;
- 		/** Number of PAT entries */
- 		int n_entries;
-+		u32 idx[__XE_CACHE_LEVEL_COUNT];
- 	} pat;
+-/**
+- * xe_pde_encode() - Encode a page-table directory entry pointing to
+- * another page-table.
+- * @bo: The page-table bo of the page-table to point to.
+- * @bo_offset: Offset in the page-table bo to point to.
+- * @level: The cache level indicating the caching of @bo.
+- *
+- * TODO: Rename.
+- *
+- * Return: An encoded page directory entry. No errors.
+- */
+-u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
+-		  const enum xe_cache_level level)
++static u64 pde_encode_cache(enum xe_cache_level cache)
+ {
+-	u64 pde;
+-
+-	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
+-	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
+-
+ 	/* FIXME: I don't think the PPAT handling is correct for MTL */
  
- 	/** @d3cold: Encapsulate d3cold related stuff */
-diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 86386633e206..966b63252735 100644
---- a/drivers/gpu/drm/xe/xe_pat.c
-+++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -108,14 +108,23 @@ void xe_pat_init_early(struct xe_device *xe)
- 		xe->pat.ops = &mtl_pat_ops;
- 		xe->pat.table = mtl_pat_table;
- 		xe->pat.n_entries = ARRAY_SIZE(mtl_pat_table);
-+		xe->pat.idx[XE_CACHE_NONE] = 2;
-+		xe->pat.idx[XE_CACHE_WT] = 1;
-+		xe->pat.idx[XE_CACHE_WB] = 3;
- 	} else if (xe->info.platform == XE_PVC || xe->info.platform == XE_DG2) {
- 		xe->pat.ops = &pvc_pat_ops;
- 		xe->pat.table = pvc_pat_table;
- 		xe->pat.n_entries = ARRAY_SIZE(pvc_pat_table);
-+		xe->pat.idx[XE_CACHE_NONE] = 0;
-+		xe->pat.idx[XE_CACHE_WT] = 2;
-+		xe->pat.idx[XE_CACHE_WB] = 3;
- 	} else if (GRAPHICS_VERx100(xe) <= 1210) {
- 		xe->pat.ops = &tgl_pat_ops;
- 		xe->pat.table = tgl_pat_table;
- 		xe->pat.n_entries = ARRAY_SIZE(tgl_pat_table);
-+		xe->pat.idx[XE_CACHE_NONE] = 3;
-+		xe->pat.idx[XE_CACHE_WT] = 2;
-+		xe->pat.idx[XE_CACHE_WB] = 0;
- 	} else {
+-	if (level != XE_CACHE_NONE)
+-		pde |= PPAT_CACHED_PDE;
+-	else
+-		pde |= PPAT_UNCACHED;
++	if (cache != XE_CACHE_NONE)
++		return PPAT_CACHED_PDE;
+ 
+-	return pde;
++	return PPAT_UNCACHED;
+ }
+ 
+-static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
+-			struct xe_vma *vma, u32 pt_level)
++static u64 pte_encode_cache(enum xe_cache_level cache)
+ {
+-	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
+-
+-	if (unlikely(vma && xe_vma_read_only(vma)))
+-		pte &= ~XE_PAGE_RW;
+-
+-	if (unlikely(vma && xe_vma_is_null(vma)))
+-		pte |= XE_PTE_NULL;
+-
+ 	/* FIXME: I don't think the PPAT handling is correct for MTL */
+-
+ 	switch (cache) {
+ 	case XE_CACHE_NONE:
+-		pte |= PPAT_UNCACHED;
+-		break;
++		return PPAT_UNCACHED;
+ 	case XE_CACHE_WT:
+-		pte |= PPAT_DISPLAY_ELLC;
+-		break;
++		return PPAT_DISPLAY_ELLC;
+ 	default:
+-		pte |= PPAT_CACHED;
+-		break;
++		return PPAT_CACHED;
+ 	}
++}
++
++static u64 pte_encode_ps(u32 pt_level)
++{
++	/* XXX: Does hw support 1 GiB pages? */
++	XE_WARN_ON(pt_level > 2);
+ 
+ 	if (pt_level == 1)
+-		pte |= XE_PDE_PS_2M;
++		return XE_PDE_PS_2M;
+ 	else if (pt_level == 2)
+-		pte |= XE_PDPE_PS_1G;
++		return XE_PDPE_PS_1G;
+ 
+-	/* XXX: Does hw support 1 GiB pages? */
+-	XE_WARN_ON(pt_level > 2);
++	return 0;
++}
+ 
+-	return pte;
++/**
++ * xe_pde_encode() - Encode a page-table directory entry pointing to
++ * another page-table.
++ * @bo: The page-table bo of the page-table to point to.
++ * @bo_offset: Offset in the page-table bo to point to.
++ * @cache: The cache level indicating the caching of @bo.
++ *
++ * TODO: Rename.
++ *
++ * Return: An encoded page directory entry. No errors.
++ */
++u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
++		  const enum xe_cache_level cache)
++{
++	u64 pde;
++
++	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
++	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
++	pde |= pde_encode_cache(cache);
++
++	return pde;
+ }
+ 
+ /**
+  * xe_pte_encode() - Encode a page-table entry pointing to memory.
+  * @bo: The BO representing the memory to point to.
+- * @offset: The offset into @bo.
++ * @bo_offset: The offset into @bo.
+  * @cache: The cache level indicating
+  * @pt_level: The page-table level of the page-table into which the entry
+  * is to be inserted.
+  *
+  * Return: An encoded page-table entry. No errors.
+  */
+-u64 xe_pte_encode(struct xe_bo *bo, u64 offset, enum xe_cache_level cache,
++u64 xe_pte_encode(struct xe_bo *bo, u64 bo_offset, enum xe_cache_level cache,
+ 		  u32 pt_level)
+ {
+ 	u64 pte;
+ 
+-	pte = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
++	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
++	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
++	pte |= pte_encode_cache(cache);
++	pte |= pte_encode_ps(pt_level);
++
+ 	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
+ 		pte |= XE_PPGTT_PTE_DM;
+ 
+-	return __pte_encode(pte, cache, NULL, pt_level);
++	return pte;
++}
++
++/* Like xe_pte_encode(), but with a vma and a partially-encoded pte */
++static u64 __vma_pte_encode(u64 pte, struct xe_vma *vma,
++			    enum xe_cache_level cache, u32 pt_level)
++{
++	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
++	pte |= pte_encode_cache(cache);
++	pte |= pte_encode_ps(pt_level);
++
++	if (unlikely(vma && xe_vma_read_only(vma)))
++		pte &= ~XE_PAGE_RW;
++
++	if (unlikely(vma && xe_vma_is_null(vma)))
++		pte |= XE_PTE_NULL;
++
++	return pte;
+ }
+ 
+ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
+@@ -614,9 +629,9 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 
+ 		XE_WARN_ON(xe_walk->va_curs_start != addr);
+ 
+-		pte = __pte_encode(is_null ? 0 :
+-				   xe_res_dma(curs) + xe_walk->dma_offset,
+-				   xe_walk->cache, xe_walk->vma, level);
++		pte = __vma_pte_encode(is_null ? 0 :
++				       xe_res_dma(curs) + xe_walk->dma_offset,
++				       xe_walk->vma, xe_walk->cache, level);
+ 		pte |= xe_walk->default_pte;
+ 
  		/*
- 		 * Going forward we expect to need new PAT settings for most
-diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-index 64e3921a0f46..bf5000499251 100644
---- a/drivers/gpu/drm/xe/xe_pt_types.h
-+++ b/drivers/gpu/drm/xe/xe_pt_types.h
-@@ -17,6 +17,7 @@ enum xe_cache_level {
- 	XE_CACHE_NONE,
- 	XE_CACHE_WT,
- 	XE_CACHE_WB,
-+	__XE_CACHE_LEVEL_COUNT,
- };
- 
- #define XE_VM_MAX_LEVEL 4
 -- 
 2.40.1
 
