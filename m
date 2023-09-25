@@ -4,137 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BCDACE79A4
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 21:56:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 249D8CE79A4
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 22:08:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DB8910E332;
-	Mon, 25 Sep 2023 21:56:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E415D10E334;
+	Mon, 25 Sep 2023 22:08:04 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79F6710E332
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 21:56:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B595E10E334
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 22:08:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695679003; x=1727215003;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=2+YDmCcKzQ8W9NlikDBI/6wO72FM8cfaLaH63EQTCME=;
- b=D3YNd23SIiVyRlGVjO2aeQqI7inHJuuEP6Y4GRVJx7k0KWF42YChR078
- FZq1G2Rc1EQjSrOC0n1lJBnxSBcIkokpZvg7G1JJFRnYc7/+xTlubiouu
- L+KK5zl8b8zGhap6MFu7YYI9kG3/LtbMQrO42bVXy0bD2+dadJ2o7sFoy
- aM5dkeKqHTwCqPUkEMsGN7xhIfP5JaCj1jXdh0DK7Qn6yBjZ/GbYJmcEz
- 1wkwBdHSKinWroBRhOoMNdKOSg4SAtnj4ng4oyWFvkKn13iH3upnILSK4
- 6CsqGsgGr+7wIvtpY2+5zMMa6WHcIOAcUyRmkC+7pyyOuhWH1lPk+UOt8 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="412327250"
-X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="412327250"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ t=1695679683; x=1727215683;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=GnWp2U1rSZ79lP/Nvz6FBYCbj8MxAwhkDcXBhAlaZbY=;
+ b=eAoSaPV0k0FhclaHrYz1OJ1iNF3ZXWjCDiSjm8xMwOuT2qMZYwTwsMq6
+ wZmCRWioUdFT5ITbvJISllG20iV+SVj1F+Up5NIzMdKNgpqXSvDoB8DXU
+ R9AEL5C5n0/32kYWYuuUo4GyTkb7Re8OcxWHpTucALQ8XY1PhCCB6Gr7w
+ yE6eVGg/gCtSkxk7TNWxoUJ2smzlUsL3XNkM5oMdQ9IRi9R3frZSFrP3R
+ BwOA+KRZsMbdRDPZQM/f3rHV1oqmsrY5XQX8R59Ez2VMAXgWO6FzwRxHp
+ xwo1OCLQFr5dsOtuVGoXkam3MIe+jt8gvm2WiCcY3mnmWgTd38TSXMpk5 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="412331732"
+X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="412331732"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 14:56:29 -0700
+ 25 Sep 2023 15:08:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="814181987"
-X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="814181987"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 25 Sep 2023 14:56:29 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="742087118"
+X-IronPort-AV: E=Sophos;i="6.03,176,1694761200"; d="scan'208";a="742087118"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 25 Sep 2023 15:08:02 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 25 Sep 2023 14:56:28 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.32; Mon, 25 Sep 2023 15:08:01 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Mon, 25 Sep 2023 14:56:28 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.47) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Mon, 25 Sep 2023 15:08:01 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Mon, 25 Sep 2023 14:56:27 -0700
+ 15.1.2507.32; Mon, 25 Sep 2023 15:08:01 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OISLP397ofRTENAz7qfxNRr9npFi6sVqI2a945Jy7tw7cEotXckCxAjv2i8xRtOlNoHCOjIsZh0yt4I3v+0O3sE0HGxRoKflqplCBn9JyrvakoqyjbkYUpNSCdfA0cdoqafRuldemubtn9mVeSNXp7SvlBABujETzDVtLNWrQcKRjIFI2qzlzAbAIqEBpn/OHoQZflRX+IDaadQmHBwGxO0RKDP+Q6yfsql452AcCyhZ73r4MakYAcOZ/g3I3o5MQHGH4+NND6UGBqjYfey75xpU9U8HMz1trBqtYv9wlbzqXpPo84z4oUh+k1ODqhK1ZhSACp2NVEy1+tff1nwQQg==
+ b=VqzoD0iu3S3MyGTiQJW3IxiXFAxmf3TbWNFybjqv7ioxYMEOeUGBphYyHUzfdmqFgwjt0Hyz5SiVpOut6pye3pFQ79p1FjWKbRzVEWhmIs4sct3zc+298/fiGR6wTDqQjCj1lckRCWRp4CZARXhIYVGbbHyMglWCvq1oHEA3AbwGXfLvCvmHMc6ASpQo5V07xjMmJWwxkU2WCmqJrXwo6ghBY7bv1wJVYiw2YyOslCY8KdbE3ce9rriEqLLd4azrLXZ7nhtwH8OjEsbKHbt1HRAen3Z1npOQEzgoidh5K1Rs3o+8jcyjyveQNUaY2K7BNeRkokFi+be4KRZ8ojoxyQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AGuxw3lmdDWMBVE11gE1V6HpjeejiL8kyuWCuGFQD9k=;
- b=ZIx6rwx4mwwxe22jOF0JQFm+m0hCAFcp6kBl0zUHAPJFT8i+s7UUFSLGgvbLM9y9HnRiPDLpMsWZWr89h89ZFmrDAL0ZYXgHe9hPz5dbfTxpPa+ckdz00T6PoDlnyukpf2KinpmFRDNq7eONs5c1dyNXMTGmbBGFHQOwOVk9FmkDRx3XsIrwSYJQY0+qT76O0Shng4dz5lii4jWgz2EDCGH0BZrblVzCk8JjZeKObcQ6f/mhywU7R353vEEtGRZYRhonoJVEArSzwtRAFRnJnEerB/ZgxF02ae6jXaPkfWPKdUwM3L3kDRhYIfaLshG3ebMi/C1/CLSji0QqlsoI7g==
+ bh=HJ3VlVnD0hYVhPk45zkCN6UW/YrJdj5czCP+xr5uJGs=;
+ b=HAHCCyOflBFRiEmsCd4p3iwAiThzBOB/hATBt1iqvGTdzNQfqxhA5gTfOCtdeidNhDcQMaCD3NauPSxSwYLgWKpqtL46Bqin8ZVJgRrTmehALswfTykeWyWTKX5ngJ4vQCXgVmwZRP7mg/40su4HiI/4p/7/G+IYk9LySQcxEol3Eahwpyr5IeISXogfBCanMJfB4fG7CS7nZu4MCl0FqhIU6ayiz+aHc6T2AcpunZnJErB35V7OqtrY6CFa8Vi2pvR2EMWcI7IXrVBgaIyS0WXyVyUCci/uKtc8DN9NOARTKDc+sqwE/Hg9HVcfDHFecKc9bf2eKPeSu+1kp5oDNg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
+Received: from SA1PR11MB6991.namprd11.prod.outlook.com (2603:10b6:806:2b8::21)
+ by SN7PR11MB6656.namprd11.prod.outlook.com (2603:10b6:806:26e::16)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27; Mon, 25 Sep
+ 2023 22:07:58 +0000
+Received: from SA1PR11MB6991.namprd11.prod.outlook.com
+ ([fe80::18a2:59e7:4541:b61c]) by SA1PR11MB6991.namprd11.prod.outlook.com
+ ([fe80::18a2:59e7:4541:b61c%3]) with mapi id 15.20.6792.026; Mon, 25 Sep 2023
+ 22:07:58 +0000
+From: "Zeng, Oak" <oak.zeng@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Thread-Topic: [Intel-xe] [PATCH DONTMERGE] drm/xe: uapi review submission
+Thread-Index: AQHZ5qLTBMZB+MS6UUqYCSSHSH1HrLAZfgVAgBKnC4CAAAH6IA==
+Date: Mon, 25 Sep 2023 22:07:58 +0000
+Message-ID: <SA1PR11MB6991C46A049D8DA32312D2EB92FCA@SA1PR11MB6991.namprd11.prod.outlook.com>
+References: <20230630100059.122881-1-thomas.hellstrom@linux.intel.com>
+ <76c3d534-453a-7fd3-6fc8-cf30e9c8d464@intel.com>
+ <SA1PR11MB6991CD7989DA6687290762F292F7A@SA1PR11MB6991.namprd11.prod.outlook.com>
+ <ZRH+vx282lENgSpM@intel.com>
+In-Reply-To: <ZRH+vx282lENgSpM@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CY8PR11MB7012.namprd11.prod.outlook.com (2603:10b6:930:54::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Mon, 25 Sep
- 2023 21:56:24 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593%7]) with mapi id 15.20.6813.017; Mon, 25 Sep 2023
- 21:56:24 +0000
-Date: Mon, 25 Sep 2023 17:56:19 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <ZRICA0f+00c6GGzY@intel.com>
-References: <20230914153112.455547-8-matthew.auld@intel.com>
- <20230914153112.455547-14-matthew.auld@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230914153112.455547-14-matthew.auld@intel.com>
-X-ClientProxiedBy: SJ0P220CA0003.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:a03:41b::34) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CY8PR11MB7012:EE_
-X-MS-Office365-Filtering-Correlation-Id: 76f9facc-711b-4c86-4953-08dbbe124299
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: r4HCnUAeGvBrZu+QaZaGQ+h4RwHsk5mb8WsjeWEvjAGPunUZvcdts1zS7a/CODNpMqzeHOmdtepZI8mIrGPQSdRfNguC5WPRmCTI1sLfuGPibEc3jsZ2Fz45/HP3VGp7ksPdygjanM8vkDxQD5/cuMcjTSYU/sg0PrEK9hPKzmdP9WQiBsMiW/Uaei7gZGxJB1nwhfN+Z3FgXrhAqlJo3dRIyhIG8dh6jUDAnRyvorv9og08YgSnmGub0wAQjqFJzSXeMJv9Nflka0e5KtXoSyY/+gxznUPHUce0hzn6sTb6PnBoEPhVvcL/A72RzMoKZTgbPAXVDGJosVQhAf5IgwfxM72V62N12o1ifRWL+y3OJM/tg7pxy+foO+2yxAwWs0mzhMJzaaA9VmGi2TK+1nZA9S3wK6QVNqTsCT8wPwlJJy+2ZHrCWUP4lTFmGg2ZZg+A8oFzEMDZ9q3+DkHNrALxbdYOTkFcTxYHEr7hEaiiajZJZCkJwgEvIA/cWk+WN8xibq8ycDPMyitBIEVqPAmiUSebC2i93yXK14owpuSGgd3YZQuGoDniylFkyjAOFr2JcUgO0nDpW9Oyq2ygruXhMt1R/NKZrQzXYp8D98TaaAgbtomO1ojSL9mGDEW5
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(346002)(366004)(39860400002)(136003)(376002)(230922051799003)(186009)(1800799009)(451199024)(30864003)(2906002)(5660300002)(66476007)(44832011)(66946007)(54906003)(66556008)(478600001)(6666004)(6512007)(2616005)(107886003)(6486002)(26005)(6506007)(66574015)(8676002)(8936002)(4326008)(316002)(6636002)(6862004)(37006003)(41300700001)(83380400001)(82960400001)(36756003)(86362001)(38100700002)(21314003)(67856001);
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA1PR11MB6991:EE_|SN7PR11MB6656:EE_
+x-ms-office365-filtering-correlation-id: d735aff9-8f29-4a2a-ecf2-08dbbe13e0a1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: Y+PV4q0/kG+MLeG05Pn5Q90Ns1neKLBerU9RNz2iJEkD0JtSnFPlrqos4FKzpkQLpDBCZH6meADzGPAMPtp1Uh5SZDAax5bba1pTUMDupNWSZ7jSunX8FDM7glS1YKf8t3F+eOAzsZm9bgf/mRlgIHThSsrtebFpcY9OKhUUzIZhSy0C5JOqr2WUGJKKAwX6bpLcAyIkSXKPelyqn/XFH0+3OuTIwiG11EtKgkdLyjpfHPb16sjLx0YrkuoHEjqLX+8+3epYHLrYtsrfePAOjiUXKLX2ODG10JBaTPzj6efoG0ZcqSzufdv1Op8kQbmo8HAem9ILS37unr5J4QDhqheyQ7QX5CZVnym9DqCVUnYooKUm8cpG+Q9xzZ/uEIBlXFSRKuZj+hCoDXqc9G5eXcDH0MQTY/cBhldw9j76YOlPDedcwp9VT+srvHZwmhMMonrRCQ1yXjLobpILkKUTlLn5ljlvHB965ta52C8TnZ6a25MpsyJGbJyBwSJeuNiyjHYdhIsLbg8K7seKU7kdo5AhDWdIpEK0IdVRH64fduOQ9dY6q4/ujKrGc4Y+SMhMiufHJF4rXcViTEMIJvyaNZHYJMziJTuHdQ9rngATxuQ2m5sK8DLa1ftEde1vodcMSZ6bXbIEgI/To3z83CKVaA==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SA1PR11MB6991.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(396003)(136003)(376002)(366004)(346002)(230922051799003)(1800799009)(186009)(451199024)(26005)(316002)(6862004)(6636002)(8936002)(8676002)(54906003)(64756008)(66556008)(76116006)(4326008)(66946007)(66446008)(66476007)(9686003)(5660300002)(52536014)(55016003)(41300700001)(71200400001)(966005)(86362001)(30864003)(2906002)(82960400001)(38100700002)(38070700005)(122000001)(478600001)(83380400001)(66574015)(7696005)(6506007)(33656002)(53546011)(559001)(579004);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?5fkiyrN8zGOAL+g7vBPpXpfiKb07ohWkisglpHovmq1VVdnvr6wF2EeKl/?=
- =?iso-8859-1?Q?sjWRzwtN51XZdak15+3f9uqnE8uQ2e7aKYnJtuemVynntOQu6lJIw2mzBz?=
- =?iso-8859-1?Q?V9KAB63C8hMOdo0ufLjr5nuJP/l/stRm1P7sXs0IKF0Pj1pf+3r2s7Ml4m?=
- =?iso-8859-1?Q?88VP9OtLNrELV8YnhWlae6w+rwI4iYF7jTgKz61/KiHK7B1+zjDiKDiiHk?=
- =?iso-8859-1?Q?DL4wOijW1x6y6MMvD8zN0XVuE5MgvjfhAT0hoEdn3ou06DbWo90Fi6qenU?=
- =?iso-8859-1?Q?wA/PSBp6PKJo2tnV/uj/0YragHB0rx48DXXNyQ4AK9l/2s3/a0Uzh4cGDD?=
- =?iso-8859-1?Q?juqOo+2SVl8HLXuRMfshDp45RsHqSVxNk917Y9qP4Dqwk83aZ0+RvAzsI3?=
- =?iso-8859-1?Q?qd/zDkIdr9Yah0FYUcFpAzAlxTgeSKQhwJP0A4Lq/lIS2pO52/Llvq1r0w?=
- =?iso-8859-1?Q?xOZRbrUShAJmBHKrqqd2Yqr6vz5/q7g8dxiwV4TNxHNRpxVwWkWodFBGXM?=
- =?iso-8859-1?Q?XO9fgG/tk4imfD62AsiAzucE95J6aJKyTzB4eYrwAAwpqTefPz/t4gdd4t?=
- =?iso-8859-1?Q?HzW4IJGmTlAgYyDX8qtFDtBYziCvsUuNOgK0zON4663DTQSRMzIksY7lLc?=
- =?iso-8859-1?Q?5c0cEZh7sObvsYlm3nJOgw5nB4Ul7jT598Td8tkiUKYcfAs93FUKR4GhBy?=
- =?iso-8859-1?Q?zHjXKifLqSina6Aqpiql5LBo0yv6R5euZ9WMZvzca5zR5bDH8zxWFNl2fN?=
- =?iso-8859-1?Q?7U7ZhG/xfi5jyHuShGIJ7cywRocJ6QnftT8uNF2w7+B9TftFLA1mW148d8?=
- =?iso-8859-1?Q?ZfHtN7KHeD1S7qgcDHhHHmdxsoAHmOmbj6irlV4ZMuO9zSE7tUXLhHxzFC?=
- =?iso-8859-1?Q?WZ/8Dop0Qhu4eD94KXXWM34P0Gudsvd3UR2nQL109G0Zs1cvHQQWmHpEwB?=
- =?iso-8859-1?Q?kxwhKsxYa3JfpU5+ArZhFcFfxdRy9gJZ+5LBUE3UF5lOHQpTYTX4PbT9AH?=
- =?iso-8859-1?Q?s+7o8QqzHIeHG/w9SjAGxlAKjvf7DSFu7PzfdX5Q7GRC2CB3UQRIWna5n8?=
- =?iso-8859-1?Q?W/xTMvy29wT6SNONyxXVQUT5XUz2KDDKCl9rLri5TfmDcRO7nemqUd+Kyc?=
- =?iso-8859-1?Q?6t3ZU9pNajEtq8sFv/d9TAYK9X94IU8RDAPeLuc8OrlNoNkOeNye5OBfZ0?=
- =?iso-8859-1?Q?sBnRxKxrCCebHCAuQvMzKgt5yR2uzfciyqxWTxuT5E4tP7lrCU8S2Uji2I?=
- =?iso-8859-1?Q?dhxsU/TYKAlPtPtkMl1fxh/uuobc56qhGA3Oipvk7ZXuZzULs02o1REAE1?=
- =?iso-8859-1?Q?cx0Zsr9g4wKoC03N3xisczAdAOxlsnaoFNz1A9jOmTdExZfgVjAuDCLxfe?=
- =?iso-8859-1?Q?3/R5W+KmNP7qdtsSRh+JbVZaVXf25VS2dMyFg5vYJZ4Z8tL5poJjgzItJg?=
- =?iso-8859-1?Q?u2dsKyXyLL7rSQ3/CKOYf0v2+rpoj4kaBtRb10v3EKlRgBRTGQu2edJByL?=
- =?iso-8859-1?Q?iJWfRiOn1SDfoeDcpfbBgmVDmAhXeS1GUvxCj9dOMxbzUGvodZmH8Wjn/5?=
- =?iso-8859-1?Q?XY+t4C/kVn31uDYSoQvbud3QC423RlI8wGBN53uz9sCtEHFGNZSmPyKNdU?=
- =?iso-8859-1?Q?IZbiAHV1L+Yzchgzo/4rAEyKo4K43joK8D3XyR+Pc1K3skCA0cwp2PdA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 76f9facc-711b-4c86-4953-08dbbe124299
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?wBKVKLYWl30MLTPA283bQ1u+U8k7syQnoY7FWWjmteGh3wR83iKAGWso/a?=
+ =?iso-8859-1?Q?JWSCjZ5edqfLa+kA3ixfr2SfebBTRym5M3KJgaILwT/YCNsCq/kVMQCGMo?=
+ =?iso-8859-1?Q?VnNQlFJDL//QHyEZ4JrTZHsSy0MaV2KTi4pTGlF6dJZeMH/sviO+bbisrk?=
+ =?iso-8859-1?Q?3uo5MNp9JSg0Y6kJzS4T0r12deObo7dGshJn5ldZ2DGoJDDCwOq/jzVUnP?=
+ =?iso-8859-1?Q?hpD0sSH0E1rXq7GkmnKrP1fZr+v5wx/FVtvPjPKPFfWZ/cl6spHJaFkXGx?=
+ =?iso-8859-1?Q?yGpsoDrgmOCYuR/THz8717Nl5rlXSw1qNasrKPqk1uBVlNz9qE4cYNG1hZ?=
+ =?iso-8859-1?Q?XNBVVnp8IQjhY8lixVth4M1jF8o0ZApneY4ANQWHkel+EEhRcGbZqvf890?=
+ =?iso-8859-1?Q?t1lunB3uIc4ggKEA8jGvZJ1Y1jZdsn+FdEdgzO0EsFulKk1vnXkAPnS1pc?=
+ =?iso-8859-1?Q?MrxEb79QwUgmtMXY8HQQgBdKzDmxaFLwNfvzSnOA5Z9C8yUvAaZRFJrDaF?=
+ =?iso-8859-1?Q?U/kmCnDzdZ/KiFKuaYpAXQf78OtCr9fkLDWueeRpJ+qJMcC8rw61+5Yuxw?=
+ =?iso-8859-1?Q?AWAhoHoSWlGj4eZLQxyYKJsKQxif+8I+mROvLqgonhGQO3OlgoZHDpdar7?=
+ =?iso-8859-1?Q?vZ9I+FXEDl7WBIoI0Rw6UTfyUmbD/Z781sgIlVV5T8u7ovew2V1CYgOTeF?=
+ =?iso-8859-1?Q?Ts0B9JOL10qVbXK3XuG9DJnzJepsYsYijpLoZsp8A0PdltBJZ4kKZjgw2u?=
+ =?iso-8859-1?Q?ilm5liGIRdC8aKX753o6J0tVFBhr7zmaDnoA0jEEwsa+6MXTBZugpf7G5f?=
+ =?iso-8859-1?Q?Qlos3mKMno4qgwoDg6NUW8R8mtTvGZXiCfOt17P4T0Ltw81vk9/oJO28uu?=
+ =?iso-8859-1?Q?kjrcMVrOu113pGN3ehBCGhpY+DEUbzaTV06wziiESnb8j4VJJ6eu5GKIjv?=
+ =?iso-8859-1?Q?gHZgCtuvr+MUm/77sUsuYqz9gAxVfGNf2VHp1jEg9WiJeLVWeHbasSXCsH?=
+ =?iso-8859-1?Q?s3sDLQWct7e/6ca4zdPAjUFq6Fm9TuuDGLABYTCSbK4O1RPoWPbpOesFlg?=
+ =?iso-8859-1?Q?ccQoTFaiVVpsYkrX7o/6SffqkEjaRdYew7pZfy09MCVU3LYFo7X5Wyb5G1?=
+ =?iso-8859-1?Q?F/Jfxj53fFF44eB2j3PK2b/Jr8S/ziTcvziRpIUHchIRsHd9cKRrrUQDAH?=
+ =?iso-8859-1?Q?7RUVs30fdgEm66CBAXfNSldnhiSZqA09C1bo66DqB+dQKQlR13U/uncHRr?=
+ =?iso-8859-1?Q?+YV9n766Wo7E8QH9NY9hkMY8s7r30GgBL2eb1+dQsX66ZakhH2Anh6X6HE?=
+ =?iso-8859-1?Q?1zogRKw024BA+P2BW5eP0GmtGGfYeWFyy6xckWY+ZRFvoT4BBSUlc3iPJr?=
+ =?iso-8859-1?Q?S7IuwwuU3w13qGa3gvLYzgJ6qFPIwfG+SF7Zyhx8Vi1jbbvZAra5YHA666?=
+ =?iso-8859-1?Q?YUAmqKSqLTA3hlaUhhF4e/MGTpYXGaUqbsW1Iddrm23QZLPFZCsmi/1Cct?=
+ =?iso-8859-1?Q?G+malS0rbxiLJ8WZC7yx7pE8KPaCVX5WyuzwGl5XLuLV1MvKtcVTXa/Gg7?=
+ =?iso-8859-1?Q?kuum+yYudCGneuDLQEAtQjZkJofII7FvSRD/OtXaQb0LFwQV/+yadLbbLF?=
+ =?iso-8859-1?Q?6Allj9NLpnI9o=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2023 21:56:24.6823 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Iv5PogkJFBeNIGZt4XUZo0t+raMs2Piammxm12dCslGE9QhbCcpc/x9Yuc0M6S1720pXfwwu3LXK54EdJLgN6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7012
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB6991.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d735aff9-8f29-4a2a-ecf2-08dbbe13e0a1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2023 22:07:58.5201 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: H+OSH51KvaqJBVD0PIW4b4yqBqPH+cAVjwF64+p7O/c6nV/pd6c6uIv6WvhcVwqrqQgVYQl8AjXkD1ic/4lQBw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6656
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 6/6] drm/xe/uapi: support pat_index
- selection with vm_bind
+Subject: Re: [Intel-xe] [PATCH DONTMERGE] drm/xe: uapi review submission
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,610 +148,1272 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Filip Hazubski <filip.hazubski@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>, Carl
- Zhang <carl.zhang@intel.com>, Effie Yu <effie.yu@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Arteaga
+ Molina, Jaime A" <jaime.a.arteaga.molina@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Sep 14, 2023 at 04:31:19PM +0100, Matthew Auld wrote:
-> Allow userspace to directly control the pat_index for a given vm
-> binding. This should allow directly controlling the coherency, caching
-> and potentially other stuff in the future for the ppGTT binding.
-> 
-> The exact meaning behind the pat_index is very platform specific (see
-> BSpec or PRMs) but effectively maps to some predefined memory
-> attributes. From the KMD pov we only care about the coherency that is
-> provided by the pat_index, which falls into either NONE, 1WAY or 2WAY.
-> The vm_bind coherency mode for the given pat_index needs to be at least
-> as coherent as the coh_mode that was set at object creation. For
-> platforms that lack the explicit coherency mode, we treat UC/WT/WC as
-> NONE and WB as AT_LEAST_1WAY.
-> 
-> For userptr mappings we lack a corresponding gem object, so the expected
-> coherency mode is instead implicit and must fall into either 1WAY or
-> 2WAY. Trying to use NONE will be rejected by the kernel. For imported
-> dma-buf (from a different device) the coherency mode is also implicit
-> and must also be either 1WAY or 2WAY i.e AT_LEAST_1WAY.
-> 
-> As part of adding pat_index support with vm_bind we also need stop using
-> xe_cache_level and instead use the pat_index in various places. We still
-> make use of xe_cache_level, but only as a convenience for kernel
-> internal objectsi (internally it maps to some reasonable pat_index). For
-> now this is just a 1:1 conversion of the existing code, however for
-> platforms like MTL+ we might need to give more control through bo_create
-> or stop using WB on the CPU side if we need CPU access.
-> 
-> v2:
->   - Undefined coh_mode(pat_index) can now be treated as programmer error. (Matt Roper)
->   - We now allow gem_create.coh_mode <= coh_mode(pat_index), rather than
->     having to match exactly. This ensures imported dma-buf can always
->     just use 1way (or even 2way), now that we also bundle 1way/2way into
->     at_least_1way. We still require 1way/2way for external dma-buf, but
->     the policy can now be the same for self-import, if desired.
->   - Use u16 for pat_index in uapi. u32 is massive overkill. (José)
->   - Move as much of the pat_index validation as we can into
->     vm_bind_ioctl_check_args. (José)
-> 
-> Bspec: 45101, 44235 #xe
-> Bspec: 70552, 71582, 59400 #xe2
-> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> Cc: Pallavi Mishra <pallavi.mishra@intel.com>
-> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Cc: José Roberto de Souza <jose.souza@intel.com>
-> Cc: Filip Hazubski <filip.hazubski@intel.com>
-> Cc: Carl Zhang <carl.zhang@intel.com>
-> Cc: Effie Yu <effie.yu@intel.com>
-> ---
->  drivers/gpu/drm/xe/tests/xe_migrate.c |  2 +-
->  drivers/gpu/drm/xe/xe_ggtt.c          |  7 ++-
->  drivers/gpu/drm/xe/xe_ggtt_types.h    |  2 +-
->  drivers/gpu/drm/xe/xe_migrate.c       | 13 +++--
->  drivers/gpu/drm/xe/xe_pt.c            | 22 ++++-----
->  drivers/gpu/drm/xe/xe_pt.h            |  4 +-
->  drivers/gpu/drm/xe/xe_vm.c            | 69 +++++++++++++++++++++------
->  drivers/gpu/drm/xe/xe_vm_types.h      | 10 +++-
->  include/uapi/drm/xe_drm.h             | 43 ++++++++++++++++-
->  9 files changed, 128 insertions(+), 44 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> index 6b4388bfbb31..d3bf4751a2d7 100644
-> --- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-> @@ -301,7 +301,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
->  	/* First part of the test, are we updating our pagetable bo with a new entry? */
->  	xe_map_wr(xe, &bo->vmap, XE_PAGE_SIZE * (NUM_KERNEL_PDE - 1), u64,
->  		  0xdeaddeadbeefbeef);
-> -	expected = xe_pte_encode(m->q->vm, pt, 0, XE_CACHE_WB, 0);
-> +	expected = xe_pte_encode(m->q->vm, pt, 0, xe_pat_get_index(xe, XE_CACHE_WB), 0);
->  	if (m->q->vm->flags & XE_VM_FLAG_64K)
->  		expected |= XE_PTE_PS64;
->  	if (xe_bo_is_vram(pt))
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> index aea26afd4668..7e4da16389af 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> @@ -41,7 +41,8 @@ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
->  		pte |= XE_GGTT_PTE_DM;
->  
->  	if ((ggtt->pat_encode).pte_encode)
-> -		pte = (ggtt->pat_encode).pte_encode(xe, pte, XE_CACHE_WB_1_WAY);
-> +		pte = (ggtt->pat_encode).pte_encode(xe, pte,
-> +						    xe_pat_get_index(xe, XE_CACHE_WB_1_WAY));
->  
->  	return pte;
->  }
-> @@ -102,10 +103,8 @@ static void primelockdep(struct xe_ggtt *ggtt)
->  }
->  
->  static u64 xelpg_ggtt_pte_encode_pat(struct xe_device *xe, u64 pte_pat,
-> -						enum xe_cache_level cache)
-> +				     u16 pat_index)
->  {
-> -	u32 pat_index = xe_pat_get_index(xe, cache);
-> -
->  	pte_pat &= ~(XELPG_GGTT_PTE_PAT_MASK);
->  
->  	if (pat_index & BIT(0))
-> diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-> index 7e55fac1a8a9..7981075bb228 100644
-> --- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-> @@ -31,7 +31,7 @@ struct xe_ggtt {
->  
->  	struct {
->  		u64 (*pte_encode)(struct xe_device *xe, u64 pte_pat,
-> -						enum xe_cache_level cache);
-> +				  u16 pat_index);
->  	} pat_encode;
->  };
->  
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index 26cbc9107501..89d9e33a07e7 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -25,6 +25,7 @@
->  #include "xe_lrc.h"
->  #include "xe_map.h"
->  #include "xe_mocs.h"
-> +#include "xe_pat.h"
->  #include "xe_pt.h"
->  #include "xe_res_cursor.h"
->  #include "xe_sched_job.h"
-> @@ -162,6 +163,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->  	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
->  	u32 map_ofs, level, i;
->  	struct xe_bo *bo, *batch = tile->mem.kernel_bb_pool->bo;
-> +	u16 pat_index = xe_pat_get_index(xe, XE_CACHE_WB);
->  	u64 entry;
->  	int ret;
->  
-> @@ -196,7 +198,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->  
->  	/* Map the entire BO in our level 0 pt */
->  	for (i = 0, level = 0; i < num_entries; level++) {
-> -		entry = xe_pte_encode(vm, bo, i * XE_PAGE_SIZE, XE_CACHE_WB, 0);
-> +		entry = xe_pte_encode(vm, bo, i * XE_PAGE_SIZE, pat_index, 0);
->  
->  		xe_map_wr(xe, &bo->vmap, map_ofs + level * 8, u64, entry);
->  
-> @@ -214,7 +216,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->  		for (i = 0; i < batch->size;
->  		     i += vm->flags & XE_VM_FLAG_64K ? XE_64K_PAGE_SIZE :
->  		     XE_PAGE_SIZE) {
-> -			entry = xe_pte_encode(vm, batch, i, XE_CACHE_WB, 0);
-> +			entry = xe_pte_encode(vm, batch, i, pat_index, 0);
->  
->  			xe_map_wr(xe, &bo->vmap, map_ofs + level * 8, u64,
->  				  entry);
-> @@ -259,7 +261,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
->  		ofs = map_ofs + XE_PAGE_SIZE * level + 256 * 8;
->  
->  		flags = XE_PPGTT_PTE_DM;
-> -		flags = __xe_pte_encode(flags, XE_CACHE_WB, vm, NULL, 2);
-> +		flags = __xe_pte_encode(flags, pat_index, vm, NULL, 2);
->  
->  		/*
->  		 * Use 1GB pages, it shouldn't matter the physical amount of
-> @@ -454,6 +456,7 @@ static void emit_pte(struct xe_migrate *m,
->  		     struct xe_res_cursor *cur,
->  		     u32 size, struct xe_bo *bo)
->  {
-> +	u16 pat_index = xe_pat_get_index(m->tile->xe, XE_CACHE_WB);
->  	u32 ptes;
->  	u64 ofs = at_pt * XE_PAGE_SIZE;
->  	u64 cur_ofs;
-> @@ -494,7 +497,7 @@ static void emit_pte(struct xe_migrate *m,
->  				addr += vram_region_gpu_offset(bo->ttm.resource);
->  				addr |= XE_PPGTT_PTE_DM;
->  			}
-> -			addr = __xe_pte_encode(addr, XE_CACHE_WB, m->q->vm, NULL, 0);
-> +			addr = __xe_pte_encode(addr, pat_index, m->q->vm, NULL, 0);
->  			bb->cs[bb->len++] = lower_32_bits(addr);
->  			bb->cs[bb->len++] = upper_32_bits(addr);
->  
-> @@ -1254,7 +1257,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
->  
->  			xe_tile_assert(tile, pt_bo->size == SZ_4K);
->  
-> -			addr = xe_pte_encode(vm, pt_bo, 0, XE_CACHE_WB, 0);
-> +			addr = xe_pte_encode(vm, pt_bo, 0, xe_pat_get_index(xe, XE_CACHE_WB), 0);
->  			bb->cs[bb->len++] = lower_32_bits(addr);
->  			bb->cs[bb->len++] = upper_32_bits(addr);
->  		}
-> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-> index a1b164cf8bce..7dd93cbff704 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.c
-> +++ b/drivers/gpu/drm/xe/xe_pt.c
-> @@ -10,6 +10,7 @@
->  #include "xe_gt.h"
->  #include "xe_gt_tlb_invalidation.h"
->  #include "xe_migrate.h"
-> +#include "xe_pat.h"
->  #include "xe_pt_types.h"
->  #include "xe_pt_walk.h"
->  #include "xe_res_cursor.h"
-> @@ -67,7 +68,7 @@ u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset)
->  	return pde;
->  }
->  
-> -u64 __xe_pte_encode(u64 pte, enum xe_cache_level cache,
-> +u64 __xe_pte_encode(u64 pte, u16 pat_index,
->  		    struct xe_vm *vm, struct xe_vma *vma, u32 pt_level)
->  {
->  	struct xe_device *xe = vm->xe;
-> @@ -85,7 +86,7 @@ u64 __xe_pte_encode(u64 pte, enum xe_cache_level cache,
->  	else if (pt_level == 2)
->  		pte |= XE_PDPE_PS_1G;
->  
-> -	pte = vm->pat_encode.pte_encode(xe, pte, cache);
-> +	pte = vm->pat_encode.pte_encode(xe, pte, pat_index);
->  
->  	/* XXX: Does hw support 1 GiB pages? */
->  	XE_WARN_ON(pt_level > 2);
-> @@ -103,7 +104,7 @@ u64 __xe_pte_encode(u64 pte, enum xe_cache_level cache,
->   *
->   * Return: An encoded page-table entry. No errors.
->   */
-> -u64 xe_pte_encode(struct xe_vm *vm, struct xe_bo *bo, u64 offset, enum xe_cache_level cache,
-> +u64 xe_pte_encode(struct xe_vm *vm, struct xe_bo *bo, u64 offset, u16 pat_index,
->  		  u32 pt_level)
->  {
->  	u64 pte;
-> @@ -112,7 +113,7 @@ u64 xe_pte_encode(struct xe_vm *vm, struct xe_bo *bo, u64 offset, enum xe_cache_
->  	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
->  		pte |= XE_PPGTT_PTE_DM;
->  
-> -	return __xe_pte_encode(pte, cache, vm, NULL, pt_level);
-> +	return __xe_pte_encode(pte, pat_index, vm, NULL, pt_level);
->  }
->  
->  static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
-> @@ -125,7 +126,7 @@ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
->  
->  	if (level == 0) {
->  		u64 empty = xe_pte_encode(vm, vm->scratch_bo[id], 0,
-> -					  XE_CACHE_WB, 0);
-> +					  xe_pat_get_index(vm->xe, XE_CACHE_WB), 0);
->  
->  		return empty;
->  	} else {
-> @@ -358,8 +359,6 @@ struct xe_pt_stage_bind_walk {
->  	struct xe_vm *vm;
->  	/** @tile: The tile we're building for. */
->  	struct xe_tile *tile;
-> -	/** @cache: Desired cache level for the ptes */
-> -	enum xe_cache_level cache;
->  	/** @default_pte: PTE flag only template. No address is associated */
->  	u64 default_pte;
->  	/** @dma_offset: DMA offset to add to the PTE. */
-> @@ -594,7 +593,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
->  
->  		pte = __xe_pte_encode(is_null ? 0 :
->  				      xe_res_dma(curs) + xe_walk->dma_offset,
-> -				      xe_walk->cache, xe_walk->vm, xe_walk->vma, level);
-> +				      xe_walk->vma->pat_index, xe_walk->vm, xe_walk->vma, level);
->  		pte |= xe_walk->default_pte;
->  
->  		/*
-> @@ -720,13 +719,8 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
->  		if (vma && vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT)
->  			xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
->  		xe_walk.dma_offset = vram_region_gpu_offset(bo->ttm.resource);
-> -		xe_walk.cache = XE_CACHE_WB;
-> -	} else {
-> -		if (!xe_vma_has_no_bo(vma) && bo->flags & XE_BO_SCANOUT_BIT)
-> -			xe_walk.cache = XE_CACHE_WT;
-> -		else
-> -			xe_walk.cache = XE_CACHE_WB;
->  	}
-> +
->  	if (!xe_vma_has_no_bo(vma) && xe_bo_is_stolen(bo))
->  		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
->  
-> diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
-> index 0e66436d707d..6d10823fca9b 100644
-> --- a/drivers/gpu/drm/xe/xe_pt.h
-> +++ b/drivers/gpu/drm/xe/xe_pt.h
-> @@ -47,9 +47,9 @@ bool xe_pt_zap_ptes(struct xe_tile *tile, struct xe_vma *vma);
->  
->  u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset);
->  
-> -u64 xe_pte_encode(struct xe_vm *vm, struct xe_bo *bo, u64 offset, enum xe_cache_level cache,
-> +u64 xe_pte_encode(struct xe_vm *vm, struct xe_bo *bo, u64 offset, u16 pat_index,
->  		  u32 pt_level);
-> -u64 __xe_pte_encode(u64 pte, enum xe_cache_level cache,
-> +u64 __xe_pte_encode(u64 pte, u16 pat_index,
->  		    struct xe_vm *vm, struct xe_vma *vma, u32 pt_level);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index ba612a5ee2d8..98db7a298139 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -6,6 +6,7 @@
->  #include "xe_vm.h"
->  
->  #include <linux/dma-fence-array.h>
-> +#include <linux/nospec.h>
->  
->  #include <drm/drm_exec.h>
->  #include <drm/drm_print.h>
-> @@ -858,7 +859,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
->  				    u64 start, u64 end,
->  				    bool read_only,
->  				    bool is_null,
-> -				    u8 tile_mask)
-> +				    u8 tile_mask,
-> +				    u16 pat_index)
->  {
->  	struct xe_vma *vma;
->  	struct xe_tile *tile;
-> @@ -897,6 +899,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
->  			vma->tile_mask |= 0x1 << id;
->  	}
->  
-> +	vma->pat_index = pat_index;
-> +
->  	if (vm->xe->info.platform == XE_PVC)
->  		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
->  
-> @@ -1195,10 +1199,8 @@ static void xe_vma_op_work_func(struct work_struct *w);
->  static void vm_destroy_work_func(struct work_struct *w);
->  
->  static u64 xe2_ppgtt_pte_encode_pat(struct xe_device *xe, u64 pte_pat,
-> -						enum xe_cache_level cache)
-> +				    u16 pat_index)
->  {
-> -	u32 pat_index = xe_pat_get_index(xe, cache);
-> -
->  	if (pat_index & BIT(0))
->  		pte_pat |= BIT(3);
->  
-> @@ -1216,10 +1218,8 @@ static u64 xe2_ppgtt_pte_encode_pat(struct xe_device *xe, u64 pte_pat,
->  }
->  
->  static u64 xelp_ppgtt_pte_encode_pat(struct xe_device *xe, u64 pte_pat,
-> -						enum xe_cache_level cache)
-> +				     u16 pat_index)
->  {
-> -	u32 pat_index = xe_pat_get_index(xe, cache);
-> -
->  	if (pat_index & BIT(0))
->  		pte_pat |= BIT(3);
->  
-> @@ -2300,7 +2300,7 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
->  static struct drm_gpuva_ops *
->  vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->  			 u64 bo_offset_or_userptr, u64 addr, u64 range,
-> -			 u32 operation, u8 tile_mask, u32 region)
-> +			 u32 operation, u8 tile_mask, u32 region, u16 pat_index)
->  {
->  	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
->  	struct drm_gpuva_ops *ops;
-> @@ -2327,6 +2327,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->  			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
->  
->  			op->tile_mask = tile_mask;
-> +			op->pat_index = pat_index;
->  			op->map.immediate =
->  				operation & XE_VM_BIND_FLAG_IMMEDIATE;
->  			op->map.read_only =
-> @@ -2354,6 +2355,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->  			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
->  
->  			op->tile_mask = tile_mask;
-> +			op->pat_index = pat_index;
->  			op->prefetch.region = region;
->  		}
->  		break;
-> @@ -2396,7 +2398,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->  }
->  
->  static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
-> -			      u8 tile_mask, bool read_only, bool is_null)
-> +			      u8 tile_mask, bool read_only, bool is_null,
-> +			      u16 pat_index)
->  {
->  	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) : NULL;
->  	struct xe_vma *vma;
-> @@ -2412,7 +2415,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
->  	vma = xe_vma_create(vm, bo, op->gem.offset,
->  			    op->va.addr, op->va.addr +
->  			    op->va.range - 1, read_only, is_null,
-> -			    tile_mask);
-> +			    tile_mask, pat_index);
->  	if (bo)
->  		xe_bo_unlock(bo);
->  
-> @@ -2569,7 +2572,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->  
->  			vma = new_vma(vm, &op->base.map,
->  				      op->tile_mask, op->map.read_only,
-> -				      op->map.is_null);
-> +				      op->map.is_null, op->pat_index);
->  			if (IS_ERR(vma)) {
->  				err = PTR_ERR(vma);
->  				goto free_fence;
-> @@ -2597,7 +2600,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->  
->  				vma = new_vma(vm, op->base.remap.prev,
->  					      op->tile_mask, read_only,
-> -					      is_null);
-> +					      is_null, op->pat_index);
->  				if (IS_ERR(vma)) {
->  					err = PTR_ERR(vma);
->  					goto free_fence;
-> @@ -2633,7 +2636,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
->  
->  				vma = new_vma(vm, op->base.remap.next,
->  					      op->tile_mask, read_only,
-> -					      is_null);
-> +					      is_null, op->pat_index);
->  				if (IS_ERR(vma)) {
->  					err = PTR_ERR(vma);
->  					goto free_fence;
-> @@ -3146,7 +3149,23 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->  		u32 obj = (*bind_ops)[i].obj;
->  		u64 obj_offset = (*bind_ops)[i].obj_offset;
->  		u32 region = (*bind_ops)[i].region;
-> +		u16 pat_index = (*bind_ops)[i].pat_index;
->  		bool is_null = op & XE_VM_BIND_FLAG_NULL;
-> +		u16 coh_mode;
-> +
-> +		if (XE_IOCTL_DBG(xe, pat_index >= xe->info.pat.n_entries)) {
-> +			err = -EINVAL;
-> +			goto free_bind_ops;
-> +		}
-> +
-> +		pat_index = array_index_nospec(pat_index,
-> +					       xe->info.pat.n_entries);
-> +		(*bind_ops)[i].pat_index = pat_index;
-> +		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
-> +		if (XE_WARN_ON(!coh_mode || coh_mode > XE_GEM_COH_AT_LEAST_1WAY)) {
-> +			err = -EINVAL;
-> +			goto free_bind_ops;
-> +		}
->  
->  		if (i == 0) {
->  			*async = !!(op & XE_VM_BIND_FLAG_ASYNC);
-> @@ -3188,6 +3207,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->  				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
->  		    XE_IOCTL_DBG(xe, obj &&
->  				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP_USERPTR) ||
-> +		    XE_IOCTL_DBG(xe, coh_mode == XE_GEM_COH_NONE &&
-> +				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP_USERPTR) ||
->  		    XE_IOCTL_DBG(xe, obj &&
->  				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH) ||
->  		    XE_IOCTL_DBG(xe, region &&
-> @@ -3336,6 +3357,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  		u64 addr = bind_ops[i].addr;
->  		u32 obj = bind_ops[i].obj;
->  		u64 obj_offset = bind_ops[i].obj_offset;
-> +		u16 pat_index = bind_ops[i].pat_index;
-> +		u16 coh_mode;
->  
->  		if (!obj)
->  			continue;
-> @@ -3363,6 +3386,23 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  				goto put_obj;
->  			}
->  		}
-> +
-> +		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
-> +		if (bos[i]->coh_mode) {
-> +			if (XE_IOCTL_DBG(xe, coh_mode < bos[i]->coh_mode)) {
-> +				err = -EINVAL;
-> +				goto put_obj;
-> +			}
-> +		} else if (XE_IOCTL_DBG(xe, coh_mode == XE_GEM_COH_NONE)) {
-> +			/*
-> +			 * Imported dma-buf from a different device should
-> +			 * require 1way or 2way coherency since we don't know
-> +			 * how it was mapped on the CPU. Just assume is it
-> +			 * potentially cached on CPU side.
-> +			 */
-> +			err = -EINVAL;
-> +			goto put_obj;
-> +		}
->  	}
->  
->  	if (args->num_syncs) {
-> @@ -3400,10 +3440,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->  		u64 obj_offset = bind_ops[i].obj_offset;
->  		u8 tile_mask = bind_ops[i].tile_mask;
->  		u32 region = bind_ops[i].region;
-> +		u16 pat_index = bind_ops[i].pat_index;
->  
->  		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
->  						  addr, range, op, tile_mask,
-> -						  region);
-> +						  region, pat_index);
->  		if (IS_ERR(ops[i])) {
->  			err = PTR_ERR(ops[i]);
->  			ops[i] = NULL;
-> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
-> index dc583f00919f..54658f400174 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_types.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
-> @@ -111,6 +111,11 @@ struct xe_vma {
->  	 */
->  	u8 tile_present;
->  
-> +	/**
-> +	 * @pat_index: The pat index to use when encoding the PTEs for this vma.
-> +	 */
-> +	u16 pat_index;
-> +
->  	struct {
->  		struct list_head rebind_link;
->  	} notifier;
-> @@ -338,8 +343,7 @@ struct xe_vm {
->  	bool batch_invalidate_tlb;
->  
->  	struct {
-> -		u64 (*pte_encode)(struct xe_device *xe, u64 pte_pat,
-> -				  enum xe_cache_level cache);
-> +		u64 (*pte_encode)(struct xe_device *xe, u64 pte_pat, u16 pat_index);
->  	} pat_encode;
->  };
->  
-> @@ -419,6 +423,8 @@ struct xe_vma_op {
->  	struct async_op_fence *fence;
->  	/** @tile_mask: gt mask for this operation */
->  	u8 tile_mask;
-> +	/** @pat_index: The pat index to use for this operation. */
-> +	u16 pat_index;
->  	/** @flags: operation flags */
->  	enum xe_vma_op_flags flags;
->  
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 737bb1d4c6f7..75b42c1116f2 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -605,8 +605,49 @@ struct drm_xe_vm_bind_op {
->  	 */
->  	__u32 obj;
->  
-> +	/**
-> +	 * @pat_index: The platform defined @pat_index to use for this mapping.
-> +	 * The index basically maps to some predefined memory attributes,
-> +	 * including things like caching, coherency, compression etc.  The exact
-> +	 * meaning of the pat_index is platform specific and defined in the
-> +	 * Bspec and PRMs.  When the KMD sets up the binding the index here is
-> +	 * encoded into the ppGTT PTE.
-> +	 *
-> +	 * For coherency the @pat_index needs to be least as coherent as
-> +	 * drm_xe_gem_create.coh_mode. i.e coh_mode(pat_index) >=
-> +	 * drm_xe_gem_create.coh_mode. The KMD will extract the coherency mode
-> +	 * from the @pat_index and reject if there is a mismatch (see note below
-> +	 * for pre-MTL platforms).
-> +	 *
-> +	 * Note: On pre-MTL platforms there is only a caching mode and no
-> +	 * explicit coherency mode, but on such hardware there is always a
-> +	 * shared-LLC (or is dgpu) so all GT memory accesses are coherent with
-> +	 * CPU caches even with the caching mode set as uncached.  It's only the
-> +	 * display engine that is incoherent (on dgpu it must be in VRAM which
-> +	 * is always mapped as WC on the CPU). However to keep the uapi somewhat
-> +	 * consistent with newer platforms the KMD groups the different cache
-> +	 * levels into the following coherency buckets on all pre-MTL platforms:
-> +	 *
-> +	 *	ppGTT UC -> XE_GEM_COH_NONE
-> +	 *	ppGTT WC -> XE_GEM_COH_NONE
-> +	 *	ppGTT WT -> XE_GEM_COH_NONE
-> +	 *	ppGTT WB -> XE_GEM_COH_AT_LEAST_1WAY
-> +	 *
-> +	 * In practice UC/WC/WT should only ever used for scanout surfaces on
-> +	 * such platforms (or perhaps in general for dma-buf if shared with
-> +	 * another device) since it is only the display engine that is actually
-> +	 * incoherent.  Everything else should typically use WB given that we
-> +	 * have a shared-LLC.  On MTL+ this completely changes and the HW
-> +	 * defines the coherency mode as part of the @pat_index, where
-> +	 * incoherent GT access is possible.
 
-with this in mind I noticed that on i915 the scanout is just a pat param to
-the uapi, while in Xe we have a buffer flag:
-XE_GEM_CREATE_FLAG_SCANOUT
 
-should we continue with this flag, or should we do the same pat.param that
-i915 is doing?
+Thanks,
+Oak
 
-> +	 *
-> +	 * Note: For userptr and externally imported dma-buf the kernel expects
-> +	 * either 1WAY or 2WAY for the @pat_index.
-> +	 */
-> +	__u16 pat_index;
-> +
->  	/** @pad: MBZ */
-> -	__u32 pad;
-> +	__u16 pad;
->  
->  	union {
->  		/**
-> -- 
-> 2.41.0
-> 
+> -----Original Message-----
+> From: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> Sent: Monday, September 25, 2023 5:42 PM
+> To: Zeng, Oak <oak.zeng@intel.com>
+> Cc: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>; intel-
+> xe@lists.freedesktop.org; Arteaga Molina, Jaime A
+> <jaime.a.arteaga.molina@intel.com>
+> Subject: Re: [Intel-xe] [PATCH DONTMERGE] drm/xe: uapi review submission
+>=20
+> On Thu, Sep 14, 2023 at 01:40:12AM +0000, Zeng, Oak wrote:
+> > Hi Thomas,
+> >
+> > One thing regarding the atomic madvise came up in our recent discussion=
+ with
+> L0 team. See inline
+> >
+> > > -----Original Message-----
+> > > From: Welty, Brian <brian.welty@intel.com>
+> > > Sent: Wednesday, September 13, 2023 8:32 PM
+> > > To: Zeng, Oak <oak.zeng@intel.com>
+> > > Subject: [Intel-xe] [PATCH DONTMERGE] drm/xe: uapi review submission
+> > >
+> > >
+> > >
+> > >
+> > > -------- Forwarded Message --------
+> > > Subject: [Intel-xe] [PATCH DONTMERGE] drm/xe: uapi review submission
+> > > Date: Fri, 30 Jun 2023 12:00:59 +0200
+> > > From: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+> > > To: intel-xe@lists.freedesktop.org
+> > >
+> > > Add a copy of xe_drm.h for uAPI review purposes only. Never commit th=
+is,
+> > > the intention is to perform an uAPI review in this thread and if need=
+ed
+> > > move it to Gitlab for easier discussion.
+> > >
+> > > Signed-off-by: Thomas Hellstr=F6m <thomas.hellstrom@linux.intel.com>
+> > > ---
+> > >   include/uapi/drm/xe_drm_reviewonly.h | 1009
+> > > ++++++++++++++++++++++++++
+> > >   1 file changed, 1009 insertions(+)
+> > >   create mode 100644 include/uapi/drm/xe_drm_reviewonly.h
+> > >
+> > > diff --git a/include/uapi/drm/xe_drm_reviewonly.h
+> > > b/include/uapi/drm/xe_drm_reviewonly.h
+> > > new file mode 100644
+> > > index 000000000000..e890b131af91
+> > > --- /dev/null
+> > > +++ b/include/uapi/drm/xe_drm_reviewonly.h
+> > > @@ -0,0 +1,1009 @@
+> > > +/* SPDX-License-Identifier: MIT */
+> > > +/*
+> > > + * Copyright =A9 2023 Intel Corporation
+> > > + */
+> > > +
+> > > +#ifndef _UAPI_XE_DRM_H_
+> > > +#define _UAPI_XE_DRM_H_
+> > > +
+> > > +#include "drm.h"
+> > > +
+> > > +#if defined(__cplusplus)
+> > > +extern "C" {
+> > > +#endif
+> > > +
+> > > +/* Please note that modifications to all structs defined here are
+> > > + * subject to backwards-compatibility constraints.
+> > > + */
+> > > +
+> > > +/**
+> > > + * struct xe_user_extension - Base class for defining a chain of ext=
+ensions
+> > > + *
+> > > + * Many interfaces need to grow over time. In most cases we can simp=
+ly
+> > > + * extend the struct and have userspace pass in more data. Another o=
+ption,
+> > > + * as demonstrated by Vulkan's approach to providing extensions for
+> forward
+> > > + * and backward compatibility, is to use a list of optional structs =
+to
+> > > + * provide those extra details.
+> > > + *
+> > > + * The key advantage to using an extension chain is that it allows u=
+s to
+> > > + * redefine the interface more easily than an ever growing struct of
+> > > + * increasing complexity, and for large parts of that interface to b=
+e
+> > > + * entirely optional. The downside is more pointer chasing; chasing =
+across
+> > > + * the __user boundary with pointers encapsulated inside u64.
+> > > + *
+> > > + * Example chaining:
+> > > + *
+> > > + * .. code-block:: C
+> > > + *
+> > > + *	struct xe_user_extension ext3 {
+> > > + *		.next_extension =3D 0, // end
+> > > + *		.name =3D ...,
+> > > + *	};
+> > > + *	struct xe_user_extension ext2 {
+> > > + *		.next_extension =3D (uintptr_t)&ext3,
+> > > + *		.name =3D ...,
+> > > + *	};
+> > > + *	struct xe_user_extension ext1 {
+> > > + *		.next_extension =3D (uintptr_t)&ext2,
+> > > + *		.name =3D ...,
+> > > + *	};
+> > > + *
+> > > + * Typically the struct xe_user_extension would be embedded in some =
+uAPI
+> > > + * struct, and in this case we would feed it the head of the chain(i=
+.e
+> > > ext1),
+> > > + * which would then apply all of the above extensions.
+> > > + *
+> > > + */
+> > > +struct xe_user_extension {
+> > > +	/**
+> > > +	 * @next_extension:
+> > > +	 *
+> > > +	 * Pointer to the next struct xe_user_extension, or zero if the end=
+.
+> > > +	 */
+> > > +	__u64 next_extension;
+> > > +
+> > > +	/**
+> > > +	 * @name: Name of the extension.
+> > > +	 *
+> > > +	 * Note that the name here is just some integer.
+> > > +	 *
+> > > +	 * Also note that the name space for this is not global for the who=
+le
+> > > +	 * driver, but rather its scope/meaning is limited to the specific =
+piece
+> > > +	 * of uAPI which has embedded the struct xe_user_extension.
+> > > +	 */
+> > > +	__u32 name;
+> > > +
+> > > +	/**
+> > > +	 * @pad: MBZ
+> > > +	 *
+> > > +	 * All undefined bits must be zero.
+> > > +	 */
+> > > +	__u32 pad;
+> > > +};
+> > > +
+> > > +/*
+> > > + * xe specific ioctls.
+> > > + *
+> > > + * The device specific ioctl range is [DRM_COMMAND_BASE,
+> > > DRM_COMMAND_END) ie
+> > > + * [0x40, 0xa0) (a0 is excluded). The numbers below are defined as o=
+ffset
+> > > + * against DRM_COMMAND_BASE and should be between [0x0, 0x60).
+> > > + */
+> > > +#define DRM_XE_DEVICE_QUERY		0x00
+> > > +#define DRM_XE_GEM_CREATE		0x01
+> > > +#define DRM_XE_GEM_MMAP_OFFSET		0x02
+> > > +#define DRM_XE_VM_CREATE		0x03
+> > > +#define DRM_XE_VM_DESTROY		0x04
+> > > +#define DRM_XE_VM_BIND			0x05
+> > > +#define DRM_XE_ENGINE_CREATE		0x06
+> > > +#define DRM_XE_ENGINE_DESTROY		0x07
+> > > +#define DRM_XE_EXEC			0x08
+> > > +#define DRM_XE_MMIO			0x09
+> > > +#define DRM_XE_ENGINE_SET_PROPERTY	0x0a
+> > > +#define DRM_XE_WAIT_USER_FENCE		0x0b
+> > > +#define DRM_XE_VM_MADVISE		0x0c
+> > > +#define DRM_XE_ENGINE_GET_PROPERTY	0x0d
+> > > +
+> > > +/* Must be kept compact -- no holes */
+> > > +#define DRM_IOCTL_XE_DEVICE_QUERY
+> > > 	DRM_IOWR(DRM_COMMAND_BASE +
+> > > DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+> > > +#define DRM_IOCTL_XE_GEM_CREATE
+> > > 	DRM_IOWR(DRM_COMMAND_BASE +
+> > > DRM_XE_GEM_CREATE, struct drm_xe_gem_create)
+> > > +#define DRM_IOCTL_XE_GEM_MMAP_OFFSET
+> > > 	DRM_IOWR(DRM_COMMAND_BASE +
+> > > DRM_XE_GEM_MMAP_OFFSET, struct drm_xe_gem_mmap_offset)
+> > > +#define DRM_IOCTL_XE_VM_CREATE
+> > > 	DRM_IOWR(DRM_COMMAND_BASE +
+> > > DRM_XE_VM_CREATE, struct drm_xe_vm_create)
+> > > +#define DRM_IOCTL_XE_VM_DESTROY
+> > > DRM_IOW(DRM_COMMAND_BASE +
+> > > DRM_XE_VM_DESTROY, struct drm_xe_vm_destroy)
+> > > +#define DRM_IOCTL_XE_VM_BIND
+> > > DRM_IOW(DRM_COMMAND_BASE +
+> > > DRM_XE_VM_BIND, struct drm_xe_vm_bind)
+> > > +#define DRM_IOCTL_XE_ENGINE_CREATE
+> > > 	DRM_IOWR(DRM_COMMAND_BASE +
+> > > DRM_XE_ENGINE_CREATE, struct drm_xe_engine_create)
+> > > +#define DRM_IOCTL_XE_ENGINE_GET_PROPERTY
+> > > 	DRM_IOWR(DRM_COMMAND_BASE +
+> > > DRM_XE_ENGINE_GET_PROPERTY, struct drm_xe_engine_get_property)
+> > > +#define DRM_IOCTL_XE_ENGINE_DESTROY
+> > > DRM_IOW(DRM_COMMAND_BASE +
+> > > DRM_XE_ENGINE_DESTROY, struct drm_xe_engine_destroy)
+> > > +#define DRM_IOCTL_XE_EXEC
+> > > DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC,
+> > > struct drm_xe_exec)
+> > > +#define DRM_IOCTL_XE_MMIO
+> > > 	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_MMIO,
+> > > struct drm_xe_mmio)
+> > > +#define DRM_IOCTL_XE_ENGINE_SET_PROPERTY
+> > > DRM_IOW(DRM_COMMAND_BASE +
+> > > DRM_XE_ENGINE_SET_PROPERTY, struct drm_xe_engine_set_property)
+> > > +#define DRM_IOCTL_XE_WAIT_USER_FENCE
+> > > 	DRM_IOWR(DRM_COMMAND_BASE +
+> > > DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+> > > +#define DRM_IOCTL_XE_VM_MADVISE
+> > > DRM_IOW(DRM_COMMAND_BASE +
+> > > DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
+> > > +
+> > > +/**
+> > > + * enum drm_xe_memory_class - Supported memory classes.
+> > > + */
+> > > +enum drm_xe_memory_class {
+> > > +	/** @XE_MEM_REGION_CLASS_SYSMEM: Represents system memory.
+> > > */
+> > > +	XE_MEM_REGION_CLASS_SYSMEM =3D 0,
+> > > +	/**
+> > > +	 * @XE_MEM_REGION_CLASS_VRAM: On discrete platforms, this
+> > > +	 * represents the memory that is local to the device, which we
+> > > +	 * call VRAM. Not valid on integrated platforms.
+> > > +	 */
+> > > +	XE_MEM_REGION_CLASS_VRAM
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_xe_query_mem_region - Describes some region as known t=
+o
+> > > + * the driver.
+> > > + */
+> > > +struct drm_xe_query_mem_region {
+> > > +	/**
+> > > +	 * @mem_class: The memory class describing this region.
+> > > +	 *
+> > > +	 * See enum drm_xe_memory_class for supported values.
+> > > +	 */
+> > > +	__u16 mem_class;
+> > > +	/**
+> > > +	 * @instance: The instance for this region.
+> > > +	 *
+> > > +	 * The @mem_class and @instance taken together will always give
+> > > +	 * a unique pair.
+> > > +	 */
+> > > +	__u16 instance;
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +	/**
+> > > +	 * @min_page_size: Min page-size in bytes for this region.
+> > > +	 *
+> > > +	 * When the kernel allocates memory for this region, the
+> > > +	 * underlying pages will be at least @min_page_size in size.
+> > > +	 *
+> > > +	 * Important note: When userspace allocates a GTT address which
+> > > +	 * can point to memory allocated from this region, it must also
+> > > +	 * respect this minimum alignment. This is enforced by the
+> > > +	 * kernel.
+> > > +	 */
+> > > +	__u32 min_page_size;
+> > > +	/**
+> > > +	 * @max_page_size: Max page-size in bytes for this region.
+> > > +	 */
+> > > +	__u32 max_page_size;
+> > > +	/**
+> > > +	 * @total_size: The usable size in bytes for this region.
+> > > +	 */
+> > > +	__u64 total_size;
+> > > +	/**
+> > > +	 * @used: Estimate of the memory used in bytes for this region.
+> > > +	 *
+> > > +	 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
+> > > +	 * accounting.  Without this the value here will always equal
+> > > +	 * zero.
+> > > +	 */
+> > > +	__u64 used;
+> > > +	/** @reserved: MBZ */
+> > > +	__u64 reserved[8];
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_xe_query_mem_usage - describe memory regions and usage
+> > > + *
+> > > + * If a query is made with a struct drm_xe_device_query where .query
+> > > + * is equal to DRM_XE_DEVICE_QUERY_MEM_USAGE, then the reply uses
+> > > + * struct drm_xe_query_mem_usage in .data.
+> > > + */
+> > > +struct drm_xe_query_mem_usage {
+> > > +	/** @num_regions: number of memory regions returned in @regions */
+> > > +	__u32 num_regions;
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +	/** @regions: The returned regions for this device */
+> > > +	struct drm_xe_query_mem_region regions[];
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_xe_query_config - describe the device configuration
+> > > + *
+> > > + * If a query is made with a struct drm_xe_device_query where .query
+> > > + * is equal to DRM_XE_DEVICE_QUERY_CONFIG, then the reply uses
+> > > + * struct drm_xe_query_config in .data.
+> > > + */
+> > > +struct drm_xe_query_config {
+> > > +	/** @num_params: number of parameters returned in info */
+> > > +	__u32 num_params;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +#define XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
+> > > +#define XE_QUERY_CONFIG_FLAGS			1
+> > > +	#define XE_QUERY_CONFIG_FLAGS_HAS_VRAM		(0x1 << 0)
+> > > +	#define XE_QUERY_CONFIG_FLAGS_USE_GUC		(0x1 << 1)
+> > > +#define XE_QUERY_CONFIG_MIN_ALIGNEMENT		2
+> > > +#define XE_QUERY_CONFIG_VA_BITS			3
+> > > +#define XE_QUERY_CONFIG_GT_COUNT		4
+> > > +#define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
+> > > +#define XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY	6
+> > > +#define XE_QUERY_CONFIG_NUM_PARAM
+> > > 	(XE_QUERY_CONFIG_MAX_ENGINE_PRIORITY
+> > > + 1)
+> > > +	/** @info: array of elements containing the config info */
+> > > +	__u64 info[];
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_xe_query_gts - describe GTs
+> > > + *
+> > > + * If a query is made with a struct drm_xe_device_query where .query
+> > > + * is equal to DRM_XE_DEVICE_QUERY_GTS, then the reply uses struct
+> > > + * drm_xe_query_gts in .data.
+> > > + */
+> > > +struct drm_xe_query_gts {
+> > > +	/** @num_gt: number of GTs returned in gts */
+> > > +	__u32 num_gt;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	/**
+> > > +	 * @gts: The GTs returned for this device
+> > > +	 *
+> > > +	 * TODO: convert drm_xe_query_gt to proper kernel-doc.
+> > > +	 * TODO: Perhaps info about every mem region relative to this GT? e=
+.g.
+> > > +	 * bandwidth between this GT and remote region?
+> > > +	 */
+> > > +	struct drm_xe_query_gt {
+> > > +#define XE_QUERY_GT_TYPE_MAIN		0
+> > > +#define XE_QUERY_GT_TYPE_REMOTE		1
+> > > +#define XE_QUERY_GT_TYPE_MEDIA		2
+> > > +		__u16 type;
+> > > +		__u16 instance;
+> > > +		__u32 clock_freq;
+> > > +		__u64 features;
+> > > +		__u64 native_mem_regions;	/* bit mask of instances from
+> > > drm_xe_query_mem_usage */
+> > > +		__u64 slow_mem_regions;		/* bit mask of instances
+> > > from
+> > > drm_xe_query_mem_usage */
+> > > +		__u64 inaccessible_mem_regions;	/* bit mask of instances
+> > > from
+> > > drm_xe_query_mem_usage */
+> > > +		__u64 reserved[8];
+> > > +	} gts[];
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_xe_query_topology_mask - describe the topology mask of=
+ a
+> GT
+> > > + *
+> > > + * This is the hardware topology which reflects the internal physica=
+l
+> > > + * structure of the GPU.
+> > > + *
+> > > + * If a query is made with a struct drm_xe_device_query where .query
+> > > + * is equal to DRM_XE_DEVICE_QUERY_GT_TOPOLOGY, then the reply uses
+> > > + * struct drm_xe_query_topology_mask in .data.
+> > > + */
+> > > +struct drm_xe_query_topology_mask {
+> > > +	/** @gt_id: GT ID the mask is associated with */
+> > > +	__u16 gt_id;
+> > > +
+> > > +	/*
+> > > +	 * To query the mask of Dual Sub Slices (DSS) available for geometr=
+y
+> > > +	 * operations. For example a query response containing the followin=
+g
+> > > +	 * in mask:
+> > > +	 *   DSS_GEOMETRY    ff ff ff ff 00 00 00 00
+> > > +	 * means 32 DSS are available for geometry.
+> > > +	 */
+> > > +#define XE_TOPO_DSS_GEOMETRY	(1 << 0)
+> > > +	/*
+> > > +	 * To query the mask of Dual Sub Slices (DSS) available for compute
+> > > +	 * operations. For example a query response containing the followin=
+g
+> > > +	 * in mask:
+> > > +	 *   DSS_COMPUTE    ff ff ff ff 00 00 00 00
+> > > +	 * means 32 DSS are available for compute.
+> > > +	 */
+> > > +#define XE_TOPO_DSS_COMPUTE	(1 << 1)
+> > > +	/*
+> > > +	 * To query the mask of Execution Units (EU) available per Dual Sub
+> > > +	 * Slices (DSS). For example a query response containing the follow=
+ing
+> > > +	 * in mask:
+> > > +	 *   EU_PER_DSS    ff ff 00 00 00 00 00 00
+> > > +	 * means each DSS has 16 EU.
+> > > +	 */
+> > > +#define XE_TOPO_EU_PER_DSS	(1 << 2)
+> > > +	/** @type: type of mask */
+> > > +	__u16 type;
+> > > +
+> > > +	/** @num_bytes: number of bytes in requested mask */
+> > > +	__u32 num_bytes;
+> > > +
+> > > +	/** @mask: little-endian mask of @num_bytes */
+> > > +	__u8 mask[];
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_xe_device_query - main structure to query device infor=
+mation
+> > > + *
+> > > + * If size is set to 0, the driver fills it with the required size f=
+or the
+> > > + * requested type of data to query. If size is equal to the required=
+ size,
+> > > + * the queried information is copied into data.
+> > > + *
+> > > + * For example the following code snippet allows retrieving and prin=
+ting
+> > > + * information about the device engines with
+> > > DRM_XE_DEVICE_QUERY_ENGINES:
+> > > + *
+> > > + * .. code-block:: C
+> > > + *
+> > > + *	struct drm_xe_engine_class_instance *hwe;
+> > > + *	struct drm_xe_device_query query =3D {
+> > > + *		.extensions =3D 0,
+> > > + *		.query =3D DRM_XE_DEVICE_QUERY_ENGINES,
+> > > + *		.size =3D 0,
+> > > + *		.data =3D 0,
+> > > + *	};
+> > > + *	ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query);
+> > > + *	hwe =3D malloc(query.size);
+> > > + *	query.data =3D (uintptr_t)hwe;
+> > > + *	ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query);
+> > > + *	int num_engines =3D query.size / sizeof(*hwe);
+> > > + *	for (int i =3D 0; i < num_engines; i++) {
+> > > + *		printf("Engine %d: %s\n", i,
+> > > + *			hwe[i].engine_class =3D=3D
+> > > DRM_XE_ENGINE_CLASS_RENDER ? "RENDER":
+> > > + *			hwe[i].engine_class =3D=3D DRM_XE_ENGINE_CLASS_COPY ?
+> > > "COPY":
+> > > + *			hwe[i].engine_class =3D=3D
+> > > DRM_XE_ENGINE_CLASS_VIDEO_DECODE ?
+> > > "VIDEO_DECODE":
+> > > + *			hwe[i].engine_class =3D=3D
+> > > DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE ?
+> > > "VIDEO_ENHANCE":
+> > > + *			hwe[i].engine_class =3D=3D
+> > > DRM_XE_ENGINE_CLASS_COMPUTE ? "COMPUTE":
+> > > + *			"UNKNOWN");
+> > > + *	}
+> > > + *	free(hwe);
+> > > + */
+> > > +struct drm_xe_device_query {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +#define DRM_XE_DEVICE_QUERY_ENGINES	0
+> > > +#define DRM_XE_DEVICE_QUERY_MEM_USAGE	1
+> > > +#define DRM_XE_DEVICE_QUERY_CONFIG	2
+> > > +#define DRM_XE_DEVICE_QUERY_GTS		3
+> > > +#define DRM_XE_DEVICE_QUERY_HWCONFIG	4
+> > > +#define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY	5
+> > > +	/** @query: The type of data to query */
+> > > +	__u32 query;
+> > > +
+> > > +	/** @size: Size of the queried data */
+> > > +	__u32 size;
+> > > +
+> > > +	/** @data: Queried data is placed here */
+> > > +	__u64 data;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_gem_create {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	/**
+> > > +	 * @size: Requested size for the object
+> > > +	 *
+> > > +	 * The (page-aligned) allocated size for the object will be returne=
+d.
+> > > +	 */
+> > > +	__u64 size;
+> > > +
+> > > +#define XE_GEM_CREATE_FLAG_DEFER_BACKING	(0x1 << 24)
+> > > +#define XE_GEM_CREATE_FLAG_SCANOUT		(0x1 << 25)
+> > > +	/**
+> > > +	 * @flags: Flags, currently a mask of memory instances of where BO =
+can
+> > > +	 * be placed
+> > > +	 */
+> > > +	__u32 flags;
+> > > +
+> > > +	/**
+> > > +	 * @vm_id: Attached VM, if any
+> > > +	 *
+> > > +	 * If a VM is specified, this BO must:
+> > > +	 *
+> > > +	 *  1. Only ever be bound to that VM.
+> > > +	 *
+> > > +	 *  2. Cannot be exported as a PRIME fd.
+> > > +	 */
+> > > +	__u32 vm_id;
+> > > +
+> > > +	/**
+> > > +	 * @handle: Returned handle for the object.
+> > > +	 *
+> > > +	 * Object handles are nonzero.
+> > > +	 */
+> > > +	__u32 handle;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_gem_mmap_offset {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	/** @handle: Handle for the object being mapped. */
+> > > +	__u32 handle;
+> > > +
+> > > +	/** @flags: Must be zero */
+> > > +	__u32 flags;
+> > > +
+> > > +	/** @offset: The fake offset to use for subsequent mmap call */
+> > > +	__u64 offset;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_xe_vm_bind_op_error_capture - format of VM bind op err=
+or
+> > > capture
+> > > + */
+> > > +struct drm_xe_vm_bind_op_error_capture {
+> > > +	/** @error: errno that occured */
+> > > +	__s32 error;
+> > > +
+> > > +	/** @op: operation that encounter an error */
+> > > +	__u32 op;
+> > > +
+> > > +	/** @addr: address of bind op */
+> > > +	__u64 addr;
+> > > +
+> > > +	/** @size: size of bind */
+> > > +	__u64 size;
+> > > +};
+> > > +
+> > > +/** struct drm_xe_ext_vm_set_property - VM set property extension */
+> > > +struct drm_xe_ext_vm_set_property {
+> > > +	/** @base: base user extension */
+> > > +	struct xe_user_extension base;
+> > > +
+> > > +#define XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS
+> 	0
+> > > +	/** @property: property to set */
+> > > +	__u32 property;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	/** @value: property value */
+> > > +	__u64 value;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_vm_create {
+> > > +#define XE_VM_EXTENSION_SET_PROPERTY	0
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +#define DRM_XE_VM_CREATE_SCRATCH_PAGE	(0x1 << 0)
+> > > +#define DRM_XE_VM_CREATE_COMPUTE_MODE	(0x1 << 1)
+> > > +#define DRM_XE_VM_CREATE_ASYNC_BIND_OPS	(0x1 << 2)
+> > > +#define DRM_XE_VM_CREATE_FAULT_MODE	(0x1 << 3)
+> > > +	/** @flags: Flags */
+> > > +	__u32 flags;
+> > > +
+> > > +	/** @vm_id: Returned VM ID */
+> > > +	__u32 vm_id;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_vm_destroy {
+> > > +	/** @vm_id: VM ID */
+> > > +	__u32 vm_id;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_vm_bind_op {
+> > > +	/**
+> > > +	 * @obj: GEM object to operate on, MBZ for MAP_USERPTR, MBZ for
+> > > UNMAP
+> > > +	 */
+> > > +	__u32 obj;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	union {
+> > > +		/**
+> > > +		 * @obj_offset: Offset into the object, MBZ for CLEAR_RANGE,
+> > > +		 * ignored for unbind
+> > > +		 */
+> > > +		__u64 obj_offset;
+> > > +
+> > > +		/** @userptr: user pointer to bind on */
+> > > +		__u64 userptr;
+> > > +	};
+> > > +
+> > > +	/**
+> > > +	 * @range: Number of bytes from the object to bind to addr, MBZ for
+> > > UNMAP_ALL
+> > > +	 */
+> > > +	__u64 range;
+> > > +
+> > > +	/** @addr: Address to operate on, MBZ for UNMAP_ALL */
+> > > +	__u64 addr;
+> > > +
+> > > +	/**
+> > > +	 * @tile_mask: Mask for which tiles to create binds for, 0 =3D=3D A=
+ll tiles,
+> > > +	 * only applies to creating new VMAs
+> > > +	 */
+> > > +	__u64 tile_mask;
+> > > +
+> > > +#define XE_VM_BIND_OP_MAP		0x0
+> > > +#define XE_VM_BIND_OP_UNMAP		0x1
+> > > +#define XE_VM_BIND_OP_MAP_USERPTR	0x2
+> > > +#define XE_VM_BIND_OP_RESTART		0x3
+> > > +#define XE_VM_BIND_OP_UNMAP_ALL		0x4
+> > > +#define XE_VM_BIND_OP_PREFETCH		0x5
+> > > +
+> > > +#define XE_VM_BIND_FLAG_READONLY	(0x1 << 16)
+> > > +	/*
+> > > +	 * A bind ops completions are always async, hence the support for o=
+ut
+> > > +	 * sync. This flag indicates the allocation of the memory for new p=
+age
+> > > +	 * tables and the job to program the pages tables is asynchronous
+> > > +	 * relative to the IOCTL. That part of a bind operation can fail un=
+der
+> > > +	 * memory pressure, the job in practice can't fail unless the syste=
+m is
+> > > +	 * totally shot.
+> > > +	 *
+> > > +	 * If this flag is clear and the IOCTL doesn't return an error, in
+> > > +	 * practice the bind op is good and will complete.
+> > > +	 *
+> > > +	 * If this flag is set and doesn't return an error, the bind op can
+> > > +	 * still fail and recovery is needed. If configured, the bind op th=
+at
+> > > +	 * caused the error will be captured in
+> > > drm_xe_vm_bind_op_error_capture.
+> > > +	 * Once the user sees the error (via a ufence +
+> > > +	 * XE_VM_PROPERTY_BIND_OP_ERROR_CAPTURE_ADDRESS), it should
+> > > free memory
+> > > +	 * via non-async unbinds, and then restart all queue'd async binds =
+op via
+> > > +	 * XE_VM_BIND_OP_RESTART. Or alternatively the user should destroy
+> > > the
+> > > +	 * VM.
+> > > +	 *
+> > > +	 * This flag is only allowed when
+> > > DRM_XE_VM_CREATE_ASYNC_BIND_OPS is
+> > > +	 * configured in the VM and must be set if the VM is configured wit=
+h
+> > > +	 * DRM_XE_VM_CREATE_ASYNC_BIND_OPS and not in an error state.
+> > > +	 */
+> > > +#define XE_VM_BIND_FLAG_ASYNC		(0x1 << 17)
+> > > +	/*
+> > > +	 * Valid on a faulting VM only, do the MAP operation immediately ra=
+ther
+> > > +	 * than differing the MAP to the page fault handler.
+> > > +	 */
+> > > +#define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 18)
+> > > +	/*
+> > > +	 * When the NULL flag is set, the page tables are setup with a spec=
+ial
+> > > +	 * bit which indicates writes are dropped and all reads return zero=
+.  In
+> > > +	 * the future, the NULL flags will only be valid for XE_VM_BIND_OP_=
+MAP
+> > > +	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag =
+is
+> > > +	 * intended to implement VK sparse bindings.
+> > > +	 */
+> > > +#define XE_VM_BIND_FLAG_NULL		(0x1 << 19)
+> > > +	/** @op: Operation to perform (lower 16 bits) and flags (upper 16 b=
+its)
+> > > */
+> > > +	__u32 op;
+> > > +
+> > > +	/** @mem_region: Memory region to prefetch VMA to, instance not a
+> > > mask */
+> > > +	__u32 region;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_vm_bind {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	/** @vm_id: The ID of the VM to bind to */
+> > > +	__u32 vm_id;
+> > > +
+> > > +	/**
+> > > +	 * @engine_id: engine_id, must be of class
+> > > DRM_XE_ENGINE_CLASS_VM_BIND
+> > > +	 * and engine must have same vm_id. If zero, the default VM bind en=
+gine
+> > > +	 * is used.
+> > > +	 */
+> > > +	__u32 engine_id;
+> > > +
+> > > +	/** @num_binds: number of binds in this IOCTL */
+> > > +	__u32 num_binds;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	union {
+> > > +		/** @bind: used if num_binds =3D=3D 1 */
+> > > +		struct drm_xe_vm_bind_op bind;
+> > > +
+> > > +		/**
+> > > +		 * @vector_of_binds: userptr to array of struct
+> > > +		 * drm_xe_vm_bind_op if num_binds > 1
+> > > +		 */
+> > > +		__u64 vector_of_binds;
+> > > +	};
+> > > +
+> > > +	/** @num_syncs: amount of syncs to wait on */
+> > > +	__u32 num_syncs;
+> > > +
+> > > +	/** @pad2: MBZ */
+> > > +	__u32 pad2;
+> > > +
+> > > +	/** @syncs: pointer to struct drm_xe_sync array */
+> > > +	__u64 syncs;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +/** struct drm_xe_ext_engine_set_property - engine set property
+> > > extension */
+> > > +struct drm_xe_ext_engine_set_property {
+> > > +	/** @base: base user extension */
+> > > +	struct xe_user_extension base;
+> > > +
+> > > +	/** @property: property to set */
+> > > +	__u32 property;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	/** @value: property value */
+> > > +	__u64 value;
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_xe_engine_set_property - engine set property
+> > > + *
+> > > + * Same namespace for extensions as drm_xe_engine_create
+> > > + */
+> > > +struct drm_xe_engine_set_property {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	/** @engine_id: Engine ID */
+> > > +	__u32 engine_id;
+> > > +
+> > > +#define XE_ENGINE_SET_PROPERTY_PRIORITY			0
+> > > +#define XE_ENGINE_SET_PROPERTY_TIMESLICE		1
+> > > +#define XE_ENGINE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
+> > > +	/*
+> > > +	 * Long running or ULLS engine mode. DMA fences not allowed in this
+> > > +	 * mode. Must match the value of
+> > > DRM_XE_VM_CREATE_COMPUTE_MODE, serves
+> > > +	 * as a sanity check the UMD knows what it is doing. Can only be se=
+t at
+> > > +	 * engine create time.
+> > > +	 */
+> > > +#define XE_ENGINE_SET_PROPERTY_COMPUTE_MODE		3
+> > > +#define XE_ENGINE_SET_PROPERTY_PERSISTENCE		4
+> > > +#define XE_ENGINE_SET_PROPERTY_JOB_TIMEOUT		5
+> > > +#define XE_ENGINE_SET_PROPERTY_ACC_TRIGGER		6
+> > > +#define XE_ENGINE_SET_PROPERTY_ACC_NOTIFY		7
+> > > +#define XE_ENGINE_SET_PROPERTY_ACC_GRANULARITY		8
+> > > +	/** @property: property to set */
+> > > +	__u32 property;
+> > > +
+> > > +	/** @value: property value */
+> > > +	__u64 value;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +/** struct drm_xe_engine_class_instance - instance of an engine clas=
+s */
+> > > +struct drm_xe_engine_class_instance {
+> > > +#define DRM_XE_ENGINE_CLASS_RENDER		0
+> > > +#define DRM_XE_ENGINE_CLASS_COPY		1
+> > > +#define DRM_XE_ENGINE_CLASS_VIDEO_DECODE	2
+> > > +#define DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE	3
+> > > +#define DRM_XE_ENGINE_CLASS_COMPUTE		4
+> > > +	/*
+> > > +	 * Kernel only class (not actual hardware engine class). Used for
+> > > +	 * creating ordered queues of VM bind operations.
+> > > +	 */
+> > > +#define DRM_XE_ENGINE_CLASS_VM_BIND		5
+> > > +	__u16 engine_class;
+> > > +
+> > > +	__u16 engine_instance;
+> > > +	__u16 gt_id;
+> > > +};
+> > > +
+> > > +struct drm_xe_engine_create {
+> > > +#define XE_ENGINE_EXTENSION_SET_PROPERTY               0
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	/** @width: submission width (number BB per exec) for this engine *=
+/
+> > > +	__u16 width;
+> > > +
+> > > +	/** @num_placements: number of valid placements for this engine */
+> > > +	__u16 num_placements;
+> > > +
+> > > +	/** @vm_id: VM to use for this engine */
+> > > +	__u32 vm_id;
+> > > +
+> > > +	/** @flags: MBZ */
+> > > +	__u32 flags;
+> > > +
+> > > +	/** @engine_id: Returned engine ID */
+> > > +	__u32 engine_id;
+> > > +
+> > > +	/**
+> > > +	 * @instances: user pointer to a 2-d array of struct
+> > > +	 * drm_xe_engine_class_instance
+> > > +	 *
+> > > +	 * length =3D width (i) * num_placements (j)
+> > > +	 * index =3D j + i * width
+> > > +	 */
+> > > +	__u64 instances;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_engine_get_property {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	/** @engine_id: Engine ID */
+> > > +	__u32 engine_id;
+> > > +
+> > > +#define XE_ENGINE_GET_PROPERTY_BAN			0
+> > > +	/** @property: property to get */
+> > > +	__u32 property;
+> > > +
+> > > +	/** @value: property value */
+> > > +	__u64 value;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_engine_destroy {
+> > > +	/** @engine_id: Engine ID */
+> > > +	__u32 engine_id;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_sync {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +#define DRM_XE_SYNC_SYNCOBJ		0x0
+> > > +#define DRM_XE_SYNC_TIMELINE_SYNCOBJ	0x1
+> > > +#define DRM_XE_SYNC_DMA_BUF		0x2
+> > > +#define DRM_XE_SYNC_USER_FENCE		0x3
+> > > +#define DRM_XE_SYNC_SIGNAL		0x10
+> > > +	__u32 flags;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	union {
+> > > +		__u32 handle;
+> > > +
+> > > +		/**
+> > > +		 * @addr: Address of user fence. When sync passed in via exec
+> > > +		 * IOCTL this a GPU address in the VM. When sync passed in via
+> > > +		 * VM bind IOCTL this is a user pointer. In either case, it is
+> > > +		 * the users responsibility that this address is present and
+> > > +		 * mapped when the user fence is signalled. Must be qword
+> > > +		 * aligned.
+> > > +		 */
+> > > +		__u64 addr;
+> > > +	};
+> > > +
+> > > +	__u64 timeline_value;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_exec {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	/** @vm_id: VM ID to run batch buffer in */
+> > > +	__u32 engine_id;
+> > > +
+> > > +	/** @num_syncs: Amount of struct drm_xe_sync in array. */
+> > > +	__u32 num_syncs;
+> > > +
+> > > +	/** @syncs: Pointer to struct drm_xe_sync array. */
+> > > +	__u64 syncs;
+> > > +
+> > > +	/**
+> > > +	 * @address: address of batch buffer if num_batch_buffer =3D=3D 1 o=
+r an
+> > > +	 * array of batch buffer addresses
+> > > +	 */
+> > > +	__u64 address;
+> > > +
+> > > +	/**
+> > > +	 * @num_batch_buffer: number of batch buffer in this exec, must mat=
+ch
+> > > +	 * the width of the engine
+> > > +	 */
+> > > +	__u16 num_batch_buffer;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u16 pad[3];
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_mmio {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	__u32 addr;
+> > > +
+> > > +#define DRM_XE_MMIO_8BIT	0x0
+> > > +#define DRM_XE_MMIO_16BIT	0x1
+> > > +#define DRM_XE_MMIO_32BIT	0x2
+> > > +#define DRM_XE_MMIO_64BIT	0x3
+> > > +#define DRM_XE_MMIO_BITS_MASK	0x3
+> > > +#define DRM_XE_MMIO_READ	0x4
+> > > +#define DRM_XE_MMIO_WRITE	0x8
+> > > +	__u32 flags;
+> > > +
+> > > +	__u64 value;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +/**
+> > > + * struct drm_xe_wait_user_fence - wait user fence
+> > > + *
+> > > + * Wait on user fence, XE will wakeup on every HW engine interrupt i=
+n the
+> > > + * instances list and check if user fence is complete::
+> > > + *
+> > > + *	(*addr & MASK) OP (VALUE & MASK)
+> > > + *
+> > > + * Returns to user on user fence completion or timeout.
+> > > + */
+> > > +struct drm_xe_wait_user_fence {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	union {
+> > > +		/**
+> > > +		 * @addr: user pointer address to wait on, must qword aligned
+> > > +		 */
+> > > +		__u64 addr;
+> > > +
+> > > +		/**
+> > > +		 * @vm_id: The ID of the VM which encounter an error used with
+> > > +		 * DRM_XE_UFENCE_WAIT_VM_ERROR. Upper 32 bits must be
+> > > clear.
+> > > +		 */
+> > > +		__u64 vm_id;
+> > > +	};
+> > > +
+> > > +#define DRM_XE_UFENCE_WAIT_EQ	0
+> > > +#define DRM_XE_UFENCE_WAIT_NEQ	1
+> > > +#define DRM_XE_UFENCE_WAIT_GT	2
+> > > +#define DRM_XE_UFENCE_WAIT_GTE	3
+> > > +#define DRM_XE_UFENCE_WAIT_LT	4
+> > > +#define DRM_XE_UFENCE_WAIT_LTE	5
+> > > +	/** @op: wait operation (type of comparison) */
+> > > +	__u16 op;
+> > > +
+> > > +#define DRM_XE_UFENCE_WAIT_SOFT_OP	(1 << 0)	/* e.g. Wait on
+> VM bind
+> > > */
+> > > +#define DRM_XE_UFENCE_WAIT_ABSTIME	(1 << 1)
+> > > +#define DRM_XE_UFENCE_WAIT_VM_ERROR	(1 << 2)
+> > > +	/** @flags: wait flags */
+> > > +	__u16 flags;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	/** @value: compare value */
+> > > +	__u64 value;
+> > > +
+> > > +#define DRM_XE_UFENCE_WAIT_U8		0xffu
+> > > +#define DRM_XE_UFENCE_WAIT_U16		0xffffu
+> > > +#define DRM_XE_UFENCE_WAIT_U32		0xffffffffu
+> > > +#define DRM_XE_UFENCE_WAIT_U64		0xffffffffffffffffu
+> > > +	/** @mask: comparison mask */
+> > > +	__u64 mask;
+> > > +	/**
+> > > +	 * @timeout: how long to wait before bailing, value in nanoseconds.
+> > > +	 * Without DRM_XE_UFENCE_WAIT_ABSTIME flag set (relative timeout)
+> > > +	 * it contains timeout expressed in nanoseconds to wait (fence will
+> > > +	 * expire at now() + timeout).
+> > > +	 * When DRM_XE_UFENCE_WAIT_ABSTIME flat is set (absolute timeout)
+> > > wait
+> > > +	 * will end at timeout (uses system MONOTONIC_CLOCK).
+> > > +	 * Passing negative timeout leads to neverending wait.
+> > > +	 *
+> > > +	 * On relative timeout this value is updated with timeout left
+> > > +	 * (for restarting the call in case of signal delivery).
+> > > +	 * On absolute timeout this value stays intact (restarted call stil=
+l
+> > > +	 * expire at the same point of time).
+> > > +	 */
+> > > +	__s64 timeout;
+> > > +
+> > > +	/**
+> > > +	 * @num_engines: number of engine instances to wait on, must be zer=
+o
+> > > +	 * when DRM_XE_UFENCE_WAIT_SOFT_OP set
+> > > +	 */
+> > > +	__u64 num_engines;
+> > > +
+> > > +	/**
+> > > +	 * @instances: user pointer to array of drm_xe_engine_class_instanc=
+e to
+> > > +	 * wait on, must be NULL when DRM_XE_UFENCE_WAIT_SOFT_OP set
+> > > +	 */
+> > > +	__u64 instances;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +struct drm_xe_vm_madvise {
+> > > +	/** @extensions: Pointer to the first extension struct, if any */
+> > > +	__u64 extensions;
+> > > +
+> > > +	/** @vm_id: The ID VM in which the VMA exists */
+> > > +	__u32 vm_id;
+> > > +
+> > > +	/** @pad: MBZ */
+> > > +	__u32 pad;
+> > > +
+> > > +	/** @range: Number of bytes in the VMA */
+> > > +	__u64 range;
+> > > +
+> > > +	/** @addr: Address of the VMA to operation on */
+> > > +	__u64 addr;
+> > > +
+> > > +	/*
+> > > +	 * Setting the preferred location will trigger a migrate of the VMA
+> > > +	 * backing store to new location if the backing store is already
+> > > +	 * allocated.
+> > > +	 *
+> > > +	 * For DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS usage, see
+> > > enum
+> > > +	 * drm_xe_memory_class.
+> > > +	 */
+> > > +#define DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS	0
+> > > +#define DRM_XE_VM_MADVISE_PREFERRED_GT		1
+> > > +	/*
+> > > +	 * In this case lower 32 bits are mem class, upper 32 are GT.
+> > > +	 * Combination provides a single IOCTL plus migrate VMA to preferre=
+d
+> > > +	 * location.
+> > > +	 */
+> > > +#define DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS_GT	2
+> > > +	/*
+> > > +	 * The CPU will do atomic memory operations to this VMA. Must be se=
+t
+> > > on
+> > > +	 * some devices for atomics to behave correctly.
+> > > +	 */
+> > > +#define DRM_XE_VM_MADVISE_CPU_ATOMIC		3
+> > > +	/*
+> > > +	 * The device will do atomic memory operations to this VMA. Must be=
+ set
+> > > +	 * on some devices for atomics to behave correctly.
+> > > +	 */
+> > > +#define DRM_XE_VM_MADVISE_DEVICE_ATOMIC		4
+> > > +	/*
+> > > +	 * Priority WRT to eviction (moving from preferred memory location =
+due
+> > > +	 * to memory pressure). The lower the priority, the more likely to =
+be
+> > > +	 * evicted.
+> > > +	 */
+>=20
+> Hi Oak,
+>=20
+> Thanks for your reviews and comments here...
+>=20
+> >
+> > Making ATOMIC as a madvise caused some problem. Atomic should be a hard
+> requirement, not a hint, because atomic has correctness implication.
+> Hint/madvise is best effort. Even if we can't meet the requirement of a h=
+int, it
+> won't cause any correctness problem. For example, one some device, when w=
+e
+> mark an allocation as DEVICE_ATOMIC, driver will HAVE to guarantee the ba=
+cking
+> store of the allocation is in device as device can't perform atomic opera=
+tions to
+> system memory across PCIe on such device.
+> >
+> > So we should remove the MADVISE verb from above definition, such as:
+> >
+> > +#define DRM_XE_VM_SET_DEVICE_ATOMIC		4
+>=20
+> I don't quite get this suggestion since this doesn't align
+> with the madvise_func call. So, should we kill that function
+> and make this a VM property? in such case, what would this
+> property do?
+
+
+In struct xe_bo, we already have a properties for atomics, such as device_a=
+tomic, cpu_atomic. This is good. What I was saying above is, the function t=
+o set the device_atomic property should not be a madvise function. The pref=
+erred_gt, _priority etc can be a madvise function, but the device_atomic ca=
+n't be set through the xe_vm_madvise_ioctl function, due the reason I expla=
+ined above. It would be better we introduce some set_property ioctl to set =
+the atomic property of xe_bo.
+
+
+>=20
+> >
+> > Also, besides CPU_ATOMIC and DEVICE_ATOMIC, we should also define
+> SYSTEM_ATOMIC which means both CPU and device can perform atomics to such
+> allocation. This definition is better aligned with the new L0 specificati=
+on, see:
+> https://spec.oneapi.io/level-
+> zero/latest/core/api.html#ze__api_8h_1a020717d3d1d0f52f645226b7ffd4552b.
+> The old version of the L0 specification is https://spec.oneapi.io/level-
+> zero/latest/core/api.html#ze-memory-advice-t, which is similar to your
+> definitions above (having the word ADVICE).
+> >
+> > HOST_ATOMIC seems a little bit better name than CPU_ATOMIC, to pair wit=
+h
+> DEVICE_ATOMIC.
+>=20
+> Could you please open up on your proposal for the proper alignment?
+>=20
+> I just created https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/739
+> so we don't lose track of it.
+
+Ok, I will follow up on gitlab then.
+
+Thanks,
+Oak
+>=20
+> Thanks,
+> Rodrigo.
+>=20
+> >
+> > Thanks,
+> > Oak
+> >
+> > > +#define DRM_XE_VM_MADVISE_PRIORITY		5
+> > > +#define		DRM_XE_VMA_PRIORITY_LOW		0
+> > > +#define		DRM_XE_VMA_PRIORITY_NORMAL	1	/* Default
+> > > */
+> > > +#define		DRM_XE_VMA_PRIORITY_HIGH	2	/* Must
+> > > be elevated user */
+> > > +	/* Pin the VMA in memory, must be elevated user */
+> > > +#define DRM_XE_VM_MADVISE_PIN			6
+> > > +	/** @property: property to set */
+> > > +	__u32 property;
+> > > +
+> > > +	/** @pad2: MBZ */
+> > > +	__u32 pad2;
+> > > +
+> > > +	/** @value: property value */
+> > > +	__u64 value;
+> > > +
+> > > +	/** @reserved: Reserved */
+> > > +	__u64 reserved[2];
+> > > +};
+> > > +
+> > > +#if defined(__cplusplus)
+> > > +}
+> > > +#endif
+> > > +
+> > > +#endif /* _UAPI_XE_DRM_H_ */
+> > > --
+> > > 2.40.1
+> >
