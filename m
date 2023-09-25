@@ -4,30 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB4FECE7A96
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 14:28:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1BD15CE7A94
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 14:36:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89B2310E266;
-	Mon, 25 Sep 2023 14:28:33 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id AA20110E167;
- Mon, 25 Sep 2023 14:28:31 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A8E5FAADDD;
- Mon, 25 Sep 2023 14:28:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6C0010E267;
+	Mon, 25 Sep 2023 14:36:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6AED310E267
+ for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 14:36:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695652561; x=1727188561;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jXI+fK5IVUE/MbWZQh44UWzamXfzriQnCjWp1hIhsF8=;
+ b=fFOnSskW7ze9KzCG80380fbsiSdFHfLmE60rNpSbs6K+GZYRjwZEnGAB
+ a9uW5StV2iApWl006Qc0MYk4KKXq4rgSs3Nldiiqa7AE80OhhtxRY7awV
+ muN3Whwp1AUlgWGM3BK0ULBMPuM/PU+9rRlJm9FCZuz2YTxzCJkyttMH2
+ Yd8NbBFmdfMIk08fPQfKj+t7Z68soVnoMFPylDA3CLK+stvxHQ1735IGo
+ JF22kPk3I/EfkX2UA/phDGjPtPdPSTDpS2UCX7tFFsbsSSHcJSmaISiXl
+ sM0GS1nzfExH7Fl14lnEK35PA2UulSyIA6wCqmp/yv30fEXegGXHx1wY7 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="380137726"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="380137726"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 07:36:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="725005299"
+X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="725005299"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga006.jf.intel.com with ESMTP; 25 Sep 2023 07:35:57 -0700
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 25 Sep 2023 20:13:57 +0530
+Message-Id: <20230925144359.192835-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Date: Mon, 25 Sep 2023 14:28:31 -0000
-Message-ID: <169565211168.21535.12741727189892561861@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230925142409.189969-1-tejas.upadhyay@intel.com>
-In-Reply-To: <20230925142409.189969-1-tejas.upadhyay@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_Count_and_report_low_level_driver_errors_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH V3 0/2] drm/xe: Count and report low level driver
+ errors
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +54,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This series adds low level driver error counter. Devided
+into below patches:
+1. Add APIs to count different category of errors under Tile and GT
+2. Add counter increment at all existing error tap points
 
-Series: drm/xe: Count and report low level driver errors (rev2)
-URL   : https://patchwork.freedesktop.org/series/124026/
-State : success
+Focus is not to add new error checks but maintain counter for errors
+on existing errors which can create performance impact.
 
-== Summary ==
+TODO: Later on when netlink interface is ready, we will export these
+counters through netlink interface.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 6378241543c29ce3a7df5828323f1684b4bb19e3
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Tejas Upadhyay (2):
+  drm/xe: Indroduce low level driver error counting APIs
+  drm/xe: Update counter for low level driver errors
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/xe/xe_device.h              |  2 ++
+ drivers/gpu/drm/xe/xe_device_types.h        |  9 +++++++++
+ drivers/gpu/drm/xe/xe_gt.c                  | 18 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt.h                  |  3 +++
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  2 ++
+ drivers/gpu/drm/xe/xe_gt_types.h            | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_guc.c                 |  3 +++
+ drivers/gpu/drm/xe/xe_guc_ct.c              | 11 ++++++++++-
+ drivers/gpu/drm/xe/xe_guc_pc.c              |  8 ++++++--
+ drivers/gpu/drm/xe/xe_guc_submit.c          | 10 ++++++++++
+ drivers/gpu/drm/xe/xe_irq.c                 |  1 +
+ drivers/gpu/drm/xe/xe_reg_sr.c              |  4 ++++
+ drivers/gpu/drm/xe/xe_tile.c                | 18 ++++++++++++++++++
+ 13 files changed, 96 insertions(+), 3 deletions(-)
 
+-- 
+2.25.1
 
