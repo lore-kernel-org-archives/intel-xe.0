@@ -4,50 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D665FCE7A94
-	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 14:57:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E423CE7A96
+	for <intel-xe@archiver.kernel.org>; Mon, 25 Sep 2023 15:00:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94BDB10E267;
-	Mon, 25 Sep 2023 14:57:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5138510E267
- for <intel-xe@lists.freedesktop.org>; Mon, 25 Sep 2023 14:57:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695653859; x=1727189859;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=7CBRdgTrx7zP4B7hQx1S5Q/1ZcKGVZXTE4OsQCqQFcA=;
- b=P5z7dhi0Qcx02izey9gwlYTIqdz703NtmFrg13rhvuWIxBVy+fzJFgTN
- 4azwyfY9LA+ZagfQzLfB/rMmbbdXbOFI2v4I+2ggFt2850D1wL/Faktvw
- oLwONi1np57JNTQEdTKL6WR79xgTAImd8NsMZiolGjk9fVvxDFr0pdrM7
- /2H3s790SO4cYyyviv+ecOszbgOT7mziNSa8A2DmKuXaDE2oAOEluv+OG
- 0mu7fS874RPOdVpRWtIKac+uaztPBz3QprGbGGn4iJQNgov3gmtYLeODd
- EsvaTGosgpUkidkakk7gTPA6+a3L/8uwUhdL1CMm7gScheBd3jAa5hPBt Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="384033877"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="384033877"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 07:57:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="1079242116"
-X-IronPort-AV: E=Sophos;i="6.03,175,1694761200"; d="scan'208";a="1079242116"
-Received: from smgotth-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.40.46])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 07:57:37 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20230925144359.192835-2-tejas.upadhyay@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230925144359.192835-1-tejas.upadhyay@intel.com>
- <20230925144359.192835-2-tejas.upadhyay@intel.com>
-Date: Mon, 25 Sep 2023 17:57:35 +0300
-Message-ID: <87il7ymhb4.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47CA810E26E;
+	Mon, 25 Sep 2023 15:00:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D812A10E26E;
+ Mon, 25 Sep 2023 15:00:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D32C6A0BA8;
+ Mon, 25 Sep 2023 15:00:41 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1794442677480819058=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH V3 1/2] drm/xe: Indroduce low level driver
- error counting APIs
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Date: Mon, 25 Sep 2023 15:00:41 -0000
+Message-ID: <169565404185.21533.7456874601964381923@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230925142409.189969-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20230925142409.189969-1-tejas.upadhyay@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A?=
+ =?utf-8?q?_Count_and_report_low_level_driver_errors_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,177 +39,175 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 25 Sep 2023, Tejas Upadhyay <tejas.upadhyay@intel.com> wrote:
-> Low level driver error that might have power or performance
-> impact on the system, we are adding a new error counter to GT
-> and tile and increment on each occurrance. Lets introduce APIs
-> to define and increment each error type counter.
->
-> V3:
->   - correct #define max value
-> V2:
->   - Move some code to its related patch - Michal
->   - Renaming if API and enum - Michal
->   - GUC errors are moved per GT - Michal
->   - Some nits - Michal
->
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device.h       |  2 ++
->  drivers/gpu/drm/xe/xe_device_types.h |  9 +++++++++
->  drivers/gpu/drm/xe/xe_gt.c           | 18 ++++++++++++++++++
->  drivers/gpu/drm/xe/xe_gt.h           |  3 +++
->  drivers/gpu/drm/xe/xe_gt_types.h     | 10 ++++++++++
->  drivers/gpu/drm/xe/xe_tile.c         | 18 ++++++++++++++++++
->  6 files changed, 60 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> index c4232de40ae0..b44c91d1cec9 100644
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -159,5 +159,7 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
->  }
->  
->  u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
-> +void xe_tile_report_driver_error(struct xe_tile *tile,
-> +				 const enum xe_tile_drv_err_type err);
+--===============1794442677480819058==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Seems misplaced.
+== Series Details ==
 
-BR,
-Jni.
+Series: drm/xe: Count and report low level driver errors (rev2)
+URL   : https://patchwork.freedesktop.org/series/124026/
+State : failure
 
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 32ab0fea04ee..a28e140f9e64 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -57,6 +57,12 @@ struct xe_ggtt;
->  		 const struct xe_tile * : (const struct xe_device *)((tile__)->xe),	\
->  		 struct xe_tile * : (tile__)->xe)
->  
-> +#define XE_TILE_DRV_ERR_MAX	2
-> +enum xe_tile_drv_err_type {
-> +	XE_TILE_DRV_ERR_GGTT,
-> +	XE_TILE_DRV_ERR_INTR
-> +};
-> +
->  /**
->   * struct xe_mem_region - memory region structure
->   * This is used to describe a memory region in xe
-> @@ -173,6 +179,9 @@ struct xe_tile {
->  
->  	/** @sysfs: sysfs' kobj used by xe_tile_sysfs */
->  	struct kobject *sysfs;
-> +
-> +	/** @drv_err_cnt: driver error counter for this tile */
-> +	u32 drv_err_cnt[XE_TILE_DRV_ERR_MAX];
->  };
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 1aa44d4f9ac1..a1a0eb59ecc5 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -47,6 +47,24 @@
->  #include "xe_wa.h"
->  #include "xe_wopcm.h"
->  
-> +/**
-> + * xe_gt_report_driver_error - Count driver err for gt
-> + * @gt: GT to count error for
-> + * @err: enum error type
-> + *
-> + * Increment the driver error counter in respective error
-> + * category for this GT.
-> + *
-> + * Returns void.
-> + */
-> +void xe_gt_report_driver_error(struct xe_gt *gt,
-> +			       const enum xe_gt_drv_err_type err)
-> +{
-> +	xe_gt_assert(gt, err >= ARRAY_SIZE(gt->drv_err_cnt));
-> +	WRITE_ONCE(gt->drv_err_cnt[err],
-> +		   READ_ONCE(gt->drv_err_cnt[err]) + 1);
-> +}
-> +
->  struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
->  {
->  	struct xe_gt *gt;
-> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-> index caded203a8a0..9442d615042f 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.h
-> +++ b/drivers/gpu/drm/xe/xe_gt.h
-> @@ -67,4 +67,7 @@ static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
->  		hwe->instance == gt->usm.reserved_bcs_instance;
->  }
->  
-> +void xe_gt_report_driver_error(struct xe_gt *gt,
-> +			       const enum xe_gt_drv_err_type err);
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index d4310be3e1e7..4645ea9b7893 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -24,6 +24,13 @@ enum xe_gt_type {
->  	XE_GT_TYPE_MEDIA,
->  };
->  
-> +#define XE_GT_DRV_ERR_MAX	3
-> +enum xe_gt_drv_err_type {
-> +	XE_GT_DRV_ERR_GUC_COMM,
-> +	XE_GT_DRV_ERR_ENGINE,
-> +	XE_GT_DRV_ERR_OTHERS
-> +};
-> +
->  #define XE_MAX_DSS_FUSE_REGS	3
->  #define XE_MAX_EU_FUSE_REGS	1
->  
-> @@ -347,6 +354,9 @@ struct xe_gt {
->  		/** @oob: bitmap with active OOB workaroudns */
->  		unsigned long *oob;
->  	} wa_active;
-> +
-> +	/** @drv_err_cnt: driver error counter for this GT */
-> +	u32 drv_err_cnt[XE_GT_DRV_ERR_MAX];
->  };
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index 131752a57f65..4090798aff4c 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -71,6 +71,24 @@
->   *  - MOCS and PAT programming
->   */
->  
-> +/**
-> + * xe_tile_report_driver_error - Count driver err for tile
-> + * @tile: Tile to count error for
-> + * @err: enum error type
-> + *
-> + * Increment the driver error counter in respective error
-> + * category for this tile.
-> + *
-> + * Returns void.
-> + */
-> +void xe_tile_report_driver_error(struct xe_tile *tile,
-> +				 const enum xe_tile_drv_err_type err)
-> +{
-> +	xe_assert(tile_to_xe(tile), err >= ARRAY_SIZE(tile->drv_err_cnt));
-> +	WRITE_ONCE(tile->drv_err_cnt[err],
-> +		   READ_ONCE(tile->drv_err_cnt[err]) + 1);
-> +}
-> +
->  /**
->   * xe_tile_alloc - Perform per-tile memory allocation
->   * @tile: Tile to perform allocations for
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3_BAT -> xe-pw-124026v2_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-124026v2_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-124026v2_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-124026v2_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_module_load@load:
+    - bat-atsm-2:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3/bat-atsm-2/igt@xe_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124026v2/bat-atsm-2/igt@xe_module_load@load.html
+    - bat-adlp-7:         [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3/bat-adlp-7/igt@xe_module_load@load.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124026v2/bat-adlp-7/igt@xe_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-124026v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_module_load@load:
+    - bat-dg2-oem2:       [PASS][5] -> [INCOMPLETE][6] ([Intel XE#597] / [Intel XE#714])
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3/bat-dg2-oem2/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124026v2/bat-dg2-oem2/igt@xe_module_load@load.html
+
+  
+  [Intel XE#597]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/597
+  [Intel XE#714]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/714
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7499 -> IGT_7501
+  * Linux: xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3 -> xe-pw-124026v2
+
+  IGT_7499: d991240f6c6751e9480456c20de785cfc6e6ff15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7501: f95083bb410e7a5521cca9c6908760a2de6f6591 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3: 6378241543c29ce3a7df5828323f1684b4bb19e3
+  xe-pw-124026v2: 124026v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124026v2/index.html
+
+--===============1794442677480819058==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Count and report low level driver errors (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124026/">https://patchwork.freedesktop.org/series/124026/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124026v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124026v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3_BAT -&gt; xe-pw-124026v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-124026v2_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-124026v2_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-124026v2_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>
+<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3/bat-atsm-2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124026v2/bat-atsm-2/igt@xe_module_load@load.html">INCOMPLETE</a></p>
+</li>
+<li>
+<p>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3/bat-adlp-7/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124026v2/bat-adlp-7/igt@xe_module_load@load.html">INCOMPLETE</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-124026v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_module_load@load:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3/bat-dg2-oem2/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124026v2/bat-dg2-oem2/igt@xe_module_load@load.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/597">Intel XE#597</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/714">Intel XE#714</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7499 -&gt; IGT_7501</li>
+<li>Linux: xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3 -&gt; xe-pw-124026v2</li>
+</ul>
+<p>IGT_7499: d991240f6c6751e9480456c20de785cfc6e6ff15 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7501: f95083bb410e7a5521cca9c6908760a2de6f6591 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-394-6378241543c29ce3a7df5828323f1684b4bb19e3: 6378241543c29ce3a7df5828323f1684b4bb19e3<br />
+  xe-pw-124026v2: 124026v2</p>
+
+</body>
+</html>
+
+--===============1794442677480819058==--
