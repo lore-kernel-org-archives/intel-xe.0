@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48B42E7F140
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 22:37:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68918E7F143
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 22:37:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 19EFF10E386;
-	Tue, 26 Sep 2023 22:37:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F9BF10E44B;
+	Tue, 26 Sep 2023 22:37:03 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B48010E452
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 22:36:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ADE810E472
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 22:36:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695767786; x=1727303786;
+ t=1695767785; x=1727303785;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NTp0hP8FM7mQmG4EDNpv5FJWsGa3zQ/f+HYBp+Ypk4g=;
- b=mnbjiendtY+MkECmdsc4mEhE+Jks4uPDs2LgqwKe1cMmrWzrSmT71jYQ
- dz+H+9bNYb7ev1y01pOnk+7Cmr1ZyzsbvmFzoLBEyd5ow8gyhtj92ra6U
- e8bT5urqwTtckmwhP/yOEeQrgrZutu9iauW3C/LPmGuY2+wNe2QjgErAW
- XEUVI3GRvoozIYipDdJexAPVGaJXddHfMVNpyzcsooVGb97mYvD199+9s
- UxTomLe6usSPGt03vnMERWkYohTocFHEA/AQwNpA2qBvub9+qrMMVRLwK
- Zwi0LKK+IIPMDG1PCZMR1zzUxg/6CTR3cVyYOk3DZ6NCg0YyUC5AiMwVk w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="412597217"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="412597217"
+ bh=aHy8Ondlg2E0dZIxNHhUQzs0JPD04vDrCCJZKg/JZj8=;
+ b=dsFznAOYA/ZA8Ox3bsHn2K2U8YUqihdrRuuS3oSH2Ws5RsYquPh7KXfE
+ E7oXAWZ40M/9PKQhN90WHrpGfiwr6YT6qpTlSs2EM+/JMQ4msL1RbMbb8
+ 08LJZoLE1yd/d9B9+3xXzWS00vkwJ2Pox3B7/u7jbSZDRNiK3VbRge/UQ
+ 05ISHwG8ObPGJzRtxfeF6TQ+ID5mklEHr3h5Forb/4rGbnSlzjub0HTR4
+ OLj0mFZMh3HLOiBpV+0PBAdmcwWdmP0iziA9NbrlaeYf6vHaOgouZfZt/
+ qVy5ndsXOmQ9lDyKcmFJI8PAhDiZK+0BHOkLC8DK7Abjfhue2Bn1RYi0U g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="412597204"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="412597204"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 15:36:25 -0700
+ 26 Sep 2023 15:36:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="752343397"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="752343397"
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="752343364"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="752343364"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 15:36:24 -0700
+ 26 Sep 2023 15:36:23 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 26 Sep 2023 15:36:31 -0700
-Message-Id: <20230926223631.2807873-12-lucas.demarchi@intel.com>
+Date: Tue, 26 Sep 2023 15:36:22 -0700
+Message-Id: <20230926223631.2807873-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230926223631.2807873-1-lucas.demarchi@intel.com>
 References: <20230926223631.2807873-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 11/11] fixup! drm/xe/display: Implement
- display support
+Subject: [Intel-xe] [PATCH v2 02/11] drm/xe: Remove check for vma == NULL
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,94 +61,41 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fix build break due to previous commit. Squash on "Implement display
-support" to be moved above the previous commit.
+vma at this point can never be NULL as otherwise it would crash earlier
+in the only caller, xe_pt_stage_bind_entry(). Remove the extra check and
+avoid adding and removing the bits from the pte.
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 32 ++++++++++++++++++--------
- 1 file changed, 23 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 3422942a9951..b7a04fba3585 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -17,7 +17,10 @@ static void
- write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_ofs,
- 		  u32 width, u32 height, u32 src_stride, u32 dst_stride)
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index afadd399684c..0b8a45609e83 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -136,14 +136,15 @@ u64 xe_pte_encode(struct xe_bo *bo, u64 bo_offset, enum xe_cache_level cache,
+ static u64 __vma_pte_encode(u64 pte, struct xe_vma *vma,
+ 			    enum xe_cache_level cache, u32 pt_level)
  {
-+	struct xe_device *xe = xe_bo_device(bo);
-+	struct xe_ggtt *ggtt = xe_device_get_root_tile(xe)->mem.ggtt;
- 	u32 column, row;
+-	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
++	pte |= XE_PAGE_PRESENT;
 +
- 	/* TODO: Maybe rewrite so we can traverse the bo addresses sequentially,
- 	 * by writing dpt/ggtt in a different order?
- 	 */
-@@ -26,8 +29,10 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
- 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
- 
- 		for (row = 0; row < height; row++) {
--			iosys_map_wr(map, *dpt_ofs, u64,
--				     xe_ggtt_pte_encode(bo, src_idx * XE_PAGE_SIZE));
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+							      XE_CACHE_WB);
++	if (likely(!xe_vma_read_only(vma)))
++		pte |= XE_PAGE_RW;
 +
-+			iosys_map_wr(map, *dpt_ofs, u64, pte);
- 			*dpt_ofs += 8;
- 			src_idx -= src_stride;
- 		}
-@@ -46,6 +51,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- {
- 	struct xe_device *xe = to_xe_device(fb->base.dev);
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
-+	struct xe_ggtt *ggtt = tile0->mem.ggtt;
- 	struct xe_bo *bo = intel_fb_obj(&fb->base), *dpt;
- 	u32 dpt_size, size = bo->ttm.base.size;
+ 	pte |= pte_encode_cache(cache);
+ 	pte |= pte_encode_ps(pt_level);
  
-@@ -76,9 +82,12 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 	if (view->type == I915_GTT_VIEW_NORMAL) {
- 		u32 x;
+-	if (unlikely(vma && xe_vma_read_only(vma)))
+-		pte &= ~XE_PAGE_RW;
+-
+-	if (unlikely(vma && xe_vma_is_null(vma)))
++	if (unlikely(xe_vma_is_null(vma)))
+ 		pte |= XE_PTE_NULL;
  
--		for (x = 0; x < size / XE_PAGE_SIZE; x++)
--			iosys_map_wr(&dpt->vmap, x * 8, u64,
--				     xe_ggtt_pte_encode(bo, x * XE_PAGE_SIZE));
-+		for (x = 0; x < size / XE_PAGE_SIZE; x++) {
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
-+							      XE_CACHE_WB);
-+
-+			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
-+		}
- 	} else {
- 		const struct intel_rotation_info *rot_info = &view->rotated;
- 		u32 i, dpt_ofs = 0;
-@@ -107,8 +116,10 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
- 		u32 src_idx = src_stride * (height - 1) + column + bo_ofs;
- 
- 		for (row = 0; row < height; row++) {
--			xe_ggtt_set_pte(ggtt, *ggtt_ofs,
--					xe_ggtt_pte_encode(bo, src_idx * XE_PAGE_SIZE));
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
-+							      XE_CACHE_WB);
-+
-+			xe_ggtt_set_pte(ggtt, *ggtt_ofs, pte);
- 			*ggtt_ofs += XE_PAGE_SIZE;
- 			src_idx -= src_stride;
- 		}
-@@ -150,8 +161,11 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- 		if (ret)
- 			goto out_unlock;
- 
--		for (x = 0; x < size; x += XE_PAGE_SIZE)
--			xe_ggtt_set_pte(ggtt, vma->node.start + x, xe_ggtt_pte_encode(bo, x));
-+		for (x = 0; x < size; x += XE_PAGE_SIZE) {
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x, XE_CACHE_WB);
-+
-+			xe_ggtt_set_pte(ggtt, vma->node.start + x, pte);
-+		}
- 	} else {
- 		u32 i, ggtt_ofs;
- 		const struct intel_rotation_info *rot_info = &view->rotated;
+ 	return pte;
 -- 
 2.40.1
 
