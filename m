@@ -4,150 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47E07E7D26A
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 09:01:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 978C2E7D271
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 10:06:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05CC210E37C;
-	Tue, 26 Sep 2023 09:01:16 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 268C310E37B
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 09:01:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 40A7410E397;
+	Tue, 26 Sep 2023 10:06:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9824910E396
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 10:06:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695718874; x=1727254874;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=1aZn0/rhgMW73PiOXWXk2Weo2DTqkAUWr1MPRsS7yuU=;
- b=gDkDkqyaYdcM667uJKGxgUVmbmzzZ/QxC3iUxRJX5diHovFma6M0xUQe
- IiUCoWPr5v1ei8i37NCx78L7grv6zPqOD06Yh45l9IzJkx5A7MzIx/BoK
- xE/jTx5gyEIBv/7GGkra/GaIBak99mkORLc2oB1nRJz98X/OVYJxoCDp/
- lP8kaYmF5izLtunJAcSpeOpLfhxtaPD52n74JFWNhbCromV2wRzrnlWCs
- cbThamxMR9g8RmyRL5MFUS6tbOorUwlSywAKMfceEl/Mfn0rQp6sbGcEv
- lc2LlzHROH5BJzhsBKl6mIwLBkFWj6DIKxXsyznz/tAXmmfh4XUuFpynB A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="384300240"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="384300240"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 02:01:00 -0700
+ t=1695722788; x=1727258788;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=TvklvPOhbLzbnsKKi4huwYM9fB6NXM81e/QRFN2Uydc=;
+ b=OsyWJI+2OaoWHFuyoQVf8TPC0jTAEXXiUzZa8QU1zvlNETZj9VYMPLjA
+ hCsOjUF3KSMcKr5dwA8UZPMaaT8zSl2JH/XVbxz+pbDYspVLKkK8bGTFU
+ wDvTfJr6hIPdOG0zlDLHri5JhpFgRxyKW0v/a9qBX7/J66uACI8WV3Jv3
+ tcSadNcvSKJ1ofq0/VCHub2nP6VI+BFO5eIs3IbWDwtzjMSCWgETR7qoS
+ vwDR5lBpWYF1s6B0Dct917RS8HVkNWmmS4uguhH9wCdR4XagNF/8tATee
+ +NK388u6UJL/MyBwRY7LGVgvxDU/qj7ZEp5xC9wuJ/bSiqTOSKSeELrZP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="445663647"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="445663647"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 03:06:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="838960309"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="838960309"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by FMSMGA003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Sep 2023 02:00:59 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 26 Sep 2023 02:00:59 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 26 Sep 2023 02:00:59 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.43) by
- edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 26 Sep 2023 02:00:58 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oMF5tdgKkYXC3vGpepCOvuXhZRKH/y2wUAyI3oGJThNcDWjlLNk6M0xcObdLHGB45RlQeyy7Yl8FmtL4P1NTcH7QgmsNHNUrYJCnmh7yvwD3+vI9bX/EQ/eke/djxBLB7Yb13/Wa5cdfxSE2oC5UUuvQ7Qy/rAuP08atWNpa8IBHNP04t2rUlRiIqeW9+R37zXX/IrgwiB0dU8t1gLg8c4ATNYsC6vSJDl4c0bpRCKuPvcZVEpyNED9+nts5TvmD3UaWrk+TdCpO5lsV2kmgxLm1Md+jkqWRSMhYgvJQWTs48ClNDJbYIh2me593Qjd/vx93ZciQaTFdt9CPpanFPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=roLmDgjNiUtcXXkAYiNSB+DbWcl6kek1IC+PhUKvAUo=;
- b=chcamu2XAmI6SgKkHDQy0JBJVZqzHATWoXQyEmUE0Jyj2KWjwZHwGdLkw0Ea+jJ1uu8j4XMdMz8uNZpmolAPNjjrFfXpxEQCagUyI8LjQLpycmk8RZkpwJ73cn/vFXjIXxoOnLpfSD9YemtbKij1y5UYfCDo2iG0Q04un/0qw/XfwM7wABDin/pIjasxoEH7319qFucfxTLxkgVz2Gz2jXfT5hmVT7D0VpjJBLUUZMFup4C6nn19jqkaflgkeOxpkkfHgnBJific91qXD40OqApEYc/2CGs8u6A8ziCgJFOtCGEdtSGY/ZFy8L9ewzed3/C5CY6WHKAaVEau8hfzcg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
- by MW4PR11MB6809.namprd11.prod.outlook.com (2603:10b6:303:1e9::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.23; Tue, 26 Sep
- 2023 09:00:56 +0000
-Received: from BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::c555:e954:7fef:f646]) by BN9PR11MB5530.namprd11.prod.outlook.com
- ([fe80::c555:e954:7fef:f646%7]) with mapi id 15.20.6813.017; Tue, 26 Sep 2023
- 09:00:56 +0000
-Message-ID: <ec2a4e33-0b34-fb00-5470-f2d39edc6eb1@intel.com>
-Date: Tue, 26 Sep 2023 14:30:45 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Andi Shyti <andi.shyti@linux.intel.com>
-References: <20230925081842.3566834-1-badal.nilawar@intel.com>
- <20230925081842.3566834-6-badal.nilawar@intel.com>
- <ZRF1f2OsC1pr5hFd@ashyti-mobl2.lan>
- <e5801f36-2f9a-6d24-7af2-1e7174f2e0b4@intel.com>
- <ZRKP2UIGUWTXnZN6@ashyti-mobl2.lan>
-From: "Nilawar, Badal" <badal.nilawar@intel.com>
-In-Reply-To: <ZRKP2UIGUWTXnZN6@ashyti-mobl2.lan>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: PN2PR01CA0240.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:eb::17) To BN9PR11MB5530.namprd11.prod.outlook.com
- (2603:10b6:408:103::8)
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="748765380"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="748765380"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 03:06:25 -0700
+Message-ID: <59b5374b-5701-7e4e-dc0b-2db52eb4786e@linux.intel.com>
+Date: Tue, 26 Sep 2023 15:39:11 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|MW4PR11MB6809:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5c7ad222-0c72-4ea4-7586-08dbbe6f17fe
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bPY7W1F8NmavTvjPYiKz+9VZmfzavZWiMAyLxApr/JVwOUhOXDWk0xIcRNC6XV4FlXZ8xJvFTWPqtV8GtWE7x3MHfGKfH2w/WNhE6Sn0IYOnFrqm39vvTUmFmMEvzkeyMcnEYRtF2Rd2Ogm6GTF4ANhYCWG4MCzF68DjkzFdtqMcxlucps8yzo/ULSKnOVRCiaR1XOkoZFt6jW4XaJv72EpGc5l/+jP6lHY9AwLxftfSuiVyiJvApLL6TUd7AxQFXQxtf3CdGrpborGH4+DkLoB1tzF2fLaKGKgbBtVtjKAmb7GblN9rq8FV9Rc3ZfeHB+sKg5PEfJjCNxYdrBkwU9fwEf5xkjgL6cuHzgx4EAKPBXaIHp4U750ZS0Z/+mhEhzlcZZG7IuBi763MMYp/dxLBqKJoD0kdp55mML9gcPzq9uDEg7F308NjzRU4lSWFiHWOlQ8Oe1vga3An1FsoX4mh4khxW1tJ7Cnnma09IUbzK3rg8E+04+v5U3QqvGTPxnGD5uKRIsyj26vWppdv+lFQZF+mYirzp8Fs+NdSRW68O8TttvVzFsR7MX/l4VyyMQU9PZmWTLO4TzJhNCOGMXPEBG0piy/63fcX5RXk7kJ9CMlnEucaxr5cr/KA99gSkaQw2+FnI74iFFI2BgKybw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(396003)(39860400002)(136003)(376002)(366004)(230922051799003)(186009)(451199024)(1800799009)(41300700001)(82960400001)(86362001)(38100700002)(53546011)(6506007)(6666004)(8936002)(6512007)(6916009)(2906002)(66556008)(316002)(66476007)(66946007)(2616005)(5660300002)(4326008)(26005)(8676002)(31696002)(36756003)(478600001)(83380400001)(31686004)(6486002)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V3FneC8yMDRIZUw2OXRxV2V3UTJKNWZabTd2Z2t2cXBwQ1JJR25zSzlhTjN5?=
- =?utf-8?B?eEpJbUVWekVmWWZDMzFmRjlucHVYS0hraWgzWnlTellRZks2TkorSlU5bWFu?=
- =?utf-8?B?RFE1Sld1QUlpb0Vwekc2OUZYZU1Wak1FVUhrandXTEtnaGIxU21iQUZRdDRS?=
- =?utf-8?B?MmdnN1BVMzJpMk9OdGVFeGJXd29uMVZ3QkhMYmh6RS9jcjg0cytLNm9JR3ox?=
- =?utf-8?B?Qlk0cXMrVjdpRkdDbmtIcW1UUHcxaXY1OXJOc2ZNdlEvWGJNZ1IwV3Z2enRs?=
- =?utf-8?B?c1J3bFh2QzllUjFxdk5oSG9nUlNpY1RyTlhBZjROSERtYTFNeXk2T08vMVZW?=
- =?utf-8?B?SjlBVHF6alozSTBNUlJvWnZsRkF4TTQ5cmE3emNzTCtNMjJDZHp6akltSmVU?=
- =?utf-8?B?ekdlOUFXUzRLL1MwRGplcmJJQkFCMis1VkFkTE9QZTZBWWRObndxR01xRlBz?=
- =?utf-8?B?Y2hzdUR1anh0c3ViYjEwUVM3alc1aUxIWlgzQkhacEFXeDlnUDlMVTM2SytJ?=
- =?utf-8?B?RTVyNWlFbElNWHRnY3pNYWhvOHFLc2xyckFWcnV3N3FZYkJhanpqVnlKZlJh?=
- =?utf-8?B?dnJaekk5QmxwZXMvOEtHa1JvRXdCaFRRbjNJd0NjUG9pdzY5MGlFa0t1VE50?=
- =?utf-8?B?dUxESUJmeC9wMC9HS2QzMXlsNEVvS3lLemZ4WVkzeDhTYkdmNXNPNmM1OGpo?=
- =?utf-8?B?T1EvaFN4MEJ4alFMRUZLc09lZnVaRXc5N0VpZVFFM0g3TjJkUVVsekJ6eVNr?=
- =?utf-8?B?MW53THVyQ09kOWgybTdNbE5yaDBXR1BIVE9jelhjc0JJTGFQeEdXL3hxZkxL?=
- =?utf-8?B?T1pSL3V2MzFtRkllVmM2N3ZwaVpuaWJoSjlvK1c4YW52OVhYYXFVSWhvM1hY?=
- =?utf-8?B?ZDlxMUNqOHhTQThRS1d6N3dxUm5ablpmTHVLUVZnS3h3VTByTVR1eHlJUENx?=
- =?utf-8?B?VG05R0hEREdrUWswa0dYNHd1b3J2WjJTQ096SHlwRlhrUHBTZXU0QkdUY3Qy?=
- =?utf-8?B?TmlIREZnVnZ5LytUOVMwWFg5endhNks3NXRwZkFaWUlCNU9LRmh5aWw0alVM?=
- =?utf-8?B?eEFpRndRVC9aQzVhME44VXJnNTVKdmhzUjNZTitOMzlkNnhhVDNmTS9GdVlU?=
- =?utf-8?B?Q1RSVVQxejFGZWR6dHJvN1U5RHdXTlMyUjhSdG4zMy9rdURpVGlVQ1BZRzV4?=
- =?utf-8?B?ako5UmpobXZrcHNVRnpDS2diTDFualZ3dmN1endOS0VrQUVncWFBaC8rMnEz?=
- =?utf-8?B?cDc2dVBwd09aUDJCWVg2NGJIODJQRkwrSGV1QUpLNEt5VzYrRThkWEYvb1Zt?=
- =?utf-8?B?UEVBVnV6QmVTRTRpWDV6cnlqYmF0R0dSRGh3ZjAvRFA0L3BZUy85aGEybFRH?=
- =?utf-8?B?R3MxakozMjNlWmNZQWpzc0JoVFlWVXZSVWVPTzNCR2k1VDlld2NhOG9pU1o2?=
- =?utf-8?B?c1FMLzJ6Y0RpS3ljajNMYm5lYis5MzM5Qjl2Nk02NVdrOFdwdS9iUWpkVUpC?=
- =?utf-8?B?UlFFNzVDQU5ab2FzODB0ZFVpTGhiVU13TFRKSklEeDYvdWcveXBnS1IycGhF?=
- =?utf-8?B?NUcyZGZzRFU4VzNXTzl1azF5bG5wQnVjMldKUFlERHZVQlJHbVFRM1FQMGZk?=
- =?utf-8?B?aHBFbW1MNm02UzFXYVNUTDIzYytRaGhKMEJTMlR3NE1UTVBRSXA2cXFoeTBZ?=
- =?utf-8?B?MnFHZkZYeTBQOThKeVo1V2RqeUNVcHM5TjlDWXcwTndVbWxlQ2xJWW11ck1x?=
- =?utf-8?B?UE5HYUxhbUNQOTFZcXo3Qm5tNGdlekk2VTlrZ09LbG42dXpnQ1o0VlNBZGdB?=
- =?utf-8?B?QStVallyVnorTHVwWndqYUZCRmJyMU1CNUs4TmFGY1FyZFRVUlJONE5UUjlw?=
- =?utf-8?B?ZkRmV3pmRnZ2czVYSFVxTWNUU05KaVNSdE9QK082UkVQc216NktuY3djQysv?=
- =?utf-8?B?bi9HK01sQmhvMHhyenhaSjN1Mjh2MUFzYWU4blJhdTlUTURockM2WFR2Ympr?=
- =?utf-8?B?K2tSRXA1cXAwWmY5SzAyU21lWW1jNW9iYnRjRktZQ2JjTGZVVTNkZzZDTW1s?=
- =?utf-8?B?VzV2cHlidFVFdGc5YUlycGdUeDhFejZyM2U1YzdxNld4WmR3SFdoU3VnWW8z?=
- =?utf-8?B?eUxMaWJXcmNVWnNFVVpGUWZsYUpyL3VtMTVYTDFZZGtpczA4N1J5NTIreXV1?=
- =?utf-8?B?ZWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c7ad222-0c72-4ea4-7586-08dbbe6f17fe
-X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2023 09:00:56.2595 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zOBM3HlpeXmik03ennK1hIzu3V4r6Ddih50pHacUmqyWfa53E5/LVCD3UIncE4J8c1AA8hot+g6ImIC+AynX9Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB6809
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v6 5/5] drm/xe/hwmon: Expose
- power1_max_interval
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230823085842.1440523-1-himal.prasad.ghimiray@intel.com>
+ <20230823085842.1440523-2-himal.prasad.ghimiray@intel.com>
+ <43cfbdbd-2dfa-58df-88b1-6180112a1c9a@linux.intel.com>
+ <b969fb61-e4a7-4d18-a6c8-2414d074a5ef@intel.com>
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <b969fb61-e4a7-4d18-a6c8-2414d074a5ef@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v5 1/4] drm/xe: Handle errors from various
+ components.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,121 +65,465 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: linux-hwmon@vger.kernel.org, linux@roeck-us.net, rodrigo.vivi@intel.com,
- intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Andi,
 
-On 26-09-2023 13:31, Andi Shyti wrote:
-> Hi Badal,
-> 
->>>> +	/* val in hw units */
->>>> +	val = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_time, SF_TIME);
->>>> +	/* Convert to 1.x * power(2,y) */
->>>> +	if (!val) {
->>>> +		/* Avoid ilog2(0) */
->>>> +		y = 0;
->>>> +		x = 0;
->>>> +	} else {
->>>> +		y = ilog2(val);
->>>> +		/* x = (val - (1 << y)) >> (y - 2); */
+On 26/09/23 10:27, Ghimiray, Himal Prasad wrote:
+>
+> On 26-09-2023 09:50, Aravind Iddamsetty wrote:
+>> On 23/08/23 14:28, Himal Prasad Ghimiray wrote:
+>>> The GFX device can generate numbers of classes of error under the new
+>>> infrastructure: correctable, non-fatal, and fatal errors.
+>> The GFX device reports two classes of errors: uncorrectable and correctable.
+>> Depending on the severity uncorrectable errors are further classified as non fatal and fatal.
+>>> The non-fatal and fatal error classes distinguish between levels of
+>>> severity for uncorrectable errors. Driver will only handle logging
+>>> of errors and updating counters from various components within the
+>>> graphics device. Anything more will be handled at system level.
 >>>
->>> this is some spurious development comment, can you please remove
->>> it?
->>
->> This is kept intentionally to help to understand the calculations.
-> 
-> then this is confusing... Can you please expand the concept?
-> As it is it's not understandable and I would expect someone
-> sending a patch with title:
-> 
->   [PATCH] drm/xe/hwmon: Remove spurious comment
-> 
-> Because it just looks forgotten from previous development.
-I will add this comment inside the comment at the top of if. So it will 
-look like.
-/*
-  * Convert to 1.x * power(2,y)
-  * y = ilog(val);
-  * x = (val - (1 << y)) >> (y-2);
-  */
-> 
->>>> +		x = (val - (1ul << y)) << x_w >> y;
->>>> +	}
->>>> +
->>>> +	rxy = REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_X, x) | REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_Y, y);
->>>> +
->>>> +	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
->>>> +
->>>> +	mutex_lock(&hwmon->hwmon_lock);
->>>> +
->>>> +	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW, (u32 *)&r,
->>>> +			     PKG_PWR_LIM_1_TIME, rxy);
->>>> +
->>>> +	mutex_unlock(&hwmon->hwmon_lock);
+>>> For errors that will route as interrupts, three bits in the Master
+>>> Interrupt Register will be used to convey the class of error.
 >>>
->>> why are we locking here?
->>
->> Since it is rmw operation we are using lock here.
-> 
-> OK... so what you are trying to protect here is the
-> 
->    read -> update -> write
-> 
-> and it makes sense. The problem is that if this is a generic
-> rule, which means that everyone who will do a rmw operation has
-> to take the lock, why not take the lock directly in
-> xe_hwmon_process_reg()?
-> 
-> But also this can be a bit confusing, because a function is
-> either locked or unlocked and purists might complain.
-> 
-> A suggestion would be to do something like:
-> 
->     static int xe_hwmon_process_reg(..., enum xe_hwmon_reg_operation operation)
->     {
->     	...
->     }
-> 
->     static int xe_hwmon_reg_read(...);
->     {
->     	return xe_hwmon_process_reg(..., REG_READ);
->     }
-> 
->     static int xe_hwmon_reg_write(...);
->     {
->     	return xe_hwmon_process_reg(..., REG_WRITE);
->     }
-> 
->     static int xe_hwmon_reg_rmw(...);
->     {
-> 	int ret;
->     	
-> 	/*
-> 	 * Optional: you can check that the lock is not taken
-> 	 * to shout loud if potential deadlocks arise.
-> 	 */
-> 
-> 	/*
-> 	 * We want to protect the register update with the
-> 	 * lock blah blah blah... explanatory comment.
-> 	 */
-> 	mutex_lock(&hwmon->hwmon_lock);
-> 	ret = xe_hwmon_process_reg(..., REG_RMW);
-> 	mutex_unlock(&hwmon->hwmon_lock);
-> 
-> 	return ret;
->     }
-> 
-> What do you think? It looks much clearer to me.
-REG_PKG_RAPL_LIMIT register is being written in xe_hwmon_power_max_write 
-also, that's why lock is taken. But some how while cleaning up I forgot 
-to take it in xe_hwmon_power_max_write(), thanks for catching it up. I 
-will update xe_hwmon_power_max_write() and resend series.
+>>> For each class of error: Determine source of error (IP block) by reading
+>>> the Device Error Source Register (RW1C) that
+>>> corresponds to the class of error being serviced.
+>>>
+>>> Bspec: 50875, 53073, 53074, 53075
+>> Also may be you want to squash this with the last patch where fatal error processing is done,
+>> fatal errors are defined here but processed in your last patch or move all fatal definition to last patch.
+> Makes sense. Will squash in last patch.
+>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+>>> Cc: Matthew Brost <matthew.brost@intel.com>
+>>> Cc: Matt Roper <matthew.d.roper@intel.com>
+>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>> Cc: Jani Nikula <jani.nikula@intel.com>
+>>> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>>> ---
+>>>   drivers/gpu/drm/xe/Makefile                  |   1 +
+>>>   drivers/gpu/drm/xe/regs/xe_regs.h            |   2 +-
+>>>   drivers/gpu/drm/xe/regs/xe_tile_error_regs.h |  15 ++
+>>>   drivers/gpu/drm/xe/xe_device_types.h         |  11 +
+>>>   drivers/gpu/drm/xe/xe_hw_error.c             | 211 +++++++++++++++++++
+>>>   drivers/gpu/drm/xe/xe_hw_error.h             |  64 ++++++
+>>>   drivers/gpu/drm/xe/xe_irq.c                  |   3 +
+>>>   7 files changed, 306 insertions(+), 1 deletion(-)
+>>>   create mode 100644 drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+>>>   create mode 100644 drivers/gpu/drm/xe/xe_hw_error.c
+>>>   create mode 100644 drivers/gpu/drm/xe/xe_hw_error.h
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>>> index 550cdfed729e..6290c8ce0e84 100644
+>>> --- a/drivers/gpu/drm/xe/Makefile
+>>> +++ b/drivers/gpu/drm/xe/Makefile
+>>> @@ -75,6 +75,7 @@ xe-y += xe_bb.o \
+>>>       xe_guc_submit.o \
+>>>       xe_hw_engine.o \
+>>>       xe_hw_engine_class_sysfs.o \
+>>> +    xe_hw_error.o \
+>>>       xe_hw_fence.o \
+>>>       xe_huc.o \
+>>>       xe_huc_debugfs.o \
+>>> diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+>>> index 39d7b0740bf0..e223975a5acf 100644
+>>> --- a/drivers/gpu/drm/xe/regs/xe_regs.h
+>>> +++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+>>> @@ -88,7 +88,7 @@
+>>>   #define   GU_MISC_IRQ                REG_BIT(29)
+>>>   #define   DISPLAY_IRQ                REG_BIT(16)
+>>>   #define   GT_DW_IRQ(x)                REG_BIT(x)
+>>> +#define   XE_ERROR_IRQ(x)            REG_BIT(26 + (x))
+>>>     #define PVC_RP_STATE_CAP            XE_REG(0x281014)
+>>> -
+>>>   #endif
+>>> diff --git a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+>>> new file mode 100644
+>>> index 000000000000..db78d6687213
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+>>> @@ -0,0 +1,15 @@
+>>> +/* SPDX-License-Identifier: MIT */
+>>> +/*
+>>> + * Copyright © 2023 Intel Corporation
+>>> + */
+>>> +#ifndef XE_TILE_ERROR_REGS_H_
+>>> +#define XE_TILE_ERROR_REGS_H_
+>>> +
+>>> +#include <linux/stddef.h>
+>>> +
+>>> +#define _DEV_ERR_STAT_NONFATAL                         0x100178
+>>> +#define _DEV_ERR_STAT_CORRECTABLE                      0x10017c
+>>> +#define DEV_ERR_STAT_REG(x)                            XE_REG(_PICK_EVEN((x), \
+>>> +                                _DEV_ERR_STAT_CORRECTABLE, \
+>>> +                                _DEV_ERR_STAT_NONFATAL))
+>>> +#endif
+>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>>> index dbb732e14606..4e4184977709 100644
+>>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>>> @@ -14,6 +14,7 @@
+>>>     #include "xe_devcoredump_types.h"
+>>>   #include "xe_gt_types.h"
+>>> +#include "xe_hw_error.h"
+>>>   #include "xe_platform_types.h"
+>>>   #include "xe_step_types.h"
+>>>   @@ -172,6 +173,11 @@ struct xe_tile {
+>>>         /** @sysfs: sysfs' kobj used by xe_tile_sysfs */
+>>>       struct kobject *sysfs;
+>>> +
+>>> +    /** @tile_hw_errors: hardware errors reported for the tile */
+>>> +    struct tile_hw_errors {
+>>> +        unsigned long count[XE_TILE_HW_ERROR_MAX];
+>>> +    } errors;
+>>>   };
+>>>     /**
+>>> @@ -359,6 +365,11 @@ struct xe_device {
+>>>        */
+>>>       struct task_struct *pm_callback_task;
+>>>   +    /** @hardware_errors_regs: list of hw error regs*/
+>>> +    struct hardware_errors_regs {
+>>> +        const struct err_msg_cntr_pair *dev_err_stat[HARDWARE_ERROR_MAX];
+>> I'm just thinking if it makes sense to move it to respective structs like tile or gt, any thoughts?
+> These structures are platform dependent not tiles/gt. IMO device is right place.
+
+they may be platform specific, but if I notice dev_err_stat is accounted in tile_hw_errors and similarly
+err_stat_gt is accounted in gt_hw_errors so they are associated to tile and gt.
+>>> +    } hw_err_regs;
+>>> +
+>>>       /* private: */
+>>>     #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+>>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+>>> new file mode 100644
+>>> index 000000000000..357d0f962d91
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
+>>> @@ -0,0 +1,211 @@
+>>> +// SPDX-License-Identifier: MIT
+>>> +/*
+>>> + * Copyright © 2023 Intel Corporation
+>>> + */
+>>> +
+>>> +#include "xe_hw_error.h"
+>>> +
+>>> +#include "regs/xe_regs.h"
+>>> +#include "regs/xe_tile_error_regs.h"
+>>> +#include "xe_device.h"
+>>> +#include "xe_mmio.h"
+>>> +
+>>> +static const char *
+>>> +hardware_error_type_to_str(const enum hardware_error hw_err)
+>>> +{
+>>> +    switch (hw_err) {
+>>> +    case HARDWARE_ERROR_CORRECTABLE:
+>>> +        return "CORRECTABLE";
+>>> +    case HARDWARE_ERROR_NONFATAL:
+>>> +        return "NONFATAL";
+>>> +    case HARDWARE_ERROR_FATAL:
+>>> +        return "FATAL";
+>>> +    default:
+>>> +        return "UNKNOWN";
+>>> +    }
+>>> +}
+>>> +
+>>> +static const struct err_msg_cntr_pair dg2_err_stat_fatal_reg[] = {
+>> the name err_msg_cntr_pair might not be appropriate as it err name and index into
+>> tile_hw_errors. err_name_index_pair ?? thoughts
+> ok.
+>>> +    [0]         = {"GT",            XE_TILE_HW_ERR_GT_FATAL},
+>>> +    [1 ... 3]   = {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +    [4]         = {"DISPLAY",        XE_TILE_HW_ERR_DISPLAY_FATAL},
+>>> +    [5 ... 7]   = {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +    [8]         = {"GSC error",        XE_TILE_HW_ERR_GSC_FATAL},
+>>> +    [9 ... 11]  = {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +    [12]        = {"SGUNIT",        XE_TILE_HW_ERR_SGUNIT_FATAL},
+>>> +    [13 ... 15] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +    [16]        = {"SOC",            XE_TILE_HW_ERR_SOC_FATAL},
+>>> +    [17 ... 31] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +};
+>>> +
+>>> +static const struct err_msg_cntr_pair dg2_err_stat_nonfatal_reg[] = {
+>>> +    [0]         = {"GT",            XE_TILE_HW_ERR_GT_NONFATAL},
+>>> +    [1 ... 3]   = {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +    [4]         = {"DISPLAY",        XE_TILE_HW_ERR_DISPLAY_NONFATAL},
+>>> +    [5 ... 7]   = {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +    [8]         = {"GSC error",        XE_TILE_HW_ERR_GSC_NONFATAL},
+>>> +    [9 ... 11]  = {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +    [12]        = {"SGUNIT",        XE_TILE_HW_ERR_SGUNIT_NONFATAL},
+>>> +    [13 ... 15] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +    [16]        = {"SOC",            XE_TILE_HW_ERR_SOC_NONFATAL},
+>>> +    [17 ... 19] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +    [20]        = {"MERT",            XE_TILE_HW_ERR_MERT_NONFATAL},
+>>> +    [21 ... 31] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +};
+>>> +
+>>> +static const struct err_msg_cntr_pair dg2_err_stat_correctable_reg[] = {
+>>> +    [0]         = {"GT",            XE_TILE_HW_ERR_GT_CORR},
+>>> +    [1 ... 3]   = {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_CORR},
+>>> +    [4]         = {"DISPLAY",        XE_TILE_HW_ERR_DISPLAY_CORR},
+>>> +    [5 ... 7]   = {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_CORR},
+>>> +    [8]         = {"GSC error",        XE_TILE_HW_ERR_GSC_CORR},
+>>> +    [9 ... 11]  = {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_CORR},
+>>> +    [12]        = {"SGUNIT",        XE_TILE_HW_ERR_SGUNIT_CORR},
+>>> +    [13 ... 15] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_CORR},
+>>> +    [16]        = {"SOC",            XE_TILE_HW_ERR_SOC_CORR},
+>>> +    [17 ... 31] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_CORR},
+>>> +};
+>>> +
+>>> +static const struct err_msg_cntr_pair pvc_err_stat_fatal_reg[] = {
+>>> +    [0]         =  {"GT",            XE_TILE_HW_ERR_GT_FATAL},
+>>> +    [1]         =  {"SGGI Cmd Parity",    XE_TILE_HW_ERR_SGGI_FATAL},
+>>> +    [2 ... 7]   =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +    [8]         =  {"GSC error",        XE_TILE_HW_ERR_GSC_FATAL},
+>>> +    [9]         =  {"SGLI Cmd Parity",    XE_TILE_HW_ERR_SGLI_FATAL},
+>>> +    [10 ... 12] =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +    [13]        =  {"SGCI Cmd Parity",    XE_TILE_HW_ERR_SGCI_FATAL},
+>>> +    [14 ... 15] =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +    [16]        =  {"SOC ERROR",        XE_TILE_HW_ERR_SOC_FATAL},
+>>> +    [17 ... 19] =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +    [20]        =  {"MERT Cmd Parity",    XE_TILE_HW_ERR_MERT_FATAL},
+>>> +    [21 ... 31] =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +};
+>>> +
+>>> +static const struct err_msg_cntr_pair pvc_err_stat_nonfatal_reg[] = {
+>>> +    [0]         =  {"GT",            XE_TILE_HW_ERR_GT_NONFATAL},
+>>> +    [1]         =  {"SGGI Data Parity",    XE_TILE_HW_ERR_SGGI_NONFATAL},
+>>> +    [2 ... 7]   =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +    [8]         =  {"GSC",            XE_TILE_HW_ERR_GSC_NONFATAL},
+>>> +    [9]         =  {"SGLI Data Parity",    XE_TILE_HW_ERR_SGLI_NONFATAL},
+>>> +    [10 ... 12] =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +    [13]        =  {"SGCI Data Parity",    XE_TILE_HW_ERR_SGCI_NONFATAL},
+>>> +    [14 ... 15] =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +    [16]        =  {"SOC",            XE_TILE_HW_ERR_SOC_NONFATAL},
+>>> +    [17 ... 19] =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +    [20]        =  {"MERT Data Parity",    XE_TILE_HW_ERR_MERT_NONFATAL},
+>>> +    [21 ... 31] =  {"Undefined",            XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +};
+>>> +
+>>> +static const struct err_msg_cntr_pair pvc_err_stat_correctable_reg[] = {
+>>> +    [0]         =  {"GT",            XE_TILE_HW_ERR_GT_CORR},
+>>> +    [1 ... 7]   =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_CORR},
+>>> +    [8]         =  {"GSC",            XE_TILE_HW_ERR_GSC_CORR},
+>>> +    [9 ... 31]  =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_CORR},
+>>> +};
+>>> +
+>>> +static const struct err_msg_cntr_pair dev_err_stat_fatal_reg[] = {
+>>> +    [0]         =  {"GT",            XE_TILE_HW_ERR_GT_FATAL},
+>>> +    [1 ... 31]  =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_FATAL},
+>>> +};
+>>> +
+>>> +static const struct err_msg_cntr_pair dev_err_stat_nonfatal_reg[] = {
+>>> +    [0]         =  {"GT",            XE_TILE_HW_ERR_GT_NONFATAL},
+>>> +    [1 ... 31]  =  {"Undefined",            XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+>>> +};
+>>> +
+>>> +static const struct err_msg_cntr_pair dev_err_stat_correctable_reg[] = {
+>>> +    [0]         =  {"GT",            XE_TILE_HW_ERR_GT_CORR},
+>>> +    [1 ... 31]  =  {"Undefined",        XE_TILE_HW_ERR_UNKNOWN_CORR},
+>>> +};
+>>> +
+>>> +void xe_assign_hw_err_regs(struct xe_device *xe)
+>>> +{
+>>> +    const struct err_msg_cntr_pair **dev_err_stat = xe->hw_err_regs.dev_err_stat;
+>>> +
+>>> +    if (xe->info.platform == XE_DG2) {
+>>> +        dev_err_stat[HARDWARE_ERROR_CORRECTABLE] = dg2_err_stat_correctable_reg;
+>>> +        dev_err_stat[HARDWARE_ERROR_NONFATAL] = dg2_err_stat_nonfatal_reg;
+>>> +        dev_err_stat[HARDWARE_ERROR_FATAL] = dg2_err_stat_fatal_reg;
+>>> +    } else if (xe->info.platform == XE_PVC) {
+>>> +        dev_err_stat[HARDWARE_ERROR_CORRECTABLE] = pvc_err_stat_correctable_reg;
+>>> +        dev_err_stat[HARDWARE_ERROR_NONFATAL] = pvc_err_stat_nonfatal_reg;
+>>> +        dev_err_stat[HARDWARE_ERROR_FATAL] = pvc_err_stat_fatal_reg;
+>>> +    } else {
+>>> +        /* For other platforms report only GT errors */
+>> why only GT errors??
+>
+> Because GT errors will only be common to all platforms. The other errors are platform specific.
+
+and why are we not enabling those other errors?
+>
+>>> +        dev_err_stat[HARDWARE_ERROR_CORRECTABLE] = dev_err_stat_correctable_reg;
+>>> +        dev_err_stat[HARDWARE_ERROR_NONFATAL] = dev_err_stat_nonfatal_reg;
+>>> +        dev_err_stat[HARDWARE_ERROR_FATAL] = dev_err_stat_fatal_reg;
+>>> +    }
+>>> +}
+>>> +
+>>> +static void
+>>> +xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+>>> +{
+>>> +    const char *hw_err_str = hardware_error_type_to_str(hw_err);
+>>> +    const struct hardware_errors_regs *err_regs;
+>>> +    const struct err_msg_cntr_pair *errstat;
+>>> +    unsigned long errsrc;
+>>> +    unsigned long flags;
+>>> +    const char *errmsg;
+>>> +    struct xe_gt *mmio;
+>>> +    u32 indx;
+>>> +    u32 errbit;
+>>> +
+>>> +    spin_lock_irqsave(&tile_to_xe(tile)->irq.lock, flags);
+>>> +    err_regs = &tile_to_xe(tile)->hw_err_regs;
+>>> +    errstat = err_regs->dev_err_stat[hw_err];
+>>> +    mmio = tile->primary_gt;
+>>> +    errsrc = xe_mmio_read32(mmio, DEV_ERR_STAT_REG(hw_err));
+>>> +    if (!errsrc) {
+>>> +        drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR
+>>> +                    "TILE%d detected DEV_ERR_STAT_REG_%s blank!\n",
+>>> +                    tile->id, hw_err_str);
+>>> +        goto unlock;
+>>> +    }
+>>> +
+>>> +    drm_info(&tile_to_xe(tile)->drm, HW_ERR
+>>> +         "TILE%d DEV_ERR_STAT_REG_%s=0x%08lx\n", tile->id, hw_err_str, errsrc);
+>>> +
+>>> +    for_each_set_bit(errbit, &errsrc, 32) {
+>>> +        errmsg = errstat[errbit].errmsg;
+>>> +        indx = errstat[errbit].cntr_indx;
+>>> +
+>>> +        if (hw_err == HARDWARE_ERROR_CORRECTABLE)
+>>> +            drm_warn(&tile_to_xe(tile)->drm,
+>>> +                 HW_ERR "TILE%d detected %s %s error, bit[%d] is set\n",
+>>> +                 tile->id, errmsg, hw_err_str, errbit);
+>>> +
+>>> +        else
+>>> +            drm_err_ratelimited(&tile_to_xe(tile)->drm,
+>>> +                        HW_ERR "TILE%d detected %s %s error, bit[%d] is set\n",
+>>> +                        tile->id, errmsg, hw_err_str, errbit);
+>>> +        tile->errors.count[indx]++;
+>> The register here is a top level register and some of the sources have second error level registers
+>> so the count shall be at second level source for all those that have and not at global level as here
+>> it will not give granularity.
+>
+> My idea of having counter at top level was to have cumulative numbers for errors.
+
+It doesn't give cumulative, as multiple sub errors can be reported in a single MSI, so always
+count at lower level and leave the accounting to userspace.
+
 
 Thanks,
-Badal
-> 
-> Andi
+
+Aravind.
+>
+>
+> It will provide summation of all MSI's in case of correctable gt. Can we removed but looks logical to retain it.
+>
+>>> +    }
+>>> +
+>>> +    xe_mmio_write32(mmio, DEV_ERR_STAT_REG(hw_err), errsrc);
+>>> +unlock:
+>>> +    spin_unlock_irqrestore(&tile_to_xe(tile)->irq.lock, flags);
+>>> +}
+>>> +
+>>> +/*
+>>> + * XE Platforms adds three Error bits to the Master Interrupt
+>>> + * Register to support error handling. These three bits are
+>>> + * used to convey the class of error:
+>>> + * FATAL, NONFATAL, or CORRECTABLE.
+>>> + *
+>>> + * To process an interrupt:
+>>> + *       Determine source of error (IP block) by reading
+>>> + *     the Device Error Source Register (RW1C) that
+>>> + *     corresponds to the class of error being serviced
+>>> + *     and log the error.
+>>> + */
+>>> +void
+>>> +xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
+>>> +{
+>>> +    enum hardware_error hw_err;
+>>> +
+>>> +    for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
+>>> +        if (master_ctl & XE_ERROR_IRQ(hw_err))
+>>> +            xe_hw_error_source_handler(tile, hw_err);
+>>> +    }
+>>> +}
+>>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
+>>> new file mode 100644
+>>> index 000000000000..c0c05b9130eb
+>>> --- /dev/null
+>>> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
+>>> @@ -0,0 +1,64 @@
+>>> +/* SPDX-License-Identifier: MIT */
+>>> +/*
+>>> + * Copyright © 2023 Intel Corporation
+>>> + */
+>>> +#ifndef XE_HW_ERRORS_H_
+>>> +#define XE_HW_ERRORS_H_
+>>> +
+>>> +#include <linux/stddef.h>
+>>> +#include <linux/types.h>
+>>> +
+>>> +/* Error categories reported by hardware */
+>>> +enum hardware_error {
+>>> +    HARDWARE_ERROR_CORRECTABLE = 0,
+>>> +    HARDWARE_ERROR_NONFATAL = 1,
+>>> +    HARDWARE_ERROR_FATAL = 2,
+>>> +    HARDWARE_ERROR_MAX,
+>>> +};
+>>> +
+>>> +/* Count of  Correctable and Uncorrectable errors reported on tile */
+>>> +enum xe_tile_hw_errors {
+>>> +    XE_TILE_HW_ERR_GT_FATAL = 0,
+>>> +    XE_TILE_HW_ERR_SGGI_FATAL,
+>>> +    XE_TILE_HW_ERR_DISPLAY_FATAL,
+>>> +    XE_TILE_HW_ERR_SGDI_FATAL,
+>>> +    XE_TILE_HW_ERR_SGLI_FATAL,
+>>> +    XE_TILE_HW_ERR_SGUNIT_FATAL,
+>>> +    XE_TILE_HW_ERR_SGCI_FATAL,
+>>> +    XE_TILE_HW_ERR_GSC_FATAL,
+>>> +    XE_TILE_HW_ERR_SOC_FATAL,
+>>> +    XE_TILE_HW_ERR_MERT_FATAL,
+>>> +    XE_TILE_HW_ERR_SGMI_FATAL,
+>>> +    XE_TILE_HW_ERR_UNKNOWN_FATAL,
+>>> +    XE_TILE_HW_ERR_SGGI_NONFATAL,
+>>> +    XE_TILE_HW_ERR_DISPLAY_NONFATAL,
+>>> +    XE_TILE_HW_ERR_SGDI_NONFATAL,
+>>> +    XE_TILE_HW_ERR_SGLI_NONFATAL,
+>>> +    XE_TILE_HW_ERR_GT_NONFATAL,
+>>> +    XE_TILE_HW_ERR_SGUNIT_NONFATAL,
+>>> +    XE_TILE_HW_ERR_SGCI_NONFATAL,
+>>> +    XE_TILE_HW_ERR_GSC_NONFATAL,
+>>> +    XE_TILE_HW_ERR_SOC_NONFATAL,
+>>> +    XE_TILE_HW_ERR_MERT_NONFATAL,
+>>> +    XE_TILE_HW_ERR_SGMI_NONFATAL,
+>>> +    XE_TILE_HW_ERR_UNKNOWN_NONFATAL,
+>>> +    XE_TILE_HW_ERR_GT_CORR,
+>>> +    XE_TILE_HW_ERR_DISPLAY_CORR,
+>>> +    XE_TILE_HW_ERR_SGUNIT_CORR,
+>>> +    XE_TILE_HW_ERR_GSC_CORR,
+>>> +    XE_TILE_HW_ERR_SOC_CORR,
+>>> +    XE_TILE_HW_ERR_UNKNOWN_CORR,
+>>> +    XE_TILE_HW_ERROR_MAX,
+>>> +};
+>>> +
+>>> +struct err_msg_cntr_pair {
+>>> +    const char *errmsg;
+>>> +    const u32 cntr_indx;
+>>> +};
+>>> +
+>>> +struct xe_device;
+>>> +struct xe_tile;
+>>> +
+>>> +void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
+>>> +void xe_assign_hw_err_regs(struct xe_device *xe);
+>>> +#endif
+>>> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+>>> index 1dee3e832eb5..48b933234342 100644
+>>> --- a/drivers/gpu/drm/xe/xe_irq.c
+>>> +++ b/drivers/gpu/drm/xe/xe_irq.c
+>>> @@ -418,6 +418,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+>>>           xe_mmio_write32(mmio, GFX_MSTR_IRQ, master_ctl);
+>>>             gt_irq_handler(tile, master_ctl, intr_dw, identity);
+>>> +        xe_hw_error_irq_handler(tile, master_ctl);
+>>>             /*
+>>>            * Display interrupts (including display backlight operations
+>>> @@ -572,6 +573,8 @@ int xe_irq_install(struct xe_device *xe)
+>>>           return -EINVAL;
+>>>       }
+>>>   +    xe_assign_hw_err_regs(xe);
+>>> +
+>>>       xe->irq.enabled = true;
+>>>         xe_irq_reset(xe);
+>> Thanks,
+>> Aravind.
