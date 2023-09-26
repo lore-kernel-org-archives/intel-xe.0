@@ -4,30 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0235E81817
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 04:14:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E668FCE7A8E
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 04:17:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C0C2110E34C;
-	Tue, 26 Sep 2023 04:14:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 27C2910E34B;
- Tue, 26 Sep 2023 04:14:46 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 27C60AADE8;
- Tue, 26 Sep 2023 04:14:46 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA13310E34B;
+	Tue, 26 Sep 2023 04:17:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3339510E34B
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 04:17:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695701863; x=1727237863;
+ h=message-id:date:mime-version:from:subject:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=vOICEH1r2wabTheFRd7v7DmkzkeP4cua6UctWeAGuVU=;
+ b=FfQLuhV3QoUuZrkbhKxRtxnugLWmB994ExFWg02nqBro1KCAav1LJHkF
+ szwd9tcbzZ/eJnwZ+m0++BP+A96mXtckKsoMKxQf+eushXRkdHbb2VSEj
+ nf8Itl165X3Kl0Jj0QHgfw/4CKmo4LjHkOUmYd9OG2NtiMLT0pg5MvZ1U
+ sSKyIS1lqppZcy8F5IXaOYvAIOVfvet5Ocrpj3CzbdZ58LnSRNVj8tMhU
+ YuTs+wJHGKpMz91aobjouwSi3HsjzDk/n71ku6725+ybXX5uuuoDY1eH5
+ twpFJaUI9nf+up1rHjUxwimWRHj3FzMnGNrdIhTjmYATkaU6pfSMsPcw9 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="360857015"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="360857015"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 21:17:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="864261588"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="864261588"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Sep 2023 21:17:40 -0700
+Message-ID: <43cfbdbd-2dfa-58df-88b1-6180112a1c9a@linux.intel.com>
+Date: Tue, 26 Sep 2023 09:50:26 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: fei.yang@intel.com
-Date: Tue, 26 Sep 2023 04:14:46 -0000
-Message-ID: <169570168615.20981.17000536740892281360@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230926041259.1102823-1-fei.yang@intel.com>
-In-Reply-To: <20230926041259.1102823-1-fei.yang@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_drm/xe?=
- =?utf-8?q?=3A_timeout_needs_to_be_a_signed_value?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230823085842.1440523-1-himal.prasad.ghimiray@intel.com>
+ <20230823085842.1440523-2-himal.prasad.ghimiray@intel.com>
+Content-Language: en-US
+In-Reply-To: <20230823085842.1440523-2-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v5 1/4] drm/xe: Handle errors from various
+ components.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,533 +63,452 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
 
-Series: drm/xe: timeout needs to be a signed value
-URL   : https://patchwork.freedesktop.org/series/124236/
-State : success
+On 23/08/23 14:28, Himal Prasad Ghimiray wrote:
+> The GFX device can generate numbers of classes of error under the new
+> infrastructure: correctable, non-fatal, and fatal errors.
+The GFX device reports two classes of errors: uncorrectable and correctable.
+Depending on the severity uncorrectable errors are further classified as non fatal and fatal.
+> The non-fatal and fatal error classes distinguish between levels of
+> severity for uncorrectable errors. Driver will only handle logging
+> of errors and updating counters from various components within the
+> graphics device. Anything more will be handled at system level.
+>
+> For errors that will route as interrupts, three bits in the Master
+> Interrupt Register will be used to convey the class of error.
+>
+> For each class of error: Determine source of error (IP block) by reading
+> the Device Error Source Register (RW1C) that
+> corresponds to the class of error being serviced.
+>
+> Bspec: 50875, 53073, 53074, 53075
 
-== Summary ==
+Also may be you want to squash this with the last patch where fatal error processing is done,
+fatal errors are defined here but processed in your last patch or move all fatal definition to last patch.
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/xe/Makefile                  |   1 +
+>  drivers/gpu/drm/xe/regs/xe_regs.h            |   2 +-
+>  drivers/gpu/drm/xe/regs/xe_tile_error_regs.h |  15 ++
+>  drivers/gpu/drm/xe/xe_device_types.h         |  11 +
+>  drivers/gpu/drm/xe/xe_hw_error.c             | 211 +++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_hw_error.h             |  64 ++++++
+>  drivers/gpu/drm/xe/xe_irq.c                  |   3 +
+>  7 files changed, 306 insertions(+), 1 deletion(-)
+>  create mode 100644 drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+>  create mode 100644 drivers/gpu/drm/xe/xe_hw_error.c
+>  create mode 100644 drivers/gpu/drm/xe/xe_hw_error.h
+>
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 550cdfed729e..6290c8ce0e84 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -75,6 +75,7 @@ xe-y += xe_bb.o \
+>  	xe_guc_submit.o \
+>  	xe_hw_engine.o \
+>  	xe_hw_engine_class_sysfs.o \
+> +	xe_hw_error.o \
+>  	xe_hw_fence.o \
+>  	xe_huc.o \
+>  	xe_huc_debugfs.o \
+> diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+> index 39d7b0740bf0..e223975a5acf 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+> @@ -88,7 +88,7 @@
+>  #define   GU_MISC_IRQ				REG_BIT(29)
+>  #define   DISPLAY_IRQ				REG_BIT(16)
+>  #define   GT_DW_IRQ(x)				REG_BIT(x)
+> +#define   XE_ERROR_IRQ(x)			REG_BIT(26 + (x))
+>  
+>  #define PVC_RP_STATE_CAP			XE_REG(0x281014)
+> -
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+> new file mode 100644
+> index 000000000000..db78d6687213
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+> @@ -0,0 +1,15 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +#ifndef XE_TILE_ERROR_REGS_H_
+> +#define XE_TILE_ERROR_REGS_H_
+> +
+> +#include <linux/stddef.h>
+> +
+> +#define _DEV_ERR_STAT_NONFATAL                         0x100178
+> +#define _DEV_ERR_STAT_CORRECTABLE                      0x10017c
+> +#define DEV_ERR_STAT_REG(x)                            XE_REG(_PICK_EVEN((x), \
+> +								_DEV_ERR_STAT_CORRECTABLE, \
+> +								_DEV_ERR_STAT_NONFATAL))
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index dbb732e14606..4e4184977709 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -14,6 +14,7 @@
+>  
+>  #include "xe_devcoredump_types.h"
+>  #include "xe_gt_types.h"
+> +#include "xe_hw_error.h"
+>  #include "xe_platform_types.h"
+>  #include "xe_step_types.h"
+>  
+> @@ -172,6 +173,11 @@ struct xe_tile {
+>  
+>  	/** @sysfs: sysfs' kobj used by xe_tile_sysfs */
+>  	struct kobject *sysfs;
+> +
+> +	/** @tile_hw_errors: hardware errors reported for the tile */
+> +	struct tile_hw_errors {
+> +		unsigned long count[XE_TILE_HW_ERROR_MAX];
+> +	} errors;
+>  };
+>  
+>  /**
+> @@ -359,6 +365,11 @@ struct xe_device {
+>  	 */
+>  	struct task_struct *pm_callback_task;
+>  
+> +	/** @hardware_errors_regs: list of hw error regs*/
+> +	struct hardware_errors_regs {
+> +		const struct err_msg_cntr_pair *dev_err_stat[HARDWARE_ERROR_MAX];
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-stty: 'standard input': Inappropriate ioctl for device
-[04:13:34] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[04:13:38] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[04:13:58] Starting KUnit Kernel (1/1)...
-[04:13:58] ============================================================
-[04:13:58] ==================== xe_bo (2 subtests) ====================
-[04:13:58] [SKIPPED] xe_ccs_migrate_kunit
-[04:13:58] [SKIPPED] xe_bo_evict_kunit
-[04:13:58] ===================== [SKIPPED] xe_bo ======================
-[04:13:58] ================== xe_dma_buf (1 subtest) ==================
-[04:13:58] [SKIPPED] xe_dma_buf_kunit
-[04:13:58] =================== [SKIPPED] xe_dma_buf ===================
-[04:13:58] ================== xe_migrate (1 subtest) ==================
-[04:13:58] [SKIPPED] xe_migrate_sanity_kunit
-[04:13:58] =================== [SKIPPED] xe_migrate ===================
-[04:13:58] =================== xe_pci (2 subtests) ====================
-[04:13:58] [PASSED] xe_gmdid_graphics_ip
-[04:13:58] [PASSED] xe_gmdid_media_ip
-[04:13:58] ===================== [PASSED] xe_pci ======================
-[04:13:58] ==================== xe_rtp (1 subtest) ====================
-[04:13:58] ================== xe_rtp_process_tests  ===================
-[04:13:58] [PASSED] coalesce-same-reg
-[04:13:58] [PASSED] no-match-no-add
-[04:13:58] [PASSED] no-match-no-add-multiple-rules
-[04:13:58] [PASSED] two-regs-two-entries
-[04:13:58] [PASSED] clr-one-set-other
-[04:13:58] [PASSED] set-field
-[04:13:58] [PASSED] conflict-duplicate
-[04:13:58] [PASSED] conflict-not-disjoint
-[04:13:58] [PASSED] conflict-reg-type
-[04:13:58] ============== [PASSED] xe_rtp_process_tests ===============
-[04:13:58] ===================== [PASSED] xe_rtp ======================
-[04:13:58] ==================== xe_wa (1 subtest) =====================
-[04:13:58] ======================== xe_wa_gt  =========================
-[04:13:58] [PASSED] TIGERLAKE (B0)
-[04:13:58] [PASSED] DG1 (A0)
-[04:13:58] [PASSED] DG1 (B0)
-[04:13:58] [PASSED] ALDERLAKE_S (A0)
-[04:13:58] [PASSED] ALDERLAKE_S (B0)
-[04:13:58] [PASSED] ALDERLAKE_S (C0)
-[04:13:58] [PASSED] ALDERLAKE_S (D0)
-[04:13:58] [PASSED] ALDERLAKE_P (A0)
-[04:13:58] [PASSED] ALDERLAKE_P (B0)
-[04:13:58] [PASSED] ALDERLAKE_P (C0)
-[04:13:58] [PASSED] DG2_G10 (A0)
-[04:13:58] [PASSED] DG2_G10 (A1)
-[04:13:58] [PASSED] DG2_G10 (B0)
-[04:13:58] [PASSED] DG2_G10 (C0)
-[04:13:58] [PASSED] DG2_G11 (A0)
-[04:13:58] [PASSED] DG2_G11 (B0)
-[04:13:58] [PASSED] DG2_G11 (B1)
-[04:13:58] [PASSED] DG2_G12 (A0)
-[04:13:58] [PASSED] DG2_G12 (A1)
-[04:13:58] [PASSED] PVC (B0)
-[04:13:58] [PASSED] PVC (B1)
-[04:13:58] [PASSED] PVC (C0)
-[04:13:58] ==================== [PASSED] xe_wa_gt =====================
-[04:13:58] ====================== [PASSED] xe_wa ======================
-[04:13:58] ============================================================
-[04:13:58] Testing complete. Ran 37 tests: passed: 33, skipped: 4
-[04:13:58] Elapsed time: 24.194s total, 4.211s configuring, 19.864s building, 0.101s running
+I'm just thinking if it makes sense to move it to respective structs like tile or gt, any thoughts?
+> +	} hw_err_regs;
+> +
+>  	/* private: */
+>  
+>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+> new file mode 100644
+> index 000000000000..357d0f962d91
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
+> @@ -0,0 +1,211 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +
+> +#include "xe_hw_error.h"
+> +
+> +#include "regs/xe_regs.h"
+> +#include "regs/xe_tile_error_regs.h"
+> +#include "xe_device.h"
+> +#include "xe_mmio.h"
+> +
+> +static const char *
+> +hardware_error_type_to_str(const enum hardware_error hw_err)
+> +{
+> +	switch (hw_err) {
+> +	case HARDWARE_ERROR_CORRECTABLE:
+> +		return "CORRECTABLE";
+> +	case HARDWARE_ERROR_NONFATAL:
+> +		return "NONFATAL";
+> +	case HARDWARE_ERROR_FATAL:
+> +		return "FATAL";
+> +	default:
+> +		return "UNKNOWN";
+> +	}
+> +}
+> +
+> +static const struct err_msg_cntr_pair dg2_err_stat_fatal_reg[] = {
 
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[04:13:58] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[04:14:00] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[04:14:19] Starting KUnit Kernel (1/1)...
-[04:14:19] ============================================================
-[04:14:19] ============ drm_test_pick_cmdline (2 subtests) ============
-[04:14:19] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
-[04:14:19] =============== drm_test_pick_cmdline_named  ===============
-[04:14:19] [PASSED] NTSC
-[04:14:19] [PASSED] NTSC-J
-[04:14:19] [PASSED] PAL
-[04:14:19] [PASSED] PAL-M
-[04:14:19] =========== [PASSED] drm_test_pick_cmdline_named ===========
-[04:14:19] ============== [PASSED] drm_test_pick_cmdline ==============
-[04:14:19] ================== drm_buddy (6 subtests) ==================
-[04:14:19] [PASSED] drm_test_buddy_alloc_limit
-[04:14:19] [PASSED] drm_test_buddy_alloc_range
-[04:14:19] [PASSED] drm_test_buddy_alloc_optimistic
-[04:14:19] [PASSED] drm_test_buddy_alloc_pessimistic
-[04:14:19] [PASSED] drm_test_buddy_alloc_smoke
-[04:14:19] [PASSED] drm_test_buddy_alloc_pathological
-[04:14:19] ==================== [PASSED] drm_buddy ====================
-[04:14:19] ============= drm_cmdline_parser (40 subtests) =============
-[04:14:19] [PASSED] drm_test_cmdline_force_d_only
-[04:14:19] [PASSED] drm_test_cmdline_force_D_only_dvi
-[04:14:19] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[04:14:19] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[04:14:19] [PASSED] drm_test_cmdline_force_e_only
-[04:14:19] [PASSED] drm_test_cmdline_res
-[04:14:19] [PASSED] drm_test_cmdline_res_vesa
-[04:14:19] [PASSED] drm_test_cmdline_res_vesa_rblank
-[04:14:19] [PASSED] drm_test_cmdline_res_rblank
-[04:14:19] [PASSED] drm_test_cmdline_res_bpp
-[04:14:19] [PASSED] drm_test_cmdline_res_refresh
-[04:14:19] [PASSED] drm_test_cmdline_res_bpp_refresh
-[04:14:19] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[04:14:19] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[04:14:19] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[04:14:19] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[04:14:19] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[04:14:19] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[04:14:19] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[04:14:19] [PASSED] drm_test_cmdline_res_margins_force_on
-[04:14:19] [PASSED] drm_test_cmdline_res_vesa_margins
-[04:14:19] [PASSED] drm_test_cmdline_name
-[04:14:19] [PASSED] drm_test_cmdline_name_bpp
-[04:14:19] [PASSED] drm_test_cmdline_name_option
-[04:14:19] [PASSED] drm_test_cmdline_name_bpp_option
-[04:14:19] [PASSED] drm_test_cmdline_rotate_0
-[04:14:19] [PASSED] drm_test_cmdline_rotate_90
-[04:14:19] [PASSED] drm_test_cmdline_rotate_180
-[04:14:19] [PASSED] drm_test_cmdline_rotate_270
-[04:14:19] [PASSED] drm_test_cmdline_hmirror
-[04:14:19] [PASSED] drm_test_cmdline_vmirror
-[04:14:19] [PASSED] drm_test_cmdline_margin_options
-[04:14:19] [PASSED] drm_test_cmdline_multiple_options
-[04:14:19] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[04:14:19] [PASSED] drm_test_cmdline_extra_and_option
-[04:14:19] [PASSED] drm_test_cmdline_freestanding_options
-[04:14:19] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[04:14:19] [PASSED] drm_test_cmdline_panel_orientation
-[04:14:19] ================ drm_test_cmdline_invalid  =================
-[04:14:19] [PASSED] margin_only
-[04:14:19] [PASSED] interlace_only
-[04:14:19] [PASSED] res_missing_x
-[04:14:19] [PASSED] res_missing_y
-[04:14:19] [PASSED] res_bad_y
-[04:14:19] [PASSED] res_missing_y_bpp
-[04:14:19] [PASSED] res_bad_bpp
-[04:14:19] [PASSED] res_bad_refresh
-[04:14:19] [PASSED] res_bpp_refresh_force_on_off
-[04:14:19] [PASSED] res_invalid_mode
-[04:14:19] [PASSED] res_bpp_wrong_place_mode
-[04:14:19] [PASSED] name_bpp_refresh
-[04:14:19] [PASSED] name_refresh
-[04:14:19] [PASSED] name_refresh_wrong_mode
-[04:14:19] [PASSED] name_refresh_invalid_mode
-[04:14:19] [PASSED] rotate_multiple
-[04:14:19] [PASSED] rotate_invalid_val
-[04:14:19] [PASSED] rotate_truncated
-[04:14:19] [PASSED] invalid_option
-[04:14:19] [PASSED] invalid_tv_option
-[04:14:19] [PASSED] truncated_tv_option
-[04:14:19] ============ [PASSED] drm_test_cmdline_invalid =============
-[04:14:19] =============== drm_test_cmdline_tv_options  ===============
-[04:14:19] [PASSED] NTSC
-[04:14:19] [PASSED] NTSC_443
-[04:14:19] [PASSED] NTSC_J
-[04:14:19] [PASSED] PAL
-[04:14:19] [PASSED] PAL_M
-[04:14:19] [PASSED] PAL_N
-[04:14:19] [PASSED] SECAM
-[04:14:19] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[04:14:19] =============== [PASSED] drm_cmdline_parser ================
-[04:14:19] ========== drm_get_tv_mode_from_name (2 subtests) ==========
-[04:14:19] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[04:14:19] [PASSED] NTSC
-[04:14:19] [PASSED] NTSC-443
-[04:14:19] [PASSED] NTSC-J
-[04:14:19] [PASSED] PAL
-[04:14:19] [PASSED] PAL-M
-[04:14:19] [PASSED] PAL-N
-[04:14:19] [PASSED] SECAM
-[04:14:19] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[04:14:19] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[04:14:19] ============ [PASSED] drm_get_tv_mode_from_name ============
-[04:14:19] ============= drm_damage_helper (21 subtests) ==============
-[04:14:19] [PASSED] drm_test_damage_iter_no_damage
-[04:14:19] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[04:14:19] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[04:14:19] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[04:14:19] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[04:14:19] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[04:14:19] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[04:14:19] [PASSED] drm_test_damage_iter_simple_damage
-[04:14:19] [PASSED] drm_test_damage_iter_single_damage
-[04:14:19] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[04:14:19] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[04:14:19] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[04:14:19] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[04:14:19] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[04:14:19] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[04:14:19] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[04:14:19] [PASSED] drm_test_damage_iter_damage
-[04:14:19] [PASSED] drm_test_damage_iter_damage_one_intersect
-[04:14:19] [PASSED] drm_test_damage_iter_damage_one_outside
-[04:14:19] [PASSED] drm_test_damage_iter_damage_src_moved
-[04:14:19] [PASSED] drm_test_damage_iter_damage_not_visible
-[04:14:19] ================ [PASSED] drm_damage_helper ================
-[04:14:19] ============== drm_dp_mst_helper (2 subtests) ==============
-[04:14:19] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[04:14:19] [PASSED] Clock 154000 BPP 30 DSC disabled
-[04:14:19] [PASSED] Clock 234000 BPP 30 DSC disabled
-[04:14:19] [PASSED] Clock 297000 BPP 24 DSC disabled
-[04:14:19] [PASSED] Clock 332880 BPP 24 DSC enabled
-[04:14:19] [PASSED] Clock 324540 BPP 24 DSC enabled
-[04:14:19] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[04:14:19] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[04:14:19] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[04:14:19] [PASSED] DP_POWER_UP_PHY with port number
-[04:14:19] [PASSED] DP_POWER_DOWN_PHY with port number
-[04:14:19] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[04:14:19] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[04:14:19] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[04:14:19] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[04:14:19] [PASSED] DP_QUERY_PAYLOAD with port number
-[04:14:19] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[04:14:19] [PASSED] DP_REMOTE_DPCD_READ with port number
-[04:14:19] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[04:14:19] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[04:14:19] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[04:14:19] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[04:14:19] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[04:14:19] [PASSED] DP_REMOTE_I2C_READ with port number
-[04:14:19] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[04:14:19] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[04:14:19] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[04:14:19] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[04:14:19] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[04:14:19] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[04:14:19] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[04:14:19] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[04:14:19] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[04:14:19] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[04:14:19] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[04:14:19] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[04:14:19] ================ [PASSED] drm_dp_mst_helper ================
-[04:14:19] =========== drm_format_helper_test (11 subtests) ===========
-[04:14:19] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[04:14:19] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[04:14:19] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[04:14:19] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[04:14:19] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[04:14:19] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[04:14:19] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[04:14:19] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[04:14:19] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[04:14:19] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[04:14:19] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[04:14:19] [PASSED] single_pixel_source_buffer
-[04:14:19] [PASSED] single_pixel_clip_rectangle
-[04:14:19] [PASSED] well_known_colors
-[04:14:19] [PASSED] destination_pitch
-[04:14:19] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[04:14:19] ============= [PASSED] drm_format_helper_test ==============
-[04:14:19] ================= drm_format (18 subtests) =================
-[04:14:19] [PASSED] drm_test_format_block_width_invalid
-[04:14:19] [PASSED] drm_test_format_block_width_one_plane
-[04:14:19] [PASSED] drm_test_format_block_width_two_plane
-[04:14:19] [PASSED] drm_test_format_block_width_three_plane
-[04:14:19] [PASSED] drm_test_format_block_width_tiled
-[04:14:19] [PASSED] drm_test_format_block_height_invalid
-[04:14:19] [PASSED] drm_test_format_block_height_one_plane
-[04:14:19] [PASSED] drm_test_format_block_height_two_plane
-[04:14:19] [PASSED] drm_test_format_block_height_three_plane
-[04:14:19] [PASSED] drm_test_format_block_height_tiled
-[04:14:19] [PASSED] drm_test_format_min_pitch_invalid
-[04:14:19] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[04:14:19] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[04:14:19] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[04:14:19] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[04:14:19] [PASSED] drm_test_format_min_pitch_two_plane
-[04:14:19] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[04:14:19] [PASSED] drm_test_format_min_pitch_tiled
-[04:14:19] =================== [PASSED] drm_format ====================
-[04:14:19] =============== drm_framebuffer (1 subtest) ================
-[04:14:19] =============== drm_test_framebuffer_create  ===============
-[04:14:19] [PASSED] ABGR8888 normal sizes
-[04:14:19] [PASSED] ABGR8888 max sizes
-[04:14:19] [PASSED] ABGR8888 pitch greater than min required
-[04:14:19] [PASSED] ABGR8888 pitch less than min required
-[04:14:19] [PASSED] ABGR8888 Invalid width
-[04:14:19] [PASSED] ABGR8888 Invalid buffer handle
-[04:14:19] [PASSED] No pixel format
-[04:14:19] [PASSED] ABGR8888 Width 0
-[04:14:19] [PASSED] ABGR8888 Height 0
-[04:14:19] [PASSED] ABGR8888 Out of bound height * pitch combination
-[04:14:19] [PASSED] ABGR8888 Large buffer offset
-[04:14:19] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[04:14:19] [PASSED] ABGR8888 Valid buffer modifier
-[04:14:19] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[04:14:19] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[04:14:19] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[04:14:19] [PASSED] NV12 Normal sizes
-[04:14:19] [PASSED] NV12 Max sizes
-[04:14:19] [PASSED] NV12 Invalid pitch
-[04:14:19] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[04:14:19] [PASSED] NV12 different  modifier per-plane
-[04:14:19] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[04:14:19] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[04:14:19] [PASSED] NV12 Modifier for inexistent plane
-[04:14:19] [PASSED] NV12 Handle for inexistent plane
-[04:14:19] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[04:14:19] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[04:14:19] [PASSED] YVU420 Normal sizes
-[04:14:19] [PASSED] YVU420 Max sizes
-[04:14:19] [PASSED] YVU420 Invalid pitch
-[04:14:19] [PASSED] YVU420 Different pitches
-[04:14:19] [PASSED] YVU420 Different buffer offsets/pitches
-[04:14:19] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[04:14:19] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[04:14:19] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[04:14:19] [PASSED] YVU420 Valid modifier
-[04:14:19] [PASSED] YVU420 Different modifiers per plane
-[04:14:19] [PASSED] YVU420 Modifier for inexistent plane
-[04:14:19] [PASSED] X0L2 Normal sizes
-[04:14:19] [PASSED] X0L2 Max sizes
-[04:14:19] [PASSED] X0L2 Invalid pitch
-[04:14:19] [PASSED] X0L2 Pitch greater than minimum required
-stty: 'standard input': Inappropriate ioctl for device
-[04:14:19] [PASSED] X0L2 Handle for inexistent plane
-[04:14:19] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[04:14:19] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[04:14:19] [PASSED] X0L2 Valid modifier
-[04:14:19] [PASSED] X0L2 Modifier for inexistent plane
-[04:14:19] =========== [PASSED] drm_test_framebuffer_create ===========
-[04:14:19] ================= [PASSED] drm_framebuffer =================
-[04:14:19] =============== drm-test-managed (1 subtest) ===============
-[04:14:19] [PASSED] drm_test_managed_run_action
-[04:14:19] ================ [PASSED] drm-test-managed =================
-[04:14:19] =================== drm_mm (19 subtests) ===================
-[04:14:19] [PASSED] drm_test_mm_init
-[04:14:19] [PASSED] drm_test_mm_debug
-[04:14:29] [PASSED] drm_test_mm_reserve
-[04:14:38] [PASSED] drm_test_mm_insert
-[04:14:39] [PASSED] drm_test_mm_replace
-[04:14:39] [PASSED] drm_test_mm_insert_range
-[04:14:39] [PASSED] drm_test_mm_frag
-[04:14:39] [PASSED] drm_test_mm_align
-[04:14:39] [PASSED] drm_test_mm_align32
-[04:14:40] [PASSED] drm_test_mm_align64
-[04:14:40] [PASSED] drm_test_mm_evict
-[04:14:40] [PASSED] drm_test_mm_evict_range
-[04:14:40] [PASSED] drm_test_mm_topdown
-[04:14:40] [PASSED] drm_test_mm_bottomup
-[04:14:40] [PASSED] drm_test_mm_lowest
-[04:14:40] [PASSED] drm_test_mm_highest
-[04:14:41] [PASSED] drm_test_mm_color
-[04:14:41] [PASSED] drm_test_mm_color_evict
-[04:14:41] [PASSED] drm_test_mm_color_evict_range
-[04:14:41] ===================== [PASSED] drm_mm ======================
-[04:14:41] ============= drm_modes_analog_tv (4 subtests) =============
-[04:14:41] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[04:14:41] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[04:14:41] [PASSED] drm_test_modes_analog_tv_pal_576i
-[04:14:41] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[04:14:41] =============== [PASSED] drm_modes_analog_tv ===============
-[04:14:41] ============== drm_plane_helper (2 subtests) ===============
-[04:14:41] =============== drm_test_check_plane_state  ================
-[04:14:41] [PASSED] clipping_simple
-[04:14:41] [PASSED] clipping_rotate_reflect
-[04:14:41] [PASSED] positioning_simple
-[04:14:41] [PASSED] upscaling
-[04:14:41] [PASSED] downscaling
-[04:14:41] [PASSED] rounding1
-[04:14:41] [PASSED] rounding2
-[04:14:41] [PASSED] rounding3
-[04:14:41] [PASSED] rounding4
-[04:14:41] =========== [PASSED] drm_test_check_plane_state ============
-[04:14:41] =========== drm_test_check_invalid_plane_state  ============
-[04:14:41] [PASSED] positioning_invalid
-[04:14:41] [PASSED] upscaling_invalid
-[04:14:41] [PASSED] downscaling_invalid
-[04:14:41] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[04:14:41] ================ [PASSED] drm_plane_helper =================
-[04:14:41] ====== drm_connector_helper_tv_get_modes (1 subtest) =======
-[04:14:41] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[04:14:41] [PASSED] None
-[04:14:41] [PASSED] PAL
-[04:14:41] [PASSED] NTSC
-[04:14:41] [PASSED] Both, NTSC Default
-[04:14:41] [PASSED] Both, PAL Default
-[04:14:41] [PASSED] Both, NTSC Default, with PAL on command-line
-[04:14:41] [PASSED] Both, PAL Default, with NTSC on command-line
-[04:14:41] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[04:14:41] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[04:14:41] ================== drm_rect (9 subtests) ===================
-[04:14:41] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[04:14:41] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[04:14:41] [PASSED] drm_test_rect_clip_scaled_clipped
-[04:14:41] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-[04:14:41] ================= drm_test_rect_intersect  =================
-[04:14:41] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
-[04:14:41] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
-[04:14:41] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
-[04:14:41] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
-[04:14:41] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
-[04:14:41] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
-[04:14:41] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
-[04:14:41] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
-[04:14:41] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
-[04:14:41] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
-[04:14:41] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
-[04:14:41] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
-[04:14:41] [PASSED] far away: 1x1+0+0 x 1x1+3+6
-[04:14:41] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
-[04:14:41] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
-[04:14:41] ============= [PASSED] drm_test_rect_intersect =============
-[04:14:41] ================ drm_test_rect_calc_hscale  ================
-[04:14:41] [PASSED] normal use
-[04:14:41] [PASSED] out of max range
-[04:14:41] [PASSED] out of min range
-[04:14:41] [PASSED] zero dst
-[04:14:41] [PASSED] negative src
-[04:14:41] [PASSED] negative dst
-[04:14:41] ============ [PASSED] drm_test_rect_calc_hscale ============
-[04:14:41] ================ drm_test_rect_calc_vscale  ================
-[04:14:41] [PASSED] normal use
-[04:14:41] [PASSED] out of max range
-[04:14:41] [PASSED] out of min range
-[04:14:41] [PASSED] zero dst
-[04:14:41] [PASSED] negative src
-[04:14:41] [PASSED] negative dst
-[04:14:41] ============ [PASSED] drm_test_rect_calc_vscale ============
-[04:14:41] ================== drm_test_rect_rotate  ===================
-[04:14:41] [PASSED] reflect-x
-[04:14:41] [PASSED] reflect-y
-[04:14:41] [PASSED] rotate-0
-[04:14:41] [PASSED] rotate-90
-[04:14:41] [PASSED] rotate-180
-[04:14:41] [PASSED] rotate-270
-[04:14:41] ============== [PASSED] drm_test_rect_rotate ===============
-[04:14:41] ================ drm_test_rect_rotate_inv  =================
-[04:14:41] [PASSED] reflect-x
-[04:14:41] [PASSED] reflect-y
-[04:14:41] [PASSED] rotate-0
-[04:14:41] [PASSED] rotate-90
-[04:14:41] [PASSED] rotate-180
-[04:14:41] [PASSED] rotate-270
-[04:14:41] ============ [PASSED] drm_test_rect_rotate_inv =============
-[04:14:41] ==================== [PASSED] drm_rect =====================
-[04:14:41] ================== drm_exec (7 subtests) ===================
-[04:14:41] [PASSED] sanitycheck
-[04:14:41] [PASSED] test_lock
-[04:14:41] [PASSED] test_lock_unlock
-[04:14:41] [PASSED] test_duplicates
-[04:14:41] [PASSED] test_prepare
-[04:14:41] [PASSED] test_prepare_array
-[04:14:41] [PASSED] test_multiple_loops
-[04:14:41] ==================== [PASSED] drm_exec =====================
-[04:14:41] ============================================================
-[04:14:41] Testing complete. Ran 340 tests: passed: 340
-[04:14:41] Elapsed time: 42.723s total, 1.685s configuring, 18.804s building, 22.231s running
+the name err_msg_cntr_pair might not be appropriate as it err name and index into
+tile_hw_errors. err_name_index_pair ?? thoughts
+> +	[0]         = {"GT",			XE_TILE_HW_ERR_GT_FATAL},
+> +	[1 ... 3]   = {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +	[4]         = {"DISPLAY",		XE_TILE_HW_ERR_DISPLAY_FATAL},
+> +	[5 ... 7]   = {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +	[8]         = {"GSC error",		XE_TILE_HW_ERR_GSC_FATAL},
+> +	[9 ... 11]  = {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +	[12]        = {"SGUNIT",		XE_TILE_HW_ERR_SGUNIT_FATAL},
+> +	[13 ... 15] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +	[16]        = {"SOC",			XE_TILE_HW_ERR_SOC_FATAL},
+> +	[17 ... 31] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +};
+> +
+> +static const struct err_msg_cntr_pair dg2_err_stat_nonfatal_reg[] = {
+> +	[0]         = {"GT",			XE_TILE_HW_ERR_GT_NONFATAL},
+> +	[1 ... 3]   = {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +	[4]         = {"DISPLAY",		XE_TILE_HW_ERR_DISPLAY_NONFATAL},
+> +	[5 ... 7]   = {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +	[8]         = {"GSC error",		XE_TILE_HW_ERR_GSC_NONFATAL},
+> +	[9 ... 11]  = {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +	[12]        = {"SGUNIT",		XE_TILE_HW_ERR_SGUNIT_NONFATAL},
+> +	[13 ... 15] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +	[16]        = {"SOC",			XE_TILE_HW_ERR_SOC_NONFATAL},
+> +	[17 ... 19] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +	[20]        = {"MERT",			XE_TILE_HW_ERR_MERT_NONFATAL},
+> +	[21 ... 31] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +};
+> +
+> +static const struct err_msg_cntr_pair dg2_err_stat_correctable_reg[] = {
+> +	[0]         = {"GT",			XE_TILE_HW_ERR_GT_CORR},
+> +	[1 ... 3]   = {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
+> +	[4]         = {"DISPLAY",		XE_TILE_HW_ERR_DISPLAY_CORR},
+> +	[5 ... 7]   = {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
+> +	[8]         = {"GSC error",		XE_TILE_HW_ERR_GSC_CORR},
+> +	[9 ... 11]  = {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
+> +	[12]        = {"SGUNIT",		XE_TILE_HW_ERR_SGUNIT_CORR},
+> +	[13 ... 15] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_CORR},
+> +	[16]        = {"SOC",			XE_TILE_HW_ERR_SOC_CORR},
+> +	[17 ... 31] = {"Undefined",             XE_TILE_HW_ERR_UNKNOWN_CORR},
+> +};
+> +
+> +static const struct err_msg_cntr_pair pvc_err_stat_fatal_reg[] = {
+> +	[0]         =  {"GT",			XE_TILE_HW_ERR_GT_FATAL},
+> +	[1]         =  {"SGGI Cmd Parity",	XE_TILE_HW_ERR_SGGI_FATAL},
+> +	[2 ... 7]   =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +	[8]         =  {"GSC error",		XE_TILE_HW_ERR_GSC_FATAL},
+> +	[9]         =  {"SGLI Cmd Parity",	XE_TILE_HW_ERR_SGLI_FATAL},
+> +	[10 ... 12] =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +	[13]        =  {"SGCI Cmd Parity",	XE_TILE_HW_ERR_SGCI_FATAL},
+> +	[14 ... 15] =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +	[16]        =  {"SOC ERROR",		XE_TILE_HW_ERR_SOC_FATAL},
+> +	[17 ... 19] =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +	[20]        =  {"MERT Cmd Parity",	XE_TILE_HW_ERR_MERT_FATAL},
+> +	[21 ... 31] =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +};
+> +
+> +static const struct err_msg_cntr_pair pvc_err_stat_nonfatal_reg[] = {
+> +	[0]         =  {"GT",			XE_TILE_HW_ERR_GT_NONFATAL},
+> +	[1]         =  {"SGGI Data Parity",	XE_TILE_HW_ERR_SGGI_NONFATAL},
+> +	[2 ... 7]   =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +	[8]         =  {"GSC",			XE_TILE_HW_ERR_GSC_NONFATAL},
+> +	[9]         =  {"SGLI Data Parity",	XE_TILE_HW_ERR_SGLI_NONFATAL},
+> +	[10 ... 12] =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +	[13]        =  {"SGCI Data Parity",	XE_TILE_HW_ERR_SGCI_NONFATAL},
+> +	[14 ... 15] =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +	[16]        =  {"SOC",			XE_TILE_HW_ERR_SOC_NONFATAL},
+> +	[17 ... 19] =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +	[20]        =  {"MERT Data Parity",	XE_TILE_HW_ERR_MERT_NONFATAL},
+> +	[21 ... 31] =  {"Undefined",            XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +};
+> +
+> +static const struct err_msg_cntr_pair pvc_err_stat_correctable_reg[] = {
+> +	[0]         =  {"GT",			XE_TILE_HW_ERR_GT_CORR},
+> +	[1 ... 7]   =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
+> +	[8]         =  {"GSC",			XE_TILE_HW_ERR_GSC_CORR},
+> +	[9 ... 31]  =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
+> +};
+> +
+> +static const struct err_msg_cntr_pair dev_err_stat_fatal_reg[] = {
+> +	[0]         =  {"GT",			XE_TILE_HW_ERR_GT_FATAL},
+> +	[1 ... 31]  =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_FATAL},
+> +};
+> +
+> +static const struct err_msg_cntr_pair dev_err_stat_nonfatal_reg[] = {
+> +	[0]         =  {"GT",			XE_TILE_HW_ERR_GT_NONFATAL},
+> +	[1 ... 31]  =  {"Undefined",            XE_TILE_HW_ERR_UNKNOWN_NONFATAL},
+> +};
+> +
+> +static const struct err_msg_cntr_pair dev_err_stat_correctable_reg[] = {
+> +	[0]         =  {"GT",			XE_TILE_HW_ERR_GT_CORR},
+> +	[1 ... 31]  =  {"Undefined",		XE_TILE_HW_ERR_UNKNOWN_CORR},
+> +};
+> +
+> +void xe_assign_hw_err_regs(struct xe_device *xe)
+> +{
+> +	const struct err_msg_cntr_pair **dev_err_stat = xe->hw_err_regs.dev_err_stat;
+> +
+> +	if (xe->info.platform == XE_DG2) {
+> +		dev_err_stat[HARDWARE_ERROR_CORRECTABLE] = dg2_err_stat_correctable_reg;
+> +		dev_err_stat[HARDWARE_ERROR_NONFATAL] = dg2_err_stat_nonfatal_reg;
+> +		dev_err_stat[HARDWARE_ERROR_FATAL] = dg2_err_stat_fatal_reg;
+> +	} else if (xe->info.platform == XE_PVC) {
+> +		dev_err_stat[HARDWARE_ERROR_CORRECTABLE] = pvc_err_stat_correctable_reg;
+> +		dev_err_stat[HARDWARE_ERROR_NONFATAL] = pvc_err_stat_nonfatal_reg;
+> +		dev_err_stat[HARDWARE_ERROR_FATAL] = pvc_err_stat_fatal_reg;
+> +	} else {
+> +		/* For other platforms report only GT errors */
+why only GT errors??
+> +		dev_err_stat[HARDWARE_ERROR_CORRECTABLE] = dev_err_stat_correctable_reg;
+> +		dev_err_stat[HARDWARE_ERROR_NONFATAL] = dev_err_stat_nonfatal_reg;
+> +		dev_err_stat[HARDWARE_ERROR_FATAL] = dev_err_stat_fatal_reg;
+> +	}
+> +}
+> +
+> +static void
+> +xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+> +{
+> +	const char *hw_err_str = hardware_error_type_to_str(hw_err);
+> +	const struct hardware_errors_regs *err_regs;
+> +	const struct err_msg_cntr_pair *errstat;
+> +	unsigned long errsrc;
+> +	unsigned long flags;
+> +	const char *errmsg;
+> +	struct xe_gt *mmio;
+> +	u32 indx;
+> +	u32 errbit;
+> +
+> +	spin_lock_irqsave(&tile_to_xe(tile)->irq.lock, flags);
+> +	err_regs = &tile_to_xe(tile)->hw_err_regs;
+> +	errstat = err_regs->dev_err_stat[hw_err];
+> +	mmio = tile->primary_gt;
+> +	errsrc = xe_mmio_read32(mmio, DEV_ERR_STAT_REG(hw_err));
+> +	if (!errsrc) {
+> +		drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR
+> +				    "TILE%d detected DEV_ERR_STAT_REG_%s blank!\n",
+> +				    tile->id, hw_err_str);
+> +		goto unlock;
+> +	}
+> +
+> +	drm_info(&tile_to_xe(tile)->drm, HW_ERR
+> +		 "TILE%d DEV_ERR_STAT_REG_%s=0x%08lx\n", tile->id, hw_err_str, errsrc);
+> +
+> +	for_each_set_bit(errbit, &errsrc, 32) {
+> +		errmsg = errstat[errbit].errmsg;
+> +		indx = errstat[errbit].cntr_indx;
+> +
+> +		if (hw_err == HARDWARE_ERROR_CORRECTABLE)
+> +			drm_warn(&tile_to_xe(tile)->drm,
+> +				 HW_ERR "TILE%d detected %s %s error, bit[%d] is set\n",
+> +				 tile->id, errmsg, hw_err_str, errbit);
+> +
+> +		else
+> +			drm_err_ratelimited(&tile_to_xe(tile)->drm,
+> +					    HW_ERR "TILE%d detected %s %s error, bit[%d] is set\n",
+> +					    tile->id, errmsg, hw_err_str, errbit);
+> +		tile->errors.count[indx]++;
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+The register here is a top level register and some of the sources have second error level registers
+so the count shall be at second level source for all those that have and not at global level as here
+it will not give granularity.
+> +	}
+> +
+> +	xe_mmio_write32(mmio, DEV_ERR_STAT_REG(hw_err), errsrc);
+> +unlock:
+> +	spin_unlock_irqrestore(&tile_to_xe(tile)->irq.lock, flags);
+> +}
+> +
+> +/*
+> + * XE Platforms adds three Error bits to the Master Interrupt
+> + * Register to support error handling. These three bits are
+> + * used to convey the class of error:
+> + * FATAL, NONFATAL, or CORRECTABLE.
+> + *
+> + * To process an interrupt:
+> + *       Determine source of error (IP block) by reading
+> + *	 the Device Error Source Register (RW1C) that
+> + *	 corresponds to the class of error being serviced
+> + *	 and log the error.
+> + */
+> +void
+> +xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
+> +{
+> +	enum hardware_error hw_err;
+> +
+> +	for (hw_err = 0; hw_err < HARDWARE_ERROR_MAX; hw_err++) {
+> +		if (master_ctl & XE_ERROR_IRQ(hw_err))
+> +			xe_hw_error_source_handler(tile, hw_err);
+> +	}
+> +}
+> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
+> new file mode 100644
+> index 000000000000..c0c05b9130eb
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
+> @@ -0,0 +1,64 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +#ifndef XE_HW_ERRORS_H_
+> +#define XE_HW_ERRORS_H_
+> +
+> +#include <linux/stddef.h>
+> +#include <linux/types.h>
+> +
+> +/* Error categories reported by hardware */
+> +enum hardware_error {
+> +	HARDWARE_ERROR_CORRECTABLE = 0,
+> +	HARDWARE_ERROR_NONFATAL = 1,
+> +	HARDWARE_ERROR_FATAL = 2,
+> +	HARDWARE_ERROR_MAX,
+> +};
+> +
+> +/* Count of  Correctable and Uncorrectable errors reported on tile */
+> +enum xe_tile_hw_errors {
+> +	XE_TILE_HW_ERR_GT_FATAL = 0,
+> +	XE_TILE_HW_ERR_SGGI_FATAL,
+> +	XE_TILE_HW_ERR_DISPLAY_FATAL,
+> +	XE_TILE_HW_ERR_SGDI_FATAL,
+> +	XE_TILE_HW_ERR_SGLI_FATAL,
+> +	XE_TILE_HW_ERR_SGUNIT_FATAL,
+> +	XE_TILE_HW_ERR_SGCI_FATAL,
+> +	XE_TILE_HW_ERR_GSC_FATAL,
+> +	XE_TILE_HW_ERR_SOC_FATAL,
+> +	XE_TILE_HW_ERR_MERT_FATAL,
+> +	XE_TILE_HW_ERR_SGMI_FATAL,
+> +	XE_TILE_HW_ERR_UNKNOWN_FATAL,
+> +	XE_TILE_HW_ERR_SGGI_NONFATAL,
+> +	XE_TILE_HW_ERR_DISPLAY_NONFATAL,
+> +	XE_TILE_HW_ERR_SGDI_NONFATAL,
+> +	XE_TILE_HW_ERR_SGLI_NONFATAL,
+> +	XE_TILE_HW_ERR_GT_NONFATAL,
+> +	XE_TILE_HW_ERR_SGUNIT_NONFATAL,
+> +	XE_TILE_HW_ERR_SGCI_NONFATAL,
+> +	XE_TILE_HW_ERR_GSC_NONFATAL,
+> +	XE_TILE_HW_ERR_SOC_NONFATAL,
+> +	XE_TILE_HW_ERR_MERT_NONFATAL,
+> +	XE_TILE_HW_ERR_SGMI_NONFATAL,
+> +	XE_TILE_HW_ERR_UNKNOWN_NONFATAL,
+> +	XE_TILE_HW_ERR_GT_CORR,
+> +	XE_TILE_HW_ERR_DISPLAY_CORR,
+> +	XE_TILE_HW_ERR_SGUNIT_CORR,
+> +	XE_TILE_HW_ERR_GSC_CORR,
+> +	XE_TILE_HW_ERR_SOC_CORR,
+> +	XE_TILE_HW_ERR_UNKNOWN_CORR,
+> +	XE_TILE_HW_ERROR_MAX,
+> +};
+> +
+> +struct err_msg_cntr_pair {
+> +	const char *errmsg;
+> +	const u32 cntr_indx;
+> +};
+> +
+> +struct xe_device;
+> +struct xe_tile;
+> +
+> +void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
+> +void xe_assign_hw_err_regs(struct xe_device *xe);
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+> index 1dee3e832eb5..48b933234342 100644
+> --- a/drivers/gpu/drm/xe/xe_irq.c
+> +++ b/drivers/gpu/drm/xe/xe_irq.c
+> @@ -418,6 +418,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+>  		xe_mmio_write32(mmio, GFX_MSTR_IRQ, master_ctl);
+>  
+>  		gt_irq_handler(tile, master_ctl, intr_dw, identity);
+> +		xe_hw_error_irq_handler(tile, master_ctl);
+>  
+>  		/*
+>  		 * Display interrupts (including display backlight operations
+> @@ -572,6 +573,8 @@ int xe_irq_install(struct xe_device *xe)
+>  		return -EINVAL;
+>  	}
+>  
+> +	xe_assign_hw_err_regs(xe);
+> +
+>  	xe->irq.enabled = true;
+>  
+>  	xe_irq_reset(xe);
+Thanks,
+Aravind.
