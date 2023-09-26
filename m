@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CA76E7D246
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 07:41:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD2BEE7D24B
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 08:01:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DC3610E35D;
-	Tue, 26 Sep 2023 07:41:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C26E610E35D
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 07:40:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DA4510E35F;
+	Tue, 26 Sep 2023 08:01:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 755D310E35F
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 08:01:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695714059; x=1727250059;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ZYIchqQNanRSMk1M5pG6hBXdb3urf8TT2C254mjRIpo=;
- b=J1MDgVzOT9nP4AbydtPBGCjXtp/s1fl3kzsC8J60Z2fh9UwYCzMLYNRl
- jTuEVGwGgrJUad5M7Oxvf70KiKiJMLXlPJQNV5ulTR9BeC1rwawM4W/a6
- dcT6tdpw1u817zxzQZmsz5pX5uzsImzJwrmg+nunPCCWRlTKhbOf9h1x3
- 8YDGf3wIwZ05ZXqNkts2ljYXAiUmswxVaOFsxtKNybVE2sDwQwwxAxWY9
- JCMh6GNxYe1YOby1XaAMer6UKhYpeHAdQY4FGnPqHyUR4CY6QatchYnv2
- NQjHHlan1BbcmxLlDJOBjzPlrDacevnGUiX6H84VfA3DWuLCmHPcBgrrD Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="385356554"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="385356554"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 00:40:58 -0700
+ t=1695715304; x=1727251304;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=hDrvO4O6nBCax60r4UIvVE14Ri387i/qAG4EclqGXxc=;
+ b=K4pxC26cIqt6MQzTGu7l9jtAEEDHzBTyCwhTv9nplownAisV1HnDbEDU
+ U/6NHr6nKOFXx6mhZ6kQy8rn+7pFhXQD/dmKlyu+iTByNK3CkH2BfwusF
+ ZoKPGym7a6mnkjQFVGr/m6Z3e5BnUT38Sa3E5HLnMaC8K60fS0KULeLqT
+ JWjP1Rf+Yk7ZPIaa7BoIY1tr2o7Te5ErNjvIRBA5v0pl2ZhX1H3hn/DVB
+ X+C/fNPcrIQkxjLaxiJgHvZB6S5A2GDgmgLBl6jFRpjVxkCJb3XiyXD7C
+ l37dObCt9+vT3bpxA1cRXq5wYd4guKPRxy1WbciZz+Pku0Ps5SygtYghU w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="448008713"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="448008713"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 01:01:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="864311360"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="864311360"
-Received: from wagnert-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.52.202])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 00:40:57 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- uma.shankar@intel.com
-In-Reply-To: <20230926051124.583554-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20230924144751.446446-1-arun.r.murthy@intel.com>
- <20230926051124.583554-1-arun.r.murthy@intel.com>
-Date: Tue, 26 Sep 2023 10:40:54 +0300
-Message-ID: <874jjhmlfd.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="872408428"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="872408428"
+Received: from jliew-mobl.gar.corp.intel.com (HELO intel.com) ([10.213.158.52])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 01:01:36 -0700
+Date: Tue, 26 Sep 2023 10:01:29 +0200
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: "Nilawar, Badal" <badal.nilawar@intel.com>
+Message-ID: <ZRKP2UIGUWTXnZN6@ashyti-mobl2.lan>
+References: <20230925081842.3566834-1-badal.nilawar@intel.com>
+ <20230925081842.3566834-6-badal.nilawar@intel.com>
+ <ZRF1f2OsC1pr5hFd@ashyti-mobl2.lan>
+ <e5801f36-2f9a-6d24-7af2-1e7174f2e0b4@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCHv2 1/2] drm/i915: Remove the module parameter
- 'fastboot'
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e5801f36-2f9a-6d24-7af2-1e7174f2e0b4@intel.com>
+Subject: Re: [Intel-xe] [PATCH v6 5/5] drm/xe/hwmon: Expose
+ power1_max_interval
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,76 +60,104 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: linux-hwmon@vger.kernel.org, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org, linux@roeck-us.net
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 26 Sep 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> By default fastboot is enabled on all Display 9+ platforms and disabled
-> on older platforms. Its not necessary to retain this as a module
-> parameter.
->
-> v2: remove this parameter for i915 as well (Jani N, Ville)
+Hi Badal,
 
-Please send this to intel-gfx first, get it merged, then backport to xe
-with git cherry-pick -x.
+> > > +	/* val in hw units */
+> > > +	val = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_time, SF_TIME);
+> > > +	/* Convert to 1.x * power(2,y) */
+> > > +	if (!val) {
+> > > +		/* Avoid ilog2(0) */
+> > > +		y = 0;
+> > > +		x = 0;
+> > > +	} else {
+> > > +		y = ilog2(val);
+> > > +		/* x = (val - (1 << y)) >> (y - 2); */
+> > 
+> > this is some spurious development comment, can you please remove
+> > it?
+> 
+> This is kept intentionally to help to understand the calculations.
 
-Before the backport, remove the relevant ifdefs. The order presented
-here will not rebase nicely.
+then this is confusing... Can you please expand the concept?
+As it is it's not understandable and I would expect someone
+sending a patch with title:
 
-BR,
-Jani.
+ [PATCH] drm/xe/hwmon: Remove spurious comment
 
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 3 ---
->  drivers/gpu/drm/i915/i915_params.c           | 5 -----
->  drivers/gpu/drm/i915/i915_params.h           | 1 -
->  3 files changed, 9 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index b2e16cb8d026..0bfd4ea12065 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4987,9 +4987,6 @@ pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
->  static bool fastboot_enabled(struct drm_i915_private *dev_priv)
->  {
->  #ifdef I915
-> -	if (dev_priv->params.fastboot != -1)
-> -		return dev_priv->params.fastboot;
-> -
->  	/* Enable fastboot by default on Skylake and newer */
->  	if (DISPLAY_VER(dev_priv) >= 9)
->  		return true;
-> diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-> index 0a171b57fd8f..036c4c3ed6ed 100644
-> --- a/drivers/gpu/drm/i915/i915_params.c
-> +++ b/drivers/gpu/drm/i915/i915_params.c
-> @@ -137,11 +137,6 @@ i915_param_named_unsafe(enable_ips, int, 0400, "Enable IPS (default: true)");
->  i915_param_named_unsafe(enable_dpt, bool, 0400,
->  	"Enable display page table (DPT) (default: true)");
->  
-> -i915_param_named(fastboot, int, 0400,
-> -	"Try to skip unnecessary mode sets at boot time "
-> -	"(0=disabled, 1=enabled) "
-> -	"Default: -1 (use per-chip default)");
-> -
->  i915_param_named_unsafe(load_detect_test, bool, 0400,
->  	"Force-enable the VGA load detect code for testing (default:false). "
->  	"For developers only.");
-> diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-> index 68abf0ad6c00..d5194b039aab 100644
-> --- a/drivers/gpu/drm/i915/i915_params.h
-> +++ b/drivers/gpu/drm/i915/i915_params.h
-> @@ -72,7 +72,6 @@ struct drm_printer;
->  	param(int, edp_vswing, 0, 0400) \
->  	param(unsigned int, reset, 3, 0600) \
->  	param(unsigned int, inject_probe_failure, 0, 0) \
-> -	param(int, fastboot, -1, 0600) \
->  	param(int, enable_dpcd_backlight, -1, 0600) \
->  	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
->  	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT, CONFIG_DRM_I915_REQUEST_TIMEOUT ? 0600 : 0) \
+Because it just looks forgotten from previous development.
 
--- 
-Jani Nikula, Intel
+> > > +		x = (val - (1ul << y)) << x_w >> y;
+> > > +	}
+> > > +
+> > > +	rxy = REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_X, x) | REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_Y, y);
+> > > +
+> > > +	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
+> > > +
+> > > +	mutex_lock(&hwmon->hwmon_lock);
+> > > +
+> > > +	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW, (u32 *)&r,
+> > > +			     PKG_PWR_LIM_1_TIME, rxy);
+> > > +
+> > > +	mutex_unlock(&hwmon->hwmon_lock);
+> > 
+> > why are we locking here?
+> 
+> Since it is rmw operation we are using lock here.
+
+OK... so what you are trying to protect here is the
+
+  read -> update -> write
+
+and it makes sense. The problem is that if this is a generic
+rule, which means that everyone who will do a rmw operation has
+to take the lock, why not take the lock directly in
+xe_hwmon_process_reg()?
+
+But also this can be a bit confusing, because a function is
+either locked or unlocked and purists might complain.
+
+A suggestion would be to do something like:
+
+   static int xe_hwmon_process_reg(..., enum xe_hwmon_reg_operation operation)
+   {
+   	...
+   }
+
+   static int xe_hwmon_reg_read(...);
+   {
+   	return xe_hwmon_process_reg(..., REG_READ);
+   }
+
+   static int xe_hwmon_reg_write(...);
+   {
+   	return xe_hwmon_process_reg(..., REG_WRITE);
+   }
+
+   static int xe_hwmon_reg_rmw(...);
+   {
+	int ret;
+   	
+	/*
+	 * Optional: you can check that the lock is not taken
+	 * to shout loud if potential deadlocks arise.
+	 */
+
+	/*
+	 * We want to protect the register update with the
+	 * lock blah blah blah... explanatory comment.
+	 */
+	mutex_lock(&hwmon->hwmon_lock);
+	ret = xe_hwmon_process_reg(..., REG_RMW);
+	mutex_unlock(&hwmon->hwmon_lock);
+
+	return ret;
+   }
+
+What do you think? It looks much clearer to me.
+
+Andi
