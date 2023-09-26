@@ -4,30 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11A4BE7E636
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 13:23:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B12DDE7E636
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 13:32:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFAC110E3E3;
-	Tue, 26 Sep 2023 13:23:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3B62810E3E5;
- Tue, 26 Sep 2023 13:23:19 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3A4F5AADE1;
- Tue, 26 Sep 2023 13:23:19 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7269910E3E9;
+	Tue, 26 Sep 2023 13:32:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1102010E3E2
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 13:32:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695735160; x=1727271160;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=dKzgNQ6ncwruhAn9GhlIs4JRqykNqILASIAbJ4W8XTo=;
+ b=ZOCJoDbHu99SHhUdkQE1Z1erAoJNIp6tYrAH8iIm2wDJqohHyV10zlXz
+ wn47YRqy4mQxG2cyxEnJcV843fDJsX/JLLAgwvxDFdPr+KJR7kwMT31rT
+ qZjn/mEN080+a4upW19g8Ddh887W4pmbCRZl1uX6mNOqnKonc4HKHKVpO
+ gCHVilBYTzDvLNNNTQqA7XNEuvJIQ7ZBSBimqixKyRld1DuRF3kL73CtI
+ TCnxkxFG6TfHeXUwNb4RaJNIeALs01N8Eru/+WP/6Zpi3GRP9uShX7/VW
+ 5gRy6Fk/dP6CZNDpSN/hH89z2nDIyDikz7AcZ97fM8c5vW9hRmMIv0trQ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="361813960"
+X-IronPort-AV: E=Sophos;i="6.03,178,1694761200"; d="scan'208";a="361813960"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 06:17:32 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="892186603"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="892186603"
+Received: from wagnert-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.252.52.202])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 06:16:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20230912064709.2802305-3-jouni.hogander@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20230912064709.2802305-1-jouni.hogander@intel.com>
+ <20230912064709.2802305-3-jouni.hogander@intel.com>
+Date: Tue, 26 Sep 2023 16:17:28 +0300
+Message-ID: <87a5t9kr9z.fsf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Tue, 26 Sep 2023 13:23:19 -0000
-Message-ID: <169573459923.20981.18007672312119113141@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20230926125540.7-1-francois.dugast@intel.com>
-In-Reply-To: <20230926125540.7-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_u?=
- =?utf-8?q?API_Alignment_-_take_1_v3?=
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH v3 02/12] drm/i915: Ignore set frontbuffer
+ return value on release
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +61,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Tue, 12 Sep 2023, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
+> i915_gem_object_set_frontbuffer returns set frontbuffer pointer.
+> When we are releasing frontbuffer we are clearing the pointer from
+> the object and the value can be ignored.
 
-Series: uAPI Alignment - take 1 v3
-URL   : https://patchwork.freedesktop.org/series/124271/
-State : success
+Was this supposed to be sent to upstream i915? What's the story? It
+depends on "remaining changes to make xe compile", and the subsequent
+patches that are fixups to that, won't apply without this. So it's a bit
+of a mess now. :/
 
-== Summary ==
+J.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast fc8ec3c56efa5c15b630ddc17c89100440fe03ef
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+>
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_frontbuffer.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/g=
+pu/drm/i915/display/intel_frontbuffer.c
+> index a9a8c75b8236..629185e5a880 100644
+> --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+> @@ -238,7 +238,7 @@ static void frontbuffer_release(struct kref *ref)
+>  #ifdef I915
+>  	i915_ggtt_clear_scanout(obj);
+>=20=20
+> -	i915_gem_object_set_frontbuffer(obj, NULL);
+> +	(void) i915_gem_object_set_frontbuffer(obj, NULL);
+>  #endif
+>  	spin_unlock(&intel_bo_to_i915(obj)->display.fb_tracking.lock);
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+--=20
+Jani Nikula, Intel
