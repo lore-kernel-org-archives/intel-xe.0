@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 24D49E7E632
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 13:02:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75116E7E633
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 13:02:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0D8E10E3DC;
-	Tue, 26 Sep 2023 13:02:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4947410E3E1;
+	Tue, 26 Sep 2023 13:02:54 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0156C10E3DB
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 13:02:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E0B710E3DB
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 13:02:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695733369; x=1727269369;
+ t=1695733371; x=1727269371;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QiKIjn3zPyBw5Hj+hgOaGZhEMvZYzSOXnxfumWXQurc=;
- b=oGlRcvW/nXqYXONMwKp3LZG7jif7bRUs79VymHqp89RJdaz/ck5Jmy7u
- qUxSPqH3GCKiuLlGiSYuaMiFoK9A6ry+6K2q9ULVn9J4RO3DNPcdvJ7w5
- hTZM+5RimIEGJPxs5caOQKchvGuLG4jnfGnfKJXcOUZKVc8MlJZ9QlxkB
- 0tYeNwj3ITipFRw+vhMnC7WvG93Fbu4+8l0dTd6W/Luro7ZdafDApnc+B
- ggbjiQrt3I/fc3BWCN5eLLgDRNxsfKEnt5+/MI1EV7Fbe044j369iZIN7
- KfsZFg0w2XyaNGD1KmH3jGR3TNoD/UTeHbFCSE00306hWTHzba3Vbdub6 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="366617070"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="366617070"
+ bh=nwyjy+6FRt3vIZRFevmSLFfl+cS7EXGJv6WUpfulH0w=;
+ b=UtOjs4lXVO71VzqPEd0/wv4V85w5eAYPXlcHtE8ckaFFgTl6cYT6qi2s
+ OMcxB/c/hiG8D6l5+atTWDEbCCKfFP/MWrfQfMnno+mCmNn0P6CPIHbJt
+ kUOwTC+bebWL99yZe3tp8tj3HwmNoEurxQHbrBh1CznB2cEj91rXgBTUH
+ hmMOt3bal6uk8hrYzbhuloENMXXARXKRFI3eNtGDiriaauuFgmxHtRxZ8
+ rBFDJxFhKtbChBmlsdFDd65swtjVdLl69vEtZ7CxHWOV2Xwlq4QGsDlaS
+ AJ1wjwrwM0s7Rp+3vOqvn5roXV9BkeY/VGTdicP83Kl+8eceSo6cElM/j w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="366617086"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="366617086"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 05:56:03 -0700
+ 26 Sep 2023 05:56:04 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; 
-   d="scan'208";a="139521"
+   d="scan'208";a="139531"
 Received: from hblancoa-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.50.200])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 05:56:02 -0700
+ 26 Sep 2023 05:56:03 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 26 Sep 2023 12:55:15 +0000
-Message-Id: <20230926125540.7-6-francois.dugast@intel.com>
+Date: Tue, 26 Sep 2023 12:55:16 +0000
+Message-Id: <20230926125540.7-7-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230926125540.7-1-francois.dugast@intel.com>
 References: <20230926125540.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 05/30] drm/xe/vm: Remove VM_BIND_OP macro
+Subject: [Intel-xe] [PATCH v3 06/30] drm/xe/uapi: Remove MMIO ioctl
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,140 +59,207 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This macro was necessary when bind operations were shifted but this
-is no longer the case, so removing to simplify code.
+This was previously used in UMD for timestamp correlation, which can now
+be done with DRM_XE_QUERY_CS_CYCLES.
 
+Link: https://lore.kernel.org/all/20230706042044.GR6953@mdroper-desk1.amr.corp.intel.com/
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/636
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 42 +++++++++++++++++---------------------
- 1 file changed, 19 insertions(+), 23 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |   1 -
+ drivers/gpu/drm/xe/xe_mmio.c   | 102 ---------------------------------
+ include/uapi/drm/xe_drm.h      |  31 ++--------
+ 3 files changed, 4 insertions(+), 130 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index e81d8cc5c29e..e84002555d34 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2142,8 +2142,6 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 687dc3d79a66..aaaa2bb87eb2 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -120,7 +120,6 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_DESTROY, xe_exec_queue_destroy_ioctl,
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_EXEC, xe_exec_ioctl, DRM_RENDER_ALLOW),
+-	DRM_IOCTL_DEF_DRV(XE_MMIO, xe_mmio_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_SET_PROPERTY, xe_exec_queue_set_property_ioctl,
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 3ccc0af4430b..e636e3f3456d 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -422,108 +422,6 @@ int xe_mmio_init(struct xe_device *xe)
+ 	return 0;
  }
  
--#define VM_BIND_OP(op)	(op & 0xffff)
+-#define VALID_MMIO_FLAGS (\
+-	DRM_XE_MMIO_BITS_MASK |\
+-	DRM_XE_MMIO_READ |\
+-	DRM_XE_MMIO_WRITE)
 -
- struct ttm_buffer_object *xe_vm_ttm_bo(struct xe_vm *vm)
- {
- 	int idx = vm->flags & XE_VM_FLAG_MIGRATION ?
-@@ -2168,7 +2166,7 @@ static int vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
+-static const struct xe_reg mmio_read_whitelist[] = {
+-	RING_TIMESTAMP(RENDER_RING_BASE),
+-};
+-
+-int xe_mmio_ioctl(struct drm_device *dev, void *data,
+-		  struct drm_file *file)
+-{
+-	struct xe_device *xe = to_xe_device(dev);
+-	struct xe_gt *gt = xe_root_mmio_gt(xe);
+-	struct drm_xe_mmio *args = data;
+-	unsigned int bits_flag, bytes;
+-	struct xe_reg reg;
+-	bool allowed;
+-	int ret = 0;
+-
+-	if (XE_IOCTL_DBG(xe, args->extensions) ||
+-	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+-		return -EINVAL;
+-
+-	if (XE_IOCTL_DBG(xe, args->flags & ~VALID_MMIO_FLAGS))
+-		return -EINVAL;
+-
+-	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_MMIO_WRITE) && args->value))
+-		return -EINVAL;
+-
+-	allowed = capable(CAP_SYS_ADMIN);
+-	if (!allowed && ((args->flags & ~DRM_XE_MMIO_BITS_MASK) == DRM_XE_MMIO_READ)) {
+-		unsigned int i;
+-
+-		for (i = 0; i < ARRAY_SIZE(mmio_read_whitelist); i++) {
+-			if (mmio_read_whitelist[i].addr == args->addr) {
+-				allowed = true;
+-				break;
+-			}
+-		}
+-	}
+-
+-	if (XE_IOCTL_DBG(xe, !allowed))
+-		return -EPERM;
+-
+-	bits_flag = args->flags & DRM_XE_MMIO_BITS_MASK;
+-	bytes = 1 << bits_flag;
+-	if (XE_IOCTL_DBG(xe, args->addr + bytes > xe->mmio.size))
+-		return -EINVAL;
+-
+-	/*
+-	 * TODO: migrate to xe_gt_mcr to lookup the mmio range and handle
+-	 * multicast registers. Steering would need uapi extension.
+-	 */
+-	reg = XE_REG(args->addr);
+-
+-	xe_device_mem_access_get(xe);
+-	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-
+-	if (args->flags & DRM_XE_MMIO_WRITE) {
+-		switch (bits_flag) {
+-		case DRM_XE_MMIO_32BIT:
+-			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
+-				ret = -EINVAL;
+-				goto exit;
+-			}
+-			xe_mmio_write32(gt, reg, args->value);
+-			break;
+-		default:
+-			drm_dbg(&xe->drm, "Invalid MMIO bit size");
+-			fallthrough;
+-		case DRM_XE_MMIO_8BIT: /* TODO */
+-		case DRM_XE_MMIO_16BIT: /* TODO */
+-			ret = -EOPNOTSUPP;
+-			goto exit;
+-		}
+-	}
+-
+-	if (args->flags & DRM_XE_MMIO_READ) {
+-		switch (bits_flag) {
+-		case DRM_XE_MMIO_32BIT:
+-			args->value = xe_mmio_read32(gt, reg);
+-			break;
+-		case DRM_XE_MMIO_64BIT:
+-			args->value = xe_mmio_read64_2x32(gt, reg);
+-			break;
+-		default:
+-			drm_dbg(&xe->drm, "Invalid MMIO bit size");
+-			fallthrough;
+-		case DRM_XE_MMIO_8BIT: /* TODO */
+-		case DRM_XE_MMIO_16BIT: /* TODO */
+-			ret = -EOPNOTSUPP;
+-		}
+-	}
+-
+-exit:
+-	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	xe_device_mem_access_put(xe);
+-
+-	return ret;
+-}
+-
+ /**
+  * xe_mmio_read64_2x32() - Read a 64-bit register as two 32-bit reads
+  * @gt: MMIO target GT
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 285bba48ffbf..1a6d0fdc3f74 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -106,11 +106,10 @@ struct xe_user_extension {
+ #define DRM_XE_EXEC_QUEUE_CREATE		0x06
+ #define DRM_XE_EXEC_QUEUE_DESTROY		0x07
+ #define DRM_XE_EXEC			0x08
+-#define DRM_XE_MMIO			0x09
+-#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0a
+-#define DRM_XE_WAIT_USER_FENCE		0x0b
+-#define DRM_XE_VM_MADVISE		0x0c
+-#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0d
++#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x09
++#define DRM_XE_WAIT_USER_FENCE		0x0a
++#define DRM_XE_VM_MADVISE		0x0b
++#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0c
  
- 	lockdep_assert_held(&vm->lock);
+ /* Must be kept compact -- no holes */
+ #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+@@ -123,7 +122,6 @@ struct xe_user_extension {
+ #define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
+ #define DRM_IOCTL_XE_EXEC_QUEUE_DESTROY		 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_DESTROY, struct drm_xe_exec_queue_destroy)
+ #define DRM_IOCTL_XE_EXEC			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+-#define DRM_IOCTL_XE_MMIO			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_MMIO, struct drm_xe_mmio)
+ #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
+@@ -939,27 +937,6 @@ struct drm_xe_exec {
+ 	__u64 reserved[2];
+ };
  
--	switch (VM_BIND_OP(op)) {
-+	switch (op) {
- 	case XE_VM_BIND_OP_MAP:
- 	case XE_VM_BIND_OP_MAP_USERPTR:
- 		vma = xe_vm_find_overlapping_vma(vm, addr, range);
-@@ -2277,10 +2275,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 
- 	vm_dbg(&vm->xe->drm,
- 	       "op=%d, addr=0x%016llx, range=0x%016llx, bo_offset_or_userptr=0x%016llx",
--	       VM_BIND_OP(operation), (ULL)addr, (ULL)range,
-+	       operation, (ULL)addr, (ULL)range,
- 	       (ULL)bo_offset_or_userptr);
- 
--	switch (VM_BIND_OP(operation)) {
-+	switch (operation) {
- 	case XE_VM_BIND_OP_MAP:
- 	case XE_VM_BIND_OP_MAP_USERPTR:
- 		ops = drm_gpuva_sm_map_ops_create(&vm->mgr, addr, range,
-@@ -3118,50 +3116,48 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 			*async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
- 		} else if (XE_IOCTL_DBG(xe, !*async) ||
- 			   XE_IOCTL_DBG(xe, !(flags & XE_VM_BIND_FLAG_ASYNC)) ||
--			   XE_IOCTL_DBG(xe, VM_BIND_OP(op) ==
--					XE_VM_BIND_OP_RESTART)) {
-+			   XE_IOCTL_DBG(xe, op == XE_VM_BIND_OP_RESTART)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
- 		if (XE_IOCTL_DBG(xe, !*async &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL)) {
-+				 op == XE_VM_BIND_OP_UNMAP_ALL)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
- 		if (XE_IOCTL_DBG(xe, !*async &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH)) {
-+				 op == XE_VM_BIND_OP_PREFETCH)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
- 
--		if (XE_IOCTL_DBG(xe, VM_BIND_OP(op) >
--				 XE_VM_BIND_OP_PREFETCH) ||
-+		if (XE_IOCTL_DBG(xe, op > XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
- 		    XE_IOCTL_DBG(xe, obj && is_null) ||
- 		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
--		    XE_IOCTL_DBG(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
-+		    XE_IOCTL_DBG(xe, op != XE_VM_BIND_OP_MAP &&
- 				 is_null) ||
- 		    XE_IOCTL_DBG(xe, !obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP &&
-+				 op == XE_VM_BIND_OP_MAP &&
- 				 !is_null) ||
- 		    XE_IOCTL_DBG(xe, !obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
-+				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
- 		    XE_IOCTL_DBG(xe, addr &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
-+				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
- 		    XE_IOCTL_DBG(xe, range &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
-+				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
- 		    XE_IOCTL_DBG(xe, obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP_USERPTR) ||
-+				 op == XE_VM_BIND_OP_MAP_USERPTR) ||
- 		    XE_IOCTL_DBG(xe, obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH) ||
-+				 op == XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, region &&
--				 VM_BIND_OP(op) != XE_VM_BIND_OP_PREFETCH) ||
-+				 op != XE_VM_BIND_OP_PREFETCH) ||
- 		    XE_IOCTL_DBG(xe, !(BIT(region) &
- 				       xe->info.mem_region_mask)) ||
- 		    XE_IOCTL_DBG(xe, obj &&
--				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP)) {
-+				 op == XE_VM_BIND_OP_UNMAP)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
-@@ -3169,9 +3165,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 		if (XE_IOCTL_DBG(xe, obj_offset & ~PAGE_MASK) ||
- 		    XE_IOCTL_DBG(xe, addr & ~PAGE_MASK) ||
- 		    XE_IOCTL_DBG(xe, range & ~PAGE_MASK) ||
--		    XE_IOCTL_DBG(xe, !range && VM_BIND_OP(op) !=
-+		    XE_IOCTL_DBG(xe, !range && op !=
- 				 XE_VM_BIND_OP_RESTART &&
--				 VM_BIND_OP(op) != XE_VM_BIND_OP_UNMAP_ALL)) {
-+				 op != XE_VM_BIND_OP_UNMAP_ALL)) {
- 			err = -EINVAL;
- 			goto free_bind_ops;
- 		}
-@@ -3235,7 +3231,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		goto release_vm_lock;
- 	}
- 
--	if (VM_BIND_OP(bind_ops[0].op) == XE_VM_BIND_OP_RESTART) {
-+	if (bind_ops[0].op == XE_VM_BIND_OP_RESTART) {
- 		if (XE_IOCTL_DBG(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
- 			err = -EOPNOTSUPP;
- 		if (XE_IOCTL_DBG(xe, !err && args->num_syncs))
+-struct drm_xe_mmio {
+-	/** @extensions: Pointer to the first extension struct, if any */
+-	__u64 extensions;
+-
+-	__u32 addr;
+-
+-#define DRM_XE_MMIO_8BIT	0x0
+-#define DRM_XE_MMIO_16BIT	0x1
+-#define DRM_XE_MMIO_32BIT	0x2
+-#define DRM_XE_MMIO_64BIT	0x3
+-#define DRM_XE_MMIO_BITS_MASK	0x3
+-#define DRM_XE_MMIO_READ	0x4
+-#define DRM_XE_MMIO_WRITE	0x8
+-	__u32 flags;
+-
+-	__u64 value;
+-
+-	/** @reserved: Reserved */
+-	__u64 reserved[2];
+-};
+-
+ /**
+  * struct drm_xe_wait_user_fence - wait user fence
+  *
 -- 
 2.34.1
 
