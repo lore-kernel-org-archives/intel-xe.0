@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F0A6CE7A8E
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 04:10:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FEECCE7A8E
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 04:13:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FDFE10E34D;
-	Tue, 26 Sep 2023 04:10:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7E6210E34B
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 04:10:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695701448; x=1727237448;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=siZgZ4Gyep3CRMfpxCghlPXUrix4DdrNmPpPSHrAYkw=;
- b=N/eRBRxk1Xq+rqqXjpl4Nr0U1CC4Y7oWcfJ020mqRl8sFBZugnYAeLfO
- jyc68OaOmDKwsJb+Mw4qgDePG4CdCPVMQXu7cobvHwKLEuvVtwMplo0uS
- gCWRPrE5Q1smcdNne+s3wGPn9AElLP0BNpHh3JUwXMUu1QacgDGyiIbYa
- uD8O0EGKn/lH4WFN0rrTpyIBqu/0s00xBOL8LFyNnKcFMsFJx5lxBHFRE
- 1vzQYgp5aXFbDheHnc4DFRA2UN8f8FeyHbRIDpq6Bimv7J0kcfi3dAnyi
- feFq62unpXc4q2bTP+A8De2GSEoGaNiKe/1gZ6/c5JhKOHQraKHBaVUFY A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="371811039"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="371811039"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 21:10:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="752002744"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="752002744"
-Received: from fyang16-desk.jf.intel.com ([10.24.96.243])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Sep 2023 21:10:47 -0700
-From: fei.yang@intel.com
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 25 Sep 2023 21:12:58 -0700
-Message-Id: <20230926041259.1102823-1-fei.yang@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B25D10E34B;
+	Tue, 26 Sep 2023 04:13:24 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AA7ED10E34B;
+ Tue, 26 Sep 2023 04:13:22 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A624CAADE8;
+ Tue, 26 Sep 2023 04:13:22 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/1] drm/xe: timeout needs to be a signed value
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: fei.yang@intel.com
+Date: Tue, 26 Sep 2023 04:13:22 -0000
+Message-ID: <169570160264.20978.11345029334539391942@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230926041259.1102823-1-fei.yang@intel.com>
+In-Reply-To: <20230926041259.1102823-1-fei.yang@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_timeout_needs_to_be_a_signed_value?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,27 +39,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, lucas.demarchi@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Fei Yang <fei.yang@intel.com>
+== Series Details ==
 
-In xe_wait_user_fence_ioctl, the timeout is currently defined as
-unsigned long. That could potentially pass a negative value to
-the schedule_timeout() call because nsecs_to_jiffies() returns an
-unsigned long which gets used as signed long.
+Series: drm/xe: timeout needs to be a signed value
+URL   : https://patchwork.freedesktop.org/series/124236/
+State : success
 
-Signed-off-by: Fei Yang <fei.yang@intel.com>
-Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-Cc: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+== Summary ==
 
-Fei Yang (1):
-  drm/xe: timeout needs to be a signed value
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: fc8ec3c56 drm/xe: Add Wa_18028616096
+=== git am output follows ===
+Applying: drm/xe: timeout needs to be a signed value
 
- drivers/gpu/drm/xe/xe_wait_user_fence.c | 55 +++++++++++++++++--------
- 1 file changed, 37 insertions(+), 18 deletions(-)
-
--- 
-2.25.1
 
