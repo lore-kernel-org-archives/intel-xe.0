@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADA9FE7E632
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 13:03:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B65EDE7E632
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 13:03:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 823BF10E3E1;
-	Tue, 26 Sep 2023 13:03:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 809F210E3D7;
+	Tue, 26 Sep 2023 13:03:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF2FB10E3E2
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 13:03:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73F0410E3E2
+ for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 13:03:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695733383; x=1727269383;
+ t=1695733410; x=1727269410;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pxWiebBYRgKoN5BN231bLTbKsYxoY7H3nNj94ceFIY0=;
- b=i3dbBKkZoUxggpD4NYV7iSSkPWNK6+TFDSRn+MiqUwbhNrcAD1TUkcsK
- KgmbwUfAZXCxwU1CrfjzBIfp/R6awgPPXaBAI1NXbob1to1Z6jjgVUqMs
- EB230OSFKoefv+bfiM1Cb1+xomOkdmkDbIFKpwoK0ELcw/lQnl3ZJ5fBQ
- A4HUQHaNWSYHvY2259TFIiABaryDHyow1spTq8Rvj/3/dWL0EXtqv/6yd
- J/M9TFUFtpNx5o2HQG8vGcXPFTjbIxA/tSfoTzjKEt0h3Ufkp4cIE/a1I
- ybBDGsGUAXdHk2gj2t+9le6SDfpGjX9NsrbqXSTSH7vzUX1uUCO/AXhuT g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="366617127"
-X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="366617127"
+ bh=NA7QzLn1Em/BWTeg6rLxkSQ/KqrQt8aWIt9FS9rmbO8=;
+ b=aX+UDcjqcdNQjtzxBwZ9aKsDx3T82zSSb9MY23Cf6EG0RTpSgqC1T/YP
+ oxsWuIb7T/m+beQUyzQeoPCJtuPiTPHcFim6IWerJK//50OrpCKsaAAoV
+ AX+RgmY8jlioDG5rx8qsoLJ0Ip5B1+XdlHlEIl/oMI9uYUdpKmxgbMPVD
+ D45Ui75Fs0zbCJfdfg5Lcp6v1fp14HRqRRNFez9jTBBsSIvH5jw1oaSp8
+ kBxo4VKpyZarlzekBHLbQGvRUUt7I1CMmeRhXcKJe+Fxq4R3NCCg+PcWd
+ 0nGREnsSXpJfybkPOnqMxWGlnnwAwTB1XGaCN07z2WLHCE62vm1yQYp50 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10843"; a="366617139"
+X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; d="scan'208";a="366617139"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 05:56:09 -0700
+ 26 Sep 2023 05:56:10 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.03,177,1694761200"; 
-   d="scan'208";a="139560"
+   d="scan'208";a="139565"
 Received: from hblancoa-mobl2.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.50.200])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 05:56:08 -0700
+ 26 Sep 2023 05:56:09 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 26 Sep 2023 12:55:19 +0000
-Message-Id: <20230926125540.7-10-francois.dugast@intel.com>
+Date: Tue, 26 Sep 2023 12:55:20 +0000
+Message-Id: <20230926125540.7-11-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230926125540.7-1-francois.dugast@intel.com>
 References: <20230926125540.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 09/30] drm/xe: Rename exec_queue_kill_compute
- to xe_vm_remove_compute_exec_queue
+Subject: [Intel-xe] [PATCH v3 10/30] drm/xe: Remove
+ XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE from uAPI
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,103 +64,77 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Matthew Brost <matthew.brost@intel.com>
 
-Much better name and aligns with xe_vm_add_compute_exec_queue. As part
-of the rename, move the implementation from xe_exec_queue.c to xe_vm.c.
+Functionality of XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE deprecated in a
+previous patch, drop from uAPI. The property is just simply inherented
+from the VM.
 
-Suggested-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+v2:
+ - Update commit message (Niranjana)
+
 Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c | 20 ++------------------
- drivers/gpu/drm/xe/xe_vm.c         | 21 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_vm.h         |  1 +
- 3 files changed, 24 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c |  7 -------
+ include/uapi/drm/xe_drm.h          | 19 ++++++-------------
+ 2 files changed, 6 insertions(+), 20 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 68cd2234acf5..170d9d9c48d2 100644
+index 170d9d9c48d2..f70332986c73 100644
 --- a/drivers/gpu/drm/xe/xe_exec_queue.c
 +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -775,22 +775,6 @@ int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
- 	return ret;
+@@ -320,12 +320,6 @@ static int exec_queue_set_preemption_timeout(struct xe_device *xe,
+ 	return q->ops->set_preempt_timeout(q, value);
  }
  
--static void exec_queue_kill_compute(struct xe_exec_queue *q)
+-static int exec_queue_set_compute_mode(struct xe_device *xe, struct xe_exec_queue *q,
+-				       u64 value, bool create)
 -{
--	if (!xe_vm_in_compute_mode(q->vm))
--		return;
--
--	down_write(&q->vm->lock);
--	list_del(&q->compute.link);
--	--q->vm->preempt.num_exec_queues;
--	if (q->compute.pfence) {
--		dma_fence_enable_sw_signaling(q->compute.pfence);
--		dma_fence_put(q->compute.pfence);
--		q->compute.pfence = NULL;
--	}
--	up_write(&q->vm->lock);
+-	return 0;
 -}
 -
- /**
-  * xe_exec_queue_is_lr() - Whether an exec_queue is long-running
-  * @q: The exec_queue
-@@ -861,11 +845,11 @@ void xe_exec_queue_kill(struct xe_exec_queue *q)
- 	list_for_each_entry_safe(eq, next, &eq->multi_gt_list,
- 				 multi_gt_link) {
- 		q->ops->kill(eq);
--		exec_queue_kill_compute(eq);
-+		xe_vm_remove_compute_exec_queue(q->vm, eq);
- 	}
+ static int exec_queue_set_persistence(struct xe_device *xe, struct xe_exec_queue *q,
+ 				      u64 value, bool create)
+ {
+@@ -411,7 +405,6 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+ 	[XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
+ 	[XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
+ 	[XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT] = exec_queue_set_preemption_timeout,
+-	[XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE] = exec_queue_set_compute_mode,
+ 	[XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE] = exec_queue_set_persistence,
+ 	[XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT] = exec_queue_set_job_timeout,
+ 	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER] = exec_queue_set_acc_trigger,
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 1a6d0fdc3f74..4f122bd3a280 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -784,21 +784,14 @@ struct drm_xe_exec_queue_set_property {
+ 	/** @exec_queue_id: Exec queue ID */
+ 	__u32 exec_queue_id;
  
- 	q->ops->kill(q);
--	exec_queue_kill_compute(q);
-+	xe_vm_remove_compute_exec_queue(q->vm, q);
- }
- 
- int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index e84002555d34..8f00f979d5b5 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -381,6 +381,27 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
- 	return err;
- }
- 
-+/**
-+ * xe_vm_remove_compute_exec_queue() - Remove compute exec queue from VM
-+ * @vm: The VM.
-+ * @q: The exec_queue
-+ */
-+void xe_vm_remove_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
-+{
-+	if (!xe_vm_in_compute_mode(vm))
-+		return;
-+
-+	down_write(&vm->lock);
-+	list_del(&q->compute.link);
-+	--vm->preempt.num_exec_queues;
-+	if (q->compute.pfence) {
-+		dma_fence_enable_sw_signaling(q->compute.pfence);
-+		dma_fence_put(q->compute.pfence);
-+		q->compute.pfence = NULL;
-+	}
-+	up_write(&vm->lock);
-+}
-+
- /**
-  * __xe_vm_userptr_needs_repin() - Check whether the VM does have userptrs
-  * that need repinning.
-diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
-index f966ed39b711..ceae9c1be697 100644
---- a/drivers/gpu/drm/xe/xe_vm.h
-+++ b/drivers/gpu/drm/xe/xe_vm.h
-@@ -168,6 +168,7 @@ static inline bool xe_vm_no_dma_fences(struct xe_vm *vm)
- }
- 
- int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q);
-+void xe_vm_remove_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q);
- 
- int xe_vm_userptr_pin(struct xe_vm *vm);
+-#define XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY			0
++#define XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
+ #define XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
+ #define XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
+-	/*
+-	 * Long running or ULLS engine mode. DMA fences not allowed in this
+-	 * mode. Must match the value of DRM_XE_VM_CREATE_COMPUTE_MODE, serves
+-	 * as a sanity check the UMD knows what it is doing. Can only be set at
+-	 * engine create time.
+-	 */
+-#define XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE		3
+-#define XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		4
+-#define XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		5
+-#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		6
+-#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		7
+-#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY		8
++#define XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		3
++#define XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		4
++#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
++#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
++#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY	7
+ 	/** @property: property to set */
+ 	__u32 property;
  
 -- 
 2.34.1
