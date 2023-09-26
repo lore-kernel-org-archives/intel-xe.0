@@ -4,137 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 30BEBE7F130
-	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 21:42:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67925E7F13F
+	for <intel-xe@archiver.kernel.org>; Tue, 26 Sep 2023 22:05:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA71310E437;
-	Tue, 26 Sep 2023 21:42:45 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE50010E436
- for <intel-xe@lists.freedesktop.org>; Tue, 26 Sep 2023 21:42:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695764563; x=1727300563;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=ZDntF9qp9SwnaMNRZXdLozHyV3RXxdcaojy4/QAfR/c=;
- b=abz3RJHSlAru46DeEiSHG6tIlHNrM2v/5r+Ccdm7aPEIoc3nGnlAEnhW
- H/mucD1ndntjXZuWSHs4QHWkrGjRZjSa0+nzYg+HhNeln2Phq0lkRE3P6
- Cb4DwSziwMwEVzJjDSYgEDEKI31tgPON2Qxb62EAsyTRI24K132+6IPfp
- 97GtwSUK9hRwN16K5UPTp+Vb+AJhqmcOgda0dw2Jr2iW/PFWH4h/T53BY
- x1iZyXiADiw3DTq0/2JU6eH/Vh4sd426r+M/I8+Bve3RaaGwyrTC3rFxu
- jkNAdcUDOGiBEWB8CJDC/KLO50q0+hFEcuXf6Gan6iVuLnwMWsRm74nJ9 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="380542374"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="380542374"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 14:42:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="725579711"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="725579711"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 26 Sep 2023 14:42:42 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 26 Sep 2023 14:42:41 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 26 Sep 2023 14:42:41 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.107)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 26 Sep 2023 14:42:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IhzLG2bQzmo4lFCjYnC7fvLWZYHxoWIvinGGhNh6xxda91HW5Ktq7+XhmD8P/PTP+LQfU3tprNBKdc7sZ2Q1xyQnzbfCinfWTI3uiUjaIPNWUgMo5xfP9GZUu9B6O3veWkWGtjdXpX6kIWPl8LwzDYkbHoEW05gq8Ao+zEDe5jZrQHkxC01esZ0ua8nxl+e1tAT9zNMJxZ2Smdp/ey+TDDuXQHWp9Gd+qpVGu0CvUkTTpHUa3pdd9gAjV3RrOgmSqzegGg7v2Qh880vsaBmOc/gplLaPPdV13QSgnzr8mPM0FhG2OVV75d/EfafKpfi5nMCN19KkYj6QmRrHA+deYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=E/aSV8YFGv39mWX+sdZj1wOzdgYr6DjRsYora0yPWeA=;
- b=YhU7vdwPwTmIru9G3hz+MHphmoqIwGiib608IrKBIvGEukNEGSFAPFx1c1MZGXlAGnd+2GF39rSZHtqL/h/ppRP0KDPT0HsytcH96bAwqMc0DCc/1S8kalihqhYY5/0zFPu0lk9PnZ4Tv3ER3+ZtAgdEEcdRFr4BuzraNIBpypWwxWd228dpFNhY6ZHNfmHwC9et3AY35xCWXUag2tpa/5TR1/QC9NZ/74l2oo7PZMGRqh2mDXevXhXXBz8qUpdUAMO4pg7OadJAZ3THyKRS2TOVKE0vWXs6ooDUapZjvVyXglADt5b+KaL6c4rNUySQqHcXLaTVzg7m+qt+f5FVYQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by BN9PR11MB5558.namprd11.prod.outlook.com (2603:10b6:408:103::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.23; Tue, 26 Sep
- 2023 21:42:33 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593%7]) with mapi id 15.20.6813.017; Tue, 26 Sep 2023
- 21:42:33 +0000
-Date: Tue, 26 Sep 2023 17:42:29 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Message-ID: <ZRNQRSE3dxYTCaD3@intel.com>
-References: <20230920192940.135004-1-rodrigo.vivi@intel.com>
- <20230920192940.135004-4-rodrigo.vivi@intel.com>
- <ZRI1yPmabDfopQ77@unerlige-ril> <ZRMnbYcsX+GSEgA3@intel.com>
- <ZRMp8rRXkuybDH3E@unerlige-ril> <ZRMr6JXpSurNe90N@intel.com>
- <ZRM2avt22erTAimS@unerlige-ril>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZRM2avt22erTAimS@unerlige-ril>
-X-ClientProxiedBy: BYAPR07CA0063.namprd07.prod.outlook.com
- (2603:10b6:a03:60::40) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1524F10E445;
+	Tue, 26 Sep 2023 22:05:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 70D6F10E445;
+ Tue, 26 Sep 2023 22:05:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 64526A00CC;
+ Tue, 26 Sep 2023 22:05:33 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3336556744420030190=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|BN9PR11MB5558:EE_
-X-MS-Office365-Filtering-Correlation-Id: d072e71a-e8de-4b54-ee2d-08dbbed97da1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: BFqxcERuQ1Tc5tR3/yrLJB6jQfA1XpZ8BLGumGZwtr9AoYkGPVLJR/my1wtWdi+rpfev+2yAWKbI8bbDtg6Fu9TYeslOxhhPtmMnkUcpHj1Ntq8WYhU7Nb5aLCiz6eCiJO2u+e+zgjHTolkrkvAnmyYMT8PZlrNM5kKcvxGwg8YtuhUV4vNDCizvOfpFl968LHQ6knChq8PxFRDDI+vhzAqOLYTg6chtrAW4iqRjE0FqiTcrKyuagFjfDByHWvzU9426ktHKm5oafKUiHPqa19+eEaH5yHDE3wSYj0Puotaoj6kN6UwMMtEfQ6tzVMJ2oA2HgMovg8WblvEsDFDpj0nXlWTHTYof6rmtOqySrx4lV5yglYCQJKBsz3fFNJyif24mzQhaDI5V2xWENX8HVZ+u8hawEmga7unwK6r4a0LdQiz9UGUgRJL053TL5LnneTfuX/lQmpxcfDkPOa6fb/FkV0JBQGxNzKQi07O+4VFjmdqvw0DdCy3Mj0HZFSWjjgucgPl7xPQpO6Uhh5JX9bxMlkOdgjUHTrDnIulJELMRag2i5JR9d6VBsl+DRR8dFrgMuityEduj/Vgfd+wNZQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(366004)(136003)(376002)(39860400002)(346002)(230922051799003)(1800799009)(186009)(451199024)(107886003)(82960400001)(6506007)(316002)(41300700001)(44832011)(66476007)(54906003)(37006003)(4326008)(66556008)(8936002)(6862004)(2906002)(36756003)(6636002)(83380400001)(5660300002)(8676002)(66946007)(86362001)(2616005)(6666004)(6486002)(478600001)(26005)(38100700002)(6512007)(966005);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?vJQjhGXhEt8HtVLtN3gPyaOIKxVU/Qk3yHudamFDB5Mp3J9pWvHcCG7Ly/gI?=
- =?us-ascii?Q?UzRirGc6OB3lpp03lvDza20dRoAyIdGgIQLvS9PfZktzmlvVcazll+zcW8MJ?=
- =?us-ascii?Q?Iegn+NRf7T7+ytG3fcsHhz7/gH7fIBQXw9NULQbXKYluv6DDWuNFtujZE/9M?=
- =?us-ascii?Q?FHwSABmzpa6yjKmDHxPl7a5sIJHMHmieg63ENlAqbTSA7PVZ4ZibEZZ/SWaV?=
- =?us-ascii?Q?BnJQdGiVOOenx7mDI9SRc2fH75Mi/rgve2gcmaNKwN88AluPMK63+RtauV6r?=
- =?us-ascii?Q?cyT/JxG+Z7TpSNvoOqw1chvq0jOkuaWgP7oWPfPn6FTeAal6BYeU3PfyAk2P?=
- =?us-ascii?Q?16irG7Mnt7YNDsqUSCCldbfaCbFMgLTN52/I2iFV3sF/CKmiAukRaO16Vflc?=
- =?us-ascii?Q?LW3LaWALl5/ygUEasbw1dnevZuNpnXAa0/xq6pzJZGnQ5HOomXhRo9sTjmSC?=
- =?us-ascii?Q?9ljHvdRgmhz46pGVZLdK0lS38mAXqoCTHM2NPoWfmQ9djwelR8ysc/u9p/gx?=
- =?us-ascii?Q?Ma5wQ3JzaeW8DaYXMC6x5lVs14mwUCDpdPy3B80J2pJYeWpIbQIOs2lI7h+F?=
- =?us-ascii?Q?1f8+HpvMo6/VXIqtSlu7rgyg/VR8oF7mKQKQtMZBKOC+PIZ5rMF2/MxStR4I?=
- =?us-ascii?Q?R4OpG13R2JMxheYrbRR8YGRWeY5Y0bXLPquVyuCuzk7rzNRw88RNrDM0f0vV?=
- =?us-ascii?Q?kH7VINVs8WM4CPREYyRuGsSdd9JH5Ad0hR8trtLm9xsegcSaCKiOL1mPOlDN?=
- =?us-ascii?Q?klIhPm19AT2vBIauUvVOZaLZZ/bhPAiKXwC6cSnka/vLG2twI/hpE1s4KwsI?=
- =?us-ascii?Q?BIJSSVWTROuHqWLNwWpQv5JEJoiiTMVHl67Tvzed/0C0vAIey4v5nU6OeYUn?=
- =?us-ascii?Q?vV8zSOxz7ioUG7FX1yJaTDgk+fbIFdW95mKt31jzvu2Bc3P1LjzHEEs/KoXj?=
- =?us-ascii?Q?ILttSOdswt4xIosX9VgdfNNjDnqQBYcG4L6evT8G9ar92dhluG+fhG8MKDUh?=
- =?us-ascii?Q?A08AoqZnBldGD+DHa3EnPSGmgGD3/xC5rFtaOYwtST3SgqX9w3u+S/ybLRxi?=
- =?us-ascii?Q?zLf+1KpT9NSumEXMMQWmCf3xIWsNwYOLWcoWoLlZghKoM6kmBFrqzkHW2lsU?=
- =?us-ascii?Q?X/KxlbT0En0t6RueNJj3Bkp1m4cLmUZwYFh+Obw8BOvzDayzJHynoox+aal6?=
- =?us-ascii?Q?KA6F/emWeUzYd5Hth1r6HweWsm/iyFbdOQqaCq3BUJfuxS8HV6+QYcIqCQqJ?=
- =?us-ascii?Q?Y+moE3mOfYPDRMT6Kl+Af4DPpPIUhrvR3OyP2+H1o+b4yqVv5COSozKPM6zg?=
- =?us-ascii?Q?m3IAJTjGAFnaeuufBdSG1wAKKo9EIIijrSjVh5S0BTuCXW/hPC2EoCGSA5yC?=
- =?us-ascii?Q?fVsGdohjzyzg8yoy6n+LCCmEBUAP5u7dW/17TLDoK4rz58krxTRIE5MVLema?=
- =?us-ascii?Q?ie4D+DZFBHcnXI3l/BxT4Qgp0u1uE8zmjklWLv1JnPcO5WvOK4VfNSWNmEK4?=
- =?us-ascii?Q?xq4XzvOVPDTeVGNIfjI2hwbgKSxBm+ZdXqlE87rP5VWD7y0cXs7BhXH26mmi?=
- =?us-ascii?Q?BTcIl/76PDXQMQZu5hMcOUETRJFe25SL5hcptgb0?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d072e71a-e8de-4b54-ee2d-08dbbed97da1
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2023 21:42:33.1110 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aEphEGnqPTIU2qhxfy+1+jwXJKbWzc+69bhDb+8aa3Guw7kX137LT4um7dRjFManb5zjMxuTsRBLxaeeX64hEg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5558
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 03/20] drm/xe: Correlate engine and cpu
- timestamps with better accuracy
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Stuart Summers" <stuart.summers@intel.com>
+Date: Tue, 26 Sep 2023 22:05:33 -0000
+Message-ID: <169576593337.20979.6586577246095530265@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20230926212056.40881-1-stuart.summers@intel.com>
+In-Reply-To: <20230926212056.40881-1-stuart.summers@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_st?=
+ =?utf-8?q?arting_with_=5B1/2=5D_drm/xe=3A_Print_devcoredump_to_drm=5Finfo?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,80 +39,336 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Sep 26, 2023 at 12:52:10PM -0700, Umesh Nerlige Ramappa wrote:
-> On Tue, Sep 26, 2023 at 03:07:20PM -0400, Rodrigo Vivi wrote:
-> > On Tue, Sep 26, 2023 at 11:58:58AM -0700, Umesh Nerlige Ramappa wrote:
-> > > On Tue, Sep 26, 2023 at 02:48:13PM -0400, Rodrigo Vivi wrote:
-> > > > On Mon, Sep 25, 2023 at 06:37:12PM -0700, Umesh Nerlige Ramappa wrote:
-> > > > > On Wed, Sep 20, 2023 at 03:29:23PM -0400, Rodrigo Vivi wrote:
-> > > > > > From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> > > > > >
-> > > > > > Perf measurements rely on CPU and engine timestamps to correlate
-> > > > > > events of interest across these time domains. Current mechanisms get
-> > > > > > these timestamps separately and the calculated delta between these
-> > > > > > timestamps lack enough accuracy.
-> > > > > >
-> > > > > > To improve the accuracy of these time measurements to within a few us,
-> > > > > > add a query that returns the engine and cpu timestamps captured as
-> > > > > > close to each other as possible.
-> > > > > >
-> > > > > > Prior work: https://patchwork.freedesktop.org/series/87552/
-> > > > > >
-> > > > > > Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-> > > > > > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> > > > > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > > ---
-> > > > >
-> > > > > Should already have an R-b from Jose based on this -
-> > > > > https://patchwork.freedesktop.org/patch/552682/?series=122440&rev=1
-> > > >
-> > > > While incorporating that and fixing IGT, I noticed the inconsistency
-> > > > present on the v2 that was not part of v1.
-> > > >
-> > > > Why we have the struct name as engine_cycles now but the query itself
-> > > > is still cs_cycles? Which one is correct? why do we need both and
-> > > > cannot align in a single name?
-> > > 
-> > > Jose had commented that XE does not have the concept of CS and asked for a
-> > > rename to engine. In the latest revision of this series, I had replaces cs
-> > > with engine everywhere.
-> > > 
-> > > We should use engine.
-> > > 
-> > > Latest series - https://patchwork.freedesktop.org/series/122440/
-> > 
-> > yeap, I got from there...
-> > I still see
-> > +#define DRM_XE_QUERY_CS_CYCLES		6
-> > there
-> > ;)
-> > 
-> > I can do the renaming locally if this is the right thing to do...
-> 
-> oh, I think I missed that. It should be changed to
-> DRM_XE_QUERY_ENGINE_CYCLES.
+--===============3336556744420030190==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-while finishing the rename here and looking to this query, I got
-myself thinking, why isn't this already doing the gpu_timestamp
-calculation and showing that directly instead of sending the cycles
-and the crystal clock reference for umd to calculate?
+== Series Details ==
 
-the gpu_timestamp directly would align better with the other fields
-in the struct. and by itself already avoid the gt reference clock
-duplication in the uapi.
+Series: series starting with [1/2] drm/xe: Print devcoredump to drm_info
+URL   : https://patchwork.freedesktop.org/series/124298/
+State : success
 
-> 
-> Thanks,
-> Umesh
-> > 
-> > > 
-> > > Thanks,
-> > > Umesh
-> > > >
-> > > > >
-> > > > > Thanks,
-> > > > > Umesh
+== Summary ==
+
+CI Bug Log - changes from xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef_BAT -> xe-pw-124298v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-124298v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:
+    - bat-pvc-2:          [SKIP][1] ([Intel XE#678]) -> [PASS][2] +163 other tests pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html
+
+  * igt@xe_live_ktest@bo:
+    - bat-pvc-2:          [SKIP][3] ([Intel XE#725]) -> [PASS][4] +2 other tests pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_live_ktest@bo.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_live_ktest@bo.html
+
+  * igt@xe_module_load@load:
+    - bat-pvc-2:          [SKIP][5] ([Intel XE#378]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_module_load@load.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_module_load@load.html
+
+  
+#### Warnings ####
+
+  * igt@kms_addfb_basic@addfb25-x-tiled-legacy:
+    - bat-pvc-2:          [SKIP][7] ([Intel XE#678]) -> [SKIP][8] ([Intel XE#538]) +33 other tests skip
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - bat-pvc-2:          [SKIP][9] ([Intel XE#678]) -> [SKIP][10] ([Intel XE#539]) +7 other tests skip
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  * igt@kms_flip@basic-flip-vs-dpms:
+    - bat-pvc-2:          [SKIP][11] ([Intel XE#678]) -> [SKIP][12] ([Intel XE#275] / [Intel XE#541]) +3 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_flip@basic-flip-vs-dpms.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_flip@basic-flip-vs-dpms.html
+
+  * igt@kms_force_connector_basic@force-connector-state:
+    - bat-pvc-2:          [SKIP][13] ([Intel XE#678]) -> [SKIP][14] ([Intel XE#540]) +3 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_force_connector_basic@force-connector-state.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_force_connector_basic@force-connector-state.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+    - bat-pvc-2:          [SKIP][15] ([Intel XE#678]) -> [SKIP][16] ([Intel XE#537]) +6 other tests skip
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+
+  * igt@kms_prop_blob@basic:
+    - bat-pvc-2:          [SKIP][17] ([Intel XE#678]) -> [SKIP][18] ([Intel XE#536])
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_prop_blob@basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_prop_blob@basic.html
+
+  * igt@kms_psr@primary_page_flip:
+    - bat-pvc-2:          [SKIP][19] ([Intel XE#678]) -> [SKIP][20] ([Intel XE#535]) +2 other tests skip
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_psr@primary_page_flip.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_psr@primary_page_flip.html
+
+  * igt@xe_evict@evict-beng-small-external:
+    - bat-pvc-2:          [SKIP][21] ([Intel XE#678]) -> [FAIL][22] ([Intel XE#389]) +3 other tests fail
+   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
+   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
+
+  * igt@xe_evict@evict-small-cm:
+    - bat-pvc-2:          [SKIP][23] ([Intel XE#678]) -> [DMESG-FAIL][24] ([Intel XE#482]) +3 other tests dmesg-fail
+   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_evict@evict-small-cm.html
+   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_evict@evict-small-cm.html
+
+  * igt@xe_exec_reset@virtual-close-fd-no-exec:
+    - bat-pvc-2:          [SKIP][25] ([Intel XE#678]) -> [DMESG-WARN][26] ([Intel XE#696])
+   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_exec_reset@virtual-close-fd-no-exec.html
+   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_exec_reset@virtual-close-fd-no-exec.html
+
+  * igt@xe_guc_pc@freq_range_idle:
+    - bat-pvc-2:          [SKIP][27] ([Intel XE#678]) -> [SKIP][28] ([Intel XE#533]) +1 other test skip
+   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_guc_pc@freq_range_idle.html
+   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_guc_pc@freq_range_idle.html
+
+  * igt@xe_huc_copy@huc_copy:
+    - bat-pvc-2:          [SKIP][29] ([Intel XE#678]) -> [SKIP][30] ([Intel XE#255])
+   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_huc_copy@huc_copy.html
+   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html
+
+  * igt@xe_intel_bb@render:
+    - bat-pvc-2:          [SKIP][31] ([Intel XE#678]) -> [SKIP][32] ([Intel XE#532])
+   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_intel_bb@render.html
+   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_intel_bb@render.html
+
+  * igt@xe_pm_residency@gt-c6-on-idle:
+    - bat-pvc-2:          [SKIP][33] ([Intel XE#678]) -> [SKIP][34] ([Intel XE#531])
+   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html
+   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+  [Intel XE#275]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/275
+  [Intel XE#378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/378
+  [Intel XE#389]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/389
+  [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
+  [Intel XE#531]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/531
+  [Intel XE#532]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/532
+  [Intel XE#533]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/533
+  [Intel XE#535]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/535
+  [Intel XE#536]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/536
+  [Intel XE#537]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/537
+  [Intel XE#538]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/538
+  [Intel XE#539]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/539
+  [Intel XE#540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/540
+  [Intel XE#541]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/541
+  [Intel XE#678]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/678
+  [Intel XE#696]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/696
+  [Intel XE#725]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/725
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7502 -> IGT_7503
+  * Linux: xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef -> xe-pw-124298v1
+
+  IGT_7502: ac56ba97248b33668fbe771882360bd7b274cc9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7503: 7503
+  xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef: fc8ec3c56efa5c15b630ddc17c89100440fe03ef
+  xe-pw-124298v1: 124298v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/index.html
+
+--===============3336556744420030190==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/xe: Print devcoredump to drm_info</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124298/">https://patchwork.freedesktop.org/series/124298/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef_BAT -&gt; xe-pw-124298v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-124298v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-prefetch.html">PASS</a> +163 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@bo:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_live_ktest@bo.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/725">Intel XE#725</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_live_ktest@bo.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_module_load@load.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/378">Intel XE#378</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_module_load@load.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@addfb25-x-tiled-legacy:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/538">Intel XE#538</a>) +33 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/539">Intel XE#539</a>) +7 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-dpms:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_flip@basic-flip-vs-dpms.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/275">Intel XE#275</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/541">Intel XE#541</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-connector-state:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/540">Intel XE#540</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/537">Intel XE#537</a>) +6 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_prop_blob@basic:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/536">Intel XE#536</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/535">Intel XE#535</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-beng-small-external:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/389">Intel XE#389</a>) +3 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-small-cm:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_evict@evict-small-cm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_evict@evict-small-cm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/482">Intel XE#482</a>) +3 other tests dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_reset@virtual-close-fd-no-exec:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_exec_reset@virtual-close-fd-no-exec.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_exec_reset@virtual-close-fd-no-exec.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/696">Intel XE#696</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_guc_pc@freq_range_idle:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_guc_pc@freq_range_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_guc_pc@freq_range_idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/533">Intel XE#533</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_huc_copy@huc_copy:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_intel_bb@render:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_intel_bb@render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_intel_bb@render.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/532">Intel XE#532</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_pm_residency@gt-c6-on-idle:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/678">Intel XE#678</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124298v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/531">Intel XE#531</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7502 -&gt; IGT_7503</li>
+<li>Linux: xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef -&gt; xe-pw-124298v1</li>
+</ul>
+<p>IGT_7502: ac56ba97248b33668fbe771882360bd7b274cc9a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7503: 7503<br />
+  xe-396-fc8ec3c56efa5c15b630ddc17c89100440fe03ef: fc8ec3c56efa5c15b630ddc17c89100440fe03ef<br />
+  xe-pw-124298v1: 124298v1</p>
+
+</body>
+</html>
+
+--===============3336556744420030190==--
