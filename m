@@ -4,126 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 718D1E7F150
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 01:07:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8F45EE7F157
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 03:30:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A2AC10E456;
-	Wed, 27 Sep 2023 01:07:13 +0000 (UTC)
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2041.outbound.protection.outlook.com [40.107.237.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EE95A10E456;
- Wed, 27 Sep 2023 01:07:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B18F10E45F;
+	Wed, 27 Sep 2023 03:30:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7C49C10E193
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 03:30:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695785446; x=1727321446;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=2R3C4hAvhR6UBSE9otLKWUB3KWgbmo3s7b5rOKiWwac=;
+ b=bO+hwKEip9WOQv7Eu1Mgum4svpSuCSBt1eICz9keDfiIwJ/Kh0d4ZBbP
+ ExuxvijEShlMdhxSgb2CdS1nF+sPNAq6vklXHWov+hTxDQQDoqltLX7BC
+ p5sKGqL8FcuiBotFGZYBHwh3iiGYJK8pWVYmSag6tJZXRIFn0mQ36QKIZ
+ pd1mPEPE0cmcEfbdvHad0zHDFHFfrTgH8DKfN3294NH5tmQQ3ZvtR9vgN
+ VbCPAFPC3qGgVw154UKr51hWbWtJ1OmsyYoK/SR9CkZekmVBZ9TGmawTG
+ 0T5qPSYhPySgjchNCSxYY5RDIv4rjhoRYmMi6uTLutE+yON/gOq8FuhBv w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="385575231"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="385575231"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 20:30:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="742567672"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="742567672"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 26 Sep 2023 20:30:45 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Tue, 26 Sep 2023 20:30:45 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Tue, 26 Sep 2023 20:30:45 -0700
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.46) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Tue, 26 Sep 2023 20:30:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b8PEc3Pc2I5BlJDoOfOv0Bf9Zpm7JyMyguYO7Ss7E0ig5c8lq3O8DzBVVuWpMpFOWrFdsKcbZVRJy08RP3fNhR4wqkgQxHWyqmmPpYVFAQJdLFe17giWM6uMRvilnVUHRxyuh3VgpfDCdGjiNatBXRMvLVbiu0ZSylRqrzi91mUjKbeIVNozgwRnZuOo/G8thk+CTQ7R9q8c2fwum9nMXFQYWxmTooB7bmV6K1rzQ8zbkoVuJrcU8PE1Yw4KToz/iwEgo3RLT5OAJCntcTDR7QOyR4oUjmq0XBaB3f2f8PhxvD12u/sxF2RSKSC/s4UfZsMH0Da7Nz20sANN7qAxeA==
+ b=MACAbs2FoK1YBF66tJYmDywgnpGw/WhIhfkuUHSGaUGtJOrF1dSCKzp0mDw4LrdDuFeuTGjXSayHbtJ5QCelUMNV/1vvSvOlivs+RwJFCWSUJCpxKi/KeWUrGMKBGcLVC5bvalJ45IScE5Ut/DLN6AstLSbWB4jJBXLhydzUIEfL3kLWARRnsE8SEzxVhFqebZ2ZTV/82GYV4IePg76wBWn1rEtqBJVNLiWOCtUgWik39gtdoBY2EKEp1ckrrmhqaMFY/cSUts1zABaYBqfUk0kdvJm5Db8uQOXHWw8IuVbLws2ilE18dQrkADQgQ4qNDQFcbbrrE2SpgDnRADzEmg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uM7nFiRGeT74WPa8CzeaKWVBnLH0JKiLayP5Jz8PfqA=;
- b=LLZf07tBWaG3MvU7CkQKlEHQsepatQKWhJY3JQprj+2GOL1LOqsbDRHrWETO8hQPnP8jrs616V8L9Gnp9NhzQGiN8ja44kdSOYa8vOeOYs4kmmXqXvCKEDObIq4GZqFeia3C+e1kNR/oIlPADur3evX+NFuyk1YI83qR92tk39qrinRQ1K7lzksZaV/9+AHCX/W59LOAFXTvLwMkiXWIvfTuHOEBnF6LMS4cT/ujeRvSqxxyNKuVPEFmLBC0+jNgnKh5gMwvOQKtwtME3+/J6vxSGSEaU3H47LYzWUOMY+LvJqon+7wmZhENpEZg+WSQMQQfD3RZDt2HbNIUd8c7MQ==
+ bh=EYosMAKH7/I3asgLPOD0ZdlhjQ4GqHzk9abFP8Tt18M=;
+ b=Mx3kg1U9hKlrO3iRJ0RtH9lQi7rK3Q9yvb+ypZm24te7LhAm1j+SbfgsfwDIdWTPjvIKG4lTMda81cAn1qUOWDn+xBEstBG315BWXmgsy/MaZZJP9TI6xfwm0n6wUjmqK7Nmdr8tRGJI5bpfC7wo1zXJ1SjgkL954LSvNQKxMYM1NsjTO/ip7SZO3JewULHyKfOgR8IzNIK/qwIkQnyVjGvPKWR5eghfBy2LmYxznykV8nD5vgEwZD0o2hSgLCLeoDJu+2xfLq8ZicQiFbAvHgD7BAbDA1CCYnCLMEfgiwYnLjnBP45hsEGekKYni1t175aDNWayarDkymJhHqGb9w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uM7nFiRGeT74WPa8CzeaKWVBnLH0JKiLayP5Jz8PfqA=;
- b=yB5utL8KfqJOVpBnj0eG9aAWe5UolRgHwZy2OiYZPKT7G8SLi7iD5v85eIrPCEYjfoG9XB8Me1P/HvABEt4QlizLIOdZScz/KBGNvZd0u3bxuzYp+AVUybThWtoffve7P5RsI3N6HihuON+LW5dFHeMzkDJKFJmyITR/QGUhUxg=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com (2603:10b6:5:38::25) by
- CH3PR12MB7617.namprd12.prod.outlook.com (2603:10b6:610:140::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.32; Wed, 27 Sep
- 2023 01:07:09 +0000
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::8a67:3bbe:8309:4f87]) by DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::8a67:3bbe:8309:4f87%3]) with mapi id 15.20.6768.029; Wed, 27 Sep 2023
- 01:07:08 +0000
-Message-ID: <076891e9-b2ce-4c7f-833d-157aca5cd44b@amd.com>
-Date: Tue, 26 Sep 2023 21:07:04 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
- Thunderbird/115.3.0
-To: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-References: <20230919050155.2647172-1-matthew.brost@intel.com>
- <20230919050155.2647172-2-matthew.brost@intel.com>
-Content-Language: en-CA, en-US
-From: Luben Tuikov <luben.tuikov@amd.com>
-Autocrypt: addr=luben.tuikov@amd.com; keydata=
- xjMEY1i6jxYJKwYBBAHaRw8BAQdAhfD+Cc+P5t/fiF08Vw25EMLiwUuxULYRiDQAP6H50MTN
- I0x1YmVuIFR1aWtvdiA8bHViZW4udHVpa292QGFtZC5jb20+wpkEExYKAEEWIQQyyR05VSHw
- x45E/SoppxulNG8HhgUCY1i6jwIbAwUJCWYBgAULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIX
- gAAKCRAppxulNG8Hhk53AP4k4UY5xfcje0c5OF1k22pNv8tErxtVpgKKZgvfetA4xwD+OoAh
- vesLIYumBDxP0BoLiLN84udxdT15HwPFUGiDmwDOOARjWLqPEgorBgEEAZdVAQUBAQdAzSxY
- a2EtvvIwd09NckBLSTarSLNDkUthmqPnwolwiDYDAQgHwn4EGBYKACYWIQQyyR05VSHwx45E
- /SoppxulNG8HhgUCY1i6jwIbDAUJCWYBgAAKCRAppxulNG8HhnBLAP4yjSGpK6PE1mapKhrq
- 8bSl9reo+F6EqdhE8X2TTHPycAEAt8EkTEstSiaOpM66gneU7r+xxzOYULo1b1XjXayGvwM=
-In-Reply-To: <20230919050155.2647172-2-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQZPR01CA0192.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:8b::13) To DM6PR12MB3370.namprd12.prod.outlook.com
- (2603:10b6:5:38::25)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by LV8PR11MB8558.namprd11.prod.outlook.com (2603:10b6:408:1ed::13)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Wed, 27 Sep
+ 2023 03:30:37 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::cf65:94e6:cdd3:cfe]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::cf65:94e6:cdd3:cfe%7]) with mapi id 15.20.6813.018; Wed, 27 Sep 2023
+ 03:30:37 +0000
+Date: Tue, 26 Sep 2023 22:30:34 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <exgalkfrqi6c2chfh5pymcoehbp2ml4oqv7w5idcv2bhpkhh37@s74ydg3cpdmp>
+References: <20230926223631.2807873-1-lucas.demarchi@intel.com>
+ <20230926223631.2807873-6-lucas.demarchi@intel.com>
+ <20230926231747.GV2706891@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20230926231747.GV2706891@mdroper-desk1.amr.corp.intel.com>
+X-ClientProxiedBy: BYAPR01CA0056.prod.exchangelabs.com (2603:10b6:a03:94::33)
+ To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3370:EE_|CH3PR12MB7617:EE_
-X-MS-Office365-Filtering-Correlation-Id: f31e8592-2099-418b-7015-08dbbef61218
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|LV8PR11MB8558:EE_
+X-MS-Office365-Filtering-Correlation-Id: 48bc6743-1405-40ee-89dc-08dbbf0a1de2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: u0DSPuPlkMTZtGQVTpWw5rLOfyEDOfyi0T9py7GLCtJG617ZAc+MlMdbMQsJBgTzEHAJxfaWi2g5NEYTJhAHiBzZHmT/YGEyqVS7J0a4OhPbsG8BA/oWQhZkUf5x8UHNViSR13Yr3YyVqQdAdIQefZNVDvhfM7jWqJ1uaWIUbwnfnOnsdclfbCKXNaO1+LoD87BD4zm5Y6kN7v67PkJz8JFbaNBtrntmBGp4f8DFjSMAc3DafL4MuIc4DC949UegYdK6v+I2Ze68BJ4+nD0/PbRsS0uzsZSphgfx3WUkpaWvMGU6eg65mAN5VCR0wXSMmdWYyITcLsXaTyb1GOlXCSBYbQulaekLyDD/ySWkzlQ71wmH61l1e4aPHC/xgBVPBUoRgvkvTsXi7VdZtuiOcf2LNsOzSxHO9gksaHxfJx4pFWKRiFmOX25OHROxFVP26Kyyj4rpuUAJYhdrNauL/tOSZQm/CofoucNF+uiLCrIYOVHLrXjvQO7hqGpY4QWZ8/WLl6w2NsAWHQmayJayfjXG5fIABM5wy2pQBbzc1H5zva1Mb8rOkhuxMh4i0JsnuY/t0Oe/f/Bk/9VdGlLvDiIOD6KPID1ncomfoZBBlOzaVr423YN4o7p4b2J1Veu3RSMTrPw3zVFmPgHtvqAz7QxGIO9wv930Vy61erin9jLvcsqytlLxmaeUdAxh9Dov
+X-Microsoft-Antispam-Message-Info: 2/aQCMI0AB09jDKEigPHeHg7Ys5LCshrMbK6TtJ/Fuqfo050Huu4iZsHke0TSl9vZzzLzvvpjBXY30/0JmuePPad/7pNMEON1P/So0kgd7PAoeoK2aRdNXo/BX3/iHjVnN0+0iPKZit/ektA8B7R1EhAbeYDNvFgRJPZx32H4AwRlVcnv/thhUugSiCl6OChN/ZTwsg/lix2hh3YmTS7tyOpBjcLS6jNderz5Zl7L1n2RgdF4cMiaEY1zNxGILRKOFPp8OGnMLXLDpkO0iMqNj1xZVILdvfI/k8K0a9YgaT+gaz3Y5fau0HfR96fkKc/Jjv9CxUKevC66wjY5x6Kh+rbP/biWVzOI3TBTHZb5gxN8dh6U0jpEdGqlgwVXjASvCmvA3cgd/qP4Wt/MVH24+0UbYXCVhyvyYAimBM4nvfavB7Rp55rDr5V+5RfP/rMqo5igdlmCD8VF9YLnXQpoiynM20+bWXqYkHhnKZs8Nq2PHkAPkEiYDJW+gsr6gzdx+Ryr0HwSvB61Vrcp1KNWQSzpSfuHcrGQ6/eYSB62a0yWVdFAKhc4WIw0rumEuVy
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3370.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(396003)(376002)(346002)(366004)(39860400002)(230922051799003)(451199024)(186009)(1800799009)(31686004)(36756003)(83380400001)(26005)(6666004)(2616005)(53546011)(6506007)(316002)(6486002)(41300700001)(478600001)(86362001)(6512007)(38100700002)(66946007)(66556008)(66476007)(8676002)(8936002)(2906002)(4326008)(31696002)(7416002)(44832011)(5660300002)(43740500002)(45980500001)(309714004);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(346002)(376002)(39860400002)(396003)(366004)(136003)(230922051799003)(1800799009)(186009)(451199024)(6666004)(478600001)(26005)(6486002)(107886003)(83380400001)(86362001)(82960400001)(33716001)(38100700002)(5660300002)(6506007)(6512007)(9686003)(6636002)(2906002)(66556008)(54906003)(66476007)(316002)(66946007)(41300700001)(4326008)(8676002)(6862004)(8936002);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bzg2NVBUSmVpalVPcSt3SUNYUThmNkR6UHVzcXI2MEZKWDkzdXNlejVVSjhU?=
- =?utf-8?B?WWZBOW5yYzdBV1hCZmUzSnJzU3JnTzlTeDBrWWl0OGdjSHN6akVsQnRxQnor?=
- =?utf-8?B?czdrWXJ1ZXlxM1NUSS9OMlpaeHFXOEV2MW5FblQ0STM2QTRWWjdoTGlLeEhX?=
- =?utf-8?B?V0NXekgzRWlEcGNVcW1vVXJUOXJOcmVkazBoZm90MXVCK05CaDVFbG8vQ2F0?=
- =?utf-8?B?RkFBQXpMYTBZY1RraStHcCtrMkY0Vy9zcDVPMTlucEU1TjMvWC83bHdrbC9u?=
- =?utf-8?B?MEdrWXdvYS9jdjk1MUtlZXBqcThwM1h6ZG1mNE1raE4vSGtPK3FUZXpRZFNB?=
- =?utf-8?B?ZzVpVDFiV21yekZ1QTBnSUFsZk0zQi9ZclJucUxsdHdmSUg3RWRqRjBXVWFm?=
- =?utf-8?B?R3FWQVJ0cm5zM1VMR1oxUXY2cFhnWlZob2FJYW5EYUJWZ3MvVHRkdTd3U2xZ?=
- =?utf-8?B?aVVIOFFYVnZsNnZOaTlEWEFJNzVMU2R1MXVnY0YxdmtRYTN2VTR0UUlSNWw2?=
- =?utf-8?B?cFdjdE5YWFJLTUYvT1FIR0ZLK2RmL3RuNnRxQ2xXQlF3QXdNRVFoRm4wTjBM?=
- =?utf-8?B?UHJ4dE1xaGtpalMvWktnV2IyM0FpLzB4bEIrWmFwcXBzYU5QRzd5Sndnamda?=
- =?utf-8?B?R1oxTjFRWVVVZ0t4bFBqaU1nM3dFMjBleFRGV0IxdTgxOWJTQ3ZxUmdhQ1NY?=
- =?utf-8?B?ai9CdXJvVXdjdGl0R0ZWRGc1YXR0enh3UjFVOVF3Tnk0Vnd3ZFJRamlpN1pQ?=
- =?utf-8?B?bmxndUxITnoxTFBRMVdQRWZVbFV0aitzYzVsQWw5Z1VCN0NiQ3dzbzJtV2Fk?=
- =?utf-8?B?ckZCWi9nbFoxU0VFVURmTVd0d1orMUcwQWxnWUZYZUpqUUN6cnQrYnlwNDhT?=
- =?utf-8?B?L0hJMU12amd1emYzZ3VPc3NRMnRSODFLZFNYNFBDYlBCNFIrcTYwVkZGNm9v?=
- =?utf-8?B?VHlmUHcrSElvQzZqb1J3OUhtdU8zczR1czVodjN1YWpET1ZscGNvNy9uazM4?=
- =?utf-8?B?eklVSHh5WllxUzd0YXUySW9vWUZnN1dxSndZMFlIMUVaWmZOeE9Tak9zVTQ2?=
- =?utf-8?B?UWttckRJelZJOEprWlFicHlIRWc5VVhzYlA4dVhRRFNRbnZ1clM1ZkpvNmsx?=
- =?utf-8?B?ZFp4R09TaCtxNXBJdUdhNlBiZ2psVjF1Zm4wWDVNZGdDUTgxMm5ySTRpdm5y?=
- =?utf-8?B?eSthZldPTEgrY3ZpUFFlNVNlbzVjdVlkNEVOUUdtdDcyYVp1OFAzRzl1dk9D?=
- =?utf-8?B?OG9YdU9hYVRZV2tXdzh4bGkyREMzTFBlcjh1MFJyMEx4NS9HZkZFQW1NMitQ?=
- =?utf-8?B?VUM3eFRDUXpHdGRxTzVmQWRENkNrZTV0b2o3UERGYUpKSFJYaUFlUVFneklI?=
- =?utf-8?B?U0JtcHFZcEVibjdRTmFQWnpmNjhpZ21JcWRuUEFabG9ZdEJzVngrb3d5VTdU?=
- =?utf-8?B?SDVmaHZuS3VodzRRa29LeVQyME9uU2pMN2F0TVFaeHg2L2hycm5naG5qMks5?=
- =?utf-8?B?bml6aUd1TEsxSmY5bUljYktLMU5wQUVqcnRHNjJncWpLdFJ2ZGVieTJHMnNx?=
- =?utf-8?B?QTd1SlJyWG5vUVlmcDVZdExlSE5jcGxHWGxjU3JBajkrNjAwMFhSM3dtTi9X?=
- =?utf-8?B?OXRqa2hqZXZxS09xVDBpbUszekNGWms3TE9uTzZOMXQrbkdKT0x6djZFQnFa?=
- =?utf-8?B?cWhLOXVHSkNoczI5TSt2TXVOUUtoS0dmaUgrTzcvUWM4QkVqTEp3ZmNRb3RN?=
- =?utf-8?B?NXBpUDdLOTdHUHh0YjA0Y0t2Y0xYb2s2aml5QUFuamlWYk1mV05CRXFFSnNQ?=
- =?utf-8?B?L0lHQnZERjJnSHNDNDlFU05FVDBNRWgrazdUWnhPZVRwWFIrTERWM3VjV1pZ?=
- =?utf-8?B?TjIwR1lKUGlaclNFS3BEOFY3TStmelRnRjNrUFZaN3l2Yi96MW82L2ZWYmtk?=
- =?utf-8?B?bXE3SUcrdW9hU3MyQkZ0d0JNdURsNEczaW5lcEQ4eW1IbFU1dE5EbnJuZ2Vy?=
- =?utf-8?B?bGNGOEovejRNQ3A4aUEyYWY0eE9xR0wrQ0VtVFlTbDZWcHZNVWFNZWkveTZy?=
- =?utf-8?B?anRwSUZNZ3JUSmE4VEE1cHJHcUg0aWhibDlnUGg5dWhoVlZlZjZqM3dSN21N?=
- =?utf-8?Q?rVMsDarhjPJXlTP9aey+Hw+54?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f31e8592-2099-418b-7015-08dbbef61218
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3370.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4QvgsO2SMPvH5AEzFP5d9sndko3IE3ZcGBlxdysxd0mVpuKJnqy37Hnd1UWl?=
+ =?us-ascii?Q?fWIBkfhGsHkjgGp1YWgbgRlME0zn4OTrSScjt7oLV7Gr/verP5vFGVDWasUU?=
+ =?us-ascii?Q?5fQ28Gp7G0IRl1BVQuyplDU4XE+8N4itTbEXkmDW2KQkBbeR4QHDmZVnuB9u?=
+ =?us-ascii?Q?X7TLod4ILZ8uqEQdntXsCuEZJRXMzYTixSixMTtqkInXpXQruT0LNk0ifjCt?=
+ =?us-ascii?Q?KX+3c3ueIoulfNS48WarXaQPgsB//OSWtX1jsUWwVB64K49rCPDpnKC+AEoe?=
+ =?us-ascii?Q?wzVOvZVdPFoK3nfCuyceRuTZgqPtQw1oRFQCKS23QS5mkYHzOmi9avwpmG00?=
+ =?us-ascii?Q?Rhn4cNPWAgg42vbKkfrWaMt5Wd7rDxHM40TEEeLUnVmhghDPwFlW4leCRZES?=
+ =?us-ascii?Q?we2s4Buzu1T0QBnPfieX73pGLsZEUgTXl6E54cRFqewVDfmW6GZbyzuOFunh?=
+ =?us-ascii?Q?cKH71J9OQiqUngcCuL2qVQeYxu3GZZIWt4xR07YFQwa+80Fw6AWERZS/B5om?=
+ =?us-ascii?Q?M8b6p6AISZtWHBXSq+VNKElQ7u3Oi/X1Dag2z46rGVBvhCSbQPZbQ5GeqCJn?=
+ =?us-ascii?Q?YquUKcBerhhlBHsQnxg6amyoFNr8B8zWUzJ9/MN41x47N0PDm/b1BZB9Owyo?=
+ =?us-ascii?Q?HxAkaW7bpjTOuNsBMsWPn/fnpHG1t4bXQV5ugpi8MT9pINREwIKOzwZfWeKJ?=
+ =?us-ascii?Q?Rs691VBfICuhSO7QDIWBEmDxo8YW8EvN2ohSm7El1luwiyv/wryzL6GHIcwS?=
+ =?us-ascii?Q?QdKa6/LrsxztV7uKC0/IVVBSZzqbsrqPPjECOME80Smfv4jsz9qYs/25fo/8?=
+ =?us-ascii?Q?+o8z30Z9I1233p7TWThTcKK+nR9Qd05GRPyFxoch8+Ph827jqNwTCq6H81v+?=
+ =?us-ascii?Q?UR3AzQ9Vm+I3ohPIJZvdJm+5dYEFMigteOrGoI8FrQgT4j/VzBtp5nejnhae?=
+ =?us-ascii?Q?EbZipfmsZTEOLQOOn9UhR+QNAb2BkoB5r8tmo0h6omYbOgUOYT2YeVQimEbh?=
+ =?us-ascii?Q?YUBeErnrV32HyqIdxwQkpN+Xyy914flY07IizvjFiRK7a7sBTd9coNZOu6mP?=
+ =?us-ascii?Q?5fb+yeGCwXeInf5PWPH4+lluLlgzHyHaqI7qtldifxtWUZB5siEa/XLQFqKQ?=
+ =?us-ascii?Q?e85v/aSqzZZYXbmHJvHkFk60BBCmkHV2G+7/ynbzNUDelJRK8GX4PkRC85cD?=
+ =?us-ascii?Q?swuULdVnEyJdDZNY4l8t9QFnlxkV03CZTgMI+OsGWVhA5c7Po0ycNC3/uc58?=
+ =?us-ascii?Q?SGTgDPuxJK6wOdEi+mb4c79rMJrBrG8GBHJ8+4UAfa0R51q746Pe5AVJGWKt?=
+ =?us-ascii?Q?wyluKsOjR8hVkFbS54++G73w140UM9rf7NkYuvT/m1cdaj44Dv578SWKqFXD?=
+ =?us-ascii?Q?lj1F1zX++yLykDBVqEGLLOimEjn8G8GtQ72Mjih7qTu3bKfAmFmmc5gdsq/b?=
+ =?us-ascii?Q?T1H1SsWVFhO2SccKl6rVTisVqf5LPILtRNwehZGL3Msl0MI1X4i8SFL/hDaZ?=
+ =?us-ascii?Q?WteLxvyHH63KwsUsru65UmOQmrgPAv/FGNj7ndxceAnabmy2D7/nSd4JT5at?=
+ =?us-ascii?Q?Aq5nPRq6JRJn88bh03UBDwhUjqWv2Q9V0RHcgc7w8n76J5LHmO/FYk6ePded?=
+ =?us-ascii?Q?Ag=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 48bc6743-1405-40ee-89dc-08dbbf0a1de2
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 01:07:08.3224 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 03:30:37.7959 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gYdazPAopVY3iBdbyGhTrmo1UlwZUbAUz5j8jMt9sdnxUDdcjrwMZHpylfWGi1bs
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7617
-Subject: Re: [Intel-xe] [PATCH v4 01/10] drm/sched: Add drm_sched_submit_*
- helpers
+X-MS-Exchange-CrossTenant-UserPrincipalName: OVK1wH5InZ3Y/NrYkfi8fF9klbaSE1GuJdztPWF3deMWWSz8BREK4IceZSR8mQXCImEgIU5XJlciG5ZPDrSUpnduD4S3Vh8/BPJyY4R3t4Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR11MB8558
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2 05/11] drm/xe: Use vfunc to initialize PAT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,268 +144,207 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- Liviu.Dudau@arm.com, mcanal@igalia.com, frank.binns@imgtec.com,
- boris.brezillon@collabora.com, dakr@redhat.com, donald.robson@imgtec.com,
- daniel@ffwll.ch, lina@asahilina.net, airlied@gmail.com,
- christian.koenig@amd.com, faith.ekstrand@collabora.com
+Cc: intel-xe@lists.freedesktop.org, Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2023-09-19 01:01, Matthew Brost wrote:
-> Add scheduler submit ready, stop, and start helpers to hide the
-> implementation details of the scheduler from the drivers.
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  .../drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c   |  2 +-
->  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   | 15 +++----
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    | 12 +++---
->  drivers/gpu/drm/msm/adreno/adreno_device.c    |  6 ++-
->  drivers/gpu/drm/scheduler/sched_main.c        | 40 ++++++++++++++++++-
->  include/drm/gpu_scheduler.h                   |  3 ++
->  6 files changed, 60 insertions(+), 18 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
-> index 625db444df1c..36a1accbc846 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c
-> @@ -290,7 +290,7 @@ static int suspend_resume_compute_scheduler(struct amdgpu_device *adev, bool sus
->  	for (i = 0; i < adev->gfx.num_compute_rings; i++) {
->  		struct amdgpu_ring *ring = &adev->gfx.compute_ring[i];
->  
-> -		if (!(ring && ring->sched.thread))
-> +		if (!(ring && drm_sched_submit_ready(&ring->sched)))
->  			continue;
->  
->  		/* stop secheduler and drain ring. */
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> index a4faea4fa0b5..fb5dad687168 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c
-> @@ -1659,9 +1659,9 @@ static int amdgpu_debugfs_test_ib_show(struct seq_file *m, void *unused)
->  	for (i = 0; i < AMDGPU_MAX_RINGS; i++) {
->  		struct amdgpu_ring *ring = adev->rings[i];
->  
-> -		if (!ring || !ring->sched.thread)
-> +		if (!ring || !drm_sched_submit_ready(&ring->sched))
->  			continue;
-> -		kthread_park(ring->sched.thread);
-> +		drm_sched_submit_stop(&ring->sched);
->  	}
->  
->  	seq_puts(m, "run ib test:\n");
-> @@ -1675,9 +1675,9 @@ static int amdgpu_debugfs_test_ib_show(struct seq_file *m, void *unused)
->  	for (i = 0; i < AMDGPU_MAX_RINGS; i++) {
->  		struct amdgpu_ring *ring = adev->rings[i];
->  
-> -		if (!ring || !ring->sched.thread)
-> +		if (!ring || !drm_sched_submit_ready(&ring->sched))
->  			continue;
-> -		kthread_unpark(ring->sched.thread);
-> +		drm_sched_submit_start(&ring->sched);
->  	}
->  
->  	up_write(&adev->reset_domain->sem);
-> @@ -1897,7 +1897,8 @@ static int amdgpu_debugfs_ib_preempt(void *data, u64 val)
->  
->  	ring = adev->rings[val];
->  
-> -	if (!ring || !ring->funcs->preempt_ib || !ring->sched.thread)
-> +	if (!ring || !ring->funcs->preempt_ib ||
-> +	    !drm_sched_submit_ready(&ring->sched))
->  		return -EINVAL;
->  
->  	/* the last preemption failed */
-> @@ -1915,7 +1916,7 @@ static int amdgpu_debugfs_ib_preempt(void *data, u64 val)
->  		goto pro_end;
->  
->  	/* stop the scheduler */
-> -	kthread_park(ring->sched.thread);
-> +	drm_sched_submit_stop(&ring->sched);
->  
->  	/* preempt the IB */
->  	r = amdgpu_ring_preempt_ib(ring);
-> @@ -1949,7 +1950,7 @@ static int amdgpu_debugfs_ib_preempt(void *data, u64 val)
->  
->  failure:
->  	/* restart the scheduler */
-> -	kthread_unpark(ring->sched.thread);
-> +	drm_sched_submit_start(&ring->sched);
->  
->  	up_read(&adev->reset_domain->sem);
->  
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 30c4f5cca02c..e366f61c3aed 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -4588,7 +4588,7 @@ bool amdgpu_device_has_job_running(struct amdgpu_device *adev)
->  	for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->  		struct amdgpu_ring *ring = adev->rings[i];
->  
-> -		if (!ring || !ring->sched.thread)
-> +		if (!ring || !drm_sched_submit_ready(&ring->sched))
->  			continue;
->  
->  		spin_lock(&ring->sched.job_list_lock);
-> @@ -4727,7 +4727,7 @@ int amdgpu_device_pre_asic_reset(struct amdgpu_device *adev,
->  	for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->  		struct amdgpu_ring *ring = adev->rings[i];
->  
-> -		if (!ring || !ring->sched.thread)
-> +		if (!ring || !drm_sched_submit_ready(&ring->sched))
->  			continue;
->  
->  		/* Clear job fence from fence drv to avoid force_completion
-> @@ -5266,7 +5266,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
->  		for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->  			struct amdgpu_ring *ring = tmp_adev->rings[i];
->  
-> -			if (!ring || !ring->sched.thread)
-> +			if (!ring || !drm_sched_submit_ready(&ring->sched))
->  				continue;
->  
->  			drm_sched_stop(&ring->sched, job ? &job->base : NULL);
-> @@ -5341,7 +5341,7 @@ int amdgpu_device_gpu_recover(struct amdgpu_device *adev,
->  		for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->  			struct amdgpu_ring *ring = tmp_adev->rings[i];
->  
-> -			if (!ring || !ring->sched.thread)
-> +			if (!ring || !drm_sched_submit_ready(&ring->sched))
->  				continue;
->  
->  			drm_sched_start(&ring->sched, true);
-> @@ -5667,7 +5667,7 @@ pci_ers_result_t amdgpu_pci_error_detected(struct pci_dev *pdev, pci_channel_sta
->  		for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->  			struct amdgpu_ring *ring = adev->rings[i];
->  
-> -			if (!ring || !ring->sched.thread)
-> +			if (!ring || !drm_sched_submit_ready(&ring->sched))
->  				continue;
->  
->  			drm_sched_stop(&ring->sched, NULL);
-> @@ -5795,7 +5795,7 @@ void amdgpu_pci_resume(struct pci_dev *pdev)
->  	for (i = 0; i < AMDGPU_MAX_RINGS; ++i) {
->  		struct amdgpu_ring *ring = adev->rings[i];
->  
-> -		if (!ring || !ring->sched.thread)
-> +		if (!ring || !drm_sched_submit_ready(&ring->sched))
->  			continue;
->  
->  		drm_sched_start(&ring->sched, true);
-> diff --git a/drivers/gpu/drm/msm/adreno/adreno_device.c b/drivers/gpu/drm/msm/adreno/adreno_device.c
-> index fa527935ffd4..e046dc5ff72a 100644
-> --- a/drivers/gpu/drm/msm/adreno/adreno_device.c
-> +++ b/drivers/gpu/drm/msm/adreno/adreno_device.c
-> @@ -809,7 +809,8 @@ static void suspend_scheduler(struct msm_gpu *gpu)
->  	 */
->  	for (i = 0; i < gpu->nr_rings; i++) {
->  		struct drm_gpu_scheduler *sched = &gpu->rb[i]->sched;
-> -		kthread_park(sched->thread);
-> +
-> +		drm_sched_submit_stop(sched);
->  	}
->  }
->  
-> @@ -819,7 +820,8 @@ static void resume_scheduler(struct msm_gpu *gpu)
->  
->  	for (i = 0; i < gpu->nr_rings; i++) {
->  		struct drm_gpu_scheduler *sched = &gpu->rb[i]->sched;
-> -		kthread_unpark(sched->thread);
-> +
-> +		drm_sched_submit_start(sched);
->  	}
->  }
->  
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index 506371c42745..e4fa62abca41 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -439,7 +439,7 @@ void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad)
->  {
->  	struct drm_sched_job *s_job, *tmp;
->  
-> -	kthread_park(sched->thread);
-> +	drm_sched_submit_stop(sched);
->  
->  	/*
->  	 * Reinsert back the bad job here - now it's safe as
-> @@ -552,7 +552,7 @@ void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery)
->  		spin_unlock(&sched->job_list_lock);
->  	}
->  
-> -	kthread_unpark(sched->thread);
-> +	drm_sched_submit_start(sched);
->  }
->  EXPORT_SYMBOL(drm_sched_start);
->  
-> @@ -1206,3 +1206,39 @@ void drm_sched_increase_karma(struct drm_sched_job *bad)
->  	}
->  }
->  EXPORT_SYMBOL(drm_sched_increase_karma);
-> +
-> +/**
-> + * drm_sched_submit_ready - scheduler ready for submission
+On Tue, Sep 26, 2023 at 04:17:47PM -0700, Matt Roper wrote:
+>On Tue, Sep 26, 2023 at 03:36:25PM -0700, Lucas De Marchi wrote:
+>> Split the PAT initialization between SW-only and HW. The _early() only
+>> sets up the ops and data structure that are used later to program the
+>> tables. This allows the PAT to be easily extended to other platforms.
+>>
+>> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_device.c       |  3 ++
+>>  drivers/gpu/drm/xe/xe_device_types.h | 13 ++++++
+>>  drivers/gpu/drm/xe/xe_pat.c          | 59 +++++++++++++++++++++-------
+>>  drivers/gpu/drm/xe/xe_pat.h          | 11 ++++++
+>>  4 files changed, 72 insertions(+), 14 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>> index 687dc3d79a66..046b7a087451 100644
+>> --- a/drivers/gpu/drm/xe/xe_device.c
+>> +++ b/drivers/gpu/drm/xe/xe_device.c
+>> @@ -26,6 +26,7 @@
+>>  #include "xe_irq.h"
+>>  #include "xe_mmio.h"
+>>  #include "xe_module.h"
+>> +#include "xe_pat.h"
+>>  #include "xe_pcode.h"
+>>  #include "xe_pm.h"
+>>  #include "xe_query.h"
+>> @@ -276,6 +277,8 @@ int xe_device_probe(struct xe_device *xe)
+>>  	int err;
+>>  	u8 id;
+>>
+>> +	xe_pat_init_early(xe);
+>> +
+>>  	xe->info.mem_region_mask = 1;
+>>  	err = xe_display_init_nommio(xe);
+>>  	if (err)
+>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+>> index 32ab0fea04ee..98835ee058f5 100644
+>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>> @@ -25,6 +25,7 @@
+>>  #endif
+>>
+>>  struct xe_ggtt;
+>> +struct xe_pat_ops;
+>>
+>>  #define XE_BO_INVALID_OFFSET	LONG_MAX
+>>
+>> @@ -331,6 +332,18 @@ struct xe_device {
+>>  		atomic_t ref;
+>>  	} mem_access;
+>>
+>> +	/**
+>> +	 * @pat: Encapsulate PAT related stuff
+>> +	 */
+>> +	struct {
+>> +		/** Internal operations to abstract platforms */
+>> +		const struct xe_pat_ops *ops;
+>> +		/** PAT table to program in the HW */
+>> +		const u32 *table;
+>> +		/** Number of PAT entries */
+>> +		int n_entries;
+>> +	} pat;
+>> +
+>>  	/** @d3cold: Encapsulate d3cold related stuff */
+>>  	struct {
+>>  		/** capable: Indicates if root port is d3cold capable */
+>> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+>> index 71e0e047fff3..86386633e206 100644
+>> --- a/drivers/gpu/drm/xe/xe_pat.c
+>> +++ b/drivers/gpu/drm/xe/xe_pat.c
+>> @@ -32,6 +32,11 @@
+>>  #define TGL_PAT_WC				REG_FIELD_PREP(TGL_MEM_TYPE_MASK, 1)
+>>  #define TGL_PAT_UC				REG_FIELD_PREP(TGL_MEM_TYPE_MASK, 0)
+>>
+>> +struct xe_pat_ops {
+>> +	void (*program_graphics)(struct xe_gt *gt, const u32 table[], int n_entries);
+>> +	void (*program_media)(struct xe_gt *gt, const u32 table[], int n_entries);
+>> +};
+>> +
+>>  static const u32 tgl_pat_table[] = {
+>>  	[0] = TGL_PAT_WB,
+>>  	[1] = TGL_PAT_WC,
+>> @@ -80,24 +85,37 @@ static void program_pat_mcr(struct xe_gt *gt, const u32 table[], int n_entries)
+>>  	}
+>>  }
+>>
+>> -void xe_pat_init(struct xe_gt *gt)
+>> -{
+>> -	struct xe_device *xe = gt_to_xe(gt);
+>> +static const struct xe_pat_ops tgl_pat_ops = {
+>> +	.program_graphics = program_pat,
+>> +};
+>> +
+>> +static const struct xe_pat_ops pvc_pat_ops = {
+>> +	.program_graphics = program_pat_mcr,
+>> +};
+>> +
+>> +/*
+>> + * SAMedia register offsets are adjusted by the write methods and they target
+>> + * registers that are not MCR, while for normal GT they are MCR
+>> + */
+>> +static const struct xe_pat_ops mtl_pat_ops = {
+>> +	.program_graphics = program_pat,
+>> +	.program_media = program_pat_mcr,
+>> +};
+>>
+>> +void xe_pat_init_early(struct xe_device *xe)
+>> +{
+>>  	if (xe->info.platform == XE_METEORLAKE) {
+>> -		/*
+>> -		 * SAMedia register offsets are adjusted by the write methods
+>> -		 * and they target registers that are not MCR, while for normal
+>> -		 * GT they are MCR
+>> -		 */
+>> -		if (xe_gt_is_media_type(gt))
+>> -			program_pat(gt, mtl_pat_table, ARRAY_SIZE(mtl_pat_table));
+>> -		else
+>> -			program_pat_mcr(gt, mtl_pat_table, ARRAY_SIZE(mtl_pat_table));
+>> +		xe->pat.ops = &mtl_pat_ops;
+>> +		xe->pat.table = mtl_pat_table;
+>> +		xe->pat.n_entries = ARRAY_SIZE(mtl_pat_table);
+>>  	} else if (xe->info.platform == XE_PVC || xe->info.platform == XE_DG2) {
+>> -		program_pat_mcr(gt, pvc_pat_table, ARRAY_SIZE(pvc_pat_table));
+>> +		xe->pat.ops = &pvc_pat_ops;
+>
+>Actually, to be more consistent with the rest of the driver we should
+>probably name this 'dg2_pat_ops' after the first platform that
+>introduced this.
 
-"Is the scheduler ready for submission" is so much more clear
-and approachable. Let's have that go in the kernel, yes?
+I was not very happy with the name neither, but naming it dg2 would be
+inconsistent with the pvc_pat_table.... or I would need to rename that
+in this same patch. But my final goal was to name it after the arch, so
+renaming it here would be pointless. See patch #7.
 
-> + *
-> + * @sched: scheduler instance
-> + *
-> + * Returns true if submission is ready
-> + */
-> +bool drm_sched_submit_ready(struct drm_gpu_scheduler *sched)
-> +{
-> +	return !!sched->thread;
-> +
-> +}
+Lucas De Marchi
 
-Remove the extra white line after the return-statement.
-(Please run your patches through checkpatch.pl to catch those.)
-
-With these two changes this patch is:
-Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
-
-> +EXPORT_SYMBOL(drm_sched_submit_ready);
-> +
-> +/**
-> + * drm_sched_submit_stop - stop scheduler submission
-> + *
-> + * @sched: scheduler instance
-> + */
-> +void drm_sched_submit_stop(struct drm_gpu_scheduler *sched)
-> +{
-> +	kthread_park(sched->thread);
-> +}
-> +EXPORT_SYMBOL(drm_sched_submit_stop);
-> +
-> +/**
-> + * drm_sched_submit_start - start scheduler submission
-> + *
-> + * @sched: scheduler instance
-> + */
-> +void drm_sched_submit_start(struct drm_gpu_scheduler *sched)
-> +{
-> +	kthread_unpark(sched->thread);
-> +}
-> +EXPORT_SYMBOL(drm_sched_submit_start);
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index f9544d9b670d..f12c5aea5294 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -550,6 +550,9 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
->  
->  void drm_sched_job_cleanup(struct drm_sched_job *job);
->  void drm_sched_wakeup_if_can_queue(struct drm_gpu_scheduler *sched);
-> +bool drm_sched_submit_ready(struct drm_gpu_scheduler *sched);
-> +void drm_sched_submit_stop(struct drm_gpu_scheduler *sched);
-> +void drm_sched_submit_start(struct drm_gpu_scheduler *sched);
->  void drm_sched_stop(struct drm_gpu_scheduler *sched, struct drm_sched_job *bad);
->  void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery);
->  void drm_sched_resubmit_jobs(struct drm_gpu_scheduler *sched);
-
--- 
-Regards,
-Luben
-
+>
+>
+>Matt
+>
+>> +		xe->pat.table = pvc_pat_table;
+>> +		xe->pat.n_entries = ARRAY_SIZE(pvc_pat_table);
+>>  	} else if (GRAPHICS_VERx100(xe) <= 1210) {
+>> -		program_pat(gt, tgl_pat_table, ARRAY_SIZE(tgl_pat_table));
+>> +		xe->pat.ops = &tgl_pat_ops;
+>> +		xe->pat.table = tgl_pat_table;
+>> +		xe->pat.n_entries = ARRAY_SIZE(tgl_pat_table);
+>>  	} else {
+>>  		/*
+>>  		 * Going forward we expect to need new PAT settings for most
+>> @@ -111,3 +129,16 @@ void xe_pat_init(struct xe_gt *gt)
+>>  			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
+>>  	}
+>>  }
+>> +
+>> +void xe_pat_init(struct xe_gt *gt)
+>> +{
+>> +	struct xe_device *xe = gt_to_xe(gt);
+>> +
+>> +	if (!xe->pat.ops)
+>> +		return;
+>> +
+>> +	if (xe_gt_is_media_type(gt))
+>> +		xe->pat.ops->program_media(gt, xe->pat.table, xe->pat.n_entries);
+>> +	else
+>> +		xe->pat.ops->program_graphics(gt, xe->pat.table, xe->pat.n_entries);
+>> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+>> index 659de4008131..744318cab69b 100644
+>> --- a/drivers/gpu/drm/xe/xe_pat.h
+>> +++ b/drivers/gpu/drm/xe/xe_pat.h
+>> @@ -7,7 +7,18 @@
+>>  #define _XE_PAT_H_
+>>
+>>  struct xe_gt;
+>> +struct xe_device;
+>>
+>> +/**
+>> + * xe_pat_init_early - SW initialization, setting up data based on device
+>> + * @xe: xe device
+>> + */
+>> +void xe_pat_init_early(struct xe_device *xe);
+>> +
+>> +/**
+>> + * xe_pat_init_early - Program HW PAT table
+>> + * @gt: GT structure
+>> + */
+>>  void xe_pat_init(struct xe_gt *gt);
+>>
+>>  #endif
+>> --
+>> 2.40.1
+>>
+>
+>-- 
+>Matt Roper
+>Graphics Software Engineer
+>Linux GPU Platform Enablement
+>Intel Corporation
