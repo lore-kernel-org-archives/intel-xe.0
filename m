@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F320E82CCA
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 19:39:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8F4BE82CCE
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 19:39:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 755D810E5A7;
-	Wed, 27 Sep 2023 19:39:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B92F010E5AB;
+	Wed, 27 Sep 2023 19:39:12 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 895AA10E5A2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB9F810E5A3
  for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 19:38:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1695843538; x=1727379538;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NvL8vKNkMsuR49XAy2GWZaYC9PYG8j5k2TT+/7MLrz4=;
- b=P+UoucYI0lbgU+yNech4Fr+aH9X22FbJeYx4VR5AnUx6WvuA6/IuYa37
- n/1scLNAvtQpuuJ1XlLnEjgEsGSLwGNjEOmCHa7h0LmdeqBmFQ3VgV9n9
- fugkzK+oedeIWRZ50MoqeBmw4oWrIZ9rTpmLKBF1BTrM6PatZawdy/A/K
- Ff96g8Is9F5VnUIfonSzjtUR1GZ2E6gwsMq/Kr9FqUBUTL2JXlqrrP4o5
- BMWtxa6ePagptFG9dSCmfrceuciRhPzg7Vtzxg2P5lZDQQ+TI+J0fKY3C
- am/7Y0PiugE9EZGk8YO50aPD1pHycsixbVfOyGDeWRpstWCascYfYBbSO w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="381817981"
-X-IronPort-AV: E=Sophos;i="6.03,182,1694761200"; d="scan'208";a="381817981"
+ bh=y6omw9PKe6EjNkCkftkoqx+MiHICbXKBv5UCNOHbYOk=;
+ b=Evn5zOMtPvIz8Y86n9OW+auqVfk6ZVz3Yg9Bz51fyZiYsryWDsv89CTM
+ LfI7AhswNlszkxyNGcmBpBAdWBMKL8m2xvO+QwtnoOIebByf4TDZwfynl
+ HG2KCKWFlhC54wdCb9Wu7KjW9UqP+1ys4IQpgIkn6gdXI1bAcJdgBTP46
+ qPm/c+cFc78x+rB55gNdLAqOwUjSDK2nenSBPqN5TyE7270M49tvpPwrE
+ J6awx4w+XwM9VotpNiujX4+vrrEc2q+GPvPtc4BXkji4OPlWoxBzuQ2ug
+ 6gdbHXsmQcEt27MLdW2FerbOTVmDVJkRP4vkC1XwaLMAIOvKvA6x+shv9 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="381817984"
+X-IronPort-AV: E=Sophos;i="6.03,182,1694761200"; d="scan'208";a="381817984"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Sep 2023 12:38:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="742826488"
-X-IronPort-AV: E=Sophos;i="6.03,182,1694761200"; d="scan'208";a="742826488"
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="742826498"
+X-IronPort-AV: E=Sophos;i="6.03,182,1694761200"; d="scan'208";a="742826498"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Sep 2023 12:38:57 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Sep 2023 12:38:56 -0700
-Message-Id: <20230927193902.2849159-6-lucas.demarchi@intel.com>
+Date: Wed, 27 Sep 2023 12:38:59 -0700
+Message-Id: <20230927193902.2849159-9-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230927193902.2849159-1-lucas.demarchi@intel.com>
 References: <20230927193902.2849159-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 05/11] drm/xe: Use vfunc to initialize PAT
+Subject: [Intel-xe] [PATCH v3 08/11] drm/xe/pat: Keep track of relevant
+ indexes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,179 +62,88 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Split the PAT initialization between SW-only and HW. The _early() only
-sets up the ops and data structure that are used later to program the
-tables. This allows the PAT to be easily extended to other platforms.
+Some of the PAT entries are relevant for internal driver use, which
+varies per platform. Let the PAT early initialization set what they
+should point to so the rest of the driver can use them where needed.
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c       |  3 ++
- drivers/gpu/drm/xe/xe_device_types.h | 13 ++++++
- drivers/gpu/drm/xe/xe_pat.c          | 59 +++++++++++++++++++++-------
- drivers/gpu/drm/xe/xe_pat.h          | 11 ++++++
- 4 files changed, 72 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_pat.c          | 12 ++++++++++++
+ drivers/gpu/drm/xe/xe_pt_types.h     |  1 +
+ 3 files changed, 15 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 687dc3d79a66..046b7a087451 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -26,6 +26,7 @@
- #include "xe_irq.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
-+#include "xe_pat.h"
- #include "xe_pcode.h"
- #include "xe_pm.h"
- #include "xe_query.h"
-@@ -276,6 +277,8 @@ int xe_device_probe(struct xe_device *xe)
- 	int err;
- 	u8 id;
- 
-+	xe_pat_init_early(xe);
-+
- 	xe->info.mem_region_mask = 1;
- 	err = xe_display_init_nommio(xe);
- 	if (err)
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 32ab0fea04ee..98835ee058f5 100644
+index 98835ee058f5..7d0f2109c23a 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -25,6 +25,7 @@
- #endif
+@@ -15,6 +15,7 @@
+ #include "xe_devcoredump_types.h"
+ #include "xe_gt_types.h"
+ #include "xe_platform_types.h"
++#include "xe_pt_types.h"
+ #include "xe_pmu.h"
+ #include "xe_step_types.h"
  
- struct xe_ggtt;
-+struct xe_pat_ops;
+@@ -342,6 +343,7 @@ struct xe_device {
+ 		const u32 *table;
+ 		/** Number of PAT entries */
+ 		int n_entries;
++		u32 idx[__XE_CACHE_LEVEL_COUNT];
+ 	} pat;
  
- #define XE_BO_INVALID_OFFSET	LONG_MAX
- 
-@@ -331,6 +332,18 @@ struct xe_device {
- 		atomic_t ref;
- 	} mem_access;
- 
-+	/**
-+	 * @pat: Encapsulate PAT related stuff
-+	 */
-+	struct {
-+		/** Internal operations to abstract platforms */
-+		const struct xe_pat_ops *ops;
-+		/** PAT table to program in the HW */
-+		const u32 *table;
-+		/** Number of PAT entries */
-+		int n_entries;
-+	} pat;
-+
  	/** @d3cold: Encapsulate d3cold related stuff */
- 	struct {
- 		/** capable: Indicates if root port is d3cold capable */
 diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
-index 71e0e047fff3..28f401c500d8 100644
+index 6fcf20600ec7..869aee64641f 100644
 --- a/drivers/gpu/drm/xe/xe_pat.c
 +++ b/drivers/gpu/drm/xe/xe_pat.c
-@@ -32,6 +32,11 @@
- #define TGL_PAT_WC				REG_FIELD_PREP(TGL_MEM_TYPE_MASK, 1)
- #define TGL_PAT_UC				REG_FIELD_PREP(TGL_MEM_TYPE_MASK, 0)
- 
-+struct xe_pat_ops {
-+	void (*program_graphics)(struct xe_gt *gt, const u32 table[], int n_entries);
-+	void (*program_media)(struct xe_gt *gt, const u32 table[], int n_entries);
-+};
-+
- static const u32 tgl_pat_table[] = {
- 	[0] = TGL_PAT_WB,
- 	[1] = TGL_PAT_WC,
-@@ -80,24 +85,37 @@ static void program_pat_mcr(struct xe_gt *gt, const u32 table[], int n_entries)
- 	}
- }
- 
--void xe_pat_init(struct xe_gt *gt)
--{
--	struct xe_device *xe = gt_to_xe(gt);
-+static const struct xe_pat_ops tgl_pat_ops = {
-+	.program_graphics = program_pat,
-+};
-+
-+static const struct xe_pat_ops dg2_pat_ops = {
-+	.program_graphics = program_pat_mcr,
-+};
-+
-+/*
-+ * SAMedia register offsets are adjusted by the write methods and they target
-+ * registers that are not MCR, while for normal GT they are MCR
-+ */
-+static const struct xe_pat_ops mtl_pat_ops = {
-+	.program_graphics = program_pat,
-+	.program_media = program_pat_mcr,
-+};
- 
-+void xe_pat_init_early(struct xe_device *xe)
-+{
- 	if (xe->info.platform == XE_METEORLAKE) {
--		/*
--		 * SAMedia register offsets are adjusted by the write methods
--		 * and they target registers that are not MCR, while for normal
--		 * GT they are MCR
--		 */
--		if (xe_gt_is_media_type(gt))
--			program_pat(gt, mtl_pat_table, ARRAY_SIZE(mtl_pat_table));
--		else
--			program_pat_mcr(gt, mtl_pat_table, ARRAY_SIZE(mtl_pat_table));
-+		xe->pat.ops = &mtl_pat_ops;
-+		xe->pat.table = mtl_pat_table;
-+		xe->pat.n_entries = ARRAY_SIZE(mtl_pat_table);
- 	} else if (xe->info.platform == XE_PVC || xe->info.platform == XE_DG2) {
--		program_pat_mcr(gt, pvc_pat_table, ARRAY_SIZE(pvc_pat_table));
-+		xe->pat.ops = &dg2_pat_ops;
-+		xe->pat.table = pvc_pat_table;
-+		xe->pat.n_entries = ARRAY_SIZE(pvc_pat_table);
+@@ -108,10 +108,16 @@ void xe_pat_init_early(struct xe_device *xe)
+ 		xe->pat.ops = &xelpg_pat_ops;
+ 		xe->pat.table = xelpg_pat_table;
+ 		xe->pat.n_entries = ARRAY_SIZE(xelpg_pat_table);
++		xe->pat.idx[XE_CACHE_NONE] = 2;
++		xe->pat.idx[XE_CACHE_WT] = 1;
++		xe->pat.idx[XE_CACHE_WB] = 3;
+ 	} else if (xe->info.platform == XE_PVC) {
+ 		xe->pat.ops = &xehp_pat_ops;
+ 		xe->pat.table = xehpc_pat_table;
+ 		xe->pat.n_entries = ARRAY_SIZE(xehpc_pat_table);
++		xe->pat.idx[XE_CACHE_NONE] = 0;
++		xe->pat.idx[XE_CACHE_WT] = 2;
++		xe->pat.idx[XE_CACHE_WB] = 3;
+ 	} else if (xe->info.platform == XE_DG2) {
+ 		/*
+ 		 * Table is the same as previous platforms, but programming
+@@ -120,10 +126,16 @@ void xe_pat_init_early(struct xe_device *xe)
+ 		xe->pat.ops = &xehp_pat_ops;
+ 		xe->pat.table = xelp_pat_table;
+ 		xe->pat.n_entries = ARRAY_SIZE(xelp_pat_table);
++		xe->pat.idx[XE_CACHE_NONE] = 3;
++		xe->pat.idx[XE_CACHE_WT] = 2;
++		xe->pat.idx[XE_CACHE_WB] = 0;
  	} else if (GRAPHICS_VERx100(xe) <= 1210) {
--		program_pat(gt, tgl_pat_table, ARRAY_SIZE(tgl_pat_table));
-+		xe->pat.ops = &tgl_pat_ops;
-+		xe->pat.table = tgl_pat_table;
-+		xe->pat.n_entries = ARRAY_SIZE(tgl_pat_table);
+ 		xe->pat.ops = &xelp_pat_ops;
+ 		xe->pat.table = xelp_pat_table;
+ 		xe->pat.n_entries = ARRAY_SIZE(xelp_pat_table);
++		xe->pat.idx[XE_CACHE_NONE] = 3;
++		xe->pat.idx[XE_CACHE_WT] = 2;
++		xe->pat.idx[XE_CACHE_WB] = 0;
  	} else {
  		/*
  		 * Going forward we expect to need new PAT settings for most
-@@ -111,3 +129,16 @@ void xe_pat_init(struct xe_gt *gt)
- 			GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
- 	}
- }
-+
-+void xe_pat_init(struct xe_gt *gt)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	if (!xe->pat.ops)
-+		return;
-+
-+	if (xe_gt_is_media_type(gt))
-+		xe->pat.ops->program_media(gt, xe->pat.table, xe->pat.n_entries);
-+	else
-+		xe->pat.ops->program_graphics(gt, xe->pat.table, xe->pat.n_entries);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
-index 659de4008131..168e80e63809 100644
---- a/drivers/gpu/drm/xe/xe_pat.h
-+++ b/drivers/gpu/drm/xe/xe_pat.h
-@@ -7,7 +7,18 @@
- #define _XE_PAT_H_
+diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
+index 64e3921a0f46..bf5000499251 100644
+--- a/drivers/gpu/drm/xe/xe_pt_types.h
++++ b/drivers/gpu/drm/xe/xe_pt_types.h
+@@ -17,6 +17,7 @@ enum xe_cache_level {
+ 	XE_CACHE_NONE,
+ 	XE_CACHE_WT,
+ 	XE_CACHE_WB,
++	__XE_CACHE_LEVEL_COUNT,
+ };
  
- struct xe_gt;
-+struct xe_device;
- 
-+/**
-+ * xe_pat_init_early - SW initialization, setting up data based on device
-+ * @xe: xe device
-+ */
-+void xe_pat_init_early(struct xe_device *xe);
-+
-+/**
-+ * xe_pat_init - Program HW PAT table
-+ * @gt: GT structure
-+ */
- void xe_pat_init(struct xe_gt *gt);
- 
- #endif
+ #define XE_VM_MAX_LEVEL 4
 -- 
 2.40.1
 
