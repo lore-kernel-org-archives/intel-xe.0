@@ -4,51 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26376E80AA1
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 07:31:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 441A8E80AA0
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 07:33:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB7DA10E46B;
-	Wed, 27 Sep 2023 07:31:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 07C0610E416
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 07:31:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695799907; x=1727335907;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=sApVa/mgwifRVFlcP6P3FO6guua0WSRaKqdK33lEl1E=;
- b=G9vQdnJmXclvKMFqh8M5qy4oC2jYuVI86AgI8/SCRRKPHv07ioO138AT
- Wu+8rN0WgI0RIGcbbhygDHiZQMdDtr4VH6kbzQH86slaPfU29jZu8G9zf
- p4+2zyzrZzlABVEoyP9z3Z7FmroOWXYOVfe/aDalDnD859dsH6RI7GcMb
- 9Sib0LvGz0sJFQlnN20dtLVcZ82/UB+/7kTG36KqUBYs/2tCqb8zAOaF1
- tkR3BlV8UxlL3lG2aMtTOdiLaopVe4goC8HMBy25zmzK3mgYbwq/Tc7HJ
- KMgLkKQCY2GoAJNdef9A4xNOQ7l6A5WQTMICwKEWOjV6Vjvmsqlng6JOf g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="372091629"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="372091629"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 00:31:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="922684505"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="922684505"
-Received: from petrovam-mobl.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.251.220.182])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 00:31:44 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Sep 2023 10:31:25 +0300
-Message-Id: <20230927073125.3825836-4-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230927073125.3825836-1-jouni.hogander@intel.com>
-References: <20230927073125.3825836-1-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1244E10E399;
+	Wed, 27 Sep 2023 07:33:39 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 871BE10E399;
+ Wed, 27 Sep 2023 07:33:36 +0000 (UTC)
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 626846607324;
+ Wed, 27 Sep 2023 08:33:34 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1695800014;
+ bh=juDUK3jJUc4wubW8k3FIzeLI9eMgHeRSXCAudoYytV0=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=gT4IOxdPFEVROkTE64vxjdRfdXWQ07CFIzhLO5TyHTvK0+Ipog0orAYSqhyLqvXMb
+ W1XdYopm4rYER6Wt7RveDCkkIs4lHJBH2K6WmV6X8/gAVlpJaT4GajhUe/ZzQEw9AQ
+ PeLpQYizMjllHvGJn7kifbN8gWZknO0jp2ZeqOR8GyNMUqlblKtHhiTbxgMtyv4iyZ
+ ckyS3Z0zi+e7kTt1fXYWFj/s6KcNsPJL8U0b6/thWiV14FmFSMfOzTPnho5D4NG3Ix
+ H6i0bbZ/kSIfzeY2Qrw3KXBugQvKsXpAuBaUgwBT5k8ONHMesDCEK91Q1D4wtRxXVA
+ gOm0FoMXYHW1g==
+Date: Wed, 27 Sep 2023 09:33:31 +0200
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Message-ID: <20230927093331.0a416646@collabora.com>
+In-Reply-To: <20230919050155.2647172-1-matthew.brost@intel.com>
+References: <20230919050155.2647172-1-matthew.brost@intel.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC PATCH 3/3] fixup! drm/xe/display: Implement display
- support
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v4 00/10] DRM scheduler changes for Xe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,162 +51,81 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ Liviu.Dudau@arm.com, mcanal@igalia.com, frank.binns@imgtec.com,
+ dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
+ luben.tuikov@amd.com, dakr@redhat.com, donald.robson@imgtec.com,
+ daniel@ffwll.ch, lina@asahilina.net, airlied@gmail.com,
+ intel-xe@lists.freedesktop.org, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add i915_sw_fence.h compatibility header and implement sw fence
-interfaces for display code usage.
+On Mon, 18 Sep 2023 22:01:45 -0700
+Matthew Brost <matthew.brost@intel.com> wrote:
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- .../drm/i915/display/intel_display_types.h    |   1 +
- .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   1 -
- .../xe/compat-i915-headers/i915_sw_fence.h    | 111 ++++++++++++++++++
- 3 files changed, 112 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_sw_fence.h
+> As a prerequisite to merging the new Intel Xe DRM driver [1] [2], we
+> have been asked to merge our common DRM scheduler patches first.
+> 
+> This a continuation of a RFC [3] with all comments addressed, ready for
+> a full review, and hopefully in state which can merged in the near
+> future. More details of this series can found in the cover letter of the
+> RFC [3].
+> 
+> These changes have been tested with the Xe driver.
+> 
+> v2:
+>  - Break run job, free job, and process message in own work items
+>  - This might break other drivers as run job and free job now can run in
+>    parallel, can fix up if needed
+> 
+> v3:
+>  - Include missing patch 'drm/sched: Add drm_sched_submit_* helpers'
+>  - Fix issue with setting timestamp to early
+>  - Don't dequeue jobs for single entity after calling entity fini
+>  - Flush pending jobs on entity fini
+>  - Add documentation for entity teardown
+>  - Add Matthew Brost to maintainers of DRM scheduler
+> 
+> v4:
+>  - Drop message interface
+>  - Drop 'Flush pending jobs on entity fini'
+>  - Drop 'Add documentation for entity teardown'
+>  - Address all feedback
+> 
+> Matt
+> 
+> Matthew Brost (10):
+>   drm/sched: Add drm_sched_submit_* helpers
+>   drm/sched: Convert drm scheduler to use a work queue rather than
+>     kthread
+>   drm/sched: Move schedule policy to scheduler
+>   drm/sched: Add DRM_SCHED_POLICY_SINGLE_ENTITY scheduling policy
+>   drm/sched: Split free_job into own work item
+>   drm/sched: Add drm_sched_start_timeout_unlocked helper
+>   drm/sched: Start submission before TDR in drm_sched_start
+>   drm/sched: Submit job before starting TDR
+>   drm/sched: Add helper to queue TDR immediately for current and future
+>     jobs
+>   drm/sched: Update maintainers of GPU scheduler
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index b1141fb125c8..2d11f159f927 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -46,6 +46,7 @@
- #include <drm/i915_hdcp_interface.h>
- #include <media/cec-notifier.h>
- 
-+#include "i915_sw_fence.h"
- #include "i915_vma.h"
- #include "i915_vma_types.h"
- #include "intel_bios.h"
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 03ac39efba38..c8b0f38e55fa 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -196,7 +196,6 @@ static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, bool wakeref)
- #define intel_uncore_forcewake_put(x, y) do { } while (0)
- 
- #define intel_uncore_arm_unclaimed_mmio_detection(x) do { } while (0)
--#define i915_sw_fence_commit(x) do { } while (0)
- 
- #define with_intel_runtime_pm(rpm, wf) \
- 	for ((wf) = intel_runtime_pm_get(rpm); (wf); \
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_sw_fence.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_sw_fence.h
-new file mode 100644
-index 000000000000..fd6c96682932
---- /dev/null
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_sw_fence.h
-@@ -0,0 +1,111 @@
-+/*
-+ * SPDX-License-Identifier: MIT
-+ *
-+ * i915_sw_fence.h - library routines for N:M synchronisation points
-+ *
-+ * Copyright (C) 2023 Intel Corporation
-+ */
-+
-+#ifndef _I915_SW_FENCE_H_
-+#define _I915_SW_FENCE_H_
-+
-+#include <linux/dma-fence.h>
-+#include <linux/dma-resv.h>
-+#include <linux/gfp.h>
-+#include <linux/notifier.h> /* for NOTIFY_DONE */
-+
-+struct completion;
-+struct dma_resv;
-+struct i915_sw_fence;
-+
-+enum i915_sw_fence_notify {
-+	FENCE_COMPLETE,
-+	FENCE_FREE
-+};
-+
-+typedef int (*i915_sw_fence_notify_t)(struct i915_sw_fence *,
-+				      enum i915_sw_fence_notify state);
-+
-+struct i915_sw_fence {
-+	struct dma_resv resv;
-+	i915_sw_fence_notify_t fn;
-+	unsigned long timeout;
-+};
-+static inline void i915_sw_fence_init(struct i915_sw_fence *fence, i915_sw_fence_notify_t fn)
-+{
-+	dma_resv_init(&fence->resv);
-+	fence->fn = fn;
-+	fence->timeout = 0;
-+}
-+
-+static inline void i915_sw_fence_fini(struct i915_sw_fence *fence)
-+{
-+	dma_resv_fini(&fence->resv);
-+}
-+
-+#define i915_sw_fence_commit(x) do { } while (0)
-+
-+struct i915_sw_dma_fence_cb {
-+	struct dma_fence_cb base;
-+	struct i915_sw_fence *fence;
-+};
-+
-+static inline int i915_sw_fence_await_dma_fence(struct i915_sw_fence *fence,
-+				  struct dma_fence *dma,
-+				  unsigned long timeout,
-+				  gfp_t gfp)
-+{
-+	int ret;
-+
-+	dma_resv_lock(&fence->resv, NULL);
-+	ret = dma_resv_reserve_fences(&fence->resv, 1);
-+	if (!ret) {
-+		dma_resv_add_fence(&fence->resv, dma, dma_resv_usage_rw(false));
-+		fence->timeout = max(timeout, fence->timeout);
-+	}
-+	dma_resv_unlock(&fence->resv);
-+
-+	return ret;
-+}
-+
-+static inline int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
-+				    struct dma_resv *resv,
-+				    bool write,
-+				    unsigned long timeout,
-+				    gfp_t gfp)
-+{
-+	struct dma_resv_iter cursor;
-+	struct dma_fence *f;
-+	int ret;
-+
-+	dma_resv_iter_begin(&cursor, resv, dma_resv_usage_rw(false));
-+	dma_resv_for_each_fence_unlocked(&cursor, f) {
-+		ret = i915_sw_fence_await_dma_fence(fence, f, timeout, gfp);
-+		if (ret < 0)
-+			break;
-+	}
-+	dma_resv_iter_end(&cursor);
-+
-+	return ret;
-+}
-+
-+static inline void i915_sw_fence_wait_completion(void *unused,
-+						 struct i915_sw_fence *fence)
-+{
-+	struct dma_resv_iter cursor;
-+	struct dma_fence *f;
-+
-+	dma_resv_wait_timeout(&fence->resv, dma_resv_usage_rw(false),
-+			      false, fence->timeout);
-+
-+	fence->fn(fence, FENCE_COMPLETE);
-+
-+	dma_resv_iter_begin(&cursor, &fence->resv, dma_resv_usage_rw(false));
-+	dma_resv_for_each_fence_unlocked(&cursor, f)
-+		dma_fence_put(f);
-+	dma_resv_iter_end(&cursor);
-+
-+	fence->fn(fence, FENCE_FREE);
-+}
-+
-+#endif /* _I915_SW_FENCE_H_ */
--- 
-2.34.1
+Tested-by: Boris Brezillon <boris.brezillon@collabora.com>
+
+> 
+>  MAINTAINERS                                   |   1 +
+>  .../drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c   |   2 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |  15 +-
+>  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  15 +-
+>  drivers/gpu/drm/etnaviv/etnaviv_sched.c       |   5 +-
+>  drivers/gpu/drm/lima/lima_sched.c             |   5 +-
+>  drivers/gpu/drm/msm/adreno/adreno_device.c    |   6 +-
+>  drivers/gpu/drm/msm/msm_ringbuffer.c          |   5 +-
+>  drivers/gpu/drm/nouveau/nouveau_sched.c       |   5 +-
+>  drivers/gpu/drm/panfrost/panfrost_job.c       |   5 +-
+>  drivers/gpu/drm/scheduler/sched_entity.c      |  85 ++-
+>  drivers/gpu/drm/scheduler/sched_fence.c       |   2 +-
+>  drivers/gpu/drm/scheduler/sched_main.c        | 491 ++++++++++++------
+>  drivers/gpu/drm/v3d/v3d_sched.c               |  25 +-
+>  include/drm/gpu_scheduler.h                   |  48 +-
+>  15 files changed, 495 insertions(+), 220 deletions(-)
+> 
 
