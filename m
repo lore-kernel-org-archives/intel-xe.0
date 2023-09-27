@@ -4,46 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B519E810D2
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 11:40:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4CAFE810D0
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 11:40:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4FA6F10E4E4;
-	Wed, 27 Sep 2023 11:40:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82D0510E4EA;
+	Wed, 27 Sep 2023 11:40:25 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D83B910E4E8
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 11:40:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FE9210E4E8
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 11:40:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695814818; x=1727350818;
+ t=1695814820; x=1727350820;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zjUIJXu5K4Yln1CcsvtvBpi1fTx2iP6stci/lcxYuXQ=;
- b=YW1rp8fAMm1RiH8HvofGI74mfMBhqYoViazhgP+UXMNFAoTNQH8NEcmW
- i2uWzYdAG0OGbHF7sjCWc80Xj/zRPeMsOU0ZCagerLbJ0UUJFd84SJN4J
- 43juIWKkrc0PnFQZ/POnj+3Pu/HNP2ZASKtdfmMrAYfnTGAXpBLiMnt+T
- sKp2kZQ63pW53OfFm9jEt3TZMzyn0gwXGoEjoLShlOWqLRT67d/DABcGi
- wI0PCr4nfkLUCF6VthDMIc5e879p5ycgG2wayMuVOSJOjJ6EyCE1nE5U0
- olxCMsXCWj7gy0Vwqbf/pDO/R5UM+peos52gOsVqCwEvVHrNXyUvkylpF g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="366863199"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="366863199"
+ bh=86+W75sSVvA2ZLdROlzrN6MP8OraLv8qQ5TEIe+3i5M=;
+ b=HifDPwpXYOhxJtFqR6rWnWJcn9P9GszWHzlZLUAt1yB2M4Nml5t2D/ur
+ kN3vwFCDW/byGZv8Dj2L8CcjmypfTSEIJcKpdirCPq/G7+BwCAJE8IOaJ
+ 09+QMOSmgHu9lIZvAuWJWWOMbiSRlafruszCcnTgF4SrcwLX7+l3UbM2L
+ aq6goJEJQRplOuG4gKDbL4lerjSSFUpcX25P4f489Nof10Enm2pxz7sjV
+ aRecT1fI8FoYUtYrhsXJKx/AnWKQN3sO2rOs3bvFd6C2rnIAcszZwS9lF
+ mrmSolPK89nkX3tOdUwFHZB4RxAGL/IA4rErcrVeKH235qx+ZVFZ4Gb9m w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="366863202"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="366863202"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 04:40:18 -0700
+ 27 Sep 2023 04:40:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="872855569"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="872855569"
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="872855580"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="872855580"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga004.jf.intel.com with ESMTP; 27 Sep 2023 04:40:15 -0700
+ by orsmga004.jf.intel.com with ESMTP; 27 Sep 2023 04:40:18 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Sep 2023 17:16:20 +0530
-Message-Id: <20230927114627.136925-5-himal.prasad.ghimiray@intel.com>
+Date: Wed, 27 Sep 2023 17:16:21 +0530
+Message-Id: <20230927114627.136925-6-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20230927114627.136925-1-himal.prasad.ghimiray@intel.com>
 References: <20230927114627.136925-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 04/11] drm/xe: Process fatal hardware errors.
+Subject: [Intel-xe] [PATCH 05/11] drm/xe: Support GSC hardware error
+ reporting for PVC.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,121 +56,184 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Fatal errors are reported as PCIe errors. When a PCIe error is asserted,
-the OS will perform a device warm reset which causes the driver to reload.
-The error registers are sticky and the values are maintained through a
-warm reset. We read these registers during the boot flow of the driver and
-increment the respective error counters.
+Add support to report GSC hw errors and counter update in case
+of correctable errors.
 
-Bspec: 53076
-
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_regs.h |  3 +++
- drivers/gpu/drm/xe/xe_hw_error.c  | 37 ++++++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_hw_error.h  |  3 ++-
- drivers/gpu/drm/xe/xe_irq.c       |  2 +-
- 4 files changed, 42 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_tile_error_regs.h |  8 ++
+ drivers/gpu/drm/xe/xe_hw_error.c             | 96 +++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_hw_error.h             | 16 ++++
+ 3 files changed, 117 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index 863df80d69bf..68bdb218bbe0 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -93,5 +93,8 @@
- #define   GT_DW_IRQ(x)				REG_BIT(x)
- #define   XE_ERROR_IRQ(x)			REG_BIT(26 + (x))
- 
-+#define DEV_PCIEERR_STATUS			XE_REG(0x100180)
-+#define   DEV_PCIEERR_IS_FATAL(x)		REG_BIT(x * 4 + 2)
+diff --git a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+index db78d6687213..fa16eaf9436b 100644
+--- a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+@@ -12,4 +12,12 @@
+ #define DEV_ERR_STAT_REG(x)                            XE_REG(_PICK_EVEN((x), \
+ 								_DEV_ERR_STAT_CORRECTABLE, \
+ 								_DEV_ERR_STAT_NONFATAL))
 +
- #define PVC_RP_STATE_CAP			XE_REG(0x281014)
++#define PVC_GSC_HECI1_BASE                             0x00284000
++#define PVC_GSC_HECI2_BASE                             0x00285000
++#define _GSC_HEC_CORR_ERR_STATUS                       0x128
++#define _GSC_HEC_UNCOR_ERR_STATUS                     0x118
++#define GSC_HEC_ERR_STAT_REG(base, x)                  XE_REG(_PICK_EVEN((x), \
++								(base) + _GSC_HEC_CORR_ERR_STATUS, \
++								(base) + _GSC_HEC_UNCOR_ERR_STATUS))
  #endif
 diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index deb020a509d2..9595e3369656 100644
+index 9595e3369656..eb76b8e6a338 100644
 --- a/drivers/gpu/drm/xe/xe_hw_error.c
 +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -183,7 +183,7 @@ static const struct err_msg_cntr_pair err_stat_gt_correctable_vectr_reg[] = {
+@@ -183,6 +183,28 @@ static const struct err_msg_cntr_pair err_stat_gt_correctable_vectr_reg[] = {
  	[2 ... 3]         = {"L3BANK",		XE_GT_HW_ERR_L3BANK_CORR},
  };
  
--void xe_assign_hw_err_regs(struct xe_device *xe)
-+static void xe_assign_hw_err_regs(struct xe_device *xe)
++static const struct err_msg_cntr_pair gsc_nonfatal_err_reg[] = {
++	[0]         = {"MinuteIA Unexpected Shutdown",		XE_GSC_HW_ERR_MIA_SHUTDOWN_UNCOR},
++	[1]         = {"MinuteIA Internal Error",		XE_GSC_HW_ERR_MIA_INTERNAL_UNCOR},
++	[2]         = {"Double bit error on SRAM",		XE_GSC_HW_ERR_SRAM_UNCOR},
++	[3]         = {"WDT 2nd Timeout",			XE_GSC_HW_ERR_WDG_UNCOR},
++	[4]         = {"ROM has a parity error",		XE_GSC_HW_ERR_ROM_PARITY_UNCOR},
++	[5]         = {"Ucode has a parity error",		XE_GSC_HW_ERR_UCODE_PARITY_UNCOR},
++	[6]         = {"Errors Reported to and Detected by FW",	XE_GSC_HW_ERR_FW_UNCOR},
++	[7]         = {"Glitch is detected on voltage rail",	XE_GSC_HW_ERR_VLT_GLITCH_UNCOR},
++	[8]         = {"Fuse Pull Error",			XE_GSC_HW_ERR_FUSE_PULL_UNCOR},
++	[9]         = {"Fuse CRC Check Failed on Fuse Pull",	XE_GSC_HW_ERR_FUSE_CRC_UNCOR},
++	[10]        = {"Self Mbist Failed",			XE_GSC_HW_ERR_SELF_MBIST_UNCOR},
++	[11]        = {"AON RF has parity error",		XE_GSC_HW_ERR_AON_RF_PARITY_UNCOR},
++	[12 ... 31] = {"Undefined",				XE_GSC_HW_ERR_UNKNOWN_UNCOR},
++};
++
++static const struct err_msg_cntr_pair gsc_correctable_err_reg[] = {
++	[0]        = {"Single bit error on SRAM",			XE_GSC_HW_ERR_SRAM_CORR},
++	[1]        = {"Errors Reported to FW and Detected by FW",	XE_GSC_HW_ERR_FW_CORR},
++	[2 ... 31] = {"Undefined",					XE_GSC_HW_ERR_UNKNOWN_CORR},
++};
++
+ static void xe_assign_hw_err_regs(struct xe_device *xe)
  {
  	const struct err_msg_cntr_pair **dev_err_stat = xe->hw_err_regs.dev_err_stat;
- 	const struct err_msg_cntr_pair **err_stat_gt = xe->hw_err_regs.err_stat_gt;
-@@ -417,3 +417,38 @@ xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl)
- 			xe_hw_error_source_handler(tile, hw_err);
- 	}
+@@ -344,6 +366,71 @@ xe_gt_hw_error_handler(struct xe_gt *gt, const enum hardware_error hw_err)
+ 		xe_gt_hw_error_status_reg_handler(gt, hw_err);
  }
-+
-+/**
-+ * process_hw_errors - checks for the occurrence of HW errors
-+ *
-+ * This checks for the HW Errors including FATAL errors that might
-+ * have occurred in the previous boot of the driver which will
-+ * initiate PCIe FLR reset of the device and cause the
-+ * driver to reload.
-+ */
-+void xe_process_hw_errors(struct xe_device *xe)
+ 
++static void
++xe_gsc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
 +{
-+	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
-+	struct xe_gt *root_mmio = root_tile->primary_gt;
++	const char *hw_err_str = hardware_error_type_to_str(hw_err);
++	const struct err_msg_cntr_pair *errstat;
++	struct xe_gt *mmio;
++	unsigned long errsrc;
++	const char *errmsg;
++	u32 indx;
++	u32 errbit;
++	u32 base;
 +
-+	u32 dev_pcieerr_status, master_ctl;
-+	struct xe_tile *tile;
-+	int i;
++	if ((tile_to_xe(tile)->info.platform != XE_PVC))
++		return;
 +
-+	xe_assign_hw_err_regs(xe);
++	/* GSC errors are valid only on root tile and for NONFATAL and
++	 * CORRECTABLE type.For non root tiles or FATAL type it should
++	 * be categorized as undefined GSC HARDWARE ERROR
++	 */
++	base = PVC_GSC_HECI1_BASE;
 +
-+	dev_pcieerr_status = xe_mmio_read32(root_mmio, DEV_PCIEERR_STATUS);
-+
-+	for_each_tile(tile, xe, i) {
-+		struct xe_gt *mmio = tile->primary_gt;
-+
-+		if (dev_pcieerr_status & DEV_PCIEERR_IS_FATAL(i))
-+			xe_hw_error_source_handler(tile, HARDWARE_ERROR_FATAL);
-+
-+		master_ctl = xe_mmio_read32(mmio, GFX_MSTR_IRQ);
-+		xe_hw_error_irq_handler(tile, master_ctl);
-+		xe_mmio_write32(mmio, GFX_MSTR_IRQ, master_ctl);
++	if (tile->id || hw_err == HARDWARE_ERROR_FATAL) {
++		drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR
++				    "Undefined GSC %s error on tile%d\n", hw_err_str, tile->id);
++		return;
 +	}
-+	if (dev_pcieerr_status)
-+		xe_mmio_write32(root_mmio, DEV_PCIEERR_STATUS, dev_pcieerr_status);
++
++	lockdep_assert_held(&tile_to_xe(tile)->irq.lock);
++	if (hw_err == HARDWARE_ERROR_CORRECTABLE)
++		errstat = gsc_correctable_err_reg;
++	else
++		errstat = gsc_nonfatal_err_reg;
++
++	mmio = tile->primary_gt;
++	errsrc = xe_mmio_read32(mmio, GSC_HEC_ERR_STAT_REG(base, hw_err));
++	if (!errsrc) {
++		drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR
++				    "GSC detected GSC_HEC_ERR_STAT_REG_%s blank!\n",  hw_err_str);
++		goto clear_reg;
++	}
++
++	drm_info(&tile_to_xe(tile)->drm, HW_ERR
++		 "GSC_HEC_ERR_STAT_REG_%s=0x%08lx\n", hw_err_str, errsrc);
++
++	for_each_set_bit(errbit, &errsrc, 32) {
++		errmsg = errstat[errbit].errmsg;
++		indx = errstat[errbit].cntr_indx;
++
++		if (hw_err == HARDWARE_ERROR_CORRECTABLE) {
++			drm_warn(&tile_to_xe(tile)->drm,
++				 HW_ERR "GSC detected %s %s error, bit[%d] is set\n",
++				 errmsg, hw_err_str, errbit);
++
++		} else {
++			drm_err_ratelimited(&tile_to_xe(tile)->drm,
++					    HW_ERR "GSC detected %s %s error, bit[%d] is set\n",
++					    errmsg, hw_err_str, errbit);
++		}
++		tile->errors.count[indx]++;
++	}
++
++clear_reg:
++	xe_mmio_write32(mmio, GSC_HEC_ERR_STAT_REG(base, hw_err), errsrc);
 +}
++
+ static void
+ xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+ {
+@@ -385,10 +472,13 @@ xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_er
+ 					    HW_ERR "TILE%d detected %s %s error, bit[%d] is set\n",
+ 					    tile->id, errmsg, hw_err_str, errbit);
+ 		tile->errors.count[indx]++;
+-	}
+ 
+-	if (errsrc & REG_BIT(0))
+-		xe_gt_hw_error_handler(tile->primary_gt, hw_err);
++		if (errbit == 0)
++			xe_gt_hw_error_handler(tile->primary_gt, hw_err);
++
++		if (errbit == 8)
++			xe_gsc_hw_error_handler(tile, hw_err);
++	}
+ 
+ 	xe_mmio_write32(mmio, DEV_ERR_STAT_REG(hw_err), errsrc);
+ unlock:
 diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-index 3fcbbcc338fe..2812407dd4bf 100644
+index 2812407dd4bf..155722a0af4c 100644
 --- a/drivers/gpu/drm/xe/xe_hw_error.h
 +++ b/drivers/gpu/drm/xe/xe_hw_error.h
-@@ -104,5 +104,6 @@ struct xe_device;
- struct xe_tile;
- 
- void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
--void xe_assign_hw_err_regs(struct xe_device *xe);
-+void xe_process_hw_errors(struct xe_device *xe);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 68f5f7b6a74e..06c9b43e2c71 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -592,7 +592,7 @@ int xe_irq_install(struct xe_device *xe)
- 		return -EINVAL;
- 	}
- 
--	xe_assign_hw_err_regs(xe);
-+	xe_process_hw_errors(xe);
- 
- 	xe->irq.enabled = true;
+@@ -48,6 +48,22 @@ enum xe_tile_hw_errors {
+ 	XE_TILE_HW_ERR_GSC_CORR,
+ 	XE_TILE_HW_ERR_SOC_CORR,
+ 	XE_TILE_HW_ERR_UNKNOWN_CORR,
++	XE_GSC_HW_ERR_SRAM_CORR,
++	XE_GSC_HW_ERR_FW_CORR,
++	XE_GSC_HW_ERR_UNKNOWN_CORR,
++	XE_GSC_HW_ERR_MIA_SHUTDOWN_UNCOR,
++	XE_GSC_HW_ERR_MIA_INTERNAL_UNCOR,
++	XE_GSC_HW_ERR_SRAM_UNCOR,
++	XE_GSC_HW_ERR_WDG_UNCOR,
++	XE_GSC_HW_ERR_ROM_PARITY_UNCOR,
++	XE_GSC_HW_ERR_UCODE_PARITY_UNCOR,
++	XE_GSC_HW_ERR_FW_UNCOR,
++	XE_GSC_HW_ERR_VLT_GLITCH_UNCOR,
++	XE_GSC_HW_ERR_FUSE_PULL_UNCOR,
++	XE_GSC_HW_ERR_FUSE_CRC_UNCOR,
++	XE_GSC_HW_ERR_SELF_MBIST_UNCOR,
++	XE_GSC_HW_ERR_AON_RF_PARITY_UNCOR,
++	XE_GSC_HW_ERR_UNKNOWN_UNCOR,
+ 	XE_TILE_HW_ERROR_MAX,
+ };
  
 -- 
 2.25.1
