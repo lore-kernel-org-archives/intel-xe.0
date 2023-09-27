@@ -4,126 +4,155 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AB173E810DD
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 12:13:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 474C1E810DA
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 12:16:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 700EA10E4F6;
-	Wed, 27 Sep 2023 12:13:14 +0000 (UTC)
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2057.outbound.protection.outlook.com [40.107.237.57])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E190610E4F5;
- Wed, 27 Sep 2023 12:13:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D966810E4F8;
+	Wed, 27 Sep 2023 12:16:37 +0000 (UTC)
+X-Greylist: delayed 425 seconds by postgrey-1.36 at gabe;
+ Wed, 27 Sep 2023 12:16:35 UTC
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BC7810E4FC
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 12:16:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1695816995; x=1727352995;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=WSllx6/7YvdOwi1eAvX5hkwQ4aCY3UXmZmhdSwU0wY4=;
+ b=JwyvJGX7sqfAK/xHHkAa4x+WynxKy+p3aMk+No0MADPd40SxUY/SAd71
+ 8qIC9KuccqhpPx6DVCqNCHkOeuV5umoWrcYoZsofLjJKGyLfeAcq1nxSI
+ RBHmSumnA5EJFFBtq7Xic/1d7lHGThCFlhrXL4Hr/OO+qHlZgr8sXXVkd
+ QwGpXHC10RHTqRFX3Q1t2QjQwoT/pQnnsEjLtyJQWAXbidey+siXd8Sl4
+ LUI1iYcnO4NleX01pCT8n/UjUqI0OLJG3lh9LbgCtWx3/7OZzCJDUKHg+
+ rL5hNfWYUqigmIzzqWOnatRYkHxIGNHrHCR2NmtAHrfa55A6zj2wHo5CO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="404372"
+X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; 
+   d="scan'208";a="404372"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Sep 2023 05:09:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="725780661"
+X-IronPort-AV: E=Sophos;i="6.03,181,1694761200"; d="scan'208";a="725780661"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga006.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Sep 2023 05:09:30 -0700
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 27 Sep 2023 05:09:29 -0700
+Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
+ ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 27 Sep 2023 05:09:27 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Wed, 27 Sep 2023 05:09:26 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.103)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Wed, 27 Sep 2023 05:09:26 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=J4DO0Axp7VP9CbxxqWE2Q/2YVhvebTOnbA3mAHPNuj14RJWjY9jeW5vafHdpstugNF1FUtpxpA9c97zma85PGoEz9+jre2EWCL+RwmM9hBusf7mJVthWN2TdgVlXKdNCvi0cIGI+AziqoJfnZo+P9gqrQN0HEg9YeUt2f2NgVqtlo96rZMWk/JBgOjCwHwqkX2QOmuBwKtdFH3ifYZ9HolceRkQ15IAlC75swqc3F5DVKYJVjZosl3Dh49en2Dik+6fTly4PqZjUqQ+TtXlqHq3UHf7847/VbLx1uXm719Cu1jQIxfqb5hyyeC+9gn2c+vfZKoQAwHNCozI1MbMyIw==
+ b=mbnVu2L6vzTOq99rOV20tt/VmZdKN7kON16C8FxTCLS9KVQg+Vlf26o5buofWasoonOY1Vz3AbtvQAs5HEJGmfx4Vs6gSeVG/f4PsizkmgGPRkEmz3gFQd0u8YaA0I4HofgJ1pq7cHCibzlbkTfnptITFaxlM0vz6zoWIhYaRJNgCUArhW6bIis523o7IVgUUM6tFN+yHzosghuxDUpWzHSx+Q20eSslb+KURABJpZU+U2iFqbJEXSEdjYi0c2tiRjiu1PQ6mEmMyKNlgo2GmcheLL0Cktd4eGDneMU26HEXvUoXFD+1e+JovuUaQbPfeJsn4OJ0Vv1eaGSafzrDtw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0x7GIIqJ4bblbRV6grS4ECshrfOKx2anxmnAfsukd6A=;
- b=KPDC96wonw7/duz6UgLRTTFaPMOfR+9MLWmP05oGkk7izVbB2LmHeg/kRcY95kDD9VGL9MuRFRaHwV4PIg6my11wiNCZ6GIGRUX9Ata5B1Cksp8ZUpP5oPsoRCNHYhILMEYSKyGNxzT5eCLqslhZMPnb4iqT2cyTWbe2ULKicD2X2o/Ezx/aRheHyOSLAfuJ4uxBActVikgekzbHIHCWaZCVYzNj91xXhNKPVTAeWRUcOT2Q9MUWZ4Lc1XT+gp0ljOeHG1GFUTLaMRiDy/NjjUkdbtB/bUNPdK3w9rm1A/P6+cOvHSapNr/OfNNrpk2wRRCGhkT0s5W6/HQK0JVtJQ==
+ bh=Qire4JSUsEIGYhKbGaHgwBxEY+dtrzBYwBQa9cTIj3Y=;
+ b=UF3U8xrzaefoQM687XCeJPWIDt21+zhDw/n2RLVqXaxcv80SPhmvp000PZCzBax9z9h8951cp8aSfYsSLT05x5OCmgMxiQe6qWqnzQyLNbjUF6QhKoIa3PKLekVbPSh5sjPMG0cikzxR3Ms4R+7HrJYM8YiWWmCq2HViCnvIUX3IR7qg9OR7mgsSiYx0/1S6/wZOW2SnLHNIM0LmY56zFOgs6apa/PuTbaTFfwaQSCZ6cI8mbWHBBikTM+hVeNtRTxFXU+qpbUbZ8dYIbRQsSdZYTZ31FZT/gkbjw/YEe9e+wXCy0YSk2eztUduT3fXeipDiMCh1fRybc0dvxGkxxw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0x7GIIqJ4bblbRV6grS4ECshrfOKx2anxmnAfsukd6A=;
- b=psEtrKaQ7vOwJebRkfL2rcKRmWKZhWOQ0ZJme5lGtvQguOJu1ZtmNKyX60YqlgV3q0VGqfBuzkFDyY1ZvzaeJ5CuNOofXVd6XWKZUeCaWpvVK+FY0o2hp/ZUw2TiGU13hezhaHkNym19/TTVARqJCkNhZORFSPlOjiVX2vHf6C8=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com (2603:10b6:5:38::25) by
- PH7PR12MB8778.namprd12.prod.outlook.com (2603:10b6:510:26b::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Wed, 27 Sep
- 2023 12:13:08 +0000
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::8a67:3bbe:8309:4f87]) by DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::8a67:3bbe:8309:4f87%3]) with mapi id 15.20.6768.029; Wed, 27 Sep 2023
- 12:13:08 +0000
-Message-ID: <339ff945-926a-4ec4-94f6-0a2e1ecc8a9e@amd.com>
-Date: Wed, 27 Sep 2023 08:13:04 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
- Thunderbird/115.3.0
-Content-Language: en-CA, en-US
-To: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-References: <20230919050155.2647172-1-matthew.brost@intel.com>
- <20230919050155.2647172-4-matthew.brost@intel.com>
-From: Luben Tuikov <luben.tuikov@amd.com>
-Autocrypt: addr=luben.tuikov@amd.com; keydata=
- xjMEY1i6jxYJKwYBBAHaRw8BAQdAhfD+Cc+P5t/fiF08Vw25EMLiwUuxULYRiDQAP6H50MTN
- I0x1YmVuIFR1aWtvdiA8bHViZW4udHVpa292QGFtZC5jb20+wpkEExYKAEEWIQQyyR05VSHw
- x45E/SoppxulNG8HhgUCY1i6jwIbAwUJCWYBgAULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIX
- gAAKCRAppxulNG8Hhk53AP4k4UY5xfcje0c5OF1k22pNv8tErxtVpgKKZgvfetA4xwD+OoAh
- vesLIYumBDxP0BoLiLN84udxdT15HwPFUGiDmwDOOARjWLqPEgorBgEEAZdVAQUBAQdAzSxY
- a2EtvvIwd09NckBLSTarSLNDkUthmqPnwolwiDYDAQgHwn4EGBYKACYWIQQyyR05VSHwx45E
- /SoppxulNG8HhgUCY1i6jwIbDAUJCWYBgAAKCRAppxulNG8HhnBLAP4yjSGpK6PE1mapKhrq
- 8bSl9reo+F6EqdhE8X2TTHPycAEAt8EkTEstSiaOpM66gneU7r+xxzOYULo1b1XjXayGvwM=
-In-Reply-To: <20230919050155.2647172-4-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR0101CA0271.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:68::32) To DM6PR12MB3370.namprd12.prod.outlook.com
- (2603:10b6:5:38::25)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM8PR11MB5653.namprd11.prod.outlook.com (2603:10b6:8:25::8) by
+ DS0PR11MB7903.namprd11.prod.outlook.com (2603:10b6:8:f7::10) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6813.21; Wed, 27 Sep 2023 12:09:24 +0000
+Received: from DM8PR11MB5653.namprd11.prod.outlook.com
+ ([fe80::c5ac:9134:7e53:b45c]) by DM8PR11MB5653.namprd11.prod.outlook.com
+ ([fe80::c5ac:9134:7e53:b45c%7]) with mapi id 15.20.6813.027; Wed, 27 Sep 2023
+ 12:09:24 +0000
+Message-ID: <dcfa5577-ed43-651f-8ead-733cd7833a3b@intel.com>
+Date: Wed, 27 Sep 2023 17:39:12 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Riana Tauro <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20230926143916.333958-1-sujaritha.sundaresan@intel.com>
+ <20230926143916.333958-2-sujaritha.sundaresan@intel.com>
+ <2384762f-7d2a-03d5-56ff-e11100f392f9@intel.com>
+From: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
+In-Reply-To: <2384762f-7d2a-03d5-56ff-e11100f392f9@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN3PR01CA0134.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:bf::22) To DM8PR11MB5653.namprd11.prod.outlook.com
+ (2603:10b6:8:25::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3370:EE_|PH7PR12MB8778:EE_
-X-MS-Office365-Filtering-Correlation-Id: d4623ffd-355c-4386-d903-08dbbf531bc9
+X-MS-TrafficTypeDiagnostic: DM8PR11MB5653:EE_|DS0PR11MB7903:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1508d732-4455-4f3f-1863-08dbbf5296ca
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HBifzV1rO3Xc++zi5BfdlNOB8JGXIvBXjTKE4V9XZovEqY6AyVjOSNRVrHOenkcZIXWax5PdzrWqmbAfVVoOYtj5KFoBgY9mmdz2uBKTfvA+ZBssrAmatxxmMEG4L6/G5zk9/p9RlDRnUWW2p/QqsObXoRi6LYO2dNab4DL4DmUPQT3b03ZO3+izvafJI7hLWpu6UdGzEva+7Tc40sK+N6o4HV7cVWc0icNRbhQNPqRMYG1f6tHeFQSBKSExHQNgTGt3c9whLFR3KfXwy1PLIV67iLj+/CWBIYay4mKfctYPsDO9yVWHhSznge9hwJwuyytQKYopYXG3XwxOId2MeVYZRmxh8pdiN05dGLha/ifaOV6PMrkApJNVar4rz/9jL3LQ8POkA4C1rMtVbShGS4kAJo4RxjUhG2Ac9lL2NAWN+XjOs/69HHezK5GDsOyNB87BfkucO9BX8w/coJqTfsGFCigUXqTx9bqeeDHXbd7OfanNBcztZjB1seKLIH5S+1rv9hkHhmd+TBjWLqhsTTg0i0dOmQ6FC7K2SwTe3dlHkAGEZxEK0wWsY3CRaOhqBRKbKKAI3vFsQ3kY/BGY4kK823ffrZcy9zxYNroNQJYTeMwprnR21vwalCTjNqfWym+4bWhASsR9vGscInpTdQ==
+X-Microsoft-Antispam-Message-Info: UJumtKHMfR97r34mMR/1NL3czL00oSi0V4tPGNkYgWW1vCDcHzYv+UN37p0h4cDS82OiF4YIffRO95lvdUFiSDy12jtfxOSU6ZjvIH6vCrNpFSMmpB/afeTyZdXb7srcxkxk/0qJV+ApqGz04wFVPU2AOXMYGf/FIbilveBSB7oZwWIuSSj10rxocteuBAp0NxxFnwyPvpg5gLOTJjwNiROwQXSz/36E8tG0uMbTOyKT0QZkyGFT+udkiqCv3I2wmXHbx/4Oq2vRS7OsFLkovBJ3UvB27khDGzSGsTc+sPcFrOUQPS9Xl7vYxOkIPJrzTvLiVfSRUZXQ9JlBEyI2qud/KlkK/VF53ccc9GD+E+cXu7MPrHH6sTqAhcE60kX2uu486Cjnv82nlJ3yeCxYpVkPeADQV/svb4mqCSgBYN6v3soxJdLssDHcJANWA5wUYl+ljFgXb5KQxRrZ6bi2+sGSvV4tc1ThIrsj+01bd/qXSmmIDQO4RnEKm8dntDiK/cA05Gx9LqtL0rgbpBJrObxILfmI3Ka8WvslQCwUwH81/7nXWtoD2uik13WADFC9S4LTQhLb4NjKyHUOIO/IX/5ql3eP2P7MRhLiCGlTjzCLNtMR9k5DQoq4swmp1nTvTzJjlK6dOj9rEcb4sCD301atCdVUE+2xGxP5iflCHZQ=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3370.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(376002)(396003)(136003)(366004)(39860400002)(230922051799003)(186009)(451199024)(1800799009)(8676002)(4326008)(5660300002)(66946007)(8936002)(26005)(83380400001)(31686004)(44832011)(2616005)(6506007)(6486002)(38100700002)(6512007)(478600001)(66476007)(7416002)(66556008)(53546011)(316002)(30864003)(31696002)(41300700001)(86362001)(2906002)(6666004)(36756003)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5653.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(39860400002)(366004)(396003)(376002)(346002)(230922051799003)(186009)(1800799009)(451199024)(30864003)(38100700002)(6486002)(2906002)(5660300002)(8676002)(8936002)(66476007)(66556008)(66946007)(316002)(2616005)(41300700001)(6666004)(83380400001)(36756003)(26005)(53546011)(478600001)(31696002)(82960400001)(6506007)(31686004)(6512007)(86362001)(43740500002)(45980500001)(309714004);
+ DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SmI0My9adVd5Ri9RaDl0ZDlzWW9XakwzYkFFMHZ5RFhTdGNycm9EQ3NrR2Fw?=
- =?utf-8?B?ZHo1TkVJbTI0MjlOUWQraUhzalpjUXY2K3orL1BsK3FZSDdDek9GYlZLQzgr?=
- =?utf-8?B?Y25wb01kYk1kanhvbG9KVGhxa2pkSnRWZmMrMFFlOTRqMVY0WVFTeWY0UHZL?=
- =?utf-8?B?c21Uek5LQzFheEFCMFBPN21pSTZXWS9USlQxU3htWkJTdGorTVhZamQ4VVRs?=
- =?utf-8?B?TEdtT0lUMXNKb2dmN3J0M1BwR0wzTTRXQzIxdUo4ckRKS01FSTI0T1RyMXRM?=
- =?utf-8?B?aTVHdFNKQ3orMjRNU3lGUEI3NGxoMDQ4ZXhkMDJqMzBvVXV5RnlKbE0xbk1h?=
- =?utf-8?B?Z3RxTG16eHhwaGRYRmF5cWdPb29RNm5ockJCSG9SSG05MXpVTW1YWGpGRHZT?=
- =?utf-8?B?cXdkRkZHZG9ZS1BkVXNIM1FBeGRwMjB1b2hHbDJwUDhNcnNOOWdTRE5EMjJR?=
- =?utf-8?B?bjd2c1l1MmkrbWN3T3BEZEJwcUlPV2hpWDBWcmpab3BZVzdETUZzRllUMDdI?=
- =?utf-8?B?eGVuZ2JEclp1NVk4dlljcXZBcU9kN2dtR0poNlF0N2NjR2dJZ0pTZS9BNkJO?=
- =?utf-8?B?ZFY4bW10QUdEMGlhVHhmOG9KMEw3bnp3eVdJd0tlZE94dXJYOC9IYWJWc1J1?=
- =?utf-8?B?WmFvZkg1RWVTaElsVjJXaHkyZnlhMHc4cUkxNWRpUlBDRDNBc0pWNmphR3ht?=
- =?utf-8?B?ZExBRVNGV2VJMTdDa2JKZTJrekFsYTVqVXhpVTE0OE1heUxDcDhCZjBFMlFN?=
- =?utf-8?B?QklLNi9WVmpDRGdpVzZEWmpTZW5iaUp1d085Y3YvS0FMTitGNWh0YmdaZTd5?=
- =?utf-8?B?NFNLYmN5OFpPZ2VMOEVHN0lqY1RnenJaYWNIdkI0UXJON0FHQ1pMMlFSRW5Z?=
- =?utf-8?B?YnU4Wmc2dDhmVEpjMjZLTGpRc2JnWFl4SW4rREM2eXR0T0hWZXY0enUveVlO?=
- =?utf-8?B?V0VVRm8xanB4akFaSVhORDIvalZXNTlHZnhrRy9ka1ZxaDVjVWtTaUlrNjM2?=
- =?utf-8?B?cm53aDZUV0x1VjN4b01NQUFJQWlTdVJUcXlWeWhIWkh5aUc4QlVRbmxLQUx5?=
- =?utf-8?B?eFJzcEpMb1l4aXRpazNITHZqYTc4OExNKzFwalhZTGVPclNzMlQyN05zN1JQ?=
- =?utf-8?B?UnJOc3MzRkdCcTEvTzZrVElUMmd0Ujl2UFJXRGNjSERJbU5BdjNIYlZveGlS?=
- =?utf-8?B?Nk9QSzBRcGJWaS9RM0FZR09ObDBHaXQzZTFqczVYL1FyRVkzWHZ2QkYvQk9V?=
- =?utf-8?B?NGIvVk1ZSnM0elBmemEvRzJMbndqVFpDbndxUnFadE4yN0JqV3lPc2trVEpq?=
- =?utf-8?B?OG9wUS9UdnJpbnFYSEFPRUJReWNreWJiZGdPbVFGcWVJeUxRVzR4WUJGMUlL?=
- =?utf-8?B?RU1kSUxpeXNXRDdoOG5JeXYwV1pQSlhDdk9BNDV0YU9aSnRnNFA1TVBTb0lN?=
- =?utf-8?B?QW10WW5kelJ4b0lTdSsvbFdGSnV5WlNxeHlpMVZabWdBT21ZMVAxazRieGRF?=
- =?utf-8?B?QWhPVFI3TkZ3dklSUjc0bEI2SDY3TU5yTGxRbnpKYU1lL21hMDBxMmhlUnBZ?=
- =?utf-8?B?VldrRmJ1clI0S3NyRFdzVjJ5NVJSZndCWkUwQUdScW1FRFJkcktyQjhTWWFk?=
- =?utf-8?B?eXBrQjd0ZzJvQWNOQXp3bENyYzg1TG5iRWI2TnhaL0lZbVhaelJMelppVmhN?=
- =?utf-8?B?MzNMUW9IMXhNczZnRUVzSlZTYzFpc2l5VDk2cHZCNVpkM0N4d2JiUjFLK1VZ?=
- =?utf-8?B?SHlFbEZBVWl2TjZDelV4QlhNTUFKWW04OTQ5YzBxWENVeXJLbnZTRlpZRFlD?=
- =?utf-8?B?dkhsbFpmc29JSlhiYzUyaWhRYzhwKzFOL0ZNaW9jdGRmYXpXcXI2MVM1RVRZ?=
- =?utf-8?B?K3I2MURxRFZKMkxvRW9ydVl1VCtrTy9McWgvVUVkemM4R1g2VVVNTURZV1Zt?=
- =?utf-8?B?WjNVQVNBOW5RUUpxbmlGNUNYakNFWFdJWEp2RzhBNHloWW9PcGtCRFZVNTJY?=
- =?utf-8?B?aEUwRFBwQ01BZlZFWjJCVXVmRnVKWldJaWN2NjdvZ3cyVmJyblVkTmY0eGFy?=
- =?utf-8?B?RWx2ZlZ3dzlSdFhBMTcxbXF2b3ZldHFUMC92N3I5SENIUllyVVREa1hCTnRQ?=
- =?utf-8?Q?hfZgemfjHnajd57GASfaO6aEK?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d4623ffd-355c-4386-d903-08dbbf531bc9
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3370.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OGN5eXdhczVTbnF0OFErRGEyUnhVVThTaGQ2ekFlOXllc05xZWU2cGhscmRY?=
+ =?utf-8?B?V2NHK1o2Q2YxRkFRRWNtRkJLbytJclNadDJTVU1MNjZqL2FwdExPYXA2Z1Y4?=
+ =?utf-8?B?NnBxU2xqRlRFYWh6R1A3YU55TllIbEQ1MUNPNGlpTktJVDlucVFVVlhFZC9n?=
+ =?utf-8?B?RVlibFNOUStzNmhOSmx4YS93eWNIcmNaYmtFWHFMMWc3M1dVMUE4QW9vNWts?=
+ =?utf-8?B?a09tNC9sdHM1ejFXZkE0dTJ2b1pyNzkvdzQ4MG5ybTFNRnExMWpEYis0aEdv?=
+ =?utf-8?B?T1cvbnZpNlNpSVQraWFZbG9nR3F1RnlXRm9waUJYVmx0THlDL0ZlbGJPRG5H?=
+ =?utf-8?B?Ulc5c3gvdTQ5WjVqYjVsSE0yTGd0UjZyRHR6T1Zib2hxblBhMWlHTkI2S0hE?=
+ =?utf-8?B?MVk0ZjBRczVjTEtYa0JkdFh0TGZ5eFdSYkpJelRRWVNlRnBIclh5VXp1VU9R?=
+ =?utf-8?B?cmxCQzh0WGtLWGhCYXdlUi9paUlkQUtSTk9wU0c1TXg3YkUwMFErVGM3Z1lO?=
+ =?utf-8?B?OFRGU0VVUjdza2t6WC91SlJYYWZZTFp3Vnc0ditobnIrOEJrYjliaXd4WTJ3?=
+ =?utf-8?B?R29yTEgwQnpxQTZzV21CK1NYTTRLYUltVzVVQXhsQUhHTFRwNjl3cWpSWjI2?=
+ =?utf-8?B?N1J5VWxvZ2VtY0RBODdtRkQ3WWVrZ05qZXRNZXNQZlR6bnhtVzVSWUxLVXVR?=
+ =?utf-8?B?blRHMmdYQ2tVRUJXbWxWM3FKZi9nZHM5T2tBVmdBT3NyamJ3ZGkwQW9reWRw?=
+ =?utf-8?B?MWNkdzRDQnBlL3BWanZ2Y0NqR3JNdStJK1cyUUFQTG16N2RvRFZXSHlIRzM0?=
+ =?utf-8?B?OUdScUNwQUdZQ3UvbmFtNmZwYVFWWnFUL3ZjVEk2ajJmdGZEVnZkSDJVeURt?=
+ =?utf-8?B?L3RGYys1T2JRVHozRGlWUzBxTXJmRzE4YWJITy9BVmo1S3lpWk95MVNwOVNo?=
+ =?utf-8?B?eUQ1NEF0Ly83SFRTS1NTUTRBNldoaXBMUmFVejBMZjBJSWRzZnRPNGs2SHh2?=
+ =?utf-8?B?TTNNeWJ2eFRZNm4wWGVqYjRyODl1Q01GODJISmgxTXVad0kvU2NHRWxXWUo2?=
+ =?utf-8?B?U3VISnJJdzdjSGRBbkIreW1OY2dWL2w5K21lSXo0TE4wbkNUMVZIV0txYVZM?=
+ =?utf-8?B?Vmdsb0VLMmpCdXlVQlQzWEdjTUtURDRMWlBEUTdkSzBaSTZiTlhxaXlmclUx?=
+ =?utf-8?B?ZFBwTWJhSVV1dndHWTNYblp0aEI3NHVQcVN6V2k5dFFxRGpnNWN3UlZORFND?=
+ =?utf-8?B?M0tkZFhUbzBsakkvc2JHS1JNRkl4SE9DRFlORlkzanovQXBiS1JYT2c5M0Ro?=
+ =?utf-8?B?b0RDYk5EUVdnUzRKRVFweEx5S3hVNUNEK1lPclU5SDNjRWJ3Mkd0TFJMOSsy?=
+ =?utf-8?B?a1N4TmRMclBRcUdMUjYxUTRoOVpqQXZkbi9LeHVSOFUvVDRreTJuemhGSUhz?=
+ =?utf-8?B?am1wa2tNKzh5dXRMQ3NobFd1MUk1YnBhMkxRclNSZHQ3Wkllbi93OFkzL0RE?=
+ =?utf-8?B?UDRDN0xCWm5jWlRRYlQ5N3dPd1hlaUdKR0g1djYwa05OTFhhSkh1VzJzWDNG?=
+ =?utf-8?B?VURjQS9mK0N4S2Q2UjJIL2ZaOU9TWTFrRHBzVm0vUzE0SEVyWU9wbkEyeStG?=
+ =?utf-8?B?c1o3ZDRyL0xYZ3hVNi8wVE1sMHdTL3RHZEVwZGpydEpZZHRPZTJFS1pQRjhm?=
+ =?utf-8?B?L3FWWTA0cW9waGNZTmEveUVoOHdhSStGSUVNdmlxN1ZtQjlDRld5Z3p3THE0?=
+ =?utf-8?B?KytaQnhCL0pJRnR2dzhTZWZnVE1KVm8remNiTHkxKzRLMVpUeUtnNUYwTWo5?=
+ =?utf-8?B?c3Jmd3VDZW93VUgyaSs3NEVwNDVLenpyNDFCUWpRUk9DZElvZm9zZ1dGVUNJ?=
+ =?utf-8?B?dFRCYkFtdmg0RVNLTUplV1Z5Z1BYMlJXSEZJZTlFR25iT3FCUDRkOEhTaHgr?=
+ =?utf-8?B?ZlNwYUl4b0NVbGFudlByc2l5SkdqMldoVzhHcWR3MEp4ZnI0MzdJUXMvNTc2?=
+ =?utf-8?B?S25WMTRrMW56YWI4dnlyQWVKZFRub0IwcFBTc1cxMjQxa1FaVzhaYjg0Nlph?=
+ =?utf-8?B?anVucWh2aEk5cXhqSEs0dFpZV3c1K0VCaE4wWVBaMHF5RFNyT0pDajBacmtS?=
+ =?utf-8?B?dFNkTE1jMVRIZkxJNU9oYjdlb09qQWNtZ0VKMUZlaXFMRW9NNzJRcTVwWjY3?=
+ =?utf-8?Q?g/ehk1IO2DHFRJOpaZSR32w=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1508d732-4455-4f3f-1863-08dbbf5296ca
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5653.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 12:13:07.9616 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Sep 2023 12:09:24.5032 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uQY3AkACg8rruhoQkvrcMUXDE3imhqrJGliw2HfqGZhA3GWAYRXbzJHKgKMY/35y
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8778
-Subject: Re: [Intel-xe] [PATCH v4 03/10] drm/sched: Move schedule policy to
- scheduler
+X-MS-Exchange-CrossTenant-UserPrincipalName: G1Bg3SE7Pu7LT19Q5ZC4Pe5CfC9Etji2P0N9iCA0VnDM4K2lYG4Isq7qJbFqgoX5uj4Z0RYV8JvV94/bkzyZ+cCIBQv74UyDT0cERopiNHc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7903
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v3 1/1] drm/xe: Add throttle reasons sysfs
+ attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,378 +164,410 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- Liviu.Dudau@arm.com, mcanal@igalia.com, frank.binns@imgtec.com,
- boris.brezillon@collabora.com, dakr@redhat.com, donald.robson@imgtec.com,
- daniel@ffwll.ch, lina@asahilina.net, airlied@gmail.com,
- christian.koenig@amd.com, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
 
-On 2023-09-19 01:01, Matthew Brost wrote:
-> Rather than a global modparam for scheduling policy, move the scheduling
-> policy to scheduler so user can control each scheduler policy.
-> 
-> v2:
->   - s/DRM_SCHED_POLICY_MAX/DRM_SCHED_POLICY_COUNT (Luben)
->   - Only include policy in scheduler (Luben)
-> v3:
->   - use a ternary operator as opposed to an if-control (Luben)
->   - s/DRM_SCHED_POLICY_DEFAULT/DRM_SCHED_POLICY_UNSET/ (Luben)
->   - s/default_drm_sched_policy/drm_sched_policy_default/ (Luben)
->   - Update commit message (Boris)
->   - Fix v3d build (CI)
->   - s/bad_policies/drm_sched_policy_mismatch/ (Luben)
->   - Don't update modparam doc (Luben)
-> 
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  1 +
->  drivers/gpu/drm/etnaviv/etnaviv_sched.c    |  3 ++-
->  drivers/gpu/drm/lima/lima_sched.c          |  3 ++-
->  drivers/gpu/drm/msm/msm_ringbuffer.c       |  3 ++-
->  drivers/gpu/drm/nouveau/nouveau_sched.c    |  3 ++-
->  drivers/gpu/drm/panfrost/panfrost_job.c    |  3 ++-
->  drivers/gpu/drm/scheduler/sched_entity.c   | 24 ++++++++++++++++++----
->  drivers/gpu/drm/scheduler/sched_main.c     | 19 ++++++++++++-----
->  drivers/gpu/drm/v3d/v3d_sched.c            | 15 +++++++++-----
->  include/drm/gpu_scheduler.h                | 20 ++++++++++++------
->  10 files changed, 69 insertions(+), 25 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> index 16f3cfe1574a..d937e0c71486 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-> @@ -2283,6 +2283,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
->  				   ring->num_hw_submission, 0,
->  				   timeout, adev->reset_domain->wq,
->  				   ring->sched_score, ring->name,
-> +				   DRM_SCHED_POLICY_UNSET,
->  				   adev->dev);
->  		if (r) {
->  			DRM_ERROR("Failed to create scheduler on ring %s.\n",
-> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> index 618a804ddc34..15b0e2f1abe5 100644
-> --- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> +++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
-> @@ -137,7 +137,8 @@ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
->  	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops, NULL,
->  			     etnaviv_hw_jobs_limit, etnaviv_job_hang_limit,
->  			     msecs_to_jiffies(500), NULL, NULL,
-> -			     dev_name(gpu->dev), gpu->dev);
-> +			     dev_name(gpu->dev), DRM_SCHED_POLICY_UNSET,
-> +			     gpu->dev);
->  	if (ret)
->  		return ret;
->  
-> diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
-> index 8d858aed0e56..50c2075228aa 100644
-> --- a/drivers/gpu/drm/lima/lima_sched.c
-> +++ b/drivers/gpu/drm/lima/lima_sched.c
-> @@ -491,7 +491,8 @@ int lima_sched_pipe_init(struct lima_sched_pipe *pipe, const char *name)
->  	return drm_sched_init(&pipe->base, &lima_sched_ops, NULL, 1,
->  			      lima_job_hang_limit,
->  			      msecs_to_jiffies(timeout), NULL,
-> -			      NULL, name, pipe->ldev->dev);
-> +			      NULL, name, DRM_SCHED_POLICY_UNSET,
-> +			      pipe->ldev->dev);
->  }
->  
->  void lima_sched_pipe_fini(struct lima_sched_pipe *pipe)
-> diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
-> index b8865e61b40f..a1c8834c359d 100644
-> --- a/drivers/gpu/drm/msm/msm_ringbuffer.c
-> +++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
-> @@ -96,7 +96,8 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
->  
->  	ret = drm_sched_init(&ring->sched, &msm_sched_ops, NULL,
->  			num_hw_submissions, 0, sched_timeout,
-> -			NULL, NULL, to_msm_bo(ring->bo)->name, gpu->dev->dev);
-> +			NULL, NULL, to_msm_bo(ring->bo)->name,
-> +			DRM_SCHED_POLICY_UNSET, gpu->dev->dev);
+On 9/27/2023 4:41 PM, Riana Tauro wrote:
+>
+> Hi Suja
+>
+> On 9/26/2023 8:09 PM, Sujaritha Sundaresan wrote:
+>> Add throttle reasons sysfs interface under device/../gt#/
+>> Currently there is one overall status and eight reasons
+>> attributes.
+>>
+>> The new sysfs structure will have the below layout
+>>
+>> device/tile<n>/gt<n>
+>>                 ├── gt0
+>>                 │   └── throttle
+>>                 │       ├── <throttle_reasons>
+>>                 │
+>>                 │
+>>                 ├── gtN
+>>                 │   └── throttle
+>>                 │       ├── <throttle_reasons>
+>>
+>> v2: Fix review comments (Riana)
+>>      Move init call (Matt)
+>>
+>> v3: Remove xe_gt_throttle (Riana)
+>>      Make functions static (Rodrigo)
+>>
+>> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/Makefile               |   1 +
+>>   drivers/gpu/drm/xe/regs/xe_gt_regs.h      |  12 +
+>>   drivers/gpu/drm/xe/xe_gt_sysfs.c          |   3 +
+>>   drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c | 257 ++++++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h |  16 ++
+>>   5 files changed, 289 insertions(+)
+>>   create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+>>   create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
+>>
+>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>> index b1681d1416eb..9aa61e416a24 100644
+>> --- a/drivers/gpu/drm/xe/Makefile
+>> +++ b/drivers/gpu/drm/xe/Makefile
+>> @@ -64,6 +64,7 @@ xe-y += xe_bb.o \
+>>       xe_gt_mcr.o \
+>>       xe_gt_pagefault.o \
+>>       xe_gt_sysfs.o \
+>> +    xe_gt_throttle_sysfs.o \
+>>       xe_gt_tlb_invalidation.o \
+>>       xe_gt_topology.o \
+>>       xe_guc.o \
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h 
+>> b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> index 3a4c9bcf793f..374238dd8a06 100644
+>> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+>> @@ -411,4 +411,16 @@
+>>   #define XEHPC_BCS5_BCS6_INTR_MASK        XE_REG(0x190118)
+>>   #define XEHPC_BCS7_BCS8_INTR_MASK        XE_REG(0x19011c)
+>>   +#define GT0_PERF_LIMIT_REASONS            XE_REG(0x1381a8)
+>> +#define   GT0_PERF_LIMIT_REASONS_MASK        0xde3
+>> +#define   PROCHOT_MASK                REG_BIT(0)
+>> +#define   THERMAL_LIMIT_MASK            REG_BIT(1)
+>> +#define   RATL_MASK                REG_BIT(5)
+>> +#define   VR_THERMALERT_MASK            REG_BIT(6)
+>> +#define   VR_TDC_MASK                REG_BIT(7)
+>> +#define   POWER_LIMIT_4_MASK            REG_BIT(8)
+>> +#define   POWER_LIMIT_1_MASK            REG_BIT(10)
+>> +#define   POWER_LIMIT_2_MASK            REG_BIT(11)
+>> +#define MTL_MEDIA_PERF_LIMIT_REASONS        XE_REG(0x138030)
+>> +
+>>   #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_sysfs.c 
+>> b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+>> index c69d2e8a0fe1..dc3f841b49d0 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_sysfs.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_sysfs.c
+>> @@ -11,6 +11,7 @@
+>>   #include <drm/drm_managed.h>
+>>     #include "xe_gt.h"
+>> +#include "xe_gt_throttle_sysfs.h"
+>>     static void xe_gt_sysfs_kobj_release(struct kobject *kobj)
+>>   {
+>> @@ -52,6 +53,8 @@ void xe_gt_sysfs_init(struct xe_gt *gt)
+>>         gt->sysfs = &kg->base;
+>>   +    xe_gt_throttle_sysfs_init(gt);
+>> +
+>>       err = drmm_add_action_or_reset(&xe->drm, gt_sysfs_fini, gt);
+>>       if (err) {
+>>           drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, 
+>> err: %d\n",
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c 
+>> b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+>> new file mode 100644
+>> index 000000000000..12facebd8989
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+>> @@ -0,0 +1,257 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#include <drm/drm_managed.h>
+>> +
+>> +#include <regs/xe_gt_regs.h>
+>> +#include "xe_device.h"
+>> +#include "xe_gt.h"
+>> +#include "xe_gt_sysfs.h"
+>> +#include "xe_gt_throttle_sysfs.h"
+>> +#include "xe_mmio.h"
+>> +
+>> +/**
+>> + * DOC: Xe GT Throttle
+>> + *
+>> + * Provides sysfs entries for frequency throttle reasons in GT
+>> + *
+>> + * device/gt#/throttle/status - Overall status
+>> + * device/gt#/throttle/reason_pl1 - Frequency throttle due to PL1
+>> + * device/gt#/throttle/reason_pl2 - Frequency throttle due to PL2
+>> + * device/gt#/throttle/reason_pl4 - Frequency throttle due to PL4, 
+>> Iccmax etc.
+>> + * device/gt#/throttle/reason_thermal - Frequency throttle due to 
+>> thermal
+>> + * device/gt#/throttle/reason_prochot - Frequency throttle due to 
+>> prochot
+>> + * device/gt#/throttle/reason_ratl - Frequency throttle due to RATL
+>> + * device/gt#/throttle/reason_vr_thermalert - Frequency throttle due 
+>> to VR THERMALERT
+>> + * device/gt#/throttle/reason_vr_tdc -  Frequency throttle due to VR 
+>> TDC
+>> + */
+>> +
+>> +u32 read_perf_limit_reasons(struct xe_gt *gt)
+>> +{
+>> +    u32 reg;
+>> +
+> xe_device_mem_access_get here?
+>> +    if (xe_gt_is_media_type(gt))
+>> +        reg = xe_mmio_read32(gt, MTL_MEDIA_PERF_LIMIT_REASONS);
+>> +    else
+>> +        reg = xe_mmio_read32(gt, GT0_PERF_LIMIT_REASONS);
+>> +
+>> +    return reg;
+>> +}
+>> +
+>> +static u32 read_status(struct xe_gt *gt)
+>> +{
+>> +    u32 status = read_perf_limit_reasons(gt) & 
+>> GT0_PERF_LIMIT_REASONS_MASK;
+>> +
+>> +    return status;
+>> +}
+>> +
+>> +static u32 read_reason_pl1(struct xe_gt *gt)
+>> +{
+>> +    u32 pl1 = read_perf_limit_reasons(gt) & POWER_LIMIT_1_MASK;
+>> +
+>> +    return pl1;
+>> +}
+>> +
+>> +static u32 read_reason_pl2(struct xe_gt *gt)
+>> +{
+>> +    u32 pl2 = read_perf_limit_reasons(gt) & POWER_LIMIT_2_MASK;
+>> +
+>> +    return pl2;
+>> +}
+>> +
+>> +static u32 read_reason_pl4(struct xe_gt *gt)
+>> +{
+>> +    u32 pl4 = read_perf_limit_reasons(gt) & POWER_LIMIT_4_MASK;
+>> +
+>> +    return pl4;
+>> +}
+>> +
+>> +static u32 read_reason_thermal(struct xe_gt *gt)
+>> +{
+>> +    u32 thermal = read_perf_limit_reasons(gt) & THERMAL_LIMIT_MASK;
+>> +
+>> +    return thermal;
+>> +}
+>> +
+>> +static u32 read_reason_prochot(struct xe_gt *gt)
+>> +{
+>> +    u32 prochot = read_perf_limit_reasons(gt) & PROCHOT_MASK;
+>> +
+>> +    return prochot;
+>> +}
+>> +
+>> +static u32 read_reason_ratl(struct xe_gt *gt)
+>> +{
+>> +    u32 ratl = read_perf_limit_reasons(gt) & RATL_MASK;
+>> +
+>> +    return ratl;
+>> +}
+>> +
+>> +static u32 read_reason_vr_thermalert(struct xe_gt *gt)
+>> +{
+>> +    u32 thermalert = read_perf_limit_reasons(gt) & VR_THERMALERT_MASK;
+>> +
+>> +    return thermalert;
+>> +}
+>> +
+>> +static u32 read_reason_vr_tdc(struct xe_gt *gt)
+>> +{
+>> +    u32 tdc = read_perf_limit_reasons(gt) & VR_TDC_MASK;
+>> +
+>> +    return tdc;
+>> +}
+>> +
+> Since the same function in called multiple times above.
+> Can it be a single function with the mask sent from the show?
+I'll try it out.
+>> +static ssize_t status_show(struct device *dev,
+>> +               struct device_attribute *attr,
+>> +               char *buff)
+>> +{
+>> +    struct kobject *kobj = &dev->kobj;
+>> +    struct xe_gt *gt = kobj_to_gt(kobj);
+>> +    bool status = !!read_status(gt);
+>> +
+>> +    return sysfs_emit(buff, "%u\n", status);
+>> +}
+>> +static DEVICE_ATTR_RO(status);
+>> +
+>> +static ssize_t reason_pl1_show(struct device *dev,
+>> +                   struct device_attribute *attr,
+>> +                   char *buff)
+>> +{
+>> +    struct kobject *kobj = &dev->kobj;
+>> +    struct xe_gt *gt = kobj_to_gt(kobj);
+>> +    bool pl1 = !!read_reason_pl1(gt);
+>> +
+>> +    return sysfs_emit(buff, "%u\n", pl1);
+>> +}
+>> +static DEVICE_ATTR_RO(reason_pl1);
+>> +
+>> +static ssize_t reason_pl2_show(struct device *dev,
+>> +                   struct device_attribute *attr,
+>> +                   char *buff)
+>> +{
+>> +    struct kobject *kobj = &dev->kobj;
+>> +    struct xe_gt *gt = kobj_to_gt(kobj);
+>> +    bool pl2 = !!read_reason_pl2(gt);
+>> +
+>> +    return sysfs_emit(buff, "%u\n", pl2);
+>> +}
+>> +static DEVICE_ATTR_RO(reason_pl2);
+>> +
+>> +static ssize_t reason_pl4_show(struct device *dev,
+>> +                   struct device_attribute *attr,
+>> +                   char *buff)
+>> +{
+>> +    struct kobject *kobj = &dev->kobj;
+>> +    struct xe_gt *gt = kobj_to_gt(kobj);
+>> +    bool pl4 = !!read_reason_pl4(gt);
+>> +
+>> +    return sysfs_emit(buff, "%u\n", pl4);
+>> +}
+>> +static DEVICE_ATTR_RO(reason_pl4);
+>> +
+>> +static ssize_t reason_thermal_show(struct device *dev,
+>> +                   struct device_attribute *attr,
+>> +                   char *buff)
+>> +{
+>> +    struct kobject *kobj = &dev->kobj;
+>> +    struct xe_gt *gt = kobj_to_gt(kobj);
+>> +    bool thermal = !!read_reason_thermal(gt);
+>> +
+>> +    return sysfs_emit(buff, "%u\n", thermal);
+>> +}
+>> +static DEVICE_ATTR_RO(reason_thermal);
+>> +
+>> +static ssize_t reason_prochot_show(struct device *dev,
+>> +                   struct device_attribute *attr,
+>> +                   char *buff)
+>> +{
+>> +    struct kobject *kobj = &dev->kobj;
+>> +    struct xe_gt *gt = kobj_to_gt(kobj);
+>> +    bool prochot = !!read_reason_prochot(gt);
+>> +
+>> +    return sysfs_emit(buff, "%u\n", prochot);
+>> +}
+>> +static DEVICE_ATTR_RO(reason_prochot);
+>> +
+>> +static ssize_t reason_ratl_show(struct device *dev,
+>> +                struct device_attribute *attr,
+>> +                char *buff)
+>> +{
+>> +    struct kobject *kobj = &dev->kobj;
+>> +    struct xe_gt *gt = kobj_to_gt(kobj);
+>> +    bool ratl = !!read_reason_ratl(gt);
+>> +
+>> +    return sysfs_emit(buff, "%u\n", ratl);
+>> +}
+>> +static DEVICE_ATTR_RO(reason_ratl);
+>> +
+>> +static ssize_t reason_vr_thermalert_show(struct device *dev,
+>> +                     struct device_attribute *attr,
+>> +                     char *buff)
+>> +{
+>> +    struct kobject *kobj = &dev->kobj;
+>> +    struct xe_gt *gt = kobj_to_gt(kobj);
+>> +    bool thermalert = !!read_reason_vr_thermalert(gt);
+>> +
+>> +    return sysfs_emit(buff, "%u\n", thermalert);
+>> +}
+>> +static DEVICE_ATTR_RO(reason_vr_thermalert);
+>> +
+>> +static ssize_t reason_vr_tdc_show(struct device *dev,
+>> +                  struct device_attribute *attr,
+>> +                  char *buff)
+>> +{
+>> +    struct kobject *kobj = &dev->kobj;
+>> +    struct xe_gt *gt = kobj_to_gt(kobj);
+>> +    bool tdc = !!read_reason_vr_tdc(gt);
+>> +
+>> +    return sysfs_emit(buff, "%u\n", tdc);
+>> +}
+>> +static DEVICE_ATTR_RO(reason_vr_tdc);
+>> +
+>> +static const struct attribute *throttle_attrs[] = {
+>> +    &dev_attr_status.attr,
+>> +    &dev_attr_reason_pl1.attr,
+>> +    &dev_attr_reason_pl2.attr,
+>> +    &dev_attr_reason_pl4.attr,
+>> +    &dev_attr_reason_thermal.attr,
+>> +    &dev_attr_reason_prochot.attr,
+>> +    &dev_attr_reason_ratl.attr,
+>> +    &dev_attr_reason_vr_thermalert.attr,
+>> +    &dev_attr_reason_vr_tdc.attr,
+>> +    NULL
+>> +};
+>> +
+>> +static void gt_throttle_sysfs_fini(struct drm_device *drm, void *arg)
+>> +{
+>> +    struct kobject *kobj = arg;
+>> +
+>> +    sysfs_remove_files(kobj, throttle_attrs);
+>> +    kobject_put(kobj);
+>> +}
+>> +
+>> +void xe_gt_throttle_sysfs_init(struct xe_gt *gt)
+>> +{
+>> +    struct xe_device *xe = gt_to_xe(gt);
+>> +    struct kobject *kobj;
+>> +    int err;
+>> +
+>> +    kobj = kobject_create_and_add("throttle", gt->sysfs);
+>> +    if (!kobj) {
+>> +        drm_warn(&xe->drm, "%s failed, err: %d\n", __func__, -ENOMEM);
+>> +        return;
+>> +    }
+>> +
+>> +    err = sysfs_create_files(kobj, throttle_attrs);
+>> +    if (err) {
+>> +        kobject_put(kobj);
+>> +        drm_warn(&xe->drm, "failed to register throttle sysfs, err: 
+>> %d\n", err);
+>> +        return;
+>> +    }
+>> +
+>> +    err = drmm_add_action_or_reset(&xe->drm, gt_throttle_sysfs_fini, 
+>> kobj);
+>> +    if (err)
+>> +        drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, 
+>> err: %d\n",
+>> +             __func__, err);
+>> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h 
+>> b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
+>> new file mode 100644
+>> index 000000000000..c318d98215a0
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
+>> @@ -0,0 +1,16 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_GT_THROTTLE_SYSFS_H_
+>> +#define _XE_GT_THROTTLE_SYSFS_H_
+>> +
+>> +#include <drm/drm_managed.h>
+>> +
+>> +#include "xe_device.h"
+>> +#include "xe_gt.h"
+>> +
+> Above headers are not used.
+> Can use forward declaration for xe_gt
+>
+> Thanks
+> Riana
 
-Align to the open brace. This should come from the fixes to patch 2.
-(Please use scripts/checkpatch.pl to check patches for common fixes.)
-With this fix, this patch is:
+Sure.
 
-Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
--- 
-Regards,
-Luben
+Thanks,
 
->  	if (ret) {
->  		goto fail;
->  	}
-> diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
-> index d458c2227d4f..f26a814a9920 100644
-> --- a/drivers/gpu/drm/nouveau/nouveau_sched.c
-> +++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
-> @@ -431,7 +431,8 @@ int nouveau_sched_init(struct nouveau_drm *drm)
->  
->  	return drm_sched_init(sched, &nouveau_sched_ops, NULL,
->  			      NOUVEAU_SCHED_HW_SUBMISSIONS, 0, job_hang_limit,
-> -			      NULL, NULL, "nouveau_sched", drm->dev->dev);
-> +			      NULL, NULL, "nouveau_sched",
-> +			      DRM_SCHED_POLICY_UNSET, drm->dev->dev);
->  }
->  
->  void nouveau_sched_fini(struct nouveau_drm *drm)
-> diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
-> index 326ca1ddf1d7..241e62801586 100644
-> --- a/drivers/gpu/drm/panfrost/panfrost_job.c
-> +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
-> @@ -835,7 +835,8 @@ int panfrost_job_init(struct panfrost_device *pfdev)
->  				     nentries, 0,
->  				     msecs_to_jiffies(JOB_TIMEOUT_MS),
->  				     pfdev->reset.wq,
-> -				     NULL, "pan_js", pfdev->dev);
-> +				     NULL, "pan_js", DRM_SCHED_POLICY_UNSET,
-> +				     pfdev->dev);
->  		if (ret) {
->  			dev_err(pfdev->dev, "Failed to create scheduler: %d.", ret);
->  			goto err_sched;
-> diff --git a/drivers/gpu/drm/scheduler/sched_entity.c b/drivers/gpu/drm/scheduler/sched_entity.c
-> index a42763e1429d..cf42e2265d64 100644
-> --- a/drivers/gpu/drm/scheduler/sched_entity.c
-> +++ b/drivers/gpu/drm/scheduler/sched_entity.c
-> @@ -33,6 +33,20 @@
->  #define to_drm_sched_job(sched_job)		\
->  		container_of((sched_job), struct drm_sched_job, queue_node)
->  
-> +static bool drm_sched_policy_mismatch(struct drm_gpu_scheduler **sched_list,
-> +				      unsigned int num_sched_list)
-> +{
-> +	enum drm_sched_policy sched_policy = sched_list[0]->sched_policy;
-> +	unsigned int i;
-> +
-> +	/* All schedule policies must match */
-> +	for (i = 1; i < num_sched_list; ++i)
-> +		if (sched_policy != sched_list[i]->sched_policy)
-> +			return true;
-> +
-> +	return false;
-> +}
-> +
->  /**
->   * drm_sched_entity_init - Init a context entity used by scheduler when
->   * submit to HW ring.
-> @@ -62,7 +76,8 @@ int drm_sched_entity_init(struct drm_sched_entity *entity,
->  			  unsigned int num_sched_list,
->  			  atomic_t *guilty)
->  {
-> -	if (!(entity && sched_list && (num_sched_list == 0 || sched_list[0])))
-> +	if (!(entity && sched_list && (num_sched_list == 0 || sched_list[0])) ||
-> +	    drm_sched_policy_mismatch(sched_list, num_sched_list))
->  		return -EINVAL;
->  
->  	memset(entity, 0, sizeof(struct drm_sched_entity));
-> @@ -486,7 +501,7 @@ struct drm_sched_job *drm_sched_entity_pop_job(struct drm_sched_entity *entity)
->  	 * Update the entity's location in the min heap according to
->  	 * the timestamp of the next job, if any.
->  	 */
-> -	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO) {
-> +	if (entity->rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO) {
->  		struct drm_sched_job *next;
->  
->  		next = to_drm_sched_job(spsc_queue_peek(&entity->job_queue));
-> @@ -558,7 +573,8 @@ void drm_sched_entity_select_rq(struct drm_sched_entity *entity)
->  void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
->  {
->  	struct drm_sched_entity *entity = sched_job->entity;
-> -	bool first;
-> +	bool first, fifo = entity->rq->sched->sched_policy ==
-> +		DRM_SCHED_POLICY_FIFO;
->  	ktime_t submit_ts;
->  
->  	trace_drm_sched_job(sched_job, entity);
-> @@ -587,7 +603,7 @@ void drm_sched_entity_push_job(struct drm_sched_job *sched_job)
->  		drm_sched_rq_add_entity(entity->rq, entity);
->  		spin_unlock(&entity->rq_lock);
->  
-> -		if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
-> +		if (fifo)
->  			drm_sched_rq_update_fifo(entity, submit_ts);
->  
->  		drm_sched_wakeup_if_can_queue(entity->rq->sched);
-> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-> index ee6281942e36..f645f32977ed 100644
-> --- a/drivers/gpu/drm/scheduler/sched_main.c
-> +++ b/drivers/gpu/drm/scheduler/sched_main.c
-> @@ -66,14 +66,14 @@
->  #define to_drm_sched_job(sched_job)		\
->  		container_of((sched_job), struct drm_sched_job, queue_node)
->  
-> -int drm_sched_policy = DRM_SCHED_POLICY_FIFO;
-> +int drm_sched_policy_default = DRM_SCHED_POLICY_FIFO;
->  
->  /**
->   * DOC: sched_policy (int)
->   * Used to override default entities scheduling policy in a run queue.
->   */
->  MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO (default).");
-> -module_param_named(sched_policy, drm_sched_policy, int, 0444);
-> +module_param_named(sched_policy, drm_sched_policy_default, int, 0444);
->  
->  static __always_inline bool drm_sched_entity_compare_before(struct rb_node *a,
->  							    const struct rb_node *b)
-> @@ -177,7 +177,7 @@ void drm_sched_rq_remove_entity(struct drm_sched_rq *rq,
->  	if (rq->current_entity == entity)
->  		rq->current_entity = NULL;
->  
-> -	if (drm_sched_policy == DRM_SCHED_POLICY_FIFO)
-> +	if (rq->sched->sched_policy == DRM_SCHED_POLICY_FIFO)
->  		drm_sched_rq_remove_fifo_locked(entity);
->  
->  	spin_unlock(&rq->lock);
-> @@ -898,7 +898,7 @@ drm_sched_select_entity(struct drm_gpu_scheduler *sched)
->  
->  	/* Kernel run queue has higher priority than normal run queue*/
->  	for (i = DRM_SCHED_PRIORITY_COUNT - 1; i >= DRM_SCHED_PRIORITY_MIN; i--) {
-> -		entity = drm_sched_policy == DRM_SCHED_POLICY_FIFO ?
-> +		entity = sched->sched_policy == DRM_SCHED_POLICY_FIFO ?
->  			drm_sched_rq_select_entity_fifo(&sched->sched_rq[i]) :
->  			drm_sched_rq_select_entity_rr(&sched->sched_rq[i]);
->  		if (entity)
-> @@ -1072,6 +1072,7 @@ static void drm_sched_main(struct work_struct *w)
->   *		used
->   * @score: optional score atomic shared with other schedulers
->   * @name: name used for debugging
-> + * @sched_policy: schedule policy
->   * @dev: target &struct device
->   *
->   * Return 0 on success, otherwise error code.
-> @@ -1081,9 +1082,15 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->  		   struct workqueue_struct *submit_wq,
->  		   unsigned hw_submission, unsigned hang_limit,
->  		   long timeout, struct workqueue_struct *timeout_wq,
-> -		   atomic_t *score, const char *name, struct device *dev)
-> +		   atomic_t *score, const char *name,
-> +		   enum drm_sched_policy sched_policy,
-> +		   struct device *dev)
->  {
->  	int i;
-> +
-> +	if (sched_policy >= DRM_SCHED_POLICY_COUNT)
-> +		return -EINVAL;
-> +
->  	sched->ops = ops;
->  	sched->hw_submission_limit = hw_submission;
->  	sched->name = name;
-> @@ -1102,6 +1109,8 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->  	sched->hang_limit = hang_limit;
->  	sched->score = score ? score : &sched->_score;
->  	sched->dev = dev;
-> +	sched->sched_policy = sched_policy == DRM_SCHED_POLICY_UNSET ?
-> +		drm_sched_policy_default : sched_policy;
->  	for (i = DRM_SCHED_PRIORITY_MIN; i < DRM_SCHED_PRIORITY_COUNT; i++)
->  		drm_sched_rq_init(sched, &sched->sched_rq[i]);
->  
-> diff --git a/drivers/gpu/drm/v3d/v3d_sched.c b/drivers/gpu/drm/v3d/v3d_sched.c
-> index 38e092ea41e6..dec89c5b8cb1 100644
-> --- a/drivers/gpu/drm/v3d/v3d_sched.c
-> +++ b/drivers/gpu/drm/v3d/v3d_sched.c
-> @@ -391,7 +391,8 @@ v3d_sched_init(struct v3d_dev *v3d)
->  			     &v3d_bin_sched_ops, NULL,
->  			     hw_jobs_limit, job_hang_limit,
->  			     msecs_to_jiffies(hang_limit_ms), NULL,
-> -			     NULL, "v3d_bin", v3d->drm.dev);
-> +			     NULL, "v3d_bin", DRM_SCHED_POLICY_UNSET,
-> +			     v3d->drm.dev);
->  	if (ret)
->  		return ret;
->  
-> @@ -399,7 +400,8 @@ v3d_sched_init(struct v3d_dev *v3d)
->  			     &v3d_render_sched_ops, NULL,
->  			     hw_jobs_limit, job_hang_limit,
->  			     msecs_to_jiffies(hang_limit_ms), NULL,
-> -			     NULL, "v3d_render", v3d->drm.dev);
-> +			     NULL, "v3d_render", DRM_SCHED_POLICY_UNSET,
-> +			     v3d->drm.dev);
->  	if (ret)
->  		goto fail;
->  
-> @@ -407,7 +409,8 @@ v3d_sched_init(struct v3d_dev *v3d)
->  			     &v3d_tfu_sched_ops, NULL,
->  			     hw_jobs_limit, job_hang_limit,
->  			     msecs_to_jiffies(hang_limit_ms), NULL,
-> -			     NULL, "v3d_tfu", v3d->drm.dev);
-> +			     NULL, "v3d_tfu", DRM_SCHED_POLICY_UNSET,
-> +			     v3d->drm.dev);
->  	if (ret)
->  		goto fail;
->  
-> @@ -416,7 +419,8 @@ v3d_sched_init(struct v3d_dev *v3d)
->  				     &v3d_csd_sched_ops, NULL,
->  				     hw_jobs_limit, job_hang_limit,
->  				     msecs_to_jiffies(hang_limit_ms), NULL,
-> -				     NULL, "v3d_csd", v3d->drm.dev);
-> +				     NULL, "v3d_csd", DRM_SCHED_POLICY_UNSET,
-> +				     v3d->drm.dev);
->  		if (ret)
->  			goto fail;
->  
-> @@ -424,7 +428,8 @@ v3d_sched_init(struct v3d_dev *v3d)
->  				     &v3d_cache_clean_sched_ops, NULL,
->  				     hw_jobs_limit, job_hang_limit,
->  				     msecs_to_jiffies(hang_limit_ms), NULL,
-> -				     NULL, "v3d_cache_clean", v3d->drm.dev);
-> +				     NULL, "v3d_cache_clean",
-> +				     DRM_SCHED_POLICY_UNSET, v3d->drm.dev);
->  		if (ret)
->  			goto fail;
->  	}
-> diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-> index 95927c52383c..9f830ff84bad 100644
-> --- a/include/drm/gpu_scheduler.h
-> +++ b/include/drm/gpu_scheduler.h
-> @@ -72,11 +72,15 @@ enum drm_sched_priority {
->  	DRM_SCHED_PRIORITY_UNSET = -2
->  };
->  
-> -/* Used to chose between FIFO and RR jobs scheduling */
-> -extern int drm_sched_policy;
-> -
-> -#define DRM_SCHED_POLICY_RR    0
-> -#define DRM_SCHED_POLICY_FIFO  1
-> +/* Used to chose default scheduling policy*/
-> +extern int default_drm_sched_policy;
-> +
-> +enum drm_sched_policy {
-> +	DRM_SCHED_POLICY_UNSET,
-> +	DRM_SCHED_POLICY_RR,
-> +	DRM_SCHED_POLICY_FIFO,
-> +	DRM_SCHED_POLICY_COUNT,
-> +};
->  
->  /**
->   * struct drm_sched_entity - A wrapper around a job queue (typically
-> @@ -489,6 +493,7 @@ struct drm_sched_backend_ops {
->   *              guilty and it will no longer be considered for scheduling.
->   * @score: score to help loadbalancer pick a idle sched
->   * @_score: score used when the driver doesn't provide one
-> + * @sched_policy: Schedule policy for scheduler
->   * @ready: marks if the underlying HW is ready to work
->   * @free_guilty: A hit to time out handler to free the guilty job.
->   * @pause_submit: pause queuing of @work_submit on @submit_wq
-> @@ -515,6 +520,7 @@ struct drm_gpu_scheduler {
->  	int				hang_limit;
->  	atomic_t                        *score;
->  	atomic_t                        _score;
-> +	enum drm_sched_policy		sched_policy;
->  	bool				ready;
->  	bool				free_guilty;
->  	bool				pause_submit;
-> @@ -527,7 +533,9 @@ int drm_sched_init(struct drm_gpu_scheduler *sched,
->  		   struct workqueue_struct *submit_wq,
->  		   uint32_t hw_submission, unsigned hang_limit,
->  		   long timeout, struct workqueue_struct *timeout_wq,
-> -		   atomic_t *score, const char *name, struct device *dev);
-> +		   atomic_t *score, const char *name,
-> +		   enum drm_sched_policy sched_policy,
-> +		   struct device *dev);
->  
->  void drm_sched_fini(struct drm_gpu_scheduler *sched);
->  int drm_sched_job_init(struct drm_sched_job *job,
+Suja
 
+>> +void xe_gt_throttle_sysfs_init(struct xe_gt *gt);
+>> +
+>> +#endif /* _XE_GT_THROTTLE_SYSFS_H_ */
