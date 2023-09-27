@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04A6AE80A9A
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 07:31:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26376E80AA1
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 07:31:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A60C810E416;
-	Wed, 27 Sep 2023 07:31:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB7DA10E46B;
+	Wed, 27 Sep 2023 07:31:50 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F86210E3B1
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 07:31:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 07C0610E416
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 07:31:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695799905; x=1727335905;
+ t=1695799907; x=1727335907;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=A7vJbc1XIdcLoIBJ3wMd1DAbYs4wLUNlb/j4AICfPHg=;
- b=de7sKONEreFwPNAH3NekPHudWqB3wCABCL8blk9cK7TjIk4psM0v54dc
- fjQn/0A5h6tZqANgavCFvp5FXW8AKJBfLcZnJl6TPt7W9qZoE+hnTcwuG
- Tg+oN8dfI8wc+NALRdZ/i8z8vLd7jvW3my+QjA3Y3V73Ll6N/yGXy4cyV
- SiKGli1ggzYpdfRqlx4KGTbRirKnMnCH3xr45177zdXIA5xandtLPX68k
- mfBiyuS29v/Rdd9owCSHSIwbX0w6gMs2PGQ2ikjTg6HxOchIJ+4PQNYnS
- 91aM9EUwX1jae8gM/AeZY0vhLcR7gyeH19ZPPzz9sKZbxh3HV3PZ+moDI g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="372091624"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="372091624"
+ bh=sApVa/mgwifRVFlcP6P3FO6guua0WSRaKqdK33lEl1E=;
+ b=G9vQdnJmXclvKMFqh8M5qy4oC2jYuVI86AgI8/SCRRKPHv07ioO138AT
+ Wu+8rN0WgI0RIGcbbhygDHiZQMdDtr4VH6kbzQH86slaPfU29jZu8G9zf
+ p4+2zyzrZzlABVEoyP9z3Z7FmroOWXYOVfe/aDalDnD859dsH6RI7GcMb
+ 9Sib0LvGz0sJFQlnN20dtLVcZ82/UB+/7kTG36KqUBYs/2tCqb8zAOaF1
+ tkR3BlV8UxlL3lG2aMtTOdiLaopVe4goC8HMBy25zmzK3mgYbwq/Tc7HJ
+ KMgLkKQCY2GoAJNdef9A4xNOQ7l6A5WQTMICwKEWOjV6Vjvmsqlng6JOf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="372091629"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="372091629"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 00:31:44 -0700
+ 27 Sep 2023 00:31:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="922684502"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="922684502"
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="922684505"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="922684505"
 Received: from petrovam-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.220.182])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 00:31:43 -0700
+ 27 Sep 2023 00:31:44 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Sep 2023 10:31:24 +0300
-Message-Id: <20230927073125.3825836-3-jouni.hogander@intel.com>
+Date: Wed, 27 Sep 2023 10:31:25 +0300
+Message-Id: <20230927073125.3825836-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230927073125.3825836-1-jouni.hogander@intel.com>
 References: <20230927073125.3825836-1-jouni.hogander@intel.com>
@@ -47,8 +47,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC PATCH 2/3] drm/i915/display: Move fence completion
- wait away from display code
+Subject: [Intel-xe] [RFC PATCH 3/3] fixup! drm/xe/display: Implement display
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,132 +64,158 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are preparing for Xe which will have differing implementation
-for sw fence and GPU reset. Due to thise move waiting fence completion
-and GPU reset wait awary from the display code.
+Add i915_sw_fence.h compatibility header and implement sw fence
+interfaces for display code usage.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 27 +------------------
- drivers/gpu/drm/i915/i915_sw_fence.c         | 28 ++++++++++++++++++++
- drivers/gpu/drm/i915/i915_sw_fence.h         |  4 +++
- 3 files changed, 33 insertions(+), 26 deletions(-)
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   1 -
+ .../xe/compat-i915-headers/i915_sw_fence.h    | 111 ++++++++++++++++++
+ 3 files changed, 112 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_sw_fence.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 505ca587b504..c92f5f3629be 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6865,33 +6865,8 @@ void intel_atomic_helper_free_state_worker(struct work_struct *work)
- 	intel_atomic_helper_free_state(dev_priv);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index b1141fb125c8..2d11f159f927 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -46,6 +46,7 @@
+ #include <drm/i915_hdcp_interface.h>
+ #include <media/cec-notifier.h>
  
--static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_state)
--{
--	struct wait_queue_entry wait_fence, wait_reset;
--	struct drm_i915_private *dev_priv = to_i915(intel_state->base.dev);
--
--	init_wait_entry(&wait_fence, 0);
--	init_wait_entry(&wait_reset, 0);
--	for (;;) {
--		prepare_to_wait(&intel_state->commit_ready.wait,
--				&wait_fence, TASK_UNINTERRUPTIBLE);
--		prepare_to_wait(bit_waitqueue(&to_gt(dev_priv)->reset.flags,
--					      I915_RESET_MODESET),
--				&wait_reset, TASK_UNINTERRUPTIBLE);
++#include "i915_sw_fence.h"
+ #include "i915_vma.h"
+ #include "i915_vma_types.h"
+ #include "intel_bios.h"
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 03ac39efba38..c8b0f38e55fa 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -196,7 +196,6 @@ static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, bool wakeref)
+ #define intel_uncore_forcewake_put(x, y) do { } while (0)
  
+ #define intel_uncore_arm_unclaimed_mmio_detection(x) do { } while (0)
+-#define i915_sw_fence_commit(x) do { } while (0)
  
--		if (i915_sw_fence_done(&intel_state->commit_ready) ||
--		    test_bit(I915_RESET_MODESET, &to_gt(dev_priv)->reset.flags))
--			break;
--
--		schedule();
--	}
--	finish_wait(&intel_state->commit_ready.wait, &wait_fence);
--	finish_wait(bit_waitqueue(&to_gt(dev_priv)->reset.flags,
--				  I915_RESET_MODESET),
--		    &wait_reset);
--}
--
- static void intel_atomic_cleanup_work(struct work_struct *work)
- {
- 	struct intel_atomic_state *state =
-@@ -6997,7 +6972,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	intel_wakeref_t wakeref = 0;
- 	int i;
- 
--	intel_atomic_commit_fence_wait(state);
-+	i915_sw_fence_wait_completion(dev_priv, &state->commit_ready);
- 
- 	drm_atomic_helper_wait_for_dependencies(&state->base);
- 	drm_dp_mst_atomic_wait_for_dependencies(&state->base);
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.c b/drivers/gpu/drm/i915/i915_sw_fence.c
-index 8a9aad523eec..f2e0c5138cb2 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.c
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.c
-@@ -9,6 +9,7 @@
- #include <linux/irq_work.h>
- #include <linux/dma-resv.h>
- 
-+#include "i915_drv.h"
- #include "i915_sw_fence.h"
- #include "i915_selftest.h"
- 
-@@ -597,6 +598,33 @@ int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
- 	return ret;
- }
- 
-+void i915_sw_fence_wait_completion(struct drm_i915_private *i915,
-+				   struct i915_sw_fence *fence)
+ #define with_intel_runtime_pm(rpm, wf) \
+ 	for ((wf) = intel_runtime_pm_get(rpm); (wf); \
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_sw_fence.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_sw_fence.h
+new file mode 100644
+index 000000000000..fd6c96682932
+--- /dev/null
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_sw_fence.h
+@@ -0,0 +1,111 @@
++/*
++ * SPDX-License-Identifier: MIT
++ *
++ * i915_sw_fence.h - library routines for N:M synchronisation points
++ *
++ * Copyright (C) 2023 Intel Corporation
++ */
++
++#ifndef _I915_SW_FENCE_H_
++#define _I915_SW_FENCE_H_
++
++#include <linux/dma-fence.h>
++#include <linux/dma-resv.h>
++#include <linux/gfp.h>
++#include <linux/notifier.h> /* for NOTIFY_DONE */
++
++struct completion;
++struct dma_resv;
++struct i915_sw_fence;
++
++enum i915_sw_fence_notify {
++	FENCE_COMPLETE,
++	FENCE_FREE
++};
++
++typedef int (*i915_sw_fence_notify_t)(struct i915_sw_fence *,
++				      enum i915_sw_fence_notify state);
++
++struct i915_sw_fence {
++	struct dma_resv resv;
++	i915_sw_fence_notify_t fn;
++	unsigned long timeout;
++};
++static inline void i915_sw_fence_init(struct i915_sw_fence *fence, i915_sw_fence_notify_t fn)
 +{
-+	struct wait_queue_entry wait_fence, wait_reset;
-+
-+	init_wait_entry(&wait_fence, 0);
-+	init_wait_entry(&wait_reset, 0);
-+	for (;;) {
-+		prepare_to_wait(&fence->wait,
-+				&wait_fence, TASK_UNINTERRUPTIBLE);
-+		prepare_to_wait(bit_waitqueue(&to_gt(i915)->reset.flags,
-+					      I915_RESET_MODESET),
-+				&wait_reset, TASK_UNINTERRUPTIBLE);
-+
-+
-+		if (i915_sw_fence_done(fence) ||
-+		    test_bit(I915_RESET_MODESET, &to_gt(i915)->reset.flags))
-+			break;
-+
-+		schedule();
-+	}
-+	finish_wait(&fence->wait, &wait_fence);
-+	finish_wait(bit_waitqueue(&to_gt(i915)->reset.flags,
-+				  I915_RESET_MODESET),
-+		    &wait_reset);
++	dma_resv_init(&fence->resv);
++	fence->fn = fn;
++	fence->timeout = 0;
 +}
 +
- #if IS_ENABLED(CONFIG_DRM_I915_SELFTEST)
- #include "selftests/lib_sw_fence.c"
- #include "selftests/i915_sw_fence.c"
-diff --git a/drivers/gpu/drm/i915/i915_sw_fence.h b/drivers/gpu/drm/i915/i915_sw_fence.h
-index f752bfc7c6e1..a48d017de59d 100644
---- a/drivers/gpu/drm/i915/i915_sw_fence.h
-+++ b/drivers/gpu/drm/i915/i915_sw_fence.h
-@@ -15,6 +15,7 @@
- #include <linux/notifier.h> /* for NOTIFY_DONE */
- #include <linux/wait.h>
- 
-+struct drm_i915_private;
- struct completion;
- struct dma_resv;
- struct i915_sw_fence;
-@@ -98,6 +99,9 @@ int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
- bool i915_sw_fence_await(struct i915_sw_fence *fence);
- void i915_sw_fence_complete(struct i915_sw_fence *fence);
- 
-+void i915_sw_fence_wait_completion(struct drm_i915_private *i915,
-+				   struct i915_sw_fence *fence);
++static inline void i915_sw_fence_fini(struct i915_sw_fence *fence)
++{
++	dma_resv_fini(&fence->resv);
++}
 +
- static inline bool i915_sw_fence_signaled(const struct i915_sw_fence *fence)
- {
- 	return atomic_read(&fence->pending) <= 0;
++#define i915_sw_fence_commit(x) do { } while (0)
++
++struct i915_sw_dma_fence_cb {
++	struct dma_fence_cb base;
++	struct i915_sw_fence *fence;
++};
++
++static inline int i915_sw_fence_await_dma_fence(struct i915_sw_fence *fence,
++				  struct dma_fence *dma,
++				  unsigned long timeout,
++				  gfp_t gfp)
++{
++	int ret;
++
++	dma_resv_lock(&fence->resv, NULL);
++	ret = dma_resv_reserve_fences(&fence->resv, 1);
++	if (!ret) {
++		dma_resv_add_fence(&fence->resv, dma, dma_resv_usage_rw(false));
++		fence->timeout = max(timeout, fence->timeout);
++	}
++	dma_resv_unlock(&fence->resv);
++
++	return ret;
++}
++
++static inline int i915_sw_fence_await_reservation(struct i915_sw_fence *fence,
++				    struct dma_resv *resv,
++				    bool write,
++				    unsigned long timeout,
++				    gfp_t gfp)
++{
++	struct dma_resv_iter cursor;
++	struct dma_fence *f;
++	int ret;
++
++	dma_resv_iter_begin(&cursor, resv, dma_resv_usage_rw(false));
++	dma_resv_for_each_fence_unlocked(&cursor, f) {
++		ret = i915_sw_fence_await_dma_fence(fence, f, timeout, gfp);
++		if (ret < 0)
++			break;
++	}
++	dma_resv_iter_end(&cursor);
++
++	return ret;
++}
++
++static inline void i915_sw_fence_wait_completion(void *unused,
++						 struct i915_sw_fence *fence)
++{
++	struct dma_resv_iter cursor;
++	struct dma_fence *f;
++
++	dma_resv_wait_timeout(&fence->resv, dma_resv_usage_rw(false),
++			      false, fence->timeout);
++
++	fence->fn(fence, FENCE_COMPLETE);
++
++	dma_resv_iter_begin(&cursor, &fence->resv, dma_resv_usage_rw(false));
++	dma_resv_for_each_fence_unlocked(&cursor, f)
++		dma_fence_put(f);
++	dma_resv_iter_end(&cursor);
++
++	fence->fn(fence, FENCE_FREE);
++}
++
++#endif /* _I915_SW_FENCE_H_ */
 -- 
 2.34.1
 
