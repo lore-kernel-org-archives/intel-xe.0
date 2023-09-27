@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EA5EE82CCB
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 19:39:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8E26E82CC3
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 19:39:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6368710E5A3;
-	Wed, 27 Sep 2023 19:39:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF83610E5A4;
+	Wed, 27 Sep 2023 19:39:10 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EA9710E5A2
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF0E410E5A2
  for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 19:38:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1695843538; x=1727379538;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=k4dliT8qeoz9F/RDhyUeUgthuBBbBApN+t384utKtAw=;
- b=lsrfJ0yJgxgGjCuAjBZ+SmjfW2CYIkkkKfDM6DH60O5umRBuakhUOOAL
- 9fpt78QgWvyBsi/R9wkF3ZTDLO7wIqnnHwWXbSPeNaNeo3cDTH51BaXov
- 4hohwhT/RiJXB0eJYyUPfl2GYnoLIW3G/0zks2gWfOtZfqB8j29JUhH9s
- MOifmeO57DHUH+FUJwwkbuJ3+bWDeRaDKnSaE3S4p8mSZK/6Gq6eYRYI+
- 4TBwf6HpBkVzU9p/9M+YhL/1ngR8C1CpzbYrZeSwyEEEhnxQ7Yn9LkJQu
- NW4KTJnm+JEsXIkcN0TwAICXLeKiq9I1XzLVVfG2Bj5RPpzwhvuZiAiyA Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="381817977"
-X-IronPort-AV: E=Sophos;i="6.03,182,1694761200"; d="scan'208";a="381817977"
+ bh=5x15auSjh9y4P8e0E+vnfQzODIPJ73/A1iC6AXCL6XI=;
+ b=AaMlS8C1z9s6xpvPLOSZ98TAy0+0rAENONFqrs1cbFcyvglb2//0OhbV
+ jKTwAOV9C0k5+x7VIfs7DGnbBpGZfmibPYppgv38nsy14py95VZMLXaBu
+ UHvSXKN+PYtHXU6HmtSrhKpJxBptN7GYxT4jfMcUP+SXF8onRiViloOLo
+ ihkBpeIDMsbCENaoy1w4tB+qyIxXxYYwaOTaSDY9z/ay3YhPS7Za+rWqB
+ ZRdUr3wMRu8XdXKQCFnT4cKtIp0E2WIvUiM5cPUysxOoCeH0ARG9qxzoV
+ OfIyqgfEY3GUmcSE9tWUnLLr23sbKRbXfzz3DbnjME3HaKTM3+INO623z w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="381817986"
+X-IronPort-AV: E=Sophos;i="6.03,182,1694761200"; d="scan'208";a="381817986"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  27 Sep 2023 12:38:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="742826473"
-X-IronPort-AV: E=Sophos;i="6.03,182,1694761200"; d="scan'208";a="742826473"
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="742826505"
+X-IronPort-AV: E=Sophos;i="6.03,182,1694761200"; d="scan'208";a="742826505"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Sep 2023 12:38:56 -0700
+ 27 Sep 2023 12:38:57 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 27 Sep 2023 12:38:52 -0700
-Message-Id: <20230927193902.2849159-2-lucas.demarchi@intel.com>
+Date: Wed, 27 Sep 2023 12:39:01 -0700
+Message-Id: <20230927193902.2849159-11-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20230927193902.2849159-1-lucas.demarchi@intel.com>
 References: <20230927193902.2849159-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 01/11] drm/xe: Normalize pte/pde encoding
+Subject: [Intel-xe] [PATCH v3 10/11] drm/xe: Use vfunc for ggtt pte encoding
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,193 +61,174 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Split functions that do only part of the pde/pte encoding and that can
-be called by the different places. This normalizes how pde/pte are
-encoded so they can be moved elsewhere in a subsequent change.
+Use 2 different functions for encoding the ggtt's pte, assigning them
+during initialization. Main difference is that before Xe-LPG, the pte
+didn't have the cache bits.
 
-xe_pte_encode() was calling __pte_encode() with a NULL vma, which is the
-opposite of what xe_pt_stage_bind_entry() does. Stop passing a NULL vma
-and just split another function that deals with a vma rather than a bo.
+v2: Re-use xelp_ggtt_pte_encode_bo() for the common part with
+    xelpg_ggtt_pte_encode_bo() (Matt Roper)
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_pt.c | 119 +++++++++++++++++++++----------------
- 1 file changed, 67 insertions(+), 52 deletions(-)
+ drivers/gpu/drm/xe/xe_ggtt.c       | 53 ++++++++++++++++++++++--------
+ drivers/gpu/drm/xe/xe_ggtt.h       |  1 -
+ drivers/gpu/drm/xe/xe_ggtt_types.h |  9 +++++
+ 3 files changed, 49 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index aec469842471..afadd399684c 100644
---- a/drivers/gpu/drm/xe/xe_pt.c
-+++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -47,91 +47,106 @@ static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
- 	return container_of(pt_dir->dir.entries[index], struct xe_pt, base);
- }
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 54baaffc7235..99b54794917e 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -20,16 +20,15 @@
+ #include "xe_mmio.h"
+ #include "xe_wopcm.h"
  
--/**
-- * xe_pde_encode() - Encode a page-table directory entry pointing to
-- * another page-table.
-- * @bo: The page-table bo of the page-table to point to.
-- * @bo_offset: Offset in the page-table bo to point to.
-- * @level: The cache level indicating the caching of @bo.
-- *
-- * TODO: Rename.
-- *
-- * Return: An encoded page directory entry. No errors.
-- */
--u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
--		  const enum xe_cache_level level)
-+static u64 pde_encode_cache(enum xe_cache_level cache)
+-/* FIXME: Common file, preferably auto-gen */
+-#define MTL_GGTT_PTE_PAT0	BIT_ULL(52)
+-#define MTL_GGTT_PTE_PAT1	BIT_ULL(53)
++#define XELPG_GGTT_PTE_PAT0	BIT_ULL(52)
++#define XELPG_GGTT_PTE_PAT1	BIT_ULL(53)
+ 
+ /* GuC addresses above GUC_GGTT_TOP also don't map through the GTT */
+ #define GUC_GGTT_TOP	0xFEE00000
+ 
+-u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
++static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
++				   enum xe_cache_level cache)
  {
--	u64 pde;
--
--	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
--	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
--
- 	/* FIXME: I don't think the PPAT handling is correct for MTL */
- 
--	if (level != XE_CACHE_NONE)
--		pde |= PPAT_CACHED_PDE;
--	else
--		pde |= PPAT_UNCACHED;
-+	if (cache != XE_CACHE_NONE)
-+		return PPAT_CACHED_PDE;
- 
--	return pde;
-+	return PPAT_UNCACHED;
- }
- 
--static u64 __pte_encode(u64 pte, enum xe_cache_level cache,
--			struct xe_vma *vma, u32 pt_level)
-+static u64 pte_encode_cache(enum xe_cache_level cache)
- {
--	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
--
--	if (unlikely(vma && xe_vma_read_only(vma)))
--		pte &= ~XE_PAGE_RW;
--
--	if (unlikely(vma && xe_vma_is_null(vma)))
--		pte |= XE_PTE_NULL;
--
- 	/* FIXME: I don't think the PPAT handling is correct for MTL */
--
- 	switch (cache) {
- 	case XE_CACHE_NONE:
--		pte |= PPAT_UNCACHED;
--		break;
-+		return PPAT_UNCACHED;
- 	case XE_CACHE_WT:
--		pte |= PPAT_DISPLAY_ELLC;
--		break;
-+		return PPAT_DISPLAY_ELLC;
- 	default:
--		pte |= PPAT_CACHED;
--		break;
-+		return PPAT_CACHED;
- 	}
-+}
-+
-+static u64 pte_encode_ps(u32 pt_level)
-+{
-+	/* XXX: Does hw support 1 GiB pages? */
-+	XE_WARN_ON(pt_level > 2);
- 
- 	if (pt_level == 1)
--		pte |= XE_PDE_PS_2M;
-+		return XE_PDE_PS_2M;
- 	else if (pt_level == 2)
--		pte |= XE_PDPE_PS_1G;
-+		return XE_PDPE_PS_1G;
- 
--	/* XXX: Does hw support 1 GiB pages? */
--	XE_WARN_ON(pt_level > 2);
-+	return 0;
-+}
- 
--	return pte;
-+/**
-+ * xe_pde_encode() - Encode a page-table directory entry pointing to
-+ * another page-table.
-+ * @bo: The page-table bo of the page-table to point to.
-+ * @bo_offset: Offset in the page-table bo to point to.
-+ * @cache: The cache level indicating the caching of @bo.
-+ *
-+ * TODO: Rename.
-+ *
-+ * Return: An encoded page directory entry. No errors.
-+ */
-+u64 xe_pde_encode(struct xe_bo *bo, u64 bo_offset,
-+		  const enum xe_cache_level cache)
-+{
-+	u64 pde;
-+
-+	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
-+	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
-+	pde |= pde_encode_cache(cache);
-+
-+	return pde;
- }
- 
- /**
-  * xe_pte_encode() - Encode a page-table entry pointing to memory.
-  * @bo: The BO representing the memory to point to.
-- * @offset: The offset into @bo.
-+ * @bo_offset: The offset into @bo.
-  * @cache: The cache level indicating
-  * @pt_level: The page-table level of the page-table into which the entry
-  * is to be inserted.
-  *
-  * Return: An encoded page-table entry. No errors.
-  */
--u64 xe_pte_encode(struct xe_bo *bo, u64 offset, enum xe_cache_level cache,
-+u64 xe_pte_encode(struct xe_bo *bo, u64 bo_offset, enum xe_cache_level cache,
- 		  u32 pt_level)
- {
+-	struct xe_device *xe = xe_bo_device(bo);
  	u64 pte;
  
--	pte = xe_bo_addr(bo, offset, XE_PAGE_SIZE);
-+	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
-+	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
-+	pte |= pte_encode_cache(cache);
-+	pte |= pte_encode_ps(pt_level);
-+
+ 	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
+@@ -38,11 +37,25 @@ u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset)
  	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
- 		pte |= XE_PPGTT_PTE_DM;
+ 		pte |= XE_GGTT_PTE_DM;
  
--	return __pte_encode(pte, cache, NULL, pt_level);
+-	/* FIXME: vfunc + pass in caching rules */
+-	if (xe->info.platform == XE_METEORLAKE) {
+-		pte |= MTL_GGTT_PTE_PAT0;
+-		pte |= MTL_GGTT_PTE_PAT1;
+-	}
 +	return pte;
 +}
 +
-+/* Like xe_pte_encode(), but with a vma and a partially-encoded pte */
-+static u64 __vma_pte_encode(u64 pte, struct xe_vma *vma,
-+			    enum xe_cache_level cache, u32 pt_level)
++static u64 xelpg_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
++				    enum xe_cache_level cache)
 +{
-+	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
-+	pte |= pte_encode_cache(cache);
-+	pte |= pte_encode_ps(pt_level);
++	struct xe_device *xe = xe_bo_device(bo);
++	u32 pat_index = xe->pat.idx[cache];
++	u64 pte;
 +
-+	if (unlikely(vma && xe_vma_read_only(vma)))
-+		pte &= ~XE_PAGE_RW;
++	pte = xelp_ggtt_pte_encode_bo(bo, bo_offset, cache);
 +
-+	if (unlikely(vma && xe_vma_is_null(vma)))
-+		pte |= XE_PTE_NULL;
++	xe_assert(xe, pat_index <= 3);
 +
-+	return pte;
++	if (pat_index & BIT(0))
++		pte |= XELPG_GGTT_PTE_PAT0;
++
++	if (pat_index & BIT(1))
++		pte |= XELPG_GGTT_PTE_PAT1;
+ 
+ 	return pte;
+ }
+@@ -72,7 +85,8 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
+ 	xe_tile_assert(ggtt->tile, start < end);
+ 
+ 	if (ggtt->scratch)
+-		scratch_pte = xe_ggtt_pte_encode(ggtt->scratch, 0);
++		scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0,
++							  XE_CACHE_WB);
+ 	else
+ 		scratch_pte = 0;
+ 
+@@ -102,6 +116,14 @@ static void primelockdep(struct xe_ggtt *ggtt)
+ 	fs_reclaim_release(GFP_KERNEL);
  }
  
- static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
-@@ -614,9 +629,9 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
++static const struct xe_ggtt_pt_ops xelp_pt_ops = {
++	.pte_encode_bo = xelp_ggtt_pte_encode_bo,
++};
++
++static const struct xe_ggtt_pt_ops xelpg_pt_ops = {
++	.pte_encode_bo = xelpg_ggtt_pte_encode_bo,
++};
++
+ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
+ {
+ 	struct xe_device *xe = tile_to_xe(ggtt->tile);
+@@ -146,6 +168,11 @@ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt)
+ 	if (ggtt->size > GUC_GGTT_TOP)
+ 		ggtt->size = GUC_GGTT_TOP;
  
- 		XE_WARN_ON(xe_walk->va_curs_start != addr);
++	if (GRAPHICS_VERx100(xe) >= 1270)
++		ggtt->pt_ops = &xelpg_pt_ops;
++	else
++		ggtt->pt_ops = &xelp_pt_ops;
++
+ 	drm_mm_init(&ggtt->mm, xe_wopcm_size(xe),
+ 		    ggtt->size - xe_wopcm_size(xe));
+ 	mutex_init(&ggtt->lock);
+@@ -260,7 +287,7 @@ void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix)
+ {
+ 	u64 addr, scratch_pte;
  
--		pte = __pte_encode(is_null ? 0 :
--				   xe_res_dma(curs) + xe_walk->dma_offset,
--				   xe_walk->cache, xe_walk->vma, level);
-+		pte = __vma_pte_encode(is_null ? 0 :
-+				       xe_res_dma(curs) + xe_walk->dma_offset,
-+				       xe_walk->vma, xe_walk->cache, level);
- 		pte |= xe_walk->default_pte;
+-	scratch_pte = xe_ggtt_pte_encode(ggtt->scratch, 0);
++	scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0, XE_CACHE_WB);
  
- 		/*
+ 	printk("%sGlobal GTT:", prefix);
+ 	for (addr = 0; addr < ggtt->size; addr += XE_PAGE_SIZE) {
+@@ -301,7 +328,7 @@ void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
+ 	u64 offset, pte;
+ 
+ 	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
+-		pte = xe_ggtt_pte_encode(bo, offset);
++		pte = ggtt->pt_ops->pte_encode_bo(bo, offset, XE_CACHE_WB);
+ 		xe_ggtt_set_pte(ggtt, start + offset, pte);
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.h b/drivers/gpu/drm/xe/xe_ggtt.h
+index 205a6d058bbd..3faa3c6d0375 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.h
++++ b/drivers/gpu/drm/xe/xe_ggtt.h
+@@ -10,7 +10,6 @@
+ 
+ struct drm_printer;
+ 
+-u64 xe_ggtt_pte_encode(struct xe_bo *bo, u64 bo_offset);
+ void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte);
+ void xe_ggtt_invalidate(struct xe_ggtt *ggtt);
+ int xe_ggtt_init_noalloc(struct xe_ggtt *ggtt);
+diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
+index d34b3e733945..486016ea5b67 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt_types.h
++++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
+@@ -8,9 +8,16 @@
+ 
+ #include <drm/drm_mm.h>
+ 
++#include "xe_pt_types.h"
++
+ struct xe_bo;
+ struct xe_gt;
+ 
++struct xe_ggtt_pt_ops {
++	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset,
++			     enum xe_cache_level cache);
++};
++
+ struct xe_ggtt {
+ 	struct xe_tile *tile;
+ 
+@@ -25,6 +32,8 @@ struct xe_ggtt {
+ 
+ 	u64 __iomem *gsm;
+ 
++	const struct xe_ggtt_pt_ops *pt_ops;
++
+ 	struct drm_mm mm;
+ };
+ 
 -- 
 2.40.1
 
