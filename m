@@ -4,44 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36513E80A85
-	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 04:55:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8FF8DE80A86
+	for <intel-xe@archiver.kernel.org>; Wed, 27 Sep 2023 05:12:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0886910E465;
-	Wed, 27 Sep 2023 04:55:58 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A803410E466
- for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 04:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4681010E464;
+	Wed, 27 Sep 2023 05:12:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F247710E464
+ for <intel-xe@lists.freedesktop.org>; Wed, 27 Sep 2023 05:12:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695790556; x=1727326556;
+ t=1695791527; x=1727327527;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=I5kCVPZodQ4Qwbp+I8gqPaYjic4mzb8Vji3zikvdJ4k=;
- b=jR24LW0fGMq8L5s5rAdaQ0375vDpPPG/wmPv80h/j2gCbO3vleXbrJfA
- 1FOIXlSJ/YJmyoKuxAGxcvg3fX8KforTHpTGiYtmmSa2YqgycFVStRljc
- gppDU2WRawJtKF505C9z4puj06B5XOVpPzBdpUs7sbgYyKVjK3nXpe33j
- /uG2yAF94gjSA6C4RcNSy8KGYOO9SwqqVw3GuGp/klONY1MwLaHYitFmF
- B9rliKSO5NR54vpjthAOFr7kpf8XpvaaiMNb4q4F+fg6ROCgBTem69qFW
- FbANJf3Fk+hN0d7Slg3wqbF01NnY+asoJvFs5ZZU4R6pqW1z28YJFmt8k Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="380597326"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="380597326"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 21:55:55 -0700
+ bh=m3y38+V2jqpPkfp6RXEHppUhYdYqEIq0rFeM15KsyDY=;
+ b=jjuQXdG6HaW+6gO+jx9ZjeGxOWIyu5gn9H+teFab56RmYT7Yp0EPBoQt
+ YxgppPgaYLphFMr/fekDNWSnXeaiHzENvbceDlEWeZkCcsQYo4Zn7l5jx
+ Y/M5n3aZwooDhfXi9L0G8QBXThvoUTH35gvSKPmd0u6zU0QC10Vj1SiIg
+ I093AWO51nZfwBvGLYaL5a4jCc5RWgmTKKWlzRKOBy991H8mDbW7pzOx5
+ mwBTi6Fr00IqCtA17TL+7Rzeruyy4ulsJU9m7chw0zUWZNDS65f/cUPet
+ 4/01+x1Myf/iiiq156COU617LdQYg7IsYaAIwc7e9gjJkIcGQ+1y4NVQk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="445863331"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="445863331"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 22:12:07 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="698706902"
-X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="698706902"
-Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
- ([10.209.6.221])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Sep 2023 21:55:55 -0700
-Date: Tue, 26 Sep 2023 21:45:43 -0700
-Message-ID: <875y3w1ax4.wl-ashutosh.dixit@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10845"; a="814724854"
+X-IronPort-AV: E=Sophos;i="6.03,179,1694761200"; d="scan'208";a="814724854"
+Received: from yangtaey-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.209.123.136])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Sep 2023 22:12:06 -0700
+Date: Tue, 26 Sep 2023 21:53:29 -0700
+Message-ID: <874jjg1ak6.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: Badal Nilawar <badal.nilawar@intel.com>
 In-Reply-To: <20230925081842.3566834-2-badal.nilawar@intel.com>
-References: <20230925081842.3566834-1-badal.nilawar@intel.com>	<20230925081842.3566834-2-badal.nilawar@intel.com>
+References: <20230925081842.3566834-1-badal.nilawar@intel.com>
+ <20230925081842.3566834-2-badal.nilawar@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -66,120 +67,21 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Mon, 25 Sep 2023 01:18:38 -0700, Badal Nilawar wrote:
 >
-
-Hi Badal,
-
-> +static int xe_hwmon_process_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg,
-
-Maybe xe_hwmon_read_write_reg? process_reg sounds bad. Basically we don't
-process a register, we read or write it.
-
-> +				enum xe_hwmon_reg_operation operation, u32 *value,
-> +				u32 clr, u32 set)
+> +static umode_t
+> +xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+> +		    u32 attr, int channel)
 > +{
-> +	struct xe_reg reg;
+> +	struct xe_hwmon *hwmon = (struct xe_hwmon *)drvdata;
+> +	int ret;
 > +
-> +	reg.raw = xe_hwmon_get_reg(hwmon, hwmon_reg);
-> +
-> +	if (!reg.raw)
-> +		return -EOPNOTSUPP;
-> +
-> +	switch (operation) {
-> +	case REG_READ:
-> +		*value = xe_mmio_read32(hwmon->gt, reg);
-> +		return 0;
-> +	case REG_WRITE:
-> +		xe_mmio_write32(hwmon->gt, reg, *value);
-> +		return 0;
-> +	case REG_RMW:
-> +		*value = xe_mmio_rmw32(hwmon->gt, reg, clr, set);
-> +		return 0;
-> +	default:
-> +		drm_warn(&gt_to_xe(hwmon->gt)->drm, "Invalid xe hwmon reg operation: %d\n",
-> +			 operation);
-> +		return -EOPNOTSUPP;
-> +	}
-> +}
-> +
-> +int xe_hwmon_process_reg_read64(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg, u64 *value)
-> +{
-> +	struct xe_reg reg;
-> +
-> +	reg.raw = xe_hwmon_get_reg(hwmon, hwmon_reg);
-> +
-> +	if (!reg.raw)
-> +		return -EOPNOTSUPP;
-> +
-> +	*value = xe_mmio_read64_2x32(hwmon->gt, reg);
-> +
-> +	return 0;
+> +	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
 
-We can't make read64 part of enum xe_hwmon_reg_operation?
+Maybe we do xe_device_mem_access_get/put in xe_hwmon_process_reg where it
+is needed? E.g. xe_hwmon_is_visible doesn't need to do this because it
+doesn't read/write registers.
 
-
-> +}
-> +
-> +#define PL1_DISABLE 0
-> +
-> +/*
-> + * HW allows arbitrary PL1 limits to be set but silently clamps these values to
-> + * "typical but not guaranteed" min/max values in REG_PKG_POWER_SKU. Follow the
-> + * same pattern for sysfs, allow arbitrary PL1 limits to be set but display
-> + * clamped values when read.
-> + */
-> +static int xe_hwmon_power_max_read(struct xe_hwmon *hwmon, long *value)
-> +{
-> +	u32 reg_val;
-> +	u64 reg_val64, min, max;
-> +
-> +	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_READ, &reg_val, 0, 0);
-> +	/* Check if PL1 limit is disabled */
-> +	if (!(reg_val & PKG_PWR_LIM_1_EN)) {
-> +		*value = PL1_DISABLE;
-> +		return 0;
-> +	}
-> +
-> +	reg_val = REG_FIELD_GET(PKG_PWR_LIM_1, reg_val);
-> +	*value = mul_u64_u32_shr(reg_val, SF_POWER, hwmon->scl_shift_power);
-> +
-> +	xe_hwmon_process_reg_read64(hwmon, REG_PKG_POWER_SKU, &reg_val64);
-> +	min = REG_FIELD_GET(PKG_MIN_PWR, reg_val64);
-> +	min = mul_u64_u32_shr(min, SF_POWER, hwmon->scl_shift_power);
-> +	max = REG_FIELD_GET(PKG_MAX_PWR, reg_val64);
-> +	max = mul_u64_u32_shr(max, SF_POWER, hwmon->scl_shift_power);
-> +
-> +	if (min && max)
-> +		*value = clamp_t(u64, *value, min, max);
-
-Not exactly correct. Should be:
-
-	if (min)
-		clamp at min
-	if (max)
-		clamp at max
-
-I was thinking of changing it for i915 but was lazy.
-
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, long value)
-> +{
-> +	u32 reg_val;
-> +
-> +	/* Disable PL1 limit and verify, as limit cannot be disabled on all platforms */
-> +	if (value == PL1_DISABLE) {
-> +		xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW, &reg_val,
-> +				     PKG_PWR_LIM_1_EN, 0);
-> +		xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_READ, &reg_val,
-
-If we are not checking for return codes from these functions, why are they
-not void?
-
-Also, how about separate read/write/rmw functions as Andi was suggesting?
-They would be clearer I think.
+Also do we need to take forcewake? i915 had forcewake table so it would
+take forcewake automatically but XE doesn't do that.
 
 Thanks.
 --
