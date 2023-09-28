@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F02C4CE7B19
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Sep 2023 10:59:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2DB9CE7B1A
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Sep 2023 10:59:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B137410E60C;
-	Thu, 28 Sep 2023 10:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A0E7310E60D;
+	Thu, 28 Sep 2023 10:59:15 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F3A8510E609
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Sep 2023 10:59:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8426310E609
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Sep 2023 10:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695898744; x=1727434744;
+ t=1695898746; x=1727434746;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pWu8u2de47zJ3chksQ0lNDbNFIA/+bML77GUB7KHrQ0=;
- b=fmsLyUfxK0yi+Q5iScpd+yuo2gXkqzLKzvu4IIVRhmGZ+24R8bM20vli
- /KdbKVeBiXwa6IiSAqF/s4ETBEPYH4yyAdYI2l5q5yZX6xbpNTPv01FZt
- /zxE7bAPOyGzhy68TL5pV6iYzI3sff/nzwLJCfZ6+IzDN51QFxtdF+Mv5
- 1J0mu7YGxOhFuSfpwznqRNBBs2nWAIMZ3XL52n6dZ8eMiIJO4ickhRjr3
- VTTK5wQRL8qViP0IlaUO4s15RCvULKmZL7+2PDHeWn90k39WSDhbP/E+Q
- KpD+wSgvKpZUbagjOOL4Q7OtaeC6pFrYIfFMZNWLESCZiaO3HyeU26lOi A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="640147"
+ bh=gE4HEGlZ5EYXDB5dWWVsyjtm+cVTJrHQznCQZEclnlg=;
+ b=TD+EHXbawKLDskgi2D8fHeHgz7Vmaq9MgBgv6nqwmiJ2Z2axM5tQHHHw
+ 93qjYlByEwZSMfUjXIvnTd7iQSUIrK3BDU6QkjtjzILCYzG7XDkMyNYG2
+ SyYn9QC4oRs0L8wy6zlEWmSVYgoAfuAnygxMCkTYmZtTn6ScR7WYWsrnF
+ mnQY65PgUswW2uvJpjmIJro/qafrF7Z/7XfrHyhfPD5RLn8Bsjfh7fcki
+ zq/HgHjZi5P345LCofGxVzPYBhaGKsZKP35TLX4lBy+O6VOvA6RziE40L
+ UtxO7zwl4ahdr5hVLYzWznSLvcbBFW4GerrPHhjYzsGP1aSDXzjkIHD2R g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="640150"
 X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; 
-   d="scan'208";a="640147"
+   d="scan'208";a="640150"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 03:59:04 -0700
+ 28 Sep 2023 03:59:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="923174428"
-X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="923174428"
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="923174437"
+X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="923174437"
 Received: from nsolmsdo-mobl.ger.corp.intel.com (HELO 8b338166fae8.intel.com)
  ([10.251.220.162])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 03:59:02 -0700
+ 28 Sep 2023 03:59:03 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Sep 2023 10:58:29 +0000
-Message-Id: <20230928105843.7-7-francois.dugast@intel.com>
+Date: Thu, 28 Sep 2023 10:58:30 +0000
+Message-Id: <20230928105843.7-8-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230928105843.7-1-francois.dugast@intel.com>
 References: <20230928105843.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 06/20] drm/xe/uapi: Remove MMIO ioctl
+Subject: [Intel-xe] [PATCH v4 07/20] drm/xe: Fix xe_exec_queue_is_idle for
+ parallel exec queues
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,208 +59,45 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This was previously used in UMD for timestamp correlation, which can now
-be done with DRM_XE_QUERY_CS_CYCLES.
+From: Matthew Brost <matthew.brost@intel.com>
 
-Link: https://lore.kernel.org/all/20230706042044.GR6953@mdroper-desk1.amr.corp.intel.com/
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/636
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Last little piece to support parallel exec queue is compute mode.
+
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c |   1 -
- drivers/gpu/drm/xe/xe_mmio.c   | 102 ---------------------------------
- include/uapi/drm/xe_drm.h      |  31 ++--------
- 3 files changed, 4 insertions(+), 130 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 687dc3d79a66..aaaa2bb87eb2 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -120,7 +120,6 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_DESTROY, xe_exec_queue_destroy_ioctl,
- 			  DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_EXEC, xe_exec_ioctl, DRM_RENDER_ALLOW),
--	DRM_IOCTL_DEF_DRV(XE_MMIO, xe_mmio_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_SET_PROPERTY, xe_exec_queue_set_property_ioctl,
- 			  DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 3ccc0af4430b..e636e3f3456d 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -422,108 +422,6 @@ int xe_mmio_init(struct xe_device *xe)
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 744be293fe37..6f1e64896a2d 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -867,8 +867,17 @@ bool xe_exec_queue_ring_full(struct xe_exec_queue *q)
+  */
+ bool xe_exec_queue_is_idle(struct xe_exec_queue *q)
+ {
+-	if (XE_WARN_ON(xe_exec_queue_is_parallel(q)))
+-		return false;
++	if (xe_exec_queue_is_parallel(q)) {
++		int i;
++
++		for (i = 0; i < q->width; ++i) {
++			if (xe_lrc_seqno(&q->lrc[i]) !=
++			    q->lrc[i].fence_ctx.next_seqno - 1)
++				return false;
++		}
++
++		return true;
++	}
  
--#define VALID_MMIO_FLAGS (\
--	DRM_XE_MMIO_BITS_MASK |\
--	DRM_XE_MMIO_READ |\
--	DRM_XE_MMIO_WRITE)
--
--static const struct xe_reg mmio_read_whitelist[] = {
--	RING_TIMESTAMP(RENDER_RING_BASE),
--};
--
--int xe_mmio_ioctl(struct drm_device *dev, void *data,
--		  struct drm_file *file)
--{
--	struct xe_device *xe = to_xe_device(dev);
--	struct xe_gt *gt = xe_root_mmio_gt(xe);
--	struct drm_xe_mmio *args = data;
--	unsigned int bits_flag, bytes;
--	struct xe_reg reg;
--	bool allowed;
--	int ret = 0;
--
--	if (XE_IOCTL_DBG(xe, args->extensions) ||
--	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
--		return -EINVAL;
--
--	if (XE_IOCTL_DBG(xe, args->flags & ~VALID_MMIO_FLAGS))
--		return -EINVAL;
--
--	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_MMIO_WRITE) && args->value))
--		return -EINVAL;
--
--	allowed = capable(CAP_SYS_ADMIN);
--	if (!allowed && ((args->flags & ~DRM_XE_MMIO_BITS_MASK) == DRM_XE_MMIO_READ)) {
--		unsigned int i;
--
--		for (i = 0; i < ARRAY_SIZE(mmio_read_whitelist); i++) {
--			if (mmio_read_whitelist[i].addr == args->addr) {
--				allowed = true;
--				break;
--			}
--		}
--	}
--
--	if (XE_IOCTL_DBG(xe, !allowed))
--		return -EPERM;
--
--	bits_flag = args->flags & DRM_XE_MMIO_BITS_MASK;
--	bytes = 1 << bits_flag;
--	if (XE_IOCTL_DBG(xe, args->addr + bytes > xe->mmio.size))
--		return -EINVAL;
--
--	/*
--	 * TODO: migrate to xe_gt_mcr to lookup the mmio range and handle
--	 * multicast registers. Steering would need uapi extension.
--	 */
--	reg = XE_REG(args->addr);
--
--	xe_device_mem_access_get(xe);
--	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--
--	if (args->flags & DRM_XE_MMIO_WRITE) {
--		switch (bits_flag) {
--		case DRM_XE_MMIO_32BIT:
--			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
--				ret = -EINVAL;
--				goto exit;
--			}
--			xe_mmio_write32(gt, reg, args->value);
--			break;
--		default:
--			drm_dbg(&xe->drm, "Invalid MMIO bit size");
--			fallthrough;
--		case DRM_XE_MMIO_8BIT: /* TODO */
--		case DRM_XE_MMIO_16BIT: /* TODO */
--			ret = -EOPNOTSUPP;
--			goto exit;
--		}
--	}
--
--	if (args->flags & DRM_XE_MMIO_READ) {
--		switch (bits_flag) {
--		case DRM_XE_MMIO_32BIT:
--			args->value = xe_mmio_read32(gt, reg);
--			break;
--		case DRM_XE_MMIO_64BIT:
--			args->value = xe_mmio_read64_2x32(gt, reg);
--			break;
--		default:
--			drm_dbg(&xe->drm, "Invalid MMIO bit size");
--			fallthrough;
--		case DRM_XE_MMIO_8BIT: /* TODO */
--		case DRM_XE_MMIO_16BIT: /* TODO */
--			ret = -EOPNOTSUPP;
--		}
--	}
--
--exit:
--	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
--	xe_device_mem_access_put(xe);
--
--	return ret;
--}
--
- /**
-  * xe_mmio_read64_2x32() - Read a 64-bit register as two 32-bit reads
-  * @gt: MMIO target GT
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 46db9334159b..ad21ba1d6e0b 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -106,11 +106,10 @@ struct xe_user_extension {
- #define DRM_XE_EXEC_QUEUE_CREATE		0x06
- #define DRM_XE_EXEC_QUEUE_DESTROY		0x07
- #define DRM_XE_EXEC			0x08
--#define DRM_XE_MMIO			0x09
--#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0a
--#define DRM_XE_WAIT_USER_FENCE		0x0b
--#define DRM_XE_VM_MADVISE		0x0c
--#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0d
-+#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x09
-+#define DRM_XE_WAIT_USER_FENCE		0x0a
-+#define DRM_XE_VM_MADVISE		0x0b
-+#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0c
- 
- /* Must be kept compact -- no holes */
- #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
-@@ -123,7 +122,6 @@ struct xe_user_extension {
- #define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
- #define DRM_IOCTL_XE_EXEC_QUEUE_DESTROY		 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_DESTROY, struct drm_xe_exec_queue_destroy)
- #define DRM_IOCTL_XE_EXEC			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
--#define DRM_IOCTL_XE_MMIO			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_MMIO, struct drm_xe_mmio)
- #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
-@@ -936,27 +934,6 @@ struct drm_xe_exec {
- 	__u64 reserved[2];
- };
- 
--struct drm_xe_mmio {
--	/** @extensions: Pointer to the first extension struct, if any */
--	__u64 extensions;
--
--	__u32 addr;
--
--#define DRM_XE_MMIO_8BIT	0x0
--#define DRM_XE_MMIO_16BIT	0x1
--#define DRM_XE_MMIO_32BIT	0x2
--#define DRM_XE_MMIO_64BIT	0x3
--#define DRM_XE_MMIO_BITS_MASK	0x3
--#define DRM_XE_MMIO_READ	0x4
--#define DRM_XE_MMIO_WRITE	0x8
--	__u32 flags;
--
--	__u64 value;
--
--	/** @reserved: Reserved */
--	__u64 reserved[2];
--};
--
- /**
-  * struct drm_xe_wait_user_fence - wait user fence
-  *
+ 	return xe_lrc_seqno(&q->lrc[0]) ==
+ 		q->lrc[0].fence_ctx.next_seqno - 1;
 -- 
 2.34.1
 
