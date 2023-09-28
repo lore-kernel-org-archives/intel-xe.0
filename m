@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD4D7CE7B10
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Sep 2023 09:28:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27DE2CE7B12
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Sep 2023 09:28:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE2F410E5FE;
-	Thu, 28 Sep 2023 09:28:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0BA910E5FF;
+	Thu, 28 Sep 2023 09:28:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0884B10E5FE
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Sep 2023 09:28:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1C10D10E5FE
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Sep 2023 09:28:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695893322; x=1727429322;
+ t=1695893326; x=1727429326;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0L6KJn7ILgrQ6U1GXmYut/try8o0jMUQRcIisMpNoBo=;
- b=I86jYWg0VEfBvTCCNWynciJNPYiC4XxiF7Dhlqlz5WSHNd8qcR64JnLH
- /UQ8jF5BQ7EBPfn7SIUtNbd+p/nxoUndLxIGIhRhtpVNnUO5nEO2CjrKI
- lJnKpYSD11sBB+w888Pd5/YFOJfRZqTXBpYBeRwKwJysNMl28kJiv1ZZI
- Ds6mYqVA2TVBJaZItedJwOE192BzKYU0SM4psBpepQVT7AeonDTxS4JzN
- IYBpEFzMvTvrzB0BPvOjbh9o8ust5I4+nyjIPYWRqtOSs1P0wTnPqwBZH
- IqQ12kNqsW+37qmertpuN8n2jLZVr6Uufg6E+cpQ+vbqmjl5c2NdSbcku Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="448509996"
-X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="448509996"
+ bh=T7t6oNyI/UtI47RTFwHuIokYTjPJxyk1sbbDc0enOPg=;
+ b=f4T7qzSlfR6S4KwEtwxfaB77sjFCF+wygtFe5Qm1MUfkhUArlZXMlOzz
+ SXY2dHdKbtJNjOPIKFqeMLJqYfn8pF79HL6HYfGrLtj2Z34d1NeQaBTTa
+ 42bLm/jZJj08s+Ei/lBGSInq3ZMDyoLL24Ysge2rXGopGeNQDcOLtTXLW
+ whI0pPR6TayLyORUaQgXtI6azYJ0QRHQiqqJzIbcoFhKtMZMqp8Hdrhpv
+ Jsm8IN+kzVRYl6gnnmt4XSbfluIQZRldvNuCcpN+vNnxf5G0/5zibT+Au
+ S0glrwuVLfIaOTrh5Cdn+m9s6i3nP0kuzyZLippQDEySETx6va/F75MSo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="448510021"
+X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="448510021"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 02:28:37 -0700
+ 28 Sep 2023 02:28:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="752900888"
-X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="752900888"
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="752900915"
+X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="752900915"
 Received: from nlesniak-mobl.ger.corp.intel.com (HELO mwauld-desk1.intel.com)
  ([10.252.28.108])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 02:28:35 -0700
+ 28 Sep 2023 02:28:43 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Sep 2023 10:28:19 +0100
-Message-ID: <20230928092816.375130-9-matthew.auld@intel.com>
+Date: Thu, 28 Sep 2023 10:28:22 +0100
+Message-ID: <20230928092816.375130-12-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230928092816.375130-7-matthew.auld@intel.com>
 References: <20230928092816.375130-7-matthew.auld@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v5 2/5] drm/xe: directly use pat_index for
- pte_encode
+Subject: [Intel-xe] [PATCH v5 5/5] drm/xe/uapi: support pat_index selection
+ with vm_bind
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,460 +59,371 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Filip Hazubski <filip.hazubski@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Carl Zhang <carl.zhang@intel.com>,
+ Effie Yu <effie.yu@intel.com>, Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In the next patch userspace will be able to directly set the pat_index
-as part of vm_bind. To support this we need to get away from using
-xe_cache_level in the low level routines and rather just use the
-pat_index directly.
+Allow userspace to directly control the pat_index for a given vm
+binding. This should allow directly controlling the coherency, caching
+and potentially other stuff in the future for the ppGTT binding.
 
-v2: Rebase
-v3: Some missed conversions, also prefer tile_to_xe() (Niranjana)
+The exact meaning behind the pat_index is very platform specific (see
+BSpec or PRMs) but effectively maps to some predefined memory
+attributes. From the KMD pov we only care about the coherency that is
+provided by the pat_index, which falls into either NONE, 1WAY or 2WAY.
+The vm_bind coherency mode for the given pat_index needs to be at least
+as coherent as the coh_mode that was set at object creation. For
+platforms that lack the explicit coherency mode, we treat UC/WT/WC as
+NONE and WB as AT_LEAST_1WAY.
 
+For userptr mappings we lack a corresponding gem object, so the expected
+coherency mode is instead implicit and must fall into either 1WAY or
+2WAY. Trying to use NONE will be rejected by the kernel. For imported
+dma-buf (from a different device) the coherency mode is also implicit
+and must also be either 1WAY or 2WAY i.e AT_LEAST_1WAY.
+
+v2:
+  - Undefined coh_mode(pat_index) can now be treated as programmer
+    error. (Matt Roper)
+  - We now allow gem_create.coh_mode <= coh_mode(pat_index), rather than
+    having to match exactly. This ensures imported dma-buf can always
+    just use 1way (or even 2way), now that we also bundle 1way/2way into
+    at_least_1way. We still require 1way/2way for external dma-buf, but
+    the policy can now be the same for self-import, if desired.
+  - Use u16 for pat_index in uapi. u32 is massive overkill. (José)
+  - Move as much of the pat_index validation as we can into
+    vm_bind_ioctl_check_args. (José)
+v3 (Matt Roper):
+  - Split the pte_encode() refactoring into separate patch.
+v4:
+  - Rebase
+
+Bspec: 45101, 44235 #xe
+Bspec: 70552, 71582, 59400 #xe2
 Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Cc: Pallavi Mishra <pallavi.mishra@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Filip Hazubski <filip.hazubski@intel.com>
+Cc: Carl Zhang <carl.zhang@intel.com>
+Cc: Effie Yu <effie.yu@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 10 ++++++----
- drivers/gpu/drm/xe/tests/xe_migrate.c  |  2 +-
- drivers/gpu/drm/xe/xe_ggtt.c           | 16 +++++++++-------
- drivers/gpu/drm/xe/xe_ggtt_types.h     |  3 +--
- drivers/gpu/drm/xe/xe_migrate.c        | 19 +++++++++++--------
- drivers/gpu/drm/xe/xe_pt.c             | 11 ++++++-----
- drivers/gpu/drm/xe/xe_pt_types.h       |  8 ++++----
- drivers/gpu/drm/xe/xe_vm.c             | 24 +++++++++++-------------
- 8 files changed, 49 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c       | 11 ++----
+ drivers/gpu/drm/xe/xe_vm.c       | 61 +++++++++++++++++++++++++++-----
+ drivers/gpu/drm/xe/xe_vm_types.h |  7 ++++
+ include/uapi/drm/xe_drm.h        | 43 +++++++++++++++++++++-
+ 4 files changed, 104 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index b7a04fba3585..2c36e5032433 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -30,7 +30,7 @@ write_dpt_rotated(struct xe_bo *bo, struct iosys_map *map, u32 *dpt_ofs, u32 bo_
- 
- 		for (row = 0; row < height; row++) {
- 			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
--							      XE_CACHE_WB);
-+							      xe->pat.idx[XE_CACHE_WB]);
- 
- 			iosys_map_wr(map, *dpt_ofs, u64, pte);
- 			*dpt_ofs += 8;
-@@ -84,7 +84,7 @@ static int __xe_pin_fb_vma_dpt(struct intel_framebuffer *fb,
- 
- 		for (x = 0; x < size / XE_PAGE_SIZE; x++) {
- 			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x * XE_PAGE_SIZE,
--							      XE_CACHE_WB);
-+							      xe->pat.idx[XE_CACHE_WB]);
- 
- 			iosys_map_wr(&dpt->vmap, x * 8, u64, pte);
- 		}
-@@ -110,6 +110,7 @@ static void
- write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo_ofs,
- 		   u32 width, u32 height, u32 src_stride, u32 dst_stride)
- {
-+	struct xe_device *xe = xe_bo_device(bo);
- 	u32 column, row;
- 
- 	for (column = 0; column < width; column++) {
-@@ -117,7 +118,7 @@ write_ggtt_rotated(struct xe_bo *bo, struct xe_ggtt *ggtt, u32 *ggtt_ofs, u32 bo
- 
- 		for (row = 0; row < height; row++) {
- 			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, src_idx * XE_PAGE_SIZE,
--							      XE_CACHE_WB);
-+							      xe->pat.idx[XE_CACHE_WB]);
- 
- 			xe_ggtt_set_pte(ggtt, *ggtt_ofs, pte);
- 			*ggtt_ofs += XE_PAGE_SIZE;
-@@ -162,7 +163,8 @@ static int __xe_pin_fb_vma_ggtt(struct intel_framebuffer *fb,
- 			goto out_unlock;
- 
- 		for (x = 0; x < size; x += XE_PAGE_SIZE) {
--			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x, XE_CACHE_WB);
-+			u64 pte = ggtt->pt_ops->pte_encode_bo(bo, x,
-+							      xe->pat.idx[XE_CACHE_WB]);
- 
- 			xe_ggtt_set_pte(ggtt, vma->node.start + x, pte);
- 		}
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index 6906ff9d9c31..4c8526af06ce 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -301,7 +301,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
- 	/* First part of the test, are we updating our pagetable bo with a new entry? */
- 	xe_map_wr(xe, &bo->vmap, XE_PAGE_SIZE * (NUM_KERNEL_PDE - 1), u64,
- 		  0xdeaddeadbeefbeef);
--	expected = m->q->vm->pt_ops->pte_encode_bo(pt, 0, XE_CACHE_WB, 0);
-+	expected = m->q->vm->pt_ops->pte_encode_bo(pt, 0, xe->pat.idx[XE_CACHE_WB], 0);
- 	if (m->q->vm->flags & XE_VM_FLAG_64K)
- 		expected |= XE_PTE_PS64;
- 	if (xe_bo_is_vram(pt))
-diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-index 99b54794917e..354871a6b371 100644
---- a/drivers/gpu/drm/xe/xe_ggtt.c
-+++ b/drivers/gpu/drm/xe/xe_ggtt.c
-@@ -27,7 +27,7 @@
- #define GUC_GGTT_TOP	0xFEE00000
- 
- static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
--				   enum xe_cache_level cache)
-+				   u16 pat_index)
- {
- 	u64 pte;
- 
-@@ -41,13 +41,12 @@ static u64 xelp_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
- }
- 
- static u64 xelpg_ggtt_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
--				    enum xe_cache_level cache)
-+				    u16 pat_index)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
--	u32 pat_index = xe->pat.idx[cache];
- 	u64 pte;
- 
--	pte = xelp_ggtt_pte_encode_bo(bo, bo_offset, cache);
-+	pte = xelp_ggtt_pte_encode_bo(bo, bo_offset, pat_index);
- 
- 	xe_assert(xe, pat_index <= 3);
- 
-@@ -79,6 +78,7 @@ void xe_ggtt_set_pte(struct xe_ggtt *ggtt, u64 addr, u64 pte)
- 
- static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
- {
-+	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WB];
- 	u64 end = start + size - 1;
- 	u64 scratch_pte;
- 
-@@ -86,7 +86,7 @@ static void xe_ggtt_clear(struct xe_ggtt *ggtt, u64 start, u64 size)
- 
- 	if (ggtt->scratch)
- 		scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0,
--							  XE_CACHE_WB);
-+							  pat_index);
- 	else
- 		scratch_pte = 0;
- 
-@@ -285,9 +285,10 @@ void xe_ggtt_invalidate(struct xe_ggtt *ggtt)
- 
- void xe_ggtt_printk(struct xe_ggtt *ggtt, const char *prefix)
- {
-+	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WB];
- 	u64 addr, scratch_pte;
- 
--	scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0, XE_CACHE_WB);
-+	scratch_pte = ggtt->pt_ops->pte_encode_bo(ggtt->scratch, 0, pat_index);
- 
- 	printk("%sGlobal GTT:", prefix);
- 	for (addr = 0; addr < ggtt->size; addr += XE_PAGE_SIZE) {
-@@ -324,11 +325,12 @@ int xe_ggtt_insert_special_node(struct xe_ggtt *ggtt, struct drm_mm_node *node,
- 
- void xe_ggtt_map_bo(struct xe_ggtt *ggtt, struct xe_bo *bo)
- {
-+	u16 pat_index = tile_to_xe(ggtt->tile)->pat.idx[XE_CACHE_WB];
- 	u64 start = bo->ggtt_node.start;
- 	u64 offset, pte;
- 
- 	for (offset = 0; offset < bo->size; offset += XE_PAGE_SIZE) {
--		pte = ggtt->pt_ops->pte_encode_bo(bo, offset, XE_CACHE_WB);
-+		pte = ggtt->pt_ops->pte_encode_bo(bo, offset, pat_index);
- 		xe_ggtt_set_pte(ggtt, start + offset, pte);
- 	}
- 
-diff --git a/drivers/gpu/drm/xe/xe_ggtt_types.h b/drivers/gpu/drm/xe/xe_ggtt_types.h
-index 486016ea5b67..d8c584d9a8c3 100644
---- a/drivers/gpu/drm/xe/xe_ggtt_types.h
-+++ b/drivers/gpu/drm/xe/xe_ggtt_types.h
-@@ -14,8 +14,7 @@ struct xe_bo;
- struct xe_gt;
- 
- struct xe_ggtt_pt_ops {
--	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset,
--			     enum xe_cache_level cache);
-+	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset, u16 pat_index);
- };
- 
- struct xe_ggtt {
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index cd2e00008aab..b8b81a9ce2ca 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -158,6 +158,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 				 struct xe_vm *vm)
- {
- 	struct xe_device *xe = tile_to_xe(tile);
-+	u16 pat_index = xe->pat.idx[XE_CACHE_WB];
- 	u8 id = tile->id;
- 	u32 num_entries = NUM_PT_SLOTS, num_level = vm->pt_root[id]->level;
- 	u32 map_ofs, level, i;
-@@ -189,7 +190,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 		return ret;
- 	}
- 
--	entry = vm->pt_ops->pde_encode_bo(bo, bo->size - XE_PAGE_SIZE, XE_CACHE_WB);
-+	entry = vm->pt_ops->pde_encode_bo(bo, bo->size - XE_PAGE_SIZE, pat_index);
- 	xe_pt_write(xe, &vm->pt_root[id]->bo->vmap, 0, entry);
- 
- 	map_ofs = (num_entries - num_level) * XE_PAGE_SIZE;
-@@ -197,7 +198,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 	/* Map the entire BO in our level 0 pt */
- 	for (i = 0, level = 0; i < num_entries; level++) {
- 		entry = vm->pt_ops->pte_encode_bo(bo, i * XE_PAGE_SIZE,
--						  XE_CACHE_WB, 0);
-+						  pat_index, 0);
- 
- 		xe_map_wr(xe, &bo->vmap, map_ofs + level * 8, u64, entry);
- 
-@@ -216,7 +217,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 		     i += vm->flags & XE_VM_FLAG_64K ? XE_64K_PAGE_SIZE :
- 		     XE_PAGE_SIZE) {
- 			entry = vm->pt_ops->pte_encode_bo(batch, i,
--							  XE_CACHE_WB, 0);
-+							  pat_index, 0);
- 
- 			xe_map_wr(xe, &bo->vmap, map_ofs + level * 8, u64,
- 				  entry);
-@@ -241,7 +242,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 			flags = XE_PDE_64K;
- 
- 		entry = vm->pt_ops->pde_encode_bo(bo, map_ofs + (level - 1) *
--						  XE_PAGE_SIZE, XE_CACHE_WB);
-+						  XE_PAGE_SIZE, pat_index);
- 		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE * level, u64,
- 			  entry | flags);
- 	}
-@@ -249,7 +250,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 	/* Write PDE's that point to our BO. */
- 	for (i = 0; i < num_entries - num_level; i++) {
- 		entry = vm->pt_ops->pde_encode_bo(bo, i * XE_PAGE_SIZE,
--						  XE_CACHE_WB);
-+						  pat_index);
- 
- 		xe_map_wr(xe, &bo->vmap, map_ofs + XE_PAGE_SIZE +
- 			  (i + 1) * 8, u64, entry);
-@@ -261,7 +262,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
- 
- 		level = 2;
- 		ofs = map_ofs + XE_PAGE_SIZE * level + 256 * 8;
--		flags = vm->pt_ops->pte_encode_addr(xe, 0, XE_CACHE_WB, level,
-+		flags = vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level,
- 						    true, 0);
- 
- 		/*
-@@ -457,6 +458,7 @@ static void emit_pte(struct xe_migrate *m,
- 		     struct xe_res_cursor *cur,
- 		     u32 size, struct xe_bo *bo)
- {
-+	u16 pat_index = tile_to_xe(m->tile)->pat.idx[XE_CACHE_WB];
- 	u32 ptes;
- 	u64 ofs = at_pt * XE_PAGE_SIZE;
- 	u64 cur_ofs;
-@@ -500,7 +502,7 @@ static void emit_pte(struct xe_migrate *m,
- 			}
- 
- 			addr = m->q->vm->pt_ops->pte_encode_addr(m->tile->xe,
--								 addr, XE_CACHE_WB,
-+								 addr, pat_index,
- 								 0, devmem, flags);
- 			bb->cs[bb->len++] = lower_32_bits(addr);
- 			bb->cs[bb->len++] = upper_32_bits(addr);
-@@ -1198,6 +1200,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- 	bool first_munmap_rebind = vma &&
- 		vma->gpuva.flags & XE_VMA_FIRST_REBIND;
- 	struct xe_exec_queue *q_override = !q ? m->q : q;
-+	u16 pat_index = xe->pat.idx[XE_CACHE_WB];
- 
- 	/* Use the CPU if no in syncs and engine is idle */
- 	if (no_in_syncs(syncs, num_syncs) && xe_exec_queue_is_idle(q_override)) {
-@@ -1269,7 +1272,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- 
- 			xe_tile_assert(tile, pt_bo->size == SZ_4K);
- 
--			addr = vm->pt_ops->pte_encode_bo(pt_bo, 0, XE_CACHE_WB, 0);
-+			addr = vm->pt_ops->pte_encode_bo(pt_bo, 0, pat_index, 0);
- 			bb->cs[bb->len++] = lower_32_bits(addr);
- 			bb->cs[bb->len++] = upper_32_bits(addr);
- 		}
 diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 4d4c6a4c305e..92b512641b4a 100644
+index 92b512641b4a..f9f9010dca10 100644
 --- a/drivers/gpu/drm/xe/xe_pt.c
 +++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -50,6 +50,7 @@ static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
- static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
- 			     unsigned int level)
- {
-+	u16 pat_index = tile_to_xe(tile)->pat.idx[XE_CACHE_WB];
- 	u8 id = tile->id;
- 
- 	if (!vm->scratch_bo[id])
-@@ -57,9 +58,9 @@ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
- 
- 	if (level > 0)
- 		return vm->pt_ops->pde_encode_bo(vm->scratch_pt[id][level - 1]->bo,
--						 0, XE_CACHE_WB);
-+						 0, pat_index);
- 
--	return vm->pt_ops->pte_encode_bo(vm->scratch_bo[id], 0, XE_CACHE_WB, 0);
-+	return vm->pt_ops->pte_encode_bo(vm->scratch_bo[id], 0, pat_index, 0);
- }
- 
- /**
-@@ -510,6 +511,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+@@ -290,8 +290,6 @@ struct xe_pt_stage_bind_walk {
+ 	struct xe_vm *vm;
+ 	/** @tile: The tile we're building for. */
+ 	struct xe_tile *tile;
+-	/** @cache: Desired cache level for the ptes */
+-	enum xe_cache_level cache;
+ 	/** @default_pte: PTE flag only template. No address is associated */
+ 	u64 default_pte;
+ 	/** @dma_offset: DMA offset to add to the PTE. */
+@@ -511,7 +509,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
  {
  	struct xe_pt_stage_bind_walk *xe_walk =
  		container_of(walk, typeof(*xe_walk), base);
-+	u16 pat_index = tile_to_xe(xe_walk->tile)->pat.idx[xe_walk->cache];
+-	u16 pat_index = tile_to_xe(xe_walk->tile)->pat.idx[xe_walk->cache];
++	u16 pat_index = xe_walk->vma->pat_index;
  	struct xe_pt *xe_parent = container_of(parent, typeof(*xe_parent), base);
  	struct xe_vm *vm = xe_walk->vm;
  	struct xe_pt *xe_child;
-@@ -526,7 +528,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 
- 		pte = vm->pt_ops->pte_encode_vma(is_null ? 0 :
- 						 xe_res_dma(curs) + xe_walk->dma_offset,
--						 xe_walk->vma, xe_walk->cache, level);
-+						 xe_walk->vma, pat_index, level);
- 		pte |= xe_walk->default_pte;
- 
- 		/*
-@@ -591,8 +593,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
- 			xe_child->is_compact = true;
- 		}
- 
--		pte = vm->pt_ops->pde_encode_bo(xe_child->bo, 0,
--						xe_walk->cache) | flags;
-+		pte = vm->pt_ops->pde_encode_bo(xe_child->bo, 0, pat_index) | flags;
- 		ret = xe_pt_insert_entry(xe_walk, xe_parent, offset, xe_child,
- 					 pte);
+@@ -654,13 +652,8 @@ xe_pt_stage_bind(struct xe_tile *tile, struct xe_vma *vma,
+ 		if (vma && vma->gpuva.flags & XE_VMA_ATOMIC_PTE_BIT)
+ 			xe_walk.default_pte |= XE_USM_PPGTT_PTE_AE;
+ 		xe_walk.dma_offset = vram_region_gpu_offset(bo->ttm.resource);
+-		xe_walk.cache = XE_CACHE_WB;
+-	} else {
+-		if (!xe_vma_has_no_bo(vma) && bo->flags & XE_BO_SCANOUT_BIT)
+-			xe_walk.cache = XE_CACHE_WT;
+-		else
+-			xe_walk.cache = XE_CACHE_WB;
  	}
-diff --git a/drivers/gpu/drm/xe/xe_pt_types.h b/drivers/gpu/drm/xe/xe_pt_types.h
-index bd6645295fe6..355fa8f014e9 100644
---- a/drivers/gpu/drm/xe/xe_pt_types.h
-+++ b/drivers/gpu/drm/xe/xe_pt_types.h
-@@ -38,14 +38,14 @@ struct xe_pt {
++
+ 	if (!xe_vma_has_no_bo(vma) && xe_bo_is_stolen(bo))
+ 		xe_walk.dma_offset = xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
  
- struct xe_pt_ops {
- 	u64 (*pte_encode_bo)(struct xe_bo *bo, u64 bo_offset,
--			     enum xe_cache_level cache, u32 pt_level);
-+			     u16 pat_index, u32 pt_level);
- 	u64 (*pte_encode_vma)(u64 pte, struct xe_vma *vma,
--			      enum xe_cache_level cache, u32 pt_level);
-+			      u16 pat_index, u32 pt_level);
- 	u64 (*pte_encode_addr)(struct xe_device *xe, u64 addr,
--			       enum xe_cache_level cache,
-+			       u16 pat_index,
- 			       u32 pt_level, bool devmem, u64 flags);
- 	u64 (*pde_encode_bo)(struct xe_bo *bo, u64 bo_offset,
--			     const enum xe_cache_level cache);
-+			     const u16 pat_index);
- };
- 
- struct xe_pt_entry {
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index beffbb1039d3..4804a0cd8a36 100644
+index 4804a0cd8a36..19792e620ff1 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1191,9 +1191,8 @@ static struct drm_gpuva_fn_ops gpuva_ops = {
- 	.op_alloc = xe_vm_op_alloc,
- };
+@@ -6,6 +6,7 @@
+ #include "xe_vm.h"
  
--static u64 pde_encode_cache(struct xe_device *xe, enum xe_cache_level cache)
-+static u64 pde_encode_pat_index(struct xe_device *xe, u16 pat_index)
+ #include <linux/dma-fence-array.h>
++#include <linux/nospec.h>
+ 
+ #include <drm/drm_exec.h>
+ #include <drm/drm_print.h>
+@@ -25,6 +26,7 @@
+ #include "xe_gt_pagefault.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_migrate.h"
++#include "xe_pat.h"
+ #include "xe_pm.h"
+ #include "xe_preempt_fence.h"
+ #include "xe_pt.h"
+@@ -858,7 +860,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 				    u64 start, u64 end,
+ 				    bool read_only,
+ 				    bool is_null,
+-				    u8 tile_mask)
++				    u8 tile_mask,
++				    u16 pat_index)
  {
--	u32 pat_index = xe->pat.idx[cache];
- 	u64 pte = 0;
+ 	struct xe_vma *vma;
+ 	struct xe_tile *tile;
+@@ -897,6 +900,8 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 			vma->tile_mask |= 0x1 << id;
+ 	}
  
- 	if (pat_index & BIT(0))
-@@ -1205,9 +1204,8 @@ static u64 pde_encode_cache(struct xe_device *xe, enum xe_cache_level cache)
- 	return pte;
++	vma->pat_index = pat_index;
++
+ 	if (vm->xe->info.platform == XE_PVC)
+ 		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
+ 
+@@ -2389,7 +2394,7 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
+ static struct drm_gpuva_ops *
+ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 			 u64 bo_offset_or_userptr, u64 addr, u64 range,
+-			 u32 operation, u8 tile_mask, u32 region)
++			 u32 operation, u8 tile_mask, u32 region, u16 pat_index)
+ {
+ 	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
+ 	struct drm_gpuva_ops *ops;
+@@ -2416,6 +2421,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
+ 
+ 			op->tile_mask = tile_mask;
++			op->pat_index = pat_index;
+ 			op->map.immediate =
+ 				operation & XE_VM_BIND_FLAG_IMMEDIATE;
+ 			op->map.read_only =
+@@ -2443,6 +2449,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
+ 
+ 			op->tile_mask = tile_mask;
++			op->pat_index = pat_index;
+ 			op->prefetch.region = region;
+ 		}
+ 		break;
+@@ -2485,7 +2492,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
  }
  
--static u64 pte_encode_cache(struct xe_device *xe, enum xe_cache_level cache)
-+static u64 pte_encode_pat_index(struct xe_device *xe, u16 pat_index)
+ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+-			      u8 tile_mask, bool read_only, bool is_null)
++			      u8 tile_mask, bool read_only, bool is_null,
++			      u16 pat_index)
  {
--	u32 pat_index = xe->pat.idx[cache];
- 	u64 pte = 0;
+ 	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) : NULL;
+ 	struct xe_vma *vma;
+@@ -2501,7 +2509,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+ 	vma = xe_vma_create(vm, bo, op->gem.offset,
+ 			    op->va.addr, op->va.addr +
+ 			    op->va.range - 1, read_only, is_null,
+-			    tile_mask);
++			    tile_mask, pat_index);
+ 	if (bo)
+ 		xe_bo_unlock(bo);
  
- 	if (pat_index & BIT(0))
-@@ -1238,27 +1236,27 @@ static u64 pte_encode_ps(u32 pt_level)
- }
+@@ -2658,7 +2666,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
  
- static u64 xelp_pde_encode_bo(struct xe_bo *bo, u64 bo_offset,
--			      const enum xe_cache_level cache)
-+			      const u16 pat_index)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
- 	u64 pde;
+ 			vma = new_vma(vm, &op->base.map,
+ 				      op->tile_mask, op->map.read_only,
+-				      op->map.is_null);
++				      op->map.is_null, op->pat_index);
+ 			if (IS_ERR(vma)) {
+ 				err = PTR_ERR(vma);
+ 				goto free_fence;
+@@ -2686,7 +2694,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
  
- 	pde = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
- 	pde |= XE_PAGE_PRESENT | XE_PAGE_RW;
--	pde |= pde_encode_cache(xe, cache);
-+	pde |= pde_encode_pat_index(xe, pat_index);
+ 				vma = new_vma(vm, op->base.remap.prev,
+ 					      op->tile_mask, read_only,
+-					      is_null);
++					      is_null, op->pat_index);
+ 				if (IS_ERR(vma)) {
+ 					err = PTR_ERR(vma);
+ 					goto free_fence;
+@@ -2722,7 +2730,7 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
  
- 	return pde;
- }
+ 				vma = new_vma(vm, op->base.remap.next,
+ 					      op->tile_mask, read_only,
+-					      is_null);
++					      is_null, op->pat_index);
+ 				if (IS_ERR(vma)) {
+ 					err = PTR_ERR(vma);
+ 					goto free_fence;
+@@ -3235,7 +3243,22 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		u32 obj = (*bind_ops)[i].obj;
+ 		u64 obj_offset = (*bind_ops)[i].obj_offset;
+ 		u32 region = (*bind_ops)[i].region;
++		u16 pat_index = (*bind_ops)[i].pat_index;
+ 		bool is_null = op & XE_VM_BIND_FLAG_NULL;
++		u16 coh_mode;
++
++		if (XE_IOCTL_DBG(xe, pat_index >= xe->pat.n_entries)) {
++			err = -EINVAL;
++			goto free_bind_ops;
++		}
++
++		pat_index = array_index_nospec(pat_index, xe->pat.n_entries);
++		(*bind_ops)[i].pat_index = pat_index;
++		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
++		if (XE_WARN_ON(!coh_mode || coh_mode > DRM_XE_GEM_COH_AT_LEAST_1WAY)) {
++			err = -EINVAL;
++			goto free_bind_ops;
++		}
  
- static u64 xelp_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
--			      enum xe_cache_level cache, u32 pt_level)
-+			      u16 pat_index, u32 pt_level)
- {
- 	struct xe_device *xe = xe_bo_device(bo);
- 	u64 pte;
+ 		if (i == 0) {
+ 			*async = !!(op & XE_VM_BIND_FLAG_ASYNC);
+@@ -3277,6 +3300,8 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+ 				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP_USERPTR) ||
++		    XE_IOCTL_DBG(xe, coh_mode == DRM_XE_GEM_COH_NONE &&
++				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP_USERPTR) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+ 				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_DBG(xe, region &&
+@@ -3425,6 +3450,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		u64 addr = bind_ops[i].addr;
+ 		u32 obj = bind_ops[i].obj;
+ 		u64 obj_offset = bind_ops[i].obj_offset;
++		u16 pat_index = bind_ops[i].pat_index;
++		u16 coh_mode;
  
- 	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
- 	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
--	pte |= pte_encode_cache(xe, cache);
-+	pte |= pte_encode_pat_index(xe, pat_index);
- 	pte |= pte_encode_ps(pt_level);
+ 		if (!obj)
+ 			continue;
+@@ -3452,6 +3479,23 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 				goto put_obj;
+ 			}
+ 		}
++
++		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
++		if (bos[i]->coh_mode) {
++			if (XE_IOCTL_DBG(xe, coh_mode < bos[i]->coh_mode)) {
++				err = -EINVAL;
++				goto put_obj;
++			}
++		} else if (XE_IOCTL_DBG(xe, coh_mode == DRM_XE_GEM_COH_NONE)) {
++			/*
++			 * Imported dma-buf from a different device should
++			 * require 1way or 2way coherency since we don't know
++			 * how it was mapped on the CPU. Just assume is it
++			 * potentially cached on CPU side.
++			 */
++			err = -EINVAL;
++			goto put_obj;
++		}
+ 	}
  
- 	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
-@@ -1268,7 +1266,7 @@ static u64 xelp_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
- }
+ 	if (args->num_syncs) {
+@@ -3489,10 +3533,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		u64 obj_offset = bind_ops[i].obj_offset;
+ 		u8 tile_mask = bind_ops[i].tile_mask;
+ 		u32 region = bind_ops[i].region;
++		u16 pat_index = bind_ops[i].pat_index;
  
- static u64 xelp_pte_encode_vma(u64 pte, struct xe_vma *vma,
--			       enum xe_cache_level cache, u32 pt_level)
-+			       u16 pat_index, u32 pt_level)
- {
- 	struct xe_device *xe = xe_vma_vm(vma)->xe;
+ 		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
+ 						  addr, range, op, tile_mask,
+-						  region);
++						  region, pat_index);
+ 		if (IS_ERR(ops[i])) {
+ 			err = PTR_ERR(ops[i]);
+ 			ops[i] = NULL;
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 1c5553b842d7..692e1cecb64f 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -111,6 +111,11 @@ struct xe_vma {
+ 	 */
+ 	u8 tile_present;
  
-@@ -1277,7 +1275,7 @@ static u64 xelp_pte_encode_vma(u64 pte, struct xe_vma *vma,
- 	if (likely(!xe_vma_read_only(vma)))
- 		pte |= XE_PAGE_RW;
++	/**
++	 * @pat_index: The pat index to use when encoding the PTEs for this vma.
++	 */
++	u16 pat_index;
++
+ 	struct {
+ 		struct list_head rebind_link;
+ 	} notifier;
+@@ -418,6 +423,8 @@ struct xe_vma_op {
+ 	struct async_op_fence *fence;
+ 	/** @tile_mask: gt mask for this operation */
+ 	u8 tile_mask;
++	/** @pat_index: The pat index to use for this operation. */
++	u16 pat_index;
+ 	/** @flags: operation flags */
+ 	enum xe_vma_op_flags flags;
  
--	pte |= pte_encode_cache(xe, cache);
-+	pte |= pte_encode_pat_index(xe, pat_index);
- 	pte |= pte_encode_ps(pt_level);
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 5714085f05de..be8d4d7e6c2d 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -598,8 +598,49 @@ struct drm_xe_vm_bind_op {
+ 	 */
+ 	__u32 obj;
  
- 	if (unlikely(xe_vma_is_null(vma)))
-@@ -1287,7 +1285,7 @@ static u64 xelp_pte_encode_vma(u64 pte, struct xe_vma *vma,
- }
++	/**
++	 * @pat_index: The platform defined @pat_index to use for this mapping.
++	 * The index basically maps to some predefined memory attributes,
++	 * including things like caching, coherency, compression etc.  The exact
++	 * meaning of the pat_index is platform specific and defined in the
++	 * Bspec and PRMs.  When the KMD sets up the binding the index here is
++	 * encoded into the ppGTT PTE.
++	 *
++	 * For coherency the @pat_index needs to be least as coherent as
++	 * drm_xe_gem_create.coh_mode. i.e coh_mode(pat_index) >=
++	 * drm_xe_gem_create.coh_mode. The KMD will extract the coherency mode
++	 * from the @pat_index and reject if there is a mismatch (see note below
++	 * for pre-MTL platforms).
++	 *
++	 * Note: On pre-MTL platforms there is only a caching mode and no
++	 * explicit coherency mode, but on such hardware there is always a
++	 * shared-LLC (or is dgpu) so all GT memory accesses are coherent with
++	 * CPU caches even with the caching mode set as uncached.  It's only the
++	 * display engine that is incoherent (on dgpu it must be in VRAM which
++	 * is always mapped as WC on the CPU). However to keep the uapi somewhat
++	 * consistent with newer platforms the KMD groups the different cache
++	 * levels into the following coherency buckets on all pre-MTL platforms:
++	 *
++	 *	ppGTT UC -> DRM_XE_GEM_COH_NONE
++	 *	ppGTT WC -> DRM_XE_GEM_COH_NONE
++	 *	ppGTT WT -> DRM_XE_GEM_COH_NONE
++	 *	ppGTT WB -> DRM_XE_GEM_COH_AT_LEAST_1WAY
++	 *
++	 * In practice UC/WC/WT should only ever used for scanout surfaces on
++	 * such platforms (or perhaps in general for dma-buf if shared with
++	 * another device) since it is only the display engine that is actually
++	 * incoherent.  Everything else should typically use WB given that we
++	 * have a shared-LLC.  On MTL+ this completely changes and the HW
++	 * defines the coherency mode as part of the @pat_index, where
++	 * incoherent GT access is possible.
++	 *
++	 * Note: For userptr and externally imported dma-buf the kernel expects
++	 * either 1WAY or 2WAY for the @pat_index.
++	 */
++	__u16 pat_index;
++
+ 	/** @pad: MBZ */
+-	__u32 pad;
++	__u16 pad;
  
- static u64 xelp_pte_encode_addr(struct xe_device *xe, u64 addr,
--				enum xe_cache_level cache,
-+				u16 pat_index,
- 				u32 pt_level, bool devmem, u64 flags)
- {
- 	u64 pte;
-@@ -1297,7 +1295,7 @@ static u64 xelp_pte_encode_addr(struct xe_device *xe, u64 addr,
- 
- 	pte = addr;
- 	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
--	pte |= pte_encode_cache(xe, cache);
-+	pte |= pte_encode_pat_index(xe, pat_index);
- 	pte |= pte_encode_ps(pt_level);
- 
- 	if (devmem)
-@@ -1701,7 +1699,7 @@ struct xe_vm *xe_vm_lookup(struct xe_file *xef, u32 id)
- u64 xe_vm_pdp4_descriptor(struct xe_vm *vm, struct xe_tile *tile)
- {
- 	return vm->pt_ops->pde_encode_bo(vm->pt_root[tile->id]->bo, 0,
--					 XE_CACHE_WB);
-+					 tile_to_xe(tile)->pat.idx[XE_CACHE_WB]);
- }
- 
- static struct dma_fence *
+ 	union {
+ 		/**
 -- 
 2.41.0
 
