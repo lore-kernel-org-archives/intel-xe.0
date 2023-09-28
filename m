@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CEEFCE7B1E
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Sep 2023 10:59:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8565CE7B1A
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Sep 2023 10:59:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE37510E614;
-	Thu, 28 Sep 2023 10:59:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC58E10E606;
+	Thu, 28 Sep 2023 10:59:46 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09CC010E609
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Sep 2023 10:59:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DD8410E606
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Sep 2023 10:59:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695898750; x=1727434750;
+ t=1695898762; x=1727434762;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PlnyHBjncXns8adRwcbF3XcDL7iGJXGMYQQOvkTxg/E=;
- b=TOYa6tBejL+0YOtSIXC4jwzYS2PW/804JH48qavlfqujl6p7ByxlVGQB
- 3WvdjPG1F4VvU4gudBlP8yRPn/AED5nySUPjN/lhMAVaVelRwh8l2L6J5
- A65gNdRR/GCd1+5I9gFffKPQWgc77EfjyanQY1DnXRCKti71AVyQANLoI
- exyxRVKKmi9jy+fRlHEKP0Zy7oqMu4UUEnRVuP7FuDx1/8spqW0fv7ncS
- +1/wRHrY6wJkiOxktJ7Qs/JLLTD6YiACKM2Xr192NBeYX07dVKwmyfjut
- rwLn1ci8vGcUWbF9N0gpGc0D0JMwu3v8gLCV5EHoKsqEE+5J9qvawo7xM w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="640173"
+ bh=3nDnDGNUCS2pvUz7epUKzpdvPO+9I6yh+oHhIKBIAN8=;
+ b=GpDBnAB3eKS33Jcs09guKw+Wn0ASo/4IZEUjXYfuyjXkkUZIog24Q5G0
+ DMlq/SlSXoc2GQ6/JEN/scE65sWeBVvg9yrpNy9SbUaK8376GHsBqOwX0
+ pZfAFqmNcPSMVMxKOB64VK/L8usu2yp1kmCadm8YFJDrtG4gxfBncjPGB
+ ba/7Jt/3TF2SBjzLRew5P6ivnCip3iv/OIIKu6r8ZbBrisl2A0/7sMHrW
+ ApO09bK+ZgvHG/wj3S6VGTdCCeOHH/MWtHg9lT1XjRQDZFcX150tC+l8k
+ St2fRCMFKpLdGZkxIXQOZj5h7jnhYeXuJw10h9zKKabtRCeBNV2D9QSZC g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="640203"
 X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; 
-   d="scan'208";a="640173"
+   d="scan'208";a="640203"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 03:59:10 -0700
+ 28 Sep 2023 03:59:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="923174458"
-X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="923174458"
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="923174503"
+X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="923174503"
 Received: from nsolmsdo-mobl.ger.corp.intel.com (HELO 8b338166fae8.intel.com)
  ([10.251.220.162])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 03:59:08 -0700
+ 28 Sep 2023 03:59:20 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Sep 2023 10:58:33 +0000
-Message-Id: <20230928105843.7-11-francois.dugast@intel.com>
+Date: Thu, 28 Sep 2023 10:58:41 +0000
+Message-Id: <20230928105843.7-19-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230928105843.7-1-francois.dugast@intel.com>
 References: <20230928105843.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 10/20] drm/xe: Remove
- XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE from uAPI
+Subject: [Intel-xe] [PATCH v4 18/20] drm/xe/uapi: Remove unused field of
+ drm_xe_query_gt
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,84 +59,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Matthew Brost <matthew.brost@intel.com>
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Functionality of XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE deprecated in a
-previous patch, drop from uAPI. The property is just simply inherented
-from the VM.
+We already have many bits reserved at the end already.
+Let's kill the unused ones.
 
-v2:
- - Update commit message (Niranjana)
-
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec_queue.c |  7 -------
- include/uapi/drm/xe_drm.h          | 19 ++++++-------------
- 2 files changed, 6 insertions(+), 20 deletions(-)
+ include/uapi/drm/xe_drm.h | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 170d9d9c48d2..f70332986c73 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -320,12 +320,6 @@ static int exec_queue_set_preemption_timeout(struct xe_device *xe,
- 	return q->ops->set_preempt_timeout(q, value);
- }
- 
--static int exec_queue_set_compute_mode(struct xe_device *xe, struct xe_exec_queue *q,
--				       u64 value, bool create)
--{
--	return 0;
--}
--
- static int exec_queue_set_persistence(struct xe_device *xe, struct xe_exec_queue *q,
- 				      u64 value, bool create)
- {
-@@ -411,7 +405,6 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
- 	[XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
- 	[XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
- 	[XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT] = exec_queue_set_preemption_timeout,
--	[XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE] = exec_queue_set_compute_mode,
- 	[XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE] = exec_queue_set_persistence,
- 	[XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT] = exec_queue_set_job_timeout,
- 	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER] = exec_queue_set_acc_trigger,
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index ad21ba1d6e0b..2a9e04024723 100644
+index 11bc4dc2c78c..538873361d17 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -781,21 +781,14 @@ struct drm_xe_exec_queue_set_property {
- 	/** @exec_queue_id: Exec queue ID */
- 	__u32 exec_queue_id;
- 
--#define XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY			0
-+#define XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
- #define XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
- #define XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
--	/*
--	 * Long running or ULLS engine mode. DMA fences not allowed in this
--	 * mode. Must match the value of DRM_XE_VM_CREATE_COMPUTE_MODE, serves
--	 * as a sanity check the UMD knows what it is doing. Can only be set at
--	 * engine create time.
--	 */
--#define XE_EXEC_QUEUE_SET_PROPERTY_COMPUTE_MODE		3
--#define XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		4
--#define XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		5
--#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		6
--#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		7
--#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY		8
-+#define XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		3
-+#define XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		4
-+#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
-+#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
-+#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY	7
- 	/** @property: property to set */
- 	__u32 property;
- 
+@@ -352,8 +352,6 @@ struct drm_xe_query_gt {
+ 	__u16 gt_id;
+ 	/** @clock_freq: A clock frequency for timestamp */
+ 	__u32 clock_freq;
+-	/** @features: Reserved for future information about GT features */
+-	__u64 features;
+ 	/**
+ 	 * @native_mem_regions: Bit mask of instances from
+ 	 * drm_xe_query_mem_usage that lives on the same GPU/Tile and have
 -- 
 2.34.1
 
