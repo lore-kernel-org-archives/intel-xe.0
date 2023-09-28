@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C0893CE7B1A
-	for <intel-xe@archiver.kernel.org>; Thu, 28 Sep 2023 10:59:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CFB0CE7B1A
+	for <intel-xe@archiver.kernel.org>; Thu, 28 Sep 2023 10:59:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8812A10E606;
-	Thu, 28 Sep 2023 10:59:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EE9F10E60A;
+	Thu, 28 Sep 2023 10:59:07 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 88E2910E605
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Sep 2023 10:58:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5463710E604
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Sep 2023 10:59:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695898737; x=1727434737;
+ t=1695898743; x=1727434743;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=m5zreZo5wVRQuugDEEqaXm7c4/FdxN3AprXTSuhg0aI=;
- b=SeKZN76xPYFpTw+V8L2ji7Ncmy5m5Ks7ekWI5p9wt0HCuPcVl4VyhbgA
- o4kf/gTC5klnlFrH1+pfPY35LRjglYryex4zc0WrozHjYI+MbZSZ2s7BC
- +bGqrkPTwAvjUzmgg7MmVM8sQmK7tBM2Nl1oGu2GDlQBSfLmWBMmeFkHW
- q9qeCxq7jJlJt85si8XIoUYB+Ing6OKGhxVd9dgo+hnLp4YPYm9Q5nCqv
- CPl3pMUBFdn+Rj9G0EQ9pZtxAq9KHENDz5oDJOqI/IeUcj8aghlT8XGt+
- 8W+M5uf/s6BW4EDOn3w4Azi51YbZ/kxkKsKBQAyhtl1bc7rQn60AWxIwx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="640117"
+ bh=QiKIjn3zPyBw5Hj+hgOaGZhEMvZYzSOXnxfumWXQurc=;
+ b=eNsSPdLsWklUu5Q/k1a1Ug86/l1Y98I/PzTviQzhVK3EOJe6aEpYmdXO
+ EjIAwBf52WQnbVOlvxowZcuIg3HuLH4B4J18QPlG5BO+E45tsjtnfcwwp
+ pje1oGIjYlvAwynzLMdylvY82QNO7yk4rcAZh8mU586pTQ7Fi+DZrCRU7
+ +m9l1wucw9o5OcH++tTIqe7Ryr8GyW7LVCXFVKs5cmyhG3PUSGz+4qOZJ
+ hrtX8DUD86C/0SmWrI7c+URWIxPmjp1O3jxgeuyS91VfwrEwVcVlAN8Z7
+ 2C/RqIB6yYjBg5HgKErzrmQTZtxPYgdio6ITtzEG86J4LkZUWyMg6Hjfn g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="640140"
 X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; 
-   d="scan'208";a="640117"
+   d="scan'208";a="640140"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 03:58:56 -0700
+ 28 Sep 2023 03:59:02 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="923174406"
-X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="923174406"
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="923174424"
+X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="923174424"
 Received: from nsolmsdo-mobl.ger.corp.intel.com (HELO 8b338166fae8.intel.com)
  ([10.251.220.162])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 03:58:54 -0700
+ 28 Sep 2023 03:59:00 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Sep 2023 10:58:24 +0000
-Message-Id: <20230928105843.7-2-francois.dugast@intel.com>
+Date: Thu, 28 Sep 2023 10:58:28 +0000
+Message-Id: <20230928105843.7-6-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230928105843.7-1-francois.dugast@intel.com>
 References: <20230928105843.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 01/20] drm/xe: Fix array bounds check for
- queries
+Subject: [Intel-xe] [PATCH v4 05/20] drm/xe/vm: Remove VM_BIND_OP macro
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,33 +63,136 @@ Cc: Francois Dugast <francois.dugast@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+This macro was necessary when bind operations were shifted but this
+is no longer the case, so removing to simplify code.
 
-Queries are 0-indexed, so a query with value N is invalid if the
-ARRAY_SIZE is N. Modify the check to account for that.
-
-Fixes: 22504d560287 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.c | 42 +++++++++++++++++---------------------
+ 1 file changed, 19 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index a951205100fe..e0c2203e428e 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -381,7 +381,7 @@ int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	    XE_IOCTL_DBG(xe, query->reserved[0] || query->reserved[1]))
- 		return -EINVAL;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index e81d8cc5c29e..e84002555d34 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2142,8 +2142,6 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
+ 	}
+ }
  
--	if (XE_IOCTL_DBG(xe, query->query > ARRAY_SIZE(xe_query_funcs)))
-+	if (XE_IOCTL_DBG(xe, query->query >= ARRAY_SIZE(xe_query_funcs)))
- 		return -EINVAL;
+-#define VM_BIND_OP(op)	(op & 0xffff)
+-
+ struct ttm_buffer_object *xe_vm_ttm_bo(struct xe_vm *vm)
+ {
+ 	int idx = vm->flags & XE_VM_FLAG_MIGRATION ?
+@@ -2168,7 +2166,7 @@ static int vm_bind_ioctl_lookup_vma(struct xe_vm *vm, struct xe_bo *bo,
  
- 	idx = array_index_nospec(query->query, ARRAY_SIZE(xe_query_funcs));
+ 	lockdep_assert_held(&vm->lock);
+ 
+-	switch (VM_BIND_OP(op)) {
++	switch (op) {
+ 	case XE_VM_BIND_OP_MAP:
+ 	case XE_VM_BIND_OP_MAP_USERPTR:
+ 		vma = xe_vm_find_overlapping_vma(vm, addr, range);
+@@ -2277,10 +2275,10 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 
+ 	vm_dbg(&vm->xe->drm,
+ 	       "op=%d, addr=0x%016llx, range=0x%016llx, bo_offset_or_userptr=0x%016llx",
+-	       VM_BIND_OP(operation), (ULL)addr, (ULL)range,
++	       operation, (ULL)addr, (ULL)range,
+ 	       (ULL)bo_offset_or_userptr);
+ 
+-	switch (VM_BIND_OP(operation)) {
++	switch (operation) {
+ 	case XE_VM_BIND_OP_MAP:
+ 	case XE_VM_BIND_OP_MAP_USERPTR:
+ 		ops = drm_gpuva_sm_map_ops_create(&vm->mgr, addr, range,
+@@ -3118,50 +3116,48 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 			*async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
+ 		} else if (XE_IOCTL_DBG(xe, !*async) ||
+ 			   XE_IOCTL_DBG(xe, !(flags & XE_VM_BIND_FLAG_ASYNC)) ||
+-			   XE_IOCTL_DBG(xe, VM_BIND_OP(op) ==
+-					XE_VM_BIND_OP_RESTART)) {
++			   XE_IOCTL_DBG(xe, op == XE_VM_BIND_OP_RESTART)) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+ 		}
+ 
+ 		if (XE_IOCTL_DBG(xe, !*async &&
+-				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL)) {
++				 op == XE_VM_BIND_OP_UNMAP_ALL)) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+ 		}
+ 
+ 		if (XE_IOCTL_DBG(xe, !*async &&
+-				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH)) {
++				 op == XE_VM_BIND_OP_PREFETCH)) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+ 		}
+ 
+-		if (XE_IOCTL_DBG(xe, VM_BIND_OP(op) >
+-				 XE_VM_BIND_OP_PREFETCH) ||
++		if (XE_IOCTL_DBG(xe, op > XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
+ 		    XE_IOCTL_DBG(xe, obj && is_null) ||
+ 		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
+-		    XE_IOCTL_DBG(xe, VM_BIND_OP(op) != XE_VM_BIND_OP_MAP &&
++		    XE_IOCTL_DBG(xe, op != XE_VM_BIND_OP_MAP &&
+ 				 is_null) ||
+ 		    XE_IOCTL_DBG(xe, !obj &&
+-				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP &&
++				 op == XE_VM_BIND_OP_MAP &&
+ 				 !is_null) ||
+ 		    XE_IOCTL_DBG(xe, !obj &&
+-				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
++				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
+ 		    XE_IOCTL_DBG(xe, addr &&
+-				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
++				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
+ 		    XE_IOCTL_DBG(xe, range &&
+-				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP_ALL) ||
++				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+-				 VM_BIND_OP(op) == XE_VM_BIND_OP_MAP_USERPTR) ||
++				 op == XE_VM_BIND_OP_MAP_USERPTR) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+-				 VM_BIND_OP(op) == XE_VM_BIND_OP_PREFETCH) ||
++				 op == XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_DBG(xe, region &&
+-				 VM_BIND_OP(op) != XE_VM_BIND_OP_PREFETCH) ||
++				 op != XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_DBG(xe, !(BIT(region) &
+ 				       xe->info.mem_region_mask)) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+-				 VM_BIND_OP(op) == XE_VM_BIND_OP_UNMAP)) {
++				 op == XE_VM_BIND_OP_UNMAP)) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+ 		}
+@@ -3169,9 +3165,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		if (XE_IOCTL_DBG(xe, obj_offset & ~PAGE_MASK) ||
+ 		    XE_IOCTL_DBG(xe, addr & ~PAGE_MASK) ||
+ 		    XE_IOCTL_DBG(xe, range & ~PAGE_MASK) ||
+-		    XE_IOCTL_DBG(xe, !range && VM_BIND_OP(op) !=
++		    XE_IOCTL_DBG(xe, !range && op !=
+ 				 XE_VM_BIND_OP_RESTART &&
+-				 VM_BIND_OP(op) != XE_VM_BIND_OP_UNMAP_ALL)) {
++				 op != XE_VM_BIND_OP_UNMAP_ALL)) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+ 		}
+@@ -3235,7 +3231,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto release_vm_lock;
+ 	}
+ 
+-	if (VM_BIND_OP(bind_ops[0].op) == XE_VM_BIND_OP_RESTART) {
++	if (bind_ops[0].op == XE_VM_BIND_OP_RESTART) {
+ 		if (XE_IOCTL_DBG(xe, !(vm->flags & XE_VM_FLAG_ASYNC_BIND_OPS)))
+ 			err = -EOPNOTSUPP;
+ 		if (XE_IOCTL_DBG(xe, !err && args->num_syncs))
 -- 
 2.34.1
 
