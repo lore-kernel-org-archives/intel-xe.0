@@ -4,51 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3DD33CE7B1D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F02C4CE7B19
 	for <intel-xe@archiver.kernel.org>; Thu, 28 Sep 2023 10:59:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06F9710E607;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B137410E60C;
 	Thu, 28 Sep 2023 10:59:08 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6616610E604
- for <intel-xe@lists.freedesktop.org>; Thu, 28 Sep 2023 10:58:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3A8510E609
+ for <intel-xe@lists.freedesktop.org>; Thu, 28 Sep 2023 10:59:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695898740; x=1727434740;
+ t=1695898744; x=1727434744;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oeTWdYbP0UAFv13YMDCR+C4R2wTD0TAzg1yYPxaxyjo=;
- b=U1mquQFUZY3xHcLwpTgtotKgMm2R86KVOczwvy4By6S02dbNLr9RvkZ7
- ctcgILLO3Q8cfA2DojtndtrOWBKouQPCGtni9vqK/uPi5J1sQBl5HaxZT
- 23t2mzE+P/KJL0ohcFyI2X2fzRURxrj8TUbaxH8w27SROMqIjY8ccOv1x
- zo9sySo7cYz4MSm/cV7citHXaMARpbbc6I7nEhlMmCdDR8+J/Q3PVf0LO
- ADQOB87tb4tzRJadgVVAAUU0FWP/n7bwSKiJq/cB0qn5ef/pfoV3/0mIA
- Cp3kpjiYxMhdiP1cWjV46QvG7HgczNd4qw5LUEDNQ87lf5QUuXEcH2giH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="640125"
+ bh=pWu8u2de47zJ3chksQ0lNDbNFIA/+bML77GUB7KHrQ0=;
+ b=fmsLyUfxK0yi+Q5iScpd+yuo2gXkqzLKzvu4IIVRhmGZ+24R8bM20vli
+ /KdbKVeBiXwa6IiSAqF/s4ETBEPYH4yyAdYI2l5q5yZX6xbpNTPv01FZt
+ /zxE7bAPOyGzhy68TL5pV6iYzI3sff/nzwLJCfZ6+IzDN51QFxtdF+Mv5
+ 1J0mu7YGxOhFuSfpwznqRNBBs2nWAIMZ3XL52n6dZ8eMiIJO4ickhRjr3
+ VTTK5wQRL8qViP0IlaUO4s15RCvULKmZL7+2PDHeWn90k39WSDhbP/E+Q
+ KpD+wSgvKpZUbagjOOL4Q7OtaeC6pFrYIfFMZNWLESCZiaO3HyeU26lOi A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="640147"
 X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; 
-   d="scan'208";a="640125"
+   d="scan'208";a="640147"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 03:59:00 -0700
+ 28 Sep 2023 03:59:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="923174415"
-X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="923174415"
+X-IronPort-AV: E=McAfee;i="6600,9927,10846"; a="923174428"
+X-IronPort-AV: E=Sophos;i="6.03,183,1694761200"; d="scan'208";a="923174428"
 Received: from nsolmsdo-mobl.ger.corp.intel.com (HELO 8b338166fae8.intel.com)
  ([10.251.220.162])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 03:58:57 -0700
+ 28 Sep 2023 03:59:02 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 28 Sep 2023 10:58:26 +0000
-Message-Id: <20230928105843.7-4-francois.dugast@intel.com>
+Date: Thu, 28 Sep 2023 10:58:29 +0000
+Message-Id: <20230928105843.7-7-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230928105843.7-1-francois.dugast@intel.com>
 References: <20230928105843.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 03/20] drm/xe: Correlate engine and cpu
- timestamps with better accuracy
+Subject: [Intel-xe] [PATCH v4 06/20] drm/xe/uapi: Remove MMIO ioctl
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,356 +60,207 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+This was previously used in UMD for timestamp correlation, which can now
+be done with DRM_XE_QUERY_CS_CYCLES.
 
-Perf measurements rely on CPU and engine timestamps to correlate
-events of interest across these time domains. Current mechanisms get
-these timestamps separately and the calculated delta between these
-timestamps lack enough accuracy.
-
-To improve the accuracy of these time measurements to within a few us,
-add a query that returns the engine and cpu timestamps captured as
-close to each other as possible.
-
-Mesa MR: https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/24591
-
-v2:
-- Fix kernel-doc warnings (CI)
-- Document input params and group them together (Jose)
-- s/cs/engine/ (Jose)
-- Remove padding in the query (Ashutosh)
-
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
-Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+Link: https://lore.kernel.org/all/20230706042044.GR6953@mdroper-desk1.amr.corp.intel.com/
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/636
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-[Rodrigo finished the s/cs/engine renaming]
 ---
- drivers/gpu/drm/xe/xe_query.c | 138 ++++++++++++++++++++++++++++++++++
- include/uapi/drm/xe_drm.h     | 104 +++++++++++++++++++------
- 2 files changed, 218 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/xe/xe_device.c |   1 -
+ drivers/gpu/drm/xe/xe_mmio.c   | 102 ---------------------------------
+ include/uapi/drm/xe_drm.h      |  31 ++--------
+ 3 files changed, 4 insertions(+), 130 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index cbccd5c3dbc8..95a6aa5cba54 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -6,10 +6,12 @@
- #include "xe_query.h"
- 
- #include <linux/nospec.h>
-+#include <linux/sched/clock.h>
- 
- #include <drm/ttm/ttm_placement.h>
- #include <drm/xe_drm.h>
- 
-+#include "regs/xe_engine_regs.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_exec_queue.h"
-@@ -17,6 +19,7 @@
- #include "xe_gt.h"
- #include "xe_guc_hwconfig.h"
- #include "xe_macros.h"
-+#include "xe_mmio.h"
- #include "xe_ttm_vram_mgr.h"
- 
- static const u16 xe_to_user_engine_class[] = {
-@@ -27,6 +30,14 @@ static const u16 xe_to_user_engine_class[] = {
- 	[XE_ENGINE_CLASS_COMPUTE] = DRM_XE_ENGINE_CLASS_COMPUTE,
- };
- 
-+static const enum xe_engine_class user_to_xe_engine_class[] = {
-+	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
-+	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
-+	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
-+	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
-+	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
-+};
-+
- static size_t calc_hw_engine_info_size(struct xe_device *xe)
- {
- 	struct xe_hw_engine *hwe;
-@@ -45,6 +56,132 @@ static size_t calc_hw_engine_info_size(struct xe_device *xe)
- 	return i * sizeof(struct drm_xe_engine_class_instance);
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 687dc3d79a66..aaaa2bb87eb2 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -120,7 +120,6 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+ 	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_DESTROY, xe_exec_queue_destroy_ioctl,
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_EXEC, xe_exec_ioctl, DRM_RENDER_ALLOW),
+-	DRM_IOCTL_DEF_DRV(XE_MMIO, xe_mmio_ioctl, DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_EXEC_QUEUE_SET_PROPERTY, xe_exec_queue_set_property_ioctl,
+ 			  DRM_RENDER_ALLOW),
+ 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 3ccc0af4430b..e636e3f3456d 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -422,108 +422,6 @@ int xe_mmio_init(struct xe_device *xe)
+ 	return 0;
  }
  
-+typedef u64 (*__ktime_func_t)(void);
-+static __ktime_func_t __clock_id_to_func(clockid_t clk_id)
-+{
-+	/*
-+	 * Use logic same as the perf subsystem to allow user to select the
-+	 * reference clock id to be used for timestamps.
-+	 */
-+	switch (clk_id) {
-+	case CLOCK_MONOTONIC:
-+		return &ktime_get_ns;
-+	case CLOCK_MONOTONIC_RAW:
-+		return &ktime_get_raw_ns;
-+	case CLOCK_REALTIME:
-+		return &ktime_get_real_ns;
-+	case CLOCK_BOOTTIME:
-+		return &ktime_get_boottime_ns;
-+	case CLOCK_TAI:
-+		return &ktime_get_clocktai_ns;
-+	default:
-+		return NULL;
-+	}
-+}
-+
-+static void
-+__read_timestamps(struct xe_gt *gt,
-+		  struct xe_reg lower_reg,
-+		  struct xe_reg upper_reg,
-+		  u64 *engine_ts,
-+		  u64 *cpu_ts,
-+		  u64 *cpu_delta,
-+		  __ktime_func_t cpu_clock)
-+{
-+	u32 upper, lower, old_upper, loop = 0;
-+
-+	upper = xe_mmio_read32(gt, upper_reg);
-+	do {
-+		*cpu_delta = local_clock();
-+		*cpu_ts = cpu_clock();
-+		lower = xe_mmio_read32(gt, lower_reg);
-+		*cpu_delta = local_clock() - *cpu_delta;
-+		old_upper = upper;
-+		upper = xe_mmio_read32(gt, upper_reg);
-+	} while (upper != old_upper && loop++ < 2);
-+
-+	*engine_ts = (u64)upper << 32 | lower;
-+}
-+
-+static int
-+query_engine_cycles(struct xe_device *xe,
-+		struct drm_xe_device_query *query)
-+{
-+	struct drm_xe_query_engine_cycles __user *query_ptr;
-+	struct drm_xe_engine_class_instance *eci;
-+	struct drm_xe_query_engine_cycles resp;
-+	size_t size = sizeof(resp);
-+	__ktime_func_t cpu_clock;
-+	struct xe_hw_engine *hwe;
-+	struct xe_gt *gt;
-+
-+	if (query->size == 0) {
-+		query->size = size;
-+		return 0;
-+	} else if (XE_IOCTL_DBG(xe, query->size != size)) {
-+		return -EINVAL;
-+	}
-+
-+	query_ptr = u64_to_user_ptr(query->data);
-+	if (copy_from_user(&resp, query_ptr, size))
-+		return -EFAULT;
-+
-+	cpu_clock = __clock_id_to_func(resp.clockid);
-+	if (!cpu_clock)
-+		return -EINVAL;
-+
-+	eci = &resp.eci;
-+	if (eci->gt_id > XE_MAX_GT_PER_TILE)
-+		return -EINVAL;
-+
-+	gt = xe_device_get_gt(xe, eci->gt_id);
-+	if (!gt)
-+		return -EINVAL;
-+
-+	if (eci->engine_class >= ARRAY_SIZE(user_to_xe_engine_class))
-+		return -EINVAL;
-+
-+	hwe = xe_gt_hw_engine(gt, user_to_xe_engine_class[eci->engine_class],
-+			      eci->engine_instance, true);
-+	if (!hwe)
-+		return -EINVAL;
-+
-+	resp.engine_frequency = gt->info.clock_freq;
-+
-+	xe_device_mem_access_get(xe);
-+	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+
-+	__read_timestamps(gt,
-+			  RING_TIMESTAMP(hwe->mmio_base),
-+			  RING_TIMESTAMP_UDW(hwe->mmio_base),
-+			  &resp.engine_cycles,
-+			  &resp.cpu_timestamp,
-+			  &resp.cpu_delta,
-+			  cpu_clock);
-+
-+	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+	xe_device_mem_access_put(xe);
-+	resp.width = 36;
-+
-+	/* Only write to the output fields of user query */
-+	if (put_user(resp.engine_frequency, &query_ptr->engine_frequency))
-+		return -EFAULT;
-+
-+	if (put_user(resp.cpu_timestamp, &query_ptr->cpu_timestamp))
-+		return -EFAULT;
-+
-+	if (put_user(resp.cpu_delta, &query_ptr->cpu_delta))
-+		return -EFAULT;
-+
-+	if (put_user(resp.engine_cycles, &query_ptr->engine_cycles))
-+		return -EFAULT;
-+
-+	if (put_user(resp.width, &query_ptr->width))
-+		return -EFAULT;
-+
-+	return 0;
-+}
-+
- static int query_engines(struct xe_device *xe,
- 			 struct drm_xe_device_query *query)
- {
-@@ -369,6 +506,7 @@ static int (* const xe_query_funcs[])(struct xe_device *xe,
- 	query_gts,
- 	query_hwconfig,
- 	query_gt_topology,
-+	query_engine_cycles,
- };
- 
- int xe_query_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+-#define VALID_MMIO_FLAGS (\
+-	DRM_XE_MMIO_BITS_MASK |\
+-	DRM_XE_MMIO_READ |\
+-	DRM_XE_MMIO_WRITE)
+-
+-static const struct xe_reg mmio_read_whitelist[] = {
+-	RING_TIMESTAMP(RENDER_RING_BASE),
+-};
+-
+-int xe_mmio_ioctl(struct drm_device *dev, void *data,
+-		  struct drm_file *file)
+-{
+-	struct xe_device *xe = to_xe_device(dev);
+-	struct xe_gt *gt = xe_root_mmio_gt(xe);
+-	struct drm_xe_mmio *args = data;
+-	unsigned int bits_flag, bytes;
+-	struct xe_reg reg;
+-	bool allowed;
+-	int ret = 0;
+-
+-	if (XE_IOCTL_DBG(xe, args->extensions) ||
+-	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+-		return -EINVAL;
+-
+-	if (XE_IOCTL_DBG(xe, args->flags & ~VALID_MMIO_FLAGS))
+-		return -EINVAL;
+-
+-	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_MMIO_WRITE) && args->value))
+-		return -EINVAL;
+-
+-	allowed = capable(CAP_SYS_ADMIN);
+-	if (!allowed && ((args->flags & ~DRM_XE_MMIO_BITS_MASK) == DRM_XE_MMIO_READ)) {
+-		unsigned int i;
+-
+-		for (i = 0; i < ARRAY_SIZE(mmio_read_whitelist); i++) {
+-			if (mmio_read_whitelist[i].addr == args->addr) {
+-				allowed = true;
+-				break;
+-			}
+-		}
+-	}
+-
+-	if (XE_IOCTL_DBG(xe, !allowed))
+-		return -EPERM;
+-
+-	bits_flag = args->flags & DRM_XE_MMIO_BITS_MASK;
+-	bytes = 1 << bits_flag;
+-	if (XE_IOCTL_DBG(xe, args->addr + bytes > xe->mmio.size))
+-		return -EINVAL;
+-
+-	/*
+-	 * TODO: migrate to xe_gt_mcr to lookup the mmio range and handle
+-	 * multicast registers. Steering would need uapi extension.
+-	 */
+-	reg = XE_REG(args->addr);
+-
+-	xe_device_mem_access_get(xe);
+-	xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-
+-	if (args->flags & DRM_XE_MMIO_WRITE) {
+-		switch (bits_flag) {
+-		case DRM_XE_MMIO_32BIT:
+-			if (XE_IOCTL_DBG(xe, args->value > U32_MAX)) {
+-				ret = -EINVAL;
+-				goto exit;
+-			}
+-			xe_mmio_write32(gt, reg, args->value);
+-			break;
+-		default:
+-			drm_dbg(&xe->drm, "Invalid MMIO bit size");
+-			fallthrough;
+-		case DRM_XE_MMIO_8BIT: /* TODO */
+-		case DRM_XE_MMIO_16BIT: /* TODO */
+-			ret = -EOPNOTSUPP;
+-			goto exit;
+-		}
+-	}
+-
+-	if (args->flags & DRM_XE_MMIO_READ) {
+-		switch (bits_flag) {
+-		case DRM_XE_MMIO_32BIT:
+-			args->value = xe_mmio_read32(gt, reg);
+-			break;
+-		case DRM_XE_MMIO_64BIT:
+-			args->value = xe_mmio_read64_2x32(gt, reg);
+-			break;
+-		default:
+-			drm_dbg(&xe->drm, "Invalid MMIO bit size");
+-			fallthrough;
+-		case DRM_XE_MMIO_8BIT: /* TODO */
+-		case DRM_XE_MMIO_16BIT: /* TODO */
+-			ret = -EOPNOTSUPP;
+-		}
+-	}
+-
+-exit:
+-	xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+-	xe_device_mem_access_put(xe);
+-
+-	return ret;
+-}
+-
+ /**
+  * xe_mmio_read64_2x32() - Read a 64-bit register as two 32-bit reads
+  * @gt: MMIO target GT
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index d48d8e3c898c..079213a3df55 100644
+index 46db9334159b..ad21ba1d6e0b 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -128,6 +128,25 @@ struct xe_user_extension {
+@@ -106,11 +106,10 @@ struct xe_user_extension {
+ #define DRM_XE_EXEC_QUEUE_CREATE		0x06
+ #define DRM_XE_EXEC_QUEUE_DESTROY		0x07
+ #define DRM_XE_EXEC			0x08
+-#define DRM_XE_MMIO			0x09
+-#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x0a
+-#define DRM_XE_WAIT_USER_FENCE		0x0b
+-#define DRM_XE_VM_MADVISE		0x0c
+-#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0d
++#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x09
++#define DRM_XE_WAIT_USER_FENCE		0x0a
++#define DRM_XE_VM_MADVISE		0x0b
++#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0c
+ 
+ /* Must be kept compact -- no holes */
+ #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+@@ -123,7 +122,6 @@ struct xe_user_extension {
+ #define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
+ #define DRM_IOCTL_XE_EXEC_QUEUE_DESTROY		 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_DESTROY, struct drm_xe_exec_queue_destroy)
+ #define DRM_IOCTL_XE_EXEC			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
+-#define DRM_IOCTL_XE_MMIO			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_MMIO, struct drm_xe_mmio)
+ #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
  #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
  #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
- 
-+/** struct drm_xe_engine_class_instance - instance of an engine class */
-+struct drm_xe_engine_class_instance {
-+#define DRM_XE_ENGINE_CLASS_RENDER		0
-+#define DRM_XE_ENGINE_CLASS_COPY		1
-+#define DRM_XE_ENGINE_CLASS_VIDEO_DECODE	2
-+#define DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE	3
-+#define DRM_XE_ENGINE_CLASS_COMPUTE		4
-+	/*
-+	 * Kernel only class (not actual hardware engine class). Used for
-+	 * creating ordered queues of VM bind operations.
-+	 */
-+#define DRM_XE_ENGINE_CLASS_VM_BIND		5
-+	__u16 engine_class;
-+
-+	__u16 engine_instance;
-+	__u16 gt_id;
-+	__u16 rsvd;
-+};
-+
- /**
-  * enum drm_xe_memory_class - Supported memory classes.
-  */
-@@ -219,6 +238,60 @@ struct drm_xe_query_mem_region {
- 	__u64 reserved[6];
- };
- 
-+/**
-+ * struct drm_xe_query_engine_cycles - correlate CPU and GPU timestamps
-+ *
-+ * If a query is made with a struct drm_xe_device_query where .query is equal to
-+ * DRM_XE_DEVICE_QUERY_ENGINE_CYCLES, then the reply uses struct drm_xe_query_engine_cycles
-+ * in .data. struct drm_xe_query_engine_cycles is allocated by the user and
-+ * .data points to this allocated structure.
-+ *
-+ * The query returns the engine cycles and the frequency that can
-+ * be used to calculate the engine timestamp. In addition the
-+ * query returns a set of cpu timestamps that indicate when the command
-+ * streamer cycle count was captured.
-+ */
-+struct drm_xe_query_engine_cycles {
-+	/**
-+	 * @eci: This is input by the user and is the engine for which command
-+	 * streamer cycles is queried.
-+	 */
-+	struct drm_xe_engine_class_instance eci;
-+
-+	/**
-+	 * @clockid: This is input by the user and is the reference clock id for
-+	 * CPU timestamp. For definition, see clock_gettime(2) and
-+	 * perf_event_open(2). Supported clock ids are CLOCK_MONOTONIC,
-+	 * CLOCK_MONOTONIC_RAW, CLOCK_REALTIME, CLOCK_BOOTTIME, CLOCK_TAI.
-+	 */
-+	__s32 clockid;
-+
-+	/** @width: Width of the engine cycle counter in bits. */
-+	__u32 width;
-+
-+	/**
-+	 * @engine_cycles: Engine cycles as read from its register
-+	 * at 0x358 offset.
-+	 */
-+	__u64 engine_cycles;
-+
-+	/** @engine_frequency: Frequency of the engine cycles in Hz. */
-+	__u64 engine_frequency;
-+
-+	/**
-+	 * @cpu_timestamp: CPU timestamp in ns. The timestamp is captured before
-+	 * reading the engine_cycles register using the reference clockid set by the
-+	 * user.
-+	 */
-+	__u64 cpu_timestamp;
-+
-+	/**
-+	 * @cpu_delta: Time delta in ns captured around reading the lower dword
-+	 * of the engine_cycles register.
-+	 */
-+	__u64 cpu_delta;
-+};
-+
- /**
-  * struct drm_xe_query_mem_usage - describe memory regions and usage
-  *
-@@ -385,12 +458,13 @@ struct drm_xe_device_query {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
- 
--#define DRM_XE_DEVICE_QUERY_ENGINES	0
--#define DRM_XE_DEVICE_QUERY_MEM_USAGE	1
--#define DRM_XE_DEVICE_QUERY_CONFIG	2
--#define DRM_XE_DEVICE_QUERY_GTS		3
--#define DRM_XE_DEVICE_QUERY_HWCONFIG	4
--#define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY	5
-+#define DRM_XE_DEVICE_QUERY_ENGINES		0
-+#define DRM_XE_DEVICE_QUERY_MEM_USAGE		1
-+#define DRM_XE_DEVICE_QUERY_CONFIG		2
-+#define DRM_XE_DEVICE_QUERY_GTS			3
-+#define DRM_XE_DEVICE_QUERY_HWCONFIG		4
-+#define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY		5
-+#define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
- 	/** @query: The type of data to query */
- 	__u32 query;
- 
-@@ -732,24 +806,6 @@ struct drm_xe_exec_queue_set_property {
+@@ -936,27 +934,6 @@ struct drm_xe_exec {
  	__u64 reserved[2];
  };
  
--/** struct drm_xe_engine_class_instance - instance of an engine class */
--struct drm_xe_engine_class_instance {
--#define DRM_XE_ENGINE_CLASS_RENDER		0
--#define DRM_XE_ENGINE_CLASS_COPY		1
--#define DRM_XE_ENGINE_CLASS_VIDEO_DECODE	2
--#define DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE	3
--#define DRM_XE_ENGINE_CLASS_COMPUTE		4
--	/*
--	 * Kernel only class (not actual hardware engine class). Used for
--	 * creating ordered queues of VM bind operations.
--	 */
--#define DRM_XE_ENGINE_CLASS_VM_BIND		5
--	__u16 engine_class;
+-struct drm_xe_mmio {
+-	/** @extensions: Pointer to the first extension struct, if any */
+-	__u64 extensions;
 -
--	__u16 engine_instance;
--	__u16 gt_id;
+-	__u32 addr;
+-
+-#define DRM_XE_MMIO_8BIT	0x0
+-#define DRM_XE_MMIO_16BIT	0x1
+-#define DRM_XE_MMIO_32BIT	0x2
+-#define DRM_XE_MMIO_64BIT	0x3
+-#define DRM_XE_MMIO_BITS_MASK	0x3
+-#define DRM_XE_MMIO_READ	0x4
+-#define DRM_XE_MMIO_WRITE	0x8
+-	__u32 flags;
+-
+-	__u64 value;
+-
+-	/** @reserved: Reserved */
+-	__u64 reserved[2];
 -};
 -
- struct drm_xe_exec_queue_create {
- #define XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY               0
- 	/** @extensions: Pointer to the first extension struct, if any */
+ /**
+  * struct drm_xe_wait_user_fence - wait user fence
+  *
 -- 
 2.34.1
 
