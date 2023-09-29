@@ -4,147 +4,127 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3360E71D56
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 21:02:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D693AE743F0
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 21:23:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 715A310E13D;
-	Fri, 29 Sep 2023 21:02:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDF3310E4FE
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 21:02:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696021348; x=1727557348;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=MYdU0V8ilh7gjmQc8h7+DJmyMceIhxw1/Z8kLLgf9dg=;
- b=ERqyxp21zFtvDSstCcxW1hbQPaw7cgc6kxyJW0Pde1zxluyxRBCy9LML
- DxEma6CwXqlemLNCsRbAK8gCVXJw3fr8xwUuRC4BFL6DoI1C6DKxhuUzt
- NOtTl89ZIg72S2i4KwjUVek8qXnbLcF2OenPmX5FJE6RIYsjQIUKJcuKp
- LW7P5r2u+S1pcaStCRqpePriyBrLJGpHynwGCtaBYMm8Ex6OIP7BJeYbM
- V16Gqre6L/UGih/0THCfEyjDIJu0HpLZPU35DaCxuv2w/JEy1/F0X+j+B
- 0xtec95a0uGo+YqT0lMp8lesEJRBnolIgx8jWnFtT1GY/ec8qcKw6DEKr Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="385200401"
-X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; d="scan'208";a="385200401"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 14:02:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="779383260"
-X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; d="scan'208";a="779383260"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Sep 2023 14:02:09 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 29 Sep 2023 14:02:08 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 29 Sep 2023 14:02:08 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Fri, 29 Sep 2023 14:02:08 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.106)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Fri, 29 Sep 2023 14:01:40 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37EFB10E13D;
+	Fri, 29 Sep 2023 21:23:31 +0000 (UTC)
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com
+ (mail-bn8nam12on2061b.outbound.protection.outlook.com
+ [IPv6:2a01:111:f400:fe5b::61b])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 505AB10E0F1;
+ Fri, 29 Sep 2023 21:23:29 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KxFNgZPONO6085hRhlRQbje1B9re6oU1W+bqhUPJcebXQJBSYkU3p91MBSsAd2XLNXTglVQYUb2DbqtQ1dELnFspAor6Y3EYJWeVOsZqDs+ZWDRIqGZ4y0ReavR7f6QZm8mtsWWZuvIV9O2xaTwPuNb/0aYUzzmWeFBY6ENl0wxd9wCuqEzcdAlHTl3NzXzmUv0fy3GI8z9GWYyb7/bGHT17fYgxqDv+GSxUnO3zj88jPM/4I/Coej9bDOvjYEXZkntcUhMQQvhsVZsaljAm/AlR8vC2eQY95FauFEj6THnOcVA5hYT7drWj5wi/syVjtpJ4sb70IpEogEDV7eAt8A==
+ b=Dn36K032VCiMrA/WUKBQE8aeCGcgebh12aetndxKmXvyXpyp8e9T3tROWcvhRvch+9dXe6Etug7Co+4LolWEk05R2Y3oXPCK61QmrzXMBARLGeIX5ei1PiNldZ0+t5kOnGGK/4PBU6iRtkLdkM53vHOXWjI+IZSvclJhS7klQhPM36JDbdQ3N2skqLBdwJGDec2ZdN6AP2Gy4avzs9TsqEj+OEVzelDjKp37HCwAx5XQwE+Yj/w57gonOrnKl3IFda3XimFBk2mqKHgyFK5NByKzSKWbyGkKKYZCfXifh1STrW1d6fkioqq1mpn76zrgfxJoOLfPkQEM0CT/GG1f0A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Uo4BqPp8tTWSBtHUCRkWSP1dpOHrUEuNEya2UMQ9PKA=;
- b=fvDpn5xUl/ssskVUSZi09Nzvz08cHT/IUnrvQwqNdJdrcCpDWulThCCAk20htPM4RND5+T02yC2u22iYOlHj/wZWHqKtjsBd7Br2WO9TxYLBgs/h25QwAWmZqxOci4vgPj+tO6GQU94VXWgl41oGlfbRmsiV/rNVwonlKKn+MK8P0YmimI7qpEwO8VbDBq9XqVEAbQMMYpETZZjvOI3GAqLrUAZkISYgNlib6kjr32s176iLoC/Gf0yReEZRpnIEhK8tXUWpn56VqBGTSDlvolYNRwwy3GznJwqv827NxGuvWXnWlBWdxer2DnMg4lv2fc8vtr6xX/gq6I/0OFMjpQ==
+ bh=z/sG7DDF+NqZPXgBpFIqsL01t3b3/sYhld5Pn7uRiE4=;
+ b=EUNJUtZDLZyK0KKdf6xn5307jrS+5H48lV2i8zn5d/TREClClYBzu+Q3Pwcx0Rj2CxDuTFJDu25jMHrB1AAQB5rnNmsj3jYIb4c9ejs4NPlSGNBRiN+Op8p/tfzHRikcs0a0rg1SzKxYPB6ehgvnN7MpBor1mVJwNHuyojpZI5HWNvjrjsHMVKKB/Uqe74+YJ3jhZ4i2EVnRn2hzgLQ5u7vun0LOQ/3hd6YMOUZkyM4c7B5eAbe8CZ+2vlbS8EmjLqst00vg5BZkbRTauQMCFUboo6ruWVYBK9/w0E+Ia6EIsYOuF6ss+PEof7RoL862LPzLTP3Lp7inESX3Ix7D9Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=z/sG7DDF+NqZPXgBpFIqsL01t3b3/sYhld5Pn7uRiE4=;
+ b=YGe4ByIFTcZyU/O8oNuDjI4mTn7kZIFRg+MthlSS/FAKz/uqtwN5k6P6Z0OYcLXA49HpTc4JSLwZyhQpaiP03tjB6UGFOrFAjsseAaE+Ige0v0groU58A+DklyavyT/9NsTSkSTWTxlFlfb4eVOFzrYLwXwP3YQrtzJVySd6AH0=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by SN7PR11MB6922.namprd11.prod.outlook.com (2603:10b6:806:2a9::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6792.27; Fri, 29 Sep
- 2023 21:01:38 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593%7]) with mapi id 15.20.6813.017; Fri, 29 Sep 2023
- 21:01:38 +0000
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Date: Fri, 29 Sep 2023 17:01:27 -0400
-Message-ID: <20230929210130.1203203-2-rodrigo.vivi@intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230929210130.1203203-1-rodrigo.vivi@intel.com>
-References: <20230929210130.1203203-1-rodrigo.vivi@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0250.namprd03.prod.outlook.com
- (2603:10b6:a03:3a0::15) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM6PR12MB3370.namprd12.prod.outlook.com (2603:10b6:5:38::25) by
+ BL0PR12MB4961.namprd12.prod.outlook.com (2603:10b6:208:1c9::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Fri, 29 Sep
+ 2023 21:23:26 +0000
+Received: from DM6PR12MB3370.namprd12.prod.outlook.com
+ ([fe80::8a67:3bbe:8309:4f87]) by DM6PR12MB3370.namprd12.prod.outlook.com
+ ([fe80::8a67:3bbe:8309:4f87%3]) with mapi id 15.20.6768.029; Fri, 29 Sep 2023
+ 21:23:26 +0000
+Message-ID: <e8c7d8b9-f6fe-407b-9b61-e7ced8390997@amd.com>
+Date: Fri, 29 Sep 2023 17:23:23 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
+ Thunderbird/115.3.0
+Content-Language: en-CA, en-US
+To: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org
+References: <20230919050155.2647172-1-matthew.brost@intel.com>
+ <20230919050155.2647172-7-matthew.brost@intel.com>
+From: Luben Tuikov <luben.tuikov@amd.com>
+Autocrypt: addr=luben.tuikov@amd.com; keydata=
+ xjMEY1i6jxYJKwYBBAHaRw8BAQdAhfD+Cc+P5t/fiF08Vw25EMLiwUuxULYRiDQAP6H50MTN
+ I0x1YmVuIFR1aWtvdiA8bHViZW4udHVpa292QGFtZC5jb20+wpkEExYKAEEWIQQyyR05VSHw
+ x45E/SoppxulNG8HhgUCY1i6jwIbAwUJCWYBgAULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIX
+ gAAKCRAppxulNG8Hhk53AP4k4UY5xfcje0c5OF1k22pNv8tErxtVpgKKZgvfetA4xwD+OoAh
+ vesLIYumBDxP0BoLiLN84udxdT15HwPFUGiDmwDOOARjWLqPEgorBgEEAZdVAQUBAQdAzSxY
+ a2EtvvIwd09NckBLSTarSLNDkUthmqPnwolwiDYDAQgHwn4EGBYKACYWIQQyyR05VSHwx45E
+ /SoppxulNG8HhgUCY1i6jwIbDAUJCWYBgAAKCRAppxulNG8HhnBLAP4yjSGpK6PE1mapKhrq
+ 8bSl9reo+F6EqdhE8X2TTHPycAEAt8EkTEstSiaOpM66gneU7r+xxzOYULo1b1XjXayGvwM=
+In-Reply-To: <20230919050155.2647172-7-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: YQBPR01CA0059.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:c01:2::31) To DM6PR12MB3370.namprd12.prod.outlook.com
+ (2603:10b6:5:38::25)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SN7PR11MB6922:EE_
-X-MS-Office365-Filtering-Correlation-Id: 091a944d-2cfa-4c8e-cc88-08dbc12f45ec
+X-MS-TrafficTypeDiagnostic: DM6PR12MB3370:EE_|BL0PR12MB4961:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9ef067eb-0038-462b-268b-08dbc1325197
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: URADxKMl8RQNeYlnAmHYDErTKRO/gCxT4fw4P/Ru8lXS7L8JW6v7QSBrZeDWjQ1SdcQr0ON/xyFjwLcu76J1ypwaLma1x9CGWCiLVeDM1kQUOMNTrEKg72+1JwIKfwgR7R3lMXuIgg+b0UM+tTt2NVEAlWbo+v/tuhLKTCQlJ/BJWD0U5UXG1pEDKqu2FvHV8C0YHsLe7ON/OwkaZG6DpzXL02dUFBQrth7wzbn+exvHKoxLqoa/yl+9oN+Dq7Lj99Q+ExnKHooYeG5jAhiD+Vq9wZmna2E/TPcg8GjtgvFiC3vhC1bgI4nQEBoCNQNywLLGSRHpMsPd20MzHCG4Y1+jCXLvt2WtxM05zjPpLJDROVI3jUVFsdWSp9V2E7y0TTsDDlwJnRs6csrZb3/5Km9j/QjPy36s5BrCqyBa1vpXCvX5IGkKZ+taV+VApNRfJSEUf2I8x/8CCWMfioYZK2pwjrqft4s8kqJHIxPGwfgWmS8D3hZmpCWU+b7y3svKu5B5eCh34Zxjm7xIQcX9CIrmPZbf7DTh+UZT8SjDrTwiOmv3Pbbn+xlWEWDux693
+X-Microsoft-Antispam-Message-Info: bw/VszZ8NxVJTbtKcVgesnm1N/g84ijxd3zeRRqYlt+Xp/chd2mHxJMAk8YL3j04hCe6OdAEwwzzIC9KEuYMnZvAtaWOwdThtOTlsGhDDKDssKAZvKK7tfny5KKvlsdK92CR+PNvsQxqddhFxrMvflhEzSG4Th71+C7TyL7MInHy3TqGlQT4yjXcKStryLxW4rews+GzqBgyEc3kK+q74Mau837NdORTi9VN7hSii7cDjDfdE0Cd9TdbNUkA1mOHiK5vL+VlT5vRWcdSY9Y61UqqbYj0hihwv+wPXXw5lztlP6I97OOYiHC337u42NqBNBAwToyGkGRqpD9CsxzI7sx2oyQVmAHayjL9krieOiIYa3eZPZOER379WQx/ivmAkKXQWnyI1StV9MxMvdntHvbGSkX0kKL1rVrY5HfTpBJGDZOr48aWB7e2/i/1vTBtY2SYS8h28+8Tynu3yhQ6y/F97sPEsk/vt7+asSbwRC+tOmHw/y9BaNMTQRnCGfPHWqg+vHsa16pjckZKxQWshWKltlv+qU+icAO2XuErUrU/Ny1nmZe7hcVqg5CrkA+GwpB1kngSeS2bY6E8e0qd/XGMWPCgviXxb7F8DtEeMccZGgMT0AkBTPd1YIz9bqK7cxZOr+mIf/J8SRGB1z4s/A==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(136003)(396003)(39860400002)(366004)(376002)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(2906002)(1076003)(6666004)(5660300002)(38100700002)(36756003)(6486002)(6506007)(6512007)(6916009)(107886003)(2616005)(41300700001)(26005)(66476007)(82960400001)(66556008)(66946007)(4326008)(8936002)(316002)(86362001)(8676002)(83380400001)(478600001)(44832011);
- DIR:OUT; SFP:1102; 
+ IPV:NLI; SFV:NSPM; H:DM6PR12MB3370.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(346002)(39860400002)(376002)(366004)(136003)(230922051799003)(64100799003)(186009)(1800799009)(451199024)(66476007)(6506007)(6512007)(6666004)(2906002)(2616005)(53546011)(6486002)(478600001)(26005)(83380400001)(8676002)(44832011)(4326008)(5660300002)(8936002)(7416002)(316002)(41300700001)(66556008)(66946007)(38100700002)(31696002)(86362001)(36756003)(31686004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NlAydGRoYkVZVWZkZ0h0VENnejVKWDdGbm5aMjVGOHJrcTZ1RTQ3bzl6Skdl?=
- =?utf-8?B?a1IxRWZ0dVg3M2RiM043YVZHVWdEeUxhSmZyd2lmYm9UbllHTGpVekQ3K3BC?=
- =?utf-8?B?WndEWWFxSng5MEV3MG5sYzJEbG9BQkZYZjhQU245YmYzNE0wRmN0MzNmTFVx?=
- =?utf-8?B?SmQyY0QzSGN1Q3BWTkxMU0FNR21RZ0VSQTVoWndCbG9iV3hWaThsNkNFTTdT?=
- =?utf-8?B?VTRmNDA4ZHBBU3ZPVXRpN3VKQ3o0eVh3WU5HMlMxQW1BcDNaOU40QXZmQUNu?=
- =?utf-8?B?SjE3VTI0THhNcmJnZGhObmc5aUxrTU54UnNneUdhejFYR29FUlpsN21YYWZ3?=
- =?utf-8?B?SXFUY2ZlaVQzTWZQUVEwdnNhblY0a0ZZRlJydFBodHNYQjVqbTlhTVc1TFNJ?=
- =?utf-8?B?VEdDR0p2WlBmQldLMVNCMHRKVG1nSEZRbnBjd2ZVMmpKaDFBbU80SDBITkYx?=
- =?utf-8?B?SytEd0krM2lYOTgreVJ0MnB1cEhZN0htWVRsTnRvblBRczdvbFBvcC9wZXpa?=
- =?utf-8?B?TmhldlV2azk3TWxxdG45Y0Uydmx0aFZuK1dzb1ZNeDkzdmloQnRUeHZKOC9s?=
- =?utf-8?B?d3NNdHNDNzlxMll5Um95UDR2SzN1SE9sUEJQeVhaQzBEMTJIbkpJZU5EOUN3?=
- =?utf-8?B?MmZJTWJkb2xGV05IWXhCQ25NTTU1VWFQQlJKSmlPTks0c2x3bTNYdHFxcDJ2?=
- =?utf-8?B?RGZXMHAwUk1MSGE4MHFmekFlYnVlUjZOTVhyRnRzVUFRcnRKZDdVeWo4LzRC?=
- =?utf-8?B?bkgxL2JGYmJrd2dxelVXS1E5bEptS3U5S3FBcDZJR3dHSU1RdklCY29Kc2ls?=
- =?utf-8?B?WDlBL0RSR0Z5OHpIRmVVbnMrdEdBSWhoYnk0KzhCVFRhTlFVTzVZekpLckkv?=
- =?utf-8?B?dWc0NEdRbkYzUmVIR1NXeE1SL2pYejF2SldBcnJFazg4MFFqdlBjNVhyWTNm?=
- =?utf-8?B?SVpQbldYUnJDSHlkVUQ1WWhLY2h6QUt3b24yOWk4Q3JPS2NNeXJFckdpckFw?=
- =?utf-8?B?ZGtXbXZTVkQxY1VaYVd1S0U0c28zQ2wxT0tmdUVkWU9NL0NzTktwdHoxMWcv?=
- =?utf-8?B?UlM4QlRlYjNvYW84OFB5WDkzdFNVRi92azRpYTZjVVYrVDdqQURTUnZSSW4v?=
- =?utf-8?B?S3gwKzQxMlpUd3REYUZlTzhyQnhhQXpQUkZwQ0N0MGROSExtdW5mZXZocWJk?=
- =?utf-8?B?TUpBV3JGcEp6cjUvSFFWamducHNhVENWQytKdVBxREhsdml4RUI2UW9QbFBw?=
- =?utf-8?B?enYyQTlKNkZCSVdoSTBtWnFJL3k3b2lxWnl6UEZESlFVeU9WbE4zdmtiN1Vt?=
- =?utf-8?B?OHVSaTR1TDRsbUYxSS9EaGRGTkdDcG83ZnZFcHR5YW8yem5uL3BBeWtIc01Q?=
- =?utf-8?B?ck8yVEx2bkhkbnNwRnNqMFpZV1hLMkJUamtSU1dGbmxEK09YaEtIY29uNGJH?=
- =?utf-8?B?S2JGNkVEenlvQjRST2E2cXcxQzV2VkYvK1haTWhEdGYrakQxZ3ltR2pFQXkz?=
- =?utf-8?B?RmlOSzU1QllZNWpVclMvckozL0Q2L25penRZRzRJUGdNQmpxSDNQWnF4VW1S?=
- =?utf-8?B?b2FOM1phVXZ2YmFueUovdUlkY21PY1lpcjZ4TXRUcWpOK21sTUFmOTRTRGxn?=
- =?utf-8?B?MGZZaUJQVTNOdm9ld2JGTk1vQUNJaW1OdHNRY0RQNy9CcWlKVTBGeGRkd3dm?=
- =?utf-8?B?R3pBeXFpaHJCdjBVaTh5c0FZZ0hXK0dOMzZiNUNUcTdvYVhnTktxa1JXS09r?=
- =?utf-8?B?MVQycitRN1pRMFRxbURua0I1OW15dWhrN2YvQ2NLRTd1cDA3UUt5OVpzUEpZ?=
- =?utf-8?B?UEdqQldCdW5yY0lrV0N0QUN5dTFxY2l4MkZkS1dDWnE1c20zSSthQ3Uwc1pX?=
- =?utf-8?B?aUJMb1RvUEM5NTBSeTQ1d2NjT2dDVXVpZEhxYVE0dGFPL0RmSHNXV2VyWnJl?=
- =?utf-8?B?anlRSE5mS21RTE1IYVBkVGtPUEo2RXdVM0dCNENjVWowNkNubDVlZTdEU0d5?=
- =?utf-8?B?NlozUnUzNkxMMVd0SU95L2huRVZSTnp3VHRHQVVDRWhoeUZBUmJYcWMrZGYy?=
- =?utf-8?B?QnhGdGE0QnNZOVZDbjlJZEV1aDNOUkQ2QzdwK2V3cVVOK21SbnJ1djVpZDdl?=
- =?utf-8?B?QTJ2eGZKNzByVnFYMjNPb2N0SG9tOTBUOGw4V3lJZThjU3Btc29VMlltNm5j?=
- =?utf-8?B?S2c9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 091a944d-2cfa-4c8e-cc88-08dbc12f45ec
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RXJGWkVOQzY4WENwSVh4SDBONmVacnBuZ2pMQXM4WnFWcGNrakNmbEdRVWhD?=
+ =?utf-8?B?MFRIMFdFWVprY2hpOWlsMENPYjVQMTFLcWxHZ1YraXVlc1NpSTBKcjdFTkRC?=
+ =?utf-8?B?V0RKOG9OaldocFZVNVdOZm9LRDBXalhxZy9iVUJxN1JpNURZcVhXbTdxQmwy?=
+ =?utf-8?B?OEZiZkw5NXFpTDh1MytwdjVxRVFSOWZKaGF3aFZSUzkzVFdPQTAwM0ZzdFVM?=
+ =?utf-8?B?VzdycnRYSHRhT051ci9Zd1MzSWdndjVwNG93NmdZN096N3N6OUc5WTJqMGln?=
+ =?utf-8?B?RmFGQUFFbE0yVGgyMW1XQm0xOXRXRklBZU40M1NrREdZaXhLWVptTWJnOHRp?=
+ =?utf-8?B?ZXhianlKU3g1WnBXcU1NUWk1MHNUVW12Rm9PNTBPUVgvdm80cFJLYWhnSzQx?=
+ =?utf-8?B?Sm4wckNBSHNweWFOdlhMZ2UxTFRPSGV5eWlOOVdqTG5qbEN2ZVRCeTloVTZF?=
+ =?utf-8?B?TFFWRGkzSGtUek5UemtFcVFyQzhJZTg1WFp1YVBkVlBWMWhQMjNxdFgycGh5?=
+ =?utf-8?B?d0MzVFRiZjRBUkVhcW5BUnprMWYyK21hSCszUjlDZnNMMkRKamF4SlQzKzY5?=
+ =?utf-8?B?VVAvTHZwMVN6cDM3Vmc0ODkyWDBtaEFZN2xqUUdBNjUvR0cvd3lZRFZhT0FB?=
+ =?utf-8?B?K3I3L2hVQU9hUmtzcURITzllaUJaeG1wLzFUZm1iZEg1a3FYeFdVbUlTT2RL?=
+ =?utf-8?B?ck1TeVlvemNtN0RocjBGT2FqODVyNDBqMWFTQjhJVXhBamNid21qYlhSSFAz?=
+ =?utf-8?B?YW1zSnYwNU1uaGl3VG1VcXRUdDdaaDZsQytKTTkwV2QzeGk2WmNUeHRQSXh0?=
+ =?utf-8?B?NUlhME1peFVVNW13emozbWxabjZydm4vTlBQbC9OeGZBZTFyamgrMmczb2JC?=
+ =?utf-8?B?SURrbTZtc2U0dFpjanpmSUJuTlcyVkpUR3A5Z1pKeDlnOUY2d2V3NThiN3Fx?=
+ =?utf-8?B?WTk3WExvKysxTE9PZm1LREZmdUs5OW11c252TjdsL0xndXpNbjFFZlZ6ZG5Q?=
+ =?utf-8?B?R2lVVE5qenBGQjRKRjkwYnpsVmdLYVAwbmpvdlB6NGIrZ21DM01oUm0yQ3NF?=
+ =?utf-8?B?d2dnVEc1aHRaNElqVHg0WlRZUVJGYkw2MjdLRUtuYllEMHliUGZiNU5GY0cy?=
+ =?utf-8?B?N2lDNS9ORURJN2I5V3UrTi9qODZGVFlzZlRVd20vTGN1SHdyczVvVmZUUkov?=
+ =?utf-8?B?cGRaR2Qya1ZJb1Y3ZGFOaEJXYkREV3pUaU9TcEJNbmxFWGlvSzVCNXNKeGtU?=
+ =?utf-8?B?VjRkTGJhT0tGTXM3TGgzUEd0dWhxODdGRzB3MXlpU2VUaDd3aXRHV3NtQUkr?=
+ =?utf-8?B?TUkzSElNM1FnUnJJYVdha1ViZGdrNjBtVTVnMks0N3dUaDZpYnZQWFZ6RjNY?=
+ =?utf-8?B?RGtnR0dGMHVxV0UvUUdHdlhCalc2KzR1bGlhOEQ3T3p5cUpUNGdwOWFhNkRu?=
+ =?utf-8?B?c08rbkgyYXpwZjY1S010S2h4QTZxdkxLcUhqYVcrOEl1L2NYdEhpK0h4YUtQ?=
+ =?utf-8?B?cG5NYXMxcXlsMkpOSGtaNHQwdWVsL1NFWUxSeW9SbkFtdnI2T1VyTzNtcE5l?=
+ =?utf-8?B?U2dERXd2Rk5ZYmxPajA5NTA4UzMraTNsS1lMNkdtMkNkUUN5a0VCQUZEM0lO?=
+ =?utf-8?B?YzNzZlFILzh2QnUyQTNVYjY5bjRUTDNPbkJKVkFzM0FablBvUEd3NkZ5S1lB?=
+ =?utf-8?B?R0Y3eGdPNlZkSnBzc05aeGM5cGdHY2V2VG1Wb1pEQlFlY0dYMk5oYkNLMHgz?=
+ =?utf-8?B?OEMxS0RzNlNpRm1BS3cycUtCdUNXZnVJZVEvNWlkWkNZRk9qeS9qNk1HMFZ1?=
+ =?utf-8?B?RjZLVGJBNDRma1dGQ1RmZE9GUzFjUnQyd0pKUnhESFcrbzJUTm1PSjlwTWRN?=
+ =?utf-8?B?TCtKK1QzWXNRQjRYZFF6a0FPZ0RKZU1TbVVRSzhqVW85Q1hvS1lKbGlPTHlT?=
+ =?utf-8?B?UlE1b01uZ2k4eE42Q0dqdGR5RlFhZDcwaVlmOTU1Wk5NQi9NU3lHbFJoUjZV?=
+ =?utf-8?B?TXF0ME5KWmpYNXRVV3VBQ1NhTVpaVUg5MGZOaWVKN1pWcWV3Q1NMRWRwMTk5?=
+ =?utf-8?B?b2Nndmd6b0twTzhJSi9JZTB0aVlRbTJjWWJuMExCRzBDaDNIMUl2MXFHYkc4?=
+ =?utf-8?Q?iBgs8hYT0GyxJlLxIT+PMAv6C?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9ef067eb-0038-462b-268b-08dbc1325197
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3370.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 21:01:38.6821 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 21:23:26.6462 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 83rjHceWsl6iYOp6SLydYcw3ScmneZA09G3YnlZKloPI8q1ofHFvPDOktFSs8UuOM0iKiwbwkDp7vzMJGEMfvA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6922
-X-OriginatorOrg: intel.com
-Subject: [Intel-xe] [PATCH 2/3] drm/xe: Kill xe_migrate_doc.h
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8E9Pt5++K6ot2Ym8/hF2lsmBzb6M8tiq9XtvKXzYwk16dQ2yO1e2lzH4yjFVOzEj
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4961
+Subject: Re: [Intel-xe] [PATCH v4 06/10] drm/sched: Add
+ drm_sched_start_timeout_unlocked helper
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,218 +136,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ Liviu.Dudau@arm.com, mcanal@igalia.com, frank.binns@imgtec.com,
+ boris.brezillon@collabora.com, dakr@redhat.com, donald.robson@imgtec.com,
+ daniel@ffwll.ch, lina@asahilina.net, airlied@gmail.com,
+ christian.koenig@amd.com, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Keep the documentation inside the code.
-No update to the documentation itself at this time.
-Let's first ensure that the entire documentation is closer
-to the relevant code, otherwise it will get very easily outdated.
+Hi,
 
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- Documentation/gpu/xe/xe_migrate.rst |  2 +-
- drivers/gpu/drm/xe/xe_migrate.c     | 79 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_migrate_doc.h | 88 -----------------------------
- 3 files changed, 80 insertions(+), 89 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/xe_migrate_doc.h
+On 2023-09-19 01:01, Matthew Brost wrote:
+> Also add a lockdep assert to drm_sched_start_timeout.
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 
-diff --git a/Documentation/gpu/xe/xe_migrate.rst b/Documentation/gpu/xe/xe_migrate.rst
-index f92faec0ac94..e7f8f74609a0 100644
---- a/Documentation/gpu/xe/xe_migrate.rst
-+++ b/Documentation/gpu/xe/xe_migrate.rst
-@@ -4,5 +4,5 @@
- Migrate Layer
- =============
- 
--.. kernel-doc:: drivers/gpu/drm/xe/xe_migrate_doc.h
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_migrate.c
-    :doc: Migrate Layer
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index cd2e00008aab..853e707d8d8c 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -33,6 +33,85 @@
- #include "xe_vm.h"
- #include "xe_wa.h"
- 
-+/**
-+ * DOC: Migrate Layer
-+ *
-+ * The XE migrate layer is used generate jobs which can copy memory (eviction),
-+ * clear memory, or program tables (binds). This layer exists in every GT, has
-+ * a migrate engine, and uses a special VM for all generated jobs.
-+ *
-+ * Special VM details
-+ * ==================
-+ *
-+ * The special VM is configured with a page structure where we can dynamically
-+ * map BOs which need to be copied and cleared, dynamically map other VM's page
-+ * table BOs for updates, and identity map the entire device's VRAM with 1 GB
-+ * pages.
-+ *
-+ * Currently the page structure consists of 32 physical pages with 16 being
-+ * reserved for BO mapping during copies and clear, 1 reserved for kernel binds,
-+ * several pages are needed to setup the identity mappings (exact number based
-+ * on how many bits of address space the device has), and the rest are reserved
-+ * user bind operations.
-+ *
-+ * TODO: Diagram of layout
-+ *
-+ * Bind jobs
-+ * =========
-+ *
-+ * A bind job consist of two batches and runs either on the migrate engine
-+ * (kernel binds) or the bind engine passed in (user binds). In both cases the
-+ * VM of the engine is the migrate VM.
-+ *
-+ * The first batch is used to update the migration VM page structure to point to
-+ * the bind VM page table BOs which need to be updated. A physical page is
-+ * required for this. If it is a user bind, the page is allocated from pool of
-+ * pages reserved user bind operations with drm_suballoc managing this pool. If
-+ * it is a kernel bind, the page reserved for kernel binds is used.
-+ *
-+ * The first batch is only required for devices without VRAM as when the device
-+ * has VRAM the bind VM page table BOs are in VRAM and the identity mapping can
-+ * be used.
-+ *
-+ * The second batch is used to program page table updated in the bind VM. Why
-+ * not just one batch? Well the TLBs need to be invalidated between these two
-+ * batches and that only can be done from the ring.
-+ *
-+ * When the bind job complete, the page allocated is returned the pool of pages
-+ * reserved for user bind operations if a user bind. No need do this for kernel
-+ * binds as the reserved kernel page is serially used by each job.
-+ *
-+ * Copy / clear jobs
-+ * =================
-+ *
-+ * A copy or clear job consist of two batches and runs on the migrate engine.
-+ *
-+ * Like binds, the first batch is used update the migration VM page structure.
-+ * In copy jobs, we need to map the source and destination of the BO into page
-+ * the structure. In clear jobs, we just need to add 1 mapping of BO into the
-+ * page structure. We use the 16 reserved pages in migration VM for mappings,
-+ * this gives us a maximum copy size of 16 MB and maximum clear size of 32 MB.
-+ *
-+ * The second batch is used do either do the copy or clear. Again similar to
-+ * binds, two batches are required as the TLBs need to be invalidated from the
-+ * ring between the batches.
-+ *
-+ * More than one job will be generated if the BO is larger than maximum copy /
-+ * clear size.
-+ *
-+ * Future work
-+ * ===========
-+ *
-+ * Update copy and clear code to use identity mapped VRAM.
-+ *
-+ * Can we rework the use of the pages async binds to use all the entries in each
-+ * page?
-+ *
-+ * Using large pages for sysmem mappings.
-+ *
-+ * Is it possible to identity map the sysmem? We should explore this.
-+ */
-+
- /**
-  * struct xe_migrate - migrate context.
-  */
-diff --git a/drivers/gpu/drm/xe/xe_migrate_doc.h b/drivers/gpu/drm/xe/xe_migrate_doc.h
-deleted file mode 100644
-index 63c7d67b5b62..000000000000
---- a/drivers/gpu/drm/xe/xe_migrate_doc.h
-+++ /dev/null
-@@ -1,88 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2022 Intel Corporation
-- */
--
--#ifndef _XE_MIGRATE_DOC_H_
--#define _XE_MIGRATE_DOC_H_
--
--/**
-- * DOC: Migrate Layer
-- *
-- * The XE migrate layer is used generate jobs which can copy memory (eviction),
-- * clear memory, or program tables (binds). This layer exists in every GT, has
-- * a migrate engine, and uses a special VM for all generated jobs.
-- *
-- * Special VM details
-- * ==================
-- *
-- * The special VM is configured with a page structure where we can dynamically
-- * map BOs which need to be copied and cleared, dynamically map other VM's page
-- * table BOs for updates, and identity map the entire device's VRAM with 1 GB
-- * pages.
-- *
-- * Currently the page structure consists of 32 physical pages with 16 being
-- * reserved for BO mapping during copies and clear, 1 reserved for kernel binds,
-- * several pages are needed to setup the identity mappings (exact number based
-- * on how many bits of address space the device has), and the rest are reserved
-- * user bind operations.
-- *
-- * TODO: Diagram of layout
-- *
-- * Bind jobs
-- * =========
-- *
-- * A bind job consist of two batches and runs either on the migrate engine
-- * (kernel binds) or the bind engine passed in (user binds). In both cases the
-- * VM of the engine is the migrate VM.
-- *
-- * The first batch is used to update the migration VM page structure to point to
-- * the bind VM page table BOs which need to be updated. A physical page is
-- * required for this. If it is a user bind, the page is allocated from pool of
-- * pages reserved user bind operations with drm_suballoc managing this pool. If
-- * it is a kernel bind, the page reserved for kernel binds is used.
-- *
-- * The first batch is only required for devices without VRAM as when the device
-- * has VRAM the bind VM page table BOs are in VRAM and the identity mapping can
-- * be used.
-- *
-- * The second batch is used to program page table updated in the bind VM. Why
-- * not just one batch? Well the TLBs need to be invalidated between these two
-- * batches and that only can be done from the ring.
-- *
-- * When the bind job complete, the page allocated is returned the pool of pages
-- * reserved for user bind operations if a user bind. No need do this for kernel
-- * binds as the reserved kernel page is serially used by each job.
-- *
-- * Copy / clear jobs
-- * =================
-- *
-- * A copy or clear job consist of two batches and runs on the migrate engine.
-- *
-- * Like binds, the first batch is used update the migration VM page structure.
-- * In copy jobs, we need to map the source and destination of the BO into page
-- * the structure. In clear jobs, we just need to add 1 mapping of BO into the
-- * page structure. We use the 16 reserved pages in migration VM for mappings,
-- * this gives us a maximum copy size of 16 MB and maximum clear size of 32 MB.
-- *
-- * The second batch is used do either do the copy or clear. Again similar to
-- * binds, two batches are required as the TLBs need to be invalidated from the
-- * ring between the batches.
-- *
-- * More than one job will be generated if the BO is larger than maximum copy /
-- * clear size.
-- *
-- * Future work
-- * ===========
-- *
-- * Update copy and clear code to use identity mapped VRAM.
-- *
-- * Can we rework the use of the pages async binds to use all the entries in each
-- * page?
-- *
-- * Using large pages for sysmem mappings.
-- *
-- * Is it possible to identity map the sysmem? We should explore this.
-- */
--
--#endif
+Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
+
+Thanks for this patch!
+
+> ---
+>  drivers/gpu/drm/scheduler/sched_main.c | 23 +++++++++++++----------
+>  1 file changed, 13 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> index 1e21d234fb5c..09ef07b9e9d5 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -431,11 +431,20 @@ static void drm_sched_job_done_cb(struct dma_fence *f, struct dma_fence_cb *cb)
+>   */
+>  static void drm_sched_start_timeout(struct drm_gpu_scheduler *sched)
+>  {
+> +	lockdep_assert_held(&sched->job_list_lock);
+> +
+>  	if (sched->timeout != MAX_SCHEDULE_TIMEOUT &&
+>  	    !list_empty(&sched->pending_list))
+>  		queue_delayed_work(sched->timeout_wq, &sched->work_tdr, sched->timeout);
+>  }
+>  
+> +static void drm_sched_start_timeout_unlocked(struct drm_gpu_scheduler *sched)
+> +{
+> +	spin_lock(&sched->job_list_lock);
+> +	drm_sched_start_timeout(sched);
+> +	spin_unlock(&sched->job_list_lock);
+> +}
+> +
+>  /**
+>   * drm_sched_fault - immediately start timeout handler
+>   *
+> @@ -548,11 +557,8 @@ static void drm_sched_job_timedout(struct work_struct *work)
+>  		spin_unlock(&sched->job_list_lock);
+>  	}
+>  
+> -	if (status != DRM_GPU_SCHED_STAT_ENODEV) {
+> -		spin_lock(&sched->job_list_lock);
+> -		drm_sched_start_timeout(sched);
+> -		spin_unlock(&sched->job_list_lock);
+> -	}
+> +	if (status != DRM_GPU_SCHED_STAT_ENODEV)
+> +		drm_sched_start_timeout_unlocked(sched);
+>  }
+>  
+>  /**
+> @@ -678,11 +684,8 @@ void drm_sched_start(struct drm_gpu_scheduler *sched, bool full_recovery)
+>  			drm_sched_job_done(s_job, -ECANCELED);
+>  	}
+>  
+> -	if (full_recovery) {
+> -		spin_lock(&sched->job_list_lock);
+> -		drm_sched_start_timeout(sched);
+> -		spin_unlock(&sched->job_list_lock);
+> -	}
+> +	if (full_recovery)
+> +		drm_sched_start_timeout_unlocked(sched);
+>  
+>  	drm_sched_submit_start(sched);
+>  }
+
 -- 
-2.41.0
+Regards,
+Luben
 
