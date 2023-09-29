@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9F84E728F3
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 20:45:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 95121E728F3
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 20:45:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6933410E716;
-	Fri, 29 Sep 2023 20:45:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B5AB410E143;
+	Fri, 29 Sep 2023 20:45:43 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF43A10E717
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 20:45:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4788410E143
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 20:45:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696020324; x=1727556324;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=fKCjARBGIFxzRhqYtlUiWAlo4dw14LWDXIgL1y/B2Pc=;
- b=Hs7ZjyiVljvsQQ1Qt2y/AclmqqzQBHTA4np0NvnL9gIkJ7bra2Mk/Axw
- tnSFY5AdtA6YtWCDX3MbEEas7EzmjUs0mF0Pa+aThp742m4a4oeXahhfc
- osYV5Et3r91Fgx1gG6spTRhlabopNXpCJ2A245cVFWpXBxMuETRJ4Pt5D
- +JT0No3Z5XN5UIyLKHKG3k64r/wAxEwUGPcdDC4MAiedRB3vppnfgebii
- edwdZdMTAXTMuMD6Jh30ZOvIVF+KtSlB667QUEenR999ntF1GHkkT0LfD
- c1ZzR2EsH0j0CEr9yK76yreRCTNie19FyG7RbNuY9I4t/yolkLbsFPyLx w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="367427385"
-X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; d="scan'208";a="367427385"
+ t=1696020325; x=1727556325;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=BYzJ2LPeok5GcxoFl+gYb4fVh+I3rLmbc0eqMstZzXg=;
+ b=NmfHNiAkwbfDNDezfGcbgcU4qP0qy2GdeSlIiL4natUz07Mh0LFUzB+U
+ FCQ0rPRtx7JOfWmsLtF619HXcx6JO7oOIt/21E296NKBmz/1AXvlzDrCX
+ cOPC3bGdp/K/gZtI337Qdc+tMeuhqH78K88zgAqQ6VjBmgZZpPl6BZKAf
+ mACWXl94SngrUdw3ziQvYiMGOucuK3S/qlpgnourzV4JQDh7/d4LSoGUW
+ NJ0CIjMjzADwcDuKXLzdZtKN5wGUS2P5NCW0u80jk4uJHZ2yxG8SsSgsk
+ UA/xuQB8/JEN+zNw8lbUWc+DXjpIO5XDnv09htjBWKAjClOomlnWQHJgK Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="367427388"
+X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; d="scan'208";a="367427388"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 13:18:54 -0700
+ 29 Sep 2023 13:18:56 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="726691217"
-X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; d="scan'208";a="726691217"
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="726691233"
+X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; d="scan'208";a="726691233"
 Received: from anushasr-simics.jf.intel.com ([10.165.21.200])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 13:18:54 -0700
+ 29 Sep 2023 13:18:56 -0700
 From: Anusha Srivatsa <anusha.srivatsa@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Sep 2023 13:16:54 -0700
-Message-Id: <20230929201659.2840724-1-anusha.srivatsa@intel.com>
+Date: Fri, 29 Sep 2023 13:16:56 -0700
+Message-Id: <20230929201659.2840724-3-anusha.srivatsa@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230929201659.2840724-1-anusha.srivatsa@intel.com>
+References: <20230929201659.2840724-1-anusha.srivatsa@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/5] Add Raptorlake Support
+Subject: [Intel-xe] [PATCH 2/5] drm/xe: s/ADL_P/ALDERLAKE_P
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,34 +60,27 @@ Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Keep the naming convention consistent with i915.
-As part of it making some consistent naming changes
-so we can continue to use some macro magic moving forward.
-It does make the name bigger - ALDERLAKE instead of
-just ADL. But this way the platform name is ALDERLAKE_P
-everywhere which is easier to remember and use.(previosuly
-the driver had ADLP_ usages for some defines - like ADLP_RPLU_* etc)
+Extend the change introduced in the previous patch to xe
+driver.
 
-While at it also adding some missing support in kunit for the
-some subplatforms.
+Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
+---
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-v2: Split any changes to xe/compat-i915-headers/i915_drv.h file
-as a separate patch, regardless of build failures at that point.
-
-Anusha Srivatsa (5):
-  drm/xe/rplu: s/ADLP/ALDERLAKE_P
-  drm/xe: s/ADL_P/ALDERLAKE_P
-  drm/xe/rpls: Add RPLS Support
-  drm/xe/rpls: Add Stepping info for RPLS
-  drm/xe: Add missing ADL entries to xe_test_wa
-
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h |  2 +-
- drivers/gpu/drm/xe/tests/xe_wa_test.c             |  2 ++
- drivers/gpu/drm/xe/xe_pci.c                       |  9 ++++++++-
- drivers/gpu/drm/xe/xe_platform_types.h            |  3 ++-
- drivers/gpu/drm/xe/xe_step.c                      | 10 +++++++++-
- 5 files changed, 22 insertions(+), 4 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 03ac39efba38..012d15565727 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -144,7 +144,7 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+ #define IS_DG2_G10(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G10)
+ #define IS_DG2_G11(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G11)
+ #define IS_DG2_G12(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G12)
+-#define IS_RAPTORLAKE_U(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_ADLP_RPLU)
++#define IS_RAPTORLAKE_U(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_ALDERLAKE_P_RPLU)
+ #define IS_ICL_WITH_PORT_F(xe) (xe && 0)
+ #define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
+ #define to_intel_bo(x) gem_to_xe_bo((x))
 -- 
 2.25.1
 
