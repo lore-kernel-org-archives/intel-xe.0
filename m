@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E3D7E7734B
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 23:03:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E715E7734B
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 23:05:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB7C510E577;
-	Fri, 29 Sep 2023 23:03:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BE6310E0F7;
+	Fri, 29 Sep 2023 23:05:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1B6E110E165;
- Fri, 29 Sep 2023 23:03:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7A39510E0F7;
+ Fri, 29 Sep 2023 23:05:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 16278A7DFB;
- Fri, 29 Sep 2023 23:03:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 70AFDAADF1;
+ Fri, 29 Sep 2023 23:05:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Fri, 29 Sep 2023 23:03:54 -0000
-Message-ID: <169602863408.19499.9897511115801948023@emeril.freedesktop.org>
+Date: Fri, 29 Sep 2023 23:05:48 -0000
+Message-ID: <169602874844.19496.8876356005309876858@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230929204637.1202492-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20230929204637.1202492-1-rodrigo.vivi@intel.com>
+References: <20230929205023.1202735-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20230929205023.1202735-1-rodrigo.vivi@intel.com>
 Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_Xe_Core_preparation_for_rebasing_on_drm-tip/drm-tip?=
+ =?utf-8?q?or_drm/i915=3A_Abstract_display_info_away_during_probe?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,8 +46,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Xe Core preparation for rebasing on drm-tip/drm-tip
-URL   : https://patchwork.freedesktop.org/series/124471/
+Series: drm/i915: Abstract display info away during probe
+URL   : https://patchwork.freedesktop.org/series/124473/
 State : failure
 
 == Summary ==
@@ -55,23 +55,11 @@ State : failure
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 22fcf2404 drm/xe: timeout needs to be a signed value
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/Makefile:45
-error: drivers/gpu/drm/Makefile: patch does not apply
-error: patch failed: drivers/gpu/drm/drm_debugfs.c:40
-error: drivers/gpu/drm/drm_debugfs.c: patch does not apply
-error: drivers/gpu/drm/drm_gpuva_mgr.c: does not exist in index
-error: patch failed: drivers/gpu/drm/nouveau/nouveau_exec.c:106
-error: drivers/gpu/drm/nouveau/nouveau_exec.c: patch does not apply
-error: patch failed: drivers/gpu/drm/nouveau/nouveau_uvmm.c:329
-error: drivers/gpu/drm/nouveau/nouveau_uvmm.c: patch does not apply
-error: patch failed: drivers/gpu/drm/nouveau/nouveau_uvmm.h:3
-error: drivers/gpu/drm/nouveau/nouveau_uvmm.h: patch does not apply
-error: patch failed: include/drm/drm_debugfs.h:35
-error: include/drm/drm_debugfs.h: patch does not apply
-error: include/drm/drm_gpuva_mgr.h: does not exist in index
+error: patch failed: drivers/gpu/drm/i915/display/intel_display_device.c:926
+error: drivers/gpu/drm/i915/display/intel_display_device.c: patch does not apply
 hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/gpuvm: rename struct drm_gpuva_manager to struct drm_gpuvm
-Patch failed at 0001 drm/gpuvm: rename struct drm_gpuva_manager to struct drm_gpuvm
+Applying: drm/i915: Abstract display info away during probe
+Patch failed at 0001 drm/i915: Abstract display info away during probe
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
