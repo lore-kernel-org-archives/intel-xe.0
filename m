@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E84EE743F1
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 07:48:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 853F6E743F1
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 07:48:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4C9810E0E2;
-	Fri, 29 Sep 2023 07:48:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4CC7910E0E4;
+	Fri, 29 Sep 2023 07:48:52 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5953310E0E2;
- Fri, 29 Sep 2023 07:48:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4DDF910E0E4;
+ Fri, 29 Sep 2023 07:48:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 30B6FA00E8;
- Fri, 29 Sep 2023 07:48:39 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4CAB0A00E8;
+ Fri, 29 Sep 2023 07:48:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Fri, 29 Sep 2023 07:48:39 -0000
-Message-ID: <169597371917.19499.3522037076522236934@emeril.freedesktop.org>
+Date: Fri, 29 Sep 2023 07:48:50 -0000
+Message-ID: <169597373031.19497.8906884035574223809@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230929051539.3157441-1-lucas.demarchi@intel.com>
 In-Reply-To: <20230929051539.3157441-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Leverage_ComputeCS_read_L3_caching?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Leverage_ComputeCS_read_L3_caching?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,30 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 9a795b4f0 drm/xe: timeout needs to be a signed value
-=== git am output follows ===
-Applying: drm/xe: Leverage ComputeCS read L3 caching
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 31e7ecc35e3fc86e63b215a84b17eb2fa7d5eee9
+Author: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+Date:   Thu Sep 28 22:15:39 2023 -0700
+
+    drm/xe: Leverage ComputeCS read L3 caching
+    
+    On platforms that support read L3 caching, set the default mocs index in
+    CCS RING_CMD_CTL to levarage the read caching in L3.
+    
+    Currently PVC and Xe2 platforms have the support.
+    
+    Bspec: 72161
+    Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 9a795b4f0ebe6bf70b1c873e323c3e0e7e113c64 drm-intel
+31e7ecc35 drm/xe: Leverage ComputeCS read L3 caching
 
 
