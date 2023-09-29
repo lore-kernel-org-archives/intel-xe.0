@@ -4,147 +4,149 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56DA5E743ED
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 06:18:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAC7CE743EF
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 06:37:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2785510E0E0;
-	Fri, 29 Sep 2023 06:18:39 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47FFF10E0E0
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 06:18:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8D7E910E0E0;
+	Fri, 29 Sep 2023 06:37:56 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 075C910E0E0
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 06:37:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695968316; x=1727504316;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=J0D7Gk5gCewK7V7DSyRtAFsUaX89+1BtAJ9LIUgCXDk=;
- b=Wnwv/vGeToD6Aw6XQlwsB/mQFSWrkZMBXtvk6+vGOtyNQklXJjsIb31a
- JiwFu1jgfnZ62YYq1YYrxsOiA56CuWGGwCzHU0rLLUdNtI9lHIEIsiY4e
- dOvlrsHBuHsM347vDJ4MT1R1xvjWJWqMzgGAovxnEzj7iMNdrhYinobvI
- Csc8mVe6d7asi7AOiU/De/wlI6yiCcCtFeZKoJUdToBWb1usyq9ki8Vqx
- aRft/5C5oFq7nlG0cyv2n9RIClbop5WwDvhnYYhswf4WOOvtYk3trvPMh
- ozmdt2/+eQiLw7BDTAAFNG/hd+5JHR4Dkc6NyRF99xmlRQUS2GANHmtz+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="448734679"
-X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="448734679"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Sep 2023 23:18:35 -0700
+ t=1695969474; x=1727505474;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=Q1SygcKGs49aIA16TTCTvobH8DGDakJGEjkEF8yz88w=;
+ b=WTJ4Npo3/77iFPW9Gsv+QOqA7VAdtmo8CCImNcNGxoAAgdkEzPZs0GpY
+ XFoqddPiGMrE722tM4m6lvXtaGd8QNSl0I5VUBjJeFgU4G1tbdAnbiGcx
+ divnnvgzCFx8G1SU/M+lXhmar/+OrsHPU2XliXrkLe9/t3kSw25sE6I44
+ zFcXpIsWu7sp9HyJB9CCibOPxNN0tA3CcLolyBXhjdOJv+l2FyOUwmYES
+ 8UcseLkQmPkawqsY9c01PelsvIbLCIgr/5PhSs5DL/A6kkXCQuahdy7QF
+ a/lgAEedPsl+utX+qU+PN5A0b7guvSgTIHr7+HnZg5c4CPC50n8n9UmOJ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="385062512"
+X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="385062512"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Sep 2023 23:37:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="749873209"
-X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="749873209"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Sep 2023 23:18:35 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10847"; a="865595140"
+X-IronPort-AV: E=Sophos;i="6.03,186,1694761200"; d="scan'208";a="865595140"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Sep 2023 23:37:52 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 28 Sep 2023 23:18:35 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.32; Thu, 28 Sep 2023 23:37:52 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 28 Sep 2023 23:18:34 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Thu, 28 Sep 2023 23:18:34 -0700
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Thu, 28 Sep 2023 23:37:52 -0700
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.170)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Thu, 28 Sep 2023 23:18:34 -0700
+ 15.1.2507.32; Thu, 28 Sep 2023 23:37:50 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lvf2v+6p8Tuj6UdUG48C0nx16a9qsK5s989kQ8tCz+QqhOixl8mBky7DJCKZZgjqBtZg3Nau95yX/dbUvASSvo2X3cmyZwypSSSCUTYa4yAcHmQly8wNmp3QeWE7FgMPggVujGYXhQtzoByATnSRdz0DsA5xm4+ZTQjcWFLqWYANKoYi/x5ZOgdqJvQpegA1csmyFHM8hMxHZeRAkDhQ5MFDth0aie9hgofCUkgD6I/RdQUCjUhsBrYaHtbVZWC6FBRQdqfdMjgjkH0MW5WSVMf81pMUSYRHBzGBJc3beaBbSysh0+MzynzXElgZhaHBHMG/OCIJJybGYayW1kgYRg==
+ b=lCP71XF2JVRpTlJpYg2e9iO1PDiVk0ZdT+bij5hrR3A0+ngH7YoM41JydLa88cXlRb48nZlUrpWMmo60ohqWApxok+js8TX5EkEjUEliy9fXhGdm3SOyaBxbP+xYCoB96cnWptvgdIUsSBPNMF7JWjjDC30kOQTKCYvh1Un6JMV+WmxoRwvN88QUWuAblWs9naYQ5Mrd8IjTIFp+NY1vIxhUA2JBe9p9FRa0SUJYizCXJ5BR4wr6VdiGoedlNSTeGqPaQrfZn+83+UHTl0XNDlpI0o/P3eRYByDYpap46FbMgxYJxfOy5Zn4Z92u3R8IlwaX8QJ5K/gGZ+u70wl0mg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NSNt53LPfZzRmrL2nkFAAsk5/TfJ/GL2DuBcGxP5MqE=;
- b=Wj+cPUiQAypfNbcNRydGHsDbE+JSaLsdTDgFXsUzIIoCpDyOQNTV/MEVKxA8WKUkP7nYNXMKXJ+C+9OgDqKjIBV+IWCxULrNevAlUXqhhA4njr5+yO6aPF2s9LqGm6EX0OVTeKK8Ca27dX9a6jJCJNLGCcopmqab6xuOtIG8cCn8yBN4oKytgEo+T+41/OA+IyaQeaTWDLWJmlhAh6PX1eOvfnMvE8Z5inVPqVcvW5GegWwtME4ZTx5qmkhrvVIepTyY/8UTcDuq27HrRY3Md5SG25AKdKYOzZZQIjHbilZz8gypSrtTc6bP3v86c4GUSQGXbADecNTFOchfN3r4RA==
+ bh=ybSRnpBji9M4zmT1yYHC0ezdanY3khwX/BqscH7N6k4=;
+ b=RJRHLlG1fVWwTPNSd2kAz2U0vunU2YIgso/XH3k8QgjWRu06xVgpssyqIU7YceL4rCSewtxksLRiOWVbxreKc2OY9kuXMaSvASMOmrqG7fEneEvs1RFDXBGD+/QloWSxj3JW28WWXN0S8izX9oj1KyX0rvJNdlZ7hAfKHSjdjjdm32qhd62xgM+Vg5YmFphJfMGHgapWa3f6rknmb7dEclQUG9O3Z6ioBuCj4DTh7zIPB0Cn6BDOAzaVr81BsHwtpSyYx0EMpCxB3JRN54KdAwPokdJpMUXcJO5acD/IOHn5df1ei9qlFsI6twDQdwatn9T6aHBVrouNaHzLa668kQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH8PR11MB6974.namprd11.prod.outlook.com (2603:10b6:510:225::16)
- by DM4PR11MB5406.namprd11.prod.outlook.com (2603:10b6:5:395::16) with
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by DS0PR11MB7460.namprd11.prod.outlook.com (2603:10b6:8:142::9) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6813.28; Fri, 29 Sep
- 2023 06:18:32 +0000
-Received: from PH8PR11MB6974.namprd11.prod.outlook.com
- ([fe80::15c8:5319:c6bb:323c]) by PH8PR11MB6974.namprd11.prod.outlook.com
- ([fe80::15c8:5319:c6bb:323c%7]) with mapi id 15.20.6813.027; Fri, 29 Sep 2023
- 06:18:32 +0000
-Date: Fri, 29 Sep 2023 11:48:21 +0530
-From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-To: Matt Roper <matthew.d.roper@intel.com>, <intel-xe@lists.freedesktop.org>
-Message-ID: <ZRZsLfyXgZfvSKk7@bvivekan-mobl>
-References: <20230927205143.2695089-2-matthew.d.roper@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20230927205143.2695089-2-matthew.d.roper@intel.com>
-X-ClientProxiedBy: PN3PR01CA0102.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:9b::23) To PH8PR11MB6974.namprd11.prod.outlook.com
- (2603:10b6:510:225::16)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.26; Fri, 29 Sep
+ 2023 06:37:49 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::c555:e954:7fef:f646]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::c555:e954:7fef:f646%7]) with mapi id 15.20.6838.024; Fri, 29 Sep 2023
+ 06:37:48 +0000
+Message-ID: <c366920b-ec67-f5be-4b17-ae1be82bdae9@intel.com>
+Date: Fri, 29 Sep 2023 12:07:35 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20230925081842.3566834-1-badal.nilawar@intel.com>
+ <20230925081842.3566834-2-badal.nilawar@intel.com>
+ <874jjg1ak6.wl-ashutosh.dixit@intel.com>
+ <84b5dc30-6b27-caf0-6535-c08f6b7e8cd0@intel.com>
+ <87ttreucb0.wl-ashutosh.dixit@intel.com>
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <87ttreucb0.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0180.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:be::17) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH8PR11MB6974:EE_|DM4PR11MB5406:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8fad51ff-505b-4c0e-5b8e-08dbc0b3e7be
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|DS0PR11MB7460:EE_
+X-MS-Office365-Filtering-Correlation-Id: b634fb56-db49-4c00-e043-08dbc0b6982e
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kGpPntqmFa7xYFDXpKEECd7x0HMdsGqH24YLe3dmO5Opm/glXVLaZkRUXlbB2ql3WRdF4jrkbRPXA71oHCcx2zTaEiQcpNHBH5MlL5HnhPfVyx/pUryysS9e3hqADfEUqtvD9rQ7D6z6X+fMBDnqHSXYMi2uYICO8EitqvVcuVoO5Gsntd/1mJapXn5rjyYhDeEqpf74I1SSN31L8amcKLIeyOa/UZG2e0CTWz4mAM26GfeHb0yv9f9xSITA8+x9QRJZLNM76RlEW+Wlmj7MKA7lH1/QXoRPvvClkf8Fdpb1zDeeAK8vexT+qnkYZiZtt8YRpR5Ff6Kkp5Gqj0HwY6NazyBbaFgECw0dfn5G6far6s1H4r6RhQ40JX+LcBd622umC2aLbk/+Of+SpoYaLfcV3n3QH31LFQP3BOK3t/uAWHc4Ht9qmwenJ9wM3Lx3C7thMq8CXYmpnTG3gdIEYqPD1zsu29NH0TaArOeTnS0IufaRaHj1KjVJrhqUdhBwjVhnYi5pgnUVeTVy1IHG3QnUxl8pJ2AfZ2wcgj804Z/Cz9cjsXhCraX0263paeiy
+X-Microsoft-Antispam-Message-Info: DsGwpCwROnQ4qKxkvstqKRd7PQFOSvDO8v7/9aruZTBBn/PXsMiMxdO7nrmzejFRCGTY8OpL2WFC1gPkgy4yucFd4+N/ScbWS3d/1uhpDduXQciweKQOIr6xND/77VMUzpD/MYYZ0B7govS9uRaAjZF/FuJQsiBPENIQxLuRkoZeGS2xyMYRMgjZ5G8q+6zAqz/rXmr6nm5yvxLH8qPTBwJ1y8ZsY39jPeD7KERWW+hFCoUFXWzj+jxnuQUUN/2jr5IySptCcVtWglzemmdj6+BjFtVjf/hprd/+9w2dSnhHVPXiOiU5zqHti8b3++aNBnLtHEbt6c6Zk1sxYIRw47PLuv4+Fy3rn4PT/SAlkR8jp8P60m5BVzMaaCsObgl/m1xvVg11Wbnps2tW7OcEKUpmc6ir4LzjH43dZ6hPyTWI4yQ+/DNKa8Y5II6q0BZWlzJEVj8MUvcyeU6bg3eUmXC9IXMUnJEOGNd2qfsT6AKMBRTKqC4SGO6He661bHGot8z7c/w6cQTvde0B90zt2XOnNk08axmNmDmnNQKp/EfzAj7KMA/y+R1ji2wIGkAdO5qY+4uZOkLRpKAGQj99BqX46+h5xaBrpAhIEgZztdEMMpI9SMf6W+9/eRIIWKDiyuTEJLQLpHV3soz0WXDh0g==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH8PR11MB6974.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(136003)(39860400002)(346002)(366004)(396003)(376002)(230922051799003)(451199024)(64100799003)(1800799009)(186009)(6666004)(6512007)(6486002)(6506007)(53546011)(83380400001)(4326008)(478600001)(33716001)(5660300002)(26005)(8676002)(9686003)(316002)(2906002)(66556008)(66476007)(66946007)(8936002)(107886003)(41300700001)(54906003)(44832011)(38100700002)(86362001)(82960400001);
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(396003)(366004)(376002)(39860400002)(346002)(230922051799003)(64100799003)(1800799009)(451199024)(186009)(31686004)(6512007)(6506007)(6486002)(2616005)(53546011)(86362001)(31696002)(36756003)(38100700002)(82960400001)(26005)(2906002)(6666004)(478600001)(83380400001)(316002)(6862004)(8936002)(37006003)(66556008)(8676002)(4326008)(41300700001)(66476007)(5660300002)(6636002)(66946007)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ekZSL3ZvSHVqVVNTZVpvNnhidUUyaGJLNlI2dkFPRFVKbFBMdFAvaTR5S0tS?=
- =?utf-8?B?T3hOaktoUVpWeHJ0WlVSREdJY20wVjljUWtoK3NLeU9WV1R6ei9Yam5DQ3Jm?=
- =?utf-8?B?amNVMm9zUXB6dkwySS93ajhGQnFPZlIyNDVVTE96NlF4NEhsUHJkekt6cjcz?=
- =?utf-8?B?bld1MzF2TmdPT1ZQMkZLb2FlM25haVJGRlVJbjgwSzVkMExYczNpMFRHZkxj?=
- =?utf-8?B?Z3UyTWZ0TkNzOXFIeDJ3U2ErR2JHRU8vREhGRG9vNWM2MndYVkZnNUdGZkNh?=
- =?utf-8?B?UHgzYUhZR2lManR1NlNzODBLaHZxc1A0VnZJR3lpSFhFUFcvT2JlaW96TFlW?=
- =?utf-8?B?dTVuTWRmSHkvV3MwbVd5aHVGc2NieXhwNUIxVnNHdFhKWGhZNXI1U1VGcG1a?=
- =?utf-8?B?M2QrNXBHdklpZFRMYzlZK3JOeFV2cU1PUHNWYnYwQXIwOXNKem1ES1V2NHJm?=
- =?utf-8?B?eVFHbE85UW1rMkxuZXpmRFhkdm1GNGZGMXl4S1VLeE5LanZ0aW14Uk92WnI4?=
- =?utf-8?B?cHFheDZKWUx0eVRYWVVZTWl2QklUV2xGVGU5clJJSnBFUk1nZEk3U0t4b0Zi?=
- =?utf-8?B?R0pNTnRkR05ic0hzNFZqOUtOWHFtN083OGhjOW1WVkRsYWcvMUF0YlhnREMz?=
- =?utf-8?B?dXdvYitZVHowUU1NNGFOS0MvTUVIRUFhUzRWVkhUSXZtbWNpMG5RN1FlSldE?=
- =?utf-8?B?bWkwV05YaVdMc3hTNGlnRmNYUDE2TmRvTEdFdDJVZ2h2VVRWWm01MDhBbVlW?=
- =?utf-8?B?WkdyVHc2T1luNzNrRHIzajYwZ0NjS28vT2tEOU1PdzhUaEZ3Sk5rcVZkS2tY?=
- =?utf-8?B?dzhDbEF1QTk2YUF0bVlGOEUyclk2VmRwWk9ocmdGR25QRlgvZ1Erb3J5b2Iy?=
- =?utf-8?B?TzVMWkJUTWNpYVFYaUxqQWw5QlgydldGT2ZnKzBiOW9YTitOK282UDR1TW1P?=
- =?utf-8?B?d2l4dVVVTG1XTXhNbW5OSndIMTJNSUxBSXlpK3c3Z3FUdWE3dHhqU09mVE9v?=
- =?utf-8?B?cC9pRUcreWZYMUtXM2hUT3BCc295ejRnNk94dXZwV1BWZ0JabmkvQlZuQ2lR?=
- =?utf-8?B?eFY3QmJ3MUgyYWpIZ2E2YzRmMTAzaU1vcTMxdEtQYWlwa3B0L3RJTmpnaC9H?=
- =?utf-8?B?MGtqdFhBcTZXQ3VVcVRzTGNjQUp4cTVPb2xUR01VRk9DalFVcDFOM1BPVUpP?=
- =?utf-8?B?Ym1zSys1dEtKMFlsNncrT0ZEd3E0dEZGSUpDK1I1SnIwd2lRN0FHZUJTeDFZ?=
- =?utf-8?B?VGVyYlpQbHpKcnRrRlgrNTF6T1dkcmhwSHFPTTJaQ3VTcVNwcnNRQ3pJUjdJ?=
- =?utf-8?B?WUV1L0ViQ1JkNDlMNzgyeGkxMElwVzNMczAvSmxRazlFOWdYcVhIYnBQSy8z?=
- =?utf-8?B?REdMMzVWTmRtbzNtMlY1UFhnVEFGd1ZmSkxwN2RYc0VzTVIrd2lGbVFwZkUr?=
- =?utf-8?B?UFpYTTFXQUo0TjVHSTBCRVowalRvQWVYRy9QcE1CdW9UOERJc1RzSXZEN3ZV?=
- =?utf-8?B?UmZnb096WFJmclNoS3RDSGVtdUxkSU9FbWloN0d6dm9tQ21KL3dzYmY5ckEr?=
- =?utf-8?B?ajVDZ1l5andjL3RnMDdUcjF4RFVIYm5XVU8xMVlCQXZsTkEyZDl0bVQweDFm?=
- =?utf-8?B?UUFvNjNtcjhocFZUM29kVFhMdHdFSzRUNGlPRXJjVWZEdjd0TmNBTVV1ak9T?=
- =?utf-8?B?N1FMQWtnVDg5RW9XVjBha1BBTFdjaG9SS0EzT2d4SStMcXJFeEQxNEJxQVUz?=
- =?utf-8?B?YS9PTXJiVk1kMG5BakZXdWZQenNYRlFxa0Z4YnJKVkhxVWlGZFhZV09SS2Rz?=
- =?utf-8?B?SC8vT2R2TFREbjNCK1lrMUh3dE81L2JBRVVrL1dVZnQ3clBNbzExb3V6b3hm?=
- =?utf-8?B?aGs5ZDR6UlJkQlVqOFhpb0Y4VHkyV1ZqdElxaUc0aXROaVFGT1hBUE5GUXdX?=
- =?utf-8?B?ZVlxV0tRaE0wOVB3MzgvUXNpbEROSm9QZ2xkK1RkK3VESjMwdU9pZ2RrcGto?=
- =?utf-8?B?bFBvMThQVlZyZktrWld3eWJSZGJUZnZJWkhsMzc3VE55Yys2U0NpVmRWYkdr?=
- =?utf-8?B?QnFKTm90Uk1wUmJFWFhXMlR2Rkc0TzMyc0hQSjJYOHVodWxZZmpsR2FoRm5l?=
- =?utf-8?B?T1JmZm9rRUdXYVluSFBNcFk5YW5Jblk3TFp0R2srL2MwZzU1UXZ3blY2RDh5?=
- =?utf-8?Q?bXbkporG1rHwKahfM3yZbNI=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8fad51ff-505b-4c0e-5b8e-08dbc0b3e7be
-X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB6974.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V2x6NW9FQzJ0eFplMUg1ODVzcGk1WlgvMTNORG1NM2RMQWpzRW5uK01uZTdJ?=
+ =?utf-8?B?bVZ5TXY1c3JlQWtpNStjb2hSZDc3K0xZRGsvZXdWdXowMlMyZXVacVZ3VEw5?=
+ =?utf-8?B?NmpaVlBXbUk3MEIvQmJ3VExaSjJvZkJPWkxZanIyR2JMSWhNSnYrd0h1T3dD?=
+ =?utf-8?B?Y1VJRkdKOUNiSnBwREFXMXRkSUpEeUlJbFZ2b2x5NkVtTzZuYTNkQVliUFZ6?=
+ =?utf-8?B?VXYyZHA1SDZpdDlva3BERlNidVdXSEVZZnFSMzR0YnNsNmd4b3kwMWthdWlS?=
+ =?utf-8?B?NHlPS0Jlb0RoRDFyNFgwREJtUDNOTVBXbmhsUjBnSEJ5eWs5dkUvaEJEdVBO?=
+ =?utf-8?B?TkhUQjRGM2hMR0JPSGNvU00xVFBkVjlaL1VzQ0R4RnZRS3hwQVAxM0ZWYnRl?=
+ =?utf-8?B?SkZQeEJ4MmRqUVU2VzgwK1BDMytqUmNjajNvM2lSclQ5YTJpSUxsajFQaXRD?=
+ =?utf-8?B?d1ZCYWh0NEtCSmQxRTJ1d0JZU1UzRFVYYUlCZUxkNEd3eitJeURBTjh0ckF2?=
+ =?utf-8?B?M1dJNnB1UUF3M2FSa2ZoaFQ1NlI1aEFUWlFSOEcyUTNTWkY1eGQ2aEJhK2Ry?=
+ =?utf-8?B?MHRyWXdJeElkSXJCS1VaRHlIdW54TzRTS1pLQ2g2RzB0cFpjcHY0UXBNRk53?=
+ =?utf-8?B?YVZqS29oQWVMOFl4QVQ5TzV4WExvdjFSVmtzTDRCS2xDTllXSjJ0amZUeEt3?=
+ =?utf-8?B?cHhMNWVITkF1UEFsZzM5SXpjWWExZWUvM0pDRGVlTXRvenBVQ0YySFdHT0J1?=
+ =?utf-8?B?N3Rxa0R0V21aa3d3T3hNdTBnV2dxRUZjaThQSC84eUlMZ2twbTRmTG1OU3lS?=
+ =?utf-8?B?eTBCQmNDWm0zWitWWC83U2tXTVZsT3RLUE1kc3RLTmlkS2tnYzRQSHArVkF0?=
+ =?utf-8?B?R3h6UXcrRTVPZFdaME1LeVlmbEhIdTdXek5sT0tkQk1TbTZqVWxsMG41UUNZ?=
+ =?utf-8?B?c0RieDdRK1FiY0F2NjNFblI1aHY2TUxzSEl6WEc5M0JEck9lMFJpdlMyazc0?=
+ =?utf-8?B?bSs5KzlpTzRwNkFma3psUmFIZVJKOTREaE9LWUlZRnR6TXRCMTVaZmgvc3pB?=
+ =?utf-8?B?YWdMUVZJSXd4MFlSWW1OOWQza1FUZFZkQlduMkNsSXRhSHh6eE1PYmR3UkNz?=
+ =?utf-8?B?d2t1b0FpQ0plcGxIWVVrbU5MT3ZrRHdoUm4wTkMvU2ZZRFhKUHlrWCtzbk9n?=
+ =?utf-8?B?TEczcFptVGcwblRaT21NZVRFSFE5elZHVEFXZHhxVUZndjlyWThIOFpCU29h?=
+ =?utf-8?B?MENSOEVLVExScERaK3plOG9DTWNMTWx3ejkvY09xVFRReXBiV2NHc2g5Y3ZH?=
+ =?utf-8?B?c3Y1Vi9XWUlLU2JlcmtyVldndU8rTTZhVWlENktCL0l4UkxLMkVBWnNSYm9P?=
+ =?utf-8?B?cUxWcmdyVnJGSkhjTDlseVJJVUZNcVlydmZ5cFp4dWJiclpiR3Q0TjQzMTN4?=
+ =?utf-8?B?b1NmWE5mQlVEcGo4dVY3UW4rN0VHdTIzREVTMlcvdUtNZDlHaWJWSVRpZ0Nx?=
+ =?utf-8?B?a0xwcHFhTEthNklKcEhjYll1MEFPZFMrVHF1azRQQXJoSndwNHBzR1NJQXJ6?=
+ =?utf-8?B?cVZYR3pFWC85QVBSU3p1aGMvTmZtOURxYnR3WWd4OGFGNkVOUzJrVDJhVFAr?=
+ =?utf-8?B?QmpmOXo2NEFJenR0QkcyZFJnbWhZSHcyeHFLNkxONzBESXhtOVl0Ui8wamNl?=
+ =?utf-8?B?U0ZrR05raTUyTEV5YnFHR2FjVTBSd0kzdHVnMmJVeitONktDRFlOcmJpZmpl?=
+ =?utf-8?B?NDBBcmhHWEZTcWlJekRSOEtiU2F0djNBZTV4Y0xkandKaFBzcnRvSzdTeWxx?=
+ =?utf-8?B?MmFvUUR6UlA0NlAxd0dCN1NsYW5SRnFlbk1iN010WU1aRW9sVUc1OW5CNmxC?=
+ =?utf-8?B?aVlrM0Q0ZUlteDNva3JRR2xpdk9WOHIwMFJrU0tVb0VUbXR6QnErTEhZaFNF?=
+ =?utf-8?B?ODhNam5Vd3JsWnRGbWthRHZhb0cvaHlyQWhRN2tockkya0pwdVYwUUpBVHBV?=
+ =?utf-8?B?bWthUU5nZjlnV3Rld1p3MnVkTWlpR0FESEpHeDVGbExjdnBOaU9sN3BkWXdX?=
+ =?utf-8?B?UzgyYmpxL0FrME44OHQ0ZDRtb3NJelFpcEFlR2dkcDg2MGMrTkFwd3hLNnpE?=
+ =?utf-8?B?Z0VRQk1xNWxFK1dwTm41cXlhcnAweEE1elY2TDRVbGNETWErNmIxdDZHU1pL?=
+ =?utf-8?B?Mmc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b634fb56-db49-4c00-e043-08dbc0b6982e
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 06:18:32.4202 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 06:37:47.3768 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2p+mko31qgTvSWwN0hPJyJOuft2IWqHYnPouAF8HP/uIq2Zh/BA+fLFrsEoBv36ERWXN8BuiSzdZ/g1ujETvaMg6pAC3ezBbRGOY38LiNEy5w5sUg+MgI+GrAGRH3Hs9
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5406
+X-MS-Exchange-CrossTenant-UserPrincipalName: HTbcBHFs9A40K8T1V9SBzk976qXSWgwIG8D6ITY0oaEF/D1C4O9GcMwOOhl5BS4ad4VZKsxIcZiFk2/VM7FQ/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7460
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2] drm/xe: Infer service copy functionality
- from engine list
+Subject: Re: [Intel-xe] [PATCH v6 1/5] drm/xe/hwmon: Expose power attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,169 +158,120 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: linux-hwmon@vger.kernel.org, linux@roeck-us.net, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 27.09.2023 13:51, Matt Roper wrote:
-> On platforms with multiple BCS engines (i.e., PVC and Xe2), not all BCS
-> engines are created equal.  The BCS0 engine is what the specs refer to
-> as a "resource copy engine," which supports the platform's full set of
-> copy/fill instructions.  In contast, the non-BCS0 engines are more
-> streamlined and only support a subset of the GPU instructions supported
-> by the resource copy engine.  Platforms with both types of copy engines
-> always support the MEM_COPY and MEM_SET instructions which can be used
-> for simple copy and fill operations on either type of BCS engine.  Since
-> the simple MEM_SET instruction meets the needs of Xe's migrate code (and
-> since the more elaborate XY_FAST_COLOR_BLT instruction isn't available
-> to use on service copy engines), we always prefer to use MEM_SET for
-> clearing buffers on our newer platforms.
-> 
-> We've been using a 'has_link_copy_engine' feature flag to keep track of
-> which platforms should use MEM_SET for fills.  However a feature flag
-> like this is unnecessary since we can already derive the presence of
-> service copy engines (and in turn the MEM_SET instruction) just by
-> looking at the platform's pre-fusing engine list.  Utilizing the engine
-> list for this also avoids mistakes like we've made on Xe2 where we
-> forget to set the feature flag in the IP definition.
-> 
-> For clarity, "service copy" is a general term that covers any blitter
-> engines that support a limited subset of the overall blitter instruction
-> set (in practice this is any non-BCS0 blitter engine).  The "link copy
-> engines" introduced on PVC and the "paging copy engine" present in Xe2
-> are both instances of service copy engines.
 
-Thanks for updating the commit message.
 
-Reviewed-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
+On 28-09-2023 10:25, Dixit, Ashutosh wrote:
+> On Wed, 27 Sep 2023 01:39:46 -0700, Nilawar, Badal wrote:
+>>
+> 
+> Hi Badal,
+> 
+>> On 27-09-2023 10:23, Dixit, Ashutosh wrote:
+>>> On Mon, 25 Sep 2023 01:18:38 -0700, Badal Nilawar wrote:
+>>>>
+>>>> +static umode_t
+>>>> +xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+>>>> +		    u32 attr, int channel)
+>>>> +{
+>>>> +	struct xe_hwmon *hwmon = (struct xe_hwmon *)drvdata;
+>>>> +	int ret;
+>>>> +
+>>>> +	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
+>>>
+>>> Maybe we do xe_device_mem_access_get/put in xe_hwmon_process_reg where it
+>>> is needed? E.g. xe_hwmon_is_visible doesn't need to do this because it
+>>> doesn't read/write registers.
+>> Agreed, but visible function is called only once while registering hwmon
+>> interface, which happen during driver probe. During driver probe device
+>> will be in resumed state. So no harm in keeping
+>> xe_device_mem_access_get/put in visible function.
+> 
+> To me it doesn't make any sense to keep xe_device_mem_access_get/put
+> anywhere except in xe_hwmon_process_reg where the HW access actually
+> happens. We can eliminate xe_device_mem_access_get/put's all over the place
+> if we do it. Isn't it?
+Agreed, thought process here suggest that take rpm wakeref at lowest 
+possible level. I already tried this in rfc series and in some extent in 
+rev2. There is problem with this approach. See my comments below.
+> 
+> The only restriction I have heard of (though not sure why) is that
+> xe_device_mem_access_get/put should not be called under lock. Though I am
+> not sure it is for spinlock or also mutex. So as we were saying the locking
+> will also need to move to xe_hwmon_process_reg.
+Yes from rev2 comments its dangerous to take mutex before 
+xe_device_mem_access_get/put. With code for "PL1 disable/restore during 
+resume" I saw deadlock. Scenario was power1_max write -> mutex lock -> 
+rpm resume -> disable pl1 -> mutex lock (dead lock here).
+> 
+> So:
+> 
+> xe_hwmon_process_reg()
+> {
+> 	xe_device_mem_access_get
+> 	mutex_lock
+> 	...
+> 	mutex_unlock
+> 	xe_device_mem_access_put
+> }
+> 
+> So once again if this is not possible for some reason let's figure out why.
+There are two problems with this approach.
+
+Problem 1: If you see implementation of xe_hwmon_power_max_write, reg 
+access is happening 3 times, so there will be 3 rpm suspend/resume 
+cycles. I was observing the same with rfc implementation. So in 
+subsequent series xe_device_mem_access_put/get is moved to top level 
+functions i.e. hwmon hooks.
+
+Problem 2: If locking moved inside xe_hwmon_process_reg then between two 
+subsequent reg accesses it will open small window during which race can 
+happen.
+As Anshuman suggested in other thread for read are sequential and 
+protected by sysfs layer. So lets apply locking only for RW attributes.
+
+
++static int xe_hwmon_power_max_write(struct xe_hwmon *hwmon, long value)
++{
++	u32 reg_val;
++
++	/* Disable PL1 limit and verify, as limit cannot be disabled on all 
+platforms */
++	if (value == PL1_DISABLE) {
++		xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW, &reg_val,
++				     PKG_PWR_LIM_1_EN, 0);
++		xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_READ, &reg_val,
++				     PKG_PWR_LIM_1_EN, 0);
++
++		if (reg_val & PKG_PWR_LIM_1_EN)
++			return -EOPNOTSUPP;
++	}
++
++	/* Computation in 64-bits to avoid overflow. Round to nearest. */
++	reg_val = DIV_ROUND_CLOSEST_ULL((u64)value << hwmon->scl_shift_power, 
+SF_POWER);
++	reg_val = PKG_PWR_LIM_1_EN | REG_FIELD_PREP(PKG_PWR_LIM_1, reg_val);
++
++	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW, &reg_val,
++			     PKG_PWR_LIM_1_EN | PKG_PWR_LIM_1, reg_val);
++
++	return 0;
++}
 
 Regards,
-Bala
-
+Badal
 > 
-> v2:
->  - Rewrite / expand the commit message.  (Bala)
->  - Fix checkpatch whitespace error.
+>>>
+>>> Also do we need to take forcewake? i915 had forcewake table so it would
+>>> take forcewake automatically but XE doesn't do that.
+>> Hwmon regs doesn't fall under GT domain so doesn't need forcewake.
 > 
-> Bspec: 65019
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
-> Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-> Reviewed-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device_types.h |  2 --
->  drivers/gpu/drm/xe/xe_migrate.c      | 34 +++++++++++++++++-----------
->  drivers/gpu/drm/xe/xe_pci.c          |  2 --
->  drivers/gpu/drm/xe/xe_pci_types.h    |  1 -
->  4 files changed, 21 insertions(+), 18 deletions(-)
+> OK, great.
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 32ab0fea04ee..2d20bcbe8d9b 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -234,8 +234,6 @@ struct xe_device {
->  		u8 has_llc:1;
->  		/** @has_range_tlb_invalidation: Has range based TLB invalidations */
->  		u8 has_range_tlb_invalidation:1;
-> -		/** @has_link_copy_engines: Whether the platform has link copy engines */
-> -		u8 has_link_copy_engine:1;
->  		/** @enable_display: display enabled */
->  		u8 enable_display:1;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-> index 9438f609d18b..3cf7412c79aa 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -854,28 +854,36 @@ static void emit_clear_main_copy(struct xe_gt *gt, struct xe_bb *bb,
->  	bb->len += len;
->  }
->  
-> -static u32 emit_clear_cmd_len(struct xe_device *xe)
-> +static bool has_service_copy_support(struct xe_gt *gt)
->  {
-> -	if (xe->info.has_link_copy_engine)
-> +	/*
-> +	 * What we care about is whether the architecture was designed with
-> +	 * service copy functionality (specifically the new MEM_SET / MEM_COPY
-> +	 * instructions) so check the architectural engine list rather than the
-> +	 * actual list since these instructions are usable on BCS0 even if
-> +	 * all of the actual service copy engines (BCS1-BCS8) have been fused
-> +	 * off.
-> +	 */
-> +	return gt->info.__engine_mask & GENMASK(XE_HW_ENGINE_BCS8,
-> +						XE_HW_ENGINE_BCS1);
-> +}
-> +
-> +static u32 emit_clear_cmd_len(struct xe_gt *gt)
-> +{
-> +	if (has_service_copy_support(gt))
->  		return PVC_MEM_SET_CMD_LEN_DW;
->  	else
->  		return XY_FAST_COLOR_BLT_DW;
->  }
->  
-> -static int emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
-> -		      u32 size, u32 pitch, bool is_vram)
-> +static void emit_clear(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs,
-> +		       u32 size, u32 pitch, bool is_vram)
->  {
-> -	struct xe_device *xe = gt_to_xe(gt);
-> -
-> -	if (xe->info.has_link_copy_engine) {
-> +	if (has_service_copy_support(gt))
->  		emit_clear_link_copy(gt, bb, src_ofs, size, pitch);
-> -
-> -	} else {
-> +	else
->  		emit_clear_main_copy(gt, bb, src_ofs, size, pitch,
->  				     is_vram);
-> -	}
-> -
-> -	return 0;
->  }
->  
->  /**
-> @@ -928,7 +936,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
->  		batch_size = 2 +
->  			pte_update_size(m, clear_vram, src, &src_it,
->  					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
-> -					emit_clear_cmd_len(xe), 0,
-> +					emit_clear_cmd_len(gt), 0,
->  					NUM_PT_PER_BLIT);
->  		if (xe_device_has_flat_ccs(xe) && clear_vram)
->  			batch_size += EMIT_COPY_CCS_DW;
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index a11163b89a3f..0da752b3c9cb 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -138,7 +138,6 @@ static const struct xe_graphics_desc graphics_xehpc = {
->  
->  	.has_asid = 1,
->  	.has_flat_ccs = 0,
-> -	.has_link_copy_engine = 1,
->  	.supports_usm = 1,
->  };
->  
-> @@ -574,7 +573,6 @@ static int xe_info_init(struct xe_device *xe,
->  	xe->info.has_asid = graphics_desc->has_asid;
->  	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
->  	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
-> -	xe->info.has_link_copy_engine = graphics_desc->has_link_copy_engine;
->  
->  	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
->  				  enable_display &&
-> diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
-> index df6ddbc52d7f..bd0b0d87413e 100644
-> --- a/drivers/gpu/drm/xe/xe_pci_types.h
-> +++ b/drivers/gpu/drm/xe/xe_pci_types.h
-> @@ -24,7 +24,6 @@ struct xe_graphics_desc {
->  
->  	u8 has_asid:1;
->  	u8 has_flat_ccs:1;
-> -	u8 has_link_copy_engine:1;
->  	u8 has_range_tlb_invalidation:1;
->  	u8 supports_usm:1;
->  };
-> -- 
-> 2.41.0
-> 
+> Thanks.
+> --
+> Ashutosh
