@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19B55E728D6
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 18:18:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B371E728CF
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 18:19:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC7DE10E172;
-	Fri, 29 Sep 2023 18:18:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A62A10E172;
+	Fri, 29 Sep 2023 18:19:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E585810E172
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 18:18:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF83B10E172
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 18:19:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696011499; x=1727547499;
+ t=1696011541; x=1727547541;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Li5dpeAoMSkcga9VpYdD2bpJnFd1D4BZD7eqwrNPS3Y=;
- b=hkl3iuBb6hCqDwop3vZmZHuCRn7ua6zBSSk2fNc0MyH3IVWge1YUpSw4
- 72ol/SPsXRwF1eV+oFYqOydONuKMVauRxtV74Qa2QEjcPfGjw5WheSciq
- 84+6ARwxzM/UNdobDYSW5xQiae/uOUQbWGfayk8O2xJ6pYAQzXPCeLwp+
- 0MxSriI6n6jFlKIkCMHMpGg8pVaxpDo4EQqo9GIBdGpECbi3xvfcFG+t2
- Prv2gE4AkiPhqjtEyq3VLS/P6uekqyhe4jx7K6kjQtCKXewKblPzuu9sV
- VpdIliI+sxe+VJdx5XUUH1GE47y/uviSFGxXPl1Cw2gsZWIP1yZd2c036 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="3919668"
+ bh=QyaZtAm9zX+0auxkZVOVYxgD35rFk0Oaakc8LDdi7zw=;
+ b=j95J3zdDxMUlhpD3C1WeJ3/s5NhEqNq9ueM+WArhWCJUAO+K5zQJ5bQ1
+ cFmMwfLhEehvGZMO4fHfoNe0vqpHJsGm6Ozv66eil2EdbXJ1I3HYlq+Fw
+ wKPK2c8p5drVsusIeE0SVoMZ+6wl0Hrk66ImOQlriELYcqs7pZKNlxJvn
+ 1nEsNQBBF3hs02KQM/4IwOxEf9d3PcyMuGw7Q7x8RHd2+R3acw4QPStoQ
+ uysURLGuYT96Y51SYFpubCT/XbByiRhLTeEX4tOjEwBS6INyEaffnzVqG
+ gwWp5R8PK3W0obnLeUA4bT+cBlPNwg/O4DcgzNgWz16iG3Wr6ajzYTriJ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="3919707"
 X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; 
-   d="scan'208";a="3919668"
+   d="scan'208";a="3919707"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 10:31:32 -0700
+ 29 Sep 2023 10:31:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="699717302"
-X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; d="scan'208";a="699717302"
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="699717336"
+X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; d="scan'208";a="699717336"
 Received: from dahluwa1-mobl1.amr.corp.intel.com (HELO
  przanoni-mobl.amr.corp.intel.com) ([10.209.74.66])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 10:31:31 -0700
+ 29 Sep 2023 10:31:36 -0700
 From: Paulo Zanoni <paulo.r.zanoni@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Sep 2023 10:31:03 -0700
-Message-Id: <20230929173104.2014590-2-paulo.r.zanoni@intel.com>
+Date: Fri, 29 Sep 2023 10:31:04 -0700
+Message-Id: <20230929173104.2014590-3-paulo.r.zanoni@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230929173104.2014590-1-paulo.r.zanoni@intel.com>
 References: <20230929173104.2014590-1-paulo.r.zanoni@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/3] drm/xe/vm: use list_last_entry() to fetch
- last_op
+Subject: [Intel-xe] [PATCH 3/3] drm/xe: fix range printing for debug messages
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,28 +61,38 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-I would imagine that it's more efficient to fetch ops_list->prev than
-to walk the whole list forward.
+We're already using the half-open interval notation "[A, B)", that "-
+1" there makes it wrong. Also, getting rid of the "-1" makes it much
+easier to grep for the logs when you're looking for an address that's
+the end of a vma and the start of another.
 
 Signed-off-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_pt.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index e72380cc832e..68bb70b471cf 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3117,8 +3117,7 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 4d4c6a4c305e..70a8bd3558c2 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1265,7 +1265,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
  
- 	lockdep_assert_held_write(&vm->lock);
+ 	vm_dbg(&xe_vma_vm(vma)->xe->drm,
+ 	       "Preparing bind, with range [%llx...%llx) engine %p.\n",
+-	       xe_vma_start(vma), xe_vma_end(vma) - 1, q);
++	       xe_vma_start(vma), xe_vma_end(vma), q);
  
--	list_for_each_entry(op, ops_list, link)
--		last_op = op;
-+	last_op = list_last_entry(ops_list, struct xe_vma_op, link);
+ 	err = xe_pt_prepare_bind(tile, vma, entries, &num_entries, rebind);
+ 	if (err)
+@@ -1618,7 +1618,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
  
- 	if (!async) {
- 		err = xe_vma_op_execute(vm, last_op);
+ 	vm_dbg(&xe_vma_vm(vma)->xe->drm,
+ 	       "Preparing unbind, with range [%llx...%llx) engine %p.\n",
+-	       xe_vma_start(vma), xe_vma_end(vma) - 1, q);
++	       xe_vma_start(vma), xe_vma_end(vma), q);
+ 
+ 	num_entries = xe_pt_stage_unbind(tile, vma, entries);
+ 	xe_tile_assert(tile, num_entries <= ARRAY_SIZE(entries));
 -- 
 2.39.2
 
