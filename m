@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B374E7734B
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 23:07:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05B57E7734B
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 23:09:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C060010E0F7;
-	Fri, 29 Sep 2023 23:07:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B418810E0F7;
+	Fri, 29 Sep 2023 23:09:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4C92E10E0F7;
- Fri, 29 Sep 2023 23:07:38 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1DBB510E0F7;
+ Fri, 29 Sep 2023 23:09:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4614DAADF1;
- Fri, 29 Sep 2023 23:07:38 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 18756AADF1;
+ Fri, 29 Sep 2023 23:09:45 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Fri, 29 Sep 2023 23:07:38 -0000
-Message-ID: <169602885826.19499.5229801857173127931@emeril.freedesktop.org>
+Date: Fri, 29 Sep 2023 23:09:45 -0000
+Message-ID: <169602898506.19498.9095644722367062456@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230929210045.1202987-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20230929210045.1202987-1-rodrigo.vivi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_FIXME=3A_drm/i915=3A_More_display_ugly_wa_needed_after_rebas?=
- =?utf-8?q?e?=
+References: <20230929210130.1203203-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20230929210130.1203203-1-rodrigo.vivi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/3=5D_drm/xe=3A_Kill_xe=5Fbo=5Fdoc?=
+ =?utf-8?q?=2Eh?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,24 +47,17 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: FIXME: drm/i915: More display ugly wa needed after rebase
-URL   : https://patchwork.freedesktop.org/series/124475/
-State : failure
+Series: series starting with [1/3] drm/xe: Kill xe_bo_doc.h
+URL   : https://patchwork.freedesktop.org/series/124476/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 22fcf2404 drm/xe: timeout needs to be a signed value
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/i915/display/intel_fb.c:1939
-error: drivers/gpu/drm/i915/display/intel_fb.c: patch does not apply
-error: patch failed: drivers/gpu/drm/i915/display/intel_frontbuffer.c:208
-error: drivers/gpu/drm/i915/display/intel_frontbuffer.c: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: FIXME: drm/i915: More display ugly wa needed after rebase
-Patch failed at 0001 FIXME: drm/i915: More display ugly wa needed after rebase
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe: Kill xe_bo_doc.h
+Applying: drm/xe: Kill xe_migrate_doc.h
+Applying: drm/xe: Kill xe_vm_doc.h
 
 
