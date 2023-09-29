@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CDE0E743EC
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 05:30:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91418E743ED
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 05:31:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F074210E0D8;
-	Fri, 29 Sep 2023 05:30:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BAB710E0DD;
+	Fri, 29 Sep 2023 05:31:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 63EB910E0D8;
- Fri, 29 Sep 2023 05:30:54 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7545710E0DD;
+ Fri, 29 Sep 2023 05:31:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5F164A0BA8;
- Fri, 29 Sep 2023 05:30:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7409BA0BA8;
+ Fri, 29 Sep 2023 05:31:05 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Fri, 29 Sep 2023 05:30:54 -0000
-Message-ID: <169596545436.19497.8186931188379795105@emeril.freedesktop.org>
+Date: Fri, 29 Sep 2023 05:31:05 -0000
+Message-ID: <169596546547.19496.2338973242596630612@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230929044959.3149265-1-lucas.demarchi@intel.com>
 In-Reply-To: <20230929044959.3149265-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/xe2=3A_Extend_reserved_stolen_sizes?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/xe2=3A_Extend_reserved_stolen_sizes?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: fbc31f75d drm/xe: Add a missing mutex_destroy to xe_ttm_vram_mgr
-=== git am output follows ===
-Applying: drm/xe/xe2: Extend reserved stolen sizes
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d51337bfcbeb3f15e01d2ae0e922afb0d0225a9b
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Thu Sep 28 21:49:59 2023 -0700
+
+    drm/xe/xe2: Extend reserved stolen sizes
+    
+    For xe2, besides the previous sizes, the reserved portion of stolen can
+    also have 16MB and 32MB.
+    
+    Bspec: 53148
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch fbc31f75dbdcdcea60b7f5ba5c8d7efbc0ec75ef drm-intel
+d51337bfc drm/xe/xe2: Extend reserved stolen sizes
 
 
