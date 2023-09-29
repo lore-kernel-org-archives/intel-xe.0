@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECC02E743EE
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 07:01:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E84EE743F1
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 07:48:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEFC210E6C0;
-	Fri, 29 Sep 2023 07:01:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4C9810E0E2;
+	Fri, 29 Sep 2023 07:48:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D826810E6BF;
- Fri, 29 Sep 2023 07:01:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5953310E0E2;
+ Fri, 29 Sep 2023 07:48:39 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D3EC0AADF2;
- Fri, 29 Sep 2023 07:01:28 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 30B6FA00E8;
+ Fri, 29 Sep 2023 07:48:39 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Fri, 29 Sep 2023 07:01:28 -0000
-Message-ID: <169597088886.19499.1111991543839771939@emeril.freedesktop.org>
+Date: Fri, 29 Sep 2023 07:48:39 -0000
+Message-ID: <169597371917.19499.3522037076522236934@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20230929050253.3153804-1-lucas.demarchi@intel.com>
-In-Reply-To: <20230929050253.3153804-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_xe2=3A_Add_PAT_programming?=
+References: <20230929051539.3157441-1-lucas.demarchi@intel.com>
+In-Reply-To: <20230929051539.3157441-1-lucas.demarchi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Leverage_ComputeCS_read_L3_caching?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,21 +46,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: xe2: Add PAT programming
-URL   : https://patchwork.freedesktop.org/series/124430/
-State : failure
+Series: drm/xe: Leverage ComputeCS read L3 caching
+URL   : https://patchwork.freedesktop.org/series/124431/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 9a795b4f0 drm/xe: timeout needs to be a signed value
 === git am output follows ===
-Applying: drm/xe/xe2: Program PAT tables
-Applying: drm/xe/vm: Prefer xe_assert() over XE_WARN_ON()
-Applying: drm/xe/xe2: Follow XeHPC for TLB invalidation
-Applying: drm/xe/xe2: Add one more bit to encode PAT to ppgtt entries
-Applying: fixup! drm/xe/pat: Prefer the arch/IP names
-Applying: drm/xe/pat: Add debugfs node to dump PAT
-Applying: drm/xe/gt: Dump PAT table when failing to initialize
+Applying: drm/xe: Leverage ComputeCS read L3 caching
 
 
