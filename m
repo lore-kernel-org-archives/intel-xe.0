@@ -4,143 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46047E71D42
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 15:01:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B490DE728C4
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 15:57:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3C1C10E10B;
-	Fri, 29 Sep 2023 15:01:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1728610E10B
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 15:01:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E5A510E13E;
+	Fri, 29 Sep 2023 15:57:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A30010E13E
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 15:57:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1695999714; x=1727535714;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=jhZOC8LwkoT0CSbhILlcU3o2GlwN1UqGOpG8jsteNJE=;
- b=mahSt5ev5qYEFmhnK8ZyxQMI73Wn+mpb66mJ197gJDoQDhR2hVealjoO
- XXSI+ZAi1y6PM45aZQmyJd6rq5h1qqHkMNcxaqsOuWj4fvjKjww1QszOv
- Xl/h0Vf/lreSf/n4gycxRfbFd8/Gl+N9qlmbfdAJfOHmhwdJLVTgsUa7L
- lkeimxSYsA41C7D9vGx7ggx/dfKaeL+TNNzg81ihrjBwrMSGDrUxR6b9l
- lnwZv9UiiTj7Wh4uDYXue4gQnweq9Zx6+tjC+0iQPasPAjEjpc4uJlrXm
- B3Ej8qV4VX0HE/r+WwQPHHuGKLXyIGOwyKalpb1RwkHtIIoBEI9RSPw8u A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="361693147"
-X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; d="scan'208";a="361693147"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 08:01:52 -0700
+ t=1696003050; x=1727539050;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=YYlot2eZP+nWLV990xiWtdFY7+mSah8cMpcf9zTNBAM=;
+ b=Rxqyrq0aV62kzOTKrSPYb1mzepHESk8om44i0qlhAZ8Z+jz9rdg+lJcV
+ dfww5fcFef9KohrAHgikmC0rqjErX1zbLHgRP1tHwggw18cOBR1sijlz/
+ AJ6T7T8SNTYQkCFuXsmuSNA6C69ZTmYLetPbyZblNXYqtE/3X1Qsjl27x
+ BS09lv4BWZOWClJF1sg6CTdVKrkjJKKoYyPuGxC5SbExSd2luirR+4s34
+ DiZicsVkluh2ugipuUxdw74M8p+rSeFv3BqL9Z6wJmaXXCUNV3c46rAzT
+ oVp5D50IEOFC5YzjJNpGYy0RHQBC/1ITu1O1BA+VZJti+gWK0cl/q7gMz g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="381210236"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; d="scan'208";a="381210236"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Sep 2023 08:57:29 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="865737158"
-X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; d="scan'208";a="865737158"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Sep 2023 08:01:51 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="996976266"
+X-IronPort-AV: E=Sophos;i="6.03,187,1694761200"; d="scan'208";a="996976266"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 29 Sep 2023 08:57:29 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 29 Sep 2023 08:01:51 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.32; Fri, 29 Sep 2023 08:57:29 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 29 Sep 2023 08:01:51 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Fri, 29 Sep 2023 08:01:51 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Fri, 29 Sep 2023 08:57:29 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.173)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Fri, 29 Sep 2023 08:01:50 -0700
+ 15.1.2507.32; Fri, 29 Sep 2023 08:57:28 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EvsFYx6ERVWDwCbnhWLGbqCZxCGhsQXkY/lnj2tCCejyBrrQwwcxSNPLOKiNcbe2YgIti+h56XtyVklNGeAHInsElufEDNxW7ivQq4knDRkU6yjrfaZj4fazfL7dMm6imo3bQkRzjZK7QmI9q9DfjmWtnTEbUFtsPiFwPp2dxe6WIq9ccJnIT/xlbD3vgvjZpT6z+bzSwXpoWpGtg+/585buiWJTM734+YMrKBcUjMqeBvYo/guOvNctB2zMaXiKpp6O+6To1t02qe3U4/hlxYuidvDKWX2WgD0Xt7Q2QoJVcLc1Jvh+lIp2q5AjcjEyTmihCoCBoVfPA+Sgyd5cGg==
+ b=nxo5YKGb9/mu4VzR9tPT3Fh1sBD/++T3unfn83v+cBsm28mfPMk9xp/iLsrci8c2QTXAJDu+eIJVt8h3Ugk89rmO/6VygDRLVZ80vnV/Ig9sjVrXu/37bCATAovh70lmx1aNBwb03VjipwaQ8n6FMrAT4HiDKyNUELynt0dKQQAVJ2CWDzoPmrCwpogqNmef5I875EZm7TStQl2HlBOzfoJhh5RNRcZmo65Mg4B+Eu+3/PbuuT9aKW7ARjOwH1OC4LsczDBgayFVtdSXmNFBQyO/vaCA32Y1W5B+gu6vI0Ig2bIOk8Pb3H8mvNgdDSRINo1mZO9KFWOx2h+Fbuzqaw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YZ4FYN4nChZVCGdyx66q31wwlKE3DwQr22s5P5g7T2M=;
- b=Msp3JnjWAMy75PpUtuRJkkooTCCHVY47cAXGlzVDaF+xxgp+VDAXhUhtkuH+hK2sKhVcHIyKBXuPnQ+pZInpFCy1uYaYzyu4az8w2yjV99qKBidBKCFMcnidjuXDWL7Mcx5iQUESwoUxCi+1sN4zRCV6kmwkAfZE7Ws41Fzx3nCNSqZxv4SDwy4pmpRhLw9u0QgEldrZ0oC354dzMkYwjdflMvjwA/FZhOIn4v072uAmK9Si9yygRXC4H/LRitdDsCeX00COOejFYH5RR2LrwqKLlQSkqa21vMMPt3C8IqpDCOawnVYGUztm8RsWyrUo8W44pf4BUfN/3tHl/fxCCQ==
+ bh=j147O8QKuF26IMyqJmE8RzUBNRwpqNZw6uTexGGlNS4=;
+ b=BT2vfY/Y+zyQ9CNw15JrGTlxmDjBYeARZFRdyrr9FreHn3fQS8GzZ+kSEo0ymHlIn4O2RR238cZ1iELNzKFmOYaJ8eiM5JCgxcPfz0wK9Fhy6e7asX0EsKigZVgdRiJpLv3xPISvY/fi2049tK6moxjVosWdTtYrFPpv1v3ksecnOotUa4M3/r/2zXmjw/1iCgak5bM68/LKFXkU9OfiQbo3jL/1uRFd1t1HazoK5ZqqO/PuknjNzS1Luh+c6fHBeeCgMNIkeK8D+hkYYSSak61DeBW08Y0KnpG+mA2AmU+E2BrNSufztj88eCky/GJguaxkItwSoXIDupj2xSE34g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from IA1PR11MB6418.namprd11.prod.outlook.com (2603:10b6:208:3aa::18)
- by CH3PR11MB8519.namprd11.prod.outlook.com (2603:10b6:610:1ba::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.25; Fri, 29 Sep
- 2023 15:01:47 +0000
-Received: from IA1PR11MB6418.namprd11.prod.outlook.com
- ([fe80::bff0:69bb:b4e7:dacb]) by IA1PR11MB6418.namprd11.prod.outlook.com
- ([fe80::bff0:69bb:b4e7:dacb%4]) with mapi id 15.20.6813.017; Fri, 29 Sep 2023
- 15:01:47 +0000
-From: "Ruhl, Michael J" <michael.j.ruhl@intel.com>
-To: "Vishwanathapura, Niranjana" <niranjana.vishwanathapura@intel.com>,
- "Kershner, David" <david.kershner@intel.com>
-Thread-Topic: [PATCH] drm/xe/xe_migrate.c: Use DPA offset for page table
- entries.
-Thread-Index: AQHZ8hJ3LXqL+D0Bm06PrDXkVVnQ7rAxCjaAgADTcwA=
-Date: Fri, 29 Sep 2023 15:01:47 +0000
-Message-ID: <IA1PR11MB64189D31B23DF1F4667BCBB7C1C0A@IA1PR11MB6418.namprd11.prod.outlook.com>
-References: <20230928134816.881379-1-david.kershner@intel.com>
- <ZRYtJxlhG/nU36n0@nvishwa1-DESK>
-In-Reply-To: <ZRYtJxlhG/nU36n0@nvishwa1-DESK>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: IA1PR11MB6418:EE_|CH3PR11MB8519:EE_
-x-ms-office365-filtering-correlation-id: a13e5152-be5b-4843-65f6-08dbc0fd0099
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: qf7rvBTWeSS8UQQMvFMY7Id5ZR00P3ssuTyZQjdikuGszdzqZnTi0T2i9EgIFt3BK3QuEeoSDAjeU5+VySoprcow6QwtJXSgnHzcxll+cfEGaNmqPtIIsy0Y5sz6FIPl8u7CRxnzH+axWqE6FOyAk4caw9M6CBygtBMwcWQ1FXQrtqpsa2tHLZh/0tVugXU9yMA6Pev+IkF4lUSWzcp374IWk5qtf5oE8rJaAtDO1/eYOCx9ptKHQZvuztERxnFV8PugNW3nu3IlrYseZOEl3zHOc6a3y4+Lwsj4L76dbti+5Du1tnLpPNxxaMxh/LMz3FlujrM9hlaVjTvXX9bcB2xkiCBPYa2CByA1pZNYS5J8d/dmL5SH+0vpPcxoogb6KdMe5ezj72oAqam+P/HusWe1vP7ZzMk5wEaFfVpqpJQgH2IWzOObCXAsmZvTOcjk5UiNbXEV72tporQVgM9/hFEWcWtH8cqjODRDMuzNY0qT8WoY2YTSkrpdmER82o1qU2LpBW9kmIbO7JtnMstHnr4cy5BNF2mShxtgtfbGqzz25iLJQmu5kVy59pyzSJ+cMsJeGku3MleV5PqQsMVzFzNJydeff/Lo+5eCISSPagtSxhTTlT2ItqjfzvpLgTZM
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA1PR11MB6418.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(396003)(346002)(376002)(136003)(366004)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(26005)(7696005)(6506007)(478600001)(9686003)(8676002)(316002)(66946007)(83380400001)(107886003)(71200400001)(6636002)(64756008)(66476007)(54906003)(8936002)(110136005)(76116006)(66446008)(4326008)(66556008)(52536014)(41300700001)(5660300002)(2906002)(33656002)(38070700005)(86362001)(38100700002)(82960400001)(122000001)(55016003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?S7iYNDtgoNMhiivjhl1p/KlrVOXrDQsH31f7XyUiZqvjtAKeDefXpwkk72J6?=
- =?us-ascii?Q?jEStQEwsHb8h12TqI6jRyV2M+kT6Ns53PA8XWY2JNBRAWr+ZqhtdSrmboFFd?=
- =?us-ascii?Q?nBpUODckfbCE7f1BHGnqgpOPyDIXoB705YHKQPK0R4hCoHfPzBX3w8n4i3kf?=
- =?us-ascii?Q?5jkqx9I1+eWQMkEgZiIqw8UBtnyKaJ6VaHbrqAcwREcPEHMPCx/MKMi7j8yo?=
- =?us-ascii?Q?CdRkpAOp6bGZbNiNS4Q7q5arG0u6Xt0EjWnhhqeGPfLm4j1d89NXk7IwCYit?=
- =?us-ascii?Q?CaSBJr0E6w/lbNmfNzosk+fG7WrmUyMiv4+XdyKQIdrjHoY7Ph2tjL5kBSoa?=
- =?us-ascii?Q?rpzFd2s5W+6yUOgnGxphHeL0/+GqQFjOQuib+niE5vFiUC67WYSuOqjWNV/6?=
- =?us-ascii?Q?uSOodgXHtqo8/eCsqtGm2e0w7Lj6uhr4n0XmjKqBc8Xn5euTTwE0Chlj3sjm?=
- =?us-ascii?Q?1GNhb11JPH1s8LhW6hHJMwERHCR1kR91EruFu8o/Hyk4Mf6XTDZCzy/x7Dux?=
- =?us-ascii?Q?OekjRwZp1HQ7V2ltDvNLUE9Ao6Jk3aw/op8TDu8DyJc0+uIhprwJwHuLZvCX?=
- =?us-ascii?Q?x9SCqHE65ZWDIfTFV8Hu4UVaSxIK6s1xTnmqcgVmCrTP1cJPvspE9cI/oQMK?=
- =?us-ascii?Q?1TYHqwgD0GsXmA8hPp0f7IpmeTUZFQ+z//GPG8lXsKdhZXPjMfbAi6XQoOtt?=
- =?us-ascii?Q?0ytI3ymJqOxJy262v/D0L6HhW2f91+SkTzCWjnn+I1Awa2fl3xdAK0o2pFqD?=
- =?us-ascii?Q?2SDSD3EIqptsPBYS6ov5NqD6O8TvVFyrJvUpb8Fcb96UhjmVws6/ZNBd6yyy?=
- =?us-ascii?Q?7wvj2Rm+O+ElPUKLrx5LZ6PqH8zsr5JGubFhwvyrNo+VWXgo8pRFsl9aYdHv?=
- =?us-ascii?Q?EbFMUIPNoQmkHP/RJ6zVkrHLIipMKga0Oa8JQBe3iaepw7wAYPAjAe4AUvw/?=
- =?us-ascii?Q?YRl395fLepfMO60VrHXwEdgHx3sWNhX/yv1m71iwGL4KHfDEt4/w1YBWUU4M?=
- =?us-ascii?Q?ABbU0pavsb7zLwzB+9MTZPFlWMz5MY+yk/hiyo76RJTE+aCG/t3SFJU3Qgpg?=
- =?us-ascii?Q?rRw8mT0n81MIF0XiPmwXZducBrIzKtAGnZP1iYfAhqjRk0xDBbxlslENNZTq?=
- =?us-ascii?Q?AdufNjKgI6u9wTrhi462O6Yntd8b+MO9Ib5ejWBayLisD5R8Pq33tOiYGofJ?=
- =?us-ascii?Q?v+TZWE8NcVNspi9A3r3mAG7DMe+Vs9bB6GCAX64QNzTWdObqYZ/wrOURc/hZ?=
- =?us-ascii?Q?6lsfBV6zb8MHvK5Z5KSdJdMQzmCUOF3c8vsc4AzBkyQyUjfYCYG3LyOqyJkI?=
- =?us-ascii?Q?Q0mdpCWlnixl7aeqUTP0SkF7WEC5gkg0Px3AZhKF+bVQwxDWt1Bm5akO0tWt?=
- =?us-ascii?Q?mV4AStgGDwJ1eD6K1m8TvCnWkzXNkuGIwSYuYS+/MrZhFDd4XNs/VPTc0ie6?=
- =?us-ascii?Q?hP6PX98jOeyuKz6375g9s1lzcZPKHM0JPq72OKDs/SeJjAG5jpALc2FpfPno?=
- =?us-ascii?Q?EiQuVXPsFYY4qCDgK4ZGq4GvNY5SUJPLsRW5/4RQHPEmFRDKgUQ03cFqg2tm?=
- =?us-ascii?Q?cLewoe3NQPl9AAjRlT1lz/CVvWfuJP4cqQyaGNI6?=
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ CO1PR11MB4945.namprd11.prod.outlook.com (2603:10b6:303:9c::8) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6813.19; Fri, 29 Sep 2023 15:57:21 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::14ea:3a78:f950:d6d0]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::14ea:3a78:f950:d6d0%7]) with mapi id 15.20.6838.024; Fri, 29 Sep 2023
+ 15:57:21 +0000
+Date: Fri, 29 Sep 2023 08:57:18 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <20230929155718.GF233750@mdroper-desk1.amr.corp.intel.com>
+References: <20230929044351.3145468-1-lucas.demarchi@intel.com>
+ <20230929044351.3145468-2-lucas.demarchi@intel.com>
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
+In-Reply-To: <20230929044351.3145468-2-lucas.demarchi@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0040.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::15) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|CO1PR11MB4945:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3c933b7d-514a-43de-d4b4-08dbc104c3c6
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: shsGRWCWJCL9kCeqQjurdwHPNzjoyoXya0idRbQLj99LYKJnGT0vXKW2KaXCg/Kqovb2EawljaEBARv7aZ6Ohk7PizOtPVG3LzSfRheqRKhkcEsGzaSHzOuImhVv20gJVWZycSLSCa0dL7dd3cEALJjDkkBhs0q+3QE0g446C5CcSY8HoY8sGvBO5AhjFj8rpAViWKf/SzOrnNTAyHD6S8b/dbxPCLYY5Z6hRvqQu88B7M2Ja0UJq23iYQD04oHUqJlAl+xF2NiNtDNPTzk3OaHt03XrVtSbL2NX77hzxXTN7+20KYbJHiO6S8hjnkymcHS1HXbEaPRzRkIxcL8ouWbA6LUojF+7gQwkvZUiDtPpJkt1z/g1kF3mp92hBus3yZtVh5bpHySX/AwYVGB2GMgjFqoeGc6wkGQN2l7SOsInt/3aX1Y8JO3Vm7fD6r/eAmyxYSkEs0n6m7IquGJwPlztDCIHB35NiTL2a2ZgPEvDtKS48OYq7544f/omF+fiamVMXSfwU0t/VzwyfTpTRscCg5AM+RJbvc93H1lZ+Fqx2h/qMR8VPwB05RGGrHne
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(346002)(39860400002)(366004)(396003)(136003)(230922051799003)(1800799009)(64100799003)(186009)(451199024)(6486002)(6506007)(6512007)(6666004)(478600001)(8676002)(107886003)(83380400001)(26005)(2906002)(5660300002)(66946007)(6636002)(66556008)(6862004)(316002)(8936002)(66476007)(41300700001)(4326008)(1076003)(33656002)(86362001)(38100700002)(82960400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?oGxG7OwBK6VNW+nvzmOlNWcRL0+hTT4IzES6mqlOoenh2o1pDOQB0R2GtG/8?=
+ =?us-ascii?Q?VkpbCFWCM/GFf8twNVEGejwVogCLmeGEgbt1g54QiyRRvgwZfuBwjU1CJUUc?=
+ =?us-ascii?Q?kmMsFtEx5XlAmLjTDb5rD20mz89QPC7n3oeIWOcCb49iHYzf2iw1m4dDy0g2?=
+ =?us-ascii?Q?FkmXfkU51Fle/5tHkv1nBcSrljtrOn5eQqaKQkUYr3xbDcFTtrfY/U4Z7dlU?=
+ =?us-ascii?Q?gKZAHQUg7bAzcuQ/43tF9P3M5gfkV2FO+s82bzVUOWFX/JF2FveA9wMjwceJ?=
+ =?us-ascii?Q?IlX7/wFO5YCMfyk4PYbjnFb6hCMHIBpHVC50FUR95MlvqEo2IXxImp5agrvx?=
+ =?us-ascii?Q?xkMwAR7tr3DxdPLPos8T2PIigOmeFrRiYRqfYpnU1Fu13pvVD0KwXJzVPoE+?=
+ =?us-ascii?Q?gsiG1PRkMSAy4418KOuVWXkRlS4aPPlqf12ozjkUAVCzQjvzxZMHM8vbOAOk?=
+ =?us-ascii?Q?/GcouPxOPz7gF8xVHOZk1qM/SYhq/ol7pBQ3QTVEZqVK0H7Mry2XM6ihDBCr?=
+ =?us-ascii?Q?QTRkN2yGCH7m8asOHroVdI0fVetUTz+HLpBcPy2q50YpFEoXzLFVVaIxGwvE?=
+ =?us-ascii?Q?Xgo7KxJJxzXOAw2Jp9ilpMPrs8ia/urrejPr5nBRPrYTtGnWUYolpK6kS9pa?=
+ =?us-ascii?Q?zkJBcVOfZjjNUTLZz9RkWMqIPcmfAy1N439kEHu8PwDtTN4C/R3B+snKGBS9?=
+ =?us-ascii?Q?uVt+MOG4cvn7w8DtRqRn/Bq9jOZ9aq4CHbcNXeiyidjM0SeUEpLygG0OHg4c?=
+ =?us-ascii?Q?w/3K3OvIxV+5jMlcJWGuvdyY8QGW8Bb2aJvlw8KBduyaDMy6Xe0q9eOs+xzv?=
+ =?us-ascii?Q?/+7mi9yVF3ZDmzXsis+fkTCMwaw/IdWjIBTHVglxw3wrenFeXBunXFRNMVHQ?=
+ =?us-ascii?Q?l7Ebiq5ZkRLpyyPOelAvAAaaHLadBobv4We7KzUVYQMTnu8dfFSer2DRXNbu?=
+ =?us-ascii?Q?iA7unewqAfPDeJ33wAymkXwnXBf5ECnVfZf/y0GSKW9gty2bDVVKbwL4IkGx?=
+ =?us-ascii?Q?GJuO6T4zGrWX7HZRFjZRGFj+mgQikzfMuwlAOFxMFPTpRBOvgeiMg4V7cUMk?=
+ =?us-ascii?Q?tKyXwO0F88krJxaPBo76phMvPtqLVeiDTrFH00jrpc73nhTnbBHMQyiZTyPH?=
+ =?us-ascii?Q?mErj5anXJJrhzt5X13lmKQ8iNlC7sGsYpU/BEw9ie7S/9lRJwietfKmfZPNL?=
+ =?us-ascii?Q?/yhYZ79QJdH2DJ4Oq2wUYlXV4Jltnc5KKuwo+KRpClLIJZ/PYHTgxHL2rRN+?=
+ =?us-ascii?Q?3e5sj/yXGuU407a+14R4LIynfVLZHi2aiCctcoPn+c+RCtHVoLNK1IdTD55i?=
+ =?us-ascii?Q?+ncuiyVWJikO91r2hCfiZtG9SWbUURL/Rz2nXHCqV6jGuDdnvdSJzlmqMIIz?=
+ =?us-ascii?Q?/Nfxk9rwhZMEG5oZP0ec1PNWL3g5MGURhz7VqCfIJjjUMNlDy8U2Q9ZvGb31?=
+ =?us-ascii?Q?3B2/e+ZDjUoPTHD9PKGEQ9C8/QAvaPqvB7woLEGs/iLNU4fyt6FEAT9unI5o?=
+ =?us-ascii?Q?dY5izFoWk3O/decFXXkE6rqBUgkz+mMmUyMTo3+gV9vRL4ZO/1WyYDnh7r/U?=
+ =?us-ascii?Q?WIftO0+N6pThFGznRaCj67Pt0z2R5rBOtMF/8EirsxOP6ouoZRtpXJ6dPYBH?=
+ =?us-ascii?Q?9Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3c933b7d-514a-43de-d4b4-08dbc104c3c6
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: IA1PR11MB6418.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a13e5152-be5b-4843-65f6-08dbc0fd0099
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2023 15:01:47.1922 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 2qfg+nJI7UDzMo1pk58+QsYmVtgrRMgRPhz4G6mDcRhRDmlpVwolVPi3aVtbgg4/4hhF4oLL5U2C3Goy9j5jQgHCcLGmyq2YLvrvu6UJF9M=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8519
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2023 15:57:21.3696 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dlqXF9qG3eSYijhQmo3ygIsJj6/mtugxzI94uxsi+Wcyi1eQ7AlSHzsvvJQrpM+liIjak5jDkt2njBAYUhMAIKUWyPIW+ef5i+UUGErzdNs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4945
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe/xe_migrate.c: Use DPA offset for page
- table entries.
+Subject: Re: [Intel-xe] [PATCH 1/4] drm/xe: Adjust mocs field mask
+ definitions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,170 +144,131 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Summers, Stuart" <stuart.summers@intel.com>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Fleck, 
- John" <john.fleck@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
->-----Original Message-----
->From: Vishwanathapura, Niranjana <niranjana.vishwanathapura@intel.com>
->Sent: Thursday, September 28, 2023 9:49 PM
->To: Kershner, David <david.kershner@intel.com>
->Cc: intel-xe@lists.freedesktop.org; Ruhl, Michael J <michael.j.ruhl@intel.=
-com>;
->Fleck, John <john.fleck@intel.com>; Roper, Matthew D
-><matthew.d.roper@intel.com>; Brost, Matthew <matthew.brost@intel.com>;
->Summers, Stuart <stuart.summers@intel.com>
->Subject: Re: [PATCH] drm/xe/xe_migrate.c: Use DPA offset for page table
->entries.
->
->On Thu, Sep 28, 2023 at 09:48:16AM -0400, David Kershner wrote:
->>Device Physical Address (DPA) is the starting offset device memory.
->>
->>Update xe_migrate identity map base PTE entries to start at dpa_base
->>instead of 0.
->>
->>The VM offset value should be 0 relative instead of DPA relative.
->>
->>Signed-off-by: David Kershner <david.kershner@intel.com>
->>---
->> drivers/gpu/drm/xe/xe_migrate.c | 19 +++++++++++--------
->> 1 file changed, 11 insertions(+), 8 deletions(-)
->>
->>diff --git a/drivers/gpu/drm/xe/xe_migrate.c
->b/drivers/gpu/drm/xe/xe_migrate.c
->>index 9438f609d18b..848cdb6af2e6 100644
->>--- a/drivers/gpu/drm/xe/xe_migrate.c
->>+++ b/drivers/gpu/drm/xe/xe_migrate.c
->>@@ -114,8 +114,10 @@ static u64 xe_migrate_vm_addr(u64 slot, u32 level)
->> 	return (slot + 1ULL) << xe_pt_shift(level + 1);
->> }
->>
->>-static u64 xe_migrate_vram_ofs(u64 addr)
->>+static u64 xe_migrate_vram_ofs(u64 addr, struct xe_tile *tile)
->> {
->>+	if (tile)
->>+		addr -=3D tile->mem.vram.dpa_base;
->
->See below...
->
->> 	return addr + (256ULL << xe_pt_shift(2));
->> }
->>
->>@@ -149,7 +151,7 @@ static int xe_migrate_create_cleared_bo(struct
->xe_migrate *m, struct xe_vm *vm)
->>
->> 	xe_map_memset(xe, &m->cleared_bo->vmap, 0, 0x00, cleared_size);
->> 	vram_addr =3D xe_bo_addr(m->cleared_bo, 0, XE_PAGE_SIZE);
->>-	m->cleared_vram_ofs =3D xe_migrate_vram_ofs(vram_addr);
->>+	m->cleared_vram_ofs =3D xe_migrate_vram_ofs(vram_addr, tile);
->>
->> 	return 0;
->> }
->>@@ -223,12 +225,12 @@ static int xe_migrate_prepare_vm(struct xe_tile
->*tile, struct xe_migrate *m,
->> 	} else {
->> 		u64 batch_addr =3D xe_bo_addr(batch, 0, XE_PAGE_SIZE);
->>
->>-		m->batch_base_ofs =3D xe_migrate_vram_ofs(batch_addr);
->>+		m->batch_base_ofs =3D xe_migrate_vram_ofs(batch_addr, tile);
->>
->> 		if (xe->info.supports_usm) {
->> 			batch =3D tile->primary_gt->usm.bb_pool->bo;
->> 			batch_addr =3D xe_bo_addr(batch, 0, XE_PAGE_SIZE);
->>-			m->usm_batch_base_ofs =3D
->xe_migrate_vram_ofs(batch_addr);
->>+			m->usm_batch_base_ofs =3D
->xe_migrate_vram_ofs(batch_addr, tile);
->> 		}
->> 	}
->>
->>@@ -266,7 +268,9 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile=
-,
->struct xe_migrate *m,
->> 		 * Use 1GB pages, it shouldn't matter the physical amount of
->> 		 * vram is less, when we don't access it.
->> 		 */
->>-		for (pos =3D 0; pos < xe->mem.vram.actual_physical_size; pos +=3D
->SZ_1G, ofs +=3D 8)
->>+		for (pos =3D tile->mem.vram.dpa_base;
->>+		     pos < tile->mem.vram.actual_physical_size + tile-
->>mem.vram.dpa_base;
->>+		     pos +=3D SZ_1G, ofs +=3D 8)
->> 			xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
->
->I think this is incorrect.
->We need to map the whole device LMEM, no just the tile LMEM for each tile.
->This is because we should be able to move the bo from one tile to another.
+On Thu, Sep 28, 2023 at 09:43:48PM -0700, Lucas De Marchi wrote:
+> From: Haridhar Kalvala <haridhar.kalvala@intel.com>
+> 
+> Instead of using xe_mocs_index_to_value(), simply define the bitmask
+> with the shift left applied. This will make it easier to adapt to new
+> platforms that simply use the index.
+> 
+> This also fixes PVC bug in emit_clear_link_copy() where the MOCS was
+> getting shifted both by PVC_MS_MOCS_INDEX_MASK definition and by the
+> xe_moc_index_to_value function.
+> 
+> Bspec: 57562, 57566, 57565
 
-My understanding, is that the page table is created for the tile (there is =
-one per tile),
-to migrate data to and from the tile.
+None of these Xe2 bspec pages are correct for this patch which only
+touches the Xe1 code.  Although there are separate Xe1 equivalent pages
+for each instruction, those don't seem terribly useful as a reference
+for this patch either since the fields on those pages just match the old
+ones from the code.  In my mind the bspec page that would actually be
+useful as a reference for the changes being made here is 44509 since
+that explains what the hardware expects to receive in the 7-bit "MOCS"
+fields of various Xe1 instructions.
 
-How is this different from moving from sysmem to vram? Where is the PTE inf=
-o for=20
-the sysmem side of this?
+Aside from the bspec references here, the rest of the patch looks fine,
+so:
 
-If this is for a general purpose page table, should this be created for the=
- device,
-rather than having two page table with the same info?
+        Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-I see that the only tests that use this are sysmem -> device and device -> =
-sysmem.
+with that updated.
 
-Is there a use case test that shows a migration from one tile to the other?=
-  Would like
-to test this.
 
->And the identity map I think should start from device dpa (xe->mem.vram.dp=
-a_base)
->instead of 0-based. The xe->mem.vram.dpa_base gets updated based on whats
->is >programed into PKG_ADDR_BASE.
+Matt
 
-This makes sense if there is only one table.  Since the created for each ti=
-le, it will
-have some over head.
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Signed-off-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
+> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  4 ++--
+>  drivers/gpu/drm/xe/xe_migrate.c           |  6 +++---
+>  drivers/gpu/drm/xe/xe_mocs.h              | 12 ------------
+>  3 files changed, 5 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+> index 12120dd37aa2..1ee8d46d92d9 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+> @@ -44,7 +44,7 @@
+>  #define   DST_ACCESS_TYPE_SHIFT		20
+>  #define   CCS_SIZE_MASK			0x3FF
+>  #define   CCS_SIZE_SHIFT		8
+> -#define   XY_CTRL_SURF_MOCS_MASK	GENMASK(31, 25)
+> +#define   XY_CTRL_SURF_MOCS_MASK	GENMASK(31, 26)
+>  #define   NUM_CCS_BYTES_PER_BLOCK	256
+>  #define   NUM_BYTES_PER_CCS_BYTE	256
+>  #define   NUM_CCS_BLKS_PER_XFER		1024
+> @@ -52,7 +52,7 @@
+>  #define XY_FAST_COLOR_BLT_CMD		(2 << 29 | 0x44 << 22)
+>  #define   XY_FAST_COLOR_BLT_DEPTH_32	(2 << 19)
+>  #define   XY_FAST_COLOR_BLT_DW		16
+> -#define   XY_FAST_COLOR_BLT_MOCS_MASK	GENMASK(27, 21)
+> +#define   XY_FAST_COLOR_BLT_MOCS_MASK	GENMASK(27, 22)
+>  #define   XY_FAST_COLOR_BLT_MEM_TYPE_SHIFT 31
+>  
+>  #define XY_FAST_COPY_BLT_CMD		(2 << 29 | 0x42 << 22)
+> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+> index cd2e00008aab..1d1e4076b29d 100644
+> --- a/drivers/gpu/drm/xe/xe_migrate.c
+> +++ b/drivers/gpu/drm/xe/xe_migrate.c
+> @@ -519,7 +519,7 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
+>  {
+>  	u32 *cs = bb->cs + bb->len;
+>  	u32 num_ccs_blks;
+> -	u32 mocs = xe_mocs_index_to_value(gt->mocs.uc_index);
+> +	u32 mocs = gt->mocs.uc_index;
+>  
+>  	num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
+>  				    NUM_CCS_BYTES_PER_BLOCK);
+> @@ -806,7 +806,7 @@ static void emit_clear_link_copy(struct xe_gt *gt, struct xe_bb *bb, u64 src_ofs
+>  				 u32 size, u32 pitch)
+>  {
+>  	u32 *cs = bb->cs + bb->len;
+> -	u32 mocs = xe_mocs_index_to_value(gt->mocs.uc_index);
+> +	u32 mocs = gt->mocs.uc_index;
+>  	u32 len = PVC_MEM_SET_CMD_LEN_DW;
+>  
+>  	*cs++ = PVC_MEM_SET_CMD | PVC_MS_MATRIX | (len - 2);
+> @@ -828,7 +828,7 @@ static void emit_clear_main_copy(struct xe_gt *gt, struct xe_bb *bb,
+>  	struct xe_device *xe = gt_to_xe(gt);
+>  	u32 *cs = bb->cs + bb->len;
+>  	u32 len = XY_FAST_COLOR_BLT_DW;
+> -	u32 mocs = xe_mocs_index_to_value(gt->mocs.uc_index);
+> +	u32 mocs = gt->mocs.uc_index;
+>  
+>  	if (GRAPHICS_VERx100(xe) < 1250)
+>  		len = 11;
+> diff --git a/drivers/gpu/drm/xe/xe_mocs.h b/drivers/gpu/drm/xe/xe_mocs.h
+> index d0f1ec4b0336..053754c5a94e 100644
+> --- a/drivers/gpu/drm/xe/xe_mocs.h
+> +++ b/drivers/gpu/drm/xe/xe_mocs.h
+> @@ -14,16 +14,4 @@ struct xe_gt;
+>  void xe_mocs_init_early(struct xe_gt *gt);
+>  void xe_mocs_init(struct xe_gt *gt);
+>  
+> -/**
+> - * xe_mocs_index_to_value - Translate mocs index to the mocs value exected by
+> - * most blitter commands.
+> - * @mocs_index: index into the mocs tables
+> - *
+> - * Return: The corresponding mocs value to be programmed.
+> - */
+> -static inline u32 xe_mocs_index_to_value(u32 mocs_index)
+> -{
+> -	return mocs_index << 1;
+> -}
+> -
+>  #endif
+> -- 
+> 2.40.1
+> 
 
-For instance, the offset for the VMs are currently need the tile offset inc=
-luded.  The
-new code does not need that.  If we use the identity mapping with the full =
-space we
-will have to break the tile offset out as a separate value to keep track  (=
-will need to be
-added per tile..).
-
-Thoughts?
-
-Mike
-
->Niranjana
->
->> 	}
->>
->>@@ -441,8 +445,7 @@ static u32 pte_update_size(struct xe_migrate *m,
->> 		cmds +=3D cmd_size;
->> 	} else {
->> 		/* Offset into identity map. */
->>-		*L0_ofs =3D xe_migrate_vram_ofs(cur->start +
->>-					      vram_region_gpu_offset(res));
->>+		*L0_ofs =3D xe_migrate_vram_ofs(cur->start, NULL);
->> 		cmds +=3D cmd_size;
->> 	}
->>
->>@@ -1027,7 +1030,7 @@ static void write_pgtable(struct xe_tile *tile, str=
-uct
->xe_bb *bb, u64 ppgtt_ofs,
->> 	xe_tile_assert(tile, update->qwords <=3D 0x1ff);
->> 	if (!ppgtt_ofs) {
->> 		ppgtt_ofs =3D xe_migrate_vram_ofs(xe_bo_addr(update->pt_bo,
->0,
->>-							   XE_PAGE_SIZE));
->>+							   XE_PAGE_SIZE), tile);
->> 	}
->>
->> 	do {
->>--
->>2.35.1
->>
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
