@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BDB9FE7734B
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 23:59:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12EF4E7734C
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 23:59:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C7C310E15D;
-	Fri, 29 Sep 2023 23:59:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C657310E15A;
+	Fri, 29 Sep 2023 23:59:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 28BA710E15A;
- Fri, 29 Sep 2023 23:59:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3AE2810E15A;
+ Fri, 29 Sep 2023 23:59:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 22429A0BA8;
- Fri, 29 Sep 2023 23:59:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 39B08A0BA8;
+ Fri, 29 Sep 2023 23:59:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Fri, 29 Sep 2023 23:59:07 -0000
-Message-ID: <169603194710.19496.14231793469267637966@emeril.freedesktop.org>
+Date: Fri, 29 Sep 2023 23:59:21 -0000
+Message-ID: <169603196123.19499.12707806653890456341@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230929213640.3189912-1-lucas.demarchi@intel.com>
 In-Reply-To: <20230929213640.3189912-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_xe2=3A_mocs_and_blitter_commands_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_xe?=
+ =?utf-8?q?2=3A_mocs_and_blitter_commands_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,12 +52,37 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 22fcf2404 drm/xe: timeout needs to be a signed value
-=== git am output follows ===
-Applying: drm/xe: Adjust mocs field mask definitions
-Applying: drm/xe: Rename MEM_SET instruction
-Applying: drm/xe/xe2: Set tile y type in XY_FAST_COPY_BLT to Tile4
-Applying: drm/xe/xe2: Update MOCS fields in blitter instructions
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 2e0446c164e94f2a161e6ca58723bfec89a429e2
+Author: Haridhar Kalvala <haridhar.kalvala@intel.com>
+Date:   Fri Sep 29 14:36:40 2023 -0700
+
+    drm/xe/xe2: Update MOCS fields in blitter instructions
+    
+    Xe2 changes or adds bits for mocs in a few BLT instructions:
+    XY_CTRL_SURF_COPY_BLT, XY_FAST_COLOR_BLT, XY_FAST_COPY_BLT, and MEM_SET.
+    Modify the code to deal with the new location. Unlike Xe1, the MOCS
+    field in those instructions is only the MOCS index and not the
+    Structure_MEMORY_OBJECT_CONTROL_STATE anymore. The pxp bit is now
+    explicitly documented separately.
+    
+    Bspec: 57567,57566,57565,57562
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Signed-off-by: Haridhar Kalvala <haridhar.kalvala@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
++ /mt/dim checkpatch 22fcf2404f56a8e7aea6734298e0b2b265136313 drm-intel
+df69095b9 drm/xe: Adjust mocs field mask definitions
+44f4935a2 drm/xe: Rename MEM_SET instruction
+837108151 drm/xe/xe2: Set tile y type in XY_FAST_COPY_BLT to Tile4
+2e0446c16 drm/xe/xe2: Update MOCS fields in blitter instructions
 
 
