@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B114E728D6
-	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 18:17:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19B55E728D6
+	for <intel-xe@archiver.kernel.org>; Fri, 29 Sep 2023 18:18:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D05810E172;
-	Fri, 29 Sep 2023 18:17:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC7DE10E172;
+	Fri, 29 Sep 2023 18:18:21 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E56FF10E172
- for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 18:17:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E585810E172
+ for <intel-xe@lists.freedesktop.org>; Fri, 29 Sep 2023 18:18:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696011443; x=1727547443;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=LYzrW8s485dxGTxEefk4XDONkC52bZF7eDdm8PAzDgM=;
- b=MAKPcLSR59TE1KyERJld/G7aw69HN8ZVv0amawPihxyJmQ6xagUnC3+L
- nBtccpnUgv76xtPpbcfZRrGquLpu/MepIUIPlWEb/oiF3cx2otyWFjo6S
- peDqeTJZ6MgTFtx48SOZ52X5z+xcUuj5tvg0gm34goxNRXx80xXorkwYf
- xbu2Bm4529J860joLwJ9Z/MvmSJ2wqRbdKLcG5MaGsHv0LdecWKgaJYJ1
- 715PyJzevZxj8J2SflkLrBrE6phnfOJBstW2qhrQF4R3KTNIyQL/wN6bi
- 3yuUMHaf8SdJMEcb0FqKIOt73IDT/29JZewItA6/6RmaC1JHZwNs84KQQ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="3919649"
+ t=1696011499; x=1727547499;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Li5dpeAoMSkcga9VpYdD2bpJnFd1D4BZD7eqwrNPS3Y=;
+ b=hkl3iuBb6hCqDwop3vZmZHuCRn7ua6zBSSk2fNc0MyH3IVWge1YUpSw4
+ 72ol/SPsXRwF1eV+oFYqOydONuKMVauRxtV74Qa2QEjcPfGjw5WheSciq
+ 84+6ARwxzM/UNdobDYSW5xQiae/uOUQbWGfayk8O2xJ6pYAQzXPCeLwp+
+ 0MxSriI6n6jFlKIkCMHMpGg8pVaxpDo4EQqo9GIBdGpECbi3xvfcFG+t2
+ Prv2gE4AkiPhqjtEyq3VLS/P6uekqyhe4jx7K6kjQtCKXewKblPzuu9sV
+ VpdIliI+sxe+VJdx5XUUH1GE47y/uviSFGxXPl1Cw2gsZWIP1yZd2c036 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="3919668"
 X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; 
-   d="scan'208";a="3919649"
+   d="scan'208";a="3919668"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 10:31:27 -0700
+ 29 Sep 2023 10:31:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="699717261"
-X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; d="scan'208";a="699717261"
+X-IronPort-AV: E=McAfee;i="6600,9927,10848"; a="699717302"
+X-IronPort-AV: E=Sophos;i="6.03,188,1694761200"; d="scan'208";a="699717302"
 Received: from dahluwa1-mobl1.amr.corp.intel.com (HELO
  przanoni-mobl.amr.corp.intel.com) ([10.209.74.66])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Sep 2023 10:31:26 -0700
+ 29 Sep 2023 10:31:31 -0700
 From: Paulo Zanoni <paulo.r.zanoni@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 29 Sep 2023 10:31:02 -0700
-Message-Id: <20230929173104.2014590-1-paulo.r.zanoni@intel.com>
+Date: Fri, 29 Sep 2023 10:31:03 -0700
+Message-Id: <20230929173104.2014590-2-paulo.r.zanoni@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230929173104.2014590-1-paulo.r.zanoni@intel.com>
+References: <20230929173104.2014590-1-paulo.r.zanoni@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/3] drm/xe/vm: print the correct 'keep' when
- printing gpuva ops
+Subject: [Intel-xe] [PATCH 2/3] drm/xe/vm: use list_last_entry() to fetch
+ last_op
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,26 +62,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Unions are cool, until they aren't.
+I would imagine that it's more efficient to fetch ops_list->prev than
+to walk the whole list forward.
 
 Signed-off-by: Paulo Zanoni <paulo.r.zanoni@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 57ffac324564..e72380cc832e 100644
+index e72380cc832e..68bb70b471cf 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2351,7 +2351,7 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
- 		vma = gpuva_to_vma(op->remap.unmap->va);
- 		vm_dbg(&xe->drm, "REMAP:UNMAP: addr=0x%016llx, range=0x%016llx, keep=%d",
- 		       (ULL)xe_vma_start(vma), (ULL)xe_vma_size(vma),
--		       op->unmap.keep ? 1 : 0);
-+		       op->remap.unmap->keep ? 1 : 0);
- 		if (op->remap.prev)
- 			vm_dbg(&xe->drm,
- 			       "REMAP:PREV: addr=0x%016llx, range=0x%016llx",
+@@ -3117,8 +3117,7 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+ 
+-	list_for_each_entry(op, ops_list, link)
+-		last_op = op;
++	last_op = list_last_entry(ops_list, struct xe_vma_op, link);
+ 
+ 	if (!async) {
+ 		err = xe_vma_op_execute(vm, last_op);
 -- 
 2.39.2
 
