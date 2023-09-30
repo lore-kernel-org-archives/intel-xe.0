@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D099BE7734D
-	for <intel-xe@archiver.kernel.org>; Sat, 30 Sep 2023 01:37:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 380C8E7734D
+	for <intel-xe@archiver.kernel.org>; Sat, 30 Sep 2023 01:37:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B74210E12D;
-	Sat, 30 Sep 2023 01:37:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 04C4510E12D;
+	Sat, 30 Sep 2023 01:37:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1640410E110;
- Sat, 30 Sep 2023 01:37:14 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5104110E188;
+ Sat, 30 Sep 2023 01:37:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 12218AADE8;
- Sat, 30 Sep 2023 01:37:14 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4FB60AADE8;
+ Sat, 30 Sep 2023 01:37:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Sat, 30 Sep 2023 01:37:14 -0000
-Message-ID: <169603783405.19042.854537229716987433@emeril.freedesktop.org>
+Date: Sat, 30 Sep 2023 01:37:25 -0000
+Message-ID: <169603784532.19040.1215266401213938009@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20230929230332.3348841-2-matthew.d.roper@intel.com>
 In-Reply-To: <20230929230332.3348841-2-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/tuning=3A_Add_missing_engine_class_rules_for_LRC_tuni?=
- =?utf-8?q?ng?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/tuning=3A_Add_missing_engine_class_rules_for_LRC_tuning?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,9 +52,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 22fcf2404 drm/xe: timeout needs to be a signed value
-=== git am output follows ===
-Applying: drm/xe/tuning: Add missing engine class rules for LRC tuning
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit d2008563be12e386f814c94d9e4de005d0b5fdf8
+Author: Matt Roper <matthew.d.roper@intel.com>
+Date:   Fri Sep 29 16:03:33 2023 -0700
+
+    drm/xe/tuning: Add missing engine class rules for LRC tuning
+    
+    The LRC tuning settings we have today are modifying registers that are
+    part of the RCS engine's context; they're not part of the general CSFE
+    context that would apply to all engines.  Add ENGINE_CLASS(RENDER) to
+    the RTP rules to properly restrict these to the RCS.
+    
+    Bspec: 46255, 46261
+    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch 22fcf2404f56a8e7aea6734298e0b2b265136313 drm-intel
+d2008563b drm/xe/tuning: Add missing engine class rules for LRC tuning
 
 
