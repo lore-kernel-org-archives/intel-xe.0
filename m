@@ -4,140 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01E8BE7490C
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Oct 2023 19:46:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 94A20E7490C
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Oct 2023 20:03:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C238110E080;
-	Mon,  2 Oct 2023 19:46:25 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA08110E080;
- Mon,  2 Oct 2023 19:46:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CB7610E08D;
+	Mon,  2 Oct 2023 20:03:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EEDC10E08D
+ for <intel-xe@lists.freedesktop.org>; Mon,  2 Oct 2023 20:03:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696275982; x=1727811982;
+ t=1696277009; x=1727813009;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=Bl6tF0WacmmmyWe4wB/nZDfFRSJ4lmw4tmKIeIiS2bA=;
- b=fKlMPCZkp8Y104f08XBQgfarg6Qj7KVGGIzGZf9ISapMq7JjRZcC2XNC
- Yim8Pbb3yh9EbLJH0TZTEX9RuKWcAQaDYLeljwhzImkA6YxlpN4GhIjlb
- 1FrmL2Iuay9PV9f/VV7w3yNZwHBJHmg0t9eccGgNcC8+mb3aXl/wddhiP
- RWg2fet/0Nj7yW9vyBc6i5Uxj/vKnK50tZqdAfvO6AbC7nTzXSHAM4bfG
- Xjj3N9a6IiWxelK+6xRB0GsTZ3kRSPFJiyE+AvZmGiLCDQOXD0B+Uj6JG
- 1YOX+5DS+Ks357Xcw3soyyMlR3QgmEuAVFKtqClcR1iTK0avuGru0Cm/8 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="446880345"
-X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; d="scan'208";a="446880345"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Oct 2023 12:46:17 -0700
+ bh=XAI6XUHzGUR6T3hoYCOgkrElvBMf6v9Un+Nt8fr5gPg=;
+ b=JcDoK5DFV+IU0aWM63kx2W1fWYb+kpQRRv4KtkY2eqk1MVremmyhzjyi
+ 5yfP3fSmXN9FlBMqbVhu9Yjay4T1d9d4yoR3RxXhMWEbR+rSiBPL76Etb
+ NI2u0cWLwlR/Qom3iJ1SCbYUSPMfJyBibj1VobcYVvth5Hh6jyu02GyiN
+ QP01txY7X2ECbpwBYB3CSkIeIpkg8AUwQa0OqHBvEWBhxEY4T99rJ/RON
+ lWiKw1p1Y4GJpNxbRH6tney3bpP7PMmLo3PoMVc9f2/TW0ayAEanDjuIZ
+ Lr7GC4amjbiZQRResnG9NIVizmX0uzSVp0RBmIhZQIOsaxdvKuZqMFMpc A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="362094464"
+X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; d="scan'208";a="362094464"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Oct 2023 13:03:28 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="780048869"
-X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; d="scan'208";a="780048869"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 02 Oct 2023 12:46:16 -0700
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="866589161"
+X-IronPort-AV: E=Sophos;i="6.03,194,1694761200"; d="scan'208";a="866589161"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 02 Oct 2023 13:03:28 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 2 Oct 2023 12:46:16 -0700
-Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.32; Mon, 2 Oct 2023 13:03:27 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 2 Oct 2023 12:46:16 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Mon, 2 Oct 2023 12:46:16 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.44) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Mon, 2 Oct 2023 13:03:27 -0700
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Mon, 2 Oct 2023 12:46:15 -0700
+ 15.1.2507.32; Mon, 2 Oct 2023 13:03:27 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eeyPcQ4KxMVtyZApKcIxrmPQEr6NFSCGSpwld8KZbhSkQEowk4yx1iNeuwgfO7JNGIqcvn6r3wCpOX1qnE+Isk/QT3Ek8PO72SGc1bT55EcOUIvvJ50SeayuYPIsVc5AhlPr21IO6NkHdDNIQJcFImRovnPzus/j6YPPsDuliibGDw3l3+BlFuPXpYyUafXlXLLmVOGhtDGyTMXWva/osho2kthv//OrKYT+k9yFM6/FjJyEf+2AgMIl5By0JBpouOvao2AHef7RyagHHqRSqohzmXT1f/Wr6LG30HmzqE88FggExDfj3Dg9/ZYs6gT5QYGQ/cm3HYT4fb/f+dVmtw==
+ b=MDYwl1o/v8n+c8j5+vuL2G8qnFeh1qqTL0TvueydaUbygy/TlzVbmGiMcDy1CfyukUC57Pwu5eTJ7U9Y0k0Oou4XGaA4Dfa2r1nvKzo/8Mdu2p5BM847Ka8+HvQJkQzvPh1Aaf9ubybXFmCRlxMCo5xm5pyxlAqilzRIsEUuIVc3O01J7kqvGNtkX09NoymC+i7/xuDufHMWb5QwLE8MKYQnffT6XGJGf0V6BzfbWc2+3uwdRUBj06mGP+vx2GHVu7iW3Jd0f6VEkEqWvbq2KPU+GaVHdQ5gaR2HrBEENXQQiwbsZG69tmMGtgUS0nS27OPOgYb9zXLnheyHsqhYSw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=51QLAO63XHhjeZVSzcbgXu/yR2t7UJojnzKkwXsclyo=;
- b=VDHFk0IgXjBOrreVTlglNDxY3An4veOkoGTprDyWWX1k90L7DH2j7kPyMHY3mA23P3sGPblKKLnheo/3h55iKKRjzf++0P37fP3fPDu1LqaKdqlrWzFcaBe+j+T+oydIA3C7Um4FoexSAbUd1jMMCss1QETHxPplmrScCBLJJ2HJOBsyhBHZ3mOmHKCe2MiDtlZuoLNwXd8x0Xwj15cM/nseXa/sKMeDkj21ogf0fnO/MjD/bM6gqYVd1MwhviR/H351M9N6rIEIXyXhEMDeaiGwcI9Jvk7mL114vCgo4R6K8Bev7wQTzbrFKpgDynAJGBG2GSO94inVJ/FtNSQdYg==
+ bh=QoQcvAhIFOTctPaLBVQfwipBQaGbq+s4Jgp57wcCYXE=;
+ b=LRp+t7RQs2MivJE86NcoCU7aIb6ZIMcoFTJ2441p9tcW8kMT2axdXFzUgNQbACDoH7LEAq1OLc7Fgsq0Dtt0gHw2hVG80xuJoCpIoplrWhx0Ok3KzybVIoeXHMmdd7DNP3kFM4/vthqaiXUzFiYLinuAj+xK4B3NDYJkWF0JFV1QM9xai2rfkV4+LXDQ5KWfsHH9C7bBnE7ShMFbYSdaTX4pfUeA2TwuLmGJXiMQonsLdKVnziSBL3cvqo/owywU5kK8ldS65IuIP7zsIb6pyIQyF6l0iPWW5Oyj/IHR02MWh6wA5W+laI8r6xa9THglY4QRQjO/Zpau2HkCCCd/Lw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DM4PR11MB5326.namprd11.prod.outlook.com (2603:10b6:5:391::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.28; Mon, 2 Oct
- 2023 19:46:14 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593%7]) with mapi id 15.20.6838.029; Mon, 2 Oct 2023
- 19:46:14 +0000
-Date: Mon, 2 Oct 2023 15:46:09 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Message-ID: <ZRseAWK0mm0qpfRl@intel.com>
-References: <20230929205023.1202735-1-rodrigo.vivi@intel.com>
- <871qedii91.fsf@intel.com> <ZRrsHSzer2hNO9Ua@intel.com>
- <87il7pgdvt.fsf@intel.com>
-Content-Type: text/plain; charset="us-ascii"
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
+ by PH7PR11MB7516.namprd11.prod.outlook.com (2603:10b6:510:275::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.25; Mon, 2 Oct
+ 2023 20:03:24 +0000
+Received: from CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::f345:2318:9a82:51b5]) by CY5PR11MB6139.namprd11.prod.outlook.com
+ ([fe80::f345:2318:9a82:51b5%6]) with mapi id 15.20.6838.030; Mon, 2 Oct 2023
+ 20:03:22 +0000
+Date: Mon, 2 Oct 2023 15:03:19 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <z5yeje3ue2lvbfdgrill2zh6kygpbawnk3j2jgfgegvyk2pgn2@hok5k33v32qs>
+References: <20230929050253.3153804-1-lucas.demarchi@intel.com>
+ <20230929050253.3153804-7-lucas.demarchi@intel.com>
+ <20230929204435.GO233750@mdroper-desk1.amr.corp.intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-In-Reply-To: <87il7pgdvt.fsf@intel.com>
+In-Reply-To: <20230929204435.GO233750@mdroper-desk1.amr.corp.intel.com>
 X-ClientProxiedBy: BYAPR07CA0049.namprd07.prod.outlook.com
- (2603:10b6:a03:60::26) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+ (2603:10b6:a03:60::26) To CY5PR11MB6139.namprd11.prod.outlook.com
+ (2603:10b6:930:29::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM4PR11MB5326:EE_
-X-MS-Office365-Filtering-Correlation-Id: f8d6e0d6-df0d-4ba9-af96-08dbc3803c5b
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|PH7PR11MB7516:EE_
+X-MS-Office365-Filtering-Correlation-Id: d971bc20-6b4b-409d-5c93-08dbc382a16a
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: vtTpk5Gf2zffKHzPviVHo0tmCORB9lKWuM0RR1nhoXtHQQqlQ5f3iBIQFR3MTW8nBzt86zbJBMK8lQyas1K3VbZ5L0Rj68VTDMiLaNDyqNP3sSBev3k4tAVK0BZ6EsedrEzmYLWreKNRyXURkCuGWSuZB/k78zPICQ9QqgHtImrwxqjQf/NJQMADyx0ijf+fPKimt/J1C7V1HrlgrKvOUVAhCltgPQylXcM/sp8roxcQ7DMu+YzY1r80FTcZPWqk8sRYYkOzjnoQ4ahSII5xpe4U3ySXJ1YS+CFBRsLfo98MjNqG3SQE5+DIi3FrJaFzChLVgRvkIhbVMaIUuijBRWrBIPIA0RX/hJo61T+OrU0rMTDWjXRrl1FzkkXimGcvqWhLykPYq32+6UKUzkZt0f+C95vQtBs+uIugdmvI1mezWHFoxPHTyQNZayfAkkxG+nCKBhG1f/QUwGzzxl3ORybymFPlx4RizCLvJ3LlNug5G4f+R0w2xfRRdF34mUuWpL6bbwc50a0mn/7IrErW0frw/O5gxl4NTLVyqwIHKbBFFsDQKc+NY66wkdcJuazL
+X-Microsoft-Antispam-Message-Info: NN2AJbzwbgBhmRm0J33SpvlJMGZxVjHDGYbV5PwXaFd+vRfxzg6zX35V3GrgNKCtPjvjo99WeE/szRVGOsNXirOWYzm/1aVqfrf4sq+xlD/T3IS7dMNcGHeqFO+KSsK3sQJxpirkC7pv6MJeIM6Tvc7hfdkzJbda4kHb+hZmtMacggOVeCk52TK+2kaJ4eaG9YzbSnrVdvLMvLtuLdfN9f64tcmcSL4RK7erNj7AcjQ2L1GdoT0T5i/lX379JzL0gRMAzm72yzuEpqn5bPfE5u+QkYbUhbrmmb7TIZYYGe1639xzcZZOBQFMFst70vAWd6Gl5SwQHpddYTQ7wnygPpc19JfCSQHGRyfPBeu5cgP4qphBidjjqFvHnOv9PufKhGyXvCn73fwlYL2ttBJN7DqhCAxenyJVSlJF2hcbw22MVt3tMlHa+wx7YZ3UhLp35AqM/D933zi7eLPtkpwfDFqnKZ0wwFm+2QgtEliPb3jiy9GO26GYhjKXEtkJMZSRit9scPL3towVpduYvYVi4MjrFoi5gRYmsM+XY3cGOY1E4qkDS84ksSTluieprQhh
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(346002)(136003)(396003)(366004)(376002)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(6512007)(6506007)(6666004)(83380400001)(86362001)(82960400001)(38100700002)(36756003)(26005)(2616005)(316002)(66946007)(6636002)(37006003)(41300700001)(66556008)(66476007)(2906002)(44832011)(5660300002)(450100002)(8936002)(8676002)(6486002)(478600001)(4326008)(6862004);
+ IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(396003)(136003)(39860400002)(346002)(376002)(366004)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(2906002)(6486002)(6506007)(478600001)(9686003)(83380400001)(6512007)(66476007)(26005)(41300700001)(66556008)(4326008)(8936002)(6862004)(6636002)(316002)(8676002)(5660300002)(66946007)(82960400001)(38100700002)(6666004)(86362001)(33716001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?qIo7/BihGIImBCB0jSXjRniPu9L/xEk2djxwJmkAedoV6j5RGqoFZKxf4GEr?=
- =?us-ascii?Q?rRGx60dw43mPKcjEME40HbwVOuaQ7Oo+9BuW+YVKLOU0S1+DjSLXqODBc3Q0?=
- =?us-ascii?Q?nJlKE1x1jcYJXE+6szyEHS8NG5RTPUCqWT4DSKD9PR4JUu3ZrPxkJTUq96d/?=
- =?us-ascii?Q?AfneJLzD4t+7gTj5WQ41Hep1ZTwpZ87P90U42cDJQeaC/6lvVwny2wWnQWc3?=
- =?us-ascii?Q?ldykynU6YWLlD4CJOSKHrkt/I1uaCSnC1yQZKjFZTjGokuaqWL/PTBoxL2ju?=
- =?us-ascii?Q?XBPkXo88awFtlmYvHvisEygLy6zHkLjlGzlsPMet1lOP8JgxyylRJpxT63/m?=
- =?us-ascii?Q?knJKfmYwZnByA64ByabJg+OQsx61LOjoTznm6lkV8KGh70eMCHDz9tU0TVbV?=
- =?us-ascii?Q?NczWn4JbGdXDR2VInKNIXDPq4Q0LQG2YkhX0wRw4pPRZ08vm796152slLKfc?=
- =?us-ascii?Q?Cs1po7d8Uv+p6eIFatovZvImXxNfszmygIX6MM8plNW2BC09jx7HsfSK7SyQ?=
- =?us-ascii?Q?FBw4kh97yVG7FMiLHypVsZ5XhMaVxPNXLF8oKBgY2qb/LsGvO+CWqK12Aw5y?=
- =?us-ascii?Q?CKQUaWqwTzlfUBVm7tly/1wmclxnEtjoK69gOJ3EcR9VSzG74682kPi/l1RQ?=
- =?us-ascii?Q?4dB2HFU3ET8APcxa6iIi47x67cDNHshrhauj4blxFFdr0VHUr8p2hW4efVVC?=
- =?us-ascii?Q?mCp9NrNsW5igRR6KTg2rDRXi/cmROOsYdHQCpu6k8SGaQhsn5v2IPaMEYt0f?=
- =?us-ascii?Q?61AvI/xJj2zTDgelAaIR+5wtR8CzwIdzJtDAiSYmx/BHeJ24OrUKSvh9x44r?=
- =?us-ascii?Q?RkOoLCvuM8pPMJApf5GYGclBGEL2IeuiNhhAMvhaGy1QiEomes6YVRnBLxuq?=
- =?us-ascii?Q?k0j/yOUfXLmc/ZQY3olb1z4u0SZC4eZe/jx9Byn2Y9A36UeqXcDwoy8rhGAW?=
- =?us-ascii?Q?bw+tcqBfZShG89JzzF8lAmk+De/E/ro9kypAFsXP8m6kHJX4iMIK0vhef1yA?=
- =?us-ascii?Q?htstGvOVCnhyfue7i5k5OlWmkw3FqnebhK1V7QKHPbWjPOiG8OJEaDnxoRa7?=
- =?us-ascii?Q?0CPXBqsJ/xgEN81JNTN1HIJiTeCTMKNxkd2Yk/6eNDkY4rzcBIdd0dtqzFD1?=
- =?us-ascii?Q?Rz7DqjV/2k6p2kwyQj7kNI3x7nNlX5uKBerXq65cbsz6Vk2+MyE78n+0oN9P?=
- =?us-ascii?Q?9Z/O2LHkt2rENCBZtpuHRSkQ9iAEkNnat8K5W2wtiGAoaZgMAFByjcLQjcu3?=
- =?us-ascii?Q?LafqdfniNsmOSzSq22KSBqIYoVI2i800gzcjSirKN1PdSeywoqvzgEEPq1yk?=
- =?us-ascii?Q?+7muHOhLuZea5LWowg7SCtHG2f/t9NpZdmeFvMcYkhwDyF1rHdnA54DXQHiS?=
- =?us-ascii?Q?tDd0FJfaK/CVZVA1gUCpHAn9mMQWf0Hcj4zBH5TG5K23+z4PcvUIUuMCk0af?=
- =?us-ascii?Q?Nu46M3HFlHq7yD0a/qD8kXvNBUxyyKh4LGG6bsdo0bM984oyLXBHYJt2A06h?=
- =?us-ascii?Q?EapTko3bSvmDxBMI7/2fQoErVCRPXJ16zUPWhGg46bPWYmh/Gu3xOz4ykC/z?=
- =?us-ascii?Q?oy4RhyDcf13v/Gitx2+NyUjGHrLNjSac5SYHNj1J?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8d6e0d6-df0d-4ba9-af96-08dbc3803c5b
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?e8sjvi5nRf6mYMUtBSwobXSQkfGWdUQb1ttfBfICfRPy3tnjZTsTtbZRwwN1?=
+ =?us-ascii?Q?0L6Uk7IqMho0m38AO2+BqYTt6ex9s6ua2nJxtLP0cgTWZecJAww+XhvUCxS1?=
+ =?us-ascii?Q?MQB0QyMSCB33sUafWm1FmvDzGkEWfPXStnBUAblxkFVsTv+8VRnVSlaq6X+E?=
+ =?us-ascii?Q?3lAZHychwRRyA0HnOpkCGO839FiwMdNLm53eLg2soQkkQwwuaHbgOtQ5o/VC?=
+ =?us-ascii?Q?Ezda01mgjQcVBZgUEmdBmaAaMuRD9Yk3Vx+g8qp4C5FTNlL+j5QypcazJzJn?=
+ =?us-ascii?Q?QFKu4QFDNPsvrzZSqKHlNuH2AgzHi936MMGq1GhnazUCIoaoHZFlOKhzIYfW?=
+ =?us-ascii?Q?v5g1jsF7S230jwGOg4kJw9Ag1Cbc8pAWEk/AsqvLR/vuoE/PdvOSuNkTbgcv?=
+ =?us-ascii?Q?a7pLXJmIUGF6aci2L1XVg8cNuQZURvrPeYHqr5O0lqOP0AE0V239aTmm+Uhd?=
+ =?us-ascii?Q?jqXmZioRfweVr+Z1FGoYagEQ8Z6CDJL3t9rE9+gbd4WvdFEJT4O0WVDeapGw?=
+ =?us-ascii?Q?mpN4IEcTPse12Ya8iNV8spd/U94Ay4K2dZlveN8Ktnv+xZyRz2o8bjU6/MyR?=
+ =?us-ascii?Q?9gXj9lrmnX74SLhMF7QIDWN/S0FBU7pqkFWQseYII99mxwWUqedm5qq/hbUI?=
+ =?us-ascii?Q?tDZZMFe+Nm39CdJaMTH6qSy9LtY2jM7Fq2stHJogasGea4i/+7sV5YvsdXvf?=
+ =?us-ascii?Q?TfaArALArkgTk9CoFuRJYDahJELYK3853MLO2JlHuZOcsIyoTwbQQSTeeDNI?=
+ =?us-ascii?Q?LJlgLflq9VdHezy+1Rfaz9t7T/+des1j7A+DyLBtuwfb5UakhEpJFzYtSYy2?=
+ =?us-ascii?Q?Jpat99Hun97rfVbaYd7zEIRIq3BkXzZdU+FkaJnEh5PQFFdK5qISfP1/+ysA?=
+ =?us-ascii?Q?5lmL9HGpgypoVAgcuJJ/VRJJZDX+4WeUn97nAQWZa9f2lT+X4Rey6iBTr09H?=
+ =?us-ascii?Q?3WwMMuDRB4w4zXE5doUDiDqS9olIS0MEJxZT14zOHs6BKXcclz9UP0iJegGw?=
+ =?us-ascii?Q?Kjje6mSsYI8ZWFkHrRTQcjETrmDblzSMY+7HGmKHLNR69F4dYKxOHH5BaA4x?=
+ =?us-ascii?Q?cy+kFG0501OpZRO5efDQl41e28oqHvxka60hgpxWJsEHeBD3f3D70sl9nmDP?=
+ =?us-ascii?Q?pXOq/vKWP7Sn3sa8vEQiGAAHOU5RTwfEI3+dRqfPJGRq5n+FwcpHLvKOgKMp?=
+ =?us-ascii?Q?lReCY2ZbHhaCwgDwXF+xOCHn/wRtSCF+d8e9VRP9CxSTHC9OMpJUTY8Ea6LP?=
+ =?us-ascii?Q?WkAwbhBVjxpQcNp9V5i3st5GBis0SQqYyi6D5Q6b469GRRbLRlWSy7Z4Ov7G?=
+ =?us-ascii?Q?cJrcBckB4gk6y6q1ogww2236qSLpAW7/do/rQcYE9jFaNMB+VhZtKXazLGb7?=
+ =?us-ascii?Q?KMnT1+VvOfGcgtmRUX6zNFIHB0GGUJO6aZqKSYzO7aotKJkPHlDAMJeFc0n3?=
+ =?us-ascii?Q?Kgw00+IK6No4UBL0m5GNlRI8NFcHUPHp0BNI0nriZpKY0WbrTsAZoer0emG0?=
+ =?us-ascii?Q?nzj22kCN3p6sCQ2aLjepMpxbZfzngaKiMDaE8Y2sVTMjUg0jFvTGsjL9FgUk?=
+ =?us-ascii?Q?W2ntHuioUp8aC3oyDVZDUj+r3ZfKFoIDlUziCv70lNDVjtg7Oxh0ztLw0Pei?=
+ =?us-ascii?Q?6g=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: d971bc20-6b4b-409d-5c93-08dbc382a16a
+X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2023 19:46:14.2464 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2023 20:03:22.6881 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: OGVlso92v7Rf/cwMfDPkmRp6w/HtprqMgl8n74Cdzh+oroPIdLPSKhXnchdgL5sRV2dZaUtsBs4X1wPQMfxq+g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5326
+X-MS-Exchange-CrossTenant-UserPrincipalName: 08njHHwPwde9mIkTokBI0qtlIIB2rWQwk6MzS1dO7NkQBPcweU2qqenj4KFRn1SlbpYieJ97nBTv/3BkqSxG23nQAlwnMk5KcAax/JcOcQg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7516
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/i915: Abstract display info away during
- probe
+Subject: Re: [Intel-xe] [PATCH 6/7] drm/xe/pat: Add debugfs node to dump PAT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,101 +144,276 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 02, 2023 at 07:58:30PM +0300, Jani Nikula wrote:
-> On Mon, 02 Oct 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> > On Mon, Oct 02, 2023 at 10:41:14AM +0300, Jani Nikula wrote:
-> >> On Fri, 29 Sep 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> >> > The goal is to have this function ready for Xe to use
-> >> > directly. So, let's use the available macro.
-> >> 
-> >> Seesm wrong to use DISPLAY_INFO() as an lvalue
-> >
-> > to be really honestly I don't like that either.
-> > I barely like macros, specially used like this.
-> >
-> >> and I'm not sure why
-> >> this wouldn't work as-is.
-> >
-> > I should probably had collected some logs and added to the
-> > commit message. But the thing was that without this assignment,
-> > (xe)->info.display was NULL and the memcpy below was exploding
-> > with NULL dereference.
-> 
-> Aww crap. That's because both DISPLAY_INFO() and DISPLAY_RUNTIME_INFO()
-> in xe are completely bogus.
-> 
-> They should be
-> 
-> #define DISPLAY_INFO(i915)	((i915)->display.info.__device_info)
-> #define DISPLAY_RUNTIME_INFO(i915)	(&(i915)->display.info.__runtime_info)
-> 
-> instead of
-> 
-> #define DISPLAY_INFO(xe)		((xe)->info.display)
-> #define DISPLAY_RUNTIME_INFO(xe)	(&(xe)->info.display_runtime)
-> 
-> and these should be removed from struct xe_device info member:
-> 
-> 		const struct intel_display_device_info *display;
-> 		struct intel_display_runtime_info display_runtime;
+On Fri, Sep 29, 2023 at 01:44:35PM -0700, Matt Roper wrote:
+>On Thu, Sep 28, 2023 at 10:02:52PM -0700, Lucas De Marchi wrote:
+>> This is useful to debug cache issues, to double check if the PAT
+>> indexes match what they were supposed to be set to from spec.
+>>
+>> Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+>> ---
+>>  drivers/gpu/drm/xe/xe_gt_debugfs.c | 12 ++++
+>>  drivers/gpu/drm/xe/xe_pat.c        | 96 ++++++++++++++++++++++++++++++
+>>  drivers/gpu/drm/xe/xe_pat.h        |  8 +++
+>>  3 files changed, 116 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> index ec1ae00f6bfc..cd6d28c7b923 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> +++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
+>> @@ -16,6 +16,7 @@
+>>  #include "xe_gt_topology.h"
+>>  #include "xe_hw_engine.h"
+>>  #include "xe_macros.h"
+>> +#include "xe_pat.h"
+>>  #include "xe_reg_sr.h"
+>>  #include "xe_reg_whitelist.h"
+>>  #include "xe_uc_debugfs.h"
+>> @@ -138,6 +139,16 @@ static int workarounds(struct seq_file *m, void *data)
+>>  	return 0;
+>>  }
+>>
+>> +static int pat(struct seq_file *m, void *data)
+>> +{
+>> +	struct xe_gt *gt = node_to_gt(m->private);
+>> +	struct drm_printer p = drm_seq_file_printer(m);
+>> +
+>> +	xe_pat_dump(gt, &p);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>  static const struct drm_info_list debugfs_list[] = {
+>>  	{"hw_engines", hw_engines, 0},
+>>  	{"force_reset", force_reset, 0},
+>> @@ -147,6 +158,7 @@ static const struct drm_info_list debugfs_list[] = {
+>>  	{"ggtt", ggtt, 0},
+>>  	{"register-save-restore", register_save_restore, 0},
+>>  	{"workarounds", workarounds, 0},
+>> +	{"pat", pat, 0},
+>>  };
+>>
+>>  void xe_gt_debugfs_register(struct xe_gt *gt)
+>> diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+>> index 296763594370..20714888a5fa 100644
+>> --- a/drivers/gpu/drm/xe/xe_pat.c
+>> +++ b/drivers/gpu/drm/xe/xe_pat.c
+>> @@ -6,6 +6,8 @@
+>>  #include "xe_pat.h"
+>>
+>>  #include "regs/xe_reg_defs.h"
+>> +#include "xe_assert.h"
+>> +#include "xe_device.h"
+>>  #include "xe_gt.h"
+>>  #include "xe_gt_mcr.h"
+>>  #include "xe_mmio.h"
+>> @@ -14,6 +16,7 @@
+>>  #define _PAT_INDEX(index)			_PICK_EVEN_2RANGES(index, 8, \
+>>  								   0x4800, 0x4804, \
+>>  								   0x4848, 0x484c)
+>> +#define _PAT_PTA				0x4820
+>>
+>>  #define XE2_NO_PROMOTE				REG_BIT(10)
+>>  #define XE2_COMP_EN				REG_BIT(9)
+>> @@ -43,6 +46,7 @@
+>>  struct xe_pat_ops {
+>>  	void (*program_graphics)(struct xe_gt *gt, const u32 table[], int n_entries);
+>>  	void (*program_media)(struct xe_gt *gt, const u32 table[], int n_entries);
+>> +	void (*dump)(struct xe_gt *gt, struct drm_printer *p);
+>>  };
+>>
+>>  static const u32 xelp_pat_table[] = {
+>> @@ -151,12 +155,38 @@ static void program_pat_mcr(struct xe_gt *gt, const u32 table[], int n_entries)
+>>  	}
+>>  }
+>>
+>> +void xelp_dump(struct xe_gt *gt, struct drm_printer *p)
+>> +{
+>> +	struct xe_device *xe = gt_to_xe(gt);
+>> +	int i, err;
+>> +
+>> +	xe_device_mem_access_get(xe);
+>> +	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+>> +	if (err)
+>> +		goto err_fw;
+>> +
+>> +	drm_printf(p, "PAT table:\n");
+>> +
+>> +	for (i = 0; i < xe->pat.n_entries; i++) {
+>> +		u32 pat = xe_mmio_read32(gt, XE_REG(_PAT_INDEX(i)));
+>> +
+>> +		drm_printf(p, "PAT[%2d] = %#8x\n", i, pat);
+>> +	}
+>> +
+>> +	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+>> +err_fw:
+>> +	xe_assert(xe, !err);
+>> +	xe_device_mem_access_put(xe);
+>> +}
+>> +
+>>  static const struct xe_pat_ops xelp_pat_ops = {
+>>  	.program_graphics = program_pat,
+>> +	.dump = xelp_dump,
+>>  };
+>>
+>>  static const struct xe_pat_ops xehp_pat_ops = {
+>>  	.program_graphics = program_pat_mcr,
+>> +	.dump = xelp_dump,
+>
+>If we use the unicast xelp dumper, some of our reads might happen while
+>another thread is steering us to a group/instance that corresponds to a
+>fused-off mslice, resulting in 0's instead of the correct values.  We
+>probably need an xehp-specific variant that does MCR reads.
 
-but in this case we would need the macros in Xe to resolve the access
-to these items anyway right?!
+ugh... I added the additional dump function while coding this, but
+decided to remove since I thought it was the media gt that did the MCR
+read. Since we don't have a separate media GT in PVC and DG2 then we
+wouldn't need the check. I will add that back
 
-or how should we handle cases like  'if (xe->info.display_runtime.pipe_mask)' ?
+>
+>It might also be nice to have an xehpc-specific dumping function that
+>does field-based printout ( CLOS, MEM_TYPE ).
+
+ok
+
+>>  };
+>>
+>>  /*
+>> @@ -166,6 +196,7 @@ static const struct xe_pat_ops xehp_pat_ops = {
+>>  static const struct xe_pat_ops xelpg_pat_ops = {
+>>  	.program_graphics = program_pat,
+>>  	.program_media = program_pat_mcr,
+>> +	.dump = xelp_dump,
+>
+>Xe_LPG / Xe_LPM+ need to choose MCR vs non-MCR based on GT type as
+>you've done with Xe2 below.  It would also be nice to have field-based
+>dump output that presents ( L4_POLICY, COH_MODE ) separately.
 
 
+ok
 
-> 
-> BR,
-> Jani.
-> 
-> 
-> >
-> >> 
-> >> But *shrug*.
-> >> 
-> >> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> >
-> > thanks, pushed as is.
-> >
-> >> 
-> >> for merging to i915. (xe should come as a backport with cherry-pick -x.)
-> >
-> > and sent the proper backported cherry-pick to intel-xe ml.
-> >
-> >> 
-> >> BR,
-> >> Jani
-> >> 
-> >> 
-> >> >
-> >> > Cc: Jani Nikula <jani.nikula@intel.com>
-> >> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> >> > ---
-> >> >  drivers/gpu/drm/i915/display/intel_display_device.c | 2 +-
-> >> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >> >
-> >> > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-> >> > index a6a18eae7ae8..ce55b968e658 100644
-> >> > --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> >> > +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> >> > @@ -926,7 +926,7 @@ void intel_display_device_probe(struct drm_i915_private *i915)
-> >> >  	else
-> >> >  		info = probe_display(i915);
-> >> >  
-> >> > -	i915->display.info.__device_info = info;
-> >> > +	DISPLAY_INFO(i915) = info;
-> >> >  
-> >> >  	memcpy(DISPLAY_RUNTIME_INFO(i915),
-> >> >  	       &DISPLAY_INFO(i915)->__runtime_defaults,
-> >> 
-> >> -- 
-> >> Jani Nikula, Intel
-> 
-> -- 
-> Jani Nikula, Intel
+thanks
+Lucas De Marchi
+
+>
+>
+>Matt
+>
+>>  };
+>>
+>>  static void xe2lpg_program_pat(struct xe_gt *gt, const u32 table[], int n_entries)
+>> @@ -180,9 +211,64 @@ static void xe2lpm_program_pat(struct xe_gt *gt, const u32 table[], int n_entrie
+>>  	xe_mmio_write32(gt, XE_REG(_PAT_ATS), XE2_PAT_ATS);
+>>  }
+>>
+>> +void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+>> +{
+>> +	struct xe_device *xe = gt_to_xe(gt);
+>> +	int i, err;
+>> +	u32 pat;
+>> +
+>> +	xe_device_mem_access_get(xe);
+>> +	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+>> +	if (err)
+>> +		goto err_fw;
+>> +
+>> +	drm_printf(p, "PAT table:\n");
+>> +
+>> +	for (i = 0; i < xe->pat.n_entries; i++) {
+>> +		if (xe_gt_is_media_type(gt))
+>> +			pat = xe_mmio_read32(gt, XE_REG(_PAT_INDEX(i)));
+>> +		else
+>> +			pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_INDEX(i)));
+>> +
+>> +		drm_printf(p, "PAT[%2d] = [ %u, %u, %u, %u, %u, %u ]  (%#8x)\n", i,
+>> +			   !!(pat & XE2_NO_PROMOTE),
+>> +			   !!(pat & XE2_COMP_EN),
+>> +			   REG_FIELD_GET(XE2_L3_CLOS, pat),
+>> +			   REG_FIELD_GET(XE2_L3_POLICY, pat),
+>> +			   REG_FIELD_GET(XE2_L4_POLICY, pat),
+>> +			   REG_FIELD_GET(XE2_COH_MODE, pat),
+>> +			   pat);
+>> +	}
+>> +
+>> +	/*
+>> +	 * Also print PTA_MODE, which describes how the hardware accesses
+>> +	 * PPGTT entries.
+>> +	 */
+>> +	if (xe_gt_is_media_type(gt))
+>> +		pat = xe_mmio_read32(gt, XE_REG(_PAT_PTA));
+>> +	else
+>> +		pat = xe_gt_mcr_unicast_read_any(gt, XE_REG_MCR(_PAT_PTA));
+>> +
+>> +	drm_printf(p, "Page Table Access:\n");
+>> +	drm_printf(p, "PTA_MODE= [ %u, %u, %u, %u, %u, %u ]  (%#8x)\n",
+>> +		   !!(pat & XE2_NO_PROMOTE),
+>> +		   !!(pat & XE2_COMP_EN),
+>> +		   REG_FIELD_GET(XE2_L3_CLOS, pat),
+>> +		   REG_FIELD_GET(XE2_L3_POLICY, pat),
+>> +		   REG_FIELD_GET(XE2_L4_POLICY, pat),
+>> +		   REG_FIELD_GET(XE2_COH_MODE, pat),
+>> +		   pat);
+>> +
+>> +	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+>> +err_fw:
+>> +	xe_assert(xe, !err);
+>> +	xe_device_mem_access_put(xe);
+>> +}
+>> +
+>>  static const struct xe_pat_ops xe2_pat_ops = {
+>>  	.program_graphics = xe2lpg_program_pat,
+>>  	.program_media = xe2lpm_program_pat,
+>> +	.dump = xe2_dump,
+>>  };
+>>
+>>  void xe_pat_init_early(struct xe_device *xe)
+>> @@ -252,3 +338,13 @@ void xe_pat_init(struct xe_gt *gt)
+>>  	else
+>>  		xe->pat.ops->program_graphics(gt, xe->pat.table, xe->pat.n_entries);
+>>  }
+>> +
+>> +void xe_pat_dump(struct xe_gt *gt, struct drm_printer *p)
+>> +{
+>> +	struct xe_device *xe = gt_to_xe(gt);
+>> +
+>> +	if (!xe->pat.ops->dump)
+>> +		return;
+>> +
+>> +	xe->pat.ops->dump(gt, p);
+>> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+>> index 168e80e63809..09c491ab9f15 100644
+>> --- a/drivers/gpu/drm/xe/xe_pat.h
+>> +++ b/drivers/gpu/drm/xe/xe_pat.h
+>> @@ -6,6 +6,7 @@
+>>  #ifndef _XE_PAT_H_
+>>  #define _XE_PAT_H_
+>>
+>> +struct drm_printer;
+>>  struct xe_gt;
+>>  struct xe_device;
+>>
+>> @@ -21,4 +22,11 @@ void xe_pat_init_early(struct xe_device *xe);
+>>   */
+>>  void xe_pat_init(struct xe_gt *gt);
+>>
+>> +/**
+>> + * xe_pat_dump - Dump PAT table
+>> + * @gt: GT structure
+>> + * @p: Printer to dump info to
+>> + */
+>> +void xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
+>> +
+>>  #endif
+>> --
+>> 2.40.1
+>>
+>
+>-- 
+>Matt Roper
+>Graphics Software Engineer
+>Linux GPU Platform Enablement
+>Intel Corporation
