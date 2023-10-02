@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14C8CE7849A
-	for <intel-xe@archiver.kernel.org>; Mon,  2 Oct 2023 11:48:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6E631E784A4
+	for <intel-xe@archiver.kernel.org>; Mon,  2 Oct 2023 11:48:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5A2410E28F;
-	Mon,  2 Oct 2023 11:48:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0989210E290;
+	Mon,  2 Oct 2023 11:48:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B4CFB10E28F;
- Mon,  2 Oct 2023 11:48:07 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3B15D10E294;
+ Mon,  2 Oct 2023 11:48:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 44DB5AADD1;
- Mon,  2 Oct 2023 11:48:07 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2BF53AADD1;
+ Mon,  2 Oct 2023 11:48:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Mon, 02 Oct 2023 11:48:07 -0000
-Message-ID: <169624728725.3207.4106572656555234004@emeril.freedesktop.org>
+Date: Mon, 02 Oct 2023 11:48:19 -0000
+Message-ID: <169624729917.3206.846570225474889404@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231002092402.1826859-1-jani.nikula@intel.com>
 In-Reply-To: <20231002092402.1826859-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Revert_=22drm/i915=3A_define_I915_during_i915_driver_build?=
- =?utf-8?b?IiAocmV2Mik=?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Re?=
+ =?utf-8?q?vert_=22drm/i915=3A_define_I915_during_i915_driver_build=22_=28?=
+ =?utf-8?q?rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,13 +49,43 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Revert "drm/i915: define I915 during i915 driver build" (rev2)
 URL   : https://patchwork.freedesktop.org/series/124513/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 13da205da drm/i915/display: Include i915_active header in frontbuffer tracking code
-=== git am output follows ===
-Applying: Revert "drm/i915: define I915 during i915 driver build"
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit cb0d9c3c168deecc99698f2ca1416c53b98c07f8
+Author: Jani Nikula <jani.nikula@intel.com>
+Date:   Mon Oct 2 12:24:02 2023 +0300
+
+    Revert "drm/i915: define I915 during i915 driver build"
+    
+    This reverts commit 12b98dd1eb4f2ec852dce19a01a76bf43a39bbee.
+    
+    We already have commit a4ba1ea69f6b ("drm/i915: define I915 during i915
+    driver build") in the baseline. It defines I915 at a slightly different
+    place from this, so there was no conflict. This can be dropped.
+    
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Signed-off-by: Jani Nikula <jani.nikula@intel.com>
++ /mt/dim checkpatch 13da205daec6272347232c2c523fe8cde8b67e35 drm-intel
+cb0d9c3c1 Revert "drm/i915: define I915 during i915 driver build"
+-:6: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '12b98dd1eb4f2ec852dce19a01a76bf43a39bbee', maybe rebased or not pulled?
+#6: 
+This reverts commit 12b98dd1eb4f2ec852dce19a01a76bf43a39bbee.
+
+-:8: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id 'a4ba1ea69f6b', maybe rebased or not pulled?
+#8: 
+We already have commit a4ba1ea69f6b ("drm/i915: define I915 during i915
+
+total: 0 errors, 2 warnings, 0 checks, 8 lines checked
 
 
