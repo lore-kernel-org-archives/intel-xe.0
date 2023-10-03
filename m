@@ -4,30 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0A40E75455
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 13:05:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 990D7E75455
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 13:15:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF7E810E04E;
-	Tue,  3 Oct 2023 13:05:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0A2AF10E04E;
- Tue,  3 Oct 2023 13:05:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E1487AADE8;
- Tue,  3 Oct 2023 13:05:40 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0408686073675002104=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58C9F10E04E;
+	Tue,  3 Oct 2023 13:15:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE8010E04E
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 13:15:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1696338948; x=1727874948;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=sBzFgdwprSO4lsdLUF/rcMmu0fVZH9qFlaRl1TJkaXc=;
+ b=WnZYZNAwlbdo2oaidk8RDn1YQ2OWSleVjBCZEJM2Sxlg69+/I9D2R1AQ
+ 9aPj+h/LkOrSy8PbQ5T4YpWsGmnSfOCTeTTe5nuzcWdWbQReoJ5oy44A7
+ J2T4yNEbDlh0kJ0Ze9UQ33D+vEte5KpWfLQW21NSy+e8+C5KYtT9wfDvd
+ GnaC0zxcNY+YVBsgVW+jNdFgpeqMXQrEk0NtXBTR2C9bx/ZhC8nmTo4+o
+ EtrXsMb3WvIVKNwLJzJl9W4gnGqGTzCC8dmxvw8iPm5J6Gcht033Gt6qa
+ dYdy6K9Rc4ZN4Rs+av34WNefYGi5dGVtPJxCh0u9q6pkzpw8El/Mtysr7 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="385693332"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="385693332"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2023 06:15:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="744503843"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="744503843"
+Received: from akorotox-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.55.199])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2023 06:15:45 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-xe@lists.freedesktop.org
+In-Reply-To: <20231003085839.2008415-1-jani.nikula@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231003085839.2008415-1-jani.nikula@intel.com>
+Date: Tue, 03 Oct 2023 16:15:43 +0300
+Message-ID: <87ttr7g83k.fsf@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: maarten.lankhorst@linux.intel.com
-Date: Tue, 03 Oct 2023 13:05:40 -0000
-Message-ID: <169633834087.4380.15432074416402200689@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231003120033.3505-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20231003120033.3505-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Update_so?=
- =?utf-8?q?und_patches_to_upstreamable_versions=2E?=
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 1/3] fixup! drm/xe/display: Implement display
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,130 +58,121 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0408686073675002104==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 03 Oct 2023, Jani Nikula <jani.nikula@intel.com> wrote:
+> We have an abstraction for "has display", and it's
+> HAS_DISPLAY(). Unfortunately, it requires access to
+> DISPLAY_RUNTIME_INFO(), so include compat-i915-headers/i915_drv.h too,
+> although it's a bit meh.
+>
+> Looking at this makes me think there's a bunch of confusion in:
+>
+> - the pipe_mask or now HAS_DISPLAY() checks
+> - the global enable_display checks
+> - the xe->info.enable_display checks
+> - redefinition of INTEL_DISPLAY_ENABLED()
+>
+> I really don't understand this, but it all looks very suspicious. This
+> change leaves all that in place, unmodified.
 
-== Series Details ==
+To elaborate, this statement in xe_pci.c conflates three different
+concepts into one, and it just does not work like this:
 
-Series: Update sound patches to upstreamable versions.
-URL   : https://patchwork.freedesktop.org/series/124557/
-State : success
+	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
+				  enable_display &&
+				  desc->has_display;
 
-== Summary ==
+CONFIG_DRM_XE_DISPLAY describes whether display support has been built
+into the driver. CONFIG_DRM_XE_DISPLAY=n is fine if there is no display
+hardware. Otherwise, the display hardware will be left in whatever state
+the BIOS/GOP left it, e.g. consuming a bunch of power which is not
+desirable. (Even with CONFIG_DRM_XE_DISPLAY=n we might want to include
+enough display code to probe and warn about this scenario.)
 
-CI Bug Log - changes from xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489_BAT -> xe-pw-124557v1_BAT
-====================================================
+enable_display is a module parameter apparently intended to disable
+display dynamically. Similar to the above, if CONFIG_DRM_XE_DISPLAY=y
+but enable_display==false, the display hardware will be left in whatever
+state the BIOS/GOP left it. In i915, the module parameter is
+i915.disable_display, and it does run a bunch of display code to take
+over the hardware, put it to sleep, and keep all connectors
+disconnected. If you have display hardware, this is the sensible thing
+to do.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-124557v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124557v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+desc->has_display means that we've probed the hardware and found it's
+not there, and we shouldn't touch it.
 
 
-Build changes
--------------
-
-  * IGT: IGT_7508 -> IGT_7509
-  * Linux: xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489 -> xe-pw-124557v1
-
-  IGT_7508: f366406b05ca6b3d16eaa734a91e0833bd159f54 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7509: 707af1d9927a72a106997f25d734f00d7685a4f0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489: 02ab43e36623665d8644d46162bd4ec5eeb68489
-  xe-pw-124557v1: 124557v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124557v1/index.html
-
---===============0408686073675002104==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_display.c | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+> index 07898e0e175e..c783573585d7 100644
+> --- a/drivers/gpu/drm/xe/xe_display.c
+> +++ b/drivers/gpu/drm/xe/xe_display.c
+> @@ -15,6 +15,7 @@
+>  #include <drm/xe_drm.h>
+>  
+>  #include "soc/intel_dram.h"
+> +#include "i915_drv.h"
+>  #include "intel_acpi.h"
+>  #include "intel_audio.h"
+>  #include "intel_bw.h"
+> @@ -316,7 +317,7 @@ static void intel_suspend_encoders(struct xe_device *xe)
+>  	struct drm_device *dev = &xe->drm;
+>  	struct intel_encoder *encoder;
+>  
+> -	if (xe->info.display_runtime.pipe_mask)
+> +	if (HAS_DISPLAY(xe))
+>  		return;
+>  
+>  	drm_modeset_lock_all(dev);
+> @@ -346,7 +347,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
+>  	 * properly.
+>  	 */
+>  	intel_power_domains_disable(xe);
+> -	if (xe->info.display_runtime.pipe_mask)
+> +	if (HAS_DISPLAY(xe))
+>  		drm_kms_helper_poll_disable(&xe->drm);
+>  
+>  	intel_display_driver_suspend(xe);
+> @@ -392,7 +393,7 @@ void xe_display_pm_resume(struct xe_device *xe)
+>  
+>  	intel_dmc_resume(xe);
+>  
+> -	if (xe->info.display_runtime.pipe_mask)
+> +	if (HAS_DISPLAY(xe))
+>  		drm_mode_config_reset(&xe->drm);
+>  
+>  	intel_display_driver_init_hw(xe);
+> @@ -403,7 +404,7 @@ void xe_display_pm_resume(struct xe_device *xe)
+>  	intel_display_driver_resume(xe);
+>  
+>  	intel_hpd_poll_disable(xe);
+> -	if (xe->info.display_runtime.pipe_mask)
+> +	if (HAS_DISPLAY(xe))
+>  		drm_kms_helper_poll_enable(&xe->drm);
+>  
+>  	intel_opregion_resume(xe);
+> @@ -424,7 +425,7 @@ void xe_display_probe(struct xe_device *xe)
+>  
+>  	intel_display_device_probe(xe);
+>  
+> -	if (xe->info.display_runtime.pipe_mask)
+> +	if (HAS_DISPLAY(xe))
+>  		return;
+>  
+>  no_display:
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Update sound patches to upstreamable versions.</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124557/">https://patchwork.freedesktop.org/series/124557/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124557v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124557v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489_BAT -&gt; xe-pw-124557v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-124557v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124557v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7508 -&gt; IGT_7509</li>
-<li>Linux: xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489 -&gt; xe-pw-124557v1</li>
-</ul>
-<p>IGT_7508: f366406b05ca6b3d16eaa734a91e0833bd159f54 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7509: 707af1d9927a72a106997f25d734f00d7685a4f0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489: 02ab43e36623665d8644d46162bd4ec5eeb68489<br />
-  xe-pw-124557v1: 124557v1</p>
-
-</body>
-</html>
-
---===============0408686073675002104==--
+-- 
+Jani Nikula, Intel
