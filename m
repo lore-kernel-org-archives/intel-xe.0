@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5FFF5E8FDBE
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 22:21:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 07953E8FDBC
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 22:21:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A27610E0AE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B934510E320;
 	Tue,  3 Oct 2023 22:21:58 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C84B10E0A8
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 22:21:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 905A510E0A8
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 22:21:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696371716; x=1727907716;
+ t=1696371715; x=1727907715;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=lVTFxbmibDHJunjapUKRqXlbAklL+xn5N3F1pIfoffQ=;
- b=P4M+/nImTyWF02yNsmD8b16nQsif0u+aIIWIReb4Mel9Z5f291Hc9VJ2
- g9HKmd9c22Rp+ygx5yq4RWOFvbO4owJF7aXWP42fxkxMuzpwvQnuqf/tc
- oTbZNtrCmF9uEAneZYzueCDskrpf+QsEZrjqMAWwa2QE+ACJTMNoTLYdo
- zN7x49chLKmh+zJuie3C4c5Y9Y6WuGk64lI41p2lotIEt/i+S+r/Whonj
- ymRiPlPX1UF1S6YOeHqnt417/Ska7eg+uBX5j441nTIOWNqVGsN5B6OaN
- cptQdFM4K0CbaoxwOG+hk7HZCMC0CWMbuOJDQx5/5PFmGlu+52jQZYf9H w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="380270378"
-X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="380270378"
+ bh=ZPOe65V9wZ/jHkhgrkuVKvylvBoyYs0NR3wMfl4RC+Y=;
+ b=NdF7R9H/5kHGZvKMZFkQbD3Bt/RaGK/0DSJDldxLVsyg66kKOhWeUE8f
+ FLJZQzeteE56DXt6GNYyB9ekZ8dA4C+JA+6p8YXCLYNlA/54K1TQvGIPH
+ 5xe9pTbcslESYFfpvJ2E6zgbAxq44npgL+vWI22REZAmtQkPP/9s2bA4w
+ jhNb/O4uSmHkfwVaotIeTMsZ57U5Ja9gE6TI335FqdizYuaVcPaIYng8W
+ QqMmjjSTOXDzS4xsR3tXx4aoVHG4EfP0zwWaBQ5ODbupEQvBbP+Pa4N52
+ EQQGQCAU+Fiva4zB6yhzrQG98fVoX1GyUbM2BVdIPCM0MgiOTgmDkc6zF g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="380270375"
+X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="380270375"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 15:21:56 -0700
+ 03 Oct 2023 15:21:55 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="894667586"
-X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="894667586"
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="894667583"
+X-IronPort-AV: E=Sophos;i="6.03,198,1694761200"; d="scan'208";a="894667583"
 Received: from awvttsim-04.aw.intel.com (HELO awvttsim-04.ph.intel.com)
  ([10.228.212.165])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 15:20:30 -0700
+ 03 Oct 2023 15:20:29 -0700
 From: David Kershner <david.kershner@intel.com>
 To: david.kershner@intel.com, intel-xe@lists.freedesktop.org,
  michael.j.ruhl@intel.com, john.fleck@intel.com, matthew.d.roper@intel.com,
  matthew.brost@intel.com, stuart.summers@intel.com,
  niranjana.vishwanathapura@intel.com
-Date: Tue,  3 Oct 2023 18:21:45 -0400
-Message-Id: <20231003222145.4090918-3-david.kershner@intel.com>
+Date: Tue,  3 Oct 2023 18:21:44 -0400
+Message-Id: <20231003222145.4090918-2-david.kershner@intel.com>
 X-Mailer: git-send-email 2.35.1
 In-Reply-To: <20231003222145.4090918-1-david.kershner@intel.com>
 References: <20231003222145.4090918-1-david.kershner@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 2/2] drm/xe/xe_hwmon.c: Add static to
- xe_hwmon_process_reg_read64
+Subject: [Intel-xe] [PATCH v3 1/2] drm/xe/xe_migrate.c: Use DPA offset for
+ page table entries.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,29 +64,168 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add static to xe_hwmon_process_reg_read64 to avoid compile warning:
+Device Physical Address (DPA) is the starting offset device memory.
 
-    ../drivers/gpu/drm/xe/xe_hwmon.c:126:5: error: no previous prototype
-         for ‘xe_hwmon_process_reg_read64’ [-Werror=missing-prototypes]
+Update xe_migrate identity map base PTE entries to start at dpa_base
+instead of 0.
+
+The VM offset value should be 0 relative instead of DPA relative.
 
 Signed-off-by: David Kershner <david.kershner@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hwmon.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/xe/tests/xe_migrate.c | 37 ++++++++++++++++++++++++---
+ drivers/gpu/drm/xe/xe_migrate.c       | 22 ++++++++++------
+ 2 files changed, 47 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 1deb5007e1e2..172bb85edcf1 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -123,7 +123,7 @@ static int xe_hwmon_process_reg(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_
- 	}
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 6906ff9d9c31..75b06f0bd755 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -99,7 +99,7 @@ static const struct xe_migrate_pt_update_ops sanity_ops = {
+ 		} } while (0)
+ 
+ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+-		      struct kunit *test)
++		      struct kunit *test, u32 region)
+ {
+ 	struct xe_device *xe = tile_to_xe(m->tile);
+ 	u64 retval, expected = 0;
+@@ -111,7 +111,7 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 	struct xe_bo *sysmem = xe_bo_create_locked(xe, m->tile, NULL,
+ 						   bo->size,
+ 						   ttm_bo_type_kernel,
+-						   XE_BO_CREATE_SYSTEM_BIT |
++						   region |
+ 						   XE_BO_NEEDS_CPU_ACCESS);
+ 	if (IS_ERR(sysmem)) {
+ 		KUNIT_FAIL(test, "Failed to allocate sysmem bo for %s: %li\n",
+@@ -187,6 +187,27 @@ static void test_copy(struct xe_migrate *m, struct xe_bo *bo,
+ 	xe_bo_put(sysmem);
  }
  
--int xe_hwmon_process_reg_read64(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg, u64 *value)
-+static int xe_hwmon_process_reg_read64(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg, u64 *value)
++static void test_copy_sysmem(struct xe_migrate *m, struct xe_bo *bo,
++			     struct kunit *test)
++{
++	test_copy(m, bo, test, XE_BO_CREATE_SYSTEM_BIT);
++}
++
++static void test_copy_vram(struct xe_migrate *m, struct xe_bo *bo,
++			   struct kunit *test)
++{
++	u32 region;
++
++	if (bo->ttm.resource->mem_type == XE_PL_SYSTEM)
++		return;
++
++	if (bo->ttm.resource->mem_type == XE_PL_VRAM0)
++		region = XE_BO_CREATE_VRAM1_BIT;
++	else
++		region = XE_BO_CREATE_VRAM0_BIT;
++	test_copy(m, bo, test, region);
++}
++
+ static void test_pt_update(struct xe_migrate *m, struct xe_bo *pt,
+ 			   struct kunit *test, bool force_gpu)
  {
- 	struct xe_reg reg;
+@@ -349,7 +370,11 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 	check(retval, expected, "Command clear small last value", test);
  
+ 	kunit_info(test, "Copying small buffer object to system\n");
+-	test_copy(m, tiny, test);
++	test_copy_sysmem(m, tiny, test);
++	if (IS_DGFX(xe) && xe->info.tile_count > 1) {
++		kunit_info(test, "Copying small buffer object to other vram\n");
++		test_copy_vram(m, tiny, test);
++	}
+ 
+ 	/* Clear a big bo */
+ 	kunit_info(test, "Clearing big buffer object\n");
+@@ -366,7 +391,11 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 	check(retval, expected, "Command clear big last value", test);
+ 
+ 	kunit_info(test, "Copying big buffer object to system\n");
+-	test_copy(m, big, test);
++	test_copy_sysmem(m, big, test);
++	if (xe->info.tile_count > 1) {
++		kunit_info(test, "Copying big buffer object to opposite vram\n");
++		test_copy_vram(m, big, test);
++	}
+ 
+ 	kunit_info(test, "Testing page table update using CPU if GPU idle.\n");
+ 	test_pt_update(m, pt, test, false);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index 15f091a7bba3..42942aeef595 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -114,8 +114,12 @@ static u64 xe_migrate_vm_addr(u64 slot, u32 level)
+ 	return (slot + 1ULL) << xe_pt_shift(level + 1);
+ }
+ 
+-static u64 xe_migrate_vram_ofs(u64 addr)
++static u64 xe_migrate_vram_ofs(u64 addr, struct xe_device *xe)
+ {
++	/* Remove the DPA to get a correct offset into identity table for the
++	 * migrate offset
++	 */
++	addr -= xe->mem.vram.dpa_base;
+ 	return addr + (256ULL << xe_pt_shift(2));
+ }
+ 
+@@ -149,7 +153,7 @@ static int xe_migrate_create_cleared_bo(struct xe_migrate *m, struct xe_vm *vm)
+ 
+ 	xe_map_memset(xe, &m->cleared_bo->vmap, 0, 0x00, cleared_size);
+ 	vram_addr = xe_bo_addr(m->cleared_bo, 0, XE_PAGE_SIZE);
+-	m->cleared_vram_ofs = xe_migrate_vram_ofs(vram_addr);
++	m->cleared_vram_ofs = xe_migrate_vram_ofs(vram_addr, xe);
+ 
+ 	return 0;
+ }
+@@ -225,12 +229,12 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 	} else {
+ 		u64 batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE);
+ 
+-		m->batch_base_ofs = xe_migrate_vram_ofs(batch_addr);
++		m->batch_base_ofs = xe_migrate_vram_ofs(batch_addr, xe);
+ 
+ 		if (xe->info.supports_usm) {
+ 			batch = tile->primary_gt->usm.bb_pool->bo;
+ 			batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE);
+-			m->usm_batch_base_ofs = xe_migrate_vram_ofs(batch_addr);
++			m->usm_batch_base_ofs = xe_migrate_vram_ofs(batch_addr, xe);
+ 		}
+ 	}
+ 
+@@ -268,7 +272,9 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 		 * Use 1GB pages, it shouldn't matter the physical amount of
+ 		 * vram is less, when we don't access it.
+ 		 */
+-		for (pos = 0; pos < xe->mem.vram.actual_physical_size; pos += SZ_1G, ofs += 8)
++		for (pos = xe->mem.vram.dpa_base;
++		     pos < xe->mem.vram.actual_physical_size + xe->mem.vram.dpa_base;
++		     pos += SZ_1G, ofs += 8)
+ 			xe_map_wr(xe, &bo->vmap, ofs, u64, pos | flags);
+ 	}
+ 
+@@ -443,8 +449,8 @@ static u32 pte_update_size(struct xe_migrate *m,
+ 		cmds += cmd_size;
+ 	} else {
+ 		/* Offset into identity map. */
+-		*L0_ofs = xe_migrate_vram_ofs(cur->start +
+-					      vram_region_gpu_offset(res));
++		*L0_ofs = xe_migrate_vram_ofs(cur->start + vram_region_gpu_offset(res),
++					      tile_to_xe(m->tile));
+ 		cmds += cmd_size;
+ 	}
+ 
+@@ -1062,7 +1068,7 @@ static void write_pgtable(struct xe_tile *tile, struct xe_bb *bb, u64 ppgtt_ofs,
+ 	xe_tile_assert(tile, update->qwords <= 0x1ff);
+ 	if (!ppgtt_ofs) {
+ 		ppgtt_ofs = xe_migrate_vram_ofs(xe_bo_addr(update->pt_bo, 0,
+-							   XE_PAGE_SIZE));
++							   XE_PAGE_SIZE), tile_to_xe(tile));
+ 	}
+ 
+ 	do {
 -- 
 2.35.1
 
