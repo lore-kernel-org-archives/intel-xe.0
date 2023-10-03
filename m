@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0DA9FE75436
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 09:13:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB7ADE7543C
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 09:13:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7603310E2E7;
-	Tue,  3 Oct 2023 09:13:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FE8F10E2ED;
+	Tue,  3 Oct 2023 09:13:45 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3295310E2D8;
- Tue,  3 Oct 2023 09:13:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD67710E2A9;
+ Tue,  3 Oct 2023 09:13:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696324420; x=1727860420;
+ t=1696324424; x=1727860424;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FIF1EHjL7+Al2ztOFOGJaqOUf7ZtpUKJ9/ZVYFlgHv0=;
- b=FV8/W/ZPGC7RyL5gTO/e4Fm8TzL/ndOYikveAymhU7cNzigK/A1GWUpW
- GDuuAF4znPSjnFB960L0VyC9kjk+gdIi81CuphAX7GKd7i6EkSxoHQm4g
- wqbbARfNFp5Upue6BPn1S6Fx0oNibZLVtHui07kyb70USwCmMkScrdMQL
- WTt4KJk20mtnHO5xvHzX6UTlIdsPYw9dWbJAKyPOYYO+se6Mxra9AVcHc
- 9mZo5kwuWqrd8z+xmg48hwoKviP7Q1RyWTPJdf86vh9oO+v7GT5X3QHHE
- HqNnVc7jsaNQUysSfKyNusYWmqj8dbUqFz2YAniKkM8Mod45hwbC743OS Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="1419748"
+ bh=/0YpursjmBGJ34pg+hxvDndAJwDi6+zaWM5OhHmA7LU=;
+ b=hdrksE0TB5utBDAyfhGQLGZ31UmekBP+BuWvoBwJrQ8KHIqbrcR8A+8Z
+ yW29ZEGI0dQXBV82PfpGOMsyWH8PS/Vcizd5x9Q0dS1mzBl8tKlfaiL1d
+ 8cy4a1MsmOrk5mLKxIT5fZqhuqE0TWXiMxtH2nVPI3qOoPnbdCwm/hpVF
+ tyIE/Rrx2YqoIWJ90EZyCkMhHCY8fWwryUxh4cxhQMco/544vjpe7P0qX
+ dTiP/eJqUcZzAfMdjU/lBnu5R3pi+cMH2ARx+wYe5gxPZ2yjnZm5BEnEN
+ wA4QfQLMjUMFqK00U/OTIEb9RT6G5HDdRQP15EBV//2JEoa6L4EJciBnJ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="1419766"
 X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; 
-   d="scan'208";a="1419748"
+   d="scan'208";a="1419766"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 02:13:37 -0700
+ 03 Oct 2023 02:13:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="997935801"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; d="scan'208";a="997935801"
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="997935811"
+X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; d="scan'208";a="997935811"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
  jkrzyszt-mobl2.intranet) ([10.213.14.111])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 02:13:34 -0700
+ 03 Oct 2023 02:13:38 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Tue,  3 Oct 2023 11:10:52 +0200
-Message-ID: <20231003091044.407965-18-janusz.krzysztofik@linux.intel.com>
+Date: Tue,  3 Oct 2023 11:10:54 +0200
+Message-ID: <20231003091044.407965-20-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231003091044.407965-11-janusz.krzysztofik@linux.intel.com>
 References: <20231003091044.407965-11-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH i-g-t 7/9] lib/ktap: Drop workaround for missing
- top level KTAP headers
+Subject: [Intel-xe] [PATCH i-g-t 9/9] lib/kunit: Execute kunit test cases
+ only when needed
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,55 +65,108 @@ Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-A workaround was implemented in IGT KTAP parser so it could accepted KTAP
-reports with missing top level KTAP version and test suite plan headers.
-Since kernel side commit c95e7c05c139 ("kunit: Report the count of test
-suites in a module"), included in the mainline kernel since v6.6-rc1, has
-fixed that issue, that workaround is no longer needed.  Drop it.
+IGT user interface allows to request execution of only those dynamic sub-
+subtests that match a user provided name pattern.  If the user pattern
+doesn't match any names of test cases provided by a kunit test module used
+with the subtest to be run then no results from any dynamic sub-subtests
+will be reported.  Since we already know the list of test cases provided
+by the kunit test module, there is no need to load that module to execute
+them unless the user pattern matches at least one of those test cases.
+
+Don't load the kunit test module in execute mode before entering the loop
+of dynamic sub-subtests, and do that only from the first actually executed
+dynamic sub-subtest.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- lib/igt_ktap.c              | 12 ------------
- lib/tests/igt_ktap_parser.c |  3 +--
- 2 files changed, 1 insertion(+), 14 deletions(-)
+ lib/igt_kmod.c | 59 ++++++++++++++++++++++++++++----------------------
+ 1 file changed, 33 insertions(+), 26 deletions(-)
 
-diff --git a/lib/igt_ktap.c b/lib/igt_ktap.c
-index 53a6c63288..7c52ba11ed 100644
---- a/lib/igt_ktap.c
-+++ b/lib/igt_ktap.c
-@@ -84,18 +84,6 @@ int igt_ktap_parse(const char *buf, struct igt_ktap_results *ktap)
- 		   igt_debug_on(sscanf(buf,
- 				       "%*1[ ]%*1[ ]%*1[ ]%*1[ ]KTAP%*[ ]version%*[ ]%u %n",
- 				       &n, &len) == 1 && len == strlen(buf))) {
--		/*
--		 * TODO: drop the following workaround as soon as
--		 * kernel side issue of missing lines with top level
--		 * KTAP version and test suite plan is fixed.
--		 */
--		if (ktap->expect == KTAP_START) {
--			ktap->suite_count = 1;
--			ktap->suite_last = 0;
--			ktap->suite_name = NULL;
--			ktap->expect = SUITE_START;
--		}
+diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+index 4fba77ead4..a8a140c9f1 100644
+--- a/lib/igt_kmod.c
++++ b/lib/igt_kmod.c
+@@ -962,24 +962,29 @@ static void __igt_kunit(struct igt_ktest *tst,
+ 
+ 	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
+ 
+-	igt_skip_on(pthread_mutexattr_init(&attr));
+-	igt_skip_on(pthread_mutexattr_setrobust(&attr, PTHREAD_MUTEX_ROBUST));
+-	igt_skip_on(pthread_mutex_init(&modprobe.lock, &attr));
 -
- 		if (igt_debug_on(ktap->expect != SUITE_START))
- 			return -EPROTO;
- 
-diff --git a/lib/tests/igt_ktap_parser.c b/lib/tests/igt_ktap_parser.c
-index 6357bdf6a5..476e14092f 100644
---- a/lib/tests/igt_ktap_parser.c
-+++ b/lib/tests/igt_ktap_parser.c
-@@ -190,8 +190,7 @@ static void ktap_top_version(void)
- 
  	ktap = igt_ktap_alloc(&results);
  	igt_require(ktap);
--	/* TODO: change to -EPROTO as soon as related workaround is dropped */
--	igt_assert_eq(igt_ktap_parse("    KTAP version 1\n", ktap), -EINPROGRESS);
-+	igt_assert_eq(igt_ktap_parse("    KTAP version 1\n", ktap), -EPROTO);
- 	igt_ktap_free(ktap);
  
- 	ktap = igt_ktap_alloc(&results);
+-	if (igt_debug_on(pthread_create(&modprobe.thread, NULL,
+-					modprobe_task, &modprobe))) {
+-		igt_ktap_free(ktap);
+-		igt_skip("Failed to create a modprobe thread\n");
+-	}
+-
+ 	igt_list_for_each_entry(t, tests, link) {
+ 		igt_dynamic_f("%s%s%s",
+ 			      strcmp(t->suite_name, name) ?  t->suite_name : "",
+ 			      strcmp(t->suite_name, name) ? "-" : "",
+ 			      t->case_name) {
++			if (!modprobe.thread) {
++				igt_assert_eq(pthread_mutexattr_init(&attr), 0);
++				igt_assert_eq(pthread_mutexattr_setrobust(&attr,
++							  PTHREAD_MUTEX_ROBUST),
++					      0);
++				igt_assert_eq(pthread_mutex_init(&modprobe.lock,
++								 &attr), 0);
++
++				modprobe.err = pthread_create(&modprobe.thread,
++							      NULL,
++							      modprobe_task,
++							      &modprobe);
++				igt_assert_eq(modprobe.err, 0);
++			}
++
+ 			if (!r) {
+ 				if (igt_list_empty(&results)) {
+ 					igt_assert_eq(ret, -EINPROGRESS);
+@@ -1075,22 +1080,24 @@ static void __igt_kunit(struct igt_ktest *tst,
+ 	free(case_name);
+ 	free(suite_name);
+ 
+-	switch (pthread_mutex_lock(&modprobe.lock)) {
+-	case 0:
+-		igt_debug_on(pthread_cancel(modprobe.thread));
+-		igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
+-		igt_debug_on(pthread_join(modprobe.thread, NULL));
+-		break;
+-	case EOWNERDEAD:
+-		/* leave the mutex unrecoverable */
+-		igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
+-		break;
+-	case ENOTRECOVERABLE:
+-		break;
+-	default:
+-		igt_debug("pthread_mutex_lock() failed\n");
+-		igt_debug_on(pthread_join(modprobe.thread, NULL));
+-		break;
++	if (modprobe.thread) {
++		switch (pthread_mutex_lock(&modprobe.lock)) {
++		case 0:
++			igt_debug_on(pthread_cancel(modprobe.thread));
++			igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
++			igt_debug_on(pthread_join(modprobe.thread, NULL));
++			break;
++		case EOWNERDEAD:
++			/* leave the mutex unrecoverable */
++			igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
++			break;
++		case ENOTRECOVERABLE:
++			break;
++		default:
++			igt_debug("pthread_mutex_lock() failed\n");
++			igt_debug_on(pthread_join(modprobe.thread, NULL));
++			break;
++		}
+ 	}
+ 
+ 	igt_ktap_free(ktap);
 -- 
 2.42.0
 
