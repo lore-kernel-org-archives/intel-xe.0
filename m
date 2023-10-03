@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 190BEE7545E
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 12:52:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D231AE75457
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 12:59:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBA0410E05D;
-	Tue,  3 Oct 2023 12:52:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9926410E2A9;
+	Tue,  3 Oct 2023 12:59:07 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4441010E056
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 12:52:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF2F10E2A5;
+ Tue,  3 Oct 2023 12:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696337524; x=1727873524;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Iq0JfmtEapEsOEfn+Xn/BZaj5aasM00H0Nx1/GFZPKk=;
- b=W1umVWL0Erjq52CRLMj0vxI5UXUsYABnThJXu07Iv0jgwSWP40G9xkcr
- e96oQ1x8Jmhyd6kAFB07mW72RxhOWBUuHmR/GHbfFfEPyIeHysTEiPz6H
- Kc+LlXI/DUWYzc3u6j0xaSibZowAY4ML2+uct9tcKhs8upBLUneEOD1jI
- hF8nXY3YCJqHY/39HRNHPSxV+TyNDmY+Yyt51gpDvm7AbzUrudl2lJ/Zg
- 8Ue8M8zo6DawT8RuSFewyqrTdiVMvkuRLmrSQygQKb0ePpWMdXfsuvD84
- gXcyAOZN759jHglj8uSMr/x7pQDNVxUXrdjNke/eDB8MT8R0YAjwYJ6Sx Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="447022083"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="447022083"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ t=1696337945; x=1727873945;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=zKlkaAgnEjQsDarr4vW/Z7F87//Uxp4Ezqyi7LtddYo=;
+ b=Tn+fc7nP9la8A/RuAc3FtVMavcxaY5u6e2+cha6fiebiLh/kBBY08pGW
+ YTpragUzdSq4X9eaiABgDS7uK+rFakzVRwbh4SCcsJefX/mURTyWzChYG
+ KxlGpzf2L+W8FMGwqO7sbaPvh0t1nqoZb1irdiQc2aQQ6wS8tgcIYtyJz
+ //QZCOvPLU8HMyZwsYCr75YSf7GS+mVp+oPoT12+LvCBTj0fBajC/nC+G
+ FqjQbfBFe38XXiI3qtOnKKcCSc83lFCQcAFTfu47IGAUPKR+I/UYDPOgY
+ fheIyEO2GzqgHX83GteJNtw75kfrv2OwpZfcn+k27clphNuB8nu7mVhYB w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="447024046"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="447024046"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 05:52:03 -0700
+ 03 Oct 2023 05:58:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="998005495"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="998005495"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 05:51:59 -0700
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue,  3 Oct 2023 05:52:11 -0700
-Message-Id: <20231003125217.3350838-2-lucas.demarchi@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231003125217.3350838-1-lucas.demarchi@intel.com>
-References: <20231003125217.3350838-1-lucas.demarchi@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="727605123"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="727605123"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by orsmga006.jf.intel.com with SMTP; 03 Oct 2023 05:58:03 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 03 Oct 2023 15:58:03 +0300
+Date: Tue, 3 Oct 2023 15:58:03 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Message-ID: <ZRwP22BZQseg6vW4@intel.com>
+References: <20230922133003.150578-1-vinod.govindapillai@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/7] drm/xe/vm: Prefer xe_assert() over
- XE_WARN_ON()
+In-Reply-To: <20230922133003.150578-1-vinod.govindapillai@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-xe] [PATCH v5 0/2] fbc on any planes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,43 +59,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: ville.syrjala@intel.com, intel-gfx@lists.freedesktop.org,
+ matthew.d.roper@intel.com, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When xelp_pte_encode_addr() was added in commit 99a8844441ba
-("drm/xe/migrate: Do not hand-encode pte"), there was no xe pointer for
-using xe_assert(). This is not the case anymore, so prefer it over
-XE_WARN_ON().
+On Fri, Sep 22, 2023 at 04:30:01PM +0300, Vinod Govindapillai wrote:
+> FBC can be supported in first three planes in lnl
+> 
+> Vinod Govindapillai (2):
+>   drm/i915/lnl: possibility to enable FBC on first three planes
+>   drm/i915/lnl: update the supported plane formats with FBC
 
-Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Pushed to drm-intel-next. Thanks.
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 65d7a46c3a39..5f69065a85cb 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -17,6 +17,7 @@
- #include <linux/mm.h>
- #include <linux/swap.h>
- 
-+#include "xe_assert.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_drm_client.h"
-@@ -1293,7 +1294,7 @@ static u64 xelp_pte_encode_addr(struct xe_device *xe, u64 addr,
- 	u64 pte;
- 
- 	/* Avoid passing random bits directly as flags */
--	XE_WARN_ON(flags & ~XE_PTE_PS64);
-+	xe_assert(xe, !(flags & ~XE_PTE_PS64));
- 
- 	pte = addr;
- 	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
+> 
+>  drivers/gpu/drm/i915/display/intel_fbc.c           | 11 ++++++++++-
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c |  9 ++++++---
+>  drivers/gpu/drm/i915/i915_reg.h                    |  2 ++
+>  3 files changed, 18 insertions(+), 4 deletions(-)
+> 
+> -- 
+> 2.34.1
+
 -- 
-2.40.1
-
+Ville Syrjälä
+Intel
