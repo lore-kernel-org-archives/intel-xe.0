@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6127DE7AD58
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 14:35:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 923E4E7AD58
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 14:35:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3232110E191;
-	Tue,  3 Oct 2023 14:35:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4998710E2B7;
+	Tue,  3 Oct 2023 14:35:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1913B10E2B7
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 14:35:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6655410E2B7
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 14:35:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696343742; x=1727879742;
+ t=1696343746; x=1727879746;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kMBdt9ppFVRhrIDwOn/7tFvZZW5S9K4a5gZ9gs6fqn0=;
- b=G09ObTGuOXIGbGKt1I2r2SB7wKEy5SBklz82nanLwBgSulBrqe4aY0/e
- pSiM0evDUed+D4xD+Nuk5+iuslNocZa9Ez3IWNPffItkT9RQdvqsp8nC+
- H+nyxMKBh8Q+CpOIC0e08kyvma7McF1wgdAtnonXGEIQlxJz91u3Lm1vq
- VevEnxecWdZigCqj6thMXAXa2KZVII2o9MhIfptFr9iN2/tRXB85Go08m
- ci2dma2pc+1+A/YHJ7xGNDCIvU0x2pzb4NoIyCXMvNM8pGcV0U9iCdDoy
- rPV3mE6wSNHqbUtzTY47wXtOjlUdzwm5Uen+210RUF1wB4RX7Obtjtmnb g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="449375114"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="449375114"
+ bh=yFeCbhmP9wTTRVUBKanpgpWzVkMGIg+j9NzGUBo8vGs=;
+ b=a+aKqMz6/h89tzAcvyvgyGLoIYP3NZwEWR8Bw43xPjtmm+8DMATqGdlT
+ e+3Mmz5NO8TAwaR9/gHUQ91nbDKofDD0xjBZkiR/15AICJbH//O4lEtii
+ 1KnssGtI/WB1yQmzj0HS2xOGkAWNSEqt/fDnX4CzLxc8wdHSfgUTOiSgP
+ 3ieq7mpVwm2VdcsUQsBIjmhSAKlwcUx4c6/qa6ikW6WBomKLMhgoTxPsD
+ cSnRTJt+M7UEY2VrLs4w90xM/8Tse/sjpXusv5XM33OA/LOpNxMgPPPMy
+ rIfQqmVSYAGZ0FPEimWubX7UhnLMMCCKwcPxjy5AbaYiiPQVyUGikv1Zq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="449375145"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="449375145"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 07:35:41 -0700
+ 03 Oct 2023 07:35:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="754462201"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="754462201"
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="754462255"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="754462255"
 Received: from akorotox-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.199])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 07:35:38 -0700
+ 03 Oct 2023 07:35:43 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  3 Oct 2023 17:34:55 +0300
-Message-Id: <e40596b157f7689f2870b074b7a1cdd9696f70a4.1696343521.git.jani.nikula@intel.com>
+Date: Tue,  3 Oct 2023 17:34:56 +0300
+Message-Id: <696d81bccaca9c3b0a29996ba12afd1f09b69400.1696343521.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <cover.1696343521.git.jani.nikula@intel.com>
 References: <cover.1696343521.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 08/10] fixup! drm/xe/display: Implement display
+Subject: [Intel-xe] [PATCH 09/10] fixup! drm/xe/display: Implement display
  support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,117 +63,332 @@ Cc: jani.nikula@intel.com, lucas.demarchi@intel.com, rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Turn the enable_display module parameter to the same thing as it is for
-i915: assuming you have display hardware, take over it, put it to sleep,
-and keep connectors disconnected.
+Let the display code decide whether display hardware is there or
+not. Remove has_display member from struct xe_device_desc, and
+enable_display from struct xe_device.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h |  5 ++++-
- drivers/gpu/drm/xe/xe_display.c                   | 11 +++++------
- drivers/gpu/drm/xe/xe_module.c                    |  4 ----
- drivers/gpu/drm/xe/xe_module.h                    |  1 -
- drivers/gpu/drm/xe/xe_pci.c                       |  1 -
- 5 files changed, 9 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h |  2 --
+ drivers/gpu/drm/xe/xe_display.c      | 51 ++++++++++++----------------
+ drivers/gpu/drm/xe/xe_pci.c          | 13 -------
+ 3 files changed, 22 insertions(+), 44 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index e7c9b4ea2153..feaa1e244838 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -24,6 +24,9 @@
- #include "intel_runtime_pm.h"
- #include <linux/pm_runtime.h>
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 62e1a875980b..01ab0b3d1954 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -236,8 +236,6 @@ struct xe_device {
+ 		u8 has_llc:1;
+ 		/** @has_range_tlb_invalidation: Has range based TLB invalidations */
+ 		u8 has_range_tlb_invalidation:1;
+-		/** @enable_display: display enabled */
+-		u8 enable_display:1;
  
-+/* For INTEL_DISPLAY_ENABLED() */
-+extern bool enable_display;
-+
- static inline struct drm_i915_private *to_i915(const struct drm_device *dev)
- {
- 	return container_of(dev, struct drm_i915_private, drm);
-@@ -89,7 +92,7 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
- 
- #define IP_VER(ver, rel)                ((ver) << 8 | (rel))
- 
--#define INTEL_DISPLAY_ENABLED(xe) (HAS_DISPLAY((xe)) && !intel_opregion_headless_sku((xe)))
-+#define INTEL_DISPLAY_ENABLED(xe) (enable_display && !intel_opregion_headless_sku((xe)))
- #define DISPLAY_VER(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver)
- #define DISPLAY_VER_FULL(i915)	IP_VER(DISPLAY_RUNTIME_INFO(i915)->ip.ver, \
- 				       DISPLAY_RUNTIME_INFO(i915)->ip.rel)
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ 		struct {
 diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index 391f08c1caca..75054f78d7ae 100644
+index 75054f78d7ae..70e7afc0a890 100644
 --- a/drivers/gpu/drm/xe/xe_display.c
 +++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -29,6 +29,11 @@
- #include "intel_opregion.h"
- #include "xe_module.h"
- 
-+/* Only to be used for INTEL_DISPLAY_ENABLED() */
-+bool enable_display = true;
-+module_param_named(enable_display, enable_display, bool, 0444);
-+MODULE_PARM_DESC(enable_display, "Enable display");
-+
- /* Xe device functions */
- 
- static bool has_display(struct xe_device *xe)
-@@ -45,9 +50,6 @@ static bool has_display(struct xe_device *xe)
-  */
- bool xe_display_driver_probe_defer(struct pci_dev *pdev)
+@@ -57,7 +57,7 @@ static void xe_display_last_close(struct drm_device *dev)
  {
--	if (!enable_display)
--		return 0;
--
- 	return intel_display_driver_probe_defer(pdev);
+ 	struct xe_device *xe = to_xe_device(dev);
+ 
+-	if (xe->info.enable_display)
++	if (has_display(xe))
+ 		intel_fbdev_restore_mode(to_xe_device(dev));
  }
  
-@@ -69,9 +71,6 @@ static void xe_display_last_close(struct drm_device *dev)
-  */
- void xe_display_driver_set_hooks(struct drm_driver *driver)
+@@ -138,7 +138,7 @@ static void xe_display_fini_nommio(struct drm_device *dev, void *dummy)
  {
--	if (!enable_display)
+ 	struct xe_device *xe = to_xe_device(dev);
+ 
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	intel_power_domains_cleanup(xe);
+@@ -148,7 +148,7 @@ int xe_display_init_nommio(struct xe_device *xe)
+ {
+ 	int err;
+ 
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return 0;
+ 
+ 	/* Fake uncore lock */
+@@ -168,7 +168,7 @@ static void xe_display_fini_noirq(struct drm_device *dev, void *dummy)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+ 
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	intel_display_driver_remove_noirq(xe);
+@@ -179,7 +179,7 @@ int xe_display_init_noirq(struct xe_device *xe)
+ {
+ 	int err;
+ 
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return 0;
+ 
+ 	intel_display_driver_early_probe(xe);
+@@ -208,7 +208,7 @@ static void xe_display_fini_noaccel(struct drm_device *dev, void *dummy)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+ 
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	intel_display_driver_remove_nogem(xe);
+@@ -218,7 +218,7 @@ int xe_display_init_noaccel(struct xe_device *xe)
+ {
+ 	int err;
+ 
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return 0;
+ 
+ 	err = intel_display_driver_probe_nogem(xe);
+@@ -230,7 +230,7 @@ int xe_display_init_noaccel(struct xe_device *xe)
+ 
+ int xe_display_init(struct xe_device *xe)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return 0;
+ 
+ 	return intel_display_driver_probe(xe);
+@@ -238,7 +238,7 @@ int xe_display_init(struct xe_device *xe)
+ 
+ void xe_display_fini(struct xe_device *xe)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	/* poll work can call into fbdev, hence clean that up afterwards */
+@@ -251,7 +251,7 @@ void xe_display_fini(struct xe_device *xe)
+ 
+ void xe_display_register(struct xe_device *xe)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	intel_display_driver_register(xe);
+@@ -261,7 +261,7 @@ void xe_display_register(struct xe_device *xe)
+ 
+ void xe_display_unregister(struct xe_device *xe)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	intel_unregister_dsm_handler();
+@@ -271,7 +271,7 @@ void xe_display_unregister(struct xe_device *xe)
+ 
+ void xe_display_driver_remove(struct xe_device *xe)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	intel_display_driver_remove(xe);
+@@ -281,7 +281,7 @@ void xe_display_driver_remove(struct xe_device *xe)
+ 
+ void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	if (master_ctl & DISPLAY_IRQ)
+@@ -290,7 +290,7 @@ void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl)
+ 
+ void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	if (gu_misc_iir & GU_MISC_GSE)
+@@ -299,7 +299,7 @@ void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
+ 
+ void xe_display_irq_reset(struct xe_device *xe)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	gen11_display_irq_reset(xe);
+@@ -307,7 +307,7 @@ void xe_display_irq_reset(struct xe_device *xe)
+ 
+ void xe_display_irq_postinstall(struct xe_device *xe, struct xe_gt *gt)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	if (gt->info.id == XE_GT0)
+@@ -341,7 +341,7 @@ static bool suspend_to_idle(void)
+ void xe_display_pm_suspend(struct xe_device *xe)
+ {
+ 	bool s2idle = suspend_to_idle();
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	/*
+@@ -370,7 +370,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
+ void xe_display_pm_suspend_late(struct xe_device *xe)
+ {
+ 	bool s2idle = suspend_to_idle();
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	intel_power_domains_suspend(xe, s2idle);
+@@ -380,7 +380,7 @@ void xe_display_pm_suspend_late(struct xe_device *xe)
+ 
+ void xe_display_pm_resume_early(struct xe_device *xe)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	intel_display_power_resume_early(xe);
+@@ -390,7 +390,7 @@ void xe_display_pm_resume_early(struct xe_device *xe)
+ 
+ void xe_display_pm_resume(struct xe_device *xe)
+ {
+-	if (!xe->info.enable_display)
++	if (!has_display(xe))
+ 		return;
+ 
+ 	intel_dmc_resume(xe);
+@@ -418,15 +418,8 @@ void xe_display_pm_resume(struct xe_device *xe)
+ 
+ void xe_display_probe(struct xe_device *xe)
+ {
+-	if (!xe->info.enable_display)
+-		goto no_display;
+-
+ 	intel_display_device_probe(xe);
+ 
+-	if (has_display(xe))
 -		return;
 -
- 	driver->driver_features |= DRIVER_MODESET | DRIVER_ATOMIC;
- 	driver->lastclose = xe_display_last_close;
+-no_display:
+-	xe->info.enable_display = false;
+-	unset_display_features(xe);
++	if (!has_display(xe))
++		unset_display_features(xe);
  }
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 7194595e7f31..82817a46f887 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -19,10 +19,6 @@ bool force_execlist = false;
- module_param_named_unsafe(force_execlist, force_execlist, bool, 0444);
- MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
- 
--bool enable_display = true;
--module_param_named(enable_display, enable_display, bool, 0444);
--MODULE_PARM_DESC(enable_display, "Enable display");
--
- u32 xe_force_vram_bar_size;
- module_param_named(vram_bar_size, xe_force_vram_bar_size, uint, 0600);
- MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size(in MiB)");
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index e1da1e9ca5cb..58604ed161cc 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -7,7 +7,6 @@
- 
- /* Module modprobe variables */
- extern bool force_execlist;
--extern bool enable_display;
- extern u32 xe_force_vram_bar_size;
- extern int xe_guc_log_level;
- extern char *xe_guc_firmware_path;
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index b19506fe3e18..8ee430c6f8b1 100644
+index 8ee430c6f8b1..cbbfe75eb2d2 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -575,7 +575,6 @@ static int xe_info_init(struct xe_device *xe,
+@@ -56,7 +56,6 @@ struct xe_device_desc {
+ 
+ 	u8 require_force_probe:1;
+ 	u8 is_dgfx:1;
+-	u8 has_display:1;
+ 
+ 	u8 has_llc:1;
+ };
+@@ -207,7 +206,6 @@ static const struct xe_device_desc tgl_desc = {
+ 	.graphics = &graphics_xelp,
+ 	.media = &media_xem,
+ 	PLATFORM(XE_TIGERLAKE),
+-	.has_display = true,
+ 	.has_llc = true,
+ 	.require_force_probe = true,
+ };
+@@ -216,7 +214,6 @@ static const struct xe_device_desc rkl_desc = {
+ 	.graphics = &graphics_xelp,
+ 	.media = &media_xem,
+ 	PLATFORM(XE_ROCKETLAKE),
+-	.has_display = true,
+ 	.has_llc = true,
+ 	.require_force_probe = true,
+ };
+@@ -225,7 +222,6 @@ static const struct xe_device_desc adl_s_desc = {
+ 	.graphics = &graphics_xelp,
+ 	.media = &media_xem,
+ 	PLATFORM(XE_ALDERLAKE_S),
+-	.has_display = true,
+ 	.has_llc = true,
+ 	.require_force_probe = true,
+ };
+@@ -236,7 +232,6 @@ static const struct xe_device_desc adl_p_desc = {
+ 	.graphics = &graphics_xelp,
+ 	.media = &media_xem,
+ 	PLATFORM(XE_ALDERLAKE_P),
+-	.has_display = true,
+ 	.has_llc = true,
+ 	.require_force_probe = true,
+ 	.subplatforms = (const struct xe_subplatform_desc[]) {
+@@ -249,7 +244,6 @@ static const struct xe_device_desc adl_n_desc = {
+ 	.graphics = &graphics_xelp,
+ 	.media = &media_xem,
+ 	PLATFORM(XE_ALDERLAKE_N),
+-	.has_display = true,
+ 	.has_llc = true,
+ 	.require_force_probe = true,
+ };
+@@ -262,7 +256,6 @@ static const struct xe_device_desc dg1_desc = {
+ 	.media = &media_xem,
+ 	DGFX_FEATURES,
+ 	PLATFORM(XE_DG1),
+-	.has_display = true,
+ 	.require_force_probe = true,
+ };
+ 
+@@ -286,7 +279,6 @@ static const struct xe_device_desc ats_m_desc = {
+ 	.require_force_probe = true,
+ 
+ 	DG2_FEATURES,
+-	.has_display = false,
+ };
+ 
+ static const struct xe_device_desc dg2_desc = {
+@@ -295,14 +287,12 @@ static const struct xe_device_desc dg2_desc = {
+ 	.require_force_probe = true,
+ 
+ 	DG2_FEATURES,
+-	.has_display = true,
+ };
+ 
+ static const struct xe_device_desc pvc_desc = {
+ 	.graphics = &graphics_xehpc,
+ 	DGFX_FEATURES,
+ 	PLATFORM(XE_PVC),
+-	.has_display = false,
+ 	.require_force_probe = true,
+ };
+ 
+@@ -310,7 +300,6 @@ static const struct xe_device_desc mtl_desc = {
+ 	/* .graphics and .media determined via GMD_ID */
+ 	.require_force_probe = true,
+ 	PLATFORM(XE_METEORLAKE),
+-	.has_display = true,
+ };
+ 
+ static const struct xe_device_desc lnl_desc = {
+@@ -574,8 +563,6 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
  	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
  
- 	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
--				  enable_display &&
- 				  desc->has_display;
+-	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
+-				  desc->has_display;
  	/*
  	 * All platforms have at least one primary GT.  Any platform with media
+ 	 * version 13 or higher has an additional dedicated media GT.  And
 -- 
 2.39.2
 
