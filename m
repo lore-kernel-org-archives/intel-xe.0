@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B23DFE75433
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 08:58:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C49DAE75435
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 08:58:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F70110E263;
-	Tue,  3 Oct 2023 08:58:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9241110E264;
+	Tue,  3 Oct 2023 08:58:49 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECDC510E263
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 08:58:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C828210E264
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 08:58:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696323525; x=1727859525;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jzayr6k2JmfZhvL26c9xO0VZKM1/j+JZ/HlErDq8244=;
- b=J2MQkIdNAPcgi+mwMAHdeTaN2evZkI8FT8rcVhaK0SSvsdfsQsTeLQyL
- 3UkUB9LyULVwSdwl/JjeNd1OkXBMGvBV4FUiQCSM7vUpF5i/CaOECvduk
- LGz992cVj1TmWjMwBXdKj7gPeuj8Y6DqUnNBjGP+FjN8B9+QPnHZj/oyD
- cYiQ26l0Q5ldyrRyOdp2PxF0FPT7TM5qBRrYS65y+9HcwnXqcKtizVXok
- xaLR6MyNUlc0FGmXgG66n5lluvb1/l6P6eBam5WOP1ilN6KwSTLXvCAbp
- aUWMFxGZpNOBRMBpE5pgoBAc8JRctbJPKMWYHdiiwNn99ktrBtuBLfYMA g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="469100738"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; d="scan'208";a="469100738"
+ t=1696323528; x=1727859528;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NwNnZP3/3S+54ZL99zAHS2N5g3Rqrj+mbxStZGgJSNM=;
+ b=SvaIMjV5b/YduCcOWJuqDWZHHvvnh/vo/6ImUfYkMAqyiACdY6snU+4s
+ OJLkVeOWQWW+ClXwWYWm59JS+Rl+5kD2utJLTfMUjYxzQ1ab270CY9V1A
+ XgUDZFgClaG6cmJLOfGk1lqFkQOvuMbFfkWypXqDn9NxCkxP8jxSF5sK9
+ PYZaofvg57vmYct4HmxkIruZLmkcRd76yEpdiz8eCpe+A4qe8opjAQDTY
+ gJ8OwUufJwQswFSiIYMuaxgMzp1VlFyxFYIPwjGvdcyF0wwrwxgCSn80R
+ EKJ+sg1bKYnDC0MI+YRgrwXbQmlWkO+/H++i5xarG6Lnw9mDEqO/5mzJ6 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="469100744"
+X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; d="scan'208";a="469100744"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 01:58:45 -0700
+ 03 Oct 2023 01:58:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="924573861"
-X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; d="scan'208";a="924573861"
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="924573872"
+X-IronPort-AV: E=Sophos;i="6.03,196,1694761200"; d="scan'208";a="924573872"
 Received: from akorotox-mobl.ger.corp.intel.com (HELO localhost)
  ([10.252.55.199])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 01:58:43 -0700
+ 03 Oct 2023 01:58:47 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  3 Oct 2023 11:58:37 +0300
-Message-Id: <20231003085839.2008415-1-jani.nikula@intel.com>
+Date: Tue,  3 Oct 2023 11:58:38 +0300
+Message-Id: <20231003085839.2008415-2-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20231003085839.2008415-1-jani.nikula@intel.com>
+References: <20231003085839.2008415-1-jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/3] fixup! drm/xe/display: Implement display
+Subject: [Intel-xe] [PATCH 2/3] fixup! drm/xe/display: Implement display
  support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,84 +63,32 @@ Cc: jani.nikula@intel.com, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have an abstraction for "has display", and it's
-HAS_DISPLAY(). Unfortunately, it requires access to
-DISPLAY_RUNTIME_INFO(), so include compat-i915-headers/i915_drv.h too,
-although it's a bit meh.
-
-Looking at this makes me think there's a bunch of confusion in:
-
-- the pipe_mask or now HAS_DISPLAY() checks
-- the global enable_display checks
-- the xe->info.enable_display checks
-- redefinition of INTEL_DISPLAY_ENABLED()
-
-I really don't understand this, but it all looks very suspicious. This
-change leaves all that in place, unmodified.
+We have an abstraction for "display runtime info", and it's
+DISPLAY_RUNTIME_INFO(). Use it.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/xe_display.c | 11 ++++++-----
- 1 file changed, 6 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-index 07898e0e175e..c783573585d7 100644
---- a/drivers/gpu/drm/xe/xe_display.c
-+++ b/drivers/gpu/drm/xe/xe_display.c
-@@ -15,6 +15,7 @@
- #include <drm/xe_drm.h>
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 7c825f129166..f739858d17e2 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -90,9 +90,9 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
+ #define IP_VER(ver, rel)                ((ver) << 8 | (rel))
  
- #include "soc/intel_dram.h"
-+#include "i915_drv.h"
- #include "intel_acpi.h"
- #include "intel_audio.h"
- #include "intel_bw.h"
-@@ -316,7 +317,7 @@ static void intel_suspend_encoders(struct xe_device *xe)
- 	struct drm_device *dev = &xe->drm;
- 	struct intel_encoder *encoder;
+ #define INTEL_DISPLAY_ENABLED(xe) (HAS_DISPLAY((xe)) && !intel_opregion_headless_sku((xe)))
+-#define DISPLAY_VER(xe) ((xe)->info.display_runtime.ip.ver)
+-#define DISPLAY_VER_FULL(xe) IP_VER((xe)->info.display_runtime.ip.ver, \
+-				    (xe)->info.display_runtime.ip.rel)
++#define DISPLAY_VER(i915)	(DISPLAY_RUNTIME_INFO(i915)->ip.ver)
++#define DISPLAY_VER_FULL(i915)	IP_VER(DISPLAY_RUNTIME_INFO(i915)->ip.ver, \
++				       DISPLAY_RUNTIME_INFO(i915)->ip.rel)
  
--	if (xe->info.display_runtime.pipe_mask)
-+	if (HAS_DISPLAY(xe))
- 		return;
- 
- 	drm_modeset_lock_all(dev);
-@@ -346,7 +347,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
- 	 * properly.
- 	 */
- 	intel_power_domains_disable(xe);
--	if (xe->info.display_runtime.pipe_mask)
-+	if (HAS_DISPLAY(xe))
- 		drm_kms_helper_poll_disable(&xe->drm);
- 
- 	intel_display_driver_suspend(xe);
-@@ -392,7 +393,7 @@ void xe_display_pm_resume(struct xe_device *xe)
- 
- 	intel_dmc_resume(xe);
- 
--	if (xe->info.display_runtime.pipe_mask)
-+	if (HAS_DISPLAY(xe))
- 		drm_mode_config_reset(&xe->drm);
- 
- 	intel_display_driver_init_hw(xe);
-@@ -403,7 +404,7 @@ void xe_display_pm_resume(struct xe_device *xe)
- 	intel_display_driver_resume(xe);
- 
- 	intel_hpd_poll_disable(xe);
--	if (xe->info.display_runtime.pipe_mask)
-+	if (HAS_DISPLAY(xe))
- 		drm_kms_helper_poll_enable(&xe->drm);
- 
- 	intel_opregion_resume(xe);
-@@ -424,7 +425,7 @@ void xe_display_probe(struct xe_device *xe)
- 
- 	intel_display_device_probe(xe);
- 
--	if (xe->info.display_runtime.pipe_mask)
-+	if (HAS_DISPLAY(xe))
- 		return;
- 
- no_display:
+ #define IS_DISPLAY_VER(xe, first, last) ((DISPLAY_VER(xe) >= first && DISPLAY_VER(xe) <= last))
+ #define IS_GRAPHICS_VER(xe, first, last) \
 -- 
 2.39.2
 
