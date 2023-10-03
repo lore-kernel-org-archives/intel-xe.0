@@ -4,49 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 990D7E75455
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 13:15:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCF10E7AD47
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 13:34:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58C9F10E04E;
-	Tue,  3 Oct 2023 13:15:51 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FE8010E04E
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 13:15:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FBB710E083;
+	Tue,  3 Oct 2023 13:34:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27BAA10E0E3
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 13:34:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696338948; x=1727874948;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=sBzFgdwprSO4lsdLUF/rcMmu0fVZH9qFlaRl1TJkaXc=;
- b=WnZYZNAwlbdo2oaidk8RDn1YQ2OWSleVjBCZEJM2Sxlg69+/I9D2R1AQ
- 9aPj+h/LkOrSy8PbQ5T4YpWsGmnSfOCTeTTe5nuzcWdWbQReoJ5oy44A7
- J2T4yNEbDlh0kJ0Ze9UQ33D+vEte5KpWfLQW21NSy+e8+C5KYtT9wfDvd
- GnaC0zxcNY+YVBsgVW+jNdFgpeqMXQrEk0NtXBTR2C9bx/ZhC8nmTo4+o
- EtrXsMb3WvIVKNwLJzJl9W4gnGqGTzCC8dmxvw8iPm5J6Gcht033Gt6qa
- dYdy6K9Rc4ZN4Rs+av34WNefYGi5dGVtPJxCh0u9q6pkzpw8El/Mtysr7 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="385693332"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="385693332"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 06:15:46 -0700
+ t=1696340093; x=1727876093;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=g5T7pWW4fP1d62tE5t15BFWSiwR88xPccL8PCGl2lNg=;
+ b=S/vSNE9zhCaqs2wKMq6ySyjUEZoK3IDAuiH55Ho02EGCwuAm2hJZ5hIN
+ 3SQwXxO+oV45w8mKxiEXLj/s2a58QfDhQ7lj6txSlxsopGEBxo+XOMM4o
+ 0toIVbzDIXeq+JUlstrV9GUXnw87AaNOED5e661RGv1Rmb4wc/uxB7SJr
+ MpUPSWjUzEB6fAWFxMOWMLmPNA6GAyZah4GhMSbW85DuIymFkxqIFGRIa
+ in3Ch0m7qYjr9Q0T8YuJxABNHdhKKMv6wVv4nLL2M/K8ccB08mt7pFiCu
+ JTfpKJYaGad4BZNNz2TmppSx6hiu+IW8eQVvaYwSqCmGjtgfK7Qsw2lUv Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="367929260"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="367929260"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Oct 2023 06:34:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="744503843"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="744503843"
-Received: from akorotox-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.55.199])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 06:15:45 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-xe@lists.freedesktop.org
-In-Reply-To: <20231003085839.2008415-1-jani.nikula@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231003085839.2008415-1-jani.nikula@intel.com>
-Date: Tue, 03 Oct 2023 16:15:43 +0300
-Message-ID: <87ttr7g83k.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="727613874"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="727613874"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
+ by orsmga006.jf.intel.com with SMTP; 03 Oct 2023 06:34:49 -0700
+Received: by stinkbox (sSMTP sendmail emulation);
+ Tue, 03 Oct 2023 16:34:49 +0300
+Date: Tue, 3 Oct 2023 16:34:49 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Lyude Paul <lyude@redhat.com>
+Message-ID: <ZRwYeYYI2QxtDlHj@intel.com>
+References: <20230920140339.28322-1-ville.syrjala@linux.intel.com>
+ <20230920140339.28322-2-ville.syrjala@linux.intel.com>
+ <391fcadb309b9ac381336a5676506a701f8cc1c5.camel@redhat.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 1/3] fixup! drm/xe/display: Implement display
- support
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <391fcadb309b9ac381336a5676506a701f8cc1c5.camel@redhat.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-xe] [PATCH 2/3] drm/vblank: Warn when silently
+ cancelling vblank works
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,121 +62,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 03 Oct 2023, Jani Nikula <jani.nikula@intel.com> wrote:
-> We have an abstraction for "has display", and it's
-> HAS_DISPLAY(). Unfortunately, it requires access to
-> DISPLAY_RUNTIME_INFO(), so include compat-i915-headers/i915_drv.h too,
-> although it's a bit meh.
->
-> Looking at this makes me think there's a bunch of confusion in:
->
-> - the pipe_mask or now HAS_DISPLAY() checks
-> - the global enable_display checks
-> - the xe->info.enable_display checks
-> - redefinition of INTEL_DISPLAY_ENABLED()
->
-> I really don't understand this, but it all looks very suspicious. This
-> change leaves all that in place, unmodified.
+On Wed, Sep 20, 2023 at 03:55:28PM -0400, Lyude Paul wrote:
+> Good point!
+> 
+> Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-To elaborate, this statement in xe_pci.c conflates three different
-concepts into one, and it just does not work like this:
+Thanks. Pushed to drm-misc-next.
 
-	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
-				  enable_display &&
-				  desc->has_display;
-
-CONFIG_DRM_XE_DISPLAY describes whether display support has been built
-into the driver. CONFIG_DRM_XE_DISPLAY=n is fine if there is no display
-hardware. Otherwise, the display hardware will be left in whatever state
-the BIOS/GOP left it, e.g. consuming a bunch of power which is not
-desirable. (Even with CONFIG_DRM_XE_DISPLAY=n we might want to include
-enough display code to probe and warn about this scenario.)
-
-enable_display is a module parameter apparently intended to disable
-display dynamically. Similar to the above, if CONFIG_DRM_XE_DISPLAY=y
-but enable_display==false, the display hardware will be left in whatever
-state the BIOS/GOP left it. In i915, the module parameter is
-i915.disable_display, and it does run a bunch of display code to take
-over the hardware, put it to sleep, and keep all connectors
-disconnected. If you have display hardware, this is the sensible thing
-to do.
-
-desc->has_display means that we've probed the hardware and found it's
-not there, and we shouldn't touch it.
-
-
-BR,
-Jani.
-
-
->
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_display.c | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
-> index 07898e0e175e..c783573585d7 100644
-> --- a/drivers/gpu/drm/xe/xe_display.c
-> +++ b/drivers/gpu/drm/xe/xe_display.c
-> @@ -15,6 +15,7 @@
->  #include <drm/xe_drm.h>
->  
->  #include "soc/intel_dram.h"
-> +#include "i915_drv.h"
->  #include "intel_acpi.h"
->  #include "intel_audio.h"
->  #include "intel_bw.h"
-> @@ -316,7 +317,7 @@ static void intel_suspend_encoders(struct xe_device *xe)
->  	struct drm_device *dev = &xe->drm;
->  	struct intel_encoder *encoder;
->  
-> -	if (xe->info.display_runtime.pipe_mask)
-> +	if (HAS_DISPLAY(xe))
->  		return;
->  
->  	drm_modeset_lock_all(dev);
-> @@ -346,7 +347,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
->  	 * properly.
->  	 */
->  	intel_power_domains_disable(xe);
-> -	if (xe->info.display_runtime.pipe_mask)
-> +	if (HAS_DISPLAY(xe))
->  		drm_kms_helper_poll_disable(&xe->drm);
->  
->  	intel_display_driver_suspend(xe);
-> @@ -392,7 +393,7 @@ void xe_display_pm_resume(struct xe_device *xe)
->  
->  	intel_dmc_resume(xe);
->  
-> -	if (xe->info.display_runtime.pipe_mask)
-> +	if (HAS_DISPLAY(xe))
->  		drm_mode_config_reset(&xe->drm);
->  
->  	intel_display_driver_init_hw(xe);
-> @@ -403,7 +404,7 @@ void xe_display_pm_resume(struct xe_device *xe)
->  	intel_display_driver_resume(xe);
->  
->  	intel_hpd_poll_disable(xe);
-> -	if (xe->info.display_runtime.pipe_mask)
-> +	if (HAS_DISPLAY(xe))
->  		drm_kms_helper_poll_enable(&xe->drm);
->  
->  	intel_opregion_resume(xe);
-> @@ -424,7 +425,7 @@ void xe_display_probe(struct xe_device *xe)
->  
->  	intel_display_device_probe(xe);
->  
-> -	if (xe->info.display_runtime.pipe_mask)
-> +	if (HAS_DISPLAY(xe))
->  		return;
->  
->  no_display:
+> 
+> On Wed, 2023-09-20 at 17:03 +0300, Ville Syrjala wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > 
+> > Silently cancelling vblank works is a bit rude, especially
+> > if said works do any resource management (eg. free memory).
+> > WARN if we ever hit this.
+> > 
+> > TODO: Maybe drm_crtc_vblank_off() should wait for any
+> > pending work to reach its target vblank before actually
+> > doing anything drastic?
+> > 
+> > Cc: Lyude Paul <lyude@redhat.com>
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/drm_vblank_work.c | 3 +++
+> >  1 file changed, 3 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/drm_vblank_work.c b/drivers/gpu/drm/drm_vblank_work.c
+> > index bd481fdd6b87..43cd5c0f4f6f 100644
+> > --- a/drivers/gpu/drm/drm_vblank_work.c
+> > +++ b/drivers/gpu/drm/drm_vblank_work.c
+> > @@ -73,6 +73,9 @@ void drm_vblank_cancel_pending_works(struct drm_vblank_crtc *vblank)
+> >  
+> >  	assert_spin_locked(&vblank->dev->event_lock);
+> >  
+> > +	drm_WARN_ONCE(vblank->dev, !list_empty(&vblank->pending_work),
+> > +		      "Cancelling pending vblank works!\n");
+> > +
+> >  	list_for_each_entry_safe(work, next, &vblank->pending_work, node) {
+> >  		list_del_init(&work->node);
+> >  		drm_vblank_put(vblank->dev, vblank->pipe);
+> 
+> -- 
+> Cheers,
+>  Lyude Paul (she/her)
+>  Software Engineer at Red Hat
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
