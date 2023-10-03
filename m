@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12717E8FDBF
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 22:54:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 410ACE8FDBE
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 22:55:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BED3010E092;
-	Tue,  3 Oct 2023 22:54:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02ECF10E320;
+	Tue,  3 Oct 2023 22:55:05 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 11F4610E092;
- Tue,  3 Oct 2023 22:54:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 801E510E320;
+ Tue,  3 Oct 2023 22:55:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0AEB6A47E9;
- Tue,  3 Oct 2023 22:54:50 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 637B2AADF2;
+ Tue,  3 Oct 2023 22:55:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "David Kershner" <david.kershner@intel.com>
-Date: Tue, 03 Oct 2023 22:54:50 -0000
-Message-ID: <169637369001.4383.8172797572366854496@emeril.freedesktop.org>
+Date: Tue, 03 Oct 2023 22:55:02 -0000
+Message-ID: <169637370240.4380.14439304204437385855@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231003222145.4090918-1-david.kershner@intel.com>
 In-Reply-To: <20231003222145.4090918-1-david.kershner@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Use_DPA_offset_for_page_table_entries=2E?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Us?=
+ =?utf-8?q?e_DPA_offset_for_page_table_entries=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,14 +48,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Use DPA offset for page table entries.
 URL   : https://patchwork.freedesktop.org/series/124577/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 090c3e92d drm/xe/hwmon: Expose hwmon energy attribute
-=== git am output follows ===
-Applying: drm/xe/xe_migrate.c: Use DPA offset for page table entries.
-Applying: drm/xe/xe_hwmon.c: Add static to xe_hwmon_process_reg_read64
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 06d18a85108ff0da936256f422ac4c0d54a3ef0d
+Author: David Kershner <david.kershner@intel.com>
+Date:   Tue Oct 3 18:21:45 2023 -0400
+
+    drm/xe/xe_hwmon.c: Add static to xe_hwmon_process_reg_read64
+    
+    Add static to xe_hwmon_process_reg_read64 to avoid compile warning:
+    
+        ../drivers/gpu/drm/xe/xe_hwmon.c:126:5: error: no previous prototype
+             for ‘xe_hwmon_process_reg_read64’ [-Werror=missing-prototypes]
+    
+    Signed-off-by: David Kershner <david.kershner@intel.com>
++ /mt/dim checkpatch 090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36 drm-intel
+e9f64104f drm/xe/xe_migrate.c: Use DPA offset for page table entries.
+06d18a851 drm/xe/xe_hwmon.c: Add static to xe_hwmon_process_reg_read64
+-:25: WARNING:LONG_LINE: line length of 103 exceeds 100 columns
+#25: FILE: drivers/gpu/drm/xe/xe_hwmon.c:126:
++static int xe_hwmon_process_reg_read64(struct xe_hwmon *hwmon, enum xe_hwmon_reg hwmon_reg, u64 *value)
+
+total: 0 errors, 1 warnings, 0 checks, 8 lines checked
 
 
