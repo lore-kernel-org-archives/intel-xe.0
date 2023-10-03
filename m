@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CBE7FE75426
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 12:01:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A0B8E7544F
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 12:02:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92D1210E0CB;
-	Tue,  3 Oct 2023 12:01:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C7E810E0CB;
+	Tue,  3 Oct 2023 12:02:28 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C425A10E0CB
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 12:01:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80D8110E26F
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 12:02:25 +0000 (UTC)
 From: maarten.lankhorst@linux.intel.com
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  3 Oct 2023 14:00:20 +0200
-Message-Id: <20231003120033.3505-2-maarten.lankhorst@linux.intel.com>
+Date: Tue,  3 Oct 2023 14:00:21 +0200
+Message-Id: <20231003120033.3505-3-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231003120033.3505-1-maarten.lankhorst@linux.intel.com>
 References: <20231003120033.3505-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 01/14] Revert "sound/soc/sof: Remove deferred
- probe for SOF"
+Subject: [Intel-xe] [PATCH 02/14] Revert "sound/hda: Allow XE as i915
+ replacement for sound"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,249 +39,189 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Maarten Lankhorst <dev@lankhorst.se>
 
-This reverts commit 53bccb72d202d8fa8575e81d1c78adc4e6a6ea1f.
+This reverts commit 3cfcbd459fdcb8387b29869f96540654acc833ab.
 ---
- sound/hda/hdac_i915.c       |  2 +-
- sound/soc/sof/Kconfig       | 19 +++++++++++++++++++
- sound/soc/sof/core.c        | 38 +++++++++++++++++++++++++++++++++++--
- sound/soc/sof/intel/hda.c   | 25 +++++++++++-------------
- sound/soc/sof/sof-pci-dev.c |  3 ++-
- sound/soc/sof/sof-priv.h    |  5 +++++
- 6 files changed, 74 insertions(+), 18 deletions(-)
+ sound/hda/hdac_i915.c      | 17 +++++++++---
+ sound/pci/hda/hda_intel.c  | 53 +++++++++++++++++---------------------
+ sound/soc/intel/avs/core.c | 13 +++-------
+ sound/soc/sof/intel/hda.c  |  7 ++---
+ 4 files changed, 43 insertions(+), 47 deletions(-)
 
 diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
-index 3ae973e7995c..227b33028b56 100644
+index 227b33028b56..ac10c4feb49c 100644
 --- a/sound/hda/hdac_i915.c
 +++ b/sound/hda/hdac_i915.c
-@@ -185,7 +185,7 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
+@@ -109,8 +109,7 @@ static int i915_component_master_match(struct device *dev, int subcomponent,
+ 	hdac_pci = to_pci_dev(bus->dev);
+ 	i915_pci = to_pci_dev(dev);
+ 
+-	if ((!strcmp(dev->driver->name, "i915") ||
+-	     !strcmp(dev->driver->name, "xe")) &&
++	if (!strcmp(dev->driver->name, "i915") &&
+ 	    subcomponent == I915_COMPONENT_AUDIO &&
+ 	    connectivity_check(i915_pci, hdac_pci))
+ 		return 1;
+@@ -184,10 +183,20 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
+ 	if (err < 0)
  		return err;
  	acomp = bus->audio_component;
- 	if (!acomp || !acomp->ops) {
--		dev_dbg(bus->dev, "couldn't bind with audio component\n");
-+		dev_info(bus->dev, "couldn't bind with audio component\n");
+-	if (!acomp || !acomp->ops) {
++	if (!acomp)
++		return -ENODEV;
++	if (!acomp->ops) {
++		if (!IS_ENABLED(CONFIG_MODULES) ||
++		    !request_module("i915")) {
++			/* 60s timeout */
++			wait_for_completion_killable_timeout(&acomp->master_bind_complete,
++							     msecs_to_jiffies(60 * 1000));
++		}
++	}
++	if (!acomp->ops) {
+ 		dev_info(bus->dev, "couldn't bind with audio component\n");
  		snd_hdac_acomp_exit(bus);
- 		return -EPROBE_DEFER;
+-		return -EPROBE_DEFER;
++		return -ENODEV;
  	}
-diff --git a/sound/soc/sof/Kconfig b/sound/soc/sof/Kconfig
-index 8ee39e555806..80361139a49a 100644
---- a/sound/soc/sof/Kconfig
-+++ b/sound/soc/sof/Kconfig
-@@ -82,6 +82,17 @@ config SND_SOC_SOF_DEVELOPER_SUPPORT
- 
- if SND_SOC_SOF_DEVELOPER_SUPPORT
- 
-+config SND_SOC_SOF_FORCE_PROBE_WORKQUEUE
-+	bool "SOF force probe workqueue"
-+	select SND_SOC_SOF_PROBE_WORK_QUEUE
-+	help
-+	  This option forces the use of a probe workqueue, which is only used
-+	  when HDaudio is enabled due to module dependencies. Forcing this
-+	  option is intended for debug only, but this should not add any
-+	  functional issues in nominal cases.
-+	  Say Y if you are involved in SOF development and need this option.
-+	  If not, select N.
-+
- config SND_SOC_SOF_NOCODEC
- 	tristate
- 
-@@ -260,6 +271,14 @@ config SND_SOC_SOF
- 	  module dependencies but since the module or built-in type is decided
- 	  at the top level it doesn't matter.
- 
-+config SND_SOC_SOF_PROBE_WORK_QUEUE
-+	bool
-+	help
-+	  This option is not user-selectable but automagically handled by
-+	  'select' statements at a higher level.
-+	  When selected, the probe is handled in two steps, for example to
-+	  avoid lockdeps if request_module is used in the probe.
-+
- # Supported IPC versions
- config SND_SOC_SOF_IPC3
- 	bool
-diff --git a/sound/soc/sof/core.c b/sound/soc/sof/core.c
-index 78938dbffdad..2d1616b81485 100644
---- a/sound/soc/sof/core.c
-+++ b/sound/soc/sof/core.c
-@@ -191,8 +191,7 @@ static int sof_probe_continue(struct snd_sof_dev *sdev)
- 	/* probe the DSP hardware */
- 	ret = snd_sof_probe(sdev);
- 	if (ret < 0) {
--		if (ret != -EPROBE_DEFER)
--			dev_err(sdev->dev, "error: failed to probe DSP %d\n", ret);
-+		dev_err(sdev->dev, "error: failed to probe DSP %d\n", ret);
- 		goto probe_err;
- 	}
- 
-@@ -310,6 +309,8 @@ static int sof_probe_continue(struct snd_sof_dev *sdev)
- 	if (plat_data->sof_probe_complete)
- 		plat_data->sof_probe_complete(sdev->dev);
- 
-+	sdev->probe_completed = true;
-+
  	return 0;
- 
- sof_machine_err:
-@@ -335,6 +336,19 @@ static int sof_probe_continue(struct snd_sof_dev *sdev)
- 	return ret;
  }
+diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
+index 4622e308baf6..7382e5833b3b 100644
+--- a/sound/pci/hda/hda_intel.c
++++ b/sound/pci/hda/hda_intel.c
+@@ -213,7 +213,6 @@ MODULE_DESCRIPTION("Intel HDA driver");
+ #endif
+ #endif
  
-+static void sof_probe_work(struct work_struct *work)
-+{
-+	struct snd_sof_dev *sdev =
-+		container_of(work, struct snd_sof_dev, probe_work);
-+	int ret;
-+
-+	ret = sof_probe_continue(sdev);
-+	if (ret < 0) {
-+		/* errors cannot be propagated, log */
-+		dev_err(sdev->dev, "error: %s failed err: %d\n", __func__, ret);
-+	}
-+}
-+
- int snd_sof_device_probe(struct device *dev, struct snd_sof_pdata *plat_data)
- {
- 	struct snd_sof_dev *sdev;
-@@ -422,16 +436,33 @@ int snd_sof_device_probe(struct device *dev, struct snd_sof_pdata *plat_data)
+-static DECLARE_BITMAP(probed_devs, SNDRV_CARDS);
  
- 	sof_set_fw_state(sdev, SOF_FW_BOOT_NOT_STARTED);
+ /*
+  */
+@@ -1840,34 +1839,6 @@ static int azx_create(struct snd_card *card, struct pci_dev *pci,
+ 	/* continue probing in work context as may trigger request module */
+ 	INIT_DELAYED_WORK(&hda->probe_work, azx_probe_work);
  
-+	if (IS_ENABLED(CONFIG_SND_SOC_SOF_PROBE_WORK_QUEUE)) {
-+		INIT_WORK(&sdev->probe_work, sof_probe_work);
-+		schedule_work(&sdev->probe_work);
-+		return 0;
-+	}
-+
- 	return sof_probe_continue(sdev);
- }
- EXPORT_SYMBOL(snd_sof_device_probe);
- 
-+bool snd_sof_device_probe_completed(struct device *dev)
-+{
-+	struct snd_sof_dev *sdev = dev_get_drvdata(dev);
-+
-+	return sdev->probe_completed;
-+}
-+EXPORT_SYMBOL(snd_sof_device_probe_completed);
-+
- int snd_sof_device_remove(struct device *dev)
- {
- 	struct snd_sof_dev *sdev = dev_get_drvdata(dev);
- 	struct snd_sof_pdata *pdata = sdev->pdata;
- 	int ret;
- 
-+	if (IS_ENABLED(CONFIG_SND_SOC_SOF_PROBE_WORK_QUEUE))
-+		cancel_work_sync(&sdev->probe_work);
-+
- 	/*
- 	 * Unregister any registered client device first before IPC and debugfs
- 	 * to allow client drivers to be removed cleanly
-@@ -469,6 +500,9 @@ int snd_sof_device_shutdown(struct device *dev)
- {
- 	struct snd_sof_dev *sdev = dev_get_drvdata(dev);
- 
-+	if (IS_ENABLED(CONFIG_SND_SOC_SOF_PROBE_WORK_QUEUE))
-+		cancel_work_sync(&sdev->probe_work);
-+
- 	if (sdev->fw_state == SOF_FW_BOOT_COMPLETE) {
- 		sof_fw_trace_free(sdev);
- 		return snd_sof_shutdown(sdev);
-diff --git a/sound/soc/sof/intel/hda.c b/sound/soc/sof/intel/hda.c
-index 1249dd694c4c..5f65fb8e82e6 100644
---- a/sound/soc/sof/intel/hda.c
-+++ b/sound/soc/sof/intel/hda.c
-@@ -1165,6 +1165,14 @@ int hda_dsp_probe(struct snd_sof_dev *sdev)
- 	sdev->pdata->hw_pdata = hdev;
- 	hdev->desc = chip;
- 
-+	hdev->dmic_dev = platform_device_register_data(sdev->dev, "dmic-codec",
-+						       PLATFORM_DEVID_NONE,
-+						       NULL, 0);
-+	if (IS_ERR(hdev->dmic_dev)) {
-+		dev_err(sdev->dev, "error: failed to create DMIC device\n");
-+		return PTR_ERR(hdev->dmic_dev);
-+	}
-+
- 	/*
- 	 * use position update IPC if either it is forced
- 	 * or we don't have other choice
-@@ -1184,15 +1192,6 @@ int hda_dsp_probe(struct snd_sof_dev *sdev)
- 	if (ret < 0)
- 		goto hdac_bus_unmap;
- 
--	hdev->dmic_dev = platform_device_register_data(sdev->dev, "dmic-codec",
--						       PLATFORM_DEVID_NONE,
--						       NULL, 0);
--	if (IS_ERR(hdev->dmic_dev)) {
--		dev_err(sdev->dev, "error: failed to create DMIC device\n");
--		ret = PTR_ERR(hdev->dmic_dev);
--		goto hdac_exit;
+-
+-
+-
+-	/* bind with i915 if needed */
+-	if (chip->driver_caps & AZX_DCAPS_I915_COMPONENT) {
+-		err = snd_hdac_i915_init(azx_bus(chip));
+-		if (err < 0) {
+-			/* if the controller is bound only with HDMI/DP
+-			 * (for HSW and BDW), we need to abort the probe;
+-			 * for other chips, still continue probing as other
+-			 * codecs can be on the same link.
+-			 */
+-			if (HDA_CONTROLLER_IN_GPU(pci)) {
+-				clear_bit(chip->dev_index, probed_devs);
+-				pci_set_drvdata(pci, NULL);
+-				snd_device_free(card, chip);
+-				return err;
+-			} else {
+-				/* don't bother any longer */
+-				chip->driver_caps &= ~AZX_DCAPS_I915_COMPONENT;
+-			}
+-		}
+-
+-		/* HSW/BDW controllers need this power */
+-		if (HDA_CONTROLLER_IN_GPU(pci))
+-			hda->need_i915_power = true;
 -	}
 -
- 	if (sdev->dspless_mode_selected)
- 		goto skip_dsp_setup;
+ 	*rchip = chip;
  
-@@ -1201,7 +1200,7 @@ int hda_dsp_probe(struct snd_sof_dev *sdev)
- 	if (!sdev->bar[HDA_DSP_BAR]) {
- 		dev_err(sdev->dev, "error: ioremap error\n");
- 		ret = -ENXIO;
--		goto platform_unreg;
-+		goto hdac_bus_unmap;
- 	}
+ 	return 0;
+@@ -2111,6 +2082,8 @@ static const struct hda_controller_ops pci_hda_ops = {
+ 	.position_check = azx_position_check,
+ };
  
- 	sdev->mmio_bar = HDA_DSP_BAR;
-@@ -1299,12 +1298,10 @@ int hda_dsp_probe(struct snd_sof_dev *sdev)
- /* dsp_unmap: not currently used */
- 	if (!sdev->dspless_mode_selected)
- 		iounmap(sdev->bar[HDA_DSP_BAR]);
--platform_unreg:
--	platform_device_unregister(hdev->dmic_dev);
--hdac_exit:
--	hda_codec_i915_exit(sdev);
- hdac_bus_unmap:
-+	platform_device_unregister(hdev->dmic_dev);
- 	iounmap(bus->remap_addr);
-+	hda_codec_i915_exit(sdev);
- err:
- 	return ret;
- }
-diff --git a/sound/soc/sof/sof-pci-dev.c b/sound/soc/sof/sof-pci-dev.c
-index 0fa424613082..f5ece43d0ec2 100644
---- a/sound/soc/sof/sof-pci-dev.c
-+++ b/sound/soc/sof/sof-pci-dev.c
-@@ -339,7 +339,8 @@ void sof_pci_remove(struct pci_dev *pci)
- 	snd_sof_device_remove(&pci->dev);
- 
- 	/* follow recommendation in pci-driver.c to increment usage counter */
--	if (!(sof_pci_debug & SOF_PCI_DISABLE_PM_RUNTIME))
-+	if (snd_sof_device_probe_completed(&pci->dev) &&
-+	    !(sof_pci_debug & SOF_PCI_DISABLE_PM_RUNTIME))
- 		pm_runtime_get_noresume(&pci->dev);
- 
- 	/* release pci regions and disable device */
-diff --git a/sound/soc/sof/sof-priv.h b/sound/soc/sof/sof-priv.h
-index 71db636cfdcc..d4f6702e93dc 100644
---- a/sound/soc/sof/sof-priv.h
-+++ b/sound/soc/sof/sof-priv.h
-@@ -564,6 +564,10 @@ struct snd_sof_dev {
- 	enum sof_fw_state fw_state;
- 	bool first_boot;
- 
-+	/* work queue in case the probe is implemented in two steps */
-+	struct work_struct probe_work;
-+	bool probe_completed;
++static DECLARE_BITMAP(probed_devs, SNDRV_CARDS);
 +
- 	/* DSP HW differentiation */
- 	struct snd_sof_pdata *pdata;
+ static int azx_probe(struct pci_dev *pci,
+ 		     const struct pci_device_id *pci_id)
+ {
+@@ -2290,6 +2263,28 @@ static int azx_probe_continue(struct azx *chip)
+ 	to_hda_bus(bus)->bus_probing = 1;
+ 	hda->probe_continued = 1;
  
-@@ -671,6 +675,7 @@ struct snd_sof_dev {
- int snd_sof_device_probe(struct device *dev, struct snd_sof_pdata *plat_data);
- int snd_sof_device_remove(struct device *dev);
- int snd_sof_device_shutdown(struct device *dev);
-+bool snd_sof_device_probe_completed(struct device *dev);
++	/* bind with i915 if needed */
++	if (chip->driver_caps & AZX_DCAPS_I915_COMPONENT) {
++		err = snd_hdac_i915_init(bus);
++		if (err < 0) {
++			/* if the controller is bound only with HDMI/DP
++			 * (for HSW and BDW), we need to abort the probe;
++			 * for other chips, still continue probing as other
++			 * codecs can be on the same link.
++			 */
++			if (HDA_CONTROLLER_IN_GPU(pci)) {
++				goto out_free;
++			} else {
++				/* don't bother any longer */
++				chip->driver_caps &= ~AZX_DCAPS_I915_COMPONENT;
++			}
++		}
++
++		/* HSW/BDW controllers need this power */
++		if (HDA_CONTROLLER_IN_GPU(pci))
++			hda->need_i915_power = true;
++	}
++
+ 	/* Request display power well for the HDA controller or codec. For
+ 	 * Haswell/Broadwell, both the display HDA controller and codec need
+ 	 * this power. For other platforms, like Baytrail/Braswell, only the
+diff --git a/sound/soc/intel/avs/core.c b/sound/soc/intel/avs/core.c
+index 7982be89a9b7..859b217fc761 100644
+--- a/sound/soc/intel/avs/core.c
++++ b/sound/soc/intel/avs/core.c
+@@ -191,6 +191,10 @@ static void avs_hda_probe_work(struct work_struct *work)
  
- int snd_sof_runtime_suspend(struct device *dev);
- int snd_sof_runtime_resume(struct device *dev);
+ 	pm_runtime_set_active(bus->dev); /* clear runtime_error flag */
+ 
++	ret = snd_hdac_i915_init(bus);
++	if (ret < 0)
++		dev_info(bus->dev, "i915 init unsuccessful: %d\n", ret);
++
+ 	snd_hdac_display_power(bus, HDA_CODEC_IDX_CONTROLLER, true);
+ 	avs_hdac_bus_init_chip(bus, true);
+ 	avs_hdac_bus_probe_codecs(bus);
+@@ -461,19 +465,10 @@ static int avs_pci_probe(struct pci_dev *pci, const struct pci_device_id *id)
+ 	pci_set_drvdata(pci, bus);
+ 	device_disable_async_suspend(dev);
+ 
+-	ret = snd_hdac_i915_init(bus);
+-	if (ret == -EPROBE_DEFER)
+-		goto err_unmaster;
+-	else if (ret < 0)
+-		dev_info(bus->dev, "i915 init unsuccessful: %d\n", ret);
+-
+ 	schedule_work(&adev->probe_work);
+ 
+ 	return 0;
+ 
+-err_unmaster:
+-	pci_clear_master(pci);
+-	pci_set_drvdata(pci, NULL);
+ err_acquire_irq:
+ 	snd_hdac_bus_free_stream_pages(bus);
+ 	snd_hdac_ext_stream_free_all(bus);
+diff --git a/sound/soc/sof/intel/hda.c b/sound/soc/sof/intel/hda.c
+index 5f65fb8e82e6..15e6779efaa3 100644
+--- a/sound/soc/sof/intel/hda.c
++++ b/sound/soc/sof/intel/hda.c
+@@ -848,11 +848,8 @@ static int hda_init(struct snd_sof_dev *sdev)
+ 
+ 	/* init i915 and HDMI codecs */
+ 	ret = hda_codec_i915_init(sdev);
+-	if (ret < 0) {
+-		if (ret != -EPROBE_DEFER)
+-			dev_warn(sdev->dev, "init of i915 and HDMI codec failed: %i\n", ret);
+-		return ret;
+-	}
++	if (ret < 0)
++		dev_warn(sdev->dev, "init of i915 and HDMI codec failed\n");
+ 
+ 	/* get controller capabilities */
+ 	ret = hda_dsp_ctrl_get_caps(sdev);
 -- 
 2.40.1
 
