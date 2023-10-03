@@ -4,50 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D231AE75457
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 12:59:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0A40E75455
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 13:05:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9926410E2A9;
-	Tue,  3 Oct 2023 12:59:07 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF2F10E2A5;
- Tue,  3 Oct 2023 12:59:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696337945; x=1727873945;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=zKlkaAgnEjQsDarr4vW/Z7F87//Uxp4Ezqyi7LtddYo=;
- b=Tn+fc7nP9la8A/RuAc3FtVMavcxaY5u6e2+cha6fiebiLh/kBBY08pGW
- YTpragUzdSq4X9eaiABgDS7uK+rFakzVRwbh4SCcsJefX/mURTyWzChYG
- KxlGpzf2L+W8FMGwqO7sbaPvh0t1nqoZb1irdiQc2aQQ6wS8tgcIYtyJz
- //QZCOvPLU8HMyZwsYCr75YSf7GS+mVp+oPoT12+LvCBTj0fBajC/nC+G
- FqjQbfBFe38XXiI3qtOnKKcCSc83lFCQcAFTfu47IGAUPKR+I/UYDPOgY
- fheIyEO2GzqgHX83GteJNtw75kfrv2OwpZfcn+k27clphNuB8nu7mVhYB w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="447024046"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="447024046"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 05:58:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="727605123"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="727605123"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.153])
- by orsmga006.jf.intel.com with SMTP; 03 Oct 2023 05:58:03 -0700
-Received: by stinkbox (sSMTP sendmail emulation);
- Tue, 03 Oct 2023 15:58:03 +0300
-Date: Tue, 3 Oct 2023 15:58:03 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Message-ID: <ZRwP22BZQseg6vW4@intel.com>
-References: <20230922133003.150578-1-vinod.govindapillai@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF7E810E04E;
+	Tue,  3 Oct 2023 13:05:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0A2AF10E04E;
+ Tue,  3 Oct 2023 13:05:41 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id E1487AADE8;
+ Tue,  3 Oct 2023 13:05:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0408686073675002104=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230922133003.150578-1-vinod.govindapillai@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-xe] [PATCH v5 0/2] fbc on any planes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: maarten.lankhorst@linux.intel.com
+Date: Tue, 03 Oct 2023 13:05:40 -0000
+Message-ID: <169633834087.4380.15432074416402200689@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231003120033.3505-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20231003120033.3505-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Update_so?=
+ =?utf-8?q?und_patches_to_upstreamable_versions=2E?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,29 +39,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: ville.syrjala@intel.com, intel-gfx@lists.freedesktop.org,
- matthew.d.roper@intel.com, intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Sep 22, 2023 at 04:30:01PM +0300, Vinod Govindapillai wrote:
-> FBC can be supported in first three planes in lnl
-> 
-> Vinod Govindapillai (2):
->   drm/i915/lnl: possibility to enable FBC on first three planes
->   drm/i915/lnl: update the supported plane formats with FBC
+--===============0408686073675002104==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Pushed to drm-intel-next. Thanks.
+== Series Details ==
 
-> 
->  drivers/gpu/drm/i915/display/intel_fbc.c           | 11 ++++++++++-
->  drivers/gpu/drm/i915/display/skl_universal_plane.c |  9 ++++++---
->  drivers/gpu/drm/i915/i915_reg.h                    |  2 ++
->  3 files changed, 18 insertions(+), 4 deletions(-)
-> 
-> -- 
-> 2.34.1
+Series: Update sound patches to upstreamable versions.
+URL   : https://patchwork.freedesktop.org/series/124557/
+State : success
 
--- 
-Ville Syrjälä
-Intel
+== Summary ==
+
+CI Bug Log - changes from xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489_BAT -> xe-pw-124557v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-124557v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124557v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7508 -> IGT_7509
+  * Linux: xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489 -> xe-pw-124557v1
+
+  IGT_7508: f366406b05ca6b3d16eaa734a91e0833bd159f54 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7509: 707af1d9927a72a106997f25d734f00d7685a4f0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489: 02ab43e36623665d8644d46162bd4ec5eeb68489
+  xe-pw-124557v1: 124557v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124557v1/index.html
+
+--===============0408686073675002104==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Update sound patches to upstreamable versions.</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124557/">https://patchwork.freedesktop.org/series/124557/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124557v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124557v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489_BAT -&gt; xe-pw-124557v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-124557v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124557v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7508 -&gt; IGT_7509</li>
+<li>Linux: xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489 -&gt; xe-pw-124557v1</li>
+</ul>
+<p>IGT_7508: f366406b05ca6b3d16eaa734a91e0833bd159f54 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7509: 707af1d9927a72a106997f25d734f00d7685a4f0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-410-02ab43e36623665d8644d46162bd4ec5eeb68489: 02ab43e36623665d8644d46162bd4ec5eeb68489<br />
+  xe-pw-124557v1: 124557v1</p>
+
+</body>
+</html>
+
+--===============0408686073675002104==--
