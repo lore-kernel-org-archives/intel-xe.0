@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92FB6E7545A
-	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 12:52:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D37E9E75458
+	for <intel-xe@archiver.kernel.org>; Tue,  3 Oct 2023 12:52:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2297410E2AB;
-	Tue,  3 Oct 2023 12:52:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9D1E310E0E3;
+	Tue,  3 Oct 2023 12:52:05 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E16310E05D
- for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 12:52:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B91F10E04E
+ for <intel-xe@lists.freedesktop.org>; Tue,  3 Oct 2023 12:52:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696337523; x=1727873523;
+ t=1696337524; x=1727873524;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zI+8rDWMLVdOrrvUxJ2OfVnjFt1i+8XrpKRP+0VoG8I=;
- b=mPzZ5uzIN0wBpKIyKHMRVbo1NZLIzbdOHKeZ57r3cwgoEZfElrwuxyN2
- /CxAWUKCK0IourcWqlDPfHbMVhiqAnJzJHabN9MVTTShIdWCWM9+GtkAp
- Aru7XnKm8cg4lOdghBVev2QzYdBpPKW5M/8ipaaprNQy45KYMiFztYV3z
- bHllak7ofjlssBn6IfJzNdK0hF8JLr1I5CotsKhEPYhdbxMVSu0XAu4Zd
- eksYfR+obO3vkLyzRACpd+G0Fih+ywyvuPUqpmUxJQofx+7kxqbppqop9
- ZUyJcOpKZuFkNmidUcB5FXtJxSrOAzW44fhfePqty35/3EtLAqd+tb1xn g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="447022075"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="447022075"
+ bh=OLcR5W2NmKQL2vkipuForeNRjr35Kn5RZhyW2CIU7Wc=;
+ b=JW4a9Bvz2BYv1bSwxYIW1NbmSbf1/QJINR9YQmMxWWNgGzTj49bXklkr
+ Xzix145h2VvZDnsOG3gGyWB74so3eq4NAL++9qkMzdAUny07qNDDAzjl5
+ FdQe4S5uPsbInfJXt0GRbbxPUlNpbLowSZ4O2JKzm7pBPeDqXXk5tbVrE
+ qVG9kB38yPpM0g3g6/UdzmFlM2984ZdrB/a3Hj35s5AAWK8gW21+E5cr5
+ mY3t2YEnPSmGEEsu9/qG9tTq7JksRS3dzFXAV4FGk4MSupacbJzY/9avD
+ vv8ONF0KS+YdNQFwW5DpZiuZgp/MRveFyWLY4GndUpLf7em67qUaOfgc4 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="447022080"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="447022080"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 05:52:02 -0700
+ 03 Oct 2023 05:52:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="998005515"
-X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="998005515"
+X-IronPort-AV: E=McAfee;i="6600,9927,10851"; a="998005502"
+X-IronPort-AV: E=Sophos;i="6.03,197,1694761200"; d="scan'208";a="998005502"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Oct 2023 05:51:59 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  3 Oct 2023 05:52:17 -0700
-Message-Id: <20231003125217.3350838-8-lucas.demarchi@intel.com>
+Date: Tue,  3 Oct 2023 05:52:13 -0700
+Message-Id: <20231003125217.3350838-4-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231003125217.3350838-1-lucas.demarchi@intel.com>
 References: <20231003125217.3350838-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 7/7] drm/xe/gt: Dump PAT table when failing to
- initialize
+Subject: [Intel-xe] [PATCH v2 3/7] fixup! drm/xe/pat: Prefer the arch/IP
+ names
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,45 +62,27 @@ Cc: Matt Roper <matthew.d.roper@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When failing on early initialization, one cause may be that the PAT
-configuration is not correct. Dump it for ease of debugging.
+Fix alignment
 
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ drivers/gpu/drm/xe/xe_pat.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 68cd9a7ee087..c63e2e4750b1 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -307,6 +307,17 @@ int xe_gt_init_early(struct xe_gt *gt)
- 	return 0;
- }
- 
-+static void dump_pat_on_error(struct xe_gt *gt)
-+{
-+	struct drm_printer p;
-+	char prefix[32];
-+
-+	snprintf(prefix, sizeof(prefix), "[GT%u Error]", gt->info.id);
-+	p = drm_debug_printer(prefix);
-+
-+	xe_pat_dump(gt, &p);
-+}
-+
- static int gt_fw_domain_init(struct xe_gt *gt)
- {
- 	int err, i;
-@@ -360,6 +371,7 @@ static int gt_fw_domain_init(struct xe_gt *gt)
- 	return 0;
- 
- err_force_wake:
-+	dump_pat_on_error(gt);
- 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
- err_hw_fence_irq:
- 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 869aee64641f..4668ca3932c5 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -18,7 +18,7 @@
+ #define XELPG_PAT_3_UC				REG_FIELD_PREP(XELPG_L4_POLICY_MASK, 3)
+ #define XELPG_PAT_1_WT				REG_FIELD_PREP(XELPG_L4_POLICY_MASK, 1)
+ #define XELPG_PAT_0_WB				REG_FIELD_PREP(XELPG_L4_POLICY_MASK, 0)
+-#define XELPG_INDEX_COH_MODE_MASK			REG_GENMASK(1, 0)
++#define XELPG_INDEX_COH_MODE_MASK		REG_GENMASK(1, 0)
+ #define XELPG_3_COH_2W				REG_FIELD_PREP(XELPG_INDEX_COH_MODE_MASK, 3)
+ #define XELPG_2_COH_1W				REG_FIELD_PREP(XELPG_INDEX_COH_MODE_MASK, 2)
+ #define XELPG_0_COH_NON				REG_FIELD_PREP(XELPG_INDEX_COH_MODE_MASK, 0)
 -- 
 2.40.1
 
