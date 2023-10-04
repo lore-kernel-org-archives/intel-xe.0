@@ -4,30 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4C34E7B5E2
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Oct 2023 09:41:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C8A0E7B5E6
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Oct 2023 10:18:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7037D10E0F0;
-	Wed,  4 Oct 2023 09:41:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4C64610E361;
- Wed,  4 Oct 2023 09:41:25 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 37E23A00E6;
- Wed,  4 Oct 2023 09:41:25 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1045196658477842484=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E55210E0C0;
+	Wed,  4 Oct 2023 10:18:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D3E0B10E0C0
+ for <intel-xe@lists.freedesktop.org>; Wed,  4 Oct 2023 10:18:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1696414724; x=1727950724;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=04zcUGE7Ae0FRPOoHr0sZRCOVkovzWSX6UkkfocUAyk=;
+ b=Z2KH5b4WcQH7zdgvfiL52EWBn0PDpv9lLKrFc68NxGam/ODpy78ZcbxR
+ TszW6U3OVnaty/P078vh+9TN6iS/KXPXvXcMaX/4Um0PbHWYUqjggM6Di
+ Db69Af1LuHjXgnQI/P/rvPdZ7t7aOduztoi+YbE2C8FEj6IE8VILlEOTp
+ em/yX96h4uabeJo/jG2MOQqoleGdITugx8lCagPTsjCOV+M/83fSRYhqD
+ 64YpTnn+e/RBJf0/vdeEs2CX7PursECFhQhamOKvmQCAf/ztTA5JqMDNh
+ Htm2d/5xOIrcSrMEWbAbSi289DGUtst3xU/SR55uiVHbFlbVeOCyzMdRj g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="368182542"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="368182542"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Oct 2023 03:18:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="925063682"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="925063682"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 04 Oct 2023 03:18:44 -0700
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 4 Oct 2023 03:18:43 -0700
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 4 Oct 2023 03:18:43 -0700
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Wed, 4 Oct 2023 03:18:43 -0700
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Wed, 4 Oct 2023 03:18:42 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AfH7rqo46l95s5vsTDYfI02NdhnyCQGp0UB8z192ydMb2yLa5BAODXu3P2MwcnV5YUTqHpza46BJaiWcoPqplB8wgp091LsYudBNUPwhZJsLhwElWJnD3RTyBDvVBEDkTxKbWfXUWIs+evSgMkWonVmHHUtaEB+c5OATfmfN5cCkOksbiaS1eUH/jNW6HfDX/MWm9ZvcLXex7+uBnzKStARdVr326BSsx0epANuZXQpX5TxL5vKWIBHI1bebKV+BDPCClFItThXgdGd4SKTr8e8x+gxe16Vam+Ru/JaajcDgCC0zy4XGic8nB2NG1hi1bRJdXi9THApXWeOBwHuuKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=E04LwhsozkTKkVDjZqLUjKPrrNWhVGjEtqnwDWGz0Ts=;
+ b=S3l7AgUZ5T9tby1aoskgWZo0niE4Oc3ZpnpVvqECykaZFiDd0WDrE5ijC3NKltySwKlq3m3T2h6qfda1wvGcgxMrDEuTZRCCA5N6hRkuEe0vULZ8SE6SuLDZPINGkCr/tQfIAzpBWNVahsiVMicZUKsV7SZKgQVQUaeAB41bodH0eTv/39jlasDc8nFazsYH94LS0Dz/AC3QedxQHbUy0YheCtykLz3o5u0zd1jjZ7NBNdqhZzbkHScF1vLP2oc36Uj2Xs2+ZQLkMLPIAU2ZyMQzX1zo1n6cbMMaR8R2/XHsvKacnrPI+oKBEfx4fhhtH1q4GTahXzWzmNz6q461vw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by DM6PR11MB4644.namprd11.prod.outlook.com (2603:10b6:5:28f::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.25; Wed, 4 Oct
+ 2023 10:18:41 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::c555:e954:7fef:f646]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::c555:e954:7fef:f646%7]) with mapi id 15.20.6838.033; Wed, 4 Oct 2023
+ 10:18:41 +0000
+Message-ID: <cbf18908-ee1b-16f9-4375-6fc6e82cfcdf@intel.com>
+Date: Wed, 4 Oct 2023 15:48:30 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+References: <20230925081842.3566834-1-badal.nilawar@intel.com>
+ <20230925081842.3566834-2-badal.nilawar@intel.com>
+ <874jjg1ak6.wl-ashutosh.dixit@intel.com>
+ <84b5dc30-6b27-caf0-6535-c08f6b7e8cd0@intel.com>
+ <87ttreucb0.wl-ashutosh.dixit@intel.com>
+ <c366920b-ec67-f5be-4b17-ae1be82bdae9@intel.com>
+ <87r0mhncwr.wl-ashutosh.dixit@intel.com>
+ <87pm20odx9.wl-ashutosh.dixit@intel.com>
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <87pm20odx9.wl-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA1PR01CA0149.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a00:71::19) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Janga Rahul Kumar" <janga.rahul.kumar@intel.com>
-Date: Wed, 04 Oct 2023 09:41:25 -0000
-Message-ID: <169641248518.7832.18214892848261806350@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231004085138.1825175-1-janga.rahul.kumar@intel.com>
-In-Reply-To: <20231004085138.1825175-1-janga.rahul.kumar@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe=3A?=
- =?utf-8?q?_Extend_query_ioctl_to_expose_tile_count?=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|DM6PR11MB4644:EE_
+X-MS-Office365-Filtering-Correlation-Id: e601c6d0-3e12-4fb5-58d0-08dbc4c347ad
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 4qAAwct1n6OQpAribbkX6EE3LKqbrtzC8kRSNQoVAHDY7wt8kgC4u1V+FrvAAg2Wjh9RkXY9idgrwmuLnNQyoA5Ir7l1gUKmgBas8hZOtUXQTVpAWhqoRFoO0U/vUWjPO+SB8pCFvM+kCUDeUAUKqOMm9BhG1H242RNtXiFZKFUm1GqYOKqEIjz2N2ZMizCY7TxpH7XK7wCcX51/sR0fY+oeqoaK+zz8OAdrUHmdp8jukHi6CX24gKIHZuoK8W2aYghwwCHo0KRyTip0CyGVWjXAYssC2h3jPnZPmLvwCOiC8pE0pwq7PiiuPjyluPiVF0Ybg7f6NSrr8vpf8H8kduyEGhLUV1ExQMrljJ2Vwhhr24unScmPPNFex9eKs3b31h2Y7/Ttpub8L+Cz++Wxp3Inxm9eBajBG+sZFCs5ykRRyAEfn/b76Z2nT1HABmAcrIsMYd61piVXu6j62EITl8S0t7vinnPLnCdKkLI+X4/7Vt1fJkeJ21VfF2ORC2ZV4aNRywM6V2SNXFKOQzQopEsL6xuzjqzRGjUOiU9AKSTGfzL/u+2WyhCKy95ew72jMPBDu7tvk1EFmpgcfMfzXWFMcGJ+8yjuTVPikk3o22xYuTmRvyNFqA58mEbRoOVwaOhHCHr2FEOuqFmNtGqc2w==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(346002)(366004)(376002)(39860400002)(136003)(230922051799003)(64100799003)(1800799009)(451199024)(186009)(53546011)(2616005)(26005)(6666004)(6506007)(6486002)(83380400001)(6512007)(4326008)(2906002)(8676002)(66556008)(6862004)(6636002)(8936002)(66476007)(66946007)(316002)(5660300002)(37006003)(41300700001)(478600001)(36756003)(86362001)(31696002)(38100700002)(82960400001)(31686004)(43740500002)(45980500001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OHBXdkt1S1loN1hGc1U2bEhPdVkrbTlhcW4vcVJQTUprTStsUUR2Unhydmx3?=
+ =?utf-8?B?YWtOSXF1aldRSWVzMlo0alR6TmlLUlYzTUVTSittZklsWGFnUjF6RENYRmxK?=
+ =?utf-8?B?dGE2OTZ0RWtybWc5bmIyUi9kQWRmTzhha3JuL09OakMxOTFkYzZ3bTBDelpX?=
+ =?utf-8?B?L2tsa21WcWV1ZVFMWVdsNkdjOFFneWliSUZxcFJCWHRGNjBiTHk0UjJYK3pX?=
+ =?utf-8?B?b3BiMUl0ZmZabUl3dVM3MUdUYmFJV0pUTjFuSFlPNytEZjRMR3dCZWZCcjJH?=
+ =?utf-8?B?NlloaVc2OUdiLzZkVnVYQTZkQ3VlSTNqc0hOeWxXZkFwSjdSMEErYzlHK0sv?=
+ =?utf-8?B?RHV4RkMvVE9ucnBKeVVFSTFucWIrV3lEZUNRZ1EzMzI5ODdBWWx1dnBsRFVM?=
+ =?utf-8?B?eUFveFJVTGxJLytaMCtVYnMvOURlQlhNVndsQjNiczFMamF2NTJVejVQQW1I?=
+ =?utf-8?B?Vzd1MU55NW1BVUlGVDZWRmFWZk5GY3JtVktlUklvck5ZWDNrVEdHdEtrRi9p?=
+ =?utf-8?B?cTdoOTNISlcxMFFpT1FOL2JvUzJoVW55YmZkVW1vYUxKZUd2ZlZuVzJNelND?=
+ =?utf-8?B?bndBbW5HUGpVR2NodmZzWGlkWnpETEQrVFpydmVENlgrdWR6aUdUSDVwbWZV?=
+ =?utf-8?B?bE16bWRsbkRKTW5PVGV2WEZpN0dEdHd3WFJnRWpBZURGUVk1TlFVODJOVWFr?=
+ =?utf-8?B?WSt3cEI3MFlsQ2JqRDNraFNkZm93VytwMWhjY0tLZTdhajB1eHVWYm9BUTlB?=
+ =?utf-8?B?Z0h3cTRqZzBaRzZ2QkpiZDBwRm9GZ0VHdUJhTC9Mazd4bWZ6TWk5anFMaktW?=
+ =?utf-8?B?UXBZTUw2VExEeFR0bWtONE1FRTZlOGFOU01yeWNDQUYzQXJqSXoyU0xuKzZO?=
+ =?utf-8?B?VXlDU0VJZWd3WENnbEtEcXVLZi9mNHJjaFFpaTNHYkpjL2JVRUNGM0RFTzBs?=
+ =?utf-8?B?WFFOM3E3clNMazk2ay9wclZvNDlyYkdKZmFnT0FERjdXQ1c1dVR4cW5CZ3RW?=
+ =?utf-8?B?VlZsRyt1TFREbjZBblE1dDU0UGtBK2hIM2pOT2VBY3VicFkzNDZ0OVJBeFJl?=
+ =?utf-8?B?S09Ic2FyZ2hESmY0RTNzc1lJdVZxUXdETnpleld4eHNwUFVEcnd3SkJiVW1U?=
+ =?utf-8?B?WnZPeW1lYmZuMm5pT204Tmp4WEFtT0tDZHFaV01LRGdxNmY4a2tPaFNpbE93?=
+ =?utf-8?B?WTEwYWRsUUlLMGFoeXExQTQzcnR2YU1Pd2ZwUkRWWVF2cmdxS1ZoYmZEM1lR?=
+ =?utf-8?B?aVRrNlg2d3U4aDVxaEYyaGZXSFluMmVFdUtkM3BNRmhPT0h1V3Nuako5dHhk?=
+ =?utf-8?B?WWJHeVp1QXBvR0VXRTRjNjQxcWREZmU3eTJUQnpBKzdVVkdUSGpMWHQ3cVBU?=
+ =?utf-8?B?K3lZajAybDNxU20vNXBvOXNQNE43YlV0dFJEenZ1RWpVT1pYblprK21kYzk1?=
+ =?utf-8?B?QUQvTDBaMmhIQ01wUzdCS0I5QVpWUlRYdm1kWVZadUpSVGtpRDFxYjd0Zkp3?=
+ =?utf-8?B?R3Zhak83Rnk4MVQvMnZ6cXMrRnp3d1pGQzZLbFVtNFBZUGdSV3dZVGdtY0JR?=
+ =?utf-8?B?WUkyek9GeTc0czl0WDNYYXpVeXl1TVg5Q2ZmcVF5R01wcU9QSE5DdU9FcmNU?=
+ =?utf-8?B?Y1RJMlZWaHNOanMzTjg0MStUbS95ZFZ1LzM2ZnIxSEFnN0tGK2tjOXI5Rndq?=
+ =?utf-8?B?aGpTbVJ0WkI3NW80eGJZV25JcXhTTC9jQTJyWWhsKzFqVGU4WVZ6TndzdmRH?=
+ =?utf-8?B?VC9PckdUTE50VjFEWFMxNm42MEp5NGZTd013akZqSEVCdlZOQnA0UGY2b2dP?=
+ =?utf-8?B?MVMxbmhLZU0zVTVaR3gwOTBZNnZNMW8rNUluZUtjTFZJL1g4RGZTOTNuRm9N?=
+ =?utf-8?B?UDNSK1pRcHFMZ2QyczZ4UW5JcWxtaXY0amJ6eVZrQjRTbEFONkNoSHErMlhW?=
+ =?utf-8?B?Y2x1N092dml0MWRUcnhXdlYwL0lRYk83aGh0MktFMXhObGRBcmNzdlZXVTln?=
+ =?utf-8?B?RWp3S3lrNEVNY1J2S3VXcjUrb3ZIci9JdVFVWGJ1VVNHWmZYOTJ1bmJ4TUlS?=
+ =?utf-8?B?bkxxaUc4YkFRUC85ajN4YVZUVWZSaWVNMnlacHNDaUtqSEhWbzVwWEt3bU96?=
+ =?utf-8?B?czAvNUVFYi9vVElwaDFORlZacXE2Z1hOSU8vRndYUVNMMlhhNWJuU29DOGZI?=
+ =?utf-8?B?eVE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: e601c6d0-3e12-4fb5-58d0-08dbc4c347ad
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2023 10:18:41.0660 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: l1MWvnHkylb+poFoJ47kYU0hfRuoE6/MCoMWpNb/wvG+6k9FwSt8VkJCBv2EuiY5tcVpEjtPqQIN9vAv/D/p0Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4644
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v6 1/5] drm/xe/hwmon: Expose power attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,164 +165,129 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: linux-hwmon@vger.kernel.org, linux@roeck-us.net, rodrigo.vivi@intel.com,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1045196658477842484==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi Ashutosh,
 
-== Series Details ==
+On 30-09-2023 03:11, Dixit, Ashutosh wrote:
+> On Fri, 29 Sep 2023 09:48:36 -0700, Dixit, Ashutosh wrote:
+>>
+> 
+> Hi Badal,
+> 
+>> On Thu, 28 Sep 2023 23:37:35 -0700, Nilawar, Badal wrote:
+>>>
+>>> On 28-09-2023 10:25, Dixit, Ashutosh wrote:
+>>>> On Wed, 27 Sep 2023 01:39:46 -0700, Nilawar, Badal wrote:
+>>>>
+>>>>> On 27-09-2023 10:23, Dixit, Ashutosh wrote:
+>>>>>> On Mon, 25 Sep 2023 01:18:38 -0700, Badal Nilawar wrote:
+>>>>>>>
+>>>>>>> +static umode_t
+>>>>>>> +xe_hwmon_is_visible(const void *drvdata, enum hwmon_sensor_types type,
+>>>>>>> +		    u32 attr, int channel)
+>>>>>>> +{
+>>>>>>> +	struct xe_hwmon *hwmon = (struct xe_hwmon *)drvdata;
+>>>>>>> +	int ret;
+>>>>>>> +
+>>>>>>> +	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
+>>>>>>
+>>>>>> Maybe we do xe_device_mem_access_get/put in xe_hwmon_process_reg where it
+>>>>>> is needed? E.g. xe_hwmon_is_visible doesn't need to do this because it
+>>>>>> doesn't read/write registers.
+>>>>> Agreed, but visible function is called only once while registering hwmon
+>>>>> interface, which happen during driver probe. During driver probe device
+>>>>> will be in resumed state. So no harm in keeping
+>>>>> xe_device_mem_access_get/put in visible function.
+>>>>
+>>>> To me it doesn't make any sense to keep xe_device_mem_access_get/put
+>>>> anywhere except in xe_hwmon_process_reg where the HW access actually
+>>>> happens. We can eliminate xe_device_mem_access_get/put's all over the place
+>>>> if we do it. Isn't it?
+>>> Agreed, thought process here suggest that take rpm wakeref at lowest
+>>> possible level. I already tried this in rfc series and in some extent in
+>>> rev2. There is problem with this approach. See my comments below.
+>>>>
+>>>> The only restriction I have heard of (though not sure why) is that
+>>>> xe_device_mem_access_get/put should not be called under lock>. Though I am
+>>>> not sure it is for spinlock or also mutex. So as we were saying the locking
+>>>> will also need to move to xe_hwmon_process_reg.
+>>> Yes from rev2 comments its dangerous to take mutex before
+>>> xe_device_mem_access_get/put. With code for "PL1 disable/restore during
+>>> resume" I saw deadlock. Scenario was power1_max write -> mutex lock -> rpm
+>>> resume -> disable pl1 -> mutex lock (dead lock here).
+>>
+>> But this is already the wrong order as mentioned below. If we follow the
+>> below order do we still see deadlock?
+>>
+>>>>
+>>>> So:
+>>>>
+>>>> xe_hwmon_process_reg()
+>>>> {
+>>>> 	xe_device_mem_access_get
+>>>> 	mutex_lock
+>>>> 	...
+>>>> 	mutex_unlock
+>>>> 	xe_device_mem_access_put
+>>>> }
+>>>>
+>>>> So once again if this is not possible for some reason let's figure out why.
+>>> There are two problems with this approach.
+>>>
+>>> Problem 1: If you see implementation of xe_hwmon_power_max_write, reg
+>>> access is happening 3 times, so there will be 3 rpm suspend/resume
+>>> cycles. I was observing the same with rfc implementation. So in subsequent
+>>> series xe_device_mem_access_put/get is moved to top level functions
+>>> i.e. hwmon hooks.
+>>
+>> This is not exactly correct because there is also a 1 second autosuspend
+>> delay which will prevent such rpm suspend/resume cycles:
+>>
+>> xe_pm_runtime_init:
+>> 	pm_runtime_set_autosuspend_delay(dev, 1000);
+>>
+rpm auto suspend delay can be 0 as well, IGT does set it to 0. In that 
+case there will be rpm cycle for every register access. So it better to 
+keep xe_device_mem_access_get/put at attribute level i.e. in hwmon hooks.
+>>
+>>>
+>>> Problem 2: If locking moved inside xe_hwmon_process_reg then between two
+>>> subsequent reg accesses it will open small window during which race can
+>>> happen.
+>>> As Anshuman suggested in other thread for read are sequential and protected
+>>> by sysfs layer. So lets apply locking only for RW attributes.
+>>
+>> But what is the locking trying to protect? As far as I understand it is
+>> just the registers which have to be atomically modified/read. So it seems
+>> sufficient to just protect the register accesses with the lock.
+>>
+>> So I am still not convinced.
+In i915 initially rmw accesses were protected with lock but later with 
+addition of PL1 disable (during resume) logic in some extent locking got 
+extended to attribute level.
 
-Series: drm/xe: Extend query ioctl to expose tile count
-URL   : https://patchwork.freedesktop.org/series/124597/
-State : failure
+Another scenario where locking is needed is for rw attributes where 
+write and read can happen from different threads.
 
-== Summary ==
+For readonly attributes as per this 
+(https://elixir.bootlin.com/linux/latest/source/fs/seq_file.c) locking 
+is not needed.
 
-CI Bug Log - changes from xe-411-090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36_BAT -> xe-pw-124597v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-124597v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-124597v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 3)
-------------------------------
-
-  Missing    (1): bat-dg2-oem2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-124597v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-411-090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124597v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-124597v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#480]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-411-090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124597v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+I think lets apply locking at attribute level.
+> 
+> Let's figure out the locking first depending on what needs to be protected
+> (just registers or other data too). And then we can see where to put the
+> xe_device_mem_access_get/put's (following the rule that
+> xe_device_mem_access_get/put's should not be called under lock).
 
 
-Build changes
--------------
-
-  * IGT: IGT_7510 -> IGT_7512
-  * Linux: xe-411-090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36 -> xe-pw-124597v1
-
-  IGT_7510: a4b4a33d8312e4e30ca23d26bbd1758e56540e1d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7512: 2eb58faf82d3cd5e2e74154a7319cff56eb40762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-411-090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36: 090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36
-  xe-pw-124597v1: 124597v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124597v1/index.html
-
---===============1045196658477842484==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Extend query ioctl to expose tile count</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124597/">https://patchwork.freedesktop.org/series/124597/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124597v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124597v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-411-090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36_BAT -&gt; xe-pw-124597v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-124597v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-124597v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 3)</h2>
-<p>Missing    (1): bat-dg2-oem2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-124597v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-411-090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124597v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-124597v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-411-090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124597v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7510 -&gt; IGT_7512</li>
-<li>Linux: xe-411-090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36 -&gt; xe-pw-124597v1</li>
-</ul>
-<p>IGT_7510: a4b4a33d8312e4e30ca23d26bbd1758e56540e1d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7512: 2eb58faf82d3cd5e2e74154a7319cff56eb40762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-411-090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36: 090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36<br />
-  xe-pw-124597v1: 124597v1</p>
-
-</body>
-</html>
-
---===============1045196658477842484==--
+Regards,
+Badal
+> 
+> Thanks.
+> --
+> Ashutosh
