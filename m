@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C91A7E8FDC3
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Oct 2023 03:10:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA0F0E8FDC8
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Oct 2023 03:10:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9CBF710E340;
-	Wed,  4 Oct 2023 03:10:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D90F10E345;
+	Wed,  4 Oct 2023 03:10:11 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79A6710E08A;
- Wed,  4 Oct 2023 03:10:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0416F10E320;
+ Wed,  4 Oct 2023 03:10:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1696389007; x=1727925007;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GK0AFLW4JoubrmIv4WyIbOZ7T+9a7kqnDoGnF5tUgEw=;
- b=mvjBn3L9sNjJ9xO44KkvjouqqcJuVQItucK21+1uZB9z7bY0+0snJGJ9
- iIUwLEQ36lQgXBv2jCMEb2UozqmlOWDhBEjgyOyBDd4mu3VkHOixCsRFb
- +jLaKlIAKVeF9RE5T3+W6uFOIpfZ9ThffAGAAjkqdt+Jme5vLJODg/43B
- wAJK3iyVREBS0dWJv2WXhBQXl4/auv6BoS04SY4TdEWga/zEqGMdx2AmO
- gI7xdZpMGtU7yPSklg6age8c9e595xNXyTdzb1k+5PDMcl6EbURFuXqEJ
- IuaGj3gfJvmnNHoHjoQ5Ot/uH5rslkL6om19g/KjeDuu1CctWcVrv/WNf w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="363308406"
-X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="363308406"
+ bh=iweaq77sqYUz2W1V5r5cH1LDrHLAJOVKBh3TIKSnRRM=;
+ b=Cn2jQPivfy2hgksV7aBciXAk74C0aoIRxD+LydUPt7fXur6fN5j0oPoy
+ /96Zq3XlHV3/8WHBnUE4tIWaArYeAC8T7ZQns2aJ58w1NUR7fZkPT8IEa
+ e9hkwaC7fUf2B1/LVTK5W4Qv69BXBLJq7twJGDv/M/Gi/5sV/JN4+NGcI
+ FHI9ZN9eJZOxthu0kaV/Xr3QzSb/DtfK+Y9M1Y1n1HBGkAEE0juAXv9I/
+ 38Fm3948IYv1uHYFcJuBXRssNE89DGb+jHMUO3ppaAvGvMa1lWy7/BaS7
+ iv56ZL4lM4pwMbdMteJ5UhRx2qmceCWV1+wnpilT4oS+NdoLsfX7uQVOA w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="363308399"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="363308399"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  03 Oct 2023 20:10:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="894760409"
-X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="894760409"
+X-IronPort-AV: E=McAfee;i="6600,9927,10852"; a="894760371"
+X-IronPort-AV: E=Sophos;i="6.03,199,1694761200"; d="scan'208";a="894760371"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Oct 2023 20:08:40 -0700
+ 03 Oct 2023 20:08:39 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: igt-dev@lists.freedesktop.org
-Date: Tue,  3 Oct 2023 20:10:19 -0700
-Message-Id: <20231004031023.3444455-10-lucas.demarchi@intel.com>
+Date: Tue,  3 Oct 2023 20:10:14 -0700
+Message-Id: <20231004031023.3444455-5-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231004031023.3444455-1-lucas.demarchi@intel.com>
 References: <20231004031023.3444455-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH i-g-t v2 09/13] lib/igt_draw: Add Xe2 mocs to
- XY_FAST_COLOR_BLT
+Subject: [Intel-xe] [PATCH i-g-t v2 04/13] lib/gpu_cmds: Fork a
+ gen9_fill_surface_state()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +62,97 @@ Cc: Matt Roper <matthew.d.roper@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Commit 02c2cf17628b ("lib/[gpu_cmds|intel_bufops]: Enable surface state
+mocs setting.") added support for setting the mocs field in the surface
+state. However it's not until gen9 that MOCS uses a table, programmed by
+the kernel, and only has an index set in the surface state. Previously
+it was the specific caching behavior.
+
+As such, it makes no sense to set this field to `I915_MOCS_PTE << 1`: it
+will only add garbage to the batch buffer. Solve this by forking a
+separate function for gen9 and above, keeping the old behavior for
+previous platforms.
+
+Bspec: 12483, 12239, 12236
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- lib/igt_draw.c  | 6 +++++-
- lib/intel_reg.h | 1 +
- 2 files changed, 6 insertions(+), 1 deletion(-)
+ lib/gpu_cmds.c | 55 ++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
-diff --git a/lib/igt_draw.c b/lib/igt_draw.c
-index d7c3ac64c..9a7664a37 100644
---- a/lib/igt_draw.c
-+++ b/lib/igt_draw.c
-@@ -716,7 +716,11 @@ static void draw_rect_blt(int fd, struct cmd_data *cmd_data,
- 		}
- 
- 		pitch = tiling ? buf->stride / 4 : buf->stride;
--		mocs = intel_get_uc_mocs_index(fd) << XY_FAST_COLOR_BLT_MOCS_INDEX_SHIFT;
+diff --git a/lib/gpu_cmds.c b/lib/gpu_cmds.c
+index 0fd8f8213..83d2302f9 100644
+--- a/lib/gpu_cmds.c
++++ b/lib/gpu_cmds.c
+@@ -136,6 +136,58 @@ gen8_fill_surface_state(struct intel_bb *ibb,
+ 	struct gen8_surface_state *ss;
+ 	uint32_t write_domain, read_domain, offset;
+ 	uint64_t address;
 +
-+		if (ver >= 20)
-+			mocs = intel_get_uc_mocs_index(fd) << XE2_XY_FAST_COLOR_BLT_MOCS_INDEX_SHIFT;
-+		else
-+			mocs = intel_get_uc_mocs_index(fd) << XY_FAST_COLOR_BLT_MOCS_INDEX_SHIFT;
++	if (is_dst) {
++		write_domain = read_domain = I915_GEM_DOMAIN_RENDER;
++	} else {
++		write_domain = 0;
++		read_domain = I915_GEM_DOMAIN_SAMPLER;
++	}
++
++	intel_bb_ptr_align(ibb, 64);
++	offset = intel_bb_offset(ibb);
++	ss = intel_bb_ptr(ibb);
++	intel_bb_ptr_add(ibb, 64);
++
++	ss->ss0.surface_type = SURFACE_2D;
++	ss->ss0.surface_format = format;
++	ss->ss0.render_cache_read_write = 1;
++	ss->ss0.vertical_alignment = 1; /* align 4 */
++	ss->ss0.horizontal_alignment = 1; /* align 4 */
++
++	if (buf->tiling == I915_TILING_X)
++		ss->ss0.tiled_mode = 2;
++	else if (buf->tiling == I915_TILING_Y || buf->tiling == I915_TILING_4)
++		ss->ss0.tiled_mode = 3;
++
++	address = intel_bb_offset_reloc(ibb, buf->handle,
++					read_domain, write_domain,
++					offset + 4 * 8, buf->addr.offset);
++
++	ss->ss8.base_addr = (uint32_t) address;
++	ss->ss9.base_addr_hi = address >> 32;
++
++	ss->ss2.height = intel_buf_height(buf) - 1;
++	ss->ss2.width  = intel_buf_width(buf) - 1;
++	ss->ss3.pitch  = buf->surface[0].stride - 1;
++
++	ss->ss7.shader_chanel_select_r = 4;
++	ss->ss7.shader_chanel_select_g = 5;
++	ss->ss7.shader_chanel_select_b = 6;
++	ss->ss7.shader_chanel_select_a = 7;
++
++	return offset;
++}
++
++static uint32_t
++gen9_fill_surface_state(struct intel_bb *ibb,
++			struct intel_buf *buf,
++			uint32_t format,
++			int is_dst)
++{
++	struct gen8_surface_state *ss;
++	uint32_t write_domain, read_domain, offset;
++	uint64_t address;
+ 	enum intel_buf_mocs mocs = intel_buf_get_mocs(buf);
  
- 		intel_bb_out(ibb, XY_FAST_COLOR_BLT | blt_cmd_depth);
- 		intel_bb_out(ibb, blt_cmd_tiling | mocs | (pitch-1));
-diff --git a/lib/intel_reg.h b/lib/intel_reg.h
-index f97154d2b..ea463376b 100644
---- a/lib/intel_reg.h
-+++ b/lib/intel_reg.h
-@@ -2564,6 +2564,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- 
- #define XY_FAST_COLOR_BLT				((0x2<<29)|(0x44<<22)|0xe)
- #define   XY_FAST_COLOR_BLT_MOCS_INDEX_SHIFT		22
-+#define   XE2_XY_FAST_COLOR_BLT_MOCS_INDEX_SHIFT	24
- 
- #define XY_FAST_COPY_BLT				((2<<29)|(0x42<<22)|0x8)
- /* dword 0 */
+ 	if (is_dst) {
+@@ -273,6 +325,9 @@ fill_binding_table(struct intel_bb *ibb, struct intel_buf *buf)
+ 	if (intel_graphics_ver(devid) >= IP_VER(12, 50))
+ 		binding_table[0] = xehp_fill_surface_state(ibb, buf,
+ 							   SURFACEFORMAT_R8_UNORM, 1);
++	else if (intel_graphics_ver(devid) >= IP_VER(9, 0))
++		binding_table[0] = gen9_fill_surface_state(ibb, buf,
++							   SURFACEFORMAT_R8_UNORM, 1);
+ 	else if (intel_graphics_ver(devid) >= IP_VER(8, 0))
+ 		binding_table[0] = gen8_fill_surface_state(ibb, buf,
+ 							   SURFACEFORMAT_R8_UNORM, 1);
 -- 
 2.40.1
 
