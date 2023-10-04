@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F09F0E7B60F
-	for <intel-xe@archiver.kernel.org>; Wed,  4 Oct 2023 13:11:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7C612E7B611
+	for <intel-xe@archiver.kernel.org>; Wed,  4 Oct 2023 13:11:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9ABE10E109;
-	Wed,  4 Oct 2023 13:11:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F50A10E36E;
+	Wed,  4 Oct 2023 13:11:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9655D10E109;
- Wed,  4 Oct 2023 13:11:28 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0F79510E369;
+ Wed,  4 Oct 2023 13:11:40 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 90E00AADE8;
- Wed,  4 Oct 2023 13:11:28 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 0D635AADE8;
+ Wed,  4 Oct 2023 13:11:40 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Wed, 04 Oct 2023 13:11:28 -0000
-Message-ID: <169642508856.7833.18123373152903714000@emeril.freedesktop.org>
+Date: Wed, 04 Oct 2023 13:11:40 -0000
+Message-ID: <169642510005.7832.1652649955810191551@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231004130824.13909-1-gustavo.sousa@intel.com>
 In-Reply-To: <20231004130824.13909-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/rtp=3A_Fix_doc_for_XE=5FRTP=5FACTIONS?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/rtp=3A_Fix_doc_for_XE=5FRTP=5FACTIONS?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,26 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 090c3e92d drm/xe/hwmon: Expose hwmon energy attribute
-=== git am output follows ===
-Applying: drm/xe/rtp: Fix doc for XE_RTP_ACTIONS
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0f946374038cac753daf9badc3f3a0c16160388b
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Wed Oct 4 10:08:24 2023 -0300
+
+    drm/xe/rtp: Fix doc for XE_RTP_ACTIONS
+    
+    Replace the paragraph that was meant for XE_RTP_RULES with one proper
+    for XE_RTP_ACTIONS.
+    
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 090c3e92db31fbbe59a47d44f8dd7e8a1ccbcb36 drm-intel
+0f9463740 drm/xe/rtp: Fix doc for XE_RTP_ACTIONS
 
 
