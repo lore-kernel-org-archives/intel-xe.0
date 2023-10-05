@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1F7C7E92731
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Oct 2023 19:34:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1B9DE92730
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Oct 2023 19:34:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0FDB10E48A;
-	Thu,  5 Oct 2023 19:34:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63D4610E48B;
+	Thu,  5 Oct 2023 19:34:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8F5C210E48A;
- Thu,  5 Oct 2023 19:34:06 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4048510E48B;
+ Thu,  5 Oct 2023 19:34:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8D201A03D2;
- Thu,  5 Oct 2023 19:34:06 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3EB95A03D2;
+ Thu,  5 Oct 2023 19:34:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Thu, 05 Oct 2023 19:34:06 -0000
-Message-ID: <169653444657.7513.9370772133495384054@emeril.freedesktop.org>
+Date: Thu, 05 Oct 2023 19:34:25 -0000
+Message-ID: <169653446525.7512.7781051839962776488@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231005154653.466804-7-matthew.auld@intel.com>
 In-Reply-To: <20231005154653.466804-7-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_PAT_and_cache_coherency_support_=28rev9=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_PA?=
+ =?utf-8?q?T_and_cache_coherency_support_=28rev9=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,13 +52,76 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: be79dc250 fixup! drm/xe/hwmon: Expose power attributes
-=== git am output follows ===
-Applying: drm/xe/pat: trim the xelp PAT table
-Applying: drm/xe: directly use pat_index for pte_encode
-Applying: drm/xe/uapi: Add support for cache and coherency mode
-Applying: drm/xe/pat: annotate pat_index with coherency mode
-Applying: drm/xe/uapi: support pat_index selection with vm_bind
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f036fc8a6f6b176c7f642e3dae8c30ebf35101b3
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Thu Oct 5 16:46:59 2023 +0100
+
+    drm/xe/uapi: support pat_index selection with vm_bind
+    
+    Allow userspace to directly control the pat_index for a given vm
+    binding. This should allow directly controlling the coherency, caching
+    and potentially other stuff in the future for the ppGTT binding.
+    
+    The exact meaning behind the pat_index is very platform specific (see
+    BSpec or PRMs) but effectively maps to some predefined memory
+    attributes. From the KMD pov we only care about the coherency that is
+    provided by the pat_index, which falls into either NONE, 1WAY or 2WAY.
+    The vm_bind coherency mode for the given pat_index needs to be at least
+    as coherent as the coh_mode that was set at object creation. For
+    platforms that lack the explicit coherency mode, we treat UC/WT/WC as
+    NONE and WB as AT_LEAST_1WAY.
+    
+    For userptr mappings we lack a corresponding gem object, so the expected
+    coherency mode is instead implicit and must fall into either 1WAY or
+    2WAY. Trying to use NONE will be rejected by the kernel. For imported
+    dma-buf (from a different device) the coherency mode is also implicit
+    and must also be either 1WAY or 2WAY i.e AT_LEAST_1WAY.
+    
+    v2:
+      - Undefined coh_mode(pat_index) can now be treated as programmer
+        error. (Matt Roper)
+      - We now allow gem_create.coh_mode <= coh_mode(pat_index), rather than
+        having to match exactly. This ensures imported dma-buf can always
+        just use 1way (or even 2way), now that we also bundle 1way/2way into
+        at_least_1way. We still require 1way/2way for external dma-buf, but
+        the policy can now be the same for self-import, if desired.
+      - Use u16 for pat_index in uapi. u32 is massive overkill. (José)
+      - Move as much of the pat_index validation as we can into
+        vm_bind_ioctl_check_args. (José)
+    v3 (Matt Roper):
+      - Split the pte_encode() refactoring into separate patch.
+    v4:
+      - Rebase
+    
+    Testcase: igt@xe_pat
+    Bspec: 45101, 44235 #xe
+    Bspec: 70552, 71582, 59400 #xe2
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Pallavi Mishra <pallavi.mishra@intel.com>
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Cc: José Roberto de Souza <jose.souza@intel.com>
+    Cc: Filip Hazubski <filip.hazubski@intel.com>
+    Cc: Carl Zhang <carl.zhang@intel.com>
+    Cc: Effie Yu <effie.yu@intel.com>
+    Tested-by: José Roberto de Souza <jose.souza@intel.com>
+    Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
++ /mt/dim checkpatch be79dc2504eef9a437df54ca9aac316755e475cf drm-intel
+d39862e75 drm/xe/pat: trim the xelp PAT table
+88527fba7 drm/xe: directly use pat_index for pte_encode
+d36be8933 drm/xe/uapi: Add support for cache and coherency mode
+04821607f drm/xe/pat: annotate pat_index with coherency mode
+f036fc8a6 drm/xe/uapi: support pat_index selection with vm_bind
 
 
