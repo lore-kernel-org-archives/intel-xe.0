@@ -4,54 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44DE3E92FC2
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Oct 2023 21:09:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45BCBE92FC6
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Oct 2023 21:23:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5011810E42C;
-	Thu,  5 Oct 2023 21:09:28 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CDE5C10E19D;
- Thu,  5 Oct 2023 21:09:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696540165; x=1728076165;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=KaBfSZlS3KurW86jcVx7PGKHp07IiQLjON3hiUbQvW8=;
- b=Ax264OBn2/E9uVsUsyNT9xyaVbae+KX+KHcf2rHmDRDHZDi0nNQv3113
- xNJbiHbbFOWmc22eLFs7du2us05p02QvIxf6FO3dgfOZwWj1yNvV5PGWf
- z7NBAUpL8hWiUC2nHouxKKZYSFXzhGmbOC1kF9v2xkKqm+cQto3Ydf5Hv
- dv4p0jy8DkmTvK93tnkdAJKngPm7FZRmBufdY2bAUrg4Isg9vcPttU9NO
- 0d7VfJt98vZh8Gk9XF6lGVFF3Vz4OD8aK5o1HW9pP5u6aTY/iXTJth5LW
- AYdD6KB9pteeJtSIT7nDioudxu+jhGKdoezF6Mat9Pd0nB5jCGXeo2F/+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="450113051"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="450113051"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2023 14:09:25 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="999090435"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="999090435"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by fmsmga006-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2023 14:09:23 -0700
-Date: Thu, 5 Oct 2023 23:09:20 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20231005210920.3fsgos77s6ajtkt6@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-References: <20231003091044.407965-11-janusz.krzysztofik@linux.intel.com>
- <20231003091044.407965-17-janusz.krzysztofik@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F19610E496;
+	Thu,  5 Oct 2023 21:23:07 +0000 (UTC)
+Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3060D10E42C
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Oct 2023 21:23:04 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by ams.source.kernel.org (Postfix) with ESMTP id 87A06B826B2;
+ Thu,  5 Oct 2023 21:23:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF6F4C433C7;
+ Thu,  5 Oct 2023 21:23:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1696540981;
+ bh=k9ogAMNTwUu/79lH07v0A91/gGJzw0lDsKwCEGx54As=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=nnacWpn5XiweDeOlXAlh4eVAoKj+BA6EtVTxJuH0NBSluq/95XOSAmdDVVqpTS/GG
+ gSy9lR76jm+h2XITHFLRJaWLoABKGwiFEEKaqPwWLrV70qk7GncMCXISCBjT9p6Z8k
+ KD3EXDiAWgBs0nREG5HhetMzL3eY+1hHgFwN4poe5Xixb+uIJIwSxzYCw5au/oKh9F
+ 7FzKzIyWr4w+8kSH1nu2OwLXf37uvMYfXP7OuPvldckOUDbfCZEt/BEDFyDb+DhEtx
+ Mj8tSh6E0kULmtSBQgaG9WPd0PIqAjjURwgGnBrOR2U8jxo8KTNUaDDc2/gbwYrcLE
+ vC+ms4W9lI6/Q==
+Date: Thu, 5 Oct 2023 23:22:56 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: David Kershner <david.kershner@intel.com>
+Message-ID: <20231005212256.gt3ouonmgktw754o@zenone.zhora.eu>
+References: <20231003222145.4090918-1-david.kershner@intel.com>
+ <20231003222145.4090918-3-david.kershner@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20231003091044.407965-17-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-xe] [PATCH i-g-t 6/9] tests/kms_selftest: Let subtest
- names match suite names
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231003222145.4090918-3-david.kershner@intel.com>
+Subject: Re: [Intel-xe] [PATCH v3 2/2] drm/xe/xe_hwmon.c: Add static to
+ xe_hwmon_process_reg_read64
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,97 +51,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: john.fleck@intel.com, stuart.summers@intel.com, matthew.d.roper@intel.com,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Janusz,
-On 2023-10-03 at 11:10:51 +0200, Janusz Krzysztofik wrote:
-> There is a rule specified in Kunit Test Style and Nomenclature guidelines
-> [1] that states modules should be named after the test suite, followed by
-> _test.  Of course, that rule applies only to modules that provide one test
-> suite per module.
-> 
-> As long as that rule is obeyed by authors of Kunit test modules, there is
-> no need to hardcode related IGT subtest names in IGT source code.  We are
-> already able to derive subtest names from module names, with their _test
-> or _kunit suffixes stripped.  We may expect those names will match Kunit
-> suite names provided by the modules.
-> 
-> Drop custom subtest names from IGT Kunit tests that still use them.
-> However, keep the mechanism that allows us to provide a name that differs
-> from that derived from module name.  That will be required if we ever need
-> to support a kunit test module that provides multiple test suites (think
-> of i915 selftests code converted to kunit and the i915 module potentially
-> providing three test suites: mock, live and perf).
-> 
-> [1] https://docs.kernel.org/dev-tools/kunit/style.html
-> 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Hi David,
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+On Tue, Oct 03, 2023 at 06:21:45PM -0400, David Kershner wrote:
+> Add static to xe_hwmon_process_reg_read64 to avoid compile warning:
+> 
+>     ../drivers/gpu/drm/xe/xe_hwmon.c:126:5: error: no previous prototype
+>          for ‘xe_hwmon_process_reg_read64’ [-Werror=missing-prototypes]
+> 
+> Signed-off-by: David Kershner <david.kershner@intel.com>
 
-> ---
->  tests/kms_selftest.c | 37 ++++++++++++++++---------------------
->  1 file changed, 16 insertions(+), 21 deletions(-)
-> 
-> diff --git a/tests/kms_selftest.c b/tests/kms_selftest.c
-> index 080ffdf2c0..6618dbe50b 100644
-> --- a/tests/kms_selftest.c
-> +++ b/tests/kms_selftest.c
-> @@ -37,35 +37,30 @@
->   *
->   * arg[1]:
->   *
-> - * @drm_cmdline:            drm cmdline
-> - * @drm_damage:             drm damage
-> - * @drm_dp_mst:             drm dp mst
-> + * @drm_cmdline_parser:     drm cmdline parser
-> + * @drm_damage_helper:      drm damage helper
-> + * @drm_dp_mst_helper:      drm dp mst helper
->   * @drm_format_helper:      drm format helper
->   * @drm_format:             drm format
-> - * @drm_plane:              drm plane
-> - * @framebuffer:            framebuffer
-> + * @drm_plane_helper:       drm plane helper
-> + * @drm_framebuffer:        drm framebuffer
->   */
->  
->  IGT_TEST_DESCRIPTION("Basic sanity check of KMS selftests.");
->  
-> -struct kms_kunittests {
-> -	const char *kunit;
-> -	const char *name;
-> -};
-> -
->  igt_main
->  {
-> -	static const struct kms_kunittests kunit_subtests[] = {
-> -		{ "drm_cmdline_parser_test",	"drm_cmdline" },
-> -		{ "drm_damage_helper_test",	"drm_damage" },
-> -		{ "drm_dp_mst_helper_test",	"drm_dp_mst" },
-> -		{ "drm_format_helper_test",	"drm_format_helper" },
-> -		{ "drm_format_test",		"drm_format" },
-> -		{ "drm_framebuffer_test",	"framebuffer" },
-> -		{ "drm_plane_helper_test",	"drm_plane" },
-> -		{ NULL, NULL}
-> +	static const char *kunit_subtests[] = {
-> +		"drm_cmdline_parser_test",
-> +		"drm_damage_helper_test",
-> +		"drm_dp_mst_helper_test",
-> +		"drm_format_helper_test",
-> +		"drm_format_test",
-> +		"drm_framebuffer_test",
-> +		"drm_plane_helper_test",
-> +		NULL,
->  	};
->  
-> -	for (int i = 0; kunit_subtests[i].kunit != NULL; i++)
-> -		igt_kunit(kunit_subtests[i].kunit, kunit_subtests[i].name, NULL);
-> +	for (int i = 0; kunit_subtests[i] != NULL; i++)
-> +		igt_kunit(kunit_subtests[i], NULL, NULL);
->  }
-> -- 
-> 2.42.0
-> 
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Thanks,
+Andi
