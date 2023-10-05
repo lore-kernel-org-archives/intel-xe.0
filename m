@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D50AE7AD44
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Oct 2023 16:39:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08202E7AD44
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Oct 2023 16:46:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1022210E430;
-	Thu,  5 Oct 2023 16:39:10 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA76610E430
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Oct 2023 16:39:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696523947; x=1728059947;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xoJeColMssbLuKD5Z/+lN/ZNcM2Z3CAJwj+dEc8v8Ws=;
- b=hHBCHmVU6QKHgYAzv8giGIHfDT6YbgV2bUtHdhvnqR2CkG3j3h7QZx8W
- OmJi0+w/+q8RclnPKCP+xCjnc8Tr3AQltZ1Wjp1WVQvLZqiS4MtDtgANd
- A0cWvO4LZ9kQZVusQ8Y9BlxZYd3UOMmfRWZosxjT5f4BCYCqTk1Xb8hKB
- IA+Il+NlUglUUeuuQ+YZ4bnznLvkZrOtLJMmjrbxCvVYvOW0Y/YX9p/Zl
- gG5kYXBoAcGMRV6cRFyEgrgcDADUdPJnkTuPkM259txH1b2yqo8XGw9c6
- apNLYzBwXtR7P/GgSTcXit6j82cjHWLr9e/Eq0iKSIxI/z5AGnCWbSfF2 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="363830255"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="363830255"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2023 09:39:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="751817083"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="751817083"
-Received: from ssshahap-mobl.ger.corp.intel.com (HELO mwauld-mobl1.intel.com)
- ([10.252.30.107])
- by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2023 09:39:05 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu,  5 Oct 2023 17:38:55 +0100
-Message-ID: <20231005163854.483488-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.41.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6EA110E430;
+	Thu,  5 Oct 2023 16:46:35 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6B08910E430;
+ Thu,  5 Oct 2023 16:46:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 654E1A00E8;
+ Thu,  5 Oct 2023 16:46:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2473858471507810411=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/hwmon: fix uaf on unload
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
+Date: Thu, 05 Oct 2023 16:46:32 -0000
+Message-ID: <169652439237.7512.10137480178047278557@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231005143922.23206-1-jose.souza@intel.com>
+In-Reply-To: <20231005143922.23206-1-jose.souza@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A?=
+ =?utf-8?q?_Set_PTE=5FAE_for_smem_alocation_as_well?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,58 +39,136 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-It doesn't look like you can mix and match devm_ and drmmm_ for a
-managed resource. For drmmm the resources are all tracked in drm with
-its own list, and there is only one devm_ resource for the entire list.
-If the driver itself also adds some of its own devm resources, then
-those will be released first. In the case of hwmon the devm_kzalloc will
-be freed before the drmmm_ action to destroy the mutex allocated within,
-leading to uaf.
+--===============2473858471507810411==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Since hwmon itself wants to use devm, rather use that for the mutex
-destroy.
+== Series Details ==
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/766
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Badal Nilawar <badal.nilawar@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
----
- drivers/gpu/drm/xe/xe_hwmon.c | 11 ++++++++++-
- 1 file changed, 10 insertions(+), 1 deletion(-)
+Series: drm/xe: Set PTE_AE for smem alocation as well
+URL   : https://patchwork.freedesktop.org/series/124665/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 1deb5007e1e2..9d3e06b96073 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -584,6 +584,13 @@ xe_hwmon_get_preregistration_info(struct xe_device *xe)
- 		xe_hwmon_energy_get(hwmon, &energy);
- }
- 
-+static void xe_hwmon_mutex_destroy(void *arg)
-+{
-+	struct xe_hwmon *hwmon = arg;
-+
-+	mutex_destroy(&hwmon->hwmon_lock);
-+}
-+
- void xe_hwmon_register(struct xe_device *xe)
- {
- 	struct device *dev = xe->drm.dev;
-@@ -599,7 +606,9 @@ void xe_hwmon_register(struct xe_device *xe)
- 
- 	xe->hwmon = hwmon;
- 
--	drmm_mutex_init(&xe->drm, &hwmon->hwmon_lock);
-+	mutex_init(&hwmon->hwmon_lock);
-+	if (devm_add_action_or_reset(dev, xe_hwmon_mutex_destroy, hwmon))
-+		return;
- 
- 	/* primary GT to access device level properties */
- 	hwmon->gt = xe->tiles[0].primary_gt;
--- 
-2.41.0
+== Summary ==
 
+CI Bug Log - changes from xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875_BAT -> xe-pw-124665v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-124665v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_exec_store@basic-store:
+    - bat-adlp-7:         [FAIL][1] ([Intel XE#761]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875/bat-adlp-7/igt@xe_exec_store@basic-store.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124665v1/bat-adlp-7/igt@xe_exec_store@basic-store.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+  [Intel XE#761]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/761
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7512 -> IGT_7516
+  * Linux: xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875 -> xe-pw-124665v1
+
+  IGT_7512: 2eb58faf82d3cd5e2e74154a7319cff56eb40762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7516: 40b5a184f6da0a3295ee429947696d254522bb22 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875: 3d2b298aaf52e74d4e90470cd65de047362e4875
+  xe-pw-124665v1: 124665v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124665v1/index.html
+
+--===============2473858471507810411==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Set PTE_AE for smem alocation as well</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124665/">https://patchwork.freedesktop.org/series/124665/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124665v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124665v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875_BAT -&gt; xe-pw-124665v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-124665v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_exec_store@basic-store:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875/bat-adlp-7/igt@xe_exec_store@basic-store.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/761">Intel XE#761</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124665v1/bat-adlp-7/igt@xe_exec_store@basic-store.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7512 -&gt; IGT_7516</li>
+<li>Linux: xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875 -&gt; xe-pw-124665v1</li>
+</ul>
+<p>IGT_7512: 2eb58faf82d3cd5e2e74154a7319cff56eb40762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7516: 40b5a184f6da0a3295ee429947696d254522bb22 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875: 3d2b298aaf52e74d4e90470cd65de047362e4875<br />
+  xe-pw-124665v1: 124665v1</p>
+
+</body>
+</html>
+
+--===============2473858471507810411==--
