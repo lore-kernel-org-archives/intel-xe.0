@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CC6ECE93709
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Oct 2023 11:11:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B34BE9370D
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Oct 2023 12:38:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8DC4B10E1EB;
-	Thu,  5 Oct 2023 11:11:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE6EA10E3EC;
+	Thu,  5 Oct 2023 12:38:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CB75510E1EB;
- Thu,  5 Oct 2023 11:11:06 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0C71A10E3EC;
+ Thu,  5 Oct 2023 12:37:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C61C2A00E6;
- Thu,  5 Oct 2023 11:11:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7473859558330977267=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 04908A00E6;
+ Thu,  5 Oct 2023 12:37:59 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Thu, 05 Oct 2023 11:11:06 -0000
-Message-ID: <169650426680.7514.12122132393099438970@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Date: Thu, 05 Oct 2023 12:37:59 -0000
+Message-ID: <169650947901.7513.4031360083188780169@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231005095729.7-1-francois.dugast@intel.com>
-In-Reply-To: <20231005095729.7-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/hw?=
- =?utf-8?q?=5Fengine=3A_Document_difference_between_instance_and_logical_i?=
- =?utf-8?q?nstance?=
+References: <20230922115122.305107-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20230922115122.305107-1-juhapekka.heikkila@gmail.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_Enable_remapped_display_page_table_on_Xe_=28rev5=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -45,106 +44,25 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============7473859558330977267==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/hw_engine: Document difference between instance and logical instance
-URL   : https://patchwork.freedesktop.org/series/124653/
-State : success
+Series: Enable remapped display page table on Xe (rev5)
+URL   : https://patchwork.freedesktop.org/series/124108/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875_BAT -> xe-pw-124653v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 3)
-------------------------------
-
-  Missing    (1): bat-adlp-7 
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 3d2b298aa fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/xe/display/xe_fb_pin.c:104
+error: drivers/gpu/drm/xe/display/xe_fb_pin.c: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/xe/display: Add writing of remapped dpt
+Applying: drm/xe/display: Enable remapped display page tables
+Patch failed at 0002 drm/xe/display: Enable remapped display page tables
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * IGT: IGT_7512 -> IGT_7513
-  * Linux: xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875 -> xe-pw-124653v1
-
-  IGT_7512: 2eb58faf82d3cd5e2e74154a7319cff56eb40762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7513: d659127c6c91924d767c681947f780fc167e4db3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875: 3d2b298aaf52e74d4e90470cd65de047362e4875
-  xe-pw-124653v1: 124653v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124653v1/index.html
-
---===============7473859558330977267==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/hw_engine: Document difference between instance and logical instance</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124653/">https://patchwork.freedesktop.org/series/124653/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124653v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124653v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875_BAT -&gt; xe-pw-124653v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 3)</h2>
-<p>Missing    (1): bat-adlp-7 </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7512 -&gt; IGT_7513</li>
-<li>Linux: xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875 -&gt; xe-pw-124653v1</li>
-</ul>
-<p>IGT_7512: 2eb58faf82d3cd5e2e74154a7319cff56eb40762 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7513: d659127c6c91924d767c681947f780fc167e4db3 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-415-3d2b298aaf52e74d4e90470cd65de047362e4875: 3d2b298aaf52e74d4e90470cd65de047362e4875<br />
-  xe-pw-124653v1: 124653v1</p>
-
-</body>
-</html>
-
---===============7473859558330977267==--
