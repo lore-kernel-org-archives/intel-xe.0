@@ -4,56 +4,60 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9F7DE92708
-	for <intel-xe@archiver.kernel.org>; Thu,  5 Oct 2023 15:08:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3BA22E92706
+	for <intel-xe@archiver.kernel.org>; Thu,  5 Oct 2023 15:09:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB03010E420;
-	Thu,  5 Oct 2023 15:08:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9089B10E150
- for <intel-xe@lists.freedesktop.org>; Thu,  5 Oct 2023 15:08:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CF8A10E422;
+	Thu,  5 Oct 2023 15:09:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F0B010E420
+ for <intel-xe@lists.freedesktop.org>; Thu,  5 Oct 2023 15:09:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696518501; x=1728054501;
+ t=1696518555; x=1728054555;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=bjDJzvpbJW3Hio4oQK2r0JSZ8idT/Xxm6WICWPRG4yY=;
- b=jSkxy5pnww8104uBlFo82J0wa4rdn8NffDer6huQXQq0MzKjXR8zXA6L
- KfmEQ0GLv8ODg0bZExgonj2KZ4iE2ar1mwYL+YNNEMZTD+uUjeumMfY2U
- ZDiL1V2EqdGGElKnevjy6rNLXS8lhkWUWbumWL7vIFlX2BqPYSCCd7KfD
- J/KuyBf7eEhaJCqmlObFXF+75SUfrLbaxiK+1KcnjVnnEzbjpcgy/HigO
- An9QwP5gGyGsnTHduBu/uwwgyozS+xCAc4Ib3HP6Tn7PGZDhTaSK4dPvg
- C/lKLJqM5f5l7r771uLtlCCo3tnlYTkFTHhxYU0AilIvpd3lZ9AhbUnLQ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="380803084"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="380803084"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Oct 2023 08:06:58 -0700
+ bh=uyCYQvFuLdH/kFRLJ8v+EqpuWAl2fkLG3AcDl2fj2Iw=;
+ b=NQxxtCUB/awc8ECCUlwvzW9uIle34e3HCG6O8z9KF+Z5LvLIQBf2pvEk
+ rEqkLfWw/Lg9LuQj2CIY2xjr2eFrWaz1mX72PZ5AFgQMRd+9m4/b/6QIo
+ 9vwRsnmQzi/jl0lf2JpBOfHsj0qI7qVuNiRoIV1g7tjmlGJPQnBeZOZk+
+ st6DmkpeJUwtHBJXhgz2m/6+qOWuC96kxqJewljVkLAxEKIrpt0qW4uRZ
+ GdqjGJea0eeYOhL5qhNbqrj7hSBdESqpYEHKnA2dCw4jtUodDcH07nrzC
+ rgFMpEFCD+gtM0CG5uLLtG4gJGoe0lfjWyhydHK5fBMpgsOuwV/dXr0kM Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="386354143"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="386354143"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Oct 2023 08:06:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="781283092"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="781283092"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Oct 2023 08:06:57 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="875579257"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="875579257"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Oct 2023 08:06:48 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 5 Oct 2023 08:06:57 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 15.1.2507.32; Thu, 5 Oct 2023 08:06:47 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Thu, 5 Oct 2023 08:06:57 -0700
+ 15.1.2507.32; Thu, 5 Oct 2023 08:06:47 -0700
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Thu, 5 Oct 2023 08:06:47 -0700
 Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Thu, 5 Oct 2023 08:06:57 -0700
+ 15.1.2507.32; Thu, 5 Oct 2023 08:06:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KTDBTbNcnW1hr5Gt/CO1y9thDueYpHR5B77oyWrVCXIZ3W4qJzfsc5ckLiLLnIT+z9Nu7J04ml1ycCrHOXSLCXP4UWJ0on/i9JsyX1k2IkpWcP3Wv7D0USFbOahcnCMQoV7+WSlC045Ui5WOjJFyTFhQmTSqYHBn1v2Q4szte7Ew9qC1BXi1HyOti331J4FdJFtVwKx2UzKwE6n4yNzULbu6R2meJjdwf40klk3wUe0XGXL/dLwFdjx5/THBSIJJS4qUNhbzmJfEUXp+/vWhvT58sOSmMg0lh6Cv9iucW3MeYPKLDGOFmXFDrzMerTKq1Oe/QFvsvcFtFVr7KEx7Vg==
+ b=Ib7d0NeT5HLJG2Vf4t0vI3oV+tV0UT533HhX7B7Ff/B+ff7yTZeM7dAsA2AVn6b4xJxZ0VXseG6oQYblEQd8E/VOtIpNQ6ku9jtFvAO5wqYVsa5kKtAntJgzSodj7mrPBmtl4d5gRZ3iqx4eaPDNxLIYRg/JZLQD8X/6JKwa5Ga4cgczRv168gX8fb1hMeOl2aP1oZoRrguSra/b9B8uUYXpTfF4mhVo0QEhMtOKYqK2UqPNUNS4ufqOSzO1uAZ8CthnkrstsRdpeyeCN09ZmccLM9hbDvk0vTjP+Zw1tFVEXY1KWmDQQ7RZmBHHUA21jMw7ZXBy4yMjXpQe4CxClQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Aq0JhCCm51lIZx2CSoS34gdl7buJ37rNgJP/PUe0F04=;
- b=MM1LEFVbdNPXHomSXLpYlbSp1xm9xo6Gr68rQSo5KWw6ihi4wrT//jBDj+xJIRUqLiGtlY5N+Oio2PRNz3FR/3yhXWn2DLDn/JQAs9tub7RMWY9F2rFbTQqCl6noWL+zqGZAk5B5H0D2WBqi/QDN7Zx26qfeeiRsxGlQode5Az2w6xsZ7Y860LmlqxJT9DWNzKWSVDcmzZWJMlYeSZbiWjmk6AnsBgKnGTwKCiIVbcRjFk81oyZwnVAvIxEHAdOgVt//dwEQaChu3MlWpgig4Py6NNdEpmEuTnScRagq3eYvYEz2nTU4cOs5sE13ZFR0J6+ksy6dcdGbqLIi9dPTHg==
+ bh=pmlmA9ky/PfJC2C5hx9senhouC35SIrifWd6CMoTVzs=;
+ b=D/vBS/hdwWjSfmkNqTjTjZo9peG9gTIQYkCRzPPM/4njevlOvHO9n7FMtTmKbIDLrLvREkGPqY5ulhe4x2yRVfNtg7HlqWsUca5PLvrkghV2vHV4Ax9fVPxcpECyNtnHtRwm/UWb/zcFtl/f9M8CQWV+pcb1t+gYAaLfrTvZ2EzhGGHJUbRtjkUca3UnnHQ8rxgXMFk7aCPKNd4rBT/NatbVUQOAPmGg8XTyyYI7GPRtst4lYFVAWFtNkR0SxHyl1NfipsE3K5/hPQNbHVURPkjydZVRFopdkJlvYgpuJxqJTIPb/jtjc9k4KDtpiLsxu1kBA7dpCW0+0nMrAbSZIg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -63,77 +67,76 @@ Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
  by SJ2PR11MB7576.namprd11.prod.outlook.com (2603:10b6:a03:4c9::18)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6838.31; Thu, 5 Oct
- 2023 15:06:55 +0000
+ 2023 15:06:44 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::6d0b:5bc6:8723:593%7]) with mapi id 15.20.6838.033; Thu, 5 Oct 2023
- 15:06:54 +0000
+ 15:06:44 +0000
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Thu, 5 Oct 2023 11:06:19 -0400
-Message-ID: <20231005150619.9521-6-rodrigo.vivi@intel.com>
+Date: Thu, 5 Oct 2023 11:06:17 -0400
+Message-ID: <20231005150619.9521-4-rodrigo.vivi@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231005150619.9521-1-rodrigo.vivi@intel.com>
 References: <20231005150619.9521-1-rodrigo.vivi@intel.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: MW4PR03CA0227.namprd03.prod.outlook.com
- (2603:10b6:303:b9::22) To MN0PR11MB6059.namprd11.prod.outlook.com
+X-ClientProxiedBy: MW4PR04CA0112.namprd04.prod.outlook.com
+ (2603:10b6:303:83::27) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SJ2PR11MB7576:EE_
-X-MS-Office365-Filtering-Correlation-Id: 362a0024-cb59-4028-f156-08dbc5b4b61a
+X-MS-Office365-Filtering-Correlation-Id: 086dee7e-c296-475e-5839-08dbc5b4b006
 X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uy5gAYkbKUjJVY/4SSFghq6M3QmeUOpQ7XQ0iRny9kujhHJjmFyXgjcclgMR1Oatt3ScP0SluHDwXpX+5gfHcmZoC5BdFoyBLloc7C2wza4E5xvBnMHo/UyxExM68fYv51cnEOvzGIv4G3V+znr6pVVC3ogwK9sFZnetD8OdtS+ilcX/q8KWaUSriTyWilufm3nECxDQ03AYfxIopEfkixYp2qZGCN1OvBMn+r0wOOvFWmzm1NerOIyweqvmZIyv+md7mze+CTNo0zsfhjILoGVsu9QYJZKAWHH/7qYz4+UPX/iJKSslZEeYVuwiAUBtARB8Lscd9I0vsETPUqVIgDctKHoAnlk8iNkpKt6mQw4qTXGAWUuZYU3lpDS6NNUvkl2HZvOGQWVWP6F/zZxTQ/ifuxiUPWtkOy5xhel1HG8BJbhZ5dVxoBedwb6WRuoSNuo33owIgHE9iAxawdsWNxY+1N8Vjen7lLsRRYko2ilSxDguKBo8YlEq5B+lQ+XduyfEu//XULvjg9z+NPJIB0lo+exSpP/+xqSi6sgzdOuV37BlaFTtvIFr+yYT0EsV
+X-Microsoft-Antispam-Message-Info: mt28f6beYq8ac41AY5MJYRWVQ7tpMfPUKzHE2KwC1O2Sbxal641aWfd5juerYlmdCFNTO09sbTN9WtSuLdDCSxvc4xPghLheDzdT19OEYl5/1bIqNs4/Twc9SG8LeRzvWZYBUUg3Vuul66KnmtXhVRbU4m+ReWzV556HedGFexsMMY6HbpU69289+XPqNW8SgftDtqVnEPGMPqNBJ/TQxal23C3DoKZIZViMdVBXa3cCAqNoFsq2r7SmPmQv5jx3rsZ0QpCeC9kLkltzEufxnP0vBIO8nZ8+fUTZkmv7oQrZDpSckMXxEGgpbwnhdQPjDXRwjUG2W7luQV2nqW+7z21jnFZKiqIZwjymeBmKQxjAiKOGx4cno8WxcKe8ndndYLWx6+vmhLg3czlPaXwLIPjlvdbEFnIN/m3zybAIz6V9hx/JJVBgB7LUnZGIu1BuDtfDf5Ip6QKJXkpaI39+uJsg+DI2O9YkfjivjHLuKP0hNx95X4j6xBsFacJHFBEIxtn5WBY/wBRtD4Bv/jtzXS1+7FT2ky8NKoc6z3RLNrpFIv8LTSnxiagEp5euAcoj
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230031)(136003)(376002)(39860400002)(366004)(346002)(396003)(230922051799003)(64100799003)(186009)(1800799009)(451199024)(83380400001)(66476007)(6916009)(66556008)(316002)(1076003)(107886003)(54906003)(26005)(66946007)(6666004)(6512007)(36756003)(2616005)(6506007)(38100700002)(86362001)(82960400001)(478600001)(6486002)(2906002)(8676002)(41300700001)(8936002)(4326008)(44832011)(5660300002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cNoD1YrmE12zlqDet6kl+jTdN+QoPrX8POeQTx7/Iz8YE0uXzakInW+X3scU?=
- =?us-ascii?Q?6wr4dexIRPDKJNqlyVwlsSK9EK1FaAjXDSeReezKcqvwh2eqZuRP7Y9uhadN?=
- =?us-ascii?Q?IXiqO1OY9MBTvgdHc7/HQ8Oo0b2Te41aGwycIHbgYWOhqUEnwUwp4NWtVeDT?=
- =?us-ascii?Q?gB0vINU6XJUtPuSRwglFCzbxWEsMsbfh+uH5yeRnkC/a7xCZmyLxI49SH37+?=
- =?us-ascii?Q?bB+aXeucLTDQYvwhNCVvrbxSzQ7kmwukdpVf8Uw4z+7C8oAXvunNdm6Z5yUC?=
- =?us-ascii?Q?Ip5E+0d7Rp+CqCzsL3VGyfM6+wy0Bzuek0YO8NN19w9hma9LhEu0xJ7wi8Jq?=
- =?us-ascii?Q?s0WpcMN+8H0xyLxM/UX93YSFfJbaEEXOKowZ1Jm6bE3Jd+51XWOv0hwcH2Fs?=
- =?us-ascii?Q?dIDY4GQSCzqz6ijjJp8pgV9d66JzXkMmvvxxUC/9Rt/fGic1us9D3pSaNA9V?=
- =?us-ascii?Q?E026bdnIn9xqx6xdlOSa//29SfOyenxHq/FJ/0hYWFRqszitDr+GNZn779aN?=
- =?us-ascii?Q?suAZmKzNG6pUFcCF3cJXpjTWcUm1mz0aNydSE9yG1ixRBSB/PUBzlmNQmfvQ?=
- =?us-ascii?Q?5QW/Ql2puvVmSE7QF7+rzq7EnfZWWkm74xrFomipQ3oCYlvhEJrvsMjyXjPF?=
- =?us-ascii?Q?GTmdrVR3vi5ieJ0Ro6n4tyFLCMxWRUrH78b6vWBfmyyH197yyN/xU4qKkdKl?=
- =?us-ascii?Q?cZ+OreCAfJRU4etqZA2TWutE/3YYqjKKK+SHerOZs+ZCG3zjkJOxF5Q0dgwY?=
- =?us-ascii?Q?/ofTTyA0jaNjLAswShyz5TKrrHW974VtH59xDLUDnGg6N896rqHhwG4WCkm2?=
- =?us-ascii?Q?d5jVrGsEzFhGUutFeHFcLZc/39S7aGault+1OyMTkILHcrbMAqYY72FYNDrN?=
- =?us-ascii?Q?tPKoytbKZzhrZu7lEo+QYufJy14NzdVsY1gwKOyGGnmP8cUblkIg4wLwIIMe?=
- =?us-ascii?Q?nJKy+h2lmDgLsuKQ68ntdbHkBLQB4vLckdUbAOJ07TNblMdnCKSR4O7ntvWb?=
- =?us-ascii?Q?FwXvCCdXZvS3WFyN7xoHrXOTSrwLgA8K4pp1S8e1v6RSKPXbAj1wrIioSwXe?=
- =?us-ascii?Q?rPKsT0zlEJ/F3ZKOSq4iUalNOKukOybe7bQlJsL5G6KZjcZZj27S+VKndj53?=
- =?us-ascii?Q?LRvHUxkxBjCkH7jM+irwm0wob0LFFCvWkFR4iSDXM0J3awSdch6nISGimFs8?=
- =?us-ascii?Q?TJkXxjcIeUV/TFRQTlQ4EMF/0qZHEGqPNMBi1xiK3wxdUm31XUa8LdnI/SIr?=
- =?us-ascii?Q?6Ca/sDr0T//3aBYND8gKL+kUV1FjBSVxAMqqiidSl8mbBt84y/8xY0EkYPeJ?=
- =?us-ascii?Q?QSb01W1oFDWFpBfGflg7Sr7pZ7Fu3Jq12PCv99FKx3JmXHzu6KGoXj7rbJX5?=
- =?us-ascii?Q?7pp3lbHjDdiEilaWWZ963GRAvFaWoDOagwp7aUVIVj3THXio30P6UP0EHf3+?=
- =?us-ascii?Q?T1XlujKMtUBViR8CCuPRCNoIEqXLpJVmdeVJNXzKfWE9wA3ygyYg6uwaZKsY?=
- =?us-ascii?Q?YaYHp53Pxn12NOt9L0aRHJpUaiDpfl3znku8zoVdRUYg/UZ0CnQN1L/TMjXx?=
- =?us-ascii?Q?0xEFclobpjMlYVix0dRlbZIPzSKSR0pUpgHRMi+s0Wlncp50ppy1FOTEkcLs?=
- =?us-ascii?Q?Qw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 362a0024-cb59-4028-f156-08dbc5b4b61a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?W4beU+jvV+qa9Eno4PWmTXY2uuWb2DZCZw1wNiZu8LIqJunMx/WRW7kCcyMB?=
+ =?us-ascii?Q?ikRoGydbP3JPWyku3dsS37WUgV6FkxOkO5HABv0KjxNgJXn/EPOnjEIJMBPp?=
+ =?us-ascii?Q?7GQTu+s14WHzkB4nQ7m/9Q/5XD47bL4vvBchDLGMGIp02fVTVmefzAd/jjzU?=
+ =?us-ascii?Q?piA28aj+eFiQqt5z9qsHAFyvCXvj5lL41cSU56jG3mEwDuMNZmXC1aYjeyv5?=
+ =?us-ascii?Q?7Ter2d0zY4G27nMsCPuyBQmCZAuNpSvGj+4Yc1B2FOKvuhjoxiSciYUd0apS?=
+ =?us-ascii?Q?CdvorFwH6SWGFXPQbclzaX6mspmKm0cjtTU5OH5mIKPOwJ1DTKNq6c9kCpTT?=
+ =?us-ascii?Q?YeqQoHaLzNNNq7aE4HhknKN8ioAYQdcBIb606S9QRqfNTPFDxIbp5TR1RxLv?=
+ =?us-ascii?Q?ainY872DflL7D2b260Y0AswX9WuP0eEm9KpeUdC9wVv8g5fnyubkU9wiBuqj?=
+ =?us-ascii?Q?dARBcOLI7XxADTEka5OuwVup+0t67cA7eOPpsDePiJtZiVxBhkj1okoXPBqb?=
+ =?us-ascii?Q?+EB0gYcJg8hEuPkX2UVmrR9psSf9TT2GjuOsxGyH/3QApbzYP9lBioQ2sb4j?=
+ =?us-ascii?Q?wVw5tM8wtGsizLqcurfqVlfFySkEYol4kwBu1QvQthf3hhJTODEklln9T/1J?=
+ =?us-ascii?Q?dcuR5Tx05O83fACOLPOR9O8bpC821lSK70zpysUpdtjtTPJ/1HkZswK8/jZI?=
+ =?us-ascii?Q?/JV2Uqw2KrpBkb328twFD8p6DWoF+Wck88BEcx2GBitUS8Acivq5Cl0cQf3p?=
+ =?us-ascii?Q?M3YG9CcoPD2rDBGMqIUD92fYW8EuZ3MppMyw+XK6ggLjDvfrF0rGVxOazQ7Y?=
+ =?us-ascii?Q?c3V9y2vJT4vkikF+qOgLgkhAoSk568+L1i615a2u4ys/wuXd+snwEnrX+mAQ?=
+ =?us-ascii?Q?L3g5Miz0AB5FNU/mju7sg0kiDJ7nNz/GMX1enn9hqKpNmQJ+KN+5fId3bobi?=
+ =?us-ascii?Q?+gPBn8QVvQ1aSSxlsR6IpIYAmXdOapqdYrkRlgNVyT/pSaW3EdFqwCf0LDyo?=
+ =?us-ascii?Q?+iK2A9OA7TfMzxt3hazR+IGlMcHjctJNHn9qhuhsHLCB0G3bU17xd8GBbHIk?=
+ =?us-ascii?Q?O5R3Ywxo1odw3egVdWysqoAOwK78o3KAL419WuzxfMFXpR8YqEnxYvRaWq7v?=
+ =?us-ascii?Q?IkLBGdnof/PtwMyJX326RXWGNUqvgz0qxU7P1WoR6rV4xubr/tCChU6ZWOdO?=
+ =?us-ascii?Q?vEExw7OIFby96mvclnvOdDf7/b5EGPXKil9Y7BTAJrDK4T9nR6noJ2gwa0oY?=
+ =?us-ascii?Q?yk0zp57I8ZVktAvexgVI5WYIOommGC3WydbTeBOGLqTxVSWs9k2wDIndjigu?=
+ =?us-ascii?Q?AxrBhrsh2umbdzSLlEy+e3vvgDRGkaB9ObI9kczObH0W3gJcXOK+ffQblQ+C?=
+ =?us-ascii?Q?C/wg36PyTGE3+XnwFkTZwrjW2jXbvOicq9rQsiEdYJBVVxqVwgvWUNNOa+25?=
+ =?us-ascii?Q?tWa3uE0sBQ1Tcq2wVZ2p/H1O2ANjXHIfeT2jRsxg1JD3dKmr84kvLwThHi5Z?=
+ =?us-ascii?Q?S+NVOb38KLVCVix04NGfBgGXSEWHvbWktBxnG9Zu/rVAmw24dV6kwEZKmteP?=
+ =?us-ascii?Q?jRD7Td4ij/CB5eROWlixVHh7qPT5sojjfqIdy05rnf8oIoul5cdS4tQGwPZ5?=
+ =?us-ascii?Q?gg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 086dee7e-c296-475e-5839-08dbc5b4b006
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 15:06:54.8888 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Oct 2023 15:06:44.4205 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mAFh96HUGMV9gNqy3QzEFvoEhFF8uaNdb/dZJrYUjUW3a4krzOPAM7MlYvj5B6zK68PPsBrijJ4AbsPheM3ZEA==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 8QZoCCrX0R0w2xGy/lE1bW/LNB6kxDoJrz7byT4xLQ0y2vRfJTh54yjPrHCcZjBnZdPDJoWjHmTkqPIoox1vgQ==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7576
 X-OriginatorOrg: intel.com
-Subject: [Intel-xe] [CI 6/6] drm/xe: refactor xe_mmio_probe_tiles to support
- MMIO extension
+Subject: [Intel-xe] [CI 4/6] drm/xe: add MMIO extension support flags
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,110 +155,76 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Koby Elbaz <kelbaz@habana.ai>
 
-In future ASICs, there will be an additional MMIO extension space
-for all tiles altogether, residing on top of MMIO address space.
+Besides the regular MMIO space that exists by default, MMIO
+extension support & MMIO extension tile size should both be
+defined per device, and updated from the device's descriptor.
 
 Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
 Reviewed-by: Ofir Bitton <obitton@habana.ai>
 Reviewed-by: Moti Haimovski <mhaimovski@habana.ai>
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_mmio.c | 70 +++++++++++++++++++-----------------
- 1 file changed, 38 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/xe/xe_device_types.h | 4 ++++
+ drivers/gpu/drm/xe/xe_pci.c          | 3 +++
+ drivers/gpu/drm/xe/xe_pci_types.h    | 2 ++
+ 3 files changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-index 52e4572e3c4a..e4cf9bfec422 100644
---- a/drivers/gpu/drm/xe/xe_mmio.c
-+++ b/drivers/gpu/drm/xe/xe_mmio.c
-@@ -318,50 +318,56 @@ int xe_mmio_probe_vram(struct xe_device *xe)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 7d816a5df1fd..416009f4e80b 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -206,6 +206,8 @@ struct xe_device {
+ 		const char *graphics_name;
+ 		/** @media_name: media IP name */
+ 		const char *media_name;
++		/** @tile_mmio_ext_size: size of MMIO extension space, per-tile */
++		u32 tile_mmio_ext_size;
+ 		/** @graphics_verx100: graphics IP version */
+ 		u32 graphics_verx100;
+ 		/** @media_verx100: media IP version */
+@@ -253,6 +255,8 @@ struct xe_device {
+ 		u8 enable_display:1;
+ 		/** @bypass_mtcfg: Bypass Multi-Tile configuration from MTCFG register */
+ 		u8 bypass_mtcfg:1;
++		/** @supports_mmio_ext: supports MMIO extension/s */
++		u8 supports_mmio_ext:1;
  
- static void xe_mmio_probe_tiles(struct xe_device *xe)
- {
--	u8 adj_tile_count = xe->info.tile_count;
-+	size_t tile_mmio_size = SZ_16M, tile_mmio_ext_size = xe->info.tile_mmio_ext_size;
-+	u8 id, tile_count = xe->info.tile_count;
- 	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+	const int mmio_bar = 0;
-+	struct xe_tile *tile;
-+	void *regs;
- 	u32 mtcfg;
--	u8 id;
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ 		const struct intel_display_device_info *display;
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 1a57bef75b6a..72f5f170b156 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -60,6 +60,7 @@ struct xe_device_desc {
  
--	if (xe->info.tile_count == 1)
--		return;
-+	if (tile_count == 1)
-+		goto add_mmio_ext;
+ 	u8 has_llc:1;
+ 	u8 bypass_mtcfg:1;
++	u8 supports_mmio_ext:1;
+ };
  
- 	if (!xe->info.bypass_mtcfg) {
- 		mtcfg = xe_mmio_read64_2x32(gt, XEHP_MTCFG_ADDR);
--		adj_tile_count = xe->info.tile_count =
--			REG_FIELD_GET(TILE_COUNT, mtcfg) + 1;
--
--		/*
--		 * FIXME: Needs some work for standalone media, but should be impossible
--		 * with multi-tile for now.
--		 */
--		xe->info.gt_count = xe->info.tile_count;
--
--		drm_info(&xe->drm, "tile_count: %d, adj_tile_count %d\n",
--			 xe->info.tile_count, adj_tile_count);
--	}
--
--	if (xe->info.tile_count > 1) {
--		const int mmio_bar = 0;
--		struct xe_tile *tile;
--		size_t size;
--		void *regs;
--
--		if (adj_tile_count > 1) {
-+		tile_count = REG_FIELD_GET(TILE_COUNT, mtcfg) + 1;
-+		if (tile_count < xe->info.tile_count) {
-+			drm_info(&xe->drm, "tile_count: %d, reduced_tile_count %d\n",
-+					xe->info.tile_count, tile_count);
- 			pci_iounmap(to_pci_dev(xe->drm.dev), xe->mmio.regs);
--			xe->mmio.size = SZ_16M * adj_tile_count;
--			xe->mmio.regs = pci_iomap(to_pci_dev(xe->drm.dev),
--						  mmio_bar, xe->mmio.size);
-+			xe->mmio.size = (tile_mmio_size + tile_mmio_ext_size) * tile_count;
-+			xe->mmio.regs = pci_iomap(to_pci_dev(xe->drm.dev), mmio_bar, xe->mmio.size);
-+			xe->info.tile_count = tile_count;
+ __diag_push();
+@@ -566,6 +567,8 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.media_name = media_desc ? media_desc->name : "none";
+ 	xe->info.has_llc = desc->has_llc;
+ 	xe->info.bypass_mtcfg = desc->bypass_mtcfg;
++	xe->info.supports_mmio_ext = desc->supports_mmio_ext;
++	xe->info.tile_mmio_ext_size = graphics_desc->tile_mmio_ext_size;
+ 
+ 	xe->info.dma_mask_size = graphics_desc->dma_mask_size;
+ 	xe->info.vram_flags = graphics_desc->vram_flags;
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index bd0b0d87413e..dd3546ba6f90 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -20,6 +20,8 @@ struct xe_graphics_desc {
+ 
+ 	u64 hw_engine_mask;	/* hardware engines provided by graphics IP */
+ 
++	u32 tile_mmio_ext_size; /* size of MMIO extension space, per-tile */
 +
-+			/*
-+			 * FIXME: Needs some work for standalone media, but should be impossible
-+			 * with multi-tile for now.
-+			 */
-+			xe->info.gt_count = xe->info.tile_count;
- 		}
-+	}
+ 	u8 max_remote_tiles:2;
  
--		size = xe->mmio.size / adj_tile_count;
--		regs = xe->mmio.regs;
-+	regs = xe->mmio.regs;
-+	for_each_tile(tile, xe, id) {
-+		tile->mmio.size = tile_mmio_size;
-+		tile->mmio.regs = regs;
-+		regs += tile_mmio_size;
-+	}
-+
-+add_mmio_ext:
-+	/* By design, there's a contiguous multi-tile MMIO space (16MB hard coded per tile).
-+	 * When supported, there could be an additional contiguous multi-tile MMIO extension
-+	 * space ON TOP of it, and hence the necessity for distinguished MMIO spaces.
-+	 */
-+	if (xe->info.supports_mmio_ext) {
-+		regs = xe->mmio.regs + tile_mmio_size * tile_count;
- 
- 		for_each_tile(tile, xe, id) {
--			tile->mmio.size = size;
--			tile->mmio.regs = regs;
-+			tile->mmio_ext.size = tile_mmio_ext_size;
-+			tile->mmio_ext.regs = regs;
- 
--			regs += size;
-+			regs += tile_mmio_ext_size;
- 		}
- 	}
- }
+ 	u8 has_asid:1;
 -- 
 2.41.0
 
