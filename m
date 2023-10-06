@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77EDEE92FFE
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 10:48:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4271DE92711
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 10:48:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 333C310E0C2;
-	Fri,  6 Oct 2023 10:48:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B0EE10E0CA;
+	Fri,  6 Oct 2023 10:48:45 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E56D010E0C2;
- Fri,  6 Oct 2023 10:48:27 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 86A3910E0CA;
+ Fri,  6 Oct 2023 10:48:42 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E355FAADF1;
- Fri,  6 Oct 2023 10:48:27 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 84D89AADF1;
+ Fri,  6 Oct 2023 10:48:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Auld" <matthew.auld@intel.com>
-Date: Fri, 06 Oct 2023 10:48:27 -0000
-Message-ID: <169658930792.6468.17488740633333721307@emeril.freedesktop.org>
+Date: Fri, 06 Oct 2023 10:48:42 -0000
+Message-ID: <169658932254.6467.15378550871077118206@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231006084614.19838-3-matthew.auld@intel.com>
 In-Reply-To: <20231006084614.19838-3-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_series_starting_with_=5BCI=2C1/2=5D_drm/xe/pat=3A_trim_the_x?=
- =?utf-8?q?elp_PAT_table?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_se?=
+ =?utf-8?q?ries_starting_with_=5BCI=2C1/2=5D_drm/xe/pat=3A_trim_the_xelp_P?=
+ =?utf-8?q?AT_table?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,10 +53,41 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: b3daf7f07 drm/xe/hwmon: fix uaf on unload
-=== git am output follows ===
-Applying: drm/xe/pat: trim the xelp PAT table
-Applying: drm/xe: directly use pat_index for pte_encode
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c99fae942869351a9c972929e44efa6502e0f174
+Author: Matthew Auld <matthew.auld@intel.com>
+Date:   Fri Oct 6 09:46:16 2023 +0100
+
+    drm/xe: directly use pat_index for pte_encode
+    
+    In a future patch userspace will be able to directly set the pat_index
+    as part of vm_bind. To support this we need to get away from using
+    xe_cache_level in the low level routines and rather just use the
+    pat_index directly.
+    
+    v2: Rebase
+    v3: Some missed conversions, also prefer tile_to_xe() (Niranjana)
+    v4: remove leftover const (Lucas)
+    
+    Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+    Cc: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+    Cc: Pallavi Mishra <pallavi.mishra@intel.com>
+    Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+    Cc: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+    Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Pallavi Mishra <pallavi.mishra@intel.com>
++ /mt/dim checkpatch b3daf7f07d6accbe43feafcadeb0b0498063761e drm-intel
+cea40ceda drm/xe/pat: trim the xelp PAT table
+c99fae942 drm/xe: directly use pat_index for pte_encode
 
 
