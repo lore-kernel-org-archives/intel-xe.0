@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE866E81E1B
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 16:54:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84207E81E1E
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 17:12:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA53710E53D;
-	Fri,  6 Oct 2023 16:54:39 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67BAD10E53D
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Oct 2023 16:54:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696611278; x=1728147278;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kjZNQc8te2tPkF51wXbxuuQNO+uIRzdw90J6b5j60LY=;
- b=RLg88lQWiKt72MvHTyDX88evT+CFT5zVu37/haz4aVD7VURC88tFf8mQ
- Qw9XxxT5YTm99QOOweLOhVXdFNThUKVJuNARYgnuTgauoWQjizMVM7E95
- lwJSH9CT73S3f6RIfXpUA3Wym+kf0L4bZ08bMh6AVcAOVD5EK5fZwesip
- 1LCA22UC8pQOCBA2/2SzsYfaEtBRp2lyhrImkVKlvt2tMKmUbKplbksBz
- Bki40D/wYAOnA+9qgZuKXl2IKenAyKNSYkZ7zPjJf70/5wESDC3OEde1T
- RDVy5GGA1dgbPtBXsiK/Omw+uYdxvFD5Ca9yE645HsZijurRXyjZxmfRX Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="450276163"
-X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="450276163"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 09:54:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10855"; a="842894439"
-X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="842894439"
-Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 09:54:35 -0700
-From: Badal Nilawar <badal.nilawar@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	linux-hwmon@vger.kernel.org
-Date: Fri,  6 Oct 2023 22:32:05 +0530
-Message-Id: <20231006170205.4136927-3-badal.nilawar@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231006170205.4136927-1-badal.nilawar@intel.com>
-References: <20231006170205.4136927-1-badal.nilawar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 479E110E540;
+	Fri,  6 Oct 2023 17:12:42 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2E51810E544;
+ Fri,  6 Oct 2023 17:12:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2723EAADEF;
+ Fri,  6 Oct 2023 17:12:40 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5968854770362569754=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/xe/hwmon: Expose power1_max_interval
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Date: Fri, 06 Oct 2023 17:12:40 -0000
+Message-ID: <169661236012.6465.4223689186600537281@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231006134540.332716-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20231006134540.332716-1-juhapekka.heikkila@gmail.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Enable_re?=
+ =?utf-8?q?mapped_display_page_table_on_Xe_=28rev7=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,257 +39,235 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Expose power1_max_interval, that is the tau corresponding to PL1, as a
-custom hwmon attribute. Some bit manipulation is needed because of the
-format of PKG_PWR_LIM_1_TIME in
-PACKAGE_RAPL_LIMIT register (1.x * power(2,y))
+--===============5968854770362569754==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Get rpm wake ref while accessing power1_max_interval
-v3: %s/hwmon/xe_hwmon/
-v4:
- - As power1_max_interval is rw attr take lock in read function as well
- - Refine comment about val to fix point conversion (Andi)
- - Update kernel version and date in doc
+== Series Details ==
 
-Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
----
- .../ABI/testing/sysfs-driver-intel-xe-hwmon   |   9 ++
- drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |   8 +
- drivers/gpu/drm/xe/xe_hwmon.c                 | 142 +++++++++++++++++-
- 3 files changed, 158 insertions(+), 1 deletion(-)
+Series: Enable remapped display page table on Xe (rev7)
+URL   : https://patchwork.freedesktop.org/series/124108/
+State : success
 
-diff --git a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-index 1a7a6c23e141..8c321bc9dc04 100644
---- a/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-+++ b/Documentation/ABI/testing/sysfs-driver-intel-xe-hwmon
-@@ -59,3 +59,12 @@ Contact:	intel-xe@lists.freedesktop.org
- Description:	RO. Energy input of device in microjoules.
- 
- 		Only supported for particular Intel xe graphics platforms.
-+
-+What:		/sys/devices/.../hwmon/hwmon<i>/power1_max_interval
-+Date:		October 2023
-+KernelVersion:	6.6
-+Contact:	intel-xe@lists.freedesktop.org
-+Description:	RW. Sustained power limit interval (Tau in PL1/Tau) in
-+		milliseconds over which sustained power is averaged.
-+
-+		Only supported for particular Intel xe graphics platforms.
-diff --git a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-index d8ecbe1858d1..519dd1067a19 100644
---- a/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-@@ -22,15 +22,23 @@
- #define   PKG_TDP				GENMASK_ULL(14, 0)
- #define   PKG_MIN_PWR				GENMASK_ULL(30, 16)
- #define   PKG_MAX_PWR				GENMASK_ULL(46, 32)
-+#define   PKG_MAX_WIN				GENMASK_ULL(54, 48)
-+#define     PKG_MAX_WIN_X			GENMASK_ULL(54, 53)
-+#define     PKG_MAX_WIN_Y			GENMASK_ULL(52, 48)
-+
- 
- #define PCU_CR_PACKAGE_POWER_SKU_UNIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5938)
- #define   PKG_PWR_UNIT				REG_GENMASK(3, 0)
- #define   PKG_ENERGY_UNIT			REG_GENMASK(12, 8)
-+#define   PKG_TIME_UNIT				REG_GENMASK(19, 16)
- 
- #define PCU_CR_PACKAGE_ENERGY_STATUS		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x593c)
- 
- #define PCU_CR_PACKAGE_RAPL_LIMIT		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x59a0)
- #define   PKG_PWR_LIM_1				REG_GENMASK(14, 0)
- #define   PKG_PWR_LIM_1_EN			REG_BIT(15)
-+#define   PKG_PWR_LIM_1_TIME			REG_GENMASK(23, 17)
-+#define   PKG_PWR_LIM_1_TIME_X			REG_GENMASK(23, 22)
-+#define   PKG_PWR_LIM_1_TIME_Y			REG_GENMASK(21, 17)
- 
- #endif /* _XE_MCHBAR_REGS_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_hwmon.c b/drivers/gpu/drm/xe/xe_hwmon.c
-index 391f9a8dd9d7..867481c91826 100644
---- a/drivers/gpu/drm/xe/xe_hwmon.c
-+++ b/drivers/gpu/drm/xe/xe_hwmon.c
-@@ -38,6 +38,7 @@ enum xe_hwmon_reg_operation {
- #define SF_CURR		1000		/* milliamperes */
- #define SF_VOLTAGE	1000		/* millivolts */
- #define SF_ENERGY	1000000		/* microjoules */
-+#define SF_TIME		1000		/* milliseconds */
- 
- struct xe_hwmon_energy_info {
- 	u32 reg_val_prev;
-@@ -50,6 +51,7 @@ struct xe_hwmon {
- 	struct mutex hwmon_lock;	/* For rw attributes */
- 	int scl_shift_power;
- 	int scl_shift_energy;
-+	int scl_shift_time;
- 	struct xe_hwmon_energy_info ei;	/*  Energy info for energy1_input */
- };
- 
-@@ -253,6 +255,142 @@ xe_hwmon_energy_get(struct xe_hwmon *hwmon, long *energy)
- 				  hwmon->scl_shift_energy);
- }
- 
-+static ssize_t
-+xe_hwmon_power1_max_interval_show(struct device *dev, struct device_attribute *attr,
-+				  char *buf)
-+{
-+	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
-+	u32 r, x, y, x_w = 2; /* 2 bits */
-+	u64 tau4, out;
-+
-+	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
-+
-+	mutex_lock(&hwmon->hwmon_lock);
-+
-+	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT,
-+			     REG_READ, &r, 0, 0);
-+
-+	mutex_unlock(&hwmon->hwmon_lock);
-+
-+	xe_device_mem_access_put(gt_to_xe(hwmon->gt));
-+
-+	x = REG_FIELD_GET(PKG_PWR_LIM_1_TIME_X, r);
-+	y = REG_FIELD_GET(PKG_PWR_LIM_1_TIME_Y, r);
-+	/*
-+	 * tau = 1.x * power(2,y), x = bits(23:22), y = bits(21:17)
-+	 *     = (4 | x) << (y - 2)
-+	 * where (y - 2) ensures a 1.x fixed point representation of 1.x
-+	 * However because y can be < 2, we compute
-+	 *     tau4 = (4 | x) << y
-+	 * but add 2 when doing the final right shift to account for units
-+	 */
-+	tau4 = ((1 << x_w) | x) << y;
-+	/* val in hwmon interface units (millisec) */
-+	out = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
-+
-+	return sysfs_emit(buf, "%llu\n", out);
-+}
-+
-+static ssize_t
-+xe_hwmon_power1_max_interval_store(struct device *dev, struct device_attribute *attr,
-+				   const char *buf, size_t count)
-+{
-+	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
-+	u32 x, y, rxy, x_w = 2; /* 2 bits */
-+	u64 tau4, r, max_win;
-+	unsigned long val;
-+	int ret;
-+
-+	ret = kstrtoul(buf, 0, &val);
-+	if (ret)
-+		return ret;
-+
-+	/*
-+	 * Max HW supported tau in '1.x * power(2,y)' format, x = 0, y = 0x12
-+	 * The hwmon->scl_shift_time default of 0xa results in a max tau of 256 seconds
-+	 */
-+#define PKG_MAX_WIN_DEFAULT 0x12ull
-+
-+	/*
-+	 * val must be < max in hwmon interface units. The steps below are
-+	 * explained in xe_hwmon_power1_max_interval_show()
-+	 */
-+	r = FIELD_PREP(PKG_MAX_WIN, PKG_MAX_WIN_DEFAULT);
-+	x = REG_FIELD_GET(PKG_MAX_WIN_X, r);
-+	y = REG_FIELD_GET(PKG_MAX_WIN_Y, r);
-+	tau4 = ((1 << x_w) | x) << y;
-+	max_win = mul_u64_u32_shr(tau4, SF_TIME, hwmon->scl_shift_time + x_w);
-+
-+	if (val > max_win)
-+		return -EINVAL;
-+
-+	/* val in hw units */
-+	val = DIV_ROUND_CLOSEST_ULL((u64)val << hwmon->scl_shift_time, SF_TIME);
-+	/*
-+	 * Convert val to 1.x * power(2,y)
-+	 * y = ilog2(val)
-+	 * x = (val - (1 << y)) >> (y - 2)
-+	 */
-+	if (!val) {
-+		y = 0;
-+		x = 0;
-+	} else {
-+		y = ilog2(val);
-+		x = (val - (1ul << y)) << x_w >> y;
-+	}
-+
-+	rxy = REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_X, x) | REG_FIELD_PREP(PKG_PWR_LIM_1_TIME_Y, y);
-+
-+	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
-+
-+	mutex_lock(&hwmon->hwmon_lock);
-+
-+	xe_hwmon_process_reg(hwmon, REG_PKG_RAPL_LIMIT, REG_RMW, (u32 *)&r,
-+			     PKG_PWR_LIM_1_TIME, rxy);
-+
-+	mutex_unlock(&hwmon->hwmon_lock);
-+
-+	xe_device_mem_access_put(gt_to_xe(hwmon->gt));
-+
-+	return count;
-+}
-+
-+static SENSOR_DEVICE_ATTR(power1_max_interval, 0664,
-+			  xe_hwmon_power1_max_interval_show,
-+			  xe_hwmon_power1_max_interval_store, 0);
-+
-+static struct attribute *hwmon_attributes[] = {
-+	&sensor_dev_attr_power1_max_interval.dev_attr.attr,
-+	NULL
-+};
-+
-+static umode_t xe_hwmon_attributes_visible(struct kobject *kobj,
-+					   struct attribute *attr, int index)
-+{
-+	struct device *dev = kobj_to_dev(kobj);
-+	struct xe_hwmon *hwmon = dev_get_drvdata(dev);
-+	int ret = 0;
-+
-+	xe_device_mem_access_get(gt_to_xe(hwmon->gt));
-+
-+	if (attr == &sensor_dev_attr_power1_max_interval.dev_attr.attr)
-+		ret = xe_hwmon_get_reg(hwmon, REG_PKG_RAPL_LIMIT) ? attr->mode : 0;
-+
-+	xe_device_mem_access_put(gt_to_xe(hwmon->gt));
-+
-+	return ret;
-+}
-+
-+static const struct attribute_group hwmon_attrgroup = {
-+	.attrs = hwmon_attributes,
-+	.is_visible = xe_hwmon_attributes_visible,
-+};
-+
-+static const struct attribute_group *hwmon_groups[] = {
-+	&hwmon_attrgroup,
-+	NULL
-+};
-+
- static const struct hwmon_channel_info *hwmon_info[] = {
- 	HWMON_CHANNEL_INFO(power, HWMON_P_MAX | HWMON_P_RATED_MAX | HWMON_P_CRIT),
- 	HWMON_CHANNEL_INFO(curr, HWMON_C_CRIT),
-@@ -574,6 +712,7 @@ xe_hwmon_get_preregistration_info(struct xe_device *xe)
- 		xe_hwmon_process_reg(hwmon, REG_PKG_POWER_SKU_UNIT, REG_READ, &val_sku_unit, 0, 0);
- 		hwmon->scl_shift_power = REG_FIELD_GET(PKG_PWR_UNIT, val_sku_unit);
- 		hwmon->scl_shift_energy = REG_FIELD_GET(PKG_ENERGY_UNIT, val_sku_unit);
-+		hwmon->scl_shift_time = REG_FIELD_GET(PKG_TIME_UNIT, val_sku_unit);
- 	}
- 
- 	/*
-@@ -620,7 +759,8 @@ void xe_hwmon_register(struct xe_device *xe)
- 	/*  hwmon_dev points to device hwmon<i> */
- 	hwmon->hwmon_dev = devm_hwmon_device_register_with_info(dev, "xe", hwmon,
- 								&hwmon_chip_info,
--								NULL);
-+								hwmon_groups);
-+
- 	if (IS_ERR(hwmon->hwmon_dev)) {
- 		drm_warn(&xe->drm, "Failed to register xe hwmon (%pe)\n", hwmon->hwmon_dev);
- 		xe->hwmon = NULL;
--- 
-2.25.1
+== Summary ==
 
+CI Bug Log - changes from xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e_BAT -> xe-pw-124108v7_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 3)
+------------------------------
+
+  Missing    (1): bat-atsm-2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-124108v7_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  * igt@kms_psr@primary_page_flip:
+    - bat-dg2-oem2:       NOTRUN -> [SKIP][3] ([i915#1072]) +2 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html
+
+  * igt@xe_live_ktest@migrate:
+    - bat-adlp-7:         NOTRUN -> [INCOMPLETE][4] ([Intel XE#753])
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-adlp-7/igt@xe_live_ktest@migrate.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_pipe_crc_basic@hang-read-crc:
+    - bat-dg2-oem2:       [INCOMPLETE][5] ([Intel XE#282] / [Intel XE#749]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-3:
+    - bat-dg2-oem2:       [INCOMPLETE][7] ([Intel XE#282]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-3.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-3.html
+
+  
+#### Warnings ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [INCOMPLETE][9] ([Intel XE#606] / [Intel XE#632]) -> [FAIL][10] ([Intel XE#750])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:
+    - bat-dg2-oem2:       [TIMEOUT][11] ([Intel XE#430] / [Intel XE#530]) -> [FAIL][12] ([Intel XE#400])
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3:
+    - bat-dg2-oem2:       [TIMEOUT][13] ([Intel XE#530]) -> [FAIL][14] ([Intel XE#400])
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
+  [Intel XE#400]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/400
+  [Intel XE#430]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/430
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+  [Intel XE#530]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/530
+  [Intel XE#606]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/606
+  [Intel XE#632]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/632
+  [Intel XE#749]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/749
+  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
+  [Intel XE#753]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/753
+  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7517 -> IGT_7519
+  * Linux: xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e -> xe-pw-124108v7
+
+  IGT_7517: 8368e3ad3f9459a8f5cdd24f813ae802c1211029 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7519: d1db7333d9c5fbbb05e50b0804123950d9dc1c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e: b3daf7f07d6accbe43feafcadeb0b0498063761e
+  xe-pw-124108v7: 124108v7
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/index.html
+
+--===============5968854770362569754==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable remapped display page table on Xe (rev7)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124108/">https://patchwork.freedesktop.org/series/124108/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e_BAT -&gt; xe-pw-124108v7_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 3)</h2>
+<p>Missing    (1): bat-atsm-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-124108v7_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@primary_page_flip:</p>
+<ul>
+<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) +2 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@migrate:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-adlp-7/igt@xe_live_ktest@migrate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/753">Intel XE#753</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/749">Intel XE#749</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-3:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-3.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc@pipe-a-dp-3.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/606">Intel XE#606</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/632">Intel XE#632</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/430">Intel XE#430</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/530">Intel XE#530</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/530">Intel XE#530</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124108v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7517 -&gt; IGT_7519</li>
+<li>Linux: xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e -&gt; xe-pw-124108v7</li>
+</ul>
+<p>IGT_7517: 8368e3ad3f9459a8f5cdd24f813ae802c1211029 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7519: d1db7333d9c5fbbb05e50b0804123950d9dc1c46 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-417-b3daf7f07d6accbe43feafcadeb0b0498063761e: b3daf7f07d6accbe43feafcadeb0b0498063761e<br />
+  xe-pw-124108v7: 124108v7</p>
+
+</body>
+</html>
+
+--===============5968854770362569754==--
