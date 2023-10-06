@@ -4,58 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A516E92FF4
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 07:59:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 67EB7E92FF9
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 08:39:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0D6810E4BF;
-	Fri,  6 Oct 2023 07:59:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A244F10E4C4;
- Fri,  6 Oct 2023 07:59:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A2D910E4CB;
+	Fri,  6 Oct 2023 08:39:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1BF58951B
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Oct 2023 08:39:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696579163; x=1728115163;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=pYvDRGKv2aNd/dUPwyz+6WoPu3Uw/6TuJyluJ90b2A0=;
- b=iCyHi705WM2v8wPgagUgtu2AHPX3ghyBdt+AQCa5rnbV+sf1DThQ5vs0
- CB87H903DkYRiAIwlV47/ifen4OzYxG9YK8vNKPjeuEosxaPywOtsBte5
- ARJcbZm2W6Xd3aa6uds724HzhN3RJlSWmbwi6rZXvVr4+qLzAXdGksd/7
- VE1caVKd/nUnwTQBIeJwAQC/6oBtZGii7MWBqNevb4LQcroFM7IN4H9TH
- FodR6rlNAB+Q36CLm0z64QuyWX8GcYVA4lpxbR/bUdr5ZtjLsJqR8LjM3
- Ni2sjJ1RqYobHM64fCjU0s8ebhWBbEodewHWrzo8VJhKd2pmrWAkNo4BB Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="374049783"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="374049783"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 00:59:22 -0700
+ t=1696581588; x=1728117588;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gecnge7FptDDJicutbiyvDKvccy4kRXfg5sFgPrx84Q=;
+ b=gA1OEo7VjKrzMpZg13dT3tSGLdvf1kT8d2Lcfq5FersCe4wQl5Tpcy80
+ emcsTD5n17uJiQexzGzaGnVWCv2NzsgGwDjzzYyxUrRShJC7vr1Gpe+Xm
+ 66XxcnPxvyDY3kW+uvjSin83gHkubobY8XJvwsSwVUoO6ptnsS0kQ4jar
+ CYj4gq42qqeYoOeVd2CBdBHD7r4dEcXOBezcAWwtdOwnEuidJ65oJY+jy
+ 3ShExZIPQzvghA6jINfSFclzZiH31UIgtyjuxLJBLOP+aKHfDT3loIEjJ
+ U5vk5C8Og+cJdKx3p3v75dTpTYe5GCtHvumzW4pIeyNQAHyNqm/IsMgux Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="383596301"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="383596301"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2023 01:39:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="875863724"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="875863724"
-Received: from stevegr-mobl3.ger.corp.intel.com (HELO [10.213.210.79])
- ([10.213.210.79])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 00:59:17 -0700
-Message-ID: <1e911601-f126-4e55-35e7-1a5e395b5fd2@linux.intel.com>
-Date: Fri, 6 Oct 2023 08:59:15 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="787320563"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="787320563"
+Received: from jpoulsen-mobl.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.151])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2023 01:39:45 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri,  6 Oct 2023 10:39:35 +0200
+Message-ID: <20231006083935.3924-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Luben Tuikov <luben.tuikov@amd.com>,
- Matthew Brost <matthew.brost@intel.com>
-References: <20230919050155.2647172-1-matthew.brost@intel.com>
- <20230919050155.2647172-3-matthew.brost@intel.com>
- <bb9ab46d-326f-4ba9-b0a0-fcede8946a6b@amd.com>
- <ZR4upS/Mkh0lkzJ0@DUT025-TGLU.fm.intel.com>
- <a39eb381-4f2b-439b-b223-c5148167b225@amd.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <a39eb381-4f2b-439b-b223-c5148167b225@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH v4 02/10] drm/sched: Convert drm scheduler to
- use a work queue rather than kthread
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [RFC PATCH] Documentation/gpu: Add a VM_BIND async
+ document
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,244 +57,411 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- lina@asahilina.net, mcanal@igalia.com, Liviu.Dudau@arm.com,
- dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- boris.brezillon@collabora.com, dakr@redhat.com, donald.robson@imgtec.com,
- christian.koenig@amd.com, faith.ekstrand@collabora.com
+Cc: Danilo Krummrich <dakr@redhat.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Nirmoy Das <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Add a motivation for and description of asynchronous VM_BIND operation
 
-On 05/10/2023 05:13, Luben Tuikov wrote:
-> On 2023-10-04 23:33, Matthew Brost wrote:
->> On Tue, Sep 26, 2023 at 11:32:10PM -0400, Luben Tuikov wrote:
->>> Hi,
->>>
->>> On 2023-09-19 01:01, Matthew Brost wrote:
->>>> In XE, the new Intel GPU driver, a choice has made to have a 1 to 1
->>>> mapping between a drm_gpu_scheduler and drm_sched_entity. At first this
->>>> seems a bit odd but let us explain the reasoning below.
->>>>
->>>> 1. In XE the submission order from multiple drm_sched_entity is not
->>>> guaranteed to be the same completion even if targeting the same hardware
->>>> engine. This is because in XE we have a firmware scheduler, the GuC,
->>>> which allowed to reorder, timeslice, and preempt submissions. If a using
->>>> shared drm_gpu_scheduler across multiple drm_sched_entity, the TDR falls
->>>> apart as the TDR expects submission order == completion order. Using a
->>>> dedicated drm_gpu_scheduler per drm_sched_entity solve this problem.
->>>>
->>>> 2. In XE submissions are done via programming a ring buffer (circular
->>>> buffer), a drm_gpu_scheduler provides a limit on number of jobs, if the
->>>> limit of number jobs is set to RING_SIZE / MAX_SIZE_PER_JOB we get flow
->>>> control on the ring for free.
->>>>
->>>> A problem with this design is currently a drm_gpu_scheduler uses a
->>>> kthread for submission / job cleanup. This doesn't scale if a large
->>>> number of drm_gpu_scheduler are used. To work around the scaling issue,
->>>> use a worker rather than kthread for submission / job cleanup.
->>>>
->>>> v2:
->>>>    - (Rob Clark) Fix msm build
->>>>    - Pass in run work queue
->>>> v3:
->>>>    - (Boris) don't have loop in worker
->>>> v4:
->>>>    - (Tvrtko) break out submit ready, stop, start helpers into own patch
->>>> v5:
->>>>    - (Boris) default to ordered work queue
->>>>
->>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->>>> ---
->>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   2 +-
->>>>   drivers/gpu/drm/etnaviv/etnaviv_sched.c    |   2 +-
->>>>   drivers/gpu/drm/lima/lima_sched.c          |   2 +-
->>>>   drivers/gpu/drm/msm/msm_ringbuffer.c       |   2 +-
->>>>   drivers/gpu/drm/nouveau/nouveau_sched.c    |   2 +-
->>>>   drivers/gpu/drm/panfrost/panfrost_job.c    |   2 +-
->>>>   drivers/gpu/drm/scheduler/sched_main.c     | 118 ++++++++++-----------
->>>>   drivers/gpu/drm/v3d/v3d_sched.c            |  10 +-
->>>>   include/drm/gpu_scheduler.h                |  14 ++-
->>>>   9 files changed, 79 insertions(+), 75 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>> index e366f61c3aed..16f3cfe1574a 100644
->>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
->>>> @@ -2279,7 +2279,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
->>>>   			break;
->>>>   		}
->>>>   
->>>> -		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops,
->>>> +		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops, NULL,
->>>>   				   ring->num_hw_submission, 0,
->>>>   				   timeout, adev->reset_domain->wq,
->>>>   				   ring->sched_score, ring->name,
->>>> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
->>>> index 345fec6cb1a4..618a804ddc34 100644
->>>> --- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
->>>> +++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
->>>> @@ -134,7 +134,7 @@ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
->>>>   {
->>>>   	int ret;
->>>>   
->>>> -	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops,
->>>> +	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops, NULL,
->>>>   			     etnaviv_hw_jobs_limit, etnaviv_job_hang_limit,
->>>>   			     msecs_to_jiffies(500), NULL, NULL,
->>>>   			     dev_name(gpu->dev), gpu->dev);
->>>> diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
->>>> index ffd91a5ee299..8d858aed0e56 100644
->>>> --- a/drivers/gpu/drm/lima/lima_sched.c
->>>> +++ b/drivers/gpu/drm/lima/lima_sched.c
->>>> @@ -488,7 +488,7 @@ int lima_sched_pipe_init(struct lima_sched_pipe *pipe, const char *name)
->>>>   
->>>>   	INIT_WORK(&pipe->recover_work, lima_sched_recover_work);
->>>>   
->>>> -	return drm_sched_init(&pipe->base, &lima_sched_ops, 1,
->>>> +	return drm_sched_init(&pipe->base, &lima_sched_ops, NULL, 1,
->>>>   			      lima_job_hang_limit,
->>>>   			      msecs_to_jiffies(timeout), NULL,
->>>>   			      NULL, name, pipe->ldev->dev);
->>>> diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
->>>> index 40c0bc35a44c..b8865e61b40f 100644
->>>> --- a/drivers/gpu/drm/msm/msm_ringbuffer.c
->>>> +++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
->>>> @@ -94,7 +94,7 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
->>>>   	 /* currently managing hangcheck ourselves: */
->>>>   	sched_timeout = MAX_SCHEDULE_TIMEOUT;
->>>>   
->>>> -	ret = drm_sched_init(&ring->sched, &msm_sched_ops,
->>>> +	ret = drm_sched_init(&ring->sched, &msm_sched_ops, NULL,
->>>>   			num_hw_submissions, 0, sched_timeout,
->>>>   			NULL, NULL, to_msm_bo(ring->bo)->name, gpu->dev->dev);
->>>
->>> checkpatch.pl complains here about unmatched open parens.
->>>
->>
->> Will fix and run checkpatch before posting next rev.
->>
->>>>   	if (ret) {
->>>> diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
->>>> index 88217185e0f3..d458c2227d4f 100644
->>>> --- a/drivers/gpu/drm/nouveau/nouveau_sched.c
->>>> +++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
->>>> @@ -429,7 +429,7 @@ int nouveau_sched_init(struct nouveau_drm *drm)
->>>>   	if (!drm->sched_wq)
->>>>   		return -ENOMEM;
->>>>   
->>>> -	return drm_sched_init(sched, &nouveau_sched_ops,
->>>> +	return drm_sched_init(sched, &nouveau_sched_ops, NULL,
->>>>   			      NOUVEAU_SCHED_HW_SUBMISSIONS, 0, job_hang_limit,
->>>>   			      NULL, NULL, "nouveau_sched", drm->dev->dev);
->>>>   }
->>>> diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
->>>> index 033f5e684707..326ca1ddf1d7 100644
->>>> --- a/drivers/gpu/drm/panfrost/panfrost_job.c
->>>> +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
->>>> @@ -831,7 +831,7 @@ int panfrost_job_init(struct panfrost_device *pfdev)
->>>>   		js->queue[j].fence_context = dma_fence_context_alloc(1);
->>>>   
->>>>   		ret = drm_sched_init(&js->queue[j].sched,
->>>> -				     &panfrost_sched_ops,
->>>> +				     &panfrost_sched_ops, NULL,
->>>>   				     nentries, 0,
->>>>   				     msecs_to_jiffies(JOB_TIMEOUT_MS),
->>>>   				     pfdev->reset.wq,
->>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
->>>> index e4fa62abca41..ee6281942e36 100644
->>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
->>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->>>> @@ -48,7 +48,6 @@
->>>>    * through the jobs entity pointer.
->>>>    */
->>>>   
->>>> -#include <linux/kthread.h>
->>>>   #include <linux/wait.h>
->>>>   #include <linux/sched.h>
->>>>   #include <linux/completion.h>
->>>> @@ -256,6 +255,16 @@ drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
->>>>   	return rb ? rb_entry(rb, struct drm_sched_entity, rb_tree_node) : NULL;
->>>>   }
->>>>   
->>>> +/**
->>>> + * drm_sched_submit_queue - scheduler queue submission
->>>
->>> There is no verb in the description, and is not clear what
->>> this function does unless one reads the code. Given that this
->>> is DOC, this should be clearer here. Something like "queue
->>> scheduler work to be executed" or something to that effect.
->>>
->>
->> Will fix.
->>   
->>> Coming back to this from reading the patch below, it was somewhat
->>> unclear what "drm_sched_submit_queue()" does, since when reading
->>> below, "submit" was being read by my mind as an adjective, as opposed
->>> to a verb. Perhaps something like:
->>>
->>> drm_sched_queue_submit(), or
->>> drm_sched_queue_exec(), or
->>> drm_sched_queue_push(), or something to that effect. You pick. :-)
->>>
->>
->> I prefer the name as is. In this patch we have:
->>
->> drm_sched_submit_queue()
->> drm_sched_submit_start)
->> drm_sched_submit_stop()
->> drm_sched_submit_ready()
->>
->> I like all these functions start with 'drm_sched_submit' which allows
->> for easy searching for the functions that touch the DRM scheduler
->> submission state.
->>
->> With a little better doc are you fine with the names as is.
-> 
-> Notice the following scheme in the naming,
-> 
-> drm_sched_submit_queue()
-> drm_sched_submit_start)
-> drm_sched_submit_stop()
-> drm_sched_submit_ready()
-> \---+---/ \--+-/ \-+-/
->      |        |     +---> a verb
->      |        +---------> should be a noun (something in the component)
->      +------------------> the kernel/software component
-> 
-> And although "queue" can technically be used as a verb too, I'd rather it be "enqueue",
-> like this:
-> 
-> drm_sched_submit_enqueue()
-> 
-> And using "submit" as the noun of the component is a bit cringy,
-> since "submit" is really a verb, and it's cringy to make it a "state"
-> or an "object" we operate on in the DRM Scheduler. "Submission" is
-> a noun, but "submission enqueue/start/stop/ready" doesn't sound
-> very well thought out. "Submission" really is what the work-queue
-> does.
-> 
-> I'd rather it be a real object, like for instance,
-> 
-> drm_sched_wqueue_enqueue()
-> drm_sched_wqueue_start)
-> drm_sched_wqueue_stop()
-> drm_sched_wqueue_ready()
-> 
-> Which tells me that the component is the DRM Scheduler, the object is a/the work-queue,
-> and the last word as the verb, is the action we're performing on the object, i.e. the work-queue.
-> Plus, all these functions actually do operate on work-queues, directly or indirectly,
-> are new, so it's a win-win naming scheme.
-> 
-> I think that that would be most likeable.
+v2:
+- Fix typos (Nirmoy Das)
+- Improve the description of a memory fence (Oak Zeng)
+- Add a reference to the document in the Xe RFC.
+- Add pointers to sample uAPI suggestions
+v3:
+- Address review comments (Danilo Krummrich)
+- Formatting fixes
+v4:
+- Address typos (Francois Dugast)
+- Explain why in-fences are not allowed for VM_BIND operations for long-
+  running workloads (Matthew Brost)
+v5:
+- More typo- and style fixing
+- Further clarify the implications of disallowing in-fences for VM_BIND
+  operations for long-running workloads (Matthew Brost)
+v6:
+- Point out that a gpu_vm is a virtual GPU Address space.
+  (Danilo Krummrich)
+- For an explanation of dma-fences point to the dma-fence documentation.
+  (Paolo Zanoni)
+- Clarify that VM_BIND errors are reported synchronously. (Paulo Zanoni)
+- Use an rst doc reference when pointing to the async vm_bind document
+  from the xe merge plan.
+- Add the VM_BIND documentation to the drm documentation table-of-content,
+  using an intermediate "Misc DRM driver uAPI- and feature implementation
+  guidelines"
+v7:
+- Update the error handling documentation to remove the VM error state.
 
-FWIW I was suggesting not to encode the fact submit queue is implemented 
-with a workqueue in the API name. IMO it would be nicer and less 
-maintenance churn should something channge if the external components 
-can be isolated from that detail.
+Cc: Paulo R Zanoni <paulo.r.zanoni@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+Reviewed-by: Danilo Krummrich <dakr@redhat.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+---
+ Documentation/gpu/drm-vm-bind-async.rst       | 305 ++++++++++++++++++
+ .../gpu/implementation_guidelines.rst         |   9 +
+ Documentation/gpu/index.rst                   |   1 +
+ Documentation/gpu/rfc/xe.rst                  |   4 +-
+ 4 files changed, 317 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
+ create mode 100644 Documentation/gpu/implementation_guidelines.rst
 
-drm_sched_submit_queue_$verb? If not viewed as too verbose...
+diff --git a/Documentation/gpu/drm-vm-bind-async.rst b/Documentation/gpu/drm-vm-bind-async.rst
+new file mode 100644
+index 000000000000..47ca24b647dc
+--- /dev/null
++++ b/Documentation/gpu/drm-vm-bind-async.rst
+@@ -0,0 +1,305 @@
++.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++====================
++Asynchronous VM_BIND
++====================
++
++Nomenclature:
++=============
++
++* ``VRAM``: On-device memory. Sometimes referred to as device local memory.
++
++* ``gpu_vm``: A virtual GPU address space. Typically per process, but
++  can be shared by multiple processes.
++
++* ``VM_BIND``: An operation or a list of operations to modify a gpu_vm using
++  an IOCTL. The operations include mapping and unmapping system- or
++  VRAM memory.
++
++* ``syncobj``: A container that abstracts synchronization objects. The
++  synchronization objects can be either generic, like dma-fences or
++  driver specific. A syncobj typically indicates the type of the
++  underlying synchronization object.
++
++* ``in-syncobj``: Argument to a VM_BIND IOCTL, the VM_BIND operation waits
++  for these before starting.
++
++* ``out-syncobj``: Argument to a VM_BIND_IOCTL, the VM_BIND operation
++  signals these when the bind operation is complete.
++
++* ``dma-fence``: A cross-driver synchronization object. A basic
++  understanding of dma-fences is required to digest this
++  document. Please refer to the ``DMA Fences`` section of the
++  :doc:`dma-buf doc </driver-api/dma-buf>`.
++
++* ``memory fence``: A synchronization object, different from a dma-fence.
++  A memory fence uses the value of a specified memory location to determine
++  signaled status. A memory fence can be awaited and signaled by both
++  the GPU and CPU. Memory fences are sometimes referred to as
++  user-fences, userspace-fences or gpu futexes and do not necessarily obey
++  the dma-fence rule of signaling within a "reasonable amount of time".
++  The kernel should thus avoid waiting for memory fences with locks held.
++
++* ``long-running workload``: A workload that may take more than the
++  current stipulated dma-fence maximum signal delay to complete and
++  which therefore needs to set the gpu_vm or the GPU execution context in
++  a certain mode that disallows completion dma-fences.
++
++* ``exec function``: An exec function is a function that revalidates all
++  affected gpu_vmas, submits a GPU command batch and registers the
++  dma_fence representing the GPU command's activity with all affected
++  dma_resvs. For completeness, although not covered by this document,
++  it's worth mentioning that an exec function may also be the
++  revalidation worker that is used by some drivers in compute /
++  long-running mode.
++
++* ``bind context``: A context identifier used for the VM_BIND
++  operation. VM_BIND operations that use the same bind context can be
++  assumed, where it matters, to complete in order of submission. No such
++  assumptions can be made for VM_BIND operations using separate bind contexts.
++
++* ``UMD``: User-mode driver.
++
++* ``KMD``: Kernel-mode driver.
++
++
++Synchronous / Asynchronous VM_BIND operation
++============================================
++
++Synchronous VM_BIND
++___________________
++With Synchronous VM_BIND, the VM_BIND operations all complete before the
++IOCTL returns. A synchronous VM_BIND takes neither in-fences nor
++out-fences. Synchronous VM_BIND may block and wait for GPU operations;
++for example swap-in or clearing, or even previous binds.
++
++Asynchronous VM_BIND
++____________________
++Asynchronous VM_BIND accepts both in-syncobjs and out-syncobjs. While the
++IOCTL may return immediately, the VM_BIND operations wait for the in-syncobjs
++before modifying the GPU page-tables, and signal the out-syncobjs when
++the modification is done in the sense that the next exec function that
++awaits for the out-syncobjs will see the change. Errors are reported
++synchronously.
++In low-memory situations the implementation may block, performing the
++VM_BIND synchronously, because there might not be enough memory
++immediately available for preparing the asynchronous operation.
++
++If the VM_BIND IOCTL takes a list or an array of operations as an argument,
++the in-syncobjs needs to signal before the first operation starts to
++execute, and the out-syncobjs signal after the last operation
++completes. Operations in the operation list can be assumed, where it
++matters, to complete in order.
++
++Since asynchronous VM_BIND operations may use dma-fences embedded in
++out-syncobjs and internally in KMD to signal bind completion,  any
++memory fences given as VM_BIND in-fences need to be awaited
++synchronously before the VM_BIND ioctl returns, since dma-fences,
++required to signal in a reasonable amount of time, can never be made
++to depend on memory fences that don't have such a restriction.
++
++The purpose of an Asynchronous VM_BIND operation is for user-mode
++drivers to be able to pipeline interleaved gpu_vm modifications and
++exec functions. For long-running workloads, such pipelining of a bind
++operation is not allowed and any in-fences need to be awaited
++synchronously. The reason for this is twofold. First, any memory
++fences gated by a long-running workload and used as in-syncobjs for the
++VM_BIND operation will need to be awaited synchronously anyway (see
++above). Second, any dma-fences used as in-syncobjs for VM_BIND
++operations for long-running workloads will not allow for pipelining
++anyway since long-running workloads don't allow for dma-fences as
++out-syncobjs, so while theoretically possible the use of them is
++questionable and should be rejected until there is a valuable use-case.
++Note that this is not a limitation imposed by dma-fence rules, but
++rather a limitation imposed to keep KMD implementation simple. It does
++not affect using dma-fences as dependencies for the long-running
++workload itself, which is allowed by dma-fence rules, but rather for
++the VM_BIND operation only.
++
++An asynchronous VM_BIND operation may take substantial time to
++complete and signal the out_fence. In particualr if the operation is
++deeply pipelined behind other VM_BIND operations and workloads
++submitted using exec functions. In that case, UMD might want to avoid a
++subsequent VM_BIND operation to be queued behind the first one if
++there are no explicit dependencies. In order to circumvent such a queue-up, a
++VM_BIND implementation may allow for VM_BIND contexts to be
++created. For each context, VM_BIND operations will be guaranteed to
++complete in the order they were submitted, but that is not the case
++for VM_BIND operations executing on separate VM_BIND contexts. Instead
++KMD will attempt to execute such VM_BIND operations in parallel but
++leaving no guarantee that they will actually be executed in
++parallel. There may be internal implicit dependencies that only KMD knows
++about, for example page-table structure changes. A way to attempt
++to avoid such internal dependencies is to have different VM_BIND
++contexts use separate regions of a VM.
++
++Also for VM_BINDS for long-running gpu_vms the user-mode driver should typically
++select memory fences as out-fences since that gives greater flexibility for
++the kernel mode driver to inject other operations into the bind /
++unbind operations. Like for example inserting breakpoints into batch
++buffers. The workload execution can then easily be pipelined behind
++the bind completion using the memory out-fence as the signal condition
++for a GPU semaphore embedded by UMD in the workload.
++
++Multi-operation VM_BIND IOCTL error handling and interrupts
++===========================================================
++
++The VM_BIND operations of the IOCTL may error for various reasons, for
++example due to lack of resources to complete and due to interrupted
++waits.
++In these situations UMD should preferably restart the IOCTL after
++taking suitable action.
++If UMD has over-committed a memory resource, an -ENOSPC error will be
++returned, and UMD may then unbind resources that are not used at the
++moment and rerun the IOCTL. On -EINTR, UMD should simply rerun the
++IOCTL and on -ENOMEM user-space may either attempt to free known
++system memory resources or fail. In case of UMD deciding to fail a
++bind operation, due to an error return, no additional action is needed
++to clean up the failed operation.
++Unbind operations are guaranteed not to return any errors due to
++resource constraints, but may return errors due to, for example,
++invalid arguments or the gpu_vm being banned.
++In the case an unexpected error happens during the asynchronous bind
++process, the gpu_vm will be banned, and attempts to use it after banning
++will return -ENOENT.
++
++Example: The Xe VM_BIND uAPI
++============================
++
++Starting with the VM_BIND operation struct, the IOCTL call can take
++zero, one or many such operations. A zero number means only the
++synchronization part of the IOCTL is carried out: an asynchronous
++VM_BIND updates the syncobjects, whereas a sync VM_BIND waits for the
++implicit dependencies to be fulfilled.
++
++.. code-block:: c
++
++   struct drm_xe_vm_bind_op {
++	/**
++	 * @obj: GEM object to operate on, MBZ for MAP_USERPTR, MBZ for UNMAP
++	 */
++	__u32 obj;
++
++	/** @pad: MBZ */
++	__u32 pad;
++
++	union {
++		/**
++		 * @obj_offset: Offset into the object for MAP.
++		 */
++		__u64 obj_offset;
++
++		/** @userptr: user virtual address for MAP_USERPTR */
++		__u64 userptr;
++	};
++
++	/**
++	 * @range: Number of bytes from the object to bind to addr, MBZ for UNMAP_ALL
++	 */
++	__u64 range;
++
++	/** @addr: Address to operate on, MBZ for UNMAP_ALL */
++	__u64 addr;
++
++	/**
++	 * @tile_mask: Mask for which tiles to create binds for, 0 == All tiles,
++	 * only applies to creating new VMAs
++	 */
++	__u64 tile_mask;
++
++       /* Map (parts of) an object into the GPU virtual address range.
++    #define XE_VM_BIND_OP_MAP		0x0
++        /* Unmap a GPU virtual address range */
++    #define XE_VM_BIND_OP_UNMAP		0x1
++        /*
++	 * Map a u CPU virtual address range into a GPU virtual
++	 * address range.
++	 */
++    #define XE_VM_BIND_OP_MAP_USERPTR	0x2
++        /* Unmap a gem object from the VM. */
++    #define XE_VM_BIND_OP_UNMAP_ALL	0x3
++        /*
++	 * Make the backing memory of an address range resident if
++	 * possible. Note that this doesn't pin backing memory.
++	 */
++    #define XE_VM_BIND_OP_PREFETCH	0x4
++
++        /* Make the GPU map readonly. */
++    #define XE_VM_BIND_FLAG_READONLY	(0x1 << 16)
++	/*
++	 * Valid on a faulting VM only, do the MAP operation immediately rather
++	 * than deferring the MAP to the page fault handler.
++	 */
++    #define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 17)
++	/*
++	 * When the NULL flag is set, the page tables are setup with a special
++	 * bit which indicates writes are dropped and all reads return zero.  In
++	 * the future, the NULL flags will only be valid for XE_VM_BIND_OP_MAP
++	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
++	 * intended to implement VK sparse bindings.
++	 */
++    #define XE_VM_BIND_FLAG_NULL	(0x1 << 18)
++	/** @op: Operation to perform (lower 16 bits) and flags (upper 16 bits) */
++	__u32 op;
++
++	/** @mem_region: Memory region to prefetch VMA to, instance not a mask */
++	__u32 region;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++   };
++
++
++The VM_BIND IOCTL argument itself, looks like follows. Note that for
++synchronous VM_BIND, the num_syncs and syncs fields must be zero. Here
++the ``exec_queue_id`` field is the VM_BIND context discussed previously
++that is used to facilitate out-of-order VM_BINDs.
++
++.. code-block:: c
++
++    struct drm_xe_vm_bind {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @vm_id: The ID of the VM to bind to */
++	__u32 vm_id;
++
++	/**
++	 * @exec_queue_id: exec_queue_id, must be of class DRM_XE_ENGINE_CLASS_VM_BIND
++	 * and exec queue must have same vm_id. If zero, the default VM bind engine
++	 * is used.
++	 */
++	__u32 exec_queue_id;
++
++	/** @num_binds: number of binds in this IOCTL */
++	__u32 num_binds;
++
++        /* If set, perform an async VM_BIND, if clear a sync VM_BIND */
++    #define XE_VM_BIND_IOCTL_FLAG_ASYNC	(0x1 << 0)
++
++	/** @flag: Flags controlling all operations in this ioctl. */
++	__u32 flags;
++
++	union {
++		/** @bind: used if num_binds == 1 */
++		struct drm_xe_vm_bind_op bind;
++
++		/**
++		 * @vector_of_binds: userptr to array of struct
++		 * drm_xe_vm_bind_op if num_binds > 1
++		 */
++		__u64 vector_of_binds;
++	};
++
++	/** @num_syncs: amount of syncs to wait for or to signal on completion. */
++	__u32 num_syncs;
++
++	/** @pad2: MBZ */
++	__u32 pad2;
++
++	/** @syncs: pointer to struct drm_xe_sync array */
++	__u64 syncs;
++
++	/** @reserved: Reserved */
++	__u64 reserved[2];
++    };
+diff --git a/Documentation/gpu/implementation_guidelines.rst b/Documentation/gpu/implementation_guidelines.rst
+new file mode 100644
+index 000000000000..138e637dcc6b
+--- /dev/null
++++ b/Documentation/gpu/implementation_guidelines.rst
+@@ -0,0 +1,9 @@
++.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++===========================================================
++Misc DRM driver uAPI- and feature implementation guidelines
++===========================================================
++
++.. toctree::
++
++   drm-vm-bind-async
+diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
+index e45ff0915246..37e383ccf73f 100644
+--- a/Documentation/gpu/index.rst
++++ b/Documentation/gpu/index.rst
+@@ -18,6 +18,7 @@ GPU Driver Developer's Guide
+    vga-switcheroo
+    vgaarbiter
+    automated_testing
++   implementation_guidelines
+    todo
+    rfc/index
+ 
+diff --git a/Documentation/gpu/rfc/xe.rst b/Documentation/gpu/rfc/xe.rst
+index b67f8e6a1825..c29113a0ac30 100644
+--- a/Documentation/gpu/rfc/xe.rst
++++ b/Documentation/gpu/rfc/xe.rst
+@@ -97,8 +97,8 @@ memory fences. Ideally with helper support so people don't get it wrong in all
+ possible ways.
+ 
+ As a key measurable result, the benefits of ASYNC VM_BIND and a discussion of
+-various flavors, error handling and a sample API should be documented here or in
+-a separate document pointed to by this document.
++various flavors, error handling and sample API suggestions are documented in
++:doc:`The ASYNC VM_BIND document </gpu/drm-vm-bind-async>`.
+ 
+ Userptr integration and vm_bind
+ -------------------------------
+-- 
+2.41.0
 
-Regards,
-
-Tvrtko
