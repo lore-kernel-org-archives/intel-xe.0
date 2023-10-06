@@ -4,53 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0FF56E92FF3
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 07:40:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A516E92FF4
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 07:59:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCAFB10E4B5;
-	Fri,  6 Oct 2023 07:40:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FC5910E4B5
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Oct 2023 07:40:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B0D6810E4BF;
+	Fri,  6 Oct 2023 07:59:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A244F10E4C4;
+ Fri,  6 Oct 2023 07:59:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696578001; x=1728114001;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Lwt+VwjNEsxgM/3pz4Hjr+3YN0j+dMsmLhicMjvWh54=;
- b=U90d1l7DAm++ZPdhn/sEeKVlOqxq1chUs7a/E6qz2AQ3QIIDLZhs7u8E
- xc+X73HHs95nRBpIBPe7oOblxv9+gJMsWaIJzFN+uDftgOA0Hiy8mVvG5
- QPR841aMtPnqpdxR72IND18x0EqTsKVHzdQSIHYF2X06t8VjaTFWqsGSL
- Y+w5Ml7uTH6gjBt5MN/5562Pa6zy7Nv8AIU+WqMALyryorTgkdJxh+TIv
- gWZ+rBEw7njxiWcnHdONtn1YVd15C4nZro5Wx08hRL8wQuUGpx0hI+ETB
- HciAzQVyjQgD2s+QtwUSxxa91l2vvwROIBWZaQkU2KZl0IAU3sm26WXaI Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="363056425"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="363056425"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 00:40:00 -0700
+ t=1696579163; x=1728115163;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=pYvDRGKv2aNd/dUPwyz+6WoPu3Uw/6TuJyluJ90b2A0=;
+ b=iCyHi705WM2v8wPgagUgtu2AHPX3ghyBdt+AQCa5rnbV+sf1DThQ5vs0
+ CB87H903DkYRiAIwlV47/ifen4OzYxG9YK8vNKPjeuEosxaPywOtsBte5
+ ARJcbZm2W6Xd3aa6uds724HzhN3RJlSWmbwi6rZXvVr4+qLzAXdGksd/7
+ VE1caVKd/nUnwTQBIeJwAQC/6oBtZGii7MWBqNevb4LQcroFM7IN4H9TH
+ FodR6rlNAB+Q36CLm0z64QuyWX8GcYVA4lpxbR/bUdr5ZtjLsJqR8LjM3
+ Ni2sjJ1RqYobHM64fCjU0s8ebhWBbEodewHWrzo8VJhKd2pmrWAkNo4BB Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="374049783"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="374049783"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2023 00:59:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="895789147"
-X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="895789147"
-Received: from lvroom-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.252.41.239])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 00:38:27 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>
-In-Reply-To: <ZR8DWVeXtkrIU8Uj@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231003203716.108979-1-anusha.srivatsa@intel.com>
- <20231003203716.108979-3-anusha.srivatsa@intel.com>
- <87fs2qg6pe.fsf@intel.com>
- <xgggupdygmhbyruwqgr3d3hoorvokgdahfqpfdnhb64qna23mu@zlcb3borrej7>
- <ZR8DWVeXtkrIU8Uj@intel.com>
-Date: Fri, 06 Oct 2023 10:39:52 +0300
-Message-ID: <87ttr46vxz.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="875863724"
+X-IronPort-AV: E=Sophos;i="6.03,203,1694761200"; d="scan'208";a="875863724"
+Received: from stevegr-mobl3.ger.corp.intel.com (HELO [10.213.210.79])
+ ([10.213.210.79])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Oct 2023 00:59:17 -0700
+Message-ID: <1e911601-f126-4e55-35e7-1a5e395b5fd2@linux.intel.com>
+Date: Fri, 6 Oct 2023 08:59:15 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 2/5] fixup! drm/xe/rplu: s/ADLP/ALDERLAKE_P
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: Luben Tuikov <luben.tuikov@amd.com>,
+ Matthew Brost <matthew.brost@intel.com>
+References: <20230919050155.2647172-1-matthew.brost@intel.com>
+ <20230919050155.2647172-3-matthew.brost@intel.com>
+ <bb9ab46d-326f-4ba9-b0a0-fcede8946a6b@amd.com>
+ <ZR4upS/Mkh0lkzJ0@DUT025-TGLU.fm.intel.com>
+ <a39eb381-4f2b-439b-b223-c5148167b225@amd.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <a39eb381-4f2b-439b-b223-c5148167b225@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v4 02/10] drm/sched: Convert drm scheduler to
+ use a work queue rather than kthread
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,80 +67,244 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Anusha Srivatsa <anusha.srivatsa@intel.com>, intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
+ lina@asahilina.net, mcanal@igalia.com, Liviu.Dudau@arm.com,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ boris.brezillon@collabora.com, dakr@redhat.com, donald.robson@imgtec.com,
+ christian.koenig@amd.com, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 05 Oct 2023, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
-> On Wed, Oct 04, 2023 at 01:16:48PM -0500, Lucas De Marchi wrote:
->> On Wed, Oct 04, 2023 at 10:58:05AM +0300, Jani Nikula wrote:
->> > On Tue, 03 Oct 2023, Anusha Srivatsa <anusha.srivatsa@intel.com> wrote:
->> > > Extend the change introduced in the previous patch to xe
->> > > driver.
->> > 
->> > This is not a fixup to the previous patch. This needs to be a fixup to
->> > the commit that added the file to begin with.
->> > 
->> > The order of the patches will be changed to add display enabling last.
->> 
->> 
->> assuming we are still going to move display up. Rodrigo mentioned
->> recently about maybe stopping that. +Rodrigo
->
-> I hope we don't need to move them up anymore. but let's revisit this
-> in about 2 weeks.
 
-I don't think that's the right choice. Please don't lock xe core and
-display upstreaming together, even if everyone wants them to happen
-together.
+On 05/10/2023 05:13, Luben Tuikov wrote:
+> On 2023-10-04 23:33, Matthew Brost wrote:
+>> On Tue, Sep 26, 2023 at 11:32:10PM -0400, Luben Tuikov wrote:
+>>> Hi,
+>>>
+>>> On 2023-09-19 01:01, Matthew Brost wrote:
+>>>> In XE, the new Intel GPU driver, a choice has made to have a 1 to 1
+>>>> mapping between a drm_gpu_scheduler and drm_sched_entity. At first this
+>>>> seems a bit odd but let us explain the reasoning below.
+>>>>
+>>>> 1. In XE the submission order from multiple drm_sched_entity is not
+>>>> guaranteed to be the same completion even if targeting the same hardware
+>>>> engine. This is because in XE we have a firmware scheduler, the GuC,
+>>>> which allowed to reorder, timeslice, and preempt submissions. If a using
+>>>> shared drm_gpu_scheduler across multiple drm_sched_entity, the TDR falls
+>>>> apart as the TDR expects submission order == completion order. Using a
+>>>> dedicated drm_gpu_scheduler per drm_sched_entity solve this problem.
+>>>>
+>>>> 2. In XE submissions are done via programming a ring buffer (circular
+>>>> buffer), a drm_gpu_scheduler provides a limit on number of jobs, if the
+>>>> limit of number jobs is set to RING_SIZE / MAX_SIZE_PER_JOB we get flow
+>>>> control on the ring for free.
+>>>>
+>>>> A problem with this design is currently a drm_gpu_scheduler uses a
+>>>> kthread for submission / job cleanup. This doesn't scale if a large
+>>>> number of drm_gpu_scheduler are used. To work around the scaling issue,
+>>>> use a worker rather than kthread for submission / job cleanup.
+>>>>
+>>>> v2:
+>>>>    - (Rob Clark) Fix msm build
+>>>>    - Pass in run work queue
+>>>> v3:
+>>>>    - (Boris) don't have loop in worker
+>>>> v4:
+>>>>    - (Tvrtko) break out submit ready, stop, start helpers into own patch
+>>>> v5:
+>>>>    - (Boris) default to ordered work queue
+>>>>
+>>>> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |   2 +-
+>>>>   drivers/gpu/drm/etnaviv/etnaviv_sched.c    |   2 +-
+>>>>   drivers/gpu/drm/lima/lima_sched.c          |   2 +-
+>>>>   drivers/gpu/drm/msm/msm_ringbuffer.c       |   2 +-
+>>>>   drivers/gpu/drm/nouveau/nouveau_sched.c    |   2 +-
+>>>>   drivers/gpu/drm/panfrost/panfrost_job.c    |   2 +-
+>>>>   drivers/gpu/drm/scheduler/sched_main.c     | 118 ++++++++++-----------
+>>>>   drivers/gpu/drm/v3d/v3d_sched.c            |  10 +-
+>>>>   include/drm/gpu_scheduler.h                |  14 ++-
+>>>>   9 files changed, 79 insertions(+), 75 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>> index e366f61c3aed..16f3cfe1574a 100644
+>>>> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
+>>>> @@ -2279,7 +2279,7 @@ static int amdgpu_device_init_schedulers(struct amdgpu_device *adev)
+>>>>   			break;
+>>>>   		}
+>>>>   
+>>>> -		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops,
+>>>> +		r = drm_sched_init(&ring->sched, &amdgpu_sched_ops, NULL,
+>>>>   				   ring->num_hw_submission, 0,
+>>>>   				   timeout, adev->reset_domain->wq,
+>>>>   				   ring->sched_score, ring->name,
+>>>> diff --git a/drivers/gpu/drm/etnaviv/etnaviv_sched.c b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+>>>> index 345fec6cb1a4..618a804ddc34 100644
+>>>> --- a/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+>>>> +++ b/drivers/gpu/drm/etnaviv/etnaviv_sched.c
+>>>> @@ -134,7 +134,7 @@ int etnaviv_sched_init(struct etnaviv_gpu *gpu)
+>>>>   {
+>>>>   	int ret;
+>>>>   
+>>>> -	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops,
+>>>> +	ret = drm_sched_init(&gpu->sched, &etnaviv_sched_ops, NULL,
+>>>>   			     etnaviv_hw_jobs_limit, etnaviv_job_hang_limit,
+>>>>   			     msecs_to_jiffies(500), NULL, NULL,
+>>>>   			     dev_name(gpu->dev), gpu->dev);
+>>>> diff --git a/drivers/gpu/drm/lima/lima_sched.c b/drivers/gpu/drm/lima/lima_sched.c
+>>>> index ffd91a5ee299..8d858aed0e56 100644
+>>>> --- a/drivers/gpu/drm/lima/lima_sched.c
+>>>> +++ b/drivers/gpu/drm/lima/lima_sched.c
+>>>> @@ -488,7 +488,7 @@ int lima_sched_pipe_init(struct lima_sched_pipe *pipe, const char *name)
+>>>>   
+>>>>   	INIT_WORK(&pipe->recover_work, lima_sched_recover_work);
+>>>>   
+>>>> -	return drm_sched_init(&pipe->base, &lima_sched_ops, 1,
+>>>> +	return drm_sched_init(&pipe->base, &lima_sched_ops, NULL, 1,
+>>>>   			      lima_job_hang_limit,
+>>>>   			      msecs_to_jiffies(timeout), NULL,
+>>>>   			      NULL, name, pipe->ldev->dev);
+>>>> diff --git a/drivers/gpu/drm/msm/msm_ringbuffer.c b/drivers/gpu/drm/msm/msm_ringbuffer.c
+>>>> index 40c0bc35a44c..b8865e61b40f 100644
+>>>> --- a/drivers/gpu/drm/msm/msm_ringbuffer.c
+>>>> +++ b/drivers/gpu/drm/msm/msm_ringbuffer.c
+>>>> @@ -94,7 +94,7 @@ struct msm_ringbuffer *msm_ringbuffer_new(struct msm_gpu *gpu, int id,
+>>>>   	 /* currently managing hangcheck ourselves: */
+>>>>   	sched_timeout = MAX_SCHEDULE_TIMEOUT;
+>>>>   
+>>>> -	ret = drm_sched_init(&ring->sched, &msm_sched_ops,
+>>>> +	ret = drm_sched_init(&ring->sched, &msm_sched_ops, NULL,
+>>>>   			num_hw_submissions, 0, sched_timeout,
+>>>>   			NULL, NULL, to_msm_bo(ring->bo)->name, gpu->dev->dev);
+>>>
+>>> checkpatch.pl complains here about unmatched open parens.
+>>>
+>>
+>> Will fix and run checkpatch before posting next rev.
+>>
+>>>>   	if (ret) {
+>>>> diff --git a/drivers/gpu/drm/nouveau/nouveau_sched.c b/drivers/gpu/drm/nouveau/nouveau_sched.c
+>>>> index 88217185e0f3..d458c2227d4f 100644
+>>>> --- a/drivers/gpu/drm/nouveau/nouveau_sched.c
+>>>> +++ b/drivers/gpu/drm/nouveau/nouveau_sched.c
+>>>> @@ -429,7 +429,7 @@ int nouveau_sched_init(struct nouveau_drm *drm)
+>>>>   	if (!drm->sched_wq)
+>>>>   		return -ENOMEM;
+>>>>   
+>>>> -	return drm_sched_init(sched, &nouveau_sched_ops,
+>>>> +	return drm_sched_init(sched, &nouveau_sched_ops, NULL,
+>>>>   			      NOUVEAU_SCHED_HW_SUBMISSIONS, 0, job_hang_limit,
+>>>>   			      NULL, NULL, "nouveau_sched", drm->dev->dev);
+>>>>   }
+>>>> diff --git a/drivers/gpu/drm/panfrost/panfrost_job.c b/drivers/gpu/drm/panfrost/panfrost_job.c
+>>>> index 033f5e684707..326ca1ddf1d7 100644
+>>>> --- a/drivers/gpu/drm/panfrost/panfrost_job.c
+>>>> +++ b/drivers/gpu/drm/panfrost/panfrost_job.c
+>>>> @@ -831,7 +831,7 @@ int panfrost_job_init(struct panfrost_device *pfdev)
+>>>>   		js->queue[j].fence_context = dma_fence_context_alloc(1);
+>>>>   
+>>>>   		ret = drm_sched_init(&js->queue[j].sched,
+>>>> -				     &panfrost_sched_ops,
+>>>> +				     &panfrost_sched_ops, NULL,
+>>>>   				     nentries, 0,
+>>>>   				     msecs_to_jiffies(JOB_TIMEOUT_MS),
+>>>>   				     pfdev->reset.wq,
+>>>> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+>>>> index e4fa62abca41..ee6281942e36 100644
+>>>> --- a/drivers/gpu/drm/scheduler/sched_main.c
+>>>> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+>>>> @@ -48,7 +48,6 @@
+>>>>    * through the jobs entity pointer.
+>>>>    */
+>>>>   
+>>>> -#include <linux/kthread.h>
+>>>>   #include <linux/wait.h>
+>>>>   #include <linux/sched.h>
+>>>>   #include <linux/completion.h>
+>>>> @@ -256,6 +255,16 @@ drm_sched_rq_select_entity_fifo(struct drm_sched_rq *rq)
+>>>>   	return rb ? rb_entry(rb, struct drm_sched_entity, rb_tree_node) : NULL;
+>>>>   }
+>>>>   
+>>>> +/**
+>>>> + * drm_sched_submit_queue - scheduler queue submission
+>>>
+>>> There is no verb in the description, and is not clear what
+>>> this function does unless one reads the code. Given that this
+>>> is DOC, this should be clearer here. Something like "queue
+>>> scheduler work to be executed" or something to that effect.
+>>>
+>>
+>> Will fix.
+>>   
+>>> Coming back to this from reading the patch below, it was somewhat
+>>> unclear what "drm_sched_submit_queue()" does, since when reading
+>>> below, "submit" was being read by my mind as an adjective, as opposed
+>>> to a verb. Perhaps something like:
+>>>
+>>> drm_sched_queue_submit(), or
+>>> drm_sched_queue_exec(), or
+>>> drm_sched_queue_push(), or something to that effect. You pick. :-)
+>>>
+>>
+>> I prefer the name as is. In this patch we have:
+>>
+>> drm_sched_submit_queue()
+>> drm_sched_submit_start)
+>> drm_sched_submit_stop()
+>> drm_sched_submit_ready()
+>>
+>> I like all these functions start with 'drm_sched_submit' which allows
+>> for easy searching for the functions that touch the DRM scheduler
+>> submission state.
+>>
+>> With a little better doc are you fine with the names as is.
+> 
+> Notice the following scheme in the naming,
+> 
+> drm_sched_submit_queue()
+> drm_sched_submit_start)
+> drm_sched_submit_stop()
+> drm_sched_submit_ready()
+> \---+---/ \--+-/ \-+-/
+>      |        |     +---> a verb
+>      |        +---------> should be a noun (something in the component)
+>      +------------------> the kernel/software component
+> 
+> And although "queue" can technically be used as a verb too, I'd rather it be "enqueue",
+> like this:
+> 
+> drm_sched_submit_enqueue()
+> 
+> And using "submit" as the noun of the component is a bit cringy,
+> since "submit" is really a verb, and it's cringy to make it a "state"
+> or an "object" we operate on in the DRM Scheduler. "Submission" is
+> a noun, but "submission enqueue/start/stop/ready" doesn't sound
+> very well thought out. "Submission" really is what the work-queue
+> does.
+> 
+> I'd rather it be a real object, like for instance,
+> 
+> drm_sched_wqueue_enqueue()
+> drm_sched_wqueue_start)
+> drm_sched_wqueue_stop()
+> drm_sched_wqueue_ready()
+> 
+> Which tells me that the component is the DRM Scheduler, the object is a/the work-queue,
+> and the last word as the verb, is the action we're performing on the object, i.e. the work-queue.
+> Plus, all these functions actually do operate on work-queues, directly or indirectly,
+> are new, so it's a win-win naming scheme.
+> 
+> I think that that would be most likeable.
 
-This ambiguous approach means we don't know whether to use fixups or
-regular commits.
+FWIW I was suggesting not to encode the fact submit queue is implemented 
+with a workqueue in the API name. IMO it would be nicer and less 
+maintenance churn should something channge if the external components 
+can be isolated from that detail.
 
-BR,
-Jani.
+drm_sched_submit_queue_$verb? If not viewed as too verbose...
 
+Regards,
 
-
->
->> 
->> In this case the commit message should be:
->> 
->> 	Subject: fixup! drm/xe/display: Implement display support
->
-> since this is the fixup, then the right placement is as first patch
-> in the series to avoid further conflicts when autosquashing without
-> moving the rest of display up.
->
->> 
->> Lucas De Marchi
->> 
->> > 
->> > BR,
->> > Jani.
->> > 
->> > > 
->> > > Signed-off-by: Anusha Srivatsa <anusha.srivatsa@intel.com>
->> > > ---
->> > >  drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 2 +-
->> > >  1 file changed, 1 insertion(+), 1 deletion(-)
->> > > 
->> > > diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->> > > index 7c825f129166..918dd27868fa 100644
->> > > --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->> > > +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->> > > @@ -146,7 +146,7 @@ static inline struct drm_i915_private *kdev_to_i915(struct device *kdev)
->> > >  #define IS_DG2_G10(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G10)
->> > >  #define IS_DG2_G11(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G11)
->> > >  #define IS_DG2_G12(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_DG2_G12)
->> > > -#define IS_RAPTORLAKE_U(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_ADLP_RPLU)
->> > > +#define IS_RAPTORLAKE_U(xe) ((xe)->info.subplatform == XE_SUBPLATFORM_ALDERLAKE_P_RPLU)
->> > >  #define IS_ICL_WITH_PORT_F(xe) (xe && 0)
->> > >  #define HAS_FLAT_CCS(xe) (xe_device_has_flat_ccs(xe))
->> > >  #define to_intel_bo(x) gem_to_xe_bo((x))
->> > 
->> > -- 
->> > Jani Nikula, Intel
-
--- 
-Jani Nikula, Intel
+Tvrtko
