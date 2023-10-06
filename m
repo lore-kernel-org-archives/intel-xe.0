@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 573C2E81DE9
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 11:49:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 148DFE81DEA
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 11:49:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 297B910E1F4;
-	Fri,  6 Oct 2023 11:49:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0B5210E1F2;
+	Fri,  6 Oct 2023 11:49:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B522410E0D2
- for <intel-xe@lists.freedesktop.org>; Fri,  6 Oct 2023 11:49:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A398710E4DC
+ for <intel-xe@lists.freedesktop.org>; Fri,  6 Oct 2023 11:49:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696592987; x=1728128987;
+ t=1696592989; x=1728128989;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mAKc7CFtzhf+CfXrmvj6vGA823FS8CB5MbE3ZD/+9QA=;
- b=fbxzFjuHp88e2ezgcAkLBeZimiGZPocyv1f3j0lkE4V1+yIy9z6DP+55
- a6LnXp4kdCIgRrMzx+Wi9tEXSw8Y9p7TjPEDx9zDjRA60c6hWY/LY8aO+
- Ag7dgrAi0RPcfZkMYt/CWxlX2CFxzD19w5DcrJPBkXfMNr4COmGKytEYF
- MwR/dPUklFK0NCRCyJRQk/T4Fcls7e34RPz61HD8x4qERzkOUmYP7uliY
- iHxk45tUvpQ6S4eCbKtGHXXDvdaUE58ZLQfI++4BRpLnPUm9xSaBCtAaz
- 0bemH//k7V3lMsWJXaHkM/2B3DxKEF884jufrc8UKveKw8nlL3s0p/yMi w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="414731370"
-X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="414731370"
+ bh=vH1ValGdcGpKilb1bLaqk7nkMSdlTs+ksaqxXJmAFF4=;
+ b=FociKJbMOhMQbBTyXM3ht7pyAvW40/6kNKwPcLovsOO3fz6AWpDh47NS
+ oOLakGyyaqTBL8q00J5rRimsvuQCDB1q+Dx2lwLZrfwTPnxxpZML36vS/
+ i+fxBvM+ohOKPSdNdwKm3nZjh28pCibvaMLlfm1dpuzI23CshqMp1PiZK
+ Xu1pcW3iRFYyeAqNYSOcsqET7o7liIf2UIUV9pd0/JtDmOUwWzq6kH+PP
+ cVCXsE3o5UJdFI/8r409xSLfTurowg/vhMaJubW86YaQiktXYoRpz/zWB
+ uWw0EYoPj6rN3TxJ2I4eGUQBjAKguJSE8Weg3bIJh9f0qME8/CdA2BgH6 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="414731375"
+X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="414731375"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Oct 2023 04:49:47 -0700
+ 06 Oct 2023 04:49:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="1083423642"
-X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="1083423642"
+X-IronPort-AV: E=McAfee;i="6600,9927,10854"; a="1083423651"
+X-IronPort-AV: E=Sophos;i="6.03,204,1694761200"; d="scan'208";a="1083423651"
 Received: from cfl-desktop.iind.intel.com ([10.190.239.20])
- by fmsmga005.fm.intel.com with ESMTP; 06 Oct 2023 04:49:43 -0700
+ by fmsmga005.fm.intel.com with ESMTP; 06 Oct 2023 04:49:46 -0700
 From: Uma Shankar <uma.shankar@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  6 Oct 2023 17:26:43 +0530
-Message-ID: <20231006115645.2402795-2-uma.shankar@intel.com>
+Date: Fri,  6 Oct 2023 17:26:44 +0530
+Message-ID: <20231006115645.2402795-3-uma.shankar@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231006115645.2402795-1-uma.shankar@intel.com>
 References: <20231006115645.2402795-1-uma.shankar@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [v2 1/3] Revert "FIXME: drm/i915/vga: disable vga set
- decode for xe"
+Subject: [Intel-xe] [v2 2/3] drm/i915/display: Created exclusive version of
+ vga decode setup
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,38 +61,129 @@ Cc: jani.nikula@intel.com, arun.r.murthy@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit 28da6179478e3f29cb27df30b71f68b904dfff26.
+Current vga arbiter implementation in i915 needs a re-design.
+The current approach would cause real problems if anyone actually
+needs to talk another GPU using legacy VGA resources.
 
-This will be addressed with an exclusive version for xe.
+The main issue is that X becomes a slideshow if it thinks there
+are multiple GPUs that have VGA decoding enabled as it insists
+on adjusting the VGA routing pretty much for every little operation
+involving any of the GPUs.
 
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+The cleanup will be planned for i915. Meanwhile to focus on Xe
+upstreaming and have a cleaner separation, the said functionality
+is being moved to a different file exclusive for i915. Xe driver
+will re-use rest of the display code from i915.
+
+v2: Addressed Jani Nikula's review comments.
+
+v3: Dropped a duplicate function (Jani)
+
+v4: Updated commit message with reasoning as sugested by Ville.
+
 Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230929074306.1533859-1-uma.shankar@intel.com
+(cherry picked from commit 5846cdfd3d58852cdc991e589de7535151a47a4e)
 ---
- drivers/gpu/drm/i915/display/intel_vga.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vga.c | 18 +-----------------
+ drivers/gpu/drm/i915/soc/intel_gmch.c    | 14 ++++++++++++++
+ drivers/gpu/drm/i915/soc/intel_gmch.h    |  2 ++
+ 3 files changed, 17 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vga.c b/drivers/gpu/drm/i915/display/intel_vga.c
-index 42da1a038042..286a0bdd28c6 100644
+index 286a0bdd28c6..4b98833bfa8c 100644
 --- a/drivers/gpu/drm/i915/display/intel_vga.c
 +++ b/drivers/gpu/drm/i915/display/intel_vga.c
-@@ -102,7 +102,6 @@ void intel_vga_reset_io_mem(struct drm_i915_private *i915)
- static unsigned int
- intel_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
- {
--#ifdef I915
- 	struct drm_i915_private *i915 = pdev_to_i915(pdev);
+@@ -3,11 +3,9 @@
+  * Copyright © 2019 Intel Corporation
+  */
  
- 	intel_gmch_vga_set_state(i915, enable_decode);
-@@ -112,9 +111,6 @@ intel_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
- 		       VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
- 	else
- 		return VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
--#else
--	return -EIO;
--#endif
+-#include <linux/pci.h>
+ #include <linux/vgaarb.h>
+ 
+ #include <video/vga.h>
+-
+ #include "soc/intel_gmch.h"
+ 
+ #include "i915_drv.h"
+@@ -99,20 +97,6 @@ void intel_vga_reset_io_mem(struct drm_i915_private *i915)
+ 	vga_put(pdev, VGA_RSRC_LEGACY_IO);
  }
  
+-static unsigned int
+-intel_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
+-{
+-	struct drm_i915_private *i915 = pdev_to_i915(pdev);
+-
+-	intel_gmch_vga_set_state(i915, enable_decode);
+-
+-	if (enable_decode)
+-		return VGA_RSRC_LEGACY_IO | VGA_RSRC_LEGACY_MEM |
+-		       VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
+-	else
+-		return VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
+-}
+-
  int intel_vga_register(struct drm_i915_private *i915)
+ {
+ 
+@@ -127,7 +111,7 @@ int intel_vga_register(struct drm_i915_private *i915)
+ 	 * then we do not take part in VGA arbitration and the
+ 	 * vga_client_register() fails with -ENODEV.
+ 	 */
+-	ret = vga_client_register(pdev, intel_vga_set_decode);
++	ret = vga_client_register(pdev, intel_gmch_vga_set_decode);
+ 	if (ret && ret != -ENODEV)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.c b/drivers/gpu/drm/i915/soc/intel_gmch.c
+index 49c7fb16e934..f32e9f78770a 100644
+--- a/drivers/gpu/drm/i915/soc/intel_gmch.c
++++ b/drivers/gpu/drm/i915/soc/intel_gmch.c
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/pci.h>
+ #include <linux/pnp.h>
++#include <linux/vgaarb.h>
+ 
+ #include <drm/drm_managed.h>
+ #include <drm/i915_drm.h>
+@@ -167,3 +168,16 @@ int intel_gmch_vga_set_state(struct drm_i915_private *i915, bool enable_decode)
+ 
+ 	return 0;
+ }
++
++unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
++{
++	struct drm_i915_private *i915 = pdev_to_i915(pdev);
++
++	intel_gmch_vga_set_state(i915, enable_decode);
++
++	if (enable_decode)
++		return VGA_RSRC_LEGACY_IO | VGA_RSRC_LEGACY_MEM |
++		       VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
++	else
++		return VGA_RSRC_NORMAL_IO | VGA_RSRC_NORMAL_MEM;
++}
+diff --git a/drivers/gpu/drm/i915/soc/intel_gmch.h b/drivers/gpu/drm/i915/soc/intel_gmch.h
+index d0133eedc720..23be2d113afd 100644
+--- a/drivers/gpu/drm/i915/soc/intel_gmch.h
++++ b/drivers/gpu/drm/i915/soc/intel_gmch.h
+@@ -8,11 +8,13 @@
+ 
+ #include <linux/types.h>
+ 
++struct pci_dev;
+ struct drm_i915_private;
+ 
+ int intel_gmch_bridge_setup(struct drm_i915_private *i915);
+ void intel_gmch_bar_setup(struct drm_i915_private *i915);
+ void intel_gmch_bar_teardown(struct drm_i915_private *i915);
+ int intel_gmch_vga_set_state(struct drm_i915_private *i915, bool enable_decode);
++unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode);
+ 
+ #endif /* __INTEL_GMCH_H__ */
 -- 
 2.42.0
 
