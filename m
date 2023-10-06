@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5EACE92FC5
-	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 01:38:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2BBB2E92FD3
+	for <intel-xe@archiver.kernel.org>; Fri,  6 Oct 2023 01:40:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E3E710E085;
-	Fri,  6 Oct 2023 01:38:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED37D10E4B1;
+	Fri,  6 Oct 2023 01:40:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DF18C10E085;
- Fri,  6 Oct 2023 01:38:06 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id E209010E4B1;
+ Fri,  6 Oct 2023 01:39:59 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D871CAADEA;
- Fri,  6 Oct 2023 01:38:06 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DFFBCAADEA;
+ Fri,  6 Oct 2023 01:39:59 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Umesh Nerlige Ramappa" <umesh.nerlige.ramappa@intel.com>
-Date: Fri, 06 Oct 2023 01:38:06 -0000
-Message-ID: <169655628686.6465.8527833463147893100@emeril.freedesktop.org>
+To: "David Kershner" <david.kershner@intel.com>
+Date: Fri, 06 Oct 2023 01:39:59 -0000
+Message-ID: <169655639991.6466.6101344292761909738@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231005215040.3260151-1-umesh.nerlige.ramappa@intel.com>
-In-Reply-To: <20231005215040.3260151-1-umesh.nerlige.ramappa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_fixup!_drm/xe=3A_Correlate_engine_and_cpu_timestamps_with_be?=
- =?utf-8?q?tter_accuracy?=
+References: <20231005220040.552765-1-david.kershner@intel.com>
+In-Reply-To: <20231005220040.552765-1-david.kershner@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Use_DPA_offset_for_page_table_entries=2E_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,22 +46,16 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: fixup! drm/xe: Correlate engine and cpu timestamps with better accuracy
-URL   : https://patchwork.freedesktop.org/series/124690/
-State : failure
+Series: Use DPA offset for page table entries. (rev2)
+URL   : https://patchwork.freedesktop.org/series/124577/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: b3daf7f07 drm/xe/hwmon: fix uaf on unload
 === git am output follows ===
-error: patch failed: include/uapi/drm/xe_drm.h:144
-error: include/uapi/drm/xe_drm.h: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: fixup! drm/xe: Correlate engine and cpu timestamps with better accuracy
-Patch failed at 0001 fixup! drm/xe: Correlate engine and cpu timestamps with better accuracy
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe/xe_migrate.c: Use DPA offset for page table entries.
+Applying: drm/xe/tests/xe_migrate.c: Add vram to vram KUNIT test
 
 
