@@ -4,54 +4,39 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3260BE95A8E
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Oct 2023 09:49:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BAC0E95A91
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Oct 2023 09:49:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D457910E24F;
-	Mon,  9 Oct 2023 09:49:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A23B10E24F
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Oct 2023 09:49:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696844965; x=1728380965;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=i/l97CkTpUImYunaQUrD72GrOJBdbV/W/riJbe6e5T8=;
- b=iHOZ1TLtnEGYVjJWknsZ/EXAlzNuixB5HWjjrb7k2lIwuuLPFG1GIxGJ
- d/FzRA3kaBjVsFJeZ5CJuQ7esJnBJ+8BXxMUhOc4d60xyuSNqN/QUuWKa
- UBBEO6PCA2M8vt+fbO8MzmdbdQJuYovQnyPiV5l1iUN1fmO85pw0oahVc
- 4YrscX+PXuFShmXPl1rmFc+QUsN0ZBseapZMfOH/FukASNFD4ED10TuTB
- 5cu6eSPw/GXmn/xRc+byowY/IGYF+g4o7OszHjIlR39YAvnsULqLvUM6r
- 5dC2QVKCXZHO2ky1Q3Sb6I6PqqDUy9SbW+QVnoOTbJPPNb7QJNfjypPKh Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10857"; a="415097193"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="415097193"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 02:49:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10857"; a="1084274981"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="1084274981"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 02:49:16 -0700
-Message-ID: <a136ed15-ade1-a2ef-9e48-4ab5faa96bdc@linux.intel.com>
-Date: Mon, 9 Oct 2023 15:22:05 +0530
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10EFA10E266;
+	Mon,  9 Oct 2023 09:49:48 +0000 (UTC)
+X-Greylist: delayed 1601 seconds by postgrey-1.36 at gabe;
+ Mon, 09 Oct 2023 09:49:45 UTC
+Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E4CE810E0EB
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Oct 2023 09:49:45 +0000 (UTC)
+Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
+ helo=[192.168.100.137])
+ by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.96)
+ (envelope-from <luca@coelho.fi>) id 1qpmTT-000ixz-0W;
+ Mon, 09 Oct 2023 12:22:56 +0300
+Message-ID: <8de90ac856b0caf3d0bd82717769e9f6fe1687a0.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Matthew Brost <matthew.brost@intel.com>, Matt Roper
+ <matthew.d.roper@intel.com>
+Date: Mon, 09 Oct 2023 12:22:44 +0300
+In-Reply-To: <ZG1Rwd2k6oDdiHHT@DUT025-TGLU.fm.intel.com>
+References: <20230522221527.2181802-1-rodrigo.vivi@intel.com>
+ <20230523032805.GB6250@mdroper-desk1.amr.corp.intel.com>
+ <ZGzGJYuTAUpfeXe5@DUT025-TGLU.fm.intel.com>
+ <20230523163849.GD6250@mdroper-desk1.amr.corp.intel.com>
+ <ZG1Rwd2k6oDdiHHT@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20230927114627.136925-1-himal.prasad.ghimiray@intel.com>
- <20230927114627.136925-8-himal.prasad.ghimiray@intel.com>
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20230927114627.136925-8-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 07/11] drm/xe: Support SOC FATAL error
- handling for PVC.
+Subject: Re: [Intel-xe] [RFC] drm/xe: A minimal assert for some forcewake
+ domain on xe_mmio.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,364 +48,343 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Hi everyone,
 
-On 27/09/23 17:16, Himal Prasad Ghimiray wrote:
-> Report the SOC fatal hardware error and update the counters which will
-> increment incase of error.
->
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_tile_error_regs.h |  28 +++
->  drivers/gpu/drm/xe/xe_hw_error.c             | 170 +++++++++++++++++++
->  drivers/gpu/drm/xe/xe_hw_error.h             |  58 ++++++-
->  3 files changed, 254 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
-> index fa16eaf9436b..04701c62f0d9 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
-> @@ -20,4 +20,32 @@
->  #define GSC_HEC_ERR_STAT_REG(base, x)                  XE_REG(_PICK_EVEN((x), \
->  								(base) + _GSC_HEC_CORR_ERR_STATUS, \
->  								(base) + _GSC_HEC_UNCOR_ERR_STATUS))
-> +#define SOC_PVC_BASE	               0x00282000
-> +#define SOC_PVC_SLAVE_BASE             0x00283000
+On Tue, 2023-05-23 at 23:52 +0000, Matthew Brost wrote:
+> On Tue, May 23, 2023 at 09:38:49AM -0700, Matt Roper wrote:
+> > On Tue, May 23, 2023 at 01:56:53PM +0000, Matthew Brost wrote:
+> > > On Mon, May 22, 2023 at 08:28:05PM -0700, Matt Roper wrote:
+> > > > On Mon, May 22, 2023 at 06:15:27PM -0400, Rodrigo Vivi wrote:
+> > > > > It is the maximum protection we can do with the current infrastru=
+cture.
+> > > > >=20
+> > > > > Cc: John Harrison <John.C.Harrison@Intel.com>
+> > > > > Cc: Matthew Auld <matthew.auld@intel.com>
+> > > > > Cc: Francois Dugast <francois.dugast@intel.com>
+> > > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > > > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> > > > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > > ---
+> > > > >=20
+> > > > >=20
+> > > > > RFC
+> > > > > =3D=3D=3D
+> > > > >=20
+> > > > > Okay, so, this is more an RFC to brainstorm the future of the for=
+ce_wake in
+> > > > > Xe than anything else.
+> > > > >=20
+> > > > > On i915 the force_wake is built-in the mmio functions at uncore c=
+omponent.
+> > > > >=20
+> > > > > With that approach we had few historical issues iirc:
+> > > > >=20
+> > > > > 1. Display performance with vblank evasion that requested uncore =
+to provide
+> > > > > the 'fw' variantes that are actually the ones that avoid fw (cont=
+rary to what
+> > > > > the name suggests).
+> > > >=20
+> > > > In i915 there were more differences between fw and non-fw variants
+> > > > of register functions than just forcewake handling:
+> > > >=20
+> > > >  * _fw() functions assumed that the caller was already holding
+> > > >    forcewake, whereas the non-fw functions would obtain it themselv=
+es
+> > > >  * _fw() functions also assumed that the caller was already holding
+> > > >    uncore->lock, whereas the non-fw functions would obtain and rele=
+ase
+> > > >    the lock around each register access
+> > > >  * _fw() functions do no tracing and no debug assertions
+> > > >  * _fw() functions do not check for unclaimed MMIO
+> > > >=20
+> > > > I don't think the first bullet there (forcewake) really mattered mu=
+ch
+> > > > from a performance perspective.  For display registers, a quick bin=
+ary
+> > > > search of the FW table (just a handful of CPU cycles) would quickly
+> > > > determine that no forcewake domains were needed for those register
+> > > > offsets, so we wouldn't be doing anything with forcewake at the har=
+dware
+> > > > level at all.  For display registers, the more performance-relevant
+> > > > aspects of using the _fw() functions was doing all your register
+> > > > accesses together without contention with other MMIO work.  I.e.,
+> > > > holding the uncore lock over an entire set of registers rather than
+> > > > grabbing/releasing it for each one, and (for vblank evasion
+> > > > specifically) doing it all while interrupts were disabled.  For deb=
+ug
+> > > > drivers, there was also a bunch of other stuff that the _fw() funct=
+ions
+> > > > bypassed (e.g., tripling of the number of register accesses due to
+> > > > reading FPGA_DBG before/after each register to look for unclaimed
+> > > > accesses).
+> > > >=20
+> > > > >=20
+> > > > > 2. Missed ranges updates. Sometimes we messed up with the ranges,=
+ there were
+> > > > > other times that the spec was updated and we didn't get the notif=
+ication, and
+> > > > > there were cases that the BSpec had bugs.
+> > > > >=20
+> > > > > For these reasons in Xe we have decided to let to the caller the
+> > > > > responsibility to set the force_wake bits for their domains befor=
+e doing
+> > > > > the MMIO.
+> > > >=20
+> > > > I don't think #2 was a reason to skip forcewake in Xe.  Not noticin=
+g a
+> > > > bspec update (or the bspec itself having incorrect information) wou=
+ld
+> > > > lead to even more mistakes if the caller has to explicitly grab the
+> > > > appropriate domains than if the driver does it implicitly.  The exp=
+licit
+> > > > handling only helps in the subset of cases where we blindly grab al=
+l of
+> > > > the domains (as we do during part of init).
+> > > >=20
+> > > >=20
+> > >=20
+> > > MMIO access that requires forcewakes really only should be in a few
+> > > places, off the top of my head:
+> > >=20
+> > > 1. Init
+> > > 2. Reset
+> > > 3. Sysfs / Debugfs
+> > >=20
+> > > In all of these cases I think it fine to blindly grab all forcewakes.
+> > >=20
+> > > Please chime in if I'm missing something.
+> >=20
+> > I think as we implement more features in the Xe driver we're going to
+> > wind up with a lot more places where we need to access GT registers at
+> > runtime.  A few examples off the top of my head:
+> >=20
+> >  * EU stall sampling
+> >  * Perf/OA
+> >  * EU debugger
+> >  * Various OOB workarounds that ask us to twiddle a register at certain
+> >    times in the driver.
+>=20
+> Hmm, ok a lot of these I could make the argument that these are not
+> normal operation so just grab everything and call it a day. If some of
+> these fall into the category of 'normal enough to be optimized' I can
+> also make the argument it is no more complex (perhaps less complex) to
+> explicitly grab the forcewake than having the logic auto-grab the
+> forcewake.
+>=20
+> What a compromise of in a debug mode we auto-generate the asserts based
+> on a table but we still explicitly grab the forcewake?
+>=20
+> >=20
+> > >=20
+> > > > >=20
+> > > > > However I'm seeing many questions and doubts popping up:
+> > > > >=20
+> > > > > 1. Are we confident that we are not missing any wake-up?
+> > > > > 2. Are we confident that the domains are set correctly?
+> > > > > 3. Are we not wasting power if we are waking up ALL the domains i=
+nstead
+> > > > >    of some specific one?
+> > > >=20
+> > > > I think we're only holding ALL domains during init; for most of the
+> > > > runtime MMIO accesses, I think the code is currently attempting to =
+only
+> > > > grab the domain(s) that it thinks the registers it's accessing will
+> > > > need.  Although that might be working right now, I'm a little bit
+> > > > worried about how that will scale in the long term when a single
+> > > > register might be in several different domains depending on what
+> > > > platform you're running on.  There have definitely been cases in th=
+e
+> > > > past where groups of registers migrated from RENDER to GT or vice v=
+ersa
+> > > > between platforms, so the exact domain you needed for an operation
+> > > > varied by platform.  And things are even more complicated if you're
+> > > > doing any MMIO against the media, since the hardware seems to chang=
+e
+> > > > exactly how it splits up the media power wells somewhat often.
+> > > >=20
+> > > > > 4. What about the display disconnection now because i915 and xe h=
+ave different
+> > > > >    mmio approaches but reusing i915-display?
+> > > > >=20
+> > > > > It looks to me that the cons of the current approach are supersed=
+ing the
+> > > > > cons of the i915 approach. But I want to hear more thoughts here =
+before
+> > > > > we decide which route to take.
+> > > > >=20
+> > > > > Maybe we have that domain as part of the mmio calls themselves? M=
+aybe
+> > > > > a double approach where the caller is responsible but mmio has th=
+e range
+> > > > > information and double check it?
+> > > >=20
+> > > > As noted above, part of the challenge with forcewake is that even i=
+f the
+> > > > caller knows it wants to access register FOO, and even if it know F=
+OO is
+> > > > a GT register that likely needs forcewake, it's sometimes challengi=
+ng to
+> > > > make sure it's grabbing the correct domain(s) for every single plat=
+form
+> > > > the Xe driver will eventually support if the power management handl=
+ing
+> > > > changes.  I think that was part of the motivation for encoding the
+> > > > tables into the driver in i915.  It seems like GT power wells don't
+> > > > change as much these days as they used to, but it's hard to say whe=
+ther
+> > > > that will continue in the future or not.  Who knows...maybe they'll
+> > > > eventually start creating dedicated domains for stuff like blitters=
+,
+> > > > GuC, etc.  rather than lumping all of those into the "GT" catchall
+> > > > domain.
+> > > >=20
+> > > > If we do decide to go back to implicit forcewake handling with the =
+table
+> > > > encoded into the driver, it might be worth doing something sort of =
+like
+> > >=20
+> > > Let's not do this intel_uncore.c is an unreadable mess, I don't want
+> > > anything like this in Xe.
+> >=20
+> > When you say unreadable, are you referring to the macros that generate
+> > the table lookup functions?  I don't think that macro magic would be
+> > needed for Xe since we don't have to support old platforms that have
+> > very different forcewake behavior, and we also don't need to generate
+> > separate 8-bit, 16-bit, and 32-bit versions of each operation anymore
+> > (since I think everything in the GT is 32-bits these days).
+> >=20
+>=20
+> Just the entire file is unreadable in general, trying to avoid these
+> types of files in Xe, avoid traps of the i915 did this so let's do it in
+> Xe, and over engineering our driver to avoid hypothetical future bugs.
+>=20
+> Matt
+>=20
+> > The forcewake and shadow tables themselves are pretty clean in i915
+> > these days, and if we move to autogenerating them from a text file, the=
+y
+> > can become even simpler since the text file will basically be a cleaned
+> > up copy/paste of part of the bspec table.
+> >=20
+> >=20
+> > Matt
+> >=20
+> > >=20
+> > > > what Lucas is doing in the OOB workaround series --- drop the
+> > > > per-platform tables into a human-readable text file that's more sim=
+ilar
+> > > > to the format used by the bspec (exact ranges, forcewake domain, MC=
+R
+> > > > replication type, etc.) and then provide a small parser program tha=
+t
+> > > > will convert that into actual code (and do things like consolidatin=
+g
+> > > > adjacent ranges).
+> > > >=20
+> > > > >=20
+> > > > > Any other idea? Thoughts?
+> > > >=20
+> > > > Once the big GT vs tile refactor stuff I have in flight gets finali=
+zed,
+> > > > I plan to follow up with another series that creates a more appropr=
+iate
+> > > > MMIO target for register operations rather than using "xe_gt" as th=
+e
+> > > > target (even for things completely unrelated to the small GT subset=
+ of
+> > > > hardware).  My idea is that you'd grab an MMIO target structure for=
+ MMIO
+> > > > operations against a specific hardware unit, and then the info insi=
+de
+> > > > the MMIO structure would be able to figure out if there are additio=
+nal
+> > > > checks and/or operations it should perform.  E.g.,
+> > > >=20
+> > > >  * mmio =3D xe_mmio_for_device(xe_device *xe);
+> > > >     - Used to submit MMIO operations against the root tile of the P=
+CI
+> > > >       device.  Only used during init (e.g., to read the registers t=
+hat
+> > > >       tell us which tiles exist on the platform) and during top-lev=
+el
+> > > >       interrupt enable/disable (since all interrupts are routed thr=
+ough
+> > > >       the root tile).
+> > > >     - No forcewake needed for register accesses through a handle of=
+ this
+> > > >       type since you'd only ever be accessing sgunit registers for =
+these
+> > > >       types of things.
+> > > >     - Register accesses through mmio can warn on debug builds if th=
+e
+> > > >       register appears to be in a GT-related MMIO range.
+> > > >=20
+> > > >  * mmio =3D xe_mmio_for_display(xe_device *xe);
+> > > >     - Pretty much the same as handles returned by xe_mmio_for_devic=
+e(),
+> > > >       but if a handle of this type is used to try to read/write
+> > > >       registers outside the display range, we could have debug buil=
+ds
+> > > >       throw some extra warnings.
+> > > >     - Unclaimed register detection could be confined to accesses th=
+rough
+> > > >       these handles.
+> > > >=20
+> > > >  * mmio =3D xe_mmio_for_tile(xe_tile *tile);
+> > > >     - Used to access non-GT registers that reside in a specific til=
+e.
+> > > >       I.e., sgunit/soc registers.
+> > > >     - As above, no forcewake needed, can make MMIO operations warn
+> > > >       if used to access a GT range.
+> > > >=20
+> > > >  * mmio =3D xe_mmio_for_gt(xe_gt *gt);
+> > > >     - Used to access GT registers in a specific GT
+> > > >     - Does automatic GSI offset translation for media GTs
+> > > >     - Can either do automatic forcewake like i915 does, or can do d=
+ebug
+> > > >       check+warn like you have here.
+> > > >     - Can make MMIO operations warn if MMIO offset is outside GT ra=
+nge
+> > > >     - Can also trigger warnings if a GT non-GSI, non-media engine
+> > > >       register is accessed from an MMIO obtained from a media GT.
+> > > >=20
+> > >=20
+> > > Ack on this if we keep in managable, worried code / feature bloat tho=
+se
+> > > that will result in a similar file to intel_uncore.c in Xe.
 
-why do we need to prepend the register defines with 0s ?.
+Just to revive this thread.
 
-> +
-> +#define _SOC_LERRCORSTS		       0x000294
-> +#define _SOC_LERRUNCSTS		       0x000280
-> +#define SOC_LOCAL_ERR_STAT_SLAVE_REG(base, x)		XE_REG((x) > HARDWARE_ERROR_CORRECTABLE ? \
-> +								(base) + _SOC_LERRUNCSTS : \
-> +								(base) + _SOC_LERRCORSTS)
-> +
-> +#define SOC_LOCAL_ERR_STAT_MASTER_REG(base, x)		XE_REG((x) > HARDWARE_ERROR_CORRECTABLE ? \
-> +								(base) + _SOC_LERRUNCSTS : \
-> +								(base) + _SOC_LERRCORSTS)
-> +#define _SOC_GSYSEVTCTL		        0x000264
-> +
-> +#define SOC_GSYSEVTCTL_REG(base, slave_base, x)		XE_REG(_PICK_EVEN((x), \
-> +								(base) + _SOC_GSYSEVTCTL, \
-> +								slave_base + _SOC_GSYSEVTCTL))
-> +#define _SOC_GCOERRSTS		        0x000200
-> +#define _SOC_GNFERRSTS		        0x000210
-> +#define _SOC_GFAERRSTS		        0x000220
-> +#define SOC_GLOBAL_ERR_STAT_SLAVE_REG(base, x)		XE_REG(_PICK_EVEN((x), \
-> +								(base) + _SOC_GCOERRSTS, \
-> +								(base) + _SOC_GNFERRSTS))
-> +
-> +#define SOC_GLOBAL_ERR_STAT_MASTER_REG(base, x)		XE_REG(_PICK_EVEN((x), \
-> +								(base) + _SOC_GCOERRSTS, \
-> +								(base) + _SOC_GNFERRSTS))
-> +
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-> index 76ae12df013c..fa05bad5e684 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_error.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-> @@ -207,6 +207,75 @@ static const struct err_msg_cntr_pair gsc_correctable_err_reg[] = {
->  	[2 ... 31] = {"Undefined",					XE_GSC_HW_ERR_UNKNOWN_CORR},
->  };
->  
-> +static const struct err_msg_cntr_pair soc_mstr_glbl_err_reg_fatal[] = {
-> +	[0]         = {"MASTER LOCAL Reported",			XE_SOC_HW_ERR_MSTR_LCL_FATAL},
-> +	[1]         = {"SLAVE GLOBAL Reported",			XE_SOC_HW_ERR_SLAVE_GLBL_FATAL},
-I don't think we shall count the first 2 bits as they just specify which IEH reported error and not
-the error itself.
+I've been discussing this proposal in the context of a change we need
+to make in the display, which is to introduce a wakelock for some
+registers access in order to be able to remove the DMC trap.
 
-May be you can introduce an enum XE_HW_ERR_UNSPEC before the max and use it to identify anything
-that we do not want to count.
-> +	[2]         = {"HBM SS0: Channel0",			XE_SOC_HW_ERR_HBM0_CHNL0_FATAL},
-> +	[3]         = {"HBM SS0: Channel1",			XE_SOC_HW_ERR_HBM0_CHNL1_FATAL},
-> +	[4]         = {"HBM SS0: Channel2",			XE_SOC_HW_ERR_HBM0_CHNL2_FATAL},
-> +	[5]         = {"HBM SS0: Channel3",			XE_SOC_HW_ERR_HBM0_CHNL3_FATAL},
-> +	[6]         = {"HBM SS0: Channel4",			XE_SOC_HW_ERR_HBM0_CHNL4_FATAL},
-> +	[7]         = {"HBM SS0: Channel5",			XE_SOC_HW_ERR_HBM0_CHNL5_FATAL},
-> +	[8]         = {"HBM SS0: Channel6",                     XE_SOC_HW_ERR_HBM0_CHNL6_FATAL},
-> +	[9]         = {"HBM SS0: Channel7",                     XE_SOC_HW_ERR_HBM0_CHNL7_FATAL},
-> +	[10]        = {"HBM SS1: Channel0",                     XE_SOC_HW_ERR_HBM1_CHNL0_FATAL},
-> +	[11]        = {"HBM SS1: Channel1",                     XE_SOC_HW_ERR_HBM1_CHNL1_FATAL},
-> +	[12]        = {"HBM SS1: Channel2",                     XE_SOC_HW_ERR_HBM1_CHNL2_FATAL},
-> +	[13]        = {"HBM SS1: Channel3",                     XE_SOC_HW_ERR_HBM1_CHNL3_FATAL},
-> +	[14]        = {"HBM SS1: Channel4",                     XE_SOC_HW_ERR_HBM1_CHNL4_FATAL},
-> +	[15]        = {"HBM SS1: Channel5",                     XE_SOC_HW_ERR_HBM1_CHNL5_FATAL},
-> +	[16]        = {"HBM SS1: Channel6",                     XE_SOC_HW_ERR_HBM1_CHNL6_FATAL},
-> +	[17]        = {"HBM SS1: Channel7",                     XE_SOC_HW_ERR_HBM1_CHNL7_FATAL},
-> +	[18]	    = {"PUNIT",					XE_SOC_HW_ERR_PUNIT_FATAL},
-> +	[19 ... 31] = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
-> +};
-> +
-> +static const struct err_msg_cntr_pair soc_slave_glbl_err_reg_fatal[] = {
-> +	[0]         = {"SLAVE LOCAL Reported",			XE_SOC_HW_ERR_SLAVE_LCL_FATAL},
+We came to the conclusion that this new implementation is very much the
+same as the forcewake proposal here.  From the display point-of-view,
+we could simply have a new domain and range of registers to protect.
 
-same here as above.
+We _could_ implement a separate "wakelock" mechanism for the display
+part, but that would be mostly duplicating the entire forcewake
+implementation.
 
-> +	[1]         = {"HBM SS2: Channel0",			XE_SOC_HW_ERR_HBM2_CHNL0_FATAL},
-> +	[2]         = {"HBM SS2: Channel1",			XE_SOC_HW_ERR_HBM2_CHNL1_FATAL},
-> +	[3]         = {"HBM SS2: Channel2",			XE_SOC_HW_ERR_HBM2_CHNL2_FATAL},
-> +	[4]         = {"HBM SS2: Channel3",			XE_SOC_HW_ERR_HBM2_CHNL3_FATAL},
-> +	[5]         = {"HBM SS2: Channel4",			XE_SOC_HW_ERR_HBM2_CHNL4_FATAL},
-> +	[6]         = {"HBM SS2: Channel5",			XE_SOC_HW_ERR_HBM2_CHNL5_FATAL},
-> +	[7]         = {"HBM SS2: Channel6",                     XE_SOC_HW_ERR_HBM2_CHNL6_FATAL},
-> +	[8]         = {"HBM SS2: Channel7",                     XE_SOC_HW_ERR_HBM2_CHNL7_FATAL},
-> +	[9]         = {"HBM SS3: Channel0",                     XE_SOC_HW_ERR_HBM3_CHNL0_FATAL},
-> +	[10]        = {"HBM SS3: Channel1",                     XE_SOC_HW_ERR_HBM3_CHNL1_FATAL},
-> +	[11]        = {"HBM SS3: Channel2",                     XE_SOC_HW_ERR_HBM3_CHNL2_FATAL},
-> +	[12]        = {"HBM SS3: Channel3",                     XE_SOC_HW_ERR_HBM3_CHNL3_FATAL},
-> +	[13]        = {"HBM SS3: Channel4",                     XE_SOC_HW_ERR_HBM3_CHNL4_FATAL},
-> +	[14]        = {"HBM SS3: Channel5",                     XE_SOC_HW_ERR_HBM3_CHNL5_FATAL},
-> +	[15]        = {"HBM SS3: Channel6",                     XE_SOC_HW_ERR_HBM3_CHNL6_FATAL},
-> +	[16]        = {"HBM SS3: Channel7",                     XE_SOC_HW_ERR_HBM3_CHNL7_FATAL},
-> +	[18]	    = {"ANR MDFI",				XE_SOC_HW_ERR_ANR_MDFI_FATAL},
-> +	[17]        = {"Undefined",                             XE_SOC_HW_ERR_UNKNOWN_FATAL},
-> +	[19 ... 31] = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
-> +};
-> +
-> +static const struct err_msg_cntr_pair soc_slave_lcl_err_reg_fatal[] = {
-> +	[0]         = {"Local IEH Internal: Malformed PCIe AER",     XE_SOC_HW_ERR_PCIE_AER_FATAL},
-> +	[1]         = {"Local IEH Internal: Malformed PCIe ERR",     XE_SOC_HW_ERR_PCIE_ERR_FATAL},
-> +	[2]         = {"Local IEH Internal: UR CONDITIONS IN IEH",   XE_SOC_HW_ERR_UR_COND_FATAL},
-> +	[3]         = {"Local IEH Internal: FROM SERR SOURCES",      XE_SOC_HW_ERR_SERR_SRCS_FATAL},
-> +	[4 ... 31]  = {"Undefined",				     XE_SOC_HW_ERR_UNKNOWN_FATAL},
-> +};
-> +
-> +static const struct err_msg_cntr_pair soc_mstr_lcl_err_reg_fatal[] = {
-> +	[0 ... 3]   = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
-> +	[4]         = {"Base Die MDFI T2T",			XE_SOC_HW_ERR_MDFI_T2T_FATAL},
-> +	[5]         = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
-> +	[6]         = {"Base Die MDFI T2C",			XE_SOC_HW_ERR_MDFI_T2C_FATAL},
-> +	[7]         = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
-> +	[8]         = {"Invalid CSC PSF Command Parity",	XE_SOC_HW_ERR_CSC_PSF_CMD_FATAL},
-> +	[9]         = {"Invalid CSC PSF Unexpected Completion",	XE_SOC_HW_ERR_CSC_PSF_CMP_FATAL},
-> +	[10]        = {"Invalid CSC PSF Unsupported Request",	XE_SOC_HW_ERR_CSC_PSF_REQ_FATAL},
-> +	[11]        = {"Invalid PCIe PSF Command Parity",	XE_SOC_HW_ERR_PCIE_PSF_CMD_FATAL},
-> +	[12]        = {"PCIe PSF Unexpected Completion",	XE_SOC_HW_ERR_PCIE_PSF_CMP_FATAL},
-> +	[13]        = {"PCIe PSF Unsupported Request",		XE_SOC_HW_ERR_PCIE_PSF_REQ_FATAL},
-> +	[14 ... 31] = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
-> +};
-> +
->  static void xe_assign_hw_err_regs(struct xe_device *xe)
->  {
->  	const struct err_msg_cntr_pair **dev_err_stat = xe->hw_err_regs.dev_err_stat;
-> @@ -451,6 +520,104 @@ xe_gsc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
->  	xe_mmio_write32(mmio, GSC_HEC_ERR_STAT_REG(base, hw_err), errsrc);
->  }
->  
-> +static void
-> +xe_soc_log_err_update_cntr(struct xe_tile *tile,
-> +			   u32 errbit, const struct err_msg_cntr_pair *reg_info)
-> +{
-> +	const char *errmsg;
-> +	u32 indx;
-> +
-> +	errmsg = reg_info[errbit].errmsg;
-> +	indx = reg_info[errbit].cntr_indx;
-> +
-> +	drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR
-> +			    "Tile%d %s SOC FATAL error, bit[%d] is set\n",
-> +			    tile->id, errmsg, errbit);
-> +	tile->errors.count[indx]++;
-> +}
-> +
-> +static void
-> +xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
-> +{
-> +	unsigned long mst_glb_errstat, slv_glb_errstat, lcl_errstat;
-> +	u32 errbit, base, slave_base;
-> +	int i;
-> +	struct xe_gt *gt = tile->primary_gt;
-> +
-> +	lockdep_assert_held(&tile_to_xe(tile)->irq.lock);
-> +
-> +	if ((tile_to_xe(tile)->info.platform != XE_PVC) && hw_err != HARDWARE_ERROR_FATAL)
-> +		return;
-> +
-> +	base = SOC_PVC_BASE;
-> +	slave_base = SOC_PVC_SLAVE_BASE;
-> +
-> +	/*
-> +	 * Mask error type in GSYSEVTCTL so that no new errors of the type
-> +	 * will be reported. Read the master global IEH error register if
-> +	 * BIT 1 is set then process the slave IEH first. If BIT 0 in
-> +	 * global error register is set then process the corresponding
-> +	 * Local error registers
-> +	 */
-> +	for (i = 0; i < PVC_NUM_IEH; i++)
+So, are there any plans to implement the current proposal? Or any other
+plans related to the forcewake implementation for Xe? As I see it, the
+"wakelock" implementation in the display depends on this.
 
-PVC_NUM_IEH is defined as 1 so this will not process IEH1,
-check below.
-> +		xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i), ~REG_BIT(hw_err));
-> +
-> +	mst_glb_errstat = xe_mmio_read32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err));
-> +	drm_info(&tile_to_xe(tile)->drm, HW_ERR
-> +		 "Tile%d SOC_GLOBAL_ERR_STAT_MASTER_REG_FATAL:0x%08lx\n",
-> +		 tile->id, mst_glb_errstat);
-> +
-> +	if (mst_glb_errstat & REG_BIT(SOC_SLAVE_IEH)) {
-> +		slv_glb_errstat = xe_mmio_read32(gt,
-> +						 SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err));
-> +		 drm_info(&tile_to_xe(tile)->drm, HW_ERR
-> +			  "Tile%d SOC_GLOBAL_ERR_STAT_SLAVE_REG_FATAL:0x%08lx\n",
-> +			  tile->id, slv_glb_errstat);
-> +
-> +		if (slv_glb_errstat & REG_BIT(SOC_IEH1_LOCAL_ERR_STATUS)) {
-> +			lcl_errstat = xe_mmio_read32(gt, SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base,
-> +										      hw_err));
-> +			 drm_info(&tile_to_xe(tile)->drm, HW_ERR
-> +				  "Tile%d SOC_LOCAL_ERR_STAT_SLAVE_REG_FATAL:0x%08lx\n",
-> +				  tile->id, lcl_errstat);
-> +
-> +			for_each_set_bit(errbit, &lcl_errstat, 32)
-> +				xe_soc_log_err_update_cntr(tile, errbit,
-> +							   soc_slave_lcl_err_reg_fatal);
-> +
-> +			xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
-> +					lcl_errstat);
-> +		}
-> +
-> +		for_each_set_bit(errbit, &slv_glb_errstat, 32)
-> +			xe_soc_log_err_update_cntr(tile, errbit, soc_slave_glbl_err_reg_fatal);
-> +
-> +		xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
-> +				slv_glb_errstat);
-> +	}
-> +
-> +	if (mst_glb_errstat & REG_BIT(SOC_IEH0_LOCAL_ERR_STATUS)) {
-> +		lcl_errstat = xe_mmio_read32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err));
-> +		drm_info(&tile_to_xe(tile)->drm, HW_ERR "SOC_LOCAL_ERR_STAT_MASTER_REG_FATAL:0x%08lx\n",
-> +			 lcl_errstat);
-> +
-> +		for_each_set_bit(errbit, &lcl_errstat, 32)
-> +			xe_soc_log_err_update_cntr(tile, errbit, soc_mstr_lcl_err_reg_fatal);
-> +
-> +		xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err), lcl_errstat);
-> +	}
-> +
-> +	for_each_set_bit(errbit, &mst_glb_errstat, 32)
-> +		xe_soc_log_err_update_cntr(tile, errbit, soc_mstr_glbl_err_reg_fatal);
-> +
-> +	xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
-> +			mst_glb_errstat);
-> +
-> +	for (i = 0; i < PVC_NUM_IEH; i++)
+Any thoughts?
 
-same here
-
-> +		xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
-> +				(HARDWARE_ERROR_MAX << 1) + 1);
-> +}
-> +
->  static void
->  xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
->  {
-> @@ -498,6 +665,9 @@ xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_er
->  
->  		if (errbit == 8)
->  			xe_gsc_hw_error_handler(tile, hw_err);
-> +
-> +		if (errbit == 16)
-
-Please define the bits along with respective register and use here.
-> +			xe_soc_hw_error_handler(tile, hw_err);
->  	}
->  
->  	xe_mmio_write32(mmio, DEV_ERR_STAT_REG(hw_err), errsrc);
-> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-> index ee7705b3343b..05838e082abd 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_error.h
-> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
-> @@ -65,6 +65,56 @@ enum xe_tile_hw_errors {
->  	XE_GSC_HW_ERR_SELF_MBIST_UNCOR,
->  	XE_GSC_HW_ERR_AON_RF_PARITY_UNCOR,
->  	XE_GSC_HW_ERR_UNKNOWN_UNCOR,
-> +	XE_SOC_HW_ERR_MSTR_LCL_FATAL,
-> +	XE_SOC_HW_ERR_SLAVE_GLBL_FATAL,
-> +	XE_SOC_HW_ERR_HBM0_CHNL0_FATAL,
-> +	XE_SOC_HW_ERR_HBM0_CHNL1_FATAL,
-> +	XE_SOC_HW_ERR_HBM0_CHNL2_FATAL,
-> +	XE_SOC_HW_ERR_HBM0_CHNL3_FATAL,
-> +	XE_SOC_HW_ERR_HBM0_CHNL4_FATAL,
-> +	XE_SOC_HW_ERR_HBM0_CHNL5_FATAL,
-> +	XE_SOC_HW_ERR_HBM0_CHNL6_FATAL,
-> +	XE_SOC_HW_ERR_HBM0_CHNL7_FATAL,
-> +	XE_SOC_HW_ERR_HBM1_CHNL0_FATAL,
-> +	XE_SOC_HW_ERR_HBM1_CHNL1_FATAL,
-> +	XE_SOC_HW_ERR_HBM1_CHNL2_FATAL,
-> +	XE_SOC_HW_ERR_HBM1_CHNL3_FATAL,
-> +	XE_SOC_HW_ERR_HBM1_CHNL4_FATAL,
-> +	XE_SOC_HW_ERR_HBM1_CHNL5_FATAL,
-> +	XE_SOC_HW_ERR_HBM1_CHNL6_FATAL,
-> +	XE_SOC_HW_ERR_HBM1_CHNL7_FATAL,
-> +	XE_SOC_HW_ERR_PUNIT_FATAL,
-> +	XE_SOC_HW_ERR_UNKNOWN_FATAL,
-> +	XE_SOC_HW_ERR_SLAVE_LCL_FATAL,
-> +	XE_SOC_HW_ERR_HBM2_CHNL0_FATAL,
-> +	XE_SOC_HW_ERR_HBM2_CHNL1_FATAL,
-> +	XE_SOC_HW_ERR_HBM2_CHNL2_FATAL,
-> +	XE_SOC_HW_ERR_HBM2_CHNL3_FATAL,
-> +	XE_SOC_HW_ERR_HBM2_CHNL4_FATAL,
-> +	XE_SOC_HW_ERR_HBM2_CHNL5_FATAL,
-> +	XE_SOC_HW_ERR_HBM2_CHNL6_FATAL,
-> +	XE_SOC_HW_ERR_HBM2_CHNL7_FATAL,
-> +	XE_SOC_HW_ERR_HBM3_CHNL0_FATAL,
-> +	XE_SOC_HW_ERR_HBM3_CHNL1_FATAL,
-> +	XE_SOC_HW_ERR_HBM3_CHNL2_FATAL,
-> +	XE_SOC_HW_ERR_HBM3_CHNL3_FATAL,
-> +	XE_SOC_HW_ERR_HBM3_CHNL4_FATAL,
-> +	XE_SOC_HW_ERR_HBM3_CHNL5_FATAL,
-> +	XE_SOC_HW_ERR_HBM3_CHNL6_FATAL,
-> +	XE_SOC_HW_ERR_HBM3_CHNL7_FATAL,
-> +	XE_SOC_HW_ERR_ANR_MDFI_FATAL,
-> +	XE_SOC_HW_ERR_PCIE_AER_FATAL,
-> +	XE_SOC_HW_ERR_PCIE_ERR_FATAL,
-> +	XE_SOC_HW_ERR_UR_COND_FATAL,
-> +	XE_SOC_HW_ERR_SERR_SRCS_FATAL,
-> +	XE_SOC_HW_ERR_MDFI_T2T_FATAL,
-> +	XE_SOC_HW_ERR_MDFI_T2C_FATAL,
-> +	XE_SOC_HW_ERR_CSC_PSF_CMD_FATAL,
-> +	XE_SOC_HW_ERR_CSC_PSF_CMP_FATAL,
-> +	XE_SOC_HW_ERR_CSC_PSF_REQ_FATAL,
-> +	XE_SOC_HW_ERR_PCIE_PSF_CMD_FATAL,
-> +	XE_SOC_HW_ERR_PCIE_PSF_CMP_FATAL,
-> +	XE_SOC_HW_ERR_PCIE_PSF_REQ_FATAL,
-we have convention in naming, it shall be source_typeoferror_errorname
-this we shall follow everywhere even when we expose these counter to userspace.
-
-eg: XE_HW_ERR_SOC_FATAL_CSC_PSF_CMD
-
-
->  	XE_TILE_HW_ERROR_MAX,
->  };
->  
-> @@ -109,8 +159,12 @@ enum xe_gt_hw_errors {
->  	XE_GT_HW_ERROR_MAX,
->  };
->  
-> -#define ERR_STAT_GT_COR_VCTR_LEN (4)
-> -#define ERR_STAT_GT_FATAL_VCTR_LEN (8)
-> +#define ERR_STAT_GT_COR_VCTR_LEN	(4)
-> +#define ERR_STAT_GT_FATAL_VCTR_LEN	(8)
-> +#define PVC_NUM_IEH			(1)
-
-ideally this shall be defined with 2, as we have 2 IEHs
-
-you can define something like:
-
-enum xe_soc_num_ieh {
-    XE_SOC_MASTER_IEH = 0,
-    XE_SOC_SLAVE_IEH,
-    XE_SOC_NUM_IEH
-}
-> +#define SOC_SLAVE_IEH                   (1)
-> +#define SOC_IEH0_LOCAL_ERR_STATUS       (0)
-> +#define SOC_IEH1_LOCAL_ERR_STATUS       (0)
-there ERR_STATUS be better defined with registers as
->  
->  struct err_msg_cntr_pair {
->  	const char *errmsg;
-Thanks,
-Aravind.
+--
+Cheers,
+Luca.
