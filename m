@@ -4,53 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39777E95A91
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Oct 2023 09:21:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3260BE95A8E
+	for <intel-xe@archiver.kernel.org>; Mon,  9 Oct 2023 09:49:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0422D10E24F;
-	Mon,  9 Oct 2023 09:21:53 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71ED110E24F;
- Mon,  9 Oct 2023 09:21:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D457910E24F;
+	Mon,  9 Oct 2023 09:49:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A23B10E24F
+ for <intel-xe@lists.freedesktop.org>; Mon,  9 Oct 2023 09:49:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696843310; x=1728379310;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=GF04VPPg5FobM+ouj0L6CCarl+YKa+4bNuZhs/rDWlU=;
- b=M1cg74eVtkeduiaT8LTfQ+oSdxQGixt1RyIHyBpMRMSb10cvn/5VQDhy
- QWOuzfAKRp6K/qGbd5S6XW70qHm9itq8wHLDG7sqTWKjgEi8ulSisIrY5
- dU4joQJSNNRCE7rfL7X0jYlnzMpRzEqHPk1Sljxa+1lI5n3jiJSfVLtio
- uMPV17UeLjJNS5StNWD8lTA30ierqTiBUIa03CkY5qlz/Ad7HbVT+90DB
- 2njqC4Xx/hmT/7Ckn9nkV60xmqsDM12BYMTHC0rm8ZviuC+R+2eUw25JY
- DyV0p2vKqiZ/pTQPZuWFwH69rOUSJphI6ZQ+7l5JwCXRIBZ5E559rC3Gc Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10857"; a="382980174"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="382980174"
+ t=1696844965; x=1728380965;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=i/l97CkTpUImYunaQUrD72GrOJBdbV/W/riJbe6e5T8=;
+ b=iHOZ1TLtnEGYVjJWknsZ/EXAlzNuixB5HWjjrb7k2lIwuuLPFG1GIxGJ
+ d/FzRA3kaBjVsFJeZ5CJuQ7esJnBJ+8BXxMUhOc4d60xyuSNqN/QUuWKa
+ UBBEO6PCA2M8vt+fbO8MzmdbdQJuYovQnyPiV5l1iUN1fmO85pw0oahVc
+ 4YrscX+PXuFShmXPl1rmFc+QUsN0ZBseapZMfOH/FukASNFD4ED10TuTB
+ 5cu6eSPw/GXmn/xRc+byowY/IGYF+g4o7OszHjIlR39YAvnsULqLvUM6r
+ 5dC2QVKCXZHO2ky1Q3Sb6I6PqqDUy9SbW+QVnoOTbJPPNb7QJNfjypPKh Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10857"; a="415097193"
+X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="415097193"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 02:21:49 -0700
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2023 02:49:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10857"; a="1084268667"
-X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="1084268667"
-Received: from lewandow-mobl.ger.corp.intel.com (HELO localhost)
- ([10.213.14.229])
+X-IronPort-AV: E=McAfee;i="6600,9927,10857"; a="1084274981"
+X-IronPort-AV: E=Sophos;i="6.03,210,1694761200"; d="scan'208";a="1084274981"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 02:21:48 -0700
-Date: Mon, 9 Oct 2023 11:21:46 +0200
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <20231009092146.yjhh27ug54eckwih@zkempczy-mobl2>
-References: <20231005153116.452319-1-matthew.auld@intel.com>
- <20231005153116.452319-9-matthew.auld@intel.com>
- <20231006115147.sboxniiobenbvls2@zkempczy-mobl2>
- <504919dd-da5e-4b64-3dcd-18e8810763f3@intel.com>
+ 09 Oct 2023 02:49:16 -0700
+Message-ID: <a136ed15-ade1-a2ef-9e48-4ab5faa96bdc@linux.intel.com>
+Date: Mon, 9 Oct 2023 15:22:05 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230927114627.136925-1-himal.prasad.ghimiray@intel.com>
+ <20230927114627.136925-8-himal.prasad.ghimiray@intel.com>
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <20230927114627.136925-8-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <504919dd-da5e-4b64-3dcd-18e8810763f3@intel.com>
-Subject: Re: [Intel-xe] [igt-dev] [PATCH i-g-t 08/12] lib/intel_blt: support
- pat_index
+Subject: Re: [Intel-xe] [PATCH 07/11] drm/xe: Support SOC FATAL error
+ handling for PVC.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,381 +63,364 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: igt-dev@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 06, 2023 at 01:08:50PM +0100, Matthew Auld wrote:
-> On 06/10/2023 12:51, Zbigniew Kempczyński wrote:
-> > On Thu, Oct 05, 2023 at 04:31:12PM +0100, Matthew Auld wrote:
-> > > For the most part we can just use the default wb, however some users
-> > > including display might want to use something else.
-> > > 
-> > > Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-> > > Cc: José Roberto de Souza <jose.souza@intel.com>
-> > > Cc: Pallavi Mishra <pallavi.mishra@intel.com>
-> > > ---
-> > >   lib/igt_fb.c                    |  2 ++
-> > >   lib/intel_blt.c                 | 54 +++++++++++++++++++++------------
-> > >   lib/intel_blt.h                 |  7 +++--
-> > >   tests/intel/gem_ccs.c           | 16 +++++-----
-> > >   tests/intel/gem_lmem_swapping.c |  4 +--
-> > >   tests/intel/xe_ccs.c            | 19 +++++++-----
-> > >   6 files changed, 64 insertions(+), 38 deletions(-)
-> > > 
-> > > diff --git a/lib/igt_fb.c b/lib/igt_fb.c
-> > > index f8a0db22c..d290fd775 100644
-> > > --- a/lib/igt_fb.c
-> > > +++ b/lib/igt_fb.c
-> > > @@ -37,6 +37,7 @@
-> > >   #include "i915/gem_mman.h"
-> > >   #include "intel_blt.h"
-> > >   #include "intel_mocs.h"
-> > > +#include "intel_pat.h"
-> > >   #include "igt_aux.h"
-> > >   #include "igt_color_encoding.h"
-> > >   #include "igt_fb.h"
-> > > @@ -2768,6 +2769,7 @@ static struct blt_copy_object *blt_fb_init(const struct igt_fb *fb,
-> > >   	blt_set_object(blt, handle, fb->size, memregion,
-> > >   		       intel_get_uc_mocs(fb->fd),
-> > > +		       intel_get_pat_idx_wt(fb->fd),
-> > >   		       blt_tile,
-> > >   		       is_ccs_modifier(fb->modifier) ? COMPRESSION_ENABLED : COMPRESSION_DISABLED,
-> > >   		       is_gen12_mc_ccs_modifier(fb->modifier) ? COMPRESSION_TYPE_MEDIA : COMPRESSION_TYPE_3D);
-> > > diff --git a/lib/intel_blt.c b/lib/intel_blt.c
-> > > index b55fa9b52..b7ac2902b 100644
-> > > --- a/lib/intel_blt.c
-> > > +++ b/lib/intel_blt.c
-> > > @@ -13,6 +13,7 @@
-> > >   #include "igt.h"
-> > >   #include "igt_syncobj.h"
-> > >   #include "intel_blt.h"
-> > > +#include "intel_pat.h"
-> > >   #include "xe/xe_ioctl.h"
-> > >   #include "xe/xe_query.h"
-> > >   #include "xe/xe_util.h"
-> > > @@ -810,10 +811,12 @@ uint64_t emit_blt_block_copy(int fd,
-> > >   	igt_assert_f(blt, "block-copy requires data to do blit\n");
-> > >   	alignment = get_default_alignment(fd, blt->driver);
-> > > -	src_offset = get_offset(ahnd, blt->src.handle, blt->src.size, alignment)
-> > > -		     + blt->src.plane_offset;
-> > > -	dst_offset = get_offset(ahnd, blt->dst.handle, blt->dst.size, alignment)
-> > > -		     + blt->dst.plane_offset;
-> > > +	src_offset = get_offset_pat_index(ahnd, blt->src.handle, blt->src.size,
-> > > +					  alignment, blt->src.pat_index) +
-> > > +		blt->src.plane_offset;
-> > > +	dst_offset = get_offset_pat_index(ahnd, blt->dst.handle, blt->dst.size,
-> > > +					  alignment, blt->dst.pat_index) +
-> > > +		blt->dst.plane_offset;
-> > 
-> > To less tabs in formatting for src and dst plane_offset.
-> > 
-> > >   	bb_offset = get_offset(ahnd, blt->bb.handle, blt->bb.size, alignment);
-> > >   	fill_data(&data, blt, src_offset, dst_offset, ext);
-> > > @@ -884,8 +887,10 @@ int blt_block_copy(int fd,
-> > >   	igt_assert_neq(blt->driver, 0);
-> > >   	alignment = get_default_alignment(fd, blt->driver);
-> > > -	src_offset = get_offset(ahnd, blt->src.handle, blt->src.size, alignment);
-> > > -	dst_offset = get_offset(ahnd, blt->dst.handle, blt->dst.size, alignment);
-> > > +	src_offset = get_offset_pat_index(ahnd, blt->src.handle, blt->src.size,
-> > > +					  alignment, blt->src.pat_index);
-> > > +	dst_offset = get_offset_pat_index(ahnd, blt->dst.handle, blt->dst.size,
-> > > +					  alignment, blt->dst.pat_index);
-> > >   	bb_offset = get_offset(ahnd, blt->bb.handle, blt->bb.size, alignment);
-> > >   	emit_blt_block_copy(fd, ahnd, blt, ext, 0, true);
-> > > @@ -1036,8 +1041,10 @@ uint64_t emit_blt_ctrl_surf_copy(int fd,
-> > >   	data.dw00.size_of_ctrl_copy = __ccs_size(surf) / CCS_RATIO - 1;
-> > >   	data.dw00.length = 0x3;
-> > > -	src_offset = get_offset(ahnd, surf->src.handle, surf->src.size, alignment);
-> > > -	dst_offset = get_offset(ahnd, surf->dst.handle, surf->dst.size, alignment);
-> > > +	src_offset = get_offset_pat_index(ahnd, surf->src.handle, surf->src.size,
-> > > +					  alignment, surf->src.pat_index);
-> > > +	dst_offset = get_offset_pat_index(ahnd, surf->dst.handle, surf->dst.size,
-> > > +					  alignment, surf->dst.pat_index);
-> > >   	bb_offset = get_offset(ahnd, surf->bb.handle, surf->bb.size, alignment);
-> > >   	data.dw01.src_address_lo = src_offset;
-> > > @@ -1103,8 +1110,10 @@ int blt_ctrl_surf_copy(int fd,
-> > >   	igt_assert_neq(surf->driver, 0);
-> > >   	alignment = max_t(uint64_t, get_default_alignment(fd, surf->driver), 1ull << 16);
-> > > -	src_offset = get_offset(ahnd, surf->src.handle, surf->src.size, alignment);
-> > > -	dst_offset = get_offset(ahnd, surf->dst.handle, surf->dst.size, alignment);
-> > > +	src_offset = get_offset_pat_index(ahnd, surf->src.handle, surf->src.size,
-> > > +					  alignment, surf->src.pat_index);
-> > > +	dst_offset = get_offset_pat_index(ahnd, surf->dst.handle, surf->dst.size,
-> > > +					  alignment, surf->dst.pat_index);
-> > >   	bb_offset = get_offset(ahnd, surf->bb.handle, surf->bb.size, alignment);
-> > >   	emit_blt_ctrl_surf_copy(fd, ahnd, surf, 0, true);
-> > > @@ -1308,10 +1317,12 @@ uint64_t emit_blt_fast_copy(int fd,
-> > >   	data.dw03.dst_x2 = blt->dst.x2;
-> > >   	data.dw03.dst_y2 = blt->dst.y2;
-> > > -	src_offset = get_offset(ahnd, blt->src.handle, blt->src.size, alignment)
-> > > -		     + blt->src.plane_offset;
-> > > -	dst_offset = get_offset(ahnd, blt->dst.handle, blt->dst.size, alignment)
-> > > -		     + blt->dst.plane_offset;
-> > > +	src_offset = get_offset_pat_index(ahnd, blt->src.handle, blt->src.size,
-> > > +					  alignment, blt->src.pat_index) +
-> > > +		blt->src.plane_offset;
-> > > +	dst_offset = get_offset_pat_index(ahnd, blt->dst.handle, blt->dst.size, alignment,
-> > > +					  blt->dst.pat_index) +
-> > > +		blt->dst.plane_offset;
-> > 
-> > Ditto.
-> > 
-> > >   	bb_offset = get_offset(ahnd, blt->bb.handle, blt->bb.size, alignment);
-> > >   	data.dw04.dst_address_lo = dst_offset;
-> > > @@ -1380,8 +1391,10 @@ int blt_fast_copy(int fd,
-> > >   	igt_assert_neq(blt->driver, 0);
-> > >   	alignment = get_default_alignment(fd, blt->driver);
-> > > -	src_offset = get_offset(ahnd, blt->src.handle, blt->src.size, alignment);
-> > > -	dst_offset = get_offset(ahnd, blt->dst.handle, blt->dst.size, alignment);
-> > > +	src_offset = get_offset_pat_index(ahnd, blt->src.handle, blt->src.size,
-> > > +					  alignment, blt->src.pat_index);
-> > > +	dst_offset = get_offset_pat_index(ahnd, blt->dst.handle, blt->dst.size,
-> > > +					  alignment, blt->dst.pat_index);
-> > >   	bb_offset = get_offset(ahnd, blt->bb.handle, blt->bb.size, alignment);
-> > >   	emit_blt_fast_copy(fd, ahnd, blt, 0, true);
-> > > @@ -1460,7 +1473,7 @@ blt_create_object(const struct blt_copy_data *blt, uint32_t region,
-> > >   							  &size, region) == 0);
-> > >   	}
-> > 
-> > I think blt_create_object() should have also pat_index passed as an
-> > argument.
-> 
-> I think you would also have to pass in the cpu_caching mode, and maybe even
-> the coh_mode, if we wanted that. Currently blt_create_object() gives you a
-> combination of cpu_caching, coh_mode and pat_index that is the default and
-> should "just work" for most cases. Idea is if you need something more exotic
-> you would instead create your own object (using say gem_create_caching) and
-> then also select whatever pat_index you needed.
-> 
-> I can change it to expose everything but figured blt_create_object() should
-> be more "I don't care, just give me the defaults".
 
-Ok. You've conviced me. Any non-default settings might be changed before
-the exec.
+On 27/09/23 17:16, Himal Prasad Ghimiray wrote:
+> Report the SOC fatal hardware error and update the counters which will
+> increment incase of error.
+>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_tile_error_regs.h |  28 +++
+>  drivers/gpu/drm/xe/xe_hw_error.c             | 170 +++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_hw_error.h             |  58 ++++++-
+>  3 files changed, 254 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+> index fa16eaf9436b..04701c62f0d9 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+> @@ -20,4 +20,32 @@
+>  #define GSC_HEC_ERR_STAT_REG(base, x)                  XE_REG(_PICK_EVEN((x), \
+>  								(base) + _GSC_HEC_CORR_ERR_STATUS, \
+>  								(base) + _GSC_HEC_UNCOR_ERR_STATUS))
+> +#define SOC_PVC_BASE	               0x00282000
+> +#define SOC_PVC_SLAVE_BASE             0x00283000
 
---
-Zbigniew
+why do we need to prepend the register defines with 0s ?.
 
-> 
-> > 
-> > Rest looks ok.
-> > 
-> > --
-> > Zbigniew
-> > 
-> > > -	blt_set_object(obj, handle, size, region, mocs, tiling,
-> > > +	blt_set_object(obj, handle, size, region, mocs, DEFAULT_PAT_INDEX, tiling,
-> > >   		       compression, compression_type);
-> > >   	blt_set_geom(obj, stride, 0, 0, width, height, 0, 0);
-> > > @@ -1481,7 +1494,7 @@ void blt_destroy_object(int fd, struct blt_copy_object *obj)
-> > >   void blt_set_object(struct blt_copy_object *obj,
-> > >   		    uint32_t handle, uint64_t size, uint32_t region,
-> > > -		    uint8_t mocs, enum blt_tiling_type tiling,
-> > > +		    uint8_t mocs, uint8_t pat_index, enum blt_tiling_type tiling,
-> > >   		    enum blt_compression compression,
-> > >   		    enum blt_compression_type compression_type)
-> > >   {
-> > > @@ -1489,6 +1502,7 @@ void blt_set_object(struct blt_copy_object *obj,
-> > >   	obj->size = size;
-> > >   	obj->region = region;
-> > >   	obj->mocs = mocs;
-> > > +	obj->pat_index = pat_index;
-> > >   	obj->tiling = tiling;
-> > >   	obj->compression = compression;
-> > >   	obj->compression_type = compression_type;
-> > > @@ -1516,12 +1530,14 @@ void blt_set_copy_object(struct blt_copy_object *obj,
-> > >   void blt_set_ctrl_surf_object(struct blt_ctrl_surf_copy_object *obj,
-> > >   			      uint32_t handle, uint32_t region, uint64_t size,
-> > > -			      uint8_t mocs, enum blt_access_type access_type)
-> > > +			      uint8_t mocs, uint8_t pat_index,
-> > > +			      enum blt_access_type access_type)
-> > >   {
-> > >   	obj->handle = handle;
-> > >   	obj->region = region;
-> > >   	obj->size = size;
-> > >   	obj->mocs = mocs;
-> > > +	obj->pat_index = pat_index;
-> > >   	obj->access_type = access_type;
-> > >   }
-> > > diff --git a/lib/intel_blt.h b/lib/intel_blt.h
-> > > index d9c8883c7..f8423a986 100644
-> > > --- a/lib/intel_blt.h
-> > > +++ b/lib/intel_blt.h
-> > > @@ -79,6 +79,7 @@ struct blt_copy_object {
-> > >   	uint32_t region;
-> > >   	uint64_t size;
-> > >   	uint8_t mocs;
-> > > +	uint8_t pat_index;
-> > >   	enum blt_tiling_type tiling;
-> > >   	enum blt_compression compression;  /* BC only */
-> > >   	enum blt_compression_type compression_type; /* BC only */
-> > > @@ -151,6 +152,7 @@ struct blt_ctrl_surf_copy_object {
-> > >   	uint32_t region;
-> > >   	uint64_t size;
-> > >   	uint8_t mocs;
-> > > +	uint8_t pat_index;
-> > >   	enum blt_access_type access_type;
-> > >   };
-> > > @@ -247,7 +249,7 @@ blt_create_object(const struct blt_copy_data *blt, uint32_t region,
-> > >   void blt_destroy_object(int fd, struct blt_copy_object *obj);
-> > >   void blt_set_object(struct blt_copy_object *obj,
-> > >   		    uint32_t handle, uint64_t size, uint32_t region,
-> > > -		    uint8_t mocs, enum blt_tiling_type tiling,
-> > > +		    uint8_t mocs, uint8_t pat_index, enum blt_tiling_type tiling,
-> > >   		    enum blt_compression compression,
-> > >   		    enum blt_compression_type compression_type);
-> > >   void blt_set_object_ext(struct blt_block_copy_object_ext *obj,
-> > > @@ -258,7 +260,8 @@ void blt_set_copy_object(struct blt_copy_object *obj,
-> > >   			 const struct blt_copy_object *orig);
-> > >   void blt_set_ctrl_surf_object(struct blt_ctrl_surf_copy_object *obj,
-> > >   			      uint32_t handle, uint32_t region, uint64_t size,
-> > > -			      uint8_t mocs, enum blt_access_type access_type);
-> > > +			      uint8_t mocs, uint8_t pat_index,
-> > > +			      enum blt_access_type access_type);
-> > >   void blt_surface_info(const char *info,
-> > >   		      const struct blt_copy_object *obj);
-> > > diff --git a/tests/intel/gem_ccs.c b/tests/intel/gem_ccs.c
-> > > index f5d4ab359..a98557b72 100644
-> > > --- a/tests/intel/gem_ccs.c
-> > > +++ b/tests/intel/gem_ccs.c
-> > > @@ -15,6 +15,7 @@
-> > >   #include "lib/intel_chipset.h"
-> > >   #include "intel_blt.h"
-> > >   #include "intel_mocs.h"
-> > > +#include "intel_pat.h"
-> > >   /**
-> > >    * TEST: gem ccs
-> > >    * Description: Exercise gen12 blitter with and without flatccs compression
-> > > @@ -111,9 +112,9 @@ static void surf_copy(int i915,
-> > >   	blt_ctrl_surf_copy_init(i915, &surf);
-> > >   	surf.print_bb = param.print_bb;
-> > >   	blt_set_ctrl_surf_object(&surf.src, mid->handle, mid->region, mid->size,
-> > > -				 uc_mocs, BLT_INDIRECT_ACCESS);
-> > > +				 uc_mocs, DEFAULT_PAT_INDEX, BLT_INDIRECT_ACCESS);
-> > >   	blt_set_ctrl_surf_object(&surf.dst, ccs, REGION_SMEM, ccssize,
-> > > -				 uc_mocs, DIRECT_ACCESS);
-> > > +				 uc_mocs, DEFAULT_PAT_INDEX, DIRECT_ACCESS);
-> > >   	bb_size = 4096;
-> > >   	igt_assert_eq(__gem_create(i915, &bb_size, &bb1), 0);
-> > >   	blt_set_batch(&surf.bb, bb1, bb_size, REGION_SMEM);
-> > > @@ -133,7 +134,7 @@ static void surf_copy(int i915,
-> > >   		igt_system_suspend_autoresume(SUSPEND_STATE_FREEZE, SUSPEND_TEST_NONE);
-> > >   		blt_set_ctrl_surf_object(&surf.dst, ccs2, REGION_SMEM, ccssize,
-> > > -					 0, DIRECT_ACCESS);
-> > > +					 0, DEFAULT_PAT_INDEX, DIRECT_ACCESS);
-> > >   		blt_ctrl_surf_copy(i915, ctx, e, ahnd, &surf);
-> > >   		gem_sync(i915, surf.dst.handle);
-> > > @@ -155,9 +156,9 @@ static void surf_copy(int i915,
-> > >   	for (int i = 0; i < surf.dst.size / sizeof(uint32_t); i++)
-> > >   		ccsmap[i] = i;
-> > >   	blt_set_ctrl_surf_object(&surf.src, ccs, REGION_SMEM, ccssize,
-> > > -				 uc_mocs, DIRECT_ACCESS);
-> > > +				 uc_mocs, DEFAULT_PAT_INDEX, DIRECT_ACCESS);
-> > >   	blt_set_ctrl_surf_object(&surf.dst, mid->handle, mid->region, mid->size,
-> > > -				 uc_mocs, INDIRECT_ACCESS);
-> > > +				 uc_mocs, DEFAULT_PAT_INDEX, INDIRECT_ACCESS);
-> > >   	blt_ctrl_surf_copy(i915, ctx, e, ahnd, &surf);
-> > >   	blt_copy_init(i915, &blt);
-> > > @@ -399,7 +400,8 @@ static void block_copy(int i915,
-> > >   	blt_set_object_ext(&ext.dst, 0, width, height, SURFACE_TYPE_2D);
-> > >   	if (config->inplace) {
-> > >   		blt_set_object(&blt.dst, mid->handle, dst->size, mid->region, 0,
-> > > -			       T_LINEAR, COMPRESSION_DISABLED, comp_type);
-> > > +			       DEFAULT_PAT_INDEX, T_LINEAR, COMPRESSION_DISABLED,
-> > > +			       comp_type);
-> > >   		blt.dst.ptr = mid->ptr;
-> > >   	}
-> > > @@ -475,7 +477,7 @@ static void block_multicopy(int i915,
-> > >   	if (config->inplace) {
-> > >   		blt_set_object(&blt3.dst, mid->handle, dst->size, mid->region,
-> > > -			       mid->mocs, mid_tiling, COMPRESSION_DISABLED,
-> > > +			       mid->mocs, DEFAULT_PAT_INDEX, mid_tiling, COMPRESSION_DISABLED,
-> > >   			       comp_type);
-> > >   		blt3.dst.ptr = mid->ptr;
-> > >   	}
-> > > diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/gem_lmem_swapping.c
-> > > index ede545c92..7f2ab8bb6 100644
-> > > --- a/tests/intel/gem_lmem_swapping.c
-> > > +++ b/tests/intel/gem_lmem_swapping.c
-> > > @@ -486,7 +486,7 @@ static void __do_evict(int i915,
-> > >   				   INTEL_MEMORY_REGION_ID(I915_SYSTEM_MEMORY, 0));
-> > >   		blt_set_object(tmp, tmp->handle, params->size.max,
-> > >   			       INTEL_MEMORY_REGION_ID(I915_SYSTEM_MEMORY, 0),
-> > > -			       intel_get_uc_mocs(i915), T_LINEAR,
-> > > +			       intel_get_uc_mocs(i915), 0, T_LINEAR,
-> > >   			       COMPRESSION_DISABLED, COMPRESSION_TYPE_3D);
-> > >   		blt_set_geom(tmp, stride, 0, 0, width, height, 0, 0);
-> > >   	}
-> > > @@ -516,7 +516,7 @@ static void __do_evict(int i915,
-> > >   			obj->blt_obj = calloc(1, sizeof(*obj->blt_obj));
-> > >   			igt_assert(obj->blt_obj);
-> > >   			blt_set_object(obj->blt_obj, obj->handle, obj->size, region_id,
-> > > -				       intel_get_uc_mocs(i915), T_LINEAR,
-> > > +				       intel_get_uc_mocs(i915), 0, T_LINEAR,
-> > >   				       COMPRESSION_ENABLED, COMPRESSION_TYPE_3D);
-> > >   			blt_set_geom(obj->blt_obj, stride, 0, 0, width, height, 0, 0);
-> > >   			init_object_ccs(i915, obj, tmp, rand(), blt_ctx,
-> > > diff --git a/tests/intel/xe_ccs.c b/tests/intel/xe_ccs.c
-> > > index 20bbc4448..27859d5ce 100644
-> > > --- a/tests/intel/xe_ccs.c
-> > > +++ b/tests/intel/xe_ccs.c
-> > > @@ -13,6 +13,7 @@
-> > >   #include "igt_syncobj.h"
-> > >   #include "intel_blt.h"
-> > >   #include "intel_mocs.h"
-> > > +#include "intel_pat.h"
-> > >   #include "xe/xe_ioctl.h"
-> > >   #include "xe/xe_query.h"
-> > >   #include "xe/xe_util.h"
-> > > @@ -108,8 +109,9 @@ static void surf_copy(int xe,
-> > >   	blt_ctrl_surf_copy_init(xe, &surf);
-> > >   	surf.print_bb = param.print_bb;
-> > >   	blt_set_ctrl_surf_object(&surf.src, mid->handle, mid->region, mid->size,
-> > > -				 uc_mocs, BLT_INDIRECT_ACCESS);
-> > > -	blt_set_ctrl_surf_object(&surf.dst, ccs, sysmem, ccssize, uc_mocs, DIRECT_ACCESS);
-> > > +				 uc_mocs, DEFAULT_PAT_INDEX, BLT_INDIRECT_ACCESS);
-> > > +	blt_set_ctrl_surf_object(&surf.dst, ccs, sysmem, ccssize, uc_mocs,
-> > > +				 DEFAULT_PAT_INDEX, DIRECT_ACCESS);
-> > >   	bb_size = xe_get_default_alignment(xe);
-> > >   	bb1 = xe_bo_create_flags(xe, 0, bb_size, sysmem);
-> > >   	blt_set_batch(&surf.bb, bb1, bb_size, sysmem);
-> > > @@ -130,7 +132,7 @@ static void surf_copy(int xe,
-> > >   		igt_system_suspend_autoresume(SUSPEND_STATE_FREEZE, SUSPEND_TEST_NONE);
-> > >   		blt_set_ctrl_surf_object(&surf.dst, ccs2, system_memory(xe), ccssize,
-> > > -					 0, DIRECT_ACCESS);
-> > > +					 0, DEFAULT_PAT_INDEX, DIRECT_ACCESS);
-> > >   		blt_ctrl_surf_copy(xe, ctx, NULL, ahnd, &surf);
-> > >   		intel_ctx_xe_sync(ctx, true);
-> > > @@ -153,9 +155,9 @@ static void surf_copy(int xe,
-> > >   	for (int i = 0; i < surf.dst.size / sizeof(uint32_t); i++)
-> > >   		ccsmap[i] = i;
-> > >   	blt_set_ctrl_surf_object(&surf.src, ccs, sysmem, ccssize,
-> > > -				 uc_mocs, DIRECT_ACCESS);
-> > > +				 uc_mocs, DEFAULT_PAT_INDEX, DIRECT_ACCESS);
-> > >   	blt_set_ctrl_surf_object(&surf.dst, mid->handle, mid->region, mid->size,
-> > > -				 uc_mocs, INDIRECT_ACCESS);
-> > > +				 uc_mocs, DEFAULT_PAT_INDEX, INDIRECT_ACCESS);
-> > >   	blt_ctrl_surf_copy(xe, ctx, NULL, ahnd, &surf);
-> > >   	intel_ctx_xe_sync(ctx, true);
-> > > @@ -369,7 +371,8 @@ static void block_copy(int xe,
-> > >   	blt_set_object_ext(&ext.dst, 0, width, height, SURFACE_TYPE_2D);
-> > >   	if (config->inplace) {
-> > >   		blt_set_object(&blt.dst, mid->handle, dst->size, mid->region, 0,
-> > > -			       T_LINEAR, COMPRESSION_DISABLED, comp_type);
-> > > +			       DEFAULT_PAT_INDEX, T_LINEAR, COMPRESSION_DISABLED,
-> > > +			       comp_type);
-> > >   		blt.dst.ptr = mid->ptr;
-> > >   	}
-> > > @@ -450,8 +453,8 @@ static void block_multicopy(int xe,
-> > >   	if (config->inplace) {
-> > >   		blt_set_object(&blt3.dst, mid->handle, dst->size, mid->region,
-> > > -			       mid->mocs, mid_tiling, COMPRESSION_DISABLED,
-> > > -			       comp_type);
-> > > +			       mid->mocs, DEFAULT_PAT_INDEX, mid_tiling,
-> > > +			       COMPRESSION_DISABLED, comp_type);
-> > >   		blt3.dst.ptr = mid->ptr;
-> > >   	}
-> > > -- 
-> > > 2.41.0
-> > > 
+> +
+> +#define _SOC_LERRCORSTS		       0x000294
+> +#define _SOC_LERRUNCSTS		       0x000280
+> +#define SOC_LOCAL_ERR_STAT_SLAVE_REG(base, x)		XE_REG((x) > HARDWARE_ERROR_CORRECTABLE ? \
+> +								(base) + _SOC_LERRUNCSTS : \
+> +								(base) + _SOC_LERRCORSTS)
+> +
+> +#define SOC_LOCAL_ERR_STAT_MASTER_REG(base, x)		XE_REG((x) > HARDWARE_ERROR_CORRECTABLE ? \
+> +								(base) + _SOC_LERRUNCSTS : \
+> +								(base) + _SOC_LERRCORSTS)
+> +#define _SOC_GSYSEVTCTL		        0x000264
+> +
+> +#define SOC_GSYSEVTCTL_REG(base, slave_base, x)		XE_REG(_PICK_EVEN((x), \
+> +								(base) + _SOC_GSYSEVTCTL, \
+> +								slave_base + _SOC_GSYSEVTCTL))
+> +#define _SOC_GCOERRSTS		        0x000200
+> +#define _SOC_GNFERRSTS		        0x000210
+> +#define _SOC_GFAERRSTS		        0x000220
+> +#define SOC_GLOBAL_ERR_STAT_SLAVE_REG(base, x)		XE_REG(_PICK_EVEN((x), \
+> +								(base) + _SOC_GCOERRSTS, \
+> +								(base) + _SOC_GNFERRSTS))
+> +
+> +#define SOC_GLOBAL_ERR_STAT_MASTER_REG(base, x)		XE_REG(_PICK_EVEN((x), \
+> +								(base) + _SOC_GCOERRSTS, \
+> +								(base) + _SOC_GNFERRSTS))
+> +
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+> index 76ae12df013c..fa05bad5e684 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_error.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
+> @@ -207,6 +207,75 @@ static const struct err_msg_cntr_pair gsc_correctable_err_reg[] = {
+>  	[2 ... 31] = {"Undefined",					XE_GSC_HW_ERR_UNKNOWN_CORR},
+>  };
+>  
+> +static const struct err_msg_cntr_pair soc_mstr_glbl_err_reg_fatal[] = {
+> +	[0]         = {"MASTER LOCAL Reported",			XE_SOC_HW_ERR_MSTR_LCL_FATAL},
+> +	[1]         = {"SLAVE GLOBAL Reported",			XE_SOC_HW_ERR_SLAVE_GLBL_FATAL},
+I don't think we shall count the first 2 bits as they just specify which IEH reported error and not
+the error itself.
+
+May be you can introduce an enum XE_HW_ERR_UNSPEC before the max and use it to identify anything
+that we do not want to count.
+> +	[2]         = {"HBM SS0: Channel0",			XE_SOC_HW_ERR_HBM0_CHNL0_FATAL},
+> +	[3]         = {"HBM SS0: Channel1",			XE_SOC_HW_ERR_HBM0_CHNL1_FATAL},
+> +	[4]         = {"HBM SS0: Channel2",			XE_SOC_HW_ERR_HBM0_CHNL2_FATAL},
+> +	[5]         = {"HBM SS0: Channel3",			XE_SOC_HW_ERR_HBM0_CHNL3_FATAL},
+> +	[6]         = {"HBM SS0: Channel4",			XE_SOC_HW_ERR_HBM0_CHNL4_FATAL},
+> +	[7]         = {"HBM SS0: Channel5",			XE_SOC_HW_ERR_HBM0_CHNL5_FATAL},
+> +	[8]         = {"HBM SS0: Channel6",                     XE_SOC_HW_ERR_HBM0_CHNL6_FATAL},
+> +	[9]         = {"HBM SS0: Channel7",                     XE_SOC_HW_ERR_HBM0_CHNL7_FATAL},
+> +	[10]        = {"HBM SS1: Channel0",                     XE_SOC_HW_ERR_HBM1_CHNL0_FATAL},
+> +	[11]        = {"HBM SS1: Channel1",                     XE_SOC_HW_ERR_HBM1_CHNL1_FATAL},
+> +	[12]        = {"HBM SS1: Channel2",                     XE_SOC_HW_ERR_HBM1_CHNL2_FATAL},
+> +	[13]        = {"HBM SS1: Channel3",                     XE_SOC_HW_ERR_HBM1_CHNL3_FATAL},
+> +	[14]        = {"HBM SS1: Channel4",                     XE_SOC_HW_ERR_HBM1_CHNL4_FATAL},
+> +	[15]        = {"HBM SS1: Channel5",                     XE_SOC_HW_ERR_HBM1_CHNL5_FATAL},
+> +	[16]        = {"HBM SS1: Channel6",                     XE_SOC_HW_ERR_HBM1_CHNL6_FATAL},
+> +	[17]        = {"HBM SS1: Channel7",                     XE_SOC_HW_ERR_HBM1_CHNL7_FATAL},
+> +	[18]	    = {"PUNIT",					XE_SOC_HW_ERR_PUNIT_FATAL},
+> +	[19 ... 31] = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
+> +};
+> +
+> +static const struct err_msg_cntr_pair soc_slave_glbl_err_reg_fatal[] = {
+> +	[0]         = {"SLAVE LOCAL Reported",			XE_SOC_HW_ERR_SLAVE_LCL_FATAL},
+
+same here as above.
+
+> +	[1]         = {"HBM SS2: Channel0",			XE_SOC_HW_ERR_HBM2_CHNL0_FATAL},
+> +	[2]         = {"HBM SS2: Channel1",			XE_SOC_HW_ERR_HBM2_CHNL1_FATAL},
+> +	[3]         = {"HBM SS2: Channel2",			XE_SOC_HW_ERR_HBM2_CHNL2_FATAL},
+> +	[4]         = {"HBM SS2: Channel3",			XE_SOC_HW_ERR_HBM2_CHNL3_FATAL},
+> +	[5]         = {"HBM SS2: Channel4",			XE_SOC_HW_ERR_HBM2_CHNL4_FATAL},
+> +	[6]         = {"HBM SS2: Channel5",			XE_SOC_HW_ERR_HBM2_CHNL5_FATAL},
+> +	[7]         = {"HBM SS2: Channel6",                     XE_SOC_HW_ERR_HBM2_CHNL6_FATAL},
+> +	[8]         = {"HBM SS2: Channel7",                     XE_SOC_HW_ERR_HBM2_CHNL7_FATAL},
+> +	[9]         = {"HBM SS3: Channel0",                     XE_SOC_HW_ERR_HBM3_CHNL0_FATAL},
+> +	[10]        = {"HBM SS3: Channel1",                     XE_SOC_HW_ERR_HBM3_CHNL1_FATAL},
+> +	[11]        = {"HBM SS3: Channel2",                     XE_SOC_HW_ERR_HBM3_CHNL2_FATAL},
+> +	[12]        = {"HBM SS3: Channel3",                     XE_SOC_HW_ERR_HBM3_CHNL3_FATAL},
+> +	[13]        = {"HBM SS3: Channel4",                     XE_SOC_HW_ERR_HBM3_CHNL4_FATAL},
+> +	[14]        = {"HBM SS3: Channel5",                     XE_SOC_HW_ERR_HBM3_CHNL5_FATAL},
+> +	[15]        = {"HBM SS3: Channel6",                     XE_SOC_HW_ERR_HBM3_CHNL6_FATAL},
+> +	[16]        = {"HBM SS3: Channel7",                     XE_SOC_HW_ERR_HBM3_CHNL7_FATAL},
+> +	[18]	    = {"ANR MDFI",				XE_SOC_HW_ERR_ANR_MDFI_FATAL},
+> +	[17]        = {"Undefined",                             XE_SOC_HW_ERR_UNKNOWN_FATAL},
+> +	[19 ... 31] = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
+> +};
+> +
+> +static const struct err_msg_cntr_pair soc_slave_lcl_err_reg_fatal[] = {
+> +	[0]         = {"Local IEH Internal: Malformed PCIe AER",     XE_SOC_HW_ERR_PCIE_AER_FATAL},
+> +	[1]         = {"Local IEH Internal: Malformed PCIe ERR",     XE_SOC_HW_ERR_PCIE_ERR_FATAL},
+> +	[2]         = {"Local IEH Internal: UR CONDITIONS IN IEH",   XE_SOC_HW_ERR_UR_COND_FATAL},
+> +	[3]         = {"Local IEH Internal: FROM SERR SOURCES",      XE_SOC_HW_ERR_SERR_SRCS_FATAL},
+> +	[4 ... 31]  = {"Undefined",				     XE_SOC_HW_ERR_UNKNOWN_FATAL},
+> +};
+> +
+> +static const struct err_msg_cntr_pair soc_mstr_lcl_err_reg_fatal[] = {
+> +	[0 ... 3]   = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
+> +	[4]         = {"Base Die MDFI T2T",			XE_SOC_HW_ERR_MDFI_T2T_FATAL},
+> +	[5]         = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
+> +	[6]         = {"Base Die MDFI T2C",			XE_SOC_HW_ERR_MDFI_T2C_FATAL},
+> +	[7]         = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
+> +	[8]         = {"Invalid CSC PSF Command Parity",	XE_SOC_HW_ERR_CSC_PSF_CMD_FATAL},
+> +	[9]         = {"Invalid CSC PSF Unexpected Completion",	XE_SOC_HW_ERR_CSC_PSF_CMP_FATAL},
+> +	[10]        = {"Invalid CSC PSF Unsupported Request",	XE_SOC_HW_ERR_CSC_PSF_REQ_FATAL},
+> +	[11]        = {"Invalid PCIe PSF Command Parity",	XE_SOC_HW_ERR_PCIE_PSF_CMD_FATAL},
+> +	[12]        = {"PCIe PSF Unexpected Completion",	XE_SOC_HW_ERR_PCIE_PSF_CMP_FATAL},
+> +	[13]        = {"PCIe PSF Unsupported Request",		XE_SOC_HW_ERR_PCIE_PSF_REQ_FATAL},
+> +	[14 ... 31] = {"Undefined",				XE_SOC_HW_ERR_UNKNOWN_FATAL},
+> +};
+> +
+>  static void xe_assign_hw_err_regs(struct xe_device *xe)
+>  {
+>  	const struct err_msg_cntr_pair **dev_err_stat = xe->hw_err_regs.dev_err_stat;
+> @@ -451,6 +520,104 @@ xe_gsc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+>  	xe_mmio_write32(mmio, GSC_HEC_ERR_STAT_REG(base, hw_err), errsrc);
+>  }
+>  
+> +static void
+> +xe_soc_log_err_update_cntr(struct xe_tile *tile,
+> +			   u32 errbit, const struct err_msg_cntr_pair *reg_info)
+> +{
+> +	const char *errmsg;
+> +	u32 indx;
+> +
+> +	errmsg = reg_info[errbit].errmsg;
+> +	indx = reg_info[errbit].cntr_indx;
+> +
+> +	drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR
+> +			    "Tile%d %s SOC FATAL error, bit[%d] is set\n",
+> +			    tile->id, errmsg, errbit);
+> +	tile->errors.count[indx]++;
+> +}
+> +
+> +static void
+> +xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+> +{
+> +	unsigned long mst_glb_errstat, slv_glb_errstat, lcl_errstat;
+> +	u32 errbit, base, slave_base;
+> +	int i;
+> +	struct xe_gt *gt = tile->primary_gt;
+> +
+> +	lockdep_assert_held(&tile_to_xe(tile)->irq.lock);
+> +
+> +	if ((tile_to_xe(tile)->info.platform != XE_PVC) && hw_err != HARDWARE_ERROR_FATAL)
+> +		return;
+> +
+> +	base = SOC_PVC_BASE;
+> +	slave_base = SOC_PVC_SLAVE_BASE;
+> +
+> +	/*
+> +	 * Mask error type in GSYSEVTCTL so that no new errors of the type
+> +	 * will be reported. Read the master global IEH error register if
+> +	 * BIT 1 is set then process the slave IEH first. If BIT 0 in
+> +	 * global error register is set then process the corresponding
+> +	 * Local error registers
+> +	 */
+> +	for (i = 0; i < PVC_NUM_IEH; i++)
+
+PVC_NUM_IEH is defined as 1 so this will not process IEH1,
+check below.
+> +		xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i), ~REG_BIT(hw_err));
+> +
+> +	mst_glb_errstat = xe_mmio_read32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err));
+> +	drm_info(&tile_to_xe(tile)->drm, HW_ERR
+> +		 "Tile%d SOC_GLOBAL_ERR_STAT_MASTER_REG_FATAL:0x%08lx\n",
+> +		 tile->id, mst_glb_errstat);
+> +
+> +	if (mst_glb_errstat & REG_BIT(SOC_SLAVE_IEH)) {
+> +		slv_glb_errstat = xe_mmio_read32(gt,
+> +						 SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err));
+> +		 drm_info(&tile_to_xe(tile)->drm, HW_ERR
+> +			  "Tile%d SOC_GLOBAL_ERR_STAT_SLAVE_REG_FATAL:0x%08lx\n",
+> +			  tile->id, slv_glb_errstat);
+> +
+> +		if (slv_glb_errstat & REG_BIT(SOC_IEH1_LOCAL_ERR_STATUS)) {
+> +			lcl_errstat = xe_mmio_read32(gt, SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base,
+> +										      hw_err));
+> +			 drm_info(&tile_to_xe(tile)->drm, HW_ERR
+> +				  "Tile%d SOC_LOCAL_ERR_STAT_SLAVE_REG_FATAL:0x%08lx\n",
+> +				  tile->id, lcl_errstat);
+> +
+> +			for_each_set_bit(errbit, &lcl_errstat, 32)
+> +				xe_soc_log_err_update_cntr(tile, errbit,
+> +							   soc_slave_lcl_err_reg_fatal);
+> +
+> +			xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
+> +					lcl_errstat);
+> +		}
+> +
+> +		for_each_set_bit(errbit, &slv_glb_errstat, 32)
+> +			xe_soc_log_err_update_cntr(tile, errbit, soc_slave_glbl_err_reg_fatal);
+> +
+> +		xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
+> +				slv_glb_errstat);
+> +	}
+> +
+> +	if (mst_glb_errstat & REG_BIT(SOC_IEH0_LOCAL_ERR_STATUS)) {
+> +		lcl_errstat = xe_mmio_read32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err));
+> +		drm_info(&tile_to_xe(tile)->drm, HW_ERR "SOC_LOCAL_ERR_STAT_MASTER_REG_FATAL:0x%08lx\n",
+> +			 lcl_errstat);
+> +
+> +		for_each_set_bit(errbit, &lcl_errstat, 32)
+> +			xe_soc_log_err_update_cntr(tile, errbit, soc_mstr_lcl_err_reg_fatal);
+> +
+> +		xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err), lcl_errstat);
+> +	}
+> +
+> +	for_each_set_bit(errbit, &mst_glb_errstat, 32)
+> +		xe_soc_log_err_update_cntr(tile, errbit, soc_mstr_glbl_err_reg_fatal);
+> +
+> +	xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
+> +			mst_glb_errstat);
+> +
+> +	for (i = 0; i < PVC_NUM_IEH; i++)
+
+same here
+
+> +		xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
+> +				(HARDWARE_ERROR_MAX << 1) + 1);
+> +}
+> +
+>  static void
+>  xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+>  {
+> @@ -498,6 +665,9 @@ xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_er
+>  
+>  		if (errbit == 8)
+>  			xe_gsc_hw_error_handler(tile, hw_err);
+> +
+> +		if (errbit == 16)
+
+Please define the bits along with respective register and use here.
+> +			xe_soc_hw_error_handler(tile, hw_err);
+>  	}
+>  
+>  	xe_mmio_write32(mmio, DEV_ERR_STAT_REG(hw_err), errsrc);
+> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
+> index ee7705b3343b..05838e082abd 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_error.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
+> @@ -65,6 +65,56 @@ enum xe_tile_hw_errors {
+>  	XE_GSC_HW_ERR_SELF_MBIST_UNCOR,
+>  	XE_GSC_HW_ERR_AON_RF_PARITY_UNCOR,
+>  	XE_GSC_HW_ERR_UNKNOWN_UNCOR,
+> +	XE_SOC_HW_ERR_MSTR_LCL_FATAL,
+> +	XE_SOC_HW_ERR_SLAVE_GLBL_FATAL,
+> +	XE_SOC_HW_ERR_HBM0_CHNL0_FATAL,
+> +	XE_SOC_HW_ERR_HBM0_CHNL1_FATAL,
+> +	XE_SOC_HW_ERR_HBM0_CHNL2_FATAL,
+> +	XE_SOC_HW_ERR_HBM0_CHNL3_FATAL,
+> +	XE_SOC_HW_ERR_HBM0_CHNL4_FATAL,
+> +	XE_SOC_HW_ERR_HBM0_CHNL5_FATAL,
+> +	XE_SOC_HW_ERR_HBM0_CHNL6_FATAL,
+> +	XE_SOC_HW_ERR_HBM0_CHNL7_FATAL,
+> +	XE_SOC_HW_ERR_HBM1_CHNL0_FATAL,
+> +	XE_SOC_HW_ERR_HBM1_CHNL1_FATAL,
+> +	XE_SOC_HW_ERR_HBM1_CHNL2_FATAL,
+> +	XE_SOC_HW_ERR_HBM1_CHNL3_FATAL,
+> +	XE_SOC_HW_ERR_HBM1_CHNL4_FATAL,
+> +	XE_SOC_HW_ERR_HBM1_CHNL5_FATAL,
+> +	XE_SOC_HW_ERR_HBM1_CHNL6_FATAL,
+> +	XE_SOC_HW_ERR_HBM1_CHNL7_FATAL,
+> +	XE_SOC_HW_ERR_PUNIT_FATAL,
+> +	XE_SOC_HW_ERR_UNKNOWN_FATAL,
+> +	XE_SOC_HW_ERR_SLAVE_LCL_FATAL,
+> +	XE_SOC_HW_ERR_HBM2_CHNL0_FATAL,
+> +	XE_SOC_HW_ERR_HBM2_CHNL1_FATAL,
+> +	XE_SOC_HW_ERR_HBM2_CHNL2_FATAL,
+> +	XE_SOC_HW_ERR_HBM2_CHNL3_FATAL,
+> +	XE_SOC_HW_ERR_HBM2_CHNL4_FATAL,
+> +	XE_SOC_HW_ERR_HBM2_CHNL5_FATAL,
+> +	XE_SOC_HW_ERR_HBM2_CHNL6_FATAL,
+> +	XE_SOC_HW_ERR_HBM2_CHNL7_FATAL,
+> +	XE_SOC_HW_ERR_HBM3_CHNL0_FATAL,
+> +	XE_SOC_HW_ERR_HBM3_CHNL1_FATAL,
+> +	XE_SOC_HW_ERR_HBM3_CHNL2_FATAL,
+> +	XE_SOC_HW_ERR_HBM3_CHNL3_FATAL,
+> +	XE_SOC_HW_ERR_HBM3_CHNL4_FATAL,
+> +	XE_SOC_HW_ERR_HBM3_CHNL5_FATAL,
+> +	XE_SOC_HW_ERR_HBM3_CHNL6_FATAL,
+> +	XE_SOC_HW_ERR_HBM3_CHNL7_FATAL,
+> +	XE_SOC_HW_ERR_ANR_MDFI_FATAL,
+> +	XE_SOC_HW_ERR_PCIE_AER_FATAL,
+> +	XE_SOC_HW_ERR_PCIE_ERR_FATAL,
+> +	XE_SOC_HW_ERR_UR_COND_FATAL,
+> +	XE_SOC_HW_ERR_SERR_SRCS_FATAL,
+> +	XE_SOC_HW_ERR_MDFI_T2T_FATAL,
+> +	XE_SOC_HW_ERR_MDFI_T2C_FATAL,
+> +	XE_SOC_HW_ERR_CSC_PSF_CMD_FATAL,
+> +	XE_SOC_HW_ERR_CSC_PSF_CMP_FATAL,
+> +	XE_SOC_HW_ERR_CSC_PSF_REQ_FATAL,
+> +	XE_SOC_HW_ERR_PCIE_PSF_CMD_FATAL,
+> +	XE_SOC_HW_ERR_PCIE_PSF_CMP_FATAL,
+> +	XE_SOC_HW_ERR_PCIE_PSF_REQ_FATAL,
+we have convention in naming, it shall be source_typeoferror_errorname
+this we shall follow everywhere even when we expose these counter to userspace.
+
+eg: XE_HW_ERR_SOC_FATAL_CSC_PSF_CMD
+
+
+>  	XE_TILE_HW_ERROR_MAX,
+>  };
+>  
+> @@ -109,8 +159,12 @@ enum xe_gt_hw_errors {
+>  	XE_GT_HW_ERROR_MAX,
+>  };
+>  
+> -#define ERR_STAT_GT_COR_VCTR_LEN (4)
+> -#define ERR_STAT_GT_FATAL_VCTR_LEN (8)
+> +#define ERR_STAT_GT_COR_VCTR_LEN	(4)
+> +#define ERR_STAT_GT_FATAL_VCTR_LEN	(8)
+> +#define PVC_NUM_IEH			(1)
+
+ideally this shall be defined with 2, as we have 2 IEHs
+
+you can define something like:
+
+enum xe_soc_num_ieh {
+    XE_SOC_MASTER_IEH = 0,
+    XE_SOC_SLAVE_IEH,
+    XE_SOC_NUM_IEH
+}
+> +#define SOC_SLAVE_IEH                   (1)
+> +#define SOC_IEH0_LOCAL_ERR_STATUS       (0)
+> +#define SOC_IEH1_LOCAL_ERR_STATUS       (0)
+there ERR_STATUS be better defined with registers as
+>  
+>  struct err_msg_cntr_pair {
+>  	const char *errmsg;
+Thanks,
+Aravind.
