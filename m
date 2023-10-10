@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D5EBCD80C1
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 13:04:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EEBF8CD80C1
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 13:04:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0661410E01F;
-	Tue, 10 Oct 2023 13:04:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C26DE10E01F;
+	Tue, 10 Oct 2023 13:04:31 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C63CB10E01F;
- Tue, 10 Oct 2023 13:04:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id F359710E363;
+ Tue, 10 Oct 2023 13:04:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C1583A3ECB;
- Tue, 10 Oct 2023 13:04:17 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id F1CA3A3ECB;
+ Tue, 10 Oct 2023 13:04:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Date: Tue, 10 Oct 2023 13:04:17 -0000
-Message-ID: <169694305778.28098.979201545351019736@emeril.freedesktop.org>
+Date: Tue, 10 Oct 2023 13:04:28 -0000
+Message-ID: <169694306898.28099.11761641217120125599@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231010121905.1769182-1-chaitanya.kumar.borah@intel.com>
 In-Reply-To: <20231010121905.1769182-1-chaitanya.kumar.borah@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Revert_=22FIXME=3A_drm/i915/ips=3A_apparently_silence_warnin?=
- =?utf-8?q?gs=22_=28rev3=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Re?=
+ =?utf-8?q?vert_=22FIXME=3A_drm/i915/ips=3A_apparently_silence_warnings=22?=
+ =?utf-8?q?_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,13 +49,34 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Revert "FIXME: drm/i915/ips: apparently silence warnings" (rev3)
 URL   : https://patchwork.freedesktop.org/series/123844/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 37b2d042c drm/xe: refactor xe_mmio_probe_tiles to support MMIO extension
-=== git am output follows ===
-Applying: Revert "FIXME: drm/i915/ips: apparently silence warnings"
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a4e9b1b0f76d2b2c58928aecd3754c4fa3349f6e
+Author: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Date:   Tue Oct 10 17:49:05 2023 +0530
+
+    Revert "FIXME: drm/i915/ips: apparently silence warnings"
+    
+    This reverts commit efdb834bbd7c6cd80e018dd0c0935070f2f27169.
+    
+    Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
++ /mt/dim checkpatch 37b2d042c23ae6a10055ea92101a15083d64c718 drm-intel
+a4e9b1b0f Revert "FIXME: drm/i915/ips: apparently silence warnings"
+-:6: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id 'efdb834bbd7c6cd80e018dd0c0935070f2f27169', maybe rebased or not pulled?
+#6: 
+This reverts commit efdb834bbd7c6cd80e018dd0c0935070f2f27169.
+
+total: 0 errors, 1 warnings, 0 checks, 18 lines checked
 
 
