@@ -4,60 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD36FCD68EE
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 06:24:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 11AFBCD68F1
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 06:34:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AB5110E313;
-	Tue, 10 Oct 2023 06:24:51 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EB5210E313
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Oct 2023 06:24:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D164710E31B;
+	Tue, 10 Oct 2023 06:34:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A012D10E1B9
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Oct 2023 06:34:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696919090; x=1728455090;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=k/JDuTq6JCARmWHeq5aQSMilN4lJ7Xk7cZGzUx6t7PI=;
- b=RDOk09ayTZXDuM00r+6qKMYqkjkJj/XlS5zR/8sCB2Ep37Fwi9PHACRh
- TLpmfjdZim+6fxFe0/652REKuoxpjN/7npS+Yk9ubUw67eZHGv+loPix4
- zLxIARgGDMPS121Bu/lBCIQEsuPpSqPCl8pDc3/iROlTHLOymRF4qggSN
- 6LR48POIuwVTz5YN7S3FZgu3C12g9Yr1ax7QFhthy4wVKVjYR6W+qUFkz
- pe7tzPug1z1QF6cl0Pgx0rU8ELgBTbOHfUudg2v3XPH9z+2nRRZPxFMWl
- k1KihuHBsbfUMo8A7HDusNpDE6iy8BPRCq3jQl+Q9gS14RqhpF/Vsl0Sh Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="384177998"
-X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; d="scan'208";a="384177998"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 23:24:49 -0700
+ t=1696919679; x=1728455679;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=Zpgyh1QSlWEpk+ErK+zUrxBbfmLRq2D63gPIuFw+z74=;
+ b=Ao7LXBgoFKHBT1mVNtWnlyrR9KxyJSW4oPzrDlxjpQnlbc7WhTRMu+CV
+ sYcuw0vdCpkoUtX7r5v2OVKRNDuRAcM4/zGL5qP3wi9nredguOiHSHK90
+ udM0dcJXjlcFb9dU8+w5zj62UTpLKAoeA1jouBtiUJQqQfm1TkloHWi0J
+ COnuy++MCvMJ4Ifgh21yqyYrYcxwVxCz3v7eHqv5O1LAWX7scmexK+9f+
+ 9fS9cGV1yVdB9NpSqSL7MU5Nb/OjVc0tKZ630VIQJdNVNSsNFMsao7w7N
+ 8ZF17zpKUL1P2X3NN1eyhxFSQAmiF1yaYBpACX1TNDyc3IBLPzUJejaqX w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="374664946"
+X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; d="scan'208";a="374664946"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2023 23:34:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="703189087"
-X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; d="scan'208";a="703189087"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 23:24:48 -0700
-Message-ID: <1313890f-4648-b4c8-5a57-c84ff5537db6@linux.intel.com>
-Date: Tue, 10 Oct 2023 11:57:37 +0530
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="823657892"
+X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; d="scan'208";a="823657892"
+Received: from agargas-mobl.ger.corp.intel.com (HELO [10.249.254.164])
+ ([10.249.254.164])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2023 23:34:36 -0700
+Message-ID: <f52ecbda-8062-1fbc-4622-0e08ea357bf3@linux.intel.com>
+Date: Tue, 10 Oct 2023 08:34:34 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
 Content-Language: en-US
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
+To: "Zanoni, Paulo R" <paulo.r.zanoni@intel.com>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20230927114627.136925-1-himal.prasad.ghimiray@intel.com>
- <20230927114627.136925-8-himal.prasad.ghimiray@intel.com>
- <a78dcbb2-d803-afa6-df4d-812147fa5261@linux.intel.com>
- <f0235d58-c1c3-4143-b5e4-0f0dbea12d4e@intel.com>
- <e4ce9225-8257-d759-e827-47b37c97cda5@linux.intel.com>
- <MW4PR11MB70564BE992C6FFF1C1DB9B2FB3CEA@MW4PR11MB7056.namprd11.prod.outlook.com>
- <f8fca5ae-9be7-20ae-9057-7595b2b2dcea@linux.intel.com>
- <121377d5-348b-4906-9a25-752ac694a009@intel.com>
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <121377d5-348b-4906-9a25-752ac694a009@intel.com>
-Content-Type: text/plain; charset=UTF-8
+References: <20231006083935.3924-1-thomas.hellstrom@linux.intel.com>
+ <21137789b15748d9d3e458df137ea618ccbc6aea.camel@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <21137789b15748d9d3e458df137ea618ccbc6aea.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 07/11] drm/xe: Support SOC FATAL error
- handling for PVC.
+Subject: Re: [Intel-xe] [RFC PATCH] Documentation/gpu: Add a VM_BIND async
+ document
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,496 +63,456 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ "dakr@redhat.com" <dakr@redhat.com>, "Das, Nirmoy" <nirmoy.das@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 09/10/23 14:45, Ghimiray, Himal Prasad wrote:
+On 10/9/23 19:54, Zanoni, Paulo R wrote:
+> On Fri, 2023-10-06 at 10:39 +0200, Thomas Hellström wrote:
+>> Add a motivation for and description of asynchronous VM_BIND operation
+>>
+>> v2:
+>> - Fix typos (Nirmoy Das)
+>> - Improve the description of a memory fence (Oak Zeng)
+>> - Add a reference to the document in the Xe RFC.
+>> - Add pointers to sample uAPI suggestions
+>> v3:
+>> - Address review comments (Danilo Krummrich)
+>> - Formatting fixes
+>> v4:
+>> - Address typos (Francois Dugast)
+>> - Explain why in-fences are not allowed for VM_BIND operations for long-
+>>    running workloads (Matthew Brost)
+>> v5:
+>> - More typo- and style fixing
+>> - Further clarify the implications of disallowing in-fences for VM_BIND
+>>    operations for long-running workloads (Matthew Brost)
+>> v6:
+>> - Point out that a gpu_vm is a virtual GPU Address space.
+>>    (Danilo Krummrich)
+>> - For an explanation of dma-fences point to the dma-fence documentation.
+>>    (Paolo Zanoni)
+>> - Clarify that VM_BIND errors are reported synchronously. (Paulo Zanoni)
+>> - Use an rst doc reference when pointing to the async vm_bind document
+>>    from the xe merge plan.
+>> - Add the VM_BIND documentation to the drm documentation table-of-content,
+>>    using an intermediate "Misc DRM driver uAPI- and feature implementation
+>>    guidelines"
+>> v7:
+>> - Update the error handling documentation to remove the VM error state.
+>>
+>> Cc: Paulo R Zanoni <paulo.r.zanoni@intel.com>
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> Acked-by: Nirmoy Das <nirmoy.das@intel.com>
+>> Reviewed-by: Danilo Krummrich <dakr@redhat.com>
+>> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+>> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> ---
+>>   Documentation/gpu/drm-vm-bind-async.rst       | 305 ++++++++++++++++++
+>>   .../gpu/implementation_guidelines.rst         |   9 +
+>>   Documentation/gpu/index.rst                   |   1 +
+>>   Documentation/gpu/rfc/xe.rst                  |   4 +-
+>>   4 files changed, 317 insertions(+), 2 deletions(-)
+>>   create mode 100644 Documentation/gpu/drm-vm-bind-async.rst
+>>   create mode 100644 Documentation/gpu/implementation_guidelines.rst
+>>
+>> diff --git a/Documentation/gpu/drm-vm-bind-async.rst b/Documentation/gpu/drm-vm-bind-async.rst
+>> new file mode 100644
+>> index 000000000000..47ca24b647dc
+>> --- /dev/null
+>> +++ b/Documentation/gpu/drm-vm-bind-async.rst
+>> @@ -0,0 +1,305 @@
+>> +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +
+>> +====================
+>> +Asynchronous VM_BIND
+>> +====================
+>> +
+>> +Nomenclature:
+>> +=============
+>> +
+>> +* ``VRAM``: On-device memory. Sometimes referred to as device local memory.
+>> +
+>> +* ``gpu_vm``: A virtual GPU address space. Typically per process, but
+>> +  can be shared by multiple processes.
+>> +
+>> +* ``VM_BIND``: An operation or a list of operations to modify a gpu_vm using
+>> +  an IOCTL. The operations include mapping and unmapping system- or
+>> +  VRAM memory.
+>> +
+>> +* ``syncobj``: A container that abstracts synchronization objects. The
+>> +  synchronization objects can be either generic, like dma-fences or
+>> +  driver specific. A syncobj typically indicates the type of the
+>> +  underlying synchronization object.
+>> +
+>> +* ``in-syncobj``: Argument to a VM_BIND IOCTL, the VM_BIND operation waits
+>> +  for these before starting.
+>> +
+>> +* ``out-syncobj``: Argument to a VM_BIND_IOCTL, the VM_BIND operation
+>> +  signals these when the bind operation is complete.
+>> +
+>> +* ``dma-fence``: A cross-driver synchronization object. A basic
+>> +  understanding of dma-fences is required to digest this
+>> +  document. Please refer to the ``DMA Fences`` section of the
+>> +  :doc:`dma-buf doc </driver-api/dma-buf>`.
+>> +
+>> +* ``memory fence``: A synchronization object, different from a dma-fence.
+>> +  A memory fence uses the value of a specified memory location to determine
+>> +  signaled status. A memory fence can be awaited and signaled by both
+>> +  the GPU and CPU. Memory fences are sometimes referred to as
+>> +  user-fences, userspace-fences or gpu futexes and do not necessarily obey
+>> +  the dma-fence rule of signaling within a "reasonable amount of time".
+>> +  The kernel should thus avoid waiting for memory fences with locks held.
+>> +
+>> +* ``long-running workload``: A workload that may take more than the
+>> +  current stipulated dma-fence maximum signal delay to complete and
+>> +  which therefore needs to set the gpu_vm or the GPU execution context in
+>> +  a certain mode that disallows completion dma-fences.
+>> +
+>> +* ``exec function``: An exec function is a function that revalidates all
+>> +  affected gpu_vmas, submits a GPU command batch and registers the
+>> +  dma_fence representing the GPU command's activity with all affected
+>> +  dma_resvs. For completeness, although not covered by this document,
+>> +  it's worth mentioning that an exec function may also be the
+>> +  revalidation worker that is used by some drivers in compute /
+>> +  long-running mode.
+>> +
+>> +* ``bind context``: A context identifier used for the VM_BIND
+>> +  operation. VM_BIND operations that use the same bind context can be
+>> +  assumed, where it matters, to complete in order of submission. No such
+>> +  assumptions can be made for VM_BIND operations using separate bind contexts.
+>> +
+>> +* ``UMD``: User-mode driver.
+>> +
+>> +* ``KMD``: Kernel-mode driver.
+>> +
+>> +
+>> +Synchronous / Asynchronous VM_BIND operation
+>> +============================================
+>> +
+>> +Synchronous VM_BIND
+>> +___________________
+>> +With Synchronous VM_BIND, the VM_BIND operations all complete before the
+>> +IOCTL returns. A synchronous VM_BIND takes neither in-fences nor
+>> +out-fences. Synchronous VM_BIND may block and wait for GPU operations;
+>> +for example swap-in or clearing, or even previous binds.
+>> +
+>> +Asynchronous VM_BIND
+>> +____________________
+>> +Asynchronous VM_BIND accepts both in-syncobjs and out-syncobjs. While the
+>> +IOCTL may return immediately, the VM_BIND operations wait for the in-syncobjs
+>> +before modifying the GPU page-tables, and signal the out-syncobjs when
+>> +the modification is done in the sense that the next exec function that
+>> +awaits for the out-syncobjs will see the change. Errors are reported
+>> +synchronously.
+>> +In low-memory situations the implementation may block, performing the
+>> +VM_BIND synchronously, because there might not be enough memory
+>> +immediately available for preparing the asynchronous operation.
+>> +
+>> +If the VM_BIND IOCTL takes a list or an array of operations as an argument,
+>> +the in-syncobjs needs to signal before the first operation starts to
+>> +execute, and the out-syncobjs signal after the last operation
+>> +completes. Operations in the operation list can be assumed, where it
+>> +matters, to complete in order.
+>> +
+>> +Since asynchronous VM_BIND operations may use dma-fences embedded in
+>> +out-syncobjs and internally in KMD to signal bind completion,  any
+>> +memory fences given as VM_BIND in-fences need to be awaited
+>> +synchronously before the VM_BIND ioctl returns, since dma-fences,
+>> +required to signal in a reasonable amount of time, can never be made
+>> +to depend on memory fences that don't have such a restriction.
+>> +
+>> +The purpose of an Asynchronous VM_BIND operation is for user-mode
+>> +drivers to be able to pipeline interleaved gpu_vm modifications and
+>> +exec functions. For long-running workloads, such pipelining of a bind
+>> +operation is not allowed and any in-fences need to be awaited
+>> +synchronously. The reason for this is twofold. First, any memory
+>> +fences gated by a long-running workload and used as in-syncobjs for the
+>> +VM_BIND operation will need to be awaited synchronously anyway (see
+>> +above). Second, any dma-fences used as in-syncobjs for VM_BIND
+>> +operations for long-running workloads will not allow for pipelining
+>> +anyway since long-running workloads don't allow for dma-fences as
+>> +out-syncobjs, so while theoretically possible the use of them is
+>> +questionable and should be rejected until there is a valuable use-case.
+>> +Note that this is not a limitation imposed by dma-fence rules, but
+>> +rather a limitation imposed to keep KMD implementation simple. It does
+>> +not affect using dma-fences as dependencies for the long-running
+>> +workload itself, which is allowed by dma-fence rules, but rather for
+>> +the VM_BIND operation only.
+>> +
+>> +An asynchronous VM_BIND operation may take substantial time to
+>> +complete and signal the out_fence. In particualr if the operation is
+> s/particualr/particular/
 >
-> On 09-10-2023 14:30, Aravind Iddamsetty wrote:
->> On 09/10/23 09:41, Ghimiray, Himal Prasad wrote:
->>>> -----Original Message-----
->>>> From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
->>>> Sent: 08 October 2023 15:03
->>>> To: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>; intel-
->>>> xe@lists.freedesktop.org
->>>> Subject: Re: [Intel-xe] [PATCH 07/11] drm/xe: Support SOC FATAL error
->>>> handling for PVC.
->>>>
->>>>
->>>> On 04/10/23 12:20, Ghimiray, Himal Prasad wrote:
->>>>> On 04-10-2023 12:08, Aravind Iddamsetty wrote:
->>>>>> On 27/09/23 17:16, Himal Prasad Ghimiray wrote:
->>>>>> Hi Himal,
->>>>>>
->>>>>> I'm yet to review the full patch but sharing a few initial comments.
->>>>> Hi Aravind,
->>>>>
->>>>> Thanks for the review comments.
->>>>>
->>>>>>> Report the SOC fatal hardware error and update the counters which
->>>>>>> will increment incase of error.
->>>>>>>
->>>>>>> Signed-off-by: Himal Prasad
->>>>>>> Ghimiray<himal.prasad.ghimiray@intel.com>
->>>>>>> ---
->>>>>>>    drivers/gpu/drm/xe/regs/xe_tile_error_regs.h |  28 +++
->>>>>>>    drivers/gpu/drm/xe/xe_hw_error.c             | 170
->>>>>>> +++++++++++++++++++
->>>>>>>    drivers/gpu/drm/xe/xe_hw_error.h             |  58 ++++++-
->>>>>>>    3 files changed, 254 insertions(+), 2 deletions(-)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
->>>>>>> b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
->>>>>>> index fa16eaf9436b..04701c62f0d9 100644
->>>>>>> --- a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
->>>>>>> +++ b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
->>>>>>> @@ -20,4 +20,32 @@
->>>>>>>    #define GSC_HEC_ERR_STAT_REG(base, x)
->>>>>>> XE_REG(_PICK_EVEN((x), \
->>>>>>>                                    (base) + _GSC_HEC_CORR_ERR_STATUS,
->>>>>>> \
->>>>>>>                                    (base) +
->>>>>>> _GSC_HEC_UNCOR_ERR_STATUS))
->>>>>>> +#define SOC_PVC_BASE                   0x00282000 #define
->>>>>>> +SOC_PVC_SLAVE_BASE             0x00283000
->>>>>>> +
->>>>>>> +#define _SOC_LERRCORSTS               0x000294 #define
->>>>>>> +_SOC_LERRUNCSTS               0x000280 #define
->>>>>>> +SOC_LOCAL_ERR_STAT_SLAVE_REG(base, x)        XE_REG((x) >
->>>>>>> +HARDWARE_ERROR_CORRECTABLE ? \
->>>>>>> +                                (base) + _SOC_LERRUNCSTS : \
->>>>>>> +                                (base) + _SOC_LERRCORSTS)
->>>>>>> +
->>>>>>> +#define SOC_LOCAL_ERR_STAT_MASTER_REG(base, x)        XE_REG((x)
->>>>>>> +HARDWARE_ERROR_CORRECTABLE ? \
->>>>>>> +                                (base) + _SOC_LERRUNCSTS : \
->>>>>>> +                                (base) + _SOC_LERRCORSTS) #define
->>>>>>> +_SOC_GSYSEVTCTL                0x000264
->>>>>>> +
->>>>>>> +#define SOC_GSYSEVTCTL_REG(base, slave_base, x)
->>>>>>> +XE_REG(_PICK_EVEN((x), \
->>>>>>> +                                (base) + _SOC_GSYSEVTCTL, \
->>>>>>> +                                slave_base + _SOC_GSYSEVTCTL))
->>>>>>> +#define _SOC_GCOERRSTS                0x000200 #define
->>>>>>> +_SOC_GNFERRSTS                0x000210 #define _SOC_GFAERRSTS
->>>>>>> +0x000220 #define SOC_GLOBAL_ERR_STAT_SLAVE_REG(base, x)
->>>>>>> +XE_REG(_PICK_EVEN((x), \
->>>>>>> +                                (base) + _SOC_GCOERRSTS, \
->>>>>>> +                                (base) + _SOC_GNFERRSTS))
->>>>>>> +
->>>>>>> +#define SOC_GLOBAL_ERR_STAT_MASTER_REG(base, x)
->>>>>>> +XE_REG(_PICK_EVEN((x), \
->>>>>>> +                                (base) + _SOC_GCOERRSTS, \
->>>>>>> +                                (base) + _SOC_GNFERRSTS))
->>>>>>> +
->>>>>>>    #endif
->>>>>>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c
->>>>>>> b/drivers/gpu/drm/xe/xe_hw_error.c
->>>>>>> index 76ae12df013c..fa05bad5e684 100644
->>>>>>> --- a/drivers/gpu/drm/xe/xe_hw_error.c
->>>>>>> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
->>>>>>> @@ -207,6 +207,75 @@ static const struct err_msg_cntr_pair
->>>>>>> gsc_correctable_err_reg[] = {
->>>>>>>        [2 ... 31] = {"Undefined",
->>>>>>> XE_GSC_HW_ERR_UNKNOWN_CORR},
->>>>>>>    };
->>>>>>>    +static const struct err_msg_cntr_pair
->>>>>>> soc_mstr_glbl_err_reg_fatal[] = {
->>>>>>> +    [0]         = {"MASTER LOCAL Reported",
->>>>>>> +XE_SOC_HW_ERR_MSTR_LCL_FATAL},
->>>>>>> +    [1]         = {"SLAVE GLOBAL Reported",
->>>>>>> +XE_SOC_HW_ERR_SLAVE_GLBL_FATAL},
->>>>>>> +    [2]         = {"HBM SS0: Channel0",
->>>>>>> +XE_SOC_HW_ERR_HBM0_CHNL0_FATAL},
->>>>>>> +    [3]         = {"HBM SS0: Channel1",
->>>>>>> +XE_SOC_HW_ERR_HBM0_CHNL1_FATAL},
->>>>>>> +    [4]         = {"HBM SS0: Channel2",
->>>>>>> +XE_SOC_HW_ERR_HBM0_CHNL2_FATAL},
->>>>>>> +    [5]         = {"HBM SS0: Channel3",
->>>>>>> +XE_SOC_HW_ERR_HBM0_CHNL3_FATAL},
->>>>>>> +    [6]         = {"HBM SS0: Channel4",
->>>>>>> +XE_SOC_HW_ERR_HBM0_CHNL4_FATAL},
->>>>>>> +    [7]         = {"HBM SS0: Channel5",
->>>>>>> +XE_SOC_HW_ERR_HBM0_CHNL5_FATAL},
->>>>>>> +    [8]         = {"HBM SS0: Channel6",
->>>>>>> +XE_SOC_HW_ERR_HBM0_CHNL6_FATAL},
->>>>>>> +    [9]         = {"HBM SS0: Channel7",
->>>>>>> +XE_SOC_HW_ERR_HBM0_CHNL7_FATAL},
->>>>>>> +    [10]        = {"HBM SS1: Channel0",
->>>>>>> +XE_SOC_HW_ERR_HBM1_CHNL0_FATAL},
->>>>>>> +    [11]        = {"HBM SS1: Channel1",
->>>>>>> +XE_SOC_HW_ERR_HBM1_CHNL1_FATAL},
->>>>>>> +    [12]        = {"HBM SS1: Channel2",
->>>>>>> +XE_SOC_HW_ERR_HBM1_CHNL2_FATAL},
->>>>>>> +    [13]        = {"HBM SS1: Channel3",
->>>>>>> +XE_SOC_HW_ERR_HBM1_CHNL3_FATAL},
->>>>>>> +    [14]        = {"HBM SS1: Channel4",
->>>>>>> +XE_SOC_HW_ERR_HBM1_CHNL4_FATAL},
->>>>>>> +    [15]        = {"HBM SS1: Channel5",
->>>>>>> +XE_SOC_HW_ERR_HBM1_CHNL5_FATAL},
->>>>>>> +    [16]        = {"HBM SS1: Channel6",
->>>>>>> +XE_SOC_HW_ERR_HBM1_CHNL6_FATAL},
->>>>>>> +    [17]        = {"HBM SS1: Channel7",
->>>>>>> +XE_SOC_HW_ERR_HBM1_CHNL7_FATAL},
->>>>>>> +    [18]        = {"PUNIT",
->>>>>>> +XE_SOC_HW_ERR_PUNIT_FATAL},
->>>>>>> +    [19 ... 31] = {"Undefined",
->>>>>>> +XE_SOC_HW_ERR_UNKNOWN_FATAL}, };
->>>>>>> +
->>>>>>> +static const struct err_msg_cntr_pair
->>>>>>> +soc_slave_glbl_err_reg_fatal[] = {
->>>>>>> +    [0]         = {"SLAVE LOCAL Reported",
->>>>>>> +XE_SOC_HW_ERR_SLAVE_LCL_FATAL},
->>>>>>> +    [1]         = {"HBM SS2: Channel0",
->>>>>>> +XE_SOC_HW_ERR_HBM2_CHNL0_FATAL},
->>>>>>> +    [2]         = {"HBM SS2: Channel1",
->>>>>>> +XE_SOC_HW_ERR_HBM2_CHNL1_FATAL},
->>>>>>> +    [3]         = {"HBM SS2: Channel2",
->>>>>>> +XE_SOC_HW_ERR_HBM2_CHNL2_FATAL},
->>>>>>> +    [4]         = {"HBM SS2: Channel3",
->>>>>>> +XE_SOC_HW_ERR_HBM2_CHNL3_FATAL},
->>>>>>> +    [5]         = {"HBM SS2: Channel4",
->>>>>>> +XE_SOC_HW_ERR_HBM2_CHNL4_FATAL},
->>>>>>> +    [6]         = {"HBM SS2: Channel5",
->>>>>>> +XE_SOC_HW_ERR_HBM2_CHNL5_FATAL},
->>>>>>> +    [7]         = {"HBM SS2: Channel6",
->>>>>>> +XE_SOC_HW_ERR_HBM2_CHNL6_FATAL},
->>>>>>> +    [8]         = {"HBM SS2: Channel7",
->>>>>>> +XE_SOC_HW_ERR_HBM2_CHNL7_FATAL},
->>>>>>> +    [9]         = {"HBM SS3: Channel0",
->>>>>>> +XE_SOC_HW_ERR_HBM3_CHNL0_FATAL},
->>>>>>> +    [10]        = {"HBM SS3: Channel1",
->>>>>>> +XE_SOC_HW_ERR_HBM3_CHNL1_FATAL},
->>>>>>> +    [11]        = {"HBM SS3: Channel2",
->>>>>>> +XE_SOC_HW_ERR_HBM3_CHNL2_FATAL},
->>>>>>> +    [12]        = {"HBM SS3: Channel3",
->>>>>>> +XE_SOC_HW_ERR_HBM3_CHNL3_FATAL},
->>>>>>> +    [13]        = {"HBM SS3: Channel4",
->>>>>>> +XE_SOC_HW_ERR_HBM3_CHNL4_FATAL},
->>>>>>> +    [14]        = {"HBM SS3: Channel5",
->>>>>>> +XE_SOC_HW_ERR_HBM3_CHNL5_FATAL},
->>>>>>> +    [15]        = {"HBM SS3: Channel6",
->>>>>>> +XE_SOC_HW_ERR_HBM3_CHNL6_FATAL},
->>>>>>> +    [16]        = {"HBM SS3: Channel7",
->>>>>>> +XE_SOC_HW_ERR_HBM3_CHNL7_FATAL},
->>>>>>> +    [18]        = {"ANR MDFI",
->>>>>>> +XE_SOC_HW_ERR_ANR_MDFI_FATAL},
->>>>>>> +    [17]        = {"Undefined",
->>>>>>> +XE_SOC_HW_ERR_UNKNOWN_FATAL},
->>>>>>> +    [19 ... 31] = {"Undefined",
->>>>>>> +XE_SOC_HW_ERR_UNKNOWN_FATAL}, };
->>>>>>> +
->>>>>>> +static const struct err_msg_cntr_pair soc_slave_lcl_err_reg_fatal[]
->>>>>>> += {
->>>>>>> +    [0]         = {"Local IEH Internal: Malformed PCIe AER",
->>>>>>> +XE_SOC_HW_ERR_PCIE_AER_FATAL},
->>>>>>> +    [1]         = {"Local IEH Internal: Malformed PCIe ERR",
->>>>>>> +XE_SOC_HW_ERR_PCIE_ERR_FATAL},
->>>>>>> +    [2]         = {"Local IEH Internal: UR CONDITIONS IN IEH",
->>>>>>> +XE_SOC_HW_ERR_UR_COND_FATAL},
->>>>>>> +    [3]         = {"Local IEH Internal: FROM SERR SOURCES",
->>>>>>> +XE_SOC_HW_ERR_SERR_SRCS_FATAL},
->>>>>>> +    [4 ... 31]  = {"Undefined",
->>>>>>> +XE_SOC_HW_ERR_UNKNOWN_FATAL}, };
->>>>>>> +
->>>>>>> +static const struct err_msg_cntr_pair soc_mstr_lcl_err_reg_fatal[]
->>>>>>> += {
->>>>>>> +    [0 ... 3]   = {"Undefined",
->>>>>>> +XE_SOC_HW_ERR_UNKNOWN_FATAL},
->>>>>>> +    [4]         = {"Base Die MDFI T2T",
->>>>>>> +XE_SOC_HW_ERR_MDFI_T2T_FATAL},
->>>>>>> +    [5]         = {"Undefined",
->>>>>>> +XE_SOC_HW_ERR_UNKNOWN_FATAL},
->>>>>>> +    [6]         = {"Base Die MDFI T2C",
->>>>>>> +XE_SOC_HW_ERR_MDFI_T2C_FATAL},
->>>>>>> +    [7]         = {"Undefined",
->>>>>>> +XE_SOC_HW_ERR_UNKNOWN_FATAL},
->>>>>>> +    [8]         = {"Invalid CSC PSF Command Parity",
->>>>>>> +XE_SOC_HW_ERR_CSC_PSF_CMD_FATAL},
->>>>>>> +    [9]         = {"Invalid CSC PSF Unexpected Completion",
->>>>>>> +XE_SOC_HW_ERR_CSC_PSF_CMP_FATAL},
->>>>>>> +    [10]        = {"Invalid CSC PSF Unsupported Request",
->>>>>>> +XE_SOC_HW_ERR_CSC_PSF_REQ_FATAL},
->>>>>>> +    [11]        = {"Invalid PCIe PSF Command Parity",
->>>>>>> +XE_SOC_HW_ERR_PCIE_PSF_CMD_FATAL},
->>>>>>> +    [12]        = {"PCIe PSF Unexpected Completion",
->>>>>>> +XE_SOC_HW_ERR_PCIE_PSF_CMP_FATAL},
->>>>>>> +    [13]        = {"PCIe PSF Unsupported Request",
->>>>>>> +XE_SOC_HW_ERR_PCIE_PSF_REQ_FATAL},
->>>>>>> +    [14 ... 31] = {"Undefined",
->>>>>>> +XE_SOC_HW_ERR_UNKNOWN_FATAL}, };
->>>>>>> +
->>>>>> we shall think of future extensibility, like we do in
->>>>>> xe_assign_hw_err_regs depending on platform for other registers.
->>>>> Yes that is in my mind. I was planing to move this struct under
->>>> xe_assign_hw_err_regs once new platform support is added for SOC error
->>>> handling.
->>>>> But to make things aligned can be taken care rightnow as well. Will address
->>>> in next patch.
->>>>>>>    static void xe_assign_hw_err_regs(struct xe_device *xe)
->>>>>>>    {
->>>>>>>        const struct err_msg_cntr_pair **dev_err_stat =
->>>>>>> xe->hw_err_regs.dev_err_stat; @@ -451,6 +520,104 @@
->>>>>>> xe_gsc_hw_error_handler(struct xe_tile *tile, const enum
->>>>>>> hardware_error hw_err)
->>>>>>>        xe_mmio_write32(mmio, GSC_HEC_ERR_STAT_REG(base, hw_err),
->>>>>>> errsrc);
->>>>>>>    }
->>>>>>>    +static void
->>>>>>> +xe_soc_log_err_update_cntr(struct xe_tile *tile,
->>>>>>> +               u32 errbit, const struct err_msg_cntr_pair
->>>>>>> +*reg_info) {
->>>>>>> +    const char *errmsg;
->>>>>>> +    u32 indx;
->>>>>>> +
->>>>>>> +    errmsg = reg_info[errbit].errmsg;
->>>>>>> +    indx = reg_info[errbit].cntr_indx;
->>>>>>> +
->>>>>>> +    drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR
->>>>>>> +                "Tile%d %s SOC FATAL error, bit[%d] is set\n",
->>>>>>> +                tile->id, errmsg, errbit);
->>>>>>> +    tile->errors.count[indx]++;
->>>>>>> +}
->>>>>>> +
->>>>>>> +static void
->>>>>>> +xe_soc_hw_error_handler(struct xe_tile *tile, const enum
->>>>>>> +hardware_error hw_err) {
->>>>>>> +    unsigned long mst_glb_errstat, slv_glb_errstat, lcl_errstat;
->>>>>>> +    u32 errbit, base, slave_base;
->>>>>>> +    int i;
->>>>>>> +    struct xe_gt *gt = tile->primary_gt;
->>>>>>> +
->>>>>>> +    lockdep_assert_held(&tile_to_xe(tile)->irq.lock);
->>>>>>> +
->>>>>>> +    if ((tile_to_xe(tile)->info.platform != XE_PVC) && hw_err !=
->>>>>>> +HARDWARE_ERROR_FATAL)
->>>>>>> +        return;
->>>>>>> +
->>>>>>> +    base = SOC_PVC_BASE;
->>>>>>> +    slave_base = SOC_PVC_SLAVE_BASE;
->>>>>>> +
->>>>>>> +    /*
->>>>>>> +     * Mask error type in GSYSEVTCTL so that no new errors of the
->>>>>>> +type
->>>>>>> +     * will be reported. Read the master global IEH error register
->>>>>>> +if
->>>>>>> +     * BIT 1 is set then process the slave IEH first. If BIT 0 in
->>>>>>> +     * global error register is set then process the corresponding
->>>>>>> +     * Local error registers
->>>>>>> +     */
->>>>>>> +    for (i = 0; i < PVC_NUM_IEH; i++)
->>>>>>> +        xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base,
->>>>>>> +i), ~REG_BIT(hw_err));
->>>>>>> +
->>>>>>> +    mst_glb_errstat = xe_mmio_read32(gt,
->>>>>>> +SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err));
->>>>>>> +    drm_info(&tile_to_xe(tile)->drm, HW_ERR
->>>>>>> +         "Tile%d
->>>> SOC_GLOBAL_ERR_STAT_MASTER_REG_FATAL:0x%08lx\n",
->>>>>>> +         tile->id, mst_glb_errstat);
->>>>>>> +
->>>>>>> +    if (mst_glb_errstat & REG_BIT(SOC_SLAVE_IEH)) {
->>>>>>> +        slv_glb_errstat = xe_mmio_read32(gt,
->>>>>>> +                         SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base,
->>>>>>> +hw_err));
->>>>>>> +         drm_info(&tile_to_xe(tile)->drm, HW_ERR
->>>>>>> +              "Tile%d
->>>>>>> +SOC_GLOBAL_ERR_STAT_SLAVE_REG_FATAL:0x%08lx\n",
->>>>>>> +              tile->id, slv_glb_errstat);
->>>>>>> +
->>>>>>> +        if (slv_glb_errstat & REG_BIT(SOC_IEH1_LOCAL_ERR_STATUS)) {
->>>>>>> +            lcl_errstat = xe_mmio_read32(gt,
->>>>>>> +SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base,
->>>>>>> +                                              hw_err));
->>>>>>> +             drm_info(&tile_to_xe(tile)->drm, HW_ERR
->>>>>>> +                  "Tile%d
->>>>>>> +SOC_LOCAL_ERR_STAT_SLAVE_REG_FATAL:0x%08lx\n",
->>>>>>> +                  tile->id, lcl_errstat);
->>>>>>> +
->>>>>>> +            for_each_set_bit(errbit, &lcl_errstat, 32)
->>>>>>> +                xe_soc_log_err_update_cntr(tile, errbit,
->>>>>>> +                               soc_slave_lcl_err_reg_fatal);
->>>>>>> +
->>>>>>> +            xe_mmio_write32(gt,
->>>>>>> +SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
->>>>>>> +                    lcl_errstat);
->>>>>>> +        }
->>>>>>> +
->>>>>>> +        for_each_set_bit(errbit, &slv_glb_errstat, 32)
->>>>>>> +            xe_soc_log_err_update_cntr(tile, errbit,
->>>>>>> +soc_slave_glbl_err_reg_fatal);
->>>>>>> +
->>>>>>> +        xe_mmio_write32(gt,
->>>>>>> +SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
->>>>>>> +                slv_glb_errstat);
->>>>>>> +    }
->>>>>>> +
->>>>>>> +    if (mst_glb_errstat & REG_BIT(SOC_IEH0_LOCAL_ERR_STATUS)) {
->>>>>>> +        lcl_errstat = xe_mmio_read32(gt,
->>>>>>> +SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err));
->>>>>>> +        drm_info(&tile_to_xe(tile)->drm, HW_ERR
->>>>>>> +"SOC_LOCAL_ERR_STAT_MASTER_REG_FATAL:0x%08lx\n",
->>>>>>> +             lcl_errstat);
->>>>>>> +
->>>>>>> +        for_each_set_bit(errbit, &lcl_errstat, 32)
->>>>>>> +            xe_soc_log_err_update_cntr(tile, errbit,
->>>>>>> +soc_mstr_lcl_err_reg_fatal);
->>>>>>> +
->>>>>>> +        xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base,
->>>>>>> +hw_err), lcl_errstat);
->>>>>>> +    }
->>>>>>> +
->>>>>>> +    for_each_set_bit(errbit, &mst_glb_errstat, 32)
->>>>>>> +        xe_soc_log_err_update_cntr(tile, errbit,
->>>>>>> +soc_mstr_glbl_err_reg_fatal);
->>>>>>> +
->>>>>>> +    xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base,
->>>>>>> +hw_err),
->>>>>>> +            mst_glb_errstat);
->>>>>>> +
->>>>>>> +    for (i = 0; i < PVC_NUM_IEH; i++)
->>>>>>> +        xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base,
->>>>>>> +i),
->>>>>>> +                (HARDWARE_ERROR_MAX << 1) + 1); }
->>>>>>> +
->>>>>>>    static void
->>>>>>>    xe_hw_error_source_handler(struct xe_tile *tile, const enum
->>>>>>> hardware_error hw_err)
->>>>>>>    {
->>>>>>> @@ -498,6 +665,9 @@ xe_hw_error_source_handler(struct xe_tile
->>>> *tile,
->>>>>>> const enum hardware_error hw_er
->>>>>>>              if (errbit == 8)
->>>>>>>                xe_gsc_hw_error_handler(tile, hw_err);
->>>>>>> +
->>>>>>> +        if (errbit == 16)
->>>>>>> +            xe_soc_hw_error_handler(tile, hw_err);
->>>>>>>        }
->>>>>>>          xe_mmio_write32(mmio, DEV_ERR_STAT_REG(hw_err), errsrc);
->>>>>>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h
->>>>>>> b/drivers/gpu/drm/xe/xe_hw_error.h
->>>>>>> index ee7705b3343b..05838e082abd 100644
->>>>>>> --- a/drivers/gpu/drm/xe/xe_hw_error.h
->>>>>>> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
->>>>>>> @@ -65,6 +65,56 @@ enum xe_tile_hw_errors {
->>>>>>>        XE_GSC_HW_ERR_SELF_MBIST_UNCOR,
->>>>>>>        XE_GSC_HW_ERR_AON_RF_PARITY_UNCOR,
->>>>>>>        XE_GSC_HW_ERR_UNKNOWN_UNCOR,
->>>>>>> +    XE_SOC_HW_ERR_MSTR_LCL_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_SLAVE_GLBL_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM0_CHNL0_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM0_CHNL1_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM0_CHNL2_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM0_CHNL3_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM0_CHNL4_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM0_CHNL5_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM0_CHNL6_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM0_CHNL7_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM1_CHNL0_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM1_CHNL1_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM1_CHNL2_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM1_CHNL3_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM1_CHNL4_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM1_CHNL5_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM1_CHNL6_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM1_CHNL7_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_PUNIT_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_UNKNOWN_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_SLAVE_LCL_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM2_CHNL0_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM2_CHNL1_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM2_CHNL2_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM2_CHNL3_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM2_CHNL4_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM2_CHNL5_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM2_CHNL6_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM2_CHNL7_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM3_CHNL0_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM3_CHNL1_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM3_CHNL2_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM3_CHNL3_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM3_CHNL4_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM3_CHNL5_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM3_CHNL6_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_HBM3_CHNL7_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_ANR_MDFI_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_PCIE_AER_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_PCIE_ERR_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_UR_COND_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_SERR_SRCS_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_MDFI_T2T_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_MDFI_T2C_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_CSC_PSF_CMD_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_CSC_PSF_CMP_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_CSC_PSF_REQ_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_PCIE_PSF_CMD_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_PCIE_PSF_CMP_FATAL,
->>>>>>> +    XE_SOC_HW_ERR_PCIE_PSF_REQ_FATAL,
->>>>>> even though soc errors fall under a tile it is better if we shall
->>>>>> have a separate enum for soc errors for 2 reasons, the other errors
->>>>>> in xe_tile_hw_errors are from top level registers while SOC are from
->>>>>> second level and also because these errors are most likely different on
->>>> different platforms.
->>>>>> so, we shall extend struct tile_hw_errors to have separate entry for soc.
->>>>> Makes sense. WIll address in next patch.
->>>>>> Also, I'm thinking if we shall use xarray types for all members in
->>>>>> error counters under tile and gt with the enum list being big and which will
->>>> increase with each new platform.
->>>>> My initial thought was also to use xarray for soc error counters. But even if
->>>> we use xarray we need to have separate identifiers to identify which indexes
->>>> in xarray are actually valid hardware error and which are spurious interrupt.
->>>> Hence found no use of using xarray, if we still need to maintain all valid
->>>> indexes.
->>>>
->>>> xarray is supposedly be more memory efficient with large arrays, IIUC the
->>>> allocation for an index position will only be done when the index is used for
->>>> the first time.
->>> Hmm. With current approach, for soc counters we might end up allocating int array of
->>> [32] [ 2] [3] [2] = 384 elements (considering we have only 1 slave ieh and all bits signify some error) and I am not sure whether
->>> On further platform we will have more slaves IEH or not.
->>>
->>> With xarray the allocation will be dynamic and above array can be avoided. If recommendation is not to allocate this big arrays,  xarray will be better option.
->>> If array size is of no concern, we can avoid overhead of xarray referencing and dereferencing while storing and reading the counter values from respective index.
->>   I do not think that should be an issue in our present usecase which is not time critical and we have used this i915 as well with no known latency issues.
 >
-> Ok. In that case will update the counters using xarray instead of array in next patch.  Shall we use xarray for only socs counters or all other error types too ?
+>
+>> +deeply pipelined behind other VM_BIND operations and workloads
+>> +submitted using exec functions. In that case, UMD might want to avoid a
+>> +subsequent VM_BIND operation to be queued behind the first one if
+>> +there are no explicit dependencies. In order to circumvent such a queue-up, a
+>> +VM_BIND implementation may allow for VM_BIND contexts to be
+>> +created. For each context, VM_BIND operations will be guaranteed to
+>> +complete in the order they were submitted, but that is not the case
+>> +for VM_BIND operations executing on separate VM_BIND contexts. Instead
+>> +KMD will attempt to execute such VM_BIND operations in parallel but
+>> +leaving no guarantee that they will actually be executed in
+>> +parallel. There may be internal implicit dependencies that only KMD knows
+>> +about, for example page-table structure changes. A way to attempt
+>> +to avoid such internal dependencies is to have different VM_BIND
+>> +contexts use separate regions of a VM.
+>> +
+>> +Also for VM_BINDS for long-running gpu_vms the user-mode driver should typically
+>> +select memory fences as out-fences since that gives greater flexibility for
+>> +the kernel mode driver to inject other operations into the bind /
+>> +unbind operations. Like for example inserting breakpoints into batch
+>> +buffers. The workload execution can then easily be pipelined behind
+>> +the bind completion using the memory out-fence as the signal condition
+>> +for a GPU semaphore embedded by UMD in the workload.
+>> +
+>> +Multi-operation VM_BIND IOCTL error handling and interrupts
+>> +===========================================================
+> Is multi-operation exclusive to Asynchronous? Or will it be allowed to
+> happen with Synchronous ioctls too? Please write that in the document.
+> The last time I checked this was not allowed on xe.ko.
 
-we only have two counters right tile->errors.count and gt->errors.count so make them xarray.
+Multi-operation will be allowed with synchronous VM_BINDs too. It is not 
+currently in xe, but that will change,
+will update that in the document.
+
+>
+> If it's allowed on Synchronous, can things fail after only a certain
+> amount of operations was completed? If yes, does the Kernel undo things
+> before returning, or does it leave things in undefined state?
+No undefined state. KMD will unwind and rollback.
+>
+>
+>> +
+>> +The VM_BIND operations of the IOCTL may error for various reasons, for
+>> +example due to lack of resources to complete and due to interrupted
+>> +waits.
+>> +In these situations UMD should preferably restart the IOCTL after
+>> +taking suitable action.
+>> +If UMD has over-committed a memory resource, an -ENOSPC error will be
+>> +returned, and UMD may then unbind resources that are not used at the
+>> +moment and rerun the IOCTL. On -EINTR, UMD should simply rerun the
+>> +IOCTL and on -ENOMEM user-space may either attempt to free known
+>> +system memory resources or fail. In case of UMD deciding to fail a
+>> +bind operation, due to an error return, no additional action is needed
+>> +to clean up the failed operation.
+> Ok, so no state machine, this is clearer.
+>
+> Since this is is all asynchronous, I would assume that when the ioctl
+> returns an error the VM is left exactly in the same state it was before
+> the ioctl that failed. Is that correct? If yes, can you please write
+> that out in the comment?
+That's correct, yes will do.
+> If no, you'll have to explain how would this
+> be even possible (since it's supposed to be an async ioctl).
+>
+>
+>> +Unbind operations are guaranteed not to return any errors due to
+>> +resource constraints, but may return errors due to, for example,
+>> +invalid arguments or the gpu_vm being banned.
+>> +In the case an unexpected error happens during the asynchronous bind
+>> +process, the gpu_vm will be banned, and attempts to use it after banning
+>> +will return -ENOENT.
+>> +
+>> +Example: The Xe VM_BIND uAPI
+>> +============================
+>> +
+>> +Starting with the VM_BIND operation struct, the IOCTL call can take
+>> +zero, one or many such operations. A zero number means only the
+>> +synchronization part of the IOCTL is carried out: an asynchronous
+>> +VM_BIND updates the syncobjects, whereas a sync VM_BIND waits for the
+>> +implicit dependencies to be fulfilled.
+>> +
+>> +.. code-block:: c
+>> +
+>> +   struct drm_xe_vm_bind_op {
+>> +	/**
+>> +	 * @obj: GEM object to operate on, MBZ for MAP_USERPTR, MBZ for UNMAP
+>> +	 */
+>> +	__u32 obj;
+>> +
+>> +	/** @pad: MBZ */
+>> +	__u32 pad;
+>> +
+>> +	union {
+>> +		/**
+>> +		 * @obj_offset: Offset into the object for MAP.
+>> +		 */
+>> +		__u64 obj_offset;
+>> +
+>> +		/** @userptr: user virtual address for MAP_USERPTR */
+>> +		__u64 userptr;
+>> +	};
+>> +
+>> +	/**
+>> +	 * @range: Number of bytes from the object to bind to addr, MBZ for UNMAP_ALL
+>> +	 */
+>> +	__u64 range;
+>> +
+>> +	/** @addr: Address to operate on, MBZ for UNMAP_ALL */
+>> +	__u64 addr;
+>> +
+>> +	/**
+>> +	 * @tile_mask: Mask for which tiles to create binds for, 0 == All tiles,
+>> +	 * only applies to creating new VMAs
+>> +	 */
+>> +	__u64 tile_mask;
+>> +
+>> +       /* Map (parts of) an object into the GPU virtual address range.
+>> +    #define XE_VM_BIND_OP_MAP		0x0
+>> +        /* Unmap a GPU virtual address range */
+>> +    #define XE_VM_BIND_OP_UNMAP		0x1
+>> +        /*
+>> +	 * Map a u CPU virtual address range into a GPU virtual
+> I guess "a u" is a typo here.
+Yes. Will fix.
+>
+>
+>> +	 * address range.
+>> +	 */
+>> +    #define XE_VM_BIND_OP_MAP_USERPTR	0x2
+>> +        /* Unmap a gem object from the VM. */
+>> +    #define XE_VM_BIND_OP_UNMAP_ALL	0x3
+>> +        /*
+>> +	 * Make the backing memory of an address range resident if
+>> +	 * possible. Note that this doesn't pin backing memory.
+>> +	 */
+>> +    #define XE_VM_BIND_OP_PREFETCH	0x4
+>> +
+>> +        /* Make the GPU map readonly. */
+>> +    #define XE_VM_BIND_FLAG_READONLY	(0x1 << 16)
+>> +	/*
+>> +	 * Valid on a faulting VM only, do the MAP operation immediately rather
+>> +	 * than deferring the MAP to the page fault handler.
+>> +	 */
+>> +    #define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 17)
+>> +	/*
+>> +	 * When the NULL flag is set, the page tables are setup with a special
+>> +	 * bit which indicates writes are dropped and all reads return zero.  In
+>> +	 * the future, the NULL flags will only be valid for XE_VM_BIND_OP_MAP
+>> +	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
+>> +	 * intended to implement VK sparse bindings.
+>> +	 */
+>> +    #define XE_VM_BIND_FLAG_NULL	(0x1 << 18)
+>> +	/** @op: Operation to perform (lower 16 bits) and flags (upper 16 bits) */
+>> +	__u32 op;
+>> +
+>> +	/** @mem_region: Memory region to prefetch VMA to, instance not a mask */
+>> +	__u32 region;
+>> +
+>> +	/** @reserved: Reserved */
+>> +	__u64 reserved[2];
+>> +   };
+>> +
+>> +
+>> +The VM_BIND IOCTL argument itself, looks like follows. Note that for
+>> +synchronous VM_BIND, the num_syncs and syncs fields must be zero. Here
+>> +the ``exec_queue_id`` field is the VM_BIND context discussed previously
+>> +that is used to facilitate out-of-order VM_BINDs.
+>> +
+>> +.. code-block:: c
+>> +
+>> +    struct drm_xe_vm_bind {
+>> +	/** @extensions: Pointer to the first extension struct, if any */
+>> +	__u64 extensions;
+>> +
+>> +	/** @vm_id: The ID of the VM to bind to */
+>> +	__u32 vm_id;
+>> +
+>> +	/**
+>> +	 * @exec_queue_id: exec_queue_id, must be of class DRM_XE_ENGINE_CLASS_VM_BIND
+>> +	 * and exec queue must have same vm_id. If zero, the default VM bind engine
+>> +	 * is used.
+>> +	 */
+>> +	__u32 exec_queue_id;
+>> +
+>> +	/** @num_binds: number of binds in this IOCTL */
+>> +	__u32 num_binds;
+> Regarding my question above, this is not documented as ">1 not allowed
+> for synchronous ops" (which I believe was the case on xe.ko the last
+> time I checked, so: is it going to change?).
+>
+Yes.
+>> +
+>> +        /* If set, perform an async VM_BIND, if clear a sync VM_BIND */
+>> +    #define XE_VM_BIND_IOCTL_FLAG_ASYNC	(0x1 << 0)
+>> +
+>> +	/** @flag: Flags controlling all operations in this ioctl. */
+>> +	__u32 flags;
+>> +
+>> +	union {
+>> +		/** @bind: used if num_binds == 1 */
+>> +		struct drm_xe_vm_bind_op bind;
+>> +
+>> +		/**
+>> +		 * @vector_of_binds: userptr to array of struct
+>> +		 * drm_xe_vm_bind_op if num_binds > 1
+>> +		 */
+>> +		__u64 vector_of_binds;
+>> +	};
+>> +
+>> +	/** @num_syncs: amount of syncs to wait for or to signal on completion. */
+>> +	__u32 num_syncs;
+>> +
+>> +	/** @pad2: MBZ */
+>> +	__u32 pad2;
+>> +
+>> +	/** @syncs: pointer to struct drm_xe_sync array */
+>> +	__u64 syncs;
+>> +
+>> +	/** @reserved: Reserved */
+>> +	__u64 reserved[2];
+>> +    };
+>> diff --git a/Documentation/gpu/implementation_guidelines.rst b/Documentation/gpu/implementation_guidelines.rst
+>> new file mode 100644
+>> index 000000000000..138e637dcc6b
+>> --- /dev/null
+>> +++ b/Documentation/gpu/implementation_guidelines.rst
+>> @@ -0,0 +1,9 @@
+>> +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +
+>> +===========================================================
+>> +Misc DRM driver uAPI- and feature implementation guidelines
+>> +===========================================================
+>> +
+>> +.. toctree::
+>> +
+>> +   drm-vm-bind-async
+>> diff --git a/Documentation/gpu/index.rst b/Documentation/gpu/index.rst
+>> index e45ff0915246..37e383ccf73f 100644
+>> --- a/Documentation/gpu/index.rst
+>> +++ b/Documentation/gpu/index.rst
+>> @@ -18,6 +18,7 @@ GPU Driver Developer's Guide
+>>      vga-switcheroo
+>>      vgaarbiter
+>>      automated_testing
+>> +   implementation_guidelines
+>>      todo
+>>      rfc/index
+>>   
+>> diff --git a/Documentation/gpu/rfc/xe.rst b/Documentation/gpu/rfc/xe.rst
+>> index b67f8e6a1825..c29113a0ac30 100644
+>> --- a/Documentation/gpu/rfc/xe.rst
+>> +++ b/Documentation/gpu/rfc/xe.rst
+>> @@ -97,8 +97,8 @@ memory fences. Ideally with helper support so people don't get it wrong in all
+>>   possible ways.
+>>   
+>>   As a key measurable result, the benefits of ASYNC VM_BIND and a discussion of
+>> -various flavors, error handling and a sample API should be documented here or in
+>> -a separate document pointed to by this document.
+>> +various flavors, error handling and sample API suggestions are documented in
+>> +:doc:`The ASYNC VM_BIND document </gpu/drm-vm-bind-async>`.
+>>   
+>>   Userptr integration and vm_bind
+>>   -------------------------------
 
 Thanks,
-Aravind.
->
-> IMO other categories have very less counters hence using xarray doesn't seem logical.
->
->>
->> Thanks,
->>
->> Aravind,
->>
->>> BR
->>> Himal
->>>
->>>> Thanks,
->>>> Aravind.
->>>>> BR
->>>>>
->>>>> Himal Ghimiray
->>>>>
->>>>>> Thanks,
->>>>>> Aravind.
->>>>>>
->>>>>>>        XE_TILE_HW_ERROR_MAX,
->>>>>>>    };
->>>>>>>    @@ -109,8 +159,12 @@ enum xe_gt_hw_errors {
->>>>>>>        XE_GT_HW_ERROR_MAX,
->>>>>>>    };
->>>>>>>    -#define ERR_STAT_GT_COR_VCTR_LEN (4) -#define
->>>>>>> ERR_STAT_GT_FATAL_VCTR_LEN (8)
->>>>>>> +#define ERR_STAT_GT_COR_VCTR_LEN    (4) #define
->>>>>>> +ERR_STAT_GT_FATAL_VCTR_LEN    (8) #define PVC_NUM_IEH
->>>>>>> +(1) #define SOC_SLAVE_IEH                   (1) #define
->>>>>>> +SOC_IEH0_LOCAL_ERR_STATUS       (0) #define
->>>>>>> +SOC_IEH1_LOCAL_ERR_STATUS       (0)
->>>>>>>      struct err_msg_cntr_pair {
->>>>>>>        const char *errmsg;
+
+Thomas
+
+
