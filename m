@@ -4,154 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6940CCD8CA5
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 15:32:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BDE2CD8CA6
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 16:00:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37FC110E396;
-	Tue, 10 Oct 2023 15:32:11 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9730B10E396
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Oct 2023 15:32:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E45010E39F;
+	Tue, 10 Oct 2023 16:00:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADB1E10E39C;
+ Tue, 10 Oct 2023 16:00:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696951929; x=1728487929;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=Y0LrR5QFvZuU0uDYFpLk228RHXMSgEh7sAoLhCb/3i8=;
- b=gsoLA92Kvw801MgOygiKdZD0EDcWClq9s1fQ/qme/m660a5PlNTMlUXC
- y4b2VdEqAlxsbgglTqKCEl/yqE2BY622Nwx11X3uuf8f5lBAYeorrb9Ft
- 2fj7EfSr8ZBzItKhvF8hA8+JeHFyuU8FE82nIznP4Di1LJ4nPU8DZ51+o
- ktD4pzawUncF/ikRAIeuvDx2g8n2MkqA0nmD+hm2u8ch1DVg4pYrylQ0m
- 5smMAjWywms9JGTLPFsUWH67kQYe22p+FXnr8BhUxpH1Uxc/vqzfmg/Mn
- PC6gyMQe+28DMLVt3YNj4vjgxGG7OFlpaFEHpD6WA6wDZuEV4dor9fogP w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="381683118"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="381683118"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 08:32:08 -0700
+ t=1696953602; x=1728489602;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=UalofGcGgNje7VALZCCiXbfJCe9e/YkBF5+31SLRwGw=;
+ b=GXeAEauhotub1WUZKGT1c6jJrJF6ZSPgCcnIYhW4Itx6SE3RFt8BlCx0
+ EEyNGublMv73gpftypUmGnaYXv3Eh/unmJ/1WQrM6LNHXkDB+PdnoSbHy
+ /gSZQEDZFyieDKVLoxgBx3pKUiQ0iCKSdulcgvND8mFjTIuSWVGevhdnA
+ +a9welRcocJplsQRfSbox2GtB0jCsyF0oESlHHoahpILwMJpf8wEtlc7U
+ PMPVP+7IRYMsHI/fgeZZu2HMTihNAb8W6WVD9KLMipOCq0nSd9q2Uu5ch
+ sYjR0F8Vh0hRx8S6JN1P2ZHYmvO4SNGHPfSbWRiTp31pca2b5+nth4KSN Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="470702356"
+X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="470702356"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 09:00:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="782910757"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="782910757"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 10 Oct 2023 08:32:08 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 10 Oct 2023 08:32:07 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Tue, 10 Oct 2023 08:32:07 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Tue, 10 Oct 2023 08:32:07 -0700
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Tue, 10 Oct 2023 08:32:06 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BteceirptDyxJHH6Pb6KrM3CbeMeddhsBzhHLNO0msOakmKlAP+UzfnBimnNMxTGTfbrrUdQq6HRBxpPuEBXdCI+60NR2FiRAyCCCCxoHuIgWMb4+BUigGglQTew6PZfyrkhu0x7LvQl7Dpsz2Va1kBGQSVAZ895aC0wS9Gl0Kgpjq1MOs9KeV8G6EXg4jMILdBn/eAfl8g47L/jJRpw/+mbQTL9Tsa7Us4Fg8xBOpw7TNAXsn7PsTBe4BPZC3Jm9StJfuRgfsMjD4lRDt5e/AHjpUFfRmrCzEsvy93gQN24Dkj4Uy00pdIJvbagyrV5BgR82MBGC68J5VNfl5u/yw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Y0LrR5QFvZuU0uDYFpLk228RHXMSgEh7sAoLhCb/3i8=;
- b=FMf35GqEJGgoFKsjPncdc9lddL5pBd4XA4axmzlW+RrKdkru55cmL8NhQ7HDN2tj2hqlGRm7hT6mfmL5DJccq04nbFG3n5smQUyOZF4hkZKj6WVspIIMv4iHWAdI632DaGUCNwKaKGWwmeViRAT+TEQakcEZevL2uXPNsGpyjjP9GVPgiPA//HuEBe+ZEmuKGVvDFFkvZz1NGPPpG5i3xZfR6gOeyBlIQEc8v1/0dW2+0VqWwpjMTXurUH8B2yOBRgwicSnwOhbRwRP9j0fwBkPs6Pk9q5E9UEhbj33H4v9lFiiQCilAgIp5/5F0NSBLmNnW7lkso867ILVVmlVWdQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com (2603:10b6:8:18e::22)
- by CY8PR11MB7848.namprd11.prod.outlook.com (2603:10b6:930:6c::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Tue, 10 Oct
- 2023 15:32:04 +0000
-Received: from DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::d6ef:5aaf:ef8f:5d47]) by DM4PR11MB8179.namprd11.prod.outlook.com
- ([fe80::d6ef:5aaf:ef8f:5d47%7]) with mapi id 15.20.6863.032; Tue, 10 Oct 2023
- 15:32:04 +0000
-From: "Souza, Jose" <jose.souza@intel.com>
-To: "Roper, Matthew D" <matthew.d.roper@intel.com>
-Thread-Topic: [Intel-xe] [PATCH v2 3/3] drm/xe: Add INSTDONE registers to
- devcoredump
-Thread-Index: AQHZ+u5KDtkuzTnmXEOZUlNWvwLRh7BCGVSAgAEOpAA=
-Date: Tue, 10 Oct 2023 15:32:04 +0000
-Message-ID: <e1ce2948a1a62cfbd14a3c98544fcc01fc52fbb5.camel@intel.com>
-References: <20231009202149.245718-1-jose.souza@intel.com>
- <20231009202149.245718-3-jose.souza@intel.com>
- <20231009232323.GE5757@mdroper-desk1.amr.corp.intel.com>
-In-Reply-To: <20231009232323.GE5757@mdroper-desk1.amr.corp.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB8179:EE_|CY8PR11MB7848:EE_
-x-ms-office365-filtering-correlation-id: ae76d2b8-ac12-4a0e-c307-08dbc9a60e4f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: dzBZRBcmL6Cs5wbc9WJJVZDJC4zhpDkpcnwBvr0W8EAP2dWUB1T/SmxZi4CAGJv5a4LFvkKI/dPuk/MDudUWwwSSyiZD46CWs8ogFOemp3nry8RqXXVGpq2hz5KAJhhO7DQuQDJqP6aqzxSkuv5MKOKBoQurwQkztC19p2e5unJodFJSj2mXjqV43aJDuh6arw16ylmb05FyrhW6PbtaYVeQXGfdxuSGc5ybeyMbQ+D/yOck214KTo/CotfErvka3LqTysv9+SE1AVsK3cXBDFGGl7GXj1YoQOTyQKn/sjOW2OcWoHIGdPqAlhdeMSRW0GdZGvUSHvMWcsHtvKNaGOr1tk5P+Epf5KtsBwmUQb04wEm9+Kdmh3uHEyWqJs+KNvIL9+87j58YHXoPUIIY9cch7iI900/dXK+Igqx4+0Bey3Z17ULjbt3epi4vHNKKI43fu2e3RyXgexqa2aG4MWZLUVNWqXy1wcQXuIDft0wKC/HiPRtWRXNeF2r0KNP2ASMuMPfdCe6CAbnniYvFfnaw+s+ZmTdIxCDpD6udzzXybUFdHzkYgGcmIfESWkiSVd0sfmhQbuon3XoKjNiFF6SxMEmcagjf/jl1KYjvYM6xU2gvqaj6K5IsZAt7fKzo
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB8179.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(346002)(39860400002)(396003)(136003)(366004)(230922051799003)(1800799009)(64100799003)(186009)(451199024)(107886003)(6512007)(36756003)(86362001)(38100700002)(38070700005)(82960400001)(122000001)(26005)(2906002)(83380400001)(30864003)(6486002)(71200400001)(2616005)(6506007)(478600001)(8676002)(6862004)(4326008)(6636002)(8936002)(41300700001)(66476007)(5660300002)(66556008)(37006003)(76116006)(91956017)(66946007)(64756008)(54906003)(66446008)(316002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MSt5bk44OVAydy9YNjdQTXJhcWY2R2RKVVNUSFZIVVpwYlN1RkwrMldCNEZh?=
- =?utf-8?B?ME5qZmpnVjlqMVZhQXIrRkdTQ0lHSE1ZMW54WjFPTnBxYUdSU3Qrek01Ykw3?=
- =?utf-8?B?U2lMTzlpRjdGeVRaTjc3QTlTL1UxVXlmS2Zzd2hHWmFoQjRCbXBhOFZ5UEo1?=
- =?utf-8?B?Mk1US0tIWHhtWGJQMGFCaHR1RVQvclRLUndZbjYydXFrMEVMaFFMSTVRcXpi?=
- =?utf-8?B?QzZ2TUw0dVcvM0IxUXNvV2hKRTIybCtZditFdk5oUU1TUFhaWjlOcWFKaEFs?=
- =?utf-8?B?dkxXTjJDcGR0MkZCQmpoT3VWMjFZeXpqWnlwU1JmY1UwRU9wOGNuaGRkQ0RU?=
- =?utf-8?B?QkMyci8vcmFlVzRIWXBtYU5BY24rVVlNMiszOFJORHljL3pLSk0rRjM2Y05H?=
- =?utf-8?B?VzYwaS9qaDZNQ1VSSVZEVnpPRWxzejVzblErdStrZzV1RDdXOCtIOE9EQWNq?=
- =?utf-8?B?eHA3NmUwL0QxWW1JcUJUZ1lpOTByVWN4MW5pTkxpN2UrSm9OZ1lOU0lkUTcr?=
- =?utf-8?B?UHp4YTBmeTRxQkYvY3dkRWlYNld5OVlDTzcxTFBBcnZoWDZnRGFTOUh4N0xH?=
- =?utf-8?B?bmRJeWtEWHFDUitzWnVSd0VkL3RkV1o3aU1SYk4zQXVXTlpMUmx0Si92dllC?=
- =?utf-8?B?eEJoZlg2WWt3WU44Kys5Rnd2Q3kwWEJIT1F0UFBLU1JTekwyNnRiSEpmeG1Z?=
- =?utf-8?B?MHExOWo1QkpXb01sSTVqQjArNmFCQTNOSEpQRGJjdThrQlhMQ2pNR0w4OTJ6?=
- =?utf-8?B?NzJ2NW1UNnFSV2FvNkoycVk3c3ZReVZGbWxFaUNHQlpnSkF4bElyK3M3ZlR3?=
- =?utf-8?B?S2QzWis4dnAwbnJESkhGVWFvN0RINVd6b1c2V0tlOEp6MXlxWkE2QkxOUm9C?=
- =?utf-8?B?QlAwT01KQkhndnBDRjBZM3VSRWlWdzdienNTVFo0K3ZnMjEyV2tPUXpTV1VQ?=
- =?utf-8?B?RW5FK0oyTnc5UklwcW1pR1dMTTZWb3dxbGh1alY1d2QxWDkzdElEcnlLZ2lO?=
- =?utf-8?B?QnJiTkkrQkRMWlY4UDRTRVdMWmx0d3lDTTAyTSsvanJXOEEzNHA2SUdhTlNT?=
- =?utf-8?B?Rit3QXh6bDNZQkFXVVlLWUlFV0NwZUY5NWxVNSs5bUc4RFY2QTdnekpnNElZ?=
- =?utf-8?B?MjVxM0x0Z2ZYZEkzVFNzV056Y2xMdGpBb0tuRHNzb0QzVXE1bEpOT25pdWpq?=
- =?utf-8?B?SUthSDA2NnloZlorTlhKcS80MVpjbUhnQldQSE1RSHdKVVR2bGRReC82ZHl4?=
- =?utf-8?B?TTBQWUUrNzdRUVBwQ2g0YUl1S2Y5RnVVOXhxRGhFK0srRDdUZHZ5SThQQ3Rs?=
- =?utf-8?B?L0JBL24rZ0RhWjBQRlY0RUtha1l4S0ZuQ2JMc3RnU2ZLdDJHd0FmMGYzMFg3?=
- =?utf-8?B?T3dmdWlveSsyZGtnZnNxOWJJVllFZUxQZk9YNUN5bnZOL0swdVNkTXd5Tm1G?=
- =?utf-8?B?S0VxOHJYdmR2dXBiZ2pKUnVMQ3F1dU1OTmVFVVZFSUpTVStobUtnbmc1Nndx?=
- =?utf-8?B?VUpjTWFtejNkSjRGZUExNTBIcmZkK0toMDYvQ3pjSTUwUkFXbDRPTmU1cFYx?=
- =?utf-8?B?YTBpZTF0ZzhrNlhLWFN0SlZzWDZ1SXlHSVpmZWRFOEczaHh5YURDNlQzY1hL?=
- =?utf-8?B?bzhYSmJwK2pEcytKL3lqLzZnTGhmTTRPZHRaa1Q1V1hsUlNoR2MrQjIvZXJW?=
- =?utf-8?B?N1JzU0RGSlIzempwVjF5OFQyV3hmMGZkaU04ZnJjUUROays1K0lTOG9vQ1hx?=
- =?utf-8?B?TCthL0I3OEtlVzd1ZFlxcUllcXpQQ2kvelJKY2gwS1NFSDkxdGd3aFIxYXJG?=
- =?utf-8?B?d0FUNjZSQ3U5dGFWNXczMTcvMHF5S0xoT0ptVURDVXFzM3ZJS0xCTnJYUXh1?=
- =?utf-8?B?L1VNdFZSd21YckZ4REhOZ21rV2t4M0tkTnJzSWtIeURRME5vZ0Z4K0NrUzRp?=
- =?utf-8?B?ZzhYRVJ6RzRETmZ0MjNvZVVnU0lJdFRETURRcTkraUhMWWVlZVdneHV4WGtk?=
- =?utf-8?B?YXF2RmZvVWlERm5DQmhsRFg0WTBybmMrdGF6Sy9OcCs3RWlDdVZDc3M4Uk5h?=
- =?utf-8?B?SzZYVFhsaHVVdERQVFFWOUUrTlJac3VCSHBtSnFIalRWMWVCMlAxa3VZakJN?=
- =?utf-8?B?cHhQbCszUUhyU2ZHbTRYWE9zNGd4RTFLU0JFOS8zNGhIZXdBOGxJM0JRdHJ2?=
- =?utf-8?B?c0E9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <30C5A59A99F2804F956863D98FB07641@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="753456576"
+X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="753456576"
+Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
+ by orsmga002-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2023 08:59:59 -0700
+Date: Tue, 10 Oct 2023 17:59:56 +0200
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: igt-dev@lists.freedesktop.org
+Message-ID: <20231010155956.75sootid33ibdwh4@kamilkon-desk.igk.intel.com>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ igt-dev@lists.freedesktop.org,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+References: <20231009122750.519112-13-janusz.krzysztofik@linux.intel.com>
+ <20231009122750.519112-17-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB8179.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae76d2b8-ac12-4a0e-c307-08dbc9a60e4f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2023 15:32:04.4408 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: h/bjbSnWmXPsj9ptg+GXXnvOxuTGe0NTgxSMTv6uDRByI2sR9XvhubvRi6IRtwhv2+4+0Eip617DD1k1LmxqXg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7848
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 3/3] drm/xe: Add INSTDONE registers to
- devcoredump
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20231009122750.519112-17-janusz.krzysztofik@linux.intel.com>
+Subject: Re: [Intel-xe] [PATCH i-g-t v2 04/11] lib/kunit: Parse KTAP report
+ from the main process thread
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,255 +64,1040 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi, 
- Rodrigo" <rodrigo.vivi@intel.com>
+Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gTW9uLCAyMDIzLTEwLTA5IGF0IDE2OjIzIC0wNzAwLCBNYXR0IFJvcGVyIHdyb3RlOg0KPiBP
-biBNb24sIE9jdCAwOSwgMjAyMyBhdCAwMToyMTo0OVBNIC0wNzAwLCBKb3PDqSBSb2JlcnRvIGRl
-IFNvdXphIHdyb3RlOg0KPiA+IFRoaXMgcmVnaXN0ZXJzIGNvbnRhaW5zIGltcG9ydGFudCBpbmZv
-cm1hdGlvbiB0aGF0IGNhbiBoZWxwIHdpdGggZGVidWcNCj4gPiBvZiBHUFUgaGFuZ3MuDQo+ID4g
-DQo+ID4gV2hpbGUgYXQgaXQgYWxzbyBmaXhpbmcgdGhlIGRvdWJsZSBsaW5lIGp1bXAgYXQgdGhl
-IGVuZCBvZiBlbmdpbmUNCj4gPiByZWdpc3RlcnMgZm9yIENDUyBlbmdpbmVzLg0KPiA+IA0KPiA+
-IHYyOg0KPiA+IC0gcHJpbnQgb3RoZXIgSU5TVERPTkUgcmVnaXN0ZXJzDQo+ID4gDQo+ID4gQ2M6
-IFJvZHJpZ28gVml2aSA8cm9kcmlnby52aXZpQGludGVsLmNvbT4NCj4gPiBTaWduZWQtb2ZmLWJ5
-OiBKb3PDqSBSb2JlcnRvIGRlIFNvdXphIDxqb3NlLnNvdXphQGludGVsLmNvbT4NCj4gPiAtLS0N
-Cj4gPiAgZHJpdmVycy9ncHUvZHJtL3hlL3JlZ3MveGVfZW5naW5lX3JlZ3MuaCB8ICAgMSArDQo+
-ID4gIGRyaXZlcnMvZ3B1L2RybS94ZS9yZWdzL3hlX2d0X3JlZ3MuaCAgICAgfCAgIDkgKysNCj4g
-PiAgZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d0X3R5cGVzLmggICAgICAgICB8ICAgMyArLQ0KPiA+
-ICBkcml2ZXJzL2dwdS9kcm0veGUveGVfaHdfZW5naW5lLmMgICAgICAgIHwgMTA3ICsrKysrKysr
-KysrKysrKysrKysrKystDQo+ID4gIGRyaXZlcnMvZ3B1L2RybS94ZS94ZV9od19lbmdpbmVfdHlw
-ZXMuaCAgfCAgMTAgKysrDQo+ID4gIDUgZmlsZXMgY2hhbmdlZCwgMTI2IGluc2VydGlvbnMoKyks
-IDQgZGVsZXRpb25zKC0pDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94
-ZS9yZWdzL3hlX2VuZ2luZV9yZWdzLmggYi9kcml2ZXJzL2dwdS9kcm0veGUvcmVncy94ZV9lbmdp
-bmVfcmVncy5oDQo+ID4gaW5kZXggMzVkZDQ4MzdkZDc1Zi4uMzI0NjVlMzg0ZmMyNCAxMDA2NDQN
-Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUvcmVncy94ZV9lbmdpbmVfcmVncy5oDQo+ID4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3JlZ3MveGVfZW5naW5lX3JlZ3MuaA0KPiA+IEBAIC0z
-Miw2ICszMiw3IEBADQo+ID4gICNkZWZpbmUgUklOR19BQ1RIRF9VRFcoYmFzZSkJCQlYRV9SRUco
-KGJhc2UpICsgMHg1YykNCj4gPiAgI2RlZmluZSBSSU5HX0RNQV9GQUREX1VEVyhiYXNlKQkJCVhF
-X1JFRygoYmFzZSkgKyAweDYwKQ0KPiA+ICAjZGVmaW5lIFJJTkdfSVBFSFIoYmFzZSkJCQlYRV9S
-RUcoKGJhc2UpICsgMHg2OCkNCj4gPiArI2RlZmluZSBSSU5HX0lOU1RET05FKGJhc2UpCQkJWEVf
-UkVHKChiYXNlKSArIDB4NmMpDQo+ID4gICNkZWZpbmUgUklOR19BQ1RIRChiYXNlKQkJCVhFX1JF
-RygoYmFzZSkgKyAweDc0KQ0KPiA+ICAjZGVmaW5lIFJJTkdfRE1BX0ZBREQoYmFzZSkJCQlYRV9S
-RUcoKGJhc2UpICsgMHg3OCkNCj4gPiAgI2RlZmluZSBSSU5HX0hXU19QR0EoYmFzZSkJCQlYRV9S
-RUcoKGJhc2UpICsgMHg4MCkNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3Jl
-Z3MveGVfZ3RfcmVncy5oIGIvZHJpdmVycy9ncHUvZHJtL3hlL3JlZ3MveGVfZ3RfcmVncy5oDQo+
-ID4gaW5kZXggY2QxODIxZDk2YTVkOC4uYzY2NTAxMjRhZTZhNiAxMDA2NDQNCj4gPiAtLS0gYS9k
-cml2ZXJzL2dwdS9kcm0veGUvcmVncy94ZV9ndF9yZWdzLmgNCj4gPiArKysgYi9kcml2ZXJzL2dw
-dS9kcm0veGUvcmVncy94ZV9ndF9yZWdzLmgNCj4gPiBAQCAtMTA1LDYgKzEwNSw4IEBADQo+ID4g
-ICNkZWZpbmUgICBGRl9NT0RFMl9URFNfVElNRVJfTUFTSwkJUkVHX0dFTk1BU0soMjMsIDE2KQ0K
-PiA+ICAjZGVmaW5lICAgRkZfTU9ERTJfVERTX1RJTUVSXzEyOAkJUkVHX0ZJRUxEX1BSRVAoRkZf
-TU9ERTJfVERTX1RJTUVSX01BU0ssIDQpDQo+ID4gIA0KPiA+ICsjZGVmaW5lIFhFSFBHX0lOU1RE
-T05FX0dFT01fU1ZHCQkJWEVfUkVHX01DUigweDY2NmMpDQo+ID4gKw0KPiA+ICAjZGVmaW5lIENB
-Q0hFX01PREVfMQkJCQlYRV9SRUcoMHg3MDA0LCBYRV9SRUdfT1BUSU9OX01BU0tFRCkNCj4gPiAg
-I2RlZmluZSAgIE1TQUFfT1BUSU1JWkFUSU9OX1JFRFVDX0RJU0FCTEUJUkVHX0JJVCgxMSkNCj4g
-PiAgDQo+ID4gQEAgLTExNyw2ICsxMTksMTAgQEANCj4gPiAgDQo+ID4gICNkZWZpbmUgQ09NTU9O
-X1NMSUNFX0NISUNLRU4xCQkJWEVfUkVHKDB4NzAxMCkNCj4gPiAgDQo+ID4gKyNkZWZpbmUgU0xJ
-Q0VfQ09NTU9OX0lOU1RET05FCQkJWEVfUkVHKDB4NzEwMCkNCj4gPiArI2RlZmluZSBTTElDRV9D
-T01NT05fSU5TVERPTkVfRVhUUkEJCVhFX1JFRygweDcxMDQpDQo+ID4gKyNkZWZpbmUgU0xJQ0Vf
-Q09NTU9OX0lOU1RET05FX0VYVFJBMgkJWEVfUkVHKDB4NzEwOCkNCj4gPiArDQo+ID4gICNkZWZp
-bmUgQ09NTU9OX1NMSUNFX0NISUNLRU40CQkJWEVfUkVHKDB4NzMwMCwgWEVfUkVHX09QVElPTl9N
-QVNLRUQpDQo+ID4gICNkZWZpbmUgICBESVNBQkxFX1REQ19MT0FEX0JBTEFOQ0lOR19DQUxDCVJF
-R19CSVQoNikNCj4gPiAgDQo+ID4gQEAgLTI5OSw2ICszMDUsOSBAQA0KPiA+ICAjZGVmaW5lIFhF
-X09BR19CTFRfQlVTWV9GUkVFCQkJWEVfUkVHKDB4ZGJiYykNCj4gPiAgI2RlZmluZSBYRV9PQUdf
-UkVOREVSX0JVU1lfRlJFRQkJCVhFX1JFRygweGRiZGMpDQo+ID4gIA0KPiA+ICsjZGVmaW5lIFNB
-TVBMRVJfSU5TVERPTkUJCQlYRV9SRUdfTUNSKDB4ZTE2MCkNCj4gPiArI2RlZmluZSBST1dfSU5T
-VERPTkUJCQkJWEVfUkVHX01DUigweGUxNjQpDQo+ID4gKw0KPiA+ICAjZGVmaW5lIFNBTVBMRVJf
-TU9ERQkJCQlYRV9SRUdfTUNSKDB4ZTE4YywgWEVfUkVHX09QVElPTl9NQVNLRUQpDQo+ID4gICNk
-ZWZpbmUgICBFTkFCTEVfU01BTExQTAkJCVJFR19CSVQoMTUpDQo+ID4gICNkZWZpbmUgICBTQ19E
-SVNBQkxFX1BPV0VSX09QVElNSVpBVElPTl9FQkIJUkVHX0JJVCg5KQ0KPiA+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3RfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS94ZS94
-ZV9ndF90eXBlcy5oDQo+ID4gaW5kZXggZDQzMTBiZTNlMWU3Yy4uZDU2NmRmNTZmYjhlYSAxMDA2
-NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3RfdHlwZXMuaA0KPiA+ICsrKyBi
-L2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9ndF90eXBlcy5oDQo+ID4gQEAgLTI1LDkgKzI1LDEwIEBA
-IGVudW0geGVfZ3RfdHlwZSB7DQo+ID4gIH07DQo+ID4gIA0KPiA+ICAjZGVmaW5lIFhFX01BWF9E
-U1NfRlVTRV9SRUdTCTMNCj4gPiArI2RlZmluZSBYRV9NQVhfRFNTX0ZVU0VfQklUUwkoMzIgKiBY
-RV9NQVhfRFNTX0ZVU0VfUkVHUykNCj4gPiAgI2RlZmluZSBYRV9NQVhfRVVfRlVTRV9SRUdTCTEN
-Cj4gPiAgDQo+ID4gLXR5cGVkZWYgdW5zaWduZWQgbG9uZyB4ZV9kc3NfbWFza190W0JJVFNfVE9f
-TE9OR1MoMzIgKiBYRV9NQVhfRFNTX0ZVU0VfUkVHUyldOw0KPiA+ICt0eXBlZGVmIHVuc2lnbmVk
-IGxvbmcgeGVfZHNzX21hc2tfdFtCSVRTX1RPX0xPTkdTKFhFX01BWF9EU1NfRlVTRV9CSVRTKV07
-DQo+ID4gIHR5cGVkZWYgdW5zaWduZWQgbG9uZyB4ZV9ldV9tYXNrX3RbQklUU19UT19MT05HUygz
-MiAqIFhFX01BWF9FVV9GVVNFX1JFR1MpXTsNCj4gPiAgDQo+ID4gIHN0cnVjdCB4ZV9tbWlvX3Jh
-bmdlIHsNCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2h3X2VuZ2luZS5j
-IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2h3X2VuZ2luZS5jDQo+ID4gaW5kZXggMzdiM2VlMTI2
-ODA5MC4uNjQzMzAxNmZhMTBmOCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUv
-eGVfaHdfZW5naW5lLmMNCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfaHdfZW5naW5l
-LmMNCj4gPiBAQCAtMTYsNiArMTYsNyBAQA0KPiA+ICAjaW5jbHVkZSAieGVfZXhlY2xpc3QuaCIN
-Cj4gPiAgI2luY2x1ZGUgInhlX2ZvcmNlX3dha2UuaCINCj4gPiAgI2luY2x1ZGUgInhlX2d0Lmgi
-DQo+ID4gKyNpbmNsdWRlICJ4ZV9ndF9tY3IuaCINCj4gPiAgI2luY2x1ZGUgInhlX2d0X3RvcG9s
-b2d5LmgiDQo+ID4gICNpbmNsdWRlICJ4ZV9od19mZW5jZS5oIg0KPiA+ICAjaW5jbHVkZSAieGVf
-aXJxLmgiDQo+ID4gQEAgLTY1NSw2ICs2NTYsNDUgQEAgdm9pZCB4ZV9od19lbmdpbmVfaGFuZGxl
-X2lycShzdHJ1Y3QgeGVfaHdfZW5naW5lICpod2UsIHUxNiBpbnRyX3ZlYykNCj4gPiAgCQl4ZV9o
-d19mZW5jZV9pcnFfcnVuKGh3ZS0+ZmVuY2VfaXJxKTsNCj4gPiAgfQ0KPiA+ICANCj4gPiArc3Rh
-dGljIHZvaWQNCj4gPiAreGVfaGVfZW5naW5lX3NuYXBzaG90X2luc3Rkb25lX2NhcHR1cmUoc3Ry
-dWN0IHhlX2h3X2VuZ2luZSAqaHdlLA0KPiA+ICsJCQkJICAgICAgIHN0cnVjdCB4ZV9od19lbmdp
-bmVfc25hcHNob3QgKnNuYXBzaG90KQ0KPiA+ICt7DQo+ID4gKwlzdHJ1Y3QgeGVfZ3QgKmd0ID0g
-aHdlLT5ndDsNCj4gPiArCXN0cnVjdCB4ZV9kZXZpY2UgKnhlID0gZ3RfdG9feGUoZ3QpOw0KPiA+
-ICsJdW5zaWduZWQgaW50IGRzczsNCj4gPiArDQo+ID4gKwlzbmFwc2hvdC0+cmVnLmluc3Rkb25l
-LnJpbmcgPSBod19lbmdpbmVfbW1pb19yZWFkMzIoaHdlLCBSSU5HX0lOU1RET05FKDApKTsNCj4g
-PiArDQo+ID4gKwlpZiAoc25hcHNob3QtPmh3ZS0+Y2xhc3MgIT0gWEVfRU5HSU5FX0NMQVNTX1JF
-TkRFUikNCj4gPiArCQlyZXR1cm47DQo+ID4gKw0KPiA+ICsJc25hcHNob3QtPnJlZy5pbnN0ZG9u
-ZS5zbGljZV9jb21tb24gPQ0KPiA+ICsJCXhlX21taW9fcmVhZDMyKGd0LCBTTElDRV9DT01NT05f
-SU5TVERPTkUpOw0KPiA+ICsJc25hcHNob3QtPnJlZy5pbnN0ZG9uZS5zbGljZV9jb21tb25fZXh0
-cmEgPQ0KPiA+ICsJCXhlX21taW9fcmVhZDMyKGd0LCBTTElDRV9DT01NT05fSU5TVERPTkVfRVhU
-UkEpOw0KPiA+ICsJc25hcHNob3QtPnJlZy5pbnN0ZG9uZS5zbGljZV9jb21tb25fZXh0cmEyID0N
-Cj4gPiArCQl4ZV9tbWlvX3JlYWQzMihndCwgU0xJQ0VfQ09NTU9OX0lOU1RET05FX0VYVFJBMik7
-DQo+ID4gKw0KPiA+ICsJZm9yIChkc3MgPSAwOyBkc3MgPCBYRV9NQVhfRFNTX0ZVU0VfQklUUzsg
-ZHNzKyspIHsNCj4gDQo+IERyaXZlLWJ5IGNvbW1lbnQ6ICBMb29waW5nIG92ZXIgYWxsIERTUyBp
-cyBwcm9iYWJseSBnb2luZyB0byBiZSBuZWVkZWQNCj4gaW4gb3RoZXIgcGFydHMgb2YgdGhlIGRy
-aXZlciBhcyB3ZWxsIGluIHRoZSBmdXR1cmUgKHByb2JhYmx5IHBlcmYsIGV1DQo+IHN0YWxsIHNh
-bXBsaW5nLCBldGMuKS4gIEl0IHdvdWxkIGJlIGJlc3QgaWYgd2UgY291bGQgYXZvaWQgb3Blbi1j
-b2RlZA0KPiBsb29wcyBsaWtlIHRoaXMgdGhhdCByZXF1aXJlIHRoZSBjYWxsaW5nIGNvZGUgdG8g
-a25vdyBhYm91dA0KPiBYRV9NQVhfRFNTX0ZVU0VfQklUUyAod2hpY2ggaXMgdGllZCB0byBvdXIg
-aW50ZXJuYWwgYml0bWFwDQo+IHJlcHJlc2VudGF0aW9uIG9mIGZ1c2luZykuICBJIHRoaW5rIGl0
-IHdvdWxkIGJlIGJldHRlciBpZiB4ZV9ndF9tY3IuaA0KPiBjb3VsZCBwcm92aWRlIGEgZ2VuZXJh
-bCBEU1MtbG9vcGluZyBpdGVyYXRvciB0aGF0IGhpZGVzIHRob3NlIGRldGFpbHMNCj4gYW5kIGNh
-biBiZSBtb3JlIGVhc2lseSByZS11c2VkIGVsc2V3aGVyZSBpbiB0aGUgZHJpdmVyLCBzaW1pbGFy
-IHRvIHdoYXQNCj4gaTkxNSBkb2VzIHdpdGggdGhlIGZvcl9lYWNoX3NzX3N0ZWVyaW5nKCkgaXRl
-cmF0b3IuICBUaGVuIGlmIHdlIGNoYW5nZQ0KPiB0aGUgdW5kZXJseWluZyBiaXRtYXAgcmVwcmVz
-ZW50YXRpb24sIHdlIG9ubHkgbmVlZCB0byB1cGRhdGUgdGhlIG9uZQ0KPiBpdGVyYXRvciBpbnN0
-ZWFkIG9mIHRyYWNraW5nIGRvd24gYWxsIHRoZSB2YXJpb3VzIGxvb3BzIHRoYXQgbmVlZCB0byBi
-ZQ0KPiB1cGRhdGVkLg0KDQpJcyB0aGlzIGVub3VnaD8NCg0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL3hlL3hlX2d0X21jci5oIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2d0X21jci5o
-DQppbmRleCBjMDE2N2Q1N2RlNDJhLi4xNmZhMTljZjU3MjNjIDEwMDY0NA0KLS0tIGEvZHJpdmVy
-cy9ncHUvZHJtL3hlL3hlX2d0X21jci5oDQorKysgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZ3Rf
-bWNyLmgNCkBAIC03LDYgKzcsNyBAQA0KICNkZWZpbmUgX1hFX0dUX01DUl9IXw0KDQogI2luY2x1
-ZGUgInJlZ3MveGVfcmVnX2RlZnMuaCINCisjaW5jbHVkZSAieGVfZ3RfdHlwZXMuaCINCg0KIHN0
-cnVjdCBkcm1fcHJpbnRlcjsNCiBzdHJ1Y3QgeGVfZ3Q7DQpAQCAtMzAsNCArMzEsMTIgQEAgeGVf
-Z3RfbWNyX2dldF9kc3Nfc3RlZXJpbmcoc3RydWN0IHhlX2d0ICpndCwgdW5zaWduZWQgaW50IGRz
-cywgaW50ICpncm91cCwNCg0KIHZvaWQgeGVfZ3RfbWNyX3N0ZWVyaW5nX2R1bXAoc3RydWN0IHhl
-X2d0ICpndCwgc3RydWN0IGRybV9wcmludGVyICpwKTsNCg0KKyNkZWZpbmUgZm9yX2VhY2hfZ2Vv
-bWV0cnlfZHNzKGd0LCBkc3MpIFwNCisgICAgICAgZm9yIChkc3MgPSAwOyBkc3MgPCBYRV9NQVhf
-RFNTX0ZVU0VfQklUUzsgZHNzKyspIFwNCisgICAgICAgICAgICAgICBpZiAoeGVfZ3RfaGFzX2dl
-b21ldHJ5X2RzcyhndCwgZHNzKSkNCisNCisjZGVmaW5lIGZvcl9lYWNoX2NvbXB1dGVfZHNzKGd0
-LCBkc3MpIFwNCisgICAgICAgZm9yIChkc3MgPSAwOyBkc3MgPCBYRV9NQVhfRFNTX0ZVU0VfQklU
-UzsgZHNzKyspIFwNCisgICAgICAgICAgICAgICBpZiAoeGVfZ3RfaGFzX2NvbXB1dGVfZHNzKGd0
-LCBkc3MpKQ0KKw0KICNlbmRpZiAvKiBfWEVfR1RfTUNSX0hfICovDQpkaWZmIC0tZ2l0IGEvZHJp
-dmVycy9ncHUvZHJtL3hlL3hlX2h3X2VuZ2luZS5jIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2h3
-X2VuZ2luZS5jDQppbmRleCA2NDMzMDE2ZmExMGY4Li5iNWJjY2ZkNWEwOWRhIDEwMDY0NA0KLS0t
-IGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2h3X2VuZ2luZS5jDQorKysgYi9kcml2ZXJzL2dwdS9k
-cm0veGUveGVfaHdfZW5naW5lLmMNCkBAIC02NzYsMTIgKzY3Niw5IEBAIHhlX2hlX2VuZ2luZV9z
-bmFwc2hvdF9pbnN0ZG9uZV9jYXB0dXJlKHN0cnVjdCB4ZV9od19lbmdpbmUgKmh3ZSwNCiAgICAg
-ICAgc25hcHNob3QtPnJlZy5pbnN0ZG9uZS5zbGljZV9jb21tb25fZXh0cmEyID0NCiAgICAgICAg
-ICAgICAgICB4ZV9tbWlvX3JlYWQzMihndCwgU0xJQ0VfQ09NTU9OX0lOU1RET05FX0VYVFJBMik7
-DQoNCi0gICAgICAgZm9yIChkc3MgPSAwOyBkc3MgPCBYRV9NQVhfRFNTX0ZVU0VfQklUUzsgZHNz
-KyspIHsNCisgICAgICAgZm9yX2VhY2hfZ2VvbWV0cnlfZHNzKGd0LCBkc3MpIHsNCiAgICAgICAg
-ICAgICAgICBpbnQgZ3JvdXAsIGluc3RhbmNlOw0KDQotICAgICAgICAgICAgICAgaWYgKCF4ZV9n
-dF9oYXNfZ2VvbWV0cnlfZHNzKGd0LCBkc3MpKQ0KLSAgICAgICAgICAgICAgICAgICAgICAgY29u
-dGludWU7DQotDQogICAgICAgICAgICAgICAgeGVfZ3RfbWNyX2dldF9kc3Nfc3RlZXJpbmcoZ3Qs
-IGRzcywgJmdyb3VwLCAmaW5zdGFuY2UpOw0KICAgICAgICAgICAgICAgIHNuYXBzaG90LT5yZWcu
-aW5zdGRvbmUuc2FtcGxlcltkc3NdID0NCiAgICAgICAgICAgICAgICAgICAgICAgIHhlX2d0X21j
-cl91bmljYXN0X3JlYWQoZ3QsIFNBTVBMRVJfSU5TVERPTkUsIGdyb3VwLCBpbnN0YW5jZSk7DQpA
-QCAtODE3LDEwICs4MTQsNyBAQCB4ZV9od19lbmdpbmVfc25hcHNob3RfaW5zdGRvbmVfcHJpbnQo
-c3RydWN0IHhlX2h3X2VuZ2luZV9zbmFwc2hvdCAqc25hcHNob3QsIHN0cg0KICAgICAgICBkcm1f
-cHJpbnRmKHAsICJcdFNDX0VYVFJBMl9JTlNURE9ORTogMHglMDh4XG4iLA0KICAgICAgICAgICAg
-ICAgICAgIHNuYXBzaG90LT5yZWcuaW5zdGRvbmUuc2xpY2VfY29tbW9uX2V4dHJhMik7DQoNCi0g
-ICAgICAgZm9yIChkc3MgPSAwOyBkc3MgPCBYRV9NQVhfRFNTX0ZVU0VfQklUUzsgZHNzKyspIHsN
-Ci0gICAgICAgICAgICAgICBpZiAoIXhlX2d0X2hhc19nZW9tZXRyeV9kc3MoZ3QsIGRzcykpDQot
-ICAgICAgICAgICAgICAgICAgICAgICBjb250aW51ZTsNCi0NCisgICAgICAgZm9yX2VhY2hfZ2Vv
-bWV0cnlfZHNzKGd0LCBkc3MpIHsNCiAgICAgICAgICAgICAgICBkcm1fcHJpbnRmKHAsICJcdFNB
-TVBMRVJfSU5TVERPTkVbJXVdOiAweCUwOHhcbiIsIGRzcywNCiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIHNuYXBzaG90LT5yZWcuaW5zdGRvbmUuc2FtcGxlcltkc3NdKTsNCiAgICAgICAgICAg
-ICAgICBkcm1fcHJpbnRmKHAsICJcdFJPV19JTlNURE9ORVsldV06IDB4JTA4eFxuIiwgZHNzLA0K
-DQoNCg0KPiANCj4gDQo+IE1hdHQNCj4gDQo+ID4gKwkJaW50IGdyb3VwLCBpbnN0YW5jZTsNCj4g
-PiArDQo+ID4gKwkJaWYgKCF4ZV9ndF9oYXNfZ2VvbWV0cnlfZHNzKGd0LCBkc3MpKQ0KPiA+ICsJ
-CQljb250aW51ZTsNCj4gPiArDQo+ID4gKwkJeGVfZ3RfbWNyX2dldF9kc3Nfc3RlZXJpbmcoZ3Qs
-IGRzcywgJmdyb3VwLCAmaW5zdGFuY2UpOw0KPiA+ICsJCXNuYXBzaG90LT5yZWcuaW5zdGRvbmUu
-c2FtcGxlcltkc3NdID0NCj4gPiArCQkJeGVfZ3RfbWNyX3VuaWNhc3RfcmVhZChndCwgU0FNUExF
-Ul9JTlNURE9ORSwgZ3JvdXAsIGluc3RhbmNlKTsNCj4gPiArCQlzbmFwc2hvdC0+cmVnLmluc3Rk
-b25lLnJvd1tkc3NdID0NCj4gPiArCQkJeGVfZ3RfbWNyX3VuaWNhc3RfcmVhZChndCwgUk9XX0lO
-U1RET05FLCBncm91cCwgaW5zdGFuY2UpOw0KPiA+ICsNCj4gPiArCQlpZiAoR1JBUEhJQ1NfVkVS
-eDEwMCh4ZSkgPj0gMTI1NSkNCj4gPiArCQkJc25hcHNob3QtPnJlZy5pbnN0ZG9uZS5nZW9tX3N2
-Z1tkc3NdID0NCj4gPiArCQkJCXhlX2d0X21jcl91bmljYXN0X3JlYWQoZ3QsIFhFSFBHX0lOU1RE
-T05FX0dFT01fU1ZHLA0KPiA+ICsJCQkJCQkgICAgICAgZ3JvdXAsIGluc3RhbmNlKTsNCj4gPiAr
-CX0NCj4gPiArfQ0KPiA+ICsNCj4gPiAgLyoqDQo+ID4gICAqIHhlX2h3X2VuZ2luZV9zbmFwc2hv
-dF9jYXB0dXJlIC0gVGFrZSBhIHF1aWNrIHNuYXBzaG90IG9mIHRoZSBIVyBFbmdpbmUuDQo+ID4g
-ICAqIEBod2U6IFhlIEhXIEVuZ2luZS4NCj4gPiBAQCAtNjc5LDEwICs3MTksMzAgQEAgeGVfaHdf
-ZW5naW5lX3NuYXBzaG90X2NhcHR1cmUoc3RydWN0IHhlX2h3X2VuZ2luZSAqaHdlKQ0KPiA+ICAJ
-aWYgKCFzbmFwc2hvdCkNCj4gPiAgCQlyZXR1cm4gTlVMTDsNCj4gPiAgDQo+ID4gKwkvKiBCZWNh
-dXNlIFhFX01BWF9EU1NfRlVTRV9CSVRTIGlzIGRlZmluZWQgaW4geGVfZ3RfdHlwZXMuaCBhbmQg
-aXQNCj4gPiArCSAqIGluY2x1ZGVzIHhlX2h3X2VuZ2luZV90eXBlcy5oIHRoZSBsZW5ndGggb2Yg
-dGhpcyAzIHJlZ2lzdGVycyBjYW4ndCBiZQ0KPiA+ICsJICogc2V0IGluIHN0cnVjdCB4ZV9od19l
-bmdpbmVfc25hcHNob3QsIHNvIGhlcmUgZG9pbmcgYWRkaXRpb25hbA0KPiA+ICsJICogYWxsb2Nh
-dGlvbnMuDQo+ID4gKwkgKi8NCj4gPiArCWxlbiA9IChYRV9NQVhfRFNTX0ZVU0VfQklUUyAqIHNp
-emVvZih1MzIpKTsNCj4gPiArCXNuYXBzaG90LT5yZWcuaW5zdGRvbmUuc2FtcGxlciA9IGt6YWxs
-b2MobGVuLCBHRlBfQVRPTUlDKTsNCj4gPiArCXNuYXBzaG90LT5yZWcuaW5zdGRvbmUucm93ID0g
-a3phbGxvYyhsZW4sIEdGUF9BVE9NSUMpOw0KPiA+ICsJc25hcHNob3QtPnJlZy5pbnN0ZG9uZS5n
-ZW9tX3N2ZyA9IGt6YWxsb2MobGVuLCBHRlBfQVRPTUlDKTsNCj4gPiArCWlmICghc25hcHNob3Qt
-PnJlZy5pbnN0ZG9uZS5zYW1wbGVyIHx8DQo+ID4gKwkgICAgIXNuYXBzaG90LT5yZWcuaW5zdGRv
-bmUucm93IHx8DQo+ID4gKwkgICAgIXNuYXBzaG90LT5yZWcuaW5zdGRvbmUuZ2VvbV9zdmcpIHsN
-Cj4gPiArCQl4ZV9od19lbmdpbmVfc25hcHNob3RfZnJlZShzbmFwc2hvdCk7DQo+ID4gKwkJcmV0
-dXJuIE5VTEw7DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICAJbGVuID0gc3RybGVuKGh3ZS0+bmFtZSkg
-KyAxOw0KPiA+ICAJc25hcHNob3QtPm5hbWUgPSBremFsbG9jKGxlbiwgR0ZQX0FUT01JQyk7DQo+
-ID4gLQlpZiAoc25hcHNob3QtPm5hbWUpDQo+ID4gLQkJc3Ryc2NweShzbmFwc2hvdC0+bmFtZSwg
-aHdlLT5uYW1lLCBsZW4pOw0KPiA+ICsJaWYgKCFzbmFwc2hvdC0+bmFtZSkgew0KPiA+ICsJCXhl
-X2h3X2VuZ2luZV9zbmFwc2hvdF9mcmVlKHNuYXBzaG90KTsNCj4gPiArCQlyZXR1cm4gTlVMTDsN
-Cj4gPiArCX0NCj4gPiArDQo+ID4gKwlzdHJzY3B5KHNuYXBzaG90LT5uYW1lLCBod2UtPm5hbWUs
-IGxlbik7DQo+ID4gIA0KPiA+ICAJc25hcHNob3QtPmh3ZSA9IGh3ZTsNCj4gPiAgCXNuYXBzaG90
-LT5sb2dpY2FsX2luc3RhbmNlID0gaHdlLT5sb2dpY2FsX2luc3RhbmNlOw0KPiA+IEBAIC03MzAs
-NiArNzkwLDcgQEAgeGVfaHdfZW5naW5lX3NuYXBzaG90X2NhcHR1cmUoc3RydWN0IHhlX2h3X2Vu
-Z2luZSAqaHdlKQ0KPiA+ICAJc25hcHNob3QtPnJlZy5yaW5nX2RtYV9mYWRkID0NCj4gPiAgCQlo
-d19lbmdpbmVfbW1pb19yZWFkMzIoaHdlLCBSSU5HX0RNQV9GQUREKDApKTsNCj4gPiAgCXNuYXBz
-aG90LT5yZWcuaXBlaHIgPSBod19lbmdpbmVfbW1pb19yZWFkMzIoaHdlLCBSSU5HX0lQRUhSKDAp
-KTsNCj4gPiArCXhlX2hlX2VuZ2luZV9zbmFwc2hvdF9pbnN0ZG9uZV9jYXB0dXJlKGh3ZSwgc25h
-cHNob3QpOw0KPiA+ICANCj4gPiAgCWlmIChzbmFwc2hvdC0+aHdlLT5jbGFzcyA9PSBYRV9FTkdJ
-TkVfQ0xBU1NfQ09NUFVURSkNCj4gPiAgCQlzbmFwc2hvdC0+cmVnLnJjdV9tb2RlID0geGVfbW1p
-b19yZWFkMzIoaHdlLT5ndCwgUkNVX01PREUpOw0KPiA+IEBAIC03MzcsNiArNzk4LDQwIEBAIHhl
-X2h3X2VuZ2luZV9zbmFwc2hvdF9jYXB0dXJlKHN0cnVjdCB4ZV9od19lbmdpbmUgKmh3ZSkNCj4g
-PiAgCXJldHVybiBzbmFwc2hvdDsNCj4gPiAgfQ0KPiA+ICANCj4gPiArc3RhdGljIHZvaWQNCj4g
-PiAreGVfaHdfZW5naW5lX3NuYXBzaG90X2luc3Rkb25lX3ByaW50KHN0cnVjdCB4ZV9od19lbmdp
-bmVfc25hcHNob3QgKnNuYXBzaG90LCBzdHJ1Y3QgZHJtX3ByaW50ZXIgKnApDQo+ID4gK3sNCj4g
-PiArCXN0cnVjdCB4ZV9ndCAqZ3QgPSBzbmFwc2hvdC0+aHdlLT5ndDsNCj4gPiArCXN0cnVjdCB4
-ZV9kZXZpY2UgKnhlID0gZ3RfdG9feGUoZ3QpOw0KPiA+ICsJdW5zaWduZWQgaW50IGRzczsNCj4g
-PiArDQo+ID4gKwlkcm1fcHJpbnRmKHAsICJcdFJJTkdfSU5TVERPTkU6IDB4JTA4eFxuIiwgc25h
-cHNob3QtPnJlZy5pbnN0ZG9uZS5yaW5nKTsNCj4gPiArDQo+ID4gKwlpZiAoc25hcHNob3QtPmh3
-ZS0+Y2xhc3MgIT0gWEVfRU5HSU5FX0NMQVNTX1JFTkRFUikNCj4gPiArCQlyZXR1cm47DQo+ID4g
-Kw0KPiA+ICsJZHJtX3ByaW50ZihwLCAiXHRTQ19JTlNURE9ORTogMHglMDh4XG4iLA0KPiA+ICsJ
-CSAgIHNuYXBzaG90LT5yZWcuaW5zdGRvbmUuc2xpY2VfY29tbW9uKTsNCj4gPiArCWRybV9wcmlu
-dGYocCwgIlx0U0NfRVhUUkFfSU5TVERPTkU6IDB4JTA4eFxuIiwNCj4gPiArCQkgICBzbmFwc2hv
-dC0+cmVnLmluc3Rkb25lLnNsaWNlX2NvbW1vbl9leHRyYSk7DQo+ID4gKwlkcm1fcHJpbnRmKHAs
-ICJcdFNDX0VYVFJBMl9JTlNURE9ORTogMHglMDh4XG4iLA0KPiA+ICsJCSAgIHNuYXBzaG90LT5y
-ZWcuaW5zdGRvbmUuc2xpY2VfY29tbW9uX2V4dHJhMik7DQo+ID4gKw0KPiA+ICsJZm9yIChkc3Mg
-PSAwOyBkc3MgPCBYRV9NQVhfRFNTX0ZVU0VfQklUUzsgZHNzKyspIHsNCj4gPiArCQlpZiAoIXhl
-X2d0X2hhc19nZW9tZXRyeV9kc3MoZ3QsIGRzcykpDQo+ID4gKwkJCWNvbnRpbnVlOw0KPiA+ICsN
-Cj4gPiArCQlkcm1fcHJpbnRmKHAsICJcdFNBTVBMRVJfSU5TVERPTkVbJXVdOiAweCUwOHhcbiIs
-IGRzcywNCj4gPiArCQkJICAgc25hcHNob3QtPnJlZy5pbnN0ZG9uZS5zYW1wbGVyW2Rzc10pOw0K
-PiA+ICsJCWRybV9wcmludGYocCwgIlx0Uk9XX0lOU1RET05FWyV1XTogMHglMDh4XG4iLCBkc3Ms
-DQo+ID4gKwkJCSAgIHNuYXBzaG90LT5yZWcuaW5zdGRvbmUucm93W2Rzc10pOw0KPiA+ICsNCj4g
-PiArCQlpZiAoR1JBUEhJQ1NfVkVSeDEwMCh4ZSkgPj0gMTI1NSkNCj4gPiArCQkJZHJtX3ByaW50
-ZihwLCAiXHRHRU9NX1NWR1VOSVRfSU5TVERPTkVbJXVdOiAweCUwOHhcbiIsDQo+ID4gKwkJCQkg
-ICBkc3MsIHNuYXBzaG90LT5yZWcuaW5zdGRvbmUuZ2VvbV9zdmdbZHNzXSk7DQo+ID4gKwl9DQo+
-ID4gK30NCj4gPiArDQo+ID4gIC8qKg0KPiA+ICAgKiB4ZV9od19lbmdpbmVfc25hcHNob3RfcHJp
-bnQgLSBQcmludCBvdXQgYSBnaXZlbiBYZSBIVyBFbmdpbmUgc25hcHNob3QuDQo+ID4gICAqIEBz
-bmFwc2hvdDogWGUgSFcgRW5naW5lIHNuYXBzaG90IG9iamVjdC4NCj4gPiBAQCAtNzg1LDEwICs4
-ODAsMTMgQEAgdm9pZCB4ZV9od19lbmdpbmVfc25hcHNob3RfcHJpbnQoc3RydWN0IHhlX2h3X2Vu
-Z2luZV9zbmFwc2hvdCAqc25hcHNob3QsDQo+ID4gIAlkcm1fcHJpbnRmKHAsICJcdERNQV9GQURE
-UjogMHglMDh4XyUwOHhcbiIsDQo+ID4gIAkJICAgc25hcHNob3QtPnJlZy5yaW5nX2RtYV9mYWRk
-X3VkdywNCj4gPiAgCQkgICBzbmFwc2hvdC0+cmVnLnJpbmdfZG1hX2ZhZGQpOw0KPiA+IC0JZHJt
-X3ByaW50ZihwLCAiXHRJUEVIUjogMHglMDh4XG5cbiIsIHNuYXBzaG90LT5yZWcuaXBlaHIpOw0K
-PiA+ICsJZHJtX3ByaW50ZihwLCAiXHRJUEVIUjogMHglMDh4XG4iLCBzbmFwc2hvdC0+cmVnLmlw
-ZWhyKTsNCj4gPiArCXhlX2h3X2VuZ2luZV9zbmFwc2hvdF9pbnN0ZG9uZV9wcmludChzbmFwc2hv
-dCwgcCk7DQo+ID4gKw0KPiA+ICAJaWYgKHNuYXBzaG90LT5od2UtPmNsYXNzID09IFhFX0VOR0lO
-RV9DTEFTU19DT01QVVRFKQ0KPiA+ICAJCWRybV9wcmludGYocCwgIlx0UkNVX01PREU6IDB4JTA4
-eFxuIiwNCj4gPiAgCQkJICAgc25hcHNob3QtPnJlZy5yY3VfbW9kZSk7DQo+ID4gKwlkcm1fcHV0
-cyhwLCAiXG4iKTsNCj4gPiAgfQ0KPiA+ICANCj4gPiAgLyoqDQo+ID4gQEAgLTgwMyw2ICs5MDEs
-OSBAQCB2b2lkIHhlX2h3X2VuZ2luZV9zbmFwc2hvdF9mcmVlKHN0cnVjdCB4ZV9od19lbmdpbmVf
-c25hcHNob3QgKnNuYXBzaG90KQ0KPiA+ICAJaWYgKCFzbmFwc2hvdCkNCj4gPiAgCQlyZXR1cm47
-DQo+ID4gIA0KPiA+ICsJa2ZyZWUoc25hcHNob3QtPnJlZy5pbnN0ZG9uZS5zYW1wbGVyKTsNCj4g
-PiArCWtmcmVlKHNuYXBzaG90LT5yZWcuaW5zdGRvbmUucm93KTsNCj4gPiArCWtmcmVlKHNuYXBz
-aG90LT5yZWcuaW5zdGRvbmUuZ2VvbV9zdmcpOw0KPiA+ICAJa2ZyZWUoc25hcHNob3QtPm5hbWUp
-Ow0KPiA+ICAJa2ZyZWUoc25hcHNob3QpOw0KPiA+ICB9DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZl
-cnMvZ3B1L2RybS94ZS94ZV9od19lbmdpbmVfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS94ZS94
-ZV9od19lbmdpbmVfdHlwZXMuaA0KPiA+IGluZGV4IDcxYzBhMDE2OWU2MmEuLjBhMTBhNzk5NjJj
-OTcgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2h3X2VuZ2luZV90eXBl
-cy5oDQo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2h3X2VuZ2luZV90eXBlcy5oDQo+
-ID4gQEAgLTIyMSw2ICsyMjEsMTYgQEAgc3RydWN0IHhlX2h3X2VuZ2luZV9zbmFwc2hvdCB7DQo+
-ID4gIAkJdTMyIGlwZWhyOw0KPiA+ICAJCS8qKiBAcmN1X21vZGU6IFJDVV9NT0RFICovDQo+ID4g
-IAkJdTMyIHJjdV9tb2RlOw0KPiA+ICsJCS8qKiBAcmluZ19pbnN0ZG9uZTogUklOR19JTlNURE9O
-RSAqLw0KPiA+ICsJCXN0cnVjdCB7DQo+ID4gKwkJCXUzMiByaW5nOw0KPiA+ICsJCQl1MzIgc2xp
-Y2VfY29tbW9uOw0KPiA+ICsJCQl1MzIgc2xpY2VfY29tbW9uX2V4dHJhOw0KPiA+ICsJCQl1MzIg
-c2xpY2VfY29tbW9uX2V4dHJhMjsNCj4gPiArCQkJdTMyICpzYW1wbGVyOw0KPiA+ICsJCQl1MzIg
-KnJvdzsNCj4gPiArCQkJdTMyICpnZW9tX3N2ZzsNCj4gPiArCQl9IGluc3Rkb25lOw0KPiA+ICAJ
-fSByZWc7DQo+ID4gIH07DQo+ID4gIA0KPiA+IC0tIA0KPiA+IDIuNDIuMA0KPiA+IA0KPiA+IA0K
-PiANCg0K
+Hi Janusz,
+On 2023-10-09 at 14:27:55 +0200, Janusz Krzysztofik wrote:
+> There was an attempt to parse KTAP reports in the background while a kunit
+> test module is loading.  However, since dynamic sub-subtests can be
+> executed only from the main thread, that attempt was not quite successful,
+> as IGT results from all executed kunit test cases were generated only
+> after loading of kunit test module completed.
+> 
+> Now that the parser maintains its state and we can call it separately for
+> each input line of a KTAP report, it is perfectly possible to call the
+> parser from the main thread while the module is loading in the background,
+> and convert results from kunit test cases immediately to results of IGT
+> dynamic sub-subtests by running an igt_dynamic() section for each result
+> as soon as returned by the parser.
+> 
+> Drop igt_ktap_parser() thread and execute igt_dynamic() for each kunit
+> result obtained from igt_ktap_parse() called from the main thread.
+> 
+> Also, drop no longer needed functions from igt_ktap soruces.
+> 
+> v3: Fix ktap structure not freed on lseek error,
+>   - fix initial SIGCHLD handler not restored,
+>   - fix missing handling of potential errors returned by sigaction,
+>   - fix potential race of read() vs. ptherad_kill(), use robust mutex for
+>     synchronization with modprobe thread,
+>   - fix potentially illegal use of igt_assert() called outside of
+>     dynamic sub-subtest section,
+>   - fix unsupported exit code potentially passed to igt_fail(),
+>   - no need to fail a dynamic sub-subtest on potential KTAP parser error
+>     after a valid result from the parser has been processed,
+>   - fix trailing newlines missing from error messages,
+>   - add more debug statements,
+>   - integrate common code around kunit_result_free() into it.
+> v2: Interrupt blocking read() on modprobe failure.
+> 
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> Acked-by: Mauro Carvalho Chehab <mchehab@kernel.org> # v2
+> ---
+>  lib/igt_kmod.c | 261 +++++++++++++++++++----
+>  lib/igt_ktap.c | 568 -------------------------------------------------
+>  lib/igt_ktap.h |  22 --
+>  3 files changed, 222 insertions(+), 629 deletions(-)
+> 
+> diff --git a/lib/igt_kmod.c b/lib/igt_kmod.c
+> index 426ae5b26f..7bca4cdaab 100644
+> --- a/lib/igt_kmod.c
+> +++ b/lib/igt_kmod.c
+> @@ -1,5 +1,5 @@
+>  /*
+> - * Copyright © 2016 Intel Corporation
+> + * Copyright © 2016-2023 Intel Corporation
+>   *
+>   * Permission is hereby granted, free of charge, to any person obtaining a
+>   * copy of this software and associated documentation files (the "Software"),
+> @@ -26,7 +26,12 @@
+>  #include <errno.h>
+>  #include <fcntl.h>
+>  #include <pthread.h>
+> +#include <stdlib.h>
+> +#include <string.h>
+>  #include <sys/utsname.h>
+> +#include <unistd.h>
+> +
+> +#include "assembler/brw_compat.h"	/* [un]likely() */
+------------ ^^^^^^^^^
+Do we really need this?
+
+>  
+>  #include "igt_aux.h"
+>  #include "igt_core.h"
+> @@ -748,9 +753,12 @@ void igt_kselftest_get_tests(struct kmod_module *kmod,
+>  }
+>  
+>  struct modprobe_data {
+> +	pthread_t parent;
+--- ^^^^^^^^^^^^^^^^
+Please move it below to other related thread data.
+Also consider a comment why(or for what purpose)
+did you put this here.
+
+>  	struct kmod_module *kmod;
+>  	const char *opts;
+>  	int err;
+> +	pthread_mutex_t lock;
+> +	pthread_t thread;
+>  };
+>  
+>  static void *modprobe_task(void *arg)
+> @@ -759,16 +767,132 @@ static void *modprobe_task(void *arg)
+>  
+>  	data->err = modprobe(data->kmod, data->opts);
+>  
+> +	if (igt_debug_on(data->err)) {
+> +		int err;
+> +
+> +		while (err = pthread_mutex_trylock(&data->lock),
+> +		       err && !igt_debug_on(err != EBUSY))
+> +			igt_debug_on(pthread_kill(data->parent, SIGCHLD));
+> +	} else {
+> +		/* let main thread use mutex to detect modprobe completion */
+> +		igt_debug_on(pthread_mutex_lock(&data->lock));
+> +	}
+> +
+>  	return NULL;
+>  }
+>  
+> +static void kunit_sigchld_handler(int signal)
+> +{
+> +	return;
+--- ^^^^^^^
+Why not removing this? checkpatch complains about return from void.
+
+> +}
+> +
+> +static int kunit_kmsg_result_get(struct igt_list_head *results,
+> +				 struct modprobe_data *modprobe,
+> +				 int fd, struct igt_ktap_results *ktap)
+> +{
+> +	struct sigaction sigchld = { .sa_handler = kunit_sigchld_handler, },
+> +			 *saved;
+> +	char record[BUF_LEN + 1], *buf;
+> +	unsigned long taints;
+> +	int ret;
+> +
+> +	do {
+> +		int err;
+> +
+> +		if (igt_debug_on(igt_kernel_tainted(&taints)))
+> +			return -ENOTRECOVERABLE;
+> +
+> +		err = igt_debug_on(sigaction(SIGCHLD, &sigchld, saved));
+> +		if (err == -1)
+> +			return -errno;
+> +		else if (unlikely(err))
+> +			return err;
+> +
+> +		err = pthread_mutex_lock(&modprobe->lock);
+> +		switch (err) {
+> +		case EOWNERDEAD:
+> +			/* leave the mutex unrecoverable */
+> +			igt_debug_on(pthread_mutex_unlock(&modprobe->lock));
+> +			__attribute__ ((fallthrough));
+> +		case ENOTRECOVERABLE:
+> +			igt_debug_on(sigaction(SIGCHLD, saved, NULL));
+> +			if (igt_debug_on(modprobe->err))
+> +				return modprobe->err;
+
+Why no 'return -err;' here?
+
+> +			break;
+> +		case 0:
+> +			break;
+> +		default:
+> +			igt_debug("pthread_mutex_lock() error: %d\n", err);
+> +			igt_debug_on(sigaction(SIGCHLD, saved, NULL));
+> +			return -err;
+> +		}
+> +
+> +		ret = read(fd, record, BUF_LEN);
+> +
+> +		if (!err) {
+        ^^^^^^^^^^^
+Looks strange here.
+
+> +			igt_debug_on(pthread_mutex_unlock(&modprobe->lock));
+> +			igt_debug_on(sigaction(SIGCHLD, saved, NULL));
+> +		}
+> +
+> +		if (igt_debug_on(!ret))
+> +			return -ENODATA;
+> +		if (igt_debug_on(ret == -1))
+> +			return -errno;
+> +		if (unlikely(igt_debug_on(ret < 0)))
+> +			break;
+> +
+> +		/* skip kmsg continuation lines */
+> +		if (igt_debug_on(*record == ' '))
+----------- ^^^^^^^^^^^^
+Why debug here? imho it is not needed.
+
+> +			continue;
+> +
+> +		/* NULL-terminate the record */
+> +		record[ret] = '\0';
+> +
+> +		/* detect start of log message, continue if not found */
+> +		buf = strchrnul(record, ';');
+> +		if (igt_debug_on(*buf == '\0'))
+----------- ^^^^^^^^^^^^
+Same here, you just continue loop if no ';'?
+
+> +			continue;
+> +		buf++;
+> +
+> +		ret = igt_ktap_parse(buf, ktap);
+> +		if (!ret || igt_debug_on(ret != -EINPROGRESS))
+> +			break;
+> +	} while (igt_list_empty(results));
+> +
+> +	return ret;
+> +}
+> +
+> +static void kunit_result_free(struct igt_ktap_result **r,
+> +			      char **suite_name, char **case_name)
+> +{
+> +	if (!*r)
+> +		return;
+> +
+> +	igt_list_del(&(*r)->link);
+> +
+> +	if ((*r)->suite_name != *suite_name) {
+> +		free(*suite_name);
+> +		*suite_name = (*r)->suite_name;
+> +	}
+> +
+> +	if ((*r)->case_name != *case_name) {
+> +		free(*case_name);
+> +		*case_name = (*r)->case_name;
+> +	}
+> +
+> +	free((*r)->msg);
+> +	free(*r);
+> +	*r = NULL;
+> +}
+> +
+>  static void __igt_kunit(struct igt_ktest *tst, const char *opts)
+>  {
+> -	struct modprobe_data modprobe = { tst->kmod, opts, 0, };
+> -	struct kmod_module *kunit_kmod;
+> -	bool is_builtin;
+> -	struct ktap_test_results *results;
+> -	pthread_t modprobe_thread;
+> +	struct modprobe_data modprobe = { pthread_self(), tst->kmod, opts, 0, };
+> +	char *suite_name = NULL, *case_name = NULL;
+> +	struct igt_ktap_result *r, *rn;
+> +	struct igt_ktap_results *ktap;
+> +	pthread_mutexattr_t attr;
+> +	IGT_LIST_HEAD(results);
+>  	unsigned long taints;
+>  	int flags, ret;
+>  
+> @@ -780,60 +904,119 @@ static void __igt_kunit(struct igt_ktest *tst, const char *opts)
+>  
+>  	igt_skip_on(lseek(tst->kmsg, 0, SEEK_END) < 0);
+>  
+> -	igt_skip_on(kmod_module_new_from_name(kmod_ctx(), "kunit", &kunit_kmod));
+> -	is_builtin = kmod_module_get_initstate(kunit_kmod) == KMOD_MODULE_BUILTIN;
+> -	kmod_module_unref(kunit_kmod);
+> +	igt_skip_on(pthread_mutexattr_init(&attr));
+> +	igt_skip_on(pthread_mutexattr_setrobust(&attr, PTHREAD_MUTEX_ROBUST));
+> +	igt_skip_on(pthread_mutex_init(&modprobe.lock, &attr));
+>  
+> -	results = ktap_parser_start(tst->kmsg, is_builtin);
+> +	ktap = igt_ktap_alloc(&results);
+> +	igt_require(ktap);
+>  
+> -	if (igt_debug_on(pthread_create(&modprobe_thread, NULL,
+> +	if (igt_debug_on(pthread_create(&modprobe.thread, NULL,
+>  					modprobe_task, &modprobe))) {
+> -		ktap_parser_cancel();
+> -		igt_ignore_warn(ktap_parser_stop());
+> +		igt_ktap_free(ktap);
+>  		igt_skip("Failed to create a modprobe thread\n");
+>  	}
+>  
+> -	while (READ_ONCE(results->still_running) || !igt_list_empty(&results->list))
+> -	{
+> -		struct ktap_test_results_element *result;
+> -
+> -		if (!pthread_tryjoin_np(modprobe_thread, NULL) && modprobe.err) {
+> -			ktap_parser_cancel();
+> +	do {
+> +		ret = kunit_kmsg_result_get(&results, &modprobe,
+> +					    tst->kmsg, ktap);
+> +		if (igt_debug_on(ret && ret != -EINPROGRESS))
+>  			break;
+> -		}
+>  
+> -		if (igt_kernel_tainted(&taints)) {
+> -			ktap_parser_cancel();
+> -			pthread_cancel(modprobe_thread);
+> +		if (igt_debug_on(igt_list_empty(&results)))
+>  			break;
+> -		}
+>  
+> -		pthread_mutex_lock(&results->mutex);
+> -		if (igt_list_empty(&results->list)) {
+> -			pthread_mutex_unlock(&results->mutex);
+> -			continue;
+> -		}
+> +		r = igt_list_first_entry(&results, r, link);
+>  
+> -		result = igt_list_first_entry(&results->list, result, link);
+> +		igt_dynamic_f("%s-%s", r->suite_name, r->case_name) {
+> +			if (r->code == IGT_EXIT_INVALID) {
+> +				/* parametrized test case, get actual result */
+> +				kunit_result_free(&r, &suite_name, &case_name);
+>  
+> -		igt_list_del(&result->link);
+> -		pthread_mutex_unlock(&results->mutex);
+> +				igt_assert(igt_list_empty(&results));
+>  
+> -		igt_dynamic(result->test_name) {
+> -			igt_assert(READ_ONCE(result->passed));
+> +				ret = kunit_kmsg_result_get(&results, &modprobe,
+> +							    tst->kmsg, ktap);
+> +				if (ret != -EINPROGRESS)
+> +					igt_fail_on(ret);
+> +
+> +				igt_fail_on(igt_list_empty(&results));
+> +
+> +				r = igt_list_first_entry(&results, r, link);
+> +
+> +				igt_fail_on_f(strcmp(r->suite_name, suite_name),
+> +					      "suite_name expected: %s, got: %s\n",
+> +					      suite_name, r->suite_name);
+> +				igt_fail_on_f(strcmp(r->case_name, case_name),
+> +					      "case_name expected: %s, got: %s\n",
+> +					      case_name, r->case_name);
+> +			}
+>  
+> -			if (!pthread_tryjoin_np(modprobe_thread, NULL))
+> +			igt_assert_neq(r->code, IGT_EXIT_INVALID);
+> +
+> +			if (r->msg && *r->msg) {
+> +				igt_skip_on_f(r->code == IGT_EXIT_SKIP,
+> +					      "%s\n", r->msg);
+> +				igt_fail_on_f(r->code == IGT_EXIT_FAILURE,
+> +					      "%s\n", r->msg);
+> +				igt_abort_on_f(r->code == IGT_EXIT_ABORT,
+> +					      "%s\n", r->msg);
+> +			} else {
+> +				igt_skip_on(r->code == IGT_EXIT_SKIP);
+> +				igt_fail_on(r->code == IGT_EXIT_FAILURE);
+> +				if (r->code == IGT_EXIT_ABORT)
+> +					igt_fail(r->code);
+> +			}
+> +			igt_assert_eq(r->code, IGT_EXIT_SUCCESS);
+> +
+> +			switch (pthread_mutex_lock(&modprobe.lock)) {
+> +			case 0:
+> +				igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
+> +				break;
+> +			case EOWNERDEAD:
+> +				/* leave the mutex unrecoverable */
+> +				igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
+> +				__attribute__ ((fallthrough));
+> +			case ENOTRECOVERABLE:
+>  				igt_assert_eq(modprobe.err, 0);
+> +				break;
+
+imho we should also break a do-while loop in case of error.
+
+> +			default:
+> +				igt_debug("pthread_mutex_lock() failed\n");
+> +				break;
+> +			}
+>  
+>  			igt_assert_eq(igt_kernel_tainted(&taints), 0);
+>  		}
+>  
+> -		free(result);
+> +		kunit_result_free(&r, &suite_name, &case_name);
+> +
+> +	} while (ret == -EINPROGRESS);
+> +
+> +	igt_list_for_each_entry_safe(r, rn, &results, link)
+> +		kunit_result_free(&r, &suite_name, &case_name);
+> +
+> +	free(case_name);
+> +	free(suite_name);
+> +
+> +	switch (pthread_mutex_lock(&modprobe.lock)) {
+> +	case 0:
+> +		igt_debug_on(pthread_cancel(modprobe.thread));
+> +		igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
+> +		igt_debug_on(pthread_join(modprobe.thread, NULL));
+> +		break;
+> +	case EOWNERDEAD:
+> +		/* leave the mutex unrecoverable */
+> +		igt_debug_on(pthread_mutex_unlock(&modprobe.lock));
+> +		break;
+> +	case ENOTRECOVERABLE:
+> +		break;
+> +	default:
+> +		igt_debug("pthread_mutex_lock() failed\n");
+> +		igt_debug_on(pthread_join(modprobe.thread, NULL));
+> +		break;
+>  	}
+>  
+> -	pthread_join(modprobe_thread, NULL);
+> -
+> -	ret = ktap_parser_stop();
+> +	igt_ktap_free(ktap);
+>  
+>  	igt_skip_on(modprobe.err);
+>  	igt_skip_on(igt_kernel_tainted(&taints));
+> diff --git a/lib/igt_ktap.c b/lib/igt_ktap.c
+> index 5eac102417..53a6c63288 100644
+> --- a/lib/igt_ktap.c
+> +++ b/lib/igt_ktap.c
+> @@ -4,17 +4,11 @@
+>   * Copyright © 2023 Intel Corporation
+>   */
+>  
+> -#include <ctype.h>
+> -#include <limits.h>
+> -#include <libkmod.h>
+> -#include <pthread.h>
+>  #include <errno.h>
+>  #include <stdio.h>
+>  #include <stdlib.h>
+>  #include <string.h>
+> -#include <unistd.h>
+>  
+> -#include "igt_aux.h"
+>  #include "igt_core.h"
+>  #include "igt_ktap.h"
+>  #include "igt_list.h"
+> @@ -312,565 +306,3 @@ void igt_ktap_free(struct igt_ktap_results *ktap)
+>  {
+>  	free(ktap);
+>  }
+> -
+> -#define DELIMITER "-"
+> -
+> -struct ktap_parser_args {
+> -	int fd;
+> -	bool is_builtin;
+> -	int ret;
+> -} ktap_args;
+> -
+> -static struct ktap_test_results results;
+> -
+> -static int log_to_end(enum igt_log_level level, int fd,
+> -		      char *record, const char *format, ...) __attribute__((format(printf, 4, 5)));
+> -
+> -/**
+> - * log_to_end:
+> - * @level: #igt_log_level
+> - * @record: record to store the read data
+> - * @format: format string
+> - * @...: optional arguments used in the format string
+> - *
+> - * This is an altered version of the generic structured logging helper function
+> - * igt_log capable of reading to the end of a given line.
+> - *
+> - * Returns: 0 for success, or -2 if there's an error reading from the file
+> - */
+> -static int log_to_end(enum igt_log_level level, int fd,
+> -		      char *record, const char *format, ...)
+> -{
+> -	va_list args;
+> -	const char *lend;
+> -
+> -	/* Cutoff after newline character, in order to not display garbage */
+> -	char *cutoff = strchr(record, '\n');
+> -	if (cutoff) {
+> -		if (cutoff - record < BUF_LEN)
+> -			cutoff[1] = '\0';
+> -	}
+> -
+> -	va_start(args, format);
+> -	igt_vlog(IGT_LOG_DOMAIN, level, format, args);
+> -	va_end(args);
+> -
+> -	lend = strchrnul(record, '\n');
+> -	while (*lend == '\0') {
+> -		igt_log(IGT_LOG_DOMAIN, level, "%s", record);
+> -
+> -		if (read(fd, record, BUF_LEN) < 0) {
+> -			if (errno == EPIPE)
+> -				igt_warn("kmsg truncated: too many messages. You may want to increase log_buf_len in kmcdline\n");
+> -			else
+> -				igt_warn("an error occurred while reading kmsg: %m\n");
+> -
+> -			return -2;
+> -		}
+> -
+> -		lend = strchrnul(record, '\n');
+> -	}
+> -	return 0;
+> -}
+> -
+> -/**
+> - * lookup_value:
+> - * @haystack: the string to search in
+> - * @needle: the string to search for
+> - *
+> - * Returns: the value of the needle in the haystack, or -1 if not found.
+> - */
+> -static long lookup_value(const char *haystack, const char *needle)
+> -{
+> -	const char *needle_rptr;
+> -	char *needle_end;
+> -	long num;
+> -
+> -	needle_rptr = strcasestr(haystack, needle);
+> -
+> -	if (needle_rptr == NULL)
+> -		return -1;
+> -
+> -	/* Skip search string and whitespaces after it */
+> -	needle_rptr += strlen(needle);
+> -
+> -	num = strtol(needle_rptr, &needle_end, 10);
+> -
+> -	if (needle_rptr == needle_end)
+> -		return -1;
+> -
+> -	if (num == LONG_MIN || num == LONG_MAX)
+> -		return 0;
+> -
+> -	return num > 0 ? num : 0;
+> -}
+> -
+> -/**
+> - * tap_version_present:
+> - * @record: buffer with tap data
+> - * @print_info: whether tap version should be printed or not
+> - *
+> - * Returns:
+> - * 0 if not found
+> - * 1 if found
+> - */
+> -static int tap_version_present(char* record, bool print_info)
+> -{
+> -	/*
+> -	 * "(K)TAP version XX" should be the first line on all (sub)tests as per
+> -	 * https://kernel.org/doc/html/latest/dev-tools/ktap.html#version-lines
+
+Could you save these two lines comment in some other place?
+
+Regards,
+Kamil
+
+> -	 *
+> -	 * but actually isn't, as it currently depends on the KUnit module
+> -	 * being built-in, so we can't rely on it every time
+> -	 */
+> -	const char *version_rptr = strcasestr(record, "TAP version ");
+> -	char *cutoff;
+> -
+> -	if (version_rptr == NULL)
+> -		return 0;
+> -
+> -	/* Cutoff after newline character, in order to not display garbage */
+> -	cutoff = strchr(version_rptr, '\n');
+> -	if (cutoff)
+> -		cutoff[0] = '\0';
+> -
+> -	if (print_info)
+> -		igt_info("%s\n", version_rptr);
+> -
+> -	return 1;
+> -}
+> -
+> -/**
+> - * find_next_tap_subtest:
+> - * @fd: file descriptor
+> - * @record: buffer used to read fd
+> - * @is_builtin: whether KUnit is built-in or not
+> - *
+> - * Returns:
+> - * 0 if there's missing information
+> - * -1 if not found
+> - * -2 if there are problems while reading the file.
+> - * any other value corresponds to the amount of cases of the next (sub)test
+> - */
+> -static int find_next_tap_subtest(int fd, char *record, char *test_name, bool is_builtin)
+> -{
+> -	const char *test_lookup_str, *subtest_lookup_str, *name_rptr;
+> -	long test_count;
+> -	char *cutoff;
+> -
+> -	test_name[0] = '\0';
+> -	test_name[BUF_LEN] = '\0';
+> -
+> -	test_lookup_str = " subtest: ";
+> -	subtest_lookup_str = " test: ";
+> -
+> -	if (!tap_version_present(record, true))
+> -		return -1;
+> -
+> -	if (is_builtin) {
+> -		if (read(fd, record, BUF_LEN) < 0) {
+> -			if (errno == EPIPE)
+> -				igt_warn("kmsg truncated: too many messages. You may want to increase log_buf_len in kmcdline\n");
+> -			else
+> -				igt_warn("an error occurred while reading kmsg: %m\n");
+> -
+> -			return -2;
+> -		}
+> -	}
+> -
+> -	name_rptr = strcasestr(record, test_lookup_str);
+> -	if (name_rptr != NULL) {
+> -		name_rptr += strlen(test_lookup_str);
+> -	} else {
+> -		name_rptr = strcasestr(record, subtest_lookup_str);
+> -		if (name_rptr != NULL)
+> -			name_rptr += strlen(subtest_lookup_str);
+> -	}
+> -
+> -	if (name_rptr == NULL) {
+> -		if (!is_builtin)
+> -			/* We've probably found nothing */
+> -			return -1;
+> -		igt_info("Missing test name\n");
+> -	} else {
+> -		strncpy(test_name, name_rptr, BUF_LEN);
+> -		/* Cutoff after newline character, in order to not display garbage */
+> -		cutoff = strchr(test_name, '\n');
+> -		if (cutoff)
+> -			cutoff[0] = '\0';
+> -
+> -		if (read(fd, record, BUF_LEN) < 0) {
+> -			if (errno == EPIPE)
+> -				igt_warn("kmsg truncated: too many messages. You may want to increase log_buf_len in kmcdline\n");
+> -			else
+> -				igt_warn("unknown error reading kmsg (%m)\n");
+> -
+> -			return -2;
+> -		}
+> -
+> -		/* Now we can be sure we found tests */
+> -		if (!is_builtin)
+> -			igt_info("KUnit is not built-in, skipping version check...\n");
+> -	}
+> -
+> -	/*
+> -	 * Total test count will almost always appear as 0..N at the beginning
+> -	 * of a run, so we use it to reliably identify a new run
+> -	 */
+> -	test_count = lookup_value(record, "..");
+> -
+> -	if (test_count <= 0) {
+> -		igt_info("Missing test count\n");
+> -		if (test_name[0] == '\0')
+> -			return 0;
+> -		if (log_to_end(IGT_LOG_INFO, fd, record,
+> -				"Running some tests in: %s\n",
+> -				test_name) < 0)
+> -			return -2;
+> -		return 0;
+> -	} else if (test_name[0] == '\0') {
+> -		igt_info("Running %ld tests...\n", test_count);
+> -		return 0;
+> -	}
+> -
+> -	if (log_to_end(IGT_LOG_INFO, fd, record,
+> -			"Executing %ld tests in: %s\n",
+> -			test_count, test_name) < 0)
+> -		return -2;
+> -
+> -	return test_count;
+> -}
+> -
+> -/**
+> - * parse_kmsg_for_tap:
+> - * @fd: file descriptor
+> - * @record: buffer used to read fd
+> - * @test_name: buffer to store the test name
+> - *
+> - * Returns:
+> - * 1 if no results were found
+> - * 0 if a test succeded
+> - * -1 if a test failed
+> - * -2 if there are problems reading the file
+> - */
+> -static int parse_kmsg_for_tap(int fd, char *record, char *test_name)
+> -{
+> -	const char *lstart, *ok_lookup_str, *nok_lookup_str,
+> -	      *ok_rptr, *nok_rptr, *comment_start, *value_parse_start;
+> -	char *test_name_end;
+> -
+> -	ok_lookup_str = "ok ";
+> -	nok_lookup_str = "not ok ";
+> -
+> -	lstart = strchrnul(record, ';');
+> -
+> -	if (*lstart == '\0') {
+> -		igt_warn("kmsg truncated: output malformed (%m)\n");
+> -		return -2;
+> -	}
+> -
+> -	lstart++;
+> -	while (isspace(*lstart))
+> -		lstart++;
+> -
+> -	nok_rptr = strstr(lstart, nok_lookup_str);
+> -	if (nok_rptr != NULL) {
+> -		nok_rptr += strlen(nok_lookup_str);
+> -		while (isdigit(*nok_rptr) || isspace(*nok_rptr) || *nok_rptr == '-')
+> -			nok_rptr++;
+> -		test_name_end = strncpy(test_name, nok_rptr, BUF_LEN);
+> -		while (!isspace(*test_name_end))
+> -			test_name_end++;
+> -		*test_name_end = '\0';
+> -		if (log_to_end(IGT_LOG_WARN, fd, record,
+> -			       "%s", lstart) < 0)
+> -			return -2;
+> -		return -1;
+> -	}
+> -
+> -	comment_start = strchrnul(lstart, '#');
+> -
+> -	/* Check if we're still in a subtest */
+> -	if (*comment_start != '\0') {
+> -		comment_start++;
+> -		value_parse_start = comment_start;
+> -
+> -		if (lookup_value(value_parse_start, "fail: ") > 0) {
+> -			if (log_to_end(IGT_LOG_WARN, fd, record,
+> -				       "%s", lstart) < 0)
+> -				return -2;
+> -			return -1;
+> -		}
+> -	}
+> -
+> -	ok_rptr = strstr(lstart, ok_lookup_str);
+> -	if (ok_rptr != NULL) {
+> -		ok_rptr += strlen(ok_lookup_str);
+> -		while (isdigit(*ok_rptr) || isspace(*ok_rptr) || *ok_rptr == '-')
+> -			ok_rptr++;
+> -		test_name_end = strncpy(test_name, ok_rptr, BUF_LEN);
+> -		while (!isspace(*test_name_end))
+> -			test_name_end++;
+> -		*test_name_end = '\0';
+> -		return 0;
+> -	}
+> -
+> -	return 1;
+> -}
+> -
+> -/**
+> - * parse_tap_level:
+> - * @fd: file descriptor
+> - * @base_test_name: test_name from upper recursion level
+> - * @test_count: test_count of this level
+> - * @failed_tests: top level failed_tests pointer
+> - * @found_tests: top level found_tests pointer
+> - * @is_builtin: whether the KUnit module is built-in or not
+> - *
+> - * Returns:
+> - * 0 if succeded
+> - * -1 if error occurred
+> - */
+> -__maybe_unused
+> -static int parse_tap_level(int fd, char *base_test_name, int test_count, bool *failed_tests,
+> -			   bool *found_tests, bool is_builtin)
+> -{
+> -	char record[BUF_LEN + 1];
+> -	struct ktap_test_results_element *r;
+> -	int internal_test_count;
+> -	char test_name[BUF_LEN + 1];
+> -	char base_test_name_for_next_level[BUF_LEN + 1];
+> -
+> -	for (int i = 0; i < test_count; i++) {
+> -		if (read(fd, record, BUF_LEN) < 0) {
+> -			if (errno == EPIPE)
+> -				igt_warn("kmsg truncated: too many messages. You may want to increase log_buf_len in kmcdline\n");
+> -			else
+> -				igt_warn("error reading kmsg (%m)\n");
+> -
+> -			return -1;
+> -		}
+> -
+> -		/* Sublevel found */
+> -		if (tap_version_present(record, false))
+> -		{
+> -			internal_test_count = find_next_tap_subtest(fd, record, test_name,
+> -								    is_builtin);
+> -			switch (internal_test_count) {
+> -			case -2:
+> -				/* No more data to read */
+> -				return -1;
+> -			case -1:
+> -				/* No test found */
+> -				return -1;
+> -			case 0:
+> -				/* Tests found, but they're missing info */
+> -				*found_tests = true;
+> -				return -1;
+> -			default:
+> -				*found_tests = true;
+> -
+> -				memcpy(base_test_name_for_next_level, base_test_name, BUF_LEN);
+> -				if (strlen(base_test_name_for_next_level) < BUF_LEN - 1 &&
+> -				    base_test_name_for_next_level[0])
+> -					strncat(base_test_name_for_next_level, DELIMITER,
+> -						BUF_LEN - strlen(base_test_name_for_next_level));
+> -				memcpy(base_test_name_for_next_level + strlen(base_test_name_for_next_level),
+> -				       test_name, BUF_LEN - strlen(base_test_name_for_next_level));
+> -
+> -				if (parse_tap_level(fd, base_test_name_for_next_level,
+> -						    internal_test_count, failed_tests, found_tests,
+> -						    is_builtin) == -1)
+> -					return -1;
+> -				break;
+> -			}
+> -		}
+> -
+> -		switch (parse_kmsg_for_tap(fd, record, test_name)) {
+> -		case -2:
+> -			return -1;
+> -		case -1:
+> -			*failed_tests = true;
+> -
+> -			r = malloc(sizeof(*r));
+> -
+> -			memcpy(r->test_name, base_test_name, BUF_LEN);
+> -			if (strlen(r->test_name) < BUF_LEN - 1)
+> -				if (r->test_name[0])
+> -					strncat(r->test_name, DELIMITER,
+> -						BUF_LEN - strlen(r->test_name));
+> -			memcpy(r->test_name + strlen(r->test_name), test_name,
+> -			       BUF_LEN - strlen(r->test_name));
+> -			r->test_name[BUF_LEN] = '\0';
+> -
+> -			r->passed = false;
+> -
+> -			pthread_mutex_lock(&results.mutex);
+> -			igt_list_add_tail(&r->link, &results.list);
+> -			pthread_mutex_unlock(&results.mutex);
+> -
+> -			test_name[0] = '\0';
+> -			break;
+> -		case 0:
+> -			r = malloc(sizeof(*r));
+> -
+> -			memcpy(r->test_name, base_test_name, BUF_LEN);
+> -			if (strlen(r->test_name) < BUF_LEN - 1)
+> -				if (r->test_name[0])
+> -					strncat(r->test_name, DELIMITER,
+> -						BUF_LEN - strlen(r->test_name));
+> -			memcpy(r->test_name + strlen(r->test_name), test_name,
+> -			       BUF_LEN - strlen(r->test_name));
+> -			r->test_name[BUF_LEN] = '\0';
+> -
+> -			r->passed = true;
+> -
+> -			pthread_mutex_lock(&results.mutex);
+> -			igt_list_add_tail(&r->link, &results.list);
+> -			pthread_mutex_unlock(&results.mutex);
+> -
+> -			test_name[0] = '\0';
+> -			break;
+> -		default:
+> -			break;
+> -		}
+> -	}
+> -	return 0;
+> -}
+> -
+> -/**
+> - * igt_ktap_parser:
+> - *
+> - * This function parses the output of a ktap script and passes it to main thread.
+> - */
+> -void *igt_ktap_parser(void *unused)
+> -{
+> -	char record[BUF_LEN + 1], *buf, *suite_name = NULL, *case_name = NULL;
+> -	struct igt_ktap_results *ktap = NULL;
+> -	int fd = ktap_args.fd;
+> -	IGT_LIST_HEAD(list);
+> -	int err;
+> -
+> -	ktap = igt_ktap_alloc(&list);
+> -	if (igt_debug_on(!ktap))
+> -		goto igt_ktap_parser_end;
+> -
+> -	while (err = read(fd, record, BUF_LEN), err > 0) {
+> -		struct igt_ktap_result *r, *rn;
+> -
+> -		/* skip kmsg continuation lines */
+> -		if (igt_debug_on(*record == ' '))
+> -			continue;
+> -
+> -		/* NULL-terminate the record */
+> -		record[err] = '\0';
+> -
+> -		/* detect start of log message, continue if not found */
+> -		buf = strchrnul(record, ';');
+> -		if (igt_debug_on(*buf == '\0'))
+> -			continue;
+> -		buf++;
+> -
+> -		err = igt_ktap_parse(buf, ktap);
+> -
+> -		/* parsing error */
+> -		if (err && err != -EINPROGRESS)
+> -			goto igt_ktap_parser_end;
+> -
+> -		igt_list_for_each_entry_safe(r, rn, &list, link) {
+> -			struct ktap_test_results_element *result = NULL;
+> -			int code = r->code;
+> -
+> -			if (code != IGT_EXIT_INVALID)
+> -				result = calloc(1, sizeof(*result));
+> -
+> -			if (result) {
+> -				snprintf(result->test_name, sizeof(result->test_name),
+> -					 "%s-%s", r->suite_name, r->case_name);
+> -
+> -				if (code == IGT_EXIT_SUCCESS)
+> -					result->passed = true;
+> -			}
+> -
+> -			igt_list_del(&r->link);
+> -			if (r->suite_name != suite_name) {
+> -				free(suite_name);
+> -				suite_name = r->suite_name;
+> -			}
+> -			if (r->case_name != case_name) {
+> -				free(case_name);
+> -				case_name = r->case_name;
+> -			}
+> -			free(r->msg);
+> -			free(r);
+> -
+> -			/*
+> -			 * no extra result record expected on start
+> -			 * of parametrized test case -- skip it
+> -			 */
+> -			if (code == IGT_EXIT_INVALID)
+> -				continue;
+> -
+> -			if (!result) {
+> -				err = -ENOMEM;
+> -				goto igt_ktap_parser_end;
+> -			}
+> -
+> -			pthread_mutex_lock(&results.mutex);
+> -			igt_list_add_tail(&result->link, &results.list);
+> -			pthread_mutex_unlock(&results.mutex);
+> -		}
+> -
+> -		/* end of KTAP report */
+> -		if (!err)
+> -			goto igt_ktap_parser_end;
+> -	}
+> -
+> -	if (err < 0) {
+> -		if (errno == EPIPE)
+> -			igt_warn("kmsg truncated: too many messages. You may want to increase log_buf_len in kmcdline\n");
+> -		else
+> -			igt_warn("error reading kmsg (%m)\n");
+> -	}
+> -
+> -igt_ktap_parser_end:
+> -	free(suite_name);
+> -	free(case_name);
+> -
+> -	if (!err)
+> -		ktap_args.ret = IGT_EXIT_SUCCESS;
+> -
+> -	results.still_running = false;
+> -
+> -	if (ktap)
+> -		igt_ktap_free(ktap);
+> -
+> -	return NULL;
+> -}
+> -
+> -static pthread_t ktap_parser_thread;
+> -
+> -struct ktap_test_results *ktap_parser_start(int fd, bool is_builtin)
+> -{
+> -	IGT_INIT_LIST_HEAD(&results.list);
+> -	pthread_mutex_init(&results.mutex, NULL);
+> -	results.still_running = true;
+> -
+> -	ktap_args.fd = fd;
+> -	ktap_args.is_builtin = is_builtin;
+> -	ktap_args.ret = IGT_EXIT_FAILURE;
+> -	pthread_create(&ktap_parser_thread, NULL, igt_ktap_parser, NULL);
+> -
+> -	return &results;
+> -}
+> -
+> -void ktap_parser_cancel(void)
+> -{
+> -	pthread_cancel(ktap_parser_thread);
+> -}
+> -
+> -int ktap_parser_stop(void)
+> -{
+> -	pthread_join(ktap_parser_thread, NULL);
+> -	return ktap_args.ret;
+> -}
+> diff --git a/lib/igt_ktap.h b/lib/igt_ktap.h
+> index 6f8da3eab6..c422636bfc 100644
+> --- a/lib/igt_ktap.h
+> +++ b/lib/igt_ktap.h
+> @@ -27,8 +27,6 @@
+>  
+>  #define BUF_LEN 4096
+>  
+> -#include <pthread.h>
+> -
+>  #include "igt_list.h"
+>  
+>  struct igt_ktap_result {
+> @@ -45,24 +43,4 @@ struct igt_ktap_results *igt_ktap_alloc(struct igt_list_head *results);
+>  int igt_ktap_parse(const char *buf, struct igt_ktap_results *ktap);
+>  void igt_ktap_free(struct igt_ktap_results *ktap);
+>  
+> -void *igt_ktap_parser(void *unused);
+> -
+> -typedef struct ktap_test_results_element {
+> -	char test_name[BUF_LEN + 1];
+> -	bool passed;
+> -	struct igt_list_head link;
+> -} ktap_test_results_element;
+> -
+> -struct ktap_test_results {
+> -	struct igt_list_head list;
+> -	pthread_mutex_t mutex;
+> -	bool still_running;
+> -};
+> -
+> -
+> -
+> -struct ktap_test_results *ktap_parser_start(int fd, bool is_builtin);
+> -void ktap_parser_cancel(void);
+> -int ktap_parser_stop(void);
+> -
+>  #endif /* IGT_KTAP_H */
+> -- 
+> 2.42.0
+> 
