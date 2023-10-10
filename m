@@ -4,137 +4,152 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7137E81E18
-	for <intel-xe@archiver.kernel.org>; Mon,  9 Oct 2023 23:23:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10BB8CD68ED
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 05:17:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A716810E14F;
-	Mon,  9 Oct 2023 23:23:40 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4AF5F10E14F
- for <intel-xe@lists.freedesktop.org>; Mon,  9 Oct 2023 23:23:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F63A10E15A;
+	Tue, 10 Oct 2023 05:17:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 823BA10E15A
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Oct 2023 05:17:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696893819; x=1728429819;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=l3yaEJ5bgfcCf8RKpcCO+YoIbb8+8bBNs6Hgi25lMQw=;
- b=EZ7/jQ3ppijjXv4B6HbW21aC/DRhZ6zO/Yptd+WviTdOZ/w42KEuunHo
- jf9eEDq1rOjrjR39Pgqk46pNRxhtHUi94lmvpf+9zxAhbQJOKgxvEgKaM
- CrD8nLMA8dus5T4wZM1iPrBLklZIzGOH0x8dFYSmYsTt3AnnFD7lpTQBS
- stdX4hB00FBsZ43gfmA17lo+GcC1/PVsCWKnSccqZYHQwptU7ZUrv8kyM
- Ojhq48v1I8fu9C3gJ/prPwy6Tx/7lAI7fa9w7UcVtv0+xlVmJg6wgJs69
- kwv1i8KwSK4uD6f29kpC2W0wMqj1cs6tOft75uHSmATfPnIadBuLelWEh w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="369339660"
-X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; d="scan'208";a="369339660"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Oct 2023 16:23:32 -0700
+ t=1696915072; x=1728451072;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=HkTYTPPcgkCXnoFG4Pan8G37/gSqOJEUPVIdPQkXNrw=;
+ b=PkB0YJfpHQ84qtqiZ0h5dBYm9uglPKtRrlx2r1fPVLGCXvEQjNHp1YhW
+ /vSr/YTEz35x1VeS5YTYGm8BO1CCkHTt8SeP+AxT1KBKSrpfxfnjCbEYF
+ 5MDzYfexcO5TBB98vAHdFBR9texE1D0hAfv/Blk7vwOA/PJ51D/DWxqH0
+ ckhahGWYnFF+sJf0ZYxrKwAxK8aWBvBoXuwMzzv7Poyn7gY9PdV5ev6Hd
+ cjuylYeXPCf6bRP8xTRgjVxZcTsl4YEzzSAqJM4WRBw95iJc9ZzEafZK3
+ rSKxsnDFrt2D8sOE+Z9uMJ7+rf1+TtXvPvUMO5KrdUyoHasn3+2nDnQTB A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="387149302"
+X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; d="scan'208";a="387149302"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Oct 2023 22:17:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="823536228"
-X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; d="scan'208";a="823536228"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 09 Oct 2023 16:23:30 -0700
-Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10858"; a="788438583"
+X-IronPort-AV: E=Sophos;i="6.03,211,1694761200"; d="scan'208";a="788438583"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 09 Oct 2023 22:17:48 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Mon, 9 Oct 2023 16:23:30 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ 15.1.2507.32; Mon, 9 Oct 2023 22:17:48 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Mon, 9 Oct 2023 16:23:30 -0700
-Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.40) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.32; Mon, 9 Oct 2023 22:17:47 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Mon, 9 Oct 2023 22:17:47 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Mon, 9 Oct 2023 16:23:29 -0700
+ 15.1.2507.32; Mon, 9 Oct 2023 22:17:47 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZepV16aO/3dXMAsiBcqffg9Y5i4DATjmRCzDoe3SX/hS0ff55zCav+NZfe3ZTB5SUYt47lIu89LdBCX3v3wePjnoOd4tQTljP/Hi6M0vUq7jte9Z+lMK3drgGHcwnhFcbt9uRVtukC/ggbNU2VwyZ1haHsqn989IQAZJq5fi5Esfvfwn151OgpQmqw3HlSqA5ceb+qkV61KPP/B5x9FJ4hSiPZHJfDcwIYtUSTsviL4pPlwDu5OjAAYgG3h3X2JRWhquiiBoL+bxzdmnetZaAPmsaRkzxjfxN7rqgo90dv1j63JWT48wzsY5Zgs/Eka8dlVGilyOHtkEAYTU9BdHHg==
+ b=G7vCkv4Sl9+Qi/o9UKyI9xzLRU26sbpyx7xZBS7myn3Em5NYmWGK6mZe6eRdNxEU5DeDqjfJg2j9FfOVCLZQAEHFMF3SPNJYZsMBigeykNdQNwK0Pt6dvJ5f/QV/+0PAcCc/eYFVC46wm/jKy3OxS3lpRuHaBy35xja7lXUOU+6eTCdhp5W8TVUNCa5qTbMks/tMB/04SVLpLz2by+xgPRfJl5usl6uwD7UQF30LOeF44IDVsz1LFQBPSsqy/bLhd5tiN82LjTvViPl5XiS1zAR+dd6WmX0tp2MnMym0aDhKCGmKAc9Hj7FTbo+k4aXq12dDt1I/7DUy5CXhncDMmg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SUyTKVt4ZLubQ6ROuN8WmSrqXsnNX6SMEsfAkQe7KMc=;
- b=AqEgDMJHR661SFvkdODVoqVqWb6GYeAKwsZQMCcGhB0Hu+mm92CfSt/hnRayLIrfpm2bakcCzBRpkDW8IGuTV1CYsTRY6H1tyIvzA+lipT8HF/T24jPyx/4ZjIN1jh1eArNfpHqLuxqvk0lpq6fbf4O4WYScgYaXUhZpSN3tfkTEOzyInx+XKm4ScFDkOMtt/ufrr4g8XLo0i+zsUyP0LB3UqR59/FxEBCz49PBeKDQsO0eW5/bVNdWPMU4HOwcs4YfJPmPnN4IxhwovU99M8J83qoUCTCbnhDCHCtA6G+/c2FfsTkkSvPCErc8OfxdIM+9vYW1qSb34ZexiBd/ZNw==
+ bh=d2L/7G2PellL2J1ue5d5BKqc79u7gyBuEZTL00DzSKg=;
+ b=CCL+pvipghj59QbazLbiLdUO2x9eF0p3DWi9XoZUAMJTu5xvo2XpreIYOeo/6btUxCvMrO9iKhStWqyRZVrho1RfpMR1VUu/p1j35cAZwBo8B40wQcpmPIjJe4BOuDiYVJ4S/22joNUsOMVzLJDA9o0RkqnZywec5EkfGL4v5XTIthLcEJvx7X2EL+Kg88IwIhK7yvsIts12ygT3vZ4Y8UV1natkMDoXzrpXKKPpd/2DcFjII7toLVFWeBfFiCYyi9GfFbIs2gEGC2Q3xO9IjbQ9HO/4JgxrYwvVfLt36uElZoBw/FmAQFDEotuCXtNqatrmYhkhh2RcaX9mTsP+Jg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- SA1PR11MB5825.namprd11.prod.outlook.com (2603:10b6:806:234::5) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6863.37; Mon, 9 Oct 2023 23:23:27 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::f957:c15a:9c34:71db]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::f957:c15a:9c34:71db%3]) with mapi id 15.20.6863.032; Mon, 9 Oct 2023
- 23:23:27 +0000
-Date: Mon, 9 Oct 2023 16:23:23 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20231009232323.GE5757@mdroper-desk1.amr.corp.intel.com>
-References: <20231009202149.245718-1-jose.souza@intel.com>
- <20231009202149.245718-3-jose.souza@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231009202149.245718-3-jose.souza@intel.com>
-X-ClientProxiedBy: BYAPR06CA0049.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::26) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com (2603:10b6:408:103::8)
+ by SN7PR11MB7993.namprd11.prod.outlook.com (2603:10b6:806:2e5::8)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Tue, 10 Oct
+ 2023 05:17:45 +0000
+Received: from BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::c555:e954:7fef:f646]) by BN9PR11MB5530.namprd11.prod.outlook.com
+ ([fe80::c555:e954:7fef:f646%7]) with mapi id 15.20.6863.032; Tue, 10 Oct 2023
+ 05:17:45 +0000
+Message-ID: <ed0e85f6-5149-1c91-5af8-bb40ee7826de@intel.com>
+Date: Tue, 10 Oct 2023 10:47:36 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Content-Language: en-US
+To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+References: <20231009062209.4009360-1-riana.tauro@intel.com>
+ <7c044a59-be46-4945-961e-1fb42dc28d6a@intel.com>
+From: "Nilawar, Badal" <badal.nilawar@intel.com>
+In-Reply-To: <7c044a59-be46-4945-961e-1fb42dc28d6a@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0010.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:95::11) To BN9PR11MB5530.namprd11.prod.outlook.com
+ (2603:10b6:408:103::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|SA1PR11MB5825:EE_
-X-MS-Office365-Filtering-Correlation-Id: b0ee356a-a6a4-4ea7-af72-08dbc91ebd66
+X-MS-TrafficTypeDiagnostic: BN9PR11MB5530:EE_|SN7PR11MB7993:EE_
+X-MS-Office365-Filtering-Correlation-Id: 41896241-fa78-48cb-b900-08dbc9503c99
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: PC06O7a2JUEEPG/eLob8sn8iKZI68K1fhKa6gjMShbCESRaDw/7Ty8/mQSgUtMlkgDU/EjeVPaaj1hOhayRhXyt9Qo2oVNvoE9r0Oik17d5tFB30rhKkbIy2RfjsbgVXaYRBbU26SHxNLczihqiMLZSsUA2jgksB6gnq6HD7ceRQ578rDNIsuuQblT/yNkuoU7BamMurSDyEgF+uIKvAdDoe5Cv2LLv4NiYFBvofIUjkB018F7HiVCoUj05JSeogOJPdJ3VwevEG+0a40EcADQPEzmnQn2TNYPMORkz6wIFouEPpxchrGCO+dqtr7HforS4nVm6+ZsgL41yAP4cyaG74EKijWtDCl2Ozc7pz0RRALczgVGsX33PWISBT42q4PAsdjEDAPsWSOlbsDqDoomfLRbNW2JoqKTGOjQkIgxs3gRjwnU/T858Goio1EowLu52EHtDJj9ZXljaKdmH3Y1yP5qDvXy+z3HkkyLpSSXprCP1rNll9BxNa63zOYKDFTnp52ygkMK+YOYdQhdVjB8JkGRlEeqnLHqsVIV+YpIF+euWyznLDgT7zKliasc+M
+X-Microsoft-Antispam-Message-Info: K1XYDkQKFRh+CJcTFjmYexm+6/F1TMu/7xc1FbW+srf55NIDsFcCuvCAscuKiMuRfYQvaQxYZwguMrYjcJYfn9DCdY/IhJ5uL1Z7Ja6iNMsU0pUu5NHV+t8QzecSF8YVf+7bVAbiymhSpFR+xTIEm31ijDYrarpMzD2TKliKJfOWxG+E0R2YCSHpNOC285PlOT80IHnthleDgdCPSAXMH4s8V299c9TpVVYi0VQCCdBwVPSexiNLiyibORlhFZcbsZKMCRlkUaD1KsP+3JKG7BgBwBuVY4l5HI+zoXW1gLTqOhMSAQQC1cgLOHzr8jP1tbwQU2MU4qvxyWgIb7otTXrmZECSAdzxZdf2y/8HFZZJarzD21Em55XxWEcrL5Q2fnFcWpQb3CqW7VWi7U8fLqujPN9VYmf459b2b05BbmQ4WqkRxdrDnsmuCdJatDub2lEz3PVO7nBlltxCK3fCGFdBeNf4wbEKNmFJZkm0JD5OzSr2TKusdTukfQ64Jd0pxJgzwCWjNzQAI+DbsZjaXaHx3li7bBDHZaI0cKHzDXha4Z8WKyK05H1BZS/io3iW8sP2mNmRkJA28++T0sPb1ktlg2bHuU/1o5pC48153TZ3JD/1KzYkMQZvmPXX9rdc
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(136003)(366004)(39860400002)(346002)(376002)(230922051799003)(451199024)(64100799003)(1800799009)(186009)(6636002)(2906002)(1076003)(107886003)(83380400001)(26005)(66556008)(66476007)(316002)(66946007)(8936002)(6862004)(8676002)(5660300002)(4326008)(41300700001)(6666004)(6512007)(6506007)(30864003)(6486002)(478600001)(33656002)(82960400001)(86362001)(38100700002);
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5530.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(136003)(366004)(346002)(376002)(396003)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(2616005)(83380400001)(5660300002)(26005)(66556008)(66476007)(66946007)(8676002)(6666004)(53546011)(6512007)(41300700001)(2906002)(478600001)(6486002)(316002)(6506007)(8936002)(36756003)(82960400001)(86362001)(31696002)(38100700002)(31686004)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?I3Puw/SwMIIrUVsef8cpl51pZeiGiwm756b4EnjN0COGiYogJ/eyKZBfO2?=
- =?iso-8859-1?Q?/8Pg89RMiGvwVpiLfoL/0ZYTAB9zSX/mpxXoKcYt06rhchCQSkqlE/yK5J?=
- =?iso-8859-1?Q?G66hu37qh0CXi95KGD3sDF+HrzsqQuyIlHjsgPU72mYhHXGkn98F+EoJ4k?=
- =?iso-8859-1?Q?nKny8hfLDPh8O7+LIBJUUaXdUi16mxAa4IxsKT21yDrfbzZ5pW9wIn2NLi?=
- =?iso-8859-1?Q?ATbbI4dtmycYLa/pRbpftZ1liFaxcTtAaV2dRd+QV6AytbdUfuO+9MZlh/?=
- =?iso-8859-1?Q?hx3tKxJqQwi16CjXBj5aZ9jFR7pu/fPgI8j6LeLAdIH4IhjOW3NWkDJCU8?=
- =?iso-8859-1?Q?36ySf3ErwSzXYescYLlVd5hRtlRnu52Kg1f/zoVeyDzZLxN0KgF5UQxbW3?=
- =?iso-8859-1?Q?fZDnZSimaF56VP7zCZwDy/HvIWiMeNCRflEOqcWcw+8ZLclul34KwhsA2u?=
- =?iso-8859-1?Q?/72g+oX9PZ4Mat7MxCWah/kZOmmO6l41UyVgmex8g95TjTKED9s38W9Syd?=
- =?iso-8859-1?Q?3RNv6wS4gUCA9CZNgkm3JC0kUlXHulTEmNluXOZTiOWBODsC5XAyvWUOUG?=
- =?iso-8859-1?Q?Gtl7qkaJhEgDKYI+z5C7kb/UNPpIivdq0Kp6D7L1jj0CIl+FZvf0Io0P6I?=
- =?iso-8859-1?Q?6vthzf9Jr+OVDS4o3ak72Ln9SSdvKbz7XOuTfJ7BtWMqizra/cApNV0wW3?=
- =?iso-8859-1?Q?ng2uldMiNo53LR98FBvEk87kzEoVrQY34zmBowL09HU/5ZoYskC/WPnUM1?=
- =?iso-8859-1?Q?JNpdRg3oGDHQA0w7fR5wwwDA8ElnqXZAPXrN+W7LUd6HvNJ7diIXsDOkJr?=
- =?iso-8859-1?Q?cJ5qRC3G9d9ijQ6aR4HtyXqdp3V3lQw5vOhw67Qg1/dW2XesSinv00nYVR?=
- =?iso-8859-1?Q?Dl9BK6dr8AtuvrykKklzRqeuMhmfUZ6O7Ko7OCAhD0RI+uD3BeJzZf5NC2?=
- =?iso-8859-1?Q?jE9zEwCZpMDa/cpgoOdfnk+tgMNc9daMvHop/BNh5myncPRmaphUIZR7WT?=
- =?iso-8859-1?Q?WRn2WM1ljBaGeNdhFYLVN/gkRWi0g/IC8JXLj+xIsrfEpx0QPjElpaYKiL?=
- =?iso-8859-1?Q?T6H/RVUoojlKWWCHWrt8Wuv1FtiIBmD8u+Lph8zzoSaYKElOF0W/KziKvh?=
- =?iso-8859-1?Q?ekIZcOmvMzF6nh9NKupocNPJp+EEYyPCSjR73a/oMxPEetJzqeIWRU6u3B?=
- =?iso-8859-1?Q?NFyXIrD0zYDc48kJIxIFwFGGJqVX52v1xEh/Xkw4W27hY/cCwLANs5ZSGU?=
- =?iso-8859-1?Q?Mc36p53KPKdJUFyoM7mvwChjnpeDRcNjABsGixSGyu9+dQpwevAH7M6j9J?=
- =?iso-8859-1?Q?lqW135nLnE950qmwtqShqAtNC8l1k0kenaOnD/3NHNIFtrY18COccUl0fr?=
- =?iso-8859-1?Q?p5+LY9ngy/2AMcsYoKHhoaWEgEw9BOs1L1ccChUjhqyMDbXOnvvla8PhWy?=
- =?iso-8859-1?Q?ritI9+QOIHBR77bpDW5rLCRABzOB038WFI22P2PvKODW7N/dsyNC7ICh2b?=
- =?iso-8859-1?Q?xS71cJqPsGpPm/6tPsnJ4rI28z1FTiNUOOyhQZkhvSamQal4ubYiU2zwDi?=
- =?iso-8859-1?Q?l1vnrZ3MVEsRJOPxE2dzSN/sU2KeZTYYR8cwCRVP+ZJMpECWW/0TMsUj9A?=
- =?iso-8859-1?Q?FcqKUuh9vqYcFTL1GzEaoSgC4oLuy59tq33zUaR+AGPzR8OMygWAqplQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b0ee356a-a6a4-4ea7-af72-08dbc91ebd66
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TUlDSk1hRkdFbzFBc0R5WGdiNjFXMG14Y3ZvL3B2cmZ6Y0hxMnp5Q3IxMlVz?=
+ =?utf-8?B?eExjQXg3WDIxQVRlY2tqMkNBSE0rN3dScnRuOEt5UTJZZUx1dUJ4dUdDdG9i?=
+ =?utf-8?B?c2Vld041UlJPL0VxQ2NvV2R5bjNWc1A2VUYzTkd5WXppWHV3YkxEb25GTFRw?=
+ =?utf-8?B?VTBGZGVCL3dmeHJySVVYWnhCUEU3Mm1sV0N6c0hJOWh1bTFTREY0allLMmpi?=
+ =?utf-8?B?UzJIa0tHSlVmUHpubWRkNlFKMTQ0cGN0MFYwcTYvQzRtenAzT0xrNW1ncmZC?=
+ =?utf-8?B?N0ZQbkdudFJKenE3NUx5cHlqaDdER0ZkSkthQ05UZXNuTTRaZFd1ZkQ1N3RM?=
+ =?utf-8?B?ek9DQ3BNR2JZcmRSaFdCelNmTWJBWTBFTXJQUkV5Y3llcEtFcnB2N00ydVhZ?=
+ =?utf-8?B?bjdHVWxHaTBuVWtVU0p5aTBJQ1pETW5hYTFhZk5ZNUZxK0s4MkRxRjlFVmg4?=
+ =?utf-8?B?dUg3UWhiTCs4Sk9RVGxaOGxhNHA3UU5LRWo0Mzc0TWJtd3VwSjk5OGw2MmNN?=
+ =?utf-8?B?QnFpajVYKzFWeWRMaUE2UjZYU2dGY1R6alVLa1JKZlY3b2xsUFEvM2pCNEZX?=
+ =?utf-8?B?bk9tTWw4dHM0cUdhcUdpdUt1SE9zNjF1VS8wcGJWdi8xQll6UU8rTU9YaFl4?=
+ =?utf-8?B?UjFlYVZzTkNrSytTa3c2R0dwS21uaHY5aWxKbmRnbWRLT25La3BGRS9Ca2Ez?=
+ =?utf-8?B?bzdLZ1lXRWw1V2o2YStNQjN0RFY3TmVjVEtLR1FaeTFId01IcXZKSkpZR0Y5?=
+ =?utf-8?B?elBYNVFITlE0VEQ0TDl4c3ZmOThFNElxWG1FdDR6MCt1bFlyejkzZlp5U3Zy?=
+ =?utf-8?B?UkRtdXlvUDRVSUJSWm1HSGtQWFJVQ0MraXMvUit1QmY3UUxBNzhHNVoyT2JO?=
+ =?utf-8?B?NHFPZERTT20yeGk5eWYxZjhZOUE5VWxaQ0QvQW9hL09GNzcraFk5SGxxbkhE?=
+ =?utf-8?B?ZlR1YlozNEl3RnpoaWNkWEZDTFQ3SEkycXIzbFFTVXYvVmsySXR5WHRnaTFy?=
+ =?utf-8?B?NHVPM3JHU2NYcnYzajIwWnFIc0NIMDU0Q3JKVkNsUDI2b2lxdC9YRDkvcGFl?=
+ =?utf-8?B?aTQ5YjdzL3hrYkxNQTk2MVIyNEJFSEVUL0FKNk5YVDZYQzZBVkZCZGJVenN6?=
+ =?utf-8?B?c3BudFY0OGVtcmlYd2FDK0tacldSdVJJbGl3cEhjdjFlOWhYbDcwd0dFV1Nz?=
+ =?utf-8?B?RHp1RkJQTTA1RGpNZEMyRzVtRlI0c2VQbWFWU2czakRZQ3E1ekl2azdNVkt2?=
+ =?utf-8?B?TUp5dUNXb1hNVkRYM3lzVWJxYnI2Zk9YUzMrZkJjaHUzWUwzT0E3bkxHbmRQ?=
+ =?utf-8?B?Z2NacThWQWlkYWl0OWF1WjhiUmxMdXU0WWYwelZBNmFWZ1BZYnFxeDhyQnJs?=
+ =?utf-8?B?REJrVFF1UGdRK3YvdTU2K1YxSll2Ly8vczRNU3Y5MStnNExobGFLSm1vQzhn?=
+ =?utf-8?B?dVhTeS9CSnNDUFZvZnR5T2Y1cG96Z3pvNHE2cTVmelRnK0FqMklzMVpOOUZZ?=
+ =?utf-8?B?a2ZCT0kwakVqbnd0UkE5MG13MHVXbDZPNERKOUo4NmVFdWdJV3RZNmgvR20z?=
+ =?utf-8?B?N3VBalZsbHhCd2JHVUJaMGxQQUxXQWp0Z1ZiQUN2cHNJcTV2SVpsZ3ovcVBq?=
+ =?utf-8?B?dlV1R1dkYS9lSU91bDFhbGRGMy91dk1lRTZucmUyTDVuV2tDODlseW1MMXJm?=
+ =?utf-8?B?WmhUUFM5NWpaRzBWN3l2TTVMeTZLL0JxL0QxZGk1MVRGaGpWOFdVWUk5NUwx?=
+ =?utf-8?B?aHZtam9uSlJHZkJSQTdFdW5XZStGaUVHQVlFNjlKSmgwc0N2YXdOL3VRYjRw?=
+ =?utf-8?B?SzNMR3ZjUkFnbTZwRWczTTZPZHhTVGRka1ZPcEp3eCt3U01aMkpVV0tBS2ow?=
+ =?utf-8?B?Wm54RjJrTkl0WlY5ZXFvc1N6SGlZbEYwdDFodys2UW9Wb1JTWERwVjhOZFpS?=
+ =?utf-8?B?NW9odUREeUtvTW92di9IdnhFbHVjSDlkQXFGQjBneWl2ME5kbUlFbE05V2FT?=
+ =?utf-8?B?clZwQzgzS2J2S284MmJmcXlPOEIwd2RhRU45NVFMcXNNbVFKUEFjdmFFYTIz?=
+ =?utf-8?B?dlRDUXNxWG9SRk1Gd2RSUW5UVjVyaXBLeTFVVyt3OW9xWVlUcXZ1dVpkUWFK?=
+ =?utf-8?B?RllDZFpCSnZzTUx2a3VQNWRIekNQVk5vczZjWUdJcEUxSFJiTlNzVVNtakty?=
+ =?utf-8?B?bFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 41896241-fa78-48cb-b900-08dbc9503c99
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5530.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2023 23:23:26.8792 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2023 05:17:45.7234 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XsuwzRj/YAsqE58UN91An9belkvHxEttQxp6eO8b4XZu+E7HVAjNC9GMDdnXj2//QqlD5DbuIkQPuJ1E17B49HTCf4o55spobFKUjkxgIaU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5825
+X-MS-Exchange-CrossTenant-UserPrincipalName: Iw9J36CvAa2p5NrStdoNMMSL17Xf0uHOe5SJFbHhPKy7qw5nXdFynu+GTu5afo+Ovoe0ifZBMtI0W6AhsKpDOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7993
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 3/3] drm/xe: Add INSTDONE registers to
- devcoredump
+Subject: Re: [Intel-xe] [PATCH] RFC drm/xe: Add mem_access_get in
+ gem_create_ioctl
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,302 +161,162 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, Oct 09, 2023 at 01:21:49PM -0700, José Roberto de Souza wrote:
-> This registers contains important information that can help with debug
-> of GPU hangs.
-> 
-> While at it also fixing the double line jump at the end of engine
-> registers for CCS engines.
-> 
-> v2:
-> - print other INSTDONE registers
-> 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_engine_regs.h |   1 +
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h     |   9 ++
->  drivers/gpu/drm/xe/xe_gt_types.h         |   3 +-
->  drivers/gpu/drm/xe/xe_hw_engine.c        | 107 ++++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_hw_engine_types.h  |  10 +++
->  5 files changed, 126 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> index 35dd4837dd75f..32465e384fc24 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> @@ -32,6 +32,7 @@
->  #define RING_ACTHD_UDW(base)			XE_REG((base) + 0x5c)
->  #define RING_DMA_FADD_UDW(base)			XE_REG((base) + 0x60)
->  #define RING_IPEHR(base)			XE_REG((base) + 0x68)
-> +#define RING_INSTDONE(base)			XE_REG((base) + 0x6c)
->  #define RING_ACTHD(base)			XE_REG((base) + 0x74)
->  #define RING_DMA_FADD(base)			XE_REG((base) + 0x78)
->  #define RING_HWS_PGA(base)			XE_REG((base) + 0x80)
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index cd1821d96a5d8..c6650124ae6a6 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -105,6 +105,8 @@
->  #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
->  #define   FF_MODE2_TDS_TIMER_128		REG_FIELD_PREP(FF_MODE2_TDS_TIMER_MASK, 4)
->  
-> +#define XEHPG_INSTDONE_GEOM_SVG			XE_REG_MCR(0x666c)
-> +
->  #define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
->  #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
->  
-> @@ -117,6 +119,10 @@
->  
->  #define COMMON_SLICE_CHICKEN1			XE_REG(0x7010)
->  
-> +#define SLICE_COMMON_INSTDONE			XE_REG(0x7100)
-> +#define SLICE_COMMON_INSTDONE_EXTRA		XE_REG(0x7104)
-> +#define SLICE_COMMON_INSTDONE_EXTRA2		XE_REG(0x7108)
-> +
->  #define COMMON_SLICE_CHICKEN4			XE_REG(0x7300, XE_REG_OPTION_MASKED)
->  #define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
->  
-> @@ -299,6 +305,9 @@
->  #define XE_OAG_BLT_BUSY_FREE			XE_REG(0xdbbc)
->  #define XE_OAG_RENDER_BUSY_FREE			XE_REG(0xdbdc)
->  
-> +#define SAMPLER_INSTDONE			XE_REG_MCR(0xe160)
-> +#define ROW_INSTDONE				XE_REG_MCR(0xe164)
-> +
->  #define SAMPLER_MODE				XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
->  #define   ENABLE_SMALLPL			REG_BIT(15)
->  #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
-> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-> index d4310be3e1e7c..d566df56fb8ea 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_types.h
-> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
-> @@ -25,9 +25,10 @@ enum xe_gt_type {
->  };
->  
->  #define XE_MAX_DSS_FUSE_REGS	3
-> +#define XE_MAX_DSS_FUSE_BITS	(32 * XE_MAX_DSS_FUSE_REGS)
->  #define XE_MAX_EU_FUSE_REGS	1
->  
-> -typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(32 * XE_MAX_DSS_FUSE_REGS)];
-> +typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(XE_MAX_DSS_FUSE_BITS)];
->  typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(32 * XE_MAX_EU_FUSE_REGS)];
->  
->  struct xe_mmio_range {
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-> index 37b3ee1268090..6433016fa10f8 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> @@ -16,6 +16,7 @@
->  #include "xe_execlist.h"
->  #include "xe_force_wake.h"
->  #include "xe_gt.h"
-> +#include "xe_gt_mcr.h"
->  #include "xe_gt_topology.h"
->  #include "xe_hw_fence.h"
->  #include "xe_irq.h"
-> @@ -655,6 +656,45 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
->  		xe_hw_fence_irq_run(hwe->fence_irq);
->  }
->  
-> +static void
-> +xe_he_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
-> +				       struct xe_hw_engine_snapshot *snapshot)
-> +{
-> +	struct xe_gt *gt = hwe->gt;
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	unsigned int dss;
-> +
-> +	snapshot->reg.instdone.ring = hw_engine_mmio_read32(hwe, RING_INSTDONE(0));
-> +
-> +	if (snapshot->hwe->class != XE_ENGINE_CLASS_RENDER)
-> +		return;
-> +
-> +	snapshot->reg.instdone.slice_common =
-> +		xe_mmio_read32(gt, SLICE_COMMON_INSTDONE);
-> +	snapshot->reg.instdone.slice_common_extra =
-> +		xe_mmio_read32(gt, SLICE_COMMON_INSTDONE_EXTRA);
-> +	snapshot->reg.instdone.slice_common_extra2 =
-> +		xe_mmio_read32(gt, SLICE_COMMON_INSTDONE_EXTRA2);
-> +
-> +	for (dss = 0; dss < XE_MAX_DSS_FUSE_BITS; dss++) {
-
-Drive-by comment:  Looping over all DSS is probably going to be needed
-in other parts of the driver as well in the future (probably perf, eu
-stall sampling, etc.).  It would be best if we could avoid open-coded
-loops like this that require the calling code to know about
-XE_MAX_DSS_FUSE_BITS (which is tied to our internal bitmap
-representation of fusing).  I think it would be better if xe_gt_mcr.h
-could provide a general DSS-looping iterator that hides those details
-and can be more easily re-used elsewhere in the driver, similar to what
-i915 does with the for_each_ss_steering() iterator.  Then if we change
-the underlying bitmap representation, we only need to update the one
-iterator instead of tracking down all the various loops that need to be
-updated.
 
 
-Matt
-
-> +		int group, instance;
-> +
-> +		if (!xe_gt_has_geometry_dss(gt, dss))
-> +			continue;
-> +
-> +		xe_gt_mcr_get_dss_steering(gt, dss, &group, &instance);
-> +		snapshot->reg.instdone.sampler[dss] =
-> +			xe_gt_mcr_unicast_read(gt, SAMPLER_INSTDONE, group, instance);
-> +		snapshot->reg.instdone.row[dss] =
-> +			xe_gt_mcr_unicast_read(gt, ROW_INSTDONE, group, instance);
-> +
-> +		if (GRAPHICS_VERx100(xe) >= 1255)
-> +			snapshot->reg.instdone.geom_svg[dss] =
-> +				xe_gt_mcr_unicast_read(gt, XEHPG_INSTDONE_GEOM_SVG,
-> +						       group, instance);
-> +	}
-> +}
-> +
->  /**
->   * xe_hw_engine_snapshot_capture - Take a quick snapshot of the HW Engine.
->   * @hwe: Xe HW Engine.
-> @@ -679,10 +719,30 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
->  	if (!snapshot)
->  		return NULL;
->  
-> +	/* Because XE_MAX_DSS_FUSE_BITS is defined in xe_gt_types.h and it
-> +	 * includes xe_hw_engine_types.h the length of this 3 registers can't be
-> +	 * set in struct xe_hw_engine_snapshot, so here doing additional
-> +	 * allocations.
-> +	 */
-> +	len = (XE_MAX_DSS_FUSE_BITS * sizeof(u32));
-> +	snapshot->reg.instdone.sampler = kzalloc(len, GFP_ATOMIC);
-> +	snapshot->reg.instdone.row = kzalloc(len, GFP_ATOMIC);
-> +	snapshot->reg.instdone.geom_svg = kzalloc(len, GFP_ATOMIC);
-> +	if (!snapshot->reg.instdone.sampler ||
-> +	    !snapshot->reg.instdone.row ||
-> +	    !snapshot->reg.instdone.geom_svg) {
-> +		xe_hw_engine_snapshot_free(snapshot);
-> +		return NULL;
-> +	}
-> +
->  	len = strlen(hwe->name) + 1;
->  	snapshot->name = kzalloc(len, GFP_ATOMIC);
-> -	if (snapshot->name)
-> -		strscpy(snapshot->name, hwe->name, len);
-> +	if (!snapshot->name) {
-> +		xe_hw_engine_snapshot_free(snapshot);
-> +		return NULL;
-> +	}
-> +
-> +	strscpy(snapshot->name, hwe->name, len);
->  
->  	snapshot->hwe = hwe;
->  	snapshot->logical_instance = hwe->logical_instance;
-> @@ -730,6 +790,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
->  	snapshot->reg.ring_dma_fadd =
->  		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
->  	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, RING_IPEHR(0));
-> +	xe_he_engine_snapshot_instdone_capture(hwe, snapshot);
->  
->  	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
->  		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
-> @@ -737,6 +798,40 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
->  	return snapshot;
->  }
->  
-> +static void
-> +xe_hw_engine_snapshot_instdone_print(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p)
-> +{
-> +	struct xe_gt *gt = snapshot->hwe->gt;
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	unsigned int dss;
-> +
-> +	drm_printf(p, "\tRING_INSTDONE: 0x%08x\n", snapshot->reg.instdone.ring);
-> +
-> +	if (snapshot->hwe->class != XE_ENGINE_CLASS_RENDER)
-> +		return;
-> +
-> +	drm_printf(p, "\tSC_INSTDONE: 0x%08x\n",
-> +		   snapshot->reg.instdone.slice_common);
-> +	drm_printf(p, "\tSC_EXTRA_INSTDONE: 0x%08x\n",
-> +		   snapshot->reg.instdone.slice_common_extra);
-> +	drm_printf(p, "\tSC_EXTRA2_INSTDONE: 0x%08x\n",
-> +		   snapshot->reg.instdone.slice_common_extra2);
-> +
-> +	for (dss = 0; dss < XE_MAX_DSS_FUSE_BITS; dss++) {
-> +		if (!xe_gt_has_geometry_dss(gt, dss))
-> +			continue;
-> +
-> +		drm_printf(p, "\tSAMPLER_INSTDONE[%u]: 0x%08x\n", dss,
-> +			   snapshot->reg.instdone.sampler[dss]);
-> +		drm_printf(p, "\tROW_INSTDONE[%u]: 0x%08x\n", dss,
-> +			   snapshot->reg.instdone.row[dss]);
-> +
-> +		if (GRAPHICS_VERx100(xe) >= 1255)
-> +			drm_printf(p, "\tGEOM_SVGUNIT_INSTDONE[%u]: 0x%08x\n",
-> +				   dss, snapshot->reg.instdone.geom_svg[dss]);
-> +	}
-> +}
-> +
->  /**
->   * xe_hw_engine_snapshot_print - Print out a given Xe HW Engine snapshot.
->   * @snapshot: Xe HW Engine snapshot object.
-> @@ -785,10 +880,13 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
->  	drm_printf(p, "\tDMA_FADDR: 0x%08x_%08x\n",
->  		   snapshot->reg.ring_dma_fadd_udw,
->  		   snapshot->reg.ring_dma_fadd);
-> -	drm_printf(p, "\tIPEHR: 0x%08x\n\n", snapshot->reg.ipehr);
-> +	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
-> +	xe_hw_engine_snapshot_instdone_print(snapshot, p);
-> +
->  	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
->  		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
->  			   snapshot->reg.rcu_mode);
-> +	drm_puts(p, "\n");
->  }
->  
->  /**
-> @@ -803,6 +901,9 @@ void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot)
->  	if (!snapshot)
->  		return;
->  
-> +	kfree(snapshot->reg.instdone.sampler);
-> +	kfree(snapshot->reg.instdone.row);
-> +	kfree(snapshot->reg.instdone.geom_svg);
->  	kfree(snapshot->name);
->  	kfree(snapshot);
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> index 71c0a0169e62a..0a10a79962c97 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> @@ -221,6 +221,16 @@ struct xe_hw_engine_snapshot {
->  		u32 ipehr;
->  		/** @rcu_mode: RCU_MODE */
->  		u32 rcu_mode;
-> +		/** @ring_instdone: RING_INSTDONE */
-> +		struct {
-> +			u32 ring;
-> +			u32 slice_common;
-> +			u32 slice_common_extra;
-> +			u32 slice_common_extra2;
-> +			u32 *sampler;
-> +			u32 *row;
-> +			u32 *geom_svg;
-> +		} instdone;
->  	} reg;
->  };
->  
-> -- 
-> 2.42.0
+On 09-10-2023 14:08, Ghimiray, Himal Prasad wrote:
+> Hi Riana,
 > 
 > 
+> On 09-10-2023 11:52, Riana Tauro wrote:
+>> gem_create_ioctl does not have a mem_access_get till it reaches
+>> xe_bo_move.
+>>
+>> When the device is runtime suspended (in D3cold), new bo created
+>> as part of gem_create_ioctl steals the buddy block of the kernel objects
+>> that are yet to be restored as part of runtime resume (D3cold). The runtime
+>> resume triggers only in xe_bo_move. While trying to restore the kernel
+>> objects it finds the buddy block is not free.
+>> Tries to evict the new bo which is already locked causing a deadlock
+>>
+>> Prevent deadlock by taking mem_access get early in the ioctl
+>>
+>> 	INFO: task kworker/1:1:44 blocked for more than 61 seconds.
+>> 	"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+>> 	task:kworker/1:1     state:D stack:25272 pid:44 ppid:2  flags:0x00004000
+>> 	[  +0.008395] Workqueue: pm pm_runtime_work
+>> 	[  +0.004068] Call Trace:
+>> 	[  +0.002486]  <TASK>
+>> 	[  +0.002161]  __schedule+0x6f5/0x1640
+>> 	[  +0.003702]  ? __pfx___schedule+0x10/0x10
+>> 	[  +0.004133]  ? __ww_mutex_lock.constprop.0+0xf4f/0x1e60
+>> 	[  +0.005330]  schedule+0x92/0x120
+>> 	....
+>> 	[  +0.003922]  ttm_bo_mem_space+0x46d/0x490 [ttm]
+>> 	[  +0.004586]  xe_bo_restore_pinned+0x200/0x320 [xe]
+>> 	[  +0.005007]  ? __pfx_xe_bo_restore_pinned+0x10/0x10 [xe]
+>> 	[  +0.005503]  ? __pfx__printk+0x10/0x10
+>> 	[  +0.003791]  ? __pfx_do_raw_spin_lock+0x10/0x10
+>> 	[  +0.004597]  xe_bo_restore_kernel+0x2e4/0x470 [xe]
+>> 	[  +0.005521]  xe_pm_runtime_resume+0x20a/0x750 [xe]
+>> 	....
+>> 	INFO: task xe_mmap:1836 blocked for more than 61 seconds.
+>> 	"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+>> 	task:xe_mmap   state:D stack:23600 pid:1836  ppid:1831 flags:0x00004002
+>> 	[  +0.008395] Call Trace:
+>> 	[  +0.002486]  <TASK>
+>> 	[  +0.003271]  rpm_resume+0x341/0xad0
+>> 	[  +0.005269]  __pm_runtime_resume+0x53/0xc0
+>> 	[  +0.004152]  xe_device_mem_access_get+0x2b/0x60 [xe]
+>> 	[  +0.005172]  xe_bo_move+0x2ef/0x9f0 [xe]
+>> 	[  +0.004131]  ttm_bo_handle_move_mem+0x15a/0x230 [ttm]
+>>
+>> Link:https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/256
+>>
+>> Cc: Matthew Auld<matthew.auld@intel.com>
+>> Signed-off-by: Riana Tauro<riana.tauro@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_bo.c | 22 +++++++++++++++++-----
+>>   1 file changed, 17 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+>> index 61789c0e88fb..e453a5264c82 100644
+>> --- a/drivers/gpu/drm/xe/xe_bo.c
+>> +++ b/drivers/gpu/drm/xe/xe_bo.cxe_device_mem_access_get 
+>> @@ -630,6 +630,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>>   	bool tt_has_data;
+>>   	bool needs_clear;
+>>   	int ret = 0;
+>> +	bool device_awake;
+>>   
+>>   	/* Bo creation path, moving to system or TT. No clearing required. */
+>>   	if (!old_mem && ttm) {
+>> @@ -712,7 +713,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>>   	xe_tile_assert(tile, tile->migrate);
+>>   
+>>   	trace_xe_bo_move(bo);
+>> -	xe_device_mem_access_get(xe);
+>> +
+>> +	device_awake = xe_device_mem_access_get_if_ongoing(xe);
+> 
+> IIRC xe_bo_move is called in eviction path too. Won't it be safe to use 
+> xe_device_mem_access_get here too ?
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+Agreed, xe_bo_move is being called from ttm_bo_handle_move_mem which is 
+again called from multiple places. To cover those places its better to 
+keep xe_device_mem_access_get.
+
+Regards,
+Badal
+> 
+> BR
+> 
+> Himal
+> 
+>>   
+>>   	if (xe_bo_is_pinned(bo) && !xe_bo_is_user(bo)) {
+>>   		/*
+>> @@ -735,7 +737,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>>   
+>>   				if (XE_WARN_ON(new_mem->start == XE_BO_INVALID_OFFSET)) {
+>>   					ret = -EINVAL;
+>> -					xe_device_mem_access_put(xe);
+>> +					if (device_awake)
+>> +						xe_device_mem_access_put(xe);
+>>   					goto out;
+>>   				}
+>>   
+>> @@ -753,7 +756,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>>   						bo, bo, old_mem, new_mem);
+>>   		if (IS_ERR(fence)) {
+>>   			ret = PTR_ERR(fence);
+>> -			xe_device_mem_access_put(xe);
+>> +			if (device_awake)
+>> +				xe_device_mem_access_put(xe);
+>>   			goto out;
+>>   		}
+>>   		if (!move_lacks_source) {
+>> @@ -778,10 +782,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+>>   		dma_fence_put(fence);
+>>   	}
+>>   
+>> -	xe_device_mem_access_put(xe);
+>> +	if (device_awake)
+>> +		xe_device_mem_access_put(xe);
+>>   	trace_printk("new_mem->mem_type=%d\n", new_mem->mem_type);
+>>   
+>>   out:
+>> +
+>>   	return ret;
+>>   
+>>   }
+>> @@ -1810,13 +1816,17 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>>   		bo_flags |= XE_BO_NEEDS_CPU_ACCESS;
+>>   	}
+>>   
+>> +	xe_device_mem_access_get(xe);
+>>   	if (args->vm_id) {
+>>   		vm = xe_vm_lookup(xef, args->vm_id);
+>> -		if (XE_IOCTL_DBG(xe, !vm))
+>> +		if (XE_IOCTL_DBG(xe, !vm)) {
+>> +			xe_device_mem_access_put(xe);
+>>   			return -ENOENT;
+>> +		}
+>>   		err = xe_vm_lock(vm, true);
+>>   		if (err) {
+>>   			xe_vm_put(vm);
+>> +			xe_device_mem_access_put(xe);
+>>   			return err;
+>>   		}
+>>   	}
+>> @@ -1845,6 +1855,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+>>   		xe_vm_unlock(vm);
+>>   		xe_vm_put(vm);
+>>   	}
+>> +
+>> +	xe_device_mem_access_put(xe);
+>>   	return err;
+>>   }
+>>   
