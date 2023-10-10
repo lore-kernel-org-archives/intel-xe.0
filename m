@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E31ECD8CAC
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 18:42:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB9D7CD8CB0
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 18:42:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 114CB10E16A;
-	Tue, 10 Oct 2023 18:42:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FDDB10E3B4;
+	Tue, 10 Oct 2023 18:42:12 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 26CEC10E16A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68E3E10E0D3
  for <intel-xe@lists.freedesktop.org>; Tue, 10 Oct 2023 18:42:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1696963329; x=1728499329;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HJc9nPXIB6LWbhPShx6SLkplsHSQGSKPx53TYbNGDTU=;
- b=O9bUPgTchgDlbMVPUJEICEtwO4BE6h9FyM+CL34P7YPP6cUuSi+g1LiK
- TwVG91GNLtSP+fJ7b7KU28F+YMj0wnOhGcg/knqheawYG/N8+qiwrt8tV
- ThQine/G7KPuJ6RfH3XUx4F4U7DZa82la+KPdTbnkKMHhH/tKI9O0dByF
- Gg7HUY0wGx7HwnCitjClJADwjup3p4H9c2mQoe7zDn5lravYb6Eh4Sk0F
- cwg89TFVggGpfInzTpA1dkk/kLNUN6h3bF9WwDnaj81uMQ1xpibJbBR08
- jeW+k1LHrXzoXiD8KgJa/i/Twd9gjG8vwBO1Yia87eo6qRRcsXc9YsELy g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="364774288"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="364774288"
+ bh=/5N0piICIxB9EJ/sjMv2uAFsNYZ0uIiS0saLcFgAj4Q=;
+ b=Ym/IcdKuXbSDrZsyJiN/+1NFdtRiqnGg+Zfkb2MQFeJERw1Nd8Gs8h/c
+ XOS5AYgLM//UWOA+OpSLnDxGM/4Git3YKXPF6upIKhK2T0XRRx+JODqHr
+ 5ehpuujjDLP38TluU+0e9ESGqOpdtXp7gLAPGDOP/OvuoYh7ljzJs1rvh
+ 8tB5aFFJdQacoIk331y/T8njh1iKsDG0UQSU41BXM+HGvg0TZZZk8W14U
+ ptiMu1/XwInjFFFKXqajzaNzH0+CHUaI/ZWC2ku9VG/G2OomH/GEi7cGy
+ k0rObS7Ael7tSZyO+96oVr1VrWP0c5bpNlOtgKh8eOBPUfsGnvs8kEROt Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="364774290"
+X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="364774290"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 11:41:59 -0700
+ 10 Oct 2023 11:42:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="753507763"
-X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="753507763"
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="753507773"
+X-IronPort-AV: E=Sophos;i="6.03,213,1694761200"; d="scan'208";a="753507773"
 Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 11:41:57 -0700
+ 10 Oct 2023 11:41:59 -0700
 From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Oct 2023 11:41:50 -0700
-Message-ID: <20231010184151.91195-2-jose.souza@intel.com>
+Date: Tue, 10 Oct 2023 11:41:51 -0700
+Message-ID: <20231010184151.91195-3-jose.souza@intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231010184151.91195-1-jose.souza@intel.com>
 References: <20231010184151.91195-1-jose.souza@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 2/3] drm/xe: Add misc functions to support
- read of specific DSS registers
+Subject: [Intel-xe] [PATCH v3 3/3] drm/xe: Add INSTDONE registers to
+ devcoredump
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,17 +63,14 @@ Cc: Matt Roper <matthew.d.roper@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Next patch will read register in specific DSS registers and this
-are the functions missing to do so.
+This registers contains important information that can help with debug
+of GPU hangs.
 
-xe_gt_mcr_get_dss_steering() calculate and return the group and
-instance that will be used by xe_gt_mcr_unicast_read().
+While at it also fixing the double line jump at the end of engine
+registers for CCS engines.
 
-xe_gt_has_geometry_dss() and xe_gt_has_compute_dss() returns true
-if DSS is available for geometry of compute.
-
-for_each_geometry/compute_dss() to simply the iteration over each
-available DSS
+v2:
+- print other INSTDONE registers
 
 v3:
 - add for_each_geometry/compute_dss()
@@ -82,151 +79,237 @@ Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt.c       | 17 +++++++++++++++++
- drivers/gpu/drm/xe/xe_gt.h       |  3 +++
- drivers/gpu/drm/xe/xe_gt_mcr.c   | 17 ++++++++++++++++-
- drivers/gpu/drm/xe/xe_gt_mcr.h   | 31 +++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_types.h |  3 ++-
- 5 files changed, 69 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_engine_regs.h |   1 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h     |   9 ++
+ drivers/gpu/drm/xe/xe_hw_engine.c        | 100 ++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_hw_engine_types.h  |  10 +++
+ 4 files changed, 117 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index c63e2e4750b1e..47860ce94f9fe 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -747,3 +747,20 @@ struct xe_hw_engine *xe_gt_any_hw_engine_by_reset_domain(struct xe_gt *gt,
+diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+index 35dd4837dd75f..32465e384fc24 100644
+--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+@@ -32,6 +32,7 @@
+ #define RING_ACTHD_UDW(base)			XE_REG((base) + 0x5c)
+ #define RING_DMA_FADD_UDW(base)			XE_REG((base) + 0x60)
+ #define RING_IPEHR(base)			XE_REG((base) + 0x68)
++#define RING_INSTDONE(base)			XE_REG((base) + 0x6c)
+ #define RING_ACTHD(base)			XE_REG((base) + 0x74)
+ #define RING_DMA_FADD(base)			XE_REG((base) + 0x78)
+ #define RING_HWS_PGA(base)			XE_REG((base) + 0x80)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index cd1821d96a5d8..c6650124ae6a6 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -105,6 +105,8 @@
+ #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
+ #define   FF_MODE2_TDS_TIMER_128		REG_FIELD_PREP(FF_MODE2_TDS_TIMER_MASK, 4)
  
- 	return NULL;
++#define XEHPG_INSTDONE_GEOM_SVG			XE_REG_MCR(0x666c)
++
+ #define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
+ #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
+ 
+@@ -117,6 +119,10 @@
+ 
+ #define COMMON_SLICE_CHICKEN1			XE_REG(0x7010)
+ 
++#define SLICE_COMMON_INSTDONE			XE_REG(0x7100)
++#define SLICE_COMMON_INSTDONE_EXTRA		XE_REG(0x7104)
++#define SLICE_COMMON_INSTDONE_EXTRA2		XE_REG(0x7108)
++
+ #define COMMON_SLICE_CHICKEN4			XE_REG(0x7300, XE_REG_OPTION_MASKED)
+ #define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
+ 
+@@ -299,6 +305,9 @@
+ #define XE_OAG_BLT_BUSY_FREE			XE_REG(0xdbbc)
+ #define XE_OAG_RENDER_BUSY_FREE			XE_REG(0xdbdc)
+ 
++#define SAMPLER_INSTDONE			XE_REG_MCR(0xe160)
++#define ROW_INSTDONE				XE_REG_MCR(0xe164)
++
+ #define SAMPLER_MODE				XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
+ #define   ENABLE_SMALLPL			REG_BIT(15)
+ #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 37b3ee1268090..6e144859abb1a 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -16,6 +16,7 @@
+ #include "xe_execlist.h"
+ #include "xe_force_wake.h"
+ #include "xe_gt.h"
++#include "xe_gt_mcr.h"
+ #include "xe_gt_topology.h"
+ #include "xe_hw_fence.h"
+ #include "xe_irq.h"
+@@ -655,6 +656,40 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
+ 		xe_hw_fence_irq_run(hwe->fence_irq);
  }
-+
-+static bool has_dss(xe_dss_mask_t dss_mask, unsigned int dss)
+ 
++static void
++xe_he_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
++				       struct xe_hw_engine_snapshot *snapshot)
 +{
-+	unsigned long value = bitmap_get_value8(dss_mask, (dss / 8) * 8);
++	struct xe_gt *gt = hwe->gt;
++	struct xe_device *xe = gt_to_xe(gt);
++	unsigned int dss;
++	int group, instance;
 +
-+	return value & BIT(dss % 8);
++	snapshot->reg.instdone.ring = hw_engine_mmio_read32(hwe, RING_INSTDONE(0));
++
++	if (snapshot->hwe->class != XE_ENGINE_CLASS_RENDER)
++		return;
++
++	snapshot->reg.instdone.slice_common =
++		xe_mmio_read32(gt, SLICE_COMMON_INSTDONE);
++	snapshot->reg.instdone.slice_common_extra =
++		xe_mmio_read32(gt, SLICE_COMMON_INSTDONE_EXTRA);
++	snapshot->reg.instdone.slice_common_extra2 =
++		xe_mmio_read32(gt, SLICE_COMMON_INSTDONE_EXTRA2);
++
++	for_each_geometry_dss(gt, dss, group, instance) {
++		snapshot->reg.instdone.sampler[dss] =
++			xe_gt_mcr_unicast_read(gt, SAMPLER_INSTDONE, group, instance);
++		snapshot->reg.instdone.row[dss] =
++			xe_gt_mcr_unicast_read(gt, ROW_INSTDONE, group, instance);
++
++		if (GRAPHICS_VERx100(xe) >= 1255)
++			snapshot->reg.instdone.geom_svg[dss] =
++				xe_gt_mcr_unicast_read(gt, XEHPG_INSTDONE_GEOM_SVG,
++						       group, instance);
++	}
 +}
 +
-+bool xe_gt_has_geometry_dss(struct xe_gt *gt, unsigned int dss)
-+{
-+	return has_dss(gt->fuse_topo.g_dss_mask, dss);
-+}
+ /**
+  * xe_hw_engine_snapshot_capture - Take a quick snapshot of the HW Engine.
+  * @hwe: Xe HW Engine.
+@@ -679,10 +714,30 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ 	if (!snapshot)
+ 		return NULL;
+ 
++	/* Because XE_MAX_DSS_FUSE_BITS is defined in xe_gt_types.h and it
++	 * includes xe_hw_engine_types.h the length of this 3 registers can't be
++	 * set in struct xe_hw_engine_snapshot, so here doing additional
++	 * allocations.
++	 */
++	len = (XE_MAX_DSS_FUSE_BITS * sizeof(u32));
++	snapshot->reg.instdone.sampler = kzalloc(len, GFP_ATOMIC);
++	snapshot->reg.instdone.row = kzalloc(len, GFP_ATOMIC);
++	snapshot->reg.instdone.geom_svg = kzalloc(len, GFP_ATOMIC);
++	if (!snapshot->reg.instdone.sampler ||
++	    !snapshot->reg.instdone.row ||
++	    !snapshot->reg.instdone.geom_svg) {
++		xe_hw_engine_snapshot_free(snapshot);
++		return NULL;
++	}
 +
-+bool xe_gt_has_compute_dss(struct xe_gt *gt, unsigned int dss)
-+{
-+	return has_dss(gt->fuse_topo.c_dss_mask, dss);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index caded203a8a03..e7baaa0088041 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -67,4 +67,7 @@ static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
- 		hwe->instance == gt->usm.reserved_bcs_instance;
+ 	len = strlen(hwe->name) + 1;
+ 	snapshot->name = kzalloc(len, GFP_ATOMIC);
+-	if (snapshot->name)
+-		strscpy(snapshot->name, hwe->name, len);
++	if (!snapshot->name) {
++		xe_hw_engine_snapshot_free(snapshot);
++		return NULL;
++	}
++
++	strscpy(snapshot->name, hwe->name, len);
+ 
+ 	snapshot->hwe = hwe;
+ 	snapshot->logical_instance = hwe->logical_instance;
+@@ -730,6 +785,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ 	snapshot->reg.ring_dma_fadd =
+ 		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
+ 	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, RING_IPEHR(0));
++	xe_he_engine_snapshot_instdone_capture(hwe, snapshot);
+ 
+ 	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
+ 		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
+@@ -737,6 +793,38 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
+ 	return snapshot;
  }
  
-+bool xe_gt_has_geometry_dss(struct xe_gt *gt, unsigned int dss);
-+bool xe_gt_has_compute_dss(struct xe_gt *gt, unsigned int dss);
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.c b/drivers/gpu/drm/xe/xe_gt_mcr.c
-index 77925b35cf8dc..e76cb0ae457aa 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.c
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.c
-@@ -291,11 +291,17 @@ static void init_steering_mslice(struct xe_gt *gt)
- 	gt->steering[LNCF].instance_target = 0;		/* unused */
- }
- 
-+static unsigned int
-+get_dss_per_group(struct xe_gt *gt)
++static void
++xe_hw_engine_snapshot_instdone_print(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p)
 +{
-+	return gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
++	struct xe_gt *gt = snapshot->hwe->gt;
++	struct xe_device *xe = gt_to_xe(gt);
++	unsigned int dss;
++	int group, instance;
++
++	drm_printf(p, "\tRING_INSTDONE: 0x%08x\n", snapshot->reg.instdone.ring);
++
++	if (snapshot->hwe->class != XE_ENGINE_CLASS_RENDER)
++		return;
++
++	drm_printf(p, "\tSC_INSTDONE: 0x%08x\n",
++		   snapshot->reg.instdone.slice_common);
++	drm_printf(p, "\tSC_EXTRA_INSTDONE: 0x%08x\n",
++		   snapshot->reg.instdone.slice_common_extra);
++	drm_printf(p, "\tSC_EXTRA2_INSTDONE: 0x%08x\n",
++		   snapshot->reg.instdone.slice_common_extra2);
++
++	for_each_geometry_dss(gt, dss, group, instance) {
++		drm_printf(p, "\tSAMPLER_INSTDONE[%u]: 0x%08x\n", dss,
++			   snapshot->reg.instdone.sampler[dss]);
++		drm_printf(p, "\tROW_INSTDONE[%u]: 0x%08x\n", dss,
++			   snapshot->reg.instdone.row[dss]);
++
++		if (GRAPHICS_VERx100(xe) >= 1255)
++			drm_printf(p, "\tGEOM_SVGUNIT_INSTDONE[%u]: 0x%08x\n",
++				   dss, snapshot->reg.instdone.geom_svg[dss]);
++	}
 +}
 +
- static void init_steering_dss(struct xe_gt *gt)
- {
- 	unsigned int dss = min(xe_dss_mask_group_ffs(gt->fuse_topo.g_dss_mask, 0, 0),
- 			       xe_dss_mask_group_ffs(gt->fuse_topo.c_dss_mask, 0, 0));
--	unsigned int dss_per_grp = gt_to_xe(gt)->info.platform == XE_PVC ? 8 : 4;
-+	unsigned int dss_per_grp = get_dss_per_group(gt);
- 
- 	gt->steering[DSS].group_target = dss / dss_per_grp;
- 	gt->steering[DSS].instance_target = dss % dss_per_grp;
-@@ -683,3 +689,12 @@ void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p)
- 		}
- 	}
+ /**
+  * xe_hw_engine_snapshot_print - Print out a given Xe HW Engine snapshot.
+  * @snapshot: Xe HW Engine snapshot object.
+@@ -785,10 +873,13 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
+ 	drm_printf(p, "\tDMA_FADDR: 0x%08x_%08x\n",
+ 		   snapshot->reg.ring_dma_fadd_udw,
+ 		   snapshot->reg.ring_dma_fadd);
+-	drm_printf(p, "\tIPEHR: 0x%08x\n\n", snapshot->reg.ipehr);
++	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
++	xe_hw_engine_snapshot_instdone_print(snapshot, p);
++
+ 	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
+ 		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
+ 			   snapshot->reg.rcu_mode);
++	drm_puts(p, "\n");
  }
-+
-+void
-+xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, int *group,
-+			   int *instance)
-+{
-+	unsigned int dss_per_group = get_dss_per_group(gt);
-+	*group = dss / dss_per_group;
-+	*instance = dss % dss_per_group;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_mcr.h b/drivers/gpu/drm/xe/xe_gt_mcr.h
-index 27ca1bc880a00..9f5f7dbb6fca8 100644
---- a/drivers/gpu/drm/xe/xe_gt_mcr.h
-+++ b/drivers/gpu/drm/xe/xe_gt_mcr.h
-@@ -7,6 +7,7 @@
- #define _XE_GT_MCR_H_
  
- #include "regs/xe_reg_defs.h"
-+#include "xe_gt_types.h"
+ /**
+@@ -803,6 +894,9 @@ void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot)
+ 	if (!snapshot)
+ 		return;
  
- struct drm_printer;
- struct xe_gt;
-@@ -24,6 +25,36 @@ void xe_gt_mcr_unicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
- void xe_gt_mcr_multicast_write(struct xe_gt *gt, struct xe_reg_mcr mcr_reg,
- 			       u32 value);
- 
-+void
-+xe_gt_mcr_get_dss_steering(struct xe_gt *gt, unsigned int dss, int *group,
-+			   int *instance);
-+
- void xe_gt_mcr_steering_dump(struct xe_gt *gt, struct drm_printer *p);
- 
-+/**
-+ * for_each_geometry_dss - Iterate over each DSS available for geometry
-+ * @gt: GT structure
-+ * @dss: DSS id
-+ * @grp: group id to be in xe_gt_mcr_unicast_read()
-+ * @inst: instance id to be in xe_gt_mcr_unicast_read()
-+ */
-+#define for_each_geometry_dss(gt, dss, grp, inst) \
-+	for (dss = 0, xe_gt_mcr_get_dss_steering(gt, dss, &grp, &inst); \
-+	     dss < XE_MAX_DSS_FUSE_BITS; \
-+	     dss++, xe_gt_mcr_get_dss_steering(gt, dss, &grp, &inst)) \
-+		if (xe_gt_has_geometry_dss(gt, dss))
-+
-+/**
-+ * for_each_compute_dss - Iterate over each DSS available for compute
-+ * @gt: GT structure
-+ * @dss: DSS id
-+ * @grp: group id to be in xe_gt_mcr_unicast_read()
-+ * @inst: instance id to be in xe_gt_mcr_unicast_read()
-+ */
-+#define for_each_compute_dss(gt, dss, grp, inst) \
-+	for (dss = 0, xe_gt_mcr_get_dss_steering(gt, dss, &grp, &inst); \
-+	     dss < XE_MAX_DSS_FUSE_BITS; \
-+	     dss++, xe_gt_mcr_get_dss_steering(gt, dss, &grp, &inst)) \
-+		if (xe_gt_has_compute_dss(gt, dss))
-+
- #endif /* _XE_GT_MCR_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index d4310be3e1e7c..1d3e027fb2267 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -25,9 +25,10 @@ enum xe_gt_type {
++	kfree(snapshot->reg.instdone.sampler);
++	kfree(snapshot->reg.instdone.row);
++	kfree(snapshot->reg.instdone.geom_svg);
+ 	kfree(snapshot->name);
+ 	kfree(snapshot);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+index 71c0a0169e62a..0a10a79962c97 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
++++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+@@ -221,6 +221,16 @@ struct xe_hw_engine_snapshot {
+ 		u32 ipehr;
+ 		/** @rcu_mode: RCU_MODE */
+ 		u32 rcu_mode;
++		/** @ring_instdone: RING_INSTDONE */
++		struct {
++			u32 ring;
++			u32 slice_common;
++			u32 slice_common_extra;
++			u32 slice_common_extra2;
++			u32 *sampler;
++			u32 *row;
++			u32 *geom_svg;
++		} instdone;
+ 	} reg;
  };
  
- #define XE_MAX_DSS_FUSE_REGS	3
-+#define XE_MAX_DSS_FUSE_BITS   (32 * XE_MAX_DSS_FUSE_REGS)
- #define XE_MAX_EU_FUSE_REGS	1
- 
--typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(32 * XE_MAX_DSS_FUSE_REGS)];
-+typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(XE_MAX_DSS_FUSE_BITS)];
- typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(32 * XE_MAX_EU_FUSE_REGS)];
- 
- struct xe_mmio_range {
 -- 
 2.42.0
 
