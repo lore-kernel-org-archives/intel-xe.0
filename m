@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECDE9CD80BE
-	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 12:23:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81BFCCD80C1
+	for <intel-xe@archiver.kernel.org>; Tue, 10 Oct 2023 12:48:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA33A10E33E;
-	Tue, 10 Oct 2023 12:23:47 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8AAC610E33E
- for <intel-xe@lists.freedesktop.org>; Tue, 10 Oct 2023 12:23:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A9DB10E01F;
+	Tue, 10 Oct 2023 12:48:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 501B910E01F
+ for <intel-xe@lists.freedesktop.org>; Tue, 10 Oct 2023 12:48:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1696940625; x=1728476625;
- h=from:to:cc:subject:date:message-id:mime-version:
+ t=1696942130; x=1728478130;
+ h=from:to:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=ATnyiovI+NnGE7k0KIHzqVTsvUTAbrGlYl8KWB/tN30=;
- b=Pv91zo/SPsN0LkGP32iN3BsOcbRTjxjPCRne3Phjr5YV29OTopRdZ5sv
- hnQv91x/9BVkRsvmUYt4evIZiOWt6kA1p1Fg+P2q+eKnTo1ljntoySo/0
- yAZ1VfURtwoKgbDKCBW5kEcWwBZ18KEbL5qYlIhoR7UmaMEQpHHsoZ1E5
- +//WQ1ZajSrJemweikvrI9uyKhXNkkbs7T2AvIou60Nza1ddqe/pPmSRb
- AUn2WO+x3wcU4+JCTzd97912ZdCIypr0wzi94UKlL0XIEOqPFfaLJsSt1
- uYhcpsLjCTqmuNKLwkN4Vi9zdhJhS3wChO7p5smRqFjkOlFjrsGizLdjx w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="384235390"
-X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="384235390"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Oct 2023 05:23:44 -0700
+ bh=c9ETM8GAHFi3gu1GKN9V93/EKySvQM67igzZq16vTUk=;
+ b=XshRCDCIO2ZCQOuLfYzA0qUAF8P4VZLSe0ktoRfwalAHQSkl9qCWLd+M
+ 12bbNT+PozF29oT61mzA80rCQAGoQv20m1JdxxfUx8F+5krQbVtHzwca+
+ eCyz/jmLRAzy2yjNQC5vm5XyiAoo5bp3nYuhpMy6UIPf/ejxwfyJji+ng
+ 56fcB7Mc+821hprwaffIhOuM9L25josL10cOQUdDNq2KkurXDbwODAhjC
+ eUgmZN02hZNvOFvK+hLMrQdCHf5KE3MHhj2vIDD/OeuARrrrLEP7yP1Jv
+ aNUHIHwJMYhQooHQUkTTs/2/nWEBMZY4cNKst5XOt2qFUqQWMEQzOKtsi Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="374725028"
+X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="374725028"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 05:48:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="730071967"
-X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="730071967"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orsmga006.jf.intel.com with ESMTP; 10 Oct 2023 05:23:43 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="703302361"
+X-IronPort-AV: E=Sophos;i="6.03,212,1694761200"; d="scan'208";a="703302361"
+Received: from agargas-mobl.ger.corp.intel.com (HELO fedora..)
+ ([10.249.254.164])
+ by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 05:48:48 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 10 Oct 2023 17:49:05 +0530
-Message-Id: <20231010121905.1769182-1-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
+Date: Tue, 10 Oct 2023 14:48:29 +0200
+Message-ID: <20231010124839.7948-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] Revert "FIXME: drm/i915/ips: apparently silence
- warnings"
+Subject: [Intel-xe] [CI 01/11] drm/gpuvm: add common dma-resv per struct
+ drm_gpuvm
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,37 +59,211 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit efdb834bbd7c6cd80e018dd0c0935070f2f27169.
+From: Danilo Krummrich <dakr@redhat.com>
 
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Provide a common dma-resv for GEM objects not being used outside of this
+GPU-VM. This is used in a subsequent patch to generalize dma-resv,
+external and evicted object handling and GEM validation.
+
+Signed-off-by: Danilo Krummrich <dakr@redhat.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/drm_gpuvm.c            | 56 +++++++++++++++++++++++++-
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c | 13 +++++-
+ include/drm/drm_gpuvm.h                | 35 +++++++++++++++-
+ 3 files changed, 99 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b28b4b718a2b..4b73db93d23d 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4199,8 +4199,8 @@ static u16 hsw_linetime_wm(const struct intel_crtc_state *crtc_state)
- 	return min(linetime_wm, 0x1ff);
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index 02ce6baacdad..936377082a01 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -61,6 +61,15 @@
+  * contained within struct drm_gpuva already. Hence, for inserting &drm_gpuva
+  * entries from within dma-fence signalling critical sections it is enough to
+  * pre-allocate the &drm_gpuva structures.
++ *
++ * &drm_gem_objects which are private to a single VM can share a common
++ * &dma_resv in order to improve locking efficiency (e.g. with &drm_exec).
++ * For this purpose drivers must pass a &drm_gem_object to drm_gpuvm_init(), in
++ * the following called 'root object', which serves as the container of the
++ * GPUVM's shared &dma_resv. This root object can be a driver specific
++ * &drm_gem_object, such as the &drm_gem_object containing the root page table,
++ * but it can also be a 'dummy' object, which can be allocated with
++ * drm_gpuvm_root_object_alloc().
+  */
+ 
+ /**
+@@ -652,9 +661,47 @@ drm_gpuvm_range_valid(struct drm_gpuvm *gpuvm,
+ 	       !drm_gpuvm_in_kernel_node(gpuvm, addr, range);
  }
  
--static inline u16 hsw_ips_linetime_wm(const struct intel_crtc_state *crtc_state,
--				      const struct intel_cdclk_state *cdclk_state)
-+static u16 hsw_ips_linetime_wm(const struct intel_crtc_state *crtc_state,
-+			       const struct intel_cdclk_state *cdclk_state)
- {
- 	const struct drm_display_mode *pipe_mode =
- 		&crtc_state->hw.pipe_mode;
-@@ -4243,7 +4243,7 @@ static int hsw_compute_linetime_wm(struct intel_atomic_state *state,
- 	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
- 	struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
--	__maybe_unused const struct intel_cdclk_state *cdclk_state;
-+	const struct intel_cdclk_state *cdclk_state;
++static void
++drm_gpuvm_gem_object_free(struct drm_gem_object *obj)
++{
++	drm_gem_object_release(obj);
++	kfree(obj);
++}
++
++static const struct drm_gem_object_funcs drm_gpuvm_object_funcs = {
++	.free = drm_gpuvm_gem_object_free,
++};
++
++/**
++ * drm_gpuvm_root_object_alloc() - allocate a dummy &drm_gem_object
++ * @drm: the drivers &drm_device
++ *
++ * Allocates a dummy &drm_gem_object which can be passed to drm_gpuvm_init() in
++ * order to serve as root GEM object providing the &drm_resv shared across
++ * &drm_gem_objects local to a single GPUVM.
++ *
++ * Returns: the &drm_gem_object on success, NULL on failure
++ */
++struct drm_gem_object *
++drm_gpuvm_root_object_alloc(struct drm_device *drm)
++{
++	struct drm_gem_object *obj;
++
++	obj = kzalloc(sizeof(*obj), GFP_KERNEL);
++	if (!obj)
++		return NULL;
++
++	obj->funcs = &drm_gpuvm_object_funcs;
++	drm_gem_private_object_init(drm, obj, 0);
++
++	return obj;
++}
++EXPORT_SYMBOL_GPL(drm_gpuvm_root_object_alloc);
++
+ /**
+  * drm_gpuvm_init() - initialize a &drm_gpuvm
+  * @gpuvm: pointer to the &drm_gpuvm to initialize
++ * @r_obj: the root &drm_gem_object providing the GPUVM's common &dma_resv
+  * @name: the name of the GPU VA space
+  * @start_offset: the start offset of the GPU VA space
+  * @range: the size of the GPU VA space
+@@ -668,7 +715,7 @@ drm_gpuvm_range_valid(struct drm_gpuvm *gpuvm,
+  * &name is expected to be managed by the surrounding driver structures.
+  */
+ void
+-drm_gpuvm_init(struct drm_gpuvm *gpuvm,
++drm_gpuvm_init(struct drm_gpuvm *gpuvm, struct drm_gem_object *r_obj,
+ 	       const char *name,
+ 	       u64 start_offset, u64 range,
+ 	       u64 reserve_offset, u64 reserve_range,
+@@ -683,6 +730,9 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm,
  
- 	if (DISPLAY_VER(dev_priv) >= 9)
- 		crtc_state->linetime = skl_linetime_wm(crtc_state);
+ 	gpuvm->name = name ? name : "unknown";
+ 	gpuvm->ops = ops;
++	gpuvm->r_obj = r_obj;
++
++	drm_gem_object_get(r_obj);
+ 
+ 	memset(&gpuvm->kernel_alloc_node, 0, sizeof(struct drm_gpuva));
+ 
+@@ -713,7 +763,9 @@ drm_gpuvm_destroy(struct drm_gpuvm *gpuvm)
+ 		__drm_gpuva_remove(&gpuvm->kernel_alloc_node);
+ 
+ 	WARN(!RB_EMPTY_ROOT(&gpuvm->rb.tree.rb_root),
+-	     "GPUVA tree is not empty, potentially leaking memory.");
++	     "GPUVA tree is not empty, potentially leaking memory.\n");
++
++	drm_gem_object_put(gpuvm->r_obj);
+ }
+ EXPORT_SYMBOL_GPL(drm_gpuvm_destroy);
+ 
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index 5cf892c50f43..4dea847ef989 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -1808,8 +1808,9 @@ int
+ nouveau_uvmm_init(struct nouveau_uvmm *uvmm, struct nouveau_cli *cli,
+ 		  u64 kernel_managed_addr, u64 kernel_managed_size)
+ {
+-	int ret;
++	struct drm_gem_object *r_obj;
+ 	u64 kernel_managed_end = kernel_managed_addr + kernel_managed_size;
++	int ret;
+ 
+ 	mutex_init(&uvmm->mutex);
+ 	dma_resv_init(&uvmm->resv);
+@@ -1833,14 +1834,22 @@ nouveau_uvmm_init(struct nouveau_uvmm *uvmm, struct nouveau_cli *cli,
+ 		goto out_unlock;
+ 	}
+ 
++	r_obj = drm_gpuvm_root_object_alloc(cli->drm->dev);
++	if (!r_obj) {
++		ret = -ENOMEM;
++		goto out_unlock;
++	}
++
+ 	uvmm->kernel_managed_addr = kernel_managed_addr;
+ 	uvmm->kernel_managed_size = kernel_managed_size;
+ 
+-	drm_gpuvm_init(&uvmm->base, cli->name,
++	drm_gpuvm_init(&uvmm->base, r_obj, cli->name,
+ 		       NOUVEAU_VA_SPACE_START,
+ 		       NOUVEAU_VA_SPACE_END,
+ 		       kernel_managed_addr, kernel_managed_size,
+ 		       NULL);
++	/* GPUVM takes care from here on. */
++	drm_gem_object_put(r_obj);
+ 
+ 	ret = nvif_vmm_ctor(&cli->mmu, "uvmm",
+ 			    cli->vmm.vmm.object.oclass, RAW,
+diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+index 361fea5cb849..5aa738967c18 100644
+--- a/include/drm/drm_gpuvm.h
++++ b/include/drm/drm_gpuvm.h
+@@ -238,9 +238,15 @@ struct drm_gpuvm {
+ 	 * @ops: &drm_gpuvm_ops providing the split/merge steps to drivers
+ 	 */
+ 	const struct drm_gpuvm_ops *ops;
++
++	/**
++	 * @r_obj: Root GEM object; representing the GPUVM's common &dma_resv.
++	 */
++	struct drm_gem_object *r_obj;
+ };
+ 
+-void drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
++void drm_gpuvm_init(struct drm_gpuvm *gpuvm, struct drm_gem_object *r_obj,
++		    const char *name,
+ 		    u64 start_offset, u64 range,
+ 		    u64 reserve_offset, u64 reserve_range,
+ 		    const struct drm_gpuvm_ops *ops);
+@@ -248,6 +254,33 @@ void drm_gpuvm_destroy(struct drm_gpuvm *gpuvm);
+ 
+ bool drm_gpuvm_interval_empty(struct drm_gpuvm *gpuvm, u64 addr, u64 range);
+ 
++struct drm_gem_object *
++drm_gpuvm_root_object_alloc(struct drm_device *drm);
++
++/**
++ * drm_gpuvm_resv() - returns the &drm_gpuvm's &dma_resv
++ * @gpuvm__: the &drm_gpuvm
++ *
++ * Returns: a pointer to the &drm_gpuvm's shared &dma_resv
++ */
++#define drm_gpuvm_resv(gpuvm__) ((gpuvm__)->r_obj->resv)
++
++/**
++ * drm_gpuvm_resv_obj() - returns the &drm_gem_object holding the &drm_gpuvm's
++ * &dma_resv
++ * @gpuvm__: the &drm_gpuvm
++ *
++ * Returns: a pointer to the &drm_gem_object holding the &drm_gpuvm's shared
++ * &dma_resv
++ */
++#define drm_gpuvm_resv_obj(gpuvm__) ((gpuvm__)->r_obj)
++
++#define drm_gpuvm_resv_held(gpuvm__) \
++	dma_resv_held(drm_gpuvm_resv(gpuvm__))
++
++#define drm_gpuvm_resv_assert_held(gpuvm__) \
++	dma_resv_assert_held(drm_gpuvm_resv(gpuvm__))
++
+ static inline struct drm_gpuva *
+ __drm_gpuva_next(struct drm_gpuva *va)
+ {
 -- 
-2.25.1
+2.41.0
 
