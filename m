@@ -4,30 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B75ACD98C7
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 06:23:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BD61CD98C7
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 06:45:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C64010E45F;
-	Wed, 11 Oct 2023 06:23:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 44EA610E0A2;
- Wed, 11 Oct 2023 06:23:21 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3F565AADD8;
- Wed, 11 Oct 2023 06:23:21 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4479902835441147121=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 030B110E474;
+	Wed, 11 Oct 2023 06:45:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBEA510E474
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Oct 2023 06:45:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1697006740; x=1728542740;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=752SIbroLy0BtjRBpzs5Pxkwss1WnuvDgmQ0wmKBNx4=;
+ b=dVRDQqyXt8Jnq9O6FE15RVyBtc6QkdyzLsggdyBj76YUWwFU6SCVu6Bs
+ oCchjRaZsTPi3IX0qszOidl99KJZB0PE4J2XVoNH/3cnNbvAM0FkiHtZP
+ JYDFv7NDIqg3vN2W6GVRAasK5Pf6DVvOyKxyIoKYaBzmd0l2wM1nmMD6L
+ zDkdwnYCQTcttRy/Eq8KpRQzMDsw9VNE5hH1/JfDuRq3DfVvlGijroigz
+ aJN8KFuEhsoSG6HHICcLwgw+B5nVWDh42vFfIr0K2nRHouTxCLMT8Kqa3
+ 78HlEeRviJ2ehZ28YHKBDVU63FMjkKu9+idpTj9HZ/ZcxFVbpnWA/pN4K A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="387436221"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="387436221"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 23:45:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10859"; a="824048846"
+X-IronPort-AV: E=Sophos;i="6.03,214,1694761200"; d="scan'208";a="824048846"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Oct 2023 23:45:38 -0700
+Message-ID: <c083d229-bfc1-4acc-421f-246d9be66f07@linux.intel.com>
+Date: Wed, 11 Oct 2023 12:18:27 +0530
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
-Date: Wed, 11 Oct 2023 06:23:21 -0000
-Message-ID: <169700540123.26514.12013462590107436699@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231011051418.2767145-1-shekhar.chauhan@intel.com>
-In-Reply-To: <20231011051418.2767145-1-shekhar.chauhan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A?=
- =?utf-8?q?_Add_new_DG2_PCI_IDs?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20230927114627.136925-1-himal.prasad.ghimiray@intel.com>
+ <20230927114627.136925-11-himal.prasad.ghimiray@intel.com>
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <20230927114627.136925-11-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH 10/11] drm/xe: Clear SOC CORRECTABLE error
+ registers.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,190 +63,74 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============4479902835441147121==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 27/09/23 17:16, Himal Prasad Ghimiray wrote:
+> PVC doesn't support correctable SOC errors, if we receive MSI due to
 
-Series: drm/xe: Add new DG2 PCI IDs
-URL   : https://patchwork.freedesktop.org/series/124938/
-State : success
+statement looks incomplete/inappropriate,
 
-== Summary ==
+better rephrase to "PVC doesn't support correctable SOC error reporting"
 
-CI Bug Log - changes from xe-423-37b2d042c23ae6a10055ea92101a15083d64c718_BAT -> xe-pw-124938v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-124938v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@xe_exec_store@basic-store:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#761])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-423-37b2d042c23ae6a10055ea92101a15083d64c718/bat-adlp-7/igt@xe_exec_store@basic-store.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/bat-adlp-7/igt@xe_exec_store@basic-store.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:
-    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#480]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-423-37b2d042c23ae6a10055ea92101a15083d64c718/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
-
-  * igt@xe_exec_threads@threads-basic:
-    - bat-pvc-2:          [DMESG-WARN][5] ([Intel XE#696]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-423-37b2d042c23ae6a10055ea92101a15083d64c718/bat-pvc-2/igt@xe_exec_threads@threads-basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/bat-pvc-2/igt@xe_exec_threads@threads-basic.html
-
-  
-#### Warnings ####
-
-  * igt@kms_psr@cursor_plane_move:
-    - bat-atsm-2:         [SKIP][7] ([i915#1072]) -> [SKIP][8] ([Intel XE#535]) +2 other tests skip
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-423-37b2d042c23ae6a10055ea92101a15083d64c718/bat-atsm-2/igt@kms_psr@cursor_plane_move.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/bat-atsm-2/igt@kms_psr@cursor_plane_move.html
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-dg2-oem2:       [SKIP][9] ([i915#1072]) -> [SKIP][10] ([Intel XE#535]) +2 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-423-37b2d042c23ae6a10055ea92101a15083d64c718/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html
-
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#535]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/535
-  [Intel XE#696]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/696
-  [Intel XE#761]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/761
-  [i915#1072]: https://gitlab.freedesktop.org/drm/intel/issues/1072
+Thanks,
+Aravind.
+> correctable error, classify them as Undefined and clear the registers.
+>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_hw_error.c | 24 +++++++++++++++++++++++-
+>  1 file changed, 23 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+> index dcf395bd985f..0bcb1bea7ffb 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_error.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
+> @@ -616,9 +616,30 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+>  
+>  	lockdep_assert_held(&tile_to_xe(tile)->irq.lock);
+>  
+> -	if ((tile_to_xe(tile)->info.platform != XE_PVC) && hw_err == HARDWARE_ERROR_CORRECTABLE)
+> +	if ((tile_to_xe(tile)->info.platform != XE_PVC))
+>  		return;
+>  
+> +	if (hw_err == HARDWARE_ERROR_CORRECTABLE) {
+> +		for (i = 0; i < PVC_NUM_IEH; i++)
+> +			xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
+> +					~REG_BIT(hw_err));
+> +
+> +		xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
+> +				REG_GENMASK(31, 0));
+> +		xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err),
+> +				REG_GENMASK(31, 0));
+> +		xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
+> +				REG_GENMASK(31, 0));
+> +		xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
+> +				REG_GENMASK(31, 0));
+> +
+> +		drm_info(&tile_to_xe(tile)->drm, HW_ERR
+> +			  "Tile%d Undefine SOC %s error.",
+> +			  tile->id, hwerr_to_str);
+I still feel in this scenarios at least we shall flag this as drm_err, since even though
+it is correctable and corrected by HW, aren't they spurious as we don't expect to receive them
+and a HW misbehaviour. Thoughts?
 
 
-Build changes
--------------
-
-  * IGT: IGT_7522 -> IGT_7528
-  * Linux: xe-423-37b2d042c23ae6a10055ea92101a15083d64c718 -> xe-pw-124938v1
-
-  IGT_7522: 334a1178a36a1327dc7fbba43ab16d1f3a7d887b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7528: 5c8af52f630edfea70624d2bd71b32280a53c8f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-423-37b2d042c23ae6a10055ea92101a15083d64c718: 37b2d042c23ae6a10055ea92101a15083d64c718
-  xe-pw-124938v1: 124938v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/index.html
-
---===============4479902835441147121==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Add new DG2 PCI IDs</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124938/">https://patchwork.freedesktop.org/series/124938/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-423-37b2d042c23ae6a10055ea92101a15083d64c718_BAT -&gt; xe-pw-124938v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-124938v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@xe_exec_store@basic-store:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-423-37b2d042c23ae6a10055ea92101a15083d64c718/bat-adlp-7/igt@xe_exec_store@basic-store.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/bat-adlp-7/igt@xe_exec_store@basic-store.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/761">Intel XE#761</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-423-37b2d042c23ae6a10055ea92101a15083d64c718/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_threads@threads-basic:</p>
-<ul>
-<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-423-37b2d042c23ae6a10055ea92101a15083d64c718/bat-pvc-2/igt@xe_exec_threads@threads-basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/696">Intel XE#696</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/bat-pvc-2/igt@xe_exec_threads@threads-basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-423-37b2d042c23ae6a10055ea92101a15083d64c718/bat-atsm-2/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/bat-atsm-2/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/535">Intel XE#535</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-423-37b2d042c23ae6a10055ea92101a15083d64c718/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1072">i915#1072</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124938v1/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/535">Intel XE#535</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7522 -&gt; IGT_7528</li>
-<li>Linux: xe-423-37b2d042c23ae6a10055ea92101a15083d64c718 -&gt; xe-pw-124938v1</li>
-</ul>
-<p>IGT_7522: 334a1178a36a1327dc7fbba43ab16d1f3a7d887b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7528: 5c8af52f630edfea70624d2bd71b32280a53c8f4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-423-37b2d042c23ae6a10055ea92101a15083d64c718: 37b2d042c23ae6a10055ea92101a15083d64c718<br />
-  xe-pw-124938v1: 124938v1</p>
-
-</body>
-</html>
-
---===============4479902835441147121==--
+Thanks,
+Aravind.
+> +
+> +		goto unmask_gsysevtctl;
+> +	}
+> +
+>  	if (hw_err == HARDWARE_ERROR_FATAL) {
+>  		soc_mstr_glbl_err_reg = soc_mstr_glbl_err_reg_fatal;
+>  		soc_mstr_lcl_err_reg = soc_mstr_lcl_err_reg_fatal;
+> @@ -709,6 +730,7 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+>  	xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
+>  			mst_glb_errstat);
+>  
+> +unmask_gsysevtctl:
+>  	for (i = 0; i < PVC_NUM_IEH; i++)
+>  		xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
+>  				(HARDWARE_ERROR_MAX << 1) + 1);
