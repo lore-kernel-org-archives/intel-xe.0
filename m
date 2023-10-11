@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17A2CCDB477
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 18:40:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A49A0CDB481
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 19:26:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB93C10E0C2;
-	Wed, 11 Oct 2023 18:40:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F72510E0D0;
+	Wed, 11 Oct 2023 19:26:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4850710E0C2;
- Wed, 11 Oct 2023 18:40:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id DD78A10E0D0;
+ Wed, 11 Oct 2023 19:26:01 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3F5BEA7DFF;
- Wed, 11 Oct 2023 18:40:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B794CAADE8;
+ Wed, 11 Oct 2023 19:26:01 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Wed, 11 Oct 2023 18:40:31 -0000
-Message-ID: <169704963122.26515.18200448197286151951@emeril.freedesktop.org>
+To: "Janusz Krzysztofik" <janusz.krzysztofik@linux.intel.com>
+Date: Wed, 11 Oct 2023 19:26:01 -0000
+Message-ID: <169705236171.26513.9392942722267675191@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231011135926.7-1-francois.dugast@intel.com>
-In-Reply-To: <20231011135926.7-1-francois.dugast@intel.com>
+References: <20231011141734.590321-13-janusz.krzysztofik@linux.intel.com>
+In-Reply-To: <20231011141734.590321-13-janusz.krzysztofik@linux.intel.com>
 Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_uAPI_Alignment_-_take_2?=
+ =?utf-8?q?or_Kunit_fixes_and_improvements_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,8 +46,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: uAPI Alignment - take 2
-URL   : https://patchwork.freedesktop.org/series/124977/
+Series: Kunit fixes and improvements (rev3)
+URL   : https://patchwork.freedesktop.org/series/124555/
 State : failure
 
 == Summary ==
@@ -55,11 +55,10 @@ State : failure
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 81cbfcc83 Revert "drm/i915/display: Fix a use-after-free when intel_edp_init_connector fails"
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_query.c:105
-error: drivers/gpu/drm/xe/xe_query.c: patch does not apply
+error: lib/igt_ktap.c: does not exist in index
 hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: fixup! drm/xe: Correlate engine and cpu timestamps with better accuracy
-Patch failed at 0001 fixup! drm/xe: Correlate engine and cpu timestamps with better accuracy
+Applying: lib/ktap: Improve TODO workaround description
+Patch failed at 0001 lib/ktap: Improve TODO workaround description
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
