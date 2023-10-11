@@ -4,47 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6BD10CDB463
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 16:29:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 19C20CDB464
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 16:30:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0E5F310E999;
-	Wed, 11 Oct 2023 16:29:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBF8210E99E;
+	Wed, 11 Oct 2023 16:30:16 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C4B7010E999
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Oct 2023 16:29:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADD1610E99B
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Oct 2023 16:30:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697041796; x=1728577796;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=qzsFSFohnm98ykWdEe9bP40eMj/xuiY31NutN8506Co=;
- b=KueOEhE47sACWUyiCKkNa5nut4JI5SKrVI9OQlbjcJm1nyHXPnv60l5D
- 9Y4LNpI7vNXricyVRIGDjvgY3jkC/7lZ62LUeN8oPH6bPx/N4/cu2Q3vD
- dlPUk3oGjFZm+gosPLcgzT7Qz0lAF4PGlwICNrWEV493b6ielTaq+z7T+
- RFIBknvS45Ag4lZ+5+mYjxUs/taYLvkPID8zIpRP13bUSK621fUL4g+e5
- 2623LvFYkUy+ueC5hc6HKKW7crT4RR+FgfsMMPB2talLqzYQmcvx4cDIV
- d163cilo/oagLetcAhFsxgz+yhQUeCqK1QP4gwaBYB79qH3UH3fDftf0T A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="384558175"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="384558175"
+ t=1697041815; x=1728577815;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=RVA85LtFmp43E/qhtFcMKuAHqUJb1pSF/rNzl01sp3k=;
+ b=G222QvZtmkK24S/iCKL4WpCJVXR1l+WnxbXS30iEnrGyoKXlEbSotZV/
+ s6wU4boY0vLgj23AsCXdAVWMi8+tRGbU0LdY/+HLJ5vDzAr0rDgqFIhnG
+ hZirKmev3J5w4rMLEIgPgnT3tRdakn2Ow4ATd7VzZ0ooKbLUeC/QIJBC3
+ BR6WZepzQ3gDfbBIN3HUfpKVldAO3fTrV3buoTekhD8pYNm9J9HbQWYae
+ dJQx1ZqBAyS+DoQzdsLXnqMaYVLzptKpK3+n+hBtpaKCiLt1ajnlCAly4
+ WBMRxrfiToGEWIPYbVyBI+LZr3FAxlVQVOupP1LugtL6XS/4xxRehtrbw A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="384558209"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="384558209"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 09:29:56 -0700
+ 11 Oct 2023 09:30:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="1001184200"
-X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="1001184200"
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="1001184250"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="1001184250"
 Received: from gohanlon-mobl1.ger.corp.intel.com (HELO mwauld-mobl1.intel.com)
  ([10.252.31.228])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 09:29:55 -0700
+ 11 Oct 2023 09:29:59 -0700
 From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 11 Oct 2023 17:29:24 +0100
-Message-ID: <20231011162923.292025-5-matthew.auld@intel.com>
+Date: Wed, 11 Oct 2023 17:29:26 +0100
+Message-ID: <20231011162923.292025-7-matthew.auld@intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231011162923.292025-5-matthew.auld@intel.com>
+References: <20231011162923.292025-5-matthew.auld@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v8 0/3] PAT and cache coherency support
+Subject: [Intel-xe] [PATCH v8 2/3] drm/xe/pat: annotate pat_index with
+ coherency mode
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,55 +59,282 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Filip Hazubski <filip.hazubski@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, Carl Zhang <carl.zhang@intel.com>,
+ Effie Yu <effie.yu@intel.com>, Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Branch available here:
-https://gitlab.freedesktop.org/mwa/kernel/-/tree/xe-pat-index?ref_type=heads
-
-IGT changes:
-https://patchwork.freedesktop.org/series/124667/
-
-Mesa:
-https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25462
-
-Goal here is to allow userspace to directly control the pat_index when mapping
-memory via the ppGTT, in addtion to the CPU caching mode. This is very much
-needed on newer igpu platforms which allow incoherent GT access, where the
-choice over the cache level and expected coherency is best left to userspace
-depending on their usecase.  In the future there may also be other stuff encoded
-in the pat_index, so giving userspace direct control will also be needed there.
-
-To support this we added new gem_create uAPI for selecting the CPU cache
-mode to use for system memory, including the expected GPU coherency mode. There
-are various restrictions here for the selected coherency mode and compatible CPU
-cache modes.  With that in place the actual pat_index can now be provided as
-part of vm_bind. The only restriction is that the coherency mode of the
-pat_index must be at least as coherent as the gem_create coherency mode. There
-are also some special cases like with userptr and dma-buf.
+Future uapi needs to give userspace the ability to select the pat_index
+for a given vm_bind. However we need to be able to extract the coherency
+mode from the provided pat_index to ensure it matches the coherency mode
+set at object creation. There are various security reasons for why this
+matters.  However the pat_index itself is very platform specific, so
+seems reasonable to annotate each platform definition of the pat table.
+On some older platforms there is no explicit coherency mode, so we just
+pick whatever makes sense.
 
 v2:
-  - Loads of improvements/tweaks. Main changes are to now allow
-    gem_create.coh_mode <= coh_mode(pat_index), rather than it needing to match
-    exactly. This simplifies the dma-buf policy from userspace pov. Also we now
-    only consider COH_NONE and COH_AT_LEAST_1WAY.
-v3:
-  - Rebase. Split the pte_encode() refactoring, plus various smaller tweaks and
-    fixes.
-v4:
-  - Rebase on Lucas' new series.
-  - Drop UC cache mode.
-  - s/smem_cpu_caching/cpu_caching/. Idea is to make VRAM WC explicit in the
-    uapi, plus make it more future proof.
-v5:
-  - Rebase, plus some small tweaks and fixes.
-v6:
-  - CI hooks fixes + checkpatch.
-v7:
+  - Simplify with COH_AT_LEAST_1_WAY
+  - Add some kernel-doc
+v3 (Matt Roper):
   - Some small tweaks
-v8:
-  - Rebase on Xe2 PAT table additions.
+v4:
+  - Rebase
+v5:
+  - Rebase on Xe2 PAT additions
 
+Bspec: 45101, 44235 #xe
+Bspec: 70552, 71582, 59400 #xe2
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Pallavi Mishra <pallavi.mishra@intel.com>
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: José Roberto de Souza <jose.souza@intel.com>
+Cc: Filip Hazubski <filip.hazubski@intel.com>
+Cc: Carl Zhang <carl.zhang@intel.com>
+Cc: Effie Yu <effie.yu@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+Reviewed-by: Pallavi Mishra <pallavi.mishra@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h |  2 +-
+ drivers/gpu/drm/xe/xe_pat.c          | 97 +++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_pat.h          | 30 ++++++++-
+ 3 files changed, 88 insertions(+), 41 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index bc375ddda5a7..188dd9abce41 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -355,7 +355,7 @@ struct xe_device {
+ 		/** Internal operations to abstract platforms */
+ 		const struct xe_pat_ops *ops;
+ 		/** PAT table to program in the HW */
+-		const u32 *table;
++		const struct xe_pat_table_entry *table;
+ 		/** Number of PAT entries */
+ 		int n_entries;
+ 		u32 idx[__XE_CACHE_LEVEL_COUNT];
+diff --git a/drivers/gpu/drm/xe/xe_pat.c b/drivers/gpu/drm/xe/xe_pat.c
+index 7c1078707aa0..11a38602f701 100644
+--- a/drivers/gpu/drm/xe/xe_pat.c
++++ b/drivers/gpu/drm/xe/xe_pat.c
+@@ -5,6 +5,8 @@
+ 
+ #include "xe_pat.h"
+ 
++#include <drm/xe_drm.h>
++
+ #include "regs/xe_reg_defs.h"
+ #include "xe_assert.h"
+ #include "xe_device.h"
+@@ -46,35 +48,37 @@
+ static const char *XELP_MEM_TYPE_STR_MAP[] = { "UC", "WC", "WT", "WB" };
+ 
+ struct xe_pat_ops {
+-	void (*program_graphics)(struct xe_gt *gt, const u32 table[], int n_entries);
+-	void (*program_media)(struct xe_gt *gt, const u32 table[], int n_entries);
++	void (*program_graphics)(struct xe_gt *gt, const struct xe_pat_table_entry table[],
++				 int n_entries);
++	void (*program_media)(struct xe_gt *gt, const struct xe_pat_table_entry table[],
++			      int n_entries);
+ 	void (*dump)(struct xe_gt *gt, struct drm_printer *p);
+ };
+ 
+-static const u32 xelp_pat_table[] = {
+-	[0] = XELP_PAT_WB,
+-	[1] = XELP_PAT_WC,
+-	[2] = XELP_PAT_WT,
+-	[3] = XELP_PAT_UC,
++static const struct xe_pat_table_entry xelp_pat_table[] = {
++	[0] = { XELP_PAT_WB, DRM_XE_GEM_COH_AT_LEAST_1WAY },
++	[1] = { XELP_PAT_WC, DRM_XE_GEM_COH_NONE },
++	[2] = { XELP_PAT_WT, DRM_XE_GEM_COH_NONE },
++	[3] = { XELP_PAT_UC, DRM_XE_GEM_COH_NONE },
+ };
+ 
+-static const u32 xehpc_pat_table[] = {
+-	[0] = XELP_PAT_UC,
+-	[1] = XELP_PAT_WC,
+-	[2] = XELP_PAT_WT,
+-	[3] = XELP_PAT_WB,
+-	[4] = XEHPC_PAT_CLOS(1) | XELP_PAT_WT,
+-	[5] = XEHPC_PAT_CLOS(1) | XELP_PAT_WB,
+-	[6] = XEHPC_PAT_CLOS(2) | XELP_PAT_WT,
+-	[7] = XEHPC_PAT_CLOS(2) | XELP_PAT_WB,
++static const struct xe_pat_table_entry xehpc_pat_table[] = {
++	[0] = { XELP_PAT_UC, DRM_XE_GEM_COH_NONE },
++	[1] = { XELP_PAT_WC, DRM_XE_GEM_COH_NONE },
++	[2] = { XELP_PAT_WT, DRM_XE_GEM_COH_NONE },
++	[3] = { XELP_PAT_WB, DRM_XE_GEM_COH_AT_LEAST_1WAY },
++	[4] = { XEHPC_PAT_CLOS(1) | XELP_PAT_WT, DRM_XE_GEM_COH_NONE },
++	[5] = { XEHPC_PAT_CLOS(1) | XELP_PAT_WB, DRM_XE_GEM_COH_AT_LEAST_1WAY },
++	[6] = { XEHPC_PAT_CLOS(2) | XELP_PAT_WT, DRM_XE_GEM_COH_NONE },
++	[7] = { XEHPC_PAT_CLOS(2) | XELP_PAT_WB, DRM_XE_GEM_COH_AT_LEAST_1WAY },
+ };
+ 
+-static const u32 xelpg_pat_table[] = {
+-	[0] = XELPG_PAT_0_WB,
+-	[1] = XELPG_PAT_1_WT,
+-	[2] = XELPG_PAT_3_UC,
+-	[3] = XELPG_PAT_0_WB | XELPG_2_COH_1W,
+-	[4] = XELPG_PAT_0_WB | XELPG_3_COH_2W,
++static const struct xe_pat_table_entry xelpg_pat_table[] = {
++	[0] = { XELPG_PAT_0_WB, DRM_XE_GEM_COH_NONE },
++	[1] = { XELPG_PAT_1_WT, DRM_XE_GEM_COH_NONE },
++	[2] = { XELPG_PAT_3_UC, DRM_XE_GEM_COH_NONE },
++	[3] = { XELPG_PAT_0_WB | XELPG_2_COH_1W, DRM_XE_GEM_COH_AT_LEAST_1WAY },
++	[4] = { XELPG_PAT_0_WB | XELPG_3_COH_2W, DRM_XE_GEM_COH_AT_LEAST_1WAY },
+ };
+ 
+ /*
+@@ -92,15 +96,19 @@ static const u32 xelpg_pat_table[] = {
+  * coherency (which matches an all-0's encoding), so we can just omit them
+  * in the table.
+  */
+-#define XE2_PAT(no_promote, comp_en, l3clos, l3_policy, l4_policy, coh_mode) \
+-	(no_promote ? XE2_NO_PROMOTE : 0) | \
+-	(comp_en ? XE2_COMP_EN : 0) | \
+-	REG_FIELD_PREP(XE2_L3_CLOS, l3clos) | \
+-	REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
+-	REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
+-	REG_FIELD_PREP(XE2_COH_MODE, coh_mode)
++#define XE2_PAT(no_promote, comp_en, l3clos, l3_policy, l4_policy, __coh_mode) \
++	{ \
++		.value = (no_promote ? XE2_NO_PROMOTE : 0) | \
++			(comp_en ? XE2_COMP_EN : 0) | \
++			REG_FIELD_PREP(XE2_L3_CLOS, l3clos) | \
++			REG_FIELD_PREP(XE2_L3_POLICY, l3_policy) | \
++			REG_FIELD_PREP(XE2_L4_POLICY, l4_policy) | \
++			REG_FIELD_PREP(XE2_COH_MODE, __coh_mode), \
++		.coh_mode = __coh_mode ? DRM_XE_GEM_COH_AT_LEAST_1WAY : \
++			DRM_XE_GEM_COH_NONE \
++	}
+ 
+-static const u32 xe2_pat_table[] = {
++static const struct xe_pat_table_entry xe2_pat_table[] = {
+ 	[ 0] = XE2_PAT( 0, 0, 0, 0, 3, 0 ),
+ 	[ 1] = XE2_PAT( 0, 0, 0, 0, 3, 2 ),
+ 	[ 2] = XE2_PAT( 0, 0, 0, 0, 3, 3 ),
+@@ -133,23 +141,31 @@ static const u32 xe2_pat_table[] = {
+ };
+ 
+ /* Special PAT values programmed outside the main table */
+-#define XE2_PAT_ATS	XE2_PAT( 0, 0, 0, 0, 3, 3 )
++static const struct xe_pat_table_entry xe2_pat_ats = XE2_PAT( 0, 0, 0, 0, 3, 3 );
+ 
+-static void program_pat(struct xe_gt *gt, const u32 table[], int n_entries)
++u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index)
++{
++	WARN_ON(pat_index >= xe->pat.n_entries);
++	return xe->pat.table[pat_index].coh_mode;
++}
++
++static void program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
++			int n_entries)
+ {
+ 	for (int i = 0; i < n_entries; i++) {
+ 		struct xe_reg reg = XE_REG(_PAT_INDEX(i));
+ 
+-		xe_mmio_write32(gt, reg, table[i]);
++		xe_mmio_write32(gt, reg, table[i].value);
+ 	}
+ }
+ 
+-static void program_pat_mcr(struct xe_gt *gt, const u32 table[], int n_entries)
++static void program_pat_mcr(struct xe_gt *gt, const struct xe_pat_table_entry table[],
++			    int n_entries)
+ {
+ 	for (int i = 0; i < n_entries; i++) {
+ 		struct xe_reg_mcr reg_mcr = XE_REG_MCR(_PAT_INDEX(i));
+ 
+-		xe_gt_mcr_multicast_write(gt, reg_mcr, table[i]);
++		xe_gt_mcr_multicast_write(gt, reg_mcr, table[i].value);
+ 	}
+ }
+ 
+@@ -289,16 +305,18 @@ static const struct xe_pat_ops xelpg_pat_ops = {
+ 	.dump = xelpg_dump,
+ };
+ 
+-static void xe2lpg_program_pat(struct xe_gt *gt, const u32 table[], int n_entries)
++static void xe2lpg_program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
++			       int n_entries)
+ {
+ 	program_pat_mcr(gt, table, n_entries);
+-	xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS), XE2_PAT_ATS);
++	xe_gt_mcr_multicast_write(gt, XE_REG_MCR(_PAT_ATS), xe2_pat_ats.value);
+ }
+ 
+-static void xe2lpm_program_pat(struct xe_gt *gt, const u32 table[], int n_entries)
++static void xe2lpm_program_pat(struct xe_gt *gt, const struct xe_pat_table_entry table[],
++			       int n_entries)
+ {
+ 	program_pat(gt, table, n_entries);
+-	xe_mmio_write32(gt, XE_REG(_PAT_ATS), XE2_PAT_ATS);
++	xe_mmio_write32(gt, XE_REG(_PAT_ATS), xe2_pat_ats.value);
+ }
+ 
+ static void xe2_dump(struct xe_gt *gt, struct drm_printer *p)
+@@ -396,6 +414,7 @@ void xe_pat_init_early(struct xe_device *xe)
+ 		xe->pat.idx[XE_CACHE_WT] = 2;
+ 		xe->pat.idx[XE_CACHE_WB] = 0;
+ 	} else if (GRAPHICS_VERx100(xe) <= 1210) {
++		WARN_ON_ONCE(!IS_DGFX(xe) && !xe->info.has_llc);
+ 		xe->pat.ops = &xelp_pat_ops;
+ 		xe->pat.table = xelp_pat_table;
+ 		xe->pat.n_entries = ARRAY_SIZE(xelp_pat_table);
+diff --git a/drivers/gpu/drm/xe/xe_pat.h b/drivers/gpu/drm/xe/xe_pat.h
+index 09c491ab9f15..18a65883c829 100644
+--- a/drivers/gpu/drm/xe/xe_pat.h
++++ b/drivers/gpu/drm/xe/xe_pat.h
+@@ -6,9 +6,29 @@
+ #ifndef _XE_PAT_H_
+ #define _XE_PAT_H_
+ 
++#include <linux/types.h>
++
+ struct drm_printer;
+-struct xe_gt;
+ struct xe_device;
++struct xe_gt;
++
++/**
++ * struct xe_pat_table_entry - The pat_index encoding and other meta information.
++ */
++struct xe_pat_table_entry {
++	/**
++	 * @value: The platform specific value encoding the various memory
++	 * attributes (this maps to some fixed pat_index). So things like
++	 * caching, coherency, compression etc can be encoded here.
++	 */
++	u32 value;
++
++	/**
++	 * @coh_mode: The GPU coherency mode that @value maps to. Either
++	 * DRM_XE_GEM_COH_NONE or DRM_XE_GEM_COH_AT_LEAST_1WAY.
++	 */
++	u16 coh_mode;
++};
+ 
+ /**
+  * xe_pat_init_early - SW initialization, setting up data based on device
+@@ -29,4 +49,12 @@ void xe_pat_init(struct xe_gt *gt);
+  */
+ void xe_pat_dump(struct xe_gt *gt, struct drm_printer *p);
+ 
++/**
++ * xe_pat_index_get_coh_mode - Extract the coherency mode for the given
++ * pat_index.
++ * @xe: xe device
++ * @pat_index: The pat_index to query
++ */
++u16 xe_pat_index_get_coh_mode(struct xe_device *xe, u16 pat_index);
++
+ #endif
 -- 
 2.41.0
 
