@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 137ADCDB47E
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 22:10:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 070E8CDB47E
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 22:27:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D664710E23E;
-	Wed, 11 Oct 2023 22:10:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AB6D310E242;
+	Wed, 11 Oct 2023 22:27:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5B0C610E23E;
- Wed, 11 Oct 2023 22:10:14 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B6D3210E242;
+ Wed, 11 Oct 2023 22:27:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4F9E4AADF2;
- Wed, 11 Oct 2023 22:10:14 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B04BCAADF1;
+ Wed, 11 Oct 2023 22:27:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Souza, Jose" <jose.souza@intel.com>
-Date: Wed, 11 Oct 2023 22:10:14 -0000
-Message-ID: <169706221432.26513.7829853433797624994@emeril.freedesktop.org>
+To: "Ruthuvikas Ravikumar" <ruthuvikas.ravikumar@intel.com>
+Date: Wed, 11 Oct 2023 22:27:25 -0000
+Message-ID: <169706324569.26512.9769516068332512512@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231011162923.292025-5-matthew.auld@intel.com>
-In-Reply-To: <20231011162923.292025-5-matthew.auld@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_P?=
- =?utf-8?q?AT_and_cache_coherency_support_=28rev10=29?=
+References: <20231011163506.1747972-1-ruthuvikas.ravikumar@intel.com>
+In-Reply-To: <20231011163506.1747972-1-ruthuvikas.ravikumar@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Add_mocs_kunit_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,31 +46,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: PAT and cache coherency support (rev10)
-URL   : https://patchwork.freedesktop.org/series/123027/
+Series: drm/xe: Add mocs kunit (rev2)
+URL   : https://patchwork.freedesktop.org/series/124926/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast fe4d6ceb20b5ebad356c722396c2c06d4485c359
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: fe4d6ceb2 Revert "drm/i915/display: Fix a use-after-free when intel_edp_init_connector fails"
+=== git am output follows ===
+Applying: drm/xe: add mocs kunit
 
 
