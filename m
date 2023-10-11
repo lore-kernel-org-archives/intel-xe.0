@@ -4,31 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 546F3CD6E67
-	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 13:01:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD93ACD6E69
+	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 13:31:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB8E810E7F2;
-	Wed, 11 Oct 2023 13:01:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7434410E7F0;
- Wed, 11 Oct 2023 13:01:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 62118A7DFF;
- Wed, 11 Oct 2023 13:01:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0844197520812682956=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CDC310E81A;
+	Wed, 11 Oct 2023 13:31:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DC7A10E81A
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Oct 2023 13:31:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1697031099; x=1728567099;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KdvNbbmcZkiEVaibWLThNH/bDBQnFZbDfZ1tShiR1mU=;
+ b=TO7nDFALjF7/uF2ZDe+Koj0de7p12Ku0yKQ9PYrjkFGIG+ZASq9JIaqS
+ fD5XDo+igoRrGcr5r9Z88DPRT7yPGY5kGwszv3zpV3hMXRjezgqqdt1cL
+ Q2YM2vmEFjQfNprbPtyu3579fkFuhL44uwklra5uVTS94GxrCH1i+5w9H
+ l6Urita5z4t4670n+c0D9iFhVVMWsGJVLs97sIgZg3kF8OVOFc+oOwjj3
+ Zx8O1ExGlFhAYfxUJzfhki9sZtQS/kD3AN21hC5K72ZFENCgKR9bRf6uf
+ rW7q8jSFWLxHFNlS1bC7tEK2Qsy6dE1EMadMh0qLHLS2OobDHXHbHiUUY Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="381907389"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="381907389"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2023 06:31:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="927571765"
+X-IronPort-AV: E=Sophos;i="6.03,216,1694761200"; d="scan'208";a="927571765"
+Received: from lab-ah.igk.intel.com ([10.102.138.202])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2023 06:31:36 -0700
+From: Andrzej Hajda <andrzej.hajda@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 11 Oct 2023 15:31:18 +0200
+Message-Id: <20231011133119.1257132-1-andrzej.hajda@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Date: Wed, 11 Oct 2023 13:01:06 -0000
-Message-ID: <169702926639.26512.4855467343651124283@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231002104037.1923861-1-jani.nikula@intel.com>
-In-Reply-To: <20231002104037.1923861-1-jani.nikula@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Revert_?=
- =?utf-8?q?=22drm/i915/display=3A_Fix_a_use-after-free_when_intel=5Fedp=5F?=
- =?utf-8?q?init=5Fconnector_fails=22_=28rev3=29?=
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2] drm/xe: implement driver initiated
+ function-reset
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,197 +57,198 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0844197520812682956==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Driver initiated function-reset (FLR) is the highest level of reset
+that we can trigger from within the driver. In contrast to PCI FLR it
+doesn't require re-enumeration of PCI BAR. It can be useful in case
+GT fails to reset. It is also the only way to trigger GSC reset from
+the driver and can be used in future addition of GSC support.
 
-== Series Details ==
+v2:
+  - use regs from xe_regs.h
+  - move the flag to xe.mmio
+  - call flr only on root gt
+  - use BIOS protection check
+  - copy/paste comments from i915
 
-Series: Revert "drm/i915/display: Fix a use-after-free when intel_edp_init_connector fails" (rev3)
-URL   : https://patchwork.freedesktop.org/series/124516/
-State : success
+Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
+---
+Hi all,
 
-== Summary ==
+This is initial attempt to implement Driver-FLR in xe. Implementation
+is copied from i915. I've skipped comments, but I can re-add them if
+requested.
+In i915 Driver-FLR is performed on driver unload if GSC was used.
+In xe GSC is not yet supported, but I have added trigger to perform FLR
+in case GT fails to reset, I guess this could be proper use-case and
+of course this is prerequisite to GSC support.
 
-CI Bug Log - changes from xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15_BAT -> xe-pw-124516v3_BAT
-====================================================
+Regards
+Andrzej
+---
+ drivers/gpu/drm/xe/regs/xe_regs.h    |  7 +++
+ drivers/gpu/drm/xe/xe_device_types.h |  2 +
+ drivers/gpu/drm/xe/xe_gt.c           |  2 +
+ drivers/gpu/drm/xe/xe_mmio.c         | 82 ++++++++++++++++++++++++++++
+ 4 files changed, 93 insertions(+)
 
-Summary
--------
+diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
+index dbb0ea1a585eda..ac5fa25877766e 100644
+--- a/drivers/gpu/drm/xe/regs/xe_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+@@ -53,8 +53,15 @@
+ 
+ #define SOFTWARE_FLAGS_SPR33			XE_REG(0x4f084)
+ 
++#define GU_CNTL_PROTECTED			XE_REG(0x10100C)
++#define   DRIVERINT_FLR_DIS			REG_BIT(31)
++
+ #define GU_CNTL					XE_REG(0x101010)
+ #define   LMEM_INIT				REG_BIT(7)
++#define   DRIVERFLR				REG_BIT(31)
++
++#define GU_DEBUG				XE_REG(0x101018)
++#define   DRIVERFLR_STATUS			REG_BIT(31)
+ 
+ #define XEHP_CLOCK_GATE_DIS			XE_REG(0x101014)
+ #define   SGSI_SIDECLK_DIS			REG_BIT(17)
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 0efa7a1d2188e9..886d1c769c27fd 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -285,6 +285,8 @@ struct xe_device {
+ 		size_t size;
+ 		/** @regs: pointer to MMIO space for device */
+ 		void *regs;
++		/** @needs_flr_on_fini: requests function-reset on fini */
++		bool needs_flr_on_fini;
+ 	} mmio;
+ 
+ 	/** @mem: memory info for device */
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index c63e2e4750b1ea..37e9576b92b5da 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -616,6 +616,8 @@ static int gt_reset(struct xe_gt *gt)
+ 	xe_uevent_gt_reset_failure(to_pci_dev(gt_to_xe(gt)->drm.dev),
+ 				   gt_to_tile(gt)->id, gt->info.id);
+ 
++	gt_to_xe(gt)->mmio.needs_flr_on_fini = true;
++
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index e4cf9bfec422e6..27a0ebe2324daa 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -4,6 +4,7 @@
+  */
+ 
+ #include <linux/minmax.h>
++#include <linux/units.h>
+ 
+ #include "xe_mmio.h"
+ 
+@@ -372,6 +373,83 @@ static void xe_mmio_probe_tiles(struct xe_device *xe)
+ 	}
+ }
+ 
++/*
++ * The driver-initiated FLR is the highest level of reset that we can trigger
++ * from within the driver. It is different from the PCI FLR in that it doesn't
++ * fully reset the SGUnit and doesn't modify the PCI config space and therefore
++ * it doesn't require a re-enumeration of the PCI BARs. However, the
++ * driver-initiated FLR does still cause a reset of both GT and display and a
++ * memory wipe of local and stolen memory, so recovery would require a full HW
++ * re-init and saving/restoring (or re-populating) the wiped memory. Since we
++ * perform the FLR as the very last action before releasing access to the HW
++ * during the driver release flow, we don't attempt recovery at all, because
++ * if/when a new instance of i915 is bound to the device it will do a full
++ * re-init anyway.
++ */
++static void driver_flr(struct xe_device *xe)
++{
++	const unsigned int flr_timeout = 3 * MICRO; /* specs recommend a 3s wait */
++	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	int ret;
++
++	if (xe_mmio_read32(gt, GU_CNTL_PROTECTED) & DRIVERINT_FLR_DIS) {
++		drm_info_once(&xe->drm, "BIOS Disabled Driver-FLR\n");
++		return;
++	}
++
++	drm_dbg(&xe->drm, "Triggering Driver-FLR\n");
++
++	/*
++	 * Make sure any pending FLR requests have cleared by waiting for the
++	 * FLR trigger bit to go to zero. Also clear GU_DEBUG's DRIVERFLR_STATUS
++	 * to make sure it's not still set from a prior attempt (it's a write to
++	 * clear bit).
++	 * Note that we should never be in a situation where a previous attempt
++	 * is still pending (unless the HW is totally dead), but better to be
++	 * safe in case something unexpected happens
++	 */
++	ret = xe_mmio_wait32(gt, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
++	if (ret) {
++		drm_err(&xe->drm, "Driver-FLR-prepare wait for ready failed! %d\n", ret);
++		return;
++	}
++	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
++
++	/* Trigger the actual Driver-FLR */
++	xe_mmio_rmw32(gt, GU_CNTL, 0, DRIVERFLR);
++
++	/* Wait for hardware teardown to complete */
++	ret = xe_mmio_wait32(gt, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
++	if (ret) {
++		drm_err(&xe->drm, "Driver-FLR-teardown wait completion failed! %d\n", ret);
++		return;
++	}
++
++	/* Wait for hardware/firmware re-init to complete */
++	ret = xe_mmio_wait32(gt, GU_DEBUG, DRIVERFLR_STATUS, DRIVERFLR_STATUS,
++			     flr_timeout, NULL, false);
++	if (ret) {
++		drm_err(&xe->drm, "Driver-FLR-reinit wait completion failed! %d\n", ret);
++		return;
++	}
++
++	/* Clear sticky completion status */
++	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
++}
++
++static void driver_flr_fini(struct drm_device *drm, void *arg)
++{
++	struct xe_device *xe = arg;
++
++	if (xe->mmio.needs_flr_on_fini)
++		driver_flr(xe);
++}
++
++static int driver_flr_init(struct xe_device *xe)
++{
++	return drmm_add_action_or_reset(&xe->drm, driver_flr_fini, xe);
++}
++
+ static void mmio_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_device *xe = arg;
+@@ -405,6 +483,10 @@ int xe_mmio_init(struct xe_device *xe)
+ 	if (err)
+ 		return err;
+ 
++	err = driver_flr_init(xe);
++	if (err)
++		return err;
++
+ 	/* Setup first tile; other tiles (if present) will be setup later. */
+ 	root_tile->mmio.size = xe->mmio.size;
+ 	root_tile->mmio.regs = xe->mmio.regs;
+-- 
+2.34.1
 
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-124516v3_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
-    - bat-adlp-7:         [PASS][3] -> [FAIL][4] ([Intel XE#480]) +1 other test fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
-
-  * igt@xe_exec_store@basic-store:
-    - bat-adlp-7:         [PASS][5] -> [FAIL][6] ([Intel XE#761])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-adlp-7/igt@xe_exec_store@basic-store.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-adlp-7/igt@xe_exec_store@basic-store.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-atsm-2:         [INCOMPLETE][7] ([Intel XE#764]) -> [PASS][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
-
-  * {igt@xe_create@create-execqueues-leak}:
-    - bat-atsm-2:         [FAIL][9] ([Intel XE#524]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-
-  * {igt@xe_create@create-execqueues-noleak}:
-    - bat-adlp-7:         [FAIL][11] ([Intel XE#524]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [Intel XE#761]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/761
-  [Intel XE#764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/764
-
-
-Build changes
--------------
-
-  * Linux: xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15 -> xe-pw-124516v3
-
-  IGT_7530: 9f420648bface59553ffd4481d17ba14b7982840 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15: 3c98b0d3446e97713b2647ac6e0ad4024f0fbf15
-  xe-pw-124516v3: 124516v3
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/index.html
-
---===============0844197520812682956==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Revert &quot;drm/i915/display: Fix a use-after-free when intel_edp_init_connector fails&quot; (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/124516/">https://patchwork.freedesktop.org/series/124516/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15_BAT -&gt; xe-pw-124516v3_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-124516v3_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_store@basic-store:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-adlp-7/igt@xe_exec_store@basic-store.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-adlp-7/igt@xe_exec_store@basic-store.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/761">Intel XE#761</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/764">Intel XE#764</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_create@create-execqueues-leak}:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_create@create-execqueues-noleak}:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-124516v3/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15 -&gt; xe-pw-124516v3</li>
-</ul>
-<p>IGT_7530: 9f420648bface59553ffd4481d17ba14b7982840 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-426-3c98b0d3446e97713b2647ac6e0ad4024f0fbf15: 3c98b0d3446e97713b2647ac6e0ad4024f0fbf15<br />
-  xe-pw-124516v3: 124516v3</p>
-
-</body>
-</html>
-
---===============0844197520812682956==--
