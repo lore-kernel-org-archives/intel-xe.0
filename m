@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EAAECDB485
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E0096CDB486
 	for <intel-xe@archiver.kernel.org>; Wed, 11 Oct 2023 20:07:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB1FB10E1D4;
-	Wed, 11 Oct 2023 20:07:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E08910E1DD;
+	Wed, 11 Oct 2023 20:07:36 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B99E10E17E
- for <intel-xe@lists.freedesktop.org>; Wed, 11 Oct 2023 20:07:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1536D10E17E
+ for <intel-xe@lists.freedesktop.org>; Wed, 11 Oct 2023 20:07:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697054853; x=1728590853;
+ t=1697054854; x=1728590854;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=3k3NjwRBTxVuwDEY5q9kZHgIGlAIdSiMZjV9S/X2Mck=;
- b=h7l6u4EA70pEUSPyBpsvZkX4Y19K1NkZ/IEU54+8aZmmumYZp1YP5KG2
- uvmaeSo1jTk7WzF6Y01ssFQO19Pg+GgzWijX/rbcEtFXMt7M5DRjRJUf6
- u20llGP1Smi//Z/aASAqMgs/Vvz4BGEnKN7l6ITo07MQ55sQqggyT0rsC
- mf5CNcYdbkJvavvsPJgzPwzRRa7eKmCTcczENmcBjnTNmsJxfJ/GFVhxU
- UXB3fSoSY9IYzkuy2VZ5u1IU5LihsJexKfIRkPJDgX/daaVMPKWYUX8fY
- FqweOTpSyjtGf6yOZCilCLMfbyfpsKYpHaqSrPsaPpEHJiBYw6b31pLNE w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="6314275"
+ bh=Pf2SlrgUnSEDtpI708QlMm7o4rxkQ28Ta1JocBASdas=;
+ b=kBidPcS4oH1Pasu4bJwVI8sG+RlZjHaPC1r+C7K6LpWXd2iaSSw3ooe+
+ bswKY6+I5uoQNAmYJXPXruoYHCxF89dzObAXWZf3s9J+yjh9p2J2yAmKO
+ Ke/ApiiT+thjGH6/ZOWXQizLggHFcDSlA1NdwELL1ogBhYKMYc15EULEK
+ Khv7116jxt8/snSeftc6Ew7LImT4WMrFCXNDruXuADUyuh193MkTHMpP1
+ 2LdK3vgn6pxtU1HjgyAQz6Xz/Dg0ZDU8DmIhauG66WaZUg5W5am1GnIaD
+ VSkMJzhzAlVtNftR4Yss4Xpzvij4vMTncSEKKPtjjGaQe8cFvXJRFyFfr A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="6314234"
 X-IronPort-AV: E=Sophos;i="6.03,217,1694761200"; 
-   d="scan'208";a="6314275"
+   d="scan'208";a="6314234"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  11 Oct 2023 13:07:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="877819738"
-X-IronPort-AV: E=Sophos;i="6.03,217,1694761200"; d="scan'208";a="877819738"
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="877819698"
+X-IronPort-AV: E=Sophos;i="6.03,217,1694761200"; d="scan'208";a="877819698"
 Received: from clanggaa-mobl.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.169])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 13:07:28 -0700
+ 11 Oct 2023 13:07:22 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 11 Oct 2023 22:07:08 +0200
-Message-ID: <20231011200709.36060-10-thomas.hellstrom@linux.intel.com>
+Date: Wed, 11 Oct 2023 22:07:02 +0200
+Message-ID: <20231011200709.36060-4-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231011200709.36060-1-thomas.hellstrom@linux.intel.com>
 References: <20231011200709.36060-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 10/11] drm/xe: Use DRM_GPUVM_RESV_PROTECTED for gpuvm
+Subject: [Intel-xe] [CI 04/11] drm/xe: Adjust to commit "drm/gpuvm: add
+ drm_gpuvm_flags to drm_gpuvm"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,26 +63,22 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use DRM_GPUVM_RESV_PROTECTED to relax locking.
-
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 464ef3845f40..69995e3c57ff 100644
+index 14039c9af6d0..e5a1c67e3bb8 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1235,8 +1235,9 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+@@ -1380,7 +1380,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
  		goto err_no_resv;
  	}
  
--	drm_gpuvm_init(&vm->gpuvm, vm_resv_obj, "Xe VM", 0, vm->size,
--		       0, 0,
-+	drm_gpuvm_init(&vm->gpuvm, vm_resv_obj, "Xe VM",
-+		       DRM_GPUVM_RESV_PROTECTED,
-+		       0, vm->size, 0, 0,
+-	drm_gpuvm_init(&vm->gpuvm, vm_resv_obj, "Xe VM", 0, vm->size, 0, 0,
++	drm_gpuvm_init(&vm->gpuvm, vm_resv_obj, "Xe VM", 0, 0, vm->size,
++		       0, 0,
  		       &gpuvm_ops);
  
  	drm_gem_object_put(vm_resv_obj);
