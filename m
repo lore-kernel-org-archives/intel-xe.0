@@ -4,141 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1726CDB46E
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 17:51:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4C12CDB46E
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 18:13:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9ABC710E51E;
-	Thu, 12 Oct 2023 17:51:45 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B01710E579
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 17:51:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 788AD10E51C;
+	Thu, 12 Oct 2023 18:13:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E35510E51C
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 18:13:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697133103; x=1728669103;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=UtqsVHH5AIDUP+EXOJJlwym/Uiz1Y1p6Wvg68hntxbI=;
- b=dIDD6zAADotkP9P3MV01a+VLNv8zlIND/ji/K1+frblXEYtoIsTAGsPF
- tKkNa9hd/eZukaLGrZ8cul+TnCo2/mIj5PZ6UNXvsYNcnEsMBUsC+a43k
- dwuaV/xjWk7iCgsJ9ybRKdaotKgRj73BA8iJ0YKiBdbOxSn1zlpoi1uNy
- NP1LS1hU/z84RWYxcrtWo/jCrbDsycyJzuFB54LOzakTdTONk3jmvE4ZO
- bxfpQ014TbapXYNUyONfIpDW9njZvwZhjNEqI7QpCmapayKjYmzB8nZ5r
- 7qULfr++9lMmW7DZAIvKPp1ygllota2KBAAQET2gOq/wrSEVf6eGXLVq8 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="384839908"
-X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="384839908"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 10:46:22 -0700
+ t=1697134402; x=1728670402;
+ h=date:message-id:from:to:cc:subject:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=XAevaOLqwaXqESg9C9hGBFeKyZdGKRhLV/BZbmIzepQ=;
+ b=FSX/AB7IROslTGeTGWTnw/r3WR/6O72My+dpkJCyiqip2+WajItrRJ/Z
+ r1TCE6SeeHskSJRgiN086r9Wb8UpD0bb2RepbgGoMTOWz9z4KlZ3b55ag
+ edJvT2c206roiTiy/Kwzwx4BiW2e2AAaIVaPW9gN2c+1vW+3kwseTgx+a
+ athvY4B5p7z7KM/9if0GMi55SZn24VZ9d8H7yYw1nvq4hb0h0go96ldoc
+ rto5qZxtGHKK/bQDSwdMZ118hHi2Zhux/EWJwf5CAkcWgOcUWO2zO/X00
+ mCElojCa+2BPBjsD2206+8lJAdi3gRovkv6t7tOtsf5Ll1ngqlPETUB3c g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="382233011"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="382233011"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 11:13:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="704271241"
-X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="704271241"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Oct 2023 10:46:22 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 12 Oct 2023 10:46:21 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 12 Oct 2023 10:46:20 -0700
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Thu, 12 Oct 2023 10:46:20 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Thu, 12 Oct 2023 10:46:20 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BC4dCB6TDwU3+T2HV69ZqWVXt2uXjdWjI3Nhfh8X+n0M5MxCTtX5uGdp9JdijMDapUgwVNvl28BA32cPCszLHqbhQWry0/pH0M7nvXe8S1KtZHvHJouRLtBlNuG31MIig7ZT/rYFB6K9uyCqklqZWIeDGHZwN7dRUmKFxVuSvQFFk9by1qNY0EmEKhaexJ0kHKCsMJR2HkkbUjg1LWhwyZdUcedgK+quw/p2QCxTtVDrvpcyVWnHhaBOLROqZr0/FGRra6z/cEP8C5tAqgrGOO6dMdePbVTpz4Mn2Nu6MkTC3ddymAimQqUaEsIm63BXoA5IY+igk1XWDBduFBlDww==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DuqEme0MZDXLn7YOGuEKOs65MEEN6WslR/+1GE+hsWk=;
- b=VbtBC5/PxDLg2NopGzbGksCYK38RMLKVtgtrnJcFyZI8URzJoiQCrgG4YqGvi1fI3D8CxdMqgH0whxZX+I093BjbS4RtxmWyBJT5yMWO/wkbPyERykCFzjyQDQDItGuo2v3VtC/p2pjQbgagXtcGCi33R8Fl3YcoDiQtIXxU8sGbgTlOAjlQH+nm03akFGR3WWsjQ/a46QijfAAmxTud5442qjV22tYJKotkcQFA0goKbrs4Z9QAcgXwb6CxGgJsvYDjXDyGD+UyZ7FBr/akQDyR9BPNHukaBrjxKWlQ8tEkj0uzobnJPyVHyUQAU4OcL6z/PiiY3Nm2wZ7c1V3rNw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
- LV2PR11MB6024.namprd11.prod.outlook.com (2603:10b6:408:17a::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Thu, 12 Oct
- 2023 17:46:18 +0000
-Received: from DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::f957:c15a:9c34:71db]) by DS7PR11MB7859.namprd11.prod.outlook.com
- ([fe80::f957:c15a:9c34:71db%3]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
- 17:46:18 +0000
-Date: Thu, 12 Oct 2023 10:46:16 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: =?iso-8859-1?Q?Jos=E9?= Roberto de Souza <jose.souza@intel.com>
-Message-ID: <20231012174616.GK21382@mdroper-desk1.amr.corp.intel.com>
-References: <20231010184151.91195-1-jose.souza@intel.com>
- <20231010184151.91195-3-jose.souza@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231010184151.91195-3-jose.souza@intel.com>
-X-ClientProxiedBy: BY5PR17CA0053.namprd17.prod.outlook.com
- (2603:10b6:a03:167::30) To DS7PR11MB7859.namprd11.prod.outlook.com
- (2603:10b6:8:da::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|LV2PR11MB6024:EE_
-X-MS-Office365-Filtering-Correlation-Id: 06c4e422-73bc-44fa-eba7-08dbcb4b236c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xhRVg3suMrB50rzFaU2DC9FePZ5kCFIy8APNx2Qx1H4yuQxjIO0U2KI5QQw8aBPXK2qnefqpE+vCQCP1b6gxKOJip+PdmwoStnPp/fiGOVrNFiqjgjIc/lytZSnY+0cS7kUGcFNh268TCkbF8Ppo/mCezJFX9xzp3kvJYN7lliIhTo6ZuAQC7AmxcQFyNNjqzEMIy2IpSoqo/+jfjoXAJFG8bcAfHdAQ7J8ctiP+aANlf1INa3E1BE6IYv6h5NGkR6tvaOP9ZJV0pbeWvFkanxO61zUvGfg/ztFeCbgu/cWnh4nGaxHm9tIuNGyVv+ThS2Gu8GalfcN3zIMKYa8Gkdss0ZyrQzetS6qlt5diFGJTYMDCVnOHbMIDvafNSetWlGv1+oYDJT4T4p4cD+7y+cnNVLfiNKjHf4RKLk7R0dbLJVjwRe4HMqFiM4sjh+A1svmNDlc/+jBtR1idC+hlEFjCDhEm3YRwOI9IeZf9+DfgiMDRUFDy+Eanr10P4lEYHgxyU15jTl13Cx31J93hLhxz6YAANiaQUGdY7TMoFCDb7H35DDiEWtvXKnXZzCtB
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(396003)(366004)(346002)(39860400002)(136003)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(33656002)(82960400001)(86362001)(38100700002)(2906002)(6512007)(41300700001)(8676002)(6486002)(478600001)(8936002)(5660300002)(6862004)(66946007)(6506007)(4326008)(107886003)(6636002)(1076003)(66556008)(66476007)(316002)(83380400001)(26005);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?EDIbhe24v7GVO4dIPGrf2CyYI6dxZzIxQyoVG40pnsEl1nR+6eBvnJMioW?=
- =?iso-8859-1?Q?8hUu+wyIM5qDkTABrP7fBcMkiWaPZsd6426t/R0guNAx+oKJfM/zTl3dpx?=
- =?iso-8859-1?Q?mrZfEhY/1fp8vdbWT1HdGA8dBWbWIR2FtEUGfVOV4c3GX7H071ji5WPa6q?=
- =?iso-8859-1?Q?/8OoFJs276ZuDe7NkWsAbUVmSmkY/KrkvdF0fAd+ggyneiVgBdjvCKRbVC?=
- =?iso-8859-1?Q?hMuWaBy+A5cTVsrjSWK0+bN6K5I8cAEFyxM/TteFu2a3RmkTEaCer+vH+v?=
- =?iso-8859-1?Q?52ZT5JbnaMtYl3NXtl41mb0Q43FZRRubhQBNprDiehaOXwuHxRNVd3VNNL?=
- =?iso-8859-1?Q?uLL5JdmdfedkO4DVDVNCNovCh9z/FgUY+Ngyr2YJBl5/tcbJDsHnvlE1u1?=
- =?iso-8859-1?Q?oxvu7Hnkp8pDr+5qPQxkRRlyabNPqJYyg/uGUp8Mq2P2Jdvpa/neL9Zwi+?=
- =?iso-8859-1?Q?Tv562lMuEVSsqdnwnpb+lAtIiD4KDYdpTwrLv4JZ8pXTG0NgyBubqhOBM1?=
- =?iso-8859-1?Q?fvVtOkP1hq5hDdrMrIsThwHTWgser+V+AhdVeBfnd4xBaCsTUZ5wLXNZ1v?=
- =?iso-8859-1?Q?COd1zNhSgKFhQMCMWjUlIm/8+Zg9orpkvICnC1Nr+FU4S77umKLE6xlD4e?=
- =?iso-8859-1?Q?ZffUiGiiC9m5fSchK4Y3hi5goqE5YNb2+pYFwthlg2nA6SjwtLsZ2TWF0X?=
- =?iso-8859-1?Q?xnBrVnWCDjEHvy+IHKEoYjI+4UnsiAJBSfEsKkuApaM3439UWU9/XdT6V9?=
- =?iso-8859-1?Q?j/8ypzS1vzCvhalGRYiA79SDydYlliZZNQraIRx+f9wS0cEaCvprxTKt6L?=
- =?iso-8859-1?Q?eC6gcxOwYEBtShSK8AH+0yOLv1Nw5HeafHXgn1VK0vdCNfMVCC8nS4canW?=
- =?iso-8859-1?Q?sqrcIRfuEDojeHuAcdYwPYWKGyMDDoca9djZhqexh38Kicx4g/SeD/Vcfv?=
- =?iso-8859-1?Q?GvDwegwuPEQWeMiXRoXQpC8+spdDtxe3VZCMt5keIV3f3+oPt6FsdCQqPg?=
- =?iso-8859-1?Q?H7QHDOlEPLj2sMAMxLRwZmNVdYTef/sUh/CeGpN94j5/a5yJp1RODw56IV?=
- =?iso-8859-1?Q?IrkwxNL08p2HMwqiC/ejAqK4GnVjgGOgoJBkB/4OHUIwzPnXoyvtvrVokl?=
- =?iso-8859-1?Q?4Cm0tkNehKYmK89gSguYO/axAoxm3KAU7a339cZ/+YwE7EIIcUOMzGAGaf?=
- =?iso-8859-1?Q?0VK9zj9whv5uZCvFaTVq4J5oKkhLNO/WtPRlT+fC1ZVZE92zWBUXlVaZaE?=
- =?iso-8859-1?Q?TPyintiuF0gCfSk+SqaGBybPc1WvmttZn5SWp4OUyx6qagPfeEXokxePxP?=
- =?iso-8859-1?Q?wMnoPbO5KZkgTCB64Hl4N754Xsp27JBRolBCdvAJfyDVG4KpfFP3bfoU6J?=
- =?iso-8859-1?Q?6mp2qO/BRYYXiJ6G35HC09ZogPmLv8qH/CVIt42J6PyUMuOLcMXlonrJuJ?=
- =?iso-8859-1?Q?nJue0kdGptBUI/aowhcUr0HtkBKi6fe+VwLEkV7A/lLDRqtNReNqr05NJY?=
- =?iso-8859-1?Q?lbjdoOgss14hPl72+5mNYZsg0nmsGlkazsvYJ9/fJ7zOl+6SQ+MAKXHYyx?=
- =?iso-8859-1?Q?A86FgVKlwAgkaE0/A51MNNtOpaZPIqoxJYQV9r1o0+2tDSK1fvkVFdRUAf?=
- =?iso-8859-1?Q?V8pW8une7P0Y+vHTNXJ8ZBzbUx4i3jjpwGdWrxx/6T3eKv7D/rEnoGWg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 06c4e422-73bc-44fa-eba7-08dbcb4b236c
-X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 17:46:18.2198 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: QV9gFcgBhFcRT9M/FMyJo/MW4KGKzRDUCVk2fqNaYbUYQDX5qp1YHyhxhs6ndz6Bm3A6gB9/awUhWFN663/TFBjFlMd7yngoalUIUfcFdpw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6024
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v3 3/3] drm/xe: Add INSTDONE registers to
- devcoredump
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="928096742"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="928096742"
+Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
+ ([10.212.148.229])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 11:13:21 -0700
+Date: Thu, 12 Oct 2023 11:04:32 -0700
+Message-ID: <877cnr3efj.wl-ashutosh.dixit@intel.com>
+From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
+To: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+In-Reply-To: <ZSgj/AzRIL1Ge//q@unerlige-ril>
+References: <20231011172643.826452-1-ashutosh.dixit@intel.com>	<20231011172643.826452-2-ashutosh.dixit@intel.com>	<ZSgj/AzRIL1Ge//q@unerlige-ril>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
+ Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe/uapi: "Perf" layer to support
+ multiple perf counter stream types
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,271 +61,281 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: robert.krzemien@intel.com, ogabbay@habana.ai,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>, gzadicario@habana.ai,
+ Harish Chegondi <harish.chegondi@intel.com>, bdotan@habana.ai, talbo@habana.ai,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 10, 2023 at 11:41:51AM -0700, José Roberto de Souza wrote:
-> This registers contains important information that can help with debug
-> of GPU hangs.
-> 
-> While at it also fixing the double line jump at the end of engine
-> registers for CCS engines.
-> 
-> v2:
-> - print other INSTDONE registers
-> 
-> v3:
-> - add for_each_geometry/compute_dss()
-> 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_engine_regs.h |   1 +
->  drivers/gpu/drm/xe/regs/xe_gt_regs.h     |   9 ++
->  drivers/gpu/drm/xe/xe_hw_engine.c        | 100 ++++++++++++++++++++++-
->  drivers/gpu/drm/xe/xe_hw_engine_types.h  |  10 +++
->  4 files changed, 117 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> index 35dd4837dd75f..32465e384fc24 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> @@ -32,6 +32,7 @@
->  #define RING_ACTHD_UDW(base)			XE_REG((base) + 0x5c)
->  #define RING_DMA_FADD_UDW(base)			XE_REG((base) + 0x60)
->  #define RING_IPEHR(base)			XE_REG((base) + 0x68)
-> +#define RING_INSTDONE(base)			XE_REG((base) + 0x6c)
->  #define RING_ACTHD(base)			XE_REG((base) + 0x74)
->  #define RING_DMA_FADD(base)			XE_REG((base) + 0x78)
->  #define RING_HWS_PGA(base)			XE_REG((base) + 0x80)
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> index cd1821d96a5d8..c6650124ae6a6 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-> @@ -105,6 +105,8 @@
->  #define   FF_MODE2_TDS_TIMER_MASK		REG_GENMASK(23, 16)
->  #define   FF_MODE2_TDS_TIMER_128		REG_FIELD_PREP(FF_MODE2_TDS_TIMER_MASK, 4)
->  
-> +#define XEHPG_INSTDONE_GEOM_SVG			XE_REG_MCR(0x666c)
-> +
->  #define CACHE_MODE_1				XE_REG(0x7004, XE_REG_OPTION_MASKED)
->  #define   MSAA_OPTIMIZATION_REDUC_DISABLE	REG_BIT(11)
->  
-> @@ -117,6 +119,10 @@
->  
->  #define COMMON_SLICE_CHICKEN1			XE_REG(0x7010)
->  
-> +#define SLICE_COMMON_INSTDONE			XE_REG(0x7100)
-> +#define SLICE_COMMON_INSTDONE_EXTRA		XE_REG(0x7104)
-> +#define SLICE_COMMON_INSTDONE_EXTRA2		XE_REG(0x7108)
+On Thu, 12 Oct 2023 09:51:08 -0700, Umesh Nerlige Ramappa wrote:
+>
 
-These three are MCR registers on Xe_HP and beyond (one instance per
-gslice).
+Hi Umesh,
 
+> On Wed, Oct 11, 2023 at 10:26:41AM -0700, Ashutosh Dixit wrote:
+> > In XE, the plan is to support multiple types of perf counter streams (O=
+A is
+> > only one type of these streams). This requires addition of a PERF layer=
+ to
+> > multiplex these different stream types through a single set of PERF
+> > ioctl's.
+> >
+> > In addition to PERF DRM ioctl's, another set of ioctl's on the PERF fd =
+are
+> > defined. These are expected to be common to different PERF stream types=
+ and
+> > therefore are defined at the PERF layer itself.
+> >
+> > v2: Add param_size to 'struct drm_xe_perf_param' (Umesh)
+> > v3: Rename 'enum drm_xe_perf_ops' to 'enum drm_xe_perf_ioctls' (Guy Zad=
+icario)
+> >    Add DRM_ prefix to ioctl names to indicate uapi names
+> >
+> > Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
+> > ---
+> > drivers/gpu/drm/xe/Makefile    |  1 +
+> > drivers/gpu/drm/xe/xe_device.c |  4 +++
+> > drivers/gpu/drm/xe/xe_perf.c   | 47 ++++++++++++++++++++++++++++++++
+> > drivers/gpu/drm/xe/xe_perf.h   | 18 +++++++++++++
+> > include/uapi/drm/xe_drm.h      | 49 ++++++++++++++++++++++++++++++++++
+> > 5 files changed, 119 insertions(+)
+> > create mode 100644 drivers/gpu/drm/xe/xe_perf.c
+> > create mode 100644 drivers/gpu/drm/xe/xe_perf.h
+> >
+> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> > index 175a357366d96..fb3eacbe3d6cb 100644
+> > --- a/drivers/gpu/drm/xe/Makefile
+> > +++ b/drivers/gpu/drm/xe/Makefile
+> > @@ -88,6 +88,7 @@ xe-y +=3D xe_bb.o \
+> >	xe_pat.o \
+> >	xe_pci.o \
+> >	xe_pcode.o \
+> > +	xe_perf.o \
+> >	xe_pm.o \
+> >	xe_preempt_fence.o \
+> >	xe_pt.o \
+> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_dev=
+ice.c
+> > index ef42c33e30558..3c0c28c6f9fb8 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -28,6 +28,7 @@
+> > #include "xe_module.h"
+> > #include "xe_pat.h"
+> > #include "xe_pcode.h"
+> > +#include "xe_perf.h"
+> > #include "xe_pm.h"
+> > #include "xe_query.h"
+> > #include "xe_tile.h"
+> > @@ -128,6 +129,9 @@ static const struct drm_ioctl_desc xe_ioctls[] =3D {
+> >	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+> >			  DRM_RENDER_ALLOW),
+> >	DRM_IOCTL_DEF_DRV(XE_VM_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
+> > +	DRM_IOCTL_DEF_DRV(XE_PERF_OPEN, xe_perf_open_ioctl, DRM_RENDER_ALLOW),
+> > +	DRM_IOCTL_DEF_DRV(XE_PERF_ADD_CONFIG, xe_perf_add_config_ioctl, DRM_R=
+ENDER_ALLOW),
+> > +	DRM_IOCTL_DEF_DRV(XE_PERF_REMOVE_CONFIG, xe_perf_remove_config_ioctl,=
+ DRM_RENDER_ALLOW),
+> > };
+> >
+> > static const struct file_operations xe_driver_fops =3D {
+> > diff --git a/drivers/gpu/drm/xe/xe_perf.c b/drivers/gpu/drm/xe/xe_perf.c
+> > new file mode 100644
+> > index 0000000000000..de430065e0d27
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_perf.c
+> > @@ -0,0 +1,47 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright =A9 2023 Intel Corporation
+> > + */
+> > +
+> > +#include <linux/errno.h>
+> > +
+> > +#include "xe_perf.h"
+> > +
+> > +int xe_perf_open_ioctl(struct drm_device *dev, void *data, struct drm_=
+file *file)
+> > +{
+> > +	struct drm_xe_perf_param *arg =3D data;
+> > +
+> > +	if (arg->extensions)
+> > +		return -EINVAL;
+> > +
+> > +	switch (arg->perf_type) {
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +}
+> > +
+> > +int xe_perf_add_config_ioctl(struct drm_device *dev, void *data, struc=
+t drm_file *file)
+> > +{
+> > +	struct drm_xe_perf_param *arg =3D data;
+> > +
+> > +	if (arg->extensions)
+> > +		return -EINVAL;
+> > +
+> > +	switch (arg->perf_type) {
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +}
+> > +
+> > +int xe_perf_remove_config_ioctl(struct drm_device *dev, void *data, st=
+ruct drm_file *file)
+> > +{
+> > +	struct drm_xe_perf_param *arg =3D data;
+> > +
+> > +	if (arg->extensions)
+> > +		return -EINVAL;
+> > +
+> > +	switch (arg->perf_type) {
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +}
+>
+> I would just squash the 2 patches here since this is a new interface and =
+we
+> don't care much about what existed earlier.
 
-Matt
+OK, I'll squash the two patches.
 
-> +
->  #define COMMON_SLICE_CHICKEN4			XE_REG(0x7300, XE_REG_OPTION_MASKED)
->  #define   DISABLE_TDC_LOAD_BALANCING_CALC	REG_BIT(6)
->  
-> @@ -299,6 +305,9 @@
->  #define XE_OAG_BLT_BUSY_FREE			XE_REG(0xdbbc)
->  #define XE_OAG_RENDER_BUSY_FREE			XE_REG(0xdbdc)
->  
-> +#define SAMPLER_INSTDONE			XE_REG_MCR(0xe160)
-> +#define ROW_INSTDONE				XE_REG_MCR(0xe164)
-> +
->  #define SAMPLER_MODE				XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
->  #define   ENABLE_SMALLPL			REG_BIT(15)
->  #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-> index 37b3ee1268090..6e144859abb1a 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> @@ -16,6 +16,7 @@
->  #include "xe_execlist.h"
->  #include "xe_force_wake.h"
->  #include "xe_gt.h"
-> +#include "xe_gt_mcr.h"
->  #include "xe_gt_topology.h"
->  #include "xe_hw_fence.h"
->  #include "xe_irq.h"
-> @@ -655,6 +656,40 @@ void xe_hw_engine_handle_irq(struct xe_hw_engine *hwe, u16 intr_vec)
->  		xe_hw_fence_irq_run(hwe->fence_irq);
->  }
->  
-> +static void
-> +xe_he_engine_snapshot_instdone_capture(struct xe_hw_engine *hwe,
-> +				       struct xe_hw_engine_snapshot *snapshot)
-> +{
-> +	struct xe_gt *gt = hwe->gt;
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	unsigned int dss;
-> +	int group, instance;
-> +
-> +	snapshot->reg.instdone.ring = hw_engine_mmio_read32(hwe, RING_INSTDONE(0));
-> +
-> +	if (snapshot->hwe->class != XE_ENGINE_CLASS_RENDER)
-> +		return;
-> +
-> +	snapshot->reg.instdone.slice_common =
-> +		xe_mmio_read32(gt, SLICE_COMMON_INSTDONE);
-> +	snapshot->reg.instdone.slice_common_extra =
-> +		xe_mmio_read32(gt, SLICE_COMMON_INSTDONE_EXTRA);
-> +	snapshot->reg.instdone.slice_common_extra2 =
-> +		xe_mmio_read32(gt, SLICE_COMMON_INSTDONE_EXTRA2);
-> +
-> +	for_each_geometry_dss(gt, dss, group, instance) {
-> +		snapshot->reg.instdone.sampler[dss] =
-> +			xe_gt_mcr_unicast_read(gt, SAMPLER_INSTDONE, group, instance);
-> +		snapshot->reg.instdone.row[dss] =
-> +			xe_gt_mcr_unicast_read(gt, ROW_INSTDONE, group, instance);
-> +
-> +		if (GRAPHICS_VERx100(xe) >= 1255)
-> +			snapshot->reg.instdone.geom_svg[dss] =
-> +				xe_gt_mcr_unicast_read(gt, XEHPG_INSTDONE_GEOM_SVG,
-> +						       group, instance);
-> +	}
-> +}
-> +
->  /**
->   * xe_hw_engine_snapshot_capture - Take a quick snapshot of the HW Engine.
->   * @hwe: Xe HW Engine.
-> @@ -679,10 +714,30 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
->  	if (!snapshot)
->  		return NULL;
->  
-> +	/* Because XE_MAX_DSS_FUSE_BITS is defined in xe_gt_types.h and it
-> +	 * includes xe_hw_engine_types.h the length of this 3 registers can't be
-> +	 * set in struct xe_hw_engine_snapshot, so here doing additional
-> +	 * allocations.
-> +	 */
-> +	len = (XE_MAX_DSS_FUSE_BITS * sizeof(u32));
-> +	snapshot->reg.instdone.sampler = kzalloc(len, GFP_ATOMIC);
-> +	snapshot->reg.instdone.row = kzalloc(len, GFP_ATOMIC);
-> +	snapshot->reg.instdone.geom_svg = kzalloc(len, GFP_ATOMIC);
-> +	if (!snapshot->reg.instdone.sampler ||
-> +	    !snapshot->reg.instdone.row ||
-> +	    !snapshot->reg.instdone.geom_svg) {
-> +		xe_hw_engine_snapshot_free(snapshot);
-> +		return NULL;
-> +	}
-> +
->  	len = strlen(hwe->name) + 1;
->  	snapshot->name = kzalloc(len, GFP_ATOMIC);
-> -	if (snapshot->name)
-> -		strscpy(snapshot->name, hwe->name, len);
-> +	if (!snapshot->name) {
-> +		xe_hw_engine_snapshot_free(snapshot);
-> +		return NULL;
-> +	}
-> +
-> +	strscpy(snapshot->name, hwe->name, len);
->  
->  	snapshot->hwe = hwe;
->  	snapshot->logical_instance = hwe->logical_instance;
-> @@ -730,6 +785,7 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
->  	snapshot->reg.ring_dma_fadd =
->  		hw_engine_mmio_read32(hwe, RING_DMA_FADD(0));
->  	snapshot->reg.ipehr = hw_engine_mmio_read32(hwe, RING_IPEHR(0));
-> +	xe_he_engine_snapshot_instdone_capture(hwe, snapshot);
->  
->  	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
->  		snapshot->reg.rcu_mode = xe_mmio_read32(hwe->gt, RCU_MODE);
-> @@ -737,6 +793,38 @@ xe_hw_engine_snapshot_capture(struct xe_hw_engine *hwe)
->  	return snapshot;
->  }
->  
-> +static void
-> +xe_hw_engine_snapshot_instdone_print(struct xe_hw_engine_snapshot *snapshot, struct drm_printer *p)
-> +{
-> +	struct xe_gt *gt = snapshot->hwe->gt;
-> +	struct xe_device *xe = gt_to_xe(gt);
-> +	unsigned int dss;
-> +	int group, instance;
-> +
-> +	drm_printf(p, "\tRING_INSTDONE: 0x%08x\n", snapshot->reg.instdone.ring);
-> +
-> +	if (snapshot->hwe->class != XE_ENGINE_CLASS_RENDER)
-> +		return;
-> +
-> +	drm_printf(p, "\tSC_INSTDONE: 0x%08x\n",
-> +		   snapshot->reg.instdone.slice_common);
-> +	drm_printf(p, "\tSC_EXTRA_INSTDONE: 0x%08x\n",
-> +		   snapshot->reg.instdone.slice_common_extra);
-> +	drm_printf(p, "\tSC_EXTRA2_INSTDONE: 0x%08x\n",
-> +		   snapshot->reg.instdone.slice_common_extra2);
-> +
-> +	for_each_geometry_dss(gt, dss, group, instance) {
-> +		drm_printf(p, "\tSAMPLER_INSTDONE[%u]: 0x%08x\n", dss,
-> +			   snapshot->reg.instdone.sampler[dss]);
-> +		drm_printf(p, "\tROW_INSTDONE[%u]: 0x%08x\n", dss,
-> +			   snapshot->reg.instdone.row[dss]);
-> +
-> +		if (GRAPHICS_VERx100(xe) >= 1255)
-> +			drm_printf(p, "\tGEOM_SVGUNIT_INSTDONE[%u]: 0x%08x\n",
-> +				   dss, snapshot->reg.instdone.geom_svg[dss]);
-> +	}
-> +}
-> +
->  /**
->   * xe_hw_engine_snapshot_print - Print out a given Xe HW Engine snapshot.
->   * @snapshot: Xe HW Engine snapshot object.
-> @@ -785,10 +873,13 @@ void xe_hw_engine_snapshot_print(struct xe_hw_engine_snapshot *snapshot,
->  	drm_printf(p, "\tDMA_FADDR: 0x%08x_%08x\n",
->  		   snapshot->reg.ring_dma_fadd_udw,
->  		   snapshot->reg.ring_dma_fadd);
-> -	drm_printf(p, "\tIPEHR: 0x%08x\n\n", snapshot->reg.ipehr);
-> +	drm_printf(p, "\tIPEHR: 0x%08x\n", snapshot->reg.ipehr);
-> +	xe_hw_engine_snapshot_instdone_print(snapshot, p);
-> +
->  	if (snapshot->hwe->class == XE_ENGINE_CLASS_COMPUTE)
->  		drm_printf(p, "\tRCU_MODE: 0x%08x\n",
->  			   snapshot->reg.rcu_mode);
-> +	drm_puts(p, "\n");
->  }
->  
->  /**
-> @@ -803,6 +894,9 @@ void xe_hw_engine_snapshot_free(struct xe_hw_engine_snapshot *snapshot)
->  	if (!snapshot)
->  		return;
->  
-> +	kfree(snapshot->reg.instdone.sampler);
-> +	kfree(snapshot->reg.instdone.row);
-> +	kfree(snapshot->reg.instdone.geom_svg);
->  	kfree(snapshot->name);
->  	kfree(snapshot);
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> index 71c0a0169e62a..0a10a79962c97 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
-> @@ -221,6 +221,16 @@ struct xe_hw_engine_snapshot {
->  		u32 ipehr;
->  		/** @rcu_mode: RCU_MODE */
->  		u32 rcu_mode;
-> +		/** @ring_instdone: RING_INSTDONE */
-> +		struct {
-> +			u32 ring;
-> +			u32 slice_common;
-> +			u32 slice_common_extra;
-> +			u32 slice_common_extra2;
-> +			u32 *sampler;
-> +			u32 *row;
-> +			u32 *geom_svg;
-> +		} instdone;
->  	} reg;
->  };
->  
-> -- 
-> 2.42.0
-> 
+> > diff --git a/drivers/gpu/drm/xe/xe_perf.h b/drivers/gpu/drm/xe/xe_perf.h
+> > new file mode 100644
+> > index 0000000000000..7ee90491132a0
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/xe/xe_perf.h
+> > @@ -0,0 +1,18 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright =A9 2023 Intel Corporation
+> > + */
+> > +
+> > +#ifndef _XE_PERF_H_
+> > +#define _XE_PERF_H_
+> > +
+> > +#include <drm/xe_drm.h>
+> > +
+> > +struct drm_device;
+> > +struct drm_file;
+> > +
+> > +int xe_perf_open_ioctl(struct drm_device *dev, void *data, struct drm_=
+file *file);
+> > +int xe_perf_add_config_ioctl(struct drm_device *dev, void *data, struc=
+t drm_file *file);
+> > +int xe_perf_remove_config_ioctl(struct drm_device *dev, void *data, st=
+ruct drm_file *file);
+> > +
+> > +#endif
+> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > index d48d8e3c898ce..d734d2ee385b1 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -111,6 +111,9 @@ struct xe_user_extension {
+> > #define DRM_XE_WAIT_USER_FENCE		0x0b
+> > #define DRM_XE_VM_MADVISE		0x0c
+> > #define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0d
+> > +#define DRM_XE_PERF_OPEN		0x0e
+> > +#define DRM_XE_PERF_ADD_CONFIG		0x0f
+> > +#define DRM_XE_PERF_REMOVE_CONFIG	0x10
+> >
+> > /* Must be kept compact -- no holes */
+> > #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_D=
+EVICE_QUERY, struct drm_xe_device_query)
+> > @@ -127,6 +130,9 @@ struct xe_user_extension {
+> > #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE =
++ DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
+> > #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_X=
+E_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+> > #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM=
+_MADVISE, struct drm_xe_vm_madvise)
+> > +#define DRM_IOCTL_XE_PERF_OPEN			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_PER=
+F_OPEN, struct drm_xe_perf_param)
+> > +#define DRM_IOCTL_XE_PERF_ADD_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_X=
+E_PERF_ADD_CONFIG, struct drm_xe_perf_param)
+> > +#define DRM_IOCTL_XE_PERF_REMOVE_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DR=
+M_XE_PERF_REMOVE_CONFIG, struct drm_xe_perf_param)
+> >
+> > /**
+> >  * enum drm_xe_memory_class - Supported memory classes.
+> > @@ -1093,6 +1099,49 @@ struct drm_xe_vm_madvise {
+> > #define XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 3)
+> > #define XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 4)
+> >
+> > +/**
+> > + * enum drm_xe_perf_type - Perf stream types
+> > + */
+> > +enum drm_xe_perf_type {
+> > +	DRM_XE_PERF_TYPE_MAX,
+> > +};
+> > +
+> > +/**
+> > + * struct drm_xe_perf_param - XE perf layer param
+> > + *
+> > + * The perf layer enables multiplexing perf counter streams of multiple
+> > + * types. The actual params for a particular stream operation are supp=
+lied
+> > + * via the @param pointer (use __copy_from_user to get these params).
+> > + */
+> > +struct drm_xe_perf_param {
+> > +	/** @extensions: Pointer to the first extension struct, if any */
+> > +	__u64 extensions;
+> > +	/** @perf_type: Perf stream type, of enum @drm_xe_perf_type */
+> > +	__u64 perf_type;
+> > +	/** @param_size: size of data struct pointed to by @param */
+> > +	__u64 param_size;
+>
+> Since this structure is expandable using extensions, maybe we don't need =
+to
+> worry about the param_size. We can drop it. The size would matter if the
+> only way to extend a structure was to add members to the end.
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+Hmm, note param_size is not the size of this struct, it is the "size of
+data struct pointed to by @param". Even the struct pointed to by @param
+probably will also have an extensions member.
+
+Even then I am thinking no harm in having the param_size member since it
+helps in cases where UMD and KMD versions are different and the struct size
+has changed, so each has a different notion of what the struct size
+is. Having param_size available enables the kernel to resolve such cases if
+the need arises in the future (as is done in drm_ioctl). UMD just needs to
+fill in param_size as sizeof(struct) it is passing in via @param, so
+doesn't look too horrible. So I'm thinking of leaving it in just in case.
+
+What do you think?
+
+Thanks.
+--
+Ashutosh
+
+> > +	/** @param: Pointer to actual stream params */
+> > +	__u64 param;
+> > +};
+> > +
+> > +/**
+> > + * enum drm_xe_perf_ioctls - Perf fd ioctl's
+> > + */
+> > +enum drm_xe_perf_ioctls {
+> > +	/**
+> > +	 * @DRM_XE_PERF_IOCTL_ENABLE: Enable data capture for a stream that
+> > +	 * was e.g. either opened in a disabled state or was disabled via
+> > +	 * DRM_XE_PERF_IOCTL_DISABLE
+> > +	 */
+> > +	DRM_XE_PERF_IOCTL_ENABLE =3D _IO('i', 0x0),
+> > +
+> > +	/** @DRM_XE_PERF_IOCTL_DISABLE: Disable data capture for a stream */
+> > +	DRM_XE_PERF_IOCTL_DISABLE =3D _IO('i', 0x1),
+> > +
+> > +	/** @DRM_XE_PERF_IOCTL_CONFIG: Change stream configuration */
+> > +	DRM_XE_PERF_IOCTL_CONFIG =3D _IO('i', 0x2),
+> > +};
+> > +
+> > #if defined(__cplusplus)
+> > }
+> > #endif
+> > --
+> > 2.41.0
+> >
