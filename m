@@ -4,50 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CC53CDB46E
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 11:57:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A2522CDB46E
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 12:58:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFA6C10E4B5;
-	Thu, 12 Oct 2023 11:56:59 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 99B3D10E4B5
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 11:56:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6FF4610E4C9;
+	Thu, 12 Oct 2023 12:58:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 618DA10E4C9
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 12:58:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697111817; x=1728647817;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Z8gIVFHJlXToYQgDBKWf4WhmhaL434Kry+G9XtWGXF8=;
- b=PeU8Q6lY/VMpSAwu3WgLYxllkSPt9+N4dH+bV3Y6pVxiyw24G2xtWoBc
- wtqBv1H0FJt7SwAoCSDwOBnOv8QFuFoOPqzjdn0N6p7qKiVRaJNPjsQ7p
- 7BwdOaUi2lZ6EZK8e1Ffr/jokhOfNDkXZg2UCu4v6An93yUGAAcbFsMyu
- 14RDq7hibZNhunJjAPxz6d+WC+j2jaJQHZoEb6hrwBnYw/ZCHYiRQk/V9
- kfRo7IEILCwkMukj9XAiQsoUlAfigZOaqgOx3J7+b4BSCL3wyX+JS4kEl
- M+jsz/vL8BsHF/r61qeJE0I/cGmLbQeS0zUuNEqYArhcBOaDvjHth8UU1 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="369967465"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="369967465"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 04:56:56 -0700
+ t=1697115519; x=1728651519;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=R/Jyuezvbi7fVtyBOyir3U6PURTujrDnQuHtuWZ/bKs=;
+ b=YKZyC0jVtJpm7rCuH/uy2gxc61UWm7rQIjxFUqUKAPiogFsca6bazW+r
+ X4BFHotFUklj6SgNT9SDBfPB6KFDjYOGfR0pPoQg1NSzVSwfwLNm/s14r
+ afQILURZIpFthuv2KxFt6IEa1Ez+rtKSkNhOg9aIO4LyaFCXPHzLJpQ1G
+ qBkBJNuqpYUqkmfGTcEmGrHHolkNcFtWb+tbXIKrwsWET55169kIp896P
+ b7OwiviLfPDqUWhKMfvYco9mBGOEVN9rZgcy+ckYiS+3H6nbBXGXKKqkb
+ xIIH3YLRCaKma5wxYkRNAjmwsdtIz7k1edZElCDnBgQwYoH8uockj0t2W g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="375259049"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="375259049"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 05:58:38 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="704134069"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="704134069"
-Received: from unknown (HELO localhost) ([10.237.66.162])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 04:56:55 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-In-Reply-To: <SJ1PR11MB612979618F7681A6887D9E68B9D3A@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231012050645.2058219-1-chaitanya.kumar.borah@intel.com>
- <87r0m02op1.fsf@intel.com>
- <SJ1PR11MB612979618F7681A6887D9E68B9D3A@SJ1PR11MB6129.namprd11.prod.outlook.com>
-Date: Thu, 12 Oct 2023 14:56:52 +0300
-Message-ID: <87ttqw12bf.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="1001541436"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="1001541436"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmsmga006.fm.intel.com with ESMTP; 12 Oct 2023 05:58:36 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 12 Oct 2023 18:24:04 +0530
+Message-Id: <20231012125410.2127337-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH v2 0/6] Fix compatibility issue for intel_dmc
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3 0/6] Fix compatibility issue for intel_dmc
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,75 +56,32 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 12 Oct 2023, "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
-> Hello Jani,
->
->> -----Original Message-----
->> From: Jani Nikula <jani.nikula@linux.intel.com>
->> Sent: Thursday, October 12, 2023 2:38 PM
->> To: Borah, Chaitanya Kumar <chaitanya.kumar.borah@intel.com>; intel-
->> xe@lists.freedesktop.org
->> Cc: Shankar, Uma <uma.shankar@intel.com>; Manna, Animesh
->> <animesh.manna@intel.com>; Borah, Chaitanya Kumar
->> <chaitanya.kumar.borah@intel.com>
->> Subject: Re: [PATCH v2 0/6] Fix compatibility issue for intel_dmc
->> 
->> On Thu, 12 Oct 2023, Chaitanya Kumar Borah
->> <chaitanya.kumar.borah@intel.com> wrote:
->> > This series reverts hacky #ifdefs from intel_dmc
->> >
->> > v2: Rebase
->> >
->> > Acked-by: Jani Nikula <jani.nikula@intel.com>
->> 
->> Mmh, come to think of it, the last three patches probably also need to be
->> fixup! drm/xe/display: Implement display support.
->> 
->
-> Just so that I understand correctly, we need to add the header
-> inclusion as fix ups?
+This series reverts hacky #ifdefs from intel_dmc
 
-I think so yes. Everything under compat-i915-headers has been added in
-"drm/xe/display: Implement display support".
+v2: Rebase
+v3: Add compat headers as fixup patches to
+    "drm/xe/display: Implement display support"
 
->
-> Regards
->
-> Chaitanya
->
->> BR,
->> Jani.
->> 
->> 
->> >
->> > Chaitanya Kumar Borah (6):
->> >   Revert "FIXME: drm/i915/dmc: xe way of getting at stepping"
->> >   drm/i915: Add wrapper for getting display step
->> >   fixup! drm/xe/display: Implement display support
->> >   drm/xe: Add intel_step.h compatibility header
->> >   drm/xe: Add i915_gpu_error.h compatibility header
->> >   drm/xe: Add intel_uc_fw.h compatibility header
+Chaitanya Kumar Borah (6):
+  Revert "FIXME: drm/i915/dmc: xe way of getting at stepping"
+  drm/i915: Add wrapper for getting display step
+  fixup! drm/xe/display: Implement display support
+  fixup! drm/xe/display: Implement display support
+  fixup! drm/xe/display: Implement display support
+  fixup! drm/xe/display: Implement display support
 
-These three.
-
-
->> >
->> >  drivers/gpu/drm/i915/display/intel_dmc.c      | 19 ++----------------
->> >  drivers/gpu/drm/i915/intel_step.c             |  5 +++++
->> >  drivers/gpu/drm/i915/intel_step.h             |  1 +
->> >  .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  4 +++-
->> >  .../xe/compat-i915-headers/i915_gpu_error.h   | 18 +++++++++++++++++
->> >  .../drm/xe/compat-i915-headers/intel_step.h   | 20 +++++++++++++++++++
->> >  .../drm/xe/compat-i915-headers/intel_uc_fw.h  | 12 +++++++++++
->> >  7 files changed, 61 insertions(+), 18 deletions(-)  create mode
->> > 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
->> >  create mode 100644
->> > drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
->> >  create mode 100644
->> > drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
->> 
->> --
->> Jani Nikula, Intel
+ drivers/gpu/drm/i915/display/intel_dmc.c      | 19 ++----------------
+ drivers/gpu/drm/i915/intel_step.c             |  5 +++++
+ drivers/gpu/drm/i915/intel_step.h             |  1 +
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  4 +++-
+ .../xe/compat-i915-headers/i915_gpu_error.h   | 17 ++++++++++++++++
+ .../drm/xe/compat-i915-headers/intel_step.h   | 20 +++++++++++++++++++
+ .../drm/xe/compat-i915-headers/intel_uc_fw.h  | 11 ++++++++++
+ 7 files changed, 59 insertions(+), 18 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
 
 -- 
-Jani Nikula, Intel
+2.25.1
+
