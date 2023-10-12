@@ -4,48 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72C94CDB46E
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 09:43:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71178CDB46E
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 09:45:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 409E610E47C;
-	Thu, 12 Oct 2023 09:43:42 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3635F10E478
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 09:43:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39C7610E47F;
+	Thu, 12 Oct 2023 09:45:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D01EB10E47F
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 09:45:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697103820; x=1728639820;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=udE7gtB+a7HjTrs+XLEmsvTgNL3PtZqa/sVnjRlT8x8=;
- b=iq0aiDdSkhGpKkP/RGm/m5//Tm7RGclNU4bLsUDd/SF/AOBjb2GddGbe
- eTKDevEWBegt8rwqZkma4pc4apNhxz2sGvZ6G3mkAOImW3W8hlIKXiGpk
- ihw9BnGCFIWU5jzDo6PAKEVr5ZvMnCz0VFShhQL1Z5R68jqkKYxIhuYjX
- nJbWbsLkAsjYO34dAur+A2Qw5HzbK4UT6JG7L2xIrsIbYPxD0bzZ0etta
- EonvtxMMgxsjkHDiteBR2/uY+5f8pGzJdNsXjFscY3wRyZHyQvLeZKnlq
- xd9k9VzOF50ZyHVFjPfKGNC6d0Cf3sgAQ+8B8V2Lje/Cpv+9op9XYb0f6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="382117476"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="382117476"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 02:43:40 -0700
+ t=1697103917; x=1728639917;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=w+czeXXejv9N9E4wgGD6d4OvQwU1oZP36BlVjRmWnpc=;
+ b=UXc8JswclQInikqi7RTiG4pifpR8b1fWFJbKh3WJkKXgODIF8wlZF3mq
+ uIW/z5mJd+kxN7/9AaG6dBr3l0sj+WTuZpiAJ5+acmPr4tdY9mjajWsvw
+ OGy1lVE2u+DioItLASiUFCxhEcB3T4iMRuNWZq7ImDse02vP2a7VUqFFQ
+ seDjjNDhdcKlw3XWpbivc9250vYSUQ2iozcQ58UHJiTx1FQhJRprtL17c
+ OUsyDjc/2ALOSvtfRwpBNx/VC3n9pJ/pMI2nw7dFaVuNCqVtzaZWV2LUS
+ yUQXFaiSWZBFZgmM4t5lydNFSzzsfPt7YfOppLV584SFZoVkde6pb7sL2 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="388740998"
+X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="388740998"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 02:45:17 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="927920511"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="927920511"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orsmga005.jf.intel.com with ESMTP; 12 Oct 2023 02:43:38 -0700
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-xe@lists.freedesktop.org, jani.nikula@intel.com,
- uma.shankar@intel.com
-Date: Thu, 12 Oct 2023 15:04:46 +0530
-Message-Id: <20231012093446.1332238-2-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231012093446.1332238-1-arun.r.murthy@intel.com>
-References: <20231012093446.1332238-1-arun.r.murthy@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="704093353"
+X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="704093353"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by orsmga003.jf.intel.com with ESMTP; 12 Oct 2023 02:45:15 -0700
+Received: from [10.249.135.71] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.135.71])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id B0B8D332B6;
+ Thu, 12 Oct 2023 10:45:14 +0100 (IST)
+Message-ID: <c8a4468f-91f4-efa1-fdff-f61b09b5ba4d@intel.com>
+Date: Thu, 12 Oct 2023 11:45:13 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/i915: Remove the module parameter
- 'fastboot'
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.15.1
+Content-Language: en-US
+To: Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
+References: <20230823050955.1226024-1-riana.tauro@intel.com>
+ <20230823050955.1226024-2-riana.tauro@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20230823050955.1226024-2-riana.tauro@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH 1/2] RFC drm/xe: Disable ctb communication
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,65 +63,135 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-By default fastboot is enabled on all Display 9+ platforms and disabled
-on older platforms. Its not necessary to retain this as a module
-parameter.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230926091157.635438-1-arun.r.murthy@intel.com
-(cherry picked from commit 58883680a8416661b48a800e5530e2efcea64a4a
----
- drivers/gpu/drm/i915/display/intel_display.c | 3 ---
- drivers/gpu/drm/i915/i915_params.c           | 5 -----
- drivers/gpu/drm/i915/i915_params.h           | 1 -
- 3 files changed, 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index e876fa6db285..478b8764101a 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4988,9 +4988,6 @@ pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
- 
- static bool fastboot_enabled(struct drm_i915_private *dev_priv)
- {
--	if (dev_priv->params.fastboot != -1)
--		return dev_priv->params.fastboot;
--
- 	/* Enable fastboot by default on Skylake and newer */
- 	if (DISPLAY_VER(dev_priv) >= 9)
- 		return true;
-diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
-index 0a171b57fd8f..036c4c3ed6ed 100644
---- a/drivers/gpu/drm/i915/i915_params.c
-+++ b/drivers/gpu/drm/i915/i915_params.c
-@@ -137,11 +137,6 @@ i915_param_named_unsafe(enable_ips, int, 0400, "Enable IPS (default: true)");
- i915_param_named_unsafe(enable_dpt, bool, 0400,
- 	"Enable display page table (DPT) (default: true)");
- 
--i915_param_named(fastboot, int, 0400,
--	"Try to skip unnecessary mode sets at boot time "
--	"(0=disabled, 1=enabled) "
--	"Default: -1 (use per-chip default)");
--
- i915_param_named_unsafe(load_detect_test, bool, 0400,
- 	"Force-enable the VGA load detect code for testing (default:false). "
- 	"For developers only.");
-diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
-index 68abf0ad6c00..d5194b039aab 100644
---- a/drivers/gpu/drm/i915/i915_params.h
-+++ b/drivers/gpu/drm/i915/i915_params.h
-@@ -72,7 +72,6 @@ struct drm_printer;
- 	param(int, edp_vswing, 0, 0400) \
- 	param(unsigned int, reset, 3, 0600) \
- 	param(unsigned int, inject_probe_failure, 0, 0) \
--	param(int, fastboot, -1, 0600) \
- 	param(int, enable_dpcd_backlight, -1, 0600) \
- 	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
- 	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT, CONFIG_DRM_I915_REQUEST_TIMEOUT ? 0600 : 0) \
--- 
-2.25.1
+On 23.08.2023 07:09, Riana Tauro wrote:
+> During Runtime suspend, GuC is reset for both D0->D3hot/D3Cold
+> transistions. It is not necessary for GuC to reset for D0 -> D3hot,
 
+typo
+
+> only enable/disable ctb communication.
+> 
+> Modify the existing ct disable function to send a request
+> to disable ct communication if firmware is running.
+> Add a function to disable guc communication.
+
+s/ctb/CTB
+s/ct/CT
+s/guc/GuC
+
+> 
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc.c    | 15 +++++++++++++++
+>  drivers/gpu/drm/xe/xe_guc.h    |  1 +
+>  drivers/gpu/drm/xe/xe_guc_ct.c | 11 ++++++++++-
+>  drivers/gpu/drm/xe/xe_guc_ct.h |  2 +-
+>  4 files changed, 27 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+> index 2493c5859948..3e4c00bee6bf 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.c
+> +++ b/drivers/gpu/drm/xe/xe_guc.c
+> @@ -557,6 +557,21 @@ int xe_guc_enable_communication(struct xe_guc *guc)
+>  	return 0;
+>  }
+>  
+> +int xe_guc_disable_communication(struct xe_guc *guc)
+> +{
+> +	int err;
+> +	struct xe_guc_ct *ct = &guc->ct;
+> +
+> +	err = xe_guc_ct_disable(ct);
+> +	if (err)
+> +		return err;
+
+
+> +
+> +	/* Check for messages received during/after the CT disable */
+> +	guc_handle_mmio_msg(guc);
+
+are you sure that we need this ?
+
+> +
+> +	return 0;
+> +}
+> +
+>  int xe_guc_suspend(struct xe_guc *guc)
+>  {
+>  	int ret;
+> diff --git a/drivers/gpu/drm/xe/xe_guc.h b/drivers/gpu/drm/xe/xe_guc.h
+> index 3addd8fc674a..18cf5d02eea7 100644
+> --- a/drivers/gpu/drm/xe/xe_guc.h
+> +++ b/drivers/gpu/drm/xe/xe_guc.h
+> @@ -18,6 +18,7 @@ int xe_guc_post_load_init(struct xe_guc *guc);
+>  int xe_guc_reset(struct xe_guc *guc);
+>  int xe_guc_upload(struct xe_guc *guc);
+>  int xe_guc_min_load_for_hwconfig(struct xe_guc *guc);
+> +int xe_guc_disable_communication(struct xe_guc *guc);
+>  int xe_guc_enable_communication(struct xe_guc *guc);
+>  int xe_guc_suspend(struct xe_guc *guc);
+>  void xe_guc_notify(struct xe_guc *guc);
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 59136b6a7c6f..64c2029b2752 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -21,6 +21,7 @@
+>  #include "xe_map.h"
+>  #include "xe_pm.h"
+>  #include "xe_trace.h"
+> +#include "xe_uc_fw.h"
+>  
+>  /* Used when a CT send wants to block and / or receive data */
+>  struct g2h_fence {
+> @@ -319,15 +320,23 @@ int xe_guc_ct_enable(struct xe_guc_ct *ct)
+>  	return err;
+>  }
+>  
+> -void xe_guc_ct_disable(struct xe_guc_ct *ct)
+> +int xe_guc_ct_disable(struct xe_guc_ct *ct)
+>  {
+> +	struct xe_guc *guc = ct_to_guc(ct);
+> +	int ret = 0;
+> +
+>  	mutex_lock(&ct->lock); /* Serialise dequeue_one_g2h() */
+>  	spin_lock_irq(&ct->fast_lock); /* Serialise CT fast-path */
+>  	ct->enabled = false; /* Finally disable CT communication */
+>  	spin_unlock_irq(&ct->fast_lock);
+>  	mutex_unlock(&ct->lock);
+>  
+> +	if (xe_uc_fw_is_running(&guc->fw))
+
+nit: maybe there should be a wrapper for this like:
+
+	bool xe_guc_is_running(xe_guc *guc) { ... }
+
+> +		ret = guc_ct_control_toggle(ct, false);
+
+do we have a plan what to do when this CTB toggle fails?
+and what it really means for the caller if it receives an error?
+
+> +
+>  	xa_destroy(&ct->fence_lookup);
+> +
+> +	return ret;
+>  }
+>  
+>  static bool h2g_has_room(struct xe_guc_ct *ct, u32 cmd_len)
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.h b/drivers/gpu/drm/xe/xe_guc_ct.h
+> index f15f8a4857e0..1ad150c19ae3 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.h
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.h
+> @@ -12,7 +12,7 @@ struct drm_printer;
+>  
+>  int xe_guc_ct_init(struct xe_guc_ct *ct);
+>  int xe_guc_ct_enable(struct xe_guc_ct *ct);
+> -void xe_guc_ct_disable(struct xe_guc_ct *ct);
+> +int xe_guc_ct_disable(struct xe_guc_ct *ct);
+>  void xe_guc_ct_fast_path(struct xe_guc_ct *ct);
+>  
+>  struct xe_guc_ct_snapshot *
