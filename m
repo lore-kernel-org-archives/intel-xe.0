@@ -4,141 +4,150 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0A6B9CDB46E
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 16:50:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C77ACDB46E
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 16:51:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0F4910E50D;
-	Thu, 12 Oct 2023 16:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 59F6F10E50E;
+	Thu, 12 Oct 2023 16:51:29 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBD9610E50D
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 16:50:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 90B0510E50D
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 16:51:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697129414; x=1728665414;
+ t=1697129486; x=1728665486;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=stCmmPJRMRC/APCeRVg2kXAy8me2TKZztEvtlColz/s=;
- b=ROo4IfDPg97hOdQTWioY/cfo1iSN8/8RC/fqoEjBmAUdfpAldh7FrNMu
- huPReX54y/jIx9NbgvoAOKJSnN5B3Q66QwdfDa4AhuGgh+9O791pW/OuD
- +LJTFqyO7QkZyzuEkrGdSB9KKPJVOYkfBg6L7LiV7RYEDLOQinVdpHicy
- OHwC/gLoE5z6xbIZAoJNLQwmrImWqgA2y6ZwaB0Pu0F+Zl3kkl+Xd/ylq
- fuzD/Ip7hyQKc28aH3b8SI7M1HF/m2G9vijrtzFWqaNd7n1J51f3SbUBt
- +TEOZGJAjATz9MmknEXk21dGDh0qSOsWhcDz1FGS+iztqQSkDZI4oBr3K w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="375328057"
-X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="375328057"
+ bh=VvdUUm0sGhNlagd8ie8uBuQYxvZPwUXPny8AVbbcwms=;
+ b=h7FdgFSC3aKMpaFGJIfNmA5mEszeLAjBgVja4oBv7rr+hHU9VoHEz/YO
+ m499StggGAFrR54nhMzsFkqOdNs5DW+u9kiGGwcj7uK9mxDCHzYo2GahB
+ UPf3Ipv5XXBwxPPOa5UYLE3JeMbzJw35de+2q7J6effktheFheKqmmLqX
+ h7vyXyWXpjlHnoS2j+ENhuqUu/Bj+dCxiVLJTzSl9WIPc+AimqG9F/6Gj
+ Dw8NiOb90BMeLOO3+nGSK6LXEjsUAo/pPWz2qx4llyjY6GUr/7C95St7r
+ uxRcyH+bdQOLbbnqdo9u6Vc6fSDYHTly09hy4LzALP9k3Py7FigG/IQvh Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="375328379"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="375328379"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 09:50:14 -0700
+ 12 Oct 2023 09:51:25 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="898188745"
-X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="898188745"
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="898189327"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="898189327"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
  by fmsmga001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Oct 2023 09:48:25 -0700
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ 12 Oct 2023 09:49:37 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 12 Oct 2023 09:50:13 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.32; Thu, 12 Oct 2023 09:51:25 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 12 Oct 2023 09:50:13 -0700
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.32; Thu, 12 Oct 2023 09:51:24 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Thu, 12 Oct 2023 09:50:13 -0700
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Thu, 12 Oct 2023 09:51:24 -0700
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Thu, 12 Oct 2023 09:50:12 -0700
+ 15.1.2507.32; Thu, 12 Oct 2023 09:51:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=laYmyLUTAf4/hxBnsBOghxJz/V8iW4PdRdMhwJW15VT9X7UqSUskJdXHs+ZJMZfSnzaBOKRaiBh3ZDHs/P4AfTt6bg0RO9TIq/G9IlIlQM2lAfnq1t2oYcvuVHrPW4pSU9kjG3tIPiUWKQQDvqrrKUi56OKc7La/QWjYyz8W/dzkqDNGNISwLaY6o0kZW25ooE+UwsI91mS1fEs+Ff1sjdh5OIY9njqdWlDRicIP1cRJOw4SlvcBxDy9OV+WT/fi9nw+oHh1lOqIHOE+gqkIqlKL7cqYHLDRoSxRd7phnCCavC/KWRrjOb4xJ7Y/+3brV8RTqOQDyIFLdyOtNeUgJQ==
+ b=CIZLSAhCuJ6bVObOHD40W0lHCIuJ2XYceBzhAtYZ0OVk/nLXhrWmk+r/ANxYrZmHdrODHu1R1tidgXJDFHnbvlqGq2GLRBkdoI0pd2+SjUuuqgBnECp4jm8fhvmGGgG86ERCgd7QnYz8E6RzauiDf1N01AjWqcCsTMEEDiARkhos9te3oXUVqbiiB5zcOicOoSTFdwAsnCSQLOaeehwPSz5znX1np0+HaP4rE99ENOJQKfD4ZnnJ5zF5SJmD2Q4CX1UpjfNGt2UjuTk3bkJgxC05fQCiECUihCwlQVUCiRibn2NZ+no28/dp2wcgKYKvpmBmrC5lBYEEC0cax7dMwg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6YmU84p8FEDqa/E+BcLagFK60tySe30QZDtGRBfCtZQ=;
- b=JQAqZVUvXgLCXfMCdbjlhWw4q29E8S7pyY7Do7GwMBLU55Whwp+YgNPHpr18dKE+wMprfEdQVLKKT68/8CRpc7PaZUjOVI6H6yL7u8bfoenVIwiI7mlgjJVYEVZrWK/FsRA3oZvefA7+SZRiqA6zE0eDSafFDfgD0a3YSUecOHKbqBFl4ozCkrIEO7Rp3F7MXWY/gS7Z5Q8qomoC9Ga6X6tulWMeW4CfAE4gGLnN0x169tycWASIQz9JcmNJRXlDenb5z3i2dVs2xzxPmKM3sTEnUvUZ8uI/hVK5pehy6e3eXsSUOfg8lbSuyx/FGU1Vn770dm57iAK75tav0WowMw==
+ bh=B4QRKHNqey62pCQPsc6J14U2N/Wy0ZRRdFYhmM90kkM=;
+ b=h8JwYvfCkqwBa3t0wvDh/V/+b8Ba3cp7krXc79CPbCFZA5mCegyhjOWd0yUMfxlvhhxUvNTqCyJXBAIMDVzzPnnBz5jfg1/obhf37nt8maCWfQ9Bxt90gH70sNIio44lfWbKTV0PkRN9idErZq1iMZZv1zHbvjgLlshhhNfUjWxDABg9KaplOxevqN5aK2q08XWcYCZyzUYeKvnY9cXNd8fvjeO1Oe8R7Xo8PAqma1nE7REeKg6jPU32UA8HjIvt+62EwrzvMeyxaF0oOPAaET8QwlMtat/knaOqldBsRQr9TeSh9vQ1MHpK0l0hKzd0LpFrfvI+tGJvebW5H5Tthw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
- by CY8PR11MB7267.namprd11.prod.outlook.com (2603:10b6:930:9a::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.44; Thu, 12 Oct
- 2023 16:50:11 +0000
-Received: from MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::cf65:94e6:cdd3:cfe]) by MN0PR11MB6135.namprd11.prod.outlook.com
- ([fe80::cf65:94e6:cdd3:cfe%7]) with mapi id 15.20.6863.032; Thu, 12 Oct 2023
- 16:50:10 +0000
-Date: Thu, 12 Oct 2023 11:50:07 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Message-ID: <finhh5yofvmiyiugkjf53gpjtdedg7f2gsnrwwfn6kgvt4cx3g@q3fspuyuj6fj>
-References: <20231012125410.2127337-1-chaitanya.kumar.borah@intel.com>
- <20231012125410.2127337-7-chaitanya.kumar.borah@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com (2603:10b6:5:65::14) by
+ PH7PR11MB8250.namprd11.prod.outlook.com (2603:10b6:510:1a8::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.43; Thu, 12 Oct
+ 2023 16:51:22 +0000
+Received: from DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::cd4f:fe89:df17:61d]) by DM6PR11MB2987.namprd11.prod.outlook.com
+ ([fe80::cd4f:fe89:df17:61d%5]) with mapi id 15.20.6863.043; Thu, 12 Oct 2023
+ 16:51:22 +0000
+Date: Thu, 12 Oct 2023 09:51:08 -0700
+From: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+To: Ashutosh Dixit <ashutosh.dixit@intel.com>
+Message-ID: <ZSgj/AzRIL1Ge//q@unerlige-ril>
+References: <20231011172643.826452-1-ashutosh.dixit@intel.com>
+ <20231011172643.826452-2-ashutosh.dixit@intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231012125410.2127337-7-chaitanya.kumar.borah@intel.com>
-X-ClientProxiedBy: BY5PR16CA0028.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::41) To MN0PR11MB6135.namprd11.prod.outlook.com
- (2603:10b6:208:3c9::9)
+In-Reply-To: <20231011172643.826452-2-ashutosh.dixit@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0035.namprd05.prod.outlook.com
+ (2603:10b6:a03:33f::10) To DM6PR11MB2987.namprd11.prod.outlook.com
+ (2603:10b6:5:65::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|CY8PR11MB7267:EE_
-X-MS-Office365-Filtering-Correlation-Id: d45748d6-0c12-46d0-8f53-08dbcb434c06
+X-MS-TrafficTypeDiagnostic: DM6PR11MB2987:EE_|PH7PR11MB8250:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4a8ff062-ae6f-4229-e7c0-08dbcb4376d1
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 6trKMFtPvE8yCZRqB1+8GvQTm1fUfdxn1vigRKT1aZ1V2II5XXIsQQNrum3h8zaps86LY6exPdg5JYPoFUJOGhbl3LWQ6DEGbR8NNvgHwOKBoMYnKOA0p5Pv0pdPaj5ib84+fIM9XlmP0pNm6Vn5pac+wlvQFZF9gE1TabkD4ZcyJ6DrZGoAYc5fLufzaT5t9RTTkNBtnP6pmb8f835VfKHhduyc6lVTshLUXFG1s8X37RfIHRYm5eNtZLbtsk2ISbtdi5JaWgoIvFAbyYdhUJBaYQC/1wXPBV7hFq0Q5ZIQlk4qTOEjsCdLtpLoF1hmJeEBfTXP17Qwur7sOxMb8qJBThkpnHKESZXvgokhNwR79o13WAifdBAYLftcSnQw9ya5YWK+ywVUMdW65huhQ0BfyLZVad+Z2rv+Se219+ucT5x3oFsbbRuCn1MzpI9M1YofOV8vEAK1B+ZDm1z1uBA2Tf94WT2K4jmZST2mKLW8x6LV2U6hb9yzuuLq1XPtJvxzLTAP4cQUF7cCigc0ElHt3bvllXAg3Kpbfjm8L26VTCzoNd2cNTITzhwRNB60QV9CLJ8dl+1ooAovCmBIXg==
+X-Microsoft-Antispam-Message-Info: sGnUrOaF6nh3vkB/hjx6+bWg6YQBCjxZhTJ1PvclHvl9ps4ZSMUTgakWL1SxxAncQYWX3mEY2PpWdTxN3tcyfJahtERcwI5uSnQw03lttesusSWUeM0BPDTX4TD3FMEMOF2OcIM+YDf+2tCiC8Am8PsDmSkQCVvjP7RmjzoAFIFwLBI9s49iLDBWbUD1p/6fajb7EScICNPfHOlaaX1OIY1uMGjN0PElYByo+bvjbJAYKyLUas8K2kJG/3nGarpZQlQ+QvS4zsBgZHrprUkz/QD+Rr3LYreOycbC65+AK7vUOpn5H7keLSAWOphNDvIDKxeu0anbc5bjNjqe9YMJFY20DpNPFekV4+DwCenrShc7KmLH5RgB49tpHhSwQEgTAwZD3MieQeokTIvncLBUpELm4FoeE0kSxk6pvqERsivLdTKlko7382B/YBtMbojre41P2GYQllVUnaXisVLJenpPCQmIxQUD7LcUEOu0kEpnoxz+PXJpid9kUbx0DANN9mOwuIgW84acLA+eBY+LdbxSYMCntjgtG7/eXg+vSm0+QdvyJXwp1ZL2OpsSUxcc
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(136003)(39860400002)(346002)(396003)(376002)(366004)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(26005)(478600001)(6486002)(6506007)(86362001)(6666004)(41300700001)(8936002)(8676002)(6862004)(4326008)(66946007)(6636002)(316002)(66556008)(66476007)(2906002)(6512007)(9686003)(38100700002)(5660300002)(82960400001)(33716001);
+ IPV:NLI; SFV:NSPM; H:DM6PR11MB2987.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(366004)(136003)(376002)(39860400002)(396003)(346002)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(6512007)(9686003)(26005)(6636002)(316002)(8676002)(86362001)(6506007)(2906002)(83380400001)(107886003)(82960400001)(478600001)(6486002)(5660300002)(38100700002)(6862004)(41300700001)(8936002)(4326008)(33716001)(6666004)(66946007)(66476007)(66556008)(54906003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?0gNQh8CGS/h+RLgbhspDI3PS/OOOuKelegBxzHh/sHIYqYouYV+46D9SRG?=
- =?iso-8859-1?Q?gX46pixkA1FE/q+lSUWMOeypdL5+2XgCqGGDyeRtyfUDI2hj/lmNMZOVJQ?=
- =?iso-8859-1?Q?KZa+Ol7JFz8Q4k2p9F4Ud2fd/qTq+2hcagEH7kq+lNOJ7bbv/LFEe+khAR?=
- =?iso-8859-1?Q?9Uod/zSnjOIuC8OWTJLqYp4gBab0PEeVGBYcQIWFHgv2NHEbowj6Jz2hwk?=
- =?iso-8859-1?Q?myjiJPKVWuqZbjVu98q8U+L3VIqegiiBPwT33ueXqULW6UGP8w6IU+CpBn?=
- =?iso-8859-1?Q?HDpN9gxMk0QZ6ozf47NLJDmjXnrsnJ2GTWWLxID0IB3u8qAlM3GoP4SYBj?=
- =?iso-8859-1?Q?uXRUue3XYbWAd87wknQcpcH1b3RTP13Z+aHMTRkf4Y1fiUq8JhWjUgm3PK?=
- =?iso-8859-1?Q?tgTF0tbzY52zNrPrVcgqEis7ZGOZdmrQJ7Xw45uXMNBCWwVdqPJw6lZOy0?=
- =?iso-8859-1?Q?brspSmxfba7yh1fxxxETCUlMHQOI1Fui/m4koPi+fnQSbkpRoQxX9S5Nqo?=
- =?iso-8859-1?Q?FBMmhoENgtsRmIco6rA0GauiBEYZZXsz1vqwW7O6S5Ju3fhs+6ktPzDoKi?=
- =?iso-8859-1?Q?j+U2fP4jvnmzsHVdxxggq23+nyXERR5NyTaIKNqMW0g+n7JhSrfK+JO/pt?=
- =?iso-8859-1?Q?1wexAYl5nk+Q7MZaV1gyN7r+5Tyv6P88+wyKPj2GvxN/yLN/PsUYL37Xky?=
- =?iso-8859-1?Q?AhO70+VUdiOplIUnvM251pWa1ClPs7Cg4OA6QlTGvFYwLR+M9RHcB5cXL1?=
- =?iso-8859-1?Q?YqU88yJYPHFn6c+Sp2v4Mkdz50tKDPyFfQgPKDAEp7OqVLl0Nbicgd4zTC?=
- =?iso-8859-1?Q?j9fjD9IF7wLfU/BXtJxyOz8bFCW9gIeJED/rNCpOZ7akFS6mSMFPPAtiYx?=
- =?iso-8859-1?Q?W9HhPvNlypbcFnkTkQmZvK32ebnRocKt87l6hmR0VTeT673epaWBms/wiM?=
- =?iso-8859-1?Q?hCuo2KXltHv/n5XyQ5+QpysQkyPO6YMGJbm4Y7BuGHcDOrhz6nz1vtln8M?=
- =?iso-8859-1?Q?T382p03gv+53t1xmUlcG49+/x3wVTTSNN3AGOu7KMXdoVgmbn4LckUqJXJ?=
- =?iso-8859-1?Q?SVSgeia8efGvbu6yDC/Zqrp15XhzxyRoUSo5YckGM1MPIgDwDTOQ9sit1K?=
- =?iso-8859-1?Q?LuwXxOLv23biPSy2VpOZOtMb14rWkJOMyK17kQGaPVCChsClu0NcxbptKx?=
- =?iso-8859-1?Q?gFzaine9OsGsVyNwaeWr2837edLYh/aMTYaxfGQ/c3PCqYp9FblawuUOKm?=
- =?iso-8859-1?Q?08TLZ6RHQT8BPnDbAXwU4YOoVKp1OVMTGC+ihON4MosnUyD1Elkmm9t03X?=
- =?iso-8859-1?Q?L3JlwHfOWGPvtd0cv7kPDbwXLZiFqe7f2kYkKFWcObnQsTE3+3P6YmUDyU?=
- =?iso-8859-1?Q?iP9+EvTmkE56tvMsBgMI6dSHXmajNcFvUXNF1UGEkWAVFORR5Zm5HNLbbn?=
- =?iso-8859-1?Q?i+nyeQiEzspJJa/uwxHDK9DtPzJA1qZTByJJwF6aHryxGCHPITtiTKgI2M?=
- =?iso-8859-1?Q?ZiDsYv3mVOXzKc6uxdgVW0CTMlkp2wX45FqzKKu7SsSeXpG6NUfDb67HVL?=
- =?iso-8859-1?Q?Qv+VVe9UUYal660Vy8Kd8LY5IqOlG4AyQ7oKRg7YAKGSjCvW2jkI0tI5oM?=
- =?iso-8859-1?Q?Rz1n741LRARpekjKxMaIumxY0HhHK5Sg2t4ruzQ+pNGKhfNJah/7tVvQ?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: d45748d6-0c12-46d0-8f53-08dbcb434c06
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V2dlLzJkakVPQ1BRUjVJSHlaZStYNGVpNUl2cGxPcSs1bnpNaEQ1K2ZaTmo0?=
+ =?utf-8?B?Y0lEckpCNUR5TUlsZmVOajAxcXlmT1VrYTE4MUpEczFnRml0UXlRdFBvOThL?=
+ =?utf-8?B?R2VhKzBUTWtiTzRoSDVHMXJsbGxHaEpOdkt2anNoK2dFdnpLcHhubS9VNUZx?=
+ =?utf-8?B?end6dXVtcFhMYjZ5eGJ3dWJZQmtJd1FhaGRhMytzb0RpNFk4cTJQd0pYMm81?=
+ =?utf-8?B?S2dHK1F1dEx5dWZsS2syU1J0NEZ6cFhtd1FycmFVQTJ0bG9yN21UZm1kMW5u?=
+ =?utf-8?B?emhSWEtTNUxJazJXMy9VTTFveUNkdERuMy9uRzVteFpJZVdmMlgvWXZEaVQz?=
+ =?utf-8?B?eGE5YmR2R0d4VXViSDdGS2pCTFU3ZDlsTFFtbDJNZjQvWUJveW00bjVCT0pj?=
+ =?utf-8?B?N3ZydGxjNVlQTS85WDgxdEZNODc2SWI0c0s3dy9icHdJRkFzQmQ3dDJGVFJk?=
+ =?utf-8?B?ZWJJMUpTU09pWlJDUytFK1FKMkF4UENnNWcwRWNEdER2b3ppMGxVbTJ5ZFdJ?=
+ =?utf-8?B?YVZzRmRrWUJteFI0QjhiSHBPVWo1K3QyN05oV0tFWXFFQnV0SHVKeGxJbEZF?=
+ =?utf-8?B?K2hSZXBoVTZWcG5kNnVKK1lkV1JiVWhwOXR0eWxFQis3MFg1SjcyTDkrMG8v?=
+ =?utf-8?B?WWQzOWFJSjdnTWg5RXl2YmdUVmd6UEdkZ1ZoOGgvR25saTM5TjZpZnpYazF3?=
+ =?utf-8?B?cTM0NUFXdkh2dGdPYWN4WlF2dnU0OWR0R1dnTzJoUHBvUzQzT2drVmlvVDlI?=
+ =?utf-8?B?a2Nzb2dMalZscGcyWDRGNzJaREZpYjFPWUdLT3ZBUzVDcU1jVzN3V3BnY3ND?=
+ =?utf-8?B?Nk1XcUtXVmVLYm95dEFmbkNFbm8rOXZEYlFwNkRKWm03MHZyblRQa2QyeXdZ?=
+ =?utf-8?B?UnIvWnMzMGJyYnplKytFSXIyWEQ0SEpFR3lTaUNyaVFKaTlybkE3SUlCSlpN?=
+ =?utf-8?B?Z3JmQVJ1NVY4RWJUZTFiakNLQ2JxcmEwdnZrL2dqNFpYSFhFSy9wMlZTQnpm?=
+ =?utf-8?B?TlM0bHl2TGxMWUMwM0p3dTR3dlI1TXdxUmIvdlFOOHF1MDEvSGFIbVZsb0Zt?=
+ =?utf-8?B?NnhDSW5DQlFTSzhpZVN1dHY5QnczdHdRSTBQZEVHV0tkanJFSnQ5Q2pHOTRT?=
+ =?utf-8?B?NmFhcnZkblNKcE1rb1crMTN4RnR3NmE0a2tjbGhScTQ0ejBpd3o1Wlg4Y1Z1?=
+ =?utf-8?B?eDlGUkRYdEM3ZjUrTVJKeEdqYmhEWndBZ2R6MXF2VE91LzFyb1BsYWlVcUEr?=
+ =?utf-8?B?UmF1UlI5ZG9IaEVObk1Cb0p0bzhMNXBJSWFERkMwS3htNFNQS1UrUjRpTXNE?=
+ =?utf-8?B?M0pHUzBJMGwralNhUEppOVdOQit3U1IySitLd1JDQXg0eXNoU2pWTnRLam0z?=
+ =?utf-8?B?UmFEeHgvRFIxSWI4anFBZ0E5bnJQMUFoNzVmcUhNN2VLV2QvOU5tWFVCYklS?=
+ =?utf-8?B?SXhNRXhWcGtMamJBM1Q4cENmdGNoSzU0cXJ6SlU2L2N0NG1MTGFCN1BweXFq?=
+ =?utf-8?B?c0RUUEdnK1UxdlJrc0FwdExDY3dhbHJURlZzMDVCUUx0R25WbzJsZ0V6MCtw?=
+ =?utf-8?B?SnZzY1ltQXIwZDJocE9QRGFYV0JReW5sMXI0QTJzT0ErY2VoMDFXcHg4b0cr?=
+ =?utf-8?B?WUU0Y1A4MTM2aXJzZkJBN251MlY4bHlYYWwrQ2xNcVhsQ0txb0RHb29kVnpQ?=
+ =?utf-8?B?Vy9kV3ZKbFg4TGYrUjlYc2NPQjg3aUh1SE5YeTV1SnAyZlJJUmR1ckNWdHR6?=
+ =?utf-8?B?Z3hpditXNVNWSllCSHVuMEJPcmV6YlhHbFViYXVySVgrQi80d21UY2hRZk9l?=
+ =?utf-8?B?ekJoUGttSFUxYUhMYkpYVFlPbXdmV08xMjJNenpnanRDaEp1UUJQcG1VcHhX?=
+ =?utf-8?B?ODduUGF0dG0xMHRsY0xLLzE0NE1laHk5dld0aEc2RlkvdGZzYWlxVngrN3ZH?=
+ =?utf-8?B?UzdIVlJCMjBsbGZMTzl5RnpUd1pkWC9nRXkrZ3puZ05mS0dDajljK3dhWXlq?=
+ =?utf-8?B?eWlLenZiSldVakxDckNTLzFMcjFxNjBRdm5GOHZtZlgwK2RLWGdwbUN5MTlW?=
+ =?utf-8?B?S0lWZG9xZ1plL2dBaW5mK3RTamVFeUhzb2RqeHVBMjBEN3B4cVlvalFtWXNx?=
+ =?utf-8?B?YllvNm1HQlppR2tGM3pGb2hrMHV6eU0zZHZTUFdVdkFuRFVTQ0x4R0l3TUty?=
+ =?utf-8?Q?2VJUQww1GFvtJ9cYK4VaRlc=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a8ff062-ae6f-4229-e7c0-08dbcb4376d1
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2987.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 16:50:10.8876 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 16:51:22.4920 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: th+vWQiq36xfUMP+VH6eR6ESylns+B1ja7WEVGb3+KzLG7EC5w+Cwv0Mb7MpIV+B2IQNcBivg14NMUQqc6Ahp0gPzpO4w8HqJ1duc4P4ZeM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7267
+X-MS-Exchange-CrossTenant-UserPrincipalName: cZVX9fWRfel7i4I5h7/qGzjX8yfnf8VlmT6iIDEf1dn2qwpH9Cdi+lr28Mk4cOjcxeNfxYhPb6v2yv0H3f7lZG1QmZ/Vi3qGRaYDPlFA3bQ=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8250
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 6/6] fixup! drm/xe/display: Implement display
- support
+Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe/uapi: "Perf" layer to support
+ multiple perf counter stream types
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,61 +159,234 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: robert.krzemien@intel.com, ogabbay@habana.ai,
+ Lionel Landwerlin <lionel.g.landwerlin@intel.com>, gzadicario@habana.ai,
+ Harish Chegondi <harish.chegondi@intel.com>, bdotan@habana.ai, talbo@habana.ai,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Oct 12, 2023 at 06:24:10PM +0530, Chaitanya Kumar Borah wrote:
->Add definition for INTEL_UC_FIRMWARE_URL to maintain compatibility
->with intel_dmc code.
+On Wed, Oct 11, 2023 at 10:26:41AM -0700, Ashutosh Dixit wrote:
+>In XE, the plan is to support multiple types of perf counter streams (OA is
+>only one type of these streams). This requires addition of a PERF layer to
+>multiplex these different stream types through a single set of PERF
+>ioctl's.
 >
->Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+>In addition to PERF DRM ioctl's, another set of ioctl's on the PERF fd are
+>defined. These are expected to be common to different PERF stream types and
+>therefore are defined at the PERF layer itself.
+>
+>v2: Add param_size to 'struct drm_xe_perf_param' (Umesh)
+>v3: Rename 'enum drm_xe_perf_ops' to 'enum drm_xe_perf_ioctls' (Guy Zadicario)
+>    Add DRM_ prefix to ioctl names to indicate uapi names
+>
+>Signed-off-by: Ashutosh Dixit <ashutosh.dixit@intel.com>
 >---
-> drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h    |  1 +
-> drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h | 11 +++++++++++
-> 2 files changed, 12 insertions(+)
-> create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
+> drivers/gpu/drm/xe/Makefile    |  1 +
+> drivers/gpu/drm/xe/xe_device.c |  4 +++
+> drivers/gpu/drm/xe/xe_perf.c   | 47 ++++++++++++++++++++++++++++++++
+> drivers/gpu/drm/xe/xe_perf.h   | 18 +++++++++++++
+> include/uapi/drm/xe_drm.h      | 49 ++++++++++++++++++++++++++++++++++
+> 5 files changed, 119 insertions(+)
+> create mode 100644 drivers/gpu/drm/xe/xe_perf.c
+> create mode 100644 drivers/gpu/drm/xe/xe_perf.h
 >
->diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->index 9cbe16863be2..4e922446e40e 100644
->--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
->@@ -22,6 +22,7 @@
-> #include "i915_utils.h"
-> #include "intel_gt_types.h"
-> #include "intel_step.h"
->+#include "intel_uc_fw.h"
-> #include "intel_uncore.h"
-> #include "intel_runtime_pm.h"
-> #include <linux/pm_runtime.h>
->diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
+>diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+>index 175a357366d96..fb3eacbe3d6cb 100644
+>--- a/drivers/gpu/drm/xe/Makefile
+>+++ b/drivers/gpu/drm/xe/Makefile
+>@@ -88,6 +88,7 @@ xe-y += xe_bb.o \
+> 	xe_pat.o \
+> 	xe_pci.o \
+> 	xe_pcode.o \
+>+	xe_perf.o \
+> 	xe_pm.o \
+> 	xe_preempt_fence.o \
+> 	xe_pt.o \
+>diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+>index ef42c33e30558..3c0c28c6f9fb8 100644
+>--- a/drivers/gpu/drm/xe/xe_device.c
+>+++ b/drivers/gpu/drm/xe/xe_device.c
+>@@ -28,6 +28,7 @@
+> #include "xe_module.h"
+> #include "xe_pat.h"
+> #include "xe_pcode.h"
+>+#include "xe_perf.h"
+> #include "xe_pm.h"
+> #include "xe_query.h"
+> #include "xe_tile.h"
+>@@ -128,6 +129,9 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
+> 	DRM_IOCTL_DEF_DRV(XE_WAIT_USER_FENCE, xe_wait_user_fence_ioctl,
+> 			  DRM_RENDER_ALLOW),
+> 	DRM_IOCTL_DEF_DRV(XE_VM_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
+>+	DRM_IOCTL_DEF_DRV(XE_PERF_OPEN, xe_perf_open_ioctl, DRM_RENDER_ALLOW),
+>+	DRM_IOCTL_DEF_DRV(XE_PERF_ADD_CONFIG, xe_perf_add_config_ioctl, DRM_RENDER_ALLOW),
+>+	DRM_IOCTL_DEF_DRV(XE_PERF_REMOVE_CONFIG, xe_perf_remove_config_ioctl, DRM_RENDER_ALLOW),
+> };
+>
+> static const struct file_operations xe_driver_fops = {
+>diff --git a/drivers/gpu/drm/xe/xe_perf.c b/drivers/gpu/drm/xe/xe_perf.c
 >new file mode 100644
->index 000000000000..7d37bc453165
+>index 0000000000000..de430065e0d27
 >--- /dev/null
->+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
->@@ -0,0 +1,11 @@
->+/* SPDX-License-Identifier: MIT */
+>+++ b/drivers/gpu/drm/xe/xe_perf.c
+>@@ -0,0 +1,47 @@
+>+// SPDX-License-Identifier: MIT
 >+/*
->+ * Copyright � 2023 Intel Corporation
+>+ * Copyright © 2023 Intel Corporation
 >+ */
 >+
->+#ifndef _INTEL_UC_FW_H_
->+#define _INTEL_UC_FW_H_
+>+#include <linux/errno.h>
 >+
->+#define INTEL_UC_FIRMWARE_URL "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/i915"
+>+#include "xe_perf.h"
+>+
+>+int xe_perf_open_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>+{
+>+	struct drm_xe_perf_param *arg = data;
+>+
+>+	if (arg->extensions)
+>+		return -EINVAL;
+>+
+>+	switch (arg->perf_type) {
+>+	default:
+>+		return -EINVAL;
+>+	}
+>+}
+>+
+>+int xe_perf_add_config_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>+{
+>+	struct drm_xe_perf_param *arg = data;
+>+
+>+	if (arg->extensions)
+>+		return -EINVAL;
+>+
+>+	switch (arg->perf_type) {
+>+	default:
+>+		return -EINVAL;
+>+	}
+>+}
+>+
+>+int xe_perf_remove_config_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+>+{
+>+	struct drm_xe_perf_param *arg = data;
+>+
+>+	if (arg->extensions)
+>+		return -EINVAL;
+>+
+>+	switch (arg->perf_type) {
+>+	default:
+>+		return -EINVAL;
+>+	}
+>+}
 
-that may not be the right URL for xe. For any platform officially
-supported by xe driver, the expectation is that the firmware will be in
-the xe/ directory. I'd rather just point to the repo like we are
-currently doing:
+I would just squash the 2 patches here since this is a new interface and 
+we don't care much about what existed earlier.
 
-drivers/gpu/drm/xe/xe_uc_fw.h:#define XE_UC_FIRMWARE_URL "https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git"
-
-
-Lucas De Marchi
-
+>diff --git a/drivers/gpu/drm/xe/xe_perf.h b/drivers/gpu/drm/xe/xe_perf.h
+>new file mode 100644
+>index 0000000000000..7ee90491132a0
+>--- /dev/null
+>+++ b/drivers/gpu/drm/xe/xe_perf.h
+>@@ -0,0 +1,18 @@
+>+/* SPDX-License-Identifier: MIT */
+>+/*
+>+ * Copyright © 2023 Intel Corporation
+>+ */
+>+
+>+#ifndef _XE_PERF_H_
+>+#define _XE_PERF_H_
+>+
+>+#include <drm/xe_drm.h>
+>+
+>+struct drm_device;
+>+struct drm_file;
+>+
+>+int xe_perf_open_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
+>+int xe_perf_add_config_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
+>+int xe_perf_remove_config_ioctl(struct drm_device *dev, void *data, struct drm_file *file);
 >+
 >+#endif
+>diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+>index d48d8e3c898ce..d734d2ee385b1 100644
+>--- a/include/uapi/drm/xe_drm.h
+>+++ b/include/uapi/drm/xe_drm.h
+>@@ -111,6 +111,9 @@ struct xe_user_extension {
+> #define DRM_XE_WAIT_USER_FENCE		0x0b
+> #define DRM_XE_VM_MADVISE		0x0c
+> #define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0d
+>+#define DRM_XE_PERF_OPEN		0x0e
+>+#define DRM_XE_PERF_ADD_CONFIG		0x0f
+>+#define DRM_XE_PERF_REMOVE_CONFIG	0x10
+>
+> /* Must be kept compact -- no holes */
+> #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+>@@ -127,6 +130,9 @@ struct xe_user_extension {
+> #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
+> #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+> #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
+>+#define DRM_IOCTL_XE_PERF_OPEN			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_PERF_OPEN, struct drm_xe_perf_param)
+>+#define DRM_IOCTL_XE_PERF_ADD_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_PERF_ADD_CONFIG, struct drm_xe_perf_param)
+>+#define DRM_IOCTL_XE_PERF_REMOVE_CONFIG		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_PERF_REMOVE_CONFIG, struct drm_xe_perf_param)
+>
+> /**
+>  * enum drm_xe_memory_class - Supported memory classes.
+>@@ -1093,6 +1099,49 @@ struct drm_xe_vm_madvise {
+> #define XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 3)
+> #define XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 4)
+>
+>+/**
+>+ * enum drm_xe_perf_type - Perf stream types
+>+ */
+>+enum drm_xe_perf_type {
+>+	DRM_XE_PERF_TYPE_MAX,
+>+};
+>+
+>+/**
+>+ * struct drm_xe_perf_param - XE perf layer param
+>+ *
+>+ * The perf layer enables multiplexing perf counter streams of multiple
+>+ * types. The actual params for a particular stream operation are supplied
+>+ * via the @param pointer (use __copy_from_user to get these params).
+>+ */
+>+struct drm_xe_perf_param {
+>+	/** @extensions: Pointer to the first extension struct, if any */
+>+	__u64 extensions;
+>+	/** @perf_type: Perf stream type, of enum @drm_xe_perf_type */
+>+	__u64 perf_type;
+>+	/** @param_size: size of data struct pointed to by @param */
+>+	__u64 param_size;
+
+Since this structure is expandable using extensions, maybe we don't need 
+to worry about the param_size. We can drop it. The size would matter if 
+the only way to extend a structure was to add members to the end.
+
+Thanks,
+Umesh
+>+	/** @param: Pointer to actual stream params */
+>+	__u64 param;
+>+};
+>+
+>+/**
+>+ * enum drm_xe_perf_ioctls - Perf fd ioctl's
+>+ */
+>+enum drm_xe_perf_ioctls {
+>+	/**
+>+	 * @DRM_XE_PERF_IOCTL_ENABLE: Enable data capture for a stream that
+>+	 * was e.g. either opened in a disabled state or was disabled via
+>+	 * DRM_XE_PERF_IOCTL_DISABLE
+>+	 */
+>+	DRM_XE_PERF_IOCTL_ENABLE = _IO('i', 0x0),
+>+
+>+	/** @DRM_XE_PERF_IOCTL_DISABLE: Disable data capture for a stream */
+>+	DRM_XE_PERF_IOCTL_DISABLE = _IO('i', 0x1),
+>+
+>+	/** @DRM_XE_PERF_IOCTL_CONFIG: Change stream configuration */
+>+	DRM_XE_PERF_IOCTL_CONFIG = _IO('i', 0x2),
+>+};
+>+
+> #if defined(__cplusplus)
+> }
+> #endif
 >-- 
->2.25.1
+>2.41.0
 >
