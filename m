@@ -4,56 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 459E6CDB465
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 03:02:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B6C2CDB46E
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 03:11:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E227410E401;
-	Thu, 12 Oct 2023 03:02:32 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E093B10E401
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 03:02:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A698710E402;
+	Thu, 12 Oct 2023 03:11:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 72E3010E402
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 03:11:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697079750; x=1728615750;
+ t=1697080268; x=1728616268;
  h=message-id:date:mime-version:subject:to:references:from:
  in-reply-to:content-transfer-encoding;
- bh=HdsqthNzWqbm79DnvxJygRFGPJo9MX5cYwUEKhTefeE=;
- b=Eo9+IcqgYJ4djqf5Gmy54OwBvwac5/mMXalMHFug2otiZN7iT9zwF1/W
- l/N1UAJLyF4nb7yFI+xCoPAFp8tDMHJ7qFH5k4rfhQA8nAqd3MRHUUrqX
- X053k2/Fj1fJQULgL/GonPYwM8g+g4WikHP9wYklqXmNlC9IQjN7SN0OS
- GfIEuXDQTW3qJ2kVWCjYoHpxrM74krWY7c+oW2KbL+kSczxgB6KBC/vyc
- B2Z4u3ROrq91hpOow770Tro2fnPx4HeEs2yNfy48B31bL/3WtIY6LgC3I
- ffkti5yWQlDCw6j320gdnU60nio8bYUkd/72H6p2VzjXdvObROS7bR0jg A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="388681077"
-X-IronPort-AV: E=Sophos;i="6.03,217,1694761200"; d="scan'208";a="388681077"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 20:02:29 -0700
+ bh=JvMHgVDsLgyMRPZ0zNIYGh5ggWPS2GVd1C4hx3vSDH8=;
+ b=lTwKKvYdq22M0tafzBAH/45Azizf45A0fos3JuzmWPQLD2FWSqkdq5G2
+ qK5Qj8mfOFWABflNtsNcb2jig8V1fGKgJmS4K8l+8vaP8YYcwdPRPYmML
+ 3RAYea4zjkG5nft8bykRRHCtW6xabhPhmx2g5FnPWCSdXe+m2dru4JOCT
+ iV8h35GMaCMCvx3UYpOaSl5FzVR5dn19kj2wILgRjx9YTsm3NqA131M+g
+ TBuDlsBLYLXwIisbMpjA6oU44LBRTfyvGwuJtxLRPgVQRZGwFAEcSOvv6
+ j9x/zKfZAB8v367LG/IgoMiMRhVUkzGb90kfP2jT+F0ZTFlRJpq+vZmYs A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="365094795"
+X-IronPort-AV: E=Sophos;i="6.03,217,1694761200"; d="scan'208";a="365094795"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2023 20:10:06 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="927807933"
-X-IronPort-AV: E=Sophos;i="6.03,217,1694761200"; d="scan'208";a="927807933"
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="819967924"
+X-IronPort-AV: E=Sophos;i="6.03,217,1694761200"; d="scan'208";a="819967924"
 Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
  ([10.145.162.146])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Oct 2023 20:02:28 -0700
-Message-ID: <921c3a4c-54c1-ed62-3fd7-9fd4ba0591b9@linux.intel.com>
-Date: Thu, 12 Oct 2023 08:35:18 +0530
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Oct 2023 20:10:05 -0700
+Message-ID: <9a320ea2-94c0-dd15-d58e-d18dc8a9e5a2@linux.intel.com>
+Date: Thu, 12 Oct 2023 08:42:55 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.13.0
 Content-Language: en-US
 To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 References: <20230927114627.136925-1-himal.prasad.ghimiray@intel.com>
- <20230927114627.136925-12-himal.prasad.ghimiray@intel.com>
- <afffc88e-6c18-75b7-a968-67574573fe9b@linux.intel.com>
- <dd3e373e-fa9e-4832-b861-fe6aceb55814@intel.com>
+ <20230927114627.136925-7-himal.prasad.ghimiray@intel.com>
+ <d2e6ffcb-9a7c-13c2-f48c-027595e90631@linux.intel.com>
+ <MW4PR11MB70569F78CD647F840CD2DF0BB3CCA@MW4PR11MB7056.namprd11.prod.outlook.com>
 From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <dd3e373e-fa9e-4832-b861-fe6aceb55814@intel.com>
+In-Reply-To: <MW4PR11MB70569F78CD647F840CD2DF0BB3CCA@MW4PR11MB7056.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 11/11] drm/xe: Clear all SoC errors post warm
- reset.
+Subject: Re: [Intel-xe] [PATCH 06/11] drm/xe: Notify userspace about GSC HW
+ errors.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,104 +69,161 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 11/10/23 12:29, Ghimiray, Himal Prasad wrote:
+On 11/10/23 12:55, Ghimiray, Himal Prasad wrote:
 >
-> On 11-10-2023 12:26, Aravind Iddamsetty wrote:
+>> -----Original Message-----
+>> From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+>> Sent: 11 October 2023 12:53
+>> To: Ghimiray, Himal Prasad <himal.prasad.ghimiray@intel.com>; intel-
+>> xe@lists.freedesktop.org
+>> Subject: Re: [Intel-xe] [PATCH 06/11] drm/xe: Notify userspace about GSC
+>> HW errors.
+>>
+>>
 >> On 27/09/23 17:16, Himal Prasad Ghimiray wrote:
->>> There are scenarios where there are no fatal errors reported
->>> but Non-fatal/correctable errors being reported from the SoC
->>> uncore to IEH and not propogated to SG unit. Clear all previous
->>> SoC errors post warm reset.
->> the commit msg is not very clear, how fatal error reporting is related to other errors.
-> Will rephrase it as
->
-> There are scenarios where there are errors being reported from the SoC
-> uncore to IEH and not propagated to SG unit. Since these errors are not propagated to SG unit,
-> driver wont be able to clean them as part of xe_process_hw_error. Hence clear all SoC register post
-> xe_process_hw_error.
->
-the scenario this patch address is only during boot up so let's mention that.
+>>> Send uevent incase of nonfatal errors reported by gsc.
+>>>
+>>> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>>> ---
+>>>  drivers/gpu/drm/xe/xe_device_types.h |  3 +++
+>>>  drivers/gpu/drm/xe/xe_hw_error.c     | 20 ++++++++++++++++++++
+>>>  drivers/gpu/drm/xe/xe_hw_error.h     |  3 ++-
+>>>  drivers/gpu/drm/xe/xe_irq.c          |  4 ++++
+>>>  include/uapi/drm/xe_drm.h            |  9 +++++++++
+>>>  5 files changed, 38 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/xe/xe_device_types.h
+>>> b/drivers/gpu/drm/xe/xe_device_types.h
+>>> index 6aa4f4801d81..ff476a167be4 100644
+>>> --- a/drivers/gpu/drm/xe/xe_device_types.h
+>>> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+>>> @@ -179,6 +179,9 @@ struct xe_tile {
+>>>  	struct tile_hw_errors {
+>>>  		unsigned long count[XE_TILE_HW_ERROR_MAX];
+>>>  	} errors;
+>>> +
+>>> +	/** @gsc_hw_err_work: worker for uevent to report GSC HW errors
+>> */
+>>> +	struct work_struct gsc_hw_err_work;
+>>>  };
+>>>
+>>>  /**
+>>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c
+>>> b/drivers/gpu/drm/xe/xe_hw_error.c
+>>> index eb76b8e6a338..76ae12df013c 100644
+>>> --- a/drivers/gpu/drm/xe/xe_hw_error.c
+>>> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
+>>> @@ -3,6 +3,8 @@
+>>>   * Copyright © 2023 Intel Corporation
+>>>   */
+>>>
+>>> +#include <drm/xe_drm.h>
+>>> +
+>>>  #include "xe_hw_error.h"
+>>>
+>>>  #include "regs/xe_regs.h"
+>>> @@ -366,6 +368,22 @@ xe_gt_hw_error_handler(struct xe_gt *gt, const
+>> enum hardware_error hw_err)
+>>>  		xe_gt_hw_error_status_reg_handler(gt, hw_err);  }
+>>>
+>>> +void xe_gsc_hw_error_work(struct work_struct *work) {
+>>> +	struct xe_tile *tile = container_of(work, typeof(*tile),
+>> gsc_hw_err_work);
+>>> +	char *csc_hw_error_event[4];
+>>> +
+>>> +	csc_hw_error_event[0] = XE_GSC_HW_HEALTH_UEVENT "=1";
+>>> +	csc_hw_error_event[1] = "RESET_REQUIRED=1";
+>>> +	csc_hw_error_event[2] = kasprintf(GFP_KERNEL, "TILE_ID=%d", tile-
+>>> id);
+>>> +	csc_hw_error_event[3] = NULL;
+>>> +
+>>> +	kobject_uevent_env(&tile->xe->drm.primary->kdev->kobj,
+>> KOBJ_CHANGE,
+>>> +			   csc_hw_error_event);
+>>> +
+>>> +	kfree(csc_hw_error_event[2]);
+>>> +}
+>>> +
+>>>  static void
+>>>  xe_gsc_hw_error_handler(struct xe_tile *tile, const enum
+>>> hardware_error hw_err)  { @@ -423,6 +441,8 @@
+>>> xe_gsc_hw_error_handler(struct xe_tile *tile, const enum hardware_error
+>> hw_err)
+>>>  			drm_err_ratelimited(&tile_to_xe(tile)->drm,
+>>>  					    HW_ERR "GSC detected %s %s
+>> error, bit[%d] is set\n",
+>>>  					    errmsg, hw_err_str, errbit);
+>>> +
+>>> +			schedule_work(&tile->gsc_hw_err_work);
+>>>  		}
+>>>  		tile->errors.count[indx]++;
+>>>  	}
+>>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h
+>>> b/drivers/gpu/drm/xe/xe_hw_error.h
+>>> index 155722a0af4c..ee7705b3343b 100644
+>>> --- a/drivers/gpu/drm/xe/xe_hw_error.h
+>>> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
+>>> @@ -7,6 +7,7 @@
+>>>
+>>>  #include <linux/stddef.h>
+>>>  #include <linux/types.h>
+>>> +#include <linux/workqueue.h>
+>>>
+>>>  /* Error categories reported by hardware */  enum hardware_error { @@
+>>> -121,5 +122,5 @@ struct xe_tile;
+>>>
+>>>  void xe_hw_error_irq_handler(struct xe_tile *tile, const u32
+>>> master_ctl);  void xe_process_hw_errors(struct xe_device *xe);
+>>> -
+>>> +void xe_gsc_hw_error_work(struct work_struct *work);
+>>>  #endif
+>>> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+>>> index 06c9b43e2c71..285c657cc789 100644
+>>> --- a/drivers/gpu/drm/xe/xe_irq.c
+>>> +++ b/drivers/gpu/drm/xe/xe_irq.c
+>>> @@ -586,6 +586,10 @@ int xe_irq_install(struct xe_device *xe)
+>>>  	irq_handler_t irq_handler;
+>>>  	int err, irq;
+>>>
+>>> +	struct xe_tile *tile = xe_device_get_root_tile(xe);
+>>> +
+>>> +	INIT_WORK(&tile->gsc_hw_err_work, xe_gsc_hw_error_work);
+>>> +
+>>>  	irq_handler = xe_irq_handler(xe);
+>>>  	if (!irq_handler) {
+>>>  		drm_err(&xe->drm, "No supported interrupt handler"); diff --
+>> git
+>>> a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h index
+>>> d48d8e3c898c..c45833defcc7 100644
+>>> --- a/include/uapi/drm/xe_drm.h
+>>> +++ b/include/uapi/drm/xe_drm.h
+>>> @@ -16,6 +16,15 @@ extern "C" {
+>>>   * subject to backwards-compatibility constraints.
+>>>   */
+>>>
+>>> +/**
+>>> + * DOC: uevent generated by xe on it's tile node.
+>>> + *
+>>> + * XE_GSC_HW_HEALTH_UEVENT - Event is generated when GSC reports
+>> HW
+>>> + * errors. The value supplied with the event is always
+>> "RESET_REQUIRED=1".
+>>> + * Additional information supplied is tile id on which error is reported.
+>> what is the relevance of tile id if it always reported on tile 0 only.
+> Hmm. Ya right. Any other information we would like to send ?
+> Instead of DEVICE_STATUS is it ok to send GSC_HW_STATUS ?
+I think RESET_REQUIRED is sufficient but may be you have to add more details
+to UAPI DOC why RESET is needed.
 
 Thanks,
 
 Aravind.
-
-> Is it ok ?
->
->>
 >> Thanks,
->> Aravind.
->>> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/xe_hw_error.c | 37 ++++++++++++++++++++++++++++++++
->>>   drivers/gpu/drm/xe/xe_hw_error.h |  1 +
->>>   drivers/gpu/drm/xe/xe_irq.c      |  1 +
->>>   3 files changed, 39 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
->>> index 0bcb1bea7ffb..a777c887a7be 100644
->>> --- a/drivers/gpu/drm/xe/xe_hw_error.c
->>> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
->>> @@ -366,6 +366,43 @@ static void xe_assign_hw_err_regs(struct xe_device *xe)
->>>       }
->>>   }
->>>   +void xe_clear_all_soc_errors(struct xe_device *xe)
->>> +{
->>> +    enum hardware_error hw_err;
->>> +    u32 base, slave_base;
->>> +    struct xe_tile *tile;
->>> +    struct xe_gt *gt;
->>> +    unsigned int i;
+>>
+>> Aravind
+>>> + */
+>>> +#define XE_GSC_HW_HEALTH_UEVENT "DEVICE_STATUS"
 >>> +
->>> +    base = SOC_PVC_BASE;
->>> +    slave_base = SOC_PVC_SLAVE_BASE;
->>> +
->>> +    hw_err = HARDWARE_ERROR_CORRECTABLE;
->>> +
->>> +    for_each_tile(tile, xe, i) {
->>> +        gt = tile->primary_gt;
->>> +
->>> +        while (hw_err < HARDWARE_ERROR_MAX) {
->>> +            for (i = 0; i < PVC_NUM_IEH; i++)
->>> +                xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
->>> +                        ~REG_BIT(hw_err));
->>> +
->>> +            xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
->>> +                    REG_GENMASK(31, 0));
->>> +            xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err),
->>> +                    REG_GENMASK(31, 0));
->>> +            xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
->>> +                    REG_GENMASK(31, 0));
->>> +            xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
->>> +                    REG_GENMASK(31, 0));
->>> +            hw_err++;
->>> +        }
->>> +        for (i = 0; i < PVC_NUM_IEH; i++)
->>> +            xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
->>> +                    (HARDWARE_ERROR_MAX << 1) + 1);
->>> +    }
->>> +}
->>> +
->>>   static void
->>>   xe_gt_hw_error_status_reg_handler(struct xe_gt *gt, const enum hardware_error hw_err)
->>>   {
->>> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
->>> index a458a90b34a2..7ada7c97c939 100644
->>> --- a/drivers/gpu/drm/xe/xe_hw_error.h
->>> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
->>> @@ -219,4 +219,5 @@ struct xe_tile;
->>>   void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
->>>   void xe_process_hw_errors(struct xe_device *xe);
->>>   void xe_gsc_hw_error_work(struct work_struct *work);
->>> +void xe_clear_all_soc_errors(struct xe_device *xe);
->>>   #endif
->>> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
->>> index 285c657cc789..42a6bb45acba 100644
->>> --- a/drivers/gpu/drm/xe/xe_irq.c
->>> +++ b/drivers/gpu/drm/xe/xe_irq.c
->>> @@ -597,6 +597,7 @@ int xe_irq_install(struct xe_device *xe)
->>>       }
->>>         xe_process_hw_errors(xe);
->>> +    xe_clear_all_soc_errors(xe);
->>>         xe->irq.enabled = true;
->>>   
+>>>  /**
+>>>   * DOC: uevent generated by xe on it's pci node.
+>>>   *
