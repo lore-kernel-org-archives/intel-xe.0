@@ -4,54 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F9FBCDB482
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 07:42:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35A1ACDB482
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 08:56:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C6F7810E432;
-	Thu, 12 Oct 2023 07:42:22 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F0EF910E424;
- Thu, 12 Oct 2023 07:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2D6510E46A;
+	Thu, 12 Oct 2023 08:56:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86DC810E46A
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 08:56:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697096541; x=1728632541;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=LLGV73iEAy7j4yNqHNJj1UQ1No+eA8+X3ep7gxBkavk=;
- b=abKtrwEpoV07pou1Zd2O+mphlh3+TM17yYepGkcXMRUOdxZcj7/mhleI
- 0YDwo1X6rcRzLa2v8aSWzg0xKwBGrlTTa6Vxt7GX2E8/VSUllmIEoLPmh
- mk/68teyxUF60wv44IQSz3GdZg9zWMQw3YiBLseGodrD257aZfNmUsXoP
- wM0h9S9MBkEQNCPh7X3xZBLK3uXMTRj3DC2IyaQu7uaAhKl8BSoH5OmS9
- jHxb/1rRxRU02WxvBS00BQE46fRFOYWTA6naiaEGSABGSeHs9UQDQIi8C
- 3d9zkjOORpEt2VEmR+yyonexW5xWeT7ilkDsAbJFC6vOLpkaDg0tq6ywa A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="365130894"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="365130894"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 00:42:20 -0700
+ t=1697100961; x=1728636961;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=15GP/LHnPhO3hTTR7DmmCIXJC5r4C607uvCFQhJPv44=;
+ b=Eps5jhwuOTenRY23Dtgro6dwjIs7uYT0JkMOPnXFru01+TmjILCt/Fhi
+ U5gKMS+520ByAqaBzNMM4GXZuHgObc/B6FD5nc3DpxPaQpgpgMmVUHQKL
+ LVm6ASxnuL5B2tdOQ8Z/dsHMWI9hdBwqXxy/r1pl30/MhdBSaBpLTmMme
+ kgJOBzZl/3VFi/+owDrrfdTj33zapxoaXkNhB3CQj+fpiNrQZiSrgiXWM
+ fnVkQh0UeebxaUNG77NjDdqLohGT2Tfp5WxlLGhrULMmgfsFVQFvTjyFH
+ 3+SeuLLeO/bz1RBQGFz5oCOJbsxdolz/Lp7NvxX9I/FeeCNTzZ14+KB7F Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="388733063"
+X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="388733063"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 01:56:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="747785160"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="747785160"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.102.138.187])
- by orsmga007-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Oct 2023 00:42:18 -0700
-Date: Thu, 12 Oct 2023 09:41:59 +0200
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Message-ID: <20231012074159.c4w67nj7klkbdiei@kamilkon-desk.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- igt-dev@lists.freedesktop.org,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mauro Carvalho Chehab <mchehab@kernel.org>
-References: <20231011141734.590321-13-janusz.krzysztofik@linux.intel.com>
- <20231011141734.590321-14-janusz.krzysztofik@linux.intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="820059834"
+X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="820059834"
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmsmga008.fm.intel.com with ESMTP; 12 Oct 2023 01:55:58 -0700
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-xe@lists.freedesktop.org, jani.nikula@intel.com,
+ uma.shankar@intel.com
+Date: Thu, 12 Oct 2023 14:17:06 +0530
+Message-Id: <20231012084707.1254386-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230924144751.446446-1-arun.r.murthy@intel.com>
+References: <20230924144751.446446-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20231011141734.590321-14-janusz.krzysztofik@linux.intel.com>
-Subject: Re: [Intel-xe] [PATCH i-g-t v3 01/11] lib/ktap: Improve TODO
- workaround description
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 1/2] drm/i915: Remove the module parameter
+ 'fastboot'
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,56 +57,65 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Arun R Murthy <arun.r.murthy@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Janusz,
-On 2023-10-11 at 16:17:36 +0200, Janusz Krzysztofik wrote:
-> A workaround was implemented in IGT KTAP parser so it could accepted KTAP
-> reports with missing top level KTAP version and test suite plan headers.
-> While the issue has been fixed by a kernel side commit c95e7c05c139
-> ("kunit: Report the count of test suites in a module"), included in the
-> mainline kernel since v6.6-rc1, we still need to keep that workaround in
-> place to preserve IGT compatibility with LTS kernel version 6.1 as long as
-> it is used by major Linux distributions.
-> 
-> Update the comment with a reference to the kernel side fix and a
-> clarification on why we need to keep the workaround in place.
-> 
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+By default fastboot is enabled on all Display 9+ platforms and disabled
+on older platforms. Its not necessary to retain this as a module
+parameter.
 
-Reviewed-by: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20230926091157.635438-1-arun.r.murthy@intel.com
+(cherry picked from commit 58883680a8416661b48a800e5530e2efcea64a4a
+---
+ drivers/gpu/drm/i915/display/intel_display.c | 3 ---
+ drivers/gpu/drm/i915/i915_params.c           | 5 -----
+ drivers/gpu/drm/i915/i915_params.h           | 1 -
+ 3 files changed, 9 deletions(-)
 
-> ---
->  lib/igt_ktap.c | 13 ++++++++++---
->  1 file changed, 10 insertions(+), 3 deletions(-)
-> 
-> diff --git a/lib/igt_ktap.c b/lib/igt_ktap.c
-> index 5eac102417..3df4d6950d 100644
-> --- a/lib/igt_ktap.c
-> +++ b/lib/igt_ktap.c
-> @@ -91,9 +91,16 @@ int igt_ktap_parse(const char *buf, struct igt_ktap_results *ktap)
->  				       "%*1[ ]%*1[ ]%*1[ ]%*1[ ]KTAP%*[ ]version%*[ ]%u %n",
->  				       &n, &len) == 1 && len == strlen(buf))) {
->  		/*
-> -		 * TODO: drop the following workaround as soon as
-> -		 * kernel side issue of missing lines with top level
-> -		 * KTAP version and test suite plan is fixed.
-> +		 * TODO: drop the following workaround, which addresses a kernel
-> +		 * side issue of missing lines that provide top level KTAP
-> +		 * version and test suite plan, as soon as no longer needed.
-> +		 *
-> +		 * The issue has been fixed in v6.6-rc1, commit c95e7c05c139
-> +		 * ("kunit: Report the count of test suites in a module"),
-> +		 * but we still need this workaround for as long as LTS kernel
-> +		 * version 6.1, with DRM selftests already converted to Kunit,
-> +		 * but without that missing Kunit headers issue fixed, is used
-> +		 * by major Linux distributions.
->  		 */
->  		if (ktap->expect == KTAP_START) {
->  			ktap->suite_count = 1;
-> -- 
-> 2.42.0
-> 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 4b73db93d23d..748e9a42e94f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4989,9 +4989,6 @@ pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
+ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
+ {
+ #ifdef I915
+-	if (dev_priv->params.fastboot != -1)
+-		return dev_priv->params.fastboot;
+-
+ 	/* Enable fastboot by default on Skylake and newer */
+ 	if (DISPLAY_VER(dev_priv) >= 9)
+ 		return true;
+diff --git a/drivers/gpu/drm/i915/i915_params.c b/drivers/gpu/drm/i915/i915_params.c
+index 0a171b57fd8f..036c4c3ed6ed 100644
+--- a/drivers/gpu/drm/i915/i915_params.c
++++ b/drivers/gpu/drm/i915/i915_params.c
+@@ -137,11 +137,6 @@ i915_param_named_unsafe(enable_ips, int, 0400, "Enable IPS (default: true)");
+ i915_param_named_unsafe(enable_dpt, bool, 0400,
+ 	"Enable display page table (DPT) (default: true)");
+ 
+-i915_param_named(fastboot, int, 0400,
+-	"Try to skip unnecessary mode sets at boot time "
+-	"(0=disabled, 1=enabled) "
+-	"Default: -1 (use per-chip default)");
+-
+ i915_param_named_unsafe(load_detect_test, bool, 0400,
+ 	"Force-enable the VGA load detect code for testing (default:false). "
+ 	"For developers only.");
+diff --git a/drivers/gpu/drm/i915/i915_params.h b/drivers/gpu/drm/i915/i915_params.h
+index 68abf0ad6c00..d5194b039aab 100644
+--- a/drivers/gpu/drm/i915/i915_params.h
++++ b/drivers/gpu/drm/i915/i915_params.h
+@@ -72,7 +72,6 @@ struct drm_printer;
+ 	param(int, edp_vswing, 0, 0400) \
+ 	param(unsigned int, reset, 3, 0600) \
+ 	param(unsigned int, inject_probe_failure, 0, 0) \
+-	param(int, fastboot, -1, 0600) \
+ 	param(int, enable_dpcd_backlight, -1, 0600) \
+ 	param(char *, force_probe, CONFIG_DRM_I915_FORCE_PROBE, 0400) \
+ 	param(unsigned int, request_timeout_ms, CONFIG_DRM_I915_REQUEST_TIMEOUT, CONFIG_DRM_I915_REQUEST_TIMEOUT ? 0600 : 0) \
+-- 
+2.25.1
+
