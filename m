@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F55DCDB47E
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 19:29:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8684CDB46E
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 19:30:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB78110E54E;
-	Thu, 12 Oct 2023 19:29:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1F0C10E546;
+	Thu, 12 Oct 2023 19:30:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4553310E546;
- Thu, 12 Oct 2023 19:29:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id F0E6A10E546;
+ Thu, 12 Oct 2023 19:30:20 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 40A8AAADF2;
- Thu, 12 Oct 2023 19:29:56 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id EC88BAADE8;
+ Thu, 12 Oct 2023 19:30:20 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matt Roper" <matthew.d.roper@intel.com>
-Date: Thu, 12 Oct 2023 19:29:56 -0000
-Message-ID: <169713899626.25007.2681067255809618444@emeril.freedesktop.org>
+Date: Thu, 12 Oct 2023 19:30:20 -0000
+Message-ID: <169713902096.25007.1765667991768780771@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231011230957.463381-8-matthew.d.roper@intel.com>
 In-Reply-To: <20231011230957.463381-8-matthew.d.roper@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_LR?=
- =?utf-8?q?C_debugfs_and_general_instruction_tweaks_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_LRC_deb?=
+ =?utf-8?q?ugfs_and_general_instruction_tweaks_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,101 +48,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: LRC debugfs and general instruction tweaks (rev2)
 URL   : https://patchwork.freedesktop.org/series/125008/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 35af4701f7ef446c98a98f03777a732e1a9fbc5c
-Author: Matt Roper <matthew.d.roper@intel.com>
-Date:   Wed Oct 11 16:10:04 2023 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/xe/xe_lrc.c: In function ‘dump_mi_command’:
+../drivers/gpu/drm/xe/xe_lrc.c:933:3: error: a label can only be part of a statement and a declaration is not a statement
+  933 |   int num_noop = 1;
+      |   ^~~
+make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/xe/xe_lrc.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:480: drivers/gpu/drm/xe] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:480: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:480: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:480: drivers] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [/kernel/Makefile:1913: .] Error 2
+make[1]: *** [/kernel/Makefile:234: __sub-make] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-    drm/xe/debugfs: Include GFXPIPE commands in LRC dump
-    
-    RCS and CCS engines include several non-register gfxpipe commands in
-    their LRC images.  Include these in the dump output so that we can see
-    exactly what's inside the context snapshot.
-    
-    Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-+ /mt/dim checkpatch 6c0d1e36f310682297a5b07336b0883afc77f66e drm-intel
-43834bf0e drm/xe: Make MI_FLUSH_DW immediate size more explicit
-b20eeb3a8 drm/xe: Separate number of registers from MI_LRI opcode
-c2a553548 drm/xe: Clarify number of dwords/qwords stored by MI_STORE_DATA_IMM
-d11b497f1 drm/xe: Extract MI_* instructions to their own header
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:18: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#18: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 190 lines checked
-70f54e2b8 drm/xe/debugfs: Add dump of default LRCs' MI instructions
--:61: ERROR:OPEN_BRACE: open brace '{' following function definitions go on the next line
-#61: FILE: drivers/gpu/drm/xe/xe_gt_debugfs.c:153:
-+static int rcs_default_lrc(struct seq_file *m, void *data) {
-
--:68: ERROR:OPEN_BRACE: open brace '{' following function definitions go on the next line
-#68: FILE: drivers/gpu/drm/xe/xe_gt_debugfs.c:160:
-+static int ccs_default_lrc(struct seq_file *m, void *data) {
-
--:75: ERROR:OPEN_BRACE: open brace '{' following function definitions go on the next line
-#75: FILE: drivers/gpu/drm/xe/xe_gt_debugfs.c:167:
-+static int bcs_default_lrc(struct seq_file *m, void *data) {
-
--:82: ERROR:OPEN_BRACE: open brace '{' following function definitions go on the next line
-#82: FILE: drivers/gpu/drm/xe/xe_gt_debugfs.c:174:
-+static int vcs_default_lrc(struct seq_file *m, void *data) {
-
--:89: ERROR:OPEN_BRACE: open brace '{' following function definitions go on the next line
-#89: FILE: drivers/gpu/drm/xe/xe_gt_debugfs.c:181:
-+static int vecs_default_lrc(struct seq_file *m, void *data) {
-
--:145: WARNING:LINE_SPACING: Missing a blank line after declarations
-#145: FILE: drivers/gpu/drm/xe/xe_lrc.c:925:
-+		int num_noop = 1;
-+		while (num_noop < remaining_dw &&
-
-total: 5 errors, 1 warnings, 0 checks, 183 lines checked
-35af4701f drm/xe/debugfs: Include GFXPIPE commands in LRC dump
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:13: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#13: 
-new file mode 100644
-
--:62: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#62: FILE: drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h:45:
-+
-+
-
--:160: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#160: FILE: drivers/gpu/drm/xe/xe_lrc.c:976:
-+	switch (*dw & GFXPIPE_MATCH_MASK) {
-+
-
--:161: WARNING:MACRO_WITH_FLOW_CONTROL: Macros with flow control statements should be avoided
-#161: FILE: drivers/gpu/drm/xe/xe_lrc.c:977:
-+#define MATCH(cmd) \
-+	case cmd: \
-+		  drm_printf(p, #cmd " (%d dwords)\n", numdw); \
-+		return numdw
-
-total: 0 errors, 2 warnings, 2 checks, 224 lines checked
+[19:29:57] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[19:30:01] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
