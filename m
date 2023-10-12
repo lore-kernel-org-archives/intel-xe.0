@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EB2DC41513
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 04:22:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77B9FCDB46E
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 04:24:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EABAB10E405;
-	Thu, 12 Oct 2023 04:22:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24EBD10E404;
+	Thu, 12 Oct 2023 04:24:47 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6A58B10E404;
- Thu, 12 Oct 2023 04:22:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3BBFD10E402;
+ Thu, 12 Oct 2023 04:24:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6896BAA916;
- Thu, 12 Oct 2023 04:22:33 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 30327AA916;
+ Thu, 12 Oct 2023 04:24:46 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 12 Oct 2023 04:22:33 -0000
-Message-ID: <169708455342.25007.7866590404372256034@emeril.freedesktop.org>
+To: "Danilo Krummrich" <dakr@redhat.com>
+Date: Thu, 12 Oct 2023 04:24:46 -0000
+Message-ID: <169708468616.25008.10130655080811292666@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231011235126.585242-1-matthew.brost@intel.com>
-In-Reply-To: <20231011235126.585242-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_DRM_sch?=
- =?utf-8?q?eduler_update?=
+References: <20231011235826.585624-1-matthew.brost@intel.com>
+In-Reply-To: <20231011235826.585624-1-matthew.brost@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_DRM_scheduler_changes_for_Xe_=28rev7=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,41 +46,32 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: DRM scheduler update
-URL   : https://patchwork.freedesktop.org/series/125012/
+Series: DRM scheduler changes for Xe (rev7)
+URL   : https://patchwork.freedesktop.org/series/121744/
 State : failure
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-ERROR:root:../drivers/gpu/drm/scheduler/sched_main.c: In function ‘drm_sched_get_cleanup_job’:
-../drivers/gpu/drm/scheduler/sched_main.c:1044:6: error: implicit declaration of function ‘dma_fence_timestamp’ [-Werror=implicit-function-declaration]
- 1044 |      dma_fence_timestamp(&job->s_fence->finished);
-      |      ^~~~~~~~~~~~~~~~~~~
-cc1: some warnings being treated as errors
-make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/scheduler/sched_main.o] Error 1
-make[7]: *** Waiting for unfinished jobs....
-make[6]: *** [../scripts/Makefile.build:480: drivers/gpu/drm/scheduler] Error 2
-make[6]: *** Waiting for unfinished jobs....
-make[5]: *** [../scripts/Makefile.build:480: drivers/gpu/drm] Error 2
-make[4]: *** [../scripts/Makefile.build:480: drivers/gpu] Error 2
-make[3]: *** [../scripts/Makefile.build:480: drivers] Error 2
-make[2]: *** [/kernel/Makefile:1913: .] Error 2
-make[1]: *** [/kernel/Makefile:234: __sub-make] Error 2
-make: *** [Makefile:234: __sub-make] Error 2
-
-[04:22:10] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[04:22:14] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 6c0d1e36f drm/xe/dg2: Remove one PCI ID
+=== git am output follows ===
+error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c:290
+error: drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c: patch does not apply
+error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c:1659
+error: drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c: patch does not apply
+error: patch failed: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4588
+error: drivers/gpu/drm/amd/amdgpu/amdgpu_device.c: patch does not apply
+error: patch failed: drivers/gpu/drm/msm/adreno/adreno_device.c:809
+error: drivers/gpu/drm/msm/adreno/adreno_device.c: patch does not apply
+error: patch failed: drivers/gpu/drm/scheduler/sched_main.c:439
+error: drivers/gpu/drm/scheduler/sched_main.c: patch does not apply
+error: patch failed: include/drm/gpu_scheduler.h:550
+error: include/drm/gpu_scheduler.h: patch does not apply
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: drm/sched: Add drm_sched_wqueue_* helpers
+Patch failed at 0001 drm/sched: Add drm_sched_wqueue_* helpers
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
