@@ -4,156 +4,139 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F2D3CDB46E
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 20:04:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34776CDB47E
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 20:55:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F31E10E550;
-	Thu, 12 Oct 2023 20:04:46 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DCCB10E550
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 20:04:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFDEB10E552;
+	Thu, 12 Oct 2023 20:55:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63B7010E552
+ for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 20:55:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697141083; x=1728677083;
+ t=1697144153; x=1728680153;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=nuChIZ9YhQqR91eZJDAJxXAw9KEZMWuYn+nzLam0lF4=;
- b=NlR7yWr3EjzUp2cXrNNfPK1y5HOhO6YXbqBE/5QMp/ybPIopM+cAB6TT
- 3vQouqJjHbfXtgVFOJsmuFrCPidQ8ZnwcSwxKKtjpDefyDUvXMrfh2YkQ
- BJLvWtyVmeP2d2FGT+QHq1dC5H+lV5V3lBjhs7SfL2bryRW+2v50xpflx
- LKKrF6C3o/Xq5tnAd/hmWyu3oE6Gm+sH0FzLk8VJoW3NNbLG2lWb9gYWQ
- KTNm4sWdo2aWL6DBR1BwaY8qKy7+W0fFsgqv+3pSkJuDXFmZpqQYjpsIA
- jGK6+D79pVVBU0iWiP5yrGKEyWK27MOWH3mb+cfcWqkmdwYCFGDyuppf5 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="364395375"
-X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="364395375"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 13:04:42 -0700
+ in-reply-to:mime-version;
+ bh=uG+QNypTW+s0D7cy3/UJVQfZcMQc0zSGEKsBwQl6Tz0=;
+ b=WTRd+Pj6kGvdYx2gD1lg+AzBnM8BidGWMYhUXgAuG+uzBAKvSd3lQzfl
+ 1QjbnS+6ugaCVAfgphX2Xm4Ywjb4w3S+Ls1c7HDAB3HpnLNTnJQKxnL0m
+ OBAP15kKE7w+GJUS3TgpP3AAy+H9gwgKxHdR2KiA8xG8aLGDhAN/QCFmU
+ QIAAp5DG/JHD+WO7TZiGPi1Xz8Xfb7zf+e/Pcvttqf3/HfoMTIDduHZdp
+ CKWgw6QeInOUQMV68UAhflVQUXgjNwCLSdqP7AZ2Co/RJrwZ/4M9iLpyQ
+ evkvuBT6f/qbhtu5pakg3OYtvZo8ODyR2n98R7MXI3hkwny7v6ENLuQKm w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="375388485"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="375388485"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Oct 2023 13:55:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="754422060"
-X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="754422060"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 12 Oct 2023 13:04:42 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="824759337"
+X-IronPort-AV: E=Sophos;i="6.03,219,1694761200"; d="scan'208";a="824759337"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 12 Oct 2023 13:55:51 -0700
 Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 12 Oct 2023 13:04:42 -0700
+ 15.1.2507.32; Thu, 12 Oct 2023 13:55:48 -0700
 Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
  ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 12 Oct 2023 13:04:41 -0700
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ 15.1.2507.32; Thu, 12 Oct 2023 13:55:48 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
  orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Thu, 12 Oct 2023 13:04:41 -0700
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Thu, 12 Oct 2023 13:55:48 -0700
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Thu, 12 Oct 2023 13:04:41 -0700
+ 15.1.2507.32; Thu, 12 Oct 2023 13:55:46 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CVyoQjxVrDFfdE3moEUBPHB3ftSXeJ5wWPe0C1tZo/T0KI/CZ+eZGlqvKMNUCTcyw/SowdjxFxFVn0leaZP2QpBF2nMJTkX7Hgt62P87jIbq+7m0JzuyHJke5sQD7xpEDVWMnCj+Ec5IJE0kWDLCCqj/VYJrjGVB0lZJLyHVKUE/aU3lHdHY4r9sNju20EmqotVcS6fC/vsvgjNMfVhqndrOmGCgznIs0/FfmY1sXOVq2Jd54xoLpXrkEGIB+4ett5ydOipkvduyTRRU3M9kiH/QeQcqONF3JAea3DFVZX7vofvgYJO1+fQnDM9c9dOUryiz2K1GccdhpiMiRtIdHw==
+ b=U2pMnaOfy8xVgFz1OVWeFYSQ97X6uZOO2PCwsKZV+at/Vjf46eCvCBNsnl/QS5wZEaqzzZzuZkAaRI5lEri5ZRZVDbnkQKsxkTSAp30QJHCq/5XybuhNOOXrFwHCZ/FhaqcD0t2Pi2I49KNlzHnfNo4G8dAT79lmkivk3XaxCaLABqDFIoD1x77+2C8hni/ZfkEuvQVxOIm5b/VLm1qWdGF5yrJW0ulDDUVxlR4ddJt4pE4ix+tlmdCbf1zmj1El2nhnkwVjnrlpuCWjDsFQl5BsL3Ybc7tH6p0tZc+A0DY2Tex52KMFEdwQK+zXdF4yQlYMYzEGBkQFTIBOpJJNhw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fvnLauqPI/v5K0fYu+o91Ibd1DU9Invo96XKLVunjkk=;
- b=R4XQl/ZkRaXHesbi1qy/scBoCavbKEaPQlMRVnL4LNLtLOrScXbeuvYjnhv4fEUqyn+ZfyX3Njr1Whg0/HC14DMy71GeqGTuhpK2SkmU4ZnkpnmOGGNSTftdytanRqyQlbu7QRscMWQEOsf4vhfs7HpMjx9m0l0Sq3ncVPtUdyauJJqwAvI9y++9JxiAYmRV3ylcNyLkueRxqCEY6SajfVp1UQu6yKy/XaI688EFdekOHlsLeqnDhJNxiMq/rndzC3Mb7/x9Fp/VAlmZWnteD0IcPASUri8Z0Zhn4dPtAICy1NJyDsDrE6C4PaO/iTgEBFXPkl/KlusvPrR5NDIakQ==
+ bh=JgiYgn9EZ8N58ELVqo/GCX4C4188e502mZN98rxx4x0=;
+ b=OTnq9yXxa6ikMAywGEdryJ13QQSwCkNHIaFCIo7kI8ugb0vTOnOOUH8izO+cBeNqEsDIXcyZzUT2fNerdra82JKogpYY3DqBZv0HIyVwWsajNcbsQHocrSY/15AqxSl6FLT54SO5ndP+gR7l0BlQ6TRw2Etv4cbdTGwA/keKXlAv1MAub7Qa/ys3xFX+SZRMjNcO8qNW4NYpRylcVi7coSvBZdxUZhXev2mzy4n95dYIN47Rjdsgb3ufQW6h56fAtoHPSJAPLPrgEKTALLnp+sU4DZv3CEi2SxhNBQJ8T6fVxNYat8U2bNSkzST0ViZZTpP/jikyVsxFZKgDexS3YA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DM6PR11MB4577.namprd11.prod.outlook.com (2603:10b6:5:2a1::23) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.45; Thu, 12 Oct
- 2023 20:04:33 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::6d0b:5bc6:8723:593%7]) with mapi id 15.20.6838.040; Thu, 12 Oct 2023
- 20:04:33 +0000
-Date: Thu, 12 Oct 2023 16:04:29 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Luca Coelho <luca@coelho.fi>
-Message-ID: <ZShRTTLRD7ltDGSS@intel.com>
-References: <20230522221527.2181802-1-rodrigo.vivi@intel.com>
- <20230523032805.GB6250@mdroper-desk1.amr.corp.intel.com>
- <ZGzGJYuTAUpfeXe5@DUT025-TGLU.fm.intel.com>
- <20230523163849.GD6250@mdroper-desk1.amr.corp.intel.com>
- <ZG1Rwd2k6oDdiHHT@DUT025-TGLU.fm.intel.com>
- <8de90ac856b0caf3d0bd82717769e9f6fe1687a0.camel@coelho.fi>
- <ZSRtavVCM2lqbV5y@intel.com>
- <f8c1a6a39300f01b6affc5ecee7b4486dbcb6baa.camel@coelho.fi>
-Content-Type: text/plain; charset="utf-8"
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com (2603:10b6:208:3c9::9)
+ by PH8PR11MB8105.namprd11.prod.outlook.com (2603:10b6:510:254::22)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Thu, 12 Oct
+ 2023 20:55:45 +0000
+Received: from MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::cf65:94e6:cdd3:cfe]) by MN0PR11MB6135.namprd11.prod.outlook.com
+ ([fe80::cf65:94e6:cdd3:cfe%7]) with mapi id 15.20.6863.032; Thu, 12 Oct 2023
+ 20:55:44 +0000
+Date: Thu, 12 Oct 2023 15:55:41 -0500
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: Matt Roper <matthew.d.roper@intel.com>
+Message-ID: <pyuuzeqdal4ynnudiz5thlssext67qaxuxz7fu2ho6fi2y3li4@mw6lo2vdr4pz>
+References: <20231011230957.463381-8-matthew.d.roper@intel.com>
+ <20231011230957.463381-10-matthew.d.roper@intel.com>
+Content-Type: text/plain; charset="us-ascii"; format=flowed
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f8c1a6a39300f01b6affc5ecee7b4486dbcb6baa.camel@coelho.fi>
-X-ClientProxiedBy: SJ0PR03CA0273.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::8) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+In-Reply-To: <20231011230957.463381-10-matthew.d.roper@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0198.namprd05.prod.outlook.com
+ (2603:10b6:a03:330::23) To MN0PR11MB6135.namprd11.prod.outlook.com
+ (2603:10b6:208:3c9::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DM6PR11MB4577:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7829dad2-d773-4019-eca8-08dbcb5e73bd
-X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6135:EE_|PH8PR11MB8105:EE_
+X-MS-Office365-Filtering-Correlation-Id: 13db2972-db66-4853-cfdf-08dbcb659a36
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: c5iGBQKg0A6P2AUbHXtF6wbrbAGvSPMFXmK7W88tFnxENXmMTTiGgpvgl/4OAQVGsk/qLQ5AIZjF34Wuj6FyDsbSD1b7uY4fy/kd6tXkNYOnXvE4yQ+Eh7xOBKW2SBzJUaqJb0PIG9WlSbhzR8Ah07Z4hkr0e2miFnqshKb53dMda2tb707kMC1wU9DVo3vKvmn6LKt4DiExcLc11yLdgx/CAbksZFGzV7sqtRcopS6ns3m8ctDPIuN9PbKsIniXXgI+cnZBswxpeAqfG6hQzb3hu0EeL2RsPndtmupCzJyzDgxwWG17ASJJy/PU4rBmDCV9bt2ewpNe8rR1qOutaI6sPSNE2NQPZ2HiLXnELWkyr5uAU7fpFAVs8fcTZlrVLG4mV/UkGd/PVvA57vDfcT7Phw55QeSr097OyjJegQty9NR6R0VxNJ5JJPhefPDWkIUel3xw6EEwMfsstwhHRlOaK9EmV/6ko9eStx/pTZQmV0GZUFV30YuWgaO0NWWSuFzy82VEFiJDFc+y14wrlWjZOYoUVoh0IMbEO1PY5ruy3DkKKSdTRILCnBEgPGfp
+X-Microsoft-Antispam-Message-Info: yI4QEdc6rM7qN2HQF6rYChuHUAsd1XKt2FmlITekwgw1wQxvR1nPLruuJn0Oug8XyJJdBAU6Z7RY6l1uia7+ufne3ha3JVvBOatxOmN79pt4so+6GFme+6IzpFmn9PPh9UiJYmtHxXXAyp5grEzNI4doDEngkD51smgSIK5wkwNyzoke3hJpDxQ2A9if1WtodN/ny1Y9wwPyOIyu0n8DXyW10Myw8tsmClIXhtA24pGvPMmGJQv/g/n8p/OQBs8MWZ68qaSMsInuczd+FIAtoI7Qgb3SfqKMe8WlkorkgTOfOMkrlXh3P6nMqIE1V7TIVL/G3ox1oUUNBFogo2VjjnQ9g3tVC1WW3RucerAnQ632WJ4swGYttwTMtmsQY15Os9c2Q/f5n2QI7z2A/o2oeYlDFI/VnY+KixQkVUWkafZpr7yAPRqW26leG96Pe3qXZDskrYaTikc5BU4H0Oxf/MnX8xzA2CoVD76pdThmA897UKNcqrNfEADpMJFDKN8ttne7ExdeZKF7TqujsNBfLEHUh+RHwQSZv7FJ4WgeiFek20UgJO7xzNW/r+xIrkcA
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(136003)(346002)(39860400002)(376002)(366004)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(8936002)(8676002)(4326008)(54906003)(5660300002)(44832011)(6916009)(66946007)(66476007)(66556008)(316002)(41300700001)(38100700002)(82960400001)(66574015)(36756003)(6512007)(26005)(2616005)(86362001)(30864003)(6666004)(6486002)(478600001)(2906002)(83380400001)(6506007);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6135.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(7916004)(136003)(396003)(366004)(346002)(39860400002)(376002)(230922051799003)(186009)(451199024)(64100799003)(1800799009)(86362001)(33716001)(2906002)(6512007)(9686003)(6486002)(66476007)(5660300002)(66946007)(316002)(6636002)(41300700001)(66556008)(6666004)(6506007)(478600001)(26005)(4326008)(83380400001)(82960400001)(6862004)(38100700002)(8676002)(8936002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Tjd6TldlT2VleWpUaG1MRC91aHZVZ25Mbkxxcys3Z05uRm9WcXhyK1luZ1JW?=
- =?utf-8?B?ZlpsZVhqb0llYXg1bFZWblJaRDRwSE5UNWtQdzdBamtmM3NWcWdIcnZwSEJZ?=
- =?utf-8?B?c3pVUGFHMnFtU0FyaXpWS3Q0WXQ1QkFvU21yVlJnS1BHQjFnRHdwSlVMRE5p?=
- =?utf-8?B?TG5PYnZSS2dmd2tjZXVWd25jd0xNekdramtHZVdqTzVNcUZTSXl5ZDJNR3Zu?=
- =?utf-8?B?aVgyb3JwM2NRdWc0TThaZnJLSTdxQ0xRZ2NZUytBZG1uMnFjQTY2b0lBYi82?=
- =?utf-8?B?NW1TZEhBN2ZhTTJ3MFNuRm1YanVCR3NYNU1uUXBMdTQyNzdGQSt5aElTYThy?=
- =?utf-8?B?UHk3WS9pUFFTWS9JTWp0RkdGa1E1c0lkaVFFM2xBa2JXSmMvYTdsMjZlMFJI?=
- =?utf-8?B?Ry9hSld1endFWjR3NDVZTTc5ZEdKa2JLcEJzNi8yazEremtVU201WGpNMHNJ?=
- =?utf-8?B?czI3czA0UGZxWWdseFhzdEdsVDVlb1BuZGM5S1hzY2F0TFFOd21IajBRL0cr?=
- =?utf-8?B?YkhlNmhvb1ZFVHRwblpHVGZ5WjkrWHVldDY4S2prVHhrbDZpMFdvR0ZuV1BG?=
- =?utf-8?B?dVgxY1NLQkpYVHhwd2xDSW5FVXppQWdiRElXaThWNkQzRW11MVI4M1pDaEtw?=
- =?utf-8?B?SlFQL2JDbnRheVljamxwZ0U3NjZNSG5kVVBvTlZwbGUrZUV6anFvVlFsM3Ev?=
- =?utf-8?B?ZENiZC85YXk0bUxTcGNuVVRMRnMyYmoraXZqTExKeDMyNUlqNjBQdVFuRTRx?=
- =?utf-8?B?bXl5cXhMbG9uNHZNamFMU3BubENSSU1VeTFQUmNtRlBVNEdRS0p6anN5eHdO?=
- =?utf-8?B?MmI4alAzNW9FdHJwS3ZFY2p5dktXUU5Ta3BMTnMzSWxhQjBFSlM4RW1NVFpl?=
- =?utf-8?B?L2pyMDdPbVVVOHBZQitiNWlMZVdkNzRocXF1SERLRWtjd1IrSktWWHdOcGx2?=
- =?utf-8?B?cTJsQnZmVk1tRmZuNUtsWjhsNDlKZjY1djdiZFZ2enVLdUIwUC8xV0crWW4z?=
- =?utf-8?B?MS9XV1lUM0RINmFBWFVxNldIcStqbndUbjBrQ0NaSDhSNVhSUlZHR3kvRGVG?=
- =?utf-8?B?YzkyZzM5SzVSUitEbTJ6ZVIxYit4S0x4WURJNng4OGg4bklKajRQRCs2Uk4v?=
- =?utf-8?B?YlU1dUkyOUQxcFVhY1EwYlZVdXFaK0hUTTlnUGFYdmNlcTVhcmp2VVRad2N2?=
- =?utf-8?B?U0Y3Rnh3N3ovU2xzTTZsMDUvL2crYWVEdWlJU3JqMmMyWm9PTG13U3hhbFll?=
- =?utf-8?B?STlSVE1aME13SzI4T0Z4Z1JvNEtwZysxOUhETWlKRFJVM3owbDlWeVZORTRP?=
- =?utf-8?B?Z3lmNUVaYzdBZ2h3Q1NXRXoyWGU2WmpCcFdRU1VWSFdYQmhlZUpyZDY3ejZC?=
- =?utf-8?B?Z0pkbDFQOUJ6RGVRRTMzK0tETEQ3Z3hQSi9vM2VoSFFPUGFMQWkvSXR6OEZ0?=
- =?utf-8?B?eHRLOGZNa0FCOGszamxrdyttbUdlaU9FRVlhOXNHaHhHQjBJanh6UTA0NGpn?=
- =?utf-8?B?QjYzejBRS0VSazhDa2tEcDlUQUoxTlRXQmk4WDVReWpFUG43V3RYYUZBN0VY?=
- =?utf-8?B?Q0puL3prbWd6bkpMWHJSVnF1QXZIcXJIUmZFWVJTaGNTR0w3WG5DaWJUSXJ0?=
- =?utf-8?B?MDNnVWFSdnNPUDA4SXlIT3dlWWJ5ZFE4MjEwbWVtcVN5UnJ5VXlFKzVCcjV2?=
- =?utf-8?B?VzhIZFk0WnZmcFFuR0FXSHE4VEZLTklmTFBVU1hKWHNVUzFPeEVraW1NYmlQ?=
- =?utf-8?B?TUYvNGpnK05xaVp1SGhCeDZmMCtOaGFyaExIUlMzOTFkakdOeisvZUxTcS9x?=
- =?utf-8?B?U2FFTkpFSWQ5ZkpHTnRkV1A1TURJcGRnRktrYXl3U09saWNiZVVhSDBxREhm?=
- =?utf-8?B?M0dKVmRzYVppWk9haG5DcWNTOU5mME5TTXhhTTdQMGpERG5UdWtzV2ZMSXhm?=
- =?utf-8?B?LzkwK2xkcVh2V2d3SHdOMHdQVEc0L1J5QnFBUGFyQUEvRm1yS1ZhVUR6NmNU?=
- =?utf-8?B?RUprbVl4alE5Y0dLZ1F0V0Mxd2QwZ2x4dUgvdEwzYTVZeXRrR202OFMySC9B?=
- =?utf-8?B?VG5zMXplOEtGVmJGcHJ0aXV3djZkZUR5SXNRWDBsWE1QOEI1YkZJL1o5djhp?=
- =?utf-8?B?b2xEZk44WXF4ZTlRSndUSUlOTWRHdmh4d1EyTGVOVERxcG1nRWVnaE5ZOGhr?=
- =?utf-8?B?ZWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7829dad2-d773-4019-eca8-08dbcb5e73bd
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?GqgJMs4DCV2cfBe3yNjf2Mx7jiSjTJsl+o3dK6VmsGiaXRcU3nMiIlcxJ8go?=
+ =?us-ascii?Q?QgOoge+mErnmrkenV4ykxpQYlEsqsi3JXNQ//KiXaKNb6l1CU+XXqSj8FP4q?=
+ =?us-ascii?Q?X++yheVENEPzsw/jZpKqFgqVDYiDm4g4oVZoJXKrLRfkXlfvR/Iu/Kppr9Ga?=
+ =?us-ascii?Q?cKwgupZtXsh/YxKp/AJyFuzwpSayMg/P5nq1SgqHzB4yYLiKB5HFMd7slo2u?=
+ =?us-ascii?Q?VcmQ4E/34LWICa+zHETiSq4wPi6s24esSEbIRo6Tsg2aQLk/Byl80t/hw6MM?=
+ =?us-ascii?Q?5VuI6jMSj/HGSRLQzRt12fwaLFAHraLuPIp6SlxH1GjaJJiYy5ta15aIFJpA?=
+ =?us-ascii?Q?9rOhI82pLkVUpixemhwbW7g+k/+eUUrUEJWLnyh1jF1bRP/XoVE57kfJWlAP?=
+ =?us-ascii?Q?pqxOBRQ8dRrGEZlrwm3BEU19/Rz7PA7Fnb4wI+Ip7u99Z8SqjocS/smiHPoD?=
+ =?us-ascii?Q?uTEqNa9h1UWBl4mVns81gyHUYk82a3nXymJQYpz64U3XCdrhtBZRnE7G3z01?=
+ =?us-ascii?Q?GKGT6aIaSim67R7bah8DcoJ7MA9iqGn3Yi8y8CJVulCjJCVFeQNufF+DA6gd?=
+ =?us-ascii?Q?tjM7Fwnx5+4lVcbZtxUItSrLb7Uhtz3DxoLvFAmx5oCMfjzCaG1OHDARs0pS?=
+ =?us-ascii?Q?fMsxSZ8iPjUuFRrGhpOeG0h0BQpfv/fDr2KbBqG1QIPXzIb6BfYG+otW2CBa?=
+ =?us-ascii?Q?+PVTCtZecuYKque92rwu69kUaZehAeQ3sM3Km+g3/jAqjWaGDkFQdAYQY6Hd?=
+ =?us-ascii?Q?FbEl4XLgN1A6U39T/XCMxJCR+wxbC9zD43giSWsAnHCJsDB/v5uU/4FEcXtA?=
+ =?us-ascii?Q?/bzwMbXwi9sYbfsdxdKbfpzRn6Tnqy82FCWFtkweLJN/+a5vt+uyx3INrMZs?=
+ =?us-ascii?Q?501qtpOTygrxWqe6vRSDB6exFW4xH/dpwGjJL3ARS3ULuXQowbAQwGkuBEte?=
+ =?us-ascii?Q?JTzCWJZHmwRVIL8YcIPyiyoIW1vxCHKjZZ3F4KpACZeVzCV7EUn0/sVUzE2R?=
+ =?us-ascii?Q?SqgXlvKgO0jtVa++bfTYuraC7M6Dil3fTqEq6UGPSgDSc3Fg+uKffeVk1MQu?=
+ =?us-ascii?Q?OfMDpXoIcYwUyIPpEfZG01SeI998dsjWmS0pH03HibMo5Bo+JkA4wgLrX+M6?=
+ =?us-ascii?Q?O8Z5f7YAw38UdQqapV1t/XQmhcydp5cfx0FuQHOhFi2B1ZIcwQRwbtVZam7P?=
+ =?us-ascii?Q?n2QX9ZLK3b4QmcLlKVwNwl3RSi/s2JC8+E8YDnQX5E5ij/HR2PUYHhX93CbC?=
+ =?us-ascii?Q?1DkBztltKYmOp3RuGyxREescWrt0Guaw+UYFFY5kWuHRv2rVtBHBsHsEJ4x3?=
+ =?us-ascii?Q?nZGXxj34b/4tB95nOsdrFVcBXgcG5HjOfKan/bGvftV4C8qMqHCcTgld8705?=
+ =?us-ascii?Q?zLniPdW9pzDn3zHa+KNNQ6fuyGKED59nenj0wdriZPk5tQtPm9ozAKNbJzmO?=
+ =?us-ascii?Q?RKtwalZ2WcfyrM9nB4cLgduY2J6cf5RKr8Tb7d5FfYB3HoJigrhZuoZ57mBv?=
+ =?us-ascii?Q?Afd0d5SDPK85pX1n0kd2YCqlsrmhXMCtDThM4qURw6zv8XtHY6IU442vB9Sx?=
+ =?us-ascii?Q?N0rJdLnAV5gnq+H4gWf+kfaYdc8DKZYHLnc/U9gBBaYAKLDXX4bVYiGxW2bO?=
+ =?us-ascii?Q?5Q=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13db2972-db66-4853-cfdf-08dbcb659a36
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6135.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 20:04:33.5053 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Oct 2023 20:55:44.8740 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Xh1Qe6JSsZK8rBlomaDYoDnHBcx+qzDh/vxyavaVnM38yULBb/7AqYgwW83DcWYVah7vgGiKu9dnmhqG0CM0Ng==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4577
+X-MS-Exchange-CrossTenant-UserPrincipalName: jp5iJcglhmakpg6Bo7rzf1BxmlYwmzuhmierBfqojJavPPl8sWo5MWDDGh+/fxnlbQKaMH3B8Q9xi4HaNnp8s7hS75lyYEAiWTwU+Gy9qg4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8105
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [RFC] drm/xe: A minimal assert for some forcewake
- domain on xe_mmio.
+Subject: Re: [Intel-xe] [PATCH 2/6] drm/xe: Separate number of registers
+ from MI_LRI opcode
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,351 +148,87 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Matthew Auld <matthew.auld@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
- intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Oct 10, 2023 at 10:00:06AM +0300, Luca Coelho wrote:
-> On Mon, 2023-10-09 at 17:15 -0400, Rodrigo Vivi wrote:
-> > On Mon, Oct 09, 2023 at 12:22:44PM +0300, Luca Coelho wrote:
-> > > Hi everyone,
-> > > 
-> > > On Tue, 2023-05-23 at 23:52 +0000, Matthew Brost wrote:
-> > > > On Tue, May 23, 2023 at 09:38:49AM -0700, Matt Roper wrote:
-> > > > > On Tue, May 23, 2023 at 01:56:53PM +0000, Matthew Brost wrote:
-> > > > > > On Mon, May 22, 2023 at 08:28:05PM -0700, Matt Roper wrote:
-> > > > > > > On Mon, May 22, 2023 at 06:15:27PM -0400, Rodrigo Vivi wrote:
-> > > > > > > > It is the maximum protection we can do with the current infrastructure.
-> > > > > > > > 
-> > > > > > > > Cc: John Harrison <John.C.Harrison@Intel.com>
-> > > > > > > > Cc: Matthew Auld <matthew.auld@intel.com>
-> > > > > > > > Cc: Francois Dugast <francois.dugast@intel.com>
-> > > > > > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> > > > > > > > Cc: Jani Nikula <jani.nikula@intel.com>
-> > > > > > > > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > > > > > > Cc: Matt Roper <matthew.d.roper@intel.com>
-> > > > > > > > Cc: Matthew Brost <matthew.brost@intel.com>
-> > > > > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > > > > > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > > > > ---
-> > > > > > > > 
-> > > > > > > > 
-> > > > > > > > RFC
-> > > > > > > > ===
-> > > > > > > > 
-> > > > > > > > Okay, so, this is more an RFC to brainstorm the future of the force_wake in
-> > > > > > > > Xe than anything else.
-> > > > > > > > 
-> > > > > > > > On i915 the force_wake is built-in the mmio functions at uncore component.
-> > > > > > > > 
-> > > > > > > > With that approach we had few historical issues iirc:
-> > > > > > > > 
-> > > > > > > > 1. Display performance with vblank evasion that requested uncore to provide
-> > > > > > > > the 'fw' variantes that are actually the ones that avoid fw (contrary to what
-> > > > > > > > the name suggests).
-> > > > > > > 
-> > > > > > > In i915 there were more differences between fw and non-fw variants
-> > > > > > > of register functions than just forcewake handling:
-> > > > > > > 
-> > > > > > >  * _fw() functions assumed that the caller was already holding
-> > > > > > >    forcewake, whereas the non-fw functions would obtain it themselves
-> > > > > > >  * _fw() functions also assumed that the caller was already holding
-> > > > > > >    uncore->lock, whereas the non-fw functions would obtain and release
-> > > > > > >    the lock around each register access
-> > > > > > >  * _fw() functions do no tracing and no debug assertions
-> > > > > > >  * _fw() functions do not check for unclaimed MMIO
-> > > > > > > 
-> > > > > > > I don't think the first bullet there (forcewake) really mattered much
-> > > > > > > from a performance perspective.  For display registers, a quick binary
-> > > > > > > search of the FW table (just a handful of CPU cycles) would quickly
-> > > > > > > determine that no forcewake domains were needed for those register
-> > > > > > > offsets, so we wouldn't be doing anything with forcewake at the hardware
-> > > > > > > level at all.  For display registers, the more performance-relevant
-> > > > > > > aspects of using the _fw() functions was doing all your register
-> > > > > > > accesses together without contention with other MMIO work.  I.e.,
-> > > > > > > holding the uncore lock over an entire set of registers rather than
-> > > > > > > grabbing/releasing it for each one, and (for vblank evasion
-> > > > > > > specifically) doing it all while interrupts were disabled.  For debug
-> > > > > > > drivers, there was also a bunch of other stuff that the _fw() functions
-> > > > > > > bypassed (e.g., tripling of the number of register accesses due to
-> > > > > > > reading FPGA_DBG before/after each register to look for unclaimed
-> > > > > > > accesses).
-> > > > > > > 
-> > > > > > > > 
-> > > > > > > > 2. Missed ranges updates. Sometimes we messed up with the ranges, there were
-> > > > > > > > other times that the spec was updated and we didn't get the notification, and
-> > > > > > > > there were cases that the BSpec had bugs.
-> > > > > > > > 
-> > > > > > > > For these reasons in Xe we have decided to let to the caller the
-> > > > > > > > responsibility to set the force_wake bits for their domains before doing
-> > > > > > > > the MMIO.
-> > > > > > > 
-> > > > > > > I don't think #2 was a reason to skip forcewake in Xe.  Not noticing a
-> > > > > > > bspec update (or the bspec itself having incorrect information) would
-> > > > > > > lead to even more mistakes if the caller has to explicitly grab the
-> > > > > > > appropriate domains than if the driver does it implicitly.  The explicit
-> > > > > > > handling only helps in the subset of cases where we blindly grab all of
-> > > > > > > the domains (as we do during part of init).
-> > > > > > > 
-> > > > > > > 
-> > > > > > 
-> > > > > > MMIO access that requires forcewakes really only should be in a few
-> > > > > > places, off the top of my head:
-> > > > > > 
-> > > > > > 1. Init
-> > > > > > 2. Reset
-> > > > > > 3. Sysfs / Debugfs
-> > > > > > 
-> > > > > > In all of these cases I think it fine to blindly grab all forcewakes.
-> > > > > > 
-> > > > > > Please chime in if I'm missing something.
-> > > > > 
-> > > > > I think as we implement more features in the Xe driver we're going to
-> > > > > wind up with a lot more places where we need to access GT registers at
-> > > > > runtime.  A few examples off the top of my head:
-> > > > > 
-> > > > >  * EU stall sampling
-> > > > >  * Perf/OA
-> > > > >  * EU debugger
-> > > > >  * Various OOB workarounds that ask us to twiddle a register at certain
-> > > > >    times in the driver.
-> > > > 
-> > > > Hmm, ok a lot of these I could make the argument that these are not
-> > > > normal operation so just grab everything and call it a day. If some of
-> > > > these fall into the category of 'normal enough to be optimized' I can
-> > > > also make the argument it is no more complex (perhaps less complex) to
-> > > > explicitly grab the forcewake than having the logic auto-grab the
-> > > > forcewake.
-> > > > 
-> > > > What a compromise of in a debug mode we auto-generate the asserts based
-> > > > on a table but we still explicitly grab the forcewake?
-> > > > 
-> > > > > 
-> > > > > > 
-> > > > > > > > 
-> > > > > > > > However I'm seeing many questions and doubts popping up:
-> > > > > > > > 
-> > > > > > > > 1. Are we confident that we are not missing any wake-up?
-> > > > > > > > 2. Are we confident that the domains are set correctly?
-> > > > > > > > 3. Are we not wasting power if we are waking up ALL the domains instead
-> > > > > > > >    of some specific one?
-> > > > > > > 
-> > > > > > > I think we're only holding ALL domains during init; for most of the
-> > > > > > > runtime MMIO accesses, I think the code is currently attempting to only
-> > > > > > > grab the domain(s) that it thinks the registers it's accessing will
-> > > > > > > need.  Although that might be working right now, I'm a little bit
-> > > > > > > worried about how that will scale in the long term when a single
-> > > > > > > register might be in several different domains depending on what
-> > > > > > > platform you're running on.  There have definitely been cases in the
-> > > > > > > past where groups of registers migrated from RENDER to GT or vice versa
-> > > > > > > between platforms, so the exact domain you needed for an operation
-> > > > > > > varied by platform.  And things are even more complicated if you're
-> > > > > > > doing any MMIO against the media, since the hardware seems to change
-> > > > > > > exactly how it splits up the media power wells somewhat often.
-> > > > > > > 
-> > > > > > > > 4. What about the display disconnection now because i915 and xe have different
-> > > > > > > >    mmio approaches but reusing i915-display?
-> > > > > > > > 
-> > > > > > > > It looks to me that the cons of the current approach are superseding the
-> > > > > > > > cons of the i915 approach. But I want to hear more thoughts here before
-> > > > > > > > we decide which route to take.
-> > > > > > > > 
-> > > > > > > > Maybe we have that domain as part of the mmio calls themselves? Maybe
-> > > > > > > > a double approach where the caller is responsible but mmio has the range
-> > > > > > > > information and double check it?
-> > > > > > > 
-> > > > > > > As noted above, part of the challenge with forcewake is that even if the
-> > > > > > > caller knows it wants to access register FOO, and even if it know FOO is
-> > > > > > > a GT register that likely needs forcewake, it's sometimes challenging to
-> > > > > > > make sure it's grabbing the correct domain(s) for every single platform
-> > > > > > > the Xe driver will eventually support if the power management handling
-> > > > > > > changes.  I think that was part of the motivation for encoding the
-> > > > > > > tables into the driver in i915.  It seems like GT power wells don't
-> > > > > > > change as much these days as they used to, but it's hard to say whether
-> > > > > > > that will continue in the future or not.  Who knows...maybe they'll
-> > > > > > > eventually start creating dedicated domains for stuff like blitters,
-> > > > > > > GuC, etc.  rather than lumping all of those into the "GT" catchall
-> > > > > > > domain.
-> > > > > > > 
-> > > > > > > If we do decide to go back to implicit forcewake handling with the table
-> > > > > > > encoded into the driver, it might be worth doing something sort of like
-> > > > > > 
-> > > > > > Let's not do this intel_uncore.c is an unreadable mess, I don't want
-> > > > > > anything like this in Xe.
-> > > > > 
-> > > > > When you say unreadable, are you referring to the macros that generate
-> > > > > the table lookup functions?  I don't think that macro magic would be
-> > > > > needed for Xe since we don't have to support old platforms that have
-> > > > > very different forcewake behavior, and we also don't need to generate
-> > > > > separate 8-bit, 16-bit, and 32-bit versions of each operation anymore
-> > > > > (since I think everything in the GT is 32-bits these days).
-> > > > > 
-> > > > 
-> > > > Just the entire file is unreadable in general, trying to avoid these
-> > > > types of files in Xe, avoid traps of the i915 did this so let's do it in
-> > > > Xe, and over engineering our driver to avoid hypothetical future bugs.
-> > > > 
-> > > > Matt
-> > > > 
-> > > > > The forcewake and shadow tables themselves are pretty clean in i915
-> > > > > these days, and if we move to autogenerating them from a text file, they
-> > > > > can become even simpler since the text file will basically be a cleaned
-> > > > > up copy/paste of part of the bspec table.
-> > > > > 
-> > > > > 
-> > > > > Matt
-> > > > > 
-> > > > > > 
-> > > > > > > what Lucas is doing in the OOB workaround series --- drop the
-> > > > > > > per-platform tables into a human-readable text file that's more similar
-> > > > > > > to the format used by the bspec (exact ranges, forcewake domain, MCR
-> > > > > > > replication type, etc.) and then provide a small parser program that
-> > > > > > > will convert that into actual code (and do things like consolidating
-> > > > > > > adjacent ranges).
-> > > > > > > 
-> > > > > > > > 
-> > > > > > > > Any other idea? Thoughts?
-> > > > > > > 
-> > > > > > > Once the big GT vs tile refactor stuff I have in flight gets finalized,
-> > > > > > > I plan to follow up with another series that creates a more appropriate
-> > > > > > > MMIO target for register operations rather than using "xe_gt" as the
-> > > > > > > target (even for things completely unrelated to the small GT subset of
-> > > > > > > hardware).  My idea is that you'd grab an MMIO target structure for MMIO
-> > > > > > > operations against a specific hardware unit, and then the info inside
-> > > > > > > the MMIO structure would be able to figure out if there are additional
-> > > > > > > checks and/or operations it should perform.  E.g.,
-> > > > > > > 
-> > > > > > >  * mmio = xe_mmio_for_device(xe_device *xe);
-> > > > > > >     - Used to submit MMIO operations against the root tile of the PCI
-> > > > > > >       device.  Only used during init (e.g., to read the registers that
-> > > > > > >       tell us which tiles exist on the platform) and during top-level
-> > > > > > >       interrupt enable/disable (since all interrupts are routed through
-> > > > > > >       the root tile).
-> > > > > > >     - No forcewake needed for register accesses through a handle of this
-> > > > > > >       type since you'd only ever be accessing sgunit registers for these
-> > > > > > >       types of things.
-> > > > > > >     - Register accesses through mmio can warn on debug builds if the
-> > > > > > >       register appears to be in a GT-related MMIO range.
-> > > > > > > 
-> > > > > > >  * mmio = xe_mmio_for_display(xe_device *xe);
-> > > > > > >     - Pretty much the same as handles returned by xe_mmio_for_device(),
-> > > > > > >       but if a handle of this type is used to try to read/write
-> > > > > > >       registers outside the display range, we could have debug builds
-> > > > > > >       throw some extra warnings.
-> > > > > > >     - Unclaimed register detection could be confined to accesses through
-> > > > > > >       these handles.
-> > > > > > > 
-> > > > > > >  * mmio = xe_mmio_for_tile(xe_tile *tile);
-> > > > > > >     - Used to access non-GT registers that reside in a specific tile.
-> > > > > > >       I.e., sgunit/soc registers.
-> > > > > > >     - As above, no forcewake needed, can make MMIO operations warn
-> > > > > > >       if used to access a GT range.
-> > > > > > > 
-> > > > > > >  * mmio = xe_mmio_for_gt(xe_gt *gt);
-> > > > > > >     - Used to access GT registers in a specific GT
-> > > > > > >     - Does automatic GSI offset translation for media GTs
-> > > > > > >     - Can either do automatic forcewake like i915 does, or can do debug
-> > > > > > >       check+warn like you have here.
-> > > > > > >     - Can make MMIO operations warn if MMIO offset is outside GT range
-> > > > > > >     - Can also trigger warnings if a GT non-GSI, non-media engine
-> > > > > > >       register is accessed from an MMIO obtained from a media GT.
-> > > > > > > 
-> > > > > > 
-> > > > > > Ack on this if we keep in managable, worried code / feature bloat those
-> > > > > > that will result in a similar file to intel_uncore.c in Xe.
-> > > 
-> > > Just to revive this thread.
-> > > 
-> > > I've been discussing this proposal in the context of a change we need
-> > > to make in the display, which is to introduce a wakelock for some
-> > > registers access in order to be able to remove the DMC trap.
-> > > 
-> > > We came to the conclusion that this new implementation is very much the
-> > > same as the forcewake proposal here.  From the display point-of-view,
-> > > we could simply have a new domain and range of registers to protect.
-> > > 
-> > > We _could_ implement a separate "wakelock" mechanism for the display
-> > > part, but that would be mostly duplicating the entire forcewake
-> > > implementation.
-> > > 
-> > > So, are there any plans to implement the current proposal? Or any other
-> > > plans related to the forcewake implementation for Xe? As I see it, the
-> > > "wakelock" implementation in the display depends on this.
-> > > 
-> > > Any thoughts?
-> > 
-> > Hi Luca, thanks for raising this again here.
-> 
-> Hi Lucas! Thanks for your comments.
-> 
-> 
-> > So, as I said in the past, I don't have strong opinions regarding the
-> > overall forcewake approach.
-> > 
-> > The since GT MMIO is not used very frequently, I don't see a problem of
-> > leaving that up to the caller to take the right domain when needed, or even
-> > the FORCEWAKE_ALL domain. Instead of forcing all the callers to
-> > go through this extra steps and then have to opt-out with the '_fw' [sic]
-> > alternatives for the cases where the forcewake cannot be checked underneath.
-> > 
-> > So, for the new display wakelocks, that's the problem of adding them to
-> > the drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h where the converions
-> > from i915's intel uncore are happening to xe_mmio? So, when using the
-> > intel_uncore's '_fw' variant you skip the wakelock and when doing the regular
-> > mmio calls you just add a wakelock_get/put around the xe_mmio call with
-> > the display domain. And in i915 you implement inside the intel_uncore.
-> > 
-> > What's the downside of this approach?
-> 
-> That's more or less what I was thinking.  I don't think there's any
-> problem on the display side in calling the same framework.
-> 
-> 
-> > Trying to understand all the pros and cons of different approaches, and
-> > bringing some people to the discussion.
-> > 
-> > If we implement the forwareke underneath the mmio call, display needs
-> > to anyway implement it twice on the i915's intel_uncore and on the
-> > xe_forcewake, no?!
-> 
-> Yes, IMHO we should start making Xe the base implementation and
-> backporting the new implementation into i915.
-> 
-> So,for this specific case, I think we can just make i915 call the new
-> functions in xe and have them backported in intel_uncore.h for i915.
-> 
-> What I was thinking was basically this:
-> 
-> 1. Implement the xe_mmio_for_<hw_unit>() proposal in Xe​
+On Wed, Oct 11, 2023 at 04:10:00PM -0700, Matt Roper wrote:
+>Keeping the number of registers to be loaded as a separate macro from
+>the instruction opcode will simplify some upcoming LRC parsing code.
+>
+>Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+>---
+> drivers/gpu/drm/xe/regs/xe_gpu_commands.h | 4 +++-
+> drivers/gpu/drm/xe/xe_gt.c                | 2 +-
+> drivers/gpu/drm/xe/xe_lrc.c               | 2 +-
+> drivers/gpu/drm/xe/xe_ring_ops.c          | 2 +-
+> 4 files changed, 6 insertions(+), 4 deletions(-)
+>
+>diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+>index 9432a960346b..ad1e5466671b 100644
+>--- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+>+++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+>@@ -25,9 +25,11 @@
+> #define MI_BATCH_BUFFER_END	MI_INSTR(0x0a, 0)
+> #define MI_STORE_DATA_IMM	MI_INSTR(0x20, 0)
+>
+>-#define MI_LOAD_REGISTER_IMM(x)	MI_INSTR(0x22, 2*(x)-1)
+>+#define MI_LOAD_REGISTER_IMM	MI_INSTR(0x22, 0)
 
-hmm probably a new component then?! xe_display_wakelock that
-implements and export the get/put domain in a similar way
-of xe_forcewake, and then on the wrapper you add the get/put
-around the existing xe_mmio calls?!
+since we are going to have a churn in the codebase due to this, maybe
+it's worth going ahead and doing a s/LOAD_REGISTER_IMMEDIATE/LRI/ so all
+the macros follow the same pattern?
 
-> 
-> 2. Display code uses new APIs (xe_mmio_for_display ops)​
-> 
-> 3. Update uncore to handle "wakelock domain"​
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 
-then on uncore you would need to parse the mmio range and then
-call the get and puts, that in that case would be static inside
-the uncore itself like the forcewakes ?!
+Lucas De Marchi
 
-> 
-> 4. Wrappers for i915​, make an xe_mmio_for_display wrapper that calls
-> the old functions in uncore and add the necessary locking there.
-> 
-> In i915 we're most likely not going to need the wakelock stuff for DMC
-> trap, because it shouldn't be needed in older hardware anyway.  So the
-> backport can remain pretty simple.
-> 
-> Would this work?
-> 
-> --
-> Cheers,
-> Luca.
+> #define   MI_LRI_LRM_CS_MMIO		REG_BIT(19)
+> #define   MI_LRI_MMIO_REMAP_EN		REG_BIT(17)
+>+#define   MI_LRI_LENGTH			GENMASK(5, 0)
+>+#define   MI_LRI_NUM_REGS(x)		REG_FIELD_PREP(MI_LRI_LENGTH, 2 * (x) - 1)
+> #define   MI_LRI_FORCE_POSTED		(1<<12)
+>
+> #define MI_FLUSH_DW		MI_INSTR(0x26, 0)
+>diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+>index c63e2e4750b1..a42ee3b9b8c7 100644
+>--- a/drivers/gpu/drm/xe/xe_gt.c
+>+++ b/drivers/gpu/drm/xe/xe_gt.c
+>@@ -145,7 +145,7 @@ static int emit_wa_job(struct xe_gt *gt, struct xe_exec_queue *q)
+> 	if (count) {
+> 		xe_gt_dbg(gt, "LRC WA %s save-restore batch\n", sr->name);
+>
+>-		bb->cs[bb->len++] = MI_LOAD_REGISTER_IMM(count);
+>+		bb->cs[bb->len++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(count);
+>
+> 		xa_for_each(&sr->xa, idx, entry) {
+> 			struct xe_reg reg = entry->reg;
+>diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+>index 35ae6e531d8a..81463bd5e490 100644
+>--- a/drivers/gpu/drm/xe/xe_lrc.c
+>+++ b/drivers/gpu/drm/xe/xe_lrc.c
+>@@ -111,7 +111,7 @@ static void set_offsets(u32 *regs,
+> 		flags = *data >> 6;
+> 		data++;
+>
+>-		*regs = MI_LOAD_REGISTER_IMM(count);
+>+		*regs = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(count);
+> 		if (flags & POSTED)
+> 			*regs |= MI_LRI_FORCE_POSTED;
+> 		*regs |= MI_LRI_LRM_CS_MMIO;
+>diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+>index b95cc7713ff9..1e36b07d3e01 100644
+>--- a/drivers/gpu/drm/xe/xe_ring_ops.c
+>+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+>@@ -50,7 +50,7 @@ static u32 preparser_disable(bool state)
+> static int emit_aux_table_inv(struct xe_gt *gt, struct xe_reg reg,
+> 			      u32 *dw, int i)
+> {
+>-	dw[i++] = MI_LOAD_REGISTER_IMM(1) | MI_LRI_MMIO_REMAP_EN;
+>+	dw[i++] = MI_LOAD_REGISTER_IMM | MI_LRI_NUM_REGS(1) | MI_LRI_MMIO_REMAP_EN;
+> 	dw[i++] = reg.addr + gt->mmio.adj_offset;
+> 	dw[i++] = AUX_INV;
+> 	dw[i++] = MI_NOOP;
+>-- 
+>2.41.0
+>
