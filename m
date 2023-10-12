@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AA8E4CDB46E
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 04:22:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3EB2DC41513
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 04:22:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 72CEC10E402;
-	Thu, 12 Oct 2023 04:22:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EABAB10E405;
+	Thu, 12 Oct 2023 04:22:34 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9509710E402;
- Thu, 12 Oct 2023 04:22:09 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6A58B10E404;
+ Thu, 12 Oct 2023 04:22:33 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 925EDAA916;
- Thu, 12 Oct 2023 04:22:09 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6896BAA916;
+ Thu, 12 Oct 2023 04:22:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Matthew Brost" <matthew.brost@intel.com>
-Date: Thu, 12 Oct 2023 04:22:09 -0000
-Message-ID: <169708452959.25005.11484830964915903141@emeril.freedesktop.org>
+Date: Thu, 12 Oct 2023 04:22:33 -0000
+Message-ID: <169708455342.25007.7866590404372256034@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231011235126.585242-1-matthew.brost@intel.com>
 In-Reply-To: <20231011235126.585242-1-matthew.brost@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_DR?=
- =?utf-8?q?M_scheduler_update?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_DRM_sch?=
+ =?utf-8?q?eduler_update?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,83 +48,39 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: DRM scheduler update
 URL   : https://patchwork.freedesktop.org/series/125012/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit cb7c851703f33a012c8d67425369aff28652ad1b
-Author: Matthew Brost <matthew.brost@intel.com>
-Date:   Wed Oct 11 16:51:26 2023 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+ERROR:root:../drivers/gpu/drm/scheduler/sched_main.c: In function ‘drm_sched_get_cleanup_job’:
+../drivers/gpu/drm/scheduler/sched_main.c:1044:6: error: implicit declaration of function ‘dma_fence_timestamp’ [-Werror=implicit-function-declaration]
+ 1044 |      dma_fence_timestamp(&job->s_fence->finished);
+      |      ^~~~~~~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[7]: *** [../scripts/Makefile.build:243: drivers/gpu/drm/scheduler/sched_main.o] Error 1
+make[7]: *** Waiting for unfinished jobs....
+make[6]: *** [../scripts/Makefile.build:480: drivers/gpu/drm/scheduler] Error 2
+make[6]: *** Waiting for unfinished jobs....
+make[5]: *** [../scripts/Makefile.build:480: drivers/gpu/drm] Error 2
+make[4]: *** [../scripts/Makefile.build:480: drivers/gpu] Error 2
+make[3]: *** [../scripts/Makefile.build:480: drivers] Error 2
+make[2]: *** [/kernel/Makefile:1913: .] Error 2
+make[1]: *** [/kernel/Makefile:234: __sub-make] Error 2
+make: *** [Makefile:234: __sub-make] Error 2
 
-    drm/xe: Update to upstream DRM scheduler code
-    
-    The largest change is the message interface has been removed from the
-    DRM scheduler. Xe still needs a message interface so it is implemented
-    in the Xe driver by adding a Xe scheduler layer.
-    
-    Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-+ /mt/dim checkpatch 6c0d1e36f310682297a5b07336b0883afc77f66e drm-intel
-cb7c85170 drm/xe: Update to upstream DRM scheduler code
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:180: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#180: FILE: drivers/gpu/drm/scheduler/sched_entity.c:94:
- 
-+
-
--:260: WARNING:LONG_LINE: line length of 202 exceeds 100 columns
-#260: FILE: drivers/gpu/drm/scheduler/sched_main.c:93:
-+MODULE_PARM_DESC(sched_policy, "Specify the scheduling policy for entities on a run-queue, " __stringify(DRM_SCHED_POLICY_RR) " = Round Robin, " __stringify(DRM_SCHED_POLICY_FIFO) " = FIFO (default).");
-
--:939: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#939: FILE: drivers/gpu/drm/scheduler/sched_main.c:1280:
- 
-+		}
-
--:1057: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#1057: 
-new file mode 100644
-
--:1122: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#1122: FILE: drivers/gpu/drm/xe/xe_gpu_scheduler.c:61:
-+		  uint32_t hw_submission, unsigned hang_limit,
-
--:1122: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#1122: FILE: drivers/gpu/drm/xe/xe_gpu_scheduler.c:61:
-+		  uint32_t hw_submission, unsigned hang_limit,
-
--:1185: WARNING:UNSPECIFIED_INT: Prefer 'unsigned int' to bare use of 'unsigned'
-#1185: FILE: drivers/gpu/drm/xe/xe_gpu_scheduler.h:16:
-+		  uint32_t hw_submission, unsigned hang_limit,
-
--:1185: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
-#1185: FILE: drivers/gpu/drm/xe/xe_gpu_scheduler.h:16:
-+		  uint32_t hw_submission, unsigned hang_limit,
-
--:1593: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#1593: FILE: drivers/gpu/drm/xe/xe_guc_submit.c:1170:
-+	err = xe_sched_init(&ge->sched, &drm_sched_ops, &xe_sched_ops, NULL,
- 			     q->lrc[0].ring.size / MAX_JOB_SIZE_BYTES,
-
-total: 0 errors, 4 warnings, 5 checks, 1805 lines checked
+[04:22:10] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[04:22:14] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
