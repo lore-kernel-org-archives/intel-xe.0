@@ -4,50 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EC615CDB46E
-	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 09:56:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BD1ACDB46E
+	for <intel-xe@archiver.kernel.org>; Thu, 12 Oct 2023 10:21:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6A7D10E481;
-	Thu, 12 Oct 2023 09:56:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3458E10E492
- for <intel-xe@lists.freedesktop.org>; Thu, 12 Oct 2023 09:56:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697104611; x=1728640611;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=RVu7gRtcuP7LKP3JPvfF7Xq2IjAd210UgrRseibGqzk=;
- b=RymcyNx/JSO8T1Xm0yi9+K5KIuK+ZNLVC2NZDzRAorjfB4s28XRf6duR
- 1tMPm0F8BRmybbBR8mUnnFIScZ5ysPlXcjqhE8YNLL/qdbZSzI8xDmgIG
- kkzQuVm8CHiWktZmiMYfgFvxa2Orps+xb7EUtdufQzJUeZ5CRPW24Wnqo
- FI0L6GUHtWwoWs/uYYdfc7ins1zZz+XggSkN39Kj5W+WEKgSEKF50scUJ
- HF7+iC1ugLWyVN2aXzD8xFVqXhg2TYUDBgagUiQVaKgS7FrdAafkUEukC
- qgZ6ltK+GYnTxztirWN46a0T79XLhOeSiaCjGGGvPHIG89xRpFGEjAh6u A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="382119730"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="382119730"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 02:56:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10860"; a="927925653"
-X-IronPort-AV: E=Sophos;i="6.03,218,1694761200"; d="scan'208";a="927925653"
-Received: from anikafix-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.42.188])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Oct 2023 02:56:47 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, intel-xe@lists.freedesktop.org,
- uma.shankar@intel.com
-In-Reply-To: <20231012093446.1332238-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231012093446.1332238-1-arun.r.murthy@intel.com>
-Date: Thu, 12 Oct 2023 12:56:45 +0300
-Message-ID: <877cns2mg2.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 13D3210E49E;
+	Thu, 12 Oct 2023 10:21:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CF38210E49F;
+ Thu, 12 Oct 2023 10:21:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id C9798A3ECB;
+ Thu, 12 Oct 2023 10:21:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0344907830672122010=="
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 1/2] Revert "FIXME: drm/i915: xe doesn't have
- fastboot module parameter"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Arun R Murthy" <arun.r.murthy@intel.com>
+Date: Thu, 12 Oct 2023 10:21:37 -0000
+Message-ID: <169710609781.25006.272013107517555391@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231012093446.1332238-1-arun.r.murthy@intel.com>
+In-Reply-To: <20231012093446.1332238-1-arun.r.murthy@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_st?=
+ =?utf-8?q?arting_with_=5B1/2=5D_Revert_=22FIXME=3A_drm/i915=3A_xe_doesn?=
+ =?utf-8?q?=27t_have_fastboot_module_parameter=22?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,45 +40,135 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 12 Oct 2023, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> The modparam fastboot is removed from i915.
->
-> This reverts commit 3c73fdaf8f58b55b0e292fec0929b6502c2b3a3e.
+--===============0344907830672122010==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+== Series Details ==
 
-on both
+Series: series starting with [1/2] Revert "FIXME: drm/i915: xe doesn't have fastboot module parameter"
+URL   : https://patchwork.freedesktop.org/series/125045/
+State : success
 
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 4 ----
->  1 file changed, 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 4b73db93d23d..e876fa6db285 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4988,7 +4988,6 @@ pipe_config_mismatch(bool fastset, const struct intel_crtc *crtc,
->  
->  static bool fastboot_enabled(struct drm_i915_private *dev_priv)
->  {
-> -#ifdef I915
->  	if (dev_priv->params.fastboot != -1)
->  		return dev_priv->params.fastboot;
->  
-> @@ -5002,9 +5001,6 @@ static bool fastboot_enabled(struct drm_i915_private *dev_priv)
->  
->  	/* Disabled by default on all others */
->  	return false;
-> -#else
-> -	return true;
-> -#endif
->  }
->  
->  bool
+== Summary ==
 
--- 
-Jani Nikula, Intel
+CI Bug Log - changes from xe-432-6c0d1e36f310682297a5b07336b0883afc77f66e_BAT -> xe-pw-125045v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (2 -> 2)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-125045v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * {igt@xe_create@create-execqueues-noleak}:
+    - bat-adlp-7:         [FAIL][1] ([Intel XE#524]) -> [PASS][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-432-6c0d1e36f310682297a5b07336b0883afc77f66e/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125045v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7532 -> IGT_7533
+  * Linux: xe-432-6c0d1e36f310682297a5b07336b0883afc77f66e -> xe-pw-125045v1
+
+  IGT_7532: bf24b157b1049afc086fe65a60b22bd6bb3e18b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7533: 7533
+  xe-432-6c0d1e36f310682297a5b07336b0883afc77f66e: 6c0d1e36f310682297a5b07336b0883afc77f66e
+  xe-pw-125045v1: 125045v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125045v1/index.html
+
+--===============0344907830672122010==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>series starting with [1/2] Revert &quot;FIXME: drm/i915: xe doesn&#39;t have fastboot module parameter&quot;</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125045/">https://patchwork.freedesktop.org/series/125045/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125045v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125045v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-432-6c0d1e36f310682297a5b07336b0883afc77f66e_BAT -&gt; xe-pw-125045v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (2 -&gt; 2)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-125045v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>{igt@xe_create@create-execqueues-noleak}:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-432-6c0d1e36f310682297a5b07336b0883afc77f66e/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125045v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7532 -&gt; IGT_7533</li>
+<li>Linux: xe-432-6c0d1e36f310682297a5b07336b0883afc77f66e -&gt; xe-pw-125045v1</li>
+</ul>
+<p>IGT_7532: bf24b157b1049afc086fe65a60b22bd6bb3e18b7 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7533: 7533<br />
+  xe-432-6c0d1e36f310682297a5b07336b0883afc77f66e: 6c0d1e36f310682297a5b07336b0883afc77f66e<br />
+  xe-pw-125045v1: 125045v1</p>
+
+</body>
+</html>
+
+--===============0344907830672122010==--
