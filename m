@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DBF4CCDB47E
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Oct 2023 06:57:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37793C46CA1
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Oct 2023 06:57:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA45D10E5BF;
-	Fri, 13 Oct 2023 06:57:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F70110E5C0;
+	Fri, 13 Oct 2023 06:57:59 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E8CD10E5BF
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Oct 2023 06:57:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3CBE10E5BE
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Oct 2023 06:57:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697180275; x=1728716275;
+ t=1697180276; x=1728716276;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=J379LdRhSfJ7eZgJgiSTbxhti3prH+jkjvmcjrt7A/k=;
- b=LUgGq/L1urybhsoXHMEA79ciZOs9ebKL9YrsdLdz67AjF47n9z7IJOk5
- MVDoTZhGUZPiTLQ3Kn0OITwknPDxfEOFrL/tbZOairX5Trp0yuJYT8HLY
- A5KY7N0T64kbia14+DguRr6dH6jlPBxb86oxA5SWMTQ1YXyE8k5V2/zR2
- N1CwgtHqOAkmFv7AGGiGHzyN+Iwtlw/kJBDmLjf1m9t5uQztKLrYfj8UF
- 7QLSn5FvniBNHbpNwpi1YFk0DkPsXS+iN77GTljjnX2+wBMBFLHpOuK2B
- /H5Bvj70i1DCGjwhKZ81bMcCTLbKkN/bEbe7KABj+eFG2UXvsxxBtNw41 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="384954553"
-X-IronPort-AV: E=Sophos;i="6.03,221,1694761200"; d="scan'208";a="384954553"
+ bh=Om/KcfJAfdAQF8hz/iEypb8IcKgoGBlQTc8okOZ7mzs=;
+ b=lfYSLspPNQvh53dnYSSzKp5KgI3MHO6nK/Tag1DF5dFSBp4AZIOwi5SE
+ vfgFzjn5odZ7kvw1ygvV8uYT0KtdbOQJZJYMzlInIMo+gbGBzfh0d9NtT
+ 40BqAHsXdQJ9m/Qe35+JIpPRFH0awm3NkXcUp6ZOYfOA7F4UPnkX7H5FN
+ fxgXoPqlq9gvRVBVq/9QR6VjlWI7dh88hp0pf28mVPzkt+KenL0bVYO6j
+ EjzBh7O1HNbbpMtUmMsKi1vx0pz9X/dL27mxTG3vz9QbyfUzVozD1/+/E
+ 8fOl+fQzqDVFFro5Qxv3LJn0MgwSRjDplYk3Al2/gxuAy40FdyLISYcxZ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="384954558"
+X-IronPort-AV: E=Sophos;i="6.03,221,1694761200"; d="scan'208";a="384954558"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  12 Oct 2023 23:57:54 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="731243482"
-X-IronPort-AV: E=Sophos;i="6.03,221,1694761200"; d="scan'208";a="731243482"
+X-IronPort-AV: E=McAfee;i="6600,9927,10861"; a="731243500"
+X-IronPort-AV: E=Sophos;i="6.03,221,1694761200"; d="scan'208";a="731243500"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orsmga006.jf.intel.com with ESMTP; 12 Oct 2023 23:57:50 -0700
+ by orsmga006.jf.intel.com with ESMTP; 12 Oct 2023 23:57:52 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Oct 2023 12:23:18 +0530
-Message-Id: <20231013065323.2233783-2-chaitanya.kumar.borah@intel.com>
+Date: Fri, 13 Oct 2023 12:23:19 +0530
+Message-Id: <20231013065323.2233783-3-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231013065323.2233783-1-chaitanya.kumar.borah@intel.com>
 References: <20231013065323.2233783-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/6] Revert "FIXME: drm/i915/dmc: xe way of
- getting at stepping"
+Subject: [Intel-xe] [PATCH 2/6] drm/i915: Add wrapper for getting display
+ step
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,50 +60,60 @@ Cc: lucas.demarchi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This reverts commit a0cdbefc3aea03c1d3f30460c1d89678705d57bb.
+Add a wrapper around intel_step_name that takes in driver data as an
+argument. This wrapper will help maintain compatibility with the
+proposed xe driver.
 
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Signed-off-by: Uma Shankar <uma.shankar@intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20231003065211.1052385-1-chaitanya.kumar.borah@intel.com
+(cherry picked from commit 55ce2c37cfb969b7d8bf4a1a5c7956ffada0cae8)
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 17 +----------------
- 1 file changed, 1 insertion(+), 16 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
+ drivers/gpu/drm/i915/intel_step.c        | 5 +++++
+ drivers/gpu/drm/i915/intel_step.h        | 1 +
+ 3 files changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 51e0463518fb..1623c0c5e8a1 100644
+index 1623c0c5e8a1..63e080e07023 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -30,18 +30,6 @@
- #include "intel_dmc.h"
- #include "intel_dmc_regs.h"
- 
--#ifndef I915
--#include "xe_uc_fw.h"
--
--#define INTEL_UC_FIRMWARE_URL XE_UC_FIRMWARE_URL
--
--__printf(2, 3)
--static inline void
--i915_error_printf(struct drm_i915_error_state_buf *e, const char *f, ...)
--{
--}
--#endif
--
- /**
-  * DOC: DMC Firmware Support
-  *
-@@ -321,11 +309,8 @@ static const struct stepping_info *
+@@ -309,7 +309,7 @@ static const struct stepping_info *
  intel_get_stepping_info(struct drm_i915_private *i915,
  			struct stepping_info *si)
  {
--#ifdef I915
- 	const char *step_name = intel_step_name(RUNTIME_INFO(i915)->step.display_step);
--#else
--	const char *step_name = xe_step_name(i915->info.step.display);
--#endif
-+
+-	const char *step_name = intel_step_name(RUNTIME_INFO(i915)->step.display_step);
++	const char *step_name = intel_display_step_name(i915);
+ 
  	si->stepping = step_name[0];
  	si->substepping = step_name[1];
- 	return si;
+diff --git a/drivers/gpu/drm/i915/intel_step.c b/drivers/gpu/drm/i915/intel_step.c
+index ee4e5a2c0220..b4162f1be765 100644
+--- a/drivers/gpu/drm/i915/intel_step.c
++++ b/drivers/gpu/drm/i915/intel_step.c
+@@ -353,3 +353,8 @@ const char *intel_step_name(enum intel_step step)
+ 		return "**";
+ 	}
+ }
++
++const char *intel_display_step_name(struct drm_i915_private *i915)
++{
++	return intel_step_name(RUNTIME_INFO(i915)->step.display_step);
++}
+diff --git a/drivers/gpu/drm/i915/intel_step.h b/drivers/gpu/drm/i915/intel_step.h
+index 96dfca4cba73..b6f43b624774 100644
+--- a/drivers/gpu/drm/i915/intel_step.h
++++ b/drivers/gpu/drm/i915/intel_step.h
+@@ -78,5 +78,6 @@ enum intel_step {
+ 
+ void intel_step_init(struct drm_i915_private *i915);
+ const char *intel_step_name(enum intel_step step);
++const char *intel_display_step_name(struct drm_i915_private *i915);
+ 
+ #endif /* __INTEL_STEP_H__ */
 -- 
 2.25.1
 
