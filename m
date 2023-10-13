@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A79E5CDB485
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Oct 2023 22:03:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3DF4CDB47E
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Oct 2023 22:03:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2307810E646;
-	Fri, 13 Oct 2023 22:03:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F43C10E644;
+	Fri, 13 Oct 2023 22:03:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 219D710E072
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Oct 2023 22:03:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BED3610E072
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Oct 2023 22:02:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697234580; x=1728770580;
+ t=1697234579; x=1728770579;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=m9zeoJzzg8a1eik1ruifGAXcssLeLh+hvWrOefi2KmM=;
- b=Zd0L8p1vQFZyppIwigk2utREdyXXssqLV9D1jwsBfAFTuT4k7vVilgqV
- mh2yZoF4R1z1pM3AYIeeT3ZYT4WVWikP8+TVg9Uw8BBS5xmbLQOvUo/Vp
- ofukwL3gbX3J1OQkSCVzLTvVlCfCwWXvS8CxiOk57xgyTX1+8tdzDBM74
- yTFFsHzysP9XVb0PbTxYqAWtf0uuQ0FjwZobStbEeDFecMj26H5IfdF7g
- Hbt1fzjq0YAh6zDYcwZgy3lWdLoVpFnDNBp+dvsFE3K955/vdAa0ZzowC
- G58VKht24ISlSeYVj+qCH1xCzbzV5HzyE7dryq4LBuOnz5f5yEMTm/Qdn Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="471505753"
-X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="471505753"
+ bh=TQbC4/kpxwYgvqbEhnUETYuvAReS8G3StK2eFoxK27c=;
+ b=WSFXcRW3yQeXOvcmd9KUtIxgw6TgeQm3CB/Nb/FwhKughXF/0Rx525eF
+ 2h0K9bGwxEwdKHrTIVFYuxqzdLi1klEIZotpzzh7Rpo9ibnEDsSsx/5OA
+ btIcRhAKdMNoF+URyrWAy9elljw7SwUep4/C+EiFwvvGfXD1r4lPxAPWZ
+ jOFmxKsu+RbAM4IepYoTQyIL1S0fIR03vjKw1IaVOphV/jxxinF+XJ2ZI
+ ffohkVJDX1CX8HcNmE6b7Q4ggYAYjqNDE9/0+Qwn7urU2WASKAg3qppH8
+ wq0Nw6xAT6fLllqnN0CU93cc7UgXd8orbyuvTqjD1MhijNbSGWFGXF/9U w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="471505749"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="471505749"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Oct 2023 15:02:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="825212677"
-X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="825212677"
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="825212665"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="825212665"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.131])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  13 Oct 2023 15:02:59 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 13 Oct 2023 15:02:56 -0700
-Message-ID: <20231013220250.927876-13-matthew.d.roper@intel.com>
+Date: Fri, 13 Oct 2023 15:02:52 -0700
+Message-ID: <20231013220250.927876-9-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231013220250.927876-8-matthew.d.roper@intel.com>
 References: <20231013220250.927876-8-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 5/6] drm/xe/debugfs: Add dump of default LRCs'
- MI instructions
+Subject: [Intel-xe] [PATCH v2 1/6] drm/xe: Make MI_FLUSH_DW immediate size
+ more explicit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,263 +61,86 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-For non-RCS engines, nearly all of the LRC state is composed of MI
-instructions (specifically MI_LOAD_REGISTER_IMM).  Providing a dump
-interface allows us to verify that the context image layout matches
-what's documented in the bspec, and also allows us to check whether LRC
-workarounds are being properly captured by the default state we record
-at startup.
+Despite its name, MI_FLUSH_DW instruction can write an immediate value
+of either dword size or qword size, depending on the 'length' field of
+the instruction.  Since "length" excludes the first two dwords of the
+instruction, a value of 2 in the length field implies a dword write and
+a value of 3 implies a qword write.  Even in cases where the flush
+instruction's post-sync operation is set to "no write" we're still
+expected to size the overall instruction as if we were doing a dword or
+qword write (i.e., a length of 1 shouldn't be used on modern platforms).
 
-For now, the non-MI instructions found in the RCS and CCS engines will
-dump as "unknown;" parsing of those will be added in a follow-up patch.
+Rather than baking a size of "1" into the #define and then adding
+another unexplained "+ 1" at all the spots where the definition gets
+used, lets just create MI_FLUSH_IMM_DW and MI_FLUSH_IMM_QW definitions
+that should be OR'd into the instruction header to make it more explicit
+what behavior we're requesting.
 
-v2:
- - Add raw instruction header as well as decoded meaning.  (Lucas)
- - Check that num_dw isn't greater than remaining_dw for instructions
-   that have a "# dwords" field.  (Lucas)
- - Clarify comment about skipping over ppHWSP.  (Lucas)
-
-Bspec: 64993
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Bspec: 60229
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- .../gpu/drm/xe/instructions/xe_instr_defs.h   |  1 +
- .../gpu/drm/xe/instructions/xe_mi_commands.h  |  3 +
- drivers/gpu/drm/xe/xe_gt_debugfs.c            | 46 +++++++++
- drivers/gpu/drm/xe/xe_lrc.c                   | 97 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.h                   |  5 +
- 5 files changed, 152 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  5 ++++-
+ drivers/gpu/drm/xe/xe_ring_ops.c          | 10 +++++-----
+ 2 files changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_instr_defs.h b/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-index a7ec46395786..e403b4fcc20a 100644
---- a/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-@@ -15,6 +15,7 @@
-  */
- #define XE_INSTR_CMD_TYPE		GENMASK(31, 29)
- #define   XE_INSTR_MI			REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x0)
-+#define   XE_INSTR_GFXPIPE		REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x3)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+index 21738281bdd0..9432a960346b 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+@@ -30,12 +30,15 @@
+ #define   MI_LRI_MMIO_REMAP_EN		REG_BIT(17)
+ #define   MI_LRI_FORCE_POSTED		(1<<12)
  
- /*
-  * Most (but not all) instructions have a "length" field in the instruction
-diff --git a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-index 753ebf1efa78..1cfa96167fde 100644
---- a/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-@@ -30,6 +30,9 @@
- #define   MI_ARB_DISABLE		0x0
+-#define MI_FLUSH_DW		MI_INSTR(0x26, 1)
++#define MI_FLUSH_DW		MI_INSTR(0x26, 0)
+ #define   MI_FLUSH_DW_STORE_INDEX	(1<<21)
+ #define   MI_INVALIDATE_TLB		(1<<18)
+ #define   MI_FLUSH_DW_CCS		(1<<16)
+ #define   MI_FLUSH_DW_OP_STOREDW	(1<<14)
+ #define   MI_FLUSH_DW_USE_GTT		(1<<2)
++#define   MI_FLUSH_LENGTH		GENMASK(5, 0)
++#define   MI_FLUSH_IMM_DW		REG_FIELD_PREP(MI_FLUSH_LENGTH, 2)
++#define   MI_FLUSH_IMM_QW		REG_FIELD_PREP(MI_FLUSH_LENGTH, 3)
  
- #define MI_BATCH_BUFFER_END		__MI_INSTR(0xA)
-+#define MI_TOPOLOGY_FILTER		__MI_INSTR(0xD)
-+#define MI_FORCE_WAKEUP			__MI_INSTR(0x1D)
-+
- #define MI_STORE_DATA_IMM		__MI_INSTR(0x20)
- #define   MI_SDI_GGTT			REG_BIT(22)
- #define   MI_SDI_LEN_DW			GENMASK(9, 0)
-diff --git a/drivers/gpu/drm/xe/xe_gt_debugfs.c b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-index cd6d28c7b923..c4b67cf09f8f 100644
---- a/drivers/gpu/drm/xe/xe_gt_debugfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_debugfs.c
-@@ -15,6 +15,7 @@
- #include "xe_gt_mcr.h"
- #include "xe_gt_topology.h"
- #include "xe_hw_engine.h"
-+#include "xe_lrc.h"
- #include "xe_macros.h"
- #include "xe_pat.h"
- #include "xe_reg_sr.h"
-@@ -149,6 +150,46 @@ static int pat(struct seq_file *m, void *data)
- 	return 0;
- }
+ #define MI_BATCH_BUFFER_START		MI_INSTR(0x31, 1)
  
-+static int rcs_default_lrc(struct seq_file *m, void *data)
-+{
-+	struct drm_printer p = drm_seq_file_printer(m);
-+
-+	xe_lrc_dump_default(&p, node_to_gt(m->private), XE_ENGINE_CLASS_RENDER);
-+	return 0;
-+}
-+
-+static int ccs_default_lrc(struct seq_file *m, void *data)
-+{
-+	struct drm_printer p = drm_seq_file_printer(m);
-+
-+	xe_lrc_dump_default(&p, node_to_gt(m->private), XE_ENGINE_CLASS_COMPUTE);
-+	return 0;
-+}
-+
-+static int bcs_default_lrc(struct seq_file *m, void *data)
-+{
-+	struct drm_printer p = drm_seq_file_printer(m);
-+
-+	xe_lrc_dump_default(&p, node_to_gt(m->private), XE_ENGINE_CLASS_COPY);
-+	return 0;
-+}
-+
-+static int vcs_default_lrc(struct seq_file *m, void *data)
-+{
-+	struct drm_printer p = drm_seq_file_printer(m);
-+
-+	xe_lrc_dump_default(&p, node_to_gt(m->private), XE_ENGINE_CLASS_VIDEO_DECODE);
-+	return 0;
-+}
-+
-+static int vecs_default_lrc(struct seq_file *m, void *data)
-+{
-+	struct drm_printer p = drm_seq_file_printer(m);
-+
-+	xe_lrc_dump_default(&p, node_to_gt(m->private), XE_ENGINE_CLASS_VIDEO_ENHANCE);
-+	return 0;
-+}
-+
- static const struct drm_info_list debugfs_list[] = {
- 	{"hw_engines", hw_engines, 0},
- 	{"force_reset", force_reset, 0},
-@@ -159,6 +200,11 @@ static const struct drm_info_list debugfs_list[] = {
- 	{"register-save-restore", register_save_restore, 0},
- 	{"workarounds", workarounds, 0},
- 	{"pat", pat, 0},
-+	{"default_lrc_rcs", rcs_default_lrc},
-+	{"default_lrc_ccs", ccs_default_lrc},
-+	{"default_lrc_bcs", bcs_default_lrc},
-+	{"default_lrc_vcs", vcs_default_lrc},
-+	{"default_lrc_vecs", vecs_default_lrc},
- };
- 
- void xe_gt_debugfs_register(struct xe_gt *gt)
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index a04867131839..38e98c54464b 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -16,6 +16,7 @@
- #include "xe_drm_client.h"
- #include "xe_exec_queue_types.h"
- #include "xe_gt.h"
-+#include "xe_gt_printk.h"
- #include "xe_hw_fence.h"
- #include "xe_map.h"
- #include "xe_vm.h"
-@@ -903,3 +904,99 @@ struct iosys_map xe_lrc_parallel_map(struct xe_lrc *lrc)
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 6eec7c7e4bc5..b95cc7713ff9 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -80,7 +80,7 @@ static int emit_store_imm_ggtt(u32 addr, u32 value, u32 *dw, int i)
+ static int emit_flush_imm_ggtt(u32 addr, u32 value, bool invalidate_tlb,
+ 			       u32 *dw, int i)
  {
- 	return __xe_lrc_parallel_map(lrc);
- }
-+
-+static int instr_dw(u32 cmd_header)
-+{
-+	/* Most instructions have the # of dwords (minus 2) in 7:0 */
-+	return REG_FIELD_GET(XE_INSTR_LEN_MASK, cmd_header) + 2;
-+}
-+
-+static int dump_mi_command(struct drm_printer *p,
-+			   struct xe_gt *gt,
-+			   u32 *dw,
-+			   int remaining_dw)
-+{
-+	u32 inst_header = *dw;
-+	u32 numdw = instr_dw(inst_header);
-+	u32 opcode = REG_FIELD_GET(MI_OPCODE, inst_header);
-+	int num_noop;
-+
-+	/* First check for commands that don't have/use a '# DW' field */
-+	switch (inst_header & MI_OPCODE) {
-+	case MI_NOOP:
-+		num_noop = 1;
-+		while (num_noop < remaining_dw &&
-+		       (*(++dw) & REG_GENMASK(31, 23)) == MI_NOOP)
-+			num_noop++;
-+		drm_printf(p, "[%#010x] MI_NOOP (%d dwords)\n", inst_header, num_noop);
-+		return num_noop;
-+
-+	case MI_TOPOLOGY_FILTER:
-+		drm_printf(p, "[%#010x] MI_TOPOLOGY_FILTER\n", inst_header);
-+		return 1;
-+
-+	case MI_BATCH_BUFFER_END:
-+		drm_printf(p, "[%#010x] MI_BATCH_BUFFER_END\n", inst_header);
-+		/* Return 'remaining_dw' to consume the rest of the LRC */
-+		return remaining_dw;
-+	}
-+
-+	/*
-+	 * Any remaining commands include a # of dwords.  We should make sure
-+	 * it doesn't exceed the remaining size of the LRC.
-+	 */
-+	if (xe_gt_WARN_ON(gt, numdw > remaining_dw))
-+		numdw = remaining_dw;
-+
-+	switch (inst_header & MI_OPCODE) {
-+	case MI_LOAD_REGISTER_IMM:
-+		drm_printf(p, "[%#010x] MI_LOAD_REGISTER_IMM: %d regs\n",
-+			   inst_header, (numdw - 1) / 2);
-+		for (int i = 1; i < numdw; i += 2)
-+			drm_printf(p, " - %#6x = %#010x\n", dw[i], dw[i + 1]);
-+		return numdw;
-+
-+	case MI_FORCE_WAKEUP:
-+		drm_printf(p, "[%#010x] MI_FORCE_WAKEUP\n", inst_header);
-+		return numdw;
-+
-+	default:
-+		drm_printf(p, "[%#010x] unknown MI opcode %#x, likely %d dwords\n",
-+			   inst_header, opcode, numdw);
-+		return numdw;
-+	}
-+}
-+
-+void xe_lrc_dump_default(struct drm_printer *p,
-+			 struct xe_gt *gt,
-+			 enum xe_engine_class hwe_class)
-+{
-+	u32 *dw;
-+	int remaining_dw, num_dw;
-+
-+	if (!gt->default_lrc[hwe_class]) {
-+		drm_printf(p, "No default LRC for class %d\n", hwe_class);
-+		return;
-+	}
-+
-+	/*
-+	 * Skip the beginning of the LRC since it contains the per-process
-+	 * hardware status page.
-+	 */
-+	dw = gt->default_lrc[hwe_class] + LRC_PPHWSP_SIZE;
-+	remaining_dw = (xe_lrc_size(gt_to_xe(gt), hwe_class) - LRC_PPHWSP_SIZE) / 4;
-+
-+	while (remaining_dw > 0) {
-+		if ((*dw & XE_INSTR_CMD_TYPE) == XE_INSTR_MI) {
-+			num_dw = dump_mi_command(p, gt, dw, remaining_dw);
-+		} else {
-+			num_dw = min(instr_dw(*dw), remaining_dw);
-+			drm_printf(p, "[%#10x] Unknown instruction of type %#x, likely %d dwords\n",
-+				   *dw, REG_FIELD_GET(XE_INSTR_CMD_TYPE, *dw),
-+				   num_dw);
-+		}
-+
-+		dw += num_dw;
-+		remaining_dw -= num_dw;
-+	}
-+}
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 3a6e8fc5a837..a7056eda5e0c 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -7,6 +7,7 @@
+-	dw[i++] = (MI_FLUSH_DW + 1) | MI_FLUSH_DW_OP_STOREDW |
++	dw[i++] = MI_FLUSH_DW | MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW |
+ 		(invalidate_tlb ? MI_INVALIDATE_TLB : 0);
+ 	dw[i++] = addr | MI_FLUSH_DW_USE_GTT;
+ 	dw[i++] = 0;
+@@ -100,9 +100,9 @@ static int emit_bb_start(u64 batch_addr, u32 ppgtt_flag, u32 *dw, int i)
  
- #include "xe_lrc_types.h"
+ static int emit_flush_invalidate(u32 flag, u32 *dw, int i)
+ {
+-	dw[i] = MI_FLUSH_DW + 1;
++	dw[i] = MI_FLUSH_DW;
+ 	dw[i] |= flag;
+-	dw[i++] |= MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW |
++	dw[i++] |= MI_INVALIDATE_TLB | MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW |
+ 		MI_FLUSH_DW_STORE_INDEX;
  
-+struct drm_printer;
- struct xe_device;
- struct xe_exec_queue;
- enum xe_engine_class;
-@@ -47,4 +48,8 @@ struct iosys_map xe_lrc_parallel_map(struct xe_lrc *lrc);
+ 	dw[i++] = LRC_PPHWSP_SCRATCH_ADDR | MI_FLUSH_DW_USE_GTT;
+@@ -365,8 +365,8 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
  
- size_t xe_lrc_skip_size(struct xe_device *xe);
+ 	i = emit_bb_start(job->batch_addr[1], BIT(8), dw, i);
  
-+void xe_lrc_dump_default(struct drm_printer *p,
-+			 struct xe_gt *gt,
-+			 enum xe_engine_class);
-+
- #endif
+-	dw[i++] = (MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
+-		   MI_FLUSH_DW_OP_STOREDW) + 1;
++	dw[i++] = MI_FLUSH_DW | MI_INVALIDATE_TLB | job->migrate_flush_flags |
++		MI_FLUSH_DW_OP_STOREDW | MI_FLUSH_IMM_DW;
+ 	dw[i++] = xe_lrc_seqno_ggtt_addr(lrc) | MI_FLUSH_DW_USE_GTT;
+ 	dw[i++] = 0;
+ 	dw[i++] = seqno; /* value */
 -- 
 2.41.0
 
