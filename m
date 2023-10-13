@@ -4,142 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A6598CDB47E
-	for <intel-xe@archiver.kernel.org>; Fri, 13 Oct 2023 19:39:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79480CDB47E
+	for <intel-xe@archiver.kernel.org>; Fri, 13 Oct 2023 20:04:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6240110E059;
-	Fri, 13 Oct 2023 19:39:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 591AF10E059
- for <intel-xe@lists.freedesktop.org>; Fri, 13 Oct 2023 19:39:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C84A10E63E;
+	Fri, 13 Oct 2023 20:04:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5D6110E42D
+ for <intel-xe@lists.freedesktop.org>; Fri, 13 Oct 2023 20:04:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697225970; x=1728761970;
+ t=1697227444; x=1728763444;
  h=date:from:to:cc:subject:message-id:references:
  content-transfer-encoding:in-reply-to:mime-version;
- bh=mSBQbgK0LtuXHhrR5Ka9uF/i6urrhBck05dYFuAvs5E=;
- b=jmMxmyCoZn868tduf4t2NRcAjskvCeMp32CLdHHc1Q1kpkWxzXdsMPf1
- Ja5JU9eeWSJcibIhe6QzUzixanCcIlp3Lp5zYCQjRDSsiEwN/7X1DuJuW
- Xd0S84TZQw9OsoxNXcoqID5kbf4JNbP2dKeOhi3F7T6km5K3AIrpDZ2M5
- SCFOzxdKRNPfPIOkX8qvBLpLWVuikGZUuYSKTduMXSYvXVD3P0LXEtvMq
- vF/5wUH3O4YDrrpl4gXZcpaVPeYgDXk8b/JsNHwkwjMjTmuGSYCItkfXu
- gzNdOA8jlIVUw7pyOle/WrOkmF+HaYdKmtYtxUaCB8i1vYZ2l66zqYArN A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="416309357"
-X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="416309357"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Oct 2023 12:39:29 -0700
+ bh=Ma9+J3i5u8CrvLeKWIr+iv+Yie28QTxtBn6hC3RuycM=;
+ b=LBhWx2Ho7tvDQJZG0V9aU+yaDPEdB8C8SfCjmas9/oRK7t1dv6R9lFbI
+ T8IwXsHpTCwdCbV41QRIkAYjE9Bxkd6ZPlPqvGqx36ZnqKniYDjnQC9x9
+ KAp8eB+zZsE4UnTw5xtxpepnoG34G28x6dm04zJd1v1AkfuTIsM+ql2yt
+ gyvycdC8la+hifodji6IVZBczZRydGunt1HI0m7Iq1N/zquPcwABVnrb3
+ xulCfDPvgx6R/btW18+cqPYV2vQ+CxtHpShWzoFQUBsaDN+2X73yc9u6O
+ wa5ikcPy/KbEIVMwotuz0AI2Avi784xIhBN+SfoxSR8wLRzO1T58JoM7m g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="364616065"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="364616065"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Oct 2023 13:04:03 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="1086264283"
-X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="1086264283"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 13 Oct 2023 12:39:29 -0700
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10862"; a="758599575"
+X-IronPort-AV: E=Sophos;i="6.03,223,1694761200"; d="scan'208";a="758599575"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 13 Oct 2023 13:04:03 -0700
+Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 13 Oct 2023 12:39:28 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.32; Fri, 13 Oct 2023 13:04:03 -0700
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Fri, 13 Oct 2023 12:39:27 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.32; Fri, 13 Oct 2023 13:04:03 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Fri, 13 Oct 2023 12:39:27 -0700
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.32 via Frontend Transport; Fri, 13 Oct 2023 13:04:03 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Fri, 13 Oct 2023 12:39:22 -0700
+ 15.1.2507.32; Fri, 13 Oct 2023 13:04:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g0GHRzmhmZZf9QYOxhGHgiyEq5kMlK+tXGVz/8vFMGL/7oR04hVu5Jmjv0FRTrVVcua6jAxalooiEAT9KkroFrj88iSWaN3M9eJw3O13GnV9Nc1+8ZAzdYpXUa1kJgVeOUOalP3NNt+FXNRAY8nODvTSSBH/6uUELCZL5F7PkAVgGaZ2OqA6C3FHbBz9XgD+bS0j9pUqfWtIw+Isw5qcyZHkfEPR2wi/3T0uJdjJG5KtV+94SoNHTSye7G7g8oGm+6rmDEosP8RRIiXfJtpUHgzc+0XvNJ9ij1hzwsZ9y/7HBDH/gp3z8L0UhlCby7sdEiQRvmxwBr+Ze/4+yucjkQ==
+ b=QeZvByC45HeDrj3qRr20lEapkGoXowXeozAfWQ+XJhYdLJ3jx+vqpWmkzdEUIlpGvbi+u77ki4KkOVkXiKLjWazdicMXlc9/nkblVKDfRRFNlx5C38dtlcLf86svxmej7Uw+oGaOSlNvsVuMiykVJGD337wjv4pYh5NHAYLw3dOuYPaZHQfJ3JOqfMN4CTbRTOwAlf4xa5Yr3Q3yY27v27KH9dTbJENz932qSnDaWrQ8XXHs8PjNqq8RZVOatUvUcc2piUiOyHy9RUK1RYmMtY5SsLklWzapGpp73sYN4TSliq44afH/fM+FGpeQwKCwf0JoBr4sLMrdlT3PxKNGjg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t1lVAHB3WHNeFoaabOBDSZIc+g8HcwtMKhZelNBouxk=;
- b=P6GGtbBDG4kWTNmSPsnDV/84UTtIjaJXVWDrePNbkIdLHzMhH8Od2/0Q85cHsB820+/L+fEf6GZaKmHCUMkW28pfDOVoZ7OIViTwjkOESpvdYnYm5ncsxx20o8yeJDrDkGdomoRFzk7v7sUQ18RtqEn0oBhZnUzK+FqaQV+XsstYeUqqVN4CEN1TQ7h3Te4IHlq3dyv8EWHlD+rN1igYIZvVD3tspxo7aWkK4sm/EAb/DYchY18/KCbH+Ket43Y99jJFQOUlzOb5P4ZXn0MxfpookJv6yD4Zb3RzkT0BDlnyhUwlo8qBwIX/KCwmpHIZ9nXJ9C3tGFc4kOlr22iPPg==
+ bh=ybsXt1MXCUToQ1Cug1MZeOnmWz0R2UquBX9KRMmzcxs=;
+ b=irTdqw/2Tw7poBqJ5y9mKnaS0azikqfbvb+Sbv+2ugwMGEpId6KHzOra3Slk+sZyZ0tdaT6rSbOHLEhCv+4Lmx+iU/AcwKrFwGR2xOm4WV5OPYRDuvgbpJTBQtPYqYTd6ZLiM83dDGOpa9O6iQsAXrSK/+oZ4xEKO70lsEgVl2BQXsppDRnS8kDL3XCIRs1dDHbkIWNT1iczGxU/PWaiX3iiU6ubtXdmLu4SgzlZjkebxmLV8tn1UHk1Ey0rF6PQJx04/qpxuMK/vXTwi+e60IQY39wVYzjuP040a6a6VubLGBkiNcFCpd3yrfSt7I2TIexk+Wih5ShhuM5uJzmxgg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DS0PR11MB7925.namprd11.prod.outlook.com (2603:10b6:8:f8::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.46; Fri, 13 Oct
- 2023 19:39:20 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::f345:2318:9a82:51b5]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::f345:2318:9a82:51b5%7]) with mapi id 15.20.6863.043; Fri, 13 Oct 2023
- 19:39:20 +0000
-Date: Fri, 13 Oct 2023 14:39:17 -0500
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Message-ID: <aps7rhxga42isxpjz2sliie2qui4qvrbv44ldyy7s2ijy4h524@j23azart4ca3>
-References: <20230915223459.2964036-1-daniele.ceraolospurio@intel.com>
- <20230915223459.2964036-5-daniele.ceraolospurio@intel.com>
- <im557nhivgzgh4nqea4gczfkwqjh2trwrsfl45fensii6p54fq@2csdpghuqrep>
- <40bae1cb-dd9c-4028-94b7-0343b73bd6a9@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"; format=flowed
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by SA3PR11MB7435.namprd11.prod.outlook.com (2603:10b6:806:305::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6863.38; Fri, 13 Oct
+ 2023 20:04:00 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::6d0b:5bc6:8723:593]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::6d0b:5bc6:8723:593%7]) with mapi id 15.20.6838.040; Fri, 13 Oct 2023
+ 20:04:00 +0000
+Date: Fri, 13 Oct 2023 16:03:55 -0400
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <ZSmiq1PZsMWcFnXm@intel.com>
+References: <20231011174252.10427-1-bommithi.sakeena@intel.com>
+ <87mswo2oap.fsf@intel.com>
+ <gvcesx3btnumlf6eufzvdjl7u4zjbkdlvnutfz6gd2a4323zha@pmb63j73bnpk>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <40bae1cb-dd9c-4028-94b7-0343b73bd6a9@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0141.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::26) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+In-Reply-To: <gvcesx3btnumlf6eufzvdjl7u4zjbkdlvnutfz6gd2a4323zha@pmb63j73bnpk>
+X-ClientProxiedBy: BYAPR03CA0020.namprd03.prod.outlook.com
+ (2603:10b6:a02:a8::33) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DS0PR11MB7925:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7d37e675-7352-458d-ad12-08dbcc241879
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SA3PR11MB7435:EE_
+X-MS-Office365-Filtering-Correlation-Id: a46dd557-e64e-4f1f-c125-08dbcc2789b2
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: J8VC4HyXgoo3QEXj/fhtEubeb096oiT8A6k6jtm1cJhBFsiZ4oG75rGFoBW7JQGuGWMmRGrAP7K42uOXQftuNL+Xlk2Y2ulCC9yZNcJTgYGsLMopkwrxsKuJMcf/l37gaokIFULlPQ1EXQr3ws91nd5sZ9/7htfneAnZ7iREzFRwOvdW687L6RSw594kESmsjoeiouWoNHtf0sXO1vfDBfC3q3hH5tovfZShBVgrVOV3ZX8fNI+5ydalqOcCUlxWjKpwDm2YuO9ufd3DIKeIuJG6eD8Vp2hbl64aJE3roJu0OcZiZSNyzqqqjVA7YvoArqx9Y6+mnM27G70t4XKByZi223zun70v7AYZgtV0suhg71CObHvNHICWjRk3j9lcz6/FDHMQlVSU+AtKGzazltMBAoBE3O8OUUdZWka4dLgr3L2MIFEt7ZxlIHQ/ddTriCn5NI7KecKwgBKq5DxN0R8YCCOxSUUGNa+w/0ChSxmYxv9utZA+dHL7UfUtcS/Jnkq/Rj2V9UX9oLt1fTgVzAck5XKx8iaWPI6yVRXG/kBCykVkacWa1Y7IIYVtqRQ5
+X-Microsoft-Antispam-Message-Info: P3MzNOXRdZoCV9GTWdrvAXzDbTLpzVZOMwR0hbTfmw7kb/L4M22NA7UjRmsIH2xJrMCtXgUjtCH0JSZ7dLBVwTfkfPDyOOQMhh8E/9pFKAJ2reBHIddruOBKa55/a2x9VSiBCyc5FyGb4zE4iUdvyvstWvnFF9wcHX2ssSaFr4ePncTLT/TkJQbzynJa7zB0e1CB00Gh65jgCP+q4xONa2umCqAiiF505l7MeHqCWbgsXZ6zQ4RETSmAFuq/3AjIb+oTyycd3LcLsTVkzTSou98b3BVFDtXI+P4PZb6GdeqtyVj8dF6p300X5McVqru8c4cObibe6L0Qxb0C0livt2yBfIswrAFBWRv+dJhuuxAG20On6Z97E7rfQYs16QDIit20vwL2MIHasxPQ12Ty5MlXUg3eCtMn/b9JEt1S2XtOWiLpojHsxD/fFtgv3+cKDinxuwh1EM62OTqyltXuccAa9kiddq4XetZkqGNpYfxX0q+Cvk1le+Vz91HBfo1BHPXA1INQKy/G85YMQwulvvKH4OBGeJT6EFQFiLSZAi9OH7IrEmkjZpgdE0npbHVJ
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(39860400002)(366004)(136003)(396003)(376002)(346002)(230922051799003)(1800799009)(451199024)(186009)(64100799003)(26005)(6666004)(6506007)(6512007)(9686003)(83380400001)(2906002)(5660300002)(4326008)(8676002)(8936002)(33716001)(478600001)(6862004)(6486002)(66476007)(41300700001)(316002)(6636002)(66556008)(66946007)(38100700002)(82960400001)(86362001);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(376002)(366004)(39860400002)(346002)(136003)(230922051799003)(1800799009)(451199024)(186009)(64100799003)(66556008)(6512007)(82960400001)(86362001)(36756003)(38100700002)(26005)(44832011)(83380400001)(2906002)(30864003)(6486002)(2616005)(478600001)(6666004)(6506007)(8936002)(6636002)(4326008)(8676002)(6862004)(5660300002)(66476007)(66946007)(316002)(41300700001)(37006003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?RoLtelMEktU2U0Q8u2IsEEF7qHAR9msp+NM/ghNuGNmMrvqA+rPMItJyon?=
- =?iso-8859-1?Q?OgztVv5DZUCDwa6iwdClFukkuxOVd2lDXVRUk5ldbrJDkTIFBbSsXq+NSX?=
- =?iso-8859-1?Q?sOji6T8XmAZH2faIxbHLYVWVOwNd6tXzlC9l33ZjmR2s5J8IXiq2Ia+56z?=
- =?iso-8859-1?Q?YW+xiA1bR0scQaVvsfP4Dm77MWE3jzGZvfux8/u6jPVoT5cITHs2Tzb77S?=
- =?iso-8859-1?Q?h+5Y7dixr7fCGCF9goTMZC7sFAJ/HRC/fCn2YNfznO7ZAxoSRUAmJI+bbK?=
- =?iso-8859-1?Q?vYPYBZRvx5EwYONuffoU1aysZ5j7Rjk0dnBBNJBtuRVVswI5DBBORoMs3o?=
- =?iso-8859-1?Q?aoc19uR9HcLibrbAZFdTSQ05DYos20HGq0UOQhUztzczcvVoFQEUzBapIT?=
- =?iso-8859-1?Q?RRND7m06XMOB2xT7G8AM6OfIyY/LNpBUhEltMwbTwxmnztuZF/h04C0wEI?=
- =?iso-8859-1?Q?MpyWjGGPOGrRq8XfsK1a5/q6NwUbh3e47ISmBT3ZoN92r7EhzFJr1zgi1G?=
- =?iso-8859-1?Q?+GFl8zZ6V7lDwRA2ErWbeJVdMeydWOpZbb+oLaYXy8NPIPpBK5iB8gcY49?=
- =?iso-8859-1?Q?+aYgcJpvL6CS5TJHGOTrQOsU+lW3/X0c4NCQ+w1G07RHjQdjG/LdJ0tWct?=
- =?iso-8859-1?Q?SY0iFLdzLEpCHoEEsoHtytNmd6GOIZQ2+MNTXGZDN2ghyr0CTFx3cV9M+e?=
- =?iso-8859-1?Q?oOoH9IEDNBllrl2neSdM4mZvcMVu2xK+It7EByHH294rBdaxhKGwugj9t6?=
- =?iso-8859-1?Q?OZbRkvkIn0PFobhE/NhefuNerQ+9EdqjpfKf436OHPnnz2QUqqh0VcfcGF?=
- =?iso-8859-1?Q?8ci37WP1aYyB5BM/gFHF+c9Pdf9BAHE53HDSatZnQGWMzD9ymWl2ai/ufZ?=
- =?iso-8859-1?Q?lSg0rEMDfteYTGygFyE5QU0k6raj+R01mpkpoaLR0x/c59ajNeKl7mpcD4?=
- =?iso-8859-1?Q?W1Xr061RVTfaR677l5m+zDJr3p8uzOahZ6a5vyK//+DySeAoj5ezQ9kHhs?=
- =?iso-8859-1?Q?+HxO2Q3AmhSRtzgSpO0xitbbpmBG2nuI/rJEAmtzyitfN3N2RmIt4Byfcj?=
- =?iso-8859-1?Q?eKyoHN1V0PgMQ1nrA/+gDf/x6tZtVdzuXUfNMu59JjyMoimB2MxjAqK52T?=
- =?iso-8859-1?Q?Bx7riocYLJwJCuKL71SUAd4sQm/MLel/O1UsuDR4Su3J6moTqX6USd7UD2?=
- =?iso-8859-1?Q?W5f3vRH9yAq+/mifxhmxa6g11pVxO+G/voggcMSj0ICFTPkl2NabGgtAW2?=
- =?iso-8859-1?Q?OrLm7RxI+zAaArO4fxY8hCIFWEaDq7fRbnRaqQ9rZ7OAbrRYZ2XzK+xW1e?=
- =?iso-8859-1?Q?JDTkxs5hHJD4GEgKI7yU8WC1Hu4qYnbOyQmOccxeRWyxhrsnwBbQ6oMdeZ?=
- =?iso-8859-1?Q?B+swUeHuzrIJ1498lAUngj8b768uy99btQk6pgmwtXwvd+oRbdkYQMmFUY?=
- =?iso-8859-1?Q?qSM4y7LE+iBra7vm2QcF+alVQgye51FnJGPOTux2Zdkv6C2Idz7TiS7W5Y?=
- =?iso-8859-1?Q?BXGAeZ1Fo/4tKpz9F4F8MZQ30wa2pIau/q/ZuYJOMmRIXGtXoaBC1ePmBW?=
- =?iso-8859-1?Q?oEeXoEoHKljUkW9PByZ8T48WZfA+dlBFLWEmPj43n/JNJUltADF2aXJRiC?=
- =?iso-8859-1?Q?jSqcon4n9aJjdqqGnmqYcY7920n8ddhkbRjCeCnOH3NGCg4/plYkuN3A?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?ji/Qe8mBBjLRZ9uGwOTDi0x9HbNYf0o8U55QlUqRwOmMhm9G4t3fhsvsc5?=
+ =?iso-8859-1?Q?nFUMgg7GzWSvrX+ecqB2aAjMXPHpVNLbgfwI4mlhKwL9rQcuFDxLU6Tz4J?=
+ =?iso-8859-1?Q?6EVKrU/X30cCpRo2Giokpt6yp17GEIzmcu02LnjX9mKDBK1HIF/5dviWl4?=
+ =?iso-8859-1?Q?8V/Y2vEFAQNyJv/d+2dtXM68AVo94yphvWGFfkK2jc4kGGScUKIirgyKkw?=
+ =?iso-8859-1?Q?+KQGDkn48kN4Sci/NbYDVoSzMbywppadTsZGhJh0kjJ/tM7qZ7eULjO9h/?=
+ =?iso-8859-1?Q?/fhPfr3SRSQ+IMCtB1sXiUo49vGfPK6aS7Rr6F7zTMVlPKv9W+6X2wOeRZ?=
+ =?iso-8859-1?Q?GUWG0yl+w3adFUIYoANov9zQ9nMeSXAM/PYuX2MIPH2xaOVaO2yyXBHBHi?=
+ =?iso-8859-1?Q?fMeEW2ODSzhDn9zzVkbXqd5N/iKkGkWF2e8/7huPapJ/EQgrbKrrsiKmxv?=
+ =?iso-8859-1?Q?NObXHIwf6ZVWO5WZqGX7rUwIQGMKqdEIXjkhb1D6AsfZK0VXZU7S8DVeYU?=
+ =?iso-8859-1?Q?1BpMxmm6iVechEMh1M9SHpxZgUrjkQFVReLMlO5oDHM6JrwSKZdPnSUcGC?=
+ =?iso-8859-1?Q?1FnHAPHTO4YzlWr25K0cnipkH2y+pY4Lj2JoS0O7yqhncyEfP/OYvMEDqa?=
+ =?iso-8859-1?Q?nCywenMTUZQKFYtmD8IQsphkHXxtTDua2wElBHv7eS5vPIJ7ReaAdcU5VU?=
+ =?iso-8859-1?Q?H1NndjM1vTavZ56semeik/iJjdeIDG8zgBDN8zI+Th5hch7OEFaeIcapp2?=
+ =?iso-8859-1?Q?w/TcOePZ+PDTCuf9PXVxWgJ0i2HEf/EsQPgqUnagvnXNCqK9fRCkvW0LJE?=
+ =?iso-8859-1?Q?auoTpBX1/F8Vto1h6Wej/d0ywo9Urnoeevzwy3QFAi/qlMet5HzUu59vw1?=
+ =?iso-8859-1?Q?GEA4c+yP6Pg5QX+ySjlwnxCAtpgdBwd2sY1OprgOTw4f/GkCb8rrVA1x0n?=
+ =?iso-8859-1?Q?CA7ELaHxv85X7qKYqs0u8HxEEW5X/+5yYiy6wH+5WucE+O3a/F/02ldCkE?=
+ =?iso-8859-1?Q?mCD/HO8qTheFIi4nZV3wEB1eG3w7+WdFPx+Xrw6WD98RO9Z8XlfFb0mGnY?=
+ =?iso-8859-1?Q?uNm6A8FWNxCz25p7cqmq+yzWpDTGqyxntNG7OlcCQ7ZEqgUZCxijyqnDKS?=
+ =?iso-8859-1?Q?aDsZib7Z6rD0KEUlP1ig/rfWIUEzwCL4kix8EGAKFSEni1TsCwSY+4u/a0?=
+ =?iso-8859-1?Q?DffuGaXyqgl1L0+l6cdXlFR+ipmMQ5JrLj2OE/icl9eacfq6Pmk9q9HfJc?=
+ =?iso-8859-1?Q?J8v+WbpDRG6QgW1lLbW31J/6q2TpwGlXYpRw3JQDvNpmYAKnnGCgEV3zxd?=
+ =?iso-8859-1?Q?urXVmrPune5cWe3Z+KSRf5B5asYKMjSn0Opq0tu3kmvE56AtH8Xdp3epD6?=
+ =?iso-8859-1?Q?W5Rqbee6mV77u6xYlIMShSRwbi25Z6YQ5QweKWrG3Ool8fIVDCOo2xYqnW?=
+ =?iso-8859-1?Q?wFyEqdhp4pz2+SKiFs378Ufw8PzaLHg2Aa5vVTZJ1S7GbFdN+O7DVcROeK?=
+ =?iso-8859-1?Q?O0C0j8KOGSdqSU2Ly1CWz24S15W3O4DvaWbeoYO+pqsTm7QkF1IcV6BfO/?=
+ =?iso-8859-1?Q?sVKZLweGECzHgUjpXmkxNnk3RKjwlw4t3+hH/BIfEK2WKeIJ9BDN9XvCfn?=
+ =?iso-8859-1?Q?5rL08C+RHE/c7vsdfzptshLo/UU9pzru0UUgGaa6vuYzI+dPUnXvJmBw?=
  =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d37e675-7352-458d-ad12-08dbcc241879
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a46dd557-e64e-4f1f-c125-08dbcc2789b2
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 19:39:20.6538 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Oct 2023 20:04:00.0444 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: maHnD501LDhbhCsDQVMDGSirLy0WD01+RzhIYSnPnEfGFtsH3XrcP0jOhQHp9ITDhlsGQxhUSCfxI4p3OFO6A/qKpXi54MlE5RsQmDwwCAA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7925
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0D7M9josry0Ak7R8ME/Mae2oxIjK3hMQ3mE3+aTWdzhbwo28tUOSqxG5ibQiDaaxGsrzp/cByzlevr9wGrljTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR11MB7435
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 4/4] drm/xe/huc: Define HuC for MTL
+Subject: Re: [Intel-xe] [PATCH] drm/xe: Encapsulate all the module parameters
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,96 +154,336 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 13, 2023 at 11:28:28AM -0700, Daniele Ceraolo Spurio wrote:
->
->
->On 10/13/2023 11:14 AM, Lucas De Marchi wrote:
->>On Fri, Sep 15, 2023 at 03:34:58PM -0700, Daniele Ceraolo Spurio wrote:
->>>MTL uses a GSC-enabled binary. We expect all GSC-enabled binaries to be
->>>defined with a "_gsc", so we can check for that in the name to
->>>determine if the binary has the GSC headers or not.
->>>
->>>Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>>Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
->>>Cc: John Harrison <John.C.Harrison@Intel.com>
->>>---
->>>drivers/gpu/drm/xe/xe_uc_fw.c | 17 +++++++++++------
->>>1 file changed, 11 insertions(+), 6 deletions(-)
->>>
->>>diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c 
->>>b/drivers/gpu/drm/xe/xe_uc_fw.c
->>>index f956457d0b11..4e43b16a61d5 100644
->>>--- a/drivers/gpu/drm/xe/xe_uc_fw.c
->>>+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
->>>@@ -113,12 +113,13 @@ struct fw_blobs_by_type {
->>>    fw_def(ROCKETLAKE,    major_ver(i915,    guc,    tgl,    70, 
->>>5))        \
->>>    fw_def(TIGERLAKE,    major_ver(i915,    guc,    tgl,    70, 5))
->>>
->>>-#define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)                \
->>>-    fw_def(DG1,        no_ver(i915,    huc,    dg1)) \
->>>-    fw_def(ALDERLAKE_P,    no_ver(i915,    huc, tgl))            \
->>>-    fw_def(ALDERLAKE_S,    no_ver(i915,    huc, tgl))            \
->>>-    fw_def(ROCKETLAKE,    no_ver(i915,    huc, tgl))            \
->>>-    fw_def(TIGERLAKE,    no_ver(i915,    huc,    tgl))
->>>+#define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)        \
->>>+    fw_def(METEORLAKE,    no_ver(i915,    huc_gsc, mtl))        \
->>>+    fw_def(DG1,        no_ver(i915,    huc,        dg1)) \
->>>+    fw_def(ALDERLAKE_P,    no_ver(i915,    huc, tgl))        \
->>>+    fw_def(ALDERLAKE_S,    no_ver(i915,    huc, tgl))        \
->>>+    fw_def(ROCKETLAKE,    no_ver(i915,    huc, tgl))        \
->>>+    fw_def(TIGERLAKE,    no_ver(i915,    huc,        tgl))
->>>
->>>#define MAKE_FW_PATH(dir__, uc__, shortname__, version__)            \
->>>    __stringify(dir__) "/" __stringify(shortname__) "_" 
->>>__stringify(uc__) version__ ".bin"
->>>@@ -207,6 +208,10 @@ uc_fw_auto_select(struct xe_device *xe, 
->>>struct xe_uc_fw *uc_fw)
->>>            uc_fw->major_ver_wanted = entries[i].major;
->>>            uc_fw->minor_ver_wanted = entries[i].minor;
->>>            uc_fw->full_ver_required = entries[i].full_ver_required;
->>>+
->>>+            if (strstr(uc_fw->path, "gsc"))
->>>+                uc_fw->has_gsc_headers = true;
->>
->>can we rather get this from the headers / magic or whatever from
->>*inside* the firmware? Relying on the filename IMO is not a good
->>practice.  If we don't have a proper way to identify, then I think it
->>would be better a try/fail approach starting with MTL: try with gsc
->>headers starting on MTL and fallback on error.
->
->There is no "official" way of knowing what type of headers are on top 
->of the FW, but the GSC headers start with a marker, so I can check if 
->that's there and if it is not we can assume it is a CSS header. The 
+On Thu, Oct 12, 2023 at 09:08:41AM -0500, Lucas De Marchi wrote:
+> On Thu, Oct 12, 2023 at 12:16:46PM +0300, Jani Nikula wrote:
+> > On Wed, 11 Oct 2023, Bommithi Sakeena <bommithi.sakeena@intel.com> wrote:
+> > > Encapsulate all the module paramters in one single global struct
+> > > variable inside the new xe_modparam.h.
+> > > 
+> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
+> > > Signed-off-by: Bommithi Sakeena <bommithi.sakeena@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/xe/xe_device.c   |  4 ++--
+> > >  drivers/gpu/drm/xe/xe_display.c  |  6 +++---
+> > >  drivers/gpu/drm/xe/xe_guc_log.c  |  4 ++--
+> > >  drivers/gpu/drm/xe/xe_mmio.c     |  4 ++--
+> > >  drivers/gpu/drm/xe/xe_modparam.h | 23 +++++++++++++++++++++++
+> > >  drivers/gpu/drm/xe/xe_module.c   | 32 +++++++++++++++-----------------
+> > >  drivers/gpu/drm/xe/xe_pci.c      |  8 ++++----
+> > >  drivers/gpu/drm/xe/xe_uc_fw.c    |  8 ++++----
+> > >  8 files changed, 55 insertions(+), 34 deletions(-)
+> > >  create mode 100644 drivers/gpu/drm/xe/xe_modparam.h
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> > > index ef42c33e3055..0cf908089483 100644
+> > > --- a/drivers/gpu/drm/xe/xe_device.c
+> > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > > @@ -25,7 +25,7 @@
+> > >  #include "xe_gt.h"
+> > >  #include "xe_irq.h"
+> > >  #include "xe_mmio.h"
+> > > -#include "xe_module.h"
+> > > +#include "xe_modparam.h"
+> > >  #include "xe_pat.h"
+> > >  #include "xe_pcode.h"
+> > >  #include "xe_pm.h"
+> > > @@ -224,7 +224,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+> > > 
+> > >  	xe->info.devid = pdev->device;
+> > >  	xe->info.revid = pdev->revision;
+> > > -	xe->info.force_execlist = force_execlist;
+> > > +	xe->info.force_execlist = xe_mod_param.force_execlist;
+> > > 
+> > >  	spin_lock_init(&xe->irq.lock);
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_display.c b/drivers/gpu/drm/xe/xe_display.c
+> > > index 391f08c1caca..0b55037c1da1 100644
+> > > --- a/drivers/gpu/drm/xe/xe_display.c
+> > > +++ b/drivers/gpu/drm/xe/xe_display.c
+> > > @@ -27,7 +27,7 @@
+> > >  #include "intel_hdcp.h"
+> > >  #include "intel_hotplug.h"
+> > >  #include "intel_opregion.h"
+> > > -#include "xe_module.h"
+> > > +#include "xe_modparam.h"
+> > > 
+> > >  /* Xe device functions */
+> > > 
+> > > @@ -45,7 +45,7 @@ static bool has_display(struct xe_device *xe)
+> > >   */
+> > >  bool xe_display_driver_probe_defer(struct pci_dev *pdev)
+> > >  {
+> > > -	if (!enable_display)
+> > > +	if (!xe_mod_param.enable_display)
+> > >  		return 0;
+> > > 
+> > >  	return intel_display_driver_probe_defer(pdev);
+> > > @@ -69,7 +69,7 @@ static void xe_display_last_close(struct drm_device *dev)
+> > >   */
+> > >  void xe_display_driver_set_hooks(struct drm_driver *driver)
+> > >  {
+> > > -	if (!enable_display)
+> > > +	if (!xe_mod_param.enable_display)
+> > >  		return;
+> > > 
+> > >  	driver->driver_features |= DRIVER_MODESET | DRIVER_ATOMIC;
+> > > diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
+> > > index 45c60a9c631c..111ca5433c69 100644
+> > > --- a/drivers/gpu/drm/xe/xe_guc_log.c
+> > > +++ b/drivers/gpu/drm/xe/xe_guc_log.c
+> > > @@ -10,7 +10,7 @@
+> > >  #include "xe_bo.h"
+> > >  #include "xe_gt.h"
+> > >  #include "xe_map.h"
+> > > -#include "xe_module.h"
+> > > +#include "xe_modparam.h"
+> > > 
+> > >  static struct xe_gt *
+> > >  log_to_gt(struct xe_guc_log *log)
+> > > @@ -100,7 +100,7 @@ int xe_guc_log_init(struct xe_guc_log *log)
+> > > 
+> > >  	xe_map_memset(xe, &bo->vmap, 0, 0, guc_log_size());
+> > >  	log->bo = bo;
+> > > -	log->level = xe_guc_log_level;
+> > > +	log->level = xe_mod_param.xe_guc_log_level;
+> > > 
+> > >  	err = drmm_add_action_or_reset(&xe->drm, guc_log_fini, log);
+> > >  	if (err)
+> > > diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> > > index e4cf9bfec422..717fcdcb5c7d 100644
+> > > --- a/drivers/gpu/drm/xe/xe_mmio.c
+> > > +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> > > @@ -18,7 +18,7 @@
+> > >  #include "xe_gt.h"
+> > >  #include "xe_gt_mcr.h"
+> > >  #include "xe_macros.h"
+> > > -#include "xe_module.h"
+> > > +#include "xe_modparam.h"
+> > > 
+> > >  #define XEHP_MTCFG_ADDR		XE_REG(0x101800)
+> > >  #define TILE_COUNT		REG_GENMASK(15, 8)
+> > > @@ -73,7 +73,7 @@ _resize_bar(struct xe_device *xe, int resno, resource_size_t size)
+> > >   */
+> > >  static void xe_resize_vram_bar(struct xe_device *xe)
+> > >  {
+> > > -	u64 force_vram_bar_size = xe_force_vram_bar_size;
+> > > +	u64 force_vram_bar_size = xe_mod_param.xe_force_vram_bar_size;
+> > >  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
+> > >  	struct pci_bus *root = pdev->bus;
+> > >  	resource_size_t current_size;
+> > > diff --git a/drivers/gpu/drm/xe/xe_modparam.h b/drivers/gpu/drm/xe/xe_modparam.h
+> > > new file mode 100644
+> > > index 000000000000..efa246616d3f
+> > > --- /dev/null
+> > > +++ b/drivers/gpu/drm/xe/xe_modparam.h
+> > > @@ -0,0 +1,23 @@
+> > > +/* SPDX-License-Identifier: MIT */
+> > > +/*
+> > > + * Copyright © 2023 Intel Corporation
+> > > + */
+> > > +
+> > > +#ifndef _XE_MODPARAM_H_
+> > > +#define _XE_MODPARAM_H_
+> > > +
+> > > +#include <linux/types.h>
+> > > +
+> > > +/* Module modprobe variables */
+> > > +struct xe_module_parameters {
+> > > +	bool force_execlist;
+> > > +	bool enable_display;
+> > > +	u32 xe_force_vram_bar_size;
+> > > +	int xe_guc_log_level;
+> > > +	char *xe_guc_firmware_path;
+> > > +	char *xe_huc_firmware_path;
+> > > +	char *xe_param_force_probe;
+> > 
+> > xe_mod_param.xe_param_force_probe is unnecesary tautology.
+> > 
+> > > +};
+> > > +extern struct xe_module_parameters xe_mod_param;
+> > 
+> > To me this is half-baked. Either keep all of it in xe_module.[ch] or
+> > move all of it to xe_modparam.[ch], but please don't add a xe_modparam.h
+> > that has an extern for something in xe_module.c.
+> 
+> any reason not to just keep using xe_module.h and have a `struct
+> xe_modparam` inside? I don't think we need a separate .h and .c
+> files just for the module parameters... xe_module.[ch] are small enough
+> to absorb that.
 
-that sounds like the normal way to identify file types... check a marker
-and adapt the parser according to it.
+agreed
 
->cons of this approach is that if the binary gets corrupted (which can 
->rarely happen) we might get an unclear error through the fallback.
+> 
+> > 
+> > Please also aim for some naming consistency. File xe_modparam.h, struct
+> > xe_module_parameters, variable xe_mod_param. Choose one, and stick with
+> > it.
+> 
+> agreed
 
-I don't think there's much problem with that... if the file is
-corrupt, returning an error in the gsc or ccs format handler would be
-sufficient, it doesn't matter which.
+hmm... how to keep consistency here?
 
->Would this work for you?
+considering it is inside xe_module.h a good name for the struct is
+struct xe_module_parameters
+or
+struct xe_module_params
+for shorten...
 
-yes, it seems better.
+but then to follow the consistency with the rest of xe, the variable
+would be something like
 
-thanks
-Lucas De Marchi
+struct xe_module_params module_params;
 
->
->Daniele
->
->>
->>Lucas De Marchi
->>
->>>+
->>>            break;
->>>        }
->>>    }
->>>-- 
->>>2.41.0
->>>
->
+but this is exported symbol, so it should be good (mandatory?) to have
+the "xe_" prefix in it.
+
+It looks like the way to go then is:
+
+struct xe_module_params xe_module_params;
+
+Will any compiler out there complain on this?
+
+> 
+> Lucas De Marchi
+> 
+> > 
+> > BR,
+> > Jani.
+> > 
+> > 
+> > > +
+> > > +#endif
+> > > diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
+> > > index 7194595e7f31..31ed68fcd087 100644
+> > > --- a/drivers/gpu/drm/xe/xe_module.c
+> > > +++ b/drivers/gpu/drm/xe/xe_module.c
+> > > @@ -3,46 +3,44 @@
+> > >   * Copyright © 2021 Intel Corporation
+> > >   */
+> > > 
+> > > -#include "xe_module.h"
+> > > -
+> > >  #include <linux/init.h>
+> > >  #include <linux/module.h>
+> > > 
+> > >  #include "xe_drv.h"
+> > >  #include "xe_hw_fence.h"
+> > > -#include "xe_module.h"
+> > > +#include "xe_modparam.h"
+> > >  #include "xe_pci.h"
+> > >  #include "xe_pmu.h"
+> > >  #include "xe_sched_job.h"
+> > > 
+> > > -bool force_execlist = false;
+> > > -module_param_named_unsafe(force_execlist, force_execlist, bool, 0444);
+> > > +struct xe_module_parameters xe_mod_param = {
+> > > +	.enable_display = true,
+> > > +	.xe_guc_log_level = 5,
+> > > +	.xe_param_force_probe = CONFIG_DRM_XE_FORCE_PROBE,
+> > > +	/* the rest are 0 by default */
+> > > +};
+> > > +
+> > > +module_param_named_unsafe(force_execlist, xe_mod_param.force_execlist, bool, 0444);
+> > >  MODULE_PARM_DESC(force_execlist, "Force Execlist submission");
+> > > 
+> > > -bool enable_display = true;
+> > > -module_param_named(enable_display, enable_display, bool, 0444);
+> > > +module_param_named(enable_display, xe_mod_param.enable_display, bool, 0444);
+> > >  MODULE_PARM_DESC(enable_display, "Enable display");
+> > > 
+> > > -u32 xe_force_vram_bar_size;
+> > > -module_param_named(vram_bar_size, xe_force_vram_bar_size, uint, 0600);
+> > > +module_param_named(vram_bar_size, xe_mod_param.xe_force_vram_bar_size, uint, 0600);
+> > >  MODULE_PARM_DESC(vram_bar_size, "Set the vram bar size(in MiB)");
+> > > 
+> > > -int xe_guc_log_level = 5;
+> > > -module_param_named(guc_log_level, xe_guc_log_level, int, 0600);
+> > > +module_param_named(guc_log_level, xe_mod_param.xe_guc_log_level, int, 0600);
+> > >  MODULE_PARM_DESC(guc_log_level, "GuC firmware logging level (0=disable, 1..5=enable with verbosity min..max)");
+> > > 
+> > > -char *xe_guc_firmware_path;
+> > > -module_param_named_unsafe(guc_firmware_path, xe_guc_firmware_path, charp, 0400);
+> > > +module_param_named_unsafe(guc_firmware_path, xe_mod_param.xe_guc_firmware_path, charp, 0400);
+> > >  MODULE_PARM_DESC(guc_firmware_path,
+> > >  		 "GuC firmware path to use instead of the default one");
+> > > 
+> > > -char *xe_huc_firmware_path;
+> > > -module_param_named_unsafe(huc_firmware_path, xe_huc_firmware_path, charp, 0400);
+> > > +module_param_named_unsafe(huc_firmware_path, xe_mod_param.xe_huc_firmware_path, charp, 0400);
+> > >  MODULE_PARM_DESC(huc_firmware_path,
+> > >  		 "HuC firmware path to use instead of the default one - empty string disables");
+> > > 
+> > > -char *xe_param_force_probe = CONFIG_DRM_XE_FORCE_PROBE;
+> > > -module_param_named_unsafe(force_probe, xe_param_force_probe, charp, 0400);
+> > > +module_param_named_unsafe(force_probe, xe_mod_param.xe_param_force_probe, charp, 0400);
+> > >  MODULE_PARM_DESC(force_probe,
+> > >  		 "Force probe options for specified devices. See CONFIG_DRM_XE_FORCE_PROBE for details.");
+> > > 
+> > > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> > > index 99ccee07f8cd..29bcf7565741 100644
+> > > --- a/drivers/gpu/drm/xe/xe_pci.c
+> > > +++ b/drivers/gpu/drm/xe/xe_pci.c
+> > > @@ -21,7 +21,7 @@
+> > >  #include "xe_drv.h"
+> > >  #include "xe_gt.h"
+> > >  #include "xe_macros.h"
+> > > -#include "xe_module.h"
+> > > +#include "xe_modparam.h"
+> > >  #include "xe_pci_types.h"
+> > >  #include "xe_pm.h"
+> > >  #include "xe_step.h"
+> > > @@ -414,12 +414,12 @@ static bool device_id_in_list(u16 device_id, const char *devices, bool negative)
+> > > 
+> > >  static bool id_forced(u16 device_id)
+> > >  {
+> > > -	return device_id_in_list(device_id, xe_param_force_probe, false);
+> > > +	return device_id_in_list(device_id, xe_mod_param.xe_param_force_probe, false);
+> > >  }
+> > > 
+> > >  static bool id_blocked(u16 device_id)
+> > >  {
+> > > -	return device_id_in_list(device_id, xe_param_force_probe, true);
+> > > +	return device_id_in_list(device_id, xe_mod_param.xe_param_force_probe, true);
+> > >  }
+> > > 
+> > >  static const struct xe_subplatform_desc *
+> > > @@ -587,7 +587,7 @@ static int xe_info_init(struct xe_device *xe,
+> > >  	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
+> > > 
+> > >  	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
+> > > -				  enable_display &&
+> > > +				  xe_mod_param.enable_display &&
+> > >  				  desc->has_display;
+> > >  	/*
+> > >  	 * All platforms have at least one primary GT.  Any platform with media
+> > > diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+> > > index 138960138872..854e4ba027e1 100644
+> > > --- a/drivers/gpu/drm/xe/xe_uc_fw.c
+> > > +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+> > > @@ -15,7 +15,7 @@
+> > >  #include "xe_gt.h"
+> > >  #include "xe_map.h"
+> > >  #include "xe_mmio.h"
+> > > -#include "xe_module.h"
+> > > +#include "xe_modparam.h"
+> > >  #include "xe_uc_fw.h"
+> > > 
+> > >  /*
+> > > @@ -219,11 +219,11 @@ uc_fw_override(struct xe_uc_fw *uc_fw)
+> > >  	/* empty string disables, but it's not allowed for GuC */
+> > >  	switch (uc_fw->type) {
+> > >  	case XE_UC_FW_TYPE_GUC:
+> > > -		if (xe_guc_firmware_path && *xe_guc_firmware_path)
+> > > -			path_override = xe_guc_firmware_path;
+> > > +		if (xe_mod_param.xe_guc_firmware_path && xe_mod_param.xe_guc_firmware_path)
+> > > +			path_override = xe_mod_param.xe_guc_firmware_path;
+> > >  		break;
+> > >  	case XE_UC_FW_TYPE_HUC:
+> > > -		path_override = xe_huc_firmware_path;
+> > > +		path_override = xe_mod_param.xe_huc_firmware_path;
+> > >  		break;
+> > >  	default:
+> > >  		break;
+> > 
+> > -- 
+> > Jani Nikula, Intel
