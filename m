@@ -4,127 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E24A0CDB465
-	for <intel-xe@archiver.kernel.org>; Sun, 15 Oct 2023 00:09:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4873FCDB47E
+	for <intel-xe@archiver.kernel.org>; Sun, 15 Oct 2023 05:31:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F1B410E07B;
-	Sun, 15 Oct 2023 00:09:42 +0000 (UTC)
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam12on2081.outbound.protection.outlook.com [40.107.237.81])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 71A1710E07B;
- Sun, 15 Oct 2023 00:09:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ta23EcaCMcF1AvD0blypWFnZltDIIg2D9oEAIa+j3ecLSCDSTcbtRw4DPE3FG5CJY8VKRBC8bdydSjrVFBa8pBqJR5qY3Vj6qqb7Exew5iAHZJKBCErvj01rwd21F/8pUw3ERJuv9tPHY4rTq7n3VI4x/y3/9ZsyOFoehclA8MkbUq3zMMdJxwWLsjk4KKq3fjfq5W2nZ4WxIQj6+J9KGCxqwwPZGN2iuO1fy0wPyrBFleE8FOB/dOtdsAFC+us+PIDIoo3+qfAnGdppcUUcYCXZ8O860pSaQPWLYEsMFwwj+XQ45626UhrPWLqO4Yj/69wnd7edckdZpisn8fK0pA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=014sDnm1UPr5BkiUgg3mdtnTyY8HeRX8AYI5SiMwVps=;
- b=mosVagK5GWUy1ioflkNgXmoUmMzD+LLV7eAX1aTsTd1sEXhmwwOYQX/nW/SjTRkgwfWUu+PekBd8MecNUyeTyfcgbeVyagWGo385PxNaD2lQsDIyQxbFI0M9iGrRRy3OBfRuojsP7fZCjMmSgavHUFhWQoMtIdgDfEGLxggwc1rdpiQvHAvhjFP6mtDFFcTc3hi7rQx+DICdUzFAL/8nqA8c/jFCfYj4mWRlXOQU16Uo9zWYClXpURDtRkrN6+mSDRWQdafphimHXGUCSUMZenfHeip94e7w6bBdCODDdhHX0fSNdUlS1dxIBHtbpUhvmQMAm3S0AgXnGyQQ954dOg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=014sDnm1UPr5BkiUgg3mdtnTyY8HeRX8AYI5SiMwVps=;
- b=t9CGaB5+G6FKe9fvfPcsyOPo8Js7OWH6sBudCyESy78K8alNgCXBn8HhWejSJI2/gAmzuxVxm4mzoyp27sktdrAg3lzvNoHw1kl5j9tu35bo7BwRIBchsAa7FRaOYCNiNXVWvHaQ3adAxSjpT7yJGCzzOlujlwsAPaLmlHLpKvQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com (2603:10b6:5:38::25) by
- SN7PR12MB8002.namprd12.prod.outlook.com (2603:10b6:806:34b::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.34; Sun, 15 Oct
- 2023 00:09:36 +0000
-Received: from DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::b80b:7138:6ceb:9aef]) by DM6PR12MB3370.namprd12.prod.outlook.com
- ([fe80::b80b:7138:6ceb:9aef%5]) with mapi id 15.20.6863.047; Sun, 15 Oct 2023
- 00:09:35 +0000
-Message-ID: <c91d3a47-df4a-4be8-8f27-c850289df281@amd.com>
-Date: Sat, 14 Oct 2023 20:09:31 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
- Thunderbird/115.3.2
-Content-Language: en-CA, en-US
-From: Luben Tuikov <luben.tuikov@amd.com>
-To: Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-References: <20231011235826.585624-1-matthew.brost@intel.com>
- <20231011235826.585624-6-matthew.brost@intel.com>
- <23cceeb8-5d86-4923-a072-b9e72b74d36b@amd.com>
-Autocrypt: addr=luben.tuikov@amd.com; keydata=
- xjMEY1i6jxYJKwYBBAHaRw8BAQdAhfD+Cc+P5t/fiF08Vw25EMLiwUuxULYRiDQAP6H50MTN
- I0x1YmVuIFR1aWtvdiA8bHViZW4udHVpa292QGFtZC5jb20+wpkEExYKAEEWIQQyyR05VSHw
- x45E/SoppxulNG8HhgUCY1i6jwIbAwUJCWYBgAULCQgHAgIiAgYVCgkICwIEFgIDAQIeBwIX
- gAAKCRAppxulNG8Hhk53AP4k4UY5xfcje0c5OF1k22pNv8tErxtVpgKKZgvfetA4xwD+OoAh
- vesLIYumBDxP0BoLiLN84udxdT15HwPFUGiDmwDOOARjWLqPEgorBgEEAZdVAQUBAQdAzSxY
- a2EtvvIwd09NckBLSTarSLNDkUthmqPnwolwiDYDAQgHwn4EGBYKACYWIQQyyR05VSHwx45E
- /SoppxulNG8HhgUCY1i6jwIbDAUJCWYBgAAKCRAppxulNG8HhnBLAP4yjSGpK6PE1mapKhrq
- 8bSl9reo+F6EqdhE8X2TTHPycAEAt8EkTEstSiaOpM66gneU7r+xxzOYULo1b1XjXayGvwM=
-In-Reply-To: <23cceeb8-5d86-4923-a072-b9e72b74d36b@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQBPR0101CA0285.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:6d::21) To DM6PR12MB3370.namprd12.prod.outlook.com
- (2603:10b6:5:38::25)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A6E2B10E070;
+	Sun, 15 Oct 2023 05:31:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 773E310E070
+ for <intel-xe@lists.freedesktop.org>; Sun, 15 Oct 2023 05:31:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1697347885; x=1728883885;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=wp9qJ4swxquaMwrAeyW61g15fjEVISegdXT1yy/c+kM=;
+ b=hOVyCRzskcyo4Badk1NIvGJhNAq949NmedEreDgsCCOlK0UxZizVzVR+
+ a3RZVdP+8nFt/iDaIC+u3XZjC70OvBcTKv8FzHMikESQP+Gl/0Qltt9xs
+ lp++5CACl/C62LCu6r4NatdYEcx07DLBu1xe7VhEeNWuixvhdbVjyIFps
+ p+DIiWUrLwFlz0wfiOoj0Lb4OJH3u+W7xUQ3RKhCvm/MTaQpHqhjLaHWl
+ //deTWKTqKCSeuzkowgLUN9A2nEScOWG9tYuoSAZWFKLZlFhmnRwTq88V
+ EgvIyd/T5KbpnnD6X3lmZXyiRS9gbxSEfFryOBiHy5y1/ZVjLBpRoQ04O w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="385205346"
+X-IronPort-AV: E=Sophos;i="6.03,226,1694761200"; d="scan'208";a="385205346"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2023 22:31:25 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="871654015"
+X-IronPort-AV: E=Sophos;i="6.03,226,1694761200"; d="scan'208";a="871654015"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Oct 2023 22:31:25 -0700
+From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Sat, 14 Oct 2023 22:31:19 -0700
+Message-Id: <20231015053119.6271-1-niranjana.vishwanathapura@intel.com>
+X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR12MB3370:EE_|SN7PR12MB8002:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6762c38c-229d-48fa-22be-08dbcd130338
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FCrcnbpQU5fnwgo4OOc+tSQhh23M6NzPS3bGdZyiwVP+tWPjh86b03hC9L2BkoeHXGGGZPa2qLIjPVPG6TnCB1L3ufMCOu9PlM3ow4JLaZT7RXviVkkScWweGP8WY0OZe8oqPeUgaUhhqNdPvUOeap//1Zz4LoBWb/A9YodoYdcGVpex8+j6086VODmuJvBr1SEvF1S4hBFs9fd2UawlXJd6pj6wxSTYBI8MntkT3XSsqutHS73RwLFluiSxTvlAoRwSb7alTdiFQ4U6h0BDmJJArSWBy5J17QPeb3eX5S221KQCxdzIyjyb6su+ZdDHuFZC64hihPSmzVDRrbXPjwk7ulnFk7j40FdPBN7pWb6jtdsrZM2ogP5Ev+yG9C/1QKmJpAye/JnkJIx4JtlAaEbMEhnmwfneU6t/GDUcJ3uWyAuTkTprKN6iDf1LekfQZNyYA9Hy59MC4f7td+yETVEzxcdfWvpIlF0F6nE7/azh+JpiTGWId/hldl2GBThK2a1OZpfm1bdW4x8jOUqRL1AwdrzQTd94yvacgpntlKNM8x6/hmykarrqvtCAUHp+bO5hQcJPb5eI4GDhflHcUWpmUsPVobSZdp1XuNSWmy+nJ8+ddseB8hnd7DNU3Ks/GFWuZtfpGmFz5rr48q2okQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM6PR12MB3370.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(136003)(396003)(376002)(346002)(366004)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(4001150100001)(2906002)(7416002)(86362001)(31696002)(316002)(66556008)(38100700002)(66946007)(66476007)(53546011)(6506007)(6512007)(6666004)(6486002)(478600001)(83380400001)(2616005)(26005)(44832011)(5660300002)(41300700001)(36756003)(8936002)(8676002)(4326008)(31686004)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VW9sSVAvOSsxdGltR1g0djJwUVhzYXJqM1MrZFVESEc3NlRKV2tWNEQzMHdu?=
- =?utf-8?B?MWh6RXU5V2FnRjYxRGVhejFvSUFlNlNIMTRnTTRIRkI1VXpsU2N2UlN0cTRQ?=
- =?utf-8?B?QjNFc2JITHJaMTZRaUV6VTJkYzBjWGd1UU9IYTZOem9rZWdCRVM0R2cvVk5V?=
- =?utf-8?B?WWJhZnBIMk0rb1ZBTHdWdVZhcDJMOGsxaEt1ei85aFo3dFJVbXUxZ3VJNVVO?=
- =?utf-8?B?cUZZaVFialB3bzNYS1FhLzZhREoxdmhTQ0xVZURKVVJ3ajRNTzcxSC9mMk1Y?=
- =?utf-8?B?aElWLzJWQ09id3h3bFIxQUVpSkNhb0ZRcDlJUXpEaWF4RnVIQTVjRDc5eHlT?=
- =?utf-8?B?cDVnNCtvTW9Cd1VZVnRsUXJFTW45dmdKN2xrdkx0NUQ2aVpVdGNTOTc2Zks2?=
- =?utf-8?B?YXFzeERvb0pxcFRJSUVDU1A2ZjlNYUl4YWlSRWFOMC9IKzFTTC92N0VtTUJY?=
- =?utf-8?B?NjlCM3NnR205U2tVZ2cxWHc2cDMwc1Vuc2JjZDhPNDdhRE5vaEZvWEtJaC92?=
- =?utf-8?B?ZVlRZnY2OHZEUEdQdHpuWXd2dkhwaUZPRDBrL2hzYjJTL0VlQkY5UTVnWHlw?=
- =?utf-8?B?WGUveHlHMmw0UFIxeUROdXhndTVUbG80NWNOZjBGdVZQVWdpMm9iZDNvUE1k?=
- =?utf-8?B?TkdJYTVnMTVpTSs0eVBDa08xL1p1SVNodTNjK2FWV243VHJ4VVhHaGV1ajBD?=
- =?utf-8?B?ell0dVB1NVg4RDR6TjQ5aGJ1U0VxTkE1ZDcrd21aMWhrSjM1d3NkL3JvQ3BQ?=
- =?utf-8?B?M3dmT2g4VVVlRHJFZFZEYnFnNkpTc3hRclNJYnFtS2JaUUpXbjY0QnRaUk90?=
- =?utf-8?B?dFZNeEpvK2NrQXZkZitndytMM2l1Y1lTV0t1TWlvTGZVa1g1dEpBcUdhZW9i?=
- =?utf-8?B?MStZNGVuSWtKWk8yNWh4NVM4bFdjNWg0Z2pkRDNMNVhqb3VWajJvMXh2K3Vl?=
- =?utf-8?B?WU83cnhSeFRyaDVMMlNQZFU2Mk5PUnRGazY3V0pyd284WktnSzFrakxlL2dJ?=
- =?utf-8?B?TkU0bTM5Lzl0STUybGx1WG1HMjFRU2tlUmxFaHhZZGcxY3FoZGkvZUwyQ1Fz?=
- =?utf-8?B?bzVoWXBnMDNDV1haMmhkbmdZMXVQcHdYVys1YjdOUFN1OFRnb3kxaW9TY3Bl?=
- =?utf-8?B?bXJhK3pPb2JoOWF5SlhWaEwxY1pCNWlTeUxRUERIL3piaWFmSjcxNFg3d0xL?=
- =?utf-8?B?cS83QzNUanc2QUtTdlBOMkxSZGRXWDVHeWR4eHEzVWEvNzFLTExZeHdtUmJU?=
- =?utf-8?B?a2RYZXgxaGhFcEU5anptazdnWTJLY0UwSWNTd0ZtUURuNlRQLzZ6cnF0Y3Ew?=
- =?utf-8?B?V01CZy9lM3pQcTdjUGt5SzhpdEZjTDQ2Si9kdXR6S0JIZlc5NEcweFF1bmdP?=
- =?utf-8?B?djczRWQ2ZWNpMTJ1MVBPYWtxekllZ2lSdy9BbGNTZStheEczUmxXTmRlT2FQ?=
- =?utf-8?B?OTRrbmpwVFJNdmxLY0ZPOVQxb1IxQWVaeE9iSkFzVWxyWnF3eG1VeCtVMU1N?=
- =?utf-8?B?VlVZbVdQN2FiVGVaNlYvbVUrWVBzcU5jY0ttUnhmYllLckg3WkhvOGpWKzBt?=
- =?utf-8?B?OXJPUS9nSTJ2WkpPTWxzSHRiQ1NKWEZWWm45bjNUNi9seXRGWFl6SkdjbDFD?=
- =?utf-8?B?YU5hdmI1SnNGeHI5eHNKNmpvU1QzUWp4MTJrR0J0ZVNGNGUweTRudmM5SHBB?=
- =?utf-8?B?b2lmYzJnOGVjVE9OS0RpK1BRT3dIaFhJNWJlc1ovYi95ZURpL2o3VDZtd1dV?=
- =?utf-8?B?dFNOTTA0dUdvSk5iODl6UjlYVG5xNElBYUJQeUlBWVJIYllZZFZOdUdEaGlK?=
- =?utf-8?B?VldNL01PUjZ2RWQzendzK0hHYzBTL0Fta21zUGtUWGgxckJnZGdTL3RvcmU2?=
- =?utf-8?B?K3NVeDU3NUxqK3ZLTmFZaE9Ubll1cllpVXJiTFpBR25pamlNZDFReWVndnE4?=
- =?utf-8?B?L2pYejhEZEoxeFpTUmRDUzBqdCtIUWZDYWQ4YlVkYS9HSlltZVdVTmljR0tD?=
- =?utf-8?B?cEtFaURianVSamc1OFlKV0lWaCs5citRSEQvZDA2a2I5RVNySWM1Ulp0Q0RZ?=
- =?utf-8?B?aWRWa2l4QWpmTk1OMDFyMUlDQU9rTU12K1FkYlZaRHF2NlM2YmlxaUlBWUwr?=
- =?utf-8?Q?g4QtnozheU4mvQbxM9p559wik?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6762c38c-229d-48fa-22be-08dbcd130338
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR12MB3370.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2023 00:09:35.0193 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I2R00pzOUaYIfFbJ+q3rB9K7/CV8z7N5rzOPqhOonTiOcUYCEnOZ6vx4z+uZYeks
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8002
-Subject: Re: [Intel-xe] [PATCH v5 5/7] drm/sched: Split free_job into own
- work item
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [RFC] drm/xe/pvc: Enable fixed CCS mode
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,53 +55,486 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ketil.johnsen@arm.com,
- Liviu.Dudau@arm.com, mcanal@igalia.com, frank.binns@imgtec.com,
- boris.brezillon@collabora.com, dakr@redhat.com, donald.robson@imgtec.com,
- daniel@ffwll.ch, lina@asahilina.net, airlied@gmail.com,
- christian.koenig@amd.com, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 2023-10-13 22:49, Luben Tuikov wrote:
-> On 2023-10-11 19:58, Matthew Brost wrote:
->> Rather than call free_job and run_job in same work item have a dedicated
->> work item for each. This aligns with the design and intended use of work
->> queues.
->>
->> v2:
->>    - Test for DMA_FENCE_FLAG_TIMESTAMP_BIT before setting
->>      timestamp in free_job() work item (Danilo)
->> v3:
->>   - Drop forward dec of drm_sched_select_entity (Boris)
->>   - Return in drm_sched_run_job_work if entity NULL (Boris)
->> v4:
->>   - Replace dequeue with peek and invert logic (Luben)
->>   - Wrap to 100 lines (Luben)
->>   - Update comments for *_queue / *_queue_if_ready functions (Luben)
->>
->> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-> 
-> I wasn't able to apply this patch on top of drm-misc-next at a48e2cc92835fa.
-> 
-> Create a branch off of a *clean* drm-misc-next and rebase/reapply/cherry-pick all
-> 7 patches on top of that clean drm-misc-next branch. You should also run
-> scripts/checkpatch.pl --strict on all your patches, or integrate it into the precommit
-> hook, see githooks(5), so you don't have to run it manually.
-> 
-> Set format.useAutobase to whenAble somewhere in your Git configs (global/local),
-> or use --base=auto to git-format-patch when you format your patches before
-> git-send-email-ing them.
-> 
-> Repost your patches.
-> 
-> The base commit will be added to the bottom of the cover letter. It should
-> be an ancestor (or tip) of drm-misc-next (git branch --contains <base> --list etc.).
-> If it is not, your base tree wasn't clean, and you should redo this process.
+Allow static assignment of compute slices to a user selected
+number of compute engines. Add a per-tile 'ccs_mode' sysfs
+interface for user selection. By default assign all compute
+resources to the first available compute engine. User must
+ensure the tile is idle while changing the ccs mode as this
+causes a tile reset.
 
-Poking around I found out that this patch set is based off of drm-misc-fixes.
-Had the base been included, it would've made this easier.
+Support this mode for PVC which can be extended to other
+platforms in future.
+
+IGT: https://patchwork.freedesktop.org/series/125147/
+
+Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile          |  1 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 14 +++++
+ drivers/gpu/drm/xe/xe_gt.c           | 27 +++++++--
+ drivers/gpu/drm/xe/xe_gt.h           |  2 +
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.c  | 89 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.h  | 35 +++++++++++
+ drivers/gpu/drm/xe/xe_gt_types.h     | 16 +++++
+ drivers/gpu/drm/xe/xe_guc_ads.c      |  3 +
+ drivers/gpu/drm/xe/xe_hw_engine.c    | 13 ++++
+ drivers/gpu/drm/xe/xe_tile_sysfs.c   | 55 +++++++++++++++++
+ 10 files changed, 250 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_ccs_mode.h
+
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 175a357366d9..5660cf45df2f 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -58,6 +58,7 @@ xe-y += xe_bb.o \
+ 	xe_force_wake.o \
+ 	xe_ggtt.o \
+ 	xe_gt.o \
++	xe_gt_ccs_mode.o \
+ 	xe_gt_clock.o \
+ 	xe_gt_debugfs.o \
+ 	xe_gt_idle_sysfs.o \
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index cd1821d96a5d..5b5163be7d40 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -359,8 +359,22 @@
+ #define   COMP_CKN_IN				REG_GENMASK(30, 29)
+ 
+ #define RCU_MODE				XE_REG(0x14800, XE_REG_OPTION_MASKED)
++#define   RCU_MODE_FIXED_SLICE_CCS_MODE		REG_BIT(1)
+ #define   RCU_MODE_CCS_ENABLE			REG_BIT(0)
+ 
++/*
++ * Total of 4 cslices, where each cslice is in the form:
++ *   [0-3]     CCS ID
++ *   [4-6]     RSVD
++ *   [7]       Disabled
++ */
++#define CCS_MODE				XE_REG(0x14804)
++#define   CCS_MODE_CSLICE_0_3_MASK		REG_GENMASK(11, 0) /* 3 bits per cslice */
++#define   CCS_MODE_CSLICE_MASK			0x7 /* CCS0-3 + rsvd */
++#define   CCS_MODE_CSLICE_WIDTH			ilog2(CCS_MODE_CSLICE_MASK + 1)
++#define   CCS_MODE_CSLICE(cslice, ccs) \
++	(ccs << (cslice * CCS_MODE_CSLICE_WIDTH))
++
+ #define FORCEWAKE_ACK_GT			XE_REG(0x130044)
+ #define   FORCEWAKE_KERNEL			BIT(0)
+ #define   FORCEWAKE_USER			BIT(1)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index c63e2e4750b1..159620fdcc15 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -20,6 +20,7 @@
+ #include "xe_force_wake.h"
+ #include "xe_ggtt.h"
+ #include "xe_gt_clock.h"
++#include "xe_gt_ccs_mode.h"
+ #include "xe_gt_idle_sysfs.h"
+ #include "xe_gt_mcr.h"
+ #include "xe_gt_pagefault.h"
+@@ -76,6 +77,7 @@ static void gt_fini(struct drm_device *drm, void *arg)
+ 	int i;
+ 
+ 	destroy_workqueue(gt->ordered_wq);
++	xe_gt_fini_ccs_mode(gt);
+ 
+ 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i)
+ 		xe_hw_fence_irq_finish(&gt->fence_irq[i]);
+@@ -437,6 +439,12 @@ static int all_fw_domain_init(struct xe_gt *gt)
+ 	if (err)
+ 		goto err_force_wake;
+ 
++	/* Configure default CCS mode of 1 engine with all resources */
++	if (xe_gt_needs_ccs_mode(gt)) {
++		xe_gt_set_ccs_mode(gt, 1);
++		xe_gt_apply_ccs_mode(gt);
++	}
++
+ 	err = xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+ 	XE_WARN_ON(err);
+ 	xe_device_mem_access_put(gt_to_xe(gt));
+@@ -458,6 +466,7 @@ int xe_gt_init(struct xe_gt *gt)
+ 	int err;
+ 	int i;
+ 
++	xe_gt_init_ccs_mode(gt);
+ 	INIT_WORK(&gt->reset.worker, gt_reset_worker);
+ 
+ 	for (i = 0; i < XE_ENGINE_CLASS_MAX; ++i) {
+@@ -467,11 +476,11 @@ int xe_gt_init(struct xe_gt *gt)
+ 
+ 	err = xe_gt_tlb_invalidation_init(gt);
+ 	if (err)
+-		return err;
++		goto err_ccs_mode;
+ 
+ 	err = xe_gt_pagefault_init(gt);
+ 	if (err)
+-		return err;
++		goto err_ccs_mode;
+ 
+ 	xe_mocs_init_early(gt);
+ 
+@@ -479,19 +488,24 @@ int xe_gt_init(struct xe_gt *gt)
+ 
+ 	err = gt_fw_domain_init(gt);
+ 	if (err)
+-		return err;
++		goto err_ccs_mode;
+ 
+ 	xe_force_wake_init_engines(gt, gt_to_fw(gt));
+ 
+ 	err = all_fw_domain_init(gt);
+ 	if (err)
+-		return err;
++		goto err_ccs_mode;
+ 
+ 	err = drmm_add_action_or_reset(&gt_to_xe(gt)->drm, gt_fini, gt);
+ 	if (err)
+-		return err;
++		goto err_ccs_mode;
+ 
+ 	return 0;
++
++err_ccs_mode:
++	xe_gt_fini_ccs_mode(gt);
++
++	return err;
+ }
+ 
+ static int do_gt_reset(struct xe_gt *gt)
+@@ -539,6 +553,9 @@ static int do_gt_restart(struct xe_gt *gt)
+ 		xe_reg_sr_apply_whitelist(hwe);
+ 	}
+ 
++	/* Get CCS mode in sync between sw/hw */
++	xe_gt_apply_ccs_mode(gt);
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index caded203a8a0..1c2a1d35a2c1 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -17,6 +17,8 @@
+ 		for_each_if(((hwe__) = (gt__)->hw_engines + (id__)) && \
+ 			  xe_hw_engine_is_valid((hwe__)))
+ 
++#define CCS_MASK(gt) ((gt->info.engine_mask & XE_HW_ENGINE_CCS_MASK) >> XE_HW_ENGINE_CCS0)
++
+ #ifdef CONFIG_FAULT_INJECTION
+ extern struct fault_attr gt_reset_failure;
+ static inline bool xe_fault_inject_gt_reset(void)
+diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+new file mode 100644
+index 000000000000..0379ea551b32
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+@@ -0,0 +1,89 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include "xe_assert.h"
++#include "xe_gt.h"
++#include "xe_mmio.h"
++#include "xe_gt_ccs_mode.h"
++#include "regs/xe_gt_regs.h"
++
++void xe_gt_init_ccs_mode(struct xe_gt *gt)
++{
++	mutex_init(&gt->ccs.mutex);
++}
++
++void xe_gt_fini_ccs_mode(struct xe_gt *gt)
++{
++	mutex_destroy(&gt->ccs.mutex);
++}
++
++static void __xe_gt_apply_ccs_mode(struct xe_gt *gt, u32 num_engines)
++{
++	u32 mode = CCS_MODE_CSLICE_0_3_MASK; /* disable all by default */
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_hw_engine *hwe;
++	int num_slices = hweight32(CCS_MASK(gt));
++	int width, cslice;
++	enum xe_hw_engine_id id;
++	u32 config = 0;
++
++	lockdep_assert_held(&gt->ccs.mutex);
++	xe_assert(xe, GRAPHICS_VERx100(gt_to_xe(gt)) <= 1260);
++
++	xe_assert(xe, num_engines && num_engines <= num_slices);
++	xe_assert(xe, !(num_slices % num_engines));
++
++	/*
++	 * Loop over all available slices and assign each a user engine.
++	 *
++	 * With 1 engine (ccs0):
++	 *   slice 0, 1, 2, 3: ccs0
++	 *
++	 * With 2 engines (ccs0, ccs1):
++	 *   slice 0, 2: ccs0
++	 *   slice 1, 3: ccs1
++	 *
++	 * With 4 engines (ccs0, ccs1, ccs2, ccs3):
++	 *   slice 0: ccs0
++	 *   slice 1: ccs1
++	 *   slice 2: ccs2
++	 *   slice 3: ccs3
++	 */
++	for (width = num_slices / num_engines, cslice = 0; width--;) {
++		for_each_hw_engine(hwe, gt, id) {
++			if (hwe->class != XE_ENGINE_CLASS_COMPUTE)
++				continue;
++
++			if (hwe->logical_instance >= num_engines)
++				break;
++
++			config |= BIT(hwe->instance) << XE_HW_ENGINE_CCS0;
++
++			/* If a slice is fused off, leave disabled */
++			while ((CCS_MASK(gt) & BIT(cslice)) == 0)
++				cslice++;
++
++			mode &= ~CCS_MODE_CSLICE(cslice, CCS_MODE_CSLICE_MASK);
++			mode |= CCS_MODE_CSLICE(cslice, hwe->instance);
++			cslice++;
++		}
++	}
++
++	drm_info(&xe->drm,
++		 "CCS_MODE=%x for config:%08x, num_engines:%d, num_slices:%d\n",
++		 mode, config, num_engines, num_slices);
++
++	xe_mmio_write32(gt, CCS_MODE, mode);
++}
++
++void xe_gt_apply_ccs_mode(struct xe_gt *gt)
++{
++	mutex_lock(&gt->ccs.mutex);
++
++	if (gt->ccs.num_engines)
++		__xe_gt_apply_ccs_mode(gt, gt->ccs.num_engines);
++
++	mutex_unlock(&gt->ccs.mutex);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.h b/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
+new file mode 100644
+index 000000000000..0040ac78c3e5
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.h
+@@ -0,0 +1,35 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_GT_CCS_MODE_H_
++#define _XE_GT_CCS_MODE_H_
++
++#include "xe_device_types.h"
++#include "xe_gt.h"
++#include "xe_gt_types.h"
++#include "xe_platform_types.h"
++
++void xe_gt_init_ccs_mode(struct xe_gt *gt);
++void xe_gt_fini_ccs_mode(struct xe_gt *gt);
++
++void xe_gt_apply_ccs_mode(struct xe_gt *gt);
++
++static inline bool xe_gt_needs_ccs_mode(const struct xe_gt *gt)
++{
++	return GRAPHICS_VERx100(gt_to_xe(gt)) == 1260 && CCS_MASK(gt);
++}
++
++static inline void xe_gt_set_ccs_mode(struct xe_gt *gt, u32 num_engines)
++{
++	gt->ccs.num_engines = num_engines;
++}
++
++static inline u32 xe_gt_get_ccs_mode(struct xe_gt *gt)
++{
++	return gt->ccs.num_engines;
++}
++
++#endif
++
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index d4310be3e1e7..baf7aa9ab2af 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -185,6 +185,22 @@ struct xe_gt {
+ 		spinlock_t lock;
+ 	} tlb_invalidation;
+ 
++	/**
++	 * @ccs: Fixed mapping between CCS engines and compute slices.
++	 * Through the per-tile 'ccs_mode' sysfs interface, the user can specify a
++	 * fixed number of compute hardware engines to which the available compute
++	 * slices are to be allocated. By default all compute slices are allocated
++	 * to the first available compute engine instance. This user configuration
++	 * change triggers a tile reset and it is expected that user will ensure
++	 * the tile is idle while doing so.
++	 */
++	struct {
++		/** @mutex: Serialize CCS mode access */
++		struct mutex mutex;
++		/** @num_engines: Number of CCS engines enabled */
++		u32 num_engines;
++	} ccs;
++
+ 	/** @usm: unified shared memory state */
+ 	struct {
+ 		/**
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index efa4d25424b8..64a8a9bf0802 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -8,6 +8,7 @@
+ #include <drm/drm_managed.h>
+ 
+ #include "regs/xe_engine_regs.h"
++#include "xe_gt_ccs_mode.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_guc_regs.h"
+ #include "xe_bo.h"
+@@ -454,6 +455,8 @@ static unsigned int guc_mmio_regset_write(struct xe_guc_ads *ads,
+ 		{ .reg = RING_HWS_PGA(hwe->mmio_base),			},
+ 		{ .reg = RING_IMR(hwe->mmio_base),			},
+ 		{ .reg = RCU_MODE, .skip = hwe != hwe_rcs_reset_domain	},
++		{ .reg = CCS_MODE,
++		  .skip = hwe != hwe_rcs_reset_domain || !xe_gt_needs_ccs_mode(hwe->gt)	},
+ 	};
+ 	u32 i;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index b5b084590888..78ca123bd6ed 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -8,6 +8,7 @@
+ #include <drm/drm_managed.h>
+ 
+ #include "regs/xe_engine_regs.h"
++#include "xe_gt_ccs_mode.h"
+ #include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+ #include "xe_assert.h"
+@@ -283,6 +284,13 @@ void xe_hw_engine_enable_ring(struct xe_hw_engine *hwe)
+ 	hw_engine_mmio_read32(hwe, RING_MI_MODE(0));
+ }
+ 
++static bool xe_hw_engine_match_fixed_cslice_mode(const struct xe_gt *gt,
++						 const struct xe_hw_engine *hwe)
++{
++	return xe_gt_needs_ccs_mode(gt) &&
++	       xe_rtp_match_first_render_or_compute(gt, hwe);
++}
++
+ void
+ xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
+ {
+@@ -307,6 +315,11 @@ xe_hw_engine_setup_default_lrc_state(struct xe_hw_engine *hwe)
+ 				 blit_cctl_val,
+ 				 XE_RTP_ACTION_FLAG(ENGINE_BASE)))
+ 		},
++		/* Use Fixed slice CCS mode */
++		{ XE_RTP_NAME("RCU_MODE_FIXED_SLICE_CCS_MODE"),
++		  XE_RTP_RULES(FUNC(xe_hw_engine_match_fixed_cslice_mode)),
++		  XE_RTP_ACTIONS(SET(RCU_MODE, RCU_MODE_FIXED_SLICE_CCS_MODE))
++		},
+ 		{}
+ 	};
+ 
+diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+index 16376607c68f..e30c29670cd3 100644
+--- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+@@ -7,8 +7,12 @@
+ #include <linux/sysfs.h>
+ #include <drm/drm_managed.h>
+ 
++#include "generated/xe_wa_oob.h"
++#include "xe_gt.h"
++#include "xe_gt_ccs_mode.h"
+ #include "xe_tile.h"
+ #include "xe_tile_sysfs.h"
++#include "xe_wa.h"
+ 
+ static void xe_tile_sysfs_kobj_release(struct kobject *kobj)
+ {
+@@ -34,6 +38,52 @@ static DEVICE_ATTR_RO(physical_vram_size_bytes);
+ static const struct attribute *physical_memsize_attr =
+ 	&dev_attr_physical_vram_size_bytes.attr;
+ 
++static ssize_t
++ccs_mode_show(struct device *kdev,
++	      struct device_attribute *attr, char *buf)
++{
++	struct xe_tile *tile = kobj_to_tile(&kdev->kobj);
++
++	return sysfs_emit(buf, "%d\n", xe_gt_get_ccs_mode(tile->primary_gt));
++}
++
++static ssize_t
++ccs_mode_store(struct device *kdev, struct device_attribute *attr,
++	       const char *buff, size_t count)
++{
++	struct xe_tile *tile = kobj_to_tile(&kdev->kobj);
++	struct xe_device *xe = tile_to_xe(tile);
++	struct xe_gt *gt = tile->primary_gt;
++	u32 num_engines, num_slices;
++	int ret;
++
++	ret = kstrtou32(buff, 0, &num_engines);
++	if (ret)
++		return ret;
++
++	/*
++	 * Ensure number of engines specified is valid and there is an
++	 * exact multiple of engines for slices.
++	 */
++	num_slices = hweight32(CCS_MASK(gt));
++	if (!num_engines || num_engines > num_slices || num_slices % num_engines) {
++		drm_err(&xe->drm, "Invalid compute config, %d engines %d slices\n",
++			num_engines, num_slices);
++		return -EINVAL;
++	}
++
++	if (xe_gt_get_ccs_mode(gt) == num_engines)
++		return count;
++
++	drm_info(&xe->drm, "Setting compute mode to %d\n", num_engines);
++	xe_gt_set_ccs_mode(gt, num_engines);
++	xe_gt_reset_async(gt);
++
++	return count;
++}
++
++static DEVICE_ATTR_RW(ccs_mode);
++
+ static void tile_sysfs_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_tile *tile = arg;
+@@ -69,6 +119,11 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
+ 		drm_warn(&xe->drm,
+ 			 "Sysfs creation to read addr_range per tile failed\n");
+ 
++	if (GRAPHICS_VERx100(xe) == 1260 &&
++	    sysfs_create_file(tile->sysfs, &dev_attr_ccs_mode.attr))
++		drm_warn(&xe->drm,
++			 "Sysfs creation to set ccs_mode failed\n");
++
+ 	err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
+ 	if (err) {
+ 		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
 -- 
-Regards,
-Luben
+2.21.0.rc0.32.g243a4c7e27
 
