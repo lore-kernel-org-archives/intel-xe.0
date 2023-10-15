@@ -4,30 +4,36 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE944CDB47E
-	for <intel-xe@archiver.kernel.org>; Sun, 15 Oct 2023 06:16:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57BE9CDB47E
+	for <intel-xe@archiver.kernel.org>; Sun, 15 Oct 2023 12:23:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 76A9010E082;
-	Sun, 15 Oct 2023 06:16:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id D4E8010E082;
- Sun, 15 Oct 2023 06:16:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CC422A7DFF;
- Sun, 15 Oct 2023 06:16:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6962314335141467532=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBFE910E055;
+	Sun, 15 Oct 2023 12:23:18 +0000 (UTC)
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B575A10E055
+ for <intel-xe@lists.freedesktop.org>; Sun, 15 Oct 2023 12:23:16 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1697372592; bh=+jY2CKQS1yo6nuS+X/oraU+7W7d8ke9fAmkoSHnY2+M=;
+ h=From:To:Subject:Date:From;
+ b=JJnqrh6FIxGuHcfZ2MJt49d5Ss59YejKlv4SjQMFnGu0uSl2rxGkD6m1N+b4wDsBs
+ j88KOtpTfMbswy/fL0Byd65FjNQD3YrymMmtFkMOCIGQF6+2FM8hNtbnlHfx5kvziS
+ OJV3gOn+go6prHZJXt1YD9BdqJZpKfXRL7BBKsLCsMkjfCZZInAOpfZcj/admcmel/
+ Da8ljADGOZhRwq6HbTwalF6MLq+9q6JR6iSbDfsNMObyv0c7DU3ywWOgdP9VL1u35c
+ 7DIJqpcN+aeYw4X5jAXfnNvDhPbtaTNVs7uPTYRlR3QYE6o3BFihz5FNIuS0UtsORv
+ 1s4rjDps2GQ9w==
+Received: from kelbaz-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by kelbaz-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 39FCN7Zc1191695
+ for <intel-xe@lists.freedesktop.org>; Sun, 15 Oct 2023 15:23:07 +0300
+From: Koby Elbaz <kelbaz@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Date: Sun, 15 Oct 2023 15:23:07 +0300
+Message-Id: <20231015122307.1191684-1-kelbaz@habana.ai>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Date: Sun, 15 Oct 2023 06:16:39 -0000
-Message-ID: <169735059980.21826.5262539558290685278@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231015053119.6271-1-niranjana.vishwanathapura@intel.com>
-In-Reply-To: <20231015053119.6271-1-niranjana.vishwanathapura@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/pv?=
- =?utf-8?q?c=3A_Enable_fixed_CCS_mode?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: add has_pcode flag
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,147 +45,171 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============6962314335141467532==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Per device, this flag indicates whether PCODE uC exists.
 
-== Series Details ==
+Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
+---
+ drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 13 +++++++++++++
+ drivers/gpu/drm/xe/xe_pcode.c        |  9 +++++++++
+ 3 files changed, 24 insertions(+)
 
-Series: drm/xe/pvc: Enable fixed CCS mode
-URL   : https://patchwork.freedesktop.org/series/125148/
-State : success
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index bc375ddda5a7..8e327673c05c 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -257,6 +257,8 @@ struct xe_device {
+ 		u8 bypass_mtcfg:1;
+ 		/** @supports_mmio_ext: supports MMIO extension/s */
+ 		u8 supports_mmio_ext:1;
++		/** @has_pcode: device has a PCODE uC */
++		u8 has_pcode:1;
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ 		struct {
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 99ccee07f8cd..2aac0f4df50c 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -61,6 +61,7 @@ struct xe_device_desc {
+ 	u8 has_llc:1;
+ 	u8 bypass_mtcfg:1;
+ 	u8 supports_mmio_ext:1;
++	u8 has_pcode:1;
+ };
+ 
+ __diag_push();
+@@ -212,6 +213,7 @@ static const struct xe_device_desc tgl_desc = {
+ 	.has_display = true,
+ 	.has_llc = true,
+ 	.require_force_probe = true,
++	.has_pcode = true,
+ };
+ 
+ static const struct xe_device_desc rkl_desc = {
+@@ -221,6 +223,7 @@ static const struct xe_device_desc rkl_desc = {
+ 	.has_display = true,
+ 	.has_llc = true,
+ 	.require_force_probe = true,
++	.has_pcode = true,
+ };
+ 
+ static const u16 adls_rpls_ids[] = { XE_RPLS_IDS(NOP), 0 };
+@@ -236,6 +239,7 @@ static const struct xe_device_desc adl_s_desc = {
+ 		{ XE_SUBPLATFORM_ALDERLAKE_S_RPLS, "RPLS", adls_rpls_ids },
+ 		{},
+ 	},
++	.has_pcode = true,
+ };
+ 
+ static const u16 adlp_rplu_ids[] = { XE_RPLU_IDS(NOP), 0 };
+@@ -251,6 +255,7 @@ static const struct xe_device_desc adl_p_desc = {
+ 		{ XE_SUBPLATFORM_ALDERLAKE_P_RPLU, "RPLU", adlp_rplu_ids },
+ 		{},
+ 	},
++	.has_pcode = true,
+ };
+ 
+ static const struct xe_device_desc adl_n_desc = {
+@@ -260,6 +265,7 @@ static const struct xe_device_desc adl_n_desc = {
+ 	.has_display = true,
+ 	.has_llc = true,
+ 	.require_force_probe = true,
++	.has_pcode = true,
+ };
+ 
+ #define DGFX_FEATURES \
+@@ -272,6 +278,7 @@ static const struct xe_device_desc dg1_desc = {
+ 	PLATFORM(XE_DG1),
+ 	.has_display = true,
+ 	.require_force_probe = true,
++	.has_pcode = true,
+ };
+ 
+ static const u16 dg2_g10_ids[] = { XE_DG2_G10_IDS(NOP), XE_ATS_M150_IDS(NOP), 0 };
+@@ -295,6 +302,7 @@ static const struct xe_device_desc ats_m_desc = {
+ 
+ 	DG2_FEATURES,
+ 	.has_display = false,
++	.has_pcode = true,
+ };
+ 
+ static const struct xe_device_desc dg2_desc = {
+@@ -304,6 +312,7 @@ static const struct xe_device_desc dg2_desc = {
+ 
+ 	DG2_FEATURES,
+ 	.has_display = true,
++	.has_pcode = true,
+ };
+ 
+ static const struct xe_device_desc pvc_desc = {
+@@ -312,6 +321,7 @@ static const struct xe_device_desc pvc_desc = {
+ 	PLATFORM(XE_PVC),
+ 	.has_display = false,
+ 	.require_force_probe = true,
++	.has_pcode = true,
+ };
+ 
+ static const struct xe_device_desc mtl_desc = {
+@@ -319,11 +329,13 @@ static const struct xe_device_desc mtl_desc = {
+ 	.require_force_probe = true,
+ 	PLATFORM(XE_METEORLAKE),
+ 	.has_display = true,
++	.has_pcode = true,
+ };
+ 
+ static const struct xe_device_desc lnl_desc = {
+ 	PLATFORM(XE_LUNARLAKE),
+ 	.require_force_probe = true,
++	.has_pcode = true,
+ };
+ 
+ #undef PLATFORM
+@@ -576,6 +588,7 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.bypass_mtcfg = desc->bypass_mtcfg;
+ 	xe->info.supports_mmio_ext = desc->supports_mmio_ext;
+ 	xe->info.tile_mmio_ext_size = graphics_desc->tile_mmio_ext_size;
++	xe->info.has_pcode = desc->has_pcode;
+ 
+ 	xe->info.dma_mask_size = graphics_desc->dma_mask_size;
+ 	xe->info.vram_flags = graphics_desc->vram_flags;
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 4a240acf7625..d895cb1e16c7 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -61,6 +61,9 @@ static int pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
+ {
+ 	int err;
+ 
++	if (!gt_to_xe(gt)->info.has_pcode)
++		return 0;
++
+ 	lockdep_assert_held(&gt->pcode.lock);
+ 
+ 	if ((xe_mmio_read32(gt, PCODE_MAILBOX) & PCODE_READY) != 0)
+@@ -249,6 +252,9 @@ int xe_pcode_init(struct xe_gt *gt)
+ 	int timeout_us = 180000000; /* 3 min */
+ 	int ret;
+ 
++	if (!gt_to_xe(gt)->info.has_pcode)
++		return 0;
++
+ 	if (!IS_DGFX(gt_to_xe(gt)))
+ 		return 0;
+ 
+@@ -280,6 +286,9 @@ int xe_pcode_probe(struct xe_gt *gt)
+ {
+ 	drmm_mutex_init(&gt_to_xe(gt)->drm, &gt->pcode.lock);
+ 
++	if (!gt_to_xe(gt)->info.has_pcode)
++		return 0;
++
+ 	if (!IS_DGFX(gt_to_xe(gt)))
+ 		return 0;
+ 
+-- 
+2.34.1
 
-== Summary ==
-
-CI Bug Log - changes from xe-434-7a2215ad9efde6949c4f3e75ca0776e075eabc47_BAT -> xe-pw-125148v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-125148v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-434-7a2215ad9efde6949c4f3e75ca0776e075eabc47/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125148v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-#### Possible fixes ####
-
-  * {igt@xe_create@create-execqueues-noleak}:
-    - bat-adlp-7:         [FAIL][3] ([Intel XE#524]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-434-7a2215ad9efde6949c4f3e75ca0776e075eabc47/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125148v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-
-
-Build changes
--------------
-
-  * Linux: xe-434-7a2215ad9efde6949c4f3e75ca0776e075eabc47 -> xe-pw-125148v1
-
-  IGT_7539: 08e87a32fa113a9b6f30cbd9766fec346b53faac @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-434-7a2215ad9efde6949c4f3e75ca0776e075eabc47: 7a2215ad9efde6949c4f3e75ca0776e075eabc47
-  xe-pw-125148v1: 125148v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125148v1/index.html
-
---===============6962314335141467532==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/pvc: Enable fixed CCS mode</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125148/">https://patchwork.freedesktop.org/series/125148/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125148v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125148v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-434-7a2215ad9efde6949c4f3e75ca0776e075eabc47_BAT -&gt; xe-pw-125148v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-125148v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-434-7a2215ad9efde6949c4f3e75ca0776e075eabc47/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125148v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>{igt@xe_create@create-execqueues-noleak}:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-434-7a2215ad9efde6949c4f3e75ca0776e075eabc47/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125148v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-434-7a2215ad9efde6949c4f3e75ca0776e075eabc47 -&gt; xe-pw-125148v1</li>
-</ul>
-<p>IGT_7539: 08e87a32fa113a9b6f30cbd9766fec346b53faac @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-434-7a2215ad9efde6949c4f3e75ca0776e075eabc47: 7a2215ad9efde6949c4f3e75ca0776e075eabc47<br />
-  xe-pw-125148v1: 125148v1</p>
-
-</body>
-</html>
-
---===============6962314335141467532==--
