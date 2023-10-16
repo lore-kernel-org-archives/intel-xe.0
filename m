@@ -4,30 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CA1FCDB465
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 10:58:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0919CDB474
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 11:03:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA60C10E1BB;
-	Mon, 16 Oct 2023 10:58:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2867410E1C6;
- Mon, 16 Oct 2023 10:58:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 231FBAADEA;
- Mon, 16 Oct 2023 10:58:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5122343100104762855=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63B4610E1BC;
+	Mon, 16 Oct 2023 11:03:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B67F10E1BC
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Oct 2023 11:03:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1697454193; x=1728990193;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=4EcrWBP43ndOv+Epd6QjrbLdRzd0+EHDT890OD7Eseg=;
+ b=X4c0sJpUwZrC+yuVm+xuu+t1eNXnWfxD6akWu5NDponfhUX7wvr9tdRZ
+ 6glx+Gmvr2J6vSkeaV9dKckAGaCWj9dfikY3KNC6c4mN6jNCpVzeAabV3
+ Bn1LodxxPZ4St/+T7BthHESLIIFzqzTWOznEV6YQwTo+ODi/TBaY5dpMd
+ z8s3asu1rg8Hub60jULLhgch5Gt5crLXBGhW2p26Va6b0SIfN60VEqbZY
+ g2Qa9sg8jrhKN+1fGrqyOBG1HYp3h1MVy5V3elmFeHkiyGRaILKCIc+jm
+ y+dCABObhQCKn2m1LezLi64sgxaFFc2aFyPTj1VhqS79DBwUx0jFxmwT+ g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="382722208"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="382722208"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2023 04:03:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="929303190"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="929303190"
+Received: from hlykke-mobl.ger.corp.intel.com (HELO [10.249.254.194])
+ ([10.249.254.194])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Oct 2023 04:03:11 -0700
+Message-ID: <51dcf3d7-fe44-cebd-7922-b29e3d864cbc@linux.intel.com>
+Date: Mon, 16 Oct 2023 13:03:07 +0200
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
-Date: Mon, 16 Oct 2023 10:58:10 -0000
-Message-ID: <169745389013.13505.5993611916017923439@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231016101720.1657746-1-balasubramani.vivekanandan@intel.com>
-In-Reply-To: <20231016101720.1657746-1-balasubramani.vivekanandan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Event_tra?=
- =?utf-8?q?cing_for_GuC_CTB?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20231013102226.2961-1-thomas.hellstrom@linux.intel.com>
+ <ZSmlgS88PD4QI+k8@intel.com>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <ZSmlgS88PD4QI+k8@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [RFC PATCH] drm/xe/uAPi: Clarify the meaning of
+ min_page_size and MIN_ALIGNMENT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,264 +62,80 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5122343100104762855==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+On 10/13/23 22:16, Rodrigo Vivi wrote:
+> On Fri, Oct 13, 2023 at 12:22:26PM +0200, Thomas Hellström wrote:
+>> In particular, don't *enforce* alignment of buffer object sizes to
+>> MIN_ALIGNMENT, as enforcing that for imported dma-bufs would not
+>> really make sense.
+>>
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Francois Dugast <francois.dugast@intel.com>
+>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>> ---
+>>   include/uapi/drm/xe_drm.h | 17 ++++++++++++-----
+>>   1 file changed, 12 insertions(+), 5 deletions(-)
+>>
+>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+>> index d48d8e3c898c..5895c95879d1 100644
+>> --- a/include/uapi/drm/xe_drm.h
+>> +++ b/include/uapi/drm/xe_drm.h
+>> @@ -167,11 +167,10 @@ struct drm_xe_query_mem_region {
+>>   	 *
+>>   	 * When the kernel allocates memory for this region, the
+>>   	 * underlying pages will be at least @min_page_size in size.
+>> -	 *
+>> -	 * Important note: When userspace allocates a GTT address which
+>> -	 * can point to memory allocated from this region, it must also
+>> -	 * respect this minimum alignment. This is enforced by the
+>> -	 * kernel.
+> This old statement seems bold on the kernel is enforcing it. If we are
+> but intend to not enforce anymore we should also change the code in
+> the same patch, no?!
+> Also by the commit message I had the impression that this was removing
+> the enforcement, and not just the documentation about it.
 
-Series: Event tracing for GuC CTB
-URL   : https://patchwork.freedesktop.org/series/125164/
-State : success
+This RFC was more intended to trigger a discussion on how to handle 
+this. I'll actually bring back the above somewhat reworded and also 
+rework the commit message a bit to reflect that this is an RFC for an 
+uAPI change under discussion.
 
-== Summary ==
+>
+>> +	 * Buffer objects with an allowable placement in this region may
+>> +	 * be created with a smaller size, but for increased performance,
+>> +	 * user-space drivers should align sizes of such buffer objects
+>> +	 * to this value whenever possible.
+>>   	 */
+>>   	__u32 min_page_size;
+>>   	/**
+>> @@ -252,6 +251,14 @@ struct drm_xe_query_config {
+>>   #define XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
+>>   #define XE_QUERY_CONFIG_FLAGS			1
+>>   	#define XE_QUERY_CONFIG_FLAGS_HAS_VRAM		(0x1 << 0)
+>> +/*
+>> + * XE_QUERY_CONFIG_MIN_ALIGNMENT - GPU VM bind address - and size alignment.
+>> + * GPU virtual address mappings of buffer objects must have their VM addr and
+>> + * range aligned to this value, with the exception of buffer objects with
+>> + * allowable placement in system memory only. If this alignment results in
+>> + * a mapping beyond the end of the buffer object, accesses beyond the
+>> + * end of the buffer object have undefined reslut.
+> s/reslut/result.
+>
+> Should we make this into a kernel doc?
 
-CI Bug Log - changes from xe-435-ab7cd1b4af95baba2d6ce5487d35ffda523e895d_BAT -> xe-pw-125164v1_BAT
-====================================================
+It looks like all other defines of constants in this file doesn't use 
+kerneldoc. If we want to do that, It looks like we need to break this 
+out to a top-level DOC: section, similar to what's done for  
+XE_RESET_FAILED_UEVENT.
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-125164v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][1] ([Intel XE#623])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][2] ([Intel XE#624])
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_addfb_basic@tile-pitch-mismatch:
-    - bat-dg2-oem2:       NOTRUN -> [FAIL][3] ([Intel XE#609]) +1 other test fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_addfb_basic@tile-pitch-mismatch.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][4] ([Intel XE#423])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][5] ([i915#5274])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-dg2-oem2:       NOTRUN -> [FAIL][6] ([Intel XE#608])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:
-    - bat-dg2-oem2:       NOTRUN -> [FAIL][7] ([Intel XE#400]) +2 other tests fail
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][8] ([Intel XE#535]) +2 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html
-
-  * igt@xe_exec_fault_mode@many-basic:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][9] ([Intel XE#288]) +17 other tests skip
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html
-
-  * igt@xe_huc_copy@huc_copy:
-    - bat-dg2-oem2:       NOTRUN -> [SKIP][10] ([Intel XE#255])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
-
-  
-#### Possible fixes ####
-
-  * {igt@xe_create@create-execqueues-noleak}:
-    - bat-adlp-7:         [FAIL][11] ([Intel XE#524]) -> [PASS][12]
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-435-ab7cd1b4af95baba2d6ce5487d35ffda523e895d/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
-
-  * igt@xe_exec_balancer@no-exec-cm-virtual-basic:
-    - bat-dg2-oem2:       [INCOMPLETE][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-435-ab7cd1b4af95baba2d6ce5487d35ffda523e895d/bat-dg2-oem2/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#400]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/400
-  [Intel XE#423]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/423
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [Intel XE#535]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/535
-  [Intel XE#608]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/608
-  [Intel XE#609]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/609
-  [Intel XE#623]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/623
-  [Intel XE#624]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/624
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
+/Thomas
 
 
-Build changes
--------------
-
-  * IGT: IGT_7539 -> IGT_7540
-  * Linux: xe-435-ab7cd1b4af95baba2d6ce5487d35ffda523e895d -> xe-pw-125164v1
-
-  IGT_7539: 08e87a32fa113a9b6f30cbd9766fec346b53faac @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7540: 93c5ec2105500f7083d0cb50db3fbb3bca3776bb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-435-ab7cd1b4af95baba2d6ce5487d35ffda523e895d: ab7cd1b4af95baba2d6ce5487d35ffda523e895d
-  xe-pw-125164v1: 125164v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/index.html
-
---===============5122343100104762855==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Event tracing for GuC CTB</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125164/">https://patchwork.freedesktop.org/series/125164/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-435-ab7cd1b4af95baba2d6ce5487d35ffda523e895d_BAT -&gt; xe-pw-125164v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-125164v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/623">Intel XE#623</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/624">Intel XE#624</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@tile-pitch-mismatch:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_addfb_basic@tile-pitch-mismatch.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/609">Intel XE#609</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/423">Intel XE#423</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/608">Intel XE#608</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/535">Intel XE#535</a>) +2 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@many-basic:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +17 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_huc_copy@huc_copy:</p>
-<ul>
-<li>bat-dg2-oem2:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>{igt@xe_create@create-execqueues-noleak}:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-435-ab7cd1b4af95baba2d6ce5487d35ffda523e895d/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_balancer@no-exec-cm-virtual-basic:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-435-ab7cd1b4af95baba2d6ce5487d35ffda523e895d/bat-dg2-oem2/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125164v1/bat-dg2-oem2/igt@xe_exec_balancer@no-exec-cm-virtual-basic.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7539 -&gt; IGT_7540</li>
-<li>Linux: xe-435-ab7cd1b4af95baba2d6ce5487d35ffda523e895d -&gt; xe-pw-125164v1</li>
-</ul>
-<p>IGT_7539: 08e87a32fa113a9b6f30cbd9766fec346b53faac @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7540: 93c5ec2105500f7083d0cb50db3fbb3bca3776bb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-435-ab7cd1b4af95baba2d6ce5487d35ffda523e895d: ab7cd1b4af95baba2d6ce5487d35ffda523e895d<br />
-  xe-pw-125164v1: 125164v1</p>
-
-</body>
-</html>
-
---===============5122343100104762855==--
