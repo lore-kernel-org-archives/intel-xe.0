@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EE4FCDB474
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 17:25:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89873CDB465
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 17:25:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC13B10E225;
-	Mon, 16 Oct 2023 17:25:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 46EDE10E225;
+	Mon, 16 Oct 2023 17:25:52 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1B82610E225;
- Mon, 16 Oct 2023 17:25:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id B321010E229;
+ Mon, 16 Oct 2023 17:25:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 12A97AA916;
- Mon, 16 Oct 2023 17:25:38 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id B143AAA916;
+ Mon, 16 Oct 2023 17:25:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ruthuvikas Ravikumar" <ruthuvikas.ravikumar@intel.com>
-Date: Mon, 16 Oct 2023 17:25:38 -0000
-Message-ID: <169747713804.13509.161826238054190587@emeril.freedesktop.org>
+Date: Mon, 16 Oct 2023 17:25:50 -0000
+Message-ID: <169747715072.13510.9395914187106599878@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231016170102.1771526-1-ruthuvikas.ravikumar@intel.com>
 In-Reply-To: <20231016170102.1771526-1-ruthuvikas.ravikumar@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Add_mocs_kunit_=28rev3=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
+ =?utf-8?q?m/xe=3A_Add_mocs_kunit_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,13 +48,64 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Add mocs kunit (rev3)
 URL   : https://patchwork.freedesktop.org/series/124926/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: ab7cd1b4a mei: gsc: add support for auxiliary device created by Xe driver
-=== git am output follows ===
-Applying: drm/xe: Add mocs kunit
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 0e8720e2ec2b6725aa49039943446f77364582b8
+Author: Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>
+Date:   Mon Oct 16 22:31:02 2023 +0530
+
+    drm/xe: Add mocs kunit
+    
+    This kunit verifies the hardware values of mocs and
+    l3cc registers with the KMD programmed values.
+    
+    Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+    Cc: Mathew D Roper <matthew.d.roper@intel.com>
+    Signed-off-by: Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>
++ /mt/dim checkpatch ab7cd1b4af95baba2d6ce5487d35ffda523e895d drm-intel
+0e8720e2e drm/xe: Add mocs kunit
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#26: 
+new file mode 100644
+
+-:112: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#112: FILE: drivers/gpu/drm/xe/tests/xe_mocs.c:82:
++}
++static void read_mocs_table(struct xe_gt *gt, const struct xe_mocs_info *info,
+
+-:151: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#151: FILE: drivers/gpu/drm/xe/tests/xe_mocs.c:121:
++}
++static int mocs_kernel_test_run_device(struct xe_device *xe)
+
+-:169: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#169: FILE: drivers/gpu/drm/xe/tests/xe_mocs.c:139:
++}
++void xe_live_mocs_kernel_kunit(struct kunit *test)
+
+total: 0 errors, 1 warnings, 3 checks, 194 lines checked
 
 
