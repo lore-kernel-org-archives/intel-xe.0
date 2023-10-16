@@ -4,49 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96EEFCDB474
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 16:35:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E49A6CDB465
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 16:35:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 13FB310E21D;
-	Mon, 16 Oct 2023 16:35:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 844F210E224;
+	Mon, 16 Oct 2023 16:35:11 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7309810E21D
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Oct 2023 16:35:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 19C6010E210
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Oct 2023 16:35:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697474103; x=1729010103;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WUKusvPhCkiz2CPhthGjm4LxwOHcrFh77o+iyG+1HA8=;
- b=L5yMURDo1dwq6vWFSKJZH82YnISRis7oFz1gNmMpj1XlEgjoqAe9fTuU
- ZrPsvTHYqQRNaRANKgA9yuVDFl5iSvZxn2SMvm2Xik+uFO4S+QE9YpWqQ
- 2e87Wa/oVMFwaHWNizFkNXPf0PlEsbSlijXM6DiovcCpsyl/AdyYvaGiY
- tUP8sC2RotNBvDadGrSurMUJeh646tP9NZTVitmPC9RwRFR3PVR0Kfb1r
- zWxkh9NZ0E+HZ5T2uyUbRYTFz8JmTqiGxh+U61Zq80nCIpZTqhgco9Wtp
- 8aHYmfxybqAUnUVp6Vdjd7IOgiSkAfKY+165G2jEts8l9wRZwgqDMb15A A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10865"; a="452051249"
-X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="452051249"
+ t=1697474102; x=1729010102;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=k/uriGVKjV9IlW96NqbX6Vex2RldRWlp866yak5Co1Q=;
+ b=bwYWDBTQ+1eRINSn75tawbSDLXI4FeJx775apjdsHvKD9a03Wef0Z7P+
+ J5JQ3NLkoEpsmDzGjFL1FPZzcHYm7CXo3GBg5JQF18oDwU8xsRJZAKsNw
+ akqPw5UWtoOugJPm6VaNruHT7kb/GYCLIiA9aKFogbBYjxIan36aVgfJA
+ uYsHaujTviQeL2KMU2J2BJT/R02HsLHonCwQ5dJGHtTKVohWAjyfIc8kt
+ r2Y9/LHx2J29PkqDNT22haOYXf7AG16h/XVSuKj2GPSZC2msjtuRq7FPP
+ hXL9MAbieVf2QE5rGOFT/XyQhRqn54jW+HHhugk/MDmpVYn02e9soOsnf g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10865"; a="452051240"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="452051240"
 Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2023 09:35:02 -0700
+ 16 Oct 2023 09:35:01 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10865"; a="790865618"
-X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="790865618"
+X-IronPort-AV: E=McAfee;i="6600,9927,10865"; a="790865587"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="790865587"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.131])
  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2023 09:35:01 -0700
+ 16 Oct 2023 09:35:00 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Oct 2023 09:34:56 -0700
-Message-ID: <20231016163449.1300701-14-matthew.d.roper@intel.com>
+Date: Mon, 16 Oct 2023 09:34:50 -0700
+Message-ID: <20231016163449.1300701-8-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231016163449.1300701-8-matthew.d.roper@intel.com>
-References: <20231016163449.1300701-8-matthew.d.roper@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 6/6] drm/xe/debugfs: Include GFXPIPE commands
- in LRC dump
+Subject: [Intel-xe] [PATCH v3 0/6] LRC debugfs and general instruction tweaks
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,282 +58,110 @@ Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-RCS and CCS engines include several non-register gfxpipe commands in
-their LRC images.  Include these in the dump output so that we can see
-exactly what's inside the context snapshot.
+During device probe, workarounds that target registers in an engine's
+LRC image are applied and then a snapshot of the context image is saved
+as the "default LRC" which is later copied as the starting point for all
+new contexts.  Internally the engine state is encoded as a batchbuffer
+that the hardware can execute on context switch to restore the relevant
+registers and other state information.
+
+"LRC workarounds" are those which target registers that are part of the
+an engine's LRC; the driver programs the registers with the desired
+updates before triggering creation of the default LRC snapshot, thus
+ensuring that the necessary settings are inherited by all new contexts
+that get created.
+
+There's an upcoming workaround that will require the driver to emit not
+only updates to specific registers at driver init, but also some
+non-register state (e.g., 3DSTATE_* instructions) before snapshotting
+the default LRC.  This is also expected to become necessary for
+non-workaround initialization on future platforms as well.
+
+Before we start making these updates to the initial engine state and
+default LRC, it's helpful to be able to see exactly what's inside the
+context image.  The changes here add some debugfs entries that dump each
+engine type's default LRC with some basic instruction header decoding.
+E.g.,
+
+        $ sudo cat /sys/kernel/debug/dri/0/gt0/default_lrc_ccs
+        [0x00000000] MI_NOOP (1 dwords)
+        [0x1108101d] MI_LOAD_REGISTER_IMM: 15 regs
+         - 0x1a244 = 0xffff0048
+         - 0x1a034 = 0x000000f8
+         - 0x1a030 = 0x000000f8
+         - 0x1a038 = 0x00fa0000
+         - 0x1a03c = 0x00003001
+         - 0x1a168 = 0x00000000
+         - 0x1a140 = 0x00400004
+         - 0x1a110 = 0x00000000
+         - 0x1a1c0 = 0x00000000
+         - 0x1a1c4 = 0x00000000
+         - 0x1a1c8 = 0x00000000
+         - 0x1a180 = 0x00000080
+         - 0x1a2b4 = 0x00000000
+         - 0x1a120 = 0x00000000
+         - 0x1a124 = 0x00000000
+        [0x00000000] MI_NOOP (1 dwords)
+        [0x11081011] MI_LOAD_REGISTER_IMM: 9 regs
+<...snip...>
+        [0x00000000] MI_NOOP (6 dwords)
+        [0x6904ff02] PIPELINE_SELECT (1 dwords)
+        [0x61010014] STATE_BASE_ADDRESS (22 dwords)
+        [0x61020001] STATE_SIP (3 dwords)
+        [0x61050000] STATE_COMPUTE_MODE (2 dwords)
+        [0x79190002] 3DSTATE_BINDING_TABLE_POOL_ALLOC (4 dwords)
+        [0x79040002] 3DSTATE_CHROMA_KEY (4 dwords)
+        [0x79040002] 3DSTATE_CHROMA_KEY (4 dwords)
+        [0x61060004] 3DSTATE_BTD (6 dwords)
+        [0x00000000] MI_NOOP (114 dwords)
+        [0x05000001] MI_BATCH_BUFFER_END
+
+A few other changes are made to the general way GPU instructions are
+defined in the Xe driver to make the definitions more consistent and
+easier to re-use in the new dumping logic.
 
 v2:
- - Include raw instruction header in output
- - Add 3DSTATE_AMFS_TEXTURE_POINTERS and 3DSTATE_MONOFILTER_SIZE.  The
-   first was supposed to be removed in Xe_HPG, and the second by
-   gen12, but both still show up in the RCS LRC.
+ - Use "instr" instead of "inst" as the short form of "instruction"
+   everywhere.
+ - Tighten bounds checking while parsing context to ensure we don't
+   overshoot the end if we get instructions with malformed lengths or if
+   we otherwise mis-parse something.
+ - Include raw hex form of instruction header in output.
+ - Add parsing for a couple instructions that the hardware is still
+   generating in the context image, even though they're technically not
+   supposed to exist on these platforms.
 
 v3:
- - Sanity check that we don't have numdw > remaining_dw.  (Lucas)
+ - Add check to dump_gfxpipe_command() to ensure we don't encounter
+   num_dw > remaining_dw.
 
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- .../drm/xe/instructions/xe_gfxpipe_commands.h | 108 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.c                   | 108 ++++++++++++++++++
- 2 files changed, 216 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h b/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-new file mode 100644
-index 000000000000..b5fbc761265c
---- /dev/null
-+++ b/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-@@ -0,0 +1,108 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_GFXPIPE_COMMANDS_H_
-+#define _XE_GFXPIPE_COMMANDS_H_
-+
-+#include "instructions/xe_instr_defs.h"
-+
-+#define GFXPIPE_PIPELINE		REG_GENMASK(28, 27)
-+#define   PIPELINE_COMMON		REG_FIELD_PREP(GFXPIPE_PIPELINE, 0x0)
-+#define   PIPELINE_SINGLE_DW		REG_FIELD_PREP(GFXPIPE_PIPELINE, 0x1)
-+#define   PIPELINE_COMPUTE		REG_FIELD_PREP(GFXPIPE_PIPELINE, 0x2)
-+#define   PIPELINE_3D			REG_FIELD_PREP(GFXPIPE_PIPELINE, 0x3)
-+
-+#define GFXPIPE_OPCODE			REG_GENMASK(26, 24)
-+#define GFXPIPE_SUBOPCODE		REG_GENMASK(23, 16)
-+
-+#define GFXPIPE_MATCH_MASK		(XE_INSTR_CMD_TYPE | \
-+					 GFXPIPE_PIPELINE | \
-+					 GFXPIPE_OPCODE | \
-+					 GFXPIPE_SUBOPCODE)
-+
-+#define GFXPIPE_COMMON_CMD(opcode, subopcode) \
-+	(XE_INSTR_GFXPIPE | PIPELINE_COMMON | \
-+	 REG_FIELD_PREP(GFXPIPE_OPCODE, opcode) | \
-+	 REG_FIELD_PREP(GFXPIPE_SUBOPCODE, subopcode))
-+
-+#define GFXPIPE_SINGLE_DW_CMD(opcode, subopcode) \
-+	(XE_INSTR_GFXPIPE | PIPELINE_SINGLE_DW | \
-+	 REG_FIELD_PREP(GFXPIPE_OPCODE, opcode) | \
-+	 REG_FIELD_PREP(GFXPIPE_SUBOPCODE, subopcode))
-+
-+#define GFXPIPE_3D_CMD(opcode, subopcode) \
-+	(XE_INSTR_GFXPIPE | PIPELINE_3D | \
-+	 REG_FIELD_PREP(GFXPIPE_OPCODE, opcode) | \
-+	 REG_FIELD_PREP(GFXPIPE_SUBOPCODE, subopcode))
-+
-+#define GFXPIPE_COMPUTE_CMD(opcode, subopcode) \
-+	(XE_INSTR_GFXPIPE | PIPELINE_COMPUTE | \
-+	 REG_FIELD_PREP(GFXPIPE_OPCODE, opcode) | \
-+	 REG_FIELD_PREP(GFXPIPE_SUBOPCODE, subopcode))
-+
-+#define STATE_BASE_ADDRESS			GFXPIPE_COMMON_CMD(0x1, 0x1)
-+#define STATE_SIP				GFXPIPE_COMMON_CMD(0x1, 0x2)
-+#define GPGPU_CSR_BASE_ADDRESS			GFXPIPE_COMMON_CMD(0x1, 0x4)
-+#define STATE_COMPUTE_MODE			GFXPIPE_COMMON_CMD(0x1, 0x5)
-+#define CMD_3DSTATE_BTD				GFXPIPE_COMMON_CMD(0x1, 0x6)
-+
-+#define CMD_3DSTATE_VF_STATISTICS		GFXPIPE_SINGLE_DW_CMD(0x0, 0xB)
-+
-+#define PIPELINE_SELECT				GFXPIPE_SINGLE_DW_CMD(0x1, 0x4)
-+
-+#define CMD_3DSTATE_CLEAR_PARAMS		GFXPIPE_3D_CMD(0x0, 0x4)
-+#define CMD_3DSTATE_DEPTH_BUFFER		GFXPIPE_3D_CMD(0x0, 0x5)
-+#define CMD_3DSTATE_STENCIL_BUFFER		GFXPIPE_3D_CMD(0x0, 0x6)
-+#define CMD_3DSTATE_HIER_DEPTH_BUFFER		GFXPIPE_3D_CMD(0x0, 0x7)
-+#define CMD_3DSTATE_VERTEX_BUFFERS		GFXPIPE_3D_CMD(0x0, 0x8)
-+#define CMD_3DSTATE_INDEX_BUFFER		GFXPIPE_3D_CMD(0x0, 0xA)
-+#define CMD_3DSTATE_VF				GFXPIPE_3D_CMD(0x0, 0xC)
-+#define CMD_3DSTATE_CC_STATE_POINTERS		GFXPIPE_3D_CMD(0x0, 0xE)
-+#define CMD_3DSTATE_WM				GFXPIPE_3D_CMD(0x0, 0x14)
-+#define CMD_3DSTATE_SAMPLE_MASK			GFXPIPE_3D_CMD(0x0, 0x18)
-+#define CMD_3DSTATE_SBE				GFXPIPE_3D_CMD(0x0, 0x1F)
-+#define CMD_3DSTATE_PS				GFXPIPE_3D_CMD(0x0, 0x20)
-+#define CMD_3DSTATE_CPS_POINTERS		GFXPIPE_3D_CMD(0x0, 0x22)
-+#define CMD_3DSTATE_VIEWPORT_STATE_POINTERS_CC	GFXPIPE_3D_CMD(0x0, 0x23)
-+#define CMD_3DSTATE_BLEND_STATE_POINTERS	GFXPIPE_3D_CMD(0x0, 0x24)
-+#define CMD_3DSTATE_BINDING_TABLE_POINTERS_PS	GFXPIPE_3D_CMD(0x0, 0x2A)
-+#define CMD_3DSTATE_SAMPLER_STATE_POINTERS_PS	GFXPIPE_3D_CMD(0x0, 0x2F)
-+#define CMD_3DSTATE_VF_INSTANCING		GFXPIPE_3D_CMD(0x0, 0x49)
-+#define CMD_3DSTATE_VF_TOPOLOGY			GFXPIPE_3D_CMD(0x0, 0x4B)
-+#define CMD_3DSTATE_WM_CHROMAKEY		GFXPIPE_3D_CMD(0x0, 0x4C)
-+#define CMD_3DSTATE_PS_BLEND			GFXPIPE_3D_CMD(0x0, 0x4D)
-+#define CMD_3DSTATE_WM_DEPTH_STENCIL		GFXPIPE_3D_CMD(0x0, 0x4E)
-+#define CMD_3DSTATE_PS_EXTRA			GFXPIPE_3D_CMD(0x0, 0x4F)
-+#define CMD_3DSTATE_SBE_SWIZ			GFXPIPE_3D_CMD(0x0, 0x51)
-+#define CMD_3DSTATE_VFG				GFXPIPE_3D_CMD(0x0, 0x57)
-+#define CMD_3DSTATE_AMFS			GFXPIPE_3D_CMD(0x0, 0x6F)
-+#define CMD_3DSTATE_DEPTH_BOUNDS		GFXPIPE_3D_CMD(0x0, 0x71)
-+#define CMD_3DSTATE_AMFS_TEXTURE_POINTERS	GFXPIPE_3D_CMD(0x0, 0x72)
-+#define CMD_3DSTATE_CONSTANT_TS_POINTER		GFXPIPE_3D_CMD(0x0, 0x73)
-+#define CMD_3DSTATE_MESH_DISTRIB		GFXPIPE_3D_CMD(0x0, 0x78)
-+#define CMD_3DSTATE_SBE_MESH			GFXPIPE_3D_CMD(0x0, 0x82)
-+#define CMD_3DSTATE_CPSIZE_CONTROL_BUFFER	GFXPIPE_3D_CMD(0x0, 0x83)
-+
-+#define CMD_3DSTATE_CHROMA_KEY			GFXPIPE_3D_CMD(0x1, 0x4)
-+#define CMD_3DSTATE_POLY_STIPPLE_OFFSET		GFXPIPE_3D_CMD(0x1, 0x6)
-+#define CMD_3DSTATE_POLY_STIPPLE_PATTERN	GFXPIPE_3D_CMD(0x1, 0x7)
-+#define CMD_3DSTATE_LINE_STIPPLE		GFXPIPE_3D_CMD(0x1, 0x8)
-+#define CMD_3DSTATE_AA_LINE_PARAMETERS		GFXPIPE_3D_CMD(0x1, 0xA)
-+#define CMD_3DSTATE_MONOFILTER_SIZE		GFXPIPE_3D_CMD(0x1, 0x11)
-+#define CMD_3DSTATE_PUSH_CONSTANT_ALLOC_VS	GFXPIPE_3D_CMD(0x1, 0x12)
-+#define CMD_3DSTATE_PUSH_CONSTANT_ALLOC_HS	GFXPIPE_3D_CMD(0x1, 0x13)
-+#define CMD_3DSTATE_PUSH_CONSTANT_ALLOC_DS	GFXPIPE_3D_CMD(0x1, 0x14)
-+#define CMD_3DSTATE_PUSH_CONSTANT_ALLOC_GS	GFXPIPE_3D_CMD(0x1, 0x15)
-+#define CMD_3DSTATE_PUSH_CONSTANT_ALLOC_PS	GFXPIPE_3D_CMD(0x1, 0x16)
-+#define CMD_3DSTATE_SO_DECL_LIST		GFXPIPE_3D_CMD(0x1, 0x17)
-+#define   CMD_3DSTATE_SO_DECL_LIST_DW_LEN	REG_GENMASK(8, 0)
-+#define CMD_3DSTATE_BINDING_TABLE_POOL_ALLOC	GFXPIPE_3D_CMD(0x1, 0x19)
-+#define CMD_3DSTATE_SAMPLE_PATTERN		GFXPIPE_3D_CMD(0x1, 0x1C)
-+#define CMD_3DSTATE_3D_MODE			GFXPIPE_3D_CMD(0x1, 0x1E)
-+#define CMD_3DSTATE_SUBSLICE_HASH_TABLE		GFXPIPE_3D_CMD(0x1, 0x1F)
-+#define CMD_3DSTATE_SLICE_TABLE_STATE_POINTERS	GFXPIPE_3D_CMD(0x1, 0x20)
-+#define CMD_3DSTATE_PTBR_TILE_PASS_INFO		GFXPIPE_3D_CMD(0x1, 0x22)
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 38e98c54464b..332fc0602074 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -6,6 +6,7 @@
- #include "xe_lrc.h"
- 
- #include "instructions/xe_mi_commands.h"
-+#include "instructions/xe_gfxpipe_commands.h"
- #include "regs/xe_engine_regs.h"
- #include "regs/xe_gpu_commands.h"
- #include "regs/xe_gt_regs.h"
-@@ -907,6 +908,15 @@ struct iosys_map xe_lrc_parallel_map(struct xe_lrc *lrc)
- 
- static int instr_dw(u32 cmd_header)
- {
-+	/* GFXPIPE "SINGLE_DW" opcodes are a single dword */
-+	if ((cmd_header & (XE_INSTR_CMD_TYPE | GFXPIPE_PIPELINE)) ==
-+	    GFXPIPE_SINGLE_DW_CMD(0, 0))
-+		return 1;
-+
-+	/* 3DSTATE_SO_DECL_LIST has a 9-bit dword length rather than 8 */
-+	if ((cmd_header & GFXPIPE_MATCH_MASK) == CMD_3DSTATE_SO_DECL_LIST)
-+		return REG_FIELD_GET(CMD_3DSTATE_SO_DECL_LIST_DW_LEN, cmd_header) + 2;
-+
- 	/* Most instructions have the # of dwords (minus 2) in 7:0 */
- 	return REG_FIELD_GET(XE_INSTR_LEN_MASK, cmd_header) + 2;
- }
-@@ -967,6 +977,102 @@ static int dump_mi_command(struct drm_printer *p,
- 	}
- }
- 
-+static int dump_gfxpipe_command(struct drm_printer *p,
-+				struct xe_gt *gt,
-+				u32 *dw,
-+				int remaining_dw)
-+{
-+	u32 numdw = instr_dw(*dw);
-+	u32 pipeline = REG_FIELD_GET(GFXPIPE_PIPELINE, *dw);
-+	u32 opcode = REG_FIELD_GET(GFXPIPE_OPCODE, *dw);
-+	u32 subopcode = REG_FIELD_GET(GFXPIPE_SUBOPCODE, *dw);
-+
-+	/*
-+	 * Make sure we haven't mis-parsed a number of dwords that exceeds the
-+	 * remaining size of the LRC.
-+	 */
-+	if (xe_gt_WARN_ON(gt, numdw > remaining_dw))
-+		numdw = remaining_dw;
-+
-+	switch (*dw & GFXPIPE_MATCH_MASK) {
-+#define MATCH(cmd) \
-+	case cmd: \
-+		drm_printf(p, "[%#010x] " #cmd " (%d dwords)\n", *dw, numdw); \
-+		return numdw
-+#define MATCH3D(cmd) \
-+	case CMD_##cmd: \
-+		drm_printf(p, "[%#010x] " #cmd " (%d dwords)\n", *dw, numdw); \
-+		return numdw
-+
-+	MATCH(STATE_BASE_ADDRESS);
-+	MATCH(STATE_SIP);
-+	MATCH(GPGPU_CSR_BASE_ADDRESS);
-+	MATCH(STATE_COMPUTE_MODE);
-+	MATCH3D(3DSTATE_BTD);
-+
-+	MATCH3D(3DSTATE_VF_STATISTICS);
-+
-+	MATCH(PIPELINE_SELECT);
-+
-+	MATCH3D(3DSTATE_CLEAR_PARAMS);
-+	MATCH3D(3DSTATE_DEPTH_BUFFER);
-+	MATCH3D(3DSTATE_STENCIL_BUFFER);
-+	MATCH3D(3DSTATE_HIER_DEPTH_BUFFER);
-+	MATCH3D(3DSTATE_VERTEX_BUFFERS);
-+	MATCH3D(3DSTATE_INDEX_BUFFER);
-+	MATCH3D(3DSTATE_VF);
-+	MATCH3D(3DSTATE_CC_STATE_POINTERS);
-+	MATCH3D(3DSTATE_WM);
-+	MATCH3D(3DSTATE_SAMPLE_MASK);
-+	MATCH3D(3DSTATE_SBE);
-+	MATCH3D(3DSTATE_PS);
-+	MATCH3D(3DSTATE_CPS_POINTERS);
-+	MATCH3D(3DSTATE_VIEWPORT_STATE_POINTERS_CC);
-+	MATCH3D(3DSTATE_BLEND_STATE_POINTERS);
-+	MATCH3D(3DSTATE_BINDING_TABLE_POINTERS_PS);
-+	MATCH3D(3DSTATE_SAMPLER_STATE_POINTERS_PS);
-+	MATCH3D(3DSTATE_VF_INSTANCING);
-+	MATCH3D(3DSTATE_VF_TOPOLOGY);
-+	MATCH3D(3DSTATE_WM_CHROMAKEY);
-+	MATCH3D(3DSTATE_PS_BLEND);
-+	MATCH3D(3DSTATE_WM_DEPTH_STENCIL);
-+	MATCH3D(3DSTATE_PS_EXTRA);
-+	MATCH3D(3DSTATE_SBE_SWIZ);
-+	MATCH3D(3DSTATE_VFG);
-+	MATCH3D(3DSTATE_AMFS);
-+	MATCH3D(3DSTATE_DEPTH_BOUNDS);
-+	MATCH3D(3DSTATE_AMFS_TEXTURE_POINTERS);
-+	MATCH3D(3DSTATE_CONSTANT_TS_POINTER);
-+	MATCH3D(3DSTATE_MESH_DISTRIB);
-+	MATCH3D(3DSTATE_SBE_MESH);
-+	MATCH3D(3DSTATE_CPSIZE_CONTROL_BUFFER);
-+
-+	MATCH3D(3DSTATE_CHROMA_KEY);
-+	MATCH3D(3DSTATE_POLY_STIPPLE_OFFSET);
-+	MATCH3D(3DSTATE_POLY_STIPPLE_PATTERN);
-+	MATCH3D(3DSTATE_LINE_STIPPLE);
-+	MATCH3D(3DSTATE_AA_LINE_PARAMETERS);
-+	MATCH3D(3DSTATE_MONOFILTER_SIZE);
-+	MATCH3D(3DSTATE_PUSH_CONSTANT_ALLOC_VS);
-+	MATCH3D(3DSTATE_PUSH_CONSTANT_ALLOC_HS);
-+	MATCH3D(3DSTATE_PUSH_CONSTANT_ALLOC_DS);
-+	MATCH3D(3DSTATE_PUSH_CONSTANT_ALLOC_GS);
-+	MATCH3D(3DSTATE_PUSH_CONSTANT_ALLOC_PS);
-+	MATCH3D(3DSTATE_SO_DECL_LIST);
-+	MATCH3D(3DSTATE_BINDING_TABLE_POOL_ALLOC);
-+	MATCH3D(3DSTATE_SAMPLE_PATTERN);
-+	MATCH3D(3DSTATE_3D_MODE);
-+	MATCH3D(3DSTATE_SUBSLICE_HASH_TABLE);
-+	MATCH3D(3DSTATE_SLICE_TABLE_STATE_POINTERS);
-+	MATCH3D(3DSTATE_PTBR_TILE_PASS_INFO);
-+
-+	default:
-+		drm_printf(p, "[%#010x] unknown GFXPIPE command (pipeline=%#x, opcode=%#x, subopcode=%#x), likely %d dwords\n",
-+			   *dw, pipeline, opcode, subopcode, numdw);
-+		return numdw;
-+	}
-+}
-+
- void xe_lrc_dump_default(struct drm_printer *p,
- 			 struct xe_gt *gt,
- 			 enum xe_engine_class hwe_class)
-@@ -989,6 +1095,8 @@ void xe_lrc_dump_default(struct drm_printer *p,
- 	while (remaining_dw > 0) {
- 		if ((*dw & XE_INSTR_CMD_TYPE) == XE_INSTR_MI) {
- 			num_dw = dump_mi_command(p, gt, dw, remaining_dw);
-+		} else if ((*dw & XE_INSTR_CMD_TYPE) == XE_INSTR_GFXPIPE) {
-+			num_dw = dump_gfxpipe_command(p, gt, dw, remaining_dw);
- 		} else {
- 			num_dw = min(instr_dw(*dw), remaining_dw);
- 			drm_printf(p, "[%#10x] Unknown instruction of type %#x, likely %d dwords\n",
+Matt Roper (6):
+  drm/xe: Make MI_FLUSH_DW immediate size more explicit
+  drm/xe: Separate number of registers from MI_LRI opcode
+  drm/xe: Clarify number of dwords/qwords stored by MI_STORE_DATA_IMM
+  drm/xe: Extract MI_* instructions to their own header
+  drm/xe/debugfs: Add dump of default LRCs' MI instructions
+  drm/xe/debugfs: Include GFXPIPE commands in LRC dump
+
+ .../drm/xe/instructions/xe_gfxpipe_commands.h | 108 +++++++++
+ .../gpu/drm/xe/instructions/xe_instr_defs.h   |  32 +++
+ .../gpu/drm/xe/instructions/xe_mi_commands.h  |  61 +++++
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h     |  33 ---
+ drivers/gpu/drm/xe/xe_bb.c                    |   1 +
+ drivers/gpu/drm/xe/xe_execlist.c              |   1 +
+ drivers/gpu/drm/xe/xe_gt.c                    |   3 +-
+ drivers/gpu/drm/xe/xe_gt_debugfs.c            |  46 ++++
+ drivers/gpu/drm/xe/xe_lrc.c                   | 208 +++++++++++++++++-
+ drivers/gpu/drm/xe/xe_lrc.h                   |   5 +
+ drivers/gpu/drm/xe/xe_migrate.c               |  10 +-
+ drivers/gpu/drm/xe/xe_ring_ops.c              |  21 +-
+ 12 files changed, 477 insertions(+), 52 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
+ create mode 100644 drivers/gpu/drm/xe/instructions/xe_instr_defs.h
+ create mode 100644 drivers/gpu/drm/xe/instructions/xe_mi_commands.h
+
 -- 
 2.41.0
 
