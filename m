@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3311DCDB465
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 09:03:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 567A7CDB474
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 09:03:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F08F110E16C;
-	Mon, 16 Oct 2023 09:03:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2919810E159;
+	Mon, 16 Oct 2023 09:03:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DCC710E15D
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Oct 2023 09:03:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3919810E159
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Oct 2023 09:03:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697447017; x=1728983017;
+ t=1697447029; x=1728983029;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=A7EQL4P+JITZBekHiFKnhmQ4WUFxMym9dtNhJHXtT+k=;
- b=ftHQUAHodVnM+EMSk9O65i1qv5TMupTOYWrwcAOQ+Rp2/TImCWuQI/uS
- 75rSVhJ/E6tp50l7W+Cxh5WrrSl7bqAP0ARpEx8dtA2+l1Mir5MIO8HvG
- Wv+k3OeEwNEXKXb+DLjokNaXzcenF2wMLWVhcQBRUQHGVGXP2hUnHAhDY
- sfv7YUYYdojgQhf1Emew+JsCVTpeXi6EPR336YdwSwGe+OX5J2Ou0SKZv
- 5MNYZLrVweAIbM+w4tKZU735kJ12W8Da43HddXqRy+c6Xev7m97hG/cHo
- 7b13tI+SGTQGMaTkPKCl/HEHOspZJ0hIrk2WU2A3Rx3K0gmJcdZ2UZ4vd g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="388345689"
-X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="388345689"
+ bh=68ewNFptBJguEh5nIYF3lKBy9G1Z9/OuHGRmozUB2lU=;
+ b=X1SMOlD6TOAwm7EtJmO9cvZGDWAq4W1BEm+5S9DCrxsPvaTDonM601zf
+ jhNiMJlYnAQy0lqjP7GfttzKNCykyv747YRosbxHSuiWDm//VVCbZHL/k
+ /5jMHk4IxiA5Rja9RlQYD22R6KsYbcnQPSsKMGiB5MK9lXjdzKz9ikJ/q
+ rc+yQ7+eRwwIoWfCRXWojkfEc81tvbN/uHZwp7RkkF0ruKkllyih4NQQk
+ 95R+VPQH9oU7sRY6bobkWpUF3oPruAundYdR/JmdH7iE6O/H92FbB7SnQ
+ bh2dmKqlbSwFnFQdpBSxVcE71SfrJOa32ENBCRkYR3bLMUfHxGCubk+Nq g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="388345723"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="388345723"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2023 02:03:37 -0700
+ 16 Oct 2023 02:03:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="732220372"
-X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="732220372"
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="732220452"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="732220452"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.32])
- by orsmga006.jf.intel.com with ESMTP; 16 Oct 2023 02:03:35 -0700
+ by orsmga006.jf.intel.com with ESMTP; 16 Oct 2023 02:03:47 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Oct 2023 14:31:39 +0530
-Message-Id: <20231016090139.850525-3-suraj.kandpal@intel.com>
+Date: Mon, 16 Oct 2023 14:31:41 +0530
+Message-Id: <20231016090139.850525-4-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231016090139.850525-1-suraj.kandpal@intel.com>
 References: <20231016090139.850525-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v6 2/3] drm/i915/hdcp: Move checks for gsc health
- status
+Subject: [Intel-xe] [PATCH v6 3/3] drm/xe/hdcp: Define
+ intel_hdcp_gsc_check_status in Xe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,77 +59,46 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Move checks for gsc components required for HDCP 2.2
-to work into intel_hdcp_gsc.c. This will also help
-with XE refactor on HDCP's side.
+Define intel_hdcp_gsc_check_status in Xe to account
+for changes in i915 and Xe.
+intel_hdcp_check_status always returns false as gsc cs
+interface is not yet ported.
+intel_hdcp_gsc_cs_required always returns true as going
+forward gsc cs will always be required by upcoming
+platforms
+
+--v5
+-Define intel_hdcp_gsc_cs_required()
+
+--v6
+-Explain reasons for the return values [Chaitanya]
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Uma Shankar <uma.shankar@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20231009095537.653619-2-suraj.kandpal@intel.com
-(cherry picked from commit 99f106ad5063444361139f9bd727e61383b2b93c)
 ---
- drivers/gpu/drm/i915/display/intel_hdcp.c     |  8 +-------
- drivers/gpu/drm/i915/display/intel_hdcp_gsc.c | 14 ++++++++++++++
- drivers/gpu/drm/i915/display/intel_hdcp_gsc.h |  1 +
- 3 files changed, 16 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/display/xe_hdcp_gsc.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 8cca4793cf92..c89da3568ebd 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -173,14 +173,8 @@ bool intel_hdcp2_capable(struct intel_connector *connector)
+diff --git a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+index 0453293af8ef..0f11a39333e2 100644
+--- a/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
++++ b/drivers/gpu/drm/xe/display/xe_hdcp_gsc.c
+@@ -6,6 +6,16 @@
+ #include "i915_drv.h"
+ #include "intel_hdcp_gsc.h"
  
- 	/* If MTL+ make sure gsc is loaded and proxy is setup */
- 	if (intel_hdcp_gsc_cs_required(i915)) {
--		struct intel_gt *gt = i915->media_gt;
--		struct intel_gsc_uc *gsc = gt ? &gt->uc.gsc : NULL;
--
--		if (!gsc || !intel_uc_fw_is_running(&gsc->fw)) {
--			drm_dbg_kms(&i915->drm,
--				    "GSC components required for HDCP2.2 are not ready\n");
-+		if (!intel_hdcp_gsc_check_status(i915))
- 			return false;
--		}
- 	}
- 
- 	/* MEI/GSC interface is solid depending on which is used */
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-index d753db3eef15..d355d610bc9f 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.c
-@@ -17,6 +17,20 @@ bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915)
- 	return DISPLAY_VER(i915) >= 14;
- }
- 
-+bool intel_hdcp_gsc_check_status(struct drm_i915_private *i915)
++bool intel_hdcp_gsc_cs_required(struct drm_i915_private *i915)
 +{
-+	struct intel_gt *gt = i915->media_gt;
-+	struct intel_gsc_uc *gsc = gt ? &gt->uc.gsc : NULL;
-+
-+	if (!gsc || !intel_uc_fw_is_running(&gsc->fw)) {
-+		drm_dbg_kms(&i915->drm,
-+			    "GSC components required for HDCP2.2 are not ready\n");
-+		return false;
-+	}
-+
 +	return true;
 +}
 +
- static int
- gsc_hdcp_initiate_session(struct device *dev, struct hdcp_port_data *data,
- 			  struct hdcp2_ake_init *ake_data)
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-index cbf96551e534..eba2057c5a9e 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp_gsc.h
-@@ -23,5 +23,6 @@ ssize_t intel_hdcp_gsc_msg_send(struct drm_i915_private *i915, u8 *msg_in,
- 				size_t msg_out_len);
- int intel_hdcp_gsc_init(struct drm_i915_private *i915);
- void intel_hdcp_gsc_fini(struct drm_i915_private *i915);
-+bool intel_hdcp_gsc_check_status(struct drm_i915_private *i915);
- 
- #endif /* __INTEL_HDCP_GCS_H__ */
++bool intel_hdcp_gsc_check_status(struct drm_i915_private *i915)
++{
++	return false;
++}
++
+ int intel_hdcp_gsc_init(struct drm_i915_private *i915)
+ {
+ 	drm_info(&i915->drm, "HDCP support not yet implemented\n");
 -- 
 2.25.1
 
