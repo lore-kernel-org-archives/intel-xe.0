@@ -4,30 +4,40 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1ED7FCDB465
-	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 10:16:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A054CDB465
+	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 10:22:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB2A610E190;
-	Mon, 16 Oct 2023 10:16:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D102310E18B;
- Mon, 16 Oct 2023 10:16:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id CFD3FA0093;
- Mon, 16 Oct 2023 10:16:40 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6978310E0A5;
+	Mon, 16 Oct 2023 10:22:39 +0000 (UTC)
+Received: from farmhouse.coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC4310E0A5
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Oct 2023 10:22:37 +0000 (UTC)
+Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
+ helo=[192.168.100.137])
+ by farmhouse.coelho.fi with esmtpsa (TLS1.3) tls
+ TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (Exim 4.97-RC1)
+ (envelope-from <luca@coelho.fi>) id 1qsKk5-000000001UM-2MXi;
+ Mon, 16 Oct 2023 13:22:34 +0300
+Message-ID: <f352c534f049f7068cef667b4faa88d7cca9b8fd.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Mon, 16 Oct 2023 13:22:32 +0300
+In-Reply-To: <ZShRTTLRD7ltDGSS@intel.com>
+References: <20230522221527.2181802-1-rodrigo.vivi@intel.com>
+ <20230523032805.GB6250@mdroper-desk1.amr.corp.intel.com>
+ <ZGzGJYuTAUpfeXe5@DUT025-TGLU.fm.intel.com>
+ <20230523163849.GD6250@mdroper-desk1.amr.corp.intel.com>
+ <ZG1Rwd2k6oDdiHHT@DUT025-TGLU.fm.intel.com>
+ <8de90ac856b0caf3d0bd82717769e9f6fe1687a0.camel@coelho.fi>
+ <ZSRtavVCM2lqbV5y@intel.com>
+ <f8c1a6a39300f01b6affc5ecee7b4486dbcb6baa.camel@coelho.fi>
+ <ZShRTTLRD7ltDGSS@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Balasubramani Vivekanandan" <balasubramani.vivekanandan@intel.com>
-Date: Mon, 16 Oct 2023 10:16:40 -0000
-Message-ID: <169745140084.13508.10580743270919587095@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231016101720.1657746-1-balasubramani.vivekanandan@intel.com>
-In-Reply-To: <20231016101720.1657746-1-balasubramani.vivekanandan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_Event_t?=
- =?utf-8?q?racing_for_GuC_CTB?=
+Subject: Re: [Intel-xe] [RFC] drm/xe: A minimal assert for some forcewake
+ domain on xe_mmio.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,571 +49,495 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Thu, 2023-10-12 at 16:04 -0400, Rodrigo Vivi wrote:
+> On Tue, Oct 10, 2023 at 10:00:06AM +0300, Luca Coelho wrote:
+> > On Mon, 2023-10-09 at 17:15 -0400, Rodrigo Vivi wrote:
+> > > On Mon, Oct 09, 2023 at 12:22:44PM +0300, Luca Coelho wrote:
+> > > > Hi everyone,
+> > > >=20
+> > > > On Tue, 2023-05-23 at 23:52 +0000, Matthew Brost wrote:
+> > > > > On Tue, May 23, 2023 at 09:38:49AM -0700, Matt Roper wrote:
+> > > > > > On Tue, May 23, 2023 at 01:56:53PM +0000, Matthew Brost wrote:
+> > > > > > > On Mon, May 22, 2023 at 08:28:05PM -0700, Matt Roper wrote:
+> > > > > > > > On Mon, May 22, 2023 at 06:15:27PM -0400, Rodrigo Vivi wrot=
+e:
+> > > > > > > > > It is the maximum protection we can do with the current i=
+nfrastructure.
+> > > > > > > > >=20
+> > > > > > > > > Cc: John Harrison <John.C.Harrison@Intel.com>
+> > > > > > > > > Cc: Matthew Auld <matthew.auld@intel.com>
+> > > > > > > > > Cc: Francois Dugast <francois.dugast@intel.com>
+> > > > > > > > > Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> > > > > > > > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > > > > > > > Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.co=
+m>
+> > > > > > > > > Cc: Matt Roper <matthew.d.roper@intel.com>
+> > > > > > > > > Cc: Matthew Brost <matthew.brost@intel.com>
+> > > > > > > > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > > > > > > > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > > > > > > > ---
+> > > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > RFC
+> > > > > > > > > =3D=3D=3D
+> > > > > > > > >=20
+> > > > > > > > > Okay, so, this is more an RFC to brainstorm the future of=
+ the force_wake in
+> > > > > > > > > Xe than anything else.
+> > > > > > > > >=20
+> > > > > > > > > On i915 the force_wake is built-in the mmio functions at =
+uncore component.
+> > > > > > > > >=20
+> > > > > > > > > With that approach we had few historical issues iirc:
+> > > > > > > > >=20
+> > > > > > > > > 1. Display performance with vblank evasion that requested=
+ uncore to provide
+> > > > > > > > > the 'fw' variantes that are actually the ones that avoid =
+fw (contrary to what
+> > > > > > > > > the name suggests).
+> > > > > > > >=20
+> > > > > > > > In i915 there were more differences between fw and non-fw v=
+ariants
+> > > > > > > > of register functions than just forcewake handling:
+> > > > > > > >=20
+> > > > > > > >  * _fw() functions assumed that the caller was already hold=
+ing
+> > > > > > > >    forcewake, whereas the non-fw functions would obtain it =
+themselves
+> > > > > > > >  * _fw() functions also assumed that the caller was already=
+ holding
+> > > > > > > >    uncore->lock, whereas the non-fw functions would obtain =
+and release
+> > > > > > > >    the lock around each register access
+> > > > > > > >  * _fw() functions do no tracing and no debug assertions
+> > > > > > > >  * _fw() functions do not check for unclaimed MMIO
+> > > > > > > >=20
+> > > > > > > > I don't think the first bullet there (forcewake) really mat=
+tered much
+> > > > > > > > from a performance perspective.  For display registers, a q=
+uick binary
+> > > > > > > > search of the FW table (just a handful of CPU cycles) would=
+ quickly
+> > > > > > > > determine that no forcewake domains were needed for those r=
+egister
+> > > > > > > > offsets, so we wouldn't be doing anything with forcewake at=
+ the hardware
+> > > > > > > > level at all.  For display registers, the more performance-=
+relevant
+> > > > > > > > aspects of using the _fw() functions was doing all your reg=
+ister
+> > > > > > > > accesses together without contention with other MMIO work. =
+ I.e.,
+> > > > > > > > holding the uncore lock over an entire set of registers rat=
+her than
+> > > > > > > > grabbing/releasing it for each one, and (for vblank evasion
+> > > > > > > > specifically) doing it all while interrupts were disabled. =
+ For debug
+> > > > > > > > drivers, there was also a bunch of other stuff that the _fw=
+() functions
+> > > > > > > > bypassed (e.g., tripling of the number of register accesses=
+ due to
+> > > > > > > > reading FPGA_DBG before/after each register to look for unc=
+laimed
+> > > > > > > > accesses).
+> > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > 2. Missed ranges updates. Sometimes we messed up with the=
+ ranges, there were
+> > > > > > > > > other times that the spec was updated and we didn't get t=
+he notification, and
+> > > > > > > > > there were cases that the BSpec had bugs.
+> > > > > > > > >=20
+> > > > > > > > > For these reasons in Xe we have decided to let to the cal=
+ler the
+> > > > > > > > > responsibility to set the force_wake bits for their domai=
+ns before doing
+> > > > > > > > > the MMIO.
+> > > > > > > >=20
+> > > > > > > > I don't think #2 was a reason to skip forcewake in Xe.  Not=
+ noticing a
+> > > > > > > > bspec update (or the bspec itself having incorrect informat=
+ion) would
+> > > > > > > > lead to even more mistakes if the caller has to explicitly =
+grab the
+> > > > > > > > appropriate domains than if the driver does it implicitly. =
+ The explicit
+> > > > > > > > handling only helps in the subset of cases where we blindly=
+ grab all of
+> > > > > > > > the domains (as we do during part of init).
+> > > > > > > >=20
+> > > > > > > >=20
+> > > > > > >=20
+> > > > > > > MMIO access that requires forcewakes really only should be in=
+ a few
+> > > > > > > places, off the top of my head:
+> > > > > > >=20
+> > > > > > > 1. Init
+> > > > > > > 2. Reset
+> > > > > > > 3. Sysfs / Debugfs
+> > > > > > >=20
+> > > > > > > In all of these cases I think it fine to blindly grab all for=
+cewakes.
+> > > > > > >=20
+> > > > > > > Please chime in if I'm missing something.
+> > > > > >=20
+> > > > > > I think as we implement more features in the Xe driver we're go=
+ing to
+> > > > > > wind up with a lot more places where we need to access GT regis=
+ters at
+> > > > > > runtime.  A few examples off the top of my head:
+> > > > > >=20
+> > > > > >  * EU stall sampling
+> > > > > >  * Perf/OA
+> > > > > >  * EU debugger
+> > > > > >  * Various OOB workarounds that ask us to twiddle a register at=
+ certain
+> > > > > >    times in the driver.
+> > > > >=20
+> > > > > Hmm, ok a lot of these I could make the argument that these are n=
+ot
+> > > > > normal operation so just grab everything and call it a day. If so=
+me of
+> > > > > these fall into the category of 'normal enough to be optimized' I=
+ can
+> > > > > also make the argument it is no more complex (perhaps less comple=
+x) to
+> > > > > explicitly grab the forcewake than having the logic auto-grab the
+> > > > > forcewake.
+> > > > >=20
+> > > > > What a compromise of in a debug mode we auto-generate the asserts=
+ based
+> > > > > on a table but we still explicitly grab the forcewake?
+> > > > >=20
+> > > > > >=20
+> > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > However I'm seeing many questions and doubts popping up:
+> > > > > > > > >=20
+> > > > > > > > > 1. Are we confident that we are not missing any wake-up?
+> > > > > > > > > 2. Are we confident that the domains are set correctly?
+> > > > > > > > > 3. Are we not wasting power if we are waking up ALL the d=
+omains instead
+> > > > > > > > >    of some specific one?
+> > > > > > > >=20
+> > > > > > > > I think we're only holding ALL domains during init; for mos=
+t of the
+> > > > > > > > runtime MMIO accesses, I think the code is currently attemp=
+ting to only
+> > > > > > > > grab the domain(s) that it thinks the registers it's access=
+ing will
+> > > > > > > > need.  Although that might be working right now, I'm a litt=
+le bit
+> > > > > > > > worried about how that will scale in the long term when a s=
+ingle
+> > > > > > > > register might be in several different domains depending on=
+ what
+> > > > > > > > platform you're running on.  There have definitely been cas=
+es in the
+> > > > > > > > past where groups of registers migrated from RENDER to GT o=
+r vice versa
+> > > > > > > > between platforms, so the exact domain you needed for an op=
+eration
+> > > > > > > > varied by platform.  And things are even more complicated i=
+f you're
+> > > > > > > > doing any MMIO against the media, since the hardware seems =
+to change
+> > > > > > > > exactly how it splits up the media power wells somewhat oft=
+en.
+> > > > > > > >=20
+> > > > > > > > > 4. What about the display disconnection now because i915 =
+and xe have different
+> > > > > > > > >    mmio approaches but reusing i915-display?
+> > > > > > > > >=20
+> > > > > > > > > It looks to me that the cons of the current approach are =
+superseding the
+> > > > > > > > > cons of the i915 approach. But I want to hear more though=
+ts here before
+> > > > > > > > > we decide which route to take.
+> > > > > > > > >=20
+> > > > > > > > > Maybe we have that domain as part of the mmio calls thems=
+elves? Maybe
+> > > > > > > > > a double approach where the caller is responsible but mmi=
+o has the range
+> > > > > > > > > information and double check it?
+> > > > > > > >=20
+> > > > > > > > As noted above, part of the challenge with forcewake is tha=
+t even if the
+> > > > > > > > caller knows it wants to access register FOO, and even if i=
+t know FOO is
+> > > > > > > > a GT register that likely needs forcewake, it's sometimes c=
+hallenging to
+> > > > > > > > make sure it's grabbing the correct domain(s) for every sin=
+gle platform
+> > > > > > > > the Xe driver will eventually support if the power manageme=
+nt handling
+> > > > > > > > changes.  I think that was part of the motivation for encod=
+ing the
+> > > > > > > > tables into the driver in i915.  It seems like GT power wel=
+ls don't
+> > > > > > > > change as much these days as they used to, but it's hard to=
+ say whether
+> > > > > > > > that will continue in the future or not.  Who knows...maybe=
+ they'll
+> > > > > > > > eventually start creating dedicated domains for stuff like =
+blitters,
+> > > > > > > > GuC, etc.  rather than lumping all of those into the "GT" c=
+atchall
+> > > > > > > > domain.
+> > > > > > > >=20
+> > > > > > > > If we do decide to go back to implicit forcewake handling w=
+ith the table
+> > > > > > > > encoded into the driver, it might be worth doing something =
+sort of like
+> > > > > > >=20
+> > > > > > > Let's not do this intel_uncore.c is an unreadable mess, I don=
+'t want
+> > > > > > > anything like this in Xe.
+> > > > > >=20
+> > > > > > When you say unreadable, are you referring to the macros that g=
+enerate
+> > > > > > the table lookup functions?  I don't think that macro magic wou=
+ld be
+> > > > > > needed for Xe since we don't have to support old platforms that=
+ have
+> > > > > > very different forcewake behavior, and we also don't need to ge=
+nerate
+> > > > > > separate 8-bit, 16-bit, and 32-bit versions of each operation a=
+nymore
+> > > > > > (since I think everything in the GT is 32-bits these days).
+> > > > > >=20
+> > > > >=20
+> > > > > Just the entire file is unreadable in general, trying to avoid th=
+ese
+> > > > > types of files in Xe, avoid traps of the i915 did this so let's d=
+o it in
+> > > > > Xe, and over engineering our driver to avoid hypothetical future =
+bugs.
+> > > > >=20
+> > > > > Matt
+> > > > >=20
+> > > > > > The forcewake and shadow tables themselves are pretty clean in =
+i915
+> > > > > > these days, and if we move to autogenerating them from a text f=
+ile, they
+> > > > > > can become even simpler since the text file will basically be a=
+ cleaned
+> > > > > > up copy/paste of part of the bspec table.
+> > > > > >=20
+> > > > > >=20
+> > > > > > Matt
+> > > > > >=20
+> > > > > > >=20
+> > > > > > > > what Lucas is doing in the OOB workaround series --- drop t=
+he
+> > > > > > > > per-platform tables into a human-readable text file that's =
+more similar
+> > > > > > > > to the format used by the bspec (exact ranges, forcewake do=
+main, MCR
+> > > > > > > > replication type, etc.) and then provide a small parser pro=
+gram that
+> > > > > > > > will convert that into actual code (and do things like cons=
+olidating
+> > > > > > > > adjacent ranges).
+> > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > Any other idea? Thoughts?
+> > > > > > > >=20
+> > > > > > > > Once the big GT vs tile refactor stuff I have in flight get=
+s finalized,
+> > > > > > > > I plan to follow up with another series that creates a more=
+ appropriate
+> > > > > > > > MMIO target for register operations rather than using "xe_g=
+t" as the
+> > > > > > > > target (even for things completely unrelated to the small G=
+T subset of
+> > > > > > > > hardware).  My idea is that you'd grab an MMIO target struc=
+ture for MMIO
+> > > > > > > > operations against a specific hardware unit, and then the i=
+nfo inside
+> > > > > > > > the MMIO structure would be able to figure out if there are=
+ additional
+> > > > > > > > checks and/or operations it should perform.  E.g.,
+> > > > > > > >=20
+> > > > > > > >  * mmio =3D xe_mmio_for_device(xe_device *xe);
+> > > > > > > >     - Used to submit MMIO operations against the root tile =
+of the PCI
+> > > > > > > >       device.  Only used during init (e.g., to read the reg=
+isters that
+> > > > > > > >       tell us which tiles exist on the platform) and during=
+ top-level
+> > > > > > > >       interrupt enable/disable (since all interrupts are ro=
+uted through
+> > > > > > > >       the root tile).
+> > > > > > > >     - No forcewake needed for register accesses through a h=
+andle of this
+> > > > > > > >       type since you'd only ever be accessing sgunit regist=
+ers for these
+> > > > > > > >       types of things.
+> > > > > > > >     - Register accesses through mmio can warn on debug buil=
+ds if the
+> > > > > > > >       register appears to be in a GT-related MMIO range.
+> > > > > > > >=20
+> > > > > > > >  * mmio =3D xe_mmio_for_display(xe_device *xe);
+> > > > > > > >     - Pretty much the same as handles returned by xe_mmio_f=
+or_device(),
+> > > > > > > >       but if a handle of this type is used to try to read/w=
+rite
+> > > > > > > >       registers outside the display range, we could have de=
+bug builds
+> > > > > > > >       throw some extra warnings.
+> > > > > > > >     - Unclaimed register detection could be confined to acc=
+esses through
+> > > > > > > >       these handles.
+> > > > > > > >=20
+> > > > > > > >  * mmio =3D xe_mmio_for_tile(xe_tile *tile);
+> > > > > > > >     - Used to access non-GT registers that reside in a spec=
+ific tile.
+> > > > > > > >       I.e., sgunit/soc registers.
+> > > > > > > >     - As above, no forcewake needed, can make MMIO operatio=
+ns warn
+> > > > > > > >       if used to access a GT range.
+> > > > > > > >=20
+> > > > > > > >  * mmio =3D xe_mmio_for_gt(xe_gt *gt);
+> > > > > > > >     - Used to access GT registers in a specific GT
+> > > > > > > >     - Does automatic GSI offset translation for media GTs
+> > > > > > > >     - Can either do automatic forcewake like i915 does, or =
+can do debug
+> > > > > > > >       check+warn like you have here.
+> > > > > > > >     - Can make MMIO operations warn if MMIO offset is outsi=
+de GT range
+> > > > > > > >     - Can also trigger warnings if a GT non-GSI, non-media =
+engine
+> > > > > > > >       register is accessed from an MMIO obtained from a med=
+ia GT.
+> > > > > > > >=20
+> > > > > > >=20
+> > > > > > > Ack on this if we keep in managable, worried code / feature b=
+loat those
+> > > > > > > that will result in a similar file to intel_uncore.c in Xe.
+> > > >=20
+> > > > Just to revive this thread.
+> > > >=20
+> > > > I've been discussing this proposal in the context of a change we ne=
+ed
+> > > > to make in the display, which is to introduce a wakelock for some
+> > > > registers access in order to be able to remove the DMC trap.
+> > > >=20
+> > > > We came to the conclusion that this new implementation is very much=
+ the
+> > > > same as the forcewake proposal here.  From the display point-of-vie=
+w,
+> > > > we could simply have a new domain and range of registers to protect=
+.
+> > > >=20
+> > > > We _could_ implement a separate "wakelock" mechanism for the displa=
+y
+> > > > part, but that would be mostly duplicating the entire forcewake
+> > > > implementation.
+> > > >=20
+> > > > So, are there any plans to implement the current proposal? Or any o=
+ther
+> > > > plans related to the forcewake implementation for Xe? As I see it, =
+the
+> > > > "wakelock" implementation in the display depends on this.
+> > > >=20
+> > > > Any thoughts?
+> > >=20
+> > > Hi Luca, thanks for raising this again here.
+> >=20
+> > Hi Lucas! Thanks for your comments.
+> >=20
+> >=20
+> > > So, as I said in the past, I don't have strong opinions regarding the
+> > > overall forcewake approach.
+> > >=20
+> > > The since GT MMIO is not used very frequently, I don't see a problem =
+of
+> > > leaving that up to the caller to take the right domain when needed, o=
+r even
+> > > the FORCEWAKE_ALL domain. Instead of forcing all the callers to
+> > > go through this extra steps and then have to opt-out with the '_fw' [=
+sic]
+> > > alternatives for the cases where the forcewake cannot be checked unde=
+rneath.
+> > >=20
+> > > So, for the new display wakelocks, that's the problem of adding them =
+to
+> > > the drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h where the c=
+onverions
+> > > from i915's intel uncore are happening to xe_mmio? So, when using the
+> > > intel_uncore's '_fw' variant you skip the wakelock and when doing the=
+ regular
+> > > mmio calls you just add a wakelock_get/put around the xe_mmio call wi=
+th
+> > > the display domain. And in i915 you implement inside the intel_uncore=
+.
+> > >=20
+> > > What's the downside of this approach?
+> >=20
+> > That's more or less what I was thinking.  I don't think there's any
+> > problem on the display side in calling the same framework.
+> >=20
+> >=20
+> > > Trying to understand all the pros and cons of different approaches, a=
+nd
+> > > bringing some people to the discussion.
+> > >=20
+> > > If we implement the forwareke underneath the mmio call, display needs
+> > > to anyway implement it twice on the i915's intel_uncore and on the
+> > > xe_forcewake, no?!
+> >=20
+> > Yes, IMHO we should start making Xe the base implementation and
+> > backporting the new implementation into i915.
+> >=20
+> > So,for this specific case, I think we can just make i915 call the new
+> > functions in xe and have them backported in intel_uncore.h for i915.
+> >=20
+> > What I was thinking was basically this:
+> >=20
+> > 1. Implement the xe_mmio_for_<hw_unit>() proposal in Xe=E2=80=8B
+>=20
+> hmm probably a new component then?! xe_display_wakelock that
+> implements and export the get/put domain in a similar way
+> of xe_forcewake, and then on the wrapper you add the get/put
+> around the existing xe_mmio calls?!
 
-Series: Event tracing for GuC CTB
-URL   : https://patchwork.freedesktop.org/series/125164/
-State : success
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-stty: 'standard input': Inappropriate ioctl for device
-[10:15:29] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[10:15:33] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[10:15:53] Starting KUnit Kernel (1/1)...
-[10:15:53] ============================================================
-[10:15:53] ========================== xe_bo  ==========================
-[10:15:53] [SKIPPED] xe_ccs_migrate_kunit
-[10:15:53] [SKIPPED] xe_bo_evict_kunit
-[10:15:53] ===================== [SKIPPED] xe_bo ======================
-[10:15:53] ======================= xe_dma_buf  ========================
-[10:15:53] [SKIPPED] xe_dma_buf_kunit
-[10:15:53] =================== [SKIPPED] xe_dma_buf ===================
-[10:15:53] ======================= xe_migrate  ========================
-[10:15:53] [SKIPPED] xe_migrate_sanity_kunit
-[10:15:53] =================== [SKIPPED] xe_migrate ===================
-[10:15:53] ========================= xe_pci  ==========================
-[10:15:53] [PASSED] xe_gmdid_graphics_ip
-[10:15:53] [PASSED] xe_gmdid_media_ip
-[10:15:53] ===================== [PASSED] xe_pci ======================
-[10:15:53] ========================= xe_rtp  ==========================
-[10:15:53] ================== xe_rtp_process_tests  ===================
-[10:15:53] [PASSED] coalesce-same-reg
-[10:15:53] [PASSED] no-match-no-add
-[10:15:53] [PASSED] no-match-no-add-multiple-rules
-[10:15:53] [PASSED] two-regs-two-entries
-[10:15:53] [PASSED] clr-one-set-other
-[10:15:53] [PASSED] set-field
-[10:15:53] [PASSED] conflict-duplicate
-[10:15:53] [PASSED] conflict-not-disjoint
-[10:15:53] [PASSED] conflict-reg-type
-[10:15:53] ============== [PASSED] xe_rtp_process_tests ===============
-[10:15:53] ===================== [PASSED] xe_rtp ======================
-[10:15:53] ========================== xe_wa  ==========================
-[10:15:53] ======================== xe_wa_gt  =========================
-[10:15:53] [PASSED] TIGERLAKE (B0)
-[10:15:53] [PASSED] DG1 (A0)
-[10:15:53] [PASSED] DG1 (B0)
-[10:15:53] [PASSED] ALDERLAKE_S (A0)
-[10:15:53] [PASSED] ALDERLAKE_S (B0)
-[10:15:53] [PASSED] ALDERLAKE_S (C0)
-[10:15:53] [PASSED] ALDERLAKE_S (D0)
-[10:15:53] [PASSED] ALDERLAKE_P (A0)
-[10:15:53] [PASSED] ALDERLAKE_P (B0)
-[10:15:53] [PASSED] ALDERLAKE_P (C0)
-[10:15:53] [PASSED] ALDERLAKE_S_RPLS (D0)
-[10:15:53] [PASSED] ALDERLAKE_P_RPLU (E0)
-[10:15:53] [PASSED] DG2_G10 (A0)
-[10:15:53] [PASSED] DG2_G10 (A1)
-[10:15:53] [PASSED] DG2_G10 (B0)
-[10:15:53] [PASSED] DG2_G10 (C0)
-[10:15:53] [PASSED] DG2_G11 (A0)
-[10:15:53] [PASSED] DG2_G11 (B0)
-[10:15:53] [PASSED] DG2_G11 (B1)
-[10:15:53] [PASSED] DG2_G12 (A0)
-[10:15:53] [PASSED] DG2_G12 (A1)
-[10:15:53] [PASSED] PVC (B0)
-[10:15:53] [PASSED] PVC (B1)
-[10:15:53] [PASSED] PVC (C0)
-[10:15:53] ==================== [PASSED] xe_wa_gt =====================
-[10:15:53] ====================== [PASSED] xe_wa ======================
-[10:15:53] ============================================================
-[10:15:53] Testing complete. Ran 39 tests: passed: 35, skipped: 4
-[10:15:53] Elapsed time: 24.389s total, 4.181s configuring, 20.090s building, 0.099s running
-
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
-[10:15:53] Configuring KUnit Kernel ...
-Regenerating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[10:15:55] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[10:16:14] Starting KUnit Kernel (1/1)...
-[10:16:14] ============================================================
-[10:16:14] ================== drm_test_pick_cmdline  ==================
-[10:16:14] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
-[10:16:14] =============== drm_test_pick_cmdline_named  ===============
-[10:16:14] [PASSED] NTSC
-[10:16:14] [PASSED] NTSC-J
-[10:16:14] [PASSED] PAL
-[10:16:14] [PASSED] PAL-M
-[10:16:14] =========== [PASSED] drm_test_pick_cmdline_named ===========
-[10:16:14] ============== [PASSED] drm_test_pick_cmdline ==============
-[10:16:14] ======================== drm_buddy  ========================
-[10:16:14] [PASSED] drm_test_buddy_alloc_limit
-[10:16:14] [PASSED] drm_test_buddy_alloc_range
-[10:16:14] [PASSED] drm_test_buddy_alloc_optimistic
-[10:16:14] [PASSED] drm_test_buddy_alloc_pessimistic
-[10:16:14] [PASSED] drm_test_buddy_alloc_smoke
-[10:16:14] [PASSED] drm_test_buddy_alloc_pathological
-[10:16:14] ==================== [PASSED] drm_buddy ====================
-[10:16:14] =================== drm_cmdline_parser  ====================
-[10:16:14] [PASSED] drm_test_cmdline_force_d_only
-[10:16:14] [PASSED] drm_test_cmdline_force_D_only_dvi
-[10:16:14] [PASSED] drm_test_cmdline_force_D_only_hdmi
-[10:16:14] [PASSED] drm_test_cmdline_force_D_only_not_digital
-[10:16:14] [PASSED] drm_test_cmdline_force_e_only
-[10:16:14] [PASSED] drm_test_cmdline_res
-[10:16:14] [PASSED] drm_test_cmdline_res_vesa
-[10:16:14] [PASSED] drm_test_cmdline_res_vesa_rblank
-[10:16:14] [PASSED] drm_test_cmdline_res_rblank
-[10:16:14] [PASSED] drm_test_cmdline_res_bpp
-[10:16:14] [PASSED] drm_test_cmdline_res_refresh
-[10:16:14] [PASSED] drm_test_cmdline_res_bpp_refresh
-[10:16:14] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
-[10:16:14] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
-[10:16:14] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
-[10:16:14] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
-[10:16:14] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
-[10:16:14] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
-[10:16:14] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
-[10:16:14] [PASSED] drm_test_cmdline_res_margins_force_on
-[10:16:14] [PASSED] drm_test_cmdline_res_vesa_margins
-[10:16:14] [PASSED] drm_test_cmdline_name
-[10:16:14] [PASSED] drm_test_cmdline_name_bpp
-[10:16:14] [PASSED] drm_test_cmdline_name_option
-[10:16:14] [PASSED] drm_test_cmdline_name_bpp_option
-[10:16:14] [PASSED] drm_test_cmdline_rotate_0
-[10:16:14] [PASSED] drm_test_cmdline_rotate_90
-[10:16:14] [PASSED] drm_test_cmdline_rotate_180
-[10:16:14] [PASSED] drm_test_cmdline_rotate_270
-[10:16:14] [PASSED] drm_test_cmdline_hmirror
-[10:16:14] [PASSED] drm_test_cmdline_vmirror
-[10:16:14] [PASSED] drm_test_cmdline_margin_options
-[10:16:14] [PASSED] drm_test_cmdline_multiple_options
-[10:16:14] [PASSED] drm_test_cmdline_bpp_extra_and_option
-[10:16:14] [PASSED] drm_test_cmdline_extra_and_option
-[10:16:14] [PASSED] drm_test_cmdline_freestanding_options
-[10:16:14] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
-[10:16:14] [PASSED] drm_test_cmdline_panel_orientation
-[10:16:14] ================ drm_test_cmdline_invalid  =================
-[10:16:14] [PASSED] margin_only
-[10:16:14] [PASSED] interlace_only
-[10:16:14] [PASSED] res_missing_x
-[10:16:14] [PASSED] res_missing_y
-[10:16:14] [PASSED] res_bad_y
-[10:16:14] [PASSED] res_missing_y_bpp
-[10:16:14] [PASSED] res_bad_bpp
-[10:16:14] [PASSED] res_bad_refresh
-[10:16:14] [PASSED] res_bpp_refresh_force_on_off
-[10:16:14] [PASSED] res_invalid_mode
-[10:16:14] [PASSED] res_bpp_wrong_place_mode
-[10:16:14] [PASSED] name_bpp_refresh
-[10:16:14] [PASSED] name_refresh
-[10:16:14] [PASSED] name_refresh_wrong_mode
-[10:16:14] [PASSED] name_refresh_invalid_mode
-[10:16:14] [PASSED] rotate_multiple
-[10:16:14] [PASSED] rotate_invalid_val
-[10:16:14] [PASSED] rotate_truncated
-[10:16:14] [PASSED] invalid_option
-[10:16:14] [PASSED] invalid_tv_option
-[10:16:14] [PASSED] truncated_tv_option
-[10:16:14] ============ [PASSED] drm_test_cmdline_invalid =============
-[10:16:14] =============== drm_test_cmdline_tv_options  ===============
-[10:16:14] [PASSED] NTSC
-[10:16:14] [PASSED] NTSC_443
-[10:16:14] [PASSED] NTSC_J
-[10:16:14] [PASSED] PAL
-[10:16:14] [PASSED] PAL_M
-[10:16:14] [PASSED] PAL_N
-[10:16:14] [PASSED] SECAM
-[10:16:14] =========== [PASSED] drm_test_cmdline_tv_options ===========
-[10:16:14] =============== [PASSED] drm_cmdline_parser ================
-[10:16:14] ================ drm_get_tv_mode_from_name  ================
-[10:16:14] ========== drm_test_get_tv_mode_from_name_valid  ===========
-[10:16:14] [PASSED] NTSC
-[10:16:14] [PASSED] NTSC-443
-[10:16:14] [PASSED] NTSC-J
-[10:16:14] [PASSED] PAL
-[10:16:14] [PASSED] PAL-M
-[10:16:14] [PASSED] PAL-N
-[10:16:14] [PASSED] SECAM
-[10:16:14] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
-[10:16:14] [PASSED] drm_test_get_tv_mode_from_name_truncated
-[10:16:14] ============ [PASSED] drm_get_tv_mode_from_name ============
-[10:16:14] ==================== drm_damage_helper  ====================
-[10:16:14] [PASSED] drm_test_damage_iter_no_damage
-[10:16:14] [PASSED] drm_test_damage_iter_no_damage_fractional_src
-[10:16:14] [PASSED] drm_test_damage_iter_no_damage_src_moved
-[10:16:14] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
-[10:16:14] [PASSED] drm_test_damage_iter_no_damage_not_visible
-[10:16:14] [PASSED] drm_test_damage_iter_no_damage_no_crtc
-[10:16:14] [PASSED] drm_test_damage_iter_no_damage_no_fb
-[10:16:14] [PASSED] drm_test_damage_iter_simple_damage
-[10:16:14] [PASSED] drm_test_damage_iter_single_damage
-[10:16:14] [PASSED] drm_test_damage_iter_single_damage_intersect_src
-[10:16:14] [PASSED] drm_test_damage_iter_single_damage_outside_src
-[10:16:14] [PASSED] drm_test_damage_iter_single_damage_fractional_src
-[10:16:14] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
-[10:16:14] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
-[10:16:14] [PASSED] drm_test_damage_iter_single_damage_src_moved
-[10:16:14] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
-[10:16:14] [PASSED] drm_test_damage_iter_damage
-[10:16:14] [PASSED] drm_test_damage_iter_damage_one_intersect
-[10:16:14] [PASSED] drm_test_damage_iter_damage_one_outside
-[10:16:14] [PASSED] drm_test_damage_iter_damage_src_moved
-[10:16:14] [PASSED] drm_test_damage_iter_damage_not_visible
-[10:16:14] ================ [PASSED] drm_damage_helper ================
-[10:16:14] ==================== drm_dp_mst_helper  ====================
-[10:16:14] ============== drm_test_dp_mst_calc_pbn_mode  ==============
-[10:16:14] [PASSED] Clock 154000 BPP 30 DSC disabled
-[10:16:14] [PASSED] Clock 234000 BPP 30 DSC disabled
-[10:16:14] [PASSED] Clock 297000 BPP 24 DSC disabled
-[10:16:14] [PASSED] Clock 332880 BPP 24 DSC enabled
-[10:16:14] [PASSED] Clock 324540 BPP 24 DSC enabled
-[10:16:14] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
-[10:16:14] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
-[10:16:14] [PASSED] DP_ENUM_PATH_RESOURCES with port number
-[10:16:14] [PASSED] DP_POWER_UP_PHY with port number
-[10:16:14] [PASSED] DP_POWER_DOWN_PHY with port number
-[10:16:14] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
-[10:16:14] [PASSED] DP_ALLOCATE_PAYLOAD with port number
-[10:16:14] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
-[10:16:14] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
-[10:16:14] [PASSED] DP_QUERY_PAYLOAD with port number
-[10:16:14] [PASSED] DP_QUERY_PAYLOAD with VCPI
-[10:16:14] [PASSED] DP_REMOTE_DPCD_READ with port number
-[10:16:14] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
-[10:16:14] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
-[10:16:14] [PASSED] DP_REMOTE_DPCD_WRITE with port number
-[10:16:14] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
-[10:16:14] [PASSED] DP_REMOTE_DPCD_WRITE with data array
-[10:16:14] [PASSED] DP_REMOTE_I2C_READ with port number
-[10:16:14] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
-[10:16:14] [PASSED] DP_REMOTE_I2C_READ with transactions array
-[10:16:14] [PASSED] DP_REMOTE_I2C_WRITE with port number
-[10:16:14] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
-[10:16:14] [PASSED] DP_REMOTE_I2C_WRITE with data array
-[10:16:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
-[10:16:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
-[10:16:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
-[10:16:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
-[10:16:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
-[10:16:14] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
-[10:16:14] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
-[10:16:14] ================ [PASSED] drm_dp_mst_helper ================
-[10:16:14] ================= drm_format_helper_test  ==================
-[10:16:14] ============== drm_test_fb_xrgb8888_to_gray8  ==============
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
-[10:16:14] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
-[10:16:14] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
-[10:16:14] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
-[10:16:14] ============ drm_test_fb_xrgb8888_to_argb1555  =============
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
-[10:16:14] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
-[10:16:14] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
-[10:16:14] ============ drm_test_fb_xrgb8888_to_argb8888  =============
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
-[10:16:14] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
-[10:16:14] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
-[10:16:14] ============== drm_test_fb_xrgb8888_to_mono  ===============
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
-[10:16:14] ==================== drm_test_fb_swab  =====================
-[10:16:14] [PASSED] single_pixel_source_buffer
-[10:16:14] [PASSED] single_pixel_clip_rectangle
-[10:16:14] [PASSED] well_known_colors
-[10:16:14] [PASSED] destination_pitch
-[10:16:14] ================ [PASSED] drm_test_fb_swab =================
-[10:16:14] ================= drm_test_fb_clip_offset  =================
-[10:16:14] [PASSED] pass through
-[10:16:14] [PASSED] horizontal offset
-[10:16:14] [PASSED] vertical offset
-[10:16:14] [PASSED] horizontal and vertical offset
-[10:16:14] [PASSED] horizontal offset (custom pitch)
-[10:16:14] [PASSED] vertical offset (custom pitch)
-[10:16:14] [PASSED] horizontal and vertical offset (custom pitch)
-[10:16:14] ============= [PASSED] drm_test_fb_clip_offset =============
-[10:16:14] ============== drm_test_fb_build_fourcc_list  ==============
-[10:16:14] [PASSED] no native formats
-[10:16:14] [PASSED] XRGB8888 as native format
-[10:16:14] [PASSED] remove duplicates
-[10:16:14] [PASSED] convert alpha formats
-[10:16:14] [PASSED] random formats
-[10:16:14] ========== [PASSED] drm_test_fb_build_fourcc_list ==========
-[10:16:14] =================== drm_test_fb_memcpy  ====================
-[10:16:14] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
-[10:16:14] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
-[10:16:14] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
-[10:16:14] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
-[10:16:14] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
-[10:16:14] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
-[10:16:14] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
-[10:16:14] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
-[10:16:14] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
-[10:16:14] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
-[10:16:14] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
-[10:16:14] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
-[10:16:14] =============== [PASSED] drm_test_fb_memcpy ================
-[10:16:14] ============= [PASSED] drm_format_helper_test ==============
-[10:16:14] ======================= drm_format  ========================
-[10:16:14] [PASSED] drm_test_format_block_width_invalid
-[10:16:14] [PASSED] drm_test_format_block_width_one_plane
-[10:16:14] [PASSED] drm_test_format_block_width_two_plane
-[10:16:14] [PASSED] drm_test_format_block_width_three_plane
-[10:16:14] [PASSED] drm_test_format_block_width_tiled
-[10:16:14] [PASSED] drm_test_format_block_height_invalid
-[10:16:14] [PASSED] drm_test_format_block_height_one_plane
-[10:16:14] [PASSED] drm_test_format_block_height_two_plane
-[10:16:14] [PASSED] drm_test_format_block_height_three_plane
-[10:16:14] [PASSED] drm_test_format_block_height_tiled
-[10:16:14] [PASSED] drm_test_format_min_pitch_invalid
-[10:16:14] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
-[10:16:14] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
-[10:16:14] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
-[10:16:14] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
-[10:16:14] [PASSED] drm_test_format_min_pitch_two_plane
-[10:16:14] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
-[10:16:14] [PASSED] drm_test_format_min_pitch_tiled
-[10:16:14] =================== [PASSED] drm_format ====================
-[10:16:14] ===================== drm_framebuffer  =====================
-[10:16:14] =============== drm_test_framebuffer_create  ===============
-[10:16:14] [PASSED] ABGR8888 normal sizes
-[10:16:14] [PASSED] ABGR8888 max sizes
-[10:16:14] [PASSED] ABGR8888 pitch greater than min required
-[10:16:14] [PASSED] ABGR8888 pitch less than min required
-[10:16:14] [PASSED] ABGR8888 Invalid width
-[10:16:14] [PASSED] ABGR8888 Invalid buffer handle
-[10:16:14] [PASSED] No pixel format
-[10:16:14] [PASSED] ABGR8888 Width 0
-[10:16:14] [PASSED] ABGR8888 Height 0
-[10:16:14] [PASSED] ABGR8888 Out of bound height * pitch combination
-[10:16:14] [PASSED] ABGR8888 Large buffer offset
-[10:16:14] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
-[10:16:14] [PASSED] ABGR8888 Valid buffer modifier
-[10:16:14] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
-[10:16:14] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
-[10:16:14] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
-[10:16:14] [PASSED] NV12 Normal sizes
-[10:16:14] [PASSED] NV12 Max sizes
-[10:16:14] [PASSED] NV12 Invalid pitch
-[10:16:14] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
-[10:16:14] [PASSED] NV12 different  modifier per-plane
-[10:16:14] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
-[10:16:14] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
-[10:16:14] [PASSED] NV12 Modifier for inexistent plane
-[10:16:14] [PASSED] NV12 Handle for inexistent plane
-[10:16:14] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
-[10:16:14] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
-[10:16:14] [PASSED] YVU420 Normal sizes
-[10:16:14] [PASSED] YVU420 Max sizes
-[10:16:14] [PASSED] YVU420 Invalid pitch
-[10:16:14] [PASSED] YVU420 Different pitches
-[10:16:14] [PASSED] YVU420 Different buffer offsets/pitches
-[10:16:14] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
-[10:16:14] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
-[10:16:14] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
-[10:16:14] [PASSED] YVU420 Valid modifier
-[10:16:14] [PASSED] YVU420 Different modifiers per plane
-[10:16:14] [PASSED] YVU420 Modifier for inexistent plane
-[10:16:14] [PASSED] X0L2 Normal sizes
-[10:16:14] [PASSED] X0L2 Max sizes
-[10:16:14] [PASSED] X0L2 Invalid pitch
-[10:16:14] [PASSED] X0L2 Pitch greater than minimum required
-[10:16:14] [PASSED] X0L2 Handle for inexistent plane
-[10:16:14] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
-[10:16:14] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
-[10:16:14] [PASSED] X0L2 Valid modifier
-[10:16:14] [PASSED] X0L2 Modifier for inexistent plane
-[10:16:14] =========== [PASSED] drm_test_framebuffer_create ===========
-[10:16:14] ================= [PASSED] drm_framebuffer =================
-[10:16:14] ==================== drm-test-managed  =====================
-[10:16:14] [PASSED] drm_test_managed_run_action
-[10:16:14] ================ [PASSED] drm-test-managed =================
-[10:16:14] ========================= drm_mm  ==========================
-[10:16:14] [PASSED] drm_test_mm_init
-[10:16:14] [PASSED] drm_test_mm_debug
-[10:16:25] [PASSED] drm_test_mm_reserve
-[10:16:35] [PASSED] drm_test_mm_insert
-[10:16:35] [PASSED] drm_test_mm_replace
-[10:16:35] [PASSED] drm_test_mm_insert_range
-[10:16:35] [PASSED] drm_test_mm_frag
-[10:16:35] [PASSED] drm_test_mm_align
-[10:16:35] [PASSED] drm_test_mm_align32
-[10:16:36] [PASSED] drm_test_mm_align64
-[10:16:36] [PASSED] drm_test_mm_evict
-[10:16:36] [PASSED] drm_test_mm_evict_range
-[10:16:36] [PASSED] drm_test_mm_topdown
-[10:16:36] [PASSED] drm_test_mm_bottomup
-[10:16:36] [PASSED] drm_test_mm_lowest
-[10:16:36] [PASSED] drm_test_mm_highest
-[10:16:37] [PASSED] drm_test_mm_color
-[10:16:37] [PASSED] drm_test_mm_color_evict
-[10:16:37] [PASSED] drm_test_mm_color_evict_range
-[10:16:37] ===================== [PASSED] drm_mm ======================
-[10:16:37] =================== drm_modes_analog_tv  ===================
-[10:16:37] [PASSED] drm_test_modes_analog_tv_ntsc_480i
-[10:16:37] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
-[10:16:37] [PASSED] drm_test_modes_analog_tv_pal_576i
-[10:16:37] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
-[10:16:37] =============== [PASSED] drm_modes_analog_tv ===============
-[10:16:37] ==================== drm_plane_helper  =====================
-[10:16:37] =============== drm_test_check_plane_state  ================
-[10:16:37] [PASSED] clipping_simple
-[10:16:37] [PASSED] clipping_rotate_reflect
-[10:16:37] [PASSED] positioning_simple
-[10:16:37] [PASSED] upscaling
-[10:16:37] [PASSED] downscaling
-[10:16:37] [PASSED] rounding1
-[10:16:37] [PASSED] rounding2
-[10:16:37] [PASSED] rounding3
-[10:16:37] [PASSED] rounding4
-[10:16:37] =========== [PASSED] drm_test_check_plane_state ============
-[10:16:37] =========== drm_test_check_invalid_plane_state  ============
-[10:16:37] [PASSED] positioning_invalid
-[10:16:37] [PASSED] upscaling_invalid
-[10:16:37] [PASSED] downscaling_invalid
-[10:16:37] ======= [PASSED] drm_test_check_invalid_plane_state ========
-[10:16:37] ================ [PASSED] drm_plane_helper =================
-[10:16:37] ============ drm_connector_helper_tv_get_modes  ============
-[10:16:37] ====== drm_test_connector_helper_tv_get_modes_check  =======
-[10:16:37] [PASSED] None
-[10:16:37] [PASSED] PAL
-[10:16:37] [PASSED] NTSC
-[10:16:37] [PASSED] Both, NTSC Default
-[10:16:37] [PASSED] Both, PAL Default
-[10:16:37] [PASSED] Both, NTSC Default, with PAL on command-line
-[10:16:37] [PASSED] Both, PAL Default, with NTSC on command-line
-[10:16:37] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
-[10:16:37] ======== [PASSED] drm_connector_helper_tv_get_modes ========
-[10:16:37] ======================== drm_rect  =========================
-[10:16:37] [PASSED] drm_test_rect_clip_scaled_div_by_zero
-[10:16:37] [PASSED] drm_test_rect_clip_scaled_not_clipped
-[10:16:37] [PASSED] drm_test_rect_clip_scaled_clipped
-[10:16:37] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
-[10:16:37] ================= drm_test_rect_intersect  =================
-[10:16:37] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
-[10:16:37] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
-[10:16:37] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
-[10:16:37] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
-[10:16:37] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
-[10:16:37] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
-[10:16:37] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
-[10:16:37] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
-[10:16:37] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
-[10:16:37] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
-[10:16:37] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
-[10:16:37] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
-[10:16:37] [PASSED] far away: 1x1+0+0 x 1x1+3+6
-[10:16:37] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
-[10:16:37] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
-[10:16:37] ============= [PASSED] drm_test_rect_intersect =============
-[10:16:37] ================ drm_test_rect_calc_hscale  ================
-[10:16:37] [PASSED] normal use
-[10:16:37] [PASSED] out of max range
-[10:16:37] [PASSED] out of min range
-[10:16:37] [PASSED] zero dst
-[10:16:37] [PASSED] negative src
-[10:16:37] [PASSED] negative dst
-[10:16:37] ============ [PASSED] drm_test_rect_calc_hscale ============
-[10:16:37] ================ drm_test_rect_calc_vscale  ================
-[10:16:37] [PASSED] normal use
-[10:16:37] [PASSED] out of max range
-[10:16:37] [PASSED] out of min range
-[10:16:37] [PASSED] zero dst
-[10:16:37] [PASSED] negative src
-[10:16:37] [PASSED] negative dst
-[10:16:37] ============ [PASSED] drm_test_rect_calc_vscale ============
-[10:16:37] ================== drm_test_rect_rotate  ===================
-[10:16:37] [PASSED] reflect-x
-[10:16:37] [PASSED] reflect-y
-[10:16:37] [PASSED] rotate-0
-[10:16:37] [PASSED] rotate-90
-[10:16:37] [PASSED] rotate-180
-[10:16:37] [PASSED] rotate-270
-[10:16:37] ============== [PASSED] drm_test_rect_rotate ===============
-[10:16:37] ================ drm_test_rect_rotate_inv  =================
-[10:16:37] [PASSED] reflect-x
-[10:16:37] [PASSED] reflect-y
-[10:16:37] [PASSED] rotate-0
-[10:16:37] [PASSED] rotate-90
-[10:16:37] [PASSED] rotate-180
-[10:16:37] [PASSED] rotate-270
-[10:16:37] ============ [PASSED] drm_test_rect_rotate_inv =============
-stty: 'standard input': Inappropriate ioctl for device
-[10:16:37] ==================== [PASSED] drm_rect =====================
-[10:16:37] ======================== drm_exec  =========================
-[10:16:37] [PASSED] sanitycheck
-[10:16:37] [PASSED] test_lock
-[10:16:37] [PASSED] test_lock_unlock
-[10:16:37] [PASSED] test_duplicates
-[10:16:37] [PASSED] test_prepare
-[10:16:37] [PASSED] test_prepare_array
-[10:16:37] [PASSED] test_multiple_loops
-[10:16:37] ==================== [PASSED] drm_exec =====================
-[10:16:37] ============================================================
-[10:16:37] Testing complete. Ran 368 tests: passed: 368
-[10:16:37] Elapsed time: 44.188s total, 1.671s configuring, 19.174s building, 23.340s running
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Yes, I guess a new component, but part of Xe.  I don't exactly know
+what you mean with "xe_forcewake", but it's the same as Matt proposed
+with the different functions for different domains.  These functions
+would do everything that is needed for the specific domain, such as
+keeping it awake, checking if the registers are in the right range etc.
 
 
+> > 2. Display code uses new APIs (xe_mmio_for_display ops)=E2=80=8B
+> >=20
+> > 3. Update uncore to handle "wakelock domain"=E2=80=8B
+>=20
+> then on uncore you would need to parse the mmio range and then
+> call the get and puts, that in that case would be static inside
+> the uncore itself like the forcewakes ?!
+
+The callers will use the new Xe APIs, so in i915, the display code (and
+probably GT and others too) will be the same as in Xe.  I see it as a
+backport.  We can create wrappers that call the uncore APIs to achieve
+the same functionality as before.
+
+There are things that we may not need to be backported, for instance,
+we don't really need the new wakelock that is needed in LNL (and future
+HW), because i915 may not need to support it.  So we can just make a
+dummy wrapper for this.  And it should still be easy to properly
+backport if needed.
+
+Do you see any problem with this approach?
+
+--
+Cheers,
+Luca.
