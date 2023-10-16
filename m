@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5CB5CC41513
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9022BCDB465
 	for <intel-xe@archiver.kernel.org>; Mon, 16 Oct 2023 10:12:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECBCD10E190;
-	Mon, 16 Oct 2023 10:12:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4296310E198;
+	Mon, 16 Oct 2023 10:12:35 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82F2610E190
- for <intel-xe@lists.freedesktop.org>; Mon, 16 Oct 2023 10:12:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FA2F10E18B
+ for <intel-xe@lists.freedesktop.org>; Mon, 16 Oct 2023 10:12:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697451152; x=1728987152;
+ t=1697451151; x=1728987151;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=srRLHWjPXmyJ43nCftd/SoNVZTcli8+XxB08vpTqREE=;
- b=K9JfMkWWlaw6yXLdJ9pxrFxE6oELmBMP+EVM/NE+n2zm9BF+LeAtzhXj
- fz9eAViYRVTuDHojuWCSnfw7U6nZRpoW6rD7K1xquDoehFKNYLyKFL3f9
- pv0Osb8nmCS0wE4w6+TszHqa58zqbm5m5tgvQTfSpq9doI5kaEWtEKan2
- AO/fZq4swda3qzGHV1ywNDR17IgTH8SnfBxe1L/tbKhBw/LKmgMmmzKRo
- 60+etSeR/VPrNQGJ2lS1gKDUVMI/J0dAgjiodFUdKv+ZTrE4bjvnWgoHH
- q1MWkIji1dUWiNF3k90pJoE8PNLNXdWbaTHvNOoCFMWyAtAk/GbpHMdyn Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="416560453"
-X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="416560453"
+ bh=GnNnbFoQ32UtNgdK7wWlyZSd2qydk4iXk0PoLOLv5zY=;
+ b=nh2GhcuV6dnuYmU3gSBtXXVB/lzSVQz2G3GthjmYKZCrHrjgustVn4AJ
+ WDCuxC2hi3eXqC0wlVxJInXD+bQzn/jT1dC4zfL4l5AnwCIG+mCjF58R4
+ /aK56EDwbgjZPTk4CVL0z5ZPfKUz8yn2HOLfiJT2ByGCB0gmOBGtX74Uy
+ heu7/dQ+JMkzpgj/L6apQfhS+v3IB+Aa9PbZFZ7mLM2hozFPHvJ75a8+H
+ rIKzaauZyUrkpoXUmhHiKM7Dm0A2PS1QhEApgyLK+uGOFgw7+bSBw3H2q
+ qyBjtYE9vRLQYiWozc7a2zoxl0zuvAUDjfbzlo1E1QO91BcR+gQcCO92Z A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="416560451"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="416560451"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2023 03:12:32 -0700
+ 16 Oct 2023 03:12:31 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="825948511"
-X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="825948511"
+X-IronPort-AV: E=McAfee;i="6600,9927,10863"; a="825948506"
+X-IronPort-AV: E=Sophos;i="6.03,229,1694761200"; d="scan'208";a="825948506"
 Received: from bvivekan-desk.iind.intel.com ([10.190.239.116])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Oct 2023 03:12:31 -0700
+ 16 Oct 2023 03:12:30 -0700
 From: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 16 Oct 2023 15:47:20 +0530
-Message-Id: <20231016101720.1657746-3-balasubramani.vivekanandan@intel.com>
+Date: Mon, 16 Oct 2023 15:47:19 +0530
+Message-Id: <20231016101720.1657746-2-balasubramani.vivekanandan@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231016101720.1657746-1-balasubramani.vivekanandan@intel.com>
 References: <20231016101720.1657746-1-balasubramani.vivekanandan@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/xe/trace: Optimize trace definition
+Subject: [Intel-xe] [PATCH 1/2] drm/xe: Add event tracing for CTB
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,109 +59,131 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Make use of EVENT_CLASS to group similar trace events
+Event tracing enabled for CTB submissions.
 
 Signed-off-by: Balasubramani Vivekanandan <balasubramani.vivekanandan@intel.com>
 ---
- drivers/gpu/drm/xe/xe_trace.h | 83 +++++++++++++++--------------------
- 1 file changed, 36 insertions(+), 47 deletions(-)
+ drivers/gpu/drm/xe/xe_guc_ct.c | 13 ++++++++--
+ drivers/gpu/drm/xe/xe_trace.h  | 43 ++++++++++++++++++++++++++++++++++
+ 2 files changed, 54 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index 8b686c8b3339..a84e111bb36a 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -460,7 +460,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 	/* Write H2G ensuring visable before descriptor update */
+ 	xe_map_memcpy_to(xe, &map, 0, cmd, H2G_CT_HEADERS * sizeof(u32));
+ 	xe_map_memcpy_to(xe, &map, H2G_CT_HEADERS * sizeof(u32), action, len * sizeof(u32));
+-	xe_device_wmb(ct_to_xe(ct));
++	xe_device_wmb(xe);
+ 
+ 	/* Update local copies */
+ 	h2g->info.tail = (tail + full_len) % h2g->info.size;
+@@ -469,6 +469,9 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 	/* Update descriptor */
+ 	desc_write(xe, h2g, tail, h2g->info.tail);
+ 
++	trace_xe_guc_ctb_h2g(ct_to_gt(ct)->info.id, *(action - 1), full_len,
++			     desc_read(xe, h2g, head), h2g->info.tail);
++
+ 	return 0;
+ }
+ 
+@@ -934,6 +937,7 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 	struct guc_ctb *g2h = &ct->ctbs.g2h;
+ 	u32 tail, head, len;
+ 	s32 avail;
++	u32 action;
+ 
+ 	lockdep_assert_held(&ct->fast_lock);
+ 
+@@ -984,11 +988,13 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 				   avail * sizeof(u32));
+ 	}
+ 
++	action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[1]);
++
+ 	if (fast_path) {
+ 		if (FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[1]) != GUC_HXG_TYPE_EVENT)
+ 			return 0;
+ 
+-		switch (FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[1])) {
++		switch (action) {
+ 		case XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC:
+ 		case XE_GUC_ACTION_TLB_INVALIDATION_DONE:
+ 			break;	/* Process these in fast-path */
+@@ -1001,6 +1007,9 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
+ 	g2h->info.head = (head + avail) % g2h->info.size;
+ 	desc_write(xe, g2h, head, g2h->info.head);
+ 
++	trace_xe_guc_ctb_g2h(ct_to_gt(ct)->info.id, action, len,
++			     g2h->info.head, tail);
++
+ 	return len;
+ }
+ 
 diff --git a/drivers/gpu/drm/xe/xe_trace.h b/drivers/gpu/drm/xe/xe_trace.h
-index 456c776f4be1..233b982f34da 100644
+index e32f1cad51d9..456c776f4be1 100644
 --- a/drivers/gpu/drm/xe/xe_trace.h
 +++ b/drivers/gpu/drm/xe/xe_trace.h
-@@ -517,55 +517,44 @@ DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
- 	     TP_ARGS(vm)
+@@ -520,6 +520,7 @@ DEFINE_EVENT(xe_vm, xe_vm_rebind_worker_exit,
+ TRACE_EVENT(xe_guc_ct_h2g_flow_control,
+ 	    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
+ 	    TP_ARGS(_head, _tail, size, space, len),
++/* GUC */
+ 
+ 	    TP_STRUCT__entry(
+ 		     __field(u32, _head)
+@@ -567,6 +568,48 @@ TRACE_EVENT(xe_guc_ct_g2h_flow_control,
+ 		      __entry->space, __entry->len)
  );
  
--TRACE_EVENT(xe_guc_ct_h2g_flow_control,
--	    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
--	    TP_ARGS(_head, _tail, size, space, len),
- /* GUC */
-+DECLARE_EVENT_CLASS(xe_guc_ct_flow_control,
-+		    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
-+		    TP_ARGS(_head, _tail, size, space, len),
- 
--	    TP_STRUCT__entry(
--		     __field(u32, _head)
--		     __field(u32, _tail)
--		     __field(u32, size)
--		     __field(u32, space)
--		     __field(u32, len)
--		     ),
--
--	    TP_fast_assign(
--		   __entry->_head = _head;
--		   __entry->_tail = _tail;
--		   __entry->size = size;
--		   __entry->space = space;
--		   __entry->len = len;
--		   ),
--
--	    TP_printk("head=%u, tail=%u, size=%u, space=%u, len=%u",
--		      __entry->_head, __entry->_tail, __entry->size,
--		      __entry->space, __entry->len)
--);
--
--TRACE_EVENT(xe_guc_ct_g2h_flow_control,
--	    TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
--	    TP_ARGS(_head, _tail, size, space, len),
--
--	    TP_STRUCT__entry(
--		     __field(u32, _head)
--		     __field(u32, _tail)
--		     __field(u32, size)
--		     __field(u32, space)
--		     __field(u32, len)
--		     ),
--
--	    TP_fast_assign(
--		   __entry->_head = _head;
--		   __entry->_tail = _tail;
--		   __entry->size = size;
--		   __entry->space = space;
--		   __entry->len = len;
--		   ),
--
--	    TP_printk("head=%u, tail=%u, size=%u, space=%u, len=%u",
--		      __entry->_head, __entry->_tail, __entry->size,
--		      __entry->space, __entry->len)
++DECLARE_EVENT_CLASS(xe_guc_ctb,
++		    TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u32 tail),
++		    TP_ARGS(gt_id, action, len, _head, tail),
++
 +		    TP_STRUCT__entry(
-+			     __field(u32, _head)
-+			     __field(u32, _tail)
-+			     __field(u32, size)
-+			     __field(u32, space)
-+			     __field(u32, len)
-+			     ),
++				__field(u8, gt_id)
++				__field(u32, action)
++				__field(u32, len)
++				__field(u32, tail)
++				__field(u32, _head)
++		    ),
 +
 +		    TP_fast_assign(
-+			   __entry->_head = _head;
-+			   __entry->_tail = _tail;
-+			   __entry->size = size;
-+			   __entry->space = space;
-+			   __entry->len = len;
-+			   ),
++			    __entry->gt_id = gt_id;
++			    __entry->action = action;
++			    __entry->len = len;
++			    __entry->tail = tail;
++			    __entry->_head = _head;
++		    ),
 +
-+		    TP_printk("h2g flow control: head=%u, tail=%u, size=%u, space=%u, len=%u",
-+			      __entry->_head, __entry->_tail, __entry->size,
-+			      __entry->space, __entry->len)
++		    TP_printk("gt%d: H2G CTB: action=0x%x, len=%d, tail=%d, head=%d\n",
++			      __entry->gt_id, __entry->action, __entry->len,
++			      __entry->tail, __entry->_head)
 +);
 +
-+DEFINE_EVENT(xe_guc_ct_flow_control, xe_guc_ct_h2g_flow_control,
-+	     TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
-+	     TP_ARGS(_head, _tail, size, space, len)
++DEFINE_EVENT(xe_guc_ctb, xe_guc_ctb_h2g,
++	     TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u32 tail),
++	     TP_ARGS(gt_id, action, len, _head, tail)
 +);
 +
-+DEFINE_EVENT_PRINT(xe_guc_ct_flow_control, xe_guc_ct_g2h_flow_control,
-+		   TP_PROTO(u32 _head, u32 _tail, u32 size, u32 space, u32 len),
-+		   TP_ARGS(_head, _tail, size, space, len),
++DEFINE_EVENT_PRINT(xe_guc_ctb, xe_guc_ctb_g2h,
++		   TP_PROTO(u8 gt_id, u32 action, u32 len, u32 _head, u32 tail),
++		   TP_ARGS(gt_id, action, len, _head, tail),
 +
-+		   TP_printk("g2h flow control: head=%u, tail=%u, size=%u, space=%u, len=%u",
-+			     __entry->_head, __entry->_tail, __entry->size,
-+			     __entry->space, __entry->len)
- );
++		   TP_printk("gt%d: G2H CTB: action=0x%x, len=%d, tail=%d, head=%d\n",
++			     __entry->gt_id, __entry->action, __entry->len,
++			     __entry->tail, __entry->_head)
++
++);
++
++/* GuC */
++
+ #endif
  
- DECLARE_EVENT_CLASS(xe_guc_ctb,
+ /* This part must be outside protection */
 -- 
 2.25.1
 
