@@ -4,49 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C62E3CDB483
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Oct 2023 23:19:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E6EC3CDB474
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Oct 2023 23:21:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 759C110E34D;
-	Tue, 17 Oct 2023 23:19:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5629E10E346
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Oct 2023 23:18:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697584737; x=1729120737;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=b712vIdFTBt6yksrmXndjfgjkKvi7jCxZdYHr/HOfbI=;
- b=gf1qkAkYmad/24CpIAqLV5e89UqFWu3DoogsfCBBbIn3MHM5xMFa//r9
- +AAd+zaCVqh34z0ZZ+QhoW4iqyCrf/JIFRChgBeuoMP2TDhd+alj8qlk+
- l7bwK7v8bCon12CCbrxUn5Y56FBN/Zg2w1LbjdmP+VXIkyPWXpKqxDocf
- SEcZujyZSWKbh3HG3OJJx5+D+AGMbGitgRSAYH3p2kh7LsfFr/pyV3pZc
- R0e68FFesUaavaqDHvxh7f5nOItBdJavUhSoUMV1baEeVSpcXjS+HhjHE
- uCsUIabim5Cilg3r5JFeLliaMwnzdrW+zVQ0+QD3WkRJpPNnH2SazPkV7 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="7452934"
-X-IronPort-AV: E=Sophos;i="6.03,233,1694761200"; 
-   d="scan'208";a="7452934"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2023 16:18:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="822191735"
-X-IronPort-AV: E=Sophos;i="6.03,233,1694761200"; d="scan'208";a="822191735"
-Received: from mdroper-desk1.fm.intel.com ([10.1.27.131])
- by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2023 16:18:57 -0700
-From: Matt Roper <matthew.d.roper@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 17 Oct 2023 16:18:46 -0700
-Message-ID: <20231017231843.1790243-7-matthew.d.roper@intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231017231843.1790243-5-matthew.d.roper@intel.com>
-References: <20231017231843.1790243-5-matthew.d.roper@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id A79CC10E334;
+	Tue, 17 Oct 2023 23:21:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9C99F10E334;
+ Tue, 17 Oct 2023 23:21:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 84044AA915;
+ Tue, 17 Oct 2023 23:21:19 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/3] drm/xe: Emit SVG state on RCS during driver
- load on DG2 and MTL
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Tue, 17 Oct 2023 23:21:19 -0000
+Message-ID: <169758487950.14380.5980578399432130926@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231017231843.1790243-5-matthew.d.roper@intel.com>
+In-Reply-To: <20231017231843.1790243-5-matthew.d.roper@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Emit_SVG_3DSTATE_during_LRC_init?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,354 +39,27 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When recording the default LRC, the expectation is that the hardware's
-original state settings (both register and instruction) will be written
-out to the LRC upon first context switch.  For many 3DSTATE_* state
-instructions that don't truly have "default" values, this translates to
-a simple instruction header (opcodes + dword length) being written to
-the LRC, followed by an appropriate number of blank dwords as a place
-holder.  When userspace creates a context (which starts as a copy of the
-default LRC), they'll generally emit real 3DSTATE_* as part of their
-initialization to select the settings they desire.  If they don't emit
-one of the 3DSTATE instructions, then the zeroed dwords that remain in
-their LRC image generally translate to various state remaining disabled.
-This will either be what userspace wants or will lead to very
-reproducible and easily-debugged problems (rendering glitches, engine
-hangs).
+== Series Details ==
 
-It turns out that a subset of the 3DSTATE instructions, specifically
-those belonging to the SVG (State Variable - Global) unit, are not only
-emitting 0's for the instruction's "body" dwords, but also for the
-instruction header dword if no specific state has been explicitly set
-before context switch.  This means that when the hardware switches to a
-context that hasn't explicitly provided an appropriate state setting,
-the hardware will just see a sequence of NOOPs in the spot reserved for
-that 3DSTATE instruction while executing the LRC, and the actual
-hardware state setting will unintentionally inherit the configuration
-used by the previously running context.  Now when userspace makes a
-mistake and forgets to emit an important state instruction they no
-longer get consistent, easily-reproducible corruption/hangs, but rather
-erratic behavior where the presence/absence of a problem depends on what
-other workloads are running on the system and what order the contexts
-are scheduled on the engine.
+Series: Emit SVG 3DSTATE during LRC init
+URL   : https://patchwork.freedesktop.org/series/125255/
+State : success
 
-A specific example of this that came up recently related to mesh shading
-The OpenGL driver was not specifically emitting a 3DSTATE_MESH_CONTROL
-to disable mesh shading at context init, so on context switch, mesh
-shading would either be on or off depending on what the previous context
-had been doing.  Vulkan apps _were_ enabling mesh shading, so running a
-Vulkan app and then context switching to an OpenGL app resulted in mesh
-shading still unexpectedly being enabled during OpenGL operation, and
-since other Mesh-related state was not properly initialized for that
-context a GPU hang was seen.  Due to the specific ordering requirements
-(Vulkan app runs first, followed by OpenGL app), it took additional
-debug effort to track down the cause of the problem.
+== Summary ==
 
-There are various workarounds related to this behavior, with current
-implementations handled in the userspace drivers.  E.g., Wa_14019789679
-and Wa_22018402687.  However it's been suggested that the kernel driver
-can help simplify things here by emitting zeroed SVG state with proper
-instruction headers as part of our default context creation (i.e., at
-the same point we apply LRC workarounds).  This will help ensure that
-any future cases where a userspace driver does not emit an important
-state setting will result in consistent behavior.
-
-Bspec: 46261
-Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
----
- .../drm/xe/instructions/xe_gfxpipe_commands.h |  51 ++++++++
- drivers/gpu/drm/xe/xe_gt.c                    |   1 +
- drivers/gpu/drm/xe/xe_lrc.c                   | 111 +++++++++++++++++-
- 3 files changed, 162 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h b/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-index b5fbc761265c..7be961434719 100644
---- a/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-@@ -57,34 +57,84 @@
- #define CMD_3DSTATE_STENCIL_BUFFER		GFXPIPE_3D_CMD(0x0, 0x6)
- #define CMD_3DSTATE_HIER_DEPTH_BUFFER		GFXPIPE_3D_CMD(0x0, 0x7)
- #define CMD_3DSTATE_VERTEX_BUFFERS		GFXPIPE_3D_CMD(0x0, 0x8)
-+#define CMD_3DSTATE_VERTEX_ELEMENTS		GFXPIPE_3D_CMD(0x0, 0x9)
- #define CMD_3DSTATE_INDEX_BUFFER		GFXPIPE_3D_CMD(0x0, 0xA)
- #define CMD_3DSTATE_VF				GFXPIPE_3D_CMD(0x0, 0xC)
-+#define CMD_3DSTATE_MULTISAMPLE			GFXPIPE_3D_CMD(0x0, 0xD)
- #define CMD_3DSTATE_CC_STATE_POINTERS		GFXPIPE_3D_CMD(0x0, 0xE)
-+#define CMD_3DSTATE_SCISSOR_STATE_POINTERS	GFXPIPE_3D_CMD(0x0, 0xF)
-+#define CMD_3DSTATE_VS				GFXPIPE_3D_CMD(0x0, 0x10)
-+#define CMD_3DSTATE_GS				GFXPIPE_3D_CMD(0x0, 0x11)
-+#define CMD_3DSTATE_CLIP			GFXPIPE_3D_CMD(0x0, 0x12)
-+#define CMD_3DSTATE_SF				GFXPIPE_3D_CMD(0x0, 0x13)
- #define CMD_3DSTATE_WM				GFXPIPE_3D_CMD(0x0, 0x14)
-+#define CMD_3DSTATE_CONSTANT_VS			GFXPIPE_3D_CMD(0x0, 0x15)
-+#define CMD_3DSTATE_CONSTANT_GS			GFXPIPE_3D_CMD(0x0, 0x16)
- #define CMD_3DSTATE_SAMPLE_MASK			GFXPIPE_3D_CMD(0x0, 0x18)
-+#define CMD_3DSTATE_CONSTANT_HS			GFXPIPE_3D_CMD(0x0, 0x19)
-+#define CMD_3DSTATE_CONSTANT_DS			GFXPIPE_3D_CMD(0x0, 0x1A)
-+#define CMD_3DSTATE_HS				GFXPIPE_3D_CMD(0x0, 0x1B)
-+#define CMD_3DSTATE_TE				GFXPIPE_3D_CMD(0x0, 0x1C)
-+#define CMD_3DSTATE_DS				GFXPIPE_3D_CMD(0x0, 0x1D)
-+#define CMD_3DSTATE_STREAMOUT			GFXPIPE_3D_CMD(0x0, 0x1E)
- #define CMD_3DSTATE_SBE				GFXPIPE_3D_CMD(0x0, 0x1F)
- #define CMD_3DSTATE_PS				GFXPIPE_3D_CMD(0x0, 0x20)
-+#define CMD_3DSTATE_VIEWPORT_STATE_POINTERS_SF_CLIP	GFXPIPE_3D_CMD(0x0, 0x21)
- #define CMD_3DSTATE_CPS_POINTERS		GFXPIPE_3D_CMD(0x0, 0x22)
- #define CMD_3DSTATE_VIEWPORT_STATE_POINTERS_CC	GFXPIPE_3D_CMD(0x0, 0x23)
- #define CMD_3DSTATE_BLEND_STATE_POINTERS	GFXPIPE_3D_CMD(0x0, 0x24)
-+#define CMD_3DSTATE_BINDING_TABLE_POINTERS_VS	GFXPIPE_3D_CMD(0x0, 0x26)
-+#define CMD_3DSTATE_BINDING_TABLE_POINTERS_HS	GFXPIPE_3D_CMD(0x0, 0x27)
-+#define CMD_3DSTATE_BINDING_TABLE_POINTERS_DS	GFXPIPE_3D_CMD(0x0, 0x28)
-+#define CMD_3DSTATE_BINDING_TABLE_POINTERS_GS	GFXPIPE_3D_CMD(0x0, 0x29)
- #define CMD_3DSTATE_BINDING_TABLE_POINTERS_PS	GFXPIPE_3D_CMD(0x0, 0x2A)
-+#define CMD_3DSTATE_SAMPLER_STATE_POINTERS_VS	GFXPIPE_3D_CMD(0x0, 0x2B)
-+#define CMD_3DSTATE_SAMPLER_STATE_POINTERS_HS	GFXPIPE_3D_CMD(0x0, 0x2C)
-+#define CMD_3DSTATE_SAMPLER_STATE_POINTERS_DS	GFXPIPE_3D_CMD(0x0, 0x2D)
-+#define CMD_3DSTATE_SAMPLER_STATE_POINTERS_GS	GFXPIPE_3D_CMD(0x0, 0x2E)
- #define CMD_3DSTATE_SAMPLER_STATE_POINTERS_PS	GFXPIPE_3D_CMD(0x0, 0x2F)
- #define CMD_3DSTATE_VF_INSTANCING		GFXPIPE_3D_CMD(0x0, 0x49)
-+#define CMD_3DSTATE_VF_SGVS			GFXPIPE_3D_CMD(0x0, 0x4A)
- #define CMD_3DSTATE_VF_TOPOLOGY			GFXPIPE_3D_CMD(0x0, 0x4B)
- #define CMD_3DSTATE_WM_CHROMAKEY		GFXPIPE_3D_CMD(0x0, 0x4C)
- #define CMD_3DSTATE_PS_BLEND			GFXPIPE_3D_CMD(0x0, 0x4D)
- #define CMD_3DSTATE_WM_DEPTH_STENCIL		GFXPIPE_3D_CMD(0x0, 0x4E)
- #define CMD_3DSTATE_PS_EXTRA			GFXPIPE_3D_CMD(0x0, 0x4F)
-+#define CMD_3DSTATE_RASTER			GFXPIPE_3D_CMD(0x0, 0x50)
- #define CMD_3DSTATE_SBE_SWIZ			GFXPIPE_3D_CMD(0x0, 0x51)
-+#define CMD_3DSTATE_WM_HZ_OP			GFXPIPE_3D_CMD(0x0, 0x52)
-+#define CMD_3DSTATE_VF_COMPONENT_PACKING	GFXPIPE_3D_CMD(0x0, 0x55)
-+#define CMD_3DSTATE_VF_SGVS_2			GFXPIPE_3D_CMD(0x0, 0x56)
- #define CMD_3DSTATE_VFG				GFXPIPE_3D_CMD(0x0, 0x57)
-+#define CMD_3DSTATE_URB_ALLOC_VS		GFXPIPE_3D_CMD(0x0, 0x58)
-+#define CMD_3DSTATE_URB_ALLOC_HS		GFXPIPE_3D_CMD(0x0, 0x59)
-+#define CMD_3DSTATE_URB_ALLOC_DS		GFXPIPE_3D_CMD(0x0, 0x5A)
-+#define CMD_3DSTATE_URB_ALLOC_GS		GFXPIPE_3D_CMD(0x0, 0x5B)
-+#define CMD_3DSTATE_SO_BUFFER_INDEX_0		GFXPIPE_3D_CMD(0x0, 0x60)
-+#define CMD_3DSTATE_SO_BUFFER_INDEX_1		GFXPIPE_3D_CMD(0x0, 0x61)
-+#define CMD_3DSTATE_SO_BUFFER_INDEX_2		GFXPIPE_3D_CMD(0x0, 0x62)
-+#define CMD_3DSTATE_SO_BUFFER_INDEX_3		GFXPIPE_3D_CMD(0x0, 0x63)
-+#define CMD_3DSTATE_PRIMITIVE_REPLICATION	GFXPIPE_3D_CMD(0x0, 0x6C)
-+#define CMD_3DSTATE_TBIMR_TILE_PASS_INFO	GFXPIPE_3D_CMD(0x0, 0x6E)
- #define CMD_3DSTATE_AMFS			GFXPIPE_3D_CMD(0x0, 0x6F)
- #define CMD_3DSTATE_DEPTH_BOUNDS		GFXPIPE_3D_CMD(0x0, 0x71)
- #define CMD_3DSTATE_AMFS_TEXTURE_POINTERS	GFXPIPE_3D_CMD(0x0, 0x72)
- #define CMD_3DSTATE_CONSTANT_TS_POINTER		GFXPIPE_3D_CMD(0x0, 0x73)
-+#define CMD_3DSTATE_MESH_CONTROL		GFXPIPE_3D_CMD(0x0, 0x77)
- #define CMD_3DSTATE_MESH_DISTRIB		GFXPIPE_3D_CMD(0x0, 0x78)
-+#define CMD_3DSTATE_TASK_REDISTRIB		GFXPIPE_3D_CMD(0x0, 0x79)
-+#define CMD_3DSTATE_MESH_SHADER			GFXPIPE_3D_CMD(0x0, 0x7A)
-+#define CMD_3DSTATE_MESH_SHADER_DATA		GFXPIPE_3D_CMD(0x0, 0x7B)
-+#define CMD_3DSTATE_TASK_CONTROL		GFXPIPE_3D_CMD(0x0, 0x7C)
-+#define CMD_3DSTATE_TASK_SHADER			GFXPIPE_3D_CMD(0x0, 0x7D)
-+#define CMD_3DSTATE_TASK_SHADER_DATA		GFXPIPE_3D_CMD(0x0, 0x7E)
-+#define CMD_3DSTATE_URB_ALLOC_MESH		GFXPIPE_3D_CMD(0x0, 0x7F)
-+#define CMD_3DSTATE_URB_ALLOC_TASK		GFXPIPE_3D_CMD(0x0, 0x80)
-+#define CMD_3DSTATE_CLIP_MESH			GFXPIPE_3D_CMD(0x0, 0x81)
- #define CMD_3DSTATE_SBE_MESH			GFXPIPE_3D_CMD(0x0, 0x82)
- #define CMD_3DSTATE_CPSIZE_CONTROL_BUFFER	GFXPIPE_3D_CMD(0x0, 0x83)
- 
-+#define CMD_3DSTATE_DRAWING_RECTANGLE		GFXPIPE_3D_CMD(0x1, 0x0)
- #define CMD_3DSTATE_CHROMA_KEY			GFXPIPE_3D_CMD(0x1, 0x4)
- #define CMD_3DSTATE_POLY_STIPPLE_OFFSET		GFXPIPE_3D_CMD(0x1, 0x6)
- #define CMD_3DSTATE_POLY_STIPPLE_PATTERN	GFXPIPE_3D_CMD(0x1, 0x7)
-@@ -98,6 +148,7 @@
- #define CMD_3DSTATE_PUSH_CONSTANT_ALLOC_PS	GFXPIPE_3D_CMD(0x1, 0x16)
- #define CMD_3DSTATE_SO_DECL_LIST		GFXPIPE_3D_CMD(0x1, 0x17)
- #define   CMD_3DSTATE_SO_DECL_LIST_DW_LEN	REG_GENMASK(8, 0)
-+#define CMD_3DSTATE_SO_BUFFER			GFXPIPE_3D_CMD(0x1, 0x18)
- #define CMD_3DSTATE_BINDING_TABLE_POOL_ALLOC	GFXPIPE_3D_CMD(0x1, 0x19)
- #define CMD_3DSTATE_SAMPLE_PATTERN		GFXPIPE_3D_CMD(0x1, 0x1C)
- #define CMD_3DSTATE_3D_MODE			GFXPIPE_3D_CMD(0x1, 0x1E)
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 8618275b1877..d380f67b3365 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -10,6 +10,7 @@
- #include <drm/drm_managed.h>
- #include <drm/xe_drm.h>
- 
-+#include "instructions/xe_gfxpipe_commands.h"
- #include "instructions/xe_mi_commands.h"
- #include "regs/xe_gt_regs.h"
- #include "xe_assert.h"
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index 1f7b1ea00d4d..4bd6ef9e41fd 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1020,34 +1020,84 @@ static int dump_gfxpipe_command(struct drm_printer *p,
- 	MATCH3D(3DSTATE_STENCIL_BUFFER);
- 	MATCH3D(3DSTATE_HIER_DEPTH_BUFFER);
- 	MATCH3D(3DSTATE_VERTEX_BUFFERS);
-+	MATCH3D(3DSTATE_VERTEX_ELEMENTS);
- 	MATCH3D(3DSTATE_INDEX_BUFFER);
- 	MATCH3D(3DSTATE_VF);
-+	MATCH3D(3DSTATE_MULTISAMPLE);
- 	MATCH3D(3DSTATE_CC_STATE_POINTERS);
-+	MATCH3D(3DSTATE_SCISSOR_STATE_POINTERS);
-+	MATCH3D(3DSTATE_VS);
-+	MATCH3D(3DSTATE_GS);
-+	MATCH3D(3DSTATE_CLIP);
-+	MATCH3D(3DSTATE_SF);
- 	MATCH3D(3DSTATE_WM);
-+	MATCH3D(3DSTATE_CONSTANT_VS);
-+	MATCH3D(3DSTATE_CONSTANT_GS);
- 	MATCH3D(3DSTATE_SAMPLE_MASK);
-+	MATCH3D(3DSTATE_CONSTANT_HS);
-+	MATCH3D(3DSTATE_CONSTANT_DS);
-+	MATCH3D(3DSTATE_HS);
-+	MATCH3D(3DSTATE_TE);
-+	MATCH3D(3DSTATE_DS);
-+	MATCH3D(3DSTATE_STREAMOUT);
- 	MATCH3D(3DSTATE_SBE);
- 	MATCH3D(3DSTATE_PS);
-+	MATCH3D(3DSTATE_VIEWPORT_STATE_POINTERS_SF_CLIP);
- 	MATCH3D(3DSTATE_CPS_POINTERS);
- 	MATCH3D(3DSTATE_VIEWPORT_STATE_POINTERS_CC);
- 	MATCH3D(3DSTATE_BLEND_STATE_POINTERS);
-+	MATCH3D(3DSTATE_BINDING_TABLE_POINTERS_VS);
-+	MATCH3D(3DSTATE_BINDING_TABLE_POINTERS_HS);
-+	MATCH3D(3DSTATE_BINDING_TABLE_POINTERS_DS);
-+	MATCH3D(3DSTATE_BINDING_TABLE_POINTERS_GS);
- 	MATCH3D(3DSTATE_BINDING_TABLE_POINTERS_PS);
-+	MATCH3D(3DSTATE_SAMPLER_STATE_POINTERS_VS);
-+	MATCH3D(3DSTATE_SAMPLER_STATE_POINTERS_HS);
-+	MATCH3D(3DSTATE_SAMPLER_STATE_POINTERS_DS);
-+	MATCH3D(3DSTATE_SAMPLER_STATE_POINTERS_GS);
- 	MATCH3D(3DSTATE_SAMPLER_STATE_POINTERS_PS);
- 	MATCH3D(3DSTATE_VF_INSTANCING);
-+	MATCH3D(3DSTATE_VF_SGVS);
- 	MATCH3D(3DSTATE_VF_TOPOLOGY);
- 	MATCH3D(3DSTATE_WM_CHROMAKEY);
- 	MATCH3D(3DSTATE_PS_BLEND);
- 	MATCH3D(3DSTATE_WM_DEPTH_STENCIL);
- 	MATCH3D(3DSTATE_PS_EXTRA);
-+	MATCH3D(3DSTATE_RASTER);
- 	MATCH3D(3DSTATE_SBE_SWIZ);
-+	MATCH3D(3DSTATE_WM_HZ_OP);
-+	MATCH3D(3DSTATE_VF_COMPONENT_PACKING);
-+	MATCH3D(3DSTATE_VF_SGVS_2);
- 	MATCH3D(3DSTATE_VFG);
-+	MATCH3D(3DSTATE_URB_ALLOC_VS);
-+	MATCH3D(3DSTATE_URB_ALLOC_HS);
-+	MATCH3D(3DSTATE_URB_ALLOC_DS);
-+	MATCH3D(3DSTATE_URB_ALLOC_GS);
-+	MATCH3D(3DSTATE_SO_BUFFER_INDEX_0);
-+	MATCH3D(3DSTATE_SO_BUFFER_INDEX_1);
-+	MATCH3D(3DSTATE_SO_BUFFER_INDEX_2);
-+	MATCH3D(3DSTATE_SO_BUFFER_INDEX_3);
-+	MATCH3D(3DSTATE_PRIMITIVE_REPLICATION);
-+	MATCH3D(3DSTATE_TBIMR_TILE_PASS_INFO);
- 	MATCH3D(3DSTATE_AMFS);
- 	MATCH3D(3DSTATE_DEPTH_BOUNDS);
- 	MATCH3D(3DSTATE_AMFS_TEXTURE_POINTERS);
- 	MATCH3D(3DSTATE_CONSTANT_TS_POINTER);
-+	MATCH3D(3DSTATE_MESH_CONTROL);
- 	MATCH3D(3DSTATE_MESH_DISTRIB);
-+	MATCH3D(3DSTATE_TASK_REDISTRIB);
-+	MATCH3D(3DSTATE_MESH_SHADER);
-+	MATCH3D(3DSTATE_MESH_SHADER_DATA);
-+	MATCH3D(3DSTATE_TASK_CONTROL);
-+	MATCH3D(3DSTATE_TASK_SHADER);
-+	MATCH3D(3DSTATE_TASK_SHADER_DATA);
-+	MATCH3D(3DSTATE_URB_ALLOC_MESH);
-+	MATCH3D(3DSTATE_URB_ALLOC_TASK);
-+	MATCH3D(3DSTATE_CLIP_MESH);
- 	MATCH3D(3DSTATE_SBE_MESH);
- 	MATCH3D(3DSTATE_CPSIZE_CONTROL_BUFFER);
- 
-+	MATCH3D(3DSTATE_DRAWING_RECTANGLE);
- 	MATCH3D(3DSTATE_CHROMA_KEY);
- 	MATCH3D(3DSTATE_POLY_STIPPLE_OFFSET);
- 	MATCH3D(3DSTATE_POLY_STIPPLE_PATTERN);
-@@ -1060,6 +1110,7 @@ static int dump_gfxpipe_command(struct drm_printer *p,
- 	MATCH3D(3DSTATE_PUSH_CONSTANT_ALLOC_GS);
- 	MATCH3D(3DSTATE_PUSH_CONSTANT_ALLOC_PS);
- 	MATCH3D(3DSTATE_SO_DECL_LIST);
-+	MATCH3D(3DSTATE_SO_BUFFER);
- 	MATCH3D(3DSTATE_BINDING_TABLE_POOL_ALLOC);
- 	MATCH3D(3DSTATE_SAMPLE_PATTERN);
- 	MATCH3D(3DSTATE_3D_MODE);
-@@ -1115,6 +1166,59 @@ struct instr_state {
- 	u16 num_dw;
- };
- 
-+static const struct instr_state xe_hpg_svg_state[] = {
-+	{ .instr = CMD_3DSTATE_CONSTANT_VS, .num_dw = 11 },
-+	{ .instr = CMD_3DSTATE_CONSTANT_HS, .num_dw = 11 },
-+	{ .instr = CMD_3DSTATE_CONSTANT_DS, .num_dw = 11 },
-+	{ .instr = CMD_3DSTATE_CONSTANT_GS, .num_dw = 11 },
-+	{ .instr = CMD_3DSTATE_VERTEX_ELEMENTS, .num_dw = 69 },
-+	{ .instr = CMD_3DSTATE_VF_COMPONENT_PACKING, .num_dw = 5 },
-+	{ .instr = CMD_3DSTATE_VF_SGVS, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_VF_SGVS_2, .num_dw = 3 },
-+	{ .instr = CMD_3DSTATE_VS, .num_dw = 9 },
-+	{ .instr = CMD_3DSTATE_BINDING_TABLE_POINTERS_VS, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_SAMPLER_STATE_POINTERS_VS, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_URB_ALLOC_VS, .num_dw = 3 },
-+	{ .instr = CMD_3DSTATE_STREAMOUT, .num_dw = 5 },
-+	{ .instr = CMD_3DSTATE_SO_BUFFER_INDEX_0, .num_dw = 8 },
-+	{ .instr = CMD_3DSTATE_SO_BUFFER_INDEX_1, .num_dw = 8 },
-+	{ .instr = CMD_3DSTATE_SO_BUFFER_INDEX_2, .num_dw = 8 },
-+	{ .instr = CMD_3DSTATE_SO_BUFFER_INDEX_3, .num_dw = 8 },
-+	{ .instr = CMD_3DSTATE_CLIP, .num_dw = 4 },
-+	{ .instr = CMD_3DSTATE_PRIMITIVE_REPLICATION, .num_dw = 6 },
-+	{ .instr = CMD_3DSTATE_CLIP_MESH, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_SF, .num_dw = 4 },
-+	{ .instr = CMD_3DSTATE_SCISSOR_STATE_POINTERS, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_VIEWPORT_STATE_POINTERS_SF_CLIP, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_RASTER, .num_dw = 5 },
-+	{ .instr = CMD_3DSTATE_TBIMR_TILE_PASS_INFO, .num_dw = 4 },
-+	{ .instr = CMD_3DSTATE_WM_HZ_OP, .num_dw = 6 },
-+	{ .instr = CMD_3DSTATE_MULTISAMPLE, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_HS, .num_dw = 9 },
-+	{ .instr = CMD_3DSTATE_BINDING_TABLE_POINTERS_HS, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_SAMPLER_STATE_POINTERS_HS, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_URB_ALLOC_HS, .num_dw = 3 },
-+	{ .instr = CMD_3DSTATE_TASK_CONTROL, .num_dw = 3 },
-+	{ .instr = CMD_3DSTATE_TASK_SHADER, .num_dw = 7 },
-+	{ .instr = CMD_3DSTATE_TASK_SHADER_DATA, .num_dw = 10 },
-+	{ .instr = CMD_3DSTATE_URB_ALLOC_TASK, .num_dw = 3 },
-+	{ .instr = CMD_3DSTATE_TE, .num_dw = 5 },
-+	{ .instr = CMD_3DSTATE_TASK_REDISTRIB, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_DS, .num_dw = 11 },
-+	{ .instr = CMD_3DSTATE_BINDING_TABLE_POINTERS_DS, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_SAMPLER_STATE_POINTERS_DS, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_URB_ALLOC_DS, .num_dw = 3 },
-+	{ .instr = CMD_3DSTATE_GS, .num_dw = 10 },
-+	{ .instr = CMD_3DSTATE_BINDING_TABLE_POINTERS_GS, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_SAMPLER_STATE_POINTERS_GS, .num_dw = 2 },
-+	{ .instr = CMD_3DSTATE_URB_ALLOC_GS, .num_dw = 3 },
-+	{ .instr = CMD_3DSTATE_MESH_CONTROL, .num_dw = 3 },
-+	{ .instr = CMD_3DSTATE_MESH_SHADER_DATA, .num_dw = 10 },
-+	{ .instr = CMD_3DSTATE_URB_ALLOC_MESH, .num_dw = 3 },
-+	{ .instr = CMD_3DSTATE_MESH_SHADER, .num_dw = 8 },
-+	{ .instr = CMD_3DSTATE_DRAWING_RECTANGLE, .num_dw = 4 },
-+};
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 4d039d7be x86/alternatives: Disable KASAN in apply_alternatives()
+=== git am output follows ===
+.git/rebase-apply/patch:93: new blank line at EOF.
 +
- void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *bb)
- {
- 	struct xe_gt *gt = q->hwe->gt;
-@@ -1130,6 +1234,12 @@ void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *b
- 		return;
- 
- 	switch(GRAPHICS_VERx100(xe)) {
-+	case 1255:
-+	case 1270:
-+	case 1271:
-+		state_table = xe_hpg_svg_state;
-+		state_table_size = ARRAY_SIZE(xe_hpg_svg_state);
-+		break;
- 	default:
- 		xe_gt_dbg(gt, "No non-register state to emit on graphics ver %d.%02d\n",
- 			  GRAPHICS_VER(xe), GRAPHICS_VERx100(xe) % 100);
-@@ -1151,4 +1261,3 @@ void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *b
- 		bb->len += num_dw;
- 	}
- }
--
--- 
-2.41.0
+warning: 1 line adds whitespace errors.
+Applying: drm/xe: Prepare to emit non-register state while recording default LRC
+Applying: drm/xe: Emit SVG state on RCS during driver load on DG2 and MTL
+Applying: drm/xe/xe2: Update SVG state handling
+
 
