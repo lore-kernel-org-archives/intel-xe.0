@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECB7ECDB474
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Oct 2023 10:15:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7FBCCDB483
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Oct 2023 10:39:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B313210E2BE;
-	Tue, 17 Oct 2023 10:15:35 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8A16110E2BE
- for <intel-xe@lists.freedesktop.org>; Tue, 17 Oct 2023 10:15:33 +0000 (UTC)
-Message-ID: <de7acb2c-8738-fd92-500e-120ba20cbd0e@lankhorst.se>
-Date: Tue, 17 Oct 2023 12:15:27 +0200
+	by gabe.freedesktop.org (Postfix) with ESMTP id 937B710E0DC;
+	Tue, 17 Oct 2023 10:39:02 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id ACCD110E0DC;
+ Tue, 17 Oct 2023 10:39:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A4F77AA915;
+ Tue, 17 Oct 2023 10:39:00 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8380146077940301408=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-To: Matthew Brost <matthew.brost@intel.com>, maarten.lankhorst@linux.intel.com
-References: <20231013152142.52869-1-maarten.lankhorst@linux.intel.com>
- <20231013152142.52869-4-maarten.lankhorst@linux.intel.com>
- <ZSmYyklINGOJ4RO2@DUT025-TGLU.fm.intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <ZSmYyklINGOJ4RO2@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH 3/4] drm/xe: Add vm snapshot mutex for easily
- taking a vm snapshot during devcoredump
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Aravind Iddamsetty" <aravind.iddamsetty@linux.intel.com>
+Date: Tue, 17 Oct 2023 10:39:00 -0000
+Message-ID: <169753914063.14380.15866930465704479516@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231017092908.84177-1-aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <20231017092908.84177-1-aravind.iddamsetty@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/pm?=
+ =?utf-8?q?u=3A_Drop_interrupt_pmu_event?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,51 +39,161 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hey,
+--===============8380146077940301408==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 2023-10-13 21:21, Matthew Brost wrote:
-> On Fri, Oct 13, 2023 at 05:21:41PM +0200, maarten.lankhorst@linux.intel.com wrote:
->> From: Maarten Lankhorst <dev@lankhorst.se>
->>
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
->> ---
->>   drivers/gpu/drm/xe/xe_vm.c       | 7 +++++++
->>   drivers/gpu/drm/xe/xe_vm_types.h | 5 +++++
->>   2 files changed, 12 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
->> index da006249147e..544d998293d3 100644
->> --- a/drivers/gpu/drm/xe/xe_vm.c
->> +++ b/drivers/gpu/drm/xe/xe_vm.c
->> @@ -1163,7 +1163,9 @@ static int xe_vm_insert_vma(struct xe_vm *vm, struct xe_vma *vma)
->>   	xe_assert(vm->xe, xe_vma_vm(vma) == vm);
->>   	lockdep_assert_held(&vm->lock);
->>   
->> +	mutex_lock(&vm->snap_mutex);
-> 
-> I can't say I'm a fan of adding a new lock. Can you explain why this is
-> needed? e.g. Why does the exisiting &vm->lock not work? We have lockdep
-> annotations in both xe_vm_insert_vma & xe_vm_remove_vma that vm->lock is
-> held. As is, the capture should be able to take vm->lock in write mode
-> and this is safe.
-We literally cannot take that lock at the time of crash capture. We are 
-in a signaling context, so
-lock vm->lock and then wait for signaling
+== Series Details ==
 
-would hang on
-wait for signaling (snapshot context) locking vm->lock.
+Series: drm/xe/pmu: Drop interrupt pmu event
+URL   : https://patchwork.freedesktop.org/series/125225/
+State : failure
 
-The snap_mutex only protects the walk of the VM, so it has very specific 
-requirements. In the non-snapshot case, it will not ever be a contended 
-lock.
+== Summary ==
 
-> Side note the annotations should probably be in write mode for
-> xe_vm_insert_vma & xe_vm_remove_vma and the capture should be able to
-> take this in read mode. We should double check on this.
+CI Bug Log - changes from xe-437-e0b570cd99d1e5888466c3ac35a552c920d0cdab_BAT -> xe-pw-125225v1_BAT
+====================================================
 
-Cheers,
-~Maarten
+Summary
+-------
+
+  **WARNING**
+
+  Minor unknown changes coming with xe-pw-125225v1_BAT need to be verified
+  manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-125225v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-125225v1_BAT:
+
+### IGT changes ###
+
+#### Warnings ####
+
+  * igt@xe_exec_fault_mode@twice-invalid-fault:
+    - bat-pvc-2:          [INCOMPLETE][1] ([i915#8104]) -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-437-e0b570cd99d1e5888466c3ac35a552c920d0cdab/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125225v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-125225v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:
+    - bat-adlp-7:         [PASS][3] -> [FAIL][4] ([Intel XE#480]) +1 other test fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-437-e0b570cd99d1e5888466c3ac35a552c920d0cdab/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125225v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [i915#8104]: https://gitlab.freedesktop.org/drm/intel/issues/8104
+
+
+Build changes
+-------------
+
+  * Linux: xe-437-e0b570cd99d1e5888466c3ac35a552c920d0cdab -> xe-pw-125225v1
+
+  IGT_7542: 82d9962e6420c93117e7d2d240be80ca3e0532fb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-437-e0b570cd99d1e5888466c3ac35a552c920d0cdab: e0b570cd99d1e5888466c3ac35a552c920d0cdab
+  xe-pw-125225v1: 125225v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125225v1/index.html
+
+--===============8380146077940301408==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/pmu: Drop interrupt pmu event</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125225/">https://patchwork.freedesktop.org/series/125225/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125225v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125225v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-437-e0b570cd99d1e5888466c3ac35a552c920d0cdab_BAT -&gt; xe-pw-125225v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>WARNING</strong></p>
+<p>Minor unknown changes coming with xe-pw-125225v1_BAT need to be verified<br />
+  manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-125225v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-125225v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-invalid-fault:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-437-e0b570cd99d1e5888466c3ac35a552c920d0cdab/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/8104">i915#8104</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125225v1/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-125225v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-437-e0b570cd99d1e5888466c3ac35a552c920d0cdab/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125225v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@c-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-437-e0b570cd99d1e5888466c3ac35a552c920d0cdab -&gt; xe-pw-125225v1</li>
+</ul>
+<p>IGT_7542: 82d9962e6420c93117e7d2d240be80ca3e0532fb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-437-e0b570cd99d1e5888466c3ac35a552c920d0cdab: e0b570cd99d1e5888466c3ac35a552c920d0cdab<br />
+  xe-pw-125225v1: 125225v1</p>
+
+</body>
+</html>
+
+--===============8380146077940301408==--
