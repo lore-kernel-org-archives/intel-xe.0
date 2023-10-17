@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 42585CDB474
-	for <intel-xe@archiver.kernel.org>; Tue, 17 Oct 2023 17:37:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1EB92CDB482
+	for <intel-xe@archiver.kernel.org>; Tue, 17 Oct 2023 23:18:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAEC610E194;
-	Tue, 17 Oct 2023 17:37:06 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C236E10E189;
- Tue, 17 Oct 2023 17:37:05 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BC94BAADD7;
- Tue, 17 Oct 2023 17:37:05 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1627996360509798658=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id A88DB10E334;
+	Tue, 17 Oct 2023 23:18:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A23F10E334
+ for <intel-xe@lists.freedesktop.org>; Tue, 17 Oct 2023 23:18:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1697584736; x=1729120736;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=oKoqCQZ0k6GdZA2y2DCUDFsYsY8QEYX8Kv1V0xSwbdk=;
+ b=V3VrTWI0YOD5SwytaiNCWN7RfdrPzQ+vmFPDMz4GbAhEykdWpLDnzGlj
+ ijHt6EsWWfP2fafYdtz7D9Wurg2ra2Ea+43bq9DmuEuF1IZ+vLjyBlt/w
+ vR26UAqe0PfLE2FJaEEAa3/owUeh5fykc0i/wUjQOJS29+K1bmjVinPtM
+ +jbnj4bg5TC6YiLm5FU1AcjZLSjjTRuHtBnzP4q3y8X+2zpCfWxKc8mF4
+ V9X2jZd77ZmhRpp8H/NyM518bp/yk3dRCSHReJe46/uPILUflA+6UqFkz
+ EDlOV+ktpQnsQhyo2MZREuJx3Zukp25AgpjPxwwd289a0+dliqGZdE9Gf Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="7452932"
+X-IronPort-AV: E=Sophos;i="6.03,233,1694761200"; 
+   d="scan'208";a="7452932"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2023 16:18:56 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="822191727"
+X-IronPort-AV: E=Sophos;i="6.03,233,1694761200"; d="scan'208";a="822191727"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.131])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Oct 2023 16:18:55 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 17 Oct 2023 16:18:44 -0700
+Message-ID: <20231017231843.1790243-5-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Zbigniew_Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-Date: Tue, 17 Oct 2023 17:37:05 -0000
-Message-ID: <169756422574.14380.747262848009509364@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231017163243.14112-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231017163243.14112-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_xe/xe=5Fb?=
- =?utf-8?q?o=3A_Reject_bo_creation_of_unaligned_size_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 0/3] Emit SVG 3DSTATE during LRC init
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,224 +55,54 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1627996360509798658==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+DG2, MTL, and Xe2 do not write the 3DSTATE instruction headers to the
+SVG ("State Variable - Global") section of the LRC image during the
+first context switch if no explicit state has been programmed yet.  When
+we record the default context, that portion of the LRC is effectively
+filled with noops.  If a userspace driver later forgets to initialize
+some part of the SVG state, the result is that that state will not be
+saved/restored on context switch and the settings from one GPU client
+(which does initialize the state) can leak into another client (which
+does not initialize the state) on context switch.  While failure to ever
+initialize a proper setting for part of the state is a mistake on the
+UMD side, any bugs arising from such mistakes are often erractic in
+nature and hard to track down because the behavior will vary according
+to what other clients are running on the system and the specific order
+they get scheduled to the hardware engine.
 
-== Series Details ==
+If we explicitly emit a copy of each SVG state instruction while
+recording the default LRC (i.e., at the same time we emit our
+register-based LRC workarounds), it will ensure that the context image
+always has a real SVG state in the LRC image, and save/restore on
+context switch will work as expected.  Now if userspace fails to emit
+the proper state they want, they'll get reproducible behavior
+corresponding to known (zeroed out) state, making it much easier to
+debug and track down the problem.
 
-Series: xe/xe_bo: Reject bo creation of unaligned size (rev2)
-URL   : https://patchwork.freedesktop.org/series/116419/
-State : failure
+More detailed explanation provided on patch #2 of the series.
 
-== Summary ==
-
-CI Bug Log - changes from xe-440-b87b8637576a00e513f995952fcc891f3d154f5d_BAT -> xe-pw-116419v2_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-116419v2_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-116419v2_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-116419v2_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_prime_self_import@basic-with_fd_dup:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] +4 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_fd_dup.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_fd_dup.html
-
-  * igt@xe_prime_self_import@basic-with_one_bo:
-    - bat-atsm-2:         [PASS][3] -> [FAIL][4] +4 other tests fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-atsm-2/igt@xe_prime_self_import@basic-with_one_bo.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-atsm-2/igt@xe_prime_self_import@basic-with_one_bo.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@xe_live_ktest@dmabuf@xe_dma_buf-xe_dma_buf_kunit}:
-    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-dg2-oem2/igt@xe_live_ktest@dmabuf@xe_dma_buf-xe_dma_buf_kunit.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-dg2-oem2/igt@xe_live_ktest@dmabuf@xe_dma_buf-xe_dma_buf_kunit.html
-    - bat-atsm-2:         [PASS][7] -> [FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-atsm-2/igt@xe_live_ktest@dmabuf@xe_dma_buf-xe_dma_buf_kunit.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-atsm-2/igt@xe_live_ktest@dmabuf@xe_dma_buf-xe_dma_buf_kunit.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-116419v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][9] -> [FAIL][10] ([Intel XE#480]) +1 other test fail
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][11] -> [FAIL][12] ([Intel XE#750])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
+We've been told that some future platforms will also require us to emit
+some other specific non-register state during driver init, so even
+though this SVG initialization/sanitization in this series is just a
+"nice to have" change for the time being, the infrastructure added will
+become necessary for other purposes on future platforms.
 
 
-Build changes
--------------
+Matt Roper (3):
+  drm/xe: Prepare to emit non-register state while recording default LRC
+  drm/xe: Emit SVG state on RCS during driver load on DG2 and MTL
+  drm/xe/xe2: Update SVG state handling
 
-  * Linux: xe-440-b87b8637576a00e513f995952fcc891f3d154f5d -> xe-pw-116419v2
+ .../drm/xe/instructions/xe_gfxpipe_commands.h |  52 ++++++
+ drivers/gpu/drm/xe/xe_gt.c                    |  11 +-
+ drivers/gpu/drm/xe/xe_lrc.c                   | 164 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_lrc.h                   |   3 +
+ 4 files changed, 229 insertions(+), 1 deletion(-)
 
-  IGT_7543: 688f12831f876590e084e9b13b4d5ab85fe13d51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-440-b87b8637576a00e513f995952fcc891f3d154f5d: b87b8637576a00e513f995952fcc891f3d154f5d
-  xe-pw-116419v2: 116419v2
+-- 
+2.41.0
 
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/index.html
-
---===============1627996360509798658==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>xe/xe_bo: Reject bo creation of unaligned size (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/116419/">https://patchwork.freedesktop.org/series/116419/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-440-b87b8637576a00e513f995952fcc891f3d154f5d_BAT -&gt; xe-pw-116419v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-116419v2_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-116419v2_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-116419v2_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_prime_self_import@basic-with_fd_dup:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_fd_dup.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-dg2-oem2/igt@xe_prime_self_import@basic-with_fd_dup.html">FAIL</a> +4 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_prime_self_import@basic-with_one_bo:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-atsm-2/igt@xe_prime_self_import@basic-with_one_bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-atsm-2/igt@xe_prime_self_import@basic-with_one_bo.html">FAIL</a> +4 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>{igt@xe_live_ktest@dmabuf@xe_dma_buf-xe_dma_buf_kunit}:</p>
-<ul>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-dg2-oem2/igt@xe_live_ktest@dmabuf@xe_dma_buf-xe_dma_buf_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-dg2-oem2/igt@xe_live_ktest@dmabuf@xe_dma_buf-xe_dma_buf_kunit.html">FAIL</a></p>
-</li>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-atsm-2/igt@xe_live_ktest@dmabuf@xe_dma_buf-xe_dma_buf_kunit.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-atsm-2/igt@xe_live_ktest@dmabuf@xe_dma_buf-xe_dma_buf_kunit.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-116419v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-440-b87b8637576a00e513f995952fcc891f3d154f5d/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-116419v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-440-b87b8637576a00e513f995952fcc891f3d154f5d -&gt; xe-pw-116419v2</li>
-</ul>
-<p>IGT_7543: 688f12831f876590e084e9b13b4d5ab85fe13d51 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-440-b87b8637576a00e513f995952fcc891f3d154f5d: b87b8637576a00e513f995952fcc891f3d154f5d<br />
-  xe-pw-116419v2: 116419v2</p>
-
-</body>
-</html>
-
---===============1627996360509798658==--
