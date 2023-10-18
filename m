@@ -4,46 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99386CDB474
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 02:51:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 501C6CDB483
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 02:51:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 676FA10E362;
-	Wed, 18 Oct 2023 02:51:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D23610E364;
+	Wed, 18 Oct 2023 02:51:25 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A16710E362
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 02:51:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3410410E363
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 02:51:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697597482; x=1729133482;
+ t=1697597483; x=1729133483;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qhJ6Zr35PKUox7RURQjMv8AVjvSNp8iIUuVlCuGgEWw=;
- b=cwFB+ebaoFWaP232piWPgSs+1elJvg7FHMdTMr0+DeaJ4aTnKCG4sBVk
- 16npk0FFuFpgRuPwE90fMsKaK7XhjBL8cD3QFS/ir9swZ0k7FlDxXOdY6
- Ih1BIR6JhEH9wpHfcLwpV9qsYNa6UkSZy5fKLIpC1L4r15lNWr6drz4s8
- SX/wi3ne4z8Czr8rmepeyO9e+6Ek69gph4+oBJZY6eNaFYH+LPrFAH+kx
- lpGuokeHePT4xlQ00kMENscFm8O8NDTLZnLlAbPu20ZBi8nuVguEsPxMc
- dh+66lgphRPs0gS1tAxJaZAue6fceBO4P6JsrZzTzK/mPeJe79/cJoPk6 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="366180552"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="366180552"
+ bh=5m6GQXW8NriO/Ci7WhsdrLc37o2e0UnrldaQbCf7vuA=;
+ b=b+d8JHxvXindjQuE/3V4D17W4h4GjMRWGZAChrMuWA0SEpaz2+CtSTwP
+ dfxDDnGHOQelyQ7jo3f7NNfNsNpg+edFk15ne4KoYBRd1aZTydBiEiDw/
+ PDR0ZirReKlYgnaRSdbKIy8TmWVpkZ5WhuG3M/46oWPCX9zTKN6Z0falD
+ azLcxoz5LuOEKXg075yGZFBKPdsF60DFTCoiQztxO6J2DmGnyGN9bfxzb
+ zrVc2wZRuxVRYppTFdSeIeSjboVvXLLfQNXGxCRSkckFaY2T4iCIsqrIE
+ CWhOGh+rLW6OuCZkU3btSc13r4CLq+ZX/gCi2dZ+WQbmDg4BOCW1yjLBu Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="366180556"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="366180556"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2023 19:51:21 -0700
+ 17 Oct 2023 19:51:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="732967424"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="732967424"
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="732967428"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="732967428"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga006.jf.intel.com with ESMTP; 17 Oct 2023 19:51:19 -0700
+ by orsmga006.jf.intel.com with ESMTP; 17 Oct 2023 19:51:21 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Oct 2023 08:27:46 +0530
-Message-Id: <20231018025748.1225528-9-himal.prasad.ghimiray@intel.com>
+Date: Wed, 18 Oct 2023 08:27:47 +0530
+Message-Id: <20231018025748.1225528-10-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231018025748.1225528-1-himal.prasad.ghimiray@intel.com>
 References: <20231018025748.1225528-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 08/10] drm/xe: Handle MDFI error severity.
+Subject: [Intel-xe] [PATCH v2 02/10] drm/xe: Clear SOC CORRECTABLE error
+ registers.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,89 +59,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-NONFATAL and FATAL MDFI(T2T/T2C) errors are reported by same IEH
-register and bits (Bit 4 and Bit 6 of 0x282280). To determine the
-severity read local first error header log register (0x2822b0).
-Value 0x00330000 ensures severity is fatal and 0x00310000 is for NONFATAL
-errors. This register doesn't need explicit clearing, clearing MDFI
-bit in IEH reg will clear this register too. Incase of nonfatal value
-being reported by status register in fatal flow don't clean the MDFI IEH
-bit and continue. Same needs to be addressed if value read by status
-register is fatal in nonfatal flow.
+PVC doesn't support correctable SOC error reporting, classify them as
+Undefined and clear the registers.
 
 v2
-- Add commit message.
+- Fix commit message.
+- Although the errors are correctable but they are spurious interrupt.
+Hence use drm_err instead of drm_warn.(Aravind)
 
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_tile_error_regs.h |  9 +++++++++
- drivers/gpu/drm/xe/xe_hw_error.c             | 16 ++++++++++++++--
- 2 files changed, 23 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_error.c | 23 +++++++++++++++++++++--
+ 1 file changed, 21 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
-index f5b52932d9ce..20c76e25074f 100644
---- a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
-@@ -38,6 +38,8 @@
- #define SOC_LOCAL_ERR_STAT_MASTER_REG(base, x)		XE_REG((x) > HARDWARE_ERROR_CORRECTABLE ? \
- 								(base) + _SOC_LERRUNCSTS : \
- 								(base) + _SOC_LERRCORSTS)
-+#define MDFI_T2T                                       4
-+#define MDFI_T2C                                       6
- 
- 
- #define _DEV_ERR_STAT_NONFATAL                         0x100178
-@@ -50,6 +52,13 @@
- #define XE_SOC_ERROR                                   16
- 
- #define SOC_PVC_BASE	                               0x282000
-+
-+#define LOCAL_FIRST_IEH_HEADER_LOG_REG		       XE_REG(0x2822b0)
-+#define MDFI_SEVERITY_FATAL		               0x00330000
-+#define MDFI_SEVERITY_NONFATAL		               0x00310000
-+#define MDFI_SEVERITY(x)			       ((x) == HARDWARE_ERROR_FATAL ? \
-+							       MDFI_SEVERITY_FATAL : \
-+							       MDFI_SEVERITY_NONFATAL)
- #define SOC_PVC_SLAVE_BASE                             0x283000
- 
- #define PVC_GSC_HECI1_BASE                             0x284000
 diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 8b968b117c18..62b4051c6633 100644
+index 62b4051c6633..5700f708425f 100644
 --- a/drivers/gpu/drm/xe/xe_hw_error.c
 +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -636,7 +636,7 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
- {
- 	unsigned long mst_glb_errstat, slv_glb_errstat, lcl_errstat;
- 	struct hardware_errors_regs *err_regs;
--	u32 errbit, base, slave_base;
-+	u32 errbit, base, slave_base, ieh_header;
- 	int i;
+@@ -646,8 +646,26 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+ 	if (tile_to_xe(tile)->info.platform != XE_PVC)
+ 		return;
  
- 	struct xe_gt *gt = tile->primary_gt;
-@@ -704,9 +704,21 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
- 			"Tile%d reported SOC_LOCAL_ERR_STAT_MASTER_REG_FATAL:0x%08lx\n",
- 			tile->id, lcl_errstat);
- 
--		for_each_set_bit(errbit, &lcl_errstat, XE_RAS_REG_SIZE)
-+		for_each_set_bit(errbit, &lcl_errstat, XE_RAS_REG_SIZE) {
-+			if (errbit == MDFI_T2T || errbit == MDFI_T2C) {
-+				ieh_header = xe_mmio_read32(gt, LOCAL_FIRST_IEH_HEADER_LOG_REG);
-+				drm_info(&tile_to_xe(tile)->drm, HW_ERR "Tile%d LOCAL_FIRST_IEH_HEADER_LOG_REG:0x%08x\n",
-+					 tile->id, ieh_header);
+-	if (hw_err == HARDWARE_ERROR_CORRECTABLE)
+-		return;
++	if (hw_err == HARDWARE_ERROR_CORRECTABLE) {
++		for (i = 0; i < XE_SOC_NUM_IEH; i++)
++			xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
++					~REG_BIT(hw_err));
 +
-+				if (ieh_header != MDFI_SEVERITY(hw_err)) {
-+					lcl_errstat &= ~REG_BIT(errbit);
-+					continue;
-+				}
-+			}
++		xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
++				REG_GENMASK(31, 0));
++		xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err),
++				REG_GENMASK(31, 0));
++		xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
++				REG_GENMASK(31, 0));
++		xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
++				REG_GENMASK(31, 0));
 +
- 			xe_soc_log_err_update_cntr(tile, hw_err, errbit,
- 						   err_regs->soc_mstr_lcl[hw_err]);
-+		}
++		drm_err(&tile_to_xe(tile)->drm, HW_ERR
++			"Tile%d reported Undefine SOC CORRECTABLE error.",
++			tile->id);
++
++		goto unmask_gsysevtctl;
++	}
  
- 		xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err), lcl_errstat);
- 	}
+ 	base = SOC_PVC_BASE;
+ 	slave_base = SOC_PVC_SLAVE_BASE;
+@@ -729,6 +747,7 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+ 	xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
+ 			mst_glb_errstat);
+ 
++unmask_gsysevtctl:
+ 	for (i = 0; i < XE_SOC_NUM_IEH; i++)
+ 		xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
+ 				(HARDWARE_ERROR_MAX << 1) + 1);
 -- 
 2.25.1
 
