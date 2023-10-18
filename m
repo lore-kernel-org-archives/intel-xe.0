@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E795FCDB482
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 02:51:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63972CDB483
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 02:51:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB45810E35B;
-	Wed, 18 Oct 2023 02:51:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3503510E361;
+	Wed, 18 Oct 2023 02:51:21 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 29BE910E35F
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 02:51:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0792E10E35B
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 02:51:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697597476; x=1729133476;
+ t=1697597480; x=1729133480;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=q48xS9gZNwY1vmbJK7waM+KCbF8WcvIN3c+9xs7wuYY=;
- b=HRz8wT6O9dv7zYTSGAfioiMjuqnPqEN2XHejCA96hqwyCmU7KToYa7t1
- C93iLHAsWrLalvAckq4UqU5REZ3ECEI3bpuAeoU8+HIgNHCkeVR8OOm8E
- ImyM4VnSM1wX69/1/sOxzlOubfBXdPToyltgIjF4sHH+j1xc+0R9dO/Mj
- agJ54kPVU3i/OFfGN7MqBUqp1XU223repTx9w6q9D3fNw/7QJ+3DJmwLt
- zwPXD1u6edSOwLQ3NXsFDxDqDSTBZ+hR2M7VUNMn8x+nYx1yS/kKfv2iB
- esXrAPVYBlbGdvZ1p/SX9QJFP43jGdu0akQirR0/Kyxs7THcDhWUvHPNr Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="366180539"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="366180539"
+ bh=fOQk8tiUkDLkJIQQPG4/PkicmMhl4WEBU4HERYt4+Ps=;
+ b=F5ZNGKYwDxqVBrzpbP8yMJ6D7ObxBOCoriOiomJprM06LiavSU6hWaDN
+ Xku7EhrGqgw+M1XF5t7yeohZC8yK+wScdatdqOnWe3iY630vqaeVbbLRm
+ Bb7lspM7ta84z4wTvzlYsIFXGaTz0kTke2+Zg5tFFwPB/J40yXDg1FpKZ
+ EOM4M/UzakzaeQ/rYerl8NW/Pm6B4eJ3XZB+dG/JLs24hWkkun0Bz6NK+
+ LK3MAu1vXXIT1AEU+HmtNP2ctlcR7En3bApkoQNYdMWqN6sGjGkr1BzNP
+ vqcfWzC389YMr+gJmqMWa44P7Af8qYEFtbA7mjrFvj94Q0kmcT5IEmyIO w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="366180546"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="366180546"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2023 19:51:15 -0700
+ 17 Oct 2023 19:51:19 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="732967413"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="732967413"
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="732967420"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="732967420"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga006.jf.intel.com with ESMTP; 17 Oct 2023 19:51:14 -0700
+ by orsmga006.jf.intel.com with ESMTP; 17 Oct 2023 19:51:18 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Oct 2023 08:27:43 +0530
-Message-Id: <20231018025748.1225528-6-himal.prasad.ghimiray@intel.com>
+Date: Wed, 18 Oct 2023 08:27:45 +0530
+Message-Id: <20231018025748.1225528-8-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231018025748.1225528-1-himal.prasad.ghimiray@intel.com>
 References: <20231018025748.1225528-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 05/10] drm/xe: Notify userspace about GSC HW
- errors.
+Subject: [Intel-xe] [PATCH v2 07/10] drm/xe: Support SOC NONFATAL error
+ handling for PVC.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,130 +59,169 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Send uevent incase of nonfatal errors reported by gsc.
+Report the SOC nonfatal hardware error and update the counters which
+will increment incase of error.
 
 v2
-- No need to provide tile info in uevent because error is
-accepted only in tile0. (Aravind)
+- Use xe_assign_hw_err_regs to initilaize registers.
+- Dont use the counters if error is being reported by second level
+  registers.
+- Fix Num of IEH to 2.
+- Follow the convention source_typeoferror_errorname for enum and error
+reporting.(Aravind)
 
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  3 +++
- drivers/gpu/drm/xe/xe_hw_error.c     | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_error.h     |  3 ++-
- drivers/gpu/drm/xe/xe_irq.c          |  4 ++++
- include/uapi/drm/xe_drm.h            |  8 ++++++++
- 5 files changed, 33 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_hw_error.c | 70 +++++++++++++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_hw_error.h | 39 ++++++++++++++++++
+ 2 files changed, 108 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 2998ee517f0d..d2ee5549d20c 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -196,6 +196,9 @@ struct xe_tile {
- 	struct tile_hw_errors {
- 		struct xarray hw_error;
- 	} errors;
-+
-+	/** @gsc_hw_err_work: worker for uevent to report GSC HW errors */
-+	struct work_struct gsc_hw_err_work;
- };
- 
- /**
 diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 1e94ee72a34f..9ac817c1dd03 100644
+index 55f8613e8b6d..8b968b117c18 100644
 --- a/drivers/gpu/drm/xe/xe_hw_error.c
 +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2023 Intel Corporation
-  */
+@@ -258,6 +258,67 @@ static const struct err_name_index_pair pvc_soc_mstr_lcl_err_reg_fatal[] = {
+ 	[14 ... 31] = {"Undefined",				XE_HW_ERR_SOC_FATAL_UNKNOWN},
+ };
  
-+#include <drm/xe_drm.h>
++static const struct err_name_index_pair pvc_soc_mstr_glbl_err_reg_nonfatal[] = {
++	[0]         = {"MASTER LOCAL Reported",			XE_HW_ERR_TILE_UNSPEC},
++	[1]         = {"SLAVE GLOBAL Reported",			XE_HW_ERR_TILE_UNSPEC},
++	[2]         = {"HBM SS0: Channel0",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL0},
++	[3]         = {"HBM SS0: Channel1",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL1},
++	[4]         = {"HBM SS0: Channel2",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL2},
++	[5]         = {"HBM SS0: Channel3",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL3},
++	[6]         = {"HBM SS0: Channel4",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL4},
++	[7]         = {"HBM SS0: Channel5",			XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL5},
++	[8]         = {"HBM SS0: Channel6",                     XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL6},
++	[9]         = {"HBM SS0: Channel7",                     XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL7},
++	[10]        = {"HBM SS1: Channel0",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL0},
++	[11]        = {"HBM SS1: Channel1",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL1},
++	[12]        = {"HBM SS1: Channel2",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL2},
++	[13]        = {"HBM SS1: Channel3",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL3},
++	[14]        = {"HBM SS1: Channel4",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL4},
++	[15]        = {"HBM SS1: Channel5",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL5},
++	[16]        = {"HBM SS1: Channel6",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL6},
++	[17]        = {"HBM SS1: Channel7",                     XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL7},
++	[18 ... 31] = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
++};
 +
- #include "xe_hw_error.h"
- 
- #include "regs/xe_regs.h"
-@@ -387,6 +389,19 @@ xe_gt_hw_error_handler(struct xe_gt *gt, const enum hardware_error hw_err)
- 		xe_gt_hw_error_log_vector_reg(gt, hw_err);
- }
- 
-+void xe_gsc_hw_error_work(struct work_struct *work)
-+{
-+	struct xe_tile *tile = container_of(work, typeof(*tile), gsc_hw_err_work);
-+	char *csc_hw_error_event[3];
++static const struct err_name_index_pair pvc_soc_slave_glbl_err_reg_nonfatal[] = {
++	[0]         = {"SLAVE LOCAL Reported",			XE_HW_ERR_TILE_UNSPEC},
++	[1]         = {"HBM SS2: Channel0",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL0},
++	[2]         = {"HBM SS2: Channel1",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL1},
++	[3]         = {"HBM SS2: Channel2",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL2},
++	[4]         = {"HBM SS2: Channel3",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL3},
++	[5]         = {"HBM SS2: Channel4",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL4},
++	[6]         = {"HBM SS2: Channel5",			XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL5},
++	[7]         = {"HBM SS2: Channel6",                     XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL6},
++	[8]         = {"HBM SS2: Channel7",                     XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL7},
++	[9]         = {"HBM SS3: Channel0",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL0},
++	[10]        = {"HBM SS3: Channel1",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL1},
++	[11]        = {"HBM SS3: Channel2",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL2},
++	[12]        = {"HBM SS3: Channel3",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL3},
++	[13]        = {"HBM SS3: Channel4",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL4},
++	[14]        = {"HBM SS3: Channel5",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL5},
++	[15]        = {"HBM SS3: Channel6",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL6},
++	[16]        = {"HBM SS3: Channel7",                     XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL7},
++	[18]	    = {"ANR MDFI",				XE_HW_ERR_SOC_NONFATAL_ANR_MDFI},
++	[17]        = {"Undefined",                             XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
++	[19 ... 31] = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
++};
 +
-+	csc_hw_error_event[0] = XE_GSC_HW_HEALTH_UEVENT "=1";
-+	csc_hw_error_event[1] = "RESET_REQUIRED=1";
-+	csc_hw_error_event[2] = NULL;
++static const struct err_name_index_pair pvc_soc_slave_lcl_err_reg_nonfatal[] = {
++	[0 ... 31]  = {"Undefined",			XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
++};
 +
-+	kobject_uevent_env(&tile->xe->drm.primary->kdev->kobj, KOBJ_CHANGE,
-+			   csc_hw_error_event);
-+}
++static const struct err_name_index_pair pvc_soc_mstr_lcl_err_reg_nonfatal[] = {
++	[0 ... 3]   = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
++	[4]         = {"Base Die MDFI T2T",			XE_HW_ERR_SOC_NONFATAL_MDFI_T2T},
++	[5]         = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
++	[6]         = {"Base Die MDFI T2C",			XE_HW_ERR_SOC_NONFATAL_MDFI_T2C},
++	[7]         = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
++	[8]         = {"Invalid CSC PSF Command Parity",	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_CMD},
++	[9]         = {"Invalid CSC PSF Unexpected Completion",	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_CMP},
++	[10]        = {"Invalid CSC PSF Unsupported Request",	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_REQ},
++	[11 ... 31] = {"Undefined",				XE_HW_ERR_SOC_NONFATAL_UNKNOWN},
++};
 +
- static void
- xe_gsc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+ void xe_assign_hw_err_regs(struct xe_device *xe)
  {
-@@ -443,6 +458,7 @@ xe_gsc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
- 			drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR
- 					    "Tile0 reported GSC %s %s error, bit[%d] is set\n",
- 					    name, hw_err_str, errbit);
-+			schedule_work(&tile->gsc_hw_err_work);
- 		}
- 		if (indx != XE_HW_ERR_TILE_UNSPEC)
- 			xe_update_hw_error_cnt(&tile_to_xe(tile)->drm,
+ 	const struct err_name_index_pair **dev_err_stat = xe->hw_err_regs.dev_err_stat;
+@@ -295,6 +356,10 @@ void xe_assign_hw_err_regs(struct xe_device *xe)
+ 		soc_mstr_lcl[HARDWARE_ERROR_FATAL] = pvc_soc_mstr_lcl_err_reg_fatal;
+ 		soc_slave_glbl[HARDWARE_ERROR_FATAL] = pvc_soc_slave_glbl_err_reg_fatal;
+ 		soc_slave_lcl[HARDWARE_ERROR_FATAL] = pvc_soc_slave_lcl_err_reg_fatal;
++		soc_mstr_glbl[HARDWARE_ERROR_NONFATAL] = pvc_soc_mstr_glbl_err_reg_nonfatal;
++		soc_mstr_lcl[HARDWARE_ERROR_NONFATAL] = pvc_soc_mstr_lcl_err_reg_nonfatal;
++		soc_slave_glbl[HARDWARE_ERROR_NONFATAL] = pvc_soc_slave_glbl_err_reg_nonfatal;
++		soc_slave_lcl[HARDWARE_ERROR_NONFATAL] = pvc_soc_slave_lcl_err_reg_nonfatal;
+ 	}
+ 
+ }
+@@ -578,7 +643,10 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+ 
+ 	lockdep_assert_held(&tile_to_xe(tile)->irq.lock);
+ 
+-	if ((tile_to_xe(tile)->info.platform != XE_PVC) ||  hw_err != HARDWARE_ERROR_FATAL)
++	if (tile_to_xe(tile)->info.platform != XE_PVC)
++		return;
++
++	if (hw_err == HARDWARE_ERROR_CORRECTABLE)
+ 		return;
+ 
+ 	base = SOC_PVC_BASE;
 diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-index 1dad66a85799..8f6275997063 100644
+index 700474aed171..59b331f52783 100644
 --- a/drivers/gpu/drm/xe/xe_hw_error.h
 +++ b/drivers/gpu/drm/xe/xe_hw_error.h
-@@ -7,6 +7,7 @@
+@@ -112,6 +112,45 @@ enum xe_soc_hw_errors {
+ 	XE_HW_ERR_SOC_FATAL_PCIE_PSF_CMD,
+ 	XE_HW_ERR_SOC_FATAL_PCIE_PSF_CMP,
+ 	XE_HW_ERR_SOC_FATAL_PCIE_PSF_REQ,
++	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL0,
++	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL1,
++	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL2,
++	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL3,
++	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL4,
++	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL5,
++	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL6,
++	XE_HW_ERR_SOC_NONFATAL_HBM0_CHNL7,
++	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL0,
++	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL1,
++	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL2,
++	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL3,
++	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL4,
++	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL5,
++	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL6,
++	XE_HW_ERR_SOC_NONFATAL_HBM1_CHNL7,
++	XE_HW_ERR_SOC_NONFATAL_UNKNOWN,
++	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL0,
++	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL1,
++	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL2,
++	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL3,
++	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL4,
++	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL5,
++	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL6,
++	XE_HW_ERR_SOC_NONFATAL_HBM2_CHNL7,
++	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL0,
++	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL1,
++	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL2,
++	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL3,
++	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL4,
++	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL5,
++	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL6,
++	XE_HW_ERR_SOC_NONFATAL_HBM3_CHNL7,
++	XE_HW_ERR_SOC_NONFATAL_ANR_MDFI,
++	XE_HW_ERR_SOC_NONFATAL_MDFI_T2T,
++	XE_HW_ERR_SOC_NONFATAL_MDFI_T2C,
++	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_CMD,
++	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_CMP,
++	XE_HW_ERR_SOC_NONFATAL_CSC_PSF_REQ,
+ 	XE_TILE_HW_ERROR_MAX,
+ };
  
- #include <linux/stddef.h>
- #include <linux/types.h>
-+#include <linux/workqueue.h>
- 
- #define XE_RAS_REG_SIZE 32
- 
-@@ -110,5 +111,5 @@ struct xe_tile;
- void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
- void xe_assign_hw_err_regs(struct xe_device *xe);
- void xe_process_hw_errors(struct xe_device *xe);
--
-+void xe_gsc_hw_error_work(struct work_struct *work);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 8365a4cb0c45..bc0f01a2abc1 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -614,6 +614,10 @@ int xe_irq_install(struct xe_device *xe)
- 	irq_handler_t irq_handler;
- 	int err, irq;
- 
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
-+
-+	INIT_WORK(&tile->gsc_hw_err_work, xe_gsc_hw_error_work);
-+
- 	irq_handler = xe_irq_handler(xe);
- 	if (!irq_handler) {
- 		drm_err(&xe->drm, "No supported interrupt handler");
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index d48d8e3c898c..06f6fce1531d 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -16,6 +16,14 @@ extern "C" {
-  * subject to backwards-compatibility constraints.
-  */
- 
-+/**
-+ * DOC: uevent generated by xe on it's tile node.
-+ *
-+ * XE_GSC_HW_HEALTH_UEVENT - Event is generated when GSC reports HW
-+ * errors. The value supplied with the event is always "RESET_REQUIRED=1".
-+ */
-+#define XE_GSC_HW_HEALTH_UEVENT "DEVICE_STATUS"
-+
- /**
-  * DOC: uevent generated by xe on it's pci node.
-  *
 -- 
 2.25.1
 
