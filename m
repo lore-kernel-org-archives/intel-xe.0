@@ -4,48 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4A003CDB47E
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 03:54:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81929CDB483
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 03:54:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 260CC10E36A;
-	Wed, 18 Oct 2023 03:54:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F2D310E369;
+	Wed, 18 Oct 2023 03:54:08 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 227D610E369
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 03:54:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B01C10E366
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 03:54:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697601241; x=1729137241;
+ t=1697601246; x=1729137246;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=q48xS9gZNwY1vmbJK7waM+KCbF8WcvIN3c+9xs7wuYY=;
- b=I07L3+D5pA8wmui2HcA9A9BXzqFn4Z4U1Zhexao/lM5YhO/RRlQa13Zs
- lmjrdhtKP1OptGVnmH8YeMpPO4Wu5T1BXCIJkNNqHkU/1hAHWiCJj1rCU
- DBqhISoDuMbEsyAcbcQuLTOFijVIb1FuZh4Bgw4YGayOA7kGmvtvSUkM1
- qFh9K578LekaNxZ0tB1Jw7P7OPWWI13+KaLdLoNkLtmgEJ3bahe5KeQSl
- YjYkAm1xPpJL6AkXv10GlQYB0tqgn5jdwBNNipShLMKK4nA0E8+UBNNPW
- y7N8OJA6fWKnMnqPKZpl68x9glD1M6yDRFgYzOgl/whH6TlamK6WmE5DR A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="389806038"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="389806038"
+ bh=qhJ6Zr35PKUox7RURQjMv8AVjvSNp8iIUuVlCuGgEWw=;
+ b=FeBtwAeIQY9jZr4oes++zArcLmUVDUlh6VN7kFqSTySYUljth20YGE3d
+ uZdlZc/jXCpsjWVv5Cbl2npiXhB4XJdYfOaAp9UoV4eUL88ezHf0qzXAc
+ NGK9MZC1sMoxy9LOSeGk+yA57NGS4n0F8njNve6Sswu6v4FoklRej78ve
+ Gol3fVgXOYZuvkPPwh9xZYvYDQxKkwo4rucZleTPkgyEIcS0QsiKHF9ad
+ GR5pUD2NOQzi5GSmborxj6WNYlpirYmE/HxCWnLEqe8JlS2dav2edatIw
+ Wz1vsrfdvyNte0suPBaSDc7lNn8QSZjSa1+T9rgAr8eMUgOgKJay7Szlp g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="389806043"
+X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="389806043"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2023 20:54:00 -0700
+ 17 Oct 2023 20:54:06 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; 
-   d="scan'208";a="4351513"
+   d="scan'208";a="4351555"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa001.fm.intel.com with ESMTP; 17 Oct 2023 20:54:04 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 17 Oct 2023 20:54:09 -0700
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Oct 2023 09:30:28 +0530
-Message-Id: <20231018040033.1227494-6-himal.prasad.ghimiray@intel.com>
+Date: Wed, 18 Oct 2023 09:30:31 +0530
+Message-Id: <20231018040033.1227494-9-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231018040033.1227494-1-himal.prasad.ghimiray@intel.com>
 References: <20231018040033.1227494-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 05/10] drm/xe: Notify userspace about GSC HW
- errors.
+Subject: [Intel-xe] [PATCH v2 08/10] drm/xe: Handle MDFI error severity.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,130 +58,89 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Send uevent incase of nonfatal errors reported by gsc.
+NONFATAL and FATAL MDFI(T2T/T2C) errors are reported by same IEH
+register and bits (Bit 4 and Bit 6 of 0x282280). To determine the
+severity read local first error header log register (0x2822b0).
+Value 0x00330000 ensures severity is fatal and 0x00310000 is for NONFATAL
+errors. This register doesn't need explicit clearing, clearing MDFI
+bit in IEH reg will clear this register too. Incase of nonfatal value
+being reported by status register in fatal flow don't clean the MDFI IEH
+bit and continue. Same needs to be addressed if value read by status
+register is fatal in nonfatal flow.
 
 v2
-- No need to provide tile info in uevent because error is
-accepted only in tile0. (Aravind)
+- Add commit message.
 
 Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device_types.h |  3 +++
- drivers/gpu/drm/xe/xe_hw_error.c     | 16 ++++++++++++++++
- drivers/gpu/drm/xe/xe_hw_error.h     |  3 ++-
- drivers/gpu/drm/xe/xe_irq.c          |  4 ++++
- include/uapi/drm/xe_drm.h            |  8 ++++++++
- 5 files changed, 33 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/regs/xe_tile_error_regs.h |  9 +++++++++
+ drivers/gpu/drm/xe/xe_hw_error.c             | 16 ++++++++++++++--
+ 2 files changed, 23 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 2998ee517f0d..d2ee5549d20c 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -196,6 +196,9 @@ struct xe_tile {
- 	struct tile_hw_errors {
- 		struct xarray hw_error;
- 	} errors;
-+
-+	/** @gsc_hw_err_work: worker for uevent to report GSC HW errors */
-+	struct work_struct gsc_hw_err_work;
- };
+diff --git a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+index f5b52932d9ce..20c76e25074f 100644
+--- a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+@@ -38,6 +38,8 @@
+ #define SOC_LOCAL_ERR_STAT_MASTER_REG(base, x)		XE_REG((x) > HARDWARE_ERROR_CORRECTABLE ? \
+ 								(base) + _SOC_LERRUNCSTS : \
+ 								(base) + _SOC_LERRCORSTS)
++#define MDFI_T2T                                       4
++#define MDFI_T2C                                       6
  
- /**
+ 
+ #define _DEV_ERR_STAT_NONFATAL                         0x100178
+@@ -50,6 +52,13 @@
+ #define XE_SOC_ERROR                                   16
+ 
+ #define SOC_PVC_BASE	                               0x282000
++
++#define LOCAL_FIRST_IEH_HEADER_LOG_REG		       XE_REG(0x2822b0)
++#define MDFI_SEVERITY_FATAL		               0x00330000
++#define MDFI_SEVERITY_NONFATAL		               0x00310000
++#define MDFI_SEVERITY(x)			       ((x) == HARDWARE_ERROR_FATAL ? \
++							       MDFI_SEVERITY_FATAL : \
++							       MDFI_SEVERITY_NONFATAL)
+ #define SOC_PVC_SLAVE_BASE                             0x283000
+ 
+ #define PVC_GSC_HECI1_BASE                             0x284000
 diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 1e94ee72a34f..9ac817c1dd03 100644
+index 8b968b117c18..62b4051c6633 100644
 --- a/drivers/gpu/drm/xe/xe_hw_error.c
 +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -3,6 +3,8 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
-+#include <drm/xe_drm.h>
-+
- #include "xe_hw_error.h"
- 
- #include "regs/xe_regs.h"
-@@ -387,6 +389,19 @@ xe_gt_hw_error_handler(struct xe_gt *gt, const enum hardware_error hw_err)
- 		xe_gt_hw_error_log_vector_reg(gt, hw_err);
- }
- 
-+void xe_gsc_hw_error_work(struct work_struct *work)
-+{
-+	struct xe_tile *tile = container_of(work, typeof(*tile), gsc_hw_err_work);
-+	char *csc_hw_error_event[3];
-+
-+	csc_hw_error_event[0] = XE_GSC_HW_HEALTH_UEVENT "=1";
-+	csc_hw_error_event[1] = "RESET_REQUIRED=1";
-+	csc_hw_error_event[2] = NULL;
-+
-+	kobject_uevent_env(&tile->xe->drm.primary->kdev->kobj, KOBJ_CHANGE,
-+			   csc_hw_error_event);
-+}
-+
- static void
- xe_gsc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+@@ -636,7 +636,7 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
  {
-@@ -443,6 +458,7 @@ xe_gsc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
- 			drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR
- 					    "Tile0 reported GSC %s %s error, bit[%d] is set\n",
- 					    name, hw_err_str, errbit);
-+			schedule_work(&tile->gsc_hw_err_work);
- 		}
- 		if (indx != XE_HW_ERR_TILE_UNSPEC)
- 			xe_update_hw_error_cnt(&tile_to_xe(tile)->drm,
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-index 1dad66a85799..8f6275997063 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.h
-+++ b/drivers/gpu/drm/xe/xe_hw_error.h
-@@ -7,6 +7,7 @@
+ 	unsigned long mst_glb_errstat, slv_glb_errstat, lcl_errstat;
+ 	struct hardware_errors_regs *err_regs;
+-	u32 errbit, base, slave_base;
++	u32 errbit, base, slave_base, ieh_header;
+ 	int i;
  
- #include <linux/stddef.h>
- #include <linux/types.h>
-+#include <linux/workqueue.h>
+ 	struct xe_gt *gt = tile->primary_gt;
+@@ -704,9 +704,21 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+ 			"Tile%d reported SOC_LOCAL_ERR_STAT_MASTER_REG_FATAL:0x%08lx\n",
+ 			tile->id, lcl_errstat);
  
- #define XE_RAS_REG_SIZE 32
- 
-@@ -110,5 +111,5 @@ struct xe_tile;
- void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
- void xe_assign_hw_err_regs(struct xe_device *xe);
- void xe_process_hw_errors(struct xe_device *xe);
--
-+void xe_gsc_hw_error_work(struct work_struct *work);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 8365a4cb0c45..bc0f01a2abc1 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -614,6 +614,10 @@ int xe_irq_install(struct xe_device *xe)
- 	irq_handler_t irq_handler;
- 	int err, irq;
- 
-+	struct xe_tile *tile = xe_device_get_root_tile(xe);
+-		for_each_set_bit(errbit, &lcl_errstat, XE_RAS_REG_SIZE)
++		for_each_set_bit(errbit, &lcl_errstat, XE_RAS_REG_SIZE) {
++			if (errbit == MDFI_T2T || errbit == MDFI_T2C) {
++				ieh_header = xe_mmio_read32(gt, LOCAL_FIRST_IEH_HEADER_LOG_REG);
++				drm_info(&tile_to_xe(tile)->drm, HW_ERR "Tile%d LOCAL_FIRST_IEH_HEADER_LOG_REG:0x%08x\n",
++					 tile->id, ieh_header);
 +
-+	INIT_WORK(&tile->gsc_hw_err_work, xe_gsc_hw_error_work);
++				if (ieh_header != MDFI_SEVERITY(hw_err)) {
++					lcl_errstat &= ~REG_BIT(errbit);
++					continue;
++				}
++			}
 +
- 	irq_handler = xe_irq_handler(xe);
- 	if (!irq_handler) {
- 		drm_err(&xe->drm, "No supported interrupt handler");
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index d48d8e3c898c..06f6fce1531d 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -16,6 +16,14 @@ extern "C" {
-  * subject to backwards-compatibility constraints.
-  */
+ 			xe_soc_log_err_update_cntr(tile, hw_err, errbit,
+ 						   err_regs->soc_mstr_lcl[hw_err]);
++		}
  
-+/**
-+ * DOC: uevent generated by xe on it's tile node.
-+ *
-+ * XE_GSC_HW_HEALTH_UEVENT - Event is generated when GSC reports HW
-+ * errors. The value supplied with the event is always "RESET_REQUIRED=1".
-+ */
-+#define XE_GSC_HW_HEALTH_UEVENT "DEVICE_STATUS"
-+
- /**
-  * DOC: uevent generated by xe on it's pci node.
-  *
+ 		xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err), lcl_errstat);
+ 	}
 -- 
 2.25.1
 
