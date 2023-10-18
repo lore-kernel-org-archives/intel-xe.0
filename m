@@ -4,53 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3430CDB483
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 16:01:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A574FC41513
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 16:10:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CC6B10E0E3;
-	Wed, 18 Oct 2023 16:01:36 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85B3110E0E3
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 16:01:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 694C510E16B;
+	Wed, 18 Oct 2023 16:10:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E571010E16B
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 16:10:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697644894; x=1729180894;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=o7+1b6OlmRaIDviiN3Yv2vpTxPA1Q7m1l2Xp1opYANw=;
- b=Pdmg99g46HQy8586GfC4Q5Vmm7uBbV7B4/e/MBcttY7/Y5Y+YQVMuOIf
- v2B7K5JdEo2II9UgVR7tNJYXcT7I7b5/dCy/JCp4cz89mobRIfMJ3LVJV
- gUc7aDHnzAgYCGKVaYfQt3R2DT2+6Dkcy/i4eSOlTjCbTfuyYDtrT3bGk
- zcqoSMQO9k9XXm3+sn+bw63+owyHfJZyxxLFKUQEsaxtanJK8RLHb/Lai
- L2GHjikEbKEridzgyH4IbWjzPiYmxMOkQf4BbLhdyaUVamAGwrovleWaR
- YbeFdaJglHntwZJoaxEyc0+fA7cJL0eFUdrQOp+XmeyxoenYU+wd1LuFb g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="376418181"
-X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; d="scan'208";a="376418181"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2023 09:01:32 -0700
+ t=1697645420; x=1729181420;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=gczb6OyIn9KS5Ml1ogFMFH0XDRfVTCmaTXkzi+ojkzY=;
+ b=A4haya0V6kRH9dygrkYI61lsU2rNotSvJ6x559PcjG/UGUoWPQ8cQC6Q
+ xKVT8pU1FE1xIWYxdrhSkNn9sMv2FuhsuUCEwWP9zQH3Qvoo6yKVW+iI9
+ Wopyg5N/JZ6oPIF1fjqGOo4gsx6ilJhPV7zuEOdWDGt5D+v5G2HciErrb
+ qY9Ghu9TljwcHjq29iiq+8BBcwVWSzlM8rJjf5d/5XIth98r5i9YR2Lms
+ rzXXWQ4+BuWwuQw+P0SI3KVILIn8To2hE77Q6NNg5Kp4zhUJzgn4MhnJO
+ VP6K4Gpr5RIjGYYClx0W/B0CRkAVZ9Wais1PjEFUXLJBUZTt60WB3tBSX g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="366302137"
+X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; d="scan'208";a="366302137"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2023 09:07:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="930249585"
-X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; d="scan'208";a="930249585"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2023 09:01:30 -0700
-Message-ID: <2986e91d-d0de-6fab-f0df-4fe6a0bfaf34@linux.intel.com>
-Date: Wed, 18 Oct 2023 21:34:20 +0530
+X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="756639139"
+X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; d="scan'208";a="756639139"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 18 Oct 2023 09:07:44 -0700
+Received: from orsmsx603.amr.corp.intel.com (10.22.229.16) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32; Wed, 18 Oct 2023 09:07:43 -0700
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.32 via Frontend Transport; Wed, 18 Oct 2023 09:07:43 -0700
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.32; Wed, 18 Oct 2023 09:07:27 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=biC4PdOMsoac1pAaemu6Yim1rA2EsZAltGIZdb+5qcybki2TQS0QvNiZEd+VJrNGnuhJ3QhlFTpWATPlJbUWVeIdETrEfekoSr6ZBldLKqUYiB6VIg6XqFx+MPmrUEC2kdkGmBkKq6Z0oOPw3uefannF2bYRIK5mwmPXP5sCqLDVVJTWe22C2yOhR1EukG2bMQEUrntZ54K6CqPvo3RXljtQGJzNiYZYcOCK59Uab8G3trEFA3NJX3IHrR6qBIz9ATus9gXw2jEifqD7uINLMPiY9OYnR7rlRL9BImqu7qbqxsPdc9ynOdeOwZog+nGobB/NAEPn0vfMbFOUWEhc5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=fGnySTp/zrRuMD+ovkuQN5fHWr1Q0LuH0K+T0sAoCPY=;
+ b=m3TXxPe3i2HsGPrwpfRNx7bmisVLXderrFpLkSUVci9LHqpAP5nAkfiHbJCm7F1HZsfgMM52SgLGQEHLpKl1YaonrXLYiPluXWiixehW6nkhSBkaA88yT5gXwKjU53/s4RJhn6CSvBmeIp2b8MsWWSQotLIZ7yX2r2Aq0+z27CK2pX3ZzcKQ36UCv4aZIyIoerH51KxovmGaRJsLlfHP11UuT58sF5I9QcLe4fnjIFRi6e2pSpfgAUsJTiX1mG6VWsVWGsNyUdmCSNczRFCqLI2PeIoFDBnPffAb7k7thmikIRqaYVNRZqXCblmXqUZJ/Y5EPh6YPjIWf+bdJpNtug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by PH7PR11MB5886.namprd11.prod.outlook.com (2603:10b6:510:135::10)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6886.36; Wed, 18 Oct
+ 2023 16:07:26 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::3f66:aa7d:51d5:777]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::3f66:aa7d:51d5:777%6]) with mapi id 15.20.6886.034; Wed, 18 Oct 2023
+ 16:07:25 +0000
+Date: Wed, 18 Oct 2023 16:05:53 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Matthew Auld <matthew.auld@intel.com>
+Message-ID: <ZTACYUD3Ix+lWOQ/@DUT025-TGLU.fm.intel.com>
+References: <20231018123423.427552-2-matthew.auld@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231018123423.427552-2-matthew.auld@intel.com>
+X-ClientProxiedBy: SJ0PR05CA0094.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::9) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>, intel-xe@lists.freedesktop.org
-References: <20231018103603.1814906-1-tejas.upadhyay@intel.com>
- <20231018103603.1814906-3-tejas.upadhyay@intel.com>
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20231018103603.1814906-3-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH V8 2/2] drm/xe: Update counter for low level
- driver errors
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH7PR11MB5886:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ca81237-48cc-4e5e-7811-08dbcff451f4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Lxr4WLQuVAgwRZYtB4NQ51KtJ33GIWN0cTYj7O348jEftDYk4JFeNFfpU8HPoSqSeZrwJ+g+Wfk3v+ghndZpDmoNCfhp8F3ZDlDA0/+ma+7IIHfsMc9/4CAMh4Rp+66hhokiCboKB5++RB6qV3zP9JhnviQ7QmSLgDoUyAI68kLnpEDO3/aVxCeFEDvCNMhoBtVU7vRRSvspo9MprcElUHN3DGtu68LOs4s8tj0Mj3pC9OIhFSby6xj5kpwSG+Mp52zoCmx/idrV6XOwJphGxOEltB/vdcs+BdCQaeDcBZnexX35vhPfRudrnNOgMiPYBBE+In6NrJs/X5iWBeS9IhKDsXMoLlv1d/ZnDkhPrRXWjGxIPfwAkaO33HAZx3td8iRKvx9bZwg8CS5KL5peg7N7QBuF922WwCv550xiXu7Yr2O5n7ZKz+WWShWBuTX6ww3N+SIbHzV9CVlpoOeol89R1IVCudhWONkkomYj/kAjw4MLLvmWvZGBckwyPzBFEh0PouQKHOWL9QCmVZIGiepzG1YkvRAHF3Dz7oSOAGBoeDoDZh48WJ+nit/ggPEQ
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(136003)(346002)(366004)(396003)(376002)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(66556008)(54906003)(66476007)(6636002)(6486002)(66946007)(478600001)(6666004)(26005)(6506007)(6512007)(107886003)(5660300002)(6862004)(2906002)(4326008)(8676002)(8936002)(41300700001)(44832011)(316002)(86362001)(82960400001)(83380400001)(38100700002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?lJXLVM+q3nTJw5EMIR5K/L1bCh95Lgz1Xgw3AU0GBzKJCT3eJnozAJFsOZHh?=
+ =?us-ascii?Q?GmyT6k0YvNjWm6thFVBGty1XAhAYs5t+CdXTnS6F5s1FKRYI71HVVM9W454h?=
+ =?us-ascii?Q?zCPb4zz/ufwYR67PnWEa10yq4vkGYDsYThes94q4lrnswRjGx+oeh3Owr67y?=
+ =?us-ascii?Q?sktUZNvtVdgGkIR+xNGD5vC27EfAVwL0JlWa8m5644j5iHg3hX37+NIWK9Mp?=
+ =?us-ascii?Q?sUNJ3RFmmNsuC/qFqmxrhgNMGR6DFeuhXXebhd169ScUNBZoTQdFjFYwnXxM?=
+ =?us-ascii?Q?1dyz5+pa9dSYeB8rEGnco5BTFj5NdjzhavEMg+GpADGcCOCuPGV09lYE9NmF?=
+ =?us-ascii?Q?0/ffx0oIlmmQs6ze9RWzv8eJIy1IorUsxP4wQlDKZpSya/MctMiG78Wuz5Nt?=
+ =?us-ascii?Q?lEq5AgQWyuMAdHdSNpsn2nV0PP+Z2hEcyP3os4yvQxrU8PUoSzFbXAVvBsYL?=
+ =?us-ascii?Q?87nf2Q+5UhNRW0zQJ8ilhlcjefkQJG4Y7cmRPn5bl4ADSlL6I987RP71Mvsd?=
+ =?us-ascii?Q?65zV5ooqf3ePGQQABpgmfIRjiWCCOEI/aJWFYatHjKk9NYeyMj736grNONNI?=
+ =?us-ascii?Q?Nb5yKA0/KlADN/l3O1N4UU7OkN4rUA57n7rxz5xos494vGrO5nIi433WEARE?=
+ =?us-ascii?Q?p2PaS8GFtChTSSkn5X9r6/DV4dloVBtI6lYVmauttXw26SQja3dZ6sQ+SIVG?=
+ =?us-ascii?Q?rKM7D6OXBxl0IQ+Lsh5jI35Zv3iRNvsU0/FCnoQBBjsQnTfcIDBZd2UCZuRd?=
+ =?us-ascii?Q?g21SGsB9uS67aFJO8VhFjbEqCghsUYiNUDVzOQm8GQYVMnxwIIysGmZKUIoz?=
+ =?us-ascii?Q?LENba+PnDO/PWMSljPqBjsiC+/TPp+fIoOhRfkMPuEfEUPLtzaJdRGm/fbQm?=
+ =?us-ascii?Q?/NbZ3ET2aFDjU/BWhadrNEHb7VCc+wmtTTVBe4oMJzlbOGX96w6W2kWfulMu?=
+ =?us-ascii?Q?K47exz3yv2qslE2Khw4KbwqrMozNhNy+YW4mxGIQbN6VcJJJ0fEj3PELjzWY?=
+ =?us-ascii?Q?lPolBC3jwxDCWO1B6D8eoeY0HKiK5a2+WCrTqojOfisU9bqzKpbTSanUY5Hq?=
+ =?us-ascii?Q?BtG4OxyUxJ1meNylmnc92glhnV3u+ku6jCb/mNKiKCx8rQ0fPPl9Z/kPXTm2?=
+ =?us-ascii?Q?G37lo673YfRqD398mwbNOJWjgftymmHds/YjQxSMmusAhMiq9s+zrsQT6Ldb?=
+ =?us-ascii?Q?CzYp21aHEkMMa0QZJEp/+iOuBqQTrBq49BtJnGbyRI5BKfuG7mIR3fRVTII1?=
+ =?us-ascii?Q?yhYl/+l2DmKVjWGDoiaQ9DIHTOtrU+S6v3rPn+siXdjQwR2OR5RRbRwnw0ae?=
+ =?us-ascii?Q?e76RbAf9ps4HQaxh/Trn4pPBv6s5v2kn3nrUdHOMvpusO1DzmMPN+M9QmVsT?=
+ =?us-ascii?Q?JHk6O6PgL+S2dF8Prva1odQ1hoA1VYNW3pAO4DKtw6VUmJkbGC3GDlMB18HQ?=
+ =?us-ascii?Q?LBXkAxawOYelo257x/C+fOSy+4gyy59SAJL0qdlxPUXxVfIbPwZ1+LgyDnBi?=
+ =?us-ascii?Q?KdnZQsozgd4uC0OhbRhkMg8nMCM3veKCoGVYWBQtOJp6Mb7zj6gEGaRtzDtp?=
+ =?us-ascii?Q?jqqhu0wLRkwHyMrvBjwRmWSr0NHNchmpw47AthVpHrtX3AKJKyzqeUFijMMH?=
+ =?us-ascii?Q?gQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ca81237-48cc-4e5e-7811-08dbcff451f4
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Oct 2023 16:07:25.8685 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: iWv01DNDGFIPAGb+xMsF7hOe9etaMT4DL635rtR4YfYOCx3yR7tgiF/eh4mXQ1rpeRWWdNx95JmnrsHMecZADw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5886
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH] drm/xe: fix pat[2] programming with 2M/1G
+ pages
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,531 +143,104 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-On 18/10/23 16:06, Tejas Upadhyay wrote:
-> we added a low level driver error counter and incrementing on
-> each occurrence. Focus is on errors that are not functionally
-> affecting the system and might otherwise go unnoticed and cause
-> power/performance regressions, so checking for the error
-> counters should help.
->
-> Importantly the intention is not to go adding new error checks,
-> but to make sure the existing important error conditions are
-> propagated in terms of counter under respective categories like
-> below :
-> Under GT:
-> gt_guc_communication,
-> gt_engine_other,
-> gt_other
->
-> Under Tile:
-> gtt,
-> interrupt
->
-> TODO: Currently this is just a counting of errors, later these
-> counters will be reported through netlink interface when it is
-> implemented and ready.
-I don't think you want to mark this patch as TODO, as this
-patch can count the errors and they can be exposed with a patch later.
-the comment is fine but no need to mark TODO.
-
-
-Thanks,
-Aravind.
->
-> V8:
->   - Correct missed ret value handling
-> V7:
->   - removed double couting of err - Michal
-> V6:
->   - move drm_err to gt and tile specific err API - Aravind
->   - Use GTT naming instead of GGTT - Aravind/Niranjana
-> V5:
->   - Dump err_type in string format
-> V4:
->   - dump err_type in drm_err log - Himal
-> V2:
->   - Use modified APIs
->
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+On Wed, Oct 18, 2023 at 01:34:24PM +0100, Matthew Auld wrote:
+> Bit 7 in the leaf node is normally programmed with pat[2], however with
+> 2M/1G pages that same bit in the PDE/PDPE also toggles 2M/1G pages. For
+> 2M/1G entries the pat[2] is rather moved to bit 12, which is now free
+> given that the address must be aligned to 2M or 1G, leaving bit 7 for
+> toggling 2M/1G pages.
+> 
+> Bspec: 59510, 45038
+> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
 > ---
->  drivers/gpu/drm/xe/xe_gt.c                  | 26 +++++++++++-
->  drivers/gpu/drm/xe/xe_gt.h                  |  3 +-
->  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 13 +++---
->  drivers/gpu/drm/xe/xe_guc.c                 | 15 ++++---
->  drivers/gpu/drm/xe/xe_guc_ct.c              | 44 +++++++++++----------
->  drivers/gpu/drm/xe/xe_guc_pc.c              | 12 ++++--
->  drivers/gpu/drm/xe/xe_guc_submit.c          | 11 ++++--
->  drivers/gpu/drm/xe/xe_irq.c                 |  6 ++-
->  drivers/gpu/drm/xe/xe_reg_sr.c              | 22 +++++------
->  drivers/gpu/drm/xe/xe_tile.c                | 28 +++++++++++--
->  drivers/gpu/drm/xe/xe_tile.h                |  3 +-
->  11 files changed, 125 insertions(+), 58 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 3c13f41ec21a..993f2a9240ae 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -48,23 +48,45 @@
->  #include "xe_wa.h"
->  #include "xe_wopcm.h"
+>  drivers/gpu/drm/xe/xe_bo.h |  1 +
+>  drivers/gpu/drm/xe/xe_vm.c | 17 +++++++++++------
+>  2 files changed, 12 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+> index 78da28f4ea13..4e74201cc986 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.h
+> +++ b/drivers/gpu/drm/xe/xe_bo.h
+> @@ -41,6 +41,7 @@
 >  
-> +static const char *const xe_gt_drv_err_to_str[] = {
-> +	[XE_GT_DRV_ERR_GUC_COMM] = "GUC COMMUNICATION",
-> +	[XE_GT_DRV_ERR_ENGINE] = "ENGINE OTHER",
-> +	[XE_GT_DRV_ERR_OTHERS] = "GT OTHER"
-> +};
-> +
->  /**
->   * xe_gt_report_driver_error - Count driver error for gt
->   * @gt: GT to count error for
->   * @err: enum error type
-> + * @fmt: debug message format to print error
-> + * @...: variable args to print error
->   *
->   * Increment the driver error counter in respective error
->   * category for this GT.
->   *
-> - * Returns void.
-> + * Return: void.
->   */
->  void xe_gt_report_driver_error(struct xe_gt *gt,
-> -			       const enum xe_gt_drv_err_type err)
-> +			       const enum xe_gt_drv_err_type err,
-> +			       const char *fmt, ...)
->  {
-> +	struct va_format vaf;
-> +	va_list args;
-> +
-> +	BUILD_BUG_ON(ARRAY_SIZE(xe_gt_drv_err_to_str) !=
-> +		     __XE_GT_DRV_ERR_MAX);
-> +
->  	xe_gt_assert(gt, err >= 0);
->  	xe_gt_assert(gt, err < __XE_GT_DRV_ERR_MAX);
->  	WRITE_ONCE(gt->drv_err_cnt[err],
->  		   READ_ONCE(gt->drv_err_cnt[err]) + 1);
-> +
-> +	va_start(args, fmt);
-> +	vaf.fmt = fmt;
-> +	vaf.va = &args;
-> +
-> +	xe_gt_err(gt, "[%s] %pV\n", xe_gt_drv_err_to_str[err], &vaf);
-> +	va_end(args);
+>  #define XELPG_PPGTT_PTE_PAT3		BIT_ULL(62)
+>  #define XE2_PPGTT_PTE_PAT4		BIT_ULL(61)
+> +#define XE_PPGTT_PDE_PDPE_PAT2		BIT_ULL(12)
+
+This patch looks good, but I don't think xe_bo.h is the correct place
+for the page table defines. I think these were definied here in original
+PoC of Xe and we never moved these to a more logical header file. I'll
+probably post patch to find a home for these once this patch is merged.
+
+Anyways:
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+
+>  #define XE_PPGTT_PTE_PAT2		BIT_ULL(7)
+>  #define XE_PPGTT_PTE_PAT1		BIT_ULL(4)
+>  #define XE_PPGTT_PTE_PAT0		BIT_ULL(3)
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index fa6fa34a0663..498c0b3e1d73 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -1210,7 +1210,8 @@ static u64 pde_encode_pat_index(struct xe_device *xe, u16 pat_index)
+>  	return pte;
 >  }
 >  
->  struct xe_gt *xe_gt_alloc(struct xe_tile *tile)
-> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-> index 9442d615042f..efd83707b367 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.h
-> +++ b/drivers/gpu/drm/xe/xe_gt.h
-> @@ -68,6 +68,7 @@ static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
->  }
->  
->  void xe_gt_report_driver_error(struct xe_gt *gt,
-> -			       const enum xe_gt_drv_err_type err);
-> +			       const enum xe_gt_drv_err_type err,
-> +			       const char *fmt, ...);
->  
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-> index bd6005b9d498..770ed7df8389 100644
-> --- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-> +++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
-> @@ -9,6 +9,7 @@
->  #include "xe_gt.h"
->  #include "xe_guc.h"
->  #include "xe_guc_ct.h"
-> +#include "xe_tile.h"
->  #include "xe_trace.h"
->  
->  #define TLB_TIMEOUT	(HZ / 4)
-> @@ -35,8 +36,10 @@ static void xe_gt_tlb_fence_timeout(struct work_struct *work)
->  			break;
->  
->  		trace_xe_gt_tlb_invalidation_fence_timeout(fence);
-> -		drm_err(&gt_to_xe(gt)->drm, "gt%d: TLB invalidation fence timeout, seqno=%d recv=%d",
-> -			gt->info.id, fence->seqno, gt->tlb_invalidation.seqno_recv);
-> +		xe_tile_report_driver_error(gt_to_tile(gt), XE_TILE_DRV_ERR_GTT,
-> +					    "gt%d: TLB invalidation fence timeout, seqno=%d recv=%d",
-> +					    gt->info.id, fence->seqno,
-> +					    gt->tlb_invalidation.seqno_recv);
->  
->  		list_del(&fence->link);
->  		fence->base.error = -ETIME;
-> @@ -317,7 +320,6 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
->   */
->  int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
+> -static u64 pte_encode_pat_index(struct xe_device *xe, u16 pat_index)
+> +static u64 pte_encode_pat_index(struct xe_device *xe, u16 pat_index,
+> +				u32 pt_level)
 >  {
-> -	struct xe_device *xe = gt_to_xe(gt);
->  	struct xe_guc *guc = &gt->uc.guc;
->  	int ret;
+>  	u64 pte = 0;
 >  
-> @@ -329,8 +331,9 @@ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno)
->  				 tlb_invalidation_seqno_past(gt, seqno),
->  				 TLB_TIMEOUT);
->  	if (!ret) {
-> -		drm_err(&xe->drm, "gt%d: TLB invalidation time'd out, seqno=%d, recv=%d\n",
-> -			gt->info.id, seqno, gt->tlb_invalidation.seqno_recv);
-> +		xe_tile_report_driver_error(gt_to_tile(gt), XE_TILE_DRV_ERR_GTT,
-> +					    "gt%d: TLB invalidation time'd out, seqno=%d, recv=%d\n",
-> +					    gt->info.id, seqno, gt->tlb_invalidation.seqno_recv);
->  		return -ETIME;
->  	}
+> @@ -1220,8 +1221,12 @@ static u64 pte_encode_pat_index(struct xe_device *xe, u16 pat_index)
+>  	if (pat_index & BIT(1))
+>  		pte |= XE_PPGTT_PTE_PAT1;
 >  
-> diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-> index 84f0b5488783..c40d0cc46293 100644
-> --- a/drivers/gpu/drm/xe/xe_guc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc.c
-> @@ -663,8 +663,9 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  			     50000, &reply, false);
->  	if (ret) {
->  timeout:
-> -		drm_err(&xe->drm, "mmio request %#x: no reply %#x\n",
-> -			request[0], reply);
-> +		xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_GUC_COMM,
-> +					  "mmio request %#x: no reply %#x\n",
-> +					  request[0], reply);
->  		return ret;
->  	}
->  
-> @@ -697,16 +698,18 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
->  		u32 hint = FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, header);
->  		u32 error = FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, header);
->  
-> -		drm_err(&xe->drm, "mmio request %#x: failure %#x/%#x\n",
-> -			request[0], error, hint);
-> +		xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_GUC_COMM,
-> +					  "mmio request %#x: failure %#x/%#x\n",
-> +					  request[0], error, hint);
->  		return -ENXIO;
->  	}
->  
->  	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, header) !=
->  	    GUC_HXG_TYPE_RESPONSE_SUCCESS) {
->  proto:
-> -		drm_err(&xe->drm, "mmio request %#x: unexpected reply %#x\n",
-> -			request[0], header);
-> +		xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_GUC_COMM,
-> +					  "mmio request %#x: unexpected reply %#x\n",
-> +					  request[0], header);
->  		return -EPROTO;
->  	}
->  
-> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> index 8b686c8b3339..1615f4e3c01e 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> @@ -732,8 +732,9 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  
->  	ret = wait_event_timeout(ct->g2h_fence_wq, g2h_fence.done, HZ);
->  	if (!ret) {
-> -		drm_err(&xe->drm, "Timed out wait for G2H, fence %u, action %04x",
-> -			g2h_fence.seqno, action[0]);
-> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM,
-> +					  "Timed out wait for G2H, fence %u, action %04x",
-> +					  g2h_fence.seqno, action[0]);
->  		xa_erase_irq(&ct->fence_lookup, g2h_fence.seqno);
->  		return -ETIME;
->  	}
-> @@ -744,8 +745,9 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
->  		goto retry;
->  	}
->  	if (g2h_fence.fail) {
-> -		drm_err(&xe->drm, "Send failed, action 0x%04x, error %d, hint %d",
-> -			action[0], g2h_fence.error, g2h_fence.hint);
-> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM,
-> +					  "Send failed, action 0x%04x, error %d, hint %d",
-> +					  action[0], g2h_fence.error, g2h_fence.hint);
->  		ret = -EIO;
->  	}
->  
-> @@ -829,7 +831,6 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  
->  static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  {
-> -	struct xe_device *xe = ct_to_xe(ct);
->  	u32 hxg, origin, type;
->  	int ret;
->  
-> @@ -839,9 +840,9 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  
->  	origin = FIELD_GET(GUC_HXG_MSG_0_ORIGIN, hxg);
->  	if (unlikely(origin != GUC_HXG_ORIGIN_GUC)) {
-> -		drm_err(&xe->drm,
-> -			"G2H channel broken on read, origin=%d, reset required\n",
-> -			origin);
-> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM,
-> +					  "G2H channel broken on read, origin=%d, reset required\n",
-> +					  origin);
->  		ct->ctbs.g2h.info.broken = true;
->  
->  		return -EPROTO;
-> @@ -858,9 +859,9 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  		ret = parse_g2h_response(ct, msg, len);
->  		break;
->  	default:
-> -		drm_err(&xe->drm,
-> -			"G2H channel broken on read, type=%d, reset required\n",
-> -			type);
-> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM,
-> +					  "G2H channel broken on read, type=%d, reset required\n",
-> +					  type);
->  		ct->ctbs.g2h.info.broken = true;
->  
->  		ret = -EOPNOTSUPP;
-> @@ -871,7 +872,6 @@ static int parse_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  
->  static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  {
-> -	struct xe_device *xe = ct_to_xe(ct);
->  	struct xe_guc *guc = ct_to_guc(ct);
->  	u32 action = FIELD_GET(GUC_HXG_EVENT_MSG_0_ACTION, msg[1]);
->  	u32 *payload = msg + GUC_CTB_HXG_MSG_MIN_LEN;
-> @@ -918,12 +918,15 @@ static int process_g2h_msg(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  							   adj_len);
->  		break;
->  	default:
-> -		drm_err(&xe->drm, "unexpected action 0x%04x\n", action);
-> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM,
-> +					  "unexpected action 0x%04x\n",
-> +					  action);
->  	}
->  
->  	if (ret)
-> -		drm_err(&xe->drm, "action 0x%04x failed processing, ret=%d\n",
-> -			action, ret);
-> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM,
-> +					  "action 0x%04x failed processing, ret=%d\n",
-> +					  action, ret);
->  
->  	return 0;
->  }
-> @@ -957,9 +960,9 @@ static int g2h_read(struct xe_guc_ct *ct, u32 *msg, bool fast_path)
->  			   sizeof(u32));
->  	len = FIELD_GET(GUC_CTB_MSG_0_NUM_DWORDS, msg[0]) + GUC_CTB_MSG_MIN_LEN;
->  	if (len > avail) {
-> -		drm_err(&xe->drm,
-> -			"G2H channel broken on read, avail=%d, len=%d, reset required\n",
-> -			avail, len);
-> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM,
-> +					  "G2H channel broken on read, avail=%d, len=%d, reset required\n",
-> +					  avail, len);
->  		g2h->info.broken = true;
->  
->  		return -EPROTO;
-> @@ -1027,8 +1030,9 @@ static void g2h_fast_path(struct xe_guc_ct *ct, u32 *msg, u32 len)
->  	}
->  
->  	if (ret)
-> -		drm_err(&xe->drm, "action 0x%04x failed processing, ret=%d\n",
-> -			action, ret);
-> +		xe_gt_report_driver_error(ct_to_gt(ct), XE_GT_DRV_ERR_GUC_COMM,
-> +					  "action 0x%04x failed processing, ret=%d\n",
-> +					  action, ret);
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> index d9375d1d582f..7ae7e310b8c4 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> @@ -218,9 +218,15 @@ static int pc_action_set_param(struct xe_guc_pc *pc, u8 id, u32 value)
->  		return -EAGAIN;
->  
->  	ret = xe_guc_ct_send(ct, action, ARRAY_SIZE(action), 0, 0);
-> -	if (ret)
-> -		drm_err(&pc_to_xe(pc)->drm, "GuC PC set param failed: %pe",
-> -			ERR_PTR(ret));
-> +	if (ret) {
-> +		if (ret != -EDEADLK)
-> +			xe_gt_report_driver_error(pc_to_gt(pc), XE_GT_DRV_ERR_GUC_COMM,
-> +						  "GuC PC set param failed: %pe",
-> +						  ERR_PTR(ret));
+> -	if (pat_index & BIT(2))
+> -		pte |= XE_PPGTT_PTE_PAT2;
+> +	if (pat_index & BIT(2)) {
+> +		if (pt_level)
+> +			pte |= XE_PPGTT_PDE_PDPE_PAT2;
 > +		else
-> +			drm_err(&pc_to_xe(pc)->drm, "GuC PC set param failed: %pe",
-> +				ERR_PTR(ret));
+> +			pte |= XE_PPGTT_PTE_PAT2;
 > +	}
 >  
->  	return ret;
->  }
-> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
-> index 870dc5c532fa..d9e24b7cf0e4 100644
-> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
-> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
-> @@ -1497,13 +1497,15 @@ g2h_exec_queue_lookup(struct xe_guc *guc, u32 guc_id)
->  	struct xe_exec_queue *q;
+>  	if (pat_index & BIT(3))
+>  		pte |= XELPG_PPGTT_PTE_PAT3;
+> @@ -1265,7 +1270,7 @@ static u64 xelp_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
 >  
->  	if (unlikely(guc_id >= GUC_ID_MAX)) {
-> -		drm_err(&xe->drm, "Invalid guc_id %u", guc_id);
-> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM,
-> +					  "Invalid guc_id %u", guc_id);
->  		return NULL;
->  	}
+>  	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
+>  	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
+> -	pte |= pte_encode_pat_index(xe, pat_index);
+> +	pte |= pte_encode_pat_index(xe, pat_index, pt_level);
+>  	pte |= pte_encode_ps(pt_level);
 >  
->  	q = xa_load(&guc->submission_state.exec_queue_lookup, guc_id);
->  	if (unlikely(!q)) {
-> -		drm_err(&xe->drm, "Not engine present for guc_id %u", guc_id);
-> +		xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_GUC_COMM,
-> +					  "Not engine present for guc_id %u", guc_id);
->  		return NULL;
->  	}
+>  	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
+> @@ -1284,7 +1289,7 @@ static u64 xelp_pte_encode_vma(u64 pte, struct xe_vma *vma,
+>  	if (likely(!xe_vma_read_only(vma)))
+>  		pte |= XE_PAGE_RW;
 >  
-> @@ -1681,8 +1683,9 @@ int xe_guc_exec_queue_reset_failure_handler(struct xe_guc *guc, u32 *msg, u32 le
->  	reason = msg[2];
+> -	pte |= pte_encode_pat_index(xe, pat_index);
+> +	pte |= pte_encode_pat_index(xe, pat_index, pt_level);
+>  	pte |= pte_encode_ps(pt_level);
 >  
->  	/* Unexpected failure of a hardware feature, log an actual error */
-> -	drm_err(&xe->drm, "GuC engine reset request failed on %d:%d because 0x%08X",
-> -		guc_class, instance, reason);
-> +	xe_gt_report_driver_error(guc_to_gt(guc), XE_GT_DRV_ERR_ENGINE,
-> +				  "GuC engine reset request failed on %d:%d because 0x%08X",
-> +				  guc_class, instance, reason);
+>  	if (unlikely(xe_vma_is_null(vma)))
+> @@ -1304,7 +1309,7 @@ static u64 xelp_pte_encode_addr(struct xe_device *xe, u64 addr,
 >  
->  	xe_gt_reset_async(guc_to_gt(guc));
+>  	pte = addr;
+>  	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
+> -	pte |= pte_encode_pat_index(xe, pat_index);
+> +	pte |= pte_encode_pat_index(xe, pat_index, pt_level);
+>  	pte |= pte_encode_ps(pt_level);
 >  
-> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> index 61350ed32c61..487fe98abb55 100644
-> --- a/drivers/gpu/drm/xe/xe_irq.c
-> +++ b/drivers/gpu/drm/xe/xe_irq.c
-> @@ -18,6 +18,7 @@
->  #include "xe_guc.h"
->  #include "xe_hw_engine.h"
->  #include "xe_mmio.h"
-> +#include "xe_tile.h"
->  
->  /*
->   * Interrupt registers for a unit are always consecutive and ordered
-> @@ -227,8 +228,9 @@ gt_engine_identity(struct xe_device *xe,
->  		 !time_after32(local_clock() >> 10, timeout_ts));
->  
->  	if (unlikely(!(ident & INTR_DATA_VALID))) {
-> -		drm_err(&xe->drm, "INTR_IDENTITY_REG%u:%u 0x%08x not valid!\n",
-> -			bank, bit, ident);
-> +		xe_tile_report_driver_error(gt_to_tile(mmio), XE_TILE_DRV_ERR_INTR,
-> +					    "INTR_IDENTITY_REG%u:%u 0x%08x not valid!\n",
-> +					    bank, bit, ident);
->  		return 0;
->  	}
->  
-> diff --git a/drivers/gpu/drm/xe/xe_reg_sr.c b/drivers/gpu/drm/xe/xe_reg_sr.c
-> index 87adefb56024..9ee62ff209eb 100644
-> --- a/drivers/gpu/drm/xe/xe_reg_sr.c
-> +++ b/drivers/gpu/drm/xe/xe_reg_sr.c
-> @@ -125,12 +125,12 @@ int xe_reg_sr_add(struct xe_reg_sr *sr,
->  	return 0;
->  
->  fail:
-> -	xe_gt_err(gt,
-> -		  "discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s, mcr: %s): ret=%d\n",
-> -		  idx, e->clr_bits, e->set_bits,
-> -		  str_yes_no(e->reg.masked),
-> -		  str_yes_no(e->reg.mcr),
-> -		  ret);
-> +	xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_OTHERS,
-> +				  "discarding save-restore reg %04lx (clear: %08x, set: %08x, masked: %s, mcr: %s): ret=%d\n",
-> +				  idx, e->clr_bits, e->set_bits,
-> +				  str_yes_no(e->reg.masked),
-> +				  str_yes_no(e->reg.mcr),
-> +				  ret);
->  	reg_sr_inc_error(sr);
->  
->  	return ret;
-> @@ -207,7 +207,7 @@ void xe_reg_sr_apply_mmio(struct xe_reg_sr *sr, struct xe_gt *gt)
->  	return;
->  
->  err_force_wake:
-> -	xe_gt_err(gt, "Failed to apply, err=%d\n", err);
-> +	xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_OTHERS, "Failed to apply, err=%d\n", err);
->  }
->  
->  void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
-> @@ -234,9 +234,9 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
->  	p = drm_debug_printer(KBUILD_MODNAME);
->  	xa_for_each(&sr->xa, reg, entry) {
->  		if (slot == RING_MAX_NONPRIV_SLOTS) {
-> -			xe_gt_err(gt,
-> -				  "hwe %s: maximum register whitelist slots (%d) reached, refusing to add more\n",
-> -				  hwe->name, RING_MAX_NONPRIV_SLOTS);
-> +			xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_ENGINE,
-> +						  "hwe %s: maximum register whitelist slots (%d) reached, refusing to add more\n",
-> +						  hwe->name, RING_MAX_NONPRIV_SLOTS);
->  			break;
->  		}
->  
-> @@ -259,7 +259,7 @@ void xe_reg_sr_apply_whitelist(struct xe_hw_engine *hwe)
->  	return;
->  
->  err_force_wake:
-> -	drm_err(&xe->drm, "Failed to apply, err=%d\n", err);
-> +	xe_gt_report_driver_error(gt, XE_GT_DRV_ERR_OTHERS, "Failed to apply, err=%d\n", err);
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
-> index b31dc63ea7c2..4ae56ee4b071 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.c
-> +++ b/drivers/gpu/drm/xe/xe_tile.c
-> @@ -71,23 +71,45 @@
->   *  - MOCS and PAT programming
->   */
->  
-> +static const char *const xe_tile_drv_err_to_str[] = {
-> +	[XE_TILE_DRV_ERR_GTT] = "GTT",
-> +	[XE_TILE_DRV_ERR_INTR] = "INTERRUPT"
-> +};
-> +
->  /**
->   * xe_tile_report_driver_error - Count driver error for tile
->   * @tile: Tile to count error for
-> - * @err: enum error type
-> + * @err: Enum error type
-> + * @fmt: debug message format to print error
-> + * @...: variable args to print error
->   *
->   * Increment the driver error counter in respective error
->   * category for this tile.
->   *
-> - * Returns void.
-> + * Return: void.
->   */
->  void xe_tile_report_driver_error(struct xe_tile *tile,
-> -				 const enum xe_tile_drv_err_type err)
-> +				 const enum xe_tile_drv_err_type err,
-> +				 const char *fmt, ...)
->  {
-> +	struct va_format vaf;
-> +	va_list args;
-> +
-> +	BUILD_BUG_ON(ARRAY_SIZE(xe_tile_drv_err_to_str) !=
-> +		     __XE_TILE_DRV_ERR_MAX);
-> +
->  	xe_assert(tile_to_xe(tile), err >= 0);
->  	xe_assert(tile_to_xe(tile), err < __XE_TILE_DRV_ERR_MAX);
->  	WRITE_ONCE(tile->drv_err_cnt[err],
->  		   READ_ONCE(tile->drv_err_cnt[err]) + 1);
-> +
-> +	va_start(args, fmt);
-> +	vaf.fmt = fmt;
-> +	vaf.va = &args;
-> +
-> +	drm_err(&tile->xe->drm, "TILE%u [%s] %pV",
-> +		tile->id, xe_tile_drv_err_to_str[err], &vaf);
-> +	va_end(args);
->  }
->  
->  /**
-> diff --git a/drivers/gpu/drm/xe/xe_tile.h b/drivers/gpu/drm/xe/xe_tile.h
-> index 092a6b17a97e..c79108fb9579 100644
-> --- a/drivers/gpu/drm/xe/xe_tile.h
-> +++ b/drivers/gpu/drm/xe/xe_tile.h
-> @@ -15,6 +15,7 @@ int xe_tile_init_noalloc(struct xe_tile *tile);
->  
->  void xe_tile_migrate_wait(struct xe_tile *tile);
->  void xe_tile_report_driver_error(struct xe_tile *tile,
-> -				 const enum xe_tile_drv_err_type err);
-> +				 const enum xe_tile_drv_err_type err,
-> +				 const char *fmt, ...);
->  
->  #endif
+>  	if (devmem)
+> -- 
+> 2.41.0
+> 
