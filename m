@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86311CDB482
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 12:35:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AEF62CDB47E
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 12:45:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 25C2910E3D8;
-	Wed, 18 Oct 2023 12:35:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E219610E3D8
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 12:35:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CC9A10E0D4;
+	Wed, 18 Oct 2023 12:45:21 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A41E010E0D4
+ for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 12:45:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697632503; x=1729168503;
+ t=1697633119; x=1729169119;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=QZ9F+qpo8eGYP1h5Z9nhDQ2YwpPrq+0C11e+g/tgPs8=;
- b=WEcNmgvxOrvNyvu63a0yOcj+fUuO4AhMULPuLE9II0T02u6j2ahXEoYO
- YT7edhq3gW9Aj4vZvAbFZmid6zRNcGK2r+4tskOCstXhHT0uVUJrNwGj2
- rDj6+VZS+Lq8zRbo2v1p8dhvoYaFr2sOp/Cp1ytrM0BgZOypoFTAsszD3
- +993Jc2YUDN/dPlJdPsO1KWMLfhOdA/esGFPZIvKXCR+sujAf9H2kuKNf
- OtvfPpnb74MfgQEfuGazwgPU/A032/QJjnN2T2HV09cFnGWOLeWyouGt/
- hCpejtJ1x/9QNtjcziOg1yunwC+s54lzJIClFCrulwXLdyZ5WGCwMPxPe A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="7553695"
-X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; 
-   d="scan'208";a="7553695"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2023 05:34:43 -0700
+ bh=L0sYGD3LpDuwS6bhTKwnBLNtPpeZ6ssDg4hJB0nvzHo=;
+ b=Xr0MRovd945JBnMEnt0E7iy9+oiKoDfAITjP0TxZ1A8YKyYyBgfZLVTn
+ sA12rMHLpZxdZ7l9MJhdrSyTjwpfLaKSJRzdev6bGsR63rO/NVJ5RcBGS
+ xoHvKQyfuVtah05LQfCWlRTjsf96/RBf18On0gSa50NU28kUrBpqxCju2
+ fiO4FoLJHQy39337ejfiRIwQtgQFosZ+pqlf6biH9G28bikXdviWG8RQ7
+ B/lyrXjonfiNRmijrvvrWzmbvSfBjddgLMgu3JC7NlD+XbFfhloRLdQOi
+ nlQkFGeadrvB7DQKBh+qPWAPTQ6YKrOo0PyGdkuVxHWX6hpt1nrtMXo5G g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="384886174"
+X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; d="scan'208";a="384886174"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2023 05:45:18 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="847256623"
-X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; d="scan'208";a="847256623"
-Received: from mmulahme-mobl.ger.corp.intel.com (HELO mwauld-mobl1.intel.com)
- ([10.252.17.84])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Oct 2023 05:34:41 -0700
-From: Matthew Auld <matthew.auld@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="791604889"
+X-IronPort-AV: E=Sophos;i="6.03,235,1694761200"; d="scan'208";a="791604889"
+Received: from amilburn-mobl.ger.corp.intel.com (HELO hazy.ger.corp.intel.com)
+ ([10.252.61.137])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Oct 2023 05:45:16 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Oct 2023 13:34:24 +0100
-Message-ID: <20231018123423.427552-2-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.41.0
+Date: Wed, 18 Oct 2023 15:45:00 +0300
+Message-Id: <20231018124500.1309994-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: fix pat[2] programming with 2M/1G pages
+Subject: [Intel-xe] [PATCH] drm/i915: handle uncore spinlock when not
+ available
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,94 +56,116 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Bit 7 in the leaf node is normally programmed with pat[2], however with
-2M/1G pages that same bit in the PDE/PDPE also toggles 2M/1G pages. For
-2M/1G entries the pat[2] is rather moved to bit 12, which is now free
-given that the address must be aligned to 2M or 1G, leaving bit 7 for
-toggling 2M/1G pages.
+The uncore code may not always be available (e.g. when we build the
+display code with Xe), so we can't always rely on having the uncore's
+spinlock.
 
-Bspec: 59510, 45038
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+To handle this, split the spin_lock/unlock_irqsave/restore() into
+spin_lock/unlock() followed by a call to local_irq_save/restore() and
+create wrapper functions for locking and unlocking the uncore's
+spinlock.  In these functions, we have a condition check and only
+actually try to lock/unlock the spinlock when I915 is defined, and
+thus uncore is available.
+
+This keeps the ifdefs contained in these new functions and all such
+logic inside the display code.
+
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.h |  1 +
- drivers/gpu/drm/xe/xe_vm.c | 17 +++++++++++------
- 2 files changed, 12 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.h | 20 ++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_vblank.c  | 18 +++++++++++-------
+ 2 files changed, 31 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-index 78da28f4ea13..4e74201cc986 100644
---- a/drivers/gpu/drm/xe/xe_bo.h
-+++ b/drivers/gpu/drm/xe/xe_bo.h
-@@ -41,6 +41,7 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 0e5dffe8f018..07acf5d414f6 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -559,4 +559,24 @@ bool assert_port_valid(struct drm_i915_private *i915, enum port port);
  
- #define XELPG_PPGTT_PTE_PAT3		BIT_ULL(62)
- #define XE2_PPGTT_PTE_PAT4		BIT_ULL(61)
-+#define XE_PPGTT_PDE_PDPE_PAT2		BIT_ULL(12)
- #define XE_PPGTT_PTE_PAT2		BIT_ULL(7)
- #define XE_PPGTT_PTE_PAT1		BIT_ULL(4)
- #define XE_PPGTT_PTE_PAT0		BIT_ULL(3)
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index fa6fa34a0663..498c0b3e1d73 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1210,7 +1210,8 @@ static u64 pde_encode_pat_index(struct xe_device *xe, u16 pat_index)
- 	return pte;
+ bool intel_scanout_needs_vtd_wa(struct drm_i915_private *i915);
+ 
++/*
++ * The uncore version of the spin lock functions is used to decide
++ * whether we need to lock the uncore lock or not.  This is only
++ * needed in i915, not in Xe.  Keep the decision-making centralized
++ * here.
++ */
++static inline void uncore_spin_lock(spinlock_t *lock)
++{
++#ifdef I915
++	spin_lock(lock);
++#endif
++}
++
++static inline void uncore_spin_unlock(spinlock_t *lock)
++{
++#ifdef I915
++	spin_unlock(lock);
++#endif
++}
++
+ #endif
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 2cec2abf9746..0e8b71063353 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -306,7 +306,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 	 * register reads, potentially with preemption disabled, so the
+ 	 * following code must not block on uncore.lock.
+ 	 */
+-	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
++	uncore_spin_lock(&dev_priv->uncore.lock);
++	local_irq_save(irqflags);
+ 
+ 	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
+ 
+@@ -374,7 +375,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 
+ 	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
+ 
+-	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
++	uncore_spin_unlock(&dev_priv->uncore.lock);
++	local_irq_restore(irqflags);
+ 
+ 	/*
+ 	 * While in vblank, position will be negative
+@@ -412,9 +414,12 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
+ 	unsigned long irqflags;
+ 	int position;
+ 
+-	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
++	uncore_spin_lock(&dev_priv->uncore.lock);
++	local_irq_save(irqflags);
+ 	position = __intel_get_crtc_scanline(crtc);
+-	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
++	local_irq_restore(irqflags);
++
++	uncore_spin_unlock(&dev_priv->uncore.lock);
+ 
+ 	return position;
  }
+@@ -537,7 +542,7 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
+ 	 * Need to audit everything to make sure it's safe.
+ 	 */
+ 	spin_lock_irqsave(&i915->drm.vblank_time_lock, irqflags);
+-	spin_lock(&i915->uncore.lock);
++	uncore_spin_lock(&i915->uncore.lock);
  
--static u64 pte_encode_pat_index(struct xe_device *xe, u16 pat_index)
-+static u64 pte_encode_pat_index(struct xe_device *xe, u16 pat_index,
-+				u32 pt_level)
- {
- 	u64 pte = 0;
+ 	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
  
-@@ -1220,8 +1221,12 @@ static u64 pte_encode_pat_index(struct xe_device *xe, u16 pat_index)
- 	if (pat_index & BIT(1))
- 		pte |= XE_PPGTT_PTE_PAT1;
+@@ -546,7 +551,6 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
+ 	crtc->mode_flags = mode_flags;
  
--	if (pat_index & BIT(2))
--		pte |= XE_PPGTT_PTE_PAT2;
-+	if (pat_index & BIT(2)) {
-+		if (pt_level)
-+			pte |= XE_PPGTT_PDE_PDPE_PAT2;
-+		else
-+			pte |= XE_PPGTT_PTE_PAT2;
-+	}
- 
- 	if (pat_index & BIT(3))
- 		pte |= XELPG_PPGTT_PTE_PAT3;
-@@ -1265,7 +1270,7 @@ static u64 xelp_pte_encode_bo(struct xe_bo *bo, u64 bo_offset,
- 
- 	pte = xe_bo_addr(bo, bo_offset, XE_PAGE_SIZE);
- 	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
--	pte |= pte_encode_pat_index(xe, pat_index);
-+	pte |= pte_encode_pat_index(xe, pat_index, pt_level);
- 	pte |= pte_encode_ps(pt_level);
- 
- 	if (xe_bo_is_vram(bo) || xe_bo_is_stolen_devmem(bo))
-@@ -1284,7 +1289,7 @@ static u64 xelp_pte_encode_vma(u64 pte, struct xe_vma *vma,
- 	if (likely(!xe_vma_read_only(vma)))
- 		pte |= XE_PAGE_RW;
- 
--	pte |= pte_encode_pat_index(xe, pat_index);
-+	pte |= pte_encode_pat_index(xe, pat_index, pt_level);
- 	pte |= pte_encode_ps(pt_level);
- 
- 	if (unlikely(xe_vma_is_null(vma)))
-@@ -1304,7 +1309,7 @@ static u64 xelp_pte_encode_addr(struct xe_device *xe, u64 addr,
- 
- 	pte = addr;
- 	pte |= XE_PAGE_PRESENT | XE_PAGE_RW;
--	pte |= pte_encode_pat_index(xe, pat_index);
-+	pte |= pte_encode_pat_index(xe, pat_index, pt_level);
- 	pte |= pte_encode_ps(pt_level);
- 
- 	if (devmem)
+ 	crtc->scanline_offset = intel_crtc_scanline_offset(crtc_state);
+-
+-	spin_unlock(&i915->uncore.lock);
++	uncore_spin_unlock(&i915->uncore.lock);
+ 	spin_unlock_irqrestore(&i915->drm.vblank_time_lock, irqflags);
+ }
 -- 
-2.41.0
+2.39.2
 
