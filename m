@@ -4,47 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0664CDB47E
-	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 03:54:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9348CDB482
+	for <intel-xe@archiver.kernel.org>; Wed, 18 Oct 2023 03:57:33 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AAF0E10E365;
-	Wed, 18 Oct 2023 03:54:14 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B98F10E369
- for <intel-xe@lists.freedesktop.org>; Wed, 18 Oct 2023 03:54:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697601248; x=1729137248;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5m6GQXW8NriO/Ci7WhsdrLc37o2e0UnrldaQbCf7vuA=;
- b=KiCUvBFks576U7kLq3zqZ0E13f9HuHNWMBwNRdtd+KyGME0kJgyGwK1I
- 8TmckNNDTJUKJw15VpqdRNIQxqEcAHqDwVm0v275ZB5BuUVs3Xte3CSm3
- rvxPoMNZoBr0kBZPGE9unLnlB1ItngjvmdgOvFd3Mqy7qmOL65ec/v6pj
- eVkO9frDLP8LcI8uSPINCvGOiNpOeNK4Dsil1q51QlW1NfMD0ej8+qHCE
- P8OZsFWR9NFibCsSY2yVtR8GvRduuoLQJz54Zua44YfNLWlkgJlRFhy3a
- bPx9s6mwEHSbDo2h/nCFXoab/7ORNX2JrjWqweOLLrqj1bbjpBqhPb3p1 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10866"; a="389806044"
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; d="scan'208";a="389806044"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Oct 2023 20:54:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,234,1694761200"; 
-   d="scan'208";a="4351561"
-Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by fmviesa001.fm.intel.com with ESMTP; 17 Oct 2023 20:54:11 -0700
-From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 18 Oct 2023 09:30:32 +0530
-Message-Id: <20231018040033.1227494-10-himal.prasad.ghimiray@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231018040033.1227494-1-himal.prasad.ghimiray@intel.com>
-References: <20231018040033.1227494-1-himal.prasad.ghimiray@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9DA4610E365;
+	Wed, 18 Oct 2023 03:57:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 14EF210E365;
+ Wed, 18 Oct 2023 03:57:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 057F0AADEF;
+ Wed, 18 Oct 2023 03:57:32 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 09/10] drm/xe: Clear SOC CORRECTABLE error
- registers.
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Date: Wed, 18 Oct 2023 03:57:31 -0000
+Message-ID: <169760145199.15109.1286774801847028889@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231018040033.1227494-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20231018040033.1227494-1-himal.prasad.ghimiray@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Supporting_RAS_on_XE?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,64 +39,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-PVC doesn't support correctable SOC error reporting, classify them as
-Undefined and clear the registers.
+== Series Details ==
 
-v2
-- Fix commit message.
-- Although the errors are correctable but they are spurious interrupt.
-Hence use drm_err instead of drm_warn.(Aravind)
+Series: Supporting RAS on XE
+URL   : https://patchwork.freedesktop.org/series/125266/
+State : success
 
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_hw_error.c | 23 +++++++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-index 62b4051c6633..5700f708425f 100644
---- a/drivers/gpu/drm/xe/xe_hw_error.c
-+++ b/drivers/gpu/drm/xe/xe_hw_error.c
-@@ -646,8 +646,26 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
- 	if (tile_to_xe(tile)->info.platform != XE_PVC)
- 		return;
- 
--	if (hw_err == HARDWARE_ERROR_CORRECTABLE)
--		return;
-+	if (hw_err == HARDWARE_ERROR_CORRECTABLE) {
-+		for (i = 0; i < XE_SOC_NUM_IEH; i++)
-+			xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
-+					~REG_BIT(hw_err));
-+
-+		xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
-+				REG_GENMASK(31, 0));
-+		xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err),
-+				REG_GENMASK(31, 0));
-+		xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
-+				REG_GENMASK(31, 0));
-+		xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
-+				REG_GENMASK(31, 0));
-+
-+		drm_err(&tile_to_xe(tile)->drm, HW_ERR
-+			"Tile%d reported Undefine SOC CORRECTABLE error.",
-+			tile->id);
-+
-+		goto unmask_gsysevtctl;
-+	}
- 
- 	base = SOC_PVC_BASE;
- 	slave_base = SOC_PVC_SLAVE_BASE;
-@@ -729,6 +747,7 @@ xe_soc_hw_error_handler(struct xe_tile *tile, const enum hardware_error hw_err)
- 	xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
- 			mst_glb_errstat);
- 
-+unmask_gsysevtctl:
- 	for (i = 0; i < XE_SOC_NUM_IEH; i++)
- 		xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
- 				(HARDWARE_ERROR_MAX << 1) + 1);
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 4d039d7be x86/alternatives: Disable KASAN in apply_alternatives()
+=== git am output follows ===
+Applying: drm/xe: Handle errors from various components.
+Applying: drm/xe: Log and count the GT hardware errors.
+Applying: drm/xe: Support GT hardware error reporting for PVC.
+Applying: drm/xe: Support GSC hardware error reporting for PVC.
+Applying: drm/xe: Notify userspace about GSC HW errors.
+Applying: drm/xe: Support SOC FATAL error handling for PVC.
+Applying: drm/xe: Support SOC NONFATAL error handling for PVC.
+Applying: drm/xe: Handle MDFI error severity.
+Applying: drm/xe: Clear SOC CORRECTABLE error registers.
+Applying: drm/xe: Clear all SoC errors post warm reset.
+
 
