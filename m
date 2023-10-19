@@ -4,54 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F12ECDB465
-	for <intel-xe@archiver.kernel.org>; Thu, 19 Oct 2023 08:24:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D89CCDB465
+	for <intel-xe@archiver.kernel.org>; Thu, 19 Oct 2023 08:43:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E70710E1DB;
-	Thu, 19 Oct 2023 08:24:10 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FCA510E1DB
- for <intel-xe@lists.freedesktop.org>; Thu, 19 Oct 2023 08:24:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697703848; x=1729239848;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=09c4JeeFH7mRakH8HkJUEWDnrtc9L5rMVg5s1ijDpAI=;
- b=Xq0n83fxKIrMccvjz4MggeV1ani6UuJQ080tt0lTF3r5wr6y8oRLYT56
- TlBI10ftBTeaIG704lUj84ER7DT9W1eGXAz/4UA8YdnoVOIwv38+KYLLe
- 2wnCSNKI24dHlewA82BGY6FnJ8LnEX7DUDjW2v2WBIn41BFC1y34doyAo
- XDnw/yWUiK9hxd/769AvGRkWb0VpE/ZrYnJeejedeQ/L3AZtPs06ZRwnh
- 8iVtFf7LG8Vf4jdDRGG46xZunxfHYhq1xb+dXrXWFfrW5vVeN/LY8ySgj
- 51Pu5oHY8Tzt7bjeAeXt/pewMiCbzoPCgdIPid/V4524P1FWITVuqPTm0 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="376574588"
-X-IronPort-AV: E=Sophos;i="6.03,236,1694761200"; d="scan'208";a="376574588"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 01:24:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10867"; a="873384125"
-X-IronPort-AV: E=Sophos;i="6.03,236,1694761200"; d="scan'208";a="873384125"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 01:24:06 -0700
-Message-ID: <d2f85565-7a73-a841-27c1-f137e68ac0b6@linux.intel.com>
-Date: Thu, 19 Oct 2023 13:56:57 +0530
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0153110E4A2;
+	Thu, 19 Oct 2023 08:43:18 +0000 (UTC)
+Received: from coelho.fi (paleale.coelho.fi [176.9.41.70])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B17010E4B9
+ for <intel-xe@lists.freedesktop.org>; Thu, 19 Oct 2023 08:43:16 +0000 (UTC)
+Received: from 91-155-254-243.elisa-laajakaista.fi ([91.155.254.243]
+ helo=[192.168.100.137])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.97-RC1) (envelope-from <luca@coelho.fi>)
+ id 1qtOca-000000005Ak-0pN4; Thu, 19 Oct 2023 11:43:13 +0300
+Message-ID: <53c4b27aeb2aa333c288b3c0c867a04035b72ee8.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, Matt Roper
+ <matthew.d.roper@intel.com>
+Date: Thu, 19 Oct 2023 11:43:10 +0300
+In-Reply-To: <ZS6kWW9oULDTRPjY@intel.com>
+References: <ZSRtavVCM2lqbV5y@intel.com>
+ <f8c1a6a39300f01b6affc5ecee7b4486dbcb6baa.camel@coelho.fi>
+ <ZShRTTLRD7ltDGSS@intel.com>
+ <f352c534f049f7068cef667b4faa88d7cca9b8fd.camel@coelho.fi>
+ <ZS18QYFnoxZBRAtl@intel.com>
+ <cfac5572e3d1ea7e0363cc58d4230ce7135b10d0.camel@coelho.fi>
+ <ZS2YMf+umJSSYkh3@intel.com>
+ <eeb0a65118c80a61c8cd1e301ad3c28592cfde40.camel@coelho.fi>
+ <ZS20xlCm8DMTH4bQ@intel.com>
+ <20231017005841.GB1327160@mdroper-desk1.amr.corp.intel.com>
+ <ZS6kWW9oULDTRPjY@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Content-Language: en-US
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20231018040033.1227494-1-himal.prasad.ghimiray@intel.com>
- <20231018040033.1227494-11-himal.prasad.ghimiray@intel.com>
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20231018040033.1227494-11-himal.prasad.ghimiray@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH v4 10/10] drm/xe: Clear all SoC errors post
- warm reset.
+Subject: Re: [Intel-xe] [RFC] drm/xe: A minimal assert for some forcewake
+ domain on xe_mmio.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,110 +51,46 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Tue, 2023-10-17 at 11:12 -0400, Rodrigo Vivi wrote:
+> On Mon, Oct 16, 2023 at 05:58:41PM -0700, Matt Roper wrote:
+> > On Mon, Oct 16, 2023 at 06:10:14PM -0400, Rodrigo Vivi wrote:
+> > > On Tue, Oct 17, 2023 at 12:33:39AM +0300, Luca Coelho wrote:
+> > >=20
+> > > > But maybe I misunderstood the proposal.  And, if this is not the pl=
+an,
+> > > > then the only way to do it is to add the "wakelock" logic to the
+> > > > display orthogonally to the general MMIO access operations, which I
+> > > > wanted to avoid.
+> > >=20
+> > > well, let's have it inside intel_de_ and we have only one implementat=
+ion.
+> > > no port needed. Regardless of the future of the xe_mmio or the future
+> > > of xe_forcewake.
+> >=20
+> > Implementing it solely at the intel_de layer sounds reasonable to me as
+> > well.
+>=20
+> yeap, they appear to be orthogonal discussions. Even going with the
+> intrinsic forcewake inside xe_mmio, I still believe that the right place
+> for this wakelock is inside intel_de anyway.
 
-On 18/10/23 09:30, Himal Prasad Ghimiray wrote:
-> There are scenarios where there are errors being reported from the SoC
-> uncore to IEH and not propagated to SG unit. Since these errors are not
-> propagated to SG unit, driver won't be able to clean them as part of
-> xe_process_hw_error. Hence clear all SoC register post xe_process_hw_error
-> during the driver load.
->
-> v2
-> - Fix commit message.
->
-> v3
-> - Limit check to PVC.
->
-> v4
-> - Fix check
->
-> Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_hw_error.c | 40 ++++++++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_hw_error.h |  1 +
->  drivers/gpu/drm/xe/xe_irq.c      |  1 +
->  3 files changed, 42 insertions(+)
->
-> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
-> index 5700f708425f..381bd7180b80 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_error.c
-> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-> @@ -519,6 +519,46 @@ xe_gt_hw_error_log_vector_reg(struct xe_gt *gt, const enum hardware_error hw_err
->  	}
->  }
->  
-> +void xe_clear_all_soc_errors(struct xe_device *xe)
-> +{
-> +	enum hardware_error hw_err;
-> +	u32 base, slave_base;
-> +	struct xe_tile *tile;
-> +	struct xe_gt *gt;
-> +	unsigned int i;
-> +
-> +	if (xe->info.platform != XE_PVC)
-> +		return;
-> +
-> +	base = SOC_PVC_BASE;
-> +	slave_base = SOC_PVC_SLAVE_BASE;
-> +
-> +	hw_err = HARDWARE_ERROR_CORRECTABLE;
-nit: can be assigned when it is defined.
-> +
-> +	for_each_tile(tile, xe, i) {
-> +		gt = tile->primary_gt;
-> +
-> +		while (hw_err < HARDWARE_ERROR_MAX) {
-> +			for (i = 0; i < XE_SOC_NUM_IEH; i++)
-> +				xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
-> +						~REG_BIT(hw_err));
-> +
-> +			xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_MASTER_REG(base, hw_err),
-> +					REG_GENMASK(31, 0));
-> +			xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_MASTER_REG(base, hw_err),
-> +					REG_GENMASK(31, 0));
-> +			xe_mmio_write32(gt, SOC_GLOBAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
-> +					REG_GENMASK(31, 0));
-> +			xe_mmio_write32(gt, SOC_LOCAL_ERR_STAT_SLAVE_REG(slave_base, hw_err),
-> +					REG_GENMASK(31, 0));
-> +			hw_err++;
-> +		}
-> +		for (i = 0; i < XE_SOC_NUM_IEH; i++)
-> +			xe_mmio_write32(gt, SOC_GSYSEVTCTL_REG(base, slave_base, i),
-> +					(HARDWARE_ERROR_MAX << 1) + 1);
-> +	}
-> +}
-> +
->  static void
->  xe_gt_hw_error_handler(struct xe_gt *gt, const enum hardware_error hw_err)
->  {
-> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
-> index 59b331f52783..f27c166455da 100644
-> --- a/drivers/gpu/drm/xe/xe_hw_error.h
-> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
-> @@ -206,4 +206,5 @@ void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 master_ctl);
->  void xe_assign_hw_err_regs(struct xe_device *xe);
->  void xe_process_hw_errors(struct xe_device *xe);
->  void xe_gsc_hw_error_work(struct work_struct *work);
-> +void xe_clear_all_soc_errors(struct xe_device *xe);
->  #endif
-> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-> index bc0f01a2abc1..93cb948de516 100644
-> --- a/drivers/gpu/drm/xe/xe_irq.c
-> +++ b/drivers/gpu/drm/xe/xe_irq.c
-> @@ -626,6 +626,7 @@ int xe_irq_install(struct xe_device *xe)
->  
->  	xe_assign_hw_err_regs(xe);
->  	xe_process_hw_errors(xe);
-> +	xe_clear_all_soc_errors(xe);
->  
->  	xe_irq_reset(xe);
+Thanks for all the comments and helping me understand this a bit
+better.  The way I saw it was that Xe would be where underlying HW
+access is implemented, so to me it would make sense to have this HW
+access restriction (regardless of being used only by the display)
+there.  I don't think it's a "display thing", but a HW limitation that
+affects only the display.
 
-Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In any case, doing it entirely in intel_de is probably the easiest
+thing to do, so let's go with that.
 
-Thanks,
-Aravind.
->  
+--
+Cheers,
+Luca.
