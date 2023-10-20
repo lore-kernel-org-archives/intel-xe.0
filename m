@@ -4,46 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8D4AACDB474
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Oct 2023 04:54:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B6DFCDB474
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Oct 2023 04:54:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E38310E07B;
-	Fri, 20 Oct 2023 04:54:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 19A8710E07B
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Oct 2023 04:54:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A2CD10E07B;
+	Fri, 20 Oct 2023 04:54:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD1EB10E07B
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Oct 2023 04:54:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697777642; x=1729313642;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=S5i6OeAuRPFSWNQ70D1U0W4w5furxZzbpy5+GgQuonM=;
- b=DrOGFuF6k1kemVFQoQg71xR1G7xnKxUU2vBjU+0v1kdK1UIeDzJeyEgM
- CKa7li0+oOaeldYmIzGzpunNbl5jzBDu56MouW67bm0e87PX12EQy74g9
- /fAss7opC42Wxvpbtw664b60BOzLUAbWdF2sA1FkZEnpcpt4JP2hlTwnE
- fJ04TcrSJT+Twu1dH/2hA853t8ucni5jYwBRsCK05lrDDV4LIKuKn9Eng
- nggSI5ov6yuc9Da1QOsmDX6DFz9YTOCajTBTVgBpeKiu1eHsiFp5MQ/Cs
- sU1Zip2YK8bKNYUnOYqBrK6Y6qNfau3DRRfIUIETLFRMaCrXdyVtdLI+Z A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="385306666"
-X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="385306666"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 21:54:01 -0700
+ t=1697777690; x=1729313690;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=jqGShMCw20AU2a1gTPNUF5Zl7xSSVHnwmOcCB9266cE=;
+ b=h5HBnv0IOc5D2RNepFsRrif9L8lcjYzzQ0Dje9CIB9L5YRE8IUm9mC2I
+ IYwn4WDDAJED3vvwbLhfTLGP/jrsgdUuyfQPwD/suFyyU3m1Nm2xe/brY
+ hGXvXNqG5Ih5JzdT/lYG8Ui4XqNenknYCVo2yxG+g9HHcjiXLRq68GVZd
+ Qq/JBh720SkFmz+KNhwY5jsLOboFEeMTySWUGJ/cKdm/fNVA/SIdPh5fC
+ qBGdwb+T4TcF4vDkLrl8SLSUPPknQ2zx9p0hzedwKMz2v7VNGpd/pobJr
+ 9+5wnqA4sB1Ax7vroQoddlhGoYBjVjACAm6ghRAd0oaIJF1tmrOT9Ek5B A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="386245334"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="386245334"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2023 21:54:50 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="733837994"
-X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="733837994"
-Received: from dut-dii-e5ff.iind.intel.com ([10.145.169.50])
- by orsmga006.jf.intel.com with ESMTP; 19 Oct 2023 21:53:59 -0700
-From: priyanka.dandamudi@intel.com
-To: priyanka.dandamudi@intel.com, oak.zeng@intel.com,
- intel-xe@lists.freedesktop.org, janga.rahul.kumar@intel.com
-Date: Fri, 20 Oct 2023 10:20:13 +0530
-Message-Id: <20231020045013.2042971-1-priyanka.dandamudi@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="901027398"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="901027398"
+Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
+ by fmsmga001.fm.intel.com with ESMTP; 19 Oct 2023 21:52:40 -0700
+Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qthX4-00032F-1Q;
+ Fri, 20 Oct 2023 04:54:46 +0000
+Date: Fri, 20 Oct 2023 12:53:47 +0800
+From: kernel test robot <lkp@intel.com>
+To: Uma Shankar <uma.shankar@intel.com>
+Message-ID: <202310201234.ZZLwdoiy-lkp@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/xe_exec_queue: Add check for access
- counter granularity
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-xe] [drm-xe:drm-xe-next 1349/1353]
+ drivers/gpu/drm/xe/display/xe_display_misc.c:10:14: warning: no previous
+ prototype for 'intel_gmch_vga_set_decode'
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,62 +57,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
+ Arun R Murthy <arun.r.mruthy@intel.com>, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   a0a80950176b39dbc76f8faa92fddf6caaa06191
+commit: e2f3d6c51c72c6ae6046ede17f03ca962a093bc1 [1349/1353] drm/xe/display: Create a dummy version for vga decode
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20231020/202310201234.ZZLwdoiy-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231020/202310201234.ZZLwdoiy-lkp@intel.com/reproduce)
 
-Add conditional check for access counter granularity.
-This check will return -EINVAL if granularity is beyond 64M
-which is a hardware limitation.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202310201234.ZZLwdoiy-lkp@intel.com/
 
-v2: Defined
-XE_ACC_GRANULARITY_128K 0
-XE_ACC_GRANULARITY_2M 1
-XE_ACC_GRANULARITY_16M 2
-XE_ACC_GRANULARITY_64M 3
-as part of uAPI.
-So, that user can also use it.(Oak)
+All warnings (new ones prefixed by >>):
 
-Cc: Oak Zeng <oak.zeng@intel.com>
-Cc: Janga Rahul Kumar <janga.rahul.kumar@intel.com>
-Signed-off-by: Priyanka Dandamudi <priyanka.dandamudi@intel.com>
-Reviewed-by: Oak Zeng <oak.zeng@intel.com>
----
- drivers/gpu/drm/xe/xe_exec_queue.c | 3 +++
- include/uapi/drm/xe_drm.h          | 5 +++++
- 2 files changed, 8 insertions(+)
+>> drivers/gpu/drm/xe/display/xe_display_misc.c:10:14: warning: no previous prototype for 'intel_gmch_vga_set_decode' [-Wmissing-prototypes]
+      10 | unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
+         |              ^~~~~~~~~~~~~~~~~~~~~~~~~
 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index dd61c4267e24..4fd44a9203e4 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -393,6 +393,9 @@ static int exec_queue_set_acc_granularity(struct xe_device *xe, struct xe_exec_q
- 	if (XE_IOCTL_DBG(xe, !xe->info.supports_usm))
- 		return -EINVAL;
- 
-+	if (value > XE_ACC_GRANULARITY_64M)
-+		return -EINVAL;
-+
- 	q->usm.acc_granularity = value;
- 
- 	return 0;
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 24bf8f0f52e8..8b5e7e212f61 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -126,6 +126,11 @@ struct xe_user_extension {
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
- 
-+#define XE_ACC_GRANULARITY_128K 0
-+#define XE_ACC_GRANULARITY_2M 1
-+#define XE_ACC_GRANULARITY_16M 2
-+#define XE_ACC_GRANULARITY_64M 3
-+
- /** struct drm_xe_engine_class_instance - instance of an engine class */
- struct drm_xe_engine_class_instance {
- #define DRM_XE_ENGINE_CLASS_RENDER		0
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for INTEL_MEI_ME
+   Depends on [n]: X86 && PCI [=y]
+   Selected by [y]:
+   - INTEL_MEI_HDCP [=y] && (DRM_I915 [=n] || DRM_XE [=y])
+
+
+vim +/intel_gmch_vga_set_decode +10 drivers/gpu/drm/xe/display/xe_display_misc.c
+
+     9	
+  > 10	unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
+
 -- 
-2.25.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
