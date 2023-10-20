@@ -4,149 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2CDFCDB47E
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Oct 2023 03:39:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 154BFCDB474
+	for <intel-xe@archiver.kernel.org>; Fri, 20 Oct 2023 03:49:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61F1D10E573;
-	Fri, 20 Oct 2023 03:39:00 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB02710E573
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Oct 2023 03:38:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B569410E579;
+	Fri, 20 Oct 2023 03:49:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 069DB10E579
+ for <intel-xe@lists.freedesktop.org>; Fri, 20 Oct 2023 03:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697773136; x=1729309136;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=UUTGZUa8tvXjKCBWteLBnBS3z0wu8sOP/bUAvhanxVw=;
- b=k8NV35OJwA8skCQCTdZ/XB2nO+5Fsf5PlpB8DdJyIiYiHwC4CTupZcUI
- CBTUknzseeRlO2M1Tp3MHP+zbu06QdlF+vvAtHZ4v7UctaSq65QTRSeOp
- l/6UQ/fMzYyO2g4uuh86bkJ2EudO/rRA4GEVdR6PL7Mas9L3enz4RkjJW
- h4zWxmNMtro37SXQM3wJ8QUkwTLtsuG5+A7Hyz+8QgBOFTmJkLKzCSKi+
- h4toCeK95uhBBBUNjIrwn5IUNDPFv6CwKpMZa0G398gTEwXjNZSmByP19
- jvoC9A9cL4LfUj7Sr6nc1py2acSRVEuiNmJeEaBEDbfVZWMELQNlH5KNd g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="385300185"
-X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; 
- d="scan'208,217";a="385300185"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Oct 2023 20:38:55 -0700
+ t=1697773764; x=1729309764;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=qmkNk2sowuhX0XB5qZGDNj39Utpz89M9ALWVjYqdGJc=;
+ b=J/iFisSSo25LqS+K29fGT3T1oFySGqh+6Jd3O0t/U1Qkro2/UB/mIQxJ
+ W0zZ80/b8KGyROUkS30hpE993J1aDjL3qH9EJq0xNvw0V/dWg0b1sBqjn
+ HsmdgcNjF9xBUyLTwS376V/qUO3BT/4C1EBbeuuD9YLhFKg2vEm9wANh+
+ QWlpoliBdP1yJNj5UkYZH+4fjc7hi+Dce4FCFinSuMm/aVKb/RVj6Oi++
+ WJCGtKrHcRAZ9QgcjecHWQbQhvdG8LX4q7MqmpbcDhfWTnTSIT4h6U73T
+ NpTITAG1tV7qH2ID/pMHiSN5lhxJp7v44XLUkGzDskOm5G8MCnPDV0vpW w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="417554643"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="417554643"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2023 20:49:23 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="823089706"
-X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; 
- d="scan'208,217";a="823089706"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 19 Oct 2023 20:38:54 -0700
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32; Thu, 19 Oct 2023 20:38:54 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.32 via Frontend Transport; Thu, 19 Oct 2023 20:38:54 -0700
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.32; Thu, 19 Oct 2023 20:38:49 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=k4R+48uvbUzVjtHBC7BOwxbVQZDo8laMhKsXl23jMRpryMBI3fiV6j61E0LCKgTUzkhVwZLWW98e4bkR+OZUQZukWnlspQ2rRL6BKe7g7vWiVy+PjfhMIys+V6TbN9DFSHAxesyBtEuIeDD7P2C56IC5PG1gg1jLffosMjWGavm2f1MY1lrpB80NY71PlEdwJ9nmztS7JPxeGaYS4poxk8l1xkSavFYF4ynWJzXFEMtI2buYlqQhh1fDpxA4aK2ohUcCcKr1cBmNuzn3KKts15hrKvSqlwLyh/07uXyziR+646JDHoJgaLt2KcfkZg3mpT8yNxFbwvtQWh+RwT+4Wg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7eemxKd56hZg4Pk0Dw0rQp6yJz3h2BKG2mvNNpnNhS0=;
- b=guswycH2ccXr5I7Jt/3rf6Z311sWlnXOp4t2d8T27XEF1xp2OXDe7qHvbaVqHBykAy08Wx0GCIiVBOJYldg7dyzV1p5syxT3evWrVG8wNHiqtgBnls+dqJ42yQwOSVET5Lt++tLu5t9Jw/0O5YuL+scI7FRAcfHi+XLCGfrZOwXKJ/5ScOqjWAliB9NKEvVYl0zOuGy4xEYUK55EBanvspY9fpHN3ZPmqOsgHW8tU14P/mGDYGFgOBhMd3RqpD+0fqXyHNKsqld6DSPhfOOkgnc2IYGk+I8RMeR07yE3bgswB+kLwJ8FoNu4GbAZcZiybtgiCuA4Qi8FM4ll7y6nXg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com (2603:10b6:303:21a::12)
- by BL3PR11MB6315.namprd11.prod.outlook.com (2603:10b6:208:3b2::12)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6907.26; Fri, 20 Oct
- 2023 03:38:42 +0000
-Received: from MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::163d:1c68:1eeb:3514]) by MW4PR11MB7056.namprd11.prod.outlook.com
- ([fe80::163d:1c68:1eeb:3514%7]) with mapi id 15.20.6907.025; Fri, 20 Oct 2023
- 03:38:41 +0000
-Content-Type: multipart/alternative;
- boundary="------------PFCpcljqJGWLmQFXAMYDQW0L"
-Message-ID: <3a80ba4a-ef10-44b5-a63d-f90a8024722e@intel.com>
-Date: Fri, 20 Oct 2023 09:08:34 +0530
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: "Welty, Brian" <brian.welty@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20231019132534.1374903-1-himal.prasad.ghimiray@intel.com>
- <20231019132534.1374903-7-himal.prasad.ghimiray@intel.com>
- <d1db0afd-0979-40c1-918e-955a7d658c0c@intel.com>
-From: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-In-Reply-To: <d1db0afd-0979-40c1-918e-955a7d658c0c@intel.com>
-X-ClientProxiedBy: PN2PR01CA0221.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:c01:ea::17) To MW4PR11MB7056.namprd11.prod.outlook.com
- (2603:10b6:303:21a::12)
+X-IronPort-AV: E=McAfee;i="6600,9927,10868"; a="1004474545"
+X-IronPort-AV: E=Sophos;i="6.03,238,1694761200"; d="scan'208";a="1004474545"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Oct 2023 20:49:20 -0700
+Message-ID: <01e3b423-1f39-e05d-bab3-1c661d980417@linux.intel.com>
+Date: Fri, 20 Oct 2023 09:22:11 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB7056:EE_|BL3PR11MB6315:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6769d34a-e32c-4407-c62a-08dbd11e0dda
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cPzkhvwIO0aZ+w3g87Qm+E6sm7ldVwIfeDLsbnsRuH7TNTYD0ez6W8HonC5w2ezdx0waNt+nu3J1T7RfLI8naBSSQlwl8Xlb69ZTNX3VZiCjrBnCk9UbBL14lTx5I2Vy4IoaC+MetXIRfEuLLNxyL18h5cyR7dBt5lmBUsFvpxrqpocmGeY924/79CWqrLumoeH7IqH4ogQVGU4GgiZU78jYFF/j13ygdFe7HoLwcCaBOQzIKThIr8jg6Hwqsh7U6bCUh0w+s+6fTJbQapWsNE4D8mkongPLGTttg83vajcy9k7YIBv6DGkwedCxQkK6bLSmrCljHO6QtTRlwIFLcrn4YZlEjQ0UdqBzrTuAY05vYf2Fl/BZZ/Y9wyrg4/9irmmUf2o0Hl1cnpEwi0Id9T2So4q+pdRa+GekiMkl3fdgF8NfkxRavJSPif8VtmOrzqFRqsTl0XvrPtRJKKi3xPNHUaTbaO+2AoNMJ7cNZm73BgSUbO9aLNxEK8smm6+hEDKrkp+VdpKW1EV69CXVgUMpH+lAnJEdP+Nq+4oG0iwnBXEj7fQvNCc47DV0dw3boNaIzaY3GxgeVUrpvZtbGXnBYUnyg0RXf4FOuWQz8zTh31/5TFzpGKwUUZQzEsYeSiFRLrGnz/mFizEPKPjgOA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB7056.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(346002)(136003)(39860400002)(366004)(376002)(230922051799003)(186009)(64100799003)(451199024)(1800799009)(5660300002)(4326008)(8676002)(8936002)(53546011)(33964004)(6666004)(6512007)(6506007)(30864003)(36756003)(2906002)(83380400001)(26005)(2616005)(38100700002)(82960400001)(31696002)(86362001)(478600001)(316002)(66556008)(66476007)(66946007)(41300700001)(6486002)(31686004)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TzRRNUJYSzRKa3Brbm1weDNPMGcrcGN2SXViK3hkQTkyYWpLWUZIS01DRk82?=
- =?utf-8?B?bmtXdVJjU2g0eWJ0NXZOMFF0YzlhMG9nVGJ2TjdETmdiNFNFSDBrK2dlWDJB?=
- =?utf-8?B?RkdhdkRLZ2hhRmNDOFhRUllEbExhTis1dkUyUmwxbFhhOVpnRGNTTXkyNlFM?=
- =?utf-8?B?dXNrUkVGL0tZUHVZbTJQQktoWFd5YkdhV2tYVVRJcmFobDRkOWFtcVN6OTFo?=
- =?utf-8?B?WXNWWUVtS3RwL2NQRHhYU1F0UmJKYWlRa0RSS2FlYkk5cDdYYnEyYWdPNi80?=
- =?utf-8?B?bFc3RGVLaktxbDRoYXJJOXg5ZG1ySEI4SUc1a3IvSUJGRVZnTFZibENDa3Mr?=
- =?utf-8?B?YU5ZbUwyY0dYVEZLUlhELzVvQitCNTc3SkNKUkgwaldXTGdJOENPNXN2RkFV?=
- =?utf-8?B?ZmJzTkJEd1FnaTdpbm41eHcrNFNhVll0NUJTLzJkdFY5RERtc1ltVFJqUUpE?=
- =?utf-8?B?ZmpCTG1FQkRyanYwa0lUbTRWekpXdG96eU9rUjBOSW5CSGxNVkdlN0pDcVRZ?=
- =?utf-8?B?TUNsZEo3L2NCZ2xBZDl4SFIyNFpzb1F0VFJFWkRsZHJhVUtrZi9FMWtlSlhS?=
- =?utf-8?B?MFAxTUl5Z05UUGY1MDk3dEtJUFFiYUxTQzBPdG1wNXltd1lhSjRySDBKblJQ?=
- =?utf-8?B?UWoxSC9YanNieks1QnlGNmFWc3AzeXYwZWZhbVNZTDJrbVRoSm44OW5Da2RG?=
- =?utf-8?B?cnY3SFJjMEtYR1ZXOTdnREFYVnRkQmk2RVpPL1hlbktISHMrWmNXdHlNaGdT?=
- =?utf-8?B?eG1WNlVLa2FvWjYzTDdPWlhRamMrczgvNWU0ZUUrWi9BRDhiQWJ6eTh0akpF?=
- =?utf-8?B?L1BLb2xBcU83WnIzNGNaVUZPYVV0TlRpakUzaWdFaEhORjBkV0d3bmVneDUx?=
- =?utf-8?B?YUVjL0ZsK21oRUhJOUIrWkNTMDY5U09nakpvQVZibTlnbGNndEh4UjZzb1F1?=
- =?utf-8?B?WXV0M051cUgxS0xxeTZ6T3czVHBRL3VsRGNLZGQ3bkZ4aDNsRDBvZXlSVDdj?=
- =?utf-8?B?b3hZRGJ1cXlndEdRc2U0N1UzelhuRFJERDZPRVZKMUw4Y0ZaY294dURiWjQ5?=
- =?utf-8?B?WXM4bDNjU2VlclJtODZoQjVCeE4yK0I3eHRoYmVCWC9sOHNuUnZ6b05QbC9q?=
- =?utf-8?B?bVFTR21ON3ViUUdGbVJWbnJwaEp3L3F3UGFTa2dQUU50ZFZCZFBPY1RKRDlN?=
- =?utf-8?B?UkczQUpod3NTOFduRjRwMlk1azVqS1d0Z3J6N05qVzJ5MFFaVnVBUjFtaWxs?=
- =?utf-8?B?YzJWclZ0VGwrMXNud003SVRna2d2TGdTejBqTGo5RkZjeGw0MWlIVFVBN3N0?=
- =?utf-8?B?V2cxeGN2MVI2S0pIbG5zcUtHTVd2Z1hNSnZ2L29TdGdQVXpvYXVJa1hzaklB?=
- =?utf-8?B?c3dRbDNvRCt3N3hMRmwrUS9uMVRjeDdYWG9sSG1YQU1hYm0xNngxakxJMjY4?=
- =?utf-8?B?SzN5ZFp1RkpOR1pDRUc2ZnhtQ3NvUENTYUovYVZ0TlVwR0gwWGl2dEZKOVBw?=
- =?utf-8?B?UDA1c3NOamVMZmVsT2htZCtIY1lXamJnUXc4TzdQTmVMb01XeE4xQzJNM3lw?=
- =?utf-8?B?TE9Jd2hUMnNBZlNMY0xWRzJvREFjQmVRUVR6eFlpVytVdXA5bm5uSmFwUlN1?=
- =?utf-8?B?NHVUbFIrMW02aHJ2UzZlVWoyLzh5M0NCRHBpOWVJcDdZc2hsMUhLS3NONGcz?=
- =?utf-8?B?dFlHekpMc0s3R2tibndJa2pxelBaQ2poNXVqT2tKczRKQ0ZTTlVMcFplUWlZ?=
- =?utf-8?B?cEpRYm92N3hpamwxUmtPTUx4K0hTb09FanMzZHN2TklLakJHaTYrdWlMZSs0?=
- =?utf-8?B?aTFGOE5VclJuNzcvTkNoREpQRFpxWm1WL0hTVGluWWV4MXg0YU9WQjc1ODAw?=
- =?utf-8?B?NUE2NGxONGRXaHF5RVZ6dDBvNldyYkhFN1JYbkNNVE8xamNlNEg4SnFGTkdj?=
- =?utf-8?B?a0cvMERxR3d3RHo1eEw3cjJ4WmNEWW1pWENKRk96SzliUys5WlMwdFJ4aEMw?=
- =?utf-8?B?MnpaM2RzdDR0bGczbnRZbVkzMUV3R1lTV2RWdkpLSXRKZ2lOSTN1MDJSTFBM?=
- =?utf-8?B?THozSEh6QmZ6cElJK2pUSmVpRVh6SVN1YzQzNGlRdmVyS3ltY0R5NERFMmVL?=
- =?utf-8?B?ZElkNEFINGE4WlY0ZTdiUXdXY09Rc1p1bUE0ZFo0RmtJb3J4UitsdWdKQU1Q?=
- =?utf-8?Q?FuJnREh6nJ3vsvn+IKdYCBw=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6769d34a-e32c-4407-c62a-08dbd11e0dda
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB7056.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Oct 2023 03:38:41.6277 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0OlifwTJ5apkRN6EhP1h4o4cirJ+B6HSGANRXo6FFF4vkb1nJvnGVO7Uqhv8odhaLqoNLNNrt6Ak7r1N/CQoNMlxuqDZKIUIVKCAo/Th36I=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6315
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v3 06/11] drm/xe: Notify userspace about GSC
- HW errors.
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20231019132534.1374903-1-himal.prasad.ghimiray@intel.com>
+ <20231019132534.1374903-4-himal.prasad.ghimiray@intel.com>
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <20231019132534.1374903-4-himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v8 03/11] drm/xe: Log and count the GT
+ hardware errors.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,530 +63,325 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------PFCpcljqJGWLmQFXAMYDQW0L
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
 
-
-On 19-10-2023 22:34, Welty, Brian wrote:
+On 19/10/23 18:55, Himal Prasad Ghimiray wrote:
+> For the errors reported by GT unit, read the GT error register.
+> Log and count these errors and clear the error register.
 >
+> Bspec: 53088, 53089, 53090
 >
-> On 10/19/2023 6:25 AM, Himal Prasad Ghimiray wrote:
->> Send uevent incase of nonfatal errors reported by gsc.
->>
->> TODO: Since XE_RESET_FAILED_UEVENT and XE_GSC_HW_HEALTH_UEVENT
->> both pass DEVICE_STATUS=NEEDS_RESET. Use same Uevent to determine
->> the RESET_REQUIRED and pass reasons for reset required as additional
->> info.
->>
->> v2
->> - No need to provide tile info in uevent because error is
->> accepted only in tile0. (Aravind)
->>
->> v3
->> - Use pci node to send uevent.
->> - Pass RESET_REASON for uevent.
+> v6
+> - define the BIT and use it.
+> - Limit the GT error reporting to DG2 and PVC only.
+> - Rename function to xe_gt_hw_error_log_status_reg from
+>   xe_gt_hw_error_status_reg_handler. (Aravind)
 >
-> Can we go a step farther as Aravind was saying and just have one 
-> single uevent?  Or maybe you have one uevent now, but can still 
-> consolidate a bit more.
-> So replace XE_GSC_HW_HEALTH_UEVENT and XE_RESET_FAILED_UEVENT with one 
-> uevent, defined in uapi header with:
+> v7
+> - ci fixes
 >
-> #define XE_RESET_REQUIRED_UEVENT        "RESET_REQUIRED"
-> #define XE_RESET_REQUIRED_UEVENT_REASON_CSC "REASON=CSC_HW_ERROR"
-> #define XE_RESET_REQUIRED_UEVENT_REASON_GT "REASON=GT_RESET_FAILED"
-
-Hi Brian,
-
-While implementing XE_RESET_FAILED_UEVENT, the recommendation was to use
-
-"DEVICE_STATUS=NEEDS_RESET" instead of "RESET_REQUIRED.
-
-Will be proceeding with:
-
-#define XE_RESET_REQUIRED_UEVENT        "DEVICE_STATUS=NEEDS_RESET"
-#define XE_RESET_REQUIRED_UEVENT_REASON_CSC "REASON=CSC_HW_ERROR"
-#define XE_RESET_REQUIRED_UEVENT_REASON_GT "REASON=GT_RESET_FAILED"
-
-Thanks for the review comments, will be updating it in next patch.
-
-BR
-Himal
-
+> v8
+> - Initialize xarray only for primary gt.
+> - maintain header orders.
+> - Use new defined helper for gt error loging. (Aravind)
 >
-> Would above work?
-> -Brian
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_gt_error_regs.h   | 13 +++
+>  drivers/gpu/drm/xe/regs/xe_tile_error_regs.h |  1 +
+>  drivers/gpu/drm/xe/xe_device.c               |  5 +-
+>  drivers/gpu/drm/xe/xe_device_types.h         |  1 +
+>  drivers/gpu/drm/xe/xe_gt_types.h             |  6 ++
+>  drivers/gpu/drm/xe/xe_hw_error.c             | 94 +++++++++++++++++++-
+>  drivers/gpu/drm/xe/xe_hw_error.h             | 24 +++++
+>  drivers/gpu/drm/xe/xe_tile.c                 |  1 +
+>  8 files changed, 143 insertions(+), 2 deletions(-)
+>  create mode 100644 drivers/gpu/drm/xe/regs/xe_gt_error_regs.h
 >
->
->>
->> Cc: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
->> Cc: Brian Welty <brian.welty@intel.com>
->> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_device_types.h |  3 +++
->>   drivers/gpu/drm/xe/xe_hw_error.c     | 17 +++++++++++++++++
->>   drivers/gpu/drm/xe/xe_hw_error.h     |  3 ++-
->>   drivers/gpu/drm/xe/xe_irq.c          |  4 ++++
->>   include/uapi/drm/xe_drm.h            |  9 +++++++++
->>   5 files changed, 35 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_device_types.h 
->> b/drivers/gpu/drm/xe/xe_device_types.h
->> index 3b371e0f6168..bc7b545ce37b 100644
->> --- a/drivers/gpu/drm/xe/xe_device_types.h
->> +++ b/drivers/gpu/drm/xe/xe_device_types.h
->> @@ -196,6 +196,9 @@ struct xe_tile {
->>       struct tile_hw_errors {
->>           struct xarray hw_error;
->>       } errors;
->> +
->> +    /** @gsc_hw_err_work: worker for uevent to report GSC HW errors */
->> +    struct work_struct gsc_hw_err_work;
->>   };
->>     /**
->> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c 
->> b/drivers/gpu/drm/xe/xe_hw_error.c
->> index 84533ef6a51e..644e63d4d717 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_error.c
->> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
->> @@ -3,6 +3,8 @@
->>    * Copyright © 2023 Intel Corporation
->>    */
->>   +#include <drm/xe_drm.h>
->> +
->>   #include "xe_hw_error.h"
->>     #include "regs/xe_regs.h"
->> @@ -378,6 +380,20 @@ xe_gt_hw_error_handler(struct xe_gt *gt, const 
->> enum hardware_error hw_err)
->>           xe_gt_hw_error_log_vector_reg(gt, hw_err);
->>   }
->>   +void xe_gsc_hw_error_work(struct work_struct *work)
->> +{
->> +    struct xe_tile *tile = container_of(work, typeof(*tile), 
->> gsc_hw_err_work);
->> +    struct pci_dev *pdev = to_pci_dev(tile_to_xe(tile)->drm.dev);
->> +    char *csc_hw_error_event[3];
->> +
->> +    csc_hw_error_event[0] = XE_GSC_HW_HEALTH_UEVENT "=1";
->> +    csc_hw_error_event[1] = "RESET_REASON=CSC_HW_ERROR";
->> +    csc_hw_error_event[2] = NULL;
->> +
->> +    kobject_uevent_env(&pdev->dev.kobj, KOBJ_CHANGE,
->> +               csc_hw_error_event);
->> +}
->> +
->>   static void
->>   xe_gsc_hw_error_handler(struct xe_tile *tile, const enum 
->> hardware_error hw_err)
->>   {
->> @@ -435,6 +451,7 @@ xe_gsc_hw_error_handler(struct xe_tile *tile, 
->> const enum hardware_error hw_err)
->>               drm_err_ratelimited(&tile_to_xe(tile)->drm, HW_ERR
->>                           "Tile0 reported GSC %s %s error, bit[%d] is 
->> set\n",
->>                           name, hw_err_str, errbit);
->> +            schedule_work(&tile->gsc_hw_err_work);
->>           }
->>           if (indx != XE_HW_ERR_TILE_UNSPEC)
->> xe_update_hw_error_cnt(&tile_to_xe(tile)->drm,
->> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h 
->> b/drivers/gpu/drm/xe/xe_hw_error.h
->> index 997747b6b603..3c02fbd3b256 100644
->> --- a/drivers/gpu/drm/xe/xe_hw_error.h
->> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
->> @@ -7,6 +7,7 @@
->>     #include <linux/stddef.h>
->>   #include <linux/types.h>
->> +#include <linux/workqueue.h>
->>     #define XE_RAS_REG_SIZE 32
->>   @@ -106,5 +107,5 @@ struct xe_tile;
->>   void xe_hw_error_irq_handler(struct xe_tile *tile, const u32 
->> master_ctl);
->>   void xe_assign_hw_err_regs(struct xe_device *xe);
->>   void xe_process_hw_errors(struct xe_device *xe);
->> -
->> +void xe_gsc_hw_error_work(struct work_struct *work);
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
->> index 8365a4cb0c45..bc0f01a2abc1 100644
->> --- a/drivers/gpu/drm/xe/xe_irq.c
->> +++ b/drivers/gpu/drm/xe/xe_irq.c
->> @@ -614,6 +614,10 @@ int xe_irq_install(struct xe_device *xe)
->>       irq_handler_t irq_handler;
->>       int err, irq;
->>   +    struct xe_tile *tile = xe_device_get_root_tile(xe);
->> +
->> +    INIT_WORK(&tile->gsc_hw_err_work, xe_gsc_hw_error_work);
->> +
->>       irq_handler = xe_irq_handler(xe);
->>       if (!irq_handler) {
->>           drm_err(&xe->drm, "No supported interrupt handler");
->> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->> index 24bf8f0f52e8..4e5e57bc9f69 100644
->> --- a/include/uapi/drm/xe_drm.h
->> +++ b/include/uapi/drm/xe_drm.h
->> @@ -16,6 +16,15 @@ extern "C" {
->>    * subject to backwards-compatibility constraints.
->>    */
->>   +/**
->> + * DOC: uevent generated by xe on it's pci node.
->> + *
->> + * XE_GSC_HW_HEALTH_UEVENT - Event is generated when GSC reports HW
->> + * errors. The value supplied with the event is always "NEEDS_RESET"
->> + * Additional information supplied is "RESET_REASON=CSC_HW_ERROR".
->> + */
->> +#define XE_GSC_HW_HEALTH_UEVENT "DEVICE_STATUS"
->> +
->>   /**
->>    * DOC: uevent generated by xe on it's pci node.
->>    *
---------------PFCpcljqJGWLmQFXAMYDQW0L
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_error_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_error_regs.h
+> new file mode 100644
+> index 000000000000..6180704a6149
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/regs/xe_gt_error_regs.h
+> @@ -0,0 +1,13 @@
+> +/* SPDX-License-Identifier: MIT */
+> +/*
+> + * Copyright © 2023 Intel Corporation
+> + */
+> +#ifndef XE_GT_ERROR_REGS_H_
+> +#define XE_GT_ERROR_REGS_H_
+> +
+> +#define _ERR_STAT_GT_COR                0x100160
+> +#define _ERR_STAT_GT_NONFATAL           0x100164
+> +#define ERR_STAT_GT_REG(x)              XE_REG(_PICK_EVEN((x), \
+> +						_ERR_STAT_GT_COR, \
+> +						_ERR_STAT_GT_NONFATAL))
+> +#endif
+> diff --git a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+> index ba5480fb2789..45bd6b85e115 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_tile_error_regs.h
+> @@ -10,4 +10,5 @@
+>  #define DEV_ERR_STAT_REG(x)                            XE_REG(_PICK_EVEN((x), \
+>  								_DEV_ERR_STAT_CORRECTABLE, \
+>  								_DEV_ERR_STAT_NONFATAL))
+> +#define   XE_GT_ERROR				       0
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 7b6487cfaf61..628cb46a2509 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -392,8 +392,11 @@ static void xe_hw_error_fini(struct xe_device *xe)
+>  	struct xe_tile *tile;
+>  	int i;
+>  
+> -	for_each_tile(tile, xe, i)
+> +	for_each_tile(tile, xe, i) {
+>  		xa_destroy(&tile->errors.hw_error);
+> +		xa_destroy(&tile->primary_gt->errors.hw_error);
+> +	}
+> +
+>  }
+>  
+>  void xe_device_remove(struct xe_device *xe)
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index d817016b4e38..675cf0c00be2 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -414,6 +414,7 @@ struct xe_device {
+>  	/** @hw_err_regs: list of hw error regs*/
+>  	struct hardware_errors_regs {
+>  		const struct err_name_index_pair *dev_err_stat[HARDWARE_ERROR_MAX];
+> +		const struct err_name_index_pair *err_stat_gt[HARDWARE_ERROR_MAX];
+>  	} hw_err_regs;
+>  
+>  	/* private: */
+> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+> index d3f2793684e2..f6ef1e381d55 100644
+> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+> @@ -9,6 +9,7 @@
+>  #include "xe_force_wake_types.h"
+>  #include "xe_gt_idle_sysfs_types.h"
+>  #include "xe_hw_engine_types.h"
+> +#include "xe_hw_error.h"
+>  #include "xe_hw_fence_types.h"
+>  #include "xe_reg_sr_types.h"
+>  #include "xe_sa_types.h"
+> @@ -347,6 +348,11 @@ struct xe_gt {
+>  		/** @oob: bitmap with active OOB workaroudns */
+>  		unsigned long *oob;
+>  	} wa_active;
+> +
+> +	/** @errors: count of hardware errors reported for the gt */
+> +	struct gt_hw_errors {
+> +		struct xarray hw_error;
+> +	} errors;
+>  };
+>  
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_hw_error.c b/drivers/gpu/drm/xe/xe_hw_error.c
+> index a4f2f00823ef..c4bc24a35231 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_error.c
+> +++ b/drivers/gpu/drm/xe/xe_hw_error.c
+> @@ -6,6 +6,7 @@
+>  #include "xe_hw_error.h"
+>  
+>  #include "regs/xe_regs.h"
+> +#include "regs/xe_gt_error_regs.h"
+>  #include "regs/xe_tile_error_regs.h"
+>  #include "xe_device.h"
+>  #include "xe_mmio.h"
+> @@ -100,15 +101,48 @@ static const struct err_name_index_pair pvc_err_stat_correctable_reg[] = {
+>  	[9 ... 31]  =  {"Undefined",		XE_HW_ERR_TILE_CORR_UNKNOWN},
+>  };
+>  
+> +static const struct err_name_index_pair dg2_stat_gt_fatal_reg[] = {
+> +	[0]         =  {"Undefined",		XE_HW_ERR_GT_FATAL_UNKNOWN},
+> +	[1]         =  {"Array BIST",		XE_HW_ERR_GT_FATAL_ARR_BIST},
+> +	[2]         =  {"Undefined",		XE_HW_ERR_GT_FATAL_UNKNOWN},
+> +	[3]         =  {"FPU",			XE_HW_ERR_GT_FATAL_FPU},
+> +	[4]         =  {"L3 Double",		XE_HW_ERR_GT_FATAL_L3_DOUB},
+> +	[5]         =  {"L3 ECC Checker",	XE_HW_ERR_GT_FATAL_L3_ECC_CHK},
+> +	[6]         =  {"GUC SRAM",		XE_HW_ERR_GT_FATAL_GUC},
+> +	[7]         =  {"Undefined",		XE_HW_ERR_GT_FATAL_UNKNOWN},
+> +	[8]         =  {"IDI PARITY",		XE_HW_ERR_GT_FATAL_IDI_PAR},
+> +	[9]	    =  {"SQIDI",		XE_HW_ERR_GT_FATAL_SQIDI},
+> +	[10 ... 11] =  {"Undefined",		XE_HW_ERR_GT_FATAL_UNKNOWN},
+> +	[12]        =  {"SAMPLER",		XE_HW_ERR_GT_FATAL_SAMPLER},
+> +	[13]        =  {"SLM",			XE_HW_ERR_GT_FATAL_SLM},
+> +	[14]        =  {"EU IC",		XE_HW_ERR_GT_FATAL_EU_IC},
+> +	[15]        =  {"EU GRF",		XE_HW_ERR_GT_FATAL_EU_GRF},
+> +	[16 ... 31] =  {"Undefined",            XE_HW_ERR_GT_FATAL_UNKNOWN},
+> +};
+> +
+> +static const struct err_name_index_pair dg2_stat_gt_correctable_reg[] = {
+> +	[0]         = {"L3 SINGLE",		XE_HW_ERR_GT_CORR_L3_SNG},
+> +	[1]         = {"SINGLE BIT GUC SRAM",	XE_HW_ERR_GT_CORR_GUC},
+> +	[2 ... 11]  = {"Undefined",		XE_HW_ERR_GT_CORR_UNKNOWN},
+> +	[12]        = {"SINGLE BIT SAMPLER",	XE_HW_ERR_GT_CORR_SAMPLER},
+> +	[13]        = {"SINGLE BIT SLM",	XE_HW_ERR_GT_CORR_SLM},
+> +	[14]        = {"SINGLE BIT EU IC",	XE_HW_ERR_GT_CORR_EU_IC},
+> +	[15]        = {"SINGLE BIT EU GRF",	XE_HW_ERR_GT_CORR_EU_GRF},
+> +	[16 ... 31] = {"Undefined",             XE_HW_ERR_GT_CORR_UNKNOWN},
+> +};
+> +
+>  void xe_assign_hw_err_regs(struct xe_device *xe)
+>  {
+>  	const struct err_name_index_pair **dev_err_stat = xe->hw_err_regs.dev_err_stat;
+> +	const struct err_name_index_pair **err_stat_gt = xe->hw_err_regs.err_stat_gt;
+>  
+>  	/* Error reporting is supported only for DG2 and PVC currently. */
+>  	if (xe->info.platform == XE_DG2) {
+>  		dev_err_stat[HARDWARE_ERROR_CORRECTABLE] = dg2_err_stat_correctable_reg;
+>  		dev_err_stat[HARDWARE_ERROR_NONFATAL] = dg2_err_stat_nonfatal_reg;
+>  		dev_err_stat[HARDWARE_ERROR_FATAL] = dg2_err_stat_fatal_reg;
+> +		err_stat_gt[HARDWARE_ERROR_CORRECTABLE] = dg2_stat_gt_correctable_reg;
+> +		err_stat_gt[HARDWARE_ERROR_FATAL] = dg2_stat_gt_fatal_reg;
+>  	}
+>  
+>  	if (xe->info.platform == XE_PVC) {
+> @@ -116,6 +150,7 @@ void xe_assign_hw_err_regs(struct xe_device *xe)
+>  		dev_err_stat[HARDWARE_ERROR_NONFATAL] = pvc_err_stat_nonfatal_reg;
+>  		dev_err_stat[HARDWARE_ERROR_FATAL] = pvc_err_stat_fatal_reg;
+>  	}
+> +
+>  }
+>  
+>  static bool xe_platform_has_ras(struct xe_device *xe)
+> @@ -142,6 +177,62 @@ xe_update_hw_error_cnt(struct drm_device *drm, struct xarray *hw_error, unsigned
+>  	xa_unlock_irqrestore(hw_error, flags);
+>  }
+>  
+> +static void
+> +xe_gt_hw_error_log_status_reg(struct xe_gt *gt, const enum hardware_error hw_err)
+> +{
+> +	const char *hw_err_str = hardware_error_type_to_str(hw_err);
+> +	const struct err_name_index_pair *errstat;
+> +	struct hardware_errors_regs *err_regs;
+> +	unsigned long errsrc;
+> +	const char *name;
+> +	u32 indx;
+> +	u32 errbit;
+> +
+> +	err_regs = &gt_to_xe(gt)->hw_err_regs;
+> +	errsrc = xe_mmio_read32(gt, ERR_STAT_GT_REG(hw_err));
+> +	if (!errsrc) {
+> +		xe_gt_log_hw_err(gt, "ERR_STAT_GT_REG_%s blank!\n", hw_err_str);
+> +		return;
+> +	}
+> +
+> +	drm_dbg(&gt_to_xe(gt)->drm, HW_ERR "GT%d ERR_STAT_GT_REG_%s=0x%08lx\n",
+> +		gt->info.id, hw_err_str, errsrc);
+> +
+> +	if (hw_err == HARDWARE_ERROR_NONFATAL) {
+> +		/*  The GT Non Fatal Error Status Register has only reserved bits
+> +		 *  Nothing to service.
+> +		 */
+> +		xe_gt_log_hw_err(gt, "%s error\n", hw_err_str);
+> +		goto clear_reg;
+> +	}
+> +
+> +	errstat = err_regs->err_stat_gt[hw_err];
+> +	for_each_set_bit(errbit, &errsrc, XE_RAS_REG_SIZE) {
+> +		name = errstat[errbit].name;
+> +		indx = errstat[errbit].index;
+> +
+> +		if (hw_err == HARDWARE_ERROR_FATAL)
+> +			xe_gt_log_hw_err(gt, "%s %s error, bit[%d] is set\n",
+> +					 name, hw_err_str, errbit);
+> +		else
+> +			xe_gt_log_hw_err(gt, "%s %s error, bit[%d] is set\n",
+> +					 name, hw_err_str, errbit);
+> +
+> +		xe_update_hw_error_cnt(&gt_to_xe(gt)->drm, &gt->errors.hw_error, indx);
+> +	}
+> +clear_reg:
+> +	xe_mmio_write32(gt, ERR_STAT_GT_REG(hw_err), errsrc);
+> +}
+> +
+> +static void
+> +xe_gt_hw_error_handler(struct xe_gt *gt, const enum hardware_error hw_err)
+> +{
+> +	lockdep_assert_held(&gt_to_xe(gt)->irq.lock);
+> +
+> +	if (gt_to_xe(gt)->info.platform == XE_DG2)
+> +		xe_gt_hw_error_log_status_reg(gt, hw_err);
+> +}
+> +
+>  static void
+>  xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_err)
+>  {
+> @@ -193,8 +284,9 @@ xe_hw_error_source_handler(struct xe_tile *tile, const enum hardware_error hw_er
+>  		if (indx != XE_HW_ERR_TILE_UNSPEC)
+>  			xe_update_hw_error_cnt(&tile_to_xe(tile)->drm,
+>  					       &tile->errors.hw_error, indx);
+> +		if (errbit == XE_GT_ERROR)
+> +			xe_gt_hw_error_handler(tile->primary_gt, hw_err);
+>  	}
+> -
+>  	xe_mmio_write32(gt, DEV_ERR_STAT_REG(hw_err), errsrc);
+>  unlock:
+>  	spin_unlock_irqrestore(&tile_to_xe(tile)->irq.lock, flags);
+> diff --git a/drivers/gpu/drm/xe/xe_hw_error.h b/drivers/gpu/drm/xe/xe_hw_error.h
+> index 1932f64e26da..40869e2b97d3 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_error.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_error.h
+> @@ -37,6 +37,30 @@ enum xe_tile_hw_errors {
+>  	XE_HW_ERR_TILE_CORR_UNKNOWN,
+>  };
+>  
+> +/* Count of GT Correctable and FATAL HW ERRORS */
+> +enum xe_gt_hw_errors {
+> +	XE_HW_ERR_GT_CORR_L3_SNG,
+> +	XE_HW_ERR_GT_CORR_GUC,
+> +	XE_HW_ERR_GT_CORR_SAMPLER,
+> +	XE_HW_ERR_GT_CORR_SLM,
+> +	XE_HW_ERR_GT_CORR_EU_IC,
+> +	XE_HW_ERR_GT_CORR_EU_GRF,
+> +	XE_HW_ERR_GT_CORR_UNKNOWN,
+> +	XE_HW_ERR_GT_FATAL_ARR_BIST,
+> +	XE_HW_ERR_GT_FATAL_FPU,
+> +	XE_HW_ERR_GT_FATAL_L3_DOUB,
+> +	XE_HW_ERR_GT_FATAL_L3_ECC_CHK,
+> +	XE_HW_ERR_GT_FATAL_GUC,
+> +	XE_HW_ERR_GT_FATAL_IDI_PAR,
+> +	XE_HW_ERR_GT_FATAL_SQIDI,
+> +	XE_HW_ERR_GT_FATAL_SAMPLER,
+> +	XE_HW_ERR_GT_FATAL_SLM,
+> +	XE_HW_ERR_GT_FATAL_EU_IC,
+> +	XE_HW_ERR_GT_FATAL_EU_GRF,
+> +	XE_HW_ERR_GT_FATAL_UNKNOWN,
+> +	XE_HW_ERR_GT_MAX,
+> +};
+> +
+>  struct err_name_index_pair {
+>  	const char *name;
+>  	const u32 index;
+> diff --git a/drivers/gpu/drm/xe/xe_tile.c b/drivers/gpu/drm/xe/xe_tile.c
+> index bc79145eadc0..bc80d24df572 100644
+> --- a/drivers/gpu/drm/xe/xe_tile.c
+> +++ b/drivers/gpu/drm/xe/xe_tile.c
+> @@ -85,6 +85,7 @@ int xe_tile_alloc(struct xe_tile *tile)
+>  	struct drm_device *drm = &tile_to_xe(tile)->drm;
+>  
+>  	xa_init(&tile->errors.hw_error);
+> +	xa_init(&tile->primary_gt->errors.hw_error);
+>  
+>  	tile->mem.ggtt = drmm_kzalloc(drm, sizeof(*tile->mem.ggtt),
+>  				      GFP_KERNEL);
 
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 19-10-2023 22:34, Welty, Brian
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:d1db0afd-0979-40c1-918e-955a7d658c0c@intel.com">
-      <br>
-      <br>
-      On 10/19/2023 6:25 AM, Himal Prasad Ghimiray wrote:
-      <br>
-      <blockquote type="cite">Send uevent incase of nonfatal errors
-        reported by gsc.
-        <br>
-        <br>
-        TODO: Since XE_RESET_FAILED_UEVENT and XE_GSC_HW_HEALTH_UEVENT
-        <br>
-        both pass DEVICE_STATUS=NEEDS_RESET. Use same Uevent to
-        determine
-        <br>
-        the RESET_REQUIRED and pass reasons for reset required as
-        additional
-        <br>
-        info.
-        <br>
-        <br>
-        v2
-        <br>
-        - No need to provide tile info in uevent because error is
-        <br>
-        accepted only in tile0. (Aravind)
-        <br>
-        <br>
-        v3
-        <br>
-        - Use pci node to send uevent.
-        <br>
-        - Pass RESET_REASON for uevent.
-        <br>
-      </blockquote>
-      <br>
-      Can we go a step farther as Aravind was saying and just have one
-      single uevent?&nbsp; Or maybe you have one uevent now, but can still
-      consolidate a bit more.
-      <br>
-      So replace XE_GSC_HW_HEALTH_UEVENT and XE_RESET_FAILED_UEVENT with
-      one uevent, defined in uapi header with:
-      <br>
-      <br>
-      #define XE_RESET_REQUIRED_UEVENT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;RESET_REQUIRED&quot;
-      <br>
-      #define XE_RESET_REQUIRED_UEVENT_REASON_CSC&nbsp;&nbsp;&nbsp;
-      &quot;REASON=CSC_HW_ERROR&quot;
-      <br>
-      #define XE_RESET_REQUIRED_UEVENT_REASON_GT&nbsp;&nbsp;&nbsp;
-      &quot;REASON=GT_RESET_FAILED&quot;
-      <br>
-    </blockquote>
-    <p>Hi Brian,</p>
-    <p>While implementing XE_RESET_FAILED_UEVENT, the recommendation was
-      to use <span><span class="ui-provider ec bav baw bax bay baz bba bbb bbc bbd bbe bbf bbg bbh bbi bbj bbk bbl bbm bbn bbo bbp bbq bbr bbs bbt bbu bbv bbw bbx bby bbz bca bcb bcc" dir="ltr"><br>
-        </span></span></p>
-    <p><span><span class="ui-provider ec bav baw bax bay baz bba bbb bbc bbd bbe bbf bbg bbh bbi bbj bbk bbl bbm bbn bbo bbp bbq bbr bbs bbt bbu bbv bbw bbx bby bbz bca bcb bcc" dir="ltr">&quot;DEVICE_STATUS=NEEDS_RESET&quot; instead of&nbsp; </span></span>&quot;RESET_REQUIRED.</p>
-    <p>Will be proceeding with:</p>
-    <p>#define XE_RESET_REQUIRED_UEVENT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;<span><span class="ui-provider ec bav baw bax bay baz bba bbb bbc bbd bbe bbf bbg bbh bbi bbj bbk bbl bbm bbn bbo bbp bbq bbr bbs bbt bbu bbv bbw bbx bby bbz bca bcb bcc" dir="ltr">DEVICE_STATUS=NEEDS_RESET</span></span>&quot;
-      <br>
-      #define XE_RESET_REQUIRED_UEVENT_REASON_CSC&nbsp;&nbsp;&nbsp;
-      &quot;REASON=CSC_HW_ERROR&quot;
-      <br>
-      #define XE_RESET_REQUIRED_UEVENT_REASON_GT&nbsp;&nbsp;&nbsp;
-      &quot;REASON=GT_RESET_FAILED&quot; <br>
-    </p>
-    <p>Thanks for the review comments, will be updating it in next
-      patch.<br>
-    </p>
-    <p>BR<br>
-      Himal <br>
-    </p>
-    <blockquote type="cite" cite="mid:d1db0afd-0979-40c1-918e-955a7d658c0c@intel.com">
-      <br>
-      Would above work?
-      <br>
-      -Brian
-      <br>
-      <br>
-      <br>
-      <blockquote type="cite">
-        <br>
-        Cc: Aravind Iddamsetty
-        <a class="moz-txt-link-rfc2396E" href="mailto:aravind.iddamsetty@linux.intel.com">&lt;aravind.iddamsetty@linux.intel.com&gt;</a>
-        <br>
-        Cc: Brian Welty <a class="moz-txt-link-rfc2396E" href="mailto:brian.welty@intel.com">&lt;brian.welty@intel.com&gt;</a>
-        <br>
-        Signed-off-by: Himal Prasad Ghimiray
-        <a class="moz-txt-link-rfc2396E" href="mailto:himal.prasad.ghimiray@intel.com">&lt;himal.prasad.ghimiray@intel.com&gt;</a>
-        <br>
-        ---
-        <br>
-        &nbsp; drivers/gpu/drm/xe/xe_device_types.h |&nbsp; 3 +++
-        <br>
-        &nbsp; drivers/gpu/drm/xe/xe_hw_error.c&nbsp;&nbsp;&nbsp;&nbsp; | 17 +++++++++++++++++
-        <br>
-        &nbsp; drivers/gpu/drm/xe/xe_hw_error.h&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 3 ++-
-        <br>
-        &nbsp; drivers/gpu/drm/xe/xe_irq.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 4 ++++
-        <br>
-        &nbsp; include/uapi/drm/xe_drm.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 9 +++++++++
-        <br>
-        &nbsp; 5 files changed, 35 insertions(+), 1 deletion(-)
-        <br>
-        <br>
-        diff --git a/drivers/gpu/drm/xe/xe_device_types.h
-        b/drivers/gpu/drm/xe/xe_device_types.h
-        <br>
-        index 3b371e0f6168..bc7b545ce37b 100644
-        <br>
-        --- a/drivers/gpu/drm/xe/xe_device_types.h
-        <br>
-        +++ b/drivers/gpu/drm/xe/xe_device_types.h
-        <br>
-        @@ -196,6 +196,9 @@ struct xe_tile {
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct tile_hw_errors {
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct xarray hw_error;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } errors;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; /** @gsc_hw_err_work: worker for uevent to report GSC HW
-        errors */
-        <br>
-        +&nbsp;&nbsp;&nbsp; struct work_struct gsc_hw_err_work;
-        <br>
-        &nbsp; };
-        <br>
-        &nbsp; &nbsp; /**
-        <br>
-        diff --git a/drivers/gpu/drm/xe/xe_hw_error.c
-        b/drivers/gpu/drm/xe/xe_hw_error.c
-        <br>
-        index 84533ef6a51e..644e63d4d717 100644
-        <br>
-        --- a/drivers/gpu/drm/xe/xe_hw_error.c
-        <br>
-        +++ b/drivers/gpu/drm/xe/xe_hw_error.c
-        <br>
-        @@ -3,6 +3,8 @@
-        <br>
-        &nbsp;&nbsp; * Copyright © 2023 Intel Corporation
-        <br>
-        &nbsp;&nbsp; */
-        <br>
-        &nbsp; +#include &lt;drm/xe_drm.h&gt;
-        <br>
-        +
-        <br>
-        &nbsp; #include &quot;xe_hw_error.h&quot;
-        <br>
-        &nbsp; &nbsp; #include &quot;regs/xe_regs.h&quot;
-        <br>
-        @@ -378,6 +380,20 @@ xe_gt_hw_error_handler(struct xe_gt *gt,
-        const enum hardware_error hw_err)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_gt_hw_error_log_vector_reg(gt, hw_err);
-        <br>
-        &nbsp; }
-        <br>
-        &nbsp; +void xe_gsc_hw_error_work(struct work_struct *work)
-        <br>
-        +{
-        <br>
-        +&nbsp;&nbsp;&nbsp; struct xe_tile *tile = container_of(work, typeof(*tile),
-        gsc_hw_err_work);
-        <br>
-        +&nbsp;&nbsp;&nbsp; struct pci_dev *pdev =
-        to_pci_dev(tile_to_xe(tile)-&gt;drm.dev);
-        <br>
-        +&nbsp;&nbsp;&nbsp; char *csc_hw_error_event[3];
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; csc_hw_error_event[0] = XE_GSC_HW_HEALTH_UEVENT &quot;=1&quot;;
-        <br>
-        +&nbsp;&nbsp;&nbsp; csc_hw_error_event[1] = &quot;RESET_REASON=CSC_HW_ERROR&quot;;
-        <br>
-        +&nbsp;&nbsp;&nbsp; csc_hw_error_event[2] = NULL;
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; kobject_uevent_env(&amp;pdev-&gt;dev.kobj, KOBJ_CHANGE,
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; csc_hw_error_event);
-        <br>
-        +}
-        <br>
-        +
-        <br>
-        &nbsp; static void
-        <br>
-        &nbsp; xe_gsc_hw_error_handler(struct xe_tile *tile, const enum
-        hardware_error hw_err)
-        <br>
-        &nbsp; {
-        <br>
-        @@ -435,6 +451,7 @@ xe_gsc_hw_error_handler(struct xe_tile
-        *tile, const enum hardware_error hw_err)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_err_ratelimited(&amp;tile_to_xe(tile)-&gt;drm,
-        HW_ERR
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;Tile0 reported GSC %s %s error,
-        bit[%d] is set\n&quot;,
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; name, hw_err_str, errbit);
-        <br>
-        +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; schedule_work(&amp;tile-&gt;gsc_hw_err_work);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (indx != XE_HW_ERR_TILE_UNSPEC)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        xe_update_hw_error_cnt(&amp;tile_to_xe(tile)-&gt;drm,
-        <br>
-        diff --git a/drivers/gpu/drm/xe/xe_hw_error.h
-        b/drivers/gpu/drm/xe/xe_hw_error.h
-        <br>
-        index 997747b6b603..3c02fbd3b256 100644
-        <br>
-        --- a/drivers/gpu/drm/xe/xe_hw_error.h
-        <br>
-        +++ b/drivers/gpu/drm/xe/xe_hw_error.h
-        <br>
-        @@ -7,6 +7,7 @@
-        <br>
-        &nbsp; &nbsp; #include &lt;linux/stddef.h&gt;
-        <br>
-        &nbsp; #include &lt;linux/types.h&gt;
-        <br>
-        +#include &lt;linux/workqueue.h&gt;
-        <br>
-        &nbsp; &nbsp; #define XE_RAS_REG_SIZE 32
-        <br>
-        &nbsp; @@ -106,5 +107,5 @@ struct xe_tile;
-        <br>
-        &nbsp; void xe_hw_error_irq_handler(struct xe_tile *tile, const u32
-        master_ctl);
-        <br>
-        &nbsp; void xe_assign_hw_err_regs(struct xe_device *xe);
-        <br>
-        &nbsp; void xe_process_hw_errors(struct xe_device *xe);
-        <br>
-        -
-        <br>
-        +void xe_gsc_hw_error_work(struct work_struct *work);
-        <br>
-        &nbsp; #endif
-        <br>
-        diff --git a/drivers/gpu/drm/xe/xe_irq.c
-        b/drivers/gpu/drm/xe/xe_irq.c
-        <br>
-        index 8365a4cb0c45..bc0f01a2abc1 100644
-        <br>
-        --- a/drivers/gpu/drm/xe/xe_irq.c
-        <br>
-        +++ b/drivers/gpu/drm/xe/xe_irq.c
-        <br>
-        @@ -614,6 +614,10 @@ int xe_irq_install(struct xe_device *xe)
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; irq_handler_t irq_handler;
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int err, irq;
-        <br>
-        &nbsp; +&nbsp;&nbsp;&nbsp; struct xe_tile *tile = xe_device_get_root_tile(xe);
-        <br>
-        +
-        <br>
-        +&nbsp;&nbsp;&nbsp; INIT_WORK(&amp;tile-&gt;gsc_hw_err_work,
-        xe_gsc_hw_error_work);
-        <br>
-        +
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; irq_handler = xe_irq_handler(xe);
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!irq_handler) {
-        <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; drm_err(&amp;xe-&gt;drm, &quot;No supported interrupt
-        handler&quot;);
-        <br>
-        diff --git a/include/uapi/drm/xe_drm.h
-        b/include/uapi/drm/xe_drm.h
-        <br>
-        index 24bf8f0f52e8..4e5e57bc9f69 100644
-        <br>
-        --- a/include/uapi/drm/xe_drm.h
-        <br>
-        +++ b/include/uapi/drm/xe_drm.h
-        <br>
-        @@ -16,6 +16,15 @@ extern &quot;C&quot; {
-        <br>
-        &nbsp;&nbsp; * subject to backwards-compatibility constraints.
-        <br>
-        &nbsp;&nbsp; */
-        <br>
-        &nbsp; +/**
-        <br>
-        + * DOC: uevent generated by xe on it's pci node.
-        <br>
-        + *
-        <br>
-        + * XE_GSC_HW_HEALTH_UEVENT - Event is generated when GSC
-        reports HW
-        <br>
-        + * errors. The value supplied with the event is always
-        &quot;NEEDS_RESET&quot;
-        <br>
-        + * Additional information supplied is
-        &quot;RESET_REASON=CSC_HW_ERROR&quot;.
-        <br>
-        + */
-        <br>
-        +#define XE_GSC_HW_HEALTH_UEVENT &quot;DEVICE_STATUS&quot;
-        <br>
-        +
-        <br>
-        &nbsp; /**
-        <br>
-        &nbsp;&nbsp; * DOC: uevent generated by xe on it's pci node.
-        <br>
-        &nbsp;&nbsp; *
-        <br>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
+Reviewed-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
 
---------------PFCpcljqJGWLmQFXAMYDQW0L--
+Thanks,
+Aravind.
