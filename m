@@ -4,45 +4,65 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D2D22C001DF
-	for <intel-xe@archiver.kernel.org>; Fri, 20 Oct 2023 23:26:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7DDBC001DF
+	for <intel-xe@archiver.kernel.org>; Sat, 21 Oct 2023 01:07:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 979C510E108;
-	Fri, 20 Oct 2023 23:26:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4383410E108
- for <intel-xe@lists.freedesktop.org>; Fri, 20 Oct 2023 23:26:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4404010E10B;
+	Sat, 21 Oct 2023 01:07:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C91D310E10B;
+ Sat, 21 Oct 2023 01:07:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1697844379; x=1729380379;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8oHRIt4BV+M2/kykgu/K3D16n940kn2zm0sQT0R3sI8=;
- b=ZkePlFHIg4hX8Yv8EVomhtkublTlLp/HLObXIMaCzEFIsRdHCoriW180
- VnpOTiZE1rbapSvqKnw7fblSBMazWS5GUYHQ1QYxoEEiWTh3MvSAduHu2
- kZMcmWQcitHTs15Rjjs0PzBFDYqzuW160ck5KCNyxOBcaA1SenPd4i3rp
- p8ctGjuXCQN154pVYzOjvdY4uvNK8d0/fddF5Z24RawK/tDtx9PN0EYp0
- z32GsrXjOBL6KGm3uynjtBKrbulFt/dyuBWd5OakjCQzvx03jVutP1/SK
- PpXRHRo+AxJgCNEjiIPRVbmo8lc5ldnT/KkW/2RpOacxE/PWRBCTOsC9t A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="8151635"
-X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; 
-   d="scan'208";a="8151635"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Oct 2023 16:26:18 -0700
+ t=1697850469; x=1729386469;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=UICMo+gydCFgwkMim6gIolpOrux/71Uw/WIwwursSlE=;
+ b=hAcLiM9fIdcR2Rt2ml9K2nV1CLI5HT8+78ppaABd7G/mCPzhjDhJLpuJ
+ v8QsRw4hqT9dbqutrdRgark7h/7CAu2ojElHYAtqU1LtbeVuWO5wyiBYL
+ 7j+Rq23AqErfWeD08NC7UtONFm+0KiRORn3JAXl6sTLAFwn+l4WzJvu4g
+ 30UvwLZB5zLmhOLVjzhxP+DdQDsjkRQg4UHhafe1LtmamB6VmOblJuIaD
+ /j+d7kuT7HjqWOia/HkYSRpADoA97rxNy7eiwuwDntvnVlkpoCdPT6l2R
+ WfDn05dTODpTZPZpxkhK1bqIrWIdbK2MR/7l/ENpm00/HmjRe2J7uzf7R A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="453078058"
+X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; d="scan'208";a="453078058"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2023 18:07:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="827873021"
-X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; d="scan'208";a="827873021"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by fmsmga004.fm.intel.com with ESMTP; 20 Oct 2023 16:26:17 -0700
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri, 20 Oct 2023 16:25:53 -0700
-Message-Id: <20231020232553.3665409-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10869"; a="734124604"
+X-IronPort-AV: E=Sophos;i="6.03,239,1694761200"; d="scan'208";a="734124604"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Oct 2023 18:07:44 -0700
+Message-ID: <098beb0c-7aab-d663-9eaf-1d980b3ba9f8@linux.intel.com>
+Date: Sat, 21 Oct 2023 06:40:36 +0530
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, "daniel@ffwll.ch"
+ <daniel@ffwll.ch>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "ogabbay@kernel.org" <ogabbay@kernel.org>,
+ "Tayar, Tomer (Habana)" <ttayar@habana.ai>,
+ "Hawking.Zhang@amd.com" <Hawking.Zhang@amd.com>,
+ "Harish.Kasiviswanathan@amd.com" <Harish.Kasiviswanathan@amd.com>,
+ "Felix.Kuehling@amd.com" <Felix.Kuehling@amd.com>,
+ "Luben.Tuikov@amd.com" <Luben.Tuikov@amd.com>
+References: <20231020155835.1295524-1-aravind.iddamsetty@linux.intel.com>
+ <20231020155835.1295524-2-aravind.iddamsetty@linux.intel.com>
+ <IA1PR11MB64182A7EF12381F4DD25BF94C1DBA@IA1PR11MB6418.namprd11.prod.outlook.com>
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <IA1PR11MB64182A7EF12381F4DD25BF94C1DBA@IA1PR11MB6418.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Raise GT frequency before GuC load
+Subject: Re: [Intel-xe] [RFC v4 1/5] drm/netlink: Add netlink infrastructure
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,139 +77,481 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Starting GT freq is usually RPn. Raising freq to RP0 will
-help speed up GuC load times. As an example, this data was
-collected on DG2-
 
-GuC Load time @RPn ~ 41 ms
-GuC Load time @RP0 ~ 11 ms
+On 21/10/23 02:06, Ruhl, Michael J wrote:
+>> -----Original Message-----
+>> From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+>> Sent: Friday, October 20, 2023 11:59 AM
+>> To: intel-xe@lists.freedesktop.org; dri-devel@lists.freedesktop.org;
+>> alexander.deucher@amd.com; airlied@gmail.com; daniel@ffwll.ch;
+>> joonas.lahtinen@linux.intel.com; ogabbay@kernel.org; Tayar, Tomer (Habana)
+>> <ttayar@habana.ai>; Hawking.Zhang@amd.com;
+>> Harish.Kasiviswanathan@amd.com; Felix.Kuehling@amd.com;
+>> Luben.Tuikov@amd.com; Ruhl, Michael J <michael.j.ruhl@intel.com>
+>> Subject: [RFC v4 1/5] drm/netlink: Add netlink infrastructure
+>>
+>> Define the netlink registration interface and commands, attributes that
+>> can be commonly used across by drm drivers. This patch intends to use
+>> the generic netlink family to expose various stats of device. At present
+>> it defines some commands that shall be used to expose RAS error counters.
+>>
+>> v2:
+>> define common interfaces to genl netlink subsystem that all drm drivers
+>> can leverage.(Tomer Tayar)
+>>
+>> v3: drop DRIVER_NETLINK flag and use the driver_genl_ops structure to
+>> register to netlink subsystem (Daniel Vetter)
+>>
+>> v4:(Michael J. Ruhl)
+>> 1. rename drm_genl_send to drm_genl_reply
+>> 2. catch error from xa_store and handle appropriately
+> Hi Aravind,
+>
+> This looks reasonable to me.
+>
+> Reviewed-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
 
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  7 +++++
- drivers/gpu/drm/xe/xe_guc.c          |  3 ++
- drivers/gpu/drm/xe/xe_guc_pc.c       | 44 ++++++++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_guc_pc.h       |  1 +
- 4 files changed, 53 insertions(+), 2 deletions(-)
+Hi Mike,
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index cd1821d96a5d..0e6fe2ee4a2c 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -244,6 +244,13 @@
- 
- #define RPNSWREQ				XE_REG(0xa008)
- #define   REQ_RATIO_MASK			REG_GENMASK(31, 23)
-+#define   SW_REQ_UNSLICE_RATIO_SHIFT		23
-+#define   IGNORE_SLICE_RATIO			(0 << 0)
-+
-+#define RP_CONTROL				XE_REG(0xa024)
-+#define   RPSWCTL_SHIFT			9
-+#define   RPSWCTL_ENABLE			(0x2 << RPSWCTL_SHIFT)
-+#define   RPSWCTL_DISABLE			(0x0 << RPSWCTL_SHIFT)
- #define RC_CONTROL				XE_REG(0xa090)
- #define RC_STATE				XE_REG(0xa094)
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 84f0b5488783..5af97982564a 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -447,6 +447,9 @@ static int __xe_guc_upload(struct xe_guc *guc)
- {
- 	int ret;
- 
-+	/* Raise GT freq to speed up GuC load */
-+	xe_guc_pc_request_rp0(&guc->pc);
-+
- 	guc_write_params(guc);
- 	guc_prepare_xfer(guc);
- 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index d9375d1d582f..e1543478c627 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -247,6 +247,12 @@ static u32 decode_freq(u32 raw)
- 				 GEN9_FREQ_SCALER);
- }
- 
-+static u32 encode_freq(u32 freq)
-+{
-+	return DIV_ROUND_CLOSEST(freq * GEN9_FREQ_SCALER,
-+				 GT_FREQUENCY_MULTIPLIER);
-+}
-+
- static u32 pc_get_min_freq(struct xe_guc_pc *pc)
- {
- 	u32 freq;
-@@ -257,6 +263,28 @@ static u32 pc_get_min_freq(struct xe_guc_pc *pc)
- 	return decode_freq(freq);
- }
- 
-+static void pc_set_manual_rp_ctrl(struct xe_guc_pc *pc, bool enable)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+	u32 state = enable ? RPSWCTL_ENABLE : RPSWCTL_DISABLE;
-+
-+	/* Allow/Disallow punit to process software freq requests */
-+	xe_mmio_write32(gt, RP_CONTROL, state);
-+}
-+
-+static void pc_set_cur_freq(struct xe_guc_pc *pc, u32 freq)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+
-+	pc_set_manual_rp_ctrl(pc, true);
-+
-+	/* Req freq is in units of 16.66 Mhz */
-+	xe_mmio_write32(gt, RPNSWREQ, (encode_freq(freq) << SW_REQ_UNSLICE_RATIO_SHIFT)
-+			| IGNORE_SLICE_RATIO);
-+
-+	pc_set_manual_rp_ctrl(pc, false);
-+}
-+
- static int pc_set_min_freq(struct xe_guc_pc *pc, u32 freq)
- {
- 	/*
-@@ -685,6 +713,20 @@ static void pc_init_fused_rp_values(struct xe_guc_pc *pc)
- 	else
- 		tgl_init_fused_rp_values(pc);
- }
-+
-+/**
-+ * xe_guc_pc_request_rp0 - Request RP0
-+ * @pc: Xe_GuC_PC instance
-+ */
-+void xe_guc_pc_request_rp0(struct xe_guc_pc *pc)
-+{
-+	struct xe_gt *gt = pc_to_gt(pc);
-+
-+	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
-+	pc_init_fused_rp_values(pc);
-+	pc_set_cur_freq(pc, pc->rp0_freq);
-+}
-+
- static int pc_adjust_freq_bounds(struct xe_guc_pc *pc)
- {
- 	int ret;
-@@ -918,8 +960,6 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
- 
- 	pc->bo = bo;
- 
--	pc_init_fused_rp_values(pc);
--
- 	err = sysfs_create_files(gt->sysfs, pc_attrs);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.h b/drivers/gpu/drm/xe/xe_guc_pc.h
-index 43ea582545b5..8bed5d9fc12a 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.h
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.h
-@@ -17,4 +17,5 @@ int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc);
- enum xe_gt_idle_state xe_guc_pc_c_status(struct xe_guc_pc *pc);
- u64 xe_guc_pc_rc6_residency(struct xe_guc_pc *pc);
- u64 xe_guc_pc_mc6_residency(struct xe_guc_pc *pc);
-+void xe_guc_pc_request_rp0(struct xe_guc_pc *pc);
- #endif /* _XE_GUC_PC_H_ */
--- 
-2.38.1
+Thanks a lot for your reviews and r-b.
 
+Regards,
+Aravind.
+>
+> M
+>
+>> Cc: Tomer Tayar <ttayar@habana.ai>
+>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>> Cc: Michael J. Ruhl <michael.j.ruhl@intel.com>
+>>
+>> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+>> ---
+>> drivers/gpu/drm/Makefile       |   1 +
+>> drivers/gpu/drm/drm_drv.c      |   7 ++
+>> drivers/gpu/drm/drm_netlink.c  | 188
+>> +++++++++++++++++++++++++++++++++
+>> include/drm/drm_device.h       |   8 ++
+>> include/drm/drm_drv.h          |   7 ++
+>> include/drm/drm_netlink.h      |  30 ++++++
+>> include/uapi/drm/drm_netlink.h |  83 +++++++++++++++
+>> 7 files changed, 324 insertions(+)
+>> create mode 100644 drivers/gpu/drm/drm_netlink.c
+>> create mode 100644 include/drm/drm_netlink.h
+>> create mode 100644 include/uapi/drm/drm_netlink.h
+>>
+>> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+>> index ee64c51274ad..60864369adaa 100644
+>> --- a/drivers/gpu/drm/Makefile
+>> +++ b/drivers/gpu/drm/Makefile
+>> @@ -35,6 +35,7 @@ drm-y := \
+>> 	drm_mode_object.o \
+>> 	drm_modes.o \
+>> 	drm_modeset_lock.o \
+>> +	drm_netlink.o \
+>> 	drm_plane.o \
+>> 	drm_prime.o \
+>> 	drm_print.o \
+>> diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
+>> index 535f16e7882e..31f55c1c7524 100644
+>> --- a/drivers/gpu/drm/drm_drv.c
+>> +++ b/drivers/gpu/drm/drm_drv.c
+>> @@ -937,6 +937,12 @@ int drm_dev_register(struct drm_device *dev,
+>> unsigned long flags)
+>> 	if (ret)
+>> 		goto err_minors;
+>>
+>> +	if (driver->genl_ops) {
+>> +		ret = drm_genl_register(dev);
+>> +		if (ret)
+>> +			goto err_minors;
+>> +	}
+>> +
+>> 	ret = create_compat_control_link(dev);
+>> 	if (ret)
+>> 		goto err_minors;
+>> @@ -1074,6 +1080,7 @@ static void drm_core_exit(void)
+>> {
+>> 	drm_privacy_screen_lookup_exit();
+>> 	accel_core_exit();
+>> +	drm_genl_exit();
+>> 	unregister_chrdev(DRM_MAJOR, "drm");
+>> 	debugfs_remove(drm_debugfs_root);
+>> 	drm_sysfs_destroy();
+>> diff --git a/drivers/gpu/drm/drm_netlink.c b/drivers/gpu/drm/drm_netlink.c
+>> new file mode 100644
+>> index 000000000000..8add249c1da3
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/drm_netlink.c
+>> @@ -0,0 +1,188 @@
+>> +// SPDX-License-Identifier: MIT
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#include <drm/drm_device.h>
+>> +#include <drm/drm_drv.h>
+>> +#include <drm/drm_file.h>
+>> +#include <drm/drm_managed.h>
+>> +#include <drm/drm_netlink.h>
+>> +#include <drm/drm_print.h>
+>> +
+>> +DEFINE_XARRAY(drm_dev_xarray);
+>> +
+>> +/**
+>> + * drm_genl_reply - response to a request
+>> + * @msg: socket buffer
+>> + * @info: receiver information
+>> + * @usrhdr: pointer to user specific header in the message buffer
+>> + *
+>> + * RETURNS:
+>> + * 0 on success and negative error code on failure
+>> + */
+>> +int drm_genl_reply(struct sk_buff *msg, struct genl_info *info, void *usrhdr)
+>> +{
+>> +	int ret;
+>> +
+>> +	genlmsg_end(msg, usrhdr);
+>> +
+>> +	ret = genlmsg_reply(msg, info);
+>> +	if (ret)
+>> +		nlmsg_free(msg);
+>> +
+>> +	return ret;
+>> +}
+>> +EXPORT_SYMBOL(drm_genl_reply);
+>> +
+>> +/**
+>> + * drm_genl_alloc_msg - allocate genl message buffer
+>> + * @dev: drm_device for which the message is being allocated
+>> + * @info: receiver information
+>> + * @usrhdr: pointer to user specific header in the message buffer
+>> + *
+>> + * RETURNS:
+>> + * pointer to new allocated buffer on success, NULL on failure
+>> + */
+>> +struct sk_buff *
+>> +drm_genl_alloc_msg(struct drm_device *dev,
+>> +		   struct genl_info *info,
+>> +		   size_t msg_size, void **usrhdr)
+>> +{
+>> +	struct sk_buff *new_msg;
+>> +	new_msg = genlmsg_new(msg_size, GFP_KERNEL);
+>> +	if (!new_msg)
+>> +		return new_msg;
+>> +
+>> +	*usrhdr = genlmsg_put_reply(new_msg, info, &dev->drm_genl_family, 0, info->genlhdr->cmd);
+>> +	if (!*usrhdr) {
+>> +		nlmsg_free(new_msg);
+>> +		new_msg = NULL;
+>> +	}
+>> +
+>> +	return new_msg;
+>> +}
+>> +EXPORT_SYMBOL(drm_genl_alloc_msg);
+>> +
+>> +static struct drm_device *genl_to_dev(struct genl_info *info)
+>> +{
+>> +	return xa_load(&drm_dev_xarray, info->nlhdr->nlmsg_type);
+>> +}
+>> +
+>> +static int drm_genl_list_errors(struct sk_buff *msg, struct genl_info *info)
+>> +{
+>> +	struct drm_device *dev = genl_to_dev(info);
+>> +
+>> +	if (GENL_REQ_ATTR_CHECK(info, DRM_RAS_ATTR_REQUEST))
+>> +		return -EINVAL;
+>> +
+>> +	if (WARN_ON(!dev->driver->genl_ops[info->genlhdr->cmd].doit))
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	return dev->driver->genl_ops[info->genlhdr->cmd].doit(dev, msg,
+>> info);
+>> +}
+>> +
+>> +static int drm_genl_read_error(struct sk_buff *msg, struct genl_info *info)
+>> +{
+>> +	struct drm_device *dev = genl_to_dev(info);
+>> +
+>> +	if (GENL_REQ_ATTR_CHECK(info, DRM_RAS_ATTR_ERROR_ID))
+>> +		return -EINVAL;
+>> +
+>> +	if (WARN_ON(!dev->driver->genl_ops[info->genlhdr->cmd].doit))
+>> +		return -EOPNOTSUPP;
+>> +
+>> +	return dev->driver->genl_ops[info->genlhdr->cmd].doit(dev, msg,
+>> info);
+>> +}
+>> +
+>> +/* attribute policies */
+>> +static const struct nla_policy drm_attr_policy_query[DRM_ATTR_MAX + 1] = {
+>> +	[DRM_RAS_ATTR_REQUEST] = { .type = NLA_U8 },
+>> +};
+>> +
+>> +static const struct nla_policy drm_attr_policy_read_one[DRM_ATTR_MAX + 1]
+>> = {
+>> +	[DRM_RAS_ATTR_ERROR_ID] = { .type = NLA_U64 },
+>> +};
+>> +
+>> +/* drm genl operations definition */
+>> +const struct genl_ops drm_genl_ops[] = {
+>> +	{
+>> +		.cmd = DRM_RAS_CMD_QUERY,
+>> +		.doit = drm_genl_list_errors,
+>> +		.policy = drm_attr_policy_query,
+>> +	},
+>> +	{
+>> +		.cmd = DRM_RAS_CMD_READ_ONE,
+>> +		.doit = drm_genl_read_error,
+>> +		.policy = drm_attr_policy_read_one,
+>> +	},
+>> +	{
+>> +		.cmd = DRM_RAS_CMD_READ_ALL,
+>> +		.doit = drm_genl_list_errors,
+>> +		.policy = drm_attr_policy_query,
+>> +	},
+>> +};
+>> +
+>> +static void drm_genl_family_init(struct drm_device *dev)
+>> +{
+>> +	/* Use drm primary node name eg: card0 to name the genl family */
+>> +	snprintf(dev->drm_genl_family.name, sizeof(dev->drm_genl_family.name), "%s", dev->primary->kdev->kobj.name);
+>> +	dev->drm_genl_family.version = DRM_GENL_VERSION;
+>> +	dev->drm_genl_family.parallel_ops = true;
+>> +	dev->drm_genl_family.ops = drm_genl_ops;
+>> +	dev->drm_genl_family.n_ops = ARRAY_SIZE(drm_genl_ops);
+>> +	dev->drm_genl_family.maxattr = DRM_ATTR_MAX;
+>> +	dev->drm_genl_family.module = dev->dev->driver->owner;
+>> +}
+>> +
+>> +static void drm_genl_deregister(struct drm_device *dev,  void *arg)
+>> +{
+>> +	drm_dbg_driver(dev, "unregistering genl family %s\n", dev->drm_genl_family.name);
+>> +
+>> +	xa_erase(&drm_dev_xarray, dev->drm_genl_family.id);
+>> +
+>> +	genl_unregister_family(&dev->drm_genl_family);
+>> +}
+>> +
+>> +/**
+>> + * drm_genl_register - Register genl family
+>> + * @dev: drm_device for which genl family needs to be registered
+>> + *
+>> + * RETURNS:
+>> + * 0 on success and negative error code on failure
+>> + */
+>> +int drm_genl_register(struct drm_device *dev)
+>> +{
+>> +	int ret;
+>> +
+>> +	drm_genl_family_init(dev);
+>> +
+>> +	ret = genl_register_family(&dev->drm_genl_family);
+>> +	if (ret < 0) {
+>> +		drm_warn(dev, "genl family registration failed\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	drm_dbg_driver(dev, "genl family id %d and name %s\n", dev->drm_genl_family.id, dev->drm_genl_family.name);
+>> +
+>> +	ret = xa_err(xa_store(&drm_dev_xarray, dev->drm_genl_family.id, dev, GFP_KERNEL));
+>> +	if (ret)
+>> +		goto genl_unregister;
+>> +
+>> +	ret = drmm_add_action_or_reset(dev, drm_genl_deregister, NULL);
+>> +
+>> +	return ret;
+>> +
+>> +genl_unregister:
+>> +	genl_unregister_family(&dev->drm_genl_family);
+>> +	return ret;
+>> +}
+>> +
+>> +/**
+>> + * drm_genl_exit: destroy drm_dev_xarray
+>> + */
+>> +void drm_genl_exit(void)
+>> +{
+>> +	xa_destroy(&drm_dev_xarray);
+>> +}
+>> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
+>> index c490977ee250..d3ae91b7714d 100644
+>> --- a/include/drm/drm_device.h
+>> +++ b/include/drm/drm_device.h
+>> @@ -8,6 +8,7 @@
+>>
+>> #include <drm/drm_legacy.h>
+>> #include <drm/drm_mode_config.h>
+>> +#include <drm/drm_netlink.h>
+>>
+>> struct drm_driver;
+>> struct drm_minor;
+>> @@ -318,6 +319,13 @@ struct drm_device {
+>> 	 */
+>> 	struct dentry *debugfs_root;
+>>
+>> +	/**
+>> +	 * @drm_genl_family:
+>> +	 *
+>> +	 * Generic netlink family registration structure.
+>> +	 */
+>> +	struct genl_family drm_genl_family;
+>> +
+>> 	/* Everything below here is for legacy driver, never use! */
+>> 	/* private: */
+>> #if IS_ENABLED(CONFIG_DRM_LEGACY)
+>> diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+>> index e2640dc64e08..ebdb7850d235 100644
+>> --- a/include/drm/drm_drv.h
+>> +++ b/include/drm/drm_drv.h
+>> @@ -434,6 +434,13 @@ struct drm_driver {
+>> 	 */
+>> 	const struct file_operations *fops;
+>>
+>> +	/**
+>> +	 * @genl_ops:
+>> +	 *
+>> +	 * Drivers private callback to genl commands
+>> +	 */
+>> +	const struct driver_genl_ops *genl_ops;
+>> +
+>> #ifdef CONFIG_DRM_LEGACY
+>> 	/* Everything below here is for legacy driver, never use! */
+>> 	/* private: */
+>> diff --git a/include/drm/drm_netlink.h b/include/drm/drm_netlink.h
+>> new file mode 100644
+>> index 000000000000..54527dae7847
+>> --- /dev/null
+>> +++ b/include/drm/drm_netlink.h
+>> @@ -0,0 +1,30 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#ifndef __DRM_NETLINK_H__
+>> +#define __DRM_NETLINK_H__
+>> +
+>> +#include <linux/netdevice.h>
+>> +#include <net/genetlink.h>
+>> +#include <net/sock.h>
+>> +#include <uapi/drm/drm_netlink.h>
+>> +
+>> +struct drm_device;
+>> +
+>> +struct driver_genl_ops {
+>> +	int		       (*doit)(struct drm_device *dev,
+>> +				       struct sk_buff *skb,
+>> +				       struct genl_info *info);
+>> +};
+>> +
+>> +int drm_genl_register(struct drm_device *dev);
+>> +void drm_genl_exit(void);
+>> +int drm_genl_reply(struct sk_buff *msg, struct genl_info *info, void *usrhdr);
+>> +struct sk_buff *
+>> +drm_genl_alloc_msg(struct drm_device *dev,
+>> +		   struct genl_info *info,
+>> +		   size_t msg_size, void **usrhdr);
+>> +#endif
+>> +
+>> diff --git a/include/uapi/drm/drm_netlink.h b/include/uapi/drm/drm_netlink.h
+>> new file mode 100644
+>> index 000000000000..aab42147a20e
+>> --- /dev/null
+>> +++ b/include/uapi/drm/drm_netlink.h
+>> @@ -0,0 +1,83 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright 2023 Intel Corporation
+>> + *
+>> + * Permission is hereby granted, free of charge, to any person obtaining a
+>> + * copy of this software and associated documentation files (the "Software"),
+>> + * to deal in the Software without restriction, including without limitation
+>> + * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+>> + * and/or sell copies of the Software, and to permit persons to whom the
+>> + * Software is furnished to do so, subject to the following conditions:
+>> + *
+>> + * The above copyright notice and this permission notice (including the next
+>> + * paragraph) shall be included in all copies or substantial portions of the
+>> + * Software.
+>> + *
+>> + * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+>> EXPRESS OR
+>> + * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+>> MERCHANTABILITY,
+>> + * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO
+>> EVENT SHALL
+>> + * VA LINUX SYSTEMS AND/OR ITS SUPPLIERS BE LIABLE FOR ANY CLAIM,
+>> DAMAGES OR
+>> + * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+>> OTHERWISE,
+>> + * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+>> USE OR
+>> + * OTHER DEALINGS IN THE SOFTWARE.
+>> + */
+>> +
+>> +#ifndef _DRM_NETLINK_H_
+>> +#define _DRM_NETLINK_H_
+>> +
+>> +#define DRM_GENL_VERSION 1
+>> +
+>> +#if defined(__cplusplus)
+>> +extern "C" {
+>> +#endif
+>> +
+>> +/**
+>> + * enum drm_genl_error_cmds - Supported error commands
+>> + *
+>> + */
+>> +enum drm_genl_error_cmds {
+>> +	DRM_CMD_UNSPEC,
+>> +	/** @DRM_RAS_CMD_QUERY: Command to list all errors names with
+>> config-id */
+>> +	DRM_RAS_CMD_QUERY,
+>> +	/** @DRM_RAS_CMD_READ_ONE: Command to get a counter for a
+>> specific error */
+>> +	DRM_RAS_CMD_READ_ONE,
+>> +	/** @DRM_RAS_CMD_READ_ALL: Command to get counters of all
+>> errors */
+>> +	DRM_RAS_CMD_READ_ALL,
+>> +
+>> +	__DRM_CMD_MAX,
+>> +	DRM_CMD_MAX = __DRM_CMD_MAX - 1,
+>> +};
+>> +
+>> +/**
+>> + * enum drm_error_attr - Attributes to use with drm_genl_error_cmds
+>> + *
+>> + */
+>> +enum drm_error_attr {
+>> +	DRM_ATTR_UNSPEC,
+>> +	DRM_ATTR_PAD = DRM_ATTR_UNSPEC,
+>> +	/**
+>> +	 * @DRM_RAS_ATTR_REQUEST: Should be used with
+>> DRM_RAS_CMD_QUERY,
+>> +	 * DRM_RAS_CMD_READ_ALL
+>> +	 */
+>> +	DRM_RAS_ATTR_REQUEST, /* NLA_U8 */
+>> +	/**
+>> +	 * @DRM_RAS_ATTR_QUERY_REPLY: First Nested attributed sent as a
+>> +	 * response to DRM_RAS_CMD_QUERY, DRM_RAS_CMD_READ_ALL
+>> commands.
+>> +	 */
+>> +	DRM_RAS_ATTR_QUERY_REPLY, /*NLA_NESTED*/
+>> +	/** @DRM_RAS_ATTR_ERROR_NAME: Used to pass error name */
+>> +	DRM_RAS_ATTR_ERROR_NAME, /* NLA_NUL_STRING */
+>> +	/** @DRM_RAS_ATTR_ERROR_ID: Used to pass error id */
+>> +	DRM_RAS_ATTR_ERROR_ID, /* NLA_U64 */
+>> +	/** @DRM_RAS_ATTR_ERROR_VALUE: Used to pass error value */
+>> +	DRM_RAS_ATTR_ERROR_VALUE, /* NLA_U64 */
+>> +
+>> +	__DRM_ATTR_MAX,
+>> +	DRM_ATTR_MAX = __DRM_ATTR_MAX - 1,
+>> +};
+>> +
+>> +#if defined(__cplusplus)
+>> +}
+>> +#endif
+>> +
+>> +#endif
+>> --
+>> 2.25.1
