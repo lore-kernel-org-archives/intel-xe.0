@@ -4,27 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9E8CC00A8F
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Oct 2023 11:19:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5781FC001E0
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Oct 2023 11:19:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F9D010E1B2;
-	Mon, 23 Oct 2023 11:19:18 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4585710E1B6
- for <intel-xe@lists.freedesktop.org>; Mon, 23 Oct 2023 11:17:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0463710E0BC;
+	Mon, 23 Oct 2023 11:19:21 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDBE610E1B3
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Oct 2023 11:17:43 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 23 Oct 2023 13:17:25 +0200
-Message-Id: <20231023111729.696496-12-maarten.lankhorst@linux.intel.com>
+Date: Mon, 23 Oct 2023 13:17:20 +0200
+Message-Id: <20231023111729.696496-7-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231023111729.696496-1-maarten.lankhorst@linux.intel.com>
 References: <20231023111729.696496-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 11/15] ASoC: Intel: avs: Move snd_hdac_i915_init
- to before probe_work.
+Subject: [Intel-xe] [PATCH 06/15] ASoC: SOF: Intel: Fix error handling in
+ hda_init()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,59 +37,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we can use -EPROBE_DEFER, it's no longer required to spin off
-the snd_hdac_i915_init into a workqueue. It's likely the whole workqueue
-can be destroyed, but I don't have the means to test this.
+The hda_codec_i915_init() errors are ignored in
+hda_init() so it can never return -EPROBE_DEFER.
 
-Removing the workqueue would simplify init even further, but is left
-as exercise for the reviewer.
+Fix this before we move the call to hda_init() from the
+deferred probe to early probe.
 
+While at it, also fix error handling when hda_dsp_ctrl_get_caps
+fails.
+
+Suggested-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Acked-by: Mark Brown <broonie@kernel.org>
 Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Reviewed-by: Amadeusz Sławiński <amadeuszx.slawinski@linux.intel.com>
-Link: https://lore.kernel.org/r/20231009115437.99976-10-maarten.lankhorst@linux.intel.com
+Reviewed-by: Peter Ujfalusi <peter.ujfalusi@linux.intel.com>
+Acked-by: Peter Ujfalusi <peter.ujfalusi@linux.intel.com>
+Link: https://lore.kernel.org/r/20231009115437.99976-5-maarten.lankhorst@linux.intel.com
 Signed-off-by: Takashi Iwai <tiwai@suse.de>
-(cherry picked from commit 2dddc514b6e43245695901a4e9855e3de0902d15)
+(cherry picked from commit 03448e5df586c79f9c88d8cbe29014820cc2904f)
 ---
- sound/soc/intel/avs/core.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ sound/soc/sof/intel/hda.c | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
 
-diff --git a/sound/soc/intel/avs/core.c b/sound/soc/intel/avs/core.c
-index bbb40339c75f4..8a20639582487 100644
---- a/sound/soc/intel/avs/core.c
-+++ b/sound/soc/intel/avs/core.c
-@@ -191,10 +191,6 @@ static void avs_hda_probe_work(struct work_struct *work)
+diff --git a/sound/soc/sof/intel/hda.c b/sound/soc/sof/intel/hda.c
+index 86a2571488bcc..2f189473323f3 100644
+--- a/sound/soc/sof/intel/hda.c
++++ b/sound/soc/sof/intel/hda.c
+@@ -848,13 +848,21 @@ static int hda_init(struct snd_sof_dev *sdev)
  
- 	pm_runtime_set_active(bus->dev); /* clear runtime_error flag */
- 
--	ret = snd_hdac_i915_init(bus, true);
+ 	/* init i915 and HDMI codecs */
+ 	ret = hda_codec_i915_init(sdev);
 -	if (ret < 0)
--		dev_info(bus->dev, "i915 init unsuccessful: %d\n", ret);
--
- 	snd_hdac_display_power(bus, HDA_CODEC_IDX_CONTROLLER, true);
- 	avs_hdac_bus_init_chip(bus, true);
- 	avs_hdac_bus_probe_codecs(bus);
-@@ -465,10 +461,19 @@ static int avs_pci_probe(struct pci_dev *pci, const struct pci_device_id *id)
- 	pci_set_drvdata(pci, bus);
- 	device_disable_async_suspend(dev);
+-		dev_warn(sdev->dev, "init of i915 and HDMI codec failed\n");
++	if (ret < 0 && ret != -ENODEV) {
++		dev_err_probe(sdev->dev, ret, "init of i915 and HDMI codec failed\n");
++		goto out;
++	}
  
-+	ret = snd_hdac_i915_init(bus, false);
-+	if (ret == -EPROBE_DEFER)
-+		goto err_i915_init;
-+	else if (ret < 0)
-+		dev_info(bus->dev, "i915 init unsuccessful: %d\n", ret);
+ 	/* get controller capabilities */
+ 	ret = hda_dsp_ctrl_get_caps(sdev);
+-	if (ret < 0)
++	if (ret < 0) {
+ 		dev_err(sdev->dev, "error: get caps error\n");
++		hda_codec_i915_exit(sdev);
++	}
 +
- 	schedule_work(&adev->probe_work);
++out:
++	if (ret < 0)
++		iounmap(sof_to_bus(sdev)->remap_addr);
  
- 	return 0;
- 
-+err_i915_init:
-+	pci_clear_master(pci);
-+	pci_set_drvdata(pci, NULL);
- err_acquire_irq:
- 	snd_hdac_bus_free_stream_pages(bus);
- 	snd_hdac_ext_stream_free_all(bus);
+ 	return ret;
+ }
 -- 
 2.39.2
 
