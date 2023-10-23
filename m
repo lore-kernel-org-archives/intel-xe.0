@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 65349C001E0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37ED1C004C0
 	for <intel-xe@archiver.kernel.org>; Mon, 23 Oct 2023 15:22:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20AF210E216;
-	Mon, 23 Oct 2023 15:22:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E31C610E214;
+	Mon, 23 Oct 2023 15:22:04 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 83B7410E216
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 68C7810E215
  for <intel-xe@lists.freedesktop.org>; Mon, 23 Oct 2023 15:22:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1698074520; x=1729610520;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Av3DnmeUQ1odOS4rvwXf7eV2i8IVG8mA/pVXVm8HYac=;
- b=KjUe0ePmQnxsF+phg+O3HhG0QJfJW3g3O5m1oM7OfLiJGp0n3FnBY/0A
- uSYQ7AFRD3iAw4DELIe2D41LptX6imo91HK/Fus0FL5krNjHjf1hIXAw6
- ueDWpSwBZCYO/Vrfpkn4sV+dbjWD6q2OEjK1BG2wJZy9LnvOwNi7EcSk2
- xj/hQ3L0cbhVsJLPaSJKdNm/fKCZHvnwaF1r1+fe4Mz0SlNVmYIYAQqUH
- jsrWXLWrxb2NRrEsZIgxvkkd8XrLuA0nJX908Q0Yw/jvhvdsjDPKjp7Iw
- d0VCG57HLHbd1vyem8Fdt5fYvVz/HDLhocjaXyEo2IYewWl5tcR8vFeva A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="451089147"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="451089147"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=20X27Bw7tClWfENfTkXVgY0g9pr2C9cxD0fS9SQZd4o=;
+ b=GSrbafs72nmHMHtf6oJgv9gs6oSqsrhSCPITe0liz4wk8xtiKsHOWTc0
+ Q45oVU3pgvpJth/HZk2jxIpA2Ts7skNc+3G0IE/2JitoTMORBnQbegGi4
+ zBz+P9D7aWgsmVw8TjhqYR5NPlm00UvsMYAvHfxk6pJvHfwFJartGBZsJ
+ pP1rack89bWxDL/ETN5nWgtushr3kTW0EVw7mPXihpV56lL++eZhxbu9j
+ d+JM+iu96WBQhPzxWRuns6nmxtRLSPJnYhqYGHJ4wV5wK/0MlW6PaP5xr
+ i4BzsicQO30MaTORXK8sLk/VBHYknwj1D9Ngb1D5vTcDGWOOyYUCOdR9r A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="451089149"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="451089149"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Oct 2023 08:21:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="758161450"
-X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="758161450"
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="758161456"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="758161456"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  23 Oct 2023 08:21:59 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 23 Oct 2023 08:21:36 -0700
-Message-Id: <20231023152138.132614-1-lucas.demarchi@intel.com>
+Date: Mon, 23 Oct 2023 08:21:38 -0700
+Message-Id: <20231023152138.132614-3-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20231023152138.132614-1-lucas.demarchi@intel.com>
+References: <20231023152138.132614-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/3] drm/xe/xe2: Add initial workarounds
+Subject: [Intel-xe] [PATCH 3/3] drm/xe: Add Wa_14019821291
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,212 +56,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Add the initial collection of gt/engine/lrc workarounds.
+This workaround is primarily implemented by the BIOS.  However if the
+BIOS applies the workaround it will reserve a small piece of our DSM
+(which should be at the top, right below the WOPCM); we just need to
+keep that region reserved so that nothing else attempts to re-use it.
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
-Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 24 ++++++++++
- drivers/gpu/drm/xe/xe_wa.c           | 68 ++++++++++++++++++++++++++++
- 2 files changed, 92 insertions(+)
+ drivers/gpu/drm/xe/Makefile            |  2 +-
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h   |  2 ++
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules     |  1 +
+ 4 files changed, 28 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index cee57681732d..ef9d954f5a75 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -37,7 +37,7 @@ quiet_cmd_wa_oob = GEN     $(notdir $(generated_oob))
+ $(generated_oob) &: $(obj)/xe_gen_wa_oob $(srctree)/$(src)/xe_wa_oob.rules
+ 	$(call cmd,wa_oob)
+ 
+-$(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o: $(generated_oob)
++$(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o $(obj)/xe_ttm_stolen_mgr.o: $(generated_oob)
+ 
+ # Please keep these build lists sorted!
+ 
 diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index cd1821d96a5d..8e01ae49ef21 100644
+index ec9d11b57bef..e8a69e4b4836 100644
 --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
 +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -94,7 +94,14 @@
- #define CHICKEN_RASTER_2			XE_REG_MCR(0x6208, XE_REG_OPTION_MASKED)
- #define   TBIMR_FAST_CLIP			REG_BIT(5)
+@@ -155,6 +155,8 @@
+ #define XEHP_SQCM				XE_REG_MCR(0x8724)
+ #define   EN_32B_ACCESS				REG_BIT(30)
  
-+#define FF_MODE					XE_REG(0x6210)
-+#define   DIS_TE_AUTOSTRIP			REG_BIT(31)
-+#define   DIS_MESH_PARTIAL_AUTOSTRIP		REG_BIT(16)
-+#define   DIS_MESH_AUTOSTRIP			REG_BIT(15)
++#define GSCPSMI_BASE				XE_REG(0x880c)
 +
- #define VFLSKPD					XE_REG_MCR(0x62a8, XE_REG_OPTION_MASKED)
-+#define   DIS_PARTIAL_AUTOSTRIP			REG_BIT(9)
-+#define   DIS_AUTOSTRIP				REG_BIT(6)
- #define   DIS_OVER_FETCH_CACHE			REG_BIT(1)
- #define   DIS_MULT_MISS_RD_SQUASH		REG_BIT(0)
+ #define	MIRROR_FUSE3				XE_REG(0x9118)
+ #define   XE2_NODE_ENABLE_MASK			REG_GENMASK(31, 16)
+ #define   L3BANK_PAIR_COUNT			4
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 79fbd74a3944..b23827534ab9 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -11,6 +11,8 @@
+ #include <drm/ttm/ttm_placement.h>
+ #include <drm/ttm/ttm_range_manager.h>
  
-@@ -111,6 +118,9 @@
- #define XEHP_PSS_MODE2				XE_REG_MCR(0x703c, XE_REG_OPTION_MASKED)
- #define   SCOREBOARD_STALL_FLUSH_CONTROL	REG_BIT(5)
++#include "generated/xe_wa_oob.h"
++#include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+@@ -19,6 +21,7 @@
+ #include "xe_res_cursor.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_ttm_vram_mgr.h"
++#include "xe_wa.h"
  
-+#define XEHP_PSS_CHICKEN			XE_REG_MCR(0x7044, XE_REG_OPTION_MASKED)
-+#define   FD_END_COLLECT			REG_BIT(5)
+ struct xe_ttm_stolen_mgr {
+ 	struct xe_ttm_vram_mgr base;
+@@ -112,6 +115,7 @@ static u32 get_wopcm_size(struct xe_device *xe)
+ static u32 detect_bar2_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	struct xe_gt *media_gt = xe_device_get_root_tile(xe)->media_gt;
+ 	u32 stolen_size, wopcm_size;
+ 	u32 ggc, gms;
+ 
+@@ -154,6 +158,26 @@ static u32 detect_bar2_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr
+ 
+ 	stolen_size -= wopcm_size;
+ 
++	if (XE_WA(media_gt, 14019821291)) {
++		u64 gscpsmi_base = xe_mmio_read64_2x32(media_gt, GSCPSMI_BASE);
 +
- #define HIZ_CHICKEN					XE_REG(0x7018, XE_REG_OPTION_MASKED)
- #define   DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE	REG_BIT(14)
- #define   HZ_DEPTH_TEST_LE_GE_OPT_DISABLE		REG_BIT(13)
-@@ -133,6 +143,9 @@
- #define VF_PREEMPTION				XE_REG(0x83a4, XE_REG_OPTION_MASKED)
- #define   PREEMPTION_VERTEX_COUNT		REG_GENMASK(15, 0)
- 
-+#define VF_SCRATCHPAD				XE_REG(0x83a8, XE_REG_OPTION_MASKED)
-+#define   XE2_VFG_TED_CREDIT_INTERFACE_DISABLE	REG_BIT(13)
++		/*
++		 * This workaround is primarily implemented by the BIOS.  We
++		 * just need to figure out whether the BIOS has applied the
++		 * workaround (meaning the programmed address falls within
++		 * the DSM) and, if so, reserve that part of the DSM to
++		 * prevent accidental reuse.  The DSM location should be just
++		 * below the WOPCM.
++		 */
++		if (gscpsmi_base >= mgr->io_base &&
++		    gscpsmi_base < mgr->io_base + stolen_size) {
++			xe_gt_dbg(media_gt,
++				  "Reserving %llu bytes of DSM for Wa_14019821291\n",
++				  mgr->io_base + stolen_size - gscpsmi_base);
++			stolen_size = gscpsmi_base - mgr->io_base;
++		}
++	}
 +
- #define VFG_PREEMPTION_CHICKEN			XE_REG(0x83b4, XE_REG_OPTION_MASKED)
- #define   POLYGON_TRIFAN_LINELOOP_DISABLE	REG_BIT(4)
+ 	if (drm_WARN_ON(&xe->drm, stolen_size + SZ_8M > pci_resource_len(pdev, 2)))
+ 		return 0;
  
-@@ -225,6 +238,7 @@
- #define   MSCUNIT_CLKGATE_DIS			REG_BIT(10)
- #define   RCCUNIT_CLKGATE_DIS			REG_BIT(7)
- #define   SARBUNIT_CLKGATE_DIS			REG_BIT(5)
-+#define   SBEUNIT_CLKGATE_DIS			REG_BIT(4)
- 
- #define UNSLICE_UNIT_LEVEL_CLKGATE2		XE_REG(0x94e4)
- #define   VSUNIT_CLKGATE2_DIS			REG_BIT(19)
-@@ -276,6 +290,8 @@
- #define XEHP_L3SCQREG7				XE_REG_MCR(0xb188)
- #define   BLEND_FILL_CACHING_OPT_DIS		REG_BIT(3)
- 
-+#define XEHPC_L3CLOS_MASK(i)			XE_REG_MCR(0xb194 + (i) * 8)
-+
- #define XEHP_MERT_MOD_CTRL			XE_REG_MCR(0xcf28)
- #define RENDER_MOD_CTRL				XE_REG_MCR(0xcf2c)
- #define COMP_MOD_CTRL				XE_REG_MCR(0xcf30)
-@@ -299,6 +315,9 @@
- #define XE_OAG_BLT_BUSY_FREE			XE_REG(0xdbbc)
- #define XE_OAG_RENDER_BUSY_FREE			XE_REG(0xdbdc)
- 
-+#define HALF_SLICE_CHICKEN5			XE_REG_MCR(0xe188, XE_REG_OPTION_MASKED)
-+#define   DISABLE_SAMPLE_G_PERFORMANCE		REG_BIT(0)
-+
- #define SAMPLER_MODE				XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
- #define   ENABLE_SMALLPL			REG_BIT(15)
- #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
-@@ -328,6 +347,7 @@
- #define ROW_CHICKEN				XE_REG_MCR(0xe4f0, XE_REG_OPTION_MASKED)
- #define   UGM_BACKUP_MODE			REG_BIT(13)
- #define   MDQ_ARBITRATION_MODE			REG_BIT(12)
-+#define   EARLY_EOT_DIS				REG_BIT(1)
- 
- #define ROW_CHICKEN2				XE_REG_MCR(0xe4f4, XE_REG_OPTION_MASKED)
- #define   DISABLE_READ_SUPPRESSION		REG_BIT(15)
-@@ -345,11 +365,15 @@
- 
- #define LSC_CHICKEN_BIT_0			XE_REG_MCR(0xe7c8)
- #define   DISABLE_D8_D16_COASLESCE		REG_BIT(30)
-+#define   TGM_WRITE_EOM_FORCE			REG_BIT(17)
- #define   FORCE_1_SUB_MESSAGE_PER_FRAGMENT	REG_BIT(15)
-+#define   SEQUENTIAL_ACCESS_UPGRADE_DISABLE	REG_BIT(13)
- 
- #define LSC_CHICKEN_BIT_0_UDW			XE_REG_MCR(0xe7c8 + 4)
- #define   UGM_FRAGMENT_THRESHOLD_TO_3		REG_BIT(58 - 32)
- #define   DIS_CHAIN_2XSIMD8			REG_BIT(55 - 32)
-+#define   XE2_ALLOC_DPA_STARVE_FIX_DIS		REG_BIT(47 - 32)
-+#define   ENABLE_SMP_LD_RENDER_SURFACE_CONTROL	REG_BIT(44 - 32)
- #define   FORCE_SLM_FENCE_SCOPE_TO_TILE		REG_BIT(42 - 32)
- #define   FORCE_UGM_FENCE_SCOPE_TO_TILE		REG_BIT(41 - 32)
- #define   MAXREQS_PER_BANK			REG_GENMASK(39 - 32, 37 - 32)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 1450af6cab34..b22c9f90b080 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -245,6 +245,19 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 	  XE_RTP_ACTIONS(SET(SQCNT1, ENFORCE_RAR))
- 	},
- 
-+	/* Xe2_LPG */
-+	{ XE_RTP_NAME("16020975621"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)),
-+	  XE_RTP_ACTIONS(SET(XEHP_SLICE_UNIT_LEVEL_CLKGATE, SBEUNIT_CLKGATE_DIS))
-+	},
-+	{ XE_RTP_NAME("14018157293"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)),
-+	  XE_RTP_ACTIONS(SET(XEHPC_L3CLOS_MASK(0), ~0),
-+			 SET(XEHPC_L3CLOS_MASK(1), ~0),
-+			 SET(XEHPC_L3CLOS_MASK(2), ~0),
-+			 SET(XEHPC_L3CLOS_MASK(3), ~0))
-+	},
-+
- 	{}
- };
- 
-@@ -266,6 +279,11 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 		       IS_INTEGRATED),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
- 	},
-+	{ XE_RTP_NAME("18032247524"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, SEQUENTIAL_ACCESS_UPGRADE_DISABLE))
-+	},
- 	{ XE_RTP_NAME("1606931601"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1200, 1210), ENGINE_CLASS(RENDER)),
- 	  XE_RTP_ACTIONS(SET(ROW_CHICKEN2, DISABLE_EARLY_READ))
-@@ -539,6 +557,40 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 			     XE_RTP_NOCHECK))
- 	},
- 
-+	/* Xe2_LPG */
-+
-+	{ XE_RTP_NAME("16018712365"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, XE2_ALLOC_DPA_STARVE_FIX_DIS))
-+	},
-+	{ XE_RTP_NAME("14018957109"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN5, DISABLE_SAMPLE_G_PERFORMANCE))
-+	},
-+	{ XE_RTP_NAME("14019877138"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FD_END_COLLECT))
-+	},
-+	{ XE_RTP_NAME("16021540221"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
-+	},
-+	{ XE_RTP_NAME("14019322943"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, TGM_WRITE_EOM_FORCE))
-+	},
-+	{ XE_RTP_NAME("14018471104"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, ENABLE_SMP_LD_RENDER_SURFACE_CONTROL))
-+	},
-+	{ XE_RTP_NAME("16018737384"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN, EARLY_EOT_DIS))
-+	},
-+
- 	{}
- };
- 
-@@ -630,6 +682,22 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	  XE_RTP_ACTIONS(SET(CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE))
- 	},
- 
-+	/* Xe2_LPG */
-+	{ XE_RTP_NAME("16020518922"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)),
-+	  XE_RTP_ACTIONS(SET(FF_MODE,
-+			     DIS_TE_AUTOSTRIP |
-+			     DIS_MESH_PARTIAL_AUTOSTRIP |
-+			     DIS_MESH_AUTOSTRIP),
-+			 SET(VFLSKPD,
-+			     DIS_PARTIAL_AUTOSTRIP |
-+			     DIS_AUTOSTRIP))
-+	},
-+	{ XE_RTP_NAME("14019386621"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(VF_SCRATCHPAD, XE2_VFG_TED_CREDIT_INTERFACE_DISABLE))
-+	},
-+
- 	{}
- };
- 
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index f3ff774dc4aa..752842d734be 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -19,3 +19,4 @@
+ 		SUBPLATFORM(DG2, G12)
+ 16017236439	PLATFORM(PVC)
+ 22010954014	PLATFORM(DG2)
++14019821291	MEDIA_VERSION_RANGE(1300, 2000)
 -- 
 2.40.1
 
