@@ -4,60 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84242C004C0
-	for <intel-xe@archiver.kernel.org>; Mon, 23 Oct 2023 15:29:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E07B8C001E0
+	for <intel-xe@archiver.kernel.org>; Mon, 23 Oct 2023 15:45:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3807A10E215;
-	Mon, 23 Oct 2023 15:29:28 +0000 (UTC)
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com
- [IPv6:2001:4860:4864:20::2c])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B93A10E1E4;
- Mon, 23 Oct 2023 15:29:26 +0000 (UTC)
-Received: by mail-oa1-x2c.google.com with SMTP id
- 586e51a60fabf-1dd8304b980so2489730fac.2; 
- Mon, 23 Oct 2023 08:29:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1698074964; x=1698679764; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=xrSeT0XNopX9hAG53lJVCqAjvRaYnSJ98UQFC5Cfo+s=;
- b=QJhl+z92YnoUi3+FrHTh9Gb+lie87uMuOCUDAQQVxyEWBKGiMcoxFRWJYMXBkwCU6i
- 4F7X+LLcHGmEzN8kYwI5y7yMpaDeD6RsIvKIpgu29w1OMxIRPZ9owS2chH4xhSiS++bA
- hp0+Fux7GVDdrj2/gWWQwqL2raJGgL45eBkzcg4PsCkBUCQbx+mFThKVpEJeQasFFJTZ
- NiTFJ6rlpVj24+jnrJJxL/Gzlcem6G8YBMZV+I7M9G6yvVoJsbtrSrPSMHwjH2PmfDw7
- T2FLnoPAevs9HP/GFqesbDS2cxTqEK+FvcU4z9KrDL6hUqryb2LvazhV3hvUb1Co+bVT
- SjXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1698074964; x=1698679764;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=xrSeT0XNopX9hAG53lJVCqAjvRaYnSJ98UQFC5Cfo+s=;
- b=B2uiJTZL4tzhS8PfAUOPWNFxMux69ySKDZ+xLhAuBA3IRb+kK9ILqtoUVKoJegMvyF
- 7cA8knvc7QMFM+QKJU+qVZ8LyIDh7wCiOnAMbT1HLQ1MWKmEqgsB5M7swGA7IuTsRXkU
- NRO35F87khr87GjIink9lO9a/U8uVQTA7za/+Gs04JNPD3oMXH19qN7d5ciGOwyrkRxy
- vfEWV0W4+x6iVJTViLnL78TWfng58NIIQxvBzRPWONO4prENn7tRFzqC0ipc5lt2pY6i
- hgfny7Skt3ivIAOykpksZiIS5NVXXN/4vSTY1qWRSB3eI5BDKqT0QxdgmyBqTf2yeAGp
- bF7w==
-X-Gm-Message-State: AOJu0Yxa65W9cbox9PhGEIji9Y76a9lA9n/4rCOfMvJUesynyiUmAerM
- eX4osdH1EwmlpHAAfpMXxrMCmcCALW3B+geJaq8=
-X-Google-Smtp-Source: AGHT+IFqQ4+y85W4MFqhZQ6Z1LlILvYxxXclMtfVnBvkrlxoLLKvMUS6AKuBsXOOCnV7yKslbg1ZsJDMs8w4eSzz4O4=
-X-Received: by 2002:a05:6870:6ec9:b0:1ea:1667:6c8f with SMTP id
- qv9-20020a0568706ec900b001ea16676c8fmr12123620oab.50.1698074964213; Mon, 23
- Oct 2023 08:29:24 -0700 (PDT)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D60410E216;
+	Mon, 23 Oct 2023 15:45:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5401810E216
+ for <intel-xe@lists.freedesktop.org>; Mon, 23 Oct 2023 15:45:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698075900; x=1729611900;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=i/4et8j+jvJDM6ihIdFsg2IgF5PCOWEJ60eYFTpDEeI=;
+ b=DuZGko4O1VWqMQczeyoiEgBpkyt0ZqDuBBQntZJTI3w1XA7tQijx61zV
+ pqAaZwKdHQ2xmJ4nHCFSa1SnsroKUVzOuBipzWvR1IDCONXyXMtCBbhLV
+ 99hOS7DWE1PtzOodveGNGI+6MgEBbjvW11f79VPuHrMBdis56VBGFMznr
+ T68ABOmzOtT60gSTps8KL7W078FQ5D1+j6KjEace0S2UtnBDfwTXubhIr
+ tV2S34IYX6YHFI1N/1TiOLnaTYVfz0zfrdUBdOZva8ikVDRaT6tg3pDWZ
+ 1QgSD7lpmkDGOI4nItw6DGrCW0y4pRxRPqBlNPcuG8Qxlk/hjI/ZurJZb A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="385765132"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="385765132"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 08:44:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="828486898"
+X-IronPort-AV: E=Sophos;i="6.03,244,1694761200"; d="scan'208";a="828486898"
+Received: from jdundonx-mobl.ger.corp.intel.com (HELO [10.213.202.43])
+ ([10.213.202.43])
+ by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Oct 2023 08:44:58 -0700
+Message-ID: <760cf5da-f1fa-4b3f-98d6-7342090b4d40@linux.intel.com>
+Date: Mon, 23 Oct 2023 16:44:50 +0100
 MIME-Version: 1.0
-References: <20231020155835.1295524-1-aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <20231020155835.1295524-1-aravind.iddamsetty@linux.intel.com>
-From: Alex Deucher <alexdeucher@gmail.com>
-Date: Mon, 23 Oct 2023 11:29:12 -0400
-Message-ID: <CADnq5_PLfTg6hBpSHLND9FF-B++D=BMXQKSJQknOxy8y=Qz-ZA@mail.gmail.com>
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>, "Lazar,
- Lijo" <Lijo.Lazar@amd.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [RFC v4 0/5] Proposal to use netlink for RAS and
- Telemetry across drm subsystem
+User-Agent: Mozilla Thunderbird
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20231017092908.84177-1-aravind.iddamsetty@linux.intel.com>
+ <878r7tbcah.fsf@intel.com>
+Content-Language: en-US
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <878r7tbcah.fsf@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH] drm/xe/pmu: Drop interrupt pmu event
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,668 +63,176 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Harish.Kasiviswanathan@amd.com, dri-devel@lists.freedesktop.org,
- Luben.Tuikov@amd.com, daniel@ffwll.ch, alexander.deucher@amd.com,
- Felix.Kuehling@amd.com, airlied@gmail.com, intel-xe@lists.freedesktop.org,
- Hawking.Zhang@amd.com
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 20, 2023 at 7:42=E2=80=AFPM Aravind Iddamsetty
-<aravind.iddamsetty@linux.intel.com> wrote:
->
-> Our hardware supports RAS(Reliability, Availability, Serviceability) by
-> reporting the errors to the host, which the KMD processes and exposes a
-> set of error counters which can be used by observability tools to take
-> corrective actions or repairs. Traditionally there were being exposed
-> via PMU (for relative counters) and sysfs interface (for absolute
-> value) in our internal branch. But, due to the limitations in this
-> approach to use two interfaces and also not able to have an event based
-> reporting or configurability, an alternative approach to try netlink
-> was suggested by community for drm subsystem wide UAPI for RAS and
-> telemetry as discussed in [1].
->
-> This [1] is the inspiration to this series. It uses the generic
-> netlink(genl) family subsystem and exposes a set of commands that can
-> be used by every drm driver, the framework provides a means to have
-> custom commands too. Each drm driver instance in this example xe driver
-> instance registers a family and operations to the genl subsystem through
-> which it enumerates and reports the error counters. An event based
-> notification is also supported to which userpace can subscribe to and
-> be notified when any error occurs and read the error counter this avoids
-> continuous polling on error counter. This can also be extended to
-> threshold based notification.
 
-@Hawking Zhang, @Lazar, Lijo
+On 23/10/2023 16:15, Jani Nikula wrote:
+> On Tue, 17 Oct 2023, Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com> wrote:
+>> Drop interrupt event from PMU as that is not useful and not being used
+>> by any UMD.
+> 
+> Is the i915 interrupt event used by anyone? Could it be dropped too?
 
-Can you take a look at this series and API and see if it would align
-with our RAS requirements going forward?
+At least intel_gpu_top does so removing it would break old binaries on 
+new kernels. There also might be user scripts which use perf directly 
+and it would be quite hard to find them all, tthat is, prove or disprove 
+their existance.
 
-Alex
+Regards,
+
+Tvrtko
 
 
->
-> [1]: https://airlied.blogspot.com/2022/09/accelerators-bof-outcomes-summa=
-ry.html
->
-> this series is on top of https://patchwork.freedesktop.org/series/125373/=
-,
->
-> v4:
-> 1. Rebase
-> 2. rename drm_genl_send to drm_genl_reply
-> 3. catch error from xa_store and handle appropriately
-> 4. presently xe_list_errors fills blank data for IGFX, prevent it by
-> having an early check of IS_DGFX (Michael J. Ruhl)
->
-> v3:
-> 1. Rebase on latest RAS series for XE
-> 2. drop DRIVER_NETLINK flag and use the driver_genl_ops structure to
-> register to netlink subsystem
->
-> v2: define common interfaces to genl netlink subsystem that all drm drive=
-rs
-> can leverage.
->
-> Below is an example tool drm_ras which demonstrates the use of the
-> supported commands. The tool will be sent to ML with the subject
-> "[RFC i-g-t v2 0/1] A tool to demonstrate use of netlink sockets to read =
-RAS error counters"
-> https://patchwork.freedesktop.org/series/118437/#rev2
->
-> read single error counter:
->
-> $ ./drm_ras READ_ONE --device=3Ddrm:/dev/dri/card1 --error_id=3D0x0000000=
-000000005
-> counter value 0
->
-> read all error counters:
->
-> $ ./drm_ras READ_ALL --device=3Ddrm:/dev/dri/card1
-> name                                                    config-id        =
-       counter
->
-> error-gt0-correctable-guc                               0x000000000000000=
-1      0
-> error-gt0-correctable-slm                               0x000000000000000=
-3      0
-> error-gt0-correctable-eu-ic                             0x000000000000000=
-4      0
-> error-gt0-correctable-eu-grf                            0x000000000000000=
-5      0
-> error-gt0-fatal-guc                                     0x000000000000000=
-9      0
-> error-gt0-fatal-slm                                     0x000000000000000=
-d      0
-> error-gt0-fatal-eu-grf                                  0x000000000000000=
-f      0
-> error-gt0-fatal-fpu                                     0x000000000000001=
-0      0
-> error-gt0-fatal-tlb                                     0x000000000000001=
-1      0
-> error-gt0-fatal-l3-fabric                               0x000000000000001=
-2      0
-> error-gt0-correctable-subslice                          0x000000000000001=
-3      0
-> error-gt0-correctable-l3bank                            0x000000000000001=
-4      0
-> error-gt0-fatal-subslice                                0x000000000000001=
-5      0
-> error-gt0-fatal-l3bank                                  0x000000000000001=
-6      0
-> error-gt0-sgunit-correctable                            0x000000000000001=
-7      0
-> error-gt0-sgunit-nonfatal                               0x000000000000001=
-8      0
-> error-gt0-sgunit-fatal                                  0x000000000000001=
-9      0
-> error-gt0-soc-fatal-psf-csc-0                           0x000000000000001=
-a      0
-> error-gt0-soc-fatal-psf-csc-1                           0x000000000000001=
-b      0
-> error-gt0-soc-fatal-psf-csc-2                           0x000000000000001=
-c      0
-> error-gt0-soc-fatal-punit                               0x000000000000001=
-d      0
-> error-gt0-soc-fatal-psf-0                               0x000000000000001=
-e      0
-> error-gt0-soc-fatal-psf-1                               0x000000000000001=
-f      0
-> error-gt0-soc-fatal-psf-2                               0x000000000000002=
-0      0
-> error-gt0-soc-fatal-cd0                                 0x000000000000002=
-1      0
-> error-gt0-soc-fatal-cd0-mdfi                            0x000000000000002=
-2      0
-> error-gt0-soc-fatal-mdfi-east                           0x000000000000002=
-3      0
-> error-gt0-soc-fatal-mdfi-south                          0x000000000000002=
-4      0
-> error-gt0-soc-fatal-hbm-ss0-0                           0x000000000000002=
-5      0
-> error-gt0-soc-fatal-hbm-ss0-1                           0x000000000000002=
-6      0
-> error-gt0-soc-fatal-hbm-ss0-2                           0x000000000000002=
-7      0
-> error-gt0-soc-fatal-hbm-ss0-3                           0x000000000000002=
-8      0
-> error-gt0-soc-fatal-hbm-ss0-4                           0x000000000000002=
-9      0
-> error-gt0-soc-fatal-hbm-ss0-5                           0x000000000000002=
-a      0
-> error-gt0-soc-fatal-hbm-ss0-6                           0x000000000000002=
-b      0
-> error-gt0-soc-fatal-hbm-ss0-7                           0x000000000000002=
-c      0
-> error-gt0-soc-fatal-hbm-ss1-0                           0x000000000000002=
-d      0
-> error-gt0-soc-fatal-hbm-ss1-1                           0x000000000000002=
-e      0
-> error-gt0-soc-fatal-hbm-ss1-2                           0x000000000000002=
-f      0
-> error-gt0-soc-fatal-hbm-ss1-3                           0x000000000000003=
-0      0
-> error-gt0-soc-fatal-hbm-ss1-4                           0x000000000000003=
-1      0
-> error-gt0-soc-fatal-hbm-ss1-5                           0x000000000000003=
-2      0
-> error-gt0-soc-fatal-hbm-ss1-6                           0x000000000000003=
-3      0
-> error-gt0-soc-fatal-hbm-ss1-7                           0x000000000000003=
-4      0
-> error-gt0-soc-fatal-hbm-ss2-0                           0x000000000000003=
-5      0
-> error-gt0-soc-fatal-hbm-ss2-1                           0x000000000000003=
-6      0
-> error-gt0-soc-fatal-hbm-ss2-2                           0x000000000000003=
-7      0
-> error-gt0-soc-fatal-hbm-ss2-3                           0x000000000000003=
-8      0
-> error-gt0-soc-fatal-hbm-ss2-4                           0x000000000000003=
-9      0
-> error-gt0-soc-fatal-hbm-ss2-5                           0x000000000000003=
-a      0
-> error-gt0-soc-fatal-hbm-ss2-6                           0x000000000000003=
-b      0
-> error-gt0-soc-fatal-hbm-ss2-7                           0x000000000000003=
-c      0
-> error-gt0-soc-fatal-hbm-ss3-0                           0x000000000000003=
-d      0
-> error-gt0-soc-fatal-hbm-ss3-1                           0x000000000000003=
-e      0
-> error-gt0-soc-fatal-hbm-ss3-2                           0x000000000000003=
-f      0
-> error-gt0-soc-fatal-hbm-ss3-3                           0x000000000000004=
-0      0
-> error-gt0-soc-fatal-hbm-ss3-4                           0x000000000000004=
-1      0
-> error-gt0-soc-fatal-hbm-ss3-5                           0x000000000000004=
-2      0
-> error-gt0-soc-fatal-hbm-ss3-6                           0x000000000000004=
-3      0
-> error-gt0-soc-fatal-hbm-ss3-7                           0x000000000000004=
-4      0
-> error-gt0-gsc-correctable-sram-ecc                      0x000000000000004=
-5      0
-> error-gt0-gsc-nonfatal-mia-shutdown                     0x000000000000004=
-6      0
-> error-gt0-gsc-nonfatal-mia-int                          0x000000000000004=
-7      0
-> error-gt0-gsc-nonfatal-sram-ecc                         0x000000000000004=
-8      0
-> error-gt0-gsc-nonfatal-wdg-timeout                      0x000000000000004=
-9      0
-> error-gt0-gsc-nonfatal-rom-parity                       0x000000000000004=
-a      0
-> error-gt0-gsc-nonfatal-ucode-parity                     0x000000000000004=
-b      0
-> error-gt0-gsc-nonfatal-glitch-det                       0x000000000000004=
-c      0
-> error-gt0-gsc-nonfatal-fuse-pull                        0x000000000000004=
-d      0
-> error-gt0-gsc-nonfatal-fuse-crc-check                   0x000000000000004=
-e      0
-> error-gt0-gsc-nonfatal-selfmbist                        0x000000000000004=
-f      0
-> error-gt0-gsc-nonfatal-aon-parity                       0x000000000000005=
-0      0
-> error-gt1-correctable-guc                               0x100000000000000=
-1      0
-> error-gt1-correctable-slm                               0x100000000000000=
-3      0
-> error-gt1-correctable-eu-ic                             0x100000000000000=
-4      0
-> error-gt1-correctable-eu-grf                            0x100000000000000=
-5      0
-> error-gt1-fatal-guc                                     0x100000000000000=
-9      0
-> error-gt1-fatal-slm                                     0x100000000000000=
-d      0
-> error-gt1-fatal-eu-grf                                  0x100000000000000=
-f      0
-> error-gt1-fatal-fpu                                     0x100000000000001=
-0      0
-> error-gt1-fatal-tlb                                     0x100000000000001=
-1      0
-> error-gt1-fatal-l3-fabric                               0x100000000000001=
-2      0
-> error-gt1-correctable-subslice                          0x100000000000001=
-3      0
-> error-gt1-correctable-l3bank                            0x100000000000001=
-4      0
-> error-gt1-fatal-subslice                                0x100000000000001=
-5      0
-> error-gt1-fatal-l3bank                                  0x100000000000001=
-6      0
-> error-gt1-sgunit-correctable                            0x100000000000001=
-7      0
-> error-gt1-sgunit-nonfatal                               0x100000000000001=
-8      0
-> error-gt1-sgunit-fatal                                  0x100000000000001=
-9      0
-> error-gt1-soc-fatal-psf-csc-0                           0x100000000000001=
-a      0
-> error-gt1-soc-fatal-psf-csc-1                           0x100000000000001=
-b      0
-> error-gt1-soc-fatal-psf-csc-2                           0x100000000000001=
-c      0
-> error-gt1-soc-fatal-punit                               0x100000000000001=
-d      0
-> error-gt1-soc-fatal-psf-0                               0x100000000000001=
-e      0
-> error-gt1-soc-fatal-psf-1                               0x100000000000001=
-f      0
-> error-gt1-soc-fatal-psf-2                               0x100000000000002=
-0      0
-> error-gt1-soc-fatal-cd0                                 0x100000000000002=
-1      0
-> error-gt1-soc-fatal-cd0-mdfi                            0x100000000000002=
-2      0
-> error-gt1-soc-fatal-mdfi-east                           0x100000000000002=
-3      0
-> error-gt1-soc-fatal-mdfi-south                          0x100000000000002=
-4      0
-> error-gt1-soc-fatal-hbm-ss0-0                           0x100000000000002=
-5      0
-> error-gt1-soc-fatal-hbm-ss0-1                           0x100000000000002=
-6      0
-> error-gt1-soc-fatal-hbm-ss0-2                           0x100000000000002=
-7      0
-> error-gt1-soc-fatal-hbm-ss0-3                           0x100000000000002=
-8      0
-> error-gt1-soc-fatal-hbm-ss0-4                           0x100000000000002=
-9      0
-> error-gt1-soc-fatal-hbm-ss0-5                           0x100000000000002=
-a      0
-> error-gt1-soc-fatal-hbm-ss0-6                           0x100000000000002=
-b      0
-> error-gt1-soc-fatal-hbm-ss0-7                           0x100000000000002=
-c      0
-> error-gt1-soc-fatal-hbm-ss1-0                           0x100000000000002=
-d      0
-> error-gt1-soc-fatal-hbm-ss1-1                           0x100000000000002=
-e      0
-> error-gt1-soc-fatal-hbm-ss1-2                           0x100000000000002=
-f      0
-> error-gt1-soc-fatal-hbm-ss1-3                           0x100000000000003=
-0      0
-> error-gt1-soc-fatal-hbm-ss1-4                           0x100000000000003=
-1      0
-> error-gt1-soc-fatal-hbm-ss1-5                           0x100000000000003=
-2      0
-> error-gt1-soc-fatal-hbm-ss1-6                           0x100000000000003=
-3      0
-> error-gt1-soc-fatal-hbm-ss1-7                           0x100000000000003=
-4      0
-> error-gt1-soc-fatal-hbm-ss2-0                           0x100000000000003=
-5      0
-> error-gt1-soc-fatal-hbm-ss2-1                           0x100000000000003=
-6      0
-> error-gt1-soc-fatal-hbm-ss2-2                           0x100000000000003=
-7      0
-> error-gt1-soc-fatal-hbm-ss2-3                           0x100000000000003=
-8      0
-> error-gt1-soc-fatal-hbm-ss2-4                           0x100000000000003=
-9      0
-> error-gt1-soc-fatal-hbm-ss2-5                           0x100000000000003=
-a      0
-> error-gt1-soc-fatal-hbm-ss2-6                           0x100000000000003=
-b      0
-> error-gt1-soc-fatal-hbm-ss2-7                           0x100000000000003=
-c      0
-> error-gt1-soc-fatal-hbm-ss3-0                           0x100000000000003=
-d      0
-> error-gt1-soc-fatal-hbm-ss3-1                           0x100000000000003=
-e      0
-> error-gt1-soc-fatal-hbm-ss3-2                           0x100000000000003=
-f      0
-> error-gt1-soc-fatal-hbm-ss3-3                           0x100000000000004=
-0      0
-> error-gt1-soc-fatal-hbm-ss3-4                           0x100000000000004=
-1      0
-> error-gt1-soc-fatal-hbm-ss3-5                           0x100000000000004=
-2      0
-> error-gt1-soc-fatal-hbm-ss3-6                           0x100000000000004=
-3      0
-> error-gt1-soc-fatal-hbm-ss3-7                           0x100000000000004=
-4      0
->
-> wait on a error event:
->
-> $ ./drm_ras WAIT_ON_EVENT --device=3Ddrm:/dev/dri/card1
-> waiting for error event
-> error event received
-> counter value 0
->
-> list all errors:
->
-> $ ./drm_ras LIST_ERRORS --device=3Ddrm:/dev/dri/card1
-> name                                                    config-id
->
-> error-gt0-correctable-guc                               0x000000000000000=
-1
-> error-gt0-correctable-slm                               0x000000000000000=
-3
-> error-gt0-correctable-eu-ic                             0x000000000000000=
-4
-> error-gt0-correctable-eu-grf                            0x000000000000000=
-5
-> error-gt0-fatal-guc                                     0x000000000000000=
-9
-> error-gt0-fatal-slm                                     0x000000000000000=
-d
-> error-gt0-fatal-eu-grf                                  0x000000000000000=
-f
-> error-gt0-fatal-fpu                                     0x000000000000001=
-0
-> error-gt0-fatal-tlb                                     0x000000000000001=
-1
-> error-gt0-fatal-l3-fabric                               0x000000000000001=
-2
-> error-gt0-correctable-subslice                          0x000000000000001=
-3
-> error-gt0-correctable-l3bank                            0x000000000000001=
-4
-> error-gt0-fatal-subslice                                0x000000000000001=
-5
-> error-gt0-fatal-l3bank                                  0x000000000000001=
-6
-> error-gt0-sgunit-correctable                            0x000000000000001=
-7
-> error-gt0-sgunit-nonfatal                               0x000000000000001=
-8
-> error-gt0-sgunit-fatal                                  0x000000000000001=
-9
-> error-gt0-soc-fatal-psf-csc-0                           0x000000000000001=
-a
-> error-gt0-soc-fatal-psf-csc-1                           0x000000000000001=
-b
-> error-gt0-soc-fatal-psf-csc-2                           0x000000000000001=
-c
-> error-gt0-soc-fatal-punit                               0x000000000000001=
-d
-> error-gt0-soc-fatal-psf-0                               0x000000000000001=
-e
-> error-gt0-soc-fatal-psf-1                               0x000000000000001=
-f
-> error-gt0-soc-fatal-psf-2                               0x000000000000002=
-0
-> error-gt0-soc-fatal-cd0                                 0x000000000000002=
-1
-> error-gt0-soc-fatal-cd0-mdfi                            0x000000000000002=
-2
-> error-gt0-soc-fatal-mdfi-east                           0x000000000000002=
-3
-> error-gt0-soc-fatal-mdfi-south                          0x000000000000002=
-4
-> error-gt0-soc-fatal-hbm-ss0-0                           0x000000000000002=
-5
-> error-gt0-soc-fatal-hbm-ss0-1                           0x000000000000002=
-6
-> error-gt0-soc-fatal-hbm-ss0-2                           0x000000000000002=
-7
-> error-gt0-soc-fatal-hbm-ss0-3                           0x000000000000002=
-8
-> error-gt0-soc-fatal-hbm-ss0-4                           0x000000000000002=
-9
-> error-gt0-soc-fatal-hbm-ss0-5                           0x000000000000002=
-a
-> error-gt0-soc-fatal-hbm-ss0-6                           0x000000000000002=
-b
-> error-gt0-soc-fatal-hbm-ss0-7                           0x000000000000002=
-c
-> error-gt0-soc-fatal-hbm-ss1-0                           0x000000000000002=
-d
-> error-gt0-soc-fatal-hbm-ss1-1                           0x000000000000002=
-e
-> error-gt0-soc-fatal-hbm-ss1-2                           0x000000000000002=
-f
-> error-gt0-soc-fatal-hbm-ss1-3                           0x000000000000003=
-0
-> error-gt0-soc-fatal-hbm-ss1-4                           0x000000000000003=
-1
-> error-gt0-soc-fatal-hbm-ss1-5                           0x000000000000003=
-2
-> error-gt0-soc-fatal-hbm-ss1-6                           0x000000000000003=
-3
-> error-gt0-soc-fatal-hbm-ss1-7                           0x000000000000003=
-4
-> error-gt0-soc-fatal-hbm-ss2-0                           0x000000000000003=
-5
-> error-gt0-soc-fatal-hbm-ss2-1                           0x000000000000003=
-6
-> error-gt0-soc-fatal-hbm-ss2-2                           0x000000000000003=
-7
-> error-gt0-soc-fatal-hbm-ss2-3                           0x000000000000003=
-8
-> error-gt0-soc-fatal-hbm-ss2-4                           0x000000000000003=
-9
-> error-gt0-soc-fatal-hbm-ss2-5                           0x000000000000003=
-a
-> error-gt0-soc-fatal-hbm-ss2-6                           0x000000000000003=
-b
-> error-gt0-soc-fatal-hbm-ss2-7                           0x000000000000003=
-c
-> error-gt0-soc-fatal-hbm-ss3-0                           0x000000000000003=
-d
-> error-gt0-soc-fatal-hbm-ss3-1                           0x000000000000003=
-e
-> error-gt0-soc-fatal-hbm-ss3-2                           0x000000000000003=
-f
-> error-gt0-soc-fatal-hbm-ss3-3                           0x000000000000004=
-0
-> error-gt0-soc-fatal-hbm-ss3-4                           0x000000000000004=
-1
-> error-gt0-soc-fatal-hbm-ss3-5                           0x000000000000004=
-2
-> error-gt0-soc-fatal-hbm-ss3-6                           0x000000000000004=
-3
-> error-gt0-soc-fatal-hbm-ss3-7                           0x000000000000004=
-4
-> error-gt0-gsc-correctable-sram-ecc                      0x000000000000004=
-5
-> error-gt0-gsc-nonfatal-mia-shutdown                     0x000000000000004=
-6
-> error-gt0-gsc-nonfatal-mia-int                          0x000000000000004=
-7
-> error-gt0-gsc-nonfatal-sram-ecc                         0x000000000000004=
-8
-> error-gt0-gsc-nonfatal-wdg-timeout                      0x000000000000004=
-9
-> error-gt0-gsc-nonfatal-rom-parity                       0x000000000000004=
-a
-> error-gt0-gsc-nonfatal-ucode-parity                     0x000000000000004=
-b
-> error-gt0-gsc-nonfatal-glitch-det                       0x000000000000004=
-c
-> error-gt0-gsc-nonfatal-fuse-pull                        0x000000000000004=
-d
-> error-gt0-gsc-nonfatal-fuse-crc-check                   0x000000000000004=
-e
-> error-gt0-gsc-nonfatal-selfmbist                        0x000000000000004=
-f
-> error-gt0-gsc-nonfatal-aon-parity                       0x000000000000005=
-0
-> error-gt1-correctable-guc                               0x100000000000000=
-1
-> error-gt1-correctable-slm                               0x100000000000000=
-3
-> error-gt1-correctable-eu-ic                             0x100000000000000=
-4
-> error-gt1-correctable-eu-grf                            0x100000000000000=
-5
-> error-gt1-fatal-guc                                     0x100000000000000=
-9
-> error-gt1-fatal-slm                                     0x100000000000000=
-d
-> error-gt1-fatal-eu-grf                                  0x100000000000000=
-f
-> error-gt1-fatal-fpu                                     0x100000000000001=
-0
-> error-gt1-fatal-tlb                                     0x100000000000001=
-1
-> error-gt1-fatal-l3-fabric                               0x100000000000001=
-2
-> error-gt1-correctable-subslice                          0x100000000000001=
-3
-> error-gt1-correctable-l3bank                            0x100000000000001=
-4
-> error-gt1-fatal-subslice                                0x100000000000001=
-5
-> error-gt1-fatal-l3bank                                  0x100000000000001=
-6
-> error-gt1-sgunit-correctable                            0x100000000000001=
-7
-> error-gt1-sgunit-nonfatal                               0x100000000000001=
-8
-> error-gt1-sgunit-fatal                                  0x100000000000001=
-9
-> error-gt1-soc-fatal-psf-csc-0                           0x100000000000001=
-a
-> error-gt1-soc-fatal-psf-csc-1                           0x100000000000001=
-b
-> error-gt1-soc-fatal-psf-csc-2                           0x100000000000001=
-c
-> error-gt1-soc-fatal-punit                               0x100000000000001=
-d
-> error-gt1-soc-fatal-psf-0                               0x100000000000001=
-e
-> error-gt1-soc-fatal-psf-1                               0x100000000000001=
-f
-> error-gt1-soc-fatal-psf-2                               0x100000000000002=
-0
-> error-gt1-soc-fatal-cd0                                 0x100000000000002=
-1
-> error-gt1-soc-fatal-cd0-mdfi                            0x100000000000002=
-2
-> error-gt1-soc-fatal-mdfi-east                           0x100000000000002=
-3
-> error-gt1-soc-fatal-mdfi-south                          0x100000000000002=
-4
-> error-gt1-soc-fatal-hbm-ss0-0                           0x100000000000002=
-5
-> error-gt1-soc-fatal-hbm-ss0-1                           0x100000000000002=
-6
-> error-gt1-soc-fatal-hbm-ss0-2                           0x100000000000002=
-7
-> error-gt1-soc-fatal-hbm-ss0-3                           0x100000000000002=
-8
-> error-gt1-soc-fatal-hbm-ss0-4                           0x100000000000002=
-9
-> error-gt1-soc-fatal-hbm-ss0-5                           0x100000000000002=
-a
-> error-gt1-soc-fatal-hbm-ss0-6                           0x100000000000002=
-b
-> error-gt1-soc-fatal-hbm-ss0-7                           0x100000000000002=
-c
-> error-gt1-soc-fatal-hbm-ss1-0                           0x100000000000002=
-d
-> error-gt1-soc-fatal-hbm-ss1-1                           0x100000000000002=
-e
-> error-gt1-soc-fatal-hbm-ss1-2                           0x100000000000002=
-f
-> error-gt1-soc-fatal-hbm-ss1-3                           0x100000000000003=
-0
-> error-gt1-soc-fatal-hbm-ss1-4                           0x100000000000003=
-1
-> error-gt1-soc-fatal-hbm-ss1-5                           0x100000000000003=
-2
-> error-gt1-soc-fatal-hbm-ss1-6                           0x100000000000003=
-3
-> error-gt1-soc-fatal-hbm-ss1-7                           0x100000000000003=
-4
-> error-gt1-soc-fatal-hbm-ss2-0                           0x100000000000003=
-5
-> error-gt1-soc-fatal-hbm-ss2-1                           0x100000000000003=
-6
-> error-gt1-soc-fatal-hbm-ss2-2                           0x100000000000003=
-7
-> error-gt1-soc-fatal-hbm-ss2-3                           0x100000000000003=
-8
-> error-gt1-soc-fatal-hbm-ss2-4                           0x100000000000003=
-9
-> error-gt1-soc-fatal-hbm-ss2-5                           0x100000000000003=
-a
-> error-gt1-soc-fatal-hbm-ss2-6                           0x100000000000003=
-b
-> error-gt1-soc-fatal-hbm-ss2-7                           0x100000000000003=
-c
-> error-gt1-soc-fatal-hbm-ss3-0                           0x100000000000003=
-d
-> error-gt1-soc-fatal-hbm-ss3-1                           0x100000000000003=
-e
-> error-gt1-soc-fatal-hbm-ss3-2                           0x100000000000003=
-f
-> error-gt1-soc-fatal-hbm-ss3-3                           0x100000000000004=
-0
-> error-gt1-soc-fatal-hbm-ss3-4                           0x100000000000004=
-1
-> error-gt1-soc-fatal-hbm-ss3-5                           0x100000000000004=
-2
-> error-gt1-soc-fatal-hbm-ss3-6                           0x100000000000004=
-3
-> error-gt1-soc-fatal-hbm-ss3-7                           0x100000000000004=
-4
->
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Oded Gabbay <ogabbay@kernel.org>
-> Cc: Tomer Tayar <ttayar@habana.ai>
-> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
-> Cc: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
-> Cc: Kuehling Felix <Felix.Kuehling@amd.com>
-> Cc: Tuikov Luben <Luben.Tuikov@amd.com>
-> Cc: Ruhl, Michael J <michael.j.ruhl@intel.com>
->
->
-> Aravind Iddamsetty (5):
->   drm/netlink: Add netlink infrastructure
->   drm/xe/RAS: Register netlink capability
->   drm/xe/RAS: Expose the error counters
->   drm/netlink: Define multicast groups
->   drm/xe/RAS: send multicast event on occurrence of an error
->
->  drivers/gpu/drm/Makefile             |   1 +
->  drivers/gpu/drm/drm_drv.c            |   7 +
->  drivers/gpu/drm/drm_netlink.c        | 195 ++++++++++
->  drivers/gpu/drm/xe/Makefile          |   1 +
->  drivers/gpu/drm/xe/xe_device.c       |   4 +
->  drivers/gpu/drm/xe/xe_device_types.h |   1 +
->  drivers/gpu/drm/xe/xe_hw_error.c     |  33 ++
->  drivers/gpu/drm/xe/xe_netlink.c      | 517 +++++++++++++++++++++++++++
->  include/drm/drm_device.h             |   8 +
->  include/drm/drm_drv.h                |   7 +
->  include/drm/drm_netlink.h            |  35 ++
->  include/uapi/drm/drm_netlink.h       |  87 +++++
->  include/uapi/drm/xe_drm.h            |  81 +++++
->  13 files changed, 977 insertions(+)
->  create mode 100644 drivers/gpu/drm/drm_netlink.c
->  create mode 100644 drivers/gpu/drm/xe/xe_netlink.c
->  create mode 100644 include/drm/drm_netlink.h
->  create mode 100644 include/uapi/drm/drm_netlink.h
->
-> --
-> 2.25.1
->
+>>
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>> Cc: Francois Dugast <francois.dugast@intel.com>
+>> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_irq.c       | 18 ------------------
+>>   drivers/gpu/drm/xe/xe_pmu.c       |  9 ---------
+>>   drivers/gpu/drm/xe/xe_pmu_types.h |  8 --------
+>>   include/uapi/drm/xe_drm.h         | 13 ++++++-------
+>>   4 files changed, 6 insertions(+), 42 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
+>> index 61350ed32c61..29f539f1b94b 100644
+>> --- a/drivers/gpu/drm/xe/xe_irq.c
+>> +++ b/drivers/gpu/drm/xe/xe_irq.c
+>> @@ -27,20 +27,6 @@
+>>   #define IIR(offset)				XE_REG(offset + 0x8)
+>>   #define IER(offset)				XE_REG(offset + 0xc)
+>>   
+>> -/*
+>> - * Interrupt statistic for PMU. Increments the counter only if the
+>> - * interrupt originated from the GPU so interrupts from a device which
+>> - * shares the interrupt line are not accounted.
+>> - */
+>> -static __always_inline void xe_pmu_irq_stats(struct xe_device *xe)
+>> -{
+>> -	/*
+>> -	 * A clever compiler translates that into INC. A not so clever one
+>> -	 * should at least prevent store tearing.
+>> -	 */
+>> -	WRITE_ONCE(xe->pmu.irq_count, xe->pmu.irq_count + 1);
+>> -}
+>> -
+>>   static void assert_iir_is_zero(struct xe_gt *mmio, struct xe_reg reg)
+>>   {
+>>   	u32 val = xe_mmio_read32(mmio, reg);
+>> @@ -361,8 +347,6 @@ static irqreturn_t xelp_irq_handler(int irq, void *arg)
+>>   
+>>   	xe_display_irq_enable(xe, gu_misc_iir);
+>>   
+>> -	xe_pmu_irq_stats(xe);
+>> -
+>>   	return IRQ_HANDLED;
+>>   }
+>>   
+>> @@ -459,8 +443,6 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
+>>   	dg1_intr_enable(xe, false);
+>>   	xe_display_irq_enable(xe, gu_misc_iir);
+>>   
+>> -	xe_pmu_irq_stats(xe);
+>> -
+>>   	return IRQ_HANDLED;
+>>   }
+>>   
+>> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+>> index abfc0b3aeac4..318bbc9c1c9b 100644
+>> --- a/drivers/gpu/drm/xe/xe_pmu.c
+>> +++ b/drivers/gpu/drm/xe/xe_pmu.c
+>> @@ -114,10 +114,6 @@ config_status(struct xe_device *xe, u64 config)
+>>   		return -ENOENT;
+>>   
+>>   	switch (config_counter(config)) {
+>> -	case XE_PMU_INTERRUPTS(0):
+>> -		if (gt_id)
+>> -			return -ENOENT;
+>> -		break;
+>>   	case XE_PMU_RENDER_GROUP_BUSY(0):
+>>   	case XE_PMU_COPY_GROUP_BUSY(0):
+>>   	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+>> @@ -181,13 +177,9 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
+>>   	const unsigned int gt_id = config_gt_id(event->attr.config);
+>>   	const u64 config = event->attr.config;
+>>   	struct xe_gt *gt = xe_device_get_gt(xe, gt_id);
+>> -	struct xe_pmu *pmu = &xe->pmu;
+>>   	u64 val;
+>>   
+>>   	switch (config_counter(config)) {
+>> -	case XE_PMU_INTERRUPTS(0):
+>> -		val = READ_ONCE(pmu->irq_count);
+>> -		break;
+>>   	case XE_PMU_RENDER_GROUP_BUSY(0):
+>>   	case XE_PMU_COPY_GROUP_BUSY(0):
+>>   	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+>> @@ -361,7 +353,6 @@ create_event_attributes(struct xe_pmu *pmu)
+>>   		const char *unit;
+>>   		bool global;
+>>   	} events[] = {
+>> -		__global_event(0, "interrupts", NULL),
+>>   		__event(1, "render-group-busy", "ns"),
+>>   		__event(2, "copy-group-busy", "ns"),
+>>   		__event(3, "media-group-busy", "ns"),
+>> diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
+>> index 4ccc7e9042f6..9cadbd243f57 100644
+>> --- a/drivers/gpu/drm/xe/xe_pmu_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_pmu_types.h
+>> @@ -51,14 +51,6 @@ struct xe_pmu {
+>>   	 *
+>>   	 */
+>>   	u64 sample[XE_PMU_MAX_GT][__XE_NUM_PMU_SAMPLERS];
+>> -	/**
+>> -	 * @irq_count: Number of interrupts
+>> -	 *
+>> -	 * Intentionally unsigned long to avoid atomics or heuristics on 32bit.
+>> -	 * 4e9 interrupts are a lot and postprocessing can really deal with an
+>> -	 * occasional wraparound easily. It's 32bit after all.
+>> -	 */
+>> -	unsigned long irq_count;
+>>   	/**
+>>   	 * @events_attr_group: Device events attribute group.
+>>   	 */
+>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+>> index 24bf8f0f52e8..be43ef0b92e6 100644
+>> --- a/include/uapi/drm/xe_drm.h
+>> +++ b/include/uapi/drm/xe_drm.h
+>> @@ -1041,7 +1041,7 @@ struct drm_xe_vm_madvise {
+>>    * in 'struct perf_event_attr' as part of perf_event_open syscall to read a
+>>    * particular event.
+>>    *
+>> - * For example to open the XE_PMU_INTERRUPTS(0):
+>> + * For example to open the XE_PMU_RENDER_GROUP_BUSY(0):
+>>    *
+>>    * .. code-block:: C
+>>    *
+>> @@ -1055,7 +1055,7 @@ struct drm_xe_vm_madvise {
+>>    *	attr.read_format = PERF_FORMAT_TOTAL_TIME_ENABLED;
+>>    *	attr.use_clockid = 1;
+>>    *	attr.clockid = CLOCK_MONOTONIC;
+>> - *	attr.config = XE_PMU_INTERRUPTS(0);
+>> + *	attr.config = XE_PMU_RENDER_GROUP_BUSY(0);
+>>    *
+>>    *	fd = syscall(__NR_perf_event_open, &attr, -1, cpu, -1, 0);
+>>    */
+>> @@ -1068,11 +1068,10 @@ struct drm_xe_vm_madvise {
+>>   #define ___XE_PMU_OTHER(gt, x) \
+>>   	(((__u64)(x)) | ((__u64)(gt) << __XE_PMU_GT_SHIFT))
+>>   
+>> -#define XE_PMU_INTERRUPTS(gt)			___XE_PMU_OTHER(gt, 0)
+>> -#define XE_PMU_RENDER_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 1)
+>> -#define XE_PMU_COPY_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 2)
+>> -#define XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 3)
+>> -#define XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 4)
+>> +#define XE_PMU_RENDER_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 0)
+>> +#define XE_PMU_COPY_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 1)
+>> +#define XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 2)
+>> +#define XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 3)
+>>   
+>>   #if defined(__cplusplus)
+>>   }
+> 
