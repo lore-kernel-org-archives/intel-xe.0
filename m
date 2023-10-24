@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16B68C25B6B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0493DC25B47
 	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 22:07:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEE3A10E4EB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C37FA10E4EA;
 	Tue, 24 Oct 2023 22:07:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C6A210E4EA
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F56C10E4E9
  for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 22:07:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1698185243; x=1729721243;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=i9TFvtlgegPJs9LlLY0jCV2l2sSDwOhuTE+EJDudpYM=;
- b=eE98Xrve+B+bK9ti4vDeiRIjkWR94QJXxa9A0Cfu4HqZQel31/96QE2J
- xc3NlZ1H0h9RDjT48WUirlPBHr6BeXiXRFoJr+JZ1eJVpJxCWW1oZGKGr
- vYYVByCIEkQiM2p+imnKpFOM1wY4vVf6hPCm8gT1m+bzYemfc9DO50E+X
- dQCfN2/U2av7pRmPWfmroCD5OiMxpZVsTGp1LRpFNlenk1kmO839WJ9zt
- hwB0gbKXCwaBUb3txi+5gv+dUpijhoC/pIX57Vl45HGW6c2ux2lFZ/acL
- lfYzQJ/P4Gxqg38SBOvAETyCP0OtwulVdZ8MwSHGlLtJssfjDmN1giYJA Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="451410433"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="451410433"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=bVmzC8Dy6C1Geiu3CjaMoEOT3ehUlmALvhYHYK/cpVg=;
+ b=NHDnbCMtjvUgSM3cAQf4txdooJsaoaLmA4pjgn4phoLOv53agCOPOUXF
+ mKn7iFCIC0+6Vp2v/6kH3owODXlMxpXnev/nXyqb+tWYy16l7Qz2Khc48
+ 2FvRMpzA6rJYISPSkw0cQ7RPFLAvFOtXWY8Vbx2kN+gXRjUfKy7uWhYRM
+ q8OqTaV8pUPMPYyxVMK3kcZ3aS0S6kCeLJO16Aw+VYer2IzMRm92QhGaO
+ Hngx/EeDuLKy/bh9BRsZ3jYtyR2ufYSb6agBROTjkRsdD9x+YD17MkLYU
+ O7IPnsszvTBc4m1bI6miDJp6UbhmhBx/MFkxxmkpbWgs6eCTMdgoHMgDP w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="451410434"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="451410434"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Oct 2023 15:07:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="752127755"
-X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="752127755"
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="752127758"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="752127758"
 Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  24 Oct 2023 15:07:22 -0700
 From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Oct 2023 15:07:37 -0700
-Message-Id: <20231024220739.224251-1-lucas.demarchi@intel.com>
+Date: Tue, 24 Oct 2023 15:07:38 -0700
+Message-Id: <20231024220739.224251-2-lucas.demarchi@intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20231024220739.224251-1-lucas.demarchi@intel.com>
+References: <20231024220739.224251-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/3] drm/xe/xe2: Add initial workarounds
+Subject: [Intel-xe] [PATCH v2 2/3] drm/xe: Add performance tuning settings
+ for MTL and Xe2
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,211 +62,82 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+From: Shekhar Chauhan <shekhar.chauhan@intel.com>
 
-Add the initial collection of gt/engine/lrc workarounds.
+Add L3SQCREG5 as part of HW recommended settings. The recommended value
+in Bspec is 00e0007f. For Xe2-LPG, bits 23:21 don't exist anymore, but
+it's confirmed with HW engineers that setting them doesn't do anything.
+They still exist on the media GT, Xe2-LPM, but they are already they are
+already set as per HW default value. So for Xe2 platform, the only bits
+that need to be set are 9:0 since HW's default is 0x1ff and the
+recommended value is 0x7f.
 
-v2:
-  - FF_MODE is an MCR register (Matt Roper)
-  - Group 18032247524 with other Xe2 workarounds (Matt Roper)
-  - Move WA changing PSS_CHICKEN to lrc_was[] as for Xe2 that register
-    is part of the render context image (Matt Roper)
-  - Apply WA 16020518922 only on render engine (Matt Roper)
+Unlike most registers, which have the same relative offset on both
+the primary and media GT, this register has a different base offset
+on the media GT.
 
-Signed-off-by: Dnyaneshwar Bhadane <dnyaneshwar.bhadane@intel.com>
+On MTL the register only exists for the primary (graphics) GT, so
+there's no need to program it on the media gt. Also, it's part of the
+RCS engine's context, so it needs to be added as a LRC workaround.
+
+Bspec: 72161
 Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
 Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h | 24 ++++++++++
- drivers/gpu/drm/xe/xe_wa.c           | 71 ++++++++++++++++++++++++++++
- 2 files changed, 95 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  2 ++
+ drivers/gpu/drm/xe/xe_tuning.c       | 23 +++++++++++++++++++++++
+ 2 files changed, 25 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index cd1821d96a5d..5ad75011aa70 100644
+index 5ad75011aa70..55ceadfc30b0 100644
 --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
 +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -94,7 +94,14 @@
- #define CHICKEN_RASTER_2			XE_REG_MCR(0x6208, XE_REG_OPTION_MASKED)
- #define   TBIMR_FAST_CLIP			REG_BIT(5)
+@@ -292,6 +292,8 @@
  
-+#define FF_MODE					XE_REG_MCR(0x6210)
-+#define   DIS_TE_AUTOSTRIP			REG_BIT(31)
-+#define   DIS_MESH_PARTIAL_AUTOSTRIP		REG_BIT(16)
-+#define   DIS_MESH_AUTOSTRIP			REG_BIT(15)
-+
- #define VFLSKPD					XE_REG_MCR(0x62a8, XE_REG_OPTION_MASKED)
-+#define   DIS_PARTIAL_AUTOSTRIP			REG_BIT(9)
-+#define   DIS_AUTOSTRIP				REG_BIT(6)
- #define   DIS_OVER_FETCH_CACHE			REG_BIT(1)
- #define   DIS_MULT_MISS_RD_SQUASH		REG_BIT(0)
+ #define XEHPC_L3CLOS_MASK(i)			XE_REG_MCR(0xb194 + (i) * 8)
  
-@@ -111,6 +118,9 @@
- #define XEHP_PSS_MODE2				XE_REG_MCR(0x703c, XE_REG_OPTION_MASKED)
- #define   SCOREBOARD_STALL_FLUSH_CONTROL	REG_BIT(5)
- 
-+#define XEHP_PSS_CHICKEN			XE_REG_MCR(0x7044, XE_REG_OPTION_MASKED)
-+#define   FD_END_COLLECT			REG_BIT(5)
-+
- #define HIZ_CHICKEN					XE_REG(0x7018, XE_REG_OPTION_MASKED)
- #define   DG1_HZ_READ_SUPPRESSION_OPTIMIZATION_DISABLE	REG_BIT(14)
- #define   HZ_DEPTH_TEST_LE_GE_OPT_DISABLE		REG_BIT(13)
-@@ -133,6 +143,9 @@
- #define VF_PREEMPTION				XE_REG(0x83a4, XE_REG_OPTION_MASKED)
- #define   PREEMPTION_VERTEX_COUNT		REG_GENMASK(15, 0)
- 
-+#define VF_SCRATCHPAD				XE_REG(0x83a8, XE_REG_OPTION_MASKED)
-+#define   XE2_VFG_TED_CREDIT_INTERFACE_DISABLE	REG_BIT(13)
-+
- #define VFG_PREEMPTION_CHICKEN			XE_REG(0x83b4, XE_REG_OPTION_MASKED)
- #define   POLYGON_TRIFAN_LINELOOP_DISABLE	REG_BIT(4)
- 
-@@ -225,6 +238,7 @@
- #define   MSCUNIT_CLKGATE_DIS			REG_BIT(10)
- #define   RCCUNIT_CLKGATE_DIS			REG_BIT(7)
- #define   SARBUNIT_CLKGATE_DIS			REG_BIT(5)
-+#define   SBEUNIT_CLKGATE_DIS			REG_BIT(4)
- 
- #define UNSLICE_UNIT_LEVEL_CLKGATE2		XE_REG(0x94e4)
- #define   VSUNIT_CLKGATE2_DIS			REG_BIT(19)
-@@ -276,6 +290,8 @@
- #define XEHP_L3SCQREG7				XE_REG_MCR(0xb188)
- #define   BLEND_FILL_CACHING_OPT_DIS		REG_BIT(3)
- 
-+#define XEHPC_L3CLOS_MASK(i)			XE_REG_MCR(0xb194 + (i) * 8)
++#define XE2LPM_L3SQCREG5			XE_REG_MCR(0xb658)
 +
  #define XEHP_MERT_MOD_CTRL			XE_REG_MCR(0xcf28)
  #define RENDER_MOD_CTRL				XE_REG_MCR(0xcf2c)
  #define COMP_MOD_CTRL				XE_REG_MCR(0xcf30)
-@@ -299,6 +315,9 @@
- #define XE_OAG_BLT_BUSY_FREE			XE_REG(0xdbbc)
- #define XE_OAG_RENDER_BUSY_FREE			XE_REG(0xdbdc)
- 
-+#define HALF_SLICE_CHICKEN5			XE_REG_MCR(0xe188, XE_REG_OPTION_MASKED)
-+#define   DISABLE_SAMPLE_G_PERFORMANCE		REG_BIT(0)
-+
- #define SAMPLER_MODE				XE_REG_MCR(0xe18c, XE_REG_OPTION_MASKED)
- #define   ENABLE_SMALLPL			REG_BIT(15)
- #define   SC_DISABLE_POWER_OPTIMIZATION_EBB	REG_BIT(9)
-@@ -328,6 +347,7 @@
- #define ROW_CHICKEN				XE_REG_MCR(0xe4f0, XE_REG_OPTION_MASKED)
- #define   UGM_BACKUP_MODE			REG_BIT(13)
- #define   MDQ_ARBITRATION_MODE			REG_BIT(12)
-+#define   EARLY_EOT_DIS				REG_BIT(1)
- 
- #define ROW_CHICKEN2				XE_REG_MCR(0xe4f4, XE_REG_OPTION_MASKED)
- #define   DISABLE_READ_SUPPRESSION		REG_BIT(15)
-@@ -345,11 +365,15 @@
- 
- #define LSC_CHICKEN_BIT_0			XE_REG_MCR(0xe7c8)
- #define   DISABLE_D8_D16_COASLESCE		REG_BIT(30)
-+#define   TGM_WRITE_EOM_FORCE			REG_BIT(17)
- #define   FORCE_1_SUB_MESSAGE_PER_FRAGMENT	REG_BIT(15)
-+#define   SEQUENTIAL_ACCESS_UPGRADE_DISABLE	REG_BIT(13)
- 
- #define LSC_CHICKEN_BIT_0_UDW			XE_REG_MCR(0xe7c8 + 4)
- #define   UGM_FRAGMENT_THRESHOLD_TO_3		REG_BIT(58 - 32)
- #define   DIS_CHAIN_2XSIMD8			REG_BIT(55 - 32)
-+#define   XE2_ALLOC_DPA_STARVE_FIX_DIS		REG_BIT(47 - 32)
-+#define   ENABLE_SMP_LD_RENDER_SURFACE_CONTROL	REG_BIT(44 - 32)
- #define   FORCE_SLM_FENCE_SCOPE_TO_TILE		REG_BIT(42 - 32)
- #define   FORCE_UGM_FENCE_SCOPE_TO_TILE		REG_BIT(41 - 32)
- #define   MAXREQS_PER_BANK			REG_GENMASK(39 - 32, 37 - 32)
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 1450af6cab34..31801f0e7aa9 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -245,6 +245,19 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 	  XE_RTP_ACTIONS(SET(SQCNT1, ENFORCE_RAR))
+diff --git a/drivers/gpu/drm/xe/xe_tuning.c b/drivers/gpu/drm/xe/xe_tuning.c
+index d70519816522..53ccd338fd8c 100644
+--- a/drivers/gpu/drm/xe/xe_tuning.c
++++ b/drivers/gpu/drm/xe/xe_tuning.c
+@@ -24,6 +24,20 @@ static const struct xe_rtp_entry_sr gt_tunings[] = {
+ 	  XE_RTP_RULES(PLATFORM(DG2)),
+ 	  XE_RTP_ACTIONS(SET(XEHP_SQCM, EN_32B_ACCESS))
  	},
- 
-+	/* Xe2_LPG */
-+	{ XE_RTP_NAME("16020975621"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)),
-+	  XE_RTP_ACTIONS(SET(XEHP_SLICE_UNIT_LEVEL_CLKGATE, SBEUNIT_CLKGATE_DIS))
++
++	/* Xe2 */
++
++	{ XE_RTP_NAME("Tuning: L3 cache"),
++	  XE_RTP_RULES(GRAPHICS_VERSION(2004)),
++	  XE_RTP_ACTIONS(FIELD_SET(XEHP_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
++				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
 +	},
-+	{ XE_RTP_NAME("14018157293"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)),
-+	  XE_RTP_ACTIONS(SET(XEHPC_L3CLOS_MASK(0), ~0),
-+			 SET(XEHPC_L3CLOS_MASK(1), ~0),
-+			 SET(XEHPC_L3CLOS_MASK(2), ~0),
-+			 SET(XEHPC_L3CLOS_MASK(3), ~0))
++	{ XE_RTP_NAME("Tuning: L3 cache - media"),
++	  XE_RTP_RULES(MEDIA_VERSION(2000)),
++	  XE_RTP_ACTIONS(FIELD_SET(XE2LPM_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
++				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
 +	},
 +
  	{}
  };
  
-@@ -539,6 +552,41 @@ static const struct xe_rtp_entry_sr engine_was[] = {
- 			     XE_RTP_NOCHECK))
+@@ -63,6 +77,15 @@ static const struct xe_rtp_entry_sr lrc_tunings[] = {
+ 	  XE_RTP_RULES(PLATFORM(DG2), ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(CHICKEN_RASTER_2, TBIMR_FAST_CLIP))
  	},
- 
-+	/* Xe2_LPG */
 +
-+	{ XE_RTP_NAME("18032247524"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, SEQUENTIAL_ACCESS_UPGRADE_DISABLE))
-+	},
-+	{ XE_RTP_NAME("16018712365"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, XE2_ALLOC_DPA_STARVE_FIX_DIS))
-+	},
-+	{ XE_RTP_NAME("14018957109"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(HALF_SLICE_CHICKEN5, DISABLE_SAMPLE_G_PERFORMANCE))
-+	},
-+	{ XE_RTP_NAME("16021540221"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN4, DISABLE_TDL_PUSH))
-+	},
-+	{ XE_RTP_NAME("14019322943"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
-+		       FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0, TGM_WRITE_EOM_FORCE))
-+	},
-+	{ XE_RTP_NAME("14018471104"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(LSC_CHICKEN_BIT_0_UDW, ENABLE_SMP_LD_RENDER_SURFACE_CONTROL))
-+	},
-+	{ XE_RTP_NAME("16018737384"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
-+	  XE_RTP_ACTIONS(SET(ROW_CHICKEN, EARLY_EOT_DIS))
-+	},
++	/* Xe_LPG */
 +
- 	{}
- };
- 
-@@ -625,11 +673,34 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
- 	},
- 
- 	/* Xe_LPG */
-+
- 	{ XE_RTP_NAME("18019271663"),
- 	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1270, 1271)),
- 	  XE_RTP_ACTIONS(SET(CACHE_MODE_1, MSAA_OPTIMIZATION_REDUC_DISABLE))
- 	},
- 
-+	/* Xe2_LPG */
-+
-+	{ XE_RTP_NAME("16020518922"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0),
-+		       ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(FF_MODE,
-+			     DIS_TE_AUTOSTRIP |
-+			     DIS_MESH_PARTIAL_AUTOSTRIP |
-+			     DIS_MESH_AUTOSTRIP),
-+			 SET(VFLSKPD,
-+			     DIS_PARTIAL_AUTOSTRIP |
-+			     DIS_AUTOSTRIP))
-+	},
-+	{ XE_RTP_NAME("14019386621"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(VF_SCRATCHPAD, XE2_VFG_TED_CREDIT_INTERFACE_DISABLE))
-+	},
-+	{ XE_RTP_NAME("14019877138"),
-+	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
-+	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FD_END_COLLECT))
++	{ XE_RTP_NAME("Tuning: L3 cache"),
++	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(1270, 1271), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(FIELD_SET(XEHP_L3SQCREG5, L3_PWM_TIMER_INIT_VAL_MASK,
++				   REG_FIELD_PREP(L3_PWM_TIMER_INIT_VAL_MASK, 0x7f)))
 +	},
 +
  	{}
