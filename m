@@ -4,25 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9FB0C25B6C
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 10:54:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F749C00A8F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 10:54:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B574110E347;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3608B10E342;
 	Tue, 24 Oct 2023 10:54:49 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FF2D10E342
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 10:54:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB52910E341
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 10:54:43 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Oct 2023 12:54:24 +0200
-Message-Id: <20231024105433.715843-6-maarten.lankhorst@linux.intel.com>
+Date: Tue, 24 Oct 2023 12:54:22 +0200
+Message-Id: <20231024105433.715843-4-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
 References: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 06/15] ASoC: SOF: Intel: Fix error handling in
- hda_init()
+Subject: [Intel-xe] [PATCH 04/15] ASoC: SOF: core: Add probe_early and
+ remove_late callbacks
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,59 +34,127 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The hda_codec_i915_init() errors are ignored in
-hda_init() so it can never return -EPROBE_DEFER.
+From: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
 
-Fix this before we move the call to hda_init() from the
-deferred probe to early probe.
+The existing DSP probe may be handled in a workqueue to allow for
+extra time, typically for the i915 request_module and HDAudio codec
+handling.
 
-While at it, also fix error handling when hda_dsp_ctrl_get_caps
-fails.
+With the upcoming changes for i915/Xe driver relying on the
+-EPROBE_DEFER mechanism, we need to have a first pass of the probe
+which cannot be pushed to a workqueue. Introduce 2 new optional
+callbacks.
 
-Suggested-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+probe_early is called before the workqueue runs. remove_late may be
+called from the workqueue if load is unsuccesful, but will otherwise
+be called on module unload.
+
+Signed-off-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Acked-by: Mark Brown <broonie@kernel.org>
 Reviewed-by: Peter Ujfalusi <peter.ujfalusi@linux.intel.com>
 Acked-by: Peter Ujfalusi <peter.ujfalusi@linux.intel.com>
-Link: https://lore.kernel.org/r/20231009115437.99976-5-maarten.lankhorst@linux.intel.com
+Link: https://lore.kernel.org/r/20231009115437.99976-3-maarten.lankhorst@linux.intel.com
 Signed-off-by: Takashi Iwai <tiwai@suse.de>
-(cherry picked from commit 03448e5df586c79f9c88d8cbe29014820cc2904f)
+(cherry picked from commit 17baaa1f950b19456618b792dbb5b3fbb12884a8)
 ---
- sound/soc/sof/intel/hda.c | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ sound/soc/sof/core.c     | 11 +++++++++++
+ sound/soc/sof/ops.h      | 16 ++++++++++++++++
+ sound/soc/sof/sof-priv.h |  2 ++
+ 3 files changed, 29 insertions(+)
 
-diff --git a/sound/soc/sof/intel/hda.c b/sound/soc/sof/intel/hda.c
-index 86a2571488bcc..2f189473323f3 100644
---- a/sound/soc/sof/intel/hda.c
-+++ b/sound/soc/sof/intel/hda.c
-@@ -848,13 +848,21 @@ static int hda_init(struct snd_sof_dev *sdev)
+diff --git a/sound/soc/sof/core.c b/sound/soc/sof/core.c
+index 0938b259f7034..d7b090224f1b9 100644
+--- a/sound/soc/sof/core.c
++++ b/sound/soc/sof/core.c
+@@ -327,6 +327,7 @@ static int sof_probe_continue(struct snd_sof_dev *sdev)
+ dsp_err:
+ 	snd_sof_remove(sdev);
+ probe_err:
++	snd_sof_remove_late(sdev);
+ 	sof_ops_free(sdev);
  
- 	/* init i915 and HDMI codecs */
- 	ret = hda_codec_i915_init(sdev);
--	if (ret < 0)
--		dev_warn(sdev->dev, "init of i915 and HDMI codec failed\n");
-+	if (ret < 0 && ret != -ENODEV) {
-+		dev_err_probe(sdev->dev, ret, "init of i915 and HDMI codec failed\n");
-+		goto out;
-+	}
+ 	/* all resources freed, update state to match */
+@@ -436,6 +437,14 @@ int snd_sof_device_probe(struct device *dev, struct snd_sof_pdata *plat_data)
  
- 	/* get controller capabilities */
- 	ret = hda_dsp_ctrl_get_caps(sdev);
--	if (ret < 0)
-+	if (ret < 0) {
- 		dev_err(sdev->dev, "error: get caps error\n");
-+		hda_codec_i915_exit(sdev);
-+	}
-+
-+out:
+ 	sof_set_fw_state(sdev, SOF_FW_BOOT_NOT_STARTED);
+ 
++	/*
++	 * first pass of probe which isn't allowed to run in a work-queue,
++	 * typically to rely on -EPROBE_DEFER dependencies
++	 */
++	ret = snd_sof_probe_early(sdev);
 +	if (ret < 0)
-+		iounmap(sof_to_bus(sdev)->remap_addr);
++		return ret;
++
+ 	if (IS_ENABLED(CONFIG_SND_SOC_SOF_PROBE_WORK_QUEUE)) {
+ 		INIT_WORK(&sdev->probe_work, sof_probe_work);
+ 		schedule_work(&sdev->probe_work);
+@@ -487,9 +496,11 @@ int snd_sof_device_remove(struct device *dev)
+ 		snd_sof_ipc_free(sdev);
+ 		snd_sof_free_debug(sdev);
+ 		snd_sof_remove(sdev);
++		snd_sof_remove_late(sdev);
+ 		sof_ops_free(sdev);
+ 	} else if (aborted) {
+ 		/* probe_work never ran */
++		snd_sof_remove_late(sdev);
+ 		sof_ops_free(sdev);
+ 	}
  
- 	return ret;
+diff --git a/sound/soc/sof/ops.h b/sound/soc/sof/ops.h
+index 9ab7b9be765bc..3ebcfc2373854 100644
+--- a/sound/soc/sof/ops.h
++++ b/sound/soc/sof/ops.h
+@@ -38,6 +38,14 @@ static inline void sof_ops_free(struct snd_sof_dev *sdev)
+ /* Mandatory operations are verified during probing */
+ 
+ /* init */
++static inline int snd_sof_probe_early(struct snd_sof_dev *sdev)
++{
++	if (sof_ops(sdev)->probe_early)
++		return sof_ops(sdev)->probe_early(sdev);
++
++	return 0;
++}
++
+ static inline int snd_sof_probe(struct snd_sof_dev *sdev)
+ {
+ 	return sof_ops(sdev)->probe(sdev);
+@@ -51,6 +59,14 @@ static inline int snd_sof_remove(struct snd_sof_dev *sdev)
+ 	return 0;
  }
+ 
++static inline int snd_sof_remove_late(struct snd_sof_dev *sdev)
++{
++	if (sof_ops(sdev)->remove_late)
++		return sof_ops(sdev)->remove_late(sdev);
++
++	return 0;
++}
++
+ static inline int snd_sof_shutdown(struct snd_sof_dev *sdev)
+ {
+ 	if (sof_ops(sdev)->shutdown)
+diff --git a/sound/soc/sof/sof-priv.h b/sound/soc/sof/sof-priv.h
+index d4f6702e93dcb..e73a92189fe1f 100644
+--- a/sound/soc/sof/sof-priv.h
++++ b/sound/soc/sof/sof-priv.h
+@@ -165,8 +165,10 @@ struct sof_firmware {
+ struct snd_sof_dsp_ops {
+ 
+ 	/* probe/remove/shutdown */
++	int (*probe_early)(struct snd_sof_dev *sof_dev); /* optional */
+ 	int (*probe)(struct snd_sof_dev *sof_dev); /* mandatory */
+ 	int (*remove)(struct snd_sof_dev *sof_dev); /* optional */
++	int (*remove_late)(struct snd_sof_dev *sof_dev); /* optional */
+ 	int (*shutdown)(struct snd_sof_dev *sof_dev); /* optional */
+ 
+ 	/* DSP core boot / reset */
 -- 
 2.39.2
 
