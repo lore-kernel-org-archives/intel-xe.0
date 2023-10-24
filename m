@@ -4,49 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86276C00A8F
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 10:52:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 600A9C00A8F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 10:54:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3307510E33E;
-	Tue, 24 Oct 2023 10:52:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A676310E33E
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 10:52:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698144758; x=1729680758;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version; bh=FdvrxJjcj3QPW91C4tANI9OGgU5eD+IaC3Bh3SLeZBg=;
- b=EcrL6aLVnFDJW1LFTdF4y4Zv/MsTbZ6Qmm53pbYy4VZ2z36OFmuadbWD
- YueyeSLTsFU6FDW0bTXvrFWei7E6dHrEty7lOxNriw2kE8pmmdqg65P9C
- elGFNqrNUYZ58uyymNT8kvHUGeyiniEVEQm1ahm1n6AAthh0J1PTMWK8c
- U41nSaPo8x49FQjPT77vmlM4pUQjOwxy6tvxLd5UOnXHJCLG42n9aQ0tO
- pb3aFRZ9IkeNhOoAhb+m+A5bWyyWEoqhFVWGZkmzg8P+7afOq0OQwe0zT
- rLEZ0R2FntXCbjNWCPQMtOp5J5ubE5sljxhLrxPLBgdtUIpMUt9Jp1FBS A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="386842298"
-X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="386842298"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 03:52:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10872"; a="793443534"
-X-IronPort-AV: E=Sophos;i="6.03,247,1694761200"; d="scan'208";a="793443534"
-Received: from goepfrim-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.48.28])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Oct 2023 03:52:36 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>,
- intel-xe@lists.freedesktop.org
-In-Reply-To: <20231020073430.103493-2-mauro.chehab@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231020073430.103493-1-mauro.chehab@linux.intel.com>
- <20231020073430.103493-2-mauro.chehab@linux.intel.com>
-Date: Tue, 24 Oct 2023 13:52:33 +0300
-Message-ID: <87sf609tse.fsf@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2F13810E340;
+	Tue, 24 Oct 2023 10:54:41 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DC0910E341
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 10:54:39 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 24 Oct 2023 12:54:19 +0200
+Message-Id: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 1/2] misc: mei: fix Kconfig dependencies
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 01/15] Revert "sound/soc/sof: Remove deferred
+ probe for SOF"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,75 +36,251 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, 20 Oct 2023, Mauro Carvalho Chehab <mauro.chehab@linux.intel.com> wrote:
-> From: Mauro Carvalho Chehab <mchehab@kernel.org>
->
-> The dependency chain for INTEL_MEI is not properly addressed, as
-> reported by LKP:
->
->    WARNING: unmet direct dependencies detected for INTEL_MEI_ME
->    Depends on [n]: X86 && PCI [=y]
->    Selected by [y]:
->    - INTEL_MEI_HDCP [=y] && (DRM_I915 [=n] || DRM_XE [=y])
->
-> Basically, all symbols selecting INTEL_MEI shall also depends on
-> both X86 and PCI.
->
-> Add such dependency, as otherwise the dependencies won't be
-> properly followed.
+This reverts commit 53bccb72d202d8fa8575e81d1c78adc4e6a6ea1f.
 
-This must *not* be applied to drm-xe-next directly. Get it merged
-upstream first, and backport with cherry-pick -x annotation if needed.
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ sound/hda/hdac_i915.c       |  2 +-
+ sound/soc/sof/Kconfig       | 19 +++++++++++++++++++
+ sound/soc/sof/core.c        | 38 +++++++++++++++++++++++++++++++++++--
+ sound/soc/sof/intel/hda.c   | 25 +++++++++++-------------
+ sound/soc/sof/sof-pci-dev.c |  3 ++-
+ sound/soc/sof/sof-priv.h    |  5 +++++
+ 6 files changed, 74 insertions(+), 18 deletions(-)
 
-BR,
-Jani
-
->
-> Reported-by: kernel test robot <lkp@intel.com>
-> Link: https://lore.kernel.org/oe-kbuild-all/202310201234.ZZLwdoiy-lkp@intel.com/
-> Signed-off-by: Mauro Carvalho Chehab <mchehab@kernel.org>
-> ---
->  drivers/misc/mei/gsc_proxy/Kconfig | 1 +
->  drivers/misc/mei/hdcp/Kconfig      | 1 +
->  drivers/misc/mei/pxp/Kconfig       | 1 +
->  3 files changed, 3 insertions(+)
->
-> diff --git a/drivers/misc/mei/gsc_proxy/Kconfig b/drivers/misc/mei/gsc_proxy/Kconfig
-> index 5f68d9f3d691..6053ebbf536d 100644
-> --- a/drivers/misc/mei/gsc_proxy/Kconfig
-> +++ b/drivers/misc/mei/gsc_proxy/Kconfig
-> @@ -4,6 +4,7 @@
->  config INTEL_MEI_GSC_PROXY
->  	tristate "Intel GSC Proxy services of ME Interface"
->  	select INTEL_MEI_ME
-> +	depends on X86 && PCI
->  	depends on DRM_I915
->  	help
->           MEI Support for GSC Proxy Services on Intel platforms.
-> diff --git a/drivers/misc/mei/hdcp/Kconfig b/drivers/misc/mei/hdcp/Kconfig
-> index 2ac9148988d4..a5e8d3e9fc92 100644
-> --- a/drivers/misc/mei/hdcp/Kconfig
-> +++ b/drivers/misc/mei/hdcp/Kconfig
-> @@ -4,6 +4,7 @@
->  config INTEL_MEI_HDCP
->  	tristate "Intel HDCP2.2 services of ME Interface"
->  	select INTEL_MEI_ME
-> +	depends on X86 && PCI
->  	depends on DRM_I915 || DRM_XE
->  	help
->  	  MEI Support for HDCP2.2 Services on Intel platforms.
-> diff --git a/drivers/misc/mei/pxp/Kconfig b/drivers/misc/mei/pxp/Kconfig
-> index 4029b96afc04..3acc05fea744 100644
-> --- a/drivers/misc/mei/pxp/Kconfig
-> +++ b/drivers/misc/mei/pxp/Kconfig
-> @@ -4,6 +4,7 @@
->  #
->  config INTEL_MEI_PXP
->  	tristate "Intel PXP services of ME Interface"
-> +	depends on X86 && PCI
->  	select INTEL_MEI_ME
->  	depends on DRM_I915
->  	help
-
+diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
+index 3ae973e7995cc..227b33028b562 100644
+--- a/sound/hda/hdac_i915.c
++++ b/sound/hda/hdac_i915.c
+@@ -185,7 +185,7 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
+ 		return err;
+ 	acomp = bus->audio_component;
+ 	if (!acomp || !acomp->ops) {
+-		dev_dbg(bus->dev, "couldn't bind with audio component\n");
++		dev_info(bus->dev, "couldn't bind with audio component\n");
+ 		snd_hdac_acomp_exit(bus);
+ 		return -EPROBE_DEFER;
+ 	}
+diff --git a/sound/soc/sof/Kconfig b/sound/soc/sof/Kconfig
+index 8ee39e5558062..80361139a49ad 100644
+--- a/sound/soc/sof/Kconfig
++++ b/sound/soc/sof/Kconfig
+@@ -82,6 +82,17 @@ config SND_SOC_SOF_DEVELOPER_SUPPORT
+ 
+ if SND_SOC_SOF_DEVELOPER_SUPPORT
+ 
++config SND_SOC_SOF_FORCE_PROBE_WORKQUEUE
++	bool "SOF force probe workqueue"
++	select SND_SOC_SOF_PROBE_WORK_QUEUE
++	help
++	  This option forces the use of a probe workqueue, which is only used
++	  when HDaudio is enabled due to module dependencies. Forcing this
++	  option is intended for debug only, but this should not add any
++	  functional issues in nominal cases.
++	  Say Y if you are involved in SOF development and need this option.
++	  If not, select N.
++
+ config SND_SOC_SOF_NOCODEC
+ 	tristate
+ 
+@@ -260,6 +271,14 @@ config SND_SOC_SOF
+ 	  module dependencies but since the module or built-in type is decided
+ 	  at the top level it doesn't matter.
+ 
++config SND_SOC_SOF_PROBE_WORK_QUEUE
++	bool
++	help
++	  This option is not user-selectable but automagically handled by
++	  'select' statements at a higher level.
++	  When selected, the probe is handled in two steps, for example to
++	  avoid lockdeps if request_module is used in the probe.
++
+ # Supported IPC versions
+ config SND_SOC_SOF_IPC3
+ 	bool
+diff --git a/sound/soc/sof/core.c b/sound/soc/sof/core.c
+index 78938dbffdada..2d1616b81485c 100644
+--- a/sound/soc/sof/core.c
++++ b/sound/soc/sof/core.c
+@@ -191,8 +191,7 @@ static int sof_probe_continue(struct snd_sof_dev *sdev)
+ 	/* probe the DSP hardware */
+ 	ret = snd_sof_probe(sdev);
+ 	if (ret < 0) {
+-		if (ret != -EPROBE_DEFER)
+-			dev_err(sdev->dev, "error: failed to probe DSP %d\n", ret);
++		dev_err(sdev->dev, "error: failed to probe DSP %d\n", ret);
+ 		goto probe_err;
+ 	}
+ 
+@@ -310,6 +309,8 @@ static int sof_probe_continue(struct snd_sof_dev *sdev)
+ 	if (plat_data->sof_probe_complete)
+ 		plat_data->sof_probe_complete(sdev->dev);
+ 
++	sdev->probe_completed = true;
++
+ 	return 0;
+ 
+ sof_machine_err:
+@@ -335,6 +336,19 @@ static int sof_probe_continue(struct snd_sof_dev *sdev)
+ 	return ret;
+ }
+ 
++static void sof_probe_work(struct work_struct *work)
++{
++	struct snd_sof_dev *sdev =
++		container_of(work, struct snd_sof_dev, probe_work);
++	int ret;
++
++	ret = sof_probe_continue(sdev);
++	if (ret < 0) {
++		/* errors cannot be propagated, log */
++		dev_err(sdev->dev, "error: %s failed err: %d\n", __func__, ret);
++	}
++}
++
+ int snd_sof_device_probe(struct device *dev, struct snd_sof_pdata *plat_data)
+ {
+ 	struct snd_sof_dev *sdev;
+@@ -422,16 +436,33 @@ int snd_sof_device_probe(struct device *dev, struct snd_sof_pdata *plat_data)
+ 
+ 	sof_set_fw_state(sdev, SOF_FW_BOOT_NOT_STARTED);
+ 
++	if (IS_ENABLED(CONFIG_SND_SOC_SOF_PROBE_WORK_QUEUE)) {
++		INIT_WORK(&sdev->probe_work, sof_probe_work);
++		schedule_work(&sdev->probe_work);
++		return 0;
++	}
++
+ 	return sof_probe_continue(sdev);
+ }
+ EXPORT_SYMBOL(snd_sof_device_probe);
+ 
++bool snd_sof_device_probe_completed(struct device *dev)
++{
++	struct snd_sof_dev *sdev = dev_get_drvdata(dev);
++
++	return sdev->probe_completed;
++}
++EXPORT_SYMBOL(snd_sof_device_probe_completed);
++
+ int snd_sof_device_remove(struct device *dev)
+ {
+ 	struct snd_sof_dev *sdev = dev_get_drvdata(dev);
+ 	struct snd_sof_pdata *pdata = sdev->pdata;
+ 	int ret;
+ 
++	if (IS_ENABLED(CONFIG_SND_SOC_SOF_PROBE_WORK_QUEUE))
++		cancel_work_sync(&sdev->probe_work);
++
+ 	/*
+ 	 * Unregister any registered client device first before IPC and debugfs
+ 	 * to allow client drivers to be removed cleanly
+@@ -469,6 +500,9 @@ int snd_sof_device_shutdown(struct device *dev)
+ {
+ 	struct snd_sof_dev *sdev = dev_get_drvdata(dev);
+ 
++	if (IS_ENABLED(CONFIG_SND_SOC_SOF_PROBE_WORK_QUEUE))
++		cancel_work_sync(&sdev->probe_work);
++
+ 	if (sdev->fw_state == SOF_FW_BOOT_COMPLETE) {
+ 		sof_fw_trace_free(sdev);
+ 		return snd_sof_shutdown(sdev);
+diff --git a/sound/soc/sof/intel/hda.c b/sound/soc/sof/intel/hda.c
+index 1249dd694c4cf..5f65fb8e82e63 100644
+--- a/sound/soc/sof/intel/hda.c
++++ b/sound/soc/sof/intel/hda.c
+@@ -1165,6 +1165,14 @@ int hda_dsp_probe(struct snd_sof_dev *sdev)
+ 	sdev->pdata->hw_pdata = hdev;
+ 	hdev->desc = chip;
+ 
++	hdev->dmic_dev = platform_device_register_data(sdev->dev, "dmic-codec",
++						       PLATFORM_DEVID_NONE,
++						       NULL, 0);
++	if (IS_ERR(hdev->dmic_dev)) {
++		dev_err(sdev->dev, "error: failed to create DMIC device\n");
++		return PTR_ERR(hdev->dmic_dev);
++	}
++
+ 	/*
+ 	 * use position update IPC if either it is forced
+ 	 * or we don't have other choice
+@@ -1184,15 +1192,6 @@ int hda_dsp_probe(struct snd_sof_dev *sdev)
+ 	if (ret < 0)
+ 		goto hdac_bus_unmap;
+ 
+-	hdev->dmic_dev = platform_device_register_data(sdev->dev, "dmic-codec",
+-						       PLATFORM_DEVID_NONE,
+-						       NULL, 0);
+-	if (IS_ERR(hdev->dmic_dev)) {
+-		dev_err(sdev->dev, "error: failed to create DMIC device\n");
+-		ret = PTR_ERR(hdev->dmic_dev);
+-		goto hdac_exit;
+-	}
+-
+ 	if (sdev->dspless_mode_selected)
+ 		goto skip_dsp_setup;
+ 
+@@ -1201,7 +1200,7 @@ int hda_dsp_probe(struct snd_sof_dev *sdev)
+ 	if (!sdev->bar[HDA_DSP_BAR]) {
+ 		dev_err(sdev->dev, "error: ioremap error\n");
+ 		ret = -ENXIO;
+-		goto platform_unreg;
++		goto hdac_bus_unmap;
+ 	}
+ 
+ 	sdev->mmio_bar = HDA_DSP_BAR;
+@@ -1299,12 +1298,10 @@ int hda_dsp_probe(struct snd_sof_dev *sdev)
+ /* dsp_unmap: not currently used */
+ 	if (!sdev->dspless_mode_selected)
+ 		iounmap(sdev->bar[HDA_DSP_BAR]);
+-platform_unreg:
+-	platform_device_unregister(hdev->dmic_dev);
+-hdac_exit:
+-	hda_codec_i915_exit(sdev);
+ hdac_bus_unmap:
++	platform_device_unregister(hdev->dmic_dev);
+ 	iounmap(bus->remap_addr);
++	hda_codec_i915_exit(sdev);
+ err:
+ 	return ret;
+ }
+diff --git a/sound/soc/sof/sof-pci-dev.c b/sound/soc/sof/sof-pci-dev.c
+index 0fa424613082e..f5ece43d0ec24 100644
+--- a/sound/soc/sof/sof-pci-dev.c
++++ b/sound/soc/sof/sof-pci-dev.c
+@@ -339,7 +339,8 @@ void sof_pci_remove(struct pci_dev *pci)
+ 	snd_sof_device_remove(&pci->dev);
+ 
+ 	/* follow recommendation in pci-driver.c to increment usage counter */
+-	if (!(sof_pci_debug & SOF_PCI_DISABLE_PM_RUNTIME))
++	if (snd_sof_device_probe_completed(&pci->dev) &&
++	    !(sof_pci_debug & SOF_PCI_DISABLE_PM_RUNTIME))
+ 		pm_runtime_get_noresume(&pci->dev);
+ 
+ 	/* release pci regions and disable device */
+diff --git a/sound/soc/sof/sof-priv.h b/sound/soc/sof/sof-priv.h
+index 71db636cfdccc..d4f6702e93dcb 100644
+--- a/sound/soc/sof/sof-priv.h
++++ b/sound/soc/sof/sof-priv.h
+@@ -564,6 +564,10 @@ struct snd_sof_dev {
+ 	enum sof_fw_state fw_state;
+ 	bool first_boot;
+ 
++	/* work queue in case the probe is implemented in two steps */
++	struct work_struct probe_work;
++	bool probe_completed;
++
+ 	/* DSP HW differentiation */
+ 	struct snd_sof_pdata *pdata;
+ 
+@@ -671,6 +675,7 @@ struct snd_sof_dev {
+ int snd_sof_device_probe(struct device *dev, struct snd_sof_pdata *plat_data);
+ int snd_sof_device_remove(struct device *dev);
+ int snd_sof_device_shutdown(struct device *dev);
++bool snd_sof_device_probe_completed(struct device *dev);
+ 
+ int snd_sof_runtime_suspend(struct device *dev);
+ int snd_sof_runtime_resume(struct device *dev);
 -- 
-Jani Nikula, Intel
+2.39.2
+
