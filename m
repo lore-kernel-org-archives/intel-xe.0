@@ -4,30 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DB7AC07545
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 22:06:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D877C07545
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 22:07:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3955710E4E9;
-	Tue, 24 Oct 2023 22:06:40 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 777E210E4E9;
- Tue, 24 Oct 2023 22:06:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 75B6FAADE0;
- Tue, 24 Oct 2023 22:06:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2350810E4E9;
+	Tue, 24 Oct 2023 22:07:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7F5B10E4EB
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 22:07:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698185243; x=1729721243;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=MSXonoLqRL35tvvoDD681ETJronOPdTDiq65UTOB4Qc=;
+ b=BE4g0T4pGneozV4hfsQ2MUdYV3LjbpHeP2JshB3T0Kc3Ms6cNjra6r5p
+ BBWFMr6M8h0elfWqb2BvRA7qc26motSa9ydo+lNDCKKGTJ2N89fx8zK7O
+ U1mm+AD2quutBIoNYvAJKmm/18krPmm0oI+oyjroX62XQE9x0Fq8WUxth
+ ij+eMzHzjGn4jysWC3apA/ibu9Aj/l9NPnXfcTbzWmthWRD317OZepsvI
+ AR50wCX8PNuWbydaZ5/p7hFU87PZs4BUNTtV7iNoS0X+JvpV4zcfo4Oro
+ dKw/38RHK6sleEwdAUu6qgYVfhi7kgjHPsW7asKYzh+FfNQPbSbWSCrVc Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="451410435"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="451410435"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 15:07:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10873"; a="752127761"
+X-IronPort-AV: E=Sophos;i="6.03,248,1694761200"; d="scan'208";a="752127761"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Oct 2023 15:07:22 -0700
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 24 Oct 2023 15:07:39 -0700
+Message-Id: <20231024220739.224251-3-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20231024220739.224251-1-lucas.demarchi@intel.com>
+References: <20231024220739.224251-1-lucas.demarchi@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Tue, 24 Oct 2023 22:06:38 -0000
-Message-ID: <169818519847.18360.15589081838374142424@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231024220412.223868-1-lucas.demarchi@intel.com>
-In-Reply-To: <20231024220412.223868-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
- =?utf-8?q?m/xe=3A_Fix_WA_14010918519_write_to_wrong_register?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v2 3/3] drm/xe: Add Wa_14019821291
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,48 +56,118 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Matt Roper <matthew.d.roper@intel.com>
 
-Series: drm/xe: Fix WA 14010918519 write to wrong register
-URL   : https://patchwork.freedesktop.org/series/125530/
-State : warning
+This workaround is primarily implemented by the BIOS.  However if the
+BIOS applies the workaround it will reserve a small piece of our DSM
+(which should be at the top, right below the WOPCM); we just need to
+keep that region reserved so that nothing else attempts to re-use it.
 
-== Summary ==
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/Makefile            |  2 +-
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h   |  2 ++
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c | 24 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules     |  1 +
+ 4 files changed, 28 insertions(+), 1 deletion(-)
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 61e8aa2e51bd006e51549102ed3bf60658e0854f
-Author: Lucas De Marchi <lucas.demarchi@intel.com>
-Date:   Tue Oct 24 15:04:12 2023 -0700
-
-    drm/xe: Fix WA 14010918519 write to wrong register
-    
-    FORCE_SLM_FENCE_SCOPE_TO_TILE and FORCE_UGM_FENCE_SCOPE_TO_TILE are in
-    the up dword of LSC_CHICKEN_BIT_0 register. Also, the 14010918519
-    workaround only applies to early steppings, A*. Eventually those should
-    be dropped, like they were in commit eaeb4b361452 ("drm/i915/dg2: Drop
-    pre-production GT workarounds"), so let's make sure they are annotated
-    appropriately.
-    
-    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
-+ /mt/dim checkpatch 4354e27efb78582ee567ba6264c79d0872a3a4e7 drm-intel
-61e8aa2e5 drm/xe: Fix WA 14010918519 write to wrong register
--:9: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id 'eaeb4b361452', maybe rebased or not pulled?
-#9: 
-be dropped, like they were in commit eaeb4b361452 ("drm/i915/dg2: Drop
-
-total: 0 errors, 1 warnings, 0 checks, 11 lines checked
-
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index cee57681732d..ef9d954f5a75 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -37,7 +37,7 @@ quiet_cmd_wa_oob = GEN     $(notdir $(generated_oob))
+ $(generated_oob) &: $(obj)/xe_gen_wa_oob $(srctree)/$(src)/xe_wa_oob.rules
+ 	$(call cmd,wa_oob)
+ 
+-$(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o: $(generated_oob)
++$(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o $(obj)/xe_ttm_stolen_mgr.o: $(generated_oob)
+ 
+ # Please keep these build lists sorted!
+ 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 55ceadfc30b0..d542a4e2e6fa 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -155,6 +155,8 @@
+ #define XEHP_SQCM				XE_REG_MCR(0x8724)
+ #define   EN_32B_ACCESS				REG_BIT(30)
+ 
++#define GSCPSMI_BASE				XE_REG(0x880c)
++
+ #define	MIRROR_FUSE3				XE_REG(0x9118)
+ #define   XE2_NODE_ENABLE_MASK			REG_GENMASK(31, 16)
+ #define   L3BANK_PAIR_COUNT			4
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 79fbd74a3944..b23827534ab9 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -11,6 +11,8 @@
+ #include <drm/ttm/ttm_placement.h>
+ #include <drm/ttm/ttm_range_manager.h>
+ 
++#include "generated/xe_wa_oob.h"
++#include "regs/xe_gt_regs.h"
+ #include "regs/xe_regs.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+@@ -19,6 +21,7 @@
+ #include "xe_res_cursor.h"
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_ttm_vram_mgr.h"
++#include "xe_wa.h"
+ 
+ struct xe_ttm_stolen_mgr {
+ 	struct xe_ttm_vram_mgr base;
+@@ -112,6 +115,7 @@ static u32 get_wopcm_size(struct xe_device *xe)
+ static u32 detect_bar2_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ {
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
++	struct xe_gt *media_gt = xe_device_get_root_tile(xe)->media_gt;
+ 	u32 stolen_size, wopcm_size;
+ 	u32 ggc, gms;
+ 
+@@ -154,6 +158,26 @@ static u32 detect_bar2_integrated(struct xe_device *xe, struct xe_ttm_stolen_mgr
+ 
+ 	stolen_size -= wopcm_size;
+ 
++	if (XE_WA(media_gt, 14019821291)) {
++		u64 gscpsmi_base = xe_mmio_read64_2x32(media_gt, GSCPSMI_BASE);
++
++		/*
++		 * This workaround is primarily implemented by the BIOS.  We
++		 * just need to figure out whether the BIOS has applied the
++		 * workaround (meaning the programmed address falls within
++		 * the DSM) and, if so, reserve that part of the DSM to
++		 * prevent accidental reuse.  The DSM location should be just
++		 * below the WOPCM.
++		 */
++		if (gscpsmi_base >= mgr->io_base &&
++		    gscpsmi_base < mgr->io_base + stolen_size) {
++			xe_gt_dbg(media_gt,
++				  "Reserving %llu bytes of DSM for Wa_14019821291\n",
++				  mgr->io_base + stolen_size - gscpsmi_base);
++			stolen_size = gscpsmi_base - mgr->io_base;
++		}
++	}
++
+ 	if (drm_WARN_ON(&xe->drm, stolen_size + SZ_8M > pci_resource_len(pdev, 2)))
+ 		return 0;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index f3ff774dc4aa..752842d734be 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -19,3 +19,4 @@
+ 		SUBPLATFORM(DG2, G12)
+ 16017236439	PLATFORM(PVC)
+ 22010954014	PLATFORM(DG2)
++14019821291	MEDIA_VERSION_RANGE(1300, 2000)
+-- 
+2.40.1
 
