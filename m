@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3F0BFC07545
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 06:25:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9527C25B47
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 07:00:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B996F10E2E0;
-	Tue, 24 Oct 2023 06:25:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 68F2610E041;
+	Tue, 24 Oct 2023 07:00:07 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A725010E2ED;
- Tue, 24 Oct 2023 06:25:38 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 73BB110E041;
+ Tue, 24 Oct 2023 07:00:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9C7C7A0003;
- Tue, 24 Oct 2023 06:25:38 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5B987A7DFF;
+ Tue, 24 Oct 2023 07:00:04 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Vinay Belgaumkar" <vinay.belgaumkar@intel.com>
-Date: Tue, 24 Oct 2023 06:25:38 -0000
-Message-ID: <169812873863.18362.6213354819678769444@emeril.freedesktop.org>
+To: "Koby Elbaz" <kelbaz@habana.ai>
+Date: Tue, 24 Oct 2023 07:00:04 -0000
+Message-ID: <169813080434.18360.13255155955610456819@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231020232553.3665409-1-vinay.belgaumkar@intel.com>
-In-Reply-To: <20231020232553.3665409-1-vinay.belgaumkar@intel.com>
+References: <20231022155727.717251-1-kelbaz@habana.ai>
+In-Reply-To: <20231022155727.717251-1-kelbaz@habana.ai>
 Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_drm/xe=3A_Raise_GT_frequency_before_GuC_load?=
+ =?utf-8?q?or_series_starting_with_=5Bv2=2C1/2=5D_drm/xe=3A_add_skip=5Fpco?=
+ =?utf-8?q?de_flag?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,8 +47,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Raise GT frequency before GuC load
-URL   : https://patchwork.freedesktop.org/series/125422/
+Series: series starting with [v2,1/2] drm/xe: add skip_pcode flag
+URL   : https://patchwork.freedesktop.org/series/125426/
 State : failure
 
 == Summary ==
@@ -55,6 +56,7 @@ State : failure
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 4354e27ef drm/xe: Simplify xe_res_get_buddy()
 === git am output follows ===
-Applying: drm/xe: Raise GT frequency before GuC load
+Applying: drm/xe: add skip_pcode flag
+Applying: drm/xe: rename bypass_mtcfg to skip_mtcfg
 
 
