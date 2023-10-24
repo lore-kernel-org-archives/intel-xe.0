@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id F368FC00A8F
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 09:05:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F7FFC07545
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 09:40:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B88A710E301;
-	Tue, 24 Oct 2023 09:05:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDB0710E30D;
+	Tue, 24 Oct 2023 09:40:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id A2CE410E301;
- Tue, 24 Oct 2023 09:05:54 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 07FBD10E30B;
+ Tue, 24 Oct 2023 09:40:13 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9FDA7AADD5;
- Tue, 24 Oct 2023 09:05:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 03128AA916;
+ Tue, 24 Oct 2023 09:40:13 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ghimiray, Himal Prasad" <himal.prasad.ghimiray@intel.com>
-Date: Tue, 24 Oct 2023 09:05:54 -0000
-Message-ID: <169813835465.18362.4344482579745850163@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Date: Tue, 24 Oct 2023 09:40:13 -0000
+Message-ID: <169814041300.18359.16903270043429232660@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231020045533.1425375-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20231020045533.1425375-1-himal.prasad.ghimiray@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_S?=
- =?utf-8?q?upporting_RAS_on_XE?=
+References: <20231023063420.3298731-1-jouni.hogander@intel.com>
+In-Reply-To: <20231023063420.3298731-1-jouni.hogander@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Revert_remaining_local_fb_tracking_patches_and_backport_=28r?=
+ =?utf-8?q?ev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,31 +47,18 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Supporting RAS on XE
-URL   : https://patchwork.freedesktop.org/series/125373/
+Series: Revert remaining local fb tracking patches and backport (rev2)
+URL   : https://patchwork.freedesktop.org/series/125437/
 State : success
 
 == Summary ==
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 4354e27efb78582ee567ba6264c79d0872a3a4e7
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 4354e27ef drm/xe: Simplify xe_res_get_buddy()
+=== git am output follows ===
+Applying: Revert "drm/i915/display: Use intel_bo_to_drm_bo instead of obj->base"
+Applying: Revert "drm/i915/display: Move releasing gem object away from fb tracking"
+Applying: drm/i915/display: Move releasing gem object away from fb tracking
+Applying: drm/i915/display: Use intel_bo_to_drm_bo instead of obj->base
 
 
