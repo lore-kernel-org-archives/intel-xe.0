@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53022C07545
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 07:12:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99272C25B47
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 07:15:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 006A310E041;
-	Tue, 24 Oct 2023 07:12:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F79510E1CD;
+	Tue, 24 Oct 2023 07:15:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9044310E041;
- Tue, 24 Oct 2023 07:12:51 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id EF2B810E0EE;
+ Tue, 24 Oct 2023 07:15:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8A4AEAADDD;
- Tue, 24 Oct 2023 07:12:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DD831A882E;
+ Tue, 24 Oct 2023 07:15:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ruthuvikas Ravikumar" <ruthuvikas.ravikumar@intel.com>
-Date: Tue, 24 Oct 2023 07:12:51 -0000
-Message-ID: <169813157153.18360.3780663017403971425@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Tue, 24 Oct 2023 07:15:26 -0000
+Message-ID: <169813172688.18360.15748331227252972768@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231023160314.1806539-1-ruthuvikas.ravikumar@intel.com>
-In-Reply-To: <20231023160314.1806539-1-ruthuvikas.ravikumar@intel.com>
+References: <20231023215329.1796912-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20231023215329.1796912-1-daniele.ceraolospurio@intel.com>
 Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_drm/xe=3A_Add_mocs_kunit_=28rev5=29?=
+ =?utf-8?q?or_Fix_GSC_interrupts?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,8 +46,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe: Add mocs kunit (rev5)
-URL   : https://patchwork.freedesktop.org/series/124926/
+Series: Fix GSC interrupts
+URL   : https://patchwork.freedesktop.org/series/125482/
 State : failure
 
 == Summary ==
@@ -55,6 +55,6 @@ State : failure
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 4354e27ef drm/xe: Simplify xe_res_get_buddy()
 === git am output follows ===
-Applying: drm/xe: Add mocs kunit
+Applying: fixup! drm/xe/gsc: add gsc device support
 
 
