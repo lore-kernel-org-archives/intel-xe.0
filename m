@@ -4,26 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3313C07545
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 10:55:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BF60C00A8F
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 10:55:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 912C410E340;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE1EB10E344;
 	Tue, 24 Oct 2023 10:55:16 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8611810E346
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 10:54:49 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62CAA10E344
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 10:54:56 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Oct 2023 12:54:27 +0200
-Message-Id: <20231024105433.715843-9-maarten.lankhorst@linux.intel.com>
+Date: Tue, 24 Oct 2023 12:54:33 +0200
+Message-Id: <20231024105433.715843-15-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
 References: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 09/15] ALSA: hda: i915: Add an allow_modprobe
- argument to snd_hdac_i915_init
+Subject: [Intel-xe] [PATCH 15/15] ALSA: hda: i915: Remove extra argument
+ from snd_hdac_i915_init
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,133 +37,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Xe is a new GPU driver that re-uses the display (and sound) code from
-i915. It's no longer possible to load i915, as the GPU can be driven
-by the xe driver instead.
-
-The new behavior will return -EPROBE_DEFER, and wait for a compatible
-driver to be loaded instead of modprobing i915.
-
-Converting all drivers at the same time is a lot of work, instead we
-will convert each user one by one.
+Now that all drivers have moved from modprobe loading to
+handling -EPROBE_DEFER, we can remove the argument again.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Link: https://lore.kernel.org/r/20231009115437.99976-8-maarten.lankhorst@linux.intel.com
+Link: https://lore.kernel.org/r/20231009115437.99976-14-maarten.lankhorst@linux.intel.com
 Signed-off-by: Takashi Iwai <tiwai@suse.de>
-(cherry picked from commit 32f4e921fe8e39969f532abfb388cc31d18a88c5)
+(cherry picked from commit e6d0c13e9f46f9cf83f2f4946b0a2954599552a7)
 ---
- include/sound/hda_i915.h        | 4 ++--
- sound/hda/hdac_i915.c           | 8 ++++----
- sound/pci/hda/hda_intel.c       | 2 +-
- sound/soc/intel/avs/core.c      | 2 +-
- sound/soc/intel/skylake/skl.c   | 2 +-
- sound/soc/sof/intel/hda-codec.c | 2 +-
- 6 files changed, 10 insertions(+), 10 deletions(-)
+ include/sound/hda_i915.h        |  4 ++--
+ sound/hda/hdac_i915.c           | 14 +++-----------
+ sound/pci/hda/hda_intel.c       |  2 +-
+ sound/soc/intel/avs/core.c      |  2 +-
+ sound/soc/intel/skylake/skl.c   |  2 +-
+ sound/soc/sof/intel/hda-codec.c |  2 +-
+ 6 files changed, 9 insertions(+), 17 deletions(-)
 
 diff --git a/include/sound/hda_i915.h b/include/sound/hda_i915.h
-index 6b79614a893b9..f91bd66360865 100644
+index f91bd66360865..6b79614a893b9 100644
 --- a/include/sound/hda_i915.h
 +++ b/include/sound/hda_i915.h
 @@ -9,12 +9,12 @@
  
  #ifdef CONFIG_SND_HDA_I915
  void snd_hdac_i915_set_bclk(struct hdac_bus *bus);
--int snd_hdac_i915_init(struct hdac_bus *bus);
-+int snd_hdac_i915_init(struct hdac_bus *bus, bool allow_modprobe);
+-int snd_hdac_i915_init(struct hdac_bus *bus, bool allow_modprobe);
++int snd_hdac_i915_init(struct hdac_bus *bus);
  #else
  static inline void snd_hdac_i915_set_bclk(struct hdac_bus *bus)
  {
  }
--static inline int snd_hdac_i915_init(struct hdac_bus *bus)
-+static inline int snd_hdac_i915_init(struct hdac_bus *bus, bool allow_modprobe)
+-static inline int snd_hdac_i915_init(struct hdac_bus *bus, bool allow_modprobe)
++static inline int snd_hdac_i915_init(struct hdac_bus *bus)
  {
  	return -ENODEV;
  }
 diff --git a/sound/hda/hdac_i915.c b/sound/hda/hdac_i915.c
-index 961d99422bc5a..9f77cec65a211 100644
+index a984e7935ce70..862997beea1b8 100644
 --- a/sound/hda/hdac_i915.c
 +++ b/sound/hda/hdac_i915.c
-@@ -175,7 +175,7 @@ static bool dg1_gfx_present(void)
+@@ -176,7 +176,7 @@ static bool dg1_gfx_present(void)
   *
   * Returns zero for success or a negative error code.
   */
--int snd_hdac_i915_init(struct hdac_bus *bus)
-+int snd_hdac_i915_init(struct hdac_bus *bus, bool allow_modprobe)
+-int snd_hdac_i915_init(struct hdac_bus *bus, bool allow_modprobe)
++int snd_hdac_i915_init(struct hdac_bus *bus)
  {
  	struct drm_audio_component *acomp;
  	int err;
-@@ -194,7 +194,7 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
+@@ -195,18 +195,10 @@ int snd_hdac_i915_init(struct hdac_bus *bus, bool allow_modprobe)
  	acomp = bus->audio_component;
  	if (!acomp)
  		return -ENODEV;
--	if (!acomp->ops) {
-+	if (allow_modprobe && !acomp->ops) {
- 		if (!IS_ENABLED(CONFIG_MODULES) ||
- 		    !request_module("i915")) {
- 			/* 60s timeout */
-@@ -203,9 +203,9 @@ int snd_hdac_i915_init(struct hdac_bus *bus)
- 		}
- 	}
+-	if (allow_modprobe && !acomp->ops) {
+-		if (!IS_ENABLED(CONFIG_MODULES) ||
+-		    !request_module("i915")) {
+-			/* 60s timeout */
+-			wait_for_completion_killable_timeout(&acomp->master_bind_complete,
+-							     msecs_to_jiffies(60 * 1000));
+-		}
+-	}
  	if (!acomp->ops) {
--		dev_info(bus->dev, "couldn't bind with audio component\n");
-+		int err = allow_modprobe ? -ENODEV : -EPROBE_DEFER;
+-		int err = allow_modprobe ? -ENODEV : -EPROBE_DEFER;
  		snd_hdac_acomp_exit(bus);
--		return -ENODEV;
-+		return dev_err_probe(bus->dev, err, "couldn't bind with audio component\n");
+-		return dev_err_probe(bus->dev, err, "couldn't bind with audio component\n");
++		return dev_err_probe(bus->dev, -EPROBE_DEFER,
++				     "couldn't bind with audio component\n");
  	}
  	return 0;
  }
 diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
-index 12caabf54c63c..e42ad0e816e19 100644
+index 9dad3607596ab..058f6e6491f9a 100644
 --- a/sound/pci/hda/hda_intel.c
 +++ b/sound/pci/hda/hda_intel.c
-@@ -2266,7 +2266,7 @@ static int azx_probe_continue(struct azx *chip)
- 
+@@ -2138,7 +2138,7 @@ static int azx_probe(struct pci_dev *pci,
+ #ifdef CONFIG_SND_HDA_I915
  	/* bind with i915 if needed */
  	if (chip->driver_caps & AZX_DCAPS_I915_COMPONENT) {
--		err = snd_hdac_i915_init(bus);
-+		err = snd_hdac_i915_init(bus, true);
+-		err = snd_hdac_i915_init(azx_bus(chip), false);
++		err = snd_hdac_i915_init(azx_bus(chip));
  		if (err < 0) {
  			/* if the controller is bound only with HDMI/DP
  			 * (for HSW and BDW), we need to abort the probe;
 diff --git a/sound/soc/intel/avs/core.c b/sound/soc/intel/avs/core.c
-index 859b217fc761b..bbb40339c75f4 100644
+index 8a20639582487..33044f353575d 100644
 --- a/sound/soc/intel/avs/core.c
 +++ b/sound/soc/intel/avs/core.c
-@@ -191,7 +191,7 @@ static void avs_hda_probe_work(struct work_struct *work)
+@@ -461,7 +461,7 @@ static int avs_pci_probe(struct pci_dev *pci, const struct pci_device_id *id)
+ 	pci_set_drvdata(pci, bus);
+ 	device_disable_async_suspend(dev);
  
- 	pm_runtime_set_active(bus->dev); /* clear runtime_error flag */
- 
--	ret = snd_hdac_i915_init(bus);
-+	ret = snd_hdac_i915_init(bus, true);
- 	if (ret < 0)
- 		dev_info(bus->dev, "i915 init unsuccessful: %d\n", ret);
- 
+-	ret = snd_hdac_i915_init(bus, false);
++	ret = snd_hdac_i915_init(bus);
+ 	if (ret == -EPROBE_DEFER)
+ 		goto err_i915_init;
+ 	else if (ret < 0)
 diff --git a/sound/soc/intel/skylake/skl.c b/sound/soc/intel/skylake/skl.c
-index 77408a981b977..4f7acb4f6680b 100644
+index 24bdbe2a53bec..f46f109d5856e 100644
 --- a/sound/soc/intel/skylake/skl.c
 +++ b/sound/soc/intel/skylake/skl.c
-@@ -791,7 +791,7 @@ static int skl_i915_init(struct hdac_bus *bus)
- 	 * The HDMI codec is in GPU so we need to ensure that it is powered
- 	 * up and ready for probe
- 	 */
--	err = snd_hdac_i915_init(bus);
-+	err = snd_hdac_i915_init(bus, true);
- 	if (err < 0)
- 		return err;
+@@ -1056,7 +1056,7 @@ static int skl_probe(struct pci_dev *pci,
+ 	}
  
+ 	if (IS_ENABLED(CONFIG_SND_SOC_HDAC_HDMI)) {
+-		err = snd_hdac_i915_init(bus, false);
++		err = snd_hdac_i915_init(bus);
+ 		if (err < 0)
+ 			goto out_dmic_unregister;
+ 	}
 diff --git a/sound/soc/sof/intel/hda-codec.c b/sound/soc/sof/intel/hda-codec.c
-index 8a5e99a898ecb..f1fd5b44aaac9 100644
+index f1fd5b44aaac9..8a5e99a898ecb 100644
 --- a/sound/soc/sof/intel/hda-codec.c
 +++ b/sound/soc/sof/intel/hda-codec.c
 @@ -415,7 +415,7 @@ int hda_codec_i915_init(struct snd_sof_dev *sdev)
  		return 0;
  
  	/* i915 exposes a HDA codec for HDMI audio */
--	ret = snd_hdac_i915_init(bus);
-+	ret = snd_hdac_i915_init(bus, true);
+-	ret = snd_hdac_i915_init(bus, true);
++	ret = snd_hdac_i915_init(bus);
  	if (ret < 0)
  		return ret;
  
