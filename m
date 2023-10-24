@@ -4,31 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71CAAC07545
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 12:21:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8359C07545
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 12:23:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CD4810E362;
-	Tue, 24 Oct 2023 12:21:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A6F8510E362;
- Tue, 24 Oct 2023 12:21:52 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A2C12A0093;
- Tue, 24 Oct 2023 12:21:52 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFF5210E36F;
+	Tue, 24 Oct 2023 12:23:05 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EDF9710E369
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 12:23:03 +0000 (UTC)
+From: Maarten@mblankhorst.nl,
+	"Lankhorst <maarten.lankhorst"@linux.intel.com
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 24 Oct 2023 14:22:52 +0200
+Message-Id: <20231024122256.19512-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Tue, 24 Oct 2023 12:21:52 -0000
-Message-ID: <169815011266.18362.2301612470338115906@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_se?=
- =?utf-8?q?ries_starting_with_=5B01/15=5D_Revert_=22sound/soc/sof=3A_Remov?=
- =?utf-8?q?e_deferred_probe_for_SOF=22?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 0/4] drm/xe: Implement snapshot support.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,90 +33,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Maarten Lankhorst <dev@lankhorst.se>
 
-Series: series starting with [01/15] Revert "sound/soc/sof: Remove deferred probe for SOF"
-URL   : https://patchwork.freedesktop.org/series/125501/
-State : warning
+Hopefully at least the uapi part can be merged. This takes a coredump in
+2 steps:
+1. On crash, take a snapshot of the VM layout, and a reference to the
+bo's to dump.
+2. On readout, take a snapshot of each bo to dump and release the
+reference.
 
-== Summary ==
+Because devcoredump is done in signaling context, we can't safely
+allocate a lot of memory, or do things like mmap, etc. As such, we have
+to wait for readout time to map the BO and copy its contents. This means
+that userspace may in the worst case overwrite data after the hang, but
+hopefully this is not a serious problem.
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit e2047e7d8101aa3ed56c26df320abe6abe4628e5
-Author: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Date:   Tue Oct 24 12:54:33 2023 +0200
+Needs more testing..
 
-    ALSA: hda: i915: Remove extra argument from snd_hdac_i915_init
-    
-    Now that all drivers have moved from modprobe loading to
-    handling -EPROBE_DEFER, we can remove the argument again.
-    
-    Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-    Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-    Link: https://lore.kernel.org/r/20231009115437.99976-14-maarten.lankhorst@linux.intel.com
-    Signed-off-by: Takashi Iwai <tiwai@suse.de>
-    (cherry picked from commit e6d0c13e9f46f9cf83f2f4946b0a2954599552a7)
-+ /mt/dim checkpatch 4354e27efb78582ee567ba6264c79d0872a3a4e7 drm-intel
-a693d693e Revert "sound/soc/sof: Remove deferred probe for SOF"
--:6: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '53bccb72d202d8fa8575e81d1c78adc4e6a6ea1f', maybe rebased or not pulled?
-#6: 
-This reverts commit 53bccb72d202d8fa8575e81d1c78adc4e6a6ea1f.
+Maarten Lankhorst (4):
+  drm/xe: Add uapi for dumpable bos
+  drm/xe: Annotate each dumpable vma as such
+  drm/xe: Add vm snapshot mutex for easily taking a vm snapshot during
+    devcoredump
+  drm/xe: Implement VM snapshot support
 
-total: 0 errors, 1 warnings, 0 checks, 194 lines checked
-245cd27cb Revert "sound/hda: Allow XE as i915 replacement for sound"
--:6: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '3cfcbd459fdcb8387b29869f96540654acc833ab', maybe rebased or not pulled?
-#6: 
-This reverts commit 3cfcbd459fdcb8387b29869f96540654acc833ab.
+ drivers/gpu/drm/xe/xe_devcoredump.c       |   9 ++
+ drivers/gpu/drm/xe/xe_devcoredump_types.h |   2 +
+ drivers/gpu/drm/xe/xe_vm.c                | 150 ++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_vm.h                |   4 +
+ drivers/gpu/drm/xe/xe_vm_types.h          |   8 ++
+ include/uapi/drm/xe_drm.h                 |   4 +
+ 6 files changed, 169 insertions(+), 8 deletions(-)
 
-total: 0 errors, 1 warnings, 0 checks, 150 lines checked
-1b25e9004 ASoC: SOF: core: Ensure sof_ops_free() is still called when probe never ran.
--:12: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '31bb7bd9ffee', maybe rebased or not pulled?
-#12: 
-Fixes: 31bb7bd9ffee ("ASoC: SOF: core: Only call sof_ops_free() on remove if the probe was successful")
-
-total: 0 errors, 1 warnings, 0 checks, 20 lines checked
-af269dff9 ASoC: SOF: core: Add probe_early and remove_late callbacks
-0e28ae293 ASoC: SOF: Intel: hda: start splitting the probe
-1b8af1ce9 ASoC: SOF: Intel: Fix error handling in hda_init()
-bc5e0f2a0 ALSA: hda: Intel: Fix error handling in azx_probe()
-8e140c8ba ALSA: hda: i915: Allow override of gpu binding.
-8e425d15c ALSA: hda: i915: Add an allow_modprobe argument to snd_hdac_i915_init
--:39: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#39: FILE: include/sound/hda_i915.h:17:
- }
-+static inline int snd_hdac_i915_init(struct hdac_bus *bus, bool allow_modprobe)
-
-total: 0 errors, 0 warnings, 1 checks, 73 lines checked
-eb3b6a979 ALSA: hda: i915: Allow xe as match for i915_component_master_match
--:33: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#33: FILE: sound/hda/hdac_i915.c:119:
-+	if ((!strcmp(dev->driver->name, "i915") ||
-+		 !strcmp(dev->driver->name, "xe")) &&
-
-total: 0 errors, 0 warnings, 1 checks, 9 lines checked
-1ed3bd66a ASoC: Intel: avs: Move snd_hdac_i915_init to before probe_work.
-536995453 ALSA: hda: Intel: Move snd_hdac_i915_init to before probe_work.
-b1bdfc12e ASoC: Intel: Skylake: Move snd_hdac_i915_init to before probe_work.
-1078ccbef ASoC: SOF: Intel: Move binding to display driver outside of deferred probe
-e2047e7d8 ALSA: hda: i915: Remove extra argument from snd_hdac_i915_init
--:31: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#31: FILE: include/sound/hda_i915.h:17:
- }
-+static inline int snd_hdac_i915_init(struct hdac_bus *bus)
-
-total: 0 errors, 0 warnings, 1 checks, 74 lines checked
-
+-- 
+2.40.1
 
