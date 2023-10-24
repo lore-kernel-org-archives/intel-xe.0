@@ -4,26 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7517DC25B48
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 10:55:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D59AC25B6C
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 10:55:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D62B10E344;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F14A310E348;
 	Tue, 24 Oct 2023 10:55:00 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC63A10E344
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 10:54:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14E1B10E344
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 10:54:54 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Oct 2023 12:54:29 +0200
-Message-Id: <20231024105433.715843-11-maarten.lankhorst@linux.intel.com>
+Date: Tue, 24 Oct 2023 12:54:31 +0200
+Message-Id: <20231024105433.715843-13-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
 References: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 11/15] ASoC: Intel: avs: Move snd_hdac_i915_init
- to before probe_work.
+Subject: [Intel-xe] [PATCH 13/15] ASoC: Intel: Skylake: Move
+ snd_hdac_i915_init to before probe_work.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,48 +49,73 @@ Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Acked-by: Mark Brown <broonie@kernel.org>
 Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
 Reviewed-by: Amadeusz Sławiński <amadeuszx.slawinski@linux.intel.com>
-Link: https://lore.kernel.org/r/20231009115437.99976-10-maarten.lankhorst@linux.intel.com
+Link: https://lore.kernel.org/r/20231009115437.99976-12-maarten.lankhorst@linux.intel.com
 Signed-off-by: Takashi Iwai <tiwai@suse.de>
-(cherry picked from commit 2dddc514b6e43245695901a4e9855e3de0902d15)
+(cherry picked from commit e46f13776fcadc08916e1bb494d673adaf390464)
 ---
- sound/soc/intel/avs/core.c | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+ sound/soc/intel/skylake/skl.c | 31 +++++++++----------------------
+ 1 file changed, 9 insertions(+), 22 deletions(-)
 
-diff --git a/sound/soc/intel/avs/core.c b/sound/soc/intel/avs/core.c
-index bbb40339c75f4..8a20639582487 100644
---- a/sound/soc/intel/avs/core.c
-+++ b/sound/soc/intel/avs/core.c
-@@ -191,10 +191,6 @@ static void avs_hda_probe_work(struct work_struct *work)
+diff --git a/sound/soc/intel/skylake/skl.c b/sound/soc/intel/skylake/skl.c
+index 4f7acb4f6680b..24bdbe2a53bec 100644
+--- a/sound/soc/intel/skylake/skl.c
++++ b/sound/soc/intel/skylake/skl.c
+@@ -783,23 +783,6 @@ static void skl_codec_create(struct hdac_bus *bus)
+ 	}
+ }
  
- 	pm_runtime_set_active(bus->dev); /* clear runtime_error flag */
- 
--	ret = snd_hdac_i915_init(bus, true);
--	if (ret < 0)
--		dev_info(bus->dev, "i915 init unsuccessful: %d\n", ret);
+-static int skl_i915_init(struct hdac_bus *bus)
+-{
+-	int err;
 -
- 	snd_hdac_display_power(bus, HDA_CODEC_IDX_CONTROLLER, true);
- 	avs_hdac_bus_init_chip(bus, true);
- 	avs_hdac_bus_probe_codecs(bus);
-@@ -465,10 +461,19 @@ static int avs_pci_probe(struct pci_dev *pci, const struct pci_device_id *id)
- 	pci_set_drvdata(pci, bus);
- 	device_disable_async_suspend(dev);
+-	/*
+-	 * The HDMI codec is in GPU so we need to ensure that it is powered
+-	 * up and ready for probe
+-	 */
+-	err = snd_hdac_i915_init(bus, true);
+-	if (err < 0)
+-		return err;
+-
+-	snd_hdac_display_power(bus, HDA_CODEC_IDX_CONTROLLER, true);
+-
+-	return 0;
+-}
+-
+ static void skl_probe_work(struct work_struct *work)
+ {
+ 	struct skl_dev *skl = container_of(work, struct skl_dev, probe_work);
+@@ -807,11 +790,8 @@ static void skl_probe_work(struct work_struct *work)
+ 	struct hdac_ext_link *hlink;
+ 	int err;
  
-+	ret = snd_hdac_i915_init(bus, false);
-+	if (ret == -EPROBE_DEFER)
-+		goto err_i915_init;
-+	else if (ret < 0)
-+		dev_info(bus->dev, "i915 init unsuccessful: %d\n", ret);
-+
- 	schedule_work(&adev->probe_work);
+-	if (IS_ENABLED(CONFIG_SND_SOC_HDAC_HDMI)) {
+-		err = skl_i915_init(bus);
+-		if (err < 0)
+-			return;
+-	}
++	if (IS_ENABLED(CONFIG_SND_SOC_HDAC_HDMI))
++		snd_hdac_display_power(bus, HDA_CODEC_IDX_CONTROLLER, true);
+ 
+ 	skl_init_pci(skl);
+ 	skl_dum_set(bus);
+@@ -1075,10 +1055,17 @@ static int skl_probe(struct pci_dev *pci,
+ 		goto out_dsp_free;
+ 	}
+ 
++	if (IS_ENABLED(CONFIG_SND_SOC_HDAC_HDMI)) {
++		err = snd_hdac_i915_init(bus, false);
++		if (err < 0)
++			goto out_dmic_unregister;
++	}
+ 	schedule_work(&skl->probe_work);
  
  	return 0;
  
-+err_i915_init:
-+	pci_clear_master(pci);
-+	pci_set_drvdata(pci, NULL);
- err_acquire_irq:
- 	snd_hdac_bus_free_stream_pages(bus);
- 	snd_hdac_ext_stream_free_all(bus);
++out_dmic_unregister:
++	skl_dmic_device_unregister(skl);
+ out_dsp_free:
+ 	skl_free_dsp(skl);
+ out_clk_free:
 -- 
 2.39.2
 
