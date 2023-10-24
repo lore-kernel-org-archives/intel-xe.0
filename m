@@ -4,25 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CD07C07545
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 10:55:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0F0C5C07545
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 11:14:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 414FC10E341;
-	Tue, 24 Oct 2023 10:55:23 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E803910E344
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 10:54:52 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Oct 2023 12:54:30 +0200
-Message-Id: <20231024105433.715843-12-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
-References: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id C901810E346;
+	Tue, 24 Oct 2023 11:14:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1AD7710E346;
+ Tue, 24 Oct 2023 11:14:33 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 143DBAA915;
+ Tue, 24 Oct 2023 11:14:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 12/15] ALSA: hda: Intel: Move snd_hdac_i915_init
- to before probe_work.
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
+Date: Tue, 24 Oct 2023 11:14:33 -0000
+Message-ID: <169814607304.18362.4495179320524334956@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20231024105433.715843-1-maarten.lankhorst@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_series_starting_with_=5B01/15=5D_Revert_=22sound/soc/sof=3A_?=
+ =?utf-8?q?Remove_deferred_probe_for_SOF=22?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,104 +40,36 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Now that we can use -EPROBE_DEFER, it's no longer required to spin off
-the snd_hdac_i915_init into a workqueue.
+== Series Details ==
 
-Use the -EPROBE_DEFER mechanism instead, which must be returned in the
-probe function.
+Series: series starting with [01/15] Revert "sound/soc/sof: Remove deferred probe for SOF"
+URL   : https://patchwork.freedesktop.org/series/125501/
+State : success
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-Reviewed-by: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Link: https://lore.kernel.org/r/20231009115437.99976-11-maarten.lankhorst@linux.intel.com
-Signed-off-by: Takashi Iwai <tiwai@suse.de>
-(cherry picked from commit 65cbbfa4e2ca81a1888e3ee82c9b5ae01356e11d)
----
- sound/pci/hda/hda_intel.c | 54 +++++++++++++++++++--------------------
- 1 file changed, 27 insertions(+), 27 deletions(-)
+== Summary ==
 
-diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
-index e42ad0e816e19..9dad3607596ab 100644
---- a/sound/pci/hda/hda_intel.c
-+++ b/sound/pci/hda/hda_intel.c
-@@ -2135,6 +2135,33 @@ static int azx_probe(struct pci_dev *pci,
- 
- 	pci_set_drvdata(pci, card);
- 
-+#ifdef CONFIG_SND_HDA_I915
-+	/* bind with i915 if needed */
-+	if (chip->driver_caps & AZX_DCAPS_I915_COMPONENT) {
-+		err = snd_hdac_i915_init(azx_bus(chip), false);
-+		if (err < 0) {
-+			/* if the controller is bound only with HDMI/DP
-+			 * (for HSW and BDW), we need to abort the probe;
-+			 * for other chips, still continue probing as other
-+			 * codecs can be on the same link.
-+			 */
-+			if (HDA_CONTROLLER_IN_GPU(pci)) {
-+				goto out_free;
-+			} else {
-+				/* don't bother any longer */
-+				chip->driver_caps &= ~AZX_DCAPS_I915_COMPONENT;
-+			}
-+		}
-+
-+		/* HSW/BDW controllers need this power */
-+		if (HDA_CONTROLLER_IN_GPU(pci))
-+			hda->need_i915_power = true;
-+	}
-+#else
-+	if (HDA_CONTROLLER_IN_GPU(pci))
-+		dev_err(card->dev, "Haswell/Broadwell HDMI/DP must build in CONFIG_SND_HDA_I915\n");
-+#endif
-+
- 	err = register_vga_switcheroo(chip);
- 	if (err < 0) {
- 		dev_err(card->dev, "Error registering vga_switcheroo client\n");
-@@ -2162,11 +2189,6 @@ static int azx_probe(struct pci_dev *pci,
- 	}
- #endif /* CONFIG_SND_HDA_PATCH_LOADER */
- 
--#ifndef CONFIG_SND_HDA_I915
--	if (HDA_CONTROLLER_IN_GPU(pci))
--		dev_err(card->dev, "Haswell/Broadwell HDMI/DP must build in CONFIG_SND_HDA_I915\n");
--#endif
--
- 	if (schedule_probe)
- 		schedule_delayed_work(&hda->probe_work, 0);
- 
-@@ -2264,28 +2286,6 @@ static int azx_probe_continue(struct azx *chip)
- 	to_hda_bus(bus)->bus_probing = 1;
- 	hda->probe_continued = 1;
- 
--	/* bind with i915 if needed */
--	if (chip->driver_caps & AZX_DCAPS_I915_COMPONENT) {
--		err = snd_hdac_i915_init(bus, true);
--		if (err < 0) {
--			/* if the controller is bound only with HDMI/DP
--			 * (for HSW and BDW), we need to abort the probe;
--			 * for other chips, still continue probing as other
--			 * codecs can be on the same link.
--			 */
--			if (HDA_CONTROLLER_IN_GPU(pci)) {
--				goto out_free;
--			} else {
--				/* don't bother any longer */
--				chip->driver_caps &= ~AZX_DCAPS_I915_COMPONENT;
--			}
--		}
--
--		/* HSW/BDW controllers need this power */
--		if (HDA_CONTROLLER_IN_GPU(pci))
--			hda->need_i915_power = true;
--	}
--
- 	/* Request display power well for the HDA controller or codec. For
- 	 * Haswell/Broadwell, both the display HDA controller and codec need
- 	 * this power. For other platforms, like Baytrail/Braswell, only the
--- 
-2.39.2
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 4354e27ef drm/xe: Simplify xe_res_get_buddy()
+=== git am output follows ===
+Applying: Revert "sound/soc/sof: Remove deferred probe for SOF"
+Applying: Revert "sound/hda: Allow XE as i915 replacement for sound"
+Applying: ASoC: SOF: core: Ensure sof_ops_free() is still called when probe never ran.
+Applying: ASoC: SOF: core: Add probe_early and remove_late callbacks
+Applying: ASoC: SOF: Intel: hda: start splitting the probe
+Applying: ASoC: SOF: Intel: Fix error handling in hda_init()
+Applying: ALSA: hda: Intel: Fix error handling in azx_probe()
+Applying: ALSA: hda: i915: Allow override of gpu binding.
+Applying: ALSA: hda: i915: Add an allow_modprobe argument to snd_hdac_i915_init
+Applying: ALSA: hda: i915: Allow xe as match for i915_component_master_match
+Applying: ASoC: Intel: avs: Move snd_hdac_i915_init to before probe_work.
+Applying: ALSA: hda: Intel: Move snd_hdac_i915_init to before probe_work.
+Applying: ASoC: Intel: Skylake: Move snd_hdac_i915_init to before probe_work.
+Applying: ASoC: SOF: Intel: Move binding to display driver outside of deferred probe
+Applying: ALSA: hda: i915: Remove extra argument from snd_hdac_i915_init
+
 
