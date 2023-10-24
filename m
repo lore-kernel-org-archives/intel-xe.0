@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E8DAC00A8F
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 07:02:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C9DD5C07545
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 07:04:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 038D710E041;
-	Tue, 24 Oct 2023 07:02:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F62910E041;
+	Tue, 24 Oct 2023 07:04:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3F9AD10E041;
- Tue, 24 Oct 2023 07:02:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D30AF10E0EE;
+ Tue, 24 Oct 2023 07:04:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 39EFDA7DFF;
- Tue, 24 Oct 2023 07:02:12 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CD2EDA7DFF;
+ Tue, 24 Oct 2023 07:04:21 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Tue, 24 Oct 2023 07:02:12 -0000
-Message-ID: <169813093220.18359.12591848350745107138@emeril.freedesktop.org>
+To: "Hogander, Jouni" <jouni.hogander@intel.com>
+Date: Tue, 24 Oct 2023 07:04:21 -0000
+Message-ID: <169813106181.18359.10447910573095345234@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231022180236.5170-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231022180236.5170-1-thomas.hellstrom@linux.intel.com>
+References: <20231023063420.3298731-1-jouni.hogander@intel.com>
+In-Reply-To: <20231023063420.3298731-1-jouni.hogander@intel.com>
 Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_Documentation/gpu=3A_VM=5FBIND_locking_document_=28rev2=29?=
+ =?utf-8?q?or_Revert_remaining_local_fb_tracking_patches_and_backport?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,8 +46,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Documentation/gpu: VM_BIND locking document (rev2)
-URL   : https://patchwork.freedesktop.org/series/122507/
+Series: Revert remaining local fb tracking patches and backport
+URL   : https://patchwork.freedesktop.org/series/125437/
 State : failure
 
 == Summary ==
@@ -55,18 +55,9 @@ State : failure
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 4354e27ef drm/xe: Simplify xe_res_get_buddy()
 === git am output follows ===
-.git/rebase-apply/patch:107: trailing whitespace.
-  
-.git/rebase-apply/patch:163: trailing whitespace.
-		
-.git/rebase-apply/patch:326: trailing whitespace.
-	    
-.git/rebase-apply/patch:355: trailing whitespace.
-we are notified 
-.git/rebase-apply/patch:478: trailing whitespace.
-list, it's not possible to take any outer locks like the 
-warning: squelched 1 whitespace error
-warning: 6 lines add whitespace errors.
-Applying: Documentation/gpu: VM_BIND locking document
+Applying: Revert "drm/i915/display: Use intel_bo_to_drm_bo instead of obj->base"
+Applying: Revert "drm/i915/display: Move releasing gem object away from fb tracking"
+Applying: drm/i915/display: Move releasing gem object away from fb tracking
+Applying: drm/i915/display: Use intel_bo_to_drm_bo instead of obj->base
 
 
