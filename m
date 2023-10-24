@@ -4,30 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9573C00A8F
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 07:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0EB3C25B47
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 07:10:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6C8B510E041;
-	Tue, 24 Oct 2023 07:08:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E63110E041;
+	Tue, 24 Oct 2023 07:10:46 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B25BB10E041;
- Tue, 24 Oct 2023 07:08:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7602810E041;
+ Tue, 24 Oct 2023 07:10:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id ABAF4A0169;
- Tue, 24 Oct 2023 07:08:36 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 71033AADDD;
+ Tue, 24 Oct 2023 07:10:44 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>
-Date: Tue, 24 Oct 2023 07:08:36 -0000
-Message-ID: <169813131667.18362.10066268732959977936@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Tue, 24 Oct 2023 07:10:44 -0000
+Message-ID: <169813144443.18360.5627944183672787636@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231023111729.696496-1-maarten.lankhorst@linux.intel.com>
-In-Reply-To: <20231023111729.696496-1-maarten.lankhorst@linux.intel.com>
+References: <20231023152138.132614-1-lucas.demarchi@intel.com>
+In-Reply-To: <20231023152138.132614-1-lucas.demarchi@intel.com>
 Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_sound/for-next=3A_Cherry_pick_patches_from_sound/for-next?=
+ =?utf-8?q?or_series_starting_with_=5B1/3=5D_drm/xe/xe2=3A_Add_initial_wor?=
+ =?utf-8?q?karounds?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,8 +47,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: sound/for-next: Cherry pick patches from sound/for-next
-URL   : https://patchwork.freedesktop.org/series/125449/
+Series: series starting with [1/3] drm/xe/xe2: Add initial workarounds
+URL   : https://patchwork.freedesktop.org/series/125465/
 State : failure
 
 == Summary ==
@@ -55,20 +56,8 @@ State : failure
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 4354e27ef drm/xe: Simplify xe_res_get_buddy()
 === git am output follows ===
-Applying: Revert "sound/soc/sof: Remove deferred probe for SOF"
-Applying: Revert "sound/hda: Allow XE as i915 replacement for sound"
-Applying: ASoC: SOF: core: Ensure sof_ops_free() is still called when probe never ran.
-Applying: ASoC: SOF: core: Add probe_early and remove_late callbacks
-Applying: ASoC: SOF: Intel: hda: start splitting the probe
-Applying: ASoC: SOF: Intel: Fix error handling in hda_init()
-Applying: ALSA: hda: Intel: Fix error handling in azx_probe()
-Applying: ALSA: hda: i915: Allow override of gpu binding.
-Applying: ALSA: hda: i915: Add an allow_modprobe argument to snd_hdac_i915_init
-Applying: ALSA: hda: i915: Allow xe as match for i915_component_master_match
-Applying: ASoC: Intel: avs: Move snd_hdac_i915_init to before probe_work.
-Applying: ALSA: hda: Intel: Move snd_hdac_i915_init to before probe_work.
-Applying: ASoC: Intel: Skylake: Move snd_hdac_i915_init to before probe_work.
-Applying: ASoC: SOF: Intel: Move binding to display driver outside of deferred probe
-Applying: ALSA: hda: i915: Remove extra argument from snd_hdac_i915_init
+Applying: drm/xe/xe2: Add initial workarounds
+Applying: drm/xe: Add performance tuning settings for MTL and Xe2
+Applying: drm/xe: Add Wa_14019821291
 
 
