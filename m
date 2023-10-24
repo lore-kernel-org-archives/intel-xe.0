@@ -4,24 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8359C07545
-	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 12:23:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B2BDFC25B48
+	for <intel-xe@archiver.kernel.org>; Tue, 24 Oct 2023 12:23:08 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFF5210E36F;
-	Tue, 24 Oct 2023 12:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D42310E362;
+	Tue, 24 Oct 2023 12:23:08 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se
  [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EDF9710E369
- for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 12:23:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 293AF10E364
+ for <intel-xe@lists.freedesktop.org>; Tue, 24 Oct 2023 12:23:05 +0000 (UTC)
 From: Maarten@mblankhorst.nl,
 	"Lankhorst <maarten.lankhorst"@linux.intel.com
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 24 Oct 2023 14:22:52 +0200
-Message-Id: <20231024122256.19512-1-dev@lankhorst.se>
+Date: Tue, 24 Oct 2023 14:22:53 +0200
+Message-Id: <20231024122256.19512-2-dev@lankhorst.se>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20231024122256.19512-1-dev@lankhorst.se>
+References: <20231024122256.19512-1-dev@lankhorst.se>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/4] drm/xe: Implement snapshot support.
+Subject: [Intel-xe] [PATCH 1/4] drm/xe: Add uapi for dumpable bos
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,36 +41,70 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Maarten Lankhorst <dev@lankhorst.se>
 
-Hopefully at least the uapi part can be merged. This takes a coredump in
-2 steps:
-1. On crash, take a snapshot of the VM layout, and a reference to the
-bo's to dump.
-2. On readout, take a snapshot of each bo to dump and release the
-reference.
+Add the flag XE_VM_BIND_FLAG_DUMPABLE to notify devcoredump that this
+mapping should be dumped.
 
-Because devcoredump is done in signaling context, we can't safely
-allocate a lot of memory, or do things like mmap, etc. As such, we have
-to wait for readout time to map the BO and copy its contents. This means
-that userspace may in the worst case overwrite data after the hang, but
-hopefully this is not a serious problem.
+This is not hooked up, but the uapi should be ready before merging.
 
-Needs more testing..
+It's likely easier to dump the contents of the bo's at devcoredump
+readout time, so it's better if the bos will stay unmodified after
+a hang. The NEEDS_CPU_MAPPING flag is removed as requirement.
 
-Maarten Lankhorst (4):
-  drm/xe: Add uapi for dumpable bos
-  drm/xe: Annotate each dumpable vma as such
-  drm/xe: Add vm snapshot mutex for easily taking a vm snapshot during
-    devcoredump
-  drm/xe: Implement VM snapshot support
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c | 11 ++++++++---
+ include/uapi/drm/xe_drm.h  |  4 ++++
+ 2 files changed, 12 insertions(+), 3 deletions(-)
 
- drivers/gpu/drm/xe/xe_devcoredump.c       |   9 ++
- drivers/gpu/drm/xe/xe_devcoredump_types.h |   2 +
- drivers/gpu/drm/xe/xe_vm.c                | 150 ++++++++++++++++++++--
- drivers/gpu/drm/xe/xe_vm.h                |   4 +
- drivers/gpu/drm/xe/xe_vm_types.h          |   8 ++
- include/uapi/drm/xe_drm.h                 |   4 +
- 6 files changed, 169 insertions(+), 8 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 498c0b3e1d73..dca03d8ad98e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2819,12 +2819,12 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ #define SUPPORTED_FLAGS	\
+ 	(FORCE_ASYNC_OP_ERROR | XE_VM_BIND_FLAG_ASYNC | \
+ 	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | \
+-	 XE_VM_BIND_FLAG_NULL | 0xffff)
++	 XE_VM_BIND_FLAG_NULL | XE_VM_BIND_FLAG_DUMPABLE | 0xffff)
+ #else
+ #define SUPPORTED_FLAGS	\
+ 	(XE_VM_BIND_FLAG_ASYNC | XE_VM_BIND_FLAG_READONLY | \
+ 	 XE_VM_BIND_FLAG_IMMEDIATE | XE_VM_BIND_FLAG_NULL | \
+-	 0xffff)
++	 XE_VM_BIND_FLAG_DUMPABLE | 0xffff)
+ #endif
+ #define XE_64K_PAGE_MASK 0xffffull
+ 
+@@ -3036,8 +3036,13 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		u32 obj = bind_ops[i].obj;
+ 		u64 obj_offset = bind_ops[i].obj_offset;
+ 
+-		if (!obj)
++		if (!obj) {
++			if (XE_IOCTL_DBG(xe, bind_ops[i].op & XE_VM_BIND_FLAG_DUMPABLE)) {
++				err = -EINVAL;
++				goto put_obj;
++			}
+ 			continue;
++		}
+ 
+ 		gem_obj = drm_gem_object_lookup(file, obj);
+ 		if (XE_IOCTL_DBG(xe, !gem_obj)) {
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 24bf8f0f52e8..42f5eb95d30c 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -677,6 +677,10 @@ struct drm_xe_vm_bind_op {
+ 	 * intended to implement VK sparse bindings.
+ 	 */
+ #define XE_VM_BIND_FLAG_NULL		(0x1 << 3)
++	/*
++	 * dumpable -> contents are attempted to be included in devcoredumps.
++	 */
++#define XE_VM_BIND_FLAG_DUMPABLE        (0x1 << 4)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
 -- 
 2.40.1
 
