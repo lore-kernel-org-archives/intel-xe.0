@@ -4,50 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96650C0032E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Oct 2023 17:29:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DD3DC0032E
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Oct 2023 17:39:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6954510E6C0;
-	Wed, 25 Oct 2023 17:29:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0BB6610E6BF;
+	Wed, 25 Oct 2023 17:39:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36A0410E6C0
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Oct 2023 17:29:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAFE010E6D5
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Oct 2023 17:39:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698254959; x=1729790959;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pMdOPUdp/jWlF1JDYLblR+qJUabNFI5AEAb7WBqkwiE=;
- b=e3jnpVn47qYe6kqcCHj8BuvZ2kRgzk8mc0bU1jGbCNQty7NX8Mr3l2fi
- r8rfQXflkVPf1Gyf9I+14tghkP+x7Fu9Q8+8zq481rmrMwCAMsLrPcOA8
- 27Bs9SAyjF0sMkWUGqx/kuu+vbeSXYulRDNOXBfnNpfuJjE3On5Z48mbN
- IdXvmC0ix+3O236OUkCQZpGiwRQb2gRxMNK3cisYS2UflXRJIseyOzCTq
- 5M7XnpOa+2TEcnO2ScE/cXxVw5kANmOfN0dO82D/nh6vGxEsHus7dpuj9
- ILRDEtvL9VsESu6AumyoX/Ht4mepZWy5xuYw0O8mN+HSaW0vXzICq2vLO Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="391230463"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="391230463"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ t=1698255589; x=1729791589;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=qnrB/2tPcYQFW8dH0hPe2P9ynbye+Hh6WlkLEbGmDrw=;
+ b=jCj3uLTxNNaoDJJrd6aeFi9VLcjlQo5NbW4eOW+LvXOZE+c6AZJq3pz0
+ sD5RAXBVq9UADpfDVJ0yt5oPyHfq7GMf/frl/Ec+1YNMqKPJ5AOAwzg9F
+ BYTE3v0pQPLddxoh34B33NqfM9I9Ul1PEmQusP6PcBRaJ3kCLTi0+Zque
+ pIll4x/W9EZSb7pzTH7LwvJZVlR12UWzrpqsYQlKOeE9FmUoG2FB3leJW
+ XCIgulwW0XfPy2kNnxKe9rHuKxhnIOWPvt9L4TjJ2I8pP+aO0B05bJ+N1
+ Dcac1BRX63DEaoK0DzTqDxeZgfXP6iqyFFGpfUc1VQmHx6LHCuqxLU0QQ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="391233689"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="391233689"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 10:28:53 -0700
+ 25 Oct 2023 10:39:49 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="932432722"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="932432722"
-Received: from dtorrice-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.252.33.83])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 10:28:52 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="735464912"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="735464912"
+Received: from kozlovdm-mobl.ger.corp.intel.com (HELO mwauld-mobl1.intel.com)
+ ([10.252.19.91])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Oct 2023 10:39:48 -0700
+From: Matthew Auld <matthew.auld@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Oct 2023 20:28:36 +0300
-Message-Id: <20231025172836.770398-3-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20231025172836.770398-1-jani.nikula@intel.com>
-References: <20231025172836.770398-1-jani.nikula@intel.com>
+Date: Wed, 25 Oct 2023 18:39:38 +0100
+Message-ID: <20231025173937.197744-5-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/i915: Abstract display info away during
- probe
+Subject: [Intel-xe] [PATCH 0/3] Some eviction fixes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,37 +56,14 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Hopefully fixes the scary corruption issues seen around evicting VRAM, as picked
+up by the IGTs written by Zbigniew [1].
 
-The goal is to have this function ready for Xe to use
-directly. So, let's use the available macro.
+[1] https://patchwork.freedesktop.org/series/124626/
 
-Cc: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20230929205023.1202735-1-rodrigo.vivi@intel.com
-(cherry picked from commit 4c7690614c8bbd6cd29b949f9084ddb294ffe284)
----
- drivers/gpu/drm/i915/display/intel_display_device.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index a6a18eae7ae8..ce55b968e658 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -926,7 +926,7 @@ void intel_display_device_probe(struct drm_i915_private *i915)
- 	else
- 		info = probe_display(i915);
- 
--	i915->display.info.__device_info = info;
-+	DISPLAY_INFO(i915) = info;
- 
- 	memcpy(DISPLAY_RUNTIME_INFO(i915),
- 	       &DISPLAY_INFO(i915)->__runtime_defaults,
 -- 
-2.39.2
+2.41.0
 
