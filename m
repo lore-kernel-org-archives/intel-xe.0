@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1794C07545
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Oct 2023 17:58:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E605DC25B6F
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Oct 2023 17:58:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8332E10E6C6;
-	Wed, 25 Oct 2023 17:58:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B5810E6C8;
+	Wed, 25 Oct 2023 17:58:09 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E26D10E6C6
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C093810E6C8
  for <intel-xe@lists.freedesktop.org>; Wed, 25 Oct 2023 17:58:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1698256685; x=1729792685;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JAmCVXAm3b8JDDKfKEPY7YM5jwnCaw5oV4WGsspc/Bo=;
- b=nyTuhDJzUDViiTCp0zBQkAJ+Po7D+s2vv/dIDh7JRWdapa3ye0dt+nVl
- WzkY0MdnEqjadCA5jEzi5FS/ujI0WHwHKoFM61ktwv5IUG+QjAQOu20HI
- 0YCAraGZZMkcxUszPt8X3qVo3Irwm2O5GiT8d8JUlQ3QomhP2qNB0Gy7w
- c50j8yYYw445JqfXjW0UTxLobA6JppUBmVMWj2U31JUC5QhwGKppMS7Uz
- dkTecQuQYtHoKs8LYBf8XWb3A9HecHlRoZ3cZygeN5d9XUuIGiyKmXYmg
- oRVGT8yHxlw2ohiyRb1j9JhJDrXv8FcVgkGywC/Dr00gduAGNPjmShrtj Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="386249958"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="386249958"
+ bh=xmUo2GdEWSyhwpRE10EqyP9yk/iNapfkoI2B4AwZwYY=;
+ b=ZRYiiIlXLjGEcFpl3p8ul4IgB9vEpx0XQQiyQP1m2aTzE+B9UfMj615u
+ EkvNhi8h0yLaOjQkrT5WPWLxXKPT1zOpmZtTQWPUVX0yJqzvD9yAMQwqj
+ hK3Z2DrrBPbuEP988deuwTpTU7Z3g7gR/oT3VnrItvLoC69SxHFqCn/UY
+ C6IkCbDT7ZBihIYjsO+QFdWoYAeX709huM232k8njLzr5lvduYO7n8O7h
+ Alhk5DLWMzkKBEycNmtN355fCFuNuaC0Ktqt5/1DFTgpger4AUuCscqLL
+ DVNEIOevU97nImovqclOqk5myFenvzgUDSYB7ZNRcJ/F1ZM7v8HiZPgZ1 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="386249966"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="386249966"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 10:57:56 -0700
+ 25 Oct 2023 10:58:04 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; 
-   d="scan'208";a="6642413"
+   d="scan'208";a="6642424"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 10:56:36 -0700
+ 25 Oct 2023 10:56:38 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Oct 2023 10:57:42 -0700
-Message-ID: <20231025175745.1906310-3-daniele.ceraolospurio@intel.com>
+Date: Wed, 25 Oct 2023 10:57:45 -0700
+Message-ID: <20231025175745.1906310-6-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231025175745.1906310-1-daniele.ceraolospurio@intel.com>
 References: <20231025175745.1906310-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 2/5] drm/xe/huc: Extract version and binary
- offset from new HuC headers
+Subject: [Intel-xe] [PATCH v3 5/5] drm/xe/huc: Define HuC for MTL
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,21 +60,10 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GSC-enabled HuC binary starts with a GSC header, which is followed
-by the legacy-style CSS header and the binary itself. We can parse the
-GSC headers to find the HuC version and the location of the binary to
-be used for the DMA transfer.
+MTL uses a versionless GSC-enabled binary.
 
-The parsing function has been designed to be re-used for the GSC binary,
-so the entry names are external parameters (because the GSC uses
-different ones) and the CSS entry is optional (because the GSC doesn't
-have it).
-
-v2: move new code to uc_fw.c, better comments and error checking, split
-    old code move to separate patch (Lucas), move headers and
-    documentation to uc_fw_abi.h.
-
-v3: use 2 separate loops, rework marker check (Lucas)
+v2: don't use the filename to identify the header type (Lucas)
+v3: fix commit msg (Lucas)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
@@ -83,323 +71,33 @@ Cc: John Harrison <John.C.Harrison@Intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- Documentation/gpu/xe/xe_firmware.rst |   3 +
- drivers/gpu/drm/xe/xe_uc_fw.c        | 121 ++++++++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_uc_fw.h        |   2 +-
- drivers/gpu/drm/xe/xe_uc_fw_abi.h    | 120 ++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_uc_fw_types.h  |   2 +
- 5 files changed, 245 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_uc_fw.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/gpu/xe/xe_firmware.rst b/Documentation/gpu/xe/xe_firmware.rst
-index f1ac6f608930..afcb561cd37d 100644
---- a/Documentation/gpu/xe/xe_firmware.rst
-+++ b/Documentation/gpu/xe/xe_firmware.rst
-@@ -10,6 +10,9 @@ Firmware Layout
- .. kernel-doc:: drivers/gpu/drm/xe/xe_uc_fw_abi.h
-    :doc: CSS-based Firmware Layout
- 
-+.. kernel-doc:: drivers/gpu/drm/xe/xe_uc_fw_abi.h
-+   :doc: GSC-based Firmware Layout
-+
- Write Once Protected Content Memory (WOPCM) Layout
- ==================================================
- 
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index f0e6e2e616f7..bfbc405ba8f2 100644
+index bfbc405ba8f2..040ee9bc28f0 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -402,9 +402,126 @@ static int parse_css_header(struct xe_uc_fw *uc_fw, const void *fw_data, size_t
- 	return 0;
- }
+@@ -112,12 +112,13 @@ struct fw_blobs_by_type {
+ 	fw_def(ROCKETLAKE,	major_ver(i915,	guc,	tgl,	70, 5))		\
+ 	fw_def(TIGERLAKE,	major_ver(i915,	guc,	tgl,	70, 5))
  
-+static bool is_cpd_header(const void* data)
-+{
-+	const u32 *marker = data;
-+
-+	return *marker == GSC_CPD_HEADER_MARKER;
-+}
-+
-+static u32 entry_offset(const struct gsc_cpd_header_v2 *header, const char *name)
-+{
-+	const struct gsc_cpd_entry *entry;
-+	int i;
-+
-+	entry = (void*)header + header->header_length;
-+
-+	for (i = 0; i < header->num_of_entries; i++, entry++)
-+		if (strcmp(entry->name, name) == 0)
-+			return entry->offset & GSC_CPD_ENTRY_OFFSET_MASK;
-+
-+	return 0;
-+}
-+
-+/* Refer to the "GSC-based Firmware Layout" documentation entry for details */
-+static int parse_cpd_header(struct xe_uc_fw *uc_fw, const void *data, size_t size,
-+			    const char *manifest_entry, const char *css_entry)
-+{
-+	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	const struct gsc_cpd_header_v2 *header = data;
-+	const struct gsc_manifest_header *manifest;
-+	size_t min_size = sizeof(*header);
-+	u32 offset;
-+
-+	/* manifest_entry is mandatory, css_entry is optional */
-+	xe_assert(xe, manifest_entry);
-+
-+	if (size < min_size || !is_cpd_header(header))
-+		return -ENOENT;
-+
-+	if (header->header_length < sizeof(struct gsc_cpd_header_v2)) {
-+		xe_gt_err(gt, "invalid CPD header length %u!\n", header->header_length);
-+		return -EINVAL;
-+	}
-+
-+	min_size = header->header_length + sizeof(struct gsc_cpd_entry) * header->num_of_entries;
-+	if (size < min_size) {
-+		xe_gt_err(gt, "FW too small! %zu < %zu\n", size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	/* Look for the manifest first */
-+	offset = entry_offset(header, manifest_entry);
-+	if (!offset) {
-+		xe_gt_err(gt, "Failed to find %s manifest!\n",
-+			  xe_uc_fw_type_repr(uc_fw->type));
-+		return -ENODATA;
-+	}
-+
-+	min_size = offset + sizeof(struct gsc_manifest_header);
-+	if (size < min_size) {
-+		xe_gt_err(gt, "FW too small! %zu < %zu\n", size, min_size);
-+		return -ENODATA;
-+	}
-+
-+	manifest = data + offset;
-+
-+	uc_fw->major_ver_found = manifest->fw_version.major;
-+	uc_fw->minor_ver_found = manifest->fw_version.minor;
-+	uc_fw->patch_ver_found = manifest->fw_version.hotfix;
-+
-+	/* then optionally look for the css header */
-+	if (css_entry) {
-+		int ret;
-+
-+		/*
-+		 * This section does not contain a CSS entry on DG2. We
-+		 * don't support DG2 HuC right now, so no need to handle
-+		 * it, just add a reminder in case that changes.
-+		 */
-+		xe_assert(xe, xe->info.platform != XE_DG2);
-+
-+		offset = entry_offset(header, css_entry);
-+
-+		/* the CSS header parser will check that the CSS header fits */
-+		if (offset > size) {
-+			xe_gt_err(gt, "FW too small! %zu < %u\n", size, offset);
-+			return -ENODATA;
-+		}
-+
-+		ret = parse_css_header(uc_fw, data + offset, size - offset);
-+		if (ret)
-+			return ret;
-+
-+		uc_fw->css_offset = offset;
-+	}
-+
-+	return 0;
-+}
-+
- static int parse_headers(struct xe_uc_fw *uc_fw, const struct firmware *fw)
- {
--	return parse_css_header(uc_fw, fw->data, fw->size);
-+	int ret;
-+
-+	/*
-+	 * All GuC releases and older HuC ones use CSS headers, while newer HuC
-+	 * releases use GSC CPD headers.
-+	 */
-+	switch (uc_fw->type) {
-+	case XE_UC_FW_TYPE_HUC:
-+		ret = parse_cpd_header(uc_fw, fw->data, fw->size, "HUCP.man", "huc_fw");
-+		if (!ret || ret != -ENOENT)
-+			return ret;
-+		fallthrough;
-+	case XE_UC_FW_TYPE_GUC:
-+		return parse_css_header(uc_fw, fw->data, fw->size);
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
- }
+-#define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)				\
+-	fw_def(DG1,		no_ver(i915,	huc,	dg1))			\
+-	fw_def(ALDERLAKE_P,	no_ver(i915,	huc,	tgl))			\
+-	fw_def(ALDERLAKE_S,	no_ver(i915,	huc,	tgl))			\
+-	fw_def(ROCKETLAKE,	no_ver(i915,	huc,	tgl))			\
+-	fw_def(TIGERLAKE,	no_ver(i915,	huc,	tgl))
++#define XE_HUC_FIRMWARE_DEFS(fw_def, mmp_ver, no_ver)		\
++	fw_def(METEORLAKE,	no_ver(i915,	huc_gsc,	mtl))		\
++	fw_def(DG1,		no_ver(i915,	huc,		dg1))		\
++	fw_def(ALDERLAKE_P,	no_ver(i915,	huc,		tgl))		\
++	fw_def(ALDERLAKE_S,	no_ver(i915,	huc,		tgl))		\
++	fw_def(ROCKETLAKE,	no_ver(i915,	huc,		tgl))		\
++	fw_def(TIGERLAKE,	no_ver(i915,	huc,		tgl))
  
- int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
-@@ -510,7 +627,7 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
- 	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
- 
- 	/* Set the source address for the uCode */
--	src_offset = uc_fw_ggtt_offset(uc_fw);
-+	src_offset = uc_fw_ggtt_offset(uc_fw) + uc_fw->css_offset;
- 	xe_mmio_write32(gt, DMA_ADDR_0_LOW, lower_32_bits(src_offset));
- 	xe_mmio_write32(gt, DMA_ADDR_0_HIGH, upper_32_bits(src_offset));
- 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
-index a519c77d4962..1d1a0c156cdf 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.h
-@@ -21,7 +21,7 @@ void xe_uc_fw_print(struct xe_uc_fw *uc_fw, struct drm_printer *p);
- 
- static inline u32 xe_uc_fw_rsa_offset(struct xe_uc_fw *uc_fw)
- {
--	return sizeof(struct uc_css_header) + uc_fw->ucode_size;
-+	return sizeof(struct uc_css_header) + uc_fw->ucode_size + uc_fw->css_offset;
- }
- 
- static inline void xe_uc_fw_change_status(struct xe_uc_fw *uc_fw,
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw_abi.h b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-index edae7bb3cd72..d6725c963251 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-@@ -85,4 +85,124 @@ struct uc_css_header {
- } __packed;
- static_assert(sizeof(struct uc_css_header) == 128);
- 
-+/**
-+ * DOC: GSC-based Firmware Layout
-+ *
-+ * The GSC-based firmware structure is used for GSC releases on all platforms
-+ * and for HuC releases starting from DG2/MTL. Older HuC releases use the
-+ * CSS-based layout instead. Differently from the CSS headers, the GSC headers
-+ * uses a directory + entries structure (i.e., there is array of addresses
-+ * pointing to specific header extensions identified by a name). Although the
-+ * header structures are the same, some of the entries are specific to GSC while
-+ * others are specific to HuC. The manifest header entry, which includes basic
-+ * information about the binary (like the version) is always present, but it is
-+ * named differently based on the binary type.
-+ *
-+ * The HuC binary starts with a Code Partition Directory (CPD) header. The
-+ * entries we're interested in for use in the driver are:
-+ *
-+ * 1. "HUCP.man": points to the manifest header for the HuC.
-+ * 2. "huc_fw": points to the FW code. On platforms that support load via DMA
-+ *    and 2-step HuC authentication (i.e. MTL+) this is a full CSS-based binary,
-+ *    while if the GSC is the one doing the load (which only happens on DG2)
-+ *    this section only contains the uCode.
-+ *
-+ * The GSC-based HuC firmware layout looks like this::
-+ *
-+ *	+================================================+
-+ *	|  CPD Header                                    |
-+ *	+================================================+
-+ *	|  CPD entries[]                                 |
-+ *	|      entry1                                    |
-+ *	|      ...                                       |
-+ *	|      entryX                                    |
-+ *	|          "HUCP.man"                            |
-+ *	|           ...                                  |
-+ *	|           offset  >----------------------------|------o
-+ *	|      ...                                       |      |
-+ *	|      entryY                                    |      |
-+ *	|          "huc_fw"                              |      |
-+ *	|           ...                                  |      |
-+ *	|           offset  >----------------------------|----------o
-+ *	+================================================+      |   |
-+ *	                                                        |   |
-+ *	+================================================+      |   |
-+ *	|  Manifest Header                               |<-----o   |
-+ *	|      ...                                       |          |
-+ *	|      FW version                                |          |
-+ *	|      ...                                       |          |
-+ *	+================================================+          |
-+ *	                                                            |
-+ *	+================================================+          |
-+ *	|  FW binary                                     |<---------o
-+ *	|      CSS (MTL+ only)                           |
-+ *	|      uCode                                     |
-+ *	|      RSA Key (MTL+ only)                       |
-+ *	|      ...                                       |
-+ *	+================================================+
-+ */
-+
-+struct gsc_version {
-+	u16 major;
-+	u16 minor;
-+	u16 hotfix;
-+	u16 build;
-+} __packed;
-+
-+/* Code partition directory (CPD) structures */
-+struct gsc_cpd_header_v2 {
-+	u32 header_marker;
-+#define GSC_CPD_HEADER_MARKER 0x44504324
-+
-+	u32 num_of_entries;
-+	u8 header_version;
-+	u8 entry_version;
-+	u8 header_length; /* in bytes */
-+	u8 flags;
-+	u32 partition_name;
-+	u32 crc32;
-+} __packed;
-+
-+struct gsc_cpd_entry {
-+	u8 name[12];
-+
-+	/*
-+	 * Bits 0-24: offset from the beginning of the code partition
-+	 * Bit 25: huffman compressed
-+	 * Bits 26-31: reserved
-+	 */
-+	u32 offset;
-+#define GSC_CPD_ENTRY_OFFSET_MASK GENMASK(24, 0)
-+#define GSC_CPD_ENTRY_HUFFMAN_COMP BIT(25)
-+
-+	/*
-+	 * Module/Item length, in bytes. For Huffman-compressed modules, this
-+	 * refers to the uncompressed size. For software-compressed modules,
-+	 * this refers to the compressed size.
-+	 */
-+	u32 length;
-+
-+	u8 reserved[4];
-+} __packed;
-+
-+struct gsc_manifest_header {
-+	u32 header_type; /* 0x4 for manifest type */
-+	u32 header_length; /* in dwords */
-+	u32 header_version;
-+	u32 flags;
-+	u32 vendor;
-+	u32 date;
-+	u32 size; /* In dwords, size of entire manifest (header + extensions) */
-+	u32 header_id;
-+	u32 internal_data;
-+	struct gsc_version fw_version;
-+	u32 security_version;
-+	struct gsc_version meu_kit_version;
-+	u32 meu_manifest_version;
-+	u8 general_data[4];
-+	u8 reserved3[56];
-+	u32 modulus_size; /* in dwords */
-+	u32 exponent_size; /* in dwords */
-+} __packed;
-+
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h b/drivers/gpu/drm/xe/xe_uc_fw_types.h
-index 444bff83cdbe..1650599303c8 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
-@@ -113,6 +113,8 @@ struct xe_uc_fw {
- 	u32 rsa_size;
- 	/** @ucode_size: micro kernel size */
- 	u32 ucode_size;
-+	/** @css_offset: offset within the blob at which the CSS is located */
-+	u32 css_offset;
- 
- 	/** @private_data_size: size of private data found in uC css header */
- 	u32 private_data_size;
+ #define MAKE_FW_PATH(dir__, uc__, shortname__, version__)			\
+ 	__stringify(dir__) "/" __stringify(shortname__) "_" __stringify(uc__) version__ ".bin"
 -- 
 2.41.0
 
