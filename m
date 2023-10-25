@@ -4,24 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 51A7DC25B6E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CF0BC25B6F
 	for <intel-xe@archiver.kernel.org>; Wed, 25 Oct 2023 10:21:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 182E310E631;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F0BA10E635;
 	Wed, 25 Oct 2023 10:21:06 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CD7310E592
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Oct 2023 10:21:03 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17C4410E642
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Oct 2023 10:20:58 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Oct 2023 12:20:43 +0200
-Message-Id: <20231025102045.817068-9-maarten.lankhorst@linux.intel.com>
+Date: Wed, 25 Oct 2023 12:20:39 +0200
+Message-Id: <20231025102045.817068-5-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231025102045.817068-1-maarten.lankhorst@linux.intel.com>
 References: <20231025102045.817068-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 08/10] more reverts
+Subject: [Intel-xe] [PATCH 04/10] FIXME drm/i915/display: Use
+ fence->set_deadline to boost requests
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,129 +38,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
----
- drivers/gpu/drm/i915/display/intel_cursor.c   |  8 ++---
- drivers/gpu/drm/i915/display/intel_display.c  | 35 -------------------
- .../drm/i915/display/intel_display_types.h    |  4 ---
- .../drm/i915/display/skl_universal_plane.c    |  4 ---
- 4 files changed, 3 insertions(+), 48 deletions(-)
+Instead of using a i915 specific method, use the generic helper to
+combine fences and set the deadline.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 8ed8a623fa98b..b342fad180ca5 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -30,17 +30,15 @@ static const u32 intel_cursor_formats[] = {
- 
- static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ .../gpu/drm/i915/display/intel_atomic_plane.c | 47 ++++---------------
+ drivers/gpu/drm/i915/display/intel_display.c  |  2 +
+ 2 files changed, 11 insertions(+), 38 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index dd65498166fbf..98a59445e6f45 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -1033,7 +1033,6 @@ static int
+ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 		       struct drm_plane_state *_new_plane_state)
  {
--	__maybe_unused struct drm_i915_private *dev_priv =
-+	struct drm_i915_private *dev_priv =
- 		to_i915(plane_state->uapi.plane->dev);
--	__maybe_unused const struct drm_framebuffer *fb = plane_state->hw.fb;
--	__maybe_unused const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
-+	const struct drm_framebuffer *fb = plane_state->hw.fb;
-+	const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
- 	u32 base;
+-	struct i915_sched_attr attr = { .priority = I915_PRIORITY_DISPLAY };
+ 	struct intel_plane *plane = to_intel_plane(_plane);
+ 	struct intel_plane_state *new_plane_state =
+ 		to_intel_plane_state(_new_plane_state);
+@@ -1072,49 +1071,20 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 		}
+ 	}
  
--#ifdef I915
- 	if (DISPLAY_INFO(dev_priv)->cursor_needs_physical)
- 		base = sg_dma_address(obj->mm.pages->sgl);
- 	else
--#endif
- 		base = intel_plane_ggtt_offset(plane_state);
+-	if (new_plane_state->uapi.fence) { /* explicit fencing */
+-		i915_gem_fence_wait_priority(new_plane_state->uapi.fence,
+-					     &attr);
+-		ret = i915_sw_fence_await_dma_fence(&state->commit_ready,
+-						    new_plane_state->uapi.fence,
+-						    i915_fence_timeout(dev_priv),
+-						    GFP_KERNEL);
+-		if (ret < 0)
++	if (obj) {
++		ret = intel_plane_pin_fb(new_plane_state);
++		if (ret)
+ 			return ret;
+ 	}
  
- 	return base + plane_state->view.color_plane[0].offset;
+-	if (!obj)
+-		return 0;
+-
+-
+-	ret = intel_plane_pin_fb(new_plane_state);
++	/* prepare after pinning */
++	ret = drm_gem_plane_helper_prepare_fb(_plane, _new_plane_state);
+ 	if (ret)
+-		return ret;
++		goto unpin_fb;
+ 
+-	i915_gem_object_wait_priority(obj, 0, &attr);
+-
+-	if (!new_plane_state->uapi.fence) { /* implicit fencing */
+-		struct dma_resv_iter cursor;
+-		struct dma_fence *fence;
+-
+-		ret = i915_sw_fence_await_reservation(&state->commit_ready,
+-						      obj->base.resv, false,
+-						      i915_fence_timeout(dev_priv),
+-						      GFP_KERNEL);
+-		if (ret < 0)
+-			goto unpin_fb;
+-
+-		dma_resv_iter_begin(&cursor, obj->base.resv,
+-				    DMA_RESV_USAGE_WRITE);
+-		dma_resv_for_each_fence_unlocked(&cursor, fence) {
+-			intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+-							     fence);
+-		}
+-		dma_resv_iter_end(&cursor);
+-	} else {
++	if (new_plane_state->uapi.fence)
+ 		intel_display_rps_boost_after_vblank(new_plane_state->hw.crtc,
+ 						     new_plane_state->uapi.fence);
+-	}
+ 
+ 	/*
+ 	 * We declare pageflips to be interactive and so merit a small bias
+@@ -1124,7 +1094,8 @@ intel_prepare_plane_fb(struct drm_plane *_plane,
+ 	 * that are not quite steady state without resorting to forcing
+ 	 * maximum clocks following a vblank miss (see do_rps_boost()).
+ 	 */
+-	intel_display_rps_mark_interactive(dev_priv, state, true);
++	if (obj)
++		intel_display_rps_mark_interactive(dev_priv, state, true);
+ 
+ 	return 0;
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 1b66d5adcebee..2f012ea75fba6 100644
+index 478b8764101a2..1b66d5adcebee 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -42,10 +42,8 @@
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_rect.h>
+@@ -6599,6 +6599,8 @@ static int intel_atomic_prepare_commit(struct intel_atomic_state *state)
+ 	if (ret < 0)
+ 		return ret;
  
--#ifdef I915
- #include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_object.h"
--#endif
- 
- #include "g4x_dp.h"
- #include "g4x_hdmi.h"
-@@ -7121,39 +7119,6 @@ static void intel_atomic_cleanup_work(struct work_struct *work)
- 	intel_atomic_helper_free_state(i915);
- }
- 
--#ifndef I915
--static int i915_gem_object_read_from_page(struct xe_bo *bo,
--					  u32 ofs, u64 *ptr, u32 size)
--{
--	struct ttm_bo_kmap_obj map;
--	void *virtual;
--	bool is_iomem;
--	int ret;
--
--	XE_WARN_ON(size != 8);
--
--	ret = xe_bo_lock(bo, true);
--	if (ret)
--		return ret;
--
--	ret = ttm_bo_kmap(&bo->ttm, ofs >> PAGE_SHIFT, 1, &map);
--	if (ret)
--		goto out_unlock;
--
--	ofs &= ~PAGE_MASK;
--	virtual = ttm_kmap_obj_virtual(&map, &is_iomem);
--	if (is_iomem)
--		*ptr = readq((void __iomem *)(virtual + ofs));
--	else
--		*ptr = *(u64 *)(virtual + ofs);
--
--	ttm_bo_kunmap(&map);
--out_unlock:
--	xe_bo_unlock(bo);
--	return ret;
--}
--#endif
--
- static void intel_atomic_prepare_plane_clear_colors(struct intel_atomic_state *state)
- {
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 1861372077f01..e7d4cdfbd62de 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -2115,11 +2115,7 @@ intel_crtc_needs_color_update(const struct intel_crtc_state *crtc_state)
- 
- static inline u32 intel_plane_ggtt_offset(const struct intel_plane_state *plane_state)
- {
--#ifdef I915
- 	return i915_ggtt_offset(plane_state->ggtt_vma);
--#else
--	return plane_state->ggtt_vma->node.start;
--#endif
- }
- 
- static inline struct intel_frontbuffer *
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 7d91344ec1aa2..5de0cff00e7d5 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2454,15 +2454,11 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- 		fb->modifier = DRM_FORMAT_MOD_LINEAR;
- 		break;
- 	case PLANE_CTL_TILED_X:
--#ifdef I915
- 		plane_config->tiling = I915_TILING_X;
--#endif
- 		fb->modifier = I915_FORMAT_MOD_X_TILED;
- 		break;
- 	case PLANE_CTL_TILED_Y:
--#ifdef I915
- 		plane_config->tiling = I915_TILING_Y;
--#endif
- 		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
- 			if (DISPLAY_VER(dev_priv) >= 14)
- 				fb->modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS;
++	drm_atomic_helper_set_fence_deadline(state->base.dev, &state->base);
++
+ 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+ 		if (intel_crtc_needs_color_update(crtc_state))
+ 			intel_color_prepare_commit(crtc_state);
 -- 
 2.39.2
 
