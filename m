@@ -4,48 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1908BC0032E
-	for <intel-xe@archiver.kernel.org>; Wed, 25 Oct 2023 17:57:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 48722C25B6E
+	for <intel-xe@archiver.kernel.org>; Wed, 25 Oct 2023 17:58:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB40D10E6BF;
-	Wed, 25 Oct 2023 17:57:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEBEE10E6C0;
+	Wed, 25 Oct 2023 17:57:59 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B21F10E6BF
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Oct 2023 17:57:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF6EB10E6BF
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Oct 2023 17:57:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698256676; x=1729792676;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=a4Eydg4hVFd5mLkM9nxN8XFiipPMO7+S5FahMKOdgw8=;
- b=SCPDW9CFLB+AnrAlPk6rzRscZtq/iAyKvlkkJTGRHY44Y8czPp+5LWuB
- tX9vGx0eCifY35hVzCJ8WWR2gQK+Kv2ZwCV5KjtDch2caKU1uf8FQQzZL
- r+loK3az2OOJG3+V2M7lfiWortge2JaYNm24p7xP8ocqhgL24HE1Q0bIc
- bx9yOZq2saLWIhSp8kHV69eNzENxXrw03LMzVYNYanjEZbF7RPJn3RAnU
- mmih5xZ7G0y/G4GwoiATlM8qZo863Q3Jk6akVTimrMmKK1Lha1dz+fCyc
- phQtaJgxdAzB/2KHpwdoh0hZSiZZv9yzYSpH9NZV5dY9B+v+MpW1NmXgG Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="386249957"
-X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="386249957"
+ t=1698256675; x=1729792675;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WHYsKhId5i9aB16MLaqNLfr3pmi/Qk9I0iTItN56bU0=;
+ b=USGHkJxcKT8NY0ULZPrzm5+cZ3jMh6gmQca5pc21HQl6QuNIKl9KOe/m
+ a4tL7gE5KQnv/Fqap4LFeoxSeb0vHADGrHJX1KOKIPeYL3kmF1EjATl7F
+ hr0vvIMp6DfFYa8zN/v3ISf61qs0kBhUilZkrbA9fGZf+hx7JxOTbBygF
+ 3agBC2wpAksbZaq6THaJVhQ8BUc2QVDGeMqkTLP1DqFaMCvZQMDcTLPfE
+ XcA5SaXFgHq70YEzDfyoFy5ssvRhvrIYi4L3S1SR5/AkKlz8cxGMtVq2F
+ UoJLaPHeTNmaj5KKR72QcIoQBphRucU0dJeYspTndMppn94rwC/69CvMo g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="386249955"
+X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; d="scan'208";a="386249955"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  25 Oct 2023 10:57:55 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.03,250,1694761200"; 
-   d="scan'208";a="6642409"
+   d="scan'208";a="6642406"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 10:56:35 -0700
+ 25 Oct 2023 10:56:34 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Oct 2023 10:57:41 -0700
-Message-ID: <20231025175745.1906310-2-daniele.ceraolospurio@intel.com>
+Date: Wed, 25 Oct 2023 10:57:40 -0700
+Message-ID: <20231025175745.1906310-1-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231025175745.1906310-1-daniele.ceraolospurio@intel.com>
-References: <20231025175745.1906310-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 1/5] drm/xe/uc: Prepare for parsing of
- different header types
+Subject: [Intel-xe] [PATCH v3 0/5] drm/xe: Clear-media HuC support for MTL
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,225 +58,44 @@ Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GSC binaries and newer HuC ones use GSC-style headers instead of the
-CSS. In preparation for adding support for such parsing, split out the
-current parsing code to its own function, to make it cleaner to add the
-new paths. The existing doc section has also been renamed to narrow it
-to CSS-based binaries.
+MTL supports HuC on the media GT with a 2-step authentication flow:
 
-v2: new patch in series, split out from next patch for easier reviewing
-v3: drop unneeded include (Lucas)
+1 - authentication via the GuC for clear-media
+2 - authentication via the GSC for protected content
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+This series introduces support for the first step. The actual flow to
+authenticate via the GuC is the same as in older platforms, but the
+HuC binary now has a new manifest which we need to parse. From the
+manifest we can extract the offset within the binary that we need to
+provide to the GuC for loading.
+
+The second step of the authentication will come as part of GSC support.
+
+v2: stop using the filename to check which headers are available, split
+up old code move to separate patch, add new code and docs to uc_fw files
+instead of huc ones.
+
+v3: update to parsing code to use separate loops, rework marker check.
+
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
 Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
----
- Documentation/gpu/xe/xe_firmware.rst |   2 +-
- drivers/gpu/drm/xe/xe_uc_fw.c        | 116 +++++++++++++++------------
- drivers/gpu/drm/xe/xe_uc_fw_abi.h    |   7 +-
- 3 files changed, 71 insertions(+), 54 deletions(-)
 
-diff --git a/Documentation/gpu/xe/xe_firmware.rst b/Documentation/gpu/xe/xe_firmware.rst
-index c01246ae99f5..f1ac6f608930 100644
---- a/Documentation/gpu/xe/xe_firmware.rst
-+++ b/Documentation/gpu/xe/xe_firmware.rst
-@@ -8,7 +8,7 @@ Firmware Layout
- ===============
- 
- .. kernel-doc:: drivers/gpu/drm/xe/xe_uc_fw_abi.h
--   :doc: Firmware Layout
-+   :doc: CSS-based Firmware Layout
- 
- Write Once Protected Content Memory (WOPCM) Layout
- ==================================================
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index edaa195fa25f..f0e6e2e616f7 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -344,57 +344,22 @@ static int uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw)
- 	return -ENOEXEC;
- }
- 
--int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
-+/* Refer to the "CSS-based Firmware Layout" documentation entry for details */
-+static int parse_css_header(struct xe_uc_fw *uc_fw, const void *fw_data, size_t fw_size)
- {
- 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
--	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
--	struct xe_tile *tile = gt_to_tile(gt);
--	struct device *dev = xe->drm.dev;
--	const struct firmware *fw = NULL;
- 	struct uc_css_header *css;
--	struct xe_bo *obj;
- 	size_t size;
--	int err;
--
--	/*
--	 * we use FIRMWARE_UNINITIALIZED to detect checks against uc_fw->status
--	 * before we're looked at the HW caps to see if we have uc support
--	 */
--	BUILD_BUG_ON(XE_UC_FIRMWARE_UNINITIALIZED);
--	xe_assert(xe, !uc_fw->status);
--	xe_assert(xe, !uc_fw->path);
--
--	uc_fw_auto_select(xe, uc_fw);
--	xe_uc_fw_change_status(uc_fw, uc_fw->path ?
--			       XE_UC_FIRMWARE_SELECTED :
--			       XE_UC_FIRMWARE_NOT_SUPPORTED);
--
--	if (!xe_uc_fw_is_supported(uc_fw))
--		return 0;
--
--	uc_fw_override(uc_fw);
--
--	/* an empty path means the firmware is disabled */
--	if (!xe_device_uc_enabled(xe) || !(*uc_fw->path)) {
--		xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_DISABLED);
--		drm_dbg(&xe->drm, "%s disabled", xe_uc_fw_type_repr(uc_fw->type));
--		return 0;
--	}
--
--	err = request_firmware(&fw, uc_fw->path, dev);
--	if (err)
--		goto fail;
- 
- 	/* Check the size of the blob before examining buffer contents */
--	if (unlikely(fw->size < sizeof(struct uc_css_header))) {
-+	if (unlikely(fw_size < sizeof(struct uc_css_header))) {
- 		drm_warn(&xe->drm, "%s firmware %s: invalid size: %zu < %zu\n",
- 			 xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
--			 fw->size, sizeof(struct uc_css_header));
--		err = -ENODATA;
--		goto fail;
-+			 fw_size, sizeof(struct uc_css_header));
-+		return -ENODATA;
- 	}
- 
--	css = (struct uc_css_header *)fw->data;
-+	css = (struct uc_css_header *)fw_data;
- 
- 	/* Check integrity of size values inside CSS header */
- 	size = (css->header_size_dw - css->key_size_dw - css->modulus_size_dw -
-@@ -403,9 +368,8 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
- 		drm_warn(&xe->drm,
- 			 "%s firmware %s: unexpected header size: %zu != %zu\n",
- 			 xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
--			 fw->size, sizeof(struct uc_css_header));
--		err = -EPROTO;
--		goto fail;
-+			 fw_size, sizeof(struct uc_css_header));
-+		return -EPROTO;
- 	}
- 
- 	/* uCode size must calculated from other sizes */
-@@ -417,12 +381,11 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
- 	/* At least, it should have header, uCode and RSA. Size of all three. */
- 	size = sizeof(struct uc_css_header) + uc_fw->ucode_size +
- 		uc_fw->rsa_size;
--	if (unlikely(fw->size < size)) {
-+	if (unlikely(fw_size < size)) {
- 		drm_warn(&xe->drm, "%s firmware %s: invalid size: %zu < %zu\n",
- 			 xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
--			 fw->size, size);
--		err = -ENOEXEC;
--		goto fail;
-+			 fw_size, size);
-+		return -ENOEXEC;
- 	}
- 
- 	/* Get version numbers from the CSS header */
-@@ -433,6 +396,60 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
- 	uc_fw->patch_ver_found = FIELD_GET(CSS_SW_VERSION_UC_PATCH,
- 					   css->sw_version);
- 
-+	if (uc_fw->type == XE_UC_FW_TYPE_GUC)
-+		guc_read_css_info(uc_fw, css);
-+
-+	return 0;
-+}
-+
-+static int parse_headers(struct xe_uc_fw *uc_fw, const struct firmware *fw)
-+{
-+	return parse_css_header(uc_fw, fw->data, fw->size);
-+}
-+
-+int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
-+{
-+	struct xe_device *xe = uc_fw_to_xe(uc_fw);
-+	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct device *dev = xe->drm.dev;
-+	const struct firmware *fw = NULL;
-+	struct xe_bo *obj;
-+	int err;
-+
-+	/*
-+	 * we use FIRMWARE_UNINITIALIZED to detect checks against uc_fw->status
-+	 * before we're looked at the HW caps to see if we have uc support
-+	 */
-+	BUILD_BUG_ON(XE_UC_FIRMWARE_UNINITIALIZED);
-+	xe_assert(xe, !uc_fw->status);
-+	xe_assert(xe, !uc_fw->path);
-+
-+	uc_fw_auto_select(xe, uc_fw);
-+	xe_uc_fw_change_status(uc_fw, uc_fw->path ?
-+			       XE_UC_FIRMWARE_SELECTED :
-+			       XE_UC_FIRMWARE_NOT_SUPPORTED);
-+
-+	if (!xe_uc_fw_is_supported(uc_fw))
-+		return 0;
-+
-+	uc_fw_override(uc_fw);
-+
-+	/* an empty path means the firmware is disabled */
-+	if (!xe_device_uc_enabled(xe) || !(*uc_fw->path)) {
-+		xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_DISABLED);
-+		drm_dbg(&xe->drm, "%s disabled", xe_uc_fw_type_repr(uc_fw->type));
-+		return 0;
-+	}
-+
-+	err = request_firmware(&fw, uc_fw->path, dev);
-+	if (err)
-+		goto fail;
-+
-+	err = parse_headers(uc_fw, fw);
-+	if (err)
-+		goto fail;
-+
- 	drm_info(&xe->drm, "Using %s firmware from %s version %u.%u.%u\n",
- 		 xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
- 		 uc_fw->major_ver_found, uc_fw->minor_ver_found, uc_fw->patch_ver_found);
-@@ -441,9 +458,6 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
- 	if (err)
- 		goto fail;
- 
--	if (uc_fw->type == XE_UC_FW_TYPE_GUC)
--		guc_read_css_info(uc_fw, css);
--
- 	obj = xe_bo_create_from_data(xe, tile, fw->data, fw->size,
- 				     ttm_bo_type_kernel,
- 				     XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw_abi.h b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-index 89e994ed4e00..edae7bb3cd72 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
-@@ -10,9 +10,12 @@
- #include <linux/types.h>
- 
- /**
-- * DOC: Firmware Layout
-+ * DOC: CSS-based Firmware Layout
-  *
-- * The GuC/HuC firmware layout looks like this::
-+ * The CSS-based firmware structure is used for GuC releases on all platforms
-+ * and for HuC releases up to DG1. Starting from DG2/MTL the HuC uses the GSC
-+ * layout instead.
-+ * The CSS firmware layout looks like this::
-  *
-  *      +======================================================================+
-  *      |  Firmware blob                                                       |
+Daniele Ceraolo Spurio (5):
+  drm/xe/uc: Prepare for parsing of different header types
+  drm/xe/huc: Extract version and binary offset from new HuC headers
+  drm/xe/huc: HuC is not supported on GTs that don't have video engines
+  drm/xe/huc: Don't re-auth HuC if it's already authenticated
+  drm/xe/huc: Define HuC for MTL
+
+ Documentation/gpu/xe/xe_firmware.rst |   5 +-
+ drivers/gpu/drm/xe/xe_huc.c          |  17 +-
+ drivers/gpu/drm/xe/xe_uc_fw.c        | 248 ++++++++++++++++++++-------
+ drivers/gpu/drm/xe/xe_uc_fw.h        |   2 +-
+ drivers/gpu/drm/xe/xe_uc_fw_abi.h    | 127 +++++++++++++-
+ drivers/gpu/drm/xe/xe_uc_fw_types.h  |   2 +
+ 6 files changed, 338 insertions(+), 63 deletions(-)
+
 -- 
 2.41.0
 
