@@ -4,26 +4,24 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B9A94C0032E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E166AC25B6B
 	for <intel-xe@archiver.kernel.org>; Wed, 25 Oct 2023 10:21:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73DAA10E632;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 964AD10E633;
 	Wed, 25 Oct 2023 10:21:05 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05ABE10E592
- for <intel-xe@lists.freedesktop.org>; Wed, 25 Oct 2023 10:21:02 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7EE5510E592
+ for <intel-xe@lists.freedesktop.org>; Wed, 25 Oct 2023 10:20:59 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 25 Oct 2023 12:20:42 +0200
-Message-Id: <20231025102045.817068-8-maarten.lankhorst@linux.intel.com>
+Date: Wed, 25 Oct 2023 12:20:40 +0200
+Message-Id: <20231025102045.817068-6-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231025102045.817068-1-maarten.lankhorst@linux.intel.com>
 References: <20231025102045.817068-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 07/10] Update compat headers.
+Subject: [Intel-xe] [PATCH 05/10] fixup xe i915_drv.h compat header
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,136 +36,23 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Some naughty headers used I915_GEM_OBJECT_H instead of their own name,
-fix it.
-
-Update headers to move some stuff out from the messy patch.
-
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- .../compat-i915-headers/gem/i915_gem_lmem.h   |  2 +
- .../compat-i915-headers/gem/i915_gem_object.h | 58 +++++++++++++++++++
- .../gem/i915_gem_object_frontbuffer.h         |  4 +-
- .../xe/compat-i915-headers/i915_gem_stolen.h  |  4 +-
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  6 ++
- 5 files changed, 70 insertions(+), 4 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+ drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
-new file mode 100644
-index 0000000000000..2f55e7e951e8c
---- /dev/null
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
-@@ -0,0 +1,2 @@
-+/* Empty */
-+
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-new file mode 100644
-index 0000000000000..5f0545a3a99b1
---- /dev/null
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-@@ -0,0 +1,58 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _I915_GEM_OBJECT_H_
-+#define _I915_GEM_OBJECT_H_
-+
-+/* For tiling definitions */
-+#include <uapi/drm/i915_drm.h>
-+
-+#undef I915_TILING_X
-+#undef I915_TILING_Y
-+#define I915_TILING_X 0
-+#define I915_TILING_Y 0
-+
-+#include "xe_bo.h"
-+#include <linux/types.h>
-+
-+static inline int i915_gem_object_read_from_page(struct xe_bo *bo,
-+						 u32 ofs, u64 *ptr, u32 size)
-+{
-+	struct ttm_bo_kmap_obj map;
-+	void *virtual;
-+	bool is_iomem;
-+	int ret;
-+
-+	WARN_ON(size != 8);
-+
-+	ret = xe_bo_lock(bo, true);
-+	if (ret)
-+		return ret;
-+
-+	ret = ttm_bo_kmap(&bo->ttm, ofs >> PAGE_SHIFT, 1, &map);
-+	if (ret)
-+		goto out_unlock;
-+
-+	ofs &= ~PAGE_MASK;
-+	virtual = ttm_kmap_obj_virtual(&map, &is_iomem);
-+	if (is_iomem)
-+		*ptr = readq((void __iomem *)(virtual + ofs));
-+	else
-+		*ptr = *(u64 *)(virtual + ofs);
-+
-+	ttm_bo_kunmap(&map);
-+out_unlock:
-+	xe_bo_unlock(bo);
-+	return ret;
-+}
-+
-+static inline dma_addr_t i915_gem_object_get_dma_address(const struct xe_bo *bo, pgoff_t n)
-+{
-+	/* Should never be called */
-+	WARN_ON(1);
-+	return n;
-+}
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
-index 227965e5f7846..6d883aca48b6e 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
-@@ -3,8 +3,8 @@
-  * Copyright © 2022 Intel Corporation
-  */
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 4e922446e40ef..5f24befb198fc 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -202,6 +202,7 @@ static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, bool wakeref)
  
--#ifndef _I915_GEM_OBJECT_H_
--#define _I915_GEM_OBJECT_H_
-+#ifndef _I915_GEM_OBJECT_FB_H_
-+#define _I915_GEM_OBJECT_FB_H_
+ #define intel_uncore_arm_unclaimed_mmio_detection(x) do { } while (0)
+ #define i915_sw_fence_commit(x) do { } while (0)
++#define i915_sw_fence_await_reservation(...) (0)
  
- #define i915_gem_object_get_frontbuffer(obj)		NULL
- #define i915_gem_object_set_frontbuffer(obj, front)	(front)
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
-index 32f60258ded69..888e7a87a9257 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
-@@ -1,5 +1,5 @@
--#ifndef _I915_GEM_OBJECT_H_
--#define _I915_GEM_OBJECT_H_
-+#ifndef _I915_GEM_STOLEN_H_
-+#define _I915_GEM_STOLEN_H_
- 
- #include "xe_ttm_stolen_mgr.h"
- #include "xe_res_cursor.h"
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index 9424144b1b5aa..23f2d037c313e 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -19,4 +19,10 @@ struct i915_vma {
- #define i915_ggtt_clear_scanout(bo) do { } while (0)
- 
- #define i915_vma_fence_id(vma) -1
-+
-+static inline u32 i915_ggtt_offset(const struct i915_vma *vma)
-+{
-+	return vma->node.start;
-+}
-+
- #endif
+ #define with_intel_runtime_pm(rpm, wf) \
+ 	for ((wf) = intel_runtime_pm_get(rpm); (wf); \
 -- 
 2.39.2
 
