@@ -4,24 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBC32C25B72
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C5EB6C25B6B
 	for <intel-xe@archiver.kernel.org>; Thu, 26 Oct 2023 12:33:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A178E10E7D2;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93FC410E7CF;
 	Thu, 26 Oct 2023 12:33:49 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0059310E7C8
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Oct 2023 12:33:41 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD20B10E7CB
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Oct 2023 12:33:45 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 26 Oct 2023 14:33:20 +0200
-Message-Id: <20231026123326.56044-4-maarten.lankhorst@linux.intel.com>
+Date: Thu, 26 Oct 2023 14:33:23 +0200
+Message-Id: <20231026123326.56044-7-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231026123326.56044-1-maarten.lankhorst@linux.intel.com>
 References: <20231026123326.56044-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 03/15] drm/i915: Implement fence->set_deadline.
+Subject: [Intel-xe] [PATCH 06/15] revert intel_frontbuffer changes.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,40 +37,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Useful when we want to start using it in display.
+No functional change, just things removed.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_request.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/i915/display/intel_frontbuffer.c | 7 ++++---
+ drivers/gpu/drm/i915/display/intel_frontbuffer.h | 4 ----
+ 2 files changed, 4 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index f59081066a19..72e6d0e70523 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -105,6 +105,14 @@ static signed long i915_fence_wait(struct dma_fence *fence,
- 					 timeout);
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+index d64ce5bfeca8..2ea37c0414a9 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
+@@ -190,7 +190,7 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
+ 		      enum fb_op_origin origin,
+ 		      unsigned int frontbuffer_bits)
+ {
+-	struct drm_i915_private *i915 = intel_bo_to_i915((front->obj));
++	struct drm_i915_private *i915 = intel_bo_to_i915(front->obj);
+ 
+ 	if (origin == ORIGIN_CS) {
+ 		spin_lock(&i915->display.fb_tracking.lock);
+@@ -259,6 +259,7 @@ static void frontbuffer_release(struct kref *ref)
+ 	drm_WARN_ON(&intel_bo_to_i915(obj)->drm, atomic_read(&front->bits));
+ 
+ 	i915_ggtt_clear_scanout(obj);
++
+ 	ret = i915_gem_object_set_frontbuffer(obj, NULL);
+ 	drm_WARN_ON(&intel_bo_to_i915(obj)->drm, ret);
+ 	spin_unlock(&intel_bo_to_i915(obj)->display.fb_tracking.lock);
+@@ -289,12 +290,12 @@ intel_frontbuffer_get(struct drm_i915_gem_object *obj)
+ 			 frontbuffer_retire,
+ 			 I915_ACTIVE_RETIRE_SLEEPS);
+ 	INIT_WORK(&front->flush_work, intel_frontbuffer_flush_work);
++
+ 	spin_lock(&i915->display.fb_tracking.lock);
+ 	cur = i915_gem_object_set_frontbuffer(obj, front);
+ 	spin_unlock(&i915->display.fb_tracking.lock);
+ 	if (cur != front)
+ 		kfree(front);
+-
+ 	return cur;
  }
  
-+static void i915_fence_set_deadline(struct dma_fence *fence,
-+				    ktime_t deadline)
-+{
-+	struct i915_sched_attr attr = { .priority = I915_PRIORITY_DISPLAY };
-+
-+	i915_gem_fence_wait_priority(fence, &attr);
-+}
-+
- struct kmem_cache *i915_request_slab_cache(void)
- {
- 	return slab_requests;
-@@ -177,6 +185,7 @@ const struct dma_fence_ops i915_fence_ops = {
- 	.enable_signaling = i915_fence_enable_signaling,
- 	.signaled = i915_fence_signaled,
- 	.wait = i915_fence_wait,
-+	.set_deadline = i915_fence_set_deadline,
- 	.release = i915_fence_release,
- };
+@@ -337,7 +338,7 @@ void intel_frontbuffer_track(struct intel_frontbuffer *old,
+ 	}
  
+ 	if (new) {
+-		drm_WARN_ON(&intel_bo_to_i915(old->obj)->drm,
++		drm_WARN_ON(&intel_bo_to_i915(new->obj)->drm,
+ 			    atomic_read(&new->bits) & frontbuffer_bits);
+ 		atomic_or(frontbuffer_bits, &new->bits);
+ 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+index 00467d513e74..abb51e8bb920 100644
+--- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
++++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
+@@ -28,10 +28,6 @@
+ #include <linux/bits.h>
+ #include <linux/kref.h>
+ 
+-#ifndef I915
+-#include "xe_bo.h"
+-#endif
+-
+ #include "i915_active_types.h"
+ 
+ struct drm_i915_private;
 -- 
 2.40.1
 
