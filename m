@@ -4,49 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5D7CDC25B67
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81DA9C25B48
 	for <intel-xe@archiver.kernel.org>; Thu, 26 Oct 2023 04:12:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAB6B10E756;
-	Thu, 26 Oct 2023 04:12:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEC2C10E755;
+	Thu, 26 Oct 2023 04:12:15 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D35BE10E74E;
- Thu, 26 Oct 2023 04:12:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C92810E74C;
+ Thu, 26 Oct 2023 04:12:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698293532; x=1729829532;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=IR3Nb/QJlwF0LdiV5d+PSeFWrGpZMa0YFYGmqPTgC1E=;
- b=lwrUQMXzcMYVcJlqv5bz2voKi4LgkJMujELmMtdPJMNJjarrmNqNChQI
- qSYy2HHiGFjyZ7ZXAG8DzMuyP9DAk9Aq09sg8eT+mTKCCVJ/ywbWRl84z
- peBIg+vpBZt0G83i77egwdd9B30SJ6nBp3qfbE0Rz69McTEK17zJZH/bE
- 2wqNzPo/oM+6WNHrtMU+gWrqMD+QFzEPUyMaQeJ12gOALtvwuauY2Q0qk
- ARJfKlTe+EL9ZqA9W8jiSMRy7YbR0vjQavfYyQ/iVX9v+dQn0Ihk+DTDP
- H0C6I7xRCXpzV4TiDv9TTq5gblkgMvMQ16d7XDULtJwoJ0aWH+vkfgAxK Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="377823066"
-X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="377823066"
+ t=1698293529; x=1729829529;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=WT50UlYgFqILPLXA3UdpBaBOjFYNfaRQWbX3QSgAWao=;
+ b=J7TjNn1GfTSj/Im6+eKHQoVKqgFRh+M926S0ZAPTZqm+Gp5nd3kvSAuU
+ gHz4lQt5Mz8unDD0MrRujCHWr6HnwR3IgQwUwow9lT9Flzorce3WQ6yrY
+ aAdPpOlfHfnEElu3KN8zCI0pwvxut9+GVbLRloGzocJFmBK1mPrrPxHGW
+ 9u8PkGjenkPP329qLZgE4jqzfUSqHsNpURcOqRQ33w0uU7HSVESQlze25
+ v//zNbFZMQMDvtLnjdY+QbBy1XrqbP0klx3FeZE1DR4TLpiIIJRjygbUK
+ hBuBRKBGwRPnaiFcbnQBOz9sJ/4nNaFAQwh5LP33MAjip31XxJvf0a8UW w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="377822989"
+X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="377822989"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 21:12:12 -0700
+ 25 Oct 2023 21:12:08 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="762685147"
-X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="762685147"
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="762685118"
+X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="762685118"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 21:12:11 -0700
+ 25 Oct 2023 21:12:07 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Date: Wed, 25 Oct 2023 21:12:36 -0700
-Message-Id: <20231026041236.1273694-7-matthew.brost@intel.com>
+Date: Wed, 25 Oct 2023 21:12:30 -0700
+Message-Id: <20231026041236.1273694-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231026041236.1273694-1-matthew.brost@intel.com>
-References: <20231026041236.1273694-1-matthew.brost@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v7 6/6] drm/sched: Add a helper to queue TDR
- immediately
+Subject: [Intel-xe] [PATCH v7 0/6] DRM scheduler changes for Xe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,73 +64,86 @@ Cc: robdclark@chromium.org, lina@asahilina.net, sarah.walker@imgtec.com,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a helper whereby a driver can invoke TDR immediately.
+As a prerequisite to merging the new Intel Xe DRM driver [1] [2], we
+have been asked to merge our common DRM scheduler patches first.
+
+This a continuation of a RFC [3] with all comments addressed, ready for
+a full review, and hopefully in state which can merged in the near
+future. More details of this series can found in the cover letter of the
+RFC [3].
+
+These changes have been tested with the Xe driver. Based on drm-tip branch.
+
+A follow up series will be posted to address some of dakr requets for
+kernel doc changes.
 
 v2:
- - Drop timeout args, rename function, use mod delayed work (Luben)
+ - Break run job, free job, and process message in own work items
+ - This might break other drivers as run job and free job now can run in
+   parallel, can fix up if needed
+
 v3:
- - s/XE/Xe (Luben)
- - present tense in commit message (Luben)
- - Adjust comment for drm_sched_tdr_queue_imm (Luben)
+ - Include missing patch 'drm/sched: Add drm_sched_submit_* helpers'
+ - Fix issue with setting timestamp to early
+ - Don't dequeue jobs for single entity after calling entity fini
+ - Flush pending jobs on entity fini
+ - Add documentation for entity teardown
+ - Add Matthew Brost to maintainers of DRM scheduler
+
 v4:
- - Adjust commit message (Luben)
+ - Drop message interface
+ - Drop 'Flush pending jobs on entity fini'
+ - Drop 'Add documentation for entity teardown'
+ - Address all feedback
 
-Cc: Luben Tuikov <luben.tuikov@amd.com>
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Luben Tuikov <luben.tuikov@amd.com>
----
- drivers/gpu/drm/scheduler/sched_main.c | 18 +++++++++++++++++-
- include/drm/gpu_scheduler.h            |  1 +
- 2 files changed, 18 insertions(+), 1 deletion(-)
+v5:
+ - Address Luben's feedback
+ - Drop starting TDR after calling run_job()
+ - Drop adding Matthew Brost to maintainers of DRM scheduler
 
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
-index ae66cabc3162..246213963928 100644
---- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -389,7 +389,7 @@ static void drm_sched_start_timeout(struct drm_gpu_scheduler *sched)
- 
- 	if (sched->timeout != MAX_SCHEDULE_TIMEOUT &&
- 	    !list_empty(&sched->pending_list))
--		queue_delayed_work(sched->timeout_wq, &sched->work_tdr, sched->timeout);
-+		mod_delayed_work(sched->timeout_wq, &sched->work_tdr, sched->timeout);
- }
- 
- static void drm_sched_start_timeout_unlocked(struct drm_gpu_scheduler *sched)
-@@ -399,6 +399,22 @@ static void drm_sched_start_timeout_unlocked(struct drm_gpu_scheduler *sched)
- 	spin_unlock(&sched->job_list_lock);
- }
- 
-+/**
-+ * drm_sched_tdr_queue_imm: - immediately start job timeout handler
-+ *
-+ * @sched: scheduler for which the timeout handling should be started.
-+ *
-+ * Start timeout handling immediately for the named scheduler.
-+ */
-+void drm_sched_tdr_queue_imm(struct drm_gpu_scheduler *sched)
-+{
-+	spin_lock(&sched->job_list_lock);
-+	sched->timeout = 0;
-+	drm_sched_start_timeout(sched);
-+	spin_unlock(&sched->job_list_lock);
-+}
-+EXPORT_SYMBOL(drm_sched_tdr_queue_imm);
-+
- /**
-  * drm_sched_fault - immediately start timeout handler
-  *
-diff --git a/include/drm/gpu_scheduler.h b/include/drm/gpu_scheduler.h
-index 37749f561866..e5a6166eb152 100644
---- a/include/drm/gpu_scheduler.h
-+++ b/include/drm/gpu_scheduler.h
-@@ -557,6 +557,7 @@ void drm_sched_entity_modify_sched(struct drm_sched_entity *entity,
- 				    struct drm_gpu_scheduler **sched_list,
-                                    unsigned int num_sched_list);
- 
-+void drm_sched_tdr_queue_imm(struct drm_gpu_scheduler *sched);
- void drm_sched_job_cleanup(struct drm_sched_job *job);
- void drm_sched_wakeup_if_can_queue(struct drm_gpu_scheduler *sched);
- bool drm_sched_wqueue_ready(struct drm_gpu_scheduler *sched);
+v6:
+ - Address Luben's feedback
+ - Include base commit
+
+v7:
+ - Drop SINGLE_ENTITY mode rather pull in Luben's patch for dynamic run queues
+ - Address Luben's feedback for free_job work item patch
+
+Matt
+
+[1] https://gitlab.freedesktop.org/drm/xe/kernel
+[2] https://patchwork.freedesktop.org/series/112188/
+[3] https://patchwork.freedesktop.org/series/116055/
+
+Luben Tuikov (1):
+  drm/sched: Convert the GPU scheduler to variable number of run-queues
+
+Matthew Brost (5):
+  drm/sched: Add drm_sched_wqueue_* helpers
+  drm/sched: Convert drm scheduler to use a work queue rather than
+    kthread
+  drm/sched: Split free_job into own work item
+  drm/sched: Add drm_sched_start_timeout_unlocked helper
+  drm/sched: Add a helper to queue TDR immediately
+
+ .../drm/amd/amdgpu/amdgpu_amdkfd_arcturus.c   |   2 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_debugfs.c   |  15 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_device.c    |  15 +-
+ drivers/gpu/drm/amd/amdgpu/amdgpu_job.c       |   4 +-
+ drivers/gpu/drm/etnaviv/etnaviv_sched.c       |   1 +
+ drivers/gpu/drm/lima/lima_sched.c             |   3 +-
+ drivers/gpu/drm/msm/adreno/adreno_device.c    |   6 +-
+ drivers/gpu/drm/msm/msm_ringbuffer.c          |   6 +-
+ drivers/gpu/drm/nouveau/nouveau_sched.c       |   3 +-
+ drivers/gpu/drm/panfrost/panfrost_job.c       |   1 +
+ drivers/gpu/drm/scheduler/sched_entity.c      |  18 +-
+ drivers/gpu/drm/scheduler/sched_main.c        | 444 ++++++++++++------
+ drivers/gpu/drm/v3d/v3d_sched.c               |  10 +-
+ include/drm/gpu_scheduler.h                   |  29 +-
+ 14 files changed, 373 insertions(+), 184 deletions(-)
+
+
+base-commit: 201c8a7bd1f3f415920a2df4b8a8817e973f42fe
 -- 
 2.34.1
 
