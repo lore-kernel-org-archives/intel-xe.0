@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A344C25B48
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Oct 2023 10:19:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6EAF2C25B6B
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Oct 2023 10:19:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F063A10E7A2;
-	Thu, 26 Oct 2023 10:19:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 391C210E7A3;
+	Thu, 26 Oct 2023 10:19:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id C9B7810E7A2;
- Thu, 26 Oct 2023 10:19:31 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9ADF510E7A3;
+ Thu, 26 Oct 2023 10:19:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C40A8A882E;
- Thu, 26 Oct 2023 10:19:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9875AA882E;
+ Thu, 26 Oct 2023 10:19:55 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 26 Oct 2023 10:19:31 -0000
-Message-ID: <169831557179.20469.16278532143286790853@emeril.freedesktop.org>
+Date: Thu, 26 Oct 2023 10:19:55 -0000
+Message-ID: <169831559561.20470.17196937931621781624@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231026101536.5509-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20231026101536.5509-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_series_starting_with_=5BCI=2C01/10=5D_drm/gpuvm=3A_convert_W?=
- =?utf-8?q?ARN=28=29_to_drm=5FWARN=28=29_variants?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_se?=
+ =?utf-8?q?ries_starting_with_=5BCI=2C01/10=5D_drm/gpuvm=3A_convert_WARN?=
+ =?utf-8?q?=28=29_to_drm=5FWARN=28=29_variants?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -49,22 +49,326 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [CI,01/10] drm/gpuvm: convert WARN() to drm_WARN() variants
 URL   : https://patchwork.freedesktop.org/series/125627/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 4c7ed0ef2 drm/xe/mocs: MOCS registers are multicast on Xe_HP and beyond
-=== git am output follows ===
-Applying: drm/gpuvm: convert WARN() to drm_WARN() variants
-Applying: drm/gpuvm: add common dma-resv per struct drm_gpuvm
-Applying: drm/xe: Adjust to "drm/gpuvm: add common dma-resv per struct drm_gpuvm"
-Applying: drm/gpuvm: add drm_gpuvm_flags to drm_gpuvm
-Applying: drm/xe: Adjust to commit "drm/gpuvm: add drm_gpuvm_flags to drm_gpuvm"
-Applying: drm/gpuvm: add an abstraction for a VM / BO combination
-Applying: drm/xe: Adjust to commit "drm/gpuvm: add an abstraction for a VM/BO combination"
-Applying: drm/gpuvm: track/lock/validate external/evicted objects
-Applying: drm/xe: Adapt to GPUVM tracking of external / evicted objects.
-Applying: drm/xe: Use DRM_GPUVM_RESV_PROTECTED for gpuvm
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 6af4e25d75e7d20a3303ea741a9412197e819dfc
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Thu Oct 26 12:15:36 2023 +0200
+
+    drm/xe: Use DRM_GPUVM_RESV_PROTECTED for gpuvm
+    
+    Use DRM_GPUVM_RESV_PROTECTED to relax locking.
+    
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 4c7ed0ef2d582ae173d9a2062ee6f7360d1aa1df drm-intel
+e9242a68a drm/gpuvm: convert WARN() to drm_WARN() variants
+bdc3a21bf drm/gpuvm: add common dma-resv per struct drm_gpuvm
+f36b24ef6 drm/xe: Adjust to "drm/gpuvm: add common dma-resv per struct drm_gpuvm"
+-:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 351 lines checked
+193abd445 drm/gpuvm: add drm_gpuvm_flags to drm_gpuvm
+14798453a drm/xe: Adjust to commit "drm/gpuvm: add drm_gpuvm_flags to drm_gpuvm"
+-:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 10 lines checked
+cbc65721b drm/gpuvm: add an abstraction for a VM / BO combination
+80a134a39 drm/xe: Adjust to commit "drm/gpuvm: add an abstraction for a VM/BO combination"
+-:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
+
+total: 0 errors, 1 warnings, 0 checks, 96 lines checked
+bc2fcff95 drm/gpuvm: track/lock/validate external/evicted objects
+-:101: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__gpuvm' - possible side-effects?
+#101: FILE: drivers/gpu/drm/drm_gpuvm.c:687:
++#define get_next_vm_bo_from_list(__gpuvm, __list_name, __local_list, __prev_vm_bo)	\
++	({										\
++		struct drm_gpuvm_bo *__vm_bo = NULL;					\
++											\
++		drm_gpuvm_bo_put(__prev_vm_bo);						\
++											\
++		spin_lock(&(__gpuvm)->__list_name.lock);				\
++		if (!(__gpuvm)->__list_name.local_list)					\
++			(__gpuvm)->__list_name.local_list = __local_list;		\
++		else									\
++			drm_WARN_ON((__gpuvm)->drm,					\
++				    (__gpuvm)->__list_name.local_list != __local_list);	\
++											\
++		while (!list_empty(&(__gpuvm)->__list_name.list)) {			\
++			__vm_bo = list_first_entry(&(__gpuvm)->__list_name.list,	\
++						   struct drm_gpuvm_bo,			\
++						   list.entry.__list_name);		\
++			if (kref_get_unless_zero(&__vm_bo->kref)) {			\
++				list_move_tail(&(__vm_bo)->list.entry.__list_name,	\
++					       __local_list);				\
++				break;							\
++			} else {							\
++				list_del_init(&(__vm_bo)->list.entry.__list_name);	\
++				__vm_bo = NULL;						\
++			}								\
++		}									\
++		spin_unlock(&(__gpuvm)->__list_name.lock);				\
++											\
++		__vm_bo;								\
++	})
+
+-:101: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__list_name' - possible side-effects?
+#101: FILE: drivers/gpu/drm/drm_gpuvm.c:687:
++#define get_next_vm_bo_from_list(__gpuvm, __list_name, __local_list, __prev_vm_bo)	\
++	({										\
++		struct drm_gpuvm_bo *__vm_bo = NULL;					\
++											\
++		drm_gpuvm_bo_put(__prev_vm_bo);						\
++											\
++		spin_lock(&(__gpuvm)->__list_name.lock);				\
++		if (!(__gpuvm)->__list_name.local_list)					\
++			(__gpuvm)->__list_name.local_list = __local_list;		\
++		else									\
++			drm_WARN_ON((__gpuvm)->drm,					\
++				    (__gpuvm)->__list_name.local_list != __local_list);	\
++											\
++		while (!list_empty(&(__gpuvm)->__list_name.list)) {			\
++			__vm_bo = list_first_entry(&(__gpuvm)->__list_name.list,	\
++						   struct drm_gpuvm_bo,			\
++						   list.entry.__list_name);		\
++			if (kref_get_unless_zero(&__vm_bo->kref)) {			\
++				list_move_tail(&(__vm_bo)->list.entry.__list_name,	\
++					       __local_list);				\
++				break;							\
++			} else {							\
++				list_del_init(&(__vm_bo)->list.entry.__list_name);	\
++				__vm_bo = NULL;						\
++			}								\
++		}									\
++		spin_unlock(&(__gpuvm)->__list_name.lock);				\
++											\
++		__vm_bo;								\
++	})
+
+-:101: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__list_name' may be better as '(__list_name)' to avoid precedence issues
+#101: FILE: drivers/gpu/drm/drm_gpuvm.c:687:
++#define get_next_vm_bo_from_list(__gpuvm, __list_name, __local_list, __prev_vm_bo)	\
++	({										\
++		struct drm_gpuvm_bo *__vm_bo = NULL;					\
++											\
++		drm_gpuvm_bo_put(__prev_vm_bo);						\
++											\
++		spin_lock(&(__gpuvm)->__list_name.lock);				\
++		if (!(__gpuvm)->__list_name.local_list)					\
++			(__gpuvm)->__list_name.local_list = __local_list;		\
++		else									\
++			drm_WARN_ON((__gpuvm)->drm,					\
++				    (__gpuvm)->__list_name.local_list != __local_list);	\
++											\
++		while (!list_empty(&(__gpuvm)->__list_name.list)) {			\
++			__vm_bo = list_first_entry(&(__gpuvm)->__list_name.list,	\
++						   struct drm_gpuvm_bo,			\
++						   list.entry.__list_name);		\
++			if (kref_get_unless_zero(&__vm_bo->kref)) {			\
++				list_move_tail(&(__vm_bo)->list.entry.__list_name,	\
++					       __local_list);				\
++				break;							\
++			} else {							\
++				list_del_init(&(__vm_bo)->list.entry.__list_name);	\
++				__vm_bo = NULL;						\
++			}								\
++		}									\
++		spin_unlock(&(__gpuvm)->__list_name.lock);				\
++											\
++		__vm_bo;								\
++	})
+
+-:101: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__local_list' - possible side-effects?
+#101: FILE: drivers/gpu/drm/drm_gpuvm.c:687:
++#define get_next_vm_bo_from_list(__gpuvm, __list_name, __local_list, __prev_vm_bo)	\
++	({										\
++		struct drm_gpuvm_bo *__vm_bo = NULL;					\
++											\
++		drm_gpuvm_bo_put(__prev_vm_bo);						\
++											\
++		spin_lock(&(__gpuvm)->__list_name.lock);				\
++		if (!(__gpuvm)->__list_name.local_list)					\
++			(__gpuvm)->__list_name.local_list = __local_list;		\
++		else									\
++			drm_WARN_ON((__gpuvm)->drm,					\
++				    (__gpuvm)->__list_name.local_list != __local_list);	\
++											\
++		while (!list_empty(&(__gpuvm)->__list_name.list)) {			\
++			__vm_bo = list_first_entry(&(__gpuvm)->__list_name.list,	\
++						   struct drm_gpuvm_bo,			\
++						   list.entry.__list_name);		\
++			if (kref_get_unless_zero(&__vm_bo->kref)) {			\
++				list_move_tail(&(__vm_bo)->list.entry.__list_name,	\
++					       __local_list);				\
++				break;							\
++			} else {							\
++				list_del_init(&(__vm_bo)->list.entry.__list_name);	\
++				__vm_bo = NULL;						\
++			}								\
++		}									\
++		spin_unlock(&(__gpuvm)->__list_name.lock);				\
++											\
++		__vm_bo;								\
++	})
+
+-:164: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__gpuvm' - possible side-effects?
+#164: FILE: drivers/gpu/drm/drm_gpuvm.c:750:
++#define for_each_vm_bo_in_list(__gpuvm, __list_name, __local_list, __vm_bo)	\
++	for (__vm_bo = get_next_vm_bo_from_list(__gpuvm, __list_name,		\
++						__local_list, NULL);		\
++	     __vm_bo;								\
++	     __vm_bo = get_next_vm_bo_from_list(__gpuvm, __list_name,		\
++						__local_list, __vm_bo))
+
+-:164: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__list_name' - possible side-effects?
+#164: FILE: drivers/gpu/drm/drm_gpuvm.c:750:
++#define for_each_vm_bo_in_list(__gpuvm, __list_name, __local_list, __vm_bo)	\
++	for (__vm_bo = get_next_vm_bo_from_list(__gpuvm, __list_name,		\
++						__local_list, NULL);		\
++	     __vm_bo;								\
++	     __vm_bo = get_next_vm_bo_from_list(__gpuvm, __list_name,		\
++						__local_list, __vm_bo))
+
+-:164: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__local_list' - possible side-effects?
+#164: FILE: drivers/gpu/drm/drm_gpuvm.c:750:
++#define for_each_vm_bo_in_list(__gpuvm, __list_name, __local_list, __vm_bo)	\
++	for (__vm_bo = get_next_vm_bo_from_list(__gpuvm, __list_name,		\
++						__local_list, NULL);		\
++	     __vm_bo;								\
++	     __vm_bo = get_next_vm_bo_from_list(__gpuvm, __list_name,		\
++						__local_list, __vm_bo))
+
+-:164: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__vm_bo' - possible side-effects?
+#164: FILE: drivers/gpu/drm/drm_gpuvm.c:750:
++#define for_each_vm_bo_in_list(__gpuvm, __list_name, __local_list, __vm_bo)	\
++	for (__vm_bo = get_next_vm_bo_from_list(__gpuvm, __list_name,		\
++						__local_list, NULL);		\
++	     __vm_bo;								\
++	     __vm_bo = get_next_vm_bo_from_list(__gpuvm, __list_name,		\
++						__local_list, __vm_bo))
+
+-:194: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__gpuvm' - possible side-effects?
+#194: FILE: drivers/gpu/drm/drm_gpuvm.c:780:
++#define restore_vm_bo_list(__gpuvm, __list_name)			\
++	__restore_vm_bo_list((__gpuvm), &(__gpuvm)->__list_name.lock,	\
++			     &(__gpuvm)->__list_name.list,		\
++			     &(__gpuvm)->__list_name.local_list)
+
+-:194: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__list_name' - possible side-effects?
+#194: FILE: drivers/gpu/drm/drm_gpuvm.c:780:
++#define restore_vm_bo_list(__gpuvm, __list_name)			\
++	__restore_vm_bo_list((__gpuvm), &(__gpuvm)->__list_name.lock,	\
++			     &(__gpuvm)->__list_name.list,		\
++			     &(__gpuvm)->__list_name.local_list)
+
+-:194: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__list_name' may be better as '(__list_name)' to avoid precedence issues
+#194: FILE: drivers/gpu/drm/drm_gpuvm.c:780:
++#define restore_vm_bo_list(__gpuvm, __list_name)			\
++	__restore_vm_bo_list((__gpuvm), &(__gpuvm)->__list_name.lock,	\
++			     &(__gpuvm)->__list_name.list,		\
++			     &(__gpuvm)->__list_name.local_list)
+
+-:231: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__vm_bo' - possible side-effects?
+#231: FILE: drivers/gpu/drm/drm_gpuvm.c:817:
++#define drm_gpuvm_bo_list_add(__vm_bo, __list_name, __lock)			\
++	__drm_gpuvm_bo_list_add((__vm_bo)->vm,					\
++				__lock ? &(__vm_bo)->vm->__list_name.lock :	\
++					 NULL,					\
++				&(__vm_bo)->list.entry.__list_name,		\
++				&(__vm_bo)->vm->__list_name.list)
+
+-:231: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__list_name' - possible side-effects?
+#231: FILE: drivers/gpu/drm/drm_gpuvm.c:817:
++#define drm_gpuvm_bo_list_add(__vm_bo, __list_name, __lock)			\
++	__drm_gpuvm_bo_list_add((__vm_bo)->vm,					\
++				__lock ? &(__vm_bo)->vm->__list_name.lock :	\
++					 NULL,					\
++				&(__vm_bo)->list.entry.__list_name,		\
++				&(__vm_bo)->vm->__list_name.list)
+
+-:231: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__list_name' may be better as '(__list_name)' to avoid precedence issues
+#231: FILE: drivers/gpu/drm/drm_gpuvm.c:817:
++#define drm_gpuvm_bo_list_add(__vm_bo, __list_name, __lock)			\
++	__drm_gpuvm_bo_list_add((__vm_bo)->vm,					\
++				__lock ? &(__vm_bo)->vm->__list_name.lock :	\
++					 NULL,					\
++				&(__vm_bo)->list.entry.__list_name,		\
++				&(__vm_bo)->vm->__list_name.list)
+
+-:260: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__vm_bo' - possible side-effects?
+#260: FILE: drivers/gpu/drm/drm_gpuvm.c:846:
++#define drm_gpuvm_bo_list_del_init(__vm_bo, __list_name, __lock)		\
++	__drm_gpuvm_bo_list_del((__vm_bo)->vm,					\
++				__lock ? &(__vm_bo)->vm->__list_name.lock :	\
++					 NULL,					\
++				&(__vm_bo)->list.entry.__list_name,		\
++				true)
+
+-:260: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__list_name' - possible side-effects?
+#260: FILE: drivers/gpu/drm/drm_gpuvm.c:846:
++#define drm_gpuvm_bo_list_del_init(__vm_bo, __list_name, __lock)		\
++	__drm_gpuvm_bo_list_del((__vm_bo)->vm,					\
++				__lock ? &(__vm_bo)->vm->__list_name.lock :	\
++					 NULL,					\
++				&(__vm_bo)->list.entry.__list_name,		\
++				true)
+
+-:260: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__list_name' may be better as '(__list_name)' to avoid precedence issues
+#260: FILE: drivers/gpu/drm/drm_gpuvm.c:846:
++#define drm_gpuvm_bo_list_del_init(__vm_bo, __list_name, __lock)		\
++	__drm_gpuvm_bo_list_del((__vm_bo)->vm,					\
++				__lock ? &(__vm_bo)->vm->__list_name.lock :	\
++					 NULL,					\
++				&(__vm_bo)->list.entry.__list_name,		\
++				true)
+
+-:275: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__vm_bo' - possible side-effects?
+#275: FILE: drivers/gpu/drm/drm_gpuvm.c:861:
++#define drm_gpuvm_bo_list_del(__vm_bo, __list_name, __lock)			\
++	__drm_gpuvm_bo_list_del((__vm_bo)->vm,					\
++				__lock ? &(__vm_bo)->vm->__list_name.lock :	\
++					 NULL,					\
++				&(__vm_bo)->list.entry.__list_name,		\
++				false)
+
+-:275: CHECK:MACRO_ARG_REUSE: Macro argument reuse '__list_name' - possible side-effects?
+#275: FILE: drivers/gpu/drm/drm_gpuvm.c:861:
++#define drm_gpuvm_bo_list_del(__vm_bo, __list_name, __lock)			\
++	__drm_gpuvm_bo_list_del((__vm_bo)->vm,					\
++				__lock ? &(__vm_bo)->vm->__list_name.lock :	\
++					 NULL,					\
++				&(__vm_bo)->list.entry.__list_name,		\
++				false)
+
+-:275: CHECK:MACRO_ARG_PRECEDENCE: Macro argument '__list_name' may be better as '(__list_name)' to avoid precedence issues
+#275: FILE: drivers/gpu/drm/drm_gpuvm.c:861:
++#define drm_gpuvm_bo_list_del(__vm_bo, __list_name, __lock)			\
++	__drm_gpuvm_bo_list_del((__vm_bo)->vm,					\
++				__lock ? &(__vm_bo)->vm->__list_name.lock :	\
++					 NULL,					\
++				&(__vm_bo)->list.entry.__list_name,		\
++				false)
+
+-:611: WARNING:ENOTSUPP: ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP
+#611: FILE: drivers/gpu/drm/drm_gpuvm.c:1347:
++		return -ENOTSUPP;
+
+-:839: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u32' over 'uint32_t'
+#839: FILE: include/drm/drm_gpuvm.h:495:
++	uint32_t flags;
+
+total: 0 errors, 1 warnings, 21 checks, 983 lines checked
+0c64e6d3e drm/xe: Adapt to GPUVM tracking of external / evicted objects.
+6af4e25d7 drm/xe: Use DRM_GPUVM_RESV_PROTECTED for gpuvm
 
 
