@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5E1ADC27C49
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Oct 2023 04:02:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36417C27C4C
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Oct 2023 04:02:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27EE510E75E;
-	Thu, 26 Oct 2023 04:02:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1594B10E74C;
+	Thu, 26 Oct 2023 04:02:02 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4680510E74F
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Oct 2023 04:01:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 34EEB10E752
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Oct 2023 04:01:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698292909; x=1729828909;
+ t=1698292914; x=1729828914;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+VFP2VoPm0Wq+66p4lS7GZDRiWQgL7gR7gCtQClKa24=;
- b=BDAYzwX+5eGGaHxbKLjaryHm6KC8+kK5QpsX0YZg949wA3LGtFieA7YS
- N7d0IaYgw+Bj5l+a8hcWVWiyHHa1whZz88eDU0iAXotJnRqdFA84IBBJ+
- zvoFOwBfZdQAuD/KiMmZObd6M714Nj+0XZWVvyp/QEnf2MOVfa5GjlmsL
- yFGjZ0RdvacLNzGOAu69wp99Gya6VQDyzgerRDZIucRZfFaGVsqe+W5g8
- sOwDdYOntlaTdHavNt8VxZF2BorjiEzRLZ9gv80eug0iTBjcsVn+HtAV4
- BxLcLNUrExyulbejpM9DBGSR/39yHWLf1cVEXM4XngwHZ0ArU2uh92AdS Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="377821985"
-X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="377821985"
+ bh=r3FF4Vggekiisli3KR8GWS0ya3Ht4igh8jk4gF831JM=;
+ b=N+7IS6mPdEqCdNWK7UXl6KVhIwsrD3x5GTVIuGDIL0oS8v7e4ek+Z/ik
+ 0TnDtMMKO80Z3Hsz0gBYbaef9XVQEaOyUd/QnlfH285gDYcm4kh0EWHV8
+ YcKq/xvJ4841fjzJR7HPjcYwkPGTUnGKtD3VxipmfFpCLH0ZY4qSHVaFb
+ 4VGYVEEJfX/e6EFUs011LaeFDCR+0bxf2TwBP+vVMLeZfk6SCr3USwLaE
+ GOWfDrWvUwyqVVh1iRNDWA3GrvGzZ78QpmTMLAl6BarhJGiszCGs0lWZ7
+ bejfZ3MTGKZPdH1KaVYPY5Xf6WeUt7cVLaj8NgYpprrYG8Jp92A2923rr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="377822014"
+X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="377822014"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 21:01:48 -0700
+ 25 Oct 2023 21:01:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="762682335"
-X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="762682335"
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="762682423"
+X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="762682423"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 21:01:47 -0700
+ 25 Oct 2023 21:01:52 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Wed, 25 Oct 2023 21:01:52 -0700
-Message-Id: <20231026040213.1272993-6-matthew.brost@intel.com>
+Date: Wed, 25 Oct 2023 21:02:10 -0700
+Message-Id: <20231026040213.1272993-24-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231026040213.1272993-1-matthew.brost@intel.com>
 References: <20231026040213.1272993-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 05/26] drm/xe: Move migrate to prefetch to
- op_lock funtion
+Subject: [Intel-xe] [PATCH 23/26] drm/xe: Add xe_hw_fence_signal helper
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,82 +56,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matthew Brost <matthw.brost@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Migrates need to be done under drm exec to make lockdep happy, move
-the migrate done for prefetches under the op_lock function.
+This help implement cpu binds in run_job by having a helper to signal
+the cpu bind job's fence.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Brost <matthw.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 30 ++++++++++++++----------------
- 1 file changed, 14 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/xe/xe_hw_fence.c | 8 ++++++++
+ drivers/gpu/drm/xe/xe_hw_fence.h | 1 +
+ 2 files changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index fa243d4e6405..816442a68be2 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2041,20 +2041,10 @@ static const u32 region_to_mem_type[] = {
- 
- static struct dma_fence *
- xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
--	       struct xe_exec_queue *q, u32 region,
--	       struct xe_sync_entry *syncs, u32 num_syncs,
--	       bool first_op, bool last_op)
-+	       struct xe_exec_queue *q, struct xe_sync_entry *syncs,
-+	       u32 num_syncs, bool first_op, bool last_op)
- {
- 	struct xe_exec_queue *wait_exec_queue = to_wait_exec_queue(vm, q);
--	int err;
--
--	xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
--
--	if (!xe_vma_has_no_bo(vma)) {
--		err = xe_bo_migrate(xe_vma_bo(vma), region_to_mem_type[region]);
--		if (err)
--			return ERR_PTR(err);
--	}
- 
- 	if (vma->tile_mask != (vma->tile_present & ~vma->usm.tile_invalidated)) {
- 		return xe_vm_bind(vm, vma, q, xe_vma_bo(vma), syncs, num_syncs,
-@@ -2070,7 +2060,7 @@ xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
- 				xe_sync_entry_signal(&syncs[i], NULL, fence);
- 		}
- 
--		return fence;
-+		return dma_fence_get(fence);
- 	}
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.c b/drivers/gpu/drm/xe/xe_hw_fence.c
+index a6094c81f2ad..d53124587076 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.c
++++ b/drivers/gpu/drm/xe/xe_hw_fence.c
+@@ -208,6 +208,14 @@ static struct xe_hw_fence *to_xe_hw_fence(struct dma_fence *fence)
+ 	return container_of(fence, struct xe_hw_fence, dma);
  }
  
-@@ -2579,8 +2569,7 @@ static struct dma_fence *op_execute(struct xe_vm *vm, struct xe_vma *vma,
- 				     op->flags & XE_VMA_OP_LAST);
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
--		fence = xe_vm_prefetch(vm, vma, op->q, op->prefetch.region,
--				       op->syncs, op->num_syncs,
-+		fence = xe_vm_prefetch(vm, vma, op->q, op->syncs, op->num_syncs,
- 				       op->flags & XE_VMA_OP_FIRST,
- 				       op->flags & XE_VMA_OP_LAST);
- 		break;
-@@ -2802,8 +2791,17 @@ static int op_lock(struct drm_exec *exec, struct xe_vm *vm,
- 		err = vma_lock(exec, gpuva_to_vma(op->base.unmap.va), false);
- 		break;
- 	case DRM_GPUVA_OP_PREFETCH:
--		err = vma_lock(exec, gpuva_to_vma(op->base.prefetch.va), true);
-+	{
-+		struct xe_vma *vma = gpuva_to_vma(op->base.prefetch.va);
-+		u32 region = op->prefetch.region;
++void xe_hw_fence_signal(struct dma_fence *dma_fence)
++{
++	struct xe_hw_fence *fence = to_xe_hw_fence(dma_fence);
++	struct xe_device *xe = gt_to_xe(fence->ctx->gt);
 +
-+		xe_assert(vm->xe, region <= ARRAY_SIZE(region_to_mem_type));
++	xe_map_wr(xe, &fence->seqno_map, 0, u32, dma_fence->seqno);
++}
 +
-+		err = vma_lock(exec, vma, false);
-+		if (!err && !xe_vma_has_no_bo(vma))
-+			err = xe_bo_migrate(xe_vma_bo(vma), region);
- 		break;
-+	}
- 	default:
- 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
- 	}
+ struct xe_hw_fence *xe_hw_fence_create(struct xe_hw_fence_ctx *ctx,
+ 				       struct iosys_map seqno_map)
+ {
+diff --git a/drivers/gpu/drm/xe/xe_hw_fence.h b/drivers/gpu/drm/xe/xe_hw_fence.h
+index cfe5fd603787..faa0d7fb9ce9 100644
+--- a/drivers/gpu/drm/xe/xe_hw_fence.h
++++ b/drivers/gpu/drm/xe/xe_hw_fence.h
+@@ -26,5 +26,6 @@ void xe_hw_fence_ctx_finish(struct xe_hw_fence_ctx *ctx);
+ 
+ struct xe_hw_fence *xe_hw_fence_create(struct xe_hw_fence_ctx *ctx,
+ 				       struct iosys_map seqno_map);
++void xe_hw_fence_signal(struct dma_fence *fence);
+ 
+ #endif
 -- 
 2.34.1
 
