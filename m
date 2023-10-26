@@ -4,31 +4,23 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31694C25B48
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Oct 2023 12:07:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D828FC25B67
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Oct 2023 12:33:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFAD710E119;
-	Thu, 26 Oct 2023 12:07:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 41C4E10E119;
- Thu, 26 Oct 2023 12:07:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 40A0EAADD5;
- Thu, 26 Oct 2023 12:07:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F97D10E7C7;
+	Thu, 26 Oct 2023 12:33:40 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2CCE10E7C7
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Oct 2023 12:33:38 +0000 (UTC)
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 26 Oct 2023 14:33:17 +0200
+Message-Id: <20231026123326.56044-1-maarten.lankhorst@linux.intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 26 Oct 2023 12:07:12 -0000
-Message-ID: <169832203226.20472.17693880025483047369@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231026101536.5509-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231026101536.5509-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_s?=
- =?utf-8?q?eries_starting_with_=5BCI=2C01/10=5D_drm/gpuvm=3A_convert_WARN?=
- =?utf-8?b?KCkgdG8gZHJtX1dBUk4oKSB2YXJpYW50cyAocmV2Mik=?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 00/15] Destroy 'remaining changes to make xe
+ compile'
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,36 +32,62 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <dev@lankhorst.se>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+From: Maarten Lankhorst <dev@lankhorst.se>
 
-Series: series starting with [CI,01/10] drm/gpuvm: convert WARN() to drm_WARN() variants (rev2)
-URL   : https://patchwork.freedesktop.org/series/125627/
-State : warning
+Revert all pieces one by 1, and fixup the patch until only a small
+amount of changes are left.
 
-== Summary ==
+Update compat headers for extra definitions, those patches should
+probably be squashed too.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 4c7ed0ef2d582ae173d9a2062ee6f7360d1aa1df
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+Maarten Lankhorst (15):
+  revert fixme in intel_atomic_plane.c
+  drm/atomic: Add drm_atomic_helper_set_fence_deadline() function
+  drm/i915: Implement fence->set_deadline.
+  FIXME drm/i915/display: Use fence->set_deadline to boost requests
+  fixup xe i915_drv.h compat header
+  revert intel_frontbuffer changes.
+  Update compat headers.
+  more reverts
+  drm/i915/display: Use i915_gem_object_get_dma_address to get dma
+    address
+  revert more (fbc)
+  drm/i915/display: Revert all before remaining changes to make xe
+    compile
+  drm/i915/display: Revert remaining changes to make xe compile
+  drm/xe: Update headers to be more compatible with i915
+  FIXME drm/i915/display: Minimal changes to fbdev to make xe work
+  FIXME drm/i915/display: Make intel_fb.c code compatible with xe
 
+ drivers/gpu/drm/drm_atomic_helper.c           |  15 ++-
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  70 +++---------
+ drivers/gpu/drm/i915/display/intel_cursor.c   |  12 +--
+ drivers/gpu/drm/i915/display/intel_display.c  |  37 +------
+ .../drm/i915/display/intel_display_types.h    |   4 -
+ drivers/gpu/drm/i915/display/intel_fb.c       |  89 ++++++----------
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  13 ++-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    | 100 ++++++------------
+ .../gpu/drm/i915/display/intel_frontbuffer.c  |   7 +-
+ .../gpu/drm/i915/display/intel_frontbuffer.h  |   4 -
+ .../drm/i915/display/skl_universal_plane.c    |   4 -
+ drivers/gpu/drm/i915/i915_request.c           |   9 ++
+ .../compat-i915-headers/gem/i915_gem_lmem.h   |   2 +
+ .../compat-i915-headers/gem/i915_gem_mman.h   |  17 +++
+ .../compat-i915-headers/gem/i915_gem_object.h |  76 +++++++++++++
+ .../gem/i915_gem_object_frontbuffer.h         |   4 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   1 +
+ .../xe/compat-i915-headers/i915_gem_stolen.h  |  13 ++-
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |   6 ++
+ include/drm/drm_atomic_helper.h               |   3 +-
+ 20 files changed, 234 insertions(+), 252 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+
+-- 
+2.40.1
 
