@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 49BA3C25B48
-	for <intel-xe@archiver.kernel.org>; Thu, 26 Oct 2023 04:01:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45E59C25B6B
+	for <intel-xe@archiver.kernel.org>; Thu, 26 Oct 2023 04:01:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0367010E74C;
-	Thu, 26 Oct 2023 04:01:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFA9910E74E;
+	Thu, 26 Oct 2023 04:01:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98F9C10E74C
- for <intel-xe@lists.freedesktop.org>; Thu, 26 Oct 2023 04:01:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 712C410E751
+ for <intel-xe@lists.freedesktop.org>; Thu, 26 Oct 2023 04:01:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698292908; x=1729828908;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=cCH0ai3cVFj8Fk5PLoyDtOwvZJN8eXRq59Thif6I5Zc=;
- b=JdG4a7Sb2kPNCvg+hQgtIKIKGq9lChSdrUoUjxq9X9+FXhSmUTYXsRXf
- le80y7XIN3p70Zkxb8rZna6XsVCOXyAb+OoygZcM74ZHmVMb/5K60untc
- 8dC13omlQum+tWLjfyBGzpsynp22PAzR0j3YNFxW4rgQTZfOjdcfJq6a8
- oElPUicIK3cLOHeANlI2u71vQaKZDU11l8guyXECS+AbU9Hyoi2vIZUZ/
- VGTNtmEvojCc8ni2anZkYIevKOKhD/FnjQkTViM+BsfpeJNkYZoV8s+gn
- 16NE4a7zvy5amgi5fIZDEx+HZhAgKHbVWdDsZughPyMLUN7zOKzYGq0W3 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="377821979"
-X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="377821979"
+ t=1698292909; x=1729828909;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=vvsWu9yKs/ObRAU26BtI31KApCSSsLF0GiXlQzPRxAM=;
+ b=NiEWTVugUzfq5Mxvmbj3sSnDIAdc4JPtvo+jUEJVxDizZ3vzb8IGb/+r
+ Em/HhqoB9fpGhjz7KhL4kSfG2UG4Tm7TvW//T0iQ5bA8bHvJl1J6CeT61
+ vq6W+oy4gIi7Csvc6K59YaSRz1sEH55qi7rFrHAM1tAiKSmqMlneIwYuD
+ vqVTwS1+nNm9EBqCSgguW3vo/SO+RsB4NxNkCz22zJjWjIe2AukhQq523
+ gFE1+9uAelPQ0hRmbbp0a1vMwpWveg+TaeYj7yECO6xt1OXXRtE3eZx+3
+ UkPjtiyQ3cfxiPY83VeoMo4Mjm3eXoikIwEag5p7b/hSlExqeOCDEoq84 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="377821987"
+X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="377821987"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 21:01:47 -0700
+ 25 Oct 2023 21:01:48 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="762682312"
-X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="762682312"
+X-IronPort-AV: E=McAfee;i="6600,9927,10874"; a="762682347"
+X-IronPort-AV: E=Sophos;i="6.03,252,1694761200"; d="scan'208";a="762682347"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Oct 2023 21:01:46 -0700
+ 25 Oct 2023 21:01:48 -0700
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Wed, 25 Oct 2023 21:01:47 -0700
-Message-Id: <20231026040213.1272993-1-matthew.brost@intel.com>
+Date: Wed, 25 Oct 2023 21:01:54 -0700
+Message-Id: <20231026040213.1272993-8-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231026040213.1272993-1-matthew.brost@intel.com>
+References: <20231026040213.1272993-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 00/26] Refactor VM bind code
+Subject: [Intel-xe] [PATCH 07/26] drm/xe: Update xe_vm_rebind to use dummy
+ VMA operations
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,83 +60,338 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-WIP on refactoring VM bind to final error handling solution.
+All bind interfaces are transitioning to use ops.
 
-Major changes are:
-1. Allow bind / exec IOCTLs with zero binds / batches
-2. Convert multiple binds from IOCTL into single job
-3. CPU binds in jobs
-4. Sync vs async bind per IOCTL rather than per queue
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_vm.c       |  43 +++++--
+ drivers/gpu/drm/xe/xe_vm_types.h | 199 ++++++++++++++++---------------
+ 2 files changed, 134 insertions(+), 108 deletions(-)
 
-Error handling still not 100% correct but this this series structures
-the code to make it possible.
-
-This series shouldn't break any uAPI compatibility until the last patch
-in the series.
-
-Matt  
-
-Matthew Brost (26):
-  drm/xe: Allow num_binds == 0 in VM bind IOCTL
-  drm/xe: Allow num_batch_buffer == 0 in exec IOCTL
-  drm/xe: Lock all gpuva ops during VM bind IOCTL
-  drm/xe: Add ops_execute function which returns a fence
-  drm/xe: Move migrate to prefetch to op_lock funtion
-  drm/xe: Add struct xe_vma_ops abstraction
-  drm/xe: Update xe_vm_rebind to use dummy VMA operations
-  drm/xe: Move drm exec loop to vm_bind_ioctl_ops_execute
-  drm/xe: Fixup error handling / ref counting in VM bind IOCTL
-  drm/xe: Convert pagefault rebind to use ops interface
-  drm/xe: Add some members to xe_vma_ops
-  drm/xe: Add vm_bind_ioctl_ops_install_fences helper
-  drm/xe: Drop rebind argument from xe_pt_prepare_bind
-  drm/xe: Add xe_vm_pgtable_update_op to xe_vma_ops
-  drm/xe: Move setting last fence and sync wait to
-    vm_bind_ioctl_ops_install_fences
-  drm/xe: Fix vma_is_valid to use tile argument
-  drm/xe: Adjust tile mask in operations create
-  drm/xe: Add xe_gt_tlb_invalidation_range and convert PT layer to use
-    this
-  drm/xe: s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
-  drm/xe: Convert multiple bind ops into single job
-  drm/xe: Update clear / populate arguments
-  drm/xe: Add __xe_migrate_update_pgtables_cpu helper
-  drm/xe: Add xe_hw_fence_signal helper
-  drm/xe: CPU binds for jobs
-  drm/xe: Don't use migrate exec queue for page fault binds
-  drm/xe/uapi: Make sync vs async VM bind operations per IOCTL rather
-    than queue
-
- drivers/gpu/drm/xe/xe_bo.c                  |   7 +-
- drivers/gpu/drm/xe/xe_bo.h                  |   6 +-
- drivers/gpu/drm/xe/xe_bo_types.h            |   2 +
- drivers/gpu/drm/xe/xe_device.c              |  23 +
- drivers/gpu/drm/xe/xe_device.h              |   7 +
- drivers/gpu/drm/xe/xe_device_types.h        |   4 +
- drivers/gpu/drm/xe/xe_exec.c                |  48 +-
- drivers/gpu/drm/xe/xe_exec_queue.c          |  20 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h    |   7 +-
- drivers/gpu/drm/xe/xe_gt_pagefault.c        |  18 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  60 +-
- drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |   3 +
- drivers/gpu/drm/xe/xe_guc_submit.c          |  43 +-
- drivers/gpu/drm/xe/xe_hw_fence.c            |   8 +
- drivers/gpu/drm/xe/xe_hw_fence.h            |   1 +
- drivers/gpu/drm/xe/xe_migrate.c             | 382 +++-----
- drivers/gpu/drm/xe/xe_migrate.h             |  46 +-
- drivers/gpu/drm/xe/xe_pt.c                  | 992 ++++++++++++--------
- drivers/gpu/drm/xe/xe_pt.h                  |   8 +
- drivers/gpu/drm/xe/xe_pt_types.h            |  51 +
- drivers/gpu/drm/xe/xe_sched_job.c           |   4 +-
- drivers/gpu/drm/xe/xe_sched_job_types.h     |  31 +-
- drivers/gpu/drm/xe/xe_sync.c                |   5 +-
- drivers/gpu/drm/xe/xe_sync.h                |   2 +-
- drivers/gpu/drm/xe/xe_vm.c                  | 981 ++++++++-----------
- drivers/gpu/drm/xe/xe_vm.h                  |   7 +
- drivers/gpu/drm/xe/xe_vm_types.h            | 208 ++--
- include/uapi/drm/xe_drm.h                   |   6 +-
- 28 files changed, 1536 insertions(+), 1444 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 8edc14d5babd..d7b3e5309c13 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -829,10 +829,23 @@ int xe_vm_userptr_check_repin(struct xe_vm *vm)
+ 		list_empty_careful(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
+ }
+ 
+-static struct dma_fence *
+-xe_vm_bind_vma(struct xe_vma *vma, struct xe_exec_queue *q,
+-	       struct xe_sync_entry *syncs, u32 num_syncs,
+-	       bool first_op, bool last_op);
++static void xe_vm_populate_dummy_rebind(struct xe_vm *vm, struct xe_vma *vma)
++{
++	vm->dummy_ops.op.base.op = DRM_GPUVA_OP_MAP;
++	vm->dummy_ops.op.base.map.va.addr = vma->gpuva.va.addr;
++	vm->dummy_ops.op.base.map.va.range = vma->gpuva.va.range;
++	vm->dummy_ops.op.base.map.gem.obj = vma->gpuva.gem.obj;
++	vm->dummy_ops.op.base.map.gem.offset = vma->gpuva.gem.offset;
++	vm->dummy_ops.op.tile_mask = vma->tile_present;
++	vm->dummy_ops.op.map.vma = vma;
++	vm->dummy_ops.op.map.immediate = true;
++	vm->dummy_ops.op.map.read_only = xe_vma_read_only(vma);
++	vm->dummy_ops.op.map.is_null = xe_vma_is_null(vma);
++}
++
++static struct dma_fence *ops_execute(struct xe_vm *vm,
++				     struct xe_vma_ops *vops,
++				     bool cleanup);
+ 
+ struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ {
+@@ -854,7 +867,9 @@ struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
+ 			trace_xe_vma_rebind_worker(vma);
+ 		else
+ 			trace_xe_vma_rebind_exec(vma);
+-		fence = xe_vm_bind_vma(vma, NULL, NULL, 0, false, false);
++
++		xe_vm_populate_dummy_rebind(vm, vma);
++		fence = ops_execute(vm, &vm->dummy_ops.vops, false);
+ 		if (IS_ERR(fence))
+ 			return fence;
+ 	}
+@@ -1333,6 +1348,11 @@ static const struct xe_pt_ops xelp_pt_ops = {
+ 
+ static void vm_destroy_work_func(struct work_struct *w);
+ 
++static void xe_vma_ops_init(struct xe_vma_ops *vops)
++{
++	INIT_LIST_HEAD(&vops->list);
++}
++
+ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ {
+ 	struct xe_vm *vm;
+@@ -1354,6 +1374,10 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 
+ 	init_rwsem(&vm->lock);
+ 
++	xe_vma_ops_init(&vm->dummy_ops.vops);
++	INIT_LIST_HEAD(&vm->dummy_ops.op.link);
++	list_add(&vm->dummy_ops.op.link, &vm->dummy_ops.vops.list);
++
+ 	INIT_LIST_HEAD(&vm->rebind_list);
+ 
+ 	INIT_LIST_HEAD(&vm->userptr.repin_list);
+@@ -2505,7 +2529,7 @@ static struct dma_fence *op_execute(struct xe_vm *vm, struct xe_vma *vma,
+ {
+ 	struct dma_fence *fence;
+ 
+-	lockdep_assert_held_write(&vm->lock);
++	lockdep_assert_held(&vm->lock);
+ 	xe_vm_assert_held(vm);
+ 	xe_bo_assert_held(xe_vma_bo(vma));
+ 
+@@ -2611,7 +2635,7 @@ xe_vma_op_execute(struct xe_vm *vm, struct xe_vma_op *op)
+ {
+ 	struct dma_fence *fence = ERR_PTR(-ENOMEM);
+ 
+-	lockdep_assert_held_write(&vm->lock);
++	lockdep_assert_held(&vm->lock);
+ 
+ #ifdef TEST_VM_ASYNC_OPS_ERROR
+ 	if (op->inject_error) {
+@@ -2999,11 +3023,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 	return err;
+ }
+ 
+-static void xe_vma_ops_init(struct xe_vma_ops *vops)
+-{
+-	INIT_LIST_HEAD(&vops->list);
+-}
+-
+ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ {
+ 	struct xe_device *xe = to_xe_device(dev);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index eb06a59b6d2f..65cbed7bbdda 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -18,6 +18,7 @@
+ #include "xe_range_fence.h"
+ 
+ struct xe_bo;
++struct xe_device;
+ struct xe_sync_entry;
+ struct xe_vm;
+ 
+@@ -129,7 +130,100 @@ struct xe_vma {
+ 	struct xe_userptr userptr;
+ };
+ 
+-struct xe_device;
++/** struct xe_vma_op_map - VMA map operation */
++struct xe_vma_op_map {
++	/** @vma: VMA to map */
++	struct xe_vma *vma;
++	/** @immediate: Immediate bind */
++	bool immediate;
++	/** @read_only: Read only */
++	bool read_only;
++	/** @is_null: is NULL binding */
++	bool is_null;
++};
++
++/** struct xe_vma_op_remap - VMA remap operation */
++struct xe_vma_op_remap {
++	/** @prev: VMA preceding part of a split mapping */
++	struct xe_vma *prev;
++	/** @next: VMA subsequent part of a split mapping */
++	struct xe_vma *next;
++	/** @start: start of the VMA unmap */
++	u64 start;
++	/** @range: range of the VMA unmap */
++	u64 range;
++	/** @skip_prev: skip prev rebind */
++	bool skip_prev;
++	/** @skip_next: skip next rebind */
++	bool skip_next;
++	/** @unmap_done: unmap operation in done */
++	bool unmap_done;
++};
++
++/** struct xe_vma_op_prefetch - VMA prefetch operation */
++struct xe_vma_op_prefetch {
++	/** @region: memory region to prefetch to */
++	u32 region;
++};
++
++/** enum xe_vma_op_flags - flags for VMA operation */
++enum xe_vma_op_flags {
++	/** @XE_VMA_OP_FIRST: first VMA operation for a set of syncs */
++	XE_VMA_OP_FIRST			= BIT(0),
++	/** @XE_VMA_OP_LAST: last VMA operation for a set of syncs */
++	XE_VMA_OP_LAST			= BIT(1),
++	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
++	XE_VMA_OP_COMMITTED		= BIT(2),
++	/** @XE_VMA_OP_PREV_COMMITTED: Previous VMA operation committed */
++	XE_VMA_OP_PREV_COMMITTED	= BIT(3),
++	/** @XE_VMA_OP_NEXT_COMMITTED: Next VMA operation committed */
++	XE_VMA_OP_NEXT_COMMITTED	= BIT(4),
++};
++
++/** struct xe_vma_op - VMA operation */
++struct xe_vma_op {
++	/** @base: GPUVA base operation */
++	struct drm_gpuva_op base;
++	/**
++	 * @ops: GPUVA ops, when set call drm_gpuva_ops_free after this
++	 * operations is processed
++	 */
++	struct drm_gpuva_ops *ops;
++	/** @q: exec queue for this operation */
++	struct xe_exec_queue *q;
++	/**
++	 * @syncs: syncs for this operation, only used on first and last
++	 * operation
++	 */
++	struct xe_sync_entry *syncs;
++	/** @num_syncs: number of syncs */
++	u32 num_syncs;
++	/** @link: async operation link */
++	struct list_head link;
++	/** @tile_mask: gt mask for this operation */
++	u8 tile_mask;
++	/** @flags: operation flags */
++	enum xe_vma_op_flags flags;
++
++#ifdef TEST_VM_ASYNC_OPS_ERROR
++	/** @inject_error: inject error to test async op error handling */
++	bool inject_error;
++#endif
++
++	union {
++		/** @map: VMA map operation specific data */
++		struct xe_vma_op_map map;
++		/** @remap: VMA remap operation specific data */
++		struct xe_vma_op_remap remap;
++		/** @prefetch: VMA prefetch operation specific data */
++		struct xe_vma_op_prefetch prefetch;
++	};
++};
++
++/** struct xe_vma_ops - VMA operations */
++struct xe_vma_ops {
++	struct list_head list;
++};
+ 
+ #define xe_vm_assert_held(vm) dma_resv_assert_held(&(vm)->resv)
+ 
+@@ -324,105 +418,18 @@ struct xe_vm {
+ 		bool capture_once;
+ 	} error_capture;
+ 
++	/** @dummy_ops: dummy VMA ops to issue rebinds */
++	struct {
++		/** @ops: dummy VMA ops */
++		struct xe_vma_ops vops;
++		/** @op: dummy VMA op */
++		struct xe_vma_op op;
++	} dummy_ops;
++
+ 	/** @batch_invalidate_tlb: Always invalidate TLB before batch start */
+ 	bool batch_invalidate_tlb;
+ 	/** @xef: XE file handle for tracking this VM's drm client */
+ 	struct xe_file *xef;
+ };
+ 
+-/** struct xe_vma_op_map - VMA map operation */
+-struct xe_vma_op_map {
+-	/** @vma: VMA to map */
+-	struct xe_vma *vma;
+-	/** @immediate: Immediate bind */
+-	bool immediate;
+-	/** @read_only: Read only */
+-	bool read_only;
+-	/** @is_null: is NULL binding */
+-	bool is_null;
+-};
+-
+-/** struct xe_vma_op_remap - VMA remap operation */
+-struct xe_vma_op_remap {
+-	/** @prev: VMA preceding part of a split mapping */
+-	struct xe_vma *prev;
+-	/** @next: VMA subsequent part of a split mapping */
+-	struct xe_vma *next;
+-	/** @start: start of the VMA unmap */
+-	u64 start;
+-	/** @range: range of the VMA unmap */
+-	u64 range;
+-	/** @skip_prev: skip prev rebind */
+-	bool skip_prev;
+-	/** @skip_next: skip next rebind */
+-	bool skip_next;
+-	/** @unmap_done: unmap operation in done */
+-	bool unmap_done;
+-};
+-
+-/** struct xe_vma_op_prefetch - VMA prefetch operation */
+-struct xe_vma_op_prefetch {
+-	/** @region: memory region to prefetch to */
+-	u32 region;
+-};
+-
+-/** enum xe_vma_op_flags - flags for VMA operation */
+-enum xe_vma_op_flags {
+-	/** @XE_VMA_OP_FIRST: first VMA operation for a set of syncs */
+-	XE_VMA_OP_FIRST			= BIT(0),
+-	/** @XE_VMA_OP_LAST: last VMA operation for a set of syncs */
+-	XE_VMA_OP_LAST			= BIT(1),
+-	/** @XE_VMA_OP_COMMITTED: VMA operation committed */
+-	XE_VMA_OP_COMMITTED		= BIT(2),
+-	/** @XE_VMA_OP_PREV_COMMITTED: Previous VMA operation committed */
+-	XE_VMA_OP_PREV_COMMITTED	= BIT(3),
+-	/** @XE_VMA_OP_NEXT_COMMITTED: Next VMA operation committed */
+-	XE_VMA_OP_NEXT_COMMITTED	= BIT(4),
+-};
+-
+-/** struct xe_vma_op - VMA operation */
+-struct xe_vma_op {
+-	/** @base: GPUVA base operation */
+-	struct drm_gpuva_op base;
+-	/**
+-	 * @ops: GPUVA ops, when set call drm_gpuva_ops_free after this
+-	 * operations is processed
+-	 */
+-	struct drm_gpuva_ops *ops;
+-	/** @q: exec queue for this operation */
+-	struct xe_exec_queue *q;
+-	/**
+-	 * @syncs: syncs for this operation, only used on first and last
+-	 * operation
+-	 */
+-	struct xe_sync_entry *syncs;
+-	/** @num_syncs: number of syncs */
+-	u32 num_syncs;
+-	/** @link: async operation link */
+-	struct list_head link;
+-	/** @tile_mask: gt mask for this operation */
+-	u8 tile_mask;
+-	/** @flags: operation flags */
+-	enum xe_vma_op_flags flags;
+-
+-#ifdef TEST_VM_ASYNC_OPS_ERROR
+-	/** @inject_error: inject error to test async op error handling */
+-	bool inject_error;
+-#endif
+-
+-	union {
+-		/** @map: VMA map operation specific data */
+-		struct xe_vma_op_map map;
+-		/** @remap: VMA remap operation specific data */
+-		struct xe_vma_op_remap remap;
+-		/** @prefetch: VMA prefetch operation specific data */
+-		struct xe_vma_op_prefetch prefetch;
+-	};
+-};
+-
+-/** struct xe_vma_ops - VMA operations */
+-struct xe_vma_ops {
+-	struct list_head list;
+-};
+-
+ #endif
 -- 
 2.34.1
 
