@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AF690C25B47
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6501AC25B48
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 22:29:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B83610EA5C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31A7110EA5B;
 	Fri, 27 Oct 2023 22:29:42 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9679C10EA1C
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 22:29:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3783C10EA1C
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 22:29:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698445779; x=1729981779;
+ t=1698445781; x=1729981781;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=I1scPgRKEXsuZvAX0jP/nWKTGHd01GPYV1nodVKPXtI=;
- b=TvFFX9uzBVuWGZaZ4E46foPsppFuQqtR3AxRrR6aiECS88cO9B6o+z11
- ju8FtW7LGWljnBDIMNqROjmyQrnkt7/iubEhntUTVt7ypy9kB4AAMKRO/
- 4qT2PCtW2crWSZag2aFpcrhh5eyjeCCkSfHEOxkNrEoIhm4+4/WHcJhdO
- w3so90cy/BsvD3ZG8Yqe3MXEe/jr+TqLpATQZkDPPeAf4EW9k5221PoJw
- 2ffwYxJd+Nb4o/zMnIggiiVPVnljUXl9LSk6HoOyNcGMnAXhIitfy8oAN
- SaL+u6YJsTLqrjDJ1UipxBXFM9H+koyvG/8MIUnMPnTXwx2z1+35zkOxu g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="9397768"
+ bh=VtTJ6SXvXHpCmxB8x2/GyXT6c4b6u6bzq2+skQCkn3g=;
+ b=VIExFF7rjAlCL9WtHjMN52aHnvdr4UXljvbpoiuB/EqS+T6WrVtv2roR
+ seTGjlgOqa/Cx53nAyJ3QsCS1AmU4UJw+6KV6XRpGGEoquZbfTG20KcL0
+ Q+4iSo/rba8/qAaZqv2xCmOEHk7hYx+rxtY8yXqr0E0/U0RKow2fJE1u4
+ 7mejpDyLTowe2Fw3SerK1uQ8MuMcbSIY8j0gTR1x5k+SSCnu7myMNfLgv
+ EGpjdu+FC4H7NtQ5D6QkL2cPkE3Ndj9X63qjTygcMgk8ajRZwlzR5r0yt
+ aMIPhkPvU5qafj/uXQS0wnev710C0ycSqj9LVTAwJ3R5ld23YuXlJuSl7 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="9397773"
 X-IronPort-AV: E=Sophos;i="6.03,257,1694761200"; 
-   d="scan'208";a="9397768"
+   d="scan'208";a="9397773"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 15:29:38 -0700
+ 27 Oct 2023 15:29:41 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="763360343"
-X-IronPort-AV: E=Sophos;i="6.03,257,1694761200"; d="scan'208";a="763360343"
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="763360360"
+X-IronPort-AV: E=Sophos;i="6.03,257,1694761200"; d="scan'208";a="763360360"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 15:29:38 -0700
+ 27 Oct 2023 15:29:40 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 15:29:15 -0700
-Message-ID: <20231027222928.1981633-2-daniele.ceraolospurio@intel.com>
+Date: Fri, 27 Oct 2023 15:29:18 -0700
+Message-ID: <20231027222928.1981633-5-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
 References: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 01/12] drm/xe: implement driver initiated
- function-reset
+Subject: [Intel-xe] [PATCH 04/12] drm/xe/gsc: Introduce GSC FW
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,188 +58,273 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Andrzej Hajda <andrzej.hajda@intel.com>
+Add the basic definitions and init function. Same as HuC, GSC is only
+supported on the media GT on MTL and newer platforms.
+Note that the GSC requires submission resources which can't be allocated
+during init (because we don't have the hwconfig yet), so it can't be
+marked as loadable at the end of the init function. The allocation of
+those resources will come in the patch that makes use of them to load
+the FW.
 
-Driver initiated function-reset (FLR) is the highest level of reset
-that we can trigger from within the driver. In contrast to PCI FLR it
-doesn't require re-enumeration of PCI BAR. It can be useful in case
-GT fails to reset. It is also the only way to trigger GSC reset from
-the driver and can be used in future addition of GSC support.
-
-v2:
-  - use regs from xe_regs.h
-  - move the flag to xe.mmio
-  - call flr only on root gt
-  - use BIOS protection check
-  - copy/paste comments from i915
-v3:
-  - flr code moved to xe_device.c
-v4:
-  - needs_flr_on_fini moved to xe_device
-
-Signed-off-by: Andrzej Hajda <andrzej.hajda@intel.com>
-Reviewed-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_regs.h    |  7 +++
- drivers/gpu/drm/xe/xe_device.c       | 78 ++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_device_types.h |  3 ++
- drivers/gpu/drm/xe/xe_gt.c           |  2 +
- 4 files changed, 90 insertions(+)
+ drivers/gpu/drm/xe/Makefile         |  1 +
+ drivers/gpu/drm/xe/xe_gsc.c         | 50 +++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gsc.h         | 13 ++++++++
+ drivers/gpu/drm/xe/xe_gsc_types.h   | 19 +++++++++++
+ drivers/gpu/drm/xe/xe_uc.c          |  9 ++++--
+ drivers/gpu/drm/xe/xe_uc_fw.c       | 21 ++++++++++--
+ drivers/gpu/drm/xe/xe_uc_fw.h       |  2 ++
+ drivers/gpu/drm/xe/xe_uc_fw_types.h |  5 +--
+ drivers/gpu/drm/xe/xe_uc_types.h    |  3 ++
+ 9 files changed, 116 insertions(+), 7 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc_types.h
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-index 2240cd157603..a646d13af03a 100644
---- a/drivers/gpu/drm/xe/regs/xe_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-@@ -57,8 +57,15 @@
- 
- #define SOFTWARE_FLAGS_SPR33			XE_REG(0x4f084)
- 
-+#define GU_CNTL_PROTECTED			XE_REG(0x10100C)
-+#define   DRIVERINT_FLR_DIS			REG_BIT(31)
-+
- #define GU_CNTL					XE_REG(0x101010)
- #define   LMEM_INIT				REG_BIT(7)
-+#define   DRIVERFLR				REG_BIT(31)
-+
-+#define GU_DEBUG				XE_REG(0x101018)
-+#define   DRIVERFLR_STATUS			REG_BIT(31)
- 
- #define XEHP_CLOCK_GATE_DIS			XE_REG(0x101014)
- #define   SGSI_SIDECLK_DIS			REG_BIT(17)
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 8341acf66e5f..515cdf599fab 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -5,6 +5,8 @@
- 
- #include "xe_device.h"
- 
-+#include <linux/units.h>
-+
- #include <drm/drm_aperture.h>
- #include <drm/drm_atomic_helper.h>
- #include <drm/drm_gem_ttm_helper.h>
-@@ -260,6 +262,78 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
- 	return ERR_PTR(err);
- }
- 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index cee57681732d..474b6044d054 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -57,6 +57,7 @@ xe-y += xe_bb.o \
+ 	xe_exec_queue.o \
+ 	xe_force_wake.o \
+ 	xe_ggtt.o \
++	xe_gsc.o \
+ 	xe_gt.o \
+ 	xe_gt_clock.o \
+ 	xe_gt_debugfs.o \
+diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+new file mode 100644
+index 000000000000..3f709577d73b
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gsc.c
+@@ -0,0 +1,50 @@
++// SPDX-License-Identifier: MIT
 +/*
-+ * The driver-initiated FLR is the highest level of reset that we can trigger
-+ * from within the driver. It is different from the PCI FLR in that it doesn't
-+ * fully reset the SGUnit and doesn't modify the PCI config space and therefore
-+ * it doesn't require a re-enumeration of the PCI BARs. However, the
-+ * driver-initiated FLR does still cause a reset of both GT and display and a
-+ * memory wipe of local and stolen memory, so recovery would require a full HW
-+ * re-init and saving/restoring (or re-populating) the wiped memory. Since we
-+ * perform the FLR as the very last action before releasing access to the HW
-+ * during the driver release flow, we don't attempt recovery at all, because
-+ * if/when a new instance of i915 is bound to the device it will do a full
-+ * re-init anyway.
++ * Copyright © 2023 Intel Corporation
 + */
-+static void xe_driver_flr(struct xe_device *xe)
++
++#include "xe_gsc.h"
++
++#include "xe_device.h"
++#include "xe_gt.h"
++#include "xe_gt_printk.h"
++#include "xe_uc_fw.h"
++
++static struct xe_gt *
++gsc_to_gt(struct xe_gsc *gsc)
 +{
-+	const unsigned int flr_timeout = 3 * MICRO; /* specs recommend a 3s wait */
-+	struct xe_gt *gt = xe_root_mmio_gt(xe);
++	return container_of(gsc, struct xe_gt, uc.gsc);
++}
++
++int xe_gsc_init(struct xe_gsc *gsc)
++{
++	struct xe_gt *gt = gsc_to_gt(gsc);
++	struct xe_tile *tile = gt_to_tile(gt);
 +	int ret;
 +
-+	if (xe_mmio_read32(gt, GU_CNTL_PROTECTED) & DRIVERINT_FLR_DIS) {
-+		drm_info_once(&xe->drm, "BIOS Disabled Driver-FLR\n");
-+		return;
-+	}
++	gsc->fw.type = XE_UC_FW_TYPE_GSC;
 +
-+	drm_dbg(&xe->drm, "Triggering Driver-FLR\n");
++	/* The GSC uC is only available on the media GT */
++	if (tile->media_gt && (gt != tile->media_gt)) {
++		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_NOT_SUPPORTED);
++		return 0;
++	}
 +
 +	/*
-+	 * Make sure any pending FLR requests have cleared by waiting for the
-+	 * FLR trigger bit to go to zero. Also clear GU_DEBUG's DRIVERFLR_STATUS
-+	 * to make sure it's not still set from a prior attempt (it's a write to
-+	 * clear bit).
-+	 * Note that we should never be in a situation where a previous attempt
-+	 * is still pending (unless the HW is totally dead), but better to be
-+	 * safe in case something unexpected happens
++	 * GSC can be "not supported" where GuC is instead supported, so we
++	 * don't want to fail if xe_uc_fw_init() returns an error due to that.
++	 * To avoid this problem, check the FW status before the return code.
 +	 */
-+	ret = xe_mmio_wait32(gt, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
-+	if (ret) {
-+		drm_err(&xe->drm, "Driver-FLR-prepare wait for ready failed! %d\n", ret);
-+		return;
-+	}
-+	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
++	ret = xe_uc_fw_init(&gsc->fw);
++	if (!xe_uc_fw_is_enabled(&gsc->fw))
++		return 0;
++	else if (ret)
++		goto out;
 +
-+	/* Trigger the actual Driver-FLR */
-+	xe_mmio_rmw32(gt, GU_CNTL, 0, DRIVERFLR);
++	return 0;
 +
-+	/* Wait for hardware teardown to complete */
-+	ret = xe_mmio_wait32(gt, GU_CNTL, DRIVERFLR, 0, flr_timeout, NULL, false);
-+	if (ret) {
-+		drm_err(&xe->drm, "Driver-FLR-teardown wait completion failed! %d\n", ret);
-+		return;
-+	}
-+
-+	/* Wait for hardware/firmware re-init to complete */
-+	ret = xe_mmio_wait32(gt, GU_DEBUG, DRIVERFLR_STATUS, DRIVERFLR_STATUS,
-+			     flr_timeout, NULL, false);
-+	if (ret) {
-+		drm_err(&xe->drm, "Driver-FLR-reinit wait completion failed! %d\n", ret);
-+		return;
-+	}
-+
-+	/* Clear sticky completion status */
-+	xe_mmio_write32(gt, GU_DEBUG, DRIVERFLR_STATUS);
++out:
++	xe_gt_err(gt, "GSC init failed with %d", ret);
++	return ret;
 +}
 +
-+static void xe_driver_flr_fini(struct drm_device *drm, void *arg)
-+{
-+	struct xe_device *xe = arg;
+diff --git a/drivers/gpu/drm/xe/xe_gsc.h b/drivers/gpu/drm/xe/xe_gsc.h
+new file mode 100644
+index 000000000000..baa7f21f4204
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gsc.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
 +
-+	if (xe->needs_flr_on_fini)
-+		xe_driver_flr(xe);
-+}
++#ifndef _XE_GSC_H_
++#define _XE_GSC_H_
 +
- static void xe_device_sanitize(struct drm_device *drm, void *arg)
++#include "xe_gsc_types.h"
++
++int xe_gsc_init(struct xe_gsc *gsc);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h b/drivers/gpu/drm/xe/xe_gsc_types.h
+new file mode 100644
+index 000000000000..135f156e3736
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gsc_types.h
+@@ -0,0 +1,19 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_GSC_TYPES_H_
++#define _XE_GSC_TYPES_H_
++
++#include "xe_uc_fw_types.h"
++
++/**
++ * struct xe_gsc - GSC
++ */
++struct xe_gsc {
++	/** @fw: Generic uC firmware management */
++	struct xe_uc_fw fw;
++};
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+index 784f53c5f282..b67154c78dff 100644
+--- a/drivers/gpu/drm/xe/xe_uc.c
++++ b/drivers/gpu/drm/xe/xe_uc.c
+@@ -6,6 +6,7 @@
+ #include "xe_uc.h"
+ 
+ #include "xe_device.h"
++#include "xe_gsc.h"
+ #include "xe_gt.h"
+ #include "xe_guc.h"
+ #include "xe_guc_pc.h"
+@@ -32,8 +33,8 @@ int xe_uc_init(struct xe_uc *uc)
+ 	int ret;
+ 
+ 	/*
+-	 * We call the GuC/HuC init functions even if GuC submission is off to
+-	 * correctly move our tracking of the FW state to "disabled".
++	 * We call the GuC/HuC/GSC init functions even if GuC submission is off
++	 * to correctly move our tracking of the FW state to "disabled".
+ 	 */
+ 
+ 	ret = xe_guc_init(&uc->guc);
+@@ -44,6 +45,10 @@ int xe_uc_init(struct xe_uc *uc)
+ 	if (ret)
+ 		goto err;
+ 
++	ret = xe_gsc_init(&uc->gsc);
++	if (ret)
++		goto err;
++
+ 	if (!xe_device_uc_enabled(uc_to_xe(uc)))
+ 		return 0;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 1f7dac394a1d..af3e5cba606f 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -158,11 +158,18 @@ XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
+ static struct xe_gt *
+ __uc_fw_to_gt(struct xe_uc_fw *uc_fw, enum xe_uc_fw_type type)
  {
- 	struct xe_device *xe = arg;
-@@ -294,6 +368,10 @@ int xe_device_probe(struct xe_device *xe)
- 	if (err)
- 		return err;
- 
-+	err = drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
-+	if (err)
-+		return err;
+-	if (type == XE_UC_FW_TYPE_GUC)
++	XE_WARN_ON(type >= XE_UC_FW_NUM_TYPES);
 +
- 	for_each_gt(gt, xe, id) {
- 		err = xe_pcode_probe(gt);
- 		if (err)
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 44d622d4cc3a..9a0b0ccc1018 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -405,6 +405,9 @@ struct xe_device {
- 	/** @heci_gsc: graphics security controller */
- 	struct xe_heci_gsc heci_gsc;
++	switch (type) {
++	case XE_UC_FW_TYPE_GUC:
+ 		return container_of(uc_fw, struct xe_gt, uc.guc.fw);
++	case XE_UC_FW_TYPE_HUC:
++		return container_of(uc_fw, struct xe_gt, uc.huc.fw);
++	case XE_UC_FW_TYPE_GSC:
++		return container_of(uc_fw, struct xe_gt, uc.gsc.fw);
++	}
  
-+	/** @needs_flr_on_fini: requests function-reset on fini */
-+	bool needs_flr_on_fini;
-+
- 	/* private: */
- 
- #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index d380f67b3365..73c090762771 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -626,6 +626,8 @@ static int gt_reset(struct xe_gt *gt)
- 	xe_uevent_gt_reset_failure(to_pci_dev(gt_to_xe(gt)->drm.dev),
- 				   gt_to_tile(gt)->id, gt->info.id);
- 
-+	gt_to_xe(gt)->needs_flr_on_fini = true;
-+
- 	return err;
+-	XE_WARN_ON(type != XE_UC_FW_TYPE_HUC);
+-	return container_of(uc_fw, struct xe_gt, uc.huc.fw);
++	return NULL;
  }
  
+ static struct xe_gt *uc_fw_to_gt(struct xe_uc_fw *uc_fw)
+@@ -197,6 +204,14 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
+ 	u32 count;
+ 	int i;
+ 
++	/*
++	 * GSC FW support is still not fully in place, so we're not defining
++	 * the FW blob yet because we don't want the driver to attempt to load
++	 * it until we're ready for it.
++	 */
++	if (uc_fw->type == XE_UC_FW_TYPE_GSC)
++		return;
++
+ 	xe_assert(xe, uc_fw->type < ARRAY_SIZE(blobs_all));
+ 	entries = blobs_all[uc_fw->type].entries;
+ 	count = blobs_all[uc_fw->type].count;
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
+index 1d1a0c156cdf..d4682b0276e2 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw.h
+@@ -96,6 +96,8 @@ static inline const char *xe_uc_fw_type_repr(enum xe_uc_fw_type type)
+ 		return "GuC";
+ 	case XE_UC_FW_TYPE_HUC:
+ 		return "HuC";
++	case XE_UC_FW_TYPE_GSC:
++		return "GSC";
+ 	}
+ 	return "uC";
+ }
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+index e4774c560e67..239256bfdb07 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+@@ -55,9 +55,10 @@ enum xe_uc_fw_status {
+ 
+ enum xe_uc_fw_type {
+ 	XE_UC_FW_TYPE_GUC = 0,
+-	XE_UC_FW_TYPE_HUC
++	XE_UC_FW_TYPE_HUC,
++	XE_UC_FW_TYPE_GSC
+ };
+-#define XE_UC_FW_NUM_TYPES 2
++#define XE_UC_FW_NUM_TYPES 3
+ 
+ /**
+  * struct xe_uc_fw_version - Version for XE micro controller firmware
+diff --git a/drivers/gpu/drm/xe/xe_uc_types.h b/drivers/gpu/drm/xe/xe_uc_types.h
+index 49bef6498b85..9924e4484866 100644
+--- a/drivers/gpu/drm/xe/xe_uc_types.h
++++ b/drivers/gpu/drm/xe/xe_uc_types.h
+@@ -6,6 +6,7 @@
+ #ifndef _XE_UC_TYPES_H_
+ #define _XE_UC_TYPES_H_
+ 
++#include "xe_gsc_types.h"
+ #include "xe_guc_types.h"
+ #include "xe_huc_types.h"
+ #include "xe_wopcm_types.h"
+@@ -18,6 +19,8 @@ struct xe_uc {
+ 	struct xe_guc guc;
+ 	/** @huc: HuC */
+ 	struct xe_huc huc;
++	/** @gsc: Graphics Security Controller */
++	struct xe_gsc gsc;
+ 	/** @wopcm: WOPCM */
+ 	struct xe_wopcm wopcm;
+ };
 -- 
 2.41.0
 
