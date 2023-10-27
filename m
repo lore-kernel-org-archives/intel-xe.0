@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E439C25B6E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8D5AC25B72
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 22:29:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5381610EA60;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C031410EA61;
 	Fri, 27 Oct 2023 22:29:53 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC78410EA5E
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 22:29:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F20910EA5E
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 22:29:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698445787; x=1729981787;
+ t=1698445784; x=1729981784;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=T7F4bRF8w55VCBfDNpPALds48EWb+9jqeEwJjBesTAs=;
- b=a8lDzruJ66FxH6EV+P8UXZdK5Ch1GIC6mYgDHq9R+vQJAKk6kblShoQB
- QJKCvb1r99nrptHF3vedEmOHtwlWqBtrdNM8k8gBT2aSDmvE9+F36zJ2q
- fQzWzxWLi1/vHplDPdtyQtTnMCJepb0u9vveI1JHUdFIRLknmoxrELRxu
- rQMk8mXSVp9b+guRAHym3OxRp9fIFHiZ/plSRE1TKMwAjDM2L6oZYZ4nC
- DUf0xJxB8bnbC55ImtSmeRN5WaHZIUn+gZGL2f/Ej8t5R3sq8xcQoJjSQ
- 7i+lI8KoFue1QWiYcvv3u1I4jf3BokwjHGkJqhx5jpoWYQsG+eIXV3lin g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="9397792"
+ bh=9m5jiuPpcEaQcqiXY5RrefKEbhyRJFj+lPi8HGbjxhQ=;
+ b=aQo8VlIp4KM8ziYBkz3nVFUNw7W4Up5mL0BFGoKRqbBWvbReqTYxC0We
+ UEk5UdBlr0u4veJ3NJEXYe7orVcSpmgjr507rDFZJHILd/UNt58OdgEhp
+ 8hLXZ7t3tS2Aad5szkSlHM/NKvvJIEmF1xJWH81KHg4aYidTZn1MrO/GT
+ PUtdpMco8z+7gT6Wmt9Mne7ZzlmKN1vTmGvySGJMTHtRNk4LewsZo2cMp
+ 2h9e8z1+iljFuVL+/v2DqRRPS25hcW55gpa/5btuS4SWlpU1rPcDJrhRQ
+ bfS/1iznUH5CiddOHSrmcht8YgtpzkFvrlsEha6+LLL82Q8fBAYaIEYV4 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="9397779"
 X-IronPort-AV: E=Sophos;i="6.03,257,1694761200"; 
-   d="scan'208";a="9397792"
+   d="scan'208";a="9397779"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 15:29:47 -0700
+ 27 Oct 2023 15:29:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="763360384"
-X-IronPort-AV: E=Sophos;i="6.03,257,1694761200"; d="scan'208";a="763360384"
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="763360371"
+X-IronPort-AV: E=Sophos;i="6.03,257,1694761200"; d="scan'208";a="763360371"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 15:29:46 -0700
+ 27 Oct 2023 15:29:43 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 15:29:25 -0700
-Message-ID: <20231027222928.1981633-12-daniele.ceraolospurio@intel.com>
+Date: Fri, 27 Oct 2023 15:29:21 -0700
+Message-ID: <20231027222928.1981633-8-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
 References: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 11/12] drm/xe/gsc: Define GSCCS for MTL
+Subject: [Intel-xe] [PATCH 07/12] drm/xe/gsc: Implement WA 14015076503
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,75 +60,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add the GSCCS to the media_xelpmp engine list. Note that since the
-GSCCS is only used with the GSC FW, we can consider it disabled if we
-don't have the FW available.
+When the GSC FW is loaded, we need to inform it when a GSCCS reset is
+coming and then wait 200ms for it to get ready to process the reset.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: John Harrison <john.c.harrison@intel.com>
 ---
- drivers/gpu/drm/xe/xe_hw_engine.c | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_pci.c       |  2 +-
- 2 files changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/Makefile           |  2 +-
+ drivers/gpu/drm/xe/regs/xe_gsc_regs.h | 10 ++++++
+ drivers/gpu/drm/xe/xe_gt.c            | 44 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |  1 +
+ 4 files changed, 56 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-index b5b084590888..142783177e45 100644
---- a/drivers/gpu/drm/xe/xe_hw_engine.c
-+++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-@@ -26,6 +26,7 @@
- #include "xe_rtp.h"
- #include "xe_sched_job.h"
- #include "xe_tuning.h"
-+#include "xe_uc_fw.h"
- #include "xe_wa.h"
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 474b6044d054..4a442dcf4d79 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -37,7 +37,7 @@ quiet_cmd_wa_oob = GEN     $(notdir $(generated_oob))
+ $(generated_oob) &: $(obj)/xe_gen_wa_oob $(srctree)/$(src)/xe_wa_oob.rules
+ 	$(call cmd,wa_oob)
  
- #define MAX_MMIO_BASES 3
-@@ -610,6 +611,24 @@ static void read_compute_fuses(struct xe_gt *gt)
- 		read_compute_fuses_from_dss(gt);
+-$(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o: $(generated_oob)
++$(obj)/xe_gt.o $(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o: $(generated_oob)
+ 
+ # Please keep these build lists sorted!
+ 
+diff --git a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+index 22d2ad9cb64d..9a84b55d66ee 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+@@ -16,6 +16,13 @@
+ #define MTL_GSC_HECI1_BASE	0x00116000
+ #define MTL_GSC_HECI2_BASE	0x00117000
+ 
++#define HECI_H_CSR(base)	XE_REG((base) + 0x4)
++#define   HECI_H_CSR_IE		REG_BIT(0)
++#define   HECI_H_CSR_IS		REG_BIT(1)
++#define   HECI_H_CSR_IG		REG_BIT(2)
++#define   HECI_H_CSR_RDY	REG_BIT(3)
++#define   HECI_H_CSR_RST	REG_BIT(4)
++
+ /*
+  * The FWSTS register values are FW defined and can be different between
+  * HECI1 and HECI2
+@@ -26,4 +33,7 @@
+ #define   HECI1_FWSTS1_PROXY_STATE_NORMAL		5
+ #define   HECI1_FWSTS1_INIT_COMPLETE			REG_BIT(9)
+ 
++#define HECI_H_GS1(base)	XE_REG((base) + 0xc4c)
++#define   HECI_H_GS1_ER_PREP	REG_BIT(0)
++
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 73c090762771..0e8e24bded1c 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -10,8 +10,10 @@
+ #include <drm/drm_managed.h>
+ #include <drm/xe_drm.h>
+ 
++#include "generated/xe_wa_oob.h"
+ #include "instructions/xe_gfxpipe_commands.h"
+ #include "instructions/xe_mi_commands.h"
++#include "regs/xe_gsc_regs.h"
+ #include "regs/xe_gt_regs.h"
+ #include "xe_assert.h"
+ #include "xe_bb.h"
+@@ -504,16 +506,58 @@ int xe_gt_init(struct xe_gt *gt)
+ 	return 0;
  }
  
-+static void check_gsc_availability(struct xe_gt *gt)
++static int gsc_fw_is_loaded(struct xe_gt *gt)
 +{
-+	struct xe_device *xe = gt_to_xe(gt);
++	return xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE)) &
++			      HECI1_FWSTS1_INIT_COMPLETE;
++}
 +
-+	if (!(gt->info.engine_mask & BIT(XE_HW_ENGINE_GSCCS0)))
++static void wa_14015076503_start(struct xe_gt *gt)
++{
++	/* WA only applies if the GSC is loaded */
++	if (!XE_WA(gt, 14015076503) || !gsc_fw_is_loaded(gt))
 +		return;
 +
 +	/*
-+	 * The GSCCS is only used to communicate with the GSC FW, so if we don't
-+	 * have the FW there is nothing we need the engine for and can therefore
-+	 * skip its initialization.
++	 * wa_14015076503: if the GSC FW is loaded, we need to alert it that
++	 * we're going to do a GSC engine reset and then wait for 200ms for the
++	 * FW to get ready for it.
 +	 */
-+	if (!xe_uc_fw_is_available(&gt->uc.gsc.fw)) {
-+		gt->info.engine_mask &= ~BIT(XE_HW_ENGINE_GSCCS0);
-+		drm_info(&xe->drm, "gsccs disabled due to lack of FW\n");
-+	}
++	xe_mmio_rmw32(gt, HECI_H_GS1(MTL_GSC_HECI2_BASE),
++		      0, HECI_H_GS1_ER_PREP);
++
++	/* make sure the reset bit is clear when writing the CSR reg */
++	xe_mmio_rmw32(gt, HECI_H_CSR(MTL_GSC_HECI2_BASE),
++		      HECI_H_CSR_RST, HECI_H_CSR_IG);
++	msleep(200);
++
++	return;
 +}
 +
- int xe_hw_engines_init_early(struct xe_gt *gt)
++static void
++wa_14015076503_end(struct xe_gt *gt)
++{
++	if (!XE_WA(gt, 14015076503))
++		return;
++
++	xe_mmio_rmw32(gt, HECI_H_GS1(MTL_GSC_HECI2_BASE),
++		      HECI_H_GS1_ER_PREP, 0);
++}
++
+ static int do_gt_reset(struct xe_gt *gt)
  {
- 	int i;
-@@ -617,6 +636,7 @@ int xe_hw_engines_init_early(struct xe_gt *gt)
- 	read_media_fuses(gt);
- 	read_copy_fuses(gt);
- 	read_compute_fuses(gt);
-+	check_gsc_availability(gt);
+ 	int err;
  
- 	BUILD_BUG_ON(XE_HW_ENGINE_PREEMPT_TIMEOUT < XE_HW_ENGINE_PREEMPT_TIMEOUT_MIN);
- 	BUILD_BUG_ON(XE_HW_ENGINE_PREEMPT_TIMEOUT > XE_HW_ENGINE_PREEMPT_TIMEOUT_MAX);
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 2fae45b9d88e..c09b51735ee4 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -197,7 +197,7 @@ static const struct xe_media_desc media_xelpmp = {
- 	.name = "Xe_LPM+",
- 	.hw_engine_mask =
- 		BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VCS2) |
--		BIT(XE_HW_ENGINE_VECS0),	/* TODO: add GSC0 */
-+		BIT(XE_HW_ENGINE_VECS0) | BIT(XE_HW_ENGINE_GSCCS0)
- };
++	wa_14015076503_start(gt);
++
+ 	xe_mmio_write32(gt, GDRST, GRDOM_FULL);
+ 	err = xe_mmio_wait32(gt, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
+ 	if (err)
+ 		xe_gt_err(gt, "failed to clear GEN11_GRDOM_FULL (%pe)\n",
+ 			  ERR_PTR(err));
  
- static const struct xe_media_desc media_xe2 = {
++	wa_14015076503_end(gt);
++
+ 	return err;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index f3ff774dc4aa..132c35497f74 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -19,3 +19,4 @@
+ 		SUBPLATFORM(DG2, G12)
+ 16017236439	PLATFORM(PVC)
+ 22010954014	PLATFORM(DG2)
++14015076503	MEDIA_VERSION(1300)
 -- 
 2.41.0
 
