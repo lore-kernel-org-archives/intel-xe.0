@@ -4,51 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88012C25B6E
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 08:16:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD063C25B67
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 08:16:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DC9510E953;
-	Fri, 27 Oct 2023 08:16:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94DAD10E957;
+	Fri, 27 Oct 2023 08:16:36 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68EE010E956
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 08:16:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DD2E610E959
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 08:16:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698394573; x=1729930573;
+ t=1698394576; x=1729930576;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=lDoN52YYkL6OEoBndrUsC3KHj4XXcWoY6UA8Y/gGf9g=;
- b=m+wyCz+Mo5xPwD4QRBBGxaJjtftMrmfIRXLzSZ7X7eQFOL/GwMUygZZQ
- NjK5mWmmMTsOA/XUQctOt9o8DOEiSzU2aCAB7Ld+sE7sXLpE66gnYvP8i
- O25eNqGCnRsEb42RUAh8oUP5MiEyJj0kuMmgGHVyzAY8kYEBqpdHUyHYA
- RncLWxWWBjenwUVrdR/L7Phgo/rv4RToHzshPcXU2fSmW6186wUhPcrFg
- PrcomlDt+ERKQP6Khu55TgVJRrs0P2gMgt4VEKc2fGr8kP+Gi41t6tYwW
- 0g2ch7iWNYO2Yh8GWbeXLAFmgXy3nLWcR3UhlHt3b7RaWrMg7mV0PGTgI w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="9270245"
+ bh=D+x4nFKJ03WDjnaEoWDfNoeW74/FuzITvtszny3yEV4=;
+ b=YyRLsswdJsmNu04d18+P2Iq056ON030UoCV22xih4BUydPjYmeQMmq57
+ t59PRaODAaDyGgsqVWtcpQl5IAem/0mxOcQtVXDLlh0lZq4wLsBxoc8fs
+ n03JWFiaeYnIxrdjdEPIEtUOSpaGO7CAXk/KBSJPpe316Z6qFmrwSYJRK
+ Jjed+BcKb/60EFhWNAhB9JHCDDasbxlyoL5ZkMJa6GG9+sbyjgy95Vilz
+ sez2EEys+rV5y4WynPnTuQZWHurOc6wCeajh1itKchSSFa1qjXwSwQ1yh
+ KeJKfzaIdjLhv/mZTIGStnnd0tEI9dTVvoWaK/m5JnM3k04pMhAeNj+h7 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="9270250"
 X-IronPort-AV: E=Sophos;i="6.03,255,1694761200"; 
-   d="scan'208";a="9270245"
+   d="scan'208";a="9270250"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 01:16:13 -0700
+ 27 Oct 2023 01:16:16 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="763129091"
-X-IronPort-AV: E=Sophos;i="6.03,255,1694761200"; d="scan'208";a="763129091"
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="763129094"
+X-IronPort-AV: E=Sophos;i="6.03,255,1694761200"; d="scan'208";a="763129094"
 Received: from krchrist-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.140])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 01:16:12 -0700
+ 27 Oct 2023 01:16:15 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 10:15:48 +0200
-Message-ID: <20231027081552.5321-6-thomas.hellstrom@linux.intel.com>
+Date: Fri, 27 Oct 2023 10:15:51 +0200
+Message-ID: <20231027081552.5321-9-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231027081552.5321-1-thomas.hellstrom@linux.intel.com>
 References: <20231027081552.5321-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 06/10] drm/gpuvm: add an abstraction for a VM / BO
- combination
+Subject: [Intel-xe] [CI 09/10] drm/xe: Adapt to GPUVM tracking of external /
+ evicted objects.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,1041 +63,868 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Danilo Krummrich <dakr@redhat.com>
+Using fine-grained locking for now.
 
-Add an abstraction layer between the drm_gpuva mappings of a particular
-drm_gem_object and this GEM object itself. The abstraction represents a
-combination of a drm_gem_object and drm_gpuvm. The drm_gem_object holds
-a list of drm_gpuvm_bo structures (the structure representing this
-abstraction), while each drm_gpuvm_bo contains list of mappings of this
-GEM object.
-
-This has multiple advantages:
-
-1) We can use the drm_gpuvm_bo structure to attach it to various lists
-   of the drm_gpuvm. This is useful for tracking external and evicted
-   objects per VM, which is introduced in subsequent patches.
-
-2) Finding mappings of a certain drm_gem_object mapped in a certain
-   drm_gpuvm becomes much cheaper.
-
-3) Drivers can derive and extend the structure to easily represent
-   driver specific states of a BO for a certain GPUVM.
-
-The idea of this abstraction was taken from amdgpu, hence the credit for
-this idea goes to the developers of amdgpu.
-
-Cc: Christian König <christian.koenig@amd.com>
-Signed-off-by: Danilo Krummrich <dakr@redhat.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/drm_gpuvm.c            | 335 +++++++++++++++++++++----
- drivers/gpu/drm/nouveau/nouveau_uvmm.c |  65 +++--
- include/drm/drm_gem.h                  |  32 +--
- include/drm/drm_gpuvm.h                | 188 +++++++++++++-
- 4 files changed, 534 insertions(+), 86 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c       |  63 +++----
+ drivers/gpu/drm/xe/xe_exec.c     |  72 ++------
+ drivers/gpu/drm/xe/xe_vm.c       | 292 +++++++------------------------
+ drivers/gpu/drm/xe/xe_vm.h       |  13 +-
+ drivers/gpu/drm/xe/xe_vm_types.h |  67 ++-----
+ 5 files changed, 120 insertions(+), 387 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index 3bb3d083b32e..f7876450766d 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -70,6 +70,18 @@
-  * &drm_gem_object, such as the &drm_gem_object containing the root page table,
-  * but it can also be a 'dummy' object, which can be allocated with
-  * drm_gpuvm_resv_object_alloc().
-+ *
-+ * In order to connect a struct drm_gpuva its backing &drm_gem_object each
-+ * &drm_gem_object maintains a list of &drm_gpuvm_bo structures, and each
-+ * &drm_gpuvm_bo contains a list of &drm_gpuva structures.
-+ *
-+ * A &drm_gpuvm_bo is an abstraction that represents a combination of a
-+ * &drm_gpuvm and a &drm_gem_object. Every such combination should be unique.
-+ * This is ensured by the API through drm_gpuvm_bo_obtain() and
-+ * drm_gpuvm_bo_obtain_prealloc() which first look into the corresponding
-+ * &drm_gem_object list of &drm_gpuvm_bos for an existing instance of this
-+ * particular combination. If not existent a new instance is created and linked
-+ * to the &drm_gem_object.
-  */
- 
- /**
-@@ -395,21 +407,28 @@
- /**
-  * DOC: Locking
-  *
-- * Generally, the GPU VA manager does not take care of locking itself, it is
-- * the drivers responsibility to take care about locking. Drivers might want to
-- * protect the following operations: inserting, removing and iterating
-- * &drm_gpuva objects as well as generating all kinds of operations, such as
-- * split / merge or prefetch.
-- *
-- * The GPU VA manager also does not take care of the locking of the backing
-- * &drm_gem_object buffers GPU VA lists by itself; drivers are responsible to
-- * enforce mutual exclusion using either the GEMs dma_resv lock or alternatively
-- * a driver specific external lock. For the latter see also
-- * drm_gem_gpuva_set_lock().
-- *
-- * However, the GPU VA manager contains lockdep checks to ensure callers of its
-- * API hold the corresponding lock whenever the &drm_gem_objects GPU VA list is
-- * accessed by functions such as drm_gpuva_link() or drm_gpuva_unlink().
-+ * In terms of managing &drm_gpuva entries DRM GPUVM does not take care of
-+ * locking itself, it is the drivers responsibility to take care about locking.
-+ * Drivers might want to protect the following operations: inserting, removing
-+ * and iterating &drm_gpuva objects as well as generating all kinds of
-+ * operations, such as split / merge or prefetch.
-+ *
-+ * DRM GPUVM also does not take care of the locking of the backing
-+ * &drm_gem_object buffers GPU VA lists and &drm_gpuvm_bo abstractions by
-+ * itself; drivers are responsible to enforce mutual exclusion using either the
-+ * GEMs dma_resv lock or alternatively a driver specific external lock. For the
-+ * latter see also drm_gem_gpuva_set_lock().
-+ *
-+ * However, DRM GPUVM contains lockdep checks to ensure callers of its API hold
-+ * the corresponding lock whenever the &drm_gem_objects GPU VA list is accessed
-+ * by functions such as drm_gpuva_link() or drm_gpuva_unlink(), but also
-+ * drm_gpuvm_bo_obtain() and drm_gpuvm_bo_put().
-+ *
-+ * The latter is required since on creation and destruction of a &drm_gpuvm_bo
-+ * the &drm_gpuvm_bo is attached / removed from the &drm_gem_objects gpuva list.
-+ * Subsequent calls to drm_gpuvm_bo_obtain() for the same &drm_gpuvm and
-+ * &drm_gem_object must be able to observe previous creations and destructions
-+ * of &drm_gpuvm_bos in order to keep instances unique.
-  */
- 
- /**
-@@ -439,6 +458,7 @@
-  *	{
-  *		struct drm_gpuva_ops *ops;
-  *		struct drm_gpuva_op *op
-+ *		struct drm_gpuvm_bo *vm_bo;
-  *
-  *		driver_lock_va_space();
-  *		ops = drm_gpuvm_sm_map_ops_create(gpuvm, addr, range,
-@@ -446,6 +466,10 @@
-  *		if (IS_ERR(ops))
-  *			return PTR_ERR(ops);
-  *
-+ *		vm_bo = drm_gpuvm_bo_obtain(gpuvm, obj);
-+ *		if (IS_ERR(vm_bo))
-+ *			return PTR_ERR(vm_bo);
-+ *
-  *		drm_gpuva_for_each_op(op, ops) {
-  *			struct drm_gpuva *va;
-  *
-@@ -458,7 +482,7 @@
-  *
-  *				driver_vm_map();
-  *				drm_gpuva_map(gpuvm, va, &op->map);
-- *				drm_gpuva_link(va);
-+ *				drm_gpuva_link(va, vm_bo);
-  *
-  *				break;
-  *			case DRM_GPUVA_OP_REMAP: {
-@@ -485,11 +509,11 @@
-  *				driver_vm_remap();
-  *				drm_gpuva_remap(prev, next, &op->remap);
-  *
-- *				drm_gpuva_unlink(va);
-  *				if (prev)
-- *					drm_gpuva_link(prev);
-+ *					drm_gpuva_link(prev, va->vm_bo);
-  *				if (next)
-- *					drm_gpuva_link(next);
-+ *					drm_gpuva_link(next, va->vm_bo);
-+ *				drm_gpuva_unlink(va);
-  *
-  *				break;
-  *			}
-@@ -505,6 +529,7 @@
-  *				break;
-  *			}
-  *		}
-+ *		drm_gpuvm_bo_put(vm_bo);
-  *		driver_unlock_va_space();
-  *
-  *		return 0;
-@@ -514,6 +539,7 @@
-  *
-  *	struct driver_context {
-  *		struct drm_gpuvm *gpuvm;
-+ *		struct drm_gpuvm_bo *vm_bo;
-  *		struct drm_gpuva *new_va;
-  *		struct drm_gpuva *prev_va;
-  *		struct drm_gpuva *next_va;
-@@ -534,6 +560,7 @@
-  *				  struct drm_gem_object *obj, u64 offset)
-  *	{
-  *		struct driver_context ctx;
-+ *		struct drm_gpuvm_bo *vm_bo;
-  *		struct drm_gpuva_ops *ops;
-  *		struct drm_gpuva_op *op;
-  *		int ret = 0;
-@@ -543,16 +570,23 @@
-  *		ctx.new_va = kzalloc(sizeof(*ctx.new_va), GFP_KERNEL);
-  *		ctx.prev_va = kzalloc(sizeof(*ctx.prev_va), GFP_KERNEL);
-  *		ctx.next_va = kzalloc(sizeof(*ctx.next_va), GFP_KERNEL);
-- *		if (!ctx.new_va || !ctx.prev_va || !ctx.next_va) {
-+ *		ctx.vm_bo = drm_gpuvm_bo_create(gpuvm, obj);
-+ *		if (!ctx.new_va || !ctx.prev_va || !ctx.next_va || !vm_bo) {
-  *			ret = -ENOMEM;
-  *			goto out;
-  *		}
-  *
-+ *		// Typically protected with a driver specific GEM gpuva lock
-+ *		// used in the fence signaling path for drm_gpuva_link() and
-+ *		// drm_gpuva_unlink(), hence pre-allocate.
-+ *		ctx.vm_bo = drm_gpuvm_bo_obtain_prealloc(ctx.vm_bo);
-+ *
-  *		driver_lock_va_space();
-  *		ret = drm_gpuvm_sm_map(gpuvm, &ctx, addr, range, obj, offset);
-  *		driver_unlock_va_space();
-  *
-  *	out:
-+ *		drm_gpuvm_bo_put(ctx.vm_bo);
-  *		kfree(ctx.new_va);
-  *		kfree(ctx.prev_va);
-  *		kfree(ctx.next_va);
-@@ -565,7 +599,7 @@
-  *
-  *		drm_gpuva_map(ctx->vm, ctx->new_va, &op->map);
-  *
-- *		drm_gpuva_link(ctx->new_va);
-+ *		drm_gpuva_link(ctx->new_va, ctx->vm_bo);
-  *
-  *		// prevent the new GPUVA from being freed in
-  *		// driver_mapping_create()
-@@ -577,22 +611,23 @@
-  *	int driver_gpuva_remap(struct drm_gpuva_op *op, void *__ctx)
-  *	{
-  *		struct driver_context *ctx = __ctx;
-+ *		struct drm_gpuva *va = op->remap.unmap->va;
-  *
-  *		drm_gpuva_remap(ctx->prev_va, ctx->next_va, &op->remap);
-  *
-- *		drm_gpuva_unlink(op->remap.unmap->va);
-- *		kfree(op->remap.unmap->va);
-- *
-  *		if (op->remap.prev) {
-- *			drm_gpuva_link(ctx->prev_va);
-+ *			drm_gpuva_link(ctx->prev_va, va->vm_bo);
-  *			ctx->prev_va = NULL;
-  *		}
-  *
-  *		if (op->remap.next) {
-- *			drm_gpuva_link(ctx->next_va);
-+ *			drm_gpuva_link(ctx->next_va, va->vm_bo);
-  *			ctx->next_va = NULL;
-  *		}
-  *
-+ *		drm_gpuva_unlink(va);
-+ *		kfree(va);
-+ *
-  *		return 0;
-  *	}
-  *
-@@ -774,6 +809,194 @@ drm_gpuvm_destroy(struct drm_gpuvm *gpuvm)
- }
- EXPORT_SYMBOL_GPL(drm_gpuvm_destroy);
- 
-+/**
-+ * drm_gpuvm_bo_create() - create a new instance of struct drm_gpuvm_bo
-+ * @gpuvm: The &drm_gpuvm the @obj is mapped in.
-+ * @obj: The &drm_gem_object being mapped in the @gpuvm.
-+ *
-+ * If provided by the driver, this function uses the &drm_gpuvm_ops
-+ * vm_bo_alloc() callback to allocate.
-+ *
-+ * Returns: a pointer to the &drm_gpuvm_bo on success, NULL on failure
-+ */
-+struct drm_gpuvm_bo *
-+drm_gpuvm_bo_create(struct drm_gpuvm *gpuvm,
-+		    struct drm_gem_object *obj)
-+{
-+	const struct drm_gpuvm_ops *ops = gpuvm->ops;
-+	struct drm_gpuvm_bo *vm_bo;
-+
-+	if (ops && ops->vm_bo_alloc)
-+		vm_bo = ops->vm_bo_alloc();
-+	else
-+		vm_bo = kzalloc(sizeof(*vm_bo), GFP_KERNEL);
-+
-+	if (unlikely(!vm_bo))
-+		return NULL;
-+
-+	vm_bo->vm = gpuvm;
-+	vm_bo->obj = obj;
-+	drm_gem_object_get(obj);
-+
-+	kref_init(&vm_bo->kref);
-+	INIT_LIST_HEAD(&vm_bo->list.gpuva);
-+	INIT_LIST_HEAD(&vm_bo->list.entry.gem);
-+
-+	return vm_bo;
-+}
-+EXPORT_SYMBOL_GPL(drm_gpuvm_bo_create);
-+
-+static void
-+drm_gpuvm_bo_destroy(struct kref *kref)
-+{
-+	struct drm_gpuvm_bo *vm_bo = container_of(kref, struct drm_gpuvm_bo,
-+						  kref);
-+	struct drm_gpuvm *gpuvm = vm_bo->vm;
-+	const struct drm_gpuvm_ops *ops = gpuvm->ops;
-+	struct drm_gem_object *obj = vm_bo->obj;
-+	bool lock = !drm_gpuvm_resv_protected(gpuvm);
-+
-+	if (!lock)
-+		drm_gpuvm_resv_assert_held(gpuvm);
-+
-+	drm_gem_gpuva_assert_lock_held(obj);
-+	list_del(&vm_bo->list.entry.gem);
-+
-+	if (ops && ops->vm_bo_free)
-+		ops->vm_bo_free(vm_bo);
-+	else
-+		kfree(vm_bo);
-+
-+	drm_gem_object_put(obj);
-+}
-+
-+/**
-+ * drm_gpuvm_bo_put() - drop a struct drm_gpuvm_bo reference
-+ * @vm_bo: the &drm_gpuvm_bo to release the reference of
-+ *
-+ * This releases a reference to @vm_bo.
-+ *
-+ * If the reference count drops to zero, the &gpuvm_bo is destroyed, which
-+ * includes removing it from the GEMs gpuva list. Hence, if a call to this
-+ * function can potentially let the reference count to zero the caller must
-+ * hold the dma-resv or driver specific GEM gpuva lock.
-+ */
-+void
-+drm_gpuvm_bo_put(struct drm_gpuvm_bo *vm_bo)
-+{
-+	if (vm_bo)
-+		kref_put(&vm_bo->kref, drm_gpuvm_bo_destroy);
-+}
-+EXPORT_SYMBOL_GPL(drm_gpuvm_bo_put);
-+
-+static struct drm_gpuvm_bo *
-+__drm_gpuvm_bo_find(struct drm_gpuvm *gpuvm,
-+		    struct drm_gem_object *obj)
-+{
-+	struct drm_gpuvm_bo *vm_bo;
-+
-+	drm_gem_gpuva_assert_lock_held(obj);
-+	drm_gem_for_each_gpuvm_bo(vm_bo, obj)
-+		if (vm_bo->vm == gpuvm)
-+			return vm_bo;
-+
-+	return NULL;
-+}
-+
-+/**
-+ * drm_gpuvm_bo_find() - find the &drm_gpuvm_bo for the given
-+ * &drm_gpuvm and &drm_gem_object
-+ * @gpuvm: The &drm_gpuvm the @obj is mapped in.
-+ * @obj: The &drm_gem_object being mapped in the @gpuvm.
-+ *
-+ * Find the &drm_gpuvm_bo representing the combination of the given
-+ * &drm_gpuvm and &drm_gem_object. If found, increases the reference
-+ * count of the &drm_gpuvm_bo accordingly.
-+ *
-+ * Returns: a pointer to the &drm_gpuvm_bo on success, NULL on failure
-+ */
-+struct drm_gpuvm_bo *
-+drm_gpuvm_bo_find(struct drm_gpuvm *gpuvm,
-+		  struct drm_gem_object *obj)
-+{
-+	struct drm_gpuvm_bo *vm_bo = __drm_gpuvm_bo_find(gpuvm, obj);
-+
-+	return vm_bo ? drm_gpuvm_bo_get(vm_bo) : NULL;
-+}
-+EXPORT_SYMBOL_GPL(drm_gpuvm_bo_find);
-+
-+/**
-+ * drm_gpuvm_bo_obtain() - obtains and instance of the &drm_gpuvm_bo for the
-+ * given &drm_gpuvm and &drm_gem_object
-+ * @gpuvm: The &drm_gpuvm the @obj is mapped in.
-+ * @obj: The &drm_gem_object being mapped in the @gpuvm.
-+ *
-+ * Find the &drm_gpuvm_bo representing the combination of the given
-+ * &drm_gpuvm and &drm_gem_object. If found, increases the reference
-+ * count of the &drm_gpuvm_bo accordingly. If not found, allocates a new
-+ * &drm_gpuvm_bo.
-+ *
-+ * A new &drm_gpuvm_bo is added to the GEMs gpuva list.
-+ *
-+ * Returns: a pointer to the &drm_gpuvm_bo on success, an ERR_PTR on failure
-+ */
-+struct drm_gpuvm_bo *
-+drm_gpuvm_bo_obtain(struct drm_gpuvm *gpuvm,
-+		    struct drm_gem_object *obj)
-+{
-+	struct drm_gpuvm_bo *vm_bo;
-+
-+	vm_bo = drm_gpuvm_bo_find(gpuvm, obj);
-+	if (vm_bo)
-+		return vm_bo;
-+
-+	vm_bo = drm_gpuvm_bo_create(gpuvm, obj);
-+	if (!vm_bo)
-+		return ERR_PTR(-ENOMEM);
-+
-+	drm_gem_gpuva_assert_lock_held(obj);
-+	list_add_tail(&vm_bo->list.entry.gem, &obj->gpuva.list);
-+
-+	return vm_bo;
-+}
-+EXPORT_SYMBOL_GPL(drm_gpuvm_bo_obtain);
-+
-+/**
-+ * drm_gpuvm_bo_obtain_prealloc() - obtains and instance of the &drm_gpuvm_bo
-+ * for the given &drm_gpuvm and &drm_gem_object
-+ * @__vm_bo: A pre-allocated struct drm_gpuvm_bo.
-+ *
-+ * Find the &drm_gpuvm_bo representing the combination of the given
-+ * &drm_gpuvm and &drm_gem_object. If found, increases the reference
-+ * count of the found &drm_gpuvm_bo accordingly, while the @__vm_bo reference
-+ * count is decreased. If not found @__vm_bo is returned without further
-+ * increase of the reference count.
-+ *
-+ * A new &drm_gpuvm_bo is added to the GEMs gpuva list.
-+ *
-+ * Returns: a pointer to the found &drm_gpuvm_bo or @__vm_bo if no existing
-+ * &drm_gpuvm_bo was found
-+ */
-+struct drm_gpuvm_bo *
-+drm_gpuvm_bo_obtain_prealloc(struct drm_gpuvm_bo *__vm_bo)
-+{
-+	struct drm_gpuvm *gpuvm = __vm_bo->vm;
-+	struct drm_gem_object *obj = __vm_bo->obj;
-+	struct drm_gpuvm_bo *vm_bo;
-+
-+	vm_bo = drm_gpuvm_bo_find(gpuvm, obj);
-+	if (vm_bo) {
-+		drm_gpuvm_bo_put(__vm_bo);
-+		return vm_bo;
-+	}
-+
-+	drm_gem_gpuva_assert_lock_held(obj);
-+	list_add_tail(&__vm_bo->list.entry.gem, &obj->gpuva.list);
-+
-+	return __vm_bo;
-+}
-+EXPORT_SYMBOL_GPL(drm_gpuvm_bo_obtain_prealloc);
-+
- static int
- __drm_gpuva_insert(struct drm_gpuvm *gpuvm,
- 		   struct drm_gpuva *va)
-@@ -864,24 +1087,33 @@ EXPORT_SYMBOL_GPL(drm_gpuva_remove);
- /**
-  * drm_gpuva_link() - link a &drm_gpuva
-  * @va: the &drm_gpuva to link
-+ * @vm_bo: the &drm_gpuvm_bo to add the &drm_gpuva to
-  *
-- * This adds the given &va to the GPU VA list of the &drm_gem_object it is
-- * associated with.
-+ * This adds the given &va to the GPU VA list of the &drm_gpuvm_bo and the
-+ * &drm_gpuvm_bo to the &drm_gem_object it is associated with.
-+ *
-+ * For every &drm_gpuva entry added to the &drm_gpuvm_bo an additional
-+ * reference of the latter is taken.
-  *
-  * This function expects the caller to protect the GEM's GPUVA list against
-- * concurrent access using the GEMs dma_resv lock.
-+ * concurrent access using either the GEMs dma_resv lock or a driver specific
-+ * lock set through drm_gem_gpuva_set_lock().
-  */
- void
--drm_gpuva_link(struct drm_gpuva *va)
-+drm_gpuva_link(struct drm_gpuva *va, struct drm_gpuvm_bo *vm_bo)
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 76ca4f3a3645..0dd6f79c28b6 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -450,9 +450,9 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
  {
- 	struct drm_gem_object *obj = va->gem.obj;
-+	struct drm_gpuvm *gpuvm = va->vm;
+ 	struct dma_resv_iter cursor;
+ 	struct dma_fence *fence;
+-	struct drm_gpuva *gpuva;
+ 	struct drm_gem_object *obj = &bo->ttm.base;
+ 	struct drm_gpuvm_bo *vm_bo;
++	bool idle = false;
+ 	int ret = 0;
  
- 	if (unlikely(!obj))
- 		return;
+ 	dma_resv_assert_held(bo->ttm.base.resv);
+@@ -466,14 +466,15 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 	}
  
--	drm_gem_gpuva_assert_lock_held(obj);
-+	drm_WARN_ON(gpuvm->drm, obj != vm_bo->obj);
+ 	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
+-		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
+-			struct xe_vma *vma = gpuva_to_vma(gpuva);
+-			struct xe_vm *vm = xe_vma_vm(vma);
++		struct xe_vm *vm = gpuvm_to_vm(vm_bo->vm);
++		struct drm_gpuva *gpuva;
  
--	list_add_tail(&va->gem.entry, &obj->gpuva.list);
-+	va->vm_bo = drm_gpuvm_bo_get(vm_bo);
-+
-+	drm_gem_gpuva_assert_lock_held(obj);
-+	list_add_tail(&va->gem.entry, &vm_bo->list.gpuva);
- }
- EXPORT_SYMBOL_GPL(drm_gpuva_link);
- 
-@@ -892,20 +1124,31 @@ EXPORT_SYMBOL_GPL(drm_gpuva_link);
-  * This removes the given &va from the GPU VA list of the &drm_gem_object it is
-  * associated with.
-  *
-+ * This removes the given &va from the GPU VA list of the &drm_gpuvm_bo and
-+ * the &drm_gpuvm_bo from the &drm_gem_object it is associated with in case
-+ * this call unlinks the last &drm_gpuva from the &drm_gpuvm_bo.
-+ *
-+ * For every &drm_gpuva entry removed from the &drm_gpuvm_bo a reference of
-+ * the latter is dropped.
-+ *
-  * This function expects the caller to protect the GEM's GPUVA list against
-- * concurrent access using the GEMs dma_resv lock.
-+ * concurrent access using either the GEMs dma_resv lock or a driver specific
-+ * lock set through drm_gem_gpuva_set_lock().
-  */
- void
- drm_gpuva_unlink(struct drm_gpuva *va)
- {
- 	struct drm_gem_object *obj = va->gem.obj;
-+	struct drm_gpuvm_bo *vm_bo = va->vm_bo;
- 
- 	if (unlikely(!obj))
- 		return;
- 
- 	drm_gem_gpuva_assert_lock_held(obj);
--
- 	list_del_init(&va->gem.entry);
-+
-+	va->vm_bo = NULL;
-+	drm_gpuvm_bo_put(vm_bo);
- }
- EXPORT_SYMBOL_GPL(drm_gpuva_unlink);
- 
-@@ -1050,10 +1293,10 @@ drm_gpuva_remap(struct drm_gpuva *prev,
- 		struct drm_gpuva *next,
- 		struct drm_gpuva_op_remap *op)
- {
--	struct drm_gpuva *curr = op->unmap->va;
--	struct drm_gpuvm *gpuvm = curr->vm;
-+	struct drm_gpuva *va = op->unmap->va;
-+	struct drm_gpuvm *gpuvm = va->vm;
- 
--	drm_gpuva_remove(curr);
-+	drm_gpuva_remove(va);
- 
- 	if (op->prev) {
- 		drm_gpuva_init_from_op(prev, op->prev);
-@@ -1695,9 +1938,8 @@ drm_gpuvm_prefetch_ops_create(struct drm_gpuvm *gpuvm,
- EXPORT_SYMBOL_GPL(drm_gpuvm_prefetch_ops_create);
- 
- /**
-- * drm_gpuvm_gem_unmap_ops_create() - creates the &drm_gpuva_ops to unmap a GEM
-- * @gpuvm: the &drm_gpuvm representing the GPU VA space
-- * @obj: the &drm_gem_object to unmap
-+ * drm_gpuvm_bo_unmap_ops_create() - creates the &drm_gpuva_ops to unmap a GEM
-+ * @vm_bo: the &drm_gpuvm_bo abstraction
-  *
-  * This function creates a list of operations to perform unmapping for every
-  * GPUVA attached to a GEM.
-@@ -1714,15 +1956,14 @@ EXPORT_SYMBOL_GPL(drm_gpuvm_prefetch_ops_create);
-  * Returns: a pointer to the &drm_gpuva_ops on success, an ERR_PTR on failure
-  */
- struct drm_gpuva_ops *
--drm_gpuvm_gem_unmap_ops_create(struct drm_gpuvm *gpuvm,
--			       struct drm_gem_object *obj)
-+drm_gpuvm_bo_unmap_ops_create(struct drm_gpuvm_bo *vm_bo)
- {
- 	struct drm_gpuva_ops *ops;
- 	struct drm_gpuva_op *op;
- 	struct drm_gpuva *va;
- 	int ret;
- 
--	drm_gem_gpuva_assert_lock_held(obj);
-+	drm_gem_gpuva_assert_lock_held(vm_bo->obj);
- 
- 	ops = kzalloc(sizeof(*ops), GFP_KERNEL);
- 	if (!ops)
-@@ -1730,8 +1971,8 @@ drm_gpuvm_gem_unmap_ops_create(struct drm_gpuvm *gpuvm,
- 
- 	INIT_LIST_HEAD(&ops->list);
- 
--	drm_gem_for_each_gpuva(va, obj) {
--		op = gpuva_op_alloc(gpuvm);
-+	drm_gpuvm_bo_for_each_va(va, vm_bo) {
-+		op = gpuva_op_alloc(vm_bo->vm);
- 		if (!op) {
- 			ret = -ENOMEM;
- 			goto err_free_ops;
-@@ -1745,10 +1986,10 @@ drm_gpuvm_gem_unmap_ops_create(struct drm_gpuvm *gpuvm,
- 	return ops;
- 
- err_free_ops:
--	drm_gpuva_ops_free(gpuvm, ops);
-+	drm_gpuva_ops_free(vm_bo->vm, ops);
- 	return ERR_PTR(ret);
- }
--EXPORT_SYMBOL_GPL(drm_gpuvm_gem_unmap_ops_create);
-+EXPORT_SYMBOL_GPL(drm_gpuvm_bo_unmap_ops_create);
- 
- /**
-  * drm_gpuva_ops_free() - free the given &drm_gpuva_ops
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index ed439bf4032f..e05073ae30d3 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -62,6 +62,8 @@ struct bind_job_op {
- 	enum vm_bind_op op;
- 	u32 flags;
- 
-+	struct drm_gpuvm_bo *vm_bo;
-+
- 	struct {
- 		u64 addr;
- 		u64 range;
-@@ -1113,22 +1115,28 @@ bind_validate_region(struct nouveau_job *job)
- }
- 
- static void
--bind_link_gpuvas(struct drm_gpuva_ops *ops, struct nouveau_uvma_prealloc *new)
-+bind_link_gpuvas(struct bind_job_op *bop)
- {
-+	struct nouveau_uvma_prealloc *new = &bop->new;
-+	struct drm_gpuvm_bo *vm_bo = bop->vm_bo;
-+	struct drm_gpuva_ops *ops = bop->ops;
- 	struct drm_gpuva_op *op;
- 
- 	drm_gpuva_for_each_op(op, ops) {
- 		switch (op->op) {
- 		case DRM_GPUVA_OP_MAP:
--			drm_gpuva_link(&new->map->va);
-+			drm_gpuva_link(&new->map->va, vm_bo);
- 			break;
--		case DRM_GPUVA_OP_REMAP:
-+		case DRM_GPUVA_OP_REMAP: {
-+			struct drm_gpuva *va = op->remap.unmap->va;
-+
- 			if (op->remap.prev)
--				drm_gpuva_link(&new->prev->va);
-+				drm_gpuva_link(&new->prev->va, va->vm_bo);
- 			if (op->remap.next)
--				drm_gpuva_link(&new->next->va);
--			drm_gpuva_unlink(op->remap.unmap->va);
-+				drm_gpuva_link(&new->next->va, va->vm_bo);
-+			drm_gpuva_unlink(va);
- 			break;
+-			trace_xe_vma_evict(vma);
++		if (!xe_vm_in_fault_mode(vm)) {
++			drm_gpuvm_bo_evict(vm_bo, true);
++			continue;
 +		}
- 		case DRM_GPUVA_OP_UNMAP:
- 			drm_gpuva_unlink(op->unmap.va);
- 			break;
-@@ -1150,10 +1158,19 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job)
  
- 	list_for_each_op(op, &bind_job->ops) {
- 		if (op->op == OP_MAP) {
--			op->gem.obj = drm_gem_object_lookup(job->file_priv,
--							    op->gem.handle);
--			if (!op->gem.obj)
-+			struct drm_gem_object *obj;
+-		if (xe_vm_in_fault_mode(vm)) {
+-			/* Wait for pending binds / unbinds. */
++		if (!idle) {
+ 			long timeout;
+ 
+ 			if (ctx->no_wait_gpu &&
+@@ -485,45 +486,21 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 							DMA_RESV_USAGE_BOOKKEEP,
+ 							ctx->interruptible,
+ 							MAX_SCHEDULE_TIMEOUT);
+-			if (timeout > 0) {
+-				ret = xe_vm_invalidate_vma(vma);
+-				XE_WARN_ON(ret);
+-			} else if (!timeout) {
+-				ret = -ETIME;
+-			} else {
+-				ret = timeout;
+-			}
+-
+-		} else {
+-			bool vm_resv_locked = false;
++			if (!timeout)
++				return -ETIME;
++			if (timeout < 0)
++				return timeout;
+ 
+-			/*
+-			 * We need to put the vma on the vm's rebind_list,
+-			 * but need the vm resv to do so. If we can't verify
+-			 * that we indeed have it locked, put the vma an the
+-			 * vm's notifier.rebind_list instead and scoop later.
+-			 */
+-			if (dma_resv_trylock(xe_vm_resv(vm)))
+-				vm_resv_locked = true;
+-			else if (ctx->resv != xe_vm_resv(vm)) {
+-				spin_lock(&vm->notifier.list_lock);
+-				if (!(vma->gpuva.flags & XE_VMA_DESTROYED))
+-					list_move_tail(&vma->notifier.rebind_link,
+-						       &vm->notifier.rebind_list);
+-				spin_unlock(&vm->notifier.list_lock);
+-				continue;
+-			}
++			idle = true;
++		}
+ 
+-			xe_vm_assert_held(vm);
+-			if (vma->tile_present &&
+-			    !(vma->gpuva.flags & XE_VMA_DESTROYED) &&
+-			    list_empty(&vma->combined_links.rebind))
+-				list_add_tail(&vma->combined_links.rebind,
+-					      &vm->rebind_list);
++		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
++			struct xe_vma *vma = gpuva_to_vma(gpuva);
+ 
+-			if (vm_resv_locked)
+-				dma_resv_unlock(xe_vm_resv(vm));
+-		}
++			trace_xe_vma_evict(vma);
++			ret = xe_vm_invalidate_vma(vma);
++			if (XE_WARN_ON(ret))
++				return ret;
+ 		}
+ 	}
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 85a8a793f527..cd5d2d2257f5 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -94,40 +94,9 @@
+  *	Unlock all
+  */
+ 
+-static int xe_exec_begin(struct drm_exec *exec, struct xe_vm *vm)
++static int xe_exec_fn(struct drm_gpuvm_exec *vm_exec)
+ {
+-	struct xe_vma *vma;
+-	LIST_HEAD(dups);
+-	int err = 0;
+-
+-	if (xe_vm_no_dma_fences(vm))
+-		return 0;
+-
+-	/*
+-	 * 1 fence for job from exec plus a fence for each tile from a possible
+-	 * rebind
+-	 */
+-	err = xe_vm_lock_dma_resv(vm, exec, 1 + vm->xe->info.tile_count, true);
+-	if (err)
+-		return err;
+-
+-	/*
+-	 * Validate BOs that have been evicted (i.e. make sure the
+-	 * BOs have valid placements possibly moving an evicted BO back
+-	 * to a location where the GPU can access it).
+-	 */
+-	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
+-		xe_assert(vm->xe, !xe_vma_is_null(vma));
+-
+-		if (xe_vma_is_userptr(vma))
+-			continue;
+-
+-		err = xe_bo_validate(xe_vma_bo(vma), vm, false);
+-		if (err)
+-			break;
+-	}
+-
+-	return err;
++	return drm_gpuvm_validate(vm_exec->vm, &vm_exec->exec);
+ }
+ 
+ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+@@ -140,7 +109,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	struct xe_exec_queue *q;
+ 	struct xe_sync_entry *syncs = NULL;
+ 	u64 addresses[XE_HW_ENGINE_MAX_INSTANCE];
+-	struct drm_exec exec;
++	struct drm_gpuvm_exec vm_exec = {.extra.fn = xe_exec_fn};
++	struct drm_exec *exec = &vm_exec.exec;
+ 	u32 i, num_syncs = 0;
+ 	struct xe_sched_job *job;
+ 	struct dma_fence *rebind_fence;
+@@ -216,16 +186,14 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			goto err_unlock_list;
+ 	}
+ 
+-	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
+-	drm_exec_until_all_locked(&exec) {
+-		err = xe_exec_begin(&exec, vm);
+-		drm_exec_retry_on_contention(&exec);
+-		if (err && xe_vm_validate_should_retry(&exec, err, &end)) {
++	vm_exec.vm = &vm->gpuvm;
++	vm_exec.num_fences = 1 + vm->xe->info.tile_count;
++	vm_exec.flags = DRM_EXEC_INTERRUPTIBLE_WAIT;
++	err = drm_gpuvm_exec_lock(&vm_exec);
++	if (err) {
++		if (xe_vm_validate_should_retry(exec, err, &end))
+ 			err = -EAGAIN;
+-			goto err_unlock_list;
+-		}
+-		if (err)
+-			goto err_exec;
++		goto err_unlock_list;
+ 	}
+ 
+ 	if (xe_vm_is_closed_or_banned(q->vm)) {
+@@ -307,19 +275,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	 * the job and let the DRM scheduler / backend clean up the job.
+ 	 */
+ 	xe_sched_job_arm(job);
+-	if (!xe_vm_no_dma_fences(vm)) {
+-		/* Block userptr invalidations / BO eviction */
+-		dma_resv_add_fence(xe_vm_resv(vm),
+-				   &job->drm.s_fence->finished,
+-				   DMA_RESV_USAGE_BOOKKEEP);
+-
+-		/*
+-		 * Make implicit sync work across drivers, assuming all external
+-		 * BOs are written as we don't pass in a read / write list.
+-		 */
+-		xe_vm_fence_all_extobjs(vm, &job->drm.s_fence->finished,
+-					DMA_RESV_USAGE_WRITE);
+-	}
++	if (!xe_vm_no_dma_fences(vm))
++		drm_gpuvm_resv_add_fence(&vm->gpuvm, exec, &job->drm.s_fence->finished,
++					 DMA_RESV_USAGE_BOOKKEEP, DMA_RESV_USAGE_WRITE);
+ 
+ 	for (i = 0; i < num_syncs; i++)
+ 		xe_sync_entry_signal(&syncs[i], job,
+@@ -343,7 +301,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (err)
+ 		xe_sched_job_put(job);
+ err_exec:
+-	drm_exec_fini(&exec);
++	drm_exec_fini(exec);
+ err_unlock_list:
+ 	if (write_locked)
+ 		up_write(&vm->lock);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 1b94736ef430..5f3bdb4e48ad 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -297,26 +297,8 @@ static int add_preempt_fences(struct xe_vm *vm, struct xe_bo *bo)
+ 	return err;
+ }
+ 
+-/**
+- * xe_vm_fence_all_extobjs() - Add a fence to vm's external objects' resv
+- * @vm: The vm.
+- * @fence: The fence to add.
+- * @usage: The resv usage for the fence.
+- *
+- * Loops over all of the vm's external object bindings and adds a @fence
+- * with the given @usage to all of the external object's reservation
+- * objects.
+- */
+-void xe_vm_fence_all_extobjs(struct xe_vm *vm, struct dma_fence *fence,
+-			     enum dma_resv_usage usage)
+-{
+-	struct xe_vma *vma;
+-
+-	list_for_each_entry(vma, &vm->extobj.list, extobj.link)
+-		dma_resv_add_fence(xe_vma_bo(vma)->ttm.base.resv, fence, usage);
+-}
+-
+-static void resume_and_reinstall_preempt_fences(struct xe_vm *vm)
++static void resume_and_reinstall_preempt_fences(struct xe_vm *vm,
++						struct drm_exec *exec)
+ {
+ 	struct xe_exec_queue *q;
+ 
+@@ -326,16 +308,19 @@ static void resume_and_reinstall_preempt_fences(struct xe_vm *vm)
+ 	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link) {
+ 		q->ops->resume(q);
+ 
+-		dma_resv_add_fence(xe_vm_resv(vm), q->compute.pfence,
+-				   DMA_RESV_USAGE_BOOKKEEP);
+-		xe_vm_fence_all_extobjs(vm, q->compute.pfence,
+-					DMA_RESV_USAGE_BOOKKEEP);
++		drm_gpuvm_resv_add_fence(&vm->gpuvm, exec, q->compute.pfence,
++					 DMA_RESV_USAGE_BOOKKEEP, DMA_RESV_USAGE_BOOKKEEP);
+ 	}
+ }
+ 
+ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ {
+-	struct drm_exec exec;
++	struct drm_gpuvm_exec vm_exec = {
++		.vm = &vm->gpuvm,
++		.flags = DRM_EXEC_INTERRUPTIBLE_WAIT,
++		.num_fences = 1,
++	};
++	struct drm_exec *exec = &vm_exec.exec;
+ 	struct dma_fence *pfence;
+ 	int err;
+ 	bool wait;
+@@ -343,13 +328,9 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 	xe_assert(vm->xe, xe_vm_in_compute_mode(vm));
+ 
+ 	down_write(&vm->lock);
+-	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
+-	drm_exec_until_all_locked(&exec) {
+-		err = xe_vm_lock_dma_resv(vm, &exec, 1, true);
+-		drm_exec_retry_on_contention(&exec);
+-		if (err)
+-			goto out_unlock;
+-	}
++	err = drm_gpuvm_exec_lock(&vm_exec);
++	if (err)
++		return err;
+ 
+ 	pfence = xe_preempt_fence_create(q, q->compute.context,
+ 					 ++q->compute.seqno);
+@@ -364,10 +345,8 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 
+ 	down_read(&vm->userptr.notifier_lock);
+ 
+-	dma_resv_add_fence(xe_vm_resv(vm), pfence,
+-			   DMA_RESV_USAGE_BOOKKEEP);
+-
+-	xe_vm_fence_all_extobjs(vm, pfence, DMA_RESV_USAGE_BOOKKEEP);
++	drm_gpuvm_resv_add_fence(&vm->gpuvm, exec, pfence,
++				 DMA_RESV_USAGE_BOOKKEEP, DMA_RESV_USAGE_BOOKKEEP);
+ 
+ 	/*
+ 	 * Check to see if a preemption on VM is in flight or userptr
+@@ -381,7 +360,7 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
+ 	up_read(&vm->userptr.notifier_lock);
+ 
+ out_unlock:
+-	drm_exec_fini(&exec);
++	drm_exec_fini(exec);
+ 	up_write(&vm->lock);
+ 
+ 	return err;
+@@ -427,55 +406,6 @@ int __xe_vm_userptr_needs_repin(struct xe_vm *vm)
+ 		list_empty(&vm->userptr.invalidated)) ? 0 : -EAGAIN;
+ }
+ 
+-/**
+- * xe_vm_lock_dma_resv() - Lock the vm dma_resv object and the dma_resv
+- * objects of the vm's external buffer objects.
+- * @vm: The vm.
+- * @exec: Pointer to a struct drm_exec locking context.
+- * @num_shared: Number of dma-fence slots to reserve in the locked objects.
+- * @lock_vm: Lock also the vm's dma_resv.
+- *
+- * Locks the vm dma-resv objects and all the dma-resv objects of the
+- * buffer objects on the vm external object list.
+- *
+- * Return: 0 on success, Negative error code on error. In particular if
+- * @intr is set to true, -EINTR or -ERESTARTSYS may be returned.
+- */
+-int xe_vm_lock_dma_resv(struct xe_vm *vm, struct drm_exec *exec,
+-			unsigned int num_shared, bool lock_vm)
+-{
+-	struct xe_vma *vma, *next;
+-	int err = 0;
+-
+-	lockdep_assert_held(&vm->lock);
+-
+-	if (lock_vm) {
+-		err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), num_shared);
+-		if (err)
+-			return err;
+-	}
+-
+-	list_for_each_entry(vma, &vm->extobj.list, extobj.link) {
+-		err = drm_exec_prepare_obj(exec, &xe_vma_bo(vma)->ttm.base, num_shared);
+-		if (err)
+-			return err;
+-	}
+-
+-	spin_lock(&vm->notifier.list_lock);
+-	list_for_each_entry_safe(vma, next, &vm->notifier.rebind_list,
+-				 notifier.rebind_link) {
+-		xe_bo_assert_held(xe_vma_bo(vma));
+-
+-		list_del_init(&vma->notifier.rebind_link);
+-		if (vma->tile_present && !(vma->gpuva.flags & XE_VMA_DESTROYED))
+-			list_move_tail(&vma->combined_links.rebind,
+-				       &vm->rebind_list);
+-	}
+-	spin_unlock(&vm->notifier.list_lock);
+-
+-	return 0;
+-}
+-
+ #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
+ 
+ static void xe_vm_kill(struct xe_vm *vm)
+@@ -524,30 +454,39 @@ bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end)
+ 	if (!ktime_before(cur, *end))
+ 		return false;
+ 
+-	/*
+-	 * We would like to keep the ticket here with
+-	 * drm_exec_unlock_all(), but WW mutex asserts currently
+-	 * stop us from that. In any case this function could go away
+-	 * with proper TTM -EDEADLK handling.
+-	 */
+-	drm_exec_fini(exec);
+-
+ 	msleep(20);
+ 	return true;
+ }
+ 
++static int xe_gpuvm_validate(struct drm_gpuvm_bo *vm_bo, struct drm_exec *exec)
++{
++	struct xe_vm *vm = gpuvm_to_vm(vm_bo->vm);
++	struct drm_gpuva *gpuva;
++	int ret;
 +
-+			obj = drm_gem_object_lookup(job->file_priv,
-+						    op->gem.handle);
-+			op->gem.obj = obj;
-+			if (!obj)
- 				return -ENOENT;
++	lockdep_assert_held(&vm->lock);
++	drm_gpuvm_bo_for_each_va(gpuva, vm_bo)
++		list_move_tail(&gpuva_to_vma(gpuva)->combined_links.rebind,
++			       &vm->rebind_list);
 +
-+			dma_resv_lock(obj->resv, NULL);
-+			op->vm_bo = drm_gpuvm_bo_obtain(&uvmm->base, obj);
-+			dma_resv_unlock(obj->resv);
-+			if (IS_ERR(op->vm_bo))
-+				return PTR_ERR(op->vm_bo);
++	ret = xe_bo_validate(gem_to_xe_bo(vm_bo->obj), vm, false);
++	if (ret)
++		return ret;
++
++	vm_bo->evicted = false;
++	return 0;
++}
++
+ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+ 				 bool *done)
+ {
+-	struct xe_vma *vma;
+ 	int err;
+ 
+ 	/*
+ 	 * 1 fence for each preempt fence plus a fence for each tile from a
+ 	 * possible rebind
+ 	 */
+-	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm),
+-				   vm->preempt.num_exec_queues +
++	err = drm_gpuvm_prepare_vm(&vm->gpuvm, exec, vm->preempt.num_exec_queues +
+ 				   vm->xe->info.tile_count);
+ 	if (err)
+ 		return err;
+@@ -563,7 +502,7 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+ 		return 0;
+ 	}
+ 
+-	err = xe_vm_lock_dma_resv(vm, exec, vm->preempt.num_exec_queues, false);
++	err = drm_gpuvm_prepare_objects(&vm->gpuvm, exec, vm->preempt.num_exec_queues);
+ 	if (err)
+ 		return err;
+ 
+@@ -571,17 +510,7 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+ 	if (err)
+ 		return err;
+ 
+-	list_for_each_entry(vma, &vm->rebind_list, combined_links.rebind) {
+-		if (xe_vma_has_no_bo(vma) ||
+-		    vma->gpuva.flags & XE_VMA_DESTROYED)
+-			continue;
+-
+-		err = xe_bo_validate(xe_vma_bo(vma), vm, false);
+-		if (err)
+-			break;
+-	}
+-
+-	return err;
++	return drm_gpuvm_validate(&vm->gpuvm, exec);
+ }
+ 
+ static void preempt_rebind_work_func(struct work_struct *w)
+@@ -621,12 +550,13 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 
+ 		err = xe_preempt_work_begin(&exec, vm, &done);
+ 		drm_exec_retry_on_contention(&exec);
+-		if (err && xe_vm_validate_should_retry(&exec, err, &end)) {
+-			err = -EAGAIN;
++		if (err || done) {
++			drm_exec_fini(&exec);
++			if (err && xe_vm_validate_should_retry(&exec, err, &end))
++				err = -EAGAIN;
++
+ 			goto out_unlock_outer;
+ 		}
+-		if (err || done)
+-			goto out_unlock;
+ 	}
+ 
+ 	err = alloc_preempt_fences(vm, &preempt_fences, &fence_count);
+@@ -673,7 +603,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
+ 
+ 	/* Point of no return. */
+ 	arm_preempt_fences(vm, &preempt_fences);
+-	resume_and_reinstall_preempt_fences(vm);
++	resume_and_reinstall_preempt_fences(vm, &exec);
+ 	up_read(&vm->userptr.notifier_lock);
+ 
+ out_unlock:
+@@ -778,9 +708,8 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+ 	list_for_each_entry_safe(vma, next, &vm->userptr.invalidated,
+ 				 userptr.invalidate_link) {
+ 		list_del_init(&vma->userptr.invalidate_link);
+-		if (list_empty(&vma->combined_links.userptr))
+-			list_move_tail(&vma->combined_links.userptr,
+-				       &vm->userptr.repin_list);
++		list_move_tail(&vma->combined_links.userptr,
++			       &vm->userptr.repin_list);
+ 	}
+ 	spin_unlock(&vm->userptr.invalidated_lock);
+ 
+@@ -789,27 +718,12 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+ 				 combined_links.userptr) {
+ 		err = xe_vma_userptr_pin_pages(vma);
+ 		if (err < 0)
+-			goto out_err;
++			return err;
+ 
+-		list_move_tail(&vma->combined_links.userptr, &tmp_evict);
++		list_move_tail(&vma->combined_links.userptr, &vm->rebind_list);
+ 	}
+ 
+-	/* Take lock and move to rebind_list for rebinding. */
+-	err = dma_resv_lock_interruptible(xe_vm_resv(vm), NULL);
+-	if (err)
+-		goto out_err;
+-
+-	list_for_each_entry_safe(vma, next, &tmp_evict, combined_links.userptr)
+-		list_move_tail(&vma->combined_links.rebind, &vm->rebind_list);
+-
+-	dma_resv_unlock(xe_vm_resv(vm));
+-
+ 	return 0;
+-
+-out_err:
+-	list_splice_tail(&tmp_evict, &vm->userptr.repin_list);
+-
+-	return err;
+ }
+ 
+ /**
+@@ -888,8 +802,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	}
+ 
+ 	INIT_LIST_HEAD(&vma->combined_links.rebind);
+-	INIT_LIST_HEAD(&vma->notifier.rebind_link);
+-	INIT_LIST_HEAD(&vma->extobj.link);
+ 
+ 	INIT_LIST_HEAD(&vma->gpuva.gem.entry);
+ 	vma->gpuva.vm = &vm->gpuvm;
+@@ -921,6 +833,7 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 			return ERR_CAST(vm_bo);
  		}
  
- 		ret = bind_validate_op(job, op);
-@@ -1364,7 +1381,7 @@ nouveau_uvmm_bind_job_submit(struct nouveau_job *job)
- 		case OP_UNMAP_SPARSE:
- 		case OP_MAP:
- 		case OP_UNMAP:
--			bind_link_gpuvas(op->ops, &op->new);
-+			bind_link_gpuvas(op);
- 			break;
- 		default:
- 			break;
-@@ -1511,6 +1528,12 @@ nouveau_uvmm_bind_job_free_work_fn(struct work_struct *work)
- 		if (!IS_ERR_OR_NULL(op->ops))
- 			drm_gpuva_ops_free(&uvmm->base, op->ops);
++		drm_gpuvm_bo_extobj_add(vm_bo);
+ 		drm_gem_object_get(&bo->ttm.base);
+ 		vma->gpuva.gem.obj = &bo->ttm.base;
+ 		vma->gpuva.gem.offset = bo_offset_or_userptr;
+@@ -953,16 +866,6 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 	return vma;
+ }
  
-+		if (!IS_ERR_OR_NULL(op->vm_bo)) {
-+			dma_resv_lock(obj->resv, NULL);
-+			drm_gpuvm_bo_put(op->vm_bo);
-+			dma_resv_unlock(obj->resv);
-+		}
-+
- 		if (obj)
- 			drm_gem_object_put(obj);
- 	}
-@@ -1776,15 +1799,18 @@ void
- nouveau_uvmm_bo_map_all(struct nouveau_bo *nvbo, struct nouveau_mem *mem)
+-static bool vm_remove_extobj(struct xe_vma *vma)
+-{
+-	if (!list_empty(&vma->extobj.link)) {
+-		xe_vma_vm(vma)->extobj.entries--;
+-		list_del_init(&vma->extobj.link);
+-		return true;
+-	}
+-	return false;
+-}
+-
+ static void xe_vma_destroy_late(struct xe_vma *vma)
  {
- 	struct drm_gem_object *obj = &nvbo->bo.base;
-+	struct drm_gpuvm_bo *vm_bo;
- 	struct drm_gpuva *va;
- 
- 	dma_resv_assert_held(obj->resv);
- 
--	drm_gem_for_each_gpuva(va, obj) {
--		struct nouveau_uvma *uvma = uvma_from_va(va);
-+	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
-+		drm_gpuvm_bo_for_each_va(va, vm_bo) {
-+			struct nouveau_uvma *uvma = uvma_from_va(va);
- 
--		nouveau_uvma_map(uvma, mem);
--		drm_gpuva_invalidate(va, false);
-+			nouveau_uvma_map(uvma, mem);
-+			drm_gpuva_invalidate(va, false);
-+		}
- 	}
+ 	struct xe_vm *vm = xe_vma_vm(vma);
+@@ -1003,60 +906,6 @@ static void vma_destroy_work_func(struct work_struct *w)
+ 	xe_vma_destroy_late(vma);
  }
  
-@@ -1792,15 +1818,18 @@ void
- nouveau_uvmm_bo_unmap_all(struct nouveau_bo *nvbo)
+-static struct xe_vma *
+-bo_has_vm_references_locked(struct xe_bo *bo, struct xe_vm *vm,
+-			    struct xe_vma *ignore)
+-{
+-	struct drm_gpuvm_bo *vm_bo;
+-	struct drm_gpuva *va;
+-	struct drm_gem_object *obj = &bo->ttm.base;
+-
+-	xe_bo_assert_held(bo);
+-
+-	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
+-		drm_gpuvm_bo_for_each_va(va, vm_bo) {
+-			struct xe_vma *vma = gpuva_to_vma(va);
+-
+-			if (vma != ignore && xe_vma_vm(vma) == vm)
+-				return vma;
+-		}
+-	}
+-
+-	return NULL;
+-}
+-
+-static bool bo_has_vm_references(struct xe_bo *bo, struct xe_vm *vm,
+-				 struct xe_vma *ignore)
+-{
+-	bool ret;
+-
+-	xe_bo_lock(bo, false);
+-	ret = !!bo_has_vm_references_locked(bo, vm, ignore);
+-	xe_bo_unlock(bo);
+-
+-	return ret;
+-}
+-
+-static void __vm_insert_extobj(struct xe_vm *vm, struct xe_vma *vma)
+-{
+-	lockdep_assert_held_write(&vm->lock);
+-
+-	list_add(&vma->extobj.link, &vm->extobj.list);
+-	vm->extobj.entries++;
+-}
+-
+-static void vm_insert_extobj(struct xe_vm *vm, struct xe_vma *vma)
+-{
+-	struct xe_bo *bo = xe_vma_bo(vma);
+-
+-	lockdep_assert_held_write(&vm->lock);
+-
+-	if (bo_has_vm_references(bo, vm, vma))
+-		return;
+-
+-	__vm_insert_extobj(vm, vma);
+-}
+-
+ static void vma_destroy_cb(struct dma_fence *fence,
+ 			   struct dma_fence_cb *cb)
  {
- 	struct drm_gem_object *obj = &nvbo->bo.base;
-+	struct drm_gpuvm_bo *vm_bo;
- 	struct drm_gpuva *va;
+@@ -1082,20 +931,7 @@ static void xe_vma_destroy(struct xe_vma *vma, struct dma_fence *fence)
+ 	} else if (!xe_vma_is_null(vma)) {
+ 		xe_bo_assert_held(xe_vma_bo(vma));
  
- 	dma_resv_assert_held(obj->resv);
- 
--	drm_gem_for_each_gpuva(va, obj) {
--		struct nouveau_uvma *uvma = uvma_from_va(va);
-+	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
-+		drm_gpuvm_bo_for_each_va(va, vm_bo) {
-+			struct nouveau_uvma *uvma = uvma_from_va(va);
- 
--		nouveau_uvma_unmap(uvma);
--		drm_gpuva_invalidate(va, true);
-+			nouveau_uvma_unmap(uvma);
-+			drm_gpuva_invalidate(va, true);
-+		}
+-		spin_lock(&vm->notifier.list_lock);
+-		list_del(&vma->notifier.rebind_link);
+-		spin_unlock(&vm->notifier.list_lock);
+-
+ 		drm_gpuva_unlink(&vma->gpuva);
+-
+-		if (!xe_vma_bo(vma)->vm && vm_remove_extobj(vma)) {
+-			struct xe_vma *other;
+-
+-			other = bo_has_vm_references_locked(xe_vma_bo(vma), vm, NULL);
+-
+-			if (other)
+-				__vm_insert_extobj(vm, other);
+-		}
  	}
- }
  
-diff --git a/include/drm/drm_gem.h b/include/drm/drm_gem.h
-index bc9f6aa2f3fe..7147978d82d8 100644
---- a/include/drm/drm_gem.h
-+++ b/include/drm/drm_gem.h
-@@ -571,7 +571,7 @@ int drm_gem_evict(struct drm_gem_object *obj);
-  * drm_gem_gpuva_init() - initialize the gpuva list of a GEM object
-  * @obj: the &drm_gem_object
-  *
-- * This initializes the &drm_gem_object's &drm_gpuva list.
-+ * This initializes the &drm_gem_object's &drm_gpuvm_bo list.
-  *
-  * Calling this function is only necessary for drivers intending to support the
-  * &drm_driver_feature DRIVER_GEM_GPUVA.
-@@ -584,28 +584,28 @@ static inline void drm_gem_gpuva_init(struct drm_gem_object *obj)
- }
+ 	xe_vm_assert_held(vm);
+@@ -1211,6 +1047,7 @@ static struct drm_gpuva_op *xe_vm_op_alloc(void)
  
- /**
-- * drm_gem_for_each_gpuva() - iternator to walk over a list of gpuvas
-- * @entry__: &drm_gpuva structure to assign to in each iteration step
-- * @obj__: the &drm_gem_object the &drm_gpuvas to walk are associated with
-+ * drm_gem_for_each_gpuvm_bo() - iterator to walk over a list of &drm_gpuvm_bo
-+ * @entry__: &drm_gpuvm_bo structure to assign to in each iteration step
-+ * @obj__: the &drm_gem_object the &drm_gpuvm_bo to walk are associated with
-  *
-- * This iterator walks over all &drm_gpuva structures associated with the
-- * &drm_gpuva_manager.
-+ * This iterator walks over all &drm_gpuvm_bo structures associated with the
-+ * &drm_gem_object.
-  */
--#define drm_gem_for_each_gpuva(entry__, obj__) \
--	list_for_each_entry(entry__, &(obj__)->gpuva.list, gem.entry)
-+#define drm_gem_for_each_gpuvm_bo(entry__, obj__) \
-+	list_for_each_entry(entry__, &(obj__)->gpuva.list, list.entry.gem)
- 
- /**
-- * drm_gem_for_each_gpuva_safe() - iternator to safely walk over a list of
-- * gpuvas
-- * @entry__: &drm_gpuva structure to assign to in each iteration step
-- * @next__: &next &drm_gpuva to store the next step
-- * @obj__: the &drm_gem_object the &drm_gpuvas to walk are associated with
-+ * drm_gem_for_each_gpuvm_bo_safe() - iterator to safely walk over a list of
-+ * &drm_gpuvm_bo
-+ * @entry__: &drm_gpuvm_bostructure to assign to in each iteration step
-+ * @next__: &next &drm_gpuvm_bo to store the next step
-+ * @obj__: the &drm_gem_object the &drm_gpuvm_bo to walk are associated with
-  *
-- * This iterator walks over all &drm_gpuva structures associated with the
-+ * This iterator walks over all &drm_gpuvm_bo structures associated with the
-  * &drm_gem_object. It is implemented with list_for_each_entry_safe(), hence
-  * it is save against removal of elements.
-  */
--#define drm_gem_for_each_gpuva_safe(entry__, next__, obj__) \
--	list_for_each_entry_safe(entry__, next__, &(obj__)->gpuva.list, gem.entry)
-+#define drm_gem_for_each_gpuvm_bo_safe(entry__, next__, obj__) \
-+	list_for_each_entry_safe(entry__, next__, &(obj__)->gpuva.list, list.entry.gem)
- 
- #endif /* __DRM_GEM_H__ */
-diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
-index d3d3dd33ab7c..6e2893fe3808 100644
---- a/include/drm/drm_gpuvm.h
-+++ b/include/drm/drm_gpuvm.h
-@@ -25,6 +25,7 @@
-  * OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
-+#include <linux/dma-resv.h>
- #include <linux/list.h>
- #include <linux/rbtree.h>
- #include <linux/types.h>
-@@ -33,6 +34,7 @@
- #include <drm/drm_gem.h>
- 
- struct drm_gpuvm;
-+struct drm_gpuvm_bo;
- struct drm_gpuvm_ops;
- 
- /**
-@@ -73,6 +75,12 @@ struct drm_gpuva {
- 	 */
- 	struct drm_gpuvm *vm;
- 
-+	/**
-+	 * @vm_bo: the &drm_gpuvm_bo abstraction for the mapped
-+	 * &drm_gem_object
-+	 */
-+	struct drm_gpuvm_bo *vm_bo;
-+
- 	/**
- 	 * @flags: the &drm_gpuva_flags for this mapping
- 	 */
-@@ -108,7 +116,7 @@ struct drm_gpuva {
- 		struct drm_gem_object *obj;
- 
- 		/**
--		 * @entry: the &list_head to attach this object to a &drm_gem_object
-+		 * @entry: the &list_head to attach this object to a &drm_gpuvm_bo
- 		 */
- 		struct list_head entry;
- 	} gem;
-@@ -141,7 +149,7 @@ struct drm_gpuva {
- int drm_gpuva_insert(struct drm_gpuvm *gpuvm, struct drm_gpuva *va);
- void drm_gpuva_remove(struct drm_gpuva *va);
- 
--void drm_gpuva_link(struct drm_gpuva *va);
-+void drm_gpuva_link(struct drm_gpuva *va, struct drm_gpuvm_bo *vm_bo);
- void drm_gpuva_unlink(struct drm_gpuva *va);
- 
- struct drm_gpuva *drm_gpuva_find(struct drm_gpuvm *gpuvm,
-@@ -188,10 +196,16 @@ static inline bool drm_gpuva_invalidated(struct drm_gpuva *va)
-  * enum drm_gpuvm_flags - flags for struct drm_gpuvm
-  */
- enum drm_gpuvm_flags {
-+	/**
-+	 * @DRM_GPUVM_RESV_PROTECTED: GPUVM is protected externally by the
-+	 * GPUVM's &dma_resv lock
-+	 */
-+	DRM_GPUVM_RESV_PROTECTED = BIT(0),
-+
- 	/**
- 	 * @DRM_GPUVM_USERBITS: user defined bits
- 	 */
--	DRM_GPUVM_USERBITS = BIT(0),
-+	DRM_GPUVM_USERBITS = BIT(1),
+ static struct drm_gpuvm_ops gpuvm_ops = {
+ 	.op_alloc = xe_vm_op_alloc,
++	.vm_bo_validate = xe_gpuvm_validate,
  };
  
- /**
-@@ -280,6 +294,19 @@ bool drm_gpuvm_interval_empty(struct drm_gpuvm *gpuvm, u64 addr, u64 range);
- struct drm_gem_object *
- drm_gpuvm_resv_object_alloc(struct drm_device *drm);
+ static u64 pde_encode_pat_index(struct xe_device *xe, u16 pat_index)
+@@ -1373,9 +1210,6 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	init_rwsem(&vm->userptr.notifier_lock);
+ 	spin_lock_init(&vm->userptr.invalidated_lock);
  
-+/**
-+ * drm_gpuvm_resv_protected() - indicates whether &DRM_GPUVM_RESV_PROTECTED is
-+ * set
-+ * @gpuvm: the &drm_gpuvm
-+ *
-+ * Returns: true if &DRM_GPUVM_RESV_PROTECTED is set, false otherwise.
-+ */
-+static inline bool
-+drm_gpuvm_resv_protected(struct drm_gpuvm *gpuvm)
+-	INIT_LIST_HEAD(&vm->notifier.rebind_list);
+-	spin_lock_init(&vm->notifier.list_lock);
+-
+ 	INIT_WORK(&vm->destroy_work, vm_destroy_work_func);
+ 
+ 	INIT_LIST_HEAD(&vm->preempt.exec_queues);
+@@ -1384,8 +1218,6 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	for_each_tile(tile, xe, id)
+ 		xe_range_fence_tree_init(&vm->rftree[id]);
+ 
+-	INIT_LIST_HEAD(&vm->extobj.list);
+-
+ 	vm->pt_ops = &xelp_pt_ops;
+ 
+ 	if (!(flags & XE_VM_FLAG_MIGRATION))
+@@ -1612,7 +1444,6 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 		xe_vma_destroy_unlocked(vma);
+ 	}
+ 
+-	xe_assert(xe, list_empty(&vm->extobj.list));
+ 	up_write(&vm->lock);
+ 
+ 	mutex_lock(&xe->usm.lock);
+@@ -2286,22 +2117,36 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+ 			      u8 tile_mask, bool read_only, bool is_null)
+ {
+ 	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) : NULL;
++	struct drm_exec exec;
+ 	struct xe_vma *vma;
+ 	int err;
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+ 
+ 	if (bo) {
+-		err = xe_bo_lock(bo, true);
+-		if (err)
+-			return ERR_PTR(err);
++		drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
++		drm_exec_until_all_locked(&exec) {
++			err = 0;
++			if (!bo->vm) {
++				err = drm_exec_lock_obj(&exec, xe_vm_obj(vm));
++				drm_exec_retry_on_contention(&exec);
++			}
++			if (!err) {
++				err = drm_exec_lock_obj(&exec, &bo->ttm.base);
++				drm_exec_retry_on_contention(&exec);
++			}
++			if (err) {
++				drm_exec_fini(&exec);
++				return ERR_PTR(err);
++			}
++		}
+ 	}
+ 	vma = xe_vma_create(vm, bo, op->gem.offset,
+ 			    op->va.addr, op->va.addr +
+ 			    op->va.range - 1, read_only, is_null,
+ 			    tile_mask);
+ 	if (bo)
+-		xe_bo_unlock(bo);
++		drm_exec_fini(&exec);
+ 
+ 	if (xe_vma_is_userptr(vma)) {
+ 		err = xe_vma_userptr_pin_pages(vma);
+@@ -2311,7 +2156,6 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+ 			return ERR_PTR(err);
+ 		}
+ 	} else if (!xe_vma_has_no_bo(vma) && !bo->vm) {
+-		vm_insert_extobj(vm, vma);
+ 		err = add_preempt_fences(vm, bo);
+ 		if (err) {
+ 			prep_vma_destroy(vm, vma, false);
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 88077214261f..20b320aaeaa0 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -64,9 +64,14 @@ static inline bool xe_vm_is_closed_or_banned(struct xe_vm *vm)
+ struct xe_vma *
+ xe_vm_find_overlapping_vma(struct xe_vm *vm, u64 start, u64 range);
+ 
++static inline struct xe_vm *gpuvm_to_vm(struct drm_gpuvm *gpuvm)
 +{
-+	return gpuvm->flags & DRM_GPUVM_RESV_PROTECTED;
++	return container_of(gpuvm, struct xe_vm, gpuvm);
 +}
 +
- /**
-  * drm_gpuvm_resv() - returns the &drm_gpuvm's &dma_resv
-  * @gpuvm__: the &drm_gpuvm
-@@ -298,6 +325,12 @@ drm_gpuvm_resv_object_alloc(struct drm_device *drm);
-  */
- #define drm_gpuvm_resv_obj(gpuvm__) ((gpuvm__)->r_obj)
+ static inline struct xe_vm *gpuva_to_vm(struct drm_gpuva *gpuva)
+ {
+-	return container_of(gpuva->vm, struct xe_vm, gpuvm);
++	return gpuvm_to_vm(gpuva->vm);
+ }
  
-+#define drm_gpuvm_resv_held(gpuvm__) \
-+	dma_resv_held(drm_gpuvm_resv(gpuvm__))
-+
-+#define drm_gpuvm_resv_assert_held(gpuvm__) \
-+	dma_resv_assert_held(drm_gpuvm_resv(gpuvm__))
-+
- #define drm_gpuvm_resv_held(gpuvm__) \
- 	dma_resv_held(drm_gpuvm_resv(gpuvm__))
+ static inline struct xe_vma *gpuva_to_vma(struct drm_gpuva *gpuva)
+@@ -209,12 +214,6 @@ int xe_vma_userptr_check_repin(struct xe_vma *vma);
  
-@@ -382,6 +415,128 @@ __drm_gpuva_next(struct drm_gpuva *va)
- #define drm_gpuvm_for_each_va_safe(va__, next__, gpuvm__) \
- 	list_for_each_entry_safe(va__, next__, &(gpuvm__)->rb.list, rb.entry)
+ bool xe_vm_validate_should_retry(struct drm_exec *exec, int err, ktime_t *end);
  
-+/**
-+ * struct drm_gpuvm_bo - structure representing a &drm_gpuvm and
-+ * &drm_gem_object combination
-+ *
-+ * This structure is an abstraction representing a &drm_gpuvm and
-+ * &drm_gem_object combination. It serves as an indirection to accelerate
-+ * iterating all &drm_gpuvas within a &drm_gpuvm backed by the same
-+ * &drm_gem_object.
-+ *
-+ * Furthermore it is used cache evicted GEM objects for a certain GPU-VM to
-+ * accelerate validation.
-+ *
-+ * Typically, drivers want to create an instance of a struct drm_gpuvm_bo once
-+ * a GEM object is mapped first in a GPU-VM and release the instance once the
-+ * last mapping of the GEM object in this GPU-VM is unmapped.
-+ */
-+struct drm_gpuvm_bo {
+-int xe_vm_lock_dma_resv(struct xe_vm *vm, struct drm_exec *exec,
+-			unsigned int num_shared, bool lock_vm);
+-
+-void xe_vm_fence_all_extobjs(struct xe_vm *vm, struct dma_fence *fence,
+-			     enum dma_resv_usage usage);
+-
+ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id);
+ 
+ int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index f11ac81cf010..a0c95e343129 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -62,26 +62,17 @@ struct xe_vma {
+ 	/** @gpuva: Base GPUVA object */
+ 	struct drm_gpuva gpuva;
+ 
+-	/** @combined_links: links into lists which are mutually exclusive */
 +	/**
-+	 * @vm: The &drm_gpuvm the @obj is mapped in. This pointer is not
-+	 * reference counted.
-+	 *
-+	 * A struct drm_gpuvm_bo is not allowed to out-live its &drm_gpuvm
-+	 * context. Implicitly, this is ensured by the fact that the driver is
-+	 * responsible to ensure the VM doesn't contain mappings once it's
-+	 * freed, since a struct drm_gpuvm_bo should be freed once the last
-+	 * mapping being backed by the corresponding buffer object is unmapped.
++	 * @combined_links: links into lists which are mutually exclusive.
++	 * Locking: vm lock in write mode OR vm lock in read mode and the vm's
++	 * resv.
 +	 */
-+	struct drm_gpuvm *vm;
-+
-+	/**
-+	 * @obj: The &drm_gem_object being mapped in @vm. This is a reference
-+	 * counted pointer.
-+	 */
-+	struct drm_gem_object *obj;
-+
-+	/**
-+	 * @kref: The reference count for this &drm_gpuvm_bo.
-+	 */
-+	struct kref kref;
-+
-+	/**
-+	 * @list: Structure containing all &list_heads.
-+	 */
-+	struct {
-+		/**
-+		 * @gpuva: The list of linked &drm_gpuvas.
-+		 */
-+		struct list_head gpuva;
-+
-+		/**
-+		 * @entry: Structure containing all &list_heads serving as
-+		 * entry.
-+		 */
-+		struct {
-+			/**
-+			 * @gem: List entry to attach to the &drm_gem_objects
-+			 * gpuva list.
-+			 */
-+			struct list_head gem;
-+		} entry;
-+	} list;
-+};
-+
-+struct drm_gpuvm_bo *
-+drm_gpuvm_bo_create(struct drm_gpuvm *gpuvm,
-+		    struct drm_gem_object *obj);
-+
-+struct drm_gpuvm_bo *
-+drm_gpuvm_bo_obtain(struct drm_gpuvm *gpuvm,
-+		    struct drm_gem_object *obj);
-+struct drm_gpuvm_bo *
-+drm_gpuvm_bo_obtain_prealloc(struct drm_gpuvm_bo *vm_bo);
-+
-+/**
-+ * drm_gpuvm_bo_get() - acquire a struct drm_gpuvm_bo reference
-+ * @vm_bo: the &drm_gpuvm_bo to acquire the reference of
-+ *
-+ * This function acquires an additional reference to @vm_bo. It is illegal to
-+ * call this without already holding a reference. No locks required.
-+ */
-+static inline struct drm_gpuvm_bo *
-+drm_gpuvm_bo_get(struct drm_gpuvm_bo *vm_bo)
-+{
-+	kref_get(&vm_bo->kref);
-+	return vm_bo;
-+}
-+
-+void drm_gpuvm_bo_put(struct drm_gpuvm_bo *vm_bo);
-+
-+struct drm_gpuvm_bo *
-+drm_gpuvm_bo_find(struct drm_gpuvm *gpuvm,
-+		  struct drm_gem_object *obj);
-+
-+/**
-+ * drm_gpuvm_bo_for_each_va() - iterator to walk over a list of &drm_gpuva
-+ * @va__: &drm_gpuva structure to assign to in each iteration step
-+ * @vm_bo__: the &drm_gpuvm_bo the &drm_gpuva to walk are associated with
-+ *
-+ * This iterator walks over all &drm_gpuva structures associated with the
-+ * &drm_gpuvm_bo.
-+ *
-+ * The caller must hold the GEM's gpuva lock.
-+ */
-+#define drm_gpuvm_bo_for_each_va(va__, vm_bo__) \
-+	list_for_each_entry(va__, &(vm_bo)->list.gpuva, gem.entry)
-+
-+/**
-+ * drm_gpuvm_bo_for_each_va_safe() - iterator to safely walk over a list of
-+ * &drm_gpuva
-+ * @va__: &drm_gpuva structure to assign to in each iteration step
-+ * @next__: &next &drm_gpuva to store the next step
-+ * @vm_bo__: the &drm_gpuvm_bo the &drm_gpuva to walk are associated with
-+ *
-+ * This iterator walks over all &drm_gpuva structures associated with the
-+ * &drm_gpuvm_bo. It is implemented with list_for_each_entry_safe(), hence
-+ * it is save against removal of elements.
-+ *
-+ * The caller must hold the GEM's gpuva lock.
-+ */
-+#define drm_gpuvm_bo_for_each_va_safe(va__, next__, vm_bo__) \
-+	list_for_each_entry_safe(va__, next__, &(vm_bo)->list.gpuva, gem.entry)
-+
- /**
-  * enum drm_gpuva_op_type - GPU VA operation type
-  *
-@@ -661,8 +816,7 @@ drm_gpuvm_prefetch_ops_create(struct drm_gpuvm *gpuvm,
- 				 u64 addr, u64 range);
+ 	union {
+-		/**
+-		 * @userptr: link into VM repin list if userptr. Protected by
+-		 * vm->lock in write mode.
+-		 */
++		/** @userptr: link into VM repin list if userptr. */
+ 		struct list_head userptr;
+-		/**
+-		 * @rebind: link into VM if this VMA needs rebinding, and
+-		 * if it's a bo (not userptr) needs validation after a possible
+-		 * eviction. Protected by the vm's resv lock and typically
+-		 * vm->lock is also held in write mode. The only place where
+-		 * vm->lock isn't held is the BO eviction path which has
+-		 * mutually exclusive execution with userptr.
+-		 */
++		/** @rebind: link into VM if this VMA needs rebinding. */
+ 		struct list_head rebind;
+-		/**
+-		 * @destroy: link to contested list when VM is being closed.
+-		 * Protected by vm->lock in write mode and vm's resv lock.
+-		 */
++		/** @destroy: link to contested list when VM is being closed. */
+ 		struct list_head destroy;
+ 	} combined_links;
  
- struct drm_gpuva_ops *
--drm_gpuvm_gem_unmap_ops_create(struct drm_gpuvm *gpuvm,
--			       struct drm_gem_object *obj);
-+drm_gpuvm_bo_unmap_ops_create(struct drm_gpuvm_bo *vm_bo);
- 
- void drm_gpuva_ops_free(struct drm_gpuvm *gpuvm,
- 			struct drm_gpuva_ops *ops);
-@@ -706,6 +860,30 @@ struct drm_gpuvm_ops {
+@@ -110,18 +101,6 @@ struct xe_vma {
  	 */
- 	void (*op_free)(struct drm_gpuva_op *op);
+ 	u8 tile_present;
  
-+	/**
-+	 * @vm_bo_alloc: called when the &drm_gpuvm allocates
-+	 * a struct drm_gpuvm_bo
-+	 *
-+	 * Some drivers may want to embed struct drm_gpuvm_bo into driver
-+	 * specific structures. By implementing this callback drivers can
-+	 * allocate memory accordingly.
-+	 *
-+	 * This callback is optional.
-+	 */
-+	struct drm_gpuvm_bo *(*vm_bo_alloc)(void);
-+
-+	/**
-+	 * @vm_bo_free: called when the &drm_gpuvm frees a
-+	 * struct drm_gpuvm_bo
-+	 *
-+	 * Some drivers may want to embed struct drm_gpuvm_bo into driver
-+	 * specific structures. By implementing this callback drivers can
-+	 * free the previously allocated memory accordingly.
-+	 *
-+	 * This callback is optional.
-+	 */
-+	void (*vm_bo_free)(struct drm_gpuvm_bo *vm_bo);
-+
+-	struct {
+-		struct list_head rebind_link;
+-	} notifier;
+-
+-	struct {
+-		/**
+-		 * @extobj.link: Link into vm's external object list.
+-		 * protected by the vm lock.
+-		 */
+-		struct list_head link;
+-	} extobj;
+-
  	/**
- 	 * @sm_step_map: called from &drm_gpuvm_sm_map to finally insert the
- 	 * mapping once all previous steps were completed
+ 	 * @userptr: user pointer state, only allocated for VMAs that are
+ 	 * user pointers
+@@ -178,9 +157,9 @@ struct xe_vm {
+ 	struct rw_semaphore lock;
+ 
+ 	/**
+-	 * @rebind_list: list of VMAs that need rebinding, and if they are
+-	 * bos (not userptr), need validation after a possible eviction. The
+-	 * list is protected by @resv.
++	 * @rebind_list: list of VMAs that need rebinding. Protected by the
++	 * vm->lock in write mode, OR (the vm->lock in read mode and the
++	 * vm resv).
+ 	 */
+ 	struct list_head rebind_list;
+ 
+@@ -200,14 +179,6 @@ struct xe_vm {
+ 	 */
+ 	struct xe_range_fence_tree rftree[XE_MAX_TILES_PER_DEVICE];
+ 
+-	/** @extobj: bookkeeping for external objects. Protected by the vm lock */
+-	struct {
+-		/** @enties: number of external BOs attached this VM */
+-		u32 entries;
+-		/** @list: list of vmas with external bos attached */
+-		struct list_head list;
+-	} extobj;
+-
+ 	/** @async_ops: async VM operations (bind / unbinds) */
+ 	struct {
+ 		/** @list: list of pending async VM ops */
+@@ -297,22 +268,6 @@ struct xe_vm {
+ 		struct xe_vma *last_fault_vma;
+ 	} usm;
+ 
+-	/**
+-	 * @notifier: Lists and locks for temporary usage within notifiers where
+-	 * we either can't grab the vm lock or the vm resv.
+-	 */
+-	struct {
+-		/** @notifier.list_lock: lock protecting @rebind_list */
+-		spinlock_t list_lock;
+-		/**
+-		 * @notifier.rebind_list: list of vmas that we want to put on the
+-		 * main @rebind_list. This list is protected for writing by both
+-		 * notifier.list_lock, and the resv of the bo the vma points to,
+-		 * and for reading by the notifier.list_lock only.
+-		 */
+-		struct list_head rebind_list;
+-	} notifier;
+-
+ 	/** @error_capture: allow to track errors */
+ 	struct {
+ 		/** @capture_once: capture only one error per VM */
 -- 
 2.41.0
 
