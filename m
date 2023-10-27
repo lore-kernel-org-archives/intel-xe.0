@@ -4,50 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 623FAC25B67
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 10:48:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2157BC25B67
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 10:51:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3090E10E973;
-	Fri, 27 Oct 2023 10:48:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7264B10E06E
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 10:48:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4D7210E06E;
+	Fri, 27 Oct 2023 10:51:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4485D10E06E
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 10:51:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698403720; x=1729939720;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eqUMISdbebO73OhjhMC9p3lhy09zB8AjO/emzi6/xDY=;
- b=IyTBLD2UsmbdpCykIh/WbZ1JKHksMSQq2acNsJLC1vyVuuABSCLu2djS
- iyC3Fim52pE50LWCnbEK8U2mPGBzEmLfMaZLWSb8zcVg60Cb0K++LqSVZ
- boExMJGfW6WNLeENrzAk+peNIqX3I02IEkF3R7Rl7tidC6uK5i9F10Ppj
- 231jR2Df8/YADjvefgAv3FYPofO1NINDjKVH68lb33INwU46czrrhFFxh
- eEw5xmXJmjSJE5Gdx9phEENwGSgSAj5BfI9l4rmlTv4687GF/YvTflCNd
- ZWkAGsky7pCrAYRusp1HnvTLtW8nAggpbYbdlkM0NhNVspOAJC51If9pJ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="545167"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; 
-   d="scan'208";a="545167"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 03:48:31 -0700
+ t=1698403893; x=1729939893;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=XfH+kqO5z3jHWai3QU8EmxBIkqtkakbAHWLinQot/GM=;
+ b=GD7HWOvvjal6Uf+cpw89KnWpV3CIhjLZOXJSrBrlOUQAmNolobbfxmLY
+ JP8SFmVC4LPAzFa6zMquSNrnSqvylNkobXYoQxK2mVKmkZvvgD1xTRoAD
+ zzdpfhz18Wd9LpthQE5WLP4g1BOjLAOG2te56qJZ8rQxA9AHbVgA/SGjC
+ L9Djp+Nj976OfW8xdfPomdiVSo1wenGHqie/sq0eieXH3SdQpMWFoeQs6
+ T5MBHeH6hVF49jhriSobB19fs9MDgiwsDG3wnVi9trW2x6/+u38aUPZiL
+ YHyVtpsHO74nFRuivl14tPs8F+XEBVX+VGnh87CL6AKzsrbOhkJ4Rcjxg A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="386640973"
+X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="386640973"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2023 03:51:32 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="794543080"
-X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="794543080"
-Received: from tmarkand-mobl1.ger.corp.intel.com (HELO mwauld-mobl1.intel.com)
- ([10.252.2.153])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 03:48:28 -0700
-From: Matthew Auld <matthew.auld@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 11:48:12 +0100
-Message-ID: <20231027104810.310819-6-matthew.auld@intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231027104810.310819-5-matthew.auld@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="933036135"
+X-IronPort-AV: E=Sophos;i="6.03,256,1694761200"; d="scan'208";a="933036135"
+Received: from krchrist-mobl2.ger.corp.intel.com (HELO [10.249.254.140])
+ ([10.249.254.140])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2023 03:51:31 -0700
+Message-ID: <2750a5d55c3c97163bafa9ac7f383cea43aa7ef8.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Date: Fri, 27 Oct 2023 12:51:28 +0200
+In-Reply-To: <20231027104810.310819-6-matthew.auld@intel.com>
 References: <20231027104810.310819-5-matthew.auld@intel.com>
+ <20231027104810.310819-6-matthew.auld@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/3] drm/xe/migrate: fix MI_ARB_ON_OFF usage
+Subject: Re: [Intel-xe] [PATCH v2 1/3] drm/xe/migrate: fix MI_ARB_ON_OFF
+ usage
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,94 +65,86 @@ Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Spec says: "This is a privileged command; it will not be effective (will
-be converted to a no-op) if executed from within a non-privileged batch
-buffer." However here it looks like we are just emitting it inside some
-bb which was jumped to via the ppGTT, which should be considered
-a non-privileged address space.
-
-It looks like we just need some way of preventing things like the
-emit_pte() and later copy/clear being preempted in-between so rather
-just emit directly in the ring for migration jobs.
-
-Bspec: 45716
-Signed-off-by: Matthew Auld <matthew.auld@intel.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
----
- drivers/gpu/drm/xe/xe_migrate.c  | 16 ----------------
- drivers/gpu/drm/xe/xe_ring_ops.c |  2 ++
- 2 files changed, 2 insertions(+), 16 deletions(-)
-
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index b4baecde60e6..009d728af762 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -406,12 +406,6 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
- 	return m;
- }
- 
--static void emit_arb_clear(struct xe_bb *bb)
--{
--	/* 1 dword */
--	bb->cs[bb->len++] = MI_ARB_ON_OFF | MI_ARB_DISABLE;
--}
--
- static u64 xe_migrate_res_sizes(struct xe_res_cursor *cur)
- {
- 	/*
-@@ -745,10 +739,6 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 			goto err_sync;
- 		}
- 
--		/* Preemption is enabled again by the ring ops. */
--		if (!src_is_vram || !dst_is_vram)
--			emit_arb_clear(bb);
--
- 		if (!src_is_vram)
- 			emit_pte(m, bb, src_L0_pt, src_is_vram, &src_it, src_L0,
- 				 src_bo);
-@@ -994,7 +984,6 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 
- 		/* Preemption is enabled again by the ring ops. */
- 		if (!clear_vram) {
--			emit_arb_clear(bb);
- 			emit_pte(m, bb, clear_L0_pt, clear_vram, &src_it, clear_L0,
- 				 bo);
- 		} else {
-@@ -1285,9 +1274,6 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- 				VM_SA_UPDATE_UNIT_SIZE;
- 		}
- 
--		/* Preemption is enabled again by the ring ops. */
--		emit_arb_clear(bb);
--
- 		/* Map our PT's to gtt */
- 		bb->cs[bb->len++] = MI_STORE_DATA_IMM | MI_SDI_NUM_QW(num_updates);
- 		bb->cs[bb->len++] = ppgtt_ofs * XE_PAGE_SIZE + page_ofs;
-@@ -1316,8 +1302,6 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
- 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
- 		update_idx = bb->len;
- 
--		/* Preemption is enabled again by the ring ops. */
--		emit_arb_clear(bb);
- 		for (i = 0; i < num_updates; i++)
- 			write_pgtable(tile, bb, 0, &updates[i], pt_update);
- 	}
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 58676f4b989f..59e0aa2d6a4c 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -355,6 +355,8 @@ static void emit_migration_job_gen12(struct xe_sched_job *job,
- 	i = emit_store_imm_ggtt(xe_lrc_start_seqno_ggtt_addr(lrc),
- 				seqno, dw, i);
- 
-+	dw[i++] = MI_ARB_ON_OFF | MI_ARB_DISABLE; /* Enabled again below */
-+
- 	i = emit_bb_start(job->batch_addr[0], BIT(8), dw, i);
- 
- 	/* XXX: Do we need this? Leaving for now. */
--- 
-2.41.0
+T24gRnJpLCAyMDIzLTEwLTI3IGF0IDExOjQ4ICswMTAwLCBNYXR0aGV3IEF1bGQgd3JvdGU6Cj4g
+U3BlYyBzYXlzOiAiVGhpcyBpcyBhIHByaXZpbGVnZWQgY29tbWFuZDsgaXQgd2lsbCBub3QgYmUg
+ZWZmZWN0aXZlCj4gKHdpbGwKPiBiZSBjb252ZXJ0ZWQgdG8gYSBuby1vcCkgaWYgZXhlY3V0ZWQg
+ZnJvbSB3aXRoaW4gYSBub24tcHJpdmlsZWdlZAo+IGJhdGNoCj4gYnVmZmVyLiIgSG93ZXZlciBo
+ZXJlIGl0IGxvb2tzIGxpa2Ugd2UgYXJlIGp1c3QgZW1pdHRpbmcgaXQgaW5zaWRlCj4gc29tZQo+
+IGJiIHdoaWNoIHdhcyBqdW1wZWQgdG8gdmlhIHRoZSBwcEdUVCwgd2hpY2ggc2hvdWxkIGJlIGNv
+bnNpZGVyZWQKPiBhIG5vbi1wcml2aWxlZ2VkIGFkZHJlc3Mgc3BhY2UuCj4gCj4gSXQgbG9va3Mg
+bGlrZSB3ZSBqdXN0IG5lZWQgc29tZSB3YXkgb2YgcHJldmVudGluZyB0aGluZ3MgbGlrZSB0aGUK
+PiBlbWl0X3B0ZSgpIGFuZCBsYXRlciBjb3B5L2NsZWFyIGJlaW5nIHByZWVtcHRlZCBpbi1iZXR3
+ZWVuIHNvIHJhdGhlcgo+IGp1c3QgZW1pdCBkaXJlY3RseSBpbiB0aGUgcmluZyBmb3IgbWlncmF0
+aW9uIGpvYnMuCj4gCj4gQnNwZWM6IDQ1NzE2Cj4gU2lnbmVkLW9mZi1ieTogTWF0dGhldyBBdWxk
+IDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgo+IENjOiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFz
+LmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+Cj4gQ2M6IE1hdHRoZXcgQnJvc3QgPG1hdHRoZXcu
+YnJvc3RAaW50ZWwuY29tPgo+IFJldmlld2VkLWJ5OiBNYXR0IFJvcGVyIDxtYXR0aGV3LmQucm9w
+ZXJAaW50ZWwuY29tPgoKTEdUTS4KUmV2aWV3ZWQtYnk6IFRob21hcyBIZWxsc3Ryw7ZtIDx0aG9t
+YXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KCgoKPiAtLS0KPiDCoGRyaXZlcnMvZ3B1L2Ry
+bS94ZS94ZV9taWdyYXRlLmPCoCB8IDE2IC0tLS0tLS0tLS0tLS0tLS0KPiDCoGRyaXZlcnMvZ3B1
+L2RybS94ZS94ZV9yaW5nX29wcy5jIHzCoCAyICsrCj4gwqAyIGZpbGVzIGNoYW5nZWQsIDIgaW5z
+ZXJ0aW9ucygrKSwgMTYgZGVsZXRpb25zKC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS94ZS94ZV9taWdyYXRlLmMKPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRlLmMK
+PiBpbmRleCBiNGJhZWNkZTYwZTYuLjAwOWQ3MjhhZjc2MiAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
+L2dwdS9kcm0veGUveGVfbWlncmF0ZS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX21p
+Z3JhdGUuYwo+IEBAIC00MDYsMTIgKzQwNiw2IEBAIHN0cnVjdCB4ZV9taWdyYXRlICp4ZV9taWdy
+YXRlX2luaXQoc3RydWN0Cj4geGVfdGlsZSAqdGlsZSkKPiDCoMKgwqDCoMKgwqDCoMKgcmV0dXJu
+IG07Cj4gwqB9Cj4gwqAKPiAtc3RhdGljIHZvaWQgZW1pdF9hcmJfY2xlYXIoc3RydWN0IHhlX2Ji
+ICpiYikKPiAtewo+IC3CoMKgwqDCoMKgwqDCoC8qIDEgZHdvcmQgKi8KPiAtwqDCoMKgwqDCoMKg
+wqBiYi0+Y3NbYmItPmxlbisrXSA9IE1JX0FSQl9PTl9PRkYgfCBNSV9BUkJfRElTQUJMRTsKPiAt
+fQo+IC0KPiDCoHN0YXRpYyB1NjQgeGVfbWlncmF0ZV9yZXNfc2l6ZXMoc3RydWN0IHhlX3Jlc19j
+dXJzb3IgKmN1cikKPiDCoHsKPiDCoMKgwqDCoMKgwqDCoMKgLyoKPiBAQCAtNzQ1LDEwICs3Mzks
+NiBAQCBzdHJ1Y3QgZG1hX2ZlbmNlICp4ZV9taWdyYXRlX2NvcHkoc3RydWN0Cj4geGVfbWlncmF0
+ZSAqbSwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBn
+b3RvIGVycl9zeW5jOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfQo+IMKgCj4g
+LcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qIFByZWVtcHRpb24gaXMgZW5hYmxlZCBh
+Z2FpbiBieSB0aGUgcmluZyBvcHMuICovCj4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oGlmICghc3JjX2lzX3ZyYW0gfHwgIWRzdF9pc192cmFtKQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZW1pdF9hcmJfY2xlYXIoYmIpOwo+IC0KPiDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICghc3JjX2lzX3ZyYW0pCj4gwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZW1pdF9wdGUobSwgYmIsIHNy
+Y19MMF9wdCwgc3JjX2lzX3ZyYW0sCj4gJnNyY19pdCwgc3JjX0wwLAo+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3JjX2Jv
+KTsKPiBAQCAtOTk0LDcgKzk4NCw2IEBAIHN0cnVjdCBkbWFfZmVuY2UgKnhlX21pZ3JhdGVfY2xl
+YXIoc3RydWN0Cj4geGVfbWlncmF0ZSAqbSwKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgLyogUHJlZW1wdGlvbiBpcyBlbmFibGVkIGFnYWluIGJ5IHRoZSByaW5nIG9wcy4g
+Ki8KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICghY2xlYXJfdnJhbSkgewo+
+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZW1pdF9hcmJf
+Y2xlYXIoYmIpOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoGVtaXRfcHRlKG0sIGJiLCBjbGVhcl9MMF9wdCwgY2xlYXJfdnJhbSwKPiAmc3JjX2l0LCBj
+bGVhcl9MMCwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgIGJvKTsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oH0gZWxzZSB7Cj4gQEAgLTEyODUsOSArMTI3NCw2IEBAIHhlX21pZ3JhdGVfdXBkYXRlX3BndGFi
+bGVzKHN0cnVjdCB4ZV9taWdyYXRlCj4gKm0sCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoFZNX1NBX1VQREFURV9VTklUX1NJ
+WkU7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Cj4gwqAKPiAtwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgLyogUHJlZW1wdGlvbiBpcyBlbmFibGVkIGFnYWluIGJ5IHRo
+ZSByaW5nIG9wcy4gKi8KPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZW1pdF9hcmJf
+Y2xlYXIoYmIpOwo+IC0KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qIE1hcCBv
+dXIgUFQncyB0byBndHQgKi8KPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGJiLT5j
+c1tiYi0+bGVuKytdID0gTUlfU1RPUkVfREFUQV9JTU0gfAo+IE1JX1NESV9OVU1fUVcobnVtX3Vw
+ZGF0ZXMpOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYmItPmNzW2JiLT5sZW4r
+K10gPSBwcGd0dF9vZnMgKiBYRV9QQUdFX1NJWkUgKwo+IHBhZ2Vfb2ZzOwo+IEBAIC0xMzE2LDgg
+KzEzMDIsNiBAQCB4ZV9taWdyYXRlX3VwZGF0ZV9wZ3RhYmxlcyhzdHJ1Y3QgeGVfbWlncmF0ZQo+
+ICptLAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgYmItPmNzW2JiLT5sZW4rK10g
+PSBNSV9CQVRDSF9CVUZGRVJfRU5EOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+dXBkYXRlX2lkeCA9IGJiLT5sZW47Cj4gwqAKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgLyogUHJlZW1wdGlvbiBpcyBlbmFibGVkIGFnYWluIGJ5IHRoZSByaW5nIG9wcy4gKi8KPiAt
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZW1pdF9hcmJfY2xlYXIoYmIpOwo+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZm9yIChpID0gMDsgaSA8IG51bV91cGRhdGVzOyBp
+KyspCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgd3Jp
+dGVfcGd0YWJsZSh0aWxlLCBiYiwgMCwgJnVwZGF0ZXNbaV0sCj4gcHRfdXBkYXRlKTsKPiDCoMKg
+wqDCoMKgwqDCoMKgfQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfcmluZ19v
+cHMuYwo+IGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX3Jpbmdfb3BzLmMKPiBpbmRleCA1ODY3NmY0
+Yjk4OWYuLjU5ZTBhYTJkNmE0YyAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVf
+cmluZ19vcHMuYwo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9yaW5nX29wcy5jCj4gQEAg
+LTM1NSw2ICszNTUsOCBAQCBzdGF0aWMgdm9pZCBlbWl0X21pZ3JhdGlvbl9qb2JfZ2VuMTIoc3Ry
+dWN0Cj4geGVfc2NoZWRfam9iICpqb2IsCj4gwqDCoMKgwqDCoMKgwqDCoGkgPSBlbWl0X3N0b3Jl
+X2ltbV9nZ3R0KHhlX2xyY19zdGFydF9zZXFub19nZ3R0X2FkZHIobHJjKSwKPiDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc2Vx
+bm8sIGR3LCBpKTsKPiDCoAo+ICvCoMKgwqDCoMKgwqDCoGR3W2krK10gPSBNSV9BUkJfT05fT0ZG
+IHwgTUlfQVJCX0RJU0FCTEU7IC8qIEVuYWJsZWQgYWdhaW4KPiBiZWxvdyAqLwo+ICsKPiDCoMKg
+wqDCoMKgwqDCoMKgaSA9IGVtaXRfYmJfc3RhcnQoam9iLT5iYXRjaF9hZGRyWzBdLCBCSVQoOCks
+IGR3LCBpKTsKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqAvKiBYWFg6IERvIHdlIG5lZWQgdGhpcz8g
+TGVhdmluZyBmb3Igbm93LiAqLwoK
 
