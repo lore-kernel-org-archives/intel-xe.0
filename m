@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C90C4C25B48
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 22:32:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B86EC25B47
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 22:33:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 868A910EA1C;
-	Fri, 27 Oct 2023 22:32:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D394810EA1C;
+	Fri, 27 Oct 2023 22:33:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id DA2A210EA1C;
- Fri, 27 Oct 2023 22:32:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6AEFA10EA1C;
+ Fri, 27 Oct 2023 22:33:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D80D8A0093;
- Fri, 27 Oct 2023 22:32:57 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 692E5A0093;
+ Fri, 27 Oct 2023 22:33:26 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Fri, 27 Oct 2023 22:32:57 -0000
-Message-ID: <169844597788.19710.16664047200755648500@emeril.freedesktop.org>
+Date: Fri, 27 Oct 2023 22:33:26 -0000
+Message-ID: <169844600642.19711.12449247381862472728@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
 In-Reply-To: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_GS?=
- =?utf-8?q?C_FW_loading?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_GSC_FW_?=
+ =?utf-8?q?loading?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,188 +48,90 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: GSC FW loading
 URL   : https://patchwork.freedesktop.org/series/125717/
-State : warning
+State : failure
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit bfb0ed12aee560b93dc3056de7832bcd95c6cb81
-Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Date:   Fri Oct 27 15:29:26 2023 -0700
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+stty: 'standard input': Inappropriate ioctl for device
+[22:32:58] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[22:33:02] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+[22:33:23] Starting KUnit Kernel (1/1)...
+[22:33:23] ============================================================
+[22:33:23] ========================== xe_bo  ==========================
+[22:33:23] [SKIPPED] xe_ccs_migrate_kunit
+[22:33:23] [SKIPPED] xe_bo_evict_kunit
+[22:33:23] ===================== [SKIPPED] xe_bo ======================
+[22:33:23] ======================= xe_dma_buf  ========================
+[22:33:23] [SKIPPED] xe_dma_buf_kunit
+[22:33:23] =================== [SKIPPED] xe_dma_buf ===================
+[22:33:23] ======================= xe_migrate  ========================
+[22:33:23] [SKIPPED] xe_migrate_sanity_kunit
+[22:33:23] =================== [SKIPPED] xe_migrate ===================
+[22:33:23] ========================= xe_pci  ==========================
+[22:33:23] [PASSED] xe_gmdid_graphics_ip
+[22:33:23] # xe_gmdid_media_ip: ASSERTION FAILED at drivers/gpu/drm/xe/tests/xe_pci_test.c:45
+[22:33:23] Expected mask == 0, but
+[22:33:23]     mask == 67108864 (0x4000000)
+[22:33:23] [FAILED] xe_gmdid_media_ip
+[22:33:23] # xe_pci: pass:1 fail:1 skip:0 total:2
+[22:33:23] # Totals: pass:1 fail:1 skip:0 total:2
+[22:33:23] ===================== [FAILED] xe_pci ======================
+[22:33:23] ========================= xe_rtp  ==========================
+[22:33:23] ================== xe_rtp_process_tests  ===================
+[22:33:23] [PASSED] coalesce-same-reg
+[22:33:23] [PASSED] no-match-no-add
+[22:33:23] [PASSED] no-match-no-add-multiple-rules
+[22:33:23] [PASSED] two-regs-two-entries
+[22:33:23] [PASSED] clr-one-set-other
+[22:33:23] [PASSED] set-field
+[22:33:23] [PASSED] conflict-duplicate
+[22:33:23] [PASSED] conflict-not-disjoint
+[22:33:23] [PASSED] conflict-reg-type
+[22:33:23] ============== [PASSED] xe_rtp_process_tests ===============
+[22:33:23] ===================== [PASSED] xe_rtp ======================
+[22:33:23] ========================== xe_wa  ==========================
+[22:33:23] ======================== xe_wa_gt  =========================
+[22:33:23] [PASSED] TIGERLAKE (B0)
+[22:33:23] [PASSED] DG1 (A0)
+[22:33:23] [PASSED] DG1 (B0)
+[22:33:23] [PASSED] ALDERLAKE_S (A0)
+[22:33:23] [PASSED] ALDERLAKE_S (B0)
+[22:33:23] [PASSED] ALDERLAKE_S (C0)
+[22:33:23] [PASSED] ALDERLAKE_S (D0)
+[22:33:23] [PASSED] ALDERLAKE_P (A0)
+[22:33:23] [PASSED] ALDERLAKE_P (B0)
+[22:33:23] [PASSED] ALDERLAKE_P (C0)
+[22:33:23] [PASSED] ALDERLAKE_S_RPLS (D0)
+[22:33:23] [PASSED] ALDERLAKE_P_RPLU (E0)
+[22:33:23] [PASSED] DG2_G10 (A0)
+[22:33:23] [PASSED] DG2_G10 (A1)
+[22:33:23] [PASSED] DG2_G10 (B0)
+[22:33:23] [PASSED] DG2_G10 (C0)
+[22:33:23] [PASSED] DG2_G11 (A0)
+[22:33:23] [PASSED] DG2_G11 (B0)
+[22:33:23] [PASSED] DG2_G11 (B1)
+[22:33:23] [PASSED] DG2_G12 (A0)
+[22:33:23] [PASSED] DG2_G12 (A1)
+[22:33:23] [PASSED] PVC (B0)
+[22:33:23] [PASSED] PVC (B1)
+[22:33:23] [PASSED] PVC (C0)
+[22:33:23] ==================== [PASSED] xe_wa_gt =====================
+[22:33:23] ====================== [PASSED] xe_wa ======================
+[22:33:23] ============================================================
+[22:33:23] Testing complete. Ran 39 tests: passed: 34, failed: 1, skipped: 4
+[22:33:23] Elapsed time: 24.485s total, 4.192s configuring, 20.173s building, 0.098s running
 
-    drm/xe/gsc: Define GSC FW for MTL
-    
-    We track GSC FW based on its compatibility version, which is what
-    determines the interface it supports.
-    Also add a modparam override like the ones for GuC and HuC.
-    
-    Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-    Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-+ /mt/dim checkpatch f24c46200dc8fad700f51106e678d68d38496860 drm-intel
-01e883a3a drm/xe: implement driver initiated function-reset
-f88539d04 fixup! drm/xe/guc: Report submission version of GuC firmware
-590a5b6a1 drm/xe/uc: Rework uC version tracking
--:206: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'p_' - possible side-effects?
-#206: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:528:
-+#define print_uc_fw_version(p_, version_, prefix_, ...) \
-+do { \
-+	struct xe_uc_fw_version *ver_ = (version_); \
-+	if (ver_->build) \
-+		drm_printf(p_, prefix_ " version %u.%u.%u.%u\n", ##__VA_ARGS__, \
-+			   ver_->major, ver_->minor, \
-+			   ver_->patch, ver_->build); \
-+	else \
-+		drm_printf(p_, prefix_ " version %u.%u.%u\n", ##__VA_ARGS__, \
-+			  ver_->major, ver_->minor, ver_->patch); \
-+} while(0);
-
--:206: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'prefix_' - possible side-effects?
-#206: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:528:
-+#define print_uc_fw_version(p_, version_, prefix_, ...) \
-+do { \
-+	struct xe_uc_fw_version *ver_ = (version_); \
-+	if (ver_->build) \
-+		drm_printf(p_, prefix_ " version %u.%u.%u.%u\n", ##__VA_ARGS__, \
-+			   ver_->major, ver_->minor, \
-+			   ver_->patch, ver_->build); \
-+	else \
-+		drm_printf(p_, prefix_ " version %u.%u.%u\n", ##__VA_ARGS__, \
-+			  ver_->major, ver_->minor, ver_->patch); \
-+} while(0);
-
--:206: WARNING:DO_WHILE_MACRO_WITH_TRAILING_SEMICOLON: do {} while (0) macros should not be semicolon terminated
-#206: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:528:
-+#define print_uc_fw_version(p_, version_, prefix_, ...) \
-+do { \
-+	struct xe_uc_fw_version *ver_ = (version_); \
-+	if (ver_->build) \
-+		drm_printf(p_, prefix_ " version %u.%u.%u.%u\n", ##__VA_ARGS__, \
-+			   ver_->major, ver_->minor, \
-+			   ver_->patch, ver_->build); \
-+	else \
-+		drm_printf(p_, prefix_ " version %u.%u.%u\n", ##__VA_ARGS__, \
-+			  ver_->major, ver_->minor, ver_->patch); \
-+} while(0);
-
--:216: ERROR:SPACING: space required before the open parenthesis '('
-#216: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:538:
-+} while(0);
-
-total: 1 errors, 1 warnings, 2 checks, 298 lines checked
-790a1435c drm/xe/gsc: Introduce GSC FW
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:31: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#31: 
-new file mode 100644
-
--:63: CHECK:UNNECESSARY_PARENTHESES: Unnecessary parentheses around 'gt != tile->media_gt'
-#63: FILE: drivers/gpu/drm/xe/xe_gsc.c:28:
-+	if (tile->media_gt && (gt != tile->media_gt)) {
-
--:231: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#231: FILE: drivers/gpu/drm/xe/xe_uc_fw_types.h:61:
- };
-+#define XE_UC_FW_NUM_TYPES 3
-
-total: 0 errors, 1 warnings, 2 checks, 186 lines checked
-7f147cee3 drm/xe/gsc: Parse GSC FW header
--:48: ERROR:POINTER_LOCATION: "foo * bar" should be "foo *bar"
-#48: FILE: drivers/gpu/drm/xe/xe_uc_fw.c:493:
-+		struct xe_gsc * gsc = container_of(uc_fw, struct xe_gsc, fw);
-
-total: 1 errors, 0 warnings, 0 checks, 235 lines checked
-8220f5ca7 drm/xe/gsc: GSC FW load
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:24: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#24: 
-new file mode 100644
-
--:360: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#360: FILE: drivers/gpu/drm/xe/xe_gsc.c:268:
-+
-+}
-
-total: 0 errors, 1 warnings, 1 checks, 408 lines checked
-65fcf37ec drm/xe/gsc: Implement WA 14015076503
--:96: WARNING:RETURN_VOID: void function return statements are not generally useful
-#96: FILE: drivers/gpu/drm/xe/xe_gt.c:535:
-+	return;
-+}
-
-total: 0 errors, 1 warnings, 0 checks, 100 lines checked
-b70e25c8d drm/xe/gsc: Trigger a driver flr to cleanup the GSC on unload
-4b7e69532 drm/xe/gsc: Add an interface for GSC packet submissions
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:38: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#38: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 261 lines checked
-b0022f477 drm/xe/gsc: Query GSC compatibility version
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:14: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#14: 
-new file mode 100644
-
--:89: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#89: FILE: drivers/gpu/drm/xe/xe_gsc.c:104:
-+	query_msg_wr(xe, map, wr_offset, header.command, MKHI_GFX_SRV_GET_HOST_COMPATIBILITY_VERSION);
-
--:97: WARNING:LONG_LINE: line length of 101 exceeds 100 columns
-#97: FILE: drivers/gpu/drm/xe/xe_gsc.c:112:
-+	struct xe_uc_fw_version *compatibility = &gsc->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY];
-
--:108: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#108: FILE: drivers/gpu/drm/xe/xe_gsc.c:123:
-+	bo = xe_bo_create_pin_map(xe, tile, NULL, GSC_VER_PKT_SZ * 2,
-+			  ttm_bo_type_kernel,
-
--:110: WARNING:ONE_SEMICOLON: Statements terminations use 1 semicolon
-#110: FILE: drivers/gpu/drm/xe/xe_gsc.c:125:
-+			  XE_BO_CREATE_GGTT_BIT);;
-
-total: 0 errors, 4 warnings, 1 checks, 185 lines checked
-55c932772 drm/xe/gsc: Define GSCCS for MTL
-bfb0ed12a drm/xe/gsc: Define GSC FW for MTL
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
