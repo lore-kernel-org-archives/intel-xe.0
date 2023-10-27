@@ -4,50 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3697C25B72
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8A1CFC25B70
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 08:16:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6073110E95D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53A2510E95C;
 	Fri, 27 Oct 2023 08:16:22 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AA62F10E959
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 08:16:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2513410E956
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 08:16:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698394576; x=1729930576;
+ t=1698394574; x=1729930574;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=U5faFsLt81/HBM/bO3T+qtxJdyRnnAkOkAi6YGNcRoU=;
- b=WSPVC7sbFKRKDESbIyKCpY+PYEWtsUAbySV4OJ52lR+/4794feEXEbfQ
- Mm/yIJ5+IZQaz1X7YZPAJ6EQki4GyryinHDlJTrjnR5LGY7qISyUtDVRk
- WIdXY1wjwhjCCoQI8zl81GiGvOAvjICWHIN0qUmiBO0zt1EHCpYdigEzl
- A56cZugZVnIizZb1qShHy7IeMyIDLawUy2cwT3WM5fPrPjcIobB94GT8S
- XndPVAl5qtcg+38o5i0MDldtD6keFR+ZyZJdzBu2KYn+K7mJO6ug/JvZB
- 8XfyMZD2vZQlErx3+C1UO5CLCfXomrFr0mMOgDTAcM1d6EsUSEDlNoF1m g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="9270251"
+ bh=3eAFTMPpsW0jjjStg+NuG/NSBVBHvSsaQRSA6a7kWws=;
+ b=K6qNO1qelbhJckk7Dk6fXRYorXUwrm7FU/YOWZvp6m0g+ydO9+lwwDBU
+ BtN2yPN44kLhJNNIqJmcQpBBOjmSC35RZQGQ+zpOC28IwFM4AZcvsgnD1
+ us4magcPEF+/jNa4kQjMcCLGL1E9w5w93kGA1UQ0gGwlEzDW+L9xJXw5W
+ Tf77da1ttx8OlgHXtn6iKXpPH5az4Sum3NvVfBofvJUPXJLErJWYTrSNe
+ DyGa7mfG8/268fOtl70RZEWoR4qPXELabcHaCnz7M7M84FeB0GPEzcJkl
+ A7MzwRbZJHV3K6U0frcWKXso2b7dnALrdegh+Eg+PH/EKl6RBImtL78SZ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="9270246"
 X-IronPort-AV: E=Sophos;i="6.03,255,1694761200"; 
-   d="scan'208";a="9270251"
+   d="scan'208";a="9270246"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 01:16:16 -0700
+ 27 Oct 2023 01:16:14 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="763129095"
-X-IronPort-AV: E=Sophos;i="6.03,255,1694761200"; d="scan'208";a="763129095"
+X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="763129092"
+X-IronPort-AV: E=Sophos;i="6.03,255,1694761200"; d="scan'208";a="763129092"
 Received: from krchrist-mobl2.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.140])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 01:16:15 -0700
+ 27 Oct 2023 01:16:13 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 10:15:52 +0200
-Message-ID: <20231027081552.5321-10-thomas.hellstrom@linux.intel.com>
+Date: Fri, 27 Oct 2023 10:15:49 +0200
+Message-ID: <20231027081552.5321-7-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231027081552.5321-1-thomas.hellstrom@linux.intel.com>
 References: <20231027081552.5321-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 10/10] drm/xe: Use DRM_GPUVM_RESV_PROTECTED for gpuvm
+Subject: [Intel-xe] [CI 07/10] drm/xe: Adjust to commit "drm/gpuvm: add an
+ abstraction for a VM/BO combination"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,28 +63,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use DRM_GPUVM_RESV_PROTECTED to relax locking.
-
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c | 11 +++++++----
+ drivers/gpu/drm/xe/xe_vm.c | 32 +++++++++++++++++++++++++-------
+ 2 files changed, 32 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5f3bdb4e48ad..6bd1f4ac462a 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1229,8 +1229,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		goto err_no_resv;
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index d58f324860fb..76ca4f3a3645 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -452,6 +452,7 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 	struct dma_fence *fence;
+ 	struct drm_gpuva *gpuva;
+ 	struct drm_gem_object *obj = &bo->ttm.base;
++	struct drm_gpuvm_bo *vm_bo;
+ 	int ret = 0;
+ 
+ 	dma_resv_assert_held(bo->ttm.base.resv);
+@@ -464,11 +465,12 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 		dma_resv_iter_end(&cursor);
  	}
  
--	drm_gpuvm_init(&vm->gpuvm, "Xe VM", 0, &xe->drm, vm_resv_obj,
--		       0, vm->size, 0, 0, &gpuvm_ops);
-+	drm_gpuvm_init(&vm->gpuvm, "Xe VM", DRM_GPUVM_RESV_PROTECTED, &xe->drm,
-+		       vm_resv_obj, 0, vm->size, 0, 0, &gpuvm_ops);
+-	drm_gem_for_each_gpuva(gpuva, obj) {
+-		struct xe_vma *vma = gpuva_to_vma(gpuva);
+-		struct xe_vm *vm = xe_vma_vm(vma);
++	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
++		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
++			struct xe_vma *vma = gpuva_to_vma(gpuva);
++			struct xe_vm *vm = xe_vma_vm(vma);
  
- 	drm_gem_object_put(vm_resv_obj);
+-		trace_xe_vma_evict(vma);
++			trace_xe_vma_evict(vma);
  
+ 		if (xe_vm_in_fault_mode(vm)) {
+ 			/* Wait for pending binds / unbinds. */
+@@ -522,6 +524,7 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 			if (vm_resv_locked)
+ 				dma_resv_unlock(xe_vm_resv(vm));
+ 		}
++		}
+ 	}
+ 
+ 	return ret;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 16ac77b67fe1..1b94736ef430 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -911,12 +911,21 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
+ 		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
+ 
+ 	if (bo) {
++		struct drm_gpuvm_bo *vm_bo;
++
+ 		xe_bo_assert_held(bo);
+ 
++		vm_bo = drm_gpuvm_bo_obtain(vma->gpuva.vm, &bo->ttm.base);
++		if (IS_ERR(vm_bo)) {
++			kfree(vma);
++			return ERR_CAST(vm_bo);
++		}
++
+ 		drm_gem_object_get(&bo->ttm.base);
+ 		vma->gpuva.gem.obj = &bo->ttm.base;
+ 		vma->gpuva.gem.offset = bo_offset_or_userptr;
+-		drm_gpuva_link(&vma->gpuva);
++		drm_gpuva_link(&vma->gpuva, vm_bo);
++		drm_gpuvm_bo_put(vm_bo);
+ 	} else /* userptr or null */ {
+ 		if (!is_null) {
+ 			u64 size = end - start + 1;
+@@ -998,16 +1007,19 @@ static struct xe_vma *
+ bo_has_vm_references_locked(struct xe_bo *bo, struct xe_vm *vm,
+ 			    struct xe_vma *ignore)
+ {
+-	struct drm_gpuva *gpuva;
++	struct drm_gpuvm_bo *vm_bo;
++	struct drm_gpuva *va;
+ 	struct drm_gem_object *obj = &bo->ttm.base;
+ 
+ 	xe_bo_assert_held(bo);
+ 
+-	drm_gem_for_each_gpuva(gpuva, obj) {
+-		struct xe_vma *vma = gpuva_to_vma(gpuva);
++	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
++		drm_gpuvm_bo_for_each_va(va, vm_bo) {
++			struct xe_vma *vma = gpuva_to_vma(va);
+ 
+-		if (vma != ignore && xe_vma_vm(vma) == vm)
+-			return vma;
++			if (vma != ignore && xe_vma_vm(vma) == vm)
++				return vma;
++		}
+ 	}
+ 
+ 	return NULL;
+@@ -2175,6 +2187,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 	struct drm_gpuva_ops *ops;
+ 	struct drm_gpuva_op *__op;
+ 	struct xe_vma_op *op;
++	struct drm_gpuvm_bo *vm_bo;
+ 	int err;
+ 
+ 	lockdep_assert_held_write(&vm->lock);
+@@ -2232,7 +2245,12 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 		err = xe_bo_lock(bo, true);
+ 		if (err)
+ 			return ERR_PTR(err);
+-		ops = drm_gpuvm_gem_unmap_ops_create(&vm->gpuvm, obj);
++
++		vm_bo = drm_gpuvm_bo_find(&vm->gpuvm, obj);
++		if (!vm_bo)
++			break;
++
++		ops = drm_gpuvm_bo_unmap_ops_create(vm_bo);
+ 		xe_bo_unlock(bo);
+ 		if (IS_ERR(ops))
+ 			return ops;
 -- 
 2.41.0
 
