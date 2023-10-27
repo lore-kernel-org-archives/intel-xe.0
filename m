@@ -4,23 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CEFCFC25B47
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 11:35:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 009BEC25B67
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 11:35:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0FB410E97A;
-	Fri, 27 Oct 2023 11:35:20 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 74A7110E97A
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 11:35:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B68C310E97B;
+	Fri, 27 Oct 2023 11:35:23 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E69FD10E97B
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 11:35:20 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 13:34:44 +0200
-Message-Id: <20231027113453.117020-1-maarten.lankhorst@linux.intel.com>
+Date: Fri, 27 Oct 2023 13:34:45 +0200
+Message-Id: <20231027113453.117020-2-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
+In-Reply-To: <20231027113453.117020-1-maarten.lankhorst@linux.intel.com>
+References: <20231027113453.117020-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/9] Cleaned up revert of remaining changes.
+Subject: [Intel-xe] [PATCH 1/9] drm/i915/display: Revert all before
+ remaining changes to make xe compile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,49 +40,134 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Maarten Lankhorst <dev@lankhorst.se>
 
-All reverts are made simpler, and the header updates are squashed to a
-single commit.
+    drm/xe/display: Allow scanout of bos that can be migrated to lmem
+    drm/i915/display: Use intel_bo_to_drm_bo instead of obj->base
 
-This makes reviewing a lot easier.
+Can probably be slightly ignored by squashing with next patch, at least
+for intel_bo_to_drm_bo part.
 
-Maarten Lankhorst (9):
-  drm/i915/display: Revert all before remaining changes to make xe
-    compile
-  drm/i915/display: Revert remaining changes to make xe compile
-  drm/xe: Update headers to be more compatible with i915
-  drm/atomic: Add drm_atomic_helper_set_fence_deadline() function
-  drm/i915: Implement fence->set_deadline.
-  FIXME drm/i915/display: Use fence->set_deadline to boost requests
-  drm/i915/display: Use i915_gem_object_get_dma_address to get dma
-    address
-  FIXME drm/i915/display: Minimal changes to fbdev to make xe work
-  FIXME drm/i915/display: Make intel_fb.c code compatible with xe
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+ drivers/gpu/drm/i915/display/intel_fb.c    |  9 ++--
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 48 ++++++++--------------
+ 2 files changed, 22 insertions(+), 35 deletions(-)
 
- drivers/gpu/drm/drm_atomic_helper.c           |  15 ++-
- .../gpu/drm/i915/display/intel_atomic_plane.c |  70 +++---------
- drivers/gpu/drm/i915/display/intel_cursor.c   |  12 +--
- drivers/gpu/drm/i915/display/intel_display.c  |  37 +------
- .../drm/i915/display/intel_display_types.h    |   4 -
- drivers/gpu/drm/i915/display/intel_fb.c       |  89 ++++++----------
- drivers/gpu/drm/i915/display/intel_fbc.c      |  13 ++-
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 100 ++++++------------
- .../gpu/drm/i915/display/intel_frontbuffer.c  |   7 +-
- .../gpu/drm/i915/display/intel_frontbuffer.h  |   4 -
- .../drm/i915/display/skl_universal_plane.c    |   4 -
- drivers/gpu/drm/i915/i915_request.c           |   9 ++
- .../compat-i915-headers/gem/i915_gem_lmem.h   |   2 +
- .../compat-i915-headers/gem/i915_gem_mman.h   |  17 +++
- .../compat-i915-headers/gem/i915_gem_object.h |  76 +++++++++++++
- .../gem/i915_gem_object_frontbuffer.h         |   4 +-
- .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   1 +
- .../xe/compat-i915-headers/i915_gem_stolen.h  |  13 ++-
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h |   6 ++
- include/drm/drm_atomic_helper.h               |   3 +-
- 20 files changed, 234 insertions(+), 252 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
- create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index fd0b978dbef9..0366926e0d95 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1964,10 +1964,10 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
+ 	if (!atomic_read(&front->bits))
+ 		return 0;
+ 
+-	if (dma_resv_test_signaled(intel_bo_to_drm_bo(obj)->resv, dma_resv_usage_rw(false)))
++	if (dma_resv_test_signaled(obj->base.resv, dma_resv_usage_rw(false)))
+ 		goto flush;
+ 
+-	ret = dma_resv_get_singleton(intel_bo_to_drm_bo(obj)->resv, dma_resv_usage_rw(false),
++	ret = dma_resv_get_singleton(obj->base.resv, dma_resv_usage_rw(false),
+ 				     &fence);
+ 	if (ret || !fence)
+ 		goto flush;
+@@ -2227,9 +2227,8 @@ intel_user_framebuffer_create(struct drm_device *dev,
+ 		return ERR_PTR(-ENOENT);
+ 
+ 	obj = gem_to_xe_bo(gem);
+-	/* Require vram placement or dma-buf import */
+-	if (IS_DGFX(i915) &&
+-	    !xe_bo_can_migrate(gem_to_xe_bo(gem), XE_PL_VRAM0) &&
++	/* Require vram exclusive objects, but allow dma-buf imports */
++	if (IS_DGFX(i915) && obj->flags & XE_BO_CREATE_SYSTEM_BIT &&
+ 	    obj->ttm.type != ttm_bo_type_sg) {
+ 		drm_gem_object_put(gem);
+ 		return ERR_PTR(-EREMOTE);
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index b7976706bc68..28b9aa9d52c2 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -48,7 +48,6 @@
+ #include "gem/i915_gem_mman.h"
+ #else
+ #include "xe_gt.h"
+-#include "xe_ttm_stolen_mgr.h"
+ #endif
+ 
+ #include "i915_drv.h"
+@@ -193,8 +192,8 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
+ 
+ 	size = mode_cmd.pitches[0] * mode_cmd.height;
+ 	size = PAGE_ALIGN(size);
+-	obj = ERR_PTR(-ENODEV);
+ #ifdef I915
++	obj = ERR_PTR(-ENODEV);
+ 	if (HAS_LMEM(dev_priv)) {
+ 		obj = i915_gem_object_create_lmem(dev_priv, size,
+ 						  I915_BO_ALLOC_CONTIGUOUS |
+@@ -213,23 +212,11 @@ static int intelfb_alloc(struct drm_fb_helper *helper,
+ 			obj = i915_gem_object_create_shmem(dev_priv, size);
+ 	}
+ #else
+-	if (!IS_DGFX(dev_priv)) {
+-		obj = xe_bo_create_pin_map(dev_priv, xe_device_get_root_tile(dev_priv),
+-					   NULL, size,
+-					   ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
+-					   XE_BO_CREATE_STOLEN_BIT |
+-					   XE_BO_CREATE_PINNED_BIT);
+-		if (!IS_ERR(obj))
+-			drm_info(&dev_priv->drm, "Allocated fbdev into stolen\n");
+-		else
+-			drm_info(&dev_priv->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
+-	}
+-	if (IS_ERR(obj)) {
+-		obj = xe_bo_create_pin_map(dev_priv, xe_device_get_root_tile(dev_priv), NULL, size,
+-					  ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
+-					  XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(dev_priv)) |
+-					  XE_BO_CREATE_PINNED_BIT);
+-	}
++	/* XXX: Care about stolen? */
++	obj = xe_bo_create_pin_map(dev_priv, to_gt(dev_priv), NULL, size,
++				   ttm_bo_type_kernel,
++				   XE_BO_CREATE_VRAM_IF_DGFX(to_gt(dev_priv)) |
++				   XE_BO_CREATE_PINNED_BIT | XE_BO_SCANOUT_BIT);
+ #endif
+ 
+ 	if (IS_ERR(obj)) {
+@@ -365,23 +352,24 @@ static int intelfb_create(struct drm_fb_helper *helper,
+ 	}
+ 
+ #else
+-	if (!(obj->flags & XE_BO_CREATE_SYSTEM_BIT)) {
+-		if (obj->flags & XE_BO_CREATE_STOLEN_BIT)
+-			info->fix.smem_start = xe_ttm_stolen_io_offset(obj, 0);
+-		else
+-			info->fix.smem_start =
+-				pci_resource_start(pdev, 2) +
+-				xe_bo_addr(obj, 0, XE_PAGE_SIZE);
++	/* XXX: Could be pure fiction.. */
++	if (obj->flags & XE_BO_CREATE_VRAM0_BIT) {
++		struct xe_gt *gt = to_gt(dev_priv);
++		bool lmem;
+ 
++		info->fix.smem_start =
++			(unsigned long)(gt->mem.vram.io_start + xe_bo_addr(obj, 0, 4096, &lmem));
+ 		info->fix.smem_len = obj->ttm.base.size;
++
+ 	} else {
+-		/* XXX: Pure fiction, as the BO may not be physically accessible.. */
+-		info->fix.smem_start = 0;
++		struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
++
++		info->fix.smem_start = pci_resource_start(pdev, 2) + xe_bo_ggtt_addr(obj);
+ 		info->fix.smem_len = obj->ttm.base.size;
+ 	}
+ 
+-	XE_WARN_ON(iosys_map_is_null(&obj->vmap));
+-	vaddr = obj->vmap.vaddr_iomem;
++	/* TODO: ttm_bo_kmap? */
++	vaddr = obj->vmap.vaddr;
+ #endif
+ 	if (IS_ERR(vaddr)) {
+ 		drm_err(&dev_priv->drm,
 -- 
 2.40.1
 
