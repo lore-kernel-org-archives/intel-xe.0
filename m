@@ -4,51 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D3B8CC25B47
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 08:01:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BB1AAC25B47
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 08:03:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FFCB10E952;
-	Fri, 27 Oct 2023 08:01:03 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20EA910E94F
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 08:00:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698393627; x=1729929627;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=dRtlRoSk+t+ssPAPGnL16JRhum20zQPgohzk64dlOZc=;
- b=kVA8CFW4GJ2WSyFKCFS2dgnSGh6Q/ZnoS3cwTPJNKVFeVyQoGvOE9+f8
- 51oLKoLso/HDRLcGAgRXCNjkcfVtnO/uw0giiAbDHHizrRW+ROqk9mNer
- eCx5J7r4CvPUzMZmrfEOn3oe3g9InIp0BEYUMIwBwpP27CX09XUuCIdMM
- Nj5zH1S48K+ZdJD9nHT+XaKIENtUuHD8DMDxwtMykr77YPaBYi9WnS6MR
- IymP/sNhKn2luvg2wenXe4suoSNWEVz4MVVfHm4Zdp/6COFz9myjF15a3
- SXaXyssnzgOS4lX5adF31T/cJANJ8V2VoHqDQ3pN1tP9gvBafX++paKDB Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="391603889"
-X-IronPort-AV: E=Sophos;i="6.03,255,1694761200"; d="scan'208";a="391603889"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 01:00:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10875"; a="794510419"
-X-IronPort-AV: E=Sophos;i="6.03,255,1694761200"; d="scan'208";a="794510419"
-Received: from inyestex-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.251.212.202])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 01:00:25 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 10:59:15 +0300
-Message-Id: <20231027075918.2206862-29-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231027075918.2206862-1-jouni.hogander@intel.com>
-References: <20231027075918.2206862-1-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 84F3110E94F;
+	Fri, 27 Oct 2023 08:03:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 03C8110E94F;
+ Fri, 27 Oct 2023 08:03:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id F1120AADD5;
+ Fri, 27 Oct 2023 08:03:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 28/31] fixup! drm/xe/display: Implement display
- support
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Date: Fri, 27 Oct 2023 08:03:33 -0000
+Message-ID: <169839381395.19710.10043393171810978438@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231027075918.2206862-1-jouni.hogander@intel.com>
+In-Reply-To: <20231027075918.2206862-1-jouni.hogander@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Backport_display_parameter_patches?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,31 +39,52 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are facing several build problems with Xe display due to missing include
-of drm_drv.h in display source files. Add drm_drv.h into i915_drv.h.
+== Series Details ==
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h | 2 ++
- 1 file changed, 2 insertions(+)
+Series: Backport display parameter patches
+URL   : https://patchwork.freedesktop.org/series/125671/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-index 4e922446e40e..fe026a3792d2 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-@@ -10,6 +10,8 @@
-  * TODO: refactor i915 and xe so this can cease to exist
-  */
- 
-+#include <drm/drm_drv.h>
-+
- #include "soc/intel_pch.h"
- #include "xe_device.h"
- #include "xe_bo.h"
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 76d7314ce drm/xe/huc: Define HuC for MTL
+=== git am output follows ===
+Applying: Revert "FIXME: drm/i915: xe doesn't have i915_modparams.verbose_state_checks"
+Applying: drm/i915: convert INTEL_DISPLAY_ENABLED() into a function
+Applying: drm/i915: separate display runtime info init
+Applying: drm/i915: separate subplatform init and runtime feature init
+Applying: drm/i915/display: Add framework to add parameters specific to display
+Applying: drm/i915/display: Dump also display parameters
+Applying: drm/i915/display: Move enable_fbc module parameter under display
+Applying: drm/i915/display: Move psr related module parameters under display
+Applying: drm/i915/display: Move vbt_firmware module parameter under display
+Applying: drm/i915/display: Move lvds_channel_mode module parameter under display
+Applying: drm/i915/display: Move panel_use_ssc module parameter under display
+Applying: drm/i915/display: Move vbt_sdvo_panel_type module parameter under display
+Applying: drm/i915/display: Move enable_dc module parameter under display
+Applying: drm/i915/display: Move enable_dpt module parameter under display
+Applying: drm/i915/display: Move enable_sagv module parameter under display
+Applying: drm/i915/display: Move disable_power_well module parameter under display
+Applying: drm/i915/display: Move enable_ips module parameter under display
+Applying: drm/i915/display: Move invert_brightness module parameter under display
+Applying: drm/i915/display: Move edp_vswing module parameter under display
+Applying: drm/i915/display: Move enable_dpcd_backlight module parameter under display
+Applying: drm/i915/display: Move load_detect_test parameter under display
+Applying: drm/i915/display: Move force_reset_modeset_test parameter under display
+Applying: drm/i915/display: Move disable_display parameter under display
+Applying: drm/i915/display: Use device parameters instead of module in I915_STATE_WARN
+Applying: drm/i915/display: Move verbose_state_checks under display
+Applying: drm/i915/display: Move nuclear_pageflip under display
+Applying: drm/i915/display: Move enable_dp_mst under display
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/xe/display: Implement display support
+Applying: fixup! drm/xe/display: Implement display support
+
 
