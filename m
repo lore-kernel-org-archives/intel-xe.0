@@ -4,24 +4,26 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE5E7C25B47
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 11:35:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D8579C25B47
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 11:35:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A023D10E97F;
-	Fri, 27 Oct 2023 11:35:31 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEDE110E97E
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 11:35:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A65F110E980;
+	Fri, 27 Oct 2023 11:35:35 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se
+ [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 16CE910E97E
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 11:35:26 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 13:34:49 +0200
-Message-Id: <20231027113453.117020-6-maarten.lankhorst@linux.intel.com>
+Date: Fri, 27 Oct 2023 13:34:48 +0200
+Message-Id: <20231027113453.117020-5-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231027113453.117020-1-maarten.lankhorst@linux.intel.com>
 References: <20231027113453.117020-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 5/9] drm/i915: Implement fence->set_deadline.
+Subject: [Intel-xe] [PATCH 4/9] drm/atomic: Add
+ drm_atomic_helper_set_fence_deadline() function
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,40 +38,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Useful when we want to start using it in display.
+i915 has an i915 specific boost. Use set_fence_deadline instead.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_request.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/drm_atomic_helper.c | 15 +++++++++++----
+ include/drm/drm_atomic_helper.h     |  3 ++-
+ 2 files changed, 13 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index f59081066a19..72e6d0e70523 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -105,6 +105,14 @@ static signed long i915_fence_wait(struct dma_fence *fence,
- 					 timeout);
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index 71d399397107..47ccbe119265 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -1520,12 +1520,16 @@ void drm_atomic_helper_commit_modeset_enables(struct drm_device *dev,
  }
+ EXPORT_SYMBOL(drm_atomic_helper_commit_modeset_enables);
  
-+static void i915_fence_set_deadline(struct dma_fence *fence,
-+				    ktime_t deadline)
-+{
-+	struct i915_sched_attr attr = { .priority = I915_PRIORITY_DISPLAY };
-+
-+	i915_gem_fence_wait_priority(fence, &attr);
-+}
-+
- struct kmem_cache *i915_request_slab_cache(void)
+-/*
++/**
++ * drm_atomic_helper_set_fence_deadline - update fence deadlines.
++ * @dev: DRM device
++ * @state: atomic state object with new state structures
++ *
+  * For atomic updates which touch just a single CRTC, calculate the time of the
+  * next vblank, and inform all the fences of the deadline.
+  */
+-static void set_fence_deadline(struct drm_device *dev,
+-			       struct drm_atomic_state *state)
++void drm_atomic_helper_set_fence_deadline(struct drm_device *dev,
++					  struct drm_atomic_state *state)
  {
- 	return slab_requests;
-@@ -177,6 +185,7 @@ const struct dma_fence_ops i915_fence_ops = {
- 	.enable_signaling = i915_fence_enable_signaling,
- 	.signaled = i915_fence_signaled,
- 	.wait = i915_fence_wait,
-+	.set_deadline = i915_fence_set_deadline,
- 	.release = i915_fence_release,
- };
+ 	struct drm_crtc *crtc;
+ 	struct drm_crtc_state *new_crtc_state;
+@@ -1560,6 +1564,7 @@ static void set_fence_deadline(struct drm_device *dev,
+ 		dma_fence_set_deadline(new_plane_state->fence, vbltime);
+ 	}
+ }
++EXPORT_SYMBOL(drm_atomic_helper_set_fence_deadline);
  
+ /**
+  * drm_atomic_helper_wait_for_fences - wait for fences stashed in plane state
+@@ -1580,6 +1585,8 @@ static void set_fence_deadline(struct drm_device *dev,
+  * to wait **before** we do anything that can't be easily rolled back. That is
+  * before we call drm_atomic_helper_swap_state().
+  *
++ * Calls drm_atomic_helper_set_fence_deadline().
++ *
+  * Returns zero if success or < 0 if dma_fence_wait() fails.
+  */
+ int drm_atomic_helper_wait_for_fences(struct drm_device *dev,
+@@ -1590,7 +1597,7 @@ int drm_atomic_helper_wait_for_fences(struct drm_device *dev,
+ 	struct drm_plane_state *new_plane_state;
+ 	int i, ret;
+ 
+-	set_fence_deadline(dev, state);
++	drm_atomic_helper_set_fence_deadline(dev, state);
+ 
+ 	for_each_new_plane_in_state(state, plane, new_plane_state, i) {
+ 		if (!new_plane_state->fence)
+diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
+index 536a0b0091c3..37c6df1db5e0 100644
+--- a/include/drm/drm_atomic_helper.h
++++ b/include/drm/drm_atomic_helper.h
+@@ -72,7 +72,8 @@ int drm_atomic_helper_async_check(struct drm_device *dev,
+ 				  struct drm_atomic_state *state);
+ void drm_atomic_helper_async_commit(struct drm_device *dev,
+ 				    struct drm_atomic_state *state);
+-
++void drm_atomic_helper_set_fence_deadline(struct drm_device *dev,
++					  struct drm_atomic_state *state);
+ int drm_atomic_helper_wait_for_fences(struct drm_device *dev,
+ 					struct drm_atomic_state *state,
+ 					bool pre_swap);
 -- 
 2.40.1
 
