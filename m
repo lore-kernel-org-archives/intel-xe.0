@@ -4,26 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C60FEC25B72
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68955C25B70
 	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 11:35:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D4F110E981;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FFFB10E97E;
 	Fri, 27 Oct 2023 11:35:37 +0000 (UTC)
 Received: from mblankhorst.nl (lankhorst.se
  [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6963610E97E
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 11:35:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A6CC10E97E
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 11:35:24 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 13:34:51 +0200
-Message-Id: <20231027113453.117020-8-maarten.lankhorst@linux.intel.com>
+Date: Fri, 27 Oct 2023 13:34:47 +0200
+Message-Id: <20231027113453.117020-4-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.40.1
 In-Reply-To: <20231027113453.117020-1-maarten.lankhorst@linux.intel.com>
 References: <20231027113453.117020-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 7/9] drm/i915/display: Use
- i915_gem_object_get_dma_address to get dma address
+Subject: [Intel-xe] [PATCH 3/9] drm/xe: Update headers to be more compatible
+ with i915
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -38,40 +39,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Works better for xe like that. obj is no longer const.
+Add more compatibility changes to decrease delta with i915.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ .../compat-i915-headers/gem/i915_gem_lmem.h   |  2 +
+ .../compat-i915-headers/gem/i915_gem_mman.h   | 17 +++++
+ .../compat-i915-headers/gem/i915_gem_object.h | 76 +++++++++++++++++++
+ .../gem/i915_gem_object_frontbuffer.h         |  4 +-
+ .../gpu/drm/xe/compat-i915-headers/i915_drv.h |  1 +
+ .../xe/compat-i915-headers/i915_gem_stolen.h  | 13 +++-
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  6 ++
+ 7 files changed, 114 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index b342fad180ca..0d21c34f7499 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -23,6 +23,8 @@
- #include "intel_psr.h"
- #include "skl_watermark.h"
- 
-+#include "gem/i915_gem_object.h"
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
+new file mode 100644
+index 000000000000..2f55e7e951e8
+--- /dev/null
++++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
+@@ -0,0 +1,2 @@
++/* Empty */
 +
- /* Cursor formats */
- static const u32 intel_cursor_formats[] = {
- 	DRM_FORMAT_ARGB8888,
-@@ -33,11 +35,11 @@ static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
- 	struct drm_i915_private *dev_priv =
- 		to_i915(plane_state->uapi.plane->dev);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
--	const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
-+	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
- 	u32 base;
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
+new file mode 100644
+index 000000000000..650ea2803a97
+--- /dev/null
++++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
+@@ -0,0 +1,17 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _I915_GEM_MMAN_H_
++#define _I915_GEM_MMAN_H_
++
++#include "xe_bo_types.h"
++#include <drm/drm_prime.h>
++
++static inline int i915_gem_fb_mmap(struct xe_bo *bo, struct vm_area_struct *vma)
++{
++	return drm_gem_prime_mmap(&bo->ttm.base, vma);
++}
++
++#endif
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+new file mode 100644
+index 000000000000..17620412eddd
+--- /dev/null
++++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+@@ -0,0 +1,76 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _I915_GEM_OBJECT_H_
++#define _I915_GEM_OBJECT_H_
++
++/* For tiling definitions */
++#include <uapi/drm/i915_drm.h>
++
++#undef I915_TILING_X
++#undef I915_TILING_Y
++#define I915_TILING_X 0
++#define I915_TILING_Y 0
++
++#include "xe_bo.h"
++#include <linux/types.h>
++
++static inline int i915_gem_object_read_from_page(struct xe_bo *bo,
++						 u32 ofs, u64 *ptr, u32 size)
++{
++	struct ttm_bo_kmap_obj map;
++	void *virtual;
++	bool is_iomem;
++	int ret;
++
++	WARN_ON(size != 8);
++
++	ret = xe_bo_lock(bo, true);
++	if (ret)
++		return ret;
++
++	ret = ttm_bo_kmap(&bo->ttm, ofs >> PAGE_SHIFT, 1, &map);
++	if (ret)
++		goto out_unlock;
++
++	ofs &= ~PAGE_MASK;
++	virtual = ttm_kmap_obj_virtual(&map, &is_iomem);
++	if (is_iomem)
++		*ptr = readq((void __iomem *)(virtual + ofs));
++	else
++		*ptr = *(u64 *)(virtual + ofs);
++
++	ttm_bo_kunmap(&map);
++out_unlock:
++	xe_bo_unlock(bo);
++	return ret;
++}
++
++static inline dma_addr_t i915_gem_object_get_dma_address(const struct xe_bo *bo, pgoff_t n)
++{
++	/* Should never be called */
++	WARN_ON(1);
++	return n;
++}
++
++/* Useful for kernel managed objects only */
++static inline bool i915_gem_object_is_shmem(const struct xe_bo *bo)
++{
++	return bo->flags & XE_BO_CREATE_SYSTEM_BIT;
++}
++
++static inline bool i915_gem_object_is_tiled(const struct xe_bo *bo)
++{
++	/* legacy tiling is unused */
++	return false;
++}
++
++static inline bool i915_gem_object_is_userptr(const struct xe_bo *bo)
++{
++	/* legacy tiling is unused */
++	return false;
++}
++
++#endif
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
+index 227965e5f784..6d883aca48b6 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
+@@ -3,8 +3,8 @@
+  * Copyright © 2022 Intel Corporation
+  */
  
- 	if (DISPLAY_INFO(dev_priv)->cursor_needs_physical)
--		base = sg_dma_address(obj->mm.pages->sgl);
-+		base = i915_gem_object_get_dma_address(obj, 0);
- 	else
- 		base = intel_plane_ggtt_offset(plane_state);
+-#ifndef _I915_GEM_OBJECT_H_
+-#define _I915_GEM_OBJECT_H_
++#ifndef _I915_GEM_OBJECT_FB_H_
++#define _I915_GEM_OBJECT_FB_H_
  
+ #define i915_gem_object_get_frontbuffer(obj)		NULL
+ #define i915_gem_object_set_frontbuffer(obj, front)	(front)
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+index 4e922446e40e..5f24befb198f 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
+@@ -202,6 +202,7 @@ static inline void intel_runtime_pm_put(struct xe_runtime_pm *pm, bool wakeref)
+ 
+ #define intel_uncore_arm_unclaimed_mmio_detection(x) do { } while (0)
+ #define i915_sw_fence_commit(x) do { } while (0)
++#define i915_sw_fence_await_reservation(...) (0)
+ 
+ #define with_intel_runtime_pm(rpm, wf) \
+ 	for ((wf) = intel_runtime_pm_get(rpm); (wf); \
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
+index 32f60258ded6..19bf463cfd3d 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
+@@ -1,5 +1,5 @@
+-#ifndef _I915_GEM_OBJECT_H_
+-#define _I915_GEM_OBJECT_H_
++#ifndef _I915_GEM_STOLEN_H_
++#define _I915_GEM_STOLEN_H_
+ 
+ #include "xe_ttm_stolen_mgr.h"
+ #include "xe_res_cursor.h"
+@@ -70,7 +70,14 @@ static inline u32 i915_gem_stolen_node_offset(struct i915_stolen_fb *fb)
+ /* Used for < gen4. These are not supported by Xe */
+ #define i915_gem_stolen_area_address(xe) (!WARN_ON(1))
+ /* Used for gen9 specific WA. Gen9 is not supported by Xe */
+-#define i915_gem_stolen_area_size(xe) (!WARN_ON(1))
++static inline u64 i915_gem_stolen_area_size(struct xe_device *xe)
++{
++	struct ttm_resource_manager *ttm_mgr = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
++
++	if (!ttm_mgr)
++		return 0;
++	return ttm_mgr->size;
++}
+ 
+ #define i915_gem_stolen_node_address(xe, fb) (xe_ttm_stolen_gpu_offset(xe) + \
+ 					 i915_gem_stolen_node_offset(fb))
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index 9424144b1b5a..23f2d037c313 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -19,4 +19,10 @@ struct i915_vma {
+ #define i915_ggtt_clear_scanout(bo) do { } while (0)
+ 
+ #define i915_vma_fence_id(vma) -1
++
++static inline u32 i915_ggtt_offset(const struct i915_vma *vma)
++{
++	return vma->node.start;
++}
++
+ #endif
 -- 
 2.40.1
 
