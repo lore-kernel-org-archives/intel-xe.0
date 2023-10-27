@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8D5AC25B72
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 22:29:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2EC02C25B47
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 22:30:07 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C031410EA61;
-	Fri, 27 Oct 2023 22:29:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1E2A10EA1C;
+	Fri, 27 Oct 2023 22:30:06 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F20910EA5E
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 22:29:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0BC810EA1C
+ for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 22:29:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698445784; x=1729981784;
+ t=1698445782; x=1729981782;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9m5jiuPpcEaQcqiXY5RrefKEbhyRJFj+lPi8HGbjxhQ=;
- b=aQo8VlIp4KM8ziYBkz3nVFUNw7W4Up5mL0BFGoKRqbBWvbReqTYxC0We
- UEk5UdBlr0u4veJ3NJEXYe7orVcSpmgjr507rDFZJHILd/UNt58OdgEhp
- 8hLXZ7t3tS2Aad5szkSlHM/NKvvJIEmF1xJWH81KHg4aYidTZn1MrO/GT
- PUtdpMco8z+7gT6Wmt9Mne7ZzlmKN1vTmGvySGJMTHtRNk4LewsZo2cMp
- 2h9e8z1+iljFuVL+/v2DqRRPS25hcW55gpa/5btuS4SWlpU1rPcDJrhRQ
- bfS/1iznUH5CiddOHSrmcht8YgtpzkFvrlsEha6+LLL82Q8fBAYaIEYV4 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="9397779"
+ bh=4wyhX3cVaPbO6rQdDq783dZ515Ppm5DrT33bAaGffJA=;
+ b=WoBINHZCvVtlKyJtgzcNzLVE4T0VYs4hw9bSrwldGvNs2oFWhdfqviD1
+ tE2H8O2j/rGQRvioXnbRfVOUFF5vnCbkxkyoqM83O2GDiWFL2JcjBW+oc
+ qMuqjOq995G8fZZSWAvZ/Xah21pFx9HyTLheogGDNfqjCExu9868uc7Oe
+ rZ9SSCz7O9Q3oF6TkhJoRWIDG9bZLQFKYYg7PpKOiu8IzlkJdfpmE417q
+ 00Gbau6JfC5GeKYR7CLERBlT6L2+46GTj0isGJ+IOBWXL/4wpBsC3NQFc
+ K/v5JizCRaBorAutt+ra0sScNIbyewdNM2h0Zh3rZ8rQYCSOTQACDlCV5 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="9397774"
 X-IronPort-AV: E=Sophos;i="6.03,257,1694761200"; 
-   d="scan'208";a="9397779"
+   d="scan'208";a="9397774"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 15:29:43 -0700
+ 27 Oct 2023 15:29:42 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="763360371"
-X-IronPort-AV: E=Sophos;i="6.03,257,1694761200"; d="scan'208";a="763360371"
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="763360365"
+X-IronPort-AV: E=Sophos;i="6.03,257,1694761200"; d="scan'208";a="763360365"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Oct 2023 15:29:43 -0700
+ 27 Oct 2023 15:29:41 -0700
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 15:29:21 -0700
-Message-ID: <20231027222928.1981633-8-daniele.ceraolospurio@intel.com>
+Date: Fri, 27 Oct 2023 15:29:19 -0700
+Message-ID: <20231027222928.1981633-6-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
 References: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 07/12] drm/xe/gsc: Implement WA 14015076503
+Subject: [Intel-xe] [PATCH 05/12] drm/xe/gsc: Parse GSC FW header
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,143 +57,280 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-When the GSC FW is loaded, we need to inform it when a GSCCS reset is
-coming and then wait 200ms for it to get ready to process the reset.
+The GSC blob starts with a layout header, from which we can move to the
+boot directory, which in turns allows us to find the CPD. The CPD uses
+the same format as the one in the HuC binary, so we can re-use the same
+parsing code to get to the manifest, which contains the release and
+security versions of the FW.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: John Harrison <john.c.harrison@intel.com>
+Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile           |  2 +-
- drivers/gpu/drm/xe/regs/xe_gsc_regs.h | 10 ++++++
- drivers/gpu/drm/xe/xe_gt.c            | 44 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules    |  1 +
- 4 files changed, 56 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_gsc_types.h |   3 +
+ drivers/gpu/drm/xe/xe_uc_fw.c     |  77 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_uc_fw_abi.h | 113 ++++++++++++++++++++++++++++++
+ 3 files changed, 193 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 474b6044d054..4a442dcf4d79 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -37,7 +37,7 @@ quiet_cmd_wa_oob = GEN     $(notdir $(generated_oob))
- $(generated_oob) &: $(obj)/xe_gen_wa_oob $(srctree)/$(src)/xe_wa_oob.rules
- 	$(call cmd,wa_oob)
- 
--$(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o: $(generated_oob)
-+$(obj)/xe_gt.o $(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o: $(generated_oob)
- 
- # Please keep these build lists sorted!
- 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-index 22d2ad9cb64d..9a84b55d66ee 100644
---- a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-@@ -16,6 +16,13 @@
- #define MTL_GSC_HECI1_BASE	0x00116000
- #define MTL_GSC_HECI2_BASE	0x00117000
- 
-+#define HECI_H_CSR(base)	XE_REG((base) + 0x4)
-+#define   HECI_H_CSR_IE		REG_BIT(0)
-+#define   HECI_H_CSR_IS		REG_BIT(1)
-+#define   HECI_H_CSR_IG		REG_BIT(2)
-+#define   HECI_H_CSR_RDY	REG_BIT(3)
-+#define   HECI_H_CSR_RST	REG_BIT(4)
+diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h b/drivers/gpu/drm/xe/xe_gsc_types.h
+index 135f156e3736..1bc50583fe58 100644
+--- a/drivers/gpu/drm/xe/xe_gsc_types.h
++++ b/drivers/gpu/drm/xe/xe_gsc_types.h
+@@ -14,6 +14,9 @@
+ struct xe_gsc {
+ 	/** @fw: Generic uC firmware management */
+ 	struct xe_uc_fw fw;
 +
- /*
-  * The FWSTS register values are FW defined and can be different between
-  * HECI1 and HECI2
-@@ -26,4 +33,7 @@
- #define   HECI1_FWSTS1_PROXY_STATE_NORMAL		5
- #define   HECI1_FWSTS1_INIT_COMPLETE			REG_BIT(9)
++	/** @security_version: SVN found in the fetched blob */
++	u32 security_version;
+ };
  
-+#define HECI_H_GS1(base)	XE_REG((base) + 0xc4c)
-+#define   HECI_H_GS1_ER_PREP	REG_BIT(0)
-+
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 73c090762771..0e8e24bded1c 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -10,8 +10,10 @@
- #include <drm/drm_managed.h>
- #include <drm/xe_drm.h>
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index af3e5cba606f..bb38a76eb4a6 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -12,6 +12,7 @@
+ #include "xe_bo.h"
+ #include "xe_device_types.h"
+ #include "xe_force_wake.h"
++#include "xe_gsc.h"
+ #include "xe_gt.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+@@ -488,6 +489,13 @@ static int parse_cpd_header(struct xe_uc_fw *uc_fw, const void *data, size_t siz
+ 	release->minor = manifest->fw_version.minor;
+ 	release->patch = manifest->fw_version.hotfix;
  
-+#include "generated/xe_wa_oob.h"
- #include "instructions/xe_gfxpipe_commands.h"
- #include "instructions/xe_mi_commands.h"
-+#include "regs/xe_gsc_regs.h"
- #include "regs/xe_gt_regs.h"
- #include "xe_assert.h"
- #include "xe_bb.h"
-@@ -504,16 +506,58 @@ int xe_gt_init(struct xe_gt *gt)
++	if (uc_fw->type == XE_UC_FW_TYPE_GSC) {
++		struct xe_gsc * gsc = container_of(uc_fw, struct xe_gsc, fw);
++
++		release->build = manifest->fw_version.build;
++		gsc->security_version = manifest->security_version;
++	}
++
+ 	/* then optionally look for the css header */
+ 	if (css_entry) {
+ 		int ret;
+@@ -517,6 +525,73 @@ static int parse_cpd_header(struct xe_uc_fw *uc_fw, const void *data, size_t siz
  	return 0;
  }
  
-+static int gsc_fw_is_loaded(struct xe_gt *gt)
++static int parse_gsc_layout(struct xe_uc_fw *uc_fw, const void *data, size_t size)
 +{
-+	return xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE)) &
-+			      HECI1_FWSTS1_INIT_COMPLETE;
++	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
++	const struct gsc_layout_pointers *layout = data;
++	const struct gsc_bpdt_header *bpdt_header = NULL;
++	const struct gsc_bpdt_entry *bpdt_entry = NULL;
++	size_t min_size = sizeof(*layout);
++	int i;
++
++	if (size < min_size) {
++		xe_gt_err(gt, "GSC FW too small! %zu < %zu\n", size, min_size);
++		return -ENODATA;
++	}
++
++	min_size = layout->boot1.offset + layout->boot1.size;
++	if (size < min_size) {
++		xe_gt_err(gt, "GSC FW too small for boot section! %zu < %zu\n",
++			  size, min_size);
++		return -ENODATA;
++	}
++
++	min_size = sizeof(*bpdt_header);
++	if (layout->boot1.size < min_size) {
++		xe_gt_err(gt, "GSC FW boot section too small for BPDT header: %u < %zu\n",
++			  layout->boot1.size, min_size);
++		return -ENODATA;
++	}
++
++	bpdt_header = data + layout->boot1.offset;
++	if (bpdt_header->signature != GSC_BPDT_HEADER_SIGNATURE) {
++		xe_gt_err(gt, "invalid signature for BPDT header: 0x%08x!\n",
++			  bpdt_header->signature);
++		return -EINVAL;
++	}
++
++	min_size += sizeof(*bpdt_entry) * bpdt_header->descriptor_count;
++	if (layout->boot1.size < min_size) {
++		xe_gt_err(gt, "GSC FW boot section too small for BPDT entries: %u < %zu\n",
++			  layout->boot1.size, min_size);
++		return -ENODATA;
++	}
++
++	bpdt_entry = (void *)bpdt_header + sizeof(*bpdt_header);
++	for (i = 0; i < bpdt_header->descriptor_count; i++, bpdt_entry++) {
++		if ((bpdt_entry->type & GSC_BPDT_ENTRY_TYPE_MASK) !=
++		    GSC_BPDT_ENTRY_TYPE_GSC_RBE)
++			continue;
++
++		min_size = bpdt_entry->sub_partition_offset;
++
++		/* the CPD header parser will check that the CPD header fits */
++		if (layout->boot1.size < min_size) {
++			xe_gt_err(gt, "GSC FW boot section too small for CPD offset: %u < %zu\n",
++				  layout->boot1.size, min_size);
++			return -ENODATA;
++		}
++
++		return parse_cpd_header(uc_fw,
++					(void *)bpdt_header + min_size,
++					layout->boot1.size - min_size,
++					"RBEP.man", NULL);
++	}
++
++	xe_gt_err(gt, "couldn't find CPD header in GSC binary!\n");
++	return -ENODATA;
 +}
 +
-+static void wa_14015076503_start(struct xe_gt *gt)
-+{
-+	/* WA only applies if the GSC is loaded */
-+	if (!XE_WA(gt, 14015076503) || !gsc_fw_is_loaded(gt))
-+		return;
+ static int parse_headers(struct xe_uc_fw *uc_fw, const struct firmware *fw)
+ {
+ 	int ret;
+@@ -526,6 +601,8 @@ static int parse_headers(struct xe_uc_fw *uc_fw, const struct firmware *fw)
+ 	 * releases use GSC CPD headers.
+ 	 */
+ 	switch (uc_fw->type) {
++	case XE_UC_FW_TYPE_GSC:
++		return parse_gsc_layout(uc_fw, fw->data, fw->size);
+ 	case XE_UC_FW_TYPE_HUC:
+ 		ret = parse_cpd_header(uc_fw, fw->data, fw->size, "HUCP.man", "huc_fw");
+ 		if (!ret || ret != -ENOENT)
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw_abi.h b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
+index d6725c963251..edf2a448f4bb 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw_abi.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
+@@ -140,6 +140,58 @@ static_assert(sizeof(struct uc_css_header) == 128);
+  *	|      RSA Key (MTL+ only)                       |
+  *	|      ...                                       |
+  *	+================================================+
++ *
++ * The GSC binary starts instead with a layout header, which contains the
++ * locations of the various partitions of the binary. The one we're interested
++ * in is the boot1 partition, where we can find a BPDT header followed by
++ * entries, one of which points to the RBE sub-section of the partition, which
++ * contains the CPD. The GSC blob does not contain a CSS-based binary, so we
++ * only need to look for the manifest, which is under the "RBEP.man" CPD entry.
++ * Note that we have no need to find where the actual FW code is inside the
++ * image because the GSC ROM will itself parse the headers to find it and load
++ * it.
++ * The GSC firmware header layout looks like this::
++ *
++ *	+================================================+
++ *	|  Layout Pointers                               |
++ *	|      ...                                       |
++ *	|      Boot1 offset  >---------------------------|------o
++ *	|      ...                                       |      |
++ *	+================================================+      |
++ *	                                                        |
++ *	+================================================+      |
++ *	|  BPDT header                                   |<-----o
++ *	+================================================+
++ *	|  BPDT entries[]                                |
++ *	|      entry1                                    |
++ *	|      ...                                       |
++ *	|      entryX                                    |
++ *	|          type == GSC_RBE                       |
++ *	|          offset  >-----------------------------|------o
++ *	|      ...                                       |      |
++ *	+================================================+      |
++ *	                                                        |
++ *	+================================================+      |
++ *	|  CPD Header                                    |<-----o
++ *	+================================================+
++ *	|  CPD entries[]                                 |
++ *	|      entry1                                    |
++ *	|      ...                                       |
++ *	|      entryX                                    |
++ *	|          "RBEP.man"                            |
++ *	|           ...                                  |
++ *	|           offset  >----------------------------|------o
++ *	|      ...                                       |      |
++ *	+================================================+      |
++ *	                                                        |
++ *	+================================================+      |
++ *	| Manifest Header                                |<-----o
++ *	|  ...                                           |
++ *	|  FW version                                    |
++ *	|  ...                                           |
++ *	|  Security version                              |
++ *	|  ...                                           |
++ *	+================================================+
+  */
+ 
+ struct gsc_version {
+@@ -149,6 +201,67 @@ struct gsc_version {
+ 	u16 build;
+ } __packed;
+ 
++struct gsc_partition {
++	u32 offset;
++	u32 size;
++} __packed;
++
++struct gsc_layout_pointers {
++	u8 rom_bypass_vector[16];
++
++	/* size of pointers layout not including ROM bypass vector */
++	u16 size;
 +
 +	/*
-+	 * wa_14015076503: if the GSC FW is loaded, we need to alert it that
-+	 * we're going to do a GSC engine reset and then wait for 200ms for the
-+	 * FW to get ready for it.
++	 * bit0: Backup copy of layout pointers exist
++	 * bits1-15: reserved
 +	 */
-+	xe_mmio_rmw32(gt, HECI_H_GS1(MTL_GSC_HECI2_BASE),
-+		      0, HECI_H_GS1_ER_PREP);
++	u8 flags;
 +
-+	/* make sure the reset bit is clear when writing the CSR reg */
-+	xe_mmio_rmw32(gt, HECI_H_CSR(MTL_GSC_HECI2_BASE),
-+		      HECI_H_CSR_RST, HECI_H_CSR_IG);
-+	msleep(200);
++	u8 reserved;
 +
-+	return;
-+}
++	u32 crc32;
 +
-+static void
-+wa_14015076503_end(struct xe_gt *gt)
-+{
-+	if (!XE_WA(gt, 14015076503))
-+		return;
++	struct gsc_partition datap;
++	struct gsc_partition boot1;
++	struct gsc_partition boot2;
++	struct gsc_partition boot3;
++	struct gsc_partition boot4;
++	struct gsc_partition boot5;
++	struct gsc_partition temp_pages;
++} __packed;
 +
-+	xe_mmio_rmw32(gt, HECI_H_GS1(MTL_GSC_HECI2_BASE),
-+		      HECI_H_GS1_ER_PREP, 0);
-+}
++/* Boot partition structures */
++struct gsc_bpdt_header {
++	u32 signature;
++#define GSC_BPDT_HEADER_SIGNATURE 0x000055AA
 +
- static int do_gt_reset(struct xe_gt *gt)
- {
- 	int err;
- 
-+	wa_14015076503_start(gt);
++	u16 descriptor_count; /* num of entries after the header */
 +
- 	xe_mmio_write32(gt, GDRST, GRDOM_FULL);
- 	err = xe_mmio_wait32(gt, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
- 	if (err)
- 		xe_gt_err(gt, "failed to clear GEN11_GRDOM_FULL (%pe)\n",
- 			  ERR_PTR(err));
- 
-+	wa_14015076503_end(gt);
++	u8 version;
++	u8 configuration;
 +
- 	return err;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index f3ff774dc4aa..132c35497f74 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -19,3 +19,4 @@
- 		SUBPLATFORM(DG2, G12)
- 16017236439	PLATFORM(PVC)
- 22010954014	PLATFORM(DG2)
-+14015076503	MEDIA_VERSION(1300)
++	u32 crc32;
++
++	u32 build_version;
++	struct gsc_version tool_version;
++} __packed;
++
++struct gsc_bpdt_entry {
++	/*
++	 * Bits 0-15: BPDT entry type
++	 * Bits 16-17: reserved
++	 * Bit 18: code sub-partition
++	 * Bits 19-31: reserved
++	 */
++	u32 type;
++#define GSC_BPDT_ENTRY_TYPE_MASK GENMASK(15, 0)
++#define GSC_BPDT_ENTRY_TYPE_GSC_RBE 0x1
++
++	u32 sub_partition_offset; /* from the base of the BPDT header */
++	u32 sub_partition_size;
++} __packed;
++
+ /* Code partition directory (CPD) structures */
+ struct gsc_cpd_header_v2 {
+ 	u32 header_marker;
 -- 
 2.41.0
 
