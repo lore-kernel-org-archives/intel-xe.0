@@ -4,25 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4B545C25B67
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 11:35:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8BD7FC25B47
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 12:04:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01D0410E97F;
-	Fri, 27 Oct 2023 11:35:47 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 721FF10E97E
- for <intel-xe@lists.freedesktop.org>; Fri, 27 Oct 2023 11:35:35 +0000 (UTC)
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri, 27 Oct 2023 13:34:53 +0200
-Message-Id: <20231027113453.117020-10-maarten.lankhorst@linux.intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231027113453.117020-1-maarten.lankhorst@linux.intel.com>
-References: <20231027113453.117020-1-maarten.lankhorst@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BBB310E0C4;
+	Fri, 27 Oct 2023 12:04:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 47FA310E0C4;
+ Fri, 27 Oct 2023 12:04:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 43781A0BA8;
+ Fri, 27 Oct 2023 12:04:53 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7139435958381736931=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 9/9] FIXME drm/i915/display: Make intel_fb.c code
- compatible with xe
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Fri, 27 Oct 2023 12:04:53 -0000
+Message-ID: <169840829324.19712.12804294642382563800@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231027104810.310819-5-matthew.auld@intel.com>
+In-Reply-To: <20231027104810.310819-5-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Some_evic?=
+ =?utf-8?q?tion_fixes_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -34,210 +39,193 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <dev@lankhorst.se>
+--===============7139435958381736931==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Again there are a few changes between Xe and i915, but in general code is similar for both
+== Series Details ==
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/i915/display/intel_fb.c | 85 +++++++++++++++++--------
- 1 file changed, 57 insertions(+), 28 deletions(-)
+Series: Some eviction fixes (rev2)
+URL   : https://patchwork.freedesktop.org/series/125591/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 55bebebf2f61..c80656d44b17 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -17,6 +17,8 @@
- #include "intel_fb.h"
- #include "intel_frontbuffer.h"
- 
-+#include "gem/i915_gem_object.h"
-+
- #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
- 
- /*
-@@ -737,7 +739,7 @@ intel_fb_align_height(const struct drm_framebuffer *fb,
- 	return ALIGN(height, tile_height);
- }
- 
--static unsigned int intel_fb_modifier_to_tiling(u64 fb_modifier)
-+__maybe_unused static unsigned int intel_fb_modifier_to_tiling(u64 fb_modifier)
- {
- 	u8 tiling_caps = lookup_modifier(fb_modifier)->plane_caps &
- 			 INTEL_PLANE_CAP_TILING_MASK;
-@@ -1657,10 +1659,10 @@ int intel_fill_fb_info(struct drm_i915_private *i915, struct intel_framebuffer *
- 		max_size = max(max_size, offset + size);
- 	}
- 
--	if (mul_u32_u32(max_size, tile_size) > obj->base.size) {
-+	if (mul_u32_u32(max_size, tile_size) > intel_bo_to_drm_bo(obj)->size) {
- 		drm_dbg_kms(&i915->drm,
- 			    "fb too big for bo (need %llu bytes, have %zu bytes)\n",
--			    mul_u32_u32(max_size, tile_size), obj->base.size);
-+			    mul_u32_u32(max_size, tile_size), intel_bo_to_drm_bo(obj)->size);
- 		return -EINVAL;
- 	}
- 
-@@ -1907,7 +1909,7 @@ static int intel_user_framebuffer_create_handle(struct drm_framebuffer *fb,
- 						unsigned int *handle)
- {
- 	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
--	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-+	struct drm_i915_private *i915 = to_i915(fb->dev);
- 
- 	if (i915_gem_object_is_userptr(obj)) {
- 		drm_dbg(&i915->drm,
-@@ -1915,7 +1917,7 @@ static int intel_user_framebuffer_create_handle(struct drm_framebuffer *fb,
- 		return -EINVAL;
- 	}
- 
--	return drm_gem_handle_create(file, &obj->base, handle);
-+	return drm_gem_handle_create(file, intel_bo_to_drm_bo(obj), handle);
- }
- 
- struct frontbuffer_fence_cb {
-@@ -1948,10 +1950,10 @@ static int intel_user_framebuffer_dirty(struct drm_framebuffer *fb,
- 	if (!atomic_read(&front->bits))
- 		return 0;
- 
--	if (dma_resv_test_signaled(obj->base.resv, dma_resv_usage_rw(false)))
-+	if (dma_resv_test_signaled(intel_bo_to_drm_bo(obj)->resv, dma_resv_usage_rw(false)))
- 		goto flush;
- 
--	ret = dma_resv_get_singleton(obj->base.resv, dma_resv_usage_rw(false),
-+	ret = dma_resv_get_singleton(intel_bo_to_drm_bo(obj)->resv, dma_resv_usage_rw(false),
- 				     &fence);
- 	if (ret || !fence)
- 		goto flush;
-@@ -1993,10 +1995,10 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 			   struct drm_i915_gem_object *obj,
- 			   struct drm_mode_fb_cmd2 *mode_cmd)
- {
--	struct drm_i915_private *dev_priv = to_i915(obj->base.dev);
-+	struct drm_i915_private *dev_priv = intel_bo_to_i915(obj);
- 	struct drm_framebuffer *fb = &intel_fb->base;
- 	u32 max_stride;
--	unsigned int tiling, stride;
-+	unsigned int tiling = I915_TILING_NONE, stride = 0;
- 	int ret = -EINVAL;
- 	int i;
- 
-@@ -2004,6 +2006,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	if (!intel_fb->frontbuffer)
- 		return -ENOMEM;
- 
-+#ifdef I915
- 	i915_gem_object_lock(obj, NULL);
- 	tiling = i915_gem_object_get_tiling(obj);
- 	stride = i915_gem_object_get_stride(obj);
-@@ -2030,15 +2033,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 		}
- 	}
- 
--	if (!drm_any_plane_has_format(&dev_priv->drm,
--				      mode_cmd->pixel_format,
--				      mode_cmd->modifier[0])) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "unsupported pixel format %p4cc / modifier 0x%llx\n",
--			    &mode_cmd->pixel_format, mode_cmd->modifier[0]);
--		goto err;
--	}
--
- 	/*
- 	 * gen2/3 display engine uses the fence if present,
- 	 * so the tiling mode must match the fb modifier exactly.
-@@ -2049,6 +2043,36 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 			    "tiling_mode must match fb modifier exactly on gen2/3\n");
- 		goto err;
- 	}
-+#else
-+	ret = ttm_bo_reserve(&obj->ttm, true, false, NULL);
-+	if (ret)
-+		goto err;
-+	ret = -EINVAL;
-+
-+	if (!(obj->flags & XE_BO_SCANOUT_BIT)) {
-+		/*
-+		 * XE_BO_SCANOUT_BIT should ideally be set at creation, or is
-+		 * automatically set when creating FB. We cannot change caching
-+		 * mode when the object is VM_BINDed, so we can only set
-+		 * coherency with display when unbound.
-+		 */
-+		if (XE_IOCTL_DBG(dev_priv, !list_empty(&obj->ttm.base.gpuva.list))) {
-+			ttm_bo_unreserve(&obj->ttm);
-+			goto err;
-+		}
-+		obj->flags |= XE_BO_SCANOUT_BIT;
-+	}
-+	ttm_bo_unreserve(&obj->ttm);
-+#endif
-+
-+	if (!drm_any_plane_has_format(&dev_priv->drm,
-+				      mode_cmd->pixel_format,
-+				      mode_cmd->modifier[0])) {
-+		drm_dbg_kms(&dev_priv->drm,
-+			    "unsupported pixel format %p4cc / modifier 0x%llx\n",
-+			    &mode_cmd->pixel_format, mode_cmd->modifier[0]);
-+		goto err;
-+	}
- 
- 	max_stride = intel_fb_max_stride(dev_priv, mode_cmd->pixel_format,
- 					 mode_cmd->modifier[0]);
-@@ -2111,11 +2135,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 			}
- 		}
- 
--#ifdef I915
--		fb->obj[i] = &obj->base;
--#else
--		fb->obj[i] = &obj->ttm.base;
--#endif
-+		fb->obj[i] = intel_bo_to_drm_bo(obj);
- 	}
- 
- 	ret = intel_fill_fb_info(dev_priv, intel_fb);
-@@ -2163,23 +2183,32 @@ intel_user_framebuffer_create(struct drm_device *dev,
- 	struct drm_framebuffer *fb;
- 	struct drm_i915_gem_object *obj;
- 	struct drm_mode_fb_cmd2 mode_cmd = *user_mode_cmd;
--	struct drm_i915_private *i915;
-+	struct drm_i915_private *i915 = to_i915(dev);
-+        struct drm_gem_object *gem = drm_gem_object_lookup(filp, mode_cmd.handles[0]);
- 
--	obj = i915_gem_object_lookup(filp, mode_cmd.handles[0]);
--	if (!obj)
-+	if (!gem)
- 		return ERR_PTR(-ENOENT);
- 
-+	obj = to_intel_bo(gem);
-+#ifdef I915
- 	/* object is backed with LMEM for discrete */
--	i915 = to_i915(obj->base.dev);
- 	if (HAS_LMEM(i915) && !i915_gem_object_can_migrate(obj, INTEL_REGION_LMEM_0)) {
- 		/* object is "remote", not in local memory */
- 		i915_gem_object_put(obj);
- 		drm_dbg_kms(&i915->drm, "framebuffer must reside in local memory\n");
- 		return ERR_PTR(-EREMOTE);
- 	}
-+#else
-+	/* Require vram placement or dma-buf import */
-+	if (XE_IOCTL_DBG(i915, IS_DGFX(i915) && !xe_bo_can_migrate(obj, XE_PL_VRAM0) &&
-+			       obj->ttm.type != ttm_bo_type_sg)) {
-+		drm_gem_object_put(gem);
-+		return ERR_PTR(-EREMOTE);
-+	}
-+#endif
- 
- 	fb = intel_framebuffer_create(obj, &mode_cmd);
--	i915_gem_object_put(obj);
-+	drm_gem_object_put(gem);
- 
- 	return fb;
- }
--- 
-2.40.1
+== Summary ==
 
+CI Bug Log - changes from xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d_BAT -> xe-pw-125591v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-125591v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@xe_exec_threads@threads-mixed-fd-basic:
+    - bat-atsm-2:         [PASS][1] -> [INCOMPLETE][2] ([Intel XE#429])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d/bat-atsm-2/igt@xe_exec_threads@threads-mixed-fd-basic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/bat-atsm-2/igt@xe_exec_threads@threads-mixed-fd-basic.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#480]) -> [PASS][4] +2 other tests pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:
+    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#480]) -> [PASS][6] +2 other tests pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
+
+  * {igt@xe_create@create-execqueues-leak}:
+    - bat-atsm-2:         [FAIL][7] ([Intel XE#524]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+
+  
+#### Warnings ####
+
+  * igt@xe_exec_fault_mode@twice-invalid-fault:
+    - bat-pvc-2:          [INCOMPLETE][9] ([Intel XE#613]) -> [INCOMPLETE][10] ([Intel XE#613] / [Intel XE#814])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#429]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/429
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+  [Intel XE#613]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/613
+  [Intel XE#814]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/814
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7559 -> IGT_7561
+  * Linux: xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d -> xe-pw-125591v2
+
+  IGT_7559: 62ac3d2ddb6005b16df00a36565779848c1390c9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7561: 037869403253971cbad69c72dcf1a186e65cdf62 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d: 76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d
+  xe-pw-125591v2: 125591v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/index.html
+
+--===============7139435958381736931==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Some eviction fixes (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125591/">https://patchwork.freedesktop.org/series/125591/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d_BAT -&gt; xe-pw-125591v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-125591v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_threads@threads-mixed-fd-basic:<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d/bat-atsm-2/igt@xe_exec_threads@threads-mixed-fd-basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/bat-atsm-2/igt@xe_exec_threads@threads-mixed-fd-basic.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/429">Intel XE#429</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>{igt@xe_create@create-execqueues-leak}:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-invalid-fault:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/613">Intel XE#613</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125591v2/bat-pvc-2/igt@xe_exec_fault_mode@twice-invalid-fault.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/613">Intel XE#613</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/814">Intel XE#814</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7559 -&gt; IGT_7561</li>
+<li>Linux: xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d -&gt; xe-pw-125591v2</li>
+</ul>
+<p>IGT_7559: 62ac3d2ddb6005b16df00a36565779848c1390c9 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7561: 037869403253971cbad69c72dcf1a186e65cdf62 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-452-76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d: 76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d<br />
+  xe-pw-125591v2: 125591v2</p>
+
+</body>
+</html>
+
+--===============7139435958381736931==--
