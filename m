@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13520C25B6E
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 08:04:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D9451C25B6E
+	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 08:05:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E06C410E94F;
-	Fri, 27 Oct 2023 08:04:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A3B5210E953;
+	Fri, 27 Oct 2023 08:05:52 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 3916D10E94F;
- Fri, 27 Oct 2023 08:04:37 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1D35410E94F;
+ Fri, 27 Oct 2023 08:05:50 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 367ECAADD5;
- Fri, 27 Oct 2023 08:04:37 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1AE50A0003;
+ Fri, 27 Oct 2023 08:05:50 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Fri, 27 Oct 2023 08:04:37 -0000
-Message-ID: <169839387721.19710.1821559024068819841@emeril.freedesktop.org>
+Date: Fri, 27 Oct 2023 08:05:50 -0000
+Message-ID: <169839395010.19711.13294884649746129921@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231027075918.2206862-1-jouni.hogander@intel.com>
 In-Reply-To: <20231027075918.2206862-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Ba?=
- =?utf-8?q?ckport_display_parameter_patches?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_Backpor?=
+ =?utf-8?q?t_display_parameter_patches?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,442 +48,562 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Backport display parameter patches
 URL   : https://patchwork.freedesktop.org/series/125671/
-State : warning
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit ed18a3f2e84008bcc81a15ff8db63790906e2177
-Author: Jouni Högander <jouni.hogander@intel.com>
-Date:   Fri Oct 27 10:59:18 2023 +0300
-
-    fixup! drm/xe/display: Implement display support
-    
-    We can remove all display parameters from xe params as they are all
-    now available in xe_device->display->params.
-    
-    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-+ /mt/dim checkpatch 76d7314ce7ceb58ee595a0ae1ba45bc99b9e277d drm-intel
-39f69f29f Revert "FIXME: drm/i915: xe doesn't have i915_modparams.verbose_state_checks"
--:10: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id 'e1253319ab3fb9a6d229e01fc36386d5a464c5ca', maybe rebased or not pulled?
-#10: 
-This reverts commit e1253319ab3fb9a6d229e01fc36386d5a464c5ca.
-
-total: 0 errors, 1 warnings, 0 checks, 18 lines checked
-4ada4a812 drm/i915: convert INTEL_DISPLAY_ENABLED() into a function
-80d4a614f drm/i915: separate display runtime info init
-291feca3b drm/i915: separate subplatform init and runtime feature init
-a24831fde drm/i915/display: Add framework to add parameters specific to display
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:87: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#87: 
-new file mode 100644
-
--:215: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#215: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:124:
-+intel_display_debugfs_create_int(const char *name, umode_t mode,
-+			struct dentry *parent, int *value)
-
--:224: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#224: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:133:
-+intel_display_debugfs_create_uint(const char *name, umode_t mode,
-+			 struct dentry *parent, unsigned int *value)
-
--:231: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'mode' - possible side-effects?
-#231: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:140:
-+#define _intel_display_param_create_file(parent, name, mode, valp)	\
-+	do {								\
-+		if (mode)						\
-+			_Generic(valp,					\
-+				 bool * : debugfs_create_bool,		\
-+				 int * : intel_display_debugfs_create_int, \
-+				 unsigned int * : intel_display_debugfs_create_uint, \
-+				 unsigned long * : debugfs_create_ulong, \
-+				 char ** : debugfs_create_str) \
-+				(name, mode, parent, valp);		\
-+	} while (0)
-
--:231: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'valp' - possible side-effects?
-#231: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:140:
-+#define _intel_display_param_create_file(parent, name, mode, valp)	\
-+	do {								\
-+		if (mode)						\
-+			_Generic(valp,					\
-+				 bool * : debugfs_create_bool,		\
-+				 int * : intel_display_debugfs_create_int, \
-+				 unsigned int * : intel_display_debugfs_create_uint, \
-+				 unsigned long * : debugfs_create_ulong, \
-+				 char ** : debugfs_create_str) \
-+				(name, mode, parent, valp);		\
-+	} while (0)
-
--:234: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
-#234: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:143:
-+			_Generic(valp,					\
-
--:239: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
-#239: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:148:
-+				 char ** : debugfs_create_str) \
- 				      ^
-
--:239: ERROR:SPACING: space prohibited after that '*' (ctx:OxW)
-#239: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:148:
-+				 char ** : debugfs_create_str) \
- 				       ^
-
--:263: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#263: FILE: drivers/gpu/drm/i915/display/intel_display_debugfs_params.c:172:
-+#define REGISTER(T, x, unused, mode, ...) _intel_display_param_create_file( \
-+		dir, #x, mode, &i915->display.params.x);
-
--:339: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
-#339: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:9:
-+#define intel_display_param_named(name, T, perm, desc) \
-+	module_param_named(name, intel_display_modparams.name, T, perm); \
-+	MODULE_PARM_DESC(name, desc)
-
--:342: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'name' - possible side-effects?
-#342: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:12:
-+#define intel_display_param_named_unsafe(name, T, perm, desc) \
-+	module_param_named_unsafe(name, intel_display_modparams.name, T, perm); \
-+	MODULE_PARM_DESC(name, desc)
-
--:351: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#351: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:21:
-+};
-+/*
-
--:369: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#369: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:39:
-+#define _param_dup(valp)				\
-+	_Generic(valp,					\
-+		 char ** : _param_dup_charp,		\
-+		 default : _param_nop)			\
-+		(valp)
-
--:369: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'valp' - possible side-effects?
-#369: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:39:
-+#define _param_dup(valp)				\
-+	_Generic(valp,					\
-+		 char ** : _param_dup_charp,		\
-+		 default : _param_nop)			\
-+		(valp)
-
--:371: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
-#371: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:41:
-+		 char ** : _param_dup_charp,		\
- 		      ^
-
--:371: ERROR:SPACING: space prohibited after that '*' (ctx:OxW)
-#371: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:41:
-+		 char ** : _param_dup_charp,		\
- 		       ^
-
--:372: WARNING:TABSTOP: Statements should start on a tabstop
-#372: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:42:
-+		 default : _param_nop)			\
-
--:372: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
-#372: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:42:
-+		 default : _param_nop)			\
-
--:378: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'x' may be better as '(x)' to avoid precedence issues
-#378: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:48:
-+#define DUP(T, x, ...) _param_dup(&dest->x);
-
--:378: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#378: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:48:
-+#define DUP(T, x, ...) _param_dup(&dest->x);
-
--:389: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#389: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:59:
-+#define _param_free(valp)				\
-+	_Generic(valp,					\
-+		 char ** : _param_free_charp,		\
-+		 default : _param_nop)			\
-+		(valp)
-
--:389: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'valp' - possible side-effects?
-#389: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:59:
-+#define _param_free(valp)				\
-+	_Generic(valp,					\
-+		 char ** : _param_free_charp,		\
-+		 default : _param_nop)			\
-+		(valp)
-
--:391: CHECK:SPACING: spaces preferred around that '*' (ctx:WxO)
-#391: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:61:
-+		 char ** : _param_free_charp,		\
- 		      ^
-
--:391: ERROR:SPACING: space prohibited after that '*' (ctx:OxW)
-#391: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:61:
-+		 char ** : _param_free_charp,		\
- 		       ^
-
--:392: WARNING:TABSTOP: Statements should start on a tabstop
-#392: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:62:
-+		 default : _param_nop)			\
-
--:392: ERROR:TRAILING_STATEMENTS: trailing statements should be on next line
-#392: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:62:
-+		 default : _param_nop)			\
-
--:398: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'x' may be better as '(x)' to avoid precedence issues
-#398: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:68:
-+#define FREE(T, x, ...) _param_free(&params->x);
-
--:398: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#398: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:68:
-+#define FREE(T, x, ...) _param_free(&params->x);
-
--:408: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_display_params.h', please use '/*' instead
-#408: FILE: drivers/gpu/drm/i915/display/intel_display_params.h:1:
-+// SPDX-License-Identifier: MIT
-
--:408: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#408: FILE: drivers/gpu/drm/i915/display/intel_display_params.h:1:
-+// SPDX-License-Identifier: MIT
-
--:432: ERROR:MULTISTATEMENT_MACRO_USE_DO_WHILE: Macros with multiple statements should be enclosed in a do - while loop
-#432: FILE: drivers/gpu/drm/i915/display/intel_display_params.h:25:
-+#define MEMBER(T, member, ...) T member;
-
--:432: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#432: FILE: drivers/gpu/drm/i915/display/intel_display_params.h:25:
-+#define MEMBER(T, member, ...) T member;
-
--:436: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
-#436: FILE: drivers/gpu/drm/i915/display/intel_display_params.h:29:
-+};
-+#undef MEMBER
-
-total: 8 errors, 9 warnings, 16 checks, 371 lines checked
-e4aae8f15 drm/i915/display: Dump also display parameters
--:66: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'val' - possible side-effects?
-#66: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:65:
-+#define _param_print(p, driver_name, name, val)			\
-+	_Generic(val,						\
-+		 bool : _param_print_bool,			\
-+		 int : _param_print_int,			\
-+		 unsigned int : _param_print_uint,		\
-+		 unsigned long : _param_print_ulong,		\
-+		 char * : _param_print_charp)(p, driver_name, name, val)
-
--:67: CHECK:CAMELCASE: Avoid CamelCase: <_Generic>
-#67: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:66:
-+	_Generic(val,						\
-
--:83: WARNING:TRAILING_SEMICOLON: macros should not use a trailing semicolon
-#83: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:82:
-+#define PRINT(T, x, ...) _param_print(p, i915->drm.driver->name, #x, i915->display.params.x);
-
-total: 0 errors, 1 warnings, 2 checks, 128 lines checked
-13c8e7488 drm/i915/display: Move enable_fbc module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:38: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#38: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:31:
-+intel_display_param_named_unsafe(enable_fbc, int, 0400,
-+	"Enable frame buffer compression for power savings "
-
-total: 0 errors, 1 warnings, 1 checks, 73 lines checked
-5fa3e17d4 drm/i915/display: Move psr related module parameters under display
--:34: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#34: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:35:
-+intel_display_param_named_unsafe(enable_psr, int, 0400,
-+	"Enable PSR "
-
--:39: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#39: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:40:
-+intel_display_param_named(psr_safest_params, bool, 0400,
-+	"Replace PSR VBT parameters by the safest and not optimal ones. This "
-
--:45: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#45: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:46:
-+intel_display_param_named_unsafe(enable_psr2_sel_fetch, bool, 0400,
-+	"Enable PSR2 selective fetch "
-
-total: 0 errors, 0 warnings, 3 checks, 121 lines checked
-5c716d160 drm/i915/display: Move vbt_firmware module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:31:
-+intel_display_param_named_unsafe(vbt_firmware, charp, 0400,
-+	"Load VBT from specified file under /lib/firmware");
-
-total: 0 errors, 1 warnings, 1 checks, 40 lines checked
-aa66126b3 drm/i915/display: Move lvds_channel_mode module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:34:
-+intel_display_param_named_unsafe(lvds_channel_mode, int, 0400,
-+	 "Specify LVDS channel mode "
-
-total: 0 errors, 1 warnings, 1 checks, 44 lines checked
-85b36ac6b drm/i915/display: Move panel_use_ssc module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:38:
-+intel_display_param_named_unsafe(panel_use_ssc, int, 0400,
-+	"Use Spread Spectrum Clock with panels [LVDS/eDP] "
-
-total: 0 errors, 1 warnings, 1 checks, 44 lines checked
-f21b0f881 drm/i915/display: Move vbt_sdvo_panel_type module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:38: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#38: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:42:
-+intel_display_param_named_unsafe(vbt_sdvo_panel_type, int, 0400,
-+	"Override/Ignore selection of SDVO panel mode in the VBT "
-
-total: 0 errors, 1 warnings, 1 checks, 42 lines checked
-aa72f9239 drm/i915/display: Move enable_dc module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:46:
-+intel_display_param_named_unsafe(enable_dc, int, 0400,
-+	"Enable power-saving display C-states. "
-
-total: 0 errors, 1 warnings, 1 checks, 44 lines checked
-76479dedb drm/i915/display: Move enable_dpt module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:51:
-+intel_display_param_named_unsafe(enable_dpt, bool, 0400,
-+	"Enable display page table (DPT) (default: true)");
-
-total: 0 errors, 1 warnings, 1 checks, 63 lines checked
-bb68249b9 drm/i915/display: Move enable_sagv module parameter under display
--:30: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#30: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:54:
-+intel_display_param_named_unsafe(enable_sagv, bool, 0400,
-+	"Enable system agent voltage/frequency scaling (SAGV) (default: true)");
-
-total: 0 errors, 0 warnings, 1 checks, 49 lines checked
-a19474eb1 drm/i915/display: Move disable_power_well module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:57:
-+intel_display_param_named_unsafe(disable_power_well, int, 0400,
-+	"Disable display power wells when possible "
-
-total: 0 errors, 1 warnings, 1 checks, 77 lines checked
-9c6e9e846 drm/i915/display: Move enable_ips module parameter under display
-de3c75ba7 drm/i915/display: Move invert_brightness module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:54: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#54: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:63:
-+intel_display_param_named_unsafe(invert_brightness, int, 0400,
-+	"Invert backlight brightness "
-
-total: 0 errors, 1 warnings, 1 checks, 63 lines checked
-610251afe drm/i915/display: Move edp_vswing module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:42: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#42: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:71:
-+intel_display_param_named_unsafe(edp_vswing, int, 0400,
-+	"Ignore/Override vswing pre-emph table selection from VBT "
-
-total: 0 errors, 1 warnings, 1 checks, 49 lines checked
-be8c2a1c4 drm/i915/display: Move enable_dpcd_backlight module parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:76:
-+intel_display_param_named(enable_dpcd_backlight, int, 0400,
-+	"Enable support for DPCD backlight control"
-
-total: 0 errors, 1 warnings, 1 checks, 50 lines checked
-a85bc7d33 drm/i915/display: Move load_detect_test parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:47: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#47: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:80:
-+intel_display_param_named_unsafe(load_detect_test, bool, 0400,
-+	"Force-enable the VGA load detect code for testing (default:false). "
-
-total: 0 errors, 1 warnings, 1 checks, 50 lines checked
-1fdd25a53 drm/i915/display: Move force_reset_modeset_test parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:25: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#25: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:84:
-+intel_display_param_named_unsafe(force_reset_modeset_test, bool, 0400,
-+	"Force a modeset during gpu reset for testing (default:false). "
-
-total: 0 errors, 1 warnings, 1 checks, 42 lines checked
-1381e666f drm/i915/display: Move disable_display parameter under display
--:11: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:37: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#37: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:88:
-+intel_display_param_named(disable_display, bool, 0400,
-+	"Disable display (default: false)");
-
-total: 0 errors, 1 warnings, 1 checks, 39 lines checked
-448ace7e1 drm/i915/display: Use device parameters instead of module in I915_STATE_WARN
--:42: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#42: FILE: drivers/gpu/drm/i915/i915_params.c:97:
-+i915_param_named(verbose_state_checks, bool, 0400,
- 	"Enable verbose logs (ie. WARN_ON()) in case of unexpected hw state conditions.");
-
-total: 0 errors, 0 warnings, 1 checks, 17 lines checked
-05e3fa9d4 drm/i915/display: Move verbose_state_checks under display
--:42: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#42: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:91:
-+intel_display_param_named(verbose_state_checks, bool, 0400,
-+	"Enable verbose logs (ie. WARN_ON()) in case of unexpected hw state conditions.");
-
-total: 0 errors, 0 warnings, 1 checks, 40 lines checked
-4120063a8 drm/i915/display: Move nuclear_pageflip under display
--:10: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:37: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#37: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:94:
-+intel_display_param_named_unsafe(nuclear_pageflip, bool, 0400,
-+	"Force enable atomic functionality on platforms that don't have full support yet.");
-
-total: 0 errors, 1 warnings, 1 checks, 40 lines checked
-2d98f1d8a drm/i915/display: Move enable_dp_mst under display
--:10: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:24: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#24: FILE: drivers/gpu/drm/i915/display/intel_display_params.c:97:
-+intel_display_param_named_unsafe(enable_dp_mst, bool, 0400,
-+	"Enable multi-stream transport (MST) for new DisplayPort sinks. (default: true)");
-
-total: 0 errors, 1 warnings, 1 checks, 55 lines checked
-954147280 fixup! drm/xe/display: Implement display support
-dc923c86e fixup! drm/xe/display: Implement display support
-fa7f8ac73 fixup! drm/xe/display: Implement display support
-ed18a3f2e fixup! drm/xe/display: Implement display support
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+stty: 'standard input': Inappropriate ioctl for device
+[08:04:38] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[08:04:42] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+[08:05:02] Starting KUnit Kernel (1/1)...
+[08:05:02] ============================================================
+[08:05:02] ========================== xe_bo  ==========================
+[08:05:02] [SKIPPED] xe_ccs_migrate_kunit
+[08:05:02] [SKIPPED] xe_bo_evict_kunit
+[08:05:02] ===================== [SKIPPED] xe_bo ======================
+[08:05:02] ======================= xe_dma_buf  ========================
+[08:05:02] [SKIPPED] xe_dma_buf_kunit
+[08:05:02] =================== [SKIPPED] xe_dma_buf ===================
+[08:05:02] ======================= xe_migrate  ========================
+[08:05:02] [SKIPPED] xe_migrate_sanity_kunit
+[08:05:02] =================== [SKIPPED] xe_migrate ===================
+[08:05:02] ========================= xe_pci  ==========================
+[08:05:02] [PASSED] xe_gmdid_graphics_ip
+[08:05:02] [PASSED] xe_gmdid_media_ip
+[08:05:02] ===================== [PASSED] xe_pci ======================
+[08:05:02] ========================= xe_rtp  ==========================
+[08:05:02] ================== xe_rtp_process_tests  ===================
+[08:05:02] [PASSED] coalesce-same-reg
+[08:05:02] [PASSED] no-match-no-add
+[08:05:02] [PASSED] no-match-no-add-multiple-rules
+[08:05:02] [PASSED] two-regs-two-entries
+[08:05:02] [PASSED] clr-one-set-other
+[08:05:02] [PASSED] set-field
+[08:05:02] [PASSED] conflict-duplicate
+[08:05:02] [PASSED] conflict-not-disjoint
+[08:05:02] [PASSED] conflict-reg-type
+[08:05:02] ============== [PASSED] xe_rtp_process_tests ===============
+[08:05:02] ===================== [PASSED] xe_rtp ======================
+[08:05:02] ========================== xe_wa  ==========================
+[08:05:02] ======================== xe_wa_gt  =========================
+[08:05:02] [PASSED] TIGERLAKE (B0)
+[08:05:02] [PASSED] DG1 (A0)
+[08:05:02] [PASSED] DG1 (B0)
+[08:05:02] [PASSED] ALDERLAKE_S (A0)
+[08:05:02] [PASSED] ALDERLAKE_S (B0)
+[08:05:02] [PASSED] ALDERLAKE_S (C0)
+[08:05:02] [PASSED] ALDERLAKE_S (D0)
+[08:05:02] [PASSED] ALDERLAKE_P (A0)
+[08:05:02] [PASSED] ALDERLAKE_P (B0)
+[08:05:02] [PASSED] ALDERLAKE_P (C0)
+[08:05:02] [PASSED] ALDERLAKE_S_RPLS (D0)
+[08:05:02] [PASSED] ALDERLAKE_P_RPLU (E0)
+[08:05:02] [PASSED] DG2_G10 (A0)
+[08:05:02] [PASSED] DG2_G10 (A1)
+[08:05:02] [PASSED] DG2_G10 (B0)
+[08:05:02] [PASSED] DG2_G10 (C0)
+[08:05:02] [PASSED] DG2_G11 (A0)
+[08:05:02] [PASSED] DG2_G11 (B0)
+[08:05:02] [PASSED] DG2_G11 (B1)
+[08:05:02] [PASSED] DG2_G12 (A0)
+[08:05:02] [PASSED] DG2_G12 (A1)
+[08:05:02] [PASSED] PVC (B0)
+[08:05:02] [PASSED] PVC (B1)
+[08:05:02] [PASSED] PVC (C0)
+[08:05:02] ==================== [PASSED] xe_wa_gt =====================
+[08:05:02] ====================== [PASSED] xe_wa ======================
+[08:05:02] ============================================================
+[08:05:02] Testing complete. Ran 39 tests: passed: 35, skipped: 4
+[08:05:02] Elapsed time: 24.469s total, 4.203s configuring, 20.097s building, 0.149s running
+
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
+[08:05:03] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[08:05:04] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+[08:05:23] Starting KUnit Kernel (1/1)...
+[08:05:23] ============================================================
+[08:05:23] ================== drm_test_pick_cmdline  ==================
+[08:05:23] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
+[08:05:23] =============== drm_test_pick_cmdline_named  ===============
+[08:05:23] [PASSED] NTSC
+[08:05:23] [PASSED] NTSC-J
+[08:05:23] [PASSED] PAL
+[08:05:23] [PASSED] PAL-M
+[08:05:23] =========== [PASSED] drm_test_pick_cmdline_named ===========
+[08:05:23] ============== [PASSED] drm_test_pick_cmdline ==============
+[08:05:23] ======================== drm_buddy  ========================
+[08:05:23] [PASSED] drm_test_buddy_alloc_limit
+[08:05:23] [PASSED] drm_test_buddy_alloc_range
+[08:05:23] [PASSED] drm_test_buddy_alloc_optimistic
+[08:05:23] [PASSED] drm_test_buddy_alloc_pessimistic
+[08:05:23] [PASSED] drm_test_buddy_alloc_smoke
+[08:05:23] [PASSED] drm_test_buddy_alloc_pathological
+[08:05:23] ==================== [PASSED] drm_buddy ====================
+[08:05:23] =================== drm_cmdline_parser  ====================
+[08:05:23] [PASSED] drm_test_cmdline_force_d_only
+[08:05:23] [PASSED] drm_test_cmdline_force_D_only_dvi
+[08:05:23] [PASSED] drm_test_cmdline_force_D_only_hdmi
+[08:05:23] [PASSED] drm_test_cmdline_force_D_only_not_digital
+[08:05:23] [PASSED] drm_test_cmdline_force_e_only
+[08:05:23] [PASSED] drm_test_cmdline_res
+[08:05:23] [PASSED] drm_test_cmdline_res_vesa
+[08:05:23] [PASSED] drm_test_cmdline_res_vesa_rblank
+[08:05:23] [PASSED] drm_test_cmdline_res_rblank
+[08:05:23] [PASSED] drm_test_cmdline_res_bpp
+[08:05:23] [PASSED] drm_test_cmdline_res_refresh
+[08:05:23] [PASSED] drm_test_cmdline_res_bpp_refresh
+[08:05:23] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
+[08:05:23] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
+[08:05:23] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
+[08:05:23] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
+[08:05:23] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
+[08:05:23] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
+[08:05:23] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
+[08:05:23] [PASSED] drm_test_cmdline_res_margins_force_on
+[08:05:23] [PASSED] drm_test_cmdline_res_vesa_margins
+[08:05:23] [PASSED] drm_test_cmdline_name
+[08:05:23] [PASSED] drm_test_cmdline_name_bpp
+[08:05:23] [PASSED] drm_test_cmdline_name_option
+[08:05:23] [PASSED] drm_test_cmdline_name_bpp_option
+[08:05:23] [PASSED] drm_test_cmdline_rotate_0
+[08:05:23] [PASSED] drm_test_cmdline_rotate_90
+[08:05:23] [PASSED] drm_test_cmdline_rotate_180
+[08:05:23] [PASSED] drm_test_cmdline_rotate_270
+[08:05:23] [PASSED] drm_test_cmdline_hmirror
+[08:05:23] [PASSED] drm_test_cmdline_vmirror
+[08:05:23] [PASSED] drm_test_cmdline_margin_options
+[08:05:23] [PASSED] drm_test_cmdline_multiple_options
+[08:05:23] [PASSED] drm_test_cmdline_bpp_extra_and_option
+[08:05:23] [PASSED] drm_test_cmdline_extra_and_option
+[08:05:23] [PASSED] drm_test_cmdline_freestanding_options
+[08:05:23] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
+[08:05:23] [PASSED] drm_test_cmdline_panel_orientation
+[08:05:23] ================ drm_test_cmdline_invalid  =================
+[08:05:23] [PASSED] margin_only
+[08:05:23] [PASSED] interlace_only
+[08:05:23] [PASSED] res_missing_x
+[08:05:23] [PASSED] res_missing_y
+[08:05:23] [PASSED] res_bad_y
+[08:05:23] [PASSED] res_missing_y_bpp
+[08:05:23] [PASSED] res_bad_bpp
+[08:05:23] [PASSED] res_bad_refresh
+[08:05:23] [PASSED] res_bpp_refresh_force_on_off
+[08:05:23] [PASSED] res_invalid_mode
+[08:05:23] [PASSED] res_bpp_wrong_place_mode
+[08:05:23] [PASSED] name_bpp_refresh
+[08:05:23] [PASSED] name_refresh
+[08:05:23] [PASSED] name_refresh_wrong_mode
+[08:05:23] [PASSED] name_refresh_invalid_mode
+[08:05:23] [PASSED] rotate_multiple
+[08:05:23] [PASSED] rotate_invalid_val
+[08:05:23] [PASSED] rotate_truncated
+[08:05:23] [PASSED] invalid_option
+[08:05:23] [PASSED] invalid_tv_option
+[08:05:23] [PASSED] truncated_tv_option
+[08:05:23] ============ [PASSED] drm_test_cmdline_invalid =============
+[08:05:23] =============== drm_test_cmdline_tv_options  ===============
+[08:05:23] [PASSED] NTSC
+[08:05:23] [PASSED] NTSC_443
+[08:05:23] [PASSED] NTSC_J
+[08:05:23] [PASSED] PAL
+[08:05:23] [PASSED] PAL_M
+[08:05:23] [PASSED] PAL_N
+[08:05:23] [PASSED] SECAM
+[08:05:23] =========== [PASSED] drm_test_cmdline_tv_options ===========
+[08:05:23] =============== [PASSED] drm_cmdline_parser ================
+[08:05:23] ================ drm_get_tv_mode_from_name  ================
+[08:05:23] ========== drm_test_get_tv_mode_from_name_valid  ===========
+[08:05:23] [PASSED] NTSC
+[08:05:23] [PASSED] NTSC-443
+[08:05:23] [PASSED] NTSC-J
+[08:05:23] [PASSED] PAL
+[08:05:23] [PASSED] PAL-M
+[08:05:23] [PASSED] PAL-N
+[08:05:23] [PASSED] SECAM
+[08:05:23] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
+[08:05:23] [PASSED] drm_test_get_tv_mode_from_name_truncated
+[08:05:23] ============ [PASSED] drm_get_tv_mode_from_name ============
+[08:05:23] ==================== drm_damage_helper  ====================
+[08:05:23] [PASSED] drm_test_damage_iter_no_damage
+[08:05:23] [PASSED] drm_test_damage_iter_no_damage_fractional_src
+[08:05:23] [PASSED] drm_test_damage_iter_no_damage_src_moved
+[08:05:23] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
+[08:05:23] [PASSED] drm_test_damage_iter_no_damage_not_visible
+[08:05:23] [PASSED] drm_test_damage_iter_no_damage_no_crtc
+[08:05:23] [PASSED] drm_test_damage_iter_no_damage_no_fb
+[08:05:23] [PASSED] drm_test_damage_iter_simple_damage
+[08:05:23] [PASSED] drm_test_damage_iter_single_damage
+[08:05:23] [PASSED] drm_test_damage_iter_single_damage_intersect_src
+[08:05:23] [PASSED] drm_test_damage_iter_single_damage_outside_src
+[08:05:23] [PASSED] drm_test_damage_iter_single_damage_fractional_src
+[08:05:23] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
+[08:05:23] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
+[08:05:23] [PASSED] drm_test_damage_iter_single_damage_src_moved
+[08:05:23] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
+[08:05:23] [PASSED] drm_test_damage_iter_damage
+[08:05:23] [PASSED] drm_test_damage_iter_damage_one_intersect
+[08:05:23] [PASSED] drm_test_damage_iter_damage_one_outside
+[08:05:23] [PASSED] drm_test_damage_iter_damage_src_moved
+[08:05:23] [PASSED] drm_test_damage_iter_damage_not_visible
+[08:05:23] ================ [PASSED] drm_damage_helper ================
+[08:05:23] ==================== drm_dp_mst_helper  ====================
+[08:05:23] ============== drm_test_dp_mst_calc_pbn_mode  ==============
+[08:05:23] [PASSED] Clock 154000 BPP 30 DSC disabled
+[08:05:23] [PASSED] Clock 234000 BPP 30 DSC disabled
+[08:05:23] [PASSED] Clock 297000 BPP 24 DSC disabled
+[08:05:23] [PASSED] Clock 332880 BPP 24 DSC enabled
+[08:05:23] [PASSED] Clock 324540 BPP 24 DSC enabled
+[08:05:23] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
+[08:05:23] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
+[08:05:23] [PASSED] DP_ENUM_PATH_RESOURCES with port number
+[08:05:23] [PASSED] DP_POWER_UP_PHY with port number
+[08:05:23] [PASSED] DP_POWER_DOWN_PHY with port number
+[08:05:23] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
+[08:05:23] [PASSED] DP_ALLOCATE_PAYLOAD with port number
+[08:05:23] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
+[08:05:23] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
+[08:05:23] [PASSED] DP_QUERY_PAYLOAD with port number
+[08:05:23] [PASSED] DP_QUERY_PAYLOAD with VCPI
+[08:05:23] [PASSED] DP_REMOTE_DPCD_READ with port number
+[08:05:23] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
+[08:05:23] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
+[08:05:23] [PASSED] DP_REMOTE_DPCD_WRITE with port number
+[08:05:23] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
+[08:05:23] [PASSED] DP_REMOTE_DPCD_WRITE with data array
+[08:05:23] [PASSED] DP_REMOTE_I2C_READ with port number
+[08:05:23] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
+[08:05:23] [PASSED] DP_REMOTE_I2C_READ with transactions array
+[08:05:23] [PASSED] DP_REMOTE_I2C_WRITE with port number
+[08:05:23] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
+[08:05:23] [PASSED] DP_REMOTE_I2C_WRITE with data array
+[08:05:23] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
+[08:05:23] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
+[08:05:23] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
+[08:05:23] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
+[08:05:23] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
+[08:05:23] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
+[08:05:23] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
+[08:05:23] ================ [PASSED] drm_dp_mst_helper ================
+[08:05:23] ================= drm_format_helper_test  ==================
+[08:05:23] ============== drm_test_fb_xrgb8888_to_gray8  ==============
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
+[08:05:23] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
+[08:05:23] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
+[08:05:23] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
+[08:05:23] ============ drm_test_fb_xrgb8888_to_argb1555  =============
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
+[08:05:23] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
+[08:05:23] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
+[08:05:23] ============ drm_test_fb_xrgb8888_to_argb8888  =============
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
+[08:05:23] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
+[08:05:23] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
+[08:05:23] ============== drm_test_fb_xrgb8888_to_mono  ===============
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
+[08:05:23] ==================== drm_test_fb_swab  =====================
+[08:05:23] [PASSED] single_pixel_source_buffer
+[08:05:23] [PASSED] single_pixel_clip_rectangle
+[08:05:23] [PASSED] well_known_colors
+[08:05:23] [PASSED] destination_pitch
+[08:05:23] ================ [PASSED] drm_test_fb_swab =================
+[08:05:23] ================= drm_test_fb_clip_offset  =================
+[08:05:23] [PASSED] pass through
+[08:05:23] [PASSED] horizontal offset
+[08:05:23] [PASSED] vertical offset
+[08:05:23] [PASSED] horizontal and vertical offset
+[08:05:23] [PASSED] horizontal offset (custom pitch)
+[08:05:23] [PASSED] vertical offset (custom pitch)
+[08:05:23] [PASSED] horizontal and vertical offset (custom pitch)
+[08:05:23] ============= [PASSED] drm_test_fb_clip_offset =============
+[08:05:23] ============== drm_test_fb_build_fourcc_list  ==============
+[08:05:23] [PASSED] no native formats
+[08:05:23] [PASSED] XRGB8888 as native format
+[08:05:23] [PASSED] remove duplicates
+[08:05:23] [PASSED] convert alpha formats
+[08:05:23] [PASSED] random formats
+[08:05:23] ========== [PASSED] drm_test_fb_build_fourcc_list ==========
+[08:05:23] =================== drm_test_fb_memcpy  ====================
+[08:05:23] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
+[08:05:23] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
+[08:05:23] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
+[08:05:23] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
+[08:05:23] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
+[08:05:23] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
+[08:05:23] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
+[08:05:23] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
+[08:05:23] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
+[08:05:23] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
+[08:05:23] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
+[08:05:23] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
+[08:05:23] =============== [PASSED] drm_test_fb_memcpy ================
+[08:05:23] ============= [PASSED] drm_format_helper_test ==============
+[08:05:23] ======================= drm_format  ========================
+[08:05:23] [PASSED] drm_test_format_block_width_invalid
+[08:05:23] [PASSED] drm_test_format_block_width_one_plane
+[08:05:23] [PASSED] drm_test_format_block_width_two_plane
+[08:05:23] [PASSED] drm_test_format_block_width_three_plane
+[08:05:23] [PASSED] drm_test_format_block_width_tiled
+[08:05:23] [PASSED] drm_test_format_block_height_invalid
+[08:05:23] [PASSED] drm_test_format_block_height_one_plane
+[08:05:23] [PASSED] drm_test_format_block_height_two_plane
+[08:05:23] [PASSED] drm_test_format_block_height_three_plane
+[08:05:23] [PASSED] drm_test_format_block_height_tiled
+[08:05:23] [PASSED] drm_test_format_min_pitch_invalid
+[08:05:23] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
+[08:05:23] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
+[08:05:23] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
+[08:05:23] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
+[08:05:23] [PASSED] drm_test_format_min_pitch_two_plane
+[08:05:23] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
+[08:05:23] [PASSED] drm_test_format_min_pitch_tiled
+[08:05:23] =================== [PASSED] drm_format ====================
+[08:05:23] ===================== drm_framebuffer  =====================
+[08:05:23] =============== drm_test_framebuffer_create  ===============
+[08:05:23] [PASSED] ABGR8888 normal sizes
+[08:05:23] [PASSED] ABGR8888 max sizes
+[08:05:23] [PASSED] ABGR8888 pitch greater than min required
+[08:05:23] [PASSED] ABGR8888 pitch less than min required
+[08:05:23] [PASSED] ABGR8888 Invalid width
+[08:05:23] [PASSED] ABGR8888 Invalid buffer handle
+[08:05:23] [PASSED] No pixel format
+[08:05:23] [PASSED] ABGR8888 Width 0
+[08:05:23] [PASSED] ABGR8888 Height 0
+[08:05:23] [PASSED] ABGR8888 Out of bound height * pitch combination
+[08:05:23] [PASSED] ABGR8888 Large buffer offset
+[08:05:23] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
+[08:05:23] [PASSED] ABGR8888 Valid buffer modifier
+[08:05:23] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
+[08:05:23] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
+[08:05:23] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
+[08:05:23] [PASSED] NV12 Normal sizes
+[08:05:23] [PASSED] NV12 Max sizes
+[08:05:23] [PASSED] NV12 Invalid pitch
+[08:05:23] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
+[08:05:23] [PASSED] NV12 different  modifier per-plane
+[08:05:23] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
+[08:05:23] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
+[08:05:23] [PASSED] NV12 Modifier for inexistent plane
+[08:05:23] [PASSED] NV12 Handle for inexistent plane
+[08:05:23] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
+[08:05:23] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
+[08:05:23] [PASSED] YVU420 Normal sizes
+[08:05:23] [PASSED] YVU420 Max sizes
+[08:05:23] [PASSED] YVU420 Invalid pitch
+[08:05:23] [PASSED] YVU420 Different pitches
+[08:05:23] [PASSED] YVU420 Different buffer offsets/pitches
+[08:05:23] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
+[08:05:23] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
+[08:05:23] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
+[08:05:23] [PASSED] YVU420 Valid modifier
+[08:05:23] [PASSED] YVU420 Different modifiers per plane
+[08:05:23] [PASSED] YVU420 Modifier for inexistent plane
+[08:05:23] [PASSED] X0L2 Normal sizes
+[08:05:23] [PASSED] X0L2 Max sizes
+[08:05:23] [PASSED] X0L2 Invalid pitch
+[08:05:23] [PASSED] X0L2 Pitch greater than minimum required
+[08:05:23] [PASSED] X0L2 Handle for inexistent plane
+[08:05:23] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
+[08:05:23] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
+[08:05:23] [PASSED] X0L2 Valid modifier
+[08:05:23] [PASSED] X0L2 Modifier for inexistent plane
+[08:05:23] =========== [PASSED] drm_test_framebuffer_create ===========
+[08:05:23] ================= [PASSED] drm_framebuffer =================
+[08:05:23] ==================== drm-test-managed  =====================
+[08:05:23] [PASSED] drm_test_managed_run_action
+[08:05:23] ================ [PASSED] drm-test-managed =================
+[08:05:23] ========================= drm_mm  ==========================
+[08:05:23] [PASSED] drm_test_mm_init
+[08:05:23] [PASSED] drm_test_mm_debug
+[08:05:34] [PASSED] drm_test_mm_reserve
+[08:05:44] [PASSED] drm_test_mm_insert
+[08:05:44] [PASSED] drm_test_mm_replace
+[08:05:44] [PASSED] drm_test_mm_insert_range
+[08:05:44] [PASSED] drm_test_mm_frag
+[08:05:44] [PASSED] drm_test_mm_align
+[08:05:44] [PASSED] drm_test_mm_align32
+[08:05:45] [PASSED] drm_test_mm_align64
+[08:05:45] [PASSED] drm_test_mm_evict
+[08:05:45] [PASSED] drm_test_mm_evict_range
+[08:05:45] [PASSED] drm_test_mm_topdown
+[08:05:45] [PASSED] drm_test_mm_bottomup
+[08:05:45] [PASSED] drm_test_mm_lowest
+[08:05:45] [PASSED] drm_test_mm_highest
+[08:05:46] [PASSED] drm_test_mm_color
+[08:05:46] [PASSED] drm_test_mm_color_evict
+[08:05:46] [PASSED] drm_test_mm_color_evict_range
+[08:05:46] ===================== [PASSED] drm_mm ======================
+[08:05:46] =================== drm_modes_analog_tv  ===================
+[08:05:46] [PASSED] drm_test_modes_analog_tv_ntsc_480i
+[08:05:46] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
+[08:05:46] [PASSED] drm_test_modes_analog_tv_pal_576i
+[08:05:46] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
+[08:05:46] =============== [PASSED] drm_modes_analog_tv ===============
+[08:05:46] ==================== drm_plane_helper  =====================
+[08:05:46] =============== drm_test_check_plane_state  ================
+[08:05:46] [PASSED] clipping_simple
+[08:05:46] [PASSED] clipping_rotate_reflect
+[08:05:46] [PASSED] positioning_simple
+[08:05:46] [PASSED] upscaling
+[08:05:46] [PASSED] downscaling
+[08:05:46] [PASSED] rounding1
+[08:05:46] [PASSED] rounding2
+[08:05:46] [PASSED] rounding3
+[08:05:46] [PASSED] rounding4
+[08:05:46] =========== [PASSED] drm_test_check_plane_state ============
+[08:05:46] =========== drm_test_check_invalid_plane_state  ============
+[08:05:46] [PASSED] positioning_invalid
+[08:05:46] [PASSED] upscaling_invalid
+[08:05:46] [PASSED] downscaling_invalid
+[08:05:46] ======= [PASSED] drm_test_check_invalid_plane_state ========
+[08:05:46] ================ [PASSED] drm_plane_helper =================
+[08:05:46] ============ drm_connector_helper_tv_get_modes  ============
+[08:05:46] ====== drm_test_connector_helper_tv_get_modes_check  =======
+[08:05:46] [PASSED] None
+[08:05:46] [PASSED] PAL
+[08:05:46] [PASSED] NTSC
+[08:05:46] [PASSED] Both, NTSC Default
+[08:05:46] [PASSED] Both, PAL Default
+[08:05:46] [PASSED] Both, NTSC Default, with PAL on command-line
+[08:05:46] [PASSED] Both, PAL Default, with NTSC on command-line
+[08:05:46] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
+[08:05:46] ======== [PASSED] drm_connector_helper_tv_get_modes ========
+[08:05:46] ======================== drm_rect  =========================
+[08:05:46] [PASSED] drm_test_rect_clip_scaled_div_by_zero
+[08:05:46] [PASSED] drm_test_rect_clip_scaled_not_clipped
+[08:05:46] [PASSED] drm_test_rect_clip_scaled_clipped
+[08:05:46] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
+[08:05:46] ================= drm_test_rect_intersect  =================
+[08:05:46] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
+[08:05:46] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
+[08:05:46] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
+[08:05:46] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
+[08:05:46] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
+[08:05:46] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
+[08:05:46] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
+[08:05:46] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
+[08:05:46] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
+[08:05:46] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
+[08:05:46] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
+[08:05:46] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
+[08:05:46] [PASSED] far away: 1x1+0+0 x 1x1+3+6
+[08:05:46] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
+[08:05:46] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
+[08:05:46] ============= [PASSED] drm_test_rect_intersect =============
+[08:05:46] ================ drm_test_rect_calc_hscale  ================
+[08:05:46] [PASSED] normal use
+[08:05:46] [PASSED] out of max range
+[08:05:46] [PASSED] out of min range
+[08:05:46] [PASSED] zero dst
+[08:05:46] [PASSED] negative src
+[08:05:46] [PASSED] negative dst
+[08:05:46] ============ [PASSED] drm_test_rect_calc_hscale ============
+[08:05:46] ================ drm_test_rect_calc_vscale  ================
+[08:05:46] [PASSED] normal use
+[08:05:46] [PASSED] out of max range
+[08:05:46] [PASSED] out of min range
+[08:05:46] [PASSED] zero dst
+[08:05:46] [PASSED] negative src
+[08:05:46] [PASSED] negative dst
+[08:05:46] ============ [PASSED] drm_test_rect_calc_vscale ============
+[08:05:46] ================== drm_test_rect_rotate  ===================
+[08:05:46] [PASSED] reflect-x
+[08:05:46] [PASSED] reflect-y
+[08:05:46] [PASSED] rotate-0
+[08:05:46] [PASSED] rotate-90
+[08:05:46] [PASSED] rotate-180
+[08:05:46] [PASSED] rotate-270
+[08:05:46] ============== [PASSED] drm_test_rect_rotate ===============
+[08:05:46] ================ drm_test_rect_rotate_inv  =================
+[08:05:46] [PASSED] reflect-x
+[08:05:46] [PASSED] reflect-y
+[08:05:46] [PASSED] rotate-0
+[08:05:46] [PASSED] rotate-90
+[08:05:46] [PASSED] rotate-180
+[08:05:46] [PASSED] rotate-270
+[08:05:46] ============ [PASSED] drm_test_rect_rotate_inv =============
+stty: 'standard input': Inappropriate ioctl for device
+[08:05:46] ==================== [PASSED] drm_rect =====================
+[08:05:46] ======================== drm_exec  =========================
+[08:05:46] [PASSED] sanitycheck
+[08:05:46] [PASSED] test_lock
+[08:05:46] [PASSED] test_lock_unlock
+[08:05:46] [PASSED] test_duplicates
+[08:05:46] [PASSED] test_prepare
+[08:05:46] [PASSED] test_prepare_array
+[08:05:46] [PASSED] test_multiple_loops
+[08:05:46] ==================== [PASSED] drm_exec =====================
+[08:05:46] ============================================================
+[08:05:46] Testing complete. Ran 368 tests: passed: 368
+[08:05:47] Elapsed time: 43.974s total, 1.674s configuring, 18.910s building, 23.350s running
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
