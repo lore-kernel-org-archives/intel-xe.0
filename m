@@ -4,30 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1B86EC25B47
-	for <intel-xe@archiver.kernel.org>; Fri, 27 Oct 2023 22:33:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7D036C0032E
+	for <intel-xe@archiver.kernel.org>; Sat, 28 Oct 2023 03:39:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D394810EA1C;
-	Fri, 27 Oct 2023 22:33:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6AEFA10EA1C;
- Fri, 27 Oct 2023 22:33:26 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 692E5A0093;
- Fri, 27 Oct 2023 22:33:26 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F19210EAA7;
+	Sat, 28 Oct 2023 03:39:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 281F210EAA7
+ for <intel-xe@lists.freedesktop.org>; Sat, 28 Oct 2023 03:39:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698464356; x=1730000356;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=KmdtzrqCqlOyNOuVzXcBrExq+BKpzJa8j1abv2Bmmyo=;
+ b=mapSaX0Bucp3afEfaL7WgHJHfzKZcu9rmxVhrNXoYKhqQLmsu5Pwz3WU
+ hMgAg+rtMhHBeoqhQjtBZaOMOKYn1Q6nE7HA8jfhnNx1rbPZTZjsKpXbt
+ uFtbE4LkkN9+Ub36G2sC8fVvSccW5yaN4+8g96T4nKQ5X6Aw43iwGxS46
+ Q1e9N2+7952CT4IWPxNj/BjV7KqLCOb076DL5dXOr3Yjn3TejktZJNfsS
+ qWZROUcg50mfkExOiy2QvwiV6v9a3lBqt2QCZIO4xttmxUUsmJOI9iwfv
+ qSYKHWdx9JEjdgAK8Z7bsbk1fUPu9cNgUdnYYzNzL2dUbPv8Zo/f097y3 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10876"; a="6510325"
+X-IronPort-AV: E=Sophos;i="6.03,258,1694761200"; 
+   d="scan'208";a="6510325"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2023 20:39:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.03,258,1694761200"; 
+   d="scan'208";a="7825405"
+Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
+ ([10.165.21.138])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Oct 2023 20:39:02 -0700
+From: Ashutosh Dixit <ashutosh.dixit@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri, 27 Oct 2023 20:39:09 -0700
+Message-ID: <20231028033910.2479157-1-ashutosh.dixit@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
-Date: Fri, 27 Oct 2023 22:33:26 -0000
-Message-ID: <169844600642.19711.12449247381862472728@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
-In-Reply-To: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EKUnit=3A_failure_for_GSC_FW_?=
- =?utf-8?q?loading?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3 0/1] Xe PERF layer
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,99 +56,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Harish Chegondi <harish.chegondi@intel.com>, gzadicario@habana.ai,
+ ogabbay@habana.ai
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+These changes were originally submitted as part of [1] but since they are
+needed by multiple teams developing different Xe PERF stream types, I am
+separating these changes out as an independent patch which can be merged
+first, independent of OA.
 
-Series: GSC FW loading
-URL   : https://patchwork.freedesktop.org/series/125717/
-State : failure
+The full use of these uapi changes (for OA) can be seen in [2] and [3].
 
-== Summary ==
+[1] https://patchwork.freedesktop.org/series/121084/
+[2] https://patchwork.freedesktop.org/patch/558376/?series=121084&rev=6
+[3] https://patchwork.freedesktop.org/patch/558375/?series=121084&rev=6
 
-+ trap cleanup EXIT
-+ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
-stty: 'standard input': Inappropriate ioctl for device
-[22:32:58] Configuring KUnit Kernel ...
-Generating .config ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-[22:33:02] Building KUnit Kernel ...
-Populating config with:
-$ make ARCH=um O=.kunit olddefconfig
-Building with:
-$ make ARCH=um O=.kunit --jobs=48
-[22:33:23] Starting KUnit Kernel (1/1)...
-[22:33:23] ============================================================
-[22:33:23] ========================== xe_bo  ==========================
-[22:33:23] [SKIPPED] xe_ccs_migrate_kunit
-[22:33:23] [SKIPPED] xe_bo_evict_kunit
-[22:33:23] ===================== [SKIPPED] xe_bo ======================
-[22:33:23] ======================= xe_dma_buf  ========================
-[22:33:23] [SKIPPED] xe_dma_buf_kunit
-[22:33:23] =================== [SKIPPED] xe_dma_buf ===================
-[22:33:23] ======================= xe_migrate  ========================
-[22:33:23] [SKIPPED] xe_migrate_sanity_kunit
-[22:33:23] =================== [SKIPPED] xe_migrate ===================
-[22:33:23] ========================= xe_pci  ==========================
-[22:33:23] [PASSED] xe_gmdid_graphics_ip
-[22:33:23] # xe_gmdid_media_ip: ASSERTION FAILED at drivers/gpu/drm/xe/tests/xe_pci_test.c:45
-[22:33:23] Expected mask == 0, but
-[22:33:23]     mask == 67108864 (0x4000000)
-[22:33:23] [FAILED] xe_gmdid_media_ip
-[22:33:23] # xe_pci: pass:1 fail:1 skip:0 total:2
-[22:33:23] # Totals: pass:1 fail:1 skip:0 total:2
-[22:33:23] ===================== [FAILED] xe_pci ======================
-[22:33:23] ========================= xe_rtp  ==========================
-[22:33:23] ================== xe_rtp_process_tests  ===================
-[22:33:23] [PASSED] coalesce-same-reg
-[22:33:23] [PASSED] no-match-no-add
-[22:33:23] [PASSED] no-match-no-add-multiple-rules
-[22:33:23] [PASSED] two-regs-two-entries
-[22:33:23] [PASSED] clr-one-set-other
-[22:33:23] [PASSED] set-field
-[22:33:23] [PASSED] conflict-duplicate
-[22:33:23] [PASSED] conflict-not-disjoint
-[22:33:23] [PASSED] conflict-reg-type
-[22:33:23] ============== [PASSED] xe_rtp_process_tests ===============
-[22:33:23] ===================== [PASSED] xe_rtp ======================
-[22:33:23] ========================== xe_wa  ==========================
-[22:33:23] ======================== xe_wa_gt  =========================
-[22:33:23] [PASSED] TIGERLAKE (B0)
-[22:33:23] [PASSED] DG1 (A0)
-[22:33:23] [PASSED] DG1 (B0)
-[22:33:23] [PASSED] ALDERLAKE_S (A0)
-[22:33:23] [PASSED] ALDERLAKE_S (B0)
-[22:33:23] [PASSED] ALDERLAKE_S (C0)
-[22:33:23] [PASSED] ALDERLAKE_S (D0)
-[22:33:23] [PASSED] ALDERLAKE_P (A0)
-[22:33:23] [PASSED] ALDERLAKE_P (B0)
-[22:33:23] [PASSED] ALDERLAKE_P (C0)
-[22:33:23] [PASSED] ALDERLAKE_S_RPLS (D0)
-[22:33:23] [PASSED] ALDERLAKE_P_RPLU (E0)
-[22:33:23] [PASSED] DG2_G10 (A0)
-[22:33:23] [PASSED] DG2_G10 (A1)
-[22:33:23] [PASSED] DG2_G10 (B0)
-[22:33:23] [PASSED] DG2_G10 (C0)
-[22:33:23] [PASSED] DG2_G11 (A0)
-[22:33:23] [PASSED] DG2_G11 (B0)
-[22:33:23] [PASSED] DG2_G11 (B1)
-[22:33:23] [PASSED] DG2_G12 (A0)
-[22:33:23] [PASSED] DG2_G12 (A1)
-[22:33:23] [PASSED] PVC (B0)
-[22:33:23] [PASSED] PVC (B1)
-[22:33:23] [PASSED] PVC (C0)
-[22:33:23] ==================== [PASSED] xe_wa_gt =====================
-[22:33:23] ====================== [PASSED] xe_wa ======================
-[22:33:23] ============================================================
-[22:33:23] Testing complete. Ran 39 tests: passed: 34, failed: 1, skipped: 4
-[22:33:23] Elapsed time: 24.485s total, 4.192s configuring, 20.173s building, 0.098s running
+Ashutosh Dixit (1):
+  drm/xe/uapi: "Perf" layer to support multiple perf counter stream
+    types
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
+ drivers/gpu/drm/xe/Makefile    |  1 +
+ drivers/gpu/drm/xe/xe_device.c |  2 ++
+ drivers/gpu/drm/xe/xe_perf.c   | 21 ++++++++++++
+ drivers/gpu/drm/xe/xe_perf.h   | 16 +++++++++
+ include/uapi/drm/xe_drm.h      | 59 ++++++++++++++++++++++++++++++++++
+ 5 files changed, 99 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_perf.c
+ create mode 100644 drivers/gpu/drm/xe/xe_perf.h
 
+-- 
+2.41.0
 
