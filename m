@@ -4,30 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 86B7DC0032E
-	for <intel-xe@archiver.kernel.org>; Sat, 28 Oct 2023 04:28:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8960C4332F
+	for <intel-xe@archiver.kernel.org>; Sun, 29 Oct 2023 08:17:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F4D410EAA7;
-	Sat, 28 Oct 2023 04:28:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0338210EAA7;
- Sat, 28 Oct 2023 04:28:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E8F88A00E6;
- Sat, 28 Oct 2023 04:28:12 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0795030446406379193=="
-MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
-Date: Sat, 28 Oct 2023 04:28:12 -0000
-Message-ID: <169846729292.21161.8874050632650252927@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231028033910.2479157-1-ashutosh.dixit@intel.com>
-In-Reply-To: <20231028033910.2479157-1-ashutosh.dixit@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Xe_PERF_l?=
- =?utf-8?q?ayer?=
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4D6EE10E09F;
+	Sun, 29 Oct 2023 08:17:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1D1E10E09E
+ for <intel-xe@lists.freedesktop.org>; Sun, 29 Oct 2023 08:17:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698567476; x=1730103476;
+ h=date:from:to:cc:subject:message-id;
+ bh=6tIoPTju+UBydp4Icrrutz0LhpDgCC2MizmCot5OT/I=;
+ b=fNi0x2Dtgiz5GZBcBRKr19k6bv2JRPOVyAB5I34uO7ZqDXk9z3e2Rdwz
+ dSvw4khw3jbu+6zPx62Q6D+k+XoRrNYbGtGXwOAf5G7Bbd3GuoBVd+Hzv
+ 7AYzIo3sd3WnY9De4D8N+bW1CMcJDJ5Pwn/8cTOusWRJ60Hhrbcs7Oust
+ M9LouoQSyu+3go7Q0GA+I5Dt2FkJUaEhr27zmOITtiNVJ2movC07Texl0
+ +cTjGZappYaFtMnZDiEKAOlIK8tzDmuXJIaJ4ikHQV1Mm5naEhGZzX0FL
+ l0opz6hY6toB2RR3tOPfvAT4Y302hA1PIqbO9jqAciTl31M8AtSut15Fo g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10877"; a="452190014"
+X-IronPort-AV: E=Sophos;i="6.03,261,1694761200"; d="scan'208";a="452190014"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Oct 2023 01:17:55 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10877"; a="759997024"
+X-IronPort-AV: E=Sophos;i="6.03,261,1694761200"; d="scan'208";a="759997024"
+Received: from lkp-server01.sh.intel.com (HELO 8917679a5d3e) ([10.239.97.150])
+ by orsmga002.jf.intel.com with ESMTP; 29 Oct 2023 01:17:54 -0700
+Received: from kbuild by 8917679a5d3e with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qx0zY-000CQV-0l;
+ Sun, 29 Oct 2023 08:17:52 +0000
+Date: Sun, 29 Oct 2023 16:16:59 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+Message-ID: <202310291650.8KVAdMqR-lkp@intel.com>
+User-Agent: s-nail v14.9.24
+Subject: [Intel-xe] [drm-xe:drm-xe-next] BUILD SUCCESS WITH WARNING
+ f24c46200dc8fad700f51106e678d68d38496860
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,284 +54,237 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0795030446406379193==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+branch HEAD: f24c46200dc8fad700f51106e678d68d38496860  drm/xe: Fix WA 14010918519 write to wrong register
 
-== Series Details ==
+Warning reports:
 
-Series: Xe PERF layer
-URL   : https://patchwork.freedesktop.org/series/125724/
-State : success
+https://lore.kernel.org/oe-kbuild-all/202310201234.ZZLwdoiy-lkp@intel.com
 
-== Summary ==
+Warning: (recently discovered and may have been fixed)
 
-CI Bug Log - changes from xe-454-f24c46200dc8fad700f51106e678d68d38496860_BAT -> xe-pw-125724v1_BAT
-====================================================
+drivers/gpu/drm/xe/display/xe_display_misc.c:10:14: warning: no previous prototype for 'intel_gmch_vga_set_decode' [-Wmissing-prototypes]
 
-Summary
--------
+Warning ids grouped by kconfigs:
 
-  **SUCCESS**
+gcc_recent_errors
+|-- alpha-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- alpha-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- arc-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- arc-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- arm-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- arm-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- arm64-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- arm64-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- csky-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- csky-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- loongarch-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- loongarch-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- microblaze-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- microblaze-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- mips-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- mips-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- openrisc-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- openrisc-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- parisc-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- parisc-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- powerpc-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- powerpc-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- riscv-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- riscv-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- s390-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- s390-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- sparc-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- sparc-allyesconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+|-- sparc64-allmodconfig
+|   `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
+`-- sparc64-allyesconfig
+    `-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
 
-  No regressions found.
+elapsed time: 2185m
 
-  
+configs tested: 145
+configs skipped: 2
 
-Participating hosts (2 -> 4)
-------------------------------
+tested configs:
+alpha                             allnoconfig   gcc  
+alpha                            allyesconfig   gcc  
+alpha                               defconfig   gcc  
+arc                              allmodconfig   gcc  
+arc                               allnoconfig   gcc  
+arc                              allyesconfig   gcc  
+arc                                 defconfig   gcc  
+arc                            hsdk_defconfig   gcc  
+arc                        nsim_700_defconfig   gcc  
+arc                   randconfig-001-20231028   gcc  
+arm                              allmodconfig   gcc  
+arm                               allnoconfig   gcc  
+arm                              allyesconfig   gcc  
+arm                          collie_defconfig   clang
+arm                                 defconfig   gcc  
+arm                   randconfig-001-20231028   gcc  
+arm64                            allmodconfig   gcc  
+arm64                             allnoconfig   gcc  
+arm64                            allyesconfig   gcc  
+arm64                               defconfig   gcc  
+csky                             allmodconfig   gcc  
+csky                              allnoconfig   gcc  
+csky                             allyesconfig   gcc  
+csky                                defconfig   gcc  
+hexagon                          alldefconfig   clang
+i386         buildonly-randconfig-001-20231028   gcc  
+i386         buildonly-randconfig-002-20231028   gcc  
+i386         buildonly-randconfig-003-20231028   gcc  
+i386         buildonly-randconfig-004-20231028   gcc  
+i386         buildonly-randconfig-005-20231028   gcc  
+i386         buildonly-randconfig-006-20231028   gcc  
+i386                                defconfig   gcc  
+i386                  randconfig-001-20231028   gcc  
+i386                  randconfig-002-20231028   gcc  
+i386                  randconfig-003-20231028   gcc  
+i386                  randconfig-004-20231028   gcc  
+i386                  randconfig-005-20231028   gcc  
+i386                  randconfig-006-20231028   gcc  
+i386                  randconfig-011-20231028   gcc  
+i386                  randconfig-012-20231028   gcc  
+i386                  randconfig-013-20231028   gcc  
+i386                  randconfig-014-20231028   gcc  
+i386                  randconfig-015-20231028   gcc  
+i386                  randconfig-016-20231028   gcc  
+loongarch                        allmodconfig   gcc  
+loongarch                         allnoconfig   gcc  
+loongarch                        allyesconfig   gcc  
+loongarch                           defconfig   gcc  
+loongarch             randconfig-001-20231028   gcc  
+m68k                             allmodconfig   gcc  
+m68k                              allnoconfig   gcc  
+m68k                             allyesconfig   gcc  
+m68k                                defconfig   gcc  
+microblaze                       allmodconfig   gcc  
+microblaze                        allnoconfig   gcc  
+microblaze                       allyesconfig   gcc  
+microblaze                          defconfig   gcc  
+mips                             allmodconfig   gcc  
+mips                              allnoconfig   gcc  
+mips                             allyesconfig   gcc  
+mips                          malta_defconfig   clang
+mips                  maltasmvp_eva_defconfig   gcc  
+nios2                            allmodconfig   gcc  
+nios2                             allnoconfig   gcc  
+nios2                            allyesconfig   gcc  
+nios2                               defconfig   gcc  
+openrisc                         allmodconfig   gcc  
+openrisc                          allnoconfig   gcc  
+openrisc                         allyesconfig   gcc  
+openrisc                            defconfig   gcc  
+parisc                           allmodconfig   gcc  
+parisc                            allnoconfig   gcc  
+parisc                           allyesconfig   gcc  
+parisc                              defconfig   gcc  
+parisc64                            defconfig   gcc  
+powerpc                    adder875_defconfig   gcc  
+powerpc                          allmodconfig   gcc  
+powerpc                           allnoconfig   gcc  
+powerpc                          allyesconfig   gcc  
+powerpc                   currituck_defconfig   gcc  
+powerpc                       ebony_defconfig   clang
+powerpc                       holly_defconfig   gcc  
+powerpc                      katmai_defconfig   clang
+powerpc                     redwood_defconfig   gcc  
+powerpc                     taishan_defconfig   gcc  
+riscv                            allmodconfig   gcc  
+riscv                             allnoconfig   gcc  
+riscv                            allyesconfig   gcc  
+riscv                               defconfig   gcc  
+riscv                 randconfig-001-20231028   gcc  
+riscv                          rv32_defconfig   gcc  
+s390                             allmodconfig   gcc  
+s390                              allnoconfig   gcc  
+s390                             allyesconfig   gcc  
+s390                                defconfig   gcc  
+s390                  randconfig-001-20231028   gcc  
+sh                               allmodconfig   gcc  
+sh                                allnoconfig   gcc  
+sh                               allyesconfig   gcc  
+sh                                  defconfig   gcc  
+sh                 kfr2r09-romimage_defconfig   gcc  
+sh                           se7705_defconfig   gcc  
+sparc                            allmodconfig   gcc  
+sparc                             allnoconfig   gcc  
+sparc                            allyesconfig   gcc  
+sparc                               defconfig   gcc  
+sparc                 randconfig-001-20231028   gcc  
+sparc64                          allmodconfig   gcc  
+sparc64                          allyesconfig   gcc  
+sparc64                             defconfig   gcc  
+um                               allmodconfig   clang
+um                                allnoconfig   clang
+um                               allyesconfig   clang
+um                                  defconfig   gcc  
+um                             i386_defconfig   gcc  
+um                           x86_64_defconfig   gcc  
+x86_64                            allnoconfig   gcc  
+x86_64                           allyesconfig   gcc  
+x86_64       buildonly-randconfig-001-20231028   gcc  
+x86_64       buildonly-randconfig-002-20231028   gcc  
+x86_64       buildonly-randconfig-003-20231028   gcc  
+x86_64       buildonly-randconfig-004-20231028   gcc  
+x86_64       buildonly-randconfig-005-20231028   gcc  
+x86_64       buildonly-randconfig-006-20231028   gcc  
+x86_64                              defconfig   gcc  
+x86_64                randconfig-001-20231028   gcc  
+x86_64                randconfig-002-20231028   gcc  
+x86_64                randconfig-003-20231028   gcc  
+x86_64                randconfig-004-20231028   gcc  
+x86_64                randconfig-005-20231028   gcc  
+x86_64                randconfig-006-20231028   gcc  
+x86_64                randconfig-011-20231028   gcc  
+x86_64                randconfig-012-20231028   gcc  
+x86_64                randconfig-013-20231028   gcc  
+x86_64                randconfig-014-20231028   gcc  
+x86_64                randconfig-015-20231028   gcc  
+x86_64                randconfig-016-20231028   gcc  
+x86_64                randconfig-071-20231028   gcc  
+x86_64                randconfig-072-20231028   gcc  
+x86_64                randconfig-073-20231028   gcc  
+x86_64                randconfig-074-20231028   gcc  
+x86_64                randconfig-075-20231028   gcc  
+x86_64                randconfig-076-20231028   gcc  
+x86_64                          rhel-8.3-rust   clang
+x86_64                               rhel-8.3   gcc  
 
-  Additional (2): bat-pvc-2 bat-adlp-7 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-125724v1_BAT:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd}:
-    - bat-pvc-2:          NOTRUN -> [INCOMPLETE][1]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-pvc-2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html
-    - bat-adlp-7:         NOTRUN -> [SKIP][2]
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-125724v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-adlp-7:         NOTRUN -> [FAIL][3] ([Intel XE#609]) +2 other tests fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#423])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-adlp-7:         NOTRUN -> [FAIL][5] ([Intel XE#480]) +1 other test fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         NOTRUN -> [FAIL][6] ([Intel XE#616] / [Intel XE#750])
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_evict@evict-beng-small-external:
-    - bat-pvc-2:          NOTRUN -> [FAIL][7] ([Intel XE#389]) +3 other tests fail
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
-    - bat-adlp-7:         NOTRUN -> [SKIP][8] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@xe_evict@evict-beng-small-external.html
-
-  * igt@xe_evict@evict-small-cm:
-    - bat-pvc-2:          NOTRUN -> [DMESG-FAIL][9] ([Intel XE#482]) +3 other tests dmesg-fail
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-pvc-2/igt@xe_evict@evict-small-cm.html
-
-  * igt@xe_live_ktest@migrate:
-    - bat-adlp-7:         NOTRUN -> [INCOMPLETE][10] ([Intel XE#753])
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@xe_live_ktest@migrate.html
-
-  * igt@xe_mmap@vram:
-    - bat-adlp-7:         NOTRUN -> [SKIP][11] ([Intel XE#263])
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@xe_mmap@vram.html
-
-  * igt@xe_module_load@load:
-    - bat-pvc-2:          NOTRUN -> [SKIP][12] ([Intel XE#378])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-pvc-2/igt@xe_module_load@load.html
-
-  
-#### Possible fixes ####
-
-  * {igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd}:
-    - bat-dg2-oem2:       [FAIL][13] -> [PASS][14]
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-454-f24c46200dc8fad700f51106e678d68d38496860/bat-dg2-oem2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-dg2-oem2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#263]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/263
-  [Intel XE#378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/378
-  [Intel XE#389]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/389
-  [Intel XE#423]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/423
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [Intel XE#609]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/609
-  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
-  [Intel XE#753]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/753
-
-
-Build changes
--------------
-
-  * Linux: xe-454-f24c46200dc8fad700f51106e678d68d38496860 -> xe-pw-125724v1
-
-  IGT_7562: 5e82a8ee42d58c5e183c3d4208ae4ccd977a4830 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-454-f24c46200dc8fad700f51106e678d68d38496860: f24c46200dc8fad700f51106e678d68d38496860
-  xe-pw-125724v1: 125724v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/index.html
-
---===============0795030446406379193==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Xe PERF layer</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125724/">https://patchwork.freedesktop.org/series/125724/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-454-f24c46200dc8fad700f51106e678d68d38496860_BAT -&gt; xe-pw-125724v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 4)</h2>
-<p>Additional (2): bat-pvc-2 bat-adlp-7 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-125724v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>{igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd}:</p>
-<ul>
-<li>
-<p>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-pvc-2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html">INCOMPLETE</a></p>
-</li>
-<li>
-<p>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html">SKIP</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-125724v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/609">Intel XE#609</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/423">Intel XE#423</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small-external:</p>
-<ul>
-<li>
-<p>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/389">Intel XE#389</a>) +3 other tests fail</p>
-</li>
-<li>
-<p>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@xe_evict@evict-beng-small-external.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-cm:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-pvc-2/igt@xe_evict@evict-small-cm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/482">Intel XE#482</a>) +3 other tests dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@migrate:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@xe_live_ktest@migrate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/753">Intel XE#753</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-adlp-7/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/263">Intel XE#263</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-pvc-2/igt@xe_module_load@load.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/378">Intel XE#378</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>{igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd}:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-454-f24c46200dc8fad700f51106e678d68d38496860/bat-dg2-oem2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125724v1/bat-dg2-oem2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-454-f24c46200dc8fad700f51106e678d68d38496860 -&gt; xe-pw-125724v1</li>
-</ul>
-<p>IGT_7562: 5e82a8ee42d58c5e183c3d4208ae4ccd977a4830 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-454-f24c46200dc8fad700f51106e678d68d38496860: f24c46200dc8fad700f51106e678d68d38496860<br />
-  xe-pw-125724v1: 125724v1</p>
-
-</body>
-</html>
-
---===============0795030446406379193==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
