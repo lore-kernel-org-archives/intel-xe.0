@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE991C4167D
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Oct 2023 15:46:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 93621C4332F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Oct 2023 15:46:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C38F10E01F;
-	Mon, 30 Oct 2023 15:46:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2237210E0E2;
+	Mon, 30 Oct 2023 15:46:44 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 48F3A10E01F;
- Mon, 30 Oct 2023 15:46:32 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3B84410E0E2;
+ Mon, 30 Oct 2023 15:46:42 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 434F1ACC24;
- Mon, 30 Oct 2023 15:46:32 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3A7BEACC24;
+ Mon, 30 Oct 2023 15:46:42 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
-Date: Mon, 30 Oct 2023 15:46:32 -0000
-Message-ID: <169868079225.25484.13512336274379190957@emeril.freedesktop.org>
+Date: Mon, 30 Oct 2023 15:46:42 -0000
+Message-ID: <169868080223.25482.16685336804264212808@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231030150756.1011777-1-shekhar.chauhan@intel.com>
 In-Reply-To: <20231030150756.1011777-1-shekhar.chauhan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/xelpmp=3A_Extend_a_workaround_to_Xe=5FLPM+?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/xelpmp=3A_Extend_a_workaround_to_Xe=5FLPM+?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,26 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: d7eb9a5c3 drm/xe/xe_exec_queue: Add check for access counter granularity
-=== git am output follows ===
-Applying: drm/xe/xelpmp: Extend a workaround to Xe_LPM+
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit db46553fa733317ea416f1156ed08dd81e03a259
+Author: Shekhar Chauhan <shekhar.chauhan@intel.com>
+Date:   Mon Oct 30 20:37:56 2023 +0530
+
+    drm/xe/xelpmp: Extend a workaround to Xe_LPM+
+    
+    Add Xe_LPM+ support to an existing workaround.
+    BSpec: 51762
+    
+    Signed-off-by: Shekhar Chauhan <shekhar.chauhan@intel.com>
++ /mt/dim checkpatch d7eb9a5c3acda8d87699bc82add7e8d88f5f4700 drm-intel
+db46553fa drm/xe/xelpmp: Extend a workaround to Xe_LPM+
 
 
