@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 80FF4C4167D
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Oct 2023 16:30:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79C25C4332F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Oct 2023 17:06:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3262910E33E;
-	Mon, 30 Oct 2023 16:30:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0780710E33F;
+	Mon, 30 Oct 2023 17:06:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6614A10E33F;
- Mon, 30 Oct 2023 16:30:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 88C6C10E33F;
+ Mon, 30 Oct 2023 17:06:15 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3C811A0BA8;
- Mon, 30 Oct 2023 16:30:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0191391438519652603=="
+ by emeril.freedesktop.org (Postfix) with ESMTP id 834D2A7DFB;
+ Mon, 30 Oct 2023 17:06:15 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Shekhar Chauhan" <shekhar.chauhan@intel.com>
-Date: Mon, 30 Oct 2023 16:30:57 -0000
-Message-ID: <169868345722.25482.12159729982935760756@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Mon, 30 Oct 2023 17:06:15 -0000
+Message-ID: <169868557553.25484.1979653422957325033@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231030150756.1011777-1-shekhar.chauhan@intel.com>
-In-Reply-To: <20231030150756.1011777-1-shekhar.chauhan@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe?=
- =?utf-8?q?lpmp=3A_Extend_a_workaround_to_Xe=5FLPM+?=
+References: <20231030161016.54300-5-matthew.auld@intel.com>
+In-Reply-To: <20231030161016.54300-5-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Some_eviction_fixes_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -44,189 +44,19 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0191391438519652603==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
 == Series Details ==
 
-Series: drm/xe/xelpmp: Extend a workaround to Xe_LPM+
-URL   : https://patchwork.freedesktop.org/series/125760/
+Series: Some eviction fixes (rev3)
+URL   : https://patchwork.freedesktop.org/series/125591/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700_BAT -> xe-pw-125760v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-125760v1_BAT:
-
-### IGT changes ###
-
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd}:
-    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700/bat-dg2-oem2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/bat-dg2-oem2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html
-    - bat-atsm-2:         [PASS][3] -> [FAIL][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700/bat-atsm-2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/bat-atsm-2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-125760v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-dg2-oem2:       [FAIL][5] ([Intel XE#480]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][7] ([Intel XE#616] / [Intel XE#750]) -> [DMESG-FAIL][8] ([Intel XE#282] / [i915#2017])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
-  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
-  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: d7eb9a5c3 drm/xe/xe_exec_queue: Add check for access counter granularity
+=== git am output follows ===
+Applying: drm/xe/migrate: fix MI_ARB_ON_OFF usage
+Applying: drm/xe/bo: consider dma-resv fences for clear job
+Applying: drm/xe/bo: sync kernel fences for KMD buffers
 
 
-Build changes
--------------
-
-  * IGT: IGT_7563 -> IGT_7566
-  * Linux: xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700 -> xe-pw-125760v1
-
-  IGT_7563: 3f58d866798c3d7896789903f92997f2312b2305 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7566: 7566
-  xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700: d7eb9a5c3acda8d87699bc82add7e8d88f5f4700
-  xe-pw-125760v1: 125760v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/index.html
-
---===============0191391438519652603==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe/xelpmp: Extend a workaround to Xe_LPM+</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125760/">https://patchwork.freedesktop.org/series/125760/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700_BAT -&gt; xe-pw-125760v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-125760v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>{igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd}:</p>
-<ul>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700/bat-dg2-oem2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/bat-dg2-oem2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html">FAIL</a></p>
-</li>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700/bat-atsm-2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/bat-atsm-2/igt@xe_evict_ccs@evict-ccs-overcommit-parallel-nofree-samefd.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-125760v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125760v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7563 -&gt; IGT_7566</li>
-<li>Linux: xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700 -&gt; xe-pw-125760v1</li>
-</ul>
-<p>IGT_7563: 3f58d866798c3d7896789903f92997f2312b2305 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7566: 7566<br />
-  xe-456-d7eb9a5c3acda8d87699bc82add7e8d88f5f4700: d7eb9a5c3acda8d87699bc82add7e8d88f5f4700<br />
-  xe-pw-125760v1: 125760v1</p>
-
-</body>
-</html>
-
---===============0191391438519652603==--
