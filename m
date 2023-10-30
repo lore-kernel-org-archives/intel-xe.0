@@ -4,49 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2E7BC4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Oct 2023 11:20:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F18F3C4332F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Oct 2023 11:48:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77B0F10E293;
-	Mon, 30 Oct 2023 11:20:46 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C0BB610E293
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Oct 2023 11:20:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B8A2310E297;
+	Mon, 30 Oct 2023 11:48:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7B7810E297
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Oct 2023 11:48:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698664844; x=1730200844;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=xD4aK6Sa6lWLeRTodog5bU6wSqIc1+Zr/2zpzRQG/FQ=;
- b=kxsO/euVyKq+iLEYN9zbKzIzUPZ4JEJPlA6dTc5TNuIL3ymNV073pSD8
- eQpH7Jc8zBNTRJGh87Pe7Dr2EL26mvnhp5oUQU6RNQsKkmi3f8XKnBDor
- 5u17sqTQJMhP+998wnGOdJvmbvmWhhNd3l8ZdkIcMBTIQkWKtPvPy9qMa
- wi4F7Na1G6PMv/nyErC+Q1CSUfsOuB4d9n5DxSbyr9OiN3Ke3t/eZ9Dlp
- ZWiLThiO1S+cttbeoEB7jj6hh3iCwhpi9TI1oHN9UdCEU5abYEnkrraxk
- Oawre10uWK7IQ40nDxvKWKpZCa+x1AfkuXO3Fi1HZN8gQpcaspVZ5RpjF w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10878"; a="385254133"
-X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="385254133"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2023 04:20:44 -0700
+ t=1698666500; x=1730202500;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=75L0TkP5lYsfAsCjET24V16NJlQVrtVou2yDJMUlG0M=;
+ b=REZMgZrzvqCoTKPoSmIOdHik+Tn1AlDZJ2tsjhc2HrlvFjBbLcGlDiax
+ 3ztJutCsf3tm/LSxmtHWu+nBoCzdXSe/hGbY76peA/Oo13l0Le8FRgf/P
+ 1XApxJ+mKUFw435FymocSSPgTxqnVgDnJxKxE9LpQhf5HUV+4KP4KDAu1
+ a4+mgEE0rtyXOydgg97ccq5mASf4KK5cT6hYwi4a3LjseWSMuycPBD4t/
+ +P+j7AMtsNTL5XzlPQh1I8AUw3uD9FVhiGy/q/+NhE/saQtROlm++soOq
+ ae8IX4wx3qdLJd7OaWjcjaMooEPW/hSqAuKi2mennAFuHgr+4Bh0JHOBW Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10878"; a="391917213"
+X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="391917213"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2023 04:48:20 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10878"; a="1007389661"
-X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="1007389661"
-Received: from ksztyber-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.213.4.245])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2023 04:20:42 -0700
-Date: Mon, 30 Oct 2023 12:20:39 +0100
-From: Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>
-To: Matthew Auld <matthew.auld@intel.com>
-Message-ID: <20231030112039.6lz3uuuh34bcvs7g@zkempczy-mobl2>
-References: <20231027104810.310819-5-matthew.auld@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10878"; a="736713675"
+X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="736713675"
+Received: from bnilawar-desk1.iind.intel.com ([10.145.169.158])
+ by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2023 04:48:18 -0700
+From: Badal Nilawar <badal.nilawar@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon, 30 Oct 2023 17:26:15 +0530
+Message-Id: <20231030115618.1382200-1-badal.nilawar@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231027104810.310819-5-matthew.auld@intel.com>
-Subject: Re: [Intel-xe] [PATCH v2 0/3] Some eviction fixes
+Subject: [Intel-xe] [PATCH v3 0/3] DGFX HWMON Enhancement
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,26 +54,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Oct 27, 2023 at 11:48:11AM +0100, Matthew Auld wrote:
-> Hopefully fixes the scary corruption issues seen around evicting VRAM, as picked
-> up by the IGTs written by Zbigniew [1].
-> 
-> v2: Some improvements suggested by Matt B.
-> 
-> [1] https://patchwork.freedesktop.org/series/124626/
-> 
-> -- 
-> 2.41.0
-> 
+This series contains some enhancements to xe hwmon.
+The patch "Expose power1_max_interval" is, with couple of fixes, from
+previous series https://patchwork.freedesktop.org/series/118934/
 
-Works for me now:
+v2: 
+  - Fix review comments (Anshuman)
+v3:
+  - Add code refactoring in seperate patch
 
-Tested-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Badal Nilawar (3):
+  drm/xe/hwmon: Add kernel doc and refactor xe hwmon
+  drm/xe/hwmon: Protect hwmon rw attributes with hwmon_lock
+  drm/xe/hwmon: Expose power1_max_interval
 
---
-Zbigniew
+ .../ABI/testing/sysfs-driver-intel-xe-hwmon   |   9 +
+ drivers/gpu/drm/xe/regs/xe_mchbar_regs.h      |   8 +
+ drivers/gpu/drm/xe/xe_hwmon.c                 | 375 ++++++++++++------
+ 3 files changed, 277 insertions(+), 115 deletions(-)
+
+-- 
+2.25.1
 
