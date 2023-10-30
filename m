@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4D716C4332F
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Oct 2023 11:51:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E83FC4332F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Oct 2023 11:52:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1683210E29E;
-	Mon, 30 Oct 2023 11:51:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A0E310E29E;
+	Mon, 30 Oct 2023 11:52:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 69F7D10E29E;
- Mon, 30 Oct 2023 11:51:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 04AE610E29E;
+ Mon, 30 Oct 2023 11:52:00 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 63E76A0169;
- Mon, 30 Oct 2023 11:51:44 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 01EF6A0169;
+ Mon, 30 Oct 2023 11:52:00 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Badal Nilawar" <badal.nilawar@intel.com>
-Date: Mon, 30 Oct 2023 11:51:44 -0000
-Message-ID: <169866670440.25485.6953460532401855515@emeril.freedesktop.org>
+Date: Mon, 30 Oct 2023 11:52:00 -0000
+Message-ID: <169866672000.25483.16724132027081861292@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231030115618.1382200-1-badal.nilawar@intel.com>
 In-Reply-To: <20231030115618.1382200-1-badal.nilawar@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_DGFX_HWMON_Enhancement_=28rev3=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_DG?=
+ =?utf-8?q?FX_HWMON_Enhancement_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,11 +52,41 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: d7eb9a5c3 drm/xe/xe_exec_queue: Add check for access counter granularity
-=== git am output follows ===
-Applying: drm/xe/hwmon: Add kernel doc and refactor xe hwmon
-Applying: drm/xe/hwmon: Protect hwmon rw attributes with hwmon_lock
-Applying: drm/xe/hwmon: Expose power1_max_interval
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit dbcdb346599ef80c15b6272866986def2d466ea6
+Author: Badal Nilawar <badal.nilawar@intel.com>
+Date:   Mon Oct 30 17:26:18 2023 +0530
+
+    drm/xe/hwmon: Expose power1_max_interval
+    
+    Expose power1_max_interval, that is the tau corresponding to PL1, as a
+    custom hwmon attribute. Some bit manipulation is needed because of the
+    format of PKG_PWR_LIM_1_TIME in
+    PACKAGE_RAPL_LIMIT register (1.x * power(2,y))
+    
+    v2: Get rpm wake ref while accessing power1_max_interval
+    v3: %s/hwmon/xe_hwmon/
+    v4:
+     - As power1_max_interval is rw attr take lock in read function as well
+     - Refine comment about val to fix point conversion (Andi)
+     - Update kernel version and date in doc
+    v5: Fix review comments (Anshuman)
+    
+    Acked-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Reviewed-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+    Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
+    Reviewed-by: Anshuman Gupta <anshuman.gupta@intel.com>
++ /mt/dim checkpatch d7eb9a5c3acda8d87699bc82add7e8d88f5f4700 drm-intel
+ff7ceb8cc drm/xe/hwmon: Add kernel doc and refactor xe hwmon
+f30746037 drm/xe/hwmon: Protect hwmon rw attributes with hwmon_lock
+dbcdb3465 drm/xe/hwmon: Expose power1_max_interval
 
 
