@@ -4,41 +4,41 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84AEDC4332F
-	for <intel-xe@archiver.kernel.org>; Mon, 30 Oct 2023 17:58:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF41AC4332F
+	for <intel-xe@archiver.kernel.org>; Mon, 30 Oct 2023 18:44:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CADB10E358;
-	Mon, 30 Oct 2023 17:58:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 37B0310E358
- for <intel-xe@lists.freedesktop.org>; Mon, 30 Oct 2023 17:58:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEFDA10E35B;
+	Mon, 30 Oct 2023 18:44:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8692210E35B
+ for <intel-xe@lists.freedesktop.org>; Mon, 30 Oct 2023 18:43:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698688732; x=1730224732;
+ t=1698691439; x=1730227439;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=QzjsYclihJvCnV3Zz5qIunw4IroIiMAfvTDydSQL8GI=;
- b=bz8AkBL1D0Y1Z8GqC7jDZ4THuKuF1YiBjP6Kd/f8HAG8YYJFAiD0JSa7
- TDPZEBqKoxlnM5fOa8qU0y3v/EoL1YA4qUX4D59Xnb8JV5PkGW93aixEV
- wb9y2EqJ8DrObicXUH3tjyDCXyFJ3zWTEGhff8UlaJVliOk9sIqrrIpYb
- WwCa96rQUYVG5McOI/Rqn2/QAvnlQ6IJOGh6LDlrdiMpwZ821J33lP1zO
- 1p1hjqMITmKB1RGc3RRQcQU/X4ECp+8ezp19sribNn7RtVxbG6PVynPxf
- GcDZI46QbgQ9kk3zx6tnq71fUX2ZAXthvKY4G9FamQ11Qi5uxVVqHQWmF w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="387016866"
-X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="387016866"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Oct 2023 10:58:51 -0700
+ bh=W/BzX+xszaeVAIRvAZ+xOBheZbtvShW+O90yMg7DOyY=;
+ b=gFV4GDCyvnr8SxZCtiEMGHrvzeYvtYTKAbR5ZAzeRXCqQp1ariLw7pER
+ K6rKb3nNhiqRH+4GI23KLs6f/b0ki5looq0UD70h/PEo+kVYvcqxQF4Ru
+ HVsmMYQvrJN+3quTeJwyFsi2R6qCDjVmMnaIku38jCvhdLdLk0iXeE5/V
+ S5Xhy7IkMhN28XsqiaE/TyEWvpm6WQrfuLBoT1wOD6Q1cTmRk6YURprbo
+ XMmsN9E/pANSbBXgnK/zATR3sZ1zbl70lKSIW8vfUv4yMhbBDGmIAFtY+
+ rm5RWtEZPr+TPd1dBOHGiJ6tgyNorZcZCbzcOB3jQDMt5zAH/XbOd7x7U g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="385330650"
+X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="385330650"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Oct 2023 11:43:59 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="710168279"
-X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="710168279"
+X-IronPort-AV: E=McAfee;i="6600,9927,10879"; a="933853051"
+X-IronPort-AV: E=Sophos;i="6.03,263,1694761200"; d="scan'208";a="933853051"
 Received: from ravi-nuc8i7beh.iind.intel.com ([10.145.169.75])
- by orsmga003.jf.intel.com with ESMTP; 30 Oct 2023 10:58:48 -0700
+ by orsmga005.jf.intel.com with ESMTP; 30 Oct 2023 11:43:56 -0700
 From: Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>
 To: intel-xe@lists.freedesktop.org, janga.rahul.kumar@intel.com,
  ramadevi.gandi@intel.com
-Date: Mon, 30 Oct 2023 23:25:22 +0530
-Message-Id: <20231030175522.1934073-1-ruthuvikas.ravikumar@intel.com>
+Date: Tue, 31 Oct 2023 00:10:30 +0530
+Message-Id: <20231030184030.1936233-1-ruthuvikas.ravikumar@intel.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -62,6 +62,7 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 This kunit verifies the hardware values of mocs and
 l3cc registers with the KMD programmed values.
 
+v7: correct checkpath
 v6: Change ssize_t type.
     Change forcewake domain to XE_FW_GT.
     Update change of MOCS registers are multicast on Xe_HP and beyond
@@ -84,11 +85,11 @@ Cc: Mathew D Roper <matthew.d.roper@intel.com>
 Signed-off-by: Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>
 ---
  drivers/gpu/drm/xe/tests/Makefile       |   1 +
- drivers/gpu/drm/xe/tests/xe_mocs.c      | 167 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_mocs.c      | 165 ++++++++++++++++++++++++
  drivers/gpu/drm/xe/tests/xe_mocs_test.c |  24 ++++
  drivers/gpu/drm/xe/tests/xe_mocs_test.h |  13 ++
  drivers/gpu/drm/xe/xe_mocs.c            |   4 +
- 5 files changed, 209 insertions(+)
+ 5 files changed, 207 insertions(+)
  create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs.c
  create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs_test.c
  create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs_test.h
@@ -107,10 +108,10 @@ index 51f1a7f017d4..39d8a0892274 100644
  	xe_wa_test.o
 diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
 new file mode 100644
-index 000000000000..bc0579ba2ff4
+index 000000000000..b2f2a4a86989
 --- /dev/null
 +++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
-@@ -0,0 +1,167 @@
+@@ -0,0 +1,165 @@
 +// SPDX-License-Identifier: GPL-2.0 AND MIT
 +/*
 + * Copyright © 2022 Intel Corporation
@@ -186,8 +187,7 @@ index 000000000000..bc0579ba2ff4
 +			if (reg_val != l3cc)
 +				KUNIT_FAIL(test, "l3cc reg 0x%x has incorrect val.\n",
 +					reg_mcr.__reg.addr);
-+		}
-+		else {
++		} else {
 +			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
 +			struct xe_reg reg = XELP_LNCFCMOCS(i);
 +
@@ -200,8 +200,8 @@ index 000000000000..bc0579ba2ff4
 +
 +	}
 +	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+	out:
-+		xe_device_mem_access_put(gt_to_xe(gt));
++out:
++	xe_device_mem_access_put(gt_to_xe(gt));
 +}
 +
 +static void read_mocs_table(struct xe_gt *gt,
@@ -237,8 +237,7 @@ index 000000000000..bc0579ba2ff4
 +			if (reg_val != mocs)
 +				KUNIT_FAIL(test, "mocs reg 0x%x has incorrect val:\n",
 +					reg_mcr.__reg.addr);
-+		}
-+		else {
++		} else {
 +			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
 +			struct xe_reg reg = XELP_GLOBAL_MOCS(i);
 +
@@ -250,8 +249,8 @@ index 000000000000..bc0579ba2ff4
 +		}
 +	}
 +	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+	out:
-+		xe_device_mem_access_put(gt_to_xe(gt));
++out:
++	xe_device_mem_access_put(gt_to_xe(gt));
 +}
 +
 +static int mocs_kernel_test_run_device(struct xe_device *xe)
