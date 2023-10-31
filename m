@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ABE75C4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Oct 2023 14:22:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 495F5C00142
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Oct 2023 14:22:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70AC410E4FF;
-	Tue, 31 Oct 2023 14:22:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D54410E506;
+	Tue, 31 Oct 2023 14:22:17 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8511810E4FF
- for <intel-xe@lists.freedesktop.org>; Tue, 31 Oct 2023 14:21:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A35BD10E4FF
+ for <intel-xe@lists.freedesktop.org>; Tue, 31 Oct 2023 14:21:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698762114; x=1730298114;
+ t=1698762113; x=1730298113;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=syhVFeZuOs0nBIbK82bx7Qlkc2OMb4sZ4W1DoxSkigc=;
- b=KEfhLq942J3vvx95TaJ5apShFTRkZgZPz1spzvngLrEXPqru4DC0vBC+
- ISUORHGW/v4hQpKLcC3I8A/HxpibiENbNi9vGQcDxoetn9uQ5doTiG6N2
- b+5BF3pn8Jfo0OEnNdbtJh7Ib77bRg4iauGeDPtkptdKfVB5LVUN6SCZe
- p9ucW1LbUSl+lGyaJ1UhwfdPgGBi8CWC0DCWkNWschqqRcnAgOl2WLbx2
- 5XNeWM1xWVNk3WyOIkeGI+ybjwIzdHWREq3fqRQKRDjoZIqwOlrgUtWvu
- jlv3qOI47VOQV0o2sU1chlCNAmORszAy7fxRhzFC4xx/kPEAAddr13w5s g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="387183170"
-X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="387183170"
+ bh=U5faFsLt81/HBM/bO3T+qtxJdyRnnAkOkAi6YGNcRoU=;
+ b=eyfPlyE5TNGHNTEA2l/vYNRSB2TgSSXt3fNSOKMQzI38HklI2jpQyc69
+ 9b4rRHjt7XIYUYOLuQXpz0GJ9+8pxDjtEhCEIJ/qFbd7bvor5TdjTNmhp
+ lQew0km5InJBux5fNAHnRGuy4EJU61h9E7X6ZRCVq9xQx1mCTGMznN+sO
+ E7Dc5IlXtHahUtfRvp7i8VZM9iruAeFGLlZL8SUjXHn2EdCOQjQaWzueQ
+ /dsu6yUQl1XzKzlDgmbnzWiL0PgifQUTG8vee/tzlkHLepgCcK+OJbWdJ
+ j4qpEGAl1OcAMABW50jpQvW4idAcFEs16Q6uQeeC+CJwksjcuNESkDgrF g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="387183166"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="387183166"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2023 07:21:54 -0700
+ 31 Oct 2023 07:21:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="934126094"
-X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="934126094"
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="934126093"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="934126093"
 Received: from olindum-mobl1.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.59])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2023 07:21:53 -0700
+ 31 Oct 2023 07:21:52 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 31 Oct 2023 15:21:33 +0100
-Message-ID: <20231031142133.17129-11-thomas.hellstrom@linux.intel.com>
+Date: Tue, 31 Oct 2023 15:21:32 +0100
+Message-ID: <20231031142133.17129-10-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231031142133.17129-1-thomas.hellstrom@linux.intel.com>
 References: <20231031142133.17129-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI HAX 11/11] drm/xe: Disable panic_on_warn for testing
- purposes
+Subject: [Intel-xe] [CI 10/11] drm/xe: Use DRM_GPUVM_RESV_PROTECTED for gpuvm
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,37 +61,28 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Use DRM_GPUVM_RESV_PROTECTED to relax locking.
+
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c | 2 +-
- kernel/panic.c                 | 1 +
- 2 files changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_vm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 8341acf66e5f..5374c548b61d 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -278,7 +278,7 @@ int xe_device_probe(struct xe_device *xe)
- 	u8 id;
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 5f3bdb4e48ad..6bd1f4ac462a 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1229,8 +1229,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 		goto err_no_resv;
+ 	}
  
- 	xe_pat_init_early(xe);
--
-+	panic_on_warn = 0;
- 	xe->info.mem_region_mask = 1;
- 	err = xe_display_init_nommio(xe);
- 	if (err)
-diff --git a/kernel/panic.c b/kernel/panic.c
-index bc59531848e4..1c8057027f20 100644
---- a/kernel/panic.c
-+++ b/kernel/panic.c
-@@ -59,6 +59,7 @@ static int pause_on_oops_flag;
- static DEFINE_SPINLOCK(pause_on_oops_lock);
- bool crash_kexec_post_notifiers;
- int panic_on_warn __read_mostly;
-+EXPORT_SYMBOL_GPL(panic_on_warn);
- unsigned long panic_on_taint;
- bool panic_on_taint_nousertaint = false;
- static unsigned int warn_limit __read_mostly;
+-	drm_gpuvm_init(&vm->gpuvm, "Xe VM", 0, &xe->drm, vm_resv_obj,
+-		       0, vm->size, 0, 0, &gpuvm_ops);
++	drm_gpuvm_init(&vm->gpuvm, "Xe VM", DRM_GPUVM_RESV_PROTECTED, &xe->drm,
++		       vm_resv_obj, 0, vm->size, 0, 0, &gpuvm_ops);
+ 
+ 	drm_gem_object_put(vm_resv_obj);
+ 
 -- 
 2.41.0
 
