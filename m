@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 967D5C4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Oct 2023 10:37:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E5FD4C4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Oct 2023 10:37:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 597D910E468;
-	Tue, 31 Oct 2023 10:37:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3C2010E468;
+	Tue, 31 Oct 2023 10:37:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id E4BE710E468;
- Tue, 31 Oct 2023 10:37:10 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 48B3E10E468;
+ Tue, 31 Oct 2023 10:37:25 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id DEBE0AADDD;
- Tue, 31 Oct 2023 10:37:10 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 46CFCAADDD;
+ Tue, 31 Oct 2023 10:37:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Date: Tue, 31 Oct 2023 10:37:10 -0000
-Message-ID: <169874863088.27660.18066796286526711621@emeril.freedesktop.org>
+Date: Tue, 31 Oct 2023 10:37:25 -0000
+Message-ID: <169874864528.27664.6846509210020604208@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231031103525.2433645-1-tejas.upadhyay@intel.com>
 In-Reply-To: <20231031103525.2433645-1-tejas.upadhyay@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Count_and_report_low_level_driver_errors?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Count_and_report_low_level_driver_errors?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,72 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 87f169fc9 drm/xe/bo: sync kernel fences for KMD buffers
-=== git am output follows ===
-Applying: drm/xe: Introduce and update counter for low level driver errors
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8fc8c9e9f4d75e8964b417a1ea308d5b8d1905fb
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Tue Oct 31 16:05:25 2023 +0530
+
+    drm/xe: Introduce and update counter for low level driver errors
+    
+    Introduce low level driver error counter and incrementing on
+    each occurrence. Focus is on errors that are not functionally
+    affecting the system and might otherwise go unnoticed and cause
+    power/performance regressions, so checking for the error
+    counters should help.
+    
+    Importantly the intention is not to go adding new error checks,
+    but to make sure the existing important error conditions are
+    propagated in terms of counter under respective categories like
+    below :
+    - GT
+      - GUC COMMUNICATION
+      - ENGINE OTHER
+      - GT OTHER
+    
+    - Tile
+      - GTT
+      - INTERRUPT
+    
+    Currently this is just a counting of errors, later these
+    counters will be reported through netlink interface when it is
+    implemented and ready.
+    
+    V11:
+      - Unify tlb invalidation timeout errs - Michal
+      - Improve kernel doc comments - Michal
+      - Improve logging output message - Michal
+    V10:
+      - Report and count errors from common place i.e caller - Michal
+      - Fixed some minor nits - Michal
+    V9:
+      - Make one patch for API and counter update - Michal
+      - Remove counter from places where driver load will fail - Michal
+      - Remove extra \n from logging
+      - Improve commit message - Aravind/Michal
+    V8:
+      - Correct missed ret value handling
+    V7:
+      - removed double couting of err - Michal
+    V6:
+      - move drm_err to gt and tile specific err API - Aravind
+      - Use GTT naming instead of GGTT - Aravind/Niranjana
+    V5:
+      - Dump err_type in string format
+    V4:
+      - dump err_type in drm_err log - Himal
+    V2:
+      - Use modified APIs
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 87f169fc90d74a88df33e0b34c02240308625a99 drm-intel
+8fc8c9e9f drm/xe: Introduce and update counter for low level driver errors
 
 
