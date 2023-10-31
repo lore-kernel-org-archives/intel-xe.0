@@ -4,30 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D73ACC4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Oct 2023 23:04:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFC07C4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Oct 2023 23:21:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EDB110E5DC;
-	Tue, 31 Oct 2023 23:04:55 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EB4A610E5DE;
- Tue, 31 Oct 2023 23:04:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E5E5BAADD6;
- Tue, 31 Oct 2023 23:04:53 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8790294624135971056=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id AC7A310E033;
+	Tue, 31 Oct 2023 23:21:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51A1A10E033
+ for <intel-xe@lists.freedesktop.org>; Tue, 31 Oct 2023 23:21:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698794460; x=1730330460;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=sQtMKOLJmSL4oTn1DBHcZvlDn8JeZ5c7neIq3BcH+Gk=;
+ b=BC7G3iBTZaK0mwWBfVYLE3muxhCXCM6D623RrOub4AbkbQi7sEpK55bF
+ q1JtG+EUQC6c5Nz0mOAjWPwOz41cifiF24h8R7/QwrXQf0zfKNXlS7t/7
+ 3QzwFcbDyQkUmvfisUnHmJaBIu3PWVe083IY+zfcGio4ZnVLL2bZApgnI
+ Kwk3/spsfl8WuQmvJjVfYTQNDoNf6vIVNVEfcC45Prm8Fpv+M0nqlTQW+
+ Q8OQTC3tVPRe7W+J/JjMjiF3JLPSA7CCD82I3ib/Ixl/2VKUmv56C4Zm6
+ n6PQbGDyzdJwNFAaQ3TT6ZhmQESULV6Nycv8AlYVG0DK5/+jouZ5beMBs w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="454863994"
+X-IronPort-AV: E=Sophos;i="6.03,266,1694761200"; d="scan'208";a="454863994"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2023 16:20:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.03,266,1694761200"; 
+   d="scan'208";a="2003348"
+Received: from irvmail002.ir.intel.com ([10.43.11.120])
+ by fmviesa002.fm.intel.com with ESMTP; 31 Oct 2023 16:20:57 -0700
+Received: from [10.249.131.156] (mwajdecz-MOBL.ger.corp.intel.com
+ [10.249.131.156])
+ by irvmail002.ir.intel.com (Postfix) with ESMTP id 6B9C84213B;
+ Tue, 31 Oct 2023 23:20:56 +0000 (GMT)
+Message-ID: <37b80d33-48bd-479a-b92c-df467c8e3fe4@intel.com>
+Date: Wed, 1 Nov 2023 00:20:55 +0100
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Brian Welty" <brian.welty@intel.com>
-Date: Tue, 31 Oct 2023 23:04:53 -0000
-Message-ID: <169879349390.27661.16195736188776314839@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231031221510.29355-1-brian.welty@intel.com>
-In-Reply-To: <20231031221510.29355-1-brian.welty@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Fix_pagef?=
- =?utf-8?q?ault_and_access_counter_worker_functions?=
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+References: <20231023221122.1025441-1-matthew.brost@intel.com>
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+In-Reply-To: <20231023221122.1025441-1-matthew.brost@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH] drm/xe/guc: Return the lower part of
+ blocking H2G message
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,136 +62,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8790294624135971056==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: Fix pagefault and access counter worker functions
-URL   : https://patchwork.freedesktop.org/series/125827/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from xe-460-71757584a0d1950a76a54dd6f92a6fb455e78e21_BAT -> xe-pw-125827v1_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-125827v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][1] ([Intel XE#282] / [i915#2017]) -> [FAIL][2] ([Intel XE#616] / [Intel XE#750])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-460-71757584a0d1950a76a54dd6f92a6fb455e78e21/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125827v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
-  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
-  [Intel XE#855]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/855
-  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
 
 
-Build changes
--------------
+On 24.10.2023 00:11, Matthew Brost wrote:
+> The upper layers may need this data, an example of this is allocating
+> DIST doorbell.
+> 
+> v2 (Michal): Drop change of checking the return value.
+> 
+> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_guc_ct.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+> index 8b686c8b3339..092a9563f80a 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+> @@ -26,6 +26,7 @@
+>  struct g2h_fence {
+>  	u32 *response_buffer;
+>  	u32 seqno;
+> +	u32 status;
 
-  * Linux: xe-460-71757584a0d1950a76a54dd6f92a6fb455e78e21 -> xe-pw-125827v1
+this name might be misleading, as in response message we don't expect
+'status', but rather generic 'data' from GUC_HXG_RESPONSE_MSG_0_DATA0
 
-  IGT_7568: 9e3c3791e7e0297f277211b19a3388a1ee87f3d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-460-71757584a0d1950a76a54dd6f92a6fb455e78e21: 71757584a0d1950a76a54dd6f92a6fb455e78e21
-  xe-pw-125827v1: 125827v1
+>  	u16 response_len;
+>  	u16 error;
+>  	u16 hint;
+> @@ -749,7 +750,7 @@ static int guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>  		ret = -EIO;
+>  	}
+>  
+> -	return ret > 0 ? 0 : ret;
+> +	return ret > 0 ? g2h_fence.status : ret;
 
-== Logs ==
+while this helps for cases when all returned data is in data0, and
+likely caller didn't even provide buffer for the response, but it still
+wont solve the problems with flexible size G2H responses, as caller, who
+had provided buffer for the response, still doesn't know how many dwords
+were copied into it
 
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125827v1/index.html
+can we have similar logic as in i915 where we return response_len if
+there was buffer provided, and response_data if not ?
 
---===============8790294624135971056==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Fix pagefault and access counter worker functions</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125827/">https://patchwork.freedesktop.org/series/125827/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125827v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125827v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-460-71757584a0d1950a76a54dd6f92a6fb455e78e21_BAT -&gt; xe-pw-125827v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-125827v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-460-71757584a0d1950a76a54dd6f92a6fb455e78e21/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125827v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-460-71757584a0d1950a76a54dd6f92a6fb455e78e21 -&gt; xe-pw-125827v1</li>
-</ul>
-<p>IGT_7568: 9e3c3791e7e0297f277211b19a3388a1ee87f3d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-460-71757584a0d1950a76a54dd6f92a6fb455e78e21: 71757584a0d1950a76a54dd6f92a6fb455e78e21<br />
-  xe-pw-125827v1: 125827v1</p>
-
-</body>
-</html>
-
---===============8790294624135971056==--
+>  }
+>  
+>  int xe_guc_ct_send_recv(struct xe_guc_ct *ct, const u32 *action, u32 len,
+> @@ -815,6 +816,9 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>  		g2h_fence->response_len = response_len;
+>  		memcpy(g2h_fence->response_buffer, msg + GUC_CTB_MSG_MIN_LEN,
+>  		       response_len * sizeof(u32));
+> +	} else {
+> +		g2h_fence->status =
+> +			FIELD_GET(GUC_HXG_RESPONSE_MSG_0_DATA0, msg[1]);
+>  	}
+>  
+>  	g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
