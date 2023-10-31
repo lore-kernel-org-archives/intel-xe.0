@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8CDB0C4167B
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Oct 2023 14:02:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 56B73C4167D
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Oct 2023 14:05:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 526BD10E4EB;
-	Tue, 31 Oct 2023 14:02:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 508B610E4E9
- for <intel-xe@lists.freedesktop.org>; Tue, 31 Oct 2023 14:02:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23B9910E4E9;
+	Tue, 31 Oct 2023 14:05:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BADDC10E4E9
+ for <intel-xe@lists.freedesktop.org>; Tue, 31 Oct 2023 14:05:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698760956; x=1730296956;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=HzEUDrtggSrt3hT3lEx3/TlB3HRBBHaLnkX5XRQCS1I=;
- b=RgW3pEleuDNDrLt00GYUvmSU6S5QjRg3tVZF/eHNqDeYd7KCJqsv7Y5y
- u7uKEpXvvEFiy/ZYa4zNfkLW9t7tvhUAqqmxd/3OgYfb/HwhZViUARZTC
- wwozDwoCrtiafCoyrDphYSjGNMCJqZJAJg4swvIe4knyQEyvU8NqR8G43
- PNgfuSpU36zq+7+FrUq9aBoporqovmWztHm18hcBVHfm95UH8ZVq2l/bP
- sa0ElFdq753ByhJ4DCL1OIxCqBollY/TcSe6LRWcb4BEmEn9Ny3AC8yWj
- RrvPARWZ4O57nOirAgKTO/edSzTuvVqEhP26wLWt3wYg9DLVAV9G8DZDB g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="385479356"
-X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="385479356"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2023 07:02:08 -0700
+ t=1698761149; x=1730297149;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=cR+kpsoir4SpP/9BcvtEnPmTfRVQ/+BTjAKsFfjr5bA=;
+ b=A3mUNLcxHndSaJEUMwwjP/glfYueexwhkvMXieUsHV0r5VR/VOSdKN9x
+ k9lJWsFXANsGGoLVNqjtzfo1aK/B7+vhoMjr1hm7HQYcY8hFBsb2FY/I0
+ Lgk+Ju8JH3zz9tn05LYNwY//3ZyEyf/mOIjDN9Pc74ECU5BhCjtxhIseO
+ 0990d8Ev2feuqQQPiqp8TjT4yDQLF343LLPSeJx9wkpaJVtSbJJwSONvY
+ x3K162pK99tWNFw+2I/wk5qeK2intdY+y1sAVYudTn/Q1fZgYRhWSge01
+ X90oriZGaYNQGJskEVWnnk9u9nBJMzsij8GZuN3MRgMrP9DEdYRsunx4l Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="9823724"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; 
+   d="scan'208";a="9823724"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2023 07:05:44 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="1092017754"
-X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="1092017754"
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="851257808"
+X-IronPort-AV: E=Sophos;i="6.03,265,1694761200"; d="scan'208";a="851257808"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.131])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2023 07:02:08 -0700
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Oct 2023 07:05:43 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 31 Oct 2023 07:01:52 -0700
-Message-ID: <20231031140151.303296-2-matthew.d.roper@intel.com>
+Date: Tue, 31 Oct 2023 07:05:37 -0700
+Message-ID: <20231031140536.303746-2-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20231031140151.303296-2-matthew.d.roper@intel.com>
+References: <20231031140151.303296-2-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/xe2: Program correct MOCS registers
+Subject: [Intel-xe] [PATCH v2] drm/xe/xe2: Program correct MOCS registers
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,6 +66,9 @@ attempt to program them.  Since GLOB_MOCS is the only set of MOCS
 registers now, it's expected to be used for all platforms (both igpu and
 dgpu) going forward, so adjust the MOCS programming flags accordingly.
 
+v2:
+ - Fix typo (global mocs condition is >=, not >)
+
 Bspec: 71582
 Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
 ---
@@ -70,7 +76,7 @@ Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
  1 file changed, 13 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 21972bbef8fd..fa49d32b5d60 100644
+index 21972bbef8fd..46e999257862 100644
 --- a/drivers/gpu/drm/xe/xe_mocs.c
 +++ b/drivers/gpu/drm/xe/xe_mocs.c
 @@ -26,6 +26,7 @@ static inline void mocs_dbg(const struct drm_device *dev,
@@ -86,7 +92,7 @@ index 21972bbef8fd..fa49d32b5d60 100644
  	}
  
 -	if (!IS_DGFX(xe))
-+	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) > 20)
++	if (!IS_DGFX(xe) || GRAPHICS_VER(xe) >= 20)
  		flags |= HAS_GLOBAL_MOCS;
 +	if (GRAPHICS_VER(xe) < 20)
 +		flags |= HAS_LNCF_MOCS;
