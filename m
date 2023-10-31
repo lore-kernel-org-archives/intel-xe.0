@@ -4,135 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D5457C4167D
-	for <intel-xe@archiver.kernel.org>; Tue, 31 Oct 2023 22:02:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05705C4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 31 Oct 2023 22:06:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EFA9010E5D3;
-	Tue, 31 Oct 2023 22:02:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E7E6A10E5D3;
- Tue, 31 Oct 2023 22:02:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698789736; x=1730325736;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=sFBpTVH/U4oDmmMdkBfuJPH1pmgMKF0e52L8ENsCqR4=;
- b=neH/dYo+RkUXgPiVZ8OCRZF4BiNY4F2R3zyJP3JZxJUybxmIffDd/TeL
- GZGhG7ezSbjn2CE1CiOZ4Vn40vfx/QZgFrGzkSRy1U44lbSQ4JlSZF0CR
- nmDwP5C44GVSRaWEYMHfP+6uDQNaba2p3L0reX/daNXojslKorArWYhSR
- veKiBl0jYTtmgtp4Sm27YymvGeX/BYOKklH/N3TzEXT+bLbe3AHUXeWwY
- WBTT4+SRb9/4ZOn1+RqmJWl8eCtrP0XidzCKbwZ6Wuuu3FRYT+6h/YHbo
- jPdMYdE9d2MDtGMjq+ebMLhonhx+2TLHANnCM56p+zXH8sob1yw3SuxEA A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="391250921"
-X-IronPort-AV: E=Sophos;i="6.03,266,1694761200"; d="scan'208";a="391250921"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2023 15:02:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,266,1694761200"; 
-   d="scan'208";a="8456323"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orviesa001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 31 Oct 2023 15:02:13 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Tue, 31 Oct 2023 15:02:07 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Tue, 31 Oct 2023 15:02:07 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Tue, 31 Oct 2023 15:02:04 -0700
+	by gabe.freedesktop.org (Postfix) with ESMTP id B62F310E5D3;
+	Tue, 31 Oct 2023 22:06:14 +0000 (UTC)
+X-Greylist: delayed 3372 seconds by postgrey-1.36 at gabe;
+ Tue, 31 Oct 2023 22:06:12 UTC
+Received: from cluster-d.mailcontrol.com (cluster-d.mailcontrol.com
+ [85.115.60.190])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B1CF10E5D3
+ for <intel-xe@lists.freedesktop.org>; Tue, 31 Oct 2023 22:06:12 +0000 (UTC)
+Received: (from mailcontrol@localhost)
+ by rly15d.srv.mailcontrol.com (MailControl) with ESMTP id 39VL9vN7165857
+ for intel-xe@lists.freedesktop.org; Tue, 31 Oct 2023 21:09:57 GMT
+Received: from rly15d.srv.mailcontrol.com (localhost [127.0.0.1])
+ by localhost (envelope-sender dliberman@habana.ai) (MIMEDefang) with ESMTP id
+ 39VL9ufS165554 (TLS bits=256 verify=OK)
+ for intel-xe@lists.freedesktop.org; Tue, 31 Oct 2023 21:09:57 +0000 (GMT)
+Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
+ by rly15d.srv.mailcontrol.com (MailControl) id 39VL9o7B165008
+ for intel-xe@lists.freedesktop.org; Tue, 31 Oct 2023 21:09:50 GMT
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com
+ (mail-vi1eur04lp2051.outbound.protection.outlook.com [104.47.14.51])
+ by rly15d-eth0.srv.mailcontrol.com (envelope-sender dliberman@habana.ai)
+ (MIMEDefang) with ESMTP id 39VL9mok164952 (TLS bits=256 verify=OK)
+ for intel-xe@lists.freedesktop.org; Tue, 31 Oct 2023 21:09:50 +0000 (GMT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OuVmzfSWJu4axdSDFGEKWT4W/wyqK2teHjPnBdsJC6zmfzHrLEjv/TfnTAbM079RZkgFVg46WZ1MP6OFYjVgnqKnRMrBYT6lxGyFumqw+hIZ7UDYMWUnS1ViresUxDIjmGwXXYfS/2EbzLs66ISvBE2Eyj6K1cdNx6ubfwuC9AYHbCox65nAWg4mRw8gjnpO/jaMpWX0sbi6vy7dQ4dnAoRcvEg8V/aiVDdAqJBN2B4kdPp28xtqgYYv8MqPj1QFpUOTKiNpK9wyHe4HVBhvy5umCmn90Re8eHDqzQHgObCvTDDA0/alX3wl26CG0GnreUg9rcQz60O+v0QXovwsAw==
+ b=G0GuU4jEKGI7MkAaZU2BqxWQ2fRg9kRji0sygJ3ZshaHb7R/XkGF6qvU3DewwAi4t8a/IzfzIcBH+8ILtlnOYhEIguAviA/59QK09darKr8Moc6uZwK06mUFpx4m6spbSAglu35eCgbOFg86gL+3pC734mi75QkN1H30psWg+rTd6VOKrjstxYMjNqX+L9qmA66JV9sfZfvOr4P9Ew6mkTOwCWGB4PS/pd+Ub+54coNnu35ffHLcxpdTU1nxFgMTn7v+m7zjTTdJGcwk/aBojEhtNQZ3emNH2xr+suaWQoL9pKfhWLQmquFbxiVLKNABGpPnMb/ynPS8H9Gpfwhxkg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ijlSaPEXT8l7O44YXHfSthZHvl5StunGD/F74gTl42k=;
- b=CvFhPvSyWy1TAK1UFIGZX50ASULyfrbw5ACXBU7bKY0jj+U02DX5LqTBE861xQJlBtb49eCCewushMiFwVNE4HbMuqMOw0A9sBbJZmADqUPIhdUCjIkzSgum8U/+sU5CcmzxToNCs6AzX/6j5DDPnY2Wz3khvdnDSOLUBupuLwc5ZOvbIUB6kQuPymkWfVBKw1QjYllqI7JlhUVtM/6kPStbdUlB3fRSzs07M93/ZdBHHwwThM1OGZanyISoB1OikL5X/8PG8weDqeHuvlW3aFR5lrbQpP3RScJvrsJav9JZqltTY9ubn6paupd9fd7wu4wIfqo8p8YVCOKkeZQOzw==
+ bh=UbYCKJvHG0nsCQ7NiM5rW3HufyP5pBS+ldkTfkAli+Y=;
+ b=YVUodYjZ7/JqzJTEqE3PIwVxi5/zjKln8UGPqg7i9sr3Ooecbv2Tc41yeQfkxxlEeEFGYv9Cf2caJBTluPkrC5s3pUev2XCwqnO7ql0DaCE4TN9gDFwZXjPbVF/ZyOwOzrJFf5fuh6L3F2eczEXhJ6O2v9Dy0mA5pnoXkSLkNiX0QfzdByIIDIOyumyxPPfq6/oF+buX4ZQ+pqeD028tCJi9X7KMKP6B/rxTKHkxoUAsWklT3NxZ4h2NmXsy9tC5hEnlqUG73ckTUwCxsMfHucPSc72sp04cF/g44n9mQ6hdqoetFKw54LXdZ2AhqqKJbSYptqhYRsqM/Axzi0nqiw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by DS0PR11MB6424.namprd11.prod.outlook.com (2603:10b6:8:c4::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6933.29; Tue, 31 Oct 2023 22:01:49 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::dc77:69e0:a3bc:e3e]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::dc77:69e0:a3bc:e3e%6]) with mapi id 15.20.6933.026; Tue, 31 Oct 2023
- 22:01:49 +0000
-Date: Tue, 31 Oct 2023 18:01:44 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-Message-ID: <ZUF5SJ8q7WKGU36x@intel.com>
-References: <20231022180236.5170-1-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231022180236.5170-1-thomas.hellstrom@linux.intel.com>
-X-ClientProxiedBy: SJ0PR03CA0333.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::8) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|DS0PR11MB6424:EE_
-X-MS-Office365-Filtering-Correlation-Id: c53ebd77-e775-4573-6009-08dbda5cfb31
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RHok3svabI4jYSociEDia1ODzKSGTWMXQ/jasaDCapU7dmQ1KxQ11yOs+vk8eXyD9pBMhY2zt36rcKXpL/IHNhAgSQcKsI3qx5husiN5Fol3AI3lZlFEceo5k1NMtdaTHkf0m4dx025NgsjlAUeHZbU6k5kQrvzfnljL4trm4nFkUH/h2CMua7/1zxPoMqwtNV7PDfs3ow/LkHS06UC8eePZX/7095MxKU3mm/kj+oejjm2nuAInTOP3YwhYxJsbULCNXIFIHN2WV7uKd37m/RP5BFq4x9eunkmkVDkanv/w4bZRpRWf1TXvLhVU/04RYx955DGM66o78ngXSqZhjoNyoHM+3air0Fl8X2KjUTLmCbypasjqfRZ9Vaq2xkOV/opOJEuLeOqXSkaWV4PMxUFRWFBuVDUSyzqTaCgW/G52DoW+or59GKhf0C/wXekUo4LpQFioUIEEJf+HFWWwkueuzlmfMRL5YYlGY9is8tvB6CDnyfO9TQx2kN86EuRsaycacB+oYf3nO3OkS3L/9Hj+Sh9y7zYlj9MW0Xt1/Zsknjk3afnrnTpik4mVyuxYHORHuVtKKfObkCdDZ+3QGelx8gccobgYJ/e3Fvi23C3NC3/lxxZ6YFcI9VLRsDo+
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(396003)(136003)(346002)(376002)(39860400002)(230922051799003)(230173577357003)(230273577357003)(186009)(451199024)(64100799003)(1800799009)(82960400001)(86362001)(36756003)(6486002)(2906002)(6512007)(478600001)(41300700001)(30864003)(8936002)(8676002)(44832011)(4326008)(6666004)(6506007)(83380400001)(66946007)(26005)(2616005)(66556008)(6916009)(5660300002)(316002)(66476007)(66574015)(54906003)(38100700002);
+ smtp.mailfrom=habana.ai; dmarc=pass action=none header.from=habana.ai;
+ dkim=pass header.d=habana.ai; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=habana.ai; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UbYCKJvHG0nsCQ7NiM5rW3HufyP5pBS+ldkTfkAli+Y=;
+ b=E3MaScKE79Z+vArYGRYCkv/c4dNbuLwblEN32Ah0fHo8oGNrth2EPOZcSpuVn6FBeJLozPTxrFc5K9VuKJxHGw12HlLHYtRUkt/zMp7z9MkcMm9gqPZEpPmzkXMcNc63ncYvRnuIeL0dcpgvNal9PvUxaUhVtzwJrk2Zjj+t62/SRULHN3gPQ4IoupNpuYxlsx00LvQgP4xYjyzRJV3F01oVlzrRZiziNjWTIg/Y9CY8MLvv3/gXFqoeNjCSVGydGuwdJjW8ScdRGaFEGDpak5jiQ0z4vN8Zmj13UX5J3YdEpdCj7arGO4ivRnYkt1zWX39By5/198LXU9kLlrF31A==
+Received: from PR1PR02MB4761.eurprd02.prod.outlook.com (2603:10a6:102:e::31)
+ by DBAPR02MB6469.eurprd02.prod.outlook.com (2603:10a6:10:19b::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29; Tue, 31 Oct
+ 2023 21:09:46 +0000
+Received: from PR1PR02MB4761.eurprd02.prod.outlook.com
+ ([fe80::d705:7987:894d:28e6]) by PR1PR02MB4761.eurprd02.prod.outlook.com
+ ([fe80::d705:7987:894d:28e6%4]) with mapi id 15.20.6933.022; Tue, 31 Oct 2023
+ 21:09:46 +0000
+From: Dani Liberman <dliberman@habana.ai>
+To: "Ruhl, Michael J" <michael.j.ruhl@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Thread-Topic: [Intel-xe] [PATCH v2] drm/xe: use variable instead of multiple
+ function calls
+Thread-Index: AQHaDB1y307qJbkgKUaJuhLQ45cG2rBkVA0AgAAQ3YA=
+Date: Tue, 31 Oct 2023 21:09:45 +0000
+Message-ID: <dbc153f3-3efc-8dfe-0caf-707b247a4b68@habana.ai>
+References: <20231031171220.594051-1-dliberman@habana.ai>
+ <IA1PR11MB64186FB75EF25B6A2552C5C0C1A0A@IA1PR11MB6418.namprd11.prod.outlook.com>
+In-Reply-To: <IA1PR11MB64186FB75EF25B6A2552C5C0C1A0A@IA1PR11MB6418.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=habana.ai;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PR1PR02MB4761:EE_|DBAPR02MB6469:EE_
+x-ms-office365-filtering-correlation-id: c9754679-9122-4586-223b-08dbda55b5cd
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: siEHJMqh77+QRek6RlDjB6ZlvtdMSr43mOs0n9DHKsfcrn6wWSiKMi9lo13ATijzUtW6fSGz3pKCb5wX1MTLfamKUO5IpJAYWmyrdSWQ1O+dMF9rJRNEFKqVeITo/HLMR7XMZF6oKLKOqUQWjZunsbZIq85u/7AvydOBxH+6XaIwkU/kVE5VOMShviOWcZWKB68bAwVgTLHwX09trpowpUxpATaeVx2n+Qf3TiduyeBkykZhfjDtGfyCgni2Ukwz5lqkZgvnrSAUTkjo8c5oLWyKRUKR7b73bq++vHI110FSYtlsxuOgB/oSh2rZNDJYEEP+uGTb69wM++c4Lftrlsue8NyBC94q4J/lnqbJG2zuFSPjMjOZMw2bTd1vOkqyMp6SBmsbbRfzlayU7Sgg6wMVu4o+K2YOtC+Wvl9ZW59ikkZSN1Plu597ziYU0UoiERgC1yZTo9tx8BKFB5tbGbiCneXWgy9i3Kv4EsZ2sd5h/swpnn/AEbMB/rlBX8I/73hAtOUjyYhPB1jjx5cGcHBStF9774UE8ceQNcY9Li1m21SWFOmK8KNxGPFkBFPsHa457+iEdrVP1oWVGdJkqDTf+Sb2L8au+E+2GMlOIc+5UVHXRc+Mp6v/1n6YRdF73lakwRqZjcUnsx7Hq0Wi5w==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PR1PR02MB4761.eurprd02.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(39850400004)(396003)(346002)(376002)(136003)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(26005)(6512007)(2616005)(38100700002)(53546011)(71200400001)(2906002)(83380400001)(6506007)(478600001)(6486002)(8936002)(41300700001)(91956017)(5660300002)(66476007)(66446008)(66556008)(66946007)(110136005)(8676002)(64756008)(316002)(76116006)(38070700009)(31696002)(122000001)(36756003)(82960400001)(86362001)(31686004)(45980500001);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?tfLCiy1NTgTjz0vUd89j3gzAmo/kMHWbE7ORr0UbTEY2drgfneGB1fgsHU?=
- =?iso-8859-1?Q?1bdENVR8gpxnANs0tXqSKstxp8SdVJ+nV5foSLY13xqHPJOYHbffat/R+o?=
- =?iso-8859-1?Q?6kvNA9vbc2RON2BS1eNGCwYlNbZNe17bCwtdAiFsan+EKBKar43asZPF0Z?=
- =?iso-8859-1?Q?dh5LcE2WU8a/a6zMJwTCoIdOEjvjKX5pmX8G92iC4biuL3MKY10Cz4KDTK?=
- =?iso-8859-1?Q?J6GRM8bEMf77w9hnon4egsjVkm2DKwY8Ri3o0mGFQVN8N3inmyeDL1vX/j?=
- =?iso-8859-1?Q?92OXQJkn8QXwcY0tKc/6S2Pr2xII7sX8SirONhgEWFo/jrr+NcGU10YNH7?=
- =?iso-8859-1?Q?mZN62H5IflenMylke6gBuAoyq9cpimVM9n6CeR6+lcpZUXmdlfUWOB1ZhG?=
- =?iso-8859-1?Q?NG1Mt7HN66xUnXNFVeNc6wpcn1AukBQSPFrUcdVuKZ4AZEMvmegxXPAkDH?=
- =?iso-8859-1?Q?hgzkYTijqkrBW8uKBRw+/3nAB0cZH6aThx9skWoFCsdApyseAjpUNc7gGS?=
- =?iso-8859-1?Q?Fm6W4+KJInyJNnPs7fX3Q34uayEL1mkUjRQcwNTpFy8h9P+neZ1r8inT5m?=
- =?iso-8859-1?Q?H2buk+Q3dM0EArpVi+ZBUVaOlta6L8CrWHP1vSgM0wu7HUjW7g5tXdUTAJ?=
- =?iso-8859-1?Q?NANfjZdbhaKTcqqWwL0MKD6X/G68W7CHMyxwro+1U210PrDa3oPKN3IBxk?=
- =?iso-8859-1?Q?l4vAo7CGsohBNORYTdr2aMw8A9VB90vf0eGVItZuvk4dw2CzPkpL7nU/9G?=
- =?iso-8859-1?Q?35MO1z/PUAzYlsYmMxkR5qc4zH+v0B3umxDyFIF//+u/vGLhIBjADsotoT?=
- =?iso-8859-1?Q?ffJBA1Tz5LKiHtGADg9OCLfyGBiwPluyigUY6Pf92UGGYqbMZfN95IGF5L?=
- =?iso-8859-1?Q?s8wdP/nVwzZwHPfYlGtpC/+DilU5I79Oikte/3Mo7KD+sVgd84QcM8uIlL?=
- =?iso-8859-1?Q?PNmeRSFSLaVrx98UIEdpV3GELPSaqucKecCF92hHJJ8tjnmkvSksrlgVR4?=
- =?iso-8859-1?Q?Kp1GYg7Ne7VdNcVQUFD2IQGtQjNnSLS1GP96FIET7HLrcsFE/RZhJbGhJL?=
- =?iso-8859-1?Q?NrexOMpgidK2SZhvNAq14C3WkyHNF2TpVgniJu66oVor4ynhwhHJjcQvx1?=
- =?iso-8859-1?Q?g+eOJjARibeyh5sc/rTPT0eDSOVMNb1LkPIWZOha+Q19WT2WnQc9nqdZH/?=
- =?iso-8859-1?Q?/j9IEXbwJLxSI3wuSL5NXAwDbZr9BAUB8Yc6BfgPw1O6gw9pZLIF+oRVzj?=
- =?iso-8859-1?Q?FVZYIworgimPlo6XHpMVC54gU+IsMvX3N0wwkrVWp/Dw7cuJceIKraPyci?=
- =?iso-8859-1?Q?817I/Pf+k5ViCfN66NaTWUabq2iuTlz5ZAEcWhIncmVJ/ORMB5t/cV88RG?=
- =?iso-8859-1?Q?10IgkdIIX3mWWko+egDY9UlP78TMa14clBtW9fWM6GamrbCMRrxMxLsJP1?=
- =?iso-8859-1?Q?bJ8RqDLlsV8jJDRUsk5jDmu/V/yITLj+n1krSa+JtvBClfCvjQb2D7mlG9?=
- =?iso-8859-1?Q?5S1vJ1Z4gePA+JgZZgdDoiCWEtG2sxGgAvgftl4sDQVsIM8HsIq1OhwD/c?=
- =?iso-8859-1?Q?yjjMLqSNoM5HiSfvYnks2ZKnlHwy+ILzGSGs5SNlgtg+aVSzFvTYNpSRmC?=
- =?iso-8859-1?Q?X0SKOnyzK3hZjLPGil/Wu0Iz89uzPRkuFN?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c53ebd77-e775-4573-6009-08dbda5cfb31
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?MFFaUG45TlhxMU9lQ3NQTFFZcmh4T3hPeFdvSnlzMG05R21MOUFDZ1VHK1lV?=
+ =?utf-8?B?YVJaV2dXWjlDLzB4L0szdTFTVU42aEo2OHBHMDB4WGVZdERpdnZ0RGthaUZB?=
+ =?utf-8?B?clJ6QkVwMnBqaWFQdVBnTE0vdXR4VTF3N0xzdGl5RlFiSGRkeE43R0ExZk52?=
+ =?utf-8?B?ZmRGQ0FxOU05amlyM0dGWWtMRjYzWVp1SHA2cllOQzhMNDI2Um8yc0Nqc1hD?=
+ =?utf-8?B?ZnQ0UDdZbVpvMzFWbGRzRTI5UjZrQXRJUW9RY1FSTEhXRjlwUWk4dFo2RWhx?=
+ =?utf-8?B?L1NjbHBGeW0vckhnaVJVbmxiZjNqVU1wei8xM2RWMkFpY0MrTmxROWk0SGVL?=
+ =?utf-8?B?WXhGVjBFT3RuYXQ5SEhFbjV3YnVNbjZMVXNuTnJKT1B0Q3NITXh3R0pMMGNY?=
+ =?utf-8?B?b1JPSi9EOUg3eFM5YnFrTTNrNTNKT3Q3WFdTVXprQkROazBoNm01TzlTa3Jp?=
+ =?utf-8?B?S2p3SmpEdXVnamNRbkptaXZWTXRZYUQ4QmhMTW55ajk1UGVWRkk0VDZSeXRY?=
+ =?utf-8?B?WjFUUStyYjRhUXo1a0xoWGxteGNUbStHOEpHZnRWMlg5SjI0Z0Vxd3lqV3Yz?=
+ =?utf-8?B?eWQ2MGJueHhPakxzb0xuNXB4R1ZxT1NZQ3FGVmVKMWZQSk1KNXM3REoyWTlS?=
+ =?utf-8?B?V1VSejdWako3ZlZZOGczOGdjSTdhTnRGVG5GaFlJc3ExamhnZkg0bGVXdUQ0?=
+ =?utf-8?B?dTBBelk1bFVIcEZQbGdJVTYwWk9meDhvZ3VxQXdGRlVtNkp4Q2JPNk1uc203?=
+ =?utf-8?B?Mkc5RGN2NzZOM2VNYU54K3NGdjV3ZzRFdHF4RTJrWkxvSjJQZUFGMVdYMFUx?=
+ =?utf-8?B?WjN0clNRN1U5UW5KSlNRL2Z0NFlqa1JRcE9EQXhFQUlYQjQzbVRGbWROMk5C?=
+ =?utf-8?B?Qk1hL3Riem5UTjY1cy9NWFFvdmZTRGdnT0MwNkt2VUxYN0ZmT1FkeUVxMXlT?=
+ =?utf-8?B?Si9tSWhLeWhHbEtZMVUrTXRta1FTdHBnNWYzamJlQ0I1TVAxcSt2WkR4VVV6?=
+ =?utf-8?B?cE5VdldZSU5XemVmWFlZQmszZW4zcEJnQytlUUFSUm4ydzgyQmx6WHVTNE01?=
+ =?utf-8?B?ZFYyN0IyR0RxVm1nME5taVY5dUpRbHNVa1NBYng4MXlJNXpBS21xRDhKVEh3?=
+ =?utf-8?B?ZmFKUXhKNVFJVFk3T0xHRExYUTF1ejNqQjI2SVdsZnM3cXdnM1R5WDVnTFAz?=
+ =?utf-8?B?YytDZVNCc1I0NDU1ejFZUFIyeXJqdEVOWUFPUnFGOEh0UGJiejE1Q2tYaHc4?=
+ =?utf-8?B?QkxHTytiUFFwN3hWTnBkZCtpM2ZNOXBkcXRMNUlPakQvTE1Edlo1K2NpTjFl?=
+ =?utf-8?B?Mjd5aitBVW5hV0V1NXRjaTdtbEZxc0pYR3NadHlCSWI5V2xTM243NTVxa1o1?=
+ =?utf-8?B?NWhUWmJHcm5nMHY1bHFZNm5HaUVVQXdaMFpZZVRjVERqamFJSit3VmxXUVpJ?=
+ =?utf-8?B?REdEN1QrRkhvV1B0a2M2amRlV0ZXNHh1U0d3TFVxYklEeFFGWG0yU1lwUnND?=
+ =?utf-8?B?Um0wY2JvdTdkcW5NUkxjN2krMW96UzAxL3lLbUdMMStYUE9vRlYwekNacG9V?=
+ =?utf-8?B?UEcwQlFPdFJUTmsyY1dFM2gvcjhvMG9UQmpPOFVlNmE5aDJaZElXTVZtdllT?=
+ =?utf-8?B?YkRtM2xHN1pKSzZEazhKVEppdVRiek5ubWIzSGlnYTc5RFZPZzdjQTJ4MXdW?=
+ =?utf-8?B?Rit0VVJ5V0lBdTVSY2pzbnhuZzJTVEI1TEd2dUdkNGxuUGN2b3pQS3FVbVk4?=
+ =?utf-8?B?TzJkWWNOckxOOHhXSXk1NWlsalFkY0FMbW0xWUpvWXdRcFFYUHRUK2FYNUFh?=
+ =?utf-8?B?NmZUaHovaU05UTIreE01SWpCSjh1S0pxbXg1K0NRK2tlR0VaYzZXK2ZIVUI3?=
+ =?utf-8?B?bENpQ29rVUNvbFVreE5XaGcxc3l6L1pRZ1AwcDVJMUhQdDlwS1hrSEpFbUZx?=
+ =?utf-8?B?NTNnaDdFWGF3Y3hPTWw3MDFreW05Q25jbDRXQTBudkFrRXZpclljb1d4V1lM?=
+ =?utf-8?B?QTRKMldNQklheUFMNTJwN0lqaU5KMHIzVWZPNjYvYWFjVGQvZ1owYy9BMStV?=
+ =?utf-8?B?K2VqZlg5c3NIcHU4UHVjWGtKTHVoZW54aTMxR01yajJHZy9ENkMrOEZTYXNZ?=
+ =?utf-8?Q?esa4=3D?=
+Content-Type: multipart/alternative;
+ boundary="_000_dbc153f33efc8dfe0caf707b247a4b68habanaai_"
+MIME-Version: 1.0
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: UTl2CcW5Jv2suB2jhjFprujH5CuwbCPH99KVmeLgN+wB5aYPYtFoGPwRFG1jtYCjyMmsLOBMAA5PQzgLEHT98gmqZIg/Cz634qy36DDgsmXKp7vuxOEN0ErkZ6i4Dc+S0bykWhwH7Zgjoj4T4cC1ZmzJDOeoiHpOHiXe9rc2FhQMzUZAcI9kNmqBGMFyrMy1SBGmIe5VqyXK5gKOzWwNcn82Qom9II+AYi2m2egOui2kZSb9qaNp64UHqmbBaPvTGeDDxF/gfTvQe5RS52y+vnyJftBy/TAKBwjQEG1JK4Tt70yNAHoqokLEA6lHjJtPeGlyLQ5u2Pz1Bl/7ANUN+EsUCOcg0mHLulz6gbCNPNfnOmYFeEZFwOvWVaeO3yrYdlf8qpGAkqj6hOUMuaFMjTLimo8+z/0LLJUc957/ITuk/3vzfsqAeApMJk8+0bZfsBBrsWS4xRYptaKAc9XduvlQrFWYmARe+R6dA0l075V0+Bkrh+ZL/V1qXaPxexuNNAu/PFgkqH23B36pymxuBiK0yFfzXqcvyhvt8sroD1m5UV6lCxNuHSXgaJioz3DNQeJEoOAcq8kMMpqqlb65ZfG0emCsFYQPXS3as5lXwFLl8QdeBiGDyM4M/n092x7+dUZYXqIszmZD9wsxBTp8GnaQ2Nn0op+/C45XV8emXBFE8uOrspfY18rjn7rKg3w/emfZC9+Pg3kLPdaFvNjfvk32N0lt99P7LYFV5Jhi/JneqW9Z8J5wz++okI/gFadHz332tJa4cydn+9CygQ7gKXfiQP6JAqq2mYDGdvUaT0U=
+X-OriginatorOrg: habana.ai
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Oct 2023 22:01:49.4934 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 95NjIIyZBfjcNlZtePUyj/J9HISZ7V8T0hDiTVU6Z5TNDLyiArZOs/0aVQJAOQXuMcxSkNCqrcq0lAogcwFHsg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6424
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v3] Documentation/gpu: VM_BIND locking
- document
+X-MS-Exchange-CrossTenant-AuthSource: PR1PR02MB4761.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c9754679-9122-4586-223b-08dbda55b5cd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Oct 2023 21:09:45.9670 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0d4d4539-213c-4ed8-a251-dc9766ba127a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 3SAnVT//Y5i5cyvJiOTy93VvWfgFORIL/0ieaH2K28eTRfTMoPcfz4o11ahttwSjbLanEb+s2Y4oL6s/K7GqwA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR02MB6469
+X-MailControlDKIMCheck: cGFzcyBoYWJhbmEuYWkgW3Bhc3Nd
+X-MailControl-OutInfo: MTY5ODc4NjU5NjpGUEtleTEucHJpdjpaiaMLB8lz3ucj+uVbqwsEXl40SlRDlJRrhE8MrruRZvUE5M5QHjUyQUWAUKPw00Xzaxw/pffRJ70HVoRNbtWdk50cIX5G7Lh1BwUD9UEfL07YvXKwi1VGkljzRh+qEXGTu0q1oT3SeRlB03vyWE+SmPloTEAgNxQoIWPn841qm+XhMj+fYnvtGk9p4xbWkAjPubvr0cYFUjrRq4K8K99ag9GwteQRbhgOd9RKIxptFRB14NljkdaDjyLdSgohlojhGtuGg4/a2+3sxnf4yVhhT1M4533Aw95K3L0oAdBYUzFVJrE9NSteR6BMpiAEm79xxrJLpNgxyQqb3OIwSzjV
+X-Scanned-By: MailControl 44278.2143 (www.mailcontrol.com) on 104.47.14.51
+X-Mailcontrol-Refers-To: 39VL9ufS165554
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=habana.ai;
+ h=from:to:subject:date:message-id:references:in-reply-to:content-type:mime-version;
+ s=fpkey81949-1; bh=UbYCKJvHG0nsCQ7NiM5rW3HufyP5pBS+ldkTfkAli+Y=;
+ b=x98laqmpqbH3QFnt6bYEfO/EPC46m0gfRHyddTdqR7ZbzEKsgVKpGCw62wzptxvnXjc7b0558e+lrVmkpWgyV8WfTckNx0H6sQompFsrkdIp/EtZh9NqmKQeyTuigiAJZU5h+c4XZAubbaAvsMLnW90a1Dua0/xQMvDAe7894MV+PzG9GrgfUYiMqIEtxfRKePxiVAio/RCxkwybPb5HPmpzOqBjkU0mxGb8jSCJJ2cVEjX1sVshUkKYduCPl0WOypl1nOX4FlDCWe3InnA5Pb22L/Abs36PFwvFB0KhfrGz3RHshQM3fWh53NYKiI804VFFOiB8GtLwX0Tu3n+ZBw==
+Subject: Re: [Intel-xe] [PATCH v2] drm/xe: use variable instead of multiple
+ function calls
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -144,560 +154,172 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Danilo Krummrich <dakr@redhat.com>, Daniel Vetter <daniel@ffwll.ch>,
- intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sun, Oct 22, 2023 at 08:02:36PM +0200, Thomas Hellström wrote:
-> Add the first version of the VM_BIND locking document which is
-> intended to be part of the xe driver upstreaming agreement.
-> 
-> The document describes and discuss the locking used during exec-
-> functions, evicton and for userptr gpu-vmas. Intention is to be using the
-> same nomenclature as the drm-vm-bind-async.rst.
-> 
-> v2:
-> - s/gvm/gpu_vm/g (Rodrigo Vivi)
-> - Clarify the userptr seqlock with a pointer to mm/mmu_notifier.c
->   (Rodrigo Vivi)
-> - Adjust commit message accordingly.
-> - Add SPDX license header.
-> 
-> v3:
-> - Large update to align with the drm_gpuvm manager locking
-> - Add "Efficient userptr gpu_vma exec function iteration" section
-> - Add "Locking at bind- and unbind time" section.
-> 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> ---
->  Documentation/gpu/drm-vm-bind-locking.rst | 494 ++++++++++++++++++++++
->  1 file changed, 494 insertions(+)
->  create mode 100644 Documentation/gpu/drm-vm-bind-locking.rst
-> 
-> diff --git a/Documentation/gpu/drm-vm-bind-locking.rst b/Documentation/gpu/drm-vm-bind-locking.rst
-> new file mode 100644
-> index 000000000000..c290ff4287fb
-> --- /dev/null
-> +++ b/Documentation/gpu/drm-vm-bind-locking.rst
-> @@ -0,0 +1,494 @@
-> +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +
-> +===============
-> +VM_BIND locking
-> +===============
-> +
-> +This document attempts to describe what's needed to get VM_BIND locking right,
-> +including the userptr mmu_notifier locking and it will also discuss some
-> +optimizations to get rid of the looping through of all userptr mappings and
-> +external / shared object mappings that is needed in the simplest
-> +implementation. It will also discuss some implications for faulting gpu_vms.
-> +
-> +Nomenclature
-> +============
-> +
-> +* ``Context``: GPU execution context.
-> +* ``gpu_vm``: Abstraction of a virtual GPU address space with
-> +  meta-data. Typically one per client (DRM file-private), or one per
-> +  context.
-> +* ``gpu_vma``: Abstraction of a GPU address range within a gpu_vm with
-> +  associated meta-data. The backing storage of a gpu_vma can either be
-> +  a GEM object or anonymous pages mapped also into the CPU
-> +  address space for the process.
-> +* gpu_vm_bo: Abstracts the association of a GEM object and
-> +  a VM. Note that if only one gpu_vma per vm and buffer object were
-> +  allowed, the state stored with a gpu_vm_bo could just as well have
-> +  been stored with the gpu_vma. For the purpose of this document, each
-> +  GEM object maintains a list of gpu_vm_bos, and each gpu_vm_bo
-> +  maintains a list of gpu_vmas.
-> +* ``userptr gpu_vma or just userptr``: A gpu_vma, the backing store of
-> +  which is anonymous pages as described above.
+--_000_dbc153f33efc8dfe0caf707b247a4b68habanaai_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-something strange after the comma, but my bad english can't allow to pin
-point what. Or maybe it is right and the problem *is* my bad english :)
+T24gMzEvMTAvMjAyMyAyMjowOSwgUnVobCwgTWljaGFlbCBKIHdyb3RlOg0KDQoNCg0KDQotLS0t
+LU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogSW50ZWwteGUgPGludGVsLXhlLWJvdW5jZXNA
+bGlzdHMuZnJlZWRlc2t0b3Aub3JnPjxtYWlsdG86aW50ZWwteGUtYm91bmNlc0BsaXN0cy5mcmVl
+ZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBEYW5pDQpMaWJlcm1hbg0KU2VudDogVHVlc2RheSwg
+T2N0b2JlciAzMSwgMjAyMyAxOjEyIFBNDQpUbzogaW50ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Au
+b3JnPG1haWx0bzppbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc+DQpTdWJqZWN0OiBbSW50
+ZWwteGVdIFtQQVRDSCB2Ml0gZHJtL3hlOiB1c2UgdmFyaWFibGUgaW5zdGVhZCBvZiBtdWx0aXBs
+ZSBmdW5jdGlvbg0KY2FsbHMNCg0KVXNpbmcgZnVuY3Rpb24gY2FsbHMgd2l0aCBuZWdhdGl2ZSBs
+b2dpYyB3YXMgYSBiaXQgY29uZnVzaW5nLA0KcG9zaXRpdmUgbG9naWMgaXMgbW9yZSByZWFkYWJs
+ZS4NCg0KdjI6DQotIFVwZGF0ZSBjb21taXQgbWVzc2FnZQ0KDQpDYzogTWF0dGhldyBCcm9zdCA8
+bWF0dGhldy5icm9zdEBpbnRlbC5jb20+PG1haWx0bzptYXR0aGV3LmJyb3N0QGludGVsLmNvbT4N
+CkNjOiBWaWxsZSBTeXJqYWxhIDx2aWxsZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbT48bWFpbHRv
+OnZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0KU2lnbmVkLW9mZi1ieTogRGFuaSBMaWJl
+cm1hbiA8ZGxpYmVybWFuQGhhYmFuYS5haT48bWFpbHRvOmRsaWJlcm1hbkBoYWJhbmEuYWk+DQpS
+ZXZpZXdlZC1ieTogTWF0dGhldyBCcm9zdCA8bWF0dGhldy5icm9zdEBpbnRlbC5jb20+PG1haWx0
+bzptYXR0aGV3LmJyb3N0QGludGVsLmNvbT4NCi0tLQ0KZHJpdmVycy9ncHUvZHJtL3hlL3hlX2V4
+ZWMuYyB8IDE1ICsrKysrKysrLS0tLS0tLQ0KMSBmaWxlIGNoYW5nZWQsIDggaW5zZXJ0aW9ucygr
+KSwgNyBkZWxldGlvbnMoLSkNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9l
+eGVjLmMgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZXhlYy5jDQppbmRleCAyOGU4NGEwYmJlYjAu
+LjJkZTZjMmMwNTA3OCAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9leGVjLmMN
+CisrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9leGVjLmMNCkBAIC0xNDUsNyArMTQ1LDcgQEAg
+aW50IHhlX2V4ZWNfaW9jdGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwNCnN0
+cnVjdCBkcm1fZmlsZSAqZmlsZSkNCiAgICAgICAgc3RydWN0IHhlX3NjaGVkX2pvYiAqam9iOw0K
+ICAgICAgICBzdHJ1Y3QgZG1hX2ZlbmNlICpyZWJpbmRfZmVuY2U7DQogICAgICAgIHN0cnVjdCB4
+ZV92bSAqdm07DQotICAgICAgIGJvb2wgd3JpdGVfbG9ja2VkOw0KKyAgICAgICBib29sIHdyaXRl
+X2xvY2tlZCwgdm1fd2l0aF9kbWFfZmVuY2VzOw0KICAgICAgICBrdGltZV90IGVuZCA9IDA7DQog
+ICAgICAgIGludCBlcnIgPSAwOw0KDQpAQCAtMTk2LDggKzE5Niw5IEBAIGludCB4ZV9leGVjX2lv
+Y3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQgKmRhdGEsDQpzdHJ1Y3QgZHJtX2ZpbGUg
+KmZpbGUpDQogICAgICAgICAgICAgICAgfQ0KICAgICAgICB9DQoNCisgICAgICAgdm1fd2l0aF9k
+bWFfZmVuY2VzID0gIXhlX3ZtX25vX2RtYV9mZW5jZXModm0pOw0KcmV0cnk6DQoNCg0KDQpBcmUg
+eW91IDEwMCUgY2VydGFpbiB0aGF0IHRoaXMgdmFsdWUgd2lsbCBuZXZlciBjaGFuZ2Ugb24gcmV0
+cnk/DQoNCk0NCg0KSXQgZGVwZW5kcyBvbiB2bSBmbGFncyB0aGF0IGFyZSBnZXR0aW5nIHNldCBv
+biB2bSBjcmVhdGUsIHNvIHllcy4NCg0KDQpEYW5pDQoNCg0KDQoNCg0KDQotICAgICAgIGlmICgh
+eGVfdm1fbm9fZG1hX2ZlbmNlcyh2bSkgJiYgeGVfdm1fdXNlcnB0cl9jaGVja19yZXBpbih2bSkp
+IHsNCisgICAgICAgaWYgKHZtX3dpdGhfZG1hX2ZlbmNlcyAmJiB4ZV92bV91c2VycHRyX2NoZWNr
+X3JlcGluKHZtKSkgew0KICAgICAgICAgICAgICAgIGVyciA9IGRvd25fd3JpdGVfa2lsbGFibGUo
+JnZtLT5sb2NrKTsNCiAgICAgICAgICAgICAgICB3cml0ZV9sb2NrZWQgPSB0cnVlOw0KICAgICAg
+ICB9IGVsc2Ugew0KQEAgLTI3OSw3ICsyODAsNyBAQCBpbnQgeGVfZXhlY19pb2N0bChzdHJ1Y3Qg
+ZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLA0Kc3RydWN0IGRybV9maWxlICpmaWxlKQ0KICAg
+ICAgICB9DQoNCiAgICAgICAgLyogV2FpdCBiZWhpbmQgbXVubWFwIHN0eWxlIHJlYmluZHMgKi8N
+Ci0gICAgICAgaWYgKCF4ZV92bV9ub19kbWFfZmVuY2VzKHZtKSkgew0KKyAgICAgICBpZiAodm1f
+d2l0aF9kbWFfZmVuY2VzKSB7DQogICAgICAgICAgICAgICAgZXJyID0gZHJtX3NjaGVkX2pvYl9h
+ZGRfcmVzdl9kZXBlbmRlbmNpZXMoJmpvYi0+ZHJtLA0KICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICZ2bS0+cmVzdiwNCg0KRE1BX1JFU1Zf
+VVNBR0VfS0VSTkVMKTsNCkBAIC0yOTIsNyArMjkzLDcgQEAgaW50IHhlX2V4ZWNfaW9jdGwoc3Ry
+dWN0IGRybV9kZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwNCnN0cnVjdCBkcm1fZmlsZSAqZmlsZSkN
+CiAgICAgICAgaWYgKGVycikNCiAgICAgICAgICAgICAgICBnb3RvIGVycl9wdXRfam9iOw0KDQot
+ICAgICAgIGlmICgheGVfdm1fbm9fZG1hX2ZlbmNlcyh2bSkpIHsNCisgICAgICAgaWYgKHZtX3dp
+dGhfZG1hX2ZlbmNlcykgew0KICAgICAgICAgICAgICAgIGVyciA9IGRvd25fcmVhZF9pbnRlcnJ1
+cHRpYmxlKCZ2bS0+dXNlcnB0ci5ub3RpZmllcl9sb2NrKTsNCiAgICAgICAgICAgICAgICBpZiAo
+ZXJyKQ0KICAgICAgICAgICAgICAgICAgICAgICAgZ290byBlcnJfcHV0X2pvYjsNCkBAIC0zMDcs
+NyArMzA4LDcgQEAgaW50IHhlX2V4ZWNfaW9jdGwoc3RydWN0IGRybV9kZXZpY2UgKmRldiwgdm9p
+ZCAqZGF0YSwNCnN0cnVjdCBkcm1fZmlsZSAqZmlsZSkNCiAgICAgICAgICogdGhlIGpvYiBhbmQg
+bGV0IHRoZSBEUk0gc2NoZWR1bGVyIC8gYmFja2VuZCBjbGVhbiB1cCB0aGUgam9iLg0KICAgICAg
+ICAgKi8NCiAgICAgICAgeGVfc2NoZWRfam9iX2FybShqb2IpOw0KLSAgICAgICBpZiAoIXhlX3Zt
+X25vX2RtYV9mZW5jZXModm0pKSB7DQorICAgICAgIGlmICh2bV93aXRoX2RtYV9mZW5jZXMpIHsN
+CiAgICAgICAgICAgICAgICAvKiBCbG9jayB1c2VycHRyIGludmFsaWRhdGlvbnMgLyBCTyBldmlj
+dGlvbiAqLw0KICAgICAgICAgICAgICAgIGRtYV9yZXN2X2FkZF9mZW5jZSgmdm0tPnJlc3YsDQog
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICZqb2ItPmRybS5zX2ZlbmNlLT5maW5p
+c2hlZCwNCkBAIC0zMzAsMTQgKzMzMSwxNCBAQCBpbnQgeGVfZXhlY19pb2N0bChzdHJ1Y3QgZHJt
+X2RldmljZSAqZGV2LCB2b2lkDQoqZGF0YSwgc3RydWN0IGRybV9maWxlICpmaWxlKQ0KICAgICAg
+ICB4ZV9zY2hlZF9qb2JfcHVzaChqb2IpOw0KICAgICAgICB4ZV92bV9yZWFjdGl2YXRlX3JlYmlu
+ZCh2bSk7DQoNCi0gICAgICAgaWYgKCFlcnIgJiYgIXhlX3ZtX25vX2RtYV9mZW5jZXModm0pKSB7
+DQorICAgICAgIGlmICghZXJyICYmIHZtX3dpdGhfZG1hX2ZlbmNlcykgew0KICAgICAgICAgICAg
+ICAgIHNwaW5fbG9jaygmeGUtPnR0bS5scnVfbG9jayk7DQogICAgICAgICAgICAgICAgdHRtX2xy
+dV9idWxrX21vdmVfdGFpbCgmdm0tPmxydV9idWxrX21vdmUpOw0KICAgICAgICAgICAgICAgIHNw
+aW5fdW5sb2NrKCZ4ZS0+dHRtLmxydV9sb2NrKTsNCiAgICAgICAgfQ0KDQplcnJfcmVwaW46DQot
+ICAgICAgIGlmICgheGVfdm1fbm9fZG1hX2ZlbmNlcyh2bSkpDQorICAgICAgIGlmICh2bV93aXRo
+X2RtYV9mZW5jZXMpDQogICAgICAgICAgICAgICAgdXBfcmVhZCgmdm0tPnVzZXJwdHIubm90aWZp
+ZXJfbG9jayk7DQplcnJfcHV0X2pvYjoNCiAgICAgICAgaWYgKGVycikNCi0tDQoyLjM0LjENCg0K
+DQoNCg0KDQo=
 
-> +* ``revalidating``: Revalidating a gpu_vma means making the latest version
-> +  of the backing store resident and making sure the gpu_vma's
-> +  page-table entries point to that backing store.
-> +* ``dma_fence``: A struct dma_fence that is similar to a struct completion
-> +  and which tracks GPU activity. When the GPU activity is finished,
-> +  the dma_fence signals.
-> +* ``dma_resv``: A struct dma_resv (AKA reservation object) that is used
+--_000_dbc153f33efc8dfe0caf707b247a4b68habanaai_
+Content-Type: text/html; charset="utf-8"
+Content-ID: <1395EA946C9F8447BA76C843B3A0402D@eurprd02.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-maybe s/AKA/a.k.a ?!
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5Pg0KPGRpdiBjbGFzcz0i
+bW96LWNpdGUtcHJlZml4Ij5PbiAzMS8xMC8yMDIzIDIyOjA5LCBSdWhsLCBNaWNoYWVsIEogd3Jv
+dGU6PGJyPg0KPC9kaXY+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIiBjaXRlPSJtaWQ6SUExUFIx
+MU1CNjQxODZGQjc1RUYyNUI2QTI1NTJDNUMwQzFBMEFASUExUFIxMU1CNjQxOC5uYW1wcmQxMS5w
+cm9kLm91dGxvb2suY29tIj4NCjxwcmUgY2xhc3M9Im1vei1xdW90ZS1wcmUiIHdyYXA9IiI+DQo8
+L3ByZT4NCjxibG9ja3F1b3RlIHR5cGU9ImNpdGUiPg0KPHByZSBjbGFzcz0ibW96LXF1b3RlLXBy
+ZSIgd3JhcD0iIj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogSW50ZWwteGUgPGEg
+Y2xhc3M9Im1vei10eHQtbGluay1yZmMyMzk2RSIgaHJlZj0ibWFpbHRvOmludGVsLXhlLWJvdW5j
+ZXNAbGlzdHMuZnJlZWRlc2t0b3Aub3JnIj4mbHQ7aW50ZWwteGUtYm91bmNlc0BsaXN0cy5mcmVl
+ZGVza3RvcC5vcmcmZ3Q7PC9hPiBPbiBCZWhhbGYgT2YgRGFuaQ0KTGliZXJtYW4NClNlbnQ6IFR1
+ZXNkYXksIE9jdG9iZXIgMzEsIDIwMjMgMToxMiBQTQ0KVG86IDxhIGNsYXNzPSJtb3otdHh0LWxp
+bmstYWJicmV2aWF0ZWQiIGhyZWY9Im1haWx0bzppbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5v
+cmciPmludGVsLXhlQGxpc3RzLmZyZWVkZXNrdG9wLm9yZzwvYT4NClN1YmplY3Q6IFtJbnRlbC14
+ZV0gW1BBVENIIHYyXSBkcm0veGU6IHVzZSB2YXJpYWJsZSBpbnN0ZWFkIG9mIG11bHRpcGxlIGZ1
+bmN0aW9uDQpjYWxscw0KDQpVc2luZyBmdW5jdGlvbiBjYWxscyB3aXRoIG5lZ2F0aXZlIGxvZ2lj
+IHdhcyBhIGJpdCBjb25mdXNpbmcsDQpwb3NpdGl2ZSBsb2dpYyBpcyBtb3JlIHJlYWRhYmxlLg0K
+DQp2MjoNCi0gVXBkYXRlIGNvbW1pdCBtZXNzYWdlDQoNCkNjOiBNYXR0aGV3IEJyb3N0IDxhIGNs
+YXNzPSJtb3otdHh0LWxpbmstcmZjMjM5NkUiIGhyZWY9Im1haWx0bzptYXR0aGV3LmJyb3N0QGlu
+dGVsLmNvbSI+Jmx0O21hdHRoZXcuYnJvc3RAaW50ZWwuY29tJmd0OzwvYT4NCkNjOiBWaWxsZSBT
+eXJqYWxhIDxhIGNsYXNzPSJtb3otdHh0LWxpbmstcmZjMjM5NkUiIGhyZWY9Im1haWx0bzp2aWxs
+ZS5zeXJqYWxhQGxpbnV4LmludGVsLmNvbSI+Jmx0O3ZpbGxlLnN5cmphbGFAbGludXguaW50ZWwu
+Y29tJmd0OzwvYT4NClNpZ25lZC1vZmYtYnk6IERhbmkgTGliZXJtYW4gPGEgY2xhc3M9Im1vei10
+eHQtbGluay1yZmMyMzk2RSIgaHJlZj0ibWFpbHRvOmRsaWJlcm1hbkBoYWJhbmEuYWkiPiZsdDtk
+bGliZXJtYW5AaGFiYW5hLmFpJmd0OzwvYT4NClJldmlld2VkLWJ5OiBNYXR0aGV3IEJyb3N0IDxh
+IGNsYXNzPSJtb3otdHh0LWxpbmstcmZjMjM5NkUiIGhyZWY9Im1haWx0bzptYXR0aGV3LmJyb3N0
+QGludGVsLmNvbSI+Jmx0O21hdHRoZXcuYnJvc3RAaW50ZWwuY29tJmd0OzwvYT4NCi0tLQ0KZHJp
+dmVycy9ncHUvZHJtL3hlL3hlX2V4ZWMuYyB8IDE1ICsrKysrKysrLS0tLS0tLQ0KMSBmaWxlIGNo
+YW5nZWQsIDggaW5zZXJ0aW9ucygrKSwgNyBkZWxldGlvbnMoLSkNCg0KZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvZ3B1L2RybS94ZS94ZV9leGVjLmMgYi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZXhlYy5j
+DQppbmRleCAyOGU4NGEwYmJlYjAuLjJkZTZjMmMwNTA3OCAxMDA2NDQNCi0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS94ZS94ZV9leGVjLmMNCisrKyBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9leGVjLmMN
+CkBAIC0xNDUsNyArMTQ1LDcgQEAgaW50IHhlX2V4ZWNfaW9jdGwoc3RydWN0IGRybV9kZXZpY2Ug
+KmRldiwgdm9pZCAqZGF0YSwNCnN0cnVjdCBkcm1fZmlsZSAqZmlsZSkNCglzdHJ1Y3QgeGVfc2No
+ZWRfam9iICpqb2I7DQoJc3RydWN0IGRtYV9mZW5jZSAqcmViaW5kX2ZlbmNlOw0KCXN0cnVjdCB4
+ZV92bSAqdm07DQotCWJvb2wgd3JpdGVfbG9ja2VkOw0KKwlib29sIHdyaXRlX2xvY2tlZCwgdm1f
+d2l0aF9kbWFfZmVuY2VzOw0KCWt0aW1lX3QgZW5kID0gMDsNCglpbnQgZXJyID0gMDsNCg0KQEAg
+LTE5Niw4ICsxOTYsOSBAQCBpbnQgeGVfZXhlY19pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2
+LCB2b2lkICpkYXRhLA0Kc3RydWN0IGRybV9maWxlICpmaWxlKQ0KCQl9DQoJfQ0KDQorCXZtX3dp
+dGhfZG1hX2ZlbmNlcyA9ICF4ZV92bV9ub19kbWFfZmVuY2VzKHZtKTsNCnJldHJ5Og0KPC9wcmU+
+DQo8L2Jsb2NrcXVvdGU+DQo8cHJlIGNsYXNzPSJtb3otcXVvdGUtcHJlIiB3cmFwPSIiPg0KQXJl
+IHlvdSAxMDAlIGNlcnRhaW4gdGhhdCB0aGlzIHZhbHVlIHdpbGwgbmV2ZXIgY2hhbmdlIG9uIHJl
+dHJ5Pw0KDQpNPC9wcmU+DQo8L2Jsb2NrcXVvdGU+DQo8cHJlPkl0IGRlcGVuZHMgb24gdm0gZmxh
+Z3MgdGhhdCBhcmUgZ2V0dGluZyBzZXQgb24gdm0gY3JlYXRlLCBzbyB5ZXMuPC9wcmU+DQo8cHJl
+Pg0KRGFuaQ0KPC9wcmU+DQo8YmxvY2txdW90ZSB0eXBlPSJjaXRlIiBjaXRlPSJtaWQ6SUExUFIx
+MU1CNjQxODZGQjc1RUYyNUI2QTI1NTJDNUMwQzFBMEFASUExUFIxMU1CNjQxOC5uYW1wcmQxMS5w
+cm9kLm91dGxvb2suY29tIj4NCjxwcmUgY2xhc3M9Im1vei1xdW90ZS1wcmUiIHdyYXA9IiI+DQoN
+CjwvcHJlPg0KPGJsb2NrcXVvdGUgdHlwZT0iY2l0ZSI+DQo8cHJlIGNsYXNzPSJtb3otcXVvdGUt
+cHJlIiB3cmFwPSIiPi0JaWYgKCF4ZV92bV9ub19kbWFfZmVuY2VzKHZtKSAmYW1wOyZhbXA7IHhl
+X3ZtX3VzZXJwdHJfY2hlY2tfcmVwaW4odm0pKSB7DQorCWlmICh2bV93aXRoX2RtYV9mZW5jZXMg
+JmFtcDsmYW1wOyB4ZV92bV91c2VycHRyX2NoZWNrX3JlcGluKHZtKSkgew0KCQllcnIgPSBkb3du
+X3dyaXRlX2tpbGxhYmxlKCZhbXA7dm0tJmd0O2xvY2spOw0KCQl3cml0ZV9sb2NrZWQgPSB0cnVl
+Ow0KCX0gZWxzZSB7DQpAQCAtMjc5LDcgKzI4MCw3IEBAIGludCB4ZV9leGVjX2lvY3RsKHN0cnVj
+dCBkcm1fZGV2aWNlICpkZXYsIHZvaWQgKmRhdGEsDQpzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGUpDQoJ
+fQ0KDQoJLyogV2FpdCBiZWhpbmQgbXVubWFwIHN0eWxlIHJlYmluZHMgKi8NCi0JaWYgKCF4ZV92
+bV9ub19kbWFfZmVuY2VzKHZtKSkgew0KKwlpZiAodm1fd2l0aF9kbWFfZmVuY2VzKSB7DQoJCWVy
+ciA9IGRybV9zY2hlZF9qb2JfYWRkX3Jlc3ZfZGVwZW5kZW5jaWVzKCZhbXA7am9iLSZndDtkcm0s
+DQoJCQkJCQkJICAmYW1wO3ZtLSZndDtyZXN2LA0KDQpETUFfUkVTVl9VU0FHRV9LRVJORUwpOw0K
+QEAgLTI5Miw3ICsyOTMsNyBAQCBpbnQgeGVfZXhlY19pb2N0bChzdHJ1Y3QgZHJtX2RldmljZSAq
+ZGV2LCB2b2lkICpkYXRhLA0Kc3RydWN0IGRybV9maWxlICpmaWxlKQ0KCWlmIChlcnIpDQoJCWdv
+dG8gZXJyX3B1dF9qb2I7DQoNCi0JaWYgKCF4ZV92bV9ub19kbWFfZmVuY2VzKHZtKSkgew0KKwlp
+ZiAodm1fd2l0aF9kbWFfZmVuY2VzKSB7DQoJCWVyciA9IGRvd25fcmVhZF9pbnRlcnJ1cHRpYmxl
+KCZhbXA7dm0tJmd0O3VzZXJwdHIubm90aWZpZXJfbG9jayk7DQoJCWlmIChlcnIpDQoJCQlnb3Rv
+IGVycl9wdXRfam9iOw0KQEAgLTMwNyw3ICszMDgsNyBAQCBpbnQgeGVfZXhlY19pb2N0bChzdHJ1
+Y3QgZHJtX2RldmljZSAqZGV2LCB2b2lkICpkYXRhLA0Kc3RydWN0IGRybV9maWxlICpmaWxlKQ0K
+CSAqIHRoZSBqb2IgYW5kIGxldCB0aGUgRFJNIHNjaGVkdWxlciAvIGJhY2tlbmQgY2xlYW4gdXAg
+dGhlIGpvYi4NCgkgKi8NCgl4ZV9zY2hlZF9qb2JfYXJtKGpvYik7DQotCWlmICgheGVfdm1fbm9f
+ZG1hX2ZlbmNlcyh2bSkpIHsNCisJaWYgKHZtX3dpdGhfZG1hX2ZlbmNlcykgew0KCQkvKiBCbG9j
+ayB1c2VycHRyIGludmFsaWRhdGlvbnMgLyBCTyBldmljdGlvbiAqLw0KCQlkbWFfcmVzdl9hZGRf
+ZmVuY2UoJmFtcDt2bS0mZ3Q7cmVzdiwNCgkJCQkgICAmYW1wO2pvYi0mZ3Q7ZHJtLnNfZmVuY2Ut
+Jmd0O2ZpbmlzaGVkLA0KQEAgLTMzMCwxNCArMzMxLDE0IEBAIGludCB4ZV9leGVjX2lvY3RsKHN0
+cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQNCipkYXRhLCBzdHJ1Y3QgZHJtX2ZpbGUgKmZpbGUp
+DQoJeGVfc2NoZWRfam9iX3B1c2goam9iKTsNCgl4ZV92bV9yZWFjdGl2YXRlX3JlYmluZCh2bSk7
+DQoNCi0JaWYgKCFlcnIgJmFtcDsmYW1wOyAheGVfdm1fbm9fZG1hX2ZlbmNlcyh2bSkpIHsNCisJ
+aWYgKCFlcnIgJmFtcDsmYW1wOyB2bV93aXRoX2RtYV9mZW5jZXMpIHsNCgkJc3Bpbl9sb2NrKCZh
+bXA7eGUtJmd0O3R0bS5scnVfbG9jayk7DQoJCXR0bV9scnVfYnVsa19tb3ZlX3RhaWwoJmFtcDt2
+bS0mZ3Q7bHJ1X2J1bGtfbW92ZSk7DQoJCXNwaW5fdW5sb2NrKCZhbXA7eGUtJmd0O3R0bS5scnVf
+bG9jayk7DQoJfQ0KDQplcnJfcmVwaW46DQotCWlmICgheGVfdm1fbm9fZG1hX2ZlbmNlcyh2bSkp
+DQorCWlmICh2bV93aXRoX2RtYV9mZW5jZXMpDQoJCXVwX3JlYWQoJmFtcDt2bS0mZ3Q7dXNlcnB0
+ci5ub3RpZmllcl9sb2NrKTsNCmVycl9wdXRfam9iOg0KCWlmIChlcnIpDQotLQ0KMi4zNC4xDQo8
+L3ByZT4NCjwvYmxvY2txdW90ZT4NCjxwcmUgY2xhc3M9Im1vei1xdW90ZS1wcmUiIHdyYXA9IiI+
+DQo8L3ByZT4NCjwvYmxvY2txdW90ZT4NCjxwPjxicj4NCjwvcD4NCjwvYm9keT4NCjwvaHRtbD4N
+Cg==
 
-> +  to track GPU activity in the form of multiple dma_fences on a
-> +  gpu_vm or a GEM object. The dma_resv contains an array / list
-> +  of dma_fences and a lock that needs to be held when adding
-> +  additional dma_fences to the dma_resv. The lock is of a type that
-> +  allows deadlock-safe locking of multiple dma_resvs in arbitrary order.
-> +* ``exec function``: An exec function is a function that revalidates all
-> +  affected gpu_vmas, submits a GPU command batch and registers the
-> +  dma_fence representing the GPU command's activity with all affected
-> +  dma_resvs. For completeness, although not covered by this document,
-> +  it's worth mentioning that an exec function may also be the
-> +  revalidation worker that is used by some drivers in compute /
-> +  long-running mode.
-> +* ``local object``: A GEM object which is local to a gpu_vm. Shared gem
-> +  objects also share the gpu_vm's dma_resv.
-> +* ``shared object``: AKA external object: A GEM object which may be shared
-
-maybe s/AKA/a.k.a ?!
-
-> +  by multiple gpu_vms and whose backing storage may be shared with
-> +  other drivers.
-> +
-> +
-> +Locks used and locking orders
-> +=============================
-> +
-> +One of the benefits of VM_BIND is that local GEM objects share the gpu_vm's
-> +dma_resv object and hence the dma_resv lock. So even with a huge
-> +number of local GEM objects, only one lock is needed to make the exec
-> +sequence atomic.
-> +
-> +The following locks and locking orders are used:
-> +
-> +* The ``gpu_vm->lock`` (optionally an rwsem). Protects how the gpu_vm is
-> +  partitioned into gpu_vmas. It can also protect the gpu_vm's list of
-> +  userptr gpu_vmas. With a CPU mm analogy this would correspond to the
-> +  mmap_lock.
-> +* The ``userptr_seqlock``. This lock is taken in read mode for each
-> +  userptr gpu_vma on the gpu_vm's userptr list, and in write mode during mmu
-> +  notifier invalidation. This is not a real seqlock but described in
-> +  ``mm/mmu_notifier.c`` as a "Collision-retry read-side/write-side
-> +  'lock' a lot like a seqcount, however this allows multiple
-> +  write-sides to hold it at once...". The read side critical section
-> +  is enclosed by ``mmu_interval_read_begin() /
-> +  mmu_interval_read_retry()`` with ``mmu_interval_read_begin()``
-> +  sleeping if the write side is held.
-> +  The write side is held by the core mm while calling mmu interval
-> +  invalidation notifiers.
-> +* The ``gpu_vm->resv`` lock. Protects the gpu_vm's list of gpu_vmas needing
-> +  rebinding, and also the residency of all the gpu_vm's local GEM object.
-> +  Furthermore it typically protects the gpu_vm's list of evicted GEM
-> +  objects and external objects.
-> +* The ``gpu_vm->userptr_notifier_lock``. This is an rwsem that is
-> +  taken in read mode during exec and write mode during a mmu notifier
-> +  invalidation. The userptr notifier lock is per gpu_vm.
-> +* The gpu_vm list spinlocks. With some implementations they are needed
-> +  to be able to update the gpu_vm evicted- and external object
-> +  list. For those implementations, the spinlocks are grabbed when the
-> +  lists are manipulated. However to avoid locking order violations
-> +  with the dma_resv locks, a special scheme is needed when iterating
-> +  over the lists.
-> +  
-
-   ^^ spurious spaces
-
-> +.. _gpu_vma lifetime:
-> +
-> +Protection and lifetime of gpu_vm_bos and gpu_vmas
-> +==================================================
-> +
-> +The GEM object's list of gpu_vm_bos is typically protected by the
-> +GEM object's dma_resv. Each gpu_vm_bo holds a reference counted pointer
-> +to the underlying GEM object, and each gpu_vma holds a reference counted
-> +pointer to the gpu_vm_bo. When iterating over the GEM object's
-> +list of gpu_vm_bos the gem object's dma_resv must thus be held,
-> +but if it needs to be dropped during the iteration, care needs to be
-> +taken so that any gpu_vm_bo, and the gpu_vm, if dereferenced
-> +while the lock is dropped, do not disappear. The easiest way to avoid
-> +this is to take a reference on affected objects while the dma_resv is
-> +still held. If iterating over the gpu_vm_bo's gpu_vmas, even
-> +greater care needs to be taken since the gpu_vmas are not
-> +reference counted. If a driver accesses a gpu_vma obtained from
-> +the gpu_vm_bo's list of gpu_vmas, and the GEM object's
-> +dma_resv is dropped, at the very least, it should be thoroughly
-> +documented how the gpu_vma is kept alive. Otherwise holding the
-> +GEM object's dma_resv lock also around unlinking a gpu_vma from a
-> +gpu_vm_bo will ensure that doesn't happen.
-> +
-> +
-> +Revalidation and eviction of local objects
-> +==========================================
-> +
-> +Revalidation
-> +____________
-> +With VM_BIND, all local objects need to be resident when the gpu is
-> +executing using the gpu_vm, and the objects need to have valid
-> +gpu_vmas set up pointing to them. Typically each gpu command buffer
-> +submission is therefore preceded with a re-validation section:
-> +
-> +.. code-block:: C
-> +
-> +   dma_resv_lock(gpu_vm->resv);
-> +
-> +   // Validation section starts here.
-> +   for_each_gpu_vm_bo_on_evict_list(&gpu_vm->evict_list, &gpu_vm_bo) {
-> +           validate_gem_bo(&gpu_vm_bo->gem_bo);
-> +
-> +	   // The following list iteration needs the Gem object's
-> +	   // dma_resv to be held (it protects the gpu_vm_bo's list of
-> +	   // gpu_vmas, but since local gem objects share the gpu_vm's
-> +           // dma_resv, it is already held at this point.
-> +	   for_each_gpu_vma_of_gpu_vm_bo(&gpu_vm_bo, &gpu_vma)
-> +		  move_gpu_vma_to_rebind_list(&gpu_vma, &gpu_vm->rebind_list);
-> +   }
-> +
-> +   for_each_gpu_vma_on_rebind_list(&gpu vm->rebind_list, &gpu_vma) {
-> +           rebind_gpu_vma(&gpu_vma);
-> +	   remove_gpu_vma_from_rebind_list(&gpu_vma);
-> +   }
-> +   // Validation section ends here, and job submission starts.
-> +		
-
-   ^^^^^^^^^^^^^ more spurious spaces
-
-> +   add_dependencies(&gpu_job, &gpu_vm->resv);
-> +   job_dma_fence = gpu_submit(&gpu_job));
-> +
-> +   add_dma_fence(job_dma_fence, &gpu_vm->resv);
-> +   dma_resv_unlock(gpu_vm->resv);
-> +
-> +The reason for having a separate gpu_vm rebind list is that there
-> +might be userptr gpu_vmas that are not mapping a buffer object that
-> +also need rebinding.
-> +
-
-(pausing here... I will continue the review below tomorrow)
-
-> +Eviction
-> +________
-> +
-> +Eviction of one of these local objects will then look similar to the
-> +following:
-> +
-> +.. code-block:: C
-> +
-> +   obj = get_object_from_lru();
-> +
-> +   dma_resv_lock(obj->resv);
-> +   for_each_gpu_vm_bo_of_obj(obj, &gpu_vm_bo);
-> +           add_gpu_vm_bo_to_evict_list(&gpu_vm_bo, &gpu_vm->evict_list);
-> +
-> +   add_dependencies(&eviction_job, &obj->resv);
-> +   job_dma_fence = gpu_submit(&eviction_job);
-> +   add_dma_fence(&obj->resv, job_dma_fence);
-> +
-> +   dma_resv_unlock(&obj->resv);
-> +   put_object(obj);
-> +
-> +Note that since the object is local to the gpu_vm, it will share the gpu_vm's
-> +dma_resv lock so that ``obj->resv == gpu_vm->resv``.
-> +The gpu_vm_bos marked for eviction are put on the gpu_vm's evict list,
-> +which is protected by ``gpu_vm->resv``, that is always locked while
-> +evicting, due to the above equality.
-> +
-> +For VM_BIND gpu_vms, gpu_vmas don't need to be unbound before eviction,
-> +Since the eviction blit or copy will wait for GPU idle, any attempt by
-> +the GPU to access freed memory through the gpu_vma will be preceded by
-> +a new exec function, with a revalidation section which will make sure
-> +the gpu_vma is rebound. The eviction code holding the object's dma_resv while
-> +revalidating will ensure a new exec function may not race with the eviction.
-> +
-> +Locking with external (or shared) buffer objects
-> +================================================
-> +
-> +Since shared buffer objects may be shared by multiple gpu_vm's they
-> +can't share their reservation object with a single gpu_vm, but will rather
-> +have a reservation object of their own. The shared objects bound to a
-> +gpu_vm using one or many gpu_vmas are therefore typically put on a
-> +per-gpu_vm list which is protected by the gpu_vm's dma_resv lock. Once
-> +the gpu_vm's reservation object  is locked, it is safe to traverse the
-> +external object list and lock the dma_resvs of all external objects.
-> +
-> +At eviction time we now need to put the gpu_vm_bos of *all* gpu_vms a
-> +shared object is bound to on the gpu_vm's evict list, but we can no longer
-> +be certain that we hold the gpu_vm's dma_resv of all the gpu_vms the
-> +object is bound to, since at eviction time we only hold the object's
-> +private dma_resv. If we have a ww_acquire context at hand at eviction
-> +time we could grab the those dma_resvs but that could cause
-> +expensive ww_mutex rollbacks. A simple option is to just mark the
-> +gpu_vm_bos of the evicted gem object with an ``evicted`` bool that
-> +is inspected the next time the corresponding gpu_vm evicted list needs
-> +to be traversed. At that time the gpu_vm's dma_resv and the object's
-> +dma_resv is held, and the gpu_vm_bo marked evicted, can then be added
-> +to the gpu_vm's list of evicted gpu_vm_bos. The ``evicted`` bool would
-> +then be protected by the object's dma_resv.
-> +
-> +The exec function would then become
-> +
-> +.. code-block:: C
-> +
-> +   dma_resv_lock(gpu_vm->resv);
-> +
-> +   // External object list is protected by the gpu_vm->resv lock.
-> +   for_each_gpu_vm_bo_on_extobj_list(gpu_vm, &gpu_vm_bo) {
-> +           dma_resv_lock(gpu_vm_bo.gem_obj->resv);
-> +	   if (gpu_vm_bo_marked_evicted(&gpu_vm_bo))
-> +                   add_gpu_vm_bo_to_evict_list(&gpu_vm_bo, &gpu_vm->evict_list);
-> +   }
-> +
-> +   for_each_gpu_vm_bo_on_evict_list(&gpu_vm->evict_list, &gpu_vm_bo) {
-> +           validate_gem_bo(&gpu_vm_bo->gem_bo);
-> +
-> +	   for_each_gpu_vma_of_gpu_vm_bo(&gpu_vm_bo, &gpu_vma)
-> +		  move_gpu_vma_to_rebind_list(&gpu_vma, &gpu_vm->rebind_list);
-> +   }
-> +
-> +   for_each_gpu_vma_on_rebind_list(&gpu vm->rebind_list, &gpu_vma) {
-> +           rebind_gpu_vma(&gpu_vma);
-> +	   remove_gpu_vma_from_rebind_list(&gpu_vma);
-> +   }
-> +
-> +   add_dependencies(&gpu_job, &gpu_vm->resv);
-> +   job_dma_fence = gpu_submit(&gpu_job));
-> +
-> +   add_dma_fence(job_dma_fence, &gpu_vm->resv);
-> +   for_each_shared_obj(gpu_vm, &obj)
-> +          add_dma_fence(job_dma_fence, &obj->resv);
-> +   dma_resv_unlock_all_resv_locks();
-> +
-> +And the corresponding shared-object aware eviction would look like:
-> +
-> +.. code-block:: C
-> +
-> +   obj = get_object_from_lru();
-> +
-> +   dma_resv_lock(obj->resv);
-> +   for_each_gpu_vm_bo_of_obj(obj, &gpu_vm_bo)
-> +           if (object_is_vm_local(obj))
-> +	        add_gpu_vm_bo_to_evict_list(&gpu_vm_bo, &gpu_vm->evict_list);
-> +           else
-> +		mark_gpu_vm_bo_evicted(&gpu_vm_bo);
-> +
-> +   add_dependencies(&eviction_job, &obj->resv);
-> +   job_dma_fence = gpu_submit(&eviction_job);
-> +   add_dma_fence(&obj->resv, job_dma_fence);
-> +
-> +   dma_resv_unlock(&obj->resv);
-> +   put_object(obj);
-> +
-> +.. _Spinlock iteration:
-> +
-> +Accessing the gpu_vm's lists without the dma_resv lock held
-> +===========================================================
-> +
-> +Many drivers will not need to access the gpu_vm's evict- and
-> +external objects lists without holding the gpu_vm's dma_resv lock,
-> +but some drivers do, for example due to asynchronous state updates
-> +from within the dma_fence signalling critical path. In such case a
-> +spinlock can be used to protect manipulation of the lists. However,
-> +since higher level sleeping locks needs to be taken for each list item
-> +while iterating over the lists, the items already iterated over needs
-> +to be temporarily moved to a private list and the spinlock released
-> +while processing each item:
-> +
-> +.. code block:: C
-> +
-> +    struct list_head still_in_list;
-> +
-> +    INIT_LIST_HEAD(&still_in_list);
-> +
-> +    spin_lock(&gpu_vm->list_lock);
-> +    do {
-> +            struct list_head *entry = list_first_entry_or_null(&gpu_vm->list, head);
-> +
-> +	    if (!entry)
-> +	            break;
-> +
-> +	    list_move_tail(&entry->head, &still_in_list);
-> +	    list_entry_get_unless_zero(entry);
-> +	    spin_unlock(&gpu_vm->list_lock);
-> +
-> +	    process(entry);
-> +
-> +	    spin_lock(&gpu_vm->list_lock);
-> +	    list_entry_put(entry);
-> +    } while (true);
-> +
-> +    list_splice_tail(&still_in_list, &gpu_vm->list);
-> +    spin_unlock(&gpu_vm->list_lock);
-> +	    
-> +However, due to the additional locking and atomic operations, drivers that *can*
-> +avoid accessing the gpu_vm's list outside of the dma_resv lock
-> +might want to avoid this iteration scheme, if the driver anticipates a
-> +large number of list items. For lists where the anticipated number of
-> +list items is small, list iteration doesn't happen very often, or
-> +there is a significant additional cost associated with each iteration,
-> +the atomic operation overhead associated with this type of iteration
-> +is, however, probably negligible. Note that if this scheme is
-> +used, it is necessary to make sure this list iteration is protected by
-> +an outer level lock or semaphore, since list items are temporarily
-> +pulled off the list while iterating.
-> +
-> +TODO: Pointer to the gpuvm code implementation if this iteration and
-> +how to choose either iteration scheme.
-> +
-> +userptr gpu_vmas
-> +================
-> +
-> +A userptr gpu_vma is a gpu_vma that, instead of mapping a buffer object to a
-> +GPU virtual address range, directly maps a CPU mm range of anonymous-
-> +or file page-cache pages.
-> +A very simple approach would be to just pin the pages using
-> +pin_user_pages() at bind time and unpin them at unbind time, but this
-> +creates a Denial-Of-Service vector since a single user-space process
-> +would be able to pin down all of system memory, which is not
-> +desirable. (For special use-cases and with proper accounting pinning might
-> +still be a desirable feature, though). What we need to do in the
-> +general case is to obtain a reference to the desired pages, make sure
-> +we are notified 
-> +using a MMU notifier just before the CPU mm unmaps the pages, dirty
-> +them if they are not mapped read-only to the GPU, and then drop the
-> +reference.
-> +When we are notified by the MMU notifier that CPU mm is about to drop the
-> +pages, we need to stop GPU access to the pages,
-> +and make sure that before the next time the GPU tries to access
-> +whatever is now present in the CPU mm range, we unmap the old pages
-> +from the GPU page tables and repeat the process of obtaining new page
-> +references. Note that when the core mm decides to laundry pages, we get such
-> +an unmap MMU notification and can mark the pages dirty again before the
-> +next GPU access. We also get similar MMU notifications for NUMA accounting
-> +which the GPU driver doesn't really need to care about, but so far
-> +it has proven difficult to exclude certain notifications.
-> +
-> +Using a MMU notifier for device DMA (and other methods) is described in
-> +`this document
-> +<https://docs.kernel.org/core-api/pin_user_pages.html#case-3-mmu-notifier-registration-with-or-without-page-faulting-hardware>`_.
-> +
-> +Now the method of obtaining struct page references using
-> +get_user_pages() unfortunately can't be used under a dma_resv lock
-> +since that would violate the locking order of the dma_resv lock vs the
-> +mmap_lock that is grabbed when resolving a CPU pagefault. This means
-> +the gpu_vm's list of userptr gpu_vmas needs to be protected by an
-> +outer lock.
-> +
-> +The MMU interval seqlock for a userptr gpu_vma is used in the following
-> +way:
-> +
-> +.. code-block:: C
-> +
-> +   // Exclusive locking mode here is strictly needed only if there are
-> +   // invalidated userptr vmas present, to avoid multiple userptr
-> +   // revalidations.
-> +   down_write(&gpu_vm->lock);
-> +   retry:
-> +
-> +   // Note: mmu_interval_read_begin() blocks until there is no
-> +   // invalidation notifier running anymore.
-> +   seq = mmu_interval_read_begin(&gpu_vma->userptr_interval);
-> +   if (seq != gpu_vma->saved_seq) {
-> +           obtain_new_page_pointers(&gpu_vma);
-> +	   dma_resv_lock(&gpu_vm->resv);
-> +	   add_gpu_vma_top_revalidate_list(&gpu_vma, &gpu_vm);
-> +	   dma_resv_unlock(&gpu_vm->resv);
-> +	   gpu_vma->saved_seq = seq;
-> +   }
-> +
-> +   // The usual revalidation goes here.
-> +
-> +   // Final userptr sequence validation may not happen before the
-> +   // submission dma_fence is added to the gpu_vm's resv, from the POW
-> +   // of the MMU invalidation notifier. Hence the
-> +   // userptr_notifier_lock that will make them appear atomic.
-> +
-> +   add_dependencies(&gpu_job, &gpu_vm->resv);
-> +   down_read(&gpu_vm->userptr_notifier_lock);
-> +   if (mmu_interval_read_retry(&gpu_vma->userptr_interval, gpu_vma->saved_seq)) {
-> +          up_read(&gpu_vm->userptr_notifier_lock);
-> +	  goto retry;
-> +   }
-> +
-> +   job_dma_fence = gpu_submit(&gpu_job));
-> +
-> +   add_dma_fence(job_dma_fence, &gpu_vm->resv);
-> +
-> +   for_each_shared_obj(gpu_vm, &obj)
-> +          add_dma_fence(job_dma_fence, &obj->resv);
-> +
-> +   dma_resv_unlock_all_resv_locks();
-> +   up_read(&gpu_vm->userptr_notifier_lock);
-> +   up_write(&gpu_vm->lock);
-> +
-> +The code between ``mmu_interval_read_begin()`` and the
-> +``mmu_interval_read_retry()`` marks the read side critical section of
-> +what we call the ``userptr_seqlock``. In reality the gpu_vm's userptr
-> +gpu_vma list is looped through, and the check is done for *all* of its
-> +userptr gpu_vmas, although we only show a single one here.
-> +
-> +The userptr gpu_vma MMU invalidation notifier might be called from
-> +reclaim context and, again to avoid locking order violations, we can't
-> +take any dma_resv lock nor the gpu_vm->lock from within it.
-> +
-> +.. code-block:: C
-> +
-> +  bool gpu_vma_userptr_invalidate(userptr_interval, cur_seq)
-> +  {
-> +          // Make sure the exec function either sees the new sequence
-> +	  // and backs off or we wait for the dma-fence:
-> +
-> +          down_write(&gpu_vm->userptr_notifier_lock);
-> +	  mmu_interval_set_seq(userptr_interval, cur_seq);
-> +	  up_write(&gpu_vm->userptr_notifier_lock);
-> +
-> +	  // At this point, the exec function can't succeed in
-> +	  // submitting a new job, because cur_seq is an invalid
-> +	  // sequence number and will always cause a retry. When all
-> +	  // invalidation callbacks, the mmu notifier core will flip
-> +	  // the sequence number to a valid one. However we need to
-> +	  // stop gpu access to the old pages here.
-> +
-> +	  dma_resv_wait_timeout(&gpu_vm->resv, DMA_RESV_USAGE_BOOKKEEP,
-> +		                false, MAX_SCHEDULE_TIMEOUT);
-> +	  return true;
-> +  }
-> +
-> +When this invalidation notifier returns, the GPU can no longer be
-> +accessing the old pages of the userptr gpu_vma and needs to redo the
-> +page-binding before a new GPU submission can succeed.
-> +
-> +Efficient userptr gpu_vma exec_function iteration
-> +_________________________________________________
-> +
-> +If the gpu_vm's list of userptr gpu_vmas becomes large, it's
-> +inefficient to iterate through the complete lists of userptrs on each
-> +exec function to check whether each userptr gpu_vma's saved
-> +sequence number is invalid or stale. A solution to this is to put all
-> +*invalidated* userptr gpu_vmas on a separate gpu_vm list and
-> +only those gpu_vmas on the list are actually checked on each exec
-> +function. This list will then lend itself very-well to the spinlock
-> +locking scheme that is
-> +:ref:`described in the spinlock iteration section <Spinlock iteration>`, since
-> +in the mmu notifier, where we add the invalidated gpu_vmas to the
-> +list, it's not possible to take any outer locks like the 
-> +``gpu_vm->lock`` or the ``gpu_vm->resv`` lock. Note that the
-> +``gpu_vm->lock`` still needs to be taken while iterating to ensure the list is
-> +complete, as also mentioned in that section.
-> +
-> +If using an invalidated userptr list like this, the retry check in the
-> +exec function trivially becomes a check for invalidated list empty.
-> +
-> +Locking at bind- and unbind time
-> +================================
-> +
-> +At bind time, assuming a GEM object backed gpu_vma, each
-> +gpu_vma needs to be associated with a gpu_vm_bo and that
-> +gpu_vm_bo in turn needs to be added to the GEM object's
-> +gpu_vm_bo list, and possibly to the gpu_vm's external object
-> +list. This is referred to as *linking* the gpu_vma, and typically
-> +requires that the ``gpu_vm->resv`` and the GEM object's dma_resv are
-> +held. When unlinking a gpu_vma the same locks are typically held,
-> +and that ensures, as briefly discussed
-> +:ref:`previously <gpu_vma lifetime>`, that when iterating over
-> +``gpu_vmas`, either under the ``gpu_vm->resv`` or the GEM
-> +object's dma_resv, that the gpu_vmas stay alive as long
-> +as the lock under which we iterate are not is not released. For
-> +userptr gpu_vmas it's similarly required that during unlink, the
-> +outer ``gpu_vm->lock`` is held, since otherwise when iterating over
-> +the invalidated userptr list as described in the previous section,
-> +there is nothing keeping those userptr gpu_vmas alive.
-> +
-> -- 
-> 2.41.0
-> 
+--_000_dbc153f33efc8dfe0caf707b247a4b68habanaai_--
