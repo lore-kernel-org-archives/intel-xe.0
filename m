@@ -4,146 +4,57 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98907C4332F
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Nov 2023 04:53:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 528D3C4332F
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Nov 2023 08:04:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4B83010E048;
-	Wed,  1 Nov 2023 04:53:44 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4A3C10E048
- for <intel-xe@lists.freedesktop.org>; Wed,  1 Nov 2023 04:53:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB10E10E64B;
+	Wed,  1 Nov 2023 08:04:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8431B10E64B;
+ Wed,  1 Nov 2023 08:04:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698814421; x=1730350421;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=HKs2khtLUDw0z2jSP/tzanxLJ/o4f9LuAtzVE8pmULU=;
- b=EPcecXtVNZo9uHmlqiNygmAm+c/OqdkoyZsPKshIZAFSjDIQO9VQrq+i
- xXVMjJHFvfZcaJvTbXfUceN4J4Hygn/ao28MuyG482haOyVlg6CGE7BK7
- 71+aJIo8nhfpN1jHYDh4/fyhfgSdyMkJuIWGi+z2fm3cs+jEJCd5SVtnp
- 7GYiWqrgxCty3GaEaKPQUFYVKAfvixLyJMmk9GuNBAQcmmlc56cCnou4p
- RlnKDPmj+9js+Jw8Hg3BTPX3DFxRy80JbTdbKdXJeNi39uXRYGtqgV1+c
- fjMwnYAWCz/E69pipsSeic5ofLRKu1PJf/8fYKVGyTppwZIHmChJdyScm w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="388255041"
-X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; d="scan'208";a="388255041"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Oct 2023 21:53:41 -0700
+ t=1698825841; x=1730361841;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=/FfFWlKiFEko/38MSklLd9BRuxYkdj4lHb9oWkqlvrM=;
+ b=gKRmpE/E7miZAKJ+TcHCVrRj8Q2dvILu4k9Zlqn8FHobqeqtaBGTcRL/
+ bJR9wEHi71JZcJSRiSrOdzFKDToUWfkFpP6F/x30ClEOXut4uKtrN8Kzz
+ yRKFU3/+rgFt+jURIJTpPzBslZEf17FOgOgQSl8jZWIPgY91le2FVAqNo
+ D03xkIqthVQeCWiGuhy59j4ZPuFUprkk0OoaPmwveWq7W0xpkqFeCL8TV
+ rtJqvvXBPbgAHealZU/VeNPrdzf6aB+aO2Xm2y98LQMxJFUTjKj2HQ2lu
+ 9uoCz00mnxW/NP87v9ZJhXr+3pONNGODinDpC8suWU4/rzJsPA1PPcogj A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="1304750"
+X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; 
+   d="scan'208";a="1304750"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2023 01:04:00 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10880"; a="795798198"
-X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; d="scan'208";a="795798198"
-Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
- by orsmga001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 31 Oct 2023 21:53:40 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Tue, 31 Oct 2023 21:53:40 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Tue, 31 Oct 2023 21:53:40 -0700
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Tue, 31 Oct 2023 21:53:40 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oSPqVCvOJKyplzZKQQANsYgK5cHiwPbrMOsNwsEKQSSOUv9ckftpmJflTyhWRFKHkWrFIlnZ494ISUIG0dYIS8Pz+cjW5evGmdx1Fka5Pkm4BjL4ENzsYZVOPLpdkRIU/nAo9lBrkwwiZEvp8zb66GTXlnMVRaU/Z1f44BauerPpUBMw/ixcan9eKNdXDWNqi1qCyDRgTqooq8mKikXT9ospQHPXdemVG9UZnQJNFbAzW6KQs4ea627XsxlSUeVDpdeFKKQzb55Hd63zeyNfxhnFo50BVYaazCBEhFhCmoaTyC997xgD1blD5LazNYmlwJ/IADApRfit8PpYz7ZXDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/jKhPA8zfQZe0Ec1QaXgocZa3Hqd2ZEblWHKHO/edWA=;
- b=MpWfU9VwW66qABYTyYpFdkmqAAuruE2u5y5WHhqRTzdCHXzaJ9h0Bof+qWO/gl094YZ425ka4VPkp0XphQok+Gw4N2AXs8BFYghy6Qfpqih+AiMdATOmrFXAXnrPBGYZtl0im8PhzYiHT25sms2yp0laXTO/gDJw6lJkJ0rVgl/crscWod3bcp5cl/QZC5Or1Y8IcmQQHbUh6/7HY2mbTspplTAklkhY9d19FhbWYldvC0QLpdjUcAEZ6tmyTtDNP5hzW91Bm3ktODzJCnr1BCCkHOAjf2X46unc2AN8sh437QAVIs7N8lxWBLri+Stbust0gBzmCTtf1E5FOAHYKA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SN7PR11MB7705.namprd11.prod.outlook.com (2603:10b6:806:32f::16)
- by DM4PR11MB5995.namprd11.prod.outlook.com (2603:10b6:8:5e::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.26; Wed, 1 Nov
- 2023 04:53:33 +0000
-Received: from SN7PR11MB7705.namprd11.prod.outlook.com
- ([fe80::7c9d:a4c7:4e1e:aebc]) by SN7PR11MB7705.namprd11.prod.outlook.com
- ([fe80::7c9d:a4c7:4e1e:aebc%4]) with mapi id 15.20.6954.019; Wed, 1 Nov 2023
- 04:53:33 +0000
-Message-ID: <7214aa37-3a10-46b4-b410-a80fa6eaaf08@intel.com>
-Date: Tue, 31 Oct 2023 21:53:31 -0700
-User-Agent: Mozilla Thunderbird
-To: "Summers, Stuart" <stuart.summers@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20231031221510.29355-3-brian.welty@intel.com>
- <336cc01975710b80646905be5e9337e6735cc67a.camel@intel.com>
-Content-Language: en-US
-From: "Welty, Brian" <brian.welty@intel.com>
-In-Reply-To: <336cc01975710b80646905be5e9337e6735cc67a.camel@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR13CA0085.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::30) To SN7PR11MB7705.namprd11.prod.outlook.com
- (2603:10b6:806:32f::16)
+X-IronPort-AV: E=Sophos;i="6.03,267,1694761200"; 
+   d="scan'208";a="2111311"
+Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
+ ([10.145.162.146])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2023 01:03:55 -0700
+Message-ID: <124d13ae-c5e7-41c5-43fa-9bde9802fbb8@linux.intel.com>
+Date: Wed, 1 Nov 2023 13:36:48 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN7PR11MB7705:EE_|DM4PR11MB5995:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3502b64d-d578-4c8f-18d6-08dbda967fdd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pj6miBZcZewimbzr8TOaMgytl83K+LFMlCNlgOXsHtP5C1tASCEIKQ2ybUxZfO159PNQYY+arOrXRNhgN5v4OMTCGeBQQsaGorRt6vvvPDVifubvt0bcJzA87H/1nPM+AoTMmbRfSsjm6lPkTE8YRc1//JDniTo+R92CsWo1BjsPaHS0SV8wOq61kqwJjo8cFpj7G/Y/Ga0ceWeK6xyrCYJU8HlfmkQH0LVV0A5ANt9gBRckDPJa6AwaNufER1LbymE9tVnKFjem+gOEr3l1B5zBn3VrBocsQUvwHB+bxNAMKiAR0nzoD5lDXfx8td+rysz+diBefRfwr9ENQu9s2EKt0Dm+C/q+T98O/oxnyrdCMaQVb439qkEiwThQxEmYGuPnwda82lI+qOpYPJaqRAAqK/P8ZhRcKX7VJWSUEeL+rKh8do9QBsAUGV4/NWUGcyjIycAJpkGXe171RA728jIMgvK+Eg3xdnmWTXd8aOHidfzuTSssrxviFssoMQWlF83Eaz6xF6/dE8QldSrbmtyqDux8+/qDDTznf9J/qXoo0iZLvu+X0PKO+9kyZGImEwmKU7XJW6fM8zP+7A5jg4e1z2lPUAbFz2gxMWRmCkY0M7xxHXn6c4WqH51QzgkhsJJVH4uQCo8EBMlRHOSnOA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SN7PR11MB7705.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(136003)(346002)(39860400002)(366004)(396003)(230922051799003)(64100799003)(451199024)(186009)(1800799009)(6512007)(6506007)(38100700002)(31686004)(478600001)(6486002)(36756003)(26005)(66946007)(2616005)(82960400001)(83380400001)(53546011)(66556008)(316002)(66476007)(5660300002)(8936002)(4001150100001)(8676002)(2906002)(110136005)(31696002)(41300700001)(86362001)(45980500001)(43740500002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OEZCSkN4OUNLa2o1RzFvUGNuZE9jR3ptY3MwRjVIRkZnRXo3TG9wdG44azRF?=
- =?utf-8?B?SGlvM2xRYUxSYmFsQ0E0QzgvOW0xejhRYTFpLytUTjFiMVJzc2FFZHNoeDNP?=
- =?utf-8?B?NlRta2p4QTFRZ3lYQUdlWGpxMTcrdHFHakZXUFZONWFaOFhteWdYdkVMQm9D?=
- =?utf-8?B?b1BiY0RLQ01ZRm9OSzVSSk5PSDhqNGdYcEMrTWNTR2N6TlFoVGd2TDQ3ZDNX?=
- =?utf-8?B?YkdxWXFaN0MzUEtHRVJsaDgrbXc5TWp4Y0hiTDJkMXFTRG5KdktlYkg4ajdE?=
- =?utf-8?B?SHZpTHR3a0FLUEd5Uit4TEY1Y3kxS3ZnL21wcCt0aWZQY0d2b2xNNlNtNjFr?=
- =?utf-8?B?SDZKNE1WVDBzUWFaRm5XODNreW5vcmJuZWMzK1lXUGxyTUlsbi9JT05LaVN3?=
- =?utf-8?B?RlFCUXhBc3d5VW1lWk0wZWVoVHNwL21hR3hYZkN3VUg2N2d0emp5bFczRjRQ?=
- =?utf-8?B?M1F0aGJCRFJhVGI1MFZWaGFJZ0MvNnQ0M1dqL0pzd1YwZWg3ZnZlQkJtLzQz?=
- =?utf-8?B?Y3VzTXErQ3lWa2xZcENIKytUbjdNTVJMZWlvbDRnemxGa1RSMGNDMUduTFhm?=
- =?utf-8?B?aXF2N0N6Mjl2Uis0OU9VcGxKTjlKWDFxRDhNQ2hlc3dOekNvZGFNbk9Oek8y?=
- =?utf-8?B?dDVOTVdKRWtPRmZ6UmJZblE3aGc0eDJOZENUaGNiRzNndklBUEZZVGVyd1RE?=
- =?utf-8?B?U0g1ZUlUTDBHaW1GZzR3OTlYVXB3d2RWWHpHUUdXdFBsZkxJblVaMENHdkRZ?=
- =?utf-8?B?Yjl1STFzTXBXN21KdCsyMEc1N09Yd1htVENqcDlUUXNvOU9rM1JTQi9KZDlN?=
- =?utf-8?B?a3J4eDhxYUlnSStqd3pod204N29VWFFiYTEzRURhS2VTSlE0cDZSd2lHSUE0?=
- =?utf-8?B?aDBXRlNjV01PMjMyaWhlSUhGVnl2UFJIMWVzL21wYS81ZzdBbS9lUXk3K1Yw?=
- =?utf-8?B?ZTk0S2hSajZVRGZaOHpDOGRuTE1TbTllMXA1cmlDQzRCQ050Mk9LemJRKys3?=
- =?utf-8?B?MStCYXl3a3FIdVF0bmZieEZOeVFtaW53SkNleEFHZHd6ZW5XNEw4Wm9LU3Bi?=
- =?utf-8?B?eTkzVkRDZzAzUDFZRUIrNHpUbklpUGRYUGtCN0hSMGdxZThlSm51OURDNWxH?=
- =?utf-8?B?eVFnd2xDVnhYdHhRdWlwK01sSjJCMXFkUy9hdUpkV1U2MS9qeUZUajg4WE54?=
- =?utf-8?B?WnczdnYzS2FYeTNidzEvcWs4SkhmSk4yUkdGd0ZmbXF2NEFPaUI2MHFxVmhR?=
- =?utf-8?B?K2poTmtIKyt2UVJOUEkrZCsyMjR4VEVUbHlmWGtINFM3KzhLTVJHNEpnMkI2?=
- =?utf-8?B?bVkyMU5jTGJ1eEpsdnJTYmpoY0JEdG9aaXluT3FJNWJPQ2tsMFoxemlQSzg3?=
- =?utf-8?B?TnFvRUQyQXU4MUZCdFBHeUpXQWZUNi8vWkFnb2hyUGdkY3ZFS1ZRaVlCMW0x?=
- =?utf-8?B?d1hXTkJ1SVJlOWtkSHNCYUtRblY1QzNDZS95LzdCakJPajIxRjRVRmpoSkhV?=
- =?utf-8?B?aUgvaEtrSDdlalZEdFZ6L3prOGJ0elN0emhaTmo5ZGFNT0o2VWhVRmUzdFVC?=
- =?utf-8?B?emd1TVloUjRwVXYxWFQ2NlpHTFRrNGVTYVBLVEg2SklGY2EyOWphY2ErU1li?=
- =?utf-8?B?aDB2OTNWL2t5VGVZbGRzLzdhSHAyd3NlMzJMcktZZjlsVTZQN2E4ZXBUemtt?=
- =?utf-8?B?L1dYTEFYOWppYm9nVzhPajU2OFZxOHU3clI1OG52WFR5TlNPWTM4WHFZd2pq?=
- =?utf-8?B?aGxMVmlTSWF1SWU4Y1JuVDVpdzFSQ2NJNE5UV3lxdVBwczQrR0dXWHF4M0xt?=
- =?utf-8?B?YXdTeDNBRnRlZHFCS2RjL0JKR2R4RUhYOXhTL1JwaGc3MkwxclVxQkpZRkZ6?=
- =?utf-8?B?SmxHcWlLVnhsaXdYK0U2a1k0d2ppVmhJY050VmdRUUhBUXVtZVYvVHV2eVBB?=
- =?utf-8?B?UVNXUFVhdkRJT25YR0hFa0F1d2kxU0NxeWs3Q3dGSkJYT2RyWHlvL05sVk9N?=
- =?utf-8?B?aTVwTzZXcERXdTlyeHIwOWZ1dml3WUJkeUtldWppVHNXU1V5WW5xYWtwaHA2?=
- =?utf-8?B?ck53WS9PQkRKSGEwQ3Z4MVR2SDY2MzRmQm43QkNTeVo4VE5DeGZ5bzU4Nk40?=
- =?utf-8?Q?dvnvcIoLbhBXEy7cDv60QGRub?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3502b64d-d578-4c8f-18d6-08dbda967fdd
-X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7705.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Nov 2023 04:53:32.9704 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 0k/3+JOhx7cjcs5UVmrdyOiZurVGV6yJlZrMx+agW+y96deoewKofmkFeIh75V2VWVBAJpmJj6EuU4ABKQlZMg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5995
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [2/2] drm/xe: Fix pagefault and access counter
- worker functions
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Content-Language: en-US
+To: "Lazar, Lijo" <lijo.lazar@amd.com>, Alex Deucher <alexdeucher@gmail.com>
+References: <20231020155835.1295524-1-aravind.iddamsetty@linux.intel.com>
+ <CADnq5_PLfTg6hBpSHLND9FF-B++D=BMXQKSJQknOxy8y=Qz-ZA@mail.gmail.com>
+ <7b3d3e43-57f7-9a56-14e3-75d6df6dc004@amd.com>
+ <2caad369-360e-44f3-a375-d69027e3e6b9@linux.intel.com>
+ <04d5878f-c129-8979-87ff-0046560e2dcd@amd.com>
+From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+In-Reply-To: <04d5878f-c129-8979-87ff-0046560e2dcd@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [RFC v4 0/5] Proposal to use netlink for RAS and
+ Telemetry across drm subsystem
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,183 +66,457 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Harish.Kasiviswanathan@amd.com, dri-devel@lists.freedesktop.org,
+ Luben.Tuikov@amd.com, daniel@ffwll.ch, alexander.deucher@amd.com,
+ Felix.Kuehling@amd.com, airlied@gmail.com, intel-xe@lists.freedesktop.org,
+ Hawking.Zhang@amd.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-
-On 10/31/2023 3:53 PM, Summers, Stuart wrote:
-> On Tue, 2023-10-31 at 15:15 -0700, Brian Welty wrote:
->> When processing G2H messages for pagefault or access counters, we
->> queue a
->> work item and call queue_work(). This fails if the worker thread is
->> already
->> queued to run.
->> The expectation is that the worker function will process more than a
->> single
->> item, and is updated here to continue executing until all queued work
->> items
->> are handled.
+On 30/10/23 20:41, Lazar, Lijo wrote:
+>
+>
+> On 10/30/2023 11:49 AM, Aravind Iddamsetty wrote:
 >>
->> This resolves issues seen with several igt@xe_exec_fault_mode
->> subtests.
+>> On 26/10/23 15:34, Lazar, Lijo wrote:
 >>
->> Signed-off-by: Brian Welty <brian.welty@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_gt_pagefault.c | 66 +++++++++++++-------------
->> --
->>   1 file changed, 30 insertions(+), 36 deletions(-)
+>> Hi Lijo,
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
->> b/drivers/gpu/drm/xe/xe_gt_pagefault.c
->> index ab6daebbd77c..63fba83c0839 100644
->> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
->> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
->> @@ -276,10 +276,10 @@ static void print_pagefault(struct xe_device
->> *xe, struct pagefault *pf)
->>   
->>   #define PF_MSG_LEN_DW  4
->>   
->> -static int get_pagefault(struct pf_queue *pf_queue, struct pagefault
->> *pf)
->> +static bool get_pagefault(struct pf_queue *pf_queue, struct
->> pagefault *pf)
->>   {
->>          const struct xe_guc_pagefault_desc *desc;
->> -       int ret = 0;
->> +       bool ret = false;
->>   
->>          spin_lock_irq(&pf_queue->lock);
->>          if (pf_queue->head != pf_queue->tail) {
->> @@ -303,8 +303,7 @@ static int get_pagefault(struct pf_queue
->> *pf_queue, struct pagefault *pf)
->>   
->>                  pf_queue->head = (pf_queue->head + PF_MSG_LEN_DW) %
->>                          PF_QUEUE_NUM_DW;
->> -       } else {
->> -               ret = -1;
->> +               ret = true;
->>          }
->>          spin_unlock_irq(&pf_queue->lock);
->>   
->> @@ -357,29 +356,27 @@ static void pf_queue_work_func(struct
->> work_struct *w)
->>          struct pagefault pf = {};
->>          int ret;
->>   
->> -       ret = get_pagefault(pf_queue, &pf);
->> -       if (ret)
->> -               return;
->> -
->> -       ret = handle_pagefault(gt, &pf);
->> -       if (unlikely(ret)) {
->> -               print_pagefault(xe, &pf);
->> -               pf.fault_unsuccessful = 1;
->> -               drm_dbg(&xe->drm, "Fault response: Unsuccessful
->> %d\n", ret);
->> -       }
->> +       while (get_pagefault(pf_queue, &pf)) {
-> 
-> Sorry maybe I'm missing... don't we want this to be
-> while(!get_pagefault())
-> 
+>> Thank you for your comments.
+>>
+>>>
+>>>
+>>> On 10/23/2023 8:59 PM, Alex Deucher wrote:
+>>>> On Fri, Oct 20, 2023 at 7:42 PM Aravind Iddamsetty
+>>>> <aravind.iddamsetty@linux.intel.com> wrote:
+>>>>>
+>>>>> Our hardware supports RAS(Reliability, Availability, Serviceability) by
+>>>>> reporting the errors to the host, which the KMD processes and exposes a
+>>>>> set of error counters which can be used by observability tools to take
+>>>>> corrective actions or repairs. Traditionally there were being exposed
+>>>>> via PMU (for relative counters) and sysfs interface (for absolute
+>>>>> value) in our internal branch. But, due to the limitations in this
+>>>>> approach to use two interfaces and also not able to have an event based
+>>>>> reporting or configurability, an alternative approach to try netlink
+>>>>> was suggested by community for drm subsystem wide UAPI for RAS and
+>>>>> telemetry as discussed in [1].
+>>>>>
+>>>>> This [1] is the inspiration to this series. It uses the generic
+>>>>> netlink(genl) family subsystem and exposes a set of commands that can
+>>>>> be used by every drm driver, the framework provides a means to have
+>>>>> custom commands too. Each drm driver instance in this example xe driver
+>>>>> instance registers a family and operations to the genl subsystem through
+>>>>> which it enumerates and reports the error counters. An event based
+>>>>> notification is also supported to which userpace can subscribe to and
+>>>>> be notified when any error occurs and read the error counter this avoids
+>>>>> continuous polling on error counter. This can also be extended to
+>>>>> threshold based notification.
+>>>
+>>> The commands used seems very limited. In AMD SOCs, IP blocks, instances of IP blocks, block types which support RAS will change across generations.
+>>>
+>>> This series has a single command to query the counters supported. Within that it seems to assign unique ids for every combination of error type, IP block type and then another for each instance. Not sure how good this kind of approach is for an end user. The Ids won't necessarily the stay the same across multiple generations. Users will generally be interested in specific IP blocks.
+>>
+>> Exactly the IDs are UAPI and won't change once defined for a platform and any new SKU or platform will add on top of existing ones. Userspace can include the header and use the defines. The query is used to know what all errors exists on a platform and userspace can process the IDs of IP block of interest. I believe even if we list block wise a query will be needed without which userspace wouldn't know which blocks exist on a platform.
+>>
+>
+> What I meant is - assigning an id for every combination of IP block/ instance number/error type is not maintainable across different SOCs.
+>
+> Instead, can we have  something like -
+>     Query -> returns IP block ids, number of instances, error types supported by each IP block.
+>     Read Error -> IP block id | Instance number /Instance ALL | Error type id/Error type ALL.
 
-That would be true if get_pagefault() was still identical to the current
-code in drm-xe-next....  but it's less readable that way.
-So I changed it. get_pagefault() now returns true if it dequeued
-a work item.  And false if it did not.
+Hi Lijo,
 
-Make sense now?
+Would you please elaborate more on what is the issue you fore see with the maintainability. But I have a query on the model suggested
 
+This might work well with user input based tools, but don't think it suits if we want to periodically read a particular counter.
 
-> ?
-> 
-> -Stuart
-> 
->> +               ret = handle_pagefault(gt, &pf);
->> +               if (unlikely(ret)) {
->> +                       print_pagefault(xe, &pf);
->> +                       pf.fault_unsuccessful = 1;
->> +                       drm_dbg(&xe->drm, "Fault response:
->> Unsuccessful %d\n", ret);
->> +               }
->>   
->> -       reply.dw0 = FIELD_PREP(PFR_VALID, 1) |
->> -               FIELD_PREP(PFR_SUCCESS, pf.fault_unsuccessful) |
->> -               FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
->> -               FIELD_PREP(PFR_DESC_TYPE, FAULT_RESPONSE_DESC) |
->> -               FIELD_PREP(PFR_ASID, pf.asid);
->> +               reply.dw0 = FIELD_PREP(PFR_VALID, 1) |
->> +                       FIELD_PREP(PFR_SUCCESS,
->> pf.fault_unsuccessful) |
->> +                       FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
->> +                       FIELD_PREP(PFR_DESC_TYPE,
->> FAULT_RESPONSE_DESC) |
->> +                       FIELD_PREP(PFR_ASID, pf.asid);
->>   
->> -       reply.dw1 = FIELD_PREP(PFR_VFID, pf.vfid) |
->> -               FIELD_PREP(PFR_ENG_INSTANCE, pf.engine_instance) |
->> -               FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
->> -               FIELD_PREP(PFR_PDATA, pf.pdata);
->> +               reply.dw1 = FIELD_PREP(PFR_VFID, pf.vfid) |
->> +                       FIELD_PREP(PFR_ENG_INSTANCE,
->> pf.engine_instance) |
->> +                       FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
->> +                       FIELD_PREP(PFR_PDATA, pf.pdata);
->>   
->> -       send_pagefault_reply(&gt->uc.guc, &reply);
->> +               send_pagefault_reply(&gt->uc.guc, &reply);
->> +       }
->>   }
->>   
->>   static void acc_queue_work_func(struct work_struct *w);
->> @@ -544,10 +541,10 @@ static int handle_acc(struct xe_gt *gt, struct
->> acc *acc)
->>   
->>   #define ACC_MSG_LEN_DW        4
->>   
->> -static int get_acc(struct acc_queue *acc_queue, struct acc *acc)
->> +static bool get_acc(struct acc_queue *acc_queue, struct acc *acc)
->>   {
->>          const struct xe_guc_acc_desc *desc;
->> -       int ret = 0;
->> +       bool ret = false;
->>   
->>          spin_lock(&acc_queue->lock);
->>          if (acc_queue->head != acc_queue->tail) {
->> @@ -567,8 +564,7 @@ static int get_acc(struct acc_queue *acc_queue,
->> struct acc *acc)
->>   
->>                  acc_queue->head = (acc_queue->head + ACC_MSG_LEN_DW)
->> %
->>                                    ACC_QUEUE_NUM_DW;
->> -       } else {
->> -               ret = -1;
->> +               ret = true;
->>          }
->>          spin_unlock(&acc_queue->lock);
->>   
->> @@ -583,14 +579,12 @@ static void acc_queue_work_func(struct
->> work_struct *w)
->>          struct acc acc = {};
->>          int ret;
->>   
->> -       ret = get_acc(acc_queue, &acc);
->> -       if (ret)
->> -               return;
->> -
->> -       ret = handle_acc(gt, &acc);
->> -       if (unlikely(ret)) {
->> -               print_acc(xe, &acc);
->> -               drm_warn(&xe->drm, "ACC: Unsuccessful %d\n", ret);
->> +       while (get_acc(acc_queue, &acc)) {
->> +               ret = handle_acc(gt, &acc);
->> +               if (unlikely(ret)) {
->> +                       print_acc(xe, &acc);
->> +                       drm_warn(&xe->drm, "ACC: Unsuccessful %d\n",
->> ret);
->> +               }
->>          }
->>   }
->>   
-> 
+The inspiration to have ID for each is taken from PMU subsystem where every event has an ID and a flat list so no multiple queries and we can read them individually or group together
+which can be achieved via READ_MULTI command I proposed earlier.
+
+Thanks,
+Aravind.
+>
+> Thanks,
+> Lijo
+>
+>>>
+>>> For ex: to get HBM errors, it looks like the current patch series supports READALL which dumps the whole set of errors. Or, users have to figure out the ids of HBM stack instance (whose capacity can change depending on the SOC and within a single family multiple configurations can exist) errors and do multiple READ_ONE calls. Both don't look good.
+>>>
+>>> It would be better if the command argument format can be well defined so that it can be queried based on IP block type, instance, and error types supported (CE/UE/fatal/parity/deferred etc.).
+>>
+>> so to mitigate multiple read limitation, we can introduce a new GENL command like READ_MULTI which accepts a list of errors ids which userspace can pass and get all interested error counter as response at once. Also, listing individual errors helps if userspace wants to read a particular error at regular intervals. The intention is also to keep KMD logic simple, userspace can build required model on top of flat enumeration.
+>>
+>> Please let me know if this sounds reasonable to you.
+>>
+>> Thanks,
+>> Aravind.
+>>>
+>>> Thanks,
+>>> Lijo
+>>>
+>>>>
+>>>> @Hawking Zhang, @Lazar, Lijo
+>>>>
+>>>> Can you take a look at this series and API and see if it would align
+>>>> with our RAS requirements going forward?
+>>>>
+>>>> Alex
+>>>>
+>>>>
+>>>>>
+>>>>> [1]: https://airlied.blogspot.com/2022/09/accelerators-bof-outcomes-summary.html
+>>>>>
+>>>>> this series is on top of https://patchwork.freedesktop.org/series/125373/,
+>>>>>
+>>>>> v4:
+>>>>> 1. Rebase
+>>>>> 2. rename drm_genl_send to drm_genl_reply
+>>>>> 3. catch error from xa_store and handle appropriately
+>>>>> 4. presently xe_list_errors fills blank data for IGFX, prevent it by
+>>>>> having an early check of IS_DGFX (Michael J. Ruhl)
+>>>>>
+>>>>> v3:
+>>>>> 1. Rebase on latest RAS series for XE
+>>>>> 2. drop DRIVER_NETLINK flag and use the driver_genl_ops structure to
+>>>>> register to netlink subsystem
+>>>>>
+>>>>> v2: define common interfaces to genl netlink subsystem that all drm drivers
+>>>>> can leverage.
+>>>>>
+>>>>> Below is an example tool drm_ras which demonstrates the use of the
+>>>>> supported commands. The tool will be sent to ML with the subject
+>>>>> "[RFC i-g-t v2 0/1] A tool to demonstrate use of netlink sockets to read RAS error counters"
+>>>>> https://patchwork.freedesktop.org/series/118437/#rev2
+>>>>>
+>>>>> read single error counter:
+>>>>>
+>>>>> $ ./drm_ras READ_ONE --device=drm:/dev/dri/card1 --error_id=0x0000000000000005
+>>>>> counter value 0
+>>>>>
+>>>>> read all error counters:
+>>>>>
+>>>>> $ ./drm_ras READ_ALL --device=drm:/dev/dri/card1
+>>>>> name                                                    config-id               counter
+>>>>>
+>>>>> error-gt0-correctable-guc                               0x0000000000000001      0
+>>>>> error-gt0-correctable-slm                               0x0000000000000003      0
+>>>>> error-gt0-correctable-eu-ic                             0x0000000000000004      0
+>>>>> error-gt0-correctable-eu-grf                            0x0000000000000005      0
+>>>>> error-gt0-fatal-guc                                     0x0000000000000009      0
+>>>>> error-gt0-fatal-slm                                     0x000000000000000d      0
+>>>>> error-gt0-fatal-eu-grf                                  0x000000000000000f      0
+>>>>> error-gt0-fatal-fpu                                     0x0000000000000010      0
+>>>>> error-gt0-fatal-tlb                                     0x0000000000000011      0
+>>>>> error-gt0-fatal-l3-fabric                               0x0000000000000012      0
+>>>>> error-gt0-correctable-subslice                          0x0000000000000013      0
+>>>>> error-gt0-correctable-l3bank                            0x0000000000000014      0
+>>>>> error-gt0-fatal-subslice                                0x0000000000000015      0
+>>>>> error-gt0-fatal-l3bank                                  0x0000000000000016      0
+>>>>> error-gt0-sgunit-correctable                            0x0000000000000017      0
+>>>>> error-gt0-sgunit-nonfatal                               0x0000000000000018      0
+>>>>> error-gt0-sgunit-fatal                                  0x0000000000000019      0
+>>>>> error-gt0-soc-fatal-psf-csc-0                           0x000000000000001a      0
+>>>>> error-gt0-soc-fatal-psf-csc-1                           0x000000000000001b      0
+>>>>> error-gt0-soc-fatal-psf-csc-2                           0x000000000000001c      0
+>>>>> error-gt0-soc-fatal-punit                               0x000000000000001d      0
+>>>>> error-gt0-soc-fatal-psf-0                               0x000000000000001e      0
+>>>>> error-gt0-soc-fatal-psf-1                               0x000000000000001f      0
+>>>>> error-gt0-soc-fatal-psf-2                               0x0000000000000020      0
+>>>>> error-gt0-soc-fatal-cd0                                 0x0000000000000021      0
+>>>>> error-gt0-soc-fatal-cd0-mdfi                            0x0000000000000022      0
+>>>>> error-gt0-soc-fatal-mdfi-east                           0x0000000000000023      0
+>>>>> error-gt0-soc-fatal-mdfi-south                          0x0000000000000024      0
+>>>>> error-gt0-soc-fatal-hbm-ss0-0                           0x0000000000000025      0
+>>>>> error-gt0-soc-fatal-hbm-ss0-1                           0x0000000000000026      0
+>>>>> error-gt0-soc-fatal-hbm-ss0-2                           0x0000000000000027      0
+>>>>> error-gt0-soc-fatal-hbm-ss0-3                           0x0000000000000028      0
+>>>>> error-gt0-soc-fatal-hbm-ss0-4                           0x0000000000000029      0
+>>>>> error-gt0-soc-fatal-hbm-ss0-5                           0x000000000000002a      0
+>>>>> error-gt0-soc-fatal-hbm-ss0-6                           0x000000000000002b      0
+>>>>> error-gt0-soc-fatal-hbm-ss0-7                           0x000000000000002c      0
+>>>>> error-gt0-soc-fatal-hbm-ss1-0                           0x000000000000002d      0
+>>>>> error-gt0-soc-fatal-hbm-ss1-1                           0x000000000000002e      0
+>>>>> error-gt0-soc-fatal-hbm-ss1-2                           0x000000000000002f      0
+>>>>> error-gt0-soc-fatal-hbm-ss1-3                           0x0000000000000030      0
+>>>>> error-gt0-soc-fatal-hbm-ss1-4                           0x0000000000000031      0
+>>>>> error-gt0-soc-fatal-hbm-ss1-5                           0x0000000000000032      0
+>>>>> error-gt0-soc-fatal-hbm-ss1-6                           0x0000000000000033      0
+>>>>> error-gt0-soc-fatal-hbm-ss1-7                           0x0000000000000034      0
+>>>>> error-gt0-soc-fatal-hbm-ss2-0                           0x0000000000000035      0
+>>>>> error-gt0-soc-fatal-hbm-ss2-1                           0x0000000000000036      0
+>>>>> error-gt0-soc-fatal-hbm-ss2-2                           0x0000000000000037      0
+>>>>> error-gt0-soc-fatal-hbm-ss2-3                           0x0000000000000038      0
+>>>>> error-gt0-soc-fatal-hbm-ss2-4                           0x0000000000000039      0
+>>>>> error-gt0-soc-fatal-hbm-ss2-5                           0x000000000000003a      0
+>>>>> error-gt0-soc-fatal-hbm-ss2-6                           0x000000000000003b      0
+>>>>> error-gt0-soc-fatal-hbm-ss2-7                           0x000000000000003c      0
+>>>>> error-gt0-soc-fatal-hbm-ss3-0                           0x000000000000003d      0
+>>>>> error-gt0-soc-fatal-hbm-ss3-1                           0x000000000000003e      0
+>>>>> error-gt0-soc-fatal-hbm-ss3-2                           0x000000000000003f      0
+>>>>> error-gt0-soc-fatal-hbm-ss3-3                           0x0000000000000040      0
+>>>>> error-gt0-soc-fatal-hbm-ss3-4                           0x0000000000000041      0
+>>>>> error-gt0-soc-fatal-hbm-ss3-5                           0x0000000000000042      0
+>>>>> error-gt0-soc-fatal-hbm-ss3-6                           0x0000000000000043      0
+>>>>> error-gt0-soc-fatal-hbm-ss3-7                           0x0000000000000044      0
+>>>>> error-gt0-gsc-correctable-sram-ecc                      0x0000000000000045      0
+>>>>> error-gt0-gsc-nonfatal-mia-shutdown                     0x0000000000000046      0
+>>>>> error-gt0-gsc-nonfatal-mia-int                          0x0000000000000047      0
+>>>>> error-gt0-gsc-nonfatal-sram-ecc                         0x0000000000000048      0
+>>>>> error-gt0-gsc-nonfatal-wdg-timeout                      0x0000000000000049      0
+>>>>> error-gt0-gsc-nonfatal-rom-parity                       0x000000000000004a      0
+>>>>> error-gt0-gsc-nonfatal-ucode-parity                     0x000000000000004b      0
+>>>>> error-gt0-gsc-nonfatal-glitch-det                       0x000000000000004c      0
+>>>>> error-gt0-gsc-nonfatal-fuse-pull                        0x000000000000004d      0
+>>>>> error-gt0-gsc-nonfatal-fuse-crc-check                   0x000000000000004e      0
+>>>>> error-gt0-gsc-nonfatal-selfmbist                        0x000000000000004f      0
+>>>>> error-gt0-gsc-nonfatal-aon-parity                       0x0000000000000050      0
+>>>>> error-gt1-correctable-guc                               0x1000000000000001      0
+>>>>> error-gt1-correctable-slm                               0x1000000000000003      0
+>>>>> error-gt1-correctable-eu-ic                             0x1000000000000004      0
+>>>>> error-gt1-correctable-eu-grf                            0x1000000000000005      0
+>>>>> error-gt1-fatal-guc                                     0x1000000000000009      0
+>>>>> error-gt1-fatal-slm                                     0x100000000000000d      0
+>>>>> error-gt1-fatal-eu-grf                                  0x100000000000000f      0
+>>>>> error-gt1-fatal-fpu                                     0x1000000000000010      0
+>>>>> error-gt1-fatal-tlb                                     0x1000000000000011      0
+>>>>> error-gt1-fatal-l3-fabric                               0x1000000000000012      0
+>>>>> error-gt1-correctable-subslice                          0x1000000000000013      0
+>>>>> error-gt1-correctable-l3bank                            0x1000000000000014      0
+>>>>> error-gt1-fatal-subslice                                0x1000000000000015      0
+>>>>> error-gt1-fatal-l3bank                                  0x1000000000000016      0
+>>>>> error-gt1-sgunit-correctable                            0x1000000000000017      0
+>>>>> error-gt1-sgunit-nonfatal                               0x1000000000000018      0
+>>>>> error-gt1-sgunit-fatal                                  0x1000000000000019      0
+>>>>> error-gt1-soc-fatal-psf-csc-0                           0x100000000000001a      0
+>>>>> error-gt1-soc-fatal-psf-csc-1                           0x100000000000001b      0
+>>>>> error-gt1-soc-fatal-psf-csc-2                           0x100000000000001c      0
+>>>>> error-gt1-soc-fatal-punit                               0x100000000000001d      0
+>>>>> error-gt1-soc-fatal-psf-0                               0x100000000000001e      0
+>>>>> error-gt1-soc-fatal-psf-1                               0x100000000000001f      0
+>>>>> error-gt1-soc-fatal-psf-2                               0x1000000000000020      0
+>>>>> error-gt1-soc-fatal-cd0                                 0x1000000000000021      0
+>>>>> error-gt1-soc-fatal-cd0-mdfi                            0x1000000000000022      0
+>>>>> error-gt1-soc-fatal-mdfi-east                           0x1000000000000023      0
+>>>>> error-gt1-soc-fatal-mdfi-south                          0x1000000000000024      0
+>>>>> error-gt1-soc-fatal-hbm-ss0-0                           0x1000000000000025      0
+>>>>> error-gt1-soc-fatal-hbm-ss0-1                           0x1000000000000026      0
+>>>>> error-gt1-soc-fatal-hbm-ss0-2                           0x1000000000000027      0
+>>>>> error-gt1-soc-fatal-hbm-ss0-3                           0x1000000000000028      0
+>>>>> error-gt1-soc-fatal-hbm-ss0-4                           0x1000000000000029      0
+>>>>> error-gt1-soc-fatal-hbm-ss0-5                           0x100000000000002a      0
+>>>>> error-gt1-soc-fatal-hbm-ss0-6                           0x100000000000002b      0
+>>>>> error-gt1-soc-fatal-hbm-ss0-7                           0x100000000000002c      0
+>>>>> error-gt1-soc-fatal-hbm-ss1-0                           0x100000000000002d      0
+>>>>> error-gt1-soc-fatal-hbm-ss1-1                           0x100000000000002e      0
+>>>>> error-gt1-soc-fatal-hbm-ss1-2                           0x100000000000002f      0
+>>>>> error-gt1-soc-fatal-hbm-ss1-3                           0x1000000000000030      0
+>>>>> error-gt1-soc-fatal-hbm-ss1-4                           0x1000000000000031      0
+>>>>> error-gt1-soc-fatal-hbm-ss1-5                           0x1000000000000032      0
+>>>>> error-gt1-soc-fatal-hbm-ss1-6                           0x1000000000000033      0
+>>>>> error-gt1-soc-fatal-hbm-ss1-7                           0x1000000000000034      0
+>>>>> error-gt1-soc-fatal-hbm-ss2-0                           0x1000000000000035      0
+>>>>> error-gt1-soc-fatal-hbm-ss2-1                           0x1000000000000036      0
+>>>>> error-gt1-soc-fatal-hbm-ss2-2                           0x1000000000000037      0
+>>>>> error-gt1-soc-fatal-hbm-ss2-3                           0x1000000000000038      0
+>>>>> error-gt1-soc-fatal-hbm-ss2-4                           0x1000000000000039      0
+>>>>> error-gt1-soc-fatal-hbm-ss2-5                           0x100000000000003a      0
+>>>>> error-gt1-soc-fatal-hbm-ss2-6                           0x100000000000003b      0
+>>>>> error-gt1-soc-fatal-hbm-ss2-7                           0x100000000000003c      0
+>>>>> error-gt1-soc-fatal-hbm-ss3-0                           0x100000000000003d      0
+>>>>> error-gt1-soc-fatal-hbm-ss3-1                           0x100000000000003e      0
+>>>>> error-gt1-soc-fatal-hbm-ss3-2                           0x100000000000003f      0
+>>>>> error-gt1-soc-fatal-hbm-ss3-3                           0x1000000000000040      0
+>>>>> error-gt1-soc-fatal-hbm-ss3-4                           0x1000000000000041      0
+>>>>> error-gt1-soc-fatal-hbm-ss3-5                           0x1000000000000042      0
+>>>>> error-gt1-soc-fatal-hbm-ss3-6                           0x1000000000000043      0
+>>>>> error-gt1-soc-fatal-hbm-ss3-7                           0x1000000000000044      0
+>>>>>
+>>>>> wait on a error event:
+>>>>>
+>>>>> $ ./drm_ras WAIT_ON_EVENT --device=drm:/dev/dri/card1
+>>>>> waiting for error event
+>>>>> error event received
+>>>>> counter value 0
+>>>>>
+>>>>> list all errors:
+>>>>>
+>>>>> $ ./drm_ras LIST_ERRORS --device=drm:/dev/dri/card1
+>>>>> name                                                    config-id
+>>>>>
+>>>>> error-gt0-correctable-guc                               0x0000000000000001
+>>>>> error-gt0-correctable-slm                               0x0000000000000003
+>>>>> error-gt0-correctable-eu-ic                             0x0000000000000004
+>>>>> error-gt0-correctable-eu-grf                            0x0000000000000005
+>>>>> error-gt0-fatal-guc                                     0x0000000000000009
+>>>>> error-gt0-fatal-slm                                     0x000000000000000d
+>>>>> error-gt0-fatal-eu-grf                                  0x000000000000000f
+>>>>> error-gt0-fatal-fpu                                     0x0000000000000010
+>>>>> error-gt0-fatal-tlb                                     0x0000000000000011
+>>>>> error-gt0-fatal-l3-fabric                               0x0000000000000012
+>>>>> error-gt0-correctable-subslice                          0x0000000000000013
+>>>>> error-gt0-correctable-l3bank                            0x0000000000000014
+>>>>> error-gt0-fatal-subslice                                0x0000000000000015
+>>>>> error-gt0-fatal-l3bank                                  0x0000000000000016
+>>>>> error-gt0-sgunit-correctable                            0x0000000000000017
+>>>>> error-gt0-sgunit-nonfatal                               0x0000000000000018
+>>>>> error-gt0-sgunit-fatal                                  0x0000000000000019
+>>>>> error-gt0-soc-fatal-psf-csc-0                           0x000000000000001a
+>>>>> error-gt0-soc-fatal-psf-csc-1                           0x000000000000001b
+>>>>> error-gt0-soc-fatal-psf-csc-2                           0x000000000000001c
+>>>>> error-gt0-soc-fatal-punit                               0x000000000000001d
+>>>>> error-gt0-soc-fatal-psf-0                               0x000000000000001e
+>>>>> error-gt0-soc-fatal-psf-1                               0x000000000000001f
+>>>>> error-gt0-soc-fatal-psf-2                               0x0000000000000020
+>>>>> error-gt0-soc-fatal-cd0                                 0x0000000000000021
+>>>>> error-gt0-soc-fatal-cd0-mdfi                            0x0000000000000022
+>>>>> error-gt0-soc-fatal-mdfi-east                           0x0000000000000023
+>>>>> error-gt0-soc-fatal-mdfi-south                          0x0000000000000024
+>>>>> error-gt0-soc-fatal-hbm-ss0-0                           0x0000000000000025
+>>>>> error-gt0-soc-fatal-hbm-ss0-1                           0x0000000000000026
+>>>>> error-gt0-soc-fatal-hbm-ss0-2                           0x0000000000000027
+>>>>> error-gt0-soc-fatal-hbm-ss0-3                           0x0000000000000028
+>>>>> error-gt0-soc-fatal-hbm-ss0-4                           0x0000000000000029
+>>>>> error-gt0-soc-fatal-hbm-ss0-5                           0x000000000000002a
+>>>>> error-gt0-soc-fatal-hbm-ss0-6                           0x000000000000002b
+>>>>> error-gt0-soc-fatal-hbm-ss0-7                           0x000000000000002c
+>>>>> error-gt0-soc-fatal-hbm-ss1-0                           0x000000000000002d
+>>>>> error-gt0-soc-fatal-hbm-ss1-1                           0x000000000000002e
+>>>>> error-gt0-soc-fatal-hbm-ss1-2                           0x000000000000002f
+>>>>> error-gt0-soc-fatal-hbm-ss1-3                           0x0000000000000030
+>>>>> error-gt0-soc-fatal-hbm-ss1-4                           0x0000000000000031
+>>>>> error-gt0-soc-fatal-hbm-ss1-5                           0x0000000000000032
+>>>>> error-gt0-soc-fatal-hbm-ss1-6                           0x0000000000000033
+>>>>> error-gt0-soc-fatal-hbm-ss1-7                           0x0000000000000034
+>>>>> error-gt0-soc-fatal-hbm-ss2-0                           0x0000000000000035
+>>>>> error-gt0-soc-fatal-hbm-ss2-1                           0x0000000000000036
+>>>>> error-gt0-soc-fatal-hbm-ss2-2                           0x0000000000000037
+>>>>> error-gt0-soc-fatal-hbm-ss2-3                           0x0000000000000038
+>>>>> error-gt0-soc-fatal-hbm-ss2-4                           0x0000000000000039
+>>>>> error-gt0-soc-fatal-hbm-ss2-5                           0x000000000000003a
+>>>>> error-gt0-soc-fatal-hbm-ss2-6                           0x000000000000003b
+>>>>> error-gt0-soc-fatal-hbm-ss2-7                           0x000000000000003c
+>>>>> error-gt0-soc-fatal-hbm-ss3-0                           0x000000000000003d
+>>>>> error-gt0-soc-fatal-hbm-ss3-1                           0x000000000000003e
+>>>>> error-gt0-soc-fatal-hbm-ss3-2                           0x000000000000003f
+>>>>> error-gt0-soc-fatal-hbm-ss3-3                           0x0000000000000040
+>>>>> error-gt0-soc-fatal-hbm-ss3-4                           0x0000000000000041
+>>>>> error-gt0-soc-fatal-hbm-ss3-5                           0x0000000000000042
+>>>>> error-gt0-soc-fatal-hbm-ss3-6                           0x0000000000000043
+>>>>> error-gt0-soc-fatal-hbm-ss3-7                           0x0000000000000044
+>>>>> error-gt0-gsc-correctable-sram-ecc                      0x0000000000000045
+>>>>> error-gt0-gsc-nonfatal-mia-shutdown                     0x0000000000000046
+>>>>> error-gt0-gsc-nonfatal-mia-int                          0x0000000000000047
+>>>>> error-gt0-gsc-nonfatal-sram-ecc                         0x0000000000000048
+>>>>> error-gt0-gsc-nonfatal-wdg-timeout                      0x0000000000000049
+>>>>> error-gt0-gsc-nonfatal-rom-parity                       0x000000000000004a
+>>>>> error-gt0-gsc-nonfatal-ucode-parity                     0x000000000000004b
+>>>>> error-gt0-gsc-nonfatal-glitch-det                       0x000000000000004c
+>>>>> error-gt0-gsc-nonfatal-fuse-pull                        0x000000000000004d
+>>>>> error-gt0-gsc-nonfatal-fuse-crc-check                   0x000000000000004e
+>>>>> error-gt0-gsc-nonfatal-selfmbist                        0x000000000000004f
+>>>>> error-gt0-gsc-nonfatal-aon-parity                       0x0000000000000050
+>>>>> error-gt1-correctable-guc                               0x1000000000000001
+>>>>> error-gt1-correctable-slm                               0x1000000000000003
+>>>>> error-gt1-correctable-eu-ic                             0x1000000000000004
+>>>>> error-gt1-correctable-eu-grf                            0x1000000000000005
+>>>>> error-gt1-fatal-guc                                     0x1000000000000009
+>>>>> error-gt1-fatal-slm                                     0x100000000000000d
+>>>>> error-gt1-fatal-eu-grf                                  0x100000000000000f
+>>>>> error-gt1-fatal-fpu                                     0x1000000000000010
+>>>>> error-gt1-fatal-tlb                                     0x1000000000000011
+>>>>> error-gt1-fatal-l3-fabric                               0x1000000000000012
+>>>>> error-gt1-correctable-subslice                          0x1000000000000013
+>>>>> error-gt1-correctable-l3bank                            0x1000000000000014
+>>>>> error-gt1-fatal-subslice                                0x1000000000000015
+>>>>> error-gt1-fatal-l3bank                                  0x1000000000000016
+>>>>> error-gt1-sgunit-correctable                            0x1000000000000017
+>>>>> error-gt1-sgunit-nonfatal                               0x1000000000000018
+>>>>> error-gt1-sgunit-fatal                                  0x1000000000000019
+>>>>> error-gt1-soc-fatal-psf-csc-0                           0x100000000000001a
+>>>>> error-gt1-soc-fatal-psf-csc-1                           0x100000000000001b
+>>>>> error-gt1-soc-fatal-psf-csc-2                           0x100000000000001c
+>>>>> error-gt1-soc-fatal-punit                               0x100000000000001d
+>>>>> error-gt1-soc-fatal-psf-0                               0x100000000000001e
+>>>>> error-gt1-soc-fatal-psf-1                               0x100000000000001f
+>>>>> error-gt1-soc-fatal-psf-2                               0x1000000000000020
+>>>>> error-gt1-soc-fatal-cd0                                 0x1000000000000021
+>>>>> error-gt1-soc-fatal-cd0-mdfi                            0x1000000000000022
+>>>>> error-gt1-soc-fatal-mdfi-east                           0x1000000000000023
+>>>>> error-gt1-soc-fatal-mdfi-south                          0x1000000000000024
+>>>>> error-gt1-soc-fatal-hbm-ss0-0                           0x1000000000000025
+>>>>> error-gt1-soc-fatal-hbm-ss0-1                           0x1000000000000026
+>>>>> error-gt1-soc-fatal-hbm-ss0-2                           0x1000000000000027
+>>>>> error-gt1-soc-fatal-hbm-ss0-3                           0x1000000000000028
+>>>>> error-gt1-soc-fatal-hbm-ss0-4                           0x1000000000000029
+>>>>> error-gt1-soc-fatal-hbm-ss0-5                           0x100000000000002a
+>>>>> error-gt1-soc-fatal-hbm-ss0-6                           0x100000000000002b
+>>>>> error-gt1-soc-fatal-hbm-ss0-7                           0x100000000000002c
+>>>>> error-gt1-soc-fatal-hbm-ss1-0                           0x100000000000002d
+>>>>> error-gt1-soc-fatal-hbm-ss1-1                           0x100000000000002e
+>>>>> error-gt1-soc-fatal-hbm-ss1-2                           0x100000000000002f
+>>>>> error-gt1-soc-fatal-hbm-ss1-3                           0x1000000000000030
+>>>>> error-gt1-soc-fatal-hbm-ss1-4                           0x1000000000000031
+>>>>> error-gt1-soc-fatal-hbm-ss1-5                           0x1000000000000032
+>>>>> error-gt1-soc-fatal-hbm-ss1-6                           0x1000000000000033
+>>>>> error-gt1-soc-fatal-hbm-ss1-7                           0x1000000000000034
+>>>>> error-gt1-soc-fatal-hbm-ss2-0                           0x1000000000000035
+>>>>> error-gt1-soc-fatal-hbm-ss2-1                           0x1000000000000036
+>>>>> error-gt1-soc-fatal-hbm-ss2-2                           0x1000000000000037
+>>>>> error-gt1-soc-fatal-hbm-ss2-3                           0x1000000000000038
+>>>>> error-gt1-soc-fatal-hbm-ss2-4                           0x1000000000000039
+>>>>> error-gt1-soc-fatal-hbm-ss2-5                           0x100000000000003a
+>>>>> error-gt1-soc-fatal-hbm-ss2-6                           0x100000000000003b
+>>>>> error-gt1-soc-fatal-hbm-ss2-7                           0x100000000000003c
+>>>>> error-gt1-soc-fatal-hbm-ss3-0                           0x100000000000003d
+>>>>> error-gt1-soc-fatal-hbm-ss3-1                           0x100000000000003e
+>>>>> error-gt1-soc-fatal-hbm-ss3-2                           0x100000000000003f
+>>>>> error-gt1-soc-fatal-hbm-ss3-3                           0x1000000000000040
+>>>>> error-gt1-soc-fatal-hbm-ss3-4                           0x1000000000000041
+>>>>> error-gt1-soc-fatal-hbm-ss3-5                           0x1000000000000042
+>>>>> error-gt1-soc-fatal-hbm-ss3-6                           0x1000000000000043
+>>>>> error-gt1-soc-fatal-hbm-ss3-7                           0x1000000000000044
+>>>>>
+>>>>> Cc: Alex Deucher <alexander.deucher@amd.com>
+>>>>> Cc: David Airlie <airlied@gmail.com>
+>>>>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>>>> Cc: Oded Gabbay <ogabbay@kernel.org>
+>>>>> Cc: Tomer Tayar <ttayar@habana.ai>
+>>>>> Cc: Hawking Zhang <Hawking.Zhang@amd.com>
+>>>>> Cc: Harish Kasiviswanathan <Harish.Kasiviswanathan@amd.com>
+>>>>> Cc: Kuehling Felix <Felix.Kuehling@amd.com>
+>>>>> Cc: Tuikov Luben <Luben.Tuikov@amd.com>
+>>>>> Cc: Ruhl, Michael J <michael.j.ruhl@intel.com>
+>>>>>
+>>>>>
+>>>>> Aravind Iddamsetty (5):
+>>>>>     drm/netlink: Add netlink infrastructure
+>>>>>     drm/xe/RAS: Register netlink capability
+>>>>>     drm/xe/RAS: Expose the error counters
+>>>>>     drm/netlink: Define multicast groups
+>>>>>     drm/xe/RAS: send multicast event on occurrence of an error
+>>>>>
+>>>>>    drivers/gpu/drm/Makefile             |   1 +
+>>>>>    drivers/gpu/drm/drm_drv.c            |   7 +
+>>>>>    drivers/gpu/drm/drm_netlink.c        | 195 ++++++++++
+>>>>>    drivers/gpu/drm/xe/Makefile          |   1 +
+>>>>>    drivers/gpu/drm/xe/xe_device.c       |   4 +
+>>>>>    drivers/gpu/drm/xe/xe_device_types.h |   1 +
+>>>>>    drivers/gpu/drm/xe/xe_hw_error.c     |  33 ++
+>>>>>    drivers/gpu/drm/xe/xe_netlink.c      | 517 +++++++++++++++++++++++++++
+>>>>>    include/drm/drm_device.h             |   8 +
+>>>>>    include/drm/drm_drv.h                |   7 +
+>>>>>    include/drm/drm_netlink.h            |  35 ++
+>>>>>    include/uapi/drm/drm_netlink.h       |  87 +++++
+>>>>>    include/uapi/drm/xe_drm.h            |  81 +++++
+>>>>>    13 files changed, 977 insertions(+)
+>>>>>    create mode 100644 drivers/gpu/drm/drm_netlink.c
+>>>>>    create mode 100644 drivers/gpu/drm/xe/xe_netlink.c
+>>>>>    create mode 100644 include/drm/drm_netlink.h
+>>>>>    create mode 100644 include/uapi/drm/drm_netlink.h
+>>>>>
+>>>>> -- 
+>>>>> 2.25.1
+>>>>>
