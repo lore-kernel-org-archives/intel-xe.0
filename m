@@ -4,31 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 551E1C4332F
-	for <intel-xe@archiver.kernel.org>; Wed,  1 Nov 2023 16:08:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 231C2C4332F
+	for <intel-xe@archiver.kernel.org>; Wed,  1 Nov 2023 16:14:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E98410E737;
-	Wed,  1 Nov 2023 16:08:39 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 44BDE10E735;
- Wed,  1 Nov 2023 16:08:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4330BA00E6;
- Wed,  1 Nov 2023 16:08:38 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9340410E74D;
+	Wed,  1 Nov 2023 16:14:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B304210E735
+ for <intel-xe@lists.freedesktop.org>; Wed,  1 Nov 2023 16:14:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698855262; x=1730391262;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=syhVFeZuOs0nBIbK82bx7Qlkc2OMb4sZ4W1DoxSkigc=;
+ b=A+hTk6gJtjDKugXjdhyBEowGpBAnHOC67JgLxRi+vZPZfcOF/36dl7xo
+ 8BUoermf578Yw4x0/1N1LCIfApbxTkh0MM7LdWfdrM+sGprFalomNzBJs
+ f5A7/CqwKx+D8KsPh5o9ytpejBnMzFhPqsiEvD4BKsC3DvA/CY6HlQ+Rl
+ R27QGCqkP2Bz5v0Zmm6tHZUzfLJsO1pKxqKcVv8T+Sc9AMNsh6ywXkDWj
+ Qc6YDYLF1Xw4d8UOp1fvaFEfwp/8Apl8PdZrGTqIAf/a7OPBqxWJSVji8
+ f17S09LgYcmP59kju3uJzUJ6maxUIXFtD5nO5qOiUUiHI6WIBjelKUZpR Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="1420078"
+X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; 
+   d="scan'208";a="1420078"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2023 09:14:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="1008140976"
+X-IronPort-AV: E=Sophos;i="6.03,268,1694761200"; d="scan'208";a="1008140976"
+Received: from sbint17x-mobl.gar.corp.intel.com (HELO fedora..)
+ ([10.249.254.166])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Nov 2023 09:14:14 -0700
+From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed,  1 Nov 2023 17:11:57 +0100
+Message-ID: <20231101161157.2102-1-thomas.hellstrom@linux.intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Wed, 01 Nov 2023 16:08:38 -0000
-Message-ID: <169885491827.29321.4288954406830367431@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231101151528.1840900-1-lucas.demarchi@intel.com>
-In-Reply-To: <20231101151528.1840900-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echecksparse=3A_warning_for_s?=
- =?utf-8?q?eries_starting_with_=5B1/3=5D_drm/i915/lnl=3A_Extend_C10/C20_ph?=
- =?utf-8?q?y?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [CI HAX] drm/xe: Disable panic_on_warn for testing
+ purposes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,36 +58,40 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c | 2 +-
+ kernel/panic.c                 | 1 +
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-Series: series starting with [1/3] drm/i915/lnl: Extend C10/C20 phy
-URL   : https://patchwork.freedesktop.org/series/125857/
-State : warning
-
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 49b8b946bd15ce7c4d19b2c0fde51fed7b7c7db0
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 8341acf66e5f..5374c548b61d 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -278,7 +278,7 @@ int xe_device_probe(struct xe_device *xe)
+ 	u8 id;
+ 
+ 	xe_pat_init_early(xe);
+-
++	panic_on_warn = 0;
+ 	xe->info.mem_region_mask = 1;
+ 	err = xe_display_init_nommio(xe);
+ 	if (err)
+diff --git a/kernel/panic.c b/kernel/panic.c
+index bc59531848e4..1c8057027f20 100644
+--- a/kernel/panic.c
++++ b/kernel/panic.c
+@@ -59,6 +59,7 @@ static int pause_on_oops_flag;
+ static DEFINE_SPINLOCK(pause_on_oops_lock);
+ bool crash_kexec_post_notifiers;
+ int panic_on_warn __read_mostly;
++EXPORT_SYMBOL_GPL(panic_on_warn);
+ unsigned long panic_on_taint;
+ bool panic_on_taint_nousertaint = false;
+ static unsigned int warn_limit __read_mostly;
+-- 
+2.41.0
 
