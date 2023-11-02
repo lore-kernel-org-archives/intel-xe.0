@@ -4,46 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 774CAC0018A
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Nov 2023 04:24:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CCC67C001DB
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Nov 2023 04:24:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3A78510E800;
-	Thu,  2 Nov 2023 04:24:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96DBE10E807;
+	Thu,  2 Nov 2023 04:24:35 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9CFD810E7F9;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1BC410E7F9;
  Thu,  2 Nov 2023 04:24:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1698899071; x=1730435071;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sbP01WetmXxj7LqBWcsPMb/1xOxKhEIT3oMKfr8mlmo=;
- b=dkEysH/AFc+xkFSAJoj5IjdWqghOzpX64/dJbNW81qIeTW3Ecs3CFRI1
- 3fOIsWCR3r35+00P5Gro3yZztLSVxbitspzJJaQNSv9GD46ZQKJ4U8cdB
- +OPSzhIlLZ1WQ82+JwptiC1h1bk4dnl2ZJCj5rtkAI8uQVezmRoDuy0QE
- BGpx3j0VOEJ+tT6iUA/i8DG5y6ZXmsmdv40B+ftraZaE9mkO/NE5iBnwm
- 88NS38ct7y1VebJva/65c6Urq4BOKl2/XW74rCimoUbDxYa+m1KfGBgjU
- 9WQOd13Gda4fPjPK7EATUyvoEd4lBQMQg0VsWElB/GJc1NlqMLIL1AQ9v w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="452930898"
-X-IronPort-AV: E=Sophos;i="6.03,270,1694761200"; d="scan'208";a="452930898"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=jh8YduMlkBO3fPFoyyIlELlsSlB5g9xW1LHQvAUwav0=;
+ b=QsUjQlnUiocY2QcVHJtCFGv9IKmX1/rvb1eplx52LM+VvwJEBxWBzb+R
+ OEI9uuu6ViMzd0jvFLcHUqJSjoA8iJyAX3M2OoptxhzTaSmcOcHwcJ9il
+ 2LTMYhjCM3+IdkHk12osVJrK33VyXUo/vWBKESuLTC2O4XL8fhHAyetlG
+ 7RFZZCofVWUVyvmEpB7t41fFAshgTO9HZ25jHhqp6jRP2RM1PlRe2kHkt
+ XrMESOiHY/S2X4U3SZJv8D0UG1B3dGtRq4fSJc0Cjm1FUqePKIfJRsFi2
+ Zxrg1mAI8C0inA9fES9EvrZ4leWZgAffWdkNfAtQwW5s9FLv3gOzPaM1H g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="452930913"
+X-IronPort-AV: E=Sophos;i="6.03,270,1694761200"; d="scan'208";a="452930913"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Nov 2023 21:24:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="884762610"
-X-IronPort-AV: E=Sophos;i="6.03,270,1694761200"; d="scan'208";a="884762610"
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="884762622"
+X-IronPort-AV: E=Sophos;i="6.03,270,1694761200"; d="scan'208";a="884762622"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Nov 2023 21:24:30 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Date: Thu,  2 Nov 2023 00:32:55 -0400
-Message-Id: <20231102043306.2931989-1-oak.zeng@intel.com>
+Date: Thu,  2 Nov 2023 00:32:59 -0400
+Message-Id: <20231102043306.2931989-5-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
+In-Reply-To: <20231102043306.2931989-1-oak.zeng@intel.com>
+References: <20231102043306.2931989-1-oak.zeng@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 00/11] Introduce drm evictable lru
+Subject: [Intel-xe] [RFC 04/11] drm: Add evict function pointer to drm lru
+ entity
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,134 +62,204 @@ Cc: felix.kuehling@amd.com, airlied@gmail.com, christian.koenig@amd.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We plan to implement xe driver's shared virtual memory
-manager (aka SVM) without buffer object concept. This
-means we won't build our shared virtual memory manager
-upon TTM infrastructure like amdgpu does.
+Drm lru manager provides generic functions to manage lru list,
+and function to evict a lru entity. But how to evict an entity
+is implemented in an entity's sub-class. This patch introduces
+a few function pointers to drm lru entity for this purpose. Those
+functions are abstracted from the current ttm resource eviction
+process. They need to be tunned in the future when svm code comes
+into the picture.
 
-Even though this approach is more efficient, it does
-create a problem for memory eviction when there is
-memory pressure: memory allocated by SVM and memory
-allocated by TTM should be able to mutually evict
-from each other. TTM's resource manager maintains
-a LRU list for each memory type and this list is used
-to pick up the memory eviction victim. Since we don't
-use TTM for SVM implementation, SVM allocated memory
-can't be added to TTM resource manager's LRU list. Thus
-SVM allocated memory and TTM allocated memory are not
-mutually evictable.
+Also implemented a drm_lru_evict_first function to evict the first
+lru entity from lru manager. Both ttm and svm codes are supposed
+to call this function to evict the first resource from lru list.
+This way ttm and svm codes can mutually evict resources from each
+other.
 
-See more discussion on this topic here:
-https://www.spinics.net/lists/dri-devel/msg410740.html
+Signed-off-by: Oak Zeng <oak.zeng@intel.com>
+---
+ drivers/gpu/drm/drm_evictable_lru.c | 36 +++++++++++++-
+ include/drm/drm_evictable_lru.h     | 74 ++++++++++++++++++++++++++++-
+ 2 files changed, 108 insertions(+), 2 deletions(-)
 
-This series solve this problem by creating a shared
-LRU list b/t SVM and TTM, or any other resource manager.
-
-The basic idea is, abstract a drm_lru_entity structure
-which is supposed to be embedded in ttm_resource structure,
-or any other resource manager. The resource LRU list is a 
-list of drm_lru_entity. drm_lru_entity has eviction function
-pointers which can be used to call back drivers' specific
-eviction function to evict a memory resource.
-
-Introduce global drm_lru_manager to struct drm_device
-to manage LRU lists. Each memory type or memory region
-can have a LRU list. TTM resource manager's LRU list functions
-including bulk move functions are moved to drm lru manager.
-drm lru manager provides a evict_first function to evict
-the first memory resource from LRU list. This function can
-be called from TTM, SVM or any other resource manager, so
-all the memory allocated in the drm sub-system can be mutually
-evicted.
-
-The lru_lock is also moved from struct ttm_device to struct 
-drm_device.
-
-Opens:
-1) memory accounting: currently the ttm resource manager's
-memory accounting functions is kept at ttm resource manager.
-Since memory accounting should be cross TTM and SVM, it should
-be ideally in the drm lru manager layer. This will be polished
-in the future.
-
-2) eviction callback function interface: The current eviction
-function interface is designed to meet TTM memory eviction
-requirements. When SVM is in the picture, this interface
-need to be futher tunned to meet SVM requirement also. 
-
-This series is not tested and it is only compiled for xe
-driver. Some minor changes are needed for other driver
-such as amdgpu, nouveau etc. I intended to send this out
-as a request for comment series to get some early feedback,
-to see whether this is the right direction to go. I will
-futher polish this series after a direction is agreed.
-
-Oak Zeng (11):
-  drm/ttm: re-parameter ttm_device_init
-  drm: move lru_lock from ttm_device to drm_device
-  drm: introduce drm evictable LRU
-  drm: Add evict function pointer to drm lru entity
-  drm: Replace ttm macros with drm macros
-  drm/ttm: Set lru manager to ttm resource manager
-  drm/ttm: re-parameterize a few ttm functions
-  drm: Initialize drm lru manager
-  drm/ttm: Use drm LRU manager iterator
-  drm/ttm: Implement ttm memory evict functions
-  drm/ttm: Write ttm functions using drm lru manager functions
-
- drivers/gpu/drm/Makefile                      |   1 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c   |   6 +
- .../gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c   |   6 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_ttm.c       |  10 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.c        |   6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm.h        |   2 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c  |  10 +-
- drivers/gpu/drm/drm_drv.c                     |   1 +
- drivers/gpu/drm/drm_evictable_lru.c           | 266 ++++++++++++++++++
- drivers/gpu/drm/drm_gem_vram_helper.c         |  10 +-
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c       |   6 +-
- drivers/gpu/drm/i915/i915_ttm_buddy_manager.c |  10 +
- drivers/gpu/drm/i915/intel_region_ttm.c       |   4 +-
- drivers/gpu/drm/i915/selftests/mock_region.c  |   2 +-
- drivers/gpu/drm/loongson/lsdc_ttm.c           |  10 +-
- drivers/gpu/drm/nouveau/nouveau_ttm.c         |  22 +-
- drivers/gpu/drm/qxl/qxl_ttm.c                 |   6 +-
- drivers/gpu/drm/radeon/radeon_ttm.c           |  10 +-
- drivers/gpu/drm/ttm/tests/ttm_device_test.c   |   2 +-
- drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c |   2 +-
- drivers/gpu/drm/ttm/ttm_bo.c                  | 247 ++++++++++++----
- drivers/gpu/drm/ttm/ttm_bo_util.c             |  20 +-
- drivers/gpu/drm/ttm/ttm_bo_vm.c               |   2 +-
- drivers/gpu/drm/ttm/ttm_device.c              |  55 ++--
- drivers/gpu/drm/ttm/ttm_module.h              |   3 +-
- drivers/gpu/drm/ttm/ttm_range_manager.c       |  14 +-
- drivers/gpu/drm/ttm/ttm_resource.c            | 242 +++-------------
- drivers/gpu/drm/ttm/ttm_sys_manager.c         |   8 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.c            |   2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_bo.h            |   2 +-
- drivers/gpu/drm/vmwgfx/vmwgfx_drv.c           |   6 +-
- .../gpu/drm/vmwgfx/vmwgfx_system_manager.c    |   6 +
- drivers/gpu/drm/xe/xe_bo.c                    |  48 ++--
- drivers/gpu/drm/xe/xe_bo.h                    |   5 +-
- drivers/gpu/drm/xe/xe_device.c                |   2 +-
- drivers/gpu/drm/xe/xe_dma_buf.c               |   4 +-
- drivers/gpu/drm/xe/xe_exec.c                  |   6 +-
- drivers/gpu/drm/xe/xe_migrate.c               |   6 +-
- drivers/gpu/drm/xe/xe_res_cursor.h            |  10 +-
- drivers/gpu/drm/xe/xe_ttm_sys_mgr.c           |   8 +-
- drivers/gpu/drm/xe/xe_ttm_vram_mgr.c          |  18 +-
- drivers/gpu/drm/xe/xe_vm.c                    |   6 +-
- drivers/gpu/drm/xe/xe_vm_types.h              |   2 +-
- include/drm/drm_device.h                      |  12 +
- include/drm/drm_evictable_lru.h               | 260 +++++++++++++++++
- include/drm/ttm/ttm_bo.h                      |  10 +-
- include/drm/ttm/ttm_device.h                  |  13 +-
- include/drm/ttm/ttm_range_manager.h           |  17 +-
- include/drm/ttm/ttm_resource.h                | 117 +++-----
- 49 files changed, 1042 insertions(+), 501 deletions(-)
- create mode 100644 drivers/gpu/drm/drm_evictable_lru.c
- create mode 100644 include/drm/drm_evictable_lru.h
-
+diff --git a/drivers/gpu/drm/drm_evictable_lru.c b/drivers/gpu/drm/drm_evictable_lru.c
+index 2ba9105cca03..7b62cae2dfea 100644
+--- a/drivers/gpu/drm/drm_evictable_lru.c
++++ b/drivers/gpu/drm/drm_evictable_lru.c
+@@ -19,13 +19,15 @@ static inline struct drm_lru_mgr *entity_to_mgr(struct drm_lru_entity *entity)
+ }
+ 
+ void drm_lru_entity_init(struct drm_lru_entity *entity, struct drm_device *drm,
+-			uint32_t mem_type, uint64_t size, uint32_t priority)
++			uint32_t mem_type, uint64_t size, uint32_t priority,
++			struct drm_lru_evict_func *evict_func)
+ {
+ 	entity->drm = drm;
+ 	entity->mem_type = mem_type;
+ 	entity->size = size;
+ 	entity->priority = priority;
+ 	INIT_LIST_HEAD(&entity->lru);
++	entity->evict_func = evict_func;
+ }
+ 
+ /**
+@@ -230,3 +232,35 @@ void drm_lru_del_bulk_move(struct drm_lru_entity *entity,
+ 	}
+ }
+ EXPORT_SYMBOL(drm_lru_del_bulk_move);
++
++int drm_lru_evict_first(struct drm_lru_mgr *mgr,
++			const struct drm_lru_evict_ctx *evict_ctx)
++{
++	struct drm_lru_entity *entity, *busy_entity = NULL;
++	struct drm_lru_cursor cursor;
++	bool locked = false, busy = false, found = false;
++
++	spin_lock(mgr->lru_lock);
++
++	/* First find a victim to evict*/
++	drm_lru_for_each_entity(mgr, &cursor, entity) {
++		if (!entity->evict_func->evict_allowable(entity,
++			evict_ctx, &busy, &locked)) {
++			if (!busy_entity && busy)
++				busy_entity = entity;
++			continue;
++		}
++		found = true;
++		break;
++	}
++
++	/* We didn't find a victim, but we found a busy entity, i.e.,
++	 * other clients hold a reservation lock of this entity. Try
++	 * to wait and evict this busy entity.
++	 */
++	if (!found && busy_entity)
++		return busy_entity->evict_func->evict_busy_entity(busy_entity, evict_ctx);
++
++	/* If here, we found a victim to evict*/
++	return entity->evict_func->evict_entity(entity, evict_ctx, locked);
++}
+diff --git a/include/drm/drm_evictable_lru.h b/include/drm/drm_evictable_lru.h
+index 3fd6bd2475d9..7f49964f2f9b 100644
+--- a/include/drm/drm_evictable_lru.h
++++ b/include/drm/drm_evictable_lru.h
+@@ -15,6 +15,12 @@ struct drm_device;
+ #define DRM_MAX_LRU_PRIORITY 4
+ #define DRM_NUM_MEM_TYPES 8
+ 
++struct drm_lru_evict_ctx {
++	void *data1;
++	void *data2;
++	void *data3;
++};
++
+ /**
+  * struct drm_lru_entity
+  *
+@@ -23,6 +29,7 @@ struct drm_device;
+  * @size: resource size of this entity
+  * @priority: The priority of this entity
+  * @lru: least recent used list node, see &drm_lru_mgr.lru
++ * @evict_func: functions to evict this entity
+  *
+  * This structure represents an entity in drm_lru_mgr's
+  * list. This structure is supposed to be embedded in
+@@ -34,6 +41,7 @@ struct drm_lru_entity {
+ 	uint64_t size;
+ 	uint32_t priority;
+ 	struct list_head lru;
++	struct drm_lru_evict_func *evict_func;
+ };
+ 
+ /**
+@@ -97,7 +105,67 @@ struct drm_lru_bulk_move {
+ 	struct drm_lru_bulk_move_range range[DRM_NUM_MEM_TYPES][DRM_MAX_LRU_PRIORITY];
+ };
+ 
++struct drm_lru_evict_func {
++	/**
++	 * evict_allowable
++	 *
++	 * @lru_entity: The struct ttm_resource::lru_entity when this resource is
++	 * added to drm lru list.
++	 * @evict_ctx: eviction context. This is opaque data to drm lru layer. It is
++	 * passed to drm lru layer through drm_lru_evict_first function and drm lru
++	 * layer just pass it back to ttm or svm code by calling some ttm or svm
++	 * callback functions.
++	 * @busy: used to return whether the current resource is busy (i.e., locked
++	 * by other clients)
++	 * @locked: used to return whether this resource is locked during this check,
++	 * i.e., successfully trylocked bo's dma reservation object
++	 *
++	 * Check whether we are allowed to evict a memory resource. Return true if we
++	 * are allowed to evict resource; otherwise false.
++	 *
++	 * When this function returns true, a resource reference counter is hold. This
++	 * reference counter need to be released after evict operation later on.
++	 *
++	 * This function should be called with lru_lock hold.
++	 */
++	bool (*evict_allowable)(struct drm_lru_entity *lru_entity,
++			const struct drm_lru_evict_ctx *evict_ctx,
++			bool *busy, bool *locked);
+ 
++	/**
++	 * evict_busy_entity
++	 *
++	 * @lru_entity: The struct ttm_resource::lru_entity when this resource is
++	 * added to drm lru list.
++	 * @evict_ctx: eviction context. This is opaque data to drm lru layer. It is
++	 * passed to drm lru layer through drm_lru_evict_first function and drm lru
++	 * layer just pass it back to ttm or svm code by calling some ttm or svm
++	 * callback functions.
++	 *
++	 * Evict a busy memory resource.
++	 * This function should be called with lru_lock hold.
++	 */
++	int (*evict_busy_entity)(struct drm_lru_entity *lru_entity,
++			const struct drm_lru_evict_ctx *evict_ctx);
++
++	/**
++	 * evict_entity
++	 *
++	 * @lru_entity: The struct ttm_resource::lru_entity when this resource is
++	 * added to drm lru list.
++	 * @evict_ctx: eviction context. This is opaque data to drm lru layer. It is
++	 * passed to drm lru layer through drm_lru_evict_first function and drm lru
++	 * layer just pass it back to ttm or svm code by calling some ttm or svm
++	 * callback functions.
++	 * @locked: whether this resource is dma-reserved (if reserved, we need to
++	 * unreserve it in this function)
++	 *
++	 * Evict a memory resource corresponding to a lru_entity. This should be
++	 * called holding lru_lock
++	 */
++	int (*evict_entity)(struct drm_lru_entity *lru_entity,
++			const struct drm_lru_evict_ctx *evict_ctx, bool locked);
++};
+ 
+ /**
+  * drm_lru_add_entity
+@@ -145,7 +213,8 @@ static inline void drm_lru_mgr_fini(struct drm_lru_mgr *mgr)
+ }
+ 
+ void drm_lru_entity_init(struct drm_lru_entity *entity, struct drm_device *drm,
+-			uint32_t mem_type, uint64_t size, uint32_t priority);
++			uint32_t mem_type, uint64_t size, uint32_t priority,
++			struct drm_lru_evict_func *evict_func);
+ 
+ struct drm_lru_entity *
+ drm_lru_first(struct drm_lru_mgr *mgr, struct drm_lru_cursor *cursor);
+@@ -172,6 +241,9 @@ void drm_lru_add_bulk_move(struct drm_lru_entity *entity,
+ 
+ void drm_lru_del_bulk_move(struct drm_lru_entity *entity,
+ 		struct drm_lru_bulk_move *bulk_move);
++
++int drm_lru_evict_first(struct drm_lru_mgr *mgr,
++			const struct drm_lru_evict_ctx *evict_ctx);
+ /**
+  * drm_lru_for_each_entity
+  *
 -- 
 2.26.3
 
