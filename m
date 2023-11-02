@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01668C04A68
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13A9EC0032E
 	for <intel-xe@archiver.kernel.org>; Thu,  2 Nov 2023 04:24:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2183C10E813;
-	Thu,  2 Nov 2023 04:24:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D338010E811;
+	Thu,  2 Nov 2023 04:24:38 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A388E10E801;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7349E10E7FA;
  Thu,  2 Nov 2023 04:24:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1698899072; x=1730435072;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nh/H1JzDMpGQr1G+PCKAigkrHf6LP1Kp/ev0gnoHg6E=;
- b=nxzxZmdpb3aK0TbzXTriTjW3Tzwa3w9Jhq14w0zYvufwMtwyzk6PC0pj
- VSKPZG3wJ00PHgs+fC0HyLwILF9Zs6beCmhQ30iyHxan2Yd3Vv9MUZH40
- NLdKOVQmjxsXRQ8geMRgaf1lWoOAfqKluTA4DHrhBh72+nDbtYjKxdvHu
- J0FxmUASjbo8/isvCUKmh6ntXVI5LAU8m4BpyFa5+kYsFpo3yFRxtW7gt
- BjaGecEEoEgXb20X2dC7Nr3YL8vZvEM1wLxGnl3BUAQQPnY3UDL2JE6Wv
- 6RvMQHJB89QaLKxB4Dn5boUsVQ6OLliGemAx5Ke++ZscrDBEPqPsU2bIV g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="452930933"
-X-IronPort-AV: E=Sophos;i="6.03,270,1694761200"; d="scan'208";a="452930933"
+ bh=AacnrrassvtP4cpr0jl++LRZndhOkoKuF+0l1IzrsrU=;
+ b=WxLZo4QJeD2Do5qoyNLaFqgrXD3/73IdMd0Mf7NQpnXD0a7LP4pn9d8M
+ YMXgXCs7lIN9od4yb6QRqNQBWjji9xeyAvKkE9Xcdichh2DUBSBwIL0FJ
+ RWILE3XOA0jfWosvzKVQV+gTkww24tkwbFedpVIYlvAkSSEYcxRKL0ahr
+ O19gbYVTqTeIyYaTFQhoGZTbP+3bZ+o2A2EGHJa8FPqkbuw1syVU1tS36
+ Yd30oTZA4E13XkXYA+3wkYaRSzH2MrKf/OBIMFibM0qDySbOcQHHC0uYi
+ JZ6zqb5FnhR556g1t1TmQmbmVBfwu58YlabzJtoH8N9ho18892IGxDTVZ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="452930926"
+X-IronPort-AV: E=Sophos;i="6.03,270,1694761200"; d="scan'208";a="452930926"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Nov 2023 21:24:31 -0700
+ 01 Nov 2023 21:24:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="884762641"
-X-IronPort-AV: E=Sophos;i="6.03,270,1694761200"; d="scan'208";a="884762641"
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="884762636"
+X-IronPort-AV: E=Sophos;i="6.03,270,1694761200"; d="scan'208";a="884762636"
 Received: from szeng-desk.jf.intel.com ([10.165.21.149])
  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Nov 2023 21:24:30 -0700
 From: Oak Zeng <oak.zeng@intel.com>
 To: dri-devel@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Date: Thu,  2 Nov 2023 00:33:05 -0400
-Message-Id: <20231102043306.2931989-11-oak.zeng@intel.com>
+Date: Thu,  2 Nov 2023 00:33:03 -0400
+Message-Id: <20231102043306.2931989-9-oak.zeng@intel.com>
 X-Mailer: git-send-email 2.26.3
 In-Reply-To: <20231102043306.2931989-1-oak.zeng@intel.com>
 References: <20231102043306.2931989-1-oak.zeng@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC 10/11] drm/ttm: Implement ttm memory evict functions
+Subject: [Intel-xe] [RFC 08/11] drm: Initialize drm lru manager
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,262 +61,380 @@ Cc: felix.kuehling@amd.com, airlied@gmail.com, christian.koenig@amd.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Implement ttm_mem_evict_valuable, ttm_mem_evict_entity and
-ttm_mem_evict_busy_entity. Those are callback functions from
-drm lru manager. Register those functions during drm lru entity
-initialization. Those 3 functions are splitted from original
-ttm_mem_evict_first function.
-
-Reimplemented ttm_mem_evict_first function using drm_lru_evict_first
-function. For now, drm_lru_evict_first just calls back to above 3
-functions which are splitted from ttm_mem_evict_first function, so
-there is no function change. In the future, when SVM code is added,
-drm_lru_evict_first function can also calls into SVM resource eviction
-functions, thus TTM and SVM can mutually evict resources from each
-other.
+Initialize lru_mgr for each memory type or memory region. Also set
+ttm_resource_manager's weak reference to drm lru manager.
 
 Signed-off-by: Oak Zeng <oak.zeng@intel.com>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c | 192 ++++++++++++++++++++++++++++-------
- include/drm/ttm/ttm_bo.h     |   2 +
- 2 files changed, 158 insertions(+), 36 deletions(-)
+ drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c     |  6 ++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c |  6 ++++++
+ drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c    |  6 ++++++
+ drivers/gpu/drm/i915/i915_ttm_buddy_manager.c   | 10 ++++++++++
+ drivers/gpu/drm/nouveau/nouveau_ttm.c           | 12 ++++++++++++
+ drivers/gpu/drm/ttm/ttm_range_manager.c         |  6 ++++++
+ drivers/gpu/drm/ttm/ttm_sys_manager.c           |  2 ++
+ drivers/gpu/drm/vmwgfx/vmwgfx_system_manager.c  |  6 ++++++
+ drivers/gpu/drm/xe/xe_ttm_sys_mgr.c             |  6 ++++++
+ drivers/gpu/drm/xe/xe_ttm_vram_mgr.c            |  6 ++++++
+ 10 files changed, 66 insertions(+)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 4a5ffa920665..9ec7a246e2ad 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -587,50 +587,148 @@ static int ttm_mem_evict_wait_busy(struct ttm_buffer_object *busy_bo,
- 	return r == -EDEADLK ? -EBUSY : r;
- }
- 
--int ttm_mem_evict_first(struct ttm_device *bdev,
--			struct ttm_resource_manager *man,
--			const struct ttm_place *place,
--			struct ttm_operation_ctx *ctx,
--			struct ww_acquire_ctx *ticket)
-+struct ttm_mem_evict_ctx {
-+	const struct ttm_place *place;
-+	struct ttm_operation_ctx *ctx;
-+	struct ww_acquire_ctx *ticket;
-+};
-+
-+/**
-+ * ttm_mem_evict_allowable
-+ *
-+ * @lru_entity: The struct ttm_resource::lru_entity when this resource is
-+ * added to drm lru list.
-+ * @place: The preferred ttm placement where we want to evict memory for
-+ * more memory space. If the current ttm_resource doesn't match the preferred
-+ * placement, then there is no need to evict the current resource.
-+ * @ctx: ttm operation context
-+ * @ticket: dma reservation's context used to lock resource
-+ * @busy: used to return whether the current resource is busy (i.e., locked
-+ * by other clients)
-+ * @locked: used to return whether this resource is locked during this check,
-+ * i.e., successfully trylocked bo's dma reservation object
-+ *
-+ * Check whether we are allowed to evict a memory resource. Return true if we
-+ * are allowed to evict resource; otherwise false.
-+ *
-+ * When this function returns true, a resource reference counter (bo's reference)
-+ * is hold. This reference counter need to be released after evict operation later
-+ * on.
-+ *
-+ * This function should be called with lru_lock hold.
-+ */
-+bool ttm_mem_evict_allowable(struct drm_lru_entity *lru_entity,
-+			const struct drm_lru_evict_ctx *lru_evict_ctx,
-+			bool *busy, bool *locked)
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+index 44367f03316f..57e8b1688977 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_gtt_mgr.c
+@@ -278,6 +278,7 @@ int amdgpu_gtt_mgr_init(struct amdgpu_device *adev, uint64_t gtt_size)
  {
--	struct ttm_buffer_object *bo = NULL, *busy_bo = NULL;
--	struct drm_lru_cursor cursor;
- 	struct ttm_resource *res;
--	struct drm_lru_entity *entity;
--	bool locked = false;
--	int ret;
-+	struct ttm_buffer_object *bo = NULL;
-+	struct ttm_device *bdev;
-+	const struct ttm_place *place;
-+	struct ttm_operation_ctx *ctx;
-+	struct ww_acquire_ctx *ticket;
-+	struct ttm_mem_evict_ctx *evict_ctx;
+ 	struct amdgpu_gtt_mgr *mgr = &adev->mman.gtt_mgr;
+ 	struct ttm_resource_manager *man = &mgr->manager;
++	struct drm_device *drm = adev_to_drm(adev);
+ 	uint64_t start, size;
  
--	spin_lock(bdev->lru_lock);
--	drm_lru_for_each_entity(man->lru_mgr, &cursor, entity) {
--		bool busy;
-+	evict_ctx = (struct ttm_mem_evict_ctx *)lru_evict_ctx;
-+	place = evict_ctx->place;
-+	ctx = evict_ctx->ctx;
-+	ticket = evict_ctx->ticket;
+ 	man->use_tt = true;
+@@ -292,6 +293,9 @@ int amdgpu_gtt_mgr_init(struct amdgpu_device *adev, uint64_t gtt_size)
  
--		res = container_of(entity, struct ttm_resource, lru_entity);
--		if (!ttm_bo_evict_swapout_allowable(res->bo, ctx, place,
--						    &locked, &busy)) {
--			if (busy && !busy_bo && ticket !=
--			    dma_resv_locking_ctx(res->bo->base.resv))
--				busy_bo = res->bo;
--			continue;
--		}
-+	res = container_of(lru_entity, struct ttm_resource, lru_entity);
-+	bo = res->bo;
-+	bdev = bo->bdev;
- 
--		if (ttm_bo_get_unless_zero(res->bo)) {
--			bo = res->bo;
--			break;
--		}
--		if (locked)
--			dma_resv_unlock(res->bo->base.resv);
--	}
-+	if (!ttm_bo_evict_swapout_allowable(bo, ctx, place, locked, busy)) {
-+		if (busy && ticket != dma_resv_locking_ctx(bo->base.resv))
-+			*busy = true;
- 
--	if (!bo) {
--		if (busy_bo && !ttm_bo_get_unless_zero(busy_bo))
--			busy_bo = NULL;
--		spin_unlock(bdev->lru_lock);
--		ret = ttm_mem_evict_wait_busy(busy_bo, ctx, ticket);
--		if (busy_bo)
--			ttm_bo_put(busy_bo);
--		return ret;
-+		return false;
- 	}
- 
-+	if (ttm_bo_get_unless_zero(bo))
-+		return true;
+ 	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_TT, &mgr->manager);
+ 	ttm_resource_manager_set_used(man, true);
 +
-+	if (locked)
-+		dma_resv_unlock(bo->base.resv);
-+
-+	return false;
-+}
-+
-+/**
-+ * ttm_mem_evict_busy_entity
-+ *
-+ * @lru_entity: The struct ttm_resource::lru_entity when this resource is
-+ * added to drm lru list.
-+ * @ctx: ttm operation context
-+ * @ticket: dma reservation's context used to lock resource
-+ *
-+ * Evict a busy memory resource.
-+ * This function should be called with lru_lock hold.
-+ */
-+int ttm_mem_evict_busy_entity(struct drm_lru_entity *lru_entity,
-+			const struct drm_lru_evict_ctx *lru_evict_ctx)
-+{
-+	struct ttm_resource *res;
-+	struct ttm_buffer_object *bo = NULL;
-+	struct ttm_device *bdev;
-+	int ret;
-+	struct ttm_operation_ctx *ctx;
-+	struct ww_acquire_ctx *ticket;
-+	struct ttm_mem_evict_ctx *evict_ctx;
-+
-+	evict_ctx = (struct ttm_mem_evict_ctx *)lru_evict_ctx;
-+	ctx = evict_ctx->ctx;
-+	ticket = evict_ctx->ticket;
-+
-+	res = container_of(lru_entity, struct ttm_resource, lru_entity);
-+	bo = res->bo;
-+	bdev = bo->bdev;
-+
-+	if (bo && !ttm_bo_get_unless_zero(bo))
-+		bo = NULL;
-+	spin_unlock(bdev->lru_lock);
-+	ret = ttm_mem_evict_wait_busy(bo, ctx, ticket);
-+	/* FIXME: this is code copied originally from ttm_mem_evict_first.
-+	 * 1) Shouldn't we ttm_bo_evict this bo also? Otherwise how can we
-+	 * make any memory space?
-+	 * 2) We also need to check whether this busy entity is in the same
-+	 * ttm_place as specified in lru_evict_ctx::place; if not, there is
-+	 * no help to wait this busy entity.
-+     */
-+	if (bo)
-+		ttm_bo_put(bo);
-+
-+	return ret;
-+}
-+
-+/**
-+ * @lru_entity: The struct ttm_resource::lru_entity when this resource is
-+ * added to drm lru list.
-+ * @ctx: ttm operation context
-+ * @locked: whether this resource is dma-reserved (if reserved, we need to
-+ * unreserve it in this function)
-+ *
-+ * Evict a memory resource corresponding to a lru_entity. This should be
-+ * called holding lru_lock
-+ *
-+ */
-+int ttm_mem_evict_entity(struct drm_lru_entity *lru_entity,
-+			const struct drm_lru_evict_ctx *lru_evict_ctx, bool locked)
-+{
-+	struct ttm_resource *res;
-+	struct ttm_buffer_object *bo = NULL;
-+	struct ttm_device *bdev;
-+	int ret;
-+	struct ttm_operation_ctx *ctx;
-+	struct ttm_mem_evict_ctx *evict_ctx;
-+
-+	evict_ctx = (struct ttm_mem_evict_ctx *)lru_evict_ctx;
-+	ctx = evict_ctx->ctx;
-+
-+	res = container_of(lru_entity, struct ttm_resource, lru_entity);
-+	bo = res->bo;
-+	bdev = bo->bdev;
-+
- 	if (bo->deleted) {
- 		ret = ttm_bo_cleanup_refs(bo, ctx->interruptible,
- 					  ctx->no_wait_gpu, locked);
-@@ -650,6 +748,28 @@ int ttm_mem_evict_first(struct ttm_device *bdev,
- 	return ret;
++	drm_lru_mgr_init(&drm->lru_mgr[TTM_PL_TT], gtt_size, &drm->lru_lock);
++	ttm_resource_manager_set_lru_mgr(man, &drm->lru_mgr[TTM_PL_TT]);
+ 	return 0;
  }
  
-+struct drm_lru_evict_func ttm_evict_func = {
-+	.evict_allowable = ttm_mem_evict_allowable,
-+	.evict_busy_entity = ttm_mem_evict_busy_entity,
-+	.evict_entity = ttm_mem_evict_entity
-+};
-+EXPORT_SYMBOL(ttm_evict_func);
-+
-+int ttm_mem_evict_first(struct ttm_device *bdev,
-+			struct ttm_resource_manager *man,
-+			const struct ttm_place *place,
-+			struct ttm_operation_ctx *ctx,
-+			struct ww_acquire_ctx *ticket)
-+{
-+	struct drm_lru_evict_ctx evict_ctx = {
-+			.data1 = place,
-+			.data2 = ctx,
-+			.data3 = ticket
-+	};
-+
-+	return drm_lru_evict_first(man->lru_mgr, &evict_ctx);
-+}
-+
- /**
-  * ttm_bo_pin - Pin the buffer object.
-  * @bo: The buffer object to pin
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 49f32df32204..223b198fe371 100644
---- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -50,6 +50,7 @@ struct ttm_place;
- struct ttm_resource;
- struct ttm_resource_manager;
- struct ttm_tt;
-+struct drm_lru_evict_func;
+@@ -307,6 +311,7 @@ void amdgpu_gtt_mgr_fini(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_gtt_mgr *mgr = &adev->mman.gtt_mgr;
+ 	struct ttm_resource_manager *man = &mgr->manager;
++	struct drm_device *drm = adev_to_drm(adev);
+ 	int ret;
  
- /**
-  * enum ttm_bo_type
-@@ -424,4 +425,5 @@ pgprot_t ttm_io_prot(struct ttm_buffer_object *bo, struct ttm_resource *res,
- 		     pgprot_t tmp);
- void ttm_bo_tt_destroy(struct ttm_buffer_object *bo);
+ 	ttm_resource_manager_set_used(man, false);
+@@ -321,4 +326,5 @@ void amdgpu_gtt_mgr_fini(struct amdgpu_device *adev)
  
-+extern struct drm_lru_evict_func ttm_evict_func;
- #endif
+ 	ttm_resource_manager_cleanup(man);
+ 	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_TT, NULL);
++	drm_lru_mgr_fini(&drm->lru_mgr[TTM_PL_TT]);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c
+index e8adfd0a570a..f989aca2bfc4 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c
+@@ -100,6 +100,7 @@ static const struct ttm_resource_manager_func amdgpu_preempt_mgr_func = {
+ int amdgpu_preempt_mgr_init(struct amdgpu_device *adev)
+ {
+ 	struct ttm_resource_manager *man = &adev->mman.preempt_mgr;
++	struct drm_device *drm = adev_to_drm(adev);
+ 	int ret;
+ 
+ 	man->use_tt = true;
+@@ -115,6 +116,9 @@ int amdgpu_preempt_mgr_init(struct amdgpu_device *adev)
+ 
+ 	ttm_set_driver_manager(&adev->mman.bdev, AMDGPU_PL_PREEMPT, man);
+ 	ttm_resource_manager_set_used(man, true);
++
++	drm_lru_mgr_init(&drm->lru_mgr[AMDGPU_PL_PREEMPT], (1 << 30), &drm->lru_lock);
++	ttm_resource_manager_set_lru_mgr(man, &drm->lru_mgr[VMW_PL_SYSTEM]);
+ 	return 0;
+ }
+ 
+@@ -129,6 +133,7 @@ int amdgpu_preempt_mgr_init(struct amdgpu_device *adev)
+ void amdgpu_preempt_mgr_fini(struct amdgpu_device *adev)
+ {
+ 	struct ttm_resource_manager *man = &adev->mman.preempt_mgr;
++	struct drm_device *drm = adev_to_drm(adev);
+ 	int ret;
+ 
+ 	ttm_resource_manager_set_used(man, false);
+@@ -141,4 +146,5 @@ void amdgpu_preempt_mgr_fini(struct amdgpu_device *adev)
+ 
+ 	ttm_resource_manager_cleanup(man);
+ 	ttm_set_driver_manager(&adev->mman.bdev, AMDGPU_PL_PREEMPT, NULL);
++	drm_lru_mgr_fini(&drm->lru_mgr[AMDGPU_PL_PREEMPT]);
+ }
+diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+index b83e1741905e..0792d22508c9 100644
+--- a/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
++++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c
+@@ -884,6 +884,7 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
+ 	struct ttm_resource_manager *man = &mgr->manager;
++	struct drm_device *drm = adev_to_drm(adev);
+ 	int err;
+ 
+ 	ttm_resource_manager_init(man, &adev->mman.bdev,
+@@ -907,6 +908,9 @@ int amdgpu_vram_mgr_init(struct amdgpu_device *adev)
+ 
+ 	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, &mgr->manager);
+ 	ttm_resource_manager_set_used(man, true);
++	drm_lru_mgr_init(&drm->lru_mgr[TTM_PL_VRAM], adev->gmc.real_vram_size,
++						&drm->lru_lock);
++	ttm_resource_manager_set_lru_mgr(man, &drm->lru_mgr[TTM_PL_VRAM]);
+ 	return 0;
+ }
+ 
+@@ -922,6 +926,7 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev)
+ {
+ 	struct amdgpu_vram_mgr *mgr = &adev->mman.vram_mgr;
+ 	struct ttm_resource_manager *man = &mgr->manager;
++	struct drm_device *drm = adev_to_drm(adev);
+ 	int ret;
+ 	struct amdgpu_vram_reservation *rsv, *temp;
+ 
+@@ -945,4 +950,5 @@ void amdgpu_vram_mgr_fini(struct amdgpu_device *adev)
+ 
+ 	ttm_resource_manager_cleanup(man);
+ 	ttm_set_driver_manager(&adev->mman.bdev, TTM_PL_VRAM, NULL);
++	drm_lru_mgr_fini(&drm->lru_mgr[TTM_PL_VRAM]);
+ }
+diff --git a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+index a1bc804cfa15..968f9c01152e 100644
+--- a/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
++++ b/drivers/gpu/drm/i915/i915_ttm_buddy_manager.c
+@@ -304,6 +304,9 @@ int i915_ttm_buddy_man_init(struct ttm_device *bdev,
+ {
+ 	struct ttm_resource_manager *man;
+ 	struct i915_ttm_buddy_manager *bman;
++	struct drm_i915_private *i915 = container_of(bdev,
++							struct drm_i915_private, bdev);
++	struct drm_device *drm = &i915->drm;
+ 	int err;
+ 
+ 	bman = kzalloc(sizeof(*bman), GFP_KERNEL);
+@@ -329,6 +332,9 @@ int i915_ttm_buddy_man_init(struct ttm_device *bdev,
+ 	ttm_resource_manager_set_used(man, true);
+ 	ttm_set_driver_manager(bdev, type, man);
+ 
++	drm_lru_mgr_init(&drm->lru_mgr[type], bman->mm.size >> PAGE_SHIFT, &drm->lru_lock);
++	ttm_resource_manager_set_lru_mgr(man, &drm->lru_mgr[type]);
++
+ 	return 0;
+ 
+ err_free_bman:
+@@ -350,6 +356,9 @@ int i915_ttm_buddy_man_fini(struct ttm_device *bdev, unsigned int type)
+ {
+ 	struct ttm_resource_manager *man = ttm_manager_type(bdev, type);
+ 	struct i915_ttm_buddy_manager *bman = to_buddy_manager(man);
++	struct drm_i915_private *i915 = container_of(bdev,
++							struct drm_i915_private, bdev);
++	struct drm_device *drm = &i915->drm;
+ 	struct drm_buddy *mm = &bman->mm;
+ 	int ret;
+ 
+@@ -369,6 +378,7 @@ int i915_ttm_buddy_man_fini(struct ttm_device *bdev, unsigned int type)
+ 	mutex_unlock(&bman->lock);
+ 
+ 	ttm_resource_manager_cleanup(man);
++	drm_lru_mgr_fini(&drm->lru_mgr[type]);
+ 	kfree(bman);
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/nouveau/nouveau_ttm.c b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+index 1898f27f0510..b0936c235ff6 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_ttm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_ttm.c
+@@ -182,6 +182,7 @@ nouveau_ttm_init_vram(struct nouveau_drm *drm)
+ {
+ 	if (drm->client.device.info.family >= NV_DEVICE_INFO_V0_TESLA) {
+ 		struct ttm_resource_manager *man = kzalloc(sizeof(*man), GFP_KERNEL);
++		struct drm_device *drm_dev = drm->dev;
+ 
+ 		if (!man)
+ 			return -ENOMEM;
+@@ -192,6 +193,9 @@ nouveau_ttm_init_vram(struct nouveau_drm *drm)
+ 					  drm->gem.vram_available >> PAGE_SHIFT);
+ 		ttm_set_driver_manager(&drm->ttm.bdev, TTM_PL_VRAM, man);
+ 		ttm_resource_manager_set_used(man, true);
++		drm_lru_mgr_init(&drm_dev->lru_mgr[TTM_PL_VRAM],
++			drm->gem.vram_available >> PAGE_SHIFT, &drm_dev->lru_lock);
++		ttm_resource_manager_set_lru_mgr(man, &drm_dev->lru_mgr[TTM_PL_VRAM]);
+ 		return 0;
+ 	} else {
+ 		return ttm_range_man_init(drm->dev, &drm->ttm.bdev, TTM_PL_VRAM, false,
+@@ -205,10 +209,13 @@ nouveau_ttm_fini_vram(struct nouveau_drm *drm)
+ 	struct ttm_resource_manager *man = ttm_manager_type(&drm->ttm.bdev, TTM_PL_VRAM);
+ 
+ 	if (drm->client.device.info.family >= NV_DEVICE_INFO_V0_TESLA) {
++		struct drm_device *drm_dev = drm->dev;
++
+ 		ttm_resource_manager_set_used(man, false);
+ 		ttm_resource_manager_evict_all(&drm->ttm.bdev, man);
+ 		ttm_resource_manager_cleanup(man);
+ 		ttm_set_driver_manager(&drm->ttm.bdev, TTM_PL_VRAM, NULL);
++		drm_lru_mgr_fini(&drm_dev->lru_mgr[TTM_PL_VRAM]);
+ 		kfree(man);
+ 	} else
+ 		ttm_range_man_fini(drm->dev, &drm->ttm.bdev, TTM_PL_VRAM);
+@@ -220,6 +227,7 @@ nouveau_ttm_init_gtt(struct nouveau_drm *drm)
+ 	struct ttm_resource_manager *man;
+ 	unsigned long size_pages = drm->gem.gart_available >> PAGE_SHIFT;
+ 	const struct ttm_resource_manager_func *func = NULL;
++	struct drm_device *drm_dev = drm->dev;
+ 
+ 	if (drm->client.device.info.family >= NV_DEVICE_INFO_V0_TESLA)
+ 		func = &nouveau_gart_manager;
+@@ -238,6 +246,8 @@ nouveau_ttm_init_gtt(struct nouveau_drm *drm)
+ 	ttm_resource_manager_init(man, &drm->ttm.bdev, size_pages);
+ 	ttm_set_driver_manager(&drm->ttm.bdev, TTM_PL_TT, man);
+ 	ttm_resource_manager_set_used(man, true);
++	drm_lru_mgr_init(&drm_dev->lru_mgr[TTM_PL_TT], size_pages, &drm_dev->lru_lock);
++	ttm_resource_manager_set_lru_mgr(man, &drm_dev->lru_mgr[TTM_PL_TT]);
+ 	return 0;
+ }
+ 
+@@ -245,6 +255,7 @@ static void
+ nouveau_ttm_fini_gtt(struct nouveau_drm *drm)
+ {
+ 	struct ttm_resource_manager *man = ttm_manager_type(&drm->ttm.bdev, TTM_PL_TT);
++	struct drm_device *drm_dev = drm->dev;
+ 
+ 	if (drm->client.device.info.family < NV_DEVICE_INFO_V0_TESLA &&
+ 	    drm->agp.bridge)
+@@ -254,6 +265,7 @@ nouveau_ttm_fini_gtt(struct nouveau_drm *drm)
+ 		ttm_resource_manager_evict_all(&drm->ttm.bdev, man);
+ 		ttm_resource_manager_cleanup(man);
+ 		ttm_set_driver_manager(&drm->ttm.bdev, TTM_PL_TT, NULL);
++		drm_lru_mgr_fini(&drm_dev->lru_mgr[TTM_PL_TT]);
+ 		kfree(man);
+ 	}
+ }
+diff --git a/drivers/gpu/drm/ttm/ttm_range_manager.c b/drivers/gpu/drm/ttm/ttm_range_manager.c
+index db1ae370580d..898ede7d25c4 100644
+--- a/drivers/gpu/drm/ttm/ttm_range_manager.c
++++ b/drivers/gpu/drm/ttm/ttm_range_manager.c
+@@ -36,6 +36,7 @@
+ #include <drm/drm_mm.h>
+ #include <linux/slab.h>
+ #include <linux/spinlock.h>
++#include <drm/drm_evictable_lru.h>
+ 
+ /*
+  * Currently we use a spinlock for the lock, but a mutex *may* be
+@@ -199,6 +200,10 @@ int ttm_range_man_init_nocheck(struct drm_device *drm, struct ttm_device *bdev,
+ 
+ 	ttm_set_driver_manager(bdev, type, &rman->manager);
+ 	ttm_resource_manager_set_used(man, true);
++
++	drm_lru_mgr_init(&drm->lru_mgr[type], p_size, &drm->lru_lock);
++	ttm_resource_manager_set_lru_mgr(man, &drm->lru_mgr[type]);
++
+ 	return 0;
+ }
+ EXPORT_SYMBOL(ttm_range_man_init_nocheck);
+@@ -236,6 +241,7 @@ int ttm_range_man_fini_nocheck(struct drm_device *drm, struct ttm_device *bdev,
+ 
+ 	ttm_resource_manager_cleanup(man);
+ 	ttm_set_driver_manager(bdev, type, NULL);
++	drm_lru_mgr_fini(&drm->lru_mgr[type]);
+ 	kfree(rman);
+ 	return 0;
+ }
+diff --git a/drivers/gpu/drm/ttm/ttm_sys_manager.c b/drivers/gpu/drm/ttm/ttm_sys_manager.c
+index f0f026d40a69..db410c7f73fe 100644
+--- a/drivers/gpu/drm/ttm/ttm_sys_manager.c
++++ b/drivers/gpu/drm/ttm/ttm_sys_manager.c
+@@ -50,4 +50,6 @@ void ttm_sys_man_init(struct drm_device *drm, struct ttm_device *bdev)
+ 	ttm_resource_manager_init(man, bdev, 0);
+ 	ttm_set_driver_manager(bdev, TTM_PL_SYSTEM, man);
+ 	ttm_resource_manager_set_used(man, true);
++	drm_lru_mgr_init(&drm->lru_mgr[TTM_PL_SYSTEM], 0, &drm->lru_lock);
++	ttm_resource_manager_set_lru_mgr(man, &drm->lru_mgr[TTM_PL_SYSTEM]);
+ }
+diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_system_manager.c b/drivers/gpu/drm/vmwgfx/vmwgfx_system_manager.c
+index ee7964cbdaca..102296399e00 100644
+--- a/drivers/gpu/drm/vmwgfx/vmwgfx_system_manager.c
++++ b/drivers/gpu/drm/vmwgfx/vmwgfx_system_manager.c
+@@ -62,6 +62,7 @@ int vmw_sys_man_init(struct vmw_private *dev_priv)
+ 	struct ttm_device *bdev = &dev_priv->bdev;
+ 	struct ttm_resource_manager *man =
+ 			kzalloc(sizeof(*man), GFP_KERNEL);
++	struct drm_device *drm = &dev_priv->drm;
+ 
+ 	if (!man)
+ 		return -ENOMEM;
+@@ -72,6 +73,9 @@ int vmw_sys_man_init(struct vmw_private *dev_priv)
+ 	ttm_resource_manager_init(man, bdev, 0);
+ 	ttm_set_driver_manager(bdev, VMW_PL_SYSTEM, man);
+ 	ttm_resource_manager_set_used(man, true);
++
++	drm_lru_mgr_init(&drm->lru_mgr[WMW_PL_SYSTEM], 0, &drm->lru_lock);
++	ttm_resource_manager_set_lru_mgr(man, &drm->lru_mgr[VMW_PL_SYSTEM]);
+ 	return 0;
+ }
+ 
+@@ -79,6 +83,7 @@ void vmw_sys_man_fini(struct vmw_private *dev_priv)
+ {
+ 	struct ttm_resource_manager *man = ttm_manager_type(&dev_priv->bdev,
+ 							    VMW_PL_SYSTEM);
++	struct drm_device *drm = &dev_priv->drm;
+ 
+ 	ttm_resource_manager_evict_all(&dev_priv->bdev, man);
+ 
+@@ -86,5 +91,6 @@ void vmw_sys_man_fini(struct vmw_private *dev_priv)
+ 	ttm_resource_manager_cleanup(man);
+ 
+ 	ttm_set_driver_manager(&dev_priv->bdev, VMW_PL_SYSTEM, NULL);
++	drm_lru_mgr_fini(&drm->lru_mgr[VMW_PL_SYSTEM]);
+ 	kfree(man);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+index 3e1fa0c832ca..ace42852a419 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_sys_mgr.c
+@@ -96,11 +96,13 @@ static void ttm_sys_mgr_fini(struct drm_device *drm, void *arg)
+ 
+ 	ttm_resource_manager_cleanup(man);
+ 	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, NULL);
++	drm_lru_mgr_fini(&drm->lru_mgr[XE_PL_TT]);
+ }
+ 
+ int xe_ttm_sys_mgr_init(struct xe_device *xe)
+ {
+ 	struct ttm_resource_manager *man = &xe->mem.sys_mgr;
++	struct drm_device *drm = &xe->drm;
+ 	struct sysinfo si;
+ 	u64 gtt_size;
+ 
+@@ -114,5 +116,9 @@ int xe_ttm_sys_mgr_init(struct xe_device *xe)
+ 	ttm_resource_manager_init(man, &xe->ttm, gtt_size >> PAGE_SHIFT);
+ 	ttm_set_driver_manager(&xe->ttm, XE_PL_TT, man);
+ 	ttm_resource_manager_set_used(man, true);
++
++	drm_lru_mgr_init(&drm->lru_mgr[XE_PL_TT], gtt_size >> PAGE_SHIFT, &drm->lru_lock);
++	ttm_resource_manager_set_lru_mgr(man, &drm->lru_mgr[XE_PL_TT]);
++
+ 	return drmm_add_action_or_reset(&xe->drm, ttm_sys_mgr_fini, xe);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+index 06a54c8bd46f..a3c1bf555c06 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_vram_mgr.c
+@@ -328,6 +328,8 @@ static void ttm_vram_mgr_fini(struct drm_device *dev, void *arg)
+ 	ttm_resource_manager_cleanup(&mgr->manager);
+ 
+ 	ttm_set_driver_manager(&xe->ttm, mgr->mem_type, NULL);
++
++	drm_lru_mgr_fini(&dev->lru_mgr[mgr->mem_type]);
+ }
+ 
+ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+@@ -335,6 +337,7 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 			   u64 default_page_size)
+ {
+ 	struct ttm_resource_manager *man = &mgr->manager;
++	struct drm_device *drm = &xe->drm;
+ 	int err;
+ 
+ 	man->func = &xe_ttm_vram_mgr_func;
+@@ -350,6 +353,9 @@ int __xe_ttm_vram_mgr_init(struct xe_device *xe, struct xe_ttm_vram_mgr *mgr,
+ 	ttm_set_driver_manager(&xe->ttm, mem_type, &mgr->manager);
+ 	ttm_resource_manager_set_used(&mgr->manager, true);
+ 
++	drm_lru_mgr_init(&drm->lru_mgr[mem_type], size, &drm->lru_lock);
++	ttm_resource_manager_set_lru_mgr(man, &drm->lru_mgr[mem_type]);
++
+ 	return drmm_add_action_or_reset(&xe->drm, ttm_vram_mgr_fini, mgr);
+ }
+ 
 -- 
 2.26.3
 
