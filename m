@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58CBCC4167D
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Nov 2023 09:37:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FCB2C4332F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Nov 2023 10:13:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C4B810E83E;
-	Thu,  2 Nov 2023 09:37:49 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E64F10E83E
- for <intel-xe@lists.freedesktop.org>; Thu,  2 Nov 2023 09:37:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3AA2C10E845;
+	Thu,  2 Nov 2023 10:13:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69A4B10E84D
+ for <intel-xe@lists.freedesktop.org>; Thu,  2 Nov 2023 10:13:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1698917868; x=1730453868;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Hp1RhMim0Wrx94O0CyB8YpbjRESr/JqZFG9Sdb8CjY4=;
- b=F4yDJBfIUZfWLujAHO4REC5DlpjixXJEnaj2Nd4rzabHUSSKIdAsK292
- ltrWU1VTCTKKfEXnk8qotuVbUqBW+8RUbVQrQmzbDx4EhCeG/z22u3ezl
- djBz9LDDcDpXQdjqJTO2RjXNwsx1cwXp301svF7li9pFoE7nJV9L0ygHc
- wbvGSVowt+QL1Fc2Q25vykS3RSjPS80Qi9PzLrDW6GCJrFCXKOPZ2Ylmi
- C7dz2IbO3pI4MeyI5ls93bdWeE0KEJj4InJpmdC554Hbl0R0Ibn5htKNq
- Bqj1mgp4o5YutZjngXn6YCu5FYPTSC6l97qNX0ZreQDLklXv1cn7UHt1H Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="388493123"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="388493123"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 02:37:46 -0700
+ t=1698920024; x=1730456024;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=Rq/DXZe8GbyemZSoJINr0zWbB0Z3JrIktmqsnFWuB/c=;
+ b=eisnu+EX1tQFDTBL/B08hPRLosWgFB9vD7OEBApuWm5V+KsFcN6EbMxo
+ m1tpEgxOM2clmaMlg47D35dkuustQGTVtHBh4u3jDaSd0sMgh2yQsods2
+ LJENHQUCyilyvzRjIGnJT4oeSRbakMobHGx1hu3Rk/5zWpFk06m05sO4M
+ wTmxiVdRd5xJXjKlIJ3Kh4RS4YAxxnTA41mB5sxwQwOIsptK6EzoWlF7P
+ +UT0owuL2CSlm9DYy3wQklJBcEcNR3Mvp1pG3GBZdJQDo+qkyTlbBnnfO
+ hOHFRG2CRXKxBDLwIJ5ESsULMNNxRGiR8JmL3AOpTXuPVHQsoZmfFdmoN g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="1550591"
+X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; 
+   d="scan'208";a="1550591"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 03:13:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="711087429"
-X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="711087429"
-Received: from nofferma-mobl.ger.corp.intel.com (HELO localhost)
- ([10.252.51.121])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Nov 2023 02:37:44 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
-In-Reply-To: <20231101151528.1840900-1-lucas.demarchi@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231101151528.1840900-1-lucas.demarchi@intel.com>
-Date: Thu, 02 Nov 2023 11:37:40 +0200
-Message-ID: <8734xo4hsr.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10881"; a="796191509"
+X-IronPort-AV: E=Sophos;i="6.03,271,1694761200"; d="scan'208";a="796191509"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+ by orsmga001.jf.intel.com with ESMTP; 02 Nov 2023 03:13:41 -0700
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qyUhn-0001Nn-0W;
+ Thu, 02 Nov 2023 10:13:39 +0000
+Date: Thu, 2 Nov 2023 18:13:07 +0800
+From: kernel test robot <lkp@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+Message-ID: <202311021848.EjCFjv9n-lkp@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-Subject: Re: [Intel-xe] [PATCH 1/3] drm/i915/lnl: Extend C10/C20 phy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-xe] [drm-xe:drm-xe-next-rebase-6.4-v3 254/506]
+ drivers/gpu/drm/xe/xe_pci.c:772:28: error: 'xe_pci_runtime_suspend'
+ undeclared here (not in a function); did you mean 'xe_pm_runtime_suspend'?
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,28 +58,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, 01 Nov 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
-> For Lunar Lake, DDI-A is connected to C10 PHY, while TC1-TC3 are connected
-> to C20 phy, like in Meteor Lake. Update the check in intel_is_c10phy()
-> accordingly.
->
-> This reverts the change in commit e388ae97e225 ("drm/i915/display:
-> Eliminate IS_METEORLAKE checks") that turned that into a display engine
-> version check. The phy <-> port connection is very SoC-specific and not
-> related to that version.
->
-> IS_LUNARLAKE() is defined to 0 in i915 as it's expected that the
-> (upcoming) xe driver is the one defining the platform, with i915 only
-> driving the display side.
+Hi Francois,
 
-On the series,
+FYI, the error/warning still remains.
 
-Acked-by: Jani Nikula <jani.nikula@intel.com>
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next-rebase-6.4-v3
+head:   cb8c359d816115a3fe2bbd1c22f26c277e6ddcc2
+commit: 391248864bb35ef855e275ffba53789cf3ec36d3 [254/506] drm/xe: Fix build without CONFIG_PM_SLEEP
+config: arc-allmodconfig (https://download.01.org/0day-ci/archive/20231102/202311021848.EjCFjv9n-lkp@intel.com/config)
+compiler: arceb-elf-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231102/202311021848.EjCFjv9n-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311021848.EjCFjv9n-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/device/driver.h:19,
+                    from drivers/gpu/drm/xe/xe_pci.c:8:
+>> drivers/gpu/drm/xe/xe_pci.c:772:28: error: 'xe_pci_runtime_suspend' undeclared here (not in a function); did you mean 'xe_pm_runtime_suspend'?
+     772 |         SET_RUNTIME_PM_OPS(xe_pci_runtime_suspend, xe_pci_runtime_resume, xe_pci_runtime_idle)
+         |                            ^~~~~~~~~~~~~~~~~~~~~~
+   include/linux/pm.h:337:28: note: in definition of macro 'RUNTIME_PM_OPS'
+     337 |         .runtime_suspend = suspend_fn, \
+         |                            ^~~~~~~~~~
+   drivers/gpu/drm/xe/xe_pci.c:772:9: note: in expansion of macro 'SET_RUNTIME_PM_OPS'
+     772 |         SET_RUNTIME_PM_OPS(xe_pci_runtime_suspend, xe_pci_runtime_resume, xe_pci_runtime_idle)
+         |         ^~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/xe/xe_pci.c:772:52: error: 'xe_pci_runtime_resume' undeclared here (not in a function); did you mean 'xe_pm_runtime_resume'?
+     772 |         SET_RUNTIME_PM_OPS(xe_pci_runtime_suspend, xe_pci_runtime_resume, xe_pci_runtime_idle)
+         |                                                    ^~~~~~~~~~~~~~~~~~~~~
+   include/linux/pm.h:338:27: note: in definition of macro 'RUNTIME_PM_OPS'
+     338 |         .runtime_resume = resume_fn, \
+         |                           ^~~~~~~~~
+   drivers/gpu/drm/xe/xe_pci.c:772:9: note: in expansion of macro 'SET_RUNTIME_PM_OPS'
+     772 |         SET_RUNTIME_PM_OPS(xe_pci_runtime_suspend, xe_pci_runtime_resume, xe_pci_runtime_idle)
+         |         ^~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/xe/xe_pci.c:772:75: error: 'xe_pci_runtime_idle' undeclared here (not in a function); did you mean 'xe_pm_runtime_init'?
+     772 |         SET_RUNTIME_PM_OPS(xe_pci_runtime_suspend, xe_pci_runtime_resume, xe_pci_runtime_idle)
+         |                                                                           ^~~~~~~~~~~~~~~~~~~
+   include/linux/pm.h:339:25: note: in definition of macro 'RUNTIME_PM_OPS'
+     339 |         .runtime_idle = idle_fn,
+         |                         ^~~~~~~
+   drivers/gpu/drm/xe/xe_pci.c:772:9: note: in expansion of macro 'SET_RUNTIME_PM_OPS'
+     772 |         SET_RUNTIME_PM_OPS(xe_pci_runtime_suspend, xe_pci_runtime_resume, xe_pci_runtime_idle)
+         |         ^~~~~~~~~~~~~~~~~~
+
+
+vim +772 drivers/gpu/drm/xe/xe_pci.c
+
+f4003219244f3a2 Matthew Brost   2023-03-30  769  
+f4003219244f3a2 Matthew Brost   2023-03-30  770  static const struct dev_pm_ops xe_pm_ops = {
+778b90c2c975305 Francois Dugast 2023-01-23  771  	SET_SYSTEM_SLEEP_PM_OPS(xe_pci_suspend, xe_pci_resume)
+778b90c2c975305 Francois Dugast 2023-01-23 @772  	SET_RUNTIME_PM_OPS(xe_pci_runtime_suspend, xe_pci_runtime_resume, xe_pci_runtime_idle)
+f4003219244f3a2 Matthew Brost   2023-03-30  773  };
+f4003219244f3a2 Matthew Brost   2023-03-30  774  
+
+:::::: The code at line 772 was first introduced by commit
+:::::: 778b90c2c975305230bb9f37512c0a7e480ee79c drm/xe: Use global macros to set PM functions
+
+:::::: TO: Francois Dugast <francois.dugast@intel.com>
+:::::: CC: Lucas De Marchi <lucas.demarchi@intel.com>
 
 -- 
-Jani Nikula, Intel
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
