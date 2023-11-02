@@ -4,115 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C60BCC4167D
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Nov 2023 13:23:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B8CFFC4332F
+	for <intel-xe@archiver.kernel.org>; Thu,  2 Nov 2023 13:40:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 834D010E898;
-	Thu,  2 Nov 2023 13:23:42 +0000 (UTC)
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com
- (mail-bn8nam11on2041.outbound.protection.outlook.com [40.107.236.41])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9578610E885;
- Thu,  2 Nov 2023 13:23:40 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=THjS/+xH3ucj2L3GCKz7gnUcRrDachk+J6D9z1rZHTp9MfVJowkT/avrFo2THYFhHJnHw5OT7Pk7j7YozEqrMhdRiiqo6mtgKYpdcXhBBB+yCoQHeQ1WniQf8Sg7jd6Ylwkh8/YM1oMBCTMqkYfo0YVU5BfwBwxQR8HcpAjmH5rmQ527N/oFnjig/QDoi7H6Xbvkrz6uziDuDAxVXzWkSPrVULHl+doOikFDsmy4NsRZVIRdEBoKKqP6SYK8yqlX2g3UiJEE/uhpVpjN7vwNMM7KensqjQDLVj33Nqcb/3/34+YJHv2cQQy/iiK1YHhtfEPwT++EMjevo2RMJbC7Vw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=t1wbRVnbwZbysfPF1r/2k38Pvw2YqMg8SrAfjx4aTCs=;
- b=HdxZXVMqhdQQX+vBw4qv5xlEDstKeY5bZCmvElEiSkZaEfBSadrEv56iu42zcFlDBRUjg2h+pXENLyUlzWiqpfPr6yfJbOTATIO5NAQEOMvtuCnp2bEPtBroOfpKsRwSQ2OiB/zWn9Pyvw+JeDx7Dia6YjjWIjqjnF3s8jH3ZuU4CnmKSTHLnIQRt7v/9pKrDxUPIDw7DTMx03tE8FLUQQwtipme8mYiL+MRcjrt8pRRRv8SA3/yMVh7b4c053flyhnuASb5jMnlBwZsDiMiI6ukgVPI5qgajtSZAO3+FDMgpA84aKgNjM0PrDRiqkMk8ki4+5pxalvJ6Qk6I6N7pQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=t1wbRVnbwZbysfPF1r/2k38Pvw2YqMg8SrAfjx4aTCs=;
- b=wg68g9BfVMggIgGc1cnHZEmvyEk+4jM5rejElR/kMT/tVO/FMM4vjyRMTX2RO1GJJEYfnb0B+dwlBp70+NLy9EKDU91S6nKgi4/sQQUUI23ulvo5Q0Eg/QOf44it7PlNrpzqRWQ1Kre6202+MvObggVCGQUDj6Mk247Dl7KFViw=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com (2603:10b6:408:43::13)
- by SN7PR12MB7881.namprd12.prod.outlook.com (2603:10b6:806:34a::9)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6933.29; Thu, 2 Nov
- 2023 13:23:37 +0000
-Received: from BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::ca80:8f1c:c11:ded3]) by BN8PR12MB3587.namprd12.prod.outlook.com
- ([fe80::ca80:8f1c:c11:ded3%6]) with mapi id 15.20.6933.029; Thu, 2 Nov 2023
- 13:23:37 +0000
-Message-ID: <0c2d2b4f-54a2-4a60-8f51-4ec06a629f4a@amd.com>
-Date: Thu, 2 Nov 2023 14:23:33 +0100
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Oak Zeng <oak.zeng@intel.com>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20231102043306.2931989-1-oak.zeng@intel.com>
- <20231102043306.2931989-4-oak.zeng@intel.com>
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20231102043306.2931989-4-oak.zeng@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0184.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:ca::19) To BN8PR12MB3587.namprd12.prod.outlook.com
- (2603:10b6:408:43::13)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 865E710E8BC;
+	Thu,  2 Nov 2023 13:40:34 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D4D6710E8BB;
+ Thu,  2 Nov 2023 13:40:32 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D33D2A882E;
+ Thu,  2 Nov 2023 13:40:32 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5741318479164733742=="
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8PR12MB3587:EE_|SN7PR12MB7881:EE_
-X-MS-Office365-Filtering-Correlation-Id: 932eb19d-3048-47c2-3a51-08dbdba6ec32
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qThif4q86HlIEh/Xms8QWyPwPFe+JnS+KoDFv+B61B24q04mZPN0ORI67EErPd4eX3zZebzX51nsw3lcNLzDZ7e4gPmhYzoJpNRqQTx/azslmtvzeH1idW/19scb1BLGsU3RMUvG2h3EpCa+NAwi22VTfw+GFt9nw2cJir6sRv3b2b7wnAvC8kBxq9CwflzYtit7QXjYVe81jKax4kIjpxxBdV9kwkHTJn7daDvg0DvOj0KDXHqErhGtDTZ3BOVmaitOfYi1019dbFE8Mp723YdX3ILk0KOxSnn3QAjIRLnv6Nnou3fzVBrvZV0cK4nbwciy+h+fxiiROFTwaLeLZcJcDM4CN4F97Mfe+O3T6NKwG8m7xSEx7Gc+AvXphorYkZGJt2+tWKSGEoGYcxz+qz8fTSgdTTGM2pLV3G6Pw/BrCIR9gfLrORMjAk3JdEz8IcIUKPzQVt9emh6LqQINC1FSNKraxps76UjU46/S19LvAAgpFzsxKwsfd3YcVQS1eRqw+NBpOOV3+6HpD1Ky3s2NFsq+53mqGoD0CE/0SSQgPJWB8n4e/4btzCSXlyjrvDWcakTwheVdo3FsoGCllNEtLruPqb4oCVrM/aEB9DsT7RvkId+0Fq3VxUotOSazo6HdGvxIe8APqi5wbah6wQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BN8PR12MB3587.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(39860400002)(136003)(396003)(366004)(376002)(230922051799003)(1800799009)(186009)(451199024)(64100799003)(66899024)(316002)(30864003)(86362001)(31696002)(2616005)(66476007)(2906002)(83380400001)(26005)(66556008)(66946007)(6506007)(36756003)(478600001)(41300700001)(38100700002)(6512007)(6666004)(8676002)(4326008)(8936002)(31686004)(6486002)(5660300002)(43740500002)(45980500001);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QzlHRjJsR0RNek1JV1RZS1NNbVZscDZNbGlLUjVneWpIbmRIb2tqVkNSWXBM?=
- =?utf-8?B?eExRRUJaK1dlWkMvUk12QVBrK0hPTnBLRFlLd0pmd0x1ZjRuVTczMWdOZ3h2?=
- =?utf-8?B?RE1nUldjeU95d3pzRzJDayt4WTU0TiszOW9NV3ZGNWNodVVyeGlTTVlTMEFX?=
- =?utf-8?B?NWFsbXRvVXh3SytYcm9hdFpDeHB4dnIrOVozd2VyK3ArUlhqeUNOYzBKMlJL?=
- =?utf-8?B?VmNQcU9aRy9DZDNvdm9aUW1seUE4WGxrNFBmaTFnL2pLY3RlSUhaS0JMdUFN?=
- =?utf-8?B?NEE5bXM5SFlFa0MydU52V3JNSHFQcXd2MkNhZFF3eUx4aGZXa3B4RWVyT21p?=
- =?utf-8?B?c2Z3WUNERU9CdUdKalQyQ1RuUUUyRm10OWE4d0E5Q3hjVllKZ292dmIvWFdL?=
- =?utf-8?B?Tm9zenMyQ1pVb1AySCs0ZzcvUk5BZVlCUTBCVC9ZRUhSZEVZOEwzZWV4TVRG?=
- =?utf-8?B?S0dIVnA5TWdJZUVuVDAyMTNNZ3pldWVGMm5DS0RpOHZpVnpFemdZQjc4RFNp?=
- =?utf-8?B?eGtrSk9SMmJpOHdJN0VQYm1VNWlVeDJ6Wk16M1J4dGNYdDVGeFdkelpyMkQ3?=
- =?utf-8?B?dUx3UWpRMkFjYWF1QlRQTjJMQytwbGdiN0hEbkxFazkwN1NPM3hUdkVUTDhn?=
- =?utf-8?B?OVc0NlBTTzI3Q3ZNQ2RLek1vQ0taZWMxb0UvTlNROTJPbnVmTEU2NC9BK2FY?=
- =?utf-8?B?U2RMZDVub01SMUhseFpUMjg1UUdwMXhlS3M3aElzd1ZCcWx5MC9ad29tZHRP?=
- =?utf-8?B?Y2ZyQkZTQzBHZEVJV1Fmb1JXSm9EY05ES0V1Z3k2Mk1ZZVYxTnIvRXNyanFz?=
- =?utf-8?B?UG00TUlDcUNIR1E3dDRWTExvWTZRcnhNN2s0RTUvS0MvNy9uaGFvNUFCcE5N?=
- =?utf-8?B?OVdlT2Q5MkUxY0Ruc1JvTG8rYW4xLzNxWUtKOUZuSStHWUptZ1BvU0Z2SUdP?=
- =?utf-8?B?WXRBVGcyVVp6bzdveHd1WENJeTFUMnIxeVlHaGRnWEQ0UTkyNVBOTDBNeHo4?=
- =?utf-8?B?SlFvQXhyRXRISE94TENLMFFWeXZvN1hQTkl3ZFoxTHRBRjlhQWduemNVMUZj?=
- =?utf-8?B?Ylo4NUtKSy85S3p4WVgwS3docEVoVlVIaHpMdWY1bnhsSm0xM0hlV1JjUjRG?=
- =?utf-8?B?RFNzcU84VFo5K3hIZUdDbVIwUjQwbXBCT2tnUWt5UmE0OFlNNmp5QW8vK2t0?=
- =?utf-8?B?b0ovOXhLNTFXazFmcW9tR2thQ0s4K3VRbXJzZXBpV0Y2cTVoMytvSHh0NWNp?=
- =?utf-8?B?c2VDb3QxU0U4R3RVN0hUOUQ5UW1JS2JLbzNtWU5yejlxbHQ2RkQyUnF4UTg4?=
- =?utf-8?B?aDhoUndMeEttVFVMZUVFblVzTFZUMTlNZ0hCM1JBZmJOUGxYMG9mS2Y3OTNi?=
- =?utf-8?B?cEZkZ1BYOGduTUsrRzFmbGJVTjFxQm1JSWEyUVU4U3M5MzBXcW8yZk5EM3pa?=
- =?utf-8?B?UVZDLzFVVWl0dkdVY003VHVTSzFJTGF0MjZTQTFRaUxXMlZoR2lqRjc2ZFRv?=
- =?utf-8?B?VTNwdUFURmNMRWJxQ2x5YWhZWENpKzhPUi9EMXdYQnBBbmxDVnlnY082T0N5?=
- =?utf-8?B?TE8zaUwwbE5DRmpJNnd5OGNhUlkreDVwYjhFKy9pbVhRQm5PSmR1b09obUZI?=
- =?utf-8?B?aWY5cTcrY0JZS05wZ0NpQUNoZzVyOTVEYk96MWdlSlhqNWFiZXU5ZjF5Ym9x?=
- =?utf-8?B?c2pwTytYU2JRU1RNb3NNLzIvWHgrYjZHRHdyY2lQNkJOdFg1bnZhRHc4Q1R0?=
- =?utf-8?B?V0JZNFQ0WG9RZlo5czVBUTFQR1ErTXNKd2RBZ3lwR2haZW5kdzEwVDRCSkpq?=
- =?utf-8?B?b21QSEtZeHMzaGR5NHpaT2x3a3hUY2w4LzlKOGRYNGJEemk2U3FDVmdFN2ly?=
- =?utf-8?B?dzQxZ0x2YTVhZmdvZFVBRHpkNjczZ2tYMENnTll0UW9uWUFYTHdIUEFaRHd1?=
- =?utf-8?B?NVk3c3R4WW5rRWZnZUFoUzgzbi83QnYyTGxRNGJKMktMK0x1YktzK012SVJp?=
- =?utf-8?B?Q0VYN3YzayttdFQxZi9BVGdadkJpRHJ0QUZoeWlvOUNseGlDNG9sM3ZEc05n?=
- =?utf-8?B?bG9SZWZOYzRqVnJXaGplY29kVjJIQVNSOXMreFcwci9pWmNBRnhDUVBxd3RU?=
- =?utf-8?Q?coDohtRn+aDk20VonMbkprN9W?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 932eb19d-3048-47c2-3a51-08dbdba6ec32
-X-MS-Exchange-CrossTenant-AuthSource: BN8PR12MB3587.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Nov 2023 13:23:37.7794 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: wGQJT9QtreUdG0NtDEMZvAJBHDupJYxZoKdj1HHhpGcr9QJdyNBz9aXB8v9OgsUA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7881
-Subject: Re: [Intel-xe] [RFC 03/11] drm: introduce drm evictable LRU
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Lucas De Marchi" <lucas.demarchi@intel.com>
+Date: Thu, 02 Nov 2023 13:40:32 -0000
+Message-ID: <169893243286.28155.1589970090917302316@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231102124855.1940491-1-lucas.demarchi@intel.com>
+In-Reply-To: <20231102124855.1940491-1-lucas.demarchi@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A?=
+ =?utf-8?q?_Add_Wa=5F14019821291?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,574 +39,236 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: felix.kuehling@amd.com, airlied@gmail.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Am 02.11.23 um 05:32 schrieb Oak Zeng:
-> drm LRU manager is introuced for resource eviction purpose. It maintains
-> a LRU list per resource type.
+--===============5741318479164733742==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Shouldn't we first add the possible resource types in a separate patch?
+== Series Details ==
 
->   It provides functions to add or remove
-> resource to or from the list. It also provides function to retrieve the
-> first entity on the LRU list.
+Series: drm/xe: Add Wa_14019821291
+URL   : https://patchwork.freedesktop.org/series/125898/
+State : success
 
-+ functions to iterate over them.
+== Summary ==
 
->
-> drm LRU manager also provides functions for bulk moving resources
-> on the LRU lists.
->
-> drm LRU manager also does very basic memory accounting function, i.e.,
-> LRU manager keeps a size of this resource type and a usage member
-> for how much of resource has been added to this LRU manager's LRU
-> list. TTM resource manager memory accounting functoins such as
-> struct ttm_resource_manager::size and struct ttm_resource_manger::usage
-> are still kept. In the future, when SVM codes are in the picture,
-> those memory accounting functions need some rework to consider
-> the memory used by both TTM and SVM.
+CI Bug Log - changes from xe-465-34a82567688cfe0c7e63e9cda15b6da4b449abfe_BAT -> xe-pw-125898v1_BAT
+====================================================
 
-Please keep in mind that this structure needs to extremely small to be 
-usable for SVM. E.g. struct page size small :)
+Summary
+-------
 
-At least HMM based implementations ideally wants to have one for each 
-page or something like that.
+  **SUCCESS**
 
-> For one device, a global drm LRU manager per resource type should be
-> created/initialized at device initialization time. Drm LRU manager
-> instances are embedded in struct drm_device.
->
-> It is pretty much moving some of the ttm resource manager functions
-> to the drm layer. The reason of this code refactory is, we want to
-> create a single LRU list for memory allocated from BO(buffer object)
-> based driver and hmm/svm(shared virtual memory) based driver, thus BO
-> driver and svm driver can evict memory from each other.
->
-> Previously the LRU list in TTM resource manager (lru field in struct
-> ttm_reource_manager) is coupled with ttm_buffer_object concept, i.e.,
-> each ttm resource is backed by a ttm_buffer_object and the LRU list
-> is essentially a list of ttm_buffer_object.
+  No regressions found.
 
-Actually it's the other way around. The resource provides the backing of 
-the BO.
+  
 
-And when a BO moves around it can temporary be that multiple resource 
-point to the same BO.
+Participating hosts (2 -> 4)
+------------------------------
 
-I also want to have a more advanced iterator at some point where we grab 
-the BO lock for keeping a reference into the LRU list. Not sure how to 
-do this if we don't have the BO here any more.
+  Additional (2): bat-pvc-2 bat-adlp-7 
 
-Need to think about that further,
-Christian.
+Known issues
+------------
 
->   Due to this behavior, the
-> TTM resource manager can't be used by hmm/svm driver as we don't plan
-> to have the BO concept for the hmm/svm implemenation. So we decouple
-> the evictable LRU list from the BO concept in this series.
->
-> The design goal of drm lru manager is to make it as lean as possible.
-> So each lru entity only has a list node member used to link this entity
-> to the evictable LRU list, and the basic resource size/type/priority
-> of this entity. It doesn't have any driver specify information. A lru
-> entity also has a function pointer of evict function. This is used to
-> implement ttm or svm specific eviction function. A lru entity is supposed
-> to be embedded in a driver specific structure such as struct
-> ttm_resource, see the usage in the next patch of this series.
->
-> The ttm resource manager, and some of the ttm_bo functions such as
-> ttm_mem_evict_first will be rewriten using the new drm lru manager
-> library, see the next patch in this series.
->
-> The future hmm/svm implemenation will call lru manager function to add
-> hmm/svm allocations to the shared evictable lru list.
->
-> Lock design: previously ttm_resource LRU list is protected by a device
-> global ttm_device::lru_lock (bdev->lru_lock in codes). This lock also
-> protects ttm_buffer_object::pin_count, ttm_resource_manager::usage,
-> ttm_resource::bo, ttm_device::pinned list etc. With this refactory,
-> lru_lock is moved out of ttm_device and is added to struct drm_deive, so
-> it can be shared b/t ttm code and svm code.
->
-> Signed-off-by: Oak Zeng <oak.zeng@intel.com>
-> ---
->   drivers/gpu/drm/Makefile            |   1 +
->   drivers/gpu/drm/drm_evictable_lru.c | 232 ++++++++++++++++++++++++++++
->   include/drm/drm_device.h            |   7 +
->   include/drm/drm_evictable_lru.h     | 188 ++++++++++++++++++++++
->   4 files changed, 428 insertions(+)
->   create mode 100644 drivers/gpu/drm/drm_evictable_lru.c
->   create mode 100644 include/drm/drm_evictable_lru.h
->
-> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-> index 1ad88efb1752..13953b0d271b 100644
-> --- a/drivers/gpu/drm/Makefile
-> +++ b/drivers/gpu/drm/Makefile
-> @@ -46,6 +46,7 @@ drm-y := \
->   	drm_vblank_work.o \
->   	drm_vma_manager.o \
->   	drm_gpuva_mgr.o \
-> +	drm_evictable_lru.o \
->   	drm_writeback.o
->   drm-$(CONFIG_DRM_LEGACY) += \
->   	drm_agpsupport.o \
-> diff --git a/drivers/gpu/drm/drm_evictable_lru.c b/drivers/gpu/drm/drm_evictable_lru.c
-> new file mode 100644
-> index 000000000000..2ba9105cca03
-> --- /dev/null
-> +++ b/drivers/gpu/drm/drm_evictable_lru.c
-> @@ -0,0 +1,232 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#include <linux/lockdep.h>
-> +#include <linux/container_of.h>
-> +#include <drm/drm_evictable_lru.h>
-> +#include <drm/drm_device.h>
-> +
-> +static inline struct drm_lru_mgr *entity_to_mgr(struct drm_lru_entity *entity)
-> +{
-> +	struct drm_lru_mgr *mgr;
-> +
-> +	mgr = &entity->drm->lru_mgr[entity->mem_type];
-> +	BUG_ON(!mgr->used);
-> +
-> +	return mgr;
-> +}
-> +
-> +void drm_lru_entity_init(struct drm_lru_entity *entity, struct drm_device *drm,
-> +			uint32_t mem_type, uint64_t size, uint32_t priority)
-> +{
-> +	entity->drm = drm;
-> +	entity->mem_type = mem_type;
-> +	entity->size = size;
-> +	entity->priority = priority;
-> +	INIT_LIST_HEAD(&entity->lru);
-> +}
-> +
-> +/**
-> + * drm_lru_mgr_init
-> + *
-> + * @mgr: drm lru manager to init
-> + * @size: size of the resource managed by this manager
-> + * @lock: pointer of the global lru_lock
-> + *
-> + * Initialize a drm lru manager
-> + */
-> +void drm_lru_mgr_init(struct drm_lru_mgr *mgr, uint64_t size, spinlock_t *lock)
-> +{
-> +	unsigned j;
-> +
-> +	mgr->used = true;
-> +	mgr->size = size;
-> +	mgr->usage = 0;
-> +	mgr->lru_lock = lock;
-> +
-> +	for(j = 0; j < DRM_MAX_LRU_PRIORITY; j++)
-> +		INIT_LIST_HEAD(&mgr->lru[j]);
-> +}
-> +
-> +void drm_lru_bulk_move_init(struct drm_lru_bulk_move *bulk_move)
-> +{
-> +	memset(bulk_move, 0, sizeof(*bulk_move));
-> +}
-> +
-> +/**
-> + * drm_lru_first
-> + *
-> + * @mgr: drm lru manager to iterate over
-> + * @cursor: cursor of the current position
-> + *
-> + * Returns the first entity in drm lru manager
-> + */
-> +struct drm_lru_entity *
-> +drm_lru_first(struct drm_lru_mgr *mgr, struct drm_lru_cursor *cursor)
-> +{
-> +	struct drm_lru_entity *entity;
-> +
-> +	lockdep_assert_held(mgr->lru_lock);
-> +
-> +	for(cursor->priority = 0; cursor->priority < DRM_MAX_LRU_PRIORITY; ++cursor->priority)
-> +		list_for_each_entry(entity, &mgr->lru[cursor->priority], lru)
-> +			return entity;
-> +
-> +	return NULL;
-> +}
-> +
-> +/**
-> + * drm_lru_next
-> + *
-> + * @mgr: drm lru manager to iterate over
-> + * @cursor: cursor of the current position
-> + * @entity: the current lru entity pointer
-> + *
-> + * Returns the next entity from drm lru manager
-> + */
-> +struct drm_lru_entity *
-> +drm_lru_next(struct drm_lru_mgr *mgr, struct drm_lru_cursor *cursor,
-> +		struct drm_lru_entity *entity)
-> +{
-> +	lockdep_assert_held(mgr->lru_lock);
-> +
-> +	list_for_each_entry_continue(entity, &mgr->lru[cursor->priority], lru)
-> +		return entity;
-> +
-> +	for(++cursor->priority; cursor->priority < DRM_MAX_LRU_PRIORITY; ++cursor->priority)
-> +		list_for_each_entry(entity, &mgr->lru[cursor->priority], lru)
-> +			return entity;
-> +
-> +	return NULL;
-> +}
-> +
-> +/**
-> + * drm_lru_move_to_tail
-> + *
-> + * @entity: the lru entity to move to lru tail
-> + *
-> + * Move a lru entity to lru tail
-> + */
-> +void drm_lru_move_to_tail(struct drm_lru_entity * entity)
-> +{
-> +	struct list_head *lru;
-> +	struct drm_lru_mgr *mgr;
-> +
-> +	mgr = entity_to_mgr(entity);
-> +	lockdep_assert_held(mgr->lru_lock);
-> +	lru = &mgr->lru[entity->priority];
-> +	list_move_tail(&entity->lru, lru);
-> +}
-> +
-> +/**
-> + * drm_lru_bulk_move_range_tail
-> + *
-> + * @range: bulk move range
-> + * @entity: lru_entity to move
-> + *
-> + * Move a lru_entity to the tail of a bulk move range
-> + */
-> +void drm_lru_bulk_move_range_tail(struct drm_lru_bulk_move_range *range,
-> +									struct drm_lru_entity *entity)
-> +{
-> +	if (entity == range->last)
-> +		return;
-> +
-> +	if (entity == range->first)
-> +		range->first = container_of(entity->lru.next, struct drm_lru_entity, lru);
-> +
-> +	if (range->last)
-> +		list_move(&entity->lru, &range->last->lru);
-> +
-> +	range->last = entity;
-> +}
-> +EXPORT_SYMBOL(drm_lru_bulk_move_range_tail);
-> +
-> +/**
-> + * drm_lru_bulk_move_tail - bulk move range of entities to the LRU tail.
-> + *
-> + * @bulk: bulk_move structure
-> + *
-> + * Bulk move entities to the LRU tail, only valid to use when driver makes sure that
-> + * resource order never changes.
-> + */
-> +void drm_lru_bulk_move_tail(struct drm_lru_bulk_move *bulk)
-> +{
-> +
-> +	unsigned i, j;
-> +
-> +	for (i = 0; i < DRM_NUM_MEM_TYPES; ++i) {
-> +		for (j = 0; j < DRM_MAX_LRU_PRIORITY; ++j) {
-> +			struct drm_lru_bulk_move_range *range = &bulk->range[i][j];
-> +			struct drm_lru_mgr *mgr;
-> +
-> +			if (!range->first)
-> +				continue;
-> +
-> +			mgr = entity_to_mgr(range->first);
-> +			lockdep_assert_held(mgr->lru_lock);
-> +			list_bulk_move_tail(&mgr->lru[range->first->priority], &range->first->lru,
-> +					&range->last->lru);
-> +		}
-> +	}
-> +}
-> +EXPORT_SYMBOL(drm_lru_bulk_move_tail);
-> +
-> +/**
-> + * drm_lru_add_bulk_move
-> + *
-> + * @entity: the lru entity to add to the bulk move range
-> + * @bulk_move: the bulk move ranges to add the entity
-> + *
-> + * Add a lru entity to the tail of a bulk move range
-> + */
-> +void drm_lru_add_bulk_move(struct drm_lru_entity *entity,
-> +						struct drm_lru_bulk_move *bulk_move)
-> +{
-> +	struct drm_lru_bulk_move_range *range;
-> +
-> +	range = &bulk_move->range[entity->mem_type][entity->priority];
-> +
-> +	if (!range->first) {
-> +		range->first = entity;
-> +		range->last = entity;
-> +		return;
-> +	}
-> +
-> +	drm_lru_bulk_move_range_tail(range, entity);
-> +}
-> +
-> +EXPORT_SYMBOL(drm_lru_add_bulk_move);
-> +/**
-> + * drm_lru_del_bulk_move
-> + *
-> + * @entity: the lru entity to move from the bulk move range
-> + * @bulk_move: the bulk move ranges to move the entity out of
-> + *
-> + * Move a lru entity out of bulk move range. This doesn't
-> + * delete entity from lru manager's lru list.
-> + */
-> +void drm_lru_del_bulk_move(struct drm_lru_entity *entity,
-> +					struct drm_lru_bulk_move *bulk_move)
-> +{
-> +	struct drm_lru_bulk_move_range *range;
-> +
-> +	range = &bulk_move->range[entity->mem_type][entity->priority];
-> +
-> +	if (unlikely(WARN_ON(!range->first || !range->last) ||
-> +			(range->first == entity && range->last == entity))) {
-> +		range->first = NULL;
-> +		range->last = NULL;
-> +	} else if (range->first == entity) {
-> +		range->first = container_of(entity->lru.next,
-> +				struct drm_lru_entity, lru);
-> +	} else if (range->last == entity) {
-> +		range->last = container_of(entity->lru.prev,
-> +				struct drm_lru_entity, lru);
-> +	} else {
-> +		list_move(&entity->lru, &range->last->lru);
-> +	}
-> +}
-> +EXPORT_SYMBOL(drm_lru_del_bulk_move);
-> diff --git a/include/drm/drm_device.h b/include/drm/drm_device.h
-> index d0b5f42786be..1bdcd34d3f6b 100644
-> --- a/include/drm/drm_device.h
-> +++ b/include/drm/drm_device.h
-> @@ -8,6 +8,7 @@
->   
->   #include <drm/drm_legacy.h>
->   #include <drm/drm_mode_config.h>
-> +#include <drm/drm_evictable_lru.h>
->   
->   struct drm_driver;
->   struct drm_minor;
-> @@ -331,6 +332,12 @@ struct drm_device {
->   	 */
->   	spinlock_t lru_lock;
->   
-> +	/**
-> +	 * @lru_mgr: Device global lru managers per memory type or memory
-> +	 * region. Each lru manager manages a lru list of this memory type.
-> +	 */
-> +	struct drm_lru_mgr lru_mgr[DRM_NUM_MEM_TYPES];
-> +
->   	/* Everything below here is for legacy driver, never use! */
->   	/* private: */
->   #if IS_ENABLED(CONFIG_DRM_LEGACY)
-> diff --git a/include/drm/drm_evictable_lru.h b/include/drm/drm_evictable_lru.h
-> new file mode 100644
-> index 000000000000..3fd6bd2475d9
-> --- /dev/null
-> +++ b/include/drm/drm_evictable_lru.h
-> @@ -0,0 +1,188 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef _DRM_EVICTABLE_LRU_H_
-> +#define _DRM_EVICTABLE_LRU_H_
-> +
-> +#include <linux/list.h>
-> +#include <linux/spinlock_types.h>
-> +#include <linux/spinlock.h>
-> +
-> +struct drm_device;
-> +
-> +#define DRM_MAX_LRU_PRIORITY 4
-> +#define DRM_NUM_MEM_TYPES 8
-> +
-> +/**
-> + * struct drm_lru_entity
-> + *
-> + * @drm: drm device that this entity belongs to
-> + * @mem_type: The memory type that this entity belongs to
-> + * @size: resource size of this entity
-> + * @priority: The priority of this entity
-> + * @lru: least recent used list node, see &drm_lru_mgr.lru
-> + *
-> + * This structure represents an entity in drm_lru_mgr's
-> + * list. This structure is supposed to be embedded in
-> + * user's data structure.
-> + */
-> +struct drm_lru_entity {
-> +	struct drm_device *drm;
-> +	uint32_t mem_type;
-> +	uint64_t size;
-> +	uint32_t priority;
-> +	struct list_head lru;
-> +};
-> +
-> +/**
-> + * struct drm_lru_mgr
-> + *
-> + * @used: whether this lru manager is used or not
-> + * @size: size of the resource
-> + * @usage: how much resource has been used
-> + * @lru_lock: a weak reference to the global lru_lock
-> + * @lru: least recent used list, per priority
-> + *
-> + * This structure maintains all the buffer allocations
-> + * in a least recent used list, so a victim for eviction
-> + * can be easily found.
-> + */
-> +struct drm_lru_mgr {
-> +	bool used;
-> +	uint64_t size;
-> +	uint64_t usage;
-> +	spinlock_t *lru_lock;
-> +	struct list_head lru[DRM_MAX_LRU_PRIORITY];
-> +};
-> +
-> +/**
-> + * struct drm_lru_cursor
-> + *
-> + * @priority: the current priority
-> + *
-> + * Cursor to iterate over all entities in lru manager.
-> + */
-> +struct drm_lru_cursor {
-> +	unsigned priority;
-> +};
-> +
-> +/**
-> + * struct drm_lru_bulk_move_range
-> + *
-> + * @first: the first entity in the range
-> + * @last: the last entity in the range
-> + *
-> + * Range of entities on a lru list.
-> + */
-> +struct drm_lru_bulk_move_range
-> +{
-> +	struct drm_lru_entity *first;
-> +	struct drm_lru_entity *last;
-> +};
-> +
-> +/**
-> + * struct drm_lru_bulk_move
-> + *
-> + * @range: An array of bulk move range, each corelates to the drm_lru_mgr's
-> + * lru list of the same memory type and same priority.
-> + *
-> + * A collection of bulk_move range which can be used to move drm_lru_entity
-> + * on the lru list in a bulk way. It should be initialized through
-> + * drm_lru_bulk_move_init. Add/delete a drm_lru_entity to bulk move should call
-> + * drm_lru_add_bulk_move/drm_lru_del_bulk_move.
-> + */
-> +struct drm_lru_bulk_move {
-> +	struct drm_lru_bulk_move_range range[DRM_NUM_MEM_TYPES][DRM_MAX_LRU_PRIORITY];
-> +};
-> +
-> +
-> +
-> +/**
-> + * drm_lru_add_entity
-> + *
-> + * @entity: the lru entity to add
-> + * @mgr: the drm lru manager
-> + * @priority: specify which priority list to add
-> + *
-> + * Add an entity to lru list
-> + */
-> +static inline void drm_lru_add_entity(struct drm_lru_entity *entity,
-> +		struct drm_lru_mgr *mgr, unsigned priority)
-> +{
-> +	lockdep_assert_held(mgr->lru_lock);
-> +	list_add_tail(&entity->lru, &mgr->lru[priority]);
-> +	mgr->usage += entity->size;
-> +}
-> +
-> +/**
-> + * drm_lru_remove_entity
-> + *
-> + * @entity: the lru entity to remove
-> + * @mgr: the drm lru manager
-> + *
-> + * Remove an entity from lru list
-> + */
-> +static inline void drm_lru_remove_entity(struct drm_lru_entity *entity,
-> +		struct drm_lru_mgr *mgr)
-> +{
-> +	lockdep_assert_held(mgr->lru_lock);
-> +	list_del_init(&entity->lru);
-> +	mgr->usage -= entity->size;
-> +}
-> +
-> +/**
-> + * drm_lru_mgr_fini
-> + *
-> + * @mgr: the drm lru manager
-> + *
-> + * de-initialize a lru manager
-> + */
-> +static inline void drm_lru_mgr_fini(struct drm_lru_mgr *mgr)
-> +{
-> +	mgr->used = false;
-> +}
-> +
-> +void drm_lru_entity_init(struct drm_lru_entity *entity, struct drm_device *drm,
-> +			uint32_t mem_type, uint64_t size, uint32_t priority);
-> +
-> +struct drm_lru_entity *
-> +drm_lru_first(struct drm_lru_mgr *mgr, struct drm_lru_cursor *cursor);
-> +
-> +struct drm_lru_entity *
-> +drm_lru_next(struct drm_lru_mgr *mgr, struct drm_lru_cursor *cursor,
-> +		struct drm_lru_entity *entity);
-> +
-> +void drm_lru_mgr_init(struct drm_lru_mgr *mgr, uint64_t size,
-> +		spinlock_t *lru_lock);
-> +
-> +void drm_lru_move_to_tail(struct drm_lru_entity * entity);
-> +
-> +void drm_lru_bulk_move_init(struct drm_lru_bulk_move *bulk_move);
-> +
-> +
-> +void drm_lru_bulk_move_tail(struct drm_lru_bulk_move *bulk);
-> +
-> +void drm_lru_bulk_move_range_tail(struct drm_lru_bulk_move_range *range,
-> +		struct drm_lru_entity *entity);
-> +
-> +void drm_lru_add_bulk_move(struct drm_lru_entity *entity,
-> +		struct drm_lru_bulk_move *bulk_move);
-> +
-> +void drm_lru_del_bulk_move(struct drm_lru_entity *entity,
-> +		struct drm_lru_bulk_move *bulk_move);
-> +/**
-> + * drm_lru_for_each_entity
-> + *
-> + * @mgr: the drm lru manager
-> + * @cursor: cursor for the current position
-> + * @entity: the current drm_lru_entity
-> + *
-> + * Iterate over all entities in drm lru manager
-> + */
-> +#define drm_lru_for_each_entity(mgr, cursor, entity)		\
-> +	for (entity = drm_lru_first(mgr, cursor); entity;	\
-> +	     entity = drm_lru_next(mgr, cursor, entity))
-> +
-> +#endif
+  Here are the changes found in xe-pw-125898v1_BAT that come from known issues:
 
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_addfb_basic@basic-y-tiled-legacy:
+    - bat-adlp-7:         NOTRUN -> [FAIL][1] ([Intel XE#609]) +2 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-adlp-7:         NOTRUN -> [SKIP][2] ([Intel XE#423])
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         NOTRUN -> [DMESG-FAIL][3] ([Intel XE#282] / [i915#2017])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@xe_evict@evict-beng-small-external:
+    - bat-pvc-2:          NOTRUN -> [FAIL][4] ([Intel XE#389]) +3 other tests fail
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
+    - bat-adlp-7:         NOTRUN -> [SKIP][5] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@xe_evict@evict-beng-small-external.html
+
+  * igt@xe_evict@evict-small-cm:
+    - bat-pvc-2:          NOTRUN -> [DMESG-FAIL][6] ([Intel XE#482]) +3 other tests dmesg-fail
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-pvc-2/igt@xe_evict@evict-small-cm.html
+
+  * igt@xe_live_ktest@migrate:
+    - bat-adlp-7:         NOTRUN -> [INCOMPLETE][7] ([Intel XE#753])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@xe_live_ktest@migrate.html
+
+  * igt@xe_mmap@vram:
+    - bat-adlp-7:         NOTRUN -> [SKIP][8] ([Intel XE#263])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@xe_mmap@vram.html
+
+  * igt@xe_module_load@load:
+    - bat-pvc-2:          NOTRUN -> [SKIP][9] ([Intel XE#378])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-pvc-2/igt@xe_module_load@load.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-dg2-oem2:       [FAIL][10] ([Intel XE#773]) -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-465-34a82567688cfe0c7e63e9cda15b6da4b449abfe/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
+  [Intel XE#263]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/263
+  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
+  [Intel XE#378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/378
+  [Intel XE#389]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/389
+  [Intel XE#423]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/423
+  [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
+  [Intel XE#609]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/609
+  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
+  [Intel XE#753]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/753
+  [Intel XE#773]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/773
+  [Intel XE#854]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/854
+  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+
+
+Build changes
+-------------
+
+  * Linux: xe-465-34a82567688cfe0c7e63e9cda15b6da4b449abfe -> xe-pw-125898v1
+
+  IGT_7568: 9e3c3791e7e0297f277211b19a3388a1ee87f3d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-465-34a82567688cfe0c7e63e9cda15b6da4b449abfe: 34a82567688cfe0c7e63e9cda15b6da4b449abfe
+  xe-pw-125898v1: 125898v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/index.html
+
+--===============5741318479164733742==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add Wa_14019821291</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125898/">https://patchwork.freedesktop.org/series/125898/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-465-34a82567688cfe0c7e63e9cda15b6da4b449abfe_BAT -&gt; xe-pw-125898v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (2 -&gt; 4)</h2>
+<p>Additional (2): bat-pvc-2 bat-adlp-7 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-125898v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/609">Intel XE#609</a>) +2 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/423">Intel XE#423</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-beng-small-external:</p>
+<ul>
+<li>
+<p>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/389">Intel XE#389</a>) +3 other tests fail</p>
+</li>
+<li>
+<p>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@xe_evict@evict-beng-small-external.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-small-cm:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-pvc-2/igt@xe_evict@evict-small-cm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/482">Intel XE#482</a>) +3 other tests dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_live_ktest@migrate:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@xe_live_ktest@migrate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/753">Intel XE#753</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_mmap@vram:</p>
+<ul>
+<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-adlp-7/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/263">Intel XE#263</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_module_load@load:</p>
+<ul>
+<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-pvc-2/igt@xe_module_load@load.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/378">Intel XE#378</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-465-34a82567688cfe0c7e63e9cda15b6da4b449abfe/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/773">Intel XE#773</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125898v1/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-465-34a82567688cfe0c7e63e9cda15b6da4b449abfe -&gt; xe-pw-125898v1</li>
+</ul>
+<p>IGT_7568: 9e3c3791e7e0297f277211b19a3388a1ee87f3d0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-465-34a82567688cfe0c7e63e9cda15b6da4b449abfe: 34a82567688cfe0c7e63e9cda15b6da4b449abfe<br />
+  xe-pw-125898v1: 125898v1</p>
+
+</body>
+</html>
+
+--===============5741318479164733742==--
