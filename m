@@ -4,141 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2041BC4332F
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 20:25:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1FEFCC4167B
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 20:58:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C858910EAB2;
-	Fri,  3 Nov 2023 20:25:47 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7AC1F10EAB2
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 20:25:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC51410E1A1;
+	Fri,  3 Nov 2023 20:58:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EFDB10E1A1
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 20:58:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699043146; x=1730579146;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=MzDOOtLrweCIovLD69Dd4ub8uTSDDn94cJEwu1peo1M=;
- b=PD33gszK4PXSRHYiGVSrtm5wWQisZaWdJiaZNOueK8nlYnUtyclYfp+v
- hJtiuMjRowzuA1p0QhsALNgOYkGXi0wLWKp2IAsQUE5YSMDzIjTR0WtF4
- QsecYcYITN8f5E1sm14F284WpH1Ff5Xb80Il4nvPmuVirhz6Gin10C+Te
- 3Y4vXH8VkkCNjskLQxHECdTHhNG5pT4AEGlbEVS0ndlRpLB0XHx3xXMkM
- /9UBImkVjpml1oTVMEWEdZOp/YCqCZM/wqVtq4puKHba0dj5jtv/RrfZk
- BaZuzADIMjtE++ypkLvQCvlUUVcRGn2wzF5b1LKBNWUgz0w2VGwwT1HrF Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="369221809"
-X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="369221809"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 13:25:25 -0700
+ t=1699045103; x=1730581103;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=qXWokUHmzIxGALUoRkk//FkGEaZXfPGOruBRRSdcUvc=;
+ b=X0wEtuB8vOYN5/HkKFfZpYy8+6PdPbR70QNF8qSeqd0Gy0LXNGVarpY7
+ 4JGvN+hozkRehNGrq7E5AewrwxTmR/xS8eJEKhL0wH3ibfpoJgAQLixgH
+ J0TsjKKBJzEyPJQM8B8AtmRv8HFcOkgPnU4lijPUeCx1ibY43E3oj0Agu
+ X5ikAWA+8vkgB8RRMtUxd5xC24eLuQW5/oG2JKHhmklrpIAYGZW59M28i
+ 5hAyKfhNgSxeLgNrr1+V+T+v+mwRF9Uh2/YINVXB7YEYQm/pIhPO30vum
+ ZR8mGj9siKWfX9vqqhheFpf7UfdicNMYja5YM+aNNpGaHrgskWw9bdKra Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="7651635"
+X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; 
+   d="scan'208";a="7651635"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2023 13:58:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="827607195"
-X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="827607195"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 03 Nov 2023 13:25:13 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Fri, 3 Nov 2023 13:25:10 -0700
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Fri, 3 Nov 2023 13:25:09 -0700
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Fri, 3 Nov 2023 13:25:09 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Fri, 3 Nov 2023 13:24:39 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BLjvJ97QPp03Z6Gg92sNcyHur0M7IvvD05InHg+V3gR10pUhhYV+lrjnGgdVp8VpyW+PzFSRrYOn9smHYnE0SJF8fihHCFpllgXKGG9jh2XktJsglRwIyJ6s3t0hxtL+PIav4G4iPs1qWI8uRU4b48eGO54sUw1j1Y4A6FrY1J4oXTo2oSVj+HKMsk16cVSmkOkT6sBAeo5COMH7Qw0MS7a6g+yVzFMNNuS7pxvLoW6NupHtC9ByG9UxlzcVIOJGMdPktt1nabwAa0FT0w4tMdSytag7Wq8bLBGs3en9JBS99BBw07h+ZMfgJsuITsRh3z9dWgxOuLOBuoqoHW+tyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G7mPFIo2nOVJlYNWmElwcWFHHJY7aB6r2XNydzzRJ58=;
- b=HR+b/sdyK+nRY6VXMO0cSrmAleTgvFR+jIZGf0SMLjjI9P/mPevrhctakoonBuk/ZeNMtK7/ZBX/vt4eFIhH0B6/lSpCG0hxqxqkSgLju+1W9VWYh8JvJcG5vBYzZJ6trhA404z79oGMZiKkpOE87ESXYko5YHyA2bGMdQE4s/G1JsnWslwPA8P0uw5bXKDcl1D+25Tb0eCmkE3btWFgrFgalRah13xbDfelaSkC5PBW8TbfFlUb0Tdp+lk5+DpqwhEBmyoeyNAsPUzgP1Jz+PXHCZxx5BiM9LHwoEujwLlwA1pISS/U9Pk03IuK6LCxOnIeGUSYk+slUqk8WjdoJQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by PH7PR11MB7145.namprd11.prod.outlook.com (2603:10b6:510:1ec::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.19; Fri, 3 Nov
- 2023 20:24:31 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::dc77:69e0:a3bc:e3e]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::dc77:69e0:a3bc:e3e%6]) with mapi id 15.20.6954.021; Fri, 3 Nov 2023
- 20:24:31 +0000
-Date: Fri, 3 Nov 2023 16:24:28 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Message-ID: <ZUVW/B8fTHJJ8x2y@intel.com>
-References: <20231103195338.912645-1-jonathan.cavitt@intel.com>
- <169904205455.29108.3516403421905182291@emeril.freedesktop.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <169904205455.29108.3516403421905182291@emeril.freedesktop.org>
-X-ClientProxiedBy: SJ0PR03CA0336.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::11) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="852380260"
+X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="852380260"
+Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
+ by FMSMGA003.fm.intel.com with ESMTP; 03 Nov 2023 13:58:20 -0700
+Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1qz1FC-0002w2-0N;
+ Fri, 03 Nov 2023 20:58:18 +0000
+Date: Sat, 4 Nov 2023 04:58:06 +0800
+From: kernel test robot <lkp@intel.com>
+To: Oak Zeng <oak.zeng@intel.com>
+Message-ID: <202311040454.A7w5iVbW-lkp@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|PH7PR11MB7145:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0a2530b6-0535-4446-6f6c-08dbdcaae314
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 72gy7A3CIIyUO/D1i5il/tAoNbdazEWpWigt+1hznGDtrm2d03Hv6KuHOD58+4+M/FJSQ0QKLXO3Xmxh6/7BU0SUxBht4aeNtGjCOj6bmB+o2H5QP5tvlagfeN3S+6xuNTgH6ol7nb0Z04hiRf/gKFetZcn8qRHbNnAO//UgwJuXuvIMXpp4H3cvHUkoUPGwtpU7ZlNhL+pytQ1lVGuqFgReo3uPR51LmSCQK8VdNol3NoQk0253S/MzWyYSQ7Fl9kCPwQywYYTXQzcoeLGhN2i1HD1ZZEzYWI3AJVm3irWvfVn7bBLVEWYc48hVmLkkPGy5ehVEPUGKEfsTLxVKq4L32nkwQ2G7E8ufr9SyP/nELZ+azHiCNegssVNiDf8WZVBIQ105GRuRJg3Gf9E9i+nLJYQYZQFT02qnQ9ffx6ks/+vNoMXgjP9vDyCLzWLDDdt4Hf/9N6uSXMYUOoUFllVHEvyoLmJGnJzNNhJ/DGNAkAY0JJTFrwoiLqSJjJ84twBGiIXzSW3vMFy4Ig8so/ReQztZwWLNbA85CbUyzWY=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(376002)(366004)(136003)(39860400002)(396003)(230922051799003)(186009)(64100799003)(1800799009)(451199024)(4744005)(2616005)(44832011)(8936002)(4326008)(2906002)(82960400001)(38100700002)(83380400001)(6666004)(41300700001)(66946007)(6512007)(66556008)(66476007)(5660300002)(316002)(26005)(6916009)(86362001)(966005)(36756003)(478600001)(6486002)(6506007)(107886003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?jmW9oR+VC9+hrkp9oo3l9yEjI8JREGCQyoI2DbreltZOyxit7xqatTHHHDUU?=
- =?us-ascii?Q?0szjZj/5HISnsuNWUAy0L+CrLgoPRDa4nEc5s/dNoJbN0HnySighvRalNtP1?=
- =?us-ascii?Q?pXscEr3Sd3VHHJdi/0LVDl2L4Ofbn59VXl3PBZej0qCFiE8uVn6IY9fYZQE8?=
- =?us-ascii?Q?j/Qc2HnkzRoYSHBiVky7I9kQBJCWdlapDbyhAes65yxdvrQwNS79Fp7cngyq?=
- =?us-ascii?Q?J5Igupx2cCj167jvbJQiy92/CmCbC14P90O7a8LRFgCUDpI13LrWTOwP0IJD?=
- =?us-ascii?Q?2pbN4BkCSOG6NpWFMzF46hR1CiezUdC874qsm7Y8RJkQV0+yEjxEAv2f+Qqa?=
- =?us-ascii?Q?/2bOYN/TzwKRGRTwdatVrWplSetf4jwI5Whnv3lnyJEECHZiJCzZlxJA2WFT?=
- =?us-ascii?Q?QJ7ruXj7rnCEjIMM7yXgSUxBeYzEINWhobC9+tGtrtPYR0onmfB2FMXqetgf?=
- =?us-ascii?Q?Ept0oKNrSc3xWJ7SQSFysZgAdkRAhgpxrGeggvVkTqAMJtewdQM0lz8eH21P?=
- =?us-ascii?Q?vAyg0WuiSp5eSHEwLNntG87AZXIGsfcGnytaPnuo68r2T4gvmZNg7UvT0Ufw?=
- =?us-ascii?Q?mNQSRxA8IO15hsvB2HkO38I5UXG4uN5EEMhh/BFOZGeW6vCZeEJGcHgYHBsj?=
- =?us-ascii?Q?BZSI/pGmiXta6wOpwMxz/qG/TsUJZlO15pmM3IONOi3DlPVtA3TqI7+qWRP4?=
- =?us-ascii?Q?21u+88y+CaITwx1311mN3B/WOoGkIZhY7qFAhsUGvWKjcdVwqieySwkwkAlZ?=
- =?us-ascii?Q?vrmBVjay4eeUvzXwlLPowX/CiLm4A6wD9Z8w/NF888fLAhnQ6bTh1ezHuJs+?=
- =?us-ascii?Q?sImvE0q2whMNU0JX/DTFGnCQbIsvqZT4GIiH+YL568Pq9H/tuYwJMMSC9jJV?=
- =?us-ascii?Q?V7RoDpuhgoL3ifWejku2LAFr2rcdhrzlIDAUKYomLKB+5u4pfgxYX5LNc3bh?=
- =?us-ascii?Q?Mb8nhYwwirmi9JmwN5l6r7F4/NGNKh16fQE5WJ1SrFNDAypgUDl5zfs0QceR?=
- =?us-ascii?Q?enTuF1P95Ybt50u6y1kbVmpfAaFwD8mSXVHD4bOB6G9QM1SaXn6MOrN97nLR?=
- =?us-ascii?Q?wu6i+6EBrM3KXtylhXoeBXqLpOKjjsVo03akd2UCU0t4DxzL82B8cKnQxrO4?=
- =?us-ascii?Q?a49O8xBHWIRKmuC53syqbFuz7vlUhJFlVX1nZdmk7dMx1blIj5y3042d0eS9?=
- =?us-ascii?Q?ekxln4H+i5nPVz0ugZ7QrQAYXEMUjOVwrF4p9hI1cXfgwcOy5DsUVxoUbshy?=
- =?us-ascii?Q?58EvNAwcX8g9VBGmkQ4yoia/iKPfVnLBVAjGKDTniHqvBSdziSC65I6eyhBc?=
- =?us-ascii?Q?u7Lto1H9Glz1+5jMuUA8TMlaWkgv2cZlZJm15xnuQUSdj5IlB+x27kVAZhxW?=
- =?us-ascii?Q?/K3ICfsmAn3bOvBg0a0d/0ew+bOpw9ab8nMU0bXVE1faeCCXSq5ymwYJacTi?=
- =?us-ascii?Q?AodGZXWwmQY+m4sRHqjCdSc/xtvS6iGRpnEz2LB2njPePQ3t9kvZ9yMEeXGD?=
- =?us-ascii?Q?qSzTw4bEVaFxj7NtCe4CvhEQbkCWgBKzTFFWHa1PKuBpkpecyS1xmKvToGSQ?=
- =?us-ascii?Q?V0y6HB1hbLuHtm4vwdoOMar0Q7uYhOrtj/rXxDPQGFTdmg3azIxlFtXj0U8s?=
- =?us-ascii?Q?gg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0a2530b6-0535-4446-6f6c-08dbdcaae314
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2023 20:24:31.6860 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1n3PxqaeZj2rPLjGhlXhDsLpgTMkxtjolnijC9uE1m3M+dkHXz6Ov3FAE/9kjiB/Dg7rtSbomMBMmgF85yFDYA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7145
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] 
- =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_drm/xe=3A_clear_the_serviced_bits_on_INTR=5FIDENTITY=5FREG_?=
- =?utf-8?b?KHJldjIp?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-xe] [drm-xe:oak/drm-evictable-lru 10/11]
+ drivers/gpu/drm/ttm/ttm_bo.c:620:6: warning: no previous prototype for
+ 'ttm_mem_evict_allowable'
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -150,25 +58,235 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: intel-xe@lists.freedesktop.org, oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 03, 2023 at 08:07:34PM -0000, Patchwork wrote:
-> == Series Details ==
-> 
-> Series: drm/xe: clear the serviced bits on INTR_IDENTITY_REG (rev2)
-> URL   : https://patchwork.freedesktop.org/series/125971/
-> State : failure
-> 
-> == Summary ==
-> 
-> === Applying kernel patches on branch 'drm-xe-next' with base: ===
-> Base commit: bfa43da8e drm/xe: implement driver initiated function-reset
-> === git am output follows ===
-> Applying: drm/xe: clear the serviced bits on INTR_IDENTITY_REG
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git oak/drm-evictable-lru
+head:   d1f59526925ae851c6abf77af8ae6f8c3cffeebd
+commit: 9ef8c2b94a5e7ebe14e15e03c67628289fab5c20 [10/11] drm/ttm: Implement ttm memory evict functions
+config: csky-randconfig-001-20231104 (https://download.01.org/0day-ci/archive/20231104/202311040454.A7w5iVbW-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231104/202311040454.A7w5iVbW-lkp@intel.com/reproduce)
 
-Please rebase it, but feel free to keep the rv-b.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311040454.A7w5iVbW-lkp@intel.com/
 
-> 
-> 
+All warnings (new ones prefixed by >>):
+
+>> drivers/gpu/drm/ttm/ttm_bo.c:620:6: warning: no previous prototype for 'ttm_mem_evict_allowable' [-Wmissing-prototypes]
+     620 | bool ttm_mem_evict_allowable(struct drm_lru_entity *lru_entity,
+         |      ^~~~~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/ttm/ttm_bo.c: In function 'ttm_mem_evict_allowable':
+>> drivers/gpu/drm/ttm/ttm_bo.c:626:28: warning: variable 'bdev' set but not used [-Wunused-but-set-variable]
+     626 |         struct ttm_device *bdev;
+         |                            ^~~~
+   drivers/gpu/drm/ttm/ttm_bo.c: At top level:
+>> drivers/gpu/drm/ttm/ttm_bo.c:668:5: warning: no previous prototype for 'ttm_mem_evict_busy_entity' [-Wmissing-prototypes]
+     668 | int ttm_mem_evict_busy_entity(struct drm_lru_entity *lru_entity,
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/ttm/ttm_bo.c:715:5: warning: no previous prototype for 'ttm_mem_evict_entity' [-Wmissing-prototypes]
+     715 | int ttm_mem_evict_entity(struct drm_lru_entity *lru_entity,
+         |     ^~~~~~~~~~~~~~~~~~~~
+   drivers/gpu/drm/ttm/ttm_bo.c: In function 'ttm_mem_evict_first':
+>> drivers/gpu/drm/ttm/ttm_bo.c:765:34: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+     765 |                         .data1 = place,
+         |                                  ^~~~~
+--
+>> drivers/gpu/drm/ttm/ttm_bo.c:623: warning: Function parameter or member 'lru_evict_ctx' not described in 'ttm_mem_evict_allowable'
+>> drivers/gpu/drm/ttm/ttm_bo.c:623: warning: Excess function parameter 'place' description in 'ttm_mem_evict_allowable'
+>> drivers/gpu/drm/ttm/ttm_bo.c:623: warning: Excess function parameter 'ctx' description in 'ttm_mem_evict_allowable'
+>> drivers/gpu/drm/ttm/ttm_bo.c:623: warning: Excess function parameter 'ticket' description in 'ttm_mem_evict_allowable'
+>> drivers/gpu/drm/ttm/ttm_bo.c:670: warning: Function parameter or member 'lru_evict_ctx' not described in 'ttm_mem_evict_busy_entity'
+>> drivers/gpu/drm/ttm/ttm_bo.c:670: warning: Excess function parameter 'ctx' description in 'ttm_mem_evict_busy_entity'
+>> drivers/gpu/drm/ttm/ttm_bo.c:670: warning: Excess function parameter 'ticket' description in 'ttm_mem_evict_busy_entity'
+>> drivers/gpu/drm/ttm/ttm_bo.c:705: warning: Cannot understand  * @lru_entity: The struct ttm_resource::lru_entity when this resource is
+    on line 705 - I thought it was a doc line
+
+
+vim +/ttm_mem_evict_allowable +620 drivers/gpu/drm/ttm/ttm_bo.c
+
+   595	
+   596	/**
+   597	 * ttm_mem_evict_allowable
+   598	 *
+   599	 * @lru_entity: The struct ttm_resource::lru_entity when this resource is
+   600	 * added to drm lru list.
+   601	 * @place: The preferred ttm placement where we want to evict memory for
+   602	 * more memory space. If the current ttm_resource doesn't match the preferred
+   603	 * placement, then there is no need to evict the current resource.
+   604	 * @ctx: ttm operation context
+   605	 * @ticket: dma reservation's context used to lock resource
+   606	 * @busy: used to return whether the current resource is busy (i.e., locked
+   607	 * by other clients)
+   608	 * @locked: used to return whether this resource is locked during this check,
+   609	 * i.e., successfully trylocked bo's dma reservation object
+   610	 *
+   611	 * Check whether we are allowed to evict a memory resource. Return true if we
+   612	 * are allowed to evict resource; otherwise false.
+   613	 *
+   614	 * When this function returns true, a resource reference counter (bo's reference)
+   615	 * is hold. This reference counter need to be released after evict operation later
+   616	 * on.
+   617	 *
+   618	 * This function should be called with lru_lock hold.
+   619	 */
+ > 620	bool ttm_mem_evict_allowable(struct drm_lru_entity *lru_entity,
+   621				const struct drm_lru_evict_ctx *lru_evict_ctx,
+   622				bool *busy, bool *locked)
+ > 623	{
+   624		struct ttm_resource *res;
+   625		struct ttm_buffer_object *bo = NULL;
+ > 626		struct ttm_device *bdev;
+   627		const struct ttm_place *place;
+   628		struct ttm_operation_ctx *ctx;
+   629		struct ww_acquire_ctx *ticket;
+   630		struct ttm_mem_evict_ctx *evict_ctx;
+   631	
+   632		evict_ctx = (struct ttm_mem_evict_ctx *)lru_evict_ctx;
+   633		place = evict_ctx->place;
+   634		ctx = evict_ctx->ctx;
+   635		ticket = evict_ctx->ticket;
+   636	
+   637		res = container_of(lru_entity, struct ttm_resource, lru_entity);
+   638		bo = res->bo;
+   639		bdev = bo->bdev;
+   640	
+   641		if (!ttm_bo_evict_swapout_allowable(bo, ctx, place, locked, busy)) {
+   642			if (busy && ticket != dma_resv_locking_ctx(bo->base.resv))
+   643				*busy = true;
+   644	
+   645			return false;
+   646		}
+   647	
+   648		if (ttm_bo_get_unless_zero(bo))
+   649			return true;
+   650	
+   651		if (locked)
+   652			dma_resv_unlock(bo->base.resv);
+   653	
+   654		return false;
+   655	}
+   656	
+   657	/**
+   658	 * ttm_mem_evict_busy_entity
+   659	 *
+   660	 * @lru_entity: The struct ttm_resource::lru_entity when this resource is
+   661	 * added to drm lru list.
+   662	 * @ctx: ttm operation context
+   663	 * @ticket: dma reservation's context used to lock resource
+   664	 *
+   665	 * Evict a busy memory resource.
+   666	 * This function should be called with lru_lock hold.
+   667	 */
+ > 668	int ttm_mem_evict_busy_entity(struct drm_lru_entity *lru_entity,
+   669				const struct drm_lru_evict_ctx *lru_evict_ctx)
+ > 670	{
+   671		struct ttm_resource *res;
+   672		struct ttm_buffer_object *bo = NULL;
+   673		struct ttm_device *bdev;
+   674		int ret;
+   675		struct ttm_operation_ctx *ctx;
+   676		struct ww_acquire_ctx *ticket;
+   677		struct ttm_mem_evict_ctx *evict_ctx;
+   678	
+   679		evict_ctx = (struct ttm_mem_evict_ctx *)lru_evict_ctx;
+   680		ctx = evict_ctx->ctx;
+   681		ticket = evict_ctx->ticket;
+   682	
+   683		res = container_of(lru_entity, struct ttm_resource, lru_entity);
+   684		bo = res->bo;
+   685		bdev = bo->bdev;
+   686	
+   687		if (bo && !ttm_bo_get_unless_zero(bo))
+   688			bo = NULL;
+   689		spin_unlock(bdev->lru_lock);
+   690		ret = ttm_mem_evict_wait_busy(bo, ctx, ticket);
+   691		/* FIXME: this is code copied originally from ttm_mem_evict_first.
+   692		 * 1) Shouldn't we ttm_bo_evict this bo also? Otherwise how can we
+   693		 * make any memory space?
+   694		 * 2) We also need to check whether this busy entity is in the same
+   695		 * ttm_place as specified in lru_evict_ctx::place; if not, there is
+   696		 * no help to wait this busy entity.
+   697	     */
+   698		if (bo)
+   699			ttm_bo_put(bo);
+   700	
+   701		return ret;
+   702	}
+   703	
+   704	/**
+ > 705	 * @lru_entity: The struct ttm_resource::lru_entity when this resource is
+   706	 * added to drm lru list.
+   707	 * @ctx: ttm operation context
+   708	 * @locked: whether this resource is dma-reserved (if reserved, we need to
+   709	 * unreserve it in this function)
+   710	 *
+   711	 * Evict a memory resource corresponding to a lru_entity. This should be
+   712	 * called holding lru_lock
+   713	 *
+   714	 */
+ > 715	int ttm_mem_evict_entity(struct drm_lru_entity *lru_entity,
+   716				const struct drm_lru_evict_ctx *lru_evict_ctx, bool locked)
+   717	{
+   718		struct ttm_resource *res;
+   719		struct ttm_buffer_object *bo = NULL;
+   720		struct ttm_device *bdev;
+   721		int ret;
+   722		struct ttm_operation_ctx *ctx;
+   723		struct ttm_mem_evict_ctx *evict_ctx;
+   724	
+   725		evict_ctx = (struct ttm_mem_evict_ctx *)lru_evict_ctx;
+   726		ctx = evict_ctx->ctx;
+   727	
+   728		res = container_of(lru_entity, struct ttm_resource, lru_entity);
+   729		bo = res->bo;
+   730		bdev = bo->bdev;
+   731	
+   732		if (bo->deleted) {
+   733			ret = ttm_bo_cleanup_refs(bo, ctx->interruptible,
+   734						  ctx->no_wait_gpu, locked);
+   735			ttm_bo_put(bo);
+   736			return ret;
+   737		}
+   738	
+   739		spin_unlock(bdev->lru_lock);
+   740	
+   741		ret = ttm_bo_evict(bo, ctx);
+   742		if (locked)
+   743			ttm_bo_unreserve(bo);
+   744		else
+   745			ttm_bo_move_to_lru_tail_unlocked(bo);
+   746	
+   747		ttm_bo_put(bo);
+   748		return ret;
+   749	}
+   750	
+   751	struct drm_lru_evict_func ttm_evict_func = {
+   752		.evict_allowable = ttm_mem_evict_allowable,
+   753		.evict_busy_entity = ttm_mem_evict_busy_entity,
+   754		.evict_entity = ttm_mem_evict_entity
+   755	};
+   756	EXPORT_SYMBOL(ttm_evict_func);
+   757	
+   758	int ttm_mem_evict_first(struct ttm_device *bdev,
+   759				struct ttm_resource_manager *man,
+   760				const struct ttm_place *place,
+   761				struct ttm_operation_ctx *ctx,
+   762				struct ww_acquire_ctx *ticket)
+   763	{
+   764		struct drm_lru_evict_ctx evict_ctx = {
+ > 765				.data1 = place,
+   766				.data2 = ctx,
+   767				.data3 = ticket
+   768		};
+   769	
+   770		return drm_lru_evict_first(man->lru_mgr, &evict_ctx);
+   771	}
+   772	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
