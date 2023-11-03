@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BC879C4167D
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 14:35:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CB6C8C0018A
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 14:35:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8156410E9F4;
-	Fri,  3 Nov 2023 14:35:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EADC10E9F8;
+	Fri,  3 Nov 2023 14:35:58 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1946810E9F4
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 14:35:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 99B1210E9F8
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 14:35:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699022154; x=1730558154;
+ t=1699022155; x=1730558155;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jIMD9nq7PN/0AYXC3ehe+zzcOX2T5HO2LgaUwkrdHV0=;
- b=M7aHDi6SoyZT+bW6G5P8T3mwJNyY980XxswiAj5/rUT/W9JTcLPGpBjw
- 6eV/8weRmweMx3RLAaY6h41uS0Rz5LqU8gjBkhEkU2qBHlio875zl5laj
- E1ospwO9ZvFupjQhXvePrE30zEVZYIEn6b5Wi/szfdzbCnjT0/R/k7put
- mW9G6ROOtBQu55388yxXrafvFgeCgQFusU8UZiHGQQWi+LIla8lmb/ZK6
- 02rzHusqaqN7p1vmkInSvqDOHOkUj8+FvC5ircgvWk/piKoDFoMI/7kBg
- MbKAneyccREl2BwuXDFexnQVkyyvdZ3R7zJ0nv0iQVDUhOfpJRTwEk04s g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="387843388"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="387843388"
+ bh=QhOiyskw2c/9o0SfsKD9TqxlffZGBmPpXsEgxSFo2Cg=;
+ b=D9ogYlKSlTQ0i0uiOWnU3q8nxjeT6c4LPYu5SL+Y+ueOusZYKs2ny/et
+ U+f1R3m423+GOSXzF5XB9Cpcy9KTxrrWMPdDL03ESQ5lcmABBCqxBETyb
+ QlQ16dTCUSSijKYaRcNGJsgD2qLNRXFCcSJMOuzuQkrvUPphFhNOe4VFX
+ 04zJaFyZ3ZRzqvIRJCtj+3ZOcHdtFgbmb/xLuQTsFLLEMBshgTI41mCQP
+ uLwdYfrCadXaoRR5mVb95vSmFW+//b6C+QeXDob4OkPzKdOdv1AqypatN
+ 3f57Lk2rm/vDpNBpabIf0ypV6JhfDPYcGH7RWlM7Nf3MsGRL8FDfMXe1N g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="387843416"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="387843416"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 07:35:34 -0700
+ 03 Nov 2023 07:35:40 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="1008832474"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="1008832474"
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="1008832490"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="1008832490"
 Received: from mtisan-mobl1.ger.corp.intel.com (HELO 8dd9ac0a63b4.intel.com)
  ([10.249.42.195])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 07:35:33 -0700
+ 03 Nov 2023 07:35:38 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  3 Nov 2023 14:34:26 +0000
-Message-Id: <20231103143456.7-21-francois.dugast@intel.com>
+Date: Fri,  3 Nov 2023 14:34:30 +0000
+Message-Id: <20231103143456.7-25-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231103143456.7-1-francois.dugast@intel.com>
 References: <20231103143456.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 20/50] drm/xe/uapi: Rename query's mem_usage
- to mem_regions
+Subject: [Intel-xe] [PATCH v2 24/50] xe/xe_bo: Reject bo creation of
+ unaligned size
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,123 +59,161 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
 
-'Usage' gives an impression of telemetry information where someone
-would query to see how the memory is currently used and available
-size, etc. However this API is more than this. It is about a global
-view of all the memory regions available in the system and user
-space needs to have this information so they can then use the
-mem_region masks that are returned for the engine access.
+For xe bo creation we request passing size which matches system or
+vram minimum page alignment. This way we want to ensure userspace
+is aware of region constraints and not aligned allocations will be
+rejected returning EINVAL.
 
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+v2:
+- Rebase, Update uAPI documentation. (Thomas)
+v3:
+- Adjust the dma-buf kunit test accordingly. (Thomas)
+
+Signed-off-by: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+[Francois fixed conflicts during a rebase]
 ---
- drivers/gpu/drm/xe/xe_query.c | 14 +++++++-------
- include/uapi/drm/xe_drm.h     | 16 ++++++++--------
- 2 files changed, 15 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c |  8 +++++++-
+ drivers/gpu/drm/xe/xe_bo.c            | 24 ++++++++++++++++--------
+ include/uapi/drm/xe_drm.h             | 25 +++++++++++++++++--------
+ 3 files changed, 40 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index c75f8f33a84e..c7cea81d8a95 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -230,7 +230,7 @@ static int query_engines(struct xe_device *xe,
- 	return 0;
- }
+diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+index 18c00bc03024..a6756b554069 100644
+--- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
++++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
+@@ -109,14 +109,20 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
+ 	struct drm_gem_object *import;
+ 	struct dma_buf *dmabuf;
+ 	struct xe_bo *bo;
++	size_t size;
  
--static size_t calc_memory_usage_size(struct xe_device *xe)
-+static size_t calc_mem_regions_size(struct xe_device *xe)
- {
- 	u32 num_managers = 1;
- 	int i;
-@@ -239,15 +239,15 @@ static size_t calc_memory_usage_size(struct xe_device *xe)
- 		if (ttm_manager_type(&xe->ttm, i))
- 			num_managers++;
+ 	/* No VRAM on this device? */
+ 	if (!ttm_manager_type(&xe->ttm, XE_PL_VRAM0) &&
+ 	    (params->mem_mask & XE_BO_CREATE_VRAM0_BIT))
+ 		return;
  
--	return offsetof(struct drm_xe_query_mem_usage, regions[num_managers]);
-+	return offsetof(struct drm_xe_query_mem_regions, regions[num_managers]);
- }
++	size = PAGE_SIZE;
++	if ((params->mem_mask & XE_BO_CREATE_VRAM0_BIT) &&
++	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
++		size = SZ_64K;
++
+ 	kunit_info(test, "running %s\n", __func__);
+-	bo = xe_bo_create(xe, NULL, NULL, PAGE_SIZE, ttm_bo_type_device,
++	bo = xe_bo_create(xe, NULL, NULL, size, ttm_bo_type_device,
+ 			  XE_BO_CREATE_USER_BIT | params->mem_mask);
+ 	if (IS_ERR(bo)) {
+ 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 6ca02487addc..f2f22ec65bc0 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1201,6 +1201,7 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+ 	};
+ 	struct ttm_placement *placement;
+ 	uint32_t alignment;
++	size_t aligned_size;
+ 	int err;
  
--static int query_memory_usage(struct xe_device *xe,
-+static int query_mem_regions(struct xe_device *xe,
- 			      struct drm_xe_device_query *query)
- {
--	size_t size = calc_memory_usage_size(xe);
--	struct drm_xe_query_mem_usage *usage;
--	struct drm_xe_query_mem_usage __user *query_ptr =
-+	size_t size = calc_mem_regions_size(xe);
-+	struct drm_xe_query_mem_regions *usage;
-+	struct drm_xe_query_mem_regions __user *query_ptr =
- 		u64_to_user_ptr(query->data);
- 	struct ttm_resource_manager *man;
- 	int ret, i;
-@@ -548,7 +548,7 @@ query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
- static int (* const xe_query_funcs[])(struct xe_device *xe,
- 				      struct drm_xe_device_query *query) = {
- 	query_engines,
--	query_memory_usage,
-+	query_mem_regions,
- 	query_config,
- 	query_gt_list,
- 	query_hwconfig,
+ 	/* Only kernel objects should set GT */
+@@ -1211,23 +1212,30 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
+ 		return ERR_PTR(-EINVAL);
+ 	}
+ 
+-	if (!bo) {
+-		bo = xe_bo_alloc();
+-		if (IS_ERR(bo))
+-			return bo;
+-	}
+-
+ 	if (flags & (XE_BO_CREATE_VRAM_MASK | XE_BO_CREATE_STOLEN_BIT) &&
+ 	    !(flags & XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT) &&
+ 	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) {
+-		size = ALIGN(size, SZ_64K);
++		aligned_size = ALIGN(size, SZ_64K);
++		if (type != ttm_bo_type_device)
++			size = ALIGN(size, SZ_64K);
+ 		flags |= XE_BO_INTERNAL_64K;
+ 		alignment = SZ_64K >> PAGE_SHIFT;
++
+ 	} else {
+-		size = ALIGN(size, PAGE_SIZE);
++		aligned_size = ALIGN(size, SZ_4K);
++		flags &= ~XE_BO_INTERNAL_64K;
+ 		alignment = SZ_4K >> PAGE_SHIFT;
+ 	}
+ 
++	if (type == ttm_bo_type_device && aligned_size != size)
++		return ERR_PTR(-EINVAL);
++
++	if (!bo) {
++		bo = xe_bo_alloc();
++		if (IS_ERR(bo))
++			return bo;
++	}
++
+ 	bo->tile = tile;
+ 	bo->size = size;
+ 	bo->flags = flags;
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 3b164f8e54b3..f6b7ebd8168a 100644
+index ec50007fef64..47fe9d1ccdce 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -307,13 +307,13 @@ struct drm_xe_query_engine_cycles {
- };
- 
- /**
-- * struct drm_xe_query_mem_usage - describe memory regions and usage
-+ * struct drm_xe_query_mem_regions - describe memory regions
-  *
-  * If a query is made with a struct drm_xe_device_query where .query
-- * is equal to DRM_XE_DEVICE_QUERY_MEM_USAGE, then the reply uses
-- * struct drm_xe_query_mem_usage in .data.
-+ * is equal to DRM_XE_DEVICE_QUERY_MEM_REGIONS, then the reply uses
-+ * struct drm_xe_query_mem_regions in .data.
-  */
--struct drm_xe_query_mem_usage {
-+struct drm_xe_query_mem_regions {
- 	/** @num_regions: number of memory regions returned in @regions */
- 	__u32 num_regions;
- 	/** @pad: MBZ */
-@@ -377,12 +377,12 @@ struct drm_xe_query_gt {
- 	__u32 clock_freq;
- 	/**
- 	 * @near_mem_regions: Bit mask of instances from
--	 * drm_xe_query_mem_usage that is near the current engines of this GT.
-+	 * drm_xe_query_mem_regions that is near the current engines of this GT.
+@@ -212,11 +212,13 @@ struct drm_xe_query_mem_region {
+ 	 *
+ 	 * When the kernel allocates memory for this region, the
+ 	 * underlying pages will be at least @min_page_size in size.
+-	 *
+-	 * Important note: When userspace allocates a GTT address which
+-	 * can point to memory allocated from this region, it must also
+-	 * respect this minimum alignment. This is enforced by the
+-	 * kernel.
++	 * Buffer objects with an allowable placement in this region must be
++	 * created with a size aligned to this value.
++	 * GPU virtual address mappings of (parts of) buffer objects that
++	 * may be placed in this region must also have their GPU virtual
++	 * address and range aligned to this value.
++	 * Affected IOCTLS will return %-EINVAL if alignment restrictions are
++	 * not met.
  	 */
- 	__u64 near_mem_regions;
+ 	__u32 min_page_size;
  	/**
- 	 * @far_mem_regions: Bit mask of instances from
--	 * drm_xe_query_mem_usage that is far from the engines of this GT.
-+	 * drm_xe_query_mem_regions that is far from the engines of this GT.
- 	 * In general, it has extra indirections when compared to the
- 	 * @near_mem_regions. For a discrete device this could mean system
- 	 * memory and memory living in a different Tile.
-@@ -505,7 +505,7 @@ struct drm_xe_query_uc_fw_version {
-  *
-  * The @query can be:
-  *  - %DRM_XE_DEVICE_QUERY_ENGINES
-- *  - %DRM_XE_DEVICE_QUERY_MEM_USAGE
-+ *  - %DRM_XE_DEVICE_QUERY_MEM_REGIONS
-  *  - %DRM_XE_DEVICE_QUERY_CONFIG
-  *  - %DRM_XE_DEVICE_QUERY_GT_LIST - Query type to retrieve the hardware
-  *    configuration of the device such as information on slices, memory,
-@@ -555,7 +555,7 @@ struct drm_xe_device_query {
+@@ -362,6 +364,14 @@ struct drm_xe_query_config {
+ #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID		0
+ #define DRM_XE_QUERY_CONFIG_FLAGS			1
+ 	#define DRM_XE_QUERY_CONFIG_FLAGS_HAS_VRAM	(0x1 << 0)
++	/*
++	 * DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - This returns the
++	 * maximum value of the &min_page_size across all memory regions
++	 * the device implements. User-space code that does not want
++	 * to track @min_page_size per region can use this value for
++	 * a buffer-object size and GPU virtual address and -range
++	 * alignment value that is valid for all regions.
++	 */
+ #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+ #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+ #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+@@ -615,9 +625,8 @@ struct drm_xe_gem_create {
  	__u64 extensions;
  
- #define DRM_XE_DEVICE_QUERY_ENGINES		0
--#define DRM_XE_DEVICE_QUERY_MEM_USAGE		1
-+#define DRM_XE_DEVICE_QUERY_MEM_REGIONS		1
- #define DRM_XE_DEVICE_QUERY_CONFIG		2
- #define DRM_XE_DEVICE_QUERY_GT_LIST		3
- #define DRM_XE_DEVICE_QUERY_HWCONFIG		4
+ 	/**
+-	 * @size: Requested size for the object
+-	 *
+-	 * The (page-aligned) allocated size for the object will be returned.
++	 * @size: Size of the object to be created, must match region
++	 * (system or vram) minimum alignment (&min_page_size).
+ 	 */
+ 	__u64 size;
+ 
 -- 
 2.34.1
 
