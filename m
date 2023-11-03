@@ -4,55 +4,156 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 765D1C4332F
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 08:52:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 403E2C4167D
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 08:59:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3015710E4EE;
-	Fri,  3 Nov 2023 08:52:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC2A910E4F9;
+	Fri,  3 Nov 2023 08:59:09 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 68CC610E4EE
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 08:52:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D53D10E4F4;
+ Fri,  3 Nov 2023 08:59:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699001539; x=1730537539;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=OwrBvrYNYRytXDWP9noS0pjzc40oLTckKVFIELaHmmY=;
- b=lG1MofzmBwT7fnlsWbT9IzFiOjzvAnquBfFNRbI6PKSdukpoyAHrXomd
- Zf7pIUYxLJizhtiH1qM9WahDZ/R6yNFw1EYlnMSNlSVEMml8cHbjcMtC1
- p7w87MMs26AaGFzp1jVqwTxrz69q/NCrDmcOlr6L12hUd6NusplZ9klgW
- ApC1I7hlZU/+J1vjZh65OUaumnMukawRioarC6FlfOYTrS3Z1Ziwh14VW
- uLirzewaJDE9woAJeeWk/ox0OpNwq0GdJG6YNoH22JwtfsUcUELfho5WT
- 8ekwPh0ahvsrQUKe+Cxc7Or4nFH1Hww+4/Nfs40rjj8XRrFB4zZq+Hh1N w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="391775179"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="391775179"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ t=1699001947; x=1730537947;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=vOfevo6jUZs1InCWl8fscRgCXso6d981K8h/AZYqqFU=;
+ b=gYoyNQ5yOjbSFMMKsCuV0uNVxVpjRkrSLks98oxmE+ZA9u6xBo6EuJeA
+ fcFTZg46YKEJedn3Bz7ZkMuUDuzUaOlQERpB4zQzOYd6MzSbg4+F/aKen
+ fedeXM93QRG/tPi8spqrdQWqgsgDZ/JCcQc5a1Q5mob/Ouxk8nRTCCyqF
+ SAqj3ifRFYgwuxDmh8Zpr9xWs45VPcIGqd41P7U2wHybPksfiJ3HSfLF0
+ XoTlmUJ13dhs9wWEyaqKfz4Oku4963bIIaJtYoavx1luFX1/Izj9uwQiz
+ 1O4X5ubq3qZHTXpqBLo4Jp/CJHocOWzyaJrheZ8dDJ3DMFMEZy+/2lrsO Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="391776679"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="391776679"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 01:52:18 -0700
+ 03 Nov 2023 01:59:04 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="885161139"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="885161139"
-Received: from dvlaghat-mobl.ger.corp.intel.com (HELO [10.252.3.192])
- ([10.252.3.192])
- by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 01:52:16 -0700
-Message-ID: <ff139661-d73c-2907-85e4-15af91d8e973@intel.com>
-Date: Fri, 3 Nov 2023 08:52:14 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="796560711"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="796560711"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 03 Nov 2023 01:59:02 -0700
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Fri, 3 Nov 2023 01:59:02 -0700
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Fri, 3 Nov 2023 01:59:02 -0700
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.41) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Fri, 3 Nov 2023 01:59:01 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Zh0s0Ey+beT2qTOJiRV/Cz0vlhltzG9n/+C3NUIMk4h4iNyikHB5/WYyIDVWHIT8W6RJ0A+YnBzF/NELuyMT7/RMUHLTJR2VTwXOVzzJrmpiI++3/DuDVv2Z92zLzyvMMSNRfYapUN5Kd6+5ssIlmWC9bJY2KGuF3G1YiLbSTNwhsGMWPR5uOmWaVqHfvRWKgGzdO7pg8Kq8+8yHT5xBE0rjbv1PjxCRQfzhJ1HdDmD8SCsxkW4MD6NS/sDp5qcg36S5HScIVgBUmCHQWmzKZW4zQJ1pGqjLBtagt6T5sYHJqJDbWtyln3g83J9oBuAiffkeoPpGdPumucMZApD3Ew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vOfevo6jUZs1InCWl8fscRgCXso6d981K8h/AZYqqFU=;
+ b=UoXGo+EioBEGHvEuWSHgGMKCbKlbVNTu11QHQUcC9pmSsLYibrIQmfcpzwq8Z02EFa1wOb44cDCuDv9LDTI0rsAa9i81M6uFrV4YJSouHIvkRlgpugwdJTmfeRCqYCEelbyf8/87sP9qfIHjNg7ldafylBaTO8Mqk4DZ+YEiisX3qAl9Rm2I3rKNhN/k502M+hmejGHnCF50IoZnlhx2Z/NEFCQkVQ3UovIud0eXw2YlkNgw7ysYgZrOdTnmRRTQC9npitzubfPs5vJRPIhpAqfVcPG/vmp0PMdQEe14e0enYI4bxDagIRx5JnRiINia/H90RjkdhSgG4V+s+CwDyg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS0PR11MB7382.namprd11.prod.outlook.com (2603:10b6:8:131::13)
+ by PH0PR11MB5578.namprd11.prod.outlook.com (2603:10b6:510:e7::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.21; Fri, 3 Nov
+ 2023 08:58:58 +0000
+Received: from DS0PR11MB7382.namprd11.prod.outlook.com
+ ([fe80::5c7:6814:f748:f22b]) by DS0PR11MB7382.namprd11.prod.outlook.com
+ ([fe80::5c7:6814:f748:f22b%6]) with mapi id 15.20.6933.019; Fri, 3 Nov 2023
+ 08:58:57 +0000
+From: "Coelho, Luciano" <luciano.coelho@intel.com>
+To: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, "tvrtko.ursulin@linux.intel.com"
+ <tvrtko.ursulin@linux.intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Thread-Topic: [Intel-gfx] [PATCH v3] drm/i915: handle uncore spinlock when not
+ available
+Thread-Index: AQHaByyY657pE9j2g0eFdsqwqmFEkbBaTK8AgAAJWLaADagzgIAAW1+A
+Date: Fri, 3 Nov 2023 08:58:56 +0000
+Message-ID: <a227240f5e9ccff944cf6bf1a920c034d0b7b099.camel@intel.com>
+References: <20231023103328.1495942-1-luciano.coelho@intel.com>
+ <cf874768-7951-4dcc-90b1-7f3457c4923e@linux.intel.com>
+ <463b540d-fd0d-4988-9ad1-63447a5d6948@linux.intel.com>
+ <86c395f6b2e529943007aca94dd0862c1bb0004d.camel@intel.com>
+ <1dedcd11-ac0c-465e-bbe4-079767f5813e@linux.intel.com>
+ <d31820ec905a17c38e513653024368d702e8ccbf.camel@intel.com>
+In-Reply-To: <d31820ec905a17c38e513653024368d702e8ccbf.camel@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Evolution 3.46.4-2 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS0PR11MB7382:EE_|PH0PR11MB5578:EE_
+x-ms-office365-filtering-correlation-id: f62af4e1-baa8-421b-e99c-08dbdc4b1cdf
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: L+JL+JA6aDSV0O8YrTSncpcpTB3n7e+dG7wF3GCxqyWUcTCqk1w7EwyVMy2HEAyDli9m1NnOuHKoGpRu+CeLA3EQCBgYIRRjSA3wvo5XkManVniGjnmrn5HtemP8BS4vjMSIPA6XTp1BJUxywUczmM8Lk/waCqutsGUSYzoSFDNNIqCT/CCnPa/0m1cOaiwFRRYIRTzARmg0U4ZfLGjGQQ9y0/Oq+zU8POsEtf+y1FmmsSxaVRDMYiy1bqaBEfR2sSjFI7nZIRqYPSl+zErjuJZZrr/PMam9BRTfozZiS7OjwdUMZ65oclBDJdjTjYJeolFIidCXsbEEbAxqoSqswG0G8BWU2jqYFwVVxZqJBBHIfQhfhLTMPN8bHfnOrYPQqlkMorF3gPXA7bVf+dgEuWpIrJEdiK7Xe8l0v9SXxfYyPfwXoF9fdCDg0Opxs/5qLRFIO46q/8qfZZEPA8AQXuz/K8LdcBVJa8lMSABdKKZMH5+Ck635Wu0MMxvz1Euws9jAlMYd3qXP7+t3LLpElZqhXEfBRKZWiR2SVnrqsMfHNnl6FwxVmQDWg4IcYVmkO5w+4jJYxK1B8ujNYvlUcChjlcF4H2OjgaP5I9IrB3K8BNg129H2+bZwjYMoftmn
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB7382.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(39860400002)(136003)(366004)(346002)(376002)(230922051799003)(451199024)(1800799009)(186009)(64100799003)(36756003)(2616005)(6512007)(26005)(71200400001)(478600001)(6506007)(8936002)(2906002)(83380400001)(5660300002)(110136005)(41300700001)(91956017)(76116006)(66946007)(66556008)(66446008)(4326008)(6486002)(316002)(8676002)(66476007)(64756008)(38070700009)(38100700002)(82960400001)(122000001)(86362001);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?RzgxbjlnVXg4RkdTVDcrcW00Q0MwN2lJZWdQbmZjbHkwSDh0WXg2THc2ZEZT?=
+ =?utf-8?B?REVRN1pvRlVZT3pRWHdBOGdjTEVkNmNwN3lnL0VWaFdBSUtuVVdnL0NxYXgr?=
+ =?utf-8?B?Y0xqS2pzaW85eVdwRUxoUDYra0RXQ3grT08wM3p5TDJTdkptZG9UN2ZOQk56?=
+ =?utf-8?B?Z0U1MFlNKy9DakZNa0lJaGJ1bUhaYVUyY3hEcW9VZTF4U2hKcnBlK1ZGY3VM?=
+ =?utf-8?B?b3JrOGJBY25pSS8rVU93bVZWcXJGZGFWVkd3YUJ5NXFMSGFZTjNOTE02YmRW?=
+ =?utf-8?B?REh3VlNiM3hFSVRiSHRDRUkxSHNNWndSOXEvQ1c1TURrVjN4L0o0TDUwV3Iz?=
+ =?utf-8?B?Y1BaK1VOanJpZTNCSmpGNitlWXBUSytyR1FlbFNrQkxqRzBrZG9QV2ZobVNX?=
+ =?utf-8?B?V25PY0tXL0NRVjJ5dkRKWDM5NVgxdmRxWUxCNXc4QWVrUWd3RURpRUhGYUVW?=
+ =?utf-8?B?TWpIc1RCbXdnZHdnYUNWS2poUk9BT3lNd1ZFVzRtVkwxaFI5NEN6OXQwN3Fh?=
+ =?utf-8?B?ZG40eE1BZFlGZVFhQ0F5V1Nmai9od1RpZEdhQ0MvdW1jd0padWN3STFQeHA3?=
+ =?utf-8?B?WGZGRzg2dUF5TmVDc282SE9UdERySGJyREtKazlHd2o5RjZFMHhsSDBYbW15?=
+ =?utf-8?B?eStsN3d6QXNXRTNRNjdnTG5PdE0rQm4rbmtWY0dQWHpubGo5OFV3QURIUktj?=
+ =?utf-8?B?VDVWMVNaZlA4QnVjdmhtWEYzRUx2SjlzVEQ3Z2tpaS9MWUhvVmh5NVNPRlJ2?=
+ =?utf-8?B?NFkrdWZyNElFQnFYV2VZZTdlRXVlRFdDQ2ZxVWtVRGxLUitVcUR6TzdpcUNN?=
+ =?utf-8?B?MjErY2pLZWNadGZ0ZnpaU1hIZHNqVWZhbHdJWUVmSnBLakgzR0ZZREZXbmNl?=
+ =?utf-8?B?bFA0aWZYaXdCNTJranZDOTZXcnU1alFBYWtCOXVJeFlEaDVVU3JaZU9TQnN0?=
+ =?utf-8?B?STJCOXZRZUJjZGNlcDFzZEFqNkpER3VaRmNiQUlhV3p3YnA1SE5vYjNJeVlZ?=
+ =?utf-8?B?OFdrMlFWRmkwaTcva0dMUlJ1ZGdHZ09aZ1N2ZTBYUmdZaFZyaVVocDNIanRv?=
+ =?utf-8?B?dHp2bGFNQm9JaTh6aDBzdm9mY2trckgzM2VaNHBidElKQmFHSm9CYy9VR1BX?=
+ =?utf-8?B?cUxWeXF6eEgzSWdJbUlWTEM4TFg5QmRsQVViK0Z0RENvYktwRjFQdDRZdTlE?=
+ =?utf-8?B?aGdzNWhkcGJ0ZE83R2dUNmJ4NEpBOHpKak96Y3VwMmJLR2hyUGVralMvbm9O?=
+ =?utf-8?B?L3NucFEwWnQrNFc2Y3p2bmZsaG9UTnd5TFRVOVk3aWh1WWJaMlo5ZUdmN3M5?=
+ =?utf-8?B?V0kzTmJxeGE1Q25aUUgvTEVFZWF3S2R3UXY2Qk9sOVh5QkZnV2lYUE1OL1JB?=
+ =?utf-8?B?Mm5WUk1FNnJ3U3UyeGt2WmpGUlBtcWNlOFpnejlnY0JnUFM4QXdFckd3TFZi?=
+ =?utf-8?B?WlJ3ZDNnNEJQRXJuYUNTdVlYalpVVzNxdnNOR0lSWkFNa3Frbmo5R256Snlv?=
+ =?utf-8?B?OXptdHY3cGVTSVI3KzQ0QkpqUTd0WnNoa2VrRTlXT2l3WmZydytydkZNbU9L?=
+ =?utf-8?B?MCtIWWdMSnNsS05Fd2JkdjRBY1hBS29HQm1XRWJkYzU5MGd5b3pBb0JLOGpB?=
+ =?utf-8?B?WHBaRkxPdEpkT3FXVXhEMzZXT2EyOXQ4UW9KOUdKNVJUaGM4YjVGMWgxYkJB?=
+ =?utf-8?B?eVJpWmtTcTN4WUJ1ZTdlT0Z6L29oaWtOSDR1ZDZKdW1SMVBtUkxGSDJ4R01O?=
+ =?utf-8?B?elllYWRSUjVZaVRaT3l5V3ZrUXpjUlB3TnQwU0V1VnZDWHJWTjdqNC85Vjg0?=
+ =?utf-8?B?bmVJREg0SzE3Q3RLVXBEK24rSncwOTBTUk1mQXBTSXZhM0pDc1NON2J0bXZw?=
+ =?utf-8?B?UjE0NmtScmdoZVRDaVdtMXVFVGdXL3dzUkVsSmRqUE5SbEZMQndNRWx0V1BZ?=
+ =?utf-8?B?cWw0ZURhOFR1Q1RReTJpbkpxNUgxQUFCSTJEU1NaN3RVKzNabXhpVnY4dFdG?=
+ =?utf-8?B?U1FvbDA0djNPdUlJZDBCckZLMm9BeUY1ejhDN0NLTHZXOWliWGxaYlpxM1lK?=
+ =?utf-8?B?WlhpWDNpc0d5cDJOcDdFUjZsWW56UFNselVJdHZmT0JnOGljTllSczZWeVpL?=
+ =?utf-8?B?Kzd6OXN6ci93TkRBenAxVENoTnpJTmYzQXk4a2N3ZHNDSVRrT2VMbzVEbzYv?=
+ =?utf-8?B?aXc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D1AD454551FBDF40A2B3C69FF6F84CF8@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.15.1
-To: "Zeng, Oak" <oak.zeng@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20231011162923.292025-5-matthew.auld@intel.com>
- <20231011162923.292025-6-matthew.auld@intel.com>
- <SA1PR11MB699167F1A9661865342554F292A5A@SA1PR11MB6991.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <SA1PR11MB699167F1A9661865342554F292A5A@SA1PR11MB6991.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v8 1/3] drm/xe/uapi: Add support for cache
- and coherency mode
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB7382.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f62af4e1-baa8-421b-e99c-08dbdc4b1cdf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Nov 2023 08:58:56.8150 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5BHsmuyl3duLRMUbEWLgruc0gR4latLI4LjuDwUEMiYyy+4j2AdIT41ifmuBlOh2uxcefvzYZvqWv+38SgHJknAYv97Y1fB8bP6c8nR09D8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5578
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v3] drm/i915: handle uncore
+ spinlock when not available
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,463 +165,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Xu, Zhengguo" <zhengguo.xu@intel.com>, "Hazubski,
- Filip" <filip.hazubski@intel.com>, "De Marchi,
- Lucas" <lucas.demarchi@intel.com>, "Zhang, Carl" <carl.zhang@intel.com>, "Yu,
- Effie" <effie.yu@intel.com>, "Roper, Matthew D" <matthew.d.roper@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 03/11/2023 02:41, Zeng, Oak wrote:
->> -----Original Message-----
->> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Matthew Auld
->> Sent: Wednesday, October 11, 2023 12:29 PM
->> To: intel-xe@lists.freedesktop.org
->> Cc: Hazubski, Filip <filip.hazubski@intel.com>; De Marchi, Lucas
->> <lucas.demarchi@intel.com>; Zhang, Carl <carl.zhang@intel.com>; Yu, Effie
->> <effie.yu@intel.com>; Roper, Matthew D <matthew.d.roper@intel.com>
->> Subject: [Intel-xe] [PATCH v8 1/3] drm/xe/uapi: Add support for cache and
->> coherency mode
->>
->> From: Pallavi Mishra <pallavi.mishra@intel.com>
->>
->> Allow userspace to specify the CPU caching mode to use in addition to
->> coherency modes during object creation. Modify gem create handler and
->> introduce xe_bo_create_user to replace xe_bo_create. In a later patch we
->> will support setting the pat_index as part of vm_bind, where expectation
->> is that the coherency mode extracted from the pat_index must match the
->> one set at object creation.
->>
->> v2
->>    - s/smem_caching/smem_cpu_caching/ and
->>      s/XE_GEM_CACHING/XE_GEM_CPU_CACHING/. (Matt Roper)
->>    - Drop COH_2WAY and just use COH_NONE + COH_AT_LEAST_1WAY; KMD mostly
->>      just cares that zeroing/swap-in can't be bypassed with the given
->>      smem_caching mode. (Matt Roper)
->>    - Fix broken range check for coh_mode and smem_cpu_caching and also
->>      don't use constant value, but the already defined macros. (José)
->>    - Prefer switch statement for smem_cpu_caching -> ttm_caching. (José)
->>    - Add note in kernel-doc for dgpu and coherency modes for system
->>      memory. (José)
->> v3 (José):
->>    - Make sure to reject coh_mode == 0 for VRAM-only.
->>    - Also make sure to actually pass along the (start, end) for
->>      __xe_bo_create_locked.
->> v4
->>    - Drop UC caching mode. Can be added back if we need it. (Matt Roper)
->>    - s/smem_cpu_caching/cpu_caching. Idea is that VRAM is always WC, but
->>      that is currently implicit and KMD controlled. Make it explicit in
->>      the uapi with the limitation that it currently must be WC. For VRAM
->>      + SYS objects userspace must now select WC. (José)
->>    - Make sure to initialize bo_flags. (José)
->> v5
->>    - Make to align with the other uapi and prefix uapi constants with
->>      DRM_ (José)
->> v6:
->>    - Make it clear that zero cpu_caching is only allowed for kernel
->>      objects. (José)
->>
->> Testcase: igt@xe_mmap@cpu-caching-coh
->> Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
->> Co-developed-by: Matthew Auld <matthew.auld@intel.com>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->> Cc: Matt Roper <matthew.d.roper@intel.com>
->> Cc: José Roberto de Souza <jose.souza@intel.com>
->> Cc: Filip Hazubski <filip.hazubski@intel.com>
->> Cc: Carl Zhang <carl.zhang@intel.com>
->> Cc: Effie Yu <effie.yu@intel.com>
->> Tested-by: José Roberto de Souza <jose.souza@intel.com>
->> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_bo.c       | 115 ++++++++++++++++++++++++-------
->>   drivers/gpu/drm/xe/xe_bo.h       |   9 +--
->>   drivers/gpu/drm/xe/xe_bo_types.h |  10 +++
->>   drivers/gpu/drm/xe/xe_dma_buf.c  |   5 +-
->>   include/uapi/drm/xe_drm.h        |  50 +++++++++++++-
->>   5 files changed, 156 insertions(+), 33 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
->> index 61789c0e88fb..8ce7d16c918a 100644
->> --- a/drivers/gpu/drm/xe/xe_bo.c
->> +++ b/drivers/gpu/drm/xe/xe_bo.c
->> @@ -326,7 +326,7 @@ static struct ttm_tt *xe_ttm_tt_create(struct
->> ttm_buffer_object *ttm_bo,
->>   	struct xe_device *xe = xe_bo_device(bo);
->>   	struct xe_ttm_tt *tt;
->>   	unsigned long extra_pages;
->> -	enum ttm_caching caching = ttm_cached;
->> +	enum ttm_caching caching;
->>   	int err;
->>
->>   	tt = kzalloc(sizeof(*tt), GFP_KERNEL);
->> @@ -340,13 +340,24 @@ static struct ttm_tt *xe_ttm_tt_create(struct
->> ttm_buffer_object *ttm_bo,
->>   		extra_pages = DIV_ROUND_UP(xe_device_ccs_bytes(xe, bo->size),
->>   					   PAGE_SIZE);
->>
->> +	switch (bo->cpu_caching) {
->> +	case DRM_XE_GEM_CPU_CACHING_WC:
->> +		caching = ttm_write_combined;
->> +		break;
->> +	default:
->> +		caching = ttm_cached;
->> +		break;
->> +	}
->> +
->> +	WARN_ON((bo->flags & XE_BO_CREATE_USER_BIT) && !bo->cpu_caching);
->> +
->>   	/*
->>   	 * Display scanout is always non-coherent with the CPU cache.
->>   	 *
->>   	 * For Xe_LPG and beyond, PPGTT PTE lookups are also non-coherent and
->>   	 * require a CPU:WC mapping.
->>   	 */
->> -	if (bo->flags & XE_BO_SCANOUT_BIT ||
->> +	if ((!bo->cpu_caching && bo->flags & XE_BO_SCANOUT_BIT) ||
->>   	    (xe->info.graphics_verx100 >= 1270 && bo->flags & XE_BO_PAGETABLE))
->>   		caching = ttm_write_combined;
->>
->> @@ -1190,10 +1201,11 @@ void xe_bo_free(struct xe_bo *bo)
->>   	kfree(bo);
->>   }
->>
->> -struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->> -				    struct xe_tile *tile, struct dma_resv *resv,
->> -				    struct ttm_lru_bulk_move *bulk, size_t size,
->> -				    enum ttm_bo_type type, u32 flags)
->> +struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->> +				     struct xe_tile *tile, struct dma_resv *resv,
->> +				     struct ttm_lru_bulk_move *bulk, size_t size,
->> +				     u16 cpu_caching, u16 coh_mode,
->> +				     enum ttm_bo_type type, u32 flags)
->>   {
->>   	struct ttm_operation_ctx ctx = {
->>   		.interruptible = true,
->> @@ -1231,6 +1243,8 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device
->> *xe, struct xe_bo *bo,
->>   	bo->tile = tile;
->>   	bo->size = size;
->>   	bo->flags = flags;
->> +	bo->cpu_caching = cpu_caching;
->> +	bo->coh_mode = coh_mode;
->>   	bo->ttm.base.funcs = &xe_gem_object_funcs;
->>   	bo->props.preferred_mem_class = XE_BO_PROPS_INVALID;
->>   	bo->props.preferred_gt = XE_BO_PROPS_INVALID;
->> @@ -1315,11 +1329,12 @@ static int __xe_bo_fixed_placement(struct xe_device
->> *xe,
->>   	return 0;
->>   }
->>
->> -struct xe_bo *
->> -xe_bo_create_locked_range(struct xe_device *xe,
->> -			  struct xe_tile *tile, struct xe_vm *vm,
->> -			  size_t size, u64 start, u64 end,
->> -			  enum ttm_bo_type type, u32 flags)
->> +static struct xe_bo *
->> +__xe_bo_create_locked(struct xe_device *xe,
->> +		      struct xe_tile *tile, struct xe_vm *vm,
->> +		      size_t size, u64 start, u64 end,
->> +		      u16 cpu_caching, u16 coh_mode,
->> +		      enum ttm_bo_type type, u32 flags)
->>   {
->>   	struct xe_bo *bo = NULL;
->>   	int err;
->> @@ -1340,11 +1355,12 @@ xe_bo_create_locked_range(struct xe_device *xe,
->>   		}
->>   	}
->>
->> -	bo = __xe_bo_create_locked(xe, bo, tile, vm ? &vm->resv : NULL,
->> -				   vm && !xe_vm_in_fault_mode(vm) &&
->> -				   flags & XE_BO_CREATE_USER_BIT ?
->> -				   &vm->lru_bulk_move : NULL, size,
->> -				   type, flags);
->> +	bo = ___xe_bo_create_locked(xe, bo, tile, vm ? &vm->resv : NULL,
->> +				    vm && !xe_vm_in_fault_mode(vm) &&
->> +				    flags & XE_BO_CREATE_USER_BIT ?
->> +				    &vm->lru_bulk_move : NULL, size,
->> +				    cpu_caching, coh_mode,
->> +				    type, flags);
->>   	if (IS_ERR(bo))
->>   		return bo;
->>
->> @@ -1377,11 +1393,35 @@ xe_bo_create_locked_range(struct xe_device *xe,
->>   	return ERR_PTR(err);
->>   }
->>
->> +struct xe_bo *
->> +xe_bo_create_locked_range(struct xe_device *xe,
->> +			  struct xe_tile *tile, struct xe_vm *vm,
->> +			  size_t size, u64 start, u64 end,
->> +			  enum ttm_bo_type type, u32 flags)
->> +{
->> +	return __xe_bo_create_locked(xe, tile, vm, size, start, end, 0, 0, type, flags);
->> +}
->> +
->>   struct xe_bo *xe_bo_create_locked(struct xe_device *xe, struct xe_tile *tile,
->>   				  struct xe_vm *vm, size_t size,
->>   				  enum ttm_bo_type type, u32 flags)
->>   {
->> -	return xe_bo_create_locked_range(xe, tile, vm, size, 0, ~0ULL, type, flags);
->> +	return __xe_bo_create_locked(xe, tile, vm, size, 0, ~0ULL, 0, 0, type, flags);
->> +}
->> +
->> +static struct xe_bo *xe_bo_create_user(struct xe_device *xe, struct xe_tile *tile,
->> +				       struct xe_vm *vm, size_t size,
->> +				       u16 cpu_caching, u16 coh_mode,
->> +				       enum ttm_bo_type type,
->> +				       u32 flags)
->> +{
->> +	struct xe_bo *bo = __xe_bo_create_locked(xe, tile, vm, size, 0, ~0ULL,
->> +						 cpu_caching, coh_mode, type,
->> +						 flags | XE_BO_CREATE_USER_BIT);
->> +	if (!IS_ERR(bo))
->> +		xe_bo_unlock_vm_held(bo);
->> +
->> +	return bo;
->>   }
->>
->>   struct xe_bo *xe_bo_create(struct xe_device *xe, struct xe_tile *tile,
->> @@ -1764,11 +1804,11 @@ int xe_gem_create_ioctl(struct drm_device *dev, void
->> *data,
->>   	struct drm_xe_gem_create *args = data;
->>   	struct xe_vm *vm = NULL;
->>   	struct xe_bo *bo;
->> -	unsigned int bo_flags = XE_BO_CREATE_USER_BIT;
->> +	unsigned int bo_flags;
->>   	u32 handle;
->>   	int err;
->>
->> -	if (XE_IOCTL_DBG(xe, args->extensions) || XE_IOCTL_DBG(xe, args->pad) ||
->> +	if (XE_IOCTL_DBG(xe, args->extensions) ||
->>   	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
->>   		return -EINVAL;
->>
->> @@ -1795,6 +1835,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void
->> *data,
->>   	if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
->>   		return -EINVAL;
->>
->> +	bo_flags = 0;
->>   	if (args->flags & XE_GEM_CREATE_FLAG_DEFER_BACKING)
->>   		bo_flags |= XE_BO_DEFER_BACKING;
->>
->> @@ -1810,6 +1851,26 @@ int xe_gem_create_ioctl(struct drm_device *dev, void
->> *data,
->>   		bo_flags |= XE_BO_NEEDS_CPU_ACCESS;
->>   	}
->>
->> +	if (XE_IOCTL_DBG(xe, !args->coh_mode ||
->> +			 args->coh_mode > DRM_XE_GEM_COH_AT_LEAST_1WAY))
->> +		return -EINVAL;
->> +
->> +	if (XE_IOCTL_DBG(xe, !args->cpu_caching ||
->> +			 args->cpu_caching > DRM_XE_GEM_CPU_CACHING_WC))
->> +		return -EINVAL;
->> +
->> +	if (XE_IOCTL_DBG(xe, bo_flags & XE_BO_CREATE_VRAM_MASK &&
->> +			 args->cpu_caching != DRM_XE_GEM_CPU_CACHING_WC))
->> +		return -EINVAL;
->> +
->> +	if (XE_IOCTL_DBG(xe, bo_flags & XE_BO_SCANOUT_BIT &&
->> +			 args->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB))
->> +		return -EINVAL;
->> +
->> +	if (XE_IOCTL_DBG(xe, args->coh_mode == DRM_XE_GEM_COH_NONE &&
->> +			 args->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB))
->> +		return -EINVAL;
->> +
->>   	if (args->vm_id) {
->>   		vm = xe_vm_lookup(xef, args->vm_id);
->>   		if (XE_IOCTL_DBG(xe, !vm))
->> @@ -1821,8 +1882,10 @@ int xe_gem_create_ioctl(struct drm_device *dev, void
->> *data,
->>   		}
->>   	}
->>
->> -	bo = xe_bo_create(xe, NULL, vm, args->size, ttm_bo_type_device,
->> -			  bo_flags);
->> +	bo = xe_bo_create_user(xe, NULL, vm, args->size,
->> +			       args->cpu_caching, args->coh_mode,
->> +			       ttm_bo_type_device,
->> +			       bo_flags);
->>   	if (IS_ERR(bo)) {
->>   		err = PTR_ERR(bo);
->>   		goto out_vm;
->> @@ -2114,10 +2177,12 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
->>   	args->size = ALIGN(mul_u32_u32(args->pitch, args->height),
->>   			   page_size);
->>
->> -	bo = xe_bo_create(xe, NULL, NULL, args->size, ttm_bo_type_device,
->> -
->> XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->> -			  XE_BO_CREATE_USER_BIT | XE_BO_SCANOUT_BIT |
->> -			  XE_BO_NEEDS_CPU_ACCESS);
->> +	bo = xe_bo_create_user(xe, NULL, NULL, args->size,
->> +			       DRM_XE_GEM_CPU_CACHING_WC,
->> DRM_XE_GEM_COH_NONE,
->> +			       ttm_bo_type_device,
->> +
->> XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->> +			       XE_BO_CREATE_USER_BIT | XE_BO_SCANOUT_BIT |
->> +			       XE_BO_NEEDS_CPU_ACCESS);
->>   	if (IS_ERR(bo))
->>   		return PTR_ERR(bo);
->>
->> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
->> index 78da28f4ea13..60a19e14937e 100644
->> --- a/drivers/gpu/drm/xe/xe_bo.h
->> +++ b/drivers/gpu/drm/xe/xe_bo.h
->> @@ -84,10 +84,11 @@ struct sg_table;
->>   struct xe_bo *xe_bo_alloc(void);
->>   void xe_bo_free(struct xe_bo *bo);
->>
->> -struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->> -				    struct xe_tile *tile, struct dma_resv *resv,
->> -				    struct ttm_lru_bulk_move *bulk, size_t size,
->> -				    enum ttm_bo_type type, u32 flags);
->> +struct xe_bo *___xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
->> +				     struct xe_tile *tile, struct dma_resv *resv,
->> +				     struct ttm_lru_bulk_move *bulk, size_t size,
->> +				     u16 cpu_caching, u16 coh_mode,
->> +				     enum ttm_bo_type type, u32 flags);
->>   struct xe_bo *
->>   xe_bo_create_locked_range(struct xe_device *xe,
->>   			  struct xe_tile *tile, struct xe_vm *vm,
->> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
->> index 051fe990c133..56f7f9a4975f 100644
->> --- a/drivers/gpu/drm/xe/xe_bo_types.h
->> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
->> @@ -76,6 +76,16 @@ struct xe_bo {
->>   	struct llist_node freed;
->>   	/** @created: Whether the bo has passed initial creation */
->>   	bool created;
->> +	/**
->> +	 * @coh_mode: Coherency setting. Currently only used for userspace
->> +	 * objects.
->> +	 */
->> +	u16 coh_mode;
->> +	/**
->> +	 * @cpu_caching: CPU caching mode. Currently only used for userspace
->> +	 * objects.
->> +	 */
->> +	u16 cpu_caching;
->>   };
->>
->>   #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
->> diff --git a/drivers/gpu/drm/xe/xe_dma_buf.c b/drivers/gpu/drm/xe/xe_dma_buf.c
->> index cfde3be3b0dc..9da5cffeef13 100644
->> --- a/drivers/gpu/drm/xe/xe_dma_buf.c
->> +++ b/drivers/gpu/drm/xe/xe_dma_buf.c
->> @@ -214,8 +214,9 @@ xe_dma_buf_init_obj(struct drm_device *dev, struct xe_bo
->> *storage,
->>   	int ret;
->>
->>   	dma_resv_lock(resv, NULL);
->> -	bo = __xe_bo_create_locked(xe, storage, NULL, resv, NULL, dma_buf->size,
->> -				   ttm_bo_type_sg, XE_BO_CREATE_SYSTEM_BIT);
->> +	bo = ___xe_bo_create_locked(xe, storage, NULL, resv, NULL, dma_buf-
->>> size,
->> +				    0, 0, /* Will require 1way or 2way for vm_bind */
->> +				    ttm_bo_type_sg, XE_BO_CREATE_SYSTEM_BIT);
->>   	if (IS_ERR(bo)) {
->>   		ret = PTR_ERR(bo);
->>   		goto error;
->> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->> index d48d8e3c898c..ec4cdbc8d2bd 100644
->> --- a/include/uapi/drm/xe_drm.h
->> +++ b/include/uapi/drm/xe_drm.h
->> @@ -456,8 +456,54 @@ struct drm_xe_gem_create {
->>   	 */
->>   	__u32 handle;
->>
->> -	/** @pad: MBZ */
->> -	__u32 pad;
->> +	/**
->> +	 * @coh_mode: The coherency mode for this object. This will limit the
->> +	 * possible @cpu_caching values.
->> +	 *
->> +	 * Supported values:
->> +	 *
->> +	 * DRM_XE_GEM_COH_NONE: GPU access is assumed to be not coherent
->> with
->> +	 * CPU. CPU caches are not snooped.
->> +	 *
->> +	 * DRM_XE_GEM_COH_AT_LEAST_1WAY:
->> +	 *
->> +	 * CPU-GPU coherency must be at least 1WAY.
->> +	 *
->> +	 * If 1WAY then GPU access is coherent with CPU (CPU caches are snooped)
->> +	 * until GPU acquires. The acquire by the GPU is not tracked by CPU
->> +	 * caches.
->> +	 *
->> +	 * If 2WAY then should be fully coherent between GPU and CPU.  Fully
->> +	 * tracked by CPU caches. Both CPU and GPU caches are snooped.
->> +	 *
->> +	 * Note: On dgpu the GPU device never caches system memory. The device
->> +	 * should be thought of as always 1WAY coherent, with the addition that
->> +	 * the GPU never caches system memory. At least on current dgpu HW there
->> +	 * is no way to turn off snooping so likely the different coherency
->> +	 * modes of the pat_index make no difference for system memory.
->> +	 */
->> +#define DRM_XE_GEM_COH_NONE		1
->> +#define DRM_XE_GEM_COH_AT_LEAST_1WAY	2
->> +	__u16 coh_mode;
-> 
-> I wonder why you need a coh_mode at object create time. From the codes, you used this coh_mode parameter to check the cpu_caching parameter. And in patch 3 you use coh_mode to check the pat_index parameter.
-> 
-> So basically the coh_mode parameter is just used to validate other parameters. It is not used for CPU/GPU page table programming. In my opinion, those check are unnecessary. All interfaces provided to user should have some functional consequence, no just for parameter checking purpose. Isn't below scheme simpler:
-> 
-> Allow a cpu_caching mode for object create
-> Allow a pat_index for vm bind
-> Check pat_index to see whether it matches cpu_caching mode setting, i.e., if pat_index says 2-way coherence, cpu_caching shouldn't be wc.
-> 
-> Does this scheme work?
-
-Yes, something like that should work. I think the main restriction is 
-never allowing cpu_caching=wb with coh_none, and we can in thoery check 
-for that at vm_bind. On the other hand having it fail at gem_create is a 
-little nicer, plus the explicit coh_mode makes it clearer to userspace 
-that we are talking about the coh_mode pat attribute in bspec, and that 
-the vm_bind coh_mode(pat_index) must be at least as coherent. It's a bit 
-of work to change at this point, but I think is maybe worth the 
-simplification.
-
-> 
-> Oak
-> 
-> 
-> 
-> 
-> 
-> 
->> +
->> +	/**
->> +	 * @cpu_caching: The CPU caching mode to select for this object. If
->> +	 * mmaping the object the mode selected here will also be used.
->> +	 *
->> +	 * Supported values:
->> +	 *
->> +	 * DRM_XE_GEM_CPU_CACHING_WB: Allocate the pages with write-back
->> caching.
->> +	 * On iGPU this can't be used for scanout surfaces. The @coh_mode must
->> +	 * be DRM_XE_GEM_COH_AT_LEAST_1WAY. Currently not allowed for
->> objects placed
->> +	 * in VRAM.
->> +	 *
->> +	 * DRM_XE_GEM_CPU_CACHING_WC: Allocate the pages as write-
->> combined. This is
->> +	 * uncached. Any @coh_mode is permitted. Scanout surfaces should likely
->> +	 * use this. All objects that can be placed in VRAM must use this.
->> +	 */
->> +#define DRM_XE_GEM_CPU_CACHING_WB                      1
->> +#define DRM_XE_GEM_CPU_CACHING_WC                      2
->> +	__u16 cpu_caching;
->>
->>   	/** @reserved: Reserved */
->>   	__u64 reserved[2];
->> --
->> 2.41.0
-> 
+T24gRnJpLCAyMDIzLTExLTAzIGF0IDAzOjMxICswMDAwLCBWaXZpLCBSb2RyaWdvIHdyb3RlOg0K
+PiA+ID4gDQo+ID4gPiBBbnkgb3RoZXIgc3VnZ2VzdGlvbnM/DQo+ID4gDQo+ID4gSSB0aGluayBp
+dCB3aWxsIGJvaWwgZG93biB0byB0aGUgcmVhc29uIHVuY29yZSBsb2NrIGlzIGhlbGQgb3Zlcg0K
+PiA+IHRoZSANCj4gPiByZXNwZWN0aXZlIHNlY3Rpb25zIGllLiB0aGUgY29tbWVudCBpbiBpOTE1
+X2dldF9jcnRjX3NjYW5vdXRwb3MuDQo+ID4gDQo+ID4gSWYgaXQgaXMgdGltaW5nIHNlbnNpdGl2
+ZSB0byB0aGUgZXh0ZW50IGlycSBvZmYgd2FzIG5lZWRlZCBpdCBtYXkNCj4gPiBhcHBseSANCj4g
+PiB0byBYZSBhcyB3ZWxsLiBMaWtld2lzZSB0aGUgbmVlZCB0byB1c2UgbW1pbyBoZWxwZXJzIHdo
+aWNoIHJlbHkgb24NCj4gPiB0aGUgDQo+ID4gdW5jb3JlIGxvY2sgYWxyZWFkeSBoZWxkLiBRdWVz
+dGlvbiBvZiB3aGV0aGVyIHRoZXJlIGlzIGNvbmNlcHR1YWwgDQo+ID4gY29tbW9uYWxpdHksIHdp
+bGwgcHJvYmFibHkgZHJpdmUgdGhlIGJlc3QgbmFtZSwgb3IgdGhlIGJlc3QNCj4gPiBhcHByb2Fj
+aA0KPiA+IGluIA0KPiA+IGdlbmVyYWwuDQo+IA0KPiB5ZWFwLCB0aGlzIGlzIGhvdyBJJ20gc2Vl
+aW5nIHRoaXMuIElmIGk5MTUtZGlzcGxheSBuZWVkcyB0aGlzIGdsb2JhbA0KPiBsb2NrIGFyb3Vu
+ZCBtbWlvIG9wZXJhdGlvbnMsIHRoZW4gd2Ugd291bmQgbmVlZCB0byBhZGQgaXQgdG8gdGhlDQo+
+IHhlX21taW8gYXMgd2VsbCBhbmQgdGhlbiBzb2x2ZSB0aGUgbmFtZSwgZXRjLg0KPiANCj4gSG93
+ZXZlciwgSSBkb24ndCBiZWxpZXZlIHRoYXQgb3RoZXIgdXNlcnMgb2YgdGhlIG1taW8gd291bGQg
+bmVlZA0KPiB0aGlzIGxvY2suIFNvIEkgYmVsaWV2ZSB0aGUgcmlnaHQgdGhpbmcgdG8gZG8gaXMg
+dG8gY3JlYXRlIGEgaTkxNS0NCj4gZGlzcGxheSBvbmx5IHNwaW5fbG9jaywgYXJvdW5kIHRoZSBp
+bnRlbF9kZV9tbWlvIGNhbGxzIGFuZCBoZXJlLg0KPiANCj4gV2l0aCB0aGlzIHdlIGVudGlyZWx5
+IGtpbGwgdGhlIGRlcGVuZGVuY3kgb24gc29tZW9uZS1lbHNlJ3MgbG9jaw0KPiBhbmQgaGF2ZSBz
+b21ldGhpbmcgdGhhdCBpcyBlbnRpcmVseSBpbnNpZGUgZGlzcGxheSBjb2RlIHNvIGl0DQo+IGRv
+ZXNuJ3QgbmVlZCB0byBiZSBwb3J0ZWQgdG8gb25lIG9yIGFub3RoZXIgZHJpdmVyIGNvcmUgY29t
+cG9uZW50cy4NCg0KUmlnaHQsIEkgYWdyZWUgdG9vLg0KDQpNeSBwYXRjaCB3YXMganVzdCB0cnlp
+bmcgdG8gYWRkcmVzcyB0aGUgcXVpY2sgaGFjayBtYWRlIGZvciBYZSwgbm90IHRoZQ0KYWN0dWFs
+IGltcGxlbWVudGF0aW9uIGluIFhlJ3Mgc2lkZS4gIEJ1dCBpdCBtYWtlcyBzZW5zZSB0byBpbXBs
+ZW1lbnQNCnRoaXMgbmV3IGxvY2sgaW50ZXJuYWxseSBpbiB0aGUgZGlzcGxheSBzbyB0aGVyZSBh
+cmUgbm8gZGVwZW5kZW5jaWVzIG9yDQp3cmFwcGVycyBuZWVkZWQuDQoNCkknbGwgcmVzcGluLg0K
+DQotLQ0KQ2hlZXJzLA0KTHVjYS4NCg==
