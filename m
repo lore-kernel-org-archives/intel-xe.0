@@ -4,50 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A59FC4332F
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 23:12:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60A95C4332F
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 23:35:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F29E310EAF6;
-	Fri,  3 Nov 2023 23:12:14 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7B1510EAF6
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 23:12:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0E29B10E0A4;
+	Fri,  3 Nov 2023 23:35:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7250110E0A4
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 23:35:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699053133; x=1730589133;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=pN8216hR02GlZmBVwuZfLXUiufX34enfJKK566iscaM=;
- b=gM/pvUEdLcrdRmlT2n7Udzm6FibhxhegV+B3jlB8l7kOhsnXXtHtI6KK
- g33hL13qGHzJO7sYGZRdEaamE2EKm/Ki33W4+iRzE/fNgPVUTB1eV9pmo
- 6CdWE+bXM3bn2iqUd8Wc5gIgq6bFTBbck+32wYjXZSIeem2mVej/0pspO
- Jr0f+aIJARQUziiWO+q0S8T1uujkPi5Z4bkCuuhOsbryVrtpO9YnLX7Rl
- fWaqZQ/9pknRafGepgDlCwPOnNBZGQa/Ac0ZU48JK0IUnI2zVTSZDCNTW
- hsleiikOLCkwSukpv6RYNEET9hTJuBBWrbQFXtkOrN3YsxwZ452t+PyNq Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="10575661"
-X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="10575661"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 16:12:13 -0700
+ t=1699054544; x=1730590544;
+ h=date:from:to:cc:subject:message-id:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=CmXlG5WoPmIyI1N2oKzwGTNGFAj3igyOjCKNezCDhCI=;
+ b=ZR/Dyw+2fG/I/RBJ7cKAB9aUHfFXJpNYcK8ebvtPOibPAaZFyG1LfDrQ
+ BVAgYkh9Aiu6rhRFHlL5aUtI8RvaBU9VLu06RPlypNzVJyT8MZUeV4jRA
+ mwVwG2lyk5WNlIiM9uGLqABLvyq/+d2TVjWJd4qL052lSG43vx5UE3/yQ
+ fuqUW78RxEyB3Ep+/TGbaTqo3XaS2oGKuF3zDCKXfkZJjOABDl/pqlCPt
+ eIejLOvTEvFfedvxvVEfHUiu9OJ5KSec7hATvn0wjsspdPgJhmt+oqBRS
+ Wtq263i6Kq+O0bfZSbjjR2ls+5RT3V6L1oQM5Eg4/v+9Ksy0Ic8zZ6O/W g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="420156556"
+X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="420156556"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2023 16:35:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="765402781"
-X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="765402781"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
- by fmsmga007.fm.intel.com with ESMTP; 03 Nov 2023 16:12:12 -0700
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qz3Kj-00032j-1e;
- Fri, 03 Nov 2023 23:12:09 +0000
-Date: Sat, 4 Nov 2023 07:11:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Oak Zeng <oak.zeng@intel.com>
-Message-ID: <202311040742.1HyQ0JZI-lkp@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; 
+   d="scan'208";a="3067329"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 03 Nov 2023 16:35:43 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Fri, 3 Nov 2023 16:35:43 -0700
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Fri, 3 Nov 2023 16:35:43 -0700
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Fri, 3 Nov 2023 16:35:42 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R0Z826BqilMU5B0rQu2/YyPFdkEhpDrLQA6WBIDzOVL0LU0Pojucq7y/3g2bQqz/MTU8PXvAmnjb3yAR3O0itU4UEU9Q6Fxrb0s7YiknBMyqD9v506XwW+Z5sXscKJg5utvcSJQ0/LQjdLBs+GUgaamy2R0AVr2J5CMrIVPGsmCu8rgFcWhMcYFUfNAlUflzlv8GfJUc+vTbFP/ZZxRJTXjbNk0vEccZ30qkFwgkxWNkVJ27UtGklxCRtSTNqphEzZq6LjOBAoAK/czMAXAYzmgCiqfdOkekRIINMj58ZTyxWn8pVDHHU89K7YFKqVQG1CmHYSFpWTP84K4R7xTiag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=O8MH75NgM5L4h3fykme7hKssuTv9O4gc5b7K1EZWd88=;
+ b=X1QkEhZQewHhh37zF/HzAZBxQ0A3DCmZV6jrgDdDlm3AJt9P2ngx4Gxo1QHN+uyG8HTR2+WC/5vhSmFBQmbBc0OIopUxdS68AsQajdGimvcxZSXUZYZtA70LSdFI1vy/iowwzuxn1TWmNdbaVJDv7tUgIJYr29psQIzm0f6fKEfxeZKdTc3I5h06EIraPbKSU5ub0fA4ioAeECpAVqhhSgimtyJ6ufL5ldCmkItCRgLSIVAnnh6sfPbboh66l7H1Saf9zjmmLAUnrPZgvdmRO7Qj7o51/xFlapde6cwhZBrNOgMIzRfarrNl1Re9yWCVi5CqjcDv7Z5dNW15+0fZ6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com (2603:10b6:8:da::22) by
+ MN2PR11MB4679.namprd11.prod.outlook.com (2603:10b6:208:26b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.21; Fri, 3 Nov
+ 2023 23:35:35 +0000
+Received: from DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::f723:f4d9:c12a:5b62]) by DS7PR11MB7859.namprd11.prod.outlook.com
+ ([fe80::f723:f4d9:c12a:5b62%4]) with mapi id 15.20.6954.021; Fri, 3 Nov 2023
+ 23:35:35 +0000
+Date: Fri, 3 Nov 2023 16:35:32 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Francois Dugast <francois.dugast@intel.com>
+Message-ID: <20231103233532.GR1327160@mdroper-desk1.amr.corp.intel.com>
+References: <20231103143456.7-1-francois.dugast@intel.com>
+ <20231103143456.7-14-francois.dugast@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [drm-xe:oak/drm-evictable-lru 11/11]
- drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_res_cursor.h:65:34: error:
- 'struct ttm_resource' has no member named 'size'
+In-Reply-To: <20231103143456.7-14-francois.dugast@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0166.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::21) To DS7PR11MB7859.namprd11.prod.outlook.com
+ (2603:10b6:8:da::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS7PR11MB7859:EE_|MN2PR11MB4679:EE_
+X-MS-Office365-Filtering-Correlation-Id: 891c7c0b-c8dc-49ec-5322-08dbdcc59377
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: RhdxIUHnkNM8JrDm165rp5e74BG9MunyfmIaMUgO3Cbg3aVrVBeACp9Vak9bx386Fl3LW1LKpAmhNbWFmwHPU1c12937G9K4nW62YEFfn1aJGzjyEQZsaxxUUuuZzgbLqYExNTV4gtt3/sXiP6xugkCF9iDycCdFlkFl9tjVbGq0d0icHeK6LJQGR0Z3rZspGriyl639c1DjoYn1bzr6U4uow1YuIGVL2mu+o+EOJiYdQhadC4dI+xTN3Lt/XZqjozP9lwYTzp0IlT8rSaRt4WzAGz8vxG0rHHhjNMOrzXys2rjqTsbtzhJ5IpdZv9hpX6y3hZ56Ah4lzZbBghTj2obH5HMaTweTKwVF+sKiyS5AJIqTyG0djYABQdD2ZUKE8o3DRgHM6quLX9+ZBG00MmqKviGzcbCKtv2BRkcDsRtsHpC9paSkoydLcp903sw+aHV+pzYlCtGWi+pjzRJwzAI8fWLWUcDpMiugIwBnNzc/pD2AKFgjH5RFrO4XSnPmGllu2Yte5kybzYeBK3Cb7TmL1qBroyFjhS1cSc8pSEqbnXg+jgf6fOMd5KXoSY0d
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS7PR11MB7859.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(346002)(366004)(39860400002)(396003)(376002)(230922051799003)(1800799009)(186009)(451199024)(64100799003)(5660300002)(33656002)(41300700001)(6862004)(4326008)(8936002)(8676002)(2906002)(86362001)(83380400001)(82960400001)(38100700002)(1076003)(26005)(107886003)(478600001)(66556008)(54906003)(66946007)(66476007)(6636002)(316002)(6512007)(6506007)(6666004)(6486002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?tlFctaV91SV3tRgAco4RrwHLgwH/lAqNJeqmsnFerB8Vwld6TqjeGAVKkW?=
+ =?iso-8859-1?Q?ezppQ02LtQRWgMgpCkTf0al+tiYmqONnC6W5ivKOIiNNwT+XXp0R563JNu?=
+ =?iso-8859-1?Q?lByqg1dvVuafP7bJLVas+t0A7cr0UpR4ECCqXqGvqyyEDEX+G2vhBsGIKU?=
+ =?iso-8859-1?Q?li95Uh0jvrFU3i3off+jycJHhzEDVlt0Mr0OrL6qxq7Suf/j7JC3jX9Q5n?=
+ =?iso-8859-1?Q?7sT+A7BcQmHm6voovdLL8G+jxWcUObtuNHnW2IZLAr2B99nDQF1hOsDGWU?=
+ =?iso-8859-1?Q?tc4B92eUzKXBZkchBHBDF0GKij9Cu1GpnkO3v3iURRGsndMauW/zkZgFQx?=
+ =?iso-8859-1?Q?6PBbSnDY2g8IxIS8U4YHhrpqo6qSCR6yg/6pLutbrfZT9mK09FdlB3G4YG?=
+ =?iso-8859-1?Q?L/qCSgDVCmxrgZz3i0tmRh1To0TFkd4jtbQnx9XcnjHf6htYhwZI5JxXVj?=
+ =?iso-8859-1?Q?db8LoYAuDcSQgtwoFHHTCUg40f8wi1bDvhPoJvmZe4VJEUo4qlxQRKjGoM?=
+ =?iso-8859-1?Q?kYEzzYfU8QpOEb+zbFlMLjvOngQMtBd7XWWvasO5sP0uk+A5WKWLBwnKv6?=
+ =?iso-8859-1?Q?0yDb27TTZj+ahTtwPbbtPAbvTR2p6Q1jO8173iuOev5JaZYw3U9cu6YX2M?=
+ =?iso-8859-1?Q?RiDW3DmgtSquVapO75P+0zn9n7OimwsIh/jGODIct6XY8ufS536VFGg5me?=
+ =?iso-8859-1?Q?IAKsQWRlVutp3xB1EX+SaTUlCXRrk6emeARBltrNum0PuxxWoTJ1hAml1B?=
+ =?iso-8859-1?Q?nW5606qJtW/6vJIxIn+ZPxyKt22aksGobB8AFi6s7s6rP4pgx7U9gS0HyX?=
+ =?iso-8859-1?Q?JAO9FEhE3GW4Kty/K+d//H3IHcT6TTKJvcLHybHHguRgrO6a9n7dipGYJU?=
+ =?iso-8859-1?Q?IPRXLmZJP+XMEyLzDFqm7516UwkFBWXv8pq+NQ++1BlQe43pw/4MwpJ1nY?=
+ =?iso-8859-1?Q?ArvuDXooWcWjSiCnNjAOyiqIjUtv8M0MZGnWh4r0PKAnTZKFNUq7L+SlZR?=
+ =?iso-8859-1?Q?YgL7nMvlaLAsnhnpKtFi9kziEYtyv3y59Tc719jUgtW3Y/jFMmIMzYylUD?=
+ =?iso-8859-1?Q?nvAKwpqhetrH002L8SrQ0C49l9XA6qcvkc3Uzz7g9nPO1ZLswt7yKtAies?=
+ =?iso-8859-1?Q?xrSQSON4SVjuGngGv6xUueWlBrrkuzwDiYTJq8ZzUNVFklxKIUW2kkykcH?=
+ =?iso-8859-1?Q?fmRVlqZGThFjtcPVXczlIwK1J2vh65QLR2nRnPY3bLnep4XiNz/GsJNBc0?=
+ =?iso-8859-1?Q?nXBuPdRDw9FdG7I9bWObuqa+vZUuO95QVH0oSyjIOUBLb3ERQI0rke8tbX?=
+ =?iso-8859-1?Q?5gQ5KVKeafJqTtwhGj3fqEQqvICn/78IIgdG7Oapwgvp0ajQbJPIjtL+33?=
+ =?iso-8859-1?Q?Xt1YBJ2zL0HQQkXwoBFrf/L2/jBg7VPyAaeHrXdfnRhCJQoMeKbG0jIHSR?=
+ =?iso-8859-1?Q?bKEaYpaToR9aQGVi3QddzQVFdBRkyJiEabYFaoFpe4YJ/iyF6Yt+lrykur?=
+ =?iso-8859-1?Q?HZQji0sYR/xkHLhUWuYKcT90KeHnWdSBAnl3DqzKlJRfarNoVS/GTK9jJK?=
+ =?iso-8859-1?Q?K6eOGD/KrT3/Ibmy8cSg75iUGmu57CU3eImzjWdffdSxGiQ/gJ4eKiScw9?=
+ =?iso-8859-1?Q?zNvv2le9OFzoXQRitFQXzhYm7sxSnNm8hga2aq96lAuWGeGjoONxFtxg?=
+ =?iso-8859-1?Q?=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 891c7c0b-c8dc-49ec-5322-08dbdcc59377
+X-MS-Exchange-CrossTenant-AuthSource: DS7PR11MB7859.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2023 23:35:34.5115 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: qw3s5BwUaP1FrT0p3pLsjEWA0ot4aJwByZNFpOjK07UOkIBROxcWbKotZTGRlbc8WPDdXUHXyqqUZvBYvKbK95Np7pjmASJeK+KfvTFwzVE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4679
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH v2 13/50] drm/xe/uapi: Remove GT_TYPE_REMOTE
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,497 +145,73 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, oe-kbuild-all@lists.linux.dev
+Cc: Carl Zhang <carl.zhang@intel.com>, intel-xe@lists.freedesktop.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git oak/drm-evictable-lru
-head:   d1f59526925ae851c6abf77af8ae6f8c3cffeebd
-commit: d1f59526925ae851c6abf77af8ae6f8c3cffeebd [11/11] drm/ttm: Write ttm functions using drm lru manager functions
-config: loongarch-randconfig-002-20231104 (https://download.01.org/0day-ci/archive/20231104/202311040742.1HyQ0JZI-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231104/202311040742.1HyQ0JZI-lkp@intel.com/reproduce)
+On Fri, Nov 03, 2023 at 02:34:19PM +0000, Francois Dugast wrote:
+> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> With the split between tile and gt, this is currently unused.
+> Also it is bringing confusion because main vs remote would be
+> more a concept of the tile itself and not about GT.
+> 
+> So, the MAIN one is the traditional GT used for every operation
+> in older platforms, and for render/graphics and compute on platforms
+> that contains the stand-alone Media GT.
+> 
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Francois Dugast <francois.dugast@intel.com>
+> Cc: Carl Zhang <carl.zhang@intel.com>
+> Cc: José Roberto de Souza <jose.souza@intel.com>
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311040742.1HyQ0JZI-lkp@intel.com/
+Assuming the UMDs are prepared for the change to MEDIA's value (2 -> 1),
+looks good to me.
 
-All errors (new ones prefixed by >>):
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-   In file included from include/linux/build_bug.h:5,
-                    from include/linux/container_of.h:5,
-                    from include/linux/list.h:5,
-                    from include/linux/module.h:12,
-                    from drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_processpptables.c:23:
-   drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_res_cursor.h: In function 'amdgpu_res_first':
->> drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_res_cursor.h:65:34: error: 'struct ttm_resource' has no member named 'size'
-      65 |         BUG_ON(start + size > res->size);
-         |                                  ^~
-   include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
-      77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
-         |                                             ^
-   drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_res_cursor.h:65:9: note: in expansion of macro 'BUG_ON'
-      65 |         BUG_ON(start + size > res->size);
-         |         ^~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_object.h:33,
-                    from drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu.h:1499,
-                    from drivers/gpu/drm/amd/amdgpu/../pm/powerplay/inc/amd_powerplay.h:33,
-                    from drivers/gpu/drm/amd/amdgpu/../pm/powerplay/inc/hwmgr.h:27,
-                    from drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_processpptables.h:27,
-                    from drivers/gpu/drm/amd/amdgpu/../pm/powerplay/hwmgr/vega10_processpptables.c:27:
->> drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_res_cursor.h:67:28: error: 'struct ttm_resource' has no member named 'mem_type'
-      67 |         cur->mem_type = res->mem_type;
-         |                            ^~
-   In file included from arch/loongarch/include/asm/bug.h:59,
-                    from include/linux/bug.h:5,
-                    from include/linux/fortify-string.h:5,
-                    from include/linux/string.h:254,
-                    from include/linux/bitmap.h:11,
-                    from include/linux/cpumask.h:12,
-                    from include/linux/mm_types_task.h:14,
-                    from include/linux/mm_types.h:5,
-                    from include/linux/buildid.h:5,
-                    from include/linux/module.h:14:
-   drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_res_cursor.h:114:42: error: 'struct ttm_resource' has no member named 'size'
-     114 |         WARN_ON(res && start + size > res->size);
-         |                                          ^~
-   include/asm-generic/bug.h:123:32: note: in definition of macro 'WARN_ON'
-     123 |         int __ret_warn_on = !!(condition);                              \
-         |                                ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_object.h: In function 'amdgpu_bo_in_cpu_visible_vram':
->> drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_object.h:255:29: error: 'struct ttm_resource' has no member named 'mem_type'
-     255 |         if (bo->tbo.resource->mem_type != TTM_PL_VRAM)
-         |                             ^~
---
-   In file included from include/linux/string.h:5,
-                    from include/linux/uuid.h:11,
-                    from include/linux/mod_devicetable.h:14,
-                    from include/linux/pci.h:27,
-                    from drivers/gpu/drm/amd/amdgpu/atombios_encoders.c:27:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h: In function 'amdgpu_res_first':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:34: error: 'struct ttm_resource' has no member named 'size'
-      65 |         BUG_ON(start + size > res->size);
-         |                                  ^~
-   include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
-      77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
-         |                                             ^
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:9: note: in expansion of macro 'BUG_ON'
-      65 |         BUG_ON(start + size > res->size);
-         |         ^~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:33,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu.h:1499,
-                    from drivers/gpu/drm/amd/amdgpu/atombios_encoders.c:32:
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:67:28: error: 'struct ttm_resource' has no member named 'mem_type'
-      67 |         cur->mem_type = res->mem_type;
-         |                            ^~
-   In file included from arch/loongarch/include/asm/bug.h:59,
-                    from include/linux/bug.h:5,
-                    from include/linux/fortify-string.h:5,
-                    from include/linux/string.h:254:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:114:42: error: 'struct ttm_resource' has no member named 'size'
-     114 |         WARN_ON(res && start + size > res->size);
-         |                                          ^~
-   include/asm-generic/bug.h:123:32: note: in definition of macro 'WARN_ON'
-     123 |         int __ret_warn_on = !!(condition);                              \
-         |                                ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h: In function 'amdgpu_bo_in_cpu_visible_vram':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:255:29: error: 'struct ttm_resource' has no member named 'mem_type'
-     255 |         if (bo->tbo.resource->mem_type != TTM_PL_VRAM)
-         |                             ^~
---
-   In file included from include/asm-generic/div64.h:27,
-                    from ./arch/loongarch/include/generated/asm/div64.h:1,
-                    from include/linux/math.h:6,
-                    from include/linux/math64.h:6,
-                    from include/linux/time.h:6,
-                    from include/linux/ktime.h:24,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h:26,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu.h:43,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c:26:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h: In function 'amdgpu_res_first':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:34: error: 'struct ttm_resource' has no member named 'size'
-      65 |         BUG_ON(start + size > res->size);
-         |                                  ^~
-   include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
-      77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
-         |                                             ^
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:9: note: in expansion of macro 'BUG_ON'
-      65 |         BUG_ON(start + size > res->size);
-         |         ^~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:33,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu.h:1499:
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:67:28: error: 'struct ttm_resource' has no member named 'mem_type'
-      67 |         cur->mem_type = res->mem_type;
-         |                            ^~
-   In file included from arch/loongarch/include/asm/bug.h:59,
-                    from include/linux/ktime.h:26:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:114:42: error: 'struct ttm_resource' has no member named 'size'
-     114 |         WARN_ON(res && start + size > res->size);
-         |                                          ^~
-   include/asm-generic/bug.h:123:32: note: in definition of macro 'WARN_ON'
-     123 |         int __ret_warn_on = !!(condition);                              \
-         |                                ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h: In function 'amdgpu_bo_in_cpu_visible_vram':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:255:29: error: 'struct ttm_resource' has no member named 'mem_type'
-     255 |         if (bo->tbo.resource->mem_type != TTM_PL_VRAM)
-         |                             ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c: In function 'amdgpu_preempt_mgr_init':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c:121:61: error: 'VMW_PL_SYSTEM' undeclared (first use in this function); did you mean 'TTM_PL_SYSTEM'?
-     121 |         ttm_resource_manager_set_lru_mgr(man, &drm->lru_mgr[VMW_PL_SYSTEM]);
-         |                                                             ^~~~~~~~~~~~~
-         |                                                             TTM_PL_SYSTEM
-   drivers/gpu/drm/amd/amdgpu/amdgpu_preempt_mgr.c:121:61: note: each undeclared identifier is reported only once for each function it appears in
---
-   In file included from include/linux/string.h:5,
-                    from include/linux/dma-mapping.h:7,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:25:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h: In function 'amdgpu_res_first':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:34: error: 'struct ttm_resource' has no member named 'size'
-      65 |         BUG_ON(start + size > res->size);
-         |                                  ^~
-   include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
-      77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
-         |                                             ^
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:9: note: in expansion of macro 'BUG_ON'
-      65 |         BUG_ON(start + size > res->size);
-         |         ^~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:33,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu.h:1499,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:28:
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:67:28: error: 'struct ttm_resource' has no member named 'mem_type'
-      67 |         cur->mem_type = res->mem_type;
-         |                            ^~
-   In file included from arch/loongarch/include/asm/bug.h:59,
-                    from include/linux/bug.h:5,
-                    from include/linux/fortify-string.h:5,
-                    from include/linux/string.h:254:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:114:42: error: 'struct ttm_resource' has no member named 'size'
-     114 |         WARN_ON(res && start + size > res->size);
-         |                                          ^~
-   include/asm-generic/bug.h:123:32: note: in definition of macro 'WARN_ON'
-     123 |         int __ret_warn_on = !!(condition);                              \
-         |                                ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h: In function 'amdgpu_bo_in_cpu_visible_vram':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:255:29: error: 'struct ttm_resource' has no member named 'mem_type'
-     255 |         if (bo->tbo.resource->mem_type != TTM_PL_VRAM)
-         |                             ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c: In function 'amdgpu_vram_mgr_new':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:481:41: error: 'struct ttm_resource' has no member named 'size'
-     481 |         remaining_size = (u64)vres->base.size;
-         |                                         ^
-   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:541:48: error: 'struct ttm_resource' has no member named 'size'
-     541 |                 original_size = (u64)vres->base.size;
-         |                                                ^
-   In file included from arch/loongarch/include/asm/page.h:34,
-                    from include/linux/shm.h:6,
-                    from include/linux/sched.h:16,
-                    from include/linux/ratelimit.h:6,
-                    from include/linux/dev_printk.h:16,
-                    from include/linux/device.h:15,
-                    from include/linux/dma-mapping.h:8:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:576:46: error: 'struct ttm_resource' has no member named 'size'
-     576 |                 if (start > PFN_UP(vres->base.size))
-         |                                              ^
-   include/linux/pfn.h:19:28: note: in definition of macro 'PFN_UP'
-      19 | #define PFN_UP(x)       (((x) + PAGE_SIZE-1) >> PAGE_SHIFT)
-         |                            ^
-   drivers/gpu/drm/amd/amdgpu/amdgpu_vram_mgr.c:577:51: error: 'struct ttm_resource' has no member named 'size'
-     577 |                         start -= PFN_UP(vres->base.size);
-         |                                                   ^
-   include/linux/pfn.h:19:28: note: in definition of macro 'PFN_UP'
-      19 | #define PFN_UP(x)       (((x) + PAGE_SIZE-1) >> PAGE_SHIFT)
-         |                            ^
---
-   In file included from include/asm-generic/div64.h:27,
-                    from ./arch/loongarch/include/generated/asm/div64.h:1,
-                    from include/linux/math.h:6,
-                    from include/linux/math64.h:6,
-                    from include/linux/time.h:6,
-                    from include/linux/ktime.h:24,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_ctx.h:26,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu.h:43,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c:34:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h: In function 'amdgpu_res_first':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:34: error: 'struct ttm_resource' has no member named 'size'
-      65 |         BUG_ON(start + size > res->size);
-         |                                  ^~
-   include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
-      77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
-         |                                             ^
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:9: note: in expansion of macro 'BUG_ON'
-      65 |         BUG_ON(start + size > res->size);
-         |         ^~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:33,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu.h:1499:
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:67:28: error: 'struct ttm_resource' has no member named 'mem_type'
-      67 |         cur->mem_type = res->mem_type;
-         |                            ^~
-   In file included from arch/loongarch/include/asm/bug.h:59,
-                    from include/linux/ktime.h:26:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:114:42: error: 'struct ttm_resource' has no member named 'size'
-     114 |         WARN_ON(res && start + size > res->size);
-         |                                          ^~
-   include/asm-generic/bug.h:123:32: note: in definition of macro 'WARN_ON'
-     123 |         int __ret_warn_on = !!(condition);                              \
-         |                                ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h: In function 'amdgpu_bo_in_cpu_visible_vram':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:255:29: error: 'struct ttm_resource' has no member named 'mem_type'
-     255 |         if (bo->tbo.resource->mem_type != TTM_PL_VRAM)
-         |                             ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c: In function 'amdgpu_dma_buf_map':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c:164:64: error: 'struct ttm_resource' has no member named 'mem_type'
-     164 |         } else if (!(amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type) &
-         |                                                                ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c:169:33: error: 'struct ttm_resource' has no member named 'mem_type'
-     169 |         switch (bo->tbo.resource->mem_type) {
-         |                                 ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c: In function 'amdgpu_dma_buf_move_notify':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_dma_buf.c:375:50: error: 'struct ttm_resource' has no member named 'mem_type'
-     375 |         if (!bo->tbo.resource || bo->tbo.resource->mem_type == TTM_PL_SYSTEM)
-         |                                                  ^~
---
-   In file included from include/linux/dev_printk.h:14,
-                    from include/linux/device.h:15,
-                    from include/linux/power_supply.h:15,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:28:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h: In function 'amdgpu_res_first':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:34: error: 'struct ttm_resource' has no member named 'size'
-      65 |         BUG_ON(start + size > res->size);
-         |                                  ^~
-   include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
-      77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
-         |                                             ^
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:9: note: in expansion of macro 'BUG_ON'
-      65 |         BUG_ON(start + size > res->size);
-         |         ^~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:33,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu.h:1499,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:49:
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:67:28: error: 'struct ttm_resource' has no member named 'mem_type'
-      67 |         cur->mem_type = res->mem_type;
-         |                            ^~
-   In file included from arch/loongarch/include/asm/bug.h:59,
-                    from include/linux/bug.h:5,
-                    from include/linux/thread_info.h:13,
-                    from include/asm-generic/current.h:5,
-                    from ./arch/loongarch/include/generated/asm/current.h:1,
-                    from include/linux/sched.h:12,
-                    from include/linux/ratelimit.h:6,
-                    from include/linux/dev_printk.h:16:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:114:42: error: 'struct ttm_resource' has no member named 'size'
-     114 |         WARN_ON(res && start + size > res->size);
-         |                                          ^~
-   include/asm-generic/bug.h:123:32: note: in definition of macro 'WARN_ON'
-     123 |         int __ret_warn_on = !!(condition);                              \
-         |                                ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h: In function 'amdgpu_bo_in_cpu_visible_vram':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:255:29: error: 'struct ttm_resource' has no member named 'mem_type'
-     255 |         if (bo->tbo.resource->mem_type != TTM_PL_VRAM)
-         |                             ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c: In function 'amdgpu_device_recover_vram':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4478:41: error: 'struct ttm_resource' has no member named 'mem_type'
-    4478 |                 if (shadow->tbo.resource->mem_type != TTM_PL_TT ||
-         |                                         ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_device.c:4480:49: error: 'struct ttm_resource' has no member named 'mem_type'
-    4480 |                     shadow->parent->tbo.resource->mem_type != TTM_PL_VRAM)
-         |                                                 ^~
---
-   In file included from include/linux/build_bug.h:5,
-                    from include/linux/container_of.h:5,
-                    from include/linux/list.h:5,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:32:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h: In function 'amdgpu_res_first':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:34: error: 'struct ttm_resource' has no member named 'size'
-      65 |         BUG_ON(start + size > res->size);
-         |                                  ^~
-   include/linux/compiler.h:77:45: note: in definition of macro 'unlikely'
-      77 | # define unlikely(x)    __builtin_expect(!!(x), 0)
-         |                                             ^
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:65:9: note: in expansion of macro 'BUG_ON'
-      65 |         BUG_ON(start + size > res->size);
-         |         ^~~~~~
-   In file included from drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:33,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu.h:1499,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:39:
->> drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:67:28: error: 'struct ttm_resource' has no member named 'mem_type'
-      67 |         cur->mem_type = res->mem_type;
-         |                            ^~
-   In file included from arch/loongarch/include/asm/bug.h:59,
-                    from include/linux/bug.h:5,
-                    from include/linux/thread_info.h:13,
-                    from include/asm-generic/preempt.h:5,
-                    from ./arch/loongarch/include/generated/asm/preempt.h:1,
-                    from include/linux/preempt.h:79,
-                    from include/linux/spinlock.h:56,
-                    from include/linux/mmzone.h:8,
-                    from include/linux/gfp.h:7,
-                    from include/linux/slab.h:16,
-                    from drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:33:
-   drivers/gpu/drm/amd/amdgpu/amdgpu_res_cursor.h:114:42: error: 'struct ttm_resource' has no member named 'size'
-     114 |         WARN_ON(res && start + size > res->size);
-         |                                          ^~
-   include/asm-generic/bug.h:123:32: note: in definition of macro 'WARN_ON'
-     123 |         int __ret_warn_on = !!(condition);                              \
-         |                                ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.h: In function 'amdgpu_bo_in_cpu_visible_vram':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_object.h:255:29: error: 'struct ttm_resource' has no member named 'mem_type'
-     255 |         if (bo->tbo.resource->mem_type != TTM_PL_VRAM)
-         |                             ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_create':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:628:29: error: 'struct ttm_resource' has no member named 'mem_type'
-     628 |             bo->tbo.resource->mem_type == TTM_PL_VRAM &&
-         |                             ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:636:29: error: 'struct ttm_resource' has no member named 'mem_type'
-     636 |             bo->tbo.resource->mem_type == TTM_PL_VRAM) {
-         |                             ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_pin_restricted':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:925:53: error: 'struct ttm_resource' has no member named 'mem_type'
-     925 |                 uint32_t mem_type = bo->tbo.resource->mem_type;
-         |                                                     ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:981:60: error: 'struct ttm_resource' has no member named 'mem_type'
-     981 |         domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
-         |                                                            ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_unpin':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1033:29: error: 'struct ttm_resource' has no member named 'mem_type'
-    1033 |         if (bo->tbo.resource->mem_type == TTM_PL_VRAM) {
-         |                             ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1037:36: error: 'struct ttm_resource' has no member named 'mem_type'
-    1037 |         } else if (bo->tbo.resource->mem_type == TTM_PL_TT) {
-         |                                    ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_move_notify':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1276:25: error: 'struct ttm_resource' has no member named 'mem_type'
-    1276 |             bo->resource->mem_type != TTM_PL_SYSTEM)
-         |                         ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1288:42: error: 'struct ttm_resource' has no member named 'mem_type'
-    1288 |         trace_amdgpu_bo_move(abo, new_mem->mem_type, old_mem->mem_type);
-         |                                          ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1288:61: error: 'struct ttm_resource' has no member named 'mem_type'
-    1288 |         trace_amdgpu_bo_move(abo, new_mem->mem_type, old_mem->mem_type);
-         |                                                             ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_get_memory':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1301:60: error: 'struct ttm_resource' has no member named 'mem_type'
-    1301 |         domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
-         |                                                            ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_release_notify':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1360:42: error: 'struct ttm_resource' has no member named 'mem_type'
-    1360 |         if (!bo->resource || bo->resource->mem_type != TTM_PL_VRAM ||
-         |                                          ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_fault_reserve_notify':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1398:25: error: 'struct ttm_resource' has no member named 'mem_type'
-    1398 |         if (bo->resource->mem_type != TTM_PL_VRAM)
-         |                         ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1424:25: error: 'struct ttm_resource' has no member named 'mem_type'
-    1424 |         if (bo->resource->mem_type == TTM_PL_VRAM &&
-         |                         ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_gpu_offset':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1515:38: error: 'struct ttm_resource' has no member named 'mem_type'
-    1515 |         WARN_ON_ONCE(bo->tbo.resource->mem_type == TTM_PL_SYSTEM);
-         |                                      ^~
-   include/asm-generic/bug.h:111:32: note: in definition of macro 'WARN_ON_ONCE'
-     111 |         int __ret_warn_on = !!(condition);                      \
-         |                                ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1519:38: error: 'struct ttm_resource' has no member named 'mem_type'
-    1519 |         WARN_ON_ONCE(bo->tbo.resource->mem_type == TTM_PL_VRAM &&
-         |                                      ^~
-   include/asm-generic/bug.h:111:32: note: in definition of macro 'WARN_ON_ONCE'
-     111 |         int __ret_warn_on = !!(condition);                      \
-         |                                ^~~~~~~~~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_gpu_offset_no_check':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1538:64: error: 'struct ttm_resource' has no member named 'mem_type'
-    1538 |                  amdgpu_ttm_domain_start(adev, bo->tbo.resource->mem_type);
-         |                                                                ^~
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c: In function 'amdgpu_bo_print_info':
-   drivers/gpu/drm/amd/amdgpu/amdgpu_object.c:1593:68: error: 'struct ttm_resource' has no member named 'mem_type'
-    1593 |                 domain = amdgpu_mem_type_to_domain(bo->tbo.resource->mem_type);
-         |                                                                    ^~
-..
-
-
-vim +65 drivers/gpu/drm/amd/amdgpu/../amdgpu/amdgpu_res_cursor.h
-
-ee18f40ea1816b Christian König          2021-02-17   43  
-ee18f40ea1816b Christian König          2021-02-17   44  /**
-ee18f40ea1816b Christian König          2021-02-17   45   * amdgpu_res_first - initialize a amdgpu_res_cursor
-ee18f40ea1816b Christian König          2021-02-17   46   *
-ee18f40ea1816b Christian König          2021-02-17   47   * @res: TTM resource object to walk
-ee18f40ea1816b Christian König          2021-02-17   48   * @start: Start of the range
-ee18f40ea1816b Christian König          2021-02-17   49   * @size: Size of the range
-ee18f40ea1816b Christian König          2021-02-17   50   * @cur: cursor object to initialize
-ee18f40ea1816b Christian König          2021-02-17   51   *
-ee18f40ea1816b Christian König          2021-02-17   52   * Start walking over the range of allocations between @start and @size.
-ee18f40ea1816b Christian König          2021-02-17   53   */
-ee18f40ea1816b Christian König          2021-02-17   54  static inline void amdgpu_res_first(struct ttm_resource *res,
-ee18f40ea1816b Christian König          2021-02-17   55  				    uint64_t start, uint64_t size,
-ee18f40ea1816b Christian König          2021-02-17   56  				    struct amdgpu_res_cursor *cur)
-ee18f40ea1816b Christian König          2021-02-17   57  {
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   58  	struct drm_buddy_block *block;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   59  	struct list_head *head, *next;
-ee18f40ea1816b Christian König          2021-02-17   60  	struct drm_mm_node *node;
-ee18f40ea1816b Christian König          2021-02-17   61  
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   62  	if (!res)
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   63  		goto fallback;
-ee18f40ea1816b Christian König          2021-02-17   64  
-e3c92eb4a84fb0 Somalapuram Amaranath    2022-10-27  @65  	BUG_ON(start + size > res->size);
-ee18f40ea1816b Christian König          2021-02-17   66  
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  @67  	cur->mem_type = res->mem_type;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   68  
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   69  	switch (cur->mem_type) {
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   70  	case TTM_PL_VRAM:
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   71  		head = &to_amdgpu_vram_mgr_resource(res)->blocks;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   72  
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   73  		block = list_first_entry_or_null(head,
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   74  						 struct drm_buddy_block,
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   75  						 link);
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   76  		if (!block)
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   77  			goto fallback;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   78  
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   79  		while (start >= amdgpu_vram_mgr_block_size(block)) {
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   80  			start -= amdgpu_vram_mgr_block_size(block);
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   81  
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   82  			next = block->link.next;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   83  			if (next != head)
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   84  				block = list_entry(next, struct drm_buddy_block, link);
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   85  		}
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   86  
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   87  		cur->start = amdgpu_vram_mgr_block_start(block) + start;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   88  		cur->size = min(amdgpu_vram_mgr_block_size(block) - start, size);
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   89  		cur->remaining = size;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   90  		cur->node = block;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   91  		break;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08   92  	case TTM_PL_TT:
-dc3499c71d3618 Alex Deucher             2023-07-14   93  	case AMDGPU_PL_DOORBELL:
-cb1c81467af355 Christian König          2021-04-30   94  		node = to_ttm_range_mgr_node(res)->mm_nodes;
-15e16daa35ba15 Nirmoy Das               2021-03-19   95  		while (start >= node->size << PAGE_SHIFT)
-ee18f40ea1816b Christian König          2021-02-17   96  			start -= node++->size << PAGE_SHIFT;
-ee18f40ea1816b Christian König          2021-02-17   97  
-ee18f40ea1816b Christian König          2021-02-17   98  		cur->start = (node->start << PAGE_SHIFT) + start;
-ee18f40ea1816b Christian König          2021-02-17   99  		cur->size = min((node->size << PAGE_SHIFT) - start, size);
-ee18f40ea1816b Christian König          2021-02-17  100  		cur->remaining = size;
-ee18f40ea1816b Christian König          2021-02-17  101  		cur->node = node;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  102  		break;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  103  	default:
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  104  		goto fallback;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  105  	}
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  106  
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  107  	return;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  108  
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  109  fallback:
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  110  	cur->start = start;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  111  	cur->size = size;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  112  	cur->remaining = size;
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  113  	cur->node = NULL;
-e3c92eb4a84fb0 Somalapuram Amaranath    2022-10-27  114  	WARN_ON(res && start + size > res->size);
-c9cad937c0c586 Arunpravin Paneer Selvam 2022-04-08  115  	return;
-ee18f40ea1816b Christian König          2021-02-17  116  }
-ee18f40ea1816b Christian König          2021-02-17  117  
-
-:::::: The code at line 65 was first introduced by commit
-:::::: e3c92eb4a84fb0f00442e6b5cabf4f11b0eaaf41 drm/ttm: rework on ttm_resource to use size_t type
-
-:::::: TO: Somalapuram Amaranath <Amaranath.Somalapuram@amd.com>
-:::::: CC: Christian König <christian.koenig@amd.com>
+> ---
+>  drivers/gpu/drm/xe/xe_query.c | 2 --
+>  include/uapi/drm/xe_drm.h     | 5 ++---
+>  2 files changed, 2 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index 3eef4160074e..34b4082edec5 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -375,8 +375,6 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
+>  	for_each_gt(gt, xe, id) {
+>  		if (xe_gt_is_media_type(gt))
+>  			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_MEDIA;
+> -		else if (gt_to_tile(gt)->id > 0)
+> -			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_REMOTE;
+>  		else
+>  			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_MAIN;
+>  		gt_list->gt_list[id].gt_id = gt->info.id;
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 05714068c637..1473dd29aa3f 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -376,9 +376,8 @@ struct drm_xe_query_config {
+>   */
+>  struct drm_xe_query_gt {
+>  #define DRM_XE_QUERY_GT_TYPE_MAIN		0
+> -#define DRM_XE_QUERY_GT_TYPE_REMOTE		1
+> -#define DRM_XE_QUERY_GT_TYPE_MEDIA		2
+> -	/** @type: GT type: Main, Remote, or Media */
+> +#define DRM_XE_QUERY_GT_TYPE_MEDIA		1
+> +	/** @type: GT type: Main or Media */
+>  	__u16 type;
+>  	/** @gt_id: Unique ID of this GT within the PCI Device */
+>  	__u16 gt_id;
+> -- 
+> 2.34.1
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
