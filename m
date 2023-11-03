@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B212EC4332F
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 19:14:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F127C4332F
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 19:21:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8093F10EA6D;
-	Fri,  3 Nov 2023 19:14:49 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2391A10EA6D
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 19:14:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F0A510EA83;
+	Fri,  3 Nov 2023 19:21:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB54F10EA83
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 19:21:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699038888; x=1730574888;
+ t=1699039288; x=1730575288;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=f3TVGmWLOYj8PCRPe6EQhm3liEJK4gVUR2FEAzr7zK4=;
- b=F5nqzfVjup/k3uJHux9WMGk2xEdRbK/f/7rT58VcceDcO4N78ZcJMiDE
- bluFH/eOIdMv3dGSF97FEBgbhUrtadqg0bSXCbP6hnkM+WnaExyKCnMy/
- 1tIAb3YOPtmapY85E/eVR5q9FozQwE0Hu7cYjTDskwyxbKO7JesR7qrLu
- k4+daKfAJ0KaUL8/dizVqgGvcsrBE4yxwKqzJko5yiDKKgZDbu2LjykhP
- x1uDOUZmt41NRfi+1ZGlYb+AIy3kXvJdqpsxnK25R56LIfPh6YzWPB3ZA
- KjvY/A3wsd5tfkZAnMJfpdiKu18d+o9easSGgINl6A89qN/hNjDAtrXzF Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="369212411"
-X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="369212411"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 12:14:47 -0700
+ bh=rJDTMv252bd89dL/k+jId0CPNJsdHdNgcjJZqUTOMVE=;
+ b=kUo7Oppq9blOjkFwaMzmM+ThPys0SSI6C4sBDfC2LNB0T4HiY/OSvW5D
+ nMiNx18B2ISishQb83WTIKUPg8NHEpwvUYvu7IgIhlmS2BesZXbF6KvaH
+ 9bdYzXmmtgu6tn2YRRF8EI+O7NYzsnWt+rI1RwNOMFVAukVbp+hhQ8yqB
+ rZ3ByJdU3SvJDvTCglw5UAeeucHu48bIi2ohhEiwgannW73k+gF6TUjvJ
+ u+gGO7c5WcUGi/qWz7hLC5Gq1GYrVQXnYwFKwAZY3H5xoeFMksj0dXZ8v
+ 35e2MPCwXJ7cooSrD2KL4w3ytiwLfBdZHlsGAZ/z/2SHu1dhQ+SmHFVSh Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="453304820"
+X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="453304820"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2023 12:21:27 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="765336301"
-X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="765336301"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 03 Nov 2023 12:14:47 -0700
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="852354075"
+X-IronPort-AV: E=Sophos;i="6.03,275,1694761200"; d="scan'208";a="852354075"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by FMSMGA003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 03 Nov 2023 12:21:27 -0700
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Fri, 3 Nov 2023 12:14:47 -0700
-Received: from orsmsx602.amr.corp.intel.com (10.22.229.15) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.1.2507.34; Fri, 3 Nov 2023 12:21:26 -0700
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Fri, 3 Nov 2023 12:14:46 -0700
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Fri, 3 Nov 2023 12:14:46 -0700
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Fri, 3 Nov 2023 12:21:26 -0700
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Fri, 3 Nov 2023 12:14:45 -0700
+ 15.1.2507.34; Fri, 3 Nov 2023 12:21:25 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hUv1JieHFTr8kBvct5abH3765TLTN4WzUVMjKa6yOPvLSD+Rygmj6HSeYmxCUIjHnvkv2cX6lAta1Ga1LCh/sUvgJEZTGAwSqF9B/S9nGEVwYvoIXr91XPw2THD/L2el79zNZGc8xZg2K6fZ46i5cfHvBw+qk2fMMKvf0O12VpfTZWuSA+xG4qdd4g/5jPH4Uliz5l9q8RYLDVmeXDMtQ7wAFiL6VLZsaSz2YZkzW3E9N6xmUJ7ceCeXNXORB4J0fuXT0sGB/Hdi60qHd5m7LoFlnW8WvxRwZmWUPmxMYCCQALGoBGDONsa/fDsMwr+8X0hsehnWhovTXxkqll00RQ==
+ b=J+OCu1i1JJ2X53zxNAWlvG2w5JoInXQtDbjVAXhHahF75+4Ibp0Qn0hfoyTHxn/HtEZgFxM5ReMeLVXp2TWpPqCUKwWmegOqvv7frKNWCqUnCngtdqV5NWQ4pIxn4XEUXEWHz9n3NvovuGHvxLpcNKegEIrlPbg0qbQygUlsd8f0Qgun2iQ3ZqTFl/5W6uOaVnL5oYOeTlr7XGk5ffqtNDd2d0UeVVUV+LuS6ZPTqLJsXSLjU+5+5rbyYpWlSzeK2V4sBFiUFUMQPonZBM5DukrYsNdFhUJRMDM/8J5PJGL5ihHuyhwp2Jfyli0ukUQ7ZHxDggNGB1qPu95h208zng==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=np+XFm/BETWNH1l31Wbm0ARAyYwt2WoxcJ824zu4+Mk=;
- b=NM1Kox9doOM4w1tIOuaNZs/C5cf3HeAPQH3lgG7+bVp791+B9qxix9fClwPlBS3uCgs3XafSsZTxY4x+Zb0jVkomrF16LmxTjNcoUOLapXfEYyx+x+jO+3sCrLpfcGQG7GhJn2kgsnHyb5BFMX068DHOBt1eRZ9H+opMJT+wIBredPEDlf/2r8/Tc0RLNpK+y2R8+FOPEgieQhwbpF6kiDGPXNlfL9+aLlOPedliuES5OxGN9cWRROjXmaUmG5QL4vhCpMzIz/oTV4ALrhZ1fjZsbLvEqkwi6j6HkLQyYdr96TGUqZ9xrXcpNnbO8/zVNFuo73t9FMn3X6n8CgKGLQ==
+ bh=4lD8tV0LETFRyX/OHtDK818D/NJjnsJfWMHCGxwECEg=;
+ b=TyQh4InsqCLMhmEYUAxgB4Wz0SLOTpgsCJTn2LRTuAN6arYSbCDf4hP2eZSAEpQCQEwtkL9MY01zwuNmV2GOTb+LtQuqyFmcNU+Ncho5xvbT/BtMBxxs+YfxSdSUgwZglum0OsQiMp8J7Fjy3gRyN5jZDAXJ1L/V+pS8lUHk5FsstE5UOS9bttdix5vao3aytKFX0bRUz6Cmw2l/hVctR9jkIdkV6k/IlZ8ONOEzvgMUeeYDe+GlGeqqaOJHJhPF8TYYwYgeaSLLwlq7MYnoSFJh7UAwkHBsIRc0nAPukVXfrUYiAf7vsrbJ2Tim66IOz4lXsomm3GNZq9JbbSdNQQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,82 +63,83 @@ Received: from SN7PR11MB7705.namprd11.prod.outlook.com (2603:10b6:806:32f::16)
  by SN7PR11MB6947.namprd11.prod.outlook.com (2603:10b6:806:2aa::6)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.19; Fri, 3 Nov
- 2023 19:14:43 +0000
+ 2023 19:21:23 +0000
 Received: from SN7PR11MB7705.namprd11.prod.outlook.com
  ([fe80::7c9d:a4c7:4e1e:aebc]) by SN7PR11MB7705.namprd11.prod.outlook.com
  ([fe80::7c9d:a4c7:4e1e:aebc%4]) with mapi id 15.20.6954.024; Fri, 3 Nov 2023
- 19:14:43 +0000
-Message-ID: <014d4506-919d-4d53-b08a-0d37ec07cdc8@intel.com>
-Date: Fri, 3 Nov 2023 12:14:40 -0700
+ 19:21:23 +0000
+Message-ID: <c8fb9fce-fb63-44a5-81be-15222c665a18@intel.com>
+Date: Fri, 3 Nov 2023 12:21:21 -0700
 User-Agent: Mozilla Thunderbird
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20231103014309.13927-1-brian.welty@intel.com>
- <ZUUQWdiJSNjtkfmE@DUT025-TGLU.fm.intel.com>
 Content-Language: en-US
+To: "Summers, Stuart" <stuart.summers@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+References: <20231103014309.13927-1-brian.welty@intel.com>
+ <9ea0651f8568f87fcf6d20ba0cc74226b490cf0d.camel@intel.com>
 From: "Welty, Brian" <brian.welty@intel.com>
-In-Reply-To: <ZUUQWdiJSNjtkfmE@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <9ea0651f8568f87fcf6d20ba0cc74226b490cf0d.camel@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BYAPR05CA0002.namprd05.prod.outlook.com
- (2603:10b6:a03:c0::15) To SN7PR11MB7705.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR13CA0169.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c7::24) To SN7PR11MB7705.namprd11.prod.outlook.com
  (2603:10b6:806:32f::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SN7PR11MB7705:EE_|SN7PR11MB6947:EE_
-X-MS-Office365-Filtering-Correlation-Id: 229c0ba7-1ce9-40e6-88dc-08dbdca121dd
+X-MS-Office365-Filtering-Correlation-Id: 589ebcf6-8acf-4512-bf2b-08dbdca210e8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9uC147jsFVKnk/0ii9BLfiWthR0bsSIxRYjOO0U8ArpElftMbzu4rq8dbIhUvXoh1ueyhm9XQgC6aOeqBxW/IiVDrEAk/ZakAMFQi0QsW4GWAoZJQVFACcQ6Mwm86L4kYMs1qJGgFN2b6bZXmbgo9aEuqvvwosPLv4dLK4RJKia3ir7Pq00v88hr0HP6x/YK2hGF2+wezkbRmlrZJKAW8+HonFhNoDcWOenRy3f6Yx9X6VjWVZ0sbHNQbthJtw1uxCI0T5rCxcwacRlZxkp5sJAiUv9n/yZIYRZ30eB+bLevwAFCrHbWH9DNYOhyHTMEPqxdBFHzY9heKykhnIw/EJA3gKa/E4k7JsOblaJdTeQX1SEENI0DRgY//o1s4mGZWoVOyYzyLb5GNVlnf20PbigktdYp9omvV7h2nLil/M6k1x1Mt/o3pn62L8xiw+XDEWjmgFPEM4vsoe8F9q4GTRelgzIivPC3bVOSFdYmY1Nhkg70yVBf4urFveMqJEq9CqoitxI792DVqmHLVdrAbpHZH4+e7W0bsXbXs7x/8/YZpQCNQA7fVS81hfWkeFXYzMufgurJeglykXecbbF+ejRq/CdLekqYS/6VS1lY3/HNDpAB9NyCIa3tzEK4ymkwnX/Ef94OwXziBZI7utC9fQ==
+X-Microsoft-Antispam-Message-Info: BpL1iIvmSFjrRSJ6sPccCaIXNfukOlWhikLT4SA1duE7A386XRfyivVrEbTehD9LR7POC+ohxRCivw+4GP8/IN0Mhy9fRAfEx/wbamDJJsEpyU4tMYDaYiEKmdBpAXku32wCmTcAHMw1xXGOyBJxM9vmn4zTE6yVCr6ZFI0RxNMQEZiwiWtupTnOOgP1mn7wXASbFlNdDKAlnyycM9ShyfjeOFnnzJdu2N71Sv0lVJuVRe2SszGnjw9Xhtm/ADWrkdWjJ+V+LpJlIijvT+EjIExoK9HUE6nOwjEYP7jfztC07tAE4sZx7rpOGyJQXDgAVWx8fsK1I3dJp1oWwoa+1eQIhOL3etF2rZjmWQ0qvUwWMfJRAujD7uSz6+SLf4dVv0uXO/MbAKq4pGQIkiiUcEEjnTbsrErHztG1ZxGmuZ0IQvyeT7GdvuBqoPk4zGik99KzR1aTHclmmTqFYEdiz9LONHtDV4E6v+7mey7/Z8eIAuU0CyZxUTVDMReMJhlyVQzB5DkpTDjXa4Us4GUlpa4KCKG03r7Jj44Dh9/0irnurwHdgPDRJfK5jsCkA/WHI3jlBoaxoMTZalt4Z+xlckY9kJMBa+ikmXdwNibLHuVjPP8werjSiBen2Ifz7BPhD+ZKhBuHyKXYr+rORpFbBw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SN7PR11MB7705.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(346002)(39860400002)(366004)(396003)(136003)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(6486002)(478600001)(83380400001)(5660300002)(53546011)(6506007)(8676002)(8936002)(4326008)(66556008)(6636002)(66946007)(37006003)(107886003)(66476007)(2906002)(26005)(316002)(41300700001)(38100700002)(6862004)(31686004)(82960400001)(6512007)(31696002)(86362001)(2616005)(36756003)(45980500001)(43740500002);
+ SFS:(13230031)(136003)(396003)(366004)(39860400002)(346002)(376002)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(36756003)(4326008)(8936002)(8676002)(107886003)(66946007)(26005)(316002)(66476007)(2906002)(66556008)(83380400001)(53546011)(5660300002)(6486002)(478600001)(110136005)(6506007)(82960400001)(6512007)(31686004)(31696002)(2616005)(86362001)(38100700002)(41300700001)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?M1k5cXpodjMydFFuaDN4eklsYm1DbnpiVVVrVXErWFRKakJRanc5WXE2amll?=
- =?utf-8?B?VFVvWTZXR29MUUF5WEkxUHI3eVRxejB3MUUrVG40NjdRSUxsOHc0SUgwRGtm?=
- =?utf-8?B?NFIyVE83R1FLSXF2M0s5NjdvRDdlVHVaTmkzWHVmNjQxbUs5MkVTMm93bUNM?=
- =?utf-8?B?bzJDemt2MFByMGdTRE95cWFiNXZ1ZVBEMnpWeC9qS2NYbDgyK1h5eGtjR3Vn?=
- =?utf-8?B?L2xUVXJPRG9pMzNraFBURDFpRjRSRTZqS1Q4Q0FkUGZJTXVvVng2WFEzNEFE?=
- =?utf-8?B?bnVzck1wY2REbUU2RFZzdWZaZTZWU2c1L0IrS2xmSmhXOFJyTWgyNXVHRHo4?=
- =?utf-8?B?Z0dOaWNrWGpIL2Y2djdGWXBSQUhEdjgrNnJSOFZ2SEtOZ0NiVjJYckIrbU83?=
- =?utf-8?B?L1dnb01kUCszOUNKdmlYcFFEaHRuM0ZqTFQyRmFsVTlzcitUUEdRQ2JWSlNk?=
- =?utf-8?B?aWl2T3lEVXRlMUhKb1l6bVE3U3BhWVB5bGpjYkE1OUhuSE50NG9zck43L3dL?=
- =?utf-8?B?WDg1aGtmUTU0cHhORFFBeFp1c2QyWk9oQi9nTnlDcmhDQ3RtNU9UUXl4SVpE?=
- =?utf-8?B?SGZUTE1FR3FZZHBaMzNPMGNtbFNDenY1YkhVeG5jSDZWQlE3ZVM5NXFkbjZP?=
- =?utf-8?B?NmRRdnA4OStFbnBNM295aFJOc2FwOG5qR2ZXUE5OUWQrV3JYSUEvRHN2bktl?=
- =?utf-8?B?UnUvdGlXM0pjdW9iY2JTQmpsNnFDTWtzWHhGcE1SK2NuU1VnZ0lEOXl3UmV6?=
- =?utf-8?B?TXpjQTE3SDNXMFU1NEFneDJkM2ZBZU9PZytURFZRZm1CL1BubnlFSXdhRHZy?=
- =?utf-8?B?d2VNTEdSM2xIdmpXMmFiOGE1aDlQYjVuRjUyQVVuT2FvNi8xa2Z4amRZejAv?=
- =?utf-8?B?clhuTkFQaDVkeHFGY1h1QkdKWmJOcHloUHdaMiszanZRUXVEdGMweERjUVNW?=
- =?utf-8?B?L0hEN0RWU3R1a2c0NG9kcy9mTm1mRXB5OVdxWHlad2NzMmdXWVoyeHM3ejBh?=
- =?utf-8?B?UXM2enJMb0IvUmlENEYwcFd6R2F3SDFrV05TM2xwWWJLa1phd0FwSXV5V0Zz?=
- =?utf-8?B?VDl0Rno4K0x6eFdleDBCaHpTaFRRTTNxdzJ3MlB5MVdmbU9lVkpuU0NEOEha?=
- =?utf-8?B?Ujd5SlN1NmJEdVFySkdjbEUwM084djlHZEtQZkFueEFaMWhpRHZLalEzL0Yx?=
- =?utf-8?B?SkoyS3duZ2FwSHhRYXh0Sm9VbXZuMk9iSlg2ekxvUHJYa011WDh3N1pPdk9B?=
- =?utf-8?B?YlFaN0l1VlNIUGtoeG1NYTIra2hQZkNQRkkxYUFTUC8rbE9UWHRlbTNjWVIw?=
- =?utf-8?B?SUdQRVlldFh5enlYVVR0TmorVjRWRVAyOHh3d1d5a1JHb1RUeEVIQ3hYemps?=
- =?utf-8?B?NUFpdnduOGVHTGpjY0dXM3hrT0dGeXo0QUl0V0M4aWhRTFJlQ0ZRUGdhdU84?=
- =?utf-8?B?bnFyRzFKT09aL3hHd0NvNnd3cHNzMDR5YS9oemxmVjM5czdwaHFZWkVSUW5M?=
- =?utf-8?B?WkQ2TkxPc2NOYlowbUVCdFZ5UG1jVGl6V01LQmVQWFJpREh0clNJOGVaQUZ5?=
- =?utf-8?B?OXo4Y1lZemNvM3RUMWFtNm9Ud3Z6WW5la2ZBdUc2N05rQUtGbEhnS05KSVJX?=
- =?utf-8?B?Zm1TcnhISW4zL0hKQmpUbTZRVWZFaXkvZFZyTnJkTDhnQkNsZnNvYkliY1V5?=
- =?utf-8?B?OXZFVm1EMjl2YksvTFFwMUlSbzFod2xITHBnclhId3RzOWZQekl4bTZrK1pW?=
- =?utf-8?B?UFhqc3lqdktTNmprbjVIbTAyc1dEZFd4RmxNcVRta2gwSnZOcWx5SnN3L0x1?=
- =?utf-8?B?akEzWlpDa29Yb2ZiM3Fua0RWb2Vic2RQMXVkZk95QjFtRG43R3VKUHNDMWk2?=
- =?utf-8?B?b2JobW5nZjhTNzNFLzNkdVZjeDBSaTIyWmhhYXhlVTBLbWJrUDl1ZGtKNisz?=
- =?utf-8?B?SkNzVkdYaFVRU3NEMWVtNUN4UkZncHV1aWhJSE1pclFnMm1rcDFTMEsra21M?=
- =?utf-8?B?YmtSc3A5M1NvU1ZrS2xRWERKdW15RWVldzlOSmdnUUF0UGpabXZkejNLQmxS?=
- =?utf-8?B?bHlkNFdLY0JpL01BZVZ4dndSdmtnN0VySHRQV2d6V1Zld093NTRKWDBBKzht?=
- =?utf-8?Q?J9YYa9+LwWgeenjSn8qwg7aW3?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 229c0ba7-1ce9-40e6-88dc-08dbdca121dd
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?R3cxbFdFaTlyVnJWekZRekRQaWNiVTcyTktJUXAycGh2QXdXVjVVb3RkSzVL?=
+ =?utf-8?B?TVpLdXdWUm5ublFpd3VQQVFRUURrZEVSWG1EN0Z2ZkZWbGkrWEczdnBITGlL?=
+ =?utf-8?B?TkliYkh4bk1PRmhhaENtVUxYOWNBTDBNSlpCVmFmL2pTU2ZJWmhuZjlSS1Nh?=
+ =?utf-8?B?RzJyc2pkTnBDRjVSUVVmcUFLMUVFeGxDREFtZ2pkU2t0VGpDU2tqSVdndFlJ?=
+ =?utf-8?B?amR1Q3Q2WFp6TkhpYUVyUG1vb0l3Qzgyc1FKQkRqYlJJTkNkdnd5M2hiQzhR?=
+ =?utf-8?B?YmowSEh2L3pLTi9QUXByVXJBaWlMSG43RXRvUnVXRUVZQUorRVpJQ2FGK0tC?=
+ =?utf-8?B?SmhENURIcWZEZzA0dStmTnFSYVcrVjJnZS9CeHloL1ZpZ1FpcGNlckloUG1v?=
+ =?utf-8?B?MlhaSWFueGxtVWVQai9teEVoWmFpNmlmaXFoY2hKb0U4Zng1UlM4eDFUZW9z?=
+ =?utf-8?B?MVdEOXYyZjV1RGhJVDVqVFhkMklTdVFCWDhSbHZHK29VZ1REYWlSNTIvQlpM?=
+ =?utf-8?B?dHJobHpmazUrLzFRNEdYYXRqaVZXeUJLUnFtMy9QL3AxVmYvZXd2K0JVV01X?=
+ =?utf-8?B?bjk5WDg2M0xlNmI3V0NmNnpPNkdjaEhwR1c4eE9iQkZSRGZQZitEVVpqQmVj?=
+ =?utf-8?B?TFNhSDA4QzV0MmFaMWhvd3ROVFpxQ3J4RnZ5N0YvaWhmNFdOQW02U3dTWEFr?=
+ =?utf-8?B?eW1ySmFkSjZvWSt3dHVjdFB2TzJ1Q3FVZGtQajdLdDBGWDhOcXRtVkxieDRC?=
+ =?utf-8?B?ZHdMa0M4aTBRalpwMk82YldqVTJ0QU1SNCtwK3NxV092MnhhdkRUWVRJOHJp?=
+ =?utf-8?B?eWFPTWZlbjBwOFpVRmVYUFluRXRac0R6eGFFWFRqTGtnZzVHM3pnRGpIVmo2?=
+ =?utf-8?B?V2VBSGV4NGJPbXllSGEyR1ZVSkErYStNR0E0OVp0dVhFU3h3YlJDY0kxUE5S?=
+ =?utf-8?B?bzJLS3BnL25GNElBZzloZ0NJTGRkQTdudm5ReUZPQU9wcGpjM0dtcXF1NmQ5?=
+ =?utf-8?B?dXpHTFJ6MlpnRFRBTWxydzVEU0QrOWdYaFdzZTdBbk9Dc09Td0JoSDZ0NzFQ?=
+ =?utf-8?B?eWFmZmh6UkdlZDJFQ0xBMVZDYXYrK0ZGRU1Dd1F2eXdObkU0SEs2OXNSeDNt?=
+ =?utf-8?B?dGxPcTQwSDBlWks3cWg4SmltaTVWSzVReEJGOTNnVEJ4dndXdm1PYjV1WG9Y?=
+ =?utf-8?B?TWdJTWhHUml0RDZ3UHdxcG9VeGk5a1lxNVJ2WmZsK1R0L3NCQ280ZktqYkx5?=
+ =?utf-8?B?clo2QVFJdlZUZmpwZFhUem8wbTFwalRpbXlPU0RKeTAxZk9Nc1JhM2hHcHdi?=
+ =?utf-8?B?bUlhVzZwVXhFS091dE9YeHA4R2hyZEhUcEZoRGdqSXEyMk40V3pDL1E5UzQy?=
+ =?utf-8?B?VzJDZloxbEVXeXU5aFphV29JOGZJNTdDK0x1S2FkTzBVazlURzJ6TjZ3Z0FU?=
+ =?utf-8?B?Z1hzRW9GandSd05QMk1yZFRhaHFUVzJRUnFnS0JLb0tlaGtsOENIVXdxeGx5?=
+ =?utf-8?B?THhLb2Fwck9HNGpBV0RKdEtWNkFDQTZWdnJHcnpGQ1NFbGRyU1l6em1oU1Ux?=
+ =?utf-8?B?bGxzOHFDTCttaTR1bWdiSXhRdVpHNjRjSXZuSDBlK3lqdTUzRkdYeFF0cnBB?=
+ =?utf-8?B?cWR6TlM0Z1FHdVQyV24wZmxVTlgyU0JrTFdRQUZ6VGpLL0dmNVAyaGRVUXFx?=
+ =?utf-8?B?OWxqOGpDTVZMRFAwMnZNNXJWdlpYMHM5dUpCS0hjRXhnTFhyQSsvREtjQTg5?=
+ =?utf-8?B?dHUzSVFjQnptZW9nRm53T1B0a1hIeC9yRWY4amhqS1RLRXJyNzVCR0Zrb3g5?=
+ =?utf-8?B?aWlOcXdUd2EzRTg1LzV0SklMUG44bUFma0xCNitBb3Y1K3pGcDNQNmQ2WE0z?=
+ =?utf-8?B?T0xpb2JyQVdRc0hxaXVweTdyWlFlY1NacXI4TENPckRYSG1wQUhGWkdGOHZE?=
+ =?utf-8?B?ZzUrdWNFOGxjcndOaHFVb2E3aEsweDZ1Z0dyYTFYYVBtSzl5ZVlVWHAxNzZG?=
+ =?utf-8?B?b1NHc2QxazVQOUFySE9seEFRYzNGcWJhd0t0ZFUwR1UwYmdoMmFYWk9vOTdQ?=
+ =?utf-8?B?OXVYd096M2dTVWJWcEh6ZnZnK1gzR0MwOGNOeEt6bEZiekR0c1ZEK09QQlJ3?=
+ =?utf-8?Q?I7TSgREoUobvtHLVRjxFZSzL2?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 589ebcf6-8acf-4512-bf2b-08dbdca210e8
 X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7705.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2023 19:14:42.0328 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Nov 2023 19:21:23.0915 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 05l3VGa+Fmt8EPuyBeHDIrJgPF+blOp/9/eg8EcRFfw7M5TswdeDORpXPxkJDDRWd5HA5NWjEAL8OHOpydd5BQ==
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3VIP8tDZY4CABgyD359iwkLigki0aZ0b6ETUEq6f3IseAzJTiaY8SbQCShm4zlVHqTCJv9RMUQERheWepHPZzA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6947
 X-OriginatorOrg: intel.com
 Subject: Re: [Intel-xe] [PATCH v3] drm/xe: Fix pagefault and access counter
@@ -158,206 +155,242 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 11/3/2023 8:23 AM, Matthew Brost wrote:
-> On Thu, Nov 02, 2023 at 06:43:09PM -0700, Brian Welty wrote:
->> When processing G2H messages for pagefault or access counters, we queue a
->> work item and call queue_work(). This fails if the worker thread is already
+On 11/3/2023 7:58 AM, Summers, Stuart wrote:
+> On Thu, 2023-11-02 at 18:43 -0700, Brian Welty wrote:
+>> When processing G2H messages for pagefault or access counters, we
+>> queue a
+>> work item and call queue_work(). This fails if the worker thread is
+>> already
 >> queued to run.
->> The expectation is that the worker function will do more than process a
->> single item and return. It needs to either process all pending items or
->> requeue itself if items are pending. But requeuing will add latency and
+>> The expectation is that the worker function will do more than process
+>> a
+>> single item and return. It needs to either process all pending items
+>> or
+>> requeue itself if items are pending. But requeuing will add latency
+>> and
 >> potential context switch can occur.
 >>
->> We don't want to add unnecessary latency and so the worker should process
+>> We don't want to add unnecessary latency and so the worker should
+>> process
 >> as many faults as it can within a reasonable duration of time.
 >> We also do not want to hog the cpu core, so here we execute in a loop
 >> and requeue if still running after more than 20 ms.
->> This seems reasonable framework and easy to tune this further if needed.
+>> This seems reasonable framework and easy to tune this further if
+>> needed.
 >>
->> This resolves issues seen with several igt@xe_exec_fault_mode subtests
+>> This resolves issues seen with several igt@xe_exec_fault_mode
+>> subtests
 >> where the GPU will hang when KMD ignores a pending pagefault.
 >>
 >> v2: requeue the worker instead of having an internal processing loop.
 >> v3: implement hybrid model of v1 and v2
->>      now, run for 20 msec before we will requeue if still running
+>>      now, run for 20 msec before we will requeue if still running
+> 
+> Agreed this approach is much better.
+> 
 >>
 >> Signed-off-by: Brian Welty <brian.welty@intel.com>
 >> ---
->>   drivers/gpu/drm/xe/xe_gt_pagefault.c | 80 ++++++++++++++++------------
->>   1 file changed, 46 insertions(+), 34 deletions(-)
+>>   drivers/gpu/drm/xe/xe_gt_pagefault.c | 80 ++++++++++++++++----------
+>> --
+>>   1 file changed, 46 insertions(+), 34 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c
+>> b/drivers/gpu/drm/xe/xe_gt_pagefault.c
 >> index ab6daebbd77c..c99af751d1fb 100644
 >> --- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
 >> +++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
->> @@ -276,10 +276,10 @@ static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
+>> @@ -276,10 +276,10 @@ static void print_pagefault(struct xe_device
+>> *xe, struct pagefault *pf)
 >>   
->>   #define PF_MSG_LEN_DW	4
+>>   #define PF_MSG_LEN_DW  4
 >>   
->> -static int get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
->> +static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
->>   {
->>   	const struct xe_guc_pagefault_desc *desc;
->> -	int ret = 0;
->> +	bool ret = false;
+>> -static int get_pagefault(struct pf_queue *pf_queue, struct pagefault
+>> *pf)
+>> +static bool get_pagefault(struct pf_queue *pf_queue, struct
+>> pagefault *pf)
+>>   {
+>>          const struct xe_guc_pagefault_desc *desc;
+>> -       int ret = 0;
+>> +       bool ret = false;
 >>   
->>   	spin_lock_irq(&pf_queue->lock);
->>   	if (pf_queue->head != pf_queue->tail) {
->> @@ -303,8 +303,7 @@ static int get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+>>          spin_lock_irq(&pf_queue->lock);
+>>          if (pf_queue->head != pf_queue->tail) {
+>> @@ -303,8 +303,7 @@ static int get_pagefault(struct pf_queue
+>> *pf_queue, struct pagefault *pf)
 >>   
->>   		pf_queue->head = (pf_queue->head + PF_MSG_LEN_DW) %
->>   			PF_QUEUE_NUM_DW;
->> -	} else {
->> -		ret = -1;
->> +		ret = true;
->>   	}
->>   	spin_unlock_irq(&pf_queue->lock);
+>>                  pf_queue->head = (pf_queue->head + PF_MSG_LEN_DW) %
+>>                          PF_QUEUE_NUM_DW;
+>> -       } else {
+>> -               ret = -1;
+>> +               ret = true;
+>>          }
+>>          spin_unlock_irq(&pf_queue->lock);
 >>   
->> @@ -348,6 +347,8 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
->>   	return full ? -ENOSPC : 0;
->>   }
+>> @@ -348,6 +347,8 @@ int xe_guc_pagefault_handler(struct xe_guc *guc,
+>> u32 *msg, u32 len)
+>>          return full ? -ENOSPC : 0;
+>>   }
 >>   
->> +#define USM_QUEUE_MAX_RUNTIME_MS	20
+>> +#define USM_QUEUE_MAX_RUNTIME_MS       20
 >> +
->>   static void pf_queue_work_func(struct work_struct *w)
->>   {
->>   	struct pf_queue *pf_queue = container_of(w, struct pf_queue, worker);
->> @@ -355,31 +356,37 @@ static void pf_queue_work_func(struct work_struct *w)
->>   	struct xe_device *xe = gt_to_xe(gt);
->>   	struct xe_guc_pagefault_reply reply = {};
->>   	struct pagefault pf = {};
->> +	unsigned long threshold;
->>   	int ret;
+>>   static void pf_queue_work_func(struct work_struct *w)
+>>   {
+>>          struct pf_queue *pf_queue = container_of(w, struct pf_queue,
+>> worker);
+>> @@ -355,31 +356,37 @@ static void pf_queue_work_func(struct
+>> work_struct *w)
+>>          struct xe_device *xe = gt_to_xe(gt);
+>>          struct xe_guc_pagefault_reply reply = {};
+>>          struct pagefault pf = {};
+>> +       unsigned long threshold;
+>>          int ret;
 >>   
->> -	ret = get_pagefault(pf_queue, &pf);
->> -	if (ret)
->> -		return;
->> +	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
+>> -       ret = get_pagefault(pf_queue, &pf);
+>> -       if (ret)
+>> -               return;
+>> +       threshold = jiffies +
+>> msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
 >>   
->> -	ret = handle_pagefault(gt, &pf);
->> -	if (unlikely(ret)) {
->> -		print_pagefault(xe, &pf);
->> -		pf.fault_unsuccessful = 1;
->> -		drm_dbg(&xe->drm, "Fault response: Unsuccessful %d\n", ret);
->> -	}
->> +	while (get_pagefault(pf_queue, &pf)) {
->> +		ret = handle_pagefault(gt, &pf);
->> +		if (unlikely(ret)) {
->> +			print_pagefault(xe, &pf);
->> +			pf.fault_unsuccessful = 1;
->> +			drm_dbg(&xe->drm, "Fault response: Unsuccessful %d\n", ret);
->> +		}
+>> -       ret = handle_pagefault(gt, &pf);
+>> -       if (unlikely(ret)) {
+>> -               print_pagefault(xe, &pf);
+>> -               pf.fault_unsuccessful = 1;
+>> -               drm_dbg(&xe->drm, "Fault response: Unsuccessful
+>> %d\n", ret);
+>> -       }
+>> +       while (get_pagefault(pf_queue, &pf)) {
+>> +               ret = handle_pagefault(gt, &pf);
+>> +               if (unlikely(ret)) {
+>> +                       print_pagefault(xe, &pf);
+>> +                       pf.fault_unsuccessful = 1;
+>> +                       drm_dbg(&xe->drm, "Fault response:
+>> Unsuccessful %d\n", ret);
+>> +               }
 >> +
->> +		reply.dw0 = FIELD_PREP(PFR_VALID, 1) |
->> +			FIELD_PREP(PFR_SUCCESS, pf.fault_unsuccessful) |
->> +			FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
->> +			FIELD_PREP(PFR_DESC_TYPE, FAULT_RESPONSE_DESC) |
->> +			FIELD_PREP(PFR_ASID, pf.asid);
+>> +               reply.dw0 = FIELD_PREP(PFR_VALID, 1) |
+>> +                       FIELD_PREP(PFR_SUCCESS,
+>> pf.fault_unsuccessful) |
+>> +                       FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
+>> +                       FIELD_PREP(PFR_DESC_TYPE,
+>> FAULT_RESPONSE_DESC) |
+>> +                       FIELD_PREP(PFR_ASID, pf.asid);
 >>   
->> -	reply.dw0 = FIELD_PREP(PFR_VALID, 1) |
->> -		FIELD_PREP(PFR_SUCCESS, pf.fault_unsuccessful) |
->> -		FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
->> -		FIELD_PREP(PFR_DESC_TYPE, FAULT_RESPONSE_DESC) |
->> -		FIELD_PREP(PFR_ASID, pf.asid);
->> +		reply.dw1 = FIELD_PREP(PFR_VFID, pf.vfid) |
->> +			FIELD_PREP(PFR_ENG_INSTANCE, pf.engine_instance) |
->> +			FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
->> +			FIELD_PREP(PFR_PDATA, pf.pdata);
+>> -       reply.dw0 = FIELD_PREP(PFR_VALID, 1) |
+>> -               FIELD_PREP(PFR_SUCCESS, pf.fault_unsuccessful) |
+>> -               FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
+>> -               FIELD_PREP(PFR_DESC_TYPE, FAULT_RESPONSE_DESC) |
+>> -               FIELD_PREP(PFR_ASID, pf.asid);
+>> +               reply.dw1 = FIELD_PREP(PFR_VFID, pf.vfid) |
+>> +                       FIELD_PREP(PFR_ENG_INSTANCE,
+>> pf.engine_instance) |
+>> +                       FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
+>> +                       FIELD_PREP(PFR_PDATA, pf.pdata);
 >>   
->> -	reply.dw1 = FIELD_PREP(PFR_VFID, pf.vfid) |
->> -		FIELD_PREP(PFR_ENG_INSTANCE, pf.engine_instance) |
->> -		FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
->> -		FIELD_PREP(PFR_PDATA, pf.pdata);
->> +		send_pagefault_reply(&gt->uc.guc, &reply);
+>> -       reply.dw1 = FIELD_PREP(PFR_VFID, pf.vfid) |
+>> -               FIELD_PREP(PFR_ENG_INSTANCE, pf.engine_instance) |
+>> -               FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
+>> -               FIELD_PREP(PFR_PDATA, pf.pdata);
+>> +               send_pagefault_reply(&gt->uc.guc, &reply);
 >>   
->> -	send_pagefault_reply(&gt->uc.guc, &reply);
->> +		if (time_after(jiffies, threshold)) {
+>> -       send_pagefault_reply(&gt->uc.guc, &reply);
+>> +               if (time_after(jiffies, threshold)) {
+>> +                       queue_work(gt->usm.pf_wq, w);
 > 
-> Maybe check if PF queue is empty here too. If empty do not queue the worker.
+> If we queue from here instead of just breaking out and letting the
+> parent function requeue the work, isn't there still a chance we could
+> get into some kind of infinite CPU loop? I guess in this case we would
+> still queue out to a new CPU each time so this would allow us to
+> reschedule on the local node, but doesn't that leave us in the same
+> place we were in with v1?
+> 
+> Basically, why don't we just break out at this point. Why add the
+> nested queue?
 
-Right.  Latency sensitive here, so I tried to avoid testing that here as 
-thought would have to grab spinlock.
-But seems if just reading head and tail and not advancing them, I don't 
-need to hold the lock here.
+We can't rely on parent to queue us...  I mean parent does the initial
+queueing of worker.   But for the case where queue_work() returned 
+false, the parent may then go idle for long time and not run again.
+The parent shouldn't have to keep doing queue_work() until it returns 
+true.  That approach adds latency to servicing incoming G2H messages.
+The better solution is to have the worker requeue itself as it is the
+worker thread who is managing how much work it does in one iteration...
+Does this help explain it?
 
-If we processed more than one fault, odds are that the worker was 
-already requeued anyway by the parent.  So not sure this matters too much.
-But yes, agree and will add the check here.
+And will make small change to above as mention in other thread with Matt.
 
 -Brian
 
-
 > 
->> +			queue_work(gt->usm.pf_wq, w);
->> +			break;
->> +		}
->> +	}
->>   }
+> Thanks,
+> Stuart
+> 
+>> +                       break;
+>> +               }
+>> +       }
+>>   }
 >>   
->>   static void acc_queue_work_func(struct work_struct *w);
->> @@ -544,10 +551,10 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
+>>   static void acc_queue_work_func(struct work_struct *w);
+>> @@ -544,10 +551,10 @@ static int handle_acc(struct xe_gt *gt, struct
+>> acc *acc)
 >>   
->>   #define ACC_MSG_LEN_DW        4
+>>   #define ACC_MSG_LEN_DW        4
 >>   
 >> -static int get_acc(struct acc_queue *acc_queue, struct acc *acc)
 >> +static bool get_acc(struct acc_queue *acc_queue, struct acc *acc)
->>   {
->>   	const struct xe_guc_acc_desc *desc;
->> -	int ret = 0;
->> +	bool ret = false;
+>>   {
+>>          const struct xe_guc_acc_desc *desc;
+>> -       int ret = 0;
+>> +       bool ret = false;
 >>   
->>   	spin_lock(&acc_queue->lock);
->>   	if (acc_queue->head != acc_queue->tail) {
->> @@ -567,8 +574,7 @@ static int get_acc(struct acc_queue *acc_queue, struct acc *acc)
+>>          spin_lock(&acc_queue->lock);
+>>          if (acc_queue->head != acc_queue->tail) {
+>> @@ -567,8 +574,7 @@ static int get_acc(struct acc_queue *acc_queue,
+>> struct acc *acc)
 >>   
->>   		acc_queue->head = (acc_queue->head + ACC_MSG_LEN_DW) %
->>   				  ACC_QUEUE_NUM_DW;
->> -	} else {
->> -		ret = -1;
->> +		ret = true;
->>   	}
->>   	spin_unlock(&acc_queue->lock);
+>>                  acc_queue->head = (acc_queue->head + ACC_MSG_LEN_DW)
+>> %
+>>                                    ACC_QUEUE_NUM_DW;
+>> -       } else {
+>> -               ret = -1;
+>> +               ret = true;
+>>          }
+>>          spin_unlock(&acc_queue->lock);
 >>   
->> @@ -581,16 +587,22 @@ static void acc_queue_work_func(struct work_struct *w)
->>   	struct xe_gt *gt = acc_queue->gt;
->>   	struct xe_device *xe = gt_to_xe(gt);
->>   	struct acc acc = {};
->> +	unsigned long threshold;
->>   	int ret;
+>> @@ -581,16 +587,22 @@ static void acc_queue_work_func(struct
+>> work_struct *w)
+>>          struct xe_gt *gt = acc_queue->gt;
+>>          struct xe_device *xe = gt_to_xe(gt);
+>>          struct acc acc = {};
+>> +       unsigned long threshold;
+>>          int ret;
 >>   
->> -	ret = get_acc(acc_queue, &acc);
->> -	if (ret)
->> -		return;
->> +	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
+>> -       ret = get_acc(acc_queue, &acc);
+>> -       if (ret)
+>> -               return;
+>> +       threshold = jiffies +
+>> msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
 >>   
->> -	ret = handle_acc(gt, &acc);
->> -	if (unlikely(ret)) {
->> -		print_acc(xe, &acc);
->> -		drm_warn(&xe->drm, "ACC: Unsuccessful %d\n", ret);
->> +	while (get_acc(acc_queue, &acc)) {
->> +		ret = handle_acc(gt, &acc);
->> +		if (unlikely(ret)) {
->> +			print_acc(xe, &acc);
->> +			drm_warn(&xe->drm, "ACC: Unsuccessful %d\n", ret);
->> +		}
+>> -       ret = handle_acc(gt, &acc);
+>> -       if (unlikely(ret)) {
+>> -               print_acc(xe, &acc);
+>> -               drm_warn(&xe->drm, "ACC: Unsuccessful %d\n", ret);
+>> +       while (get_acc(acc_queue, &acc)) {
+>> +               ret = handle_acc(gt, &acc);
+>> +               if (unlikely(ret)) {
+>> +                       print_acc(xe, &acc);
+>> +                       drm_warn(&xe->drm, "ACC: Unsuccessful %d\n",
+>> ret);
+>> +               }
 >> +
->> +		if (time_after(jiffies, threshold)) {
->> +			queue_work(gt->usm.acc_wq, w);
-> 
-> Same as above, check for empty.
-> 
-> Matt
-> 
->> +			break;
->> +		}
->>   	}
->>   }
+>> +               if (time_after(jiffies, threshold)) {
+>> +                       queue_work(gt->usm.acc_wq, w);
+>> +                       break;
+>> +               }
+>>          }
+>>   }
 >>   
->> -- 
->> 2.38.0
->>
+> 
