@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5720CC4708E
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 14:36:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63E85C00A5A
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 14:36:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB62F10EA0B;
-	Fri,  3 Nov 2023 14:36:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD06010EA07;
+	Fri,  3 Nov 2023 14:36:01 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C09E110EA00
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 14:36:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 169D610E9F8
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 14:35:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699022160; x=1730558160;
+ t=1699022158; x=1730558158;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=b/h6wFuWyVyxmJlWeFTuYHlH8f/zk9ntBALp/hTxmlw=;
- b=gz3VO3g4M0+xlntOb5mCxGd6d7Kr+G0TQ9BDTSZ7kznDtPZe7sTn0MiQ
- ba3zCOuW/tbN5TsVSjLQNUQu/sxLPDRZRLMBJPerxYuDGQI6/wvYUBbyW
- TfC7bnZNLR8d0jICwlrqoE5Z7o5sBDizubWxFoaFCD6ZBHN4nxqJTWXfl
- I2c/sMuYygMucNhXDcIjXA0Zvlp2DeXTuqVQNd5ajt6PwGpoUHGJfiyUY
- jQnImYkJpxuSpbPSvbHHqkSAmu4MIyLJCIJ0VOCBKvthLaB/r5iwsHtxS
- /m/PGeudnl8J8cG7tgpT7tLVIvzqWjaBO//nIyOefAKQQ4Ll626lZrYk4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="387843507"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="387843507"
+ bh=qoRkSDuNHtvyF3ROS88+FqRGTeEbfn5rwKvjqRbAj00=;
+ b=Ke3GMwuIMZIPX/qaIEaIv2BU0Lz0W8QcnYI1hNgCaD3g3ebghXCSJM2G
+ sGzoc1cbTe5UHILpigDnClo1VeIeK94i3NrvSTiCP4GaWLUMSLle/GzAG
+ uQ8W00klB+9RPKI2ZP915gMkxYXHBl7z33eMvAxf9r8/PWQN7ALmnScGT
+ VPpiKq0DpDfk27PNWxXW70KQRuijsx/jTTb1mI8Lhnc5U1IbQDE77TcoB
+ 8xMpVILGyYRDg7eEzWInpUSOkZ6lrxq8A7Pl+8TJnqBTVTpEVsdjVjeIl
+ rhyjw1Tu1xACRYjwRyusi9F8PT5t0tvBrs+0e7DvY/zjJ7DrVuVu6hnci g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="387843461"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="387843461"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 07:35:54 -0700
+ 03 Nov 2023 07:35:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="1008832531"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="1008832531"
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="1008832506"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="1008832506"
 Received: from mtisan-mobl1.ger.corp.intel.com (HELO 8dd9ac0a63b4.intel.com)
  ([10.249.42.195])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 07:35:53 -0700
+ 03 Nov 2023 07:35:44 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  3 Nov 2023 14:34:43 +0000
-Message-Id: <20231103143456.7-38-francois.dugast@intel.com>
+Date: Fri,  3 Nov 2023 14:34:35 +0000
+Message-Id: <20231103143456.7-30-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231103143456.7-1-francois.dugast@intel.com>
 References: <20231103143456.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 37/50] drm/xe/uapi: Convert tile_mask to a
- pt_placement_hint
+Subject: [Intel-xe] [PATCH v2 29/50] drm/xe/uapi: Split xe_sync types from
+ flags
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,89 +58,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-The previous tile_mask was also an optional hint, and only used
-for the page-table tree placement. However, it was so tied
-with the tile concept itself. Let's clarify things up and make
-this generic enough. So accept any valid memory region mask.
-It could even be a direct near_mem_region gotten from the engine_info.
-pt stands for page table.
+Let's continue on the uapi clean-up with more splits
+with stuff into their own exclusive fields instead of
+reusing stuff.
 
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 14 ++++++++++----
- include/uapi/drm/xe_drm.h  | 16 +++++++++++++---
- 2 files changed, 23 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_sync.c       | 23 +++++++----------------
+ drivers/gpu/drm/xe/xe_sync_types.h |  1 +
+ include/uapi/drm/xe_drm.h          | 24 ++++++++++++------------
+ 3 files changed, 20 insertions(+), 28 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 5538b0ed81e8..c7eb8d43bf33 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3007,11 +3007,16 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 			goto release_vm_lock;
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index eafe53c2f55d..883987b27c4e 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -17,8 +17,6 @@
+ #include "xe_macros.h"
+ #include "xe_sched_job_types.h"
+ 
+-#define SYNC_FLAGS_TYPE_MASK 0x3
+-
+ struct user_fence {
+ 	struct xe_device *xe;
+ 	struct kref refcount;
+@@ -109,15 +107,13 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+ 	if (copy_from_user(&sync_in, sync_user, sizeof(*sync_user)))
+ 		return -EFAULT;
+ 
+-	if (XE_IOCTL_DBG(xe, sync_in.flags &
+-			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_FLAG_SIGNAL)) ||
+-	    XE_IOCTL_DBG(xe, sync_in.pad) ||
++	if (XE_IOCTL_DBG(xe, sync_in.flags & ~DRM_XE_SYNC_FLAG_SIGNAL) ||
+ 	    XE_IOCTL_DBG(xe, sync_in.reserved[0] || sync_in.reserved[1]))
+ 		return -EINVAL;
+ 
+ 	signal = sync_in.flags & DRM_XE_SYNC_FLAG_SIGNAL;
+-	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
+-	case DRM_XE_SYNC_FLAG_SYNCOBJ:
++	switch (sync_in.type) {
++	case DRM_XE_SYNC_TYPE_SYNCOBJ:
+ 		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
+ 			return -EOPNOTSUPP;
+ 
+@@ -135,7 +131,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
  		}
+ 		break;
  
--		if (bind_ops[i].tile_mask) {
-+		if (bind_ops[i].pt_placement_hint) {
- 			u64 valid_tiles = BIT(xe->info.tile_count) - 1;
-+			/*
-+			 * System memory is currently ignored from this hint,
-+			 * which gets entirely converted to a tile_mask
-+			 */
-+			u8 system_memory = 0x1;
+-	case DRM_XE_SYNC_FLAG_TIMELINE_SYNCOBJ:
++	case DRM_XE_SYNC_TYPE_TIMELINE_SYNCOBJ:
+ 		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
+ 			return -EOPNOTSUPP;
  
--			if (XE_IOCTL_DBG(xe, bind_ops[i].tile_mask &
--					 ~valid_tiles)) {
-+			if (XE_IOCTL_DBG(xe, bind_ops[i].pt_placement_hint &
-+					 ~valid_tiles & ~system_memory)) {
- 				err = -EINVAL;
- 				goto release_vm_lock;
- 			}
-@@ -3088,7 +3093,8 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		u32 op = bind_ops[i].op;
- 		u32 flags = bind_ops[i].flags;
- 		u64 obj_offset = bind_ops[i].obj_offset;
--		u8 tile_mask = bind_ops[i].tile_mask;
-+		/* Remove the system memory bit when converting to tiles */
-+		u8 tile_mask = bind_ops[i].pt_placement_hint & ~0x1;
- 		u32 prefetch_region = bind_ops[i].prefetch_mem_region_instance;
+@@ -165,12 +161,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+ 		}
+ 		break;
  
- 		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
+-	case DRM_XE_SYNC_FLAG_DMA_BUF:
+-		if (XE_IOCTL_DBG(xe, "TODO"))
+-			return -EINVAL;
+-		break;
+-
+-	case DRM_XE_SYNC_FLAG_USER_FENCE:
++	case DRM_XE_SYNC_TYPE_USER_FENCE:
+ 		if (XE_IOCTL_DBG(xe, !signal))
+ 			return -EOPNOTSUPP;
+ 
+@@ -192,6 +183,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+ 		return -EINVAL;
+ 	}
+ 
++	sync->type = sync_in.type;
+ 	sync->flags = sync_in.flags;
+ 	sync->timeline_value = sync_in.timeline_value;
+ 
+@@ -252,8 +244,7 @@ void xe_sync_entry_signal(struct xe_sync_entry *sync, struct xe_sched_job *job,
+ 			user_fence_put(sync->ufence);
+ 			dma_fence_put(fence);
+ 		}
+-	} else if ((sync->flags & SYNC_FLAGS_TYPE_MASK) ==
+-		   DRM_XE_SYNC_FLAG_USER_FENCE) {
++	} else if (sync->type == DRM_XE_SYNC_TYPE_USER_FENCE) {
+ 		job->user_fence.used = true;
+ 		job->user_fence.addr = sync->addr;
+ 		job->user_fence.value = sync->timeline_value;
+diff --git a/drivers/gpu/drm/xe/xe_sync_types.h b/drivers/gpu/drm/xe/xe_sync_types.h
+index 24fccc26cb53..852db5e7884f 100644
+--- a/drivers/gpu/drm/xe/xe_sync_types.h
++++ b/drivers/gpu/drm/xe/xe_sync_types.h
+@@ -21,6 +21,7 @@ struct xe_sync_entry {
+ 	struct user_fence *ufence;
+ 	u64 addr;
+ 	u64 timeline_value;
++	u32 type;
+ 	u32 flags;
+ };
+ 
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 35ce3605fc0b..2d0fb4386a69 100644
+index 061e698f65d2..4c7ee3828428 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -850,10 +850,20 @@ struct drm_xe_vm_bind_op {
- 	__u64 addr;
+@@ -929,11 +929,12 @@ struct drm_xe_vm_bind {
+  *
+  * This can be used with both @drm_xe_exec or with @drm_xe_vm_bind
+  *
++ * The @type can be:
++ *  - %DRM_XE_SYNC_TYPE_SYNCOBJ - A simple drm sync object
++ *  - %DRM_XE_SYNC_TYPE_TIMELINE_SYNCOBJ - A timelined sync object
++ *  - %DRM_XE_SYNC_TYPE_USER_FENCE - An user fence
++ *
+  * The @flags can be:
+- *  - %DRM_XE_SYNC_FLAG_SYNCOBJ
+- *  - %DRM_XE_SYNC_FLAG_TIMELINE_SYNCOBJ
+- *  - %DRM_XE_SYNC_FLAG_DMA_BUF
+- *  - %DRM_XE_SYNC_FLAG_USER_FENCE
+  *  - %DRM_XE_SYNC_FLAG_SIGNAL
+  *
+  */
+@@ -941,17 +942,16 @@ struct drm_xe_sync {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
  
- 	/**
--	 * @tile_mask: Mask for which tiles to create binds for, 0 == All tiles,
--	 * only applies to creating new VMAs
-+	 * @pt_placement_hint: An optional memory_region bit-mask hint, which
-+	 * only applies when creating new VMAs. Default value '0' is the
-+	 * recommended value.
-+	 *
-+	 * It hints the optimal placement for the page-table tree for this VMA.
-+	 * For instance, when userspace is using engines living in a secondary
-+	 * tile with allocated BOs near those engines, that same
-+	 * @near_mem_region could be used in this hint field.
-+	 *
-+	 * Since it is a hint, the Xe kernel driver is free to ignore this mask
-+	 * and choose the best location for the page-table, taking into
-+	 * consideration the running hardware and runtime constrains.
- 	 */
--	__u64 tile_mask;
-+	__u64 pt_placement_hint;
+-#define DRM_XE_SYNC_FLAG_SYNCOBJ		0x0
+-#define DRM_XE_SYNC_FLAG_TIMELINE_SYNCOBJ	0x1
+-#define DRM_XE_SYNC_FLAG_DMA_BUF		0x2
+-#define DRM_XE_SYNC_FLAG_USER_FENCE		0x3
+-#define DRM_XE_SYNC_FLAG_SIGNAL		0x10
++#define DRM_XE_SYNC_TYPE_SYNCOBJ		0x0
++#define DRM_XE_SYNC_TYPE_TIMELINE_SYNCOBJ	0x1
++#define DRM_XE_SYNC_TYPE_USER_FENCE		0x2
++	/** @type: Type of the this sync object */
++	__u32 type;
++
++#define DRM_XE_SYNC_FLAG_SIGNAL	(1 << 0)
+ 	/** @flags: Sync Flags */
+ 	__u32 flags;
  
- #define DRM_XE_VM_BIND_OP_MAP		0x0
- #define DRM_XE_VM_BIND_OP_UNMAP		0x1
+-	/** @pad: MBZ */
+-	__u32 pad;
+-
+ 	union {
+ 		/** @handle: Handle to the sync object */
+ 		__u32 handle;
 -- 
 2.34.1
 
