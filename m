@@ -4,60 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29629C4332F
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 09:47:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD2BCC4332F
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 10:39:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCE3410E549;
-	Fri,  3 Nov 2023 09:47:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5C0B10E547;
- Fri,  3 Nov 2023 09:47:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 615FA10E09E;
+	Fri,  3 Nov 2023 10:39:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A419510E09E;
+ Fri,  3 Nov 2023 10:39:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699004845; x=1730540845;
+ t=1699007962; x=1730543962;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=hIYIDlRLh2rua5Y1aa8xeeKiJqg/d/WmpOOuaIOnV5Q=;
- b=MgrXPLRWS6Rme0eeWjexl7m/9h1/mcl+84hJxJbszNHK5Pq4WvTCi0n/
- mIQ4eGwd7oSq+HQd/M/8x/MAnw7cO8Em/yzZO8foVWBM1qVutHYMnS1WY
- ODM3QW7Xc9NvfppowpVOpc4nSMXc57JUJCAkfgbYE1yoebCNFQSWT6cBd
- R1F9IXHjOuSsKdaMHv9hji7F3AZpfkAM7TRB9isM1/i/OqUuvg3fDYzqU
- ixHfuu+a5IWoV8ubcZ8K2zsHNJabqwmjwg9krkWl9SVuKy2jrpJWXqZAj
- dwAswKXlUXltPgMLa/NdQLzsonJ7QVzBelg2yoybcCwrr0JNTBj3Coc3I g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="453212689"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="453212689"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 02:47:24 -0700
+ bh=L6xD/YnR5JrgAo2GAG4ToWdjFbmeaizcxvCa5mmgq2E=;
+ b=Wm98hmrxWf93cGIEETP88+lpJpNNTWND21asuq7MbUU1O8+ElCMPF9FW
+ z2kEI/ELiOEXMglsPHg+hqngi5OXfnwLMtyo0j13jmrrF2kHYcT7YiGPh
+ vENOlui9384VLqZ2QYdlwl4sh9lHYH0f3kUq56rXUJnSenaOwBeKFoN9w
+ jqyBlsfKT00s1TQA2iMK+2F3LMCnz4rbLlI64AMuzMR9aiRLwE2Mp+BMD
+ 8k9VdDqZJuPgk8pryXqgI58T01utnUCRaJPN7A/l9uIwMkTeF5Zp5bGS9
+ DTk5Wk2lWPpTAeTgNPJ7V09CIH+370tLR4jwkfCCI/7R/O+SL9pLUUR1n Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="391792358"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="391792358"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2023 03:39:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="738033621"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="738033621"
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="1093030708"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="1093030708"
 Received: from sdobbela-mobl.ger.corp.intel.com (HELO [10.213.223.51])
  ([10.213.223.51])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 02:47:22 -0700
-Message-ID: <1b16d7ff-f61e-475f-bed4-2f287ecb32da@linux.intel.com>
-Date: Fri, 3 Nov 2023 09:47:20 +0000
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Nov 2023 03:39:17 -0700
+Message-ID: <d2bf144f-e388-4cb1-bc18-12efad4f677b@linux.intel.com>
+Date: Fri, 3 Nov 2023 10:39:15 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
-To: "Coelho, Luciano" <luciano.coelho@intel.com>,
- "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-References: <20231023103328.1495942-1-luciano.coelho@intel.com>
- <cf874768-7951-4dcc-90b1-7f3457c4923e@linux.intel.com>
- <463b540d-fd0d-4988-9ad1-63447a5d6948@linux.intel.com>
- <86c395f6b2e529943007aca94dd0862c1bb0004d.camel@intel.com>
- <1dedcd11-ac0c-465e-bbe4-079767f5813e@linux.intel.com>
- <d31820ec905a17c38e513653024368d702e8ccbf.camel@intel.com>
- <a227240f5e9ccff944cf6bf1a920c034d0b7b099.camel@intel.com>
+To: Luben Tuikov <ltuikov89@gmail.com>
+References: <bb7c307e-271c-4f4c-bdbc-7078972ba515@linux.intel.com>
+ <20231102224653.5785-2-ltuikov89@gmail.com>
 From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
 Organization: Intel Corporation UK Plc
-In-Reply-To: <a227240f5e9ccff944cf6bf1a920c034d0b7b099.camel@intel.com>
+In-Reply-To: <20231102224653.5785-2-ltuikov89@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v3] drm/i915: handle uncore
- spinlock when not available
+Subject: Re: [Intel-xe] [PATCH] drm/sched: Eliminate
+ drm_sched_run_job_queue_if_ready()
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,54 +62,99 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ltuikov@yahoo.com,
+ ketil.johnsen@arm.com, lina@asahilina.net, mcanal@igalia.com,
+ Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, boris.brezillon@collabora.com, dakr@redhat.com,
+ donald.robson@imgtec.com, christian.koenig@amd.com,
+ faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 03/11/2023 08:58, Coelho, Luciano wrote:
-> On Fri, 2023-11-03 at 03:31 +0000, Vivi, Rodrigo wrote:
->>>>
->>>> Any other suggestions?
->>>
->>> I think it will boil down to the reason uncore lock is held over
->>> the
->>> respective sections ie. the comment in i915_get_crtc_scanoutpos.
->>>
->>> If it is timing sensitive to the extent irq off was needed it may
->>> apply
->>> to Xe as well. Likewise the need to use mmio helpers which rely on
->>> the
->>> uncore lock already held. Question of whether there is conceptual
->>> commonality, will probably drive the best name, or the best
->>> approach
->>> in
->>> general.
->>
->> yeap, this is how I'm seeing this. If i915-display needs this global
->> lock around mmio operations, then we wound need to add it to the
->> xe_mmio as well and then solve the name, etc.
->>
->> However, I don't believe that other users of the mmio would need
->> this lock. So I believe the right thing to do is to create a i915-
->> display only spin_lock, around the intel_de_mmio calls and here.
->>
->> With this we entirely kill the dependency on someone-else's lock
->> and have something that is entirely inside display code so it
->> doesn't need to be ported to one or another driver core components.
+On 02/11/2023 22:46, Luben Tuikov wrote:
+> Eliminate drm_sched_run_job_queue_if_ready() and instead just call
+> drm_sched_run_job_queue() in drm_sched_free_job_work(). The problem is that
+> the former function uses drm_sched_select_entity() to determine if the
+> scheduler had an entity ready in one of its run-queues, and in the case of the
+> Round-Robin (RR) scheduling, the function drm_sched_rq_select_entity_rr() does
+> just that, selects the _next_ entity which is ready, sets up the run-queue and
+> completion and returns that entity. The FIFO scheduling algorithm is unaffected.
 > 
-> Right, I agree too.
-> 
-> My patch was just trying to address the quick hack made for Xe, not the
-> actual implementation in Xe's side.  But it makes sense to implement
-> this new lock internally in the display so there are no dependencies or
-> wrappers needed.
-> 
-> I'll respin.
+> Now, since drm_sched_run_job_work() also calls drm_sched_select_entity(), then
+> in the case of RR scheduling, that would result in calling select_entity()
+> twice, which may result in skipping a ready entity if more than one entity is
+> ready. This commit fixes this by eliminating the if_ready() variant.
 
-You could also make sure it needs to be a lock and not just say a 
-preempt off or irq section?
+Fixes: is missing since the regression already landed.
+
+> 
+> Signed-off-by: Luben Tuikov <ltuikov89@gmail.com>
+> ---
+>   drivers/gpu/drm/scheduler/sched_main.c | 14 ++------------
+>   1 file changed, 2 insertions(+), 12 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/scheduler/sched_main.c
+> index 98b2ad54fc7071..05816e7cae8c8b 100644
+> --- a/drivers/gpu/drm/scheduler/sched_main.c
+> +++ b/drivers/gpu/drm/scheduler/sched_main.c
+> @@ -1040,16 +1040,6 @@ drm_sched_pick_best(struct drm_gpu_scheduler **sched_list,
+>   }
+>   EXPORT_SYMBOL(drm_sched_pick_best);
+>   
+> -/**
+> - * drm_sched_run_job_queue_if_ready - enqueue run-job work if ready
+> - * @sched: scheduler instance
+> - */
+> -static void drm_sched_run_job_queue_if_ready(struct drm_gpu_scheduler *sched)
+> -{
+> -	if (drm_sched_select_entity(sched))
+> -		drm_sched_run_job_queue(sched);
+> -}
+> -
+>   /**
+>    * drm_sched_free_job_work - worker to call free_job
+>    *
+> @@ -1069,7 +1059,7 @@ static void drm_sched_free_job_work(struct work_struct *w)
+>   		sched->ops->free_job(cleanup_job);
+>   
+>   		drm_sched_free_job_queue_if_done(sched);
+> -		drm_sched_run_job_queue_if_ready(sched);
+> +		drm_sched_run_job_queue(sched);
+
+It works but is a bit wasteful causing needless CPU wake ups with a 
+potentially empty queue, both here and in drm_sched_run_job_work below.
+
+What would be the problem in having a "peek" type helper? It would be 
+easy to do it in a single spin lock section instead of drop and re-acquire.
+
+What is even the point of having the re-queue here _inside_ the if 
+(cleanup_job) block? See 
+https://lists.freedesktop.org/archives/dri-devel/2023-November/429037.html. 
+Because of the lock drop and re-acquire I don't see that it makes sense 
+to make potential re-queue depend on the existence of current finished job.
+
+Also the point of doing the re-queue of the run job queue from the free 
+worker?
+
+(I suppose re-queuing the _free_ worker itself is needed in the current 
+design, albeit inefficient.)
 
 Regards,
 
 Tvrtko
+
+>   	}
+>   }
+>   
+> @@ -1127,7 +1117,7 @@ static void drm_sched_run_job_work(struct work_struct *w)
+>   	}
+>   
+>   	wake_up(&sched->job_scheduled);
+> -	drm_sched_run_job_queue_if_ready(sched);
+> +	drm_sched_run_job_queue(sched);
+>   }
+>   
+>   /**
+> 
+> base-commit: 6fd9487147c4f18ad77eea00bd8c9189eec74a3e
