@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B3CFDC04E88
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 14:36:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98255C4332F
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 14:36:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1075310EA18;
-	Fri,  3 Nov 2023 14:36:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5DCF810E9FE;
+	Fri,  3 Nov 2023 14:36:15 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CADC10EA0F
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 14:36:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D9EF10E9FE
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 14:36:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699022165; x=1730558165;
+ t=1699022170; x=1730558170;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AckBeCsqqf8hTsVzTmwovz2camqYH9dinTFYvNNTA4Q=;
- b=Zsu0dTgpPAKk4TlGADfpjxsmwFXZT4gOiINDTFPp6Iuq3vCX6wztEF6u
- JCR27wBCbwSzsI5pbaHWW4AgLkSeLXESP2Idw5od2bu1wQhSRkkF2XiMA
- 8eEVovL/rKOA38ni9I+4vUOkXwDlZqwUHuw+0ioDRBCYhE5fNaisxzPgu
- Px4m/QbkNNq/mgaTmsOwAa1rt3cIlA6bLRnBoXQmgTFio/Vzrx4EP3tqV
- xTPRdvIEZiFOgduu7hab0fOaJeabHQWgRtOaDCK5ntHHWl2wLwAK86T5A
- AZjstnCnTlu1ORk3Tn0vMsvioIKHFAKJotB1I9+Tt9WOejdBXxoHNyoSU g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="387843556"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="387843556"
+ bh=BJdimJxoMz2OlCJNRDcpCAtgXxjNIAh+C9PxYKMsL2Y=;
+ b=RpEOEPI/WZH3O5a8HHpQrXOb4Dz7kZKAzgciQJKXI5zNadA2/ziYo/Er
+ nFs4sCLNrPC4bWyMOlOJkxYgc3w8+pmHQaJk8BYOZiePflKtMbtSVgoke
+ hQSl84EKLTCxHRUIo0ihmm9ggIRriuzP2QzFsuzxNEO/cC56URK/dji/i
+ YNx0X/WVsmsBd/cDmpLRWeTp8mZNNQ9aTz+ploz5Whj0w1P1frIrtn7EJ
+ y5igoP7oz7hIVc+qndKDKU61uHIoVG3in/9K1tbrUlMtnLiOESSk3f3vj
+ xNgGGroMGg9xQtRdbYGplTVhtn6pWi/6tLn5wSBCrNcsK4mHxbN7OOGwA w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="387843579"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="387843579"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 07:36:05 -0700
+ 03 Nov 2023 07:36:09 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="1008832566"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="1008832566"
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="1008832595"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="1008832595"
 Received: from mtisan-mobl1.ger.corp.intel.com (HELO 8dd9ac0a63b4.intel.com)
  ([10.249.42.195])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 07:36:04 -0700
+ 03 Nov 2023 07:36:08 -0700
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  3 Nov 2023 14:34:52 +0000
-Message-Id: <20231103143456.7-47-francois.dugast@intel.com>
+Date: Fri,  3 Nov 2023 14:34:56 +0000
+Message-Id: <20231103143456.7-51-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231103143456.7-1-francois.dugast@intel.com>
 References: <20231103143456.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 46/50] drm/xe/uapi: Align on a common way to
- return arrays (memory regions)
+Subject: [Intel-xe] [PATCH v2 50/50] drm/xe/uapi: Add examples of user space
+ code
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,212 +62,132 @@ Cc: Francois Dugast <francois.dugast@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The uAPI provides queries which return arrays of elements. As of now
-the format used in the struct is different depending on which element
-is queried. Fix this for memory regions by applying the pattern below:
-
-    struct drm_xe_query_X {
-       __u32 num_X;
-       struct drm_xe_X Xs[];
-       ...
-    }
-
-This removes "query" in the name of struct drm_xe_query_mem_region
-as it is not returned from the query IOCTL. There is no functional
-change.
+Complete the documentation of some structs by adding functional
+examples of user space code. Those examples are intentionally kept
+very simple. Put together, they provide a foundation for a minimal
+application that executes a job using the Xe driver.
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 40 +++++++++++++++++------------------
- include/uapi/drm/xe_drm.h     | 38 ++++++++++++++++-----------------
- 2 files changed, 39 insertions(+), 39 deletions(-)
+ include/uapi/drm/xe_drm.h | 84 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 84 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 41e51c3f5aee..bdadbbdf5a90 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -262,15 +262,15 @@ static size_t calc_mem_regions_size(struct xe_device *xe)
- 		if (ttm_manager_type(&xe->ttm, i))
- 			num_managers++;
- 
--	return offsetof(struct drm_xe_query_mem_regions, regions[num_managers]);
-+	return offsetof(struct drm_xe_query_mem_region, mem_regions[num_managers]);
- }
- 
--static int query_mem_regions(struct xe_device *xe,
-+static int query_mem_region(struct xe_device *xe,
- 			      struct drm_xe_device_query *query)
- {
- 	size_t size = calc_mem_regions_size(xe);
--	struct drm_xe_query_mem_regions *usage;
--	struct drm_xe_query_mem_regions __user *query_ptr =
-+	struct drm_xe_query_mem_region *usage;
-+	struct drm_xe_query_mem_region __user *query_ptr =
- 		u64_to_user_ptr(query->data);
- 	struct ttm_resource_manager *man;
- 	int ret, i;
-@@ -287,41 +287,41 @@ static int query_mem_regions(struct xe_device *xe,
- 		return -ENOMEM;
- 
- 	man = ttm_manager_type(&xe->ttm, XE_PL_TT);
--	usage->regions[0].mem_class = DRM_XE_MEM_REGION_CLASS_SYSMEM;
-+	usage->mem_regions[0].mem_class = DRM_XE_MEM_REGION_CLASS_SYSMEM;
- 	/*
- 	 * The instance needs to be a unique number that represents the index
- 	 * in the placement mask used at xe_gem_create_ioctl() for the
- 	 * xe_bo_create() placement.
- 	 */
--	usage->regions[0].instance = 0;
--	usage->regions[0].min_page_size = PAGE_SIZE;
--	usage->regions[0].total_size = man->size << PAGE_SHIFT;
-+	usage->mem_regions[0].instance = 0;
-+	usage->mem_regions[0].min_page_size = PAGE_SIZE;
-+	usage->mem_regions[0].total_size = man->size << PAGE_SHIFT;
- 	if (perfmon_capable())
--		usage->regions[0].used = ttm_resource_manager_usage(man);
--	usage->num_regions = 1;
-+		usage->mem_regions[0].used = ttm_resource_manager_usage(man);
-+	usage->num_mem_regions = 1;
- 
- 	for (i = XE_PL_VRAM0; i <= XE_PL_VRAM1; ++i) {
- 		man = ttm_manager_type(&xe->ttm, i);
- 		if (man) {
--			usage->regions[usage->num_regions].mem_class =
-+			usage->mem_regions[usage->num_mem_regions].mem_class =
- 				DRM_XE_MEM_REGION_CLASS_VRAM;
--			usage->regions[usage->num_regions].instance =
--				usage->num_regions;
--			usage->regions[usage->num_regions].min_page_size =
-+			usage->mem_regions[usage->num_mem_regions].instance =
-+				usage->num_mem_regions;
-+			usage->mem_regions[usage->num_mem_regions].min_page_size =
- 				xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ?
- 				SZ_64K : PAGE_SIZE;
--			usage->regions[usage->num_regions].total_size =
-+			usage->mem_regions[usage->num_mem_regions].total_size =
- 				man->size;
- 
- 			if (perfmon_capable()) {
- 				xe_ttm_vram_get_used(man,
--						     &usage->regions[usage->num_regions].used,
--						     &usage->regions[usage->num_regions].cpu_visible_used);
-+						     &usage->mem_regions[usage->num_mem_regions].used,
-+						     &usage->mem_regions[usage->num_mem_regions].cpu_visible_used);
- 			}
- 
--			usage->regions[usage->num_regions].cpu_visible_size =
-+			usage->mem_regions[usage->num_mem_regions].cpu_visible_size =
- 				xe_ttm_vram_get_cpu_visible_size(man);
--			usage->num_regions++;
-+			usage->num_mem_regions++;
- 		}
- 	}
- 
-@@ -570,7 +570,7 @@ query_uc_fw_version(struct xe_device *xe, struct drm_xe_device_query *query)
- static int (* const xe_query_funcs[])(struct xe_device *xe,
- 				      struct drm_xe_device_query *query) = {
- 	query_engines,
--	query_mem_regions,
-+	query_mem_region,
- 	query_config,
- 	query_gt_list,
- 	query_hwconfig,
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index aada6f75b905..d416349bee77 100644
+index 0bab53f2bed9..117544b7342c 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -238,23 +238,23 @@ struct drm_xe_query_engine_info {
- 
- 	/**
- 	 * @near_mem_regions: Bit mask of instances from
--	 * drm_xe_query_mem_regions that is near this engine.
-+	 * drm_xe_query_mem_region that is near this engine.
- 	 * Each index in this mask refers directly to the struct
--	 * drm_xe_query_mem_regions' instance, no assumptions should
-+	 * drm_xe_query_mem_region's instance, no assumptions should
- 	 * be made about order. The type of each region is described
--	 * by struct drm_xe_query_mem_regions' mem_class.
-+	 * by struct drm_xe_mem_region's mem_class.
- 	 */
- 	__u64 near_mem_regions;
- 	/**
- 	 * @far_mem_regions: Bit mask of instances from
--	 * drm_xe_query_mem_regions that is far from this engine.
-+	 * drm_xe_query_mem_region that is far from this engine.
- 	 * In general, it has extra indirections when compared to the
- 	 * @near_mem_regions. For a discrete device this could mean system
- 	 * memory and memory living in a different Tile.
- 	 * Each index in this mask refers directly to the struct
--	 * drm_xe_query_mem_regions' instance, no assumptions should
-+	 * drm_xe_query_mem_region's instance, no assumptions should
- 	 * be made about order. The type of each region is described
--	 * by struct drm_xe_query_mem_regions' mem_class.
-+	 * by struct drm_xe_mem_region's mem_class.
- 	 */
- 	__u64 far_mem_regions;
- 
-@@ -277,10 +277,10 @@ enum drm_xe_memory_class {
- };
+@@ -952,6 +952,30 @@ struct drm_xe_vm_bind_op {
  
  /**
-- * struct drm_xe_query_mem_region - Describes some region as known to
-+ * struct drm_xe_mem_region - Describes some region as known to
-  * the driver.
+  * struct drm_xe_vm_bind - Input of &DRM_IOCTL_XE_VM_BIND
++ *
++ * Below is an example of a minimal use of @drm_xe_vm_bind to
++ * asynchronously bind the buffer `data` at address `BIND_ADDRESS` to
++ * illustrate `userptr`. It can be synchronized by using the example
++ * provided for @drm_xe_sync.
++ *
++ * .. code-block:: C
++ *
++ *     data = aligned_alloc(ALIGNMENT, BO_SIZE);
++ *     struct drm_xe_vm_bind bind = {
++ *         .vm_id = vm,
++ *         .num_binds = 1,
++ *         .bind.obj = 0,
++ *         .bind.obj_offset = to_user_pointer(data),
++ *         .bind.range = BO_SIZE,
++ *         .bind.addr = BIND_ADDRESS,
++ *         .bind.op = DRM_XE_VM_BIND_OP_MAP_USERPTR,
++ *         .bind.flags = DRM_XE_VM_BIND_FLAG_ASYNC,
++ *         .num_syncs = 1,
++ *         .syncs = &sync,
++ *         .exec_queue_id = 0,
++ *     };
++ *     ioctl(fd, DRM_IOCTL_XE_VM_BIND, &bind);
++ *
   */
--struct drm_xe_query_mem_region {
-+struct drm_xe_mem_region {
- 	/**
- 	 * @mem_class: The memory class describing this region.
- 	 *
-@@ -355,19 +355,19 @@ struct drm_xe_query_mem_region {
- };
- 
- /**
-- * struct drm_xe_query_mem_regions - describe memory regions
-+ * struct drm_xe_query_mem_region - describe memory regions
+ struct drm_xe_vm_bind {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+@@ -1024,6 +1048,30 @@ struct drm_xe_vm_bind {
+  * The @flags can be:
+  *  - %DRM_XE_SYNC_FLAG_SIGNAL
   *
-  * If a query is made with a struct drm_xe_device_query where .query
-- * is equal to DRM_XE_DEVICE_QUERY_MEM_REGIONS, then the reply uses
-- * struct drm_xe_query_mem_regions in .data.
-+ * is equal to DRM_XE_DEVICE_QUERY_MEM_REGION, then the reply uses
-+ * struct drm_xe_query_mem_region in .data.
++ * A minimal use of @drm_xe_sync looks like this:
++ *
++ * .. code-block:: C
++ *
++ *     struct drm_xe_sync sync = {
++ *         .flags = DRM_XE_SYNC_FLAG_SIGNAL,
++ *         .type = DRM_XE_SYNC_TYPE_SYNCOBJ,
++ *     };
++ *     struct drm_syncobj_create syncobj_create = { 0 };
++ *     ioctl(fd, DRM_IOCTL_SYNCOBJ_CREATE, &syncobj_create);
++ *     sync.handle = syncobj_create.handle;
++ *         ...
++ *         use of &sync in drm_xe_exec or drm_xe_vm_bind
++ *         ...
++ *     struct drm_syncobj_wait wait = {
++ *         .handles = &sync.handle,
++ *         .timeout_nsec = INT64_MAX,
++ *         .count_handles = 1,
++ *         .flags = 0,
++ *         .first_signaled = 0,
++ *         .pad = 0,
++ *     };
++ *     ioctl(fd, DRM_IOCTL_SYNCOBJ_WAIT, &wait);
++ *
   */
--struct drm_xe_query_mem_regions {
--	/** @num_regions: number of memory regions returned in @regions */
--	__u32 num_regions;
-+struct drm_xe_query_mem_region {
-+	/** @num_mem_regions: number of memory regions returned in @mem_regions */
-+	__u32 num_mem_regions;
- 	/** @pad: MBZ */
- 	__u32 pad;
--	/** @regions: The returned regions for this device */
--	struct drm_xe_query_mem_region regions[];
-+	/** @mem_regions: The returned memory regions for this device */
-+	struct drm_xe_mem_region mem_regions[];
- };
+ struct drm_xe_sync {
+ 	/** @extensions: Pointer to the first extension struct, if any */
+@@ -1128,6 +1176,25 @@ struct drm_xe_sync {
  
  /**
-@@ -652,7 +652,7 @@ struct drm_xe_device_query {
- 	__u64 extensions;
+  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
++ *
++ * The example below shows how to use @drm_xe_exec_queue_create to create
++ * a simple exec_queue (no parallel submission) of class
++ * &DRM_XE_ENGINE_CLASS_RENDER.
++ *
++ * .. code-block:: C
++ *
++ *     struct drm_xe_engine_class_instance instance = {
++ *         .engine_class = DRM_XE_ENGINE_CLASS_RENDER,
++ *     };
++ *     struct drm_xe_exec_queue_create exec_queue_create = {
++ *          .extensions = 0,
++ *          .vm_id = vm,
++ *          .num_bb_per_exec = 1,
++ *          .num_eng_per_bb = 1,
++ *          .instances = to_user_pointer(&instance),
++ *     };
++ *     ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE, &exec_queue_create);
++ *
+  */
+ struct drm_xe_exec_queue_create {
+ #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY               0
+@@ -1250,6 +1317,23 @@ struct drm_xe_exec_queue_get_property {
  
- #define DRM_XE_DEVICE_QUERY_ENGINES		0
--#define DRM_XE_DEVICE_QUERY_MEM_REGIONS		1
-+#define DRM_XE_DEVICE_QUERY_MEM_REGION		1
- #define DRM_XE_DEVICE_QUERY_CONFIG		2
- #define DRM_XE_DEVICE_QUERY_GT_LIST		3
- #define DRM_XE_DEVICE_QUERY_HWCONFIG		4
-@@ -709,9 +709,9 @@ struct drm_xe_gem_create {
- 	/**
- 	 * @placement: A mask of memory instances of where GEM can be placed.
- 	 * Each index in this mask refers directly to the struct
--	 * drm_xe_query_mem_regions' instance, no assumptions should
-+	 * drm_xe_query_mem_region's instance, no assumptions should
- 	 * be made about order. The type of each region is described
--	 * by struct drm_xe_query_mem_regions' mem_class.
-+	 * by struct drm_xe_mem_region's mem_class.
- 	 */
- 	__u32 placement;
- 
+ /**
+  * struct drm_xe_exec - Input of &DRM_IOCTL_XE_EXEC
++ *
++ * This is an example to use @drm_xe_exec for execution of the object
++ * at BIND_ADDRESS (see example in @drm_xe_vm_bind) by an exec_queue
++ * (see example in @drm_xe_exec_queue_create). It can be synchronized
++ * by using the example provided for @drm_xe_sync.
++ *
++ * .. code-block:: C
++ *
++ *     struct drm_xe_exec exec = {
++ *         .exec_queue_id = exec_queue,
++ *         .syncs = &sync,
++ *         .num_syncs = 1,
++ *         .address = BIND_ADDRESS,
++ *         .num_batch_buffer = 1,
++ *     };
++ *     ioctl(fd, DRM_IOCTL_XE_EXEC, &exec);
++ *
+  */
+ struct drm_xe_exec {
+ 	/** @extensions: Pointer to the first extension struct, if any */
 -- 
 2.34.1
 
