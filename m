@@ -4,81 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA604C4332F
-	for <intel-xe@archiver.kernel.org>; Thu,  2 Nov 2023 22:59:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4DA9BC4167D
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 01:43:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9AC4B10E18B;
-	Thu,  2 Nov 2023 22:59:08 +0000 (UTC)
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com
- [IPv6:2607:f8b0:4864:20::b34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC9E210E18B;
- Thu,  2 Nov 2023 22:59:07 +0000 (UTC)
-Received: by mail-yb1-xb34.google.com with SMTP id
- 3f1490d57ef6-d9c7bba32beso1492766276.1; 
- Thu, 02 Nov 2023 15:59:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1698965947; x=1699570747; darn=lists.freedesktop.org;
- h=in-reply-to:autocrypt:from:content-language:references:cc:to
- :subject:user-agent:mime-version:date:message-id:from:to:cc:subject
- :date:message-id:reply-to;
- bh=MY4/c9RfG+1KiVkWi3/lS+ZZIITdRz7ZMiJSrmDgH6o=;
- b=Z3QlOTpMwgUXnlw8oTnIcrLJQTgovcr59kBagD9bzWt4WZnyxhiVgS5WA29y6DcUV8
- XzLKTQgw+ja6WeX3SaDfz5C2gDQ4/3Q+djhsc5MbtBpNludRuXapcwb+onDL0YPO/tDJ
- kN+xEnBW5zZUPqCyThLGvcbDX46uZ3E4cNJ3j64d3dkIFIC9h49q32k46uXEQlb5X9WJ
- Gsdw1Uw/tiYttNcyLJhgNo8pPEycFtiqLxIS4ek/3MELRPJFHPZs8E9fowXgeyx6Fbrl
- wNxp0OV9vdhptMaA+keZ0g2zLU/HKKPyqztwZV450rTFjDjUcXALBylArxVsBB5CDkgi
- b0Zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1698965947; x=1699570747;
- h=in-reply-to:autocrypt:from:content-language:references:cc:to
- :subject:user-agent:mime-version:date:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=MY4/c9RfG+1KiVkWi3/lS+ZZIITdRz7ZMiJSrmDgH6o=;
- b=kYj/3bLmbdIQPCNT9mdGWHWJPoOiBs/Kzq6zjNXdlei4oOm1DmyN8qb5L69OGrsXeo
- 3xbT2TN5Eu/mOnbcFU1XCGiFDlf7ZWP4rOAdWamMuGGLoAyF9f41eu7PoKDnZMK0lkik
- t533P1SY5WKYH+Z55Ft7IHNeeYv/NBMCCd1iEhqNQwbYPEHdoLPfzM22SQbT+/lpEMdm
- BuOfNObCywXLfXQozLxD5K3z9zIqWAyPEmkV/LQooImeiQRHR4Jx3OadfYZPYFHKOdOe
- HwAEYMGh0YhN8BnMr1oG/9yjCvzxE+4wu7/Wu2WG4kSpgEFKvhq06BZQ8g4VZINaeuNU
- xfmQ==
-X-Gm-Message-State: AOJu0Yz97n5d/t6R+CMPxg7w2/6nNIhwsUlUTUWrBAJKEVtfY5BQVl6Q
- ZNblKcEYR5iwagpd6lBQvwk=
-X-Google-Smtp-Source: AGHT+IHEclJBRxssAUSOtpKT3/M4VmUmXMxZeUpYP9M/8eSKEB7uncyRbCVhStSYptGXwjF5tl7N6A==
-X-Received: by 2002:a25:7309:0:b0:d9a:ba25:d1f9 with SMTP id
- o9-20020a257309000000b00d9aba25d1f9mr22741617ybc.9.1698965946720; 
- Thu, 02 Nov 2023 15:59:06 -0700 (PDT)
-Received: from [192.168.2.14] ([74.15.198.235])
- by smtp.gmail.com with ESMTPSA id
- k6-20020ad44206000000b00668eb252523sm160566qvp.63.2023.11.02.15.59.05
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 02 Nov 2023 15:59:06 -0700 (PDT)
-Message-ID: <3577da06-be25-41e7-a2d7-a0c5334a7ea0@gmail.com>
-Date: Thu, 2 Nov 2023 18:58:56 -0400
+	by gabe.freedesktop.org (Postfix) with ESMTP id BABE510E365;
+	Fri,  3 Nov 2023 01:43:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 854D310E365
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 01:43:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1698975790; x=1730511790;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=uTsXZwC/FyCtw1urHSnrfnxZ9p9GtViC03cEN8s9W9E=;
+ b=np//1M33G10WQmkF15pQkQTboEsgW86n8PrkouzvNNao3dtPGoQfYYvQ
+ sLJcvZgYELZ4+SMIritKrZ/5HdM6pAXG9A1ejEvzHL2n5De1rBMf22lXz
+ poYtsbWnEyS/49k2IzJ8WuRUMYmwOMlAPqOVS0O/nhqWXENW7u65DBL+C
+ 5025kgYWgTjMGHwkpaRMtVxcT2VnsIe10dCj2uppb4prf/oDKjRW+nJBP
+ KNyPT1Rd95t9+iVdc6GYAxWNLHL5yAwo0LTZ19eFYpl3dbM91vfPkPTs9
+ uqhseLOgB8Rk8JRq1rKtzTNNAckUsIbRz5mHgFm0Oo2w5+Hb9FRFwKw3G g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10882"; a="379255538"
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; d="scan'208";a="379255538"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 18:43:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.03,272,1694761200"; 
+   d="scan'208";a="2742432"
+Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Nov 2023 18:43:10 -0700
+From: Brian Welty <brian.welty@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu,  2 Nov 2023 18:43:09 -0700
+Message-Id: <20231103014309.13927-1-brian.welty@intel.com>
+X-Mailer: git-send-email 2.38.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
- Thunderbird/115.4.1
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20231031032439.1558703-1-matthew.brost@intel.com>
- <20231031032439.1558703-4-matthew.brost@intel.com>
- <bb7c307e-271c-4f4c-bdbc-7078972ba515@linux.intel.com>
-Content-Language: en-CA, en-US
-From: Luben Tuikov <ltuikov89@gmail.com>
-Autocrypt: addr=ltuikov89@gmail.com; keydata=
- xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1APnbnnRHN
- Ikx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoAQRYhBJkj7+VmFO9b
- eaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheA
- AAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlTMqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfy
- JwktF7REl1yt7IU2Sye1qmQMfJxdt9JMbMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSP
- cCE8uGe7FWo8C+nTSyWPXKTx9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl
- 10wVR5QxozSvBQJlOiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKo
- aMDzO9eGz69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA==
-In-Reply-To: <bb7c307e-271c-4f4c-bdbc-7078972ba515@linux.intel.com>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------BUZHndT5GOEav20u0Kc2wt0K"
-Subject: Re: [Intel-xe] [PATCH v8 3/5] drm/sched: Split free_job into own
- work item
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3] drm/xe: Fix pagefault and access counter
+ worker functions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,236 +55,181 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ltuikov@yahoo.com,
- ketil.johnsen@arm.com, lina@asahilina.net, mcanal@igalia.com,
- Liviu.Dudau@arm.com, boris.brezillon@collabora.com, dakr@redhat.com,
- donald.robson@imgtec.com, christian.koenig@amd.com,
- faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------BUZHndT5GOEav20u0Kc2wt0K
-Content-Type: multipart/mixed; boundary="------------BcoDTnAUibOyW402vGSJ005v";
- protected-headers="v1"
-From: Luben Tuikov <ltuikov89@gmail.com>
-To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: robdclark@chromium.org, thomas.hellstrom@linux.intel.com,
- sarah.walker@imgtec.com, ltuikov@yahoo.com, ketil.johnsen@arm.com,
- lina@asahilina.net, mcanal@igalia.com, Liviu.Dudau@arm.com,
- boris.brezillon@collabora.com, dakr@redhat.com, donald.robson@imgtec.com,
- christian.koenig@amd.com, faith.ekstrand@collabora.com
-Message-ID: <3577da06-be25-41e7-a2d7-a0c5334a7ea0@gmail.com>
-Subject: Re: [PATCH v8 3/5] drm/sched: Split free_job into own work item
-References: <20231031032439.1558703-1-matthew.brost@intel.com>
- <20231031032439.1558703-4-matthew.brost@intel.com>
- <bb7c307e-271c-4f4c-bdbc-7078972ba515@linux.intel.com>
-In-Reply-To: <bb7c307e-271c-4f4c-bdbc-7078972ba515@linux.intel.com>
+When processing G2H messages for pagefault or access counters, we queue a
+work item and call queue_work(). This fails if the worker thread is already
+queued to run.
+The expectation is that the worker function will do more than process a
+single item and return. It needs to either process all pending items or
+requeue itself if items are pending. But requeuing will add latency and
+potential context switch can occur.
 
---------------BcoDTnAUibOyW402vGSJ005v
-Content-Type: multipart/mixed; boundary="------------2F0XL9BCN19dFWhsGhA2XTZE"
+We don't want to add unnecessary latency and so the worker should process
+as many faults as it can within a reasonable duration of time.
+We also do not want to hog the cpu core, so here we execute in a loop
+and requeue if still running after more than 20 ms.
+This seems reasonable framework and easy to tune this further if needed.
 
---------------2F0XL9BCN19dFWhsGhA2XTZE
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+This resolves issues seen with several igt@xe_exec_fault_mode subtests
+where the GPU will hang when KMD ignores a pending pagefault.
 
-On 2023-11-02 07:13, Tvrtko Ursulin wrote:
->=20
-> On 31/10/2023 03:24, Matthew Brost wrote:
->> Rather than call free_job and run_job in same work item have a dedicat=
-ed
->> work item for each. This aligns with the design and intended use of wo=
-rk
->> queues.
->>
->> v2:
->>     - Test for DMA_FENCE_FLAG_TIMESTAMP_BIT before setting
->>       timestamp in free_job() work item (Danilo)
->> v3:
->>    - Drop forward dec of drm_sched_select_entity (Boris)
->>    - Return in drm_sched_run_job_work if entity NULL (Boris)
->> v4:
->>    - Replace dequeue with peek and invert logic (Luben)
->>    - Wrap to 100 lines (Luben)
->>    - Update comments for *_queue / *_queue_if_ready functions (Luben)
->> v5:
->>    - Drop peek argument, blindly reinit idle (Luben)
->>    - s/drm_sched_free_job_queue_if_ready/drm_sched_free_job_queue_if_d=
-one (Luben)
->>    - Update work_run_job & work_free_job kernel doc (Luben)
->> v6:
->>    - Do not move drm_sched_select_entity in file (Luben)
->>
->> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
->> ---
->>   drivers/gpu/drm/scheduler/sched_main.c | 146 +++++++++++++++++------=
---
->>   include/drm/gpu_scheduler.h            |   4 +-
->>   2 files changed, 101 insertions(+), 49 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/=
-scheduler/sched_main.c
->> index d1ae05bded15..3b1b2f8eafe8 100644
->> --- a/drivers/gpu/drm/scheduler/sched_main.c
->> +++ b/drivers/gpu/drm/scheduler/sched_main.c
->> @@ -265,6 +265,32 @@ static void drm_sched_run_job_queue(struct drm_gp=
-u_scheduler *sched)
->>   		queue_work(sched->submit_wq, &sched->work_run_job);
->>   }
->>  =20
->> +/**
->> + * drm_sched_free_job_queue - enqueue free-job work
->> + * @sched: scheduler instance
->> + */
->> +static void drm_sched_free_job_queue(struct drm_gpu_scheduler *sched)=
+v2: requeue the worker instead of having an internal processing loop.
+v3: implement hybrid model of v1 and v2
+    now, run for 20 msec before we will requeue if still running
 
->> +{
->> +	if (!READ_ONCE(sched->pause_submit))
->> +		queue_work(sched->submit_wq, &sched->work_free_job);
->> +}
->> +
->> +/**
->> + * drm_sched_free_job_queue_if_done - enqueue free-job work if ready
->> + * @sched: scheduler instance
->> + */
->> +static void drm_sched_free_job_queue_if_done(struct drm_gpu_scheduler=
- *sched)
->> +{
->> +	struct drm_sched_job *job;
->> +
->> +	spin_lock(&sched->job_list_lock);
->> +	job =3D list_first_entry_or_null(&sched->pending_list,
->> +				       struct drm_sched_job, list);
->> +	if (job && dma_fence_is_signaled(&job->s_fence->finished))
->> +		drm_sched_free_job_queue(sched);
->> +	spin_unlock(&sched->job_list_lock);
->> +}
->> +
->>   /**
->>    * drm_sched_job_done - complete a job
->>    * @s_job: pointer to the job which is done
->> @@ -284,7 +310,7 @@ static void drm_sched_job_done(struct drm_sched_jo=
-b *s_job, int result)
->>   	dma_fence_get(&s_fence->finished);
->>   	drm_sched_fence_finished(s_fence, result);
->>   	dma_fence_put(&s_fence->finished);
->> -	drm_sched_run_job_queue(sched);
->> +	drm_sched_free_job_queue(sched);
->>   }
->>  =20
->>   /**
->> @@ -943,8 +969,10 @@ drm_sched_get_cleanup_job(struct drm_gpu_schedule=
-r *sched)
->>   						typeof(*next), list);
->>  =20
->>   		if (next) {
->> -			next->s_fence->scheduled.timestamp =3D
->> -				dma_fence_timestamp(&job->s_fence->finished);
->> +			if (test_bit(DMA_FENCE_FLAG_TIMESTAMP_BIT,
->> +				     &next->s_fence->scheduled.flags))
->> +				next->s_fence->scheduled.timestamp =3D
->> +					dma_fence_timestamp(&job->s_fence->finished);
->>   			/* start TO timer for next job */
->>   			drm_sched_start_timeout(sched);
->>   		}
->> @@ -994,7 +1022,40 @@ drm_sched_pick_best(struct drm_gpu_scheduler **s=
-ched_list,
->>   EXPORT_SYMBOL(drm_sched_pick_best);
->>  =20
->>   /**
->> - * drm_sched_run_job_work - main scheduler thread
->> + * drm_sched_run_job_queue_if_ready - enqueue run-job work if ready
->> + * @sched: scheduler instance
->> + */
->> +static void drm_sched_run_job_queue_if_ready(struct drm_gpu_scheduler=
- *sched)
->> +{
->> +	if (drm_sched_select_entity(sched))
->> +		drm_sched_run_job_queue(sched);
->> +}
->> +
->> +/**
->> + * drm_sched_free_job_work - worker to call free_job
->> + *
->> + * @w: free job work
->> + */
->> +static void drm_sched_free_job_work(struct work_struct *w)
->> +{
->> +	struct drm_gpu_scheduler *sched =3D
->> +		container_of(w, struct drm_gpu_scheduler, work_free_job);
->> +	struct drm_sched_job *cleanup_job;
->> +
->> +	if (READ_ONCE(sched->pause_submit))
->> +		return;
->> +
->> +	cleanup_job =3D drm_sched_get_cleanup_job(sched);
->> +	if (cleanup_job) {
->> +		sched->ops->free_job(cleanup_job);
->> +
->> +		drm_sched_free_job_queue_if_done(sched);
->> +		drm_sched_run_job_queue_if_ready(sched);
->=20
-> Are finished jobs now disturbing the round robin selection?
->=20
-> Every time this cleans up a job we get:
->=20
-> drm_sched_run_job_queue_if_ready
->   -> drm_sched_select_entity
->       -> drm_sched_rq_select_entity_rr
->           -> rq->current_entity bumped to next in list
->=20
-> So when the job run worker does:
->=20
-> 	entity =3D drm_sched_select_entity(sched);
->=20
-> It does not pick the same entity as before this patch? If so perhaps=20
-> drm_sched_run_job_queue_if_ready needs a "peek" helper which does not=20
-> modify any state.
+Signed-off-by: Brian Welty <brian.welty@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt_pagefault.c | 80 ++++++++++++++++------------
+ 1 file changed, 46 insertions(+), 34 deletions(-)
 
-Hi Tvrtko,
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index ab6daebbd77c..c99af751d1fb 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -276,10 +276,10 @@ static void print_pagefault(struct xe_device *xe, struct pagefault *pf)
+ 
+ #define PF_MSG_LEN_DW	4
+ 
+-static int get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
++static bool get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+ {
+ 	const struct xe_guc_pagefault_desc *desc;
+-	int ret = 0;
++	bool ret = false;
+ 
+ 	spin_lock_irq(&pf_queue->lock);
+ 	if (pf_queue->head != pf_queue->tail) {
+@@ -303,8 +303,7 @@ static int get_pagefault(struct pf_queue *pf_queue, struct pagefault *pf)
+ 
+ 		pf_queue->head = (pf_queue->head + PF_MSG_LEN_DW) %
+ 			PF_QUEUE_NUM_DW;
+-	} else {
+-		ret = -1;
++		ret = true;
+ 	}
+ 	spin_unlock_irq(&pf_queue->lock);
+ 
+@@ -348,6 +347,8 @@ int xe_guc_pagefault_handler(struct xe_guc *guc, u32 *msg, u32 len)
+ 	return full ? -ENOSPC : 0;
+ }
+ 
++#define USM_QUEUE_MAX_RUNTIME_MS	20
++
+ static void pf_queue_work_func(struct work_struct *w)
+ {
+ 	struct pf_queue *pf_queue = container_of(w, struct pf_queue, worker);
+@@ -355,31 +356,37 @@ static void pf_queue_work_func(struct work_struct *w)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct xe_guc_pagefault_reply reply = {};
+ 	struct pagefault pf = {};
++	unsigned long threshold;
+ 	int ret;
+ 
+-	ret = get_pagefault(pf_queue, &pf);
+-	if (ret)
+-		return;
++	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
+ 
+-	ret = handle_pagefault(gt, &pf);
+-	if (unlikely(ret)) {
+-		print_pagefault(xe, &pf);
+-		pf.fault_unsuccessful = 1;
+-		drm_dbg(&xe->drm, "Fault response: Unsuccessful %d\n", ret);
+-	}
++	while (get_pagefault(pf_queue, &pf)) {
++		ret = handle_pagefault(gt, &pf);
++		if (unlikely(ret)) {
++			print_pagefault(xe, &pf);
++			pf.fault_unsuccessful = 1;
++			drm_dbg(&xe->drm, "Fault response: Unsuccessful %d\n", ret);
++		}
++
++		reply.dw0 = FIELD_PREP(PFR_VALID, 1) |
++			FIELD_PREP(PFR_SUCCESS, pf.fault_unsuccessful) |
++			FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
++			FIELD_PREP(PFR_DESC_TYPE, FAULT_RESPONSE_DESC) |
++			FIELD_PREP(PFR_ASID, pf.asid);
+ 
+-	reply.dw0 = FIELD_PREP(PFR_VALID, 1) |
+-		FIELD_PREP(PFR_SUCCESS, pf.fault_unsuccessful) |
+-		FIELD_PREP(PFR_REPLY, PFR_ACCESS) |
+-		FIELD_PREP(PFR_DESC_TYPE, FAULT_RESPONSE_DESC) |
+-		FIELD_PREP(PFR_ASID, pf.asid);
++		reply.dw1 = FIELD_PREP(PFR_VFID, pf.vfid) |
++			FIELD_PREP(PFR_ENG_INSTANCE, pf.engine_instance) |
++			FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
++			FIELD_PREP(PFR_PDATA, pf.pdata);
+ 
+-	reply.dw1 = FIELD_PREP(PFR_VFID, pf.vfid) |
+-		FIELD_PREP(PFR_ENG_INSTANCE, pf.engine_instance) |
+-		FIELD_PREP(PFR_ENG_CLASS, pf.engine_class) |
+-		FIELD_PREP(PFR_PDATA, pf.pdata);
++		send_pagefault_reply(&gt->uc.guc, &reply);
+ 
+-	send_pagefault_reply(&gt->uc.guc, &reply);
++		if (time_after(jiffies, threshold)) {
++			queue_work(gt->usm.pf_wq, w);
++			break;
++		}
++	}
+ }
+ 
+ static void acc_queue_work_func(struct work_struct *w);
+@@ -544,10 +551,10 @@ static int handle_acc(struct xe_gt *gt, struct acc *acc)
+ 
+ #define ACC_MSG_LEN_DW        4
+ 
+-static int get_acc(struct acc_queue *acc_queue, struct acc *acc)
++static bool get_acc(struct acc_queue *acc_queue, struct acc *acc)
+ {
+ 	const struct xe_guc_acc_desc *desc;
+-	int ret = 0;
++	bool ret = false;
+ 
+ 	spin_lock(&acc_queue->lock);
+ 	if (acc_queue->head != acc_queue->tail) {
+@@ -567,8 +574,7 @@ static int get_acc(struct acc_queue *acc_queue, struct acc *acc)
+ 
+ 		acc_queue->head = (acc_queue->head + ACC_MSG_LEN_DW) %
+ 				  ACC_QUEUE_NUM_DW;
+-	} else {
+-		ret = -1;
++		ret = true;
+ 	}
+ 	spin_unlock(&acc_queue->lock);
+ 
+@@ -581,16 +587,22 @@ static void acc_queue_work_func(struct work_struct *w)
+ 	struct xe_gt *gt = acc_queue->gt;
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	struct acc acc = {};
++	unsigned long threshold;
+ 	int ret;
+ 
+-	ret = get_acc(acc_queue, &acc);
+-	if (ret)
+-		return;
++	threshold = jiffies + msecs_to_jiffies(USM_QUEUE_MAX_RUNTIME_MS);
+ 
+-	ret = handle_acc(gt, &acc);
+-	if (unlikely(ret)) {
+-		print_acc(xe, &acc);
+-		drm_warn(&xe->drm, "ACC: Unsuccessful %d\n", ret);
++	while (get_acc(acc_queue, &acc)) {
++		ret = handle_acc(gt, &acc);
++		if (unlikely(ret)) {
++			print_acc(xe, &acc);
++			drm_warn(&xe->drm, "ACC: Unsuccessful %d\n", ret);
++		}
++
++		if (time_after(jiffies, threshold)) {
++			queue_work(gt->usm.acc_wq, w);
++			break;
++		}
+ 	}
+ }
+ 
+-- 
+2.38.0
 
-Thank you for reporting this. I've sent out a patch.
---=20
-Regards,
-Luben
-
---------------2F0XL9BCN19dFWhsGhA2XTZE
-Content-Type: application/pgp-keys; name="OpenPGP_0x4C15479431A334AF.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x4C15479431A334AF.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
-
------BEGIN PGP PUBLIC KEY BLOCK-----
-
-xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1A
-PnbnnRHNIkx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoA
-QRYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiIC
-BhUKCQgLAgQWAgMBAh4HAheAAAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlT
-MqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfyJwktF7REl1yt7IU2Sye1qmQMfJxdt9JM
-bMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSPcCE8uGe7FWo8C+nTSyWPXKTx
-9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJl
-OiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKoaMDzO9eG
-z69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA=3D=3D
-=3DqCaZ
------END PGP PUBLIC KEY BLOCK-----
-
---------------2F0XL9BCN19dFWhsGhA2XTZE--
-
---------------BcoDTnAUibOyW402vGSJ005v--
-
---------------BUZHndT5GOEav20u0Kc2wt0K
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-wnsEABYIACMWIQSZI+/lZhTvW3mgJddMFUeUMaM0rwUCZUQpsAUDAAAAAAAKCRBMFUeUMaM0r67Q
-AP49xl7DzqwWCvetwhSGy9hlXsiyGf/zMWB+7dHVmZYJWwD/QAIrdrmtUnXRqsHQUQJeRyaWQ+4m
-ygTU14h2j557Cwk=
-=tPvq
------END PGP SIGNATURE-----
-
---------------BUZHndT5GOEav20u0Kc2wt0K--
