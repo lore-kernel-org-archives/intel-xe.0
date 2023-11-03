@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 528E1C4708E
-	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 15:33:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BA4D0C4167D
+	for <intel-xe@archiver.kernel.org>; Fri,  3 Nov 2023 15:33:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92B4A10E175;
-	Fri,  3 Nov 2023 15:33:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D02E10E177;
+	Fri,  3 Nov 2023 15:33:01 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB1E310E16D
- for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 15:32:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45F3710E172
+ for <intel-xe@lists.freedesktop.org>; Fri,  3 Nov 2023 15:32:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699025575; x=1730561575;
+ t=1699025577; x=1730561577;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=qrpmmKBOojnRf9dzpueDsTJyccndGHsI3JLrEByZa/Q=;
- b=f3+ZHb5fVRV1mh7fX45qj80OMdTiDNIZQ5BJL5Dl3oRteiJR5ADXnjdL
- DFZ+AMuIt3b6Y9riT4BBVwRboh300qdNvVEpD7qFBu0u009mtgzNfTclz
- AFleCssPSHgKAGHjL36k3VCzHyrwUuvFbvVwx8MdE6Y26mMOyKENaCe/l
- 02suX4YjAlkhiDMnMGD/EFduAZxrXwijc9Ot0sDFdcpo+uxSjYuQTtKJ9
- I2HFEb367SiEg9cTBl8Uy8KgBGoQ8yaMh1//SEHSDVAKkoiriYuAzs/fP
- gh1lEyZI/8+hmXM/Irz5Q/gafLxBeymVbWx3nD1VWhyVpZvFTy18Ea4Zm A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="387853738"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="387853738"
+ bh=6JrqFr8LGX8Nt0KZ4beBkHEqGH2QOwOLlkop3BgwIZ4=;
+ b=jOEEHW18hiC4tEH9eHDNerGxy0Vd9FR4LhbVr+OSWSUuDpFdTwom8hOc
+ Xs9Kw9N1cUa4a0y+G420RwRVAbT++9Pktrp/hv1mFnNJnGYDs5E1E1SIP
+ AaBSCUHkG+IhuyGusUmyK1Wd3SJ+5o91MWAxZLPMYWMo4ZPey28VyMn2C
+ URA+ExCewD5YPyAi07Kndy49elXuRC6FZm8P1bav9GpC5QfLgu8+EZdal
+ XiN/uo3CllA+3LiTaIxDIG/WN5OejyNHul7PrNHAWX8YIXq9I9KMUoBPy
+ 8jrClfge2+JJd3H16d8GA3/TGiLTjuCl1yekcD6cV46UCLhbn5eKTqvsQ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="387853741"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="387853741"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 08:32:55 -0700
+ 03 Nov 2023 08:32:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="765272645"
-X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="765272645"
+X-IronPort-AV: E=McAfee;i="6600,9927,10883"; a="765272648"
+X-IronPort-AV: E=Sophos;i="6.03,273,1694761200"; d="scan'208";a="765272648"
 Received: from shouweis-mobl1.ccr.corp.intel.com (HELO fedora..)
  ([10.249.254.68])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Nov 2023 08:32:54 -0700
+ 03 Nov 2023 08:32:56 -0700
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  3 Nov 2023 16:32:23 +0100
-Message-ID: <20231103153234.30407-7-thomas.hellstrom@linux.intel.com>
+Date: Fri,  3 Nov 2023 16:32:25 +0100
+Message-ID: <20231103153234.30407-9-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231103153234.30407-1-thomas.hellstrom@linux.intel.com>
 References: <20231103153234.30407-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI v8 07/18] drm/nouveau: make use of the GPUVM's
- shared dma-resv
+Subject: [Intel-xe] [CI v8 09/18] drm/xe: Adjust to commit "drm/gpuvm: add
+ drm_gpuvm_flags to drm_gpuvm"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,151 +62,26 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Danilo Krummrich <dakr@redhat.com>
-
-DRM GEM objects private to a single GPUVM can use a shared dma-resv.
-Make use of the shared dma-resv of GPUVM rather than a driver specific
-one.
-
-The shared dma-resv originates from a "root" GEM object serving as
-container for the dma-resv to make it compatible with drm_exec.
-
-In order to make sure the object proving the shared dma-resv can't be
-freed up before the objects making use of it, let every such GEM object
-take a reference on it.
-
-Signed-off-by: Danilo Krummrich <dakr@redhat.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/nouveau/nouveau_bo.c   | 11 +++++++++--
- drivers/gpu/drm/nouveau/nouveau_bo.h   |  5 +++++
- drivers/gpu/drm/nouveau/nouveau_gem.c  | 10 ++++++++--
- drivers/gpu/drm/nouveau/nouveau_uvmm.c |  7 ++-----
- drivers/gpu/drm/nouveau/nouveau_uvmm.h |  1 -
- 5 files changed, 24 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
-index 0f3bd187ede6..7afad86da64b 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
-@@ -148,10 +148,17 @@ nouveau_bo_del_ttm(struct ttm_buffer_object *bo)
- 	 * If nouveau_bo_new() allocated this buffer, the GEM object was never
- 	 * initialized, so don't attempt to release it.
- 	 */
--	if (bo->base.dev)
-+	if (bo->base.dev) {
-+		/* Gem objects not being shared with other VMs get their
-+		 * dma_resv from a root GEM object.
-+		 */
-+		if (nvbo->no_share)
-+			drm_gem_object_put(nvbo->r_obj);
-+
- 		drm_gem_object_release(&bo->base);
--	else
-+	} else {
- 		dma_resv_fini(&bo->base._resv);
-+	}
- 
- 	kfree(nvbo);
- }
-diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
-index 07f671cf895e..70c551921a9e 100644
---- a/drivers/gpu/drm/nouveau/nouveau_bo.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
-@@ -26,6 +26,11 @@ struct nouveau_bo {
- 	struct list_head entry;
- 	int pbbo_index;
- 	bool validate_mapped;
-+
-+	/* Root GEM object we derive the dma_resv of in case this BO is not
-+	 * shared between VMs.
-+	 */
-+	struct drm_gem_object *r_obj;
- 	bool no_share;
- 
- 	/* GPU address space is independent of CPU word size */
-diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
-index a0d303e5ce3d..49c2bcbef129 100644
---- a/drivers/gpu/drm/nouveau/nouveau_gem.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
-@@ -111,7 +111,8 @@ nouveau_gem_object_open(struct drm_gem_object *gem, struct drm_file *file_priv)
- 	if (vmm->vmm.object.oclass < NVIF_CLASS_VMM_NV50)
- 		return 0;
- 
--	if (nvbo->no_share && uvmm && &uvmm->resv != nvbo->bo.base.resv)
-+	if (nvbo->no_share && uvmm &&
-+	    drm_gpuvm_resv(&uvmm->base) != nvbo->bo.base.resv)
- 		return -EPERM;
- 
- 	ret = ttm_bo_reserve(&nvbo->bo, false, false, NULL);
-@@ -245,7 +246,7 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
- 		if (unlikely(!uvmm))
- 			return -EINVAL;
- 
--		resv = &uvmm->resv;
-+		resv = drm_gpuvm_resv(&uvmm->base);
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index dc7991eabb58..46a87a4e42d8 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1385,8 +1385,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 		goto err_no_resv;
  	}
  
- 	if (!(domain & (NOUVEAU_GEM_DOMAIN_VRAM | NOUVEAU_GEM_DOMAIN_GART)))
-@@ -288,6 +289,11 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
- 	if (drm->client.device.info.family >= NV_DEVICE_INFO_V0_TESLA)
- 		nvbo->valid_domains &= domain;
+-	drm_gpuvm_init(&vm->gpuvm, "Xe VM", &xe->drm, vm_resv_obj, 0, vm->size,
+-		       0, 0, &gpuvm_ops);
++	drm_gpuvm_init(&vm->gpuvm, "Xe VM", 0, &xe->drm, vm_resv_obj,
++		       0, vm->size, 0, 0, &gpuvm_ops);
  
-+	if (nvbo->no_share) {
-+		nvbo->r_obj = drm_gpuvm_resv_obj(&uvmm->base);
-+		drm_gem_object_get(nvbo->r_obj);
-+	}
-+
- 	*pnvbo = nvbo;
- 	return 0;
- }
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index f74bf30bc683..8977a518de96 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -1802,7 +1802,6 @@ nouveau_uvmm_init(struct nouveau_uvmm *uvmm, struct nouveau_cli *cli,
- 	int ret;
+ 	drm_gem_object_put(vm_resv_obj);
  
- 	mutex_init(&uvmm->mutex);
--	dma_resv_init(&uvmm->resv);
- 	mt_init_flags(&uvmm->region_mt, MT_FLAGS_LOCK_EXTERN);
- 	mt_set_external_lock(&uvmm->region_mt, &uvmm->mutex);
- 
-@@ -1842,14 +1841,14 @@ nouveau_uvmm_init(struct nouveau_uvmm *uvmm, struct nouveau_cli *cli,
- 			    kernel_managed_addr, kernel_managed_size,
- 			    NULL, 0, &cli->uvmm.vmm.vmm);
- 	if (ret)
--		goto out_free_gpuva_mgr;
-+		goto out_gpuvm_fini;
- 
- 	cli->uvmm.vmm.cli = cli;
- 	mutex_unlock(&cli->mutex);
- 
- 	return 0;
- 
--out_free_gpuva_mgr:
-+out_gpuvm_fini:
- 	drm_gpuvm_destroy(&uvmm->base);
- out_unlock:
- 	mutex_unlock(&cli->mutex);
-@@ -1907,6 +1906,4 @@ nouveau_uvmm_fini(struct nouveau_uvmm *uvmm)
- 	nouveau_vmm_fini(&uvmm->vmm);
- 	drm_gpuvm_destroy(&uvmm->base);
- 	mutex_unlock(&cli->mutex);
--
--	dma_resv_fini(&uvmm->resv);
- }
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.h b/drivers/gpu/drm/nouveau/nouveau_uvmm.h
-index 06a0c36de392..22607270fae0 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.h
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.h
-@@ -12,7 +12,6 @@ struct nouveau_uvmm {
- 	struct nouveau_vmm vmm;
- 	struct maple_tree region_mt;
- 	struct mutex mutex;
--	struct dma_resv resv;
- 
- 	bool disabled;
- };
 -- 
 2.41.0
 
