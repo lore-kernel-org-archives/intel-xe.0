@@ -4,49 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 127E0C4332F
-	for <intel-xe@archiver.kernel.org>; Sun,  5 Nov 2023 08:23:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2F4CBC4332F
+	for <intel-xe@archiver.kernel.org>; Sun,  5 Nov 2023 10:58:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A060010E108;
-	Sun,  5 Nov 2023 08:23:42 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2269B10E108
- for <intel-xe@lists.freedesktop.org>; Sun,  5 Nov 2023 08:23:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D754110E106;
+	Sun,  5 Nov 2023 10:58:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 59E8010E0E6
+ for <intel-xe@lists.freedesktop.org>; Sun,  5 Nov 2023 10:58:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699172620; x=1730708620;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=VkLvX6AMxYyzGF1Wl5p/n3NSWglWyEZnzq0B8cYeRlI=;
- b=Y1hk3/M4fwpNwmr36bW5N/wb227EsVFTevz7TXimDUEEghi/tf/X6YRv
- bZkiI1qzQV0Wqx0J8L66qBHpUk4ZwnhTAGD+AjUoPSTP+gn6twJrVX1jJ
- QyqFemc81s0tiCiVsBoiTOGPuRf3liPtQao2Fg5L6WlKKtNafavBIhO/T
- RJL3rqGVWnVlkDFajmUZM6CqQXqp67ZSFt92nqg+rdcaXOqc0HWQh18rj
- EP5Ec7MlwkGD3f2KbF6Rclwu/Zpr5i0mCGb7/qccP7SkkTreI3aRMVxPb
- r6z5gbURYW9mVe4OmIWlrZ71qP9KioSzNGg0VZEE9/y9+r8qZs24m9K4f w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10884"; a="2106523"
-X-IronPort-AV: E=Sophos;i="6.03,278,1694761200"; 
-   d="scan'208";a="2106523"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Nov 2023 01:23:39 -0700
+ t=1699181906; x=1730717906;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Pbvx18WOVVUCLP6MLRFVyoj/m8FVXpT4KqQ2E3+neLQ=;
+ b=FTvjPijMEpf/g/pnH5rtmlVAP2mHwEki0pBcKXn4qxOu8LbzMS0/K02Q
+ FuRq0avN2EGnkjWiQ1mtK3nHqkB6vingt8CYAZRFmLwEKE0MoExkKC+Y9
+ qNeHpnFEsPbplRSPYNKd5Vh2ficL2rhqoNYcbkuNYyy13gRWd09EvTnap
+ 2Fe8SEcPW088JGDPJ/PPJCTq38XB0/YfSdnnXNYK4Zr+PfSXidMF2gKhZ
+ XwFCx+dLlRTZsCK3faLCf1ZmGzFyNOoG/SQFBY6lS301Vweot6y2aweSu
+ xDCfodUg+dvTL67Fzsk2dlLbh3hUxeBBJVDFqSCsiBCgN41fDrj24B9C0 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10884"; a="379531558"
+X-IronPort-AV: E=Sophos;i="6.03,279,1694761200"; d="scan'208";a="379531558"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2023 02:58:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,278,1694761200"; 
-   d="scan'208";a="9802296"
-Received: from lkp-server01.sh.intel.com (HELO 17d9e85e5079) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 05 Nov 2023 01:23:38 -0700
-Received: from kbuild by 17d9e85e5079 with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1qzYPv-0005Bx-1o;
- Sun, 05 Nov 2023 08:23:35 +0000
-Date: Sun, 5 Nov 2023 16:22:59 +0800
-From: kernel test robot <lkp@intel.com>
-To: Uma Shankar <uma.shankar@intel.com>
-Message-ID: <202311051609.P3gULvxf-lkp@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10884"; a="935541557"
+X-IronPort-AV: E=Sophos;i="6.03,279,1694761200"; d="scan'208";a="935541557"
+Received: from sannilnx-dsk.jer.intel.com ([10.12.231.107])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Nov 2023 02:58:23 -0800
+From: Alexander Usyskin <alexander.usyskin@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
+Date: Sun,  5 Nov 2023 12:53:05 +0200
+Message-Id: <20231105105307.3710560-1-alexander.usyskin@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-xe] [drm-xe:drm-xe-next 1807/1906]
- drivers/gpu/drm/xe/display/xe_display_misc.c:10:14: warning: no previous
- prototype for 'intel_gmch_vga_set_decode'
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 0/2] drm/xe/gsc: enable pvc support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,45 +56,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
- Arun R Murthy <arun.r.mruthy@intel.com>, oe-kbuild-all@lists.linux.dev
+Cc: Tomas Winkler <tomas.winkler@intel.com>,
+ Alexander Usyskin <alexander.usyskin@intel.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Uma,
+Enable support of HECI GSC for PVC platform.
+Move HECI GSC initialization after GT initialize interrupts.
 
-FYI, the error/warning still remains.
+Alexander Usyskin (2):
+  drm/xe/gsc: enable pvc support
+  drm/xe/gsc: init heci gsc after interrupts are ready
 
-tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-head:   fc457bcc18109467961edc92c80b238009f6a9fb
-commit: e2f3d6c51c72c6ae6046ede17f03ca962a093bc1 [1807/1906] drm/xe/display: Create a dummy version for vga decode
-config: microblaze-allyesconfig (https://download.01.org/0day-ci/archive/20231105/202311051609.P3gULvxf-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231105/202311051609.P3gULvxf-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311051609.P3gULvxf-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/xe/display/xe_display_misc.c:10:14: warning: no previous prototype for 'intel_gmch_vga_set_decode' [-Wmissing-prototypes]
-      10 | unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
-         |              ^~~~~~~~~~~~~~~~~~~~~~~~~
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for INTEL_MEI_ME
-   Depends on [n]: X86 && PCI [=y]
-   Selected by [y]:
-   - INTEL_MEI_HDCP [=y] && (DRM_I915 [=n] || DRM_XE [=y])
-
-
-vim +/intel_gmch_vga_set_decode +10 drivers/gpu/drm/xe/display/xe_display_misc.c
-
-     9	
-  > 10	unsigned int intel_gmch_vga_set_decode(struct pci_dev *pdev, bool enable_decode)
+ drivers/gpu/drm/xe/regs/xe_regs.h |  1 +
+ drivers/gpu/drm/xe/xe_device.c    |  4 ++--
+ drivers/gpu/drm/xe/xe_heci_gsc.c  | 11 ++++++++++-
+ drivers/gpu/drm/xe/xe_pci.c       |  1 +
+ 4 files changed, 14 insertions(+), 3 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
