@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7DAFFC4332F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 11:26:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1225C4332F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 11:27:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42FAF10E2CB;
-	Mon,  6 Nov 2023 11:26:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7DC8A10E2CB;
+	Mon,  6 Nov 2023 11:27:32 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 7FCFB10E2CB;
- Mon,  6 Nov 2023 11:26:15 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A920B10E2CB;
+ Mon,  6 Nov 2023 11:27:30 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7D5E1A0078;
- Mon,  6 Nov 2023 11:26:15 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id A615BA0078;
+ Mon,  6 Nov 2023 11:27:30 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Mika Kuoppala" <mika.kuoppala@linux.intel.com>
-Date: Mon, 06 Nov 2023 11:26:15 -0000
-Message-ID: <169926997550.20422.3288142884719234937@emeril.freedesktop.org>
+Date: Mon, 06 Nov 2023 11:27:30 -0000
+Message-ID: <169927005067.20425.2841709639651070285@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231106111845.2333093-1-mika.kuoppala@linux.intel.com>
 In-Reply-To: <20231106111845.2333093-1-mika.kuoppala@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_xe?=
- =?utf-8?q?-eudebug=3A_GPU_debugging_interface?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EKUnit=3A_success_for_xe-eude?=
+ =?utf-8?q?bug=3A_GPU_debugging_interface?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,580 +48,562 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: xe-eudebug: GPU debugging interface
 URL   : https://patchwork.freedesktop.org/series/126019/
-State : warning
+State : success
 
 == Summary ==
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 77e8500f7589521665f03db5c263daafe60daddc
-Author: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-Date:   Mon Nov 6 13:18:45 2023 +0200
-
-    drm/xe/eudebug: vm open/pread/pwrite
-    
-    Debugger needs access to the client's vm to read and write. For
-    example inspecting ISA/ELF and setting up breakpoints.
-    
-    Add ioctl to open target vm with debugger client and vm_handle
-    and hook up pread/pwrite possibility.
-    
-    Open will take timeout argument so that standard fsync
-    can be used for explicit flushing between cpu/gpu for
-    the target vm.
-    
-    TODO: userptr
-    TODO: flushes per engine
-    
-    Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-+ /mt/dim checkpatch fc457bcc18109467961edc92c80b238009f6a9fb drm-intel
-e793dfbe2 drm/xe/eudebug: Introduce eudebug support
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:172: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#172: 
-new file mode 100644
-
--:210: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
-#210: FILE: drivers/gpu/drm/xe/xe_eudebug.c:34:
-+#define XE_EUDEBUG_DBG_ARGS(d) current->pid, \
-+		task_tgid_nr(current), \
-+		(d)->session, \
-+		(d)->target_task->pid, \
-+		task_tgid_nr((d)->target_task)
-
--:210: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
-#210: FILE: drivers/gpu/drm/xe/xe_eudebug.c:34:
-+#define XE_EUDEBUG_DBG_ARGS(d) current->pid, \
-+		task_tgid_nr(current), \
-+		(d)->session, \
-+		(d)->target_task->pid, \
-+		task_tgid_nr((d)->target_task)
-
--:216: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
-#216: FILE: drivers/gpu/drm/xe/xe_eudebug.c:40:
-+#define eu_err(d, fmt, ...) drm_err(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
-+				    XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
-
--:218: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
-#218: FILE: drivers/gpu/drm/xe/xe_eudebug.c:42:
-+#define eu_warn(d, fmt, ...) drm_warn(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
-+				      XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
-
--:220: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'd' - possible side-effects?
-#220: FILE: drivers/gpu/drm/xe/xe_eudebug.c:44:
-+#define eu_dbg(d, fmt, ...) drm_dbg(&(d)->xe->drm, XE_EUDEBUG_DBG_STR # fmt, \
-+				    XE_EUDEBUG_DBG_ARGS(d), ##__VA_ARGS__)
-
--:223: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'T' may be better as '(T)' to avoid precedence issues
-#223: FILE: drivers/gpu/drm/xe/xe_eudebug.c:47:
-+#define struct_member(T, member) (((T *)0)->member)
-
--:223: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'member' may be better as '(member)' to avoid precedence issues
-#223: FILE: drivers/gpu/drm/xe/xe_eudebug.c:47:
-+#define struct_member(T, member) (((T *)0)->member)
-
--:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ptr' - possible side-effects?
-#225: FILE: drivers/gpu/drm/xe/xe_eudebug.c:49:
-+#define write_member(T_out, ptr, member, value) { \
-+	BUILD_BUG_ON(sizeof(*ptr) != sizeof(T_out)); \
-+	BUILD_BUG_ON(offsetof(typeof(*ptr), member) != \
-+		     offsetof(typeof(T_out), member)); \
-+	BUILD_BUG_ON(sizeof(ptr->member) != sizeof(value)); \
-+	BUILD_BUG_ON(sizeof(struct_member(T_out, member)) != sizeof(value)); \
-+	BUILD_BUG_ON(!typecheck(typeof((ptr)->member), value));	\
-+	/* memcpy(&ptr->member, &(value), sizeof(ptr->member));	*/ \
-+	(ptr)->member = (value); \
-+	}
-
--:225: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'ptr' may be better as '(ptr)' to avoid precedence issues
-#225: FILE: drivers/gpu/drm/xe/xe_eudebug.c:49:
-+#define write_member(T_out, ptr, member, value) { \
-+	BUILD_BUG_ON(sizeof(*ptr) != sizeof(T_out)); \
-+	BUILD_BUG_ON(offsetof(typeof(*ptr), member) != \
-+		     offsetof(typeof(T_out), member)); \
-+	BUILD_BUG_ON(sizeof(ptr->member) != sizeof(value)); \
-+	BUILD_BUG_ON(sizeof(struct_member(T_out, member)) != sizeof(value)); \
-+	BUILD_BUG_ON(!typecheck(typeof((ptr)->member), value));	\
-+	/* memcpy(&ptr->member, &(value), sizeof(ptr->member));	*/ \
-+	(ptr)->member = (value); \
-+	}
-
--:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
-#225: FILE: drivers/gpu/drm/xe/xe_eudebug.c:49:
-+#define write_member(T_out, ptr, member, value) { \
-+	BUILD_BUG_ON(sizeof(*ptr) != sizeof(T_out)); \
-+	BUILD_BUG_ON(offsetof(typeof(*ptr), member) != \
-+		     offsetof(typeof(T_out), member)); \
-+	BUILD_BUG_ON(sizeof(ptr->member) != sizeof(value)); \
-+	BUILD_BUG_ON(sizeof(struct_member(T_out, member)) != sizeof(value)); \
-+	BUILD_BUG_ON(!typecheck(typeof((ptr)->member), value));	\
-+	/* memcpy(&ptr->member, &(value), sizeof(ptr->member));	*/ \
-+	(ptr)->member = (value); \
-+	}
-
--:225: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'value' - possible side-effects?
-#225: FILE: drivers/gpu/drm/xe/xe_eudebug.c:49:
-+#define write_member(T_out, ptr, member, value) { \
-+	BUILD_BUG_ON(sizeof(*ptr) != sizeof(T_out)); \
-+	BUILD_BUG_ON(offsetof(typeof(*ptr), member) != \
-+		     offsetof(typeof(T_out), member)); \
-+	BUILD_BUG_ON(sizeof(ptr->member) != sizeof(value)); \
-+	BUILD_BUG_ON(sizeof(struct_member(T_out, member)) != sizeof(value)); \
-+	BUILD_BUG_ON(!typecheck(typeof((ptr)->member), value));	\
-+	/* memcpy(&ptr->member, &(value), sizeof(ptr->member));	*/ \
-+	(ptr)->member = (value); \
-+	}
-
--:521: CHECK:COMPARISON_TO_NULL: Comparison to NULL could be written "!event"
-#521: FILE: drivers/gpu/drm/xe/xe_eudebug.c:345:
-+	if (*event == NULL)
-
--:784: CHECK:SPACING: spaces preferred around that '*' (ctx:VxV)
-#784: FILE: drivers/gpu/drm/xe/xe_eudebug.c:608:
-+						       msecs_to_jiffies(10*10000));
- 						                          ^
-
--:861: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#861: FILE: drivers/gpu/drm/xe/xe_eudebug.c:685:
-+
-+
-
--:1446: WARNING:LONG_LINE: line length of 130 exceeds 100 columns
-#1446: FILE: include/uapi/drm/xe_drm_tmp.h:16:
-+#define DRM_IOCTL_XE_EUDEBUG_CONNECT		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EUDEBUG_CONNECT, struct drm_xe_eudebug_connect)
-
-total: 1 errors, 2 warnings, 13 checks, 1417 lines checked
-c1f1509f3 drm/xe/eudebug: Introduce discovery for resources
-661ce4c31 drm/xe/eudebug: Introduce exec_queue events
--:28: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#28: FILE: drivers/gpu/drm/xe/xe_eudebug.c:1040:
-+static int send_exec_queue_event(struct xe_eudebug *d, u32 flags,
-+			     u64 client_handle, u64 vm_handle,
-
--:45: WARNING:LONG_LINE: line length of 102 exceeds 100 columns
-#45: FILE: drivers/gpu/drm/xe/xe_eudebug.c:1057:
-+	write_member(struct drm_xe_eudebug_event_exec_queue, e, exec_queue_handle, exec_queue_handle);
-
-total: 0 errors, 1 warnings, 1 checks, 286 lines checked
-b16f0af5c drm/xe/eudebug: hw enablement for eudebug
-276eaf4f8 drm/xe: define XE_MAX_[DSS|EU]_FUSE_BITS globally
--:38: WARNING:NEW_TYPEDEFS: do not add new typedefs
-#38: FILE: drivers/gpu/drm/xe/xe_gt_types.h:32:
-+typedef unsigned long xe_dss_mask_t[BITS_TO_LONGS(XE_MAX_DSS_FUSE_BITS)];
-
--:39: WARNING:NEW_TYPEDEFS: do not add new typedefs
-#39: FILE: drivers/gpu/drm/xe/xe_gt_types.h:33:
-+typedef unsigned long xe_eu_mask_t[BITS_TO_LONGS(XE_MAX_EU_FUSE_BITS)];
-
-total: 0 errors, 2 warnings, 0 checks, 23 lines checked
-9ba055fbe drm/xe: Introduce for_each_dss_steering loop
--:70: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ss_' - possible side-effects?
-#70: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:36:
-+#define for_each_dss_steering(ss_, gt_, group_, instance_) \
-+	for (ss_ = 0, xe_gt_mcr_get_dss_steering(gt_, 0, &group_, &instance_); \
-+	     ss_ < XE_MAX_DSS_FUSE_BITS; \
-+	     ss_++, xe_gt_mcr_get_dss_steering(gt_, ss_, &group_, &instance_)) \
-+		for_each_if(test_bit(ss_, gt_->fuse_topo.c_dss_mask) || \
-+			    test_bit(ss_, gt_->fuse_topo.g_dss_mask))
-
--:70: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'gt_' - possible side-effects?
-#70: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:36:
-+#define for_each_dss_steering(ss_, gt_, group_, instance_) \
-+	for (ss_ = 0, xe_gt_mcr_get_dss_steering(gt_, 0, &group_, &instance_); \
-+	     ss_ < XE_MAX_DSS_FUSE_BITS; \
-+	     ss_++, xe_gt_mcr_get_dss_steering(gt_, ss_, &group_, &instance_)) \
-+		for_each_if(test_bit(ss_, gt_->fuse_topo.c_dss_mask) || \
-+			    test_bit(ss_, gt_->fuse_topo.g_dss_mask))
-
--:70: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'group_' - possible side-effects?
-#70: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:36:
-+#define for_each_dss_steering(ss_, gt_, group_, instance_) \
-+	for (ss_ = 0, xe_gt_mcr_get_dss_steering(gt_, 0, &group_, &instance_); \
-+	     ss_ < XE_MAX_DSS_FUSE_BITS; \
-+	     ss_++, xe_gt_mcr_get_dss_steering(gt_, ss_, &group_, &instance_)) \
-+		for_each_if(test_bit(ss_, gt_->fuse_topo.c_dss_mask) || \
-+			    test_bit(ss_, gt_->fuse_topo.g_dss_mask))
-
--:70: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'group_' may be better as '(group_)' to avoid precedence issues
-#70: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:36:
-+#define for_each_dss_steering(ss_, gt_, group_, instance_) \
-+	for (ss_ = 0, xe_gt_mcr_get_dss_steering(gt_, 0, &group_, &instance_); \
-+	     ss_ < XE_MAX_DSS_FUSE_BITS; \
-+	     ss_++, xe_gt_mcr_get_dss_steering(gt_, ss_, &group_, &instance_)) \
-+		for_each_if(test_bit(ss_, gt_->fuse_topo.c_dss_mask) || \
-+			    test_bit(ss_, gt_->fuse_topo.g_dss_mask))
-
--:70: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'instance_' - possible side-effects?
-#70: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:36:
-+#define for_each_dss_steering(ss_, gt_, group_, instance_) \
-+	for (ss_ = 0, xe_gt_mcr_get_dss_steering(gt_, 0, &group_, &instance_); \
-+	     ss_ < XE_MAX_DSS_FUSE_BITS; \
-+	     ss_++, xe_gt_mcr_get_dss_steering(gt_, ss_, &group_, &instance_)) \
-+		for_each_if(test_bit(ss_, gt_->fuse_topo.c_dss_mask) || \
-+			    test_bit(ss_, gt_->fuse_topo.g_dss_mask))
-
--:70: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'instance_' may be better as '(instance_)' to avoid precedence issues
-#70: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:36:
-+#define for_each_dss_steering(ss_, gt_, group_, instance_) \
-+	for (ss_ = 0, xe_gt_mcr_get_dss_steering(gt_, 0, &group_, &instance_); \
-+	     ss_ < XE_MAX_DSS_FUSE_BITS; \
-+	     ss_++, xe_gt_mcr_get_dss_steering(gt_, ss_, &group_, &instance_)) \
-+		for_each_if(test_bit(ss_, gt_->fuse_topo.c_dss_mask) || \
-+			    test_bit(ss_, gt_->fuse_topo.g_dss_mask))
-
--:77: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#77: FILE: drivers/gpu/drm/xe/xe_gt_mcr.h:43:
-+
-+
-
-total: 0 errors, 0 warnings, 7 checks, 55 lines checked
-cb3761f3d drm/xe: Export xe_hw_engine's mmio accessors
-7ed7b8cdd drm/xe: Add runalone engine property
--:75: ERROR:TRAILING_WHITESPACE: trailing whitespace
-#75: FILE: drivers/gpu/drm/xe/xe_lrc.c:1276:
-+^I$
-
--:93: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#93: FILE: drivers/gpu/drm/xe/xe_lrc.h:60:
-+
-+
-
-total: 1 errors, 0 warnings, 1 checks, 65 lines checked
-39e3e738f drm/xe/eudebug: Introduce per device attention scan worker
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:152: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#152: FILE: drivers/gpu/drm/xe/xe_eudebug.c:707:
-+{
-+
-
--:319: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'T' may be better as '(T)' to avoid precedence issues
-#319: FILE: drivers/gpu/drm/xe/xe_eudebug.c:874:
-+#define struct_member(T, member) (((T *)0)->member)
-
--:319: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'member' may be better as '(member)' to avoid precedence issues
-#319: FILE: drivers/gpu/drm/xe/xe_eudebug.c:874:
-+#define struct_member(T, member) (((T *)0)->member)
-
--:321: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'ptr' - possible side-effects?
-#321: FILE: drivers/gpu/drm/xe/xe_eudebug.c:876:
-+#define write_member(T_out, ptr, member, value) { \
-+	BUILD_BUG_ON(sizeof(*ptr) != sizeof(T_out)); \
-+	BUILD_BUG_ON(offsetof(typeof(*ptr), member) != \
-+		     offsetof(typeof(T_out), member)); \
-+	BUILD_BUG_ON(sizeof(ptr->member) != sizeof(value)); \
-+	BUILD_BUG_ON(sizeof(struct_member(T_out, member)) != sizeof(value)); \
-+	BUILD_BUG_ON(!typecheck(typeof((ptr)->member), value));	\
-+	/* memcpy(&ptr->member, &(value), sizeof(ptr->member));	*/ \
-+	(ptr)->member = (value); \
-+	}
-
--:321: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'ptr' may be better as '(ptr)' to avoid precedence issues
-#321: FILE: drivers/gpu/drm/xe/xe_eudebug.c:876:
-+#define write_member(T_out, ptr, member, value) { \
-+	BUILD_BUG_ON(sizeof(*ptr) != sizeof(T_out)); \
-+	BUILD_BUG_ON(offsetof(typeof(*ptr), member) != \
-+		     offsetof(typeof(T_out), member)); \
-+	BUILD_BUG_ON(sizeof(ptr->member) != sizeof(value)); \
-+	BUILD_BUG_ON(sizeof(struct_member(T_out, member)) != sizeof(value)); \
-+	BUILD_BUG_ON(!typecheck(typeof((ptr)->member), value));	\
-+	/* memcpy(&ptr->member, &(value), sizeof(ptr->member));	*/ \
-+	(ptr)->member = (value); \
-+	}
-
--:321: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'member' - possible side-effects?
-#321: FILE: drivers/gpu/drm/xe/xe_eudebug.c:876:
-+#define write_member(T_out, ptr, member, value) { \
-+	BUILD_BUG_ON(sizeof(*ptr) != sizeof(T_out)); \
-+	BUILD_BUG_ON(offsetof(typeof(*ptr), member) != \
-+		     offsetof(typeof(T_out), member)); \
-+	BUILD_BUG_ON(sizeof(ptr->member) != sizeof(value)); \
-+	BUILD_BUG_ON(sizeof(struct_member(T_out, member)) != sizeof(value)); \
-+	BUILD_BUG_ON(!typecheck(typeof((ptr)->member), value));	\
-+	/* memcpy(&ptr->member, &(value), sizeof(ptr->member));	*/ \
-+	(ptr)->member = (value); \
-+	}
-
--:321: CHECK:MACRO_ARG_REUSE: Macro argument reuse 'value' - possible side-effects?
-#321: FILE: drivers/gpu/drm/xe/xe_eudebug.c:876:
-+#define write_member(T_out, ptr, member, value) { \
-+	BUILD_BUG_ON(sizeof(*ptr) != sizeof(T_out)); \
-+	BUILD_BUG_ON(offsetof(typeof(*ptr), member) != \
-+		     offsetof(typeof(T_out), member)); \
-+	BUILD_BUG_ON(sizeof(ptr->member) != sizeof(value)); \
-+	BUILD_BUG_ON(sizeof(struct_member(T_out, member)) != sizeof(value)); \
-+	BUILD_BUG_ON(!typecheck(typeof((ptr)->member), value));	\
-+	/* memcpy(&ptr->member, &(value), sizeof(ptr->member));	*/ \
-+	(ptr)->member = (value); \
-+	}
-
--:378: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#378: FILE: drivers/gpu/drm/xe/xe_eudebug.c:933:
-+
-+
-
--:506: WARNING:BRACES: braces {} are not necessary for single statement blocks
-#506: FILE: drivers/gpu/drm/xe/xe_eudebug.c:1233:
-+	if (xe->eudebug.available) {
-+		attention_scan_flush(xe);
-+	}
-
--:552: ERROR:FLEXIBLE_ARRAY: Use C99 flexible arrays - see https://docs.kernel.org/process/deprecated.html#zero-length-and-one-element-arrays
-#552: FILE: drivers/gpu/drm/xe/xe_eudebug_types.h:128:
-+	u8 bitmask[0];
-+} __packed;
-
--:568: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#568: 
-new file mode 100644
-
--:587: ERROR:OPEN_BRACE: that open brace { should be on the previous line
-#587: FILE: drivers/gpu/drm/xe/xe_gt_debug.c:15:
-+static int xe_gt_for_each_dss_group_instance(struct xe_gt *gt,
-+					     int (*fn)(struct xe_gt *gt,
-+						       void *data,
-+						       unsigned int group,
-+						       unsigned int instance),
-+					     void *data)
-+{
-
--:678: CHECK:LINE_SPACING: Please don't use multiple blank lines
-#678: FILE: drivers/gpu/drm/xe/xe_gt_debug.c:106:
-+
-+
-
-total: 2 errors, 2 warnings, 9 checks, 708 lines checked
-240371147 drm/xe: Move and export xe_hw_engine lookup.
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 125 lines checked
-6ec79652d drm/xe/eudebug: Introduce EU control interface
--:11: WARNING:COMMIT_LOG_LONG_LINE: Prefer a maximum 75 chars per line (possible unwrapped commit description?)
-#11: 
-Based on implementation created by authors and other folks within i915 driver.
-
--:202: WARNING:UNNECESSARY_MODIFIER: Integer promotion: Using 'h' in '%hu' is unnecessary
-#202: FILE: drivers/gpu/drm/xe/xe_eudebug.c:826:
-+	eu_dbg(d,
-+	       "eu_control: client_handle=%llu, cmd=%u, flags=0x%x, ci.engine_class=%hu,"
-+	       "ci.engine_instance=%hu, ci.gt_id=%hu, bitmask_size=%u\n",
-+	       user_arg.client_handle, user_arg.cmd, user_arg.flags, user_arg.ci.engine_class,
-+	       user_arg.ci.gt_id, user_arg.ci.engine_instance, user_arg.bitmask_size);
-
--:202: WARNING:UNNECESSARY_MODIFIER: Integer promotion: Using 'h' in '%hu' is unnecessary
-#202: FILE: drivers/gpu/drm/xe/xe_eudebug.c:826:
-+	eu_dbg(d,
-+	       "eu_control: client_handle=%llu, cmd=%u, flags=0x%x, ci.engine_class=%hu,"
-+	       "ci.engine_instance=%hu, ci.gt_id=%hu, bitmask_size=%u\n",
-+	       user_arg.client_handle, user_arg.cmd, user_arg.flags, user_arg.ci.engine_class,
-+	       user_arg.ci.gt_id, user_arg.ci.engine_instance, user_arg.bitmask_size);
-
--:202: WARNING:UNNECESSARY_MODIFIER: Integer promotion: Using 'h' in '%hu' is unnecessary
-#202: FILE: drivers/gpu/drm/xe/xe_eudebug.c:826:
-+	eu_dbg(d,
-+	       "eu_control: client_handle=%llu, cmd=%u, flags=0x%x, ci.engine_class=%hu,"
-+	       "ci.engine_instance=%hu, ci.gt_id=%hu, bitmask_size=%u\n",
-+	       user_arg.client_handle, user_arg.cmd, user_arg.flags, user_arg.ci.engine_class,
-+	       user_arg.ci.gt_id, user_arg.ci.engine_instance, user_arg.bitmask_size);
-
--:213: WARNING:UNNECESSARY_MODIFIER: Integer promotion: Using 'h' in '%hu' is unnecessary
-#213: FILE: drivers/gpu/drm/xe/xe_eudebug.c:837:
-+	eu_dbg(d,
-+	       "eu_control: client_handle=%llu, cmd=%u, flags=0x%x, ci.engine_class=%hu,"
-+	       "ci.engine_instance=%hu, ci.gt_id=%hu, bitmask_size=%u, ret=%d\n",
-+	       user_arg.client_handle, user_arg.cmd, user_arg.flags, user_arg.ci.engine_class,
-+	       user_arg.ci.gt_id, user_arg.ci.engine_instance, user_arg.bitmask_size, ret);
-
--:213: WARNING:UNNECESSARY_MODIFIER: Integer promotion: Using 'h' in '%hu' is unnecessary
-#213: FILE: drivers/gpu/drm/xe/xe_eudebug.c:837:
-+	eu_dbg(d,
-+	       "eu_control: client_handle=%llu, cmd=%u, flags=0x%x, ci.engine_class=%hu,"
-+	       "ci.engine_instance=%hu, ci.gt_id=%hu, bitmask_size=%u, ret=%d\n",
-+	       user_arg.client_handle, user_arg.cmd, user_arg.flags, user_arg.ci.engine_class,
-+	       user_arg.ci.gt_id, user_arg.ci.engine_instance, user_arg.bitmask_size, ret);
-
--:213: WARNING:UNNECESSARY_MODIFIER: Integer promotion: Using 'h' in '%hu' is unnecessary
-#213: FILE: drivers/gpu/drm/xe/xe_eudebug.c:837:
-+	eu_dbg(d,
-+	       "eu_control: client_handle=%llu, cmd=%u, flags=0x%x, ci.engine_class=%hu,"
-+	       "ci.engine_instance=%hu, ci.gt_id=%hu, bitmask_size=%u, ret=%d\n",
-+	       user_arg.client_handle, user_arg.cmd, user_arg.flags, user_arg.ci.engine_class,
-+	       user_arg.ci.gt_id, user_arg.ci.engine_instance, user_arg.bitmask_size, ret);
-
--:336: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#336: FILE: drivers/gpu/drm/xe/xe_eudebug.c:1265:
-+	udelay(100);
-
--:345: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#345: FILE: drivers/gpu/drm/xe/xe_eudebug.c:1274:
-+	udelay(100);
-
--:398: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#398: FILE: drivers/gpu/drm/xe/xe_eudebug.c:1327:
-+			eu_dbg(d,
-+				"WRONG CLEAR (%u:%u:%u) TD_CRL: 0x%08x; TD_ATT: 0x%08x\n",
-
-total: 0 errors, 7 warnings, 3 checks, 560 lines checked
-14a6b7c78 drm/xe: Extend drm_xe_vm_bind_op
-5da32407c drm/xe/eudebug: uapi for client to debugger metadata (work in progress)
--:31: WARNING:LONG_LINE: line length of 143 exceeds 100 columns
-#31: FILE: include/uapi/drm/xe_drm.h:130:
-+#define DRM_IOCTL_XE_DEBUG_METADATA_CREATE	 DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEBUG_METADATA_CREATE, struct drm_xe_debug_metadata_create)
-
--:32: WARNING:LONG_LINE: line length of 144 exceeds 100 columns
-#32: FILE: include/uapi/drm/xe_drm.h:131:
-+#define DRM_IOCTL_XE_DEBUG_METADATA_DESTROY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_DEBUG_METADATA_DESTROY, struct drm_xe_debug_metadata_destroy)
-
-total: 0 errors, 2 warnings, 0 checks, 141 lines checked
-495bbea60 drm/xe/eudebug: Create/destroy user metadata
-2dc23ac3e drm/xe/eudebug: Set vm metadata
-4aab75f57 drm/xe/eudebug: User coredump support
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:49: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#49: 
-new file mode 100644
-
--:198: CHECK:PREFER_KERNEL_TYPES: Prefer kernel type 'u64' over 'uint64_t'
-#198: FILE: drivers/gpu/drm/xe/xe_usercoredump.c:145:
-+	uint64_t addr;
-
--:338: WARNING:STRCPY: Prefer strscpy over strcpy - see: https://github.com/KSPP/linux/issues/88
-#338: FILE: drivers/gpu/drm/xe/xe_usercoredump.c:285:
-+		strcpy(s->comm, "");
-
--:413: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#413: FILE: drivers/gpu/drm/xe/xe_usercoredump_types.h:37:
-+struct xe_user_state_snapshot {
-+
-
--:415: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
-#415: FILE: drivers/gpu/drm/xe/xe_usercoredump_types.h:39:
-+		struct mutex lock;
-
-total: 0 errors, 2 warnings, 3 checks, 527 lines checked
-a4c967d59 drm/xe/eudebug: Add per process coredumps
--:174: WARNING:SYMBOLIC_PERMS: Symbolic permissions 'S_IRUSR | S_IWUSR' are not preferred. Consider using octal permissions '0600'.
-#174: FILE: drivers/gpu/drm/xe/xe_usercoredump.c:387:
-+	d = debugfs_create_file(name, S_IRUSR | S_IWUSR,
-
--:241: WARNING:MISORDERED_TYPE: type 'long unsigned int' should be specified in [[un]signed] [short|int|long|long long] order
-#241: FILE: drivers/gpu/drm/xe/xe_usercoredump.c:454:
-+	long unsigned int pid;
-
--:241: WARNING:UNNECESSARY_INT: Prefer 'unsigned long' over 'long unsigned int' as the int is unnecessary
-#241: FILE: drivers/gpu/drm/xe/xe_usercoredump.c:454:
-+	long unsigned int pid;
-
--:319: CHECK:UNCOMMENTED_DEFINITION: struct mutex definition without comment
-#319: FILE: drivers/gpu/drm/xe/xe_usercoredump_types.h:65:
-+	struct mutex lock;
-
-total: 0 errors, 3 warnings, 1 checks, 281 lines checked
-b6201c624 drm/xe: Debug metadata create/destroy ioctls
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:25: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#25: 
-new file mode 100644
-
-total: 0 errors, 1 warnings, 0 checks, 227 lines checked
-eddbabfc8 xe/drm: Include debug_metadata in usercoredump
-207876b25 drm/xe: Set vm debug metadata
--:43: CHECK:BRACES: Blank lines aren't necessary after an open brace '{'
-#43: FILE: drivers/gpu/drm/xe/xe_usercoredump.c:232:
-+	list_for_each_entry(vmd, &vm->debug_metadata, link) {
-+
-
-total: 0 errors, 0 warnings, 1 checks, 297 lines checked
-c10f013cd drm/xe/: Include attention in usercapture.
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
--:160: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#160: FILE: drivers/gpu/drm/xe/xe_usercoredump.c:323:
-+		udelay(200);
-
--:169: CHECK:USLEEP_RANGE: usleep_range is preferred over udelay; see Documentation/timers/timers-howto.rst
-#169: FILE: drivers/gpu/drm/xe/xe_usercoredump.c:332:
-+		udelay(200);
-
--:180: CHECK:BRACES: Blank lines aren't necessary before a close brace '}'
-#180: FILE: drivers/gpu/drm/xe/xe_usercoredump.c:343:
-+
-+}
-
-total: 0 errors, 1 warnings, 3 checks, 255 lines checked
-6b487280f RFC: xe/drm: attach debug metadata to vma
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 289 lines checked
-6fcaf6ffc drm/xe: Capture metadata attached to vma
--:7: WARNING:COMMIT_MESSAGE: Missing commit description - Add an appropriate one
-
-total: 0 errors, 1 warnings, 0 checks, 33 lines checked
-32562466a drm/xe/xe_eudebug: Add vm bind events w/o acking
-77e8500f7 drm/xe/eudebug: vm open/pread/pwrite
--:29: WARNING:SPACE_BEFORE_TAB: please, no space before tabs
-#29: FILE: drivers/gpu/drm/xe/regs/xe_gt_regs.h:417:
-+#define RCU_ASYNC_FLUSH^I      ^I^I^IXE_REG(0x149fc)$
-
--:51: ERROR:SPACING: space prohibited before that close parenthesis ')'
-#51: FILE: drivers/gpu/drm/xe/regs/xe_gt_regs.h:439:
-+	RCU_ASYNC_INVALIDATE_INSTRUCTION_CACHE )
-
--:293: ERROR:SPACING: space required after that ',' (ctx:VxV)
-#293: FILE: drivers/gpu/drm/xe/xe_eudebug.c:2368:
-+		xe_mmio_write32(gt, psmi_addr,_MASKED_BIT_ENABLE(IDLE_MSG_DISABLE));
- 		                             ^
-
-total: 2 errors, 1 warnings, 0 checks, 494 lines checked
++ trap cleanup EXIT
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/xe/.kunitconfig
+stty: 'standard input': Inappropriate ioctl for device
+[11:26:17] Configuring KUnit Kernel ...
+Generating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[11:26:21] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+[11:26:41] Starting KUnit Kernel (1/1)...
+[11:26:41] ============================================================
+[11:26:41] ========================== xe_bo  ==========================
+[11:26:41] [SKIPPED] xe_ccs_migrate_kunit
+[11:26:41] [SKIPPED] xe_bo_evict_kunit
+[11:26:41] ===================== [SKIPPED] xe_bo ======================
+[11:26:41] ======================= xe_dma_buf  ========================
+[11:26:41] [SKIPPED] xe_dma_buf_kunit
+[11:26:41] =================== [SKIPPED] xe_dma_buf ===================
+[11:26:41] ======================= xe_migrate  ========================
+[11:26:41] [SKIPPED] xe_migrate_sanity_kunit
+[11:26:41] =================== [SKIPPED] xe_migrate ===================
+[11:26:41] ========================= xe_pci  ==========================
+[11:26:41] [PASSED] xe_gmdid_graphics_ip
+[11:26:41] [PASSED] xe_gmdid_media_ip
+[11:26:41] ===================== [PASSED] xe_pci ======================
+[11:26:41] ========================= xe_rtp  ==========================
+[11:26:41] ================== xe_rtp_process_tests  ===================
+[11:26:41] [PASSED] coalesce-same-reg
+[11:26:41] [PASSED] no-match-no-add
+[11:26:41] [PASSED] no-match-no-add-multiple-rules
+[11:26:41] [PASSED] two-regs-two-entries
+[11:26:41] [PASSED] clr-one-set-other
+[11:26:41] [PASSED] set-field
+[11:26:41] [PASSED] conflict-duplicate
+[11:26:41] [PASSED] conflict-not-disjoint
+[11:26:41] [PASSED] conflict-reg-type
+[11:26:41] ============== [PASSED] xe_rtp_process_tests ===============
+[11:26:41] ===================== [PASSED] xe_rtp ======================
+[11:26:41] ========================== xe_wa  ==========================
+[11:26:41] ======================== xe_wa_gt  =========================
+[11:26:41] [PASSED] TIGERLAKE (B0)
+[11:26:41] [PASSED] DG1 (A0)
+[11:26:41] [PASSED] DG1 (B0)
+[11:26:41] [PASSED] ALDERLAKE_S (A0)
+[11:26:41] [PASSED] ALDERLAKE_S (B0)
+[11:26:41] [PASSED] ALDERLAKE_S (C0)
+[11:26:41] [PASSED] ALDERLAKE_S (D0)
+[11:26:41] [PASSED] ALDERLAKE_P (A0)
+[11:26:41] [PASSED] ALDERLAKE_P (B0)
+[11:26:41] [PASSED] ALDERLAKE_P (C0)
+[11:26:41] [PASSED] ALDERLAKE_S_RPLS (D0)
+[11:26:41] [PASSED] ALDERLAKE_P_RPLU (E0)
+[11:26:41] [PASSED] DG2_G10 (A0)
+[11:26:41] [PASSED] DG2_G10 (A1)
+[11:26:41] [PASSED] DG2_G10 (B0)
+[11:26:41] [PASSED] DG2_G10 (C0)
+[11:26:41] [PASSED] DG2_G11 (A0)
+[11:26:41] [PASSED] DG2_G11 (B0)
+[11:26:41] [PASSED] DG2_G11 (B1)
+[11:26:41] [PASSED] DG2_G12 (A0)
+[11:26:41] [PASSED] DG2_G12 (A1)
+[11:26:41] [PASSED] PVC (B0)
+[11:26:41] [PASSED] PVC (B1)
+[11:26:41] [PASSED] PVC (C0)
+[11:26:41] ==================== [PASSED] xe_wa_gt =====================
+[11:26:41] ====================== [PASSED] xe_wa ======================
+[11:26:41] ============================================================
+[11:26:41] Testing complete. Ran 39 tests: passed: 35, skipped: 4
+[11:26:41] Elapsed time: 24.678s total, 4.195s configuring, 20.314s building, 0.147s running
+
++ /kernel/tools/testing/kunit/kunit.py run --kunitconfig /kernel/drivers/gpu/drm/tests/.kunitconfig
+[11:26:41] Configuring KUnit Kernel ...
+Regenerating .config ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+[11:26:43] Building KUnit Kernel ...
+Populating config with:
+$ make ARCH=um O=.kunit olddefconfig
+Building with:
+$ make ARCH=um O=.kunit --jobs=48
+[11:27:03] Starting KUnit Kernel (1/1)...
+[11:27:03] ============================================================
+[11:27:03] ================== drm_test_pick_cmdline  ==================
+[11:27:03] [PASSED] drm_test_pick_cmdline_res_1920_1080_60
+[11:27:03] =============== drm_test_pick_cmdline_named  ===============
+[11:27:03] [PASSED] NTSC
+[11:27:03] [PASSED] NTSC-J
+[11:27:03] [PASSED] PAL
+[11:27:03] [PASSED] PAL-M
+[11:27:03] =========== [PASSED] drm_test_pick_cmdline_named ===========
+[11:27:03] ============== [PASSED] drm_test_pick_cmdline ==============
+[11:27:03] ======================== drm_buddy  ========================
+[11:27:03] [PASSED] drm_test_buddy_alloc_limit
+[11:27:03] [PASSED] drm_test_buddy_alloc_range
+[11:27:03] [PASSED] drm_test_buddy_alloc_optimistic
+[11:27:03] [PASSED] drm_test_buddy_alloc_pessimistic
+[11:27:03] [PASSED] drm_test_buddy_alloc_smoke
+[11:27:03] [PASSED] drm_test_buddy_alloc_pathological
+[11:27:03] ==================== [PASSED] drm_buddy ====================
+[11:27:03] =================== drm_cmdline_parser  ====================
+[11:27:03] [PASSED] drm_test_cmdline_force_d_only
+[11:27:03] [PASSED] drm_test_cmdline_force_D_only_dvi
+[11:27:03] [PASSED] drm_test_cmdline_force_D_only_hdmi
+[11:27:03] [PASSED] drm_test_cmdline_force_D_only_not_digital
+[11:27:03] [PASSED] drm_test_cmdline_force_e_only
+[11:27:03] [PASSED] drm_test_cmdline_res
+[11:27:03] [PASSED] drm_test_cmdline_res_vesa
+[11:27:03] [PASSED] drm_test_cmdline_res_vesa_rblank
+[11:27:03] [PASSED] drm_test_cmdline_res_rblank
+[11:27:03] [PASSED] drm_test_cmdline_res_bpp
+[11:27:03] [PASSED] drm_test_cmdline_res_refresh
+[11:27:03] [PASSED] drm_test_cmdline_res_bpp_refresh
+[11:27:03] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced
+[11:27:03] [PASSED] drm_test_cmdline_res_bpp_refresh_margins
+[11:27:03] [PASSED] drm_test_cmdline_res_bpp_refresh_force_off
+[11:27:03] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on
+[11:27:03] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_analog
+[11:27:03] [PASSED] drm_test_cmdline_res_bpp_refresh_force_on_digital
+[11:27:03] [PASSED] drm_test_cmdline_res_bpp_refresh_interlaced_margins_force_on
+[11:27:03] [PASSED] drm_test_cmdline_res_margins_force_on
+[11:27:03] [PASSED] drm_test_cmdline_res_vesa_margins
+[11:27:03] [PASSED] drm_test_cmdline_name
+[11:27:03] [PASSED] drm_test_cmdline_name_bpp
+[11:27:03] [PASSED] drm_test_cmdline_name_option
+[11:27:03] [PASSED] drm_test_cmdline_name_bpp_option
+[11:27:03] [PASSED] drm_test_cmdline_rotate_0
+[11:27:03] [PASSED] drm_test_cmdline_rotate_90
+[11:27:03] [PASSED] drm_test_cmdline_rotate_180
+[11:27:03] [PASSED] drm_test_cmdline_rotate_270
+[11:27:03] [PASSED] drm_test_cmdline_hmirror
+[11:27:03] [PASSED] drm_test_cmdline_vmirror
+[11:27:03] [PASSED] drm_test_cmdline_margin_options
+[11:27:03] [PASSED] drm_test_cmdline_multiple_options
+[11:27:03] [PASSED] drm_test_cmdline_bpp_extra_and_option
+[11:27:03] [PASSED] drm_test_cmdline_extra_and_option
+[11:27:03] [PASSED] drm_test_cmdline_freestanding_options
+[11:27:03] [PASSED] drm_test_cmdline_freestanding_force_e_and_options
+[11:27:03] [PASSED] drm_test_cmdline_panel_orientation
+[11:27:03] ================ drm_test_cmdline_invalid  =================
+[11:27:03] [PASSED] margin_only
+[11:27:03] [PASSED] interlace_only
+[11:27:03] [PASSED] res_missing_x
+[11:27:03] [PASSED] res_missing_y
+[11:27:03] [PASSED] res_bad_y
+[11:27:03] [PASSED] res_missing_y_bpp
+[11:27:03] [PASSED] res_bad_bpp
+[11:27:03] [PASSED] res_bad_refresh
+[11:27:03] [PASSED] res_bpp_refresh_force_on_off
+[11:27:03] [PASSED] res_invalid_mode
+[11:27:03] [PASSED] res_bpp_wrong_place_mode
+[11:27:03] [PASSED] name_bpp_refresh
+[11:27:03] [PASSED] name_refresh
+[11:27:03] [PASSED] name_refresh_wrong_mode
+[11:27:03] [PASSED] name_refresh_invalid_mode
+[11:27:03] [PASSED] rotate_multiple
+[11:27:03] [PASSED] rotate_invalid_val
+[11:27:03] [PASSED] rotate_truncated
+[11:27:03] [PASSED] invalid_option
+[11:27:03] [PASSED] invalid_tv_option
+[11:27:03] [PASSED] truncated_tv_option
+[11:27:03] ============ [PASSED] drm_test_cmdline_invalid =============
+[11:27:03] =============== drm_test_cmdline_tv_options  ===============
+[11:27:03] [PASSED] NTSC
+[11:27:03] [PASSED] NTSC_443
+[11:27:03] [PASSED] NTSC_J
+[11:27:03] [PASSED] PAL
+[11:27:03] [PASSED] PAL_M
+[11:27:03] [PASSED] PAL_N
+[11:27:03] [PASSED] SECAM
+[11:27:03] =========== [PASSED] drm_test_cmdline_tv_options ===========
+[11:27:03] =============== [PASSED] drm_cmdline_parser ================
+[11:27:03] ================ drm_get_tv_mode_from_name  ================
+[11:27:03] ========== drm_test_get_tv_mode_from_name_valid  ===========
+[11:27:03] [PASSED] NTSC
+[11:27:03] [PASSED] NTSC-443
+[11:27:03] [PASSED] NTSC-J
+[11:27:03] [PASSED] PAL
+[11:27:03] [PASSED] PAL-M
+[11:27:03] [PASSED] PAL-N
+[11:27:03] [PASSED] SECAM
+[11:27:03] ====== [PASSED] drm_test_get_tv_mode_from_name_valid =======
+[11:27:03] [PASSED] drm_test_get_tv_mode_from_name_truncated
+[11:27:03] ============ [PASSED] drm_get_tv_mode_from_name ============
+[11:27:03] ==================== drm_damage_helper  ====================
+[11:27:03] [PASSED] drm_test_damage_iter_no_damage
+[11:27:03] [PASSED] drm_test_damage_iter_no_damage_fractional_src
+[11:27:03] [PASSED] drm_test_damage_iter_no_damage_src_moved
+[11:27:03] [PASSED] drm_test_damage_iter_no_damage_fractional_src_moved
+[11:27:03] [PASSED] drm_test_damage_iter_no_damage_not_visible
+[11:27:03] [PASSED] drm_test_damage_iter_no_damage_no_crtc
+[11:27:03] [PASSED] drm_test_damage_iter_no_damage_no_fb
+[11:27:03] [PASSED] drm_test_damage_iter_simple_damage
+[11:27:03] [PASSED] drm_test_damage_iter_single_damage
+[11:27:03] [PASSED] drm_test_damage_iter_single_damage_intersect_src
+[11:27:03] [PASSED] drm_test_damage_iter_single_damage_outside_src
+[11:27:03] [PASSED] drm_test_damage_iter_single_damage_fractional_src
+[11:27:03] [PASSED] drm_test_damage_iter_single_damage_intersect_fractional_src
+[11:27:03] [PASSED] drm_test_damage_iter_single_damage_outside_fractional_src
+[11:27:03] [PASSED] drm_test_damage_iter_single_damage_src_moved
+[11:27:03] [PASSED] drm_test_damage_iter_single_damage_fractional_src_moved
+[11:27:03] [PASSED] drm_test_damage_iter_damage
+[11:27:03] [PASSED] drm_test_damage_iter_damage_one_intersect
+[11:27:03] [PASSED] drm_test_damage_iter_damage_one_outside
+[11:27:03] [PASSED] drm_test_damage_iter_damage_src_moved
+[11:27:03] [PASSED] drm_test_damage_iter_damage_not_visible
+[11:27:03] ================ [PASSED] drm_damage_helper ================
+[11:27:03] ==================== drm_dp_mst_helper  ====================
+[11:27:03] ============== drm_test_dp_mst_calc_pbn_mode  ==============
+[11:27:03] [PASSED] Clock 154000 BPP 30 DSC disabled
+[11:27:03] [PASSED] Clock 234000 BPP 30 DSC disabled
+[11:27:03] [PASSED] Clock 297000 BPP 24 DSC disabled
+[11:27:03] [PASSED] Clock 332880 BPP 24 DSC enabled
+[11:27:03] [PASSED] Clock 324540 BPP 24 DSC enabled
+[11:27:03] ========== [PASSED] drm_test_dp_mst_calc_pbn_mode ==========
+[11:27:03] ========= drm_test_dp_mst_sideband_msg_req_decode  =========
+[11:27:03] [PASSED] DP_ENUM_PATH_RESOURCES with port number
+[11:27:03] [PASSED] DP_POWER_UP_PHY with port number
+[11:27:03] [PASSED] DP_POWER_DOWN_PHY with port number
+[11:27:03] [PASSED] DP_ALLOCATE_PAYLOAD with SDP stream sinks
+[11:27:03] [PASSED] DP_ALLOCATE_PAYLOAD with port number
+[11:27:03] [PASSED] DP_ALLOCATE_PAYLOAD with VCPI
+[11:27:03] [PASSED] DP_ALLOCATE_PAYLOAD with PBN
+[11:27:03] [PASSED] DP_QUERY_PAYLOAD with port number
+[11:27:03] [PASSED] DP_QUERY_PAYLOAD with VCPI
+[11:27:03] [PASSED] DP_REMOTE_DPCD_READ with port number
+[11:27:03] [PASSED] DP_REMOTE_DPCD_READ with DPCD address
+[11:27:03] [PASSED] DP_REMOTE_DPCD_READ with max number of bytes
+[11:27:03] [PASSED] DP_REMOTE_DPCD_WRITE with port number
+[11:27:03] [PASSED] DP_REMOTE_DPCD_WRITE with DPCD address
+[11:27:03] [PASSED] DP_REMOTE_DPCD_WRITE with data array
+[11:27:03] [PASSED] DP_REMOTE_I2C_READ with port number
+[11:27:03] [PASSED] DP_REMOTE_I2C_READ with I2C device ID
+[11:27:03] [PASSED] DP_REMOTE_I2C_READ with transactions array
+[11:27:03] [PASSED] DP_REMOTE_I2C_WRITE with port number
+[11:27:03] [PASSED] DP_REMOTE_I2C_WRITE with I2C device ID
+[11:27:03] [PASSED] DP_REMOTE_I2C_WRITE with data array
+[11:27:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream ID
+[11:27:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with client ID
+[11:27:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream event
+[11:27:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with valid stream event
+[11:27:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with stream behavior
+[11:27:03] [PASSED] DP_QUERY_STREAM_ENC_STATUS with a valid stream behavior
+[11:27:03] ===== [PASSED] drm_test_dp_mst_sideband_msg_req_decode =====
+[11:27:03] ================ [PASSED] drm_dp_mst_helper ================
+[11:27:03] ================= drm_format_helper_test  ==================
+[11:27:03] ============== drm_test_fb_xrgb8888_to_gray8  ==============
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ========== [PASSED] drm_test_fb_xrgb8888_to_gray8 ==========
+[11:27:03] ============= drm_test_fb_xrgb8888_to_rgb332  ==============
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb332 ==========
+[11:27:03] ============= drm_test_fb_xrgb8888_to_rgb565  ==============
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb565 ==========
+[11:27:03] ============ drm_test_fb_xrgb8888_to_xrgb1555  =============
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ======== [PASSED] drm_test_fb_xrgb8888_to_xrgb1555 =========
+[11:27:03] ============ drm_test_fb_xrgb8888_to_argb1555  =============
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ======== [PASSED] drm_test_fb_xrgb8888_to_argb1555 =========
+[11:27:03] ============ drm_test_fb_xrgb8888_to_rgba5551  =============
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ======== [PASSED] drm_test_fb_xrgb8888_to_rgba5551 =========
+[11:27:03] ============= drm_test_fb_xrgb8888_to_rgb888  ==============
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ========= [PASSED] drm_test_fb_xrgb8888_to_rgb888 ==========
+[11:27:03] ============ drm_test_fb_xrgb8888_to_argb8888  =============
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ======== [PASSED] drm_test_fb_xrgb8888_to_argb8888 =========
+[11:27:03] =========== drm_test_fb_xrgb8888_to_xrgb2101010  ===========
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ======= [PASSED] drm_test_fb_xrgb8888_to_xrgb2101010 =======
+[11:27:03] =========== drm_test_fb_xrgb8888_to_argb2101010  ===========
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ======= [PASSED] drm_test_fb_xrgb8888_to_argb2101010 =======
+[11:27:03] ============== drm_test_fb_xrgb8888_to_mono  ===============
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ========== [PASSED] drm_test_fb_xrgb8888_to_mono ===========
+[11:27:03] ==================== drm_test_fb_swab  =====================
+[11:27:03] [PASSED] single_pixel_source_buffer
+[11:27:03] [PASSED] single_pixel_clip_rectangle
+[11:27:03] [PASSED] well_known_colors
+[11:27:03] [PASSED] destination_pitch
+[11:27:03] ================ [PASSED] drm_test_fb_swab =================
+[11:27:03] ================= drm_test_fb_clip_offset  =================
+[11:27:03] [PASSED] pass through
+[11:27:03] [PASSED] horizontal offset
+[11:27:03] [PASSED] vertical offset
+[11:27:03] [PASSED] horizontal and vertical offset
+[11:27:03] [PASSED] horizontal offset (custom pitch)
+[11:27:03] [PASSED] vertical offset (custom pitch)
+[11:27:03] [PASSED] horizontal and vertical offset (custom pitch)
+[11:27:03] ============= [PASSED] drm_test_fb_clip_offset =============
+[11:27:03] ============== drm_test_fb_build_fourcc_list  ==============
+[11:27:03] [PASSED] no native formats
+[11:27:03] [PASSED] XRGB8888 as native format
+[11:27:03] [PASSED] remove duplicates
+[11:27:03] [PASSED] convert alpha formats
+[11:27:03] [PASSED] random formats
+[11:27:03] ========== [PASSED] drm_test_fb_build_fourcc_list ==========
+[11:27:03] =================== drm_test_fb_memcpy  ====================
+[11:27:03] [PASSED] single_pixel_source_buffer: XR24 little-endian (0x34325258)
+[11:27:03] [PASSED] single_pixel_source_buffer: XRA8 little-endian (0x38415258)
+[11:27:03] [PASSED] single_pixel_source_buffer: YU24 little-endian (0x34325559)
+[11:27:03] [PASSED] single_pixel_clip_rectangle: XB24 little-endian (0x34324258)
+[11:27:03] [PASSED] single_pixel_clip_rectangle: XRA8 little-endian (0x38415258)
+[11:27:03] [PASSED] single_pixel_clip_rectangle: YU24 little-endian (0x34325559)
+[11:27:03] [PASSED] well_known_colors: XB24 little-endian (0x34324258)
+[11:27:03] [PASSED] well_known_colors: XRA8 little-endian (0x38415258)
+[11:27:03] [PASSED] well_known_colors: YU24 little-endian (0x34325559)
+[11:27:03] [PASSED] destination_pitch: XB24 little-endian (0x34324258)
+[11:27:03] [PASSED] destination_pitch: XRA8 little-endian (0x38415258)
+[11:27:03] [PASSED] destination_pitch: YU24 little-endian (0x34325559)
+[11:27:03] =============== [PASSED] drm_test_fb_memcpy ================
+[11:27:03] ============= [PASSED] drm_format_helper_test ==============
+[11:27:03] ======================= drm_format  ========================
+[11:27:03] [PASSED] drm_test_format_block_width_invalid
+[11:27:03] [PASSED] drm_test_format_block_width_one_plane
+[11:27:03] [PASSED] drm_test_format_block_width_two_plane
+[11:27:03] [PASSED] drm_test_format_block_width_three_plane
+[11:27:03] [PASSED] drm_test_format_block_width_tiled
+[11:27:03] [PASSED] drm_test_format_block_height_invalid
+[11:27:03] [PASSED] drm_test_format_block_height_one_plane
+[11:27:03] [PASSED] drm_test_format_block_height_two_plane
+[11:27:03] [PASSED] drm_test_format_block_height_three_plane
+[11:27:03] [PASSED] drm_test_format_block_height_tiled
+[11:27:03] [PASSED] drm_test_format_min_pitch_invalid
+[11:27:03] [PASSED] drm_test_format_min_pitch_one_plane_8bpp
+[11:27:03] [PASSED] drm_test_format_min_pitch_one_plane_16bpp
+[11:27:03] [PASSED] drm_test_format_min_pitch_one_plane_24bpp
+[11:27:03] [PASSED] drm_test_format_min_pitch_one_plane_32bpp
+[11:27:03] [PASSED] drm_test_format_min_pitch_two_plane
+[11:27:03] [PASSED] drm_test_format_min_pitch_three_plane_8bpp
+[11:27:03] [PASSED] drm_test_format_min_pitch_tiled
+[11:27:03] =================== [PASSED] drm_format ====================
+[11:27:03] ===================== drm_framebuffer  =====================
+[11:27:03] =============== drm_test_framebuffer_create  ===============
+[11:27:03] [PASSED] ABGR8888 normal sizes
+[11:27:03] [PASSED] ABGR8888 max sizes
+[11:27:03] [PASSED] ABGR8888 pitch greater than min required
+[11:27:03] [PASSED] ABGR8888 pitch less than min required
+[11:27:03] [PASSED] ABGR8888 Invalid width
+[11:27:03] [PASSED] ABGR8888 Invalid buffer handle
+[11:27:03] [PASSED] No pixel format
+[11:27:03] [PASSED] ABGR8888 Width 0
+[11:27:03] [PASSED] ABGR8888 Height 0
+[11:27:03] [PASSED] ABGR8888 Out of bound height * pitch combination
+[11:27:03] [PASSED] ABGR8888 Large buffer offset
+[11:27:03] [PASSED] ABGR8888 Set DRM_MODE_FB_MODIFIERS without modifiers
+[11:27:03] [PASSED] ABGR8888 Valid buffer modifier
+[11:27:03] [PASSED] ABGR8888 Invalid buffer modifier(DRM_FORMAT_MOD_SAMSUNG_64_32_TILE)
+[11:27:03] [PASSED] ABGR8888 Extra pitches without DRM_MODE_FB_MODIFIERS
+[11:27:03] [PASSED] ABGR8888 Extra pitches with DRM_MODE_FB_MODIFIERS
+[11:27:03] [PASSED] NV12 Normal sizes
+[11:27:03] [PASSED] NV12 Max sizes
+[11:27:03] [PASSED] NV12 Invalid pitch
+[11:27:03] [PASSED] NV12 Invalid modifier/missing DRM_MODE_FB_MODIFIERS flag
+[11:27:03] [PASSED] NV12 different  modifier per-plane
+[11:27:03] [PASSED] NV12 with DRM_FORMAT_MOD_SAMSUNG_64_32_TILE
+[11:27:03] [PASSED] NV12 Valid modifiers without DRM_MODE_FB_MODIFIERS
+[11:27:03] [PASSED] NV12 Modifier for inexistent plane
+[11:27:03] [PASSED] NV12 Handle for inexistent plane
+[11:27:03] [PASSED] NV12 Handle for inexistent plane without DRM_MODE_FB_MODIFIERS
+[11:27:03] [PASSED] YVU420 DRM_MODE_FB_MODIFIERS set without modifier
+[11:27:03] [PASSED] YVU420 Normal sizes
+[11:27:03] [PASSED] YVU420 Max sizes
+[11:27:03] [PASSED] YVU420 Invalid pitch
+[11:27:03] [PASSED] YVU420 Different pitches
+[11:27:03] [PASSED] YVU420 Different buffer offsets/pitches
+[11:27:03] [PASSED] YVU420 Modifier set just for plane 0, without DRM_MODE_FB_MODIFIERS
+[11:27:03] [PASSED] YVU420 Modifier set just for planes 0, 1, without DRM_MODE_FB_MODIFIERS
+[11:27:03] [PASSED] YVU420 Modifier set just for plane 0, 1, with DRM_MODE_FB_MODIFIERS
+[11:27:03] [PASSED] YVU420 Valid modifier
+[11:27:03] [PASSED] YVU420 Different modifiers per plane
+[11:27:03] [PASSED] YVU420 Modifier for inexistent plane
+[11:27:03] [PASSED] X0L2 Normal sizes
+[11:27:03] [PASSED] X0L2 Max sizes
+[11:27:03] [PASSED] X0L2 Invalid pitch
+[11:27:03] [PASSED] X0L2 Pitch greater than minimum required
+[11:27:03] [PASSED] X0L2 Handle for inexistent plane
+[11:27:03] [PASSED] X0L2 Offset for inexistent plane, without DRM_MODE_FB_MODIFIERS set
+[11:27:03] [PASSED] X0L2 Modifier without DRM_MODE_FB_MODIFIERS set
+[11:27:03] [PASSED] X0L2 Valid modifier
+[11:27:03] [PASSED] X0L2 Modifier for inexistent plane
+[11:27:03] =========== [PASSED] drm_test_framebuffer_create ===========
+[11:27:03] ================= [PASSED] drm_framebuffer =================
+[11:27:03] ==================== drm-test-managed  =====================
+[11:27:03] [PASSED] drm_test_managed_run_action
+[11:27:03] ================ [PASSED] drm-test-managed =================
+[11:27:03] ========================= drm_mm  ==========================
+[11:27:03] [PASSED] drm_test_mm_init
+[11:27:03] [PASSED] drm_test_mm_debug
+[11:27:14] [PASSED] drm_test_mm_reserve
+[11:27:24] [PASSED] drm_test_mm_insert
+[11:27:25] [PASSED] drm_test_mm_replace
+[11:27:25] [PASSED] drm_test_mm_insert_range
+[11:27:25] [PASSED] drm_test_mm_frag
+[11:27:25] [PASSED] drm_test_mm_align
+[11:27:25] [PASSED] drm_test_mm_align32
+[11:27:25] [PASSED] drm_test_mm_align64
+[11:27:25] [PASSED] drm_test_mm_evict
+[11:27:26] [PASSED] drm_test_mm_evict_range
+[11:27:26] [PASSED] drm_test_mm_topdown
+[11:27:26] [PASSED] drm_test_mm_bottomup
+[11:27:26] [PASSED] drm_test_mm_lowest
+[11:27:26] [PASSED] drm_test_mm_highest
+[11:27:26] [PASSED] drm_test_mm_color
+[11:27:27] [PASSED] drm_test_mm_color_evict
+[11:27:27] [PASSED] drm_test_mm_color_evict_range
+[11:27:27] ===================== [PASSED] drm_mm ======================
+[11:27:27] =================== drm_modes_analog_tv  ===================
+[11:27:27] [PASSED] drm_test_modes_analog_tv_ntsc_480i
+[11:27:27] [PASSED] drm_test_modes_analog_tv_ntsc_480i_inlined
+[11:27:27] [PASSED] drm_test_modes_analog_tv_pal_576i
+[11:27:27] [PASSED] drm_test_modes_analog_tv_pal_576i_inlined
+[11:27:27] =============== [PASSED] drm_modes_analog_tv ===============
+[11:27:27] ==================== drm_plane_helper  =====================
+[11:27:27] =============== drm_test_check_plane_state  ================
+[11:27:27] [PASSED] clipping_simple
+[11:27:27] [PASSED] clipping_rotate_reflect
+[11:27:27] [PASSED] positioning_simple
+[11:27:27] [PASSED] upscaling
+[11:27:27] [PASSED] downscaling
+[11:27:27] [PASSED] rounding1
+[11:27:27] [PASSED] rounding2
+[11:27:27] [PASSED] rounding3
+[11:27:27] [PASSED] rounding4
+[11:27:27] =========== [PASSED] drm_test_check_plane_state ============
+[11:27:27] =========== drm_test_check_invalid_plane_state  ============
+[11:27:27] [PASSED] positioning_invalid
+[11:27:27] [PASSED] upscaling_invalid
+[11:27:27] [PASSED] downscaling_invalid
+[11:27:27] ======= [PASSED] drm_test_check_invalid_plane_state ========
+[11:27:27] ================ [PASSED] drm_plane_helper =================
+[11:27:27] ============ drm_connector_helper_tv_get_modes  ============
+[11:27:27] ====== drm_test_connector_helper_tv_get_modes_check  =======
+[11:27:27] [PASSED] None
+[11:27:27] [PASSED] PAL
+[11:27:27] [PASSED] NTSC
+[11:27:27] [PASSED] Both, NTSC Default
+[11:27:27] [PASSED] Both, PAL Default
+[11:27:27] [PASSED] Both, NTSC Default, with PAL on command-line
+[11:27:27] [PASSED] Both, PAL Default, with NTSC on command-line
+[11:27:27] == [PASSED] drm_test_connector_helper_tv_get_modes_check ===
+[11:27:27] ======== [PASSED] drm_connector_helper_tv_get_modes ========
+[11:27:27] ======================== drm_rect  =========================
+[11:27:27] [PASSED] drm_test_rect_clip_scaled_div_by_zero
+[11:27:27] [PASSED] drm_test_rect_clip_scaled_not_clipped
+[11:27:27] [PASSED] drm_test_rect_clip_scaled_clipped
+[11:27:27] [PASSED] drm_test_rect_clip_scaled_signed_vs_unsigned
+[11:27:27] ================= drm_test_rect_intersect  =================
+[11:27:27] [PASSED] top-left x bottom-right: 2x2+1+1 x 2x2+0+0
+[11:27:27] [PASSED] top-right x bottom-left: 2x2+0+0 x 2x2+1-1
+[11:27:27] [PASSED] bottom-left x top-right: 2x2+1-1 x 2x2+0+0
+[11:27:27] [PASSED] bottom-right x top-left: 2x2+0+0 x 2x2+1+1
+[11:27:27] [PASSED] right x left: 2x1+0+0 x 3x1+1+0
+[11:27:27] [PASSED] left x right: 3x1+1+0 x 2x1+0+0
+[11:27:27] [PASSED] up x bottom: 1x2+0+0 x 1x3+0-1
+[11:27:27] [PASSED] bottom x up: 1x3+0-1 x 1x2+0+0
+[11:27:27] [PASSED] touching corner: 1x1+0+0 x 2x2+1+1
+[11:27:27] [PASSED] touching side: 1x1+0+0 x 1x1+1+0
+[11:27:27] [PASSED] equal rects: 2x2+0+0 x 2x2+0+0
+[11:27:27] [PASSED] inside another: 2x2+0+0 x 1x1+1+1
+[11:27:27] [PASSED] far away: 1x1+0+0 x 1x1+3+6
+[11:27:27] [PASSED] points intersecting: 0x0+5+10 x 0x0+5+10
+[11:27:27] [PASSED] points not intersecting: 0x0+0+0 x 0x0+5+10
+[11:27:27] ============= [PASSED] drm_test_rect_intersect =============
+[11:27:27] ================ drm_test_rect_calc_hscale  ================
+[11:27:27] [PASSED] normal use
+[11:27:27] [PASSED] out of max range
+[11:27:27] [PASSED] out of min range
+[11:27:27] [PASSED] zero dst
+[11:27:27] [PASSED] negative src
+[11:27:27] [PASSED] negative dst
+[11:27:27] ============ [PASSED] drm_test_rect_calc_hscale ============
+[11:27:27] ================ drm_test_rect_calc_vscale  ================
+[11:27:27] [PASSED] normal use
+[11:27:27] [PASSED] out of max range
+[11:27:27] [PASSED] out of min range
+[11:27:27] [PASSED] zero dst
+[11:27:27] [PASSED] negative src
+[11:27:27] [PASSED] negative dst
+[11:27:27] ============ [PASSED] drm_test_rect_calc_vscale ============
+[11:27:27] ================== drm_test_rect_rotate  ===================
+[11:27:27] [PASSED] reflect-x
+[11:27:27] [PASSED] reflect-y
+[11:27:27] [PASSED] rotate-0
+[11:27:27] [PASSED] rotate-90
+[11:27:27] [PASSED] rotate-180
+[11:27:27] [PASSED] rotate-270
+[11:27:27] ============== [PASSED] drm_test_rect_rotate ===============
+[11:27:27] ================ drm_test_rect_rotate_inv  =================
+[11:27:27] [PASSED] reflect-x
+[11:27:27] [PASSED] reflect-y
+[11:27:27] [PASSED] rotate-0
+[11:27:27] [PASSED] rotate-90
+[11:27:27] [PASSED] rotate-180
+[11:27:27] [PASSED] rotate-270
+[11:27:27] ============ [PASSED] drm_test_rect_rotate_inv =============
+stty: 'standard input': Inappropriate ioctl for device
+[11:27:27] ==================== [PASSED] drm_rect =====================
+[11:27:27] ======================== drm_exec  =========================
+[11:27:27] [PASSED] sanitycheck
+[11:27:27] [PASSED] test_lock
+[11:27:27] [PASSED] test_lock_unlock
+[11:27:27] [PASSED] test_duplicates
+[11:27:27] [PASSED] test_prepare
+[11:27:27] [PASSED] test_prepare_array
+[11:27:27] [PASSED] test_multiple_loops
+[11:27:27] ==================== [PASSED] drm_exec =====================
+[11:27:27] ============================================================
+[11:27:27] Testing complete. Ran 368 tests: passed: 368
+[11:27:27] Elapsed time: 45.462s total, 1.661s configuring, 19.705s building, 24.094s running
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
 
 
