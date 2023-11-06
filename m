@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2ACD1C0032E
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 99795C00A5A
 	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 11:22:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0F1210E2E0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id F25A110E2E4;
 	Mon,  6 Nov 2023 11:22:42 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6EC6F10E2D9
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74AB410E2DA
  for <intel-xe@lists.freedesktop.org>; Mon,  6 Nov 2023 11:22:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1699269760; x=1730805760;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qaaoRfZgN8fQugpCn0ZazSNPXKoyHKIqrLhnwYM4XWs=;
- b=Gcbu2/xYv+2YVHWLgHDYyL6gXpO4RzSJ/d4ICBiRTk0ot3Ht14O6QoOl
- r2xc2RLxabkVcpW6cREbzYVjwaq6QZHD9jk6V+vMDMBxoEfrpFJGBoVdA
- zSeaq4a7TFAvNk8RfXobha1LnLesVuxJ0fjrhW7lludDZgBYtWwI0H/4n
- yiQCVsqj26zUoSdDjLhIn+W1q4qbieESlxKsHAVcCpI0Fd3aAMgJEtxAN
- 9MLz+g3mQIakgIIUxZZWYZ/nPyUGyKSpqUgECrZz0H8LOM6t/qr5zmFHx
- pxJy+7r529VRUTFEZu1RBhjqt3gb9MUMsOSXCfGIOfewFedh9J0Okr3i+ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="379646854"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="379646854"
+ bh=mRHMWvUz3XmIpKdPbudNuEghlsbfKr3l4/3sCnoEiaY=;
+ b=Kaukkrg5JQ1/Q5e7Xrf97aLXnmjX90ReDz2KCR6wh4FTmQ4+Uu2gopb7
+ negD+eQau6hncJ8HBydPbtv2VWOPxHJTwf+g4+EnV1v4HqveMUqLx6HtR
+ jkZ/8iqxrtWIQv5fa3aDXJ+ijqIZmNCh8Pwlqzk1ihtbyHAfyDROd+0dU
+ ZsmixozybQLWabX6OigW4jwofrFAmGTeUEDrCz1pZYCksYL2NuolOSrw5
+ uTRnS6xorMO6yx7bVx8KFPu28TRa6SCc48lcqxnYAFDlhvyQfsv5t/X5M
+ DYJN2cKn8y4LuTgo2bvacY0zdNe77nKiAuVCYKssQBhQnEyrbdIej3mFN A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="379646863"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="379646863"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 03:22:36 -0800
+ 06 Nov 2023 03:22:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="879411695"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="879411695"
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="879411707"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="879411707"
 Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 03:22:35 -0800
+ 06 Nov 2023 03:22:36 -0800
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  6 Nov 2023 13:18:38 +0200
-Message-Id: <20231106111845.2333093-19-mika.kuoppala@linux.intel.com>
+Date: Mon,  6 Nov 2023 13:18:39 +0200
+Message-Id: <20231106111845.2333093-20-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231106111845.2333093-1-mika.kuoppala@linux.intel.com>
 References: <20231106111845.2333093-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC 18/25] drm/xe: Debug metadata create/destroy ioctls
+Subject: [Intel-xe] [RFC 19/25] xe/drm: Include debug_metadata in
+ usercoredump
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,287 +62,161 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
 
-Ad a part of eu debug feature introduce debug metadata objects.
-These are to be used to pass metadata between client and debugger,
-by attaching them to vm_bind operations.
+Include all created debug metadatas in usercoredump,
+so the user can include i.e. elf binary to make the
+meaningful in offline analysis.
 
 Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                  |   1 +
- drivers/gpu/drm/xe/xe_debug_metadata.c       | 107 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_debug_metadata.h       |  23 ++++
- drivers/gpu/drm/xe/xe_debug_metadata_types.h |  28 +++++
- drivers/gpu/drm/xe/xe_device.c               |  17 +++
- drivers/gpu/drm/xe/xe_device_types.h         |   8 ++
- 6 files changed, 184 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_debug_metadata.c
- create mode 100644 drivers/gpu/drm/xe/xe_debug_metadata.h
- create mode 100644 drivers/gpu/drm/xe/xe_debug_metadata_types.h
+ drivers/gpu/drm/xe/xe_usercoredump.c       | 54 +++++++++++++++++++++-
+ drivers/gpu/drm/xe/xe_usercoredump_types.h |  9 ++++
+ 2 files changed, 62 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 59f76d29f44b..a8ff13cf5095 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -47,6 +47,7 @@ xe-y += xe_bb.o \
- 	xe_bo.o \
- 	xe_bo_evict.o \
- 	xe_debugfs.o \
-+	xe_debug_metadata.o \
- 	xe_devcoredump.o \
- 	xe_usercoredump.o \
- 	xe_device.o \
-diff --git a/drivers/gpu/drm/xe/xe_debug_metadata.c b/drivers/gpu/drm/xe/xe_debug_metadata.c
-new file mode 100644
-index 000000000000..7c4034d9223c
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_debug_metadata.c
-@@ -0,0 +1,107 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+#include "xe_debug_metadata.h"
-+
-+#include <drm/drm_device.h>
-+#include <drm/drm_file.h>
+diff --git a/drivers/gpu/drm/xe/xe_usercoredump.c b/drivers/gpu/drm/xe/xe_usercoredump.c
+index 2d3fc5a24c48..95a893a31302 100644
+--- a/drivers/gpu/drm/xe/xe_usercoredump.c
++++ b/drivers/gpu/drm/xe/xe_usercoredump.c
+@@ -5,6 +5,9 @@
+ 
+ #include "xe_usercoredump.h"
+ 
 +#include <drm/xe_drm.h>
 +
-+#include "xe_device.h"
-+
-+static void xe_debug_metadata_release(struct kref *ref)
-+{
-+	struct xe_debug_metadata *mdata = container_of(ref, struct xe_debug_metadata, refcount);
-+
-+	kvfree(mdata->ptr);
-+	kfree(mdata);
-+}
-+
-+void xe_debug_metadata_put(struct xe_debug_metadata *mdata)
-+{
-+	kref_put(&mdata->refcount, xe_debug_metadata_release);
-+}
-+
-+int xe_debug_metadata_create_ioctl(struct drm_device *dev,
-+				   void *data,
-+				   struct drm_file *file)
-+{
-+	struct xe_device *xe = to_xe_device(dev);
-+	struct xe_file *xef = to_xe_file(file);
-+	struct drm_xe_debug_metadata_create *args = data;
-+	struct xe_debug_metadata *mdata;
-+	int err;
-+	u32 id;
-+
-+	if (XE_IOCTL_DBG(xe, args->extensions))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, args->type > DRM_XE_DEBUG_METADATA_PROGRAM_MODULE))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, !args->user_addr || !args->len))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, !access_ok(u64_to_user_ptr(args->user_addr), args->len)))
-+		return -EFAULT;
-+
-+	mdata = kzalloc(sizeof(*mdata), GFP_KERNEL);
-+	if (!mdata)
-+		return -ENOMEM;
-+
-+	mdata->len = args->len;
-+	mdata->type = args->type;
-+
-+	mdata->ptr = kvmalloc(mdata->len, GFP_KERNEL);
-+	if (!mdata->ptr) {
-+		kfree(mdata);
-+		return -ENOMEM;
-+	}
-+	kref_init(&mdata->refcount);
-+	kref_get(&mdata->refcount);
-+
-+	err = copy_from_user(mdata->ptr, u64_to_user_ptr(args->user_addr), mdata->len);
-+	if (err) {
-+		err = -EFAULT;
-+		goto put_mdata;
-+	}
-+
-+	mutex_lock(&xef->debug_metadata.lock);
-+	err = xa_alloc(&xef->debug_metadata.xa, &id, mdata, xa_limit_32b, GFP_KERNEL);
-+	mutex_unlock(&xef->debug_metadata.lock);
-+
-+	args->id = id;
-+	mdata->id = id;
-+
-+	if (err)
-+		goto put_mdata;
-+
-+	return 0;
-+
-+put_mdata:
-+	xe_debug_metadata_put(mdata);
-+	return err;
-+}
-+
-+int xe_debug_metadata_destroy_ioctl(struct drm_device *dev,
-+				    void *data,
-+				    struct drm_file *file)
-+{
-+	struct xe_device *xe = to_xe_device(dev);
-+	struct xe_file *xef = to_xe_file(file);
-+	struct drm_xe_debug_metadata_destroy * const args = data;
-+	struct xe_debug_metadata *mdata;
-+
-+	if (XE_IOCTL_DBG(xe, args->extensions))
-+		return -EINVAL;
-+
-+	mutex_lock(&xef->debug_metadata.lock);
-+	mdata = xa_erase(&xef->debug_metadata.xa, args->id);
-+	mutex_unlock(&xef->debug_metadata.lock);
-+	if (XE_IOCTL_DBG(xe, !mdata))
-+		return -ENOENT;
-+
-+	xe_debug_metadata_put(mdata);
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_debug_metadata.h b/drivers/gpu/drm/xe/xe_debug_metadata.h
-new file mode 100644
-index 000000000000..abaea076c12d
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_debug_metadata.h
-@@ -0,0 +1,23 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_DEBUG_METADATA_H_
-+#define _XE_DEBUG_METADATA_H_
-+
-+#include "xe_debug_metadata_types.h"
-+
-+struct drm_device;
-+struct drm_file;
-+
-+void xe_debug_metadata_put(struct xe_debug_metadata *mdata);
-+
-+int xe_debug_metadata_create_ioctl(struct drm_device *dev,
-+				   void *data,
-+				   struct drm_file *file);
-+
-+int xe_debug_metadata_destroy_ioctl(struct drm_device *dev,
-+				    void *data,
-+				    struct drm_file *file);
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_debug_metadata_types.h b/drivers/gpu/drm/xe/xe_debug_metadata_types.h
-new file mode 100644
-index 000000000000..508f2fdbbc42
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_debug_metadata_types.h
-@@ -0,0 +1,28 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_DEBUG_METADATA_TYPES_H_
-+#define _XE_DEBUG_METADATA_TYPES_H_
-+
-+#include <linux/kref.h>
-+
-+struct xe_debug_metadata {
-+	/** @type: type of given metadata */
-+	u64 type;
-+
-+	/** @ptr: copy of userptr, given as a metadata payload */
-+	void *ptr;
-+
-+	/** @len: length, in bytes of the metadata */
-+	u64 len;
-+
-+	/** @id */
-+	u64 id;
-+
-+	/** @ref: reference count */
-+	struct kref refcount;
-+};
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index bc8032266ef0..a71392f33e3c 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -19,6 +19,7 @@
- #include "regs/xe_regs.h"
- #include "xe_bo.h"
- #include "xe_debugfs.h"
 +#include "xe_debug_metadata.h"
- #include "xe_display.h"
- #include "xe_dma_buf.h"
- #include "xe_drm_client.h"
-@@ -76,6 +77,9 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
- 	mutex_init(&xef->exec_queue.lock);
- 	xa_init_flags(&xef->exec_queue.xa, XA_FLAGS_ALLOC1);
+ #include "xe_device_types.h"
+ #include "xe_exec_queue_types.h"
+ #include "xe_vm.h"
+@@ -123,12 +126,19 @@ static void free_vma_snapshot(struct xe_vma_snapshot *s)
+ void xe_user_state_snapshot_release(struct xe_user_state_snapshot *s)
+ {
+ 	struct xe_vma_snapshot *v, *v_tmp;
++	struct xe_debug_metadata_snapshot *ms, *ms_tmp;
  
-+	mutex_init(&xef->debug_metadata.lock);
-+	xa_init_flags(&xef->debug_metadata.xa, XA_FLAGS_ALLOC1);
+ 	mutex_lock(&s->vmas.lock);
+ 	list_for_each_entry_safe(v, v_tmp, &s->vmas.list, link)
+ 		free_vma_snapshot(v);
+ 	mutex_unlock(&s->vmas.lock);
+ 
++	list_for_each_entry_safe(ms, ms_tmp, &s->metadata_list, link) {
++		list_del(&ms->link);
++		xe_debug_metadata_put(ms->mdata);
++		kfree(ms);
++	}
 +
- 	file->driver_priv = xef;
+ 	mutex_destroy(&s->vmas.lock);
  
- 	ret = xa_alloc(&xe->clients.xa, &xef->client_id, xef, xa_limit_32b, GFP_KERNEL);
-@@ -97,6 +101,7 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
- 	struct xe_file *xef = file->driver_priv;
- 	struct xe_vm *vm;
- 	struct xe_exec_queue *q;
-+	struct xe_debug_metadata *mdata;
- 	unsigned long idx;
- 
- 	xe_eudebug_file_close(xef);
-@@ -122,7 +127,15 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
- 	xa_destroy(&xef->vm.xa);
- 	mutex_destroy(&xef->vm.lock);
- 
-+	mutex_lock(&xef->debug_metadata.lock);
-+	xa_for_each(&xef->debug_metadata.xa, idx, mdata)
-+		xe_debug_metadata_put(mdata);
-+	mutex_unlock(&xef->debug_metadata.lock);
-+	xa_destroy(&xef->debug_metadata.xa);
-+	mutex_destroy(&xef->debug_metadata.lock);
-+
- 	xe_drm_client_put(xef->client);
-+
- 	kfree(xef);
+ 	put_pid(s->pid);
+@@ -195,6 +205,28 @@ static void capture_vmas(struct xe_user_state_snapshot *s,
+ 	up_read(&vm->lock);
  }
  
-@@ -147,6 +160,10 @@ static const struct drm_ioctl_desc xe_ioctls[] = {
- 			  DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_VM_MADVISE, xe_vm_madvise_ioctl, DRM_RENDER_ALLOW),
- 	DRM_IOCTL_DEF_DRV(XE_EUDEBUG_CONNECT, xe_eudebug_connect_ioctl, DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_DEBUG_METADATA_CREATE, xe_debug_metadata_create_ioctl,
-+			  DRM_RENDER_ALLOW),
-+	DRM_IOCTL_DEF_DRV(XE_DEBUG_METADATA_DESTROY, xe_debug_metadata_destroy_ioctl,
-+			  DRM_RENDER_ALLOW),
- };
- 
- static const struct file_operations xe_driver_fops = {
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index 57ec132286d7..bc8d6d1151f9 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -543,6 +543,14 @@ struct xe_file {
- 
- 	/** @client_id: id in clients.xa for eudebug discovery */
- 	int client_id;
++static void capture_metadata(struct xe_user_state_snapshot *s,
++			     struct xe_file *xef)
++{
++	struct xe_debug_metadata_snapshot *ms;
++	struct xe_debug_metadata *mdata;
++	unsigned long i;
 +
-+	/** @debug_metadata: array of debug metadata for file */
-+	struct {
-+		/** @xa: xarray to store engines */
-+		struct xarray xa;
-+		/** @lock: protects file engine state */
-+		struct mutex lock;
-+	} debug_metadata;
++	INIT_LIST_HEAD(&s->metadata_list);
++	mutex_lock(&xef->debug_metadata.lock);
++	xa_for_each(&xef->debug_metadata.xa, i, mdata) {
++		ms = kzalloc(sizeof(*ms), GFP_KERNEL);
++		if (!ms)
++			break;
++
++		INIT_LIST_HEAD(&ms->link);
++		list_add(&ms->link, &s->metadata_list);
++		kref_get(&mdata->refcount);
++		ms->mdata = mdata;
++	}
++	mutex_unlock(&xef->debug_metadata.lock);
++}
++
+ static void hexdump(struct drm_printer *m, const void *buf, size_t len)
+ {
+ 	const size_t rowsize = 8 * sizeof(u32);
+@@ -242,10 +274,23 @@ static void vma_snapshot_print(struct drm_printer *p,
+ 		hexdump(p, s->data, s->captured_bytes);
+ }
+ 
++static const char *debug_metadata_type_to_str(const u64 type)
++{
++	switch (type) {
++	case DRM_XE_DEBUG_METADATA_ELF_BINARY:
++		return "elf binary";
++	case DRM_XE_DEBUG_METADATA_PROGRAM_MODULE:
++		return "program module";
++	}
++
++	return "unknown";
++}
++
+ void xe_user_state_snapshot_print(struct xe_user_state_snapshot *s,
+ 				  struct drm_printer *p)
+ {
+ 	struct xe_vma_snapshot *v;
++	struct xe_debug_metadata_snapshot *ms;
+ 
+ 	drm_printf(p, "PID: %d\n", pid_vnr(s->pid));
+ 	drm_printf(p, "Comm: %s\n", s->comm);
+@@ -254,8 +299,13 @@ void xe_user_state_snapshot_print(struct xe_user_state_snapshot *s,
+ 	mutex_lock(&s->vmas.lock);
+ 	list_for_each_entry(v, &s->vmas.list, link)
+ 		vma_snapshot_print(p, v);
+-
+ 	mutex_unlock(&s->vmas.lock);
++
++	list_for_each_entry(ms, &s->metadata_list, link) {
++		drm_printf(p, "Metadata id=%llu of type %s:\n",
++			   ms->mdata->id, debug_metadata_type_to_str(ms->mdata->type));
++		hexdump(p, ms->mdata->ptr, ms->mdata->len);
++	}
+ }
+ 
+ struct xe_user_state_snapshot *
+@@ -287,6 +337,8 @@ xe_user_state_snapshot_capture(struct xe_exec_queue *q)
+ 	}
+ 
+ 	capture_vmas(s, q);
++	capture_metadata(s, xef);
++
+ 
+ 	return s;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_usercoredump_types.h b/drivers/gpu/drm/xe/xe_usercoredump_types.h
+index 635656e830cf..c69590affde7 100644
+--- a/drivers/gpu/drm/xe/xe_usercoredump_types.h
++++ b/drivers/gpu/drm/xe/xe_usercoredump_types.h
+@@ -13,6 +13,7 @@
+ 
+ struct xe_device;
+ struct xe_pidroot;
++struct xe_debug_metadata;
+ 
+ struct xe_vma_snapshot {
+ 	struct list_head link;
+@@ -28,6 +29,12 @@ struct xe_vma_snapshot {
+ 	void *data;
  };
  
- #endif
++struct xe_debug_metadata_snapshot {
++	struct list_head link;
++
++	struct xe_debug_metadata *mdata;
++};
++
+ /**
+  * struct xe_user_state_snapshot - Crash snapshot
+  *
+@@ -43,6 +50,8 @@ struct xe_user_state_snapshot {
+ 		struct list_head list;
+ 	} vmas;
+ 
++	struct list_head metadata_list;
++
+ 	struct pid *pid;
+ 	u64 client_id; /* drm client id */
+ 	char comm[TASK_COMM_LEN];
 -- 
 2.34.1
 
