@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64B46C0032E
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 11:22:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A5C25C4708E
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 11:22:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27A1210E2CB;
-	Mon,  6 Nov 2023 11:22:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5AF4C10E2D2;
+	Mon,  6 Nov 2023 11:22:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B961910E2D1
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Nov 2023 11:22:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FF0010E2D2
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Nov 2023 11:22:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699269754; x=1730805754;
+ t=1699269756; x=1730805756;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cAnTxzHYnzP1v9qCjJ6P433r5HgmmYsQBebkUKl4Ank=;
- b=j3E6PfNZ7ezf//EwFOwESZ+IeuMXYGHeRiaGCXqbJfNJ4Ww72Z3tjIk0
- j8ChATEWSCIP43OwPtGKmzHvtyltrsAz6tTNCCpl4gAfqGIE0u8zQdBWm
- WRQreVhsHX1tEpSN8g7hfTg+I90Y11TxP6vtRZO/GVqRcN/HiWtiNExTj
- Srv63dGUedgasP/kMFkIGJX7WEEPwT9xL8TtF/nAnpOf4wjd4QvFqM8p3
- rp7OdYz8/f62fSTQ+tQTDaoj6Jy4zwLFYnjGo9zE9JG/Qsw2wbfyNYRo5
- ONVilAt3W8U8DmCJv45s1gkJecrejRqI3dud+SA9SCND5leawRZgeFRhv w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="379646793"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="379646793"
+ bh=8khYende629I9a3yySpc8xGVRqFtucyxR4jaGbNqeRA=;
+ b=Qh0o+pFlX9QcSV673FGamLA0pJTitPEHyRIG1IKCat0dqiqn6MHlIFjZ
+ QRUp3PaD0eYAZ/++jHQvMk7smlFbYoKYmC1ymTWavbiPVWgzCiJqlwizR
+ XP69WFX27FS14yZaXUjb6lMz+Poy4uGOGOk2Ad4aShMb/2Dwcaw1tbckM
+ S6rGOS58nK81rq42jrS/I3o/+p454/TigcAcc3dIBq3hwgot8vTnPSeHM
+ wimPlbYqX+iBY2nEcTj771SSjgrVdVqvbyfOIt2wNmSxsXbubL5kJdTvB
+ QUYqLSyZVyKZdVKzsb8VGWpA0fLPtVBh/j47UyScS/IPS05ZDPirekgtN w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="379646817"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="379646817"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 03:22:23 -0800
+ 06 Nov 2023 03:22:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="879411580"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="879411580"
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="879411643"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="879411643"
 Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 03:22:22 -0800
+ 06 Nov 2023 03:22:29 -0800
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  6 Nov 2023 13:18:28 +0200
-Message-Id: <20231106111845.2333093-9-mika.kuoppala@linux.intel.com>
+Date: Mon,  6 Nov 2023 13:18:33 +0200
+Message-Id: <20231106111845.2333093-14-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231106111845.2333093-1-mika.kuoppala@linux.intel.com>
 References: <20231106111845.2333093-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC 08/25] drm/xe: Add runalone engine property
+Subject: [Intel-xe] [RFC 13/25] drm/xe/eudebug: uapi for client to debugger
+ metadata (work in progress)
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,116 +60,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Metadata structures to pass client (l0) information to debugger
+instance. ELF positions, module specific data and thread save area,
+sba area (XXX)
 
-Introduce runalone engine param, which is used to ensure that only
-one hw engine of group [rcs0, ccs0-3] is active on a tile. User
-can set property only on engine create.
-
-Note: unlike the i915, xe allows user to set runalone
-also on devices with single render/compute engine. It should not
-make much difference, but leave control to the user.
-
-Signed-off-by: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_engine_regs.h |  1 +
- drivers/gpu/drm/xe/xe_exec_queue.c       | 21 +++++++++++++++++++++
- drivers/gpu/drm/xe/xe_lrc.c              |  8 ++++++++
- drivers/gpu/drm/xe/xe_lrc.h              |  3 +++
- include/uapi/drm/xe_drm.h                |  1 +
- 5 files changed, 34 insertions(+)
+ include/uapi/drm/xe_drm.h | 103 ++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 103 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-index 35dd4837dd75..662105137d38 100644
---- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-@@ -72,6 +72,7 @@
- #define RING_EXECLIST_STATUS_HI(base)		XE_REG((base) + 0x234 + 4)
- 
- #define RING_CONTEXT_CONTROL(base)		XE_REG((base) + 0x244)
-+#define	  CTX_CTRL_RUN_ALONE			REG_BIT(7)
- #define	  CTX_CTRL_INHIBIT_SYN_CTX_SWITCH	REG_BIT(3)
- #define	  CTX_CTRL_ENGINE_CTX_RESTORE_INHIBIT	REG_BIT(0)
- 
-diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-index 8e4ee13f098f..bc21026a6083 100644
---- a/drivers/gpu/drm/xe/xe_exec_queue.c
-+++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-@@ -402,6 +402,26 @@ static int exec_queue_set_acc_granularity(struct xe_device *xe, struct xe_exec_q
- 	return 0;
- }
- 
-+static int engine_set_runalone(struct xe_device *xe, struct xe_exec_queue *q,
-+			       u64 value, bool create)
-+{
-+	int i;
-+
-+	if (XE_IOCTL_DBG(xe, !create))
-+		return -EINVAL;
-+
-+	if (XE_IOCTL_DBG(xe, (q->class != XE_ENGINE_CLASS_RENDER &&
-+			      q->class != XE_ENGINE_CLASS_COMPUTE)))
-+		return -EINVAL;
-+
-+	if (value) {
-+		for (i = 0; i < q->width; i++)
-+			xe_lrc_set_runalone(q->lrc + i);
-+	}
-+
-+	return 0;
-+}
-+
- typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
- 					     struct xe_exec_queue *q,
- 					     u64 value, bool create);
-@@ -415,6 +435,7 @@ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
- 	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER] = exec_queue_set_acc_trigger,
- 	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY] = exec_queue_set_acc_notify,
- 	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY] = exec_queue_set_acc_granularity,
-+	[XE_EXEC_QUEUE_SET_PROPERTY_RUNALONE] = engine_set_runalone,
- };
- 
- static int exec_queue_user_ext_set_property(struct xe_device *xe,
-diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
-index f8754f061599..1f373a794f53 100644
---- a/drivers/gpu/drm/xe/xe_lrc.c
-+++ b/drivers/gpu/drm/xe/xe_lrc.c
-@@ -1273,3 +1273,11 @@ void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *b
- 		bb->len += num_dw;
- 	}
- }
-+	
-+void xe_lrc_set_runalone(struct xe_lrc *lrc)
-+{
-+	u32 ctl;
-+
-+	ctl = _MASKED_BIT_ENABLE(CTX_CTRL_RUN_ALONE);
-+	xe_lrc_write_ctx_reg(lrc, CTX_CONTEXT_CONTROL, ctl);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_lrc.h b/drivers/gpu/drm/xe/xe_lrc.h
-index 28b1d3f404d4..5932cf079014 100644
---- a/drivers/gpu/drm/xe/xe_lrc.h
-+++ b/drivers/gpu/drm/xe/xe_lrc.h
-@@ -55,4 +55,7 @@ void xe_lrc_dump_default(struct drm_printer *p,
- 
- void xe_lrc_emit_hwe_state_instructions(struct xe_exec_queue *q, struct xe_bb *bb);
- 
-+void xe_lrc_set_runalone(struct xe_lrc *lrc);
-+
-+
- #endif
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 9bd7092a7ea4..4ecdceb7a074 100644
+index ed2d79acd190..8c9bda45ef12 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -765,6 +765,7 @@ struct drm_xe_exec_queue_set_property {
- #define XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
- #define XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
- #define XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY	7
-+#define XE_EXEC_QUEUE_SET_PROPERTY_RUNALONE		8
- 	/** @property: property to set */
- 	__u32 property;
+@@ -110,6 +110,8 @@ struct xe_user_extension {
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+ #define DRM_XE_VM_MADVISE		0x0b
+ #define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0c
++#define DRM_XE_DEBUG_METADATA_CREATE	0x0d
++#define DRM_XE_DEBUG_METADATA_DESTROY	0x0e
  
+ /* Must be kept compact -- no holes */
+ #define DRM_IOCTL_XE_DEVICE_QUERY		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEVICE_QUERY, struct drm_xe_device_query)
+@@ -125,6 +127,8 @@ struct xe_user_extension {
+ #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
+ #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
+ #define DRM_IOCTL_XE_VM_MADVISE			 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_MADVISE, struct drm_xe_vm_madvise)
++#define DRM_IOCTL_XE_DEBUG_METADATA_CREATE	 DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_DEBUG_METADATA_CREATE, struct drm_xe_debug_metadata_create)
++#define DRM_IOCTL_XE_DEBUG_METADATA_DESTROY	 DRM_IOW(DRM_COMMAND_BASE + DRM_XE_DEBUG_METADATA_DESTROY, struct drm_xe_debug_metadata_destroy)
+ 
+ /** struct drm_xe_engine_class_instance - instance of an engine class */
+ struct drm_xe_engine_class_instance {
+@@ -592,6 +596,7 @@ struct drm_xe_ext_set_property {
+ 
+ struct drm_xe_vm_create {
+ #define XE_VM_EXTENSION_SET_PROPERTY	0
++#define XE_VM_EXTENSION_SET_DEBUG_METADATA 1
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+ 
+@@ -620,7 +625,25 @@ struct drm_xe_vm_destroy {
+ 	__u64 reserved[2];
+ };
+ 
++struct drm_xe_vm_bind_op_ext_attach_debug {
++	/** @base: base user extension */
++	struct xe_user_extension base;
++
++	/** @id: Debug object id from create metadata */
++	__u64 id;
++
++	/** @flags: Flags */
++	__u64 flags;
++
++	/** @cookie: Cookie */
++	__u64 cookie;
++
++	/** @reserved: Reserved */
++	__u64 reserved;
++};
++
+ struct drm_xe_vm_bind_op {
++#define XE_VM_BIND_OP_EXTENSIONS_ATTACH_DEBUG 0
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+ 
+@@ -679,7 +702,13 @@ struct drm_xe_vm_bind_op {
+ 	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
+ 	 * intended to implement VK sparse bindings.
+ 	 */
++
+ #define XE_VM_BIND_FLAG_NULL		(0x1 << 3)
++	/*
++	 * If capture flag is set, on gpu error the contents of this bind
++	 * will be included in the device (XXX: per process) error state dump.
++	 */
++#define XE_VM_BIND_FLAG_CAPTURE		(0x1 << 20)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
+@@ -1092,6 +1121,80 @@ struct drm_xe_vm_madvise {
+ #define XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 3)
+ #define XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 4)
+ 
++/*
++ * struct drm_xe_debug_metadata_create - Create debug metadata
++ *
++ * Add a region of user memory to be marked as debug metadata.
++ * When the debugger attaches, the metadata regions will be delivered
++ * for debugger. Debugger can then map these regions to help decode
++ * the program state.
++ *
++ * Returns handle to created metadata entry.
++ */
++struct drm_xe_debug_metadata_create {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++#define DRM_XE_DEBUG_METADATA_ELF_BINARY     0
++#define DRM_XE_DEBUG_METADATA_PROGRAM_MODULE 1
++	/** @type: Type of metadata */
++	__u64 type;
++
++	/** @user_addr: pointer to start of the metadata */
++	__u64 user_addr;
++
++	/** @len: length, in bytes of the medata */
++	__u64 len;
++
++	/** @id: created metadata handle (out) */
++	__u64 id;
++};
++
++/**
++ * struct drm_xe_debug_metadata_destroy - Destroy debug metadata
++ *
++ * Destroy debug metadata.
++ */
++struct drm_xe_debug_metadata_destroy {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
++	/** @id: metadata handle to destroy */
++	__u64 id;
++};
++
++/**
++ * struct drm_xe_ext_vm_set_debug_metadata - Annotate metadata in vm
++ *
++ * Annotate static regions of vm to be noted as debug metadata.
++ * These will be communicated to a debugger and (XXX: selectively?)
++ * included in gpu error state.
++ *
++ */
++struct drm_xe_ext_vm_set_debug_metadata {
++	/** @base: base user extension */
++	struct xe_user_extension base;
++
++#define DRM_XE_VM_DEBUG_METADATA_COOKIE		0
++#define DRM_XE_VM_DEBUG_METADATA_MODULE_AREA	1
++#define DRM_XE_VM_DEBUG_METADATA_SBA_AREA	2
++#define DRM_XE_VM_DEBUG_METADATA_SIP_AREA	3
++#define DRM_XE_VM_DEBUG_METADATA_NUM		(1 + DRM_XE_VM_DEBUG_METADATA_SIP_AREA)
++	/** @type: Type of metadata at offset if not cookie */
++	__u64 type;
++
++	union {
++		/**@cookie: Cookie value to attach if type is METADATA_COOKIE */
++		__u64 cookie;
++
++		/**@offset: Offset into vm where metadata starts */
++		__u64 offset;
++	};
++
++	/** @len: Length of metadata in bytes or zero for cookie */
++	__u64 len;
++};
++
+ #if defined(__cplusplus)
+ }
+ #endif
 -- 
 2.34.1
 
