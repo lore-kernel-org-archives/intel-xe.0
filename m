@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53127C4332F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 11:22:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DE476C4167B
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 11:22:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D17B210E2E1;
-	Mon,  6 Nov 2023 11:22:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF18110E2D0;
+	Mon,  6 Nov 2023 11:22:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 412EB10E2D8
- for <intel-xe@lists.freedesktop.org>; Mon,  6 Nov 2023 11:22:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1F89410E2E2
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Nov 2023 11:22:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699269760; x=1730805760;
+ t=1699269764; x=1730805764;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5/O3XvAdd2zcayQ/AjNb55aUIJUUMeS/bt137Rjj/5k=;
- b=nJacpeGFDwxiCeMTC8qCasT4Q42USlVXFyehX59QV91/ie9M4apKeLNj
- eMzXKatCBEOmKGroMCWFswEAdbhITQGVK6fcMfUS66SyzmzmnhsSa7Cgs
- /9twARGd0/xq9MZAzvPV1Vk65lNdAvrLZrhvh4VrO8yGGh84UJaYP7U84
- GgECIBQ1cZP2ZYUHTA23b46JGZKVSSI05r8HzRDTG3BDYEBou0oNgFVDk
- eQyuUcjBWV8t5e/G3UtSTRXleO9lUpY5hPGBHxe0A9eFNSk9w9mcZ0RL1
- TTBMhpvOcAuyVRBrodi1nBDJLZMr67R1fRnviGA4ZVgpPIwZBxo8Cyifq Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="379646850"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="379646850"
+ bh=zX3FxmgIZzAwrBNMxqV+3g56j5O8i9bHBKKV4RSFaQw=;
+ b=ZRSdgWN4F5P8k8aFzng8N9L9qHOohgy1PZgzM+G25gnE3gT1zgC2gy+I
+ ZNz8JlbqRrLPuTpMKbGXX51qSwpNjGQQltU7bH1LsomA3y+0kol48l/mM
+ UZMM9kKq5qGevwt+MgT7mo8CWT0BBXPcbEmx6PdLoDriqL9PmGih2/VFa
+ i8uGvYGFCyYfKe3A7b3U/nIdxhiNstnFkN5UKLSJgOr+PVoE6InF6bB80
+ qnOSUZ+1k2u7qqkeKsFLSP2FHXd3c++HRcRk4OezfXdoKJoeRKHnFV3oR
+ ll8oflPS8J4kDgVmaeNatTMoqaAdyADhkRfBCmddAZKNLz0lXfVgDS5OO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="379646887"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="379646887"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 03:22:35 -0800
+ 06 Nov 2023 03:22:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="879411680"
-X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="879411680"
+X-IronPort-AV: E=McAfee;i="6600,9927,10885"; a="879411765"
+X-IronPort-AV: E=Sophos;i="6.03,281,1694761200"; d="scan'208";a="879411765"
 Received: from mkuoppal-desk.fi.intel.com ([10.237.72.193])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 03:22:34 -0800
+ 06 Nov 2023 03:22:42 -0800
 From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  6 Nov 2023 13:18:37 +0200
-Message-Id: <20231106111845.2333093-18-mika.kuoppala@linux.intel.com>
+Date: Mon,  6 Nov 2023 13:18:44 +0200
+Message-Id: <20231106111845.2333093-25-mika.kuoppala@linux.intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231106111845.2333093-1-mika.kuoppala@linux.intel.com>
 References: <20231106111845.2333093-1-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC 17/25] drm/xe/eudebug: Add per process coredumps
+Subject: [Intel-xe] [RFC 24/25] drm/xe/xe_eudebug: Add vm bind events w/o
+ acking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,333 +60,234 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We gather state of execution errors for particular pid for
-retrospection. State includes vmas, contents of vmas
-that were marked for capture and vm and vma based metadata.
+From: Christoph Manszewski <christoph.manszewski@intel.com>
 
-TODO: Quotas
+TODO:
+- reduce code duplication in xe_eudebug bind/unbind functions
+- rebase on latest eudebug-dev
+- address XXX
 
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Christoph Manszewski <christoph.manszewski@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.c             |   3 +
- drivers/gpu/drm/xe/xe_device_types.h       |   3 +
- drivers/gpu/drm/xe/xe_usercoredump.c       | 182 ++++++++++++++++++++-
- drivers/gpu/drm/xe/xe_usercoredump.h       |   7 +
- drivers/gpu/drm/xe/xe_usercoredump_types.h |  23 +++
- 5 files changed, 217 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_eudebug.c       | 93 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_eudebug.h       |  4 ++
+ drivers/gpu/drm/xe/xe_eudebug_types.h | 13 ++++
+ drivers/gpu/drm/xe/xe_vm.c            |  5 ++
+ include/uapi/drm/xe_drm_tmp.h         | 22 +++++--
+ 5 files changed, 131 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 9644387cd11f..bc8032266ef0 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -41,6 +41,7 @@
- #include "xe_wait_user_fence.h"
- #include "xe_hwmon.h"
- #include "xe_eudebug.h"
-+#include "xe_usercoredump.h"
- 
- #ifdef CONFIG_LOCKDEP
- struct lockdep_map xe_device_mem_access_lockdep_map = {
-@@ -456,6 +457,7 @@ int xe_device_probe(struct xe_device *xe)
- 	xe_display_register(xe);
- 
- 	xe_debugfs_register(xe);
-+	xe_usercoredumps_init(xe);
- 
- 	xe_pmu_register(&xe->pmu);
- 
-@@ -479,6 +481,7 @@ int xe_device_probe(struct xe_device *xe)
- 
- static void xe_device_remove_display(struct xe_device *xe)
- {
-+	xe_usercoredumps_fini(xe);
- 	xe_display_unregister(xe);
- 
- 	drm_dev_unplug(&xe->drm);
-diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index c025ecd1c321..57ec132286d7 100644
---- a/drivers/gpu/drm/xe/xe_device_types.h
-+++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -203,6 +203,9 @@ struct xe_device {
- 	/** @devcoredump: device coredump */
- 	struct xe_devcoredump devcoredump;
- 
-+	/** @usercoredumps: User state coredump repository */
-+	struct xe_usercoredumps usercoredumps;
-+
- 	/** @info: device info */
- 	struct intel_device_info {
- 		/** @graphics_name: graphics IP name */
-diff --git a/drivers/gpu/drm/xe/xe_usercoredump.c b/drivers/gpu/drm/xe/xe_usercoredump.c
-index 2ebaf15b563c..2d3fc5a24c48 100644
---- a/drivers/gpu/drm/xe/xe_usercoredump.c
-+++ b/drivers/gpu/drm/xe/xe_usercoredump.c
-@@ -89,7 +89,7 @@ vma_snapshot_create(struct xe_vma *vma, u64 addr, bool is_vram)
- {
- 	struct xe_vma_snapshot *s;
- 
--	s = kzalloc(sizeof(*s), GFP_ATOMIC);
-+	s = kzalloc(sizeof(*s), GFP_NOWAIT | __GFP_NOWARN);
- 	if (!s)
- 		return NULL;
- 
-@@ -254,6 +254,7 @@ void xe_user_state_snapshot_print(struct xe_user_state_snapshot *s,
- 	mutex_lock(&s->vmas.lock);
- 	list_for_each_entry(v, &s->vmas.list, link)
- 		vma_snapshot_print(p, v);
-+
- 	mutex_unlock(&s->vmas.lock);
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.c b/drivers/gpu/drm/xe/xe_eudebug.c
+index 886da91ea0a4..57a3cf59aaba 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.c
++++ b/drivers/gpu/drm/xe/xe_eudebug.c
+@@ -1983,6 +1983,99 @@ void xe_eudebug_exec_queue_destroy(struct xe_file *xef, struct xe_exec_queue *q)
+ 	xe_eudebug_put(d);
  }
  
-@@ -290,3 +291,182 @@ xe_user_state_snapshot_capture(struct xe_exec_queue *q)
- 	return s;
- }
- 
-+static int create_pidroot_debugfs(struct xe_usercoredumps *store,
-+				  struct xe_pidroot *r)
++static int send_vm_bind_event(struct xe_eudebug *d, u32 flags, u64 client_handle, u64 vm_handle,
++			      u64 va_start, u64 va_length)
 +{
-+	struct dentry *root = store->debugfs_root;
-+	struct dentry *d;
-+	char pid_str[8];
++	struct xe_eudebug_event_vm_bind *e;
++	struct xe_eudebug_event *event;
 +
-+	if (!root) {
-+		drm_warn(&store->xe->drm, "no debugfs root for usercoredumps\n");
-+		return -ENOENT;
-+	}
++	const u32 sz = sizeof(*e);
 +
-+	sprintf(pid_str, "%u", r->pid_nr);
-+	d = debugfs_create_dir(pid_str, root);
-+	if (IS_ERR(d))
-+		return PTR_ERR(d);
++	event = xe_eudebug_create_event(d, DRM_XE_EUDEBUG_EVENT_VM_BIND,
++					flags, sz, GFP_KERNEL);
++	if (!event)
++		return -ENOMEM;
 +
-+	r->dentry = d;
++	e = from_event(e, event);
 +
-+	return 0;
++	write_member(struct drm_xe_eudebug_event_vm_bind, e, client_handle, client_handle);
++	write_member(struct drm_xe_eudebug_event_vm_bind, e, vm_handle, vm_handle);
++	write_member(struct drm_xe_eudebug_event_vm_bind, e, va_start, va_start);
++	write_member(struct drm_xe_eudebug_event_vm_bind, e, va_length, va_length);
++
++	return xe_eudebug_queue_event(d, event);
 +}
 +
-+static struct xe_pidroot *create_pidroot(struct xe_usercoredumps *store,
-+					 struct xe_user_state_snapshot *s)
++static int vm_bind_event(struct xe_eudebug *d, struct xe_file *xef, struct xe_vm *vm,
++			 struct xe_vma *vma)
 +{
-+	struct xe_pidroot *r, *old;
-+	int ret;
++	int h_c, h_vm;
 +
-+	r = kzalloc(sizeof(*r), GFP_KERNEL);
-+	if (!r)
-+		return ERR_PTR(-ENOMEM);
++	h_c = find_handle(d->res, XE_EUDEBUG_RES_TYPE_CLIENT, xef);
++	if (h_c < 0)
++		return h_c;
 +
-+	r->pid_nr = pid_vnr(s->pid);
-+	INIT_LIST_HEAD(&r->snapshots);
-+	old = xa_store(&store->pidroots, r->pid_nr, r, GFP_KERNEL);
-+	if (xa_is_err(old)) {
-+		kfree(r);
-+		return ERR_PTR(xa_err(old));
-+	}
++	h_vm = find_handle(d->res, XE_EUDEBUG_RES_TYPE_VM, vm);
++	if (h_vm < 0)
++		return h_vm;
 +
-+	ret = create_pidroot_debugfs(store, r);
-+	if (ret) {
-+		kfree(r);
-+		return ERR_PTR(ret);
-+	}
-+
-+	r->store = store;
-+
-+	return r;
++	return send_vm_bind_event(d, DRM_XE_EUDEBUG_EVENT_CREATE, h_c, h_vm, vma->gpuva.va.addr,
++				  vma->gpuva.va.range);
 +}
 +
-+static int snapshot_show(struct seq_file *m, void *data)
++static int vm_unbind_event(struct xe_eudebug *d, struct xe_file *xef, struct xe_vm *vm,
++			   struct xe_vma *vma)
 +{
-+	struct xe_user_state_snapshot *s = m->private;
-+	struct drm_printer p = drm_seq_file_printer(m);
++	int h_c, h_vm;
 +
-+	xe_user_state_snapshot_print(s, &p);
++	h_c = find_handle(d->res, XE_EUDEBUG_RES_TYPE_CLIENT, xef);
++	if (h_c < 0)
++		return h_c;
 +
-+	return 0;
++	h_vm = find_handle(d->res, XE_EUDEBUG_RES_TYPE_VM, vm);
++	if (h_vm < 0)
++		return h_vm;
++
++	return send_vm_bind_event(d, DRM_XE_EUDEBUG_EVENT_DESTROY, h_c, h_vm, vma->gpuva.va.addr,
++				  vma->gpuva.va.range);
 +}
 +
-+static ssize_t snapshot_write(struct file *file,
-+			      const char __user *ubuf,
-+			      size_t len, loff_t *offp)
++void xe_eudebug_vm_bind(struct xe_file *xef, struct xe_vm *vm, struct xe_vma *vma)
 +{
-+	/* struct seq_file *m = file->private_data; */
-+	/* struct xe_user_state_snapshot *s = m->private; */
++	struct xe_eudebug *d;
++	int err;
 +
-+	return len;
-+}
-+
-+static int snapshot_open(struct inode *inode, struct file *file)
-+{
-+	return single_open(file, snapshot_show, inode->i_private);
-+}
-+
-+static const struct file_operations snapshot_fops = {
-+	.owner = THIS_MODULE,
-+	.open = snapshot_open,
-+	.read = seq_read,
-+	.llseek = seq_lseek,
-+	.release = single_release,
-+	.write = snapshot_write
-+};
-+
-+static int create_snapshot_debugfs(const struct xe_pidroot *r,
-+				   struct xe_user_state_snapshot *s)
-+{
-+	struct dentry *d;
-+	char name[32];
-+
-+	sprintf(name, "%lu", r->seqno);
-+
-+	d = debugfs_create_file(name, S_IRUSR | S_IWUSR,
-+				r->dentry,
-+				s, &snapshot_fops);
-+	if (IS_ERR(d))
-+		return PTR_ERR(d);
-+
-+	s->dentry = d;
-+
-+	return 0;
-+}
-+
-+int xe_usercoredumps_add(struct xe_device *xe,
-+			 struct xe_user_state_snapshot *s)
-+{
-+	struct xe_usercoredumps *store = &xe->usercoredumps;
-+	struct xe_pidroot *pr;
-+	int ret;
-+
-+	ret = 0;
-+	mutex_lock(&store->lock);
-+	pr = xa_load(&store->pidroots, pid_vnr(s->pid));
-+	if (!pr) {
-+		pr = create_pidroot(store, s);
-+		if (IS_ERR(pr)) {
-+			ret = PTR_ERR(pr);
-+			pr = NULL;
-+		}
-+	}
-+
-+	if (pr) {
-+		s->pidroot = pr;
-+		pr->seqno++;
-+		list_add_tail(&s->link, &pr->snapshots);
-+		create_snapshot_debugfs(pr, s);
-+	}
-+
-+	mutex_unlock(&store->lock);
-+
-+	return ret;
-+}
-+
-+void xe_usercoredumps_init(struct xe_device *xe)
-+{
-+	struct drm_minor *minor = xe->drm.primary;
-+	struct dentry *root = minor->debugfs_root;
-+	struct xe_usercoredumps *ucd = &xe->usercoredumps;
-+
-+	if (XE_WARN_ON(ucd->debugfs_root))
++	d = xe_eudebug_get(xef);
++	if (!d)
 +		return;
 +
-+	mutex_init(&ucd->lock);
-+	xa_init_flags(&ucd->pidroots, GFP_KERNEL);
-+
-+	ucd->debugfs_root = debugfs_create_dir("usercoredumps", root);
-+	if (IS_ERR(ucd->debugfs_root)) {
-+		drm_warn(&xe->drm, "Create usercoredumps directory failed %ld",
-+			 PTR_ERR(ucd->debugfs_root));
-+		ucd->debugfs_root = NULL;
++	err = vm_bind_event(d, xef, vm, vma);
++	if (err) {
++		eu_err(d, "error %d on %s, disconnecting", err, __func__);
++		xe_eudebug_disconnect(d, err);
 +	}
 +
-+	ucd->xe = xe;
++	xe_eudebug_put(d);
 +}
 +
-+void xe_usercoredumps_fini(struct xe_device *xe)
++void xe_eudebug_vm_unbind(struct xe_file *xef, struct xe_vm *vm, struct xe_vma *vma)
 +{
-+	struct xe_usercoredumps *ucd = &xe->usercoredumps;
-+	struct xe_pidroot *pr;
-+	long unsigned int pid;
++	struct xe_eudebug *d;
++	int err;
 +
-+	if (XE_WARN_ON(!ucd->debugfs_root))
++	d = xe_eudebug_get(xef);
++	if (!d)
 +		return;
 +
-+	xa_for_each(&ucd->pidroots, pid, pr) {
-+		struct xe_user_state_snapshot *s, *tmp;
-+
-+		list_for_each_entry_safe(s, tmp, &pr->snapshots, link)
-+			xe_user_state_snapshot_release(s);
-+
-+		kfree(pr);
++	err = vm_unbind_event(d, xef, vm, vma);
++	if (err) {
++		eu_err(d, "error %d on %s, disconnecting", err, __func__);
++		xe_eudebug_disconnect(d, err);
 +	}
 +
-+	debugfs_remove_recursive(ucd->debugfs_root);
-+
-+	xa_destroy(&ucd->pidroots);
-+	mutex_destroy(&ucd->lock);
++	xe_eudebug_put(d);
 +}
-diff --git a/drivers/gpu/drm/xe/xe_usercoredump.h b/drivers/gpu/drm/xe/xe_usercoredump.h
-index cc94e85996e9..f7bc5e0f7607 100644
---- a/drivers/gpu/drm/xe/xe_usercoredump.h
-+++ b/drivers/gpu/drm/xe/xe_usercoredump.h
-@@ -16,4 +16,11 @@ xe_user_state_snapshot_capture(struct xe_exec_queue *eq);
- void xe_user_state_snapshot_release(struct xe_user_state_snapshot *s);
- void xe_user_state_snapshot_print(struct xe_user_state_snapshot *s,
- 				  struct drm_printer *p);
 +
-+void xe_usercoredumps_init(struct xe_device *xe);
-+void xe_usercoredumps_fini(struct xe_device *xe);
-+int xe_usercoredumps_add(struct xe_device *xe,
-+			 struct xe_user_state_snapshot *s);
-+int xe_usercoredumps_remove(struct xe_device *xe,
-+			    struct xe_user_state_snapshot *s);
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_usercoredump_types.h b/drivers/gpu/drm/xe/xe_usercoredump_types.h
-index 7d80f412edaf..635656e830cf 100644
---- a/drivers/gpu/drm/xe/xe_usercoredump_types.h
-+++ b/drivers/gpu/drm/xe/xe_usercoredump_types.h
-@@ -9,8 +9,10 @@
- #include <linux/ktime.h>
- #include <linux/mutex.h>
- #include <linux/sched.h>
-+#include <linux/xarray.h>
- 
+ static int discover_client(struct xe_eudebug *d, struct xe_file *xef)
+ {
+ 	struct xe_exec_queue *q;
+diff --git a/drivers/gpu/drm/xe/xe_eudebug.h b/drivers/gpu/drm/xe/xe_eudebug.h
+index ac89a3d1ee1d..0f5e04603c9d 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug.h
++++ b/drivers/gpu/drm/xe/xe_eudebug.h
+@@ -10,6 +10,7 @@ struct drm_file;
  struct xe_device;
-+struct xe_pidroot;
+ struct xe_file;
+ struct xe_vm;
++struct xe_vma;
+ struct xe_exec_queue;
+ struct xe_hw_engine;
  
- struct xe_vma_snapshot {
- 	struct list_head link;
-@@ -34,6 +36,7 @@ struct xe_vma_snapshot {
-  * shows the state of the GPU of when the issue has happened.
-  */
- struct xe_user_state_snapshot {
-+	struct list_head link;
+@@ -30,4 +31,7 @@ void xe_eudebug_vm_destroy(struct xe_file *xef, struct xe_vm *vm);
+ void xe_eudebug_exec_queue_create(struct xe_file *xef, struct xe_exec_queue *q);
+ void xe_eudebug_exec_queue_destroy(struct xe_file *xef, struct xe_exec_queue *q);
  
- 	struct {
- 		struct mutex lock;
-@@ -43,6 +46,26 @@ struct xe_user_state_snapshot {
- 	struct pid *pid;
- 	u64 client_id; /* drm client id */
- 	char comm[TASK_COMM_LEN];
-+	u64 count;
++void xe_eudebug_vm_bind(struct xe_file *xef, struct xe_vm *vm, struct xe_vma *vma);
++void xe_eudebug_vm_unbind(struct xe_file *xef, struct xe_vm *vm, struct xe_vma *vma);
 +
-+	struct xe_pidroot *pidroot;
-+	struct dentry *dentry;
-+};
-+
-+struct xe_pidroot {
-+	struct xe_usercoredumps *store;
-+	int pid_nr;
-+	unsigned long seqno;
-+	struct list_head snapshots;
-+	struct dentry *dentry;
-+};
-+
-+struct xe_usercoredumps {
-+	struct xe_device *xe;
-+	struct mutex lock;
-+	struct xarray pidroots;
-+
-+	struct dentry *debugfs_root;
- };
- 
  #endif
+diff --git a/drivers/gpu/drm/xe/xe_eudebug_types.h b/drivers/gpu/drm/xe/xe_eudebug_types.h
+index d5103ec4648e..73016a940585 100644
+--- a/drivers/gpu/drm/xe/xe_eudebug_types.h
++++ b/drivers/gpu/drm/xe/xe_eudebug_types.h
+@@ -129,6 +129,19 @@ struct xe_eudebug_event_eu_attention {
+ 	u8 bitmask[0];
+ } __packed;
+ 
++/**
++ * struct xe_eudebug_event_vm_bind - Internal event for vm bind/unbind operation
++ */
++struct xe_eudebug_event_vm_bind {
++	/** @base: base event */
++	struct xe_eudebug_event base;
++	u64 client_handle;
++
++	u64 vm_handle;
++	u64 va_start;
++	u64 va_length;
++} __packed;
++
+ /**
+  * struct xe_eudebug_handle - eudebug resource handle
+  */
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 480427a30b05..f8c3f3efd12e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1882,6 +1882,9 @@ static int __xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma,
+ 		dma_fence_wait(fence, true);
+ 	dma_fence_put(fence);
+ 
++	/* XXX: get's also called for prefetch */
++	xe_eudebug_vm_bind(vm->xef, vm, vma);
++
+ 	return 0;
+ }
+ 
+@@ -1919,6 +1922,8 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+ 	if (IS_ERR(fence))
+ 		return PTR_ERR(fence);
+ 
++	xe_eudebug_vm_unbind(vm->xef, vm, vma);
++
+ 	xe_vma_destroy(vma, fence);
+ 	if (last_op)
+ 		xe_exec_queue_last_fence_set(wait_exec_queue, vm, fence);
+diff --git a/include/uapi/drm/xe_drm_tmp.h b/include/uapi/drm/xe_drm_tmp.h
+index 776ec9d0f32f..093884b70ca6 100644
+--- a/include/uapi/drm/xe_drm_tmp.h
++++ b/include/uapi/drm/xe_drm_tmp.h
+@@ -28,13 +28,14 @@ struct drm_xe_eudebug_event {
+ 	__u32 len;
+ 
+ 	__u16 type;
+-#define DRM_XE_EUDEBUG_EVENT_NONE     0
+-#define DRM_XE_EUDEBUG_EVENT_READ     1
+-#define DRM_XE_EUDEBUG_EVENT_OPEN     2
+-#define DRM_XE_EUDEBUG_EVENT_VM	      3
++#define DRM_XE_EUDEBUG_EVENT_NONE 0
++#define DRM_XE_EUDEBUG_EVENT_READ 1
++#define DRM_XE_EUDEBUG_EVENT_OPEN 2
++#define DRM_XE_EUDEBUG_EVENT_VM 3
+ #define DRM_XE_EUDEBUG_EVENT_EXEC_QUEUE 4
+-#define DRM_XE_EUDEBUG_EVENT_EU_ATTENTION	5
+-#define DRM_XE_EUDEBUG_EVENT_MAX_EVENT DRM_XE_EUDEBUG_EVENT_EU_ATTENTION
++#define DRM_XE_EUDEBUG_EVENT_EU_ATTENTION 5
++#define DRM_XE_EUDEBUG_EVENT_VM_BIND 6
++#define DRM_XE_EUDEBUG_EVENT_MAX_EVENT DRM_XE_EUDEBUG_EVENT_VM_BIND
+ 
+ 	__u16 flags;
+ #define DRM_XE_EUDEBUG_EVENT_CREATE		BIT(0)
+@@ -79,6 +80,15 @@ struct drm_xe_eudebug_event_eu_attention {
+ 	__u8 bitmask[0];
+ } __attribute__((packed));
+ 
++struct drm_xe_eudebug_event_vm_bind {
++	struct drm_xe_eudebug_event base;
++	__u64 client_handle;
++
++	__u64 vm_handle;
++	__u64 va_start;
++	__u64 va_length;
++} __attribute__((packed));
++
+ struct drm_xe_eudebug_event_metadata {
+ 	struct drm_xe_eudebug_event base;
+ 
 -- 
 2.34.1
 
