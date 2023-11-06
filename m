@@ -4,37 +4,72 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E7B6C4167B
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 13:21:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D538BC4167D
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 13:25:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0651410E316;
-	Mon,  6 Nov 2023 13:21:13 +0000 (UTC)
-Received: from dfw.source.kernel.org (dfw.source.kernel.org
- [IPv6:2604:1380:4641:c500::1])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB8A710E314;
- Mon,  6 Nov 2023 13:21:10 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by dfw.source.kernel.org (Postfix) with ESMTP id 4D9D760E17;
- Mon,  6 Nov 2023 13:21:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3503C433C7;
- Mon,  6 Nov 2023 13:21:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1699276870;
- bh=7Rrue7iWo7xWOE5v3jmblFvIZlUbm342f9COKV0+8nA=;
- h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
- b=P8oKSHEFiUaILzU/Mh2+xyABysGTDT8YUVkOOlcpRhIDNLiIz3d4UJj3NeFBRrirx
- PYXtUMxXoJcxP2aTBNYkGkBuuzFak3FrzXq42qiSDzM11FGmxLo/Qs4/Lhy8hY9/0r
- 35X7Yut/4HG5w9x1G2KauU7xy99tbU9WfwYrIdSAifMdWHP/au576J+x15LW9cG620
- CckZwVBCRs2eXUU2rNirDu7OiJ3TGh5IupTZX1nOgrccLOtmXdTh6LJVoCxHo2yJSq
- ulFzBivMS8znzBJl5aV+rxHgY9ZFn0tqo6OfkawlWmjHtiQtvxOp6RgvV10G7rmxjt
- SzEWgCDy8RlWA==
-Message-ID: <87b4456213b2d4bc3bfa312e28f946ca.mripard@kernel.org>
-Date: Mon, 06 Nov 2023 13:21:07 +0000
-From: "Maxime Ripard" <mripard@kernel.org>
-To: =?utf-8?b?VGhvbWFzIEhlbGxzdHLDtm0=?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231106114827.62492-1-thomas.hellstrom@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 705AB10E316;
+	Mon,  6 Nov 2023 13:25:41 +0000 (UTC)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7D9B10E316
+ for <intel-xe@lists.freedesktop.org>; Mon,  6 Nov 2023 13:25:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1699277137;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=Rpy5xRn2sdo2EVUDX8IiTKUqfSS+Q8LE0WaVGslmrGY=;
+ b=Cf41BAUZcigYN2E5raDMnFkQZB6RcctLoc2Srejh436n3dvf/U8Fl/RjbOzq+1q8rw73Xz
+ s6+nnPy6oQEUKcwluwT4vMpLV2KIiGQBSIFO72t8m4BgWXsG7qr9qfMhFYJMCY5KnBir+0
+ hsLhZCfJYh/h99qd9gaDt54EcfN6OvE=
+Received: from mail-ej1-f72.google.com (mail-ej1-f72.google.com
+ [209.85.218.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-588-xfuSDwKEOH6CxNe2wBTu0Q-1; Mon, 06 Nov 2023 08:25:36 -0500
+X-MC-Unique: xfuSDwKEOH6CxNe2wBTu0Q-1
+Received: by mail-ej1-f72.google.com with SMTP id
+ a640c23a62f3a-99c8bbc902eso312076366b.1
+ for <intel-xe@lists.freedesktop.org>; Mon, 06 Nov 2023 05:25:36 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699277135; x=1699881935;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=Rpy5xRn2sdo2EVUDX8IiTKUqfSS+Q8LE0WaVGslmrGY=;
+ b=SySloykJJ/5ynEFQUbKhV8WJbsVkXw/vttpeS80/LRqVYs9gFzu7h3DbB2XYg176Gn
+ UiEpg0UzsiO7LZ7u+S97w8pvR1rnbZ4U6VqD0ye6t6KHcFlBKwH+17XHMUiIv0f6MXqN
+ H3kODkZPFQqaz/7LLWJvjoqe7E0VID2ggNOkcbkMdC0pm4eQTVPCEgPFRN31To2KwjS0
+ xZmFCSiSGiEUuqrWJ06yIuxn5Knw0/9NflCiFGNbK+Y1r0AKtMj4ThlLbebb2o9wbhjV
+ UiJfEukGV1vcXyRGWfx2l32xDLBjRzi2ufzPUYPDOktOk0UUyh8u9qxRF9Xrwmm7b1Yr
+ MrLw==
+X-Gm-Message-State: AOJu0YxDnuKr4OAzh7CoeGZAqZ+HKdqsI/AGoO1eRuS/Y3hJsE1Eq81N
+ QfwCUDFOybfoKYNJuYAQXBsDiJ9oLIManda9rWYgQJ1anJn4jvhDX/MuEdh4cEOCy/do8LelDQd
+ 0fxoasCqQYxoxir630ci5KxtCIGY=
+X-Received: by 2002:a17:906:4fcd:b0:9d3:2de:5cbe with SMTP id
+ i13-20020a1709064fcd00b009d302de5cbemr14678060ejw.18.1699277135423; 
+ Mon, 06 Nov 2023 05:25:35 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF+2Rlz6zRkSz8QDwF3b6yOIEhtFAZ8L6x+JL5z+2UyeMJfdT6n1OTl9hrwWid1tfh6yo9EEQ==
+X-Received: by 2002:a17:906:4fcd:b0:9d3:2de:5cbe with SMTP id
+ i13-20020a1709064fcd00b009d302de5cbemr14678044ejw.18.1699277135135; 
+ Mon, 06 Nov 2023 05:25:35 -0800 (PST)
+Received: from pollux ([2a02:810d:4b3f:de9c:abf:b8ff:feee:998b])
+ by smtp.gmail.com with ESMTPSA id
+ g17-20020a1709067c5100b0099bc8bd9066sm4195999ejp.150.2023.11.06.05.25.34
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 06 Nov 2023 05:25:34 -0800 (PST)
+Date: Mon, 6 Nov 2023 14:25:32 +0100
+From: Danilo Krummrich <dakr@redhat.com>
+To: Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <ZUjpTCTDKgmYEYQc@pollux>
 References: <20231106114827.62492-1-thomas.hellstrom@linux.intel.com>
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+In-Reply-To: <20231106114827.62492-1-thomas.hellstrom@linux.intel.com>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 Subject: Re: [Intel-xe] [PATCH] drm/gpuvm: Fix deprecated license identifier
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -47,23 +82,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maxime
- Ripard <mripard@kernel.org>, David Edelsohn <dje.gcc@gmail.com>, Danilo
- Krummrich <dakr@redhat.com>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>, David Edelsohn <dje.gcc@gmail.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Mon, 6 Nov 2023 12:48:27 +0100, Thomas Hellstr=C3=B6m wrote:
+On Mon, Nov 06, 2023 at 12:48:27PM +0100, Thomas Hellström wrote:
 > "GPL-2.0-only" in the license header was incorrectly changed to the
 > now deprecated "GPL-2.0". Fix.
->=20
+> 
 > Cc: Maxime Ripard <mripard@kernel.org>
 > Cc: Danilo Krummrich <dakr@redhat.com>
->=20
-> [ ... ]
+> Reported-by: David Edelsohn <dje.gcc@gmail.com>
+> Closes: https://lore.kernel.org/dri-devel/5lfrhdpkwhpgzipgngojs3tyqfqbesifzu5nf4l5q3nhfdhcf2@25nmiq7tfrew/T/#m5c356d68815711eea30dd94cc6f7ea8cd4344fe3
+> Fixes: f7749a549b4f ("drm/gpuvm: Dual-licence the drm_gpuvm code GPL-2.0 OR MIT")
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+Acked-by: Danilo Krummrich <dakr@redhat.com>
 
-Thanks!
-Maxime
+> ---
+>  drivers/gpu/drm/drm_gpuvm.c | 2 +-
+>  include/drm/drm_gpuvm.h     | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+> index 08c088319652..b80d4e1cc9b7 100644
+> --- a/drivers/gpu/drm/drm_gpuvm.c
+> +++ b/drivers/gpu/drm/drm_gpuvm.c
+> @@ -1,4 +1,4 @@
+> -// SPDX-License-Identifier: GPL-2.0 OR MIT
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+>  /*
+>   * Copyright (c) 2022 Red Hat.
+>   *
+> diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+> index bdfafc4a7705..c7a0594bdab1 100644
+> --- a/include/drm/drm_gpuvm.h
+> +++ b/include/drm/drm_gpuvm.h
+> @@ -1,4 +1,4 @@
+> -/* SPDX-License-Identifier: GPL-2.0 OR MIT */
+> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
+>  
+>  #ifndef __DRM_GPUVM_H__
+>  #define __DRM_GPUVM_H__
+> -- 
+> 2.41.0
+> 
+
