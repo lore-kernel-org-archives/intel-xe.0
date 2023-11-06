@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5F4DDC4332F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 09:31:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29A60C4332F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 09:32:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2276910E297;
-	Mon,  6 Nov 2023 09:31:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9E3C10E297;
+	Mon,  6 Nov 2023 09:32:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EB78C10E297;
- Mon,  6 Nov 2023 09:31:48 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 458B210E298;
+ Mon,  6 Nov 2023 09:32:02 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E53C6AADD1;
- Mon,  6 Nov 2023 09:31:48 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 446CFAADD1;
+ Mon,  6 Nov 2023 09:32:02 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Date: Mon, 06 Nov 2023 09:31:48 -0000
-Message-ID: <169926310889.20423.15270286528820207401@emeril.freedesktop.org>
+Date: Mon, 06 Nov 2023 09:32:02 -0000
+Message-ID: <169926312227.20425.16373638716565501059@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231106092646.424200-1-juhapekka.heikkila@gmail.com>
 In-Reply-To: <20231106092646.424200-1-juhapekka.heikkila@gmail.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_fixup!_drm/i915=3A_xe_dpt_integration_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_fi?=
+ =?utf-8?q?xup!_drm/i915=3A_xe_dpt_integration_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,13 +48,43 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: fixup! drm/i915: xe dpt integration (rev2)
 URL   : https://patchwork.freedesktop.org/series/125965/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: fc457bcc1 Revert "FIXME: drm/i915/crtc: use irqsave for locking event_lock"
-=== git am output follows ===
-Applying: fixup! drm/i915: xe dpt integration
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f2f9bf269fe3a46606caff462cd4704dd6002693
+Author: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+Date:   Mon Nov 6 11:26:46 2023 +0200
+
+    fixup! drm/i915: xe dpt integration
+    
+    Here moved ifdef I915 parts to helpers. dpt code which is needed from i915
+    to Xe was separated into new file to avoid one file sized ifdef.
+    
+    Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
++ /mt/dim checkpatch fc457bcc18109467961edc92c80b238009f6a9fb drm-intel
+f2f9bf269 fixup! drm/i915: xe dpt integration
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:164: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#164: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 229 lines checked
 
 
