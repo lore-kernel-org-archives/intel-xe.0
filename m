@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 214EDC4332F
-	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 06:51:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08C73C4332F
+	for <intel-xe@archiver.kernel.org>; Mon,  6 Nov 2023 06:51:56 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB4FC10E26E;
-	Mon,  6 Nov 2023 06:51:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB94210E26E;
+	Mon,  6 Nov 2023 06:51:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5CA6610E26E;
- Mon,  6 Nov 2023 06:51:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7B52C10E26E;
+ Mon,  6 Nov 2023 06:51:54 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5B277AADDD;
- Mon,  6 Nov 2023 06:51:37 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 79F94AADDD;
+ Mon,  6 Nov 2023 06:51:54 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Mon, 06 Nov 2023 06:51:37 -0000
-Message-ID: <169925349737.20423.15441307153677909614@emeril.freedesktop.org>
+Date: Mon, 06 Nov 2023 06:51:54 -0000
+Message-ID: <169925351449.20425.15747835452442521336@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231106064834.161647-1-jouni.hogander@intel.com>
 In-Reply-To: <20231106064834.161647-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Backport_i915=5Fsw=5Ffence_to_dma_fence_conversion?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_Ba?=
+ =?utf-8?q?ckport_i915=5Fsw=5Ffence_to_dma_fence_conversion?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,20 +48,61 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Backport i915_sw_fence to dma fence conversion
 URL   : https://patchwork.freedesktop.org/series/126003/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: fc457bcc1 Revert "FIXME: drm/i915/crtc: use irqsave for locking event_lock"
-=== git am output follows ===
-Applying: fixup! drm/xe/display: Implement display support
-Applying: Revert "FIXME: drm/i915: fence stuff"
-Applying: Revert "drm/xe/display: Append dma_buf fences to framebuffer fences"
-Applying: fixup! drm/xe/display: Implement display support
-Applying: drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence
-Applying: drm/i915/display: Use intel_bo_to_drm_bo instead of obj->base
-Applying: fixup! drm/xe/display: Implement display support
-Applying: fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a60becce23984e17e65adac9097c9078cdae0e80
+Author: Jouni Högander <jouni.hogander@intel.com>
+Date:   Mon Nov 6 08:48:34 2023 +0200
+
+    fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
+    
+    Now as we have common dma fence handling for i915 and Xe we don't need to
+    have differing intel_prepare_plane_fb implementations.
+    
+    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
++ /mt/dim checkpatch fc457bcc18109467961edc92c80b238009f6a9fb drm-intel
+f8ac2d38b fixup! drm/xe/display: Implement display support
+d4e5d5b16 Revert "FIXME: drm/i915: fence stuff"
+-:9: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '71d917d54a6083bea663977b4ff0b40b3a1faa94', maybe rebased or not pulled?
+#9: 
+This reverts commit 71d917d54a6083bea663977b4ff0b40b3a1faa94.
+
+total: 0 errors, 1 warnings, 0 checks, 74 lines checked
+19a16c97a Revert "drm/xe/display: Append dma_buf fences to framebuffer fences"
+-:10: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '7e0573248ae49ffcabe9d2cfb415292ae9a802bd', maybe rebased or not pulled?
+#10: 
+This reverts commit 7e0573248ae49ffcabe9d2cfb415292ae9a802bd.
+
+total: 0 errors, 1 warnings, 0 checks, 28 lines checked
+39aa0d338 fixup! drm/xe/display: Implement display support
+-:26: CHECK:SPACING: No space is necessary after a cast
+#26: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:213:
++#define i915_gem_fence_wait_priority(fence, attr) do { (void) attr; } while (0)
+
+-:26: CHECK:LINE_SPACING: Please use a blank line after function/struct/union/enum declarations
+#26: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:213:
++};
++#define i915_gem_fence_wait_priority(fence, attr) do { (void) attr; } while (0)
+
+-:26: WARNING:SINGLE_STATEMENT_DO_WHILE_MACRO: Single statement macros should not use a do {} while (0) loop
+#26: FILE: drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h:213:
++#define i915_gem_fence_wait_priority(fence, attr) do { (void) attr; } while (0)
+
+total: 0 errors, 1 warnings, 2 checks, 12 lines checked
+789c05cde drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence
+c9031c5ae drm/i915/display: Use intel_bo_to_drm_bo instead of obj->base
+d15e418a3 fixup! drm/xe/display: Implement display support
+a60becce2 fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
 
 
