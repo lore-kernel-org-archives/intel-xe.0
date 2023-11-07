@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A1E61C4332F
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 01:31:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E20AAC4332F
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 01:33:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 36A2F10E49F;
-	Tue,  7 Nov 2023 01:31:11 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D0B6410E49F
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 01:31:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699320668; x=1730856668;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=j7OeFthjsMZS5TZ2kh+5ptv7eylT2DkSriICsDHKWV4=;
- b=foWVRuUfrOApJP8ZROZe4HP0iWfd1YcKFafSQqJ/q8WYuC7k85wgB1Z5
- kI7mu8YXtqkigW7jgELLtqd8cyREnJOHZ0yOFlqr9d4B0WBVBHLKT+9KN
- OUTB1Mp9f5m0stArt8mLOVjkUBAM/4LEX3OKM/QpfA5NzJtiK1BdLDGv7
- 952g9EnXsbqgNncVgsXrcBlvuA2KOpIPKSjq+fBwILxzFWeCnoqC7oDU5
- XLHEJeG9DQJ96OqZo37eP5zsvovD2OBfQ8LZ/uT5Qm1r0CA26uAmtZLxf
- GBRK4huHfjkDVk2e8qBwVFv6lKU0QzWUiMWyqK6HeaQozDJdGKuBUjmNU A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="388281968"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="388281968"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 17:31:08 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="791627902"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="791627902"
-Received: from ravi-nuc8i7beh.iind.intel.com ([10.145.169.75])
- by orsmga008.jf.intel.com with ESMTP; 06 Nov 2023 17:31:05 -0800
-From: Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>
-To: intel-xe@lists.freedesktop.org, janga.rahul.kumar@intel.com,
- ramadevi.gandi@intel.com
-Date: Tue,  7 Nov 2023 06:57:26 +0530
-Message-Id: <20231107012726.1972541-1-ruthuvikas.ravikumar@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id AA8DE10E49F;
+	Tue,  7 Nov 2023 01:33:39 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 44D4210E49F;
+ Tue,  7 Nov 2023 01:33:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3F96EAADFA;
+ Tue,  7 Nov 2023 01:33:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v8] drm/xe: Add mocs kunit
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ruthuvikas Ravikumar" <ruthuvikas.ravikumar@intel.com>
+Date: Tue, 07 Nov 2023 01:33:38 -0000
+Message-ID: <169932081823.21167.6558363039741002958@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231107012726.1972541-1-ruthuvikas.ravikumar@intel.com>
+In-Reply-To: <20231107012726.1972541-1-ruthuvikas.ravikumar@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Add_mocs_kunit_=28rev8=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,266 +39,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, ruthuvikas.ravikumar@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This kunit verifies the hardware values of mocs and
-l3cc registers with the KMD programmed values.
+== Series Details ==
 
-v8: Remove xe_bo.h and xe_pm.h
-    Remove mocs and l3cc from live_mocs.
-    Pull debug and err msg for mocs/l3cc out of if else block.
-    Add HAS_LNCF_MOCS.
+Series: drm/xe: Add mocs kunit (rev8)
+URL   : https://patchwork.freedesktop.org/series/124926/
+State : success
 
-v7: correct checkpath
+== Summary ==
 
-v6: Change ssize_t type.
-    Change forcewake domain to XE_FW_GT.
-    Update change of MOCS registers are multicast on Xe_HP and beyond
-    patch.
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 5a3a6fdda drm/xe: Fix pagefault and access counter worker functions
+=== git am output follows ===
+Applying: drm/xe: Add mocs kunit
 
-v5: Release forcewake.
-    Remove single statement braces.
-    Fix debug statements.
-
-v4: Drop stratch and vaddr.
-    Fix debug statements.
-    Fix indentation.
-
-v3: Fix checkpath.
-
-v2: Fix checkpath.
-
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Mathew D Roper <matthew.d.roper@intel.com>
-Signed-off-by: Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>
----
- drivers/gpu/drm/xe/tests/Makefile       |   1 +
- drivers/gpu/drm/xe/tests/xe_mocs.c      | 136 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_mocs_test.c |  24 +++++
- drivers/gpu/drm/xe/tests/xe_mocs_test.h |  13 +++
- drivers/gpu/drm/xe/xe_mocs.c            |   4 +
- 5 files changed, 178 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs_test.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs_test.h
-
-diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
-index 51f1a7f017d4..39d8a0892274 100644
---- a/drivers/gpu/drm/xe/tests/Makefile
-+++ b/drivers/gpu/drm/xe/tests/Makefile
-@@ -4,6 +4,7 @@ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += \
- 	xe_bo_test.o \
- 	xe_dma_buf_test.o \
- 	xe_migrate_test.o \
-+	xe_mocs_test.o \
- 	xe_pci_test.o \
- 	xe_rtp_test.o \
- 	xe_wa_test.o
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
-new file mode 100644
-index 000000000000..79ac36632cae
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
-@@ -0,0 +1,136 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#include <kunit/test.h>
-+#include <kunit/visibility.h>
-+
-+#include "tests/xe_mocs_test.h"
-+#include "tests/xe_pci_test.h"
-+#include "tests/xe_test.h"
-+
-+#include "xe_pci.h"
-+#include "xe_gt.h"
-+#include "xe_mocs.h"
-+#include "xe_device.h"
-+
-+struct live_mocs {
-+	struct xe_mocs_info table;
-+};
-+
-+static int live_mocs_init(struct live_mocs *arg, struct xe_gt *gt)
-+{
-+	unsigned int flags;
-+	struct kunit *test = xe_cur_kunit();
-+
-+	memset(arg, 0, sizeof(*arg));
-+
-+	flags = get_mocs_settings(gt_to_xe(gt), &arg->table);
-+
-+	kunit_info(test, "table size %d", arg->table.size);
-+	kunit_info(test, "table uc_index %d", arg->table.uc_index);
-+	kunit_info(test, "table n_entries %d", arg->table.n_entries);
-+
-+	return flags;
-+}
-+
-+static void read_l3cc_table(struct xe_gt *gt,
-+			    const struct xe_mocs_info *info)
-+{
-+	unsigned int i;
-+	u32 l3cc;
-+	u32 reg_val;
-+	u32 ret;
-+
-+	struct kunit *test = xe_cur_kunit();
-+
-+	xe_device_mem_access_get(gt_to_xe(gt));
-+	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (ret)
-+		goto out;
-+	mocs_dbg(&gt_to_xe(gt)->drm, "L3CC entries:%d\n", info->n_entries);
-+	for (i = 0;
-+	     i < (info->n_entries + 1) / 2 ?
-+	     (l3cc = l3cc_combine(get_entry_l3cc(info, 2 * i),
-+				  get_entry_l3cc(info, 2 * i + 1))), 1 : 0;
-+	     i++) {
-+		if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1250)
-+			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
-+		else
-+			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
-+		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x 0x%x\n", i,
-+			XELP_LNCFCMOCS(i).addr, reg_val, l3cc);
-+		if (reg_val != l3cc)
-+			KUNIT_FAIL(test, "l3cc reg 0x%x has incorrect val.\n",
-+				XELP_LNCFCMOCS(i).addr);
-+	}
-+	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+out:
-+	xe_device_mem_access_put(gt_to_xe(gt));
-+}
-+
-+static void read_mocs_table(struct xe_gt *gt,
-+			      const struct xe_mocs_info *info)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	unsigned int i;
-+	u32 mocs;
-+	u32 reg_val;
-+	u32 ret;
-+
-+	struct kunit *test = xe_cur_kunit();
-+
-+	xe_device_mem_access_get(gt_to_xe(gt));
-+	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (ret)
-+		goto out;
-+
-+	mocs_dbg(&gt_to_xe(gt)->drm, "Global MOCS entries:%d\n", info->n_entries);
-+	drm_WARN_ONCE(&xe->drm, !info->unused_entries_index,
-+		      "Unused entries index should have been defined\n");
-+	for (i = 0;
-+	     i < info->n_entries ? (mocs = get_entry_control(info, i)), 1 : 0;
-+	     i++) {
-+
-+		if (GRAPHICS_VERx100(gt_to_xe(gt)) > 1250)
-+			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
-+		else
-+			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
-+		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x 0x%x\n", i,
-+			XELP_GLOBAL_MOCS(i).addr, reg_val, mocs);
-+		if (reg_val != mocs)
-+			KUNIT_FAIL(test, "mocs reg 0x%x has incorrect val.\n",
-+				XELP_GLOBAL_MOCS(i).addr);
-+	}
-+	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+out:
-+	xe_device_mem_access_put(gt_to_xe(gt));
-+}
-+
-+static int mocs_kernel_test_run_device(struct xe_device *xe)
-+{
-+	/* Basic check the system is configured with the expected mocs table */
-+
-+	struct live_mocs mocs;
-+	struct xe_gt *gt;
-+
-+	unsigned int flags;
-+	int id;
-+
-+	for_each_gt(gt, xe, id) {
-+		flags = live_mocs_init(&mocs, gt);
-+		if (flags & HAS_GLOBAL_MOCS)
-+			read_mocs_table(gt, &mocs.table);
-+		if (flags & HAS_LNCF_MOCS)
-+			read_l3cc_table(gt, &mocs.table);
-+	}
-+	return 0;
-+}
-+
-+void xe_live_mocs_kernel_kunit(struct kunit *test)
-+{
-+	xe_call_for_each_device(mocs_kernel_test_run_device);
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_live_mocs_kernel_kunit);
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs_test.c b/drivers/gpu/drm/xe/tests/xe_mocs_test.c
-new file mode 100644
-index 000000000000..ef56bd517b28
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs_test.c
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#include "xe_mocs_test.h"
-+
-+#include <kunit/test.h>
-+
-+static struct kunit_case xe_mocs_tests[] = {
-+	KUNIT_CASE(xe_live_mocs_kernel_kunit),
-+	{}
-+};
-+
-+static struct kunit_suite xe_mocs_test_suite = {
-+	.name = "xe_mocs",
-+	.test_cases = xe_mocs_tests,
-+};
-+
-+kunit_test_suite(xe_mocs_test_suite);
-+
-+MODULE_AUTHOR("Intel Corporation");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs_test.h b/drivers/gpu/drm/xe/tests/xe_mocs_test.h
-new file mode 100644
-index 000000000000..7faa3575e6c3
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs_test.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_MOCS_TEST_H_
-+#define _XE_MOCS_TEST_H_
-+
-+struct kunit;
-+
-+void xe_live_mocs_kernel_kunit(struct kunit *test);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 46e999257862..409f21b72761 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -588,3 +588,7 @@ void xe_mocs_init(struct xe_gt *gt)
- 	if (flags & HAS_LNCF_MOCS)
- 		init_l3cc_table(gt, &table);
- }
-+
-+#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_mocs.c"
-+#endif
--- 
-2.25.1
 
