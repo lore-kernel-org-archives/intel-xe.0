@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7615BC4332F
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 20:15:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9FD62C4332F
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 20:15:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2175F10E697;
-	Tue,  7 Nov 2023 20:15:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66F8710E69E;
+	Tue,  7 Nov 2023 20:15:12 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 9807510E697;
- Tue,  7 Nov 2023 20:14:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id B10A810E699;
+ Tue,  7 Nov 2023 20:15:10 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 908B3AADEF;
- Tue,  7 Nov 2023 20:14:58 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8C108AADD5;
+ Tue,  7 Nov 2023 20:15:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Pallavi Mishra" <pallavi.mishra@intel.com>
-Date: Tue, 07 Nov 2023 20:14:58 -0000
-Message-ID: <169938809856.21169.141835098015168189@emeril.freedesktop.org>
+Date: Tue, 07 Nov 2023 20:15:10 -0000
+Message-ID: <169938811057.21168.17525350746734254083@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231107193751.741119-1-pallavi.mishra@intel.com>
 In-Reply-To: <20231107193751.741119-1-pallavi.mishra@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/tests=3A_Fix_migrate_test?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/tests=3A_Fix_migrate_test?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 3b0bded07 drm/xe: Fix unbind of unaccessed VMA (fault mode)
-=== git am output follows ===
-Applying: drm/xe/tests: Fix migrate test
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit c7fe23155f9dc012247dc77ebd1e66a0bd09d91d
+Author: Pallavi Mishra <pallavi.mishra@intel.com>
+Date:   Wed Nov 8 01:07:51 2023 +0530
+
+    drm/xe/tests: Fix migrate test
+    
+    Pass a valid vm to xe_migrate_update_pgtables.
+    
+    Resolves NPD crash seen with igt@xe_live_ktest@migrate
+    
+    Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
++ /mt/dim checkpatch 3b0bded07ef9f00e6120c6856e86e3faf897191f drm-intel
+c7fe23155 drm/xe/tests: Fix migrate test
 
 
