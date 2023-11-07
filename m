@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 748D6C04E85
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1E3FC0032E
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 05:26:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB92010E4BC;
+	by gabe.freedesktop.org (Postfix) with ESMTP id E90F010E4BD;
 	Tue,  7 Nov 2023 05:26:03 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 048C410E4B8
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7404C10E4B3
  for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 05:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1699334757; x=1730870757;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=oGtwSjORN/W7gp8V9zijOyH3R1H7ppQjohLj/SeUGlk=;
- b=nAhQurLEw9uCYLaY5AkfHEEp8IFJCWat1aY9lPiF4hQizVeOvUu2d25N
- GhHqFDUNG+IiIuASUE1wOvQIfA7aWCTzFV6R31uLWFd8dJXqxFnKmmxO0
- JokgSbPM8Xj197wGBfimWN6yWiRb9bQDls3/77PhZLOKmop9gXzXsJGEO
- OBtT1Hj6DqI04ZI1HVYloyVj/k7x4vTKDEyIUgOtOkbLHPqEOX/nkUXJE
- iw986xlEV343UCbCuUHFFP386KF//rutYuH5GP/qm9UYZYOh/pTduG5Bv
- oQZh9fq9RjkpGE8rD43hCPg0HNnChQyQfdIix656FA/D3jZ6ndjFSVMwK A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="368769532"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="368769532"
+ bh=0Wc+o3jcuNaUvD7F7yVVpMsDQImyGlWsaiIzEa7rOHQ=;
+ b=hxpmcrsmbaNwZZqDnUETlUY/AtjEW6z874cW9+iKcX1mLWuHSgcKnYiF
+ nkgvFAZOnyROl1WbDbys+97Kh8G8fo/p3iVmcTql2Txs2tl309KS136Dt
+ +jra5vY8ZteSfMIo2XrPEgLZAW/xteWvTAQS17s2HNbWNl/eAMOqg76gD
+ 6IfAZKT8kfpdA7iLVjKW7WKIg0BIlg7Vu/qDX/ihzSVOxa259/absH1XC
+ sRZl6Ur6sMO5pssM5kmx1RN0gWAKXZqOimpATOHuTHP/1pEONebqyvpGL
+ tU1mT/z+0CVQddMg821FuXp1KcaCfvOmuzyer7vfPJmdNGeJZwPoKd4jK w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="368769524"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="368769524"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Nov 2023 21:25:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="791689875"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="791689875"
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="791689851"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="791689851"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Nov 2023 21:25:55 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  6 Nov 2023 21:25:56 -0800
-Message-Id: <20231107052603.124361-21-matthew.brost@intel.com>
+Date: Mon,  6 Nov 2023 21:25:48 -0800
+Message-Id: <20231107052603.124361-13-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231107052603.124361-1-matthew.brost@intel.com>
 References: <20231107052603.124361-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 20/27] drm/xe:
- s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
+Subject: [Intel-xe] [PATCH v2 12/27] drm/xe: Add some members to xe_vma_ops
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,64 +59,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-xe_engine is now xe_exec_queue, adjust this function's name to reflect.
+This will help with moving to single jobs for many bind operations.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gt_pagefault.c | 2 +-
- drivers/gpu/drm/xe/xe_migrate.c      | 8 ++++----
- drivers/gpu/drm/xe/xe_migrate.h      | 3 ++-
- 3 files changed, 7 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c       | 13 ++++++++++---
+ drivers/gpu/drm/xe/xe_vm_types.h |  9 +++++++++
+ 2 files changed, 19 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-index 6125456373cb..fd9abe4f9c3c 100644
---- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
-+++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
-@@ -205,7 +205,7 @@ static int handle_pagefault(struct xe_gt *gt, struct pagefault *pf)
- 	trace_xe_vma_pf_bind(vma);
- 	xe_vm_populate_dummy_rebind(vm, vma);
- 	vm->dummy_ops.op.tile_mask = BIT(tile->id);
--	vm->dummy_ops.op.q = xe_tile_migrate_engine(tile);
-+	vm->dummy_ops.op.q = xe_tile_migrate_exec_queue(tile);
- 	fence = xe_vm_ops_execute(vm, &vm->dummy_ops.vops);
- 	if (IS_ERR(fence)) {
- 		ret = PTR_ERR(fence);
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index e6a31f90ebdb..33c4f8caa38f 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -74,15 +74,15 @@ struct xe_migrate {
- #define NUM_PT_PER_BLIT (MAX_PREEMPTDISABLE_TRANSFER / SZ_2M)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 085acd083ec2..6e9a3284238e 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1344,9 +1344,16 @@ static const struct xe_pt_ops xelp_pt_ops = {
  
- /**
-- * xe_tile_migrate_engine() - Get this tile's migrate engine.
-+ * xe_tile_migrate_exec_queue() - Get this tile's migrate exec queue.
-  * @tile: The tile.
-  *
-- * Returns the default migrate engine of this tile.
-+ * Returns the default migrate exec queue of this tile.
-  * TODO: Perhaps this function is slightly misplaced, and even unneeded?
-  *
-- * Return: The default migrate engine
-+ * Return: The default migrate exec queue
-  */
--struct xe_exec_queue *xe_tile_migrate_engine(struct xe_tile *tile)
-+struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile)
+ static void vm_destroy_work_func(struct work_struct *w);
+ 
+-static void xe_vma_ops_init(struct xe_vma_ops *vops)
++static void xe_vma_ops_init(struct xe_vma_ops *vops, struct xe_vm *vm,
++			    struct xe_exec_queue *q,
++			    struct xe_sync_entry *syncs, u32 num_syncs)
  {
- 	return tile->migrate->q;
++	memset(vops, 0, sizeof(*vops));
+ 	INIT_LIST_HEAD(&vops->list);
++	vops->vm = vm;
++	vops->q = q;
++	vops->syncs = syncs;
++	vops->num_syncs = num_syncs;
  }
-diff --git a/drivers/gpu/drm/xe/xe_migrate.h b/drivers/gpu/drm/xe/xe_migrate.h
-index c729241776ad..8b8eedce8499 100644
---- a/drivers/gpu/drm/xe/xe_migrate.h
-+++ b/drivers/gpu/drm/xe/xe_migrate.h
-@@ -105,5 +105,6 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
  
- void xe_migrate_wait(struct xe_migrate *m);
+ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+@@ -1370,7 +1377,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
  
--struct xe_exec_queue *xe_tile_migrate_engine(struct xe_tile *tile);
-+struct xe_exec_queue *xe_tile_migrate_exec_queue(struct xe_tile *tile);
-+
- #endif
+ 	init_rwsem(&vm->lock);
+ 
+-	xe_vma_ops_init(&vm->dummy_ops.vops);
++	xe_vma_ops_init(&vm->dummy_ops.vops, vm, NULL, NULL, 0);
+ 	INIT_LIST_HEAD(&vm->dummy_ops.op.link);
+ 	list_add(&vm->dummy_ops.op.link, &vm->dummy_ops.vops.list);
+ 
+@@ -3158,7 +3165,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto free_syncs;
+ 	}
+ 
+-	xe_vma_ops_init(&vops);
++	xe_vma_ops_init(&vops, vm, q, syncs, num_syncs);
+ 	for (i = 0; i < args->num_binds; ++i) {
+ 		u64 range = bind_ops[i].range;
+ 		u64 addr = bind_ops[i].addr;
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 6424f75eb2df..df85975b43fb 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -217,7 +217,16 @@ struct xe_vma_op {
+ 
+ /** struct xe_vma_ops - VMA operations */
+ struct xe_vma_ops {
++	/** @list: list of VMA operations */
+ 	struct list_head list;
++	/** @vm: VM */
++	struct xe_vm *vm;
++	/** @q: exec queue these operations */
++	struct xe_exec_queue *q;
++	/** @syncs: syncs these operation */
++	struct xe_sync_entry *syncs;
++	/** @num_syncs: number of syncs */
++	u32 num_syncs;
+ };
+ 
+ #define xe_vm_assert_held(vm) dma_resv_assert_held(&(vm)->resv)
 -- 
 2.34.1
 
