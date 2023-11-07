@@ -4,141 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF2E6C4332F
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 21:06:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA5F8C4167B
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 21:08:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96C1510E6B8;
-	Tue,  7 Nov 2023 21:06:11 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1935E10E6B6
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 21:06:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A619710E37A;
+	Tue,  7 Nov 2023 21:08:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A9B0D10E2D7
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 21:08:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699391170; x=1730927170;
+ t=1699391323; x=1730927323;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=T9Nqx4deVsM/8vEZoBs1g8i77dhSkh3my97acCSvnPU=;
- b=JfuqX0o1ojJda3fmorNlwNvYDpoPy1arCBBI2lGh8nPC9GoHTqFAVS49
- rLVqLxS+1rUjHsFyNjPsmGnnaEQvwDQQ7QFqKX5HcONcxO2PZ8yQymO8z
- 3OouMyGzgXMqhi1gsQhv3sGyW6wssvHMNCGL/wFL45gfR3ZfwjqKt7JYo
- 6gGGzAN96ZPoA8m8EMwFcXaTITZzTwoi8zVIh4xyq550HObe6XDnRg8PC
- hItDlOCDbLOTU44yvNGPV4rhRSG9SE7llC7QmgqUpmxgFfxfwonQwDLSh
- C0zH2tCCE3NkKeT3StqPBARK5RDKLSYg3BLiUuwGVprlyVhQ/F7LAdja1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="456119488"
-X-IronPort-AV: E=Sophos;i="6.03,284,1694761200"; d="scan'208";a="456119488"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2023 13:06:09 -0800
+ in-reply-to:mime-version;
+ bh=L3Y3J2jLDKl+M3GWLfG3To9ro3aPbsH+kWMGDyVS8CU=;
+ b=F+4YBAZQ74tef2BocbAiGYUqxqqL6Dbg/ylWayUWTZN9/+0UlkFidXj1
+ ewUH37Llt47MtDrbb18JMQGrkpjnB46k4tHaBDQnMKDtTWyv3DTf/yf0P
+ nisGyDNwT8H0A4giy5U2TE920yICyIPV66MRQKHISPR1pa4BS49EG2tch
+ wXVEbJOrS2KL/dO+lrb49ikiqS2oVDwehQee6dQE8mYuqsIpbs/KJMwua
+ Zgdh+MwgA83yqIxJtWKi5vTIfsFHav0Nie9Fyyc+82O8cC0FV4DzEDM41
+ 4Z5RyPOEqb6EjP5Wyxd9kz0pZ/gyzg1NrpyUOJ/Q27mP5gvFRAYu7ABZR A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="369824799"
+X-IronPort-AV: E=Sophos;i="6.03,284,1694761200"; d="scan'208";a="369824799"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2023 13:08:43 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="797797369"
-X-IronPort-AV: E=Sophos;i="6.03,284,1694761200"; d="scan'208";a="797797369"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 07 Nov 2023 13:06:09 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="886436105"
+X-IronPort-AV: E=Sophos;i="6.03,284,1694761200"; d="scan'208";a="886436105"
+Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
+ by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Nov 2023 13:08:42 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Tue, 7 Nov 2023 13:06:08 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Tue, 7 Nov 2023 13:06:08 -0800
+ 15.1.2507.34; Tue, 7 Nov 2023 13:08:42 -0800
 Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Tue, 7 Nov 2023 13:06:08 -0800
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.40) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Tue, 7 Nov 2023 13:08:41 -0800
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
+ by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Tue, 7 Nov 2023 13:06:05 -0800
+ 15.1.2507.34; Tue, 7 Nov 2023 13:08:41 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gTRXwYi7gDhGApiW1t6zdCk9es+bbm8OLEh/8XINPpZkhuPiOSSH05AVCCTWo0bw24CTbOHbSszqmXMu564c2TolElKyFRNWJw1TeUpKvNysXNTuoUXpTlVsN4jPj/XJ/cQyf2LX4VE0jKI4DFTMqsiT7vnTwcz+J+wBWNvXOwAI/LIvt/0K97w4Q4IVpmSp6GABQhTnx1K0Fs30bqia3FfH4ECqBqWyIJ+Wopg5Bkzm+JkOIHYPphhpxAoLuHFoge4+b3xswZn0UHkB2b24liA0NvcQJNvsCxmaIIr8eTiUqPiZ33UHeqJBuRFd7aMbGin2dyhXOqe0YWIYLUqYyA==
+ b=EVhSCHRMhDny/cM+qw47NGl1e7iI8dGdpky8GZum+Xmn9aE39OyGJwBTYUs7GmzNg9kWuI0Kianep7NckUmXOjGFMEEALVr8jQJWuBcn9olBvJnilxG65KH9p4DIrFrwsD4IwRjGN14HRSJ64sLxQoa0VxYcTx3LInikSm2qEEcTuh4AYQSabZ5/vFIVmLLLK3AW2HLfV8b87b/Ujwj0UrgkK2Cxj8Ya9X2g0Tid1PkwJrhAb3cAm7Rxpez6qboJJB1GDj5ki2iGF1PY1dSTaNp8y4waW8s9h/C1bRYDUPq6xiI6UoU4kp5MkKKA5KVlTt1bSVyp8z47fDDqxP0LVA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nR5/VayCiQeDiJuXV42k7Pk5c/TcdafiOvbeYh8EB6g=;
- b=U7RJQ0J4Vuu0zgYGIRoO4+YwT7UGii9rUI+PxTWvyFbwG7eaM2COLewpiD7BLH2t+/8Id2eCf5k753lEKB8zeR084aKFK88xTYygPXgLDhN1hQH5UFrKiilcxpGpIQJid9yJM29whU8W/akP3mbNiQK/vg0pTuzij8/oQL/LmfoGDKJ9kuOIMfs+tj6dx7o8QuQCUD5ds7Hh0fgqmFG0JA0xv3k4+ODkkkvye6+Oe/DPZC35hVaKFYzUXBbunMILltaPRcX8KY0bFDqB6LIvCtsG4IxkqqNnUKwzoNeH00RdB7mvoLLpQ6fLkncFihckhORAfhb8CBzba6TPMCRFjw==
+ bh=4Qmo4aK7mjNWeYSU/CjNcUfQUzMtiND4N6J6K9AFFSk=;
+ b=mv/B/TwK9fTN1ZdMEEwxqFTdhJaVEgEIuL/gD8kk2FkYblCTlxJSq1GT1DzfJXNq73mAFgaSXdZa1EwoSwNEYn7bly9rSNbMC6gbCRgkZMoyde88rPN1Z2tzMF6A3K+chcGVW8gOCd5DUN3iaTg+pc6mXb+XpQ33e5dcKQVVr1K0PMuLQu8kOf3KQlYnVQ/k2j94L20IBOQkoCH3r6xOl7NU0+LIF44sFR8HaOaloBygLFKAeYp5fPZ29BIME+ZirQKgs3cW3Fb97MuRvtY8qPwgCczV9Hqrl42Ya4SJJeB1tM5pgvWSbZ3dNbV04Zoy+nzydpos6E71mF0K42cAug==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by CO1PR11MB5058.namprd11.prod.outlook.com (2603:10b6:303:99::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.29; Tue, 7 Nov
- 2023 21:06:02 +0000
+ by CY5PR11MB6282.namprd11.prod.outlook.com (2603:10b6:930:22::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Tue, 7 Nov
+ 2023 21:08:39 +0000
 Received: from PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::3f66:aa7d:51d5:777]) by PH7PR11MB6522.namprd11.prod.outlook.com
  ([fe80::3f66:aa7d:51d5:777%7]) with mapi id 15.20.6954.028; Tue, 7 Nov 2023
- 21:06:02 +0000
-Date: Tue, 7 Nov 2023 14:05:17 +0000
+ 21:08:39 +0000
+Date: Tue, 7 Nov 2023 14:07:54 +0000
 From: Matthew Brost <matthew.brost@intel.com>
 To: Francois Dugast <francois.dugast@intel.com>
-Message-ID: <ZUpEHV+pzx/jjac4@DUT025-TGLU.fm.intel.com>
+Message-ID: <ZUpEuvYaUyV5m2Wy@DUT025-TGLU.fm.intel.com>
 References: <20231103143456.7-1-francois.dugast@intel.com>
- <20231103143456.7-9-francois.dugast@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ <20231103143456.7-11-francois.dugast@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231103143456.7-9-francois.dugast@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0352.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::27) To PH7PR11MB6522.namprd11.prod.outlook.com
+In-Reply-To: <20231103143456.7-11-francois.dugast@intel.com>
+X-ClientProxiedBy: BYAPR02CA0036.namprd02.prod.outlook.com
+ (2603:10b6:a02:ee::49) To PH7PR11MB6522.namprd11.prod.outlook.com
  (2603:10b6:510:212::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CO1PR11MB5058:EE_
-X-MS-Office365-Filtering-Correlation-Id: 55ff993f-49ad-4e91-2b80-08dbdfd55914
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|CY5PR11MB6282:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5116d533-1909-4b93-9fe9-08dbdfd5b711
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0E60O3A6sM/LY75zwn6YHCSGtDlasKTcm4CBPxVjpQD/AO7Nq1CBldwbGhJXn3S4uok1TdtpJSfztAqw+8nPCbzTWFqupWEm++wRv0338TLObJ0hKISPMc0p6GWMcKR9sFqi2vS/4bY2GGBwnJ3HPQUWjiMSGgbOeP7nM+If/+p6wbMvNHofcA6KnWchwivf/iF2bkHZnXa/E7DC9BsLKcy6KhPSPK2OOuxfnT48DUGaEZUcUiIUJz3SkN1jhj7jS2GzCI5G9XZTXB3UgkWz0OU2VZL4wWuhZWFNGibqa6gO+pamgSacf5uFyRb8nJQ7kYs3N7iQve+4XNQxwRer38m4nq+6JbdXzBtNZpJ+0kRrUsVuHtRroX/zCr7yuENRiebCQnTULwCvEl/xDC3wvKfwA2ukjnNZ5sxzyAMwr5nkQfk5lpqP99/EaRgOODbNvGXKSC4+pRN7scpk0N59YuIogX8NIYHTndX1SeM3YARvhbwf76UMtFCI0zg39ZFvyVWpR4d7pdfYIp0bJyweJ9Vig8khr9y1eAj4/J5Kd6WSZCvi4kmwXOtpd1f2RPrA
+X-Microsoft-Antispam-Message-Info: EbaVxXfkhNEMBnQn7i0ckxWFXFAQDX/stOCTueURwDCGLpyt1XUXV2N7MMAGOtahWVv6POIYjxhjEO1vvekgE0m3jxQSgpXoroiMVVpu1LpAUJN7kelo/9ZNU4t77WOwx2fzeulCPGEDY9+qPAqwHWPJsLiCORH3hGtEwfZ+kF6u9Bg55zOtAtrenXLYhic9xouOdW7aaR9yBLQ+tOUQ5VwIr6HVcvApEjA8DqkQg2mdZ6kmBOearGv3n60eItUn+NH4nvPhEHlIxRQo1dcZt0J+0ZQGhI6NMZlpf9EL6DkV8T981MAhXWfH3sJ0yjeSHpSFxu+WAm96enaqZfniqha5IeesXVEAnOcDi1ZCq4nfVeiIbV59+RxYkLI6laUmxXTovwNTvZMJE/uvU/dj1pk7p6p2JFPY5LGb+aYczJWxEwaV16zI1H0RYbP/UOTM/4Re5yywpkDHZU7XWUIg03Ekz2MIk03LurloVEmhkbbJN+tSU2ZEKVzj0dC72suKCxH6w+iXiKCqx4jWoOLP3OUT0VvuuL0EsmHKKLJLfCifs1eHbyGu186gMeb8hGycNqNTAF1Ku8bo7ra02vMgqzixuVg8713eHXO4kuvBzKAa6rDoG3d2YQVvrZ8/C69F
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(396003)(346002)(39860400002)(376002)(136003)(230922051799003)(186009)(1800799009)(451199024)(64100799003)(2906002)(30864003)(38100700002)(82960400001)(83380400001)(86362001)(6506007)(4326008)(41300700001)(8936002)(8676002)(6862004)(6512007)(44832011)(6666004)(478600001)(316002)(66476007)(66946007)(6636002)(66556008)(6486002)(5660300002)(26005);
+ SFS:(13230031)(396003)(366004)(136003)(39860400002)(346002)(376002)(230273577357003)(230922051799003)(230173577357003)(451199024)(186009)(64100799003)(1800799009)(38100700002)(6666004)(6506007)(83380400001)(82960400001)(6512007)(2906002)(41300700001)(86362001)(44832011)(8936002)(8676002)(4326008)(5660300002)(66556008)(6862004)(66476007)(66946007)(316002)(6636002)(26005)(478600001)(6486002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Ih6rpfySV+jWtCqEpaIkcmNK612e8kaylIjXnoRxnCdlOrxWveNMmRQTxF?=
- =?iso-8859-1?Q?+QIPeKUceTj8cRQ2mxS9LCDSUTfrg5xxTag8dFkKUlzDA2NaEn0JgjV01c?=
- =?iso-8859-1?Q?zK9322ogtJkWWFD8XaN4P1YPNIo752mr/bQ0bLtoaMOvXauvozZ2rIyurz?=
- =?iso-8859-1?Q?1OCRI4lAPdvqVyRRUi2JrpuCXN7owQXzQiU/KgPgNfR6co6Bjj1/86HRsr?=
- =?iso-8859-1?Q?dchm2g8ejiiARqxLRjgcGC/xZolkhKOHYp+8/PuFmlumYCzDPLW/2T5XQ/?=
- =?iso-8859-1?Q?QZGjhCpCHYKF0tCyyRYzbWsT/9gbeowO/yAIfmcGMk5rTVAD64WtGQNTxP?=
- =?iso-8859-1?Q?duKmyO50HabDW2qusSKY8Kwgb3OaSb6eOuOteLR9J3PxZ1/nDhSOaMDPcX?=
- =?iso-8859-1?Q?CO7CA9aN0igcCWEHWqLLT6XJ+D0hjmZ947LRl5F/BElRl3mZrx3UcbRM2n?=
- =?iso-8859-1?Q?04N9KtTxW2YX3IcN6qtDtr3vakOeW1heREKf+cMRaQ1ll5VAm/BnS5IzdA?=
- =?iso-8859-1?Q?Ix5vJWY4ztf+LGIPWUWyVE+M6BUEjN5jdI71+T4x+IH2n4873SOLXawmnJ?=
- =?iso-8859-1?Q?bPTRaXWgCh4Z9HZebY93N8nl9fPMs8CsKBvYcRkY3InRIToNK3BKlAgnrM?=
- =?iso-8859-1?Q?ySFLqEoB0ozNz1T+NJ+SUGpsIz+MuZrHVCoT1/3gdcxvHdSve2Z+sNVxp5?=
- =?iso-8859-1?Q?0TBsifv93XOGR5izEdbN//GoIfCY43u9qGdnUVymq7U9wrA1zoYOPllpbL?=
- =?iso-8859-1?Q?HefAqHoEaHefP2H0MQcRhphGOMTandF2ZqddSW463bzdRzq6TotZnTysNY?=
- =?iso-8859-1?Q?LpjVMC0EB8okxlHvMNB3NNjDoylrGTA5sWCkP+Fgp3709kX+BrdVJ1MrlP?=
- =?iso-8859-1?Q?fwo6esYfBO5mDbZaxCe01D5Wdr0TjgHUMwf1tgEkmzSTvArZ1/o0/IRd0T?=
- =?iso-8859-1?Q?NIWKkF57R1ywApRloG/JfJWGSQWmhpmFddPP/FRWjZztN6r9dsMcKOUSrc?=
- =?iso-8859-1?Q?CjzRrQBFMAgPgAQ73JN91gTJJpRH99hned6J/uPwZPI5zbSuSHDul+grU4?=
- =?iso-8859-1?Q?1cHCTmD9NlYYQNM38zBKA9vop9SA1Ksoo+w7P/MEhTgpZlNyIZw45eBpS0?=
- =?iso-8859-1?Q?VrfqgAfW6aztthVCms6i9mef898WoB38SbQ756etZBZC4R3un1QeoVa8+a?=
- =?iso-8859-1?Q?Vlv/PnWcJP+DU2/ZnuoJ25mVYbpn4Mq/pXaHWWxFLfwBRH3P1YBH6l7QFP?=
- =?iso-8859-1?Q?awo5vV0s7KadWhzVbNSTFB5vk9AKXT8XJ1MuvFppAcfcJpM0MwLxuBDEKC?=
- =?iso-8859-1?Q?sKAS+2Icw2UNJqVf8iWMKQns/Ow4PY6/u7KngrIxQXK1R4ruDzP1gDb04V?=
- =?iso-8859-1?Q?KwH0lxewrByH0CwVnokDJqFcky99RwbJ4nGTOkfsXBJN9TA4t1JsxujKkI?=
- =?iso-8859-1?Q?zR/eKQX3oXevobjevuAxTyA+s8gXSnkt4N5raypCQlB2Z0YdHt0h/4pBNU?=
- =?iso-8859-1?Q?/cRX72I2IqUA/mQjMMmbDCPHHjOhQ5VTiVYd6yKHy1zFpQO8g/AHvzodP/?=
- =?iso-8859-1?Q?/l9QkKXQo3IWIMJV9OpE0Fp3CkvhkHxxNd4G0CfuobGlj8eXqic43ITjpZ?=
- =?iso-8859-1?Q?cmc/5o7W7te8a4TXwGWHEOU0bCfRrprboma4MaxOeGn8wRqtzrHuMjIg?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 55ff993f-49ad-4e91-2b80-08dbdfd55914
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?K3LFMPqQ8VmZmUJ2ofRAGC8gFTw0TI4v3j9l+NJK0y2/OuRwBn+7trLBJiKx?=
+ =?us-ascii?Q?B27TRJOptPVMF1DWSRqZsQqkURA+Qsk7241FnCn342BD0nI7HEWQ6kZVZCBy?=
+ =?us-ascii?Q?ZJncgvGFB/ReFAPH3i0Ccla/YxAZQFMa2zQ64xxnQz8TGAPx19nyGdILBMpA?=
+ =?us-ascii?Q?PKW1uL4QK9P+Sj+5YPNScPqVHEZQoCjIfXmtSV8f3wnjZtJxm1wEJv3jVxtZ?=
+ =?us-ascii?Q?9v0dmXQjc1wEgzMuVRkjvUhdzIBIeH0a8+ZwMw7mjl1EsPvupyX8GIMuzE6z?=
+ =?us-ascii?Q?X/mkXTEQDj5d01MUeuP9R6zhKhZsEgTX7XCe1kWPJQjegV+iCafUboA6aPn0?=
+ =?us-ascii?Q?ihkCHtTdK/zp19xEYmN4SHApDCMblE/jqqxh7mD92tNxgE75w8zeOw1+m5RE?=
+ =?us-ascii?Q?SazlMT7LSfiI7qmekQZGOPQoR5Yktvz/+Jk86VvgeqQYUfU1zEv4O/p9E/2R?=
+ =?us-ascii?Q?/VMlBmzppJPoeKB0RhwDVyiJmhGLDX761QUWnpN2nzjn32viHH0cwU5tKSr8?=
+ =?us-ascii?Q?BN4ok+dCVbnfBXnctlPdQnwAPdT+YS+ZDa4foy86Z3ZHx/ET+7S38i+dxleu?=
+ =?us-ascii?Q?Mc/cP2MMDgff23EiFUxXzzZK5EJkL4Ip/vFnRA7sKwjU5OCsqvq940HcH2H6?=
+ =?us-ascii?Q?6WJ9ULXOm71wAJz9bjDd4+gbY1eiWmDx02MKaeDYNKFzy8opba0Na96DyARi?=
+ =?us-ascii?Q?e55zDjn4pg7qlcln6h2XvxI5jcMaB54/OlODr7AzyhBP85vpd6EDgdgF8ZCA?=
+ =?us-ascii?Q?wQZeJV1h761FtLGZSarzH0xCtwlkkrci0HD/C88wObXMNO/SXSSGdk0xQk7i?=
+ =?us-ascii?Q?r2WElPGB/aNfvjKSUKpMacyJvLeHOtAnMDmdIHNbxoOAiZMXr6G98A2zJYGb?=
+ =?us-ascii?Q?ZQka8MEZ9G9DSlhyas8FXnQ9sEZ0RlYbAsQhGvwzqedgvrr/Q1KKfTX+l589?=
+ =?us-ascii?Q?mqdDmBzi/Qrh879WbliNwFGqpQ+IXFOVyHP9cdi6elH0hBCUa0fsqPRIMYqo?=
+ =?us-ascii?Q?VWwRIuym9WHITzhzycDOg7kj95Sw9tD39xc2/psBBXOEhqG9VMS7cuCwhMiS?=
+ =?us-ascii?Q?jOVn5QDcdiYEEFe2yo1AayDsml78CDxSFSF8hTRzO8jVURysXfTQGwKRrJRi?=
+ =?us-ascii?Q?CHT13QKtVhON/g/oq6eDcHZWkV5EkMJcdroZ6pvGyIHMSarxP3nAD1b2iHtF?=
+ =?us-ascii?Q?GHSpu6oy9ER//fLSsDU4IO0uXfxfME1Qr9mTaND9Zh+EeJkRROSf+LmDTWP9?=
+ =?us-ascii?Q?Bro93msVgkqKOfPcrug/sBZVe+SXe/jOvmopgBib6gv8qt5qa8OV0cljEMHl?=
+ =?us-ascii?Q?cN9hvkmMKGs1PwLn7yQ7StOIsCI7r6e75YtZpBNVaNDiWB3cCVW9NfTqpO/W?=
+ =?us-ascii?Q?n2eWrXzwKp6JIW4J+zbG/ywQpZSoRqKeo6fbrOY0hTanmPP5uzfS3FR9DReN?=
+ =?us-ascii?Q?9/yS9CBT+jxF9uH3hScCawjZGr7MkzLYjkR19MAUkFi1VUedZV7D98v8wdfc?=
+ =?us-ascii?Q?Uk4J6X7oLOug2PKvV1vH/7iLzFfn/cMggYg3xMr8J0I6niy3JI/AEMAY5BTf?=
+ =?us-ascii?Q?RVy6xt+AnojdjYfXiTmfJI84jwRJ7ejbM7mv5efyot97Zhstm8VPJ3YsXMe1?=
+ =?us-ascii?Q?XQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5116d533-1909-4b93-9fe9-08dbdfd5b711
 X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2023 21:06:02.0548 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2023 21:08:39.7018 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZLmEpyjifEdxthrtB+9DE7JJV+s4x26BFXo60kJLAb3MVV2O0gjS79DyQWvOdy5HPjnedJapnQGEDO11m7oIbQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5058
+X-MS-Exchange-CrossTenant-UserPrincipalName: QP528wPU/KdbP8OzfvfZUXNU94axzBu8F4FwJbHW6/1ea1oxlwEr4Z0nyS3h6yEKO/yp1Urr4kPPoTwxL1vJnw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6282
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2 08/50] drm/xe/uapi: Add missing DRM_
- prefix in uAPI constants
+Subject: Re: [Intel-xe] [PATCH v2 10/50] fixup! drm/xe: Add uAPI to query
+ micro-controler firmware version
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,842 +148,48 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 03, 2023 at 02:34:14PM +0000, Francois Dugast wrote:
-> Most constants defined in xe_drm.h use DRM_XE_ as prefix which is
-> helpful to identify the name space. Make this systematic and add
-> this prefix where it was missing.
+On Fri, Nov 03, 2023 at 02:34:16PM +0000, Francois Dugast wrote:
+> Remove warnings below when building documentation:
 > 
-> v2:
-> - fix vertical alignment of define values
-> - remove double DRM_ in some variables (José Roberto de Souza)
+>     ./include/uapi/drm/xe_drm.h:491: warning: Function parameter or member 'uc_type' not described in 'drm_xe_query_uc_fw_version'
+>     ./include/uapi/drm/xe_drm.h:491: warning: Function parameter or member 'major_ver' not described in 'drm_xe_query_uc_fw_version'
+>     ./include/uapi/drm/xe_drm.h:491: warning: Function parameter or member 'minor_ver' not described in 'drm_xe_query_uc_fw_version'
+>     ./include/uapi/drm/xe_drm.h:491: warning: Function parameter or member 'patch_ver' not described in 'drm_xe_query_uc_fw_version'
+>     ./include/uapi/drm/xe_drm.h:491: warning: Function parameter or member 'branch_ver' not described in 'drm_xe_query_uc_fw_version'
 > 
+
+The orignal patch isn't merged yet and include in this series, just
+squash this fix into that patch.
+
+Matt
+
 > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-
 > ---
->  drivers/gpu/drm/xe/xe_bo.c         |  14 +--
->  drivers/gpu/drm/xe/xe_exec_queue.c |  20 ++---
->  drivers/gpu/drm/xe/xe_gt.c         |   2 +-
->  drivers/gpu/drm/xe/xe_pmu.c        |  20 ++---
->  drivers/gpu/drm/xe/xe_query.c      |  34 ++++----
->  drivers/gpu/drm/xe/xe_vm.c         |  54 ++++++------
->  drivers/gpu/drm/xe/xe_vm_doc.h     |  12 +--
->  drivers/gpu/drm/xe/xe_vm_madvise.c |   8 +-
->  include/uapi/drm/xe_drm.h          | 136 ++++++++++++++---------------
->  9 files changed, 150 insertions(+), 150 deletions(-)
+>  include/uapi/drm/xe_drm.h | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index cd043b1308ec..632f75a752c5 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -208,7 +208,7 @@ static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
->  
->  	/* The order of placements should indicate preferred location */
->  
-> -	if (bo->props.preferred_mem_class == XE_MEM_REGION_CLASS_SYSMEM) {
-> +	if (bo->props.preferred_mem_class == DRM_XE_MEM_REGION_CLASS_SYSMEM) {
->  		try_add_system(bo, places, bo_flags, &c);
->  		try_add_vram(xe, bo, places, bo_flags, &c);
->  	} else {
-> @@ -1804,9 +1804,9 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->  		return -EINVAL;
->  
->  	if (XE_IOCTL_DBG(xe, args->flags &
-> -			 ~(XE_GEM_CREATE_FLAG_DEFER_BACKING |
-> -			   XE_GEM_CREATE_FLAG_SCANOUT |
-> -			   XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
-> +			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
-> +			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
-> +			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
->  			   xe->info.mem_region_mask)))
->  		return -EINVAL;
->  
-> @@ -1826,15 +1826,15 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->  	if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
->  		return -EINVAL;
->  
-> -	if (args->flags & XE_GEM_CREATE_FLAG_DEFER_BACKING)
-> +	if (args->flags & DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING)
->  		bo_flags |= XE_BO_DEFER_BACKING;
->  
-> -	if (args->flags & XE_GEM_CREATE_FLAG_SCANOUT)
-> +	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
->  		bo_flags |= XE_BO_SCANOUT_BIT;
->  
->  	bo_flags |= args->flags << (ffs(XE_BO_CREATE_SYSTEM_BIT) - 1);
->  
-> -	if (args->flags & XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
-> +	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
->  		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_CREATE_VRAM_MASK)))
->  			return -EINVAL;
->  
-> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
-> index 4fd44a9203e4..59e8d1ed34f7 100644
-> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
-> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
-> @@ -406,14 +406,14 @@ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
->  					     u64 value, bool create);
->  
->  static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
-> -	[XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
-> -	[XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
-> -	[XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT] = exec_queue_set_preemption_timeout,
-> -	[XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE] = exec_queue_set_persistence,
-> -	[XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT] = exec_queue_set_job_timeout,
-> -	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER] = exec_queue_set_acc_trigger,
-> -	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY] = exec_queue_set_acc_notify,
-> -	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY] = exec_queue_set_acc_granularity,
-> +	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
-> +	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
-> +	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT] = exec_queue_set_preemption_timeout,
-> +	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE] = exec_queue_set_persistence,
-> +	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT] = exec_queue_set_job_timeout,
-> +	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER] = exec_queue_set_acc_trigger,
-> +	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY] = exec_queue_set_acc_notify,
-> +	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY] = exec_queue_set_acc_granularity,
->  };
->  
->  static int exec_queue_user_ext_set_property(struct xe_device *xe,
-> @@ -445,7 +445,7 @@ typedef int (*xe_exec_queue_user_extension_fn)(struct xe_device *xe,
->  					       bool create);
->  
->  static const xe_exec_queue_set_property_fn exec_queue_user_extension_funcs[] = {
-> -	[XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY] = exec_queue_user_ext_set_property,
-> +	[DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY] = exec_queue_user_ext_set_property,
->  };
->  
->  #define MAX_USER_EXTENSIONS	16
-> @@ -764,7 +764,7 @@ int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
->  		return -ENOENT;
->  
->  	switch (args->property) {
-> -	case XE_EXEC_QUEUE_GET_PROPERTY_BAN:
-> +	case DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN:
->  		args->value = !!(q->flags & EXEC_QUEUE_FLAG_BANNED);
->  		ret = 0;
->  		break;
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index d380f67b3365..206ae8d785b8 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -556,7 +556,7 @@ static void xe_uevent_gt_reset_failure(struct pci_dev *pdev, u8 tile_id, u8 gt_i
->  {
->  	char *reset_event[4];
->  
-> -	reset_event[0] = XE_RESET_FAILED_UEVENT "=NEEDS_RESET";
-> +	reset_event[0] = DRM_XE_RESET_FAILED_UEVENT "=NEEDS_RESET";
->  	reset_event[1] = kasprintf(GFP_KERNEL, "TILE_ID=%d", tile_id);
->  	reset_event[2] = kasprintf(GFP_KERNEL, "GT_ID=%d", gt_id);
->  	reset_event[3] = NULL;
-> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-> index abfc0b3aeac4..8378ca3007d9 100644
-> --- a/drivers/gpu/drm/xe/xe_pmu.c
-> +++ b/drivers/gpu/drm/xe/xe_pmu.c
-> @@ -114,17 +114,17 @@ config_status(struct xe_device *xe, u64 config)
->  		return -ENOENT;
->  
->  	switch (config_counter(config)) {
-> -	case XE_PMU_INTERRUPTS(0):
-> +	case DRM_XE_PMU_INTERRUPTS(0):
->  		if (gt_id)
->  			return -ENOENT;
->  		break;
-> -	case XE_PMU_RENDER_GROUP_BUSY(0):
-> -	case XE_PMU_COPY_GROUP_BUSY(0):
-> -	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
-> +	case DRM_XE_PMU_RENDER_GROUP_BUSY(0):
-> +	case DRM_XE_PMU_COPY_GROUP_BUSY(0):
-> +	case DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
->  		if (gt->info.type == XE_GT_TYPE_MEDIA)
->  			return -ENOENT;
->  		break;
-> -	case XE_PMU_MEDIA_GROUP_BUSY(0):
-> +	case DRM_XE_PMU_MEDIA_GROUP_BUSY(0):
->  		if (!(gt->info.engine_mask & (BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VECS0))))
->  			return -ENOENT;
->  		break;
-> @@ -185,13 +185,13 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
->  	u64 val;
->  
->  	switch (config_counter(config)) {
-> -	case XE_PMU_INTERRUPTS(0):
-> +	case DRM_XE_PMU_INTERRUPTS(0):
->  		val = READ_ONCE(pmu->irq_count);
->  		break;
-> -	case XE_PMU_RENDER_GROUP_BUSY(0):
-> -	case XE_PMU_COPY_GROUP_BUSY(0):
-> -	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
-> -	case XE_PMU_MEDIA_GROUP_BUSY(0):
-> +	case DRM_XE_PMU_RENDER_GROUP_BUSY(0):
-> +	case DRM_XE_PMU_COPY_GROUP_BUSY(0):
-> +	case DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
-> +	case DRM_XE_PMU_MEDIA_GROUP_BUSY(0):
->  		val = engine_group_busyness_read(gt, config);
->  		break;
->  	default:
-> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> index 0dc72668f560..d8416fb93327 100644
-> --- a/drivers/gpu/drm/xe/xe_query.c
-> +++ b/drivers/gpu/drm/xe/xe_query.c
-> @@ -261,7 +261,7 @@ static int query_memory_usage(struct xe_device *xe,
->  		return -ENOMEM;
->  
->  	man = ttm_manager_type(&xe->ttm, XE_PL_TT);
-> -	usage->regions[0].mem_class = XE_MEM_REGION_CLASS_SYSMEM;
-> +	usage->regions[0].mem_class = DRM_XE_MEM_REGION_CLASS_SYSMEM;
->  	usage->regions[0].instance = 0;
->  	usage->regions[0].min_page_size = PAGE_SIZE;
->  	usage->regions[0].total_size = man->size << PAGE_SHIFT;
-> @@ -273,7 +273,7 @@ static int query_memory_usage(struct xe_device *xe,
->  		man = ttm_manager_type(&xe->ttm, i);
->  		if (man) {
->  			usage->regions[usage->num_regions].mem_class =
-> -				XE_MEM_REGION_CLASS_VRAM;
-> +				DRM_XE_MEM_REGION_CLASS_VRAM;
->  			usage->regions[usage->num_regions].instance =
->  				usage->num_regions;
->  			usage->regions[usage->num_regions].min_page_size =
-> @@ -305,7 +305,7 @@ static int query_memory_usage(struct xe_device *xe,
->  
->  static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
->  {
-> -#define XE_QUERY_CONFIG_NUM_PARAM	(XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1)
-> +#define XE_QUERY_CONFIG_NUM_PARAM	(DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1)
->  	size_t size =
->  		sizeof(struct drm_xe_query_config)
->  		+ XE_QUERY_CONFIG_NUM_PARAM * sizeof(u64);
-> @@ -324,18 +324,18 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
->  	if (!config)
->  		return -ENOMEM;
->  
-> -	config->info[XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
-> +	config->info[DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
->  		xe->info.devid | (xe->info.revid << 16);
->  	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
-> -		config->info[XE_QUERY_CONFIG_FLAGS] =
-> -			XE_QUERY_CONFIG_FLAGS_HAS_VRAM;
-> -	config->info[XE_QUERY_CONFIG_MIN_ALIGNMENT] =
-> +		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
-> +			DRM_XE_QUERY_CONFIG_FLAGS_HAS_VRAM;
-> +	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
->  		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
-> -	config->info[XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
-> -	config->info[XE_QUERY_CONFIG_GT_COUNT] = xe->info.gt_count;
-> -	config->info[XE_QUERY_CONFIG_MEM_REGION_COUNT] =
-> +	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
-> +	config->info[DRM_XE_QUERY_CONFIG_GT_COUNT] = xe->info.gt_count;
-> +	config->info[DRM_XE_QUERY_CONFIG_MEM_REGION_COUNT] =
->  		hweight_long(xe->info.mem_region_mask);
-> -	config->info[XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
-> +	config->info[DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
->  		xe_exec_queue_device_get_max_priority(xe);
->  
->  	if (copy_to_user(query_ptr, config, size)) {
-> @@ -371,11 +371,11 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
->  	gt_list->num_gt = xe->info.gt_count;
->  	for_each_gt(gt, xe, id) {
->  		if (xe_gt_is_media_type(gt))
-> -			gt_list->gt_list[id].type = XE_QUERY_GT_TYPE_MEDIA;
-> +			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_MEDIA;
->  		else if (gt_to_tile(gt)->id > 0)
-> -			gt_list->gt_list[id].type = XE_QUERY_GT_TYPE_REMOTE;
-> +			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_REMOTE;
->  		else
-> -			gt_list->gt_list[id].type = XE_QUERY_GT_TYPE_MAIN;
-> +			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_MAIN;
->  		gt_list->gt_list[id].gt_id = gt->info.id;
->  		gt_list->gt_list[id].clock_freq = gt->info.clock_freq;
->  		if (!IS_DGFX(xe))
-> @@ -473,21 +473,21 @@ static int query_gt_topology(struct xe_device *xe,
->  	for_each_gt(gt, xe, id) {
->  		topo.gt_id = id;
->  
-> -		topo.type = XE_TOPO_DSS_GEOMETRY;
-> +		topo.type = DRM_XE_TOPO_DSS_GEOMETRY;
->  		query_ptr = copy_mask(query_ptr, &topo,
->  				      gt->fuse_topo.g_dss_mask,
->  				      sizeof(gt->fuse_topo.g_dss_mask));
->  		if (IS_ERR(query_ptr))
->  			return PTR_ERR(query_ptr);
->  
-> -		topo.type = XE_TOPO_DSS_COMPUTE;
-> +		topo.type = DRM_XE_TOPO_DSS_COMPUTE;
->  		query_ptr = copy_mask(query_ptr, &topo,
->  				      gt->fuse_topo.c_dss_mask,
->  				      sizeof(gt->fuse_topo.c_dss_mask));
->  		if (IS_ERR(query_ptr))
->  			return PTR_ERR(query_ptr);
->  
-> -		topo.type = XE_TOPO_EU_PER_DSS;
-> +		topo.type = DRM_XE_TOPO_EU_PER_DSS;
->  		query_ptr = copy_mask(query_ptr, &topo,
->  				      gt->fuse_topo.eu_mask_per_dss,
->  				      sizeof(gt->fuse_topo.eu_mask_per_dss));
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 498c0b3e1d73..ad2f450f6c79 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2183,8 +2183,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->  	       (ULL)bo_offset_or_userptr);
->  
->  	switch (operation) {
-> -	case XE_VM_BIND_OP_MAP:
-> -	case XE_VM_BIND_OP_MAP_USERPTR:
-> +	case DRM_XE_VM_BIND_OP_MAP:
-> +	case DRM_XE_VM_BIND_OP_MAP_USERPTR:
->  		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, addr, range,
->  						  obj, bo_offset_or_userptr);
->  		if (IS_ERR(ops))
-> @@ -2195,13 +2195,13 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->  
->  			op->tile_mask = tile_mask;
->  			op->map.immediate =
-> -				flags & XE_VM_BIND_FLAG_IMMEDIATE;
-> +				flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE;
->  			op->map.read_only =
-> -				flags & XE_VM_BIND_FLAG_READONLY;
-> -			op->map.is_null = flags & XE_VM_BIND_FLAG_NULL;
-> +				flags & DRM_XE_VM_BIND_FLAG_READONLY;
-> +			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
->  		}
->  		break;
-> -	case XE_VM_BIND_OP_UNMAP:
-> +	case DRM_XE_VM_BIND_OP_UNMAP:
->  		ops = drm_gpuvm_sm_unmap_ops_create(&vm->gpuvm, addr, range);
->  		if (IS_ERR(ops))
->  			return ops;
-> @@ -2212,7 +2212,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->  			op->tile_mask = tile_mask;
->  		}
->  		break;
-> -	case XE_VM_BIND_OP_PREFETCH:
-> +	case DRM_XE_VM_BIND_OP_PREFETCH:
->  		ops = drm_gpuvm_prefetch_ops_create(&vm->gpuvm, addr, range);
->  		if (IS_ERR(ops))
->  			return ops;
-> @@ -2224,7 +2224,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->  			op->prefetch.region = region;
->  		}
->  		break;
-> -	case XE_VM_BIND_OP_UNMAP_ALL:
-> +	case DRM_XE_VM_BIND_OP_UNMAP_ALL:
->  		xe_assert(vm->xe, bo);
->  
->  		err = xe_bo_lock(bo, true);
-> @@ -2817,13 +2817,13 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
->  
->  #ifdef TEST_VM_ASYNC_OPS_ERROR
->  #define SUPPORTED_FLAGS	\
-> -	(FORCE_ASYNC_OP_ERROR | XE_VM_BIND_FLAG_ASYNC | \
-> -	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | \
-> -	 XE_VM_BIND_FLAG_NULL | 0xffff)
-> +	(FORCE_ASYNC_OP_ERROR | DRM_XE_VM_BIND_FLAG_ASYNC | \
-> +	 DRM_XE_VM_BIND_FLAG_READONLY | DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
-> +	 DRM_XE_VM_BIND_FLAG_NULL | 0xffff)
->  #else
->  #define SUPPORTED_FLAGS	\
-> -	(XE_VM_BIND_FLAG_ASYNC | XE_VM_BIND_FLAG_READONLY | \
-> -	 XE_VM_BIND_FLAG_IMMEDIATE | XE_VM_BIND_FLAG_NULL | \
-> +	(DRM_XE_VM_BIND_FLAG_ASYNC | DRM_XE_VM_BIND_FLAG_READONLY | \
-> +	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | \
->  	 0xffff)
->  #endif
->  #define XE_64K_PAGE_MASK 0xffffull
-> @@ -2871,45 +2871,45 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->  		u32 obj = (*bind_ops)[i].obj;
->  		u64 obj_offset = (*bind_ops)[i].obj_offset;
->  		u32 region = (*bind_ops)[i].region;
-> -		bool is_null = flags & XE_VM_BIND_FLAG_NULL;
-> +		bool is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
->  
->  		if (i == 0) {
-> -			*async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
-> +			*async = !!(flags & DRM_XE_VM_BIND_FLAG_ASYNC);
->  			if (XE_IOCTL_DBG(xe, !*async && args->num_syncs)) {
->  				err = -EINVAL;
->  				goto free_bind_ops;
->  			}
->  		} else if (XE_IOCTL_DBG(xe, *async !=
-> -					!!(flags & XE_VM_BIND_FLAG_ASYNC))) {
-> +					!!(flags & DRM_XE_VM_BIND_FLAG_ASYNC))) {
->  			err = -EINVAL;
->  			goto free_bind_ops;
->  		}
->  
-> -		if (XE_IOCTL_DBG(xe, op > XE_VM_BIND_OP_PREFETCH) ||
-> +		if (XE_IOCTL_DBG(xe, op > DRM_XE_VM_BIND_OP_PREFETCH) ||
->  		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
->  		    XE_IOCTL_DBG(xe, obj && is_null) ||
->  		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
-> -		    XE_IOCTL_DBG(xe, op != XE_VM_BIND_OP_MAP &&
-> +		    XE_IOCTL_DBG(xe, op != DRM_XE_VM_BIND_OP_MAP &&
->  				 is_null) ||
->  		    XE_IOCTL_DBG(xe, !obj &&
-> -				 op == XE_VM_BIND_OP_MAP &&
-> +				 op == DRM_XE_VM_BIND_OP_MAP &&
->  				 !is_null) ||
->  		    XE_IOCTL_DBG(xe, !obj &&
-> -				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
-> +				 op == DRM_XE_VM_BIND_OP_UNMAP_ALL) ||
->  		    XE_IOCTL_DBG(xe, addr &&
-> -				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
-> +				 op == DRM_XE_VM_BIND_OP_UNMAP_ALL) ||
->  		    XE_IOCTL_DBG(xe, range &&
-> -				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
-> +				 op == DRM_XE_VM_BIND_OP_UNMAP_ALL) ||
->  		    XE_IOCTL_DBG(xe, obj &&
-> -				 op == XE_VM_BIND_OP_MAP_USERPTR) ||
-> +				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
->  		    XE_IOCTL_DBG(xe, obj &&
-> -				 op == XE_VM_BIND_OP_PREFETCH) ||
-> +				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
->  		    XE_IOCTL_DBG(xe, region &&
-> -				 op != XE_VM_BIND_OP_PREFETCH) ||
-> +				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
->  		    XE_IOCTL_DBG(xe, !(BIT(region) &
->  				       xe->info.mem_region_mask)) ||
->  		    XE_IOCTL_DBG(xe, obj &&
-> -				 op == XE_VM_BIND_OP_UNMAP)) {
-> +				 op == DRM_XE_VM_BIND_OP_UNMAP)) {
->  			err = -EINVAL;
->  			goto free_bind_ops;
->  		}
-> @@ -2918,7 +2918,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->  		    XE_IOCTL_DBG(xe, addr & ~PAGE_MASK) ||
->  		    XE_IOCTL_DBG(xe, range & ~PAGE_MASK) ||
->  		    XE_IOCTL_DBG(xe, !range &&
-> -				 op != XE_VM_BIND_OP_UNMAP_ALL)) {
-> +				 op != DRM_XE_VM_BIND_OP_UNMAP_ALL)) {
->  			err = -EINVAL;
->  			goto free_bind_ops;
->  		}
-> diff --git a/drivers/gpu/drm/xe/xe_vm_doc.h b/drivers/gpu/drm/xe/xe_vm_doc.h
-> index b1b2dc4a6089..516f4dc97223 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_doc.h
-> +++ b/drivers/gpu/drm/xe/xe_vm_doc.h
-> @@ -32,9 +32,9 @@
->   * Operations
->   * ----------
->   *
-> - * XE_VM_BIND_OP_MAP		- Create mapping for a BO
-> - * XE_VM_BIND_OP_UNMAP		- Destroy mapping for a BO / userptr
-> - * XE_VM_BIND_OP_MAP_USERPTR	- Create mapping for userptr
-> + * DRM_XE_VM_BIND_OP_MAP		- Create mapping for a BO
-> + * DRM_XE_VM_BIND_OP_UNMAP		- Destroy mapping for a BO / userptr
-> + * DRM_XE_VM_BIND_OP_MAP_USERPTR	- Create mapping for userptr
->   *
->   * Implementation details
->   * ~~~~~~~~~~~~~~~~~~~~~~
-> @@ -113,7 +113,7 @@
->   * VM uses to report errors to. The ufence wait interface can be used to wait on
->   * a VM going into an error state. Once an error is reported the VM's async
->   * worker is paused. While the VM's async worker is paused sync,
-> - * XE_VM_BIND_OP_UNMAP operations are allowed (this can free memory). Once the
-> + * DRM_XE_VM_BIND_OP_UNMAP operations are allowed (this can free memory). Once the
->   * uses believe the error state is fixed, the async worker can be resumed via
->   * XE_VM_BIND_OP_RESTART operation. When VM async bind work is restarted, the
->   * first operation processed is the operation that caused the original error.
-> @@ -193,7 +193,7 @@
->   * In a VM is in fault mode (TODO: link to fault mode), new bind operations that
->   * create mappings are by default are deferred to the page fault handler (first
->   * use). This behavior can be overriden by setting the flag
-> - * XE_VM_BIND_FLAG_IMMEDIATE which indicates to creating the mapping
-> + * DRM_XE_VM_BIND_FLAG_IMMEDIATE which indicates to creating the mapping
->   * immediately.
->   *
->   * User pointer
-> @@ -322,7 +322,7 @@
->   *
->   * By default, on a faulting VM binds just allocate the VMA and the actual
->   * updating of the page tables is defered to the page fault handler. This
-> - * behavior can be overridden by setting the flag XE_VM_BIND_FLAG_IMMEDIATE in
-> + * behavior can be overridden by setting the flag DRM_XE_VM_BIND_FLAG_IMMEDIATE in
->   * the VM bind which will then do the bind immediately.
->   *
->   * Page fault handler
-> diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> index 0ef7d483d050..72d051ecac5c 100644
-> --- a/drivers/gpu/drm/xe/xe_vm_madvise.c
-> +++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
-> @@ -19,10 +19,10 @@ static int madvise_preferred_mem_class(struct xe_device *xe, struct xe_vm *vm,
->  {
->  	int i, err;
->  
-> -	if (XE_IOCTL_DBG(xe, value > XE_MEM_REGION_CLASS_VRAM))
-> +	if (XE_IOCTL_DBG(xe, value > DRM_XE_MEM_REGION_CLASS_VRAM))
->  		return -EINVAL;
->  
-> -	if (XE_IOCTL_DBG(xe, value == XE_MEM_REGION_CLASS_VRAM &&
-> +	if (XE_IOCTL_DBG(xe, value == DRM_XE_MEM_REGION_CLASS_VRAM &&
->  			 !xe->info.is_dgfx))
->  		return -EINVAL;
->  
-> @@ -75,10 +75,10 @@ static int madvise_preferred_mem_class_gt(struct xe_device *xe,
->  	u32 gt_id = upper_32_bits(value);
->  	u32 mem_class = lower_32_bits(value);
->  
-> -	if (XE_IOCTL_DBG(xe, mem_class > XE_MEM_REGION_CLASS_VRAM))
-> +	if (XE_IOCTL_DBG(xe, mem_class > DRM_XE_MEM_REGION_CLASS_VRAM))
->  		return -EINVAL;
->  
-> -	if (XE_IOCTL_DBG(xe, mem_class == XE_MEM_REGION_CLASS_VRAM &&
-> +	if (XE_IOCTL_DBG(xe, mem_class == DRM_XE_MEM_REGION_CLASS_VRAM &&
->  			 !xe->info.is_dgfx))
->  		return -EINVAL;
->  
 > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index 0c106043827c..bd0b9d5682e0 100644
+> index b53b3d9882a1..b1e9d8089d5f 100644
 > --- a/include/uapi/drm/xe_drm.h
 > +++ b/include/uapi/drm/xe_drm.h
-> @@ -19,12 +19,12 @@ extern "C" {
->  /**
->   * DOC: uevent generated by xe on it's pci node.
->   *
-> - * XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset gt
-> + * DRM_XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset gt
->   * fails. The value supplied with the event is always "NEEDS_RESET".
->   * Additional information supplied is tile id and gt id of the gt unit for
->   * which reset has failed.
->   */
-> -#define XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
-> +#define DRM_XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
+> @@ -486,13 +486,13 @@ struct drm_xe_query_uc_fw_version {
+>  	/** @reserved: Reserved */
+>  	__u16 reserved;
 >  
->  /**
->   * struct xe_user_extension - Base class for defining a chain of extensions
-> @@ -103,8 +103,8 @@ struct xe_user_extension {
->  #define DRM_XE_VM_CREATE		0x03
->  #define DRM_XE_VM_DESTROY		0x04
->  #define DRM_XE_VM_BIND			0x05
-> -#define DRM_XE_EXEC_QUEUE_CREATE		0x06
-> -#define DRM_XE_EXEC_QUEUE_DESTROY		0x07
-> +#define DRM_XE_EXEC_QUEUE_CREATE	0x06
-> +#define DRM_XE_EXEC_QUEUE_DESTROY	0x07
->  #define DRM_XE_EXEC			0x08
->  #define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x09
->  #define DRM_XE_WAIT_USER_FENCE		0x0a
-> @@ -150,14 +150,14 @@ struct drm_xe_engine_class_instance {
->   * enum drm_xe_memory_class - Supported memory classes.
->   */
->  enum drm_xe_memory_class {
-> -	/** @XE_MEM_REGION_CLASS_SYSMEM: Represents system memory. */
-> -	XE_MEM_REGION_CLASS_SYSMEM = 0,
-> +	/** @DRM_XE_MEM_REGION_CLASS_SYSMEM: Represents system memory. */
-> +	DRM_XE_MEM_REGION_CLASS_SYSMEM = 0,
->  	/**
-> -	 * @XE_MEM_REGION_CLASS_VRAM: On discrete platforms, this
-> +	 * @DRM_XE_MEM_REGION_CLASS_VRAM: On discrete platforms, this
->  	 * represents the memory that is local to the device, which we
->  	 * call VRAM. Not valid on integrated platforms.
->  	 */
-> -	XE_MEM_REGION_CLASS_VRAM
-> +	DRM_XE_MEM_REGION_CLASS_VRAM
->  };
+> -	/* @major_ver: major uc fw version */
+> +	/** @major_ver: major uc fw version */
+>  	__u32 major_ver;
+> -	/* @minor_ver: minor uc fw version */
+> +	/** @minor_ver: minor uc fw version */
+>  	__u32 minor_ver;
+> -	/* @patch_ver: patch uc fw version */
+> +	/** @patch_ver: patch uc fw version */
+>  	__u32 patch_ver;
+> -	/* @branch_ver: branch uc fw version */
+> +	/** @branch_ver: branch uc fw version */
+>  	__u32 branch_ver;
 >  
->  /**
-> @@ -217,7 +217,7 @@ struct drm_xe_query_mem_region {
->  	 * always equal the @total_size, since all of it will be CPU
->  	 * accessible.
->  	 *
-> -	 * Note this is only tracked for XE_MEM_REGION_CLASS_VRAM
-> +	 * Note this is only tracked for DRM_XE_MEM_REGION_CLASS_VRAM
->  	 * regions (for other types the value here will always equal
->  	 * zero).
->  	 */
-> @@ -229,7 +229,7 @@ struct drm_xe_query_mem_region {
->  	 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
->  	 * accounting. Without this the value here will always equal
->  	 * zero.  Note this is only currently tracked for
-> -	 * XE_MEM_REGION_CLASS_VRAM regions (for other types the value
-> +	 * DRM_XE_MEM_REGION_CLASS_VRAM regions (for other types the value
->  	 * here will always be zero).
->  	 */
->  	__u64 cpu_visible_used;
-> @@ -322,36 +322,36 @@ struct drm_xe_query_config {
->  	 * Device ID (lower 16 bits) and the device revision (next
->  	 * 8 bits)
->  	 */
-> -#define XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
-> +#define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID		0
->  	/*
->  	 * Flags describing the device configuration, see list below
->  	 */
-> -#define XE_QUERY_CONFIG_FLAGS			1
-> +#define DRM_XE_QUERY_CONFIG_FLAGS			1
->  	/*
->  	 * Flag is set if the device has usable VRAM
->  	 */
-> -	#define XE_QUERY_CONFIG_FLAGS_HAS_VRAM		(0x1 << 0)
-> +	#define DRM_XE_QUERY_CONFIG_FLAGS_HAS_VRAM	(0x1 << 0)
->  	/*
->  	 * Minimal memory alignment required by this device,
->  	 * typically SZ_4K or SZ_64K
->  	 */
-> -#define XE_QUERY_CONFIG_MIN_ALIGNMENT		2
-> +#define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
->  	/*
->  	 * Maximum bits of a virtual address
->  	 */
-> -#define XE_QUERY_CONFIG_VA_BITS			3
-> +#define DRM_XE_QUERY_CONFIG_VA_BITS			3
->  	/*
->  	 * Total number of GTs for the entire device
->  	 */
-> -#define XE_QUERY_CONFIG_GT_COUNT		4
-> +#define DRM_XE_QUERY_CONFIG_GT_COUNT			4
->  	/*
->  	 * Total number of accessible memory regions
->  	 */
-> -#define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
-> +#define DRM_XE_QUERY_CONFIG_MEM_REGION_COUNT		5
->  	/*
->  	 * Value of the highest available exec queue priority
->  	 */
-> -#define XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	6
-> +#define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	6
->  	/** @info: array of elements containing the config info */
->  	__u64 info[];
->  };
-> @@ -365,9 +365,9 @@ struct drm_xe_query_config {
->   * implementing graphics and/or media operations.
->   */
->  struct drm_xe_query_gt {
-> -#define XE_QUERY_GT_TYPE_MAIN		0
-> -#define XE_QUERY_GT_TYPE_REMOTE		1
-> -#define XE_QUERY_GT_TYPE_MEDIA		2
-> +#define DRM_XE_QUERY_GT_TYPE_MAIN		0
-> +#define DRM_XE_QUERY_GT_TYPE_REMOTE		1
-> +#define DRM_XE_QUERY_GT_TYPE_MEDIA		2
->  	/** @type: GT type: Main, Remote, or Media */
->  	__u16 type;
->  	/** @gt_id: Unique ID of this GT within the PCI Device */
-> @@ -432,7 +432,7 @@ struct drm_xe_query_topology_mask {
->  	 *   DSS_GEOMETRY    ff ff ff ff 00 00 00 00
->  	 * means 32 DSS are available for geometry.
->  	 */
-> -#define XE_TOPO_DSS_GEOMETRY	(1 << 0)
-> +#define DRM_XE_TOPO_DSS_GEOMETRY	(1 << 0)
->  	/*
->  	 * To query the mask of Dual Sub Slices (DSS) available for compute
->  	 * operations. For example a query response containing the following
-> @@ -440,7 +440,7 @@ struct drm_xe_query_topology_mask {
->  	 *   DSS_COMPUTE    ff ff ff ff 00 00 00 00
->  	 * means 32 DSS are available for compute.
->  	 */
-> -#define XE_TOPO_DSS_COMPUTE	(1 << 1)
-> +#define DRM_XE_TOPO_DSS_COMPUTE		(1 << 1)
->  	/*
->  	 * To query the mask of Execution Units (EU) available per Dual Sub
->  	 * Slices (DSS). For example a query response containing the following
-> @@ -448,7 +448,7 @@ struct drm_xe_query_topology_mask {
->  	 *   EU_PER_DSS    ff ff 00 00 00 00 00 00
->  	 * means each DSS has 16 EU.
->  	 */
-> -#define XE_TOPO_EU_PER_DSS	(1 << 2)
-> +#define DRM_XE_TOPO_EU_PER_DSS		(1 << 2)
->  	/** @type: type of mask */
->  	__u16 type;
->  
-> @@ -584,8 +584,8 @@ struct drm_xe_gem_create {
->  	 */
->  	__u64 size;
->  
-> -#define XE_GEM_CREATE_FLAG_DEFER_BACKING	(0x1 << 24)
-> -#define XE_GEM_CREATE_FLAG_SCANOUT		(0x1 << 25)
-> +#define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(0x1 << 24)
-> +#define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(0x1 << 25)
->  /*
->   * When using VRAM as a possible placement, ensure that the corresponding VRAM
->   * allocation will always use the CPU accessible part of VRAM. This is important
-> @@ -601,7 +601,7 @@ struct drm_xe_gem_create {
->   * display surfaces, therefore the kernel requires setting this flag for such
->   * objects, otherwise an error is thrown on small-bar systems.
->   */
-> -#define XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(0x1 << 26)
-> +#define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(0x1 << 26)
->  	/**
->  	 * @flags: Flags, currently a mask of memory instances of where BO can
->  	 * be placed
-> @@ -668,14 +668,14 @@ struct drm_xe_ext_set_property {
->  };
->  
->  struct drm_xe_vm_create {
-> -#define XE_VM_EXTENSION_SET_PROPERTY	0
-> +#define DRM_XE_VM_EXTENSION_SET_PROPERTY	0
->  	/** @extensions: Pointer to the first extension struct, if any */
->  	__u64 extensions;
->  
-> -#define DRM_XE_VM_CREATE_SCRATCH_PAGE	(0x1 << 0)
-> -#define DRM_XE_VM_CREATE_COMPUTE_MODE	(0x1 << 1)
-> -#define DRM_XE_VM_CREATE_ASYNC_DEFAULT	(0x1 << 2)
-> -#define DRM_XE_VM_CREATE_FAULT_MODE	(0x1 << 3)
-> +#define DRM_XE_VM_CREATE_SCRATCH_PAGE		(0x1 << 0)
-> +#define DRM_XE_VM_CREATE_COMPUTE_MODE		(0x1 << 1)
-> +#define DRM_XE_VM_CREATE_ASYNC_DEFAULT		(0x1 << 2)
-> +#define DRM_XE_VM_CREATE_FAULT_MODE		(0x1 << 3)
->  	/** @flags: Flags */
->  	__u32 flags;
->  
-> @@ -734,29 +734,29 @@ struct drm_xe_vm_bind_op {
->  	 */
->  	__u64 tile_mask;
->  
-> -#define XE_VM_BIND_OP_MAP		0x0
-> -#define XE_VM_BIND_OP_UNMAP		0x1
-> -#define XE_VM_BIND_OP_MAP_USERPTR	0x2
-> -#define XE_VM_BIND_OP_UNMAP_ALL		0x3
-> -#define XE_VM_BIND_OP_PREFETCH		0x4
-> +#define DRM_XE_VM_BIND_OP_MAP		0x0
-> +#define DRM_XE_VM_BIND_OP_UNMAP		0x1
-> +#define DRM_XE_VM_BIND_OP_MAP_USERPTR	0x2
-> +#define DRM_XE_VM_BIND_OP_UNMAP_ALL	0x3
-> +#define DRM_XE_VM_BIND_OP_PREFETCH	0x4
->  	/** @op: Bind operation to perform */
->  	__u32 op;
->  
-> -#define XE_VM_BIND_FLAG_READONLY	(0x1 << 0)
-> -#define XE_VM_BIND_FLAG_ASYNC		(0x1 << 1)
-> +#define DRM_XE_VM_BIND_FLAG_READONLY	(0x1 << 0)
-> +#define DRM_XE_VM_BIND_FLAG_ASYNC	(0x1 << 1)
->  	/*
->  	 * Valid on a faulting VM only, do the MAP operation immediately rather
->  	 * than deferring the MAP to the page fault handler.
->  	 */
-> -#define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 2)
-> +#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 2)
->  	/*
->  	 * When the NULL flag is set, the page tables are setup with a special
->  	 * bit which indicates writes are dropped and all reads return zero.  In
-> -	 * the future, the NULL flags will only be valid for XE_VM_BIND_OP_MAP
-> +	 * the future, the NULL flags will only be valid for DRM_XE_VM_BIND_OP_MAP
->  	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
->  	 * intended to implement VK sparse bindings.
->  	 */
-> -#define XE_VM_BIND_FLAG_NULL		(0x1 << 3)
-> +#define DRM_XE_VM_BIND_FLAG_NULL	(0x1 << 3)
->  	/** @flags: Bind flags */
->  	__u32 flags;
->  
-> @@ -837,14 +837,14 @@ struct drm_xe_exec_queue_set_property {
->  	/** @exec_queue_id: Exec queue ID */
->  	__u32 exec_queue_id;
->  
-> -#define XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
-> -#define XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
-> -#define XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
-> -#define XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		3
-> -#define XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		4
-> -#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
-> -#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
-> -#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY	7
-> +#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY			0
-> +#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
-> +#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
-> +#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		3
-> +#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		4
-> +#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
-> +#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
-> +#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY		7
->  	/** @property: property to set */
->  	__u32 property;
->  
-> @@ -856,7 +856,7 @@ struct drm_xe_exec_queue_set_property {
->  };
->  
->  struct drm_xe_exec_queue_create {
-> -#define XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY               0
-> +#define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY               0
->  	/** @extensions: Pointer to the first extension struct, if any */
->  	__u64 extensions;
->  
-> @@ -895,7 +895,7 @@ struct drm_xe_exec_queue_get_property {
->  	/** @exec_queue_id: Exec queue ID */
->  	__u32 exec_queue_id;
->  
-> -#define XE_EXEC_QUEUE_GET_PROPERTY_BAN			0
-> +#define DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN	0
->  	/** @property: property to get */
->  	__u32 property;
->  
-> @@ -1084,8 +1084,8 @@ struct drm_xe_vm_madvise {
->  	 * For DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS usage, see enum
->  	 * drm_xe_memory_class.
->  	 */
-> -#define DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS	0
-> -#define DRM_XE_VM_MADVISE_PREFERRED_GT		1
-> +#define DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS		0
-> +#define DRM_XE_VM_MADVISE_PREFERRED_GT			1
->  	/*
->  	 * In this case lower 32 bits are mem class, upper 32 are GT.
->  	 * Combination provides a single IOCTL plus migrate VMA to preferred
-> @@ -1096,25 +1096,25 @@ struct drm_xe_vm_madvise {
->  	 * The CPU will do atomic memory operations to this VMA. Must be set on
->  	 * some devices for atomics to behave correctly.
->  	 */
-> -#define DRM_XE_VM_MADVISE_CPU_ATOMIC		3
-> +#define DRM_XE_VM_MADVISE_CPU_ATOMIC			3
->  	/*
->  	 * The device will do atomic memory operations to this VMA. Must be set
->  	 * on some devices for atomics to behave correctly.
->  	 */
-> -#define DRM_XE_VM_MADVISE_DEVICE_ATOMIC		4
-> +#define DRM_XE_VM_MADVISE_DEVICE_ATOMIC			4
->  	/*
->  	 * Priority WRT to eviction (moving from preferred memory location due
->  	 * to memory pressure). The lower the priority, the more likely to be
->  	 * evicted.
->  	 */
-> -#define DRM_XE_VM_MADVISE_PRIORITY		5
-> -#define		DRM_XE_VMA_PRIORITY_LOW		0
-> +#define DRM_XE_VM_MADVISE_PRIORITY			5
-> +#define		DRM_XE_VMA_PRIORITY_LOW			0
->  		/* Default */
-> -#define		DRM_XE_VMA_PRIORITY_NORMAL	1
-> +#define		DRM_XE_VMA_PRIORITY_NORMAL		1
->  		/* Must be user with elevated privileges */
-> -#define		DRM_XE_VMA_PRIORITY_HIGH	2
-> +#define		DRM_XE_VMA_PRIORITY_HIGH		2
->  	/* Pin the VMA in memory, must be user with elevated privileges */
-> -#define DRM_XE_VM_MADVISE_PIN			6
-> +#define DRM_XE_VM_MADVISE_PIN				6
->  	/** @property: property to set */
->  	__u32 property;
->  
-> @@ -1135,7 +1135,7 @@ struct drm_xe_vm_madvise {
->   * in 'struct perf_event_attr' as part of perf_event_open syscall to read a
->   * particular event.
->   *
-> - * For example to open the XE_PMU_INTERRUPTS(0):
-> + * For example to open the DRM_XE_PMU_INTERRUPTS(0):
->   *
->   * .. code-block:: C
->   *
-> @@ -1149,7 +1149,7 @@ struct drm_xe_vm_madvise {
->   *	attr.read_format = PERF_FORMAT_TOTAL_TIME_ENABLED;
->   *	attr.use_clockid = 1;
->   *	attr.clockid = CLOCK_MONOTONIC;
-> - *	attr.config = XE_PMU_INTERRUPTS(0);
-> + *	attr.config = DRM_XE_PMU_INTERRUPTS(0);
->   *
->   *	fd = syscall(__NR_perf_event_open, &attr, -1, cpu, -1, 0);
->   */
-> @@ -1162,11 +1162,11 @@ struct drm_xe_vm_madvise {
->  #define ___XE_PMU_OTHER(gt, x) \
->  	(((__u64)(x)) | ((__u64)(gt) << __XE_PMU_GT_SHIFT))
->  
-> -#define XE_PMU_INTERRUPTS(gt)			___XE_PMU_OTHER(gt, 0)
-> -#define XE_PMU_RENDER_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 1)
-> -#define XE_PMU_COPY_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 2)
-> -#define XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 3)
-> -#define XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 4)
-> +#define DRM_XE_PMU_INTERRUPTS(gt)		___XE_PMU_OTHER(gt, 0)
-> +#define DRM_XE_PMU_RENDER_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 1)
-> +#define DRM_XE_PMU_COPY_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 2)
-> +#define DRM_XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 3)
-> +#define DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 4)
->  
->  #if defined(__cplusplus)
->  }
+>  	/** @pad2: MBZ */
 > -- 
 > 2.34.1
 > 
