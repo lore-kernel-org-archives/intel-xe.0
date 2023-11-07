@@ -4,48 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79E54C4167D
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 05:25:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44E2AC4167B
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 05:26:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DAD210E4B3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id A876410E4B4;
 	Tue,  7 Nov 2023 05:25:58 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9E7D10E02D
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E48210E02D
  for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 05:25:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1699334756; x=1730870756;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=k/ctA3SRyLIk0dmXrudZh72g2+N2i/Wb8T8xBgMIWAg=;
- b=fMz0rKnEs1V1vIGoZhDQSB0QvtvjxycBSibcbfsZZJ++oWRiRN0QVQfo
- chvxOmaI90V2rNlRKYE6Ld5/pFiEWE459FBuIRFpMrimxpAM+hxWm0D8p
- BkJeyTtaiFwfl8lDM3OT+Kz8r9JYVYNFTg+cyFnTcBDuTefZnkMA8aJdo
- 2cj30MTbGcHlnWnv0Ao85Bqyz/74AF4xZ6Si6jBsCeti9O/mqKKXJcOC+
- n3H76erVqAv8SmZjOW1Um7ctjoTygx72AuFGaNXXfUaeMHadzZOqMAAB9
- nXuTOTMjTPHuXCIOj+RY7ZA9C5UrBtRu6d50KufjOzvL1vUJMty+8W6dZ A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="368769515"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="368769515"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=A0q8zPuUUKo1wuSZBXTPAbBLxH+v3xXB0h/E2NDEBy8=;
+ b=nry0ziP37L8GmD/RxJlfB9X2ozliP+m6yrD6QC73VCghDa+XqGRJzuMB
+ 8Ulcp8AqRq2+IAIGLGAQgZHo5NrrCqULEAOE6VBXp0hHAC//BnMRcD9au
+ FHaImqbkkw4Hz/9dVZlkuK2KQRnYObgId9p/TIXEt2orTHtU+fPokj/BE
+ 2TkvZXD35Gvc5ItwzZUrpHfC5+LiXbuBVnE6esAmWIq4ZKBNVwYYscyIV
+ t+Q3BdYhJEggoSmAOVCtq0aCH6r73K9xHgLbGHZoGnyuolThUqAUcsHd7
+ Dfra8vIvSpmbU/lxFIOFZdfZUNVc6Nwvr6pRwyBRdUvyF+V962fIt3JEB w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="368769508"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="368769508"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 21:25:56 -0800
+ 06 Nov 2023 21:25:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="791689827"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="791689827"
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="791689815"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="791689815"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Nov 2023 21:25:55 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  6 Nov 2023 21:25:40 -0800
-Message-Id: <20231107052603.124361-5-matthew.brost@intel.com>
+Date: Mon,  6 Nov 2023 21:25:36 -0800
+Message-Id: <20231107052603.124361-1-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231107052603.124361-1-matthew.brost@intel.com>
-References: <20231107052603.124361-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 04/27] drm/xe: Lock all gpuva ops during VM
- bind IOCTL
+Subject: [Intel-xe] [PATCH v2 00/27] Refactor VM bind code
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,226 +57,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lock all gpuva ops and validate all BOs in a single step durin the VM
-bind IOCTL. This help with the transition to making all gpuva ops in a
-VM bind IOCTL a single atomic job.
+WIP on refactoring VM bind to final error handling solution.
 
-Signed-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 126 +++++++++++++++++++++++++++----------
- 1 file changed, 94 insertions(+), 32 deletions(-)
+Major changes are:
+1. Allow bind / exec IOCTLs with zero binds / batches
+2. Convert multiple binds from IOCTL into single job
+3. CPU binds in jobs
+4. Sync vs async bind per IOCTL rather than per queue
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 2a7fa8e2058e..f5c7540767a4 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -474,19 +474,23 @@ int xe_vm_lock_dma_resv(struct xe_vm *vm, struct drm_exec *exec,
- 
- #define XE_VM_REBIND_RETRY_TIMEOUT_MS 1000
- 
--static void xe_vm_kill(struct xe_vm *vm)
-+static void xe_vm_kill(struct xe_vm *vm, bool unlocked)
- {
- 	struct xe_exec_queue *q;
- 
- 	lockdep_assert_held(&vm->lock);
- 
--	xe_vm_lock(vm, false);
-+	if (unlocked)
-+		xe_vm_lock(vm, false);
-+
- 	vm->flags |= XE_VM_FLAG_BANNED;
- 	trace_xe_vm_kill(vm);
- 
- 	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link)
- 		q->ops->kill(q);
--	xe_vm_unlock(vm);
-+
-+	if (unlocked)
-+		xe_vm_unlock(vm);
- 
- 	/* TODO: Inform user the VM is banned */
- }
-@@ -682,7 +686,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
- 
- 	if (err) {
- 		drm_warn(&vm->xe->drm, "VM worker error: %d\n", err);
--		xe_vm_kill(vm);
-+		xe_vm_kill(vm, true);
- 	}
- 	up_write(&vm->lock);
- 
-@@ -1879,17 +1883,9 @@ static int xe_vm_bind(struct xe_vm *vm, struct xe_vma *vma, struct xe_exec_queue
- 		      u32 num_syncs, bool immediate, bool first_op,
- 		      bool last_op)
- {
--	int err;
--
- 	xe_vm_assert_held(vm);
- 	xe_bo_assert_held(bo);
- 
--	if (bo && immediate) {
--		err = xe_bo_validate(bo, vm, true);
--		if (err)
--			return err;
--	}
--
- 	return __xe_vm_bind(vm, vma, q, syncs, num_syncs, immediate, first_op,
- 			    last_op);
- }
-@@ -2538,17 +2534,12 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 	return 0;
- }
- 
--static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
--		      struct xe_vma *vma, struct xe_vma_op *op)
-+static int op_execute(struct xe_vm *vm, struct xe_vma *vma,
-+		      struct xe_vma_op *op)
- {
- 	int err;
- 
- 	lockdep_assert_held_write(&vm->lock);
--
--	err = xe_vm_prepare_vma(exec, vma, 1);
--	if (err)
--		return err;
--
- 	xe_vm_assert_held(vm);
- 	xe_bo_assert_held(xe_vma_bo(vma));
- 
-@@ -2629,19 +2620,10 @@ static int op_execute(struct drm_exec *exec, struct xe_vm *vm,
- static int __xe_vma_op_execute(struct xe_vm *vm, struct xe_vma *vma,
- 			       struct xe_vma_op *op)
- {
--	struct drm_exec exec;
- 	int err;
- 
- retry_userptr:
--	drm_exec_init(&exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
--	drm_exec_until_all_locked(&exec) {
--		err = op_execute(&exec, vm, vma, op);
--		drm_exec_retry_on_contention(&exec);
--		if (err)
--			break;
--	}
--	drm_exec_fini(&exec);
--
-+	err = op_execute(vm, vma, op);
- 	if (err == -EAGAIN && xe_vma_is_userptr(vma)) {
- 		lockdep_assert_held_write(&vm->lock);
- 		err = xe_vma_userptr_pin_pages(vma);
-@@ -2801,14 +2783,91 @@ static void vm_bind_ioctl_ops_unwind(struct xe_vm *vm,
- 	}
- }
- 
-+static int vma_lock(struct drm_exec *exec, struct xe_vma *vma, bool validate)
-+{
-+	struct xe_bo *bo = xe_vma_bo(vma);
-+	int err = 0;
-+
-+	if (bo) {
-+		if (!bo->vm)
-+			err = drm_exec_prepare_obj(exec, &bo->ttm.base, 1);
-+		if (!err && validate)
-+			err = xe_bo_validate(bo, xe_vma_vm(vma), true);
-+	}
-+
-+	return err;
-+}
-+
-+static int op_lock(struct drm_exec *exec, struct xe_vm *vm,
-+		   struct xe_vma_op *op)
-+{
-+	int err = 0;
-+
-+	switch (op->base.op) {
-+	case DRM_GPUVA_OP_MAP:
-+		err = vma_lock(exec, op->map.vma,
-+			       op->map.immediate || !xe_vm_in_fault_mode(vm));
-+		break;
-+	case DRM_GPUVA_OP_REMAP:
-+		err = vma_lock(exec, gpuva_to_vma(op->base.remap.unmap->va),
-+			       false);
-+		if (!err && op->remap.prev)
-+			err = vma_lock(exec, op->remap.prev, true);
-+		if (!err && op->remap.next)
-+			err = vma_lock(exec, op->remap.next, true);
-+		break;
-+	case DRM_GPUVA_OP_UNMAP:
-+		err = vma_lock(exec, gpuva_to_vma(op->base.unmap.va), false);
-+		break;
-+	case DRM_GPUVA_OP_PREFETCH:
-+		err = vma_lock(exec, gpuva_to_vma(op->base.prefetch.va), true);
-+		break;
-+	default:
-+		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
-+	}
-+
-+	return err;
-+}
-+
-+static int vm_bind_ioctl_ops_lock(struct drm_exec *exec,
-+				  struct xe_vm *vm,
-+				  struct list_head *ops_list)
-+{
-+	struct xe_vma_op *op;
-+	int err;
-+
-+	drm_exec_init(exec, DRM_EXEC_INTERRUPTIBLE_WAIT);
-+	drm_exec_until_all_locked(exec) {
-+		err = drm_exec_prepare_obj(exec, &xe_vm_ttm_bo(vm)->base, 1);
-+		drm_exec_retry_on_contention(exec);
-+		if (err)
-+			goto out;
-+
-+		list_for_each_entry(op, ops_list, link) {
-+			err = op_lock(exec, vm, op);
-+			drm_exec_retry_on_contention(exec);
-+			if (err)
-+				goto out;
-+		}
-+	}
-+
-+out:
-+	return err;
-+}
-+
- static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- 				     struct list_head *ops_list)
- {
-+	struct drm_exec exec;
- 	struct xe_vma_op *op, *next;
- 	int err;
- 
- 	lockdep_assert_held_write(&vm->lock);
- 
-+	err = vm_bind_ioctl_ops_lock(&exec, vm, ops_list);
-+	if (err)
-+		return err;
-+
- 	list_for_each_entry_safe(op, next, ops_list, link) {
- 		err = xe_vma_op_execute(vm, op);
- 		if (err) {
-@@ -2817,13 +2876,16 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
- 			/*
- 			 * FIXME: Killing VM rather than proper error handling
- 			 */
--			xe_vm_kill(vm);
--			return -ENOSPC;
-+			xe_vm_kill(vm, false);
-+			err = -ENOSPC;
-+			goto unlock;
- 		}
- 		xe_vma_op_cleanup(vm, op);
- 	}
- 
--	return 0;
-+unlock:
-+	drm_exec_fini(&exec);
-+	return err;
- }
- 
- #ifdef TEST_VM_ASYNC_OPS_ERROR
+Error handling still not 100% correct but this this series structures
+the code to make it possible.
+
+This series shouldn't break any uAPI compatibility until the last patch
+in the series.
+
+v2: Rebase, Take in-syncs into account when num_execs or num_binds == 0
+
+Matt 
+
+Matthew Brost (27):
+  drm/xe: Allow num_binds == 0 in VM bind IOCTL
+  drm/xe: Allow num_batch_buffer == 0 in exec IOCTL
+  drm/xe: Take in-syncs into account when num_execs or num_binds == 0
+  drm/xe: Lock all gpuva ops during VM bind IOCTL
+  drm/xe: Add ops_execute function which returns a fence
+  drm/xe: Move migrate to prefetch to op_lock funtion
+  drm/xe: Add struct xe_vma_ops abstraction
+  drm/xe: Update xe_vm_rebind to use dummy VMA operations
+  drm/xe: Move drm exec loop to vm_bind_ioctl_ops_execute
+  drm/xe: Fixup error handling / ref counting in VM bind IOCTL
+  drm/xe: Convert pagefault rebind to use ops interface
+  drm/xe: Add some members to xe_vma_ops
+  drm/xe: Add vm_bind_ioctl_ops_install_fences helper
+  drm/xe: Drop rebind argument from xe_pt_prepare_bind
+  drm/xe: Add xe_vm_pgtable_update_op to xe_vma_ops
+  drm/xe: Move setting last fence and sync wait to
+    vm_bind_ioctl_ops_install_fences
+  drm/xe: Fix vma_is_valid to use tile argument
+  drm/xe: Adjust tile mask in operations create
+  drm/xe: Add xe_gt_tlb_invalidation_range and convert PT layer to use
+    this
+  drm/xe: s/xe_tile_migrate_engine/xe_tile_migrate_exec_queue
+  drm/xe: Convert multiple bind ops into single job
+  drm/xe: Update clear / populate arguments
+  drm/xe: Add __xe_migrate_update_pgtables_cpu helper
+  drm/xe: Add xe_hw_fence_signal helper
+  drm/xe: CPU binds for jobs
+  drm/xe: Don't use migrate exec queue for page fault binds
+  drm/xe/uapi: Make sync vs async VM bind operations per IOCTL rather
+    than queue
+
+ drivers/gpu/drm/xe/xe_bo.c                  |   7 +-
+ drivers/gpu/drm/xe/xe_bo.h                  |   6 +-
+ drivers/gpu/drm/xe/xe_bo_types.h            |   2 +
+ drivers/gpu/drm/xe/xe_device.c              |  23 +
+ drivers/gpu/drm/xe/xe_device.h              |   7 +
+ drivers/gpu/drm/xe/xe_device_types.h        |   4 +
+ drivers/gpu/drm/xe/xe_exec.c                |  53 +-
+ drivers/gpu/drm/xe/xe_exec_queue.c          |  20 +-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h    |   7 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c        |  18 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c |  60 +-
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |   3 +
+ drivers/gpu/drm/xe/xe_guc_submit.c          |  43 +-
+ drivers/gpu/drm/xe/xe_hw_fence.c            |   8 +
+ drivers/gpu/drm/xe/xe_hw_fence.h            |   1 +
+ drivers/gpu/drm/xe/xe_migrate.c             | 377 +++-----
+ drivers/gpu/drm/xe/xe_migrate.h             |  46 +-
+ drivers/gpu/drm/xe/xe_pt.c                  | 992 +++++++++++--------
+ drivers/gpu/drm/xe/xe_pt.h                  |   8 +
+ drivers/gpu/drm/xe/xe_pt_types.h            |  51 +
+ drivers/gpu/drm/xe/xe_sched_job.c           |   4 +-
+ drivers/gpu/drm/xe/xe_sched_job_types.h     |  31 +-
+ drivers/gpu/drm/xe/xe_sync.c                |  78 +-
+ drivers/gpu/drm/xe/xe_sync.h                |   7 +-
+ drivers/gpu/drm/xe/xe_vm.c                  | 998 ++++++++------------
+ drivers/gpu/drm/xe/xe_vm.h                  |   7 +
+ drivers/gpu/drm/xe/xe_vm_types.h            | 208 ++--
+ include/uapi/drm/xe_drm.h                   |   6 +-
+ 28 files changed, 1632 insertions(+), 1443 deletions(-)
+
 -- 
 2.34.1
 
