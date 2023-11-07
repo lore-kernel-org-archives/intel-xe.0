@@ -4,44 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B05AC4332F
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 19:29:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7615BC4332F
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 20:15:01 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56FDB10E667;
-	Tue,  7 Nov 2023 19:29:14 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D2B6210E669
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 19:29:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699385352; x=1730921352;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=NHhvDh23G6PrhHzXmr+I3Yp8N0JLkySjgJDevtYGVIQ=;
- b=J70fBfNXbxzhcUPEfwh7Xp8B8Btum10M7uBZjLVtN7mGn3WVpPRj9dU5
- QpZBMryuppN0KmNJuZq/7zE5pRZd60LzktvBBhfuUI3GBI6jx/7CIHsBf
- kk4G/TP02wPETRQVQl15GUCM8MNFyKMl3ygNewhEkci4BU/mSr/ohHrhw
- PQN8wC4Im5+EkKnx50AgWqQBxZGLHDUkGYSDoRqZ0akgjzX441ygcBtqT
- 3W9q/1obe0VEBJrST9hvytM4SuxprWIHTZod4k9lKnusxQEvOUs4E6/Z8
- AePWWOtLF1UhmlmTl625lIko3HwQF7AvlnhaPfrYeIAo69L4QoniTKwQ4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="475832923"
-X-IronPort-AV: E=Sophos;i="6.03,284,1694761200"; d="scan'208";a="475832923"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2023 11:29:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,284,1694761200"; 
-   d="scan'208";a="3905800"
-Received: from pallavim-desk.iind.intel.com ([10.145.162.180])
- by orviesa002.jf.intel.com with ESMTP; 07 Nov 2023 11:29:10 -0800
-From: Pallavi Mishra <pallavi.mishra@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed,  8 Nov 2023 01:07:51 +0530
-Message-Id: <20231107193751.741119-1-pallavi.mishra@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2175F10E697;
+	Tue,  7 Nov 2023 20:15:01 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9807510E697;
+ Tue,  7 Nov 2023 20:14:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 908B3AADEF;
+ Tue,  7 Nov 2023 20:14:58 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/tests: Fix migrate test
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Pallavi Mishra" <pallavi.mishra@intel.com>
+Date: Tue, 07 Nov 2023 20:14:58 -0000
+Message-ID: <169938809856.21169.141835098015168189@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231107193751.741119-1-pallavi.mishra@intel.com>
+In-Reply-To: <20231107193751.741119-1-pallavi.mishra@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe/tests=3A_Fix_migrate_test?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,31 +39,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Pass a valid vm to xe_migrate_update_pgtables.
+== Series Details ==
 
-Resolves NPD crash seen with igt@xe_live_ktest@migrate
+Series: drm/xe/tests: Fix migrate test
+URL   : https://patchwork.freedesktop.org/series/126088/
+State : success
 
-Signed-off-by: Pallavi Mishra <pallavi.mishra@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_migrate.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
-index c984307560ee..7aad09140d7e 100644
---- a/drivers/gpu/drm/xe/tests/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
-@@ -236,7 +236,7 @@ static void test_pt_update(struct xe_migrate *m, struct xe_bo *pt,
- 	xe_map_memset(xe, &pt->vmap, 0, (u8)expected, pt->size);
- 
- 	then = ktime_get();
--	fence = xe_migrate_update_pgtables(m, NULL, NULL, m->q, &update, 1,
-+	fence = xe_migrate_update_pgtables(m, m->q->vm, NULL, m->q, &update, 1,
- 					   NULL, 0, &pt_update);
- 	now = ktime_get();
- 	if (sanity_fence_failed(xe, fence, "Migration pagetable update", test))
--- 
-2.25.1
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 3b0bded07 drm/xe: Fix unbind of unaccessed VMA (fault mode)
+=== git am output follows ===
+Applying: drm/xe/tests: Fix migrate test
+
 
