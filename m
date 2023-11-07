@@ -4,53 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 92961C4332F
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 12:55:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 97BF5C4167B
+	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 12:56:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD76C10E14C;
-	Tue,  7 Nov 2023 12:55:05 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB0FB10E097
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 12:55:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6130610E097;
+	Tue,  7 Nov 2023 12:56:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2966E10E097
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 12:56:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699361704; x=1730897704;
+ t=1699361803; x=1730897803;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=91uq2mU0SGZLk80RFLx2OxaiBNKakr0bl5kEQN063Aw=;
- b=YpOQpsRfdvSWepw3FotNe9vO8TjzWR4+VMZR6dFEUHgWoSbJneXIK4aA
- VZJDX8SHCq8DTilhE6TShNcfSg+P4EIAQxVRmgzOioevEeveYpk/bgQ0j
- sb7OdaPjLY0QjkLR212oW9tHX4MyRDLFCH/aFGisxssTW7wwEVoqMewP7
- Ihm0NZWUsxg3q7B8ZEhmFRfbxovC76P1qY0rrgYODpOMknIfe2E86iu6t
- XdNmr3Qgp+s2RyjRVs6d33IwFaVQe3linmOgYFeWk0DCRUs+OjMpp8erR
- BKJTmYAqbye/FIfPaWQKhA9Wv0rUy/ssmNUkmAnlYxTe3zY9RL8z7hCYd w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="2433785"
-X-IronPort-AV: E=Sophos;i="6.03,283,1694761200"; 
-   d="scan'208";a="2433785"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2023 04:55:03 -0800
+ bh=0HBqUL655YbvzzSXGMpy4hIVv33Mws2KTMVIqzONdU0=;
+ b=eehb+rYvCXW/I5NswuhMbET1qmkDHlaSoD16RpAMlw3/px+GBOev7zfs
+ F0D2Vc2Wp5KJSE4vehwByiddQTtuva2koqepn5S5LCGjwES0QGyAsGax/
+ 07XuD3haQvPXJcMgwd5iAHmPRA2CWtcHiX33u7IlbNSOYzdsGTGm+DeDm
+ rxgDXXPjvEkj47029KjSEFSnUQlBb4O6X96WT2TQUD6DQGZWZ1PI1YwG7
+ Oup/EOWe22GaBsnHqH46eyAt8ijbdahYmOsLbVWPsMq0KMN53MWZzlHr6
+ 7S8/OKNIuPPebFvpBdWyF5sGEQdv7jGtq650No/2iJy0bcEhqSb5sHH4G w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="369697072"
+X-IronPort-AV: E=Sophos;i="6.03,283,1694761200"; d="scan'208";a="369697072"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2023 04:56:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="879789328"
-X-IronPort-AV: E=Sophos;i="6.03,283,1694761200"; d="scan'208";a="879789328"
+X-IronPort-AV: E=Sophos;i="6.03,283,1694761200"; 
+   d="scan'208";a="3792372"
 Received: from ezorina-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.252.52.183])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2023 04:55:01 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2023 04:56:40 -0800
+From: Jani Nikula <jani.nikula@intel.com>
 To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
  intel-xe@lists.freedesktop.org
-In-Reply-To: <20231106064834.161647-2-jouni.hogander@intel.com>
+In-Reply-To: <20231106064834.161647-1-jouni.hogander@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20231106064834.161647-1-jouni.hogander@intel.com>
- <20231106064834.161647-2-jouni.hogander@intel.com>
-Date: Tue, 07 Nov 2023 14:54:58 +0200
-Message-ID: <87y1f9yb8d.fsf@intel.com>
+Date: Tue, 07 Nov 2023 14:56:37 +0200
+Message-ID: <87v8adyb5m.fsf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [PATCH 1/8] fixup! drm/xe/display: Implement display
- support
+Subject: Re: [Intel-xe] [PATCH 0/8] Backport i915_sw_fence to dma fence
+ conversion
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,54 +60,49 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
+Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 On Mon, 06 Nov 2023, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
-> Using i915_fence_timeout causes linking error as i915_fence_context_timeo=
-ut
-> doesn't exist for Xe. Return just MAX_SCHEDULE_TIMEOUT.
+> In drm-intel-next branch we have now removed usage of i915_sw_fence
+> from display code and using dma_fence instead. Backport these patches
+> and revert related FIXME patches and other branch internal changes
+> from drm-xe-intel branch.
+>
+> For now handle i915_gem_fence_wait_priority by adding empty defines
+> into compatibility headers. This is not interfering ongoing work to
+> remove i915_gem_fence_wait_priority from i915. These empty defines can
+> be easily removed when that work is done.
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Considering the implementation of i915_fence_context_timeout(), isn't 0
-more appropriate?
+Other than the comment on patch 1, the series is
 
-BR,
-Jani.
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
 
 >
-> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> ---
->  drivers/gpu/drm/xe/compat-i915-headers/i915_config.h | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
+> Jouni H=C3=B6gander (8):
+>   fixup! drm/xe/display: Implement display support
+>   Revert "FIXME: drm/i915: fence stuff"
+>   Revert "drm/xe/display: Append dma_buf fences to framebuffer fences"
+>   fixup! drm/xe/display: Implement display support
+>   drm/i915/display: Use dma_fence interfaces instead of i915_sw_fence
+>   drm/i915/display: Use intel_bo_to_drm_bo instead of obj->base
+>   fixup! drm/xe/display: Implement display support
+>   fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
 >
-> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h b/drive=
-rs/gpu/drm/xe/compat-i915-headers/i915_config.h
-> index 10e18b036489..e835bea08d1b 100644
-> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-> @@ -6,18 +6,14 @@
->  #ifndef __I915_CONFIG_H__
->  #define __I915_CONFIG_H__
->=20=20
-> -#include <linux/types.h>
-> -#include <linux/limits.h>
-> +#include <linux/sched.h>
->=20=20
->  struct drm_i915_private;
->=20=20
-> -unsigned long i915_fence_context_timeout(const struct drm_i915_private *=
-i915,
-> -					 u64 context);
-> -
->  static inline unsigned long
->  i915_fence_timeout(const struct drm_i915_private *i915)
->  {
-> -	return i915_fence_context_timeout(i915, U64_MAX);
-> +	return MAX_SCHEDULE_TIMEOUT;
->  }
->=20=20
->  #endif /* __I915_CONFIG_H__ */
+>  drivers/gpu/drm/i915/display/intel_atomic.c   |   5 -
+>  .../gpu/drm/i915/display/intel_atomic_plane.c | 101 ++++++++----------
+>  drivers/gpu/drm/i915/display/intel_display.c  |  91 +++-------------
+>  .../drm/i915/display/intel_display_types.h    |   4 -
+>  .../drm/xe/compat-i915-headers/i915_config.h  |   8 +-
+>  .../gpu/drm/xe/compat-i915-headers/i915_drv.h |   7 +-
+>  6 files changed, 69 insertions(+), 147 deletions(-)
 
 --=20
 Jani Nikula, Intel
