@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E60A0C4167D
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 01BA2C0032E
 	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 05:26:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A484610E4BA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90C7510E4B5;
 	Tue,  7 Nov 2023 05:26:14 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86AC210E4AE
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 05:25:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C8F4310E4AE
+ for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 05:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699334756; x=1730870756;
+ t=1699334757; x=1730870757;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xW1EfFVeAbw4//vXl0T48IrM8LHj/L0pSexG3GhCXb4=;
- b=R83Qsnlzbd8f6/fK+H8ayVlsRpfxYQErobasJGyyWLpGEA+sQ4Up4ESb
- QEb7oJo4DxZNBHDclbNt3Qgk2FgwDyyZ4EvooKWPnxIof+n9vGGsGeZL6
- yYlMXX98epaYIHgnazJDl8IfG/HtbJicpdLtWegW7cMpdYml1gUvjXvOd
- MihORNH7SxBsysWSeTcp8T23Spa0NuQP0nah6UZnKHwJJ6eEr/aockBSP
- H208WSTlv6qMGotlvip8YG4vVB5kbpt7x3OvaTvJdElJGxYRk0xwS33gW
- RbwRj/0BUpX431LnKsvAJFSTeXVpQNQHttH5UFhFrA/j8tkyi85Iy2JP6 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="368769513"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="368769513"
+ bh=YoL5a1pL7HhEl2zF9o917nx/hQ1xn+iR2C2GkB9g86M=;
+ b=dxsNdJ8rHgFSfRZilQnxoIB+oNV8S2BjFV6SuZbgauiTsRnWar7EKN+h
+ FkFF2zPOkjTzSenW2TnkkNTsFYuE7GUMKhwzElTGEoEwNWU6nTDtAXs6W
+ T81G+iGwBUnkl4NsH+8QP9XYkXD4oagDLOv4CNk5BqMBZqC+CyIHvzuoP
+ Tdm5PCiAgW2QsYbSVUv9QvzC5gXOTRLJ0tpCCGG0MwZqZrUly6ChhkDUS
+ ljnAgiE9BLTuWMhvMTuyTD5KSkGkz17LqDi3tT0FVp5E6MbpzER1aRLWA
+ sR3DFmDehzUJFI6JTh/letOszjfjkQZX5Zojt3Okx6CtLV/8pANPzUF2m w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="368769530"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="368769530"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Nov 2023 21:25:56 -0800
+ 06 Nov 2023 21:25:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="791689824"
-X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="791689824"
+X-IronPort-AV: E=McAfee;i="6600,9927,10886"; a="791689872"
+X-IronPort-AV: E=Sophos;i="6.03,282,1694761200"; d="scan'208";a="791689872"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  06 Nov 2023 21:25:55 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Mon,  6 Nov 2023 21:25:39 -0800
-Message-Id: <20231107052603.124361-4-matthew.brost@intel.com>
+Date: Mon,  6 Nov 2023 21:25:55 -0800
+Message-Id: <20231107052603.124361-20-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231107052603.124361-1-matthew.brost@intel.com>
 References: <20231107052603.124361-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 03/27] drm/xe: Take in-syncs into account when
- num_execs or num_binds == 0
+Subject: [Intel-xe] [PATCH v2 19/27] drm/xe: Add
+ xe_gt_tlb_invalidation_range and convert PT layer to use this
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,199 +60,226 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Wait on in-syncs before signaling out-syncs if num_execs or num_binds ==
-0 in execbuf IOCTL or VM bind IOCTL respectfully.
+xe_gt_tlb_invalidation_range accepts a start and end address rather than
+a VMA. This will enable multiple VMAs to be invalidated in a single
+invalidation. Update the PT layer to use this new function.
 
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec.c | 10 ++++-
- drivers/gpu/drm/xe/xe_sync.c | 75 ++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_sync.h |  5 +++
- drivers/gpu/drm/xe/xe_vm.c   | 24 ++++++++++--
- 4 files changed, 108 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c | 60 +++++++++++++++------
+ drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h |  3 ++
+ drivers/gpu/drm/xe/xe_pt.c                  | 25 ++++++---
+ 3 files changed, 66 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 4666f5b145f7..80ee6d8fcf68 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -238,11 +238,17 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+index b5c39c55e1fa..9a6408d3f0fe 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.c
+@@ -227,11 +227,15 @@ int xe_gt_tlb_invalidation_guc(struct xe_gt *gt)
+ }
  
- 	if (!args->num_batch_buffer) {
- 		if (!xe_vm_no_dma_fences(vm)) {
--			struct dma_fence *fence =
--				xe_exec_queue_last_fence_get(q, vm);
-+			struct dma_fence *fence;
+ /**
+- * xe_gt_tlb_invalidation_vma - Issue a TLB invalidation on this GT for a VMA
++ * xe_gt_tlb_invalidation_range - Issue a TLB invalidation on this GT for an
++ * address range
++ *
+  * @gt: graphics tile
+  * @fence: invalidation fence which will be signal on TLB invalidation
+  * completion, can be NULL
+- * @vma: VMA to invalidate
++ * @start: start address
++ * @end: end address
++ * @asid: address space id
+  *
+  * Issue a range based TLB invalidation if supported, if not fallback to a full
+  * TLB invalidation. Completion of TLB is asynchronous and caller can either use
+@@ -241,24 +245,22 @@ int xe_gt_tlb_invalidation_guc(struct xe_gt *gt)
+  * Return: Seqno which can be passed to xe_gt_tlb_invalidation_wait on success,
+  * negative error code on error.
+  */
+-int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+-			       struct xe_gt_tlb_invalidation_fence *fence,
+-			       struct xe_vma *vma)
++int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
++				 struct xe_gt_tlb_invalidation_fence *fence,
++				 u64 start, u64 end, u32 asid)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ #define MAX_TLB_INVALIDATION_LEN	7
+ 	u32 action[MAX_TLB_INVALIDATION_LEN];
+ 	int len = 0;
  
-+			fence = xe_sync_in_fence_get(syncs, num_syncs, q, vm);
-+			if (IS_ERR(fence)) {
-+				err = PTR_ERR(fence);
-+				goto err_exec;
-+			}
- 			for (i = 0; i < num_syncs; i++)
- 				xe_sync_entry_signal(&syncs[i], NULL, fence);
-+			xe_exec_queue_last_fence_set(q, vm, fence);
-+			dma_fence_put(fence);
+-	xe_gt_assert(gt, vma);
+-
+ 	action[len++] = XE_GUC_ACTION_TLB_INVALIDATION;
+ 	action[len++] = 0; /* seqno, replaced in send_tlb_invalidation */
+ 	if (!xe->info.has_range_tlb_invalidation) {
+ 		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_FULL);
+ 	} else {
+-		u64 start = xe_vma_start(vma);
+-		u64 length = xe_vma_size(vma);
++		u64 orig_start = start;
++		u64 length = end - start;
+ 		u64 align, end;
+ 
+ 		if (length < SZ_4K)
+@@ -271,12 +273,12 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 		 * address mask covering the required range.
+ 		 */
+ 		align = roundup_pow_of_two(length);
+-		start = ALIGN_DOWN(xe_vma_start(vma), align);
+-		end = ALIGN(xe_vma_end(vma), align);
++		start = ALIGN_DOWN(start, align);
++		end = ALIGN(end, align);
+ 		length = align;
+ 		while (start + length < end) {
+ 			length <<= 1;
+-			start = ALIGN_DOWN(xe_vma_start(vma), length);
++			start = ALIGN_DOWN(orig_start, length);
  		}
  
- 		goto err_exec;
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 2461e7d4814c..6b38c74a1de1 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -5,6 +5,7 @@
+ 		/*
+@@ -285,16 +287,17 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 		 */
+ 		if (length >= SZ_2M) {
+ 			length = max_t(u64, SZ_16M, length);
+-			start = ALIGN_DOWN(xe_vma_start(vma), length);
++			start = ALIGN_DOWN(orig_start, length);
+ 		}
  
- #include "xe_sync.h"
+ 		xe_gt_assert(gt, length >= SZ_4K);
+ 		xe_gt_assert(gt, is_power_of_2(length));
+-		xe_gt_assert(gt, !(length & GENMASK(ilog2(SZ_16M) - 1, ilog2(SZ_2M) + 1)));
++		xe_gt_assert(gt, !(length & GENMASK(ilog2(SZ_16M) - 1,
++						    ilog2(SZ_2M) + 1)));
+ 		xe_gt_assert(gt, IS_ALIGNED(start, length));
  
-+#include <linux/dma-fence-array.h>
- #include <linux/kthread.h>
- #include <linux/sched/mm.h>
- #include <linux/uaccess.h>
-@@ -14,6 +15,7 @@
- #include <drm/xe_drm.h>
+ 		action[len++] = MAKE_INVAL_OP(XE_GUC_TLB_INVAL_PAGE_SELECTIVE);
+-		action[len++] = xe_vma_vm(vma)->usm.asid;
++		action[len++] = asid;
+ 		action[len++] = lower_32_bits(start);
+ 		action[len++] = upper_32_bits(start);
+ 		action[len++] = ilog2(length) - ilog2(SZ_4K);
+@@ -303,6 +306,33 @@ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 	xe_gt_assert(gt, len <= MAX_TLB_INVALIDATION_LEN);
  
- #include "xe_device_types.h"
-+#include "xe_exec_queue.h"
- #include "xe_macros.h"
- #include "xe_sched_job_types.h"
- 
-@@ -274,3 +276,76 @@ void xe_sync_entry_cleanup(struct xe_sync_entry *sync)
- 	if (sync->ufence)
- 		user_fence_put(sync->ufence);
- }
+ 	return send_tlb_invalidation(&gt->uc.guc, fence, action, len);
++
++}
 +
 +/**
-+ * xe_sync_in_fence_get() - Get a fence from syncs, exec queue, and VM
-+ * @sync: input syncs
-+ * @num_sync: number of syncs
-+ * @q: exec queue
-+ * @vm: VM
++ * xe_gt_tlb_invalidation_vma - Issue a TLB invalidation on this GT for a VMA
++ * @gt: graphics tile
++ * @fence: invalidation fence which will be signal on TLB invalidation
++ * completion, can be NULL
++ * @vma: VMA to invalidate
 + *
-+ * Get a fence from syncs, exec queue, and VM. If syncs contain more than 1
-+ * in-fence create and return a composite fence of all in-fences, if syncs
-+ * contain 1 in-fence return in-fence, if no in-fences return last fence on
-+ * input exec queue. Caller must drop reference to returned fence.
++ * Issue a range based TLB invalidation if supported, if not fallback to a full
++ * TLB invalidation. Completion of TLB is asynchronous and caller can either use
++ * the invalidation fence or seqno + xe_gt_tlb_invalidation_wait to wait for
++ * completion.
 + *
-+ * Return: fence on success, ERR_PTR(-ENOMEM) on failure
++ * Return: Seqno which can be passed to xe_gt_tlb_invalidation_wait on success,
++ * negative error code on error.
 + */
-+struct dma_fence *
-+xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
-+		     struct xe_exec_queue *q, struct xe_vm *vm)
++int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
++			       struct xe_gt_tlb_invalidation_fence *fence,
++			       struct xe_vma *vma)
 +{
-+	struct dma_fence **fences = NULL;
-+	struct dma_fence_array *cf = NULL;
-+	struct dma_fence *fence;
-+	int i, num_in_fence = 0, current_fence = 0;
++	xe_gt_assert(gt, vma);
 +
-+	lockdep_assert_held(&vm->lock);
-+
-+	/* Count in-fences */
-+	for (i = 0; i < num_sync; ++i) {
-+		if (sync[i].fence) {
-+			++num_in_fence;
-+			fence = sync[i].fence;
-+		}
-+	}
-+
-+	/* Easy cases... */
-+	if (!num_in_fence) {
-+		fence = xe_exec_queue_last_fence_get(q, vm);
-+		dma_fence_get(fence);
-+		return fence;
-+	} else if (num_in_fence == 1) {
-+		dma_fence_get(fence);
-+		return fence;
-+	}
-+
-+	/* Create composite fence */
-+	fences = kmalloc_array(num_in_fence, sizeof(*fences), GFP_KERNEL);
-+	if (!fences)
-+		return ERR_PTR(-ENOMEM);
-+	for (i = 0; i < num_sync; ++i) {
-+		if (sync[i].fence) {
-+			dma_fence_get(sync[i].fence);
-+			fences[current_fence++] = sync[i].fence;
-+		}
-+	}
-+	cf = dma_fence_array_create(num_in_fence, fences,
-+				    vm->composite_fence_ctx,
-+				    vm->composite_fence_seqno++,
-+				    false);
-+	if (!cf) {
-+		--vm->composite_fence_seqno;
-+		goto err_out;
-+	}
-+
-+	return &cf->base;
-+
-+err_out:
-+	while (current_fence)
-+		dma_fence_put(fences[--current_fence]);
-+	kfree(fences);
-+	kfree(cf);
-+
-+	return ERR_PTR(-ENOMEM);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
-index 98f02bb34637..c0c8ddac805d 100644
---- a/drivers/gpu/drm/xe/xe_sync.h
-+++ b/drivers/gpu/drm/xe/xe_sync.h
-@@ -9,8 +9,10 @@
- #include "xe_sync_types.h"
++	return xe_gt_tlb_invalidation_range(gt, fence, xe_vma_start(vma),
++					    xe_vma_end(vma),
++					    xe_vma_vm(vma)->usm.asid);
+ }
  
- struct xe_device;
-+struct xe_exec_queue;
- struct xe_file;
- struct xe_sched_job;
-+struct xe_vm;
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+index b333c1709397..5bb09885aa0f 100644
+--- a/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
++++ b/drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
+@@ -20,6 +20,9 @@ int xe_gt_tlb_invalidation_guc(struct xe_gt *gt);
+ int xe_gt_tlb_invalidation_vma(struct xe_gt *gt,
+ 			       struct xe_gt_tlb_invalidation_fence *fence,
+ 			       struct xe_vma *vma);
++int xe_gt_tlb_invalidation_range(struct xe_gt *gt,
++				 struct xe_gt_tlb_invalidation_fence *fence,
++				 u64 start, u64 end, u32 asid);
+ int xe_gt_tlb_invalidation_wait(struct xe_gt *gt, int seqno);
+ int xe_guc_tlb_invalidation_done_handler(struct xe_guc *guc, u32 *msg, u32 len);
  
- int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 			struct xe_sync_entry *sync,
-@@ -23,5 +25,8 @@ void xe_sync_entry_signal(struct xe_sync_entry *sync,
- 			  struct xe_sched_job *job,
- 			  struct dma_fence *fence);
- void xe_sync_entry_cleanup(struct xe_sync_entry *sync);
-+struct dma_fence *
-+xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
-+		     struct xe_exec_queue *q, struct xe_vm *vm);
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index f06ceaea98cf..0050ab6aad05 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -1111,10 +1111,12 @@ static const struct xe_migrate_pt_update_ops userptr_bind_ops = {
+ struct invalidation_fence {
+ 	struct xe_gt_tlb_invalidation_fence base;
+ 	struct xe_gt *gt;
+-	struct xe_vma *vma;
+ 	struct dma_fence *fence;
+ 	struct dma_fence_cb cb;
+ 	struct work_struct work;
++	u64 start;
++	u64 end;
++	u32 asid;
+ };
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 2f212939d2b5..2a7fa8e2058e 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3155,12 +3155,28 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- unwind_ops:
- 	vm_bind_ioctl_ops_unwind(vm, ops, args->num_binds);
- free_syncs:
--	for (i = 0; err == -ENODATA && i < num_syncs; i++) {
--		struct dma_fence *fence =
--			xe_exec_queue_last_fence_get(to_wait_exec_queue(vm, q), vm);
-+	if (err == -ENODATA) {
-+		struct dma_fence *fence;
+ static const char *
+@@ -1157,13 +1159,14 @@ static void invalidation_fence_work_func(struct work_struct *w)
+ 		container_of(w, struct invalidation_fence, work);
  
--		xe_sync_entry_signal(&syncs[i], NULL, fence);
-+		fence = xe_sync_in_fence_get(syncs, num_syncs,
-+					     to_wait_exec_queue(vm, q), vm);
-+		if (IS_ERR(fence)) {
-+			err = PTR_ERR(fence);
-+			goto cleanup_syncs;
-+		}
-+		for (i = 0; i < num_syncs; i++)
-+			xe_sync_entry_signal(&syncs[i], NULL, fence);
-+		if (!async) {
-+			long timeout = dma_fence_wait(fence, true);
-+
-+			if (timeout < 0)
-+				err = -EINTR;
-+		}
-+		xe_exec_queue_last_fence_set(to_wait_exec_queue(vm, q), vm,
-+					     fence);
-+		dma_fence_put(fence);
- 	}
-+cleanup_syncs:
- 	while (num_syncs--)
- 		xe_sync_entry_cleanup(&syncs[num_syncs]);
+ 	trace_xe_gt_tlb_invalidation_fence_work_func(&ifence->base);
+-	xe_gt_tlb_invalidation_vma(ifence->gt, &ifence->base, ifence->vma);
++	xe_gt_tlb_invalidation_range(ifence->gt, &ifence->base, ifence->start,
++				     ifence->end, ifence->asid);
+ }
  
+ static int invalidation_fence_init(struct xe_gt *gt,
+ 				   struct invalidation_fence *ifence,
+ 				   struct dma_fence *fence,
+-				   struct xe_vma *vma)
++				   u64 start, u64 end, u32 asid)
+ {
+ 	int ret;
+ 
+@@ -1181,7 +1184,9 @@ static int invalidation_fence_init(struct xe_gt *gt,
+ 	dma_fence_get(&ifence->base.base);	/* Ref for caller */
+ 	ifence->fence = fence;
+ 	ifence->gt = gt;
+-	ifence->vma = vma;
++	ifence->start = start;
++	ifence->end = end;
++	ifence->asid = asid;
+ 
+ 	INIT_WORK(&ifence->work, invalidation_fence_work_func);
+ 	ret = dma_fence_add_callback(fence, &ifence->cb, invalidation_fence_cb);
+@@ -1323,8 +1328,11 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+ 
+ 		/* TLB invalidation must be done before signaling rebind */
+ 		if (ifence) {
+-			int err = invalidation_fence_init(tile->primary_gt, ifence, fence,
+-							  vma);
++			int err = invalidation_fence_init(tile->primary_gt,
++							  ifence, fence,
++							  xe_vma_start(vma),
++							  xe_vma_end(vma),
++							  xe_vma_vm(vma)->usm.asid);
+ 			if (err) {
+ 				dma_fence_put(fence);
+ 				kfree(ifence);
+@@ -1662,7 +1670,10 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
+ 			dma_fence_wait(fence, false);
+ 
+ 		/* TLB invalidation must be done before signaling unbind */
+-		err = invalidation_fence_init(tile->primary_gt, ifence, fence, vma);
++		err = invalidation_fence_init(tile->primary_gt, ifence, fence,
++					      xe_vma_start(vma),
++					      xe_vma_end(vma),
++					      xe_vma_vm(vma)->usm.asid);
+ 		if (err) {
+ 			dma_fence_put(fence);
+ 			kfree(ifence);
 -- 
 2.34.1
 
