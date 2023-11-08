@@ -4,30 +4,79 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29A2AC4332F
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 01:20:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74AEAC4332F
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 03:28:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 978C910E32F;
-	Wed,  8 Nov 2023 01:20:27 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id F0ECC10E32F;
- Wed,  8 Nov 2023 01:20:24 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EEFD0AA916;
- Wed,  8 Nov 2023 01:20:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5815323294474603071=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3099C10E369;
+	Wed,  8 Nov 2023 03:28:37 +0000 (UTC)
+Received: from mail-qk1-x72c.google.com (mail-qk1-x72c.google.com
+ [IPv6:2607:f8b0:4864:20::72c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1909F10E369;
+ Wed,  8 Nov 2023 03:28:36 +0000 (UTC)
+Received: by mail-qk1-x72c.google.com with SMTP id
+ af79cd13be357-777745f1541so453063085a.0; 
+ Tue, 07 Nov 2023 19:28:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699414115; x=1700018915; darn=lists.freedesktop.org;
+ h=in-reply-to:autocrypt:from:references:cc:to:content-language
+ :subject:user-agent:mime-version:date:message-id:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=hhDgUr0rU5mZRf9jreUMZWAzGSayLhVYle46Qmy8nhE=;
+ b=J5wfVJTkNXbFDdQVCQMsTCphzk26rr2uHeymaIdvisiVaMQnikNBPQI0f9ECwH5geY
+ NThDMsSvJBxxB0isDhNr7U5kXzTvrW5fNzmPPmlVzRLQIFxxAoeCz5SojICxudj2ilSs
+ TTE3HHfUrIfV+xgcKR1zTt4JmoVwBgwsulgbNOTZ24SH5KaW+nnJf5s/sSVxCgxNWaac
+ UGlgN7+ZK/Q6h2ZI/lHkf26sb/Upx4d+oWjKAJP9lBTHRgFcEXSYnsBW36DCi4FM3df+
+ 6NlYy7vQjzeC8Vli/RD1rqpMNS1g1Q9t9FDn8ACGpALYhyr+CTBYxOFaYRQjMwZtdjlq
+ 4VOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699414115; x=1700018915;
+ h=in-reply-to:autocrypt:from:references:cc:to:content-language
+ :subject:user-agent:mime-version:date:message-id:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=hhDgUr0rU5mZRf9jreUMZWAzGSayLhVYle46Qmy8nhE=;
+ b=K3CRhWzzq9Mg0qZQ8Ae5ywrso0SJKLZD00aYuh9bPb/sCnxLxiv7COvGVJvkySRnOG
+ G94BmkBiWonpNSbSFSWhuKYHpBhMx+msZF7A537SMd9wcKt90cHRLb2HiHKWj09JV1RE
+ jnIFdcoS1xiw9zdEt3KbK3KLikTlowKz+BDL9uMnqwCeCRXdwmsyBqdF/wlevb7/YgQa
+ Te+2bGAj/BItbaLIVCheGDZkNVzSHtRAxXAvuUYL7AAnG+z+s4OFabqbPKJGmVzha8JY
+ mCl2hyv8c42r6CSYGtp3yTTIK6gGZCV/lpti+R6Pv2qouC6Y7CHK2Nk7fvy6piYUWX+I
+ NnVQ==
+X-Gm-Message-State: AOJu0YzcQjNAkEq67Bh8+B6BzrAcVFbc7H+eaXdpdZx74cL7Wl9yNfAy
+ oGfvJPexDNbCdLpKZzaMT3Q=
+X-Google-Smtp-Source: AGHT+IEam4wjWprneVY14YYI+fg4TBXKF2xpLKQp09zLgFHHV+QW3KmakWk+RSWxD1bJF/MtTM1eWg==
+X-Received: by 2002:ac8:5a44:0:b0:41e:3e18:e094 with SMTP id
+ o4-20020ac85a44000000b0041e3e18e094mr1183580qta.26.1699414114960; 
+ Tue, 07 Nov 2023 19:28:34 -0800 (PST)
+Received: from [192.168.2.14] ([74.15.198.235])
+ by smtp.gmail.com with ESMTPSA id
+ k20-20020ac84794000000b004179e79069asm403216qtq.21.2023.11.07.19.28.33
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Tue, 07 Nov 2023 19:28:34 -0800 (PST)
+Message-ID: <64aec3c6-7df4-4d11-a9b8-b4f718d50a43@gmail.com>
+Date: Tue, 7 Nov 2023 22:28:25 -0500
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
-Date: Wed, 08 Nov 2023 01:20:24 -0000
-Message-ID: <169940642497.24274.4628932902938671930@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231108003344.1169016-1-michal.winiarski@intel.com>
-In-Reply-To: <20231108003344.1169016-1-michal.winiarski@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A?=
- =?utf-8?q?_Probe_tweaks_and_reordering_=28part_1=29?=
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
+ Thunderbird/115.4.1
+Content-Language: en-CA, en-US
+To: Matthew Brost <matthew.brost@intel.com>
+References: <bb7c307e-271c-4f4c-bdbc-7078972ba515@linux.intel.com>
+ <20231107041020.10035-2-ltuikov89@gmail.com>
+ <ZUokEKnPbLAAkCct@DUT025-TGLU.fm.intel.com>
+From: Luben Tuikov <ltuikov89@gmail.com>
+Autocrypt: addr=ltuikov89@gmail.com; keydata=
+ xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1APnbnnRHN
+ Ikx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoAQRYhBJkj7+VmFO9b
+ eaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheA
+ AAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlTMqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfy
+ JwktF7REl1yt7IU2Sye1qmQMfJxdt9JMbMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSP
+ cCE8uGe7FWo8C+nTSyWPXKTx9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl
+ 10wVR5QxozSvBQJlOiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKo
+ aMDzO9eGz69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA==
+In-Reply-To: <ZUokEKnPbLAAkCct@DUT025-TGLU.fm.intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------oZeOpSZh3hOLLEQ13dmdBstt"
+Subject: Re: [Intel-xe] [PATCH] drm/sched: Don't disturb the entity when in
+ RR-mode scheduling
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,270 +88,121 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: robdclark@chromium.org, tvrtko.ursulin@linux.intel.com,
+ sarah.walker@imgtec.com, ltuikov@yahoo.com, ketil.johnsen@arm.com,
+ lina@asahilina.net, mcanal@igalia.com, Liviu.Dudau@arm.com,
+ dri-devel@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ boris.brezillon@collabora.com, dakr@redhat.com, donald.robson@imgtec.com,
+ christian.koenig@amd.com, faith.ekstrand@collabora.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5815323294474603071==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------oZeOpSZh3hOLLEQ13dmdBstt
+Content-Type: multipart/mixed; boundary="------------IihkTqJDkUpRHZTrVDwN1EKK";
+ protected-headers="v1"
+From: Luben Tuikov <ltuikov89@gmail.com>
+To: Matthew Brost <matthew.brost@intel.com>
+Cc: tvrtko.ursulin@linux.intel.com, Liviu.Dudau@arm.com,
+ boris.brezillon@collabora.com, christian.koenig@amd.com, dakr@redhat.com,
+ donald.robson@imgtec.com, dri-devel@lists.freedesktop.org,
+ faith.ekstrand@collabora.com, intel-xe@lists.freedesktop.org,
+ ketil.johnsen@arm.com, lina@asahilina.net, ltuikov@yahoo.com,
+ mcanal@igalia.com, robdclark@chromium.org, sarah.walker@imgtec.com
+Message-ID: <64aec3c6-7df4-4d11-a9b8-b4f718d50a43@gmail.com>
+Subject: Re: [PATCH] drm/sched: Don't disturb the entity when in RR-mode
+ scheduling
+References: <bb7c307e-271c-4f4c-bdbc-7078972ba515@linux.intel.com>
+ <20231107041020.10035-2-ltuikov89@gmail.com>
+ <ZUokEKnPbLAAkCct@DUT025-TGLU.fm.intel.com>
+In-Reply-To: <ZUokEKnPbLAAkCct@DUT025-TGLU.fm.intel.com>
 
-== Series Details ==
+--------------IihkTqJDkUpRHZTrVDwN1EKK
+Content-Type: multipart/mixed; boundary="------------ztivjG1qWbr81sPaO0geveaH"
 
-Series: drm/xe: Probe tweaks and reordering (part 1)
-URL   : https://patchwork.freedesktop.org/series/126105/
-State : success
+--------------ztivjG1qWbr81sPaO0geveaH
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+On 2023-11-07 06:48, Matthew Brost wrote:
+> On Mon, Nov 06, 2023 at 11:10:21PM -0500, Luben Tuikov wrote:
+>> Don't call drm_sched_select_entity() in drm_sched_run_job_queue().  In=
+ fact,
+>> rename __drm_sched_run_job_queue() to just drm_sched_run_job_queue(), =
+and let
+>> it do just that, schedule the work item for execution.
+>>
+>> The problem is that drm_sched_run_job_queue() calls drm_sched_select_e=
+ntity()
+>> to determine if the scheduler has an entity ready in one of its run-qu=
+eues,
+>> and in the case of the Round-Robin (RR) scheduling, the function
+>> drm_sched_rq_select_entity_rr() does just that, selects the _next_ ent=
+ity
+>> which is ready, sets up the run-queue and completion and returns that
+>> entity. The FIFO scheduling algorithm is unaffected.
+>>
+>> Now, since drm_sched_run_job_work() also calls drm_sched_select_entity=
+(), then
+>> in the case of RR scheduling, that would result in drm_sched_select_en=
+tity()
+>> having been called twice, which may result in skipping a ready entity =
+if more
+>> than one entity is ready. This commit fixes this by eliminating the ca=
+ll to
+>> drm_sched_select_entity() from drm_sched_run_job_queue(), and leaves i=
+t only
+>> in drm_sched_run_job_work().
+>>
+>> v2: Rebased on top of Tvrtko's renames series of patches. (Luben)
+>>     Add fixes-tag. (Tvrtko)
+>>
+>> Signed-off-by: Luben Tuikov <ltuikov89@gmail.com>
+>> Fixes: f7fe64ad0f22ff ("drm/sched: Split free_job into own work item")=
 
-CI Bug Log - changes from xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f_BAT -> xe-pw-126105v1_BAT
-====================================================
+>=20
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-Summary
--------
+Thank you, sir!
+--=20
+Regards,
+Luben
 
-  **SUCCESS**
+--------------ztivjG1qWbr81sPaO0geveaH
+Content-Type: application/pgp-keys; name="OpenPGP_0x4C15479431A334AF.asc"
+Content-Disposition: attachment; filename="OpenPGP_0x4C15479431A334AF.asc"
+Content-Description: OpenPGP public key
+Content-Transfer-Encoding: quoted-printable
 
-  No regressions found.
+-----BEGIN PGP PUBLIC KEY BLOCK-----
 
-  
+xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1A
+PnbnnRHNIkx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoA
+QRYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiIC
+BhUKCQgLAgQWAgMBAh4HAheAAAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlT
+MqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfyJwktF7REl1yt7IU2Sye1qmQMfJxdt9JM
+bMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSPcCE8uGe7FWo8C+nTSyWPXKTx
+9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJl
+OiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKoaMDzO9eG
+z69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA=3D=3D
+=3DqCaZ
+-----END PGP PUBLIC KEY BLOCK-----
 
-Participating hosts (2 -> 4)
-------------------------------
+--------------ztivjG1qWbr81sPaO0geveaH--
 
-  Additional (2): bat-pvc-2 bat-adlp-7 
+--------------IihkTqJDkUpRHZTrVDwN1EKK--
 
-Known issues
-------------
+--------------oZeOpSZh3hOLLEQ13dmdBstt
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
-  Here are the changes found in xe-pw-126105v1_BAT that come from known issues:
+-----BEGIN PGP SIGNATURE-----
 
-### IGT changes ###
+wnsEABYIACMWIQSZI+/lZhTvW3mgJddMFUeUMaM0rwUCZUsAWQUDAAAAAAAKCRBMFUeUMaM0r7V1
+AQCVc9vXOQOHPMwabC7F41NCzU8R0LQwrRTQwnnhjQFfWwD/e25l2uACseWrwwqtTDgVxmM8CWSE
+qHSKfPU8vWTiog8=
+=mHWb
+-----END PGP SIGNATURE-----
 
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-atsm-2:         [PASS][1] -> [INCOMPLETE][2] ([Intel XE#764])
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-adlp-7:         NOTRUN -> [FAIL][3] ([Intel XE#609]) +2 other tests fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-adlp-7:         NOTRUN -> [SKIP][4] ([Intel XE#423])
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-dg2-oem2:       [PASS][5] -> [FAIL][6] ([Intel XE#480]) +1 other test fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
-    - bat-adlp-7:         NOTRUN -> [FAIL][7] ([Intel XE#480]) +1 other test fail
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         NOTRUN -> [DMESG-FAIL][8] ([Intel XE#282] / [i915#2017])
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@xe_evict@evict-beng-small-external:
-    - bat-pvc-2:          NOTRUN -> [FAIL][9] ([Intel XE#389]) +3 other tests fail
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
-    - bat-adlp-7:         NOTRUN -> [SKIP][10] ([Intel XE#261] / [Intel XE#688]) +15 other tests skip
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@xe_evict@evict-beng-small-external.html
-
-  * igt@xe_evict@evict-small-cm:
-    - bat-pvc-2:          NOTRUN -> [DMESG-FAIL][11] ([Intel XE#482]) +3 other tests dmesg-fail
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-pvc-2/igt@xe_evict@evict-small-cm.html
-
-  * igt@xe_live_ktest@migrate:
-    - bat-adlp-7:         NOTRUN -> [INCOMPLETE][12] ([Intel XE#753])
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@xe_live_ktest@migrate.html
-
-  * igt@xe_mmap@vram:
-    - bat-adlp-7:         NOTRUN -> [SKIP][13] ([Intel XE#263])
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@xe_mmap@vram.html
-
-  * igt@xe_module_load@load:
-    - bat-pvc-2:          NOTRUN -> [SKIP][14] ([Intel XE#378])
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-pvc-2/igt@xe_module_load@load.html
-
-  
-#### Possible fixes ####
-
-  * {igt@xe_create@create-execqueues-leak}:
-    - bat-atsm-2:         [FAIL][15] ([Intel XE#524]) -> [PASS][16]
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#261]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/261
-  [Intel XE#263]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/263
-  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
-  [Intel XE#378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/378
-  [Intel XE#389]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/389
-  [Intel XE#423]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/423
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [Intel XE#609]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/609
-  [Intel XE#688]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/688
-  [Intel XE#753]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/753
-  [Intel XE#764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/764
-  [Intel XE#854]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/854
-  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
-
-
-Build changes
--------------
-
-  * Linux: xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f -> xe-pw-126105v1
-
-  IGT_7575: 6edf8b6808de2bde968415926d2b55817f7ea1de @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f: 3b0bded07ef9f00e6120c6856e86e3faf897191f
-  xe-pw-126105v1: 126105v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/index.html
-
---===============5815323294474603071==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/xe: Probe tweaks and reordering (part 1)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126105/">https://patchwork.freedesktop.org/series/126105/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f_BAT -&gt; xe-pw-126105v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (2 -&gt; 4)</h2>
-<p>Additional (2): bat-pvc-2 bat-adlp-7 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-126105v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/764">Intel XE#764</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@kms_addfb_basic@basic-y-tiled-legacy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/609">Intel XE#609</a>) +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/423">Intel XE#423</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-beng-small-external:</p>
-<ul>
-<li>
-<p>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/389">Intel XE#389</a>) +3 other tests fail</p>
-</li>
-<li>
-<p>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@xe_evict@evict-beng-small-external.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/261">Intel XE#261</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/688">Intel XE#688</a>) +15 other tests skip</p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_evict@evict-small-cm:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-pvc-2/igt@xe_evict@evict-small-cm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/482">Intel XE#482</a>) +3 other tests dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@migrate:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@xe_live_ktest@migrate.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/753">Intel XE#753</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_mmap@vram:</p>
-<ul>
-<li>bat-adlp-7:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-adlp-7/igt@xe_mmap@vram.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/263">Intel XE#263</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-pvc-2:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-pvc-2/igt@xe_module_load@load.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/378">Intel XE#378</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>{igt@xe_create@create-execqueues-leak}:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126105v1/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f -&gt; xe-pw-126105v1</li>
-</ul>
-<p>IGT_7575: 6edf8b6808de2bde968415926d2b55817f7ea1de @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-476-3b0bded07ef9f00e6120c6856e86e3faf897191f: 3b0bded07ef9f00e6120c6856e86e3faf897191f<br />
-  xe-pw-126105v1: 126105v1</p>
-
-</body>
-</html>
-
---===============5815323294474603071==--
+--------------oZeOpSZh3hOLLEQ13dmdBstt--
