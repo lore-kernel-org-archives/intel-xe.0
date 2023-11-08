@@ -4,146 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89E7DC4167D
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 22:22:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE837C4332F
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 22:23:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55DDB10E878;
-	Wed,  8 Nov 2023 22:22:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A57410E878;
+	Wed,  8 Nov 2023 22:23:33 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E329810E878
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Nov 2023 22:22:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79A0710E878
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Nov 2023 22:23:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699482154; x=1731018154;
- h=message-id:date:subject:to:references:from:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=fXDanTQd8mCQjYcwszrznQAJdIqFZBFDX+RJFPEbMhw=;
- b=Y70LQO6rLh408HwTCykO/6QAdqcMpswZ4I1KKR2d/wxxynJOioytzuWY
- MS86FqqcohmKYGx/lZnWnzpMrCAeTxMeMXyPXobDEYiOY98tgmZw3L3Tn
- OdFq57Ttme6O5p095pRxsxY4pFnAv8Ah5UKpKT4bitFL51axyFRfprGxj
- VEzus5d3KIowg5FCJD6DFsxqTgXK6P6y9Jqg4fbaZjkqHkicU8TXOg++U
- /uQJ6+FKDXWBigPvWa0rog94uweKZjtxCJbr7psnkAMNlDpnyuRp76yZe
- uEQuHrUtOwLCP9+YZ070XzLuxjE53iAFaNvbRaQuJjSEzh2nKOAfJ3Ig4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="388725004"
-X-IronPort-AV: E=Sophos;i="6.03,287,1694761200"; d="scan'208";a="388725004"
+ t=1699482208; x=1731018208;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=mNrgPAR0VW8++VYcS+VvKJEX8t22QpDplbNnx1U5uQQ=;
+ b=Y8WPHl5eDkDrWHaVF2Xcm38EhL7sbHoND3DdNXxAG/5zW0L2MaqdRYZD
+ IPfhdqhgn8U6Rzz9knv3KchdhqQvOaVsEg7FeIwnj/unGxJl+tztuA/gt
+ QtzTXxKRtmp3BonqmKqC82r1GwFQvhBwG1mSo7/wOE3nVh/FPxb6R+AK2
+ 7erFbMq+zbQ7HVuR+wikViwWLGkhTYo7wHEMgf9MOjICEqzZ4vyMdauuU
+ VzsjWHA7CLGYB1c+zXHYjCjPHOLEw3WIwXqmHqeBcp/k8J/Fu0MBhRhlr
+ /EvUZQepBf3+20TLVsqKypKsPh8iVVk33PoGYRAap0CpqDw4FNtU7JHD2 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="388725143"
+X-IronPort-AV: E=Sophos;i="6.03,287,1694761200"; d="scan'208";a="388725143"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2023 14:22:34 -0800
+ 08 Nov 2023 14:23:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="713086896"
-X-IronPort-AV: E=Sophos;i="6.03,287,1694761200"; d="scan'208";a="713086896"
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="713087122"
+X-IronPort-AV: E=Sophos;i="6.03,287,1694761200"; d="scan'208";a="713087122"
 Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
  by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 08 Nov 2023 14:22:34 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ 08 Nov 2023 14:23:27 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
  fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 8 Nov 2023 14:22:33 -0800
+ 15.1.2507.34; Wed, 8 Nov 2023 14:23:26 -0800
 Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Wed, 8 Nov 2023 14:22:33 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Wed, 8 Nov 2023 14:23:26 -0800
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Wed, 8 Nov 2023 14:22:31 -0800
+ 15.1.2507.34; Wed, 8 Nov 2023 14:23:26 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c32Et8YOlms3DE39hKA6j4Mboxv3HlV/LXJ1qUW9q3532kmzv2SLCP147+mQYLyNkw0o5oEZDgCbRBIamCsKzZxLsRNHb+2t/wd1Z4EgFJrC0EQ8eFxYmRN63XJFhQ3JC559nTA6/tO+MjcSOnZnPQr0gUm0Lft7gPtAmGX5T2eazq4snFfF8HfUSfwmUZpvBA5XTtQrUJH7iJ2ctZnQ1A/zcqLa2FF8/zhIMbrQxxmQOPMXS8WfVprq/Lw4yXPvYAj1u+28MaCZDGRv/9xisxjiyigKv2aWGlTd/ack8v2ASnEl66ah91+MHSZT1VH70cba7fo89H1sALdgQS0uMQ==
+ b=gXuAOIT4r7RdFWhlX85hwEchCF/o5wnZfukSX3E1LHytQb26NdjzQjj2ubus++65DI9pV6TEIQpk5ltkutF6BU4fiE2F6NeBImD8W/z2ovap8ST2ty5TJ2tIGnrdap+EtOgJXGGQiJOhfBZ6PN/Dq50eQz2JGgYkVI+bDg313gfTDUrDw/Zunmd6DcPfUcIg60yRjlRUTNw0m+94qmw9yYZccDD1040r+MoEzIkOUm5nRE1RH7ogjSpbOEVIb9cXWO44qShEsMJpDJAO/Q+V66jGCnEoXrv1KotLuowRwM8sk8pA6xzTY1TndURCaR6p0rIQNJw2iWhdX3DmfS4nMQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9P24J5KFft/qoIeFk7GNlcDzcguFecGCvDm15NWSETA=;
- b=bA/WXsLnhkXzSxfDWUdLTDz7hDQkCmzFG9oPYI7vdKRwgYn8CzC8yRQLqttOi7FN7X8VFbnzxGQBeZIF+E/b8ghCdSxQriau4EWB20F6SXxSz6eT1gYAnkCW6emjighd+CgRwqTPwWqGfOYYUnWB98z8mOb2MZNQp/4+lJOWjRB4ZMsQrWqofv64OM3NXASwlmpwt+nqq6/0uN9I/Mu/JFlFmYo/RCzatXJj/cnaJPaH+MT3TZz1fpPMpQ+8efkutIp5BkW4AiS+0JurFhVqslMTgI/y5GertcEJnoHrSpJmUVEfBcgRHCbqFEqKzyAtOYCWD3/SGr+HdHBfJoToEw==
+ bh=DjpFcFYN2Yh7GL8JuZvtJYsdJq6QeCLAlyCWArgsIzA=;
+ b=dzzDFfUgxDu2TAxbO4J0cxfNWH0rALcJ7ki/nUxEl0uwM26Xc2MTerSHMfTUEJf5Mm1xHf9Y3POVPgzzvumvwU9RzZgqZBjVpBwq3Ar4HnBl+D/njzEUQ3hyNoT0mgsK5R1Ob6sZBza9JdLQf0RUooF3gdOKjIcgL+PqUzKv7CWX5VFE4Trk6K3Bk5LXbX3KVzvttNPmgADjiDbcFhX0xMxCW7KicCjMr1X9BJD7qTDE48/CaWrGrCVbt1sAskoruc4p2lTFeuUILMOISf6L19IqFi3iOhi0Qn8qIfn818TqQSaDbZkY0unQ9Le/9evn5IwAIpAv79qK+X73nPJGwA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com (2603:10b6:a03:18d::29)
- by DS7PR11MB7886.namprd11.prod.outlook.com (2603:10b6:8:d8::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Wed, 8 Nov
- 2023 22:22:29 +0000
-Received: from BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::de08:93ac:5940:ec54]) by BY5PR11MB3911.namprd11.prod.outlook.com
- ([fe80::de08:93ac:5940:ec54%4]) with mapi id 15.20.6954.029; Wed, 8 Nov 2023
- 22:22:29 +0000
-Message-ID: <7ad899dd-460b-42c7-b0a1-4007f817bb37@intel.com>
-Date: Wed, 8 Nov 2023 14:22:27 -0800
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
+ by SN7PR11MB6922.namprd11.prod.outlook.com (2603:10b6:806:2a9::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.25; Wed, 8 Nov
+ 2023 22:23:23 +0000
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::588d:b37f:130c:9e86]) by PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::588d:b37f:130c:9e86%6]) with mapi id 15.20.6954.028; Wed, 8 Nov 2023
+ 22:23:23 +0000
+Message-ID: <5509d09c-f404-4ced-8f0b-77f4b69eadac@intel.com>
+Date: Wed, 8 Nov 2023 14:23:20 -0800
 User-Agent: Mozilla Thunderbird
-Content-Language: en-GB
-To: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
- <intel-xe@lists.freedesktop.org>
+Content-Language: en-US
+To: John Harrison <john.c.harrison@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
- <20231027222928.1981633-8-daniele.ceraolospurio@intel.com>
-From: John Harrison <john.c.harrison@intel.com>
-In-Reply-To: <20231027222928.1981633-8-daniele.ceraolospurio@intel.com>
+ <20231027222928.1981633-7-daniele.ceraolospurio@intel.com>
+ <602813e9-7dc0-4cf4-bc6a-338c5ee36065@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <602813e9-7dc0-4cf4-bc6a-338c5ee36065@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MW4PR03CA0297.namprd03.prod.outlook.com
- (2603:10b6:303:b5::32) To BY5PR11MB3911.namprd11.prod.outlook.com
- (2603:10b6:a03:18d::29)
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SJ0PR05CA0179.namprd05.prod.outlook.com
+ (2603:10b6:a03:339::34) To PH7PR11MB7605.namprd11.prod.outlook.com
+ (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BY5PR11MB3911:EE_|DS7PR11MB7886:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3bf20057-0abb-4af8-53c9-08dbe0a931b2
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|SN7PR11MB6922:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5604a5c5-5cde-40d5-8503-08dbe0a951e6
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WCanEdfciimyotKG23y/zL1g35Hk5XGCewljZJK0kOu2EXvpHaeQCajK0Wn+YLgrOQYFYdWB210c3/rqY/NdS5U0VLBmdJEtwJBcQGKBPWTbkreX9n5nd+XvZp5ZlU3Hr/4hyzFB/kVfeMlsCkjrS/ZXguCRl7lUu6gK8tIUk+8vK6GFMSTg/xVTmppAUKFQ0qIsYkLBYVNjLj99/SzTAw/V5BJ46Mz0UzmiHAbNC3cGa3YTQ9Hg3TZsKzTQZRNe1ySMyT1fgVvwxyttQ3M7fIAf60ucDCkfAYmkY2t1UOyToA+kNpipdA9HOsh4oM+xfdqbsfOV4qnY3vwHP8sfji3udRTAN6T2gw70sOaz0nbNEUEt+OxkIyjajUJljMDefCx4RTn4uVnc6dtsEWv7ojRwN+cgijZt7ke/DQoBc60L2qUb7rqaCges1NA82YU487xm961TDrDKOx/3nwC8oxhzkcnhvLSv1l/KnyJY5ChRSmcNBpBULSSQfFDlVrDN8qPcn7sbWhb2OLPWw7/G+cpESo2wkB4zp8DD8db2TLl40yC4zkE0eVqyzk+WXg0wRFsAPU9/zK+htHa9AJXNjYJwu+uJk27tqPwpTCF5p6Ap8VTN3ndUjOOuIOvLNxYEMbVfclQvwxuOBssmbC83Ig==
+X-Microsoft-Antispam-Message-Info: IGSaBqATOOHR+ftrUr+eKnQS4kDivrdN0l2wRh7b6nS/cN0iPbGd/W4E0ZPy7fMBZ6im6k9hcIYjzoZccDEkDmHzjVLdlKsn2ePg29w1QQjOKqn4GjCE4fjMzHDsjZNm14C3PREMW6QkGtKw/auGeolY2BSaajOiwaYhtiYdNTBF6DLJ8Lj9RuV/5OXwh52IyiV4Rcb8tlLGEoe3WjY0cavalDjlOuU+wVv+3KhXVN1p6TGWC4ERDJibPuh0jKwIHNstuPtC18nik3w5M931F/egb7k4uldXqG5BSzhdoYNw1wXty8NXbX2MCL10C1tCGGx/QV8TUkmW/uPf6CI0y4i2oWGi+zRnIKYLe40wcShs8j7Q98LwtBF60BPOpREX/kugQ0tHCprklWvbAGWxVMedlcMa08cSWTccq16OnyXzlnYKb7jrr2LDcFQXw7prSBw4oNjrl7L1Kn8FCOPLGYiKygWgL/q66T7OPu6zJvvcFPyTUlvbbPuoKwUDMCzeD5cwik1AeFFos3tqfWvqttsi3n8bj0Ct4Lxz7NGVu34AnMAbxM1AI36wbx8aC1JjbyAUcK8JzUWXm1aSjY55ttVm2ul5mZ5yI2im9dNdNGox/fDa+WBtrfkE6XzuMk/9tKka3Il3h2WBcMBrSAO1loEyhKLpis09YplkfNfWnYkGaYOqVHiiFa6tZSx/r8dn
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BY5PR11MB3911.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(346002)(376002)(396003)(366004)(136003)(230922051799003)(1800799009)(186009)(451199024)(64100799003)(31686004)(2616005)(6512007)(26005)(53546011)(6506007)(41300700001)(36756003)(38100700002)(82960400001)(31696002)(86362001)(5660300002)(6486002)(2906002)(66556008)(83380400001)(8676002)(8936002)(316002)(66946007)(478600001)(66476007)(45980500001)(43740500002);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(366004)(346002)(136003)(396003)(39860400002)(230173577357003)(230922051799003)(230273577357003)(451199024)(64100799003)(1800799009)(186009)(2906002)(107886003)(30864003)(6512007)(6506007)(53546011)(8676002)(8936002)(83380400001)(41300700001)(66476007)(66946007)(316002)(4326008)(66556008)(478600001)(6486002)(2616005)(5660300002)(26005)(38100700002)(82960400001)(36756003)(31696002)(86362001)(31686004)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?QmcrcnZVQ3JWWHVXZ3NJL2VJUytxMkNoVld5dHZGc3BISlRRU242a3Z5YVVn?=
- =?utf-8?B?M3NsVmk5ajkxTUtDL0VoaE5kMTNIeWsxTlFEcDc0UGViM0V6V2FNUXkrMWhi?=
- =?utf-8?B?ZFV6a01VUUovT2x2Y3F2RTZNZDlCYWN6YVJSMWVheWowTk9PczJRd3cvdUsz?=
- =?utf-8?B?N1hPS3VXODlGMlhiUmNmbG9XOExtUldidWNMb2o1VVExNHhPb3hSVEpZRXVx?=
- =?utf-8?B?WU9nUXJuMFZnRTBqYWZGL1lPRy8vMyt3WU8rMmgzTWRJc1NzbGNTK0N2L0hn?=
- =?utf-8?B?dS83QkI3OWlDNnBiclpFenJSVmhuaUlwaTJqTlNtdzhKY3lPVlZKTy9IWUJ2?=
- =?utf-8?B?UGZkYmlNdkhhR1hxTUgzMUd2cVRKQkNad0M3STQxZmUyanRiUlRsQkZJMmo4?=
- =?utf-8?B?czBpZWVBelN2NjE2bnRVaWRCd09laVRtdUR2R25jalA4SlRsV1l0NUFNRE1i?=
- =?utf-8?B?OEUwbkNRUjlLa2VudzNiVTJQRDlyN29LYTduVlBxNGQzOXhJcXBObU0xUTU0?=
- =?utf-8?B?c2RwbTg0eGduUEMvd0Z1a1NKM3A4dXdXZWpSemJSVUQ4bmtRZFN1a2NBUXlo?=
- =?utf-8?B?VE8xWlA3U3VQdjBXSlRVcHpISkJidkNMS0t6cHM4cFAxYmtQWjBVL2wvNk5Y?=
- =?utf-8?B?cTYvZFRubEFRbUY5enJRNlZRM201M2ExclVmM3diRGx3U3hiTkltRnZBNUU2?=
- =?utf-8?B?VEErSUVWV0FWNlFQUmVxZU1OTm1oZFIvV1dBRWYzRTlpWjRqVzhzQUszZ2Zx?=
- =?utf-8?B?UmxLS1Rxcmcyb1l5cjU0bWtuRnBOMU5aL0RPTE5BYlA2ek1DRm10ZDZLZUJ2?=
- =?utf-8?B?aXc3WVFnY2lFcjg3NDNneXJCaTA0SkQ5SlExZFZrb0pRV3ZNUVVhTzh6c3hV?=
- =?utf-8?B?TVprQUxibElBUnBhMmk5RWZWQnZmTWJqdldyMGZUZ2NzNlU3d3hSTU5hZkN6?=
- =?utf-8?B?SU9VTjZUNTZLN25KbU9HQ2N3ZGs2aFZ2WWtHYmdnYTE4SmJQR01UWk5Pd2Jj?=
- =?utf-8?B?b2NBL0tvZDBhV0U1UjQvSTVxbCtDNWUvZWt6QjB4U2dlenVQKzkvUW1Rcnlt?=
- =?utf-8?B?bGlJMnc2UHhLWUZnQnlBaTNvcW40M1pRYlNmQklPSzM3aGF0WFh2c21lRFV0?=
- =?utf-8?B?dmRSVWtTWGFvSXJhNmN5QVlyL0VFSWI1djByWHNkTko3Z2RSaHdSWTdwbGl6?=
- =?utf-8?B?WEMzT2ttdTNHb05TRGVSb3VwVEhoRy9RZ2d5ZmJNelZpdWszRTg3ckJqSXRR?=
- =?utf-8?B?MjF6UEFzYTAzQURLTXByU3NVaElpeWtLVEFLRzJmU1NjbUhTRm5pSHRjaGIy?=
- =?utf-8?B?K2dtU3BJcmZrOUtxV3pQaXlEcnNRaDZneE1EUy9wb0J0N3BzQTNtdHNZWDhR?=
- =?utf-8?B?YTdMenV4dUQ5NmNQZGF1TXFKVklxbHhlUDZGdzZJbFF4cXA4UTRjZFBsUTVX?=
- =?utf-8?B?aHg3aG4zcDRmU29CNW5FM3g4d2JWSlN4aHR1TUVaQnVRZGxPODdlYzV1ZENG?=
- =?utf-8?B?ZUZnRWJXWHJJaHp5RjFvRXJCK1JLZzIzRFpaYlliREU1UXJvM0VEeUE5ZzNm?=
- =?utf-8?B?NW8rZWRRdHdsN1o3cUJ0QzZQL2x6bXNUTFIyR0N6dVJveEprZzkzSjBaSXBD?=
- =?utf-8?B?OXp5cVhEL1BGaG84VjZmZnQxdFVvblBiMmNOaFVaVTh5eFNsVE15cVJVZ2lo?=
- =?utf-8?B?RU45Yk9NVjRKVWtkWmZLaUZmcnpCSTYvbTFBQlNzNUtMZjBMak9nSkJDRFVh?=
- =?utf-8?B?NjNqQmkzeUk2L2daR2xiclNHZVIvNkZ6RVJ5S25KeUtSZnI5ZHNLUzRQeE1j?=
- =?utf-8?B?NHFEcnF3NnJtb3FkdnhtaGlLRjh2RFQyMzFnN2t6OWtJRHlZT2RWYklZMFdn?=
- =?utf-8?B?NFgzV1ova2o4b2VJZjlkczJBUFdDcnhxWk1kZXFoeWhoNGhlcnlMTFF2cjBJ?=
- =?utf-8?B?UFU3K1JjVWxjV3hpNWNYamR4UjBZQTR4a1prejhhSVVCdW5WclZBVGtnRjNx?=
- =?utf-8?B?N0NxRkxuRXdlNm5rS054cEh2cnVzM2dDTURqd2dIUWFWOU5mSGorWXVVbFRo?=
- =?utf-8?B?MFdMZWZtUlBMYXcrQXQxZWFDYlIvRGxLRFZ5Z3d0bU92N0lac0w5T2xEd25F?=
- =?utf-8?B?ZjNKRldxOU93ZWZ1V2F6bGFSWFZ0U2d2WGZuck11TWsxWnhxaDFqVWFDNmxQ?=
- =?utf-8?B?NkE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3bf20057-0abb-4af8-53c9-08dbe0a931b2
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR11MB3911.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MGJwR2dKbUNDRW0za3gyZ3NzVEpBSmppYklmK1FhNUkyL01MM2JQd0J5YnM3?=
+ =?utf-8?B?U3Q5bmxZbmlWTkliR2VhbXFuem5qaURyUUc5SVIrRnN5aTI0empGU3dQVFV6?=
+ =?utf-8?B?SEJ0VDNaS0cwV0JIcTBZaFVmb0RpUjgrMlY2VndjL2RBR3F4R2RmTEtLd2JJ?=
+ =?utf-8?B?Y0NMWS9RWEVGckk1bGJZRTAycW9kUERmMmFhdk5JOTNKSmtnZWJDZktBQ0Fq?=
+ =?utf-8?B?QTZ5NndPdVVmd0NSUnptTlJ2VkRNSFYxU1dURDJHbUpNNyt0cU5oS2N1ZzVH?=
+ =?utf-8?B?TXFSUWJlTEJ2ZmhhSkF2bk1hSTdrdys5U1pueHQ5aEROU2ZHd05VY2xTMnd4?=
+ =?utf-8?B?ekpOY3BaRGFoRWNzWHlqVGhJbDdSMFZZQWQ0WmdRbTNaRklmYklhdE1OY0pq?=
+ =?utf-8?B?S3YrNU1UTy8vcGtIMTkxN0p4MFI2UThUbzR5UDloazhnemxBMTF0dXU2OGZR?=
+ =?utf-8?B?aTl4QlAwa2JlWU1KZC82NS9HYUE1b3NIMWhYbFJIR3VsdVV6VlNjeXM5SmEy?=
+ =?utf-8?B?dEJ1czZrY2ExeHJGOVpSQlRSZnhNa3RZelZTSjdtMkoxNHAzUGRkMW1taFUx?=
+ =?utf-8?B?cTVtaFViQVBMeklSVXBjV2gzdVZjM0VzNk9IRXRYUG1nRTkxQktnYmZSYS9z?=
+ =?utf-8?B?NENJUFpZZEFsay9ZOHJralFwb25jdHcxQjZSQnhWbTFOVFFzS0VzS3lqY2Yx?=
+ =?utf-8?B?bGRJNlRjazJscGp3RDBMdWQ2NkV4Z3J2MkZzSWR6b0R1WlpReW5Lb1hUMGNt?=
+ =?utf-8?B?eGhMMVZEU0dzallLL1lrd3NRVEpMZU94dlY0WHF1aHVCZ29PaHFvVS91TmFI?=
+ =?utf-8?B?UGJwNmc3K1d3aUFFamFFNWwzRGdkMWM2NHMzdy9nUHVRRE4wY3RIeW4zdGE5?=
+ =?utf-8?B?eHNuc0lBL3NTYjFDQjlqL3ZTalgxSWRWcUYvNHJRN2RNVXFIUFpGbk5xRlYy?=
+ =?utf-8?B?TmJpT0wyNW1iclFYMjBpTGNaNnlXeE9MN0FsYXFtOVo2M2gwNTduRVFMbWg5?=
+ =?utf-8?B?R2szVGVKR1lQMWJZRjhYYUJhWHoxRWJVdGtoUytTNHlGcGx5cS82RWNyeUlG?=
+ =?utf-8?B?TlhGajluNnR1QUNzd3VBZS85dzhmSGkyVVVSWUliWVdFdXRHaUpvN09BOFA3?=
+ =?utf-8?B?LytEVFpTOXQ4M0dkTHFpMGlqSXNRRWU3L01zWXFLb0hwb2w3YmxGWkdlb1p3?=
+ =?utf-8?B?akh5Q2RubmYvMlNnVGlQU3E2dlQ0M1N0aUtkOWJsSHFMVlNxM0RoTEFzUUFn?=
+ =?utf-8?B?Ujg0YUZ6ZzBoakV3YlNuU3lRbmJzZTNEaVlwUW9lZXp5QWJIVzU0R1d3dXhU?=
+ =?utf-8?B?ck0reHZuOG5TMDhNT2hwQkNsSDczaEpBdmNHWHoyQzZ4dlV0WDJkbmN1TWtp?=
+ =?utf-8?B?YkdENWJDb1lzZVIzNTZITEFOSzRWbFoydGJMTkE1TzhiS2diamY1UUNwaUFU?=
+ =?utf-8?B?em1pcUNEMjhIVlJPOG9rQ1c5bTlyTldtWGNZQk9RZzdEN213dTRCckpzL3Nx?=
+ =?utf-8?B?ZldEVzNWU0JnWGRJT29meEpnSnpYQzVTYlFwcHdYRld6N3BPSnVFSzFkZnpR?=
+ =?utf-8?B?QXNRVG1nNGVXeFBjWlc0MDBpdXRhQnFxMFJmbTh0dXVGckRTVkR4MVN5Qkdx?=
+ =?utf-8?B?TFZwa3huZTJrWWtMRllXM252TWtyL1c0dTQ4TDJDbU9SOEY5dStOMGZhTzVN?=
+ =?utf-8?B?ZnVCNHVpV2ZveUF2eEdwbXlJbitZOXdIbHg2V2hzanVvenRMcGdwMHVWczNk?=
+ =?utf-8?B?RTMyUWtiMkt6Q08zem1XTTBRbFFRTmUrZE1kenpOcU00OE1BWlYzZ2RGVkVa?=
+ =?utf-8?B?K09Jcmh4aVUwWkIxNkFDZWlzR2FzT1BFWHlnbVIrRXVUK0xqb3RxUGhFbXdt?=
+ =?utf-8?B?VTloMjJ6UC9WTEpmQ0VCbHg5amhMbVA5L01QcUhIYm1xb1lvWnlRWEp2cmZz?=
+ =?utf-8?B?cktLNjhmbUx2NWN6UUpDNDZQNDNnZnZXUEt3dWNzRnVGSllldHg1bUdUOXpo?=
+ =?utf-8?B?NkVZMFlBZ25Pc2I5emtaVmJwTjJRL2ZNRzlWRDlFdGtjaE9LYlhtOWlDWFNz?=
+ =?utf-8?B?S3NER3RTeHo0RlY5SG4rUVRzMmRqakNPc2tSREZhLzVUZnB2MlJiTUF4dG14?=
+ =?utf-8?B?U01KQTdYQTByYkdKbGRtTkJJYWZ2Z2kyN3hnUE5MNHdJU1hTQkN5VUs3RDk4?=
+ =?utf-8?Q?C6EzjXm2zxuqTRLYjnY1/xo=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5604a5c5-5cde-40d5-8503-08dbe0a951e6
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2023 22:22:29.4881 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2023 22:23:23.3294 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AOLIA80bF21wFkZJoEkYMmF7M3bPTqcC1xi4SB70qC3r7jiN2+4s8BHJ3Iwp79G6urHTCQk5Js6gaHe2niq6ERuQhwHA0c8b9CM0lcM9Tk8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB7886
+X-MS-Exchange-CrossTenant-UserPrincipalName: hE6QgWSf8umIgODc98iUwiJcIUFE67M9bIro1jf0iumlvmw8zFR6hh4oM+WJzgBttxXOZmbYowPQYYsu2r1oipaN35EyTSDaJwLlEbVP/lY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB6922
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 07/12] drm/xe/gsc: Implement WA 14015076503
+Subject: Re: [Intel-xe] [PATCH 06/12] drm/xe/gsc: GSC FW load
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,147 +158,519 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 10/27/2023 15:29, Daniele Ceraolo Spurio wrote:
-> When the GSC FW is loaded, we need to inform it when a GSCCS reset is
-> coming and then wait 200ms for it to get ready to process the reset.
+
+
+On 11/8/2023 2:17 PM, John Harrison wrote:
+> On 10/27/2023 15:29, Daniele Ceraolo Spurio wrote:
+>> The GSC FW must be copied in a 4MB stolen memory allocation, whose GGTT
+>> address is then passed as a parameter to a dedicated load instruction
+>> submitted via the GSC engine.
+>>
+>> Since the GSC load is relatively slow (up to 250ms), we perform it
+>> asynchronously via a worker. This requires us to make sure that the
+>> worker has stopped before suspending/unloading.
+>>
+>> Note that we can't yet use xe_migrate_copy for the copy because it
+>> doesn't work with stolen memory right now, so we do a memcpy from the
+>> CPU side instead.
+>>
+>> Bspec: 65306, 65346
+>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>> ---
+>>   .../gpu/drm/xe/instructions/xe_gsc_commands.h |  34 +++
+>>   .../gpu/drm/xe/instructions/xe_instr_defs.h   |   1 +
+>>   drivers/gpu/drm/xe/regs/xe_gsc_regs.h         |  29 +++
+>>   drivers/gpu/drm/xe/xe_gsc.c                   | 240 ++++++++++++++++++
+>>   drivers/gpu/drm/xe/xe_gsc.h                   |   3 +
+>>   drivers/gpu/drm/xe/xe_gsc_types.h             |  17 ++
+>>   drivers/gpu/drm/xe/xe_uc.c                    |  12 +-
+>>   7 files changed, 335 insertions(+), 1 deletion(-)
+>>   create mode 100644 drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
+>>   create mode 100644 drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+>>
+>> diff --git a/drivers/gpu/drm/xe/instructions/xe_gsc_commands.h 
+>> b/drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
+>> new file mode 100644
+>> index 000000000000..c7a833d7f965
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
+>> @@ -0,0 +1,34 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_GSC_COMMANDS_H_
+>> +#define _XE_GSC_COMMANDS_H_
+>> +
+>> +#include "instructions/xe_instr_defs.h"
+>> +
+>> +/*
+>> + * All GSCCS-specific commands have fixed length, so we can include 
+>> it in the
+>> + * defines. Note that the generic GSC command header structure 
+>> includes an
+>> + * optional data field in bits 9-21, but there are no commands that 
+>> actually use
+>> + * it; some of the commands are instead defined as having an 
+>> extended length
+>> + * field spanning bits 0-15, even if the extra bits are not required 
+>> because the
+>> + * longest GSCCS command is only 8 dwords. To handle this, the 
+>> defines below use
+>> + * a single field for both data and len. If we ever get a commands 
+>> that does
+>> + * actually have data and this approach doesn't work for it we can 
+>> re-work it
+>> + * at that point.
+>> + */
+>> +
+>> +#define GSC_OPCODE        REG_GENMASK(28, 22)
+>> +#define GSC_CMD_DATA_AND_LEN    REG_GENMASK(21, 0)
+>> +
+>> +#define __GSC_INSTR(op, dl) \
+>> +    (XE_INSTR_GSC | \
+>> +    REG_FIELD_PREP(GSC_OPCODE, op) | \
+>> +    REG_FIELD_PREP(GSC_CMD_DATA_AND_LEN, dl))
+>> +
+>> +#define GSC_FW_LOAD __GSC_INSTR(1, 2)
+>> +#define   GSC_FW_LOAD_LIMIT_VALID REG_BIT(31)
+>> +
+>> +#endif
+>> diff --git a/drivers/gpu/drm/xe/instructions/xe_instr_defs.h 
+>> b/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
+>> index e403b4fcc20a..04179b2a48e1 100644
+>> --- a/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
+>> +++ b/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
+>> @@ -15,6 +15,7 @@
+>>    */
+>>   #define XE_INSTR_CMD_TYPE        GENMASK(31, 29)
+>>   #define   XE_INSTR_MI REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x0)
+>> +#define   XE_INSTR_GSC REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x2)
+>>   #define   XE_INSTR_GFXPIPE REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x3)
+>>     /*
+>> diff --git a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h 
+>> b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+>> new file mode 100644
+>> index 000000000000..22d2ad9cb64d
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+>> @@ -0,0 +1,29 @@
+>> +/* SPDX-License-Identifier: MIT */
+>> +/*
+>> + * Copyright © 2023 Intel Corporation
+>> + */
+>> +
+>> +#ifndef _XE_GSC_REGS_H_
+>> +#define _XE_GSC_REGS_H_
+>> +
+>> +#include <linux/compiler.h>
+>> +#include <linux/types.h>
+>> +
+>> +#include "regs/xe_reg_defs.h"
+>> +
+>> +/* Definitions of GSC H/W registers, bits, etc */
+>> +
+>> +#define MTL_GSC_HECI1_BASE    0x00116000
+>> +#define MTL_GSC_HECI2_BASE    0x00117000
+>> +
+>> +/*
+>> + * The FWSTS register values are FW defined and can be different 
+>> between
+>> + * HECI1 and HECI2
+>> + */
+>> +#define HECI_FWSTS1(base)                XE_REG((base) + 0xc40)
+>> +#define   HECI1_FWSTS1_CURRENT_STATE            REG_GENMASK(3, 0)
+>> +#define   HECI1_FWSTS1_CURRENT_STATE_RESET        0
+>> +#define   HECI1_FWSTS1_PROXY_STATE_NORMAL        5
+>> +#define   HECI1_FWSTS1_INIT_COMPLETE            REG_BIT(9)
+>> +
+>> +#endif
+>> diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
+>> index 3f709577d73b..7e5ba9039163 100644
+>> --- a/drivers/gpu/drm/xe/xe_gsc.c
+>> +++ b/drivers/gpu/drm/xe/xe_gsc.c
+>> @@ -5,10 +5,20 @@
+>>     #include "xe_gsc.h"
+>>   +#include <drm/drm_managed.h>
+>> +
+>> +#include "xe_bb.h"
+>> +#include "xe_bo.h"
+>>   #include "xe_device.h"
+>> +#include "xe_exec_queue.h"
+>>   #include "xe_gt.h"
+>>   #include "xe_gt_printk.h"
+>> +#include "xe_map.h"
+>> +#include "xe_mmio.h"
+>> +#include "xe_sched_job.h"
+>>   #include "xe_uc_fw.h"
+>> +#include "instructions/xe_gsc_commands.h"
+>> +#include "regs/xe_gsc_regs.h"
+>>     static struct xe_gt *
+>>   gsc_to_gt(struct xe_gsc *gsc)
+>> @@ -16,6 +26,134 @@ gsc_to_gt(struct xe_gsc *gsc)
+>>       return container_of(gsc, struct xe_gt, uc.gsc);
+>>   }
+>>   +static int memcpy_fw(struct xe_gsc *gsc)
+>> +{
+>> +    struct xe_gt *gt = gsc_to_gt(gsc);
+>> +    struct xe_device *xe = gt_to_xe(gt);
+>> +    u32 fw_size = gsc->fw.size;
+>> +    void *storage;
+>> +
+>> +    /*
+>> +     * FIXME: xe_migrate_copy does not work with stolen mem yet, so 
+>> we use
+>> +     * a memcpy for now.
+>> +     */
+>> +    storage = kmalloc(fw_size, GFP_KERNEL);
+>> +    if (!storage)
+>> +        return -ENOMEM;
+>> +
+>> +    xe_map_memcpy_from(xe, storage, &gsc->fw.bo->vmap, 0, fw_size);
+>> +    xe_map_memcpy_to(xe, &gsc->private->vmap, 0, storage, fw_size);
+>> +    xe_map_memset(xe, &gsc->private->vmap, fw_size, 0, 
+>> gsc->private->size - fw_size);
+>> +
+>> +    kfree(storage);
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static int emit_gsc_upload(struct xe_gsc *gsc)
+>> +{
+>> +    struct xe_gt *gt = gsc_to_gt(gsc);
+>> +    u32 offset = xe_bo_ggtt_addr(gsc->private);
+>> +    struct xe_bb *bb;
+>> +    struct xe_sched_job *job;
+>> +    struct dma_fence *fence;
+>> +    long timeout;
+>> +
+>> +    bb = xe_bb_new(gt, 4, false);
+>> +    if (IS_ERR(bb))
+>> +        return PTR_ERR(bb);
+>> +
+>> +    bb->cs[bb->len++] = GSC_FW_LOAD;
+>> +    bb->cs[bb->len++] = lower_32_bits(offset);
+>> +    bb->cs[bb->len++] = upper_32_bits(offset);
+>> +    bb->cs[bb->len++] = (gsc->private->size / SZ_4K) | 
+>> GSC_FW_LOAD_LIMIT_VALID;
+>> +
+>> +    job = xe_bb_create_job(gsc->q, bb);
+>> +    if (IS_ERR(job)) {
+>> +        xe_bb_free(bb, NULL);
+>> +        return PTR_ERR(job);
+>> +    }
+>> +
+>> +    xe_sched_job_arm(job);
+>> +    fence = dma_fence_get(&job->drm.s_fence->finished);
+>> +    xe_sched_job_push(job);
+>> +
+>> +    timeout = dma_fence_wait_timeout(fence, false, HZ);
+>> +    dma_fence_put(fence);
+>> +    xe_bb_free(bb, NULL);
+>> +    if (timeout < 0)
+>> +        return timeout;
+>> +    else if (!timeout)
+>> +        return -ETIME;
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static int gsc_fw_is_loaded(struct xe_gt *gt)
+>> +{
+>> +    return xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE)) &
+>> +                  HECI1_FWSTS1_INIT_COMPLETE;
+>> +}
+>> +
+>> +static int gsc_fw_wait(struct xe_gt *gt)
+>> +{
+>> +    return xe_mmio_wait32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE),
+>> +                  HECI1_FWSTS1_INIT_COMPLETE,
+>> +                  HECI1_FWSTS1_INIT_COMPLETE,
+>> +                  500, NULL, false);
+> The 500 at least needs a comment to explain where it comes from and 
+> why. If not a #define as well.
 >
-> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> Cc: John Harrison <john.c.harrison@intel.com>
-> ---
->   drivers/gpu/drm/xe/Makefile           |  2 +-
->   drivers/gpu/drm/xe/regs/xe_gsc_regs.h | 10 ++++++
->   drivers/gpu/drm/xe/xe_gt.c            | 44 +++++++++++++++++++++++++++
->   drivers/gpu/drm/xe/xe_wa_oob.rules    |  1 +
->   4 files changed, 56 insertions(+), 1 deletion(-)
+> I assume this is the <=250ms in the commit description?
 >
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index 474b6044d054..4a442dcf4d79 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -37,7 +37,7 @@ quiet_cmd_wa_oob = GEN     $(notdir $(generated_oob))
->   $(generated_oob) &: $(obj)/xe_gen_wa_oob $(srctree)/$(src)/xe_wa_oob.rules
->   	$(call cmd,wa_oob)
->   
-> -$(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o: $(generated_oob)
-> +$(obj)/xe_gt.o $(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o: $(generated_oob)
-Is it not worth splitting this into multiple lines?
 
->   
->   # Please keep these build lists sorted!
->   
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-> index 22d2ad9cb64d..9a84b55d66ee 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-> @@ -16,6 +16,13 @@
->   #define MTL_GSC_HECI1_BASE	0x00116000
->   #define MTL_GSC_HECI2_BASE	0x00117000
->   
-> +#define HECI_H_CSR(base)	XE_REG((base) + 0x4)
-> +#define   HECI_H_CSR_IE		REG_BIT(0)
-> +#define   HECI_H_CSR_IS		REG_BIT(1)
-> +#define   HECI_H_CSR_IG		REG_BIT(2)
-> +#define   HECI_H_CSR_RDY	REG_BIT(3)
-> +#define   HECI_H_CSR_RST	REG_BIT(4)
-> +
->   /*
->    * The FWSTS register values are FW defined and can be different between
->    * HECI1 and HECI2
-> @@ -26,4 +33,7 @@
->   #define   HECI1_FWSTS1_PROXY_STATE_NORMAL		5
->   #define   HECI1_FWSTS1_INIT_COMPLETE			REG_BIT(9)
->   
-> +#define HECI_H_GS1(base)	XE_REG((base) + 0xc4c)
-> +#define   HECI_H_GS1_ER_PREP	REG_BIT(0)
-> +
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> index 73c090762771..0e8e24bded1c 100644
-> --- a/drivers/gpu/drm/xe/xe_gt.c
-> +++ b/drivers/gpu/drm/xe/xe_gt.c
-> @@ -10,8 +10,10 @@
->   #include <drm/drm_managed.h>
->   #include <drm/xe_drm.h>
->   
-> +#include "generated/xe_wa_oob.h"
->   #include "instructions/xe_gfxpipe_commands.h"
->   #include "instructions/xe_mi_commands.h"
-> +#include "regs/xe_gsc_regs.h"
->   #include "regs/xe_gt_regs.h"
->   #include "xe_assert.h"
->   #include "xe_bb.h"
-> @@ -504,16 +506,58 @@ int xe_gt_init(struct xe_gt *gt)
->   	return 0;
->   }
->   
-> +static int gsc_fw_is_loaded(struct xe_gt *gt)
-> +{
-> +	return xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE)) &
-> +			      HECI1_FWSTS1_INIT_COMPLETE;
-> +}
-This function is duplicated exactly in the GSC source file. That seems 
-bad. Either it should be exported and shared or the usage here should be 
-moved to the GSC specific file.
+yup,  I just doubled the 250 to 500 to give it a bit of wiggle room. 
+I'll add a comment.
 
-John.
+>> +}
+>> +
+>> +static int gsc_upload(struct xe_gsc *gsc)
+>> +{
+>> +    struct xe_gt *gt = gsc_to_gt(gsc);
+>> +    int err;
+>> +
+>> +    if (XE_WARN_ON(!xe_uc_fw_is_loadable(&gsc->fw) || !gsc->q || 
+>> gsc_fw_is_loaded(gt)))
+> The last term here is a register read of a firmware written value? The 
+> kernel should not barf with WARNs and such due to external data. Those 
+> are for internal bugs only. Dodgy external data should just be an 
+> xe_gt_err, shouldn't it?
 
-> +
-> +static void wa_14015076503_start(struct xe_gt *gt)
-> +{
-> +	/* WA only applies if the GSC is loaded */
-> +	if (!XE_WA(gt, 14015076503) || !gsc_fw_is_loaded(gt))
-> +		return;
-> +
-> +	/*
-> +	 * wa_14015076503: if the GSC FW is loaded, we need to alert it that
-> +	 * we're going to do a GSC engine reset and then wait for 200ms for the
-> +	 * FW to get ready for it.
-> +	 */
-> +	xe_mmio_rmw32(gt, HECI_H_GS1(MTL_GSC_HECI2_BASE),
-> +		      0, HECI_H_GS1_ER_PREP);
-> +
-> +	/* make sure the reset bit is clear when writing the CSR reg */
-> +	xe_mmio_rmw32(gt, HECI_H_CSR(MTL_GSC_HECI2_BASE),
-> +		      HECI_H_CSR_RST, HECI_H_CSR_IG);
-> +	msleep(200);
-> +
-> +	return;
-> +}
-> +
-> +static void
-> +wa_14015076503_end(struct xe_gt *gt)
-> +{
-> +	if (!XE_WA(gt, 14015076503))
-> +		return;
-> +
-> +	xe_mmio_rmw32(gt, HECI_H_GS1(MTL_GSC_HECI2_BASE),
-> +		      HECI_H_GS1_ER_PREP, 0);
-> +}
-> +
->   static int do_gt_reset(struct xe_gt *gt)
->   {
->   	int err;
->   
-> +	wa_14015076503_start(gt);
-> +
->   	xe_mmio_write32(gt, GDRST, GRDOM_FULL);
->   	err = xe_mmio_wait32(gt, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
->   	if (err)
->   		xe_gt_err(gt, "failed to clear GEN11_GRDOM_FULL (%pe)\n",
->   			  ERR_PTR(err));
->   
-> +	wa_14015076503_end(gt);
-> +
->   	return err;
->   }
->   
-> diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> index f3ff774dc4aa..132c35497f74 100644
-> --- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-> +++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-> @@ -19,3 +19,4 @@
->   		SUBPLATFORM(DG2, G12)
->   16017236439	PLATFORM(PVC)
->   22010954014	PLATFORM(DG2)
-> +14015076503	MEDIA_VERSION(1300)
+The idea was that we shouldn't be here if the GSC HW reports that we've 
+already loaded, we should have bailed early (in xe_gsc_load_start), so 
+somewhere in the stack we have a programming bug.
+
+>
+>> +        return 0;
+> And returning zero means the state will transition to TRANSFERRED not 
+> LOAD_FAIL. That seems plausible in the case of already loaded, but in 
+> the other cases that seems wrong?
+
+You're right, will fix.
+
+Daniele
+
+>
+> John.
+>
+>> +
+>> +    err = memcpy_fw(gsc);
+>> +    if (err) {
+>> +        xe_gt_err(gt, "Failed to memcpy GSC FW\n");
+>> +        return err;
+>> +    }
+>> +
+>> +    err = emit_gsc_upload(gsc);
+>> +    if (err) {
+>> +        xe_gt_err(gt, "Failed to emit GSC FW upload (%pe)\n", 
+>> ERR_PTR(err));
+>> +        return err;
+>> +    }
+>> +
+>> +    err = gsc_fw_wait(gt);
+>> +    if (err) {
+>> +        xe_gt_err(gt, "Failed to wait for GSC load (%pe)\n", 
+>> ERR_PTR(err));
+>> +        return err;
+>> +    }
+>> +
+>> +    xe_gt_dbg(gt, "GSC FW async load completed\n");
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +static void gsc_work(struct work_struct *work)
+>> +{
+>> +    struct xe_gsc *gsc = container_of(work, typeof(*gsc), work);
+>> +    struct xe_gt *gt = gsc_to_gt(gsc);
+>> +    struct xe_device *xe = gt_to_xe(gt);
+>> +    int ret;
+>> +
+>> +    xe_device_mem_access_get(xe);
+>> +    xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
+>> +
+>> +    ret = gsc_upload(gsc);
+>> +    if (ret)
+>> +        xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_LOAD_FAIL);
+>> +    else
+>> +        xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
+>> +
+>> +    xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
+>> +    xe_device_mem_access_put(xe);
+>> +}
+>> +
+>>   int xe_gsc_init(struct xe_gsc *gsc)
+>>   {
+>>       struct xe_gt *gt = gsc_to_gt(gsc);
+>> @@ -23,6 +161,7 @@ int xe_gsc_init(struct xe_gsc *gsc)
+>>       int ret;
+>>         gsc->fw.type = XE_UC_FW_TYPE_GSC;
+>> +    INIT_WORK(&gsc->work, gsc_work);
+>>         /* The GSC uC is only available on the media GT */
+>>       if (tile->media_gt && (gt != tile->media_gt)) {
+>> @@ -48,3 +187,104 @@ int xe_gsc_init(struct xe_gsc *gsc)
+>>       return ret;
+>>   }
+>>   +static void free_resources(struct drm_device *drm, void *arg)
+>> +{
+>> +    struct xe_gsc *gsc = arg;
+>> +
+>> +    if (gsc->wq) {
+>> +        destroy_workqueue(gsc->wq);
+>> +        gsc->wq = NULL;
+>> +    }
+>> +
+>> +    if (gsc->q) {
+>> +        xe_exec_queue_put(gsc->q);
+>> +        gsc->q = NULL;
+>> +    }
+>> +
+>> +    if (gsc->private) {
+>> +        xe_bo_unpin_map_no_vm(gsc->private);
+>> +        gsc->private = NULL;
+>> +    }
+>> +}
+>> +
+>> +int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc)
+>> +{
+>> +    struct xe_gt *gt = gsc_to_gt(gsc);
+>> +    struct xe_tile *tile = gt_to_tile(gt);
+>> +    struct xe_device *xe = gt_to_xe(gt);
+>> +    struct xe_hw_engine *hwe = xe_gt_hw_engine(gt, 
+>> XE_ENGINE_CLASS_OTHER, 0, true);
+>> +    struct xe_exec_queue *q;
+>> +    struct workqueue_struct *wq;
+>> +    struct xe_bo *bo;
+>> +    int err;
+>> +
+>> +    if (!xe_uc_fw_is_available(&gsc->fw))
+>> +        return 0;
+>> +
+>> +    if (!hwe)
+>> +        return -ENODEV;
+>> +
+>> +    bo = xe_bo_create_pin_map(xe, tile, NULL, SZ_4M,
+>> +                  ttm_bo_type_kernel,
+>> +                  XE_BO_CREATE_STOLEN_BIT |
+>> +                  XE_BO_CREATE_GGTT_BIT);
+>> +    if (IS_ERR(bo))
+>> +        return PTR_ERR(bo);
+>> +
+>> +    q = xe_exec_queue_create(xe, NULL,
+>> +                 BIT(hwe->logical_instance), 1, hwe,
+>> +                 EXEC_QUEUE_FLAG_KERNEL |
+>> +                 EXEC_QUEUE_FLAG_PERMANENT);
+>> +    if (IS_ERR(q)) {
+>> +        xe_gt_err(gt, "Failed to create queue for GSC submission\n");
+>> +        err = PTR_ERR(q);
+>> +        goto out_bo;
+>> +    }
+>> +
+>> +    wq = alloc_ordered_workqueue("gsc-ordered-wq", 0);
+>> +    if (!wq) {
+>> +        err = -ENOMEM;
+>> +        goto out_q;
+>> +    }
+>> +
+>> +    gsc->private = bo;
+>> +    gsc->q = q;
+>> +    gsc->wq = wq;
+>> +
+>> +    err = drmm_add_action_or_reset(&xe->drm, free_resources, gsc);
+>> +    if (err)
+>> +        return err;
+>> +
+>> +    xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_LOADABLE);
+>> +
+>> +    return 0;
+>> +
+>> +out_q:
+>> +    xe_exec_queue_put(q);
+>> +out_bo:
+>> +    xe_bo_unpin_map_no_vm(bo);
+>> +    return err;
+>> +
+>> +}
+>> +
+>> +void xe_gsc_load_start(struct xe_gsc *gsc)
+>> +{
+>> +    struct xe_gt *gt = gsc_to_gt(gsc);
+>> +
+>> +    if (!xe_uc_fw_is_loadable(&gsc->fw) || !gsc->q)
+>> +        return;
+>> +
+>> +    /* GSC FW survives GT reset and D3Hot */
+>> +    if (gsc_fw_is_loaded(gt)) {
+>> +        xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
+>> +        return;
+>> +    }
+>> +
+>> +    queue_work(gsc->wq, &gsc->work);
+>> +}
+>> +
+>> +void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc)
+>> +{
+>> +    if (xe_uc_fw_is_loadable(&gsc->fw) && gsc->wq)
+>> +        flush_work(&gsc->work);
+>> +}
+>> diff --git a/drivers/gpu/drm/xe/xe_gsc.h b/drivers/gpu/drm/xe/xe_gsc.h
+>> index baa7f21f4204..f870eddc77d4 100644
+>> --- a/drivers/gpu/drm/xe/xe_gsc.h
+>> +++ b/drivers/gpu/drm/xe/xe_gsc.h
+>> @@ -9,5 +9,8 @@
+>>   #include "xe_gsc_types.h"
+>>     int xe_gsc_init(struct xe_gsc *gsc);
+>> +int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc);
+>> +void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc);
+>> +void xe_gsc_load_start(struct xe_gsc *gsc);
+>>     #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h 
+>> b/drivers/gpu/drm/xe/xe_gsc_types.h
+>> index 1bc50583fe58..57fefd66a7ea 100644
+>> --- a/drivers/gpu/drm/xe/xe_gsc_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_gsc_types.h
+>> @@ -6,8 +6,13 @@
+>>   #ifndef _XE_GSC_TYPES_H_
+>>   #define _XE_GSC_TYPES_H_
+>>   +#include <linux/workqueue.h>
+>> +
+>>   #include "xe_uc_fw_types.h"
+>>   +struct xe_bo;
+>> +struct xe_exec_queue;
+>> +
+>>   /**
+>>    * struct xe_gsc - GSC
+>>    */
+>> @@ -17,6 +22,18 @@ struct xe_gsc {
+>>         /** @security_version: SVN found in the fetched blob */
+>>       u32 security_version;
+>> +
+>> +    /** @private: Private data for use by the GSC FW */
+>> +    struct xe_bo *private;
+>> +
+>> +    /** @q: Default queue used for submissions to GSC FW */
+>> +    struct xe_exec_queue *q;
+>> +
+>> +    /** @wq: workqueue to handle jobs for delayed load and proxy 
+>> handling */
+>> +    struct workqueue_struct *wq;
+>> +
+>> +    /** @work: delayed load and proxy handling work */
+>> +    struct work_struct work;
+>>   };
+>>     #endif
+>> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
+>> index b67154c78dff..15dcd1f91e9c 100644
+>> --- a/drivers/gpu/drm/xe/xe_uc.c
+>> +++ b/drivers/gpu/drm/xe/xe_uc.c
+>> @@ -74,11 +74,17 @@ int xe_uc_init(struct xe_uc *uc)
+>>    */
+>>   int xe_uc_init_post_hwconfig(struct xe_uc *uc)
+>>   {
+>> +    int err;
+>> +
+>>       /* GuC submission not enabled, nothing to do */
+>>       if (!xe_device_uc_enabled(uc_to_xe(uc)))
+>>           return 0;
+>>   -    return xe_guc_init_post_hwconfig(&uc->guc);
+>> +    err = xe_guc_init_post_hwconfig(&uc->guc);
+>> +    if (err)
+>> +        return err;
+>> +
+>> +    return xe_gsc_init_post_hwconfig(&uc->gsc);
+>>   }
+>>     static int uc_reset(struct xe_uc *uc)
+>> @@ -173,6 +179,9 @@ int xe_uc_init_hw(struct xe_uc *uc)
+>>       ret = xe_huc_auth(&uc->huc);
+>>       xe_gt_assert(uc_to_gt(uc), !ret);
+>>   +    /* GSC load is async */
+>> +    xe_gsc_load_start(&uc->gsc);
+>> +
+>>       return 0;
+>>   }
+>>   @@ -197,6 +206,7 @@ void xe_uc_gucrc_disable(struct xe_uc *uc)
+>>     void xe_uc_stop_prepare(struct xe_uc *uc)
+>>   {
+>> +    xe_gsc_wait_for_worker_completion(&uc->gsc);
+>>       xe_guc_stop_prepare(&uc->guc);
+>>   }
+>
 
