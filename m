@@ -4,33 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DFDE4C4332F
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 11:07:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E585C4167D
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 11:07:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E6DB10E712;
-	Wed,  8 Nov 2023 11:07:09 +0000 (UTC)
-X-Greylist: delayed 827 seconds by postgrey-1.36 at gabe;
- Wed, 08 Nov 2023 11:07:07 UTC
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01F5310E711;
+	Wed,  8 Nov 2023 11:07:12 +0000 (UTC)
 Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF57F10E711
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Nov 2023 11:07:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0626110E711
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Nov 2023 11:07:08 +0000 (UTC)
 Received: internal info suppressed
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1699440794; bh=QD/i7xSRpbio7CmjetOdqlLv5diT03txAmCM/EyeBeI=;
+ t=1699440941; bh=DEGT8IQ2upnsopU4T9e1tfoa7I1eSxTItfsi9mCeAq8=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=pjMUcKD/P25KCYx0XJvxqlc0I+RVgv6lVXYoUo8UvLOAWO5G3ZHyFEas/LXlJghtz
- dGs3L+J1T+b73i8yhCbiosQTlf52Vtr+s7799lnMG014pP4/liUmomQaeUDuwPADeD
- FUvyjlOX8kBa+fI85I6tLDFhDeQbBAzVwX4fDD5mswy9J1P0ghF9lIbq14wkGV8qvc
- 4NAXyTqLiTZj6pkXK5T1Ns08Pnu1/SwUhFuSn7bxqKm+EmJpsKnxpvTLb5YKIYUUaM
- hFeH9Q8Qy0iIFq9d+4mAH577122CegILuf+Aib7RhccY2TZnZeriN98QWnEevZ4y2d
- lri/tMsB8xWRQ==
+ b=gfRPKZSDrZZuSlsP9ZeklByKzkrve4j3a2IuxbftOVqaP8HfLskwN/N9ekPB6gzgy
+ 15LlOYWKLQyQ37Jadh+3gAf8MubjR9YZ8Zmt7ObN6L3E4jglDo3B/XkndmnJhTBNJG
+ 3cSowKZGiMhGu1al623Q0643rb1ZKvu4JyIoTs0JB/Wxv/fFNkd2BOeGeRALbK9xD7
+ KtO+hcXZhv35Lj/UD7L3KzFf5a408+BxCn8UPMOJWbQgmWHcDCz1z/Tdd7gKlMR/GA
+ RM7R2DVDs7SKCDbwZXBV2tk34kgHxbkG0Oz3dlrgy+1K4y0LBbDu4Jxg7Ds5S0uPC9
+ v2aG2ZEIS3RzQ==
 Received: from dhirschfeld-vm-u22.habana-labs.com (localhost [127.0.0.1])
  by dhirschfeld-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- SMTP id 3A8Ar8BG1202007; Wed, 8 Nov 2023 12:53:08 +0200
-Date: Wed, 8 Nov 2023 12:53:08 +0200
+ SMTP id 3A8AtZEH1202037; Wed, 8 Nov 2023 12:55:35 +0200
+Date: Wed, 8 Nov 2023 12:55:35 +0200
 From: Dafna Hirschfeld <dhirschfeld@habana.ai>
 To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <xexd7po44plh5lywawnn74pvg5xrtocq2s5q6vepujqaqprvyk@n3bntcdqyxrc>
+Message-ID: <lsvqioo7quhjuhgxigl4f4oqti7wshxdgciwivyygm2zrd2q2p@cyyuidovinuo>
 References: <20231107052603.124361-1-matthew.brost@intel.com>
  <20231107052603.124361-2-matthew.brost@intel.com>
 MIME-Version: 1.0
@@ -129,6 +127,13 @@ On 06.11.2023 21:25, Matthew Brost wrote:
 >+	if (!args->num_binds) {
 >+		err = -ENODATA;
 >+		goto free_syncs;
+if args->num_binds = 0 is valid, then it might be confusing to indicate it with err = -ENODATA,
+Also , it is invalid if both args->num_binds and args->num_syncs are 0 right? if so maybe
+add XE_IOCTL_DBG for that,
+
+Thanks,
+Dafna
+
 >+	}
 >+
 > 	for (i = 0; i < args->num_binds; ++i) {
