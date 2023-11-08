@@ -4,152 +4,146 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9F0D1C4332F
-	for <intel-xe@archiver.kernel.org>; Tue,  7 Nov 2023 23:59:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 81AEEC4332F
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 00:06:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D7E010E6C2;
-	Tue,  7 Nov 2023 23:59:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8330D10E6C2
- for <intel-xe@lists.freedesktop.org>; Tue,  7 Nov 2023 23:59:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F72C10E6CE;
+	Wed,  8 Nov 2023 00:06:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCCDF10E6CD
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Nov 2023 00:06:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699401577; x=1730937577;
+ t=1699401961; x=1730937961;
  h=message-id:date:subject:to:cc:references:from:
- in-reply-to:mime-version;
- bh=xdo57WwwA8F3e2FWIyNi0YDl3xbChZC8ulJzYw9UhJI=;
- b=bufsOZQOSpURtG4X265QG9ESDZlSaT9h+5e7lJ9kWvc4psWLa3+i/97y
- XqaU6IuNKZyt/J83EFfi1MBynsg7n1DtVCZ79uuC1BIWNRJfUdwtQ8gXd
- a8j4TU1vIedoN/21Y4CotlIJ0Bp04HEVQthTXa1j73J5VHO+Yglz3uJr1
- lnR2gzNcWLpARzHHIqLVMUqLRcn7uPZnBjhKV0562OvfXxG5UwbLoonDL
- 3Fmmsv7CX5BOjKJQ0l9u8O5fsTgkJxlydD3Zyz9J0eg8RZ1IrYzzS/ubJ
- Hv/la1pS5Cdi/e7I+8f9prRaUVMkEBJ7LMiH7LE/u8eK/0YqK1rGaX/XA w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="392520074"
-X-IronPort-AV: E=Sophos;i="6.03,285,1694761200"; 
- d="scan'208,217";a="392520074"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Nov 2023 15:59:27 -0800
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=BXIayPN0hBGhoXq+t9xBgUpMGXUrx8Co+f6aYVBuhEY=;
+ b=GttuIRHbA5yOoVu0OuSDOyd2bXMVL+0ayFRx2QK0zeqdVeMzTZBQMeUp
+ 6FPiGicSVA89IzbVISIcUyZn2nVt51jvl9/9dr2WwLGWMiyTcJazAV7qp
+ dVgZPrnapp6iB8+8iOWhlVMWwS1aH+thOWPY6oOKgbpuRXSzhoTJJ0kQ2
+ cJymk7s39NCItD9Q7e7IyQifm0uvrtJ5NBBai8jd5BZpkdv8PqEBfPO/5
+ V5DHl8h3fARKSgu/SQqCYmwk7dcR5wldGNQwaiXOqKaS84GEiwrb0+PgE
+ qAXqRKjJJhci7bOaiKl3APar4toUVl/UpUlHjoyfheoKn43AFuDladdgC Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="11204616"
+X-IronPort-AV: E=Sophos;i="6.03,285,1694761200"; d="scan'208";a="11204616"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Nov 2023 16:06:00 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,285,1694761200"; d="scan'208,217";a="11001958"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 07 Nov 2023 15:59:26 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10887"; a="792003667"
+X-IronPort-AV: E=Sophos;i="6.03,285,1694761200"; d="scan'208";a="792003667"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 07 Nov 2023 16:05:59 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Tue, 7 Nov 2023 15:59:26 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.1.2507.34; Tue, 7 Nov 2023 16:05:59 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Tue, 7 Nov 2023 15:59:25 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Tue, 7 Nov 2023 15:59:25 -0800
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (104.47.74.40) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Tue, 7 Nov 2023 16:05:59 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Tue, 7 Nov 2023 15:59:24 -0800
+ 15.1.2507.34; Tue, 7 Nov 2023 16:05:58 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=hwW5x5HJYGdU3PeAmQlygEAHpqo4C1YaOTiKX9HeIG1JfPW0jeWyp+RoAb90MArVaRTnLzBZPKyBJg5436iKpw1IDDRcIA4DsRVUjY8WiyCz9KJlYVs2fX9HYYNRra4XL6MGKwyIhZZFf5bg1YkQQAvuPxGS56xOt+2MDU/oNDAb1DEJYZ9+cbDwAqC4NEwI7HWgIveYuWPHJP7U4ZrBihId5X+960Xia7GUyTbGYlaHNdoqCWpEE7HE3fStLn7GOiOOkB468P6oXsHVDRq6Pw3Dt7YLsRave66qAz1O4TLdWOlLZCs22rLmYnGSOUn4bI+q3E7v5TefEKGltQQDkQ==
+ b=KopLOnjCqB2bapEdhDO9NasGv3vAh9+UrRkdJ6kwmARPhasfebBA0HI9cRJtCI2laExnWvV8Bzq2ti4zQgB1a+qSGotjg7hWM68LaRnojGWSxPzGonOuE9KEw0DQVZrwDxXbnUHOJDZHCM5xNIXX+50/sglzat+Mm0bKjSNcnZA6QIJA54qfOBtSMLXINY9aBwJGefj6EYUbfn5yvkeQ1Y4NI7EQwUShJ0LSjEbZ3471BDJyrYs72KDDdY6Ewn1vqlc2sqTn/MQdJYpIc2fKJjZRGvYBVw8kILxqsYykc2DtpyzjnizvTFXkRlMVFPdyrZvGVA7zIl0es2Dfwg4Q7w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zD41pNwKtBpyB9nzd7b4/Eb+6x34YTiVNRDpH0jKY+k=;
- b=RrFYlcD1Huptm8MsGiVfPyOZMOOSx4Hmyx6vGfvSFeJV54zrLWOko0lYniodx/IKug0vxYIQ13h4909NWtVKnVWlfDat5aQ8ozdR5D1w9TgWPabpVHEHKRbs2vga0+iUPuXtlfxr4ei5hZ4bB8M+McbPMYcLxHAQjV2CPYDwSW+U8dEW/SCLgYzXl8CxGsV9o6PSGQy+x6lU0YWCaktAnOOo2yZ2cuPmj0tyGG8I87KRzn0cGOFHWS5fVyIh5TikRGTSr29LyllDwcGICpty+8N5tEqG1AUscK7Qy9buHrzUgQu6OdmqHhGq8zqYw10jyB/OLJ4gang6vUl0YXe4jw==
+ bh=iWfXPcWcDNOb7RqJPmiuRtCIwseaLANJ9/QtI9fMMc4=;
+ b=i+rjexIcDQYCmU9ACDPyRKHtUnP9D8uh6kXRlgbEClGjBeMuUcUir1V4iJI4tonDedhkwsEqnFI465Gy3ZctdHceU42dAVEkiPkIljSvYlZrdQPy+K1AueVfVSUdo95qkFOJUELodCmqGiUNr1Nhm3as5DuhtZcXy/mPpQSb5EXLtXgEzYS4AvGLQn8RlUmi5TdS9JpVExy5nei863FN3rPnlIbPeu2nBS6BL1ngHBReKlkvgFFSXxkji5np8b01bed7xTFUgUrRvTAbGgsy+bnvdoWX27iw4Bq7EnHpGETTvTivo3YWOUlBOTm0/UqNqfn8VmrW+UB2w6mH4lkJRg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by SA0PR11MB4527.namprd11.prod.outlook.com (2603:10b6:806:72::17)
+Received: from SN7PR11MB7705.namprd11.prod.outlook.com (2603:10b6:806:32f::16)
+ by LV2PR11MB6045.namprd11.prod.outlook.com (2603:10b6:408:17b::20)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.28; Tue, 7 Nov
- 2023 23:59:22 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::588d:b37f:130c:9e86]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::588d:b37f:130c:9e86%6]) with mapi id 15.20.6954.028; Tue, 7 Nov 2023
- 23:59:22 +0000
-Content-Type: multipart/alternative;
- boundary="------------6QVOoUM1uEA4hkoaS3Ugj9Xr"
-Message-ID: <e9c261b1-9b7c-41b3-8334-2f8ccccf38a8@intel.com>
-Date: Tue, 7 Nov 2023 15:59:22 -0800
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6954.27; Wed, 8 Nov
+ 2023 00:05:56 +0000
+Received: from SN7PR11MB7705.namprd11.prod.outlook.com
+ ([fe80::7c9d:a4c7:4e1e:aebc]) by SN7PR11MB7705.namprd11.prod.outlook.com
+ ([fe80::7c9d:a4c7:4e1e:aebc%4]) with mapi id 15.20.6954.027; Wed, 8 Nov 2023
+ 00:05:56 +0000
+Message-ID: <e19494be-fd50-4aad-bdc0-44e9901fec37@intel.com>
+Date: Tue, 7 Nov 2023 16:05:54 -0800
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
-To: John Harrison <john.c.harrison@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20231027222928.1981633-1-daniele.ceraolospurio@intel.com>
- <20231027222928.1981633-5-daniele.ceraolospurio@intel.com>
- <db3df54c-47f7-4a8d-9ad3-9ddb2e1626a1@intel.com>
- <b60165a0-923f-4ed2-a8b4-aeb3f7a0c87a@intel.com>
- <828ccf67-179f-4615-9bf3-cf70f807abb5@intel.com>
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-In-Reply-To: <828ccf67-179f-4615-9bf3-cf70f807abb5@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0123.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::8) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
+To: Francois Dugast <francois.dugast@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+References: <20231103143456.7-1-francois.dugast@intel.com>
+ <20231103143456.7-46-francois.dugast@intel.com>
+From: "Welty, Brian" <brian.welty@intel.com>
+In-Reply-To: <20231103143456.7-46-francois.dugast@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ2PR07CA0010.namprd07.prod.outlook.com
+ (2603:10b6:a03:505::27) To SN7PR11MB7705.namprd11.prod.outlook.com
+ (2603:10b6:806:32f::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|SA0PR11MB4527:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f6fd74b-5765-408f-6f2f-08dbdfed9054
+X-MS-TrafficTypeDiagnostic: SN7PR11MB7705:EE_|LV2PR11MB6045:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6a4fd0ab-d130-4110-65c8-08dbdfee7b2c
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: eZ15wo7t6WAzdozaapLYR9GU5aHnXm6/zLOFUGkrFC5plA+I8S8LeUximwfqON8iK3u8MmnluDFY+IysG7EIUPcjo7z6tieB1pPg3MsxT+Vz26yEpLVPz+kQH+6yEZe+1FEpRJvwoZz9dXtxIF1wkayRtcTU70wToLXmPajVVqXSJTYJ6sCIXrOeyBphYvSBxo0PTzYl8lcGGcYI/h5l+Kfgcy+2MrYY9fGkcVR/A+/TxSiHW2AuFbNgi9riG1HqG6GTpI7mmpyX9Ap5O7CtQZXmnREFnZukVbMbGh2olqt/vKpppxYHL9Ki54OeSqi+4rerXnIPfUBrZ2xWA5+SaVnQYjBpyF2ZB8RnfuxoM3RLP05+Y1ZWKhcT3/ZJ/4upQoz3PMIZKP6D7eXnVKzV0nT35OLZm2Az0nBkJU35iI9RZ388HP9RoB2fe0u27lIe3COXcN3XxxxKo9xDJHkiwDl5qVibhMiZrEMhOmh4T90hlVaBS5Xf7u9VRM7u+HEtMOVvB1L1i0RZpGbDHOr9cWi0K1/gn/yH5qaiyiuvKJ+tkIKVTGEqEfG8JIXHNPA+jMQ9yJ3aqJn+9PbMHI/ZCo5lGF++B1m4M0yVU1tLxui8iMs53A1GVEs0CWRGmGRFMCWBce3rKCrGKLruQKlu4g==
+X-Microsoft-Antispam-Message-Info: WlzFv9nVa59St6CLEnLbYxAs2PVLC2qsO6GHA5ly4AIu3SvCHAiClaIdDcmDoSzgt+M7ju+38VI/kvd4iM04rVkPthhNX/8gXeIQH1fl5XPGbexGRLq2+mLqA12e/pDTdwVv3hO2UVH4bIA0vxrkqh6JoRaHHEVVxRwfiqbufz4TXu2Hqfxr9xyHFNUdtlmD5ickixoXyVQGcFJN4FF1DIlmCCbnLhXDVdsJTM/mkto5LVOFCHBENjqIZ3+mmjdOBiLpfb4USbn/JP2u+nlcwJYGaPktkBdF0iq641aSGlNXtS+Ay87Mb+nthdfvFPUqUi9C4UjmSOreQSqCzx585zJbOmMAeE0Z1SuPdlw/rAxbYYbDhnpjpDC0anAsgt0n8jvbpOrQnwQ1byI8DHI+BcoMpOtclG2T4JZUAEn2HTH7daKupB8qm43DmimtgPFW2/+XNpndVGD00xi2FcJ9Xg/iefAScKLFy0BQ4tUEnjt37pWKY0iRxtNXWHk8s3zgjYrPbYSvkXaumA52LznsVBmnZnynmTDsB3BdTDuW/x3DvWCpUB36XlZ3oVTq+6M52hz//fjGQFmUQHsbyGtE2FCK6tJl8LqQ+TC9HmaZxpMV2XUo2NXi+Tuzi/kVmorEpioxbH9DvYlBYPKXwzXqCQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(136003)(39860400002)(396003)(346002)(376002)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(38100700002)(33964004)(6506007)(53546011)(83380400001)(31686004)(6512007)(82960400001)(8676002)(107886003)(2616005)(41300700001)(316002)(86362001)(2906002)(30864003)(31696002)(5660300002)(4326008)(36756003)(8936002)(66946007)(66556008)(26005)(66476007)(478600001)(6486002)(43740500002)(45980500001);
+ IPV:NLI; SFV:NSPM; H:SN7PR11MB7705.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(376002)(136003)(346002)(366004)(396003)(39860400002)(230922051799003)(1800799009)(186009)(64100799003)(451199024)(36756003)(316002)(8936002)(4326008)(8676002)(83380400001)(66946007)(66556008)(66476007)(5660300002)(6512007)(41300700001)(2906002)(107886003)(478600001)(6486002)(6506007)(53546011)(2616005)(31686004)(82960400001)(31696002)(86362001)(38100700002)(26005)(45980500001)(43740500002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?K2dpc2pNL0EwcUM4TTlncUxYMHlWMjhxV3UwVGx1MUs0UjQ4WlFBZ0NQakhk?=
- =?utf-8?B?Slp2VXRHYmFubE04WStEQ0tkVHZGUGxzT2krNjMvZHJDRzUvRzRTRklBdTFD?=
- =?utf-8?B?NHhWeXVmZWZiTzJEcFN1N0FxaU53ZzEvblp1ck94dmZ6WUliaFBidmkvVGhv?=
- =?utf-8?B?OEZxTUl6VDFVcXdYbDhVdklyYkdudy9od1pESGM3VXRmRmxNMFZ6bnVDZ1Iz?=
- =?utf-8?B?bTB4OEFxeDExTnJpZzVvQWhyLzdTV1RhSC9MWDExVXFpU2s2dzRrTitSWlZt?=
- =?utf-8?B?VVJjSURJU1kvdDNBVHd2THROQ1Fmb0pvdmJiTUdORTZOTUZ2RkwyVjFwaDlN?=
- =?utf-8?B?S1d1d2cydlQ2Mk5sakp1WS9kek5JZWIzUmNFSVhpb0JZSzJ0eFJRVERDKzhE?=
- =?utf-8?B?MzR1MGwyOWpSV082KzYzZUFKSGdicGtFYm1SWU1PaFhPZkFiZFkwT2ozc3ov?=
- =?utf-8?B?NmRCWS9JK1d0dUFWanpTTFJtM0RscmQrelFkNklDOHJzT0dCYTlpRDBIVnRF?=
- =?utf-8?B?aE5mM1dtMUN4NE51UjVCcnNQRTVXWjVEWXc1dWw2dE0rbFI1a0lHOWFVSlZZ?=
- =?utf-8?B?SzU1M1Q2SjlDNk9zOHhEbDJ1bVlRUEhHT0VqQU9Cbno2UHhDWC90TkNpQlBM?=
- =?utf-8?B?UXZuTUZhRzI2R1EzQXdNRzU2cjdDTDlRcUYwNU5QSnY5WHM2VmEvNTVyNnhn?=
- =?utf-8?B?dE11WnJ0VTA3ZnJ6WFZGQTN6bUdaTkJRSkVYcVgvQWdLOVJsUzQ2YzFvV0Jy?=
- =?utf-8?B?L0NrOEw3bHNKZWduUFpGS1ZYQkgrS3I5Q1hITS85alpNYlNPZ1NGK2ZybHow?=
- =?utf-8?B?d3V2RWZYZ0JHUTN1N2RUQ0wxcnpabnVXaDJRRFhtNmtqTlVWQ1BmS1p5ZXJF?=
- =?utf-8?B?UHlHZktXUU4zMy9uSGJjZGg5MWpXNjhEd252NVVkVW91MlhiY2hNUUI3bWFG?=
- =?utf-8?B?dDJyU3dUQ3dDTU13U2JkU0FnVzF1L05EajJGRU03OXRYTFlscEtKSDhqZVU1?=
- =?utf-8?B?a0p4WDJ1QlpZYjBKcFpVYTVUYzhWUDRKTndrYmp1K2l1YVFZT2tkelFZWm0z?=
- =?utf-8?B?Sy9BSmc3akd0a0NFeUU5UVZuQ2tQRjlrWUt4SDkwY01FYlF3ZkpuSWRlQnBU?=
- =?utf-8?B?MXpIKzhtN0k0dWt3Yk9RK1VadFNJN3E2RkExZDkvckkzL3pBRWF0M2QrVDVq?=
- =?utf-8?B?WWZvOHhCMno2RENxOFBPV3Y5TGp3eWl5OXg1UXR2anhObE41cnR0V2FmeXoz?=
- =?utf-8?B?ZDdrU1NyQUNPemZDUHJGdmpaQlJsVjhKSFlJMk40aGNycTI2MkxmVXorY1Q2?=
- =?utf-8?B?SFhlQXF1bzdUZDlzci9BWHF2MU0zbG82b2VEV3BRdCs2aDgvYUNzd1FsMTNh?=
- =?utf-8?B?eUhMTmFWczlGV1h4U2R5SWhxS2RKZDRjeG16T29zcnMvK3VOMG5nTnE5NUFZ?=
- =?utf-8?B?VTF2M2p4SktIWE0yeTNRL1BlWW5zN1p0YWVsN2xJSzI1ejNLcmQwQVJaN3h1?=
- =?utf-8?B?M05wVXRUanFNQTA4bmpidXNYeUdPRVBQM1BLQ3BCWjQzQUh5Wm9UU0Q0WFJu?=
- =?utf-8?B?T2ZLN1JabjQ4M3VNVk9NSXVpNVJFbnBHZzd2czJaQ2RRT0pKdUJXUjVRVmpW?=
- =?utf-8?B?ZW1ia3BQaEozd29xRURjb1NxK2hBUWNLQVY4SmRVQVF3SUp6WHpOME55Tm9T?=
- =?utf-8?B?KzY4dTdOTGFtOTV2ZXYvbmNUU01qemJuaVo1bFdsbUgwQy9FOHlVU0ZqbFZW?=
- =?utf-8?B?dGJINEJ2N2JXTzZyL3pCeFNEcEtmL3VjWTdhRlpNRU1kNUVzZkdTUG5NRStX?=
- =?utf-8?B?OEFLNkxSOEZUTCt1SFhVOHNpMmNXcEJ1b1Z2Yzd4QTFRWFRYNGk2b0MvZXRP?=
- =?utf-8?B?eEhXbzZxL0ZjUkM5MTVoWXhJSmRVMHczN0lxTEdvbWFCRC9xVldxbk5yMnRQ?=
- =?utf-8?B?eWhSTnp1c0pTaUg1WC9xZEhSc0pkdzlCY1BUKzlFUmU4VEdyVUFGOVlOaitn?=
- =?utf-8?B?bmVPcXBlRGI2c1I2SDQyZGgvVnIrdHpPcGdSS010cncxU3kzL2lzditzRnBF?=
- =?utf-8?B?eHN4T3hmbkV0U1JzeENyN0VHN3YvbERNems4WHd5Vk1KRE9ua0h5ZGd5SFpr?=
- =?utf-8?B?RmErWnBDT1dPbmQ5cDk4QUFMcmwvZ1lrU2tsek9nMFo2cDh6V1lCVE5HWWRQ?=
- =?utf-8?Q?TPgIqm57utbOEPL2uaAigQk=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f6fd74b-5765-408f-6f2f-08dbdfed9054
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NXh6ZFIwVU8yM3ZaMkV0aGZ6ZDkxQXJYZlBPQ2hGR1NuSzFPaGVjbVR0aXFM?=
+ =?utf-8?B?U01yb0dIY3VtdEd2TEpTbUtVS2hFUi94VWd5WUQxQnM4Z2Z1ZzlBNXJJemsy?=
+ =?utf-8?B?TGEvWTFHSWNxT1NOakpxcnZqS1dqaFM2em45ZHNrYWRLQlp1a3JnZ0FCT2U2?=
+ =?utf-8?B?MCtUNjAyK2txY1R1NmRuTlFhSGZxYkZacmxGUEVRaHV5S1Q2UUZQYTdmYlZO?=
+ =?utf-8?B?dG9TOXhxczAwRVFUYjF1d0puVDlMZndRV2dHbEhvNlA2bjZ6akdBZk1kay84?=
+ =?utf-8?B?Q2k5d05kSjhOdUxmTjYwcWlIZkUrYW9udkNTVVhpV1ZNNlhZY0NIYlhCSHJx?=
+ =?utf-8?B?cGxKNnE1VUpyclBvQWdMTnlyaHl0YmJjVHlQUEtlZUljakpBMktacjJPSndK?=
+ =?utf-8?B?NFhmSUZOc1pyNHpNUzYxTkUxZEUwcEJDc0E5elJXRXZrbFdTUUFHQjZJOUJS?=
+ =?utf-8?B?VFo2ek5VWDF5b1Q0L3pqVHAweDRhV0xkRUdCZjVKaHEzSFpuZzJ4UWlCZXNh?=
+ =?utf-8?B?dEptajBwQ2ZhalJ6RDRWdjhSY1JWRW5RcnJhZHhMeER1QXgvZjRiYmE0Qnh3?=
+ =?utf-8?B?eU1Zd1dhNk5pV1Ftdi9vR241UFlGZWFQWklpaldYNkZvbFIveTdNeXJUZ0Jv?=
+ =?utf-8?B?WFhLS2piMzN6bEY1M0xxU0tTelVRREJxNUxqdW1GYUZNZnUwOUw5dFdUNVFs?=
+ =?utf-8?B?cHhZOUZVYTUvcDZIYlk0WmJ2a1pYUjh5M1Z3S2lPUnJ2TTFJaWRLekJ5RmFJ?=
+ =?utf-8?B?dE5iYW11cTVRWTNiZExTTFo0VE5ZbWN5ZlhVZ2JsUmJsblA1WmgzSU5yZno0?=
+ =?utf-8?B?dVNBOUNBNkVHQjRaU3NpdkNoUHc2OVFhc3hzc0thQytmMFVDbDV0MlMwMDBO?=
+ =?utf-8?B?YTRwTG5KT29lc1pDWDJPN3htQzN4MXFkRFBaMlBRVmN6MjBjakwzVnZMNVVz?=
+ =?utf-8?B?REFGZWE5djRtVUJxZDh1VFhXdk5ZUmVBM283UHJNeHovNFV0czFsbnpETzZG?=
+ =?utf-8?B?Q1g2Y3RNZWhnVkM3RTR4a0VzMjhVb0YzMGFjcFg1NWU1clI5c0k3bGp5SG9V?=
+ =?utf-8?B?NXNqWHdiNy94RXZ6dTNXanpRWG8wL043TTdpWmZWMmFNRlcrMWc3c0dXVTQz?=
+ =?utf-8?B?blBIWS9wSUIwQmxuQ2N5Q3MvWldvZlNtTUE2WG4vMkFVZ1hqOFNvaGRLU1lW?=
+ =?utf-8?B?Vmc1aTBJVTBRRGhnRzNXYjNZcmdkNldvYlRIcUpmUnBaaWdMVTAxOThnYXd3?=
+ =?utf-8?B?aWNyMVFmNkJkTGJWK3BoWU93a3hhTXFlZlphZndUL2JmQWpadWQwaGcxM3g0?=
+ =?utf-8?B?c3U5VTlUSDlESjB5RVBMc3cyaU5zS01INm9uYjIwN1JjNnlETTFGWXlnc3lR?=
+ =?utf-8?B?QkRuZndKWE4zSzhtbk10Q040UGgyTWVOZlZHWlpEMFdJMkpKZ21YS1VQQWt0?=
+ =?utf-8?B?SzRWbkhGVlJPM3c0WHc1azJZNUd5UVlKV1hhNmlUaldxeUtPaURSdldGQkxv?=
+ =?utf-8?B?Vk1GeTdhMlJmZEdRVFFjS0FHTERpK1E3bFA1azVBeENySWRkN3lGVkd4RHcw?=
+ =?utf-8?B?UmVpdlpNU3hhbmhCcHN3VFFNbk9jSFR3Z2VtTGZ0b0o3czg5V0FPc0xUeFF5?=
+ =?utf-8?B?NUVFWk9PTFpBdHk3L1hnMWFiWkY1KzMydmdiUFErcVVodDJnRDk5eHpTSjJo?=
+ =?utf-8?B?cS8vMEcvbWk5aTRtMExxQm5RYTh4VG5tQzh0V1RaMjVkRmJOR2c0UFFEb2RN?=
+ =?utf-8?B?bEkrVVlFbkpHdzJtZkpzRWNqK0Z3blg2U2JmSmVrNWxSMVFVUDVXenZXS1ZL?=
+ =?utf-8?B?Vk5oVjJDRnBuS3JHNTdmaENuTlhLNGxKRHlkamU1TEdRbVUvakZTSGVUSjl3?=
+ =?utf-8?B?TjBaTGZ4dngvQ3RUdlBwOFN2MzBNWkk0VHNSOE1VeWI4UEw4TDE0SEY5eWhH?=
+ =?utf-8?B?VTJxZWNSSXBuZHFLaGxaNWkzaG9uRVl3Y3R6enc2eVNiQ3NwTUZhUG9Vbzdk?=
+ =?utf-8?B?SnZLUWhNU2xpUUdiTGFxbk9ONDgyZFZ2b1IrbHhZRkRrd1R1VHA3L1NRVVdq?=
+ =?utf-8?B?ZkZSYVVJaUplSGIxdVVGRm5VYWx1QnF2WUN1SThBUDhFVFZPc204V1IrMXZ1?=
+ =?utf-8?Q?5Xsc1m1HYOSX4VY84fYZ6xGfS?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a4fd0ab-d130-4110-65c8-08dbdfee7b2c
+X-MS-Exchange-CrossTenant-AuthSource: SN7PR11MB7705.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Nov 2023 23:59:22.5828 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Nov 2023 00:05:56.5984 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5no6NaIBh/pJuZ2cw4BgUUo4ecSf0TQQEQvtUV0shKyPKzw2R1RK7CL7UMujjYGTa3CjLIw+ROxfAtXwRw0RJJYRCDBSj/g4SRRf6LrrhPc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4527
+X-MS-Exchange-CrossTenant-UserPrincipalName: iBjvWkDCyyR2byOnxQoH8IAy38ZTzI8WxdE0HPPIjHYJ5T8ugqsbQfu+dpVtTrAIGSuGVyKfp7j6Sk+clxSeDw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB6045
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 04/12] drm/xe/gsc: Introduce GSC FW
+Subject: Re: [Intel-xe] [PATCH v2 45/50] drm/xe/uapi: Remove bogus engine
+ list from the wait_user_fence IOCTL
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -161,709 +155,165 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---------------6QVOoUM1uEA4hkoaS3Ugj9Xr
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
 
 
+On 11/3/2023 7:34 AM, Francois Dugast wrote:
+> From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> Right now this is only checking if the engine list is sane and nothing
+> else. In the end every operation with this IOCTL is a soft check.
+> So, let's formalize that and only use this IOCTL to wait on the fence.
+> 
+> Upon timeout, userspace need then to inspect the engine properties
+> like BAN, in order to determine the reset status and any other
+> information that can be (or be added) there.
 
-On 11/7/2023 3:52 PM, John Harrison wrote:
-> On 11/7/2023 15:32, Daniele Ceraolo Spurio wrote:
->> On 11/7/2023 3:26 PM, John Harrison wrote:
->>> On 10/27/2023 15:29, Daniele Ceraolo Spurio wrote:
->>>> Add the basic definitions and init function. Same as HuC, GSC is only
->>>> supported on the media GT on MTL and newer platforms.
->>>> Note that the GSC requires submission resources which can't be 
->>>> allocated
->>>> during init (because we don't have the hwconfig yet), so it can't be
->>>> marked as loadable at the end of the init function. The allocation of
->>>> those resources will come in the patch that makes use of them to load
->>>> the FW.
->>>>
->>>> Signed-off-by: Daniele Ceraolo Spurio 
->>>> <daniele.ceraolospurio@intel.com>
->>>> Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
->>>> Cc: John Harrison <John.C.Harrison@Intel.com>
->>>> ---
->>>>   drivers/gpu/drm/xe/Makefile         |  1 +
->>>>   drivers/gpu/drm/xe/xe_gsc.c         | 50 
->>>> +++++++++++++++++++++++++++++
->>>>   drivers/gpu/drm/xe/xe_gsc.h         | 13 ++++++++
->>>>   drivers/gpu/drm/xe/xe_gsc_types.h   | 19 +++++++++++
->>>>   drivers/gpu/drm/xe/xe_uc.c          |  9 ++++--
->>>>   drivers/gpu/drm/xe/xe_uc_fw.c       | 21 ++++++++++--
->>>>   drivers/gpu/drm/xe/xe_uc_fw.h       |  2 ++
->>>>   drivers/gpu/drm/xe/xe_uc_fw_types.h |  5 +--
->>>>   drivers/gpu/drm/xe/xe_uc_types.h    |  3 ++
->>>>   9 files changed, 116 insertions(+), 7 deletions(-)
->>>>   create mode 100644 drivers/gpu/drm/xe/xe_gsc.c
->>>>   create mode 100644 drivers/gpu/drm/xe/xe_gsc.h
->>>>   create mode 100644 drivers/gpu/drm/xe/xe_gsc_types.h
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->>>> index cee57681732d..474b6044d054 100644
->>>> --- a/drivers/gpu/drm/xe/Makefile
->>>> +++ b/drivers/gpu/drm/xe/Makefile
->>>> @@ -57,6 +57,7 @@ xe-y += xe_bb.o \
->>>>       xe_exec_queue.o \
->>>>       xe_force_wake.o \
->>>>       xe_ggtt.o \
->>>> +    xe_gsc.o \
->>>>       xe_gt.o \
->>>>       xe_gt_clock.o \
->>>>       xe_gt_debugfs.o \
->>>> diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
->>>> new file mode 100644
->>>> index 000000000000..3f709577d73b
->>>> --- /dev/null
->>>> +++ b/drivers/gpu/drm/xe/xe_gsc.c
->>>> @@ -0,0 +1,50 @@
->>>> +// SPDX-License-Identifier: MIT
->>>> +/*
->>>> + * Copyright © 2023 Intel Corporation
->>>> + */
->>>> +
->>>> +#include "xe_gsc.h"
->>>> +
->>>> +#include "xe_device.h"
->>>> +#include "xe_gt.h"
->>>> +#include "xe_gt_printk.h"
->>>> +#include "xe_uc_fw.h"
->>>> +
->>>> +static struct xe_gt *
->>>> +gsc_to_gt(struct xe_gsc *gsc)
->>>> +{
->>>> +    return container_of(gsc, struct xe_gt, uc.gsc);
->>>> +}
->>>> +
->>>> +int xe_gsc_init(struct xe_gsc *gsc)
->>>> +{
->>>> +    struct xe_gt *gt = gsc_to_gt(gsc);
->>>> +    struct xe_tile *tile = gt_to_tile(gt);
->>>> +    int ret;
->>>> +
->>>> +    gsc->fw.type = XE_UC_FW_TYPE_GSC;
->>>> +
->>>> +    /* The GSC uC is only available on the media GT */
->>>> +    if (tile->media_gt && (gt != tile->media_gt)) {
->>>> +        xe_uc_fw_change_status(&gsc->fw, 
->>>> XE_UC_FIRMWARE_NOT_SUPPORTED);
->>>> +        return 0;
->>>> +    }
->>>> +
->>>> +    /*
->>>> +     * GSC can be "not supported" where GuC is instead supported, 
->>>> so we
->>>> +     * don't want to fail if xe_uc_fw_init() returns an error due 
->>>> to that.
->>> Not following this comment. Can you explain more?
->>
->> xe_uc_fw_init() is going to fail if the GSC FW is not defined for the 
->> platform. The uC switch is global for all FWs, so either all FW init 
->> functions are called or none of them; since we do have to handle the 
->> case where GuC is supported and GSC is not, xe_gsc_init() needs to 
->> not fail in that scenario. We do still have to call xe_uc_fw_init() 
->> as that's where the FW selection is (and therefore where we find out 
->> if it is defined or not), so the solution is to check the enablement 
->> status first before checking the return code.
->>
-> Maybe go with this instead?
->
->     Some platforms can have GuC (and HuC?) but not GSC. That would
->     cause xe_uc_fw_init(gsc) to return a "not supported" failure code
->     and abort all firmware loading. So check for GSC being enabled
->     before propagating the failure back up. That way the higher level
->     will keep going and load GuC/HuC as appropriate.
->
+I think the point of a per-engine wait was for long-running context?
+In that case, a large timeout value would be specified...  and then if
+engine is reset (due to hang for example), it would abort the 
+wait_ufence early and return some error other than -ETIME.
+But as you say, understand this is not even implemented right now so
+makes sense to delete it.
 
-HuC can also be "not supported", but apart from that I'll switch to the 
-comment you suggested.
+If this is indeed needed in future, this can be restored again using
+the drm_xe_wait_user_fence.extensions, correct?
 
-Daniele
+-Brian
 
->
->
->>>
->>>> +     * To avoid this problem, check the FW status before the 
->>>> return code.
->>>> +     */
->>>> +    ret = xe_uc_fw_init(&gsc->fw);
->>>> +    if (!xe_uc_fw_is_enabled(&gsc->fw))
->>>> +        return 0;
->>>> +    else if (ret)
->>>> +        goto out;
->>>> +
->>>> +    return 0;
->>>> +
->>>> +out:
->>>> +    xe_gt_err(gt, "GSC init failed with %d", ret);
->>>> +    return ret;
->>>> +}
->>>> +
->>>> diff --git a/drivers/gpu/drm/xe/xe_gsc.h b/drivers/gpu/drm/xe/xe_gsc.h
->>>> new file mode 100644
->>>> index 000000000000..baa7f21f4204
->>>> --- /dev/null
->>>> +++ b/drivers/gpu/drm/xe/xe_gsc.h
->>>> @@ -0,0 +1,13 @@
->>>> +/* SPDX-License-Identifier: MIT */
->>>> +/*
->>>> + * Copyright © 2023 Intel Corporation
->>>> + */
->>>> +
->>>> +#ifndef _XE_GSC_H_
->>>> +#define _XE_GSC_H_
->>>> +
->>>> +#include "xe_gsc_types.h"
->>>> +
->>>> +int xe_gsc_init(struct xe_gsc *gsc);
->>>> +
->>>> +#endif
->>>> diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h 
->>>> b/drivers/gpu/drm/xe/xe_gsc_types.h
->>>> new file mode 100644
->>>> index 000000000000..135f156e3736
->>>> --- /dev/null
->>>> +++ b/drivers/gpu/drm/xe/xe_gsc_types.h
->>>> @@ -0,0 +1,19 @@
->>>> +/* SPDX-License-Identifier: MIT */
->>>> +/*
->>>> + * Copyright © 2023 Intel Corporation
->>>> + */
->>>> +
->>>> +#ifndef _XE_GSC_TYPES_H_
->>>> +#define _XE_GSC_TYPES_H_
->>>> +
->>>> +#include "xe_uc_fw_types.h"
->>>> +
->>>> +/**
->>>> + * struct xe_gsc - GSC
->>>> + */
->>>> +struct xe_gsc {
->>>> +    /** @fw: Generic uC firmware management */
->>>> +    struct xe_uc_fw fw;
->>>> +};
->>>> +
->>>> +#endif
->>>> diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
->>>> index 784f53c5f282..b67154c78dff 100644
->>>> --- a/drivers/gpu/drm/xe/xe_uc.c
->>>> +++ b/drivers/gpu/drm/xe/xe_uc.c
->>>> @@ -6,6 +6,7 @@
->>>>   #include "xe_uc.h"
->>>>     #include "xe_device.h"
->>>> +#include "xe_gsc.h"
->>>>   #include "xe_gt.h"
->>>>   #include "xe_guc.h"
->>>>   #include "xe_guc_pc.h"
->>>> @@ -32,8 +33,8 @@ int xe_uc_init(struct xe_uc *uc)
->>>>       int ret;
->>>>         /*
->>>> -     * We call the GuC/HuC init functions even if GuC submission 
->>>> is off to
->>>> -     * correctly move our tracking of the FW state to "disabled".
->>>> +     * We call the GuC/HuC/GSC init functions even if GuC 
->>>> submission is off
->>>> +     * to correctly move our tracking of the FW state to "disabled".
->>>>        */
->>>>         ret = xe_guc_init(&uc->guc);
->>>> @@ -44,6 +45,10 @@ int xe_uc_init(struct xe_uc *uc)
->>>>       if (ret)
->>>>           goto err;
->>>>   +    ret = xe_gsc_init(&uc->gsc);
->>>> +    if (ret)
->>>> +        goto err;
->>>> +
->>>>       if (!xe_device_uc_enabled(uc_to_xe(uc)))
->>>>           return 0;
->>>>   diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c 
->>>> b/drivers/gpu/drm/xe/xe_uc_fw.c
->>>> index 1f7dac394a1d..af3e5cba606f 100644
->>>> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
->>>> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
->>>> @@ -158,11 +158,18 @@ XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
->>>>   static struct xe_gt *
->>>>   __uc_fw_to_gt(struct xe_uc_fw *uc_fw, enum xe_uc_fw_type type)
->>>>   {
->>>> -    if (type == XE_UC_FW_TYPE_GUC)
->>>> +    XE_WARN_ON(type >= XE_UC_FW_NUM_TYPES);
->>>> +
->>>> +    switch (type) {
->>>> +    case XE_UC_FW_TYPE_GUC:
->>>>           return container_of(uc_fw, struct xe_gt, uc.guc.fw);
->>>> +    case XE_UC_FW_TYPE_HUC:
->>>> +        return container_of(uc_fw, struct xe_gt, uc.huc.fw);
->>>> +    case XE_UC_FW_TYPE_GSC:
->>>> +        return container_of(uc_fw, struct xe_gt, uc.gsc.fw);
->>>> +    }
->>>>   -    XE_WARN_ON(type != XE_UC_FW_TYPE_HUC);
->>>> -    return container_of(uc_fw, struct xe_gt, uc.huc.fw);
->>>> +    return NULL;
->>>>   }
->>>>     static struct xe_gt *uc_fw_to_gt(struct xe_uc_fw *uc_fw)
->>>> @@ -197,6 +204,14 @@ uc_fw_auto_select(struct xe_device *xe, struct 
->>>> xe_uc_fw *uc_fw)
->>>>       u32 count;
->>>>       int i;
->>>>   +    /*
->>>> +     * GSC FW support is still not fully in place, so we're not 
->>>> defining
->>>> +     * the FW blob yet because we don't want the driver to attempt 
->>>> to load
->>>> +     * it until we're ready for it.
->>>> +     */
->>>> +    if (uc_fw->type == XE_UC_FW_TYPE_GSC)
->>>> +        return;
->>>> +
->>>>       xe_assert(xe, uc_fw->type < ARRAY_SIZE(blobs_all));
->>>>       entries = blobs_all[uc_fw->type].entries;
->>>>       count = blobs_all[uc_fw->type].count;
->>>> diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h 
->>>> b/drivers/gpu/drm/xe/xe_uc_fw.h
->>>> index 1d1a0c156cdf..d4682b0276e2 100644
->>>> --- a/drivers/gpu/drm/xe/xe_uc_fw.h
->>>> +++ b/drivers/gpu/drm/xe/xe_uc_fw.h
->>>> @@ -96,6 +96,8 @@ static inline const char *xe_uc_fw_type_repr(enum 
->>>> xe_uc_fw_type type)
->>>>           return "GuC";
->>>>       case XE_UC_FW_TYPE_HUC:
->>>>           return "HuC";
->>>> +    case XE_UC_FW_TYPE_GSC:
->>>> +        return "GSC";
->>>>       }
->>>>       return "uC";
->>>>   }
->>>> diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h 
->>>> b/drivers/gpu/drm/xe/xe_uc_fw_types.h
->>>> index e4774c560e67..239256bfdb07 100644
->>>> --- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
->>>> +++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
->>>> @@ -55,9 +55,10 @@ enum xe_uc_fw_status {
->>>>     enum xe_uc_fw_type {
->>>>       XE_UC_FW_TYPE_GUC = 0,
->>>> -    XE_UC_FW_TYPE_HUC
->>>> +    XE_UC_FW_TYPE_HUC,
->>>> +    XE_UC_FW_TYPE_GSC
->>>>   };
->>>> -#define XE_UC_FW_NUM_TYPES 2
->>>> +#define XE_UC_FW_NUM_TYPES 3
->>> Why is this not just a sentinel entry of the enum?
->>
->> No idea, I'm just updating the value. It is the same in i915.
-> Seems like a good opportunity to fix it.
->
-> John.
->
->>
->> Daniele
->>
->>>
->>> John.
->>>
->>>>     /**
->>>>    * struct xe_uc_fw_version - Version for XE micro controller 
->>>> firmware
->>>> diff --git a/drivers/gpu/drm/xe/xe_uc_types.h 
->>>> b/drivers/gpu/drm/xe/xe_uc_types.h
->>>> index 49bef6498b85..9924e4484866 100644
->>>> --- a/drivers/gpu/drm/xe/xe_uc_types.h
->>>> +++ b/drivers/gpu/drm/xe/xe_uc_types.h
->>>> @@ -6,6 +6,7 @@
->>>>   #ifndef _XE_UC_TYPES_H_
->>>>   #define _XE_UC_TYPES_H_
->>>>   +#include "xe_gsc_types.h"
->>>>   #include "xe_guc_types.h"
->>>>   #include "xe_huc_types.h"
->>>>   #include "xe_wopcm_types.h"
->>>> @@ -18,6 +19,8 @@ struct xe_uc {
->>>>       struct xe_guc guc;
->>>>       /** @huc: HuC */
->>>>       struct xe_huc huc;
->>>> +    /** @gsc: Graphics Security Controller */
->>>> +    struct xe_gsc gsc;
->>>>       /** @wopcm: WOPCM */
->>>>       struct xe_wopcm wopcm;
->>>>   };
->>>
->>
->
-
---------------6QVOoUM1uEA4hkoaS3Ugj9Xr
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html><html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 11/7/2023 3:52 PM, John Harrison
-      wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:828ccf67-179f-4615-9bf3-cf70f807abb5@intel.com">
-      
-      On 11/7/2023 15:32, Daniele Ceraolo Spurio wrote:<br>
-      <blockquote type="cite" cite="mid:b60165a0-923f-4ed2-a8b4-aeb3f7a0c87a@intel.com"> On
-        11/7/2023 3:26 PM, John Harrison wrote: <br>
-        <blockquote type="cite"> On 10/27/2023 15:29, Daniele Ceraolo
-          Spurio wrote: <br>
-          <blockquote type="cite">Add the basic definitions and init
-            function. Same as HuC, GSC is only <br>
-            supported on the media GT on MTL and newer platforms. <br>
-            Note that the GSC requires submission resources which can't
-            be allocated <br>
-            during init (because we don't have the hwconfig yet), so it
-            can't be <br>
-            marked as loadable at the end of the init function. The
-            allocation of <br>
-            those resources will come in the patch that makes use of
-            them to load <br>
-            the FW. <br>
-            <br>
-            Signed-off-by: Daniele Ceraolo Spurio <a class="moz-txt-link-rfc2396E" href="mailto:daniele.ceraolospurio@intel.com" moz-do-not-send="true">&lt;daniele.ceraolospurio@intel.com&gt;</a>
-            <br>
-            Cc: Alan Previn <a class="moz-txt-link-rfc2396E" href="mailto:alan.previn.teres.alexis@intel.com" moz-do-not-send="true">&lt;alan.previn.teres.alexis@intel.com&gt;</a>
-            <br>
-            Cc: John Harrison <a class="moz-txt-link-rfc2396E" href="mailto:John.C.Harrison@Intel.com" moz-do-not-send="true">&lt;John.C.Harrison@Intel.com&gt;</a>
-            <br>
-            --- <br>
-            &nbsp; drivers/gpu/drm/xe/Makefile&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 1 + <br>
-            &nbsp; drivers/gpu/drm/xe/xe_gsc.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 50
-            +++++++++++++++++++++++++++++ <br>
-            &nbsp; drivers/gpu/drm/xe/xe_gsc.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 13 ++++++++ <br>
-            &nbsp; drivers/gpu/drm/xe/xe_gsc_types.h&nbsp;&nbsp; | 19 +++++++++++ <br>
-            &nbsp; drivers/gpu/drm/xe/xe_uc.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 9 ++++-- <br>
-            &nbsp; drivers/gpu/drm/xe/xe_uc_fw.c&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | 21 ++++++++++-- <br>
-            &nbsp; drivers/gpu/drm/xe/xe_uc_fw.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |&nbsp; 2 ++ <br>
-            &nbsp; drivers/gpu/drm/xe/xe_uc_fw_types.h |&nbsp; 5 +-- <br>
-            &nbsp; drivers/gpu/drm/xe/xe_uc_types.h&nbsp;&nbsp;&nbsp; |&nbsp; 3 ++ <br>
-            &nbsp; 9 files changed, 116 insertions(+), 7 deletions(-) <br>
-            &nbsp; create mode 100644 drivers/gpu/drm/xe/xe_gsc.c <br>
-            &nbsp; create mode 100644 drivers/gpu/drm/xe/xe_gsc.h <br>
-            &nbsp; create mode 100644 drivers/gpu/drm/xe/xe_gsc_types.h <br>
-            <br>
-            diff --git a/drivers/gpu/drm/xe/Makefile
-            b/drivers/gpu/drm/xe/Makefile <br>
-            index cee57681732d..474b6044d054 100644 <br>
-            --- a/drivers/gpu/drm/xe/Makefile <br>
-            +++ b/drivers/gpu/drm/xe/Makefile <br>
-            @@ -57,6 +57,7 @@ xe-y += xe_bb.o \ <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_exec_queue.o \ <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_force_wake.o \ <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_ggtt.o \ <br>
-            +&nbsp;&nbsp;&nbsp; xe_gsc.o \ <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_gt.o \ <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_gt_clock.o \ <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_gt_debugfs.o \ <br>
-            diff --git a/drivers/gpu/drm/xe/xe_gsc.c
-            b/drivers/gpu/drm/xe/xe_gsc.c <br>
-            new file mode 100644 <br>
-            index 000000000000..3f709577d73b <br>
-            --- /dev/null <br>
-            +++ b/drivers/gpu/drm/xe/xe_gsc.c <br>
-            @@ -0,0 +1,50 @@ <br>
-            +// SPDX-License-Identifier: MIT <br>
-            +/* <br>
-            + * Copyright © 2023 Intel Corporation <br>
-            + */ <br>
-            + <br>
-            +#include &quot;xe_gsc.h&quot; <br>
-            + <br>
-            +#include &quot;xe_device.h&quot; <br>
-            +#include &quot;xe_gt.h&quot; <br>
-            +#include &quot;xe_gt_printk.h&quot; <br>
-            +#include &quot;xe_uc_fw.h&quot; <br>
-            + <br>
-            +static struct xe_gt * <br>
-            +gsc_to_gt(struct xe_gsc *gsc) <br>
-            +{ <br>
-            +&nbsp;&nbsp;&nbsp; return container_of(gsc, struct xe_gt, uc.gsc); <br>
-            +} <br>
-            + <br>
-            +int xe_gsc_init(struct xe_gsc *gsc) <br>
-            +{ <br>
-            +&nbsp;&nbsp;&nbsp; struct xe_gt *gt = gsc_to_gt(gsc); <br>
-            +&nbsp;&nbsp;&nbsp; struct xe_tile *tile = gt_to_tile(gt); <br>
-            +&nbsp;&nbsp;&nbsp; int ret; <br>
-            + <br>
-            +&nbsp;&nbsp;&nbsp; gsc-&gt;fw.type = XE_UC_FW_TYPE_GSC; <br>
-            + <br>
-            +&nbsp;&nbsp;&nbsp; /* The GSC uC is only available on the media GT */ <br>
-            +&nbsp;&nbsp;&nbsp; if (tile-&gt;media_gt &amp;&amp; (gt !=
-            tile-&gt;media_gt)) { <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_uc_fw_change_status(&amp;gsc-&gt;fw,
-            XE_UC_FIRMWARE_NOT_SUPPORTED); <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0; <br>
-            +&nbsp;&nbsp;&nbsp; } <br>
-            + <br>
-            +&nbsp;&nbsp;&nbsp; /* <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp; * GSC can be &quot;not supported&quot; where GuC is instead
-            supported, so we <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp; * don't want to fail if xe_uc_fw_init() returns an
-            error due to that. <br>
-          </blockquote>
-          Not following this comment. Can you explain more? <br>
-        </blockquote>
-        <br>
-        xe_uc_fw_init() is going to fail if the GSC FW is not defined
-        for the platform. The uC switch is global for all FWs, so either
-        all FW init functions are called or none of them; since we do
-        have to handle the case where GuC is supported and GSC is not,
-        xe_gsc_init() needs to not fail in that scenario. We do still
-        have to call xe_uc_fw_init() as that's where the FW selection is
-        (and therefore where we find out if it is defined or not), so
-        the solution is to check the enablement status first before
-        checking the return code. <br>
-        <br>
-      </blockquote>
-      Maybe go with this instead?<br>
-      <blockquote>Some platforms can have GuC (and HuC?) but not GSC.
-        That would cause xe_uc_fw_init(gsc) to return a &quot;not supported&quot;
-        failure code and abort all firmware loading. So check for GSC
-        being enabled before propagating the failure back up. That way
-        the higher level will keep going and load GuC/HuC as
-        appropriate.<br>
-      </blockquote>
-    </blockquote>
-    <br>
-    HuC can also be &quot;not supported&quot;, but apart from that I'll switch to
-    the comment you suggested.<br>
-    <br>
-    Daniele<br>
-    <br>
-    <blockquote type="cite" cite="mid:828ccf67-179f-4615-9bf3-cf70f807abb5@intel.com">
-      <blockquote> </blockquote>
-      <br>
-      <br>
-      <blockquote type="cite" cite="mid:b60165a0-923f-4ed2-a8b4-aeb3f7a0c87a@intel.com">
-        <blockquote type="cite"> <br>
-          <blockquote type="cite">+&nbsp;&nbsp;&nbsp;&nbsp; * To avoid this problem, check
-            the FW status before the return code. <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp; */ <br>
-            +&nbsp;&nbsp;&nbsp; ret = xe_uc_fw_init(&amp;gsc-&gt;fw); <br>
-            +&nbsp;&nbsp;&nbsp; if (!xe_uc_fw_is_enabled(&amp;gsc-&gt;fw)) <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0; <br>
-            +&nbsp;&nbsp;&nbsp; else if (ret) <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto out; <br>
-            + <br>
-            +&nbsp;&nbsp;&nbsp; return 0; <br>
-            + <br>
-            +out: <br>
-            +&nbsp;&nbsp;&nbsp; xe_gt_err(gt, &quot;GSC init failed with %d&quot;, ret); <br>
-            +&nbsp;&nbsp;&nbsp; return ret; <br>
-            +} <br>
-            + <br>
-            diff --git a/drivers/gpu/drm/xe/xe_gsc.h
-            b/drivers/gpu/drm/xe/xe_gsc.h <br>
-            new file mode 100644 <br>
-            index 000000000000..baa7f21f4204 <br>
-            --- /dev/null <br>
-            +++ b/drivers/gpu/drm/xe/xe_gsc.h <br>
-            @@ -0,0 +1,13 @@ <br>
-            +/* SPDX-License-Identifier: MIT */ <br>
-            +/* <br>
-            + * Copyright © 2023 Intel Corporation <br>
-            + */ <br>
-            + <br>
-            +#ifndef _XE_GSC_H_ <br>
-            +#define _XE_GSC_H_ <br>
-            + <br>
-            +#include &quot;xe_gsc_types.h&quot; <br>
-            + <br>
-            +int xe_gsc_init(struct xe_gsc *gsc); <br>
-            + <br>
-            +#endif <br>
-            diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h
-            b/drivers/gpu/drm/xe/xe_gsc_types.h <br>
-            new file mode 100644 <br>
-            index 000000000000..135f156e3736 <br>
-            --- /dev/null <br>
-            +++ b/drivers/gpu/drm/xe/xe_gsc_types.h <br>
-            @@ -0,0 +1,19 @@ <br>
-            +/* SPDX-License-Identifier: MIT */ <br>
-            +/* <br>
-            + * Copyright © 2023 Intel Corporation <br>
-            + */ <br>
-            + <br>
-            +#ifndef _XE_GSC_TYPES_H_ <br>
-            +#define _XE_GSC_TYPES_H_ <br>
-            + <br>
-            +#include &quot;xe_uc_fw_types.h&quot; <br>
-            + <br>
-            +/** <br>
-            + * struct xe_gsc - GSC <br>
-            + */ <br>
-            +struct xe_gsc { <br>
-            +&nbsp;&nbsp;&nbsp; /** @fw: Generic uC firmware management */ <br>
-            +&nbsp;&nbsp;&nbsp; struct xe_uc_fw fw; <br>
-            +}; <br>
-            + <br>
-            +#endif <br>
-            diff --git a/drivers/gpu/drm/xe/xe_uc.c
-            b/drivers/gpu/drm/xe/xe_uc.c <br>
-            index 784f53c5f282..b67154c78dff 100644 <br>
-            --- a/drivers/gpu/drm/xe/xe_uc.c <br>
-            +++ b/drivers/gpu/drm/xe/xe_uc.c <br>
-            @@ -6,6 +6,7 @@ <br>
-            &nbsp; #include &quot;xe_uc.h&quot; <br>
-            &nbsp; &nbsp; #include &quot;xe_device.h&quot; <br>
-            +#include &quot;xe_gsc.h&quot; <br>
-            &nbsp; #include &quot;xe_gt.h&quot; <br>
-            &nbsp; #include &quot;xe_guc.h&quot; <br>
-            &nbsp; #include &quot;xe_guc_pc.h&quot; <br>
-            @@ -32,8 +33,8 @@ int xe_uc_init(struct xe_uc *uc) <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int ret; <br>
-            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /* <br>
-            -&nbsp;&nbsp;&nbsp;&nbsp; * We call the GuC/HuC init functions even if GuC
-            submission is off to <br>
-            -&nbsp;&nbsp;&nbsp;&nbsp; * correctly move our tracking of the FW state to
-            &quot;disabled&quot;. <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp; * We call the GuC/HuC/GSC init functions even if GuC
-            submission is off <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp; * to correctly move our tracking of the FW state to
-            &quot;disabled&quot;. <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; */ <br>
-            &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ret = xe_guc_init(&amp;uc-&gt;guc); <br>
-            @@ -44,6 +45,10 @@ int xe_uc_init(struct xe_uc *uc) <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (ret) <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto err; <br>
-            &nbsp; +&nbsp;&nbsp;&nbsp; ret = xe_gsc_init(&amp;uc-&gt;gsc); <br>
-            +&nbsp;&nbsp;&nbsp; if (ret) <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; goto err; <br>
-            + <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (!xe_device_uc_enabled(uc_to_xe(uc))) <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0; <br>
-            &nbsp; diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c
-            b/drivers/gpu/drm/xe/xe_uc_fw.c <br>
-            index 1f7dac394a1d..af3e5cba606f 100644 <br>
-            --- a/drivers/gpu/drm/xe/xe_uc_fw.c <br>
-            +++ b/drivers/gpu/drm/xe/xe_uc_fw.c <br>
-            @@ -158,11 +158,18 @@
-            XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE, <br>
-            &nbsp; static struct xe_gt * <br>
-            &nbsp; __uc_fw_to_gt(struct xe_uc_fw *uc_fw, enum xe_uc_fw_type
-            type) <br>
-            &nbsp; { <br>
-            -&nbsp;&nbsp;&nbsp; if (type == XE_UC_FW_TYPE_GUC) <br>
-            +&nbsp;&nbsp;&nbsp; XE_WARN_ON(type &gt;= XE_UC_FW_NUM_TYPES); <br>
-            + <br>
-            +&nbsp;&nbsp;&nbsp; switch (type) { <br>
-            +&nbsp;&nbsp;&nbsp; case XE_UC_FW_TYPE_GUC: <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return container_of(uc_fw, struct xe_gt,
-            uc.guc.fw); <br>
-            +&nbsp;&nbsp;&nbsp; case XE_UC_FW_TYPE_HUC: <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return container_of(uc_fw, struct xe_gt,
-            uc.huc.fw); <br>
-            +&nbsp;&nbsp;&nbsp; case XE_UC_FW_TYPE_GSC: <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return container_of(uc_fw, struct xe_gt,
-            uc.gsc.fw); <br>
-            +&nbsp;&nbsp;&nbsp; } <br>
-            &nbsp; -&nbsp;&nbsp;&nbsp; XE_WARN_ON(type != XE_UC_FW_TYPE_HUC); <br>
-            -&nbsp;&nbsp;&nbsp; return container_of(uc_fw, struct xe_gt, uc.huc.fw); <br>
-            +&nbsp;&nbsp;&nbsp; return NULL; <br>
-            &nbsp; } <br>
-            &nbsp; &nbsp; static struct xe_gt *uc_fw_to_gt(struct xe_uc_fw *uc_fw)
-            <br>
-            @@ -197,6 +204,14 @@ uc_fw_auto_select(struct xe_device *xe,
-            struct xe_uc_fw *uc_fw) <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; u32 count; <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; int i; <br>
-            &nbsp; +&nbsp;&nbsp;&nbsp; /* <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp; * GSC FW support is still not fully in place, so we're
-            not defining <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp; * the FW blob yet because we don't want the driver to
-            attempt to load <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp; * it until we're ready for it. <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp; */ <br>
-            +&nbsp;&nbsp;&nbsp; if (uc_fw-&gt;type == XE_UC_FW_TYPE_GSC) <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return; <br>
-            + <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xe_assert(xe, uc_fw-&gt;type &lt;
-            ARRAY_SIZE(blobs_all)); <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; entries = blobs_all[uc_fw-&gt;type].entries; <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; count = blobs_all[uc_fw-&gt;type].count; <br>
-            diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h
-            b/drivers/gpu/drm/xe/xe_uc_fw.h <br>
-            index 1d1a0c156cdf..d4682b0276e2 100644 <br>
-            --- a/drivers/gpu/drm/xe/xe_uc_fw.h <br>
-            +++ b/drivers/gpu/drm/xe/xe_uc_fw.h <br>
-            @@ -96,6 +96,8 @@ static inline const char
-            *xe_uc_fw_type_repr(enum xe_uc_fw_type type) <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return &quot;GuC&quot;; <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; case XE_UC_FW_TYPE_HUC: <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return &quot;HuC&quot;; <br>
-            +&nbsp;&nbsp;&nbsp; case XE_UC_FW_TYPE_GSC: <br>
-            +&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return &quot;GSC&quot;; <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; } <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return &quot;uC&quot;; <br>
-            &nbsp; } <br>
-            diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h
-            b/drivers/gpu/drm/xe/xe_uc_fw_types.h <br>
-            index e4774c560e67..239256bfdb07 100644 <br>
-            --- a/drivers/gpu/drm/xe/xe_uc_fw_types.h <br>
-            +++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h <br>
-            @@ -55,9 +55,10 @@ enum xe_uc_fw_status { <br>
-            &nbsp; &nbsp; enum xe_uc_fw_type { <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; XE_UC_FW_TYPE_GUC = 0, <br>
-            -&nbsp;&nbsp;&nbsp; XE_UC_FW_TYPE_HUC <br>
-            +&nbsp;&nbsp;&nbsp; XE_UC_FW_TYPE_HUC, <br>
-            +&nbsp;&nbsp;&nbsp; XE_UC_FW_TYPE_GSC <br>
-            &nbsp; }; <br>
-            -#define XE_UC_FW_NUM_TYPES 2 <br>
-            +#define XE_UC_FW_NUM_TYPES 3 <br>
-          </blockquote>
-          Why is this not just a sentinel entry of the enum? <br>
-        </blockquote>
-        <br>
-        No idea, I'm just updating the value. It is the same in i915. <br>
-      </blockquote>
-      Seems like a good opportunity to fix it.<br>
-      <br>
-      John.<br>
-      <br>
-      <blockquote type="cite" cite="mid:b60165a0-923f-4ed2-a8b4-aeb3f7a0c87a@intel.com"> <br>
-        Daniele <br>
-        <br>
-        <blockquote type="cite"> <br>
-          John. <br>
-          <br>
-          <blockquote type="cite">&nbsp; &nbsp; /** <br>
-            &nbsp;&nbsp; * struct xe_uc_fw_version - Version for XE micro
-            controller firmware <br>
-            diff --git a/drivers/gpu/drm/xe/xe_uc_types.h
-            b/drivers/gpu/drm/xe/xe_uc_types.h <br>
-            index 49bef6498b85..9924e4484866 100644 <br>
-            --- a/drivers/gpu/drm/xe/xe_uc_types.h <br>
-            +++ b/drivers/gpu/drm/xe/xe_uc_types.h <br>
-            @@ -6,6 +6,7 @@ <br>
-            &nbsp; #ifndef _XE_UC_TYPES_H_ <br>
-            &nbsp; #define _XE_UC_TYPES_H_ <br>
-            &nbsp; +#include &quot;xe_gsc_types.h&quot; <br>
-            &nbsp; #include &quot;xe_guc_types.h&quot; <br>
-            &nbsp; #include &quot;xe_huc_types.h&quot; <br>
-            &nbsp; #include &quot;xe_wopcm_types.h&quot; <br>
-            @@ -18,6 +19,8 @@ struct xe_uc { <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct xe_guc guc; <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /** @huc: HuC */ <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct xe_huc huc; <br>
-            +&nbsp;&nbsp;&nbsp; /** @gsc: Graphics Security Controller */ <br>
-            +&nbsp;&nbsp;&nbsp; struct xe_gsc gsc; <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /** @wopcm: WOPCM */ <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; struct xe_wopcm wopcm; <br>
-            &nbsp; }; <br>
-          </blockquote>
-          <br>
-        </blockquote>
-        <br>
-      </blockquote>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------6QVOoUM1uEA4hkoaS3Ugj9Xr--
+> 
+> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_wait_user_fence.c | 56 +------------------------
+>   include/uapi/drm/xe_drm.h               | 17 +-------
+>   2 files changed, 3 insertions(+), 70 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> index dcbb1c578b22..a9d231548498 100644
+> --- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> +++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> @@ -58,29 +58,7 @@ static const enum xe_engine_class user_to_xe_engine_class[] = {
+>   	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+>   };
+>   
+> -static int check_hw_engines(struct xe_device *xe,
+> -			    struct drm_xe_engine_class_instance *eci,
+> -			    int num_engines)
+> -{
+> -	int i;
+> -
+> -	for (i = 0; i < num_engines; ++i) {
+> -		enum xe_engine_class user_class =
+> -			user_to_xe_engine_class[eci[i].engine_class];
+> -
+> -		if (eci[i].sched_group_id >= xe->info.tile_count)
+> -			return -EINVAL;
+> -
+> -		if (!xe_gt_hw_engine(xe_device_get_gt(xe, eci[i].sched_group_id),
+> -				     user_class, eci[i].engine_instance, true))
+> -			return -EINVAL;
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+> -#define VALID_FLAGS	(DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP | \
+> -			 DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)
+> +#define VALID_FLAGS	(DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)
+>   #define MAX_OP		DRM_XE_UFENCE_WAIT_OP_LTE
+>   
+>   static long to_jiffies_timeout(struct xe_device *xe,
+> @@ -132,12 +110,8 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>   	struct xe_device *xe = to_xe_device(dev);
+>   	DEFINE_WAIT_FUNC(w_wait, woken_wake_function);
+>   	struct drm_xe_wait_user_fence *args = data;
+> -	struct drm_xe_engine_class_instance eci[XE_HW_ENGINE_MAX_INSTANCE];
+> -	struct drm_xe_engine_class_instance __user *user_eci =
+> -		u64_to_user_ptr(args->instances);
+>   	u64 addr = args->addr;
+>   	int err;
+> -	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP;
+>   	long timeout;
+>   	ktime_t start;
+>   
+> @@ -151,41 +125,13 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>   	if (XE_IOCTL_DBG(xe, args->op > MAX_OP))
+>   		return -EINVAL;
+>   
+> -	if (XE_IOCTL_DBG(xe, no_engines &&
+> -			 (args->num_engines || args->instances)))
+> -		return -EINVAL;
+> -
+> -	if (XE_IOCTL_DBG(xe, !no_engines && !args->num_engines))
+> -		return -EINVAL;
+> -
+>   	if (XE_IOCTL_DBG(xe, addr & 0x7))
+>   		return -EINVAL;
+>   
+> -	if (XE_IOCTL_DBG(xe, args->num_engines > XE_HW_ENGINE_MAX_INSTANCE))
+> -		return -EINVAL;
+> -
+> -	if (!no_engines) {
+> -		err = copy_from_user(eci, user_eci,
+> -				     sizeof(struct drm_xe_engine_class_instance) *
+> -			     args->num_engines);
+> -		if (XE_IOCTL_DBG(xe, err))
+> -			return -EFAULT;
+> -
+> -		if (XE_IOCTL_DBG(xe, check_hw_engines(xe, eci,
+> -						      args->num_engines)))
+> -			return -EINVAL;
+> -	}
+> -
+>   	timeout = to_jiffies_timeout(xe, args);
+>   
+>   	start = ktime_get();
+>   
+> -	/*
+> -	 * FIXME: Very simple implementation at the moment, single wait queue
+> -	 * for everything. Could be optimized to have a wait queue for every
+> -	 * hardware engine. Open coding as 'do_compare' can sleep which doesn't
+> -	 * work with the wait_event_* macros.
+> -	 */
+>   	add_wait_queue(&xe->ufence_wq, &w_wait);
+>   	for (;;) {
+>   		err = do_compare(addr, args->value, args->mask, args->op);
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 757e6da97f87..aada6f75b905 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -1278,8 +1278,7 @@ struct drm_xe_wait_user_fence {
+>   	/** @op: wait operation (type of comparison) */
+>   	__u16 op;
+>   
+> -#define DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP	(1 << 0)	/* e.g. Wait on VM bind */
+> -#define DRM_XE_UFENCE_WAIT_FLAG_ABSTIME	(1 << 1)
+> +#define DRM_XE_UFENCE_WAIT_FLAG_ABSTIME	(1 << 0)
+>   	/** @flags: wait flags */
+>   	__u16 flags;
+>   
+> @@ -1312,20 +1311,8 @@ struct drm_xe_wait_user_fence {
+>   	 */
+>   	__s64 timeout;
+>   
+> -	/**
+> -	 * @num_engines: number of engine instances to wait on, must be zero
+> -	 * when DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP set
+> -	 */
+> -	__u64 num_engines;
+> -
+> -	/**
+> -	 * @instances: user pointer to array of drm_xe_engine_class_instance to
+> -	 * wait on, must be NULL when DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP set
+> -	 */
+> -	__u64 instances;
+> -
+>   	/** @reserved: Reserved */
+> -	__u64 reserved[2];
+> +	__u64 reserved[4];
+>   };
+>   
+>   /**
