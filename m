@@ -4,41 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E7EAFC4332F
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 08:16:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 787A5C4332F
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 08:23:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B8BE310E704;
-	Wed,  8 Nov 2023 08:16:26 +0000 (UTC)
-Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1812A10E704
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Nov 2023 08:16:23 +0000 (UTC)
-Received: internal info suppressed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
- t=1699431135; bh=jHKJWZl3fXswHUqdOMPzqAYiH85ysgNp6UQTVRc26YQ=;
- h=From:To:Cc:Subject:Date:From;
- b=VFqf3KJfvfWkD92Bnb6/mQl0JFNQeubPerpUPK2fyBO88mYa6XaNDC5HPM5xJDBU4
- kgq422BAB/q32Wm3SkzfuVVg3rM3NT1t0mQwH+5G0jGQOw2dCKiToDG6YCDoioBFFp
- gYd/PvgLi1CTmAu9K/ODu/pe29c26QpYycF0vt9pjrNRgONcpOYtK2pniqt5y4IaLJ
- GoDDhakc3jE/zyoDUkhS6YV7gRVDMeDqBsFRE2Wj86stJJs9tMIP7//6a8D0B56Jsi
- wSWL5hoOEVRwcQIVSWMda/dzpq+PZbbYSOzowPCMdcfok8Vgh3t6m7WPoCyRJ/Ukay
- oGcOwFpiuCtCA==
-Received: from dliberman-vm-u22.habana-labs.com (localhost [127.0.0.1])
- by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with
- ESMTPS id 3A88C9lk981606
- (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
- Wed, 8 Nov 2023 10:12:09 +0200
-Received: (from dliberman@localhost)
- by dliberman-vm-u22.habana-labs.com (8.15.2/8.15.2/Submit) id 3A88C8qm981605; 
- Wed, 8 Nov 2023 10:12:08 +0200
-From: Dani Liberman <dliberman@habana.ai>
-To: intel-xe@lists.freedesktop.org
-Date: Wed,  8 Nov 2023 10:11:56 +0200
-Message-Id: <20231108081156.981587-1-dliberman@habana.ai>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 23A2210E484;
+	Wed,  8 Nov 2023 08:23:55 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id B67E910E484;
+ Wed,  8 Nov 2023 08:23:52 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id B005AA0169;
+ Wed,  8 Nov 2023 08:23:52 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7564378434250664377=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3] drm/xe: use variable instead of multiple
- function calls
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Haridhar Kalvala" <haridhar.kalvala@intel.com>
+Date: Wed, 08 Nov 2023 08:23:52 -0000
+Message-ID: <169943183268.24273.11369728248467718727@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231108073351.3998413-1-haridhar.kalvala@intel.com>
+In-Reply-To: <20231108073351.3998413-1-haridhar.kalvala@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe=3A?=
+ =?utf-8?q?_Add_Wa=5F14019877138_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -50,94 +39,181 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Using function calls with negative logic was a bit confusing,
-positive logic is more readable.
+--===============7564378434250664377==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2:
- - Update commit message
-v3:
- - Rebase
+== Series Details ==
 
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Signed-off-by: Dani Liberman <dliberman@habana.ai>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Michael J. Ruhl <michael.j.ruhl@intel.com>
----
- drivers/gpu/drm/xe/xe_exec.c | 15 ++++++++-------
- 1 file changed, 8 insertions(+), 7 deletions(-)
+Series: drm/xe: Add Wa_14019877138 (rev2)
+URL   : https://patchwork.freedesktop.org/series/125942/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 28e84a0bbeb0..2de6c2c05078 100644
---- a/drivers/gpu/drm/xe/xe_exec.c
-+++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -145,7 +145,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	struct xe_sched_job *job;
- 	struct dma_fence *rebind_fence;
- 	struct xe_vm *vm;
--	bool write_locked;
-+	bool write_locked, vm_with_dma_fences;
- 	ktime_t end = 0;
- 	int err = 0;
- 
-@@ -196,8 +196,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		}
- 	}
- 
-+	vm_with_dma_fences = !xe_vm_no_dma_fences(vm);
- retry:
--	if (!xe_vm_no_dma_fences(vm) && xe_vm_userptr_check_repin(vm)) {
-+	if (vm_with_dma_fences && xe_vm_userptr_check_repin(vm)) {
- 		err = down_write_killable(&vm->lock);
- 		write_locked = true;
- 	} else {
-@@ -279,7 +280,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	}
- 
- 	/* Wait behind munmap style rebinds */
--	if (!xe_vm_no_dma_fences(vm)) {
-+	if (vm_with_dma_fences) {
- 		err = drm_sched_job_add_resv_dependencies(&job->drm,
- 							  &vm->resv,
- 							  DMA_RESV_USAGE_KERNEL);
-@@ -292,7 +293,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	if (err)
- 		goto err_put_job;
- 
--	if (!xe_vm_no_dma_fences(vm)) {
-+	if (vm_with_dma_fences) {
- 		err = down_read_interruptible(&vm->userptr.notifier_lock);
- 		if (err)
- 			goto err_put_job;
-@@ -307,7 +308,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	 * the job and let the DRM scheduler / backend clean up the job.
- 	 */
- 	xe_sched_job_arm(job);
--	if (!xe_vm_no_dma_fences(vm)) {
-+	if (vm_with_dma_fences) {
- 		/* Block userptr invalidations / BO eviction */
- 		dma_resv_add_fence(&vm->resv,
- 				   &job->drm.s_fence->finished,
-@@ -330,14 +331,14 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	xe_sched_job_push(job);
- 	xe_vm_reactivate_rebind(vm);
- 
--	if (!err && !xe_vm_no_dma_fences(vm)) {
-+	if (!err && vm_with_dma_fences) {
- 		spin_lock(&xe->ttm.lru_lock);
- 		ttm_lru_bulk_move_tail(&vm->lru_bulk_move);
- 		spin_unlock(&xe->ttm.lru_lock);
- 	}
- 
- err_repin:
--	if (!xe_vm_no_dma_fences(vm))
-+	if (vm_with_dma_fences)
- 		up_read(&vm->userptr.notifier_lock);
- err_put_job:
- 	if (err)
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2_BAT -> xe-pw-125942v2_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-125942v2_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([Intel XE#692] / [Intel XE#773])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#692] / [Intel XE#773]) -> [PASS][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [FAIL][5] ([Intel XE#480]) -> [PASS][6] +2 other tests pass
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+#### Warnings ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [DMESG-FAIL][7] ([Intel XE#282] / [i915#2017]) -> [FAIL][8] ([Intel XE#616] / [Intel XE#750])
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
+  [Intel XE#692]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/692
+  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
+  [Intel XE#773]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/773
+  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+
+
+Build changes
+-------------
+
+  * Linux: xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2 -> xe-pw-125942v2
+
+  IGT_7575: 6edf8b6808de2bde968415926d2b55817f7ea1de @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2: 2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2
+  xe-pw-125942v2: 125942v2
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/index.html
+
+--===============7564378434250664377==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe: Add Wa_14019877138 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/125942/">https://patchwork.freedesktop.org/series/125942/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2_BAT -&gt; xe-pw-125942v2_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-125942v2_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/692">Intel XE#692</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/773">Intel XE#773</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/692">Intel XE#692</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/773">Intel XE#773</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-125942v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2 -&gt; xe-pw-125942v2</li>
+</ul>
+<p>IGT_7575: 6edf8b6808de2bde968415926d2b55817f7ea1de @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-478-2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2: 2319a9c72748dfb1a65cfbd89d0dab6254c7cbe2<br />
+  xe-pw-125942v2: 125942v2</p>
+
+</body>
+</html>
+
+--===============7564378434250664377==--
