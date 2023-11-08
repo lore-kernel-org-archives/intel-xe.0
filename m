@@ -4,49 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5A33DC4332F
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 17:31:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8ED14C4332F
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 17:37:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 127D610E18C;
-	Wed,  8 Nov 2023 17:31:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 003BB10E18C
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Nov 2023 17:31:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C15810E0C9;
+	Wed,  8 Nov 2023 17:37:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 909A810E0C9
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Nov 2023 17:37:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699464708; x=1731000708;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=R2QvA6g2x7DT6I0NtjEAyBXscdMtL0JNQ9E8zfhkuRo=;
- b=Nh6sOMa5yk2eHSUoGGKOKD7NIVbSC/MSFG5wcCc+/DDVTndvlzu8HOm6
- ODKlKltIbMe6Jn7qP6zErEpT3a7NGUXNkOYxsdTujhkLNK7ouarVn5Ulz
- 1t1nx+pDKHlpoSGMHLLonFfT012NBU+QbaYX7WVdDL403f3gsDGKzAV5k
- BSsiHo8xEoiwJsUnYA43NqMNEPN397h7+J/6ptA8oKSgfK7RPGw+ZNzKS
- jNKmupjIrCDbedCF2EgUEoaW8yekKlP9glBc9QPVx48BpnHt/unw86deY
- QP8mahB09CuzzekQAqLoIJWfLVPw+G+kCw4KY7obJgIqKHuKBwJc1hwGF A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="380209899"
-X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="380209899"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2023 09:31:47 -0800
+ t=1699465055; x=1731001055;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=y9I4QX0S28uiRHsq1BYjlsRHIXj6aKMFQBOvwnAUZfA=;
+ b=aNsMiPXRSqgoadVxmba7c9Gl35eR3Bz9zIC0cM2Swll/hU5Epo8xeyGb
+ Vejd7FXAYAhEbRnoGsVCtcMp7CKq7A+tLT72ycJgbghT+2lIGP+/b+PFS
+ 9ii4GQ1QcxSuz9TLURfbkGg2WAXcNGNXD8NbHxeTUx4dpaN0HCQtbQVOJ
+ KEPF4JJmQW6ubgu/Koq0R/8Is2+bWeQ0tHdVsv2bpsjL0rWxCEISNl59a
+ pbW33Wt3zLrEGfgyD58FSTarRmdmVJMg5rIBY0cY+4SGDxf7wACfFIaOq
+ mHAlbjCC8e10d6Cln7NIb1kl6FCyitj3FB1uU0wOaXMmYiiZR0Ne4RHZQ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="374864162"
+X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="374864162"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2023 09:37:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="1010336120"
-X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="1010336120"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2023 09:31:47 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org, Jonathan Cavitt <jonathan.cavitt@intel.com>
-Date: Wed,  8 Nov 2023 09:32:17 -0800
-Message-Id: <169946465775.2923027.10312136051986614777.b4-ty@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231103210324.1115369-1-jonathan.cavitt@intel.com>
-References: <20231103210324.1115369-1-jonathan.cavitt@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="886722707"
+X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="886722707"
+Received: from vseredyx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.38.119])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2023 09:37:32 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+In-Reply-To: <i5hiabop2gm67f7yl4zvszqvtczoof3v55ikpt6k7i2ejmglut@reausbodh5kn>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <202311070416.8nPv4n6G-lkp@intel.com> <87a5rqymy8.fsf@intel.com>
+ <j7woryfaopndy26jdcsteie5lsacghy74fvw646rxm7eliaey5@4nlicq3xlzfv>
+ <87fs1gy34m.fsf@intel.com>
+ <i5hiabop2gm67f7yl4zvszqvtczoof3v55ikpt6k7i2ejmglut@reausbodh5kn>
+Date: Wed, 08 Nov 2023 19:37:30 +0200
+Message-ID: <875y2cxi1x.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v3] drm/xe: clear the serviced bits on
- INTR_IDENTITY_REG
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [drm-xe:oak/drm-evictable-lru 2911/3055]
+ drivers/gpu/drm/i915/display/intel_display_power.h: linux/mutex.h is
+ included more than once.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,31 +62,55 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: saurabhg.gupta@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
- rodrigo.vivi@intel.com
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ kernel test robot <yujie.liu@intel.com>, intel-xe@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On Wed, 08 Nov 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+> On Wed, Nov 08, 2023 at 12:02:17PM +0200, Jani Nikula wrote:
+>>On Tue, 07 Nov 2023, Lucas De Marchi <lucas.demarchi@intel.com> wrote:
+>>> On Tue, Nov 07, 2023 at 10:41:51AM +0200, Jani Nikula wrote:
+>>>>On Tue, 07 Nov 2023, kernel test robot <yujie.liu@intel.com> wrote:
+>>>>> tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git oak/drm-evictable-lru
+>>>>
+>>>>Why do we have this stale branch? I don't think developers should push
+>>>>their branches to xe/kernel.git but their own repos instead.
+>>>
+>>> agreed. I just blocked branch creation in gitlab so we don't have
+>>> those accidents anymore.
+>>
+>>I was looking for this yesterday. For future reference, which knob is it
+>>and where in the gitlab UI?
+>
+> Settings > Repository > Protected branches
+>
+> 	- "drm-xe-next" [default] [protected]
+> 		- Allowed to merge: Maintainers
+> 		- Allowed to push and merge: Developers + Maintainers, Maintainers
+>
+> 	"*" (12 matching branches)
+> 		- Allowed to push and merge: No one 
+> 		- Allowed to merge: No one
 
-On Fri, 03 Nov 2023 14:03:24 -0700, Jonathan Cavitt wrote:
-> The spec for this register, like many other interrupt related ones,
-> asks software to write back '1' to clear the serviced bits. Let's
-> respect the spec.
-> 
-> v2:
-> - Update commit message
-> - Add missing CC
-> 
-> [...]
+Right. I was close. I was looking at branch rules, and adding a branch
+rule says, "To create a branch rule, you first need to create a
+protected branch." but I didn't want to create a branch. Even under
+protected branches it says, "Add protected branch", but I didn't want to
+*add* branches, just prevent pushing. Oh well.
 
-I removed the v3 log and applied. Everything in this branch is being rebased
-and we usually don't add it to the commit message.
+Thanks for doing this.
 
-Tthanks!
+> I thought about creating a role to allow branch creation, but to keep it
+> simple, I just blocked it. When/if we need it then we can temporarily
+> disable the rule, like we do for force pushes when we rebase.
 
-[1/1] drm/xe: clear the serviced bits on INTR_IDENTITY_REG
-      commit: 7a0da606f1fcf4b59d7164419f1ccd1c48d366af
+I'm not even sure you can add new roles in the free version.
 
-Best regards,
+
+BR,
+Jani.
+
 -- 
-Lucas De Marchi <lucas.demarchi@intel.com>
+Jani Nikula, Intel
