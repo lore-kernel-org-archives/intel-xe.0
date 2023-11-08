@@ -4,48 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 74BD4C4332F
-	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 13:45:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 98A14C4332F
+	for <intel-xe@archiver.kernel.org>; Wed,  8 Nov 2023 13:55:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44B1E10E75A;
-	Wed,  8 Nov 2023 13:45:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EE4F10E758
- for <intel-xe@lists.freedesktop.org>; Wed,  8 Nov 2023 13:45:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 617D710E75A;
+	Wed,  8 Nov 2023 13:55:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B805510E75A
+ for <intel-xe@lists.freedesktop.org>; Wed,  8 Nov 2023 13:55:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699451147; x=1730987147;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=pNOlZXUa3Cxaw3anRzcpZ6zpbNlC4dxjhfnUFVhA7Qs=;
- b=G5jYls8bkzoaNoXcnqhk6dtug295QN0TsTORo1pR+qczlAdmD4WsrMMR
- B56ETX68IFbteOFO1hlJQql5lBrPtcuz3O/GSPhmbFqQVqERtIsGaUZzL
- FF3r0HxZCXdekVtQm+3Xfr3bSPwbEdh2fpuFuZ3UpxpZSjuNNcb/Nifvg
- JcQznHc/oUjGCBckH8FZdzXWQ9Q4aA/Sb+gnPVM0MU9cDyIUbcXOu0/3O
- zcVqQ4Y4vVWOLGoJI1OkDhHEqMm/bI7TYSVn94HzqOO0lSfebEUroMYVr
- lGK/Re4kaqCMcsGAxBzEYJNksGNrf6bIYCX6iIAwOofLEMXNrPCn7+abW A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="2711242"
-X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; 
-   d="scan'208";a="2711242"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Nov 2023 05:45:26 -0800
+ t=1699451730; x=1730987730;
+ h=message-id:subject:from:to:date:in-reply-to:references:
+ content-transfer-encoding:mime-version;
+ bh=HFUnoECNBS/8a6pAamYXU+/saylxiAlwIv1k4UR6+7s=;
+ b=d1Ls42s+ZDX+mqZFM49c1btX91O4ZukvLH+AX3re0uW8P4+kc+ct6Z9R
+ /bqd297WgSbUKA8S2HSX4eJ6m7yqasnhUG5FOepPt0zGNsDnwn3+zcDGe
+ blUPeRRbCz7KYvBjk2XuyWJW69A1buZmm1GcZ0FIbSgsUUfeMzSbhJeMX
+ V78F9weaZGmuPm+dUgOsnHkQVL12x8o6LKWouJHKoif16p73AW5OMzyWg
+ /XgRtvn0SylydpNvlt5X25EmVvp4W2lcNsXIBqwJl4wZSpOQXHG/2f4Kf
+ +XNL4DzruzwV+EOCGN3v8iJ/0tBG8U6dS1Ij1bSFC5OElLSHTA3r6egZM A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="456260241"
+X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="456260241"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2023 05:55:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="936513475"
-X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="936513475"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orsmga005.jf.intel.com with ESMTP; 08 Nov 2023 05:45:24 -0800
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed,  8 Nov 2023 19:24:18 +0530
-Message-Id: <20231108135418.3049168-3-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231108135418.3049168-1-tejas.upadhyay@intel.com>
-References: <20231108135418.3049168-1-tejas.upadhyay@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10888"; a="1010265002"
+X-IronPort-AV: E=Sophos;i="6.03,286,1694761200"; d="scan'208";a="1010265002"
+Received: from skallurr-mobl1.ger.corp.intel.com (HELO [10.249.254.82])
+ ([10.249.254.82])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Nov 2023 05:55:28 -0800
+Message-ID: <eec61b1375b25610c714abaaf34fa265deae18d4.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
+Date: Wed, 08 Nov 2023 14:55:26 +0100
+In-Reply-To: <20231107052603.124361-1-matthew.brost@intel.com>
+References: <20231107052603.124361-1-matthew.brost@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/xe: Move device sysfs init out of
- xe_pm_init
+Subject: Re: [Intel-xe] [PATCH v2 00/27] Refactor VM bind code
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,62 +62,27 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Device sysfs needs to happen right after device probe.
-Currently it is under xe_pm_init() which does not look
-correct now as we add more sysfs entries which are not
-specific to PM.
+On Mon, 2023-11-06 at 21:25 -0800, Matthew Brost wrote:
+> WIP on refactoring VM bind to final error handling solution.
+>=20
+> Major changes are:
+> 1. Allow bind / exec IOCTLs with zero binds / batches
+> 2. Convert multiple binds from IOCTL into single job
+> 3. CPU binds in jobs
+> 4. Sync vs async bind per IOCTL rather than per queue
+>=20
+> Error handling still not 100% correct but this this series structures
+> the code to make it possible.
+>=20
+> This series shouldn't break any uAPI compatibility until the last
+> patch
+> in the series.
+>=20
+> v2: Rebase, Take in-syncs into account when num_execs or num_binds =3D=3D
+> 0
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/xe_device.c | 3 +++
- drivers/gpu/drm/xe/xe_pm.c     | 5 +----
- 2 files changed, 4 insertions(+), 4 deletions(-)
+I see a compliation failure in tests/xe_migrate.c. Looks like the Xe
+kunit tests were not in the config?
 
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 266e0d5d7159..8b6845e29bdc 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -18,6 +18,7 @@
- #include "regs/xe_regs.h"
- #include "xe_bo.h"
- #include "xe_debugfs.h"
-+#include "xe_device_sysfs.h"
- #include "xe_display.h"
- #include "xe_dma_buf.h"
- #include "xe_drm_client.h"
-@@ -452,6 +453,8 @@ int xe_device_probe(struct xe_device *xe)
- 
- 	xe_hwmon_register(xe);
- 
-+	xe_device_sysfs_init(xe);
-+
- 	err = drmm_add_action_or_reset(&xe->drm, xe_device_sanitize, xe);
- 	if (err)
- 		return err;
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index e31a91cf311c..32009da9bfeb 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -13,7 +13,6 @@
- #include "xe_bo.h"
- #include "xe_bo_evict.h"
- #include "xe_device.h"
--#include "xe_device_sysfs.h"
- #include "xe_display.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
-@@ -175,10 +174,8 @@ void xe_pm_init(struct xe_device *xe)
- 
- 	xe->d3cold.capable = xe_pm_pci_d3cold_capable(pdev);
- 
--	if (xe->d3cold.capable) {
--		xe_device_sysfs_init(xe);
-+	if (xe->d3cold.capable)
- 		xe_pm_set_vram_threshold(xe, DEFAULT_VRAM_THRESHOLD);
--	}
- 
- 	xe_pm_runtime_init(xe);
- }
--- 
-2.25.1
+/Thomas
 
