@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64B11C4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 15:46:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 85B0DC001B2
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 15:46:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAC2110E8F0;
-	Thu,  9 Nov 2023 15:46:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E424F10E8E3;
+	Thu,  9 Nov 2023 15:46:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B25DA10E8E2
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:45:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CD1E10E8F0
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:46:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699544762; x=1731080762;
+ t=1699544772; x=1731080772;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IyzyKui+LC1isei5hKIhj3bF9YDAtIy2ghhM3pzl1yY=;
- b=KPqN/LCRtA4SeYANwFC7cs4T0vdfWqYRB38PF+iGW5S9A8Cger8PUQ6b
- kEvUMQcR7enczalFlGIOKdLE+K7M9qb/WXwrlOrIP0CvMwvaYKCz2yIeq
- wn3VApmgGi6EGfBoydU1A25XClgngai3bYVfM0JTmaksmdI0Tf1+ox4QD
- itzaQgqssFiTeYOnxMHJo44kMi+up20gqm8r5jGngg2lGlS003Pqxiqer
- WvVlw0txbQuTClrSM9dMwwHtpYYywy87SLpk24MI9I1kalW+iyaf7cXzm
- ZmfEROjXzKJpALZGPIKJSbHyAEPUxm5yshpQMKippPKC3liSdxB4BtY53 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11556678"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11556678"
+ bh=8IEMCh4cfSTfslefqh032RYTEihX8ZMKyseMhOFGbuo=;
+ b=J2xr7mMYQgSEAMeiK5fo+qJpxZMl9RZjbqk9g/2Kqz2/bC9uiVQwmwTU
+ WbOOzvkiUEgHcV/DGX7JWqwY8IJW+v9p/9zQCrTSNqHl9Jlu2WDgpfbUw
+ 2lJu2NNVcdBCKQxLDTf3rZvVvi6/z0dthqXgRHsxBIa8M6Y/JMOzCq0ar
+ KwlJvtzmWuwG/ExR0mSwFFBC3kX/AKiXifx+rZIbCyVcywE6hJyfLpIRZ
+ wnhxYImaqdAAV9xkDD8cQP/A4RH7g0Bn4WMmXkBnpi537Ql7von2LojVu
+ AtKqX3aoCyT+5CxaOFBMTy+aWKA+BkV/uWzjDDEtyjRj9caZInk8AwS97 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11556864"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11556864"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:45:25 -0800
+ 09 Nov 2023 07:46:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="936885991"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="936885991"
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="936886110"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="936886110"
 Received: from hschreib-mobl.ger.corp.intel.com (HELO ac699de916ef.intel.com)
  ([10.249.42.184])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:45:23 -0800
+ 09 Nov 2023 07:46:06 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  9 Nov 2023 15:44:24 +0000
-Message-Id: <20231109154457.7-11-francois.dugast@intel.com>
+Date: Thu,  9 Nov 2023 15:44:56 +0000
+Message-Id: <20231109154457.7-43-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231109154457.7-1-francois.dugast@intel.com>
 References: <20231109154457.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 10/43] drm/xe/uapi: Change rsvd to pad in
- struct drm_xe_class_instance
+Subject: [Intel-xe] [PATCH v3 42/43] drm/xe/uapi: Add block diagram of a
+ device
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,50 +63,74 @@ Cc: Francois Dugast <francois.dugast@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Change rsvd to pad in struct drm_xe_class_instance to prevent the field
-from being used in future.
+In order to make proper use the uAPI, a prerequisite is to understand
+some key concepts about the discrete GPU devices which are supported
+by the Xe driver. For example, some structs defined in the uAPI are an
+abstraction of a hardware component with a specific role.
 
-v2: Change from fixup to regular commit because this touches the
-    uAPI (Francois Dugast)
+This diagram helps to build a mental representation of a device how it
+is seen by the Xe driver. As written in the documentation, it does not
+intend to be a literal representation of an existing device. A lot
+more information could be added but the intention for the overview is
+to keep it simple, and go into detail as needed in other sections.
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 5 ++++-
- include/uapi/drm/xe_drm.h     | 4 ++--
- 2 files changed, 6 insertions(+), 3 deletions(-)
+ include/uapi/drm/xe_drm.h | 41 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 995930e47ea2..808244e668a3 100644
---- a/drivers/gpu/drm/xe/xe_query.c
-+++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -215,7 +215,10 @@ static int query_engines(struct xe_device *xe,
- 				xe_to_user_engine_class[hwe->class];
- 			hw_engine_info[i].engine_instance =
- 				hwe->logical_instance;
--			hw_engine_info[i++].gt_id = gt->info.id;
-+			hw_engine_info[i].gt_id = gt->info.id;
-+			hw_engine_info[i].pad = 0;
-+
-+			i++;
- 		}
- 
- 	if (copy_to_user(query_ptr, hw_engine_info, size)) {
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 697973fff24c..5d7836f8137d 100644
+index d586c8aeb279..4339e6fe47e4 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -159,8 +159,8 @@ struct drm_xe_engine_class_instance {
- 	__u16 engine_instance;
- 	/** @gt_id: GT ID the instance is associated with */
- 	__u16 gt_id;
--	/** @rsvd: Reserved */
--	__u16 rsvd;
-+	/** @pad: MBZ */
-+	__u16 pad;
- };
+@@ -26,6 +26,47 @@ extern "C" {
+  *
+  */
  
++/**
++ * DOC: Xe Device Block Diagram
++ *
++ * The diagram below represents a high-level simplification of a discrete
++ * GPU supported by the Xe driver. It shows some device components which
++ * are necessary to understand this API, as well as how their relations
++ * to each other. This diagram does not represent real hardware::
++ *
++ *   ┌──────────────────────────────────────────────────────────────────┐
++ *   │ ┌──────────────────────────────────────────────────┐ ┌─────────┐ │
++ *   │ │              ┌───────────────────────┐           │ │ ┌─────┐ │ │
++ *   │ │              │         VRAM0         │           │ │ │VRAM1│ │ │
++ *   │ │              └───────────┬───────────┘           │ │ └──┬──┘ │ │
++ *   │ │ ┌────────────────────────┴─────────────────────┐ │ │ ┌──┴──┐ │ │
++ *   │ │ │ ┌─────────────────────┐  ┌─────────────────┐ │ │ │ │     │ │ │
++ *   │ │ │ │ ┌──┐ ┌──┐ ┌──┐ ┌──┐ │  │ ┌─────┐ ┌─────┐ │ │ │ │ │     │ │ │
++ *   │ │ │ │ │EU│ │EU│ │EU│ │EU│ │  │ │RCS0 │ │BCS0 │ │ │ │ │ │     │ │ │
++ *   │ │ │ │ └──┘ └──┘ └──┘ └──┘ │  │ └─────┘ └─────┘ │ │ │ │ │     │ │ │
++ *   │ │ │ │ ┌──┐ ┌──┐ ┌──┐ ┌──┐ │  │ ┌─────┐ ┌─────┐ │ │ │ │ │     │ │ │
++ *   │ │ │ │ │EU│ │EU│ │EU│ │EU│ │  │ │VCS0 │ │VCS1 │ │ │ │ │ │     │ │ │
++ *   │ │ │ │ └──┘ └──┘ └──┘ └──┘ │  │ └─────┘ └─────┘ │ │ │ │ │     │ │ │
++ *   │ │ │ │ ┌──┐ ┌──┐ ┌──┐ ┌──┐ │  │ ┌─────┐ ┌─────┐ │ │ │ │ │     │ │ │
++ *   │ │ │ │ │EU│ │EU│ │EU│ │EU│ │  │ │VECS0│ │VECS1│ │ │ │ │ │ ... │ │ │
++ *   │ │ │ │ └──┘ └──┘ └──┘ └──┘ │  │ └─────┘ └─────┘ │ │ │ │ │     │ │ │
++ *   │ │ │ │ ┌──┐ ┌──┐ ┌──┐ ┌──┐ │  │ ┌─────┐ ┌─────┐ │ │ │ │ │     │ │ │
++ *   │ │ │ │ │EU│ │EU│ │EU│ │EU│ │  │ │CCS0 │ │CCS1 │ │ │ │ │ │     │ │ │
++ *   │ │ │ │ └──┘ └──┘ └──┘ └──┘ │  │ └─────┘ └─────┘ │ │ │ │ │     │ │ │
++ *   │ │ │ └─────────DSS─────────┘  │ ┌─────┐ ┌─────┐ │ │ │ │ │     │ │ │
++ *   │ │ │                          │ │CCS2 │ │CCS3 │ │ │ │ │ │     │ │ │
++ *   │ │ │ ┌─────┐ ┌─────┐ ┌─────┐  │ └─────┘ └─────┘ │ │ │ │ │     │ │ │
++ *   │ │ │ │ ... │ │ ... │ │ ... │  │                 │ │ │ │ │     │ │ │
++ *   │ │ │ └─DSS─┘ └─DSS─┘ └─DSS─┘  └─────Engines─────┘ │ │ │ │     │ │ │
++ *   │ │ └───────────────────────────GT0────────────────┘ │ │ └─GT1─┘ │ │
++ *   │ └────────────────────────────Tile0─────────────────┘ └─ Tile1──┘ │
++ *   └─────────────────────────────Device0───────┬──────────────────────┘
++ *                                               │
++ *                                               │
++ *                        ───────────────────────┴────────── PCI bus
++ *
++ */
++
  /**
+  * DOC: Xe uAPI Overview
+  *
 -- 
 2.34.1
 
