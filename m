@@ -4,26 +4,25 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FD3AC4332F
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AD4B2C4167D
 	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 15:08:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BEC7310E8C9;
-	Thu,  9 Nov 2023 15:08:27 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58B3C10E21C
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:08:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C2C510E8CA;
+	Thu,  9 Nov 2023 15:08:28 +0000 (UTC)
+Received: from mblankhorst.nl (lankhorst.se [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 927BC10E8C9
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:08:07 +0000 (UTC)
 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  9 Nov 2023 16:07:56 +0100
-Message-Id: <20231109150759.44549-7-maarten.lankhorst@linux.intel.com>
+Date: Thu,  9 Nov 2023 16:07:57 +0100
+Message-Id: <20231109150759.44549-8-maarten.lankhorst@linux.intel.com>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20231109150759.44549-1-maarten.lankhorst@linux.intel.com>
 References: <20231109150759.44549-1-maarten.lankhorst@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 6/9] FIXME drm/i915/display: add_dma_resv_fences
- is i915 only
+Subject: [Intel-xe] [PATCH 7/9] drm/i915/display: Use
+ i915_gem_object_get_dma_address to get dma address
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -35,43 +34,42 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Maarten Lankhorst <dev@lankhorst.se>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <dev@lankhorst.se>
+Works better for xe like that. obj is no longer const.
 
-I'm 99% sure that this code is no longer needed on i915, but I'm 100%
-sure it won't be needed for xe.
-
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_atomic_plane.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cursor.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-index ef553270c0796..a5ee4af25836f 100644
---- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
-@@ -1021,9 +1021,10 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state)
- static int add_dma_resv_fences(struct dma_resv *resv,
- 			       struct drm_plane_state *new_plane_state)
- {
-+	int ret = 0;
-+#ifdef I915
- 	struct dma_fence *fence = dma_fence_get(new_plane_state->fence);
- 	struct dma_fence *new;
--	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+index b342fad180ca5..0d21c34f74990 100644
+--- a/drivers/gpu/drm/i915/display/intel_cursor.c
++++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+@@ -23,6 +23,8 @@
+ #include "intel_psr.h"
+ #include "skl_watermark.h"
  
- 	ret = dma_resv_get_singleton(resv, dma_resv_usage_rw(false), &new);
- 	if (ret)
-@@ -1050,6 +1051,7 @@ static int add_dma_resv_fences(struct dma_resv *resv,
++#include "gem/i915_gem_object.h"
++
+ /* Cursor formats */
+ static const u32 intel_cursor_formats[] = {
+ 	DRM_FORMAT_ARGB8888,
+@@ -33,11 +35,11 @@ static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
+ 	struct drm_i915_private *dev_priv =
+ 		to_i915(plane_state->uapi.plane->dev);
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+-	const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
++	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
+ 	u32 base;
  
- error:
- 	dma_fence_put(fence);
-+#endif
- 	return ret;
- }
+ 	if (DISPLAY_INFO(dev_priv)->cursor_needs_physical)
+-		base = sg_dma_address(obj->mm.pages->sgl);
++		base = i915_gem_object_get_dma_address(obj, 0);
+ 	else
+ 		base = intel_plane_ggtt_offset(plane_state);
  
 -- 
 2.39.2
