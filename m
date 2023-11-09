@@ -4,50 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FDF1C001B2
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 15:46:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7EA61C4332F
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 15:46:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AACA010E8DF;
-	Thu,  9 Nov 2023 15:46:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB6610E8E0;
+	Thu,  9 Nov 2023 15:46:15 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7B7110E8E2
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:46:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1897710E8E0
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:46:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699544769; x=1731080769;
+ t=1699544770; x=1731080770;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7byz5uYdyIdN3a2VkEDzhYJTB70E2Ho3aUPuCamgCK8=;
- b=jAn33NIZKgXB62/31ioaoPMQPRHfNzSFSZJqeRKRu8qdth6LbppA+FJY
- xQrHpLcVhwMcD6rng/z0JYt62QMFhsQnb0oIrTV7eaILXowmZxJ6sNiyM
- lhS9u6uC8tSzf75YrejnWew3Z19pfoO6NqGZBpsgt6yHGL0FUmmNURO9o
- iHIyEle+jnTfgwcdImRJCZmbWRH7QoaV4AoL79eYl05nZCnIVFdSDXpGo
- 4LFUA+0w/fKwzuTevPba90vNU+TZiTsU/KK915oH21UL0Sa4wuxt5uzqx
- H5TLmsNpWd6JCdg/+bQaCyeskS+B42hxbusi6n+/AGs0KHRXkttzy8B4d g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11556756"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11556756"
+ bh=4E8x8CNaEzyoD91Kee0G6pjMOvuwH65zLmDrmDj9Kqg=;
+ b=m9qMbfPvuWXK3tMwGsK58mdv3BjhzqVPBGtDRcONx2bgq+LkvHZx/iFH
+ /vgqbSY1Csyg83F4AK9HnKxSw/dGfVeweIK/SXVvscro4MPpRwS5FfBX7
+ C6xPegejA5ufmKeWSOLKVTkZ0xp6TYgE48pevQ8T5/63yh0e39TXcPMRa
+ /a4ES+tzVn9TW1WvUJuBI2bj8kd4GrgaG+KtfJbs/mwBzbHHmNkH0dD8l
+ bT23c/8BTgn3jWpUShk6hYTTm2xe2mCCU0uUDCQgROx/8++qHXA63joWj
+ AJI5yPTebULZFF5G2jJ04BmCmByV5ELpHuTPB5FDyp2IuZFuIaiou96bP g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11556789"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11556789"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:45:42 -0800
+ 09 Nov 2023 07:45:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="936886032"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="936886032"
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="936886054"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="936886054"
 Received: from hschreib-mobl.ger.corp.intel.com (HELO ac699de916ef.intel.com)
  ([10.249.42.184])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:45:40 -0800
+ 09 Nov 2023 07:45:48 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  9 Nov 2023 15:44:36 +0000
-Message-Id: <20231109154457.7-23-francois.dugast@intel.com>
+Date: Thu,  9 Nov 2023 15:44:42 +0000
+Message-Id: <20231109154457.7-29-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231109154457.7-1-francois.dugast@intel.com>
 References: <20231109154457.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 22/43] drm/xe/uapi: Reject bo creation of
- unaligned size
+Subject: [Intel-xe] [PATCH v3 28/43] drm/xe/uapi: Differentiate WAIT_OP from
+ WAIT_MASK
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,162 +58,140 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-For xe bo creation we request passing size which matches system or
-vram minimum page alignment. This way we want to ensure userspace
-is aware of region constraints and not aligned allocations will be
-rejected returning EINVAL.
+On one hand the WAIT_OP represents the operation use for waiting such
+as ==, !=, > and so on. On the other hand, the mask is applied to the
+value used for comparision. Split those two to bring clarity to the uapi.
 
-v2:
-- Rebase, Update uAPI documentation. (Thomas)
-v3:
-- Adjust the dma-buf kunit test accordingly. (Thomas)
-v4:
-- Fixed rebase conflicts and updated commit message. (Francois)
-
-Signed-off-by: Mauro Carvalho Chehab <mauro.chehab@linux.intel.com>
-Signed-off-by: Zbigniew Kempczyński <zbigniew.kempczynski@intel.com>
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/tests/xe_dma_buf.c |  8 +++++++-
- drivers/gpu/drm/xe/xe_bo.c            | 24 ++++++++++++++++--------
- include/uapi/drm/xe_drm.h             | 25 +++++++++++++++++--------
- 3 files changed, 40 insertions(+), 17 deletions(-)
+ drivers/gpu/drm/xe/xe_wait_user_fence.c | 14 ++++-----
+ include/uapi/drm/xe_drm.h               | 41 +++++++++++++------------
+ 2 files changed, 28 insertions(+), 27 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_dma_buf.c b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-index 18c00bc03024..a6756b554069 100644
---- a/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-+++ b/drivers/gpu/drm/xe/tests/xe_dma_buf.c
-@@ -109,14 +109,20 @@ static void xe_test_dmabuf_import_same_driver(struct xe_device *xe)
- 	struct drm_gem_object *import;
- 	struct dma_buf *dmabuf;
- 	struct xe_bo *bo;
-+	size_t size;
+diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+index 13562db6c07f..4d5c2555ce41 100644
+--- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
++++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+@@ -25,22 +25,22 @@ static int do_compare(u64 addr, u64 value, u64 mask, u16 op)
+ 		return -EFAULT;
  
- 	/* No VRAM on this device? */
- 	if (!ttm_manager_type(&xe->ttm, XE_PL_VRAM0) &&
- 	    (params->mem_mask & XE_BO_CREATE_VRAM0_BIT))
- 		return;
+ 	switch (op) {
+-	case DRM_XE_UFENCE_WAIT_EQ:
++	case DRM_XE_UFENCE_WAIT_OP_EQ:
+ 		passed = (rvalue & mask) == (value & mask);
+ 		break;
+-	case DRM_XE_UFENCE_WAIT_NEQ:
++	case DRM_XE_UFENCE_WAIT_OP_NEQ:
+ 		passed = (rvalue & mask) != (value & mask);
+ 		break;
+-	case DRM_XE_UFENCE_WAIT_GT:
++	case DRM_XE_UFENCE_WAIT_OP_GT:
+ 		passed = (rvalue & mask) > (value & mask);
+ 		break;
+-	case DRM_XE_UFENCE_WAIT_GTE:
++	case DRM_XE_UFENCE_WAIT_OP_GTE:
+ 		passed = (rvalue & mask) >= (value & mask);
+ 		break;
+-	case DRM_XE_UFENCE_WAIT_LT:
++	case DRM_XE_UFENCE_WAIT_OP_LT:
+ 		passed = (rvalue & mask) < (value & mask);
+ 		break;
+-	case DRM_XE_UFENCE_WAIT_LTE:
++	case DRM_XE_UFENCE_WAIT_OP_LTE:
+ 		passed = (rvalue & mask) <= (value & mask);
+ 		break;
+ 	default:
+@@ -81,7 +81,7 @@ static int check_hw_engines(struct xe_device *xe,
  
-+	size = PAGE_SIZE;
-+	if ((params->mem_mask & XE_BO_CREATE_VRAM0_BIT) &&
-+	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
-+		size = SZ_64K;
-+
- 	kunit_info(test, "running %s\n", __func__);
--	bo = xe_bo_create(xe, NULL, NULL, PAGE_SIZE, ttm_bo_type_device,
-+	bo = xe_bo_create(xe, NULL, NULL, size, ttm_bo_type_device,
- 			  XE_BO_CREATE_USER_BIT | params->mem_mask);
- 	if (IS_ERR(bo)) {
- 		KUNIT_FAIL(test, "xe_bo_create() failed with err=%ld\n",
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 87971f4faa58..38a67015caef 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1202,6 +1202,7 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 	};
- 	struct ttm_placement *placement;
- 	uint32_t alignment;
-+	size_t aligned_size;
- 	int err;
+ #define VALID_FLAGS	(DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP | \
+ 			 DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)
+-#define MAX_OP		DRM_XE_UFENCE_WAIT_LTE
++#define MAX_OP		DRM_XE_UFENCE_WAIT_OP_LTE
  
- 	/* Only kernel objects should set GT */
-@@ -1212,23 +1213,30 @@ struct xe_bo *__xe_bo_create_locked(struct xe_device *xe, struct xe_bo *bo,
- 		return ERR_PTR(-EINVAL);
- 	}
- 
--	if (!bo) {
--		bo = xe_bo_alloc();
--		if (IS_ERR(bo))
--			return bo;
--	}
--
- 	if (flags & (XE_BO_CREATE_VRAM_MASK | XE_BO_CREATE_STOLEN_BIT) &&
- 	    !(flags & XE_BO_CREATE_IGNORE_MIN_PAGE_SIZE_BIT) &&
- 	    xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K) {
--		size = ALIGN(size, SZ_64K);
-+		aligned_size = ALIGN(size, SZ_64K);
-+		if (type != ttm_bo_type_device)
-+			size = ALIGN(size, SZ_64K);
- 		flags |= XE_BO_INTERNAL_64K;
- 		alignment = SZ_64K >> PAGE_SHIFT;
-+
- 	} else {
--		size = ALIGN(size, PAGE_SIZE);
-+		aligned_size = ALIGN(size, SZ_4K);
-+		flags &= ~XE_BO_INTERNAL_64K;
- 		alignment = SZ_4K >> PAGE_SHIFT;
- 	}
- 
-+	if (type == ttm_bo_type_device && aligned_size != size)
-+		return ERR_PTR(-EINVAL);
-+
-+	if (!bo) {
-+		bo = xe_bo_alloc();
-+		if (IS_ERR(bo))
-+			return bo;
-+	}
-+
- 	bo->tile = tile;
- 	bo->size = size;
- 	bo->flags = flags;
+ static long to_jiffies_timeout(struct xe_device *xe,
+ 			       struct drm_xe_wait_user_fence *args)
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 9210df850ece..f796d05157a4 100644
+index 5217558a32d0..c30f7ea3fae3 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -219,11 +219,13 @@ struct drm_xe_query_mem_region {
- 	 *
- 	 * When the kernel allocates memory for this region, the
- 	 * underlying pages will be at least @min_page_size in size.
--	 *
--	 * Important note: When userspace allocates a GTT address which
--	 * can point to memory allocated from this region, it must also
--	 * respect this minimum alignment. This is enforced by the
--	 * kernel.
-+	 * Buffer objects with an allowable placement in this region must be
-+	 * created with a size aligned to this value.
-+	 * GPU virtual address mappings of (parts of) buffer objects that
-+	 * may be placed in this region must also have their GPU virtual
-+	 * address and range aligned to this value.
-+	 * Affected IOCTLS will return %-EINVAL if alignment restrictions are
-+	 * not met.
+@@ -1140,22 +1140,22 @@ struct drm_xe_exec_queue_get_property {
+  * Returns to user on user fence completion or timeout.
+  *
+  * The wait @op can be:
+- *  - %DRM_XE_UFENCE_WAIT_EQ
+- *  - %DRM_XE_UFENCE_WAIT_NEQ
+- *  - %DRM_XE_UFENCE_WAIT_GT
+- *  - %DRM_XE_UFENCE_WAIT_GTE
+- *  - %DRM_XE_UFENCE_WAIT_LT
+- *  - %DRM_XE_UFENCE_WAIT_LTE
++ *  - %DRM_XE_UFENCE_WAIT_OP_EQ
++ *  - %DRM_XE_UFENCE_WAIT_OP_NEQ
++ *  - %DRM_XE_UFENCE_WAIT_OP_GT
++ *  - %DRM_XE_UFENCE_WAIT_OP_GTE
++ *  - %DRM_XE_UFENCE_WAIT_OP_LT
++ *  - %DRM_XE_UFENCE_WAIT_OP_LTE
+  *
+  * The wait @flags can be:
+  *  - %DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP
+  *  - %DRM_XE_UFENCE_WAIT_FLAG_ABSTIME
+  *
+  * The wait @mask can be:
+- *  - %DRM_XE_UFENCE_WAIT_U8
+- *  - %DRM_XE_UFENCE_WAIT_U16
+- *  - %DRM_XE_UFENCE_WAIT_U32
+- *  - %DRM_XE_UFENCE_WAIT_U64
++ *  - %DRM_XE_UFENCE_WAIT_MASK_U8
++ *  - %DRM_XE_UFENCE_WAIT_MASK_U16
++ *  - %DRM_XE_UFENCE_WAIT_MASK_U32
++ *  - %DRM_XE_UFENCE_WAIT_MASK_U64
+  *
+  */
+ struct drm_xe_wait_user_fence {
+@@ -1167,12 +1167,12 @@ struct drm_xe_wait_user_fence {
  	 */
- 	__u32 min_page_size;
- 	/**
-@@ -372,6 +374,14 @@ struct drm_xe_query_config {
- #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID		0
- #define DRM_XE_QUERY_CONFIG_FLAGS			1
- 	#define DRM_XE_QUERY_CONFIG_FLAGS_HAS_VRAM	(0x1 << 0)
-+	/*
-+	 * DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT - This returns the
-+	 * maximum value of the &min_page_size across all memory regions
-+	 * the device implements. User-space code that does not want
-+	 * to track @min_page_size per region can use this value for
-+	 * a buffer-object size and GPU virtual address and -range
-+	 * alignment value that is valid for all regions.
-+	 */
- #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
- #define DRM_XE_QUERY_CONFIG_VA_BITS			3
- #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
-@@ -625,9 +635,8 @@ struct drm_xe_gem_create {
- 	__u64 extensions;
+ 	__u64 addr;
  
- 	/**
--	 * @size: Requested size for the object
--	 *
--	 * The (page-aligned) allocated size for the object will be returned.
-+	 * @size: Size of the object to be created, must match region
-+	 * (system or vram) minimum alignment (&min_page_size).
- 	 */
- 	__u64 size;
+-#define DRM_XE_UFENCE_WAIT_EQ	0
+-#define DRM_XE_UFENCE_WAIT_NEQ	1
+-#define DRM_XE_UFENCE_WAIT_GT	2
+-#define DRM_XE_UFENCE_WAIT_GTE	3
+-#define DRM_XE_UFENCE_WAIT_LT	4
+-#define DRM_XE_UFENCE_WAIT_LTE	5
++#define DRM_XE_UFENCE_WAIT_OP_EQ	0x0
++#define DRM_XE_UFENCE_WAIT_OP_NEQ	0x1
++#define DRM_XE_UFENCE_WAIT_OP_GT	0x2
++#define DRM_XE_UFENCE_WAIT_OP_GTE	0x3
++#define DRM_XE_UFENCE_WAIT_OP_LT	0x4
++#define DRM_XE_UFENCE_WAIT_OP_LTE	0x5
+ 	/** @op: wait operation (type of comparison) */
+ 	__u16 op;
  
+@@ -1187,12 +1187,13 @@ struct drm_xe_wait_user_fence {
+ 	/** @value: compare value */
+ 	__u64 value;
+ 
+-#define DRM_XE_UFENCE_WAIT_U8		0xffu
+-#define DRM_XE_UFENCE_WAIT_U16		0xffffu
+-#define DRM_XE_UFENCE_WAIT_U32		0xffffffffu
+-#define DRM_XE_UFENCE_WAIT_U64		0xffffffffffffffffu
++#define DRM_XE_UFENCE_WAIT_MASK_U8	0xffu
++#define DRM_XE_UFENCE_WAIT_MASK_U16	0xffffu
++#define DRM_XE_UFENCE_WAIT_MASK_U32	0xffffffffu
++#define DRM_XE_UFENCE_WAIT_MASK_U64	0xffffffffffffffffu
+ 	/** @mask: comparison mask */
+ 	__u64 mask;
++
+ 	/**
+ 	 * @timeout: how long to wait before bailing, value in nanoseconds.
+ 	 * Without DRM_XE_UFENCE_WAIT_FLAG_ABSTIME flag set (relative timeout)
 -- 
 2.34.1
 
