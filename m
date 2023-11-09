@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 388E1C4332F
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 20:57:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E349C4332F
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 20:57:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81EB310E90C;
-	Thu,  9 Nov 2023 20:57:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4C1810E90D;
+	Thu,  9 Nov 2023 20:57:47 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 02FBA10E919;
- Thu,  9 Nov 2023 20:57:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id B184C10E90D;
+ Thu,  9 Nov 2023 20:57:42 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C1EA8A7DFB;
- Thu,  9 Nov 2023 20:57:26 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id BB6C9A7DFB;
+ Thu,  9 Nov 2023 20:57:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 09 Nov 2023 20:57:26 -0000
-Message-ID: <169956344679.26588.18245943309426343721@emeril.freedesktop.org>
+Date: Thu, 09 Nov 2023 20:57:41 -0000
+Message-ID: <169956346176.26589.2510478271934582997@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231109175132.3084142-1-lucas.demarchi@intel.com>
 In-Reply-To: <20231109175132.3084142-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Fix_builtin_vs_module_configuration?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Fi?=
+ =?utf-8?q?x_builtin_vs_module_configuration?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,10 +52,44 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: b11007e91 drm/xe/tests: Fix migrate test
-=== git am output follows ===
-Applying: fixup! drm/xe/display: Implement display support
-Applying: drm/xe: Fix build with KUNIT=m
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 4e4557871096c85f03e927c652c00dba4b1a1d10
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Thu Nov 9 09:51:32 2023 -0800
+
+    drm/xe: Fix build with KUNIT=m
+    
+    Due to the current integration between "live" xe kunit tests and kunit,
+    it's not possible to have a build with the following combination:
+    
+            CONFIG_DRM_XE=y
+            CONFIG_KUNIT=m
+    
+    ... even if kconfig doesn't block it. The reason for the failure is that
+    some compilation units are pulled in xe.ko:
+    
+            drivers/gpu/drm/xe/xe_bo.c:#include "tests/xe_bo.c"
+            drivers/gpu/drm/xe/xe_dma_buf.c:#include "tests/xe_dma_buf.c"
+            drivers/gpu/drm/xe/xe_migrate.c:#include "tests/xe_migrate.c"
+            drivers/gpu/drm/xe/xe_pci.c:#include "tests/xe_pci.c"
+    
+    Those files shouldn't use symbols from kunit, which should be reserved
+    to the tests/*_test.c files. Detangling this dependency doesn't seem
+    very straightforward, so fix the immediate issue instructing kconfig to
+    block the problematic configuration.
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch b11007e91f8785a96903d9d3c3d1efbe7e969eaf drm-intel
+608b0f5f4 fixup! drm/xe/display: Implement display support
+4e4557871 drm/xe: Fix build with KUNIT=m
 
 
