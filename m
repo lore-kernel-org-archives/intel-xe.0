@@ -4,49 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0379DC4332F
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 15:46:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A16E8C4167B
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 15:46:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B0C710E8D8;
-	Thu,  9 Nov 2023 15:46:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE7FF10E8E0;
+	Thu,  9 Nov 2023 15:46:34 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4637A10E8DC
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:45:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C28B110E8DE
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:45:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699544720; x=1731080720;
+ t=1699544722; x=1731080722;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/24oIjyBYeo0STq7nYM4naoKLa68FCm3IW2PQf/YR+I=;
- b=DwPG+rBkHDwUIWxh4N4ukzC5YkemSmdWcHX/8Mm7aJO3mzYJLfjcjmhx
- 6/M1kDodbjyEm4UAQOGpOOcVfUp+CmbXAZcSAdGAxZR7M3ywHHuFCkx/F
- rdt0wUe6GL1CT0+STCb3PUdMEo2HDzybViFWw9L3OIFL8ukdOlRCS+nhg
- R/cGxmSRQ9EnlFYbujIFWep2O/0MowXH3VRVtrW6HyD0QJHLsQoV0rkv7
- 9NoNHaWZjdKe4HWz2ThRfMDhsaPWK4SolG+5CNrb1o+Bf5P1qH2dPggBW
- J38lXWBrLG69wPB7mtfumjB62kFsZdDaEJNYY17KvZwZDfKkgMR87249V A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11556647"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11556647"
+ bh=3+4yGAvDnPcgwGJaCSwjfk84gKPl4rdYAzDpaOGxvwU=;
+ b=O9ogL4eYLEP4/gw++1AWmp208CR7L43aUqMQwEV2iPcLPTQJRXIV926h
+ 7gNxOJr6moFgnvtO3Tm7v2xFV17BN4unV/cb38M2SgHXiky5fc4q+v42b
+ LJ6fAL1kJidunpob2hbWlN3HHMmpsny113Wk2QvDQaVRe7sHB78FZWGe6
+ boxpsAuKs6f4bP14LFKprO9+xJg1PRJd1RUtUpRkpxfH3u426wL7G5dW7
+ PjAjhSyLACD2u5IaTeN1aWA/8hEsAP8MC0q+zHheWomcQje5fEiZq9P86
+ JYWrYil9dJRiu/cEO/KYQtPCUu8S04+nkzNLIK8TfKmiqyu56AGZyyR4l Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11556656"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11556656"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:45:20 -0800
+ 09 Nov 2023 07:45:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="936885979"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="936885979"
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="936885982"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="936885982"
 Received: from hschreib-mobl.ger.corp.intel.com (HELO ac699de916ef.intel.com)
  ([10.249.42.184])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:45:18 -0800
+ 09 Nov 2023 07:45:19 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  9 Nov 2023 15:44:20 +0000
-Message-Id: <20231109154457.7-7-francois.dugast@intel.com>
+Date: Thu,  9 Nov 2023 15:44:21 +0000
+Message-Id: <20231109154457.7-8-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231109154457.7-1-francois.dugast@intel.com>
 References: <20231109154457.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 06/43] drm/xe/uapi: Remove useless
- XE_QUERY_CONFIG_NUM_PARAM
+Subject: [Intel-xe] [PATCH v3 07/43] drm/xe/uapi: Add missing DRM_ prefix in
+ uAPI constants
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,42 +63,841 @@ Cc: Francois Dugast <francois.dugast@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-num_params can be used to retrieve the size of the info array
-for the specific version of the kernel being used.
+Most constants defined in xe_drm.h use DRM_XE_ as prefix which is
+helpful to identify the name space. Make this systematic and add
+this prefix where it was missing.
+
+v2:
+- fix vertical alignment of define values
+- remove double DRM_ in some variables (José Roberto de Souza)
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 1 +
- include/uapi/drm/xe_drm.h     | 4 ----
- 2 files changed, 1 insertion(+), 4 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c         |  14 +--
+ drivers/gpu/drm/xe/xe_exec_queue.c |  20 ++---
+ drivers/gpu/drm/xe/xe_gt.c         |   2 +-
+ drivers/gpu/drm/xe/xe_pmu.c        |  20 ++---
+ drivers/gpu/drm/xe/xe_query.c      |  36 ++++----
+ drivers/gpu/drm/xe/xe_vm.c         |  54 ++++++------
+ drivers/gpu/drm/xe/xe_vm_doc.h     |  12 +--
+ drivers/gpu/drm/xe/xe_vm_madvise.c |   8 +-
+ include/uapi/drm/xe_drm.h          | 136 ++++++++++++++---------------
+ 9 files changed, 151 insertions(+), 151 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 1ae0543882a0..f01817c6d022 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -209,7 +209,7 @@ static int __xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
+ 
+ 	/* The order of placements should indicate preferred location */
+ 
+-	if (bo->props.preferred_mem_class == XE_MEM_REGION_CLASS_SYSMEM) {
++	if (bo->props.preferred_mem_class == DRM_XE_MEM_REGION_CLASS_SYSMEM) {
+ 		try_add_system(bo, places, bo_flags, &c);
+ 		try_add_vram(xe, bo, places, bo_flags, &c);
+ 	} else {
+@@ -1804,9 +1804,9 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->flags &
+-			 ~(XE_GEM_CREATE_FLAG_DEFER_BACKING |
+-			   XE_GEM_CREATE_FLAG_SCANOUT |
+-			   XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
++			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
++			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
++			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
+ 			   xe->info.mem_region_mask)))
+ 		return -EINVAL;
+ 
+@@ -1826,15 +1826,15 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, args->size & ~PAGE_MASK))
+ 		return -EINVAL;
+ 
+-	if (args->flags & XE_GEM_CREATE_FLAG_DEFER_BACKING)
++	if (args->flags & DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING)
+ 		bo_flags |= XE_BO_DEFER_BACKING;
+ 
+-	if (args->flags & XE_GEM_CREATE_FLAG_SCANOUT)
++	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+ 		bo_flags |= XE_BO_SCANOUT_BIT;
+ 
+ 	bo_flags |= args->flags << (ffs(XE_BO_CREATE_SYSTEM_BIT) - 1);
+ 
+-	if (args->flags & XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
++	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
+ 		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_CREATE_VRAM_MASK)))
+ 			return -EINVAL;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index 4fd44a9203e4..59e8d1ed34f7 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -406,14 +406,14 @@ typedef int (*xe_exec_queue_set_property_fn)(struct xe_device *xe,
+ 					     u64 value, bool create);
+ 
+ static const xe_exec_queue_set_property_fn exec_queue_set_property_funcs[] = {
+-	[XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
+-	[XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
+-	[XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT] = exec_queue_set_preemption_timeout,
+-	[XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE] = exec_queue_set_persistence,
+-	[XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT] = exec_queue_set_job_timeout,
+-	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER] = exec_queue_set_acc_trigger,
+-	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY] = exec_queue_set_acc_notify,
+-	[XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY] = exec_queue_set_acc_granularity,
++	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY] = exec_queue_set_priority,
++	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE] = exec_queue_set_timeslice,
++	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT] = exec_queue_set_preemption_timeout,
++	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE] = exec_queue_set_persistence,
++	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT] = exec_queue_set_job_timeout,
++	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER] = exec_queue_set_acc_trigger,
++	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY] = exec_queue_set_acc_notify,
++	[DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY] = exec_queue_set_acc_granularity,
+ };
+ 
+ static int exec_queue_user_ext_set_property(struct xe_device *xe,
+@@ -445,7 +445,7 @@ typedef int (*xe_exec_queue_user_extension_fn)(struct xe_device *xe,
+ 					       bool create);
+ 
+ static const xe_exec_queue_set_property_fn exec_queue_user_extension_funcs[] = {
+-	[XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY] = exec_queue_user_ext_set_property,
++	[DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY] = exec_queue_user_ext_set_property,
+ };
+ 
+ #define MAX_USER_EXTENSIONS	16
+@@ -764,7 +764,7 @@ int xe_exec_queue_get_property_ioctl(struct drm_device *dev, void *data,
+ 		return -ENOENT;
+ 
+ 	switch (args->property) {
+-	case XE_EXEC_QUEUE_GET_PROPERTY_BAN:
++	case DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN:
+ 		args->value = !!(q->flags & EXEC_QUEUE_FLAG_BANNED);
+ 		ret = 0;
+ 		break;
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 73c090762771..80fa48c95e60 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -556,7 +556,7 @@ static void xe_uevent_gt_reset_failure(struct pci_dev *pdev, u8 tile_id, u8 gt_i
+ {
+ 	char *reset_event[4];
+ 
+-	reset_event[0] = XE_RESET_FAILED_UEVENT "=NEEDS_RESET";
++	reset_event[0] = DRM_XE_RESET_FAILED_UEVENT "=NEEDS_RESET";
+ 	reset_event[1] = kasprintf(GFP_KERNEL, "TILE_ID=%d", tile_id);
+ 	reset_event[2] = kasprintf(GFP_KERNEL, "GT_ID=%d", gt_id);
+ 	reset_event[3] = NULL;
+diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
+index abfc0b3aeac4..8378ca3007d9 100644
+--- a/drivers/gpu/drm/xe/xe_pmu.c
++++ b/drivers/gpu/drm/xe/xe_pmu.c
+@@ -114,17 +114,17 @@ config_status(struct xe_device *xe, u64 config)
+ 		return -ENOENT;
+ 
+ 	switch (config_counter(config)) {
+-	case XE_PMU_INTERRUPTS(0):
++	case DRM_XE_PMU_INTERRUPTS(0):
+ 		if (gt_id)
+ 			return -ENOENT;
+ 		break;
+-	case XE_PMU_RENDER_GROUP_BUSY(0):
+-	case XE_PMU_COPY_GROUP_BUSY(0):
+-	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
++	case DRM_XE_PMU_RENDER_GROUP_BUSY(0):
++	case DRM_XE_PMU_COPY_GROUP_BUSY(0):
++	case DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+ 		if (gt->info.type == XE_GT_TYPE_MEDIA)
+ 			return -ENOENT;
+ 		break;
+-	case XE_PMU_MEDIA_GROUP_BUSY(0):
++	case DRM_XE_PMU_MEDIA_GROUP_BUSY(0):
+ 		if (!(gt->info.engine_mask & (BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VECS0))))
+ 			return -ENOENT;
+ 		break;
+@@ -185,13 +185,13 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
+ 	u64 val;
+ 
+ 	switch (config_counter(config)) {
+-	case XE_PMU_INTERRUPTS(0):
++	case DRM_XE_PMU_INTERRUPTS(0):
+ 		val = READ_ONCE(pmu->irq_count);
+ 		break;
+-	case XE_PMU_RENDER_GROUP_BUSY(0):
+-	case XE_PMU_COPY_GROUP_BUSY(0):
+-	case XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
+-	case XE_PMU_MEDIA_GROUP_BUSY(0):
++	case DRM_XE_PMU_RENDER_GROUP_BUSY(0):
++	case DRM_XE_PMU_COPY_GROUP_BUSY(0):
++	case DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
++	case DRM_XE_PMU_MEDIA_GROUP_BUSY(0):
+ 		val = engine_group_busyness_read(gt, config);
+ 		break;
+ 	default:
 diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index a7f34669bb9a..5942ab0811a2 100644
+index 5942ab0811a2..995930e47ea2 100644
 --- a/drivers/gpu/drm/xe/xe_query.c
 +++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -305,6 +305,7 @@ static int query_memory_usage(struct xe_device *xe,
+@@ -261,7 +261,7 @@ static int query_memory_usage(struct xe_device *xe,
+ 		return -ENOMEM;
+ 
+ 	man = ttm_manager_type(&xe->ttm, XE_PL_TT);
+-	usage->regions[0].mem_class = XE_MEM_REGION_CLASS_SYSMEM;
++	usage->regions[0].mem_class = DRM_XE_MEM_REGION_CLASS_SYSMEM;
+ 	usage->regions[0].instance = 0;
+ 	usage->regions[0].min_page_size = PAGE_SIZE;
+ 	usage->regions[0].total_size = man->size << PAGE_SHIFT;
+@@ -273,7 +273,7 @@ static int query_memory_usage(struct xe_device *xe,
+ 		man = ttm_manager_type(&xe->ttm, i);
+ 		if (man) {
+ 			usage->regions[usage->num_regions].mem_class =
+-				XE_MEM_REGION_CLASS_VRAM;
++				DRM_XE_MEM_REGION_CLASS_VRAM;
+ 			usage->regions[usage->num_regions].instance =
+ 				usage->num_regions;
+ 			usage->regions[usage->num_regions].min_page_size =
+@@ -305,8 +305,8 @@ static int query_memory_usage(struct xe_device *xe,
  
  static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
  {
-+#define XE_QUERY_CONFIG_NUM_PARAM	(XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1)
- 	u32 num_params = XE_QUERY_CONFIG_NUM_PARAM;
+-#define XE_QUERY_CONFIG_NUM_PARAM	(XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1)
+-	u32 num_params = XE_QUERY_CONFIG_NUM_PARAM;
++#define DRM_XE_QUERY_CONFIG_NUM_PARAM	(DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1)
++	u32 num_params = DRM_XE_QUERY_CONFIG_NUM_PARAM;
  	size_t size =
  		sizeof(struct drm_xe_query_config) + num_params * sizeof(u64);
+ 	struct drm_xe_query_config __user *query_ptr =
+@@ -325,18 +325,18 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 		return -ENOMEM;
+ 
+ 	config->num_params = num_params;
+-	config->info[XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
++	config->info[DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID] =
+ 		xe->info.devid | (xe->info.revid << 16);
+ 	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
+-		config->info[XE_QUERY_CONFIG_FLAGS] =
+-			XE_QUERY_CONFIG_FLAGS_HAS_VRAM;
+-	config->info[XE_QUERY_CONFIG_MIN_ALIGNMENT] =
++		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
++			DRM_XE_QUERY_CONFIG_FLAGS_HAS_VRAM;
++	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+ 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
+-	config->info[XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
+-	config->info[XE_QUERY_CONFIG_GT_COUNT] = xe->info.gt_count;
+-	config->info[XE_QUERY_CONFIG_MEM_REGION_COUNT] =
++	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
++	config->info[DRM_XE_QUERY_CONFIG_GT_COUNT] = xe->info.gt_count;
++	config->info[DRM_XE_QUERY_CONFIG_MEM_REGION_COUNT] =
+ 		hweight_long(xe->info.mem_region_mask);
+-	config->info[XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
++	config->info[DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
+ 		xe_exec_queue_device_get_max_priority(xe);
+ 
+ 	if (copy_to_user(query_ptr, config, size)) {
+@@ -372,11 +372,11 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
+ 	gt_list->num_gt = xe->info.gt_count;
+ 	for_each_gt(gt, xe, id) {
+ 		if (xe_gt_is_media_type(gt))
+-			gt_list->gt_list[id].type = XE_QUERY_GT_TYPE_MEDIA;
++			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_MEDIA;
+ 		else if (gt_to_tile(gt)->id > 0)
+-			gt_list->gt_list[id].type = XE_QUERY_GT_TYPE_REMOTE;
++			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_REMOTE;
+ 		else
+-			gt_list->gt_list[id].type = XE_QUERY_GT_TYPE_MAIN;
++			gt_list->gt_list[id].type = DRM_XE_QUERY_GT_TYPE_MAIN;
+ 		gt_list->gt_list[id].gt_id = gt->info.id;
+ 		gt_list->gt_list[id].clock_freq = gt->info.clock_freq;
+ 		if (!IS_DGFX(xe))
+@@ -474,21 +474,21 @@ static int query_gt_topology(struct xe_device *xe,
+ 	for_each_gt(gt, xe, id) {
+ 		topo.gt_id = id;
+ 
+-		topo.type = XE_TOPO_DSS_GEOMETRY;
++		topo.type = DRM_XE_TOPO_DSS_GEOMETRY;
+ 		query_ptr = copy_mask(query_ptr, &topo,
+ 				      gt->fuse_topo.g_dss_mask,
+ 				      sizeof(gt->fuse_topo.g_dss_mask));
+ 		if (IS_ERR(query_ptr))
+ 			return PTR_ERR(query_ptr);
+ 
+-		topo.type = XE_TOPO_DSS_COMPUTE;
++		topo.type = DRM_XE_TOPO_DSS_COMPUTE;
+ 		query_ptr = copy_mask(query_ptr, &topo,
+ 				      gt->fuse_topo.c_dss_mask,
+ 				      sizeof(gt->fuse_topo.c_dss_mask));
+ 		if (IS_ERR(query_ptr))
+ 			return PTR_ERR(query_ptr);
+ 
+-		topo.type = XE_TOPO_EU_PER_DSS;
++		topo.type = DRM_XE_TOPO_EU_PER_DSS;
+ 		query_ptr = copy_mask(query_ptr, &topo,
+ 				      gt->fuse_topo.eu_mask_per_dss,
+ 				      sizeof(gt->fuse_topo.eu_mask_per_dss));
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index d45f4f1d490f..ca4abbb86585 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2183,8 +2183,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 	       (ULL)bo_offset_or_userptr);
+ 
+ 	switch (operation) {
+-	case XE_VM_BIND_OP_MAP:
+-	case XE_VM_BIND_OP_MAP_USERPTR:
++	case DRM_XE_VM_BIND_OP_MAP:
++	case DRM_XE_VM_BIND_OP_MAP_USERPTR:
+ 		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, addr, range,
+ 						  obj, bo_offset_or_userptr);
+ 		if (IS_ERR(ops))
+@@ -2195,13 +2195,13 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 
+ 			op->tile_mask = tile_mask;
+ 			op->map.immediate =
+-				flags & XE_VM_BIND_FLAG_IMMEDIATE;
++				flags & DRM_XE_VM_BIND_FLAG_IMMEDIATE;
+ 			op->map.read_only =
+-				flags & XE_VM_BIND_FLAG_READONLY;
+-			op->map.is_null = flags & XE_VM_BIND_FLAG_NULL;
++				flags & DRM_XE_VM_BIND_FLAG_READONLY;
++			op->map.is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
+ 		}
+ 		break;
+-	case XE_VM_BIND_OP_UNMAP:
++	case DRM_XE_VM_BIND_OP_UNMAP:
+ 		ops = drm_gpuvm_sm_unmap_ops_create(&vm->gpuvm, addr, range);
+ 		if (IS_ERR(ops))
+ 			return ops;
+@@ -2212,7 +2212,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 			op->tile_mask = tile_mask;
+ 		}
+ 		break;
+-	case XE_VM_BIND_OP_PREFETCH:
++	case DRM_XE_VM_BIND_OP_PREFETCH:
+ 		ops = drm_gpuvm_prefetch_ops_create(&vm->gpuvm, addr, range);
+ 		if (IS_ERR(ops))
+ 			return ops;
+@@ -2224,7 +2224,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 			op->prefetch.region = region;
+ 		}
+ 		break;
+-	case XE_VM_BIND_OP_UNMAP_ALL:
++	case DRM_XE_VM_BIND_OP_UNMAP_ALL:
+ 		xe_assert(vm->xe, bo);
+ 
+ 		err = xe_bo_lock(bo, true);
+@@ -2828,13 +2828,13 @@ static int vm_bind_ioctl_ops_execute(struct xe_vm *vm,
+ 
+ #ifdef TEST_VM_ASYNC_OPS_ERROR
+ #define SUPPORTED_FLAGS	\
+-	(FORCE_ASYNC_OP_ERROR | XE_VM_BIND_FLAG_ASYNC | \
+-	 XE_VM_BIND_FLAG_READONLY | XE_VM_BIND_FLAG_IMMEDIATE | \
+-	 XE_VM_BIND_FLAG_NULL | 0xffff)
++	(FORCE_ASYNC_OP_ERROR | DRM_XE_VM_BIND_FLAG_ASYNC | \
++	 DRM_XE_VM_BIND_FLAG_READONLY | DRM_XE_VM_BIND_FLAG_IMMEDIATE | \
++	 DRM_XE_VM_BIND_FLAG_NULL | 0xffff)
+ #else
+ #define SUPPORTED_FLAGS	\
+-	(XE_VM_BIND_FLAG_ASYNC | XE_VM_BIND_FLAG_READONLY | \
+-	 XE_VM_BIND_FLAG_IMMEDIATE | XE_VM_BIND_FLAG_NULL | \
++	(DRM_XE_VM_BIND_FLAG_ASYNC | DRM_XE_VM_BIND_FLAG_READONLY | \
++	 DRM_XE_VM_BIND_FLAG_IMMEDIATE | DRM_XE_VM_BIND_FLAG_NULL | \
+ 	 0xffff)
+ #endif
+ #define XE_64K_PAGE_MASK 0xffffull
+@@ -2882,45 +2882,45 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		u32 obj = (*bind_ops)[i].obj;
+ 		u64 obj_offset = (*bind_ops)[i].obj_offset;
+ 		u32 region = (*bind_ops)[i].region;
+-		bool is_null = flags & XE_VM_BIND_FLAG_NULL;
++		bool is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
+ 
+ 		if (i == 0) {
+-			*async = !!(flags & XE_VM_BIND_FLAG_ASYNC);
++			*async = !!(flags & DRM_XE_VM_BIND_FLAG_ASYNC);
+ 			if (XE_IOCTL_DBG(xe, !*async && args->num_syncs)) {
+ 				err = -EINVAL;
+ 				goto free_bind_ops;
+ 			}
+ 		} else if (XE_IOCTL_DBG(xe, *async !=
+-					!!(flags & XE_VM_BIND_FLAG_ASYNC))) {
++					!!(flags & DRM_XE_VM_BIND_FLAG_ASYNC))) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+ 		}
+ 
+-		if (XE_IOCTL_DBG(xe, op > XE_VM_BIND_OP_PREFETCH) ||
++		if (XE_IOCTL_DBG(xe, op > DRM_XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_DBG(xe, flags & ~SUPPORTED_FLAGS) ||
+ 		    XE_IOCTL_DBG(xe, obj && is_null) ||
+ 		    XE_IOCTL_DBG(xe, obj_offset && is_null) ||
+-		    XE_IOCTL_DBG(xe, op != XE_VM_BIND_OP_MAP &&
++		    XE_IOCTL_DBG(xe, op != DRM_XE_VM_BIND_OP_MAP &&
+ 				 is_null) ||
+ 		    XE_IOCTL_DBG(xe, !obj &&
+-				 op == XE_VM_BIND_OP_MAP &&
++				 op == DRM_XE_VM_BIND_OP_MAP &&
+ 				 !is_null) ||
+ 		    XE_IOCTL_DBG(xe, !obj &&
+-				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
++				 op == DRM_XE_VM_BIND_OP_UNMAP_ALL) ||
+ 		    XE_IOCTL_DBG(xe, addr &&
+-				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
++				 op == DRM_XE_VM_BIND_OP_UNMAP_ALL) ||
+ 		    XE_IOCTL_DBG(xe, range &&
+-				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
++				 op == DRM_XE_VM_BIND_OP_UNMAP_ALL) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+-				 op == XE_VM_BIND_OP_MAP_USERPTR) ||
++				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+-				 op == XE_VM_BIND_OP_PREFETCH) ||
++				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_DBG(xe, region &&
+-				 op != XE_VM_BIND_OP_PREFETCH) ||
++				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
+ 		    XE_IOCTL_DBG(xe, !(BIT(region) &
+ 				       xe->info.mem_region_mask)) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+-				 op == XE_VM_BIND_OP_UNMAP)) {
++				 op == DRM_XE_VM_BIND_OP_UNMAP)) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+ 		}
+@@ -2929,7 +2929,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		    XE_IOCTL_DBG(xe, addr & ~PAGE_MASK) ||
+ 		    XE_IOCTL_DBG(xe, range & ~PAGE_MASK) ||
+ 		    XE_IOCTL_DBG(xe, !range &&
+-				 op != XE_VM_BIND_OP_UNMAP_ALL)) {
++				 op != DRM_XE_VM_BIND_OP_UNMAP_ALL)) {
+ 			err = -EINVAL;
+ 			goto free_bind_ops;
+ 		}
+diff --git a/drivers/gpu/drm/xe/xe_vm_doc.h b/drivers/gpu/drm/xe/xe_vm_doc.h
+index b1b2dc4a6089..516f4dc97223 100644
+--- a/drivers/gpu/drm/xe/xe_vm_doc.h
++++ b/drivers/gpu/drm/xe/xe_vm_doc.h
+@@ -32,9 +32,9 @@
+  * Operations
+  * ----------
+  *
+- * XE_VM_BIND_OP_MAP		- Create mapping for a BO
+- * XE_VM_BIND_OP_UNMAP		- Destroy mapping for a BO / userptr
+- * XE_VM_BIND_OP_MAP_USERPTR	- Create mapping for userptr
++ * DRM_XE_VM_BIND_OP_MAP		- Create mapping for a BO
++ * DRM_XE_VM_BIND_OP_UNMAP		- Destroy mapping for a BO / userptr
++ * DRM_XE_VM_BIND_OP_MAP_USERPTR	- Create mapping for userptr
+  *
+  * Implementation details
+  * ~~~~~~~~~~~~~~~~~~~~~~
+@@ -113,7 +113,7 @@
+  * VM uses to report errors to. The ufence wait interface can be used to wait on
+  * a VM going into an error state. Once an error is reported the VM's async
+  * worker is paused. While the VM's async worker is paused sync,
+- * XE_VM_BIND_OP_UNMAP operations are allowed (this can free memory). Once the
++ * DRM_XE_VM_BIND_OP_UNMAP operations are allowed (this can free memory). Once the
+  * uses believe the error state is fixed, the async worker can be resumed via
+  * XE_VM_BIND_OP_RESTART operation. When VM async bind work is restarted, the
+  * first operation processed is the operation that caused the original error.
+@@ -193,7 +193,7 @@
+  * In a VM is in fault mode (TODO: link to fault mode), new bind operations that
+  * create mappings are by default are deferred to the page fault handler (first
+  * use). This behavior can be overriden by setting the flag
+- * XE_VM_BIND_FLAG_IMMEDIATE which indicates to creating the mapping
++ * DRM_XE_VM_BIND_FLAG_IMMEDIATE which indicates to creating the mapping
+  * immediately.
+  *
+  * User pointer
+@@ -322,7 +322,7 @@
+  *
+  * By default, on a faulting VM binds just allocate the VMA and the actual
+  * updating of the page tables is defered to the page fault handler. This
+- * behavior can be overridden by setting the flag XE_VM_BIND_FLAG_IMMEDIATE in
++ * behavior can be overridden by setting the flag DRM_XE_VM_BIND_FLAG_IMMEDIATE in
+  * the VM bind which will then do the bind immediately.
+  *
+  * Page fault handler
+diff --git a/drivers/gpu/drm/xe/xe_vm_madvise.c b/drivers/gpu/drm/xe/xe_vm_madvise.c
+index 0ef7d483d050..72d051ecac5c 100644
+--- a/drivers/gpu/drm/xe/xe_vm_madvise.c
++++ b/drivers/gpu/drm/xe/xe_vm_madvise.c
+@@ -19,10 +19,10 @@ static int madvise_preferred_mem_class(struct xe_device *xe, struct xe_vm *vm,
+ {
+ 	int i, err;
+ 
+-	if (XE_IOCTL_DBG(xe, value > XE_MEM_REGION_CLASS_VRAM))
++	if (XE_IOCTL_DBG(xe, value > DRM_XE_MEM_REGION_CLASS_VRAM))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, value == XE_MEM_REGION_CLASS_VRAM &&
++	if (XE_IOCTL_DBG(xe, value == DRM_XE_MEM_REGION_CLASS_VRAM &&
+ 			 !xe->info.is_dgfx))
+ 		return -EINVAL;
+ 
+@@ -75,10 +75,10 @@ static int madvise_preferred_mem_class_gt(struct xe_device *xe,
+ 	u32 gt_id = upper_32_bits(value);
+ 	u32 mem_class = lower_32_bits(value);
+ 
+-	if (XE_IOCTL_DBG(xe, mem_class > XE_MEM_REGION_CLASS_VRAM))
++	if (XE_IOCTL_DBG(xe, mem_class > DRM_XE_MEM_REGION_CLASS_VRAM))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, mem_class == XE_MEM_REGION_CLASS_VRAM &&
++	if (XE_IOCTL_DBG(xe, mem_class == DRM_XE_MEM_REGION_CLASS_VRAM &&
+ 			 !xe->info.is_dgfx))
+ 		return -EINVAL;
+ 
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index f03aea937459..dcd4680ae788 100644
+index dcd4680ae788..641e94a5f9c1 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -355,10 +355,6 @@ struct drm_xe_query_config {
+@@ -19,12 +19,12 @@ extern "C" {
+ /**
+  * DOC: uevent generated by xe on it's pci node.
+  *
+- * XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset gt
++ * DRM_XE_RESET_FAILED_UEVENT - Event is generated when attempt to reset gt
+  * fails. The value supplied with the event is always "NEEDS_RESET".
+  * Additional information supplied is tile id and gt id of the gt unit for
+  * which reset has failed.
+  */
+-#define XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
++#define DRM_XE_RESET_FAILED_UEVENT "DEVICE_STATUS"
+ 
+ /**
+  * struct xe_user_extension - Base class for defining a chain of extensions
+@@ -103,8 +103,8 @@ struct xe_user_extension {
+ #define DRM_XE_VM_CREATE		0x03
+ #define DRM_XE_VM_DESTROY		0x04
+ #define DRM_XE_VM_BIND			0x05
+-#define DRM_XE_EXEC_QUEUE_CREATE		0x06
+-#define DRM_XE_EXEC_QUEUE_DESTROY		0x07
++#define DRM_XE_EXEC_QUEUE_CREATE	0x06
++#define DRM_XE_EXEC_QUEUE_DESTROY	0x07
+ #define DRM_XE_EXEC			0x08
+ #define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x09
+ #define DRM_XE_WAIT_USER_FENCE		0x0a
+@@ -150,14 +150,14 @@ struct drm_xe_engine_class_instance {
+  * enum drm_xe_memory_class - Supported memory classes.
+  */
+ enum drm_xe_memory_class {
+-	/** @XE_MEM_REGION_CLASS_SYSMEM: Represents system memory. */
+-	XE_MEM_REGION_CLASS_SYSMEM = 0,
++	/** @DRM_XE_MEM_REGION_CLASS_SYSMEM: Represents system memory. */
++	DRM_XE_MEM_REGION_CLASS_SYSMEM = 0,
+ 	/**
+-	 * @XE_MEM_REGION_CLASS_VRAM: On discrete platforms, this
++	 * @DRM_XE_MEM_REGION_CLASS_VRAM: On discrete platforms, this
+ 	 * represents the memory that is local to the device, which we
+ 	 * call VRAM. Not valid on integrated platforms.
+ 	 */
+-	XE_MEM_REGION_CLASS_VRAM
++	DRM_XE_MEM_REGION_CLASS_VRAM
+ };
+ 
+ /**
+@@ -217,7 +217,7 @@ struct drm_xe_query_mem_region {
+ 	 * always equal the @total_size, since all of it will be CPU
+ 	 * accessible.
+ 	 *
+-	 * Note this is only tracked for XE_MEM_REGION_CLASS_VRAM
++	 * Note this is only tracked for DRM_XE_MEM_REGION_CLASS_VRAM
+ 	 * regions (for other types the value here will always equal
+ 	 * zero).
+ 	 */
+@@ -229,7 +229,7 @@ struct drm_xe_query_mem_region {
+ 	 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
+ 	 * accounting. Without this the value here will always equal
+ 	 * zero.  Note this is only currently tracked for
+-	 * XE_MEM_REGION_CLASS_VRAM regions (for other types the value
++	 * DRM_XE_MEM_REGION_CLASS_VRAM regions (for other types the value
+ 	 * here will always be zero).
+ 	 */
+ 	__u64 cpu_visible_used;
+@@ -325,36 +325,36 @@ struct drm_xe_query_config {
+ 	 * Device ID (lower 16 bits) and the device revision (next
+ 	 * 8 bits)
+ 	 */
+-#define XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
++#define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID		0
+ 	/*
+ 	 * Flags describing the device configuration, see list below
+ 	 */
+-#define XE_QUERY_CONFIG_FLAGS			1
++#define DRM_XE_QUERY_CONFIG_FLAGS			1
+ 	/*
+ 	 * Flag is set if the device has usable VRAM
+ 	 */
+-	#define XE_QUERY_CONFIG_FLAGS_HAS_VRAM		(0x1 << 0)
++	#define DRM_XE_QUERY_CONFIG_FLAGS_HAS_VRAM	(0x1 << 0)
+ 	/*
+ 	 * Minimal memory alignment required by this device,
+ 	 * typically SZ_4K or SZ_64K
+ 	 */
+-#define XE_QUERY_CONFIG_MIN_ALIGNMENT		2
++#define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+ 	/*
+ 	 * Maximum bits of a virtual address
+ 	 */
+-#define XE_QUERY_CONFIG_VA_BITS			3
++#define DRM_XE_QUERY_CONFIG_VA_BITS			3
+ 	/*
+ 	 * Total number of GTs for the entire device
+ 	 */
+-#define XE_QUERY_CONFIG_GT_COUNT		4
++#define DRM_XE_QUERY_CONFIG_GT_COUNT			4
+ 	/*
+ 	 * Total number of accessible memory regions
+ 	 */
+-#define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
++#define DRM_XE_QUERY_CONFIG_MEM_REGION_COUNT		5
+ 	/*
  	 * Value of the highest available exec queue priority
  	 */
- #define XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	6
--	/*
--	 * Number of elements in the info array
--	 */
--#define XE_QUERY_CONFIG_NUM_PARAM		(XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY + 1)
+-#define XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	6
++#define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	6
  	/** @info: array of elements containing the config info */
  	__u64 info[];
  };
+@@ -368,9 +368,9 @@ struct drm_xe_query_config {
+  * implementing graphics and/or media operations.
+  */
+ struct drm_xe_query_gt {
+-#define XE_QUERY_GT_TYPE_MAIN		0
+-#define XE_QUERY_GT_TYPE_REMOTE		1
+-#define XE_QUERY_GT_TYPE_MEDIA		2
++#define DRM_XE_QUERY_GT_TYPE_MAIN		0
++#define DRM_XE_QUERY_GT_TYPE_REMOTE		1
++#define DRM_XE_QUERY_GT_TYPE_MEDIA		2
+ 	/** @type: GT type: Main, Remote, or Media */
+ 	__u16 type;
+ 	/** @gt_id: Unique ID of this GT within the PCI Device */
+@@ -435,7 +435,7 @@ struct drm_xe_query_topology_mask {
+ 	 *   DSS_GEOMETRY    ff ff ff ff 00 00 00 00
+ 	 * means 32 DSS are available for geometry.
+ 	 */
+-#define XE_TOPO_DSS_GEOMETRY	(1 << 0)
++#define DRM_XE_TOPO_DSS_GEOMETRY	(1 << 0)
+ 	/*
+ 	 * To query the mask of Dual Sub Slices (DSS) available for compute
+ 	 * operations. For example a query response containing the following
+@@ -443,7 +443,7 @@ struct drm_xe_query_topology_mask {
+ 	 *   DSS_COMPUTE    ff ff ff ff 00 00 00 00
+ 	 * means 32 DSS are available for compute.
+ 	 */
+-#define XE_TOPO_DSS_COMPUTE	(1 << 1)
++#define DRM_XE_TOPO_DSS_COMPUTE		(1 << 1)
+ 	/*
+ 	 * To query the mask of Execution Units (EU) available per Dual Sub
+ 	 * Slices (DSS). For example a query response containing the following
+@@ -451,7 +451,7 @@ struct drm_xe_query_topology_mask {
+ 	 *   EU_PER_DSS    ff ff 00 00 00 00 00 00
+ 	 * means each DSS has 16 EU.
+ 	 */
+-#define XE_TOPO_EU_PER_DSS	(1 << 2)
++#define DRM_XE_TOPO_EU_PER_DSS		(1 << 2)
+ 	/** @type: type of mask */
+ 	__u16 type;
+ 
+@@ -587,8 +587,8 @@ struct drm_xe_gem_create {
+ 	 */
+ 	__u64 size;
+ 
+-#define XE_GEM_CREATE_FLAG_DEFER_BACKING	(0x1 << 24)
+-#define XE_GEM_CREATE_FLAG_SCANOUT		(0x1 << 25)
++#define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(0x1 << 24)
++#define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(0x1 << 25)
+ /*
+  * When using VRAM as a possible placement, ensure that the corresponding VRAM
+  * allocation will always use the CPU accessible part of VRAM. This is important
+@@ -604,7 +604,7 @@ struct drm_xe_gem_create {
+  * display surfaces, therefore the kernel requires setting this flag for such
+  * objects, otherwise an error is thrown on small-bar systems.
+  */
+-#define XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(0x1 << 26)
++#define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(0x1 << 26)
+ 	/**
+ 	 * @flags: Flags, currently a mask of memory instances of where BO can
+ 	 * be placed
+@@ -671,14 +671,14 @@ struct drm_xe_ext_set_property {
+ };
+ 
+ struct drm_xe_vm_create {
+-#define XE_VM_EXTENSION_SET_PROPERTY	0
++#define DRM_XE_VM_EXTENSION_SET_PROPERTY	0
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+ 
+-#define DRM_XE_VM_CREATE_SCRATCH_PAGE	(0x1 << 0)
+-#define DRM_XE_VM_CREATE_COMPUTE_MODE	(0x1 << 1)
+-#define DRM_XE_VM_CREATE_ASYNC_DEFAULT	(0x1 << 2)
+-#define DRM_XE_VM_CREATE_FAULT_MODE	(0x1 << 3)
++#define DRM_XE_VM_CREATE_SCRATCH_PAGE		(0x1 << 0)
++#define DRM_XE_VM_CREATE_COMPUTE_MODE		(0x1 << 1)
++#define DRM_XE_VM_CREATE_ASYNC_DEFAULT		(0x1 << 2)
++#define DRM_XE_VM_CREATE_FAULT_MODE		(0x1 << 3)
+ 	/** @flags: Flags */
+ 	__u32 flags;
+ 
+@@ -737,29 +737,29 @@ struct drm_xe_vm_bind_op {
+ 	 */
+ 	__u64 tile_mask;
+ 
+-#define XE_VM_BIND_OP_MAP		0x0
+-#define XE_VM_BIND_OP_UNMAP		0x1
+-#define XE_VM_BIND_OP_MAP_USERPTR	0x2
+-#define XE_VM_BIND_OP_UNMAP_ALL		0x3
+-#define XE_VM_BIND_OP_PREFETCH		0x4
++#define DRM_XE_VM_BIND_OP_MAP		0x0
++#define DRM_XE_VM_BIND_OP_UNMAP		0x1
++#define DRM_XE_VM_BIND_OP_MAP_USERPTR	0x2
++#define DRM_XE_VM_BIND_OP_UNMAP_ALL	0x3
++#define DRM_XE_VM_BIND_OP_PREFETCH	0x4
+ 	/** @op: Bind operation to perform */
+ 	__u32 op;
+ 
+-#define XE_VM_BIND_FLAG_READONLY	(0x1 << 0)
+-#define XE_VM_BIND_FLAG_ASYNC		(0x1 << 1)
++#define DRM_XE_VM_BIND_FLAG_READONLY	(0x1 << 0)
++#define DRM_XE_VM_BIND_FLAG_ASYNC	(0x1 << 1)
+ 	/*
+ 	 * Valid on a faulting VM only, do the MAP operation immediately rather
+ 	 * than deferring the MAP to the page fault handler.
+ 	 */
+-#define XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 2)
++#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 2)
+ 	/*
+ 	 * When the NULL flag is set, the page tables are setup with a special
+ 	 * bit which indicates writes are dropped and all reads return zero.  In
+-	 * the future, the NULL flags will only be valid for XE_VM_BIND_OP_MAP
++	 * the future, the NULL flags will only be valid for DRM_XE_VM_BIND_OP_MAP
+ 	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
+ 	 * intended to implement VK sparse bindings.
+ 	 */
+-#define XE_VM_BIND_FLAG_NULL		(0x1 << 3)
++#define DRM_XE_VM_BIND_FLAG_NULL	(0x1 << 3)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
+@@ -840,14 +840,14 @@ struct drm_xe_exec_queue_set_property {
+ 	/** @exec_queue_id: Exec queue ID */
+ 	__u32 exec_queue_id;
+ 
+-#define XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY		0
+-#define XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
+-#define XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
+-#define XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		3
+-#define XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		4
+-#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
+-#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
+-#define XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY	7
++#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_PRIORITY			0
++#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_TIMESLICE		1
++#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_PREEMPTION_TIMEOUT	2
++#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_PERSISTENCE		3
++#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_JOB_TIMEOUT		4
++#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_TRIGGER		5
++#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_NOTIFY		6
++#define DRM_XE_EXEC_QUEUE_SET_PROPERTY_ACC_GRANULARITY		7
+ 	/** @property: property to set */
+ 	__u32 property;
+ 
+@@ -859,7 +859,7 @@ struct drm_xe_exec_queue_set_property {
+ };
+ 
+ struct drm_xe_exec_queue_create {
+-#define XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY               0
++#define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY               0
+ 	/** @extensions: Pointer to the first extension struct, if any */
+ 	__u64 extensions;
+ 
+@@ -898,7 +898,7 @@ struct drm_xe_exec_queue_get_property {
+ 	/** @exec_queue_id: Exec queue ID */
+ 	__u32 exec_queue_id;
+ 
+-#define XE_EXEC_QUEUE_GET_PROPERTY_BAN			0
++#define DRM_XE_EXEC_QUEUE_GET_PROPERTY_BAN	0
+ 	/** @property: property to get */
+ 	__u32 property;
+ 
+@@ -1087,8 +1087,8 @@ struct drm_xe_vm_madvise {
+ 	 * For DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS usage, see enum
+ 	 * drm_xe_memory_class.
+ 	 */
+-#define DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS	0
+-#define DRM_XE_VM_MADVISE_PREFERRED_GT		1
++#define DRM_XE_VM_MADVISE_PREFERRED_MEM_CLASS		0
++#define DRM_XE_VM_MADVISE_PREFERRED_GT			1
+ 	/*
+ 	 * In this case lower 32 bits are mem class, upper 32 are GT.
+ 	 * Combination provides a single IOCTL plus migrate VMA to preferred
+@@ -1099,25 +1099,25 @@ struct drm_xe_vm_madvise {
+ 	 * The CPU will do atomic memory operations to this VMA. Must be set on
+ 	 * some devices for atomics to behave correctly.
+ 	 */
+-#define DRM_XE_VM_MADVISE_CPU_ATOMIC		3
++#define DRM_XE_VM_MADVISE_CPU_ATOMIC			3
+ 	/*
+ 	 * The device will do atomic memory operations to this VMA. Must be set
+ 	 * on some devices for atomics to behave correctly.
+ 	 */
+-#define DRM_XE_VM_MADVISE_DEVICE_ATOMIC		4
++#define DRM_XE_VM_MADVISE_DEVICE_ATOMIC			4
+ 	/*
+ 	 * Priority WRT to eviction (moving from preferred memory location due
+ 	 * to memory pressure). The lower the priority, the more likely to be
+ 	 * evicted.
+ 	 */
+-#define DRM_XE_VM_MADVISE_PRIORITY		5
+-#define		DRM_XE_VMA_PRIORITY_LOW		0
++#define DRM_XE_VM_MADVISE_PRIORITY			5
++#define		DRM_XE_VMA_PRIORITY_LOW			0
+ 		/* Default */
+-#define		DRM_XE_VMA_PRIORITY_NORMAL	1
++#define		DRM_XE_VMA_PRIORITY_NORMAL		1
+ 		/* Must be user with elevated privileges */
+-#define		DRM_XE_VMA_PRIORITY_HIGH	2
++#define		DRM_XE_VMA_PRIORITY_HIGH		2
+ 	/* Pin the VMA in memory, must be user with elevated privileges */
+-#define DRM_XE_VM_MADVISE_PIN			6
++#define DRM_XE_VM_MADVISE_PIN				6
+ 	/** @property: property to set */
+ 	__u32 property;
+ 
+@@ -1138,7 +1138,7 @@ struct drm_xe_vm_madvise {
+  * in 'struct perf_event_attr' as part of perf_event_open syscall to read a
+  * particular event.
+  *
+- * For example to open the XE_PMU_INTERRUPTS(0):
++ * For example to open the DRM_XE_PMU_INTERRUPTS(0):
+  *
+  * .. code-block:: C
+  *
+@@ -1152,7 +1152,7 @@ struct drm_xe_vm_madvise {
+  *	attr.read_format = PERF_FORMAT_TOTAL_TIME_ENABLED;
+  *	attr.use_clockid = 1;
+  *	attr.clockid = CLOCK_MONOTONIC;
+- *	attr.config = XE_PMU_INTERRUPTS(0);
++ *	attr.config = DRM_XE_PMU_INTERRUPTS(0);
+  *
+  *	fd = syscall(__NR_perf_event_open, &attr, -1, cpu, -1, 0);
+  */
+@@ -1165,11 +1165,11 @@ struct drm_xe_vm_madvise {
+ #define ___XE_PMU_OTHER(gt, x) \
+ 	(((__u64)(x)) | ((__u64)(gt) << __XE_PMU_GT_SHIFT))
+ 
+-#define XE_PMU_INTERRUPTS(gt)			___XE_PMU_OTHER(gt, 0)
+-#define XE_PMU_RENDER_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 1)
+-#define XE_PMU_COPY_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 2)
+-#define XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 3)
+-#define XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 4)
++#define DRM_XE_PMU_INTERRUPTS(gt)		___XE_PMU_OTHER(gt, 0)
++#define DRM_XE_PMU_RENDER_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 1)
++#define DRM_XE_PMU_COPY_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 2)
++#define DRM_XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 3)
++#define DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 4)
+ 
+ #if defined(__cplusplus)
+ }
 -- 
 2.34.1
 
