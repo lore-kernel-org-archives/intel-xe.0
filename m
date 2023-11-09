@@ -4,49 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2B20EC4332F
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 15:47:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2C5CC4332F
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 16:05:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB99710E8DA;
-	Thu,  9 Nov 2023 15:47:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B0DF910E8DB
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:45:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699544762; x=1731080762;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WNDmQRp0iSim2xmT/hQK9AoWvwgbRUTXk8twiwVSBEA=;
- b=W4Xcg5M/hbnEZID4j68YirEMaKUuUBNLR7mzO1aB4Y9pXr6mq4iGoaOv
- qMHoo103Mk7lYJviZnzIF6KSxKSluO1G4kVqbBDGLI4zy8TQb2XuB/yDp
- OeVisL/LR81O1iywnFe+TZXSiUS8nRIm5Qx2YWb9Z7MaX/7qSq7ddm6HH
- eJB+KjkIf15kv+978JWKTB891zeHgtMMwNR74TX4LeKrVXbcGI6LuhvBr
- oJim4WdrZvXDyOSHZSqP6BusW4eqMPuAqI/bnI44H9EQuHEO6pMvqQSKt
- swTX5xmEvM+kwDzgbICcArpfFyU4zJpHwQtHWwrwKbw8NBkgnoJgVEZXx g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11556662"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11556662"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:45:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="936885985"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="936885985"
-Received: from hschreib-mobl.ger.corp.intel.com (HELO ac699de916ef.intel.com)
- ([10.249.42.184])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:45:21 -0800
-From: Francois Dugast <francois.dugast@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu,  9 Nov 2023 15:44:22 +0000
-Message-Id: <20231109154457.7-9-francois.dugast@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231109154457.7-1-francois.dugast@intel.com>
-References: <20231109154457.7-1-francois.dugast@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFD8110E8E0;
+	Thu,  9 Nov 2023 16:05:47 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 88DCE10E8E0;
+ Thu,  9 Nov 2023 16:05:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 076AFAADEF;
+ Thu,  9 Nov 2023 16:05:05 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 08/43] drm/xe/uapi: Add _FLAG to uAPI
- constants usable for flags
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Date: Thu, 09 Nov 2023 16:05:05 -0000
+Message-ID: <169954590502.26591.3932335501664776093@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231109154457.7-1-francois.dugast@intel.com>
+In-Reply-To: <20231109154457.7-1-francois.dugast@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_uAPI_Alignment_-_take_2?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,292 +39,64 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Most constants defined in xe_drm.h which can be used for flags are
-named DRM_XE_*_FLAG_*, which is helpful to identify them. Make this
-systematic and add _FLAG where it was missing.
+== Series Details ==
 
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
----
- drivers/gpu/drm/xe/xe_sync.c            | 16 ++++++-------
- drivers/gpu/drm/xe/xe_vm.c              | 32 ++++++++++++-------------
- drivers/gpu/drm/xe/xe_vm_doc.h          |  2 +-
- drivers/gpu/drm/xe/xe_wait_user_fence.c | 10 ++++----
- include/uapi/drm/xe_drm.h               | 30 +++++++++++------------
- 5 files changed, 45 insertions(+), 45 deletions(-)
+Series: uAPI Alignment - take 2
+URL   : https://patchwork.freedesktop.org/series/126203/
+State : failure
 
-diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 73ef259aa387..eafe53c2f55d 100644
---- a/drivers/gpu/drm/xe/xe_sync.c
-+++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -110,14 +110,14 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 		return -EFAULT;
- 
- 	if (XE_IOCTL_DBG(xe, sync_in.flags &
--			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_SIGNAL)) ||
-+			 ~(SYNC_FLAGS_TYPE_MASK | DRM_XE_SYNC_FLAG_SIGNAL)) ||
- 	    XE_IOCTL_DBG(xe, sync_in.pad) ||
- 	    XE_IOCTL_DBG(xe, sync_in.reserved[0] || sync_in.reserved[1]))
- 		return -EINVAL;
- 
--	signal = sync_in.flags & DRM_XE_SYNC_SIGNAL;
-+	signal = sync_in.flags & DRM_XE_SYNC_FLAG_SIGNAL;
- 	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
--	case DRM_XE_SYNC_SYNCOBJ:
-+	case DRM_XE_SYNC_FLAG_SYNCOBJ:
- 		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
- 			return -EOPNOTSUPP;
- 
-@@ -135,7 +135,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 		}
- 		break;
- 
--	case DRM_XE_SYNC_TIMELINE_SYNCOBJ:
-+	case DRM_XE_SYNC_FLAG_TIMELINE_SYNCOBJ:
- 		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
- 			return -EOPNOTSUPP;
- 
-@@ -165,12 +165,12 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 		}
- 		break;
- 
--	case DRM_XE_SYNC_DMA_BUF:
-+	case DRM_XE_SYNC_FLAG_DMA_BUF:
- 		if (XE_IOCTL_DBG(xe, "TODO"))
- 			return -EINVAL;
- 		break;
- 
--	case DRM_XE_SYNC_USER_FENCE:
-+	case DRM_XE_SYNC_FLAG_USER_FENCE:
- 		if (XE_IOCTL_DBG(xe, !signal))
- 			return -EOPNOTSUPP;
- 
-@@ -225,7 +225,7 @@ int xe_sync_entry_add_deps(struct xe_sync_entry *sync, struct xe_sched_job *job)
- void xe_sync_entry_signal(struct xe_sync_entry *sync, struct xe_sched_job *job,
- 			  struct dma_fence *fence)
- {
--	if (!(sync->flags & DRM_XE_SYNC_SIGNAL))
-+	if (!(sync->flags & DRM_XE_SYNC_FLAG_SIGNAL))
- 		return;
- 
- 	if (sync->chain_fence) {
-@@ -253,7 +253,7 @@ void xe_sync_entry_signal(struct xe_sync_entry *sync, struct xe_sched_job *job,
- 			dma_fence_put(fence);
- 		}
- 	} else if ((sync->flags & SYNC_FLAGS_TYPE_MASK) ==
--		   DRM_XE_SYNC_USER_FENCE) {
-+		   DRM_XE_SYNC_FLAG_USER_FENCE) {
- 		job->user_fence.used = true;
- 		job->user_fence.addr = sync->addr;
- 		job->user_fence.value = sync->timeline_value;
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index ca4abbb86585..76926ee756c7 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1918,10 +1918,10 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
- 	return 0;
- }
- 
--#define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_SCRATCH_PAGE | \
--				    DRM_XE_VM_CREATE_COMPUTE_MODE | \
--				    DRM_XE_VM_CREATE_ASYNC_DEFAULT | \
--				    DRM_XE_VM_CREATE_FAULT_MODE)
-+#define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
-+				    DRM_XE_VM_CREATE_FLAG_COMPUTE_MODE | \
-+				    DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT | \
-+				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
- 
- int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 		       struct drm_file *file)
-@@ -1939,9 +1939,9 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 		return -EINVAL;
- 
- 	if (XE_WA(xe_root_mmio_gt(xe), 14016763929))
--		args->flags |= DRM_XE_VM_CREATE_SCRATCH_PAGE;
-+		args->flags |= DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE;
- 
--	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
-+	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
- 			 !xe->info.supports_usm))
- 		return -EINVAL;
- 
-@@ -1951,32 +1951,32 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
- 	if (XE_IOCTL_DBG(xe, args->flags & ~ALL_DRM_XE_VM_CREATE_FLAGS))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_SCRATCH_PAGE &&
--			 args->flags & DRM_XE_VM_CREATE_FAULT_MODE))
-+	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE &&
-+			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_COMPUTE_MODE &&
--			 args->flags & DRM_XE_VM_CREATE_FAULT_MODE))
-+	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_COMPUTE_MODE &&
-+			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FAULT_MODE &&
-+	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
- 			 xe_device_in_non_fault_mode(xe)))
- 		return -EINVAL;
- 
--	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FAULT_MODE) &&
-+	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE) &&
- 			 xe_device_in_fault_mode(xe)))
- 		return -EINVAL;
- 
- 	if (XE_IOCTL_DBG(xe, args->extensions))
- 		return -EINVAL;
- 
--	if (args->flags & DRM_XE_VM_CREATE_SCRATCH_PAGE)
-+	if (args->flags & DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE)
- 		flags |= XE_VM_FLAG_SCRATCH_PAGE;
--	if (args->flags & DRM_XE_VM_CREATE_COMPUTE_MODE)
-+	if (args->flags & DRM_XE_VM_CREATE_FLAG_COMPUTE_MODE)
- 		flags |= XE_VM_FLAG_COMPUTE_MODE;
--	if (args->flags & DRM_XE_VM_CREATE_ASYNC_DEFAULT)
-+	if (args->flags & DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT)
- 		flags |= XE_VM_FLAG_ASYNC_DEFAULT;
--	if (args->flags & DRM_XE_VM_CREATE_FAULT_MODE)
-+	if (args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
- 		flags |= XE_VM_FLAG_FAULT_MODE;
- 
- 	vm = xe_vm_create(xe, flags);
-diff --git a/drivers/gpu/drm/xe/xe_vm_doc.h b/drivers/gpu/drm/xe/xe_vm_doc.h
-index 516f4dc97223..bdc6659891a5 100644
---- a/drivers/gpu/drm/xe/xe_vm_doc.h
-+++ b/drivers/gpu/drm/xe/xe_vm_doc.h
-@@ -18,7 +18,7 @@
-  * Scratch page
-  * ------------
-  *
-- * If the VM is created with the flag, DRM_XE_VM_CREATE_SCRATCH_PAGE, set the
-+ * If the VM is created with the flag, DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE, set the
-  * entire page table structure defaults pointing to blank page allocated by the
-  * VM. Invalid memory access rather than fault just read / write to this page.
-  *
-diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-index 78686908f7fb..13562db6c07f 100644
---- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
-+++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
-@@ -79,8 +79,8 @@ static int check_hw_engines(struct xe_device *xe,
- 	return 0;
- }
- 
--#define VALID_FLAGS	(DRM_XE_UFENCE_WAIT_SOFT_OP | \
--			 DRM_XE_UFENCE_WAIT_ABSTIME)
-+#define VALID_FLAGS	(DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP | \
-+			 DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)
- #define MAX_OP		DRM_XE_UFENCE_WAIT_LTE
- 
- static long to_jiffies_timeout(struct xe_device *xe,
-@@ -107,7 +107,7 @@ static long to_jiffies_timeout(struct xe_device *xe,
- 	 * Save the timeout to an u64 variable because nsecs_to_jiffies
- 	 * might return a value that overflows s32 variable.
- 	 */
--	if (args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)
-+	if (args->flags & DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)
- 		t = drm_timeout_abs_to_jiffies(args->timeout);
- 	else
- 		t = nsecs_to_jiffies(args->timeout);
-@@ -137,7 +137,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
- 		u64_to_user_ptr(args->instances);
- 	u64 addr = args->addr;
- 	int err;
--	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_SOFT_OP;
-+	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP;
- 	long timeout;
- 	ktime_t start;
- 
-@@ -206,7 +206,7 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
- 	}
- 	remove_wait_queue(&xe->ufence_wq, &w_wait);
- 
--	if (!(args->flags & DRM_XE_UFENCE_WAIT_ABSTIME)) {
-+	if (!(args->flags & DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)) {
- 		args->timeout -= ktime_to_ns(ktime_sub(ktime_get(), start));
- 		if (args->timeout < 0)
- 			args->timeout = 0;
-diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 641e94a5f9c1..145d8b19dfca 100644
---- a/include/uapi/drm/xe_drm.h
-+++ b/include/uapi/drm/xe_drm.h
-@@ -675,10 +675,10 @@ struct drm_xe_vm_create {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
- 
--#define DRM_XE_VM_CREATE_SCRATCH_PAGE		(0x1 << 0)
--#define DRM_XE_VM_CREATE_COMPUTE_MODE		(0x1 << 1)
--#define DRM_XE_VM_CREATE_ASYNC_DEFAULT		(0x1 << 2)
--#define DRM_XE_VM_CREATE_FAULT_MODE		(0x1 << 3)
-+#define DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE	(0x1 << 0)
-+#define DRM_XE_VM_CREATE_FLAG_COMPUTE_MODE	(0x1 << 1)
-+#define DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT	(0x1 << 2)
-+#define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(0x1 << 3)
- 	/** @flags: Flags */
- 	__u32 flags;
- 
-@@ -924,11 +924,11 @@ struct drm_xe_sync {
- 	/** @extensions: Pointer to the first extension struct, if any */
- 	__u64 extensions;
- 
--#define DRM_XE_SYNC_SYNCOBJ		0x0
--#define DRM_XE_SYNC_TIMELINE_SYNCOBJ	0x1
--#define DRM_XE_SYNC_DMA_BUF		0x2
--#define DRM_XE_SYNC_USER_FENCE		0x3
--#define DRM_XE_SYNC_SIGNAL		0x10
-+#define DRM_XE_SYNC_FLAG_SYNCOBJ		0x0
-+#define DRM_XE_SYNC_FLAG_TIMELINE_SYNCOBJ	0x1
-+#define DRM_XE_SYNC_FLAG_DMA_BUF		0x2
-+#define DRM_XE_SYNC_FLAG_USER_FENCE		0x3
-+#define DRM_XE_SYNC_FLAG_SIGNAL		0x10
- 	__u32 flags;
- 
- 	/** @pad: MBZ */
-@@ -1014,8 +1014,8 @@ struct drm_xe_wait_user_fence {
- 	/** @op: wait operation (type of comparison) */
- 	__u16 op;
- 
--#define DRM_XE_UFENCE_WAIT_SOFT_OP	(1 << 0)	/* e.g. Wait on VM bind */
--#define DRM_XE_UFENCE_WAIT_ABSTIME	(1 << 1)
-+#define DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP	(1 << 0)	/* e.g. Wait on VM bind */
-+#define DRM_XE_UFENCE_WAIT_FLAG_ABSTIME	(1 << 1)
- 	/** @flags: wait flags */
- 	__u16 flags;
- 
-@@ -1033,10 +1033,10 @@ struct drm_xe_wait_user_fence {
- 	__u64 mask;
- 	/**
- 	 * @timeout: how long to wait before bailing, value in nanoseconds.
--	 * Without DRM_XE_UFENCE_WAIT_ABSTIME flag set (relative timeout)
-+	 * Without DRM_XE_UFENCE_WAIT_FLAG_ABSTIME flag set (relative timeout)
- 	 * it contains timeout expressed in nanoseconds to wait (fence will
- 	 * expire at now() + timeout).
--	 * When DRM_XE_UFENCE_WAIT_ABSTIME flat is set (absolute timeout) wait
-+	 * When DRM_XE_UFENCE_WAIT_FLAG_ABSTIME flat is set (absolute timeout) wait
- 	 * will end at timeout (uses system MONOTONIC_CLOCK).
- 	 * Passing negative timeout leads to neverending wait.
- 	 *
-@@ -1049,13 +1049,13 @@ struct drm_xe_wait_user_fence {
- 
- 	/**
- 	 * @num_engines: number of engine instances to wait on, must be zero
--	 * when DRM_XE_UFENCE_WAIT_SOFT_OP set
-+	 * when DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP set
- 	 */
- 	__u64 num_engines;
- 
- 	/**
- 	 * @instances: user pointer to array of drm_xe_engine_class_instance to
--	 * wait on, must be NULL when DRM_XE_UFENCE_WAIT_SOFT_OP set
-+	 * wait on, must be NULL when DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP set
- 	 */
- 	__u64 instances;
- 
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 2096aea11 fixup! drm/xe/gsc: add gsc device support
+=== git am output follows ===
+Applying: drm/xe/uapi: Add documentation for query
+Applying: drm/xe: Extend drm_xe_vm_bind_op
+Applying: drm/xe: Add uAPI to query micro-controler firmware version
+Applying: drm/xe/uapi: Document DRM_XE_DEVICE_QUERY_HWCONFIG
+Applying: drm/xe: Extend uAPI to query HuC micro-controler firmware version
+Applying: drm/xe/uapi: Remove useless XE_QUERY_CONFIG_NUM_PARAM
+Applying: drm/xe/uapi: Add missing DRM_ prefix in uAPI constants
+Applying: drm/xe/uapi: Add _FLAG to uAPI constants usable for flags
+Applying: drm/xe/uapi: Make constant comments visible in kernel doc
+Applying: drm/xe/uapi: Change rsvd to pad in struct drm_xe_class_instance
+Applying: drm/xe/uapi: Remove GT_TYPE_REMOTE
+Applying: drm/xe/uapi: Kill VM_MADVISE IOCTL
+Applying: drm/xe/uapi: Separate bo_create placement from flags
+Applying: drm/xe/uapi: Remove unused inaccessible memory region
+Applying: drm/xe/uapi: Remove unused QUERY_CONFIG_MEM_REGION_COUNT
+Applying: drm/xe/uapi: Remove unused QUERY_CONFIG_GT_COUNT
+Applying: drm/xe/uapi: Rename *_mem_regions masks
+Applying: drm/xe/uapi: Rename query's mem_usage to mem_regions
+Applying: drm/xe: Make DRM_XE_DEVICE_QUERY_ENGINES future proof
+Applying: drm/xe/uapi: Replace BO with GEM in documentation
+Applying: drm/xe/pmu: Drop interrupt pmu event
+Applying: drm/xe/uapi: Reject bo creation of unaligned size
+Applying: drm/xe/uapi: Fix indentation issues that sometimes causes build warning
+Applying: drm/xe/uapi: Order sections
+Applying: drm/xe/uapi: More uAPI documentation additions and cosmetic updates
+Applying: drm/xe/uapi: Split xe_sync types from flags
+Applying: drm/xe/uapi: Standardize the FLAG naming and assignment
+Applying: drm/xe/uapi: Differentiate WAIT_OP from WAIT_MASK
+Applying: drm/xe/uapi: Move xe_exec after xe_exec_queue
+Applying: drm/xe/uapi: Move memory_region masks from GT to engine
+Applying: drm/xe/uapi: Document the memory_region bitmask
+Applying: drm/xe/uapi: Be more specific about the vm_bind prefetch region
+Applying: drm/xe/uapi: Convert tile_mask to a pt_placement_hint
+Applying: drm/xe/uapi: Exec queue documentation and variable renaming
+Applying: drm/xe/uapi: Refactor engine information
+Applying: drm/xe/uapi: Crystal Reference Clock updates
+Applying: drm/xe/uapi: Add Tile ID information to the GT info query
+Applying: drm/xe/uapi: Remove bogus engine list from the wait_user_fence IOCTL
+Applying: drm/xe/uapi: Align on a common way to return arrays (memory regions)
+Applying: drm/xe/uapi: Align on a common way to return arrays (gt)
+Applying: drm/xe/uapi: Align on a common way to return arrays (engines)
+Applying: drm/xe/uapi: Add block diagram of a device
+Applying: drm/xe/uapi: Add examples of user space code
+
 
