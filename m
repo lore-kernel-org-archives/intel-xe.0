@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C6229C4332F
-	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 15:46:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FDFFC4167D
+	for <intel-xe@archiver.kernel.org>; Thu,  9 Nov 2023 15:46:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F09310E8DC;
-	Thu,  9 Nov 2023 15:46:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A21010E8E1;
+	Thu,  9 Nov 2023 15:46:35 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A938E10E8E7
- for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:46:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 75D2A10E8E6
+ for <intel-xe@lists.freedesktop.org>; Thu,  9 Nov 2023 15:46:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699544769; x=1731080769;
+ t=1699544771; x=1731080771;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pXksQDvWHNtPy6JpeOIBukyRF1bbyifPGD0RIIedo2k=;
- b=CzpaNGi4om2ftscN8MdaOfyZ4CdvygJwOe/lYMHGgEOJUAuc8lKPrGa+
- +MKfvx9VaCxCSu4pk8U88hx5wG9GJvuj2o5Xkki2BNOahpU8YkEqULtZl
- 14KXMqvjjPK443qtV9w4ylsWyVQL1kTQ4PUZagxYMJzoPJXJU95xL+598
- FvXh5bmkv2lm6/18bsVbcmlPDIE7kiXHrkBG2iTFsF+9vtJ2eellanfd/
- yRxmjBFJVKGR1VRQYVgNX2X+R4tyaeSD01iPAbqgxFWGtfqJmQQEcryXV
- rGlDvax5igPb0KAJxCPKr88tpIxWsmWsnebZdpWe+fjO+SGWt8JvMRokn Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11556745"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11556745"
+ bh=U8lcW7cXAVPIXvoFdORvMZttTMPji7cRsdQM7cHkQUM=;
+ b=l0BGf/DE0wAqzIy9IK3b7DxpFf9j5pghFzlpJ1eVkjojbY5NO4OiA6HE
+ bPPXVVmAnFZ0BxaOo65dXi5qGNVpk9KDPZ40V3cuSrpbjNzYZGyFm4CUf
+ QTjuFtfKNJvKqmJCVT7ln/L6KjgsJ3kRFXONjBwjlq79DB+9s59upQC8u
+ hJUOkNz/SwQW0fznxav4rPZnLrAcoM7KVdKDMZkOYmmVK/PGrTwgVn88w
+ Xl/DDIT7T5L0XLY6borzkQNjmjVSejkHo6JpEEMzrpQnTKX126Gm/SikV
+ jROn6PUc8z7tbvZ+2wgYLj9GmLPTaI3+hDj7Gb8G9hFW6qVDgjrLvV/nm Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="11556810"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="11556810"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:45:40 -0800
+ 09 Nov 2023 07:45:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="936886029"
-X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="936886029"
+X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="936886071"
+X-IronPort-AV: E=Sophos;i="6.03,289,1694761200"; d="scan'208";a="936886071"
 Received: from hschreib-mobl.ger.corp.intel.com (HELO ac699de916ef.intel.com)
  ([10.249.42.184])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Nov 2023 07:45:38 -0800
+ 09 Nov 2023 07:45:54 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  9 Nov 2023 15:44:35 +0000
-Message-Id: <20231109154457.7-22-francois.dugast@intel.com>
+Date: Thu,  9 Nov 2023 15:44:46 +0000
+Message-Id: <20231109154457.7-33-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231109154457.7-1-francois.dugast@intel.com>
 References: <20231109154457.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 21/43] drm/xe/pmu: Drop interrupt pmu event
+Subject: [Intel-xe] [PATCH v3 32/43] drm/xe/uapi: Be more specific about the
+ vm_bind prefetch region
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,166 +58,101 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
- Francois Dugast <francois.dugast@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Drop interrupt event from PMU as that is not useful and not being used
-by any UMD.
+Let's bring a bit of clarity on this 'region' field that is
+part of vm_bind operation struct. Rename and document to make
+it more than obvious that it is a region instance and not a
+mask and also that it should only be used with the prefetch
+operation itself.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Cc: Francois Dugast <francois.dugast@intel.com>
-Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-Reviewed-by: Francois Dugast <francois.dugast@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/xe/xe_irq.c       | 18 ------------------
- drivers/gpu/drm/xe/xe_pmu.c       |  9 ---------
- drivers/gpu/drm/xe/xe_pmu_types.h |  8 --------
- include/uapi/drm/xe_drm.h         | 13 ++++++-------
- 4 files changed, 6 insertions(+), 42 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c | 15 ++++++++-------
+ include/uapi/drm/xe_drm.h  |  8 ++++++--
+ 2 files changed, 14 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_irq.c b/drivers/gpu/drm/xe/xe_irq.c
-index 21d5273d7e61..205147511aa0 100644
---- a/drivers/gpu/drm/xe/xe_irq.c
-+++ b/drivers/gpu/drm/xe/xe_irq.c
-@@ -27,20 +27,6 @@
- #define IIR(offset)				XE_REG(offset + 0x8)
- #define IER(offset)				XE_REG(offset + 0xc)
- 
--/*
-- * Interrupt statistic for PMU. Increments the counter only if the
-- * interrupt originated from the GPU so interrupts from a device which
-- * shares the interrupt line are not accounted.
-- */
--static __always_inline void xe_pmu_irq_stats(struct xe_device *xe)
--{
--	/*
--	 * A clever compiler translates that into INC. A not so clever one
--	 * should at least prevent store tearing.
--	 */
--	WRITE_ONCE(xe->pmu.irq_count, xe->pmu.irq_count + 1);
--}
--
- static void assert_iir_is_zero(struct xe_gt *mmio, struct xe_reg reg)
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 76926ee756c7..f8559ebad9bc 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -2167,7 +2167,8 @@ static void print_op(struct xe_device *xe, struct drm_gpuva_op *op)
+ static struct drm_gpuva_ops *
+ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 			 u64 bo_offset_or_userptr, u64 addr, u64 range,
+-			 u32 operation, u32 flags, u8 tile_mask, u32 region)
++			 u32 operation, u32 flags, u8 tile_mask,
++			 u32 prefetch_region)
  {
- 	u32 val = xe_mmio_read32(mmio, reg);
-@@ -360,8 +346,6 @@ static irqreturn_t xelp_irq_handler(int irq, void *arg)
+ 	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
+ 	struct drm_gpuva_ops *ops;
+@@ -2221,7 +2222,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
+ 			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
  
- 	xe_display_irq_enable(xe, gu_misc_iir);
+ 			op->tile_mask = tile_mask;
+-			op->prefetch.region = region;
++			op->prefetch.region = prefetch_region;
+ 		}
+ 		break;
+ 	case DRM_XE_VM_BIND_OP_UNMAP_ALL:
+@@ -2881,7 +2882,7 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		u32 flags = (*bind_ops)[i].flags;
+ 		u32 obj = (*bind_ops)[i].obj;
+ 		u64 obj_offset = (*bind_ops)[i].obj_offset;
+-		u32 region = (*bind_ops)[i].region;
++		u32 prefetch_region = (*bind_ops)[i].prefetch_mem_region_instance;
+ 		bool is_null = flags & DRM_XE_VM_BIND_FLAG_NULL;
  
--	xe_pmu_irq_stats(xe);
--
- 	return IRQ_HANDLED;
- }
+ 		if (i == 0) {
+@@ -2915,9 +2916,9 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 				 op == DRM_XE_VM_BIND_OP_MAP_USERPTR) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+ 				 op == DRM_XE_VM_BIND_OP_PREFETCH) ||
+-		    XE_IOCTL_DBG(xe, region &&
++		    XE_IOCTL_DBG(xe, prefetch_region &&
+ 				 op != DRM_XE_VM_BIND_OP_PREFETCH) ||
+-		    XE_IOCTL_DBG(xe, !(BIT(region) &
++		    XE_IOCTL_DBG(xe, !(BIT(prefetch_region) &
+ 				       xe->info.mem_region_mask)) ||
+ 		    XE_IOCTL_DBG(xe, obj &&
+ 				 op == DRM_XE_VM_BIND_OP_UNMAP)) {
+@@ -3099,11 +3100,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		u32 flags = bind_ops[i].flags;
+ 		u64 obj_offset = bind_ops[i].obj_offset;
+ 		u8 tile_mask = bind_ops[i].tile_mask;
+-		u32 region = bind_ops[i].region;
++		u32 prefetch_region = bind_ops[i].prefetch_mem_region_instance;
  
-@@ -458,8 +442,6 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 	dg1_intr_enable(xe, false);
- 	xe_display_irq_enable(xe, gu_misc_iir);
- 
--	xe_pmu_irq_stats(xe);
--
- 	return IRQ_HANDLED;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
-index 8378ca3007d9..3e13e48a4f45 100644
---- a/drivers/gpu/drm/xe/xe_pmu.c
-+++ b/drivers/gpu/drm/xe/xe_pmu.c
-@@ -114,10 +114,6 @@ config_status(struct xe_device *xe, u64 config)
- 		return -ENOENT;
- 
- 	switch (config_counter(config)) {
--	case DRM_XE_PMU_INTERRUPTS(0):
--		if (gt_id)
--			return -ENOENT;
--		break;
- 	case DRM_XE_PMU_RENDER_GROUP_BUSY(0):
- 	case DRM_XE_PMU_COPY_GROUP_BUSY(0):
- 	case DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
-@@ -181,13 +177,9 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
- 	const unsigned int gt_id = config_gt_id(event->attr.config);
- 	const u64 config = event->attr.config;
- 	struct xe_gt *gt = xe_device_get_gt(xe, gt_id);
--	struct xe_pmu *pmu = &xe->pmu;
- 	u64 val;
- 
- 	switch (config_counter(config)) {
--	case DRM_XE_PMU_INTERRUPTS(0):
--		val = READ_ONCE(pmu->irq_count);
--		break;
- 	case DRM_XE_PMU_RENDER_GROUP_BUSY(0):
- 	case DRM_XE_PMU_COPY_GROUP_BUSY(0):
- 	case DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(0):
-@@ -361,7 +353,6 @@ create_event_attributes(struct xe_pmu *pmu)
- 		const char *unit;
- 		bool global;
- 	} events[] = {
--		__global_event(0, "interrupts", NULL),
- 		__event(1, "render-group-busy", "ns"),
- 		__event(2, "copy-group-busy", "ns"),
- 		__event(3, "media-group-busy", "ns"),
-diff --git a/drivers/gpu/drm/xe/xe_pmu_types.h b/drivers/gpu/drm/xe/xe_pmu_types.h
-index 4ccc7e9042f6..9cadbd243f57 100644
---- a/drivers/gpu/drm/xe/xe_pmu_types.h
-+++ b/drivers/gpu/drm/xe/xe_pmu_types.h
-@@ -51,14 +51,6 @@ struct xe_pmu {
- 	 *
- 	 */
- 	u64 sample[XE_PMU_MAX_GT][__XE_NUM_PMU_SAMPLERS];
--	/**
--	 * @irq_count: Number of interrupts
--	 *
--	 * Intentionally unsigned long to avoid atomics or heuristics on 32bit.
--	 * 4e9 interrupts are a lot and postprocessing can really deal with an
--	 * occasional wraparound easily. It's 32bit after all.
--	 */
--	unsigned long irq_count;
- 	/**
- 	 * @events_attr_group: Device events attribute group.
- 	 */
+ 		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
+ 						  addr, range, op, flags,
+-						  tile_mask, region);
++						  tile_mask, prefetch_region);
+ 		if (IS_ERR(ops[i])) {
+ 			err = PTR_ERR(ops[i]);
+ 			ops[i] = NULL;
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index d66d8aa09270..9210df850ece 100644
+index df3e5e31a2c9..3cbfc17d9ffa 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -1112,7 +1112,7 @@ struct drm_xe_wait_user_fence {
-  * in 'struct perf_event_attr' as part of perf_event_open syscall to read a
-  * particular event.
-  *
-- * For example to open the DRM_XE_PMU_INTERRUPTS(0):
-+ * For example to open the DRM_XE_PMU_RENDER_GROUP_BUSY(0):
-  *
-  * .. code-block:: C
-  *
-@@ -1126,7 +1126,7 @@ struct drm_xe_wait_user_fence {
-  *	attr.read_format = PERF_FORMAT_TOTAL_TIME_ENABLED;
-  *	attr.use_clockid = 1;
-  *	attr.clockid = CLOCK_MONOTONIC;
-- *	attr.config = DRM_XE_PMU_INTERRUPTS(0);
-+ *	attr.config = DRM_XE_PMU_RENDER_GROUP_BUSY(0);
-  *
-  *	fd = syscall(__NR_perf_event_open, &attr, -1, cpu, -1, 0);
-  */
-@@ -1139,11 +1139,10 @@ struct drm_xe_wait_user_fence {
- #define ___XE_PMU_OTHER(gt, x) \
- 	(((__u64)(x)) | ((__u64)(gt) << __XE_PMU_GT_SHIFT))
+@@ -873,8 +873,12 @@ struct drm_xe_vm_bind_op {
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
  
--#define DRM_XE_PMU_INTERRUPTS(gt)		___XE_PMU_OTHER(gt, 0)
--#define DRM_XE_PMU_RENDER_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 1)
--#define DRM_XE_PMU_COPY_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 2)
--#define DRM_XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 3)
--#define DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 4)
-+#define DRM_XE_PMU_RENDER_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 0)
-+#define DRM_XE_PMU_COPY_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 1)
-+#define DRM_XE_PMU_MEDIA_GROUP_BUSY(gt)		___XE_PMU_OTHER(gt, 2)
-+#define DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___XE_PMU_OTHER(gt, 3)
+-	/** @region: Memory region to prefetch VMA to, instance not a mask */
+-	__u32 region;
++	/**
++	 * @prefetch_mem_region_instance: Memory region to prefetch VMA to.
++	 * It is a region instance, not a mask.
++	 * To be used only with %DRM_XE_VM_BIND_OP_PREFETCH operation.
++	 */
++	__u32 prefetch_mem_region_instance;
  
- #if defined(__cplusplus)
- }
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
 -- 
 2.34.1
 
