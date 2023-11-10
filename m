@@ -4,54 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 40CCEC4332F
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 10:35:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8461BC4332F
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 11:02:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1455910E908;
-	Fri, 10 Nov 2023 10:35:36 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B6D910E908
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 10:35:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699612533; x=1731148533;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to; bh=mOqpjjr7AwTtrwZCLf7QJxBmLwUiY+Q8+qG8f9g9N0Y=;
- b=W3zQnzWuyTHwuAkV++jDSb7jD5PPnaYqQ0uyerXBV+JeYFk612pEHFyp
- nc6cElmnpC3DPRVaNxrF7asSadVD/IXWBUk3Umpi6CyKddduKQ2srlxI9
- AShETLywCOvY/fbu3GGrYhR2cW9Qylu93+pLgDT8uDuPI5h19ge19t9fi
- bLATel4MCQhgwD5nTefUCa5XUlReqmPTtd7QzVxeh6uKn3dIcwFE2QVK7
- tcUod29HsgQDIOMKrHps2FwTfnKFKws1ZjIRORBfSK5gYMZj+Er0A983V
- vT823HEitfbUMXNhHYyFUvq0121v7AJ0wx/y2ncELQJrR9tGDYYG45U9w Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="421259208"
-X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; 
- d="scan'208,217";a="421259208"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2023 02:35:31 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10889"; a="740127704"
-X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; 
- d="scan'208,217";a="740127704"
-Received: from amirafax-mobl4.gar.corp.intel.com (HELO [10.249.254.223])
- ([10.249.254.223])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2023 02:35:29 -0800
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5450210E64B;
+	Fri, 10 Nov 2023 11:02:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0205510E64B;
+ Fri, 10 Nov 2023 11:02:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id ECFA5AADD6;
+ Fri, 10 Nov 2023 11:02:37 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="------------UkAMexhmnA9ovck8O8bUyD7l"
-Message-ID: <3569017f-890c-45eb-a611-8694ec51a776@linux.intel.com>
-Date: Fri, 10 Nov 2023 11:35:27 +0100
+ boundary="===============2382439749136986750=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20231107052603.124361-1-matthew.brost@intel.com>
- <20231107052603.124361-2-matthew.brost@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231107052603.124361-2-matthew.brost@intel.com>
-Subject: Re: [Intel-xe] [PATCH v2 01/27] drm/xe: Allow num_binds == 0 in VM
- bind IOCTL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Date: Fri, 10 Nov 2023 11:02:37 -0000
+Message-ID: <169961415796.31678.14927248854288694557@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231110102518.3130411-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20231110102518.3130411-1-tejas.upadhyay@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe?=
+ =?utf-8?q?2=3A_Add_workaround_14019449301?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,204 +39,178 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is a multi-part message in MIME format.
---------------UkAMexhmnA9ovck8O8bUyD7l
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--===============2382439749136986750==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: drm/xe/xe2: Add workaround 14019449301
+URL   : https://patchwork.freedesktop.org/series/126262/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce_BAT -> xe-pw-126262v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (3 -> 3)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-126262v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([i915#2346])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:
+    - bat-adlp-7:         [PASS][3] -> [FAIL][4] ([Intel XE#692])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html
+
+  
+#### Possible fixes ####
+
+  * {igt@xe_create@create-execqueues-leak}:
+    - bat-atsm-2:         [FAIL][5] ([Intel XE#524]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+
+  * {igt@xe_create@create-execqueues-noleak}:
+    - bat-adlp-7:         [FAIL][7] ([Intel XE#524]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+  [Intel XE#692]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/692
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
 
 
-On 11/7/23 06:25, Matthew Brost wrote:
-> The idea being out-syncs can signal indicating all previous operations
-> on the bind queue are complete. An example use case of this would be
-> support for implementing vkQueueWaitForIdle easily.
->
-> Signed-off-by: Matthew Brost<matthew.brost@intel.com>
+Build changes
+-------------
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+  * IGT: IGT_7581 -> IGT_7582
+  * Linux: xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce -> xe-pw-126262v1
+
+  IGT_7581: 7581
+  IGT_7582: 453b9df12fbc9fff561bdb4eb97992983e74c3d4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce: b3890fb4386dcef68a96888141c4cc773f6241ce
+  xe-pw-126262v1: 126262v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/index.html
+
+--===============2382439749136986750==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
-> ---
->   drivers/gpu/drm/xe/xe_vm.c | 30 ++++++++++++++++++------------
->   1 file changed, 18 insertions(+), 12 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index d26c90f0d702..403444ff3856 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -2850,7 +2850,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
->   	int i;
->   
->   	if (XE_IOCTL_DBG(xe, args->extensions) ||
-> -	    XE_IOCTL_DBG(xe, !args->num_binds) ||
->   	    XE_IOCTL_DBG(xe, args->num_binds > MAX_BINDS))
->   		return -EINVAL;
->   
-> @@ -2977,7 +2976,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   			goto put_exec_queue;
->   		}
->   
-> -		if (XE_IOCTL_DBG(xe, async !=
-> +		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
->   				 !!(q->flags & EXEC_QUEUE_FLAG_VM_ASYNC))) {
->   			err = -EINVAL;
->   			goto put_exec_queue;
-> @@ -2991,7 +2990,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   	}
->   
->   	if (!args->exec_queue_id) {
-> -		if (XE_IOCTL_DBG(xe, async !=
-> +		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
->   				 !!(vm->flags & XE_VM_FLAG_ASYNC_DEFAULT))) {
->   			err = -EINVAL;
->   			goto put_vm;
-> @@ -3028,16 +3027,18 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   		}
->   	}
->   
-> -	bos = kzalloc(sizeof(*bos) * args->num_binds, GFP_KERNEL);
-> -	if (!bos) {
-> -		err = -ENOMEM;
-> -		goto release_vm_lock;
-> -	}
-> +	if (args->num_binds) {
-> +		bos = kzalloc(sizeof(*bos) * args->num_binds, GFP_KERNEL);
-> +		if (!bos) {
-> +			err = -ENOMEM;
-> +			goto release_vm_lock;
-> +		}
->   
-> -	ops = kzalloc(sizeof(*ops) * args->num_binds, GFP_KERNEL);
-> -	if (!ops) {
-> -		err = -ENOMEM;
-> -		goto release_vm_lock;
-> +		ops = kzalloc(sizeof(*ops) * args->num_binds, GFP_KERNEL);
-> +		if (!ops) {
-> +			err = -ENOMEM;
-> +			goto release_vm_lock;
-> +		}
->   	}
->   
->   	for (i = 0; i < args->num_binds; ++i) {
-> @@ -3092,6 +3093,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   			goto free_syncs;
->   	}
->   
-> +	if (!args->num_binds) {
-> +		err = -ENODATA;
-> +		goto free_syncs;
-> +	}
-> +
->   	for (i = 0; i < args->num_binds; ++i) {
->   		u64 range = bind_ops[i].range;
->   		u64 addr = bind_ops[i].addr;
---------------UkAMexhmnA9ovck8O8bUyD7l
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 11/7/23 06:25, Matthew Brost wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:20231107052603.124361-2-matthew.brost@intel.com">
-      <pre class="moz-quote-pre" wrap="">The idea being out-syncs can signal indicating all previous operations
-on the bind queue are complete. An example use case of this would be
-support for implementing vkQueueWaitForIdle easily.
 
-Signed-off-by: Matthew Brost <a class="moz-txt-link-rfc2396E" href="mailto:matthew.brost@intel.com">&lt;matthew.brost@intel.com&gt;</a></pre>
-    </blockquote>
-    <p>Reviewed-by: Thomas Hellström
-      &lt;<a class="moz-txt-link-abbreviated" href="mailto:thomas.hellstrom@linux.intel.com">thomas.hellstrom@linux.intel.com</a><font size="4">&gt;</font></p>
-    <p><font size="4"><br>
-      </font></p>
-    <blockquote type="cite"
-      cite="mid:20231107052603.124361-2-matthew.brost@intel.com">
-      <pre class="moz-quote-pre" wrap="">
----
- drivers/gpu/drm/xe/xe_vm.c | 30 ++++++++++++++++++------------
- 1 file changed, 18 insertions(+), 12 deletions(-)
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe2: Add workaround 14019449301</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126262/">https://patchwork.freedesktop.org/series/126262/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d26c90f0d702..403444ff3856 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2850,7 +2850,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
- 	int i;
- 
- 	if (XE_IOCTL_DBG(xe, args-&gt;extensions) ||
--	    XE_IOCTL_DBG(xe, !args-&gt;num_binds) ||
- 	    XE_IOCTL_DBG(xe, args-&gt;num_binds &gt; MAX_BINDS))
- 		return -EINVAL;
- 
-@@ -2977,7 +2976,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 			goto put_exec_queue;
- 		}
- 
--		if (XE_IOCTL_DBG(xe, async !=
-+		if (XE_IOCTL_DBG(xe, args-&gt;num_binds &amp;&amp; async !=
- 				 !!(q-&gt;flags &amp; EXEC_QUEUE_FLAG_VM_ASYNC))) {
- 			err = -EINVAL;
- 			goto put_exec_queue;
-@@ -2991,7 +2990,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	}
- 
- 	if (!args-&gt;exec_queue_id) {
--		if (XE_IOCTL_DBG(xe, async !=
-+		if (XE_IOCTL_DBG(xe, args-&gt;num_binds &amp;&amp; async !=
- 				 !!(vm-&gt;flags &amp; XE_VM_FLAG_ASYNC_DEFAULT))) {
- 			err = -EINVAL;
- 			goto put_vm;
-@@ -3028,16 +3027,18 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 		}
- 	}
- 
--	bos = kzalloc(sizeof(*bos) * args-&gt;num_binds, GFP_KERNEL);
--	if (!bos) {
--		err = -ENOMEM;
--		goto release_vm_lock;
--	}
-+	if (args-&gt;num_binds) {
-+		bos = kzalloc(sizeof(*bos) * args-&gt;num_binds, GFP_KERNEL);
-+		if (!bos) {
-+			err = -ENOMEM;
-+			goto release_vm_lock;
-+		}
- 
--	ops = kzalloc(sizeof(*ops) * args-&gt;num_binds, GFP_KERNEL);
--	if (!ops) {
--		err = -ENOMEM;
--		goto release_vm_lock;
-+		ops = kzalloc(sizeof(*ops) * args-&gt;num_binds, GFP_KERNEL);
-+		if (!ops) {
-+			err = -ENOMEM;
-+			goto release_vm_lock;
-+		}
- 	}
- 
- 	for (i = 0; i &lt; args-&gt;num_binds; ++i) {
-@@ -3092,6 +3093,11 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 			goto free_syncs;
- 	}
- 
-+	if (!args-&gt;num_binds) {
-+		err = -ENODATA;
-+		goto free_syncs;
-+	}
-+
- 	for (i = 0; i &lt; args-&gt;num_binds; ++i) {
- 		u64 range = bind_ops[i].range;
- 		u64 addr = bind_ops[i].addr;
-</pre>
-    </blockquote>
-  </body>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce_BAT -&gt; xe-pw-126262v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (3 -&gt; 3)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-126262v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/692">Intel XE#692</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>{igt@xe_create@create-execqueues-leak}:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>{igt@xe_create@create-execqueues-noleak}:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126262v1/bat-adlp-7/igt@xe_create@create-execqueues-noleak.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7581 -&gt; IGT_7582</li>
+<li>Linux: xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce -&gt; xe-pw-126262v1</li>
+</ul>
+<p>IGT_7581: 7581<br />
+  IGT_7582: 453b9df12fbc9fff561bdb4eb97992983e74c3d4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce: b3890fb4386dcef68a96888141c4cc773f6241ce<br />
+  xe-pw-126262v1: 126262v1</p>
+
+</body>
 </html>
 
---------------UkAMexhmnA9ovck8O8bUyD7l--
+--===============2382439749136986750==--
