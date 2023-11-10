@@ -4,30 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 46243C4332F
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 16:45:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A7B3C4332F
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 18:22:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1701410E11F;
-	Fri, 10 Nov 2023 16:45:22 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id EF76110E11F;
- Fri, 10 Nov 2023 16:45:20 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C6A3EA7DFB;
- Fri, 10 Nov 2023 16:45:20 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5283293642686482223=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E309D10E15A;
+	Fri, 10 Nov 2023 18:22:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0422110E131;
+ Fri, 10 Nov 2023 18:22:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699640568; x=1731176568;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=3Qnpl6k3IiuoX7Uk+c/HWfeB/v5mSB0xzq3ZuPeG+Mk=;
+ b=FOOAS1XnuZFDkW7uUKfXypAb1EW9seSdQlW4YNbNdoczyaHwLB8uZ7jV
+ UUg9VDDo50d4tL+yL7ZLAbCGSIJQPdRuNprZ9AjuWgasdwjNzZJi/QzJ1
+ /gW4TTDiBmhT56BzLR4p4RNcUBzDPJhctJQb2DSn8JNUVblBt3+W7UxW0
+ V5MtpNMNUBtbi1FI+AcqOL8AqnOUmlcm1WMlFzK6g1wvSiDv44+/gf2tU
+ 3k3cKYjISrL6N7bSbflzBIt8GaJAo4ST0cbDInwtth5Ue14W7j6rTBKwx
+ uBUO+JsKEES39EBTeKHH0pYDtGfLadPNu06FrdzUrdLouf/f16cS7q25k g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="375251851"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="375251851"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2023 10:22:47 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="798663705"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="798663705"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.133.179])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2023 10:22:44 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	dri-devel@lists.freedesktop.org
+Date: Fri, 10 Nov 2023 19:22:31 +0100
+Message-Id: <20231110182231.1730-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Francois Dugast" <francois.dugast@intel.com>
-Date: Fri, 10 Nov 2023 16:45:20 -0000
-Message-ID: <169963472080.31676.4109865438878198664@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231110154156.6-1-francois.dugast@intel.com>
-In-Reply-To: <20231110154156.6-1-francois.dugast@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_uAPI_Alig?=
- =?utf-8?q?nment_-_Remove_unused_features?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/doc/rfc: SR-IOV support on the new Xe driver
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,501 +56,750 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============5283293642686482223==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The Single Root I/O Virtualization (SR-IOV) extension to the PCI
+Express (PCIe) specification suite is supported starting from 12th
+generation of Intel Graphics processors.
 
-== Series Details ==
+This RFC aims to explain how do we want to add support for SR-IOV
+to the new Xe driver and to propose related additions to the sysfs.
 
-Series: uAPI Alignment - Remove unused features
-URL   : https://patchwork.freedesktop.org/series/126278/
-State : failure
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Oded Gabbay <ogabbay@kernel.org>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>
+---
+ Documentation/gpu/rfc/index.rst             |   5 +
+ Documentation/gpu/rfc/sysfs-driver-xe-sriov | 501 ++++++++++++++++++++
+ Documentation/gpu/rfc/xe_sriov.rst          | 192 ++++++++
+ 3 files changed, 698 insertions(+)
+ create mode 100644 Documentation/gpu/rfc/sysfs-driver-xe-sriov
+ create mode 100644 Documentation/gpu/rfc/xe_sriov.rst
 
-== Summary ==
+diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
+index e4f7b005138d..fc5bc447f30d 100644
+--- a/Documentation/gpu/rfc/index.rst
++++ b/Documentation/gpu/rfc/index.rst
+@@ -35,3 +35,8 @@ host such documentation:
+ .. toctree::
+ 
+    xe.rst
++
++.. toctree::
++   :maxdepth: 1
++
++   xe_sriov.rst
+diff --git a/Documentation/gpu/rfc/sysfs-driver-xe-sriov b/Documentation/gpu/rfc/sysfs-driver-xe-sriov
+new file mode 100644
+index 000000000000..77748204dd83
+--- /dev/null
++++ b/Documentation/gpu/rfc/sysfs-driver-xe-sriov
+@@ -0,0 +1,501 @@
++﻿.. Documentation/ABI/testing/sysfs-driver-xe-sriov
++..
++.. Intel Xe driver ABI (SR-IOV extensions)
++..
++    The Single Root I/O Virtualization (SR-IOV) extension to
++    the PCI Express (PCIe) specification suite is supported
++    starting from 12th generation of Intel Graphics processors.
++
++    This document describes Xe driver specific additions.
++
++    For description of generic SR-IOV sysfs attributes see
++    "Documentation/ABI/testing/sysfs-bus-pci" document.
++
++    /sys/bus/pci/drivers/xe/BDF/
++    ├── sriov_auto_provisioning
++    │   ├── admin_mode
++    │   ├── enabled
++    │   ├── reset_defaults
++    │   ├── resources
++    │   │   ├── default_contexts_quota
++    │   │   ├── default_doorbells_quota
++    │   │   ├── default_ggtt_quota
++    │   │   └── default_lmem_quota
++    │   ├── scheduling
++    │   │   ├── default_exec_quantum_ms
++    │   │   └── default_preempt_timeout_us
++    │   └── monitoring
++    │       ├── default_cat_error_count
++    │       ├── default_doorbell_time_us
++    │       ├── default_engine_reset_count
++    │       ├── default_h2g_time_us
++    │       ├── default_irq_time_us
++    │       └── default_page_fault_count
++
++    /sys/bus/pci/drivers/xe/BDF/
++    ├── sriov_extensions
++    │   ├── monitoring_period_ms
++    │   ├── strict_scheduling_enabled
++    │   ├── pf
++    │   │   ├── device -> ../../../BDF
++    │   │   ├── priority
++    │   │   ├── tile0
++    │   │   │   ├── gt0
++    │   │   │   │   ├── exec_quantum_ms
++    │   │   │   │   ├── preempt_timeout_us
++    │   │   │   │   └── thresholds
++    │   │   │   │       ├── cat_error_count
++    │   │   │   │       ├── doorbell_time_us
++    │   │   │   │       ├── engine_reset_count
++    │   │   │   │       ├── h2g_time_us
++    │   │   │   │       ├── irq_time_us
++    │   │   │   │       └── page_fault_count
++    │   │   │   └── gtX
++    │   │   └── tileT
++    │   ├── vf1
++    │   │   ├── device -> ../../../BDF+1
++    │   │   ├── stop
++    │   │   ├── tile0
++    │   │   │   ├── ggtt_quota
++    │   │   │   ├── lmem_quota
++    │   │   │   ├── gt0
++    │   │   │   │   ├── contexts_quota
++    │   │   │   │   ├── doorbells_quota
++    │   │   │   │   ├── exec_quantum_ms
++    │   │   │   │   ├── preempt_timeout_us
++    │   │   │   │   └── thresholds
++    │   │   │   │       ├── cat_error_count
++    │   │   │   │       ├── doorbell_time_us
++    │   │   │   │       ├── engine_reset_count
++    │   │   │   │       ├── h2g_time_us
++    │   │   │   │       ├── irq_time_us
++    │   │   │   │       └── page_fault_count
++    │   │   │   └── gtX
++    │   │   └── tileT
++    │   └── vfN
++..
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		This directory appears on the device when:
++
++		 - device supports SR-IOV, and
++		 - device is a Physical Function (PF), and
++		 - xe driver supports SR-IOV PF on given device, and
++		 - xe driver supports automatic VFs provisioning.
++
++		This directory is used as a root for all attributes related to
++		automatic provisioning of SR-IOV Physical Function (PF) and/or
++		Virtual Functions (VFs).
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/enabled
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		(RW) bool (0, 1)
++
++		This file represents configuration flag for the automatic VFs
++		(un)provisioning that could be performed by the PF.
++
++		The default value is 1 (true).
++
++		This flag can be set to false, unless manual provisioning is not
++		applicable for given platform or it is not supported by current
++		PF implementation. In such cases -EPERM will be returned.
++
++		This flag will be automatically set to false when there will be
++		other attempts to change any of VF's resource provisioning.
++		See "sriov_extensions" section for details.
++
++		This flag can be set back to true if and only if all VFs are
++		fully unprovisioned, otherwise -EEXIST error will be returned.
++
++		false = "disabled"
++			When disabled, then PF will not attempt to do automatic
++			VFs provisioning when VFs are being enabled and will not
++			perform automatic unprovisioning of the VFs when VFs will
++			be disabled.
++
++		true = "enabled"
++			When enabled, then on VFs enabling PF will do automatic
++			VFs provisioning based on the default settings described
++			below.
++
++			If automatic VFs provisioning fails due to some reasons,
++			then VFs will not be enabled.
++
++			If enabled, all resources allocated during VFs enabling
++			will be released during VFs disabling (automatic unprovisioning).
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/admin_mode
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		(RW) bool (0, 1)
++
++		This file represents configuration flag for the automatic VFs
++		provisioning that could be performed by the PF.
++
++		The default value depends on the platform type.
++
++		This flag can be changed any time, but will have no effect if
++		VFs are already provisioned.
++
++		If enabled (default on discrete platforms) then the PF will
++		retain only minimum hardcoded resources for its own use when
++		doing VFs automatic provisioning and will not use any default
++		values described below for its own configuration.
++
++		If disabled (default on integrated platforms) then the PF will
++		treat itself like yet another additional VF in all fair resource
++		allocations and will also try to apply default provisioning
++		values described below for its own configuration.
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/reset_defaults
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		(WO) bool (1)
++
++		Writing to this file will reset all default provisioning parameters
++		listed below to the default values.
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/resources/default_contexts_quota
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/resources/default_doorbells_quota
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/resources/default_ggtt_quota
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/resources/default_lmem_quota
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/scheduling/default_exec_quantum_ms
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/scheduling/default_preempt_timeout_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_cat_error_count
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_doorbell_time_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_engine_reset_count
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_h2g_time_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_irq_time_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_page_fault_count
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		These files represent default provisioning that should be used
++		for VFs automatic provisioning.
++
++		These values can be changed any time, but will have no effect if
++		VFs are already provisioned.
++
++		default_contexts_quota: (RW) integer 0..U32_MAX
++			The number of GuC context IDs to provide to the VF.
++			The default value is 0 (use fair allocations).
++			See "sriov_extensions/vfN/tileT/gtX/contexts_quota" for details.
++
++		default_doorbells_quota: (RW) integer 0..U32_MAX
++			The number of GuC doorbells to provide to the VF.
++			The default value is 0 (use fair allocations).
++			See "sriov_extensions/vfN/tileT/gtX/doorbells_quota" for details.
++
++		default_ggtt_quota: (RW) integer 0..U32_MAX
++			The size of the GGTT address space (in bytes) to provide to the VF.
++			The default value is 0 (use fair allocations).
++			See "sriov_extensions/vfN/tileT/ggtt_quota" for details.
++
++		default_lmem_quota: (RW) integer 0..U32_MAX
++			The size of the LMEM (in bytes) to provide to the VF.
++			The default value is 0 (use fair allocations).
++			See "sriov_extensions/vfN/tileT/lmem_quota" for details.
++
++		default_exec_quantum_ms: (RW) integer 0..U32_MAX
++			The GT execution quantum (in millisecs) assigned to the function.
++			The default value is 0 (infinify).
++			See "sriov_extensions/vfN/tileT/gtX/exec_quantum_ms" for details.
++
++		default_preempt_timeout_us: (RW) integer 0..U32_MAX
++			The GT preemption timeout (in microsecs) assigned to the function.
++			The default value is 0 (infinity).
++			See "sriov_extensions/vfN/tileT/gtX/preempt_timeout_us" for details.
++
++		default_cat_error_count: (RW) integer 0..U32_MAX
++		default_doorbell_time_us: (RW) integer 0..U32_MAX
++		default_engine_reset_count: (RW) integer 0..U32_MAX
++		default_h2g_time_us: (RW) integer 0..U32_MAX
++		default_irq_time_us: (RW) integer 0..U32_MAX
++		default_page_fault_count: (RW) integer 0..U32_MAX
++			The monitoring threshold to be set for the function.
++			The default value is 0 (don't monitor).
++			See "sriov_extensions/vfN/tileT/gtX/thresholds" for details.
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		This directory appears on Xe device when:
++
++		 - device supports SR-IOV, and
++		 - device is a Physical Function (PF), and
++		 - driver is enabled to support SR-IOV PF on given device.
++
++		This directory is used as a root for all attributes required to
++		manage both Physical Function (PF) and Virtual Functions (VFs).
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/strict_scheduling_enabled
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		(RW) bool
++
++		This file represents a flag used to determine if scheduling
++		parameters should be respected even if there is no active
++		workloads submitted by the PF or VFs.
++
++		This flag is disabled by default, unless strict scheduling is
++		not applicable on given platform. In such case this file will
++		be read-only.
++
++		The change to this file may have no effect if VFs are not yet enabled.
++		If strict scheduling can't be enabled in GuC then write will fail with -EIO.
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/monitoring_period_ms
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		(RW) integer
++
++		This file represents the configuration knob used by adverse event
++		monitoring. A value here is the period in millisecs during which
++		events are counted and the total is checked against a threshold.
++		See "sriov_extensions/vfN/tileT/gtX/thresholds" for more details.
++
++		Default is 0 (monitoring is disabled).
++
++		If monitoring capability is not available, then attempt to enable
++		will fail with -EPERM error. If monitoring can't be enabled in
++		GuC then write will fail with -EIO.
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		This directory holds all attributes related to the SR-IOV
++		Physical Function (PF).
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		This directory holds all attributes related to the SR-IOV
++		Virtual Function (VF).
++
++		Note that VF numbers (N) are 1-based as described in PCI SR-IOV specification.
++		The Xe driver implementaton follows that naming schema.
++
++		There will be "vf1", "vf2" up to "vfN" directories, where N matches
++		value of the PCI "sriov_totalvfs" attribute.
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		This directory holds all SR-IOV attributes related to the device tile.
++		The tile numbers (T) start from 0.
++
++		There is at least one "tile0/" directory present.
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		This directory holds all SR-IOV attributes related to the device GT.
++		The GT numbers (X) start from 0.
++
++		There is at least one "gt0/" directory present.
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/device
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/device
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		(symbolic link)
++
++		Backlink to the PCI device entry representing given function.
++		For PF this link is always present.
++		For VF this link is present only for currently enabled VFs.
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/priority
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		(RW) string
++
++		This file represents a GuC Scheduler knob to override the default
++		round-robin or FIFO scheduler policies implemented by the GuC.
++
++		The default value is "peer".
++
++		This flag can be changed, unless such change is not applicable
++		for given platform or is not supported by current GuC firmware.
++		In such case this file could be read-only or will return -EPERM
++		on write attempt.
++
++		"immediate"
++			GuC will Schedule PF workloads immediately and PF
++			workloads only until the PF's work queues in GuC
++			are empty.
++
++		"lazy"
++			GuC will Schedule PF workloads at the next opportune
++			moment and PF workloads only until the PF work queues
++			in GuC are empty.
++
++		"peer"
++			GuC Scheduler will treat PF and VFs with equal priority.
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/stop
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		(WO) bool (1)
++
++		Write to this file will force GuC to stop handle any requests from
++		this VF, but without triggering a FLR.
++		To recover, the full FLR must be issued using generic "device/reset".
++
++		This file allows to implement custom policy mechanism when VF is
++		misbehaving and triggering adverse events above defined thresholds.
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/exec_quantum_ms
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/preempt_timeout_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/exec_quantum_ms
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/preempt_timeout_us
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		These files represent scheduling parameters of the functions.
++
++		These scheduling parameters can be changed even if VFs are enabled
++		and running, unless such change is not applicable on given platform
++		due to fixed hardware or firmware assignment.
++
++		exec_quantum_ms: (RW) integer 0..U32_MAX
++			The GT execution quantum in [ms] assigned to the function.
++			Requested quantum might be aligned per HW/FW requirements.
++
++			Default is 0 (unlimited).
++
++		preempt_timeout_us: (RW) integer 0..U32_MAX
++			The GT preemption timeout in [us] assigned to the function.
++			Requested timeout might be aligned per HW/FW requirements.
++
++			Default is 0 (unlimited).
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/ggtt_quota
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/lmem_quota
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/contexts_quota
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/doorbells_quota
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		These files represent shared resource assigned to the functions.
++
++		These resource parameters can be changed, unless VF is already running,
++		or such change is not applicable on given platform due to fixed hardware
++		or firmware assignment.
++
++		Writes to these attributes may fail with:
++			-EPERM if change is not applicable on give HW/FW.
++			-E2BIG if value larger that HW/FW limit.
++			-EDQUOT if value is larger than maximum quota defined by the PF.
++			-ENOSPC if PF can't allocate required quota.
++			-EBUSY if the resource is currently in use by the VF.
++			-EIO if GuC refuses to change provisioning.
++
++		ggtt_quota: (RW) integer 0..U64_MAX
++			The size of the GGTT address space (in bytes) assigned to the VF.
++			The value might be aligned per HW/FW requirements.
++
++			Default is 0 (unprovisioned).
++
++		lmem_quota: (RW) integer 0..U64_MAX
++			The size of the Local Memory (in bytes) assigned to the VF.
++			The value might be aligned per HW/FW requirements.
++
++			This attribute is only available on discrete platforms.
++
++			Default is 0 (unprovisioned).
++
++		contexts_quota: (RW) 0..U16_MAX
++			The number of GuC submission contexts assigned to the VF.
++			This value might be aligned per HW/FW requirements.
++
++			Default is 0 (unprovisioned).
++
++		doorbells_quota: (RW) 0..U16_MAX
++			The number of GuC doorbells assigned to the VF.
++			This value might be aligned per HW/FW requirements.
++
++			Default is 0 (unprovisioned).
++
++
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/cat_error_count
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/doorbell_time_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/engine_reset_count
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/h2g_time_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/irq_time_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/page_fault_count
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/cat_error_count
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/doorbell_time_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/engine_reset_count
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/h2g_time_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/irq_time_us
++What:		/sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/page_fault_count
++Date:		2024
++KernelVersion:	TBD
++Contact:	intel-xe@lists.freedesktop.org
++Description:
++		These files represent threshold values used by the GuC to trigger
++		security events if adverse event monitoring is enabled.
++
++		These thresholds are checked every "monitoring_period_ms".
++		Refer to GuC ABI for details about each threshold category.
++
++		Default value for all thresholds is 0 (disabled).
++
++		cat_error_count: (RW) integer
++		doorbell_time_us: (RW) integer
++		engine_reset_count: (RW) integer
++		h2g_time_us: (RW) integer
++		irq_time_us: (RW) integer
++		page_fault_count: (RW) integer
+diff --git a/Documentation/gpu/rfc/xe_sriov.rst b/Documentation/gpu/rfc/xe_sriov.rst
+new file mode 100644
+index 000000000000..574f6414eabb
+--- /dev/null
++++ b/Documentation/gpu/rfc/xe_sriov.rst
+@@ -0,0 +1,192 @@
++.. SPDX-License-Identifier: MIT
++
++========================
++Xe – SR-IOV Support Plan
++========================
++
++The Single Root I/O Virtualization (SR-IOV) extension to the PCI Express (PCIe)
++specification suite is supported starting from 12th generation of Intel Graphics
++processors.
++
++This document describes planned ABI of the new Xe driver (see xe.rst) that will
++provide flexible configuration and management options related to the SR-IOV.
++It will also highlight few most important changes to the Xe driver
++implementation to deal with Intel GPU SR-IOV specific requirements.
++
++
++SR-IOV Capability
++=================
++
++Due to SR-IOV complexity and required co-operation between hardware, firmware
++and kernel drivers, not all Xe architecture platforms might have SR-IOV enabled
++or fully functional.
++
++To control at the driver level which platform will provide support for SR-IOV,
++as we can't just rely on the PCI configuration data exposed by the hardware,
++we will introduce "has_sriov" flag to the struct xe_device_desc that describes
++a device capabilities that driver checks during the probe.
++
++Initially this flag will be set to disabled even on platforms that we plan to
++support. We will enable this flag only once we finish merging all required
++changes to the driver and related validated firmwares are also made available.
++
++
++SR-IOV Platforms
++================
++
++Initially we plan to add SR-IOV functionality to the following SDV platforms
++already supported by the Xe driver:
++
++ - TGL (up to 7 VFs)
++ - ADL (up to 7 VFs)
++ - MTL (up to 7 VFs)
++ - ATSM (up to 31 VFs)
++ - PVC (up to 63 VFs)
++
++Newer platforms will be supported later, but we hope that enabling will be
++much faster, as majority of the driver changes are either platform agnostic
++or are similar between earlier platforms (hence we start with SDVs).
++
++
++PF Mode
++=======
++
++Support in the driver for acting in Physical Function (PF) mode, i.e. mode
++that allows configuration of VFs, depends on the CONFIG_PCI_IOV and will be
++enabled by default.
++
++However, due to potentially conflicting requirements for SR-IOV and other mega
++features, we might want to have an option to disable SR-IOV PF mode support at
++the driver load time.
++
++Thus, we plan to use additional modparam named "sriov_totalvfs" which if set to
++0 will force the driver to operate in the native (non-virtualized) mode.
++The same modparam could be used to limit number of supported Virtual Functions
++(VFs) by the driver compared to the hardware limit exposed in PCI configuration.
++
++The name of this modparam corresponds to the existing PCI sysfs attribute, that
++by default exposes hardware capability.
++
++The default value of this param will allow to support all possible VFs as
++claimed by the hardware.
++
++This modparam will have no effect if driver is running on the VF device.
++
++
++VFs Enabling
++============
++
++To enable or disable VFs we plan to rely on existing sysfs attribute exposed by
++the PCI subsystem named "sriov_numvfs". We will provide all necessary tweaks to
++provision VFs in our custom implementation of the "sriov_configure" hook from
++the struct pci_driver.
++
++If for some reason, including explicit request to disable SR-IOV PF mode using
++modparam, we will not be able to correctly support any VFs, driver will change
++number of supported VFs, exposed to the userspace by "sriov_totalvfs" attribute,
++to 0, thus preventing configuration of the VFs.
++
++
++VF Mode
++=======
++
++When driver is running on the VF device, then due to hardware enforcements,
++access to the privileged registers is not possible. To avoid relying on these
++registers, we plan to perform early detection if we are running on the VF
++device using dedicated VF_CAP(0x1901f8) register and then use global macro
++IS_SRIOV_VF(xe) to control the driver logic.
++
++To speed up merging of the required changes, we might first introduce dummy
++macro that is always set to false, to prepare driver to avoid some code paths
++before we finalize our VF mode detection and other VFs enabling changes.
++
++
++Resources
++=========
++
++Most of the hardware (or firmware) resources available on the Xe architecture,
++like GGTT, LMEM, GuC context IDs, GuC doorbells, will be shared between PF and
++VFs and will require some provisioning steps to assign those resources for use
++by the VF.
++
++Until VFs are provisioned with resources, the PF driver will be able to use all
++resources, in the same way as it would be running in non-virtualized mode.
++
++If some resource (of part or region of it) is assigned to specific VF, then PF
++is not allowed to use that part or region of the resource, but can continue to
++use whatever is left available.
++
++Those resources are usually fully virtualized, so they will not require any
++special handling when used by the VF driver, except that VF driver must know
++the assigned quota.
++
++The most notable exception is the GGTT address space, as on some platforms,
++the VF driver must additionally know the real range that it can access.
++
++Once the resources were assigned to the VF use and the VF driver has started,
++then it is not allowed to change such provisioning, as that would break the
++VF driver. To make changes the VF driver, which was using these resources,
++must be unloaded (or the VM is terminated) and the VF device must be reset
++using the FLR.
++
++
++Scheduling
++==========
++
++The workloads from PF driver and VF drivers must be submitted to the hardware
++always by using the GuC submission mechanism. Unless VF has exclusive access
++to the GT then submissions from different VFs are time-sliced and controlled
++with additional "execution_quantum" and "preemption_timeout" parameters.
++
++In contrast to the resource provisioning, those scheduling parameters can be
++changed even if VF drivers are already running and are active.
++
++
++Automatic VFs Provisioning
++==========================
++
++To provide out-of-the box experience when user will be enabling VFs using
++generic "sriov_numvfs" attribute without requiring complex provisioning steps,
++the SR-IOV PF driver will implement automatic VFs resource provisioning.
++
++By default, all VFs will be allocated with the fair amount of the mandatory
++resources (like GGTT, GuC IDs) and with unrestricted scheduling parameters.
++Such provisioning should be sufficient for most of the normal usages, when
++no strict SLA is required.
++
++The PF driver will also expose some additional sysfs files to allow adjusting
++this automatic VFs provisioning, like default values for most of the
++provisioning parameters that PF will then apply for each enabled VF.
++
++    Details about those extension can be found in
++    :download:`Preliminary Xe driver ABI <sysfs-driver-xe-sriov>`.
++
++
++Manual VFs Provisioning
++=======================
++
++If automatic VFs provisioning, which applies same configuration to every VF,
++is not sufficient or there is a need for advanced customization of some VF,
++the PF driver will also provide extended sysfs interface which will allow
++control every provisioning attribute to the lowest feasible level.
++
++It is expected that these low-level attributes will be mostly used by the
++advanced users or by the custom tools that will setup configurations that
++meet predefined and validated SLA as required by the customers.
++
++    Details about those extension can be found in
++    :download:`Preliminary Xe driver ABI <sysfs-driver-xe-sriov>`.
++
++
++VFs Monitoring
++==============
++
++In addition to the resource provisioning or changing scheduling parameters,
++the PF driver might also allow configure some monitoring parameters, like
++thresholds of adverse events or sample period, to track undesired behavior
++of the VFs that could impact the whole system.
++
++Once those thresholds are setup and sampling period is defined, the GuC will
++notify the PF driver about which VF is excessing the threshold and then PF is
++able to trigger the uevent to notify the administrator (or VMM) that could
++take some action against the VF.
+-- 
+2.25.1
 
-CI Bug Log - changes from xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce_BAT -> xe-pw-126278v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-126278v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-126278v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (3 -> 3)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-126278v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
-    - bat-atsm-2:         [PASS][1] -> [FAIL][2] +127 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
-
-  * igt@xe_intel_bb@create-in-region:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] +177 other tests fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html
-
-  * igt@xe_module_load@load:
-    - bat-adlp-7:         [PASS][5] -> [FAIL][6]
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@xe_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-adlp-7/igt@xe_module_load@load.html
-
-  
-#### Warnings ####
-
-  * igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:
-    - bat-dg2-oem2:       [SKIP][7] ([Intel XE#623]) -> [FAIL][8]
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html
-
-  * igt@kms_addfb_basic@basic-y-tiled-legacy:
-    - bat-dg2-oem2:       [SKIP][9] ([Intel XE#624]) -> [FAIL][10]
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_addfb_basic@basic-y-tiled-legacy.html
-
-  * igt@kms_addfb_basic@invalid-set-prop-any:
-    - bat-atsm-2:         [SKIP][11] ([i915#6077]) -> [FAIL][12] +33 other tests fail
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_addfb_basic@invalid-set-prop-any.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_addfb_basic@invalid-set-prop-any.html
-
-  * igt@kms_addfb_basic@tile-pitch-mismatch:
-    - bat-dg2-oem2:       [FAIL][13] ([Intel XE#609]) -> [FAIL][14] +1 other test fail
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_addfb_basic@tile-pitch-mismatch.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_addfb_basic@tile-pitch-mismatch.html
-
-  * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
-    - bat-atsm-2:         [SKIP][15] ([Intel XE#782]) -> [FAIL][16] +5 other tests fail
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-atsm-2:         [SKIP][17] ([Intel XE#784]) -> [FAIL][18]
-   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_dsc@dsc-basic.html
-   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html
-    - bat-dg2-oem2:       [SKIP][19] ([Intel XE#423]) -> [FAIL][20]
-   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
-   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_flip@basic-flip-vs-modeset:
-    - bat-atsm-2:         [SKIP][21] ([Intel XE#541]) -> [FAIL][22] +3 other tests fail
-   [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_flip@basic-flip-vs-modeset.html
-   [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_flip@basic-flip-vs-modeset.html
-
-  * igt@kms_force_connector_basic@force-connector-state:
-    - bat-atsm-2:         [SKIP][23] ([Intel XE#540]) -> [FAIL][24] +3 other tests fail
-   [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_force_connector_basic@force-connector-state.html
-   [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_force_connector_basic@force-connector-state.html
-
-  * igt@kms_force_connector_basic@prune-stale-modes:
-    - bat-dg2-oem2:       [SKIP][25] ([i915#5274]) -> [FAIL][26]
-   [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
-   [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-dg2-oem2:       [FAIL][27] ([Intel XE#608]) -> [FAIL][28]
-   [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html
-   [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html
-    - bat-atsm-2:         [SKIP][29] ([Intel XE#783]) -> [FAIL][30]
-   [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html
-   [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:
-    - bat-dg2-oem2:       [FAIL][31] ([Intel XE#400] / [Intel XE#616]) -> [FAIL][32]
-   [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-   [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
-    - bat-atsm-2:         [SKIP][33] ([i915#1836]) -> [FAIL][34] +6 other tests fail
-   [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-   [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
-
-  * igt@kms_prop_blob@basic:
-    - bat-atsm-2:         [SKIP][35] ([Intel XE#780]) -> [FAIL][36]
-   [35]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_prop_blob@basic.html
-   [36]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_prop_blob@basic.html
-
-  * igt@kms_psr@cursor_plane_move:
-    - bat-atsm-2:         [SKIP][37] ([Intel XE#535]) -> [FAIL][38] +2 other tests fail
-   [37]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_psr@cursor_plane_move.html
-   [38]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_psr@cursor_plane_move.html
-
-  * igt@kms_psr@primary_page_flip:
-    - bat-dg2-oem2:       [SKIP][39] ([Intel XE#535]) -> [FAIL][40] +2 other tests fail
-   [39]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html
-   [40]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html
-
-  * igt@xe_compute@compute-square:
-    - bat-atsm-2:         [SKIP][41] ([Intel XE#672]) -> [FAIL][42]
-   [41]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_compute@compute-square.html
-   [42]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_compute@compute-square.html
-    - bat-dg2-oem2:       [SKIP][43] ([Intel XE#672]) -> [FAIL][44]
-   [43]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_compute@compute-square.html
-   [44]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_compute@compute-square.html
-
-  * igt@xe_exec_fault_mode@many-basic:
-    - bat-dg2-oem2:       [SKIP][45] ([Intel XE#288]) -> [FAIL][46] +17 other tests fail
-   [45]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html
-   [46]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html
-
-  * igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:
-    - bat-atsm-2:         [SKIP][47] ([Intel XE#288]) -> [FAIL][48] +17 other tests fail
-   [47]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
-   [48]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
-
-  * igt@xe_huc_copy@huc_copy:
-    - bat-dg2-oem2:       [SKIP][49] ([Intel XE#255]) -> [FAIL][50]
-   [49]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
-   [50]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html
-    - bat-atsm-2:         [SKIP][51] ([Intel XE#255]) -> [FAIL][52]
-   [51]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
-   [52]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
-
-  
-#### Suppressed ####
-
-  The following results come from untrusted machines, tests, or statuses.
-  They do not affect the overall result.
-
-  * {igt@xe_create@create-execqueues-leak}:
-    - bat-atsm-2:         [FAIL][53] ([Intel XE#524]) -> [FAIL][54] +1 other test fail
-   [53]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-   [54]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-
-  * {igt@xe_exec_basic@no-exec-bindexecqueue}:
-    - bat-dg2-oem2:       [PASS][55] -> [FAIL][56] +16 other tests fail
-   [55]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_exec_basic@no-exec-bindexecqueue.html
-   [56]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_exec_basic@no-exec-bindexecqueue.html
-
-  * {igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind}:
-    - bat-atsm-2:         [PASS][57] -> [FAIL][58] +14 other tests fail
-   [57]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html
-   [58]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html
-
-  * {igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate}:
-    - bat-dg2-oem2:       [SKIP][59] ([Intel XE#288]) -> [FAIL][60] +14 other tests fail
-   [59]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html
-   [60]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html
-
-  * {igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind}:
-    - bat-atsm-2:         [SKIP][61] ([Intel XE#288]) -> [FAIL][62] +14 other tests fail
-   [61]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind.html
-   [62]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
-  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
-  [Intel XE#400]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/400
-  [Intel XE#423]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/423
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [Intel XE#535]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/535
-  [Intel XE#540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/540
-  [Intel XE#541]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/541
-  [Intel XE#608]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/608
-  [Intel XE#609]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/609
-  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
-  [Intel XE#623]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/623
-  [Intel XE#624]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/624
-  [Intel XE#672]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/672
-  [Intel XE#780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/780
-  [Intel XE#782]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/782
-  [Intel XE#783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/783
-  [Intel XE#784]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/784
-  [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
-  [i915#5274]: https://gitlab.freedesktop.org/drm/intel/issues/5274
-  [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
-
-
-Build changes
--------------
-
-  * IGT: IGT_7581 -> IGT_7582
-  * Linux: xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce -> xe-pw-126278v1
-
-  IGT_7581: 7581
-  IGT_7582: 453b9df12fbc9fff561bdb4eb97992983e74c3d4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce: b3890fb4386dcef68a96888141c4cc773f6241ce
-  xe-pw-126278v1: 126278v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/index.html
-
---===============5283293642686482223==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>uAPI Alignment - Remove unused features</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126278/">https://patchwork.freedesktop.org/series/126278/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce_BAT -&gt; xe-pw-126278v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-126278v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-126278v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-126278v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_exec_compute_mode@twice-userptr-invalidate:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">FAIL</a> +127 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_intel_bb@create-in-region:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_intel_bb@create-in-region.html">FAIL</a> +177 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_module_load@load:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@xe_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-adlp-7/igt@xe_module_load@load.html">FAIL</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_addfb_basic@addfb25-y-tiled-small-legacy:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/623">Intel XE#623</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_addfb_basic@addfb25-y-tiled-small-legacy.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@basic-y-tiled-legacy:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_addfb_basic@basic-y-tiled-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/624">Intel XE#624</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_addfb_basic@basic-y-tiled-legacy.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@invalid-set-prop-any:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_addfb_basic@invalid-set-prop-any.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/6077">i915#6077</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_addfb_basic@invalid-set-prop-any.html">FAIL</a> +33 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_addfb_basic@tile-pitch-mismatch:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_addfb_basic@tile-pitch-mismatch.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/609">Intel XE#609</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_addfb_basic@tile-pitch-mismatch.html">FAIL</a> +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/782">Intel XE#782</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html">FAIL</a> +5 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/784">Intel XE#784</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html">FAIL</a></p>
-</li>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/423">Intel XE#423</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_dsc@dsc-basic.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_flip@basic-flip-vs-modeset.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/541">Intel XE#541</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_flip@basic-flip-vs-modeset.html">FAIL</a> +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-connector-state:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_force_connector_basic@force-connector-state.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/540">Intel XE#540</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_force_connector_basic@force-connector-state.html">FAIL</a> +3 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@prune-stale-modes:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/5274">i915#5274</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_force_connector_basic@prune-stale-modes.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_frontbuffer_tracking@basic:</p>
-<ul>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/608">Intel XE#608</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_frontbuffer_tracking@basic.html">FAIL</a></p>
-</li>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/783">Intel XE#783</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/1836">i915#1836</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html">FAIL</a> +6 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_prop_blob@basic:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_prop_blob@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/780">Intel XE#780</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_prop_blob@basic.html">FAIL</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@cursor_plane_move:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@kms_psr@cursor_plane_move.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/535">Intel XE#535</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@kms_psr@cursor_plane_move.html">FAIL</a> +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@primary_page_flip:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/535">Intel XE#535</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@kms_psr@primary_page_flip.html">FAIL</a> +2 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_compute@compute-square:</p>
-<ul>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_compute@compute-square.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/672">Intel XE#672</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_compute@compute-square.html">FAIL</a></p>
-</li>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_compute@compute-square.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/672">Intel XE#672</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_compute@compute-square.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@many-basic:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_exec_fault_mode@many-basic.html">FAIL</a> +17 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">FAIL</a> +17 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_huc_copy@huc_copy:</p>
-<ul>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_huc_copy@huc_copy.html">FAIL</a></p>
-</li>
-<li>
-<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_huc_copy@huc_copy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/255">Intel XE#255</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html">FAIL</a></p>
-</li>
-</ul>
-</li>
-</ul>
-<h4>Suppressed</h4>
-<p>The following results come from untrusted machines, tests, or statuses.<br />
-  They do not affect the overall result.</p>
-<ul>
-<li>
-<p>{igt@xe_create@create-execqueues-leak}:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_exec_basic@no-exec-bindexecqueue}:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_exec_basic@no-exec-bindexecqueue.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_exec_basic@no-exec-bindexecqueue.html">FAIL</a> +16 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind}:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-rebind.html">FAIL</a> +14 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate}:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-dg2-oem2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> +14 other tests fail</li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind}:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126278v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-bindexecqueue-userptr-rebind.html">FAIL</a> +14 other tests fail</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7581 -&gt; IGT_7582</li>
-<li>Linux: xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce -&gt; xe-pw-126278v1</li>
-</ul>
-<p>IGT_7581: 7581<br />
-  IGT_7582: 453b9df12fbc9fff561bdb4eb97992983e74c3d4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce: b3890fb4386dcef68a96888141c4cc773f6241ce<br />
-  xe-pw-126278v1: 126278v1</p>
-
-</body>
-</html>
-
---===============5283293642686482223==--
