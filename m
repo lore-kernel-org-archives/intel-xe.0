@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2E910C4167B
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 15:42:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55ED4C4332F
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 15:42:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAD7010E108;
-	Fri, 10 Nov 2023 15:42:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12AF510E114;
+	Fri, 10 Nov 2023 15:42:18 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C2CFA10E108
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 15:42:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DCF2D10E108
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 15:42:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699630932; x=1731166932;
+ t=1699630933; x=1731166933;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DO0tpyt+7vlfNH/pC4Zdgj/s1I5nkrwreaBatFn7+lE=;
- b=exPNz2b+f8TTxAI3hs7OhrEVRv3AaC8Phj5NI7iwycDLBx05CK2sqPEz
- aiVH2rhrakWOJHv49zHv2hXVH874oQaI99eBBinny0Hd9G3bSjOaj28pQ
- 9Dehsuw7l0ombxLpJECEkI/TP9gDL6GeprRUsbKETynWMOEzl+uA64Vvd
- 4nc8XYMPcHOw7bf0egWzEQfYOPy4AofM9TD8JWvdazh65kSnpeSn0gRIV
- cDvaTz5xDxa9Z9R6GmVc642hK/n87rYrptW0h7tJJKikyW1PAPIGH7KZC
- H/ZNTo3QwrPuVV9NPxR0eY0ajbqRBDoUDaJZxpwwcsnLBcYVn512wDsZH Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="394104139"
-X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="394104139"
+ bh=rew7bJbiXYQ/T1avJNGtkKXMJZsMvVCiLC34AwoSor4=;
+ b=MmG0weEoLrQAja8H4pVVW8TfE8iq9hH6xYOSKQKp2OMOYz9lDwOODHeR
+ up/1QU32Vi/VKRcOTE2BE4yWQTdxh4xL/ivZsI8MZfPi1rXp3Jg9UIjZI
+ q8btiBnpMbspqID7SlfjcTu3R7LJFASUc5TEoUY/oD2ha0i+KjuTqnKcn
+ kdw0QAO2dyHaCAYC2L+l7KBoz1WBS4aIaMje282QbjQDTnjY+GeLJ4Vim
+ eY1bl/GKlhAtXsNQAELYKPKW6WszI5ectreaxxiVDrY4IaQ+xC9AhFcVB
+ FUBrb/+Mif5qVViW9KkLKpOcjZNkJ38Qcf5JlgF3joPHk99iHjyRrBr97 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="394104142"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="394104142"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2023 07:42:12 -0800
+ 10 Nov 2023 07:42:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="937193717"
-X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="937193717"
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="937193721"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="937193721"
 Received: from jponna-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
  ([10.249.43.153])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Nov 2023 07:42:11 -0800
+ 10 Nov 2023 07:42:12 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Nov 2023 15:41:53 +0000
-Message-Id: <20231110154156.6-5-francois.dugast@intel.com>
+Date: Fri, 10 Nov 2023 15:41:54 +0000
+Message-Id: <20231110154156.6-6-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231110154156.6-1-francois.dugast@intel.com>
 References: <20231110154156.6-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v1 4/7] drm/xe/uapi: Remove unused inaccessible
- memory region
+Subject: [Intel-xe] [PATCH v1 5/7] drm/xe/uapi: Remove unused
+ QUERY_CONFIG_MEM_REGION_COUNT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,29 +62,49 @@ Cc: Francois Dugast <francois.dugast@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is not used and also the negative of the other 2 regions:
-native_mem_regions and slow_mem_regions.
+As part of uAPI cleanup, remove this constant which is not used. Memory
+regions can be queried with DRM_XE_DEVICE_QUERY_MEM_USAGE.
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 5 -----
- 1 file changed, 5 deletions(-)
+ drivers/gpu/drm/xe/xe_query.c | 2 --
+ include/uapi/drm/xe_drm.h     | 4 ++--
+ 2 files changed, 2 insertions(+), 4 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 43bc6094855c..27f66de4c1cd 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -334,8 +334,6 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
+ 	config->info[XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
+ 	config->info[XE_QUERY_CONFIG_GT_COUNT] = xe->info.gt_count;
+-	config->info[XE_QUERY_CONFIG_MEM_REGION_COUNT] =
+-		hweight_long(xe->info.mem_region_mask);
+ 	config->info[XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY] =
+ 		xe_exec_queue_device_get_max_priority(xe);
+ 
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index 808d92262bcd..0f8c5afd3584 100644
+index 0f8c5afd3584..1ac9ae0591de 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -360,11 +360,6 @@ struct drm_xe_query_gt {
- 	 * they live on a different GPU/Tile.
- 	 */
- 	__u64 slow_mem_regions;
--	/**
--	 * @inaccessible_mem_regions: Bit mask of instances from
--	 * drm_xe_query_mem_usage that is not accessible by this GT at all.
--	 */
--	__u64 inaccessible_mem_regions;
- 	/** @reserved: Reserved */
- 	__u64 reserved[8];
+@@ -311,6 +311,7 @@ struct drm_xe_query_mem_usage {
+  * If a query is made with a struct drm_xe_device_query where .query
+  * is equal to DRM_XE_DEVICE_QUERY_CONFIG, then the reply uses
+  * struct drm_xe_query_config in .data.
++ *
+  */
+ struct drm_xe_query_config {
+ 	/** @num_params: number of parameters returned in info */
+@@ -325,8 +326,7 @@ struct drm_xe_query_config {
+ #define XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+ #define XE_QUERY_CONFIG_VA_BITS			3
+ #define XE_QUERY_CONFIG_GT_COUNT		4
+-#define XE_QUERY_CONFIG_MEM_REGION_COUNT	5
+-#define XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	6
++#define XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	5
+ 	/** @info: array of elements containing the config info */
+ 	__u64 info[];
  };
 -- 
 2.34.1
