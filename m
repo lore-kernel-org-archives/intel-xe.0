@@ -4,31 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C4C47C4332F
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 15:35:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B404C4332F
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 15:42:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 82DC310E102;
-	Fri, 10 Nov 2023 15:35:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1270110E102;
- Fri, 10 Nov 2023 15:35:51 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0B2CDAADE8;
- Fri, 10 Nov 2023 15:35:51 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1591427861637159849=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3F48D10E102;
+	Fri, 10 Nov 2023 15:42:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6789310E102
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 15:42:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699630927; x=1731166927;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Szp2O1nVpLWYS23SlZG45bjaJ3X+zFc72oH47inMivg=;
+ b=RDMTtZy84n217DtwPmHh1pbILoalKfyfEtF9oQu0i+7/YAXjEW4N6z/h
+ YXNvPVPsvBqNJ0eKRn+QkgH1FHxPcoMy6Z64ZYcOc6st73WCQMSaMXqOh
+ lvZ6TlxFdQatkmQrnHhHSyLCiILom4YitWSISeLgdyj2GPyaUA7czPxKp
+ ZSSiRMvvz8hMQutwFckuaqJz6fPvLJ8ur6qw/mmXf6Wxhxz6t8Usg3sZT
+ nMtCZKyi6w+cP5zvoXEFgEyLMzxcrxMX/2XtEq8AILIZDauLZ++UF999v
+ na18Dmb468+6AhATmOFM8isxRJ5KOZw8aTuNjAQd5q1HA791sDPvfcAwB g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="394104118"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="394104118"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2023 07:42:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10890"; a="937193705"
+X-IronPort-AV: E=Sophos;i="6.03,291,1694761200"; d="scan'208";a="937193705"
+Received: from jponna-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
+ ([10.249.43.153])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Nov 2023 07:42:05 -0800
+From: Francois Dugast <francois.dugast@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri, 10 Nov 2023 15:41:49 +0000
+Message-Id: <20231110154156.6-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
-Date: Fri, 10 Nov 2023 15:35:51 -0000
-Message-ID: <169963055100.31679.8818859585043237904@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231110144536.76914-1-juhapekka.heikkila@gmail.com>
-In-Reply-To: <20231110144536.76914-1-juhapekka.heikkila@gmail.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_series_st?=
- =?utf-8?q?arting_with_=5Bv8=2C1/6=5D_Revert_=22FIXME=3A_drm/i915=3A_xe_dp?=
- =?utf-8?q?t_integration=22?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v1 0/7] uAPI Alignment - Remove unused features
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,170 +56,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1591427861637159849==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+The series "uAPI Alignment - take 2 v3" [1] has grown too much which makes
+it difficult to review and to digest by UMDs. This new series is a first
+break down which focuses only on removing features which were not used.
 
-== Series Details ==
+[1] https://patchwork.freedesktop.org/series/126203/
 
-Series: series starting with [v8,1/6] Revert "FIXME: drm/i915: xe dpt integration"
-URL   : https://patchwork.freedesktop.org/series/126275/
-State : success
+Aravind Iddamsetty (1):
+  drm/xe/pmu: Drop interrupt pmu event
 
-== Summary ==
+Francois Dugast (4):
+  drm/xe/uapi: Remove useless XE_QUERY_CONFIG_NUM_PARAM
+  drm/xe/uapi: Remove unused inaccessible memory region
+  drm/xe/uapi: Remove unused QUERY_CONFIG_MEM_REGION_COUNT
+  drm/xe/uapi: Remove unused QUERY_CONFIG_GT_COUNT
 
-CI Bug Log - changes from xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce_BAT -> xe-pw-126275v1_BAT
-====================================================
+Rodrigo Vivi (2):
+  drm/xe/uapi: Remove GT_TYPE_REMOTE
+  drm/xe/uapi: Kill VM_MADVISE IOCTL
 
-Summary
--------
+ drivers/gpu/drm/xe/Makefile        |   1 -
+ drivers/gpu/drm/xe/xe_bo.c         |   2 +-
+ drivers/gpu/drm/xe/xe_bo_types.h   |   3 +
+ drivers/gpu/drm/xe/xe_device.c     |   8 +-
+ drivers/gpu/drm/xe/xe_irq.c        |  18 --
+ drivers/gpu/drm/xe/xe_pmu.c        |   9 -
+ drivers/gpu/drm/xe/xe_pmu_types.h  |   8 -
+ drivers/gpu/drm/xe/xe_query.c      |   6 +-
+ drivers/gpu/drm/xe/xe_vm_madvise.c | 299 -----------------------------
+ drivers/gpu/drm/xe/xe_vm_madvise.h |  15 --
+ include/uapi/drm/xe_drm.h          | 121 ++----------
+ 11 files changed, 29 insertions(+), 461 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/xe_vm_madvise.c
+ delete mode 100644 drivers/gpu/drm/xe/xe_vm_madvise.h
 
-  **SUCCESS**
+-- 
+2.34.1
 
-  No regressions found.
-
-  
-
-Participating hosts (3 -> 3)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-126275v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +2 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126275v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Possible fixes ####
-
-  * {igt@xe_create@create-execqueues-leak}:
-    - bat-atsm-2:         [FAIL][3] ([Intel XE#524]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126275v1/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][5] ([Intel XE#616] / [Intel XE#750]) -> [DMESG-FAIL][6] ([Intel XE#282] / [i915#2017])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126275v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
-  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
-  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
-
-
-Build changes
--------------
-
-  * IGT: IGT_7581 -> IGT_7582
-  * Linux: xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce -> xe-pw-126275v1
-
-  IGT_7581: 7581
-  IGT_7582: 453b9df12fbc9fff561bdb4eb97992983e74c3d4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce: b3890fb4386dcef68a96888141c4cc773f6241ce
-  xe-pw-126275v1: 126275v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126275v1/index.html
-
---===============1591427861637159849==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [v8,1/6] Revert &quot;FIXME: drm/i915: xe dpt integration&quot;</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126275/">https://patchwork.freedesktop.org/series/126275/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126275v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126275v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce_BAT -&gt; xe-pw-126275v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (3 -&gt; 3)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-126275v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126275v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +2 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>{igt@xe_create@create-execqueues-leak}:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126275v1/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126275v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7581 -&gt; IGT_7582</li>
-<li>Linux: xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce -&gt; xe-pw-126275v1</li>
-</ul>
-<p>IGT_7581: 7581<br />
-  IGT_7582: 453b9df12fbc9fff561bdb4eb97992983e74c3d4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce: b3890fb4386dcef68a96888141c4cc773f6241ce<br />
-  xe-pw-126275v1: 126275v1</p>
-
-</body>
-</html>
-
---===============1591427861637159849==--
