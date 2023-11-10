@@ -4,64 +4,63 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C29C8C4332F
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 14:45:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A845BC04A95
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 14:45:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AE0610E0C9;
-	Fri, 10 Nov 2023 14:45:48 +0000 (UTC)
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com
- [IPv6:2a00:1450:4864:20::12b])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 69F1110E0C5
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 14:45:45 +0000 (UTC)
-Received: by mail-lf1-x12b.google.com with SMTP id
- 2adb3069b0e04-507962561adso3069525e87.0
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 06:45:45 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 766F110E0D2;
+	Fri, 10 Nov 2023 14:45:49 +0000 (UTC)
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
+ [IPv6:2a00:1450:4864:20::134])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7561710E0C4
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 14:45:47 +0000 (UTC)
+Received: by mail-lf1-x134.google.com with SMTP id
+ 2adb3069b0e04-5099184f8a3so1961449e87.2
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 06:45:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699627543; x=1700232343; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1699627545; x=1700232345; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=i4jaF0TzmJVBumej0nYWwaYSlrW84muOjaWsX60CSbs=;
- b=g+B38x/8M3x3XkbxUcZLUOOTF0KqKxcqFeYdOC5amS9vzMqRa1Eo7gy1dmF/es4N4O
- YkToucy5/fJL6k3H0zjB+OdZWJKGwYLVQ2m9keYkIV3eaqm70ONqPVRPoc3mOcAReuhU
- BXfXgeNjj4YwKl8cc90+QbUXuwhWJhI2YFEIiwyZ3I/e7Ep5bLJ+JgKNukt4XNiAerA9
- 7OooFqgkVl7/16R6rEJYlqVpY8E0KnaPFftfXcXafRa6Gq+a1VlJo5clOliAYzrfDVoE
- 0J1PdaTSEZjwYwNBNKon8ITN2jWJyScu11dELVbeZkRvt3hlIlrmxROx2byx/e2JHpHU
- Q9nQ==
+ bh=brgJ77gxCyQkf0fl+O/DEQyaMYXWk4n5a2mZgSoayN0=;
+ b=DujBU0Wmh55mvkG978GU1xKSYh6Cv29fVhQYbK8Qg8S0unMOpMZqRy1eAMOsDyZsab
+ 0Kz8Oiw3bJtxTvrkszOCKC/eKMurKXh4eE7k37cOl2orbaQ85GC4rw3kadxuCNjxvleg
+ abuuZJeiuOvJQ7aowYw85f3X4ArWsl/jamM/djS4u4QwErGeC2wEr5tGS+TCwuc8Sa/f
+ 3Wfph3A+qDBrZN9UHF6gomBa/IOSh9dlJaQxqY0hsxBwNHJppw9iAXyk4hVokc2ARjhO
+ paKZe6tmkV8bBj5iiCn47Dqvixcc/LTYZirpx3qpqRCrBBnY3Lm6wrAgqrqyXMyOntjk
+ /gKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699627543; x=1700232343;
+ d=1e100.net; s=20230601; t=1699627545; x=1700232345;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=i4jaF0TzmJVBumej0nYWwaYSlrW84muOjaWsX60CSbs=;
- b=kcUQwX1FikJp6swiUHH8lDVu+B2g2y+gDYMYaPoJWBXKxDQ4PbFKVVHKuRzSgP2ML3
- hZJdEOUbs2AiQXtMXG2mAE2XnExhWHF+VH+B8KwR+cD7pzxQvCHeuagWTAJJh3sVj//L
- +AQujTx9qLHaf3GTP4qVCbdNvwb78Gp2WtDqtOdr4EOlZmEtynmaX33MDniJdnlX5jlV
- sOXmlHp/hG/Bdj1HRyJgBvPdTzo+51n6Y9ql1hpc5erCHCVMwz9A2paCVLVhMUcNScJ6
- mQQuQnU53RSiIJg782iUXewmBIKm2rlXRu54F3DomBcFq9KsN4L1n7hdPQYnxrAYN4JN
- o5Ow==
-X-Gm-Message-State: AOJu0YzOtQiBOnrQiv0MWTvGF4QuHrItJ/4EEfTA59pfTTSrrsMSKDYm
- JDhtkgKOCh6pgYDhVndy3DXgzRSKoh44LA==
-X-Google-Smtp-Source: AGHT+IEPwf6MzrNXvdgEk/Q5l9nf/2hwol40B7zJAwTynM7Q8jnBbt6n5oF6Ujv7XOv/RZstXfgmGg==
-X-Received: by 2002:ac2:44af:0:b0:509:4424:2e13 with SMTP id
- c15-20020ac244af000000b0050944242e13mr3979732lfm.65.1699627542901; 
- Fri, 10 Nov 2023 06:45:42 -0800 (PST)
+ bh=brgJ77gxCyQkf0fl+O/DEQyaMYXWk4n5a2mZgSoayN0=;
+ b=T9/HUzNHc1WuEDajXP1JmerhoO0+9BzNOTBPmNz9YPI1om1W3bEfCwKfMuIWKA8L9E
+ +lE+gH6W4ZgDAU9kV7ZK58L2yhFO5MovjUNkgseQF7IdnmXKacPHyCueYxbGt6RTzQuP
+ tLkIgo6sK2GdnfHFhZwYHMNJmiYK8V+KDtoTSRXQNQQFs+bqdFoVcD6kAK711KCSiFWJ
+ aV3TpBxyYggBCMbonND/BGlYYC9auyiAS49IkCCvA2TlcPnHb7kTjs2HC2iRtzXV/ezk
+ mlZI7XTJt66dhKcgU9lXp67ZdjGXZ2NyxMF1fwhiJElZFS36wV/4hUPZl1cRtpzWsGT8
+ jVng==
+X-Gm-Message-State: AOJu0Yzwr2dFqxMIHdsByNCJ/dSqDNfDaZBBmSFqUFuPsjp6fJCk5i5M
+ UMMCkf2U2iMhs+h4/YvJRxAxz8E3Vk6Auw==
+X-Google-Smtp-Source: AGHT+IFWDe3Hp+dqCf1UDVHXbkK+VSclCrLIPPsF8BnT3Nldgqtljnlez0VVWOBfrBZI6GzMkzbvdw==
+X-Received: by 2002:ac2:4c01:0:b0:507:c871:7888 with SMTP id
+ t1-20020ac24c01000000b00507c8717888mr3930148lfq.9.1699627545080; 
+ Fri, 10 Nov 2023 06:45:45 -0800 (PST)
 Received: from jheikkil-mobl1.. ([2001:998:22:0:c7cb:24:1577:4029])
  by smtp.gmail.com with ESMTPSA id
- a21-20020a195f55000000b005095614210dsm1441547lfj.241.2023.11.10.06.45.42
+ a21-20020a195f55000000b005095614210dsm1441547lfj.241.2023.11.10.06.45.43
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Nov 2023 06:45:42 -0800 (PST)
+ Fri, 10 Nov 2023 06:45:44 -0800 (PST)
 From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Nov 2023 16:45:33 +0200
-Message-Id: <20231110144536.76914-3-juhapekka.heikkila@gmail.com>
+Date: Fri, 10 Nov 2023 16:45:35 +0200
+Message-Id: <20231110144536.76914-5-juhapekka.heikkila@gmail.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231110144536.76914-1-juhapekka.heikkila@gmail.com>
 References: <20231110144536.76914-1-juhapekka.heikkila@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v8 3/6] drm/i915/display: in skl_surf_address
- check for dpt-vma
+Subject: [Intel-xe] [PATCH v8 5/6] drm/i915: xe dpt integration
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,30 +72,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-touch dpt_vma->node only if dpt-vma is not NULL
+Abstract i915 and Xe dpt related differences.
 
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 16 +++++++++++-----
+ drivers/gpu/drm/xe/Makefile             |  2 +-
+ drivers/gpu/drm/xe/display/xe_fb_pin.c  | 14 ++++++++++++++
+ 3 files changed, 26 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index 4553dd6bfbbd..1ed9d5a6283e 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -1010,7 +1010,8 @@ static u32 skl_surf_address(const struct intel_plane_state *plane_state,
- 		 * The DPT object contains only one vma, so the VMA's offset
- 		 * within the DPT is always 0.
- 		 */
--		drm_WARN_ON(&i915->drm, plane_state->dpt_vma->node.start);
-+		drm_WARN_ON(&i915->drm, plane_state->dpt_vma &&
-+			    plane_state->dpt_vma->node.start);
- 		drm_WARN_ON(&i915->drm, offset & 0x1fffff);
- 		return offset >> 9;
- 	} else {
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index a21b312bc54b..f7675284907f 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1885,17 +1885,24 @@ int intel_plane_compute_gtt(struct intel_plane_state *plane_state)
+ 	return intel_plane_check_stride(plane_state);
+ }
+ 
+-static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
++static void intel_user_framebuffer_destroy_vm(struct drm_framebuffer *fb)
+ {
+ 	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
+ 
+-	drm_framebuffer_cleanup(fb);
+-
+ 	if (intel_fb_uses_dpt(fb))
+ 		intel_dpt_destroy(intel_fb->dpt_vm);
++}
++
++static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
++{
++	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
++
++	drm_framebuffer_cleanup(fb);
+ 
+ 	intel_frontbuffer_put(intel_fb->frontbuffer);
+ 
++	intel_user_framebuffer_destroy_vm(fb);
++
+ 	kfree(intel_fb);
+ }
+ 
+@@ -2166,8 +2173,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 	return 0;
+ 
+ err_free_dpt:
+-	if (intel_fb_uses_dpt(fb))
+-		intel_dpt_destroy(intel_fb->dpt_vm);
++	intel_user_framebuffer_destroy_vm(fb);
+ err:
+ 	intel_frontbuffer_put(intel_fb->frontbuffer);
+ 	return ret;
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index a1a8847e2ba3..b82641dcca70 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -201,7 +201,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_dp_mst.o \
+ 	i915-display/intel_dpll.o \
+ 	i915-display/intel_dpll_mgr.o \
+-	i915-display/intel_dpt.o \
++	i915-display/intel_dpt_common.o \
+ 	i915-display/intel_drrs.o \
+ 	i915-display/intel_dsb.o \
+ 	i915-display/intel_dsi.o \
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index ffd35a59f405..722c84a56607 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -368,3 +368,17 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+ 	__xe_unpin_fb_vma(old_plane_state->ggtt_vma);
+ 	old_plane_state->ggtt_vma = NULL;
+ }
++
++/*
++ * For Xe introduce dummy intel_dpt_create which just return NULL and
++ * intel_dpt_destroy which does nothing.
++ */
++struct i915_address_space *intel_dpt_create(struct intel_framebuffer *fb)
++{
++	return NULL;
++}
++
++void intel_dpt_destroy(struct i915_address_space *vm)
++{
++	return;
++}
+\ No newline at end of file
 -- 
 2.25.1
 
