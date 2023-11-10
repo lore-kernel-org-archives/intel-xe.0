@@ -4,30 +4,62 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 53EFCC4332F
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 14:23:43 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F2A17C4332F
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 14:45:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2004410E086;
-	Fri, 10 Nov 2023 14:23:43 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 38DAB10E086;
- Fri, 10 Nov 2023 14:23:41 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 34119A3ECB;
- Fri, 10 Nov 2023 14:23:41 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFB2910E0C5;
+	Fri, 10 Nov 2023 14:45:45 +0000 (UTC)
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com
+ [IPv6:2a00:1450:4864:20::133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF09310E0C4
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 14:45:43 +0000 (UTC)
+Received: by mail-lf1-x133.google.com with SMTP id
+ 2adb3069b0e04-507a5f2193bso2350792e87.1
+ for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 06:45:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1699627541; x=1700232341; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=V3ncNz36bkYNoeK6K3G2qGZEVAiXILHzPLDp3h/z+Tw=;
+ b=iVvQ7PDIwDg6XEiMAD7OWILL2/gkrkR6e2OcduAWmP4pCGWrt75npNh2RGdZR1rLaj
+ srew2xHkSpUuSJ1Zb2P5EI806AFRV0h66/EvL+IKYJOZpn93nNTI5k+ymP8soehwRe2G
+ P/UoaeagPdfyUp7rCXCGfLarDKWjseZKn/mmX0X39ZAtPFZTAHtyfYDMTRyKIDCfdXgl
+ /TWr9w5YcFkAtGzVwfmqbkVT4FX4e+qYMK/AD4wFmWv2Uoi43zk8EJwFQw01trUm9+Zm
+ zipiNitNwiPPzlarGoIpXNXpjpdeGQaLUt18cpgg1Ri/gejJ29SKWxDi7Kl7ydfCmrvV
+ Cb3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1699627541; x=1700232341;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=V3ncNz36bkYNoeK6K3G2qGZEVAiXILHzPLDp3h/z+Tw=;
+ b=MwDjJ6E0pKB1lSLT4Ff8qetePdldMzoYrD+ouvvNVmqf2Uu+PD1TJWa/PHeJVtCw2Z
+ wXVbKxugRrp5AZ3S6hNzICDXin2jyacMsxrVBfs4zXasRDvBQlFKstbp2aje/BL43J83
+ ilFw0NuImWqRJLP2TnzW/YAiibbchvU3XufxwFGAZIovS+ZsAe643xV2iZtC6+9ADPD7
+ aUzMdc8+gairj9WR8ICRrt++L1wZABPaxM2IaaXIznmAKm2pKorTBlIn1RvGQfJ33klZ
+ ta7Oe2c+LPZzowBCn3wXbrmKRw9CFJ/YKQ/uf2ajz3xfutC0hGAGBjGGkcqhFIyxgyDC
+ tNmA==
+X-Gm-Message-State: AOJu0YyZ9dmErHVseLPLP4I7/ZPwEq4AFpufMSi5Z3AsG0E/HXZcWc74
+ oCgEpb0ddL15aaJNH8PCIoJ9jLGNWmA6lw==
+X-Google-Smtp-Source: AGHT+IFKkq99t+c47LHCVwbTjxNypHlcxK6fUyWkhBFpCTTaSP1lmm7bVZ6DKSwaeatQ3+zWeXutyA==
+X-Received: by 2002:a05:6512:3c88:b0:4f9:dac6:2f3d with SMTP id
+ h8-20020a0565123c8800b004f9dac62f3dmr1272013lfv.13.1699627541172; 
+ Fri, 10 Nov 2023 06:45:41 -0800 (PST)
+Received: from jheikkil-mobl1.. ([2001:998:22:0:c7cb:24:1577:4029])
+ by smtp.gmail.com with ESMTPSA id
+ a21-20020a195f55000000b005095614210dsm1441547lfj.241.2023.11.10.06.45.40
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Fri, 10 Nov 2023 06:45:40 -0800 (PST)
+From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri, 10 Nov 2023 16:45:31 +0200
+Message-Id: <20231110144536.76914-1-juhapekka.heikkila@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Fri, 10 Nov 2023 14:23:41 -0000
-Message-ID: <169962622120.31676.10118430370165061944@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231110135913.18890-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231110135913.18890-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe/vm=2C_drm/xe/uapi=3A_Use_LR_abbrev_for_long-running_vms?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v8 1/6] Revert "FIXME: drm/i915: xe dpt
+ integration"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +71,210 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+This reverts commit e417510409165b44ad59bfdbc59cd90316e91dc1.
 
-Series: drm/xe/vm, drm/xe/uapi: Use LR abbrev for long-running vms
-URL   : https://patchwork.freedesktop.org/series/126273/
-State : success
+Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
+---
+ .../gpu/drm/i915/display/intel_atomic_plane.c |  4 ---
+ .../drm/i915/display/intel_display_types.h    |  6 ----
+ drivers/gpu/drm/i915/display/intel_dpt.c      | 14 +++-----
+ drivers/gpu/drm/i915/display/intel_fb.c       | 36 +++----------------
+ .../drm/i915/display/skl_universal_plane.c    |  6 +---
+ 5 files changed, 11 insertions(+), 55 deletions(-)
 
-== Summary ==
-
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast b3890fb4386dcef68a96888141c4cc773f6241ce
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
-
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+index 77e281bf4cb5..a8f36ca11e2e 100644
+--- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
+@@ -111,9 +111,7 @@ intel_plane_duplicate_state(struct drm_plane *plane)
+ 	__drm_atomic_helper_plane_duplicate_state(plane, &intel_state->uapi);
+ 
+ 	intel_state->ggtt_vma = NULL;
+-#ifdef I915
+ 	intel_state->dpt_vma = NULL;
+-#endif
+ 	intel_state->flags = 0;
+ 
+ 	/* add reference to fb */
+@@ -138,9 +136,7 @@ intel_plane_destroy_state(struct drm_plane *plane,
+ 	struct intel_plane_state *plane_state = to_intel_plane_state(state);
+ 
+ 	drm_WARN_ON(plane->dev, plane_state->ggtt_vma);
+-#ifdef I915
+ 	drm_WARN_ON(plane->dev, plane_state->dpt_vma);
+-#endif
+ 
+ 	__drm_atomic_helper_plane_destroy_state(&plane_state->uapi);
+ 	if (plane_state->hw.fb)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index b5e4b94c129b..db20dd7e5c0d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -143,9 +143,7 @@ struct intel_framebuffer {
+ 		struct intel_fb_view remapped_view;
+ 	};
+ 
+-#ifdef I915
+ 	struct i915_address_space *dpt_vm;
+-#endif
+ };
+ 
+ enum intel_hotplug_state {
+@@ -696,11 +694,7 @@ struct intel_plane_state {
+ 	} hw;
+ 
+ 	struct i915_vma *ggtt_vma;
+-#ifdef I915
+ 	struct i915_vma *dpt_vma;
+-#else
+-	struct i915_vma embed_vma;
+-#endif
+ 	unsigned long flags;
+ #define PLANE_HAS_FENCE BIT(0)
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c b/drivers/gpu/drm/i915/display/intel_dpt.c
+index 6e73c7a15942..2b067cb952f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpt.c
++++ b/drivers/gpu/drm/i915/display/intel_dpt.c
+@@ -3,6 +3,11 @@
+  * Copyright © 2021 Intel Corporation
+  */
+ 
++#include "gem/i915_gem_domain.h"
++#include "gem/i915_gem_internal.h"
++#include "gem/i915_gem_lmem.h"
++#include "gt/gen8_ppgtt.h"
++
+ #include "i915_drv.h"
+ #include "i915_reg.h"
+ #include "intel_de.h"
+@@ -10,13 +15,6 @@
+ #include "intel_dpt.h"
+ #include "intel_fb.h"
+ 
+-#ifdef I915
+-
+-#include "gem/i915_gem_domain.h"
+-#include "gem/i915_gem_internal.h"
+-#include "gem/i915_gem_lmem.h"
+-#include "gt/gen8_ppgtt.h"
+-
+ struct i915_dpt {
+ 	struct i915_address_space vm;
+ 
+@@ -320,8 +318,6 @@ void intel_dpt_destroy(struct i915_address_space *vm)
+ 	i915_vm_put(&dpt->vm);
+ }
+ 
+-#endif
+-
+ void intel_dpt_configure(struct intel_crtc *crtc)
+ {
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 1ce61245728a..3862e55e8980 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1885,34 +1885,16 @@ int intel_plane_compute_gtt(struct intel_plane_state *plane_state)
+ 	return intel_plane_check_stride(plane_state);
+ }
+ 
+-static void intel_user_framebuffer_destroy_vm(struct drm_framebuffer *fb)
+-{
+-#ifdef I915
+-	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
+-	if (intel_fb_uses_dpt(fb))
+-		intel_dpt_destroy(intel_fb->dpt_vm);
+-#else
+-	if (intel_fb_obj(fb)->flags & XE_BO_CREATE_PINNED_BIT) {
+-		struct xe_bo *bo = intel_fb_obj(fb);
+-
+-		/* Unpin our kernel fb first */
+-		xe_bo_lock(bo, false);
+-		xe_bo_unpin(bo);
+-		xe_bo_unlock(bo);
+-	}
+-	xe_bo_put(intel_fb_obj(fb));
+-#endif
+-}
+-
+ static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
+ {
+ 	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
+ 
+ 	drm_framebuffer_cleanup(fb);
+ 
+-	intel_frontbuffer_put(intel_fb->frontbuffer);
++	if (intel_fb_uses_dpt(fb))
++		intel_dpt_destroy(intel_fb->dpt_vm);
+ 
+-	intel_user_framebuffer_destroy_vm(fb);
++	intel_frontbuffer_put(intel_fb->frontbuffer);
+ 
+ 	kfree(intel_fb);
+ }
+@@ -2155,18 +2137,13 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 			}
+ 		}
+ 
+-#ifdef I915
+ 		fb->obj[i] = &obj->base;
+-#else
+-		fb->obj[i] = &obj->ttm.base;
+-#endif
+ 	}
+ 
+ 	ret = intel_fill_fb_info(dev_priv, intel_fb);
+ 	if (ret)
+ 		goto err;
+ 
+-#ifdef I915
+ 	if (intel_fb_uses_dpt(fb)) {
+ 		struct i915_address_space *vm;
+ 
+@@ -2179,10 +2156,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 
+ 		intel_fb->dpt_vm = vm;
+ 	}
+-#else
+-	/* Hold a reference to object while fb is alive */
+-	xe_bo_get(obj);
+-#endif
+ 
+ 	ret = drm_framebuffer_init(&dev_priv->drm, fb, &intel_fb_funcs);
+ 	if (ret) {
+@@ -2193,7 +2166,8 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 	return 0;
+ 
+ err_free_dpt:
+-	intel_user_framebuffer_destroy_vm(fb);
++	if (intel_fb_uses_dpt(fb))
++		intel_dpt_destroy(intel_fb->dpt_vm);
+ err:
+ 	intel_frontbuffer_put(intel_fb->frontbuffer);
+ 	return ret;
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 68eabe089aaf..4553dd6bfbbd 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1010,13 +1010,9 @@ static u32 skl_surf_address(const struct intel_plane_state *plane_state,
+ 		 * The DPT object contains only one vma, so the VMA's offset
+ 		 * within the DPT is always 0.
+ 		 */
+-		drm_WARN_ON(&i915->drm, offset & 0x1fffff);
+-#ifdef I915
+ 		drm_WARN_ON(&i915->drm, plane_state->dpt_vma->node.start);
++		drm_WARN_ON(&i915->drm, offset & 0x1fffff);
+ 		return offset >> 9;
+-#else
+-		return 0;
+-#endif
+ 	} else {
+ 		drm_WARN_ON(&i915->drm, offset & 0xfff);
+ 		return offset;
+-- 
+2.25.1
 
