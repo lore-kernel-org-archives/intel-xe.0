@@ -4,64 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 73798C4332F
-	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 14:45:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B83C9C4332F
+	for <intel-xe@archiver.kernel.org>; Fri, 10 Nov 2023 14:54:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46CA410E0DB;
-	Fri, 10 Nov 2023 14:45:51 +0000 (UTC)
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com
- [IPv6:2a00:1450:4864:20::134])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 00E2F10E0C9
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 14:45:47 +0000 (UTC)
-Received: by mail-lf1-x134.google.com with SMTP id
- 2adb3069b0e04-507bd64814fso2966537e87.1
- for <intel-xe@lists.freedesktop.org>; Fri, 10 Nov 2023 06:45:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1699627546; x=1700232346; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=s7cA3ceaXYweMWEOc9+k8MYniOpRrwKMPZQqqwRukBc=;
- b=UxRIrfmrr6wsG5SrsAWPZhQ0u2xvJ6k2j0v0xvHFNhbOdIS46lpqslL75JF5cyjxT1
- +m55avRnoGBODMREbTpM5XdTHiH3WT8bdNLTyhXA9FQHd5W1ZXFGXDDNwqcl0yI6VWl7
- ceMZ70dvibSHkr5Io4hq045hM+Ak5qh406vMYqzkDHAIuHb86TbQlbtZwTnts4foBmaw
- pMucwU29o2nkQua0ylR0HH8hbDqMsNwx4hWLIPyQpHLSUz2IDrSHXHnJ5aC7Z/ceuZMH
- U728V6tVYezdZjhE0iDP+UyK7PIKUMnDsc/xOYD6OahAqDBvBm9HxHS2Nm4gSscuNyZK
- QamA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1699627546; x=1700232346;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=s7cA3ceaXYweMWEOc9+k8MYniOpRrwKMPZQqqwRukBc=;
- b=eI59CTd+e1lxYrdHGlJpGEe2ZDk0aycylkUolyx4PGOAuuvLU6UcaJB7n4weEWi2LO
- 0D6jyr2UA8YTPX+PZS/77R/qqGJq2dTzIwRijRCts6timil9pKbNEU54Dq8Hrz5fhqzl
- NUXFS39WPZ6c0BVsMgamAnJYbSXpwiXYHZOWITNgTMAljS6idhk8USVqD7wswFva2njD
- R++xy0utA2uy8vD8vXdMRqSlBvtRhtobC3hjnDmHtNXblmWpEjSbgVJ7Cw8+fcvsAcqW
- BQJ3k9LdFLmnVhVQc0LBXWXCom8pEXJVOzLCcedYaN8HKEZDUbSUVEdMySYCdPy225R2
- 4hGw==
-X-Gm-Message-State: AOJu0YzZ1M4RbvkAX74LrfrLR86AdYiGM+VpTDZrV1iPBlfe+R/zYFAp
- CEIwPjBzBXbXfB9fdATlkettVRljYzs+0g==
-X-Google-Smtp-Source: AGHT+IFd+26XNpu+DWmHrRDpkgaHtcT3ODOEVeBlRIdGcFYQoUmHZ1R/Ngel7gTXgH13wRakXNp4sA==
-X-Received: by 2002:a05:6512:925:b0:50a:6f8a:6461 with SMTP id
- f5-20020a056512092500b0050a6f8a6461mr1780676lft.58.1699627545853; 
- Fri, 10 Nov 2023 06:45:45 -0800 (PST)
-Received: from jheikkil-mobl1.. ([2001:998:22:0:c7cb:24:1577:4029])
- by smtp.gmail.com with ESMTPSA id
- a21-20020a195f55000000b005095614210dsm1441547lfj.241.2023.11.10.06.45.45
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 10 Nov 2023 06:45:45 -0800 (PST)
-From: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-To: intel-xe@lists.freedesktop.org
-Date: Fri, 10 Nov 2023 16:45:36 +0200
-Message-Id: <20231110144536.76914-6-juhapekka.heikkila@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231110144536.76914-1-juhapekka.heikkila@gmail.com>
-References: <20231110144536.76914-1-juhapekka.heikkila@gmail.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5474D10E0D2;
+	Fri, 10 Nov 2023 14:54:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id AE4BD10E0D2;
+ Fri, 10 Nov 2023 14:54:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A79F8AADF1;
+ Fri, 10 Nov 2023 14:54:21 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2685305823349496550=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v8 6/6] FIXME: drm/i915: xe intel_fb.c
- framebuffer init and destroy xe changes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Fri, 10 Nov 2023 14:54:21 -0000
+Message-ID: <169962806164.31679.13144360264699983617@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231110135913.18890-1-thomas.hellstrom@linux.intel.com>
+In-Reply-To: <20231110135913.18890-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/vm?=
+ =?utf-8?q?=2C_drm/xe/uapi=3A_Use_LR_abbrev_for_long-running_vms?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,50 +39,164 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-intel_framebuffer_init and intel_user_framebuffer_destroy_vm
-xe changes.
+--===============2685305823349496550==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
----
- drivers/gpu/drm/i915/display/intel_fb.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index f7675284907f..16c37a508552 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -1891,6 +1891,17 @@ static void intel_user_framebuffer_destroy_vm(struct drm_framebuffer *fb)
- 
- 	if (intel_fb_uses_dpt(fb))
- 		intel_dpt_destroy(intel_fb->dpt_vm);
-+#ifndef I915
-+	if (intel_fb_obj(fb)->flags & XE_BO_CREATE_PINNED_BIT) {
-+		struct xe_bo *bo = intel_fb_obj(fb);
-+
-+		/* Unpin our kernel fb first */
-+		xe_bo_lock(bo, false);
-+		xe_bo_unpin(bo);
-+		xe_bo_unlock(bo);
-+	}
-+	xe_bo_put(intel_fb_obj(fb));
-+#endif
- }
- 
- static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
-@@ -2163,6 +2174,10 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 
- 		intel_fb->dpt_vm = vm;
- 	}
-+#ifndef I915
-+	/* Hold a reference to object while fb is alive */
-+	xe_bo_get(obj);
-+#endif
- 
- 	ret = drm_framebuffer_init(&dev_priv->drm, fb, &intel_fb_funcs);
- 	if (ret) {
--- 
-2.25.1
+Series: drm/xe/vm, drm/xe/uapi: Use LR abbrev for long-running vms
+URL   : https://patchwork.freedesktop.org/series/126273/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce_BAT -> xe-pw-126273v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-126273v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-126273v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (3 -> 3)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-126273v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
+    - bat-dg2-oem2:       [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126273v1/bat-dg2-oem2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-126273v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][3] -> [FAIL][4] ([Intel XE#480]) +1 other test fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126273v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+
+
+Build changes
+-------------
+
+  * IGT: IGT_7581 -> IGT_7582
+  * Linux: xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce -> xe-pw-126273v1
+
+  IGT_7581: 7581
+  IGT_7582: 453b9df12fbc9fff561bdb4eb97992983e74c3d4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce: b3890fb4386dcef68a96888141c4cc773f6241ce
+  xe-pw-126273v1: 126273v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126273v1/index.html
+
+--===============2685305823349496550==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/vm, drm/xe/uapi: Use LR abbrev for long-running vms</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126273/">https://patchwork.freedesktop.org/series/126273/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126273v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126273v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce_BAT -&gt; xe-pw-126273v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-126273v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-126273v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (3 -&gt; 3)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-126273v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@xe_exec_compute_mode@twice-userptr-invalidate:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-dg2-oem2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126273v1/bat-dg2-oem2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-126273v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126273v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7581 -&gt; IGT_7582</li>
+<li>Linux: xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce -&gt; xe-pw-126273v1</li>
+</ul>
+<p>IGT_7581: 7581<br />
+  IGT_7582: 453b9df12fbc9fff561bdb4eb97992983e74c3d4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-485-b3890fb4386dcef68a96888141c4cc773f6241ce: b3890fb4386dcef68a96888141c4cc773f6241ce<br />
+  xe-pw-126273v1: 126273v1</p>
+
+</body>
+</html>
+
+--===============2685305823349496550==--
