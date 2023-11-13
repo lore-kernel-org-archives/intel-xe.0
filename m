@@ -4,145 +4,75 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D2AEC4167D
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Nov 2023 09:25:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C63B7C4332F
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Nov 2023 09:37:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEA0710E2D4;
-	Mon, 13 Nov 2023 09:25:41 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4250610E31C
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Nov 2023 09:25:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94C1810E320;
+	Mon, 13 Nov 2023 09:37:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A9B810E2FF
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Nov 2023 09:37:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699867540; x=1731403540;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=Xeqzmpju93YSGPT2QgPAnzZOGAo3Lp8875RH6KnzbbM=;
- b=FNXkmmWqf0kVyQiNPWWnI1nhYpZ0ZkgOudX/Gr8d6cXJQm/ywRQGAH1y
- 6K4XILvxD7q+UfoOoAUfH++coPclktHnd4GHPo4Ajg/YBW5yBAMT1a7Ac
- FnH2ZJL4NJvGBkb3XuXrk/7dvK1jw2sL662506IfIlNCX8foqZJB+LunO
- QWYoxY+T3NDZWoUbUsv7+XIntiujm1EevxvjNLc50JiuSXGILb6HsuoqW
- pjlceOnJmvKUFdKkizyZ5fNBe/KPpRSJ9NvyVmui8Iw/JSb54+sOJb/bO
- yQXbVZLsNiOPdVAuu7Z0gAYbkMF5hnTPgF4UlMf8MNN839SkLmhdZ5Tj4 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10892"; a="380793050"
-X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="380793050"
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2023 01:25:39 -0800
+ t=1699868270; x=1731404270;
+ h=message-id:date:mime-version:subject:to:references:from:
+ in-reply-to:content-transfer-encoding;
+ bh=qI+dr20dnW4WQAojJIFv1TT3cLH8OoNz19Oir7ltyiI=;
+ b=KMmY3MT+UdxQMiMYc00hJTwKv9Cs44Q6az7wiY515WZwPEkhnhcKdrJQ
+ lnaG+eNFq24fW/5ST+4zZy7YMPwuPHTORW99zdpzw6+9H1SwFWmitbwjr
+ yMeKTrBXw+q6r1YVciA9dWcGIMvnOIFuXg1imdH/uiLca1pb1m7vcb5rN
+ Cw85/1nbVoau83qUGYaUEFXXsZt80vL4vykz2p1qeSsENIxY04vncKRD7
+ BUdBEUvWhCCULBXZDzu1/HC2BmLfK9iu3JkqL6vsvKjhdfBtk6LwY5REA
+ L1K7o12cGoBb9a5cKBj/elwTahXihm82pWXQbMuBIKYoUMZ6EVWAemLrv w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10892"; a="3448891"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; 
+   d="scan'208";a="3448891"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2023 01:37:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10892"; a="830187292"
-X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="830187292"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 13 Nov 2023 01:25:38 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Mon, 13 Nov 2023 01:25:38 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Mon, 13 Nov 2023 01:25:37 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Mon, 13 Nov 2023 01:25:37 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Mon, 13 Nov 2023 01:25:36 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Cux6dmvQg2LDrmR9x3nGfsJ1wXCEt8Vh5/agWT4yLso6v8LXyQdMGFfIc5Xl9CiDGTDHBSCnnce/wO3hj/WJslls+fAFITV36N2WVK8xJ8qIEbl9jiGZrkL6nhec0V6ZSMSQRFapdeKxfKcwqUe5axw++MXa9JyZmjZ7LRkUFG4A/XrDrayktbudQ8os/LPY/lgHK1XABrvXxuICuOklJ2wXwBreAoTx4SYI45PNZ/UHzIckTLKJcJ5lcxkAoWrati3kJxw/WbSQhD9HjJygPf0hgjVp69oBEnZDLUh28RmxL7vWdfu0kiY6gtZ3VBK+v5YLR17iAnvxHXZsIVCwkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=QuvDh+E3OGHICppT9+1mWxwhvoUAju6tWJeGDYqoSLk=;
- b=mqakO2Gf5Mvr/68sGp0tIbn+Zjb/3gaeLEx42nvS3/oaVarDnjHg1kiFacQackFC1xTXQpxhuZYoKJyEXL+t1KAcjxCTRP6mw5HSKQqmXzkFowvToNlTiev663PikllHRAxhPJrDaBRHPHXFGdEwnyBY735/KGnF0sDDR4YDqpnsXEnloktMM4EZpxsK/n1zdze81pXMX3zMVfMBPdv/58yMv1SVsGHDzYkRhB58nwhv7dcU5f7rBvMrKk/vKAF/KzWJH/RAJOPwIIug6sP62vLexVNnzsdyVk3Ivox5Kxkfox844/KgA9O7N9lEV3+1yYjJ6JBqadxPckeIhOhggQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
- by BL3PR11MB6482.namprd11.prod.outlook.com (2603:10b6:208:3bd::17)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.28; Mon, 13 Nov
- 2023 09:25:34 +0000
-Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::399c:3488:d511:adef]) by SJ1PR11MB6204.namprd11.prod.outlook.com
- ([fe80::399c:3488:d511:adef%7]) with mapi id 15.20.6977.029; Mon, 13 Nov 2023
- 09:25:33 +0000
-From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Wajdeczko, Michal"
- <Michal.Wajdeczko@intel.com>
-Thread-Topic: [Intel-xe] [PATCH 1/2] drm/xe/ats-m: Expose uid for ATS-M via
- sysfs
-Thread-Index: AQHaEkndZNZQuguXukGO93j6s7OngLBwdVCAgAAeMoCAB2yYkA==
-Date: Mon, 13 Nov 2023 09:25:32 +0000
-Message-ID: <SJ1PR11MB620469365FF57B12D288DB7E81B3A@SJ1PR11MB6204.namprd11.prod.outlook.com>
-References: <20231108135418.3049168-1-tejas.upadhyay@intel.com>
- <20231108135418.3049168-2-tejas.upadhyay@intel.com>
- <a4701efa-eab1-4a65-94ce-2c08107db9d1@intel.com>
- <vnyr2nbirfddf5yh4q7lskbwrq4hk7v3ngosrazuwiioaufsml@qckippjlrtvb>
-In-Reply-To: <vnyr2nbirfddf5yh4q7lskbwrq4hk7v3ngosrazuwiioaufsml@qckippjlrtvb>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|BL3PR11MB6482:EE_
-x-ms-office365-filtering-correlation-id: 7d5b2dfc-2245-452c-35cd-08dbe42a7c4d
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iKyudt06o/zyMdLtFn9Rhx8ACPFMikvJm1F4VrYoB6uhFXiGiDa7pBawRAYDauXWwljiy4Iv3OX7VgcyU0SR9x9/nwNylK1XDZy//J3n5/OmmE3zhicUQgJxkpwsm6DNykimwGjoZv0MSgVXzYrn2l8R0EH+0LDolhBT+628w3+6PshmoS6MH0uLLh1vnDGQFjgBA4bcdF/WW7v7egDeqSy71jru0K6ZeUrwvC+5CrBCciHogwozIGGiPJXdEwkurAnfOpQK8Vdvnc/Gc8XMsNTBj7XFH9oX4oZuShAWAyhUj7mqE1UiMlSSK5LdGZrIexlMiw4QtPPIpV8uwY8Z8UgKYmG9IVh28oDKj81QwRbnDp6fT3Y+lXJh1yT/ikmHqre47fVYRVXqBTSpUw2nQk7aL2Sf5XQEEIfrxOBi3m+SMss/gdJ11dFxcLFH3IrMzk1Bgqu/V2GLViqR+os/xpzKl+4YHJjF9an9qyWMqN1nKBfbK+nHOOvxZqqIS5xD/QuJ/VYPMf96yo7syYKAtub7uC3FPeOoNHaQfRc2SxC7QhFDCi1ed65cc+RU8gQlrMDwJB9oQZzfFnkSNvCtySOYWh4IbmtGKWkaRHx+/dqIfVUCUm4JzFx9mmw3gZZ1
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(376002)(396003)(366004)(346002)(136003)(230922051799003)(64100799003)(451199024)(1800799009)(186009)(38100700002)(6636002)(316002)(86362001)(33656002)(110136005)(76116006)(66446008)(66476007)(66556008)(66946007)(82960400001)(122000001)(64756008)(478600001)(52536014)(5660300002)(2906002)(26005)(9686003)(7696005)(6506007)(53546011)(41300700001)(8936002)(8676002)(71200400001)(83380400001)(4326008)(55236004)(38070700009)(55016003);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?sIpvkR6Y3UmeoD6wgNuZiHu+nkDFN36TDbu+VoMQkLl/kzpC8fxaGUmCY9qS?=
- =?us-ascii?Q?0I9m7AwyzmWhiDzPl1i9rWRb9Xdr9VOwysL/cJpXLpEIewTDv6VSbErkms3/?=
- =?us-ascii?Q?63KWPaH/nzQYRQy8m12/YBxEgn8pHPpQoRwfSzOO/Ud63yq25lCVHMCpR0qW?=
- =?us-ascii?Q?OPmG6CTBNrEdfoYQogLVl0003pIgQ3NGhAPZLUZ6C2M+nX2y/Xv3gCA4Uy8Q?=
- =?us-ascii?Q?yp7zpJKE/kPYxjuHzGn+EvesMFlAQXo8DYYbYe4poC4TsiBUuWDj/hSWtxP6?=
- =?us-ascii?Q?AOaCpTM7TDdGtzWVNNfzuGBRZl+7k7YMXNimzOI5b0/lHTb65kAjEYw9CqPv?=
- =?us-ascii?Q?tRGYLwgJw+nHuOf0rgYSVkyj9HTl7qtS0eyk4gNwU43f7rUWgPnh8icGEgsz?=
- =?us-ascii?Q?NwspNLdlKnUzn5K7W3QP0LINwt8NnSeMx458b7UXIONnbAPDan89MfX0CnGz?=
- =?us-ascii?Q?k1zFPLG9t6qqcU6p0d4D5b+/dW4R9/JKlrybNqvAJ5Y+KY0bDRy7cPmMppp/?=
- =?us-ascii?Q?iOA62IETYZbuUZWLphZDNoXGLX/FZFkEbTVt2IAaWBOmF0GWtVxAhptCrlhM?=
- =?us-ascii?Q?jOIKqs82v2T3HB+NLlqIm+tDrFFldRMnF1XgCRx5CCRgiOj+6804fhwCkGqe?=
- =?us-ascii?Q?vHEPeyhvVzYC+zJ/UswvbNkMU0m2q+sbu67dy7nUuypAibOyFos6dB0LBrPC?=
- =?us-ascii?Q?A3w2tJoXERBR9PJvOzkdj1hQz2iX0qJtb0kz6olvcYYWXRJ9jEneQyIMNf05?=
- =?us-ascii?Q?6cBc5OTvdwJUVVWfacEO1/H67PohxCkIbr89kr8kAGS89IoMyCCByx3pxD5l?=
- =?us-ascii?Q?zXPuK/KqOFyFOVKGzjVhDYLoS13PB0uP/lDOZ3Q94eEOpA9wPtVBWNoZlVuH?=
- =?us-ascii?Q?aiGpGX/rGUuptMHodTj/s1eSyCvNGpLVGjjHJAlFQmiPP/OqSrwx2M0BFc8y?=
- =?us-ascii?Q?nUef8j5UZehk9Rkz8bWPgQazXSehgZZZRwrhLp3ZdzylHqL3xhgisFOyx+FC?=
- =?us-ascii?Q?RjxOkHbBzA+NBx2L/xihWc10aBte1DZfIuCF3AWcOdys2y0UzdaZtBee+u5T?=
- =?us-ascii?Q?NRUij37jVGMl+9aMEfdLkTEmBNyfhcWIn47V6v7NuIo3M6f2p9lwixIsDS0T?=
- =?us-ascii?Q?wnOf4PKE3ahQy4oocyDc7iyr56LXU35sj/5p2MSQB2GBWEn+e4/JAWY11Bam?=
- =?us-ascii?Q?rvmcmcpPiO6ahHlwEbIVsSkQxcR85+JNdEE1cnjPMHdxrd3o3JEyg/O2gjUH?=
- =?us-ascii?Q?0jyMdXzAmygMUtXo93ENCBjVlU4/OCDtpD7GDopbbHhovu9121Do+9AUSxPU?=
- =?us-ascii?Q?5RruCOMevAzgrrYX6qjf4KcqkiZrIsFAsdA9r7AY4mT9p6nUb+4itT3qTxl4?=
- =?us-ascii?Q?oP36rtCuenWvJSPNmRUqNm7/aqQUQT2qaGH6jXmsGZ9yxneEAJguPwt6qzY1?=
- =?us-ascii?Q?/4ENFufXg8JLj+/uGTroDChUlj0GMeC6KMXgHKtOsSlDfVk7WXX1cTkiAiLZ?=
- =?us-ascii?Q?GswHzFAFXbzZmFolp+qjbC7YuNv5t+LejTSmJSzaZZxO0FMmnofOQJvnl2OG?=
- =?us-ascii?Q?n3Hm8ejB+cOdeEmvJtcrxhFkFrQzohUGu1zZHZse?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-IronPort-AV: E=McAfee;i="6600,9927,10892"; a="793394450"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="793394450"
+Received: from tmarkand-mobl1.ger.corp.intel.com (HELO [10.252.21.198])
+ ([10.252.21.198])
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Nov 2023 01:37:44 -0800
+Message-ID: <3067fb3f-2196-35ad-e226-3bbbee1aad99@intel.com>
+Date: Mon, 13 Nov 2023 09:37:42 +0000
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7d5b2dfc-2245-452c-35cd-08dbe42a7c4d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Nov 2023 09:25:32.7927 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PnqjjHvQ9SmoRju5nNPQBkdfUoT6LTVoAtc7TUjzl0LfNIcBDoKIzBiNQ2N9gVFsXZn2zJBtpcxIkUNJSYOoByMX3pnWmO8L4d5ZiHnZrbI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6482
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe/ats-m: Expose uid for ATS-M via
- sysfs
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Firefox/102.0 Thunderbird/102.15.1
+Content-Language: en-GB
+To: "Mrozek, Michal" <michal.mrozek@intel.com>,
+ "Milczarek, Slawomir" <slawomir.milczarek@intel.com>,
+ Tomasz Mistat <tomasz.mistat@linux.intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Arteaga Molina, Jaime A" <jaime.a.arteaga.molina@intel.com>,
+ "Cetnerowski, Adam" <adam.cetnerowski@intel.com>,
+ "Chodor, Jaroslaw" <jaroslaw.chodor@intel.com>,
+ "Dunajski, Bartosz" <bartosz.dunajski@intel.com>,
+ "Harasimiuk, Artur" <artur.harasimiuk@intel.com>,
+ "Hoppe, Mateusz" <mateusz.hoppe@intel.com>,
+ "Jablonski, Mateusz" <mateusz.jablonski@intel.com>,
+ "Jobczyk, Lukasz" <lukasz.jobczyk@intel.com>,
+ "Kasper, Kacper K" <kacper.k.kasper@intel.com>,
+ "Rozenfeld, Piotr" <piotr.rozenfeld@intel.com>,
+ "Wilma, Pawel" <pawel.wilma@intel.com>,
+ "Wolny, Bartlomiej" <bartlomiej.wolny@intel.com>,
+ "Yates, Brandon" <brandon.yates@intel.com>,
+ "Zdanowicz, Zbigniew" <zbigniew.zdanowicz@intel.com>
+References: <ZUtv1eH5uiHl3j9N@tmistat-desk>
+ <0c8104df-3c51-95a4-aec1-392b4b92efb9@intel.com>
+ <CH3PR11MB8494CC467BA08CA3D00B7EE59DAFA@CH3PR11MB8494.namprd11.prod.outlook.com>
+ <d71fbd17-72ae-796c-7c7c-964f7926ea26@intel.com>
+ <BN9PR11MB527557220C41FFD53AE7A425E7AFA@BN9PR11MB5275.namprd11.prod.outlook.com>
+ <9268ebca-3d21-c702-bce0-458f411e3234@intel.com>
+ <BN9PR11MB5275972DC0EC1C9EDB24E98BE7B3A@BN9PR11MB5275.namprd11.prod.outlook.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <BN9PR11MB5275972DC0EC1C9EDB24E98BE7B3A@BN9PR11MB5275.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] FW:  [PATCH v9 0/3] PAT and cache coherency support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,242 +84,202 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+On 13/11/2023 09:11, Mrozek, Michal wrote:
+> "
+> Right, if you allocate WB memory (cpu_caching=wb), then you can't currently use an incoherent PAT index if accessing it from the GPU. KMD will reject it at vm_bind."
+> "
+> 
+> What about scenarios where I want to have:
+> - CPU WB caching
+> - GPU non coherent access
+> 
+> And manually flush cache lines on synchronization points (i.e. clFlush on mapped OpenCL buffers) ?
+> How to do it if KMD would reject VM_BIND operations?
 
+Currently it is not possible. The hope was to avoid the need for any 
+kind of manual clflushing/wbinvd in the KMD, which would be needed to 
+avoid potential security issues, if we start allowing incoherent GPU 
+access to CPU cached memory.
 
+> 
+> Michal
+> 
 > -----Original Message-----
-> From: De Marchi, Lucas <lucas.demarchi@intel.com>
-> Sent: Wednesday, November 8, 2023 9:26 PM
-> To: Wajdeczko, Michal <Michal.Wajdeczko@intel.com>
-> Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
-> xe@lists.freedesktop.org
-> Subject: Re: [Intel-xe] [PATCH 1/2] drm/xe/ats-m: Expose uid for ATS-M vi=
-a
-> sysfs
->=20
-> On Wed, Nov 08, 2023 at 03:07:45PM +0100, Michal Wajdeczko wrote:
-> >
-> >
-> >On 08.11.2023 14:54, Tejas Upadhyay wrote:
-> >> This patch exports uid to the userspace via sysfs.
-> >> For example, uid can be read by:
-> >> cat /sys/class/drm/cardX/device/csc_unique_id
-> >>
-> >> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/xe/regs/xe_regs.h    |  3 +++
-> >>  drivers/gpu/drm/xe/xe_device.c       | 11 +++++++++++
-> >>  drivers/gpu/drm/xe/xe_device_sysfs.c | 21 +++++++++++++++++++++
-> >> drivers/gpu/drm/xe/xe_device_types.h |  4 ++++
-> >>  drivers/gpu/drm/xe/xe_pci.c          |  3 +++
-> >>  5 files changed, 42 insertions(+)
-> >>
-> >> diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h
-> >> b/drivers/gpu/drm/xe/regs/xe_regs.h
-> >> index a646d13af03a..1b8de9b8daf1 100644
-> >> --- a/drivers/gpu/drm/xe/regs/xe_regs.h
-> >> +++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-> >> @@ -70,6 +70,9 @@
-> >>  #define XEHP_CLOCK_GATE_DIS			XE_REG(0x101014)
-> >>  #define   SGSI_SIDECLK_DIS			REG_BIT(17)
-> >>
-> >> +#define DEVUID_LWORD				XE_REG(0x102008)
-> >> +#define DEVUID_HWORD				XE_REG(0x10200C)
-> >> +
-> >>  #define GGC					XE_REG(0x108040)
-> >>  #define   GMS_MASK				REG_GENMASK(15, 8)
-> >>  #define   GGMS_MASK				REG_GENMASK(7, 6)
-> >> diff --git a/drivers/gpu/drm/xe/xe_device.c
-> >> b/drivers/gpu/drm/xe/xe_device.c index 515cdf599fab..266e0d5d7159
-> >> 100644
-> >> --- a/drivers/gpu/drm/xe/xe_device.c
-> >> +++ b/drivers/gpu/drm/xe/xe_device.c
-> >> @@ -344,6 +344,15 @@ static void xe_device_sanitize(struct drm_device
-> *drm, void *arg)
-> >>  		xe_gt_sanitize(gt);
-> >>  }
-> >>
-> >> +static void xe_read_dev_uid(struct xe_device *xe) {
-> >> +	if (xe->info.has_uid) {
-> >> +		struct xe_gt *mmio =3D xe_root_mmio_gt(xe);
-> >> +
-> >> +		xe->info.uid  =3D xe_mmio_read64_2x32(mmio,
-> DEVUID_LWORD);
-> >> +	}
-> >> +}
-> >> +
-> >>  int xe_device_probe(struct xe_device *xe)  {
-> >>  	struct xe_tile *tile;
-> >> @@ -368,6 +377,8 @@ int xe_device_probe(struct xe_device *xe)
-> >>  	if (err)
-> >>  		return err;
-> >>
-> >> +	xe_read_dev_uid(xe);
-> >
-> >as this function updates xe->info then maybe it should be a part of
-> >xe_info_init() ?
->=20
-> or not update info at all
-
-It cant be done, as I think we need MMIO to get initialized before we read =
-those piece of regs. So xe_device_probe below mmio init looks to be right s=
-pot.
-
->=20
-> >
-> >> +
-> >>  	err =3D drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
-> >>  	if (err)
-> >>  		return err;
-> >> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c
-> >> b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> >> index 99113a5a2b84..66f69eada76f 100644
-> >> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-> >> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> >> @@ -65,11 +65,24 @@ vram_d3cold_threshold_store(struct device *dev,
-> >> struct device_attribute *attr,
-> >>
-> >>  static DEVICE_ATTR_RW(vram_d3cold_threshold);
-> >>
-> >> +static ssize_t csc_unique_id_show(struct device *dev,
-> >> +				  struct device_attribute *attr,
-> >> +				  char *buf)
-> >> +{
-> >> +	struct pci_dev *pdev =3D to_pci_dev(dev);
-> >> +	struct xe_device *xe =3D pdev_to_xe_device(pdev);
-> >> +
-> >> +	return sysfs_emit(buf, "%llx\n", xe->info.uid);
-> >
-> >%#llx
-> >
-> >otherwise there will be no 0x prefix so could be treated as decimal
-> >
-> >> +}
-> >> +
-> >> +static DEVICE_ATTR_RO(csc_unique_id);
-> >
-> >what's "csc" ?
-> >
-> >in patch you use different names:
-> > - csc_unique_id
-> > - UID
-> > - devuid
->=20
-> Agreed. Besides that, the documentation and commit message need to
-> answer the *why*, not only how.
->=20
-> Why is this being exported, and what's userspace supposed to do with it.
-> Btw, what's the accompanying userspace to use it.
->=20
-> Why is this in sysfs rather than a query? Is this something to be used by=
- a
-> sysadmin for something rather than the app using the device?
->=20
-> Why is this special to ats-m? Bspec shows nothing for the register you ar=
-e
-> adding.
->=20
-> Lucas De Marchi
-
-Ok, agreed, I can add more information in commit message about this as well=
- as make consistent naming.
-
-Thanks,
-Tejas
->=20
-> >
-> >
-> >> +
-> >>  static void xe_device_sysfs_fini(struct drm_device *drm, void *arg)
-> >> {
-> >>  	struct xe_device *xe =3D arg;
-> >>
-> >>  	sysfs_remove_file(&xe->drm.dev->kobj,
-> >> &dev_attr_vram_d3cold_threshold.attr);
-> >> +	sysfs_remove_file(&xe->drm.dev->kobj,
-> >> +&dev_attr_csc_unique_id.attr);
-> >>  }
-> >>
-> >>  void xe_device_sysfs_init(struct xe_device *xe) @@ -83,6 +96,14 @@
-> >> void xe_device_sysfs_init(struct xe_device *xe)
-> >>  		return;
-> >>  	}
-> >>
-> >> +	if (xe->info.has_uid) {
-> >> +		ret =3D sysfs_create_file(&dev->kobj,
-> &dev_attr_csc_unique_id.attr);
-> >> +		if (ret) {
-> >> +			drm_warn(&xe->drm, "UID sysfs setup failed\n");
-> >
-> >if you really want to print warn then maybe also include %pe to help
-> >diagnose why it failed
-> >
-> >> +			return;
-> >> +		}
-> >> +	}
-> >> +
-> >>  	ret =3D drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini,
-> xe);
-> >>  	if (ret)
-> >>  		drm_warn(&xe->drm, "Failed to add sysfs fini drm action\n");
-> diff
-> >> --git a/drivers/gpu/drm/xe/xe_device_types.h
-> >> b/drivers/gpu/drm/xe/xe_device_types.h
-> >> index 4119ef03fb7e..1cc8488f8c86 100644
-> >> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> >> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> >> @@ -238,6 +238,8 @@ struct xe_device {
-> >>  		u8 vm_max_level;
-> >>  		/** @va_bits: Maximum bits of a virtual address */
-> >>  		u8 va_bits;
-> >> +		/** @uid: device uid, used for generating uuid */
-> >> +		u64 uid;
-> >>
-> >>  		/** @is_dgfx: is discrete device */
-> >>  		u8 is_dgfx:1;
-> >> @@ -261,6 +263,8 @@ struct xe_device {
-> >>  		u8 supports_mmio_ext:1;
-> >>  		/** @has_heci_gscfi: device has heci gscfi */
-> >>  		u8 has_heci_gscfi:1;
-> >> +		/** @has_uid: device has uid, used for generating uuid */
-> >> +		u8 has_uid:1;
-> >
-> >IMO introduction of has_uid capability flag should be done in separate
-> >patch than sysfs and uid changes
-> >
-> >>
-> >>  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-> >>  		struct {
-> >> diff --git a/drivers/gpu/drm/xe/xe_pci.c
-> >> b/drivers/gpu/drm/xe/xe_pci.c index 2fae45b9d88e..4d91ad049e59
-> 100644
-> >> --- a/drivers/gpu/drm/xe/xe_pci.c
-> >> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> >> @@ -60,6 +60,7 @@ struct xe_device_desc {
-> >>  	u8 has_heci_gscfi:1;
-> >>
-> >>  	u8 has_llc:1;
-> >> +	u8 has_uid;
-> >>  	u8 bypass_mtcfg:1;
-> >>  	u8 supports_mmio_ext:1;
-> >>  };
-> >> @@ -298,6 +299,7 @@ static const struct xe_device_desc ats_m_desc =3D =
-{
-> >>
-> >>  	DG2_FEATURES,
-> >>  	.has_display =3D false,
-> >> +	.has_uid =3D true,
-> >>  };
-> >>
-> >>  static const struct xe_device_desc dg2_desc =3D { @@ -577,6 +579,7 @@
-> >> static int xe_info_init(struct xe_device *xe,
-> >>  	xe->info.graphics_name =3D graphics_desc->name;
-> >>  	xe->info.media_name =3D media_desc ? media_desc->name : "none";
-> >>  	xe->info.has_llc =3D desc->has_llc;
-> >> +	xe->info.has_uid =3D desc->has_uid;
-> >>  	xe->info.bypass_mtcfg =3D desc->bypass_mtcfg;
-> >>  	xe->info.supports_mmio_ext =3D desc->supports_mmio_ext;
-> >>  	xe->info.tile_mmio_ext_size =3D graphics_desc->tile_mmio_ext_size;
+> From: Auld, Matthew <matthew.auld@intel.com>
+> Sent: Thursday, November 9, 2023 5:08 PM
+> To: Mrozek, Michal <michal.mrozek@intel.com>; Milczarek, Slawomir <slawomir.milczarek@intel.com>; Tomasz Mistat <tomasz.mistat@linux.intel.com>; intel-xe@lists.freedesktop.org; Arteaga Molina, Jaime A <jaime.a.arteaga.molina@intel.com>; Cetnerowski, Adam <adam.cetnerowski@intel.com>; Chodor, Jaroslaw <jaroslaw.chodor@intel.com>; Dunajski, Bartosz <bartosz.dunajski@intel.com>; Harasimiuk, Artur <artur.harasimiuk@intel.com>; Hoppe, Mateusz <mateusz.hoppe@intel.com>; Jablonski, Mateusz <mateusz.jablonski@intel.com>; Jobczyk, Lukasz <lukasz.jobczyk@intel.com>; Kasper, Kacper K <kacper.k.kasper@intel.com>; Rozenfeld, Piotr <piotr.rozenfeld@intel.com>; Wilma, Pawel <pawel.wilma@intel.com>; Wolny, Bartlomiej <bartlomiej.wolny@intel.com>; Yates, Brandon <brandon.yates@intel.com>; Zdanowicz, Zbigniew <zbigniew.zdanowicz@intel.com>
+> Subject: Re: FW: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency support
+> 
+> On 09/11/2023 15:24, Mrozek, Michal wrote:
+>> Will KMD fail the mmap call if we provide incorrect mapping ?
+> 
+> With Xe there are no mmap flags or anything like that, so you can't really provide an incorrect mapping. Ignoring this series, the previous behaviour was for the KMD to implicitly select the cpu caching mode when allocating the memory, where roughly you would get WC for VRAM and then WB for system memory, unless it's used for scanout in which case you get WC. With this series userspace must now explicitly request the cpu caching mode at allocation via gem_create, which will be used for all CPU access, including KMD internal stuff as well as userspace mmap().
+> 
+>> I.e. WB mmap on non-coherent GPU resource?
+> 
+> Right, if you allocate WB memory (cpu_caching=wb), then you can't currently use an incoherent PAT index if accessing it from the GPU. KMD will reject it at vm_bind.
+> 
+>>
+>> Michal
+>>
+>> -----Original Message-----
+>> From: Auld, Matthew <matthew.auld@intel.com>
+>> Sent: Thursday, November 9, 2023 4:05 PM
+>> To: Milczarek, Slawomir <slawomir.milczarek@intel.com>; Tomasz Mistat
+>> <tomasz.mistat@linux.intel.com>; intel-xe@lists.freedesktop.org;
+>> Arteaga Molina, Jaime A <jaime.a.arteaga.molina@intel.com>;
+>> Cetnerowski, Adam <adam.cetnerowski@intel.com>; Chodor, Jaroslaw
+>> <jaroslaw.chodor@intel.com>; Dunajski, Bartosz
+>> <bartosz.dunajski@intel.com>; Harasimiuk, Artur
+>> <artur.harasimiuk@intel.com>; Hoppe, Mateusz
+>> <mateusz.hoppe@intel.com>; Jablonski, Mateusz
+>> <mateusz.jablonski@intel.com>; Jobczyk, Lukasz
+>> <lukasz.jobczyk@intel.com>; Kasper, Kacper K
+>> <kacper.k.kasper@intel.com>; Mrozek, Michal <michal.mrozek@intel.com>;
+>> Rozenfeld, Piotr <piotr.rozenfeld@intel.com>; Wilma, Pawel
+>> <pawel.wilma@intel.com>; Wolny, Bartlomiej
+>> <bartlomiej.wolny@intel.com>; Yates, Brandon
+>> <brandon.yates@intel.com>; Zdanowicz, Zbigniew
+>> <zbigniew.zdanowicz@intel.com>
+>> Subject: Re: FW: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency
+>> support
+>>
+>> On 09/11/2023 14:58, Milczarek, Slawomir wrote:
+>>> Hi Matthew,
+>>>
+>>> In the compute driver we call GEM_MMAP_OFFSET with flags to specify cpu cache mode (wb/wc):
+>>> GEM_CREATE_EXT() and mmap() + GEM_MMAP_OFFSET(flags=wb/wc)
+>>>
+>>> Starting from Xe KMD we should be able to achieve the same CPU caching policies with GEM_CREATE_EXT:
+>>> GEM_CREATE_EXT(flags=wb/wc) and mmap() + GEM_MMAP_OFFSET(flags=0) Am
+>>> I correct?
+>>
+>> Yes, that's correct.
+>>
+>>>
+>>> Thanks,
+>>> Slawek
+>>>
+>>> -----Original Message-----
+>>> From: Auld, Matthew <matthew.auld@intel.com>
+>>> Sent: Wednesday, November 8, 2023 1:04 PM
+>>> To: Tomasz Mistat <tomasz.mistat@linux.intel.com>;
+>>> intel-xe@lists.freedesktop.org; Arteaga Molina, Jaime A
+>>> <Jaime.A.Arteaga.Molina@intel.com>; Cetnerowski, Adam
+>>> <adam.cetnerowski@intel.com>; Chodor, Jaroslaw
+>>> <jaroslaw.chodor@intel.com>; Dunajski, Bartosz
+>>> <bartosz.dunajski@intel.com>; Harasimiuk, Artur
+>>> <artur.harasimiuk@intel.com>; Hoppe, Mateusz
+>>> <mateusz.hoppe@intel.com>; Jablonski, Mateusz
+>>> <Mateusz.Jablonski@intel.com>; Jobczyk, Lukasz
+>>> <lukasz.jobczyk@intel.com>; Kasper, Kacper K
+>>> <kacper.k.kasper@intel.com>; Milczarek, Slawomir
+>>> <slawomir.milczarek@intel.com>; Mrozek, Michal
+>>> <michal.mrozek@intel.com>; Rozenfeld, Piotr
+>>> <piotr.rozenfeld@intel.com>; Wilma, Pawel <pawel.wilma@intel.com>;
+>>> Wolny, Bartlomiej <bartlomiej.wolny@intel.com>; Yates, Brandon
+>>> <brandon.yates@intel.com>; Zdanowicz, Zbigniew
+>>> <zbigniew.zdanowicz@intel.com>; Dunajski, Bartosz
+>>> <bartosz.dunajski@intel.com>
+>>> Subject: Re: FW: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency
+>>> support
+>>>
+>>> On 08/11/2023 11:30, Tomasz Mistat wrote:
+>>>> compute-umd_uapi_review_team@intel.com,bartosz.dunajski@intel.com,sa
+>>>> u
+>>>> r
+>>>> abhg.gupta@intel.com,ulisses.furquim@intel.com,michal.mrozek@intel.c
+>>>> o
+>>>> m
+>>>> ,tomasz.mistat@intel.com,piotr.rozenfeld@intel.com,ayaz.siddiqui@int
+>>>> e
+>>>> l
+>>>> .com,luis.strano@intel.com,filip.hazubski@intel.com,filip.hazubski@i
+>>>> n t el.com,mateusz.naklicki@intel.com,kamil.kopryk@intel.com
+>>>> Bcc:
+>>>> Subject: Re: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency
+>>>> support
+>>>> Reply-To:
+>>>> In-Reply-To: <20231103154309.402159-5-matthew.auld@intel.com>
+>>>>
+>>>> On 2023-11-03 at 15:43:10 +0000, Matthew Auld wrote:
+>>>>> Branch available here:
+>>>>> https://gitlab.freedesktop.org/mwa/kernel/-/tree/xe-pat-index?ref_t
+>>>>> y
+>>>>> p
+>>>>> e=heads
+>>>>>
+>>>>> IGT changes:
+>>>>> https://patchwork.freedesktop.org/series/124667/
+>>>>>
+>>>>> Mesa:
+>>>>> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25462
+>>>>>
+>>>>> Goal here is to allow userspace to directly control the pat_index
+>>>>> when mapping memory via the ppGTT, in addtion to the CPU caching
+>>>>> mode. This is very much needed on newer igpu platforms which allow
+>>>>> incoherent GT access, where the choice over the cache level and
+>>>>> expected coherency is best left to userspace depending on their
+>>>>> usecase.  In the future there may also be other stuff encoded in the pat_index, so giving userspace direct control will also be needed there.
+>>>>>
+>>>>> To support this we added new gem_create uAPI for selecting the CPU
+>>>>> cache mode to use for system memory, including the expected GPU
+>>>>> coherency mode. There are various restrictions here for the
+>>>>> selected coherency mode and compatible CPU cache modes.  With that
+>>>>> in place the actual pat_index can now be provided as part of
+>>>>> vm_bind. The only restriction is that the coherency mode of the
+>>>>> pat_index must be at least as coherent as the gem_create coherency mode. There are also some special cases like with userptr and dma-buf.
+>>>>>
+>>>>> v2:
+>>>>>       - Loads of improvements/tweaks. Main changes are to now allow
+>>>>>         gem_create.coh_mode <= coh_mode(pat_index), rather than it needing to match
+>>>>>         exactly. This simplifies the dma-buf policy from userspace pov. Also we now
+>>>>>         only consider COH_NONE and COH_AT_LEAST_1WAY.
+>>>>> v3:
+>>>>>       - Rebase. Split the pte_encode() refactoring, plus various smaller tweaks and
+>>>>>         fixes.
+>>>>> v4:
+>>>>>       - Rebase on Lucas' new series.
+>>>>>       - Drop UC cache mode.
+>>>>>       - s/smem_cpu_caching/cpu_caching/. Idea is to make VRAM WC explicit in the
+>>>>>         uapi, plus make it more future proof.
+>>>>> v5:
+>>>>>       - Rebase, plus some small tweaks and fixes.
+>>>>> v6:
+>>>>>       - CI hooks fixes + checkpatch.
+>>>>> v7:
+>>>>>       - Some small tweaks
+>>>>> v8:
+>>>>>       - Rebase on Xe2 PAT table additions.
+>>>>> v9:
+>>>>>       - Drop coh_mode.
+>>>>>
+>>>>> --
+>>>>> 2.41.0
+>>>>>
+>>>>
+>>>> I'm sharing down here questions passed by bartosz.dunajski@intel.com
+>>>> lets continue review here at respective ML
+>>>>
+>>>> Sent: Wednesday, November 8, 2023 09:05
+>>>> Subject: RE: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency
+>>>> support
+>>>>
+>>>> Just to confirm my understanding. We will have 2 separate APIs?
+>>>> 1.	For gem_create to explicitly set coherency/caching according to API enums
+>>>
+>>> Yeah, you just need to provide the cpu_caching mode (wc or wb). If you later mmap() the object this same caching mode is used. Also any KMD internal things like swap-in will also respect this caching mode. The coh_mode is now removed.
+>>>
+>>>> 2.	For vm_bind to set PAT index that is aligned with Bspec and controls more than #1. It can also override coherency/caching that was previously set?
+>>>
+>>> Right, as part of vm_bind you provide whatever PAT index control (as
+>>> per
+>>> Bspec) you want for each mapping of the object (you could map it multiple times).
+>>>
+>>> When choosing a PAT index the cpu_caching only matters if you choose an incoherent PAT index (coh_none in Bspec), since we don't want to allow cpu_caching=wb and coh_none, since that leads to some complications in the KMD.
+>>>
+>>>>
+>>>>
