@@ -4,63 +4,92 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C63B7C4332F
-	for <intel-xe@archiver.kernel.org>; Mon, 13 Nov 2023 09:37:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6C8F1C4332F
+	for <intel-xe@archiver.kernel.org>; Mon, 13 Nov 2023 09:50:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94C1810E320;
-	Mon, 13 Nov 2023 09:37:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 300C310E332;
+	Mon, 13 Nov 2023 09:50:19 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A9B810E2FF
- for <intel-xe@lists.freedesktop.org>; Mon, 13 Nov 2023 09:37:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE8210E332
+ for <intel-xe@lists.freedesktop.org>; Mon, 13 Nov 2023 09:50:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699868270; x=1731404270;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=qI+dr20dnW4WQAojJIFv1TT3cLH8OoNz19Oir7ltyiI=;
- b=KMmY3MT+UdxQMiMYc00hJTwKv9Cs44Q6az7wiY515WZwPEkhnhcKdrJQ
- lnaG+eNFq24fW/5ST+4zZy7YMPwuPHTORW99zdpzw6+9H1SwFWmitbwjr
- yMeKTrBXw+q6r1YVciA9dWcGIMvnOIFuXg1imdH/uiLca1pb1m7vcb5rN
- Cw85/1nbVoau83qUGYaUEFXXsZt80vL4vykz2p1qeSsENIxY04vncKRD7
- BUdBEUvWhCCULBXZDzu1/HC2BmLfK9iu3JkqL6vsvKjhdfBtk6LwY5REA
- L1K7o12cGoBb9a5cKBj/elwTahXihm82pWXQbMuBIKYoUMZ6EVWAemLrv w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10892"; a="3448891"
+ t=1699869017; x=1731405017;
+ h=from:to:subject:date:message-id:references:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=6n9JEJXnQbcNht8XfK1L9FrCq9g6riYW0QQLVlN6Lcs=;
+ b=QLfVWV7gIEUH5Mohf3j7DsZcbD1XLJKmgsNbUXDdDabEsQVJpWjyipXb
+ rOBzgC7h3FQ1sQFvk/oLdL1yqhuGMxzabVYSvR/In4UxJPElaeDlB7ThZ
+ p8EkoBSPb7vsuYo12Kgh7Sgo4Y4yMrAiarJGpZ8AdoDC3VRVMeV3cKoZs
+ gxxVSwzaKb0qIKrBF+QSzbl3TpHC1h91pcE2k9UI8PQtZHd5AI9InFDfB
+ bL3oTiCEjTuNbo+bYV48+nafhW1lRYA3/xTCSk9rCmWDN1U/rSrj5ea5T
+ BhCdMYwGRdWXZRgHhG5iOwUlRnJ/BIkQDCwuHF5bxfYd1xdBNS/wJB53+ A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10892"; a="3450832"
 X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; 
-   d="scan'208";a="3448891"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
+   d="scan'208";a="3450832"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2023 01:37:49 -0800
+ 13 Nov 2023 01:50:16 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10892"; a="793394450"
-X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="793394450"
-Received: from tmarkand-mobl1.ger.corp.intel.com (HELO [10.252.21.198])
- ([10.252.21.198])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Nov 2023 01:37:44 -0800
-Message-ID: <3067fb3f-2196-35ad-e226-3bbbee1aad99@intel.com>
-Date: Mon, 13 Nov 2023 09:37:42 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.15.1
-Content-Language: en-GB
-To: "Mrozek, Michal" <michal.mrozek@intel.com>,
- "Milczarek, Slawomir" <slawomir.milczarek@intel.com>,
- Tomasz Mistat <tomasz.mistat@linux.intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Arteaga Molina, Jaime A" <jaime.a.arteaga.molina@intel.com>,
- "Cetnerowski, Adam" <adam.cetnerowski@intel.com>,
- "Chodor, Jaroslaw" <jaroslaw.chodor@intel.com>,
- "Dunajski, Bartosz" <bartosz.dunajski@intel.com>,
- "Harasimiuk, Artur" <artur.harasimiuk@intel.com>,
- "Hoppe, Mateusz" <mateusz.hoppe@intel.com>,
- "Jablonski, Mateusz" <mateusz.jablonski@intel.com>,
- "Jobczyk, Lukasz" <lukasz.jobczyk@intel.com>,
- "Kasper, Kacper K" <kacper.k.kasper@intel.com>,
- "Rozenfeld, Piotr" <piotr.rozenfeld@intel.com>,
- "Wilma, Pawel" <pawel.wilma@intel.com>,
- "Wolny, Bartlomiej" <bartlomiej.wolny@intel.com>,
- "Yates, Brandon" <brandon.yates@intel.com>,
- "Zdanowicz, Zbigniew" <zbigniew.zdanowicz@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10892"; a="1011491343"
+X-IronPort-AV: E=Sophos;i="6.03,299,1694761200"; d="scan'208";a="1011491343"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 13 Nov 2023 01:50:15 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Mon, 13 Nov 2023 01:50:15 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Mon, 13 Nov 2023 01:50:15 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Mon, 13 Nov 2023 01:50:15 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Mon, 13 Nov 2023 01:50:14 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=I+05CajeTpak5jZGP07Qy3LqZUMTQYZbNfW8RS8b35hErkPUrQ7HdJyMo5gifWr3qBza0JpvpfzV4/mhzTzierfOyX+oRQ5rqR81H0xPJFiH4VgIK9GMEQCoLspDbHs9TLF5d59vqChPf5z/7doWc81yiORgmhTd6VVy/1h8gJFptjYUpOlGyMLLCUXBYEN/X6jBlUnSlc3LpIuC+q5DWjrsdGylM/BHhYngmRdMJJSMS6y2vFqeFhQc/3VCOwARyPgjIrscvoJlXQ/RipVJuQO+wc3cZYhDXT5z5qCkYjASy9D0dWy8ASnVj8bg9SPgXYVqKR+Y/wMT+9PIU0c7KQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6n9JEJXnQbcNht8XfK1L9FrCq9g6riYW0QQLVlN6Lcs=;
+ b=fgPciqYbFFbY+ZApAbzxIFr6bTDopR97L5kE7KzLciMQT1mP/qocGYBT2r/bEnjAVNUqVoTFR1iW3aALlzA2VGe6aZ1OvDeL8IzzPtc83nMF8D6MqocGOLYc6LXuKYaiviMiVgaLzfghufgy128nu19p2FEQayUypEs108oS9JsEPUsstwUdT9RTWYGVf8ATRJjfqFYV3kBaiBR7n5oYQs5gfdFGyrt4Fscc48jiTZ4EFYkPxoLTt6nowUJQ+FSxQsn3dclaGVa+uP3J8C7QXDmiC2gMz4lPhcdrDWCnI8XFEq1fH2sny4IwvtGAqGsePaGpTEAUcHzPJIQYAaJtfA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from BN9PR11MB5275.namprd11.prod.outlook.com (2603:10b6:408:134::24)
+ by PH7PR11MB5765.namprd11.prod.outlook.com (2603:10b6:510:139::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.28; Mon, 13 Nov
+ 2023 09:50:12 +0000
+Received: from BN9PR11MB5275.namprd11.prod.outlook.com
+ ([fe80::c112:9cb2:ff33:b512]) by BN9PR11MB5275.namprd11.prod.outlook.com
+ ([fe80::c112:9cb2:ff33:b512%3]) with mapi id 15.20.6977.029; Mon, 13 Nov 2023
+ 09:50:11 +0000
+From: "Mrozek, Michal" <michal.mrozek@intel.com>
+To: "Auld, Matthew" <matthew.auld@intel.com>, "Milczarek, Slawomir"
+ <slawomir.milczarek@intel.com>, Tomasz Mistat
+ <tomasz.mistat@linux.intel.com>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "Arteaga Molina, Jaime A"
+ <jaime.a.arteaga.molina@intel.com>, "Cetnerowski, Adam"
+ <adam.cetnerowski@intel.com>, "Chodor, Jaroslaw" <jaroslaw.chodor@intel.com>, 
+ "Dunajski, Bartosz" <bartosz.dunajski@intel.com>, "Harasimiuk, Artur"
+ <artur.harasimiuk@intel.com>, "Hoppe, Mateusz" <mateusz.hoppe@intel.com>,
+ "Jablonski, Mateusz" <mateusz.jablonski@intel.com>, "Jobczyk, Lukasz"
+ <lukasz.jobczyk@intel.com>, "Kasper, Kacper K" <kacper.k.kasper@intel.com>,
+ "Rozenfeld, Piotr" <piotr.rozenfeld@intel.com>, "Wilma, Pawel"
+ <pawel.wilma@intel.com>, "Wolny, Bartlomiej" <bartlomiej.wolny@intel.com>,
+ "Yates, Brandon" <brandon.yates@intel.com>, "Zdanowicz, Zbigniew"
+ <zbigniew.zdanowicz@intel.com>
+Thread-Topic: FW: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency support
+Thread-Index: AQHaEjcC8KkdjP8z1kGuapkljd5tCrBwUtkAgAHDNoCAAAHXAIAABSDggAAMegCABdSnkIAAB4MAgAACyYA=
+Date: Mon, 13 Nov 2023 09:50:10 +0000
+Message-ID: <BN9PR11MB52752764CA428FA116ACC76BE7B3A@BN9PR11MB5275.namprd11.prod.outlook.com>
 References: <ZUtv1eH5uiHl3j9N@tmistat-desk>
  <0c8104df-3c51-95a4-aec1-392b4b92efb9@intel.com>
  <CH3PR11MB8494CC467BA08CA3D00B7EE59DAFA@CH3PR11MB8494.namprd11.prod.outlook.com>
@@ -68,10 +97,75 @@ References: <ZUtv1eH5uiHl3j9N@tmistat-desk>
  <BN9PR11MB527557220C41FFD53AE7A425E7AFA@BN9PR11MB5275.namprd11.prod.outlook.com>
  <9268ebca-3d21-c702-bce0-458f411e3234@intel.com>
  <BN9PR11MB5275972DC0EC1C9EDB24E98BE7B3A@BN9PR11MB5275.namprd11.prod.outlook.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <BN9PR11MB5275972DC0EC1C9EDB24E98BE7B3A@BN9PR11MB5275.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ <3067fb3f-2196-35ad-e226-3bbbee1aad99@intel.com>
+In-Reply-To: <3067fb3f-2196-35ad-e226-3bbbee1aad99@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BN9PR11MB5275:EE_|PH7PR11MB5765:EE_
+x-ms-office365-filtering-correlation-id: 02e31ebd-2cbf-44f4-3b59-08dbe42ded2a
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: UyapdzH/gK3k4vSpOaU85h03+kYpO4ccXWMFLfoaHMgVAepM/gXfm7/ce5hx1yuwKi1YhGy7OezKYqV3T1JXoLriAejW8vgT2F55DqF5cvKys4njUxlbHnUR7ue54DH7TfsTTZKcKS9nhdFkuOlwkmktqZGmurMzYy+kOVw2B8RIlDgVU+nNyTlabQjt4/UZuRU/R+PcGnKi3D59KGcIqpkMd9v7JrA9chF566eMSneFh+iIiwF0Q7Y31Z6KR1K163QykXyhvSLLMEhomrsQ2P1gK/jFRREIopeJVRIvLOuYTlQoa2HKC3Yyv+LjFtbc8f1S3ewiliu0ECDsYoXBlkcELd0d9ePTQ0CxtQQv1NGIfcaSL2WRQ0YaEDii5/drNmnRvysWj2PfuOhz7MZq4QjN0rVz5DLS7cktWflRrXr0rIguKKRyZ38zla2uN0HCV6KIJfPpWqhxZj7K+1r+8s9OGGWDtPNTJFDJXZyAUuPcCdQRh205SuDiklrfulqiWKkiJIwNHC08TJ9ZHtRacV2K2zyF45yymKOldVFTiDRLYHREIpL/w9mtwCVyQEpUa3azyEWIWrpUCW39pEl5r1yHH1By6esHu8uwSI2IhdPDRJDpW8mbs/Do4k2UzTX/1YWB2WuaeC+4xSEQCSyHXa2HTlNdtvm987h9jPyiNpE5tIibYgPhj5vkMK0vrz5c
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5275.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(346002)(366004)(376002)(396003)(136003)(230273577357003)(230173577357003)(230922051799003)(186009)(1800799009)(64100799003)(451199024)(966005)(122000001)(478600001)(6506007)(7696005)(53546011)(33656002)(55016003)(6636002)(316002)(9686003)(66946007)(66556008)(76116006)(66446008)(64756008)(66476007)(110136005)(38100700002)(41300700001)(83380400001)(52536014)(71200400001)(8676002)(8936002)(5660300002)(921008)(86362001)(82960400001)(2906002)(26005)(38070700009);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?c2NaNFFFQ0o2elBPbGV3WEdLc21WZkQvRUYrWDlCdElXeVAvdW1BZGtiY3Ew?=
+ =?utf-8?B?UGxqRU1aMVhXU25OWG5CTzVrMlJpQVV1b2FKR1l3Qnp5OWdUQ2k0cTFnUVk0?=
+ =?utf-8?B?S3ZOUDBDcCszMHZCTnpES1FPcERuUzZmWEdMU3E0UC9zOFg0YjBmdktFMDhq?=
+ =?utf-8?B?cXA4NlZ6eHNWRGJMYkdPbEVlNVVFUTk1aWphOUFoVWNXaWw1Q05rQ3ZXU3NO?=
+ =?utf-8?B?SCtPdzlWM1o4RjRrSjlLOVhNQ2lyaUlNdWx3VTBxMFRqY0ZGRGxZZTF1eFRV?=
+ =?utf-8?B?MExwT2VKNXNremFyOUdqMDZMNSs5U2pCSHcyVmRIQUdIYjM0Qi90dGNsQTQv?=
+ =?utf-8?B?cWVlZ2dUZlcrUWRWcmh3QUtQcXNncHNQYnQyU0dIYm5ueWhDQy9kYytib0hJ?=
+ =?utf-8?B?dVNCVDVtM0NSSW9qZ2FXbEhVT1lZSVBlcWlWaXdjdkZJNVlFZ294S1p2REtZ?=
+ =?utf-8?B?cFRNRzh5VWt2d0g0UkpqOXRyaUl0RlJGN1JCWnk1VkcxaStnTStONzhFcEdC?=
+ =?utf-8?B?R3pCTko4eHBVeUhRZDZHakZEdjR3VHBsRTBoQXBFaFExTEtCb0p1d1cwYzJE?=
+ =?utf-8?B?WS80OUkvMEhXdHV1Vlg4TGFIZVAzeFJUUHNFMlpjS3RiaVRSaUFkelQ1aW0r?=
+ =?utf-8?B?akhtb2FxcVcrWE0yZzNpZHU5VXF6QUErdk9hUjAwTXNxQk9OOFFCa2JqTGdT?=
+ =?utf-8?B?UHJQNlNZcVYvOUp6U3NHOU9nT2ZMZllkZm5yU1QvSDQ1cHgrbFB1RHN6d2E0?=
+ =?utf-8?B?NHRjTThDNUR6aE1sSkVzT2tUWmJIWVgvV2xpdFVJTG5PUFU5V2I5RVplUnha?=
+ =?utf-8?B?ZWN4WlBvRkdlZDV5ZEVkSE9SZ1BpcHQrWXhETVRha3pobTI3QlloU2VEQWox?=
+ =?utf-8?B?VSt4T2NWWjBuRzBPMlJMd20xM1I1YnRzeFFsY1J5T1BTdFdqMXd5UjBYcnVw?=
+ =?utf-8?B?aGNGZVJRZ3hmMTFabTZKKzJBZHZZYTJCdndZYmVNSExkNVZ3R0FhZEdLOGxD?=
+ =?utf-8?B?ZU4zNTBHQ1NrS0xYS0FGTDdKY29FTThZcVM4YXgwWEE3TnRraHEwbGo4aHZF?=
+ =?utf-8?B?MmJxUVlvbldHcWU1WldWbE9BV3hTUGtlcWJwUERzYUlQT0htQVFwM3FpVnRx?=
+ =?utf-8?B?RzFXbkp4OWkwT3hKWWloV3c0N0tLWkdxb0s3QVdrbjVtU09aa2FjbG5Sblhh?=
+ =?utf-8?B?QXhwenJNL1B2K1czV0pveUptOE5VL3FLa3lmYjVRdk5iZngwdEkrNXVua3ZJ?=
+ =?utf-8?B?MC9yb0EwSW1SRERVS3YwVXN5bXdHN2RmWDRrZFZPK0ZYaUdjNDZSVjRobWtM?=
+ =?utf-8?B?WVpzaElZNjBXclBUdGZrNmNXbW1GL1Fsb3pDS2tlRTUvNGQ3UDBMdkc1ei9E?=
+ =?utf-8?B?eno5eEpjaHJFR0FFK1dWM1BlOGttVGE1Vlc0aGpoQkt5d21UbTJqQVYyUjdu?=
+ =?utf-8?B?cE9PdzhnbEJmMG0xL250N1VKRk9xcDR6UWVSSGRoT21NR2hWd1c4VnBURHAx?=
+ =?utf-8?B?T2xZZVpsbGV6SXdjMHp2MFFYYXJPUkVudm1jbXZGbXI3MnpjYXZySWFndnY5?=
+ =?utf-8?B?TG1vL1o4YWFXRXNEMlpRTEZESE9tbXQ4SjhRNURiaHMzc3dzVzR3OEtNR0hW?=
+ =?utf-8?B?cUVHdFFBYkoreFVQVTAxMEl2NFkwY2Z3cXZjMlMyeFkwUEVnY1ZXcGdIVzFV?=
+ =?utf-8?B?WnVhKzU5SDZwSnZzSnNHUmFOWkd3Z2szQnVxREVxMGZ2V2RZbFM0VVIyancr?=
+ =?utf-8?B?K2EvakpHeXVzQUFtUDhZM2x5NHhLWUNnbVdKeUdVdVFicitFNy91Q1FlemI0?=
+ =?utf-8?B?SXJicmxVb2s5bmRqSEdjSG53M3VRUFkvbEFNZ3ByNTBlRHliWEN0RTJ3SmR1?=
+ =?utf-8?B?T1Q0Qk1mTFJvL2tRU1R0UFY2Y1d1UWR3VWFzVVhoTXFTUmJCT1dxUzcvaHJu?=
+ =?utf-8?B?UVNJdW5zSXVMSzJBM0VIZUJLMDB4bFE5S2twME54cFpDL2xEbGxjWjhSbHQ3?=
+ =?utf-8?B?b2hHMnpRcXNGenN6bnRubGlCcS9TUWRBdWhINDdocVlZRU1wZ0JQTk9mRzdq?=
+ =?utf-8?B?NGNhZ21QYUdhekFGK0owNkJFL3o3MEJqb2RGbytsYVJMRWx0cFJvTnFoNWNr?=
+ =?utf-8?Q?yiW7pbPB3OGImVsqcQ2DEgZHT?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5275.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02e31ebd-2cbf-44f4-3b59-08dbe42ded2a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Nov 2023 09:50:10.6175 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7AKBucroSsJVTHa/9MYslxzs8QLijcn0yeY8ZnBONLyBLE9/0mpmT8G0Aqiwk0b/4sqYqutAg5v+yepVja8GyQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5765
+X-OriginatorOrg: intel.com
 Subject: Re: [Intel-xe] FW:  [PATCH v9 0/3] PAT and cache coherency support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -87,199 +181,204 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 13/11/2023 09:11, Mrozek, Michal wrote:
-> "
-> Right, if you allocate WB memory (cpu_caching=wb), then you can't currently use an incoherent PAT index if accessing it from the GPU. KMD will reject it at vm_bind."
-> "
-> 
-> What about scenarios where I want to have:
-> - CPU WB caching
-> - GPU non coherent access
-> 
-> And manually flush cache lines on synchronization points (i.e. clFlush on mapped OpenCL buffers) ?
-> How to do it if KMD would reject VM_BIND operations?
-
-Currently it is not possible. The hope was to avoid the need for any 
-kind of manual clflushing/wbinvd in the KMD, which would be needed to 
-avoid potential security issues, if we start allowing incoherent GPU 
-access to CPU cached memory.
-
-> 
-> Michal
-> 
-> -----Original Message-----
-> From: Auld, Matthew <matthew.auld@intel.com>
-> Sent: Thursday, November 9, 2023 5:08 PM
-> To: Mrozek, Michal <michal.mrozek@intel.com>; Milczarek, Slawomir <slawomir.milczarek@intel.com>; Tomasz Mistat <tomasz.mistat@linux.intel.com>; intel-xe@lists.freedesktop.org; Arteaga Molina, Jaime A <jaime.a.arteaga.molina@intel.com>; Cetnerowski, Adam <adam.cetnerowski@intel.com>; Chodor, Jaroslaw <jaroslaw.chodor@intel.com>; Dunajski, Bartosz <bartosz.dunajski@intel.com>; Harasimiuk, Artur <artur.harasimiuk@intel.com>; Hoppe, Mateusz <mateusz.hoppe@intel.com>; Jablonski, Mateusz <mateusz.jablonski@intel.com>; Jobczyk, Lukasz <lukasz.jobczyk@intel.com>; Kasper, Kacper K <kacper.k.kasper@intel.com>; Rozenfeld, Piotr <piotr.rozenfeld@intel.com>; Wilma, Pawel <pawel.wilma@intel.com>; Wolny, Bartlomiej <bartlomiej.wolny@intel.com>; Yates, Brandon <brandon.yates@intel.com>; Zdanowicz, Zbigniew <zbigniew.zdanowicz@intel.com>
-> Subject: Re: FW: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency support
-> 
-> On 09/11/2023 15:24, Mrozek, Michal wrote:
->> Will KMD fail the mmap call if we provide incorrect mapping ?
-> 
-> With Xe there are no mmap flags or anything like that, so you can't really provide an incorrect mapping. Ignoring this series, the previous behaviour was for the KMD to implicitly select the cpu caching mode when allocating the memory, where roughly you would get WC for VRAM and then WB for system memory, unless it's used for scanout in which case you get WC. With this series userspace must now explicitly request the cpu caching mode at allocation via gem_create, which will be used for all CPU access, including KMD internal stuff as well as userspace mmap().
-> 
->> I.e. WB mmap on non-coherent GPU resource?
-> 
-> Right, if you allocate WB memory (cpu_caching=wb), then you can't currently use an incoherent PAT index if accessing it from the GPU. KMD will reject it at vm_bind.
-> 
->>
->> Michal
->>
->> -----Original Message-----
->> From: Auld, Matthew <matthew.auld@intel.com>
->> Sent: Thursday, November 9, 2023 4:05 PM
->> To: Milczarek, Slawomir <slawomir.milczarek@intel.com>; Tomasz Mistat
->> <tomasz.mistat@linux.intel.com>; intel-xe@lists.freedesktop.org;
->> Arteaga Molina, Jaime A <jaime.a.arteaga.molina@intel.com>;
->> Cetnerowski, Adam <adam.cetnerowski@intel.com>; Chodor, Jaroslaw
->> <jaroslaw.chodor@intel.com>; Dunajski, Bartosz
->> <bartosz.dunajski@intel.com>; Harasimiuk, Artur
->> <artur.harasimiuk@intel.com>; Hoppe, Mateusz
->> <mateusz.hoppe@intel.com>; Jablonski, Mateusz
->> <mateusz.jablonski@intel.com>; Jobczyk, Lukasz
->> <lukasz.jobczyk@intel.com>; Kasper, Kacper K
->> <kacper.k.kasper@intel.com>; Mrozek, Michal <michal.mrozek@intel.com>;
->> Rozenfeld, Piotr <piotr.rozenfeld@intel.com>; Wilma, Pawel
->> <pawel.wilma@intel.com>; Wolny, Bartlomiej
->> <bartlomiej.wolny@intel.com>; Yates, Brandon
->> <brandon.yates@intel.com>; Zdanowicz, Zbigniew
->> <zbigniew.zdanowicz@intel.com>
->> Subject: Re: FW: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency
->> support
->>
->> On 09/11/2023 14:58, Milczarek, Slawomir wrote:
->>> Hi Matthew,
->>>
->>> In the compute driver we call GEM_MMAP_OFFSET with flags to specify cpu cache mode (wb/wc):
->>> GEM_CREATE_EXT() and mmap() + GEM_MMAP_OFFSET(flags=wb/wc)
->>>
->>> Starting from Xe KMD we should be able to achieve the same CPU caching policies with GEM_CREATE_EXT:
->>> GEM_CREATE_EXT(flags=wb/wc) and mmap() + GEM_MMAP_OFFSET(flags=0) Am
->>> I correct?
->>
->> Yes, that's correct.
->>
->>>
->>> Thanks,
->>> Slawek
->>>
->>> -----Original Message-----
->>> From: Auld, Matthew <matthew.auld@intel.com>
->>> Sent: Wednesday, November 8, 2023 1:04 PM
->>> To: Tomasz Mistat <tomasz.mistat@linux.intel.com>;
->>> intel-xe@lists.freedesktop.org; Arteaga Molina, Jaime A
->>> <Jaime.A.Arteaga.Molina@intel.com>; Cetnerowski, Adam
->>> <adam.cetnerowski@intel.com>; Chodor, Jaroslaw
->>> <jaroslaw.chodor@intel.com>; Dunajski, Bartosz
->>> <bartosz.dunajski@intel.com>; Harasimiuk, Artur
->>> <artur.harasimiuk@intel.com>; Hoppe, Mateusz
->>> <mateusz.hoppe@intel.com>; Jablonski, Mateusz
->>> <Mateusz.Jablonski@intel.com>; Jobczyk, Lukasz
->>> <lukasz.jobczyk@intel.com>; Kasper, Kacper K
->>> <kacper.k.kasper@intel.com>; Milczarek, Slawomir
->>> <slawomir.milczarek@intel.com>; Mrozek, Michal
->>> <michal.mrozek@intel.com>; Rozenfeld, Piotr
->>> <piotr.rozenfeld@intel.com>; Wilma, Pawel <pawel.wilma@intel.com>;
->>> Wolny, Bartlomiej <bartlomiej.wolny@intel.com>; Yates, Brandon
->>> <brandon.yates@intel.com>; Zdanowicz, Zbigniew
->>> <zbigniew.zdanowicz@intel.com>; Dunajski, Bartosz
->>> <bartosz.dunajski@intel.com>
->>> Subject: Re: FW: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency
->>> support
->>>
->>> On 08/11/2023 11:30, Tomasz Mistat wrote:
->>>> compute-umd_uapi_review_team@intel.com,bartosz.dunajski@intel.com,sa
->>>> u
->>>> r
->>>> abhg.gupta@intel.com,ulisses.furquim@intel.com,michal.mrozek@intel.c
->>>> o
->>>> m
->>>> ,tomasz.mistat@intel.com,piotr.rozenfeld@intel.com,ayaz.siddiqui@int
->>>> e
->>>> l
->>>> .com,luis.strano@intel.com,filip.hazubski@intel.com,filip.hazubski@i
->>>> n t el.com,mateusz.naklicki@intel.com,kamil.kopryk@intel.com
->>>> Bcc:
->>>> Subject: Re: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency
->>>> support
->>>> Reply-To:
->>>> In-Reply-To: <20231103154309.402159-5-matthew.auld@intel.com>
->>>>
->>>> On 2023-11-03 at 15:43:10 +0000, Matthew Auld wrote:
->>>>> Branch available here:
->>>>> https://gitlab.freedesktop.org/mwa/kernel/-/tree/xe-pat-index?ref_t
->>>>> y
->>>>> p
->>>>> e=heads
->>>>>
->>>>> IGT changes:
->>>>> https://patchwork.freedesktop.org/series/124667/
->>>>>
->>>>> Mesa:
->>>>> https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/25462
->>>>>
->>>>> Goal here is to allow userspace to directly control the pat_index
->>>>> when mapping memory via the ppGTT, in addtion to the CPU caching
->>>>> mode. This is very much needed on newer igpu platforms which allow
->>>>> incoherent GT access, where the choice over the cache level and
->>>>> expected coherency is best left to userspace depending on their
->>>>> usecase.  In the future there may also be other stuff encoded in the pat_index, so giving userspace direct control will also be needed there.
->>>>>
->>>>> To support this we added new gem_create uAPI for selecting the CPU
->>>>> cache mode to use for system memory, including the expected GPU
->>>>> coherency mode. There are various restrictions here for the
->>>>> selected coherency mode and compatible CPU cache modes.  With that
->>>>> in place the actual pat_index can now be provided as part of
->>>>> vm_bind. The only restriction is that the coherency mode of the
->>>>> pat_index must be at least as coherent as the gem_create coherency mode. There are also some special cases like with userptr and dma-buf.
->>>>>
->>>>> v2:
->>>>>       - Loads of improvements/tweaks. Main changes are to now allow
->>>>>         gem_create.coh_mode <= coh_mode(pat_index), rather than it needing to match
->>>>>         exactly. This simplifies the dma-buf policy from userspace pov. Also we now
->>>>>         only consider COH_NONE and COH_AT_LEAST_1WAY.
->>>>> v3:
->>>>>       - Rebase. Split the pte_encode() refactoring, plus various smaller tweaks and
->>>>>         fixes.
->>>>> v4:
->>>>>       - Rebase on Lucas' new series.
->>>>>       - Drop UC cache mode.
->>>>>       - s/smem_cpu_caching/cpu_caching/. Idea is to make VRAM WC explicit in the
->>>>>         uapi, plus make it more future proof.
->>>>> v5:
->>>>>       - Rebase, plus some small tweaks and fixes.
->>>>> v6:
->>>>>       - CI hooks fixes + checkpatch.
->>>>> v7:
->>>>>       - Some small tweaks
->>>>> v8:
->>>>>       - Rebase on Xe2 PAT table additions.
->>>>> v9:
->>>>>       - Drop coh_mode.
->>>>>
->>>>> --
->>>>> 2.41.0
->>>>>
->>>>
->>>> I'm sharing down here questions passed by bartosz.dunajski@intel.com
->>>> lets continue review here at respective ML
->>>>
->>>> Sent: Wednesday, November 8, 2023 09:05
->>>> Subject: RE: [Intel-xe] [PATCH v9 0/3] PAT and cache coherency
->>>> support
->>>>
->>>> Just to confirm my understanding. We will have 2 separate APIs?
->>>> 1.	For gem_create to explicitly set coherency/caching according to API enums
->>>
->>> Yeah, you just need to provide the cpu_caching mode (wc or wb). If you later mmap() the object this same caching mode is used. Also any KMD internal things like swap-in will also respect this caching mode. The coh_mode is now removed.
->>>
->>>> 2.	For vm_bind to set PAT index that is aligned with Bspec and controls more than #1. It can also override coherency/caching that was previously set?
->>>
->>> Right, as part of vm_bind you provide whatever PAT index control (as
->>> per
->>> Bspec) you want for each mapping of the object (you could map it multiple times).
->>>
->>> When choosing a PAT index the cpu_caching only matters if you choose an incoherent PAT index (coh_none in Bspec), since we don't want to allow cpu_caching=wb and coh_none, since that leads to some complications in the KMD.
->>>
->>>>
->>>>
+QnV0IHRoZW4gd2UgbGVhdmUgcGVyZm9ybWFuY2Ugb24gdGhlIHRhYmxlOg0KLSBpZiB3ZSBtYXAg
+b24gQ1BVIGFzIHVuY2FjaGVkLCB0aGUgYWxsb2NhdGlvbiBpcyBzbG93IG9uIHRoZSBDUFUgc2lk
+ZQ0KLSBpZiB3ZSBtYXAgY29oZXJlbnQgb24gdGhlIEdQVSBzaWRlLCB0aGUgYWxsb2NhdGlvbiBp
+cyBzbG93IG9uIHRoZSBHUFUgc2lkZQ0KDQpUaGF0J3Mgd2h5IE9wZW5DTCBoYXMgY2xlYXIgc3lu
+Y2hyb25pemF0aW9uIHBvaW50cyBtYXAvdW5tYXAgYnVmZmVyICwgdGhhdCB0ZWxscyB0aGUgZHJp
+dmVyIHdoZXJlIHRyYW5zaXRpb24gaXMgY29taW5nIGZyb20uDQoNCldoYXQga2luZCBvZiBzZWN1
+cml0eSBpcyBiZWluZyBjb21wcm9taXNlZCB3aXRoIHRoaXMgbW9kZSA/DQpUaGUgbWVtb3J5IHZp
+c2liaWxpdHkgaXMgd2l0aGluIGEgcHJvY2VzcyAsIHNvIHRoZXJlIGlzIG5vIHdheSB0byBnZXQg
+YW55dGhpbmcgZnJvbSBleHRlcm5hbCBwcm9jZXNzZXMuDQoNCk1pY2hhbA0KDQoNCi0tLS0tT3Jp
+Z2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBBdWxkLCBNYXR0aGV3IDxtYXR0aGV3LmF1bGRAaW50
+ZWwuY29tPiANClNlbnQ6IE1vbmRheSwgTm92ZW1iZXIgMTMsIDIwMjMgMTA6MzggQU0NClRvOiBN
+cm96ZWssIE1pY2hhbCA8bWljaGFsLm1yb3pla0BpbnRlbC5jb20+OyBNaWxjemFyZWssIFNsYXdv
+bWlyIDxzbGF3b21pci5taWxjemFyZWtAaW50ZWwuY29tPjsgVG9tYXN6IE1pc3RhdCA8dG9tYXN6
+Lm1pc3RhdEBsaW51eC5pbnRlbC5jb20+OyBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc7
+IEFydGVhZ2EgTW9saW5hLCBKYWltZSBBIDxqYWltZS5hLmFydGVhZ2EubW9saW5hQGludGVsLmNv
+bT47IENldG5lcm93c2tpLCBBZGFtIDxhZGFtLmNldG5lcm93c2tpQGludGVsLmNvbT47IENob2Rv
+ciwgSmFyb3NsYXcgPGphcm9zbGF3LmNob2RvckBpbnRlbC5jb20+OyBEdW5hanNraSwgQmFydG9z
+eiA8YmFydG9zei5kdW5hanNraUBpbnRlbC5jb20+OyBIYXJhc2ltaXVrLCBBcnR1ciA8YXJ0dXIu
+aGFyYXNpbWl1a0BpbnRlbC5jb20+OyBIb3BwZSwgTWF0ZXVzeiA8bWF0ZXVzei5ob3BwZUBpbnRl
+bC5jb20+OyBKYWJsb25za2ksIE1hdGV1c3ogPG1hdGV1c3ouamFibG9uc2tpQGludGVsLmNvbT47
+IEpvYmN6eWssIEx1a2FzeiA8bHVrYXN6LmpvYmN6eWtAaW50ZWwuY29tPjsgS2FzcGVyLCBLYWNw
+ZXIgSyA8a2FjcGVyLmsua2FzcGVyQGludGVsLmNvbT47IFJvemVuZmVsZCwgUGlvdHIgPHBpb3Ry
+LnJvemVuZmVsZEBpbnRlbC5jb20+OyBXaWxtYSwgUGF3ZWwgPHBhd2VsLndpbG1hQGludGVsLmNv
+bT47IFdvbG55LCBCYXJ0bG9taWVqIDxiYXJ0bG9taWVqLndvbG55QGludGVsLmNvbT47IFlhdGVz
+LCBCcmFuZG9uIDxicmFuZG9uLnlhdGVzQGludGVsLmNvbT47IFpkYW5vd2ljeiwgWmJpZ25pZXcg
+PHpiaWduaWV3LnpkYW5vd2ljekBpbnRlbC5jb20+DQpTdWJqZWN0OiBSZTogRlc6IFtJbnRlbC14
+ZV0gW1BBVENIIHY5IDAvM10gUEFUIGFuZCBjYWNoZSBjb2hlcmVuY3kgc3VwcG9ydA0KDQpPbiAx
+My8xMS8yMDIzIDA5OjExLCBNcm96ZWssIE1pY2hhbCB3cm90ZToNCj4gIg0KPiBSaWdodCwgaWYg
+eW91IGFsbG9jYXRlIFdCIG1lbW9yeSAoY3B1X2NhY2hpbmc9d2IpLCB0aGVuIHlvdSBjYW4ndCBj
+dXJyZW50bHkgdXNlIGFuIGluY29oZXJlbnQgUEFUIGluZGV4IGlmIGFjY2Vzc2luZyBpdCBmcm9t
+IHRoZSBHUFUuIEtNRCB3aWxsIHJlamVjdCBpdCBhdCB2bV9iaW5kLiINCj4gIg0KPiANCj4gV2hh
+dCBhYm91dCBzY2VuYXJpb3Mgd2hlcmUgSSB3YW50IHRvIGhhdmU6DQo+IC0gQ1BVIFdCIGNhY2hp
+bmcNCj4gLSBHUFUgbm9uIGNvaGVyZW50IGFjY2Vzcw0KPiANCj4gQW5kIG1hbnVhbGx5IGZsdXNo
+IGNhY2hlIGxpbmVzIG9uIHN5bmNocm9uaXphdGlvbiBwb2ludHMgKGkuZS4gY2xGbHVzaCBvbiBt
+YXBwZWQgT3BlbkNMIGJ1ZmZlcnMpID8NCj4gSG93IHRvIGRvIGl0IGlmIEtNRCB3b3VsZCByZWpl
+Y3QgVk1fQklORCBvcGVyYXRpb25zPw0KDQpDdXJyZW50bHkgaXQgaXMgbm90IHBvc3NpYmxlLiBU
+aGUgaG9wZSB3YXMgdG8gYXZvaWQgdGhlIG5lZWQgZm9yIGFueSBraW5kIG9mIG1hbnVhbCBjbGZs
+dXNoaW5nL3diaW52ZCBpbiB0aGUgS01ELCB3aGljaCB3b3VsZCBiZSBuZWVkZWQgdG8gYXZvaWQg
+cG90ZW50aWFsIHNlY3VyaXR5IGlzc3VlcywgaWYgd2Ugc3RhcnQgYWxsb3dpbmcgaW5jb2hlcmVu
+dCBHUFUgYWNjZXNzIHRvIENQVSBjYWNoZWQgbWVtb3J5Lg0KDQo+IA0KPiBNaWNoYWwNCj4gDQo+
+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEF1bGQsIE1hdHRoZXcgPG1hdHRo
+ZXcuYXVsZEBpbnRlbC5jb20+DQo+IFNlbnQ6IFRodXJzZGF5LCBOb3ZlbWJlciA5LCAyMDIzIDU6
+MDggUE0NCj4gVG86IE1yb3playwgTWljaGFsIDxtaWNoYWwubXJvemVrQGludGVsLmNvbT47IE1p
+bGN6YXJlaywgU2xhd29taXIgPHNsYXdvbWlyLm1pbGN6YXJla0BpbnRlbC5jb20+OyBUb21hc3og
+TWlzdGF0IDx0b21hc3oubWlzdGF0QGxpbnV4LmludGVsLmNvbT47IGludGVsLXhlQGxpc3RzLmZy
+ZWVkZXNrdG9wLm9yZzsgQXJ0ZWFnYSBNb2xpbmEsIEphaW1lIEEgPGphaW1lLmEuYXJ0ZWFnYS5t
+b2xpbmFAaW50ZWwuY29tPjsgQ2V0bmVyb3dza2ksIEFkYW0gPGFkYW0uY2V0bmVyb3dza2lAaW50
+ZWwuY29tPjsgQ2hvZG9yLCBKYXJvc2xhdyA8amFyb3NsYXcuY2hvZG9yQGludGVsLmNvbT47IER1
+bmFqc2tpLCBCYXJ0b3N6IDxiYXJ0b3N6LmR1bmFqc2tpQGludGVsLmNvbT47IEhhcmFzaW1pdWss
+IEFydHVyIDxhcnR1ci5oYXJhc2ltaXVrQGludGVsLmNvbT47IEhvcHBlLCBNYXRldXN6IDxtYXRl
+dXN6LmhvcHBlQGludGVsLmNvbT47IEphYmxvbnNraSwgTWF0ZXVzeiA8bWF0ZXVzei5qYWJsb25z
+a2lAaW50ZWwuY29tPjsgSm9iY3p5aywgTHVrYXN6IDxsdWthc3ouam9iY3p5a0BpbnRlbC5jb20+
+OyBLYXNwZXIsIEthY3BlciBLIDxrYWNwZXIuay5rYXNwZXJAaW50ZWwuY29tPjsgUm96ZW5mZWxk
+LCBQaW90ciA8cGlvdHIucm96ZW5mZWxkQGludGVsLmNvbT47IFdpbG1hLCBQYXdlbCA8cGF3ZWwu
+d2lsbWFAaW50ZWwuY29tPjsgV29sbnksIEJhcnRsb21pZWogPGJhcnRsb21pZWoud29sbnlAaW50
+ZWwuY29tPjsgWWF0ZXMsIEJyYW5kb24gPGJyYW5kb24ueWF0ZXNAaW50ZWwuY29tPjsgWmRhbm93
+aWN6LCBaYmlnbmlldyA8emJpZ25pZXcuemRhbm93aWN6QGludGVsLmNvbT4NCj4gU3ViamVjdDog
+UmU6IEZXOiBbSW50ZWwteGVdIFtQQVRDSCB2OSAwLzNdIFBBVCBhbmQgY2FjaGUgY29oZXJlbmN5
+IHN1cHBvcnQNCj4gDQo+IE9uIDA5LzExLzIwMjMgMTU6MjQsIE1yb3playwgTWljaGFsIHdyb3Rl
+Og0KPj4gV2lsbCBLTUQgZmFpbCB0aGUgbW1hcCBjYWxsIGlmIHdlIHByb3ZpZGUgaW5jb3JyZWN0
+IG1hcHBpbmcgPw0KPiANCj4gV2l0aCBYZSB0aGVyZSBhcmUgbm8gbW1hcCBmbGFncyBvciBhbnl0
+aGluZyBsaWtlIHRoYXQsIHNvIHlvdSBjYW4ndCByZWFsbHkgcHJvdmlkZSBhbiBpbmNvcnJlY3Qg
+bWFwcGluZy4gSWdub3JpbmcgdGhpcyBzZXJpZXMsIHRoZSBwcmV2aW91cyBiZWhhdmlvdXIgd2Fz
+IGZvciB0aGUgS01EIHRvIGltcGxpY2l0bHkgc2VsZWN0IHRoZSBjcHUgY2FjaGluZyBtb2RlIHdo
+ZW4gYWxsb2NhdGluZyB0aGUgbWVtb3J5LCB3aGVyZSByb3VnaGx5IHlvdSB3b3VsZCBnZXQgV0Mg
+Zm9yIFZSQU0gYW5kIHRoZW4gV0IgZm9yIHN5c3RlbSBtZW1vcnksIHVubGVzcyBpdCdzIHVzZWQg
+Zm9yIHNjYW5vdXQgaW4gd2hpY2ggY2FzZSB5b3UgZ2V0IFdDLiBXaXRoIHRoaXMgc2VyaWVzIHVz
+ZXJzcGFjZSBtdXN0IG5vdyBleHBsaWNpdGx5IHJlcXVlc3QgdGhlIGNwdSBjYWNoaW5nIG1vZGUg
+YXQgYWxsb2NhdGlvbiB2aWEgZ2VtX2NyZWF0ZSwgd2hpY2ggd2lsbCBiZSB1c2VkIGZvciBhbGwg
+Q1BVIGFjY2VzcywgaW5jbHVkaW5nIEtNRCBpbnRlcm5hbCBzdHVmZiBhcyB3ZWxsIGFzIHVzZXJz
+cGFjZSBtbWFwKCkuDQo+IA0KPj4gSS5lLiBXQiBtbWFwIG9uIG5vbi1jb2hlcmVudCBHUFUgcmVz
+b3VyY2U/DQo+IA0KPiBSaWdodCwgaWYgeW91IGFsbG9jYXRlIFdCIG1lbW9yeSAoY3B1X2NhY2hp
+bmc9d2IpLCB0aGVuIHlvdSBjYW4ndCBjdXJyZW50bHkgdXNlIGFuIGluY29oZXJlbnQgUEFUIGlu
+ZGV4IGlmIGFjY2Vzc2luZyBpdCBmcm9tIHRoZSBHUFUuIEtNRCB3aWxsIHJlamVjdCBpdCBhdCB2
+bV9iaW5kLg0KPiANCj4+DQo+PiBNaWNoYWwNCj4+DQo+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
+LS0tLQ0KPj4gRnJvbTogQXVsZCwgTWF0dGhldyA8bWF0dGhldy5hdWxkQGludGVsLmNvbT4NCj4+
+IFNlbnQ6IFRodXJzZGF5LCBOb3ZlbWJlciA5LCAyMDIzIDQ6MDUgUE0NCj4+IFRvOiBNaWxjemFy
+ZWssIFNsYXdvbWlyIDxzbGF3b21pci5taWxjemFyZWtAaW50ZWwuY29tPjsgVG9tYXN6IE1pc3Rh
+dA0KPj4gPHRvbWFzei5taXN0YXRAbGludXguaW50ZWwuY29tPjsgaW50ZWwteGVAbGlzdHMuZnJl
+ZWRlc2t0b3Aub3JnOw0KPj4gQXJ0ZWFnYSBNb2xpbmEsIEphaW1lIEEgPGphaW1lLmEuYXJ0ZWFn
+YS5tb2xpbmFAaW50ZWwuY29tPjsNCj4+IENldG5lcm93c2tpLCBBZGFtIDxhZGFtLmNldG5lcm93
+c2tpQGludGVsLmNvbT47IENob2RvciwgSmFyb3NsYXcNCj4+IDxqYXJvc2xhdy5jaG9kb3JAaW50
+ZWwuY29tPjsgRHVuYWpza2ksIEJhcnRvc3oNCj4+IDxiYXJ0b3N6LmR1bmFqc2tpQGludGVsLmNv
+bT47IEhhcmFzaW1pdWssIEFydHVyDQo+PiA8YXJ0dXIuaGFyYXNpbWl1a0BpbnRlbC5jb20+OyBI
+b3BwZSwgTWF0ZXVzeg0KPj4gPG1hdGV1c3ouaG9wcGVAaW50ZWwuY29tPjsgSmFibG9uc2tpLCBN
+YXRldXN6DQo+PiA8bWF0ZXVzei5qYWJsb25za2lAaW50ZWwuY29tPjsgSm9iY3p5aywgTHVrYXN6
+DQo+PiA8bHVrYXN6LmpvYmN6eWtAaW50ZWwuY29tPjsgS2FzcGVyLCBLYWNwZXIgSw0KPj4gPGth
+Y3Blci5rLmthc3BlckBpbnRlbC5jb20+OyBNcm96ZWssIE1pY2hhbCA8bWljaGFsLm1yb3pla0Bp
+bnRlbC5jb20+Ow0KPj4gUm96ZW5mZWxkLCBQaW90ciA8cGlvdHIucm96ZW5mZWxkQGludGVsLmNv
+bT47IFdpbG1hLCBQYXdlbA0KPj4gPHBhd2VsLndpbG1hQGludGVsLmNvbT47IFdvbG55LCBCYXJ0
+bG9taWVqDQo+PiA8YmFydGxvbWllai53b2xueUBpbnRlbC5jb20+OyBZYXRlcywgQnJhbmRvbg0K
+Pj4gPGJyYW5kb24ueWF0ZXNAaW50ZWwuY29tPjsgWmRhbm93aWN6LCBaYmlnbmlldw0KPj4gPHpi
+aWduaWV3LnpkYW5vd2ljekBpbnRlbC5jb20+DQo+PiBTdWJqZWN0OiBSZTogRlc6IFtJbnRlbC14
+ZV0gW1BBVENIIHY5IDAvM10gUEFUIGFuZCBjYWNoZSBjb2hlcmVuY3kNCj4+IHN1cHBvcnQNCj4+
+DQo+PiBPbiAwOS8xMS8yMDIzIDE0OjU4LCBNaWxjemFyZWssIFNsYXdvbWlyIHdyb3RlOg0KPj4+
+IEhpIE1hdHRoZXcsDQo+Pj4NCj4+PiBJbiB0aGUgY29tcHV0ZSBkcml2ZXIgd2UgY2FsbCBHRU1f
+TU1BUF9PRkZTRVQgd2l0aCBmbGFncyB0byBzcGVjaWZ5IGNwdSBjYWNoZSBtb2RlICh3Yi93Yyk6
+DQo+Pj4gR0VNX0NSRUFURV9FWFQoKSBhbmQgbW1hcCgpICsgR0VNX01NQVBfT0ZGU0VUKGZsYWdz
+PXdiL3djKQ0KPj4+DQo+Pj4gU3RhcnRpbmcgZnJvbSBYZSBLTUQgd2Ugc2hvdWxkIGJlIGFibGUg
+dG8gYWNoaWV2ZSB0aGUgc2FtZSBDUFUgY2FjaGluZyBwb2xpY2llcyB3aXRoIEdFTV9DUkVBVEVf
+RVhUOg0KPj4+IEdFTV9DUkVBVEVfRVhUKGZsYWdzPXdiL3djKSBhbmQgbW1hcCgpICsgR0VNX01N
+QVBfT0ZGU0VUKGZsYWdzPTApIEFtDQo+Pj4gSSBjb3JyZWN0Pw0KPj4NCj4+IFllcywgdGhhdCdz
+IGNvcnJlY3QuDQo+Pg0KPj4+DQo+Pj4gVGhhbmtzLA0KPj4+IFNsYXdlaw0KPj4+DQo+Pj4gLS0t
+LS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4+PiBGcm9tOiBBdWxkLCBNYXR0aGV3IDxtYXR0aGV3
+LmF1bGRAaW50ZWwuY29tPg0KPj4+IFNlbnQ6IFdlZG5lc2RheSwgTm92ZW1iZXIgOCwgMjAyMyAx
+OjA0IFBNDQo+Pj4gVG86IFRvbWFzeiBNaXN0YXQgPHRvbWFzei5taXN0YXRAbGludXguaW50ZWwu
+Y29tPjsNCj4+PiBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IEFydGVhZ2EgTW9saW5h
+LCBKYWltZSBBDQo+Pj4gPEphaW1lLkEuQXJ0ZWFnYS5Nb2xpbmFAaW50ZWwuY29tPjsgQ2V0bmVy
+b3dza2ksIEFkYW0NCj4+PiA8YWRhbS5jZXRuZXJvd3NraUBpbnRlbC5jb20+OyBDaG9kb3IsIEph
+cm9zbGF3DQo+Pj4gPGphcm9zbGF3LmNob2RvckBpbnRlbC5jb20+OyBEdW5hanNraSwgQmFydG9z
+eg0KPj4+IDxiYXJ0b3N6LmR1bmFqc2tpQGludGVsLmNvbT47IEhhcmFzaW1pdWssIEFydHVyDQo+
+Pj4gPGFydHVyLmhhcmFzaW1pdWtAaW50ZWwuY29tPjsgSG9wcGUsIE1hdGV1c3oNCj4+PiA8bWF0
+ZXVzei5ob3BwZUBpbnRlbC5jb20+OyBKYWJsb25za2ksIE1hdGV1c3oNCj4+PiA8TWF0ZXVzei5K
+YWJsb25za2lAaW50ZWwuY29tPjsgSm9iY3p5aywgTHVrYXN6DQo+Pj4gPGx1a2Fzei5qb2Jjenlr
+QGludGVsLmNvbT47IEthc3BlciwgS2FjcGVyIEsNCj4+PiA8a2FjcGVyLmsua2FzcGVyQGludGVs
+LmNvbT47IE1pbGN6YXJlaywgU2xhd29taXINCj4+PiA8c2xhd29taXIubWlsY3phcmVrQGludGVs
+LmNvbT47IE1yb3playwgTWljaGFsDQo+Pj4gPG1pY2hhbC5tcm96ZWtAaW50ZWwuY29tPjsgUm96
+ZW5mZWxkLCBQaW90cg0KPj4+IDxwaW90ci5yb3plbmZlbGRAaW50ZWwuY29tPjsgV2lsbWEsIFBh
+d2VsIDxwYXdlbC53aWxtYUBpbnRlbC5jb20+Ow0KPj4+IFdvbG55LCBCYXJ0bG9taWVqIDxiYXJ0
+bG9taWVqLndvbG55QGludGVsLmNvbT47IFlhdGVzLCBCcmFuZG9uDQo+Pj4gPGJyYW5kb24ueWF0
+ZXNAaW50ZWwuY29tPjsgWmRhbm93aWN6LCBaYmlnbmlldw0KPj4+IDx6Ymlnbmlldy56ZGFub3dp
+Y3pAaW50ZWwuY29tPjsgRHVuYWpza2ksIEJhcnRvc3oNCj4+PiA8YmFydG9zei5kdW5hanNraUBp
+bnRlbC5jb20+DQo+Pj4gU3ViamVjdDogUmU6IEZXOiBbSW50ZWwteGVdIFtQQVRDSCB2OSAwLzNd
+IFBBVCBhbmQgY2FjaGUgY29oZXJlbmN5DQo+Pj4gc3VwcG9ydA0KPj4+DQo+Pj4gT24gMDgvMTEv
+MjAyMyAxMTozMCwgVG9tYXN6IE1pc3RhdCB3cm90ZToNCj4+Pj4gY29tcHV0ZS11bWRfdWFwaV9y
+ZXZpZXdfdGVhbUBpbnRlbC5jb20sYmFydG9zei5kdW5hanNraUBpbnRlbC5jb20sc2ENCj4+Pj4g
+dQ0KPj4+PiByDQo+Pj4+IGFiaGcuZ3VwdGFAaW50ZWwuY29tLHVsaXNzZXMuZnVycXVpbUBpbnRl
+bC5jb20sbWljaGFsLm1yb3pla0BpbnRlbC5jDQo+Pj4+IG8NCj4+Pj4gbQ0KPj4+PiAsdG9tYXN6
+Lm1pc3RhdEBpbnRlbC5jb20scGlvdHIucm96ZW5mZWxkQGludGVsLmNvbSxheWF6LnNpZGRpcXVp
+QGludA0KPj4+PiBlDQo+Pj4+IGwNCj4+Pj4gLmNvbSxsdWlzLnN0cmFub0BpbnRlbC5jb20sZmls
+aXAuaGF6dWJza2lAaW50ZWwuY29tLGZpbGlwLmhhenVic2tpQGkNCj4+Pj4gbiB0IGVsLmNvbSxt
+YXRldXN6Lm5ha2xpY2tpQGludGVsLmNvbSxrYW1pbC5rb3ByeWtAaW50ZWwuY29tDQo+Pj4+IEJj
+YzoNCj4+Pj4gU3ViamVjdDogUmU6IFtJbnRlbC14ZV0gW1BBVENIIHY5IDAvM10gUEFUIGFuZCBj
+YWNoZSBjb2hlcmVuY3kNCj4+Pj4gc3VwcG9ydA0KPj4+PiBSZXBseS1UbzoNCj4+Pj4gSW4tUmVw
+bHktVG86IDwyMDIzMTEwMzE1NDMwOS40MDIxNTktNS1tYXR0aGV3LmF1bGRAaW50ZWwuY29tPg0K
+Pj4+Pg0KPj4+PiBPbiAyMDIzLTExLTAzIGF0IDE1OjQzOjEwICswMDAwLCBNYXR0aGV3IEF1bGQg
+d3JvdGU6DQo+Pj4+PiBCcmFuY2ggYXZhaWxhYmxlIGhlcmU6DQo+Pj4+PiBodHRwczovL2dpdGxh
+Yi5mcmVlZGVza3RvcC5vcmcvbXdhL2tlcm5lbC8tL3RyZWUveGUtcGF0LWluZGV4P3JlZl90DQo+
+Pj4+PiB5DQo+Pj4+PiBwDQo+Pj4+PiBlPWhlYWRzDQo+Pj4+Pg0KPj4+Pj4gSUdUIGNoYW5nZXM6
+DQo+Pj4+PiBodHRwczovL3BhdGNod29yay5mcmVlZGVza3RvcC5vcmcvc2VyaWVzLzEyNDY2Ny8N
+Cj4+Pj4+DQo+Pj4+PiBNZXNhOg0KPj4+Pj4gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3Jn
+L21lc2EvbWVzYS8tL21lcmdlX3JlcXVlc3RzLzI1NDYyDQo+Pj4+Pg0KPj4+Pj4gR29hbCBoZXJl
+IGlzIHRvIGFsbG93IHVzZXJzcGFjZSB0byBkaXJlY3RseSBjb250cm9sIHRoZSBwYXRfaW5kZXgN
+Cj4+Pj4+IHdoZW4gbWFwcGluZyBtZW1vcnkgdmlhIHRoZSBwcEdUVCwgaW4gYWRkdGlvbiB0byB0
+aGUgQ1BVIGNhY2hpbmcNCj4+Pj4+IG1vZGUuIFRoaXMgaXMgdmVyeSBtdWNoIG5lZWRlZCBvbiBu
+ZXdlciBpZ3B1IHBsYXRmb3JtcyB3aGljaCBhbGxvdw0KPj4+Pj4gaW5jb2hlcmVudCBHVCBhY2Nl
+c3MsIHdoZXJlIHRoZSBjaG9pY2Ugb3ZlciB0aGUgY2FjaGUgbGV2ZWwgYW5kDQo+Pj4+PiBleHBl
+Y3RlZCBjb2hlcmVuY3kgaXMgYmVzdCBsZWZ0IHRvIHVzZXJzcGFjZSBkZXBlbmRpbmcgb24gdGhl
+aXINCj4+Pj4+IHVzZWNhc2UuICBJbiB0aGUgZnV0dXJlIHRoZXJlIG1heSBhbHNvIGJlIG90aGVy
+IHN0dWZmIGVuY29kZWQgaW4gdGhlIHBhdF9pbmRleCwgc28gZ2l2aW5nIHVzZXJzcGFjZSBkaXJl
+Y3QgY29udHJvbCB3aWxsIGFsc28gYmUgbmVlZGVkIHRoZXJlLg0KPj4+Pj4NCj4+Pj4+IFRvIHN1
+cHBvcnQgdGhpcyB3ZSBhZGRlZCBuZXcgZ2VtX2NyZWF0ZSB1QVBJIGZvciBzZWxlY3RpbmcgdGhl
+IENQVQ0KPj4+Pj4gY2FjaGUgbW9kZSB0byB1c2UgZm9yIHN5c3RlbSBtZW1vcnksIGluY2x1ZGlu
+ZyB0aGUgZXhwZWN0ZWQgR1BVDQo+Pj4+PiBjb2hlcmVuY3kgbW9kZS4gVGhlcmUgYXJlIHZhcmlv
+dXMgcmVzdHJpY3Rpb25zIGhlcmUgZm9yIHRoZQ0KPj4+Pj4gc2VsZWN0ZWQgY29oZXJlbmN5IG1v
+ZGUgYW5kIGNvbXBhdGlibGUgQ1BVIGNhY2hlIG1vZGVzLiAgV2l0aCB0aGF0DQo+Pj4+PiBpbiBw
+bGFjZSB0aGUgYWN0dWFsIHBhdF9pbmRleCBjYW4gbm93IGJlIHByb3ZpZGVkIGFzIHBhcnQgb2YN
+Cj4+Pj4+IHZtX2JpbmQuIFRoZSBvbmx5IHJlc3RyaWN0aW9uIGlzIHRoYXQgdGhlIGNvaGVyZW5j
+eSBtb2RlIG9mIHRoZQ0KPj4+Pj4gcGF0X2luZGV4IG11c3QgYmUgYXQgbGVhc3QgYXMgY29oZXJl
+bnQgYXMgdGhlIGdlbV9jcmVhdGUgY29oZXJlbmN5IG1vZGUuIFRoZXJlIGFyZSBhbHNvIHNvbWUg
+c3BlY2lhbCBjYXNlcyBsaWtlIHdpdGggdXNlcnB0ciBhbmQgZG1hLWJ1Zi4NCj4+Pj4+DQo+Pj4+
+PiB2MjoNCj4+Pj4+ICAgICAgIC0gTG9hZHMgb2YgaW1wcm92ZW1lbnRzL3R3ZWFrcy4gTWFpbiBj
+aGFuZ2VzIGFyZSB0byBub3cgYWxsb3cNCj4+Pj4+ICAgICAgICAgZ2VtX2NyZWF0ZS5jb2hfbW9k
+ZSA8PSBjb2hfbW9kZShwYXRfaW5kZXgpLCByYXRoZXIgdGhhbiBpdCBuZWVkaW5nIHRvIG1hdGNo
+DQo+Pj4+PiAgICAgICAgIGV4YWN0bHkuIFRoaXMgc2ltcGxpZmllcyB0aGUgZG1hLWJ1ZiBwb2xp
+Y3kgZnJvbSB1c2Vyc3BhY2UgcG92LiBBbHNvIHdlIG5vdw0KPj4+Pj4gICAgICAgICBvbmx5IGNv
+bnNpZGVyIENPSF9OT05FIGFuZCBDT0hfQVRfTEVBU1RfMVdBWS4NCj4+Pj4+IHYzOg0KPj4+Pj4g
+ICAgICAgLSBSZWJhc2UuIFNwbGl0IHRoZSBwdGVfZW5jb2RlKCkgcmVmYWN0b3JpbmcsIHBsdXMg
+dmFyaW91cyBzbWFsbGVyIHR3ZWFrcyBhbmQNCj4+Pj4+ICAgICAgICAgZml4ZXMuDQo+Pj4+PiB2
+NDoNCj4+Pj4+ICAgICAgIC0gUmViYXNlIG9uIEx1Y2FzJyBuZXcgc2VyaWVzLg0KPj4+Pj4gICAg
+ICAgLSBEcm9wIFVDIGNhY2hlIG1vZGUuDQo+Pj4+PiAgICAgICAtIHMvc21lbV9jcHVfY2FjaGlu
+Zy9jcHVfY2FjaGluZy8uIElkZWEgaXMgdG8gbWFrZSBWUkFNIFdDIGV4cGxpY2l0IGluIHRoZQ0K
+Pj4+Pj4gICAgICAgICB1YXBpLCBwbHVzIG1ha2UgaXQgbW9yZSBmdXR1cmUgcHJvb2YuDQo+Pj4+
+PiB2NToNCj4+Pj4+ICAgICAgIC0gUmViYXNlLCBwbHVzIHNvbWUgc21hbGwgdHdlYWtzIGFuZCBm
+aXhlcy4NCj4+Pj4+IHY2Og0KPj4+Pj4gICAgICAgLSBDSSBob29rcyBmaXhlcyArIGNoZWNrcGF0
+Y2guDQo+Pj4+PiB2NzoNCj4+Pj4+ICAgICAgIC0gU29tZSBzbWFsbCB0d2Vha3MNCj4+Pj4+IHY4
+Og0KPj4+Pj4gICAgICAgLSBSZWJhc2Ugb24gWGUyIFBBVCB0YWJsZSBhZGRpdGlvbnMuDQo+Pj4+
+PiB2OToNCj4+Pj4+ICAgICAgIC0gRHJvcCBjb2hfbW9kZS4NCj4+Pj4+DQo+Pj4+PiAtLQ0KPj4+
+Pj4gMi40MS4wDQo+Pj4+Pg0KPj4+Pg0KPj4+PiBJJ20gc2hhcmluZyBkb3duIGhlcmUgcXVlc3Rp
+b25zIHBhc3NlZCBieSBiYXJ0b3N6LmR1bmFqc2tpQGludGVsLmNvbQ0KPj4+PiBsZXRzIGNvbnRp
+bnVlIHJldmlldyBoZXJlIGF0IHJlc3BlY3RpdmUgTUwNCj4+Pj4NCj4+Pj4gU2VudDogV2VkbmVz
+ZGF5LCBOb3ZlbWJlciA4LCAyMDIzIDA5OjA1DQo+Pj4+IFN1YmplY3Q6IFJFOiBbSW50ZWwteGVd
+IFtQQVRDSCB2OSAwLzNdIFBBVCBhbmQgY2FjaGUgY29oZXJlbmN5DQo+Pj4+IHN1cHBvcnQNCj4+
+Pj4NCj4+Pj4gSnVzdCB0byBjb25maXJtIG15IHVuZGVyc3RhbmRpbmcuIFdlIHdpbGwgaGF2ZSAy
+IHNlcGFyYXRlIEFQSXM/DQo+Pj4+IDEuCUZvciBnZW1fY3JlYXRlIHRvIGV4cGxpY2l0bHkgc2V0
+IGNvaGVyZW5jeS9jYWNoaW5nIGFjY29yZGluZyB0byBBUEkgZW51bXMNCj4+Pg0KPj4+IFllYWgs
+IHlvdSBqdXN0IG5lZWQgdG8gcHJvdmlkZSB0aGUgY3B1X2NhY2hpbmcgbW9kZSAod2Mgb3Igd2Ip
+LiBJZiB5b3UgbGF0ZXIgbW1hcCgpIHRoZSBvYmplY3QgdGhpcyBzYW1lIGNhY2hpbmcgbW9kZSBp
+cyB1c2VkLiBBbHNvIGFueSBLTUQgaW50ZXJuYWwgdGhpbmdzIGxpa2Ugc3dhcC1pbiB3aWxsIGFs
+c28gcmVzcGVjdCB0aGlzIGNhY2hpbmcgbW9kZS4gVGhlIGNvaF9tb2RlIGlzIG5vdyByZW1vdmVk
+Lg0KPj4+DQo+Pj4+IDIuCUZvciB2bV9iaW5kIHRvIHNldCBQQVQgaW5kZXggdGhhdCBpcyBhbGln
+bmVkIHdpdGggQnNwZWMgYW5kIGNvbnRyb2xzIG1vcmUgdGhhbiAjMS4gSXQgY2FuIGFsc28gb3Zl
+cnJpZGUgY29oZXJlbmN5L2NhY2hpbmcgdGhhdCB3YXMgcHJldmlvdXNseSBzZXQ/DQo+Pj4NCj4+
+PiBSaWdodCwgYXMgcGFydCBvZiB2bV9iaW5kIHlvdSBwcm92aWRlIHdoYXRldmVyIFBBVCBpbmRl
+eCBjb250cm9sIChhcw0KPj4+IHBlcg0KPj4+IEJzcGVjKSB5b3Ugd2FudCBmb3IgZWFjaCBtYXBw
+aW5nIG9mIHRoZSBvYmplY3QgKHlvdSBjb3VsZCBtYXAgaXQgbXVsdGlwbGUgdGltZXMpLg0KPj4+
+DQo+Pj4gV2hlbiBjaG9vc2luZyBhIFBBVCBpbmRleCB0aGUgY3B1X2NhY2hpbmcgb25seSBtYXR0
+ZXJzIGlmIHlvdSBjaG9vc2UgYW4gaW5jb2hlcmVudCBQQVQgaW5kZXggKGNvaF9ub25lIGluIEJz
+cGVjKSwgc2luY2Ugd2UgZG9uJ3Qgd2FudCB0byBhbGxvdyBjcHVfY2FjaGluZz13YiBhbmQgY29o
+X25vbmUsIHNpbmNlIHRoYXQgbGVhZHMgdG8gc29tZSBjb21wbGljYXRpb25zIGluIHRoZSBLTUQu
+DQo+Pj4NCj4+Pj4NCj4+Pj4NCg==
