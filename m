@@ -4,51 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9A1FC4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 13:05:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 427ABC4167B
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 13:07:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70D7310E0E5;
-	Tue, 14 Nov 2023 13:05:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AE5110E44B
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Nov 2023 13:05:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699967118; x=1731503118;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZPOeZcS/6NyvYIfil8/+zsLlt47GbejwmMfYkxBZNok=;
- b=azLYJ2UUXJZSfg+/cWGHBBXCLL+Uo4ER5NFJi1MCndckZzagAj/oOFmO
- W6Hvew/hFhyNXeel0CY67M+GUEM2DlxvGX1dMzabA+GoF3T7dpXU3feiB
- //rAGJNW34E0jWSPrB67QVcmgqutm9XwVOgedxsmM90SZ68QY0nO6L+jI
- JwQYuWzYOWeIh85/PHiFsIzA4RsiNmhE4A4ZUrcwgQeOpTydpXA3oHzWv
- OaTQgSGRxf+/S5OlVjbnk154432/bxxodZ1OKiCqwfMI6BivrkuQyENP3
- MdylwTgDdJhoTAgjsf3no/FRrj2YJBf30zo4rY5R78gmDSfn9lxaYgmt8 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="394565391"
-X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="394565391"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 05:05:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10893"; a="793778968"
-X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="793778968"
-Received: from mmaiores-mobl1.ger.corp.intel.com (HELO
- jhogande-mobl1.intel.com) ([10.252.56.172])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 05:05:16 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Nov 2023 15:04:42 +0200
-Message-Id: <20231114130443.2503708-9-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231114130443.2503708-1-jouni.hogander@intel.com>
-References: <20231114130443.2503708-1-jouni.hogander@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CE2310E1B5;
+	Tue, 14 Nov 2023 13:07:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3D84C10E1B5;
+ Tue, 14 Nov 2023 13:07:36 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 37EA1AADE8;
+ Tue, 14 Nov 2023 13:07:36 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 8/9] fixup! drm/xe/display: Implement display
- support
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>
+Date: Tue, 14 Nov 2023 13:07:36 -0000
+Message-ID: <169996725622.29256.16519152551508608337@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231114130231.2299661-1-michal.winiarski@intel.com>
+In-Reply-To: <20231114130231.2299661-1-michal.winiarski@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Probe_tweaks_and_reordering_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,34 +39,41 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add i915_ggtt_offset into i915_vma.h compatibility header. This is needed
-by intel_fbdev.c.
+== Series Details ==
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+Series: drm/xe: Probe tweaks and reordering (rev2)
+URL   : https://patchwork.freedesktop.org/series/126392/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index 9424144b1b5a..23f2d037c313 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -19,4 +19,10 @@ struct i915_vma {
- #define i915_ggtt_clear_scanout(bo) do { } while (0)
- 
- #define i915_vma_fence_id(vma) -1
-+
-+static inline u32 i915_ggtt_offset(const struct i915_vma *vma)
-+{
-+	return vma->node.start;
-+}
-+
- #endif
--- 
-2.34.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 7dc3dda9b drm/xe: Raise GT frequency before GuC/HuC load
+=== git am output follows ===
+Applying: drm/xe: Skip calling drm_dev_put on probe error
+Applying: drm/xe: Use managed pci_enable_device
+Applying: drm/xe/irq: Don't call pci_free_irq_vectors
+Applying: drm/xe: Move xe_set_dma_info outside of MMIO setup
+Applying: drm/xe: Move xe_mmio_probe_tiles outside of MMIO setup
+Applying: drm/xe: Split xe_info_init
+Applying: drm/xe: Introduce xe_tile_init_early and use at earlier point in probe
+Applying: drm/xe: Map the entire BAR0 and hold onto the initial mapping
+Applying: drm/xe/device: Introduce xe_device_probe_early
+Applying: drm/xe: Don't "peek" into GMD_ID
+Applying: drm/xe: Move system memory management init to earlier point in probe
+Applying: drm/xe: Move force_wake init to earlier point in probe
+Applying: drm/xe: Reorder GGTT init to earlier point in probe
+Applying: drm/xe/uc: Split xe_uc_fw_init
+Applying: drm/xe/uc: Store firmware binary in system-memory backed BO
+Applying: drm/xe/uc: Extract xe_uc_sanitize_reset
+Applying: drm/xe/guc: Split GuC params used for "hwconfig" and "post-hwconfig"
+Applying: drm/xe/guc: Allocate GuC data structures in system memory for initial load
+Applying: drm/xe/guc: Move GuC power control init to "post-hwconfig"
+Applying: drm/xe: Initialize GuC earlier during probe
+
 
