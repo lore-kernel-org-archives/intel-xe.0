@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 876A7C47DDD
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 23:29:07 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C0DAC4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 23:29:19 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 435B110E0EA;
-	Tue, 14 Nov 2023 23:29:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2167310E409;
+	Tue, 14 Nov 2023 23:29:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 004BC10E0EA;
- Tue, 14 Nov 2023 23:29:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5DC9310E409;
+ Tue, 14 Nov 2023 23:29:17 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EEF93A7E03;
- Tue, 14 Nov 2023 23:29:05 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5B7CAA7E03;
+ Tue, 14 Nov 2023 23:29:17 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Gustavo Sousa" <gustavo.sousa@intel.com>
-Date: Tue, 14 Nov 2023 23:29:05 -0000
-Message-ID: <170000454595.29254.6640449380247626271@emeril.freedesktop.org>
+Date: Tue, 14 Nov 2023 23:29:17 -0000
+Message-ID: <170000455737.29257.13223503591115918548@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231114220922.88268-1-gustavo.sousa@intel.com>
 In-Reply-To: <20231114220922.88268-1-gustavo.sousa@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/mmio=3A_Make_xe=5Fmmio=5Fwait32=28=29_aware_of_interr?=
- =?utf-8?q?upts?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/mmio=3A_Make_xe=5Fmmio=5Fwait32=28=29_aware_of_interrupts?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,9 +52,45 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 2fe82053d drm/xe/display: Add writing of remapped dpt
-=== git am output follows ===
-Applying: drm/xe/mmio: Make xe_mmio_wait32() aware of interrupts
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 9f06bc1b63e7e2ccfd7814351c7574090258a1b0
+Author: Gustavo Sousa <gustavo.sousa@intel.com>
+Date:   Tue Nov 14 19:09:22 2023 -0300
+
+    drm/xe/mmio: Make xe_mmio_wait32() aware of interrupts
+    
+    With the current implementation, a preemption or other kind of interrupt
+    might happen between xe_mmio_read32() and ktime_get_raw(). Such an
+    interruption (specially in the case of preemption) might be long enough
+    to cause a timeout without giving a chance of a new check on the
+    register value on a next iteration, which would have happened otherwise.
+    
+    This issue causes some sporadic timeouts in some code paths. As an
+    example, we were experiencing some rare timeouts when waiting for PLL
+    unlock for C10/C20 PHYs (see intel_cx0pll_disable()). After debugging,
+    we found out that the PLL unlock was happening within the expected time
+    period (20us), which suggested a bug in xe_mmio_wait32().
+    
+    To fix the issue, ensure that we call ktime_get_raw() to get the current
+    time before we check the register value. This allows for a last check
+    after a timeout and covers the case where the it is caused by some
+    preemption/interrupt.
+    
+    This change was tested with the aforementioned PLL unlocking code path.
+    Experiments showed that, before this change, we observed reported
+    timeouts in 54 of 5000 runs; and, after this change, no timeouts were
+    reported in 5000 runs.
+    
+    Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
++ /mt/dim checkpatch 2fe82053d916d09ffcc92bc27294c9eed4e4804b drm-intel
+9f06bc1b6 drm/xe/mmio: Make xe_mmio_wait32() aware of interrupts
 
 
