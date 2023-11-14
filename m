@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 068F3C4167D
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 10:16:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C440C4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 10:16:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C892310E1EE;
-	Tue, 14 Nov 2023 10:16:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2913910E1EF;
+	Tue, 14 Nov 2023 10:16:37 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 773D810E1EE;
- Tue, 14 Nov 2023 10:16:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9608810E1EF;
+ Tue, 14 Nov 2023 10:16:33 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 709CDAADE8;
- Tue, 14 Nov 2023 10:16:20 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 94536AADE8;
+ Tue, 14 Nov 2023 10:16:33 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Alexander Usyskin" <alexander.usyskin@intel.com>
-Date: Tue, 14 Nov 2023 10:16:20 -0000
-Message-ID: <169995698042.29257.7346031301034694013@emeril.freedesktop.org>
+Date: Tue, 14 Nov 2023 10:16:33 -0000
+Message-ID: <169995699360.29256.6679035958503987688@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231114100843.1923977-1-alexander.usyskin@intel.com>
 In-Reply-To: <20231114100843.1923977-1-alexander.usyskin@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_mei=3A_hdcp/pxp=3A_adapt_for_Xe_driver_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_me?=
+ =?utf-8?q?i=3A_hdcp/pxp=3A_adapt_for_Xe_driver_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,17 +48,38 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: mei: hdcp/pxp: adapt for Xe driver (rev2)
 URL   : https://patchwork.freedesktop.org/series/126075/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 7dc3dda9b drm/xe: Raise GT frequency before GuC/HuC load
-=== git am output follows ===
-Applying: Revert "mei/hdcp: Also enable for XE"
-Applying: mei: hdcp: match without driver name
-Applying: mei: pxp: match without driver name
-Applying: mei: hdcp: add dependency on Xe driver
-Applying: mei: pxp: add dependency on Xe driver
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit f0955ed37f74e4b040314f49dd2c89b56f5656df
+Author: Alexander Usyskin <alexander.usyskin@intel.com>
+Date:   Tue Nov 14 12:08:43 2023 +0200
+
+    mei: pxp: add dependency on Xe driver
+    
+    Optionally depend on either i915 or Xe drivers.
+    
+    Signed-off-by: Alexander Usyskin <alexander.usyskin@intel.com>
++ /mt/dim checkpatch 7dc3dda9b2df5a5c8949532f254a0689de70f093 drm-intel
+472466cc9 Revert "mei/hdcp: Also enable for XE"
+-:6: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '62db7d00efe48c614b006086f306d5addedf8f83', maybe rebased or not pulled?
+#6: 
+This reverts commit 62db7d00efe48c614b006086f306d5addedf8f83.
+
+total: 0 errors, 1 warnings, 0 checks, 17 lines checked
+11d5b8a60 mei: hdcp: match without driver name
+70687e02a mei: pxp: match without driver name
+bccacd8d5 mei: hdcp: add dependency on Xe driver
+f0955ed37 mei: pxp: add dependency on Xe driver
 
 
