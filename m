@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 916D8C4332F
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 13:34:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58609C4167B
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 13:34:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10D8210E448;
-	Tue, 14 Nov 2023 13:34:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 27C0F10E443;
+	Tue, 14 Nov 2023 13:34:55 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABF3510E206
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Nov 2023 13:34:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D932D10E449
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Nov 2023 13:34:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699968890; x=1731504890;
+ t=1699968893; x=1731504893;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AEyRJMspimTdXBCf4dHbElhA5DCqILoymebtRrP/T8w=;
- b=lzNi83JlHmFF74f0JQjma4FDwy4cxUxjF/d7pfFak5OJmUn7wqdpYDcu
- tktMycEhZXDq5fV/yYCd8ZMPnh6jWSx+DeQWsQ87SCKeYkuYuINEWrS8B
- zYkc4n/UA3d30VbFZnsUH5Niy+c6HE8JDW4F66nICyysfrU2UhqNGjffs
- Yd12vJP3S+if560o53jJT3pJvbaxnNHnIB28JGNyFeGJDIc5sC/zJ0Yw3
- eGH5QgV51aJ9UYgmFfhv3Jc+DTLJ316Gi2V4swqhuZOkz5eXk3lQn5Vr9
- P3ZOpDQcr0Tbz5qpI9JgeY+bV4Tsu5a0hVQXQIYFr4omuWukBPdIuzVNS w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="9293960"
+ bh=vdAVbmQfH0mpSK7p4Em0uEzZ9q/QUj6axRJt28DQzE4=;
+ b=ZO65/rOAKLl0t8jafVlZTF4RHFsbn2mz8zk2in0pI9JmgDVB8j7J38Fn
+ NfZwftA/IWOOUpq9hhvZ0EEOm4IZp2SbZp93We3Litl8wliqhUBBcICOr
+ NvZDFnXrr6mMP1CbKyOEb+ESlZvVYNhyNVOmBaE0SxYmoY6oEnbzSl5gG
+ qPEk+dCuGkPRFRVGbP+7DXXCYVDQngN8ll9eLZVJWHkXfQpgncBx+TRi9
+ FRH5vp3w3rAhiV79C8lQXbqjmlMvnbPrCgWnRZD8etWo01NQE310AjsJY
+ Pzs5G0RlFSgQbcC4cVd4D6TO66okh51cezJA8TnoOq4NSD7omnOl+CVGH g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="9293966"
 X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; 
-   d="scan'208";a="9293960"
+   d="scan'208";a="9293966"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 05:34:49 -0800
+ 14 Nov 2023 05:34:53 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="764661283"
-X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="764661283"
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="764661291"
+X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="764661291"
 Received: from kdijkstr-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.251.218.123])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 05:34:48 -0800
+ 14 Nov 2023 05:34:51 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Nov 2023 13:34:29 +0000
-Message-Id: <20231114133434.7-4-francois.dugast@intel.com>
+Date: Tue, 14 Nov 2023 13:34:31 +0000
+Message-Id: <20231114133434.7-6-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231114133434.7-1-francois.dugast@intel.com>
 References: <20231114133434.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v1 3/8] drm/xe/uapi: Change rsvd to pad in struct
- drm_xe_class_instance
+Subject: [Intel-xe] [PATCH v1 5/8] drm/xe/uapi: Rename query's mem_usage to
+ mem_regions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,53 +59,117 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Change rsvd to pad in struct drm_xe_class_instance to prevent the field
-from being used in future.
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-v2: Change from fixup to regular commit because this touches the
-    uAPI (Francois Dugast)
+'Usage' gives an impression of telemetry information where someone
+would query to see how the memory is currently used and available
+size, etc. However this API is more than this. It is about a global
+view of all the memory regions available in the system and user
+space needs to have this information so they can then use the
+mem_region masks that are returned for the engine access.
 
-Signed-off-by: Umesh Nerlige Ramappa <umesh.nerlige.ramappa@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 5 ++++-
- include/uapi/drm/xe_drm.h     | 3 ++-
- 2 files changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_query.c | 16 ++++++++--------
+ include/uapi/drm/xe_drm.h     | 14 +++++++-------
+ 2 files changed, 15 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 565a716302bb..48befd9f0812 100644
+index 8b5136460ea6..d495716b2c96 100644
 --- a/drivers/gpu/drm/xe/xe_query.c
 +++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -215,7 +215,10 @@ static int query_engines(struct xe_device *xe,
- 				xe_to_user_engine_class[hwe->class];
- 			hw_engine_info[i].engine_instance =
- 				hwe->logical_instance;
--			hw_engine_info[i++].gt_id = gt->info.id;
-+			hw_engine_info[i].gt_id = gt->info.id;
-+			hw_engine_info[i].pad = 0;
-+
-+			i++;
- 		}
+@@ -230,7 +230,7 @@ static int query_engines(struct xe_device *xe,
+ 	return 0;
+ }
  
- 	if (copy_to_user(query_ptr, hw_engine_info, size)) {
+-static size_t calc_memory_usage_size(struct xe_device *xe)
++static size_t calc_mem_regions_size(struct xe_device *xe)
+ {
+ 	u32 num_managers = 1;
+ 	int i;
+@@ -239,15 +239,15 @@ static size_t calc_memory_usage_size(struct xe_device *xe)
+ 		if (ttm_manager_type(&xe->ttm, i))
+ 			num_managers++;
+ 
+-	return offsetof(struct drm_xe_query_mem_usage, regions[num_managers]);
++	return offsetof(struct drm_xe_query_mem_regions, regions[num_managers]);
+ }
+ 
+-static int query_memory_usage(struct xe_device *xe,
+-			      struct drm_xe_device_query *query)
++static int query_mem_regions(struct xe_device *xe,
++			     struct drm_xe_device_query *query)
+ {
+-	size_t size = calc_memory_usage_size(xe);
+-	struct drm_xe_query_mem_usage *usage;
+-	struct drm_xe_query_mem_usage __user *query_ptr =
++	size_t size = calc_mem_regions_size(xe);
++	struct drm_xe_query_mem_regions *usage;
++	struct drm_xe_query_mem_regions __user *query_ptr =
+ 		u64_to_user_ptr(query->data);
+ 	struct ttm_resource_manager *man;
+ 	int ret, i;
+@@ -499,7 +499,7 @@ static int query_gt_topology(struct xe_device *xe,
+ static int (* const xe_query_funcs[])(struct xe_device *xe,
+ 				      struct drm_xe_device_query *query) = {
+ 	query_engines,
+-	query_memory_usage,
++	query_mem_regions,
+ 	query_config,
+ 	query_gt_list,
+ 	query_hwconfig,
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index f6346a8351e4..a8d351c9fa7c 100644
+index fd51d4444119..c627e35bddb8 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -141,7 +141,8 @@ struct drm_xe_engine_class_instance {
- 
- 	__u16 engine_instance;
- 	__u16 gt_id;
--	__u16 rsvd;
-+	/** @pad: MBZ */
-+	__u16 pad;
+@@ -291,13 +291,13 @@ struct drm_xe_query_engine_cycles {
  };
  
  /**
+- * struct drm_xe_query_mem_usage - describe memory regions and usage
++ * struct drm_xe_query_mem_regions - describe memory regions
+  *
+  * If a query is made with a struct drm_xe_device_query where .query
+- * is equal to DRM_XE_DEVICE_QUERY_MEM_USAGE, then the reply uses
+- * struct drm_xe_query_mem_usage in .data.
++ * is equal to DRM_XE_DEVICE_QUERY_MEM_REGIONS, then the reply uses
++ * struct drm_xe_query_mem_regions in .data.
+  */
+-struct drm_xe_query_mem_usage {
++struct drm_xe_query_mem_regions {
+ 	/** @num_regions: number of memory regions returned in @regions */
+ 	__u32 num_regions;
+ 	/** @pad: MBZ */
+@@ -350,12 +350,12 @@ struct drm_xe_query_gt {
+ 	__u32 clock_freq;
+ 	/**
+ 	 * @near_mem_regions: Bit mask of instances from
+-	 * drm_xe_query_mem_usage that is near the current engines of this GT.
++	 * drm_xe_query_mem_regions that is near the current engines of this GT.
+ 	 */
+ 	__u64 near_mem_regions;
+ 	/**
+ 	 * @far_mem_regions: Bit mask of instances from
+-	 * drm_xe_query_mem_usage that is far from the engines of this GT.
++	 * drm_xe_query_mem_regions that is far from the engines of this GT.
+ 	 * In general, it has extra indirections when compared to the
+ 	 * @near_mem_regions. For a discrete device this could mean system
+ 	 * memory and memory living in a different Tile.
+@@ -469,7 +469,7 @@ struct drm_xe_device_query {
+ 	__u64 extensions;
+ 
+ #define DRM_XE_DEVICE_QUERY_ENGINES		0
+-#define DRM_XE_DEVICE_QUERY_MEM_USAGE		1
++#define DRM_XE_DEVICE_QUERY_MEM_REGIONS		1
+ #define DRM_XE_DEVICE_QUERY_CONFIG		2
+ #define DRM_XE_DEVICE_QUERY_GT_LIST		3
+ #define DRM_XE_DEVICE_QUERY_HWCONFIG		4
 -- 
 2.34.1
 
