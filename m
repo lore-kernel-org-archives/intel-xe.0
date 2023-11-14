@@ -4,74 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29C8EC4167D
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 15:50:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED2E6C4167D
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 15:53:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1C5910E455;
-	Tue, 14 Nov 2023 15:50:22 +0000 (UTC)
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3478110E454;
- Tue, 14 Nov 2023 15:50:20 +0000 (UTC)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 4E024204B3;
- Tue, 14 Nov 2023 15:50:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1699977018; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=f66Z+ZwArpCifdVWAhGMFhUcTcx57YSj9CYF8NpAqlM=;
- b=yQGPX8yAX1vvYUnlf4UfpB7Fak8KnbUHSWUMGA43B1KRLSDW5bcZ+Ao0ZaXj5aGs1iT0GD
- 18191kbr2pptDZ1RXMuNaPetx2u+4uEhMRXyUJoWzQuAPmVRNH9DhxIALfGVq2yFLDM5GM
- a7Kv7tvwSuyyYfAqVLPSz/Gfe5r2iCQ=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1699977018;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=f66Z+ZwArpCifdVWAhGMFhUcTcx57YSj9CYF8NpAqlM=;
- b=hQPaDJW5mrBVyMalxMj6FT1aOqgELzQ7m32X8RpP82+69NbjEX0ZcUMnQFp6hUz/eQoMvE
- Igz4Ln+3/t9YNGCA==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
- (No client certificate requested)
- by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 0F1FA13460;
- Tue, 14 Nov 2023 15:50:18 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
- by imap2.suse-dmz.suse.de with ESMTPSA id OnDDAjqXU2W6XAAAMHmgww
- (envelope-from <tiwai@suse.de>); Tue, 14 Nov 2023 15:50:18 +0000
-Date: Tue, 14 Nov 2023 16:50:17 +0100
-Message-ID: <87ttpopc5i.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-In-Reply-To: <f72ce7ff-19a4-4a12-9ede-615a964e7228@linux.intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF40D10E458;
+	Tue, 14 Nov 2023 15:53:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B12E010E454;
+ Tue, 14 Nov 2023 15:53:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1699977212; x=1731513212;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=oJ3L70+WCz5hA1RyBMC0XAHjP86uMYTYzqH9F010sFQ=;
+ b=K1dtDSPg4C+h4R6W8SoHErApAwGPyVRTUjrHQFArD0W+tg3wEsvUW2yr
+ kSf+ZQ/3Cm1y51qaC2xmp4mYjZvTg7/N1/FH5VpMIMXbqAz3Q+eHICUY8
+ cAGnO1Spb3wI2bRQ/jKfmhqAJKXcJyOpVpON0+dLgvhs8xisbGOligxoo
+ eGE8IeUIEKoLypnZatxokxJWsSE0rG4tGEqtVpMIquhWr4Js7/qvY6DK9
+ emFAnIcIy3kRRNDXwuTPsSmt0Rn7HnP4wc5m0jF14e2t9xAgdscc59RHX
+ j1r0v8sH4ZWm7opvgyTdP5FeX927c3LH3IIDfqO0M9C1HHlkLZ0BiC8zS w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="457174747"
+X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="457174747"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2023 07:53:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="908417609"
+X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="908417609"
+Received: from hoffbaue-mobl1.ger.corp.intel.com (HELO [10.249.43.206])
+ ([10.249.43.206])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2023 07:52:54 -0800
+Message-ID: <265607f1-debc-410e-add3-198af804f37c@linux.intel.com>
+Date: Tue, 14 Nov 2023 16:52:52 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Takashi Iwai <tiwai@suse.de>
 References: <20231002193847.7134-1-maarten.lankhorst@linux.intel.com>
  <20231002193847.7134-11-maarten.lankhorst@linux.intel.com>
  <ZVNUxZzCGcxQzqJX@intel.com> <87bkbwsebl.fsf@intel.com>
  <ZVN4rQjLxROOjTE-@intel.com>
  <f72ce7ff-19a4-4a12-9ede-615a964e7228@linux.intel.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=ISO-8859-1
+ <87ttpopc5i.wl-tiwai@suse.de>
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <87ttpopc5i.wl-tiwai@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Authentication-Results: smtp-out2.suse.de;
-	none
-X-Spamd-Result: default: False [-10.10 / 50.00]; ARC_NA(0.00)[];
- RCVD_VIA_SMTP_AUTH(0.00)[]; FROM_HAS_DN(0.00)[];
- TO_DN_SOME(0.00)[]; TO_MATCH_ENVRCPT_ALL(0.00)[];
- NEURAL_HAM_LONG(-3.00)[-1.000]; MIME_GOOD(-0.10)[text/plain];
- REPLY(-4.00)[];
- DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
- NEURAL_HAM_SHORT(-1.00)[-1.000]; RCPT_COUNT_SEVEN(0.00)[8];
- MID_CONTAINS_FROM(1.00)[]; FUZZY_BLOCKED(0.00)[rspamd.com];
- FROM_EQ_ENVFROM(0.00)[]; MIME_TRACE(0.00)[0:+];
- RCVD_COUNT_TWO(0.00)[2]; RCVD_TLS_ALL(0.00)[];
- BAYES_HAM(-3.00)[100.00%]
 Subject: Re: [Intel-xe] [PATCH 11/14] ALSA: hda/intel: Move
  snd_hdac_i915_init to before probe_work.
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -90,70 +70,76 @@ Cc: alsa-devel@alsa-project.org, intel-gfx@lists.freedesktop.org,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 14 Nov 2023 15:39:16 +0100,
-Maarten Lankhorst wrote:
-> 
-> 
-> Hey,
-> 
-> Den 2023-11-14 kl. 14:39, skrev Ville Syrj‰l‰:
-> 
->     On Tue, Nov 14, 2023 at 02:35:10PM +0200, Jani Nikula wrote:
->     
->         On Tue, 14 Nov 2023, Ville Syrj‰l‰ <ville.syrjala@linux.intel.com> wrote:
->         
->             On Mon, Oct 02, 2023 at 09:38:44PM +0200, maarten.lankhorst@linux.intel.com wrote:
->             
->                 From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->                 
->                 Now that we can use -EPROBE_DEFER, it's no longer required to spin off
->                 the snd_hdac_i915_init into a workqueue.
->                 
->                 Use the -EPROBE_DEFER mechanism instead, which must be returned in the
->                 probe function.
->                 
->             This completely broke i915 audio!
->             
->             I also can't see any trace of this stuff ever being posted to 
->             intel-gfx so it never went through the CI.
->             
->             Please fix or revert ASAP.
->             
->         Cc: Jani, Suresh
->         
->         Ville, please file a bug at gitlab so we can track this, thanks.
->         
->     https://gitlab.freedesktop.org/drm/intel/-/issues/9671
->     
-> Looks like a simple patch should be enough, can you test below?
+Hey,
 
-Seems that we reached to the same conclusion :)
+Den 2023-11-14 kl. 16:50, skrev Takashi Iwai:
+> On Tue, 14 Nov 2023 15:39:16 +0100,
+> Maarten Lankhorst wrote:
+>>
+>> Hey,
+>>
+>> Den 2023-11-14 kl. 14:39, skrev Ville Syrj√§l√§:
+>>
+>>      On Tue, Nov 14, 2023 at 02:35:10PM +0200, Jani Nikula wrote:
+>>      
+>>          On Tue, 14 Nov 2023, Ville Syrj√§l√§ <ville.syrjala@linux.intel.com> wrote:
+>>          
+>>              On Mon, Oct 02, 2023 at 09:38:44PM +0200, maarten.lankhorst@linux.intel.com wrote:
+>>              
+>>                  From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>                  
+>>                  Now that we can use -EPROBE_DEFER, it's no longer required to spin off
+>>                  the snd_hdac_i915_init into a workqueue.
+>>                  
+>>                  Use the -EPROBE_DEFER mechanism instead, which must be returned in the
+>>                  probe function.
+>>                  
+>>              This completely broke i915 audio!
+>>              
+>>              I also can't see any trace of this stuff ever being posted to
+>>              intel-gfx so it never went through the CI.
+>>              
+>>              Please fix or revert ASAP.
+>>              
+>>          Cc: Jani, Suresh
+>>          
+>>          Ville, please file a bug at gitlab so we can track this, thanks.
+>>          
+>>      https://gitlab.freedesktop.org/drm/intel/-/issues/9671
+>>      
+>> Looks like a simple patch should be enough, can you test below?
+> Seems that we reached to the same conclusion :)
+>
+> I took a quick look at other code paths, and sound/pci/hda/hda_intel.c
+> is the only place that needs the correction.  Other (ASoC) drivers are
+> either simply always returning the error or dealing only with -ENODEV
+> case for skipping the HDMI codec.
 
-I took a quick look at other code paths, and sound/pci/hda/hda_intel.c
-is the only place that needs the correction.  Other (ASoC) drivers are
-either simply always returning the error or dealing only with -ENODEV
-case for skipping the HDMI codec.
+Yeah, the original comment in the code confused me and led me to not 
+handle -EPROBE_DEFER in the first place there.
 
+Cheers,
 
-thanks,
+Maarten
 
-Takashi
-
-> 
-> ----
-> 
-> diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
-> index 058f6e6491f9a..946aaa487f200 100644
-> --- a/sound/pci/hda/hda_intel.c
-> +++ b/sound/pci/hda/hda_intel.c
-> @@ -2145,7 +2145,8 @@ static int azx_probe(struct pci_dev *pci,
->                                                                    * for other chips, still continue probing as other
->                                                                    * codecs can be on the same link.
->                                                                    */
-> -                                                                 if (HDA_CONTROLLER_IN_GPU(pci)) {
-> +                                                                 if (HDA_CONTROLLER_IN_GPU(pci) ||
-> +                                                                     err == -EPROBE_DEFER) {
->                                                                                         goto out_free;
->                                                                   } else {
->                                                                                         /* don't bother any longer */
-> 
+> thanks,
+>
+> Takashi
+>
+>> ----
+>>
+>> diff --git a/sound/pci/hda/hda_intel.c b/sound/pci/hda/hda_intel.c
+>> index 058f6e6491f9a..946aaa487f200 100644
+>> --- a/sound/pci/hda/hda_intel.c
+>> +++ b/sound/pci/hda/hda_intel.c
+>> @@ -2145,7 +2145,8 @@ static int azx_probe(struct pci_dev *pci,
+>>                                                                     * for other chips, still continue probing as other
+>>                                                                     * codecs can be on the same link.
+>>                                                                     */
+>> -                                                                 if (HDA_CONTROLLER_IN_GPU(pci)) {
+>> +                                                                 if (HDA_CONTROLLER_IN_GPU(pci) ||
+>> +                                                                     err == -EPROBE_DEFER) {
+>>                                                                                          goto out_free;
+>>                                                                    } else {
+>>                                                                                          /* don't bother any longer */
+>>
