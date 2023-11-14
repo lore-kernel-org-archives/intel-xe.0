@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58609C4167B
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 13:34:55 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3C347C4332F
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 13:34:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27C0F10E443;
-	Tue, 14 Nov 2023 13:34:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15A0110E449;
+	Tue, 14 Nov 2023 13:34:57 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D932D10E449
- for <intel-xe@lists.freedesktop.org>; Tue, 14 Nov 2023 13:34:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE26F10E449
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Nov 2023 13:34:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1699968893; x=1731504893;
+ t=1699968895; x=1731504895;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vdAVbmQfH0mpSK7p4Em0uEzZ9q/QUj6axRJt28DQzE4=;
- b=ZO65/rOAKLl0t8jafVlZTF4RHFsbn2mz8zk2in0pI9JmgDVB8j7J38Fn
- NfZwftA/IWOOUpq9hhvZ0EEOm4IZp2SbZp93We3Litl8wliqhUBBcICOr
- NvZDFnXrr6mMP1CbKyOEb+ESlZvVYNhyNVOmBaE0SxYmoY6oEnbzSl5gG
- qPEk+dCuGkPRFRVGbP+7DXXCYVDQngN8ll9eLZVJWHkXfQpgncBx+TRi9
- FRH5vp3w3rAhiV79C8lQXbqjmlMvnbPrCgWnRZD8etWo01NQE310AjsJY
- Pzs5G0RlFSgQbcC4cVd4D6TO66okh51cezJA8TnoOq4NSD7omnOl+CVGH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="9293966"
+ bh=p7VaIS6g5CPrwru/nA0QXqUIaHjw4Q6gNvocm/JAIBA=;
+ b=DIAO9Y6iJFhpgI5PK9CzvXW+tK0VOdvr/IUEPsaRx4iIFRpW+1d5SLlS
+ U1S6RWSBpiuchaN0+icpHTOuRyh1zB+/BrUgQpIsrDguzQ0F347ZyW7nW
+ I1XzsPQzpz7+GXDccIQA4FrnJCka3TlLCytxfUoXMISVCdiJqRocRvDCH
+ omf9QpeIFPkxi6bgSr6umGzjaMBxdxnHy6mTzedTs4jIAqaHrPYW/enVs
+ S8UdYUhfYQ34Y19GPGYR+yIihY8pgzfH0VmMRVtlg85jSqkSUWRU5hCVS
+ BDGb6K9RIzK9qyZ80kXdxTnu8hZyDWt397nDLKsFybF2wMiE8oWgxptNs Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="9293974"
 X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; 
-   d="scan'208";a="9293966"
+   d="scan'208";a="9293974"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 05:34:53 -0800
+ 14 Nov 2023 05:34:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="764661291"
-X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="764661291"
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="764661298"
+X-IronPort-AV: E=Sophos;i="6.03,302,1694761200"; d="scan'208";a="764661298"
 Received: from kdijkstr-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.251.218.123])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 05:34:51 -0800
+ 14 Nov 2023 05:34:52 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Nov 2023 13:34:31 +0000
-Message-Id: <20231114133434.7-6-francois.dugast@intel.com>
+Date: Tue, 14 Nov 2023 13:34:32 +0000
+Message-Id: <20231114133434.7-7-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231114133434.7-1-francois.dugast@intel.com>
 References: <20231114133434.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v1 5/8] drm/xe/uapi: Rename query's mem_usage to
- mem_regions
+Subject: [Intel-xe] [PATCH v1 6/8] drm/xe/uapi: Standardize the FLAG naming
+ and assignment
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,110 +66,84 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-'Usage' gives an impression of telemetry information where someone
-would query to see how the memory is currently used and available
-size, etc. However this API is more than this. It is about a global
-view of all the memory regions available in the system and user
-space needs to have this information so they can then use the
-mem_region masks that are returned for the engine access.
+Only cosmetic things. No functional change on this patch.
+Define every flag with (1 << n) and use singular FLAG name.
 
 Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 16 ++++++++--------
- include/uapi/drm/xe_drm.h     | 14 +++++++-------
- 2 files changed, 15 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/xe_query.c |  2 +-
+ include/uapi/drm/xe_drm.h     | 18 +++++++++---------
+ 2 files changed, 10 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 8b5136460ea6..d495716b2c96 100644
+index d495716b2c96..61a7d92b7e88 100644
 --- a/drivers/gpu/drm/xe/xe_query.c
 +++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -230,7 +230,7 @@ static int query_engines(struct xe_device *xe,
- 	return 0;
- }
- 
--static size_t calc_memory_usage_size(struct xe_device *xe)
-+static size_t calc_mem_regions_size(struct xe_device *xe)
- {
- 	u32 num_managers = 1;
- 	int i;
-@@ -239,15 +239,15 @@ static size_t calc_memory_usage_size(struct xe_device *xe)
- 		if (ttm_manager_type(&xe->ttm, i))
- 			num_managers++;
- 
--	return offsetof(struct drm_xe_query_mem_usage, regions[num_managers]);
-+	return offsetof(struct drm_xe_query_mem_regions, regions[num_managers]);
- }
- 
--static int query_memory_usage(struct xe_device *xe,
--			      struct drm_xe_device_query *query)
-+static int query_mem_regions(struct xe_device *xe,
-+			     struct drm_xe_device_query *query)
- {
--	size_t size = calc_memory_usage_size(xe);
--	struct drm_xe_query_mem_usage *usage;
--	struct drm_xe_query_mem_usage __user *query_ptr =
-+	size_t size = calc_mem_regions_size(xe);
-+	struct drm_xe_query_mem_regions *usage;
-+	struct drm_xe_query_mem_regions __user *query_ptr =
- 		u64_to_user_ptr(query->data);
- 	struct ttm_resource_manager *man;
- 	int ret, i;
-@@ -499,7 +499,7 @@ static int query_gt_topology(struct xe_device *xe,
- static int (* const xe_query_funcs[])(struct xe_device *xe,
- 				      struct drm_xe_device_query *query) = {
- 	query_engines,
--	query_memory_usage,
-+	query_mem_regions,
- 	query_config,
- 	query_gt_list,
- 	query_hwconfig,
+@@ -331,7 +331,7 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
+ 		xe->info.devid | (xe->info.revid << 16);
+ 	if (xe_device_get_root_tile(xe)->mem.vram.usable_size)
+ 		config->info[DRM_XE_QUERY_CONFIG_FLAGS] =
+-			DRM_XE_QUERY_CONFIG_FLAGS_HAS_VRAM;
++			DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM;
+ 	config->info[DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT] =
+ 		xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
+ 	config->info[DRM_XE_QUERY_CONFIG_VA_BITS] = xe->info.va_bits;
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index fd51d4444119..c627e35bddb8 100644
+index c627e35bddb8..b3df99dd1023 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -291,13 +291,13 @@ struct drm_xe_query_engine_cycles {
- };
+@@ -323,7 +323,7 @@ struct drm_xe_query_config {
  
- /**
-- * struct drm_xe_query_mem_usage - describe memory regions and usage
-+ * struct drm_xe_query_mem_regions - describe memory regions
-  *
-  * If a query is made with a struct drm_xe_device_query where .query
-- * is equal to DRM_XE_DEVICE_QUERY_MEM_USAGE, then the reply uses
-- * struct drm_xe_query_mem_usage in .data.
-+ * is equal to DRM_XE_DEVICE_QUERY_MEM_REGIONS, then the reply uses
-+ * struct drm_xe_query_mem_regions in .data.
-  */
--struct drm_xe_query_mem_usage {
-+struct drm_xe_query_mem_regions {
- 	/** @num_regions: number of memory regions returned in @regions */
- 	__u32 num_regions;
- 	/** @pad: MBZ */
-@@ -350,12 +350,12 @@ struct drm_xe_query_gt {
- 	__u32 clock_freq;
- 	/**
- 	 * @near_mem_regions: Bit mask of instances from
--	 * drm_xe_query_mem_usage that is near the current engines of this GT.
-+	 * drm_xe_query_mem_regions that is near the current engines of this GT.
- 	 */
- 	__u64 near_mem_regions;
- 	/**
- 	 * @far_mem_regions: Bit mask of instances from
--	 * drm_xe_query_mem_usage that is far from the engines of this GT.
-+	 * drm_xe_query_mem_regions that is far from the engines of this GT.
- 	 * In general, it has extra indirections when compared to the
- 	 * @near_mem_regions. For a discrete device this could mean system
- 	 * memory and memory living in a different Tile.
-@@ -469,7 +469,7 @@ struct drm_xe_device_query {
+ #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
+ #define DRM_XE_QUERY_CONFIG_FLAGS			1
+-	#define DRM_XE_QUERY_CONFIG_FLAGS_HAS_VRAM		(0x1 << 0)
++	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
+ #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
+ #define DRM_XE_QUERY_CONFIG_VA_BITS			3
+ #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+@@ -587,10 +587,10 @@ struct drm_xe_vm_create {
+ 	/** @extensions: Pointer to the first extension struct, if any */
  	__u64 extensions;
  
- #define DRM_XE_DEVICE_QUERY_ENGINES		0
--#define DRM_XE_DEVICE_QUERY_MEM_USAGE		1
-+#define DRM_XE_DEVICE_QUERY_MEM_REGIONS		1
- #define DRM_XE_DEVICE_QUERY_CONFIG		2
- #define DRM_XE_DEVICE_QUERY_GT_LIST		3
- #define DRM_XE_DEVICE_QUERY_HWCONFIG		4
+-#define DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE	(0x1 << 0)
+-#define DRM_XE_VM_CREATE_FLAG_COMPUTE_MODE	(0x1 << 1)
+-#define DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT	(0x1 << 2)
+-#define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(0x1 << 3)
++#define DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE	(1 << 0)
++#define DRM_XE_VM_CREATE_FLAG_COMPUTE_MODE	(1 << 1)
++#define DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT	(1 << 2)
++#define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 3)
+ 	/** @flags: Flags */
+ 	__u32 flags;
+ 
+@@ -654,13 +654,13 @@ struct drm_xe_vm_bind_op {
+ 	/** @op: Bind operation to perform */
+ 	__u32 op;
+ 
+-#define DRM_XE_VM_BIND_FLAG_READONLY	(0x1 << 0)
+-#define DRM_XE_VM_BIND_FLAG_ASYNC	(0x1 << 1)
++#define DRM_XE_VM_BIND_FLAG_READONLY	(1 << 0)
++#define DRM_XE_VM_BIND_FLAG_ASYNC	(1 << 1)
+ 	/*
+ 	 * Valid on a faulting VM only, do the MAP operation immediately rather
+ 	 * than deferring the MAP to the page fault handler.
+ 	 */
+-#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(0x1 << 2)
++#define DRM_XE_VM_BIND_FLAG_IMMEDIATE	(1 << 2)
+ 	/*
+ 	 * When the NULL flag is set, the page tables are setup with a special
+ 	 * bit which indicates writes are dropped and all reads return zero.  In
+@@ -668,7 +668,7 @@ struct drm_xe_vm_bind_op {
+ 	 * operations, the BO handle MBZ, and the BO offset MBZ. This flag is
+ 	 * intended to implement VK sparse bindings.
+ 	 */
+-#define DRM_XE_VM_BIND_FLAG_NULL	(0x1 << 3)
++#define DRM_XE_VM_BIND_FLAG_NULL	(1 << 3)
+ 	/** @flags: Bind flags */
+ 	__u32 flags;
+ 
 -- 
 2.34.1
 
