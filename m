@@ -4,30 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68761C46CC7
-	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 23:00:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8274FC46CC7
+	for <intel-xe@archiver.kernel.org>; Tue, 14 Nov 2023 23:06:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2FF1E10E38D;
-	Tue, 14 Nov 2023 23:00:08 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0D94810E403;
- Tue, 14 Nov 2023 23:00:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0574DAADE8;
- Tue, 14 Nov 2023 23:00:07 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 39E5A10E409;
+	Tue, 14 Nov 2023 23:06:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13ADF10E409
+ for <intel-xe@lists.freedesktop.org>; Tue, 14 Nov 2023 23:06:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700003172; x=1731539172;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=X0xrEdTzv4rVzJ9/nCKWmaOBM9qAF+xbTXGSSSHbiug=;
+ b=mPYjF856pmFYdcGsfkIsESKJJYMci0Ysa2ltgMQQPIPCjXyCbNvinNP+
+ A43YtXSlLd9zrghBhWXX8BwgYweVhFhjhpHw0gO/Wg4I8IXaZNlL6wHCb
+ nfbJGmAESTF/D87Uq1enlh1tWgvVDH4f6fS69Fvvc7nK8pKbH7rLvQ40N
+ +4rUSQBLrEvw+3jEcRHkDtrkXf0Ko2+fbIuYmELJcWTUBuCAvegzInism
+ 7DEuS6GJI1+gu72GpXaSas5JdOnQNMuwk3oHnRMaDkNcnjUeG/JNAOmM7
+ oMEfvzLkGrIkIp8pCgBkSyriPLdU1LSE6lgLyJG31iBQ9/HSbmIsE/ptL w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="421864118"
+X-IronPort-AV: E=Sophos;i="6.03,303,1694761200"; d="scan'208";a="421864118"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2023 15:06:11 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="1096258507"
+X-IronPort-AV: E=Sophos;i="6.03,303,1694761200"; d="scan'208";a="1096258507"
+Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.134.195])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Nov 2023 15:06:10 -0800
+From: Michal Wajdeczko <michal.wajdeczko@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 15 Nov 2023 00:05:56 +0100
+Message-Id: <20231114230558.1774-1-michal.wajdeczko@intel.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Tue, 14 Nov 2023 23:00:07 -0000
-Message-ID: <170000280701.29256.6439052154589364226@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231114211233.498338-1-rodrigo.vivi@intel.com>
-In-Reply-To: <20231114211233.498338-1-rodrigo.vivi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_S?=
- =?utf-8?q?plit_i915-display_and_xe-display_patches?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 1/3] drm/xe: Add device flag to indicate SR-IOV
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +55,84 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+The Single Root I/O Virtualization (SR-IOV) extension to
+the PCI Express (PCIe) specification suite is supported
+starting from 12th generation of Intel Graphics processors.
 
-Series: Split i915-display and xe-display patches
-URL   : https://patchwork.freedesktop.org/series/126427/
-State : success
+Add a device flag that we will use to enable SR-IOV specific
+code paths and to indicate our readiness to support SR-IOV.
 
-== Summary ==
+We will enable this flag for the specific platforms once all
+required changes and additions will be ready and merged.
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 2fe82053d916d09ffcc92bc27294c9eed4e4804b
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+Bspec: 52391
+Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.h       | 5 +++++
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 3 ++-
+ 3 files changed, 9 insertions(+), 1 deletion(-)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
+index c4232de40ae0..54694f98c91a 100644
+--- a/drivers/gpu/drm/xe/xe_device.h
++++ b/drivers/gpu/drm/xe/xe_device.h
+@@ -158,6 +158,11 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
+ 	return xe->info.has_flat_ccs;
+ }
+ 
++static inline bool xe_device_has_sriov(struct xe_device *xe)
++{
++	return xe->info.has_sriov;
++}
++
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
+ 
+ #endif
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index be11cadccbd4..f2ba4f746fa2 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -253,6 +253,8 @@ struct xe_device {
+ 		u8 has_llc:1;
+ 		/** @has_range_tlb_invalidation: Has range based TLB invalidations */
+ 		u8 has_range_tlb_invalidation:1;
++		/** @has_sriov: Supports SR-IOV */
++		u8 has_sriov:1;
+ 		/** @enable_display: display enabled */
+ 		u8 enable_display:1;
+ 		/** @bypass_mtcfg: Bypass Multi-Tile configuration from MTCFG register */
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 682ba188e456..c1c8048bbc0f 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -60,6 +60,7 @@ struct xe_device_desc {
+ 	u8 has_heci_gscfi:1;
+ 
+ 	u8 has_llc:1;
++	u8 has_sriov:1;
+ 	u8 bypass_mtcfg:1;
+ 	u8 supports_mmio_ext:1;
+ };
+@@ -532,7 +533,6 @@ static void handle_gmdid(struct xe_device *xe,
+ 	}
+ }
+ 
+-
+ static int xe_info_init(struct xe_device *xe,
+ 			const struct xe_device_desc *desc,
+ 			const struct xe_subplatform_desc *subplatform_desc)
+@@ -578,6 +578,7 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.graphics_name = graphics_desc->name;
+ 	xe->info.media_name = media_desc ? media_desc->name : "none";
+ 	xe->info.has_llc = desc->has_llc;
++	xe->info.has_sriov = desc->has_sriov;
+ 	xe->info.bypass_mtcfg = desc->bypass_mtcfg;
+ 	xe->info.supports_mmio_ext = desc->supports_mmio_ext;
+ 	xe->info.tile_mmio_ext_size = graphics_desc->tile_mmio_ext_size;
+-- 
+2.25.1
 
