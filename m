@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 29EC3C47072
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 06:32:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64F80C07548
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 06:32:38 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D59A110E4F4;
-	Wed, 15 Nov 2023 06:32:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2FD4510E4F3;
+	Wed, 15 Nov 2023 06:32:38 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 30DB889190
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 06:32:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43E8410E4F3
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 06:32:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700029953; x=1731565953;
+ t=1700029955; x=1731565955;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MIPnIuaHrcVAENyY7FunpztHCbzfyDwbatjoIMdgTB0=;
- b=n7pn/nd+ioNsZQ6VaaETYYk/2uNw9QmUkWMmpXPUP7+s+EXiRpWaRB29
- lgzDKnJ/fbkpE3jswv09bSk5gJQL90oT+m2KKoKLgc3Ob3nKFNe1iU3Fr
- 94SCJBELtXGqYSTLzrM9+yNKc2Annlk8ldT+HnQdBELw6LVlPfpQmAxI9
- 2rjsI6S7YMj68pc9qFPnydQGCwIf4Yxu/72PuUGiw4kwa9roS+gZy2+uH
- UsfSXqcsGGL4nKUJgCWBcr9PkUZ7HikFJUEfuZsBVmn/jTtRrkO0n4Pq4
- IXTRyWMEP9UKHR7yXLHQAfQUhfD1Mfpb4HWMv04GiJ2EArFZ6C5kNS8uS w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="390616498"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="390616498"
+ bh=SGtKXRoc9ycJu6yVLKur1fDE4YHMElWOETD4TUNoGiY=;
+ b=SFm1Elq7RrxQIxNJSNdxIS8YeJIKtI4tBi/4BzTr27WkZi1PbrU/U/M2
+ KZaE6ZSUY+ybOII9wGAQhLL2UWHbv2d52Rb3+XcI88HpNnW/paZuJfAqm
+ lfmy1FJIUaMZse+A7vyDNuOsn6q2rk6Zzeyu1qpD4QaUlBzOiVwmDjvzl
+ l6qhBR/CbuWuTodeKFhtGknRGdylmZo2aVMcDCUOztTZC1adV0qC2DIJW
+ hXeIHxEcKbrBW96YW57bXeIdXLnZsoa6xuPcqSy7L0znPaKHr4WKx4NnZ
+ 1/oNaQVNB8Vlpn7EteWBgY++kHQMulPmmPxYv0P8gCaBE2FGP7jxy013e A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="390616504"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="390616504"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 22:32:32 -0800
+ 14 Nov 2023 22:32:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="938389761"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="938389761"
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="938389775"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="938389775"
 Received: from tmagriss-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.251.218.181])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 22:32:30 -0800
+ 14 Nov 2023 22:32:33 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Nov 2023 08:32:04 +0200
-Message-Id: <20231115063210.3112123-4-jouni.hogander@intel.com>
+Date: Wed, 15 Nov 2023 08:32:05 +0200
+Message-Id: <20231115063210.3112123-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231115063210.3112123-1-jouni.hogander@intel.com>
 References: <20231115063210.3112123-1-jouni.hogander@intel.com>
@@ -47,8 +47,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 3/9] drm/i915/display: split i915 specific
- code from intel_fbdev
+Subject: [Intel-xe] [PATCH v3 4/9] fixup! drm/xe/display: Implement display
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,232 +65,55 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Split out code from intel_fbdev that can not be share between i915 and
-xe. Create new i915 specific source/header file intel_fbdev_fb.[ch] which
-contains this code.
+Add xe specific code for intel_fbdev.
 
-v3: Do not check IS_ERR(fb) as returning anyways in intel_fbdev_fb_alloc
-v2: Add missing forward declarations into intel_fbdev_fb.h
+v2:
+  - Add SPDX-License tag
+  - Remove accidentally added ifdef I915
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                 |   3 +-
- drivers/gpu/drm/i915/display/intel_fbdev.c    | 108 ++---------------
- drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 114 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  21 ++++
- 4 files changed, 145 insertions(+), 101 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_fbdev_fb.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+ drivers/gpu/drm/xe/Makefile                 |   1 +
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.c | 102 ++++++++++++++++++++
+ drivers/gpu/drm/xe/display/intel_fbdev_fb.h |  21 ++++
+ 3 files changed, 124 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+ create mode 100644 drivers/gpu/drm/xe/display/intel_fbdev_fb.h
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 3c26e9ae3722..401fc5778843 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -302,7 +302,8 @@ i915-$(CONFIG_ACPI) += \
- 	display/intel_acpi.o \
- 	display/intel_opregion.o
- i915-$(CONFIG_DRM_FBDEV_EMULATION) += \
--	display/intel_fbdev.o
-+	display/intel_fbdev.o \
-+	display/intel_fbdev_fb.o
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index cb41b4fead08..8493568954c4 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -153,6 +153,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	display/xe_plane_initial.o \
+ 	display/xe_display_rps.o \
+ 	display/xe_display_misc.o \
++	display/intel_fbdev_fb.o \
+ 	display/ext/i915_irq.o \
+ 	display/ext/i915_utils.o
  
- # modesetting output/encoder code
- i915-y += \
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 31d0d695d567..252f254345a2 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -43,7 +43,6 @@
- #include <drm/drm_fourcc.h>
- #include <drm/drm_gem_framebuffer_helper.h>
- 
--#include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_mman.h"
- 
- #include "i915_drv.h"
-@@ -51,6 +50,7 @@
- #include "intel_fb.h"
- #include "intel_fb_pin.h"
- #include "intel_fbdev.h"
-+#include "intel_fbdev_fb.h"
- #include "intel_frontbuffer.h"
- 
- struct intel_fbdev {
-@@ -146,65 +146,6 @@ static const struct fb_ops intelfb_ops = {
- 	.fb_mmap = intel_fbdev_mmap,
- };
- 
--static int intelfb_alloc(struct drm_fb_helper *helper,
--			 struct drm_fb_helper_surface_size *sizes)
--{
--	struct intel_fbdev *ifbdev = to_intel_fbdev(helper);
--	struct drm_framebuffer *fb;
--	struct drm_device *dev = helper->dev;
--	struct drm_i915_private *dev_priv = to_i915(dev);
--	struct drm_mode_fb_cmd2 mode_cmd = {};
--	struct drm_i915_gem_object *obj;
--	int size;
--
--	/* we don't do packed 24bpp */
--	if (sizes->surface_bpp == 24)
--		sizes->surface_bpp = 32;
--
--	mode_cmd.width = sizes->surface_width;
--	mode_cmd.height = sizes->surface_height;
--
--	mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
--				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
--	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
--							  sizes->surface_depth);
--
--	size = mode_cmd.pitches[0] * mode_cmd.height;
--	size = PAGE_ALIGN(size);
--
--	obj = ERR_PTR(-ENODEV);
--	if (HAS_LMEM(dev_priv)) {
--		obj = i915_gem_object_create_lmem(dev_priv, size,
--						  I915_BO_ALLOC_CONTIGUOUS |
--						  I915_BO_ALLOC_USER);
--	} else {
--		/*
--		 * If the FB is too big, just don't use it since fbdev is not very
--		 * important and we should probably use that space with FBC or other
--		 * features.
--		 *
--		 * Also skip stolen on MTL as Wa_22018444074 mitigation.
--		 */
--		if (!(IS_METEORLAKE(dev_priv)) && size * 2 < dev_priv->dsm.usable_size)
--			obj = i915_gem_object_create_stolen(dev_priv, size);
--		if (IS_ERR(obj))
--			obj = i915_gem_object_create_shmem(dev_priv, size);
--	}
--
--	if (IS_ERR(obj)) {
--		drm_err(&dev_priv->drm, "failed to allocate framebuffer (%pe)\n", obj);
--		return PTR_ERR(obj);
--	}
--
--	fb = intel_framebuffer_create(obj, &mode_cmd);
--	i915_gem_object_put(obj);
--	if (IS_ERR(fb))
--		return PTR_ERR(fb);
--
--	ifbdev->fb = to_intel_framebuffer(fb);
--	return 0;
--}
--
- static int intelfb_create(struct drm_fb_helper *helper,
- 			  struct drm_fb_helper_surface_size *sizes)
- {
-@@ -213,7 +154,6 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 	struct drm_device *dev = helper->dev;
- 	struct drm_i915_private *dev_priv = to_i915(dev);
- 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
--	struct i915_ggtt *ggtt = to_gt(dev_priv)->ggtt;
- 	const struct i915_gtt_view view = {
- 		.type = I915_GTT_VIEW_NORMAL,
- 	};
-@@ -222,9 +162,7 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 	struct i915_vma *vma;
- 	unsigned long flags = 0;
- 	bool prealloc = false;
--	void __iomem *vaddr;
- 	struct drm_i915_gem_object *obj;
--	struct i915_gem_ww_ctx ww;
- 	int ret;
- 
- 	mutex_lock(&ifbdev->hpd_lock);
-@@ -245,12 +183,13 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 		intel_fb = ifbdev->fb = NULL;
- 	}
- 	if (!intel_fb || drm_WARN_ON(dev, !intel_fb_obj(&intel_fb->base))) {
-+		struct intel_framebuffer *fb;
- 		drm_dbg_kms(&dev_priv->drm,
- 			    "no BIOS fb, allocating a new one\n");
--		ret = intelfb_alloc(helper, sizes);
--		if (ret)
--			return ret;
--		intel_fb = ifbdev->fb;
-+		fb = to_intel_framebuffer(intel_fbdev_fb_alloc(helper, sizes));
-+		if (IS_ERR(fb))
-+			return PTR_ERR(fb);
-+		intel_fb = ifbdev->fb = fb;
- 	} else {
- 		drm_dbg_kms(&dev_priv->drm, "re-using BIOS fb\n");
- 		prealloc = true;
-@@ -283,49 +222,18 @@ static int intelfb_create(struct drm_fb_helper *helper,
- 	info->fbops = &intelfb_ops;
- 
- 	obj = intel_fb_obj(&intel_fb->base);
--	if (i915_gem_object_is_lmem(obj)) {
--		struct intel_memory_region *mem = obj->mm.region;
--
--		/* Use fbdev's framebuffer from lmem for discrete */
--		info->fix.smem_start =
--			(unsigned long)(mem->io_start +
--					i915_gem_object_get_dma_address(obj, 0));
--		info->fix.smem_len = obj->base.size;
--	} else {
--		/* Our framebuffer is the entirety of fbdev's system memory */
--		info->fix.smem_start =
--			(unsigned long)(ggtt->gmadr.start + i915_ggtt_offset(vma));
--		info->fix.smem_len = vma->size;
--	}
--
--	for_i915_gem_ww(&ww, ret, false) {
--		ret = i915_gem_object_lock(vma->obj, &ww);
--
--		if (ret)
--			continue;
--
--		vaddr = i915_vma_pin_iomap(vma);
--		if (IS_ERR(vaddr)) {
--			drm_err(&dev_priv->drm,
--				"Failed to remap framebuffer into virtual memory (%pe)\n", vaddr);
--			ret = PTR_ERR(vaddr);
--			continue;
--		}
--	}
- 
-+	ret = intel_fbdev_fb_fill_info(dev_priv, info, obj, vma);
- 	if (ret)
- 		goto out_unpin;
- 
--	info->screen_base = vaddr;
--	info->screen_size = vma->size;
--
- 	drm_fb_helper_fill_info(info, &ifbdev->helper, sizes);
- 
- 	/* If the object is shmemfs backed, it will have given us zeroed pages.
- 	 * If the object is stolen however, it will be full of whatever
- 	 * garbage was left in there.
- 	 */
--	if (!i915_gem_object_is_shmem(vma->obj) && !prealloc)
-+	if (!i915_gem_object_is_shmem(obj) && !prealloc)
- 		memset_io(info->screen_base, 0, info->screen_size);
- 
- 	/* Use default scratch pixmap (info->pixmap.flags = FB_PIXMAP_SYSTEM) */
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
 new file mode 100644
-index 000000000000..ad644657c94f
+index 000000000000..961b26e267ec
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
-@@ -0,0 +1,114 @@
-+// SPDX-License-Identifier: MIT
++++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+@@ -0,0 +1,102 @@
++/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2023 Intel Corporation
 + */
 +
 +#include <drm/drm_fb_helper.h>
 +
-+#include "gem/i915_gem_lmem.h"
++#include "xe_gt.h"
++#include "xe_ttm_stolen_mgr.h"
 +
 +#include "i915_drv.h"
 +#include "intel_display_types.h"
 +
 +struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
-+					     struct drm_fb_helper_surface_size *sizes)
++			 struct drm_fb_helper_surface_size *sizes)
 +{
 +	struct drm_framebuffer *fb;
 +	struct drm_device *dev = helper->dev;
@@ -307,97 +130,84 @@ index 000000000000..ad644657c94f
 +	mode_cmd.height = sizes->surface_height;
 +
 +	mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
-+				    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
++				    DIV_ROUND_UP(sizes->surface_bpp, 8), XE_PAGE_SIZE);
 +	mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
 +							  sizes->surface_depth);
 +
 +	size = mode_cmd.pitches[0] * mode_cmd.height;
 +	size = PAGE_ALIGN(size);
-+
 +	obj = ERR_PTR(-ENODEV);
-+	if (HAS_LMEM(dev_priv)) {
-+		obj = i915_gem_object_create_lmem(dev_priv, size,
-+						  I915_BO_ALLOC_CONTIGUOUS |
-+						  I915_BO_ALLOC_USER);
-+	} else {
-+		/*
-+		 * If the FB is too big, just don't use it since fbdev is not very
-+		 * important and we should probably use that space with FBC or other
-+		 * features.
-+		 *
-+		 * Also skip stolen on MTL as Wa_22018444074 mitigation.
-+		 */
-+		if (!(IS_METEORLAKE(dev_priv)) && size * 2 < dev_priv->dsm.usable_size)
-+			obj = i915_gem_object_create_stolen(dev_priv, size);
-+		if (IS_ERR(obj))
-+			obj = i915_gem_object_create_shmem(dev_priv, size);
++
++	if (!IS_DGFX(dev_priv)) {
++		obj = xe_bo_create_pin_map(dev_priv, xe_device_get_root_tile(dev_priv),
++					   NULL, size,
++					   ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
++					   XE_BO_CREATE_STOLEN_BIT |
++					   XE_BO_CREATE_PINNED_BIT);
++		if (!IS_ERR(obj))
++			drm_info(&dev_priv->drm, "Allocated fbdev into stolen\n");
++		else
++			drm_info(&dev_priv->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
++	}
++	if (IS_ERR(obj)) {
++		obj = xe_bo_create_pin_map(dev_priv, xe_device_get_root_tile(dev_priv), NULL, size,
++					  ttm_bo_type_kernel, XE_BO_SCANOUT_BIT |
++					  XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(dev_priv)) |
++					  XE_BO_CREATE_PINNED_BIT);
 +	}
 +
 +	if (IS_ERR(obj)) {
 +		drm_err(&dev_priv->drm, "failed to allocate framebuffer (%pe)\n", obj);
-+		return ERR_PTR(-ENOMEM);
++		fb = ERR_PTR(-ENOMEM);
++		goto err;
 +	}
 +
 +	fb = intel_framebuffer_create(obj, &mode_cmd);
-+	i915_gem_object_put(obj);
++	if (IS_ERR(fb)) {
++		xe_bo_unpin_map_no_vm(obj);
++		goto err;
++	}
 +
++	drm_gem_object_put(intel_bo_to_drm_bo(obj));
++	return fb;
++
++err:
 +	return fb;
 +}
 +
 +int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
-+			     struct drm_i915_gem_object *obj, struct i915_vma *vma)
++			      struct drm_i915_gem_object *obj, struct i915_vma *vma)
 +{
-+	struct i915_gem_ww_ctx ww;
-+	void __iomem *vaddr;
-+	int ret;
++	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
 +
-+	if (i915_gem_object_is_lmem(obj)) {
-+		struct intel_memory_region *mem = obj->mm.region;
++	if (!(obj->flags & XE_BO_CREATE_SYSTEM_BIT)) {
++		if (obj->flags & XE_BO_CREATE_STOLEN_BIT)
++			info->fix.smem_start = xe_ttm_stolen_io_offset(obj, 0);
++		else
++			info->fix.smem_start =
++				pci_resource_start(pdev, 2) +
++				xe_bo_addr(obj, 0, XE_PAGE_SIZE);
 +
-+		/* Use fbdev's framebuffer from lmem for discrete */
-+		info->fix.smem_start =
-+			(unsigned long)(mem->io_start +
-+					i915_gem_object_get_dma_address(obj, 0));
-+		info->fix.smem_len = obj->base.size;
++		info->fix.smem_len = obj->ttm.base.size;
 +	} else {
-+		struct i915_ggtt *ggtt = to_gt(i915)->ggtt;
-+
-+		/* Our framebuffer is the entirety of fbdev's system memory */
-+		info->fix.smem_start =
-+			(unsigned long)(ggtt->gmadr.start + i915_ggtt_offset(vma));
-+		info->fix.smem_len = vma->size;
++		/* XXX: Pure fiction, as the BO may not be physically accessible.. */
++		info->fix.smem_start = 0;
++		info->fix.smem_len = obj->ttm.base.size;
 +	}
++	XE_WARN_ON(iosys_map_is_null(&obj->vmap));
 +
-+	for_i915_gem_ww(&ww, ret, false) {
-+		ret = i915_gem_object_lock(vma->obj, &ww);
-+
-+		if (ret)
-+			continue;
-+
-+		vaddr = i915_vma_pin_iomap(vma);
-+		if (IS_ERR(vaddr)) {
-+			drm_err(&i915->drm,
-+				"Failed to remap framebuffer into virtual memory (%pe)\n", vaddr);
-+			ret = PTR_ERR(vaddr);
-+			continue;
-+		}
-+	}
-+
-+	if (ret)
-+		return ret;
-+
-+	info->screen_base = vaddr;
++	info->screen_base = obj->vmap.vaddr_iomem;
 +	info->screen_size = intel_bo_to_drm_bo(obj)->size;
 +
 +	return 0;
 +}
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
+diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.h b/drivers/gpu/drm/xe/display/intel_fbdev_fb.h
 new file mode 100644
-index 000000000000..d4976874239f
+index 000000000000..ea186772e0bb
 --- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
++++ b/drivers/gpu/drm/xe/display/intel_fbdev_fb.h
 @@ -0,0 +1,21 @@
-+// SPDX-License-Identifier: MIT
++/* SPDX-License-Identifier: MIT */
 +/*
 + * Copyright © 2023 Intel Corporation
 + */
@@ -413,9 +223,9 @@ index 000000000000..d4976874239f
 +struct i915_vma;
 +
 +struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
-+					     struct drm_fb_helper_surface_size *sizes);
++			 struct drm_fb_helper_surface_size *sizes);
 +int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
-+			     struct drm_i915_gem_object *obj, struct i915_vma *vma);
++			      struct drm_i915_gem_object *obj, struct i915_vma *vma);
 +
 +#endif
 -- 
