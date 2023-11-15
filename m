@@ -4,46 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 528B2C47072
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 07:38:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6A305C07548
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 07:38:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 12B3810E4F9;
-	Wed, 15 Nov 2023 07:38:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2743B10E4FD;
+	Wed, 15 Nov 2023 07:38:20 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF48E10E4F9
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 07:38:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8987910E4F9
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 07:38:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1700033897; x=1731569897;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=X0xrEdTzv4rVzJ9/nCKWmaOBM9qAF+xbTXGSSSHbiug=;
- b=VQ7DnQPSXJDzE3vlrT6bgLe3xt3rmKzH0r6nmHIQeyPyZQQIR5guCtku
- bPKVpiGnptPHRRBL2tfbbmYNPCINhlCRSEqcczUreVvfqMwAmkZDkxeGa
- fwrZkfEnCPA5rEhHg7teFen4TkqmABBtNREr+8xNPTAisKnkq5DQfi3DQ
- 7voGmN0qQLzwLHQiRYeE3hqwTwPl9VvFFFtRnkw7w1Vg4VcOH9rBWtli2
- 6aG+eptbkHWJstnX7JXUZUzyfwY0knEq8VhbS63bx5QVTPTziGd+x3St4
- 4ckCrYPkd80Wz1BJgWywAPOcn7WKNOxEBVqAyiVWf/ESgB9mn+CST1AgM w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="393689394"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="393689394"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NfxDdPVpAv3ySA6ZUqnvaC/abfGHlOwBZZyvaMTppXs=;
+ b=ZR9wxaE1GPsTbXttL4OCNiE6b8pWpwHnIv7UVhpCw5EPzADJDN9gJKuO
+ fDb7kNJ7/4CTVjk4gLsRBrBh2SgawGfGJxDYQv4JyfhYoOIF7PUrBym0V
+ BBZPXVwhYuKWqM8Grtuqk79/VJmSQkUHOB0r+ImGLfNpMCLVqrf8Sn+j3
+ +9hEDSScnhkhJvCBv6XEgpnn3gSyJYZSb4CyVvm2kDeaZgzmnxTPmGaL4
+ 6mIicSddibMZwHtuSU2FAF5qB97BrWZikQPN4ZYrIrbc/TRtKF+ilDDfM
+ ScfXH45yXiLQCJ/8IHVYboyDKCP1l7I81Zn07VnRfzPINXiyjWYIT4FJW w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="393689395"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="393689395"
 Received: from fmsmga005.fm.intel.com ([10.253.24.32])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 23:38:16 -0800
+ 14 Nov 2023 23:38:17 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="1096371377"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="1096371377"
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="1096371386"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="1096371386"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.134.235])
  by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 23:38:15 -0800
+ 14 Nov 2023 23:38:16 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Nov 2023 08:38:02 +0100
-Message-Id: <20231115073804.1861-1-michal.wajdeczko@intel.com>
+Date: Wed, 15 Nov 2023 08:38:03 +0100
+Message-Id: <20231115073804.1861-2-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20231115073804.1861-1-michal.wajdeczko@intel.com>
+References: <20231115073804.1861-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/3] drm/xe: Add device flag to indicate SR-IOV
- support
+Subject: [Intel-xe] [PATCH 2/3] drm/xe: Prepare for running in different
+ SR-IOV modes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,81 +61,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The Single Root I/O Virtualization (SR-IOV) extension to
-the PCI Express (PCIe) specification suite is supported
-starting from 12th generation of Intel Graphics processors.
+We will be adding support for the SR-IOV and driver might be then
+running, in addition to existing non-virtualized bare-metal mode,
+also in Physical Function (PF) or Virtual Function (VF) mode.
 
-Add a device flag that we will use to enable SR-IOV specific
-code paths and to indicate our readiness to support SR-IOV.
+Since these additional modes require some changes to the driver,
+define enum flag to represent different SR-IOV modes and add a
+function where we will detect the actual mode in the runtime.
 
-We will enable this flag for the specific platforms once all
-required changes and additions will be ready and merged.
+We start with a forced bare-metal mode as it is sufficient to
+enable basic functionality and ensures no impact to existing code.
 
-Bspec: 52391
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_device.h       | 5 +++++
- drivers/gpu/drm/xe/xe_device_types.h | 2 ++
- drivers/gpu/drm/xe/xe_pci.c          | 3 ++-
- 3 files changed, 9 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/Makefile          |  3 ++
+ drivers/gpu/drm/xe/xe_device_types.h |  7 ++++
+ drivers/gpu/drm/xe/xe_pci.c          |  3 ++
+ drivers/gpu/drm/xe/xe_sriov.c        | 55 ++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov.h        | 42 +++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sriov_types.h  | 28 ++++++++++++++
+ 6 files changed, 138 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov.c
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov.h
+ create mode 100644 drivers/gpu/drm/xe/xe_sriov_types.h
 
-diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-index c4232de40ae0..54694f98c91a 100644
---- a/drivers/gpu/drm/xe/xe_device.h
-+++ b/drivers/gpu/drm/xe/xe_device.h
-@@ -158,6 +158,11 @@ static inline bool xe_device_has_flat_ccs(struct xe_device *xe)
- 	return xe->info.has_flat_ccs;
- }
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index cb41b4fead08..fbba74d9a330 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -123,6 +123,9 @@ xe-y += xe_bb.o \
+ # graphics hardware monitoring (HWMON) support
+ xe-$(CONFIG_HWMON) += xe_hwmon.o
  
-+static inline bool xe_device_has_sriov(struct xe_device *xe)
-+{
-+	return xe->info.has_sriov;
-+}
++# graphics virtualization (SR-IOV) support
++xe-y += xe_sriov.o
 +
- u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size);
- 
- #endif
+ # i915 Display compat #defines and #includes
+ subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	-I$(srctree)/$(src)/display/ext \
 diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-index be11cadccbd4..f2ba4f746fa2 100644
+index f2ba4f746fa2..2712905c7a91 100644
 --- a/drivers/gpu/drm/xe/xe_device_types.h
 +++ b/drivers/gpu/drm/xe/xe_device_types.h
-@@ -253,6 +253,8 @@ struct xe_device {
- 		u8 has_llc:1;
- 		/** @has_range_tlb_invalidation: Has range based TLB invalidations */
- 		u8 has_range_tlb_invalidation:1;
-+		/** @has_sriov: Supports SR-IOV */
-+		u8 has_sriov:1;
- 		/** @enable_display: display enabled */
- 		u8 enable_display:1;
- 		/** @bypass_mtcfg: Bypass Multi-Tile configuration from MTCFG register */
+@@ -18,6 +18,7 @@
+ #include "xe_platform_types.h"
+ #include "xe_pt_types.h"
+ #include "xe_pmu.h"
++#include "xe_sriov_types.h"
+ #include "xe_step_types.h"
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+@@ -299,6 +300,12 @@ struct xe_device {
+ 		struct ttm_resource_manager sys_mgr;
+ 	} mem;
+ 
++	/** @sriov: device level virtualization data */
++	struct {
++		/** @sriov.__mode: SR-IOV mode (Don't access directly!) */
++		enum xe_sriov_mode __mode;
++	} sriov;
++
+ 	/** @usm: unified memory state */
+ 	struct {
+ 		/** @asid: convert a ASID to VM */
 diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 682ba188e456..c1c8048bbc0f 100644
+index c1c8048bbc0f..3030b223e4a0 100644
 --- a/drivers/gpu/drm/xe/xe_pci.c
 +++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -60,6 +60,7 @@ struct xe_device_desc {
- 	u8 has_heci_gscfi:1;
+@@ -24,6 +24,7 @@
+ #include "xe_module.h"
+ #include "xe_pci_types.h"
+ #include "xe_pm.h"
++#include "xe_sriov.h"
+ #include "xe_step.h"
  
- 	u8 has_llc:1;
-+	u8 has_sriov:1;
- 	u8 bypass_mtcfg:1;
- 	u8 supports_mmio_ext:1;
- };
-@@ -532,7 +533,6 @@ static void handle_gmdid(struct xe_device *xe,
- 	}
- }
+ enum toggle_d3cold {
+@@ -706,6 +707,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
  
--
- static int xe_info_init(struct xe_device *xe,
- 			const struct xe_device_desc *desc,
- 			const struct xe_subplatform_desc *subplatform_desc)
-@@ -578,6 +578,7 @@ static int xe_info_init(struct xe_device *xe,
- 	xe->info.graphics_name = graphics_desc->name;
- 	xe->info.media_name = media_desc ? media_desc->name : "none";
- 	xe->info.has_llc = desc->has_llc;
-+	xe->info.has_sriov = desc->has_sriov;
- 	xe->info.bypass_mtcfg = desc->bypass_mtcfg;
- 	xe->info.supports_mmio_ext = desc->supports_mmio_ext;
- 	xe->info.tile_mmio_ext_size = graphics_desc->tile_mmio_ext_size;
+ 	pci_set_master(pdev);
+ 
++	xe_sriov_probe_early(xe, desc->has_sriov);
++
+ 	err = xe_info_init(xe, desc, subplatform_desc);
+ 	if (err)
+ 		goto err_pci_disable;
+diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
+new file mode 100644
+index 000000000000..42a0e0c917a0
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sriov.c
+@@ -0,0 +1,55 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include "xe_assert.h"
++#include "xe_sriov.h"
++
++/**
++ * xe_sriov_mode_to_string - Convert enum value to string.
++ * @mode: the &xe_sriov_mode to convert
++ *
++ * Returns: SR-IOV mode as a user friendly string.
++ */
++const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode)
++{
++	switch (mode) {
++	case XE_SRIOV_MODE_NONE:
++		return "none";
++	case XE_SRIOV_MODE_PF:
++		return "SR-IOV PF";
++	case XE_SRIOV_MODE_VF:
++		return "SR-IOV VF";
++	default:
++		return "<invalid>";
++	}
++}
++
++/**
++ * xe_sriov_probe_early - Probe a SR-IOV mode.
++ * @xe: the &xe_device to probe mode on
++ * @has_sriov: flag indicating hardware support for SR-IOV
++ *
++ * This function should be called only once and as soon as possible during
++ * driver probe to detect whether we are running a SR-IOV Physical Function
++ * (PF) or a Virtual Function (VF) device.
++ *
++ * SR-IOV PF mode detection is based on PCI @dev_is_pf() function.
++ * SR-IOV VF mode detection is based on dedicated MMIO register read.
++ */
++void xe_sriov_probe_early(struct xe_device *xe, bool has_sriov)
++{
++	enum xe_sriov_mode mode = XE_SRIOV_MODE_NONE;
++
++	/* TODO: replace with proper mode detection */
++	xe_assert(xe, !has_sriov);
++
++	xe_assert(xe, !xe->sriov.__mode);
++	xe->sriov.__mode = mode;
++	xe_assert(xe, xe->sriov.__mode);
++
++	if (has_sriov)
++		drm_info(&xe->drm, "Running in %s mode\n",
++			 xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
++}
+diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
+new file mode 100644
+index 000000000000..5af73a3172b0
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sriov.h
+@@ -0,0 +1,42 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_SRIOV_H_
++#define _XE_SRIOV_H_
++
++#include "xe_assert.h"
++#include "xe_device_types.h"
++#include "xe_sriov_types.h"
++
++const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
++
++void xe_sriov_probe_early(struct xe_device *xe, bool has_sriov);
++
++static inline enum xe_sriov_mode xe_device_sriov_mode(struct xe_device *xe)
++{
++	xe_assert(xe, xe->sriov.__mode);
++	return xe->sriov.__mode;
++}
++
++static inline bool xe_device_is_sriov_pf(struct xe_device *xe)
++{
++	return xe_device_sriov_mode(xe) == XE_SRIOV_MODE_PF;
++}
++
++static inline bool xe_device_is_sriov_vf(struct xe_device *xe)
++{
++	return xe_device_sriov_mode(xe) == XE_SRIOV_MODE_VF;
++}
++
++#ifdef CONFIG_PCI_IOV
++#define IS_SRIOV_PF(xe) xe_device_is_sriov_pf(xe)
++#else
++#define IS_SRIOV_PF(xe) (typecheck(struct xe_device *, (xe)) && false)
++#endif
++#define IS_SRIOV_VF(xe) xe_device_is_sriov_vf(xe)
++
++#define IS_SRIOV(xe) (IS_SRIOV_PF(xe) || IS_SRIOV_VF(xe))
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
+new file mode 100644
+index 000000000000..999a4311b98b
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_sriov_types.h
+@@ -0,0 +1,28 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_SRIOV_TYPES_H_
++#define _XE_SRIOV_TYPES_H_
++
++#include <linux/build_bug.h>
++
++/**
++ * enum xe_sriov_mode - SR-IOV mode
++ * @XE_SRIOV_MODE_NONE: bare-metal mode (non-virtualized)
++ * @XE_SRIOV_MODE_PF: SR-IOV Physical Function (PF) mode
++ * @XE_SRIOV_MODE_VF: SR-IOV Virtual Function (VF) mode
++ */
++enum xe_sriov_mode {
++	/*
++	 * Note: We don't use default enum value 0 to allow catch any too early
++	 * attempt of checking the SR-IOV mode prior to the actual mode probe.
++	 */
++	XE_SRIOV_MODE_NONE = 1,
++	XE_SRIOV_MODE_PF,
++	XE_SRIOV_MODE_VF,
++};
++static_assert(XE_SRIOV_MODE_NONE);
++
++#endif
 -- 
 2.25.1
 
