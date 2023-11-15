@@ -4,55 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60E93C54FB9
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 17:19:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E10F3C2BB3F
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 17:30:53 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27AE110E102;
-	Wed, 15 Nov 2023 17:19:16 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC32C10E0D2;
- Wed, 15 Nov 2023 17:19:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700068754; x=1731604754;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=wx2SPvBGnpmVTAWmi/aj6F1855YCm7c7ct3xuZhFHrU=;
- b=GFFO4WzbwL4gGSdBiW7KtJOedV1UHtatR70wzolQ8Yp2I61WcgaNSRkX
- LvZ8BhWVGTZPdFGoskv0VETqbuVdLSLA+Miztzy/Sdi8INY+sYg4QKEQ/
- qf/mihgWaZsAK2zFwXtFCEyXIQaWK5BDclMthaYexyOotxUoPlQqHkGRw
- EVxZhypykPIisdHaWTiRh08PeVVR/X4Px0iC9fG7OuQ33fimBVXUZlZDM
- SDLXNVazweXm51u4+Qwp1VJDpLQ4MP5xiLpqR/D1bv37T/FrWBszSoxEO
- nCWQEp+5Y3JVuBlHcWrzVUiI4gVGuzp/mfMSs3GCnDkm9TjE/C1ZTzmVz Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="393768723"
-X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="393768723"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 09:19:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="794213200"
-X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="794213200"
-Received: from lapeders-mobl1.ger.corp.intel.com (HELO [10.249.254.116])
- ([10.249.254.116])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 09:19:08 -0800
-Message-ID: <3c4b2eea-6292-a82e-d862-98cf1a3e22bc@linux.intel.com>
-Date: Wed, 15 Nov 2023 18:18:27 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EAE610E0D2;
+	Wed, 15 Nov 2023 17:30:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D59AC10E0D2;
+ Wed, 15 Nov 2023 17:30:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id CEE54AADD7;
+ Wed, 15 Nov 2023 17:30:51 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Danilo Krummrich <dakr@redhat.com>
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
+Date: Wed, 15 Nov 2023 17:30:51 -0000
+Message-ID: <170006945184.647.15540977651858636059@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
 References: <20231115124937.6740-1-thomas.hellstrom@linux.intel.com>
- <ZVTfmbDz1HGqt4Ef@pollux>
- <62cdf31f6dbbb3a114755affc89d22fde875c3ff.camel@linux.intel.com>
- <05cf6199-3884-4e46-90ac-0b8df7420af7@redhat.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <05cf6199-3884-4e46-90ac-0b8df7420af7@redhat.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v4] Documentation/gpu: VM_BIND locking
- document
+In-Reply-To: <20231115124937.6740-1-thomas.hellstrom@linux.intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_Documentation/gpu=3A_VM=5FBIND_locking_document_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,41 +39,28 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>, linux-kernel@vger.kernel.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+== Series Details ==
 
-On 11/15/23 18:02, Danilo Krummrich wrote:
-> On 11/15/23 17:04, Thomas Hellström wrote:
->> Hi, Danilo,
->>
->> On Wed, 2023-11-15 at 16:11 +0100, Danilo Krummrich wrote:
->>> On Wed, Nov 15, 2023 at 01:49:37PM +0100, Thomas Hellström wrote:
->>>> Add the first version of the VM_BIND locking document which is
->>>> intended to be part of the xe driver upstreaming agreement.
->>>>
->>>> The document describes and discuss the locking used during exec-
->>>> functions, evicton and for userptr gpu-vmas. Intention is to be
->>>> using the
->>>> same nomenclature as the drm-vm-bind-async.rst.
->>>>
->>
->> Thanks for reviewing. I'll update the document accordingly except for
->> the s/an rwsem/a rwsem/g, I think it's "an rwsem" similarly to "an r".
->
-> I read it as "read-write-sem". Would you read it as "ar-double-u-sem"
-> then I guess?
->
-Yes. :)
+Series: Documentation/gpu: VM_BIND locking document (rev3)
+URL   : https://patchwork.freedesktop.org/series/122507/
+State : failure
 
-/Thomas
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: eba8bfb1d fixup! drm/xe/display: Implement display support
+=== git am output follows ===
+error: Documentation/gpu/implementation_guidelines.rst: does not exist in index
+hint: Use 'git am --show-current-patch' to see the failed patch
+Applying: Documentation/gpu: VM_BIND locking document
+Patch failed at 0001 Documentation/gpu: VM_BIND locking document
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
 
 
->>
->> /Thomas
->>
->
