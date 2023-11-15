@@ -4,48 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3B62AC41535
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 00:46:33 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4FB8FC4332F
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 00:46:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBDB410E23C;
-	Wed, 15 Nov 2023 00:46:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C82610E38C;
+	Wed, 15 Nov 2023 00:46:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 79B4510E23C
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 00:46:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B82B10E23C
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 00:46:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700009191; x=1731545191;
+ t=1700009192; x=1731545192;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IB/obLRY6mN9tsmPdVe2cwzQUVAG3yRep2mVEvHGbPE=;
- b=JuNmCZHHg36a6uh3XhFv9QTLSljADezr+pVdd0oihLPtsmz1giU7hxt4
- xJYlqlaEqk7jPYWmQ/rRIZuTy6yXEifdlmA71VVuMkBb9H5SU3vr/d6t1
- rWSBo0WlP9h9dIcJUEzIXWY6yd4j4Pa4DLq5yhx4Dj/UFUzVajmn1Jc6H
- D3/Z0VHtxbfbbUNdFXmEnqEzyoYz6YsKgyhdSLLM9sWxEPGMgl6U6WGwI
- jfl6EcX6EIL8nuFAtTchGE71TM4Gxv4JO2Sp24gibgdHFHvSoADZ1q5gO
- PHGF5ZSwXlsB3tp7/jeWyrEEtq+7bYlawwn1ETB7GoWMqOKgQnjJCT+cs A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="3890969"
+ bh=3T8qxK7t0TUDJyF1LZNTuDHCeXvcPQ/K+I0EaepAuD8=;
+ b=DfAzuUW7eLZSu1qd08Hdvhfv6BY1759iXrVLhKqTZwboXHYANF0B6Lg/
+ +ws+nHiqnzOLDvmYlw4IcUYRZnAGIKfoAHiYsraS1y4+XDD+5+cgeSKiC
+ FmCFOM9okYnU7KqmGTreFbb9h+ROg4n0lns+JcfPrtzu+TeW2Qm4ZKbT5
+ /AkxfTRHrfsLYhU7lsBanduxG0pxrcnaj2mSF7UUxmYr7FY10kKvsqe/Z
+ bAXHh8LG9+YiGP1uAn2l6yLe7/2na7m4ymXgFYun04r5gxQ8clOZIwEaM
+ vlMJgy0d1QY1IMWDMYTQwoRrGPn2uxA1/Fu8kevpwlDiaxwi7HhTNh2hP g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="3890970"
 X-IronPort-AV: E=Sophos;i="6.03,303,1694761200"; 
-   d="scan'208";a="3890969"
+   d="scan'208";a="3890970"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 16:46:31 -0800
+ 14 Nov 2023 16:46:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,303,1694761200"; d="scan'208";a="12609384"
+X-IronPort-AV: E=Sophos;i="6.03,303,1694761200"; d="scan'208";a="12609387"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 16:46:31 -0800
+ 14 Nov 2023 16:46:32 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 14 Nov 2023 16:46:08 -0800
-Message-ID: <20231115004615.2424177-6-daniele.ceraolospurio@intel.com>
+Date: Tue, 14 Nov 2023 16:46:09 -0800
+Message-ID: <20231115004615.2424177-7-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231115004615.2424177-1-daniele.ceraolospurio@intel.com>
 References: <20231115004615.2424177-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 05/11] drm/xe/gsc: GSC FW load
+Subject: [Intel-xe] [PATCH v2 06/11] drm/xe/gsc: Implement WA 14015076503
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,498 +59,177 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The GSC FW must be copied in a 4MB stolen memory allocation, whose GGTT
-address is then passed as a parameter to a dedicated load instruction
-submitted via the GSC engine.
+When the GSC FW is loaded, we need to inform it when a GSCCS reset is
+coming and then wait 200ms for it to get ready to process the reset.
 
-Since the GSC load is relatively slow (up to 250ms), we perform it
-asynchronously via a worker. This requires us to make sure that the
-worker has stopped before suspending/unloading.
+v2: move WA code to GSC file, use variable in Makefile (John)
 
-Note that we can't yet use xe_migrate_copy for the copy because it
-doesn't work with stolen memory right now, so we do a memcpy from the
-CPU side instead.
-
-v2: add comment about timeout value, fix GSC status checking
-    before load (John)
-
-Bspec: 65306, 65346
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: John Harrison <john.c.harrison@intel.com>
 ---
- .../gpu/drm/xe/instructions/xe_gsc_commands.h |  34 +++
- .../gpu/drm/xe/instructions/xe_instr_defs.h   |   1 +
- drivers/gpu/drm/xe/regs/xe_gsc_regs.h         |  29 ++
- drivers/gpu/drm/xe/xe_gsc.c                   | 250 ++++++++++++++++++
- drivers/gpu/drm/xe/xe_gsc.h                   |   3 +
- drivers/gpu/drm/xe/xe_gsc_types.h             |  17 ++
- drivers/gpu/drm/xe/xe_uc.c                    |  12 +-
- 7 files changed, 345 insertions(+), 1 deletion(-)
- create mode 100644 drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
- create mode 100644 drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+ drivers/gpu/drm/xe/Makefile           | 11 +++++++++-
+ drivers/gpu/drm/xe/regs/xe_gsc_regs.h | 10 +++++++++
+ drivers/gpu/drm/xe/xe_gsc.c           | 29 +++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gsc.h           |  4 ++++
+ drivers/gpu/drm/xe/xe_gt.c            |  5 +++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules    |  1 +
+ 6 files changed, 59 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/instructions/xe_gsc_commands.h b/drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
-new file mode 100644
-index 000000000000..c7a833d7f965
---- /dev/null
-+++ b/drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
-@@ -0,0 +1,34 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_GSC_COMMANDS_H_
-+#define _XE_GSC_COMMANDS_H_
-+
-+#include "instructions/xe_instr_defs.h"
-+
-+/*
-+ * All GSCCS-specific commands have fixed length, so we can include it in the
-+ * defines. Note that the generic GSC command header structure includes an
-+ * optional data field in bits 9-21, but there are no commands that actually use
-+ * it; some of the commands are instead defined as having an extended length
-+ * field spanning bits 0-15, even if the extra bits are not required because the
-+ * longest GSCCS command is only 8 dwords. To handle this, the defines below use
-+ * a single field for both data and len. If we ever get a commands that does
-+ * actually have data and this approach doesn't work for it we can re-work it
-+ * at that point.
-+ */
-+
-+#define GSC_OPCODE		REG_GENMASK(28, 22)
-+#define GSC_CMD_DATA_AND_LEN	REG_GENMASK(21, 0)
-+
-+#define __GSC_INSTR(op, dl) \
-+	(XE_INSTR_GSC | \
-+	REG_FIELD_PREP(GSC_OPCODE, op) | \
-+	REG_FIELD_PREP(GSC_CMD_DATA_AND_LEN, dl))
-+
-+#define GSC_FW_LOAD __GSC_INSTR(1, 2)
-+#define   GSC_FW_LOAD_LIMIT_VALID REG_BIT(31)
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/instructions/xe_instr_defs.h b/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-index e403b4fcc20a..04179b2a48e1 100644
---- a/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-+++ b/drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-@@ -15,6 +15,7 @@
-  */
- #define XE_INSTR_CMD_TYPE		GENMASK(31, 29)
- #define   XE_INSTR_MI			REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x0)
-+#define   XE_INSTR_GSC			REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x2)
- #define   XE_INSTR_GFXPIPE		REG_FIELD_PREP(XE_INSTR_CMD_TYPE, 0x3)
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 1ea6e0679528..b98b2d76a324 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -37,7 +37,16 @@ quiet_cmd_wa_oob = GEN     $(notdir $(generated_oob))
+ $(generated_oob) &: $(obj)/xe_gen_wa_oob $(srctree)/$(src)/xe_wa_oob.rules
+ 	$(call cmd,wa_oob)
  
- /*
+-$(obj)/xe_guc.o $(obj)/xe_migrate.o $(obj)/xe_ring_ops.o $(obj)/xe_vm.o $(obj)/xe_wa.o $(obj)/xe_ttm_stolen_mgr.o: $(generated_oob)
++uses_generated_oob := \
++	$(obj)/xe_gsc.o \
++	$(obj)/xe_guc.o \
++	$(obj)/xe_migrate.o \
++	$(obj)/xe_ring_ops.o \
++	$(obj)/xe_vm.o \
++	$(obj)/xe_wa.o \
++	$(obj)/xe_ttm_stolen_mgr.o
++
++$(uses_generated_oob): $(generated_oob)
+ 
+ # Please keep these build lists sorted!
+ 
 diff --git a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-new file mode 100644
-index 000000000000..22d2ad9cb64d
---- /dev/null
+index 22d2ad9cb64d..9a84b55d66ee 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
 +++ b/drivers/gpu/drm/xe/regs/xe_gsc_regs.h
-@@ -0,0 +1,29 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
+@@ -16,6 +16,13 @@
+ #define MTL_GSC_HECI1_BASE	0x00116000
+ #define MTL_GSC_HECI2_BASE	0x00117000
+ 
++#define HECI_H_CSR(base)	XE_REG((base) + 0x4)
++#define   HECI_H_CSR_IE		REG_BIT(0)
++#define   HECI_H_CSR_IS		REG_BIT(1)
++#define   HECI_H_CSR_IG		REG_BIT(2)
++#define   HECI_H_CSR_RDY	REG_BIT(3)
++#define   HECI_H_CSR_RST	REG_BIT(4)
 +
-+#ifndef _XE_GSC_REGS_H_
-+#define _XE_GSC_REGS_H_
+ /*
+  * The FWSTS register values are FW defined and can be different between
+  * HECI1 and HECI2
+@@ -26,4 +33,7 @@
+ #define   HECI1_FWSTS1_PROXY_STATE_NORMAL		5
+ #define   HECI1_FWSTS1_INIT_COMPLETE			REG_BIT(9)
+ 
++#define HECI_H_GS1(base)	XE_REG((base) + 0xc4c)
++#define   HECI_H_GS1_ER_PREP	REG_BIT(0)
 +
-+#include <linux/compiler.h>
-+#include <linux/types.h>
-+
-+#include "regs/xe_reg_defs.h"
-+
-+/* Definitions of GSC H/W registers, bits, etc */
-+
-+#define MTL_GSC_HECI1_BASE	0x00116000
-+#define MTL_GSC_HECI2_BASE	0x00117000
-+
-+/*
-+ * The FWSTS register values are FW defined and can be different between
-+ * HECI1 and HECI2
-+ */
-+#define HECI_FWSTS1(base)				XE_REG((base) + 0xc40)
-+#define   HECI1_FWSTS1_CURRENT_STATE			REG_GENMASK(3, 0)
-+#define   HECI1_FWSTS1_CURRENT_STATE_RESET		0
-+#define   HECI1_FWSTS1_PROXY_STATE_NORMAL		5
-+#define   HECI1_FWSTS1_INIT_COMPLETE			REG_BIT(9)
-+
-+#endif
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index 216f36cee0f7..cc9c6cdc31aa 100644
+index cc9c6cdc31aa..0def7c1ae84d 100644
 --- a/drivers/gpu/drm/xe/xe_gsc.c
 +++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -5,10 +5,20 @@
+@@ -7,6 +7,7 @@
  
- #include "xe_gsc.h"
+ #include <drm/drm_managed.h>
  
-+#include <drm/drm_managed.h>
-+
-+#include "xe_bb.h"
-+#include "xe_bo.h"
++#include "generated/xe_wa_oob.h"
+ #include "xe_bb.h"
+ #include "xe_bo.h"
  #include "xe_device.h"
-+#include "xe_exec_queue.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
-+#include "xe_map.h"
-+#include "xe_mmio.h"
-+#include "xe_sched_job.h"
+@@ -17,6 +18,7 @@
+ #include "xe_mmio.h"
+ #include "xe_sched_job.h"
  #include "xe_uc_fw.h"
-+#include "instructions/xe_gsc_commands.h"
-+#include "regs/xe_gsc_regs.h"
++#include "xe_wa.h"
+ #include "instructions/xe_gsc_commands.h"
+ #include "regs/xe_gsc_regs.h"
  
- static struct xe_gt *
- gsc_to_gt(struct xe_gsc *gsc)
-@@ -16,6 +26,145 @@ gsc_to_gt(struct xe_gsc *gsc)
- 	return container_of(gsc, struct xe_gt, uc.gsc);
+@@ -300,3 +302,30 @@ void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc)
+ 	if (xe_uc_fw_is_loadable(&gsc->fw) && gsc->wq)
+ 		flush_work(&gsc->work);
  }
- 
-+static int memcpy_fw(struct xe_gsc *gsc)
++
++/*
++ * wa_14015076503: if the GSC FW is loaded, we need to alert it before doing a
++ * GSC engine reset by writing a notification bit in the GS1 register and then
++ * triggering an interrupt to GSC; from the interrupt it will take up to 200ms
++ * for the FW to get prepare for the reset, so we need to wait for that amount
++ * of time.
++ * After the reset is complete we need to then clear the GS1 register.
++ */
++void xe_gsc_wa_14015076503(struct xe_gt *gt, bool prep)
 +{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	u32 fw_size = gsc->fw.size;
-+	void *storage;
++	u32 gs1_set = prep ? HECI_H_GS1_ER_PREP : 0;
++	u32 gs1_clr = prep ? 0 : HECI_H_GS1_ER_PREP;
 +
-+	/*
-+	 * FIXME: xe_migrate_copy does not work with stolen mem yet, so we use
-+	 * a memcpy for now.
-+	 */
-+	storage = kmalloc(fw_size, GFP_KERNEL);
-+	if (!storage)
-+		return -ENOMEM;
-+
-+	xe_map_memcpy_from(xe, storage, &gsc->fw.bo->vmap, 0, fw_size);
-+	xe_map_memcpy_to(xe, &gsc->private->vmap, 0, storage, fw_size);
-+	xe_map_memset(xe, &gsc->private->vmap, fw_size, 0, gsc->private->size - fw_size);
-+
-+	kfree(storage);
-+
-+	return 0;
-+}
-+
-+static int emit_gsc_upload(struct xe_gsc *gsc)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	u32 offset = xe_bo_ggtt_addr(gsc->private);
-+	struct xe_bb *bb;
-+	struct xe_sched_job *job;
-+	struct dma_fence *fence;
-+	long timeout;
-+
-+	bb = xe_bb_new(gt, 4, false);
-+	if (IS_ERR(bb))
-+		return PTR_ERR(bb);
-+
-+	bb->cs[bb->len++] = GSC_FW_LOAD;
-+	bb->cs[bb->len++] = lower_32_bits(offset);
-+	bb->cs[bb->len++] = upper_32_bits(offset);
-+	bb->cs[bb->len++] = (gsc->private->size / SZ_4K) | GSC_FW_LOAD_LIMIT_VALID;
-+
-+	job = xe_bb_create_job(gsc->q, bb);
-+	if (IS_ERR(job)) {
-+		xe_bb_free(bb, NULL);
-+		return PTR_ERR(job);
-+	}
-+
-+	xe_sched_job_arm(job);
-+	fence = dma_fence_get(&job->drm.s_fence->finished);
-+	xe_sched_job_push(job);
-+
-+	timeout = dma_fence_wait_timeout(fence, false, HZ);
-+	dma_fence_put(fence);
-+	xe_bb_free(bb, NULL);
-+	if (timeout < 0)
-+		return timeout;
-+	else if (!timeout)
-+		return -ETIME;
-+
-+	return 0;
-+}
-+
-+static int gsc_fw_is_loaded(struct xe_gt *gt)
-+{
-+	return xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE)) &
-+			      HECI1_FWSTS1_INIT_COMPLETE;
-+}
-+
-+static int gsc_fw_wait(struct xe_gt *gt)
-+{
-+	/*
-+	 * GSC load can take up to 250ms from the moment the instruction is
-+	 * executed by the GSCCS. To account for possible submission delays or
-+	 * other issues, we use a 500ms timeout in the wait here.
-+	 */
-+	return xe_mmio_wait32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE),
-+			      HECI1_FWSTS1_INIT_COMPLETE,
-+			      HECI1_FWSTS1_INIT_COMPLETE,
-+			      500, NULL, false);
-+}
-+
-+static int gsc_upload(struct xe_gsc *gsc)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	int err;
-+
-+	/* we should only be here if the init step were successful */
-+	xe_assert(xe, xe_uc_fw_is_loadable(&gsc->fw) && gsc->q);
-+
-+	if (gsc_fw_is_loaded(gt)) {
-+		xe_gt_err(gt, "GSC already loaded at upload time\n");
-+		return -EEXIST;
-+	}
-+
-+	err = memcpy_fw(gsc);
-+	if (err) {
-+		xe_gt_err(gt, "Failed to memcpy GSC FW\n");
-+		return err;
-+	}
-+
-+	err = emit_gsc_upload(gsc);
-+	if (err) {
-+		xe_gt_err(gt, "Failed to emit GSC FW upload (%pe)\n", ERR_PTR(err));
-+		return err;
-+	}
-+
-+	err = gsc_fw_wait(gt);
-+	if (err) {
-+		xe_gt_err(gt, "Failed to wait for GSC load (%pe)\n", ERR_PTR(err));
-+		return err;
-+	}
-+
-+	xe_gt_dbg(gt, "GSC FW async load completed\n");
-+
-+	return 0;
-+}
-+
-+static void gsc_work(struct work_struct *work)
-+{
-+	struct xe_gsc *gsc = container_of(work, typeof(*gsc), work);
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	int ret;
-+
-+	xe_device_mem_access_get(xe);
-+	xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
-+
-+	ret = gsc_upload(gsc);
-+	if (ret && ret != -EEXIST)
-+		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_LOAD_FAIL);
-+	else
-+		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
-+
-+	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
-+	xe_device_mem_access_put(xe);
-+}
-+
- int xe_gsc_init(struct xe_gsc *gsc)
- {
- 	struct xe_gt *gt = gsc_to_gt(gsc);
-@@ -23,6 +172,7 @@ int xe_gsc_init(struct xe_gsc *gsc)
- 	int ret;
- 
- 	gsc->fw.type = XE_UC_FW_TYPE_GSC;
-+	INIT_WORK(&gsc->work, gsc_work);
- 
- 	/* The GSC uC is only available on the media GT */
- 	if (tile->media_gt && (gt != tile->media_gt)) {
-@@ -50,3 +200,103 @@ int xe_gsc_init(struct xe_gsc *gsc)
- 	return ret;
- }
- 
-+static void free_resources(struct drm_device *drm, void *arg)
-+{
-+	struct xe_gsc *gsc = arg;
-+
-+	if (gsc->wq) {
-+		destroy_workqueue(gsc->wq);
-+		gsc->wq = NULL;
-+	}
-+
-+	if (gsc->q) {
-+		xe_exec_queue_put(gsc->q);
-+		gsc->q = NULL;
-+	}
-+
-+	if (gsc->private) {
-+		xe_bo_unpin_map_no_vm(gsc->private);
-+		gsc->private = NULL;
-+	}
-+}
-+
-+int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_hw_engine *hwe = xe_gt_hw_engine(gt, XE_ENGINE_CLASS_OTHER, 0, true);
-+	struct xe_exec_queue *q;
-+	struct workqueue_struct *wq;
-+	struct xe_bo *bo;
-+	int err;
-+
-+	if (!xe_uc_fw_is_available(&gsc->fw))
-+		return 0;
-+
-+	if (!hwe)
-+		return -ENODEV;
-+
-+	bo = xe_bo_create_pin_map(xe, tile, NULL, SZ_4M,
-+				  ttm_bo_type_kernel,
-+				  XE_BO_CREATE_STOLEN_BIT |
-+				  XE_BO_CREATE_GGTT_BIT);
-+	if (IS_ERR(bo))
-+		return PTR_ERR(bo);
-+
-+	q = xe_exec_queue_create(xe, NULL,
-+				 BIT(hwe->logical_instance), 1, hwe,
-+				 EXEC_QUEUE_FLAG_KERNEL |
-+				 EXEC_QUEUE_FLAG_PERMANENT);
-+	if (IS_ERR(q)) {
-+		xe_gt_err(gt, "Failed to create queue for GSC submission\n");
-+		err = PTR_ERR(q);
-+		goto out_bo;
-+	}
-+
-+	wq = alloc_ordered_workqueue("gsc-ordered-wq", 0);
-+	if (!wq) {
-+		err = -ENOMEM;
-+		goto out_q;
-+	}
-+
-+	gsc->private = bo;
-+	gsc->q = q;
-+	gsc->wq = wq;
-+
-+	err = drmm_add_action_or_reset(&xe->drm, free_resources, gsc);
-+	if (err)
-+		return err;
-+
-+	xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_LOADABLE);
-+
-+	return 0;
-+
-+out_q:
-+	xe_exec_queue_put(q);
-+out_bo:
-+	xe_bo_unpin_map_no_vm(bo);
-+	return err;
-+}
-+
-+void xe_gsc_load_start(struct xe_gsc *gsc)
-+{
-+	struct xe_gt *gt = gsc_to_gt(gsc);
-+
-+	if (!xe_uc_fw_is_loadable(&gsc->fw) || !gsc->q)
++	/* WA only applies if the GSC is loaded */
++	if (!XE_WA(gt, 14015076503) || !gsc_fw_is_loaded(gt))
 +		return;
 +
-+	/* GSC FW survives GT reset and D3Hot */
-+	if (gsc_fw_is_loaded(gt)) {
-+		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
-+		return;
++	xe_mmio_rmw32(gt, HECI_H_GS1(MTL_GSC_HECI2_BASE), gs1_clr, gs1_set);
++
++	if (prep) {
++		/* make sure the reset bit is clear when writing the CSR reg */
++		xe_mmio_rmw32(gt, HECI_H_CSR(MTL_GSC_HECI2_BASE),
++			      HECI_H_CSR_RST, HECI_H_CSR_IG);
++		msleep(200);
 +	}
-+
-+	queue_work(gsc->wq, &gsc->work);
-+}
-+
-+void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc)
-+{
-+	if (xe_uc_fw_is_loadable(&gsc->fw) && gsc->wq)
-+		flush_work(&gsc->work);
 +}
 diff --git a/drivers/gpu/drm/xe/xe_gsc.h b/drivers/gpu/drm/xe/xe_gsc.h
-index baa7f21f4204..f870eddc77d4 100644
+index f870eddc77d4..bc1ef7f31ea2 100644
 --- a/drivers/gpu/drm/xe/xe_gsc.h
 +++ b/drivers/gpu/drm/xe/xe_gsc.h
-@@ -9,5 +9,8 @@
+@@ -8,9 +8,13 @@
+ 
  #include "xe_gsc_types.h"
  
++struct xe_gt;
++
  int xe_gsc_init(struct xe_gsc *gsc);
-+int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc);
-+void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc);
-+void xe_gsc_load_start(struct xe_gsc *gsc);
+ int xe_gsc_init_post_hwconfig(struct xe_gsc *gsc);
+ void xe_gsc_wait_for_worker_completion(struct xe_gsc *gsc);
+ void xe_gsc_load_start(struct xe_gsc *gsc);
  
++void xe_gsc_wa_14015076503(struct xe_gt *gt, bool prep);
++
  #endif
-diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h b/drivers/gpu/drm/xe/xe_gsc_types.h
-index 1bc50583fe58..57fefd66a7ea 100644
---- a/drivers/gpu/drm/xe/xe_gsc_types.h
-+++ b/drivers/gpu/drm/xe/xe_gsc_types.h
-@@ -6,8 +6,13 @@
- #ifndef _XE_GSC_TYPES_H_
- #define _XE_GSC_TYPES_H_
- 
-+#include <linux/workqueue.h>
-+
- #include "xe_uc_fw_types.h"
- 
-+struct xe_bo;
-+struct xe_exec_queue;
-+
- /**
-  * struct xe_gsc - GSC
-  */
-@@ -17,6 +22,18 @@ struct xe_gsc {
- 
- 	/** @security_version: SVN found in the fetched blob */
- 	u32 security_version;
-+
-+	/** @private: Private data for use by the GSC FW */
-+	struct xe_bo *private;
-+
-+	/** @q: Default queue used for submissions to GSC FW */
-+	struct xe_exec_queue *q;
-+
-+	/** @wq: workqueue to handle jobs for delayed load and proxy handling */
-+	struct workqueue_struct *wq;
-+
-+	/** @work: delayed load and proxy handling work */
-+	struct work_struct work;
- };
- 
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_uc.c b/drivers/gpu/drm/xe/xe_uc.c
-index b67154c78dff..15dcd1f91e9c 100644
---- a/drivers/gpu/drm/xe/xe_uc.c
-+++ b/drivers/gpu/drm/xe/xe_uc.c
-@@ -74,11 +74,17 @@ int xe_uc_init(struct xe_uc *uc)
-  */
- int xe_uc_init_post_hwconfig(struct xe_uc *uc)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 6c885dde5d59..e591e9c72604 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -21,6 +21,7 @@
+ #include "xe_execlist.h"
+ #include "xe_force_wake.h"
+ #include "xe_ggtt.h"
++#include "xe_gsc.h"
+ #include "xe_gt_clock.h"
+ #include "xe_gt_idle_sysfs.h"
+ #include "xe_gt_mcr.h"
+@@ -512,12 +513,16 @@ static int do_gt_reset(struct xe_gt *gt)
  {
-+	int err;
-+
- 	/* GuC submission not enabled, nothing to do */
- 	if (!xe_device_uc_enabled(uc_to_xe(uc)))
- 		return 0;
+ 	int err;
  
--	return xe_guc_init_post_hwconfig(&uc->guc);
-+	err = xe_guc_init_post_hwconfig(&uc->guc);
-+	if (err)
-+		return err;
++	xe_gsc_wa_14015076503(gt, true);
 +
-+	return xe_gsc_init_post_hwconfig(&uc->gsc);
+ 	xe_mmio_write32(gt, GDRST, GRDOM_FULL);
+ 	err = xe_mmio_wait32(gt, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
+ 	if (err)
+ 		xe_gt_err(gt, "failed to clear GEN11_GRDOM_FULL (%pe)\n",
+ 			  ERR_PTR(err));
+ 
++	xe_gsc_wa_14015076503(gt, false);
++
+ 	return err;
  }
  
- static int uc_reset(struct xe_uc *uc)
-@@ -173,6 +179,9 @@ int xe_uc_init_hw(struct xe_uc *uc)
- 	ret = xe_huc_auth(&uc->huc);
- 	xe_gt_assert(uc_to_gt(uc), !ret);
- 
-+	/* GSC load is async */
-+	xe_gsc_load_start(&uc->gsc);
-+
- 	return 0;
- }
- 
-@@ -197,6 +206,7 @@ void xe_uc_gucrc_disable(struct xe_uc *uc)
- 
- void xe_uc_stop_prepare(struct xe_uc *uc)
- {
-+	xe_gsc_wait_for_worker_completion(&uc->gsc);
- 	xe_guc_stop_prepare(&uc->guc);
- }
- 
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 752842d734be..c7b7d40b5d57 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -20,3 +20,4 @@
+ 16017236439	PLATFORM(PVC)
+ 22010954014	PLATFORM(DG2)
+ 14019821291	MEDIA_VERSION_RANGE(1300, 2000)
++14015076503	MEDIA_VERSION(1300)
 -- 
 2.41.0
 
