@@ -4,45 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1A7FCC07548
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 11:58:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B10FAC07548
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 12:31:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C579110E070;
-	Wed, 15 Nov 2023 11:58:29 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D4D7010E070
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 11:58:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700049507; x=1731585507;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=5WE+HcnQk/rTFD/1UAo0Qqq3heO5kOkg3R1Iy4yBE0Q=;
- b=DrosMTDSpF7RupdDAzKQSW38AUl0DOeNPKQP/BSEJeFz6r2LNA4IgV9E
- BB0XEN22BRhSTa7bYZJY6jdPOQhlZghDk2qmtppYnBsKfeujDkLsNQ6Ir
- 4y1A9AZTjCKUNOOwwuIMh2Eo4dHgsZvGRK/DJCCLXsOBTbquJ0hEllF2G
- g3ik0rOsQ11ISgwcX5YKoProkZDOgIqsylj1JZvtEGN8cn4vnh5/3egwq
- 6HIUBFawz7ZxzR9mZ2PL57ulo7yxQeUrKlfjs6o3zq5LKHEAVeMkv+23W
- RyoJvNDsWoy1jnMbzfcQeYn0tr8rfimmOv0RHofJwXk2XqDdx3iMgktPX g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="375901429"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="375901429"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 03:58:27 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="882382093"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="882382093"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.135.24])
- by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 03:58:25 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed, 15 Nov 2023 12:58:16 +0100
-Message-Id: <20231115115816.1993-1-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D4ED10E54D;
+	Wed, 15 Nov 2023 12:31:51 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 28A8610E54D;
+ Wed, 15 Nov 2023 12:31:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 21390AADF1;
+ Wed, 15 Nov 2023 12:31:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6930509732361061509=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/kunit: Return number of iterated devices
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Wed, 15 Nov 2023 12:31:50 -0000
+Message-ID: <170005151010.649.15732907507587435764@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231115112921.1905-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20231115112921.1905-1-michal.wajdeczko@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_drm/xe/do?=
+ =?utf-8?q?c=3A_Include_documentation_about_xe=5Fassert=28=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,41 +39,166 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In xe_call_for_each_device() we are already counting number of
-iterated devices. Lets make that available to the caller too.
+--===============6930509732361061509==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/tests/xe_pci.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
-index a40879da2fbe..306ff8cb35cb 100644
---- a/drivers/gpu/drm/xe/tests/xe_pci.c
-+++ b/drivers/gpu/drm/xe/tests/xe_pci.c
-@@ -42,8 +42,8 @@ static int dev_to_xe_device_fn(struct device *dev, void *__data)
-  * function. Across each function call, drm_dev_enter() / drm_dev_exit() is
-  * called for the corresponding drm device.
-  *
-- * Return: Zero or the error code of a call to @xe_fn returning an error
-- * code.
-+ * Return: Number of devices iterated or
-+ *         the error code of a call to @xe_fn returning an error code.
-  */
- int xe_call_for_each_device(xe_device_fn xe_fn)
- {
-@@ -59,7 +59,7 @@ int xe_call_for_each_device(xe_device_fn xe_fn)
- 	if (!data.ndevs)
- 		kunit_skip(current->kunit_test, "test runs only on hardware\n");
- 
--	return ret;
-+	return ret ?: data.ndevs;
- }
- 
- /**
--- 
-2.25.1
+Series: drm/xe/doc: Include documentation about xe_assert()
+URL   : https://patchwork.freedesktop.org/series/126457/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-492-14d1d786caacdb3438d07ab86fabf2e36c8151cc_BAT -> xe-pw-126457v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-126457v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-126457v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-126457v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-492-14d1d786caacdb3438d07ab86fabf2e36c8151cc/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126457v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-126457v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3:
+    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#906]) +1 other test fail
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-492-14d1d786caacdb3438d07ab86fabf2e36c8151cc/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126457v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+  [Intel XE#906]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/906
+
+
+Build changes
+-------------
+
+  * Linux: xe-492-14d1d786caacdb3438d07ab86fabf2e36c8151cc -> xe-pw-126457v1
+
+  IGT_7589: bfba7de83474a6fee994ba845ab3d9a79bc2b5b0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-492-14d1d786caacdb3438d07ab86fabf2e36c8151cc: 14d1d786caacdb3438d07ab86fabf2e36c8151cc
+  xe-pw-126457v1: 126457v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126457v1/index.html
+
+--===============6930509732361061509==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/doc: Include documentation about xe_assert()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126457/">https://patchwork.freedesktop.org/series/126457/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126457v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126457v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-492-14d1d786caacdb3438d07ab86fabf2e36c8151cc_BAT -&gt; xe-pw-126457v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-126457v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-126457v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-126457v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-492-14d1d786caacdb3438d07ab86fabf2e36c8151cc/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126457v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">FAIL</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-126457v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-492-14d1d786caacdb3438d07ab86fabf2e36c8151cc/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126457v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/906">Intel XE#906</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-492-14d1d786caacdb3438d07ab86fabf2e36c8151cc -&gt; xe-pw-126457v1</li>
+</ul>
+<p>IGT_7589: bfba7de83474a6fee994ba845ab3d9a79bc2b5b0 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-492-14d1d786caacdb3438d07ab86fabf2e36c8151cc: 14d1d786caacdb3438d07ab86fabf2e36c8151cc<br />
+  xe-pw-126457v1: 126457v1</p>
+
+</body>
+</html>
+
+--===============6930509732361061509==--
