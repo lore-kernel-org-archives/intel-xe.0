@@ -4,55 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 040C6C07548
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 12:59:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7B89FC07548
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 13:05:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7DD610E0E6;
-	Wed, 15 Nov 2023 12:59:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1BBD410E0E6
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 12:59:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4B61610E113;
+	Wed, 15 Nov 2023 13:05:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A90C310E113
+ for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 13:05:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700053161; x=1731589161;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=6RE9jqpwGRMPqS1HZtTqft83Q6mpfqBMb8ZjQffA4/c=;
- b=XoWvnKR3u0ZBrzL6T/o/IFbnztrCzyjoRv0C38CQPJIsxr2Hp3A3ddAl
- VQFDF8qbzq4DlEWmuFpoeAcI4V8QAhcNe06edQbYSzRHHBZyFZcKN2iMc
- qC+cWL9YIL2NX/b/Apw3O9PJsxN9i0D/5wlxJ3IzjeVOAS+UcoreRzGxt
- p5rmYfUlJK6clul00/e25/zzx4BHuXMdYUqlELs2kFHfMkhsGAwYSxfsl
- suUW7nllmXK6D2t6D+UNB/gjthMmZ5pPFLZ5mwur+qH/gXkfzHDk0V8G+
- BsY8Am93+putsfax4RSrPRhlSklfO1G/WOEKyoN5ZewHOgNMUl6uzHRCl Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="477090781"
-X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="477090781"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 04:59:12 -0800
+ t=1700053509; x=1731589509;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=fl2KgAOspRDSHaeQpwBvYNd0skppiXxytJbu41LdzGw=;
+ b=gWzkyItmzp7OB6TG9nhh2OlZsIdqrAYuEC36BibtII2oZPsnvOucfleF
+ VfjaFZUVEJHX0EsgVPAzSnO134x2qemBTGkeLAXEayCPCyM61fB4DLLM7
+ oN6vMf8p6yw/VMQt5GjoAKveh70I7jg/t76kxED08cfC9bjJugIyTVr4B
+ TWNrj1Jo3sY53HfmCmaog95LfldQGzoQ31cpuKHLx32MYH3vHTRkvfiUx
+ DdCM/5SLPcZO3poMDmB3l9leLyLWQQH/OYdshk6HKp2cXbFfgFgYbUoUS
+ AWdTF3XysKjfz2ttOb6wW+eT00gBKMsibyAs5aNrw/IaaZIpzpMmOOgqv w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="375911317"
+X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="375911317"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2023 05:05:05 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="835390484"
-X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="835390484"
-Received: from aklett-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.252.38.156])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 04:59:10 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Shankar, Uma" <uma.shankar@intel.com>, "Hogander, Jouni"
- <jouni.hogander@intel.com>, "juhapekka.heikkila@gmail.com"
- <juhapekka.heikkila@gmail.com>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-In-Reply-To: <IA1PR11MB6347762FB53840B06F2188C0F4B2A@IA1PR11MB6347.namprd11.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20231113195633.119188-1-juhapekka.heikkila@gmail.com>
- <e864e3ccbcbae65f3adb558064541f0ad9bbba78.camel@intel.com>
- <IA1PR11MB6347762FB53840B06F2188C0F4B2A@IA1PR11MB6347.namprd11.prod.outlook.com>
-Date: Wed, 15 Nov 2023 14:59:07 +0200
-Message-ID: <87fs17qijo.fsf@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="1096437485"
+X-IronPort-AV: E=Sophos;i="6.03,305,1694761200"; d="scan'208";a="1096437485"
+Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
+ by fmsmga005.fm.intel.com with ESMTP; 15 Nov 2023 05:05:03 -0800
+Received: from kbuild by b8de5498638e with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1r3FZl-0000LE-0q;
+ Wed, 15 Nov 2023 13:05:01 +0000
+Date: Wed, 15 Nov 2023 21:04:03 +0800
+From: kernel test robot <lkp@intel.com>
+To: Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>
+Message-ID: <202311152128.2R0TGUKs-lkp@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [v9,
- 1/6] Revert "FIXME: drm/i915: xe dpt integration"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Subject: [Intel-xe] [drm-xe:drm-xe-next 3/15]
+ drivers/gpu/drm/i915/display/intel_fbdev_fb.c:13:25: warning: no previous
+ prototype for 'intel_fbdev_fb_alloc'
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,325 +57,93 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 14 Nov 2023, "Shankar, Uma" <uma.shankar@intel.com> wrote:
->> -----Original Message-----
->> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of Hog=
-ander,
->> Jouni
->> Sent: Tuesday, November 14, 2023 2:11 PM
->> To: juhapekka.heikkila@gmail.com; intel-xe@lists.freedesktop.org
->> Subject: Re: [Intel-xe] [v9, 1/6] Revert "FIXME: drm/i915: xe dpt integr=
-ation"
->>=20
->> Hello Juha-Pekka,
->>=20
->> Some of these patches already sent to intel-gfx as discussed offline:
->>=20
->> https://patchwork.freedesktop.org/series/126352/
->>=20
->> To my opinion we could already merge this and then do backport when
->> i915 patches are merged. For the whole set:
->>=20
->> Reviewed-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
->
-> I agree, lets merge the i915 parts to drm-intel-next and then send out a =
-fresh series,
-> cherry picking the same along with the fixup to drop the FIXME patch.
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   14d1d786caacdb3438d07ab86fabf2e36c8151cc
+commit: 9eb20bf3156f1a9e1c73e857be09c042deb2b5a0 [3/15] drm/i915/display: split i915 specific code from intel_fbdev
+config: x86_64-randconfig-004-20231115 (https://download.01.org/0day-ci/archive/20231115/202311152128.2R0TGUKs-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231115/202311152128.2R0TGUKs-lkp@intel.com/reproduce)
 
-I see that this was already merged... but I think at this point in time
-it would be better to get the stuff merged to i915 first, and then
-backported with cherry-pick -x annotations. Just skip the intermediate
-step of merging something that must be fixed later.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202311152128.2R0TGUKs-lkp@intel.com/
 
-BR,
-Jani.
+All warnings (new ones prefixed by >>):
 
->
-> Regards,
-> Uma Shankar
->
->> BR,
->>=20
->> Jouni H=C3=B6gander
->>=20
->> On Mon, 2023-11-13 at 21:56 +0200, Juha-Pekka Heikkila wrote:
->> > This reverts commit e417510409165b44ad59bfdbc59cd90316e91dc1.
->> > ---
->> > =C2=A0.../gpu/drm/i915/display/intel_atomic_plane.c |=C2=A0 4 ---
->> > =C2=A0.../drm/i915/display/intel_display_types.h=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 6 ----
->> > =C2=A0drivers/gpu/drm/i915/display/intel_dpt.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 14 +++-----
->> > =C2=A0drivers/gpu/drm/i915/display/intel_fb.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 36 +++--------------
->> > --
->> > =C2=A0.../drm/i915/display/skl_universal_plane.c=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 6 +---
->> > =C2=A05 files changed, 11 insertions(+), 55 deletions(-)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> > b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> > index 77e281bf4cb5..a8f36ca11e2e 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_atomic_plane.c
->> > @@ -111,9 +111,7 @@ intel_plane_duplicate_state(struct drm_plane
->> > *plane)
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0__drm_atomic_helper_pl=
-ane_duplicate_state(plane,
->> > &intel_state->uapi);
->> >
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_state->ggtt_vma =
-=3D NULL;
->> > -#ifdef I915
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_state->dpt_vma =
-=3D NULL;
->> > -#endif
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_state->flags =3D=
- 0;
->> >
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* add reference to fb=
- */
->> > @@ -138,9 +136,7 @@ intel_plane_destroy_state(struct drm_plane *plane,
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_plane_sta=
-te *plane_state =3D
->> > to_intel_plane_state(state);
->> >
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_WARN_ON(plane->dev=
-, plane_state->ggtt_vma); -#ifdef I915
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_WARN_ON(plane->dev=
-, plane_state->dpt_vma); -#endif
->> >
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0__drm_atomic_helper_pl=
-ane_destroy_state(&plane_state->uapi);
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (plane_state->hw.fb)
->> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
->> > b/drivers/gpu/drm/i915/display/intel_display_types.h
->> > index b5e4b94c129b..db20dd7e5c0d 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> > @@ -143,9 +143,7 @@ struct intel_framebuffer {
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_fb_view remapped_view;
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
->> >
->> > -#ifdef I915
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct i915_address_sp=
-ace *dpt_vm; -#endif
->> > =C2=A0};
->> >
->> > =C2=A0enum intel_hotplug_state {
->> > @@ -696,11 +694,7 @@ struct intel_plane_state {
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} hw;
->> >
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct i915_vma *ggtt_=
-vma;
->> > -#ifdef I915
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct i915_vma *dpt_v=
-ma;
->> > -#else
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct i915_vma embed_vma;
->> > -#endif
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0unsigned long flags;
->> > =C2=A0#define PLANE_HAS_FENCE BIT(0)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dpt.c
->> > b/drivers/gpu/drm/i915/display/intel_dpt.c
->> > index 6e73c7a15942..2b067cb952f0 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dpt.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dpt.c
->> > @@ -3,6 +3,11 @@
->> > =C2=A0 * Copyright =C2=A9 2021 Intel Corporation
->> > =C2=A0 */
->> >
->> > +#include "gem/i915_gem_domain.h"
->> > +#include "gem/i915_gem_internal.h"
->> > +#include "gem/i915_gem_lmem.h"
->> > +#include "gt/gen8_ppgtt.h"
->> > +
->> > =C2=A0#include "i915_drv.h"
->> > =C2=A0#include "i915_reg.h"
->> > =C2=A0#include "intel_de.h"
->> > @@ -10,13 +15,6 @@
->> > =C2=A0#include "intel_dpt.h"
->> > =C2=A0#include "intel_fb.h"
->> >
->> > -#ifdef I915
->> > -
->> > -#include "gem/i915_gem_domain.h"
->> > -#include "gem/i915_gem_internal.h"
->> > -#include "gem/i915_gem_lmem.h"
->> > -#include "gt/gen8_ppgtt.h"
->> > -
->> > =C2=A0struct i915_dpt {
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct i915_address_sp=
-ace vm;
->> >
->> > @@ -320,8 +318,6 @@ void intel_dpt_destroy(struct i915_address_space
->> > *vm)
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0i915_vm_put(&dpt->vm);
->> > =C2=A0}
->> >
->> > -#endif
->> > -
->> > =C2=A0void intel_dpt_configure(struct intel_crtc *crtc)
->> > =C2=A0{
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct drm_i915_privat=
-e *i915 =3D to_i915(crtc->base.dev); diff
->> > --git a/drivers/gpu/drm/i915/display/intel_fb.c
->> > b/drivers/gpu/drm/i915/display/intel_fb.c
->> > index 1ce61245728a..3862e55e8980 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_fb.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_fb.c
->> > @@ -1885,34 +1885,16 @@ int intel_plane_compute_gtt(struct
->> > intel_plane_state *plane_state)
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return intel_plane_che=
-ck_stride(plane_state);
->> > =C2=A0}
->> >
->> > -static void intel_user_framebuffer_destroy_vm(struct drm_framebuffer
->> > *fb)
->> > -{
->> > -#ifdef I915
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_framebuffer *i=
-ntel_fb =3D to_intel_framebuffer(fb);
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (intel_fb_uses_dpt(fb))
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0intel_dpt_destroy(intel_fb->dpt_vm);
->> > -#else
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (intel_fb_obj(fb)->flags=
- & XE_BO_CREATE_PINNED_BIT) {
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0struct xe_bo *bo =3D intel_fb_obj(fb);
->> > -
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0/* Unpin our kernel fb first */
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0xe_bo_lock(bo, false);
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0xe_bo_unpin(bo);
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0xe_bo_unlock(bo);
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0xe_bo_put(intel_fb_obj(fb));
->> > -#endif
->> > -}
->> > -
->> > =C2=A0static void intel_user_framebuffer_destroy(struct drm_framebuffer
->> > *fb)
->> > =C2=A0{
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct intel_framebuff=
-er *intel_fb =3D to_intel_framebuffer(fb);
->> >
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_framebuffer_cleanu=
-p(fb);
->> >
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_frontbuffer_put(intel=
-_fb->frontbuffer);
->> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (intel_fb_uses_dpt(fb))
->> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0intel_dpt_destroy(intel_fb->dpt_vm);
->> >
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_user_framebuffer_dest=
-roy_vm(fb);
->> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_frontbuffer_put(intel=
-_fb->frontbuffer);
->> >
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0kfree(intel_fb);
->> > =C2=A0}
->> > @@ -2155,18 +2137,13 @@ int intel_framebuffer_init(struct
->> > intel_framebuffer *intel_fb,
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> >
->> > -#ifdef I915
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0fb->obj[i] =3D &obj->base; -#else
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0fb->obj[i] =3D &obj->ttm.base; -#endif
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> >
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D intel_fill_fb_=
-info(dev_priv, intel_fb);
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret)
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0goto err;
->> >
->> > -#ifdef I915
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (intel_fb_uses_dpt(=
-fb)) {
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0struct i915_address_space *vm;
->> >
->> > @@ -2179,10 +2156,6 @@ int intel_framebuffer_init(struct
->> > intel_framebuffer *intel_fb,
->> >
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_fb->dpt_vm =3D vm;
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0}
->> > -#else
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* Hold a reference to obje=
-ct while fb is alive */
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0xe_bo_get(obj);
->> > -#endif
->> >
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ret =3D drm_framebuffe=
-r_init(&dev_priv->drm, fb,
->> > &intel_fb_funcs);
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (ret) {
->> > @@ -2193,7 +2166,8 @@ int intel_framebuffer_init(struct
->> > intel_framebuffer *intel_fb,
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
->> >
->> > =C2=A0err_free_dpt:
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_user_framebuffer_dest=
-roy_vm(fb);
->> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (intel_fb_uses_dpt(fb))
->> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0intel_dpt_destroy(intel_fb->dpt_vm);
->> > =C2=A0err:
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0intel_frontbuffer_put(=
-intel_fb->frontbuffer);
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return ret;
->> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> > b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> > index 68eabe089aaf..4553dd6bfbbd 100644
->> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
->> > @@ -1010,13 +1010,9 @@ static u32 skl_surf_address(const struct
->> > intel_plane_state *plane_state,
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 * The DPT object contains only one vma, so the =
-VMA's
->> > offset
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 * within the DPT is always 0.
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0drm_WARN_ON(&i915->drm, offset & 0x1fffff); -#ifdef
->> > I915
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_WARN_ON(&i915->drm, plane_state->dpt_vma-
->> > >node.start);
->> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0drm_WARN_ON(&i915->drm, offset & 0x1fffff);
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0return offset >> 9;
->> > -#else
->> > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0return 0;
->> > -#endif
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0} else {
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0drm_WARN_ON(&i915->drm, offset & 0xfff);
->> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0return offset;
->
+>> drivers/gpu/drm/i915/display/intel_fbdev_fb.c:13:25: warning: no previous prototype for 'intel_fbdev_fb_alloc' [-Wmissing-prototypes]
+      13 | struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+         |                         ^~~~~~~~~~~~~~~~~~~~
+>> drivers/gpu/drm/i915/display/intel_fbdev_fb.c:68:5: warning: no previous prototype for 'intel_fbdev_fb_fill_info' [-Wmissing-prototypes]
+      68 | int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
+         |     ^~~~~~~~~~~~~~~~~~~~~~~~
 
---=20
-Jani Nikula, Intel
+
+vim +/intel_fbdev_fb_alloc +13 drivers/gpu/drm/i915/display/intel_fbdev_fb.c
+
+    12	
+  > 13	struct drm_framebuffer *intel_fbdev_fb_alloc(struct drm_fb_helper *helper,
+    14						     struct drm_fb_helper_surface_size *sizes)
+    15	{
+    16		struct drm_framebuffer *fb;
+    17		struct drm_device *dev = helper->dev;
+    18		struct drm_i915_private *dev_priv = to_i915(dev);
+    19		struct drm_mode_fb_cmd2 mode_cmd = {};
+    20		struct drm_i915_gem_object *obj;
+    21		int size;
+    22	
+    23		/* we don't do packed 24bpp */
+    24		if (sizes->surface_bpp == 24)
+    25			sizes->surface_bpp = 32;
+    26	
+    27		mode_cmd.width = sizes->surface_width;
+    28		mode_cmd.height = sizes->surface_height;
+    29	
+    30		mode_cmd.pitches[0] = ALIGN(mode_cmd.width *
+    31					    DIV_ROUND_UP(sizes->surface_bpp, 8), 64);
+    32		mode_cmd.pixel_format = drm_mode_legacy_fb_format(sizes->surface_bpp,
+    33								  sizes->surface_depth);
+    34	
+    35		size = mode_cmd.pitches[0] * mode_cmd.height;
+    36		size = PAGE_ALIGN(size);
+    37	
+    38		obj = ERR_PTR(-ENODEV);
+    39		if (HAS_LMEM(dev_priv)) {
+    40			obj = i915_gem_object_create_lmem(dev_priv, size,
+    41							  I915_BO_ALLOC_CONTIGUOUS |
+    42							  I915_BO_ALLOC_USER);
+    43		} else {
+    44			/*
+    45			 * If the FB is too big, just don't use it since fbdev is not very
+    46			 * important and we should probably use that space with FBC or other
+    47			 * features.
+    48			 *
+    49			 * Also skip stolen on MTL as Wa_22018444074 mitigation.
+    50			 */
+    51			if (!(IS_METEORLAKE(dev_priv)) && size * 2 < dev_priv->dsm.usable_size)
+    52				obj = i915_gem_object_create_stolen(dev_priv, size);
+    53			if (IS_ERR(obj))
+    54				obj = i915_gem_object_create_shmem(dev_priv, size);
+    55		}
+    56	
+    57		if (IS_ERR(obj)) {
+    58			drm_err(&dev_priv->drm, "failed to allocate framebuffer (%pe)\n", obj);
+    59			return ERR_PTR(-ENOMEM);
+    60		}
+    61	
+    62		fb = intel_framebuffer_create(obj, &mode_cmd);
+    63		i915_gem_object_put(obj);
+    64	
+    65		return fb;
+    66	}
+    67	
+  > 68	int intel_fbdev_fb_fill_info(struct drm_i915_private *i915, struct fb_info *info,
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
