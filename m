@@ -4,153 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E39A6C07548
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 09:32:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B2A0C07548
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 10:00:46 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB65C10E51E;
-	Wed, 15 Nov 2023 09:32:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 820AF10E523
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 09:32:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0809510E51D;
+	Wed, 15 Nov 2023 10:00:46 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 54EC010E51C;
+ Wed, 15 Nov 2023 10:00:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700040766; x=1731576766;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-id:content-transfer-encoding:mime-version;
- bh=hA7za2549kZIMOPKzVbvbIaEi6wVmHvigyHEkwDg/BE=;
- b=DRULVn2s18QwytVux3INU3hRFD0VqCGSh8Kplz5w3/vzcKlmZg7R9dJB
- dLMew9mwLDOGKs/yOzu9mKRUtvlbNsA+hlGbqFBmCyNKfhwdn033MUO0c
- QR20b+Otbct6KhKgbJuMghdn/RmU4mwNfXMaU3pTxfANP4dlJoFe6bpdF
- jWu7XvOqyURvOMjZ6A5ef7lvu8cY2oZlsRImDsBTPNMt3sTJfG/1Jqa7A
- IdFzSDEBPfRdJ90jwsPV4V4ZUesyt3TKWpukZgJl21e+BUi1Reyq2MG52
- wXHZFss++cnGSkXahU0pRY30FVMxSHSeT0xzHUAi/pGaBxhusbsbOWLwN Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="371033217"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="371033217"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 01:32:46 -0800
+ t=1700042444; x=1731578444;
+ h=message-id:date:mime-version:from:subject:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=U8tBVasnRY9rmC5uGgbs4Ycf6EVax/i//AZ0mNG5cAw=;
+ b=DzVggsIUw9ZcxrynPydlKP5lJNViS8cbU963I0H2qS8gPx3zERjGz4qM
+ m/9vWeXoPahsXLxw/TuWYdrz7MpzbWNoFXgMO2ki6PE13gFSQ5fuOESW+
+ w7Yx429/acpzNZpYkWbd6aMj6kCTMYWVTHsiPSyXTKTo/MtR4DlzK2ZFs
+ kjFgSTpnEwxG68sFUl5HaSWsdu821GTE0Jvxeyr4oYsVPF91JlUuqadf5
+ ySyjnCPfeWCKtYcZjMfTk2hCiaSU/lZ5W/z5w0p/kb7HV0JEtovCyZhNu
+ lE6aRBMLyk/viTCuu+8+E08svJBLWgd2LwZrRTK37CxUwbRmKTo2G7b41 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="370196055"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="370196055"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2023 02:00:42 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="714828859"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="714828859"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 15 Nov 2023 01:32:45 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 15 Nov 2023 01:32:44 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 15 Nov 2023 01:32:44 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Wed, 15 Nov 2023 01:32:44 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Wed, 15 Nov 2023 01:32:43 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GqF6Bqua7uxD7FfuawmPe05Pe8Ed0GYmwRydyDC0MjGNhmZdc9UJEfKispFBKPcA3qJsmklcPzCC5ipIdZ/vSNAFNArhiRdKKhE0v7/PVSOKCgQ0KZLbjvp9rDRJtYD/aqnwcAkcOg5HLcVsOH2ADkjbdrNxdg7esquQzSQzoDvRl+JA19qo3ZlzbBXYri8gP2jlQ+CHbsppu6jcx8q0ej3kJomURuRMx1xUhtX81MqbiBEZBpKlVpgeJSUJ3zC6rNKC/ZesXCTawxDfM7SB68GJjQrOOpQWj3fKms/yuUUUavJuAN/JBhq0CJ2AAtQX6TiwvpQlOCwZ9136oQQQbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hA7za2549kZIMOPKzVbvbIaEi6wVmHvigyHEkwDg/BE=;
- b=NNFro4H8AyfILBrOJzxt2OswjCavhXZD04RA8r82Tw9flClZba0Ysx8JYyObXYPBbFQzXnRAel/UZdLiQOdQi6CpOegfrnCK51GsTHWLSH3ueOW3R9sB28yzZ6gWasreuQLsD2APLDfhYmETQjzGk5bMS8UiakByc51Io7WTqB2iU63Xg3CaqQuBAgzxTBxnuQ98YHVLBQ+9+ZENsMaqWalf3Sz6pX4R7/dPL18WqNSzdI+16nXynPvYPHjZUjXNhKHnA9PSMtr4TGFTvTx6KGA+vVszoSi8Nq/h9642ZIM1+Yw0qlhO3SuyUu7WyqO677ETzqLVWUEQ9X19X2Vq2w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
- LV2PR11MB5976.namprd11.prod.outlook.com (2603:10b6:408:17c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.31; Wed, 15 Nov
- 2023 09:32:41 +0000
-Received: from DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::ea97:f0a2:fffc:b892]) by DM4PR11MB6019.namprd11.prod.outlook.com
- ([fe80::ea97:f0a2:fffc:b892%3]) with mapi id 15.20.6977.029; Wed, 15 Nov 2023
- 09:32:41 +0000
-From: "Hogander, Jouni" <jouni.hogander@intel.com>
-To: "juhapekka.heikkila@gmail.com" <juhapekka.heikkila@gmail.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Thread-Topic: [v9,1/6] Revert "FIXME: drm/i915: xe dpt integration"
-Thread-Index: AQHaFtY/iou+iGUcREawLYjpKsvKQrB7H64A
-Date: Wed, 15 Nov 2023 09:32:41 +0000
-Message-ID: <ff65544ee1c5dd3dac642ab0b3d6438d9a96f2dc.camel@intel.com>
-References: <20231113195633.119188-1-juhapekka.heikkila@gmail.com>
- <e864e3ccbcbae65f3adb558064541f0ad9bbba78.camel@intel.com>
-In-Reply-To: <e864e3ccbcbae65f3adb558064541f0ad9bbba78.camel@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|LV2PR11MB5976:EE_
-x-ms-office365-filtering-correlation-id: 7e50b86e-a19b-470b-3e18-08dbe5bdd0d3
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: V/+JD7gElOz4qtZfZkYIdvTG8LK4xH5rXe1XXKMCq88lVBuIDvtfD+IGmgVV/kznyQ08fW5b2BRKyILN4VnS42+FGrXCMjmcbu8lRrIsouhXhlmI7qZ1kWYBkIZ0oq85CRJtlKVJyUGTF1DD6YCdf4W7HtZIBE0dZbMjy9rM0UbBdIOVfYyroTArxz2ABqGLU5ka15KgpdiCORqnTWEuFei7g7poblBpzpyn0C4aZUAx6+UKKgrTEDqW5A+od0AA7RhMXMpXPrpf6UehnrsN6F4w8DGF0pSsT1CxfF8pM/dhABiPlyNlqUen4EEYbxSIZ0YfLATMPi/pHQV1GaWHJD4YDVc2qYI5yHEp+9DDZpgbLt+T0n3itm0Cp8yfP7FiYHxRDg1YaRUNqHhh0yhyfYDTFN8gTQXhhE4DpuCIgFau5XNizEOBDdHW1ubpKpR4a69aV8XRfQD5Oh6IOD4w5TWBrEdwBCjl/VbEsBnF3XnpBQ90C2yKiCDWfR8BjZdmCCtEIwpWnbz/6DIb5kURxNE/8k/U+51XVyM/Arc1pxqHoRawFG3hroV99QDYkwSYviM1Hcm84T1aBWEtEradtSVDYq+2/N5cIuhc+EzhUx0=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(366004)(346002)(136003)(396003)(376002)(230922051799003)(1800799009)(186009)(64100799003)(451199024)(966005)(122000001)(6486002)(478600001)(36756003)(6506007)(66574015)(316002)(76116006)(6512007)(66946007)(66476007)(66446008)(66556008)(64756008)(110136005)(91956017)(38100700002)(41300700001)(83380400001)(71200400001)(8676002)(8936002)(5660300002)(86362001)(4001150100001)(2616005)(82960400001)(26005)(38070700009)(2906002);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OEg4YmRxWVJVWElaZlVUY3VVL0Rnc3B0YXNUL2ljMi92K25JZklUZzRGUkl6?=
- =?utf-8?B?VmJORVViWlluTktwdHhQQVExWVpyQmdwc1QxSGg3Rk5PdVpNVWs5ZFZuUFlL?=
- =?utf-8?B?TlYrS3hVUEJ4NEthUXNtTmpSVXVMbkhETnNiWkI0UmhlM0xCN2ludjRIbTB5?=
- =?utf-8?B?UFVOeVNvOG1BcURKK3hlOWNrUFZFbE5wZ3hHVjUwM1JBaWkvUGJTeGRGTGhy?=
- =?utf-8?B?Z3FzeEp6RHRrMXMyd2RSTERoZkY4ODZpTHZ5YTdQZmFCNWtNWU03RWp1YnNO?=
- =?utf-8?B?cmd0b3I4R09qWGx0M0xhZ2M2UUpiUUpRSG1VckRWbEpKeXB2TlBBVFFCOGE0?=
- =?utf-8?B?dlduanlsaFFmU1Y2bUdESlJuMDZkUExTc3dNRFY1ZHI1ZHpwUjJqbVlKYmNZ?=
- =?utf-8?B?Z0FKUlFaaG1HS2YwMG5ENkQrTjFNVHB0SmRCZS9QVDdLd0d4bTZFVWNnWkc0?=
- =?utf-8?B?S1dxazNya1NKQnAzMlg4QnZZMDdZT1VmYXpjVm1FNWxaZGtCRGdQUGIrcHBk?=
- =?utf-8?B?SHVOTnFLTDkrYSswdyt5R2k0TnhWN2tDejZWVWJ0STZKNlZjVW0wZDNaWi9Z?=
- =?utf-8?B?SHJhWUdKWjFTOVdzNStmZlZOdTBYNlZ2WHp6MEF2WUFIWmpmT1ByS2hUU2kr?=
- =?utf-8?B?MkRIcDAvZXdIVUJZMUtSMjJZZkFaL3o0OGRJOHNBTjdsNHlnYzVOeW4zR0Y4?=
- =?utf-8?B?Wjk0UGphSHRpNUE5dkNsTGh1TmFFci9Rd3JSR2NlTGlWMXFSc1JIa3FrdWpo?=
- =?utf-8?B?S2NnbGdUY3A2TVFWSWEvYndYNEtPREJyMnRKdXIwMGVVaFE3eW0rUTdQYXNM?=
- =?utf-8?B?b1pWVWs3OWlINHB4b2JLaDNMV0plc1BrS3ZwaHFuTkY4dHpFYUhQTDREMGx1?=
- =?utf-8?B?VWNaOWo3UGpYTUZGbVNOU0F4bjFVUHIxM2ZSSWgxOTJ0V3ppTDBYdk8zRHB1?=
- =?utf-8?B?b3YzWVU2NkRSRVJiSHFzQnRzV3dsZEFqcmNxT2lCTytndGM4R1dkUGhRREwx?=
- =?utf-8?B?MmhHY01jNzVWV0Y5QVplRURSQTlWRndOZHlmNTkrT1ZYQlFqdWRvdjlmTU85?=
- =?utf-8?B?eHI2dFZlMnErcVVpeUtrTkhuTHExU3dTWkhhVzRTQnRBSi92QjJrUW9iQTgx?=
- =?utf-8?B?bWxSYmpjZzJ2Q2FYWjBZdVNHSERONWhHSmNqR2swTFRGOGwvYUxqSmF1Mjl1?=
- =?utf-8?B?Vy9wQzlQakZ1c3lrYXF0VXpWbTZJeTAwU3VVa2hZN0Z0YjlBVWtGbzR5VTFR?=
- =?utf-8?B?UWVJeE56Vkl4TUtsZURPbEo0MFpyMVRpSFl2UHNrblFaMzNVREJXQ3BsUEZh?=
- =?utf-8?B?cEk4VVkxN29RTDByTndTN3M3NzBSUmNORGtENS91dEtiUElDZWRsUEw5cy84?=
- =?utf-8?B?WjFOR21HekVSL1lkMG9CbzQrMkpNRXMxQ3VZL1dId2pyYzlGQ0lsUUpEeFpR?=
- =?utf-8?B?S2hPUERmVFZndjRyUU1kRmRLNlVWV2hMNTFpWk43K3A4UEtJOFVUc1V1a0d3?=
- =?utf-8?B?TU43Rmh1UGFPQjZlVGFzdTljMHdXT0dhV0JDMGpnOHcwSDE3M0ZhYVRLWGti?=
- =?utf-8?B?Rk4veDZvdmdNeFFsdy9UOVFHdklLT1A3Q3NxWXRvdGpRcUJ0UlN0Z2V4SDcz?=
- =?utf-8?B?aVJNNm9WN3VzcXhaMS9oZUpFZS9JajlOcjUxYjhIekE0T2M3R2ZpTHkxczFh?=
- =?utf-8?B?ckcrUFFRV3pCUUpmZHN2bDlHVXYwWHRWWmxZYUcxa3NmWVRrSTRGV1ptWHU5?=
- =?utf-8?B?ejNrOFdJeW5XSS8zbkpBQlNhMVJ3WFFzWXdSWU0rSUhkdGUvdjAxcml3aWt2?=
- =?utf-8?B?OTE0K1BkT0haT1dmSWJxczFzdHlNS0dZeklkbjRNaS9jYlVNbUIydkJSbVBY?=
- =?utf-8?B?K3hjeTYvTDlqN2Rna2xsL1NwUHhQVUNIS25WMGl2RzNKODIwbWUxWWZRSTV4?=
- =?utf-8?B?QWtoajNEZFhmV2V6ZFIzVlVQQ25aNFFPalV3enZEai83L1NIbW1tS2VHdlFk?=
- =?utf-8?B?bEFMWTNPa3hMemwxT1d3QytoTmlyTFhTaXJGS2ZkZFRudW14RlFRYmlBWVZR?=
- =?utf-8?B?ckZSN0ZCZVBackdJVHE1UzNrbVlIRHp6NzNnVmNtS3NDcFhhQnRkNDExZ0Zj?=
- =?utf-8?B?dU9paWM2Q3JLOVNNTTlzQk43MEhKSWtkTnB5eHZjS2pLWG5GWmhvekpENTJn?=
- =?utf-8?B?L3c9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2327227B9015D14A8F55DF450E2626E0@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="855606094"
+X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="855606094"
+Received: from jcornall-mobl3.ger.corp.intel.com (HELO [10.213.211.209])
+ ([10.213.211.209])
+ by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Nov 2023 02:00:40 -0800
+Message-ID: <9142e0f2-a4ae-4eb7-8280-25d797810dd5@linux.intel.com>
+Date: Wed, 15 Nov 2023 10:00:34 +0000
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7e50b86e-a19b-470b-3e18-08dbe5bdd0d3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Nov 2023 09:32:41.8119 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sTt7hbGoensDsmK7a4mLyUWaizh5RgJvAiQEYATf/pLI4Qu+9eYktlaBa090RJ3pDlPygHtFd8pv8/gf+MajABq2R/BarG4YuzlI9QxF5Gs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR11MB5976
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [v9,
- 1/6] Revert "FIXME: drm/i915: xe dpt integration"
+User-Agent: Mozilla Thunderbird
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+References: <20231110182231.1730-1-michal.wajdeczko@intel.com>
+ <a2f1748f-e6d9-473f-943f-6f709f15282f@linux.intel.com>
+ <a3569132-0372-41d8-9add-db291d25a27b@intel.com>
+Content-Language: en-US
+Organization: Intel Corporation UK Plc
+In-Reply-To: <a3569132-0372-41d8-9add-db291d25a27b@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH] drm/doc/rfc: SR-IOV support on the new Xe
+ driver
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -162,163 +64,924 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIzLTExLTE0IGF0IDEwOjQwICswMjAwLCBIb2dhbmRlciwgSm91bmkgd3JvdGU6
-Cj4gSGVsbG8gSnVoYS1QZWtrYSwKPiAKPiBTb21lIG9mIHRoZXNlIHBhdGNoZXMgYWxyZWFkeSBz
-ZW50IHRvIGludGVsLWdmeCBhcyBkaXNjdXNzZWQKPiBvZmZsaW5lOsKgCj4gCj4gaHR0cHM6Ly9w
-YXRjaHdvcmsuZnJlZWRlc2t0b3Aub3JnL3Nlcmllcy8xMjYzNTIvCj4gCj4gVG8gbXkgb3Bpbmlv
-biB3ZSBjb3VsZCBhbHJlYWR5IG1lcmdlIHRoaXMgYW5kIHRoZW4gZG8gYmFja3BvcnQgd2hlbgo+
-IGk5MTUgcGF0Y2hlcyBhcmUgbWVyZ2VkLiBGb3IgdGhlIHdob2xlIHNldDoKPiAKPiBSZXZpZXdl
-ZC1ieTogSm91bmkgSMO2Z2FuZGVyIDxqb3VuaS5ob2dhbmRlckBpbnRlbC5jb20+CgpUaGFuayB5
-b3UgSnVoYS1QZWtrYSBmb3IgeW91ciBwYXRjaGVzLiBUaGVzZSBhcmUgbm93IG1lcmdlZC4KCkJS
-LAoKSm91bmkgSMO2Z2FuZGVyCgo+IAo+IEJSLAo+IAo+IEpvdW5pIEjDtmdhbmRlcgo+IAo+IE9u
-IE1vbiwgMjAyMy0xMS0xMyBhdCAyMTo1NiArMDIwMCwgSnVoYS1QZWtrYSBIZWlra2lsYSB3cm90
-ZToKPiA+IFRoaXMgcmV2ZXJ0cyBjb21taXQgZTQxNzUxMDQwOTE2NWI0NGFkNTliZmRiYzU5Y2Q5
-MDMxNmU5MWRjMS4KPiA+IC0tLQo+ID4gwqAuLi4vZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
-YXRvbWljX3BsYW5lLmMgfMKgIDQgLS0tCj4gPiDCoC4uLi9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2Rpc3BsYXlfdHlwZXMuaMKgwqDCoCB8wqAgNiAtLS0tCj4gPiDCoGRyaXZlcnMvZ3B1L2RybS9p
-OTE1L2Rpc3BsYXkvaW50ZWxfZHB0LmPCoMKgwqDCoMKgIHwgMTQgKysrLS0tLS0KPiA+IMKgZHJp
-dmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYi5jwqDCoMKgwqDCoMKgIHwgMzYgKysr
-LS0tLS0tLS0tLS0tCj4gPiAtLQo+ID4gLS0KPiA+IMKgLi4uL2RybS9pOTE1L2Rpc3BsYXkvc2ts
-X3VuaXZlcnNhbF9wbGFuZS5jwqDCoMKgIHzCoCA2ICstLS0KPiA+IMKgNSBmaWxlcyBjaGFuZ2Vk
-LCAxMSBpbnNlcnRpb25zKCspLCA1NSBkZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlmZiAtLWdpdCBh
-L2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfYXRvbWljX3BsYW5lLmMKPiA+IGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9hdG9taWNfcGxhbmUuYwo+ID4gaW5k
-ZXggNzdlMjgxYmY0Y2I1Li5hOGYzNmNhMTFlMmUgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dw
-dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5jCj4gPiArKysgYi9kcml2ZXJz
-L2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2F0b21pY19wbGFuZS5jCj4gPiBAQCAtMTExLDkg
-KzExMSw3IEBAIGludGVsX3BsYW5lX2R1cGxpY2F0ZV9zdGF0ZShzdHJ1Y3QgZHJtX3BsYW5lCj4g
-PiAqcGxhbmUpCj4gPiDCoMKgwqDCoMKgwqDCoMKgX19kcm1fYXRvbWljX2hlbHBlcl9wbGFuZV9k
-dXBsaWNhdGVfc3RhdGUocGxhbmUsCj4gPiAmaW50ZWxfc3RhdGUtPnVhcGkpOwo+ID4gwqAKPiA+
-IMKgwqDCoMKgwqDCoMKgwqBpbnRlbF9zdGF0ZS0+Z2d0dF92bWEgPSBOVUxMOwo+ID4gLSNpZmRl
-ZiBJOTE1Cj4gPiDCoMKgwqDCoMKgwqDCoMKgaW50ZWxfc3RhdGUtPmRwdF92bWEgPSBOVUxMOwo+
-ID4gLSNlbmRpZgo+ID4gwqDCoMKgwqDCoMKgwqDCoGludGVsX3N0YXRlLT5mbGFncyA9IDA7Cj4g
-PiDCoAo+ID4gwqDCoMKgwqDCoMKgwqDCoC8qIGFkZCByZWZlcmVuY2UgdG8gZmIgKi8KPiA+IEBA
-IC0xMzgsOSArMTM2LDcgQEAgaW50ZWxfcGxhbmVfZGVzdHJveV9zdGF0ZShzdHJ1Y3QgZHJtX3Bs
-YW5lCj4gPiAqcGxhbmUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IGludGVsX3BsYW5lX3N0
-YXRlICpwbGFuZV9zdGF0ZSA9Cj4gPiB0b19pbnRlbF9wbGFuZV9zdGF0ZShzdGF0ZSk7Cj4gPiDC
-oAo+ID4gwqDCoMKgwqDCoMKgwqDCoGRybV9XQVJOX09OKHBsYW5lLT5kZXYsIHBsYW5lX3N0YXRl
-LT5nZ3R0X3ZtYSk7Cj4gPiAtI2lmZGVmIEk5MTUKPiA+IMKgwqDCoMKgwqDCoMKgwqBkcm1fV0FS
-Tl9PTihwbGFuZS0+ZGV2LCBwbGFuZV9zdGF0ZS0+ZHB0X3ZtYSk7Cj4gPiAtI2VuZGlmCj4gPiDC
-oAo+ID4gwqDCoMKgwqDCoMKgwqDCoF9fZHJtX2F0b21pY19oZWxwZXJfcGxhbmVfZGVzdHJveV9z
-dGF0ZSgmcGxhbmVfc3RhdGUtCj4gPiA+dWFwaSk7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgaWYgKHBs
-YW5lX3N0YXRlLT5ody5mYikKPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9k
-aXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaAo+ID4gaW5kZXggYjVlNGI5NGMxMjliLi5kYjIw
-ZGQ3ZTVjMGQgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2lu
-dGVsX2Rpc3BsYXlfdHlwZXMuaAo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgKPiA+IEBAIC0xNDMsOSArMTQzLDcgQEAgc3RydWN0IGlu
-dGVsX2ZyYW1lYnVmZmVyIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc3Ry
-dWN0IGludGVsX2ZiX3ZpZXcgcmVtYXBwZWRfdmlldzsKPiA+IMKgwqDCoMKgwqDCoMKgwqB9Owo+
-ID4gwqAKPiA+IC0jaWZkZWYgSTkxNQo+ID4gwqDCoMKgwqDCoMKgwqDCoHN0cnVjdCBpOTE1X2Fk
-ZHJlc3Nfc3BhY2UgKmRwdF92bTsKPiA+IC0jZW5kaWYKPiA+IMKgfTsKPiA+IMKgCj4gPiDCoGVu
-dW0gaW50ZWxfaG90cGx1Z19zdGF0ZSB7Cj4gPiBAQCAtNjk2LDExICs2OTQsNyBAQCBzdHJ1Y3Qg
-aW50ZWxfcGxhbmVfc3RhdGUgewo+ID4gwqDCoMKgwqDCoMKgwqDCoH0gaHc7Cj4gPiDCoAo+ID4g
-wqDCoMKgwqDCoMKgwqDCoHN0cnVjdCBpOTE1X3ZtYSAqZ2d0dF92bWE7Cj4gPiAtI2lmZGVmIEk5
-MTUKPiA+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgaTkxNV92bWEgKmRwdF92bWE7Cj4gPiAtI2Vs
-c2UKPiA+IC3CoMKgwqDCoMKgwqDCoHN0cnVjdCBpOTE1X3ZtYSBlbWJlZF92bWE7Cj4gPiAtI2Vu
-ZGlmCj4gPiDCoMKgwqDCoMKgwqDCoMKgdW5zaWduZWQgbG9uZyBmbGFnczsKPiA+IMKgI2RlZmlu
-ZSBQTEFORV9IQVNfRkVOQ0UgQklUKDApCj4gPiDCoAo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMv
-Z3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZHB0LmMKPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5
-MTUvZGlzcGxheS9pbnRlbF9kcHQuYwo+ID4gaW5kZXggNmU3M2M3YTE1OTQyLi4yYjA2N2NiOTUy
-ZjAgMTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rw
-dC5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2RwdC5jCj4g
-PiBAQCAtMyw2ICszLDExIEBACj4gPiDCoCAqIENvcHlyaWdodCDCqSAyMDIxIEludGVsIENvcnBv
-cmF0aW9uCj4gPiDCoCAqLwo+ID4gwqAKPiA+ICsjaW5jbHVkZSAiZ2VtL2k5MTVfZ2VtX2RvbWFp
-bi5oIgo+ID4gKyNpbmNsdWRlICJnZW0vaTkxNV9nZW1faW50ZXJuYWwuaCIKPiA+ICsjaW5jbHVk
-ZSAiZ2VtL2k5MTVfZ2VtX2xtZW0uaCIKPiA+ICsjaW5jbHVkZSAiZ3QvZ2VuOF9wcGd0dC5oIgo+
-ID4gKwo+ID4gwqAjaW5jbHVkZSAiaTkxNV9kcnYuaCIKPiA+IMKgI2luY2x1ZGUgImk5MTVfcmVn
-LmgiCj4gPiDCoCNpbmNsdWRlICJpbnRlbF9kZS5oIgo+ID4gQEAgLTEwLDEzICsxNSw2IEBACj4g
-PiDCoCNpbmNsdWRlICJpbnRlbF9kcHQuaCIKPiA+IMKgI2luY2x1ZGUgImludGVsX2ZiLmgiCj4g
-PiDCoAo+ID4gLSNpZmRlZiBJOTE1Cj4gPiAtCj4gPiAtI2luY2x1ZGUgImdlbS9pOTE1X2dlbV9k
-b21haW4uaCIKPiA+IC0jaW5jbHVkZSAiZ2VtL2k5MTVfZ2VtX2ludGVybmFsLmgiCj4gPiAtI2lu
-Y2x1ZGUgImdlbS9pOTE1X2dlbV9sbWVtLmgiCj4gPiAtI2luY2x1ZGUgImd0L2dlbjhfcHBndHQu
-aCIKPiA+IC0KPiA+IMKgc3RydWN0IGk5MTVfZHB0IHsKPiA+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1
-Y3QgaTkxNV9hZGRyZXNzX3NwYWNlIHZtOwo+ID4gwqAKPiA+IEBAIC0zMjAsOCArMzE4LDYgQEAg
-dm9pZCBpbnRlbF9kcHRfZGVzdHJveShzdHJ1Y3QKPiA+IGk5MTVfYWRkcmVzc19zcGFjZQo+ID4g
-KnZtKQo+ID4gwqDCoMKgwqDCoMKgwqDCoGk5MTVfdm1fcHV0KCZkcHQtPnZtKTsKPiA+IMKgfQo+
-ID4gwqAKPiA+IC0jZW5kaWYKPiA+IC0KPiA+IMKgdm9pZCBpbnRlbF9kcHRfY29uZmlndXJlKHN0
-cnVjdCBpbnRlbF9jcnRjICpjcnRjKQo+ID4gwqB7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0
-IGRybV9pOTE1X3ByaXZhdGUgKmk5MTUgPSB0b19pOTE1KGNydGMtPmJhc2UuZGV2KTsKPiA+IGRp
-ZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2ZiLmMKPiA+IGIv
-ZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9mYi5jCj4gPiBpbmRleCAxY2U2MTI0
-NTcyOGEuLjM4NjJlNTVlODk4MCAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1
-L2Rpc3BsYXkvaW50ZWxfZmIuYwo+ID4gKysrIGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9pbnRlbF9mYi5jCj4gPiBAQCAtMTg4NSwzNCArMTg4NSwxNiBAQCBpbnQgaW50ZWxfcGxhbmVf
-Y29tcHV0ZV9ndHQoc3RydWN0Cj4gPiBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxhbmVfc3RhdGUpCj4g
-PiDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGludGVsX3BsYW5lX2NoZWNrX3N0cmlkZShwbGFuZV9z
-dGF0ZSk7Cj4gPiDCoH0KPiA+IMKgCj4gPiAtc3RhdGljIHZvaWQgaW50ZWxfdXNlcl9mcmFtZWJ1
-ZmZlcl9kZXN0cm95X3ZtKHN0cnVjdAo+ID4gZHJtX2ZyYW1lYnVmZmVyCj4gPiAqZmIpCj4gPiAt
-ewo+ID4gLSNpZmRlZiBJOTE1Cj4gPiAtwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgaW50ZWxfZnJhbWVi
-dWZmZXIgKmludGVsX2ZiID0KPiA+IHRvX2ludGVsX2ZyYW1lYnVmZmVyKGZiKTsKPiA+IC3CoMKg
-wqDCoMKgwqDCoGlmIChpbnRlbF9mYl91c2VzX2RwdChmYikpCj4gPiAtwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgaW50ZWxfZHB0X2Rlc3Ryb3koaW50ZWxfZmItPmRwdF92bSk7Cj4gPiAt
-I2Vsc2UKPiA+IC3CoMKgwqDCoMKgwqDCoGlmIChpbnRlbF9mYl9vYmooZmIpLT5mbGFncyAmIFhF
-X0JPX0NSRUFURV9QSU5ORURfQklUKSB7Cj4gPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgc3RydWN0IHhlX2JvICpibyA9IGludGVsX2ZiX29iaihmYik7Cj4gPiAtCj4gPiAtwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLyogVW5waW4gb3VyIGtlcm5lbCBmYiBmaXJzdCAqLwo+
-ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHhlX2JvX2xvY2soYm8sIGZhbHNlKTsK
-PiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB4ZV9ib191bnBpbihibyk7Cj4gPiAt
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgeGVfYm9fdW5sb2NrKGJvKTsKPiA+IC3CoMKg
-wqDCoMKgwqDCoH0KPiA+IC3CoMKgwqDCoMKgwqDCoHhlX2JvX3B1dChpbnRlbF9mYl9vYmooZmIp
-KTsKPiA+IC0jZW5kaWYKPiA+IC19Cj4gPiAtCj4gPiDCoHN0YXRpYyB2b2lkIGludGVsX3VzZXJf
-ZnJhbWVidWZmZXJfZGVzdHJveShzdHJ1Y3QgZHJtX2ZyYW1lYnVmZmVyCj4gPiAqZmIpCj4gPiDC
-oHsKPiA+IMKgwqDCoMKgwqDCoMKgwqBzdHJ1Y3QgaW50ZWxfZnJhbWVidWZmZXIgKmludGVsX2Zi
-ID0KPiA+IHRvX2ludGVsX2ZyYW1lYnVmZmVyKGZiKTsKPiA+IMKgCj4gPiDCoMKgwqDCoMKgwqDC
-oMKgZHJtX2ZyYW1lYnVmZmVyX2NsZWFudXAoZmIpOwo+ID4gwqAKPiA+IC3CoMKgwqDCoMKgwqDC
-oGludGVsX2Zyb250YnVmZmVyX3B1dChpbnRlbF9mYi0+ZnJvbnRidWZmZXIpOwo+ID4gK8KgwqDC
-oMKgwqDCoMKgaWYgKGludGVsX2ZiX3VzZXNfZHB0KGZiKSkKPiA+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBpbnRlbF9kcHRfZGVzdHJveShpbnRlbF9mYi0+ZHB0X3ZtKTsKPiA+IMKg
-Cj4gPiAtwqDCoMKgwqDCoMKgwqBpbnRlbF91c2VyX2ZyYW1lYnVmZmVyX2Rlc3Ryb3lfdm0oZmIp
-Owo+ID4gK8KgwqDCoMKgwqDCoMKgaW50ZWxfZnJvbnRidWZmZXJfcHV0KGludGVsX2ZiLT5mcm9u
-dGJ1ZmZlcik7Cj4gPiDCoAo+ID4gwqDCoMKgwqDCoMKgwqDCoGtmcmVlKGludGVsX2ZiKTsKPiA+
-IMKgfQo+ID4gQEAgLTIxNTUsMTggKzIxMzcsMTMgQEAgaW50IGludGVsX2ZyYW1lYnVmZmVyX2lu
-aXQoc3RydWN0Cj4gPiBpbnRlbF9mcmFtZWJ1ZmZlciAqaW50ZWxfZmIsCj4gPiDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB9Cj4gPiDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoH0KPiA+IMKgCj4gPiAtI2lmZGVmIEk5MTUKPiA+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZmItPm9ialtpXSA9ICZvYmotPmJhc2U7Cj4gPiAtI2Vs
-c2UKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBmYi0+b2JqW2ldID0gJm9iai0+
-dHRtLmJhc2U7Cj4gPiAtI2VuZGlmCj4gPiDCoMKgwqDCoMKgwqDCoMKgfQo+ID4gwqAKPiA+IMKg
-wqDCoMKgwqDCoMKgwqByZXQgPSBpbnRlbF9maWxsX2ZiX2luZm8oZGV2X3ByaXYsIGludGVsX2Zi
-KTsKPiA+IMKgwqDCoMKgwqDCoMKgwqBpZiAocmV0KQo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqBnb3RvIGVycjsKPiA+IMKgCj4gPiAtI2lmZGVmIEk5MTUKPiA+IMKgwqDCoMKg
-wqDCoMKgwqBpZiAoaW50ZWxfZmJfdXNlc19kcHQoZmIpKSB7Cj4gPiDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoHN0cnVjdCBpOTE1X2FkZHJlc3Nfc3BhY2UgKnZtOwo+ID4gwqAKPiA+
-IEBAIC0yMTc5LDEwICsyMTU2LDYgQEAgaW50IGludGVsX2ZyYW1lYnVmZmVyX2luaXQoc3RydWN0
-Cj4gPiBpbnRlbF9mcmFtZWJ1ZmZlciAqaW50ZWxfZmIsCj4gPiDCoAo+ID4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBpbnRlbF9mYi0+ZHB0X3ZtID0gdm07Cj4gPiDCoMKgwqDCoMKg
-wqDCoMKgfQo+ID4gLSNlbHNlCj4gPiAtwqDCoMKgwqDCoMKgwqAvKiBIb2xkIGEgcmVmZXJlbmNl
-IHRvIG9iamVjdCB3aGlsZSBmYiBpcyBhbGl2ZSAqLwo+ID4gLcKgwqDCoMKgwqDCoMKgeGVfYm9f
-Z2V0KG9iaik7Cj4gPiAtI2VuZGlmCj4gPiDCoAo+ID4gwqDCoMKgwqDCoMKgwqDCoHJldCA9IGRy
-bV9mcmFtZWJ1ZmZlcl9pbml0KCZkZXZfcHJpdi0+ZHJtLCBmYiwKPiA+ICZpbnRlbF9mYl9mdW5j
-cyk7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgaWYgKHJldCkgewo+ID4gQEAgLTIxOTMsNyArMjE2Niw4
-IEBAIGludCBpbnRlbF9mcmFtZWJ1ZmZlcl9pbml0KHN0cnVjdAo+ID4gaW50ZWxfZnJhbWVidWZm
-ZXIgKmludGVsX2ZiLAo+ID4gwqDCoMKgwqDCoMKgwqDCoHJldHVybiAwOwo+ID4gwqAKPiA+IMKg
-ZXJyX2ZyZWVfZHB0Ogo+ID4gLcKgwqDCoMKgwqDCoMKgaW50ZWxfdXNlcl9mcmFtZWJ1ZmZlcl9k
-ZXN0cm95X3ZtKGZiKTsKPiA+ICvCoMKgwqDCoMKgwqDCoGlmIChpbnRlbF9mYl91c2VzX2RwdChm
-YikpCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaW50ZWxfZHB0X2Rlc3Ryb3ko
-aW50ZWxfZmItPmRwdF92bSk7Cj4gPiDCoGVycjoKPiA+IMKgwqDCoMKgwqDCoMKgwqBpbnRlbF9m
-cm9udGJ1ZmZlcl9wdXQoaW50ZWxfZmItPmZyb250YnVmZmVyKTsKPiA+IMKgwqDCoMKgwqDCoMKg
-wqByZXR1cm4gcmV0Owo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jCj4gPiBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3Bs
-YXkvc2tsX3VuaXZlcnNhbF9wbGFuZS5jCj4gPiBpbmRleCA2OGVhYmUwODlhYWYuLjQ1NTNkZDZi
-ZmJiZCAxMDA2NDQKPiA+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvc2tsX3Vu
-aXZlcnNhbF9wbGFuZS5jCj4gPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3Nr
-bF91bml2ZXJzYWxfcGxhbmUuYwo+ID4gQEAgLTEwMTAsMTMgKzEwMTAsOSBAQCBzdGF0aWMgdTMy
-IHNrbF9zdXJmX2FkZHJlc3MoY29uc3Qgc3RydWN0Cj4gPiBpbnRlbF9wbGFuZV9zdGF0ZSAqcGxh
-bmVfc3RhdGUsCj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIFRoZSBEUFQg
-b2JqZWN0IGNvbnRhaW5zIG9ubHkgb25lIHZtYSwgc28gdGhlCj4gPiBWTUEncwo+ID4gb2Zmc2V0
-Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAqIHdpdGhpbiB0aGUgRFBUIGlz
-IGFsd2F5cyAwLgo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKi8KPiA+IC3C
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBkcm1fV0FSTl9PTigmaTkxNS0+ZHJtLCBvZmZz
-ZXQgJiAweDFmZmZmZik7Cj4gPiAtI2lmZGVmIEk5MTUKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgZHJtX1dBUk5fT04oJmk5MTUtPmRybSwgcGxhbmVfc3RhdGUtPmRwdF92bWEt
-Cj4gPiA+IG5vZGUuc3RhcnQpOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGRy
-bV9XQVJOX09OKCZpOTE1LT5kcm0sIG9mZnNldCAmIDB4MWZmZmZmKTsKPiA+IMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIG9mZnNldCA+PiA5Owo+ID4gLSNlbHNlCj4gPiAt
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIDA7Cj4gPiAtI2VuZGlmCj4gPiDC
-oMKgwqDCoMKgwqDCoMKgfSBlbHNlIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgZHJtX1dBUk5fT04oJmk5MTUtPmRybSwgb2Zmc2V0ICYgMHhmZmYpOwo+ID4gwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gb2Zmc2V0Owo+IAoK
+
+On 14/11/2023 16:55, Michal Wajdeczko wrote:
+> On 14.11.2023 13:37, Tvrtko Ursulin wrote:
+>> On 10/11/2023 18:22, Michal Wajdeczko wrote:
+>>> The Single Root I/O Virtualization (SR-IOV) extension to the PCI
+>>> Express (PCIe) specification suite is supported starting from 12th
+>>> generation of Intel Graphics processors.
+>>>
+>>> This RFC aims to explain how do we want to add support for SR-IOV
+>>> to the new Xe driver and to propose related additions to the sysfs.
+>>>
+>>> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>> Cc: Oded Gabbay <ogabbay@kernel.org>
+>>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>>> Cc: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+>>> Cc: Daniel Vetter <daniel@ffwll.ch>
+>>> ---
+>>>    Documentation/gpu/rfc/index.rst             |   5 +
+>>>    Documentation/gpu/rfc/sysfs-driver-xe-sriov | 501 ++++++++++++++++++++
+>>>    Documentation/gpu/rfc/xe_sriov.rst          | 192 ++++++++
+>>>    3 files changed, 698 insertions(+)
+>>>    create mode 100644 Documentation/gpu/rfc/sysfs-driver-xe-sriov
+>>>    create mode 100644 Documentation/gpu/rfc/xe_sriov.rst
+>>>
+>>> diff --git a/Documentation/gpu/rfc/index.rst
+>>> b/Documentation/gpu/rfc/index.rst
+>>> index e4f7b005138d..fc5bc447f30d 100644
+>>> --- a/Documentation/gpu/rfc/index.rst
+>>> +++ b/Documentation/gpu/rfc/index.rst
+>>> @@ -35,3 +35,8 @@ host such documentation:
+>>>    .. toctree::
+>>>         xe.rst
+>>> +
+>>> +.. toctree::
+>>> +   :maxdepth: 1
+>>> +
+>>> +   xe_sriov.rst
+>>> diff --git a/Documentation/gpu/rfc/sysfs-driver-xe-sriov
+>>> b/Documentation/gpu/rfc/sysfs-driver-xe-sriov
+>>> new file mode 100644
+>>> index 000000000000..77748204dd83
+>>> --- /dev/null
+>>> +++ b/Documentation/gpu/rfc/sysfs-driver-xe-sriov
+>>> @@ -0,0 +1,501 @@
+>>> +﻿.. Documentation/ABI/testing/sysfs-driver-xe-sriov
+>>> +..
+>>> +.. Intel Xe driver ABI (SR-IOV extensions)
+>>> +..
+>>> +    The Single Root I/O Virtualization (SR-IOV) extension to
+>>> +    the PCI Express (PCIe) specification suite is supported
+>>> +    starting from 12th generation of Intel Graphics processors.
+>>> +
+>>> +    This document describes Xe driver specific additions.
+>>> +
+>>> +    For description of generic SR-IOV sysfs attributes see
+>>> +    "Documentation/ABI/testing/sysfs-bus-pci" document.
+>>> +
+>>> +    /sys/bus/pci/drivers/xe/BDF/
+>>> +    ├── sriov_auto_provisioning
+>>> +    │   ├── admin_mode
+>>> +    │   ├── enabled
+>>> +    │   ├── reset_defaults
+>>> +    │   ├── resources
+>>> +    │   │   ├── default_contexts_quota
+>>> +    │   │   ├── default_doorbells_quota
+>>> +    │   │   ├── default_ggtt_quota
+>>> +    │   │   └── default_lmem_quota
+>>> +    │   ├── scheduling
+>>> +    │   │   ├── default_exec_quantum_ms
+>>> +    │   │   └── default_preempt_timeout_us
+>>> +    │   └── monitoring
+>>> +    │       ├── default_cat_error_count
+>>> +    │       ├── default_doorbell_time_us
+>>> +    │       ├── default_engine_reset_count
+>>> +    │       ├── default_h2g_time_us
+>>> +    │       ├── default_irq_time_us
+>>> +    │       └── default_page_fault_count
+>>
+>>  From the department of bike-shedding, one alternative could be to have a
+>> directory called defaults which avoids having to have the default_
+>> prefix on everything under it.
+> 
+> like this ?
+> 
+>      /sys/bus/pci/drivers/xe/BDF/
+>      ├── sriov_auto_provisioning
+>      │   ├── admin_mode
+>      │   ├── enabled
+>      │   └── defaults
+>      │       ├── resources
+>      │       │   ├── contexts_quota
+>      │       │   ├── doorbells_quota
+>      │       │   ├── ggtt_quota
+>      │       │   └── lmem_quota
+>      │       ├── scheduling
+>      │       │   ├── exec_quantum_ms
+>      │       │   └── preempt_timeout_us
+>      │       └── monitoring
+>      │           ├── cat_error_count
+>      │           ├── doorbell_time_us
+>      │           ├── engine_reset_count
+>      │           ├── h2g_time_us
+>      │           ├── irq_time_us
+>      │           └── page_fault_count
+
+Looks better to me but it may be just a matter of taste so I was just 
+roughly outlining an alternative.
+
+>>
+>>> +
+>>> +    /sys/bus/pci/drivers/xe/BDF/
+>>> +    ├── sriov_extensions
+>>
+>> Should this be xe_sriov_extensions or if not doesn't it need agreement
+>> to reserve the keyword in Documentation/ABI/testing/sysfs-bus-pci?
+>> Sriov_auto_provisioning too I guess.
+> 
+> I didn't spot in ABI documents any driver specific additions to device
+> that were using extra prefix, nor the "reservation" placeholders.
+> 
+> but if we want to go with a prefix, then maybe all our additions at
+> device level should have one, including already added tileT:
+> 
+> 	tile0 -> xe_tile0
+> 
+> or even to match existing mei file we should use "xe." prefix instead:
+> 
+> 	xe.sriov_auto_provisioning
+> 	xe.sriov_extension
+> 	xe.tile0
+> 	xe.mei-gsc...
+
+I don't know really - I assumed since there are common sriov_ prefix 
+controls at the PCI level, that adding driver specific things using the 
+same namespace might require agreement from the PCI core folks. Perhaps 
+a topic to consult the respestive mailing list(s).
+
+>>> +    │   ├── monitoring_period_ms
+>>> +    │   ├── strict_scheduling_enabled
+>>> +    │   ├── pf
+>>> +    │   │   ├── device -> ../../../BDF
+>>> +    │   │   ├── priority
+>>> +    │   │   ├── tile0
+>>> +    │   │   │   ├── gt0
+>>> +    │   │   │   │   ├── exec_quantum_ms
+>>> +    │   │   │   │   ├── preempt_timeout_us
+>>> +    │   │   │   │   └── thresholds
+>>> +    │   │   │   │       ├── cat_error_count
+>>> +    │   │   │   │       ├── doorbell_time_us
+>>> +    │   │   │   │       ├── engine_reset_count
+>>> +    │   │   │   │       ├── h2g_time_us
+>>> +    │   │   │   │       ├── irq_time_us
+>>> +    │   │   │   │       └── page_fault_count
+>>> +    │   │   │   └── gtX
+>>> +    │   │   └── tileT
+>>> +    │   ├── vf1
+>>> +    │   │   ├── device -> ../../../BDF+1
+>>> +    │   │   ├── stop
+>>> +    │   │   ├── tile0
+>>> +    │   │   │   ├── ggtt_quota
+>>> +    │   │   │   ├── lmem_quota
+>>> +    │   │   │   ├── gt0
+>>> +    │   │   │   │   ├── contexts_quota
+>>> +    │   │   │   │   ├── doorbells_quota
+>>> +    │   │   │   │   ├── exec_quantum_ms
+>>> +    │   │   │   │   ├── preempt_timeout_us
+>>> +    │   │   │   │   └── thresholds
+>>> +    │   │   │   │       ├── cat_error_count
+>>> +    │   │   │   │       ├── doorbell_time_us
+>>> +    │   │   │   │       ├── engine_reset_count
+>>> +    │   │   │   │       ├── h2g_time_us
+>>> +    │   │   │   │       ├── irq_time_us
+>>> +    │   │   │   │       └── page_fault_count
+>>> +    │   │   │   └── gtX
+>>> +    │   │   └── tileT
+>>> +    │   └── vfN
+>>> +..
+>>> +
+>>> +
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        This directory appears on the device when:
+>>> +
+>>> +         - device supports SR-IOV, and
+>>> +         - device is a Physical Function (PF), and
+>>> +         - xe driver supports SR-IOV PF on given device, and
+>>> +         - xe driver supports automatic VFs provisioning.
+>>> +
+>>> +        This directory is used as a root for all attributes related to
+>>> +        automatic provisioning of SR-IOV Physical Function (PF) and/or
+>>> +        Virtual Functions (VFs).
+>>> +
+>>> +
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/enabled
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        (RW) bool (0, 1)
+>>> +
+>>> +        This file represents configuration flag for the automatic VFs
+>>> +        (un)provisioning that could be performed by the PF.
+>>> +
+>>> +        The default value is 1 (true).
+>>> +
+>>> +        This flag can be set to false, unless manual provisioning is not
+>>> +        applicable for given platform or it is not supported by current
+>>> +        PF implementation. In such cases -EPERM will be returned.
+>>> +
+>>> +        This flag will be automatically set to false when there will be
+>>> +        other attempts to change any of VF's resource provisioning.
+>>> +        See "sriov_extensions" section for details.
+>>> +
+>>> +        This flag can be set back to true if and only if all VFs are
+>>> +        fully unprovisioned, otherwise -EEXIST error will be returned.
+>>> +
+>>> +        false = "disabled"
+>>> +            When disabled, then PF will not attempt to do automatic
+>>> +            VFs provisioning when VFs are being enabled and will not
+>>> +            perform automatic unprovisioning of the VFs when VFs will
+>>> +            be disabled.
+>>> +
+>>> +        true = "enabled"
+>>> +            When enabled, then on VFs enabling PF will do automatic
+>>> +            VFs provisioning based on the default settings described
+>>> +            below.
+>>> +
+>>> +            If automatic VFs provisioning fails due to some reasons,
+>>> +            then VFs will not be enabled.
+>>> +
+>>> +            If enabled, all resources allocated during VFs enabling
+>>> +            will be released during VFs disabling (automatic
+>>> unprovisioning).
+>>> +
+>>> +
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/admin_mode
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        (RW) bool (0, 1)
+>>> +
+>>> +        This file represents configuration flag for the automatic VFs
+>>> +        provisioning that could be performed by the PF.
+>>> +
+>>> +        The default value depends on the platform type.
+>>> +
+>>> +        This flag can be changed any time, but will have no effect if
+>>> +        VFs are already provisioned.
+>>> +
+>>> +        If enabled (default on discrete platforms) then the PF will
+>>> +        retain only minimum hardcoded resources for its own use when
+>>> +        doing VFs automatic provisioning and will not use any default
+>>> +        values described below for its own configuration.
+>>> +
+>>> +        If disabled (default on integrated platforms) then the PF will
+>>> +        treat itself like yet another additional VF in all fair resource
+>>> +        allocations and will also try to apply default provisioning
+>>> +        values described below for its own configuration.
+>>> +
+>>
+>> One alternative could be to expose two sets of defaults, the PF and VF
+>> ones. With the advantage of allowing the "admin mode" / "minimal PF" to
+>> be explicitly configurable instead of hardcoded. Should be more flexible.
+> 
+> but this "admin_mode" is supposed to be configurable, only default
+> setting will depend on the platform.
+> 
+> the only "hardcoded" values will be what is needed (or already used) by
+> the PF for it's basic operations (load firmwares, communication, clears)
+> 
+> also note that when running in "minimal PF" mode then "defaults" are not
+> applicable to the PF, as PF is not treated like a VF, and IMO any
+> customization of PF scheduling parameters should be done directly using
+> "sriov_extensions/pf/tile/gt/*" attributes, not inside
+> "auto_provisioning/defaults"
+> 
+> only in "non-admin-mode" the PF will benefit from the default
+> scheduling/monitoring attributes, as then it will be treated as "yet
+> another VF"
+> 
+> regarding regular resources, PF will always be able to use what was not
+> allocated to other VFs (as primary goal is to have equal allocations on
+> each VF, PF will take any remaining anyway)
+
+Right, I was simply suggesting to allow configuring this hardcoded 
+"minimal" PF mode by exposing a second set of tunables. So that they 
+don't have to be hardcoded but users can set up the parameters for their 
+own "admin mode". I was not suggesting not having the admin_mode boolean 
+control. But maybe it is not even needed? Maybe it would work to allow 
+individual "reserve for PF" resources be individually controlled at runtime?
+
+>> If the discrete vs integrated distinction is wanted it could simply be
+>> made by initialy populating (driver init) the respective defaults based
+>> on the platform type.
+>>
+>>> +
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/reset_defaults
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        (WO) bool (1)
+>>> +
+>>> +        Writing to this file will reset all default provisioning
+>>> parameters
+>>> +        listed below to the default values.
+>>
+>> Maybe this isn't required if you can say it is the responsibility of
+>> whoever changes the defaults to either know what they are doing, or to
+>> save and restore themselves if they. It is not a major concern but if
+>> writing kernel code can be avoided perhaps it can be considered.
+> 
+> true, it's optional, added only as a way to make sure no residual
+> changes impacts new auto-provisioning (without it we will have to ask to
+> reload the driver)
+
+Why reload? If someone modified the defaults they can restore it, if so 
+they want. If they can't, tough luck to them.
+
+> 
+>>
+>>> +
+>>> +
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/resources/default_contexts_quota
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/resources/default_doorbells_quota
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/resources/default_ggtt_quota
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/resources/default_lmem_quota
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/scheduling/default_exec_quantum_ms
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/scheduling/default_preempt_timeout_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_cat_error_count
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_doorbell_time_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_engine_reset_count
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_h2g_time_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_irq_time_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_auto_provisioning/monitoring/default_page_fault_count
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        These files represent default provisioning that should be used
+>>> +        for VFs automatic provisioning.
+>>> +
+>>> +        These values can be changed any time, but will have no effect if
+>>> +        VFs are already provisioned.
+>>> +
+>>> +        default_contexts_quota: (RW) integer 0..U32_MAX
+>>> +            The number of GuC context IDs to provide to the VF.
+>>> +            The default value is 0 (use fair allocations).
+>>> +            See "sriov_extensions/vfN/tileT/gtX/contexts_quota" for
+>>> details.
+>>> +
+>>> +        default_doorbells_quota: (RW) integer 0..U32_MAX
+>>> +            The number of GuC doorbells to provide to the VF.
+>>> +            The default value is 0 (use fair allocations).
+>>> +            See "sriov_extensions/vfN/tileT/gtX/doorbells_quota" for
+>>> details.
+>>> +
+>>> +        default_ggtt_quota: (RW) integer 0..U32_MAX
+>>> +            The size of the GGTT address space (in bytes) to provide
+>>> to the VF.
+>>> +            The default value is 0 (use fair allocations).
+>>> +            See "sriov_extensions/vfN/tileT/ggtt_quota" for details.
+>>> +
+>>> +        default_lmem_quota: (RW) integer 0..U32_MAX
+>>> +            The size of the LMEM (in bytes) to provide to the VF.
+>>> +            The default value is 0 (use fair allocations).
+>>> +            See "sriov_extensions/vfN/tileT/lmem_quota" for details.
+>>> +
+>>> +        default_exec_quantum_ms: (RW) integer 0..U32_MAX
+>>> +            The GT execution quantum (in millisecs) assigned to the
+>>> function.
+>>> +            The default value is 0 (infinify).
+>>> +            See "sriov_extensions/vfN/tileT/gtX/exec_quantum_ms" for
+>>> details.
+>>> +
+>>> +        default_preempt_timeout_us: (RW) integer 0..U32_MAX
+>>> +            The GT preemption timeout (in microsecs) assigned to the
+>>> function.
+>>> +            The default value is 0 (infinity).
+>>> +            See "sriov_extensions/vfN/tileT/gtX/preempt_timeout_us"
+>>> for details.
+>>
+>> I have a slight concern here on the usability of GuC specific tunables.
+>>
+>> Whereas one can imagine an external entity (some admin, somewhere) to
+>> probably pretty much understand what it means to partition the local
+>> memory, address space, and set the scheduling timeouts (all are intuitve
+>> and obvious concepts), how are they suppose to approach the GuC
+>> doorbells and contexts?
+> 
+> GuC submission is mandatory for SRIOV feature to work and both GuC
+> doorbells and contexts IDs are almost the same kind of resources like
+> memory or address space.
+
+What does a random server admin do with them? When are they supposed to 
+change them and with what considerations and parameters? Maybe this 
+document is not the place to explain that but presumable it has to be 
+somewhere otherwise it is an unusable part of the ABI.
+
+> but agree, they might be not something that were highly visible (on
+> Linux we don't use doorbells at all, and we had 64K of contexts so never
+> worried about running out of them).
+> 
+>>
+>> It could be a matter of adding more documentation for those two, or it
+>> even could make sense to shove them under a guc prefix (or
+>> subdirectory?) to signify the fact they are implementation details and
+>> not a fundamental concept.
+> 
+> IMO "guc_" prefix would be better, as with yet another subdirectory we
+> might have too complex structure and GuC stuff is to some extend a
+> "fundamental concept" for current platforms.
+> 
+>>
+>>> +
+>>> +        default_cat_error_count: (RW) integer 0..U32_MAX
+>>> +        default_doorbell_time_us: (RW) integer 0..U32_MAX
+>>> +        default_engine_reset_count: (RW) integer 0..U32_MAX
+>>> +        default_h2g_time_us: (RW) integer 0..U32_MAX
+>>> +        default_irq_time_us: (RW) integer 0..U32_MAX
+>>> +        default_page_fault_count: (RW) integer 0..U32_MAX
+>>> +            The monitoring threshold to be set for the function.
+>>> +            The default value is 0 (don't monitor).
+>>> +            See "sriov_extensions/vfN/tileT/gtX/thresholds" for details.
+>>> +
+>>> +
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        This directory appears on Xe device when:
+>>> +
+>>> +         - device supports SR-IOV, and
+>>> +         - device is a Physical Function (PF), and
+>>> +         - driver is enabled to support SR-IOV PF on given device.
+>>> +
+>>> +        This directory is used as a root for all attributes required to
+>>> +        manage both Physical Function (PF) and Virtual Functions (VFs).
+>>> +
+>>> +
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/strict_scheduling_enabled
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        (RW) bool
+>>> +
+>>> +        This file represents a flag used to determine if scheduling
+>>> +        parameters should be respected even if there is no active
+>>> +        workloads submitted by the PF or VFs.
+>>> +
+>>> +        This flag is disabled by default, unless strict scheduling is
+>>> +        not applicable on given platform. In such case this file will
+>>> +        be read-only.
+>>> +
+>>> +        The change to this file may have no effect if VFs are not yet
+>>> enabled.
+>>> +        If strict scheduling can't be enabled in GuC then write will
+>>> fail with -EIO.
+>>
+>> I think the semantics of this need to be documented ie. how it interacts
+>> with exec_quantum_ms. If it does? I am guessing that it has to otherwise
+>> I don't know what it would mean - presumably unused timeslices are not
+>> given to other entities but time just goes wasted? But it is also a
+> 
+> if strict scheduling is disabled and given VF has no work, then it's
+> execution quantum expires immediately, allowing work from next VF to be
+> submitted to the GPU, thus maximizing GPU load.
+> 
+> if strict scheduling is set but given VF has no work, then VF's
+> timeslice is effectively wasted, as GPU will be idle, but at the benefit
+> that other VFs will see no fluctuations in their interval.
+
+Therefore I suggest explaining the semantics and providing examples in 
+the docs. :)
+
+But it does seem like a confusing setting. You cannot for instance 
+guarantee a certain time budget per VM unless you can control and 
+configure all the VMs and even then only by wasting computing resources. :(
+
+> if you own all VMs then you probably don't want to set this ;)
+> 
+>> question on over what time interval. Or that too is purely defined by
+>> the number of PF+VFs and their respective allocated quanta.
+>>
+>> Also, would there be benefit, assuming it is possible with GuC, to allow
+>> configuring it per PF/VF?
+> 
+> this is a policy setting, applicable per each GuC scheduler, not per PF
+> or VF, but moved level up here to make sure we apply same settings for
+> the whole device (all GuCs) in the same, otherwise it would be too messy
+> 
+> note that the is other related attribute named "priority" that GuC will
+> implement for the PF, but with later plans to extend this to VFs too.
+
+Ok.
+
+>>> +
+>>> +
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/monitoring_period_ms
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        (RW) integer
+>>> +
+>>> +        This file represents the configuration knob used by adverse
+>>> event
+>>> +        monitoring. A value here is the period in millisecs during which
+>>> +        events are counted and the total is checked against a threshold.
+>>> +        See "sriov_extensions/vfN/tileT/gtX/thresholds" for more
+>>> details.
+>>> +
+>>> +        Default is 0 (monitoring is disabled).
+>>> +
+>>> +        If monitoring capability is not available, then attempt to
+>>> enable
+>>> +        will fail with -EPERM error. If monitoring can't be enabled in
+>>> +        GuC then write will fail with -EIO.
+>>
+>> Could the docs explain if there is a downside to enabling it, which is
+>> probably why it isn't enabled by default? Because it does sound natural
+>> that adverse events should be noticed.
+> 
+> the problem is that the definition what should be treated as unwanted VF
+> activity is very blurred and depends what kind of WLs will be run on VM,
+> as in some scenarios some sporadic issues are just "normal"
+> 
+> that's why we want to expose only knobs and notification mechanism,
+> without enforcing any policy on firmware or PF driver level, leaving
+> that to the administrator
+
+Okay but runtime cost wise there are no downsides to say constantly run 
+with enabled reporting of VF GPU resets of faults?
+
+>>> +
+>>> +
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        This directory holds all attributes related to the SR-IOV
+>>> +        Physical Function (PF).
+>>> +
+>>> +
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        This directory holds all attributes related to the SR-IOV
+>>> +        Virtual Function (VF).
+>>> +
+>>> +        Note that VF numbers (N) are 1-based as described in PCI
+>>> SR-IOV specification.
+>>> +        The Xe driver implementaton follows that naming schema.
+>>> +
+>>> +        There will be "vf1", "vf2" up to "vfN" directories, where N
+>>> matches
+>>> +        value of the PCI "sriov_totalvfs" attribute.
+>>> +
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        This directory holds all SR-IOV attributes related to the
+>>> device tile.
+>>> +        The tile numbers (T) start from 0.
+>>> +
+>>> +        There is at least one "tile0/" directory present.
+>>> +
+>>> +
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        This directory holds all SR-IOV attributes related to the
+>>> device GT.
+>>> +        The GT numbers (X) start from 0.
+>>> +
+>>> +        There is at least one "gt0/" directory present.
+>>> +
+>>> +
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/device
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/device
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        (symbolic link)
+>>> +
+>>> +        Backlink to the PCI device entry representing given function.
+>>> +        For PF this link is always present.
+>>> +        For VF this link is present only for currently enabled VFs.
+>>> +
+>>> +
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/priority
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        (RW) string
+>>> +
+>>> +        This file represents a GuC Scheduler knob to override the
+>>> default
+>>> +        round-robin or FIFO scheduler policies implemented by the GuC.
+>>> +
+>>> +        The default value is "peer".
+>>> +
+>>> +        This flag can be changed, unless such change is not applicable
+>>> +        for given platform or is not supported by current GuC firmware.
+>>> +        In such case this file could be read-only or will return -EPERM
+>>> +        on write attempt.
+>>> +
+>>> +        "immediate"
+>>> +            GuC will Schedule PF workloads immediately and PF
+>>> +            workloads only until the PF's work queues in GuC
+>>> +            are empty.
+>>> +
+>>> +        "lazy"
+>>> +            GuC will Schedule PF workloads at the next opportune
+>>> +            moment and PF workloads only until the PF work queues
+>>> +            in GuC are empty.
+>>> +
+>>> +        "peer"
+>>> +            GuC Scheduler will treat PF and VFs with equal priority.
+>>
+>> Hmmm this is too very GuC specific and I wonder what is the usecase for
+>> lazy? Lazy = "don't care when it runs, but when it runs it will run
+>> everything queued so far", right? Feels a bit odd on first.
+>>
+>> "Immediate" may also not be depending on preemption granularity and
+>> workloads, right?
+>>
+>> Are there any ideas to express the knobs in a more generic fashion?
+> 
+> will talk with GuC architect to provide a better explanation.
+> 
+> in the meantime, we can treat that as a "placeholder" for the knob that
+> will provide flexibility when GuC shall attempt to submit, usually
+> sporadic, workloads from the otherwise idle PF.
+> 
+> this is important in the "admin-mode" and with "strict-scheduling" as we
+> don't want to waste PF's execution_quantum
+> 
+> if you think that it is too unstable knob, we can try to hide it in
+> debugfs first, expose when more mature
+
+I didn't know it is unstable so yes, if it is not know how "priority" 
+control will work then it is too early to document/comment.
+
+Otherwise what I saw it appears to be composed of two booleans, with one 
+combination missing. Say like this:
+
+   PF preempts | PF greedy | Mode
+  -------------+-----------+-------------------
+         +     +     +     + "immediate"
+  -------------+-----------+-------------------
+         -     +     +     + "lazy"
+  -------------+-----------+-------------------
+         -     +     -     + "peer"
+  -------------+-----------+-------------------
+         +     +     -     +  not implemented?
+  -------------+-----------+-------------------
+
+First thought was who ever would want the "lazy" mode?
+
+Second thought was why not expose the booleans directly.
+
+Third thought was that the unimplemented mode, the one where queued PF 
+work would preempt the VF, but not consume everything queued (up to 
+execution quanta only) could be an interesting one.
+
+Sounds like could be useful for Chrome use cases where PF would be the 
+compositor and VF a game, so that everytime compositor wants to flip it 
+gets the priority, but not so much starves everyone else if something 
+else happens to be running there. But it is not as simple as that and in 
+reality "immediate" is probably good enough so meh.
+
+Oh one more thing, would it be useful for "admin mode" to control this 
+too? Presumably some sort of admin console wants to have good 
+interactivity and not be UI starved.
+
+>>> +
+>>> +
+>>> +What:        /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/stop
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        (WO) bool (1)
+>>> +
+>>> +        Write to this file will force GuC to stop handle any requests
+>>> from
+>>> +        this VF, but without triggering a FLR.
+>>> +        To recover, the full FLR must be issued using generic
+>>> "device/reset".
+>>> +
+>>> +        This file allows to implement custom policy mechanism when VF is
+>>> +        misbehaving and triggering adverse events above defined
+>>> thresholds.
+>>> +
+>>> +
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/exec_quantum_ms
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/preempt_timeout_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/exec_quantum_ms
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/preempt_timeout_us
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        These files represent scheduling parameters of the functions.
+>>> +
+>>> +        These scheduling parameters can be changed even if VFs are
+>>> enabled
+>>> +        and running, unless such change is not applicable on given
+>>> platform
+>>> +        due to fixed hardware or firmware assignment.
+>>> +
+>>> +        exec_quantum_ms: (RW) integer 0..U32_MAX
+>>> +            The GT execution quantum in [ms] assigned to the function.
+>>> +            Requested quantum might be aligned per HW/FW requirements.
+>>> +
+>>> +            Default is 0 (unlimited).
+>>> +
+>>> +        preempt_timeout_us: (RW) integer 0..U32_MAX
+>>> +            The GT preemption timeout in [us] assigned to the function.
+>>> +            Requested timeout might be aligned per HW/FW requirements.
+>>> +
+>>> +            Default is 0 (unlimited).
+>>
+>> Alignment for the above two will be visible after read-back?
+> 
+> unfortunately not, as GuC does not expose any interface to query final
+> values (sometimes they depend on HW clocks, some are FW implementation
+> details, that could change with new release)
+
+I would say there has to be some feedback otherwise it is a very bad 
+uapi. My 2c at least.. it does not sound acceptable to have controls 
+which we cannot know if they did anything.
+
+>>> +
+>>> +
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/ggtt_quota
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/lmem_quota
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/contexts_quota
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/doorbells_quota
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        These files represent shared resource assigned to the functions.
+>>> +
+>>> +        These resource parameters can be changed, unless VF is
+>>> already running,
+>>> +        or such change is not applicable on given platform due to
+>>> fixed hardware
+>>> +        or firmware assignment.
+>>> +
+>>> +        Writes to these attributes may fail with:
+>>> +            -EPERM if change is not applicable on give HW/FW.
+>>> +            -E2BIG if value larger that HW/FW limit.
+>>> +            -EDQUOT if value is larger than maximum quota defined by
+>>> the PF.
+>>> +            -ENOSPC if PF can't allocate required quota.
+>>> +            -EBUSY if the resource is currently in use by the VF.
+>>> +            -EIO if GuC refuses to change provisioning.
+>>
+>> Why it would refuse if input is valid? In other words, what is the
+>> user/admin supposed to do on -EIO?
+> 
+> in early implementations we were fully relying on the GuC and return
+> -EIO on every error, as we didn't track the VF state that would allow us
+> to catch improper changes while VF is running (-EBUSY above) but even if
+> we (PF) do our best then GuC is still a decider here and may return
+> (unlikely) error.
+> 
+> as recovery we will be suggesting a VF FLR and then retry.
+
+Sounds like another bad uapi. User might have got everything right, 
+avoided all the list errnos by respecting all restrictions and provided 
+good inputs, but can still receive an unexplained error and "have you 
+tried turning it off and on again" will be the solution. :(
+
+I guess it is not the end of the world if -EIO will truly never happen 
+but it still doesn't sound nice.
+
+It would be much nicer if GuC would actually say why so that the right 
+errno can be passed on.
+
+>>
+>>> +
+>>> +        ggtt_quota: (RW) integer 0..U64_MAX
+>>> +            The size of the GGTT address space (in bytes) assigned to
+>>> the VF.
+>>> +            The value might be aligned per HW/FW requirements.
+>>> +
+>>> +            Default is 0 (unprovisioned).
+>>> +
+>>> +        lmem_quota: (RW) integer 0..U64_MAX
+>>> +            The size of the Local Memory (in bytes) assigned to the VF.
+>>> +            The value might be aligned per HW/FW requirements.
+>>> +
+>>> +            This attribute is only available on discrete platforms.
+>>> +
+>>> +            Default is 0 (unprovisioned).
+>>> +
+>>> +        contexts_quota: (RW) 0..U16_MAX
+>>> +            The number of GuC submission contexts assigned to the VF.
+>>> +            This value might be aligned per HW/FW requirements.
+>>> +
+>>> +            Default is 0 (unprovisioned).
+>>> +
+>>> +        doorbells_quota: (RW) 0..U16_MAX
+>>> +            The number of GuC doorbells assigned to the VF.
+>>> +            This value might be aligned per HW/FW requirements.
+>>> +
+>>> +            Default is 0 (unprovisioned).
+>>> +
+>>> +
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/cat_error_count
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/doorbell_time_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/engine_reset_count
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/h2g_time_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/irq_time_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/pf/tileT/gtX/thresholds/page_fault_count
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/cat_error_count
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/doorbell_time_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/engine_reset_count
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/h2g_time_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/irq_time_us
+>>> +What:
+>>> /sys/bus/pci/drivers/xe/.../sriov_extensions/vfN/tileT/gtX/thresholds/page_fault_count
+>>> +Date:        2024
+>>> +KernelVersion:    TBD
+>>> +Contact:    intel-xe@lists.freedesktop.org
+>>> +Description:
+>>> +        These files represent threshold values used by the GuC to
+>>> trigger
+>>> +        security events if adverse event monitoring is enabled.
+>>
+>> How are the security events delivered? There is mention of uevents in a
+>> later paragraph - are they already defined or should be together with
+>> this so the link can be place here?
+> 
+> chicken/egg problem - we don't have uevent fully defined as we were
+> waiting for these threshold definitions to be accepted, and without them
+> being available we didn't generate uevent, but in early code we had:
+> 
+> "THRESHOLD_EXCEEDED=1"
+> "THRESHOLD_ID=%#x"
+> "VF_ID=%u"
+
+It should be possible to include the uvents definitions in the RFC too? 
+It would make the story complete for review.
+
+>>> +
+>>> +        These thresholds are checked every "monitoring_period_ms".
+>>> +        Refer to GuC ABI for details about each threshold category.
+>>
+>> Is it possible to have a link here to GuC ABI?
+> 
+> (shared offline, as GuC spec is not public yet)
+
+That could be problematic I think. I don't know if there are such 
+precedents or not, like is it okay to upstream not publicly documented 
+knobs.
+
+Regards,
+
+Tvrtko
