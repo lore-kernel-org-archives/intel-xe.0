@@ -4,55 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82EA1C07548
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 08:16:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A9580C07548
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 08:53:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4E0A610E503;
-	Wed, 15 Nov 2023 08:16:14 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 926E110E504;
- Wed, 15 Nov 2023 08:16:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700036171; x=1731572171;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=DeGz/PZtITqZi+IpmokuVnt5rC6x2ogyzPLY+iXwvF8=;
- b=LBfawIfGSucHUa6G4b19PhamNWtus7wYBWnT7MVC5tBZMOQBSpeMUTIO
- Odsjooo5xAiavlu3bit05Cse8TX0bGAa0xSq9sMBe6sEVOOX9kiVQ6cHy
- vu3bVOxvnYJnV/ParGWfc2Za7wJHr3yRDEcNVovTFvK6whe0W4nIgeUwf
- wSlTo0+od16uD6XbXXxH4HI/+XOCPpZaPa2Vf/F8hk7GQsQSjy0dSNZ5Y
- GA8wt6D/xgXWTw60J7oJzvV65Lk9lyg47/35Q6zAhOkn7DiCQuzaQL89w
- kslh/mU7DGP7hqEcfEGS5LYK/arnF+px3thn89aoinE9pc/1o3Dm1jRGg g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="381228871"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="381228871"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 00:16:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="938406132"
-X-IronPort-AV: E=Sophos;i="6.03,304,1694761200"; d="scan'208";a="938406132"
-Received: from eliteleevi.tm.intel.com ([10.237.54.20])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Nov 2023 00:16:07 -0800
-Date: Wed, 15 Nov 2023 10:15:53 +0200 (EET)
-From: Kai Vehmanen <kai.vehmanen@linux.intel.com>
-X-X-Sender: kvehmane@eliteleevi.tm.intel.com
-To: Takashi Iwai <tiwai@suse.de>
-In-Reply-To: <87jzqkp99j.wl-tiwai@suse.de>
-Message-ID: <alpine.DEB.2.22.394.2311150901200.14041@eliteleevi.tm.intel.com>
-References: <20231002193847.7134-1-maarten.lankhorst@linux.intel.com>
- <20231002193847.7134-11-maarten.lankhorst@linux.intel.com>
- <ZVNUxZzCGcxQzqJX@intel.com> <87bkbwsebl.fsf@intel.com>
- <569f8832-25f1-45be-bb60-50f5a76d8e44@linux.intel.com>
- <DM8PR11MB5655518A6F21A2E4CA2E76D3E0B2A@DM8PR11MB5655.namprd11.prod.outlook.com>
- <87jzqkp99j.wl-tiwai@suse.de>
-User-Agent: Alpine 2.22 (DEB 394 2020-01-19)
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7 02160 Espoo
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D5BD10E507;
+	Wed, 15 Nov 2023 08:53:40 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 46F8510E506;
+ Wed, 15 Nov 2023 08:53:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3F0CCAA915;
+ Wed, 15 Nov 2023 08:53:38 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Subject: Re: [Intel-xe] [PATCH 11/14] ALSA: hda/intel: Move
- snd_hdac_i915_init to before probe_work.
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Wed, 15 Nov 2023 08:53:38 -0000
+Message-ID: <170003841822.647.11553070733099451348@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231115073804.1861-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20231115073804.1861-1-michal.wajdeczko@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_series_starting_with_=5B1/3=5D_drm/xe=3A_Add_device_flag_to_?=
+ =?utf-8?q?indicate_SR-IOV_support?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,30 +40,24 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+== Series Details ==
 
-On Tue, 14 Nov 2023, Takashi Iwai wrote:
+Series: series starting with [1/3] drm/xe: Add device flag to indicate SR-IOV support
+URL   : https://patchwork.freedesktop.org/series/126445/
+State : failure
 
-> On Tue, 14 Nov 2023 14:31:25 +0100, Saarinen, Jani wrote:
-> > Was this series tested on CI  ever as Ville saying no? How this got merged? 
-> 
-> Hm, I somehow believed that patches have been tested by intel people,
-> as they came from intel.  (Also thought that drm-tip or whatever tree
-> also drags the recent changes from sound.git tree for relevant part.)
+== Summary ==
 
-ack, this is squarely on us Intel folks to ensure the test runs get done. 
-This series did go through a number of Intel test setups, but 
-unfortunately, as it now seems, not through the i915 CI setup that covers 
-the affected configuration (audio DSP not used, HDA controller on the PCH, 
-tests on the display audio codec).
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: fc25405a0 drm/i915/display: use intel_bo_to_drm_bo in intel_fbdev
+=== git am output follows ===
+Applying: drm/xe: Add device flag to indicate SR-IOV support
+Applying: drm/xe: Prepare for running in different SR-IOV modes
+Applying: drm/xe: Print virtualization mode during probe
 
-Reproduced the problem now one one local setup and can confirm the fix 
-Takashi and Maarten posted, does work.
- 
-Br, Kai
+
