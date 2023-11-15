@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4493AC47071
-	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 03:15:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C5E5C07548
+	for <intel-xe@archiver.kernel.org>; Wed, 15 Nov 2023 03:35:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 154F610E390;
-	Wed, 15 Nov 2023 03:15:00 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CADF110E390
- for <intel-xe@lists.freedesktop.org>; Wed, 15 Nov 2023 03:14:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700018097; x=1731554097;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=22vVL6l9gCxgY9bItqC+CGXgyoM9QWh8AWlW8rJh6kQ=;
- b=Qa6rx61RiUu25g+R3b8FKPau6ycrZkNtA7Bhm/HuylxjteVxV6CvuTJI
- TvpZ/baZght05UCCZFHj54w71A0DLSy3GUnZWo5vwuRB8KDZOaW0P4OLr
- puu72t6pfDDidlMGZKJKOK3xfgpTnedA4j+S90VUpgX7/UY40xokXyYXq
- PuuduBXfNGWdKMiIHaN7tpIE/2HxgGJvCP4w43v5zRhb/BJ8dECqmJ7uz
- FOybPiAiud/nWNDTCrtpfEo4qxd4dZwLuJ3alnR+BF5qFEATd2T+9tauv
- iTKS5gfDUnGFwd/TycSeBdVxNWe5mCA2FAVbYoVktz0VGRrlpyab2LtN2 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10894"; a="394716419"
-X-IronPort-AV: E=Sophos;i="6.03,303,1694761200"; d="scan'208";a="394716419"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 19:14:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.03,303,1694761200"; 
-   d="scan'208";a="6000141"
-Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Nov 2023 19:14:57 -0800
-From: Matthew Brost <matthew.brost@intel.com>
-To: <intel-xe@lists.freedesktop.org>
-Date: Tue, 14 Nov 2023 19:15:08 -0800
-Message-Id: <20231115031508.173140-1-matthew.brost@intel.com>
-X-Mailer: git-send-email 2.34.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C2EB10E40A;
+	Wed, 15 Nov 2023 03:35:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8CD9510E406;
+ Wed, 15 Nov 2023 03:35:07 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 7B8B1AADF5;
+ Wed, 15 Nov 2023 03:35:07 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4421817935050110041=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Only set xe_vma_op.map fields for GPUVA
- map operations
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sujaritha Sundaresan" <sujaritha.sundaresan@intel.com>
+Date: Wed, 15 Nov 2023 03:35:07 -0000
+Message-ID: <170001930749.647.17999801186676933075@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231115030111.770130-1-sujaritha.sundaresan@intel.com>
+In-Reply-To: <20231115030111.770130-1-sujaritha.sundaresan@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Creating_?=
+ =?utf-8?q?a_base_directory_for_frequency_sysfs?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,118 +39,256 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Dafna Hirschfeld <dhirschfeld@habana.ai>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-XE_VM_BIND_OP_MAP_* IOCTL operations can result in GPUVA unmap, remap,
-or map operations in vm_bind_ioctl_ops_create. The xe_vma_op.map fields
-are blindly set which is incorrect for GPUVA unmap or remap operations.
-Fix this by only setting xe_vma_op.map for GPUVA map operations. Also
-restructure a bit vm_bind_ioctl_ops_create to make the code a bit more
-readable.
+--===============4421817935050110041==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Reported-by: Dafna Hirschfeld <dhirschfeld@habana.ai>
-Signec-off-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 59 ++++++++++++--------------------------
- 1 file changed, 18 insertions(+), 41 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index d45f4f1d490f..1049869b5a6f 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -2187,42 +2187,12 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 	case XE_VM_BIND_OP_MAP_USERPTR:
- 		ops = drm_gpuvm_sm_map_ops_create(&vm->gpuvm, addr, range,
- 						  obj, bo_offset_or_userptr);
--		if (IS_ERR(ops))
--			return ops;
--
--		drm_gpuva_for_each_op(__op, ops) {
--			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
--
--			op->tile_mask = tile_mask;
--			op->map.immediate =
--				flags & XE_VM_BIND_FLAG_IMMEDIATE;
--			op->map.read_only =
--				flags & XE_VM_BIND_FLAG_READONLY;
--			op->map.is_null = flags & XE_VM_BIND_FLAG_NULL;
--		}
- 		break;
- 	case XE_VM_BIND_OP_UNMAP:
- 		ops = drm_gpuvm_sm_unmap_ops_create(&vm->gpuvm, addr, range);
--		if (IS_ERR(ops))
--			return ops;
--
--		drm_gpuva_for_each_op(__op, ops) {
--			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
--
--			op->tile_mask = tile_mask;
--		}
- 		break;
- 	case XE_VM_BIND_OP_PREFETCH:
- 		ops = drm_gpuvm_prefetch_ops_create(&vm->gpuvm, addr, range);
--		if (IS_ERR(ops))
--			return ops;
--
--		drm_gpuva_for_each_op(__op, ops) {
--			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
--
--			op->tile_mask = tile_mask;
--			op->prefetch.region = region;
--		}
- 		break;
- 	case XE_VM_BIND_OP_UNMAP_ALL:
- 		xe_assert(vm->xe, bo);
-@@ -2232,19 +2202,13 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 			return ERR_PTR(err);
- 		ops = drm_gpuvm_gem_unmap_ops_create(&vm->gpuvm, obj);
- 		xe_bo_unlock(bo);
--		if (IS_ERR(ops))
--			return ops;
--
--		drm_gpuva_for_each_op(__op, ops) {
--			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
--
--			op->tile_mask = tile_mask;
--		}
- 		break;
- 	default:
- 		drm_warn(&vm->xe->drm, "NOT POSSIBLE");
- 		ops = ERR_PTR(-EINVAL);
- 	}
-+	if (IS_ERR(ops))
-+		return ops;
- 
- #ifdef TEST_VM_ASYNC_OPS_ERROR
- 	if (operation & FORCE_ASYNC_OP_ERROR) {
-@@ -2255,9 +2219,22 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 	}
- #endif
- 
--	if (!IS_ERR(ops))
--		drm_gpuva_for_each_op(__op, ops)
--			print_op(vm->xe, __op);
-+	drm_gpuva_for_each_op(__op, ops) {
-+		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-+
-+		op->tile_mask = tile_mask;
-+		if (__op->op == DRM_GPUVA_OP_MAP) {
-+			op->map.immediate =
-+				flags & XE_VM_BIND_FLAG_IMMEDIATE;
-+			op->map.read_only =
-+				flags & XE_VM_BIND_FLAG_READONLY;
-+			op->map.is_null = flags & XE_VM_BIND_FLAG_NULL;
-+		} else if (__op->op == DRM_GPUVA_OP_PREFETCH) {
-+			op->prefetch.region = region;
-+		}
-+
-+		print_op(vm->xe, __op);
-+	}
- 
- 	return ops;
- }
--- 
-2.34.1
+Series: Creating a base directory for frequency sysfs
+URL   : https://patchwork.freedesktop.org/series/126436/
+State : failure
 
+== Summary ==
+
+CI Bug Log - changes from xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b_BAT -> xe-pw-126436v1_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-126436v1_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-126436v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-126436v1_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-adlp-7:         [PASS][1] -> [DMESG-WARN][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html
+    - bat-dg2-oem2:       [PASS][3] -> [DMESG-WARN][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html
+
+  * igt@xe_guc_pc@freq_basic_api:
+    - bat-adlp-7:         [PASS][5] -> [FAIL][6] +2 other tests fail
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-adlp-7/igt@xe_guc_pc@freq_basic_api.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-adlp-7/igt@xe_guc_pc@freq_basic_api.html
+    - bat-pvc-2:          [PASS][7] -> [FAIL][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-pvc-2/igt@xe_guc_pc@freq_basic_api.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-pvc-2/igt@xe_guc_pc@freq_basic_api.html
+
+  * igt@xe_guc_pc@freq_fixed_idle:
+    - bat-atsm-2:         [PASS][9] -> [FAIL][10] +2 other tests fail
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-atsm-2/igt@xe_guc_pc@freq_fixed_idle.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-atsm-2/igt@xe_guc_pc@freq_fixed_idle.html
+    - bat-dg2-oem2:       [PASS][11] -> [FAIL][12] +2 other tests fail
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-dg2-oem2/igt@xe_guc_pc@freq_fixed_idle.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-dg2-oem2/igt@xe_guc_pc@freq_fixed_idle.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-126436v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][13] -> [FAIL][14] ([Intel XE#480]) +2 other tests fail
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:
+    - bat-dg2-oem2:       [FAIL][15] -> [PASS][16]
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3:
+    - bat-dg2-oem2:       [FAIL][17] ([Intel XE#906]) -> [PASS][18] +1 other test pass
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html
+
+  
+#### Warnings ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [DMESG-FAIL][19] ([Intel XE#282] / [i915#2017]) -> [FAIL][20] ([Intel XE#616] / [Intel XE#750])
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
+  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
+  [Intel XE#906]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/906
+  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+
+
+Build changes
+-------------
+
+  * Linux: xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b -> xe-pw-126436v1
+
+  IGT_7588: 328c5873b8f061267fdf86ed32cb5ecc611ba081 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b: 2fe82053d916d09ffcc92bc27294c9eed4e4804b
+  xe-pw-126436v1: 126436v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/index.html
+
+--===============4421817935050110041==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Creating a base directory for frequency sysfs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126436/">https://patchwork.freedesktop.org/series/126436/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b_BAT -&gt; xe-pw-126436v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-126436v1_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-126436v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-126436v1_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>
+<p>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-adlp-7/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></p>
+</li>
+<li>
+<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-dg2-oem2/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_guc_pc@freq_basic_api:</p>
+<ul>
+<li>
+<p>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-adlp-7/igt@xe_guc_pc@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-adlp-7/igt@xe_guc_pc@freq_basic_api.html">FAIL</a> +2 other tests fail</p>
+</li>
+<li>
+<p>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-pvc-2/igt@xe_guc_pc@freq_basic_api.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-pvc-2/igt@xe_guc_pc@freq_basic_api.html">FAIL</a></p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_guc_pc@freq_fixed_idle:</p>
+<ul>
+<li>
+<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-atsm-2/igt@xe_guc_pc@freq_fixed_idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-atsm-2/igt@xe_guc_pc@freq_fixed_idle.html">FAIL</a> +2 other tests fail</p>
+</li>
+<li>
+<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-dg2-oem2/igt@xe_guc_pc@freq_fixed_idle.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-dg2-oem2/igt@xe_guc_pc@freq_fixed_idle.html">FAIL</a> +2 other tests fail</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-126436v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +2 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@c-dp3.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/906">Intel XE#906</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126436v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b -&gt; xe-pw-126436v1</li>
+</ul>
+<p>IGT_7588: 328c5873b8f061267fdf86ed32cb5ecc611ba081 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-490-2fe82053d916d09ffcc92bc27294c9eed4e4804b: 2fe82053d916d09ffcc92bc27294c9eed4e4804b<br />
+  xe-pw-126436v1: 126436v1</p>
+
+</body>
+</html>
+
+--===============4421817935050110041==--
