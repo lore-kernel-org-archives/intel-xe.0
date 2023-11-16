@@ -4,58 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C27F8C197A0
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 08:35:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B21D8C197A0
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 09:49:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4968510E24F;
-	Thu, 16 Nov 2023 08:35:49 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED02E10E099
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 08:35:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700123746; x=1731659746;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=+H3mq2YcuZD9QCZX1PBz2ePVX6FEJ3gdQpCIK4FCGXg=;
- b=HpBs0pmp67zMQObNVhfUQ5LClsSje+9+jdGrLmrAQ+hboKqBPmSVhH4m
- GrbIpRCYv65m0SEpPM3pJMtpOTso9TyMNYYRswP0/kQUmmSPkha5MG6lK
- wrNTafA4AbKCAoXLvMbs8dp7oLANrZeX+BRLVlfL9U0XMZZY1AYOPgGrR
- fbejC2OROo6yr8LJ555crew8cCkeYarNAtXpkPOLoLvEYrJ/qfOXiuVAM
- k5iSS+tkHEOvOerg8aM3qkjQ3c14IXMpNkK1TQW2gre1SwR4lQU5eO9Da
- I9Z6p6NZ5x6AKdMAoeRDNqMG33pWZFwvIzfEOkL/75GwOA8fJhOhdWXDq Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="390835830"
-X-IronPort-AV: E=Sophos;i="6.03,307,1694761200"; d="scan'208";a="390835830"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 00:35:46 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10895"; a="835683579"
-X-IronPort-AV: E=Sophos;i="6.03,307,1694761200"; d="scan'208";a="835683579"
-Received: from mcoffey-mobl.ger.corp.intel.com (HELO [10.252.22.213])
- ([10.252.22.213])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 00:35:43 -0800
-Message-ID: <9c98a779-4fb5-4594-ac59-3005a599132f@intel.com>
-Date: Thu, 16 Nov 2023 08:35:40 +0000
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47B9F10E2C6;
+	Thu, 16 Nov 2023 09:49:01 +0000 (UTC)
+Received: from madras.collabora.co.uk (madras.collabora.co.uk
+ [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5612110E2D0;
+ Thu, 16 Nov 2023 09:48:57 +0000 (UTC)
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested) (Authenticated sender: bbrezillon)
+ by madras.collabora.co.uk (Postfix) with ESMTPSA id 3E86B6607337;
+ Thu, 16 Nov 2023 09:48:55 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+ s=mail; t=1700128136;
+ bh=ezkVujmf+Db8fWYD/cMy6cKUGkTNX1r+jdXHjkdzalg=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=LvtW67otMNupz2kJx8ZXPP7EfpXQkbRLAKctbZJsFtIkk4YKUe3yL19K1MZrjhTfh
+ V8HtfwNK48J4z7Qsi1Djet4X48j+vaN2smaKvvt6F5s1q9DPfM5ZQT7fmHgAAT0T1+
+ mTncEC8GxzIokL3XB6a38qISrX44nPn0WZ4hKZUW4w7PL+y/gNOi/4tF7c9TB29K1s
+ Z6i4eddjYQjudNpeVTKJz0C44A96H+cP8JdVHye2Klp+4A2FBTRE3wcsQTmhg7/yVQ
+ S95zpRKlLa1Thn87hfwDeK+6iWS1A4q1VL6GATtJdkgm6rWEbqCJBM+wdjKiorMRou
+ hfk0P+VQRcGNQ==
+Date: Thu, 16 Nov 2023 10:48:51 +0100
+From: Boris Brezillon <boris.brezillon@collabora.com>
+To: Thomas =?UTF-8?B?SGVsbHN0csO2bQ==?= <thomas.hellstrom@linux.intel.com>
+Message-ID: <20231116104851.114bdb08@collabora.com>
+In-Reply-To: <20231115124937.6740-1-thomas.hellstrom@linux.intel.com>
+References: <20231115124937.6740-1-thomas.hellstrom@linux.intel.com>
+Organization: Collabora
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: "Zhang, Carl" <carl.zhang@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <20231103154309.402159-5-matthew.auld@intel.com>
- <20231103154309.402159-8-matthew.auld@intel.com>
- <PH0PR11MB557988AD87070687F251415F87AFA@PH0PR11MB5579.namprd11.prod.outlook.com>
- <c909bc80-1581-4ed7-9a78-6adcb4e9ad5c@intel.com>
- <PH0PR11MB5579D0C0AAC48F74B968CC1087B3A@PH0PR11MB5579.namprd11.prod.outlook.com>
- <145c1899-a4f2-68d3-25fc-5587d673d65a@intel.com>
- <PH0PR11MB5579C15EB596248A216C6C7387B0A@PH0PR11MB5579.namprd11.prod.outlook.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <PH0PR11MB5579C15EB596248A216C6C7387B0A@PH0PR11MB5579.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v9 3/3] drm/xe/uapi: support pat_index
- selection with vm_bind
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [PATCH v4] Documentation/gpu: VM_BIND locking
+ document
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,586 +53,752 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Dugast, Francois" <francois.dugast@intel.com>, "Xu,
- Zhengguo" <zhengguo.xu@intel.com>, "Hazubski,
- Filip" <filip.hazubski@intel.com>, "De Marchi,
- Lucas" <lucas.demarchi@intel.com>, "Yu, Effie" <effie.yu@intel.com>, "Roper,
- Matthew D" <matthew.d.roper@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>, linux-kernel@vger.kernel.org,
+ Danilo Krummrich <dakr@redhat.com>, dri-devel@lists.freedesktop.org,
+ Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 16/11/2023 03:59, Zhang, Carl wrote:
->> -----Original Message-----
->> From: Auld, Matthew <matthew.auld@intel.com>
->> Sent: Monday, November 13, 2023 5:17 PM
->>
->> On 13/11/2023 06:16, Zhang, Carl wrote:
->>>
->>>
->>>> -----Original Message-----
->>>> From: Auld, Matthew <matthew.auld@intel.com>
->>>> Sent: Thursday, November 9, 2023 11:42 PM
->>>>
->>>> Hi,
->>>>
->>>> On 09/11/2023 15:03, Zhang, Carl wrote:
->>>>> Hi Matthew,
->>>>> Sorry for the delay response, questions about this statement:
->>>>> "For imported dma-buf (from  a different device) the coherency mode
->>>>> is also
->>>> implicit and must also be either 1WAY or 2WAY."
->>>>> 1. how about imported dma-buf from a same device/GPU? Same
->>>> requirement?
->>>>
->>>> For self-import (i.e same device) you can also use coh_none, however
->>>> it only works if it makes sense given the original cpu_caching. See
->>>> the prime_self_import_coh test here:
->>>>
->>>> https://patchwork.freedesktop.org/patch/566785/?series=124667&rev=9
->>>>
->>>>    From KMD pov there is not much difference between self-import and
->>>> just some normal userspace object.
->>>>
->>>>> 2. how about the exporting side? If it was created as a UC, the
->>>>> coherency will
->>>> be treated as NONE,  then it was exported , and imported by another
->>>> component, it should be implicit and be 1-way or 2way. KMD will
->>>> handle these difference?
->>>>
->>>> If it was imported from a difference device then KMD has no concept
->>>> of cpu_caching for that object. For now that means requiring 1way+.
->>>>
->>>> See the prime_external_import_coh test for example, in the same link
->>>> above. It uses vgem to create some object (but in principle it could
->>>> also be i915, amdgpu,
->>>> etc) which Xe then imports and maps using vm_bind
->>>> 1way+.
->>>>
->>>>> 3. about dma-buf, producer and consumer maybe set different
->>>>> cpu_caching?  As you know,  in producer side, may not know whether
->>>>> it will be exported during creation or
->>>>
->>>> With dma-buf only the producer controls the cpu_caching or equivalent.
->>>> The consumer can only control how they wish to map it on the gpu, i.e
->>>> the PAT index.
->>>>
->>>
->>> Actually, my question is focus on whether producer and consumer could
->>> set different PAT_index, from current discussion:
->>> it is "yes" for GPU caching part
->>> but is "no" for CPU caching part  & coherency part? --- if it also is
->>> "yes", there
->>
->> The coherency part was removed from the uapi (i.e gem_create.coh_mode),
->> which just leaves the gem_create.cpu_caching. The cpu_caching is not a PAT
->> index attribute on the GPU, it is just about controlling how the KMD is meant
->> allocate the memory. The memory is allocated as either wb or wc, which is
->> then immutable.
->>
->>> are no any concern. Producer and consumer could use totally different
->>> PAT_index without conflict .
->>
->> Right, producer and consumer could use different PAT index.
->>
->>>
->>> I use one example to describe my question (same device):
->>> Media decode one frame, then share it to compute to do AI inference.
->>> Media does not know whether compute will do some additional CPU access.
->>>
->>> Media create the surfaces (CPU caching : None,  coherency: None,
->>
->> Not sure what is "CPU caching : None"? Or is this just cpu_caching=wc ?
->> There is no "CPU caching" PAT index attribute AFAICT. You can just set the
->> caching policy for l3/l4, which can be things like: wb, wt, uc, wb-transient.
->>
-> I mean "CPU caching: None"  UC
-> 
->>> Compression: no, GPU cache: L3 ...) then share it to compute, which
->>> field should be kept same?
->>
->> KMD only cares about the "coherency:" field. But since this is same-device, in
->> this particular case you can use either none or 1-way on the importer side.
->>
->>> then , export it to dma buffer fd.
->>> Compute side: import it and create another bo, vmbind with different
->>> VM, Then , it should be (CPU caching: WB, coherency: 1-way,
->>> compression: no, GPU cache: any value)
->>
->> Not sure what is this "CPU caching: WB", but ignoring that above should work I
->> think.
->>
-> 
-> Consumer side does not know CPU caching setting which is handled by producer
-> During the bo creation stage,   but consumer could always set 1-way , because no matter
-> It is WB or UC, it could work , maybe impact perf.  Is it the design?
-> 
-> What I am thinking is ,  if it is no-coherency,  could consumer also know it is "no-coherency" originally.
-> And also call vmbind as "no-coherency" to get a better perf?
+Hi Thomas,
 
-Yeah, 1way+ will always work for consumer. You could try coh_none first 
-if that is preferred on some platforms, and if that is rejected you fall 
-back to 1way+, but that only really works for self-import.
+On Wed, 15 Nov 2023 13:49:37 +0100
+Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com> wrote:
 
-> 
-> 
->>>
->>>> vmbind, it may be determined by application after these operations.
->>>>> 3 looks a bit duplicate with 2.
->>>>>
->>>>> Thanks
->>>>> Carl
->>>>>
->>>>>> -----Original Message-----
->>>>>> From: Auld, Matthew <matthew.auld@intel.com>
->>>>>> Sent: Friday, November 3, 2023 11:43 PM
->>>>>> To: intel-xe@lists.freedesktop.org
->>>>>> Cc: Mishra, Pallavi <pallavi.mishra@intel.com>; Thomas Hellström
->>>>>> <thomas.hellstrom@linux.intel.com>; Joonas Lahtinen
->>>>>> <joonas.lahtinen@linux.intel.com>; De Marchi, Lucas
->>>>>> <lucas.demarchi@intel.com>; Roper, Matthew D
->>>>>> <matthew.d.roper@intel.com>; Souza, Jose <jose.souza@intel.com>;
->>>>>> Hazubski, Filip <filip.hazubski@intel.com>; Zhang, Carl
->>>>>> <carl.zhang@intel.com>; Yu, Effie <effie.yu@intel.com>; Xu,
->>>>>> Zhengguo <zhengguo.xu@intel.com>; Dugast, Francois
->>>>>> <francois.dugast@intel.com>
->>>>>> Subject: [PATCH v9 3/3] drm/xe/uapi: support pat_index selection
->>>>>> with vm_bind
->>>>>>
->>>>>> Allow userspace to directly control the pat_index for a given vm
->>>>>> binding. This should allow directly controlling the coherency,
->>>>>> caching behaviour, compression and potentially other stuff in the
->>>>>> future for
->>>> the ppGTT binding.
->>>>>>
->>>>>> The exact meaning behind the pat_index is very platform specific
->>>>>> (see BSpec or
->>>>>> PRMs) but effectively maps to some predefined memory attributes.
->>>>>>  From the KMD pov we only care about the coherency that is provided
->>>>>> by the pat_index, which falls into either NONE, 1WAY or 2WAY.
->>>>>> The vm_bind coherency mode for the given pat_index needs to be at
->>>>>> least 1way coherent when using cpu_caching with
->>>>>> DRM_XE_GEM_CPU_CACHING_WB. For platforms that lack the explicit
->>>>>> coherency mode attribute, we treat UC/WT/WC as NONE and WB as
->>>>>> AT_LEAST_1WAY.
->>>>>>
->>>>>> For userptr mappings we lack a corresponding gem object, so the
->>>>>> expected coherency mode is instead implicit and must fall into
->>>>>> either 1WAY
->>>> or 2WAY.
->>>>>> Trying to use NONE will be rejected by the kernel. For imported
->>>>>> dma-buf (from a different device) the coherency mode is also
->>>>>> implicit and must also be either 1WAY or 2WAY.
->>>>>>
->>>>>> v2:
->>>>>>      - Undefined coh_mode(pat_index) can now be treated as programmer
->>>>>>        error. (Matt Roper)
->>>>>>      - We now allow gem_create.coh_mode <= coh_mode(pat_index),
->>>>>> rather
->>>> than
->>>>>>        having to match exactly. This ensures imported dma-buf can always
->>>>>>        just use 1way (or even 2way), now that we also bundle 1way/2way
->> into
->>>>>>        at_least_1way. We still require 1way/2way for external dma-buf, but
->>>>>>        the policy can now be the same for self-import, if desired.
->>>>>>      - Use u16 for pat_index in uapi. u32 is massive overkill. (José)
->>>>>>      - Move as much of the pat_index validation as we can into
->>>>>>        vm_bind_ioctl_check_args. (José)
->>>>>> v3 (Matt Roper):
->>>>>>      - Split the pte_encode() refactoring into separate patch.
->>>>>> v4:
->>>>>>      - Rebase
->>>>>> v5:
->>>>>>      - Check for and reject !coh_mode which would indicate hw reserved
->>>>>>        pat_index on xe2.
->>>>>> v6:
->>>>>>      - Rebase on removal of coh_mode from uapi. We just need to reject
->>>>>>        cpu_caching=wb + pat_index with coh_none.
->>>>>>
->>>>>> Testcase: igt@xe_pat
->>>>>> Bspec: 45101, 44235 #xe
->>>>>> Bspec: 70552, 71582, 59400 #xe2
->>>>>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->>>>>> Cc: Pallavi Mishra <pallavi.mishra@intel.com>
->>>>>> Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
->>>>>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->>>>>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
->>>>>> Cc: Matt Roper <matthew.d.roper@intel.com>
->>>>>> Cc: José Roberto de Souza <jose.souza@intel.com>
->>>>>> Cc: Filip Hazubski <filip.hazubski@intel.com>
->>>>>> Cc: Carl Zhang <carl.zhang@intel.com>
->>>>>> Cc: Effie Yu <effie.yu@intel.com>
->>>>>> Cc: Zhengguo Xu <zhengguo.xu@intel.com>
->>>>>> Cc: Francois Dugast <francois.dugast@intel.com>
->>>>>> Tested-by: José Roberto de Souza <jose.souza@intel.com>
->>>>>> Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
->>>>>> ---
->>>>>>     drivers/gpu/drm/xe/xe_pt.c       | 11 +-----
->>>>>>     drivers/gpu/drm/xe/xe_vm.c       | 68
->> ++++++++++++++++++++++++++++----
->>>>>>     drivers/gpu/drm/xe/xe_vm_types.h |  7 ++++
->>>>>>     include/uapi/drm/xe_drm.h        | 42 +++++++++++++++++++-
->>>>>>     4 files changed, 110 insertions(+), 18 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/xe/xe_pt.c
->>>>>> b/drivers/gpu/drm/xe/xe_pt.c index
->>>>>> 31afab617b4e..a0f31f991f34 100644
->>>>>> --- a/drivers/gpu/drm/xe/xe_pt.c
->>>>>> +++ b/drivers/gpu/drm/xe/xe_pt.c
->>>>>> @@ -290,8 +290,6 @@ struct xe_pt_stage_bind_walk {
->>>>>>     	struct xe_vm *vm;
->>>>>>     	/** @tile: The tile we're building for. */
->>>>>>     	struct xe_tile *tile;
->>>>>> -	/** @cache: Desired cache level for the ptes */
->>>>>> -	enum xe_cache_level cache;
->>>>>>     	/** @default_pte: PTE flag only template. No address is associated */
->>>>>>     	u64 default_pte;
->>>>>>     	/** @dma_offset: DMA offset to add to the PTE. */ @@ -511,7
->>>>>> +509,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t
->> offset,  {
->>>>>>     	struct xe_pt_stage_bind_walk *xe_walk =
->>>>>>     		container_of(walk, typeof(*xe_walk), base);
->>>>>> -	u16 pat_index = tile_to_xe(xe_walk->tile)->pat.idx[xe_walk->cache];
->>>>>> +	u16 pat_index = xe_walk->vma->pat_index;
->>>>>>     	struct xe_pt *xe_parent = container_of(parent,
->>>>>> typeof(*xe_parent), base);
->>>>>>     	struct xe_vm *vm = xe_walk->vm;
->>>>>>     	struct xe_pt *xe_child;
->>>>>> @@ -657,13 +655,8 @@ xe_pt_stage_bind(struct xe_tile *tile, struct
->>>>>> xe_vma *vma,
->>>>>>     	if (is_devmem) {
->>>>>>     		xe_walk.default_pte |= XE_PPGTT_PTE_DM;
->>>>>>     		xe_walk.dma_offset = vram_region_gpu_offset(bo-
->>>>>>> ttm.resource);
->>>>>> -		xe_walk.cache = XE_CACHE_WB;
->>>>>> -	} else {
->>>>>> -		if (!xe_vma_has_no_bo(vma) && bo->flags &
->>>>>> XE_BO_SCANOUT_BIT)
->>>>>> -			xe_walk.cache = XE_CACHE_WT;
->>>>>> -		else
->>>>>> -			xe_walk.cache = XE_CACHE_WB;
->>>>>>     	}
->>>>>> +
->>>>>>     	if (!xe_vma_has_no_bo(vma) && xe_bo_is_stolen(bo))
->>>>>>     		xe_walk.dma_offset =
->>>>>> xe_ttm_stolen_gpu_offset(xe_bo_device(bo));
->>>>>>
->>>>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c
->>>>>> b/drivers/gpu/drm/xe/xe_vm.c index
->>>>>> d26c90f0d702..0723974f1fc8 100644
->>>>>> --- a/drivers/gpu/drm/xe/xe_vm.c
->>>>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
->>>>>> @@ -6,6 +6,7 @@
->>>>>>     #include "xe_vm.h"
->>>>>>
->>>>>>     #include <linux/dma-fence-array.h>
->>>>>> +#include <linux/nospec.h>
->>>>>>
->>>>>>     #include <drm/drm_exec.h>
->>>>>>     #include <drm/drm_print.h>
->>>>>> @@ -26,6 +27,7 @@
->>>>>>     #include "xe_gt_pagefault.h"
->>>>>>     #include "xe_gt_tlb_invalidation.h"
->>>>>>     #include "xe_migrate.h"
->>>>>> +#include "xe_pat.h"
->>>>>>     #include "xe_pm.h"
->>>>>>     #include "xe_preempt_fence.h"
->>>>>>     #include "xe_pt.h"
->>>>>> @@ -864,7 +866,8 @@ static struct xe_vma *xe_vma_create(struct
->>>>>> xe_vm *vm,
->>>>>>     				    u64 start, u64 end,
->>>>>>     				    bool read_only,
->>>>>>     				    bool is_null,
->>>>>> -				    u8 tile_mask)
->>>>>> +				    u8 tile_mask,
->>>>>> +				    u16 pat_index)
->>>>>>     {
->>>>>>     	struct xe_vma *vma;
->>>>>>     	struct xe_tile *tile;
->>>>>> @@ -906,6 +909,8 @@ static struct xe_vma *xe_vma_create(struct
->>>>>> xe_vm *vm,
->>>>>>     	if (GRAPHICS_VER(vm->xe) >= 20 || vm->xe->info.platform ==
->> XE_PVC)
->>>>>>     		vma->gpuva.flags |= XE_VMA_ATOMIC_PTE_BIT;
->>>>>>
->>>>>> +	vma->pat_index = pat_index;
->>>>>> +
->>>>>>     	if (bo) {
->>>>>>     		xe_bo_assert_held(bo);
->>>>>>
->>>>>> @@ -2167,7 +2172,8 @@ static void print_op(struct xe_device *xe,
->>>>>> struct drm_gpuva_op *op)  static struct drm_gpuva_ops *
->>>>>> vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
->>>>>>     			 u64 bo_offset_or_userptr, u64 addr, u64 range,
->>>>>> -			 u32 operation, u32 flags, u8 tile_mask, u32 region)
->>>>>> +			 u32 operation, u32 flags, u8 tile_mask, u32 region,
->>>>>> +			 u16 pat_index)
->>>>>>     {
->>>>>>     	struct drm_gem_object *obj = bo ? &bo->ttm.base : NULL;
->>>>>>     	struct drm_gpuva_ops *ops;
->>>>>> @@ -2194,6 +2200,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm,
->>>>>> struct xe_bo *bo,
->>>>>>     			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
->>>>>>
->>>>>>     			op->tile_mask = tile_mask;
->>>>>> +			op->pat_index = pat_index;
->>>>>>     			op->map.immediate =
->>>>>>     				flags & XE_VM_BIND_FLAG_IMMEDIATE;
->>>>>>     			op->map.read_only =
->>>>>> @@ -2221,6 +2228,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm,
->>>>>> struct xe_bo *bo,
->>>>>>     			struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
->>>>>>
->>>>>>     			op->tile_mask = tile_mask;
->>>>>> +			op->pat_index = pat_index;
->>>>>>     			op->prefetch.region = region;
->>>>>>     		}
->>>>>>     		break;
->>>>>> @@ -2263,7 +2271,8 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm,
->>>>>> struct xe_bo *bo,  }
->>>>>>
->>>>>>     static struct xe_vma *new_vma(struct xe_vm *vm, struct
->>>>>> drm_gpuva_op_map *op,
->>>>>> -			      u8 tile_mask, bool read_only, bool is_null)
->>>>>> +			      u8 tile_mask, bool read_only, bool is_null,
->>>>>> +			      u16 pat_index)
->>>>>>     {
->>>>>>     	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) :
->> NULL;
->>>>>>     	struct xe_vma *vma;
->>>>>> @@ -2279,7 +2288,7 @@ static struct xe_vma *new_vma(struct xe_vm
->>>> *vm,
->>>>>> struct drm_gpuva_op_map *op,
->>>>>>     	vma = xe_vma_create(vm, bo, op->gem.offset,
->>>>>>     			    op->va.addr, op->va.addr +
->>>>>>     			    op->va.range - 1, read_only, is_null,
->>>>>> -			    tile_mask);
->>>>>> +			    tile_mask, pat_index);
->>>>>>     	if (bo)
->>>>>>     		xe_bo_unlock(bo);
->>>>>>
->>>>>> @@ -2425,7 +2434,7 @@ static int vm_bind_ioctl_ops_parse(struct
->>>>>> xe_vm *vm, struct xe_exec_queue *q,
->>>>>>
->>>>>>     			vma = new_vma(vm, &op->base.map,
->>>>>>     				      op->tile_mask, op->map.read_only,
->>>>>> -				      op->map.is_null);
->>>>>> +				      op->map.is_null, op->pat_index);
->>>>>>     			if (IS_ERR(vma))
->>>>>>     				return PTR_ERR(vma);
->>>>>>
->>>>>> @@ -2451,7 +2460,7 @@ static int vm_bind_ioctl_ops_parse(struct
->>>>>> xe_vm *vm, struct xe_exec_queue *q,
->>>>>>
->>>>>>     				vma = new_vma(vm, op->base.remap.prev,
->>>>>>     					      op->tile_mask, read_only,
->>>>>> -					      is_null);
->>>>>> +					      is_null, op->pat_index);
->>>>>>     				if (IS_ERR(vma))
->>>>>>     					return PTR_ERR(vma);
->>>>>>
->>>>>> @@ -2485,7 +2494,7 @@ static int vm_bind_ioctl_ops_parse(struct
->>>>>> xe_vm *vm, struct xe_exec_queue *q,
->>>>>>
->>>>>>     				vma = new_vma(vm, op->base.remap.next,
->>>>>>     					      op->tile_mask, read_only,
->>>>>> -					      is_null);
->>>>>> +					      is_null, op->pat_index);
->>>>>>     				if (IS_ERR(vma))
->>>>>>     					return PTR_ERR(vma);
->>>>>>
->>>>>> @@ -2883,6 +2892,26 @@ static int vm_bind_ioctl_check_args(struct
->>>>>> xe_device *xe,
->>>>>>     		u64 obj_offset = (*bind_ops)[i].obj_offset;
->>>>>>     		u32 region = (*bind_ops)[i].region;
->>>>>>     		bool is_null = flags & XE_VM_BIND_FLAG_NULL;
->>>>>> +		u16 pat_index = (*bind_ops)[i].pat_index;
->>>>>> +		u16 coh_mode;
->>>>>> +
->>>>>> +		if (XE_IOCTL_DBG(xe, pat_index >= xe->pat.n_entries)) {
->>>>>> +			err = -EINVAL;
->>>>>> +			goto free_bind_ops;
->>>>>> +		}
->>>>>> +
->>>>>> +		pat_index = array_index_nospec(pat_index, xe-
->>> pat.n_entries);
->>>>>> +		(*bind_ops)[i].pat_index = pat_index;
->>>>>> +		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
->>>>>> +		if (XE_IOCTL_DBG(xe, !coh_mode)) { /* hw reserved */
->>>>>> +			err = -EINVAL;
->>>>>> +			goto free_bind_ops;
->>>>>> +		}
->>>>>> +
->>>>>> +		if (XE_WARN_ON(coh_mode > XE_COH_AT_LEAST_1WAY)) {
->>>>>> +			err = -EINVAL;
->>>>>> +			goto free_bind_ops;
->>>>>> +		}
->>>>>>
->>>>>>     		if (i == 0) {
->>>>>>     			*async = !!(flags & XE_VM_BIND_FLAG_ASYNC); @@
->> -
->>>>>> 2913,6 +2942,8 @@ static int vm_bind_ioctl_check_args(struct
->>>>>> xe_device
->>>> *xe,
->>>>>>     				 op == XE_VM_BIND_OP_UNMAP_ALL) ||
->>>>>>     		    XE_IOCTL_DBG(xe, obj &&
->>>>>>     				 op == XE_VM_BIND_OP_MAP_USERPTR) ||
->>>>>> +		    XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE &&
->>>>>> +				 op == XE_VM_BIND_OP_MAP_USERPTR) ||
->>>>>>     		    XE_IOCTL_DBG(xe, obj &&
->>>>>>     				 op == XE_VM_BIND_OP_PREFETCH) ||
->>>>>>     		    XE_IOCTL_DBG(xe, region && @@ -3046,6 +3077,8 @@ int
->>>>>> xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct
->>>>>> drm_file *file)
->>>>>>     		u64 addr = bind_ops[i].addr;
->>>>>>     		u32 obj = bind_ops[i].obj;
->>>>>>     		u64 obj_offset = bind_ops[i].obj_offset;
->>>>>> +		u16 pat_index = bind_ops[i].pat_index;
->>>>>> +		u16 coh_mode;
->>>>>>
->>>>>>     		if (!obj)
->>>>>>     			continue;
->>>>>> @@ -3073,6 +3106,24 @@ int xe_vm_bind_ioctl(struct drm_device
->> *dev,
->>>>>> void *data, struct drm_file *file)
->>>>>>     				goto put_obj;
->>>>>>     			}
->>>>>>     		}
->>>>>> +
->>>>>> +		coh_mode = xe_pat_index_get_coh_mode(xe, pat_index);
->>>>>> +		if (bos[i]->cpu_caching) {
->>>>>> +			if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE
->>>>>> &&
->>>>>> +					 bos[i]->cpu_caching ==
->>>>>> DRM_XE_GEM_CPU_CACHING_WB)) {
->>>>>> +				err = -EINVAL;
->>>>>> +				goto put_obj;
->>>>>> +			}
->>>>>> +		} else if (XE_IOCTL_DBG(xe, coh_mode == XE_COH_NONE)) {
->>>>>> +			/*
->>>>>> +			 * Imported dma-buf from a different device should
->>>>>> +			 * require 1way or 2way coherency since we don't
->>>>>> know
->>>>>> +			 * how it was mapped on the CPU. Just assume is it
->>>>>> +			 * potentially cached on CPU side.
->>>>>> +			 */
->>>>>> +			err = -EINVAL;
->>>>>> +			goto put_obj;
->>>>>> +		}
->>>>>>     	}
->>>>>>
->>>>>>     	if (args->num_syncs) {
->>>>>> @@ -3100,10 +3151,11 @@ int xe_vm_bind_ioctl(struct drm_device
->>>>>> *dev, void *data, struct drm_file *file)
->>>>>>     		u64 obj_offset = bind_ops[i].obj_offset;
->>>>>>     		u8 tile_mask = bind_ops[i].tile_mask;
->>>>>>     		u32 region = bind_ops[i].region;
->>>>>> +		u16 pat_index = bind_ops[i].pat_index;
->>>>>>
->>>>>>     		ops[i] = vm_bind_ioctl_ops_create(vm, bos[i], obj_offset,
->>>>>>     						  addr, range, op, flags,
->>>>>> -						  tile_mask, region);
->>>>>> +						  tile_mask, region,
->>>>>> pat_index);
->>>>>>     		if (IS_ERR(ops[i])) {
->>>>>>     			err = PTR_ERR(ops[i]);
->>>>>>     			ops[i] = NULL;
->>>>>> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h
->>>>>> b/drivers/gpu/drm/xe/xe_vm_types.h
->>>>>> index aaf0c7101019..9ca84e1783ed 100644
->>>>>> --- a/drivers/gpu/drm/xe/xe_vm_types.h
->>>>>> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
->>>>>> @@ -110,6 +110,11 @@ struct xe_vma {
->>>>>>     	 */
->>>>>>     	u8 tile_present;
->>>>>>
->>>>>> +	/**
->>>>>> +	 * @pat_index: The pat index to use when encoding the PTEs for
->>>>>> +this
->>>>>> vma.
->>>>>> +	 */
->>>>>> +	u16 pat_index;
->>>>>> +
->>>>>>     	struct {
->>>>>>     		struct list_head rebind_link;
->>>>>>     	} notifier;
->>>>>> @@ -402,6 +407,8 @@ struct xe_vma_op {
->>>>>>     	struct list_head link;
->>>>>>     	/** @tile_mask: gt mask for this operation */
->>>>>>     	u8 tile_mask;
->>>>>> +	/** @pat_index: The pat index to use for this operation. */
->>>>>> +	u16 pat_index;
->>>>>>     	/** @flags: operation flags */
->>>>>>     	enum xe_vma_op_flags flags;
->>>>>>
->>>>>> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->>>>>> index
->>>>>> e064ed475bf6..6f4af6d6c415 100644
->>>>>> --- a/include/uapi/drm/xe_drm.h
->>>>>> +++ b/include/uapi/drm/xe_drm.h
->>>>>> @@ -643,8 +643,48 @@ struct drm_xe_vm_bind_op {
->>>>>>     	 */
->>>>>>     	__u32 obj;
->>>>>>
->>>>>> +	/**
->>>>>> +	 * @pat_index: The platform defined @pat_index to use for this
->>>>>> mapping.
->>>>>> +	 * The index basically maps to some predefined memory attributes,
->>>>>> +	 * including things like caching, coherency, compression etc.  The exact
->>>>>> +	 * meaning of the pat_index is platform specific and defined in the
->>>>>> +	 * Bspec and PRMs.  When the KMD sets up the binding the index
->>>>>> +here
->>>>>> is
->>>>>> +	 * encoded into the ppGTT PTE.
->>>>>> +	 *
->>>>>> +	 * For coherency the @pat_index needs to be at least 1way
->>>>>> +coherent
->>>>>> when
->>>>>> +	 * drm_xe_gem_create.cpu_caching is
->>>>>> DRM_XE_GEM_CPU_CACHING_WB. The KMD
->>>>>> +	 * will extract the coherency mode from the @pat_index and reject if
->>>>>> +	 * there is a mismatch (see note below for pre-MTL platforms).
->>>>>> +	 *
->>>>>> +	 * Note: On pre-MTL platforms there is only a caching mode and no
->>>>>> +	 * explicit coherency mode, but on such hardware there is always a
->>>>>> +	 * shared-LLC (or is dgpu) so all GT memory accesses are coherent
->> with
->>>>>> +	 * CPU caches even with the caching mode set as uncached.  It's
->>>>>> +only
->>>>>> the
->>>>>> +	 * display engine that is incoherent (on dgpu it must be in VRAM which
->>>>>> +	 * is always mapped as WC on the CPU). However to keep the uapi
->>>>>> somewhat
->>>>>> +	 * consistent with newer platforms the KMD groups the different
->> cache
->>>>>> +	 * levels into the following coherency buckets on all pre-MTL
->> platforms:
->>>>>> +	 *
->>>>>> +	 *	ppGTT UC -> COH_NONE
->>>>>> +	 *	ppGTT WC -> COH_NONE
->>>>>> +	 *	ppGTT WT -> COH_NONE
->>>>>> +	 *	ppGTT WB -> COH_AT_LEAST_1WAY
->>>>>> +	 *
->>>>>> +	 * In practice UC/WC/WT should only ever used for scanout surfaces
->> on
->>>>>> +	 * such platforms (or perhaps in general for dma-buf if shared with
->>>>>> +	 * another device) since it is only the display engine that is actually
->>>>>> +	 * incoherent.  Everything else should typically use WB given that we
->>>>>> +	 * have a shared-LLC.  On MTL+ this completely changes and the HW
->>>>>> +	 * defines the coherency mode as part of the @pat_index, where
->>>>>> +	 * incoherent GT access is possible.
->>>>>> +	 *
->>>>>> +	 * Note: For userptr and externally imported dma-buf the kernel
->>>>>> expects
->>>>>> +	 * either 1WAY or 2WAY for the @pat_index.
->>>>>> +	 */
->>>>>> +	__u16 pat_index;
->>>>>> +
->>>>>>     	/** @pad: MBZ */
->>>>>> -	__u32 pad;
->>>>>> +	__u16 pad;
->>>>>>
->>>>>>     	union {
->>>>>>     		/**
->>>>>> --
->>>>>> 2.41.0
->>>>>
+> Add the first version of the VM_BIND locking document which is
+> intended to be part of the xe driver upstreaming agreement.
+>=20
+> The document describes and discuss the locking used during exec-
+> functions, evicton and for userptr gpu-vmas. Intention is to be using the
+> same nomenclature as the drm-vm-bind-async.rst.
+>=20
+> v2:
+> - s/gvm/gpu_vm/g (Rodrigo Vivi)
+> - Clarify the userptr seqlock with a pointer to mm/mmu_notifier.c
+>   (Rodrigo Vivi)
+> - Adjust commit message accordingly.
+> - Add SPDX license header.
+>=20
+> v3:
+> - Large update to align with the drm_gpuvm manager locking
+> - Add "Efficient userptr gpu_vma exec function iteration" section
+> - Add "Locking at bind- and unbind time" section.
+>=20
+> v4:
+> - Fix tabs vs space errors by untabifying (Rodrigo Vivi)
+> - Minor style fixes and typos (Rodrigo Vivi)
+> - Clarify situations where stale GPU mappings are occurring and how
+>   access through these mappings are blocked. (Rodrigo Vivi)
+> - Insert into the toctree in implementation_guidelines.rst
+>=20
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> ---
+>  Documentation/gpu/drm-vm-bind-locking.rst     | 503 ++++++++++++++++++
+>  .../gpu/implementation_guidelines.rst         |   1 +
+>  2 files changed, 504 insertions(+)
+>  create mode 100644 Documentation/gpu/drm-vm-bind-locking.rst
+>=20
+> diff --git a/Documentation/gpu/drm-vm-bind-locking.rst b/Documentation/gp=
+u/drm-vm-bind-locking.rst
+> new file mode 100644
+> index 000000000000..bc701157cb34
+> --- /dev/null
+> +++ b/Documentation/gpu/drm-vm-bind-locking.rst
+> @@ -0,0 +1,503 @@
+> +.. SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +VM_BIND locking
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +This document attempts to describe what's needed to get VM_BIND locking =
+right,
+> +including the userptr mmu_notifier locking and it will also discuss some
+> +optimizations to get rid of the looping through of all userptr mappings =
+and
+> +external / shared object mappings that is needed in the simplest
+> +implementation. It will also discuss some implications for faulting gpu_=
+vms.
+> +
+> +Nomenclature
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +* ``Context``: GPU execution context.
+> +* ``gpu_vm``: Abstraction of a virtual GPU address space with
+> +  meta-data. Typically one per client (DRM file-private), or one per
+> +  context.
+
+Should we mention that it's a driver object, likely inheriting from
+drm_gpuvm?
+
+> +* ``gpu_vma``: Abstraction of a GPU address range within a gpu_vm with
+> +  associated meta-data. The backing storage of a gpu_vma can either be
+> +  a GEM object or anonymous pages mapped also into the CPU
+> +  address space for the process.
+> +* gpu_vm_bo: Abstracts the association of a GEM object and
+> +  a VM. Note that if only one gpu_vma per vm and buffer object were
+> +  allowed, the state stored with a gpu_vm_bo could just as well have
+> +  been stored with the gpu_vma.
+
+I find this note confusing, and I don't think it brings any value to
+the rest of the explanation. Sure, there's a way we could have
+optimized things for 1:1 VM:BO mappings, but do we care about this very
+restrictive use case in this context.
+
+> For the purpose of this document, each
+> +  GEM object maintains a list of gpu_vm_bos, and each gpu_vm_bo
+> +  maintains a list of gpu_vmas.
+> +* ``userptr gpu_vma or just userptr``: A gpu_vma, whose backing store
+> +  is anonymous pages as described above.
+> +* ``revalidating``: Revalidating a gpu_vma means making the latest versi=
+on
+> +  of the backing store resident and making sure the gpu_vma's
+> +  page-table entries point to that backing store.
+> +* ``dma_fence``: A struct dma_fence that is similar to a struct completi=
+on
+> +  and which tracks GPU activity. When the GPU activity is finished,
+> +  the dma_fence signals.
+
+Maybe we could point to the dma_fence doc here [1]
+
+> +* ``dma_resv``: A struct dma_resv (a.k.a reservation object) that is used
+> +  to track GPU activity in the form of multiple dma_fences on a
+> +  gpu_vm or a GEM object. The dma_resv contains an array / list
+> +  of dma_fences and a lock that needs to be held when adding
+> +  additional dma_fences to the dma_resv. The lock is of a type that
+> +  allows deadlock-safe locking of multiple dma_resvs in arbitrary order.
+
+Same for dma_resv [2]
+
+> +* ``exec function``: An exec function is a function that revalidates all
+> +  affected gpu_vmas, submits a GPU command batch and registers the
+> +  dma_fence representing the GPU command's activity with all affected
+> +  dma_resvs. For completeness, although not covered by this document,
+> +  it's worth mentioning that an exec function may also be the
+> +  revalidation worker that is used by some drivers in compute /
+> +  long-running mode.
+> +* ``local object``: A GEM object which is local to a gpu_vm. Shared gem
+> +  objects also share the gpu_vm's dma_resv.
+> +* ``shared object``: a.k.a external object: A GEM object which may be sh=
+ared
+> +  by multiple gpu_vms and whose backing storage may be shared with
+> +  other drivers.
+
+Should we name that one external object and mentions it's sometimes
+also called external object. This way it matches the name used in gpuvm
+implementation (extobj).
+
+> +
+> +
+> +Locks used and locking orders
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+> +
+> +One of the benefits of VM_BIND is that local GEM objects share the gpu_v=
+m's
+> +dma_resv object and hence the dma_resv lock. So even with a huge
+> +number of local GEM objects, only one lock is needed to make the exec
+> +sequence atomic.
+> +
+> +The following locks and locking orders are used:
+> +
+> +* The ``gpu_vm->lock`` (optionally an rwsem). Protects how the gpu_vm is
+> +  partitioned into gpu_vmas. It can also protect the gpu_vm's list of
+> +  userptr gpu_vmas. With a CPU mm analogy this would correspond to the
+> +  mmap_lock.
+
+I don't see any drm_gpuvm::lock field in Danilo's latest patchset, so,
+unless I missed one version, and this lock is actually provided by
+drm_gpuvm, I would mention this is a driver-specific lock. This comment
+applies to all the locks you describe here actually (mention which ones
+are provided by drm_gpuvm, and which ones are driver-specific).
+
+> +* The ``userptr_seqlock``. This lock is taken in read mode for each
+> +  userptr gpu_vma on the gpu_vm's userptr list, and in write mode during=
+ mmu
+> +  notifier invalidation. This is not a real seqlock but described in
+> +  ``mm/mmu_notifier.c`` as a "Collision-retry read-side/write-side
+> +  'lock' a lot like a seqcount, however this allows multiple
+> +  write-sides to hold it at once...". The read side critical section
+> +  is enclosed by ``mmu_interval_read_begin() /
+> +  mmu_interval_read_retry()`` with ``mmu_interval_read_begin()``
+> +  sleeping if the write side is held.
+> +  The write side is held by the core mm while calling mmu interval
+> +  invalidation notifiers.
+> +* The ``gpu_vm->resv`` lock. Protects the gpu_vm's list of gpu_vmas need=
+ing
+> +  rebinding, and also the residency of all the gpu_vm's local GEM object.
+> +  Furthermore it typically protects the gpu_vm's list of evicted GEM
+> +  objects and external objects.
+> +* The ``gpu_vm->userptr_notifier_lock``. This is an rwsem that is
+> +  taken in read mode during exec and write mode during a mmu notifier
+> +  invalidation. The userptr notifier lock is per gpu_vm.
+> +* The gpu_vm list spinlocks. With some implementations they are needed
+> +  to be able to update the gpu_vm evicted- and external object
+> +  list. For those implementations, the spinlocks are grabbed when the
+> +  lists are manipulated. However to avoid locking order violations
+> +  with the dma_resv locks, a special scheme is needed when iterating
+> +  over the lists.
+> +
+> +.. _gpu_vma lifetime:
+> +
+> +Protection and lifetime of gpu_vm_bos and gpu_vmas
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D
+> +
+> +The GEM object's list of gpu_vm_bos is typically protected by the
+> +GEM object's dma_resv.
+
+Should we mention the driver-custom lock here, for cases where the
+driver needs to link a gpu_vm_bo to the GEM list in a dma-signalling
+path?
+
+> Each gpu_vm_bo holds a reference counted pointer
+> +to the underlying GEM object, and each gpu_vma holds a reference counted
+> +pointer to the gpu_vm_bo. When iterating over the GEM object's
+> +list of gpu_vm_bos the gem object's dma_resv must thus be held,
+> +but if it needs to be dropped during the iteration, care needs to be
+> +taken so that any gpu_vm_bo, and the gpu_vm, if dereferenced
+> +while the lock is dropped, do not disappear. The easiest way to avoid
+> +this is to take a reference on affected objects while the dma_resv is
+> +still held. If iterating over the gpu_vm_bo's gpu_vmas, even
+> +greater care needs to be taken since the gpu_vmas are not
+> +reference counted. If a driver accesses a gpu_vma obtained from
+> +the gpu_vm_bo's list of gpu_vmas, and the GEM object's
+> +dma_resv is dropped, at the very least, it should be thoroughly
+> +documented how the gpu_vma is kept alive. Otherwise holding the
+> +GEM object's dma_resv lock also around unlinking a gpu_vma from a
+> +gpu_vm_bo will ensure that doesn't happen.
+
+If we have use cases where accessing VMAs without the GEM object
+gpuva_list lock held is useful, it would probably be worth mentioning
+them. If not, I'm not sure we should list it as a possibility, given
+how hard it'd be to guarantee that the VMA is still valid when being
+accessed in that situation (I mean, that could be done with some
+driver-specific refcounting at the VMA object level, but is it really
+something we want to encourage drivers to do?).
+
+> +
+> +
+> +Revalidation and eviction of local objects
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Revalidation
+> +____________
+> +With VM_BIND, all local objects need to be resident when the gpu is
+> +executing using the gpu_vm, and the objects need to have valid
+> +gpu_vmas set up pointing to them. Typically each gpu command buffer
+> +submission is therefore preceded with a re-validation section:
+> +
+> +.. code-block:: C
+> +
+> +   dma_resv_lock(gpu_vm->resv);
+> +
+> +   // Validation section starts here.
+> +   for_each_gpu_vm_bo_on_evict_list(&gpu_vm->evict_list, &gpu_vm_bo) {
+> +           validate_gem_bo(&gpu_vm_bo->gem_bo);
+> +
+> +           // The following list iteration needs the Gem object's
+> +           // dma_resv to be held (it protects the gpu_vm_bo's list of
+> +           // gpu_vmas, but since local gem objects share the gpu_vm's
+> +           // dma_resv, it is already held at this point.
+> +           for_each_gpu_vma_of_gpu_vm_bo(&gpu_vm_bo, &gpu_vma)
+> +                  move_gpu_vma_to_rebind_list(&gpu_vma, &gpu_vm->rebind_=
+list);
+> +   }
+> +
+> +   for_each_gpu_vma_on_rebind_list(&gpu vm->rebind_list, &gpu_vma) {
+> +           rebind_gpu_vma(&gpu_vma);
+> +           remove_gpu_vma_from_rebind_list(&gpu_vma);
+> +   }
+> +   // Validation section ends here, and job submission starts.
+> +
+> +   add_dependencies(&gpu_job, &gpu_vm->resv);
+> +   job_dma_fence =3D gpu_submit(&gpu_job));
+> +
+> +   add_dma_fence(job_dma_fence, &gpu_vm->resv);
+> +   dma_resv_unlock(gpu_vm->resv);
+
+This code excerpt is lacking all the retryable resv-locking + slot
+reservation steps. I mean, we'd normally use a drm_exec (or
+drm_gpuvm_exec) context to acquire the VM resvs, all extobjs resvs +
+all other driver internal resvs that are not attached to any of the VM
+BOs. I wonder if this simplification is not going to cause trouble in
+the long run, but at the very least, it should be mentioned that this
+is a simplified version.
+
+> +
+> +The reason for having a separate gpu_vm rebind list is that there
+> +might be userptr gpu_vmas that are not mapping a buffer object that
+> +also need rebinding.
+> +
+> +Eviction
+> +________
+> +
+> +Eviction of one of these local objects will then look similar to the
+> +following:
+> +
+> +.. code-block:: C
+> +
+> +   obj =3D get_object_from_lru();
+> +
+> +   dma_resv_lock(obj->resv);
+> +   for_each_gpu_vm_bo_of_obj(obj, &gpu_vm_bo);
+> +           add_gpu_vm_bo_to_evict_list(&gpu_vm_bo, &gpu_vm->evict_list);
+> +
+> +   add_dependencies(&eviction_job, &obj->resv);
+> +   job_dma_fence =3D gpu_submit(&eviction_job);
+
+Could you expend a bit on what the eviction job does? On embedded GPUs,
+where there's no VRAM, we typically don't have a GPU job to teardown
+GPU mappings. We do have an asynchronous VM_BIND queue though, so I
+suspect the job here is an async VM_BIND job.
+
+Not asking you to add that to the doc, I'm just trying to figure out how
+this would map to the mem-reclaim logic in panthor...
+
+> +   add_dma_fence(&obj->resv, job_dma_fence);
+> +
+> +   dma_resv_unlock(&obj->resv);
+> +   put_object(obj);
+> +
+> +Note that since the object is local to the gpu_vm, it will share the gpu=
+_vm's
+> +dma_resv lock so that ``obj->resv =3D=3D gpu_vm->resv``.
+> +The gpu_vm_bos marked for eviction are put on the gpu_vm's evict list,
+> +which is protected by ``gpu_vm->resv``, that is always locked while
+> +evicting, due to the above equality.
+> +
+> +For VM_BIND gpu_vms, gpu_vmas don't need to be unbound before eviction,
+> +Since the driver must ensure that the eviction blit or copy will wait
+> +for GPU idle or depend on all previous GPU activity. Furthermore, any
+> +subsequent attempt by the GPU to access freed memory through the
+> +gpu_vma will be preceded by a new exec function, with a revalidation
+> +section which will make sure all gpu_vmas are rebound. The eviction
+> +code holding the object's dma_resv while revalidating will ensure a
+> +new exec function may not race with the eviction. Note that this will
+> +not hold true, however, if only a subsets of vmas are, due to the
+> +driver implementation, selected for rebinding the next exec
+> +function.
+
+This last sentence is hard to follow.
+
+"
+Note that this will not hold true if only a subset of vmas
+are selected for rebinding during the next exec call (for instance, due
+to some driver decision to only partially restore VMAs).
+"
+
+> Then all vmas *not* selected for rebinding needs to be
+> +properly unbound before re-enabling GPU access to the VM.
+
+I think I get the problem, but can we have a use case where partial
+VMA restoration is useful? I mean, if some VMAs are not needed, we
+might be able to save MMU page table allocation/setup-time, but given
+the mess it then is to track those non-live VMAs, I'm wondering if it's
+leaving the door open for that, unless there's a good reason to do it.
+
+> +
+> +
+> +Locking with external (or shared) buffer objects
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Since shared buffer objects may be shared by multiple gpu_vm's they
+> +can't share their reservation object with a single gpu_vm, but will rath=
+er
+> +have a reservation object of their own. The shared objects bound to a
+> +gpu_vm using one or many gpu_vmas are therefore typically put on a
+> +per-gpu_vm list which is protected by the gpu_vm's dma_resv lock. Once
+> +the gpu_vm's reservation object  is locked, it is safe to traverse the
+
+                                  ^ extra space
+
+> +external object list and lock the dma_resvs of all external objects.
+> +
+> +At eviction time we now need to put the gpu_vm_bos of *all* gpu_vms a
+> +shared object is bound to on the gpu_vm's evict list, but we can no long=
+er
+> +be certain that we hold the gpu_vm's dma_resv of all the gpu_vms the
+> +object is bound to, since at eviction time we only hold the object's
+> +private dma_resv. If we have a ww_acquire context at hand at eviction
+> +time we could grab the those dma_resvs but that could cause
+> +expensive ww_mutex rollbacks. A simple option is to just mark the
+> +gpu_vm_bos of the evicted gem object with an ``evicted`` bool that
+> +is inspected the next time the corresponding gpu_vm evicted list needs
+> +to be traversed.
+
+IIUC, the vm_bo is not added to the evicted list immediately in that
+case, so I suspect you meant the next time the corresponding gpu_vm
+*extobj* list needs to be traversed.
+
+> At that time the gpu_vm's dma_resv and the object's
+> +dma_resv is held, and the gpu_vm_bo marked evicted, can then be added
+> +to the gpu_vm's list of evicted gpu_vm_bos. The ``evicted`` bool would
+> +then be protected by the object's dma_resv.
+
+I would be more asserted here:
+
+"
+Note that accesses to the ``evicted`` bool are protected by the
+GEM object's dma_resv.
+"
+
+
+> +
+> +The exec function would then become
+> +
+> +.. code-block:: C
+> +
+> +   dma_resv_lock(gpu_vm->resv);
+> +
+> +   // External object list is protected by the gpu_vm->resv lock.
+> +   for_each_gpu_vm_bo_on_extobj_list(gpu_vm, &gpu_vm_bo) {
+> +           dma_resv_lock(gpu_vm_bo.gem_obj->resv);
+
+Ok, so it's really pseudo-code where you're assuming dma_resv_lock()
+calls are actually locks with a ww_acquire context. This really needs
+to be clarified to people don't copy/paste this code directly.
+
+> +           if (gpu_vm_bo_marked_evicted(&gpu_vm_bo))
+> +                   add_gpu_vm_bo_to_evict_list(&gpu_vm_bo, &gpu_vm->evic=
+t_list);
+> +   }
+> +
+> +   for_each_gpu_vm_bo_on_evict_list(&gpu_vm->evict_list, &gpu_vm_bo) {
+> +           validate_gem_bo(&gpu_vm_bo->gem_bo);
+> +
+> +           for_each_gpu_vma_of_gpu_vm_bo(&gpu_vm_bo, &gpu_vma)
+> +                  move_gpu_vma_to_rebind_list(&gpu_vma, &gpu_vm->rebind_=
+list);
+> +   }
+> +
+> +   for_each_gpu_vma_on_rebind_list(&gpu vm->rebind_list, &gpu_vma) {
+> +           rebind_gpu_vma(&gpu_vma);
+> +           remove_gpu_vma_from_rebind_list(&gpu_vma);
+> +   }
+> +
+> +   add_dependencies(&gpu_job, &gpu_vm->resv);
+> +   job_dma_fence =3D gpu_submit(&gpu_job));
+> +
+> +   add_dma_fence(job_dma_fence, &gpu_vm->resv);
+> +   for_each_shared_obj(gpu_vm, &obj)
+> +          add_dma_fence(job_dma_fence, &obj->resv);
+> +   dma_resv_unlock_all_resv_locks();
+> +
+> +And the corresponding shared-object aware eviction would look like:
+> +
+> +.. code-block:: C
+> +
+> +   obj =3D get_object_from_lru();
+> +
+> +   dma_resv_lock(obj->resv);
+> +   for_each_gpu_vm_bo_of_obj(obj, &gpu_vm_bo)
+> +           if (object_is_vm_local(obj))
+> +                add_gpu_vm_bo_to_evict_list(&gpu_vm_bo, &gpu_vm->evict_l=
+ist);
+> +           else
+> +                mark_gpu_vm_bo_evicted(&gpu_vm_bo);
+> +
+> +   add_dependencies(&eviction_job, &obj->resv);
+> +   job_dma_fence =3D gpu_submit(&eviction_job);
+> +   add_dma_fence(&obj->resv, job_dma_fence);
+> +
+> +   dma_resv_unlock(&obj->resv);
+> +   put_object(obj);
+> +
+> +.. _Spinlock iteration:
+> +
+> +Accessing the gpu_vm's lists without the dma_resv lock held
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +Although some drivers will hold the gpu_vm's dma_resv lock when
+> +accessing the gpu_vm's evict list and external objects lists, there
+> +are drivers that need to access these lists without the dma_resv lock he=
+ld,
+> +for example due to asynchronous state updates from within the
+> +dma_fence signalling critical path. In such case a spinlock can be
+> +used to protect manipulation of the lists. However, since higher level
+> +sleeping locks needs to be taken for each list item while iterating
+
+                  ^ need
+
+> +over the lists, the items already iterated over needs to be
+
+                                                   ^ need
+
+> +temporarily moved to a private list and the spinlock released
+> +while processing each item:
+> +
+> +.. code block:: C
+> +
+> +    struct list_head still_in_list;
+> +
+> +    INIT_LIST_HEAD(&still_in_list);
+> +
+> +    spin_lock(&gpu_vm->list_lock);
+> +    do {
+> +            struct list_head *entry =3D list_first_entry_or_null(&gpu_vm=
+->list, head);
+> +
+> +            if (!entry)
+> +                    break;
+> +
+> +            list_move_tail(&entry->head, &still_in_list);
+> +            list_entry_get_unless_zero(entry);
+> +            spin_unlock(&gpu_vm->list_lock);
+> +
+> +            process(entry);
+> +
+> +            spin_lock(&gpu_vm->list_lock);
+> +            list_entry_put(entry);
+> +    } while (true);
+> +
+> +    list_splice_tail(&still_in_list, &gpu_vm->list);
+> +    spin_unlock(&gpu_vm->list_lock);
+> +
+> +However, due to the additional locking and atomic operations, drivers th=
+at *can*
+
+I would drop the 'However'.
+
+> +avoid accessing the gpu_vm's list outside of the dma_resv lock
+> +might want to avoid this iteration scheme, if the driver anticipates a
+> +large number of list items. For lists where the anticipated number of
+> +list items is small, list iteration doesn't happen very often, or
+> +there is a significant additional cost associated with each iteration,
+> +the atomic operation overhead associated with this type of iteration
+> +is, however, probably negligible. Note that if this scheme is
+
+'however' can be dropped here as well.
+
+> +used, it is necessary to make sure this list iteration is protected by
+> +an outer level lock or semaphore, since list items are temporarily
+> +pulled off the list while iterating.
+> +
+> +TODO: Pointer to the gpuvm code implementation if this iteration and
+> +how to choose either iteration scheme.
+> +
+> +userptr gpu_vmas
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +A userptr gpu_vma is a gpu_vma that, instead of mapping a buffer object =
+to a
+> +GPU virtual address range, directly maps a CPU mm range of anonymous-
+> +or file page-cache pages.
+> +A very simple approach would be to just pin the pages using
+> +pin_user_pages() at bind time and unpin them at unbind time, but this
+> +creates a Denial-Of-Service vector since a single user-space process
+> +would be able to pin down all of system memory, which is not
+> +desirable. (For special use-cases and with proper accounting pinning mig=
+ht
+> +still be a desirable feature, though). What we need to do in the
+> +general case is to obtain a reference to the desired pages, make sure
+> +we are notified using a MMU notifier just before the CPU mm unmaps the
+> +pages, dirty them if they are not mapped read-only to the GPU, and
+> +then drop the reference.
+> +When we are notified by the MMU notifier that CPU mm is about to drop the
+> +pages, we need to stop GPU access to the pages by waiting for VM idle
+> +in the MMU notifier and make sure that before the next time the GPU
+> +tries to access whatever is now present in the CPU mm range, we unmap
+> +the old pages from the GPU page tables and repeat the process of
+> +obtaining new page references. (See the :ref:`notifier example
+> +<Invalidation example>` below). Note that when the core mm decides to
+> +laundry pages, we get such an unmap MMU notification and can mark the
+> +pages dirty again before the next GPU access. We also get similar MMU
+> +notifications for NUMA accounting which the GPU driver doesn't really
+> +need to care about, but so far it has proven difficult to exclude
+> +certain notifications.
+> +
+> +Using a MMU notifier for device DMA (and other methods) is described in
+> +`this document
+> +<https://docs.kernel.org/core-api/pin_user_pages.html#case-3-mmu-notifie=
+r-registration-with-or-without-page-faulting-hardware>`_.
+> +
+> +Now the method of obtaining struct page references using
+> +get_user_pages() unfortunately can't be used under a dma_resv lock
+> +since that would violate the locking order of the dma_resv lock vs the
+> +mmap_lock that is grabbed when resolving a CPU pagefault. This means
+> +the gpu_vm's list of userptr gpu_vmas needs to be protected by an
+> +outer lock.
+> +
+> +The MMU interval seqlock for a userptr gpu_vma is used in the following
+> +way:
+> +
+> +.. code-block:: C
+> +
+> +   // Exclusive locking mode here is strictly needed only if there are
+> +   // invalidated userptr vmas present, to avoid multiple userptr
+> +   // revalidations.
+> +   down_write(&gpu_vm->lock);
+> +   retry:
+> +
+> +   // Note: mmu_interval_read_begin() blocks until there is no
+> +   // invalidation notifier running anymore.
+> +   seq =3D mmu_interval_read_begin(&gpu_vma->userptr_interval);
+> +   if (seq !=3D gpu_vma->saved_seq) {
+> +           obtain_new_page_pointers(&gpu_vma);
+> +           dma_resv_lock(&gpu_vm->resv);
+> +           add_gpu_vma_top_revalidate_list(&gpu_vma, &gpu_vm);
+> +           dma_resv_unlock(&gpu_vm->resv);
+> +           gpu_vma->saved_seq =3D seq;
+> +   }
+> +
+> +   // The usual revalidation goes here.
+> +
+> +   // Final userptr sequence validation may not happen before the
+> +   // submission dma_fence is added to the gpu_vm's resv, from the POW
+> +   // of the MMU invalidation notifier. Hence the
+> +   // userptr_notifier_lock that will make them appear atomic.
+> +
+> +   add_dependencies(&gpu_job, &gpu_vm->resv);
+> +   down_read(&gpu_vm->userptr_notifier_lock);
+> +   if (mmu_interval_read_retry(&gpu_vma->userptr_interval, gpu_vma->save=
+d_seq)) {
+> +          up_read(&gpu_vm->userptr_notifier_lock);
+> +          goto retry;
+> +   }
+> +
+> +   job_dma_fence =3D gpu_submit(&gpu_job));
+> +
+> +   add_dma_fence(job_dma_fence, &gpu_vm->resv);
+> +
+> +   for_each_shared_obj(gpu_vm, &obj)
+> +          add_dma_fence(job_dma_fence, &obj->resv);
+> +
+> +   dma_resv_unlock_all_resv_locks();
+> +   up_read(&gpu_vm->userptr_notifier_lock);
+> +   up_write(&gpu_vm->lock);
+> +
+> +The code between ``mmu_interval_read_begin()`` and the
+> +``mmu_interval_read_retry()`` marks the read side critical section of
+> +what we call the ``userptr_seqlock``. In reality the gpu_vm's userptr
+> +gpu_vma list is looped through, and the check is done for *all* of its
+> +userptr gpu_vmas, although we only show a single one here.
+> +
+> +The userptr gpu_vma MMU invalidation notifier might be called from
+> +reclaim context and, again to avoid locking order violations, we can't
+> +take any dma_resv lock nor the gpu_vm->lock from within it.
+> +
+> +.. _Invalidation example:
+> +.. code-block:: C
+> +
+> +  bool gpu_vma_userptr_invalidate(userptr_interval, cur_seq)
+> +  {
+> +          // Make sure the exec function either sees the new sequence
+> +          // and backs off or we wait for the dma-fence:
+> +
+> +          down_write(&gpu_vm->userptr_notifier_lock);
+> +          mmu_interval_set_seq(userptr_interval, cur_seq);
+> +          up_write(&gpu_vm->userptr_notifier_lock);
+> +
+> +          // At this point, the exec function can't succeed in
+> +          // submitting a new job, because cur_seq is an invalid
+> +          // sequence number and will always cause a retry. When all
+> +          // invalidation callbacks, the mmu notifier core will flip
+> +          // the sequence number to a valid one. However we need to
+> +          // stop gpu access to the old pages here.
+> +
+> +          dma_resv_wait_timeout(&gpu_vm->resv, DMA_RESV_USAGE_BOOKKEEP,
+> +                                false, MAX_SCHEDULE_TIMEOUT);
+> +          return true;
+> +  }
+> +
+> +When this invalidation notifier returns, the GPU can no longer be
+> +accessing the old pages of the userptr gpu_vma and needs to redo the
+> +page-binding before a new GPU submission can succeed.
+
+Don't know enough about userptr to properly review this section, sorry
+:-/.
+
+> +
+> +Efficient userptr gpu_vma exec_function iteration
+> +_________________________________________________
+> +
+> +If the gpu_vm's list of userptr gpu_vmas becomes large, it's
+> +inefficient to iterate through the complete lists of userptrs on each
+> +exec function to check whether each userptr gpu_vma's saved
+> +sequence number is invalid or stale. A solution to this is to put all
+> +*invalidated* userptr gpu_vmas on a separate gpu_vm list and
+> +only those gpu_vmas on the list are actually checked on each exec
+> +function. This list will then lend itself very-well to the spinlock
+> +locking scheme that is
+> +:ref:`described in the spinlock iteration section <Spinlock iteration>`,=
+ since
+> +in the mmu notifier, where we add the invalidated gpu_vmas to the
+> +list, it's not possible to take any outer locks like the
+> +``gpu_vm->lock`` or the ``gpu_vm->resv`` lock. Note that the
+> +``gpu_vm->lock`` still needs to be taken while iterating to ensure the l=
+ist is
+> +complete, as also mentioned in that section.
+> +
+> +If using an invalidated userptr list like this, the retry check in the
+> +exec function trivially becomes a check for invalidated list empty.
+> +
+> +Locking at bind and unbind time
+> +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D
+> +
+> +At bind time, assuming a GEM object backed gpu_vma, each
+> +gpu_vma needs to be associated with a gpu_vm_bo and that
+> +gpu_vm_bo in turn needs to be added to the GEM object's
+> +gpu_vm_bo list, and possibly to the gpu_vm's external object
+> +list. This is referred to as *linking* the gpu_vma, and typically
+> +requires that the ``gpu_vm->resv`` and the GEM object's dma_resv are
+> +held.
+
+Again, depends on the locking scheme you picked. While I agree that
+insertion/removal of extobjs is likely to be done with the VM and GEM
+resv held, link/unlink being done when the VMA is
+inserted/removed in the tree, it really depends on the VM update model
+chosen by the driver (update early/at-VM_BIND-ioctl-time vs
+JIT/at-VM_BIND-job-exec-time).
+
+We went over it quite a few times with Danilo and you, and I keep
+forgetting why early link/deferred unlink (leaving the VMA tree update
+in the dma-signalling path, but the link/unlink being done outside of
+this path) wouldn't work. I think it'd be worth documenting this kind of
+details, so we don't come to discuss it over and over again, just to
+end with the exact same conclusion :-). Maybe we should add a "drm_gpuvm
+design decisions" section gathering all those tricky/hard to grasp
+details at some point.
+
+
+> When unlinking a gpu_vma the same locks are typically held,
+> +and that ensures, as briefly discussed
+> +:ref:`previously <gpu_vma lifetime>`, that when iterating over
+> +``gpu_vmas`, either under the ``gpu_vm->resv`` or the GEM
+> +object's dma_resv, that the gpu_vmas stay alive as long
+> +as the lock under which we iterate are not is not released. For
+> +userptr gpu_vmas it's similarly required that during unlink, the
+> +outer ``gpu_vm->lock`` is held, since otherwise when iterating over
+> +the invalidated userptr list as described in the previous section,
+> +there is nothing keeping those userptr gpu_vmas alive.
+> diff --git a/Documentation/gpu/implementation_guidelines.rst b/Documentat=
+ion/gpu/implementation_guidelines.rst
+> index 138e637dcc6b..dbccfa72f1c9 100644
+> --- a/Documentation/gpu/implementation_guidelines.rst
+> +++ b/Documentation/gpu/implementation_guidelines.rst
+> @@ -7,3 +7,4 @@ Misc DRM driver uAPI- and feature implementation guidelin=
+es
+>  .. toctree::
+> =20
+>     drm-vm-bind-async
+> +   drm-vm-bind-locking
+
+Looks pretty good overall. My only complaint would be that you don't
+refer much to drm_gpuvm, when it's actually suppose to become the
+common ground for GPU VM handling in drivers (at least that was my
+understanding).
+
+Regards,
+
+Boris
+
+[1]https://docs.kernel.org/driver-api/dma-buf.html#dma-fences
+[2]https://docs.kernel.org/driver-api/dma-buf.html#reservation-objects
