@@ -4,137 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B58DC197A0
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 21:28:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD07CC197A0
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 21:40:14 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C57B110E091;
-	Thu, 16 Nov 2023 21:28:55 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F20BB10E091
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 21:28:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C20A10E2CB;
+	Thu, 16 Nov 2023 21:40:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1201B10E2CB
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 21:40:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700170134; x=1731706134;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=pE6ysfPec2YivehIxYaRmOPj4NWcf63Gz0whvsC87Ho=;
- b=OEPVYlYZjkUbKTT1LLzmf4arMfD5phcSokfmymFLcmvUFzEOUWta37dD
- Z7Tb5nUNC3ynwdc0IpMZUopT7uJWjopYlQ5BWqHrZHVGMyRY3QGGgAGqc
- ilJOjwrFmN81GyOcQ8j++CuWwipzC5jBFWgLyYPLzW3D2b46hiNlUVbEl
- AE02hmwXDzSXkPoDVL/1WKypLJXRhkU2loN8h4dFA6xqrcFr5kaAitxrG
- Nf4tDah8cLQo/j5eO1goM+VlMMmwMttteS0ERvw+Xgsldl1BvrGIsC0rL
- mbH1IqBUllecbV0jAOPV0Sa1nAHVHCok4IgueRCyT/sMqaBnabj1xDSOs g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="422284634"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="422284634"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 13:28:30 -0800
+ t=1700170813; x=1731706813;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=0eWh9fbxClTaNtkew653v4GaBrhchmAQGy7TB+bxYrY=;
+ b=TYIZIrpQBb2bCUACV5bMdCkHxXTWmm2mtRKQZcF5DxgnDkiCe6mPrz8o
+ Sa8wDiP+RRZuSfk6iyfjLkholrlj03tq3KTSlAUGK9TDxGpa/LXV63yeo
+ xzSrWlCqzR49SRc5QLpF8QSh+AGlgdZb3kXk7g5lzxdFGWu/yrO/ldp2W
+ BQSlCGAezB0nmrAoGfdsDBLWgIyweOa1U3MDYVaFBeZKDVmLCeB+qdKVH
+ 8bnbPVP4wXMCSGb2TgGK44kTnu5UFh4BBPhn7VEswaWAE+hrOSptEMF/f
+ 0i4kETQYLCygVn5j80pPVfmd5QINb58rdwVUwzs3KZERAl7TUOVBS/O+K g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="477407521"
+X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="477407521"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2023 13:40:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="856133152"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="856133152"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by FMSMGA003.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Nov 2023 13:28:30 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="715352336"
+X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="715352336"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga003.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 16 Nov 2023 13:40:12 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Thu, 16 Nov 2023 13:28:30 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.34; Thu, 16 Nov 2023 13:40:11 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Thu, 16 Nov 2023 13:28:30 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Thu, 16 Nov 2023 13:40:11 -0800
+Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.41) by
+ edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Thu, 16 Nov 2023 13:28:30 -0800
+ 15.1.2507.34; Thu, 16 Nov 2023 13:40:11 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gJyApgR7QzHKsSshKTlYa/UxtueevFsORgzkeE79gusjIroN8BWh51qynoeQ36/jfjs4GimdeuCsHDHsCbWnts0+DSwEepNzHGTVmaqRVt/rf3/R0QpCVUaUt58dl42yviLcA778hqE0GSM0yU2ocK60nBEIP2BZbd+cp2cBlPEsTfttYoA3jFD++OBgqsbqQ1G2ck3Z0IZuHwh0qGrvrUmveoFghxPKQlrcFZCz9tGH/3TpSawMJH975baJaOCpn4Lu8RjPAk+stqQQ0MrKtHsVbMfICLhsnRG2pHiMgNIqgjujlpdGo6UbmfKWQe2tOFD4+75jZ9MEDOfEYX0ioA==
+ b=WPUw/ucurfeSvwCrMuJRFX7ixLqM+4bpmZyt0Q358kC+6oV0hGU3OQ+YFPhbrZrNzYcb4h7TOjxLLExRQ4S0uScWFmYpsLIFb4i00fQWwkGmQsSA0+7uk4fjdziu9g3EOwpTpy+SeL8a/JIXXeebp7pm5YQxaahHb8eUBwc9ivWJVkdFhbQ4xezULNdZMXH/slkvooCkWYsw61lvptdg73+WsDuFar4b6PCORrn07apjpbJ0T0b7re3rOTYzNPZtCb3gzDZojJIwOT1GW58+Cbx5irRTZvqUko/6AcXGD9YQCbrusTBCegZSdLUG9KXaa8BRHR7PQbPHYZOQIHLS5Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RsMsCqAClw9gl8UYVJpRhparBIpPMmujZ5uMpj9Omrk=;
- b=oVKZ3ly2aB1E5mqtf4/bMkkeIs+yx9+6uPccftmZLW4aYmb/OBGs6z1vF9D9IuwNmwLVZGv/3o05a0FJnB7FvkbsFAsvsmm/FVpHqVfNL4PJF0pr8v3TfydllOVoqd/ct8gzaSD8ww/QRWc/aDwv3YzO18MtfDVzVfrL8qAKWgd6Iku/ROewIQYbdwS/6+6jX43IHrORTDSIuUH1DWPav12Feu62hKBor1/Hz90GS8mLLz2UI3ey51sH4Fp5vegTIV0SWhHw2lGXCeaqnCNnmDuogh380h3gL3q2/aStO0dhifs+LT2S4Sqau5SxfA++DfBCbHom3aUZlPMZrbdQBA==
+ bh=M4NjUc4cAjdNxSHY/F679p36+MihuIqjJuadicOJk14=;
+ b=lGpRtenjbORbTPL1YJcLXjT6PDpcS/ckAqmTNPYRHVVrwzUq46QtqLpgKKSr/DmLArLpNYMeYIBaTGOWeVrqQL27k+Rl1JnDHDb9heyEhBR47qLbnAgMHxPgckbfIRfipHcFgyHNOwWOMNL12HZdR/ON0e7EMfoGtJZXjRx86IejczOoJtGQj9ilZFB2LC4m4CJBXRWzo0ftLAupROZ3izyIwSTcrLVtvJ75+jaMGxHJy6yih8NEihIPktGQMiVk467y8GIrR9ibfKyBK2JUtkzi4kbIIRE7xGdq6+CXJz2KI2D7w9CAj4UeJRwtMwFs4EIwOht1v2NwTcg17OX8sg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by PH7PR11MB5819.namprd11.prod.outlook.com (2603:10b6:510:13b::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6977.29; Thu, 16 Nov
- 2023 21:28:26 +0000
-Received: from DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::4f1d:17b5:88b5:76b0]) by DS0PR11MB8182.namprd11.prod.outlook.com
- ([fe80::4f1d:17b5:88b5:76b0%7]) with mapi id 15.20.7002.021; Thu, 16 Nov 2023
- 21:28:26 +0000
-Date: Thu, 16 Nov 2023 13:28:24 -0800
-From: Matt Roper <matthew.d.roper@intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Message-ID: <20231116212824.GT1327160@mdroper-desk1.amr.corp.intel.com>
-References: <20231116144316.7-1-francois.dugast@intel.com>
- <20231116144316.7-7-francois.dugast@intel.com>
- <b53c6f92cafa55a32d2315dfabc4698b6cea17ac.camel@intel.com>
- <ZVaB/d2fR0GBje3T@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZVaB/d2fR0GBje3T@intel.com>
-X-ClientProxiedBy: SJ0PR03CA0337.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::12) To DS0PR11MB8182.namprd11.prod.outlook.com
- (2603:10b6:8:163::17)
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
+ by MN2PR11MB4533.namprd11.prod.outlook.com (2603:10b6:208:264::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.21; Thu, 16 Nov
+ 2023 21:40:09 +0000
+Received: from PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::73d0:f907:41e4:4a34]) by PH7PR11MB7605.namprd11.prod.outlook.com
+ ([fe80::73d0:f907:41e4:4a34%4]) with mapi id 15.20.7002.019; Thu, 16 Nov 2023
+ 21:40:09 +0000
+Message-ID: <d2847414-d134-4328-90c5-39b8288ae306@intel.com>
+Date: Thu, 16 Nov 2023 13:40:07 -0800
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ <intel-xe@lists.freedesktop.org>
+References: <20231115234043.2518971-1-daniele.ceraolospurio@intel.com>
+ <0a532eac-615e-4149-a634-aeebb25501ab@intel.com>
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+In-Reply-To: <0a532eac-615e-4149-a634-aeebb25501ab@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SJ0PR03CA0180.namprd03.prod.outlook.com
+ (2603:10b6:a03:338::35) To PH7PR11MB7605.namprd11.prod.outlook.com
+ (2603:10b6:510:277::5)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|PH7PR11MB5819:EE_
-X-MS-Office365-Filtering-Correlation-Id: 689ebab7-b85a-449f-d5a1-08dbe6eaf848
+X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|MN2PR11MB4533:EE_
+X-MS-Office365-Filtering-Correlation-Id: bbe544f9-7366-4db3-47ed-08dbe6ec9b20
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: WN0RcVA+A/I27/RTlJVpPN/wif10kPHRIGnvj+htIpxGuwsltYa70Qq3+faa20AF43Eja83POjLhC7eSASczfw7L4/e3GrVtPkM2K/FExSOuPRIULi70Wu874rshNUuJdUZuz+XZjucKxfW5ms+AO/xIPI80c9zLnw7GlrFj2h3QvOl+VHZ36Ld5h9gEgTzfKDPKRM5y+3WmdBrfwVP+1XckLExDpJSImNKwXO+bSxg9D912dUGRo8PZBwQnRYB/rHurySn9BbBmJNQhiUq7SeVsywqVyB4CyKYYVYzKfceXBwtpFr9Jl/XZG97HwX9XHt24Qg3IVk+8bIEl5mFgyk7MSXbWo0xHBgXAqqAIyhIl4snCqbV1wcZk/+sY7m+q8QU/MuMhxOtQcvpZHhSJ2rz3QUwqH9W1uRYD1mIHsXyVYfvsEmJfCEJ3vbN30WwrtqHSTYe46xjP8LNt5q5ekUJv6tU2k8p/agS4SDrHSoRkWIaH2SJ9uFx5QSR8ieYVKu0nDuSiZZEl2NSfUvaTLzbIuKxPFqvKsnTJ0VwG7FBdfiimwngjOzlGTitNI5tVGqdidB9Gq0aHU2tvIRCR595Xcn+1AKUo9RoiNBVq20o=
+X-Microsoft-Antispam-Message-Info: Om5KELB63FNpovJHYcr9aGaBDrVvMJF8MSAPd65TNZjUgzq8hs/Bgv+z9T34/pACFa3GH1K003wL2cxe1GuG8iAKREXP6fEXjCxP6jtQCke2GVC/0+Tl8EYP9ftgjRQxrFr5VXnjA9rQcC2Msnjz2oahAxZTtdSzsMJn3Bz+IKCg/tVudjjpxI+0GRh0n5wfcECDJHqZpIHdQqqeySYbf8uord7fh/QNPZnFoVH04PImXt5VBRQby8fJyf+yG/sVj6zL3AmuFBMIGp2tGYyKlyT6YIlMt6/sbTAYMqQD4iTYLDainbCs0fKVc4DoE7mwm/I6tMOPnrHSVapKxksVmrY7i/t8UG2vTAb7BqmYZ8yCjl/xktAS1q3mebYWsp3OZOalDIVFaMqCbQ01dk9Kc6jGZ9TIV2zLC4NVKDheIRJ8jrZHEut4vuIaBUPHVDBp8nlmprnhVGsgTOUtyTVjZ/4noVP2VOpXR0uAXL0kfkPD7gIp46GGw96zDddoxLpz2cP1DJwXZ5RIHOTFVltJilDHAp0ppYZirEpCBhY9lObNUfmR05vfF+1+4YnGEtEjbIWP4viuVwSDlbHbcG0baJR6C5FOnGFG4Y9RF1bhWBaJIkngP/3ja8oJVEzOv0jMvaEwE693QPgAgMnDPqYQiQ==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(346002)(396003)(136003)(39860400002)(376002)(230922051799003)(451199024)(186009)(64100799003)(1800799009)(41300700001)(4001150100001)(966005)(6506007)(2906002)(54906003)(6862004)(8936002)(4326008)(8676002)(6512007)(316002)(66946007)(66476007)(6486002)(33656002)(6636002)(86362001)(478600001)(26005)(1076003)(83380400001)(38100700002)(82960400001)(5660300002)(66556008)(43043002);
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(136003)(366004)(346002)(39860400002)(376002)(230922051799003)(451199024)(186009)(1800799009)(64100799003)(66946007)(66476007)(41300700001)(316002)(66556008)(54906003)(86362001)(5660300002)(31696002)(2906002)(15650500001)(4326008)(8936002)(8676002)(82960400001)(83380400001)(38100700002)(31686004)(6486002)(478600001)(2616005)(36756003)(107886003)(6506007)(26005)(53546011)(6512007)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WPKLtb9w7FQqtFPqkhfTLGIetIZZceYm8GJyGXccaF8ZVcx5qJMntAJiTgee?=
- =?us-ascii?Q?FZeyalwypWo0rDFRmKb6gNL13LysRakTvmLVKMWS//m2XpV11T+iosP/e+qB?=
- =?us-ascii?Q?EE9KdVoI6C6ktB9DARWN0q3k4drOD3ceP4WC2XvDvevWKA21ENwMTCw7zVB0?=
- =?us-ascii?Q?WvLfXktbv87bLPZH6DTHB5hifvAj2ROs7davHeZSy7q6ZZzr6jAka0ybnZ4P?=
- =?us-ascii?Q?yFMunu3twvAGjcIo/8r7ipxgEYUqJBMm0R0KgdwgUscVys4YMR/+UuayqSQh?=
- =?us-ascii?Q?7P00eQGVNkSDF6NqDTDq9StgBkNt5iestKuZhnS6U8iN188Z2MaQndTbdd95?=
- =?us-ascii?Q?3DcEceKHCJFI2ydorCsi/im3mXHqO1wktWjByo1rMWf+hl5HkKo1VGoVOeb8?=
- =?us-ascii?Q?d7lHpluATBujuV1WdYTyI6g7ZDr0ghBK8Rts8maopXyae0XvqRwCsdRMf8YO?=
- =?us-ascii?Q?DQpZo/DW8NakoAqbCSfmSs+DHGMOjNFUQXL09XSc5WXfGdYwVTwGEzJ8t6/+?=
- =?us-ascii?Q?C4yo+FqDWQK/++pXPxDZs0rwxgmkZpIW1DqMHmCa+qBPAEVtT2QwU6mWADl7?=
- =?us-ascii?Q?HSecR+yr8rpqkIwjCn23rqbsR7rDFGA+W2kISJFtQNEyOrHmRVwb0PUmklTP?=
- =?us-ascii?Q?giMPeGYFtgwz2rW9b8e+IteBuBU/SJvJeyzMPrXy82UzgKqV96A617cwJJ8b?=
- =?us-ascii?Q?QG7DJ/859f5BpASgWAx7kBDMEeCkh7RCjvqb2Xh9aAVdNglVas3/Vp+Y2kB6?=
- =?us-ascii?Q?5UewYshOoZLLz4n7y2PuLq8Ij43fsNC7Mrk613IMEhxDFjjOPjbd9yxH+Axj?=
- =?us-ascii?Q?W9+a5g6iH7yehSBHKm1DfGTcQB3BL/TG/OUWYwwTe6VmzzgaRTLyOBp1WXic?=
- =?us-ascii?Q?B+A3uolqbUVcFe5pgePoiw65ojNMrDH7vWlATiNDCsYR0OaiOYzrBmhMgrL9?=
- =?us-ascii?Q?dkFKFevZNpGuaSV4nr7ae+EMSrsK4Nvnayz4ts7Oe6GTuR9bWG19SbLy23dm?=
- =?us-ascii?Q?hOmD+wZ979ctf2W6f7I3yRk6dGENZIF6FEJG+1lla0u1+1tapDBmTJVGbY38?=
- =?us-ascii?Q?nMS5V1+FK1kFlFqL0EsTz21GTnKZo1pdlbyF0fHkBmoPWoaWmfyJJnCDrGph?=
- =?us-ascii?Q?eWwDrD+xrCwHfOkKLBXX3uRCeWJP9fuma9x1slQxhJIgihn4WS51LAn9E1eW?=
- =?us-ascii?Q?QDcdRG+ph8BL09E7VtgyqLm+Oa2DHkCheTs9wLd24x4qJKm4TYvxk3R8UR5H?=
- =?us-ascii?Q?1bcNmCcBv/JNjJ4bfpD0fBzF1q5pxP2H7knQUyjN3FBLAm/bMpD0CdZoz2lS?=
- =?us-ascii?Q?15Dju9GGObdka+WQ2Is1wqZcLKnL8l8bkmrsw5zm9zdaC2NodedZtZS+EJ1h?=
- =?us-ascii?Q?4oy9P8VInteOu7c/zy82jPhKNrcV8hxgl4c0cuJJeRubWTI8b9WMWUXkrriG?=
- =?us-ascii?Q?uDN3+AgMwymY7JTPEzwHTv8A15RHetS3m+ft096EWLW/VsRsd7HgQ/9/W4MU?=
- =?us-ascii?Q?f4lErq3juhHE3913bKtuzziFFQpDsZ2hs1iyHjuemlagn1kpLnuJBw6sVKbd?=
- =?us-ascii?Q?LUlLI16p1GPWolbNRAHPQjN1TR4lHpvb3y1YMnFHoZrCQU84VfyaOIYo2TrZ?=
- =?us-ascii?Q?MQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 689ebab7-b85a-449f-d5a1-08dbe6eaf848
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZDZsOUwxNUlEd1BRZ3JtYmJuMTJSMUFtcnhDTlI1d2V5MVRmeUFEMS9GTUJQ?=
+ =?utf-8?B?NGZXc09MTnpzVXpNWlFTL0RhRjNjTHlKeEFUL3Roa1U5T2NQVEF3WTBiZ3pZ?=
+ =?utf-8?B?akpCclhBbmZVZCtaTC9RVEF2MTJuVHlsdzNTTkJOUm9OejZsbGZTSHdBZDcz?=
+ =?utf-8?B?WWN5bWxEdE0vT0p6ZnYwNGc4VS9VSmQvbjZMc1gvajlwVktKZUM1bjZYMWlR?=
+ =?utf-8?B?M3hidER6MUtNZEQ0OHRzbEk4dng4M1JRbGxZZ3puSUE5dktscVUvOWNRSDdX?=
+ =?utf-8?B?dzZlQXdWZGVrZkJsL25sRGhTamtGclRaa1dPUG9yQVQ1VmVTNFNxMlFNeUhp?=
+ =?utf-8?B?dXptMTNIQ2FmUUhYYVkxOE9OZTdNZlE5cXBvNTZwU1M1U0J6cUhyK0tOZHZU?=
+ =?utf-8?B?VUJya21nbVBMUUZMMXAzNFNzS2xocTFzZzhpb0FlTmxZTGxQeWM2MktjSlVK?=
+ =?utf-8?B?Y0p1ekxXOXpCTS9pOWlsWXNJNjdDZ1gxc1lyNjdzRUVCbHBTUXl6Qlh4aHIy?=
+ =?utf-8?B?d2E1NkVnMWhiektiS0QvQURDMTJwQmF5Wlduc2xGQUE0b1lQL0RZeWRRSHdV?=
+ =?utf-8?B?cXRtTWo3blRtdDdQYWpPUzFockkvTnkyYmI2eGJxRElmcFVFMmdlWG8xUDFE?=
+ =?utf-8?B?aVZwR1h4bWR3L0U5K1Q0bVZOSmd2d2Q2T3Q3aXl2SlZIQU1lQVRNTDF3U0Zq?=
+ =?utf-8?B?ZTdoL3lKK3NvVlp4TDd3b3VyWmxzTnJ4R1VZcVloWXE0ek1ybys2akNXN1Vy?=
+ =?utf-8?B?SHg0aG9haXZPSDhMZDhSaklwYms3b3BjNHhFWWJKOW9XMkFVbzN0N2doVzVh?=
+ =?utf-8?B?R0dxbzlQcEFmOElOMWM4VzZBclhJSVhnSkFodjZyQlhwL3d3SnQ2QWZlUFVM?=
+ =?utf-8?B?ZTdRc1E4TUE5WkhydkpCN0ZhWW9BZXQvVXBrSVVmTTI1OFVGSFA4cXk3Zktj?=
+ =?utf-8?B?TmhFckxucnh1VEthWEZpbWx2d0FIUEpUSTl2SFNsbmxZQ0FuZ28rekloanBr?=
+ =?utf-8?B?a2NFMExIMVFiYzhaNElvbG1sZnJwb094TEZBeGFQSGpIdjdTQUMrUFFrd0dj?=
+ =?utf-8?B?Q2kzQW1NV0djajRJc1hueFVuejJkdTdjRFZ4YnRVa3MvSnk4KzRZcGtIMXBC?=
+ =?utf-8?B?dDdvYzdVdlBsQVlHUk1PSU16alYvbTQybUN0dHVlZnJKZGRQSFVHSjR6ekxp?=
+ =?utf-8?B?NW1vUHdSOThDbWNWT2pOV212TWcwS3Fzb1hUamNNT0hTODZZS3IrbjJNeWhG?=
+ =?utf-8?B?T2pLSTh4L3daLzl0R3Y1VTI2MURuRFRjNnBTN2w0YjdNb3F1NFJqRXhSekNZ?=
+ =?utf-8?B?YnhZY0V1cGtIV0FOMTRDUGRJSkdHajlBaWZmd2V6SWNZRTNJMStWK2hwdlBI?=
+ =?utf-8?B?L3RubXpJZTFIM2JhWHN1K1FDSjlqMGNzZ01NNENhTU1WcmFSd1NsOHYxLzJv?=
+ =?utf-8?B?bjFUK3QyT2tEeklDakhST1Z3KzZzU2wrNGNvTjZKQkVUbVFZV21XS1N5VWV3?=
+ =?utf-8?B?R04rQkRPSzYyTE1BYVBtdzJrSEY0Q2lvN2pUYmZhUDQ2SnlsK1MxUS9TTnZN?=
+ =?utf-8?B?WDExNW5oRCs0YVhZb0RKRmlzcElnRXYrK1hVeVhJSm1OVEVwQ0RGY1dPdi96?=
+ =?utf-8?B?YmNzQ1hjaFVLa25XdkNTKzVpWE1kNDh0QS8wOE5uZW5ONXhXUGhscGxLbjJo?=
+ =?utf-8?B?WEMrVXhnR3hKSzgwVFlRWWJDb0JzbVhQTURLYVNFM0NLR0dpQjRJZ1ZWbWpx?=
+ =?utf-8?B?aG9IdDBJTVhUZkNvbzZJSW90WG1EeGpic2lIbWpWZlp5Ynluenk1SDF3OHZI?=
+ =?utf-8?B?R2FWRVF5cEg5QVBDK3NFZ2gwMnhxU1JIbkpyRVpETFRCbTU5djcydEFkYmRU?=
+ =?utf-8?B?b2lCTU9yYXFWYndNM0dzamtPUi9hWFAySWxjM2xpMnkzUDlSVjIvdzFmNWpj?=
+ =?utf-8?B?VXlzZjErSStWMThoNlRIS25WdzJES25sZnRCY1E2dkVKUGp2M0FCUlIvU2hh?=
+ =?utf-8?B?U2hCTjlPNlVTMEo0T21yU0VaOUpONVR2RE4vcTNpajRjVUR3NlpLMEppYlhu?=
+ =?utf-8?B?T2RidmUzZU5scUYzYnppd0VTT09yeTM0Zk9OUWdhb2RRTXVKSnduVlhCbTNG?=
+ =?utf-8?B?enVSSDQ2d0FMWjhjZDUyMXJsYXhzVFMyQUZISDBac1NBQWpEWWhYaEFqSm14?=
+ =?utf-8?Q?KuFpYheoJ5sAD6sPa0YS9bQ=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bbe544f9-7366-4db3-47ed-08dbe6ec9b20
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2023 21:28:26.8038 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2023 21:40:09.3543 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uB81cV5r9yj4t+H7IkKGLaIm4TqKByoqqkwYJpVKVOubS78AFBpkIcNMVOYMQZref8u7E9H0V8RUKBipgFZc9kZdNdkpfkPtMRLth84E9Kg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5819
+X-MS-Exchange-CrossTenant-UserPrincipalName: A3WYnYezeoKvBkKkrzstMM3exVZGtuShXM1jXvAwFlJuDQbwW41Dc8BpkX1WJmLRsRv5oGpZ6BCMMSy9GvPD4ceUr1TFMKPGiFDuG3StWZc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4533
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v1 6/8] drm/xe/uapi: Align on a common way to
- return arrays (gt)
+Subject: Re: [Intel-xe] [PATCH] drm/xe/guc: Use FAST_REQUEST for
+ non-blocking H2G messages
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,148 +156,162 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Dugast, Francois" <francois.dugast@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 16, 2023 at 03:56:29PM -0500, Rodrigo Vivi wrote:
-> On Thu, Nov 16, 2023 at 08:40:26PM +0000, Souza, Jose wrote:
-> > On Thu, 2023-11-16 at 14:43 +0000, Francois Dugast wrote:
-> > > The uAPI provides queries which return arrays of elements. As of now
-> > > the format used in the struct is different depending on which element
-> > > is queried. Fix this for gt by applying the pattern below:
-> > > 
-> > >     struct drm_xe_query_X {
-> > >        __u32 num_X;
-> > >        struct drm_xe_X Xs[];
-> > >        ...
-> > >     }
-> > > 
-> > > However, strictly following this rule would bring back the name "gts"
-> > > which is avoided as per commit ("drm/xe/uapi: Rename gts to gt_list")
-> > > so leave exceptions in the case of gt with num_gt (singular) and
-> > > "gt_list". Also, this change removes "query" in the name of struct
-> > > drm_xe_query_gt as it is not returned from the query IOCTL. There is
-> > > no functional change.
-> > > 
-> > > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_query.c |  8 ++++----
-> > >  include/uapi/drm/xe_drm.h     | 18 +++++++++---------
-> > >  2 files changed, 13 insertions(+), 13 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-> > > index b31e00bd29bc..5756d8eaf972 100644
-> > > --- a/drivers/gpu/drm/xe/xe_query.c
-> > > +++ b/drivers/gpu/drm/xe/xe_query.c
-> > > @@ -353,11 +353,11 @@ static int query_config(struct xe_device *xe, struct drm_xe_device_query *query)
-> > >  static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query)
-> > >  {
-> > >  	struct xe_gt *gt;
-> > > -	size_t size = sizeof(struct drm_xe_query_gt_list) +
-> > > -		xe->info.gt_count * sizeof(struct drm_xe_query_gt);
-> > > -	struct drm_xe_query_gt_list __user *query_ptr =
-> > > +	size_t size = sizeof(struct drm_xe_query_gt) +
-> > > +		xe->info.gt_count * sizeof(struct drm_xe_gt);
-> > > +	struct drm_xe_query_gt __user *query_ptr =
-> > >  		u64_to_user_ptr(query->data);
-> > > -	struct drm_xe_query_gt_list *gt_list;
-> > > +	struct drm_xe_query_gt *gt_list;
-> > >  	u8 id;
-> > >  
-> > >  	if (query->size == 0) {
-> > > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> > > index f54e545cc4fb..fa4f554b5264 100644
-> > > --- a/include/uapi/drm/xe_drm.h
-> > > +++ b/include/uapi/drm/xe_drm.h
-> > > @@ -356,14 +356,14 @@ struct drm_xe_query_config {
-> > >  };
-> > >  
-> > >  /**
-> > > - * struct drm_xe_query_gt - describe an individual GT.
-> > > + * struct drm_xe_gt - describe an individual GT.
-> > >   *
-> > > - * To be used with drm_xe_query_gt_list, which will return a list with all the
-> > > + * To be used with drm_xe_query_gt, which will return a list with all the
-> > >   * existing GT individual descriptions.
-> > >   * Graphics Technology (GT) is a subset of a GPU/tile that is responsible for
-> > >   * implementing graphics and/or media operations.
-> > >   */
-> > > -struct drm_xe_query_gt {
-> > > +struct drm_xe_gt {
-> > >  #define DRM_XE_QUERY_GT_TYPE_MAIN		0
-> > >  #define DRM_XE_QUERY_GT_TYPE_MEDIA		1
-> > >  	/** @type: GT type: Main or Media */
-> > > @@ -390,19 +390,19 @@ struct drm_xe_query_gt {
-> > >  };
-> > >  
-> > >  /**
-> > > - * struct drm_xe_query_gt_list - A list with GT description items.
-> > > + * struct drm_xe_query_gt - A list with GT description items.
-> > >   *
-> > >   * If a query is made with a struct drm_xe_device_query where .query
-> > > - * is equal to DRM_XE_DEVICE_QUERY_GT_LIST, then the reply uses struct
-> > > - * drm_xe_query_gt_list in .data.
-> > > + * is equal to DRM_XE_DEVICE_QUERY_GT, then the reply uses struct
-> > > + * drm_xe_query_gt in .data.
-> > >   */
-> > > -struct drm_xe_query_gt_list {
-> > > +struct drm_xe_query_gt {
-> > 
-> > In my opinion it should be drm_xe_query_gts or keep drm_xe_query_gt_list
-> 
-> Cc: Matt Roper <matthew.d.roper@intel.com>
-> 
-> I honestly prefer gts better to align better with the plural of
-> everything else. But Matt's point is that a plural of an acronym
-> looks another acronym and people might ask what is "gee-tee-ess"?
-> 
-> so, I like Francois attempt to align them all in a consistent way.
-> But maybe we need to keep plural everywhere and accept "gts"?
-
-When we were first upstreaming multi-GT stuff for i915, there was some
-pretty firm push-back on the "gts" usage that we had in the original
-patches.  I think the discussion was kicked off on the mailing list by
-Jani here:  https://lore.kernel.org/intel-gfx/87pmrqj3va.fsf@intel.com/
-but I believe there was some followup discussion and agreement with more
-people on IRC that we should try to avoid the potentially ambiguous
-plural "gts."
-
-Personally I find having "query [singular] foo" return a list of foos
-somewhat surprising, and would have expected something more like
-"drm_xe_query_foo_list" or "drm_xe_query_each_foo."  But I don't really
-have strong feelings about it; since this is uapi, whatever the
-userspace guys think is most understandable is fine with me.
 
 
-Matt
+On 11/16/2023 9:12 AM, Michal Wajdeczko wrote:
+>
+> On 16.11.2023 00:40, Daniele Ceraolo Spurio wrote:
+>> We're currently sending non-blocking H2G messages using the EVENT type,
+>> which suppresses all CTB protocol replies from the GuC, including the
+>> failure cases. This might cause errors to slip through and manifest as
+>> unexpected behavior (e.g. a context state might not be what the driver
+>> thinks it is because the state change command was silently rejected by
+>> the GuC). To avoid this kind of problems, we can use the FAST_REQUEST
+>> type instead, which suppresses the reply only on success; this way we
+>> still get the advantage of not having to wait for an ack from the GuC
+>> (i.e. the H2G is still non-blocking) while still detecting errors.
+>> Since we don't track the non-blocking messages, we don't exactly know
+>> which one of them failed and therefore can't attempt to recover and need
+>> to escalate to GT reset instead.
+>>
+>> Note that FAST_REQUEST failures are NOT expected and are usually a sign
+>> that the H2G was either malformed or requested an illegal operation.
+>>
+>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>> Cc: John Harrison <John.C.Harrison@Intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
+>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>> ---
+>>
+>> In the testing I did locally I didn't see any failure responses, but I
+>> didn't run the full CI suite. If failure responses do come out from the
+>> CI runs, I'll try to fix them before merging this patch.
+>>
+>>   drivers/gpu/drm/xe/abi/guc_messages_abi.h |  1 +
+>>   drivers/gpu/drm/xe/xe_guc_ct.c            | 28 +++++++++++++++++++++--
+>>   drivers/gpu/drm/xe/xe_guc_ct_types.h      |  2 +-
+>>   3 files changed, 28 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/abi/guc_messages_abi.h b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+>> index 3d199016cf88..e517e2a740d2 100644
+>> --- a/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+>> +++ b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+>> @@ -46,6 +46,7 @@
+>>   #define GUC_HXG_MSG_0_TYPE			(0x7 << 28)
+>>   #define   GUC_HXG_TYPE_REQUEST			0u
+>>   #define   GUC_HXG_TYPE_EVENT			1u
+>> +#define   GUC_HXG_TYPE_FAST_REQUEST		2u
+> you should also update doc above (bits 30:28)
 
-> 
-> > 
-> > >  	/** @num_gt: number of GT items returned in gt_list */
-> > >  	__u32 num_gt;
-> > >  	/** @pad: MBZ */
-> > >  	__u32 pad;
-> > >  	/** @gt_list: The GT list returned for this device */
-> > > -	struct drm_xe_query_gt gt_list[];
-> > > +	struct drm_xe_gt gt_list[];
-> > >  };
-> > >  
-> > >  /**
-> > > @@ -495,7 +495,7 @@ struct drm_xe_device_query {
-> > >  #define DRM_XE_DEVICE_QUERY_ENGINES		0
-> > >  #define DRM_XE_DEVICE_QUERY_MEM_REGION		1
-> > >  #define DRM_XE_DEVICE_QUERY_CONFIG		2
-> > > -#define DRM_XE_DEVICE_QUERY_GT_LIST		3
-> > > +#define DRM_XE_DEVICE_QUERY_GT			3
-> > >  #define DRM_XE_DEVICE_QUERY_HWCONFIG		4
-> > >  #define DRM_XE_DEVICE_QUERY_GT_TOPOLOGY		5
-> > >  #define DRM_XE_DEVICE_QUERY_ENGINE_CYCLES	6
-> > 
+ok
 
--- 
-Matt Roper
-Graphics Software Engineer
-Linux GPU Platform Enablement
-Intel Corporation
+>
+>>   #define   GUC_HXG_TYPE_NO_RESPONSE_BUSY		3u
+>>   #define   GUC_HXG_TYPE_NO_RESPONSE_RETRY	5u
+>>   #define   GUC_HXG_TYPE_RESPONSE_FAILURE		6u
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> index a84e111bb36a..81d727b72709 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+>> @@ -448,7 +448,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+>>   				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
+>>   	} else {
+>>   		cmd[1] =
+>> -			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
+>> +			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_FAST_REQUEST) |
+>>   			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
+>>   				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
+>>   	}
+>> @@ -505,7 +505,11 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+>>   		if (g2h_fence_needs_alloc(g2h_fence)) {
+>>   			void *ptr;
+>>   
+>> -			g2h_fence->seqno = (ct->fence_seqno++ & 0xffff);
+>> +			/* we reserve fence 0 to indicate unset */
+> why ? it's not required by the HXG protocol
+
+This was because the EVENT/FAST_REQUEST submission always have fence 0, 
+so I wanted to make sure we didn't use that for normal REQUEST as well
+
+>
+>> +			g2h_fence->seqno = ct->fence_seqno++;
+>> +			if (unlikely(!g2h_fence->seqno))
+>> +				g2h_fence->seqno = ct->fence_seqno++;
+>> +
+>>   			ptr = xa_store(&ct->fence_lookup,
+>>   				       g2h_fence->seqno,
+>>   				       g2h_fence, GFP_ATOMIC);
+>> @@ -792,6 +796,26 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+>>   	u32 type = FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[1]);
+>>   	struct g2h_fence *g2h_fence;
+>>   
+>> +	/*
+>> +	 * FAST_REQUEST messages don't have a fence and therefore are
+>> +	 * not tracked in ct->fence_lookup. Note that those messages should
+> but why we don't use fences for FAST_REQUEST ?
+
+This is not a change in this patch, fence is currently unset for 
+non-blocking H2Gs.
+
+>
+> even if we don't expect any failures, from the protocol POV this is
+> another separate flow, and we shouldn't reuse same 0 (unset) fence for
+> multiple requests sent one by one.
+>
+> it also will make any debugging much harder (if we get such failure
+> response) to figure out and match that error with actual request
+> (without deep analysis of GuC log, that might be lost)
+
+I can assign a fence to FAST_REQUEST, but I'll still need a way to 
+distinguish between normal requests and fast ones here. I can't just 
+assume that a request was a fast one if it isn't in ct->fence_lookup, 
+because as the comment below says the fence might've been dropped from 
+the xarray due to timeout. I'll try reserving a bit in the seqno to mark 
+it as belonging to a fast request, since the H2G protocol doesn't care 
+if the seqnos are not continuous.
+
+>
+>> +	 * never fail, so if we do get an error back it means we're likely
+>> +	 * doing an illegal operation and the GuC is rejecting it. Since we
+>> +	 * don't know which action failed and therefore can't attempt to
+>> +	 * recover, we need to escalate the failure to trigger a reset.
+>> +	 */
+>> +	if (!fence) {
+>> +		if (type == GUC_HXG_TYPE_RESPONSE_FAILURE)
+>> +			drm_err(&xe->drm, "FAST_REQUEST H2G failed! e=0x%x, h=%u\n",
+>> +				FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, msg[1]),
+>> +				FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, msg[1]));
+>> +		else
+>> +			drm_err(&xe->drm, "unexpected response %u for FAST_REQUEST H2G!\n",
+>> +				type);
+> we should at least use xe_gt_err() to get the GT id in the log
+
+ok
+
+Daniele
+
+>
+>> +
+>> +		return -EPROTO;
+>> +	}
+>> +
+>>   	lockdep_assert_held(&ct->lock);
+>>   
+>>   	g2h_fence = xa_erase(&ct->fence_lookup, fence);
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct_types.h b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+>> index d814d4ee3fc6..62f98dcaeaf1 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_ct_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_ct_types.h
+>> @@ -99,7 +99,7 @@ struct xe_guc_ct {
+>>   	/** @enabled: CT enabled */
+>>   	bool enabled;
+>>   	/** @fence_seqno: G2H fence seqno - 16 bits used by CT */
+>> -	u32 fence_seqno;
+>> +	u16 fence_seqno;
+>>   	/** @fence_lookup: G2H fence lookup */
+>>   	struct xarray fence_lookup;
+>>   	/** @wq: wait queue used for reliable CT sends and freeing G2H credits */
+
