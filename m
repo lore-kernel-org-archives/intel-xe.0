@@ -4,45 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C651DC197A0
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 21:55:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9285DC47071
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 22:16:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 931F710E6F7;
-	Thu, 16 Nov 2023 21:55:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1560310E6F7
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 21:55:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42E8A10E6FB;
+	Thu, 16 Nov 2023 22:16:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8DB310E6FB
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 22:16:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700171752; x=1731707752;
+ t=1700173007; x=1731709007;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=8eI+qzosAbOvv0kxYw9KMKOhs3WoHLFF1/Ltft/mDvc=;
- b=ZlcMJLWJ/ovnMmZO4/ZhxEVaqC+kF3GbFAb8w/ZOfPpiceZdICEE92ED
- nX2D/nqFrq65/WnCCBpoKJm072uXUwl3oIp9l1e3HKyu1lb2LIiLQogNd
- CwZnHZd9v3YETCT2cMEWvWA0Q7n5fCxlQiNnuxRAcAKyKkvUAeOr/0voN
- ohdND1oO4OiJPVFnSEnUO8qTnlfVysjRkZFK1DZmJ7qK1JEJDjIfaxcX3
- cTsASrxJgK8MEBnrRt94A2L2NS+NbeduedUFvk7mGI7qWxLrX603omo8M
- tYAQ863x2h9g9wPu+FMDwpO9tvZjtJJJ3QqHUEIEkholJ7TRMq36pSdOd A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="381583102"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="381583102"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 13:55:51 -0800
+ bh=QjctfW5tOyLY6UBRjGEKh8nGvn9c7zDYQmeIWr3kGUo=;
+ b=Ytv4cqiNIn1k7d9cHPDlPNfpCmt5G/r7VYD3GkF7FoSXz4yC57OSEdTH
+ g5zVVAVoifexQ4+/6JiTkCKnVbreCoxj0dE/Jt7ZW+J/eA87JrJtNEjDK
+ DEOLC4YFvqQAYkKG7bZ26IurZ7eOTinBCi0N08ARAk8dmDLawiWovtRQF
+ fP5qktkJHk6F7XQs4A2Erxq9D/rd04Z1FOInRN6JD96c1zznXtuOhsb1M
+ Mx9Q3moW5It7yfWw6VA7jQf2SAl+xNxpRQzicRxMZKnks1jCDbMt2mSAN
+ KwrPLHLVBhP3qMybZ5WSP+TQVN9rNDOb/EJ/uvOFv0F1/1ib0g4Kt68Hd A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="395114708"
+X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="395114708"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2023 14:16:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="13263854"
-Received: from ravi-nuc8i7beh.iind.intel.com ([10.145.169.75])
- by orviesa001.jf.intel.com with ESMTP; 16 Nov 2023 13:55:49 -0800
-From: Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>
-To: intel-xe@lists.freedesktop.org, janga.rahul.kumar@intel.com,
- ramadevi.gandi@intel.com
-Date: Fri, 17 Nov 2023 03:21:52 +0530
-Message-Id: <20231116215152.2248859-1-ruthuvikas.ravikumar@intel.com>
-X-Mailer: git-send-email 2.25.1
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="1012737389"
+X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="1012737389"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2023 14:16:46 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Nov 2023 14:16:37 -0800
+Message-ID: <20231116221637.2589469-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v14] drm/xe: Add mocs kunit
+Subject: [Intel-xe] [PATCH v2] drm/xe/guc: Use FAST_REQUEST for non-blocking
+ H2G messages
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,269 +55,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.d.roper@intel.com, ruthuvikas.ravikumar@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This kunit verifies the hardware values of mocs and
-l3cc registers with the KMD programmed values.
+We're currently sending non-blocking H2G messages using the EVENT type,
+which suppresses all CTB protocol replies from the GuC, including the
+failure cases. This might cause errors to slip through and manifest as
+unexpected behavior (e.g. a context state might not be what the driver
+thinks it is because the state change command was silently rejected by
+the GuC). To avoid this kind of problems, we can use the FAST_REQUEST
+type instead, which suppresses the reply only on success; this way we
+still get the advantage of not having to wait for an ack from the GuC
+(i.e. the H2G is still non-blocking) while still detecting errors.
+Since we can't escalate to the caller when a non-blocking message
+fails, we need to escalate to GT reset instead.
 
-v14: Fix CHECK.
+Note that FAST_REQUEST failures are NOT expected and are usually a sign
+that the H2G was either malformed or requested an illegal operation.
 
-v13: Remove ret after forcewake.
+v2: assign fence values to FAST_REQUEST messages, fix abi doc, use xe_gt
+printers (Michal).
 
-v11: Add KUNIT_ASSERT_EQ_MSG for Forcewake.
-
-v9/v10: Add Forcewake Fail.
-
-v8: Remove xe_bo.h and xe_pm.h
-    Remove mocs and l3cc from live_mocs.
-    Pull debug and err msg for mocs/l3cc out of if else block.
-    Add HAS_LNCF_MOCS.
-
-v7: correct checkpath
-
-v6: Change ssize_t type.
-    Change forcewake domain to XE_FW_GT.
-    Update change of MOCS registers are multicast on Xe_HP and beyond
-    patch.
-
-v5: Release forcewake.
-    Remove single statement braces.
-    Fix debug statements.
-
-v4: Drop stratch and vaddr.
-    Fix debug statements.
-    Fix indentation.
-
-v3: Fix checkpath.
-
-v2: Fix checkpath.
-
-Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
-Cc: Mathew D Roper <matthew.d.roper@intel.com>
-Reviewed-by: Mathew D Roper <matthew.d.roper@intel.com>
-Signed-off-by: Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>
+Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/tests/Makefile       |   1 +
- drivers/gpu/drm/xe/tests/xe_mocs.c      | 130 ++++++++++++++++++++++++
- drivers/gpu/drm/xe/tests/xe_mocs_test.c |  24 +++++
- drivers/gpu/drm/xe/tests/xe_mocs_test.h |  13 +++
- drivers/gpu/drm/xe/xe_mocs.c            |   4 +
- 5 files changed, 172 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs_test.c
- create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs_test.h
+ drivers/gpu/drm/xe/abi/guc_messages_abi.h |  2 +
+ drivers/gpu/drm/xe/xe_guc_ct.c            | 58 ++++++++++++++++++++---
+ 2 files changed, 54 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
-index 51f1a7f017d4..39d8a0892274 100644
---- a/drivers/gpu/drm/xe/tests/Makefile
-+++ b/drivers/gpu/drm/xe/tests/Makefile
-@@ -4,6 +4,7 @@ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += \
- 	xe_bo_test.o \
- 	xe_dma_buf_test.o \
- 	xe_migrate_test.o \
-+	xe_mocs_test.o \
- 	xe_pci_test.o \
- 	xe_rtp_test.o \
- 	xe_wa_test.o
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
-new file mode 100644
-index 000000000000..7dd34f94e809
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
-@@ -0,0 +1,130 @@
-+// SPDX-License-Identifier: GPL-2.0 AND MIT
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#include <kunit/test.h>
-+#include <kunit/visibility.h>
-+
-+#include "tests/xe_mocs_test.h"
-+#include "tests/xe_pci_test.h"
-+#include "tests/xe_test.h"
-+
-+#include "xe_pci.h"
-+#include "xe_gt.h"
-+#include "xe_mocs.h"
-+#include "xe_device.h"
-+
-+struct live_mocs {
-+	struct xe_mocs_info table;
-+};
-+
-+static int live_mocs_init(struct live_mocs *arg, struct xe_gt *gt)
-+{
-+	unsigned int flags;
-+	struct kunit *test = xe_cur_kunit();
-+
-+	memset(arg, 0, sizeof(*arg));
-+
-+	flags = get_mocs_settings(gt_to_xe(gt), &arg->table);
-+
-+	kunit_info(test, "table size %d", arg->table.size);
-+	kunit_info(test, "table uc_index %d", arg->table.uc_index);
-+	kunit_info(test, "table n_entries %d", arg->table.n_entries);
-+
-+	return flags;
-+}
-+
-+static void read_l3cc_table(struct xe_gt *gt,
-+			    const struct xe_mocs_info *info)
-+{
-+	unsigned int i;
-+	u32 l3cc;
-+	u32 reg_val;
-+	u32 ret;
-+
-+	struct kunit *test = xe_cur_kunit();
-+
-+	xe_device_mem_access_get(gt_to_xe(gt));
-+	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake Failed.\n");
-+	mocs_dbg(&gt_to_xe(gt)->drm, "L3CC entries:%d\n", info->n_entries);
-+	for (i = 0;
-+	     i < (info->n_entries + 1) / 2 ?
-+	     (l3cc = l3cc_combine(get_entry_l3cc(info, 2 * i),
-+				  get_entry_l3cc(info, 2 * i + 1))), 1 : 0;
-+	     i++) {
-+		if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1250)
-+			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
-+		else
-+			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
-+		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x 0x%x\n", i,
-+			 XELP_LNCFCMOCS(i).addr, reg_val, l3cc);
-+		if (reg_val != l3cc)
-+			KUNIT_FAIL(test, "l3cc reg 0x%x has incorrect val.\n",
-+				   XELP_LNCFCMOCS(i).addr);
-+	}
-+	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+	xe_device_mem_access_put(gt_to_xe(gt));
-+}
-+
-+static void read_mocs_table(struct xe_gt *gt,
-+			    const struct xe_mocs_info *info)
-+{
-+	struct xe_device *xe = gt_to_xe(gt);
-+
-+	unsigned int i;
-+	u32 mocs;
-+	u32 reg_val;
-+	u32 ret;
-+
-+	struct kunit *test = xe_cur_kunit();
-+
-+	xe_device_mem_access_get(gt_to_xe(gt));
-+	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake Failed.\n");
-+	mocs_dbg(&gt_to_xe(gt)->drm, "Global MOCS entries:%d\n", info->n_entries);
-+	drm_WARN_ONCE(&xe->drm, !info->unused_entries_index,
-+		      "Unused entries index should have been defined\n");
-+	for (i = 0;
-+	     i < info->n_entries ? (mocs = get_entry_control(info, i)), 1 : 0;
-+	     i++) {
-+		if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1250)
-+			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
-+		else
-+			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
-+		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x 0x%x\n", i,
-+			 XELP_GLOBAL_MOCS(i).addr, reg_val, mocs);
-+		if (reg_val != mocs)
-+			KUNIT_FAIL(test, "mocs reg 0x%x has incorrect val.\n",
-+				   XELP_GLOBAL_MOCS(i).addr);
-+	}
-+	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
-+	xe_device_mem_access_put(gt_to_xe(gt));
-+}
-+
-+static int mocs_kernel_test_run_device(struct xe_device *xe)
-+{
-+	/* Basic check the system is configured with the expected mocs table */
-+
-+	struct live_mocs mocs;
-+	struct xe_gt *gt;
-+
-+	unsigned int flags;
-+	int id;
-+
-+	for_each_gt(gt, xe, id) {
-+		flags = live_mocs_init(&mocs, gt);
-+		if (flags & HAS_GLOBAL_MOCS)
-+			read_mocs_table(gt, &mocs.table);
-+		if (flags & HAS_LNCF_MOCS)
-+			read_l3cc_table(gt, &mocs.table);
-+	}
-+	return 0;
-+}
-+
-+void xe_live_mocs_kernel_kunit(struct kunit *test)
-+{
-+	xe_call_for_each_device(mocs_kernel_test_run_device);
-+}
-+EXPORT_SYMBOL_IF_KUNIT(xe_live_mocs_kernel_kunit);
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs_test.c b/drivers/gpu/drm/xe/tests/xe_mocs_test.c
-new file mode 100644
-index 000000000000..ef56bd517b28
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs_test.c
-@@ -0,0 +1,24 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright © 2022 Intel Corporation
-+ */
-+
-+#include "xe_mocs_test.h"
-+
-+#include <kunit/test.h>
-+
-+static struct kunit_case xe_mocs_tests[] = {
-+	KUNIT_CASE(xe_live_mocs_kernel_kunit),
-+	{}
-+};
-+
-+static struct kunit_suite xe_mocs_test_suite = {
-+	.name = "xe_mocs",
-+	.test_cases = xe_mocs_tests,
-+};
-+
-+kunit_test_suite(xe_mocs_test_suite);
-+
-+MODULE_AUTHOR("Intel Corporation");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
-diff --git a/drivers/gpu/drm/xe/tests/xe_mocs_test.h b/drivers/gpu/drm/xe/tests/xe_mocs_test.h
-new file mode 100644
-index 000000000000..7faa3575e6c3
---- /dev/null
-+++ b/drivers/gpu/drm/xe/tests/xe_mocs_test.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: GPL-2.0 AND MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_MOCS_TEST_H_
-+#define _XE_MOCS_TEST_H_
-+
-+struct kunit;
-+
-+void xe_live_mocs_kernel_kunit(struct kunit *test);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
-index 46e999257862..409f21b72761 100644
---- a/drivers/gpu/drm/xe/xe_mocs.c
-+++ b/drivers/gpu/drm/xe/xe_mocs.c
-@@ -588,3 +588,7 @@ void xe_mocs_init(struct xe_gt *gt)
- 	if (flags & HAS_LNCF_MOCS)
- 		init_l3cc_table(gt, &table);
+diff --git a/drivers/gpu/drm/xe/abi/guc_messages_abi.h b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+index 3d199016cf88..6544205cf40d 100644
+--- a/drivers/gpu/drm/xe/abi/guc_messages_abi.h
++++ b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
+@@ -24,6 +24,7 @@
+  *  |   | 30:28 | **TYPE** - message type                                      |
+  *  |   |       |   - _`GUC_HXG_TYPE_REQUEST` = 0                              |
+  *  |   |       |   - _`GUC_HXG_TYPE_EVENT` = 1                                |
++ *  |   |       |   - _`GUC_HXG_TYPE_FAST_REQUEST` = 2                                |
+  *  |   |       |   - _`GUC_HXG_TYPE_NO_RESPONSE_BUSY` = 3                     |
+  *  |   |       |   - _`GUC_HXG_TYPE_NO_RESPONSE_RETRY` = 5                    |
+  *  |   |       |   - _`GUC_HXG_TYPE_RESPONSE_FAILURE` = 6                     |
+@@ -46,6 +47,7 @@
+ #define GUC_HXG_MSG_0_TYPE			(0x7 << 28)
+ #define   GUC_HXG_TYPE_REQUEST			0u
+ #define   GUC_HXG_TYPE_EVENT			1u
++#define   GUC_HXG_TYPE_FAST_REQUEST		2u
+ #define   GUC_HXG_TYPE_NO_RESPONSE_BUSY		3u
+ #define   GUC_HXG_TYPE_NO_RESPONSE_RETRY	5u
+ #define   GUC_HXG_TYPE_RESPONSE_FAILURE		6u
+diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
+index a84e111bb36a..04e443c6fd8b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ct.c
++++ b/drivers/gpu/drm/xe/xe_guc_ct.c
+@@ -15,6 +15,7 @@
+ #include "xe_device.h"
+ #include "xe_gt.h"
+ #include "xe_gt_pagefault.h"
++#include "xe_gt_printk.h"
+ #include "xe_gt_tlb_invalidation.h"
+ #include "xe_guc.h"
+ #include "xe_guc_submit.h"
+@@ -448,7 +449,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
+ 	} else {
+ 		cmd[1] =
+-			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
++			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_FAST_REQUEST) |
+ 			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
+ 				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
+ 	}
+@@ -475,11 +476,31 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
+ 	return 0;
  }
+ 
++/*
++ * The CT protocol accepts a 16 bits fence. This field is fully owned by the
++ * driver, the GuC will just copy it to the reply message. Since we need to
++ * be able to distinguish between replies to REQUEST and FAST_REQUEST messages,
++ * we use one bit of the seqno as an indicator for that and a rolling counter
++ * for the remaining 15 bits.
++ */
++#define CT_SEQNO_MASK GENMASK(14, 0)
++#define CT_SEQNO_IS_UNTRACKED BIT(15)
++static u16 next_ct_seqno(struct xe_guc_ct *ct, bool is_g2h_fence)
++{
++	u32 seqno = ct->fence_seqno++ & CT_SEQNO_MASK;
 +
-+#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
-+#include "tests/xe_mocs.c"
-+#endif
++	if (!is_g2h_fence)
++		seqno |= CT_SEQNO_IS_UNTRACKED;
++
++	return seqno;
++}
++
+ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+ 				u32 len, u32 g2h_len, u32 num_g2h,
+ 				struct g2h_fence *g2h_fence)
+ {
+ 	struct xe_device *xe = ct_to_xe(ct);
++	u16 seqno;
+ 	int ret;
+ 
+ 	xe_assert(xe, !g2h_len || !g2h_fence);
+@@ -505,7 +526,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+ 		if (g2h_fence_needs_alloc(g2h_fence)) {
+ 			void *ptr;
+ 
+-			g2h_fence->seqno = (ct->fence_seqno++ & 0xffff);
++			g2h_fence->seqno = next_ct_seqno(ct, true);
+ 			ptr = xa_store(&ct->fence_lookup,
+ 				       g2h_fence->seqno,
+ 				       g2h_fence, GFP_ATOMIC);
+@@ -514,6 +535,10 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+ 				goto out;
+ 			}
+ 		}
++
++		seqno = g2h_fence->seqno;
++	} else {
++		seqno = next_ct_seqno(ct, false);
+ 	}
+ 
+ 	if (g2h_len)
+@@ -523,8 +548,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
+ 	if (unlikely(ret))
+ 		goto out_unlock;
+ 
+-	ret = h2g_write(ct, action, len, g2h_fence ? g2h_fence->seqno : 0,
+-			!!g2h_fence);
++	ret = h2g_write(ct, action, len, seqno, !!g2h_fence);
+ 	if (unlikely(ret)) {
+ 		if (ret == -EAGAIN)
+ 			goto retry;
+@@ -786,7 +810,8 @@ static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 
+ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ {
+-	struct xe_device *xe = ct_to_xe(ct);
++	struct xe_gt *gt =  ct_to_gt(ct);
++	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 response_len = len - GUC_CTB_MSG_MIN_LEN;
+ 	u32 fence = FIELD_GET(GUC_CTB_MSG_0_FENCE, msg[0]);
+ 	u32 type = FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[1]);
+@@ -794,10 +819,31 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 
+ 	lockdep_assert_held(&ct->lock);
+ 
++	/*
++	 * Fences for FAST_REQUEST messages are not tracked in ct->fence_lookup.
++	 * Those messages should never fail, so if we do get an error back it
++	 * means we're likely doing an illegal operation and the GuC is
++	 * rejecting it. We have no way to inform the code that submitted the
++	 * H2G that the message was rejected, so we need to escalate the
++	 * failure to trigger a reset.
++	 */
++	if (fence & CT_SEQNO_IS_UNTRACKED) {
++		if (type == GUC_HXG_TYPE_RESPONSE_FAILURE)
++			xe_gt_err(gt, "FAST_REQ H2G 0x%x failed! e=0x%x, h=%u\n",
++				  fence,
++				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, msg[1]),
++				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, msg[1]));
++		else
++			xe_gt_err(gt, "unexpected response %u for FAST_REQ H2G 0x%x!\n",
++				  fence, type);
++
++		return -EPROTO;
++	}
++
+ 	g2h_fence = xa_erase(&ct->fence_lookup, fence);
+ 	if (unlikely(!g2h_fence)) {
+ 		/* Don't tear down channel, as send could've timed out */
+-		drm_warn(&xe->drm, "G2H fence (%u) not found!\n", fence);
++		xe_gt_warn(gt, "G2H fence (%u) not found!\n", fence);
+ 		g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
+ 		return 0;
+ 	}
 -- 
-2.25.1
+2.41.0
 
