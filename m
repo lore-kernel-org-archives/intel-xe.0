@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D863CC197A0
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 19:40:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 09A67C54E76
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 19:40:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D8A010E689;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9743910E68A;
 	Thu, 16 Nov 2023 19:40:42 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 537F510E68A
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B02E10E00A
  for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 19:40:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1700163638; x=1731699638;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zliB8edtr436r3MjleoWZB4X8Z4vQtkAK89/pWI8fuU=;
- b=EmLzijWrLCtJGdjeSCbQ/ApAn5NCaXllxeOnks+IttCT89ILEmByhvR5
- XpEQ63NlcSzJw09sH2Gjj8f2+Amk+2IPVQbbWU374vdV5QrDfLt30Z7mJ
- a/WA4WVwfHjBOVZ5rnLt5LqyaEPVHZ94vsh4ZuwM69aWi0K+IC+WdxB3T
- uyNx4IkVOYAqF/mB9fAilcUzcVFq3jYvmjUZ2q/kZpuiWzizCWl7yIIl7
- Qszv/m4Bt4/kfss7cjua1mkIcRt4H/y+gBdiFTqHK9TPWqSCWngjw1gqv
- GCZOEHDgW7LP9OGsRixpnR9HY1CiHv/I5QKOVI8+oI4EvQFHhQb1xnMyf w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="394016992"
-X-IronPort-AV: E=Sophos;i="6.04,204,1695711600"; d="scan'208";a="394016992"
+ bh=6evKb2lacmp0xIf2MF5twZPZZH8CYXzIgVOhzru2Bb8=;
+ b=hhwks3TakeUuzbhayAX0Tyb65nXxVadEK45Nys9C4p9XT6iXmhHdJ0Ng
+ guZg2by5ps9ducnwWG9++I+BOYCkFgkdKyTctuXEMcTRwR4Ahyo+L4fNF
+ bhzUmO1bHHIKWKb68HMzDq1M/Embvkue1dlKr87rPo3wOI9bQEk1ztygF
+ vyaIaZj6TdJL/mDJsvQaSP0x4VLEx4kZwfWq2upG/07/Ir4KnmQpUwpEk
+ FnctoV4gsyNeiNqj2k4Ki3rq2OT3h5kQT9kTsGvY104y/3ilzRXpltnsX
+ tKM4zwg4lG1nB6inOgfY+YaT+x1tUQlGOJBcvvszoinOSWxIAsKy2fXVC w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="394016995"
+X-IronPort-AV: E=Sophos;i="6.04,204,1695711600"; d="scan'208";a="394016995"
 Received: from fmsmga007.fm.intel.com ([10.253.24.52])
  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Nov 2023 11:40:37 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="769004699"
-X-IronPort-AV: E=Sophos;i="6.04,204,1695711600"; d="scan'208";a="769004699"
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="769004707"
+X-IronPort-AV: E=Sophos;i="6.04,204,1695711600"; d="scan'208";a="769004707"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  16 Nov 2023 11:40:37 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Thu, 16 Nov 2023 11:40:45 -0800
-Message-Id: <20231116194047.214330-4-matthew.brost@intel.com>
+Date: Thu, 16 Nov 2023 11:40:47 -0800
+Message-Id: <20231116194047.214330-6-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231116194047.214330-1-matthew.brost@intel.com>
 References: <20231116194047.214330-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/5] drm/xe: Use a flags field instead of bools
- for sync parse
+Subject: [Intel-xe] [PATCH 5/5] drm/xe: Take in-syncs into account when
+ num_execs or num_binds == 0
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,85 +60,200 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use a flags field instead of severval bools for sync parse as it is
-easier to read and less bug prone.
+Wait on in-syncs before signaling out-syncs if num_execs or num_binds ==
+0 in execbuf IOCTL or VM bind IOCTL respectfully.
 
-Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+v2: Wait on last fence in addition to in-fences (Thomas)
+
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_exec.c | 5 +++--
- drivers/gpu/drm/xe/xe_sync.c | 8 +++++---
- drivers/gpu/drm/xe/xe_vm.c   | 5 +++--
- 3 files changed, 11 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_exec.c | 10 ++++-
+ drivers/gpu/drm/xe/xe_sync.c | 74 ++++++++++++++++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_sync.h |  5 +++
+ drivers/gpu/drm/xe/xe_vm.c   | 24 ++++++++++--
+ 4 files changed, 107 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-index 28e84a0bbeb0..7d4d22c81a42 100644
+index 4989bc6038af..b3a66d07d22b 100644
 --- a/drivers/gpu/drm/xe/xe_exec.c
 +++ b/drivers/gpu/drm/xe/xe_exec.c
-@@ -181,8 +181,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+@@ -240,11 +240,17 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
  
- 	for (i = 0; i < args->num_syncs; i++) {
- 		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs++],
--					  &syncs_user[i], true,
--					  xe_vm_no_dma_fences(vm));
-+					  &syncs_user[i], SYNC_PARSE_FLAG_EXEC |
-+					  (xe_vm_no_dma_fences(vm) ?
-+					   SYNC_PARSE_FLAG_LR_MODE : 0));
- 		if (err)
- 			goto err_syncs;
- 	}
+ 	if (!args->num_batch_buffer) {
+ 		if (!xe_vm_no_dma_fences(vm)) {
+-			struct dma_fence *fence =
+-				xe_exec_queue_last_fence_get(q, vm);
++			struct dma_fence *fence;
+ 
++			fence = xe_sync_in_fence_get(syncs, num_syncs, q, vm);
++			if (IS_ERR(fence)) {
++				err = PTR_ERR(fence);
++				goto err_exec;
++			}
+ 			for (i = 0; i < num_syncs; i++)
+ 				xe_sync_entry_signal(&syncs[i], NULL, fence);
++			xe_exec_queue_last_fence_set(q, vm, fence);
++			dma_fence_put(fence);
+ 		}
+ 
+ 		goto err_exec;
 diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-index 73ef259aa387..016d0a2ea5bc 100644
+index cfe8724ee954..7dfa60dfa933 100644
 --- a/drivers/gpu/drm/xe/xe_sync.c
 +++ b/drivers/gpu/drm/xe/xe_sync.c
-@@ -100,10 +100,12 @@ static void user_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
- int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 			struct xe_sync_entry *sync,
- 			struct drm_xe_sync __user *sync_user,
--			bool exec, bool no_dma_fences)
-+			unsigned int flags)
- {
- 	struct drm_xe_sync sync_in;
- 	int err;
-+	bool exec = flags & SYNC_PARSE_FLAG_EXEC;
-+	bool lr_mode = flags & SYNC_PARSE_FLAG_LR_MODE;
- 	bool signal;
+@@ -5,6 +5,7 @@
  
- 	if (copy_from_user(&sync_in, sync_user, sizeof(*sync_user)))
-@@ -118,7 +120,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 	signal = sync_in.flags & DRM_XE_SYNC_SIGNAL;
- 	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
- 	case DRM_XE_SYNC_SYNCOBJ:
--		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
-+		if (XE_IOCTL_DBG(xe, lr_mode && signal))
- 			return -EOPNOTSUPP;
+ #include "xe_sync.h"
  
- 		if (XE_IOCTL_DBG(xe, upper_32_bits(sync_in.addr)))
-@@ -136,7 +138,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
- 		break;
++#include <linux/dma-fence-array.h>
+ #include <linux/kthread.h>
+ #include <linux/sched/mm.h>
+ #include <linux/uaccess.h>
+@@ -14,6 +15,7 @@
+ #include <drm/xe_drm.h>
  
- 	case DRM_XE_SYNC_TIMELINE_SYNCOBJ:
--		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
-+		if (XE_IOCTL_DBG(xe, lr_mode && signal))
- 			return -EOPNOTSUPP;
+ #include "xe_device_types.h"
++#include "xe_exec_queue.h"
+ #include "xe_macros.h"
+ #include "xe_sched_job_types.h"
  
- 		if (XE_IOCTL_DBG(xe, upper_32_bits(sync_in.addr)))
+@@ -277,3 +279,75 @@ void xe_sync_entry_cleanup(struct xe_sync_entry *sync)
+ 	if (sync->ufence)
+ 		user_fence_put(sync->ufence);
+ }
++
++/**
++ * xe_sync_in_fence_get() - Get a fence from syncs, exec queue, and VM
++ * @sync: input syncs
++ * @num_sync: number of syncs
++ * @q: exec queue
++ * @vm: VM
++ *
++ * Get a fence from syncs, exec queue, and VM. If syncs contain in-fences create
++ * and return a composite fence of all in-fences + last fence. If no in-fences
++ * return last fence on  input exec queue. Caller must drop reference to
++ * returned fence.
++ *
++ * Return: fence on success, ERR_PTR(-ENOMEM) on failure
++ */
++struct dma_fence *
++xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
++		     struct xe_exec_queue *q, struct xe_vm *vm)
++{
++	struct dma_fence **fences = NULL;
++	struct dma_fence_array *cf = NULL;
++	struct dma_fence *fence;
++	int i, num_in_fence = 0, current_fence = 0;
++
++	lockdep_assert_held(&vm->lock);
++
++	/* Count in-fences */
++	for (i = 0; i < num_sync; ++i) {
++		if (sync[i].fence) {
++			++num_in_fence;
++			fence = sync[i].fence;
++		}
++	}
++
++	/* Easy case... */
++	if (!num_in_fence) {
++		fence = xe_exec_queue_last_fence_get(q, vm);
++		dma_fence_get(fence);
++		return fence;
++	}
++
++	/* Create composite fence */
++	fences = kmalloc_array(num_in_fence + 1, sizeof(*fences), GFP_KERNEL);
++	if (!fences)
++		return ERR_PTR(-ENOMEM);
++	for (i = 0; i < num_sync; ++i) {
++		if (sync[i].fence) {
++			dma_fence_get(sync[i].fence);
++			fences[current_fence++] = sync[i].fence;
++		}
++	}
++	fences[current_fence++] = xe_exec_queue_last_fence_get(q, vm);
++	dma_fence_get(fences[current_fence - 1]);
++	cf = dma_fence_array_create(num_in_fence, fences,
++				    vm->composite_fence_ctx,
++				    vm->composite_fence_seqno++,
++				    false);
++	if (!cf) {
++		--vm->composite_fence_seqno;
++		goto err_out;
++	}
++
++	return &cf->base;
++
++err_out:
++	while (current_fence)
++		dma_fence_put(fences[--current_fence]);
++	kfree(fences);
++	kfree(cf);
++
++	return ERR_PTR(-ENOMEM);
++}
+diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
+index 45f4371e94b9..d284afbe917c 100644
+--- a/drivers/gpu/drm/xe/xe_sync.h
++++ b/drivers/gpu/drm/xe/xe_sync.h
+@@ -9,8 +9,10 @@
+ #include "xe_sync_types.h"
+ 
+ struct xe_device;
++struct xe_exec_queue;
+ struct xe_file;
+ struct xe_sched_job;
++struct xe_vm;
+ 
+ #define SYNC_PARSE_FLAG_EXEC			BIT(0)
+ #define SYNC_PARSE_FLAG_LR_MODE			BIT(1)
+@@ -27,5 +29,8 @@ void xe_sync_entry_signal(struct xe_sync_entry *sync,
+ 			  struct xe_sched_job *job,
+ 			  struct dma_fence *fence);
+ void xe_sync_entry_cleanup(struct xe_sync_entry *sync);
++struct dma_fence *
++xe_sync_in_fence_get(struct xe_sync_entry *sync, int num_sync,
++		     struct xe_exec_queue *q, struct xe_vm *vm);
+ 
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 13c8a9c6117c..1f3e5dcbef9e 100644
+index 1f3e5dcbef9e..99e97b3519ee 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -3089,8 +3089,9 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
- 	syncs_user = u64_to_user_ptr(args->syncs);
- 	for (num_syncs = 0; num_syncs < args->num_syncs; num_syncs++) {
- 		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs],
--					  &syncs_user[num_syncs], false,
--					  xe_vm_no_dma_fences(vm));
-+					  &syncs_user[num_syncs],
-+					  xe_vm_no_dma_fences(vm) ?
-+					  SYNC_PARSE_FLAG_LR_MODE : 0);
- 		if (err)
- 			goto free_syncs;
+@@ -3158,12 +3158,28 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ unwind_ops:
+ 	vm_bind_ioctl_ops_unwind(vm, ops, args->num_binds);
+ free_syncs:
+-	for (i = 0; err == -ENODATA && i < num_syncs; i++) {
+-		struct dma_fence *fence =
+-			xe_exec_queue_last_fence_get(to_wait_exec_queue(vm, q), vm);
++	if (err == -ENODATA) {
++		struct dma_fence *fence;
++
++		fence = xe_sync_in_fence_get(syncs, num_syncs,
++					     to_wait_exec_queue(vm, q), vm);
++		if (IS_ERR(fence)) {
++			err = PTR_ERR(fence);
++			goto cleanup_syncs;
++		}
++		for (i = 0; i < num_syncs; i++)
++			xe_sync_entry_signal(&syncs[i], NULL, fence);
++		if (!async) {
++			long timeout = dma_fence_wait(fence, true);
+ 
+-		xe_sync_entry_signal(&syncs[i], NULL, fence);
++			if (timeout < 0)
++				err = -EINTR;
++		}
++		xe_exec_queue_last_fence_set(to_wait_exec_queue(vm, q), vm,
++					     fence);
++		dma_fence_put(fence);
  	}
++cleanup_syncs:
+ 	while (num_syncs--)
+ 		xe_sync_entry_cleanup(&syncs[num_syncs]);
+ 
 -- 
 2.34.1
 
