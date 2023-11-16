@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8EE4DC197A0
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD7D3C54FB9
 	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 15:12:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BFC110E28F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8AAFF10E611;
 	Thu, 16 Nov 2023 15:12:59 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C42BF10E60D
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 15:12:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5FEE10E28F
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 15:12:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700147574; x=1731683574;
+ t=1700147575; x=1731683575;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Q/df1nMY+sedY5u/XtJVLFMYlOViwWwyLtB5FpIny1U=;
- b=FjVHWw5AQ1XqYH8Bp81lrrKBKOAwyKr5jF1K4pbnzW0nxkfWz6RCCsxn
- nHF2kkNDKBLkJh8pOGQ7BrpR4S+zDw37mMTMhQ7SNtv5vOTh/JR7DZeNu
- oN4qB+QE711u3h1aQ50IKYlPxSHhYw2uE0KLwyWiB88bbM6cVvUZEicba
- 066g6eZGHow3IhNxTzmrndctsOYcyC6B+xasOJHESphGvXFklzfSsiMpI
- dBMiQK6mqHwl1COh+VKau3PurN/8PLcMA16WG3Naduz/kxDVTBvhUiMWo
- 3j99yfCEqQ8eKkq3thvIj/dk/XT1gneW8rZNe474YgKqsVouNj7Cjmyg/ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="388269212"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="388269212"
+ bh=5aS5tlkjWarblpyVLuGxRK7QkhAJm3AuKre+ikj4hq0=;
+ b=dmC1T6LyiZo3ATYJr1QFQBvFPF2bBaiPayIbTWlhoT0xZBdwp5C0Vh+4
+ JiTM6FhZez/oRLRu90l1+XrHnrvb8m0yajV+98qshIB/65LEM/TOZ2Mwt
+ xPExD2ZVl9stlDa2iEn0Ubd4ra3aIGtIiayzCG5DiRrePJ9AcREheWEHR
+ PiaZPL78V1aUW4XblOZT4BENJSZ5RZQic7SY7ox4/UBftPWP3Q7roXj8K
+ /1gywWiYegAdPOiS50yPAXOc5pI4Ne5rJqZBqdP4Ksiaox1pFgYo7nPlz
+ rR9Gx8aXpPBYA7CY6DjFOJoyGb9gmIEOg1DXIytgVKRWs2X5k1eFPJUb7 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="388269215"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="388269215"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 07:12:54 -0800
+ 16 Nov 2023 07:12:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="938863154"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="938863154"
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="938863168"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="938863168"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.152.135])
  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 07:12:53 -0800
+ 16 Nov 2023 07:12:54 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Nov 2023 16:12:41 +0100
-Message-Id: <20231116151242.2125-3-michal.wajdeczko@intel.com>
+Date: Thu, 16 Nov 2023 16:12:42 +0100
+Message-Id: <20231116151242.2125-4-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20231116151242.2125-1-michal.wajdeczko@intel.com>
 References: <20231116151242.2125-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 3/4] drm/xe/guc: Fix handling of
- GUC_HXG_TYPE_NO_RESPONSE_BUSY
+Subject: [Intel-xe] [PATCH v2 4/4] drm/xe/guc: Use valid scratch register
+ for posting read
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,49 +60,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If GuC responds with the NO_RESPONSE_BUSY message, we extend
-our timeout while waiting for the actual response, but we wrongly
-assumed that the next message will be RESPONSE_SUCCESS, missing
-that we still can get RESPONSE_FAILURE.
-
-Change the condition for the expected message type, using only
-common bits from RESPONSE_SUCCESS and RESPONSE_FAILURE (as they
-differ, by ABI design, only by the last bit).
-
-v2: add comment/checks to the code (Matt)
+There are only 4 scratch registers VF_SW_FLAG(0..3) on each GuC.
+We shouldn't use non-existing register VF_SW_FLAG(4) for posting
+read.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- drivers/gpu/drm/xe/xe_guc.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/xe_guc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index aa4af536c1e9..56edcb2b0e45 100644
+index 56edcb2b0e45..6de2ab05bf4e 100644
 --- a/drivers/gpu/drm/xe/xe_guc.c
 +++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -659,9 +659,20 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 	header = xe_mmio_read32(gt, reply_reg);
- 	if (FIELD_GET(GUC_HXG_MSG_0_TYPE, header) ==
- 	    GUC_HXG_TYPE_NO_RESPONSE_BUSY) {
-+		/*
-+		 * Once we got a BUSY reply we must wait again for the final
-+		 * response but this time we can't use ORIGIN mask anymore.
-+		 * To spot a right change in the reply, we take advantage that
-+		 * response SUCCESS and FAILURE differ only by the single bit
-+		 * and all other bits are set and can be used as a new mask.
-+		 */
-+		u32 resp_bits = GUC_HXG_TYPE_RESPONSE_SUCCESS & GUC_HXG_TYPE_RESPONSE_FAILURE;
-+		u32 resp_mask = FIELD_PREP(GUC_HXG_MSG_0_TYPE, resp_bits);
+@@ -615,7 +615,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
+ 	u32 header, reply;
+ 	struct xe_reg reply_reg = xe_gt_is_media_type(gt) ?
+ 		MED_VF_SW_FLAG(0) : VF_SW_FLAG(0);
+-	const u32 LAST_INDEX = VF_SW_FLAG_COUNT;
++	const u32 LAST_INDEX = VF_SW_FLAG_COUNT - 1;
+ 	int ret;
+ 	int i;
  
--		ret = xe_mmio_wait32(gt, reply_reg, GUC_HXG_MSG_0_TYPE,
--				     FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_RESPONSE_SUCCESS),
-+		BUILD_BUG_ON(FIELD_MAX(GUC_HXG_MSG_0_TYPE) != GUC_HXG_TYPE_RESPONSE_SUCCESS);
-+		BUILD_BUG_ON((GUC_HXG_TYPE_RESPONSE_SUCCESS ^ GUC_HXG_TYPE_RESPONSE_FAILURE) != 1);
-+
-+		ret = xe_mmio_wait32(gt, reply_reg,  resp_mask, resp_mask,
- 				     1000000, &header, false);
- 
- 		if (unlikely(FIELD_GET(GUC_HXG_MSG_0_ORIGIN, header) !=
 -- 
 2.25.1
 
