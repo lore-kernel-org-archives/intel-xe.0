@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFE6DC5ACB3
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A6CDC54FB9
 	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 14:43:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8222F10E60A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E9A410E608;
 	Thu, 16 Nov 2023 14:43:40 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECB2B10E608
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 14:43:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 92D6610E607
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 14:43:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700145817; x=1731681817;
+ t=1700145815; x=1731681815;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=pd6x8O/jLt53/0TfIUWvVP9ywasoV+lTTg5jB6z3fUM=;
- b=YT7q71dTx9lLfq0aSMkpwC7xo+zmBHUG4NBo+jx54+d7RW5dnbIHmfqw
- amMtrM9TYsNIh6AUHUkG0gNet6wnHmnOZVd7no4ipR3cviCE9bezuKdlk
- KJK72KvK7JGrTvQgGpuk82gnTv7TiwmSC90es877aTwLYxKpA5Umu4GuJ
- hP2YGEjChmgIM7JxUhHyEfkq89HJl5QQnQtknkX1DbofKVXDm3JjAJxNa
- BXljVUeUtHacuc03YFx6T+mSiqq1VAxKat3Hs6guiBhlDy/mk1N1rXjoI
- UfQPAqoW368F6l4UA2qk3cbpqk6LVxqI1lQ1DyFPTYNuNIQPVAPAV0Rne g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="389958495"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="389958495"
+ bh=UklOdseCBhZr/JSu5MH5QJ17j2KwKsT4b4TOZH0JxAg=;
+ b=jy6UhtaNEQS5WrHfLMVHhrXTpUHR96q1jVmC1tZNruVnEJi0P00dgwti
+ jXkTi9ZTtZZDigKdswLT/m0UvODObn/nfxaTO96gmZZpm3Vy3ebCf/2RF
+ iOIbLh1IQ7fR7Mk8WRyMsApoEB4YAY8gNBQbuq9R5YbHSrPau9XeZTaWE
+ evKp8Cw/3Rp2ZpP7hRKifGjE3hcCiSPsEKGq2sph9oHjbTtMxAF3AqtHb
+ 6MVHYwvRrCQliz+bH4grRkxNbJ+2Z6fszJaKRujoJ4fpjGCiDthwgjyl5
+ iu3jN99SnXtfc+uK4yNVBskrYXm+hVFTHxosnE3ZmX7LyMhiYgSY8ELON w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="389958490"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="389958490"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 06:43:37 -0800
+ 16 Nov 2023 06:43:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="765310718"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="765310718"
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="765310701"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="765310701"
 Received: from nitishpa-mobl2.gar.corp.intel.com (HELO 7194aa40b138.intel.com)
  ([10.251.218.100])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 06:43:36 -0800
+ 16 Nov 2023 06:43:33 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Nov 2023 14:43:15 +0000
-Message-Id: <20231116144316.7-8-francois.dugast@intel.com>
+Date: Thu, 16 Nov 2023 14:43:13 +0000
+Message-Id: <20231116144316.7-6-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231116144316.7-1-francois.dugast@intel.com>
 References: <20231116144316.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v1 7/8] drm/xe/uapi: Align on a common way to
- return arrays (engines)
+Subject: [Intel-xe] [PATCH v1 5/8] drm/xe/uapi: Align on a common way to
+ return arrays (memory regions)
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,208 +64,166 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 The uAPI provides queries which return arrays of elements. As of now
 the format used in the struct is different depending on which element
-is queried. Fix this for engines by applying the pattern below:
+is queried. Fix this for memory regions by applying the pattern below:
 
-        struct drm_xe_query_X {
-           __u32 num_X;
-           struct drm_xe_X Xs[];
-           ...
-        }
+    struct drm_xe_query_X {
+       __u32 num_X;
+       struct drm_xe_X Xs[];
+       ...
+    }
 
-Instead of directly returning an array of struct
-drm_xe_query_engine_info, a new struct drm_xe_query_engine is
-introduced. It contains itself an array of struct drm_xe_engine
-which holds the information about each engine.
+This removes "query" in the name of struct drm_xe_query_mem_region
+as it is not returned from the query IOCTL. There is no functional
+change.
 
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- drivers/gpu/drm/xe/xe_query.c | 31 ++++++++------
- include/uapi/drm/xe_drm.h     | 78 +++++++++++++++++++++--------------
- 2 files changed, 65 insertions(+), 44 deletions(-)
+ drivers/gpu/drm/xe/xe_query.c | 44 ++++++++++++++++++-----------------
+ include/uapi/drm/xe_drm.h     | 22 +++++++++---------
+ 2 files changed, 34 insertions(+), 32 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
-index 5756d8eaf972..87345ed99151 100644
+index 0cbfeaeb1330..b31e00bd29bc 100644
 --- a/drivers/gpu/drm/xe/xe_query.c
 +++ b/drivers/gpu/drm/xe/xe_query.c
-@@ -53,7 +53,8 @@ static size_t calc_hw_engine_info_size(struct xe_device *xe)
- 			i++;
- 		}
+@@ -240,15 +240,15 @@ static size_t calc_mem_regions_size(struct xe_device *xe)
+ 		if (ttm_manager_type(&xe->ttm, i))
+ 			num_managers++;
  
--	return i * sizeof(struct drm_xe_query_engine_info);
-+	return sizeof(struct drm_xe_query_engine) +
-+		i * sizeof(struct drm_xe_engine);
+-	return offsetof(struct drm_xe_query_mem_regions, regions[num_managers]);
++	return offsetof(struct drm_xe_query_mem_region, mem_regions[num_managers]);
  }
  
- typedef u64 (*__ktime_func_t)(void);
-@@ -186,9 +187,9 @@ static int query_engines(struct xe_device *xe,
- 			 struct drm_xe_device_query *query)
+-static int query_mem_regions(struct xe_device *xe,
+-			     struct drm_xe_device_query *query)
++static int query_mem_region(struct xe_device *xe,
++			    struct drm_xe_device_query *query)
  {
- 	size_t size = calc_hw_engine_info_size(xe);
--	struct drm_xe_query_engine_info __user *query_ptr =
-+	struct drm_xe_query_engine __user *query_ptr =
+ 	size_t size = calc_mem_regions_size(xe);
+-	struct drm_xe_query_mem_regions *usage;
+-	struct drm_xe_query_mem_regions __user *query_ptr =
++	struct drm_xe_query_mem_region *usage;
++	struct drm_xe_query_mem_region __user *query_ptr =
  		u64_to_user_ptr(query->data);
--	struct drm_xe_query_engine_info *hw_engine_info;
-+	struct drm_xe_query_engine *engines;
- 	struct xe_hw_engine *hwe;
- 	enum xe_hw_engine_id id;
- 	struct xe_gt *gt;
-@@ -202,8 +203,8 @@ static int query_engines(struct xe_device *xe,
- 		return -EINVAL;
- 	}
- 
--	hw_engine_info = kmalloc(size, GFP_KERNEL);
--	if (!hw_engine_info)
-+	engines = kmalloc(size, GFP_KERNEL);
-+	if (!engines)
+ 	struct ttm_resource_manager *man;
+ 	int ret, i;
+@@ -265,36 +265,38 @@ static int query_mem_regions(struct xe_device *xe,
  		return -ENOMEM;
  
- 	for_each_gt(gt, xe, gt_id)
-@@ -211,22 +212,26 @@ static int query_engines(struct xe_device *xe,
- 			if (xe_hw_engine_is_reserved(hwe))
- 				continue;
+ 	man = ttm_manager_type(&xe->ttm, XE_PL_TT);
+-	usage->regions[0].mem_class = DRM_XE_MEM_REGION_CLASS_SYSMEM;
+-	usage->regions[0].instance = 0;
+-	usage->regions[0].min_page_size = PAGE_SIZE;
+-	usage->regions[0].total_size = man->size << PAGE_SHIFT;
++	usage->mem_regions[0].mem_class = DRM_XE_MEM_REGION_CLASS_SYSMEM;
++	usage->mem_regions[0].instance = 0;
++	usage->mem_regions[0].min_page_size = PAGE_SIZE;
++	usage->mem_regions[0].total_size = man->size << PAGE_SHIFT;
+ 	if (perfmon_capable())
+-		usage->regions[0].used = ttm_resource_manager_usage(man);
+-	usage->num_regions = 1;
++		usage->mem_regions[0].used = ttm_resource_manager_usage(man);
++	usage->num_mem_regions = 1;
  
--			hw_engine_info[i].instance.engine_class =
-+			engines->engines[i].instance.engine_class =
- 				xe_to_user_engine_class[hwe->class];
--			hw_engine_info[i].instance.engine_instance =
-+			engines->engines[i].instance.engine_instance =
- 				hwe->logical_instance;
--			hw_engine_info[i].instance.gt_id = gt->info.id;
--			hw_engine_info[i].instance.pad = 0;
--			memset(hw_engine_info->reserved, 0, sizeof(hw_engine_info->reserved));
-+			engines->engines[i].instance.gt_id = gt->info.id;
-+			engines->engines[i].instance.pad = 0;
-+			memset(engines->engines[i].reserved, 0,
-+			       sizeof(engines->engines[i].reserved));
+ 	for (i = XE_PL_VRAM0; i <= XE_PL_VRAM1; ++i) {
+ 		man = ttm_manager_type(&xe->ttm, i);
+ 		if (man) {
+-			usage->regions[usage->num_regions].mem_class =
++			usage->mem_regions[usage->num_mem_regions].mem_class =
+ 				DRM_XE_MEM_REGION_CLASS_VRAM;
+-			usage->regions[usage->num_regions].instance =
+-				usage->num_regions;
+-			usage->regions[usage->num_regions].min_page_size =
++			usage->mem_regions[usage->num_mem_regions].instance =
++				usage->num_mem_regions;
++			usage->mem_regions[usage->num_mem_regions].min_page_size =
+ 				xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ?
+ 				SZ_64K : PAGE_SIZE;
+-			usage->regions[usage->num_regions].total_size =
++			usage->mem_regions[usage->num_mem_regions].total_size =
+ 				man->size;
  
- 			i++;
+ 			if (perfmon_capable()) {
+ 				xe_ttm_vram_get_used(man,
+-						     &usage->regions[usage->num_regions].used,
+-						     &usage->regions[usage->num_regions].cpu_visible_used);
++						     &usage->mem_regions
++						     [usage->num_mem_regions].used,
++						     &usage->mem_regions
++						     [usage->num_mem_regions].cpu_visible_used);
+ 			}
+ 
+-			usage->regions[usage->num_regions].cpu_visible_size =
++			usage->mem_regions[usage->num_mem_regions].cpu_visible_size =
+ 				xe_ttm_vram_get_cpu_visible_size(man);
+-			usage->num_regions++;
++			usage->num_mem_regions++;
  		}
- 
--	if (copy_to_user(query_ptr, hw_engine_info, size)) {
--		kfree(hw_engine_info);
-+	engines->pad = 0;
-+	engines->num_engines = i;
-+
-+	if (copy_to_user(query_ptr, engines, size)) {
-+		kfree(engines);
- 		return -EFAULT;
  	}
--	kfree(hw_engine_info);
-+	kfree(engines);
  
- 	return 0;
- }
+@@ -500,7 +502,7 @@ static int query_gt_topology(struct xe_device *xe,
+ static int (* const xe_query_funcs[])(struct xe_device *xe,
+ 				      struct drm_xe_device_query *query) = {
+ 	query_engines,
+-	query_mem_regions,
++	query_mem_region,
+ 	query_config,
+ 	query_gt_list,
+ 	query_hwconfig,
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index fa4f554b5264..b6d3d4d52da9 100644
+index e02bef8dc229..f54e545cc4fb 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -127,9 +127,9 @@ struct xe_user_extension {
- /**
-  * struct drm_xe_engine_class_instance - instance of an engine class
-  *
-- * It is returned as part of the @drm_xe_query_engine_info, but it also is
-- * used as the input of engine selection for both @drm_xe_exec_queue_create
-- * and @drm_xe_query_engine_cycles
-+ * It is returned as part of the @drm_xe_engine, but it also is used as
-+ * the input of engine selection for both @drm_xe_exec_queue_create and
-+ * @drm_xe_query_engine_cycles
-  *
-  */
- struct drm_xe_engine_class_instance {
-@@ -153,13 +153,9 @@ struct drm_xe_engine_class_instance {
+@@ -182,10 +182,10 @@ enum drm_xe_memory_class {
  };
  
  /**
-- * struct drm_xe_query_engine_info - describe hardware engine
-- *
-- * If a query is made with a struct @drm_xe_device_query where .query
-- * is equal to %DRM_XE_DEVICE_QUERY_ENGINES, then the reply uses an array of
-- * struct @drm_xe_query_engine_info in .data.
-+ * struct drm_xe_engine - describe hardware engine
+- * struct drm_xe_query_mem_region - Describes some region as known to
++ * struct drm_xe_mem_region - Describes some region as known to
+  * the driver.
   */
--struct drm_xe_query_engine_info {
-+struct drm_xe_engine {
- 	/** @instance: The @drm_xe_engine_class_instance */
- 	struct drm_xe_engine_class_instance instance;
- 
-@@ -167,6 +163,22 @@ struct drm_xe_query_engine_info {
- 	__u64 reserved[5];
+-struct drm_xe_query_mem_region {
++struct drm_xe_mem_region {
+ 	/**
+ 	 * @mem_class: The memory class describing this region.
+ 	 *
+@@ -315,19 +315,19 @@ struct drm_xe_query_engine_cycles {
  };
  
-+/**
-+ * struct drm_xe_query_engine - describe engines
-+ *
-+ * If a query is made with a struct @drm_xe_device_query where .query
-+ * is equal to %DRM_XE_DEVICE_QUERY_ENGINES, then the reply uses an array of
-+ * struct @drm_xe_query_engine in .data.
-+ */
-+struct drm_xe_query_engine {
-+	/** @num_engines: number of engines returned in @engines */
-+	__u32 num_engines;
-+	/** @pad: MBZ */
-+	__u32 pad;
-+	/** @engines: The returned engines for this device */
-+	struct drm_xe_engine engines[];
-+};
-+
  /**
-  * enum drm_xe_memory_class - Supported memory classes.
-  */
-@@ -465,28 +477,32 @@ struct drm_xe_query_topology_mask {
+- * struct drm_xe_query_mem_regions - describe memory regions
++ * struct drm_xe_query_mem_region - describe memory regions
   *
-  * .. code-block:: C
-  *
-- *	struct drm_xe_engine_class_instance *hwe;
-- *	struct drm_xe_device_query query = {
-- *		.extensions = 0,
-- *		.query = DRM_XE_DEVICE_QUERY_ENGINES,
-- *		.size = 0,
-- *		.data = 0,
-- *	};
-- *	ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query);
-- *	hwe = malloc(query.size);
-- *	query.data = (uintptr_t)hwe;
-- *	ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query);
-- *	int num_engines = query.size / sizeof(*hwe);
-- *	for (int i = 0; i < num_engines; i++) {
-- *		printf("Engine %d: %s\n", i,
-- *			hwe[i].engine_class == DRM_XE_ENGINE_CLASS_RENDER ? "RENDER":
-- *			hwe[i].engine_class == DRM_XE_ENGINE_CLASS_COPY ? "COPY":
-- *			hwe[i].engine_class == DRM_XE_ENGINE_CLASS_VIDEO_DECODE ? "VIDEO_DECODE":
-- *			hwe[i].engine_class == DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE ? "VIDEO_ENHANCE":
-- *			hwe[i].engine_class == DRM_XE_ENGINE_CLASS_COMPUTE ? "COMPUTE":
-- *			"UNKNOWN");
-- *	}
-- *	free(hwe);
-+ *     struct drm_xe_query_engine *engines;
-+ *     struct drm_xe_device_query query = {
-+ *         .extensions = 0,
-+ *         .query = DRM_XE_DEVICE_QUERY_ENGINES,
-+ *         .size = 0,
-+ *         .data = 0,
-+ *     };
-+ *     ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query);
-+ *     engines = malloc(query.size);
-+ *     query.data = (uintptr_t)engines;
-+ *     ioctl(fd, DRM_IOCTL_XE_DEVICE_QUERY, &query);
-+ *     for (int i = 0; i < engines->num_engines; i++) {
-+ *         printf("Engine %d: %s\n", i,
-+ *             engines->engines[i].instance.engine_class ==
-+ *                 DRM_XE_ENGINE_CLASS_RENDER ? "RENDER":
-+ *             engines->engines[i].instance.engine_class ==
-+ *                 DRM_XE_ENGINE_CLASS_COPY ? "COPY":
-+ *             engines->engines[i].instance.engine_class ==
-+ *                 DRM_XE_ENGINE_CLASS_VIDEO_DECODE ? "VIDEO_DECODE":
-+ *             engines->engines[i].instance.engine_class ==
-+ *                 DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE ? "VIDEO_ENHANCE":
-+ *             engines->engines[i].instance.engine_class ==
-+ *                 DRM_XE_ENGINE_CLASS_COMPUTE ? "COMPUTE":
-+ *             "UNKNOWN");
-+ *     }
-+ *     free(engines);
+  * If a query is made with a struct drm_xe_device_query where .query
+- * is equal to DRM_XE_DEVICE_QUERY_MEM_REGIONS, then the reply uses
+- * struct drm_xe_query_mem_regions in .data.
++ * is equal to DRM_XE_DEVICE_QUERY_MEM_REGION, then the reply uses
++ * struct drm_xe_query_mem_region in .data.
   */
- struct drm_xe_device_query {
- 	/** @extensions: Pointer to the first extension struct, if any */
+-struct drm_xe_query_mem_regions {
+-	/** @num_regions: number of memory regions returned in @regions */
+-	__u32 num_regions;
++struct drm_xe_query_mem_region {
++	/** @num_mem_regions: number of memory regions returned in @mem_regions */
++	__u32 num_mem_regions;
+ 	/** @pad: MBZ */
+ 	__u32 pad;
+-	/** @regions: The returned regions for this device */
+-	struct drm_xe_query_mem_region regions[];
++	/** @mem_regions: The returned memory regions for this device */
++	struct drm_xe_mem_region mem_regions[];
+ };
+ 
+ /**
+@@ -493,7 +493,7 @@ struct drm_xe_device_query {
+ 	__u64 extensions;
+ 
+ #define DRM_XE_DEVICE_QUERY_ENGINES		0
+-#define DRM_XE_DEVICE_QUERY_MEM_REGIONS		1
++#define DRM_XE_DEVICE_QUERY_MEM_REGION		1
+ #define DRM_XE_DEVICE_QUERY_CONFIG		2
+ #define DRM_XE_DEVICE_QUERY_GT_LIST		3
+ #define DRM_XE_DEVICE_QUERY_HWCONFIG		4
 -- 
 2.34.1
 
