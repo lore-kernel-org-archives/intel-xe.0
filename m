@@ -4,137 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 05067C197A0
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 20:57:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0288C47071
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 20:57:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C2D4010E6F5;
-	Thu, 16 Nov 2023 20:57:48 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D25A10E6F5
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 20:57:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 722A310E28A;
+	Thu, 16 Nov 2023 20:57:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5893C10E28A
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 20:57:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700168266; x=1731704266;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=tozbjzvY0IjWhNCvvMuSeRWyISAd5JpWjfb7gkQFri0=;
- b=fvcUdYjFlWQvg72Wsdr649plCl4xIDwP5QYq+T7ZVdZNEjHoiAFIcWOz
- iajdM7KiZJQ8s2YBF6Qy1HXHxvHE0DleNw9LtWPPh46HCbDSEMDe7OVE6
- aydodTznFd+ixtFirRSyWaKhRP3KqTtIIrpZ3BcXKnm5/oyGnDX4d3kSI
- iT63KZG/vh59Yh5DOtIm063eUxBEZr5ajIWHgq0mkfa1/qDNEdh5DO+Hg
- tPo2/+9YsNU1VPB5udxTjP61H0ZDdXFaKfnd3cV+hN1HRd8YrFlBLGRtU
- 2/ftiw71/YxtkbnuxMoYFtpFmcmBhjkp0IiqLqBrr+Lks5SRgo+JlspX6 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="390036502"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="390036502"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 12:57:45 -0800
+ t=1700168270; x=1731704270;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=8eI+qzosAbOvv0kxYw9KMKOhs3WoHLFF1/Ltft/mDvc=;
+ b=EHdYuVqKaGQYpBr8bSsMF6D5AFep0fdFXTmHNoDjNxopGKwN30Y9dHFa
+ ixHHmj+bCXX7NseGHQ+e68TRaQAkPDbXTGbRLPhZ4iw7yE4xHCxalPgJN
+ DxIRWpI6j46LuFraYGLfftUscrcpddDh8TOW+ZSwNNJNXw5lLt2OWmmXm
+ YfkERpdfSYFXfJ3xNtpxSolcf0c1u/1q4TR7TGoe7CacyM+GuLy+HGyLo
+ dljPhQOZ+XegsxmWwXfo6QGarifpPAKsenydbfDRpxZdQa6KnOIVn5WN2
+ zayRdSpX8rr2rSpzgblKU5lwc5CHNpNbzsTh6wjWYf1vo8NA21497n5kk A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="477401744"
+X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="477401744"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2023 12:57:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="769027684"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="769027684"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 16 Nov 2023 12:57:45 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Thu, 16 Nov 2023 12:57:45 -0800
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Thu, 16 Nov 2023 12:57:44 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Thu, 16 Nov 2023 12:57:44 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Thu, 16 Nov 2023 12:57:44 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Y/qsdpvoq7cMa9ZW/QkN2lfDDGz+GCD9do/1Rwhn8YEZX9Yi7DAeExbkVDs8kgMEAKo5r2V+H+mVBR3309V75p6pHQcozBbO4uGaIeddwwPWk7GPmFoiIN9S+/fXUgdo0nPYzpBmliiOL9XkVHDNKFyX4i3lpq7cAWwAH73uW5npSb8Xx+cDblM7mm8PAzMQiUBeR4lKZE263mABVfHjtNZvFUCNT29SfJ5FIDGxPswBKDR2JqahSGKVvgJynXKUmh3iKCZlxnknWAV+r72KSrOUjXzbahqLwH5SVAqiVvlOocBlzAmE2nZbbDpj2SFH4GGDxL3x05PJkc/XV/C04Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SbAkzwlPB8BlFCW8gamKOYf8DvnM2vuqq2lmbpJSifA=;
- b=TvHD9nG+HjgBGIVJfQO7J4MkjwMrn5HS8BKNgtVCJJtwcMxqyqafstyQgwKBOBLJvdqmvEgqn/ftG4+/+TMSIz/b7bAIkFfMl/nyZSeTjRaML+ZXsh/ZfRhoTzBS5kDMVO4dsuJVgpzKAViBZSga64PqV6+hLh7Oh+ozDIDEx9Hu3DChzD4wKHOJ7VrSInSpvYdSTxMJ9DLoBSfQhiWiaA1DZ16j+VohsAAi74tvL1lcusqHqeEAWQoWLDuf1xdGOO+M5CIfRIiFNhI/rVkjdhGYN7hU9t6rWWvU+KiL3fDjOISYOXu5zDO6VFyZnzIH2h+4KkSpknuzalG1dqyHzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by CY5PR11MB6344.namprd11.prod.outlook.com (2603:10b6:930:3b::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.17; Thu, 16 Nov
- 2023 20:57:42 +0000
-Received: from MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::ada2:f954:a3a5:6179]) by MN0PR11MB6059.namprd11.prod.outlook.com
- ([fe80::ada2:f954:a3a5:6179%5]) with mapi id 15.20.7002.015; Thu, 16 Nov 2023
- 20:57:42 +0000
-Date: Thu, 16 Nov 2023 15:57:38 -0500
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Francois Dugast <francois.dugast@intel.com>
-Message-ID: <ZVaCQlfHCfblg8ux@intel.com>
-References: <20231116144316.7-1-francois.dugast@intel.com>
- <20231116144316.7-2-francois.dugast@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20231116144316.7-2-francois.dugast@intel.com>
-X-ClientProxiedBy: BY3PR05CA0038.namprd05.prod.outlook.com
- (2603:10b6:a03:39b::13) To MN0PR11MB6059.namprd11.prod.outlook.com
- (2603:10b6:208:377::9)
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="1096902319"
+X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="1096902319"
+Received: from ravi-nuc8i7beh.iind.intel.com ([10.145.169.75])
+ by fmsmga005.fm.intel.com with ESMTP; 16 Nov 2023 12:57:47 -0800
+From: Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>
+To: intel-xe@lists.freedesktop.org, janga.rahul.kumar@intel.com,
+ ramadevi.gandi@intel.com
+Date: Fri, 17 Nov 2023 02:23:51 +0530
+Message-Id: <20231116205351.2248378-1-ruthuvikas.ravikumar@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CY5PR11MB6344:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5eb9a787-279b-4b58-8923-08dbe6e6acc2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 0+kkz/QumSvhwqRXGxZ7Gg32eOXT833cziN659CjNh7Peme6t80yWKkZPM29hioJSomSm9RQ+gsjBHI2mvOAixxbDy2JQ4A2yhF19H5pW3BlvMXtSUkjlBSayneXSjfTc1xnog8u0HOzp7iY5/kkf6uSpPGLiuXeeY7GQMQ7E3O1DNGw5yA6ro0OmD3mloXg09eysywIdEdqwCD348cWxy1GXizZjyziOb13XWiFioMjW64UlmPqDoEWvsCEpqdTb2C8/b0RGR+EAVHnJVBKR+v/RALZjZZR98qR4bKvPDL4iL4UTwHEiQKaL3RIhP9YxfwFPYDCWcc6nZ33zBF43V64MFs6ShLDy28Fa4yeFt1DLU16+1ExCfeP4Xs3cYY91IhfJHyS/QuS/7t/PWu0OTIwBkXBWQOcG3qDiEcrN+l7EDTXE4S+KWGLVnl3q2ecjuS6LxhiNUs2MzUEoDmjdZ3uQkM/7gfJk6s0oXKovxo+orVdeBLYVEg4HPzaSCMJ8CPxmGvtraGZtJyRKGbK00dLL4lIzywidlWg4twyG01RZLdmWTva6vOp3qhpSAYD
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(39860400002)(376002)(396003)(346002)(366004)(230922051799003)(451199024)(64100799003)(186009)(1800799009)(6512007)(6666004)(26005)(2616005)(6506007)(6862004)(41300700001)(4326008)(8676002)(2906002)(6636002)(316002)(5660300002)(44832011)(8936002)(6486002)(478600001)(66556008)(107886003)(66476007)(37006003)(66946007)(86362001)(38100700002)(82960400001)(36756003);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EQPxj8P2MTPw7PoYa+l5rKUBYb38OlqGLEIbUWBUJu23sMPXx6SAw8mCajL+?=
- =?us-ascii?Q?Mkz1RmpAIpNnmmplCe9byhdpjzMUtKmapsNu0LBAjluwgcoy52gHbtMxzaC8?=
- =?us-ascii?Q?w7hqrx1jYe2Wu5dACXLK2WzcAVvlcl1R7bhLUROAiDcYjqKIySMPMQ4RaCts?=
- =?us-ascii?Q?IqAblcB57V5Ks4mMmEiVI5fwCj0Lxf8QHPohmoluTyfKDpnSn9I7OGGBCFia?=
- =?us-ascii?Q?oKGE1y3qd37PQ6yyRe68kEC8KP2Ty5FdNSp3sfYSg4o8CgU7byLYmDgh/FfE?=
- =?us-ascii?Q?MDf12x1uiRmN/rqTV4sE/5De+Iqu/OU4JCzoW6ECwQ+q8PSjP1K5MqB+wLuV?=
- =?us-ascii?Q?EWcXM4XQJhRo2PRokoyHMH+nsYigZdZmc9CX9cgrqXDbXm0lxm00SLm3FJMJ?=
- =?us-ascii?Q?kQxMfiDlrMRZqfhFL7Rrdd3k5AuTcKj5SIPasUdfeKm1QHTuDaP0Qt7Gwu0Q?=
- =?us-ascii?Q?9eqgx3iHus5kRnVMt6y0DnxG1nAOFtthE72YjkyLs6SAlYqXV2cskRVq83ZU?=
- =?us-ascii?Q?kOeRLRmoVTAOb1lETVtY/pEso6WZ1zcJKT8bCg09Axrngllp3KAzf5N3T3Qa?=
- =?us-ascii?Q?XFgBdCWXCQo0eCldFaK75XNRfwyPlXdgLK9kyejQbyEYiUfUvS82gd6hYp6W?=
- =?us-ascii?Q?IwKHmUhhEbL5g96J39lLtMx+TsjaYCS2a5xVtx40xrONbn1YUHDKBMPbpUMf?=
- =?us-ascii?Q?LjfDyr1Ov4BfOors/sycPI+2gMWzf5RgViGpNCZVz+9Kh1mC4DmoedqIpmjL?=
- =?us-ascii?Q?i/WOaYwyn4pNHdj0y8asWJCf5LiuddGVu7fYEn9LX/l9jHuzpn/s2ClFkDDL?=
- =?us-ascii?Q?aUh/MgUxp6YEq1CxR+JpO+n8i+FZ712I5xPojfmtRHhPW2Y9bZncVomp5/kP?=
- =?us-ascii?Q?XNGD68ukjRK/dA/qUgXqmOEKS3zYqvJgdtYkHiic4+R5HeViAJc1o3fqY4ui?=
- =?us-ascii?Q?e6vA3Zgwz/xXnKnGubKEZJLRTtc7ee4rID60GpLm3Cl9bJUeqY9ZHlix8qAL?=
- =?us-ascii?Q?Dedqrvybf56XW0PzZqYMwmw078fJtK6HKJq8shuFmo4233IAX3mxWz6b1sA5?=
- =?us-ascii?Q?I9+97pXwHVFDkeSZ3Z5vF6FpxkTIXDM/jt4bRKodWKek0p6hUhrB0qAsXB8b?=
- =?us-ascii?Q?qR2RA58JkZXfN+bF+m2SdyYZjM9S6jUDXq6iQQN8i6GvELnkt4olQhasScWi?=
- =?us-ascii?Q?TifZkIpgiZUq/iarpRhK1sBS8WnJa8poX/n8/clyTQBiwHuQRBUW69YPpaIG?=
- =?us-ascii?Q?VKOwpsfmCoU/IdzRrxQX4uN/KdBkI8U0U3MF3eDMlmkTveF0ZiEoG1wtnR5m?=
- =?us-ascii?Q?kEgeXXAtyEyiua8vHi9FLcLsjepSljOK9IIpB4sqsvQKhC6KVFMY+6TQkFDP?=
- =?us-ascii?Q?v7Zyp8UBvQ4FvpRPclLA/72VdJwmfwgp7B/bDEXz/pRc0+RqYlfA3qjg1ev4?=
- =?us-ascii?Q?PA/UhOmx8qYqGiXheIapyaOyiSHrQC8UVT0S5hOY9SBZ0zk/VknbTtpoBXuw?=
- =?us-ascii?Q?YW2ZR1GMorJ2Q9xi91s898NViW4x490WbK0p8x2LRwvF0PZhUNgzeOR931nj?=
- =?us-ascii?Q?iGNwTuLLy6TFvHmbolK3ozY2MSgfiK/X/imzo17O?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5eb9a787-279b-4b58-8923-08dbe6e6acc2
-X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Nov 2023 20:57:42.0718 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VAaOlgqoYSgPB25lCdi0SCUkp5Rlvw8cOwla5bJkWE57hShnr778lpJiWDKXbPC2qaEvhDVF182EiX65v5TbGw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6344
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v1 1/8] drm/xe: Extend drm_xe_vm_bind_op
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v14] drm/xe: Add mocs kunit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,46 +55,269 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: matthew.d.roper@intel.com, ruthuvikas.ravikumar@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 16, 2023 at 02:43:09PM +0000, Francois Dugast wrote:
-> From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> 
-> The bind api is extensible but for a single bind op, there
-> is not a mechanism to extend. Add extensions field to
-> struct drm_xe_vm_bind_op.
-> 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Matthew Brost <matthew.brost@intel.com>
-> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-> Cc: Francois Dugast <francois.dugast@intel.com>
-> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
-> Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+This kunit verifies the hardware values of mocs and
+l3cc registers with the KMD programmed values.
 
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+v14: Fix CHECK.
 
-> ---
->  include/uapi/drm/xe_drm.h | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-> index d66e8dc72e96..eb53c7a367a1 100644
-> --- a/include/uapi/drm/xe_drm.h
-> +++ b/include/uapi/drm/xe_drm.h
-> @@ -613,6 +613,9 @@ struct drm_xe_vm_destroy {
->  };
->  
->  struct drm_xe_vm_bind_op {
-> +	/** @extensions: Pointer to the first extension struct, if any */
-> +	__u64 extensions;
-> +
->  	/**
->  	 * @obj: GEM object to operate on, MBZ for MAP_USERPTR, MBZ for UNMAP
->  	 */
-> -- 
-> 2.34.1
-> 
+v13: Remove ret after forcewake.
+
+v11: Add KUNIT_ASSERT_EQ_MSG for Forcewake.
+
+v9/v10: Add Forcewake Fail.
+
+v8: Remove xe_bo.h and xe_pm.h
+    Remove mocs and l3cc from live_mocs.
+    Pull debug and err msg for mocs/l3cc out of if else block.
+    Add HAS_LNCF_MOCS.
+
+v7: correct checkpath
+
+v6: Change ssize_t type.
+    Change forcewake domain to XE_FW_GT.
+    Update change of MOCS registers are multicast on Xe_HP and beyond
+    patch.
+
+v5: Release forcewake.
+    Remove single statement braces.
+    Fix debug statements.
+
+v4: Drop stratch and vaddr.
+    Fix debug statements.
+    Fix indentation.
+
+v3: Fix checkpath.
+
+v2: Fix checkpath.
+
+Cc: Aravind Iddamsetty <aravind.iddamsetty@intel.com>
+Cc: Mathew D Roper <matthew.d.roper@intel.com>
+Reviewed-by: Mathew D Roper <matthew.d.roper@intel.com>
+Signed-off-by: Ruthuvikas Ravikumar <ruthuvikas.ravikumar@intel.com>
+---
+ drivers/gpu/drm/xe/tests/Makefile       |   1 +
+ drivers/gpu/drm/xe/tests/xe_mocs.c      | 130 ++++++++++++++++++++++++
+ drivers/gpu/drm/xe/tests/xe_mocs_test.c |  24 +++++
+ drivers/gpu/drm/xe/tests/xe_mocs_test.h |  13 +++
+ drivers/gpu/drm/xe/xe_mocs.c            |   4 +
+ 5 files changed, 172 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs.c
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs_test.c
+ create mode 100644 drivers/gpu/drm/xe/tests/xe_mocs_test.h
+
+diff --git a/drivers/gpu/drm/xe/tests/Makefile b/drivers/gpu/drm/xe/tests/Makefile
+index 51f1a7f017d4..39d8a0892274 100644
+--- a/drivers/gpu/drm/xe/tests/Makefile
++++ b/drivers/gpu/drm/xe/tests/Makefile
+@@ -4,6 +4,7 @@ obj-$(CONFIG_DRM_XE_KUNIT_TEST) += \
+ 	xe_bo_test.o \
+ 	xe_dma_buf_test.o \
+ 	xe_migrate_test.o \
++	xe_mocs_test.o \
+ 	xe_pci_test.o \
+ 	xe_rtp_test.o \
+ 	xe_wa_test.o
+diff --git a/drivers/gpu/drm/xe/tests/xe_mocs.c b/drivers/gpu/drm/xe/tests/xe_mocs.c
+new file mode 100644
+index 000000000000..7dd34f94e809
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_mocs.c
+@@ -0,0 +1,130 @@
++// SPDX-License-Identifier: GPL-2.0 AND MIT
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#include <kunit/test.h>
++#include <kunit/visibility.h>
++
++#include "tests/xe_mocs_test.h"
++#include "tests/xe_pci_test.h"
++#include "tests/xe_test.h"
++
++#include "xe_pci.h"
++#include "xe_gt.h"
++#include "xe_mocs.h"
++#include "xe_device.h"
++
++struct live_mocs {
++	struct xe_mocs_info table;
++};
++
++static int live_mocs_init(struct live_mocs *arg, struct xe_gt *gt)
++{
++	unsigned int flags;
++	struct kunit *test = xe_cur_kunit();
++
++	memset(arg, 0, sizeof(*arg));
++
++	flags = get_mocs_settings(gt_to_xe(gt), &arg->table);
++
++	kunit_info(test, "table size %d", arg->table.size);
++	kunit_info(test, "table uc_index %d", arg->table.uc_index);
++	kunit_info(test, "table n_entries %d", arg->table.n_entries);
++
++	return flags;
++}
++
++static void read_l3cc_table(struct xe_gt *gt,
++			    const struct xe_mocs_info *info)
++{
++	unsigned int i;
++	u32 l3cc;
++	u32 reg_val;
++	u32 ret;
++
++	struct kunit *test = xe_cur_kunit();
++
++	xe_device_mem_access_get(gt_to_xe(gt));
++	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake Failed.\n");
++	mocs_dbg(&gt_to_xe(gt)->drm, "L3CC entries:%d\n", info->n_entries);
++	for (i = 0;
++	     i < (info->n_entries + 1) / 2 ?
++	     (l3cc = l3cc_combine(get_entry_l3cc(info, 2 * i),
++				  get_entry_l3cc(info, 2 * i + 1))), 1 : 0;
++	     i++) {
++		if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1250)
++			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_LNCFCMOCS(i));
++		else
++			reg_val = xe_mmio_read32(gt, XELP_LNCFCMOCS(i));
++		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x 0x%x\n", i,
++			 XELP_LNCFCMOCS(i).addr, reg_val, l3cc);
++		if (reg_val != l3cc)
++			KUNIT_FAIL(test, "l3cc reg 0x%x has incorrect val.\n",
++				   XELP_LNCFCMOCS(i).addr);
++	}
++	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++	xe_device_mem_access_put(gt_to_xe(gt));
++}
++
++static void read_mocs_table(struct xe_gt *gt,
++			    const struct xe_mocs_info *info)
++{
++	struct xe_device *xe = gt_to_xe(gt);
++
++	unsigned int i;
++	u32 mocs;
++	u32 reg_val;
++	u32 ret;
++
++	struct kunit *test = xe_cur_kunit();
++
++	xe_device_mem_access_get(gt_to_xe(gt));
++	ret = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
++	KUNIT_ASSERT_EQ_MSG(test, ret, 0, "Forcewake Failed.\n");
++	mocs_dbg(&gt_to_xe(gt)->drm, "Global MOCS entries:%d\n", info->n_entries);
++	drm_WARN_ONCE(&xe->drm, !info->unused_entries_index,
++		      "Unused entries index should have been defined\n");
++	for (i = 0;
++	     i < info->n_entries ? (mocs = get_entry_control(info, i)), 1 : 0;
++	     i++) {
++		if (GRAPHICS_VERx100(gt_to_xe(gt)) >= 1250)
++			reg_val = xe_gt_mcr_unicast_read_any(gt, XEHP_GLOBAL_MOCS(i));
++		else
++			reg_val = xe_mmio_read32(gt, XELP_GLOBAL_MOCS(i));
++		mocs_dbg(&gt_to_xe(gt)->drm, "%d 0x%x 0x%x 0x%x\n", i,
++			 XELP_GLOBAL_MOCS(i).addr, reg_val, mocs);
++		if (reg_val != mocs)
++			KUNIT_FAIL(test, "mocs reg 0x%x has incorrect val.\n",
++				   XELP_GLOBAL_MOCS(i).addr);
++	}
++	xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
++	xe_device_mem_access_put(gt_to_xe(gt));
++}
++
++static int mocs_kernel_test_run_device(struct xe_device *xe)
++{
++	/* Basic check the system is configured with the expected mocs table */
++
++	struct live_mocs mocs;
++	struct xe_gt *gt;
++
++	unsigned int flags;
++	int id;
++
++	for_each_gt(gt, xe, id) {
++		flags = live_mocs_init(&mocs, gt);
++		if (flags & HAS_GLOBAL_MOCS)
++			read_mocs_table(gt, &mocs.table);
++		if (flags & HAS_LNCF_MOCS)
++			read_l3cc_table(gt, &mocs.table);
++	}
++	return 0;
++}
++
++void xe_live_mocs_kernel_kunit(struct kunit *test)
++{
++	xe_call_for_each_device(mocs_kernel_test_run_device);
++}
++EXPORT_SYMBOL_IF_KUNIT(xe_live_mocs_kernel_kunit);
+diff --git a/drivers/gpu/drm/xe/tests/xe_mocs_test.c b/drivers/gpu/drm/xe/tests/xe_mocs_test.c
+new file mode 100644
+index 000000000000..ef56bd517b28
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_mocs_test.c
+@@ -0,0 +1,24 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright © 2022 Intel Corporation
++ */
++
++#include "xe_mocs_test.h"
++
++#include <kunit/test.h>
++
++static struct kunit_case xe_mocs_tests[] = {
++	KUNIT_CASE(xe_live_mocs_kernel_kunit),
++	{}
++};
++
++static struct kunit_suite xe_mocs_test_suite = {
++	.name = "xe_mocs",
++	.test_cases = xe_mocs_tests,
++};
++
++kunit_test_suite(xe_mocs_test_suite);
++
++MODULE_AUTHOR("Intel Corporation");
++MODULE_LICENSE("GPL");
++MODULE_IMPORT_NS(EXPORTED_FOR_KUNIT_TESTING);
+diff --git a/drivers/gpu/drm/xe/tests/xe_mocs_test.h b/drivers/gpu/drm/xe/tests/xe_mocs_test.h
+new file mode 100644
+index 000000000000..7faa3575e6c3
+--- /dev/null
++++ b/drivers/gpu/drm/xe/tests/xe_mocs_test.h
+@@ -0,0 +1,13 @@
++/* SPDX-License-Identifier: GPL-2.0 AND MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_MOCS_TEST_H_
++#define _XE_MOCS_TEST_H_
++
++struct kunit;
++
++void xe_live_mocs_kernel_kunit(struct kunit *test);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 46e999257862..409f21b72761 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -588,3 +588,7 @@ void xe_mocs_init(struct xe_gt *gt)
+ 	if (flags & HAS_LNCF_MOCS)
+ 		init_l3cc_table(gt, &table);
+ }
++
++#if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
++#include "tests/xe_mocs.c"
++#endif
+-- 
+2.25.1
+
