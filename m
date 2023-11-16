@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4666BC54FB9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 54113C197A0
 	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 14:43:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C69810E603;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2968D10E606;
 	Thu, 16 Nov 2023 14:43:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2FB1F10E603
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 14:43:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5D1D10E603
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 14:43:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700145808; x=1731681808;
+ t=1700145809; x=1731681809;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NVq9gG2dilNOW2Ibkn65VDkpiCgRK5uk5MIpmF6EQrg=;
- b=OPhsrZO55nZFlOMnV3VASiQnoY3heb5zchVpKN5/ONFSm92uktQ0Zl4I
- F/+v9YF/yOw6+lBKVMvqbCynILjEgMwmd2F6jR+Bgr/ftUxGh+bd5ScWZ
- gEcCK7pF5BOBvNLWKK7hbI4UYxRyEiA/gddfKzfbp3l5qOGXkowY49n+f
- Cn5+XXDEm/2xp6xJ33+N6wjnmGSYGrPiEnONd3ijj1L3vDNUFlCYebk0I
- MggGR18dOj5xPNePvTZV1sWYOW/e+o/RyeBK2Xx7bukAv/PA/LID61bGQ
- xUg2wIjIF7YSstSmCgdOy8elqTAiSFzTBAH5v3wquoJnJH7iECzAfKzwU Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="389958470"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="389958470"
+ bh=4oSWwqVrJ211U2q+AO9onVRBCHPgVkMElX8KzKXT3C8=;
+ b=d15fRmZXmSFgFaPsZYT4u63U9OWl0fwx9gV64qaEMQNoR1pYLfiG1hIz
+ O/OpR9CYUbJqHMnyumCsKjnx0Mu/j0IAb5EP7PRWQq/smcmLP3EV+UtlR
+ M6iEHObQDiAYehJ6VcpklGkXOhXOlpF8vh1ZrXSE/PycJ8FalKQwJ/MdU
+ iRvTdjz0x5CBaoYk3QicpkTNbN6yBXaMr0ei51vNDWkU0Du8949ionBnr
+ n+tTHecVvEZcUbiOraC7uDc/fh3OFIagD+9Ef7ujQN4QKdt9JXss/GpEP
+ kcX20KvbCv++IyCKa1slRJDB7qgg53dmLxgORHp2oZo/6yEJaVcj3KlJR Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="389958476"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="389958476"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 06:43:27 -0800
+ 16 Nov 2023 06:43:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="765310668"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="765310668"
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="765310679"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="765310679"
 Received: from nitishpa-mobl2.gar.corp.intel.com (HELO 7194aa40b138.intel.com)
  ([10.251.218.100])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 06:43:25 -0800
+ 16 Nov 2023 06:43:28 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Nov 2023 14:43:09 +0000
-Message-Id: <20231116144316.7-2-francois.dugast@intel.com>
+Date: Thu, 16 Nov 2023 14:43:10 +0000
+Message-Id: <20231116144316.7-3-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231116144316.7-1-francois.dugast@intel.com>
 References: <20231116144316.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v1 1/8] drm/xe: Extend drm_xe_vm_bind_op
+Subject: [Intel-xe] [PATCH v1 2/8] drm/xe/uapi: Separate bo_create placement
+ from flags
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,43 +59,103 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: Francois Dugast <francois.dugast@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-The bind api is extensible but for a single bind op, there
-is not a mechanism to extend. Add extensions field to
-struct drm_xe_vm_bind_op.
+Although the flags are about the creation, the memory placement
+of the BO deserves a proper dedicated field in the uapi.
 
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Cc: Francois Dugast <francois.dugast@intel.com>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
-Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Besides getting more clear, it also allows to remove the
+'magic' shifts from the flags that was a concern during the
+uapi reviews.
+
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/xe_bo.c | 15 +++++++--------
+ include/uapi/drm/xe_drm.h  | 12 ++++++------
+ 2 files changed, 13 insertions(+), 14 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index b955c89da42c..87971f4faa58 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1799,19 +1799,18 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	u32 handle;
+ 	int err;
+ 
+-	if (XE_IOCTL_DBG(xe, args->extensions) || XE_IOCTL_DBG(xe, args->pad) ||
++	if (XE_IOCTL_DBG(xe, args->extensions) ||
+ 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
++	/* at least one valid memory placement must be specified */
++	if (XE_IOCTL_DBG(xe, !(args->placement & xe->info.mem_region_mask)))
++		return -EINVAL;
++
+ 	if (XE_IOCTL_DBG(xe, args->flags &
+ 			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
+ 			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
+-			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
+-			   xe->info.mem_region_mask)))
+-		return -EINVAL;
+-
+-	/* at least one memory type must be specified */
+-	if (XE_IOCTL_DBG(xe, !(args->flags & xe->info.mem_region_mask)))
++			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->handle))
+@@ -1832,7 +1831,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+ 		bo_flags |= XE_BO_SCANOUT_BIT;
+ 
+-	bo_flags |= args->flags << (ffs(XE_BO_CREATE_SYSTEM_BIT) - 1);
++	bo_flags |= args->placement << (ffs(XE_BO_CREATE_SYSTEM_BIT) - 1);
+ 
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
+ 		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_CREATE_VRAM_MASK)))
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index d66e8dc72e96..eb53c7a367a1 100644
+index eb53c7a367a1..966554047534 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -613,6 +613,9 @@ struct drm_xe_vm_destroy {
- };
- 
- struct drm_xe_vm_bind_op {
-+	/** @extensions: Pointer to the first extension struct, if any */
-+	__u64 extensions;
-+
- 	/**
- 	 * @obj: GEM object to operate on, MBZ for MAP_USERPTR, MBZ for UNMAP
+@@ -499,8 +499,11 @@ struct drm_xe_gem_create {
  	 */
+ 	__u64 size;
+ 
+-#define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(0x1 << 24)
+-#define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(0x1 << 25)
++	/** @placement: A mask of memory instances of where BO can be placed. */
++	__u32 placement;
++
++#define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
++#define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
+ /*
+  * When using VRAM as a possible placement, ensure that the corresponding VRAM
+  * allocation will always use the CPU accessible part of VRAM. This is important
+@@ -516,7 +519,7 @@ struct drm_xe_gem_create {
+  * display surfaces, therefore the kernel requires setting this flag for such
+  * objects, otherwise an error is thrown on small-bar systems.
+  */
+-#define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(0x1 << 26)
++#define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
+ 	/**
+ 	 * @flags: Flags, currently a mask of memory instances of where BO can
+ 	 * be placed
+@@ -540,9 +543,6 @@ struct drm_xe_gem_create {
+ 	 */
+ 	__u32 handle;
+ 
+-	/** @pad: MBZ */
+-	__u32 pad;
+-
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
+ };
 -- 
 2.34.1
 
