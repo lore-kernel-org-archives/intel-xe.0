@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 03E21C54FB9
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 14:43:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4666BC54FB9
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 14:43:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE96310E605;
-	Thu, 16 Nov 2023 14:43:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C69810E603;
+	Thu, 16 Nov 2023 14:43:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 447CB10E603
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 14:43:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FB1F10E603
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 14:43:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700145806; x=1731681806;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=rM/NUR6X5PPUVN2u5xh23ZPAkNE8Da3CcvtYps22bFg=;
- b=Ei8IwJiFgCxg+4yVloj/Dq7e/1Qw9/jgyzJk9bkG0uKJCnHoI32U7HIx
- HSIKSyAigAYvG6T0j+ZuSyMlicb+Z9sG0WqtzjGHVBapA/YJWEOwx/+wr
- SqATYwWNhIiA13CUqizTHkPvStRYgsujIz7IerL7HbavOkY3HmlsswEuN
- iQbb3lsREvv6406ztRBptc+ss/l4BUFqGip9nFr5tN1pNwXoiR0RD0SS0
- ip/ZwAWfqw0b6oXTXUr7WX9ArL1DWIw95zJhALnRicKcld74rPyIhaWGX
- jh0QqaSpzD5zYINE5ZtFncJ7VRPaeloO8mFZBwV7fnpbniQubsIs1bMvx g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="389958463"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="389958463"
+ t=1700145808; x=1731681808;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=NVq9gG2dilNOW2Ibkn65VDkpiCgRK5uk5MIpmF6EQrg=;
+ b=OPhsrZO55nZFlOMnV3VASiQnoY3heb5zchVpKN5/ONFSm92uktQ0Zl4I
+ F/+v9YF/yOw6+lBKVMvqbCynILjEgMwmd2F6jR+Bgr/ftUxGh+bd5ScWZ
+ gEcCK7pF5BOBvNLWKK7hbI4UYxRyEiA/gddfKzfbp3l5qOGXkowY49n+f
+ Cn5+XXDEm/2xp6xJ33+N6wjnmGSYGrPiEnONd3ijj1L3vDNUFlCYebk0I
+ MggGR18dOj5xPNePvTZV1sWYOW/e+o/RyeBK2Xx7bukAv/PA/LID61bGQ
+ xUg2wIjIF7YSstSmCgdOy8elqTAiSFzTBAH5v3wquoJnJH7iECzAfKzwU Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="389958470"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="389958470"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 06:43:25 -0800
+ 16 Nov 2023 06:43:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="765310656"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="765310656"
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="765310668"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="765310668"
 Received: from nitishpa-mobl2.gar.corp.intel.com (HELO 7194aa40b138.intel.com)
  ([10.251.218.100])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 06:43:24 -0800
+ 16 Nov 2023 06:43:25 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Nov 2023 14:43:08 +0000
-Message-Id: <20231116144316.7-1-francois.dugast@intel.com>
+Date: Thu, 16 Nov 2023 14:43:09 +0000
+Message-Id: <20231116144316.7-2-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231116144316.7-1-francois.dugast@intel.com>
+References: <20231116144316.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v1 0/8] uAPI Alignment - Cleanup and future proof
+Subject: [Intel-xe] [PATCH v1 1/8] drm/xe: Extend drm_xe_vm_bind_op
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,42 +57,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The series "uAPI Alignment - take 2 v3" [1] has grown too much which makes
-it difficult to review and to digest by UMDs. This new series is a third
-break down, which cleans up the uAPI and prepares for future needs. It is
-to be applied on top of [2].
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
 
-[1] https://patchwork.freedesktop.org/series/126203/
-[2] https://patchwork.freedesktop.org/series/126399/
+The bind api is extensible but for a single bind op, there
+is not a mechanism to extend. Add extensions field to
+struct drm_xe_vm_bind_op.
 
-Francois Dugast (3):
-  drm/xe/uapi: Align on a common way to return arrays (memory regions)
-  drm/xe/uapi: Align on a common way to return arrays (gt)
-  drm/xe/uapi: Align on a common way to return arrays (engines)
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+---
+ include/uapi/drm/xe_drm.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-José Roberto de Souza (1):
-  drm/xe: Make DRM_XE_DEVICE_QUERY_ENGINES future proof
-
-Mauro Carvalho Chehab (1):
-  drm/xe/uapi: Reject bo creation of unaligned size
-
-Mika Kuoppala (1):
-  drm/xe: Extend drm_xe_vm_bind_op
-
-Rodrigo Vivi (2):
-  drm/xe/uapi: Separate bo_create placement from flags
-  drm/xe/uapi: Add Tile ID information to the GT info query
-
- drivers/gpu/drm/xe/tests/xe_dma_buf.c |   8 +-
- drivers/gpu/drm/xe/xe_bo.c            |  39 ++++---
- drivers/gpu/drm/xe/xe_query.c         |  83 ++++++++------
- include/uapi/drm/xe_drm.h             | 158 ++++++++++++++++----------
- 4 files changed, 177 insertions(+), 111 deletions(-)
-
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index d66e8dc72e96..eb53c7a367a1 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -613,6 +613,9 @@ struct drm_xe_vm_destroy {
+ };
+ 
+ struct drm_xe_vm_bind_op {
++	/** @extensions: Pointer to the first extension struct, if any */
++	__u64 extensions;
++
+ 	/**
+ 	 * @obj: GEM object to operate on, MBZ for MAP_USERPTR, MBZ for UNMAP
+ 	 */
 -- 
 2.34.1
 
