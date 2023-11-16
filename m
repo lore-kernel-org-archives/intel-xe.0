@@ -4,55 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF4B7C54FB9
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 14:09:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 33E6EC197A0
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 14:17:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A750C10E5E5;
-	Thu, 16 Nov 2023 14:09:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E9BA110E5F1;
+	Thu, 16 Nov 2023 14:17:09 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 263A310E5DE;
- Thu, 16 Nov 2023 14:09:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94CCE10E5F3
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 14:17:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700143759; x=1731679759;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=spRh+yF57jjoBWHvWpo/Tq4zxr8/j2rt/0b9L5ABdn0=;
- b=c04tUKcLG+FMAhB4As/8mWt2dNimU5eCafQhNXsGAsJAdLEQ662cZ5KG
- c7uv3W1O53p5JgcWLXsf2dBIsWQWxRo6o1xKuz9eDxRDS7cX3E70AeJ4O
- 0sTSxXQV/CBymkI4Z8lyNC7vJHNiiXl/9vOBLjbi2lGFBhXumMQ5GMgtm
- vWWDl18U2aQcTCAD71GF7MSstmtnDWg6a4iPXPWj2BadTRLQ4Rk08rcVh
- 3NU5iZQj17Z5D6XMftNWcgdXUl6g1LVTgCzZTWr1ug4sLODIZ+8bQ20XA
- ctE+x/M61wwmHca6RcWESwLfeG+ERBlet5tDQjDNc3GCLC7k9YngPZY6H A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="12641892"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="12641892"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ t=1700144228; x=1731680228;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jDz9OTiYb1JRYLBGJ2z/VgVG7YpqJjjHHXxoCykdW+8=;
+ b=PSLSu9X85eVIyIhq+me0m7WFhjQLGDrROoETp8UkK3pkguuV5Ox2L6k3
+ aOT7Y/N63K0utRUKhOFI5V5A2an7ULvmmlGjh0B08g2xGjjexOu/qSm2X
+ TDzzTIIN9CrnggTQ0huBamSGZvvO4kao00Ql4KoZJ5vYo4TELCbLB5vgi
+ igIb3puOkeZzmEZmI9mWhtdE2pwzaxTl/cZW+ZtroTFfcVbQIlrNBad+J
+ 36GkzczQevl8XhuoAwmYnl2M3unv3gSHPWoatBrtg0LSnWJaF5TILIo8j
+ EqWN+0XV+U/zbFbOGs1i98wENN4zbqp1dmQlDq8yxTr2hLB6WHaxldIzU Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="12643362"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="12643362"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 06:09:18 -0800
+ 16 Nov 2023 06:17:08 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; 
-   d="scan'208";a="6536734"
-Received: from mcaspar-mobl1.ger.corp.intel.com (HELO [10.249.254.12])
- ([10.249.254.12])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 06:09:14 -0800
-Message-ID: <a0ba3f8c70ec939842f06127486e1e99795f7e6a.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Danilo Krummrich <dakr@redhat.com>, Boris Brezillon
- <boris.brezillon@collabora.com>
-Date: Thu, 16 Nov 2023 15:09:11 +0100
-In-Reply-To: <c129fa94-6456-4746-9477-737a0fb61f96@redhat.com>
-References: <20231115124937.6740-1-thomas.hellstrom@linux.intel.com>
- <20231116104851.114bdb08@collabora.com>
- <0850281b667c4b88163dab60737dbc945ad742fd.camel@linux.intel.com>
- <c129fa94-6456-4746-9477-737a0fb61f96@redhat.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="715230467"
+X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="715230467"
+Received: from suja-super-server.iind.intel.com ([10.145.169.64])
+ by orsmga003.jf.intel.com with ESMTP; 16 Nov 2023 06:17:06 -0800
+From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Thu, 16 Nov 2023 20:00:39 +0530
+Message-Id: <20231116143043.908412-1-sujaritha.sundaresan@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [PATCH v4] Documentation/gpu: VM_BIND locking
- document
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [RFC 0/4] Adding new frequency sysfs attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,70 +54,32 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>, linux-kernel@vger.kernel.org,
- dri-devel@lists.freedesktop.org, Daniel Vetter <daniel@ffwll.ch>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-xe@lists.freedesktop.org
+Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
+ vivi.rodrigo@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, 2023-11-16 at 15:02 +0100, Danilo Krummrich wrote:
-> On 11/16/23 12:48, Thomas Hellstr=C3=B6m wrote:
->=20
-> <snip>
->=20
-> > > > +Locks used and locking orders
-> > > > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D
-> > > > +
-> > > > +One of the benefits of VM_BIND is that local GEM objects share
-> > > > the
-> > > > gpu_vm's
-> > > > +dma_resv object and hence the dma_resv lock. So even with a
-> > > > huge
-> > > > +number of local GEM objects, only one lock is needed to make
-> > > > the
-> > > > exec
-> > > > +sequence atomic.
-> > > > +
-> > > > +The following locks and locking orders are used:
-> > > > +
-> > > > +* The ``gpu_vm->lock`` (optionally an rwsem). Protects how the
-> > > > gpu_vm is
-> > > > +=C2=A0 partitioned into gpu_vmas. It can also protect the gpu_vm's
-> > > > list
-> > > > of
-> > > > +=C2=A0 userptr gpu_vmas. With a CPU mm analogy this would
-> > > > correspond to
-> > > > the
-> > > > +=C2=A0 mmap_lock.
-> > >=20
-> > > I don't see any drm_gpuvm::lock field in Danilo's latest
-> > > patchset,
-> > > so,
-> > > unless I missed one version, and this lock is actually provided
-> > > by
-> > > drm_gpuvm, I would mention this is a driver-specific lock. This
-> > > comment
-> > > applies to all the locks you describe here actually (mention
-> > > which
-> > > ones
-> > > are provided by drm_gpuvm, and which ones are driver-specific).
-> >=20
-> > These will be needed also by gpuvm when implementing userptr vmas,
-> > so I
-> > can mention that drm_gpuvm is currently lacking a userptr
-> > implementation, so "the locks described below are to be considered
-> > driver-specific for now"
->=20
-> Since Xe already implements userptr support, are you guys maybe
-> interested
-> in extending drm_gpuvm accordingly? :-)
->=20
+The series adds vram frequency and throttle reasons sysfs
+attributes. Along with this, we also add some directories
+adn subdirectories to cleanup the sysfs organization.
 
-I've been thinking of that but in that case that needs to happen after
-the xe merge. Also we ofc need to clear it with the people who do
-resource allocation on our side :)
+Sujaritha Sundaresan (4):
+  drm/xe: Moving and renaming existing frequency sysfs attributes
+  drm/xe: Add memory directory for vram attributes
+  drm/xe: Add throttle reasons sysfs attributes
+  drm/xe: Add a new vram directory with frequency attributes
 
-Thanks,
-Thomas
+ drivers/gpu/drm/xe/Makefile               |   1 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h      |  12 +
+ drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c | 266 ++++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h |  17 ++
+ drivers/gpu/drm/xe/xe_guc_pc.c            |  65 +++---
+ drivers/gpu/drm/xe/xe_pcode_api.h         |   8 +
+ drivers/gpu/drm/xe/xe_tile_sysfs.c        |  78 ++++++-
+ 7 files changed, 415 insertions(+), 32 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gt_throttle_sysfs.h
+
+-- 
+2.25.1
 
