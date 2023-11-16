@@ -4,46 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9285DC47071
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 22:16:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 47131C47071
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 22:23:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 42E8A10E6FB;
-	Thu, 16 Nov 2023 22:16:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A8DB310E6FB
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 22:16:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 017A810E70B;
+	Thu, 16 Nov 2023 22:23:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 340E410E70B
+ for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 22:23:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700173007; x=1731709007;
+ t=1700173412; x=1731709412;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=QjctfW5tOyLY6UBRjGEKh8nGvn9c7zDYQmeIWr3kGUo=;
- b=Ytv4cqiNIn1k7d9cHPDlPNfpCmt5G/r7VYD3GkF7FoSXz4yC57OSEdTH
- g5zVVAVoifexQ4+/6JiTkCKnVbreCoxj0dE/Jt7ZW+J/eA87JrJtNEjDK
- DEOLC4YFvqQAYkKG7bZ26IurZ7eOTinBCi0N08ARAk8dmDLawiWovtRQF
- fP5qktkJHk6F7XQs4A2Erxq9D/rd04Z1FOInRN6JD96c1zznXtuOhsb1M
- Mx9Q3moW5It7yfWw6VA7jQf2SAl+xNxpRQzicRxMZKnks1jCDbMt2mSAN
- KwrPLHLVBhP3qMybZ5WSP+TQVN9rNDOb/EJ/uvOFv0F1/1ib0g4Kt68Hd A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="395114708"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="395114708"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 14:16:47 -0800
+ bh=Bnp65qeTceCjuvMUj4GUzwFF874L9bwpXMuBTy3n42E=;
+ b=jMcShXqr3aYMXmYIoW/ucbtiZZn79wNlEPAmfVZEaPgaGW0JqQXAjiq7
+ nYj3zQSvm0vyOWN/koBGhIbcVrrRdwTsh6dBVuoh5Z7eTGMyyI3aYJZUs
+ 8gV6y5ldP1CLvfb5ItdkUDJhLE0voYYei4ku4sH8XKjmIl2eKX4GuB78N
+ f55XtQONO+DbBOhtA93GWtig5lZoqYRg0MGNzsH30IvyXMUIJhK69gLCd
+ vMKhj8q0FLUcsNBeTycM76243Xu3LYylg+AZydlEedL/6PfOun8Ox52kP
+ +iYmfGPeCEgMPzWMUBEEHAJZ3Wwl6UvuhcTedLLk6fgD5EViiGu7XbfmG g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="12744096"
+X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="12744096"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2023 14:23:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="1012737389"
-X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="1012737389"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 14:16:46 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="889054699"
+X-IronPort-AV: E=Sophos;i="6.04,205,1695711600"; d="scan'208";a="889054699"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Nov 2023 14:23:31 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Nov 2023 14:16:37 -0800
-Message-ID: <20231116221637.2589469-1-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.41.0
+Date: Thu, 16 Nov 2023 14:23:16 -0800
+Message-Id: <20231116222316.407407-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2] drm/xe/guc: Use FAST_REQUEST for non-blocking
- H2G messages
+Subject: [Intel-xe] [PATCH] drm/xe: Remove GEN[0-9]*_ prefixes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,182 +54,432 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We're currently sending non-blocking H2G messages using the EVENT type,
-which suppresses all CTB protocol replies from the GuC, including the
-failure cases. This might cause errors to slip through and manifest as
-unexpected behavior (e.g. a context state might not be what the driver
-thinks it is because the state change command was silently rejected by
-the GuC). To avoid this kind of problems, we can use the FAST_REQUEST
-type instead, which suppresses the reply only on success; this way we
-still get the advantage of not having to wait for an ack from the GuC
-(i.e. the H2G is still non-blocking) while still detecting errors.
-Since we can't escalate to the caller when a non-blocking message
-fails, we need to escalate to GT reset instead.
+After noticing in logs there there were still mentions to GEN6
+registers, it was clear commit 860bc3f9b76d ("drm/xe: Drop gen afixes
+from registers") didn't take care of all the afixes. Some were added
+later, but there are also constans and strings still using that.
+Continue the cleanup removing the remaining ones.
 
-Note that FAST_REQUEST failures are NOT expected and are usually a sign
-that the H2G was either malformed or requested an illegal operation.
+To keep it consistent with code nearby, a few other changes are made:
 
-v2: assign fence values to FAST_REQUEST messages, fix abi doc, use xe_gt
-printers (Michal).
+	- Remove prefix in INTEL_LEGACY_64B_CONTEXT
+	- Remove GEN8_CTX_L3LLC_COHERENT since it's unused
+	- Rename GEN9_FREQ_SCALER to GT_FREQUENCY_SCALER
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
 ---
- drivers/gpu/drm/xe/abi/guc_messages_abi.h |  2 +
- drivers/gpu/drm/xe/xe_guc_ct.c            | 58 ++++++++++++++++++++---
- 2 files changed, 54 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_execlist.c       | 16 ++++++++--------
+ drivers/gpu/drm/xe/xe_gt.c             |  2 +-
+ drivers/gpu/drm/xe/xe_guc.c            |  2 +-
+ drivers/gpu/drm/xe/xe_guc_pc.c         | 18 +++++++++---------
+ drivers/gpu/drm/xe/xe_lrc.c            | 23 +++++++++++------------
+ drivers/gpu/drm/xe/xe_mmio.c           | 14 +++++++-------
+ drivers/gpu/drm/xe/xe_mmio.h           |  2 +-
+ drivers/gpu/drm/xe/xe_mocs.c           | 12 ++++++------
+ drivers/gpu/drm/xe/xe_pt.c             |  2 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c |  2 +-
+ drivers/gpu/drm/xe/xe_wopcm.c          | 15 ++++++++-------
+ 11 files changed, 54 insertions(+), 54 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/abi/guc_messages_abi.h b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
-index 3d199016cf88..6544205cf40d 100644
---- a/drivers/gpu/drm/xe/abi/guc_messages_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
-@@ -24,6 +24,7 @@
-  *  |   | 30:28 | **TYPE** - message type                                      |
-  *  |   |       |   - _`GUC_HXG_TYPE_REQUEST` = 0                              |
-  *  |   |       |   - _`GUC_HXG_TYPE_EVENT` = 1                                |
-+ *  |   |       |   - _`GUC_HXG_TYPE_FAST_REQUEST` = 2                                |
-  *  |   |       |   - _`GUC_HXG_TYPE_NO_RESPONSE_BUSY` = 3                     |
-  *  |   |       |   - _`GUC_HXG_TYPE_NO_RESPONSE_RETRY` = 5                    |
-  *  |   |       |   - _`GUC_HXG_TYPE_RESPONSE_FAILURE` = 6                     |
-@@ -46,6 +47,7 @@
- #define GUC_HXG_MSG_0_TYPE			(0x7 << 28)
- #define   GUC_HXG_TYPE_REQUEST			0u
- #define   GUC_HXG_TYPE_EVENT			1u
-+#define   GUC_HXG_TYPE_FAST_REQUEST		2u
- #define   GUC_HXG_TYPE_NO_RESPONSE_BUSY		3u
- #define   GUC_HXG_TYPE_NO_RESPONSE_RETRY	5u
- #define   GUC_HXG_TYPE_RESPONSE_FAILURE		6u
-diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-index a84e111bb36a..04e443c6fd8b 100644
---- a/drivers/gpu/drm/xe/xe_guc_ct.c
-+++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-@@ -15,6 +15,7 @@
- #include "xe_device.h"
- #include "xe_gt.h"
- #include "xe_gt_pagefault.h"
-+#include "xe_gt_printk.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_guc.h"
- #include "xe_guc_submit.h"
-@@ -448,7 +449,7 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
+diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+index b4406fbdf99f..e8754adfc52a 100644
+--- a/drivers/gpu/drm/xe/xe_execlist.c
++++ b/drivers/gpu/drm/xe/xe_execlist.c
+@@ -28,16 +28,16 @@
+ 
+ #define XE_EXECLIST_HANG_LIMIT 1
+ 
+-#define GEN11_SW_CTX_ID_SHIFT 37
+-#define GEN11_SW_CTX_ID_WIDTH 11
++#define SW_CTX_ID_SHIFT 37
++#define SW_CTX_ID_WIDTH 11
+ #define XEHP_SW_CTX_ID_SHIFT  39
+ #define XEHP_SW_CTX_ID_WIDTH  16
+ 
+ #define XE_SCHED_PRIORITY_UNSET -2
+ 
+-#define GEN11_SW_CTX_ID \
+-	GENMASK_ULL(GEN11_SW_CTX_ID_WIDTH + GEN11_SW_CTX_ID_SHIFT - 1, \
+-		    GEN11_SW_CTX_ID_SHIFT)
++#define SW_CTX_ID \
++	GENMASK_ULL(SW_CTX_ID_WIDTH + SW_CTX_ID_SHIFT - 1, \
++		    SW_CTX_ID_SHIFT)
+ 
+ #define XEHP_SW_CTX_ID \
+ 	GENMASK_ULL(XEHP_SW_CTX_ID_WIDTH + XEHP_SW_CTX_ID_SHIFT - 1, \
+@@ -57,8 +57,8 @@ static void __start_lrc(struct xe_hw_engine *hwe, struct xe_lrc *lrc,
+ 		xe_gt_assert(hwe->gt, FIELD_FIT(XEHP_SW_CTX_ID, ctx_id));
+ 		lrc_desc |= FIELD_PREP(XEHP_SW_CTX_ID, ctx_id);
  	} else {
- 		cmd[1] =
--			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
-+			FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_FAST_REQUEST) |
- 			FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
- 				   GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
+-		xe_gt_assert(hwe->gt, FIELD_FIT(GEN11_SW_CTX_ID, ctx_id));
+-		lrc_desc |= FIELD_PREP(GEN11_SW_CTX_ID, ctx_id);
++		xe_gt_assert(hwe->gt, FIELD_FIT(SW_CTX_ID, ctx_id));
++		lrc_desc |= FIELD_PREP(SW_CTX_ID, ctx_id);
  	}
-@@ -475,11 +476,31 @@ static int h2g_write(struct xe_guc_ct *ct, const u32 *action, u32 len,
- 	return 0;
+ 
+ 	if (hwe->class == XE_ENGINE_CLASS_COMPUTE)
+@@ -98,7 +98,7 @@ static void __xe_execlist_port_start(struct xe_execlist_port *port,
+ 				     struct xe_execlist_exec_queue *exl)
+ {
+ 	struct xe_device *xe = gt_to_xe(port->hwe->gt);
+-	int max_ctx = FIELD_MAX(GEN11_SW_CTX_ID);
++	int max_ctx = FIELD_MAX(SW_CTX_ID);
+ 
+ 	if (GRAPHICS_VERx100(xe) >= 1250)
+ 		max_ctx = FIELD_MAX(XEHP_SW_CTX_ID);
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 6c885dde5d59..364543546f98 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -515,7 +515,7 @@ static int do_gt_reset(struct xe_gt *gt)
+ 	xe_mmio_write32(gt, GDRST, GRDOM_FULL);
+ 	err = xe_mmio_wait32(gt, GDRST, GRDOM_FULL, 0, 5000, NULL, false);
+ 	if (err)
+-		xe_gt_err(gt, "failed to clear GEN11_GRDOM_FULL (%pe)\n",
++		xe_gt_err(gt, "failed to clear GRDOM_FULL (%pe)\n",
+ 			  ERR_PTR(err));
+ 
+ 	return err;
+diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
+index 84f0b5488783..f52a7e832007 100644
+--- a/drivers/gpu/drm/xe/xe_guc.c
++++ b/drivers/gpu/drm/xe/xe_guc.c
+@@ -313,7 +313,7 @@ int xe_guc_reset(struct xe_guc *guc)
+ 
+ 	ret = xe_mmio_wait32(gt, GDRST, GRDOM_GUC, 0, 5000, &gdrst, false);
+ 	if (ret) {
+-		drm_err(&xe->drm, "GuC reset timed out, GEN6_GDRST=0x%8x\n",
++		drm_err(&xe->drm, "GuC reset timed out, GDRST=0x%8x\n",
+ 			gdrst);
+ 		goto err_out;
+ 	}
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index f4ac76d6b2dd..e9dd6c3d750b 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -23,19 +23,19 @@
+ 
+ #define MCHBAR_MIRROR_BASE_SNB	0x140000
+ 
+-#define GEN6_RP_STATE_CAP	XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5998)
++#define RP_STATE_CAP		XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5998)
+ #define   RP0_MASK		REG_GENMASK(7, 0)
+ #define   RP1_MASK		REG_GENMASK(15, 8)
+ #define   RPN_MASK		REG_GENMASK(23, 16)
+ 
+-#define GEN10_FREQ_INFO_REC	XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5ef0)
++#define FREQ_INFO_REC	XE_REG(MCHBAR_MIRROR_BASE_SNB + 0x5ef0)
+ #define   RPE_MASK		REG_GENMASK(15, 8)
+ 
+ #define GT_PERF_STATUS		XE_REG(0x1381b4)
+-#define   GEN12_CAGF_MASK	REG_GENMASK(19, 11)
++#define   CAGF_MASK	REG_GENMASK(19, 11)
+ 
+ #define GT_FREQUENCY_MULTIPLIER	50
+-#define GEN9_FREQ_SCALER	3
++#define GT_FREQUENCY_SCALER	3
+ 
+ /**
+  * DOC: GuC Power Conservation (PC)
+@@ -244,12 +244,12 @@ static int pc_action_setup_gucrc(struct xe_guc_pc *pc, u32 mode)
+ static u32 decode_freq(u32 raw)
+ {
+ 	return DIV_ROUND_CLOSEST(raw * GT_FREQUENCY_MULTIPLIER,
+-				 GEN9_FREQ_SCALER);
++				 GT_FREQUENCY_SCALER);
  }
  
-+/*
-+ * The CT protocol accepts a 16 bits fence. This field is fully owned by the
-+ * driver, the GuC will just copy it to the reply message. Since we need to
-+ * be able to distinguish between replies to REQUEST and FAST_REQUEST messages,
-+ * we use one bit of the seqno as an indicator for that and a rolling counter
-+ * for the remaining 15 bits.
-+ */
-+#define CT_SEQNO_MASK GENMASK(14, 0)
-+#define CT_SEQNO_IS_UNTRACKED BIT(15)
-+static u16 next_ct_seqno(struct xe_guc_ct *ct, bool is_g2h_fence)
-+{
-+	u32 seqno = ct->fence_seqno++ & CT_SEQNO_MASK;
-+
-+	if (!is_g2h_fence)
-+		seqno |= CT_SEQNO_IS_UNTRACKED;
-+
-+	return seqno;
-+}
-+
- static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 				u32 len, u32 g2h_len, u32 num_g2h,
- 				struct g2h_fence *g2h_fence)
+ static u32 encode_freq(u32 freq)
  {
- 	struct xe_device *xe = ct_to_xe(ct);
-+	u16 seqno;
- 	int ret;
+-	return DIV_ROUND_CLOSEST(freq * GEN9_FREQ_SCALER,
++	return DIV_ROUND_CLOSEST(freq * GT_FREQUENCY_SCALER,
+ 				 GT_FREQUENCY_MULTIPLIER);
+ }
  
- 	xe_assert(xe, !g2h_len || !g2h_fence);
-@@ -505,7 +526,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 		if (g2h_fence_needs_alloc(g2h_fence)) {
- 			void *ptr;
+@@ -362,7 +362,7 @@ static void tgl_update_rpe_value(struct xe_guc_pc *pc)
+ 	if (xe->info.platform == XE_PVC)
+ 		reg = xe_mmio_read32(gt, PVC_RP_STATE_CAP);
+ 	else
+-		reg = xe_mmio_read32(gt, GEN10_FREQ_INFO_REC);
++		reg = xe_mmio_read32(gt, FREQ_INFO_REC);
  
--			g2h_fence->seqno = (ct->fence_seqno++ & 0xffff);
-+			g2h_fence->seqno = next_ct_seqno(ct, true);
- 			ptr = xa_store(&ct->fence_lookup,
- 				       g2h_fence->seqno,
- 				       g2h_fence, GFP_ATOMIC);
-@@ -514,6 +535,10 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 				goto out;
- 			}
- 		}
-+
-+		seqno = g2h_fence->seqno;
-+	} else {
-+		seqno = next_ct_seqno(ct, false);
+ 	pc->rpe_freq = REG_FIELD_GET(RPE_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+ }
+@@ -402,7 +402,7 @@ static ssize_t freq_act_show(struct device *dev,
+ 		freq = REG_FIELD_GET(MTL_CAGF_MASK, freq);
+ 	} else {
+ 		freq = xe_mmio_read32(gt, GT_PERF_STATUS);
+-		freq = REG_FIELD_GET(GEN12_CAGF_MASK, freq);
++		freq = REG_FIELD_GET(CAGF_MASK, freq);
  	}
  
- 	if (g2h_len)
-@@ -523,8 +548,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 *action,
- 	if (unlikely(ret))
- 		goto out_unlock;
+ 	ret = sysfs_emit(buf, "%d\n", decode_freq(freq));
+@@ -702,7 +702,7 @@ static void tgl_init_fused_rp_values(struct xe_guc_pc *pc)
+ 	if (xe->info.platform == XE_PVC)
+ 		reg = xe_mmio_read32(gt, PVC_RP_STATE_CAP);
+ 	else
+-		reg = xe_mmio_read32(gt, GEN6_RP_STATE_CAP);
++		reg = xe_mmio_read32(gt, RP_STATE_CAP);
+ 	pc->rp0_freq = REG_FIELD_GET(RP0_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+ 	pc->rpn_freq = REG_FIELD_GET(RPN_MASK, reg) * GT_FREQUENCY_MULTIPLIER;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index f8754f061599..17c0eb9e62cf 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -23,14 +23,13 @@
+ #include "xe_map.h"
+ #include "xe_vm.h"
  
--	ret = h2g_write(ct, action, len, g2h_fence ? g2h_fence->seqno : 0,
--			!!g2h_fence);
-+	ret = h2g_write(ct, action, len, seqno, !!g2h_fence);
- 	if (unlikely(ret)) {
- 		if (ret == -EAGAIN)
- 			goto retry;
-@@ -786,7 +810,8 @@ static int parse_g2h_event(struct xe_guc_ct *ct, u32 *msg, u32 len)
+-#define GEN8_CTX_VALID				(1 << 0)
+-#define GEN8_CTX_L3LLC_COHERENT			(1 << 5)
+-#define GEN8_CTX_PRIVILEGE			(1 << 8)
+-#define GEN8_CTX_ADDRESSING_MODE_SHIFT		3
+-#define INTEL_LEGACY_64B_CONTEXT		3
++#define CTX_VALID				(1 << 0)
++#define CTX_PRIVILEGE				(1 << 8)
++#define CTX_ADDRESSING_MODE_SHIFT		3
++#define LEGACY_64B_CONTEXT			3
  
- static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+-#define GEN11_ENGINE_CLASS_SHIFT		61
+-#define GEN11_ENGINE_INSTANCE_SHIFT		48
++#define ENGINE_CLASS_SHIFT			61
++#define ENGINE_INSTANCE_SHIFT			48
+ 
+ static struct xe_device *
+ lrc_to_xe(struct xe_lrc *lrc)
+@@ -765,19 +764,19 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 				     (q->usm.acc_notify << ACC_NOTIFY_S) |
+ 				     q->usm.acc_trigger);
+ 
+-	lrc->desc = GEN8_CTX_VALID;
+-	lrc->desc |= INTEL_LEGACY_64B_CONTEXT << GEN8_CTX_ADDRESSING_MODE_SHIFT;
++	lrc->desc = CTX_VALID;
++	lrc->desc |= LEGACY_64B_CONTEXT << CTX_ADDRESSING_MODE_SHIFT;
+ 	/* TODO: Priority */
+ 
+ 	/* While this appears to have something about privileged batches or
+ 	 * some such, it really just means PPGTT mode.
+ 	 */
+ 	if (vm)
+-		lrc->desc |= GEN8_CTX_PRIVILEGE;
++		lrc->desc |= CTX_PRIVILEGE;
+ 
+ 	if (GRAPHICS_VERx100(xe) < 1250) {
+-		lrc->desc |= (u64)hwe->instance << GEN11_ENGINE_INSTANCE_SHIFT;
+-		lrc->desc |= (u64)hwe->class << GEN11_ENGINE_CLASS_SHIFT;
++		lrc->desc |= (u64)hwe->instance << ENGINE_INSTANCE_SHIFT;
++		lrc->desc |= (u64)hwe->class << ENGINE_CLASS_SHIFT;
+ 	}
+ 
+ 	arb_enable = MI_ARB_ON_OFF | MI_ARB_ENABLE;
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index d8f9fabf715e..fe46cf65fb36 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -84,8 +84,8 @@ static void xe_resize_vram_bar(struct xe_device *xe)
+ 	int i;
+ 
+ 	/* gather some relevant info */
+-	current_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
+-	bar_size_mask = pci_rebar_get_possible_sizes(pdev, GEN12_LMEM_BAR);
++	current_size = pci_resource_len(pdev, LMEM_BAR);
++	bar_size_mask = pci_rebar_get_possible_sizes(pdev, LMEM_BAR);
+ 
+ 	if (!bar_size_mask)
+ 		return;
+@@ -137,7 +137,7 @@ static void xe_resize_vram_bar(struct xe_device *xe)
+ 	pci_read_config_dword(pdev, PCI_COMMAND, &pci_cmd);
+ 	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd & ~PCI_COMMAND_MEMORY);
+ 
+-	_resize_bar(xe, GEN12_LMEM_BAR, rebar_size);
++	_resize_bar(xe, LMEM_BAR, rebar_size);
+ 
+ 	pci_assign_unassigned_bus_resources(pdev->bus);
+ 	pci_write_config_dword(pdev, PCI_COMMAND, pci_cmd);
+@@ -161,15 +161,15 @@ static int xe_determine_lmem_bar_size(struct xe_device *xe)
  {
--	struct xe_device *xe = ct_to_xe(ct);
-+	struct xe_gt *gt =  ct_to_gt(ct);
-+	struct xe_device *xe = gt_to_xe(gt);
- 	u32 response_len = len - GUC_CTB_MSG_MIN_LEN;
- 	u32 fence = FIELD_GET(GUC_CTB_MSG_0_FENCE, msg[0]);
- 	u32 type = FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[1]);
-@@ -794,10 +819,31 @@ static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, u32 len)
+ 	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
  
- 	lockdep_assert_held(&ct->lock);
+-	if (!xe_pci_resource_valid(pdev, GEN12_LMEM_BAR)) {
++	if (!xe_pci_resource_valid(pdev, LMEM_BAR)) {
+ 		drm_err(&xe->drm, "pci resource is not valid\n");
+ 		return -ENXIO;
+ 	}
  
-+	/*
-+	 * Fences for FAST_REQUEST messages are not tracked in ct->fence_lookup.
-+	 * Those messages should never fail, so if we do get an error back it
-+	 * means we're likely doing an illegal operation and the GuC is
-+	 * rejecting it. We have no way to inform the code that submitted the
-+	 * H2G that the message was rejected, so we need to escalate the
-+	 * failure to trigger a reset.
-+	 */
-+	if (fence & CT_SEQNO_IS_UNTRACKED) {
-+		if (type == GUC_HXG_TYPE_RESPONSE_FAILURE)
-+			xe_gt_err(gt, "FAST_REQ H2G 0x%x failed! e=0x%x, h=%u\n",
-+				  fence,
-+				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, msg[1]),
-+				  FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, msg[1]));
-+		else
-+			xe_gt_err(gt, "unexpected response %u for FAST_REQ H2G 0x%x!\n",
-+				  fence, type);
+ 	xe_resize_vram_bar(xe);
+ 
+-	xe->mem.vram.io_start = pci_resource_start(pdev, GEN12_LMEM_BAR);
+-	xe->mem.vram.io_size = pci_resource_len(pdev, GEN12_LMEM_BAR);
++	xe->mem.vram.io_start = pci_resource_start(pdev, LMEM_BAR);
++	xe->mem.vram.io_size = pci_resource_len(pdev, LMEM_BAR);
+ 	if (!xe->mem.vram.io_size)
+ 		return -EIO;
+ 
+@@ -215,7 +215,7 @@ int xe_mmio_tile_vram_size(struct xe_tile *tile, u64 *vram_size, u64 *tile_size,
+ 
+ 	/* actual size */
+ 	if (unlikely(xe->info.platform == XE_DG1)) {
+-		*tile_size = pci_resource_len(to_pci_dev(xe->drm.dev), GEN12_LMEM_BAR);
++		*tile_size = pci_resource_len(to_pci_dev(xe->drm.dev), LMEM_BAR);
+ 		*tile_offset = 0;
+ 	} else {
+ 		reg = xe_gt_mcr_unicast_read_any(gt, XEHP_TILE_ADDR_RANGE(gt->info.id));
+diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
+index ae09f777d711..0e2d7b1552ad 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.h
++++ b/drivers/gpu/drm/xe/xe_mmio.h
+@@ -18,7 +18,7 @@ struct drm_device;
+ struct drm_file;
+ struct xe_device;
+ 
+-#define GEN12_LMEM_BAR		2
++#define LMEM_BAR		2
+ 
+ int xe_mmio_init(struct xe_device *xe);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 46e999257862..849316d73d27 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -69,7 +69,7 @@ struct xe_mocs_info {
+ #define L4_CACHE_POLICY_MASK		REG_GENMASK(3, 2)
+ 
+ /* Helper defines */
+-#define GEN9_NUM_MOCS_ENTRIES	64  /* 63-64 are reserved, but configured. */
++#define NUM_MOCS_ENTRIES	64  /* 63-64 are reserved, but configured. */
+ #define PVC_NUM_MOCS_ENTRIES	3
+ #define MTL_NUM_MOCS_ENTRIES    16
+ #define XE2_NUM_MOCS_ENTRIES	16
+@@ -149,7 +149,7 @@ struct xe_mocs_info {
+  *       For TGL/RKL, all the unspecified MOCS indexes are mapped to L3 UC.
+  */
+ 
+-#define GEN11_MOCS_ENTRIES \
++#define MOCS_ENTRIES \
+ 	/* Entries 0 and 1 are defined per-platform */ \
+ 	/* Base - L3 + LLC */ \
+ 	MOCS_ENTRY(2, \
+@@ -265,7 +265,7 @@ static const struct xe_mocs_entry dg1_mocs_desc[] = {
+ };
+ 
+ static const struct xe_mocs_entry gen12_mocs_desc[] = {
+-	GEN11_MOCS_ENTRIES,
++	MOCS_ENTRIES,
+ 	/* Implicitly enable L1 - HDC:L1 + L3 + LLC */
+ 	MOCS_ENTRY(48,
+ 		   LE_3_WB | LE_TC_1_LLC | LE_LRUM(3),
+@@ -433,14 +433,14 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
+ 			info->table = dg2_mocs_desc;
+ 		}
+ 		info->uc_index = 1;
+-		info->n_entries = GEN9_NUM_MOCS_ENTRIES;
++		info->n_entries = NUM_MOCS_ENTRIES;
+ 		info->unused_entries_index = 3;
+ 		break;
+ 	case XE_DG1:
+ 		info->size = ARRAY_SIZE(dg1_mocs_desc);
+ 		info->table = dg1_mocs_desc;
+ 		info->uc_index = 1;
+-		info->n_entries = GEN9_NUM_MOCS_ENTRIES;
++		info->n_entries = NUM_MOCS_ENTRIES;
+ 		info->unused_entries_index = 5;
+ 		break;
+ 	case XE_TIGERLAKE:
+@@ -450,7 +450,7 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
+ 	case XE_ALDERLAKE_N:
+ 		info->size  = ARRAY_SIZE(gen12_mocs_desc);
+ 		info->table = gen12_mocs_desc;
+-		info->n_entries = GEN9_NUM_MOCS_ENTRIES;
++		info->n_entries = NUM_MOCS_ENTRIES;
+ 		info->uc_index = 3;
+ 		info->unused_entries_index = 2;
+ 		break;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 31afab617b4e..338bffe4885f 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -532,7 +532,7 @@ xe_pt_stage_bind_entry(struct xe_ptw *parent, pgoff_t offset,
+ 		pte |= xe_walk->default_pte;
+ 
+ 		/*
+-		 * Set the GEN12_PTE_PS64 hint if possible, otherwise if
++		 * Set the XE_PTE_PS64 hint if possible, otherwise if
+ 		 * this device *requires* 64K PTE size for VRAM, fail.
+ 		 */
+ 		if (level == 0 && !xe_parent->is_compact) {
+diff --git a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+index 0c533d36791d..d6628df9f41b 100644
+--- a/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
++++ b/drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c
+@@ -77,7 +77,7 @@ static s64 detect_bar2_dgfx(struct xe_device *xe, struct xe_ttm_stolen_mgr *mgr)
+ 	stolen_size = tile_size - mgr->stolen_base;
+ 
+ 	/* Verify usage fits in the actual resource available */
+-	if (mgr->stolen_base + stolen_size <= pci_resource_len(pdev, GEN12_LMEM_BAR))
++	if (mgr->stolen_base + stolen_size <= pci_resource_len(pdev, LMEM_BAR))
+ 		mgr->io_base = tile->mem.vram.io_start + mgr->stolen_base;
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/xe/xe_wopcm.c b/drivers/gpu/drm/xe/xe_wopcm.c
+index bf85d4fa56cc..d3a99157e523 100644
+--- a/drivers/gpu/drm/xe/xe_wopcm.c
++++ b/drivers/gpu/drm/xe/xe_wopcm.c
+@@ -51,9 +51,10 @@
+ #define DGFX_WOPCM_SIZE			SZ_4M
+ /* FIXME: Larger size require for MTL, do a proper probe sooner or later */
+ #define MTL_WOPCM_SIZE			SZ_4M
+-#define GEN11_WOPCM_SIZE		SZ_2M
++#define WOPCM_SIZE			SZ_2M
 +
-+		return -EPROTO;
-+	}
-+
- 	g2h_fence = xa_erase(&ct->fence_lookup, fence);
- 	if (unlikely(!g2h_fence)) {
- 		/* Don't tear down channel, as send could've timed out */
--		drm_warn(&xe->drm, "G2H fence (%u) not found!\n", fence);
-+		xe_gt_warn(gt, "G2H fence (%u) not found!\n", fence);
- 		g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
- 		return 0;
++#define MAX_WOPCM_SIZE			SZ_8M
+ 
+-#define GEN12_MAX_WOPCM_SIZE            SZ_8M
+ /* 16KB WOPCM (RSVD WOPCM) is reserved from HuC firmware top. */
+ #define WOPCM_RESERVED_SIZE		SZ_16K
+ 
+@@ -65,8 +66,8 @@
+ /* GuC WOPCM Offset value needs to be aligned to 16KB. */
+ #define GUC_WOPCM_OFFSET_ALIGNMENT	(1UL << GUC_WOPCM_OFFSET_SHIFT)
+ 
+-/* 36KB WOPCM reserved at the end of WOPCM on GEN11. */
+-#define GEN11_WOPCM_HW_CTX_RESERVED	(SZ_32K + SZ_4K)
++/* 36KB WOPCM reserved at the end of WOPCM */
++#define WOPCM_HW_CTX_RESERVED		(SZ_32K + SZ_4K)
+ 
+ static inline struct xe_gt *wopcm_to_gt(struct xe_wopcm *wopcm)
+ {
+@@ -80,7 +81,7 @@ static inline struct xe_device *wopcm_to_xe(struct xe_wopcm *wopcm)
+ 
+ static u32 context_reserved_size(void)
+ {
+-	return GEN11_WOPCM_HW_CTX_RESERVED;
++	return WOPCM_HW_CTX_RESERVED;
+ }
+ 
+ static bool __check_layout(struct xe_device *xe, u32 wopcm_size,
+@@ -180,7 +181,7 @@ u32 xe_wopcm_size(struct xe_device *xe)
+ {
+ 	return IS_DGFX(xe) ? DGFX_WOPCM_SIZE :
+ 		xe->info.platform == XE_METEORLAKE ? MTL_WOPCM_SIZE :
+-		GEN11_WOPCM_SIZE;
++		WOPCM_SIZE;
+ }
+ 
+ /**
+@@ -225,7 +226,7 @@ int xe_wopcm_init(struct xe_wopcm *wopcm)
+ 		 * BIOS/IFWI, check against the max allowed wopcm size to
+ 		 * validate if the programmed values align to the wopcm layout.
+ 		 */
+-		wopcm->size = GEN12_MAX_WOPCM_SIZE;
++		wopcm->size = MAX_WOPCM_SIZE;
+ 
+ 		goto check;
  	}
 -- 
-2.41.0
+2.40.1
 
