@@ -4,48 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BD7D3C54FB9
-	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 15:12:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C55E6C54FB9
+	for <intel-xe@archiver.kernel.org>; Thu, 16 Nov 2023 15:15:50 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AAFF10E611;
-	Thu, 16 Nov 2023 15:12:59 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5FEE10E28F
- for <intel-xe@lists.freedesktop.org>; Thu, 16 Nov 2023 15:12:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700147575; x=1731683575;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=5aS5tlkjWarblpyVLuGxRK7QkhAJm3AuKre+ikj4hq0=;
- b=dmC1T6LyiZo3ATYJr1QFQBvFPF2bBaiPayIbTWlhoT0xZBdwp5C0Vh+4
- JiTM6FhZez/oRLRu90l1+XrHnrvb8m0yajV+98qshIB/65LEM/TOZ2Mwt
- xPExD2ZVl9stlDa2iEn0Ubd4ra3aIGtIiayzCG5DiRrePJ9AcREheWEHR
- PiaZPL78V1aUW4XblOZT4BENJSZ5RZQic7SY7ox4/UBftPWP3Q7roXj8K
- /1gywWiYegAdPOiS50yPAXOc5pI4Ne5rJqZBqdP4Ksiaox1pFgYo7nPlz
- rR9Gx8aXpPBYA7CY6DjFOJoyGb9gmIEOg1DXIytgVKRWs2X5k1eFPJUb7 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="388269215"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="388269215"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 07:12:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="938863168"
-X-IronPort-AV: E=Sophos;i="6.04,308,1695711600"; d="scan'208";a="938863168"
-Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.152.135])
- by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Nov 2023 07:12:54 -0800
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Thu, 16 Nov 2023 16:12:42 +0100
-Message-Id: <20231116151242.2125-4-michal.wajdeczko@intel.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20231116151242.2125-1-michal.wajdeczko@intel.com>
-References: <20231116151242.2125-1-michal.wajdeczko@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8CD8710E613;
+	Thu, 16 Nov 2023 15:15:50 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 967D910E613;
+ Thu, 16 Nov 2023 15:15:49 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8FBBAAADDA;
+ Thu, 16 Nov 2023 15:15:49 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 4/4] drm/xe/guc: Use valid scratch register
- for posting read
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Thu, 16 Nov 2023 15:15:49 -0000
+Message-ID: <170014774958.3094.6225123245857945986@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231116151242.2125-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20231116151242.2125-1-michal.wajdeczko@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_series_starting_with_=5Bv2=2C1/4=5D_drm/xe/guc=3A_Fix_wrong_?=
+ =?utf-8?q?assert_about_full=5Flen?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,32 +40,25 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-There are only 4 scratch registers VF_SW_FLAG(0..3) on each GuC.
-We shouldn't use non-existing register VF_SW_FLAG(4) for posting
-read.
+== Series Details ==
 
-Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_guc.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Series: series starting with [v2,1/4] drm/xe/guc: Fix wrong assert about full_len
+URL   : https://patchwork.freedesktop.org/series/126539/
+State : failure
 
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 56edcb2b0e45..6de2ab05bf4e 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -615,7 +615,7 @@ int xe_guc_mmio_send_recv(struct xe_guc *guc, const u32 *request,
- 	u32 header, reply;
- 	struct xe_reg reply_reg = xe_gt_is_media_type(gt) ?
- 		MED_VF_SW_FLAG(0) : VF_SW_FLAG(0);
--	const u32 LAST_INDEX = VF_SW_FLAG_COUNT;
-+	const u32 LAST_INDEX = VF_SW_FLAG_COUNT - 1;
- 	int ret;
- 	int i;
- 
--- 
-2.25.1
+== Summary ==
+
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 33775eb43 drm/xe/guc: Promote guc_to_gt/xe helpers to .h
+=== git am output follows ===
+Applying: drm/xe/guc: Fix wrong assert about full_len
+Applying: drm/xe/guc: Copy response data from proper registers
+Applying: drm/xe/guc: Fix handling of GUC_HXG_TYPE_NO_RESPONSE_BUSY
+Applying: drm/xe/guc: Use valid scratch register for posting read
+
 
