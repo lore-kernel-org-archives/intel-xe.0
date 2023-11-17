@@ -4,54 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 28DFEC072A2
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 09:26:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 26E7CC072A2
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 10:07:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E0C4F10E736;
-	Fri, 17 Nov 2023 09:26:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89C9610E734;
- Fri, 17 Nov 2023 09:26:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700213209; x=1731749209;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mI4tB+rrpL63vR7HkqXhZ5M+NcYT5UzbYgA3aDajMzc=;
- b=nuKUj0L122Rjodg4y4/Y7lm55/30YG3jwcItWQ21/drRDEXjIoRP4mGP
- 3JqOqqHBnxxqQBVJ+YyyQKDmqmWiT8kefZxG01Di6Tk+OVw5J5eix7GWs
- 2e/kLwyjAlvFfT2qq5hLoLbpu1LlRZi/YLD0I3f/KUQyHUV7wh7lliTou
- WtVd3s26vckdGy7HWs8ZLuq7/68VKa364fDTrVrlgvNf5TnN1ZRqmUZzs
- kFKCLRk/z0VVMcqF9AEx7Op3uv/5WJG45xdX6yoyeGBFYF+B1YIgzHOkz
- Ttak5YLz03CE6xQWa4Rf+j7zS/xzmz6BXxbCHZwygWhAcWpFkgM3CJXgp A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="12812543"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="12812543"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2023 01:26:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="759118928"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="759118928"
-Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
- by orsmga007.jf.intel.com with SMTP; 17 Nov 2023 01:26:45 -0800
-Received: by stinkbox (sSMTP sendmail emulation);
- Fri, 17 Nov 2023 11:26:44 +0200
-Date: Fri, 17 Nov 2023 11:26:44 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Coelho, Luciano" <luciano.coelho@intel.com>
-Message-ID: <ZVcx1MSvP0UgZ14o@intel.com>
-References: <20231116112700.648963-1-luciano.coelho@intel.com>
- <ZVcUH7G40NQ4Q-R7@intel.com>
- <8cb3dbfe8290336233133b98b903adca0738ee4e.camel@intel.com>
- <ZVcnRzSDC8s8G073@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id DADE610E73D;
+	Fri, 17 Nov 2023 10:07:38 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5FD7B10E737;
+ Fri, 17 Nov 2023 10:07:37 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 58037A0093;
+ Fri, 17 Nov 2023 10:07:37 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZVcnRzSDC8s8G073@intel.com>
-X-Patchwork-Hint: comment
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH] drm/i915: don't use uncore
- spinlock to protect critical section in vblank
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
+Date: Fri, 17 Nov 2023 10:07:37 -0000
+Message-ID: <170021565733.7874.8821058902214770963@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231115115816.1993-1-michal.wajdeczko@intel.com>
+In-Reply-To: <20231115115816.1993-1-michal.wajdeczko@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
+ =?utf-8?q?or_drm/xe/kunit=3A_Return_number_of_iterated_devices?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,69 +39,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi,
- Rodrigo" <rodrigo.vivi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Fri, Nov 17, 2023 at 10:41:43AM +0200, Ville Syrjälä wrote:
-> On Fri, Nov 17, 2023 at 08:05:21AM +0000, Coelho, Luciano wrote:
-> > Thanks for your comments, Ville!
-> > 
-> > On Fri, 2023-11-17 at 09:19 +0200, Ville Syrjälä wrote:
-> > > On Thu, Nov 16, 2023 at 01:27:00PM +0200, Luca Coelho wrote:
-> > > > Since we're abstracting the display code from the underlying driver
-> > > > (i.e. i915 vs xe), we can't use the uncore's spinlock to protect
-> > > > critical sections of our code.
-> > > > 
-> > > > After further inspection, it seems that the spinlock is not needed at
-> > > > all and this can be handled by disabling preemption and interrupts
-> > > > instead.
-> > > 
-> > > uncore.lock has multiple purposes:
-> > > 1. serialize all register accesses to the same cacheline as on
-> > >    certain platforms that can hang the machine
-> > 
-> > Okay, do you remember which platforms?
-> 
-> HSW is the one I remember for sure being affected.
-> Althoguh I don't recall if I ever managed to hang it
-> using display registers specifically. intel_gpu_top
-> certainly was very good at reproducing the problem.
-> 
-> > I couldn't find any reference to
-> > this reason. 
-> 
-> If all else fails git log is your friend.
+== Series Details ==
 
-It seems to be documented in intel_uncore.h. Though that one
-mentions IVB instead of HSW for some reason. I don't recall
-seeing it on IVB myself, but I suppose it might have been an
-issue there as well. How long the problem remained after HSW
-I have no idea.
+Series: drm/xe/kunit: Return number of iterated devices
+URL   : https://patchwork.freedesktop.org/series/126459/
+State : failure
 
-> 
-> > Also, the only place where where we take the uncore.lock
-> > is in this vblank code I changed, where the only explanation I found
-> > was about timing, specifically when using RT-kernels and in very old
-> > and slow platforms... (this was added 10 years ago).
-> > 
-> > 
-> > > 2. protect the forcewake/etc. state
-> > > 
-> > > 1 is relevant here, 2 is not.
-> > 
-> > Okay, good that we have only one known problem. :)
-> > 
-> > --
-> > Cheers,
-> > Luca.
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 2ca8fc684 drm/xe: Make xe_mmio_tile_vram_size() static
+=== git am output follows ===
+Applying: drm/xe/kunit: Return number of iterated devices
+
+
