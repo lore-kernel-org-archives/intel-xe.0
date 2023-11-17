@@ -4,49 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3689BC072A2
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 88DD0C54FB9
 	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 22:52:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 00DFE10E779;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4FB0F10E77C;
 	Fri, 17 Nov 2023 22:52:30 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1B7810E77C
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Nov 2023 22:52:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22DEF10E778
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Nov 2023 22:52:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700261536; x=1731797536;
+ t=1700261532; x=1731797532;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Vb5+nfG1Os5FXcHIQVLREwFTuUHvBbe+aou2Hl6Z/hM=;
- b=IAvfBPda+D5LiQWUnwuvx4sZscfiGJ+J6D/Lz4pOVkoNR12Kb66Gw7Yi
- M8G6fy5pWLoh4rW0QOJ+UIXVbr/clvsEoANrvLaqonf6Bg7z9Xbc+qSAO
- tpiQe96iJOKMcULyF18pVebmgQ2UN4oj7CR32Z+xdVRrtyf20qkgRZsaR
- Xlhgmrc6B8weO16CFeVyEbt2C3bSpRpH8RY3N+USTK7eqq62X/zEVBOIO
- PjeWbNEnCB5mVmWMC4OqODVr7ERFfswBLd6IP4gG0K9zxboCYY7Gtb35f
- 91971+MBYM+X9UE2s8PGrhdQ29vTkFNaSUum/2u6W26lHyMNTjd5LX45A w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="4465548"
+ bh=dNsF6k01Hl12Afm+J1G+4A/77uaIY31i3JmDatUz1No=;
+ b=kluon4SjkACuqJhpSSWVgaiJs+8C21GlxaBgMYtbk7nViq4wqMeFaDbG
+ exCTHBnJfuSrZWfrJAIKLWlI2Es62nMKwMp9gn8AFJbAkeWjjNlbD1HK/
+ HTRJTTQCW3nuK7j3tqV0XZReMJslOtuWkf76G+sEsJoPJQ7CME1qOYPCz
+ usYLM8+UAR8M8BD/lfm5mXsSTvEaxTmwr3HKRtak8MAbMItOyT+bFqhoJ
+ 9aJ3e3cVO9e9V2Np7MA1myyc+g9nBMuBTCPW0PL9Bjc3Xy/zHB9qzlzBv
+ LmoEFRhwHfddn3VSWWfQ1jxsNLZvnbXHqViJvhwOYgluKJZvpm4+RFVYJ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="4465526"
 X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; 
-   d="scan'208";a="4465548"
+   d="scan'208";a="4465526"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2023 14:52:16 -0800
+ 17 Nov 2023 14:52:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="765736125"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="765736125"
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="765736095"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="765736095"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2023 14:52:15 -0800
+ 17 Nov 2023 14:52:11 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Nov 2023 14:51:49 -0800
-Message-ID: <20231117225155.2614535-8-daniele.ceraolospurio@intel.com>
+Date: Fri, 17 Nov 2023 14:51:44 -0800
+Message-ID: <20231117225155.2614535-3-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231117225155.2614535-1-daniele.ceraolospurio@intel.com>
 References: <20231117225155.2614535-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 07/10] drm/xe/gsc: Trigger a driver flr to cleanup
- the GSC on unload
+Subject: [Intel-xe] [CI 02/10] drm/xe/uc: Rework uC version tracking
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,51 +60,360 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GSC is only killed by an FLR, so we need to trigger one on unload to
-make sure we stop it. This is because we assign a chunk of memory to
-the GSC as part of the FW load, so we need to make sure it stops
-using it when we release it to the system on driver unload. Note that
-this is not a problem of the unload per-se, because the GSC will not
-touch that memory unless there are requests for it coming from the
-driver; therefore, no accesses will happen while Xe is not loaded,
-but if we re-load the driver then the GSC might wake up and try to
-access that old memory location again.
+The GSC firmware, support for which is coming soon for Xe, has both a
+release version (updated on every release) and a compatibility version
+(update only on interface changes). The GuC has something similar, with
+a global release version and a submission version (which is also known
+as the VF compatibility version). The main difference is that for the
+GuC we still want to check the driver requirement against the release
+version, while for the GSC we'll need to check against the compatibility
+version.
+Instead of special casing the GSC, this patch reworks the FW logic so
+that we store both versions at the uc_fw level for all binaries and we
+allow checking against either of the versions. Initially, we'll use it
+to support GSC, but the logic could be re-used to allow VFs to check
+against the GuC compatibility version.
+Note that the GSC version has 4 numbers (major, minor, hotfix, build),
+so support for that has been added as part of the rework and will be
+used in follow-up patches.
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
 Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/xe_gsc.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ drivers/gpu/drm/xe/xe_guc_types.h   |   9 --
+ drivers/gpu/drm/xe/xe_uc_fw.c       | 141 +++++++++++++++++-----------
+ drivers/gpu/drm/xe/xe_uc_fw_types.h |  39 ++++++--
+ 3 files changed, 114 insertions(+), 75 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index 0def7c1ae84d..1bb0de0a24f4 100644
---- a/drivers/gpu/drm/xe/xe_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -130,6 +130,23 @@ static int gsc_upload(struct xe_gsc *gsc)
- 		return err;
+diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
+index 0fdcc05dc16a..cd80802e8918 100644
+--- a/drivers/gpu/drm/xe/xe_guc_types.h
++++ b/drivers/gpu/drm/xe/xe_guc_types.h
+@@ -52,15 +52,6 @@ struct xe_guc {
+ 			/** @seqno: suspend fences seqno */
+ 			u32 seqno;
+ 		} suspend;
+-		/** @version: submission version */
+-		struct {
+-			/** @major: major version of GuC submission */
+-			u32 major;
+-			/** @minor: minor version of GuC submission */
+-			u32 minor;
+-			/** @patch: patch version of GuC submission */
+-			u32 patch;
+-		} version;
+ #ifdef CONFIG_PROVE_LOCKING
+ #define NUM_SUBMIT_WQ	256
+ 		/** @submit_wq_pool: submission ordered workqueues pool */
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index 91d4a2272ee7..9205a3ecff78 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -204,9 +204,12 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
+ 	for (i = 0; i < count && p <= entries[i].platform; i++) {
+ 		if (p == entries[i].platform) {
+ 			uc_fw->path = entries[i].path;
+-			uc_fw->major_ver_wanted = entries[i].major;
+-			uc_fw->minor_ver_wanted = entries[i].minor;
++			uc_fw->versions.wanted.major = entries[i].major;
++			uc_fw->versions.wanted.minor = entries[i].minor;
+ 			uc_fw->full_ver_required = entries[i].full_ver_required;
++
++			/* compatibility version checking coming soon */
++			uc_fw->versions.wanted_type = XE_UC_FW_VER_RELEASE;
+ 			break;
+ 		}
+ 	}
+@@ -273,32 +276,30 @@ static void uc_fw_fini(struct drm_device *drm, void *arg)
+ static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
+ {
+ 	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
+-	struct xe_guc *guc = &gt->uc.guc;
++	struct xe_uc_fw_version *release = &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
++	struct xe_uc_fw_version *compatibility = &uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
+ 
+ 	xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC);
+-	xe_gt_assert(gt, uc_fw->major_ver_found >= 70);
++	xe_gt_assert(gt, release->major >= 70);
+ 
+-	if (uc_fw->major_ver_found > 70 || uc_fw->minor_ver_found >= 6) {
++	if (release->major > 70 || release->minor >= 6) {
+ 		/* v70.6.0 adds CSS header support */
+-		guc->submission_state.version.major =
+-			FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+-				  css->submission_version);
+-		guc->submission_state.version.minor =
+-			FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+-				  css->submission_version);
+-		guc->submission_state.version.patch =
+-			FIELD_GET(CSS_SW_VERSION_UC_PATCH,
+-				  css->submission_version);
+-	} else if (uc_fw->minor_ver_found >= 3) {
++		compatibility->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
++						 css->submission_version);
++		compatibility->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
++						 css->submission_version);
++		compatibility->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH,
++						 css->submission_version);
++	} else if (release->minor >= 3) {
+ 		/* v70.3.0 introduced v1.1.0 */
+-		guc->submission_state.version.major = 1;
+-		guc->submission_state.version.minor = 1;
+-		guc->submission_state.version.patch = 0;
++		compatibility->major = 1;
++		compatibility->minor = 1;
++		compatibility->patch = 0;
+ 	} else {
+ 		/* v70.0.0 introduced v1.0.0 */
+-		guc->submission_state.version.major = 1;
+-		guc->submission_state.version.minor = 0;
+-		guc->submission_state.version.patch = 0;
++		compatibility->major = 1;
++		compatibility->minor = 0;
++		compatibility->patch = 0;
  	}
  
-+	/*
-+	 * GSC is only killed by an FLR, so we need to trigger one on unload to
-+	 * make sure we stop it. This is because we assign a chunk of memory to
-+	 * the GSC as part of the FW load, so we need to make sure it stops
-+	 * using it when we release it to the system on driver unload. Note that
-+	 * this is not a problem of the unload per-se, because the GSC will not
-+	 * touch that memory unless there are requests for it coming from the
-+	 * driver; therefore, no accesses will happen while Xe is not loaded,
-+	 * but if we re-load the driver then the GSC might wake up and try to
-+	 * access that old memory location again.
-+	 * Given that an FLR is a very disruptive action (see the FLR function
-+	 * for details), we want to do it as the last action before releasing
-+	 * the access to the MMIO bar, which means we need to do it as part of
-+	 * mmio cleanup.
-+	 */
-+	xe->needs_flr_on_fini = true;
+ 	uc_fw->private_data_size = css->private_data_size;
+@@ -307,30 +308,31 @@ static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
+ static int uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw)
+ {
+ 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
++	struct xe_uc_fw_version *wanted = &uc_fw->versions.wanted;
++	struct xe_uc_fw_version *found = &uc_fw->versions.found[uc_fw->versions.wanted_type];
+ 
+ 	/* Driver has no requirement on any version, any is good. */
+-	if (!uc_fw->major_ver_wanted)
++	if (!wanted->major)
+ 		return 0;
+ 
+ 	/*
+ 	 * If full version is required, both major and minor should match.
+ 	 * Otherwise, at least the major version.
+ 	 */
+-	if (uc_fw->major_ver_wanted != uc_fw->major_ver_found ||
+-	    (uc_fw->full_ver_required &&
+-	     uc_fw->minor_ver_wanted != uc_fw->minor_ver_found)) {
++	if (wanted->major != found->major ||
++	    (uc_fw->full_ver_required && wanted->minor != found->minor)) {
+ 		drm_notice(&xe->drm, "%s firmware %s: unexpected version: %u.%u != %u.%u\n",
+ 			   xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+-			   uc_fw->major_ver_found, uc_fw->minor_ver_found,
+-			   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted);
++			   found->major, found->minor,
++			   wanted->major, wanted->minor);
+ 		goto fail;
+ 	}
+ 
+-	if (uc_fw->minor_ver_wanted > uc_fw->minor_ver_found) {
++	if (wanted->minor > found->minor) {
+ 		drm_notice(&xe->drm, "%s firmware (%u.%u) is recommended, but only (%u.%u) was found in %s\n",
+ 			   xe_uc_fw_type_repr(uc_fw->type),
+-			   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted,
+-			   uc_fw->major_ver_found, uc_fw->minor_ver_found,
++			   wanted->major, wanted->minor,
++			   found->major, found->minor,
+ 			   uc_fw->path);
+ 		drm_info(&xe->drm, "Consider updating your linux-firmware pkg or downloading from %s\n",
+ 			 XE_UC_FIRMWARE_URL);
+@@ -349,6 +351,7 @@ static int uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw)
+ static int parse_css_header(struct xe_uc_fw *uc_fw, const void *fw_data, size_t fw_size)
+ {
+ 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
++	struct xe_uc_fw_version *release = &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+ 	struct uc_css_header *css;
+ 	size_t size;
+ 
+@@ -390,12 +393,9 @@ static int parse_css_header(struct xe_uc_fw *uc_fw, const void *fw_data, size_t
+ 	}
+ 
+ 	/* Get version numbers from the CSS header */
+-	uc_fw->major_ver_found = FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+-					   css->sw_version);
+-	uc_fw->minor_ver_found = FIELD_GET(CSS_SW_VERSION_UC_MINOR,
+-					   css->sw_version);
+-	uc_fw->patch_ver_found = FIELD_GET(CSS_SW_VERSION_UC_PATCH,
+-					   css->sw_version);
++	release->major = FIELD_GET(CSS_SW_VERSION_UC_MAJOR, css->sw_version);
++	release->minor = FIELD_GET(CSS_SW_VERSION_UC_MINOR, css->sw_version);
++	release->patch = FIELD_GET(CSS_SW_VERSION_UC_PATCH, css->sw_version);
+ 
+ 	if (uc_fw->type == XE_UC_FW_TYPE_GUC)
+ 		guc_read_css_info(uc_fw, css);
+@@ -431,6 +431,7 @@ static int parse_cpd_header(struct xe_uc_fw *uc_fw, const void *data, size_t siz
+ 	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	const struct gsc_cpd_header_v2 *header = data;
++	struct xe_uc_fw_version *release = &uc_fw->versions.found[XE_UC_FW_VER_RELEASE];
+ 	const struct gsc_manifest_header *manifest;
+ 	size_t min_size = sizeof(*header);
+ 	u32 offset;
+@@ -468,9 +469,9 @@ static int parse_cpd_header(struct xe_uc_fw *uc_fw, const void *data, size_t siz
+ 
+ 	manifest = data + offset;
+ 
+-	uc_fw->major_ver_found = manifest->fw_version.major;
+-	uc_fw->minor_ver_found = manifest->fw_version.minor;
+-	uc_fw->patch_ver_found = manifest->fw_version.hotfix;
++	release->major = manifest->fw_version.major;
++	release->minor = manifest->fw_version.minor;
++	release->patch = manifest->fw_version.hotfix;
+ 
+ 	/* then optionally look for the css header */
+ 	if (css_entry) {
+@@ -524,12 +525,25 @@ static int parse_headers(struct xe_uc_fw *uc_fw, const struct firmware *fw)
+ 	return 0;
+ }
+ 
++#define print_uc_fw_version(p_, version_, prefix_, ...) \
++do { \
++	struct xe_uc_fw_version *ver_ = (version_); \
++	if (ver_->build) \
++		drm_printf(p_, prefix_ " version %u.%u.%u.%u\n", ##__VA_ARGS__, \
++			   ver_->major, ver_->minor, \
++			   ver_->patch, ver_->build); \
++	else \
++		drm_printf(p_, prefix_ " version %u.%u.%u\n", ##__VA_ARGS__, \
++			  ver_->major, ver_->minor, ver_->patch); \
++} while (0)
 +
- 	err = emit_gsc_upload(gsc);
- 	if (err) {
- 		xe_gt_err(gt, "Failed to emit GSC FW upload (%pe)\n", ERR_PTR(err));
+ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ {
+ 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
+ 	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
+ 	struct xe_tile *tile = gt_to_tile(gt);
+ 	struct device *dev = xe->drm.dev;
++	struct drm_printer p = drm_info_printer(dev);
+ 	const struct firmware *fw = NULL;
+ 	struct xe_bo *obj;
+ 	int err;
+@@ -567,9 +581,10 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ 	if (err)
+ 		goto fail;
+ 
+-	drm_info(&xe->drm, "Using %s firmware from %s version %u.%u.%u\n",
+-		 xe_uc_fw_type_repr(uc_fw->type), uc_fw->path,
+-		 uc_fw->major_ver_found, uc_fw->minor_ver_found, uc_fw->patch_ver_found);
++	print_uc_fw_version(&p,
++			    &uc_fw->versions.found[XE_UC_FW_VER_RELEASE],
++			    "Using %s firmware from %s",
++			    xe_uc_fw_type_repr(uc_fw->type), uc_fw->path);
+ 
+ 	err = uc_fw_check_version_requirements(uc_fw);
+ 	if (err)
+@@ -686,26 +701,40 @@ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags)
+ 	return err;
+ }
+ 
++static const char *version_type_repr(enum xe_uc_fw_version_types type)
++{
++	switch (type) {
++	case XE_UC_FW_VER_RELEASE:
++		return "release";
++	case XE_UC_FW_VER_COMPATIBILITY:
++		return "compatibility";
++	default:
++		return "Unknown version type";
++	}
++}
+ 
+ void xe_uc_fw_print(struct xe_uc_fw *uc_fw, struct drm_printer *p)
+ {
++	int i;
++
+ 	drm_printf(p, "%s firmware: %s\n",
+ 		   xe_uc_fw_type_repr(uc_fw->type), uc_fw->path);
+ 	drm_printf(p, "\tstatus: %s\n",
+ 		   xe_uc_fw_status_repr(uc_fw->status));
+-	drm_printf(p, "\tversion: wanted %u.%u, found %u.%u.%u\n",
+-		   uc_fw->major_ver_wanted, uc_fw->minor_ver_wanted,
+-		   uc_fw->major_ver_found, uc_fw->minor_ver_found, uc_fw->patch_ver_found);
+-	drm_printf(p, "\tuCode: %u bytes\n", uc_fw->ucode_size);
+-	drm_printf(p, "\tRSA: %u bytes\n", uc_fw->rsa_size);
+-
+-	if (uc_fw->type == XE_UC_FW_TYPE_GUC) {
+-		struct xe_gt *gt = uc_fw_to_gt(uc_fw);
+-		struct xe_guc *guc = &gt->uc.guc;
+-
+-		drm_printf(p, "\tSubmit version: %u.%u.%u\n",
+-			   guc->submission_state.version.major,
+-			   guc->submission_state.version.minor,
+-			   guc->submission_state.version.patch);
++
++	print_uc_fw_version(p, &uc_fw->versions.wanted, "\twanted %s",
++			    version_type_repr(uc_fw->versions.wanted_type));
++
++	for (i = 0; i < XE_UC_FW_VER_TYPE_COUNT; i++) {
++		struct xe_uc_fw_version *ver = &uc_fw->versions.found[i];
++
++		if (ver->major)
++			print_uc_fw_version(p, ver, "\tfound %s",
++					    version_type_repr(i));
+ 	}
++
++	if (uc_fw->ucode_size)
++		drm_printf(p, "\tuCode: %u bytes\n", uc_fw->ucode_size);
++	if (uc_fw->rsa_size)
++		drm_printf(p, "\tRSA: %u bytes\n", uc_fw->rsa_size);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+index 1650599303c8..46c801d8e954 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
+@@ -59,6 +59,26 @@ enum xe_uc_fw_type {
+ };
+ #define XE_UC_FW_NUM_TYPES 2
+ 
++/**
++ * struct xe_uc_fw_version - Version for XE micro controller firmware
++ */
++struct xe_uc_fw_version {
++	/** @major: major version of the FW */
++	u16 major;
++	/** @minor: minor version of the FW */
++	u16 minor;
++	/** @patch: patch version of the FW */
++	u16 patch;
++	/** @build: build version of the FW (not always available) */
++	u16 build;
++};
++
++enum xe_uc_fw_version_types {
++	XE_UC_FW_VER_RELEASE,
++	XE_UC_FW_VER_COMPATIBILITY,
++	XE_UC_FW_VER_TYPE_COUNT
++};
++
+ /**
+  * struct xe_uc_fw - XE micro controller firmware
+  */
+@@ -98,16 +118,15 @@ struct xe_uc_fw {
+ 	 * version required per platform.
+ 	 */
+ 
+-	/** @major_ver_wanted: major firmware version wanted by platform */
+-	u16 major_ver_wanted;
+-	/** @minor_ver_wanted: minor firmware version wanted by platform */
+-	u16 minor_ver_wanted;
+-	/** @major_ver_found: major version found in firmware blob */
+-	u16 major_ver_found;
+-	/** @minor_ver_found: major version found in firmware blob */
+-	u16 minor_ver_found;
+-	/** @patch_ver_found: patch version found in firmware blob */
+-	u16 patch_ver_found;
++	/** @versions: FW versions wanted and found */
++	struct {
++		/** @wanted: firmware version wanted by platform */
++		struct xe_uc_fw_version wanted;
++		/** @wanted_type: type of firmware version wanted (release vs compatibility) */
++		enum xe_uc_fw_version_types wanted_type;
++		/** @found: fw versions found in firmware blob */
++		struct xe_uc_fw_version found[XE_UC_FW_VER_TYPE_COUNT];
++	} versions;
+ 
+ 	/** @rsa_size: RSA size */
+ 	u32 rsa_size;
 -- 
 2.41.0
 
