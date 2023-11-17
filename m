@@ -4,30 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CFDBFC54FB9
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 23:23:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79646C54FB9
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 23:24:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 99B0410E004;
-	Fri, 17 Nov 2023 23:23:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8FF8D10E004;
- Fri, 17 Nov 2023 23:23:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 8356FAADD7;
- Fri, 17 Nov 2023 23:23:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A5E510E013;
+	Fri, 17 Nov 2023 23:24:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1078110E013
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Nov 2023 23:24:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700263450; x=1731799450;
+ h=date:from:to:subject:message-id:references:in-reply-to:
+ mime-version; bh=ikhrIXsWysa4KVo9l5Iwj2SJ2oor1Z8RRQ1kjEx2PtI=;
+ b=OQh8Rk+S1Onm0I+Yf48rLML3NolzlfCwwxVc3ttbMhNm30D5TR99ZIUv
+ qrEjSvVe/E5Ftc/J2k1AgQEZqJLgmN3rhkdb58O8BPN41xA7VKlp7Ls0F
+ x+3HhNNlnmnTENuu8FHCK0aRdT/hg/yozWOIxaimm4JUcpn9H9aP5rycc
+ zb2USX0plHZ1IVrD4nsXAMA7F985YPxDj5q+Ch4YS9++jyVeSFp6AjQ4E
+ 2zFsAPNJuwehKzE8YUa82QiEb4H3kR4v/nXSzqKmzMcTYqpjPqCrb3Yr0
+ 1MCm6hJauZ2lwBsL1YsA/5SKLo1iz5xDeWMUv4cnd+8Miyt0qIFBD64mc g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="395310303"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="395310303"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2023 15:24:08 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="889387921"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="889387921"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 17 Nov 2023 15:24:08 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Fri, 17 Nov 2023 15:24:07 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Fri, 17 Nov 2023 15:24:07 -0800
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (104.47.58.168)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Fri, 17 Nov 2023 15:24:06 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ffNOlrLIdFJgr/pJsvPHmZz/5LNQRFQQyAA00rr+7VxCS6n+8v5zQWZsfOmg4i0ovTkMQlEz1qrREpCokolx/S5rPak0hrmd0OcPg3akhLArxs/dSK/jzZIz6wrWyN9tME1d7U2U+7uMu6gbDVzCNoSpga65Qql08pnO7Pcq4AMY/9J8SfiNqMUDisIldw+YqkcQd/Z8y3NCp1iuz77wzg+/T23JOLSkm+/e+RpAPM/loq6MYZHEHsNE/+prmz/9QGcH+eIDRFoYllcQVBnkUkc/xm4T0biEXoZhzdcLMKelv3I3Sn9K/SBexzMIWU/Jl4FPJPx5sCiYUMB2qS5D4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cjp+mugVZPM2/j3ZxGJX+bMvUqW5uAyCr2S5Pt03Vkg=;
+ b=oN1KHLIex1EhJX3i5MmJMg7RZ+n8HBrv4Jbu6iBefZRxLQwQRfVwA5B9jjByXSwH1hJhbw1NU3tAHTbLxlJheCPruc5v5r5pKMpBvSBx6SlwBoKvllqVEDFf5YEdSM474hjhPJjh6axN2asRz4z5Eu/ujHlAXEbZxcYMgzFrCPyfvRj4stsWEXTkBwx7dOW4cOMie3ctYkYSi4/OFK0Rjx4qzUUyV+taddUQXLQ5Yx0z5gjipYxBsWxkL8ytHwnrRR6uieWRt+iagzy4rDRH2SXDch/qvshTQha3TDdJTD+4bp9XbmUPXyGYuEp6xqkH3n9z85EBWvkLpoxenB8Tjw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by BL1PR11MB5555.namprd11.prod.outlook.com (2603:10b6:208:317::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.23; Fri, 17 Nov
+ 2023 23:24:02 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::4f1d:17b5:88b5:76b0]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::4f1d:17b5:88b5:76b0%7]) with mapi id 15.20.7002.022; Fri, 17 Nov 2023
+ 23:24:01 +0000
+Date: Fri, 17 Nov 2023 15:23:58 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Message-ID: <20231117232358.GB1327160@mdroper-desk1.amr.corp.intel.com>
+References: <20231115183029.2649992-2-matthew.d.roper@intel.com>
+ <170025364141.7875.4636750333481956779@emeril.freedesktop.org>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <170025364141.7875.4636750333481956779@emeril.freedesktop.org>
+X-ClientProxiedBy: BYAPR04CA0026.namprd04.prod.outlook.com
+ (2603:10b6:a03:40::39) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Date: Fri, 17 Nov 2023 23:23:12 -0000
-Message-ID: <170026339253.7876.5830144231736307858@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231116064145.3969338-1-jouni.hogander@intel.com>
-In-Reply-To: <20231116064145.3969338-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EHooks=3A_success_for_Intel?=
- =?utf-8?q?=5Ffb=2Ec_refactoring?=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|BL1PR11MB5555:EE_
+X-MS-Office365-Filtering-Correlation-Id: 70249d34-1766-444c-327e-08dbe7c44803
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: slcEpfOksPQwB5dinb8VLQHtHtnpj3YF6u1/4BU0aHaLpFJWa3dr9yAShguF2ygtMupBvH8gF+CdzTdzkP+Kfp6+kLqYyA4ERvz7dZgQ/i2iBaTyrB1LWB86A+sgaULaIz7giY23WC9DaG9dARwVnKQhRA/GyYGBlzFHGDkFdPBmNaWGnb8ze+i4azLDJ/cL4LbayIboCBY9AUKObnhzX0ZSZEML5pgebDs43uBNzPNVli1MlTVicjRLnAZFJV1X3j/ytUSAxwrq27IVo7lykNC/OERFvs6BBp+lyYro181Hr/DDXYPn0m6TTY2dL4bvyo6yLVcS14vk5S1woEf9mIwNv94EiZVSciP4LTYZ1T+1QVEr5LSidA45o59WOPxTtaBJty9m9mQMGLbUm9zVBrurvD6sIfLzJmVgTqaNJzWFf3eTBnE/Slw/tyJujMK5+/rNDTtLphegZy0/LvmNtvfSgqXYRD0u5rYRvN4ijYTR1q1GWxIADlfWjYta0QwdGqSk5bkQyi5J7lUCRm510bdB8ppJ06AFu/hsFDNUig9vdSDL4lLKLW3WWHTFt9mHw+nxdN3h09eooFHsl/NqvRl1G+ZoIlBHo1QqNg+AlQ7Egr6/iNNHqsA3wXenZ6q6
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(136003)(376002)(396003)(366004)(346002)(39860400002)(230273577357003)(230922051799003)(230173577357003)(64100799003)(1800799009)(186009)(451199024)(26005)(6506007)(82960400001)(5660300002)(8936002)(1076003)(2906002)(66476007)(33656002)(30864003)(6666004)(86362001)(66556008)(66946007)(38100700002)(478600001)(6916009)(6512007)(6486002)(966005)(316002)(41300700001)(83380400001);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?8x6bKxhLl5fKRK+8JuVAccMLqmymAtt3DG5eXAfO3X49dOWQyWEWMMsGw2Zl?=
+ =?us-ascii?Q?XYjmDmlvcc76CtnQyfS/1ysx4g9ch7pdKh/b9DZJCVxJrzBtQTTuVIAVafYb?=
+ =?us-ascii?Q?YjeAvaFnfsxMk0+FF3TWBRavJfzrkfegbEbbb/qzvbTDEuLukEW0V3qtFpwO?=
+ =?us-ascii?Q?cxU7zyysCVgzcvhAQU15eudVQgk91fMM1x7XwUykjzMDtCLRIPDTPA4QsKs/?=
+ =?us-ascii?Q?kUTBEunjy55GmQlG5jSf8KXZ+GNtsBX5FpbH2Pj4kY0ymC3MGW7CKnOk8DM0?=
+ =?us-ascii?Q?e5BhTriPHQvtMgu1YZ2eprPqjdv1/m8pN8DAZMtGj3MuF6cUv19HVkxp9boo?=
+ =?us-ascii?Q?FGad/ebeAlrBAX4Ryj1jQ6Anjupz1GEFQvgLnJiX6MTJPW1DlqeBE1jPBmEF?=
+ =?us-ascii?Q?lKn/4YU9KYgHMafqiWOwGsTDWYfVglg1jijtn0X3zS78RKYw4wFw1vY3Ixaj?=
+ =?us-ascii?Q?ni/P8rMJ40nY6D4Oh2pZox10BckpENIqikprMwUV4P70VxvsqtIllnsFL8wu?=
+ =?us-ascii?Q?cKNs0An/z0IHbdcDqMLDKxL+geWRk1SZSsTlH8lWTN7QcoIieXTLZ9GYwo/T?=
+ =?us-ascii?Q?RPLAaF1Zjm8JVVL3BfNN/otBTgzXQTLERUrl/kaEXgNUJiyOmsOI3WgS9A8X?=
+ =?us-ascii?Q?4LEjhOM2wARSY7sS9A8QqGtCs0qd/uFbHSssFyk9Dn8J5v1zsBC05Uzxeebb?=
+ =?us-ascii?Q?XBDrvNuuUlje8M1sc9YkuCqg5NjM43pulYHfsk2pL6WO5ptw2FIpYtjG/nkG?=
+ =?us-ascii?Q?2YBRqFzWf+MyPgFHpD9S7n2zAgpGe5kjE3MmsBLTAtL84pJRGy51kmVbiBLN?=
+ =?us-ascii?Q?SlegntxnsGqi9mZUwVW0CI52vielETrTFAF66oLOcVgRJHqmIK7ApdckbbZI?=
+ =?us-ascii?Q?XU0wpeJluRtroqptGGn/RTaHMhpTX4crXCCdtdPuV+1NTfUhlbfqYi9tAa7W?=
+ =?us-ascii?Q?3z16buoXCimKEHlDyzAVd1jtbl53VI9ruVZdzZthLwv3m//iHvA+AQgRqJJW?=
+ =?us-ascii?Q?z3K9Hd3qWO2n4l3uBt270IBvloNwp7OwO+nCHn8vriDgTWgMxmQJA7Us2AeD?=
+ =?us-ascii?Q?FN2WOrjpKYneLYTnv0t/aEk73rFUIF2R7pq9Awo0jsxSbQ4ZBb/nmxQAI6hJ?=
+ =?us-ascii?Q?u+B+Y7f/KRpSS8BYJsxdL4tBbVc6pPcJ8pVVN3cS/wIKmTafP8qVbQwyYMiA?=
+ =?us-ascii?Q?QIYlDIDdJVE3SYbxL82zaYCVgmzdzxVAinseLUTOacjt/LXmrqOmhgwgnZ5x?=
+ =?us-ascii?Q?7S8Qa4kXq+/wuc0ZwYglJA7UGj77gy7DQzu+i1AUGaySps73OWFEDddkO6mV?=
+ =?us-ascii?Q?B4hVlvPsEjQHRA18kMWSz5E4O9fwF6+NHu4mobMtloZnf/mQ1eY4MKfKcI1T?=
+ =?us-ascii?Q?diAgIHlpyorCpZYatLrIX4e6TR1nwT8F9XcGAByLLIn6FPtS/7xWUVGWBkED?=
+ =?us-ascii?Q?ecoX4pDgqp1z1l4MeL++tCZPC4MHOJllKR0PcVPFNGy/x1BuTog7Rt7vsumf?=
+ =?us-ascii?Q?5Kl2i5d5o63fIxZ2ks0V/OfSzBqjorObUgn6Z3pqxC98W8GtymTWerXTB5pl?=
+ =?us-ascii?Q?7E+ARFcTaB9swODN/7q/v2gUDMTMg+FlQzR1HYPDI0LU6lyyZPc4RMtowotG?=
+ =?us-ascii?Q?Uw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 70249d34-1766-444c-327e-08dbe7c44803
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Nov 2023 23:24:01.1961 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: THRVw+q/mbk+MFQf6fLEx6Hg1YnKoMl7HVHWiyhPNc2iKmo5xWCEQ5MuqnreTIpbG0rIqe9kswcNfvUBIcYT9/weZ0Bbls8NoWUWypGEE0Y=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5555
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] 
+ =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/dg?=
+ =?utf-8?q?2=3A_Wa=5F18028616096_now_applies_to_all_DG2?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,392 +144,219 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Fri, Nov 17, 2023 at 08:40:41PM +0000, Patchwork wrote:
+> == Series Details ==
+> 
+> Series: drm/xe/dg2: Wa_18028616096 now applies to all DG2
+> URL   : https://patchwork.freedesktop.org/series/126489/
+> State : success
+> 
+> == Summary ==
+> 
+> CI Bug Log - changes from xe-502-3b8183b7efad3d97ab6cf401f3fc0d24b30b6d3d_BAT -> xe-pw-126489v1_BAT
+> ====================================================
+> 
+> Summary
+> -------
+> 
+>   **SUCCESS**
+> 
+>   No regressions found.
 
-Series: Intel_fb.c refactoring
-URL   : https://patchwork.freedesktop.org/series/126505/
-State : success
-
-== Summary ==
-
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ pwd
-+ ls -la
-/workspace
-total 920
-drwxrwxr-x 12 1003 1003   4096 Nov 17 23:22 .
-drwxr-xr-x  1 root root   4096 Nov 17 23:22 ..
--rw-rw-r--  1 1003 1003 799278 Nov 17 23:22 build.log
--rw-rw-r--  1 1003 1003   3676 Nov 17 23:14 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Nov 17 23:12 ci
-drwxrwxr-x  9 1003 1003   4096 Nov 17 23:12 docker
-drwxrwxr-x  8 1003 1003   4096 Nov 17 23:12 .git
--rw-rw-r--  1 1003 1003    747 Nov 17 23:14 git_apply.log
-drwxrwxr-x  4 1003 1003   4096 Nov 17 23:12 .github
--rw-rw-r--  1 1003 1003    233 Nov 17 23:12 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Nov 17 23:22 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Nov 17 23:22 kernel
--rw-rw-r--  1 1003 1003  32409 Nov 17 23:14 kernel.mbox
--rw-rw-r--  1 1003 1003  28749 Nov 17 23:15 kunit.log
--rw-rw-r--  1 1003 1003     48 Nov 17 23:14 parent.tag
-drwxrwxr-x 44 1003 1003   4096 Nov 17 23:12 pipelines
--rw-rw-r--  1 1003 1003    793 Nov 17 23:12 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Nov 17 23:12 scripts
-drwxrwxr-x  3 1003 1003   4096 Nov 17 23:12 src
-drwxrwxr-x  2 1003 1003   4096 Nov 17 23:12 vars
-drwxrwxr-x  2 1003 1003   4096 Nov 17 23:12 .vscode
-+ uname -a
-Linux 82baf1c2986a 5.4.0-164-generic #181-Ubuntu SMP Fri Sep 1 13:41:22 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-1fbd84d9a fixup! drm/xe/display: Implement display support
-c38e4f827 drm/i915/display: Split i915 specific code away from intel_fb.c
-f9f0d1f2f drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static
-1864bf27a drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c
-8ccd953fc fixup! drm/xe/display: Implement display support
-cc7dfa8c4 fixup! drm/xe/display: Implement display support
-8ad53e087 Revert "FIXME: drm/i915: xe intel_fb.c framebuffer init and destroy xe changes"
-faa51e1db fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
-3b8183b7e drm/xe/uapi: Be more specific about the vm_bind prefetch region
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64-default ']'
-+ BUILD_DIR=/workspace/kernel/build64-default
-+ cd /workspace/kernel
-+ grep -q -e '^CONFIG_DRM_XE_DISPLAY=[yY]' /workspace/kernel/build64-default/.config
-+ RESTORE_DISPLAY_CONFIG=1
-+ trap cleanup EXIT
-+ ./scripts/config --file /workspace/kernel/build64-default/.config --disable CONFIG_DRM_XE_DISPLAY
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  SYNC    include/config/auto.conf.cmd
-  GEN     Makefile
-  GEN     Makefile
-  UPD     include/generated/compile.h
-  UPD     include/config/kernel.release
-  UPD     include/generated/utsrelease.h
-  DESCEND objtool
-  HOSTCC  /workspace/kernel/build64-default/tools/objtool/fixdep.o
-  CALL    ../scripts/checksyscalls.sh
-  HOSTLD  /workspace/kernel/build64-default/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
-  CC      /workspace/kernel/build64-default/tools/objtool/check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
-  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_device_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_drm_client.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec_queue.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gpu_scheduler.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_idle_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_heci_gsc.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_range_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  CC [M]  drivers/gpu/drm/xe/xe_hwmon.o
-  CC [M]  drivers/gpu/drm/xe/xe_pmu.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_assert.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  HDRTEST drivers/gpu/drm/xe/xe_drm_client.h
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gpu_scheduler.h
-  HDRTEST drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_heci_gsc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hwmon.h
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_pmu.h
-  HDRTEST drivers/gpu/drm/xe/xe_pmu_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_range_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  MODPOST drivers/gpu/drm/xe/Module.symvers
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/xe/tests/xe_bo_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/xe/tests/xe_migrate_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/xe/tests/xe_pci_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/xe/tests/xe_rtp_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/xe/tests/xe_wa_test.o
-  CC [M]  drivers/gpu/drm/xe/xe.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.mod.o
-  LD [M]  drivers/gpu/drm/xe/tests/xe_bo_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_pci_test.ko
-  LD [M]  drivers/gpu/drm/xe/xe.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_wa_test.ko
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-+ cleanup
-+ '[' 1 -eq 1 ']'
-+ ./scripts/config --file /workspace/kernel/build64-default/.config --enable CONFIG_DRM_XE_DISPLAY
-run-parts: executing /workspace/ci/hooks/20-kernel-doc
-+ SRC_DIR=/workspace/kernel
-+ cd /workspace/kernel
-+ find drivers/gpu/drm/xe/ -name '*.[ch]' -not -path 'drivers/gpu/drm/xe/display/*'
-+ xargs ./scripts/kernel-doc -Werror -none include/uapi/drm/xe_drm.h
-All hooks done
+Applied to drm-xe-next.  Thanks Gustavo for the review.
 
 
+Matt
+
+> 
+>   
+> 
+> Participating hosts (2 -> 4)
+> ------------------------------
+> 
+>   Additional (2): bat-pvc-2 bat-atsm-2 
+> 
+> Known issues
+> ------------
+> 
+>   Here are the changes found in xe-pw-126489v1_BAT that come from known issues:
+> 
+> ### IGT changes ###
+> 
+> #### Issues hit ####
+> 
+>   * igt@core_hotunplug@unbind-rebind:
+>     - bat-atsm-2:         NOTRUN -> [INCOMPLETE][1] ([Intel XE#764])
+>    [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
+> 
+>   * igt@kms_addfb_basic@addfb25-x-tiled-legacy:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][2] ([i915#6077]) +33 other tests skip
+>    [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@kms_addfb_basic@addfb25-x-tiled-legacy.html
+> 
+>   * igt@kms_addfb_basic@invalid-set-prop-any:
+>     - bat-atsm-2:         NOTRUN -> [SKIP][3] ([i915#6077]) +33 other tests skip
+>    [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@kms_addfb_basic@invalid-set-prop-any.html
+> 
+>   * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][4] ([Intel XE#782]) +5 other tests skip
+>    [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
+> 
+>   * igt@kms_cursor_legacy@basic-flip-before-cursor-legacy:
+>     - bat-atsm-2:         NOTRUN -> [SKIP][5] ([Intel XE#782]) +5 other tests skip
+>    [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@kms_cursor_legacy@basic-flip-before-cursor-legacy.html
+> 
+>   * igt@kms_dsc@dsc-basic:
+>     - bat-atsm-2:         NOTRUN -> [SKIP][6] ([Intel XE#784])
+>    [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@kms_dsc@dsc-basic.html
+>     - bat-pvc-2:          NOTRUN -> [SKIP][7] ([Intel XE#784])
+>    [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@kms_dsc@dsc-basic.html
+> 
+>   * igt@kms_flip@basic-flip-vs-dpms:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][8] ([Intel XE#626]) +3 other tests skip
+>    [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@kms_flip@basic-flip-vs-dpms.html
+> 
+>   * igt@kms_flip@basic-flip-vs-modeset:
+>     - bat-atsm-2:         NOTRUN -> [SKIP][9] ([Intel XE#626]) +3 other tests skip
+>    [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@kms_flip@basic-flip-vs-modeset.html
+> 
+>   * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+>     - bat-adlp-7:         [PASS][10] -> [FAIL][11] ([Intel XE#480]) +1 other test fail
+>    [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-502-3b8183b7efad3d97ab6cf401f3fc0d24b30b6d3d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+>    [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+> 
+>   * igt@kms_force_connector_basic@force-connector-state:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][12] ([Intel XE#540]) +3 other tests skip
+>    [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@kms_force_connector_basic@force-connector-state.html
+>     - bat-atsm-2:         NOTRUN -> [SKIP][13] ([Intel XE#540]) +3 other tests skip
+>    [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@kms_force_connector_basic@force-connector-state.html
+> 
+>   * igt@kms_frontbuffer_tracking@basic:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][14] ([Intel XE#783])
+>    [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@kms_frontbuffer_tracking@basic.html
+>     - bat-atsm-2:         NOTRUN -> [SKIP][15] ([Intel XE#783])
+>    [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@kms_frontbuffer_tracking@basic.html
+> 
+>   * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24:
+>     - bat-atsm-2:         NOTRUN -> [SKIP][16] ([i915#1836]) +6 other tests skip
+>    [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-xr24.html
+> 
+>   * igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][17] ([Intel XE#829]) +6 other tests skip
+>    [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@kms_pipe_crc_basic@nonblocking-crc-frame-sequence.html
+> 
+>   * igt@kms_prop_blob@basic:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][18] ([Intel XE#780])
+>    [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@kms_prop_blob@basic.html
+>     - bat-atsm-2:         NOTRUN -> [SKIP][19] ([Intel XE#780])
+>    [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@kms_prop_blob@basic.html
+> 
+>   * igt@xe_compute@compute-square:
+>     - bat-atsm-2:         NOTRUN -> [SKIP][20] ([Intel XE#672])
+>    [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@xe_compute@compute-square.html
+> 
+>   * igt@xe_evict@evict-beng-small-external:
+>     - bat-pvc-2:          NOTRUN -> [FAIL][21] ([Intel XE#389]) +3 other tests fail
+>    [21]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@xe_evict@evict-beng-small-external.html
+> 
+>   * igt@xe_evict@evict-small-cm:
+>     - bat-pvc-2:          NOTRUN -> [DMESG-FAIL][22] ([Intel XE#482]) +3 other tests dmesg-fail
+>    [22]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@xe_evict@evict-small-cm.html
+> 
+>   * igt@xe_guc_pc@freq_range_idle:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][23] ([Intel XE#533]) +1 other test skip
+>    [23]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@xe_guc_pc@freq_range_idle.html
+> 
+>   * igt@xe_huc_copy@huc_copy:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][24] ([Intel XE#255])
+>    [24]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@xe_huc_copy@huc_copy.html
+>     - bat-atsm-2:         NOTRUN -> [SKIP][25] ([Intel XE#255])
+>    [25]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-atsm-2/igt@xe_huc_copy@huc_copy.html
+> 
+>   * igt@xe_intel_bb@render:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][26] ([Intel XE#532])
+>    [26]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@xe_intel_bb@render.html
+> 
+>   * igt@xe_module_load@load:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][27] ([Intel XE#378])
+>    [27]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@xe_module_load@load.html
+> 
+>   * igt@xe_pm_residency@gt-c6-on-idle:
+>     - bat-pvc-2:          NOTRUN -> [SKIP][28] ([Intel XE#531])
+>    [28]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-pvc-2/igt@xe_pm_residency@gt-c6-on-idle.html
+> 
+>   
+> #### Possible fixes ####
+> 
+>   * igt@kms_flip@basic-flip-vs-wf_vblank:
+>     - bat-dg2-oem2:       [FAIL][29] ([Intel XE#480]) -> [PASS][30] +1 other test pass
+>    [29]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-502-3b8183b7efad3d97ab6cf401f3fc0d24b30b6d3d/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
+>    [30]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
+> 
+>   * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
+>     - bat-adlp-7:         [FAIL][31] ([Intel XE#480]) -> [PASS][32]
+>    [31]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-502-3b8183b7efad3d97ab6cf401f3fc0d24b30b6d3d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+>    [32]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+> 
+>   
+> #### Warnings ####
+> 
+>   * igt@kms_frontbuffer_tracking@basic:
+>     - bat-adlp-7:         [DMESG-FAIL][33] ([Intel XE#282] / [i915#2017]) -> [FAIL][34] ([Intel XE#616] / [Intel XE#750])
+>    [33]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-502-3b8183b7efad3d97ab6cf401f3fc0d24b30b6d3d/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+>    [34]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+> 
+>   
+>   {name}: This element is suppressed. This means it is ignored when computing
+>           the status of the difference (SUCCESS, WARNING, or FAILURE).
+> 
+>   [Intel XE#255]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/255
+>   [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
+>   [Intel XE#378]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/378
+>   [Intel XE#389]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/389
+>   [Intel XE#392]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/392
+>   [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+>   [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
+>   [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+>   [Intel XE#531]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/531
+>   [Intel XE#532]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/532
+>   [Intel XE#533]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/533
+>   [Intel XE#540]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/540
+>   [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
+>   [Intel XE#626]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/626
+>   [Intel XE#672]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/672
+>   [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
+>   [Intel XE#764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/764
+>   [Intel XE#780]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/780
+>   [Intel XE#782]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/782
+>   [Intel XE#783]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/783
+>   [Intel XE#784]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/784
+>   [Intel XE#829]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/829
+>   [Intel XE#926]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/926
+>   [i915#1836]: https://gitlab.freedesktop.org/drm/intel/issues/1836
+>   [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+>   [i915#6077]: https://gitlab.freedesktop.org/drm/intel/issues/6077
+> 
+> 
+> Build changes
+> -------------
+> 
+>   * IGT: IGT_7593 -> IGT_7590
+>   * Linux: xe-502-3b8183b7efad3d97ab6cf401f3fc0d24b30b6d3d -> xe-pw-126489v1
+> 
+>   IGT_7590: c484e1422184a3183d11f1595e53a6715574520f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   IGT_7593: 9e0160a387768ffdffbd429c948eea8c5821ce4b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+>   xe-502-3b8183b7efad3d97ab6cf401f3fc0d24b30b6d3d: 3b8183b7efad3d97ab6cf401f3fc0d24b30b6d3d
+>   xe-pw-126489v1: 126489v1
+> 
+> == Logs ==
+> 
+> For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126489v1/index.html
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
