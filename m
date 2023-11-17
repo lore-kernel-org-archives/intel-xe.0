@@ -4,49 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9439CC54FB9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B717BC072A2
 	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 22:52:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 631B110E778;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3159F10E779;
 	Fri, 17 Nov 2023 22:52:12 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2726010E778
- for <intel-xe@lists.freedesktop.org>; Fri, 17 Nov 2023 22:52:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9ADDC10E778
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Nov 2023 22:52:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1700261531; x=1731797531;
- h=from:to:subject:date:message-id:in-reply-to:references:
- mime-version:content-transfer-encoding;
- bh=eVRVZTtbXN6+IhllgbGN2XemYrKMVewcBfzjxeuX9aw=;
- b=ixnT5vPazEWQSJ1sGuF8J8ANTReeqQImyduyxveGKF/O0gy6vvPqHyva
- VflLi67xDVzZnmUcaJ7PuCkrshr1Gbo2zb5FJrqHrLMGZCX9xHFdjvHpr
- rZiMIrvaQeEz7ZzbEKdttRZ9kyoY4POwQ+2iBqiNYrukXYWcvS6S3xs67
- 18sKR3w0Vi7zf1o2ILZVuRfg1QrsYhi0StqslPnzS8WBTLQfoAKjaPrwn
- fgU9h519ydX+77fyMQfxkQDI1Qa1RQGRjvSPNEc+XArbTX8sC9desoFYl
- Y28ZO4nNk0l4Jl7+Tr3eGSd2Wq+UMGFA1Msuk5+GTaRs1aaiIMO3aZeDf Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="4465516"
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jfBOgPhj/7hbsoJYKgGhehby6yuP558cXCgeaU0LmFw=;
+ b=lHfOsFuepO/S2FuM4alMYpywoZrLUZJgfjVUGQeYYfo70hBsK1gHQzBS
+ W2fC0DSfTy6+gl7+ulSaQJWRU0kqseTqYyjLGFCu1lGaALPz9fE90ixJx
+ d48EzCUOhTyqg8eLuCg4iXtJj9yxIkBLx3yfXaLK/yBLwq4PGqJZtV7/w
+ Y8wD0uhFFOL56RKBv0zvAmfzCIjeruj76SLMD/RZ8clfBgEKbfWuapmNl
+ Jctu/z2SD4BrZZ9kpMHcZwI66FJLaSxAtxhCKG7TgJdIQG5WCr774JdQX
+ 9OdFaFlqG4SYRT7ANTPA8RU3v8+t+2Tctcsf9fCBCS1B8X1hxTYC8caNw g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="4465505"
 X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; 
-   d="scan'208";a="4465516"
+   d="scan'208";a="4465505"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2023 14:52:11 -0800
+ 17 Nov 2023 14:52:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="765736087"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="765736087"
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="765736079"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="765736079"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2023 14:52:10 -0800
+ 17 Nov 2023 14:52:09 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri, 17 Nov 2023 14:51:43 -0800
-Message-ID: <20231117225155.2614535-2-daniele.ceraolospurio@intel.com>
+Date: Fri, 17 Nov 2023 14:51:42 -0800
+Message-ID: <20231117225155.2614535-1-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231117225155.2614535-1-daniele.ceraolospurio@intel.com>
-References: <20231117225155.2614535-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 01/10] fixup! drm/xe/guc: Report submission version
- of GuC firmware
+Subject: [Intel-xe] [CI 00/10] GSC FW loading
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,30 +58,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Major GuC versions greater than 70 will have the submission version in
-the herader irrespective of their minor version number.
+The GSC (Graphics Security Controller) is the root of trust for content
+protection operations (PXP, HDCP), so loading the the GSC FW is a
+prerequisite for those features. Loading the FW is required to turn off
+the GSC forcewake well (which we must turn on to enable GSCCS idleness)
+and therefore allows MC6 entry.
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
----
- drivers/gpu/drm/xe/xe_uc_fw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The GSC FW uses 3 separate versions: release, compatibility and
+security. The compatibility version is the one that dictates whether the
+driver knows how to interface with the binary so that's the one we match
+against, but we also fetch the other two for debug information.
 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 3032c4f148d4..91d4a2272ee7 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -278,7 +278,7 @@ static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
- 	xe_gt_assert(gt, uc_fw->type == XE_UC_FW_TYPE_GUC);
- 	xe_gt_assert(gt, uc_fw->major_ver_found >= 70);
- 
--	if (uc_fw->minor_ver_found >= 6) {
-+	if (uc_fw->major_ver_found > 70 || uc_fw->minor_ver_found >= 6) {
- 		/* v70.6.0 adds CSS header support */
- 		guc->submission_state.version.major =
- 			FIELD_GET(CSS_SW_VERSION_UC_MAJOR,
+The GSCCS is used to both load the FW (via the GSC_FW_LOAD command) and
+to send heci packets to it (via the GSC_HECI_PKT command).
+
+CI: all patches reviewed, re-sending for last CI after minor doc fix and
+squashing 2 of the patches together
+
+Daniele Ceraolo Spurio (10):
+  fixup! drm/xe/guc: Report submission version of GuC firmware
+  drm/xe/uc: Rework uC version tracking
+  drm/xe/gsc: Introduce GSC FW
+  drm/xe/gsc: Parse GSC FW header
+  drm/xe/gsc: GSC FW load
+  drm/xe/gsc: Implement WA 14015076503
+  drm/xe/gsc: Trigger a driver flr to cleanup the GSC on unload
+  drm/xe/gsc: Query GSC compatibility version
+  drm/xe/gsc: Define GSCCS for MTL
+  drm/xe/gsc: Define GSC FW for MTL
+
+ drivers/gpu/drm/xe/Makefile                   |  13 +-
+ .../gpu/drm/xe/abi/gsc_command_header_abi.h   |  46 ++
+ .../gpu/drm/xe/abi/gsc_mkhi_commands_abi.h    |  39 ++
+ .../gpu/drm/xe/instructions/xe_gsc_commands.h |  36 ++
+ .../gpu/drm/xe/instructions/xe_instr_defs.h   |   1 +
+ drivers/gpu/drm/xe/regs/xe_gsc_regs.h         |  39 ++
+ drivers/gpu/drm/xe/tests/xe_pci_test.c        |   9 +-
+ drivers/gpu/drm/xe/xe_gsc.c                   | 430 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gsc.h                   |  20 +
+ drivers/gpu/drm/xe/xe_gsc_submit.c            | 184 ++++++++
+ drivers/gpu/drm/xe/xe_gsc_submit.h            |  30 ++
+ drivers/gpu/drm/xe/xe_gsc_types.h             |  39 ++
+ drivers/gpu/drm/xe/xe_gt.c                    |   5 +
+ drivers/gpu/drm/xe/xe_guc_types.h             |   9 -
+ drivers/gpu/drm/xe/xe_hw_engine.c             |  20 +
+ drivers/gpu/drm/xe/xe_module.c                |   5 +
+ drivers/gpu/drm/xe/xe_module.h                |   1 +
+ drivers/gpu/drm/xe/xe_pci.c                   |   2 +-
+ drivers/gpu/drm/xe/xe_uc.c                    |  21 +-
+ drivers/gpu/drm/xe/xe_uc_fw.c                 | 259 ++++++++---
+ drivers/gpu/drm/xe/xe_uc_fw.h                 |   6 +-
+ drivers/gpu/drm/xe/xe_uc_fw_abi.h             | 113 +++++
+ drivers/gpu/drm/xe/xe_uc_fw_types.h           |  44 +-
+ drivers/gpu/drm/xe/xe_uc_types.h              |   3 +
+ drivers/gpu/drm/xe/xe_wa_oob.rules            |   1 +
+ 25 files changed, 1278 insertions(+), 97 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
+ create mode 100644 drivers/gpu/drm/xe/abi/gsc_mkhi_commands_abi.h
+ create mode 100644 drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
+ create mode 100644 drivers/gpu/drm/xe/regs/xe_gsc_regs.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc_submit.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc_submit.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc_types.h
+
 -- 
 2.41.0
 
