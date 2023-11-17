@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D1605C072A2
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 21:30:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 13844C54FB9
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 21:32:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D1E810E795;
-	Fri, 17 Nov 2023 21:30:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC4DF10E795;
+	Fri, 17 Nov 2023 21:32:08 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 0701D10E795;
- Fri, 17 Nov 2023 21:30:27 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5390610E795;
+ Fri, 17 Nov 2023 21:32:06 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E86BEA882E;
- Fri, 17 Nov 2023 21:30:26 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 519D1A882E;
+ Fri, 17 Nov 2023 21:32:06 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Fri, 17 Nov 2023 21:30:26 -0000
-Message-ID: <170025662692.7873.10714816623088512875@emeril.freedesktop.org>
+To: "Francois Dugast" <francois.dugast@intel.com>
+Date: Fri, 17 Nov 2023 21:32:06 -0000
+Message-ID: <170025672633.7873.7200041410458722376@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231114220922.88268-1-gustavo.sousa@intel.com>
-In-Reply-To: <20231114220922.88268-1-gustavo.sousa@intel.com>
+References: <20231114133434.7-1-francois.dugast@intel.com>
+In-Reply-To: <20231114133434.7-1-francois.dugast@intel.com>
 Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_drm/xe/mmio=3A_Make_xe=5Fmmio=5Fwait32=28=29_aware_of_interr?=
- =?utf-8?q?upts_=28rev3=29?=
+ =?utf-8?q?or_uAPI_Alignment_-_Renaming_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,8 +46,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: drm/xe/mmio: Make xe_mmio_wait32() aware of interrupts (rev3)
-URL   : https://patchwork.freedesktop.org/series/126428/
+Series: uAPI Alignment - Renaming (rev2)
+URL   : https://patchwork.freedesktop.org/series/126399/
 State : failure
 
 == Summary ==
@@ -56,11 +55,25 @@ State : failure
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 3b8183b7e drm/xe/uapi: Be more specific about the vm_bind prefetch region
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_mmio.h:93
-error: drivers/gpu/drm/xe/xe_mmio.h: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_bo.c:209
+error: drivers/gpu/drm/xe/xe_bo.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_exec_queue.c:393
+error: drivers/gpu/drm/xe/xe_exec_queue.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_gt.c:556
+error: drivers/gpu/drm/xe/xe_gt.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_pmu.c:17
+error: drivers/gpu/drm/xe/xe_pmu.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_query.c:261
+error: drivers/gpu/drm/xe/xe_query.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_vm.c:2183
+error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_vm_doc.h:32
+error: drivers/gpu/drm/xe/xe_vm_doc.h: patch does not apply
+error: patch failed: include/uapi/drm/xe_drm.h:19
+error: include/uapi/drm/xe_drm.h: patch does not apply
 hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe/mmio: Make xe_mmio_wait32() aware of interrupts
-Patch failed at 0001 drm/xe/mmio: Make xe_mmio_wait32() aware of interrupts
+Applying: drm/xe/uapi: Add missing DRM_ prefix in uAPI constants
+Patch failed at 0001 drm/xe/uapi: Add missing DRM_ prefix in uAPI constants
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
