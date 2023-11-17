@@ -4,30 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 36927C072A2
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 23:14:24 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6443CC54FB9
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 23:14:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ECA3410E004;
-	Fri, 17 Nov 2023 23:14:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5524A10E004;
- Fri, 17 Nov 2023 23:14:23 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 53A1DAADE8;
- Fri, 17 Nov 2023 23:14:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3173E10E77A;
+	Fri, 17 Nov 2023 23:14:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C27B10E781
+ for <intel-xe@lists.freedesktop.org>; Fri, 17 Nov 2023 23:14:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700262866; x=1731798866;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=eQilMXnp7DgOQUfq71etv+C5AqN1Wy64HdbbpIvtlWs=;
+ b=GvXQjYieY43cXdZ7G4ZscoY6XrKE+2BVFHcSvBntS/B2qXR6KYxr6Iwt
+ aLqVoSRvTpGB8ElDYaYbG3any0bDV7jeOe3Pn+e/s7szNNG6wTJlRG6YG
+ pKh/D4VDBhrBlFnOl09sWDjapvBK75dqCIOARl69kx9d+Rg7DQ9j+Ko+H
+ YQNKJQ0Vo/QYKjh3x/naXREvkOJZsAutFA9+lU9z1KDA7Gb/ng6GiMQgZ
+ SS7UPwoZxiOMZhH7YcCJACz+JoJ9OgqV0ziUDX4g4Gj06N0D6QKPAkrvs
+ qTKS7dCfJWo+jmoa/TmLo17xnATYpHsj1hDFw3E1EVQjxzwJGEHWN6sIP g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="371561519"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="371561519"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2023 15:14:25 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10897"; a="1097236227"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="1097236227"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2023 15:14:25 -0800
+From: Lucas De Marchi <lucas.demarchi@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri, 17 Nov 2023 15:14:08 -0800
+Message-Id: <20231117231411.631895-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Date: Fri, 17 Nov 2023 23:14:23 -0000
-Message-ID: <170026286333.7873.2002758195495780831@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231116064145.3969338-1-jouni.hogander@intel.com>
-In-Reply-To: <20231116064145.3969338-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_In?=
- =?utf-8?q?tel=5Ffb=2Ec_refactoring?=
+Subject: [Intel-xe] [PATCH 0/3] drm/xe: Add WA kunit support to MTL/LNL
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,101 +54,31 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Previously we didn't have support to test the WA tables for MTL and LNL
+since they use GMD_ID to connect the graphics and media descriptions.
+Add some infrastructure to add that support by stubbing peek_gmdid().
+Now the test provides its own version of that function, which allows the
+versions and steppings to come from the test table.
 
-Series: Intel_fb.c refactoring
-URL   : https://patchwork.freedesktop.org/series/126505/
-State : warning
+Lucas De Marchi (3):
+  drm/xe/kunit: Move fake pci data to test-priv
+  drm/xe/kunit: Add stub to peek_gmdid
+  drm/xe/kunit: Test WAs for MTL and LNL
 
-== Summary ==
+ drivers/gpu/drm/xe/tests/xe_pci.c      | 35 +++++++++++++++++-----
+ drivers/gpu/drm/xe/tests/xe_pci_test.h | 23 +++++++--------
+ drivers/gpu/drm/xe/tests/xe_rtp_test.c |  4 ++-
+ drivers/gpu/drm/xe/tests/xe_wa_test.c  | 41 ++++++++++++++++++++++++--
+ drivers/gpu/drm/xe/xe_pci.c            |  2 ++
+ drivers/gpu/drm/xe/xe_step.h           |  2 ++
+ 6 files changed, 85 insertions(+), 22 deletions(-)
 
-+ KERNEL=/kernel
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
-Cloning into 'mt'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ git -C mt rev-list -n1 origin/master
-63c2b6b160bca2df6efc7bc4cea6f442097d7854
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ git log -n1
-commit 1fbd84d9a2e1234a0b6e1fcbc75f7f2289827a4b
-Author: Jouni Högander <jouni.hogander@intel.com>
-Date:   Thu Nov 16 08:41:45 2023 +0200
-
-    fixup! drm/xe/display: Implement display support
-    
-    Add Xe specific code for intel_fb.c
-    
-    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-+ /mt/dim checkpatch 3b8183b7efad3d97ab6cf401f3fc0d24b30b6d3d drm-intel
-faa51e1db fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
-8ad53e087 Revert "FIXME: drm/i915: xe intel_fb.c framebuffer init and destroy xe changes"
--:10: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '14d1d786caacdb3438d07ab86fabf2e36c8151cc', maybe rebased or not pulled?
-#10: 
-This reverts commit 14d1d786caacdb3438d07ab86fabf2e36c8151cc.
-
-total: 0 errors, 1 warnings, 0 checks, 27 lines checked
-cc7dfa8c4 fixup! drm/xe/display: Implement display support
--:33: CHECK:BRACES: braces {} should be used on all arms of this statement
-#33: FILE: drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h:18:
-+	if (!front) {
-[...]
-+	} else
-[...]
-
--:41: CHECK:BRACES: Unbalanced braces around else statement
-#41: FILE: drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h:26:
-+	} else
-
-total: 0 errors, 0 warnings, 2 checks, 27 lines checked
-8ccd953fc fixup! drm/xe/display: Implement display support
-1864bf27a drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c
-f9f0d1f2f drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static
-c38e4f827 drm/i915/display: Split i915 specific code away from intel_fb.c
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:144: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#144: 
-new file mode 100644
-
--:149: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_fb_bo.c', please use '//' instead
-#149: FILE: drivers/gpu/drm/i915/display/intel_fb_bo.c:1:
-+/* SPDX-License-Identifier: MIT */
-
--:149: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#149: FILE: drivers/gpu/drm/i915/display/intel_fb_bo.c:1:
-+/* SPDX-License-Identifier: MIT */
-
-total: 0 errors, 3 warnings, 0 checks, 229 lines checked
-1fbd84d9a fixup! drm/xe/display: Implement display support
-Traceback (most recent call last):
-  File "scripts/spdxcheck.py", line 6, in <module>
-    from ply import lex, yacc
-ModuleNotFoundError: No module named 'ply'
--:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
-#26: 
-new file mode 100644
-
--:31: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/display/intel_fb_bo.c', please use '//' instead
-#31: FILE: drivers/gpu/drm/xe/display/intel_fb_bo.c:1:
-+/* SPDX-License-Identifier: MIT */
-
--:31: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
-#31: FILE: drivers/gpu/drm/xe/display/intel_fb_bo.c:1:
-+/* SPDX-License-Identifier: MIT */
-
--:73: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
-#73: FILE: drivers/gpu/drm/xe/display/intel_fb_bo.c:43:
-+intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915,
-+			 struct drm_file *filp,
-
-total: 0 errors, 3 warnings, 1 checks, 92 lines checked
-
+-- 
+2.40.1
 
