@@ -4,52 +4,53 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB0A9C072A2
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 08:33:17 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DDF5FC197A0
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 08:41:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 939B710E2A0;
-	Fri, 17 Nov 2023 08:33:17 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A72610E13A;
- Fri, 17 Nov 2023 08:33:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AAFEF10E2F0;
+	Fri, 17 Nov 2023 08:41:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4724A10E2F0;
+ Fri, 17 Nov 2023 08:41:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700209995; x=1731745995;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=LadFFOa9cUtU7ECOTPF5KVOGh+N1azQgLZ4EmevYVpc=;
- b=SU3UIyebWj6jGxHRvX05dBpekQ3zEExgY9zDPj9Cza05QwwJa/uFxuKk
- Xu0VPEg53DQ9vX3zskiOb7rCVhXDKlL96mIrpWuuaCgdTJD4v4IF15/E1
- uEiLLzSYU+0Vmj0NGR5RdHW0DMVZdlShBQXsOWHBDLJzgNqTzL84Nx0zx
- sYhfnC8BRaHYSaIlESiNxNuS/5Z2eVnltb9N/h1nOSvo/qaqJlh+GXDWm
- qRkTBBJKgopU5+5yuChI7WzHWU+yXkGOVSyYpR1Lir8efG2XT0Z2YTARd
- aRP6b2gCmHTlYdCQR5FaWUdi8E5XYrspDa1lqYb7R25jBQLULBhm4pE5z g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="422355779"
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="422355779"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2023 00:33:14 -0800
+ t=1700210507; x=1731746507;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=05Op8udKuhqy/HzULbnuqSGGErFEvZqUBFqW8tz1rLg=;
+ b=ECMKhfrPYcleZ/zHUf08j8fT9mM0hmkS2Il04zdHMCpcnURgxkjhAav3
+ DhAXeTDOuV/IBYyxrztH35zFk3s9Tnrl8cdflQfkrKvWiCeNMxWPvzCzv
+ 0jUgv0mk3BGJTSufqwF1sA/WHWbsoSamspI9TgjUHZupCBBcbRIsjbY3B
+ 0cidFizbcchjKM0Ghg1FlzLt09XkAbk/fndrRWgMVDbN6grwu9FaUz034
+ 9TJrI1SMe+bmhxWhtwWFqB1QP/tUCG5s4tlRKjz3P4SaQVimwy1VO/Ufd
+ ulkHq17W87cce5jg7CPdSMLw7FIBXx/TYHJu7RscdyRbbjG5GIW2jU+zp A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="376311879"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="376311879"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Nov 2023 00:41:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="13846915"
-Received: from jpoulsen-mobl.ger.corp.intel.com (HELO [10.249.254.136])
- ([10.249.254.136])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Nov 2023 00:33:11 -0800
-Message-ID: <a1cbe3e8-2b2c-150a-7919-65bdd38f75be@linux.intel.com>
-Date: Fri, 17 Nov 2023 09:33:08 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10896"; a="759109036"
+X-IronPort-AV: E=Sophos;i="6.04,206,1695711600"; d="scan'208";a="759109036"
+Received: from stinkpipe.fi.intel.com (HELO stinkbox) ([10.237.72.74])
+ by orsmga007.jf.intel.com with SMTP; 17 Nov 2023 00:41:44 -0800
+Received: by stinkbox (sSMTP sendmail emulation);
+ Fri, 17 Nov 2023 10:41:43 +0200
+Date: Fri, 17 Nov 2023 10:41:43 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Coelho, Luciano" <luciano.coelho@intel.com>
+Message-ID: <ZVcnRzSDC8s8G073@intel.com>
+References: <20231116112700.648963-1-luciano.coelho@intel.com>
+ <ZVcUH7G40NQ4Q-R7@intel.com>
+ <8cb3dbfe8290336233133b98b903adca0738ee4e.camel@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Bagas Sanjaya <bagasdotme@gmail.com>, intel-xe@lists.freedesktop.org
-References: <20231115124937.6740-1-thomas.hellstrom@linux.intel.com>
- <ZVYVk8KutkQE0RDU@archie.me>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <ZVYVk8KutkQE0RDU@archie.me>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v4] Documentation/gpu: VM_BIND locking
- document
+In-Reply-To: <8cb3dbfe8290336233133b98b903adca0738ee4e.camel@intel.com>
+X-Patchwork-Hint: comment
+Subject: Re: [Intel-xe] [Intel-gfx] [PATCH] drm/i915: don't use uncore
+ spinlock to protect critical section in vblank
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,63 +62,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>,
- Linux Documentation <linux-doc@vger.kernel.org>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Danilo Krummrich <dakr@redhat.com>,
- Linux DRI Development <dri-devel@lists.freedesktop.org>,
- Daniel Vetter <daniel@ffwll.ch>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Vivi,
+ Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi,
+On Fri, Nov 17, 2023 at 08:05:21AM +0000, Coelho, Luciano wrote:
+> Thanks for your comments, Ville!
+> 
+> On Fri, 2023-11-17 at 09:19 +0200, Ville Syrjälä wrote:
+> > On Thu, Nov 16, 2023 at 01:27:00PM +0200, Luca Coelho wrote:
+> > > Since we're abstracting the display code from the underlying driver
+> > > (i.e. i915 vs xe), we can't use the uncore's spinlock to protect
+> > > critical sections of our code.
+> > > 
+> > > After further inspection, it seems that the spinlock is not needed at
+> > > all and this can be handled by disabling preemption and interrupts
+> > > instead.
+> > 
+> > uncore.lock has multiple purposes:
+> > 1. serialize all register accesses to the same cacheline as on
+> >    certain platforms that can hang the machine
+> 
+> Okay, do you remember which platforms?
 
+HSW is the one I remember for sure being affected.
+Althoguh I don't recall if I ever managed to hang it
+using display registers specifically. intel_gpu_top
+certainly was very good at reproducing the problem.
 
-On 11/16/23 14:13, Bagas Sanjaya wrote:
-> On Wed, Nov 15, 2023 at 01:49:37PM +0100, Thomas HellstrÃ¶m wrote:
->> +TODO: Pointer to the gpuvm code implementation if this iteration and
-> "... implementation of this iteration ..."
->
->> +Using a MMU notifier for device DMA (and other methods) is described in
->> +`this document
->> +<https://docs.kernel.org/core-api/pin_user_pages.html#case-3-mmu-notifier-registration-with-or-without-page-faulting-hardware>`_.
-> You can use internal linking instead:
->
-> ---- >8 ----
-> diff --git a/Documentation/core-api/pin_user_pages.rst b/Documentation/core-api/pin_user_pages.rst
-> index d3c1f6d8c0e0ec..6b5f7e6e7155fb 100644
-> --- a/Documentation/core-api/pin_user_pages.rst
-> +++ b/Documentation/core-api/pin_user_pages.rst
-> @@ -153,6 +153,8 @@ NOTE: Some pages, such as DAX pages, cannot be pinned with longterm pins. That's
->   because DAX pages do not have a separate page cache, and so "pinning" implies
->   locking down file system blocks, which is not (yet) supported in that way.
->   
-> +.. _mmu-notifier-registration-case:
-> +
->   CASE 3: MMU notifier registration, with or without page faulting hardware
->   -------------------------------------------------------------------------
->   Device drivers can pin pages via get_user_pages*(), and register for mmu
-> diff --git a/Documentation/gpu/drm-vm-bind-locking.rst b/Documentation/gpu/drm-vm-bind-locking.rst
-> index bc701157cb3414..08b6a47a6e592f 100644
-> --- a/Documentation/gpu/drm-vm-bind-locking.rst
-> +++ b/Documentation/gpu/drm-vm-bind-locking.rst
-> @@ -366,8 +366,7 @@ need to care about, but so far it has proven difficult to exclude
->   certain notifications.
->   
->   Using a MMU notifier for device DMA (and other methods) is described in
-> -`this document
-> -<https://docs.kernel.org/core-api/pin_user_pages.html#case-3-mmu-notifier-registration-with-or-without-page-faulting-hardware>`_.
-> +:ref:`pin_user_pages() documentation <mmu-notifier-registration-case>`.
->   
->   Now the method of obtaining struct page references using
->   get_user_pages() unfortunately can't be used under a dma_resv lock
->
-> Thanks.
->
-Thanks. I'll take a look at doing this as well.
+> I couldn't find any reference to
+> this reason. 
 
-Thomas
+If all else fails git log is your friend.
 
+> Also, the only place where where we take the uncore.lock
+> is in this vblank code I changed, where the only explanation I found
+> was about timing, specifically when using RT-kernels and in very old
+> and slow platforms... (this was added 10 years ago).
+> 
+> 
+> > 2. protect the forcewake/etc. state
+> > 
+> > 1 is relevant here, 2 is not.
+> 
+> Okay, good that we have only one known problem. :)
+> 
+> --
+> Cheers,
+> Luca.
 
-
+-- 
+Ville Syrjälä
+Intel
