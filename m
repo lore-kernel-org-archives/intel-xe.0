@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5802CC072A2
-	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 22:27:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0B128C072A2
+	for <intel-xe@archiver.kernel.org>; Fri, 17 Nov 2023 22:27:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A45D10E774;
-	Fri, 17 Nov 2023 22:27:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B35C810E774;
+	Fri, 17 Nov 2023 22:27:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 755F410E774;
- Fri, 17 Nov 2023 22:26:59 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id CBBDC10E774;
+ Fri, 17 Nov 2023 22:27:14 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 6F58FAADDA;
- Fri, 17 Nov 2023 22:26:59 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id CAC67AADDA;
+ Fri, 17 Nov 2023 22:27:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Niranjana Vishwanathapura" <niranjana.vishwanathapura@intel.com>
-Date: Fri, 17 Nov 2023 22:26:59 -0000
-Message-ID: <170026001943.7873.12541549372018794565@emeril.freedesktop.org>
+Date: Fri, 17 Nov 2023 22:27:14 -0000
+Message-ID: <170026003482.7874.5025462765680257887@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231116033436.1713-1-niranjana.vishwanathapura@intel.com>
 In-Reply-To: <20231116033436.1713-1-niranjana.vishwanathapura@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/pvc=3A_Enable_fixed_CCS_mode?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
+ =?utf-8?q?m/xe/pvc=3A_Enable_fixed_CCS_mode?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,18 +48,59 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe/pvc: Enable fixed CCS mode
 URL   : https://patchwork.freedesktop.org/series/126502/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 3b8183b7e drm/xe/uapi: Be more specific about the vm_bind prefetch region
-=== git am output follows ===
-.git/rebase-apply/patch:208: new blank line at EOF.
-+
-warning: 1 line adds whitespace errors.
-Applying: drm/xe/pvc: Enable Fixed CCS mode setting
-Applying: drm/xe/pvc: Allow userspace to configure CCS mode
-Applying: drm/xe/pvc: Avoid any races around ccs_mode update
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 846ccb577df385df3c36d2755e4bb5114fa81eb7
+Author: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+Date:   Wed Nov 15 19:34:36 2023 -0800
+
+    drm/xe/pvc: Avoid any races around ccs_mode update
+    
+    Ensure that there are no drm clients when changing CCS mode.
+    Allow exec_queue creation only with enabled CCS engines.
+    
+    Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
++ /mt/dim checkpatch 3b8183b7efad3d97ab6cf401f3fc0d24b30b6d3d drm-intel
+fb9e3a981 drm/xe/pvc: Enable Fixed CCS mode setting
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:51: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'cslice' may be better as '(cslice)' to avoid precedence issues
+#51: FILE: drivers/gpu/drm/xe/regs/xe_gt_regs.h:411:
++#define   CCS_MODE_CSLICE(cslice, ccs) \
++	(ccs << (cslice * CCS_MODE_CSLICE_WIDTH))
+
+-:51: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'ccs' may be better as '(ccs)' to avoid precedence issues
+#51: FILE: drivers/gpu/drm/xe/regs/xe_gt_regs.h:411:
++#define   CCS_MODE_CSLICE(cslice, ccs) \
++	(ccs << (cslice * CCS_MODE_CSLICE_WIDTH))
+
+-:100: CHECK:MACRO_ARG_PRECEDENCE: Macro argument 'gt' may be better as '(gt)' to avoid precedence issues
+#100: FILE: drivers/gpu/drm/xe/xe_gt.h:20:
++#define CCS_MASK(gt) ((gt->info.engine_mask & XE_HW_ENGINE_CCS_MASK) >> XE_HW_ENGINE_CCS0)
+
+-:106: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#106: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 3 checks, 239 lines checked
+a2d1b59b9 drm/xe/pvc: Allow userspace to configure CCS mode
+846ccb577 drm/xe/pvc: Avoid any races around ccs_mode update
 
 
