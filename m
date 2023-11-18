@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B44EC54E76
-	for <intel-xe@archiver.kernel.org>; Sat, 18 Nov 2023 06:26:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27D8DC2BB3F
+	for <intel-xe@archiver.kernel.org>; Sat, 18 Nov 2023 06:28:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 138CB10E027;
-	Sat, 18 Nov 2023 06:26:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D225E10E027;
+	Sat, 18 Nov 2023 06:28:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 2F1C910E027;
- Sat, 18 Nov 2023 06:26:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 1276110E027;
+ Sat, 18 Nov 2023 06:28:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0B525AADD7;
- Sat, 18 Nov 2023 06:26:18 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E51EEAADD7;
+ Sat, 18 Nov 2023 06:28:10 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bommu Krishnaiah" <krishnaiah.bommu@intel.com>
-Date: Sat, 18 Nov 2023 06:26:18 -0000
-Message-ID: <170028877804.12896.13042292458472821985@emeril.freedesktop.org>
+To: "Ruthuvikas Ravikumar" <ruthuvikas.ravikumar@intel.com>
+Date: Sat, 18 Nov 2023 06:28:10 -0000
+Message-ID: <170028889090.12899.16345146763451385516@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231116200819.29227-1-krishnaiah.bommu@intel.com>
-In-Reply-To: <20231116200819.29227-1-krishnaiah.bommu@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_RFC=3A_drm/xe=3A_Return_correct_error_code_for_xe=5Fwait=5Fu?=
- =?utf-8?q?ser=5Ffence=5Fioctl?=
+References: <20231116205351.2248378-1-ruthuvikas.ravikumar@intel.com>
+In-Reply-To: <20231116205351.2248378-1-ruthuvikas.ravikumar@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Add_mocs_kunit_=28rev15=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,24 +46,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: RFC: drm/xe: Return correct error code for xe_wait_user_fence_ioctl
-URL   : https://patchwork.freedesktop.org/series/126549/
-State : failure
+Series: drm/xe: Add mocs kunit (rev15)
+URL   : https://patchwork.freedesktop.org/series/124926/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: cb9b702d4 drm/xe/dg2: Wa_18028616096 now applies to all DG2
 === git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_wait_user_fence.c:58
-error: drivers/gpu/drm/xe/xe_wait_user_fence.c: patch does not apply
-error: patch failed: include/uapi/drm/xe_drm.h:955
-error: include/uapi/drm/xe_drm.h: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: RFC: drm/xe: Return correct error code for xe_wait_user_fence_ioctl
-Patch failed at 0001 RFC: drm/xe: Return correct error code for xe_wait_user_fence_ioctl
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe: Add mocs kunit
 
 
