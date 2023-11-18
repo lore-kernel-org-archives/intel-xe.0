@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C123C2BB3F
-	for <intel-xe@archiver.kernel.org>; Sat, 18 Nov 2023 04:01:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38340C47071
+	for <intel-xe@archiver.kernel.org>; Sat, 18 Nov 2023 04:01:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA94D10E02A;
-	Sat, 18 Nov 2023 04:01:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 030E010E02A;
+	Sat, 18 Nov 2023 04:01:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id E91C010E02A;
- Sat, 18 Nov 2023 04:01:11 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9A40610E02A;
+ Sat, 18 Nov 2023 04:01:24 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BFD1BAADEF;
- Sat, 18 Nov 2023 04:01:11 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 98141AADEF;
+ Sat, 18 Nov 2023 04:01:24 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Sat, 18 Nov 2023 04:01:11 -0000
-Message-ID: <170028007175.12898.16202782849540677293@emeril.freedesktop.org>
+Date: Sat, 18 Nov 2023 04:01:24 -0000
+Message-ID: <170028008461.12899.6255424740164626138@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231116151242.2125-1-michal.wajdeczko@intel.com>
 In-Reply-To: <20231116151242.2125-1-michal.wajdeczko@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_series_starting_with_=5Bv2=2C1/4=5D_drm/xe/guc=3A_Fix_wrong_?=
- =?utf-8?q?assert_about_full=5Flen?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_se?=
+ =?utf-8?q?ries_starting_with_=5Bv2=2C1/4=5D_drm/xe/guc=3A_Fix_wrong_asser?=
+ =?utf-8?q?t_about_full=5Flen?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,12 +53,31 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: cb9b702d4 drm/xe/dg2: Wa_18028616096 now applies to all DG2
-=== git am output follows ===
-Applying: drm/xe/guc: Fix wrong assert about full_len
-Applying: drm/xe/guc: Copy response data from proper registers
-Applying: drm/xe/guc: Fix handling of GUC_HXG_TYPE_NO_RESPONSE_BUSY
-Applying: drm/xe/guc: Use valid scratch register for posting read
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit b282b10aa1070c9d33059686ec3893443a7b2b2a
+Author: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Date:   Thu Nov 16 16:12:42 2023 +0100
+
+    drm/xe/guc: Use valid scratch register for posting read
+    
+    There are only 4 scratch registers VF_SW_FLAG(0..3) on each GuC.
+    We shouldn't use non-existing register VF_SW_FLAG(4) for posting
+    read.
+    
+    Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+    Reviewed-by: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch cb9b702d436952ddec33b020d549c7998cace9e2 drm-intel
+6cd29910b drm/xe/guc: Fix wrong assert about full_len
+ac7d6d826 drm/xe/guc: Copy response data from proper registers
+b5b93b698 drm/xe/guc: Fix handling of GUC_HXG_TYPE_NO_RESPONSE_BUSY
+b282b10aa drm/xe/guc: Use valid scratch register for posting read
 
 
