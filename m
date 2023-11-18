@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CFEDC072A2
-	for <intel-xe@archiver.kernel.org>; Sat, 18 Nov 2023 00:52:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1CCCC072A2
+	for <intel-xe@archiver.kernel.org>; Sat, 18 Nov 2023 00:52:51 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F1A9D89131;
-	Sat, 18 Nov 2023 00:52:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E74089131;
+	Sat, 18 Nov 2023 00:52:51 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 107C210E0AE;
- Sat, 18 Nov 2023 00:52:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id AF11789131;
+ Sat, 18 Nov 2023 00:52:48 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 0E552A3ECB;
- Sat, 18 Nov 2023 00:52:31 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id AD213A3ECB;
+ Sat, 18 Nov 2023 00:52:48 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Date: Sat, 18 Nov 2023 00:52:31 -0000
-Message-ID: <170026875105.12896.14755772425132963252@emeril.freedesktop.org>
+Date: Sat, 18 Nov 2023 00:52:48 -0000
+Message-ID: <170026876870.12899.13643875430765421016@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231116064145.3969338-1-jouni.hogander@intel.com>
 In-Reply-To: <20231116064145.3969338-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_Intel=5Ffb=2Ec_refactoring_=28rev2=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_In?=
+ =?utf-8?q?tel=5Ffb=2Ec_refactoring_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,20 +48,92 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: Intel_fb.c refactoring (rev2)
 URL   : https://patchwork.freedesktop.org/series/126505/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: cb9b702d4 drm/xe/dg2: Wa_18028616096 now applies to all DG2
-=== git am output follows ===
-Applying: fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
-Applying: Revert "FIXME: drm/i915: xe intel_fb.c framebuffer init and destroy xe changes"
-Applying: fixup! drm/xe/display: Implement display support
-Applying: fixup! drm/xe/display: Implement display support
-Applying: drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c
-Applying: drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static
-Applying: drm/i915/display: Split i915 specific code away from intel_fb.c
-Applying: fixup! drm/xe/display: Implement display support
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 8da7e549460c17dbdffdd356c2fb4aebe51ed4c8
+Author: Jouni Högander <jouni.hogander@intel.com>
+Date:   Thu Nov 16 08:41:45 2023 +0200
+
+    fixup! drm/xe/display: Implement display support
+    
+    Add Xe specific code for intel_fb.c
+    
+    Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
++ /mt/dim checkpatch cb9b702d436952ddec33b020d549c7998cace9e2 drm-intel
+6e8af6525 fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
+6947947d5 Revert "FIXME: drm/i915: xe intel_fb.c framebuffer init and destroy xe changes"
+-:10: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '14d1d786caacdb3438d07ab86fabf2e36c8151cc', maybe rebased or not pulled?
+#10: 
+This reverts commit 14d1d786caacdb3438d07ab86fabf2e36c8151cc.
+
+total: 0 errors, 1 warnings, 0 checks, 27 lines checked
+40e515def fixup! drm/xe/display: Implement display support
+-:33: CHECK:BRACES: braces {} should be used on all arms of this statement
+#33: FILE: drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h:18:
++	if (!front) {
+[...]
++	} else
+[...]
+
+-:41: CHECK:BRACES: Unbalanced braces around else statement
+#41: FILE: drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h:26:
++	} else
+
+total: 0 errors, 0 warnings, 2 checks, 27 lines checked
+1e40e7293 fixup! drm/xe/display: Implement display support
+08d9e13e5 drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c
+a42465abf drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static
+d89922f86 drm/i915/display: Split i915 specific code away from intel_fb.c
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:144: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#144: 
+new file mode 100644
+
+-:149: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/i915/display/intel_fb_bo.c', please use '//' instead
+#149: FILE: drivers/gpu/drm/i915/display/intel_fb_bo.c:1:
++/* SPDX-License-Identifier: MIT */
+
+-:149: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#149: FILE: drivers/gpu/drm/i915/display/intel_fb_bo.c:1:
++/* SPDX-License-Identifier: MIT */
+
+total: 0 errors, 3 warnings, 0 checks, 229 lines checked
+8da7e5494 fixup! drm/xe/display: Implement display support
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:26: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#26: 
+new file mode 100644
+
+-:31: WARNING:SPDX_LICENSE_TAG: Improper SPDX comment style for 'drivers/gpu/drm/xe/display/intel_fb_bo.c', please use '//' instead
+#31: FILE: drivers/gpu/drm/xe/display/intel_fb_bo.c:1:
++/* SPDX-License-Identifier: MIT */
+
+-:31: WARNING:SPDX_LICENSE_TAG: Missing or malformed SPDX-License-Identifier tag in line 1
+#31: FILE: drivers/gpu/drm/xe/display/intel_fb_bo.c:1:
++/* SPDX-License-Identifier: MIT */
+
+-:73: CHECK:PARENTHESIS_ALIGNMENT: Alignment should match open parenthesis
+#73: FILE: drivers/gpu/drm/xe/display/intel_fb_bo.c:43:
++intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915,
++			 struct drm_file *filp,
+
+total: 0 errors, 3 warnings, 1 checks, 92 lines checked
 
 
