@@ -4,45 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14D6FC072A2
-	for <intel-xe@archiver.kernel.org>; Sun, 19 Nov 2023 17:37:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E97BC5ACB3
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 03:32:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8059810E377;
-	Sun, 19 Nov 2023 17:37:06 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B26CD10E01F
- for <intel-xe@lists.freedesktop.org>; Sun, 19 Nov 2023 17:37:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 502AE10E1CD;
+	Mon, 20 Nov 2023 03:32:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF2010E1CD
+ for <intel-xe@lists.freedesktop.org>; Mon, 20 Nov 2023 03:32:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700415423; x=1731951423;
- h=date:from:to:cc:subject:message-id;
- bh=lfOoU81GH+VpcP1ZfsMKNAvvjarOos9Qdloqys2p51s=;
- b=lymt2fhkyi825rJ8CIYwK1SRIagie6Lyu9EZn4XLvquLKZsh5DPXFtk5
- cUYe2SUXCrZmJ6zznMvjhgYXP/Z7oFzM8gvY6F9NbfoHmj3MLMh7g5pXP
- mqCBi6ApU9hFq019pVB2uxkQQKsyXUMUwMFEaPWR0DZXh4gWAsMEodLaK
- /fXIuxpMbL27lFOhr59576zeSOqaRCRcyTd8uW7a0gaK13YvctrHi6IF2
- UhvhfBlE+O4IO6AahncddwJ8msm2r1EXMcfvo9YwxeuOzbM3Eftg1WT2k
- LYO83nkAZBv+9do4R0+RCw56fgxM/pEjMFcTTfQSn6pForGxPlxPIZwaF Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="10176349"
-X-IronPort-AV: E=Sophos;i="6.04,210,1695711600"; d="scan'208";a="10176349"
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Nov 2023 09:37:01 -0800
+ t=1700451176; x=1731987176;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=KQgKuVsqqoD2X/JhRt5+A17i9TI/w60dpKtmYNBnrSo=;
+ b=hhIjSEkDLdkA1ebAfCAe+2HIbU80RpNALg1TkxyKdlRxTqaE//sTeN5u
+ D8u1pFFOGydS0FxgLee8Ti+dCpGKoBtIavJHGIxGq3MnCVnF8xJEnA+AN
+ BR6oYYROgEVvDITwHOsU+QkqTYP2BWpa6iatueMf08GiQxozx4daUEHlH
+ ntgu0nDG3SDIGynNnszODrohQP+VOrB31n5Ef8kzT1wEjKdvCTXChL0HO
+ CQgyinGzjchP8qHQuuikGyHkGm+XzwMY0N1MqBAadlhpaEsdGrZo7IutG
+ s2AcjQbVaz5mRTse/2lDcPI+k/bTUo4fJfYITEwOTX/EcJq4nA8xU//MF Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="458043286"
+X-IronPort-AV: E=Sophos;i="6.04,212,1695711600"; d="scan'208";a="458043286"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Nov 2023 19:32:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="889719641"
-X-IronPort-AV: E=Sophos;i="6.04,210,1695711600"; d="scan'208";a="889719641"
-Received: from lkp-server02.sh.intel.com (HELO b8de5498638e) ([10.239.97.151])
- by orsmga004.jf.intel.com with ESMTP; 19 Nov 2023 09:36:59 -0800
-Received: from kbuild by b8de5498638e with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1r4lj7-0005Mh-09;
- Sun, 19 Nov 2023 17:36:57 +0000
-Date: Mon, 20 Nov 2023 01:36:35 +0800
-From: kernel test robot <lkp@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <202311200123.ll7ZKCf7-lkp@intel.com>
-User-Agent: s-nail v14.9.24
-Subject: [Intel-xe] [drm-xe:drm-xe-next] BUILD REGRESSION
- b25aa17bffa88c86fec716e40bdb3848eea17b23
+X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="836611598"
+X-IronPort-AV: E=Sophos;i="6.04,212,1695711600"; d="scan'208";a="836611598"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by fmsmga004.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 19 Nov 2023 19:32:55 -0800
+Received: from fmsmsx602.amr.corp.intel.com (10.18.126.82) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Sun, 19 Nov 2023 19:32:54 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Sun, 19 Nov 2023 19:32:54 -0800
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.41) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Sun, 19 Nov 2023 19:32:45 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dkoaKU0ScnaSnd3h/Y+BIYwXLSEMno0R4xtOqioYrV9nVaE/zkXiAsYnhDBHNBsXVioYYM5+5l3WaWtB+U2dHff14QafZ1QMk1ZgjCQkq7sha1RhIl6rzchAlVlS4TsYPLRhqAXfOy+/2bnOt3wZCxJllE/v0VjQKp0J6ZM/6K6289lLu95Gdjna59MC2KMTroyFozI+X3Sc36iazfBng+ok/IbfzSRWLRsDCATHdJ5RUoodLIrRiL8eGVH5zJZg7MJvEufl0q2wi/bhC/kTzzqlK3YE85jzlEb017fp5gpb4t9hdfNW4JmQtGxi+r6n+gemzIxBL0muL5tU9ahBjQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=iHFFSX1y10fyfdvUGeHQxZQHNl+yRvzIzyY3B45FymA=;
+ b=NL84dqnUTdsZ75+RIZ6CmuSB8ABenZAB6/qjqtPqerZFstBzyfdt9PXaH9mG0FIRblSuTR0qbRluDKx719tTn9QcVx8Mja3/Wca2EDh8426zwLO/++TsDa0vnV5lFtnpYbTCOWWLN65iehlgs+ZseO0u0E7aAhcotrB1bzkGaEveQmnKjshhTJ7Uu37xOGl8QfTtVN+XwCPq+9ZvgEmcHmzsIx/NvMWNrsnCIQxXwnPiGrT50RIPu1wM3JR4sL/N9OSDLU7i3FCpVwZxpUs2El/6Fgot76sXDR0ozEDV49xvMD10sTL5WEtrSTvfLejinyP4VDEV/xcrFyQCXQXQgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM8PR11MB5653.namprd11.prod.outlook.com (2603:10b6:8:25::8) by
+ MW6PR11MB8440.namprd11.prod.outlook.com (2603:10b6:303:242::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.26; Mon, 20 Nov
+ 2023 03:32:40 +0000
+Received: from DM8PR11MB5653.namprd11.prod.outlook.com
+ ([fe80::2eaa:4647:7ac0:eb52]) by DM8PR11MB5653.namprd11.prod.outlook.com
+ ([fe80::2eaa:4647:7ac0:eb52%4]) with mapi id 15.20.7002.018; Mon, 20 Nov 2023
+ 03:32:40 +0000
+Message-ID: <ebfaa922-6608-41f5-b8cb-b63d5c7617b1@intel.com>
+Date: Mon, 20 Nov 2023 09:02:32 +0530
+User-Agent: Mozilla Thunderbird
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+References: <20231115030111.770130-1-sujaritha.sundaresan@intel.com>
+ <20231115030111.770130-2-sujaritha.sundaresan@intel.com>
+ <ZVfcEpiH4QGOX7Gx@intel.com>
+Content-Language: en-US
+From: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
+In-Reply-To: <ZVfcEpiH4QGOX7Gx@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: BM1PR01CA0150.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:b00:68::20) To DM8PR11MB5653.namprd11.prod.outlook.com
+ (2603:10b6:8:25::8)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM8PR11MB5653:EE_|MW6PR11MB8440:EE_
+X-MS-Office365-Filtering-Correlation-Id: 0aeb301a-81f8-48ab-ef18-08dbe97958fa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: mzBgiTRbNKDXfZkoNRQ7Dw4IEqcJJp9Dzt7DQMJfzT4iRrTQTgfVjCWD5CwFpq71lG8RunWmBo8AQfWViO6cWY7teooDpDbHoNnhLsv//djrz4Zx2CiQbIBKsDu7/ibssVqsSgGGJcWpkGEPxpsdc7rDdibfo5yG/JrRxTodVXuhddDrexAGJgSJyHJLubEUpYz8zBj16e48fbg3INsI9tmCfeBR2xRkFLvIcfTpoL2O7FZLYDlVWL5KpOuIJ3YFSxtFBDQCZ3T8ch54UKzA0GBPVefFLaUEd+j4Tq3azP1MHaAtNELcjXWo9TlVpZUfmoY+HeNu9igRoxWI1p9VhFj6dGCdoO7iLNRAeUiCWRHUWmPsb/cqifRIzC0hCLHXtxTIUGCI479yOsRaXsAo84lu102QXwbAjSrsPLl3Q1CaUuvz1zGN1BKcA1S0bhXaqFrZ64BtOEFw5H/mi2H8lMKK84tnneHbRALJ6qN1TNNk+KiNvHgDok4hKiX4/SUeB+tNsWXoOUdpHzOIf+L8/q8NdrtOuP6sSZ5YlAax6AzVRYVsRh+VASPMf95LNKrvlQkScu218kNf0TI9ZJh4pL9Ecfk+m4TiNfvouEcaWOIw85GP1dbFkkNsTtmCqUjUIrrbtXgZNgTHt0JD1anm3g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM8PR11MB5653.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(376002)(396003)(39860400002)(366004)(136003)(230922051799003)(1800799012)(64100799003)(186009)(451199024)(31686004)(6506007)(6512007)(53546011)(26005)(66946007)(66556008)(316002)(6636002)(37006003)(4326008)(6862004)(8676002)(8936002)(66476007)(6486002)(83380400001)(478600001)(2616005)(82960400001)(107886003)(38100700002)(6666004)(5660300002)(31696002)(2906002)(86362001)(36756003)(41300700001)(45980500001)(43740500002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZURZaWNWalFiS0l2eURiMEt4T0ZJQWE4VC81TTRJOEk1V29mTUhLTFc5bHEv?=
+ =?utf-8?B?OHpGRVZFR2c4S2FIUWJZb0VWaDZ1cUdpYitqK1VObzFraFNhMEFlcm5ZWXNa?=
+ =?utf-8?B?RWxCREUzc0JBeVJveGNFUjhZSDlGZ2lKL0lBSnl2RW40S2V0VnMxZEFzTHZ0?=
+ =?utf-8?B?YkVhWW1POGtWTWM2ZGVsdGU4RVowNWJZVnY1T2tZMCtOc2xXSld4ZDZyeG1Y?=
+ =?utf-8?B?eFNsNDJJdUt6eE9wQUhDN2VPZGE5cFQrcEVwc2pMcTBsUmpkVUhHVzJFYWIw?=
+ =?utf-8?B?cGxVMG5NOEN6SmkvN3JWMFh2eWUzRDVPYUZTQzJhNTBPZ0lEL25oc2o2V1pY?=
+ =?utf-8?B?YlJqU05nOXFmZHRvVzhZTzVibTA3Tnd5TTU2S0hBSkVoV2hMS2NpNnE3L0cy?=
+ =?utf-8?B?eUVNMkdkUjRuZ1R1N1VBWElLTnFTaFNFYXpSZ2JYOGZBaWE5TWdRSlo5NURL?=
+ =?utf-8?B?eDdVenpqNG1TZ2FKUUdSK2lZY0VpM2w3V09INjJ0c2hMZ2k4cUVRNnNWSDgw?=
+ =?utf-8?B?VzExK2J5VXMwbHFVQ0RLODBzMlNRZ1dES3dsbnNlWjF6NVJWbG9Cd24rTi9k?=
+ =?utf-8?B?QWI1Nm9JWTNlaW4rb1RMUVg1TkN6ckpZVjk0aGdMSWFIYXhsaHE1V2JBcmJi?=
+ =?utf-8?B?ZXlxTDRjMGllWENMdndMeHZVREQ2R08rWnY2c1VlU2d1OURXRUsza1djTHM1?=
+ =?utf-8?B?MDc2M3lrd3Mra3lZN1hpMk1JT3FoUno5cGJyUStROENNRHczclhncmtUM2pz?=
+ =?utf-8?B?MCtTcXh6MnRZOTkyN2pIN1hzR0lyT1JNS0wyZkEwcEVmWnRVNVJyd0h1cnNW?=
+ =?utf-8?B?b1RxMktqdlJiOHg2YjBwZ29aVE94eFg1bHVuZ2RLUXpiUTZJK1VnaUhNR0N0?=
+ =?utf-8?B?RXh6TWhWbEoxeXdRdW1weUZRVVVYNWYya1R1ZlA5WG9QT2RMWUVoNmF0cWJv?=
+ =?utf-8?B?eDA5S2pML1B3RUFFbHZEcGZ1Y3BnNmZIemZINkwvb1R0cjJFaXM1RlJjSjg2?=
+ =?utf-8?B?RTNWd1dmeEpFNTdqc2U4THAvNjRKb2NCd0EvR0dXWFM4NXE0QzJtZVAwc0Fz?=
+ =?utf-8?B?dFUxeWg4aVlUN2hTb1dYNjFJalZWbHJMSFBZdlB2Tm1VemFJcFdPaVBHa1Qx?=
+ =?utf-8?B?Uk5RT0Y4UUJsWkQ0aGFZdFNlQ0JDT2F1VHFLWDVnSFVOc0grNi9BRGV6M2cw?=
+ =?utf-8?B?dDc2SXRBbXFNR0x0YkVOOHhlMGgyUVM2cWhlYnE4ajRicUt5YUt3QmtXQklV?=
+ =?utf-8?B?OFV4eWFuMGU4R3Jwdi82STJoN3BrQStpSkN3bEZmV25zQVgxREF4bERHcXlh?=
+ =?utf-8?B?d3hYbnZJdlQvNmwxOG5TMi9EOVJ3TkRkN1Z4YnIzaG5sZTN1cm5UcE1UNTlL?=
+ =?utf-8?B?NEQ0NFhuZWN2ZHBDUExHdkVTa0dNai9IZFhmdFRMbXdRdGZsNFpOYTlVRmlh?=
+ =?utf-8?B?SXhKMzlieUhKbWRxWEhTSS9XV3V0d2Rma0RxT1Y2VnFuL3I4azV5VlU5L1Va?=
+ =?utf-8?B?a2RwU1NaYkJZbmc0cGl3YUlyVzNXbVRYZEl0Lys3VktXalZTdThha2h2bGFQ?=
+ =?utf-8?B?L1UwaFhUeXpPdWNTWFhTYk9ZcTRvR1NqbXFmeEdzRXZ3ZjFsaHhKR0Z1U0tx?=
+ =?utf-8?B?VENzbDJPSXFab2RWNUVEeEk3K1BvTzZld3BaU0IzWEg2YitVSGJjdVBTVjdx?=
+ =?utf-8?B?YVA0K1AxZ09oL0pHMXBlanlHVWlpdGgxQjJDTHhzT2w4QzBkZDVSZVZHWDJY?=
+ =?utf-8?B?aUFWa0VtdXFxMGZIWkFtdXVvSzlNUGUvWGRkMkorUCt2Y0ljV3JWcm9TL3p4?=
+ =?utf-8?B?cHlwMzNaVWFDa2xESVVqL0hLTFpWZmFhbWFRUG5iZTdYcTZ3MEtKRFNDQm5i?=
+ =?utf-8?B?S2FSM1FlazlvZWxOTkcxbUhiTFgycUM2elZjODB0dXRneDJGYjNENjArVnBy?=
+ =?utf-8?B?N0hMQjF1eHlyc1ZyVHFONkhxRzQ4d3p4d1VSRWFNTTJLR2ppSzhVeU83ZkF5?=
+ =?utf-8?B?MVF5RzF1T1Y2QWJ5TnRWcmhHSHk5Y0xMLzRxellvZ1VNVEF4cGJZOGJjTGFL?=
+ =?utf-8?B?bmlGKzhwSnhUV25NT2M1SmZPT1ZPK05BTUhWT3lhdEVwS1ZwdnBEcjVmN0V4?=
+ =?utf-8?B?YlZFVWhoWXZqODhTS2xlWkhscHRUVEtjQkhHcEZnYU1DZ1V6Uyt6dFZoY2l2?=
+ =?utf-8?Q?ZsOD1eRDdAhFecQKvm6b0wo=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0aeb301a-81f8-48ab-ef18-08dbe97958fa
+X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5653.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Nov 2023 03:32:40.0575 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GS3rLI2EoMn6OlAU1xSpDx8M6/fRhWTetBKamf7C/OFXv1jjHFjP4c0EywJPWrIupo3n2LVofzyymRbHmnuej8RNV+KPm/FFi0kwCW3azhU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR11MB8440
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 1/1] drm/xe: Moving and renaming existing
+ frequency sysfs attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,1277 +160,224 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-tree/branch: https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-branch HEAD: b25aa17bffa88c86fec716e40bdb3848eea17b23  drm/xe/guc: Use valid scratch register for posting read
 
-Error/Warning reports:
+On 11/18/2023 3:03 AM, Rodrigo Vivi wrote:
+> On Wed, Nov 15, 2023 at 08:31:11AM +0530, Sujaritha Sundaresan wrote:
+>> Creating a new freq directory to move frequency sysfs attributes.
+>> Additonally, renaming the frequency sysfs to align with devfreq
+>> requirements.
+>>
+>> /device/tile<n>/gt<n>/freq
+>> 			|- act_freq
+>> 			|- cur_freq
+>> 			|- max_freq
+>> 			|- min_freq
+>> 			|- rp0_freq
+>> 			|- rpn_freq
+>> 			|- rpe_freq
+>>
+> on top of this we should become future proof by having a possibility of
+> N freq directory for different domains/PLLs.
+>
+> /device/tile<n>/gt<n>/freq<n>
+>
+> under each freq dir a file 'name' that would contain the differentiator
+> name. probably useful already on PVC with media freq, although there
+> we could only read the act_freq.
+>
+> But this patch is great. Thanks for taking care of this!
+>
+> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-https://lore.kernel.org/oe-kbuild-all/202310201234.ZZLwdoiy-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202311041602.YYfF0B6U-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202311041742.3dzKbpfj-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202311152128.2R0TGUKs-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202311152249.gjSKciOA-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202311152257.LwV3M3aC-lkp@intel.com
-https://lore.kernel.org/oe-kbuild-all/202311180240.w7IngNSe-lkp@intel.com
+Hi Rodrigo !
 
-Error/Warning: (recently discovered and may have been fixed)
+Thanks for the review. Agree that it would good to have this future proof.
 
-asus_wmi_sensors.c:(.exit.text+0x8): undefined reference to `wmi_driver_unregister'
-asus_wmi_sensors.c:(.init.text+0x14): undefined reference to `__wmi_driver_register'
-asus_wmi_sensors.c:(.text+0xf4): undefined reference to `wmi_evaluate_method'
-base.c:(.text+0x1e0): undefined reference to `wmi_has_guid'
-base.c:(.text+0x7c): undefined reference to `wmi_evaluate_method'
-drivers/gpu/drm/i915/display/intel_fbdev_fb.c:13:25: warning: no previous prototype for 'intel_fbdev_fb_alloc' [-Wmissing-prototypes]
-drivers/gpu/drm/i915/display/intel_fbdev_fb.c:13:25: warning: no previous prototype for function 'intel_fbdev_fb_alloc' [-Wmissing-prototypes]
-drivers/gpu/drm/i915/display/intel_fbdev_fb.c:68:5: warning: no previous prototype for 'intel_fbdev_fb_fill_info' [-Wmissing-prototypes]
-drivers/gpu/drm/i915/display/intel_fbdev_fb.c:68:5: warning: no previous prototype for function 'intel_fbdev_fb_fill_info' [-Wmissing-prototypes]
-drivers/gpu/drm/xe/display/ext/i915_utils.c:18:5: warning: no previous prototype for '__i915_inject_probe_error' [-Wmissing-prototypes]
-drivers/gpu/drm/xe/display/intel_fbdev_fb.c:14:25: warning: no previous prototype for 'intel_fbdev_fb_alloc' [-Wmissing-prototypes]
-drivers/gpu/drm/xe/display/intel_fbdev_fb.c:14:25: warning: no previous prototype for function 'intel_fbdev_fb_alloc' [-Wmissing-prototypes]
-drivers/gpu/drm/xe/display/intel_fbdev_fb.c:77:5: warning: no previous prototype for 'intel_fbdev_fb_fill_info' [-Wmissing-prototypes]
-drivers/gpu/drm/xe/display/intel_fbdev_fb.c:77:5: warning: no previous prototype for function 'intel_fbdev_fb_fill_info' [-Wmissing-prototypes]
-drivers/gpu/drm/xe/display/xe_display_misc.c:10:14: warning: no previous prototype for 'intel_gmch_vga_set_decode' [-Wmissing-prototypes]
-drivers/gpu/drm/xe/xe_tile_sysfs.c:29:36: warning: format '%llu' expects argument of type 'long long unsigned int', but argument 3 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
-hp-wmi-sensors.c:(.exit.text+0x8): undefined reference to `wmi_driver_unregister'
-hp-wmi-sensors.c:(.init.text+0x14): undefined reference to `__wmi_driver_register'
-hp-wmi-sensors.c:(.text+0x10ac): undefined reference to `wmi_query_block'
-hp-wmi-sensors.c:(.text+0x1f18): undefined reference to `wmi_instance_count'
-hp-wmi-sensors.c:(.text+0x26f8): undefined reference to `wmi_install_notify_handler'
-hp-wmi-sensors.c:(.text+0x7c0): undefined reference to `wmi_remove_notify_handler'
-hp-wmi-sensors.c:(.text+0xc08): undefined reference to `wmi_get_event_data'
-include/drm/drm_print.h:456:39: warning: format '%llx' expects argument of type 'long long unsigned int', but argument 6 has type 'resource_size_t' {aka 'unsigned int'} [-Wformat=]
-include/trace/../../drivers/gpu/drm/xe/xe_trace.h:34:45: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
-surface3-wmi.c:(.text+0x260): undefined reference to `wmi_query_block'
+Will merge this one for now, along with the needed IGT fixes.
 
-Unverified Error/Warning (likely false positive, please contact us if interested):
+Thanks,
 
-drivers/gpu/drm/i915/display/intel_fb.c: intel_frontbuffer.h is included more than once.
-drivers/gpu/drm/xe/xe_module.c: xe_module.h is included more than once.
+Suja
 
-Error/Warning ids grouped by kconfigs:
-
-gcc_recent_errors
-|-- arc-randconfig-001-20231119
-|   |-- arch-arc-kernel-devtree.c:warning:variable-dt_root-set-but-not-used
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- arc-randconfig-002-20231119
-|   `-- arch-arc-kernel-disasm.c:warning:variable-ins_ptr-set-but-not-used
-|-- arm-randconfig-001-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- arm-randconfig-002-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-char-tpm-tpm_ftpm_tee.c:warning:expecting-prototype-for-ftpm_tee_shutdown().-Prototype-was-for-ftpm_plat_tee_shutdown()-instead
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- arm-randconfig-003-20231119
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- arm64-randconfig-001-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- arm64-randconfig-002-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- arm64-randconfig-003-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- arm64-randconfig-004-20231119
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- csky-randconfig-001-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- i386-allmodconfig
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-i915-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-i915-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- drivers-gpu-drm-xe-display-ext-i915_utils.c:warning:no-previous-prototype-for-__i915_inject_probe_error
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
-|   |-- drivers-gpu-drm-xe-xe_tile_sysfs.c:warning:format-llu-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-drm-drm_print.h:warning:format-llx-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-trace-..-..-drivers-gpu-drm-xe-xe_trace.h:warning:cast-from-pointer-to-integer-of-different-size
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- i386-allnoconfig
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- i386-allyesconfig
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-i915-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-i915-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- drivers-gpu-drm-xe-xe_tile_sysfs.c:warning:format-llu-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-drm-drm_print.h:warning:format-llx-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-trace-..-..-drivers-gpu-drm-xe-xe_trace.h:warning:cast-from-pointer-to-integer-of-different-size
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- i386-buildonly-randconfig-001-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- i386-buildonly-randconfig-002-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- i386-buildonly-randconfig-003-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- i386-buildonly-randconfig-004-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- i386-buildonly-randconfig-005-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- i386-buildonly-randconfig-006-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   `-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|-- i386-defconfig
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- i386-randconfig-001-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- i386-randconfig-002-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- i386-randconfig-003-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-i915-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-i915-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- i386-randconfig-004-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- i386-randconfig-005-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- i386-randconfig-006-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- i386-randconfig-011-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- i386-randconfig-012-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- i386-randconfig-013-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- i386-randconfig-014-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- i386-randconfig-015-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- i386-randconfig-016-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- loongarch-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-xe-display-ext-i915_utils.c:warning:no-previous-prototype-for-__i915_inject_probe_error
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- loongarch-allnoconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- loongarch-allyesconfig
-|   |-- asus_wmi_sensors.c:(.exit.text):undefined-reference-to-wmi_driver_unregister
-|   |-- asus_wmi_sensors.c:(.init.text):undefined-reference-to-__wmi_driver_register
-|   |-- asus_wmi_sensors.c:(.text):undefined-reference-to-wmi_evaluate_method
-|   |-- base.c:(.text):undefined-reference-to-wmi_evaluate_method
-|   |-- base.c:(.text):undefined-reference-to-wmi_has_guid
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- hp-wmi-sensors.c:(.exit.text):undefined-reference-to-wmi_driver_unregister
-|   |-- hp-wmi-sensors.c:(.init.text):undefined-reference-to-__wmi_driver_register
-|   |-- hp-wmi-sensors.c:(.text):undefined-reference-to-wmi_get_event_data
-|   |-- hp-wmi-sensors.c:(.text):undefined-reference-to-wmi_install_notify_handler
-|   |-- hp-wmi-sensors.c:(.text):undefined-reference-to-wmi_instance_count
-|   |-- hp-wmi-sensors.c:(.text):undefined-reference-to-wmi_query_block
-|   |-- hp-wmi-sensors.c:(.text):undefined-reference-to-wmi_remove_notify_handler
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|   `-- surface3-wmi.c:(.text):undefined-reference-to-wmi_query_block
-|-- loongarch-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- loongarch-randconfig-002-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- m68k-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- m68k-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- m68k-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- m68k-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- microblaze-allmodconfig
-|   |-- arch-microblaze-kernel-entry.S:Error:unknown-opcode-suspend
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-loglvl-not-described-in-unwind_trap
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-task-not-described-in-unwind_trap
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-trace-not-described-in-unwind_trap
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-hifn_795x.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-gpu-drm-xe-display-ext-i915_utils.c:warning:no-previous-prototype-for-__i915_inject_probe_error
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- drivers-gpu-drm-xe-xe_tile_sysfs.c:warning:format-llu-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-drm-drm_print.h:warning:format-llx-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-trace-..-..-drivers-gpu-drm-xe-xe_trace.h:warning:cast-from-pointer-to-integer-of-different-size
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- microblaze-allnoconfig
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-loglvl-not-described-in-unwind_trap
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-task-not-described-in-unwind_trap
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-trace-not-described-in-unwind_trap
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- microblaze-allyesconfig
-|   |-- arch-microblaze-kernel-entry.S:Error:unknown-opcode-suspend
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-loglvl-not-described-in-unwind_trap
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-task-not-described-in-unwind_trap
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-trace-not-described-in-unwind_trap
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-crypto-hifn_795x.c:warning:s-directive-output-may-be-truncated-writing-up-to-bytes-into-a-region-of-size
-|   |-- drivers-gpu-drm-xe-xe_tile_sysfs.c:warning:format-llu-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-drm-drm_print.h:warning:format-llx-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-trace-..-..-drivers-gpu-drm-xe-xe_trace.h:warning:cast-from-pointer-to-integer-of-different-size
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- microblaze-defconfig
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-loglvl-not-described-in-unwind_trap
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-task-not-described-in-unwind_trap
-|   |-- arch-microblaze-kernel-unwind.c:warning:Function-parameter-or-member-trace-not-described-in-unwind_trap
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- mips-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-xe-display-ext-i915_utils.c:warning:no-previous-prototype-for-__i915_inject_probe_error
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- drivers-gpu-drm-xe-xe_tile_sysfs.c:warning:format-llu-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-drm-drm_print.h:warning:format-llx-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-trace-..-..-drivers-gpu-drm-xe-xe_trace.h:warning:cast-from-pointer-to-integer-of-different-size
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- mips-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-xe-xe_tile_sysfs.c:warning:format-llu-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-drm-drm_print.h:warning:format-llx-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-trace-..-..-drivers-gpu-drm-xe-xe_trace.h:warning:cast-from-pointer-to-integer-of-different-size
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- nios2-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- nios2-allnoconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- nios2-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- nios2-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- nios2-randconfig-001-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- nios2-randconfig-002-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- openrisc-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-xe-display-ext-i915_utils.c:warning:no-previous-prototype-for-__i915_inject_probe_error
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
-|   |-- drivers-gpu-drm-xe-xe_tile_sysfs.c:warning:format-llu-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-drm-drm_print.h:warning:format-llx-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-trace-..-..-drivers-gpu-drm-xe-xe_trace.h:warning:cast-from-pointer-to-integer-of-different-size
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- openrisc-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- openrisc-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-xe-xe_tile_sysfs.c:warning:format-llu-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-drm-drm_print.h:warning:format-llx-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-trace-..-..-drivers-gpu-drm-xe-xe_trace.h:warning:cast-from-pointer-to-integer-of-different-size
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- parisc-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-xe-display-ext-i915_utils.c:warning:no-previous-prototype-for-__i915_inject_probe_error
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
-|   |-- drivers-gpu-drm-xe-xe_tile_sysfs.c:warning:format-llu-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-drm-drm_print.h:warning:format-llx-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-trace-..-..-drivers-gpu-drm-xe-xe_trace.h:warning:cast-from-pointer-to-integer-of-different-size
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- parisc-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- parisc-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-xe-xe_tile_sysfs.c:warning:format-llu-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-drm-drm_print.h:warning:format-llx-expects-argument-of-type-long-long-unsigned-int-but-argument-has-type-resource_size_t-aka-unsigned-int
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- include-trace-..-..-drivers-gpu-drm-xe-xe_trace.h:warning:cast-from-pointer-to-integer-of-different-size
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- parisc-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- parisc-randconfig-001-20231119
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- parisc64-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- powerpc-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-xe-display-ext-i915_utils.c:warning:no-previous-prototype-for-__i915_inject_probe_error
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- powerpc-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- powerpc-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- powerpc-randconfig-001-20231119
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- powerpc-randconfig-002-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- powerpc64-randconfig-001-20231119
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- powerpc64-randconfig-002-20231119
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- powerpc64-randconfig-003-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- riscv-allmodconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-xe-display-ext-i915_utils.c:warning:no-previous-prototype-for-__i915_inject_probe_error
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- drivers-gpu-drm-xe-display-xe_display_misc.c:warning:no-previous-prototype-for-intel_gmch_vga_set_decode
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- riscv-allnoconfig
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- riscv-allyesconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- riscv-defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- riscv-randconfig-001-20231119
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- riscv-randconfig-002-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- riscv-rv32_defconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- sh-randconfig-001-20231119
-|   |-- arch-sh-boot-compressed-cache.c:warning:no-previous-prototype-for-cache_control
-|   |-- arch-sh-boot-compressed-misc.c:warning:no-previous-prototype-for-arch_ftrace_ops_list_func
-|   |-- arch-sh-boot-compressed-misc.c:warning:no-previous-prototype-for-decompress_kernel
-|   |-- arch-sh-boot-compressed-misc.c:warning:no-previous-prototype-for-ftrace_stub
-|   |-- arch-sh-kernel-cpu-init.c:warning:no-previous-prototype-for-l2_cache_init
-|   |-- arch-sh-kernel-disassemble.c:warning:variable-lastsp-set-but-not-used
-|   |-- arch-sh-kernel-hw_breakpoint.c:warning:no-previous-prototype-for-arch_bp_generic_fields
-|   |-- arch-sh-kernel-machvec.c:warning:variable-mv_comma-set-but-not-used
-|   |-- arch-sh-kernel-return_address.c:warning:no-previous-prototype-for-return_address
-|   |-- arch-sh-kernel-traps_32.c:warning:no-previous-prototype-for-per_cpu_trap_init
-|   |-- arch-sh-mm-cache-sh2.c:warning:no-previous-prototype-for-sh2_cache_init
-|   |-- arch-sh-mm-nommu.c:warning:no-previous-prototype-for-kmap_coherent
-|   |-- arch-sh-mm-nommu.c:warning:no-previous-prototype-for-kmap_coherent_init
-|   |-- arch-sh-mm-nommu.c:warning:no-previous-prototype-for-kunmap_coherent
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-ctrlr-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-d-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-intsize-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-intspec-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-out_hwirq-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-out_type-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:expecting-prototype-for-intc_irq_domain_evt_xlate().-Prototype-was-for-intc_evt_xlate()-instead
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- sh-randconfig-002-20231119
-|   |-- arch-sh-kernel-cpu-init.c:warning:no-previous-prototype-for-l2_cache_init
-|   |-- arch-sh-kernel-disassemble.c:warning:variable-lastsp-set-but-not-used
-|   |-- arch-sh-kernel-hw_breakpoint.c:warning:no-previous-prototype-for-arch_bp_generic_fields
-|   |-- arch-sh-kernel-machvec.c:warning:variable-mv_comma-set-but-not-used
-|   |-- arch-sh-kernel-return_address.c:warning:no-previous-prototype-for-return_address
-|   |-- arch-sh-kernel-traps_32.c:warning:no-previous-prototype-for-per_cpu_trap_init
-|   |-- arch-sh-mm-cache-sh2.c:warning:no-previous-prototype-for-sh2_cache_init
-|   |-- arch-sh-mm-nommu.c:warning:no-previous-prototype-for-kmap_coherent
-|   |-- arch-sh-mm-nommu.c:warning:no-previous-prototype-for-kmap_coherent_init
-|   |-- arch-sh-mm-nommu.c:warning:no-previous-prototype-for-kunmap_coherent
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-ctrlr-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-d-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-intsize-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-intspec-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-out_hwirq-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:Function-parameter-or-member-out_type-not-described-in-intc_evt_xlate
-|   |-- drivers-sh-intc-irqdomain.c:warning:expecting-prototype-for-intc_irq_domain_evt_xlate().-Prototype-was-for-intc_evt_xlate()-instead
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- sparc-randconfig-001-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- sparc-randconfig-002-20231119
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- sparc64-randconfig-001-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- sparc64-randconfig-002-20231119
-|   `-- stdin:warning:warning-syscall-clone3-not-implemented
-|-- um-randconfig-001-20231119
-|   `-- arch-um-os-Linux-umid.c:warning:__builtin___sprintf_chk-may-write-a-terminating-nul-past-the-end-of-the-destination
-|-- um-randconfig-002-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- x86_64-allnoconfig
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-gpu-drm-i915-display-intel_fb.c:intel_frontbuffer.h-is-included-more-than-once.
-|   `-- drivers-gpu-drm-xe-xe_module.c:xe_module.h-is-included-more-than-once.
-|-- x86_64-allyesconfig
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-edac-skx_common.c:warning:_DIMM-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- drivers-gpu-drm-i915-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_alloc
-|   |-- drivers-gpu-drm-i915-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-intel_fbdev_fb_fill_info
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- x86_64-buildonly-randconfig-001-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   `-- drivers-edac-skx_common.c:warning:_DIMM-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|-- x86_64-buildonly-randconfig-002-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- x86_64-buildonly-randconfig-003-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- x86_64-buildonly-randconfig-004-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- x86_64-buildonly-randconfig-005-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   `-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|-- x86_64-buildonly-randconfig-006-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- x86_64-defconfig
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-001-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-002-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-003-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-004-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- x86_64-randconfig-005-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-006-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-011-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- drivers-edac-skx_common.c:warning:_DIMM-directive-output-may-be-truncated-writing-bytes-into-a-region-of-size-between-and
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-012-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-013-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- x86_64-randconfig-014-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- x86_64-randconfig-015-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-016-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-071-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-072-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-073-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-|   |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-|-- x86_64-randconfig-074-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   `-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|-- x86_64-randconfig-075-20231119
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_free_lru-A-least-recently-used-list-of-free-RMIDs
-|   |-- arch-x86-kernel-cpu-resctrl-monitor.c:warning:Cannot-understand-rmid_limbo_count-count-of-currently-unused-but-(potentially)
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-buf-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-nbytes-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-of-not-described-in-rdt_bit_usage_show
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-off-not-described-in-rdtgroup_mode_write
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-rdtgrp-not-described-in-rdtgroup_mode_test_exclusive
-|   |-- arch-x86-kernel-cpu-resctrl-rdtgroup.c:warning:Function-parameter-or-member-s-not-described-in-rdtgroup_size_show
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-|-- x86_64-randconfig-076-20231119
-|   |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-|   |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-|   |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-|   `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-`-- xtensa-randconfig-001-20231119
-    |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-    |-- fs-smb-server-vfs.c:warning:Excess-function-parameter-attrs-description-in-ksmbd_vfs_getattr
-    |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-p_id-not-described-in-ksmbd_vfs_fsync
-    |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-path-not-described-in-ksmbd_vfs_remove_file
-    |-- fs-smb-server-vfs.c:warning:Function-parameter-or-member-work-not-described-in-ksmbd_vfs_link
-    |-- include-linux-kern_levels.h:warning:s-directive-argument-is-null
-    |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-    |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-    |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-    |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-    `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-clang_recent_errors
-|-- hexagon-randconfig-001-20231119
-|   |-- include-asm-generic-io.h:warning:performing-pointer-arithmetic-on-a-null-pointer-has-undefined-behavior
-|   `-- kernel-irq_work.c:warning:no-previous-prototype-for-function-arch_irq_work_raise
-|-- hexagon-randconfig-002-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- include-asm-generic-io.h:warning:performing-pointer-arithmetic-on-a-null-pointer-has-undefined-behavior
-|   `-- kernel-irq_work.c:warning:no-previous-prototype-for-function-arch_irq_work_raise
-|-- mips-allnoconfig
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   |-- kernel-irq_work.c:warning:no-previous-prototype-for-function-arch_irq_work_raise
-|   `-- mm-slub.c:warning:variable-partial_slabs-set-but-not-used
-|-- powerpc-allmodconfig
-|   |-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-function-intel_fbdev_fb_alloc
-|   `-- drivers-gpu-drm-xe-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-function-intel_fbdev_fb_fill_info
-|-- s390-randconfig-001-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-asm-generic-io.h:warning:performing-pointer-arithmetic-on-a-null-pointer-has-undefined-behavior
-|-- s390-randconfig-002-20231119
-|   |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-|   `-- include-asm-generic-io.h:warning:performing-pointer-arithmetic-on-a-null-pointer-has-undefined-behavior
-`-- x86_64-rhel-8.3-rust
-    |-- arch-x86-lib-insn-eval.c:warning:Excess-function-parameter-regoff-description-in-get_eff_addr_sib
-    |-- block-disk-events.c:warning:Excess-function-parameter-events-description-in-disk_force_media_change
-    |-- drivers-gpu-drm-i915-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-function-intel_fbdev_fb_alloc
-    |-- drivers-gpu-drm-i915-display-intel_fbdev_fb.c:warning:no-previous-prototype-for-function-intel_fbdev_fb_fill_info
-    |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_add_fields
-    |-- kernel-trace-trace_kprobe.c:warning:Excess-function-parameter-args-description-in-__kprobe_event_gen_cmd_start
-    |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-bucket-not-described-in-crush_choose_indep
-    |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-outpos-not-described-in-crush_choose_indep
-    |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_to_leaf-not-described-in-crush_choose_indep
-    |-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-recurse_tries-not-described-in-crush_choose_indep
-    `-- net-ceph-crush-mapper.c:warning:Function-parameter-or-member-tries-not-described-in-crush_choose_indep
-
-elapsed time: 1445m
-
-configs tested: 124
-configs skipped: 2
-
-tested configs:
-arc                   randconfig-001-20231119   gcc  
-arc                   randconfig-002-20231119   gcc  
-arm                   randconfig-001-20231119   gcc  
-arm                   randconfig-002-20231119   gcc  
-arm                   randconfig-003-20231119   gcc  
-arm                   randconfig-004-20231119   gcc  
-arm64                 randconfig-001-20231119   gcc  
-arm64                 randconfig-002-20231119   gcc  
-arm64                 randconfig-003-20231119   gcc  
-arm64                 randconfig-004-20231119   gcc  
-csky                  randconfig-001-20231119   gcc  
-csky                  randconfig-002-20231119   gcc  
-hexagon               randconfig-001-20231119   clang
-hexagon               randconfig-002-20231119   clang
-i386                             allmodconfig   gcc  
-i386                              allnoconfig   gcc  
-i386                             allyesconfig   gcc  
-i386         buildonly-randconfig-001-20231119   gcc  
-i386         buildonly-randconfig-002-20231119   gcc  
-i386         buildonly-randconfig-003-20231119   gcc  
-i386         buildonly-randconfig-004-20231119   gcc  
-i386         buildonly-randconfig-005-20231119   gcc  
-i386         buildonly-randconfig-006-20231119   gcc  
-i386                                defconfig   gcc  
-i386                  randconfig-001-20231119   gcc  
-i386                  randconfig-002-20231119   gcc  
-i386                  randconfig-003-20231119   gcc  
-i386                  randconfig-004-20231119   gcc  
-i386                  randconfig-005-20231119   gcc  
-i386                  randconfig-006-20231119   gcc  
-i386                  randconfig-011-20231119   gcc  
-i386                  randconfig-012-20231119   gcc  
-i386                  randconfig-013-20231119   gcc  
-i386                  randconfig-014-20231119   gcc  
-i386                  randconfig-015-20231119   gcc  
-i386                  randconfig-016-20231119   gcc  
-loongarch                        allmodconfig   gcc  
-loongarch                         allnoconfig   gcc  
-loongarch                        allyesconfig   gcc  
-loongarch                           defconfig   gcc  
-loongarch             randconfig-001-20231119   gcc  
-loongarch             randconfig-002-20231119   gcc  
-m68k                             allmodconfig   gcc  
-m68k                              allnoconfig   gcc  
-m68k                             allyesconfig   gcc  
-m68k                                defconfig   gcc  
-microblaze                       allmodconfig   gcc  
-microblaze                        allnoconfig   gcc  
-microblaze                       allyesconfig   gcc  
-microblaze                          defconfig   gcc  
-mips                             allmodconfig   gcc  
-mips                              allnoconfig   clang
-mips                             allyesconfig   gcc  
-nios2                            allmodconfig   gcc  
-nios2                             allnoconfig   gcc  
-nios2                            allyesconfig   gcc  
-nios2                               defconfig   gcc  
-nios2                 randconfig-001-20231119   gcc  
-nios2                 randconfig-002-20231119   gcc  
-openrisc                         allmodconfig   gcc  
-openrisc                          allnoconfig   gcc  
-openrisc                         allyesconfig   gcc  
-openrisc                            defconfig   gcc  
-parisc                           allmodconfig   gcc  
-parisc                            allnoconfig   gcc  
-parisc                           allyesconfig   gcc  
-parisc                              defconfig   gcc  
-parisc                randconfig-001-20231119   gcc  
-parisc                randconfig-002-20231119   gcc  
-parisc64                            defconfig   gcc  
-powerpc                          allmodconfig   gcc  
-powerpc                           allnoconfig   gcc  
-powerpc                          allyesconfig   gcc  
-powerpc               randconfig-001-20231119   gcc  
-powerpc               randconfig-002-20231119   gcc  
-powerpc               randconfig-003-20231119   gcc  
-powerpc64             randconfig-001-20231119   gcc  
-powerpc64             randconfig-002-20231119   gcc  
-powerpc64             randconfig-003-20231119   gcc  
-riscv                            allmodconfig   gcc  
-riscv                             allnoconfig   gcc  
-riscv                            allyesconfig   gcc  
-riscv                               defconfig   gcc  
-riscv                 randconfig-001-20231119   gcc  
-riscv                 randconfig-002-20231119   gcc  
-riscv                          rv32_defconfig   gcc  
-s390                  randconfig-001-20231119   clang
-s390                  randconfig-002-20231119   clang
-sh                    randconfig-001-20231119   gcc  
-sh                    randconfig-002-20231119   gcc  
-sparc64               randconfig-001-20231119   gcc  
-sparc64               randconfig-002-20231119   gcc  
-um                    randconfig-001-20231119   gcc  
-um                    randconfig-002-20231119   gcc  
-x86_64                            allnoconfig   gcc  
-x86_64                           allyesconfig   gcc  
-x86_64       buildonly-randconfig-001-20231119   gcc  
-x86_64       buildonly-randconfig-002-20231119   gcc  
-x86_64       buildonly-randconfig-003-20231119   gcc  
-x86_64       buildonly-randconfig-004-20231119   gcc  
-x86_64       buildonly-randconfig-005-20231119   gcc  
-x86_64       buildonly-randconfig-006-20231119   gcc  
-x86_64                              defconfig   gcc  
-x86_64                randconfig-001-20231119   gcc  
-x86_64                randconfig-002-20231119   gcc  
-x86_64                randconfig-003-20231119   gcc  
-x86_64                randconfig-004-20231119   gcc  
-x86_64                randconfig-005-20231119   gcc  
-x86_64                randconfig-006-20231119   gcc  
-x86_64                randconfig-011-20231119   gcc  
-x86_64                randconfig-012-20231119   gcc  
-x86_64                randconfig-013-20231119   gcc  
-x86_64                randconfig-014-20231119   gcc  
-x86_64                randconfig-015-20231119   gcc  
-x86_64                randconfig-016-20231119   gcc  
-x86_64                randconfig-071-20231119   gcc  
-x86_64                randconfig-072-20231119   gcc  
-x86_64                randconfig-073-20231119   gcc  
-x86_64                randconfig-074-20231119   gcc  
-x86_64                randconfig-075-20231119   gcc  
-x86_64                randconfig-076-20231119   gcc  
-x86_64                          rhel-8.3-rust   clang
-xtensa                randconfig-001-20231119   gcc  
-xtensa                randconfig-002-20231119   gcc  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+>> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_guc_pc.c | 65 ++++++++++++++++++----------------
+>>   1 file changed, 34 insertions(+), 31 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> index f4ac76d6b2dd..5d64cd041db2 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> @@ -57,15 +57,15 @@
+>>    * Xe's GuC PC provides a sysfs API for frequency management:
+>>    *
+>>    * device/gt#/freq_* *read-only* files:
+>> - * - freq_act: The actual resolved frequency decided by PCODE.
+>> - * - freq_cur: The current one requested by GuC PC to the Hardware.
+>> - * - freq_rpn: The Render Performance (RP) N level, which is the minimal one.
+>> - * - freq_rpe: The Render Performance (RP) E level, which is the efficient one.
+>> - * - freq_rp0: The Render Performance (RP) 0 level, which is the maximum one.
+>> + * - act_freq: The actual resolved frequency decided by PCODE.
+>> + * - cur_freq: The current one requested by GuC PC to the Hardware.
+>> + * - rpn_freq: The Render Performance (RP) N level, which is the minimal one.
+>> + * - rpe_freq: The Render Performance (RP) E level, which is the efficient one.
+>> + * - rp0_freq: The Render Performance (RP) 0 level, which is the maximum one.
+>>    *
+>>    * device/gt#/freq_* *read-write* files:
+>> - * - freq_min: GuC PC min request.
+>> - * - freq_max: GuC PC max request.
+>> + * - min_freq: GuC PC min request.
+>> + * - max_freq: GuC PC max request.
+>>    *             If max <= min, then freq_min becomes a fixed frequency request.
+>>    *
+>>    * Render-C States:
+>> @@ -385,7 +385,7 @@ static void pc_update_rp_values(struct xe_guc_pc *pc)
+>>   	pc->rpn_freq = min(pc->rpn_freq, pc->rpe_freq);
+>>   }
+>>   
+>> -static ssize_t freq_act_show(struct device *dev,
+>> +static ssize_t act_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>>   	struct kobject *kobj = &dev->kobj;
+>> @@ -410,9 +410,9 @@ static ssize_t freq_act_show(struct device *dev,
+>>   	xe_device_mem_access_put(gt_to_xe(gt));
+>>   	return ret;
+>>   }
+>> -static DEVICE_ATTR_RO(freq_act);
+>> +static DEVICE_ATTR_RO(act_freq);
+>>   
+>> -static ssize_t freq_cur_show(struct device *dev,
+>> +static ssize_t cur_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>>   	struct kobject *kobj = &dev->kobj;
+>> @@ -439,18 +439,18 @@ static ssize_t freq_cur_show(struct device *dev,
+>>   	xe_device_mem_access_put(gt_to_xe(gt));
+>>   	return ret;
+>>   }
+>> -static DEVICE_ATTR_RO(freq_cur);
+>> +static DEVICE_ATTR_RO(cur_freq);
+>>   
+>> -static ssize_t freq_rp0_show(struct device *dev,
+>> +static ssize_t rp0_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>>   	struct xe_guc_pc *pc = dev_to_pc(dev);
+>>   
+>>   	return sysfs_emit(buf, "%d\n", pc->rp0_freq);
+>>   }
+>> -static DEVICE_ATTR_RO(freq_rp0);
+>> +static DEVICE_ATTR_RO(rp0_freq);
+>>   
+>> -static ssize_t freq_rpe_show(struct device *dev,
+>> +static ssize_t rpe_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>>   	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> @@ -462,18 +462,18 @@ static ssize_t freq_rpe_show(struct device *dev,
+>>   	xe_device_mem_access_put(xe);
+>>   	return sysfs_emit(buf, "%d\n", pc->rpe_freq);
+>>   }
+>> -static DEVICE_ATTR_RO(freq_rpe);
+>> +static DEVICE_ATTR_RO(rpe_freq);
+>>   
+>> -static ssize_t freq_rpn_show(struct device *dev,
+>> +static ssize_t rpn_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>>   	struct xe_guc_pc *pc = dev_to_pc(dev);
+>>   
+>>   	return sysfs_emit(buf, "%d\n", pc->rpn_freq);
+>>   }
+>> -static DEVICE_ATTR_RO(freq_rpn);
+>> +static DEVICE_ATTR_RO(rpn_freq);
+>>   
+>> -static ssize_t freq_min_show(struct device *dev,
+>> +static ssize_t min_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>>   	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> @@ -510,7 +510,7 @@ static ssize_t freq_min_show(struct device *dev,
+>>   	return ret;
+>>   }
+>>   
+>> -static ssize_t freq_min_store(struct device *dev, struct device_attribute *attr,
+>> +static ssize_t min_freq_store(struct device *dev, struct device_attribute *attr,
+>>   			      const char *buff, size_t count)
+>>   {
+>>   	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> @@ -540,9 +540,9 @@ static ssize_t freq_min_store(struct device *dev, struct device_attribute *attr,
+>>   	xe_device_mem_access_put(pc_to_xe(pc));
+>>   	return ret ?: count;
+>>   }
+>> -static DEVICE_ATTR_RW(freq_min);
+>> +static DEVICE_ATTR_RW(min_freq);
+>>   
+>> -static ssize_t freq_max_show(struct device *dev,
+>> +static ssize_t max_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>>   	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> @@ -568,7 +568,7 @@ static ssize_t freq_max_show(struct device *dev,
+>>   	return ret;
+>>   }
+>>   
+>> -static ssize_t freq_max_store(struct device *dev, struct device_attribute *attr,
+>> +static ssize_t max_freq_store(struct device *dev, struct device_attribute *attr,
+>>   			      const char *buff, size_t count)
+>>   {
+>>   	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> @@ -598,7 +598,7 @@ static ssize_t freq_max_store(struct device *dev, struct device_attribute *attr,
+>>   	xe_device_mem_access_put(pc_to_xe(pc));
+>>   	return ret ?: count;
+>>   }
+>> -static DEVICE_ATTR_RW(freq_max);
+>> +static DEVICE_ATTR_RW(max_freq);
+>>   
+>>   /**
+>>    * xe_guc_pc_c_status - get the current GT C state
+>> @@ -664,13 +664,13 @@ u64 xe_guc_pc_mc6_residency(struct xe_guc_pc *pc)
+>>   }
+>>   
+>>   static const struct attribute *pc_attrs[] = {
+>> -	&dev_attr_freq_act.attr,
+>> -	&dev_attr_freq_cur.attr,
+>> -	&dev_attr_freq_rp0.attr,
+>> -	&dev_attr_freq_rpe.attr,
+>> -	&dev_attr_freq_rpn.attr,
+>> -	&dev_attr_freq_min.attr,
+>> -	&dev_attr_freq_max.attr,
+>> +	&dev_attr_act_freq.attr,
+>> +	&dev_attr_cur_freq.attr,
+>> +	&dev_attr_rp0_freq.attr,
+>> +	&dev_attr_rpe_freq.attr,
+>> +	&dev_attr_rpn_freq.attr,
+>> +	&dev_attr_min_freq.attr,
+>> +	&dev_attr_max_freq.attr,
+>>   	NULL
+>>   };
+>>   
+>> @@ -950,6 +950,7 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+>>   	struct xe_tile *tile = gt_to_tile(gt);
+>>   	struct xe_device *xe = gt_to_xe(gt);
+>>   	struct xe_bo *bo;
+>> +	struct kobject *kobj;
+>>   	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
+>>   	int err;
+>>   
+>> @@ -965,7 +966,9 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+>>   
+>>   	pc->bo = bo;
+>>   
+>> -	err = sysfs_create_files(gt->sysfs, pc_attrs);
+>> +	kobj = kobject_create_and_add("freq", gt->sysfs);
+>> +
+>> +	err = sysfs_create_files(kobj, pc_attrs);
+>>   	if (err)
+>>   		return err;
+>>   
+>> -- 
+>> 2.25.1
+>>
