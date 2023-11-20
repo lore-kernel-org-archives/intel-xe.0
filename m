@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 91C8DC2BB3F
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 21:28:06 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B547C5AE5E
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 21:28:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0067010E1B6;
-	Mon, 20 Nov 2023 21:28:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EE1210E1B4;
+	Mon, 20 Nov 2023 21:28:05 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 65E7710E10B
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 98E7F10E178
  for <intel-xe@lists.freedesktop.org>; Mon, 20 Nov 2023 21:28:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700515680; x=1732051680;
+ t=1700515681; x=1732051681;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Vb5+nfG1Os5FXcHIQVLREwFTuUHvBbe+aou2Hl6Z/hM=;
- b=UdVS7aiFZ+BhX0FyQ+MoRXINOwpAXZTHOrH5xRBOqgPN/5VqzG9uZQ5e
- UB+QsXsLb81uBeJnnV1iE2dnNe3ZbU981+0gnGirW0EYWXHRkBAPbB6wH
- 4UgInGaPKtWlZqMm0iYMbab/WGVLsuFz0K0e+Lh7NzRFFLXNQG2EGhDzG
- g6xg4GlaPdi4+AvmeEj9KdzKYiCT8JLPTFT6i3ZK9O66MaQ6RUHZBTBDH
- fLYi5/Z456dzsxWco/ISgdjl43hoTPvuu0tQKXn2nm/kuUIavRLMgyVpM
- Pk13hPgP+lrxCftZCzKX0WhuirquqgLLKaEv58N4lP5dHv5/a0nRxvfmF g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="13256890"
-X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; d="scan'208";a="13256890"
+ bh=IyrxhWZgsZPozBQ5Oi5DSc+y2RYveqKlAFGnfmKbkqw=;
+ b=Zo2OSdLD9mDrurceiGyRH0D6FaZdcF4iLIQozDFzipTh54zHwKbRqQHc
+ 2f6z8v+93HT7wvMfYgLCI5GWqVf2u9+QsHY0m6SgVs7VuiaOp4iIWKWt4
+ M7CtycxCxczyxIRl0XvizYOiUmBzqYv9aFceXqndvnFZwCs2g83PoyLMk
+ 5HJBqR1Rvz8jIe2aYF/3RwhToCEFXBuhcDRomizlhHFNJbbDW6fYgd1rU
+ l2B0QwiPi9ehcc7qIahDKiFRySO4tergkL2c2Dgg/1ZhMmEwmaYhHPrKv
+ BfhB3bR6LkPNFclupQxeh8WM6ILGboqrYL9IXF7P5L5YwTBQrp91T0Qqz w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="13256891"
+X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; d="scan'208";a="13256891"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 13:27:57 -0800
+ 20 Nov 2023 13:27:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="883984473"
-X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; d="scan'208";a="883984473"
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="883984474"
+X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; d="scan'208";a="883984474"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  20 Nov 2023 13:27:57 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 20 Nov 2023 13:27:36 -0800
-Message-ID: <20231120212741.2634679-8-daniele.ceraolospurio@intel.com>
+Date: Mon, 20 Nov 2023 13:27:37 -0800
+Message-ID: <20231120212741.2634679-9-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231120212741.2634679-1-daniele.ceraolospurio@intel.com>
 References: <20231120212741.2634679-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 07/10] drm/xe/gsc: Trigger a driver flr to cleanup
- the GSC on unload
+Subject: [Intel-xe] [CI 08/10] drm/xe/gsc: Query GSC compatibility version
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,51 +60,562 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GSC is only killed by an FLR, so we need to trigger one on unload to
-make sure we stop it. This is because we assign a chunk of memory to
-the GSC as part of the FW load, so we need to make sure it stops
-using it when we release it to the system on driver unload. Note that
-this is not a problem of the unload per-se, because the GSC will not
-touch that memory unless there are requests for it coming from the
-driver; therefore, no accesses will happen while Xe is not loaded,
-but if we re-load the driver then the GSC might wake up and try to
-access that old memory location again.
+The version is obtained via a dedicated MKHI GSC HECI command.
+The compatibility version is what we want to match against for the GSC,
+so we need to call the FW version checker after obtaining the version.
+
+Since this is the first time we send a GSC HECI command via the GSCCS,
+this patch also introduces common infrastructure to send such commands
+to the GSC. Communication with the GSC FW is done via input/output
+buffers, whose addresses are provided via a GSCCS command. The buffers
+contain a generic header and a client-specific packet (e.g. PXP, HDCP);
+the clients don't care about the header format and/or the GSCCS command
+in the batch, they only care about their client-specific header. This
+patch therefore introduces helpers that allow the callers to
+automatically fill in the input header, submit the GSCCS job and decode
+the output header, to make it so that the caller only needs to worry about
+their client-specific input and output messages.
+
+v3: squash of 2 separate patches ahead of merge, so that the common
+functions and their first user are added at the same time
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Reviewed-by: John Harrison <John.C.Harrison@Intel.Com> #v1
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/xe/xe_gsc.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ .../gpu/drm/xe/abi/gsc_command_header_abi.h   |  46 +++++
+ .../gpu/drm/xe/abi/gsc_mkhi_commands_abi.h    |  39 ++++
+ .../gpu/drm/xe/instructions/xe_gsc_commands.h |   2 +
+ drivers/gpu/drm/xe/xe_gsc.c                   |  82 ++++++++
+ drivers/gpu/drm/xe/xe_gsc_submit.c            | 184 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gsc_submit.h            |  30 +++
+ drivers/gpu/drm/xe/xe_uc_fw.c                 |  18 +-
+ drivers/gpu/drm/xe/xe_uc_fw.h                 |   1 +
+ 9 files changed, 397 insertions(+), 6 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
+ create mode 100644 drivers/gpu/drm/xe/abi/gsc_mkhi_commands_abi.h
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc_submit.c
+ create mode 100644 drivers/gpu/drm/xe/xe_gsc_submit.h
 
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 395324a39d67..56211f98ae85 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -68,6 +68,7 @@ xe-y += xe_bb.o \
+ 	xe_ggtt.o \
+ 	xe_gpu_scheduler.o \
+ 	xe_gsc.o \
++	xe_gsc_submit.o \
+ 	xe_gt.o \
+ 	xe_gt_clock.o \
+ 	xe_gt_debugfs.o \
+diff --git a/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h b/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
+new file mode 100644
+index 000000000000..a4c2646803b5
+--- /dev/null
++++ b/drivers/gpu/drm/xe/abi/gsc_command_header_abi.h
+@@ -0,0 +1,46 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _ABI_GSC_COMMAND_HEADER_ABI_H
++#define _ABI_GSC_COMMAND_HEADER_ABI_H
++
++#include <linux/types.h>
++
++struct intel_gsc_mtl_header {
++	u32 validity_marker;
++#define GSC_HECI_VALIDITY_MARKER 0xA578875A
++
++	u8 heci_client_id;
++
++	u8 reserved1;
++
++	u16 header_version;
++#define MTL_GSC_HEADER_VERSION 1
++
++	/* FW allows host to decide host_session handle as it sees fit. */
++	u64 host_session_handle;
++
++	/* handle generated by FW for messages that need to be re-submitted */
++	u64 gsc_message_handle;
++
++	u32 message_size; /* lower 20 bits only, upper 12 are reserved */
++
++	/*
++	 * Flags mask:
++	 * Bit 0: Pending
++	 * Bit 1: Session Cleanup;
++	 * Bits 2-15: Flags
++	 * Bits 16-31: Extension Size
++	 * According to internal spec flags are either input or output
++	 * we distinguish the flags using OUTFLAG or INFLAG
++	 */
++	u32 flags;
++#define GSC_OUTFLAG_MSG_PENDING	BIT(0)
++#define GSC_INFLAG_MSG_CLEANUP	BIT(1)
++
++	u32 status;
++} __packed;
++
++#endif
+diff --git a/drivers/gpu/drm/xe/abi/gsc_mkhi_commands_abi.h b/drivers/gpu/drm/xe/abi/gsc_mkhi_commands_abi.h
+new file mode 100644
+index 000000000000..ad4d041873ab
+--- /dev/null
++++ b/drivers/gpu/drm/xe/abi/gsc_mkhi_commands_abi.h
+@@ -0,0 +1,39 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _ABI_GSC_MKHI_COMMANDS_ABI_H
++#define _ABI_GSC_MKHI_COMMANDS_ABI_H
++
++#include <linux/types.h>
++
++/* Heci client ID for MKHI commands */
++#define HECI_MEADDRESS_MKHI 7
++
++/* Generic MKHI header */
++struct gsc_mkhi_header {
++	u8  group_id;
++	u8  command;
++	u8  reserved;
++	u8  result;
++} __packed;
++
++/* GFX_SRV commands */
++#define MKHI_GROUP_ID_GFX_SRV 0x30
++
++#define MKHI_GFX_SRV_GET_HOST_COMPATIBILITY_VERSION (0x42)
++
++struct gsc_get_compatibility_version_in {
++	struct gsc_mkhi_header header;
++} __packed;
++
++struct gsc_get_compatibility_version_out {
++	struct gsc_mkhi_header header;
++	u16 proj_major;
++	u16 compat_major;
++	u16 compat_minor;
++	u16 reserved[5];
++} __packed;
++
++#endif
+diff --git a/drivers/gpu/drm/xe/instructions/xe_gsc_commands.h b/drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
+index c7a833d7f965..f8949cad9d0f 100644
+--- a/drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
++++ b/drivers/gpu/drm/xe/instructions/xe_gsc_commands.h
+@@ -28,6 +28,8 @@
+ 	REG_FIELD_PREP(GSC_OPCODE, op) | \
+ 	REG_FIELD_PREP(GSC_CMD_DATA_AND_LEN, dl))
+ 
++#define GSC_HECI_CMD_PKT __GSC_INSTR(0, 6)
++
+ #define GSC_FW_LOAD __GSC_INSTR(1, 2)
+ #define   GSC_FW_LOAD_LIMIT_VALID REG_BIT(31)
+ 
 diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index 0def7c1ae84d..1bb0de0a24f4 100644
+index 1bb0de0a24f4..093c0fafe584 100644
 --- a/drivers/gpu/drm/xe/xe_gsc.c
 +++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -130,6 +130,23 @@ static int gsc_upload(struct xe_gsc *gsc)
+@@ -7,11 +7,13 @@
+ 
+ #include <drm/drm_managed.h>
+ 
++#include "abi/gsc_mkhi_commands_abi.h"
+ #include "generated/xe_wa_oob.h"
+ #include "xe_bb.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_exec_queue.h"
++#include "xe_gsc_submit.h"
+ #include "xe_gt.h"
+ #include "xe_gt_printk.h"
+ #include "xe_map.h"
+@@ -91,6 +93,78 @@ static int emit_gsc_upload(struct xe_gsc *gsc)
+ 	return 0;
+ }
+ 
++#define version_query_wr(xe_, map_, offset_, field_, val_) \
++	xe_map_wr_field(xe_, map_, offset_, struct gsc_get_compatibility_version_in, field_, val_)
++#define version_query_rd(xe_, map_, offset_, field_) \
++	xe_map_rd_field(xe_, map_, offset_, struct gsc_get_compatibility_version_out, field_)
++
++static u32 emit_version_query_msg(struct xe_device *xe, struct iosys_map *map, u32 wr_offset)
++{
++	xe_map_memset(xe, map, wr_offset, 0, sizeof(struct gsc_get_compatibility_version_in));
++
++	version_query_wr(xe, map, wr_offset, header.group_id, MKHI_GROUP_ID_GFX_SRV);
++	version_query_wr(xe, map, wr_offset, header.command,
++			 MKHI_GFX_SRV_GET_HOST_COMPATIBILITY_VERSION);
++
++	return wr_offset + sizeof(struct gsc_get_compatibility_version_in);
++}
++
++#define GSC_VER_PKT_SZ SZ_4K /* 4K each for input and output */
++static int query_compatibility_version(struct xe_gsc *gsc)
++{
++	struct xe_uc_fw_version *compat = &gsc->fw.versions.found[XE_UC_FW_VER_COMPATIBILITY];
++	struct xe_gt *gt = gsc_to_gt(gsc);
++	struct xe_tile *tile = gt_to_tile(gt);
++	struct xe_device *xe = gt_to_xe(gt);
++	struct xe_bo *bo;
++	u32 wr_offset;
++	u32 rd_offset;
++	u64 ggtt_offset;
++	int err;
++
++	bo = xe_bo_create_pin_map(xe, tile, NULL, GSC_VER_PKT_SZ * 2,
++				  ttm_bo_type_kernel,
++				  XE_BO_CREATE_SYSTEM_BIT |
++				  XE_BO_CREATE_GGTT_BIT);
++	if (IS_ERR(bo)) {
++		xe_gt_err(gt, "failed to allocate bo for GSC version query\n");
++		return err;
++	}
++
++	ggtt_offset = xe_bo_ggtt_addr(bo);
++
++	wr_offset = xe_gsc_emit_header(xe, &bo->vmap, 0, HECI_MEADDRESS_MKHI, 0,
++				       sizeof(struct gsc_get_compatibility_version_in));
++	wr_offset = emit_version_query_msg(xe, &bo->vmap, wr_offset);
++
++	err = xe_gsc_pkt_submit_kernel(gsc, ggtt_offset, wr_offset,
++				       ggtt_offset + GSC_VER_PKT_SZ,
++				       GSC_VER_PKT_SZ);
++	if (err) {
++		xe_gt_err(gt,
++			  "failed to submit GSC request for compatibility version: %d\n",
++			  err);
++		goto out_bo;
++	}
++
++	err = xe_gsc_read_out_header(xe, &bo->vmap, GSC_VER_PKT_SZ,
++				     sizeof(struct gsc_get_compatibility_version_out),
++				     &rd_offset);
++	if (err) {
++		xe_gt_err(gt, "HuC: invalid GSC reply for version query (err=%d)\n", err);
++		return err;
++	}
++
++	compat->major = version_query_rd(xe, &bo->vmap, rd_offset, compat_major);
++	compat->minor = version_query_rd(xe, &bo->vmap, rd_offset, compat_minor);
++
++	xe_gt_info(gt, "found GSC cv%u.%u\n", compat->major, compat->minor);
++
++out_bo:
++	xe_bo_unpin_map_no_vm(bo);
++	return err;
++}
++
+ static int gsc_fw_is_loaded(struct xe_gt *gt)
+ {
+ 	return xe_mmio_read32(gt, HECI_FWSTS1(MTL_GSC_HECI1_BASE)) &
+@@ -159,6 +233,14 @@ static int gsc_upload(struct xe_gsc *gsc)
  		return err;
  	}
  
-+	/*
-+	 * GSC is only killed by an FLR, so we need to trigger one on unload to
-+	 * make sure we stop it. This is because we assign a chunk of memory to
-+	 * the GSC as part of the FW load, so we need to make sure it stops
-+	 * using it when we release it to the system on driver unload. Note that
-+	 * this is not a problem of the unload per-se, because the GSC will not
-+	 * touch that memory unless there are requests for it coming from the
-+	 * driver; therefore, no accesses will happen while Xe is not loaded,
-+	 * but if we re-load the driver then the GSC might wake up and try to
-+	 * access that old memory location again.
-+	 * Given that an FLR is a very disruptive action (see the FLR function
-+	 * for details), we want to do it as the last action before releasing
-+	 * the access to the MMIO bar, which means we need to do it as part of
-+	 * mmio cleanup.
-+	 */
-+	xe->needs_flr_on_fini = true;
++	err = query_compatibility_version(gsc);
++	if (err)
++		return err;
 +
- 	err = emit_gsc_upload(gsc);
- 	if (err) {
- 		xe_gt_err(gt, "Failed to emit GSC FW upload (%pe)\n", ERR_PTR(err));
++	err = xe_uc_fw_check_version_requirements(&gsc->fw);
++	if (err)
++		return err;
++
+ 	xe_gt_dbg(gt, "GSC FW async load completed\n");
+ 
+ 	return 0;
+diff --git a/drivers/gpu/drm/xe/xe_gsc_submit.c b/drivers/gpu/drm/xe/xe_gsc_submit.c
+new file mode 100644
+index 000000000000..aa3e2b4e2080
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gsc_submit.c
+@@ -0,0 +1,184 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#include "xe_gsc_submit.h"
++
++#include "abi/gsc_command_header_abi.h"
++#include "xe_bb.h"
++#include "xe_exec_queue.h"
++#include "xe_gt_printk.h"
++#include "xe_gt_types.h"
++#include "xe_map.h"
++#include "xe_sched_job.h"
++#include "instructions/xe_gsc_commands.h"
++#include "regs/xe_gsc_regs.h"
++
++#define GSC_HDR_SIZE (sizeof(struct intel_gsc_mtl_header)) /* shorthand define */
++
++#define mtl_gsc_header_wr(xe_, map_, offset_, field_, val_) \
++	xe_map_wr_field(xe_, map_, offset_, struct intel_gsc_mtl_header, field_, val_)
++
++#define mtl_gsc_header_rd(xe_, map_, offset_, field_) \
++	xe_map_rd_field(xe_, map_, offset_, struct intel_gsc_mtl_header, field_)
++
++/*
++ * GSC FW allows us to define the host_session_handle as we see fit, as long
++ * as we use unique identifier for each user, with handle 0 being reserved for
++ * kernel usage.
++ * To be able to differentiate which client subsystem owns the given session, we
++ * include the client id in the top 8 bits of the handle.
++ */
++#define HOST_SESSION_CLIENT_MASK GENMASK(63, 56)
++
++static struct xe_gt *
++gsc_to_gt(struct xe_gsc *gsc)
++{
++	return container_of(gsc, struct xe_gt, uc.gsc);
++}
++
++/**
++ * xe_gsc_emit_header - write the MTL GSC header in memory
++ * @xe: the Xe device
++ * @map: the iosys map to write to
++ * @offset: offset from the start of the map at which to write the header
++ * @heci_client_id: client id identifying the type of command (see abi for values)
++ * @host_session_id: host session ID of the caller
++ * @payload_size: size of the payload that follows the header
++ *
++ * Returns: offset memory location following the header
++ */
++u32 xe_gsc_emit_header(struct xe_device *xe, struct iosys_map *map, u32 offset,
++		       u8 heci_client_id, u64 host_session_id, u32 payload_size)
++{
++	xe_assert(xe, !(host_session_id & HOST_SESSION_CLIENT_MASK));
++
++	if (host_session_id)
++		host_session_id |= FIELD_PREP(HOST_SESSION_CLIENT_MASK, heci_client_id);
++
++	xe_map_memset(xe, map, offset, 0, GSC_HDR_SIZE);
++
++	mtl_gsc_header_wr(xe, map, offset, validity_marker, GSC_HECI_VALIDITY_MARKER);
++	mtl_gsc_header_wr(xe, map, offset, heci_client_id, heci_client_id);
++	mtl_gsc_header_wr(xe, map, offset, host_session_handle, host_session_id);
++	mtl_gsc_header_wr(xe, map, offset, header_version, MTL_GSC_HEADER_VERSION);
++	mtl_gsc_header_wr(xe, map, offset, message_size, payload_size + GSC_HDR_SIZE);
++
++	return offset + GSC_HDR_SIZE;
++};
++
++/**
++ * xe_gsc_check_and_update_pending - check the pending bit and update the input
++ * header with the retry handle from the output header
++ * @xe: the Xe device
++ * @in: the iosys map containing the input buffer
++ * @offset_in: offset within the iosys at which the input buffer is located
++ * @out: the iosys map containing the output buffer
++ * @offset_out: offset within the iosys at which the output buffer is located
++ *
++ * Returns: true if the pending bit was set, false otherwise
++ */
++bool xe_gsc_check_and_update_pending(struct xe_device *xe,
++				     struct iosys_map *in, u32 offset_in,
++				     struct iosys_map *out, u32 offset_out)
++{
++	if (mtl_gsc_header_rd(xe, out, offset_out, flags) & GSC_OUTFLAG_MSG_PENDING) {
++		u64 handle = mtl_gsc_header_rd(xe, out, offset_out, gsc_message_handle);
++
++		mtl_gsc_header_wr(xe, in, offset_in, gsc_message_handle, handle);
++
++		return true;
++	}
++
++	return false;
++}
++
++/**
++ * xe_gsc_read_out_header - reads and validates the output header and returns
++ * the offset of the reply following the header
++ * @xe: the Xe device
++ * @map: the iosys map containing the output buffer
++ * @offset: offset within the iosys at which the output buffer is located
++ * @min_payload_size: minimum size of the message excluding the gsc header
++ * @payload_offset: optional pointer to be set to the payload offset
++ *
++ * Returns: -errno value on failure, 0 otherwise
++ */
++int xe_gsc_read_out_header(struct xe_device *xe,
++			   struct iosys_map *map, u32 offset,
++			   u32 min_payload_size,
++			   u32 *payload_offset)
++{
++	u32 marker = mtl_gsc_header_rd(xe, map, offset, validity_marker);
++	u32 size = mtl_gsc_header_rd(xe, map, offset, message_size);
++	u32 payload_size = size - GSC_HDR_SIZE;
++
++	if (marker != GSC_HECI_VALIDITY_MARKER)
++		return -EPROTO;
++
++	if (size < GSC_HDR_SIZE || payload_size < min_payload_size)
++		return -ENODATA;
++
++	if (payload_offset)
++		*payload_offset = offset + GSC_HDR_SIZE;
++
++	return 0;
++}
++
++/**
++ * xe_gsc_pkt_submit_kernel - submit a kernel heci pkt to the GSC
++ * @gsc: the GSC uC
++ * @addr_in: GGTT address of the message to send to the GSC
++ * @size_in: size of the message to send to the GSC
++ * @addr_out: GGTT address for the GSC to write the reply to
++ * @size_out: size of the memory reserved for the reply
++ */
++int xe_gsc_pkt_submit_kernel(struct xe_gsc *gsc, u64 addr_in, u32 size_in,
++			     u64 addr_out, u32 size_out)
++{
++	struct xe_gt *gt = gsc_to_gt(gsc);
++	struct xe_bb *bb;
++	struct xe_sched_job *job;
++	struct dma_fence *fence;
++	long timeout;
++
++	if (size_in < GSC_HDR_SIZE)
++		return -ENODATA;
++
++	if (size_out < GSC_HDR_SIZE)
++		return -ENOMEM;
++
++	bb = xe_bb_new(gt, 8, false);
++	if (IS_ERR(bb))
++		return PTR_ERR(bb);
++
++	bb->cs[bb->len++] = GSC_HECI_CMD_PKT;
++	bb->cs[bb->len++] = lower_32_bits(addr_in);
++	bb->cs[bb->len++] = upper_32_bits(addr_in);
++	bb->cs[bb->len++] = size_in;
++	bb->cs[bb->len++] = lower_32_bits(addr_out);
++	bb->cs[bb->len++] = upper_32_bits(addr_out);
++	bb->cs[bb->len++] = size_out;
++	bb->cs[bb->len++] = 0;
++
++	job = xe_bb_create_job(gsc->q, bb);
++	if (IS_ERR(job)) {
++		xe_bb_free(bb, NULL);
++		return PTR_ERR(job);
++	}
++
++	xe_sched_job_arm(job);
++	fence = dma_fence_get(&job->drm.s_fence->finished);
++	xe_sched_job_push(job);
++
++	timeout = dma_fence_wait_timeout(fence, false, HZ);
++	dma_fence_put(fence);
++	xe_bb_free(bb, NULL);
++	if (timeout < 0)
++		return timeout;
++	else if (!timeout)
++		return -ETIME;
++
++	return 0;
++}
+diff --git a/drivers/gpu/drm/xe/xe_gsc_submit.h b/drivers/gpu/drm/xe/xe_gsc_submit.h
+new file mode 100644
+index 000000000000..0801da5d446a
+--- /dev/null
++++ b/drivers/gpu/drm/xe/xe_gsc_submit.h
+@@ -0,0 +1,30 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2023 Intel Corporation
++ */
++
++#ifndef _XE_GSC_SUBMIT_H_
++#define _XE_GSC_SUBMIT_H_
++
++#include <linux/types.h>
++
++struct iosys_map;
++struct xe_device;
++struct xe_gsc;
++
++u32 xe_gsc_emit_header(struct xe_device *xe, struct iosys_map *map, u32 offset,
++		       u8 heci_client_id, u64 host_session_id, u32 payload_size);
++
++bool xe_gsc_check_and_update_pending(struct xe_device *xe,
++				     struct iosys_map *in, u32 offset_in,
++				     struct iosys_map *out, u32 offset_out);
++
++int xe_gsc_read_out_header(struct xe_device *xe,
++			   struct iosys_map *map, u32 offset,
++			   u32 min_payload_size,
++			   u32 *payload_offset);
++
++int xe_gsc_pkt_submit_kernel(struct xe_gsc *gsc, u64 addr_in, u32 size_in,
++			     u64 addr_out, u32 size_out);
++
++#endif
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
+index c354f7b51103..062fc1eb591c 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.c
++++ b/drivers/gpu/drm/xe/xe_uc_fw.c
+@@ -224,8 +224,11 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
+ 			uc_fw->versions.wanted.minor = entries[i].minor;
+ 			uc_fw->full_ver_required = entries[i].full_ver_required;
+ 
+-			/* compatibility version checking coming soon */
+-			uc_fw->versions.wanted_type = XE_UC_FW_VER_RELEASE;
++			if (uc_fw->type == XE_UC_FW_TYPE_GSC)
++				uc_fw->versions.wanted_type = XE_UC_FW_VER_COMPATIBILITY;
++			else
++				uc_fw->versions.wanted_type = XE_UC_FW_VER_RELEASE;
++
+ 			break;
+ 		}
+ 	}
+@@ -321,7 +324,7 @@ static void guc_read_css_info(struct xe_uc_fw *uc_fw, struct uc_css_header *css)
+ 	uc_fw->private_data_size = css->private_data_size;
+ }
+ 
+-static int uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw)
++int xe_uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw)
+ {
+ 	struct xe_device *xe = uc_fw_to_xe(uc_fw);
+ 	struct xe_uc_fw_version *wanted = &uc_fw->versions.wanted;
+@@ -678,9 +681,12 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
+ 			    "Using %s firmware from %s",
+ 			    xe_uc_fw_type_repr(uc_fw->type), uc_fw->path);
+ 
+-	err = uc_fw_check_version_requirements(uc_fw);
+-	if (err)
+-		goto fail;
++	/* for GSC FW we want the compatibility version, which we query after load */
++	if (uc_fw->type != XE_UC_FW_TYPE_GSC) {
++		err = xe_uc_fw_check_version_requirements(uc_fw);
++		if (err)
++			goto fail;
++	}
+ 
+ 	obj = xe_bo_create_from_data(xe, tile, fw->data, fw->size,
+ 				     ttm_bo_type_kernel,
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw.h b/drivers/gpu/drm/xe/xe_uc_fw.h
+index 7feafe1695f9..85c20795d1f8 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw.h
+@@ -17,6 +17,7 @@ struct drm_printer;
+ int xe_uc_fw_init(struct xe_uc_fw *uc_fw);
+ size_t xe_uc_fw_copy_rsa(struct xe_uc_fw *uc_fw, void *dst, u32 max_len);
+ int xe_uc_fw_upload(struct xe_uc_fw *uc_fw, u32 offset, u32 dma_flags);
++int xe_uc_fw_check_version_requirements(struct xe_uc_fw *uc_fw);
+ void xe_uc_fw_print(struct xe_uc_fw *uc_fw, struct drm_printer *p);
+ 
+ static inline u32 xe_uc_fw_rsa_offset(struct xe_uc_fw *uc_fw)
 -- 
 2.41.0
 
