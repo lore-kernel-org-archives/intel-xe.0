@@ -4,48 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 316B9C197A0
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 18:57:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D586CC197A0
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 19:20:10 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04FDC10E0B8;
-	Mon, 20 Nov 2023 18:57:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D77910E119
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Nov 2023 18:57:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700506638; x=1732042638;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=EKYJIk03WIm46KJhDNtfxi234OovX+G7c/kue+Labnk=;
- b=Wb6P7IW3ZpzjZgHbAsNFgTisA/i1jS7wT5oDNgKv/hb8oHwRmBwCd8TR
- RcnVBHx78TG7bWdrt54YfARo6Nn71sCptBXOTPB96QlObpXES/dtP2h+H
- oW3bjlQmrmtccp/Mx98yVHK7wc3tP5BSU99akIXhe3vA2/sQkZ4+tesne
- 3pEhbSHVv/WbJyBZtkMAv9SwWJ2PSkEjjkGvGXrQtZJlf6O2lvkLB+n3I
- sCf9moP5FKcRMlbF7RfMNsjJqRO8yzKDfgRFeBVTnl2KiOQAeoIbmFEbK
- wOcy74GJkJrAhTX+XQPkYlyJZhj0PYXlTek6U+WvgP7bsCtc6LCcY1kk7 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="422779888"
-X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; d="scan'208";a="422779888"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 10:57:18 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="857078184"
-X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; d="scan'208";a="857078184"
-Received: from josouza-mobl2.bz.intel.com ([10.87.243.88])
- by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 10:57:17 -0800
-From: =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 20 Nov 2023 10:57:12 -0800
-Message-ID: <20231120185712.80150-2-jose.souza@intel.com>
-X-Mailer: git-send-email 2.42.1
-In-Reply-To: <20231120185712.80150-1-jose.souza@intel.com>
-References: <20231120185712.80150-1-jose.souza@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 76A0F10E0BE;
+	Mon, 20 Nov 2023 19:20:10 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 42FB510E0B8;
+ Mon, 20 Nov 2023 19:20:09 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 2F4C6AADD7;
+ Mon, 20 Nov 2023 19:20:09 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0926332847702990699=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 2/2] drm/xe: Add missing RPL and ADL
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Date: Mon, 20 Nov 2023 19:20:09 -0000
+Message-ID: <170050800916.29476.2934880661476792292@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231120052300.3558962-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20231120052300.3558962-1-tejas.upadhyay@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/xe?=
+ =?utf-8?q?2=3A_Add_workaround_14020013138_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,51 +39,190 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Those are ids present in i915 but missing in Xe.
+--===============0926332847702990699==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
-Signed-off-by: José Roberto de Souza <jose.souza@intel.com>
----
- include/drm/xe_pciids.h | 9 +++++++--
- 1 file changed, 7 insertions(+), 2 deletions(-)
+== Series Details ==
 
-diff --git a/include/drm/xe_pciids.h b/include/drm/xe_pciids.h
-index 058a68de3bb57..269622c7ddd0d 100644
---- a/include/drm/xe_pciids.h
-+++ b/include/drm/xe_pciids.h
-@@ -67,6 +67,7 @@
- 	MACRO__(0x4682, ## __VA_ARGS__),	\
- 	MACRO__(0x4688, ## __VA_ARGS__),	\
- 	MACRO__(0x468A, ## __VA_ARGS__),	\
-+	MACRO__(0x468B, ## __VA_ARGS__),	\
- 	MACRO__(0x4690, ## __VA_ARGS__),	\
- 	MACRO__(0x4692, ## __VA_ARGS__),	\
- 	MACRO__(0x4693, ## __VA_ARGS__)
-@@ -113,14 +114,18 @@
- #define XE_RPLU_IDS(MACRO__, ...)		\
- 	MACRO__(0xA721, ## __VA_ARGS__),	\
- 	MACRO__(0xA7A1, ## __VA_ARGS__),	\
--	MACRO__(0xA7A9, ## __VA_ARGS__)
-+	MACRO__(0xA7A9, ## __VA_ARGS__),	\
-+	MACRO__(0xA7AC, ## __VA_ARGS__),	\
-+	MACRO__(0xA7AD, ## __VA_ARGS__)
- 
- /* RPL-P */
- #define XE_RPLP_IDS(MACRO__, ...)		\
- 	XE_RPLU_IDS(MACRO__, ## __VA_ARGS__),	\
- 	MACRO__(0xA720, ## __VA_ARGS__),	\
- 	MACRO__(0xA7A0, ## __VA_ARGS__),	\
--	MACRO__(0xA7A8, ## __VA_ARGS__)
-+	MACRO__(0xA7A8, ## __VA_ARGS__),	\
-+	MACRO__(0xA7AA, ## __VA_ARGS__),	\
-+	MACRO__(0xA7AB, ## __VA_ARGS__)
- 
- /* DG2 */
- #define XE_DG2_G10_IDS(MACRO__, ...)		\
--- 
-2.42.1
+Series: drm/xe/xe2: Add workaround 14020013138 (rev3)
+URL   : https://patchwork.freedesktop.org/series/126580/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba_BAT -> xe-pw-126580v3_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-126580v3_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-dg2-oem2:       [FAIL][3] ([Intel XE#480]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:
+    - bat-adlp-7:         [FAIL][5] ([Intel XE#480]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html
+
+  * {igt@xe_create@create-execqueues-leak}:
+    - bat-atsm-2:         [FAIL][7] ([Intel XE#524]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+
+  
+#### Warnings ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][9] ([Intel XE#616] / [Intel XE#750]) -> [DMESG-FAIL][10] ([Intel XE#282] / [i915#2017])
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
+
+  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
+  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
+  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+
+
+Build changes
+-------------
+
+  * Linux: xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba -> xe-pw-126580v3
+
+  IGT_7595: cfa00d99b1dfa0621ea552d1ed54907798da1a1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba: 50846befe4ba5c1ce589dc88087d45991f8069ba
+  xe-pw-126580v3: 126580v3
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/index.html
+
+--===============0926332847702990699==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/xe2: Add workaround 14020013138 (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126580/">https://patchwork.freedesktop.org/series/126580/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba_BAT -&gt; xe-pw-126580v3_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-126580v3_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@b-edp1.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>{igt@xe_create@create-execqueues-leak}:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126580v3/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba -&gt; xe-pw-126580v3</li>
+</ul>
+<p>IGT_7595: cfa00d99b1dfa0621ea552d1ed54907798da1a1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-508-50846befe4ba5c1ce589dc88087d45991f8069ba: 50846befe4ba5c1ce589dc88087d45991f8069ba<br />
+  xe-pw-126580v3: 126580v3</p>
+
+</body>
+</html>
+
+--===============0926332847702990699==--
