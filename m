@@ -4,44 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B95B7C197A0
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 12:05:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7688DC197A0
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 12:06:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7ADC110E3A8;
-	Mon, 20 Nov 2023 12:05:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.120])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5891D10E3AC
- for <intel-xe@lists.freedesktop.org>; Mon, 20 Nov 2023 12:05:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700481918; x=1732017918;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6DLeu9DO3xn8TiVxjGKHlRfoSY7hxNvTGY3E8otkALE=;
- b=hpK/9l/NBxkvsKRn0qPzvP2EZvaVa39Jnh/ia1iL2zEzH8YTuhHflxYD
- huYTUAhlK2SdCR9v3hfjn51Qq3qeiG2XEjTijcuxyKlNvqQyBgCmBFyd4
- gSk+IRaSMB9Ynqo8m6U0wd3BblyRlkHrrP2Ka9+PYSb8iXhEK5FFylgfm
- wXkPR0pzlUdgl/XMbBEVw4fvxYS0xzXERAfxzgAUXrom97Q00Lxfcd/2O
- HqQ9UF6fPoDfuYGK6wwDt5rVZjNTbEw+mQY6eKyZk0vtJbofA1Sx9BrcE
- 6jAZ7cYH+GbBHe4Sqigu4BfrkYxHdbOAJyTr0YSf/044zPU7gBio43fa/ g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="390464485"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="390464485"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 04:05:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10899"; a="716187845"
-X-IronPort-AV: E=Sophos;i="6.04,213,1695711600"; d="scan'208";a="716187845"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by orsmga003.jf.intel.com with ESMTP; 20 Nov 2023 04:05:16 -0800
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 20 Nov 2023 17:44:28 +0530
-Message-Id: <20231120121428.3576569-1-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.25.1
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C50E10E3A8;
+	Mon, 20 Nov 2023 12:06:28 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 179A610E3A8;
+ Mon, 20 Nov 2023 12:06:27 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1643AAADE8;
+ Mon, 20 Nov 2023 12:06:27 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe/xe2: Add workaround 14017421178
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Date: Mon, 20 Nov 2023 12:06:27 -0000
+Message-ID: <170048198708.29477.53017395859079889@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231117092252.2413647-1-riana.tauro@intel.com>
+In-Reply-To: <20231117092252.2413647-1-riana.tauro@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
+ =?utf-8?q?rm/xe/pmu=3A_fix_config_counters_in_pmu?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,36 +39,38 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This workaround applies to Xe2_LPM
+== Series Details ==
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/xe_wa.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Series: drm/xe/pmu: fix config counters in pmu
+URL   : https://patchwork.freedesktop.org/series/126577/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-index 6572715dfc09..13962b8a677a 100644
---- a/drivers/gpu/drm/xe/xe_wa.c
-+++ b/drivers/gpu/drm/xe/xe_wa.c
-@@ -273,6 +273,15 @@ static const struct xe_rtp_entry_sr gt_was[] = {
- 			 SET(XEHPC_L3CLOS_MASK(3), ~0))
- 	},
- 
-+	/* Xe2_LPM */
-+
-+	{ XE_RTP_NAME("14017421178"),
-+	  XE_RTP_RULES(MEDIA_VERSION(2000),
-+		       ENGINE_CLASS(VIDEO_DECODE)),
-+	  XE_RTP_ACTIONS(SET(VDBOX_CGCTL3F10(0), IECPUNIT_CLKGATE_DIS)),
-+	  XE_RTP_ENTRY_FLAG(FOREACH_ENGINE),
-+	},
-+
- 	{}
- };
- 
--- 
-2.25.1
+== Summary ==
+
++ trap cleanup EXIT
++ KERNEL=/kernel
++ MT=/root/linux/maintainer-tools
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
+Cloning into '/root/linux/maintainer-tools'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ make -C /root/linux/maintainer-tools
+make: Entering directory '/root/linux/maintainer-tools'
+cc -O2 -g -Wextra -o remap-log remap-log.c
+make: Leaving directory '/root/linux/maintainer-tools'
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ /root/linux/maintainer-tools/dim sparse --fast b25aa17bffa88c86fec716e40bdb3848eea17b23
+Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
+Fast mode used, each commit won't be checked separately.
+Okay!
+
++ cleanup
+++ stat -c %u:%g /kernel
++ chown -R 1003:1003 /kernel
+
 
