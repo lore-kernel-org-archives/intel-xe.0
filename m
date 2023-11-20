@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16FEAC197A0
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 10:21:03 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8AB4C197A0
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 10:21:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B511D10E399;
-	Mon, 20 Nov 2023 10:21:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7436510E399;
+	Mon, 20 Nov 2023 10:21:18 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 6098310E399;
- Mon, 20 Nov 2023 10:21:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5BD0510E399;
+ Mon, 20 Nov 2023 10:21:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5A84CA882E;
- Mon, 20 Nov 2023 10:21:02 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 5A1B2A882E;
+ Mon, 20 Nov 2023 10:21:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Mon, 20 Nov 2023 10:21:02 -0000
-Message-ID: <170047566233.29475.9200770612117241581@emeril.freedesktop.org>
+Date: Mon, 20 Nov 2023 10:21:16 -0000
+Message-ID: <170047567636.29477.14912992811697548788@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231116222316.407407-1-lucas.demarchi@intel.com>
 In-Reply-To: <20231116222316.407407-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Remove_GEN=5B0-9=5D*=5F_prefixes?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_dr?=
+ =?utf-8?q?m/xe=3A_Remove_GEN=5B0-9=5D*=5F_prefixes?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,13 +48,56 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: drm/xe: Remove GEN[0-9]*_ prefixes
 URL   : https://patchwork.freedesktop.org/series/126558/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: b25aa17bf drm/xe/guc: Use valid scratch register for posting read
-=== git am output follows ===
-Applying: drm/xe: Remove GEN[0-9]*_ prefixes
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit cc32ec062ffea4de2fd4eeeb21e80022891261ba
+Author: Lucas De Marchi <lucas.demarchi@intel.com>
+Date:   Thu Nov 16 14:23:16 2023 -0800
+
+    drm/xe: Remove GEN[0-9]*_ prefixes
+    
+    After noticing in logs there there were still mentions to GEN6
+    registers, it was clear commit 860bc3f9b76d ("drm/xe: Drop gen afixes
+    from registers") didn't take care of all the afixes. Some were added
+    later, but there are also constans and strings still using that.
+    Continue the cleanup removing the remaining ones.
+    
+    To keep it consistent with code nearby, a few other changes are made:
+    
+            - Remove prefix in INTEL_LEGACY_64B_CONTEXT
+            - Remove GEN8_CTX_L3LLC_COHERENT since it's unused
+            - Rename GEN9_FREQ_SCALER to GT_FREQUENCY_SCALER
+    
+    Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+    Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
++ /mt/dim checkpatch b25aa17bffa88c86fec716e40bdb3848eea17b23 drm-intel
+cc32ec062 drm/xe: Remove GEN[0-9]*_ prefixes
+-:6: WARNING:REPEATED_WORD: Possible repeated word: 'there'
+#6: 
+After noticing in logs there there were still mentions to GEN6
+
+-:7: WARNING:UNKNOWN_COMMIT_ID: Unknown commit id '860bc3f9b76d', maybe rebased or not pulled?
+#7: 
+registers, it was clear commit 860bc3f9b76d ("drm/xe: Drop gen afixes
+
+-:296: ERROR:COMPLEX_MACRO: Macros with complex values should be enclosed in parentheses
+#296: FILE: drivers/gpu/drm/xe/xe_mocs.c:152:
++#define MOCS_ENTRIES \
+ 	/* Entries 0 and 1 are defined per-platform */ \
+ 	/* Base - L3 + LLC */ \
+ 	MOCS_ENTRY(2, \
+
+total: 1 errors, 2 warnings, 0 checks, 322 lines checked
 
 
