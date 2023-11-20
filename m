@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B4A7BC54E76
-	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 21:28:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63828C5AE5C
+	for <intel-xe@archiver.kernel.org>; Mon, 20 Nov 2023 21:28:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4637210E178;
-	Mon, 20 Nov 2023 21:28:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15DF310E197;
+	Mon, 20 Nov 2023 21:28:04 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF40910E1B3
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2D66E10E197
  for <intel-xe@lists.freedesktop.org>; Mon, 20 Nov 2023 21:28:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700515681; x=1732051681;
+ t=1700515680; x=1732051680;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=GnknqieJTpekBubNGI/GBnfprImlwW6aE96b1ZX8K8U=;
- b=K3iB70wPrCIHusm+XcamS0zhQAywREw6pnV6qlk+nde/n1DvO9j2+uLW
- Zwo99hajhw8NGKo4trCAqoIFbaEv4qe/SgDefHYF58LLsL9CsowOD9HaL
- dM4m6/1dSaKMLo2tXahrUbwtfkFQC0d13h7gC4XqPwIJx0qpef/EDi2ko
- jHh4/X/VfuyXata6wlnXUrxdxm1iKr+62TJcCkA9VXOCu8Vnw+gcGHAvH
- o6dqcNmqum8rbmedOTJQJlq3nJpQ59p+KoalI/fj9huRT68zukQwBAGR+
- 3BtrXZJy6zTRpTVMaf9y0ikl3ml1ECPE28xcAH8yziXSKV775v3Ad0l54 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="13256895"
-X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; d="scan'208";a="13256895"
+ bh=qEcA+jLzkrJ1NYBzCkDuMJiJ/u5B+R676KIhxy0EJ5M=;
+ b=Mbb5vEcDZOilQBK0lxer1VExk/vkZ4dU6r6eOq/0inB6ABSozKZhUXUq
+ bFnMBEdqQkNMICXI9RNbJ0T1YC5hqwwIFGMN6NDcu1g23oNuPcv2Pe2Xr
+ uM/E2CVp7REkcWQSXpNHXAbnSAib6nlpSeFpHVE3Q/LRxiWVuS6Yv1Toj
+ q+Xp90e976JPOKN/RPJWZ/mDQzlCwN00New104d8SqvX4niz673O1uRkr
+ U3AqkdqoWwWDeB5pRObWKmZVzn6kOTCRce8+5bUQI9CpZkpynO7iv7vrD
+ bY5PvnpCVz9lB6ymVR6hglR+f5gEBIoc0bzj921Inp2XK2k3mUVrUba96 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="13256878"
+X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; d="scan'208";a="13256878"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 13:27:59 -0800
+ 20 Nov 2023 13:27:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="883984480"
-X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; d="scan'208";a="883984480"
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="883984470"
+X-IronPort-AV: E=Sophos;i="6.04,214,1695711600"; d="scan'208";a="883984470"
 Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
  by fmsmga002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Nov 2023 13:27:58 -0800
+ 20 Nov 2023 13:27:55 -0800
 From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon, 20 Nov 2023 13:27:39 -0800
-Message-ID: <20231120212741.2634679-11-daniele.ceraolospurio@intel.com>
+Date: Mon, 20 Nov 2023 13:27:33 -0800
+Message-ID: <20231120212741.2634679-5-daniele.ceraolospurio@intel.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20231120212741.2634679-1-daniele.ceraolospurio@intel.com>
 References: <20231120212741.2634679-1-daniele.ceraolospurio@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 10/10] drm/xe/gsc: Define GSC FW for MTL
+Subject: [Intel-xe] [CI 04/10] drm/xe/gsc: Parse GSC FW header
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,109 +59,279 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We track GSC FW based on its compatibility version, which is what
-determines the interface it supports.
-Also add a modparam override like the ones for GuC and HuC.
+The GSC blob starts with a layout header, from which we can move to the
+boot directory, which in turns allows us to find the CPD. The CPD uses
+the same format as the one in the HuC binary, so we can re-use the same
+parsing code to get to the manifest, which contains the release and
+security versions of the FW.
 
-v2: fix module param description (John)
+v2: Fix comments in struct definition (John)
 
 Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
 Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
 Reviewed-by: John Harrison <John.C.Harrison@Intel.com>
 ---
- drivers/gpu/drm/xe/xe_module.c |  5 +++++
- drivers/gpu/drm/xe/xe_module.h |  1 +
- drivers/gpu/drm/xe/xe_uc_fw.c  | 20 ++++++++++++--------
- 3 files changed, 18 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/xe_gsc_types.h |   3 +
+ drivers/gpu/drm/xe/xe_uc_fw.c     |  77 ++++++++++++++++++++
+ drivers/gpu/drm/xe/xe_uc_fw_abi.h | 113 ++++++++++++++++++++++++++++++
+ 3 files changed, 193 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/xe_module.c b/drivers/gpu/drm/xe/xe_module.c
-index 7194595e7f31..93b6bb23d4a6 100644
---- a/drivers/gpu/drm/xe/xe_module.c
-+++ b/drivers/gpu/drm/xe/xe_module.c
-@@ -41,6 +41,11 @@ module_param_named_unsafe(huc_firmware_path, xe_huc_firmware_path, charp, 0400);
- MODULE_PARM_DESC(huc_firmware_path,
- 		 "HuC firmware path to use instead of the default one - empty string disables");
- 
-+char *xe_gsc_firmware_path;
-+module_param_named_unsafe(gsc_firmware_path, xe_gsc_firmware_path, charp, 0400);
-+MODULE_PARM_DESC(gsc_firmware_path,
-+		 "GSC firmware path to use instead of the default one - empty string disables");
+diff --git a/drivers/gpu/drm/xe/xe_gsc_types.h b/drivers/gpu/drm/xe/xe_gsc_types.h
+index 135f156e3736..1bc50583fe58 100644
+--- a/drivers/gpu/drm/xe/xe_gsc_types.h
++++ b/drivers/gpu/drm/xe/xe_gsc_types.h
+@@ -14,6 +14,9 @@
+ struct xe_gsc {
+ 	/** @fw: Generic uC firmware management */
+ 	struct xe_uc_fw fw;
 +
- char *xe_param_force_probe = CONFIG_DRM_XE_FORCE_PROBE;
- module_param_named_unsafe(force_probe, xe_param_force_probe, charp, 0400);
- MODULE_PARM_DESC(force_probe,
-diff --git a/drivers/gpu/drm/xe/xe_module.h b/drivers/gpu/drm/xe/xe_module.h
-index e1da1e9ca5cb..7f49f95630d5 100644
---- a/drivers/gpu/drm/xe/xe_module.h
-+++ b/drivers/gpu/drm/xe/xe_module.h
-@@ -12,4 +12,5 @@ extern u32 xe_force_vram_bar_size;
- extern int xe_guc_log_level;
- extern char *xe_guc_firmware_path;
- extern char *xe_huc_firmware_path;
-+extern char *xe_gsc_firmware_path;
- extern char *xe_param_force_probe;
++	/** @security_version: SVN found in the fetched blob */
++	u32 security_version;
+ };
+ 
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 062fc1eb591c..36bf902ac459 100644
+index 16217aacdbfb..c354f7b51103 100644
 --- a/drivers/gpu/drm/xe/xe_uc_fw.c
 +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -121,6 +121,10 @@ struct fw_blobs_by_type {
- 	fw_def(ROCKETLAKE,	no_ver(i915,	huc,		tgl))		\
- 	fw_def(TIGERLAKE,	no_ver(i915,	huc,		tgl))
+@@ -12,6 +12,7 @@
+ #include "xe_bo.h"
+ #include "xe_device_types.h"
+ #include "xe_force_wake.h"
++#include "xe_gsc.h"
+ #include "xe_gt.h"
+ #include "xe_map.h"
+ #include "xe_mmio.h"
+@@ -488,6 +489,13 @@ static int parse_cpd_header(struct xe_uc_fw *uc_fw, const void *data, size_t siz
+ 	release->minor = manifest->fw_version.minor;
+ 	release->patch = manifest->fw_version.hotfix;
  
-+/* for the GSC FW we match the compatibility version and not the release one */
-+#define XE_GSC_FIRMWARE_DEFS(fw_def, major_ver)		\
-+	fw_def(METEORLAKE,	major_ver(i915,	gsc,	mtl,	1, 0))
++	if (uc_fw->type == XE_UC_FW_TYPE_GSC) {
++		struct xe_gsc *gsc = container_of(uc_fw, struct xe_gsc, fw);
 +
- #define MAKE_FW_PATH(dir__, uc__, shortname__, version__)			\
- 	__stringify(dir__) "/" __stringify(shortname__) "_" __stringify(uc__) version__ ".bin"
++		release->build = manifest->fw_version.build;
++		gsc->security_version = manifest->security_version;
++	}
++
+ 	/* then optionally look for the css header */
+ 	if (css_entry) {
+ 		int ret;
+@@ -517,6 +525,73 @@ static int parse_cpd_header(struct xe_uc_fw *uc_fw, const void *data, size_t siz
+ 	return 0;
+ }
  
-@@ -155,6 +159,7 @@ XE_GUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
- 		     fw_filename_mmp_ver, fw_filename_major_ver)
- XE_HUC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE,
- 		     fw_filename_mmp_ver, fw_filename_no_ver)
-+XE_GSC_FIRMWARE_DEFS(XE_UC_MODULE_FIRMWARE, fw_filename_major_ver)
- 
- static struct xe_gt *
- __uc_fw_to_gt(struct xe_uc_fw *uc_fw, enum xe_uc_fw_type type)
-@@ -196,23 +201,19 @@ uc_fw_auto_select(struct xe_device *xe, struct xe_uc_fw *uc_fw)
- 				     uc_fw_entry_mmp_ver,
- 				     uc_fw_entry_no_ver)
- 	};
-+	static const struct uc_fw_entry entries_gsc[] = {
-+		XE_GSC_FIRMWARE_DEFS(XE_UC_FW_ENTRY, uc_fw_entry_major_ver)
-+	};
- 	static const struct fw_blobs_by_type blobs_all[XE_UC_FW_NUM_TYPES] = {
- 		[XE_UC_FW_TYPE_GUC] = { entries_guc, ARRAY_SIZE(entries_guc) },
- 		[XE_UC_FW_TYPE_HUC] = { entries_huc, ARRAY_SIZE(entries_huc) },
-+		[XE_UC_FW_TYPE_GSC] = { entries_gsc, ARRAY_SIZE(entries_gsc) },
- 	};
- 	static const struct uc_fw_entry *entries;
- 	enum xe_platform p = xe->info.platform;
- 	u32 count;
- 	int i;
- 
--	/*
--	 * GSC FW support is still not fully in place, so we're not defining
--	 * the FW blob yet because we don't want the driver to attempt to load
--	 * it until we're ready for it.
--	 */
--	if (uc_fw->type == XE_UC_FW_TYPE_GSC)
--		return;
--
- 	xe_assert(xe, uc_fw->type < ARRAY_SIZE(blobs_all));
- 	entries = blobs_all[uc_fw->type].entries;
- 	count = blobs_all[uc_fw->type].count;
-@@ -248,6 +249,9 @@ uc_fw_override(struct xe_uc_fw *uc_fw)
- 	case XE_UC_FW_TYPE_HUC:
- 		path_override = xe_huc_firmware_path;
- 		break;
++static int parse_gsc_layout(struct xe_uc_fw *uc_fw, const void *data, size_t size)
++{
++	struct xe_gt *gt = uc_fw_to_gt(uc_fw);
++	const struct gsc_layout_pointers *layout = data;
++	const struct gsc_bpdt_header *bpdt_header = NULL;
++	const struct gsc_bpdt_entry *bpdt_entry = NULL;
++	size_t min_size = sizeof(*layout);
++	int i;
++
++	if (size < min_size) {
++		xe_gt_err(gt, "GSC FW too small! %zu < %zu\n", size, min_size);
++		return -ENODATA;
++	}
++
++	min_size = layout->boot1.offset + layout->boot1.size;
++	if (size < min_size) {
++		xe_gt_err(gt, "GSC FW too small for boot section! %zu < %zu\n",
++			  size, min_size);
++		return -ENODATA;
++	}
++
++	min_size = sizeof(*bpdt_header);
++	if (layout->boot1.size < min_size) {
++		xe_gt_err(gt, "GSC FW boot section too small for BPDT header: %u < %zu\n",
++			  layout->boot1.size, min_size);
++		return -ENODATA;
++	}
++
++	bpdt_header = data + layout->boot1.offset;
++	if (bpdt_header->signature != GSC_BPDT_HEADER_SIGNATURE) {
++		xe_gt_err(gt, "invalid signature for BPDT header: 0x%08x!\n",
++			  bpdt_header->signature);
++		return -EINVAL;
++	}
++
++	min_size += sizeof(*bpdt_entry) * bpdt_header->descriptor_count;
++	if (layout->boot1.size < min_size) {
++		xe_gt_err(gt, "GSC FW boot section too small for BPDT entries: %u < %zu\n",
++			  layout->boot1.size, min_size);
++		return -ENODATA;
++	}
++
++	bpdt_entry = (void *)bpdt_header + sizeof(*bpdt_header);
++	for (i = 0; i < bpdt_header->descriptor_count; i++, bpdt_entry++) {
++		if ((bpdt_entry->type & GSC_BPDT_ENTRY_TYPE_MASK) !=
++		    GSC_BPDT_ENTRY_TYPE_GSC_RBE)
++			continue;
++
++		min_size = bpdt_entry->sub_partition_offset;
++
++		/* the CPD header parser will check that the CPD header fits */
++		if (layout->boot1.size < min_size) {
++			xe_gt_err(gt, "GSC FW boot section too small for CPD offset: %u < %zu\n",
++				  layout->boot1.size, min_size);
++			return -ENODATA;
++		}
++
++		return parse_cpd_header(uc_fw,
++					(void *)bpdt_header + min_size,
++					layout->boot1.size - min_size,
++					"RBEP.man", NULL);
++	}
++
++	xe_gt_err(gt, "couldn't find CPD header in GSC binary!\n");
++	return -ENODATA;
++}
++
+ static int parse_headers(struct xe_uc_fw *uc_fw, const struct firmware *fw)
+ {
+ 	int ret;
+@@ -526,6 +601,8 @@ static int parse_headers(struct xe_uc_fw *uc_fw, const struct firmware *fw)
+ 	 * releases use GSC CPD headers.
+ 	 */
+ 	switch (uc_fw->type) {
 +	case XE_UC_FW_TYPE_GSC:
-+		path_override = xe_gsc_firmware_path;
-+		break;
- 	default:
- 		break;
- 	}
++		return parse_gsc_layout(uc_fw, fw->data, fw->size);
+ 	case XE_UC_FW_TYPE_HUC:
+ 		ret = parse_cpd_header(uc_fw, fw->data, fw->size, "HUCP.man", "huc_fw");
+ 		if (!ret || ret != -ENOENT)
+diff --git a/drivers/gpu/drm/xe/xe_uc_fw_abi.h b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
+index d6725c963251..87ade41209d0 100644
+--- a/drivers/gpu/drm/xe/xe_uc_fw_abi.h
++++ b/drivers/gpu/drm/xe/xe_uc_fw_abi.h
+@@ -140,6 +140,58 @@ static_assert(sizeof(struct uc_css_header) == 128);
+  *	|      RSA Key (MTL+ only)                       |
+  *	|      ...                                       |
+  *	+================================================+
++ *
++ * The GSC binary starts instead with a layout header, which contains the
++ * locations of the various partitions of the binary. The one we're interested
++ * in is the boot1 partition, where we can find a BPDT header followed by
++ * entries, one of which points to the RBE sub-section of the partition, which
++ * contains the CPD. The GSC blob does not contain a CSS-based binary, so we
++ * only need to look for the manifest, which is under the "RBEP.man" CPD entry.
++ * Note that we have no need to find where the actual FW code is inside the
++ * image because the GSC ROM will itself parse the headers to find it and load
++ * it.
++ * The GSC firmware header layout looks like this::
++ *
++ *	+================================================+
++ *	|  Layout Pointers                               |
++ *	|      ...                                       |
++ *	|      Boot1 offset  >---------------------------|------o
++ *	|      ...                                       |      |
++ *	+================================================+      |
++ *	                                                        |
++ *	+================================================+      |
++ *	|  BPDT header                                   |<-----o
++ *	+================================================+
++ *	|  BPDT entries[]                                |
++ *	|      entry1                                    |
++ *	|      ...                                       |
++ *	|      entryX                                    |
++ *	|          type == GSC_RBE                       |
++ *	|          offset  >-----------------------------|------o
++ *	|      ...                                       |      |
++ *	+================================================+      |
++ *	                                                        |
++ *	+================================================+      |
++ *	|  CPD Header                                    |<-----o
++ *	+================================================+
++ *	|  CPD entries[]                                 |
++ *	|      entry1                                    |
++ *	|      ...                                       |
++ *	|      entryX                                    |
++ *	|          "RBEP.man"                            |
++ *	|           ...                                  |
++ *	|           offset  >----------------------------|------o
++ *	|      ...                                       |      |
++ *	+================================================+      |
++ *	                                                        |
++ *	+================================================+      |
++ *	| Manifest Header                                |<-----o
++ *	|  ...                                           |
++ *	|  FW version                                    |
++ *	|  ...                                           |
++ *	|  Security version                              |
++ *	|  ...                                           |
++ *	+================================================+
+  */
+ 
+ struct gsc_version {
+@@ -149,6 +201,67 @@ struct gsc_version {
+ 	u16 build;
+ } __packed;
+ 
++struct gsc_partition {
++	u32 offset;
++	u32 size;
++} __packed;
++
++struct gsc_layout_pointers {
++	u8 rom_bypass_vector[16];
++
++	/* size of this header section, not including ROM bypass vector */
++	u16 size;
++
++	/*
++	 * bit0: Backup copy of layout pointers exists
++	 * bits1-15: reserved
++	 */
++	u8 flags;
++
++	u8 reserved;
++
++	u32 crc32;
++
++	struct gsc_partition datap;
++	struct gsc_partition boot1;
++	struct gsc_partition boot2;
++	struct gsc_partition boot3;
++	struct gsc_partition boot4;
++	struct gsc_partition boot5;
++	struct gsc_partition temp_pages;
++} __packed;
++
++/* Boot partition structures */
++struct gsc_bpdt_header {
++	u32 signature;
++#define GSC_BPDT_HEADER_SIGNATURE 0x000055AA
++
++	u16 descriptor_count; /* num of entries after the header */
++
++	u8 version;
++	u8 configuration;
++
++	u32 crc32;
++
++	u32 build_version;
++	struct gsc_version tool_version;
++} __packed;
++
++struct gsc_bpdt_entry {
++	/*
++	 * Bits 0-15: BPDT entry type
++	 * Bits 16-17: reserved
++	 * Bit 18: code sub-partition
++	 * Bits 19-31: reserved
++	 */
++	u32 type;
++#define GSC_BPDT_ENTRY_TYPE_MASK GENMASK(15, 0)
++#define GSC_BPDT_ENTRY_TYPE_GSC_RBE 0x1
++
++	u32 sub_partition_offset; /* from the base of the BPDT header */
++	u32 sub_partition_size;
++} __packed;
++
+ /* Code partition directory (CPD) structures */
+ struct gsc_cpd_header_v2 {
+ 	u32 header_marker;
 -- 
 2.41.0
 
