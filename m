@@ -4,47 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E3F5AC54FB9
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EFF1C5ACB3
 	for <intel-xe@archiver.kernel.org>; Tue, 21 Nov 2023 09:53:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9312B10E256;
+	by gabe.freedesktop.org (Postfix) with ESMTP id B863710E257;
 	Tue, 21 Nov 2023 09:53:54 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09D2210E256
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Nov 2023 09:53:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 24FB410E257
+ for <intel-xe@lists.freedesktop.org>; Tue, 21 Nov 2023 09:53:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1700560433; x=1732096433;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iCppw+CQDCu5nHt+Aj1gVPlg9LnS5B5v1Cxo5yWHUpE=;
- b=ki3RFo42M3HOcKO6IDHKy5bScPB4qVB4/NIRc1qWNIumABOrbiO6UorT
- KW7sZeEFqJoWY+0KWY/OB8LfllOtDG61Q5tq0mptA/P1bqzjT8SWOCB21
- 89beEofTuK2coLcKEyt8C6C9cILgCmuidBQWDkB6+HuaLiFN3wWIjgHx0
- cgefeqpVO2lbZJ0e5SlWEco47l1Buwdz/VyRWbngRpHSD90w5PaTqZyzF
- m3ez9bMf41ihxE1JIK0+kfLu5vXPfJcd3w1QtJsa3RRnBHN+jXXn3/emk
- gYe01Gnr1H7wNxxhaO5VtOKD6KgDEAGXrtXA7WxgIAz2t4OpTkdg/RMsW A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="376841003"
-X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="376841003"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=lEeWS8uNlj8V2C+5xVceEQRVB8k+4Iu6sR+RyrBaa1c=;
+ b=DULoZIU8RuZORBwEII/rmbY9WzqC13AYdF4J8nFTyFB4DpbSRUG4lJRl
+ ogVaZ/vrTa9Dg/+dK1cINwd8G2RnruQIw1ZUZ/iduuWd8gJ3IYeU1MClG
+ 61qiY5pqb+xyoHpum+BM3yvhimU8HddBatBRuLNLRgRDp3uGZxKdAAZKS
+ AKyCEwfqIozM6uv+ahurFtLCn1srNBAF1bXd5bPbMBN544LH4AYAulbEa
+ YvTKWmZ5UfESyW0gG7xNs/rNpjVz2eRxETdReqnVr0vAA7IpdSezGzmkq
+ tFu2iPyzBcwBhekWOeCAIUYO8jDu5LZQWE1seUVWgeAuRT7tRscmocjJH Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="376841002"
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="376841002"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Nov 2023 01:53:52 -0800
+ 21 Nov 2023 01:53:51 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="766586330"
-X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="766586330"
+X-IronPort-AV: E=McAfee;i="6600,9927,10900"; a="766586326"
+X-IronPort-AV: E=Sophos;i="6.04,215,1695711600"; d="scan'208";a="766586326"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga002.jf.intel.com with ESMTP; 21 Nov 2023 01:53:51 -0800
+ by orsmga002.jf.intel.com with ESMTP; 21 Nov 2023 01:53:49 -0800
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Nov 2023 15:31:12 +0530
-Message-Id: <20231121100117.3584066-2-himal.prasad.ghimiray@intel.com>
+Date: Tue, 21 Nov 2023 15:31:11 +0530
+Message-Id: <20231121100117.3584066-1-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231121100117.3584066-1-himal.prasad.ghimiray@intel.com>
-References: <20231121100117.3584066-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [RFC 1/6] drm/xe/xe2: Support flat ccs.
+Subject: [Intel-xe] [RFC 0/6] Enable compression handling on LNL.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,27 +57,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Enable flat ccs for XE2_GFX_FEATURES.
+Series enables flat ccs on xe2 igfx platforms and handles clearing and copy 
+of ccs metadata during bo creation and xe_bo_move respectively.
 
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
----
- drivers/gpu/drm/xe/xe_pci.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-index 682ba188e456..d9754f3d45f7 100644
---- a/drivers/gpu/drm/xe/xe_pci.c
-+++ b/drivers/gpu/drm/xe/xe_pci.c
-@@ -157,7 +157,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
- #define XE2_GFX_FEATURES \
- 	.dma_mask_size = 46, \
- 	.has_asid = 1, \
--	.has_flat_ccs = 0 /* FIXME: implementation missing */, \
-+	.has_flat_ccs = 1, \
- 	.has_range_tlb_invalidation = 1, \
- 	.supports_usm = 0 /* FIXME: implementation missing */, \
- 	.va_bits = 48, \
+Himal Prasad Ghimiray (6):
+  drm/xe/xe2: Support flat ccs.
+  drm/xe/xe2: Determine bios enablement for flat ccs on igfx.
+  drm/xe/xe2: Allocate extra pages for ccs during bo create.
+  drm/xe/xe2: Updates on XY_CTRL_SURF_COPY_BLT
+  drm/xe/xe_migrate.c: Use NULL 1G PTE mapped at 255GiB VA for ccs
+    clear.
+  drm/xe/xe2: Handle flat ccs move for igfx.
+
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |   3 +-
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h      |   3 +
+ drivers/gpu/drm/xe/xe_bo.c                |  40 ++++---
+ drivers/gpu/drm/xe/xe_bo_types.h          |   2 +
+ drivers/gpu/drm/xe/xe_device.c            |  34 +++++-
+ drivers/gpu/drm/xe/xe_migrate.c           | 139 +++++++++-------------
+ drivers/gpu/drm/xe/xe_pci.c               |   2 +-
+ 7 files changed, 121 insertions(+), 102 deletions(-)
+
 -- 
 2.25.1
 
