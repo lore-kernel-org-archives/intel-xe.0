@@ -4,27 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0D12EC61D94
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Nov 2023 14:05:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B13D1C61D92
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Nov 2023 14:12:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56E4210E4B3;
-	Tue, 21 Nov 2023 14:05:15 +0000 (UTC)
-Received: from mblankhorst.nl (lankhorst.se
- [IPv6:2a02:2308:0:7ec:e79c:4e97:b6c4:f0ae])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C37A10E096
- for <intel-xe@lists.freedesktop.org>; Tue, 21 Nov 2023 14:05:08 +0000 (UTC)
-From: Maarten Lankhorst <dev@lankhorst.se>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 21 Nov 2023 15:05:01 +0100
-Message-Id: <20231121140502.9793-3-dev@lankhorst.se>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231121140502.9793-1-dev@lankhorst.se>
-References: <20231121140502.9793-1-dev@lankhorst.se>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 64B2010E4B5;
+	Tue, 21 Nov 2023 14:12:54 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 260E310E4B5;
+ Tue, 21 Nov 2023 14:12:53 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 1F372AADE1;
+ Tue, 21 Nov 2023 14:12:53 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/4] drm/i915: Use vblank worker to unpin old
- legacy cursor fb safely
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Daniele Ceraolo Spurio" <daniele.ceraolospurio@intel.com>
+Date: Tue, 21 Nov 2023 14:12:53 -0000
+Message-ID: <170057597312.30157.6969507452178405871@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231120212741.2634679-1-daniele.ceraolospurio@intel.com>
+In-Reply-To: <20231120212741.2634679-1-daniele.ceraolospurio@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_GSC_FW_loading_=28rev5=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -36,120 +39,34 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+== Series Details ==
 
-The cursor hardware only does sync updates, and thus the hardware
-will be scanning out from the old fb until the next start of vblank.
-So in order to make the legacy cursor fastpath actually safe we
-should not unpin the old fb until we're sure the hardware has
-ceased accessing it. The simplest approach is to just use a vblank
-work here to do the delayed unpin.
+Series: GSC FW loading (rev5)
+URL   : https://patchwork.freedesktop.org/series/125717/
+State : success
 
-Not 100% sure it's a good idea to put this onto the same high
-priority vblank worker as eg. our timing critical gamma updates.
-But let's keep it simple for now, and it we later discover that
-this is causing problems we can think about adding a lower
-priority worker for such things.
+== Summary ==
 
-This patch is slightly reworked by Maarten
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: c9574aef8 fixup! drm/xe/pmu: Drop interrupt pmu event
+=== git am output follows ===
+.git/rebase-apply/patch:85: new blank line at EOF.
++
+warning: 1 line adds whitespace errors.
+Applying: fixup! drm/xe/guc: Report submission version of GuC firmware
+Applying: drm/xe/uc: Rework uC version tracking
+Applying: drm/xe/gsc: Introduce GSC FW
+Applying: drm/xe/gsc: Parse GSC FW header
+Applying: drm/xe/gsc: GSC FW load
+Applying: drm/xe/gsc: Implement WA 14015076503
+Applying: drm/xe/gsc: Trigger a driver flr to cleanup the GSC on unload
+Applying: drm/xe/gsc: Query GSC compatibility version
+Applying: drm/xe/gsc: Define GSCCS for MTL
+Applying: drm/xe/gsc: Define GSC FW for MTL
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cursor.c   | 26 +++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_display.c  |  3 +++
- .../drm/i915/display/intel_display_types.h    |  3 +++
- 3 files changed, 30 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 8ed8a623fa98..7fb159c2f836 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -605,6 +605,17 @@ static bool intel_cursor_format_mod_supported(struct drm_plane *_plane,
- 	return format == DRM_FORMAT_ARGB8888;
- }
- 
-+static void intel_cursor_unpin_work(struct kthread_work *base)
-+{
-+	struct drm_vblank_work *work = to_drm_vblank_work(base);
-+	struct intel_plane_state *plane_state =
-+		container_of(work, typeof(*plane_state), unpin_work);
-+	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
-+
-+	intel_plane_unpin_fb(plane_state);
-+	intel_plane_destroy_state(&plane->base, &plane_state->uapi);
-+}
-+
- static int
- intel_legacy_cursor_update(struct drm_plane *_plane,
- 			   struct drm_crtc *_crtc,
-@@ -732,14 +743,25 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 
- 	local_irq_enable();
- 
--	intel_plane_unpin_fb(old_plane_state);
-+	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
-+		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
-+				     intel_cursor_unpin_work);
-+
-+		drm_vblank_work_schedule(&old_plane_state->unpin_work,
-+					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-+					 false);
-+
-+		old_plane_state = NULL;
-+	} else {
-+		intel_plane_unpin_fb(old_plane_state);
-+	}
- 
- out_free:
- 	if (new_crtc_state)
- 		intel_crtc_destroy_state(&crtc->base, &new_crtc_state->uapi);
- 	if (ret)
- 		intel_plane_destroy_state(&plane->base, &new_plane_state->uapi);
--	else
-+	else if (old_plane_state)
- 		intel_plane_destroy_state(&plane->base, &old_plane_state->uapi);
- 	return ret;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 5069b31bf1b7..c685b8b6625c 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -66,6 +66,7 @@
- #include "intel_crt.h"
- #include "intel_crtc.h"
- #include "intel_crtc_state_dump.h"
-+#include "intel_cursor.h"
- #include "intel_ddi.h"
- #include "intel_de.h"
- #include "intel_display_driver.h"
-@@ -6860,6 +6861,8 @@ static void intel_commit_modeset_disables(struct intel_atomic_state *state)
- 
- 		intel_pre_plane_update(state, crtc);
- 		intel_crtc_disable_planes(state, crtc);
-+
-+		drm_vblank_work_flush_all(&crtc->base);
- 	}
- 
- 	/* Only disable port sync and MST slaves */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 7d11f9a277e2..aec79718814f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -704,6 +704,9 @@ struct intel_plane_state {
- 
- 	struct intel_fb_view view;
- 
-+	/* for legacy cursor fb unpin */
-+	struct drm_vblank_work unpin_work;
-+
- 	/* Plane pxp decryption state */
- 	bool decrypt;
- 
--- 
-2.40.1
 
