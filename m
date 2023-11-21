@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ADD85C5ACB3
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Nov 2023 05:45:18 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id AE39DC54FB9
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Nov 2023 05:52:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D22910E0B6;
-	Tue, 21 Nov 2023 05:45:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6201610E0BB;
+	Tue, 21 Nov 2023 05:52:16 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id D241D10E0B6;
- Tue, 21 Nov 2023 05:45:15 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 023F610E0BB;
+ Tue, 21 Nov 2023 05:52:14 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C1360A0003;
- Tue, 21 Nov 2023 05:45:15 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D11BFAADD2;
+ Tue, 21 Nov 2023 05:52:14 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Tue, 21 Nov 2023 05:45:15 -0000
-Message-ID: <170054551578.30160.14139528789335303361@emeril.freedesktop.org>
+To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+Date: Tue, 21 Nov 2023 05:52:14 -0000
+Message-ID: <170054593482.30158.5458905787107664782@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231120102420.2527792-1-riana.tauro@intel.com>
-In-Reply-To: <20231120102420.2527792-1-riana.tauro@intel.com>
+References: <20231120104645.3570901-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20231120104645.3570901-1-tejas.upadhyay@intel.com>
 Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_fixup!_drm/xe/pmu=3A_Drop_interrupt_pmu_event_=28rev2=29?=
+ =?utf-8?q?or_drm/xe/xe2=3A_Add_workaround_16020292621_=28rev2=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,8 +46,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: fixup! drm/xe/pmu: Drop interrupt pmu event (rev2)
-URL   : https://patchwork.freedesktop.org/series/126643/
+Series: drm/xe/xe2: Add workaround 16020292621 (rev2)
+URL   : https://patchwork.freedesktop.org/series/126644/
 State : failure
 
 == Summary ==
@@ -55,6 +55,6 @@ State : failure
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 723ff01a3 drm/xe: ATS-M device ID update
 === git am output follows ===
-Applying: fixup! drm/xe/pmu: Drop interrupt pmu event
+Applying: drm/xe/xe2: Add workaround 16020292621
 
 
