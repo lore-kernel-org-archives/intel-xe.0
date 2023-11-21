@@ -4,31 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 84A23C61D85
-	for <intel-xe@archiver.kernel.org>; Tue, 21 Nov 2023 00:53:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F168FC61D85
+	for <intel-xe@archiver.kernel.org>; Tue, 21 Nov 2023 00:55:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E5BC10E203;
-	Tue, 21 Nov 2023 00:53:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6D4A10E203;
+	Tue, 21 Nov 2023 00:55:43 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 76B4810E203;
- Tue, 21 Nov 2023 00:53:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id E3D2310E203;
+ Tue, 21 Nov 2023 00:55:41 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 71EB3AADE8;
- Tue, 21 Nov 2023 00:53:36 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id DC460AA915;
+ Tue, 21 Nov 2023 00:55:41 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Jos=C3=A9_Roberto_de_Souza?= <jose.souza@intel.com>
-Date: Tue, 21 Nov 2023 00:53:36 -0000
-Message-ID: <170052801644.30157.4559327018081354868@emeril.freedesktop.org>
+Date: Tue, 21 Nov 2023 00:55:41 -0000
+Message-ID: <170052814186.30158.2098376348112228184@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231120180717.55182-1-jose.souza@intel.com>
-In-Reply-To: <20231120180717.55182-1-jose.souza@intel.com>
+References: <20231120181950.87489-5-matthew.auld@intel.com>
+In-Reply-To: <20231120181950.87489-5-matthew.auld@intel.com>
 Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_series_starting_with_=5B1/2=5D_drm/xe=3A_Include_RPL-U_to_pc?=
- =?utf-8?q?iidlist?=
+ =?utf-8?q?or_PAT_and_cache_coherency_support_=28rev12=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,8 +46,8 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: series starting with [1/2] drm/xe: Include RPL-U to pciidlist
-URL   : https://patchwork.freedesktop.org/series/126663/
+Series: PAT and cache coherency support (rev12)
+URL   : https://patchwork.freedesktop.org/series/123027/
 State : failure
 
 == Summary ==
@@ -56,11 +55,13 @@ State : failure
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 723ff01a3 drm/xe: ATS-M device ID update
 === git am output follows ===
-error: patch failed: include/drm/xe_pciids.h:119
-error: include/drm/xe_pciids.h: patch does not apply
+error: patch failed: drivers/gpu/drm/xe/xe_vm.c:2195
+error: drivers/gpu/drm/xe/xe_vm.c: patch does not apply
 hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe: Include RPL-U to pciidlist
-Patch failed at 0001 drm/xe: Include RPL-U to pciidlist
+Applying: drm/xe/uapi: Add support for CPU caching mode
+Applying: drm/xe/pat: annotate pat_index with coherency mode
+Applying: drm/xe/uapi: support pat_index selection with vm_bind
+Patch failed at 0003 drm/xe/uapi: support pat_index selection with vm_bind
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
