@@ -4,141 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 39897C61D9B
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 19:47:54 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DA36EC61D97
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 19:49:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D35D10E0D5;
-	Wed, 22 Nov 2023 19:47:54 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C77810E0D5
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Nov 2023 19:47:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A18D910E148;
+	Wed, 22 Nov 2023 19:49:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB96710E148
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Nov 2023 19:49:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700682472; x=1732218472;
+ t=1700682581; x=1732218581;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=FEOh3VTGPjVzEzwmGe7OVuD15Vt9WRXswfmeJCV8SMc=;
- b=VzZ+pmkjgTgwK+AsEsnZ8HQbeRflLzTYXcvtNmWeo/eECxqoA9EioHLp
- R2CNY1H4QGhdYptj84BKFms9Hx5/pETMuneqMO4Jf7RgncsUlQqCgjktw
- nwkoLixj5KUywmSsTzocv4+Z2Ix23BjVht3KNtdtW/aBnqIQV187Onl/g
- f61naVgRVUlbiAe9oOQWC9zt+k+sA1GkeEq18+NiKF3Vz4NOwbaLO2Fug
- MDADjdX/s+D380D96L6lQm5qG5pOsq9boksY2XBS10h2j76VubU7GZaI/
- npvlqU3UZBJkLWXNTS1M3iTxZXpA2yxXJc7u6+3OrMxirlPl2LzPeIVyl w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="382533151"
-X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="382533151"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2023 11:47:51 -0800
+ in-reply-to:mime-version;
+ bh=4oyJH2WZkDSysiB99ZVDs9EEPobqg71TaVsLiXGxuUI=;
+ b=DtwCpwqNjAyp6wDE/l+XndQnlXQj6gd8GpJjPPct0XT5ojSSCG6I/T9k
+ aDuj90OnEb26yH4lxY8Okw9lKR3yg+mjSvguwzNQJmyoHb6JIRtXVOkVr
+ xJsCitibcFNnVniFf8pjEJ0FyU1yfcvw63egMfsAlTcq+KUlWalN4JnFd
+ 9Pyx4bkZlw+3DdAH08ylTK3qM5Pw3ore5aaTa6WL5u+h0Y848JYLUrnPY
+ JewoGbpmdNUH33eTfPPj820QaDdialggSBcc+z1OS8mquSnwSbUaYswsN
+ kNi0h7+rbk5zTrdqztydPfw0gSGuQHVDOKS9wk+u4gaEwVpG2RX84hyMo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="389289820"
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="389289820"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2023 11:49:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="796121339"
-X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="796121339"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by orsmga008.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 22 Nov 2023 11:47:51 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="15407546"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 22 Nov 2023 11:49:41 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 22 Nov 2023 11:47:50 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.34; Wed, 22 Nov 2023 11:49:40 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 22 Nov 2023 11:47:50 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Wed, 22 Nov 2023 11:47:50 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.168)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Wed, 22 Nov 2023 11:49:40 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Wed, 22 Nov 2023 11:47:49 -0800
+ 15.1.2507.34; Wed, 22 Nov 2023 11:49:39 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Gobm7MswAM/FgKR7HBsxQFjUdb1Qp9QrekI0AOzTY2SPQ52M4wDXzZOCbIKTOQuP0EWotMoH36nNzowTSGLBNF3ThPeY70zv8TZwg6l2YiWTYraIz+6iHFYMGk8fbb0IXoQBFB8osLUW3P0sGQ/Iqp0W3qsvDefaFOBqQrgYKh+rqrilRphb9+ZyFWhoBcNkQmSgidP+FgQvxjI4x4Os4poIbuto1c9dwlbwMvulNGfjuAf1/1ulYY4VU0ZHtkl27ELXUFn1WdDidaLGLATuyqY0j1wkyOZSiOofEHGb4Q8DsCjVJzEqzh0ylnboVPV1mUPKeqywGvDREwOqHHyphw==
+ b=lSBPY+jk5GZ+ItnmoanM/Q/IAhkL9GacxbdRU5JZs7nx1XlBVwhKp1Ew+JuKdgdCiZLPjIZH9yYIfTbNjpEnCP2hbzJh8qYvW7+4ouOPWKz5F+OGt2NJft5oDZeRE6VteuodrQ5mY+M5dA3bbNLocwm1MY0qVKezAh7RmWNDgf/IJ6qGf7KrqKuqzgDmU/zxd+5DYD7r9rZpQZlrXHM6g+Ole+UjzMYIIgCnyXEuUY5XCw+FFKrNQ4qkyDimCZExu+ZqJzLus+yEMnnwwyfCbveInS5S9wHjPyq+CdofIB0abk+EGXP9AYwmqelQjV43Lqeb8EPGoZxoBxBjHbbayg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bz+kiCnOW5qPtcz9HI6DsPGvWbtmukDOJlwqlN7Zteg=;
- b=fNx3G3lhrIM+dHo0G3V2JFbsY2WG5Cei6z5ORs7k1g0AtMlaMTKJJYmPCrsCREyNjaMmx/Je4TDIbvJ9yidSkszgaNFJrkPWIjZ5Kcma7wSgSBxIxqbkA0feqj7/oPfR2SKh2wwU5te9Id3zD+VJdL132fF7JN5931mVGPxFeCg8K+GFDLXGcvcwQBw4ZHg5MbAZK78nj3wqt00CTXx8RXUqiol9VORgiKiOUmWPcfKX4ytG2e6AHT5SbXVG49hq5iNMo+NovRnLrtF87h0HSfRW+TsXOqo/vsCmW8Nzh8IhZN2mVNVSFDl/cq/3evUyYm1AHJjmTY5luo/1X9auuw==
+ bh=r8mkk3KCEfqBtV1D9nnJ4OwLYr/tDHC1IOMlowAcHag=;
+ b=Ug/dZ7FBl62IsqnNJWRKWTMjT59WCH/ONnudH6UB9wI0ycsy6Bsk22A8Pc7E/ILVXOKtmwY1u6YGrQbFbaYBEP6W99A8AtAb80CTh81Z3AbA0TY+awOruPcTrrrro2/LTjYlCaTScYym+1vyWVMKK+lpj0qRYyfuM7deIS2/lBx8+PQrr+ldxRa08UFWOqAkNtLA41tDWocDbOdYfN6lOKIRt685INHzm+i0X0UxDD3xID092LRz6JfZsMuEPBUM9vbblxpPBYG1AAs6Yc0r3jVulyFEYqUqN7GhKqsJjqnq03YZwacxjF98HbTWIjqdKACIQC8QZ5h8yXWuaAtrcg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SA1PR11MB5873.namprd11.prod.outlook.com (2603:10b6:806:228::11) with
+ by DS0PR11MB6469.namprd11.prod.outlook.com (2603:10b6:8:c3::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.18; Wed, 22 Nov
- 2023 19:47:43 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7002.28; Wed, 22 Nov
+ 2023 19:49:38 +0000
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::4f1d:17b5:88b5:76b0]) by DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::4f1d:17b5:88b5:76b0%7]) with mapi id 15.20.7025.017; Wed, 22 Nov 2023
- 19:47:42 +0000
-Date: Wed, 22 Nov 2023 11:47:40 -0800
+ 19:49:38 +0000
+Date: Wed, 22 Nov 2023 11:49:35 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <20231122194740.GP1327160@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20231122194935.GQ1327160@mdroper-desk1.amr.corp.intel.com>
 References: <20231115073804.1861-1-michal.wajdeczko@intel.com>
- <20231115073804.1861-2-michal.wajdeczko@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
+ <20231115073804.1861-3-michal.wajdeczko@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20231115073804.1861-2-michal.wajdeczko@intel.com>
-X-ClientProxiedBy: SJ0PR13CA0190.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::15) To DS0PR11MB8182.namprd11.prod.outlook.com
+In-Reply-To: <20231115073804.1861-3-michal.wajdeczko@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0209.namprd03.prod.outlook.com
+ (2603:10b6:a03:2ef::34) To DS0PR11MB8182.namprd11.prod.outlook.com
  (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SA1PR11MB5873:EE_
-X-MS-Office365-Filtering-Correlation-Id: 79f7e723-49d4-44cb-beab-08dbeb93e46a
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|DS0PR11MB6469:EE_
+X-MS-Office365-Filtering-Correlation-Id: b9d69e0d-ae22-4b56-347f-08dbeb942902
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: i7sMADpIcCijQ9KEozlia9W4BC7COGc3WKxhz+bs1HArwbGy/x0cZwHTaYfg+onfvTNZvEwAzXTU5ElfCBCD6E5ndK25e05D0CPtkYZBQsTG7G8cmLVTXOyo60ljEe2sSoO1jrCWs3BLDKakSKz+cUR/P7PaJQtemAWqXVbrv0fl+OplgHdryj1qyCNCLMFJx5F6QNpxfKn2U0VUX8668oWZMA34L/EL+jwxFnEjOvkosWFeGvVRusOP8pSgp4xtSWyvY3SWSFcMPGJ+jh/bGZxH3ud3DAygHdurwnfKCBqCjmW1WsumlmNiuv6BeL3UrXSDYniNQ+NWe8qsZZYeMnoiE6Pj2SKqlIv7FvsqQ6Fkh25QdzKTFouOgZ9UA3d0zeNg707bEyKRwL1gsR9ylLi1OiewjqTKh1n6OBFUal2YHvSM6z6mJznd6ewss3dGVa8guGjuY9o030a+c0ge0qpx+vNS+i3C/k1D//gD1Yy3DPqxQTNZHKZTbG2HlpIMdB8oObXDN2YOvBHKeWGOPrNIEJZ4cHdfmD5fgLRB4s1YmljeSVa8vxpFsgAGb+j5
+X-Microsoft-Antispam-Message-Info: EEP3j6MXo0YbucUKEzBxxTJ/e8HoGsjrXLnhAyuDOxMyOINmjyL7V9Vwv5XoMNz11YvUG1yrNkFAFdSzY7TilWFt8Z2DSd09tcGHYkKi7wvWlUNIMLjAEZUhOnsTvSOF3VcaaS6LL2UGDisG+6uKLXPmvDo4BIIYbF/rys46eIeIfhZTPFzLlyFviJ8MipYdcpD7korH4+jn7pf2AoZMpmQktUPntM4YBrug2C0oVxGIrJiy0Z/ETKcvLYZ08Yo0d03l6uZRK8e3eNS6MXHqfLNW55qFv+HZ02+a1pqM9owGGUt1H3/f5oIoPM/pezex9MdXaFxx70Ss+K+3TpgKhElmCw+sNDAI+4shuMabPuI1t4g5bqtqfyQlCiG7ck7I3s+On24nt9zlJSqP30s6ekbqv9hjFfzNWuMiKmnwINZCkRp+D2Yilij/dtvdib1W0lZMG6CPWDIPcau1TppWlk0XWGw7M3IheOUEhIex2VMVbpJfixuCFczx+ic1HNPRw9VHVaNCj6kGcXIlmDiwRb9bXmp0dEY9+lNnsVfgczYkMNEM1V3ur9NuZu0QdgmN
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(366004)(136003)(346002)(39860400002)(376002)(230922051799003)(64100799003)(1800799012)(186009)(451199024)(83380400001)(26005)(6486002)(6506007)(478600001)(82960400001)(66946007)(66476007)(6636002)(316002)(1076003)(6512007)(8676002)(4326008)(6862004)(38100700002)(8936002)(66556008)(5660300002)(41300700001)(33656002)(86362001)(2906002);
+ SFS:(13230031)(346002)(376002)(136003)(39860400002)(366004)(396003)(230922051799003)(64100799003)(186009)(1800799012)(451199024)(1076003)(26005)(6512007)(82960400001)(38100700002)(86362001)(33656002)(5660300002)(2906002)(6666004)(6506007)(6636002)(6862004)(316002)(4326008)(478600001)(8676002)(41300700001)(6486002)(66556008)(8936002)(66476007)(66946007);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?Ar7OZ9Xtk+HtrhDYgtlkh7tUSEzgubZ74h3cllDXYTpPa2Lb/KMDdNqDAX?=
- =?iso-8859-1?Q?w+gHhCsajyXFFtOIbhw6QJmnbkDkOyPkVOPInApKYIi7rjp8ytEWJt5o91?=
- =?iso-8859-1?Q?hBVmcxg5/lAu8gQRmlfaEpLwTokZqybfbRl5AffofdMt76gZMSrKsNgqnl?=
- =?iso-8859-1?Q?uyp2ve/zWJzwWfkevy2u3NAoH7FQER6Gf+lyN76RsPJBKqbS3iBGfcwbtb?=
- =?iso-8859-1?Q?IQi19Rwj+7WlMJDNLWhzFOzL9QosRaJHU/5fKsxMv+iRp+Jb+EiqnJ9rZ7?=
- =?iso-8859-1?Q?xF0pwrX5BYA1N25URp4brn/pTxpfmPdSwXMcVPKhqgv/thCuPKMJllLAlT?=
- =?iso-8859-1?Q?zkScWmfNG1ZJHR6WvpBWHjNBdvWFJsHLbNn0vQpNg62rDpGVPjDlueXUQY?=
- =?iso-8859-1?Q?kimTt+nSkdNPfPNysx/MESnDTO8tLNWM9pSG+tm8qT3BVkd6qmVjNSu5q8?=
- =?iso-8859-1?Q?ZfaWOmTdBh45OlXNGPARvuOxebjfsRqWCSAO5no4oJN786jHs/BWy2GfHK?=
- =?iso-8859-1?Q?t/3f6PYQJC6Uf4RP6/oCo1OBibG93h7ZiK7niPuCAmNcnCItFrJmEjhtGK?=
- =?iso-8859-1?Q?UmH3qqb0UhRxoAtcUsR8lVmRXGc47/LyL/Je7l6Np1XgGVgYRe02rep0jw?=
- =?iso-8859-1?Q?RUAC+hVIjn03QShhFFJnNNAvJKrzKh+ZN3RZB2dvPBRxoDQDoE3mhOl1ik?=
- =?iso-8859-1?Q?seM1dKGL/S2v40a/JWywrjAaVz13eGdRNoTV95YgrPgzmsgE0nWs+7mLue?=
- =?iso-8859-1?Q?OOKrchuKopAylPJMzjkR74aGEqiUZxqChcZ5WYJq2NsavRfJ9d6issZIg6?=
- =?iso-8859-1?Q?LCZ0QQjng/JoXzIIVejLWbVsN5bHX/3BvzSJG7zXlfHr6r0F0o3x+XoiX6?=
- =?iso-8859-1?Q?siMTwhdUBfPbkmoVs7e+bSFZMo2xa29jS6ibOEq/AGbwQ4TgxS9WaLEEQV?=
- =?iso-8859-1?Q?JwPApRbmRPMBTTVr4B3owZKCS2jSSvD4E+J4Q6toyyWF3Wyw8lNbjCsbsT?=
- =?iso-8859-1?Q?ZcggEjyapaDK7fOEvbnb5P/EsUnarbjLxF1SM5+ypIUiSYEfFc0Txo+9ZO?=
- =?iso-8859-1?Q?5of69Ua6QewANcM4uEvlOwQpu/PTGR3GryYmYKT+Jahh8Y7kzvm9bFNoS5?=
- =?iso-8859-1?Q?771gBOnWwTgRNEo3Qeltgv+AcwbZr9iVzdN+TEsSeKmhH8iPqAD1tZlLzL?=
- =?iso-8859-1?Q?Js9nI4b5+McZ3mo+4dral5F4LUV9RGpSqs0tTa4/+p56X67RHHK6S/z+wu?=
- =?iso-8859-1?Q?BuhDElFcpmlXhu3XfG+uJJB7Unu3T5hvoWfK55JNplkcQCZfAJRKKlQlu6?=
- =?iso-8859-1?Q?jnZiG3THc6PihFXcj8le2zZQs7Ai56uIvTTNqDijTYEK2dWcB/o11H9UGR?=
- =?iso-8859-1?Q?i6RU+M3VuoBLmvsougyyJTd7ICuhXcRl/otUOPeqvbmMbpZ4TEmw0WGqNd?=
- =?iso-8859-1?Q?ffMx51Qj7F4pq4LobWzv45Dnd9BU7fLbjf+uAt8h28cDStUFQOMNoJH6Ig?=
- =?iso-8859-1?Q?8yfWBrPe4L163qAiG+Gqhup3GokLs8nPtP6YcdDzYTFUjCKrTBwtc/39xY?=
- =?iso-8859-1?Q?U963vJI7hPs7wVU8sJTpNDbh/KZc16ftkiKz0pkGJHbXD+Nj8S+eQrPxTN?=
- =?iso-8859-1?Q?STKsI8jkNC2gQL0xq3iXtXOlMD9zIAUEQIx0YVYl8wED0UVDrqlOsEuA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 79f7e723-49d4-44cb-beab-08dbeb93e46a
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ygAengVJQCMg8oHy5uXsH9rOyoVnLZASzzHXyizsV66nW+Hd+XAfpaHA0Ivb?=
+ =?us-ascii?Q?3kfx4BmpXZCvZPirXKNt//bRSWWSubESeaXz0oWGH2T+PZlj+zlT3RumI5B5?=
+ =?us-ascii?Q?VQqa+vS/OomVBmM8CJVUbA1kAJ3q4bPetFS1ujGF3etvLCATsR5PH+ctsBys?=
+ =?us-ascii?Q?8ifSR0L4QmBSJPWwpLNM5Ij0L3RXTrEXWlkYhrh9mZAuAx1n1HpLzRUExsat?=
+ =?us-ascii?Q?MPZmbAPGsYprWwhVWyTMkjO3iovV9iL8LCizr5OCq2srAlf5ATeNVy7cpmx9?=
+ =?us-ascii?Q?FDPVSIKwONhUXg29yJR6WYPtZhGEh9uk8zFxOBgaOuf6MsqE+YKt08ZPmZSP?=
+ =?us-ascii?Q?HRhbl8b82srlVve1uc4aHB1NZFshlp6HfAmcOPHFUbN21vQOferdSrwN0KUT?=
+ =?us-ascii?Q?ShwzyYEyaueUWaxIHRoLadxdBSYuHHiqrl4SklrY1c0x3phMnwIjYW3CHX+i?=
+ =?us-ascii?Q?CmWdfQHiP0kBXefcAUB4ZncWJer7C7GurK1foS5CSm5n32Xuh1XDe59yE86S?=
+ =?us-ascii?Q?GvM3LmeYDha37Ci6x1h/uSLnpYZ2Px+MCcc943VUYKA2KG3JsKsavfP+j0ya?=
+ =?us-ascii?Q?fyU2bg955ZkDjYw+zB2f6CFsnI2qxDvhHSlALxbcbGP1wx5uhaCpz/LSCqtO?=
+ =?us-ascii?Q?JAIuoseFti/c6E1Z/uO9YMetqttlRjtWT7PGyzwJDOiag8e8UrCkVkYsQsbh?=
+ =?us-ascii?Q?SHahFH/W4r6ly90kOu8kfnvgov6RqkM5HMJPcOU5i/z0f1LiBPN+S3R3iURD?=
+ =?us-ascii?Q?eUSrO/yxnMuWxVWXLXc2KIlgEcmkJxqn4hTP7p8doyZaRwjLjhUoyscUjpIF?=
+ =?us-ascii?Q?UlWnsgd65Ad6e0oAdhN4UlayJfvXMx0csseG7PEBPJcS2Z7o2ouU6qdxFVje?=
+ =?us-ascii?Q?9s54uWxcT044Bzo2TT3WP92kkSD5t7MclhaEBUBHouGM+qWBAgiQQLCIxYQg?=
+ =?us-ascii?Q?QrkBIlWh4yaqabMlmIov2qpI4H/e91j5ixRUCoIUWK79Rl57c23lv94zi5Ov?=
+ =?us-ascii?Q?b3fMkaptclUvXAJco893w+qovHDVNgf2zdvE6ZjHDeQs31keGHd4GbFxsDRN?=
+ =?us-ascii?Q?myi9CzUkuhoDNwQZAABRASmzgyRtWciVZtiQFJVjqnL5TL+QRG1UJwQvUw43?=
+ =?us-ascii?Q?aHIffGVpMbcXLH/GYTYXHnA+GSVk+085H7H9EEX+5b1Bbb8z5XYfKnu3cfVu?=
+ =?us-ascii?Q?xQSPOuuQ8wRMpTKWJK9HrQLgGClAIJY8Un8aVReEJ8FblyilTfj/JdfrGxO2?=
+ =?us-ascii?Q?vwi5CEmNKZygzmkMTb1705uNwNds+xBxnyOqJKvR6D/MOg/a5jtdd1B3o7k9?=
+ =?us-ascii?Q?EOkF3+6GKkVKVLO0eLMSfNTRK4DcHhvCUSSlJ2MfM0OJuzFg7hsrsAAY8Tzi?=
+ =?us-ascii?Q?yiJKjVMqf/Fu60dzmHYr3EVQ36hKYPmq4VWXyC56VeT9f2ymyyyapBVUi65o?=
+ =?us-ascii?Q?brM4hSIZB306h2QZlpPNcgrt1jL/ikXpcNNB3llILfGH9W92KfjmnB/yWOJ/?=
+ =?us-ascii?Q?wzaZeTeqXJrre4Ntx0Amvzyrb28Oay/6IrdwnQTAKgM+GkV2ZDn00o8Vnz4O?=
+ =?us-ascii?Q?58Vpe0kkmICw8SQrzIimd+Aq3tulPGwkHVqzyS6AvKdPwvEWotQYj3HvGy4Q?=
+ =?us-ascii?Q?SA=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9d69e0d-ae22-4b56-347f-08dbeb942902
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2023 19:47:42.9158 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2023 19:49:37.9826 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YGR/7LtqIheROylRlnKutVfZoGr3cI7wL3i3l+3MwkEnRJDHBKlY0JJtnSM+Wkx32JSeCCako44988Ii8602sy3LrckVP7naM1s1L6VGAUM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB5873
+X-MS-Exchange-CrossTenant-UserPrincipalName: 46E7MuC6JlQtA3camPWxx9wFndw/4ObwYpFrkIKFU51+bp6WiWQvaSYIiFCaBPtevPQSn+iepJyCfVI4xHreXpOrC+9zlaDxsr4cJXKbnD8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB6469
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/3] drm/xe: Prepare for running in different
- SR-IOV modes
+Subject: Re: [Intel-xe] [PATCH 3/3] drm/xe: Print virtualization mode during
+ probe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -154,246 +147,33 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Nov 15, 2023 at 08:38:03AM +0100, Michal Wajdeczko wrote:
-> We will be adding support for the SR-IOV and driver might be then
-> running, in addition to existing non-virtualized bare-metal mode,
-> also in Physical Function (PF) or Virtual Function (VF) mode.
+On Wed, Nov 15, 2023 at 08:38:04AM +0100, Michal Wajdeczko wrote:
+> We already print some basic information about the device, add
+> virtualization information, until we expose that elsewhere.
 > 
-> Since these additional modes require some changes to the driver,
-> define enum flag to represent different SR-IOV modes and add a
-> function where we will detect the actual mode in the runtime.
-> 
-> We start with a forced bare-metal mode as it is sufficient to
-> enable basic functionality and ensures no impact to existing code.
-
-For platforms that support SRIOV, can you describe what the benefit is
-of running in bare-metal mode vs just running in PF mode with no VFs
-active?  Will we wind up needing to do extra initialization in PF mode
-that could be counter-productive if someone didn't actually want to use
-any virtualization?  Will the system have additional limitations in PF
-mode that we can avoid in bare-metal mode?
-
-Aside from adding some explanation for that,
+> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 
 Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-> 
-> Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 > ---
->  drivers/gpu/drm/xe/Makefile          |  3 ++
->  drivers/gpu/drm/xe/xe_device_types.h |  7 ++++
->  drivers/gpu/drm/xe/xe_pci.c          |  3 ++
->  drivers/gpu/drm/xe/xe_sriov.c        | 55 ++++++++++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_sriov.h        | 42 +++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_sriov_types.h  | 28 ++++++++++++++
->  6 files changed, 138 insertions(+)
->  create mode 100644 drivers/gpu/drm/xe/xe_sriov.c
->  create mode 100644 drivers/gpu/drm/xe/xe_sriov.h
->  create mode 100644 drivers/gpu/drm/xe/xe_sriov_types.h
+>  drivers/gpu/drm/xe/xe_pci.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> index cb41b4fead08..fbba74d9a330 100644
-> --- a/drivers/gpu/drm/xe/Makefile
-> +++ b/drivers/gpu/drm/xe/Makefile
-> @@ -123,6 +123,9 @@ xe-y += xe_bb.o \
->  # graphics hardware monitoring (HWMON) support
->  xe-$(CONFIG_HWMON) += xe_hwmon.o
->  
-> +# graphics virtualization (SR-IOV) support
-> +xe-y += xe_sriov.o
-> +
->  # i915 Display compat #defines and #includes
->  subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
->  	-I$(srctree)/$(src)/display/ext \
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index f2ba4f746fa2..2712905c7a91 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -18,6 +18,7 @@
->  #include "xe_platform_types.h"
->  #include "xe_pt_types.h"
->  #include "xe_pmu.h"
-> +#include "xe_sriov_types.h"
->  #include "xe_step_types.h"
->  
->  #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
-> @@ -299,6 +300,12 @@ struct xe_device {
->  		struct ttm_resource_manager sys_mgr;
->  	} mem;
->  
-> +	/** @sriov: device level virtualization data */
-> +	struct {
-> +		/** @sriov.__mode: SR-IOV mode (Don't access directly!) */
-> +		enum xe_sriov_mode __mode;
-> +	} sriov;
-> +
->  	/** @usm: unified memory state */
->  	struct {
->  		/** @asid: convert a ASID to VM */
 > diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index c1c8048bbc0f..3030b223e4a0 100644
+> index 3030b223e4a0..cb762c11dd0f 100644
 > --- a/drivers/gpu/drm/xe/xe_pci.c
 > +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -24,6 +24,7 @@
->  #include "xe_module.h"
->  #include "xe_pci_types.h"
->  #include "xe_pm.h"
-> +#include "xe_sriov.h"
->  #include "xe_step.h"
+> @@ -736,6 +736,10 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+>  		xe_step_name(xe->info.step.display),
+>  		xe_step_name(xe->info.step.basedie));
 >  
->  enum toggle_d3cold {
-> @@ -706,6 +707,8 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  
->  	pci_set_master(pdev);
->  
-> +	xe_sriov_probe_early(xe, desc->has_sriov);
+> +	drm_dbg(&xe->drm, "SR-IOV support: %s (mode: %s)\n",
+> +		str_yes_no(xe_device_has_sriov(xe)),
+> +		xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
 > +
->  	err = xe_info_init(xe, desc, subplatform_desc);
+>  	err = xe_device_probe(xe);
 >  	if (err)
 >  		goto err_pci_disable;
-> diff --git a/drivers/gpu/drm/xe/xe_sriov.c b/drivers/gpu/drm/xe/xe_sriov.c
-> new file mode 100644
-> index 000000000000..42a0e0c917a0
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_sriov.c
-> @@ -0,0 +1,55 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#include "xe_assert.h"
-> +#include "xe_sriov.h"
-> +
-> +/**
-> + * xe_sriov_mode_to_string - Convert enum value to string.
-> + * @mode: the &xe_sriov_mode to convert
-> + *
-> + * Returns: SR-IOV mode as a user friendly string.
-> + */
-> +const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode)
-> +{
-> +	switch (mode) {
-> +	case XE_SRIOV_MODE_NONE:
-> +		return "none";
-> +	case XE_SRIOV_MODE_PF:
-> +		return "SR-IOV PF";
-> +	case XE_SRIOV_MODE_VF:
-> +		return "SR-IOV VF";
-> +	default:
-> +		return "<invalid>";
-> +	}
-> +}
-> +
-> +/**
-> + * xe_sriov_probe_early - Probe a SR-IOV mode.
-> + * @xe: the &xe_device to probe mode on
-> + * @has_sriov: flag indicating hardware support for SR-IOV
-> + *
-> + * This function should be called only once and as soon as possible during
-> + * driver probe to detect whether we are running a SR-IOV Physical Function
-> + * (PF) or a Virtual Function (VF) device.
-> + *
-> + * SR-IOV PF mode detection is based on PCI @dev_is_pf() function.
-> + * SR-IOV VF mode detection is based on dedicated MMIO register read.
-> + */
-> +void xe_sriov_probe_early(struct xe_device *xe, bool has_sriov)
-> +{
-> +	enum xe_sriov_mode mode = XE_SRIOV_MODE_NONE;
-> +
-> +	/* TODO: replace with proper mode detection */
-> +	xe_assert(xe, !has_sriov);
-> +
-> +	xe_assert(xe, !xe->sriov.__mode);
-> +	xe->sriov.__mode = mode;
-> +	xe_assert(xe, xe->sriov.__mode);
-> +
-> +	if (has_sriov)
-> +		drm_info(&xe->drm, "Running in %s mode\n",
-> +			 xe_sriov_mode_to_string(xe_device_sriov_mode(xe)));
-> +}
-> diff --git a/drivers/gpu/drm/xe/xe_sriov.h b/drivers/gpu/drm/xe/xe_sriov.h
-> new file mode 100644
-> index 000000000000..5af73a3172b0
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_sriov.h
-> @@ -0,0 +1,42 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_SRIOV_H_
-> +#define _XE_SRIOV_H_
-> +
-> +#include "xe_assert.h"
-> +#include "xe_device_types.h"
-> +#include "xe_sriov_types.h"
-> +
-> +const char *xe_sriov_mode_to_string(enum xe_sriov_mode mode);
-> +
-> +void xe_sriov_probe_early(struct xe_device *xe, bool has_sriov);
-> +
-> +static inline enum xe_sriov_mode xe_device_sriov_mode(struct xe_device *xe)
-> +{
-> +	xe_assert(xe, xe->sriov.__mode);
-> +	return xe->sriov.__mode;
-> +}
-> +
-> +static inline bool xe_device_is_sriov_pf(struct xe_device *xe)
-> +{
-> +	return xe_device_sriov_mode(xe) == XE_SRIOV_MODE_PF;
-> +}
-> +
-> +static inline bool xe_device_is_sriov_vf(struct xe_device *xe)
-> +{
-> +	return xe_device_sriov_mode(xe) == XE_SRIOV_MODE_VF;
-> +}
-> +
-> +#ifdef CONFIG_PCI_IOV
-> +#define IS_SRIOV_PF(xe) xe_device_is_sriov_pf(xe)
-> +#else
-> +#define IS_SRIOV_PF(xe) (typecheck(struct xe_device *, (xe)) && false)
-> +#endif
-> +#define IS_SRIOV_VF(xe) xe_device_is_sriov_vf(xe)
-> +
-> +#define IS_SRIOV(xe) (IS_SRIOV_PF(xe) || IS_SRIOV_VF(xe))
-> +
-> +#endif
-> diff --git a/drivers/gpu/drm/xe/xe_sriov_types.h b/drivers/gpu/drm/xe/xe_sriov_types.h
-> new file mode 100644
-> index 000000000000..999a4311b98b
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/xe_sriov_types.h
-> @@ -0,0 +1,28 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright © 2023 Intel Corporation
-> + */
-> +
-> +#ifndef _XE_SRIOV_TYPES_H_
-> +#define _XE_SRIOV_TYPES_H_
-> +
-> +#include <linux/build_bug.h>
-> +
-> +/**
-> + * enum xe_sriov_mode - SR-IOV mode
-> + * @XE_SRIOV_MODE_NONE: bare-metal mode (non-virtualized)
-> + * @XE_SRIOV_MODE_PF: SR-IOV Physical Function (PF) mode
-> + * @XE_SRIOV_MODE_VF: SR-IOV Virtual Function (VF) mode
-> + */
-> +enum xe_sriov_mode {
-> +	/*
-> +	 * Note: We don't use default enum value 0 to allow catch any too early
-> +	 * attempt of checking the SR-IOV mode prior to the actual mode probe.
-> +	 */
-> +	XE_SRIOV_MODE_NONE = 1,
-> +	XE_SRIOV_MODE_PF,
-> +	XE_SRIOV_MODE_VF,
-> +};
-> +static_assert(XE_SRIOV_MODE_NONE);
-> +
-> +#endif
 > -- 
 > 2.25.1
 > 
