@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23E39C61D97
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 22:39:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4F322C61D97
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 22:39:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E827310E6A7;
-	Wed, 22 Nov 2023 22:39:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F57610E6B1;
+	Wed, 22 Nov 2023 22:39:58 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id F038110E6A7;
- Wed, 22 Nov 2023 22:39:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4012C10E6AD;
+ Wed, 22 Nov 2023 22:39:56 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E69E5AA916;
- Wed, 22 Nov 2023 22:39:43 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 32801AA916;
+ Wed, 22 Nov 2023 22:39:56 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: fei.yang@intel.com
-Date: Wed, 22 Nov 2023 22:39:43 -0000
-Message-ID: <170069278391.4726.7147732136914293444@emeril.freedesktop.org>
+Date: Wed, 22 Nov 2023 22:39:56 -0000
+Message-ID: <170069279620.4727.9341379168102875104@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231122204501.1353325-1-fei.yang@intel.com>
 In-Reply-To: <20231122204501.1353325-1-fei.yang@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_explicitly_set_GGTT_access_for_GuC_DMA?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_explicitly_set_GGTT_access_for_GuC_DMA?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 59f2e7346 drm/xe/mmio: Make xe_mmio_wait32() aware of interrupts
-=== git am output follows ===
-Applying: drm/xe: explicitly set GGTT access for GuC DMA
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fc9cded58c6483ff4edc7a4627305c8066f39403
+Author: Fei Yang <fei.yang@intel.com>
+Date:   Wed Nov 22 12:45:01 2023 -0800
+
+    drm/xe: explicitly set GGTT access for GuC DMA
+    
+    Confirmed with hardware that setting GGTT memory access for GuC
+    firmware loading is correct for all platforms and required for
+    new platforms going forward.
+    
+    Signed-off-by: Fei Yang <fei.yang@intel.com>
++ /mt/dim checkpatch 59f2e73469cace9c78aab7506284ae446d57b8bc drm-intel
+fc9cded58 drm/xe: explicitly set GGTT access for GuC DMA
 
 
