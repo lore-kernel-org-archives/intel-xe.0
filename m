@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A3F8BC61D92
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 04:23:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 181DAC072A2
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 04:25:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E93E10E02F;
-	Wed, 22 Nov 2023 04:23:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A739810E02F;
+	Wed, 22 Nov 2023 04:25:55 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B871C10E02F;
- Wed, 22 Nov 2023 04:23:41 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 107DE10E02F;
+ Wed, 22 Nov 2023 04:25:53 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id A0B16AADE1;
- Wed, 22 Nov 2023 04:23:41 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id F21EBA0003;
+ Wed, 22 Nov 2023 04:25:52 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bagas Sanjaya" <bagasdotme@gmail.com>
-Date: Wed, 22 Nov 2023 04:23:41 -0000
-Message-ID: <170062702163.4727.16495593168142667645@emeril.freedesktop.org>
+To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
+Date: Wed, 22 Nov 2023 04:25:52 -0000
+Message-ID: <170062715295.4725.7736714104474325094@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
-References: <20231121104046.3201-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231121104046.3201-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_Documentation/gpu=3A_VM=5FBIND_locking_document_=28rev5=29?=
+References: <20231121112555.3734840-1-tejas.upadhyay@intel.com>
+In-Reply-To: <20231121112555.3734840-1-tejas.upadhyay@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_drm/xe=3A_Move_wa_processing_to_gt=5Finit?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,21 +46,15 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 == Series Details ==
 
-Series: Documentation/gpu: VM_BIND locking document (rev5)
-URL   : https://patchwork.freedesktop.org/series/122507/
-State : failure
+Series: drm/xe: Move wa processing to gt_init
+URL   : https://patchwork.freedesktop.org/series/126709/
+State : success
 
 == Summary ==
 
 === Applying kernel patches on branch 'drm-xe-next' with base: ===
 Base commit: 89e2bb1e1 fixup! drm/xe: Moving and renaming existing frequency sysfs attributes
 === git am output follows ===
-error: Documentation/gpu/implementation_guidelines.rst: does not exist in index
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: Documentation/gpu: VM_BIND locking document
-Patch failed at 0001 Documentation/gpu: VM_BIND locking document
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Applying: drm/xe: Move wa processing to gt_init
 
 
