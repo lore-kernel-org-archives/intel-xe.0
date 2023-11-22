@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 87639C61D9B
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 11:38:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E9771C61D97
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 11:39:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 477C710E602;
-	Wed, 22 Nov 2023 11:38:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B6B2F10E606;
+	Wed, 22 Nov 2023 11:39:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 00C9E10E606;
- Wed, 22 Nov 2023 11:38:52 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3EEA310E606;
+ Wed, 22 Nov 2023 11:39:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id EC12BAADD2;
- Wed, 22 Nov 2023 11:38:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3B6E8AADD2;
+ Wed, 22 Nov 2023 11:39:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Tejas Upadhyay" <tejas.upadhyay@intel.com>
-Date: Wed, 22 Nov 2023 11:38:51 -0000
-Message-ID: <170065313193.4727.14382956431218994191@emeril.freedesktop.org>
+Date: Wed, 22 Nov 2023 11:39:03 -0000
+Message-ID: <170065314324.4728.15325048855305660225@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231122105854.3788939-1-tejas.upadhyay@intel.com>
 In-Reply-To: <20231122105854.3788939-1-tejas.upadhyay@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/xe2=3A_Add_workaround_16021867713?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/xe2=3A_Add_workaround_16021867713?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,25 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 89e2bb1e1 fixup! drm/xe: Moving and renaming existing frequency sysfs attributes
-=== git am output follows ===
-Applying: drm/xe/xe2: Add workaround 16021867713
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 48d82ef3e56c6265cdf8fcce6346c70733b1ebae
+Author: Tejas Upadhyay <tejas.upadhyay@intel.com>
+Date:   Wed Nov 22 16:28:54 2023 +0530
+
+    drm/xe/xe2: Add workaround 16021867713
+    
+    This workaround applies to Xe2_LPM as well
+    
+    Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
++ /mt/dim checkpatch 89e2bb1e155242dd9aa46bc90e563e71c5f498b0 drm-intel
+48d82ef3e drm/xe/xe2: Add workaround 16021867713
 
 
