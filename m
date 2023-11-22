@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B0070C61D9C
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 21:04:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 89352C61D97
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 21:04:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7FE3210E319;
-	Wed, 22 Nov 2023 21:04:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5178F10E69A;
+	Wed, 22 Nov 2023 21:04:55 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4A76B10E319
- for <intel-xe@lists.freedesktop.org>; Wed, 22 Nov 2023 21:04:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 01F4910E69A
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Nov 2023 21:04:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700687088; x=1732223088;
+ t=1700687093; x=1732223093;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xQhC0p/ZcrUdwnN0x8W7SJMjC+GB0DFPIDIUw08j+Bc=;
- b=IdY/L3awLbPvTQjM0g8jE1aiYEHSUU2ALXMTasigtVvNR/nT9LcZhMoW
- blLB1idY8vzhAWWiKHxVNcsBKDPUoQ+kyNtSPBiKAXUGxZj9bM5BTXOwh
- Be3/G0x5bcRxUWk/nPwCldOU3THtJScVqGyKinhRnp1TmxPZyXMDEcG93
- /5S9C0nJvX8xQd7/XeC1FdtoLDrtvdidx+kW4cN9hhyCuy493NPFs/enV
- VYewF1pALej/SxtLBHSP25AwCSzA5QEys/j/qSaGjeO3+1dvVoS+2xDaq
- 0IYd6yvnwVzi3sxKIZzYeC4oaiuw2lL5E+boLs8Ugjcdrpj3WviqI/HHQ Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="13706952"
-X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="13706952"
+ bh=ISn0BuMuxCEkUMw7gA5VrIkzuRhJvC6mpNBwd/5sTf4=;
+ b=Y/xC4HmqjoC7qeAMNF6clZmiSQvxLMmuowrgIkxCjhulyiG2DgiY7A6/
+ WM+FUQF89WsqLFgxMjOrJbvZJ1Z3TwaIIQZojMr27HCBWVZk81RZ5q4pf
+ ylNG/xAgjWK5lrzszNEKik2H0RYzXBcNVhPeZARYIaa23uSZKH462NLX+
+ xmzMB8+qICt62TMfpvqNeMWgOKGx5DqkoCX2yOCspKsKcAzGkaFGiONmL
+ IDYETvT+eqH3Rn92EhAUhNVATFsC370dEKWXvl9RE60cZB4UXxeucyX+L
+ Ad+5GwImZozo59qsGimZSiM0QOUHJw5yOzvr9hn/Fwlg85bBpqKEtrHPG g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="13706964"
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="13706964"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Nov 2023 13:04:48 -0800
+ 22 Nov 2023 13:04:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="940402410"
-X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="940402410"
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="940402450"
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="940402450"
 Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga005.jf.intel.com with ESMTP; 22 Nov 2023 13:04:47 -0800
+ by orsmga005.jf.intel.com with ESMTP; 22 Nov 2023 13:04:52 -0800
 From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed, 22 Nov 2023 13:04:22 -0800
-Message-Id: <20231122210424.3892196-2-vinay.belgaumkar@intel.com>
+Date: Wed, 22 Nov 2023 13:04:24 -0800
+Message-Id: <20231122210424.3892196-4-vinay.belgaumkar@intel.com>
 X-Mailer: git-send-email 2.38.1
 In-Reply-To: <20231122210424.3892196-1-vinay.belgaumkar@intel.com>
 References: <20231122210424.3892196-1-vinay.belgaumkar@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 1/3] drm/xe: Rename xe_gt_idle_sysfs to xe_gt_idle
+Subject: [Intel-xe] [PATCH 3/3] drm/xe: Manually setup C6 when skip_guc_pc
+ is set
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,112 +59,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Prep this file to contain C6 toggling as well instead
-of just sysfs related stuff.
+Skip the init/start/stop GuC PC functions and toggle C6 using
+register writes instead. Also request max possible frequency
+as dynamic freq management is disabled.
 
 Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                               | 2 +-
- drivers/gpu/drm/xe/xe_gt.c                                | 2 +-
- drivers/gpu/drm/xe/{xe_gt_idle_sysfs.c => xe_gt_idle.c}   | 4 ++--
- drivers/gpu/drm/xe/{xe_gt_idle_sysfs.h => xe_gt_idle.h}   | 8 ++++----
- .../xe/{xe_gt_idle_sysfs_types.h => xe_gt_idle_types.h}   | 0
- drivers/gpu/drm/xe/xe_gt_types.h                          | 2 +-
- 6 files changed, 9 insertions(+), 9 deletions(-)
- rename drivers/gpu/drm/xe/{xe_gt_idle_sysfs.c => xe_gt_idle.c} (98%)
- rename drivers/gpu/drm/xe/{xe_gt_idle_sysfs.h => xe_gt_idle.h} (52%)
- rename drivers/gpu/drm/xe/{xe_gt_idle_sysfs_types.h => xe_gt_idle_types.h} (100%)
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h |  4 ++++
+ drivers/gpu/drm/xe/xe_gt_idle.c      | 24 +++++++++++++++++++
+ drivers/gpu/drm/xe/xe_gt_idle.h      |  2 ++
+ drivers/gpu/drm/xe/xe_guc_pc.c       | 35 +++++++++++++++++++++++++---
+ 4 files changed, 62 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index cff9337aa8c4..0932be86c3c8 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -61,7 +61,7 @@ xe-y += xe_bb.o \
- 	xe_gt.o \
- 	xe_gt_clock.o \
- 	xe_gt_debugfs.o \
--	xe_gt_idle_sysfs.o \
-+	xe_gt_idle.o \
- 	xe_gt_mcr.o \
- 	xe_gt_pagefault.o \
- 	xe_gt_sysfs.o \
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 6c885dde5d59..4ecdfa61208c 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -22,7 +22,7 @@
- #include "xe_force_wake.h"
- #include "xe_ggtt.h"
- #include "xe_gt_clock.h"
--#include "xe_gt_idle_sysfs.h"
-+#include "xe_gt_idle.h"
- #include "xe_gt_mcr.h"
- #include "xe_gt_pagefault.h"
- #include "xe_gt_printk.h"
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-similarity index 98%
-rename from drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
-rename to drivers/gpu/drm/xe/xe_gt_idle.c
-index 8df9840811cd..e5b7e5d38e76 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -7,14 +7,14 @@
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index cc27fe8fc363..71eb6b8c8e15 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -269,7 +269,11 @@
+ #define   RPSWCTL_ENABLE			REG_FIELD_PREP(RPSWCTL_MASK, 2)
+ #define   RPSWCTL_DISABLE			REG_FIELD_PREP(RPSWCTL_MASK, 0)
+ #define RC_CONTROL				XE_REG(0xa090)
++#define   RC_CTL_HW_ENABLE			REG_BIT(31)
++#define   RC_CTL_TO_MODE			REG_BIT(28)
++#define   RC_CTL_RC6_ENABLE			REG_BIT(18)
+ #define RC_STATE				XE_REG(0xa094)
++#define RC_IDLE_HYSTERSIS			XE_REG(0xa0ac)
  
- #include "xe_device.h"
- #include "xe_gt.h"
--#include "xe_gt_idle_sysfs.h"
-+#include "xe_gt_idle.h"
+ #define PMINTRMSK				XE_REG(0xa168)
+ #define   PMINTR_DISABLE_REDIRECT_TO_GUC	REG_BIT(31)
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
+index e5b7e5d38e76..9358f7336889 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.c
++++ b/drivers/gpu/drm/xe/xe_gt_idle.c
+@@ -10,6 +10,8 @@
+ #include "xe_gt_idle.h"
  #include "xe_gt_sysfs.h"
  #include "xe_guc_pc.h"
++#include "regs/xe_gt_regs.h"
++#include "xe_mmio.h"
  
  /**
   * DOC: Xe GT Idle
-  *
-- * Provides sysfs entries for idle properties of GT
-+ * Contains functions that init GT idle features like C6
-  *
-  * device/gt#/gtidle/name - name of the state
-  * device/gt#/gtidle/idle_residency_ms - Provides residency of the idle state in ms
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h b/drivers/gpu/drm/xe/xe_gt_idle.h
-similarity index 52%
-rename from drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
-rename to drivers/gpu/drm/xe/xe_gt_idle.h
-index b0973f96c7ab..9b36bf7db3a7 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
+@@ -166,3 +168,25 @@ void xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle)
+ 		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
+ 			 __func__, err);
+ }
++
++void xe_gt_idle_enable_c6(struct xe_gt *gt)
++{
++	xe_device_assert_mem_access(gt_to_xe(gt));
++	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
++
++	/* Units of 1280 ns for a total of 5s */
++	xe_mmio_write32(gt, RC_IDLE_HYSTERSIS, 0x3B9ACA);
++	/* Enable RC6 */
++	xe_mmio_write32(gt, RC_CONTROL,
++			RC_CTL_HW_ENABLE | RC_CTL_TO_MODE | RC_CTL_RC6_ENABLE);
++}
++
++void xe_gt_idle_disable_c6(struct xe_gt *gt)
++{
++	xe_device_assert_mem_access(gt_to_xe(gt));
++	xe_force_wake_assert_held(gt_to_fw(gt), XE_FORCEWAKE_ALL);
++
++	xe_mmio_write32(gt, PG_ENABLE, 0);
++	xe_mmio_write32(gt, RC_CONTROL, 0);
++	xe_mmio_write32(gt, RC_STATE, 0);
++}
+diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
+index 9b36bf7db3a7..8e5c3f157d07 100644
+--- a/drivers/gpu/drm/xe/xe_gt_idle.h
 +++ b/drivers/gpu/drm/xe/xe_gt_idle.h
-@@ -3,11 +3,11 @@
-  * Copyright © 2023 Intel Corporation
-  */
- 
--#ifndef _XE_GT_IDLE_SYSFS_H_
--#define _XE_GT_IDLE_SYSFS_H_
-+#ifndef _XE_GT_IDLE_H_
-+#define _XE_GT_IDLE_H_
- 
--#include "xe_gt_idle_sysfs_types.h"
-+#include "xe_gt_idle_types.h"
+@@ -9,5 +9,7 @@
+ #include "xe_gt_idle_types.h"
  
  void xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle);
++void xe_gt_idle_enable_c6(struct xe_gt *gt);
++void xe_gt_idle_disable_c6(struct xe_gt *gt);
  
--#endif /* _XE_GT_IDLE_SYSFS_H_ */
-+#endif /* _XE_GT_IDLE_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h b/drivers/gpu/drm/xe/xe_gt_idle_types.h
-similarity index 100%
-rename from drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
-rename to drivers/gpu/drm/xe/xe_gt_idle_types.h
-diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
-index d3f2793684e2..a96ee7d028aa 100644
---- a/drivers/gpu/drm/xe/xe_gt_types.h
-+++ b/drivers/gpu/drm/xe/xe_gt_types.h
-@@ -7,7 +7,7 @@
- #define _XE_GT_TYPES_H_
+ #endif /* _XE_GT_IDLE_H_ */
+diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+index f4ac76d6b2dd..b3d4a8c93f41 100644
+--- a/drivers/gpu/drm/xe/xe_guc_pc.c
++++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+@@ -14,6 +14,7 @@
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_gt.h"
++#include "xe_gt_idle.h"
+ #include "xe_gt_sysfs.h"
+ #include "xe_gt_types.h"
+ #include "xe_guc_ct.h"
+@@ -867,13 +868,24 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
  
- #include "xe_force_wake_types.h"
--#include "xe_gt_idle_sysfs_types.h"
-+#include "xe_gt_idle_types.h"
- #include "xe_hw_engine_types.h"
- #include "xe_hw_fence_types.h"
- #include "xe_reg_sr_types.h"
+ 	xe_device_mem_access_get(pc_to_xe(pc));
+ 
+-	memset(pc->bo->vmap.vaddr, 0, size);
+-	slpc_shared_data_write(pc, header.size, size);
+-
+ 	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
+ 	if (ret)
+ 		goto out_fail_force_wake;
+ 
++	if (xe->info.skip_guc_pc) {
++		if (xe->info.platform != XE_PVC)
++			xe_gt_idle_enable_c6(gt);
++
++		/* Request max possible since dynamic freq mgmt is not enabled */
++		pc_set_cur_freq(pc, UINT_MAX);
++
++		ret = 0;
++		goto out;
++	}
++
++	memset(pc->bo->vmap.vaddr, 0, size);
++	slpc_shared_data_write(pc, header.size, size);
++
+ 	ret = pc_action_reset(pc);
+ 	if (ret)
+ 		goto out;
+@@ -909,10 +921,17 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
+  */
+ int xe_guc_pc_stop(struct xe_guc_pc *pc)
+ {
++	struct xe_device *xe = pc_to_xe(pc);
+ 	int ret;
+ 
+ 	xe_device_mem_access_get(pc_to_xe(pc));
+ 
++	if (xe->info.skip_guc_pc) {
++		xe_gt_idle_disable_c6(pc_to_gt(pc));
++		ret = 0;
++		goto out;
++	}
++
+ 	mutex_lock(&pc->freq_lock);
+ 	pc->freq_ready = false;
+ 	mutex_unlock(&pc->freq_lock);
+@@ -933,6 +952,13 @@ int xe_guc_pc_stop(struct xe_guc_pc *pc)
+ 
+ void xe_guc_pc_fini(struct xe_guc_pc *pc)
+ {
++	struct xe_device *xe = pc_to_xe(pc);
++
++	if (xe->info.skip_guc_pc) {
++		xe_gt_idle_disable_c6(pc_to_gt(pc));
++		return;
++	}
++
+ 	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
+ 	XE_WARN_ON(xe_guc_pc_stop(pc));
+ 	sysfs_remove_files(pc_to_gt(pc)->sysfs, pc_attrs);
+@@ -953,6 +979,9 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+ 	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
+ 	int err;
+ 
++	if (xe->info.skip_guc_pc)
++		return 0;
++
+ 	mutex_init(&pc->freq_lock);
+ 
+ 	bo = xe_bo_create_pin_map(xe, tile, NULL, size,
 -- 
 2.38.1
 
