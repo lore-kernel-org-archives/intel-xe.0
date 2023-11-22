@@ -4,30 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AFAA3C61D9B
-	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 13:43:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B013EC61D9B
+	for <intel-xe@archiver.kernel.org>; Wed, 22 Nov 2023 13:46:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FCF910E635;
-	Wed, 22 Nov 2023 13:43:14 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id A2FA310E635;
- Wed, 22 Nov 2023 13:43:12 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 9201EAADE8;
- Wed, 22 Nov 2023 13:43:12 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79BB510E638;
+	Wed, 22 Nov 2023 13:46:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DBE710E63A
+ for <intel-xe@lists.freedesktop.org>; Wed, 22 Nov 2023 13:46:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1700660782; x=1732196782;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=cuU3i2JQ6XKynMOpX4iF01LLzWHAXMSdrhJ3y14AIgY=;
+ b=JLu20gPYpOsatg4QEPJOuej5TXRklIOtZtO3oH26if10kpP3mQn3ilbq
+ ClPynijTbNKb/IS/LXuXa5RzAPYh7Pkh0x/yuA7DAVdo4QENBxsU1p5cu
+ 4UDhHscPrsV4BNmn/7WOSeqfvYm3KTWoQ/mKIj6sF2ak9MmGphG9rlMjt
+ EITEqaIZ9G5YWxcJVGH08K/bp3MA7tDmZ071iveMyKnWwklRC7fOjCabc
+ ZYqY2rg0Ty3FAidaNRKabgkDUaUU49W9jXtLd2+KWSm7NQE4TvCGAilBQ
+ +3P65L+dsDjJruo6Ia6V5tzRif1RBVGg3/PZvPDYyufUbz0sUo51UdJf5 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10901"; a="391825188"
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; d="scan'208";a="391825188"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2023 05:46:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.04,219,1695711600"; 
+   d="scan'208";a="8279385"
+Received: from aconradi-mobl.ger.corp.intel.com (HELO intel.com)
+ ([10.251.221.156])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Nov 2023 05:46:21 -0800
+Date: Wed, 22 Nov 2023 14:46:17 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+Message-ID: <ZV4GKYzUVGyQwMBJ@ashyti-mobl2.lan>
+References: <20231106111845.2333093-1-mika.kuoppala@linux.intel.com>
+ <20231106111845.2333093-3-mika.kuoppala@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Wed, 22 Nov 2023 13:43:12 -0000
-Message-ID: <170066059259.4727.9307248769664163783@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231122110359.4087-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231122110359.4087-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_Assorted_memory-management_fixes?=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231106111845.2333093-3-mika.kuoppala@linux.intel.com>
+Subject: Re: [Intel-xe] [RFC 02/25] drm/xe/eudebug: Introduce discovery for
+ resources
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +59,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Hi Mika,
 
-Series: drm/xe: Assorted memory-management fixes
-URL   : https://patchwork.freedesktop.org/series/126753/
-State : success
+On Mon, Nov 06, 2023 at 01:18:22PM +0200, Mika Kuoppala wrote:
+> Debugger connection can happen way after the client has
+> created and destroyed arbitrary number of resources.
+> 
+> We need to playback all currently existing resources for the
+> debugger. The client is held until this so called discovery
+> process, executed by workqueue, is complete.
+> 
+> This patch is based on discovery work by Maciej Patelczyk
+> for i915 driver.
 
-== Summary ==
+Co-developed-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
+Signed-off-by: Maciej Patelczyk <maciej.patelczyk@intel.com>
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast 89e2bb1e155242dd9aa46bc90e563e71c5f498b0
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+I think it's valid also for the previous patch.
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
-
+Andi
