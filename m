@@ -4,30 +4,59 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 22192C61D97
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Nov 2023 16:26:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A685C5AD4C
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Nov 2023 16:28:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C976810E740;
-	Thu, 23 Nov 2023 16:26:30 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id B40DA10E22D;
- Thu, 23 Nov 2023 16:26:28 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id AD4C8ACC20;
- Thu, 23 Nov 2023 16:26:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0297266117254594153=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7A4F10E71E;
+	Thu, 23 Nov 2023 16:28:42 +0000 (UTC)
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com
+ [IPv6:2a00:1450:4864:20::22a])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E495710E71E
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Nov 2023 16:28:40 +0000 (UTC)
+Received: by mail-lj1-x22a.google.com with SMTP id
+ 38308e7fff4ca-2c87adce180so12967431fa.0
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Nov 2023 08:28:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1700756919; x=1701361719; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=8DsKzve2/aJKapvk9EfKI8hLYJEMCDDnl85IGVXdzyI=;
+ b=U+UIWZZNPzp2q8mXx6RCA2KeNN3Tn5Eso9e9kXJhKeDjFlebG41MZoM/Oex1mZkiTC
+ l3RvjqSTs339Jju/LvcMwSveR+j8Q3Z+dAqtvy02+OE/RIrstelsHocE9GWRxJXremv9
+ yJeDaKXlYAd6rPN/FRHv0OR5u42KGmI2PtDEkL5I2OHYTCj+HxmNudgsz+WmPm/zOf8W
+ 9ksd4EZrJwYokzz/fCuX5NyM4BrwQzs9XSyY5zGsF8EyoztRYpRUnYJldbTIXqTQc5ko
+ qTDSZ6SMky2H84S9C29B/8vOmnLzcA6wMsdNWW8TCNVo0o1Sk/C2nmmEjWf6q0Q5ULdg
+ xoaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1700756919; x=1701361719;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=8DsKzve2/aJKapvk9EfKI8hLYJEMCDDnl85IGVXdzyI=;
+ b=eO+WyhchqskExUlEQBLKml/45pJVssSdjB/EYOhQ/7TkZsdn/94gCIQ8Fa0JVRBiWZ
+ 1Yo9u5KNMonRdo+qYt4IQd0Xh32aqgBsyiZuj9eTGa+OOBVk2VcN8yOdl3ap+JLK6oRe
+ uLMSG9HzoYZluXiStQfszVSPHqUA39bMubvlpIzywVZr34MKzSj+KJwXuZQTNobhpX16
+ 5n7KXP1MpoXu7zBKa2LBI6g0APjhvnKRwFqqEjxQt3DNX0q2v4EKyK5lBL17Zo9sV1j4
+ 6xTApVuEPIS0gWMfEDSYu/8i4pJnc08l2x4iKNj0EWUtEUNWkNlfMdDWd2pCd+xsp1DN
+ Vmnw==
+X-Gm-Message-State: AOJu0YzlCiDxQ2EKzS+BcAnJnsT6jXWTM8tPSGLBjN8KOsSNVDMLgPdp
+ tIHu24wSKKsi0TaNTbRg8V+2Pw6cxvQj9Ttn9VZjNGD3Rao=
+X-Google-Smtp-Source: AGHT+IHkmoFTFa5kDHOmiyTN/qh5vUixRJTaohbK3zwR5u++BppsnZ9zYm0EoXrCIqoim7Jr38oRYMJ9F5ZWR6elYNs=
+X-Received: by 2002:a2e:6817:0:b0:2c7:426b:5028 with SMTP id
+ c23-20020a2e6817000000b002c7426b5028mr4299500lja.2.1700756918741; Thu, 23 Nov
+ 2023 08:28:38 -0800 (PST)
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Thu, 23 Nov 2023 16:26:28 -0000
-Message-ID: <170075678870.8135.47685571995520308@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231122203147.988021-1-lucas.demarchi@intel.com>
-In-Reply-To: <20231122203147.988021-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Group_kun?=
- =?utf-8?q?it_tests?=
+References: <20231121100906.3587649-1-himal.prasad.ghimiray@intel.com>
+ <20231121100906.3587649-2-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20231121100906.3587649-2-himal.prasad.ghimiray@intel.com>
+From: Matthew Auld <matthew.william.auld@gmail.com>
+Date: Thu, 23 Nov 2023 16:28:11 +0000
+Message-ID: <CAM0jSHN+Tz9KhhsHcKKWebEptZZs-+NMDcb-VTAVZwibmhEdtA@mail.gmail.com>
+To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [Intel-xe] [RFC v2 1/6] drm/xe/xe2: Support flat ccs.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,193 +68,39 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0297266117254594153==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 21 Nov 2023 at 10:01, Himal Prasad Ghimiray
+<himal.prasad.ghimiray@intel.com> wrote:
+>
+> Enable flat ccs for XE2_GFX_FEATURES.
+>
+> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-== Series Details ==
+I guess this should rather be the final patch in the series, once we
+have it working?
 
-Series: Group kunit tests
-URL   : https://patchwork.freedesktop.org/series/126786/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from xe-517-501feae7afed8e9b21700d1185532c18d62ca33a_BAT -> xe-pw-126786v1_BAT
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with xe-pw-126786v1_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-126786v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 2)
-------------------------------
-
-  Missing    (2): bat-pvc-2 bat-atsm-2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-126786v1_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_live_ktest@bo:
-    - bat-dg2-oem2:       [PASS][1] -> [SKIP][2] +2 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-517-501feae7afed8e9b21700d1185532c18d62ca33a/bat-dg2-oem2/igt@xe_live_ktest@bo.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/bat-dg2-oem2/igt@xe_live_ktest@bo.html
-    - bat-adlp-7:         [PASS][3] -> [SKIP][4] +2 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-517-501feae7afed8e9b21700d1185532c18d62ca33a/bat-adlp-7/igt@xe_live_ktest@bo.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/bat-adlp-7/igt@xe_live_ktest@bo.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-126786v1_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [PASS][5] -> [FAIL][6] ([Intel XE#480]) +1 other test fail
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-517-501feae7afed8e9b21700d1185532c18d62ca33a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [FAIL][7] ([Intel XE#616] / [Intel XE#750]) -> [DMESG-FAIL][8] ([Intel XE#282] / [i915#2017])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-517-501feae7afed8e9b21700d1185532c18d62ca33a/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
-  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
-  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
-
-
-Build changes
--------------
-
-  * IGT: IGT_7598 -> IGT_7597
-  * Linux: xe-517-501feae7afed8e9b21700d1185532c18d62ca33a -> xe-pw-126786v1
-
-  IGT_7597: 380983dbd9bb2f7eea5e917e8fed0569bfe8cf9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7598: 6be4fb999857e135d54a6643a57dfe394e9c6f2e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-517-501feae7afed8e9b21700d1185532c18d62ca33a: 501feae7afed8e9b21700d1185532c18d62ca33a
-  xe-pw-126786v1: 126786v1
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/index.html
-
---===============0297266117254594153==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Group kunit tests</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126786/">https://patchwork.freedesktop.org/series/126786/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-517-501feae7afed8e9b21700d1185532c18d62ca33a_BAT -&gt; xe-pw-126786v1_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-126786v1_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-126786v1_BAT, please notify your bug team (lgci.bug.filing@intel.com) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 2)</h2>
-<p>Missing    (2): bat-pvc-2 bat-atsm-2 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-126786v1_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@xe_live_ktest@bo:</p>
-<ul>
-<li>
-<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-517-501feae7afed8e9b21700d1185532c18d62ca33a/bat-dg2-oem2/igt@xe_live_ktest@bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/bat-dg2-oem2/igt@xe_live_ktest@bo.html">SKIP</a> +2 other tests skip</p>
-</li>
-<li>
-<p>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-517-501feae7afed8e9b21700d1185532c18d62ca33a/bat-adlp-7/igt@xe_live_ktest@bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/bat-adlp-7/igt@xe_live_ktest@bo.html">SKIP</a> +2 other tests skip</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-126786v1_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-517-501feae7afed8e9b21700d1185532c18d62ca33a/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-517-501feae7afed8e9b21700d1185532c18d62ca33a/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126786v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7598 -&gt; IGT_7597</li>
-<li>Linux: xe-517-501feae7afed8e9b21700d1185532c18d62ca33a -&gt; xe-pw-126786v1</li>
-</ul>
-<p>IGT_7597: 380983dbd9bb2f7eea5e917e8fed0569bfe8cf9c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7598: 6be4fb999857e135d54a6643a57dfe394e9c6f2e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-517-501feae7afed8e9b21700d1185532c18d62ca33a: 501feae7afed8e9b21700d1185532c18d62ca33a<br />
-  xe-pw-126786v1: 126786v1</p>
-
-</body>
-</html>
-
---===============0297266117254594153==--
+> ---
+>  drivers/gpu/drm/xe/xe_pci.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 682ba188e456..d9754f3d45f7 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -157,7 +157,7 @@ static const struct xe_graphics_desc graphics_xelpg =
+=3D {
+>  #define XE2_GFX_FEATURES \
+>         .dma_mask_size =3D 46, \
+>         .has_asid =3D 1, \
+> -       .has_flat_ccs =3D 0 /* FIXME: implementation missing */, \
+> +       .has_flat_ccs =3D 1, \
+>         .has_range_tlb_invalidation =3D 1, \
+>         .supports_usm =3D 0 /* FIXME: implementation missing */, \
+>         .va_bits =3D 48, \
+> --
+> 2.25.1
+>
