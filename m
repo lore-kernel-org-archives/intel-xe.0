@@ -4,59 +4,61 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 819A8C61D97
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Nov 2023 16:50:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0C0DC61D97
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Nov 2023 17:01:57 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD0E10E160;
-	Thu, 23 Nov 2023 16:50:40 +0000 (UTC)
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com
- [IPv6:2a00:1450:4864:20::22e])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95FE510E160
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Nov 2023 16:50:38 +0000 (UTC)
-Received: by mail-lj1-x22e.google.com with SMTP id
- 38308e7fff4ca-2c4fdf94666so13467311fa.2
- for <intel-xe@lists.freedesktop.org>; Thu, 23 Nov 2023 08:50:38 -0800 (PST)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 94D0B10E034;
+	Thu, 23 Nov 2023 17:01:57 +0000 (UTC)
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com
+ [IPv6:2a00:1450:4864:20::22c])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F82610E034
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Nov 2023 17:01:56 +0000 (UTC)
+Received: by mail-lj1-x22c.google.com with SMTP id
+ 38308e7fff4ca-2c50305c5c4so14041211fa.1
+ for <intel-xe@lists.freedesktop.org>; Thu, 23 Nov 2023 09:01:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1700758236; x=1701363036; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1700758915; x=1701363715; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=lVJ8pWvbS1J4kVCcA9wLvIbXAlF5pjgs5a0ab2+V7eQ=;
- b=OciTAfsiElCRslUhTDcBcRNNtHfP2Nk0q6r62YrKfwgCS+dvHfxBSK4FizxCBRPm0L
- WwzGVnURgbhMfttdlt1wq1NgFmbEu+CTVkCxl84Vx0eoQDOBCi+nhoqZ5qsTb9C47gST
- 2JOyj286skugFKPzKIBXtpJCi225QgMvJTB1qWr6GTOi8VwdCB73S0G1bdiekUPyKMOm
- 06dk+nEmxoKrAXgEWcNrRVzVrUXiWxBMIOO5Ko46034MiyY6vW8HA6pgRolqIA732QjH
- K7PsCReTWJsVy0eRmyfC6NOwwkb665Ukx/BOq3Diw+0ehNK+ioEWwZE7X+i5BIesOzzs
- +xwg==
+ bh=WguNTQato9TBxHSWR8x6p6g79o8O4z7iJwel/YmzjPM=;
+ b=IYYdOB+G5XmUBL20ZMYo8ifcPKkQaLGjLLbsZ6+ND8Ppn+2+gkJdr4P97dbcWgcktf
+ jRtNkTy+Z3/dJk263q1lSHhgsdKAHYYufy1K5hN/r6v9vXGAzDuk97kEMG3chV6i1Kkh
+ r2GONibWv+eVy/WJ1TrMChVFCQuEaEsvjpFcLO+98s8W0u7dTo5wRmLP4qtGRn370wbL
+ YARBZ2DZmgqXRWFG8Vhupft7jzEwChe3QIS7iZGQw3qrF3wTgv/LMnYWpGiExSI2T+xf
+ r+NXuGCQbdwonJsVL2elG81aOri8jURjV+V+uAYXJ55t5uqrqMfY6wzNlc5vKeKDhwlH
+ yn7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1700758236; x=1701363036;
+ d=1e100.net; s=20230601; t=1700758915; x=1701363715;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=lVJ8pWvbS1J4kVCcA9wLvIbXAlF5pjgs5a0ab2+V7eQ=;
- b=sE1Y/Lbd05p8uOms9K9X6m77n+qhEoy+oFLY/IcfJjpteyuoZoR0YibINUNg3j6LQr
- FbkrV0oiiWJRbfVkS6NdSz4oPltJL7O1navursHu1kVI43CpbbNNl7Verdtp7LYs8+u8
- 9cN+F71VI9GvaT1hUsrNVwUUQtO8XnOgOxdoK074Mz4QOCsG0h0jjiGb2Oq1VxNh0KZt
- 6zPdwbqwwjzTBJqGjIPM5tqyMdM+SfV0HOdRCS/5SRWFc0O+6yCypDJu4vpYvLSGVYBz
- IuecrKdqOlXiKVn/ieQ1PlvKOu3SFUsQ3o/R4Po2ZMvTDTOYDSLRLZ2CfdBYveI5k/gF
- 1bFg==
-X-Gm-Message-State: AOJu0Yys8ISytnxcjJy/x3f3eIBYQAWJLBd2GQTHVHue0Ja5Z7+uwqgU
- qTELOZpMe/YLR9yoQNNqnJVonjE9ZFpgBFdlNAwtEOfoyRrALQ==
-X-Google-Smtp-Source: AGHT+IHmNF6TlIqE3MB/lTiy3t1xOyxdHA2U+V761gNN9nJd1Z/oiXu8/bSiRjsZyd3RTM6FUPTC6Q+EXqNyTbQkx/8=
-X-Received: by 2002:a05:651c:20c:b0:2c6:f6eb:b396 with SMTP id
- y12-20020a05651c020c00b002c6f6ebb396mr3960365ljn.40.1700758236280; Thu, 23
- Nov 2023 08:50:36 -0800 (PST)
+ bh=WguNTQato9TBxHSWR8x6p6g79o8O4z7iJwel/YmzjPM=;
+ b=j4KdXaPiFFreyfdjMDp/AHRMQWy50GwG/VahjC+ljZv0mqURDEeSojceCMjo8CXOiA
+ i5MxRWZfqWVwp6ZmH1STzVjbvEZZ3WundEMcwAlhtlWoY9iHqkcCVFo++rY8le5KxHJ7
+ Dk1Pe9YCusUhnyitb5HRNQvBG9PFAuSfoJ2nSnbWoLF0AMO0al3GkTKg0DP2fCgYcr3J
+ CfJHHl9JowY9nO6jCU/gpVF0SBIWMRyIWtFf4lkk5uOsZE6Epr25AMqEQKpt1aZ9xHqW
+ VVEMX+lE+pk+mhIOk82eHW/4IIjSP/lT8A+0BYGPfScZe896AnPONogRUldH3aJNM0D1
+ wjmw==
+X-Gm-Message-State: AOJu0Ywlsx8B9xF6inp5wowIHexcs2KeB1AKdnqS/X74Rp71j5tgTns6
+ 7FvEWihMJJtGryFYkmtlMfPBihKutEjw/wTdIh0GxAX1VcI=
+X-Google-Smtp-Source: AGHT+IEgVTHkvydNZg3Cwqqs8cQcY5WYVHHWjJFCjC4n640QtE5NshGKa5HJDFBtZTN9tGfNAHDagu09kdWXO6nbSQo=
+X-Received: by 2002:a2e:a7d2:0:b0:2c7:b9b3:4ec1 with SMTP id
+ x18-20020a2ea7d2000000b002c7b9b34ec1mr5186605ljp.17.1700758914534; Thu, 23
+ Nov 2023 09:01:54 -0800 (PST)
 MIME-Version: 1.0
-References: <20231121100117.3584066-1-himal.prasad.ghimiray@intel.com>
- <20231121100117.3584066-7-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20231121100117.3584066-7-himal.prasad.ghimiray@intel.com>
+References: <20231121100906.3587649-1-himal.prasad.ghimiray@intel.com>
+ <20231121100906.3587649-3-himal.prasad.ghimiray@intel.com>
+ <CAM0jSHNGO3AKBkH9U7WueNp7dPwT_FLQbD-8e=OtHA3yOrQeZg@mail.gmail.com>
+In-Reply-To: <CAM0jSHNGO3AKBkH9U7WueNp7dPwT_FLQbD-8e=OtHA3yOrQeZg@mail.gmail.com>
 From: Matthew Auld <matthew.william.auld@gmail.com>
-Date: Thu, 23 Nov 2023 16:50:08 +0000
-Message-ID: <CAM0jSHPBkOLDYzZ+kO3Wzen=en-0FPwTqqMUzbuCSTT2ciapww@mail.gmail.com>
+Date: Thu, 23 Nov 2023 17:01:27 +0000
+Message-ID: <CAM0jSHPfO6dm74KbKVUC=gJym8RzFgd9S8U6QJeSTWmW1pr3Sg@mail.gmail.com>
 To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [Intel-xe] [RFC 6/6] drm/xe/xe2: Handle flat ccs move for igfx.
+Subject: Re: [Intel-xe] [RFC v2 2/6] drm/xe/xe2: Determine bios enablement
+ for flat ccs on igfx.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,320 +74,127 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 21 Nov 2023 at 09:54, Himal Prasad Ghimiray
-<himal.prasad.ghimiray@intel.com> wrote:
+On Thu, 23 Nov 2023 at 16:37, Matthew Auld
+<matthew.william.auld@gmail.com> wrote:
 >
-> - Clear flat ccs during user bo creation.
-> - copy ccs meta data between flat ccs and bo during eviction and
-> restore.
+> On Tue, 21 Nov 2023 at 10:01, Himal Prasad Ghimiray
+> <himal.prasad.ghimiray@intel.com> wrote:
+> >
+> > If bios disables flat ccs on igfx  make has_flat_ccs as 0 and notify
+> > via drm_info.
+> >
+> > Bspec:59255
+> >
+> > Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
+> > Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+>
+> Huh, I wonder if that explains why on some particular LNL DUTs
+> compression just didn't seem to "work" for me.
+>
+> So should this information be passed along to userspace via some query
+> uAPI? Maybe there is some tradeoff between enabling compression and
+> other features (like coherency), and so knowing this might be useful?
 
-I guess it is possible to detect compression usage during vm_bind?
-Just wondering if it is somehow possible to push this work prior to
-binding such that we can skip if compression is never even used?
+Another idea might be to reject any compressed pat_index, if the
+platform doesn't support flat_ccs?
 
-> - Add a bool field ccs_cleared in bo, true means ccs region of bo is
-> already cleared.
 >
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_bo.c       | 25 ++++++++-----
->  drivers/gpu/drm/xe/xe_bo_types.h |  2 ++
->  drivers/gpu/drm/xe/xe_migrate.c  | 62 ++++++++++++++++----------------
->  3 files changed, 50 insertions(+), 39 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 4730ee3c1012..a40f17ae21e7 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -630,10 +630,12 @@ static int xe_bo_move(struct ttm_buffer_object *ttm=
-_bo, bool evict,
->         bool move_lacks_source;
->         bool tt_has_data;
->         bool needs_clear;
-> +       bool handle_system_ccs =3D (!IS_DGFX(xe) && xe_bo_needs_ccs_pages=
-(bo) &&
-> +                                 ttm && ttm_tt_is_populated(ttm)) ? true=
- : false;
->         int ret =3D 0;
-> -
-> -       /* Bo creation path, moving to system or TT. No clearing required=
-. */
-> -       if (!old_mem && ttm) {
-> +       /* Bo creation path, moving to system or TT. */
-> +       if (((old_mem_type =3D=3D XE_PL_SYSTEM && new_mem->mem_type =3D=
-=3D XE_PL_TT) ||
-> +            (!old_mem && ttm)) && !handle_system_ccs) {
->                 ttm_bo_move_null(ttm_bo, new_mem);
->                 return 0;
->         }
-> @@ -648,14 +650,13 @@ static int xe_bo_move(struct ttm_buffer_object *ttm=
-_bo, bool evict,
->         tt_has_data =3D ttm && (ttm_tt_is_populated(ttm) ||
->                               (ttm->page_flags & TTM_TT_FLAG_SWAPPED));
->
-> -       move_lacks_source =3D !mem_type_is_vram(old_mem_type) && !tt_has_=
-data;
-> +       move_lacks_source =3D handle_system_ccs ? (!bo->ccs_cleared)  :
-> +                                               (!mem_type_is_vram(old_me=
-m_type) && !tt_has_data);
->
->         needs_clear =3D (ttm && ttm->page_flags & TTM_TT_FLAG_ZERO_ALLOC)=
- ||
->                 (!ttm && ttm_bo->type =3D=3D ttm_bo_type_device);
->
-> -       if ((move_lacks_source && !needs_clear) ||
-> -           (old_mem_type =3D=3D XE_PL_SYSTEM &&
-> -            new_mem->mem_type =3D=3D XE_PL_TT)) {
-> +       if ((move_lacks_source && !needs_clear)) {
->                 ttm_bo_move_null(ttm_bo, new_mem);
->                 goto out;
->         }
-> @@ -686,8 +687,11 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_=
-bo, bool evict,
->                         ret =3D timeout;
->                         goto out;
->                 }
-> -               ttm_bo_move_null(ttm_bo, new_mem);
-> -               goto out;
-> +
-> +               if (!handle_system_ccs) {
-> +                       ttm_bo_move_null(ttm_bo, new_mem);
-> +                       goto out;
-> +               }
->         }
->
->         if (!move_lacks_source &&
-> @@ -708,6 +712,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_b=
-o, bool evict,
->                 migrate =3D mem_type_to_migrate(xe, new_mem->mem_type);
->         else if (mem_type_is_vram(old_mem_type))
->                 migrate =3D mem_type_to_migrate(xe, old_mem_type);
-> +       else
-> +               migrate =3D xe->tiles[0].migrate;
->
->         xe_assert(xe, migrate);
->
-> @@ -1229,6 +1235,7 @@ struct xe_bo *__xe_bo_create_locked(struct xe_devic=
-e *xe, struct xe_bo *bo,
->                 alignment =3D SZ_4K >> PAGE_SHIFT;
->         }
->
-> +       bo->ccs_cleared =3D false;
->         bo->tile =3D tile;
->         bo->size =3D size;
->         bo->flags =3D flags;
-> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_=
-types.h
-> index 4bff60996168..508e67c81427 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> @@ -79,6 +79,8 @@ struct xe_bo {
->         struct llist_node freed;
->         /** @created: Whether the bo has passed initial creation */
->         bool created;
-> +       /** @ccs_cleared */
-> +       bool ccs_cleared;
->  };
->
->  #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
-> diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migr=
-ate.c
-> index bdcb20f23531..bac24768fe2a 100644
-> --- a/drivers/gpu/drm/xe/xe_migrate.c
-> +++ b/drivers/gpu/drm/xe/xe_migrate.c
-> @@ -564,14 +564,14 @@ static u64 xe_migrate_batch_base(struct xe_migrate =
-*m, bool usm)
->
->  static u32 xe_migrate_ccs_copy(struct xe_migrate *m,
->                                struct xe_bb *bb,
-> -                              u64 src_ofs, bool src_is_vram,
-> -                              u64 dst_ofs, bool dst_is_vram, u32 dst_siz=
-e,
-> +                              u64 src_ofs, bool src_is_indirect,
-> +                              u64 dst_ofs, bool dst_is_indirect, u32 dst=
-_size,
->                                u64 ccs_ofs, bool copy_ccs)
->  {
->         struct xe_gt *gt =3D m->tile->primary_gt;
->         u32 flush_flags =3D 0;
->
-> -       if (xe_device_has_flat_ccs(gt_to_xe(gt)) && !copy_ccs && dst_is_v=
-ram) {
-> +       if (xe_device_has_flat_ccs(gt_to_xe(gt)) && !copy_ccs && dst_is_i=
-ndirect) {
->                 /*
->                  * If the src is already in vram, then it should already
->                  * have been cleared by us, or has been populated by the
-> @@ -580,28 +580,24 @@ static u32 xe_migrate_ccs_copy(struct xe_migrate *m=
-,
->                  * Otherwise if the bo doesn't have any CCS metadata atta=
-ched,
->                  * we still need to clear it for security reasons.
->                  */
-> -               u64 ccs_src_ofs =3D  src_is_vram ? src_ofs : m->cleared_m=
-em_ofs;
-> +               u64 ccs_src_ofs =3D  src_is_indirect ? src_ofs : m->clear=
-ed_mem_ofs;
->
->                 emit_copy_ccs(gt, bb,
->                               dst_ofs, true,
-> -                             ccs_src_ofs, src_is_vram, dst_size);
-> +                             ccs_src_ofs, src_is_indirect, dst_size);
->
->                 flush_flags =3D MI_FLUSH_DW_CCS;
->         } else if (copy_ccs) {
-> -               if (!src_is_vram)
-> +               if (!src_is_indirect)
->                         src_ofs =3D ccs_ofs;
-> -               else if (!dst_is_vram)
-> +               else if (!dst_is_indirect)
->                         dst_ofs =3D ccs_ofs;
->
-> -               /*
-> -                * At the moment, we don't support copying CCS metadata f=
-rom
-> -                * system to system.
-> -                */
-> -               xe_gt_assert(gt, src_is_vram || dst_is_vram);
-> +               xe_gt_assert(gt, src_is_indirect || dst_is_indirect);
->
-> -               emit_copy_ccs(gt, bb, dst_ofs, dst_is_vram, src_ofs,
-> -                             src_is_vram, dst_size);
-> -               if (dst_is_vram)
-> +               emit_copy_ccs(gt, bb, dst_ofs, dst_is_indirect, src_ofs,
-> +                             src_is_indirect, dst_size);
-> +               if (dst_is_indirect)
->                         flush_flags =3D MI_FLUSH_DW_CCS;
->         }
->
-> @@ -642,6 +638,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *=
-m,
->         u64 src_L0, dst_L0;
->         int pass =3D 0;
->         int err;
-> +       bool src_is_pltt =3D src->mem_type =3D=3D XE_PL_TT;
-> +       bool dst_is_pltt =3D dst->mem_type =3D=3D XE_PL_TT;
->         bool src_is_vram =3D mem_type_is_vram(src->mem_type);
->         bool dst_is_vram =3D mem_type_is_vram(dst->mem_type);
->         bool copy_ccs =3D xe_device_has_flat_ccs(xe) &&
-> @@ -682,9 +680,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *=
-m,
->                 src_L0 =3D xe_migrate_res_sizes(&src_it);
->                 dst_L0 =3D xe_migrate_res_sizes(&dst_it);
->
-> -               drm_dbg(&xe->drm, "Pass %u, sizes: %llu & %llu\n",
-> -                       pass++, src_L0, dst_L0);
-> -
-> +               drm_dbg(&xe->drm, "Pass %u, sizes: %llu & %llu\n", pass++=
-, src_L0, dst_L0);
->                 src_L0 =3D min(src_L0, dst_L0);
->
->                 batch_size +=3D pte_update_size(m, src_is_vram, src, &src=
-_it, &src_L0,
-> @@ -704,8 +700,8 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *=
-m,
->                 }
->
->                 /* Add copy commands size here */
-> -               batch_size +=3D EMIT_COPY_DW +
-> -                       (xe_device_has_flat_ccs(xe) ? EMIT_COPY_CCS_DW : =
-0);
-> +               batch_size +=3D ((!src_is_vram && !dst_is_vram) ? 0 : EMI=
-T_COPY_DW) +
-> +                       ((xe_device_has_flat_ccs(xe) ? EMIT_COPY_CCS_DW :=
- 0));
->
->                 bb =3D xe_bb_new(gt, batch_size, usm);
->                 if (IS_ERR(bb)) {
-> @@ -731,10 +727,13 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate=
- *m,
->                 bb->cs[bb->len++] =3D MI_BATCH_BUFFER_END;
->                 update_idx =3D bb->len;
->
-> -               emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0,
-> -                         XE_PAGE_SIZE);
-> -               flush_flags =3D xe_migrate_ccs_copy(m, bb, src_L0_ofs, sr=
-c_is_vram,
-> -                                                 dst_L0_ofs, dst_is_vram=
-,
-> +               if (src_is_vram || dst_is_vram)
-> +                       emit_copy(gt, bb, src_L0_ofs, dst_L0_ofs, src_L0,=
- XE_PAGE_SIZE);
-> +
-> +               flush_flags =3D xe_migrate_ccs_copy(m, bb, src_L0_ofs,
-> +                                                 IS_DGFX(xe) ? src_is_vr=
-am : src_is_pltt,
-> +                                                 dst_L0_ofs,
-> +                                                 IS_DGFX(xe) ? dst_is_vr=
-am : dst_is_pltt,
->                                                   src_L0, ccs_ofs, copy_c=
-cs);
->
->                 mutex_lock(&m->job_mutex);
-> @@ -907,6 +906,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate =
-*m,
->         bool clear_vram =3D mem_type_is_vram(dst->mem_type);
->         struct xe_gt *gt =3D m->tile->primary_gt;
->         struct xe_device *xe =3D gt_to_xe(gt);
-> +       bool clear_system_ccs =3D (xe_bo_needs_ccs_pages(bo) && !IS_DGFX(=
-xe)) ? true : false;
->         struct dma_fence *fence =3D NULL;
->         u64 size =3D bo->size;
->         struct xe_res_cursor src_it;
-> @@ -936,9 +936,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate =
-*m,
->                 batch_size =3D 2 +
->                         pte_update_size(m, clear_vram, src, &src_it,
->                                         &clear_L0, &clear_L0_ofs, &clear_=
-L0_pt,
-> -                                       emit_clear_cmd_len(gt), 0,
-> +                                       clear_system_ccs ? 0 : emit_clear=
-_cmd_len(gt), 0,
->                                         NUM_PT_PER_BLIT);
-> -               if (xe_device_has_flat_ccs(xe) && clear_vram)
-> +               if (xe_bo_needs_ccs_pages(bo))
->                         batch_size +=3D EMIT_COPY_CCS_DW;
->
->                 /* Clear commands */
-> @@ -953,7 +953,6 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate =
-*m,
->                 }
->
->                 size -=3D clear_L0;
-> -
->                 /* Preemption is enabled again by the ring ops. */
->                 if (!clear_vram) {
->                         emit_pte(m, bb, clear_L0_pt, clear_vram, &src_it,=
- clear_L0,
-> @@ -964,10 +963,10 @@ struct dma_fence *xe_migrate_clear(struct xe_migrat=
-e *m,
->                 bb->cs[bb->len++] =3D MI_BATCH_BUFFER_END;
->                 update_idx =3D bb->len;
->
-> -               emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAGE_SIZE,
-> -                          clear_vram);
-> +               if (!clear_system_ccs)
-> +                       emit_clear(gt, bb, clear_L0_ofs, clear_L0, XE_PAG=
-E_SIZE, clear_vram);
->
-> -               if (xe_device_has_flat_ccs(xe) && clear_vram) {
-> +               if (xe_bo_needs_ccs_pages(bo)) {
->                         emit_copy_ccs(gt, bb, clear_L0_ofs, true,
->                                       m->cleared_mem_ofs, false, clear_L0=
-);
->                         flush_flags =3D MI_FLUSH_DW_CCS;
-> @@ -1024,6 +1023,9 @@ struct dma_fence *xe_migrate_clear(struct xe_migrat=
-e *m,
->                 return ERR_PTR(err);
->         }
->
-> +       if (clear_system_ccs)
-> +               bo->ccs_cleared =3D true;
-> +
->         return fence;
->  }
->
-> --
-> 2.25.1
->
+> > ---
+> >  drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 +++
+> >  drivers/gpu/drm/xe/xe_device.c       | 30 ++++++++++++++++++++++++++++
+> >  2 files changed, 33 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/=
+regs/xe_gt_regs.h
+> > index cc27fe8fc363..b642301947f5 100644
+> > --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> > @@ -142,6 +142,9 @@
+> >  #define XEHP_SLICE_COMMON_ECO_CHICKEN1         XE_REG_MCR(0x731c, XE_R=
+EG_OPTION_MASKED)
+> >  #define   MSC_MSAA_REODER_BUF_BYPASS_DISABLE   REG_BIT(14)
+> >
+> > +#define XE2_FLAT_CCS_BASE_RANGE_LOWER          XE_REG_MCR(0x8800)
+> > +#define   XE2_FLAT_CCS_ENABLE                  REG_BIT(0)
+> > +
+> >  #define VF_PREEMPTION                          XE_REG(0x83a4, XE_REG_O=
+PTION_MASKED)
+> >  #define   PREEMPTION_VERTEX_COUNT              REG_GENMASK(15, 0)
+> >
+> > diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_dev=
+ice.c
+> > index 8be765adf702..07a3e4cf48d1 100644
+> > --- a/drivers/gpu/drm/xe/xe_device.c
+> > +++ b/drivers/gpu/drm/xe/xe_device.c
+> > @@ -16,6 +16,7 @@
+> >  #include <drm/xe_drm.h>
+> >
+> >  #include "regs/xe_regs.h"
+> > +#include "regs/xe_gt_regs.h"
+> >  #include "xe_bo.h"
+> >  #include "xe_debugfs.h"
+> >  #include "xe_display.h"
+> > @@ -25,6 +26,7 @@
+> >  #include "xe_exec_queue.h"
+> >  #include "xe_exec.h"
+> >  #include "xe_gt.h"
+> > +#include "xe_gt_mcr.h"
+> >  #include "xe_irq.h"
+> >  #include "xe_mmio.h"
+> >  #include "xe_module.h"
+> > @@ -342,6 +344,29 @@ static void xe_device_sanitize(struct drm_device *=
+drm, void *arg)
+> >                 xe_gt_sanitize(gt);
+> >  }
+> >
+> > +static int xe_device_set_has_flat_ccs(struct  xe_device *xe)
+> > +{
+> > +       u32 reg;
+> > +       int err;
+> > +
+> > +       if (IS_DGFX(xe) || GRAPHICS_VER(xe) < 20 || !xe->info.has_flat_=
+ccs)
+> > +               return 0;
+> > +
+> > +       struct xe_gt *gt =3D xe_root_mmio_gt(xe);
+> > +
+> > +       err =3D xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
+> > +       if (err)
+> > +               return err;
+> > +
+> > +       reg =3D xe_gt_mcr_unicast_read_any(gt, XE2_FLAT_CCS_BASE_RANGE_=
+LOWER);
+> > +       xe->info.has_flat_ccs =3D (reg & XE2_FLAT_CCS_ENABLE);
+> > +
+> > +       if (!xe->info.has_flat_ccs)
+> > +               drm_info(&xe->drm,
+> > +                        "Flat CCS has been disabled in bios, May lead =
+to performance impact");
+> > +       return 0;
+> > +}
+> > +
+> >  int xe_device_probe(struct xe_device *xe)
+> >  {
+> >         struct xe_tile *tile;
+> > @@ -352,6 +377,7 @@ int xe_device_probe(struct xe_device *xe)
+> >         xe_pat_init_early(xe);
+> >
+> >         xe->info.mem_region_mask =3D 1;
+> > +
+> >         err =3D xe_display_init_nommio(xe);
+> >         if (err)
+> >                 return err;
+> > @@ -390,6 +416,10 @@ int xe_device_probe(struct xe_device *xe)
+> >                         goto err_irq_shutdown;
+> >         }
+> >
+> > +       err =3D xe_device_set_has_flat_ccs(xe);
+> > +       if (err)
+> > +               return err;
+> > +
+> >         err =3D xe_mmio_probe_vram(xe);
+> >         if (err)
+> >                 goto err_irq_shutdown;
+> > --
+> > 2.25.1
+> >
