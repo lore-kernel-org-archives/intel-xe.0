@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60C06C61D85
-	for <intel-xe@archiver.kernel.org>; Thu, 23 Nov 2023 10:09:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6DE3DC61D85
+	for <intel-xe@archiver.kernel.org>; Thu, 23 Nov 2023 10:10:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B37D10E711;
-	Thu, 23 Nov 2023 10:09:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2ADEE10E713;
+	Thu, 23 Nov 2023 10:10:13 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 63C2110E711;
- Thu, 23 Nov 2023 10:09:54 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6035E10E714;
+ Thu, 23 Nov 2023 10:10:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5FC58AADE1;
- Thu, 23 Nov 2023 10:09:54 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 53CB3A0003;
+ Thu, 23 Nov 2023 10:10:11 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Thu, 23 Nov 2023 10:09:54 -0000
-Message-ID: <170073419438.8135.17242174951918270167@emeril.freedesktop.org>
+Date: Thu, 23 Nov 2023 10:10:11 -0000
+Message-ID: <170073421134.8136.2535327289502422131@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231122110359.4087-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20231122110359.4087-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Assorted_memory-management_fixes?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Assorted_memory-management_fixes?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,12 +52,36 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 59f2e7346 drm/xe/mmio: Make xe_mmio_wait32() aware of interrupts
-=== git am output follows ===
-Applying: drm/xe: Ensure that we don't access the placements array out-of-bounds
-Applying: drm/xe/bo: Rename xe_bo_get_sg() to xe_bo_sg()
-Applying: drm/xe/bo: Remove leftover trace_printk()
-Applying: drm/xe/vm: Fix ASID XA usage
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit e6da4180b8ae330d1130c0ac61370c34c0493946
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Wed Nov 22 12:03:59 2023 +0100
+
+    drm/xe/vm: Fix ASID XA usage
+    
+    xa_alloc_cyclic() returns 1 on successful allocation, if wrapping occurs,
+    but the code incorrectly treats that as an error. Fix that.
+    Also, xa_alloc_cyclic() requires xa_init_flags(..., XA_FLAGS_ALLOC), so
+    fix that, and assuming we don't want a zero ASID, instead of using
+    XA_FLAGS_ALLOC1, adjust the xa limits at alloc_cyclic time.
+    
+    Suggested-by: Ohad Sharabi <osharabi@habana.ai>
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/946
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+    Reviewed-by: Ohad Sharabi <osharavi@habana.ai>
++ /mt/dim checkpatch 59f2e73469cace9c78aab7506284ae446d57b8bc drm-intel
+0d1d4cd30 drm/xe: Ensure that we don't access the placements array out-of-bounds
+3bfa1285c drm/xe/bo: Rename xe_bo_get_sg() to xe_bo_sg()
+abca1c9ff drm/xe/bo: Remove leftover trace_printk()
+e6da4180b drm/xe/vm: Fix ASID XA usage
 
 
