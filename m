@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD987C61D97
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 10:23:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C938CC61DF4
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 10:24:11 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 806C010E7D4;
-	Fri, 24 Nov 2023 10:23:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 96C9410E7D3;
+	Fri, 24 Nov 2023 10:24:11 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 4345310E7D3;
- Fri, 24 Nov 2023 10:23:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id EBA9A10E7D3;
+ Fri, 24 Nov 2023 10:24:09 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 3DD5AAADD2;
- Fri, 24 Nov 2023 10:23:55 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id E8E3FAADD2;
+ Fri, 24 Nov 2023 10:24:09 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Fri, 24 Nov 2023 10:23:55 -0000
-Message-ID: <170082143523.13023.4804820317195284654@emeril.freedesktop.org>
+Date: Fri, 24 Nov 2023 10:24:09 -0000
+Message-ID: <170082144995.13025.3020004913089007736@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231124091111.77269-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20231124091111.77269-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe=3A_Assorted_memory-management_fixes_=28rev3=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe=3A_Assorted_memory-management_fixes_=28rev3=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,12 +52,44 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 1832821c7 drm/xe: Print virtualization mode during probe
-=== git am output follows ===
-Applying: drm/xe: Ensure that we don't access the placements array out-of-bounds
-Applying: drm/xe/bo: Rename xe_bo_get_sg() to xe_bo_sg()
-Applying: drm/xe/bo: Remove leftover trace_printk()
-Applying: drm/xe/vm: Fix ASID XA usage
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit fa70296a612ad2ee71068738e764529cc48b9f6a
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Fri Nov 24 10:11:11 2023 +0100
+
+    drm/xe/vm: Fix ASID XA usage
+    
+    xa_alloc_cyclic() returns 1 on successful allocation, if wrapping occurs,
+    but the code incorrectly treats that as an error. Fix that.
+    Also, xa_alloc_cyclic() requires xa_init_flags(..., XA_FLAGS_ALLOC), so
+    fix that, and assuming we don't want a zero ASID, instead of using
+    XA_FLAGS_ALLOC1, adjust the xa limits at alloc_cyclic time.
+    
+    v2:
+    - On CONFIG_DRM_XE_DEBUG, Initialize the cyclic ASID allocation in such a
+      way that the next allocated ASID will be the maximum one, and the one
+      following will cause an ASID wrap, (all to have CI test high ASIDs
+      and ASID wraps).
+    v3:
+    - Stricter return value checking from xa_alloc_cyclic() (Matthew Auld)
+    
+    Suggested-by: Ohad Sharabi <osharabi@habana.ai>
+    Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/946
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Reviewed-by: Ohad Sharabi <osharabi@habana.ai> #v1
+    Reviewed-by: Matthew Auld <matthew.auld@intel.com>
++ /mt/dim checkpatch 1832821c7e4c5bd24353183f060f1435b2eb7992 drm-intel
+74123a725 drm/xe: Ensure that we don't access the placements array out-of-bounds
+5fb88fbc5 drm/xe/bo: Rename xe_bo_get_sg() to xe_bo_sg()
+a9e7ce997 drm/xe/bo: Remove leftover trace_printk()
+fa70296a6 drm/xe/vm: Fix ASID XA usage
 
 
