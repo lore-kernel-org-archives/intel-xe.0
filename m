@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38B7EC61DF4
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 11:13:02 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B6C5EC61DF4
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 11:13:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 10A9F10E1BC;
-	Fri, 24 Nov 2023 11:13:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48C7A10E1BC
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Nov 2023 11:13:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81A2C10E1BC;
+	Fri, 24 Nov 2023 11:13:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87C8C10E1BC
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Nov 2023 11:13:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700824381; x=1732360381;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=N92e3OFrnUuyxrMjyeOWFI3WnukDH/4y/CndrdXjQUo=;
- b=D2xcwG0+wLKQ3ETUrZYSuntnqgVE3CQQ3Epl+V8Il7EOOCof33I1tNCT
- uz+bEAH2vOwo/ipdAK2CZjI5bzxzXwRRMM+9Pots1kILk4LsWyOAq7uQA
- MqXADNU3JkSZkEdiSHFTui2v7+U3H8aTml649Y3rfQR9wH+Nagp11K5yF
- 2pjb0sAlXaP8Ucz3qz/1ZmqTJifbBUvE9h0esOgl59HR5vVV2R0gwOyw6
- FbV2tOdKQKlTdc9cX3lr2URdns+s9lpoA/z/pebRHzU1MPKOUkVh5lLbG
- OXtf/2mmgDpBX0JcGW8FJx067p9e7FfLMdZVTjXmya9BbvOIsDMhyRsp3 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="377439815"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="377439815"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 03:11:53 -0800
+ t=1700824419; x=1732360419;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=TB5t4/71yAJDH7SPDacDe8iAbQNSLoDosudcWL2t83g=;
+ b=P6ttW86NKlMbyeSfnZVrs06oRyxdwEj8xGYKMf64JYQpnNaMfNHietKX
+ wQprtWh/peqa00Lqk9Fep3czbJtW3OGvdKdT1cGQ9khYHex0pBIKuwhBE
+ RFT8nc8xcdmn9SHmrBobE+noI+2SPajaDPVtcfWKwUk1SZu94Bn7WbSZJ
+ DSZFpXS3MEo3BwX9SImJku/MtWhi3Vuwu6edrlFmjvd6PFQAvOQ7lzvqm
+ oDl8HDFsj9xS6ZgJoUbLD0RDWfP5L9OqyAf6K4gml6y1D8bS+r3zEmaol
+ KRxpazZjAPK9PaH+0tzyDX6iCVohk5FW6hej9DRQiOJlm37O9lVt9ChQ8 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="456747535"
+X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="456747535"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 03:13:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="15602973"
-Received: from ochura-mobl1.ccr.corp.intel.com (HELO [10.252.24.199])
- ([10.252.24.199])
+X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="15944093"
+Received: from cschimpe-mobl1.ger.corp.intel.com (HELO [10.249.254.175])
+ ([10.249.254.175])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 03:11:52 -0800
-Message-ID: <ce4d3a2b-d261-4924-a1fc-e4a2735d12d0@intel.com>
-Date: Fri, 24 Nov 2023 11:11:50 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-GB
-To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- intel-xe@lists.freedesktop.org
+ 24 Nov 2023 03:13:38 -0800
+Message-ID: <6c0513d078254281b799e629bbab71087bef325c.camel@linux.intel.com>
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Matthew Auld <matthew.auld@intel.com>, intel-xe@lists.freedesktop.org
+Date: Fri, 24 Nov 2023 12:13:35 +0100
+In-Reply-To: <ce4d3a2b-d261-4924-a1fc-e4a2735d12d0@intel.com>
 References: <20231124091111.77269-1-thomas.hellstrom@linux.intel.com>
  <20231124091111.77269-5-thomas.hellstrom@linux.intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20231124091111.77269-5-thomas.hellstrom@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ <ce4d3a2b-d261-4924-a1fc-e4a2735d12d0@intel.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+MIME-Version: 1.0
 Subject: Re: [Intel-xe] [PATCH v3 4/4] drm/xe/vm: Fix ASID XA usage
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,78 +63,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 24/11/2023 09:11, Thomas Hellström wrote:
-> xa_alloc_cyclic() returns 1 on successful allocation, if wrapping occurs,
-> but the code incorrectly treats that as an error. Fix that.
-> Also, xa_alloc_cyclic() requires xa_init_flags(..., XA_FLAGS_ALLOC), so
-> fix that, and assuming we don't want a zero ASID, instead of using
-> XA_FLAGS_ALLOC1, adjust the xa limits at alloc_cyclic time.
-> 
-> v2:
-> - On CONFIG_DRM_XE_DEBUG, Initialize the cyclic ASID allocation in such a
->    way that the next allocated ASID will be the maximum one, and the one
->    following will cause an ASID wrap, (all to have CI test high ASIDs
->    and ASID wraps).
-> v3:
-> - Stricter return value checking from xa_alloc_cyclic() (Matthew Auld)
+T24gRnJpLCAyMDIzLTExLTI0IGF0IDExOjExICswMDAwLCBNYXR0aGV3IEF1bGQgd3JvdGU6Cj4g
+T24gMjQvMTEvMjAyMyAwOToxMSwgVGhvbWFzIEhlbGxzdHLDtm0gd3JvdGU6Cj4gPiB4YV9hbGxv
+Y19jeWNsaWMoKSByZXR1cm5zIDEgb24gc3VjY2Vzc2Z1bCBhbGxvY2F0aW9uLCBpZiB3cmFwcGlu
+Zwo+ID4gb2NjdXJzLAo+ID4gYnV0IHRoZSBjb2RlIGluY29ycmVjdGx5IHRyZWF0cyB0aGF0IGFz
+IGFuIGVycm9yLiBGaXggdGhhdC4KPiA+IEFsc28sIHhhX2FsbG9jX2N5Y2xpYygpIHJlcXVpcmVz
+IHhhX2luaXRfZmxhZ3MoLi4uLAo+ID4gWEFfRkxBR1NfQUxMT0MpLCBzbwo+ID4gZml4IHRoYXQs
+IGFuZCBhc3N1bWluZyB3ZSBkb24ndCB3YW50IGEgemVybyBBU0lELCBpbnN0ZWFkIG9mIHVzaW5n
+Cj4gPiBYQV9GTEFHU19BTExPQzEsIGFkanVzdCB0aGUgeGEgbGltaXRzIGF0IGFsbG9jX2N5Y2xp
+YyB0aW1lLgo+ID4gCj4gPiB2MjoKPiA+IC0gT24gQ09ORklHX0RSTV9YRV9ERUJVRywgSW5pdGlh
+bGl6ZSB0aGUgY3ljbGljIEFTSUQgYWxsb2NhdGlvbiBpbgo+ID4gc3VjaCBhCj4gPiDCoMKgIHdh
+eSB0aGF0IHRoZSBuZXh0IGFsbG9jYXRlZCBBU0lEIHdpbGwgYmUgdGhlIG1heGltdW0gb25lLCBh
+bmQKPiA+IHRoZSBvbmUKPiA+IMKgwqAgZm9sbG93aW5nIHdpbGwgY2F1c2UgYW4gQVNJRCB3cmFw
+LCAoYWxsIHRvIGhhdmUgQ0kgdGVzdCBoaWdoCj4gPiBBU0lEcwo+ID4gwqDCoCBhbmQgQVNJRCB3
+cmFwcykuCj4gPiB2MzoKPiA+IC0gU3RyaWN0ZXIgcmV0dXJuIHZhbHVlIGNoZWNraW5nIGZyb20g
+eGFfYWxsb2NfY3ljbGljKCkgKE1hdHRoZXcKPiA+IEF1bGQpCj4gCj4gQSBtaXNzaW5nIGdpdCBh
+ZGQ/IDopCgpPaCwgaG93IGRpZCB0aGF0IGhhcHBlbiA6LyAKClRoYW5rcywKCkknbGwgc2VuZCB2
+NC4KL1Rob21hcwoKCj4gCj4gPiAKPiA+IFN1Z2dlc3RlZC1ieTogT2hhZCBTaGFyYWJpIDxvc2hh
+cmFiaUBoYWJhbmEuYWk+Cj4gPiBMaW5rOiBodHRwczovL2dpdGxhYi5mcmVlZGVza3RvcC5vcmcv
+ZHJtL3hlL2tlcm5lbC8tL2lzc3Vlcy85NDYKPiA+IFNpZ25lZC1vZmYtYnk6IFRob21hcyBIZWxs
+c3Ryw7ZtIDx0aG9tYXMuaGVsbHN0cm9tQGxpbnV4LmludGVsLmNvbT4KPiA+IFJldmlld2VkLWJ5
+OiBPaGFkIFNoYXJhYmkgPG9zaGFyYWJpQGhhYmFuYS5haT4gI3YxCj4gPiBSZXZpZXdlZC1ieTog
+TWF0dGhldyBBdWxkIDxtYXR0aGV3LmF1bGRAaW50ZWwuY29tPgo+ID4gLS0tCj4gPiDCoCBkcml2
+ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlLmMgfCAxNSArKysrKysrKysrKysrKy0KPiA+IMKgIGRy
+aXZlcnMvZ3B1L2RybS94ZS94ZV92bS5jwqDCoMKgwqAgfMKgIDUgKysrLS0KPiA+IMKgIDIgZmls
+ZXMgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkKPiA+IAo+ID4gZGlm
+ZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9kZXZpY2UuYwo+ID4gYi9kcml2ZXJzL2dw
+dS9kcm0veGUveGVfZGV2aWNlLmMKPiA+IGluZGV4IDhiZTc2NWFkZjcwMi4uOWU1MjYwNDIyZjZk
+IDEwMDY0NAo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3hlX2RldmljZS5jCj4gPiArKysg
+Yi9kcml2ZXJzL2dwdS9kcm0veGUveGVfZGV2aWNlLmMKPiA+IEBAIC0yMzAsNyArMjMwLDIwIEBA
+IHN0cnVjdCB4ZV9kZXZpY2UgKnhlX2RldmljZV9jcmVhdGUoc3RydWN0Cj4gPiBwY2lfZGV2ICpw
+ZGV2LAo+ID4gwqDCoMKgwqDCoMKgwqDCoGluaXRfd2FpdHF1ZXVlX2hlYWQoJnhlLT51ZmVuY2Vf
+d3EpOwo+ID4gwqAgCj4gPiDCoMKgwqDCoMKgwqDCoMKgZHJtbV9tdXRleF9pbml0KCZ4ZS0+ZHJt
+LCAmeGUtPnVzbS5sb2NrKTsKPiA+IC3CoMKgwqDCoMKgwqDCoHhhX2luaXRfZmxhZ3MoJnhlLT51
+c20uYXNpZF90b192bSwgWEFfRkxBR1NfQUxMT0MxKTsKPiA+ICvCoMKgwqDCoMKgwqDCoHhhX2lu
+aXRfZmxhZ3MoJnhlLT51c20uYXNpZF90b192bSwgWEFfRkxBR1NfQUxMT0MpOwo+ID4gKwo+ID4g
+K8KgwqDCoMKgwqDCoMKgaWYgKElTX0VOQUJMRUQoQ09ORklHX0RSTV9YRV9ERUJVRykpIHsKPiA+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKiBUcmlnZ2VyIGEgbGFyZ2UgYXNpZCBh
+bmQgYW4gZWFybHkgYXNpZCB3cmFwLiAqLwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoHUzMiBhc2lkOwo+ID4gKwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoEJV
+SUxEX0JVR19PTihYRV9NQVhfQVNJRCA8IDIpOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoGVyciA9IHhhX2FsbG9jX2N5Y2xpYygmeGUtPnVzbS5hc2lkX3RvX3ZtLCAmYXNpZCwK
+PiA+IE5VTEwsCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIFhBX0xJTUlUKFhFX01BWF9BU0lEIC0gMiwK
+PiA+IFhFX01BWF9BU0lEIC0gMSksCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICZ4ZS0+dXNtLm5leHRf
+YXNpZCwKPiA+IEdGUF9LRVJORUwpOwo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oGRybV9XQVJOX09OKCZ4ZS0+ZHJtLCBlcnIgPCAwKTsKPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqBpZiAoZXJyID49IDApCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoHhhX2VyYXNlKCZ4ZS0+dXNtLmFzaWRfdG9fdm0sIGFzaWQpOwo+
+ID4gK8KgwqDCoMKgwqDCoMKgfQo+ID4gwqAgCj4gPiDCoMKgwqDCoMKgwqDCoMKgZHJtbV9tdXRl
+eF9pbml0KCZ4ZS0+ZHJtLCAmeGUtPnBlcnNpc3RlbnRfZW5naW5lcy5sb2NrKTsKPiA+IMKgwqDC
+oMKgwqDCoMKgwqBJTklUX0xJU1RfSEVBRCgmeGUtPnBlcnNpc3RlbnRfZW5naW5lcy5saXN0KTsK
+PiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfdm0uYwo+ID4gYi9kcml2ZXJz
+L2dwdS9kcm0veGUveGVfdm0uYwo+ID4gaW5kZXggYjM5YzZmNDNmMDFmLi44NWI5ZDZmODY0ZWMg
+MTAwNjQ0Cj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfdm0uYwo+ID4gKysrIGIvZHJp
+dmVycy9ncHUvZHJtL3hlL3hlX3ZtLmMKPiA+IEBAIC0xOTk0LDEzICsxOTk0LDE0IEBAIGludCB4
+ZV92bV9jcmVhdGVfaW9jdGwoc3RydWN0IGRybV9kZXZpY2UKPiA+ICpkZXYsIHZvaWQgKmRhdGEs
+Cj4gPiDCoMKgwqDCoMKgwqDCoMKgaWYgKHhlLT5pbmZvLmhhc19hc2lkKSB7Cj4gPiDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG11dGV4X2xvY2soJnhlLT51c20ubG9jayk7Cj4gPiDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGVyciA9IHhhX2FsbG9jX2N5Y2xpYygmeGUt
+PnVzbS5hc2lkX3RvX3ZtLCAmYXNpZCwKPiA+IHZtLAo+ID4gLcKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBYQV9M
+SU1JVCgwLCBYRV9NQVhfQVNJRCAtIDEpLAo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBYQV9MSU1JVCgx
+LCBYRV9NQVhfQVNJRCAtIDEpLAo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgJnhlLT51c20ubmV4dF9h
+c2lkLAo+ID4gR0ZQX0tFUk5FTCk7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oG11dGV4X3VubG9jaygmeGUtPnVzbS5sb2NrKTsKPiA+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqBpZiAoZXJyKSB7Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgaWYg
+KGVyciA8IDApIHsKPiA+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoHhlX3ZtX2Nsb3NlX2FuZF9wdXQodm0pOwo+ID4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIGVycjsKPiA+IMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgfQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGVy
+ciA9IDA7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHZtLT51c20uYXNpZCA9
+IGFzaWQ7Cj4gPiDCoMKgwqDCoMKgwqDCoMKgfQo+ID4gwqAgCgo=
 
-A missing git add? :)
-
-> 
-> Suggested-by: Ohad Sharabi <osharabi@habana.ai>
-> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/946
-> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Reviewed-by: Ohad Sharabi <osharabi@habana.ai> #v1
-> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_device.c | 15 ++++++++++++++-
->   drivers/gpu/drm/xe/xe_vm.c     |  5 +++--
->   2 files changed, 17 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 8be765adf702..9e5260422f6d 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -230,7 +230,20 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
->   	init_waitqueue_head(&xe->ufence_wq);
->   
->   	drmm_mutex_init(&xe->drm, &xe->usm.lock);
-> -	xa_init_flags(&xe->usm.asid_to_vm, XA_FLAGS_ALLOC1);
-> +	xa_init_flags(&xe->usm.asid_to_vm, XA_FLAGS_ALLOC);
-> +
-> +	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
-> +		/* Trigger a large asid and an early asid wrap. */
-> +		u32 asid;
-> +
-> +		BUILD_BUG_ON(XE_MAX_ASID < 2);
-> +		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, NULL,
-> +				      XA_LIMIT(XE_MAX_ASID - 2, XE_MAX_ASID - 1),
-> +				      &xe->usm.next_asid, GFP_KERNEL);
-> +		drm_WARN_ON(&xe->drm, err < 0);
-> +		if (err >= 0)
-> +			xa_erase(&xe->usm.asid_to_vm, asid);
-> +	}
->   
->   	drmm_mutex_init(&xe->drm, &xe->persistent_engines.lock);
->   	INIT_LIST_HEAD(&xe->persistent_engines.list);
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index b39c6f43f01f..85b9d6f864ec 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -1994,13 +1994,14 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
->   	if (xe->info.has_asid) {
->   		mutex_lock(&xe->usm.lock);
->   		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, vm,
-> -				      XA_LIMIT(0, XE_MAX_ASID - 1),
-> +				      XA_LIMIT(1, XE_MAX_ASID - 1),
->   				      &xe->usm.next_asid, GFP_KERNEL);
->   		mutex_unlock(&xe->usm.lock);
-> -		if (err) {
-> +		if (err < 0) {
->   			xe_vm_close_and_put(vm);
->   			return err;
->   		}
-> +		err = 0;
->   		vm->usm.asid = asid;
->   	}
->   
