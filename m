@@ -4,52 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ABCAC61DF4
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 11:11:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 38B7EC61DF4
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 11:13:02 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4605810E1BF;
-	Fri, 24 Nov 2023 11:11:31 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 598CC10E1BC
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Nov 2023 11:11:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10A9F10E1BC;
+	Fri, 24 Nov 2023 11:13:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 48C7A10E1BC
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Nov 2023 11:13:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700824288; x=1732360288;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=uLIji1bnaaZSMcgkjcehw+WTpGKY1UPpGIrk6Le/nHY=;
- b=Fzu313+MNQVNcYLHgYSknUl70F0wK8E0wghc2haJUA4SOLtf4rVkp8Do
- uVF+pInLsVuLQl7MqfPOtixF/EsbP1eOVN4+/DlrE6ge5W7z59Angwjvj
- grgT9tDPGt9CfQ/H0DiAjjD/oZQDRSoc0rLShQhNd0M+vETrIOOX5DQHm
- uffeC/xwKg6Z5gpv1hCai3gW0bO81r08hcCGS6UtliQuAIm1Dy8Vg0cX7
- GmqULAFs7fGDTO0Y+aVbCgcccpCKN+l5BwCPLgj4qXti16p0xLe7FPlM3
- jlrmIjSU9QgbaiUvZWRrznMLinx05RV+GCTY869r810g/WtsIQy0w+BVN A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="392174120"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="392174120"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by fmsmga103.fm.intel.com with ESMTP; 24 Nov 2023 03:11:27 -0800
+ t=1700824381; x=1732360381;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=N92e3OFrnUuyxrMjyeOWFI3WnukDH/4y/CndrdXjQUo=;
+ b=D2xcwG0+wLKQ3ETUrZYSuntnqgVE3CQQ3Epl+V8Il7EOOCof33I1tNCT
+ uz+bEAH2vOwo/ipdAK2CZjI5bzxzXwRRMM+9Pots1kILk4LsWyOAq7uQA
+ MqXADNU3JkSZkEdiSHFTui2v7+U3H8aTml649Y3rfQR9wH+Nagp11K5yF
+ 2pjb0sAlXaP8Ucz3qz/1ZmqTJifbBUvE9h0esOgl59HR5vVV2R0gwOyw6
+ FbV2tOdKQKlTdc9cX3lr2URdns+s9lpoA/z/pebRHzU1MPKOUkVh5lLbG
+ OXtf/2mmgDpBX0JcGW8FJx067p9e7FfLMdZVTjXmya9BbvOIsDMhyRsp3 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="377439815"
+X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="377439815"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 03:11:53 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="796564627"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="796564627"
-Received: from cschimpe-mobl1.ger.corp.intel.com (HELO [10.249.254.175])
- ([10.249.254.175])
- by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 03:11:26 -0800
-Message-ID: <07b47a67234eeef5208214c9ea60272771aaaa5c.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, 
- intel-xe@lists.freedesktop.org
-Date: Fri, 24 Nov 2023 12:11:22 +0100
-In-Reply-To: <20231121100906.3587649-5-himal.prasad.ghimiray@intel.com>
-References: <20231121100906.3587649-1-himal.prasad.ghimiray@intel.com>
- <20231121100906.3587649-5-himal.prasad.ghimiray@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="15602973"
+Received: from ochura-mobl1.ccr.corp.intel.com (HELO [10.252.24.199])
+ ([10.252.24.199])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 03:11:52 -0800
+Message-ID: <ce4d3a2b-d261-4924-a1fc-e4a2735d12d0@intel.com>
+Date: Fri, 24 Nov 2023 11:11:50 +0000
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [RFC v2 4/6] drm/xe/xe2: Updates on
- XY_CTRL_SURF_COPY_BLT
+User-Agent: Mozilla Thunderbird
+Content-Language: en-GB
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+References: <20231124091111.77269-1-thomas.hellstrom@linux.intel.com>
+ <20231124091111.77269-5-thomas.hellstrom@linux.intel.com>
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <20231124091111.77269-5-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Subject: Re: [Intel-xe] [PATCH v3 4/4] drm/xe/vm: Fix ASID XA usage
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,85 +63,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIzLTExLTIxIGF0IDE1OjM5ICswNTMwLCBIaW1hbCBQcmFzYWQgR2hpbWlyYXkg
-d3JvdGU6Cj4gLSBUaGUgWFlfQ1RSTF9TVVJGX0NPUFlfQkxUIGluc3RydWN0aW9uIG9wZXJhdGlv
-bmcgb24gY2NzIGRhdGEKPiBleHBlY3RzCj4gc2l6ZSBpbiBwYWdlcyBvZiBtYWluIG1lbW9yeSBm
-b3Igd2hpY2ggQ0NTIGRhdGEgc2hvdWxkIGJlIGNvcGllZC4KPiAtIFRoZSBiaXRmaWVsZCByZXBy
-ZXNlbnRpbmcgY29weSBzaXplIGluIFhZX0NUUkxfU1VSRl9DT1BZX0JMVCBoYXMKPiBzaGlmdGVk
-IG9uZSBiaXQgaGlnaGVyIGluIHRoZSBpbnN0cnVjdGlvbi4KPiAKPiBDYzogVGhvbWFzIEhlbGxz
-dHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6
-IEhpbWFsIFByYXNhZCBHaGltaXJheQo+IDxoaW1hbC5wcmFzYWQuZ2hpbWlyYXlAaW50ZWwuY29t
-Pgo+IC0tLQo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3JlZ3MveGVfZ3B1X2NvbW1hbmRzLmggfMKg
-IDEgKwo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX21pZ3JhdGUuY8KgwqDCoMKgwqDCoMKgwqDC
-oMKgIHwgMjMgKysrKysrKysrKysrKysrKystLS0tCj4gLS0KPiDCoDIgZmlsZXMgY2hhbmdlZCwg
-MTggaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
-cy9ncHUvZHJtL3hlL3JlZ3MveGVfZ3B1X2NvbW1hbmRzLmgKPiBiL2RyaXZlcnMvZ3B1L2RybS94
-ZS9yZWdzL3hlX2dwdV9jb21tYW5kcy5oCj4gaW5kZXggN2Y3NDU5MmY5OWNlLi40NzQ1OTg0MWFh
-NjkgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3JlZ3MveGVfZ3B1X2NvbW1hbmRz
-LmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUvcmVncy94ZV9ncHVfY29tbWFuZHMuaAo+IEBA
-IC0xMyw2ICsxMyw3IEBACj4gwqAjZGVmaW5lwqDCoCBEU1RfQUNDRVNTX1RZUEVfU0hJRlTCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDIwCj4gwqAjZGVmaW5lwqDCoCBDQ1NfU0laRV9N
-QVNLwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMHgzRkYK
-PiDCoCNkZWZpbmXCoMKgIENDU19TSVpFX1NISUZUwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgOAo+ICsjZGVmaW5lwqDCoCBYRTJfQ0NTX1NJWkVfU0hJRlTCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgOQo+IMKgI2RlZmluZcKgwqAgWFlfQ1RSTF9TVVJGX01PQ1NfTUFTS8KgwqDCoMKgwqDCoMKg
-R0VOTUFTSygzMSwgMjYpCj4gwqAjZGVmaW5lwqDCoCBYRTJfWFlfQ1RSTF9TVVJGX01PQ1NfSU5E
-RVhfTUFTS8KgwqDCoMKgwqBHRU5NQVNLKDMxLCAyOCkKPiDCoCNkZWZpbmXCoMKgIE5VTV9DQ1Nf
-QllURVNfUEVSX0JMT0NLwqDCoMKgwqDCoMKgMjU2Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
-L2RybS94ZS94ZV9taWdyYXRlLmMKPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRlLmMK
-PiBpbmRleCBlZDJmM2Y1MTA5ZjMuLjA2NzA2ZmFkNjdhYSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
-L2dwdS9kcm0veGUveGVfbWlncmF0ZS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX21p
-Z3JhdGUuYwo+IEBAIC01MjMsMjEgKzUyMywzMSBAQCBzdGF0aWMgdm9pZCBlbWl0X2NvcHlfY2Nz
-KHN0cnVjdCB4ZV9ndCAqZ3QsCj4gc3RydWN0IHhlX2JiICpiYiwKPiDCoMKgwqDCoMKgwqDCoMKg
-c3RydWN0IHhlX2RldmljZSAqeGUgPSBndF90b194ZShndCk7Cj4gwqDCoMKgwqDCoMKgwqDCoHUz
-MiAqY3MgPSBiYi0+Y3MgKyBiYi0+bGVuOwo+IMKgwqDCoMKgwqDCoMKgwqB1MzIgbnVtX2Njc19i
-bGtzOwo+ICvCoMKgwqDCoMKgwqDCoHUzMiBudW1fY2NzX3BhZ2VzOwo+ICvCoMKgwqDCoMKgwqDC
-oHUzMiBjY3NfY29weV9zaXplOwo+IMKgwqDCoMKgwqDCoMKgwqB1MzIgbW9jczsKPiDCoAo+IC3C
-oMKgwqDCoMKgwqDCoG51bV9jY3NfYmxrcyA9IERJVl9ST1VORF9VUCh4ZV9kZXZpY2VfY2NzX2J5
-dGVzKGd0X3RvX3hlKGd0KSwKPiBzaXplKSwKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgTlVNX0NDU19CWVRFU19Q
-RVJfQkxPQ0spOwo+IC3CoMKgwqDCoMKgwqDCoHhlX2d0X2Fzc2VydChndCwgbnVtX2Njc19ibGtz
-IDw9IE5VTV9DQ1NfQkxLU19QRVJfWEZFUik7Cj4gK8KgwqDCoMKgwqDCoMKgaWYgKEdSQVBISUNT
-X1ZFUngxMDAoeGUpID49IDIwMDApIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-bnVtX2Njc19wYWdlcyA9Cj4gRElWX1JPVU5EX1VQKHhlX2RldmljZV9jY3NfYnl0ZXMoZ3RfdG9f
-eGUoZ3QpLCBzaXplKSwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgWEVfUEFHRV9T
-SVpFKTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgeGVfZ3RfYXNzZXJ0KGd0LCBu
-dW1fY2NzX3BhZ2VzIDw9IDEwMjQpOwo+IMKgCj4gLcKgwqDCoMKgwqDCoMKgaWYgKEdSQVBISUNT
-X1ZFUngxMDAoeGUpID49IDIwMDApCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNj
-c19jb3B5X3NpemUgPSAoKG51bV9jY3NfcGFnZXMgLSAxKSAmIENDU19TSVpFX01BU0spCj4gPDwg
-WEUyX0NDU19TSVpFX1NISUZUOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbW9j
-cyA9IEZJRUxEX1BSRVAoWEUyX1hZX0NUUkxfU1VSRl9NT0NTX0lOREVYX01BU0ssCj4gZ3QtPm1v
-Y3MudWNfaW5kZXgpOwo+IC3CoMKgwqDCoMKgwqDCoGVsc2UKPiArCj4gK8KgwqDCoMKgwqDCoMKg
-fSBlbHNlIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbnVtX2Njc19ibGtzID0K
-PiBESVZfUk9VTkRfVVAoeGVfZGV2aWNlX2Njc19ieXRlcyhndF90b194ZShndCksIHNpemUpLAo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgTlVNX0NDU19CWVRFU19QRVJfQkxPQ0spOwo+
-ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB4ZV9ndF9hc3NlcnQoZ3QsIG51bV9jY3Nf
-YmxrcyA8PQo+IE5VTV9DQ1NfQkxLU19QRVJfWEZFUik7Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqBjY3NfY29weV9zaXplID0gKChudW1fY2NzX2Jsa3MgLSAxKSAmIENDU19T
-SVpFX01BU0spCj4gPDwgQ0NTX1NJWkVfU0hJRlQ7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqBtb2NzID0gRklFTERfUFJFUChYWV9DVFJMX1NVUkZfTU9DU19NQVNLLCBndC0KPiA+
-bW9jcy51Y19pbmRleCk7Cj4gK8KgwqDCoMKgwqDCoMKgfQo+IMKgCj4gwqDCoMKgwqDCoMKgwqDC
-oCpjcysrID0gWFlfQ1RSTF9TVVJGX0NPUFlfQkxUIHwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoChzcmNfaXNfaW5kaXJlY3QgPyAweDAgOiAweDEpIDw8Cj4gU1JDX0FDQ0VTU19U
-WVBFX1NISUZUIHwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoChkc3RfaXNfaW5k
-aXJlY3QgPyAweDAgOiAweDEpIDw8Cj4gRFNUX0FDQ0VTU19UWVBFX1NISUZUIHwKPiAtwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgKChudW1fY2NzX2Jsa3MgLSAxKSAmIENDU19TSVpFX01B
-U0spIDw8Cj4gQ0NTX1NJWkVfU0hJRlQ7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGNjc19jb3B5X3NpemU7Cj4gwqDCoMKgwqDCoMKgwqDCoCpjcysrID0gbG93ZXJfMzJfYml0cyhz
-cmNfb2ZzKTsKPiDCoMKgwqDCoMKgwqDCoMKgKmNzKysgPSB1cHBlcl8zMl9iaXRzKHNyY19vZnMp
-IHwgbW9jczsKPiDCoMKgwqDCoMKgwqDCoMKgKmNzKysgPSBsb3dlcl8zMl9iaXRzKGRzdF9vZnMp
-Owo+IEBAIC05OTIsNiArMTAwMiw3IEBAIHN0cnVjdCBkbWFfZmVuY2UgKnhlX21pZ3JhdGVfY2xl
-YXIoc3RydWN0Cj4geGVfbWlncmF0ZSAqbSwKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgZW1pdF9jbGVhcihndCwgYmIsIGNsZWFyX0wwX29mcywgY2xlYXJfTDAsCj4gWEVf
-UEFHRV9TSVpFLAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgY2xlYXJfdnJhbSk7Cj4gKwoKVW5yZWxhdGVkIGNoYW5nZS4gUGxlYXNlIHJlbW92
-ZSwgT3RoZXJ3aXNlIExHVE0uClJldmlld2VkLWJ5OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFz
-LmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+CgoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoGlmICh4ZV9kZXZpY2VfaGFzX2ZsYXRfY2NzKHhlKSAmJiBjbGVhcl92cmFtKSB7Cj4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZW1pdF9jb3B5
-X2NjcyhndCwgYmIsIGNsZWFyX0wwX29mcywgdHJ1ZSwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtLT5j
-bGVhcmVkX3ZyYW1fb2ZzLCBmYWxzZSwKPiBjbGVhcl9MMCk7Cgo=
+On 24/11/2023 09:11, Thomas Hellström wrote:
+> xa_alloc_cyclic() returns 1 on successful allocation, if wrapping occurs,
+> but the code incorrectly treats that as an error. Fix that.
+> Also, xa_alloc_cyclic() requires xa_init_flags(..., XA_FLAGS_ALLOC), so
+> fix that, and assuming we don't want a zero ASID, instead of using
+> XA_FLAGS_ALLOC1, adjust the xa limits at alloc_cyclic time.
+> 
+> v2:
+> - On CONFIG_DRM_XE_DEBUG, Initialize the cyclic ASID allocation in such a
+>    way that the next allocated ASID will be the maximum one, and the one
+>    following will cause an ASID wrap, (all to have CI test high ASIDs
+>    and ASID wraps).
+> v3:
+> - Stricter return value checking from xa_alloc_cyclic() (Matthew Auld)
 
+A missing git add? :)
+
+> 
+> Suggested-by: Ohad Sharabi <osharabi@habana.ai>
+> Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/946
+> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+> Reviewed-by: Ohad Sharabi <osharabi@habana.ai> #v1
+> Reviewed-by: Matthew Auld <matthew.auld@intel.com>
+> ---
+>   drivers/gpu/drm/xe/xe_device.c | 15 ++++++++++++++-
+>   drivers/gpu/drm/xe/xe_vm.c     |  5 +++--
+>   2 files changed, 17 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+> index 8be765adf702..9e5260422f6d 100644
+> --- a/drivers/gpu/drm/xe/xe_device.c
+> +++ b/drivers/gpu/drm/xe/xe_device.c
+> @@ -230,7 +230,20 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+>   	init_waitqueue_head(&xe->ufence_wq);
+>   
+>   	drmm_mutex_init(&xe->drm, &xe->usm.lock);
+> -	xa_init_flags(&xe->usm.asid_to_vm, XA_FLAGS_ALLOC1);
+> +	xa_init_flags(&xe->usm.asid_to_vm, XA_FLAGS_ALLOC);
+> +
+> +	if (IS_ENABLED(CONFIG_DRM_XE_DEBUG)) {
+> +		/* Trigger a large asid and an early asid wrap. */
+> +		u32 asid;
+> +
+> +		BUILD_BUG_ON(XE_MAX_ASID < 2);
+> +		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, NULL,
+> +				      XA_LIMIT(XE_MAX_ASID - 2, XE_MAX_ASID - 1),
+> +				      &xe->usm.next_asid, GFP_KERNEL);
+> +		drm_WARN_ON(&xe->drm, err < 0);
+> +		if (err >= 0)
+> +			xa_erase(&xe->usm.asid_to_vm, asid);
+> +	}
+>   
+>   	drmm_mutex_init(&xe->drm, &xe->persistent_engines.lock);
+>   	INIT_LIST_HEAD(&xe->persistent_engines.list);
+> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+> index b39c6f43f01f..85b9d6f864ec 100644
+> --- a/drivers/gpu/drm/xe/xe_vm.c
+> +++ b/drivers/gpu/drm/xe/xe_vm.c
+> @@ -1994,13 +1994,14 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+>   	if (xe->info.has_asid) {
+>   		mutex_lock(&xe->usm.lock);
+>   		err = xa_alloc_cyclic(&xe->usm.asid_to_vm, &asid, vm,
+> -				      XA_LIMIT(0, XE_MAX_ASID - 1),
+> +				      XA_LIMIT(1, XE_MAX_ASID - 1),
+>   				      &xe->usm.next_asid, GFP_KERNEL);
+>   		mutex_unlock(&xe->usm.lock);
+> -		if (err) {
+> +		if (err < 0) {
+>   			xe_vm_close_and_put(vm);
+>   			return err;
+>   		}
+> +		err = 0;
+>   		vm->usm.asid = asid;
+>   	}
+>   
