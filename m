@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D60D3C61DF4
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 05:58:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3D3E1C61D97
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 05:58:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94FA210E2E7;
-	Fri, 24 Nov 2023 05:58:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7E5110E335;
+	Fri, 24 Nov 2023 05:58:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5BDD710E2E7;
- Fri, 24 Nov 2023 05:58:11 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 5455F10E33A;
+ Fri, 24 Nov 2023 05:58:22 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id C8F5FAADE1;
- Fri, 24 Nov 2023 05:58:10 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 4F904AADE1;
+ Fri, 24 Nov 2023 05:58:22 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Riana Tauro" <riana.tauro@intel.com>
-Date: Fri, 24 Nov 2023 05:58:10 -0000
-Message-ID: <170080549081.13024.5332645839379946148@emeril.freedesktop.org>
+Date: Fri, 24 Nov 2023 05:58:22 -0000
+Message-ID: <170080550232.13025.3072023034909511744@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231124055818.1769898-1-aravind.iddamsetty@linux.intel.com>
 In-Reply-To: <20231124055818.1769898-1-aravind.iddamsetty@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_fixup!_drm/xe/pmu=3A_Drop_interrupt_pmu_event_=28rev4=29?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_fi?=
+ =?utf-8?q?xup!_drm/xe/pmu=3A_Drop_interrupt_pmu_event_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,27 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 1832821c7 drm/xe: Print virtualization mode during probe
-=== git am output follows ===
-Applying: fixup! drm/xe/pmu: Drop interrupt pmu event
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 84ec47a7be14ec067cc74f47d9b738e377e35ad8
+Author: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
+Date:   Fri Nov 24 11:28:18 2023 +0530
+
+    fixup! drm/xe/pmu: Drop interrupt pmu event
+    
+    Fix the sample type calculation for engine group events in
+    engine_group_busyness_read
+    
+    Cc: Riana Tauro <riana.tauro@intel.com>
+    Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
++ /mt/dim checkpatch 1832821c7e4c5bd24353183f060f1435b2eb7992 drm-intel
+84ec47a7b fixup! drm/xe/pmu: Drop interrupt pmu event
 
 
