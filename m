@@ -4,53 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AED2CC61DF7
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 11:19:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 31371C61DF4
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 12:13:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CB6710E1BC;
-	Fri, 24 Nov 2023 11:19:16 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C623710E1BC
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Nov 2023 11:19:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B05CB10E1C8;
+	Fri, 24 Nov 2023 12:13:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08CC510E1C8
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Nov 2023 12:13:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700824753; x=1732360753;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=Fp9XqNFG5vPxHqQH1BarzuR0TCoIrs+bXCGil71VJgE=;
- b=Qlc/WqbBtYt61lV2DrASiUoE6mKW16sSMzGrBrcUZyMvyzM2RboFPHUW
- vUJBnJsHRl6A2aJS36vRIwRzStI7zwZTPKRR/Hu2qGzQ/9ugXmOfL7Q/6
- tXQePgtUMw9iCRj8McSnZRvMfNQyvn3Li58sFuM/YcMpLfhc7BztUTk8a
- fhBQiqwT1gmhOYfMeufrYZiFbwUrHeC9i5v105a6KfkGnlhifj2ERELAu
- nracEXKwoUH+Ho6nHfORLt9QoYEUrDEC2+Be58tQKbcBwOLY+46E8z+IC
- H2emfipRktWXJOiomyhjnvujh55y2Wg4JyYhMSy+wJ0vMgnJG3tLPuPTl w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="423544963"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="423544963"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 03:19:13 -0800
+ t=1700828035; x=1732364035;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=jdWQ2U0epMAWShxk1DiHjLyRt48WxPVsHYLA/Jzar9o=;
+ b=f6DQ25f8xJTHtBBlCLGlH5yaQBU2C2NwJ6Pv4dI88B0ZGX19wLBTnxYc
+ UnDr6R6Bc6hrPOHI9vFjcFKLkQKDh4UUImcJzeG4IGuCDAzDnCjXgEqpW
+ EgJApxS8hPE2LqkA7AMOrjNh2vqfT/fyOmZALflcQS8pNR4CgBUTC9DXU
+ IxUWtzLLPfdu7gPDwA4/9Uo/Pjwc/yPu68xJn8XFRFDhkbu+t3mBd1/Os
+ 6rAOcacvXnGxkSVoNhAquhRlWvLqJtbNRplWeJmmge6PiOOgwogfVqtm7
+ tiKKK65iGV71+txSVXmZ2Rr1sv8Gy3EFxSBSP6wvPjaUhZbsQqN3MQp4N w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="396319883"
+X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="396319883"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 04:13:54 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="838061217"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="838061217"
-Received: from cschimpe-mobl1.ger.corp.intel.com (HELO [10.249.254.175])
- ([10.249.254.175])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 03:19:12 -0800
-Message-ID: <9ffd93188fb97a3554e56bcee2cefe1ffc4c61a4.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, 
- intel-xe@lists.freedesktop.org
-Date: Fri, 24 Nov 2023 12:19:09 +0100
-In-Reply-To: <20231121100906.3587649-6-himal.prasad.ghimiray@intel.com>
-References: <20231121100906.3587649-1-himal.prasad.ghimiray@intel.com>
- <20231121100906.3587649-6-himal.prasad.ghimiray@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="833679727"
+X-IronPort-AV: E=Sophos;i="6.04,224,1695711600"; d="scan'208";a="833679727"
+Received: from suja-super-server.iind.intel.com ([10.145.169.64])
+ by fmsmga008.fm.intel.com with ESMTP; 24 Nov 2023 04:13:51 -0800
+From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Fri, 24 Nov 2023 17:57:53 +0530
+Message-Id: <20231124122755.91279-1-sujaritha.sundaresan@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [RFC v2 5/6] drm/xe/xe_migrate.c: Use NULL 1G PTE
- mapped at 255GiB VA for ccs clear.
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 0/2] Add memory sysfs directory and attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,121 +53,23 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
+ rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gVHVlLCAyMDIzLTExLTIxIGF0IDE1OjM5ICswNTMwLCBIaW1hbCBQcmFzYWQgR2hpbWlyYXkg
-d3JvdGU6Cj4gR2V0IHJpZCBvZiB0aGUgY2xlYXJlZCBibywgaW5zdGVhZCB1c2UgbnVsbCAxRyBQ
-VEUgbWFwcGVkIGF0IDI1NUdpQgo+IG9mZnNldCwgdGhpcyBjYW4gYmUgdXNlZCBmb3IgYm90aCBk
-Z2Z4IGFuZCBpZ2Z4Lgo+IAo+IENjOiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFzLmhlbGxzdHJv
-bUBsaW51eC5pbnRlbC5jb20+Cj4gU2lnbmVkLW9mZi1ieTogSGltYWwgUHJhc2FkIEdoaW1pcmF5
-Cj4gPGhpbWFsLnByYXNhZC5naGltaXJheUBpbnRlbC5jb20+Cj4gLS0tCj4gwqBkcml2ZXJzL2dw
-dS9kcm0veGUveGVfbWlncmF0ZS5jIHwgNTYgKysrKysrLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LQo+IC0tCj4gwqAxIGZpbGUgY2hhbmdlZCwgMTAgaW5zZXJ0aW9ucygrKSwgNDYgZGVsZXRpb25z
-KC0pCj4gCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRlLmMKPiBi
-L2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRlLmMKPiBpbmRleCAwNjcwNmZhZDY3YWEuLmJk
-Y2IyMGYyMzUzMSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0veGUveGVfbWlncmF0ZS5j
-Cj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX21pZ3JhdGUuYwo+IEBAIC01NCw4ICs1NCw4
-IEBAIHN0cnVjdCB4ZV9taWdyYXRlIHsKPiDCoMKgwqDCoMKgwqDCoMKgdTY0IGJhdGNoX2Jhc2Vf
-b2ZzOwo+IMKgwqDCoMKgwqDCoMKgwqAvKiogQHVzbV9iYXRjaF9iYXNlX29mczogVk0gb2Zmc2V0
-IG9mIHRoZSB1c20gYmF0Y2ggYnVmZmVyICovCj4gwqDCoMKgwqDCoMKgwqDCoHU2NCB1c21fYmF0
-Y2hfYmFzZV9vZnM7Cj4gLcKgwqDCoMKgwqDCoMKgLyoqIEBjbGVhcmVkX3ZyYW1fb2ZzOiBWTSBv
-ZmZzZXQgb2YgQGNsZWFyZWRfYm8uICovCj4gLcKgwqDCoMKgwqDCoMKgdTY0IGNsZWFyZWRfdnJh
-bV9vZnM7Cj4gK8KgwqDCoMKgwqDCoMKgLyoqIEBjbGVhcmVkX21lbV9vZnM6IFZNIG9mZnNldCBv
-ZiBAY2xlYXJlZF9iby4gKi8KPiArwqDCoMKgwqDCoMKgwqB1NjQgY2xlYXJlZF9tZW1fb2ZzOwoK
-Q2FuIHdlIGFsc28gcmVtb3ZlIHhlX21pZ3JhdGU6OmNsZWFyZWRfYm8/Cgo+IMKgwqDCoMKgwqDC
-oMKgwqAvKioKPiDCoMKgwqDCoMKgwqDCoMKgICogQGZlbmNlOiBkbWEtZmVuY2UgcmVwcmVzZW50
-aW5nIHRoZSBsYXN0IG1pZ3JhdGlvbiBqb2IKPiBiYXRjaC4KPiDCoMKgwqDCoMKgwqDCoMKgICog
-UHJvdGVjdGVkIGJ5IEBqb2JfbXV0ZXguCj4gQEAgLTEyNSw0MSArMTI1LDYgQEAgc3RhdGljIHU2
-NCB4ZV9taWdyYXRlX3ZyYW1fb2ZzKHN0cnVjdCB4ZV9kZXZpY2UKPiAqeGUsIHU2NCBhZGRyKQo+
-IMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gYWRkciArICgyNTZVTEwgPDwgeGVfcHRfc2hpZnQoMikp
-Owo+IMKgfQo+IMKgCj4gLS8qCj4gLSAqIEZvciBmbGF0IENDUyBjbGVhcmluZyB3ZSBuZWVkIGEg
-Y2xlYXJlZCBjaHVuayBvZiBtZW1vcnkgdG8gY29weQo+IGZyb20sCj4gLSAqIHNpbmNlIHRoZSBD
-Q1MgY2xlYXJpbmcgbW9kZSBvZiBYWV9GQVNUX0NPTE9SX0JMVCBhcHBlYXJzIHRvIGJlCj4gYnVn
-Z3kKPiAtICogKGl0IGNsZWFycyBvbiBvbmx5IDE0IGJ5dGVzIGluIGVhY2ggY2h1bmsgb2YgMTYp
-Lgo+IC0gKiBJZiBjbGVhcmluZyB0aGUgbWFpbiBzdXJmYWNlIG9uZSBjYW4gdXNlIHRoZSBwYXJ0
-IG9mIHRoZSBtYWluCj4gc3VyZmFjZQo+IC0gKiBhbHJlYWR5IGNsZWFyZWQsIGJ1dCBmb3IgY2xl
-YXJpbmcgYXMgcGFydCBvZiBjb3B5aW5nIG5vbi0KPiBjb21wcmVzc2VkCj4gLSAqIGRhdGEgb3V0
-IG9mIHN5c3RlbSBtZW1vcnksIHdlIGRvbid0IHJlYWRpbHkgaGF2ZSBhIGNsZWFyZWQgcGFydAo+
-IG9mCj4gLSAqIFZSQU0gdG8gY29weSBmcm9tLCBzbyBjcmVhdGUgb25lIHRvIHVzZSBmb3IgdGhh
-dCBjYXNlLgo+IC0gKi8KPiAtc3RhdGljIGludCB4ZV9taWdyYXRlX2NyZWF0ZV9jbGVhcmVkX2Jv
-KHN0cnVjdCB4ZV9taWdyYXRlICptLCBzdHJ1Y3QKPiB4ZV92bSAqdm0pCj4gLXsKPiAtwqDCoMKg
-wqDCoMKgwqBzdHJ1Y3QgeGVfdGlsZSAqdGlsZSA9IG0tPnRpbGU7Cj4gLcKgwqDCoMKgwqDCoMKg
-c3RydWN0IHhlX2RldmljZSAqeGUgPSB2bS0+eGU7Cj4gLcKgwqDCoMKgwqDCoMKgc2l6ZV90IGNs
-ZWFyZWRfc2l6ZTsKPiAtwqDCoMKgwqDCoMKgwqB1NjQgdnJhbV9hZGRyOwo+IC0KPiAtwqDCoMKg
-wqDCoMKgwqBpZiAoIXhlX2RldmljZV9oYXNfZmxhdF9jY3MoeGUpKQo+IC3CoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqByZXR1cm4gMDsKPiAtCj4gLcKgwqDCoMKgwqDCoMKgY2xlYXJlZF9z
-aXplID0geGVfZGV2aWNlX2Njc19ieXRlcyh4ZSwKPiBNQVhfUFJFRU1QVERJU0FCTEVfVFJBTlNG
-RVIpOwo+IC3CoMKgwqDCoMKgwqDCoGNsZWFyZWRfc2l6ZSA9IFBBR0VfQUxJR04oY2xlYXJlZF9z
-aXplKTsKPiAtwqDCoMKgwqDCoMKgwqBtLT5jbGVhcmVkX2JvID0geGVfYm9fY3JlYXRlX3Bpbl9t
-YXAoeGUsIHRpbGUsIHZtLAo+IGNsZWFyZWRfc2l6ZSwKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqAgdHRtX2JvX3R5cGVfa2VybmVsLAo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoAo+IFhFX0JPX0NSRUFURV9WUkFNX0lGX0RHRlgodGlsZSkgfAo+IC3CoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoAo+IFhFX0JPX0NSRUFURV9QSU5ORURfQklUKTsKPiAtwqDCoMKgwqDC
-oMKgwqBpZiAoSVNfRVJSKG0tPmNsZWFyZWRfYm8pKQo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqByZXR1cm4gUFRSX0VSUihtLT5jbGVhcmVkX2JvKTsKPiAtCj4gLcKgwqDCoMKgwqDC
-oMKgeGVfbWFwX21lbXNldCh4ZSwgJm0tPmNsZWFyZWRfYm8tPnZtYXAsIDAsIDB4MDAsCj4gY2xl
-YXJlZF9zaXplKTsKPiAtwqDCoMKgwqDCoMKgwqB2cmFtX2FkZHIgPSB4ZV9ib19hZGRyKG0tPmNs
-ZWFyZWRfYm8sIDAsIFhFX1BBR0VfU0laRSk7Cj4gLcKgwqDCoMKgwqDCoMKgbS0+Y2xlYXJlZF92
-cmFtX29mcyA9IHhlX21pZ3JhdGVfdnJhbV9vZnMoeGUsIHZyYW1fYWRkcik7Cj4gLQo+IC3CoMKg
-wqDCoMKgwqDCoHJldHVybiAwOwo+IC19Cj4gLQo+IMKgc3RhdGljIGludCB4ZV9taWdyYXRlX3By
-ZXBhcmVfdm0oc3RydWN0IHhlX3RpbGUgKnRpbGUsIHN0cnVjdAo+IHhlX21pZ3JhdGUgKm0sCj4g
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBzdHJ1Y3QgeGVfdm0gKnZtKQo+IMKgewo+IEBAIC0xNzAsNyArMTM1LDYgQEAgc3Rh
-dGljIGludCB4ZV9taWdyYXRlX3ByZXBhcmVfdm0oc3RydWN0IHhlX3RpbGUKPiAqdGlsZSwgc3Ry
-dWN0IHhlX21pZ3JhdGUgKm0sCj4gwqDCoMKgwqDCoMKgwqDCoHUzMiBtYXBfb2ZzLCBsZXZlbCwg
-aTsKPiDCoMKgwqDCoMKgwqDCoMKgc3RydWN0IHhlX2JvICpibywgKmJhdGNoID0gdGlsZS0+bWVt
-Lmtlcm5lbF9iYl9wb29sLT5ibzsKPiDCoMKgwqDCoMKgwqDCoMKgdTY0IGVudHJ5Owo+IC3CoMKg
-wqDCoMKgwqDCoGludCByZXQ7Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgLyogQ2FuJ3QgYnVtcCBO
-VU1fUFRfU0xPVFMgdG9vIGhpZ2ggKi8KPiDCoMKgwqDCoMKgwqDCoMKgQlVJTERfQlVHX09OKE5V
-TV9QVF9TTE9UUyA+IFNaXzJNL1hFX1BBR0VfU0laRSk7Cj4gQEAgLTE5MCwxMiArMTU0LDYgQEAg
-c3RhdGljIGludCB4ZV9taWdyYXRlX3ByZXBhcmVfdm0oc3RydWN0IHhlX3RpbGUKPiAqdGlsZSwg
-c3RydWN0IHhlX21pZ3JhdGUgKm0sCj4gwqDCoMKgwqDCoMKgwqDCoGlmIChJU19FUlIoYm8pKQo+
-IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmV0dXJuIFBUUl9FUlIoYm8pOwo+IMKg
-Cj4gLcKgwqDCoMKgwqDCoMKgcmV0ID0geGVfbWlncmF0ZV9jcmVhdGVfY2xlYXJlZF9ibyhtLCB2
-bSk7Cj4gLcKgwqDCoMKgwqDCoMKgaWYgKHJldCkgewo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqB4ZV9ib19wdXQoYm8pOwo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBy
-ZXR1cm4gcmV0Owo+IC3CoMKgwqDCoMKgwqDCoH0KPiAtCj4gwqDCoMKgwqDCoMKgwqDCoGVudHJ5
-ID0gdm0tPnB0X29wcy0+cGRlX2VuY29kZV9ibyhibywgYm8tPnNpemUgLQo+IFhFX1BBR0VfU0la
-RSwgcGF0X2luZGV4KTsKPiDCoMKgwqDCoMKgwqDCoMKgeGVfcHRfd3JpdGUoeGUsICZ2bS0+cHRf
-cm9vdFtpZF0tPmJvLT52bWFwLCAwLCBlbnRyeSk7Cj4gwqAKPiBAQCAtMjYyLDYgKzIyMCwxMiBA
-QCBzdGF0aWMgaW50IHhlX21pZ3JhdGVfcHJlcGFyZV92bShzdHJ1Y3QgeGVfdGlsZQo+ICp0aWxl
-LCBzdHJ1Y3QgeGVfbWlncmF0ZSAqbSwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoCAoaSArIDEpICogOCwgdTY0LCBlbnRyeSk7Cj4gwqDCoMKgwqDC
-oMKgwqDCoH0KCkEgc2hvcnQgY29tbWVudCB0aGF0IHdlIHNldCB1cCBhIDFHaUIgTlVMTCBtYXBw
-aW5nIGF0IDI1NUdpQiBvZmZzZXQuCgo+IMKgCj4gK8KgwqDCoMKgwqDCoMKgbGV2ZWwgPSAyOwo+
-ICvCoMKgwqDCoMKgwqDCoHhlX21hcF93cih4ZSwgJmJvLT52bWFwLCBtYXBfb2ZzICsgWEVfUEFH
-RV9TSVpFICogbGV2ZWwgKyAyNTUKPiAqIDgsIHU2NCwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqAgdm0tPnB0X29wcy0+cHRlX2VuY29kZV9hZGRyKHhlLCAwLCBwYXRfaW5kZXgs
-Cj4gbGV2ZWwsIElTX0RHRlgoeGUpLCAwKQo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoCB8IFhFX1BURV9OVUxMKTsKPiArwqDCoMKgwqDCoMKgwqBtLT5jbGVhcmVkX21lbV9vZnMg
-PSAoMjU1VUxMIDw8IHhlX3B0X3NoaWZ0KGxldmVsKSk7Cj4gKwoKCgo+IMKgwqDCoMKgwqDCoMKg
-wqAvKiBJZGVudGl0eSBtYXAgdGhlIGVudGlyZSB2cmFtIGF0IDI1NkdpQiBvZmZzZXQgKi8KPiDC
-oMKgwqDCoMKgwqDCoMKgaWYgKElTX0RHRlgoeGUpKSB7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqB1NjQgcG9zLCBvZnMsIGZsYWdzOwo+IEBAIC02MTYsNyArNTgwLDcgQEAgc3Rh
-dGljIHUzMiB4ZV9taWdyYXRlX2Njc19jb3B5KHN0cnVjdCB4ZV9taWdyYXRlCj4gKm0sCj4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgKiBPdGhlcndpc2UgaWYgdGhlIGJvIGRvZXNu
-J3QgaGF2ZSBhbnkgQ0NTIG1ldGFkYXRhCj4gYXR0YWNoZWQsCj4gwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqAgKiB3ZSBzdGlsbCBuZWVkIHRvIGNsZWFyIGl0IGZvciBzZWN1cml0eSBy
-ZWFzb25zLgo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICovCj4gLcKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoHU2NCBjY3Nfc3JjX29mcyA9wqAgc3JjX2lzX3ZyYW0gPyBz
-cmNfb2ZzIDogbS0KPiA+Y2xlYXJlZF92cmFtX29mczsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgdTY0IGNjc19zcmNfb2ZzID3CoCBzcmNfaXNfdnJhbSA/IHNyY19vZnMgOiBtLQo+
-ID5jbGVhcmVkX21lbV9vZnM7Cj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oGVtaXRfY29weV9jY3MoZ3QsIGJiLAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZHN0X29mcywgdHJ1ZSwKPiBAQCAtMTAwNSw3ICs5
-NjksNyBAQCBzdHJ1Y3QgZG1hX2ZlbmNlICp4ZV9taWdyYXRlX2NsZWFyKHN0cnVjdAo+IHhlX21p
-Z3JhdGUgKm0sCj4gwqAKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGlmICh4ZV9k
-ZXZpY2VfaGFzX2ZsYXRfY2NzKHhlKSAmJiBjbGVhcl92cmFtKSB7Cj4gwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZW1pdF9jb3B5X2NjcyhndCwgYmIsIGNs
-ZWFyX0wwX29mcywgdHJ1ZSwKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG0tPmNsZWFyZWRfdnJhbV9vZnMs
-IGZhbHNlLAo+IGNsZWFyX0wwKTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIG0tPmNsZWFyZWRfbWVtX29m
-cywgZmFsc2UsCj4gY2xlYXJfTDApOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoGZsdXNoX2ZsYWdzID0gTUlfRkxVU0hfRFdfQ0NTOwo+IMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgfQo+IMKgCgo=
+Create another layer of sub directories to clean up memory/vram
+related sysfs path. Also introduce the vram frequency sysfs under
+a new sub directory.
+
+Sujaritha Sundaresan (2):
+  drm/xe: Add a new memory direcory under tile
+  drm/xe: Add vram frequency sysfs attributes
+
+ drivers/gpu/drm/xe/xe_pcode_api.h  |  8 +++
+ drivers/gpu/drm/xe/xe_tile_sysfs.c | 90 ++++++++++++++++++++++++++++--
+ 2 files changed, 94 insertions(+), 4 deletions(-)
+
+-- 
+2.25.1
 
