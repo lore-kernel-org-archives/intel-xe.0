@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E4030C61DF4
-	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 11:10:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7ABCAC61DF4
+	for <intel-xe@archiver.kernel.org>; Fri, 24 Nov 2023 11:11:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AE5C210E1BC;
-	Fri, 24 Nov 2023 11:10:08 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E0FB10E1BC
- for <intel-xe@lists.freedesktop.org>; Fri, 24 Nov 2023 11:10:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4605810E1BF;
+	Fri, 24 Nov 2023 11:11:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 598CC10E1BC
+ for <intel-xe@lists.freedesktop.org>; Fri, 24 Nov 2023 11:11:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1700824206; x=1732360206;
+ t=1700824288; x=1732360288;
  h=message-id:subject:from:to:date:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=75MbRvT12J57RkPESId+3K7CP4Vr8D8GU0CFfCM5Hh8=;
- b=NgndjbNTjW9mO2tHAJjVdOknd5kzHRBkT7F3chxNDRGe7GeIx7pvkwXc
- NiEsgpyBN1ugrmQawmWAUwiTJvFZ8rpfIFOXG9KyW+KlOZLgON0Q/dwHp
- CtJU9rdcPoF6u0QGIwpDBXhNNYyaAY8YHokPXHQyBaXQZxDS+Vmko/ESe
- JksVfhi1+HtkSozi0/3M7wp42bxWo9SVwDiDVWD62UlQ5DqOBhiksuuvY
- u3Ns+Bsu3Hk/TUqdCgoXba99rFr93fwVfoTuV4aJZIItjNE4/Ue+nSYNq
- sJztTz3ttONLXL0ep46wutJ5zBxUex31tq3dPdo8vCjrNjRTJNK3Ti1XF Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="389560055"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="389560055"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 03:10:03 -0800
+ bh=uLIji1bnaaZSMcgkjcehw+WTpGKY1UPpGIrk6Le/nHY=;
+ b=Fzu313+MNQVNcYLHgYSknUl70F0wK8E0wghc2haJUA4SOLtf4rVkp8Do
+ uVF+pInLsVuLQl7MqfPOtixF/EsbP1eOVN4+/DlrE6ge5W7z59Angwjvj
+ grgT9tDPGt9CfQ/H0DiAjjD/oZQDRSoc0rLShQhNd0M+vETrIOOX5DQHm
+ uffeC/xwKg6Z5gpv1hCai3gW0bO81r08hcCGS6UtliQuAIm1Dy8Vg0cX7
+ GmqULAFs7fGDTO0Y+aVbCgcccpCKN+l5BwCPLgj4qXti16p0xLe7FPlM3
+ jlrmIjSU9QgbaiUvZWRrznMLinx05RV+GCTY869r810g/WtsIQy0w+BVN A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="392174120"
+X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="392174120"
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+ by fmsmga103.fm.intel.com with ESMTP; 24 Nov 2023 03:11:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="743851992"
-X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="743851992"
+X-IronPort-AV: E=McAfee;i="6600,9927,10902"; a="796564627"
+X-IronPort-AV: E=Sophos;i="6.04,223,1695711600"; d="scan'208";a="796564627"
 Received: from cschimpe-mobl1.ger.corp.intel.com (HELO [10.249.254.175])
  ([10.249.254.175])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Nov 2023 03:10:00 -0800
-Message-ID: <797b983ed6313c2866c8b02aa73a5cab1fc4d4a3.camel@linux.intel.com>
+ by orsmga008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Nov 2023 03:11:26 -0800
+Message-ID: <07b47a67234eeef5208214c9ea60272771aaaa5c.camel@linux.intel.com>
 From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
 To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, 
  intel-xe@lists.freedesktop.org
-Date: Fri, 24 Nov 2023 12:09:58 +0100
-In-Reply-To: <20231121100906.3587649-4-himal.prasad.ghimiray@intel.com>
+Date: Fri, 24 Nov 2023 12:11:22 +0100
+In-Reply-To: <20231121100906.3587649-5-himal.prasad.ghimiray@intel.com>
 References: <20231121100906.3587649-1-himal.prasad.ghimiray@intel.com>
- <20231121100906.3587649-4-himal.prasad.ghimiray@intel.com>
+ <20231121100906.3587649-5-himal.prasad.ghimiray@intel.com>
 Organization: Intel Sweden AB, Registration Number: 556189-6027
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [RFC v2 3/6] drm/xe/xe2: Allocate extra pages for
- ccs during bo create.
+Subject: Re: [Intel-xe] [RFC v2 4/6] drm/xe/xe2: Updates on
+ XY_CTRL_SURF_COPY_BLT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,115 +64,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, 2023-11-21 at 15:39 +0530, Himal Prasad Ghimiray wrote:
-> Each byte of CCS data now represents 512 bytes of main memory data.
-> Allocate extra pages to handle ccs region for igfx too.
->=20
-> Bspec:58796
->=20
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Himal Prasad Ghimiray
-> <himal.prasad.ghimiray@intel.com>
-> ---
-> =C2=A0drivers/gpu/drm/xe/regs/xe_gpu_commands.h |=C2=A0 2 +-
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 15 ++++++---------
-> =C2=A0drivers/gpu/drm/xe/xe_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 +-
-> =C2=A03 files changed, 8 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-> b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-> index 4402f72481dc..7f74592f99ce 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-> @@ -16,7 +16,7 @@
-> =C2=A0#define=C2=A0=C2=A0 XY_CTRL_SURF_MOCS_MASK=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0GENMASK(31, 26)
-> =C2=A0#define=C2=A0=C2=A0 XE2_XY_CTRL_SURF_MOCS_INDEX_MASK=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0GENMASK(31, 28)
-> =C2=A0#define=C2=A0=C2=A0 NUM_CCS_BYTES_PER_BLOCK=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0256
-> -#define=C2=A0=C2=A0 NUM_BYTES_PER_CCS_BYTE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0256
-> +#define=C2=A0=C2=A0 NUM_BYTES_PER_CCS_BYTE(_xe)=C2=A0=C2=A0(GRAPHICS_VER=
-(_xe) >=3D 20 ?
-> 512 : 256)
-> =C2=A0#define=C2=A0=C2=A0 NUM_CCS_BLKS_PER_XFER=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0102=
-4
-> =C2=A0
-> =C2=A0#define XY_FAST_COLOR_BLT_CMD=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0(2 << 29 | 0x44 << 22)
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 4305f5cbc2ab..4730ee3c1012 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -2074,19 +2074,16 @@ int xe_bo_evict(struct xe_bo *bo, bool
-> force_alloc)
-> =C2=A0 * placed in system memory.
-> =C2=A0 * @bo: The xe_bo
-> =C2=A0 *
-> - * If a bo has an allowable placement in XE_PL_TT memory, it can't
-> use
-> - * flat CCS compression, because the GPU then has no way to access
-> the
-> - * CCS metadata using relevant commands. For the opposite case, we
-> need to
-> - * allocate storage for the CCS metadata when the BO is not resident
-> in
-> - * VRAM memory.
-
-Please extend modify this comment rather than deleting it
-
-
-> - *
-> =C2=A0 * Return: true if extra pages need to be allocated, false
-> otherwise.
-> =C2=A0 */
-> =C2=A0bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
-> =C2=A0{
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return bo->ttm.type =3D=3D ttm=
-_bo_type_device &&
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0!(bo->flags & XE_BO_CREATE_SYSTEM_BIT) &&
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0(bo->flags & XE_BO_CREATE_VRAM_MASK);
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct xe_device *xe =3D xe_bo=
-_device(bo);
-> +
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return (xe_device_has_flat_ccs=
-(xe) &&
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0bo->ttm.type =3D=3D ttm_bo_type_device &&
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0((IS_DGFX(xe) && (bo->flags &
-> XE_BO_CREATE_VRAM_MASK)) ||
-
-It looks like you have removed a restriction for DGFX here: If the BO
-has SYSTEM set, then ccs pages are not needed.
-
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0(!IS_DGFX(xe) && (bo->flags &
-> XE_BO_CREATE_SYSTEM_BIT))));
-> =C2=A0}
-> =C2=A0
-> =C2=A0/**
-> diff --git a/drivers/gpu/drm/xe/xe_device.c
-> b/drivers/gpu/drm/xe/xe_device.c
-> index 07a3e4cf48d1..265f9ffc5323 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -551,7 +551,7 @@ void xe_device_wmb(struct xe_device *xe)
-> =C2=A0u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
-> =C2=A0{
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return xe_device_has_flat=
-_ccs(xe) ?
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE) : 0;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE(xe)) : 0;
-> =C2=A0}
-> =C2=A0
-> =C2=A0bool xe_device_mem_access_ongoing(struct xe_device *xe)
+T24gVHVlLCAyMDIzLTExLTIxIGF0IDE1OjM5ICswNTMwLCBIaW1hbCBQcmFzYWQgR2hpbWlyYXkg
+d3JvdGU6Cj4gLSBUaGUgWFlfQ1RSTF9TVVJGX0NPUFlfQkxUIGluc3RydWN0aW9uIG9wZXJhdGlv
+bmcgb24gY2NzIGRhdGEKPiBleHBlY3RzCj4gc2l6ZSBpbiBwYWdlcyBvZiBtYWluIG1lbW9yeSBm
+b3Igd2hpY2ggQ0NTIGRhdGEgc2hvdWxkIGJlIGNvcGllZC4KPiAtIFRoZSBiaXRmaWVsZCByZXBy
+ZXNlbnRpbmcgY29weSBzaXplIGluIFhZX0NUUkxfU1VSRl9DT1BZX0JMVCBoYXMKPiBzaGlmdGVk
+IG9uZSBiaXQgaGlnaGVyIGluIHRoZSBpbnN0cnVjdGlvbi4KPiAKPiBDYzogVGhvbWFzIEhlbGxz
+dHLDtm0gPHRob21hcy5oZWxsc3Ryb21AbGludXguaW50ZWwuY29tPgo+IFNpZ25lZC1vZmYtYnk6
+IEhpbWFsIFByYXNhZCBHaGltaXJheQo+IDxoaW1hbC5wcmFzYWQuZ2hpbWlyYXlAaW50ZWwuY29t
+Pgo+IC0tLQo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3JlZ3MveGVfZ3B1X2NvbW1hbmRzLmggfMKg
+IDEgKwo+IMKgZHJpdmVycy9ncHUvZHJtL3hlL3hlX21pZ3JhdGUuY8KgwqDCoMKgwqDCoMKgwqDC
+oMKgIHwgMjMgKysrKysrKysrKysrKysrKystLS0tCj4gLS0KPiDCoDIgZmlsZXMgY2hhbmdlZCwg
+MTggaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEvZHJpdmVy
+cy9ncHUvZHJtL3hlL3JlZ3MveGVfZ3B1X2NvbW1hbmRzLmgKPiBiL2RyaXZlcnMvZ3B1L2RybS94
+ZS9yZWdzL3hlX2dwdV9jb21tYW5kcy5oCj4gaW5kZXggN2Y3NDU5MmY5OWNlLi40NzQ1OTg0MWFh
+NjkgMTAwNjQ0Cj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL3hlL3JlZ3MveGVfZ3B1X2NvbW1hbmRz
+LmgKPiArKysgYi9kcml2ZXJzL2dwdS9kcm0veGUvcmVncy94ZV9ncHVfY29tbWFuZHMuaAo+IEBA
+IC0xMyw2ICsxMyw3IEBACj4gwqAjZGVmaW5lwqDCoCBEU1RfQUNDRVNTX1RZUEVfU0hJRlTCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoDIwCj4gwqAjZGVmaW5lwqDCoCBDQ1NfU0laRV9N
+QVNLwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgMHgzRkYK
+PiDCoCNkZWZpbmXCoMKgIENDU19TSVpFX1NISUZUwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgOAo+ICsjZGVmaW5lwqDCoCBYRTJfQ0NTX1NJWkVfU0hJRlTCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgOQo+IMKgI2RlZmluZcKgwqAgWFlfQ1RSTF9TVVJGX01PQ1NfTUFTS8KgwqDCoMKgwqDCoMKg
+R0VOTUFTSygzMSwgMjYpCj4gwqAjZGVmaW5lwqDCoCBYRTJfWFlfQ1RSTF9TVVJGX01PQ1NfSU5E
+RVhfTUFTS8KgwqDCoMKgwqBHRU5NQVNLKDMxLCAyOCkKPiDCoCNkZWZpbmXCoMKgIE5VTV9DQ1Nf
+QllURVNfUEVSX0JMT0NLwqDCoMKgwqDCoMKgMjU2Cj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1
+L2RybS94ZS94ZV9taWdyYXRlLmMKPiBiL2RyaXZlcnMvZ3B1L2RybS94ZS94ZV9taWdyYXRlLmMK
+PiBpbmRleCBlZDJmM2Y1MTA5ZjMuLjA2NzA2ZmFkNjdhYSAxMDA2NDQKPiAtLS0gYS9kcml2ZXJz
+L2dwdS9kcm0veGUveGVfbWlncmF0ZS5jCj4gKysrIGIvZHJpdmVycy9ncHUvZHJtL3hlL3hlX21p
+Z3JhdGUuYwo+IEBAIC01MjMsMjEgKzUyMywzMSBAQCBzdGF0aWMgdm9pZCBlbWl0X2NvcHlfY2Nz
+KHN0cnVjdCB4ZV9ndCAqZ3QsCj4gc3RydWN0IHhlX2JiICpiYiwKPiDCoMKgwqDCoMKgwqDCoMKg
+c3RydWN0IHhlX2RldmljZSAqeGUgPSBndF90b194ZShndCk7Cj4gwqDCoMKgwqDCoMKgwqDCoHUz
+MiAqY3MgPSBiYi0+Y3MgKyBiYi0+bGVuOwo+IMKgwqDCoMKgwqDCoMKgwqB1MzIgbnVtX2Njc19i
+bGtzOwo+ICvCoMKgwqDCoMKgwqDCoHUzMiBudW1fY2NzX3BhZ2VzOwo+ICvCoMKgwqDCoMKgwqDC
+oHUzMiBjY3NfY29weV9zaXplOwo+IMKgwqDCoMKgwqDCoMKgwqB1MzIgbW9jczsKPiDCoAo+IC3C
+oMKgwqDCoMKgwqDCoG51bV9jY3NfYmxrcyA9IERJVl9ST1VORF9VUCh4ZV9kZXZpY2VfY2NzX2J5
+dGVzKGd0X3RvX3hlKGd0KSwKPiBzaXplKSwKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgTlVNX0NDU19CWVRFU19Q
+RVJfQkxPQ0spOwo+IC3CoMKgwqDCoMKgwqDCoHhlX2d0X2Fzc2VydChndCwgbnVtX2Njc19ibGtz
+IDw9IE5VTV9DQ1NfQkxLU19QRVJfWEZFUik7Cj4gK8KgwqDCoMKgwqDCoMKgaWYgKEdSQVBISUNT
+X1ZFUngxMDAoeGUpID49IDIwMDApIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+bnVtX2Njc19wYWdlcyA9Cj4gRElWX1JPVU5EX1VQKHhlX2RldmljZV9jY3NfYnl0ZXMoZ3RfdG9f
+eGUoZ3QpLCBzaXplKSwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgWEVfUEFHRV9T
+SVpFKTsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgeGVfZ3RfYXNzZXJ0KGd0LCBu
+dW1fY2NzX3BhZ2VzIDw9IDEwMjQpOwo+IMKgCj4gLcKgwqDCoMKgwqDCoMKgaWYgKEdSQVBISUNT
+X1ZFUngxMDAoeGUpID49IDIwMDApCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNj
+c19jb3B5X3NpemUgPSAoKG51bV9jY3NfcGFnZXMgLSAxKSAmIENDU19TSVpFX01BU0spCj4gPDwg
+WEUyX0NDU19TSVpFX1NISUZUOwo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbW9j
+cyA9IEZJRUxEX1BSRVAoWEUyX1hZX0NUUkxfU1VSRl9NT0NTX0lOREVYX01BU0ssCj4gZ3QtPm1v
+Y3MudWNfaW5kZXgpOwo+IC3CoMKgwqDCoMKgwqDCoGVsc2UKPiArCj4gK8KgwqDCoMKgwqDCoMKg
+fSBlbHNlIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbnVtX2Njc19ibGtzID0K
+PiBESVZfUk9VTkRfVVAoeGVfZGV2aWNlX2Njc19ieXRlcyhndF90b194ZShndCksIHNpemUpLAo+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgTlVNX0NDU19CWVRFU19QRVJfQkxPQ0spOwo+
+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqB4ZV9ndF9hc3NlcnQoZ3QsIG51bV9jY3Nf
+YmxrcyA8PQo+IE5VTV9DQ1NfQkxLU19QRVJfWEZFUik7Cj4gKwo+ICvCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqBjY3NfY29weV9zaXplID0gKChudW1fY2NzX2Jsa3MgLSAxKSAmIENDU19T
+SVpFX01BU0spCj4gPDwgQ0NTX1NJWkVfU0hJRlQ7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqBtb2NzID0gRklFTERfUFJFUChYWV9DVFJMX1NVUkZfTU9DU19NQVNLLCBndC0KPiA+
+bW9jcy51Y19pbmRleCk7Cj4gK8KgwqDCoMKgwqDCoMKgfQo+IMKgCj4gwqDCoMKgwqDCoMKgwqDC
+oCpjcysrID0gWFlfQ1RSTF9TVVJGX0NPUFlfQkxUIHwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoChzcmNfaXNfaW5kaXJlY3QgPyAweDAgOiAweDEpIDw8Cj4gU1JDX0FDQ0VTU19U
+WVBFX1NISUZUIHwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoChkc3RfaXNfaW5k
+aXJlY3QgPyAweDAgOiAweDEpIDw8Cj4gRFNUX0FDQ0VTU19UWVBFX1NISUZUIHwKPiAtwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgKChudW1fY2NzX2Jsa3MgLSAxKSAmIENDU19TSVpFX01B
+U0spIDw8Cj4gQ0NTX1NJWkVfU0hJRlQ7Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oGNjc19jb3B5X3NpemU7Cj4gwqDCoMKgwqDCoMKgwqDCoCpjcysrID0gbG93ZXJfMzJfYml0cyhz
+cmNfb2ZzKTsKPiDCoMKgwqDCoMKgwqDCoMKgKmNzKysgPSB1cHBlcl8zMl9iaXRzKHNyY19vZnMp
+IHwgbW9jczsKPiDCoMKgwqDCoMKgwqDCoMKgKmNzKysgPSBsb3dlcl8zMl9iaXRzKGRzdF9vZnMp
+Owo+IEBAIC05OTIsNiArMTAwMiw3IEBAIHN0cnVjdCBkbWFfZmVuY2UgKnhlX21pZ3JhdGVfY2xl
+YXIoc3RydWN0Cj4geGVfbWlncmF0ZSAqbSwKPiDCoAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgZW1pdF9jbGVhcihndCwgYmIsIGNsZWFyX0wwX29mcywgY2xlYXJfTDAsCj4gWEVf
+UEFHRV9TSVpFLAo+IMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgY2xlYXJfdnJhbSk7Cj4gKwoKVW5yZWxhdGVkIGNoYW5nZS4gUGxlYXNlIHJlbW92
+ZSwgT3RoZXJ3aXNlIExHVE0uClJldmlld2VkLWJ5OiBUaG9tYXMgSGVsbHN0csO2bSA8dGhvbWFz
+LmhlbGxzdHJvbUBsaW51eC5pbnRlbC5jb20+CgoKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoGlmICh4ZV9kZXZpY2VfaGFzX2ZsYXRfY2NzKHhlKSAmJiBjbGVhcl92cmFtKSB7Cj4g
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgZW1pdF9jb3B5
+X2NjcyhndCwgYmIsIGNsZWFyX0wwX29mcywgdHJ1ZSwKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBtLT5j
+bGVhcmVkX3ZyYW1fb2ZzLCBmYWxzZSwKPiBjbGVhcl9MMCk7Cgo=
 
