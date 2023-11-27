@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D83B1C4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Nov 2023 16:23:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CF4F6C4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Nov 2023 16:23:21 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC14D10E2F4;
-	Mon, 27 Nov 2023 16:23:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A17FE10E2F4;
+	Mon, 27 Nov 2023 16:23:21 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5BA5A10E2F4;
- Mon, 27 Nov 2023 16:23:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 424CD10E2F4;
+ Mon, 27 Nov 2023 16:23:19 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id D5BA8A03D2;
- Mon, 27 Nov 2023 16:23:03 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 3F728A03D2;
+ Mon, 27 Nov 2023 16:23:19 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Mon, 27 Nov 2023 16:23:03 -0000
-Message-ID: <170110218387.3005.18070906684707034728@emeril.freedesktop.org>
+Date: Mon, 27 Nov 2023 16:23:19 -0000
+Message-ID: <170110219925.3002.1618321775424618187@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231127150330.38041-1-thomas.hellstrom@linux.intel.com>
 In-Reply-To: <20231127150330.38041-1-thomas.hellstrom@linux.intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/uapi=3A_Use_LR_abbrev_for_long-running_VMs?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/uapi=3A_Use_LR_abbrev_for_long-running_VMs?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,9 +52,41 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 7c4b213b5 drm/xe: Internally change the compute_mode and no_dma_fence mode naming
-=== git am output follows ===
-Applying: drm/xe/uapi: Use LR abbrev for long-running vms
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+63c2b6b160bca2df6efc7bc4cea6f442097d7854
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 025e46efdb325113b3398b3284cb19091654f936
+Author: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Date:   Mon Nov 27 16:03:30 2023 +0100
+
+    drm/xe/uapi: Use LR abbrev for long-running vms
+    
+    Currently we're using "compute mode" for long running VMs using
+    preempt-fences for memory management, and "fault mode" for long
+    running VMs using page faults.
+    
+    Change this to use the terminology "long-running" abbreviated as LR for
+    long-running VMs. These VMs can then either be in preempt-fence mode or
+    fault mode. The user can force fault mode at creation time, but otherwise
+    the driver can choose to use fault- or preempt-fence mode for long-running
+    vms depending on the device capabilities. Initially unless fault-mode is
+    specified, the driver uses preempt-fence mode.
+    
+    v2:
+    - Fix commit message wording and the documentation around
+      CREATE_FLAG_LR_MODE and CREATE_FLAG_FAULT_MODE
+    
+    Cc: Matthew Brost <matthew.brost@intel.com>
+    Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+    Cc: Francois Dugast <francois.dugast@intel.com>
+    Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
++ /mt/dim checkpatch 7c4b213b5a33fc591a5c92910292aea30193f96c drm-intel
+025e46efd drm/xe/uapi: Use LR abbrev for long-running vms
 
 
