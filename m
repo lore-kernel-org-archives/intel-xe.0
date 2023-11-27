@@ -4,79 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CD454C4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Nov 2023 15:14:44 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D335EC4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Nov 2023 15:25:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95FE810E2BF;
-	Mon, 27 Nov 2023 15:14:44 +0000 (UTC)
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com
- [IPv6:2607:f8b0:4864:20::733])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5570F10E2BF;
- Mon, 27 Nov 2023 15:14:43 +0000 (UTC)
-Received: by mail-qk1-x733.google.com with SMTP id
- af79cd13be357-77d631aab99so229350385a.2; 
- Mon, 27 Nov 2023 07:14:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1701098082; x=1701702882; darn=lists.freedesktop.org;
- h=in-reply-to:autocrypt:from:references:cc:to:content-language
- :subject:user-agent:mime-version:date:message-id:from:to:cc:subject
- :date:message-id:reply-to;
- bh=O878JpoRHxeRwNhXeIv1tIn5S4Ozam1aEyPWG/9lcJw=;
- b=W2GzW+t5y+KD7VQlptOTH4FRooEDlekzgzsI0AE0OnxL8kZZjxOfukM/K4pWaByOXz
- D2WeXqADG8Psalvt95mRj1meIffpSE64ToqojUnfGCaUa91GQiLlKC+8GMjWjuy7GFkt
- cJFKrMZKTCwRNstitFKik2LGcanMOuLRAZmJ9nygXaZ6lC9elJ7wIs0W1jQO7mS/hyJ3
- f8vReklh12UuQ2ANiGsvTBUYZLpo1xDpMFvJQwt7PFYaGmV9332OZG8IO3JQnFfNuSvN
- w0rO2Tgw3NWB2mTWJ/b8+bV1azOUOMtnZveSwPdNgxlu/N9HqdPNFSciF2nNpZImR4Zl
- wsqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1701098082; x=1701702882;
- h=in-reply-to:autocrypt:from:references:cc:to:content-language
- :subject:user-agent:mime-version:date:message-id:x-gm-message-state
- :from:to:cc:subject:date:message-id:reply-to;
- bh=O878JpoRHxeRwNhXeIv1tIn5S4Ozam1aEyPWG/9lcJw=;
- b=GNP/q5ByJv70+/akcjLDdRLzTgBHhq4Ru55zsJVJponNFQHaM1wDF2Bah1Iy5agith
- CInmIeGT2h0eipXlGziQc5Ev86DuH/SuxFKg3+1oYg9fiLNQbSLu3+Q22NsA141tMi7H
- p7guw6sehNnG/StB6UXJVslTmHrdKEx0FLInIW2G5mY+FcCs9UEvvKv3N0KUbnbwRI7/
- uMC8p8IYpT+iHcWFb39kwhYBoatLUHWdKNjCUFqRnti9BZlhYyWML8afS/AlGWOfn+N2
- T7y9/yJcgej8HdM5CJGjC3BoptnXyWyGLHheLSXTY5mXanGCkpt7ZY6pLnj33vfTZuoh
- AsdA==
-X-Gm-Message-State: AOJu0YyBLjnnfl0SAIyHF4D9xREf9/wQ3cRPE3wouwjooeYYRIqPvcZs
- rivDjMnxOtnBTku4TqPfORQ=
-X-Google-Smtp-Source: AGHT+IECrvEs9JmQw9eETtf30jFCJS5oQcK+/ZA8utEVwDzSmKxMrbB/8o7ccSUYW0LLbjGOuZZAyw==
-X-Received: by 2002:a05:620a:3d10:b0:778:b029:100c with SMTP id
- tq16-20020a05620a3d1000b00778b029100cmr11213254qkn.66.1701098082326; 
- Mon, 27 Nov 2023 07:14:42 -0800 (PST)
-Received: from [192.168.2.14]
- (bras-base-toroon0964w-grc-76-76-65-20-140.dsl.bell.ca. [76.65.20.140])
- by smtp.gmail.com with ESMTPSA id
- z4-20020a05620a260400b0077d84f46d65sm2684245qko.37.2023.11.27.07.14.41
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 27 Nov 2023 07:14:41 -0800 (PST)
-Message-ID: <a210a487-77bf-469a-a4de-b4ebd15bbd5b@gmail.com>
-Date: Mon, 27 Nov 2023 10:14:40 -0500
+	by gabe.freedesktop.org (Postfix) with ESMTP id 878DE10E04C;
+	Mon, 27 Nov 2023 15:25:16 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 8CD5510E04C;
+ Mon, 27 Nov 2023 15:25:14 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 6BB4AA47E9;
+ Mon, 27 Nov 2023 15:25:14 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1783536278632230241=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:115.0) Gecko/20100101
- Thunderbird/115.5.0
-Content-Language: en-CA, en-US
-To: Bert Karwatzki <spasswolf@web.de>
-References: <6273fadf-267a-4965-82ab-89c5b3f28cf2@gmail.com>
- <20231127133015.104165-1-spasswolf@web.de>
-From: Luben Tuikov <ltuikov89@gmail.com>
-Autocrypt: addr=ltuikov89@gmail.com; keydata=
- xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1APnbnnRHN
- Ikx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoAQRYhBJkj7+VmFO9b
- eaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheA
- AAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlTMqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfy
- JwktF7REl1yt7IU2Sye1qmQMfJxdt9JMbMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSP
- cCE8uGe7FWo8C+nTSyWPXKTx9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl
- 10wVR5QxozSvBQJlOiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKo
- aMDzO9eGz69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA==
-In-Reply-To: <20231127133015.104165-1-spasswolf@web.de>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------zx3uNX1Z4mxQyNHHEEHLWJqW"
-Subject: Re: [Intel-xe] [PATCH] Revert "drm/sched: Qualify
- drm_sched_wakeup() by drm_sched_entity_is_ready()"
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Date: Mon, 27 Nov 2023 15:25:14 -0000
+Message-ID: <170109871419.3005.3573295127807736944@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231127141125.2913415-1-riana.tauro@intel.com>
+In-Reply-To: <20231127141125.2913415-1-riana.tauro@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Engine_Bu?=
+ =?utf-8?q?syness?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,149 +39,191 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com,
- tvrtko.ursulin@linux.intel.com, ketil.johnsen@arm.com, lina@asahilina.net,
- mcanal@igalia.com, Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, boris.brezillon@collabora.com, dakr@redhat.com,
- donald.robson@imgtec.com, christian.koenig@amd.com,
- faith.ekstrand@collabora.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------zx3uNX1Z4mxQyNHHEEHLWJqW
-Content-Type: multipart/mixed; boundary="------------nLBwBxTGqHZVB5RNeF06VmU6";
- protected-headers="v1"
-From: Luben Tuikov <ltuikov89@gmail.com>
-To: Bert Karwatzki <spasswolf@web.de>
-Cc: Liviu.Dudau@arm.com, boris.brezillon@collabora.com,
- christian.koenig@amd.com, dakr@redhat.com, donald.robson@imgtec.com,
- dri-devel@lists.freedesktop.org, faith.ekstrand@collabora.com,
- intel-xe@lists.freedesktop.org, ketil.johnsen@arm.com, lina@asahilina.net,
- matthew.brost@intel.com, mcanal@igalia.com, robdclark@chromium.org,
- sarah.walker@imgtec.com, tvrtko.ursulin@linux.intel.com
-Message-ID: <a210a487-77bf-469a-a4de-b4ebd15bbd5b@gmail.com>
-Subject: Re: [PATCH] Revert "drm/sched: Qualify drm_sched_wakeup() by
- drm_sched_entity_is_ready()"
-References: <6273fadf-267a-4965-82ab-89c5b3f28cf2@gmail.com>
- <20231127133015.104165-1-spasswolf@web.de>
-In-Reply-To: <20231127133015.104165-1-spasswolf@web.de>
+--===============1783536278632230241==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---------------nLBwBxTGqHZVB5RNeF06VmU6
-Content-Type: multipart/mixed; boundary="------------ePZjEnhYDcZhkq5gy0KA0StK"
+== Series Details ==
 
---------------ePZjEnhYDcZhkq5gy0KA0StK
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Series: Engine Busyness
+URL   : https://patchwork.freedesktop.org/series/126919/
+State : success
 
-Hi Bert,
+== Summary ==
 
-# The title of the patch should be:
+CI Bug Log - changes from xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59_BAT -> xe-pw-126919v1_BAT
+====================================================
 
-drm/sched: Partial revert of "Qualify drm_sched_wakeup() by drm_sched_ent=
-ity_is_ready()"
+Summary
+-------
 
-On 2023-11-27 08:30, Bert Karwatzki wrote:
-> Commit f3123c25 (in combination with the use of work queues by the gpu
+  **SUCCESS**
 
-Commit f3123c2590005c, in combination with the use of work queues by the =
-GPU
-scheduler, leads to random lock-ups of the GUI.
+  No regressions found.
 
-> scheduler) leads to random lock ups of the GUI [1,2].
->=20
-> This is not a complete revert of commit f3123c25 as drm_sched_wakeup
+  
 
-This is a partial revert of of commit f3123c2590005c since drm_sched_wake=
-up()
+Participating hosts (4 -> 3)
+------------------------------
 
-> still needs its entity argument to pass it to drm_sched_can_queue.
+  Missing    (1): bat-pvc-2 
 
-=2E.. drm_sched_can_queue().
+Known issues
+------------
 
-# Don't forget a SoB line!
+  Here are the changes found in xe-pw-126919v1_BAT that come from known issues:
 
-Signed-off-by: Bert ...
+### IGT changes ###
 
->> [1] https://gitlab.freedesktop.org/drm/amd/-/issues/2994
+#### Issues hit ####
 
-# Use a Link: tag instead, like this:
-Link: https://gitlab.freedesktop.org/drm/amd/-/issues/2994
+  * igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:
+    - bat-atsm-2:         NOTRUN -> [SKIP][1] ([Intel XE#288]) +17 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html
 
-> [2] https://lists.freedesktop.org/archives/dri-devel/2023-November/4316=
-06.html
+  
+#### Possible fixes ####
 
-# Use a Link: tag instead, like this:
-Link: https://lists.freedesktop.org/archives/dri-devel/2023-November/4316=
-06.html
+  * igt@core_hotunplug@unbind-rebind:
+    - bat-atsm-2:         [INCOMPLETE][2] ([Intel XE#764]) -> [PASS][3]
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html
 
->=20
-> This reverts commit f3123c2590005c5ff631653d31428e40cd10c618.
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:
+    - bat-adlp-7:         [FAIL][4] ([i915#2346]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html
 
-# The line above is *not* necessary, since this is a partial commit. Inst=
-ead we need
-# a Fixes: line, like this:
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+    - bat-adlp-7:         [FAIL][6] ([Intel XE#480]) -> [PASS][7] +1 other test pass
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
 
-Fixes: f3123c2590005c ("drm/sched: Qualify drm_sched_wakeup() by drm_sche=
-d_entity_is_ready()")
+  
+#### Warnings ####
 
-#######---
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [DMESG-FAIL][8] ([Intel XE#282] / [i915#2017]) -> [FAIL][9] ([Intel XE#616] / [Intel XE#750])
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
 
-Then after you do "git format-patch", post it like this:
+  
+  {name}: This element is suppressed. This means it is ignored when computing
+          the status of the difference (SUCCESS, WARNING, or FAILURE).
 
-git send-email \
-    --in-reply-to=3Dc5292d06-2e37-4715-96dc-699f369111fa@gmail.com \
-    --to=3Dltuikov89@gmail.com \
-    --cc=3Dchristian.koenig@amd.com \
-    --cc=3Ddakr@redhat.com \
-    --cc=3Ddri-devel@lists.freedesktop.org \
-    --cc=3Dmatthew.brost@intel.com \
-    --cc=3Dspasswolf@web.de \
-    --cc=3Dtvrtko.ursulin@intel.com \
-    /path/to/PATCH
+  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
+  [Intel XE#288]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/288
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
+  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
+  [Intel XE#764]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/764
+  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
 
-This follows your thread where all the information is stored.
 
-Thanks!
---=20
-Regards,
-Luben
+Build changes
+-------------
 
---------------ePZjEnhYDcZhkq5gy0KA0StK
-Content-Type: application/pgp-keys; name="OpenPGP_0x4C15479431A334AF.asc"
-Content-Disposition: attachment; filename="OpenPGP_0x4C15479431A334AF.asc"
-Content-Description: OpenPGP public key
-Content-Transfer-Encoding: quoted-printable
+  * Linux: xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59 -> xe-pw-126919v1
 
------BEGIN PGP PUBLIC KEY BLOCK-----
+  IGT_7604: d2af13d9f5be5ce23d996e4afd3e45990f5ab977 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59: 742c5e2bbe41df0e79309e7d601e3a52ef0a4e59
+  xe-pw-126919v1: 126919v1
 
-xjMEZTohOhYJKwYBBAHaRw8BAQdAWSq76k+GsENjDTMVCy9Vr4fAO9Rb57/bPT1A
-PnbnnRHNIkx1YmVuIFR1aWtvdiA8bHR1aWtvdjg5QGdtYWlsLmNvbT7CmQQTFgoA
-QRYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJlOiE6AhsDBQkJZgGABQsJCAcCAiIC
-BhUKCQgLAgQWAgMBAh4HAheAAAoJEEwVR5QxozSvSm4BAOwCpX53DTQhE20FBGlT
-MqKCOQyJqlMcIQ9SO1qPWX1iAQCv3vfyJwktF7REl1yt7IU2Sye1qmQMfJxdt9JM
-bMNNBs44BGU6IToSCisGAQQBl1UBBQEBB0BT9wSPcCE8uGe7FWo8C+nTSyWPXKTx
-9F0gpEnlqReRBwMBCAfCfgQYFgoAJhYhBJkj7+VmFO9beaAl10wVR5QxozSvBQJl
-OiE6AhsMBQkJZgGAAAoJEEwVR5QxozSvSsYA/2LIFjbxQ2ikbU5S0pKoaMDzO9eG
-z69uNhNWJcvIKJK6AQC9228Mqc1JeZMIyjYWr2HKYHi8S2q2/zHrSZwAWYYwDA=3D=3D
-=3DqCaZ
------END PGP PUBLIC KEY BLOCK-----
+== Logs ==
 
---------------ePZjEnhYDcZhkq5gy0KA0StK--
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/index.html
 
---------------nLBwBxTGqHZVB5RNeF06VmU6--
+--===============1783536278632230241==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---------------zx3uNX1Z4mxQyNHHEEHLWJqW
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
 
------BEGIN PGP SIGNATURE-----
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-wnsEABYIACMWIQSZI+/lZhTvW3mgJddMFUeUMaM0rwUCZWSyYAUDAAAAAAAKCRBMFUeUMaM0r8qt
-AP9VaL0mVYM02IAGJfquuJvVCHcJfM/LoqaHqXOyLHJ+dwEA5fa4R0vTR6Wi0vvfW4eDjG4YhpkO
-NGD/A7tLs+JH8wc=
-=kvjX
------END PGP SIGNATURE-----
 
---------------zx3uNX1Z4mxQyNHHEEHLWJqW--
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Engine Busyness</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126919/">https://patchwork.freedesktop.org/series/126919/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59_BAT -&gt; xe-pw-126919v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 3)</h2>
+<p>Missing    (1): bat-pvc-2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-126919v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@xe_exec_fault_mode@twice-userptr-invalidate-imm:<ul>
+<li>bat-atsm-2:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/bat-atsm-2/igt@xe_exec_fault_mode@twice-userptr-invalidate-imm.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/288">Intel XE#288</a>) +17 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_hotunplug@unbind-rebind:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/764">Intel XE#764</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/bat-atsm-2/igt@core_hotunplug@unbind-rebind.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-after-cursor-varying-size.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126919v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>)</li>
+</ul>
+</li>
+</ul>
+<p>{name}: This element is suppressed. This means it is ignored when computing<br />
+          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59 -&gt; xe-pw-126919v1</li>
+</ul>
+<p>IGT_7604: d2af13d9f5be5ce23d996e4afd3e45990f5ab977 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-519-742c5e2bbe41df0e79309e7d601e3a52ef0a4e59: 742c5e2bbe41df0e79309e7d601e3a52ef0a4e59<br />
+  xe-pw-126919v1: 126919v1</p>
+
+</body>
+</html>
+
+--===============1783536278632230241==--
