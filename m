@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 588D1C07D5A
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Nov 2023 19:59:19 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A4B2C4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Nov 2023 20:24:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B90310E0E7;
-	Mon, 27 Nov 2023 19:59:19 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A209C10E0BD
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Nov 2023 19:59:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701115156; x=1732651156;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=5Lr1tFJ5tLTJdlZFHJdKJHlwRG6D6Qa6nKvuMHpPcLs=;
- b=hhpfM6HI43giS588xHI22q3bLJaHKmwWA6thAw5OSMuk8a17MIqvGI/9
- DM2eQ6/L10TACDUKCmRwrPk506fSiJujuEOqPbJ21v57gPfKKo7kvDAsI
- Rulip8Xtb1rVBFHO8LitgL4zCuMSLYHAh5jRBmj3Bh3jDv4LxELyjjdZQ
- CPvAppPGaDZP7j1It5Jc8nxrjUjKYIun8Kg+OyqtXhxoSIqFpNtUImSCD
- skB5VLmv6yNztHyonrNmZnoRmhnr/y8hzNwO1VGfY8Ne3zo77m9mv8UXE
- wVNHQ977O4UQZplZHcXduFFZ+ZUqcuO3I7p8Hgoo0cT+cFLDBMcvlzmB2 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="383164002"
-X-IronPort-AV: E=Sophos;i="6.04,231,1695711600"; d="scan'208";a="383164002"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2023 11:59:16 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,231,1695711600"; d="scan'208";a="16705618"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by fmviesa001.fm.intel.com with ESMTP; 27 Nov 2023 11:59:16 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Mon, 27 Nov 2023 11:58:56 -0800
-Message-Id: <20231127195856.4183070-4-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20231127195856.4183070-1-vinay.belgaumkar@intel.com>
-References: <20231127195856.4183070-1-vinay.belgaumkar@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id E56FD10E0ED;
+	Mon, 27 Nov 2023 20:24:19 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 7A03F10E400;
+ Mon, 27 Nov 2023 20:24:18 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 589C8AADE1;
+ Mon, 27 Nov 2023 20:24:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7536391265116248648=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 3/3] drm/xe: Manually setup C6 when skip_guc_pc
- is set
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matt Roper" <matthew.d.roper@intel.com>
+Date: Mon, 27 Nov 2023 20:24:18 -0000
+Message-ID: <170111665833.3004.8404750260806509169@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231127190332.4099519-2-matthew.d.roper@intel.com>
+In-Reply-To: <20231127190332.4099519-2-matthew.d.roper@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_drm/xe/dg?=
+ =?utf-8?q?2=3A_Drop_Wa=5F22014600077?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,175 +39,145 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Skip the init/start/stop GuC PC functions and toggle C6 using
-register writes instead. Also request max possible frequency
-as dynamic freq management is disabled.
+--===============7536391265116248648==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Fix compile warning
+== Series Details ==
 
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  4 ++++
- drivers/gpu/drm/xe/xe_gt_idle.c      | 24 +++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_idle.h      |  4 ++++
- drivers/gpu/drm/xe/xe_guc_pc.c       | 35 +++++++++++++++++++++++++---
- 4 files changed, 64 insertions(+), 3 deletions(-)
+Series: drm/xe/dg2: Drop Wa_22014600077
+URL   : https://patchwork.freedesktop.org/series/126943/
+State : success
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index cc27fe8fc363..71eb6b8c8e15 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -269,7 +269,11 @@
- #define   RPSWCTL_ENABLE			REG_FIELD_PREP(RPSWCTL_MASK, 2)
- #define   RPSWCTL_DISABLE			REG_FIELD_PREP(RPSWCTL_MASK, 0)
- #define RC_CONTROL				XE_REG(0xa090)
-+#define   RC_CTL_HW_ENABLE			REG_BIT(31)
-+#define   RC_CTL_TO_MODE			REG_BIT(28)
-+#define   RC_CTL_RC6_ENABLE			REG_BIT(18)
- #define RC_STATE				XE_REG(0xa094)
-+#define RC_IDLE_HYSTERSIS			XE_REG(0xa0ac)
- 
- #define PMINTRMSK				XE_REG(0xa168)
- #define   PMINTR_DISABLE_REDIRECT_TO_GUC	REG_BIT(31)
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.c b/drivers/gpu/drm/xe/xe_gt_idle.c
-index e5b7e5d38e76..9358f7336889 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.c
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.c
-@@ -10,6 +10,8 @@
- #include "xe_gt_idle.h"
- #include "xe_gt_sysfs.h"
- #include "xe_guc_pc.h"
-+#include "regs/xe_gt_regs.h"
-+#include "xe_mmio.h"
- 
- /**
-  * DOC: Xe GT Idle
-@@ -166,3 +168,25 @@ void xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle)
- 		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
- 			 __func__, err);
- }
-+
-+void xe_gt_idle_enable_c6(struct xe_gt *gt)
-+{
-+	xe_device_assert_mem_access(gt_to_xe(gt));
-+	xe_force_wake_assert_held(gt_to_fw(gt), XE_FW_GT);
-+
-+	/* Units of 1280 ns for a total of 5s */
-+	xe_mmio_write32(gt, RC_IDLE_HYSTERSIS, 0x3B9ACA);
-+	/* Enable RC6 */
-+	xe_mmio_write32(gt, RC_CONTROL,
-+			RC_CTL_HW_ENABLE | RC_CTL_TO_MODE | RC_CTL_RC6_ENABLE);
-+}
-+
-+void xe_gt_idle_disable_c6(struct xe_gt *gt)
-+{
-+	xe_device_assert_mem_access(gt_to_xe(gt));
-+	xe_force_wake_assert_held(gt_to_fw(gt), XE_FORCEWAKE_ALL);
-+
-+	xe_mmio_write32(gt, PG_ENABLE, 0);
-+	xe_mmio_write32(gt, RC_CONTROL, 0);
-+	xe_mmio_write32(gt, RC_STATE, 0);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt_idle.h b/drivers/gpu/drm/xe/xe_gt_idle.h
-index 9b36bf7db3a7..69280fd16b03 100644
---- a/drivers/gpu/drm/xe/xe_gt_idle.h
-+++ b/drivers/gpu/drm/xe/xe_gt_idle.h
-@@ -8,6 +8,10 @@
- 
- #include "xe_gt_idle_types.h"
- 
-+struct xe_gt;
-+
- void xe_gt_idle_sysfs_init(struct xe_gt_idle *gtidle);
-+void xe_gt_idle_enable_c6(struct xe_gt *gt);
-+void xe_gt_idle_disable_c6(struct xe_gt *gt);
- 
- #endif /* _XE_GT_IDLE_H_ */
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index e9dd6c3d750b..8fb4cda7b54b 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -14,6 +14,7 @@
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_gt.h"
-+#include "xe_gt_idle.h"
- #include "xe_gt_sysfs.h"
- #include "xe_gt_types.h"
- #include "xe_guc_ct.h"
-@@ -867,13 +868,24 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
- 
- 	xe_device_mem_access_get(pc_to_xe(pc));
- 
--	memset(pc->bo->vmap.vaddr, 0, size);
--	slpc_shared_data_write(pc, header.size, size);
--
- 	ret = xe_force_wake_get(gt_to_fw(gt), XE_FORCEWAKE_ALL);
- 	if (ret)
- 		goto out_fail_force_wake;
- 
-+	if (xe->info.skip_guc_pc) {
-+		if (xe->info.platform != XE_PVC)
-+			xe_gt_idle_enable_c6(gt);
-+
-+		/* Request max possible since dynamic freq mgmt is not enabled */
-+		pc_set_cur_freq(pc, UINT_MAX);
-+
-+		ret = 0;
-+		goto out;
-+	}
-+
-+	memset(pc->bo->vmap.vaddr, 0, size);
-+	slpc_shared_data_write(pc, header.size, size);
-+
- 	ret = pc_action_reset(pc);
- 	if (ret)
- 		goto out;
-@@ -909,10 +921,17 @@ int xe_guc_pc_start(struct xe_guc_pc *pc)
-  */
- int xe_guc_pc_stop(struct xe_guc_pc *pc)
- {
-+	struct xe_device *xe = pc_to_xe(pc);
- 	int ret;
- 
- 	xe_device_mem_access_get(pc_to_xe(pc));
- 
-+	if (xe->info.skip_guc_pc) {
-+		xe_gt_idle_disable_c6(pc_to_gt(pc));
-+		ret = 0;
-+		goto out;
-+	}
-+
- 	mutex_lock(&pc->freq_lock);
- 	pc->freq_ready = false;
- 	mutex_unlock(&pc->freq_lock);
-@@ -933,6 +952,13 @@ int xe_guc_pc_stop(struct xe_guc_pc *pc)
- 
- void xe_guc_pc_fini(struct xe_guc_pc *pc)
- {
-+	struct xe_device *xe = pc_to_xe(pc);
-+
-+	if (xe->info.skip_guc_pc) {
-+		xe_gt_idle_disable_c6(pc_to_gt(pc));
-+		return;
-+	}
-+
- 	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
- 	XE_WARN_ON(xe_guc_pc_stop(pc));
- 	sysfs_remove_files(pc_to_gt(pc)->sysfs, pc_attrs);
-@@ -953,6 +979,9 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
- 	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
- 	int err;
- 
-+	if (xe->info.skip_guc_pc)
-+		return 0;
-+
- 	mutex_init(&pc->freq_lock);
- 
- 	bo = xe_bo_create_pin_map(xe, tile, NULL, size,
--- 
-2.38.1
+== Summary ==
 
+CI Bug Log - changes from xe-521-7cd1cacf17749d821ca9966ae5913852943d35e7_BAT -> xe-pw-126943v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-126943v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:
+    - bat-adlp-7:         [FAIL][1] ([Intel XE#480]) -> [PASS][2] +2 other tests pass
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-521-7cd1cacf17749d821ca9966ae5913852943d35e7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126943v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html
+
+  
+#### Warnings ####
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#616] / [Intel XE#750]) -> [DMESG-FAIL][4] ([Intel XE#282] / [i915#2017])
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-521-7cd1cacf17749d821ca9966ae5913852943d35e7/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126943v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
+
+  
+  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
+  [Intel XE#750]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/750
+  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
+
+
+Build changes
+-------------
+
+  * Linux: xe-521-7cd1cacf17749d821ca9966ae5913852943d35e7 -> xe-pw-126943v1
+
+  IGT_7605: 7605
+  xe-521-7cd1cacf17749d821ca9966ae5913852943d35e7: 7cd1cacf17749d821ca9966ae5913852943d35e7
+  xe-pw-126943v1: 126943v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126943v1/index.html
+
+--===============7536391265116248648==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/xe/dg2: Drop Wa_22014600077</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126943/">https://patchwork.freedesktop.org/series/126943/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126943v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126943v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-521-7cd1cacf17749d821ca9966ae5913852943d35e7_BAT -&gt; xe-pw-126943v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-126943v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-521-7cd1cacf17749d821ca9966ae5913852943d35e7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126943v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@a-edp1.html">PASS</a> +2 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_frontbuffer_tracking@basic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-521-7cd1cacf17749d821ca9966ae5913852943d35e7/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/750">Intel XE#750</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126943v1/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-521-7cd1cacf17749d821ca9966ae5913852943d35e7 -&gt; xe-pw-126943v1</li>
+</ul>
+<p>IGT_7605: 7605<br />
+  xe-521-7cd1cacf17749d821ca9966ae5913852943d35e7: 7cd1cacf17749d821ca9966ae5913852943d35e7<br />
+  xe-pw-126943v1: 126943v1</p>
+
+</body>
+</html>
+
+--===============7536391265116248648==--
