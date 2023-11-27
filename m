@@ -4,62 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 68243C07CB1
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Nov 2023 14:33:59 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4E28DC4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Nov 2023 14:39:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F28010E2BF;
-	Mon, 27 Nov 2023 14:33:59 +0000 (UTC)
-X-Greylist: delayed 859 seconds by postgrey-1.36 at gabe;
- Mon, 27 Nov 2023 12:38:06 UTC
-Received: from mout.web.de (mout.web.de [212.227.17.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E6FA10E25C
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Nov 2023 12:38:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=web.de; s=s29768273;
- t=1701088676; x=1701693476; i=spasswolf@web.de;
- bh=syrs6tmIf2kfqrqm/BG1V4nSMMDynAQxfPKWNGqCRqQ=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:
- References;
- b=N/xV/GSqlVqkjq8QYjd15/kr5XybCC0edvxTFuVsIwzVAnHwfkcYq5rpdSp1DDec
- H20A/oS4IT7D8v2eV0E6Xz7OI4fokWVmVLpjTUCWBcq7ecGdgaIfzyEZ9A/pCkrvw
- SzURCxPtFPtvuFVw1FNd5quns88HgesLSiIozhyZtFcbm2uq/4Ync+xSjgZPPLiBV
- AYDC2tfvB8nwTx2jAdXU0ntvef1zWRX+WykkwmV/JDSvmtEZP6jXeNFV+z3sGCZZW
- tfSMSZ10XMF3J9j9NmXwxd4WQENcjpIgRySL7Dyx/CPqBbsfDH/GUX08+kbUn6f5o
- eWnv1IqtB2Q9/dbynQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from lisa.home ([84.119.92.193]) by smtp.web.de (mrweb106
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MP3CA-1qvZYf135Y-00POMr; Mon, 27
- Nov 2023 13:22:45 +0100
-From: Bert Karwatzki <spasswolf@web.de>
-To: Luben Tuikov <ltuikov89@gmail.com>
-Date: Mon, 27 Nov 2023 13:21:40 +0100
-Message-ID: <20231127122147.82970-1-spasswolf@web.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: 6273fadf-267a-4965-82ab-89c5b3f28cf2@gmail.com
-References: 
+	by gabe.freedesktop.org (Postfix) with ESMTP id F227310E08E;
+	Mon, 27 Nov 2023 14:39:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id A88E410E08E;
+ Mon, 27 Nov 2023 14:39:21 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id A20BEA0169;
+ Mon, 27 Nov 2023 14:39:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:p4ypJ/YU7w47v+HSuV6slrirmZWx1rcLt77+n6HP673wrqq5O2u
- vNvhWhTUwIgv3tdC3YgoNI+6iPYu97PcxcENeEHSnAtYB/H9pH860XAmHBIYiCgAQ1vT2rt
- GUYMnloufaBuUEYmfZczzjjEZ++LRG6fGkT93puUBORrk2hYPRcsg5VadNgMkEwSL4F019g
- 7Py0bcjD6NhP55bzReHPw==
-UI-OutboundReport: notjunk:1;M01:P0:elaZyqSLFMA=;iYF50Kul1P5rMSsMaqo6hxjzV/E
- Yhi53vLraZEEP+mlCKLloKHbU3yeyXw/lGfzc9gzg2TEpr2a9RlKpnNRY4x1qxxi4yRr8Kw2W
- sr9IMuMiA24ENusZhx66QtNI8AZRvr09/MZvYcXuxrylyjQj3+RtQSN2Fz0yUkp9Agf1UJ5SS
- 4P8ILUJDcTsf1DTGS/QFrxRd2TKF0MlSveMgUOOATPWcKRuvSzOEttlAl8DHwaWkRE7WKMUm+
- evm0HaMUuK7hNKAq1zTXI4bTsQA3tLLTY35pslKRQlm2/uTNGQLdtHzNEDpCK+TcKjHP8Cw6J
- wPacb8SfciKEAa1IDbc/MChzP2xMKMTf8np6JrlQKAII1IT285GxsIMzk4JJM3VuAYDcyj5AK
- VJr/vqQtKq09ZeU570WtVy7jNlN9Phs0cGOAZIngerwhveTUDPnbe+FSUsC5G1QwG1BJYTWZQ
- CQFrpj/vcIsB1xNkkKYa0sL44vLoCAVqe2gJqWajSIeHSU78iu06lJBw49zDVz9STBpZzdW8S
- n48TQ3Yf02EGnsrlUgzv5QH0ArQf0RNmwOeqHlwhwl2/NCNZ7InOLmz5WE4+lfuINsGQ8cdup
- o4bDDZv+AFx8WzXYD7r796wYHlPSALawwSku/7R8gDIWtkV/P1jJoasPLVbKdMEvuiUtY4+C/
- TELshfMfrrKkvIx7WyEX6iBZex2LfqB6uTUhJkPp+KfKvMeiWkp6AcUgYtIB/67uhDJ2dGuxN
- 9XNz5JB53kVyHoyHYbkkvN00xypGZsxRGuJy5E9wxKrZOf4fwZWVJRNLyZkKxM8CIcnpadTin
- ulmj4pfeEzEnq7CBWyMyIQ6s+3pe+lhHteMmIpY3OUFThLWJhtfaEftpw5PNFSB/2+PwXO+hd
- Otb8p+jP2oZ99W7u+0jlkyc5g0CEOU0812y16nzTyUsnEWE7sYAtWB+kb78sm63K4n0rV5erR
- IgM+P2NVQ4Zs9s7ox+GdO6Vuvw4=
-X-Mailman-Approved-At: Mon, 27 Nov 2023 14:33:57 +0000
-Subject: [Intel-xe] [PATCH] Revert "drm/sched: Qualify drm_sched_wakeup() by
- drm_sched_entity_is_ready()"
+Content-Transfer-Encoding: 7bit
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Riana Tauro" <riana.tauro@intel.com>
+Date: Mon, 27 Nov 2023 14:39:21 -0000
+Message-ID: <170109596163.3005.5314767777808927687@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231127141125.2913415-1-riana.tauro@intel.com>
+In-Reply-To: <20231127141125.2913415-1-riana.tauro@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
+ =?utf-8?q?or_Engine_Busyness?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,47 +39,29 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: robdclark@chromium.org, sarah.walker@imgtec.com, ltuikov@yahoo.com,
- ketil.johnsen@arm.com, lina@asahilina.net, mcanal@igalia.com,
- Liviu.Dudau@arm.com, dri-devel@lists.freedesktop.org, christian.koenig@amd.com,
- boris.brezillon@collabora.com, dakr@redhat.com,
- Bert Karwatzki <spasswolf@web.de>, intel-xe@lists.freedesktop.org,
- faith.ekstrand@collabora.com, donald.robson@imgtec.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Commit f3123c25 (in combination with the use of work queues by the gpu
-scheduler) leads to random lock ups of the GUI [1,2].
+== Series Details ==
 
-This is not a complete revert of commit f3123c25 as drm_sched_wakeup
-still needs its entity argument to pass it to drm_sched_can_queue.
+Series: Engine Busyness
+URL   : https://patchwork.freedesktop.org/series/126919/
+State : success
 
-[1] https://gitlab.freedesktop.org/drm/amd/-/issues/2994
-[2] https://lists.freedesktop.org/archives/dri-devel/2023-November/431606.=
-html
+== Summary ==
 
-This reverts commit f3123c2590005c5ff631653d31428e40cd10c618.
-=2D--
- drivers/gpu/drm/scheduler/sched_main.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+=== Applying kernel patches on branch 'drm-xe-next' with base: ===
+Base commit: 7c4b213b5 drm/xe: Internally change the compute_mode and no_dma_fence mode naming
+=== git am output follows ===
+Applying: RFC drm/xe: Move user engine class mappings to header
+Applying: RFC drm/xe/guc: Add interface for engine busyness ticks
+Applying: RFC drm/xe/guc: Expose engine busyness only for supported GuC version
+Applying: RFC drm/xe/guc: Add PMU counter for total active ticks
+Applying: RFC drm/xe/uapi: Add configs for Engine busyness
+Applying: RFC drm/xe/pmu: Add PMU counters for engine busy ticks
+Applying: RFC drm/xe/guc: Dynamically enable/disable engine busyness stats
+Applying: RFC drm/xe/guc: Handle runtime suspend issues for engine busyness
 
-diff --git a/drivers/gpu/drm/scheduler/sched_main.c b/drivers/gpu/drm/sche=
-duler/sched_main.c
-index 682aebe96db7..550492a7a031 100644
-=2D-- a/drivers/gpu/drm/scheduler/sched_main.c
-+++ b/drivers/gpu/drm/scheduler/sched_main.c
-@@ -1029,9 +1029,8 @@ EXPORT_SYMBOL(drm_sched_job_cleanup);
- void drm_sched_wakeup(struct drm_gpu_scheduler *sched,
- 		      struct drm_sched_entity *entity)
- {
--	if (drm_sched_entity_is_ready(entity))
--		if (drm_sched_can_queue(sched, entity))
--			drm_sched_run_job_queue(sched);
-+	if (drm_sched_can_queue(sched, entity))
-+		drm_sched_run_job_queue(sched);
- }
-
- /**
-=2D-
-2.43.0
 
