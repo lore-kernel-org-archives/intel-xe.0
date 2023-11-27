@@ -4,60 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A8CC5C4167B
-	for <intel-xe@archiver.kernel.org>; Mon, 27 Nov 2023 10:20:23 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BBE9BC4167B
+	for <intel-xe@archiver.kernel.org>; Mon, 27 Nov 2023 10:22:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7705010E225;
-	Mon, 27 Nov 2023 10:20:23 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9BB810E225
- for <intel-xe@lists.freedesktop.org>; Mon, 27 Nov 2023 10:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8068810E216;
+	Mon, 27 Nov 2023 10:22:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0439510E216
+ for <intel-xe@lists.freedesktop.org>; Mon, 27 Nov 2023 10:22:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701080420; x=1732616420;
+ t=1701080561; x=1732616561;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=j8FmF6zD7GmcAzd1kBF8T6vX0hEN5i9SqoQyIaGARZ0=;
- b=n9sL4HHnY8xUyKor6gYa8DpMT1HWXg0Uvwjlh8d/3R5pBcOYKQd0uINE
- 3UmGaE0yvC2OI9/JGC/6VBHDrBKz0HqzCpSaZ1b37mSXxLUq1wCuND1/7
- AgkrNWDw0jvzMaEuLB9IM/RZ23NMP/ew5+W10VCJlVRzd/V6Pit6OJXaf
- z1Oxr5GaAv8W4HCdbgH3GRU7qwlK8HBcCk8V2xEAGs/jDOuE08pgrEzwC
- mBwB/V0S4z8jRJpq1xD+jvDkvLUlKCpe6ZgLm12gyOC+sy+0pEfNBWUCl
- JHZL2hba3+OH1Ng833JKOpgMpehXOzHcFgkQsw0KAMalxX9//Mi+LnRbH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10906"; a="392425073"
-X-IronPort-AV: E=Sophos;i="6.04,230,1695711600"; d="scan'208";a="392425073"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2023 02:20:20 -0800
+ bh=3o+npj9jOEmjcNKgp6HeqMCBwmJRxTBnjhFOeOoNLeU=;
+ b=cShFtRzfcdVACfKypSIutGBe+3ST68KUKoN91JnXau9F/7xovmkEECQr
+ z5oTvHtkU4iRWrtPHrNVGHsQCFkTy+IVRUrmDLnW+UFv7zqONIwJcIl9T
+ MtnrQiiov6O/ys7uX7ILO+KpAEzQRpVWUzJcSEpqT7zLdABTPzWAE2zwP
+ hH4u0WBmq0gwFOZw1bvKbAYiCTNqlpZmJx+t0gr5PJ0XfjCyDLAgZ0Igj
+ e8wpPz90QxoET20TRV4NV255KDtb0OhB9Fj68MPmFqrEe+dyJnZqPVDZU
+ mDslsTVDNZPiCCawKvbOfGHGyWEZaGL7PQmfPIAUigHNC9mkd4fHoGln9 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10906"; a="372026084"
+X-IronPort-AV: E=Sophos;i="6.04,230,1695711600"; d="scan'208";a="372026084"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Nov 2023 02:22:41 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10906"; a="885974968"
-X-IronPort-AV: E=Sophos;i="6.04,230,1695711600"; d="scan'208";a="885974968"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 27 Nov 2023 02:20:20 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10906"; a="768123272"
+X-IronPort-AV: E=Sophos;i="6.04,230,1695711600"; d="scan'208";a="768123272"
+Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
+ by orsmga002.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 27 Nov 2023 02:22:40 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Mon, 27 Nov 2023 02:20:19 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.34; Mon, 27 Nov 2023 02:22:40 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Mon, 27 Nov 2023 02:20:18 -0800
-Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
- orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Mon, 27 Nov 2023 02:20:18 -0800
-Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.40) by
- edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Mon, 27 Nov 2023 02:22:40 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Mon, 27 Nov 2023 02:20:18 -0800
+ 15.1.2507.34; Mon, 27 Nov 2023 02:22:39 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WlcbfZ0QZWF4r1y/e/N4t1Z5x6QK4ygeDW1IIHdbFtooZOcsIVP389/DSPo3Kz2xzQAFW+VQtSMuHkZOcQB35sHt4IvxFtCjUBffoe4IOyGmLeqVJf4aUiiXguwZesp69eAbPDzdtalWjDFn027EauMJjlxVoXCwDbTJW20G9KYDSz+12ovgqsXGrRPCpJNcIIV/TiaL9eIuo5BKJWV3SXx1/xa5Ry5K5Adgw4JnbL5QlaVd9OMUZvZ8HrrAdIpHzRDDZ3gQsLFJ88UYr5pKBWLh1BeD22fLAQWOC3ersZMA34tSJCL2IuEt3QF3ih+gboGYGobmcv5pVIuHjA3tXA==
+ b=CKQyLGL4YuADYIoHZaHTWDnOa95UqIVbqIivYaIFMxTaepPSkam4SGMHruS4LrhXhByRLau2eFcVTWUpPNmQGrHtodTMVLcB58J6XX8WoWRdSxv1Yk1WwkHQAbhi9m3wi/gxhFHRLuNe/Br0mv1/JcA3uqg4jO0v3vrY45++cXFvoPIg7M9R4/3bXTdcfnX8F3lyONGuhdtF1gzZD2hIDqApijV+MSwgnPlhXW3SIoAlyZKUUYmDb6G0hlsJDcHYJQTfIQJf7n2M8gBMrI8ro+Tc5mJ1pXAhRHPPbwTQk+1XeATeOTQXxP4KvFzHCqiowHOaxkQfyj/cn9Q+klBYRQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9oy1UI5nqPbMuHeRbCmtylNxc4i+PErfP96Gc7VjUn8=;
- b=NFUAJYr/Y70aRBVqYI6MlUOLKO8/aSYq8y/s6Ixcv886KCyHkw4SUA2pBHu6jQ+3TFXrRn1eERXSP2iuj5zi8y1zVg8vf9V0zAvndMwsD9wCQ4xedpTDfpg0DStpverUbs6RWeUqy+jDbWU5FCzJe+xyf6g/eKeyN9e0Qlt9zbLfHgCRlMlI2qQZdy34jQeszmsBls+nQvRdTfdI4TVQnHJjH9DIWVFeiJppfl8d2vnF4Mb5RCdRsXAh1VIefmnrTW5aOfnECgRb/mXaF9BmmYQnN8doOPmdrGhhkeOlTdz/ybQm48I3V0jW6PLri6BfVz+b7okvt3InYzbTwO/gYg==
+ bh=qlb4UXpM1/MzBTuVGZpgTVyEqqz5bOrkz9G0jWQzHMM=;
+ b=esGu8sNdhdy69Cb2URLE1pOcjWDIZktnZloPe1EVKeaOsBmFXae28ufMKdX87Sh3s2PxgJzL5Kx4unxw4/gbHnYm1ivX2/UXKehtTYMhDsxhJnNqMwsXW915IpajWpEO7eBc2IMVss5s3qCpAN+bjKeB3wLTC/LJxPWq/2f7Nvu7od4ornbmBllFo+fsHvzyZQpMiBDax9awmbt2m5I4eisO4+5ZKR/OPGIt91TyNuh2Lr/URrt93J9ZTc10NeGHjSyZMqFsFaxsf1+/z6ncpJV3RaaEQvOJolO1NVnp/oROtkVF9Qtt2lzwIEW9LfPvo88lR1f2z8K7Df8UYrrDgQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -67,88 +63,88 @@ Received: from DM8PR11MB5653.namprd11.prod.outlook.com (2603:10b6:8:25::8) by
  LV3PR11MB8507.namprd11.prod.outlook.com (2603:10b6:408:1b0::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29; Mon, 27 Nov
- 2023 10:20:15 +0000
+ 2023 10:22:37 +0000
 Received: from DM8PR11MB5653.namprd11.prod.outlook.com
  ([fe80::2eaa:4647:7ac0:eb52]) by DM8PR11MB5653.namprd11.prod.outlook.com
  ([fe80::2eaa:4647:7ac0:eb52%4]) with mapi id 15.20.7025.022; Mon, 27 Nov 2023
- 10:20:15 +0000
-Message-ID: <14b94f23-f8af-4e62-9237-d6854448f4f7@intel.com>
-Date: Mon, 27 Nov 2023 15:50:08 +0530
+ 10:22:37 +0000
+Message-ID: <a999ddee-cd7e-4119-94a7-89d9199bd473@intel.com>
+Date: Mon, 27 Nov 2023 15:52:30 +0530
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
-To: Riana Tauro <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>
-References: <20231124122755.91279-1-sujaritha.sundaresan@intel.com>
- <20231124122755.91279-3-sujaritha.sundaresan@intel.com>
- <ea1d4d72-b609-4181-bb26-9e0c89ce8dcd@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>, <intel-xe@lists.freedesktop.org>
+References: <20231127100249.168117-1-sujaritha.sundaresan@intel.com>
+ <20231127100249.168117-2-sujaritha.sundaresan@intel.com>
+ <87wmu38pu5.fsf@intel.com>
 From: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
-In-Reply-To: <ea1d4d72-b609-4181-bb26-9e0c89ce8dcd@intel.com>
+In-Reply-To: <87wmu38pu5.fsf@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BMXPR01CA0073.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:54::13) To DM8PR11MB5653.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: PN3PR01CA0087.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:9a::12) To DM8PR11MB5653.namprd11.prod.outlook.com
  (2603:10b6:8:25::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DM8PR11MB5653:EE_|LV3PR11MB8507:EE_
-X-MS-Office365-Filtering-Correlation-Id: 44659948-e427-4533-9897-08dbef327243
+X-MS-Office365-Filtering-Correlation-Id: 87f09b4f-07d2-44cb-55a6-08dbef32c700
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Scu+lcx1QVfPsVYK5cphITL+LjzXXfKrf8PS7PscdlDdhO+F+gQpSZqFVkyS2HvXgEIbXhQfd2wWtCzetHiQTI7xsoUxoBmn9MoQhDjd83VW8WItWqKQgt/G1JauOBFDJPc9vORA5bat8PIimbhoYeSVxAvddefi4iJ5/1/M8YaSRvQZ2JdjLL6g+pSSxaxWaey4kSK+73F8zb0dK6CDRmWwPUX+h/qnZPyv3Eyh0l4GxfyXwG5FfSdopJ7lURpRd/5CIsqzN+ptc8ubFT0sDX9C6tWAezs03U/Y26I37HfDCuwV7ryUeFFi7mdcNz/0mVusJCpy8QI5GQNBo0xtUCP+5MylpfMV46wdnwizETkOWy7SyzQTuZjLY6ND/GMZNHU658CH1laf2NNSiBHLaJOialwG/9PuH170IJARwC1nBiP23bWWxh8jDttAARgb62O0hWJVmRrSW+wgzbmzwVJ22vNJ2zul53ASPjPKptqxPkSFx6SZUq04ZJFUXUllLEVqgFrFPSh/zAEuAbS13i42tTKJD222Ceq0N/pHoDhczXwUHdqCQpszvYhro+R369Ogwgfm7N3gwsVKJycQy+sjce1HlX/d7m5ep4jew86Agis3JKTUsLA25Q5Pi1sNHhOWhBGCmqYSw9lgrgBDAdzWZlw6JaJtuH0mPSbXTooDziQr1JwmJJBbzr0v+Lh1
+X-Microsoft-Antispam-Message-Info: uCMHNCpj0NLwZXA/SpkHsP/ajTrBPxfdboLhx9GBN9qDd+FbmsRENkFM50vBtrCRlWZ1uo4uCZk0SAf+0zbaQFCU3jA5Y7U47s3Jq13i5Z3Z19r89ppozf3eFgO03JyPG1jOXzgKA2RV0xaWifLji4bUUcygUppO3qEstQsR/JFlyvf+lWX0S/MWMNPB6x/yrcc5uM7KnJEUOMZBQ+4mYSYHF5u1YmNg7Nea3i/ji+VXr+T9C4yVSr5aBEcAoHIMYFxfxRczLfKd1L3U0hKnC86alCUziMeiuAA/kS5ngYABTujsXY0swgoLnPeK5w/ksT+TFN/8hulLRC77yGYaJF2iyWcB/qz4/9huLw+O//PhOKNRNeeb5PDQPPmLnmZCjOmuLryLvpjsCB4kBU37N275Ok5hJZK2EXgksHcSIWoSDUYE2bY5ObGt8W3yly/ndPeRdSq72JG0TZvXlGn9vVq/CWacZhOx9hZCUbgqnQuwko1I4nLwxvvShV9SHYOa5FuakXe0yyak3c4KCOnnwbu+mOhDbyO4D9iFkUZ6NYeiH+Z0ZTA3gi1kCjay695f4BfH36j+ITc844XWvveVFUpN7/TpoQkEmFZeJ7KkUyXLIrowJuVIxuTEUot9sxg+gkKJ8t9osiopHpUZeytGWw==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM8PR11MB5653.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(376002)(136003)(396003)(39860400002)(346002)(230273577357003)(230922051799003)(230173577357003)(186009)(451199024)(64100799003)(1800799012)(31686004)(26005)(6486002)(2616005)(6506007)(53546011)(107886003)(6666004)(478600001)(6512007)(38100700002)(82960400001)(86362001)(31696002)(36756003)(5660300002)(41300700001)(2906002)(66946007)(83380400001)(66556008)(66476007)(316002)(4326008)(8936002)(8676002)(43740500002)(45980500001);
+ SFS:(13230031)(366004)(376002)(136003)(396003)(39860400002)(346002)(230922051799003)(186009)(451199024)(64100799003)(1800799012)(31686004)(26005)(6486002)(2616005)(6506007)(53546011)(6666004)(478600001)(6512007)(38100700002)(82960400001)(86362001)(31696002)(36756003)(5660300002)(41300700001)(2906002)(66946007)(83380400001)(30864003)(66556008)(66476007)(316002)(4326008)(8936002)(8676002)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?a2N1bVc2d1FqT2VhdUduMStmVDJyc1U0ZDNyWDA0MmM1U01KZXNXV0VOT3Jo?=
- =?utf-8?B?SjhNTTFsNFFaRDMycjkrNnZSZnFMZUxJMVIxT2t6UnlEb2dCanZlRlJBdytD?=
- =?utf-8?B?MzZFVnBua2cvT2x1MVVYTkxGTlNPajl3bTJack9TdDZCdmd4VjJxNzlaSHRD?=
- =?utf-8?B?aHRTUk5kWE0vUm8wNUtQRC84M1pFemFPaGoralRuWWxmZFd0dGpndzN3aWc3?=
- =?utf-8?B?N3NGRFBRSnNLVXhkdDFDa0k4cWxxRXAwcmRQYk8xZU5Cd2M1elZnMnJ3RG9G?=
- =?utf-8?B?cEwwbWZMblRBbkF5ZEJyUmJvNXUvNms2aFR3c1czWFdrVWNFNkhsWmwrbTRm?=
- =?utf-8?B?QlBRZEFYRlhjb2tDcTkzMFZPSEh6SE9HQWlSYnF4VGhuaDhZMHN2RWtSS0Y4?=
- =?utf-8?B?SkdmK1VWMUdVaFAxWFRxb0c1UVFNcHZqWkhEZ2ZadkJxQWJPZWE2ek42Kzlv?=
- =?utf-8?B?aGI1Zkh6dDFsdUd1anBWZ2NOL2pxTGs5OWE1ZEtKQThSeDJQYlIwL3dlaUlN?=
- =?utf-8?B?YS8wMlRHYU4rbzVsaHRKKzdQRmttZWtrVFU3Y3Axb1JBbWZYUDZuOU5CYVc3?=
- =?utf-8?B?L2JSTjlHZGhzd3lMSDFCSElMWjZJQVJaR3Q4WitVUC90bVlDVkhHUHVUdmJ6?=
- =?utf-8?B?K01EbTROR0l2anp6clNxWGFJMW9JU3JkbWlaaW1Xb0FoRG9EMHpxZjh3eGVW?=
- =?utf-8?B?dVQvbEZRNFRPTFRTUUVxQXpSdzVQcWhacXdVd3NDZ3p5cFNSTjMySFRHTXVl?=
- =?utf-8?B?YVNkMmVxRjR1SmUxazNwSEdOcFZWaFFHbnZvRFRhR1FZbUVBeVFFRXNXa2E2?=
- =?utf-8?B?TkhDMENVQUhxeHI5QWlBY0E5OWVWT3VLdkJFbFc2cFNMMHVwa29oaVcwaC90?=
- =?utf-8?B?ODJpdHpVcDQ4MEU0OHVnbWN3RzRmK05UbGd3RlpUQUp4ZERnUHg3TEFMeEt6?=
- =?utf-8?B?eDVvRmNBTks4SllRYTZNNW5wYU1uVlNmQi9RNktXUisvaFozOGszNGZ6UUw2?=
- =?utf-8?B?U3hKbG1nbVN5VXRJN2IwcVQzVEtzRm8vSFVMQWF1UkpzcXpqWm5STFNqNjNM?=
- =?utf-8?B?MVNUNlZLaExVUTB3dmYxY2FqVW1SdEFtS2xockUxbGMxVGpWV1lWaGRBVGR0?=
- =?utf-8?B?L2g1WERPWVRZQ1JFUlg4dXdERWx6Q0JjZUozSjYwMzlROEdJUjFRcHVRTkIy?=
- =?utf-8?B?dG9yYW1iUzFVZHVjSjl2UGdhLzE3d2dUWWY0SE9Zdmc5ZzdTRVJ4WXBrTU5l?=
- =?utf-8?B?M2JmMnoyMUp4dHhKVFlJbk9zekY0MzZFWDRKaERQRkIwWmNkR1hmdG5KTFV6?=
- =?utf-8?B?R0wvc2lOTm4xRW1DTnFGYTBiejE4ajJCS0twa28wVm9UbVh2MzVqeElmK1lj?=
- =?utf-8?B?SzJqbTFWY3Z5MHpNZmgzcHlUMmtXeW1oeVFwOWlwTzk3UXVTcWdzbDdTVk40?=
- =?utf-8?B?SXNMNWxpUDNOczJyaHdBZ2UwdUc1TGtZOXp6ZG1BZmFYVDNaT0RId1V1Mlhr?=
- =?utf-8?B?KzlydFlEN1QxeFhDc25ZY3VJemN6d01DTGllT3JaUHhKWE43QWlyOWxlUkR2?=
- =?utf-8?B?RzFWODNvT0FhK1EvNC8rTFFOSXFEMVl5Z25YSXpIUXA0N3hXLzljdjJFQnZr?=
- =?utf-8?B?VDFOUm9TRjR6R2g3WG9ZU3lBMGM5Z2V4anlYdThnTzRyeGtOdExON1pjNXUx?=
- =?utf-8?B?MU5sR1h3TkNXQnE0VGVwWk9QSGk0ZDFqQ1VDUmcvT05HZWlRaks3SVUxS2Q0?=
- =?utf-8?B?T1ZNUXkvR00yQk1aQWdtVlpMNjFyYWpudkR0YXVMR0t4ek5Ma1ZHR3RrUzBP?=
- =?utf-8?B?cmo5UU1QOTFMZzdtbCtBUmhCVUNJNktYR2c0VzdMck5jdXpLNFM2U0RZbmJ2?=
- =?utf-8?B?d203RXUwRjB6WHlWTDNwK3RJa1BKVlh6UDAwY1Z0M01EZUhrblZVeEJIbVVv?=
- =?utf-8?B?d25KWGJDSUV2L3V1RnFPUXJSWXl2UGF5Mzc4SFhHck5od1pZbldOaSt4Yzdq?=
- =?utf-8?B?Smh0YlJCcDJibXZ5TnpFUmxxZFdHU0pJMWQyeEV2L3I1NkI0d3MzZDRKdW9r?=
- =?utf-8?B?RmJWeHRScmZQQkp6Z0c5WDlORXFVSjRScStZbCtpWmhBZGZtbUt5NW9zazJv?=
- =?utf-8?B?ajhlTUhqZVlEN3A0djNIL3VFUlFIbE1JZHhwZ3NHd01CTFVXdnNDeU5jT0VD?=
- =?utf-8?B?b1E9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 44659948-e427-4533-9897-08dbef327243
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OVFPZHlhTVJNVkl6V3Yxa2hoRTFVQUdtZjI1ZFhDdVY5YkRHQ3FMYUtVaGMv?=
+ =?utf-8?B?Q1RpWUR4TGx6Sk5DYlhDcmE4dndpZWU2elpnaFdweW5GNTVzYU9zYXZsWTBo?=
+ =?utf-8?B?R3dMZllJL2dOdjcyQVF4Z0ZvZzB2L3A3eWhhcUo5eWNUb1h3SzZwVVUyRHA2?=
+ =?utf-8?B?ZVUyU25Lc3krbFRwYlVnMDNLZUtiT3RlOExMYnMzWWliMU8wdW9RRmhGb1dF?=
+ =?utf-8?B?MzJyNXg2VjVSVXVpamMvNEFTTEJpWld2YnNVWXRDbVNONjBtSlpaSUdUdzZm?=
+ =?utf-8?B?UzVwL1o4cmUzZVhuQUYrbjI5UG9tamhFYitPTFpsbU02eVRYVy9LRndoZzBB?=
+ =?utf-8?B?cFpTdVhwUFNMSmpLVDdoR0Q5eGpoY0FTZU5TQldMbjE0c3pPUTZyR0RScGhL?=
+ =?utf-8?B?czUxa0FuODludTZTZndPYzF2SjFiQVdMZkFjTmpOM29YQTJlSkc0TXlHMTE4?=
+ =?utf-8?B?cENmb1B0S2w1R1BMaW44S29Xc2cyWlA3R0JSQXNiVXhDVllPdFV3TFJsWFpX?=
+ =?utf-8?B?c2YxR2dhY0pFNHdMV0dSQ2l1ejFNbDFwc2VxMTk5NVlGK2loRkQvT1ZldVl5?=
+ =?utf-8?B?UmRYenlhYjUvMUwyTXlEY2xHKzdjRC9KYnd0MVRTdEhpcHJQcmZCTlFBTklH?=
+ =?utf-8?B?LzVMRkViSXRQK1BJL1F0NHdYbUNaVURheGk3YVpEdUhUaGVIc2NNNVYxM0ZW?=
+ =?utf-8?B?L3ZzQlY4T1BFd0FIZFE0OFZFemtYUzhmZHlPV3dlK29KRFp6WmtpbXNoc0VB?=
+ =?utf-8?B?ZGltbjNmOXY4SkJPM21OUXRkUGEyT1NFbGhBMXdlRzNmZzdQYlNGV2JJNm1o?=
+ =?utf-8?B?cXk0cWdmWFlRdWJidHBScGN5RDM2bng2SjEwK05rVmphc1BUV3pwMWIvTkp0?=
+ =?utf-8?B?bWwyQWprbER1Wnp4OFBWWlI1cWJhOWs5bFpsY1lBd0tLWURQZDVDNjlhTGxL?=
+ =?utf-8?B?bHhPNm04Ukx6cTlzOXgyMGJwQ2xJYVBuZUIranZ6RmZlR29NVGVjU3ZDOTRS?=
+ =?utf-8?B?VHo4Zzl0eEJrRnFRNEVabXUrODZTUmR3anArVzMrV2EvM2hSZU1pTkJUZU9U?=
+ =?utf-8?B?UGJyZytuaUJDa3RxMkNnMjQ0MVAxUGIzYnRqSGNBVEFuNFpHMUJhKzB6UTkz?=
+ =?utf-8?B?VXFNaFp6WE1IMmxoZllzOFE3V1duWFU5WmxtN3RlaVlIZk84Tmp5MW9hOGNO?=
+ =?utf-8?B?YXpzWWlrakMyRUd2eDg5Y3dOanA2SmN6LzFkZWwzTGMvbmhJNURMQzJTeGNz?=
+ =?utf-8?B?U2g3ZUFoZkxwSHBDejI2YUVoc2IyQnVId1ZRdzBoTm9EdW9zS2tYd3Z4OUhX?=
+ =?utf-8?B?STVrVXRkY0lRNVpYQTVhR1FXRHAyRElEZWI0bVNyRytyK3RDaGJBM1JJREZU?=
+ =?utf-8?B?QTdDaVU0TXZ5THQ0SFhaOThKUFpINncyVUdZQno2QWYwQzZ4RDl3ZWJMM3Zs?=
+ =?utf-8?B?UCtDajlVeHAzY3JmR0psNGxieUdGdkdPTFhaSUdFR25WYzl0YmhvemIrT1FU?=
+ =?utf-8?B?TnFzSHo3UEQzTlZWQVc2bE5yRVJRZjgzVytSUU5nQi9ReEVEdkhYUmNtZTF4?=
+ =?utf-8?B?VXl1V2pMV1RoU25VcDZza3M5cytkL3pMb2NhTURaQlhoNEpoWDN0elVNZjhU?=
+ =?utf-8?B?b2dUdUN1M0lwSFp6dklaOEFmcjErSVAvSFY3Nms4SFE4TXJXUTZoRExBSm5L?=
+ =?utf-8?B?OUhZSzN0dFVWNkluZHRsbGRrMFgzVXpvWXFsT1pZRithbWhISFdtRk5tMWlJ?=
+ =?utf-8?B?UEdwL3lCa2Z6a25jRnBaSWd5dDhaa2I1ZHVqLzdacmd2U1NVV1cyYXU0dS92?=
+ =?utf-8?B?TWt2SlZDWGx0NENqZk01MEpMUmFCVnNCRHliU3RYVFZ6RitXODQ5SVMyTVBE?=
+ =?utf-8?B?bGgzU1FQTUZDZzJXazkvdjZUV1czQndIZkVrb3Q1VXBJY1BUR1RSZmhXYXhW?=
+ =?utf-8?B?b1BpKzVpY052RGxqSVA5QUtOaUR6Mng1WjZIUVVWWFdFcEw0bnZjTmNJa2ZN?=
+ =?utf-8?B?TkROemFyQUUxalVRd2J5Yy8rVTllajJUZmE5OG4rWlllaXdhNTJvdklPSUZQ?=
+ =?utf-8?B?K0M4UkVQb2ZjRE5GZGIvUUFwek5oczM3WFZnakp0VkVRTmQ1WTEzOFQxeEx5?=
+ =?utf-8?B?V0VWZUduMk56c1gycFpzY3ErOTYrWDNrYTVXU2FtakxRN2R0V2lXZ1RPMDJn?=
+ =?utf-8?B?WFE9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87f09b4f-07d2-44cb-55a6-08dbef32c700
 X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5653.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2023 10:20:15.0817 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Nov 2023 10:22:37.2410 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: BHTQ4CfQ6n83rNZRi2AOtuzUwBBsVz3be9GI6EkU386seR6xSP/ou/sQZzF+aQgSyqYm+3Ut3m+F6lvU5LraEj1g/G/jVRGWGlDOD5Kx42A=
+X-MS-Exchange-CrossTenant-UserPrincipalName: vjBT8e/IQQD3BL7lXQ0QJdjqJoJIf/ufI92iAcIdoETXIKELc2ShqXQiTBzj6S/bf2wXiFuznUsa/3yzFwytRtR98XxW3lacazKIGbNbbMQ=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8507
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe: Add vram frequency sysfs
- attributes
+Subject: Re: [Intel-xe] [PATCH 1/1] drm/xe: Add a new sub directory for gt
+ frequencies
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,212 +161,328 @@ Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 11/27/2023 3:30 PM, Riana Tauro wrote:
-> Hi Suja
+On 11/27/2023 3:45 PM, Jani Nikula wrote:
+> On Mon, 27 Nov 2023, Sujaritha Sundaresan <sujaritha.sundaresan@intel.com> wrote:
+>> Add a new sub directory "freq" for gt frequencies and rename
+>> exisiting frequency sysfs attributes to align with devfreq
+>> requirements.
+> The cover letter says this does much more, so the commit message here is
+> not accurate.
 >
-> There is an error on module unload.
->
-> [ 1042.525614] ------------[ cut here ]------------
-> [ 1042.525622] kernfs: can not remove 'physical_vram_size_bytes', no 
-> directory
-> [ 1042.525641] WARNING: CPU: 3 PID: 2234 at fs/kernfs/dir.c:1662 
-> kernfs_remove_by_name_ns+0xb3/0xc0
-> [ 1042.525965] Call Trace:
-> [ 1042.525970]  <TASK>
-> [ 1042.525976]  ? __warn+0xa5/0x200
-> [ 1042.525986]  ? kernfs_remove_by_name_ns+0xb3/0xc0
-> [ 1042.525996]  ? report_bug+0x216/0x220
-> [ 1042.526011]  ? handle_bug+0x3c/0x70
-> [ 1042.526018]  ? exc_invalid_op+0x18/0x50
-> [ 1042.526025]  ? asm_exc_invalid_op+0x1a/0x20
-> [ 1042.526033]  ? __pfx_tile_sysfs_fini+0x10/0x10 [xe]
-> [ 1042.526275]  ? irq_work_claim+0x1e/0x40
-> [ 1042.526288]  ? kernfs_remove_by_name_ns+0xb3/0xc0
-> [ 1042.526298]  ? kernfs_remove_by_name_ns+0xb3/0xc0
-> [ 1042.526310]  tile_sysfs_fini+0x1e/0x40 [xe]
-> [ 1042.526515]  drm_managed_release+0x117/0x250 [drm]
-> [ 1042.526626]  drm_dev_release+0x49/0x60 [drm]
-> [ 1042.526723]  release_nodes+0x59/0x190
-> [ 1042.526731]  ? lockdep_hardirqs_on_prepare+0x136/0x210
-> [ 1042.526739]  ? _raw_spin_unlock_irqrestore+0x51/0x70
-> [ 1042.526752]  devres_release_all+0xf8/0x140
-> [ 1042.526761]  ? __pfx_devres_release_all+0x10/0x10
-> [ 1042.526779]  device_unbind_cleanup+0x16/0xc0
-> [ 1042.526788]  device_release_driver_internal+0x10d/0x160
-> [ 1042.526799]  unbind_store+0x98/0xa0
-> [ 1042.526809]  ? __pfx_sysfs_kf_write+0x10/0x10
-> [ 1042.526815]  kernfs_fop_write_iter+0x1bc/0x260
-> [ 1042.526828]  vfs_write+0x553/0x770
-> [ 1042.526839]  ? __pfx_vfs_write+0x10/0x10
-> [ 1042.526850]  ? do_sys_openat2+0x266/0x350
-> [ 1042.526867]  ? __fget_light+0x9e/0x100
-> [ 1042.526882]  ksys_write+0xc7/0x170
-> [ 1042.526889]  ? __pfx_ksys_write+0x10/0x10
-> [ 1042.526895]  ? mark_held_locks+0x24/0x90
-> [ 1042.526906]  ? lockdep_hardirqs_on_prepare+0x136/0x210
-> [ 1042.526920]  do_syscall_64+0x3c/0x90
-> [ 1042.526929]  entry_SYSCALL_64_after_hwframe+0x6e/0xd8
->
->
-> On 11/24/2023 5:57 PM, Sujaritha Sundaresan wrote:
->> Add vram frequency sysfs attributes under the below hierarchy;
->>
->> /device/tile<n>/memory/freq
->>             |-vram_rp0_freq
->>             |-vram_rpn_freq
->>
->> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_pcode_api.h  |  8 +++
->>   drivers/gpu/drm/xe/xe_tile_sysfs.c | 78 +++++++++++++++++++++++++++++-
->>   2 files changed, 84 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h 
->> b/drivers/gpu/drm/xe/xe_pcode_api.h
->> index 5935cfe30204..edde5335bdb1 100644
->> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
->> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
->> @@ -42,6 +42,14 @@
->>   #define        POWER_SETUP_I1_SHIFT        6    /* 10.6 fixed point 
->> format */
->>   #define        POWER_SETUP_I1_DATA_MASK        REG_GENMASK(15, 0)
->>   +#define   XEHP_PCODE_FREQUENCY_CONFIG 0x6e    /* xehp, pvc */
->> +/* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
->> +#define     PCODE_MBOX_FC_SC_READ_FUSED_P0             0x0
->> +#define     PCODE_MBOX_FC_SC_READ_FUSED_PN             0x1
->> +/* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
->> +/* XEHP_PCODE_FREQUENCY_CONFIG param2 */
->> +#define     PCODE_MBOX_DOMAIN_HBM                      0x2
->> +
->>   struct pcode_err_decode {
->>       int errno;
->>       const char *str;
->> diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c 
->> b/drivers/gpu/drm/xe/xe_tile_sysfs.c
->> index f354c8b2bfc6..ddf5072c40eb 100644
->> --- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
->> +++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
->> @@ -7,9 +7,14 @@
->>   #include <linux/sysfs.h>
->>   #include <drm/drm_managed.h>
->>   +#include "xe_gt_types.h"
->> +#include "xe_pcode.h"
->> +#include "xe_pcode_api.h"
->>   #include "xe_tile.h"
->>   #include "xe_tile_sysfs.h"
->>   +#define GT_FREQUENCY_MULTIPLIER        50
->> +
->>   static void xe_tile_sysfs_kobj_release(struct kobject *kobj)
->>   {
->>       kfree(kobj);
->> @@ -35,11 +40,72 @@ static DEVICE_ATTR_RO(physical_vram_size_bytes);
->>   static const struct attribute *physical_memsize_attr =
->>       &dev_attr_physical_vram_size_bytes.attr;
->>   +static ssize_t vram_rp0_freq_show(struct device *kdev, struct 
->> device_attribute *attr,
->> +                  char *buf)
->> +{
->> +    struct kobject *kobj = &kdev->kobj;
->> +    struct xe_tile *tile = kobj_to_tile(kobj->parent);
->> +    struct xe_gt *gt = tile->primary_gt;
->> +    u32 val, mbox;
->> +    int err;
->> +
->> +    mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, 
->> XEHP_PCODE_FREQUENCY_CONFIG)
->> +        | REG_FIELD_PREP(PCODE_MB_PARAM1, 
->> PCODE_MBOX_FC_SC_READ_FUSED_P0)
->> +        | REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
->> +
->> +    err = xe_pcode_read(gt, mbox, &val, NULL);
->> +    if (err)
->> +        return err;
->> +
->> +    /* data_out - Fused P0 for domain ID in units of 50 MHz */
->> +    val *= GT_FREQUENCY_MULTIPLIER;
->> +
->> +    return sysfs_emit(buf, "%u\n", val);
->> +}
->> +static DEVICE_ATTR_RO(vram_rp0_freq);
->> +
->> +static ssize_t vram_rpn_freq_show(struct device *kdev, struct 
->> device_attribute *attr,
->> +                  char *buf)
->> +{
->> +    struct kobject *kobj = &kdev->kobj;
->> +    struct xe_tile *tile = kobj_to_tile(kobj->parent);
->> +    struct xe_gt *gt = tile->primary_gt;
->> +    u32 val, mbox;
->> +    int err;
->> +
->> +    mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, 
->> XEHP_PCODE_FREQUENCY_CONFIG)
->> +        | REG_FIELD_PREP(PCODE_MB_PARAM1, 
->> PCODE_MBOX_FC_SC_READ_FUSED_PN)
->> +        | REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
->> +
->> +    err = xe_pcode_read(gt, mbox, &val, NULL);
->> +    if (err)
->> +        return err;
->> +
->> +    /* data_out - Fused Pn for domain ID in units of 50 MHz */
->> +    val *= GT_FREQUENCY_MULTIPLIER;
->> +
->> +    return sysfs_emit(buf, "%u\n", val);
->> +}
->> +static DEVICE_ATTR_RO(vram_rpn_freq);
->> +
->> +static struct attribute *vram_freq_attrs[] = {
->> +    &dev_attr_vram_rp0_freq.attr,
->> +    &dev_attr_vram_rpn_freq.attr,
->> +    NULL
->> +};
->> +
->> +static const struct attribute_group freq_group_attrs = {
->> +    .name = "freq",
->> +    .attrs = vram_freq_attrs,
->> +};
->> +
->>   static void tile_sysfs_fini(struct drm_device *drm, void *arg)
->>   {
->> -    struct xe_tile *tile = arg;
->> +    struct kobject *kobj = arg;
->>   -    kobject_put(tile->sysfs);
->> +    sysfs_remove_file(kobj, physical_memsize_attr);
->> +    sysfs_remove_group(kobj, &freq_group_attrs);
->> +    kobject_put(kobj);
->>   }
->>     void xe_tile_sysfs_init(struct xe_tile *tile)
->> @@ -77,6 +143,14 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
->>           drm_warn(&xe->drm,
->>                "Sysfs creation to read addr_range per tile failed\n");
->>   +    if (xe->info.platform == XE_PVC) {
->> +    err = sysfs_create_group(kobj, &freq_group_attrs);
-> indentation
-Will fix
-> Also we are using two different methods of creating subdir in a single 
-> file. Should be uniform
->
-> Thanks
-> Riana
+> OTOH when a commit message says "Also", it's usually a hint it should be
+> a separate patch. Often functional and non-functional changes should be
+> separated, so it's easier to review each part.
 
-Hmm I would disagree. We can use the kobj creation for the parent and 
-use the attribute_group
+Hi Jani,
 
-for sub-directories within the new parent.
+Sure I can probably split the name change and the directory addition.
 
 Thanks,
 
 Suja
 
->> +        if (err) {
->> +            drm_warn(&xe->drm, "failed to register vram freq sysfs, 
->> err: %d\n", err);
->> +            return;
->> +        }
->> +    }
+>> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_gt_types.h     |   4 +
+>>   drivers/gpu/drm/xe/xe_guc_pc.c       | 125 ++++++++++++++++-----------
+>>   drivers/gpu/drm/xe/xe_guc_pc_types.h |   3 +
+>>   3 files changed, 82 insertions(+), 50 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+>> index d3f2793684e2..ea1e05a46288 100644
+>> --- a/drivers/gpu/drm/xe/xe_gt_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_gt_types.h
+>> @@ -8,6 +8,7 @@
+>>   
+>>   #include "xe_force_wake_types.h"
+>>   #include "xe_gt_idle_sysfs_types.h"
+>> +#include "xe_guc_pc_types.h"
+>>   #include "xe_hw_engine_types.h"
+>>   #include "xe_hw_fence_types.h"
+>>   #include "xe_reg_sr_types.h"
+>> @@ -270,6 +271,9 @@ struct xe_gt {
+>>   	/** @gtidle: idle properties of GT */
+>>   	struct xe_gt_idle gtidle;
+>>   
+>> +	/** @frq: frequencies of GT */
+>> +	struct xe_gt_frq frq;
+> This seems unnecessarily terse to me.
+>
+> BR,
+> Jani.
+>
 >> +
->>       err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
->>       if (err) {
->>           drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, 
->> err: %d\n",
+>>   	/** @exec_queue_ops: submission backend exec queue operations */
+>>   	const struct xe_exec_queue_ops *exec_queue_ops;
+>>   
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> index e9dd6c3d750b..d0b625d8b1dc 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc.c
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
+>> @@ -57,15 +57,15 @@
+>>    * Xe's GuC PC provides a sysfs API for frequency management:
+>>    *
+>>    * device/gt#/freq_* *read-only* files:
+>> - * - freq_act: The actual resolved frequency decided by PCODE.
+>> - * - freq_cur: The current one requested by GuC PC to the Hardware.
+>> - * - freq_rpn: The Render Performance (RP) N level, which is the minimal one.
+>> - * - freq_rpe: The Render Performance (RP) E level, which is the efficient one.
+>> - * - freq_rp0: The Render Performance (RP) 0 level, which is the maximum one.
+>> + * - act_freq: The actual resolved frequency decided by PCODE.
+>> + * - cur_freq: The current one requested by GuC PC to the Hardware.
+>> + * - rpn_freq: The Render Performance (RP) N level, which is the minimal one.
+>> + * - rpe_freq: The Render Performance (RP) E level, which is the efficient one.
+>> + * - rp0_freq: The Render Performance (RP) 0 level, which is the maximum one.
+>>    *
+>>    * device/gt#/freq_* *read-write* files:
+>> - * - freq_min: GuC PC min request.
+>> - * - freq_max: GuC PC max request.
+>> + * - min_freq: GuC PC min request.
+>> + * - max_freq: GuC PC max request.
+>>    *             If max <= min, then freq_min becomes a fixed frequency request.
+>>    *
+>>    * Render-C States:
+>> @@ -97,18 +97,29 @@ pc_to_gt(struct xe_guc_pc *pc)
+>>   	return container_of(pc, struct xe_gt, uc.guc.pc);
+>>   }
+>>   
+>> -static struct xe_guc_pc *
+>> -dev_to_pc(struct device *dev)
+>> -{
+>> -	return &kobj_to_gt(&dev->kobj)->uc.guc.pc;
+>> -}
+>> -
+>>   static struct iosys_map *
+>>   pc_to_maps(struct xe_guc_pc *pc)
+>>   {
+>>   	return &pc->bo->vmap;
+>>   }
+>>   
+>> +static struct xe_gt_frq *dev_to_frq(struct device *dev)
+>> +{
+>> +	struct kobject *kobj = &dev->kobj;
+>> +
+>> +	return &kobj_to_gt(kobj->parent)->frq;
+>> +}
+>> +
+>> +static struct xe_gt *frq_to_gt(struct xe_gt_frq *frq)
+>> +{
+>> +	return container_of(frq, struct xe_gt, frq);
+>> +}
+>> +
+>> +static struct xe_guc_pc *frq_to_pc(struct xe_gt_frq *frq)
+>> +{
+>> +	return &frq_to_gt(frq)->uc.guc.pc;
+>> +}
+>> +
+>>   #define slpc_shared_data_read(pc_, field_) \
+>>   	xe_map_rd_field(pc_to_xe(pc_), pc_to_maps(pc_), 0, \
+>>   			struct slpc_shared_data, field_)
+>> @@ -385,11 +396,11 @@ static void pc_update_rp_values(struct xe_guc_pc *pc)
+>>   	pc->rpn_freq = min(pc->rpn_freq, pc->rpe_freq);
+>>   }
+>>   
+>> -static ssize_t freq_act_show(struct device *dev,
+>> +static ssize_t act_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>> -	struct kobject *kobj = &dev->kobj;
+>> -	struct xe_gt *gt = kobj_to_gt(kobj);
+>> +	struct xe_gt_frq *frq = dev_to_frq(dev);
+>> +	struct xe_gt *gt = frq_to_gt(frq);
+>>   	struct xe_device *xe = gt_to_xe(gt);
+>>   	u32 freq;
+>>   	ssize_t ret;
+>> @@ -410,13 +421,13 @@ static ssize_t freq_act_show(struct device *dev,
+>>   	xe_device_mem_access_put(gt_to_xe(gt));
+>>   	return ret;
+>>   }
+>> -static DEVICE_ATTR_RO(freq_act);
+>> +static DEVICE_ATTR_RO(act_freq);
+>>   
+>> -static ssize_t freq_cur_show(struct device *dev,
+>> +static ssize_t cur_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>> -	struct kobject *kobj = &dev->kobj;
+>> -	struct xe_gt *gt = kobj_to_gt(kobj);
+>> +	struct xe_gt_frq *frq = dev_to_frq(dev);
+>> +	struct xe_gt *gt = frq_to_gt(frq);
+>>   	u32 freq;
+>>   	ssize_t ret;
+>>   
+>> @@ -439,21 +450,23 @@ static ssize_t freq_cur_show(struct device *dev,
+>>   	xe_device_mem_access_put(gt_to_xe(gt));
+>>   	return ret;
+>>   }
+>> -static DEVICE_ATTR_RO(freq_cur);
+>> +static DEVICE_ATTR_RO(cur_freq);
+>>   
+>> -static ssize_t freq_rp0_show(struct device *dev,
+>> +static ssize_t rp0_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> +	struct xe_gt_frq *frq = dev_to_frq(dev);
+>> +	struct xe_guc_pc *pc = frq_to_pc(frq);
+>>   
+>>   	return sysfs_emit(buf, "%d\n", pc->rp0_freq);
+>>   }
+>> -static DEVICE_ATTR_RO(freq_rp0);
+>> +static DEVICE_ATTR_RO(rp0_freq);
+>>   
+>> -static ssize_t freq_rpe_show(struct device *dev,
+>> +static ssize_t rpe_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> +	struct xe_gt_frq *frq = dev_to_frq(dev);
+>> +	struct xe_guc_pc *pc = frq_to_pc(frq);
+>>   	struct xe_gt *gt = pc_to_gt(pc);
+>>   	struct xe_device *xe = gt_to_xe(gt);
+>>   
+>> @@ -462,22 +475,24 @@ static ssize_t freq_rpe_show(struct device *dev,
+>>   	xe_device_mem_access_put(xe);
+>>   	return sysfs_emit(buf, "%d\n", pc->rpe_freq);
+>>   }
+>> -static DEVICE_ATTR_RO(freq_rpe);
+>> +static DEVICE_ATTR_RO(rpe_freq);
+>>   
+>> -static ssize_t freq_rpn_show(struct device *dev,
+>> +static ssize_t rpn_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> +	struct xe_gt_frq *frq = dev_to_frq(dev);
+>> +	struct xe_guc_pc *pc = frq_to_pc(frq);
+>>   
+>>   	return sysfs_emit(buf, "%d\n", pc->rpn_freq);
+>>   }
+>> -static DEVICE_ATTR_RO(freq_rpn);
+>> +static DEVICE_ATTR_RO(rpn_freq);
+>>   
+>> -static ssize_t freq_min_show(struct device *dev,
+>> +static ssize_t min_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> -	struct xe_gt *gt = pc_to_gt(pc);
+>> +	struct xe_gt_frq *frq = dev_to_frq(dev);
+>> +	struct xe_guc_pc *pc = frq_to_pc(frq);
+>> +	struct xe_gt *gt = frq_to_gt(frq);
+>>   	ssize_t ret;
+>>   
+>>   	xe_device_mem_access_get(pc_to_xe(pc));
+>> @@ -510,10 +525,11 @@ static ssize_t freq_min_show(struct device *dev,
+>>   	return ret;
+>>   }
+>>   
+>> -static ssize_t freq_min_store(struct device *dev, struct device_attribute *attr,
+>> +static ssize_t min_freq_store(struct device *dev, struct device_attribute *attr,
+>>   			      const char *buff, size_t count)
+>>   {
+>> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> +	struct xe_gt_frq *frq = dev_to_frq(dev);
+>> +	struct xe_guc_pc *pc = frq_to_pc(frq);
+>>   	u32 freq;
+>>   	ssize_t ret;
+>>   
+>> @@ -540,12 +556,13 @@ static ssize_t freq_min_store(struct device *dev, struct device_attribute *attr,
+>>   	xe_device_mem_access_put(pc_to_xe(pc));
+>>   	return ret ?: count;
+>>   }
+>> -static DEVICE_ATTR_RW(freq_min);
+>> +static DEVICE_ATTR_RW(min_freq);
+>>   
+>> -static ssize_t freq_max_show(struct device *dev,
+>> +static ssize_t max_freq_show(struct device *dev,
+>>   			     struct device_attribute *attr, char *buf)
+>>   {
+>> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> +	struct xe_gt_frq *frq = dev_to_frq(dev);
+>> +	struct xe_guc_pc *pc = frq_to_pc(frq);
+>>   	ssize_t ret;
+>>   
+>>   	xe_device_mem_access_get(pc_to_xe(pc));
+>> @@ -568,10 +585,11 @@ static ssize_t freq_max_show(struct device *dev,
+>>   	return ret;
+>>   }
+>>   
+>> -static ssize_t freq_max_store(struct device *dev, struct device_attribute *attr,
+>> +static ssize_t max_freq_store(struct device *dev, struct device_attribute *attr,
+>>   			      const char *buff, size_t count)
+>>   {
+>> -	struct xe_guc_pc *pc = dev_to_pc(dev);
+>> +	struct xe_gt_frq *frq = dev_to_frq(dev);
+>> +	struct xe_guc_pc *pc = frq_to_pc(frq);
+>>   	u32 freq;
+>>   	ssize_t ret;
+>>   
+>> @@ -598,7 +616,7 @@ static ssize_t freq_max_store(struct device *dev, struct device_attribute *attr,
+>>   	xe_device_mem_access_put(pc_to_xe(pc));
+>>   	return ret ?: count;
+>>   }
+>> -static DEVICE_ATTR_RW(freq_max);
+>> +static DEVICE_ATTR_RW(max_freq);
+>>   
+>>   /**
+>>    * xe_guc_pc_c_status - get the current GT C state
+>> @@ -664,13 +682,13 @@ u64 xe_guc_pc_mc6_residency(struct xe_guc_pc *pc)
+>>   }
+>>   
+>>   static const struct attribute *pc_attrs[] = {
+>> -	&dev_attr_freq_act.attr,
+>> -	&dev_attr_freq_cur.attr,
+>> -	&dev_attr_freq_rp0.attr,
+>> -	&dev_attr_freq_rpe.attr,
+>> -	&dev_attr_freq_rpn.attr,
+>> -	&dev_attr_freq_min.attr,
+>> -	&dev_attr_freq_max.attr,
+>> +	&dev_attr_act_freq.attr,
+>> +	&dev_attr_cur_freq.attr,
+>> +	&dev_attr_rp0_freq.attr,
+>> +	&dev_attr_rpe_freq.attr,
+>> +	&dev_attr_rpn_freq.attr,
+>> +	&dev_attr_min_freq.attr,
+>> +	&dev_attr_max_freq.attr,
+>>   	NULL
+>>   };
+>>   
+>> @@ -950,6 +968,7 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+>>   	struct xe_tile *tile = gt_to_tile(gt);
+>>   	struct xe_device *xe = gt_to_xe(gt);
+>>   	struct xe_bo *bo;
+>> +	struct kobject *kobj;
+>>   	u32 size = PAGE_ALIGN(sizeof(struct slpc_shared_data));
+>>   	int err;
+>>   
+>> @@ -965,9 +984,15 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
+>>   
+>>   	pc->bo = bo;
+>>   
+>> -	err = sysfs_create_files(gt->sysfs, pc_attrs);
+>> -	if (err)
+>> +	kobj = kobject_create_and_add("freq", gt->sysfs);
+>> +	if (!kobj)
+>> +		return -ENOMEM;
+>> +
+>> +	err = sysfs_create_files(kobj, pc_attrs);
+>> +	if (err) {
+>> +		kobject_put(kobj);
+>>   		return err;
+>> +	}
+>>   
+>>   	return 0;
+>>   }
+>> diff --git a/drivers/gpu/drm/xe/xe_guc_pc_types.h b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+>> index 2afd0dbc3542..a48c22687ca8 100644
+>> --- a/drivers/gpu/drm/xe/xe_guc_pc_types.h
+>> +++ b/drivers/gpu/drm/xe/xe_guc_pc_types.h
+>> @@ -31,4 +31,7 @@ struct xe_guc_pc {
+>>   	bool freq_ready;
+>>   };
+>>   
+>> +struct xe_gt_frq {
+>> +};
+>> +
+>>   #endif	/* _XE_GUC_PC_TYPES_H_ */
