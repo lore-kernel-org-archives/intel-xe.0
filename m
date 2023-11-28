@@ -4,55 +4,38 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B455BC4167B
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 17:01:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id BFA10C4167B
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 17:07:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 895D810E153;
-	Tue, 28 Nov 2023 17:01:09 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9708B10E153
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 17:01:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701190867; x=1732726867;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=UL8ZVGsOdytqFCHbff6lvt0j4VZDIkjIQrfhNrJ6/Ac=;
- b=bmRhRBDNsT1dV7IttAYJ4LG6O2Ng3ComdPObZUr9zUBYKx0XiQWDF1IL
- FsvTeTHkVNKmUSXufO8RMIbCw6aX4Txz2bzoy5QKbYZ+Zgyrf9ekcsMjY
- 9TQLf3MinrIb0i93mk4Bej6S3WiEW2ke5q878qZ44EcKLOo1NtvCxcH5j
- 9FNDO3R2qtGcnwzExUuKt0RKywg5S0s9/ebeWS1ufnipm9QkCnc/BnXWz
- DNmFaQDq1rwo+Sv3DtTY4ezxrRX97leiAoo/fr7wV7oXDhNkqGMtbEIou
- Alksiglbxvs8qjupkvHH6rua+06v4y+LLPeUmGIrRJsyH/WZYdO/Ee56p w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="383352458"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="383352458"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 09:00:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="886465398"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="886465398"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by fmsmga002.fm.intel.com with ESMTP; 28 Nov 2023 09:00:43 -0800
-Received: from [10.249.140.124] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.140.124])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 4507534973;
- Tue, 28 Nov 2023 17:00:41 +0000 (GMT)
-Message-ID: <80cd47a5-f157-4847-8242-df842c2e2aec@intel.com>
-Date: Tue, 28 Nov 2023 18:00:39 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8184310E153;
+	Tue, 28 Nov 2023 17:07:52 +0000 (UTC)
+X-Greylist: delayed 864 seconds by postgrey-1.36 at gabe;
+ Tue, 28 Nov 2023 17:07:50 UTC
+Received: from mail02.habana.ai (habanamailrelay.habana.ai [213.57.90.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9C2C10E15F
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 17:07:50 +0000 (UTC)
+Received: internal info suppressed
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=habana.ai; s=default;
+ t=1701190402; bh=I9OWbGZTGFI+fA8hPcb4bPqpNunS4/cCZCCjjss3bQE=;
+ h=From:To:Subject:Date:From;
+ b=Uoo6u36cAEwry6OaqIxSqaGeyLFWBRsFx4RP+3mzmxfDK8ePIREwTnKprfukkkVjj
+ a1cx5c8FuIGtpb03Q1lj+JRqwDgmUstDDlsobctCNcOY5dZfD1q5bmIQ3uclImHPks
+ k5HJzMxC2m2tVnBQ0RjFLT/c5FVnPmGhmHT0YZ5edrmzNWlx1JgjtK19h9yw+mxYw6
+ /5ODhqDTLhSNtvnWzURMgyDoLf4U5R7Cy+A06tpCGrYceRAd3YJBp3/Bnh9Yxd0QRO
+ jwzCF2+HIfZiUQJKLwApNlQUaSV/6YStqOd6LCGlGIEpeEJ9Gp+CGHzt/qmqrUwaLQ
+ 4Tka1r8q3dFNg==
+Received: from kelbaz-vm-u22.habana-labs.com (localhost [127.0.0.1])
+ by kelbaz-vm-u22.habana-labs.com (8.15.2/8.15.2/Debian-22ubuntu3) with ESMTP
+ id 3ASGrHKP3142197
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 18:53:17 +0200
+From: Koby Elbaz <kelbaz@habana.ai>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Nov 2023 18:53:15 +0200
+Message-Id: <20231128165316.3142184-1-kelbaz@habana.ai>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Tejas Upadhyay <tejas.upadhyay@intel.com>,
- intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20231128151333.4068550-1-tejas.upadhyay@intel.com>
- <20231128151333.4068550-3-tejas.upadhyay@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20231128151333.4068550-3-tejas.upadhyay@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH V3 2/3] drm/xe/ats-m: Expose uid for ATS-M
- via sysfs
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 1/2] drm/xe: add skip_pcode flag
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,163 +50,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Per device, set this flag to enable access to the PCODE uC or to skip it.
 
+Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 2 ++
+ drivers/gpu/drm/xe/xe_pcode.c        | 9 +++++++++
+ 3 files changed, 13 insertions(+)
 
-On 28.11.2023 16:13, Tejas Upadhyay wrote:
-> On ATS-M CSC firmware calculated unique device id(uid) can be
-> read from defined registers. Only ATS-M has this way of reading
-> uid. Also ATS-M customer require this solution to locate and name
-> their devices effectively.
-> 
-> Consumer of csc uid is level0 sysman and end users using sysman.
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 2712905c7a91..72ab96869659 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -260,6 +260,8 @@ struct xe_device {
+ 		u8 enable_display:1;
+ 		/** @bypass_mtcfg: Bypass Multi-Tile configuration from MTCFG register */
+ 		u8 bypass_mtcfg:1;
++		/** @skip_pcode: skip access to PCODE uC */
++		u8 skip_pcode:1;
+ 		/** @supports_mmio_ext: supports MMIO extension/s */
+ 		u8 supports_mmio_ext:1;
+ 		/** @has_heci_gscfi: device has heci gscfi */
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 994679a4eb89..20ca30bf58b1 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -63,6 +63,7 @@ struct xe_device_desc {
+ 	u8 has_llc:1;
+ 	u8 has_sriov:1;
+ 	u8 bypass_mtcfg:1;
++	u8 skip_pcode:1;
+ 	u8 supports_mmio_ext:1;
+ };
+ 
+@@ -581,6 +582,7 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.has_llc = desc->has_llc;
+ 	xe->info.has_sriov = desc->has_sriov;
+ 	xe->info.bypass_mtcfg = desc->bypass_mtcfg;
++	xe->info.skip_pcode = desc->skip_pcode;
+ 	xe->info.supports_mmio_ext = desc->supports_mmio_ext;
+ 	xe->info.tile_mmio_ext_size = graphics_desc->tile_mmio_ext_size;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
+index 4a240acf7625..b324dc2a5deb 100644
+--- a/drivers/gpu/drm/xe/xe_pcode.c
++++ b/drivers/gpu/drm/xe/xe_pcode.c
+@@ -61,6 +61,9 @@ static int pcode_mailbox_rw(struct xe_gt *gt, u32 mbox, u32 *data0, u32 *data1,
+ {
+ 	int err;
+ 
++	if (gt_to_xe(gt)->info.skip_pcode)
++		return 0;
++
+ 	lockdep_assert_held(&gt->pcode.lock);
+ 
+ 	if ((xe_mmio_read32(gt, PCODE_MAILBOX) & PCODE_READY) != 0)
+@@ -249,6 +252,9 @@ int xe_pcode_init(struct xe_gt *gt)
+ 	int timeout_us = 180000000; /* 3 min */
+ 	int ret;
+ 
++	if (gt_to_xe(gt)->info.skip_pcode)
++		return 0;
++
+ 	if (!IS_DGFX(gt_to_xe(gt)))
+ 		return 0;
+ 
+@@ -280,6 +286,9 @@ int xe_pcode_probe(struct xe_gt *gt)
+ {
+ 	drmm_mutex_init(&gt_to_xe(gt)->drm, &gt->pcode.lock);
+ 
++	if (gt_to_xe(gt)->info.skip_pcode)
++		return 0;
++
+ 	if (!IS_DGFX(gt_to_xe(gt)))
+ 		return 0;
+ 
+-- 
+2.34.1
 
-is this generic UID or UID only specific to CSC firmware ?
-if former then maybe just name it as "uid" or "uuid" ?
-
-> 
-> This patch exports uid to the userspace via sysfs.
-
-as this defines uabi, shouldn't this series go over dri-devel ?
-
-+ @Rodrigo
-
-> For example, uid can be read by:
-> cat /sys/class/drm/cardX/device/csc_uid
-
-as this is more Xe driver extension then maybe
-
-/sys/bus/pci/drivers/xe/<BDF>/uuid
-
-> 
-> V2(Michal):
->   - Make separate patch for csc uid capability
->   - Use %#llx for 0x
->   - Dump error value when sysfs creation fails
->   - Have consistency in csc uid name
-> 
-> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> ---
->  drivers/gpu/drm/xe/regs/xe_regs.h    |  3 +++
->  drivers/gpu/drm/xe/xe_device.c       | 11 +++++++++++
->  drivers/gpu/drm/xe/xe_device_sysfs.c | 21 +++++++++++++++++++++
->  drivers/gpu/drm/xe/xe_device_types.h |  2 ++
->  4 files changed, 37 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h b/drivers/gpu/drm/xe/regs/xe_regs.h
-> index ec9372aa739f..3599c7b38b61 100644
-> --- a/drivers/gpu/drm/xe/regs/xe_regs.h
-> +++ b/drivers/gpu/drm/xe/regs/xe_regs.h
-> @@ -71,6 +71,9 @@
->  #define XEHP_CLOCK_GATE_DIS			XE_REG(0x101014)
->  #define   SGSI_SIDECLK_DIS			REG_BIT(17)
->  
-> +#define DEVUID_LWORD				XE_REG(0x102008)
-> +#define DEVUID_HWORD				XE_REG(0x10200C)
-
-Bspec uses different names .. and LWORD/HWORD look strange
-but since it's for SW use then maybe at least (assuming ATSM is XEHP):
-
-#define XEHP_DEVUID_LDW				XE_REG(0x102008)
-#define XEHP_DEVUID_UDW				XE_REG(0x10200C)
-
-> +
->  #define GGC					XE_REG(0x108040)
->  #define   GMS_MASK				REG_GENMASK(15, 8)
->  #define   GGMS_MASK				REG_GENMASK(7, 6)
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index d60379d844d2..b54635d512d6 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -355,6 +355,15 @@ static void xe_device_sanitize(struct drm_device *drm, void *arg)
->  		xe_gt_sanitize(gt);
->  }
->  
-> +static void xe_read_csc_uid(struct xe_device *xe)
-> +{
-> +	if (xe->info.has_csc_uid) {
-> +		struct xe_gt *mmio = xe_root_mmio_gt(xe);
-> +
-> +		xe->info.csc_uid  = xe_mmio_read64_2x32(mmio, DEVUID_LWORD);
-> +	}
-> +}
-> +
->  int xe_device_probe(struct xe_device *xe)
->  {
->  	struct xe_tile *tile;
-> @@ -379,6 +388,8 @@ int xe_device_probe(struct xe_device *xe)
->  	if (err)
->  		return err;
->  
-> +	xe_read_csc_uid(xe);
-> +
->  	err = drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
->  	if (err)
->  		return err;
-> diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> index 99113a5a2b84..4fbf0275d3bf 100644
-> --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
-> +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
-> @@ -65,11 +65,24 @@ vram_d3cold_threshold_store(struct device *dev, struct device_attribute *attr,
->  
->  static DEVICE_ATTR_RW(vram_d3cold_threshold);
->  
-> +static ssize_t csc_uid_show(struct device *dev,
-> +			    struct device_attribute *attr,
-> +			    char *buf)
-> +{
-> +	struct pci_dev *pdev = to_pci_dev(dev);
-> +	struct xe_device *xe = pdev_to_xe_device(pdev);
-> +
-> +	return sysfs_emit(buf, "%#llx\n", xe->info.csc_uid);
-
-if there are no plans to use this value in driver then maybe just read
-it here as it was already suggested by Lucas
-
-> +}
-> +
-> +static DEVICE_ATTR_RO(csc_uid);
-> +
->  static void xe_device_sysfs_fini(struct drm_device *drm, void *arg)
->  {
->  	struct xe_device *xe = arg;
->  
->  	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_vram_d3cold_threshold.attr);
-> +	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_csc_uid.attr);
-
-it's sad that we don't have proper groups defines and need to add each
-attribute separately (but that's not your fault)
-
->  }
->  
->  void xe_device_sysfs_init(struct xe_device *xe)
-> @@ -83,6 +96,14 @@ void xe_device_sysfs_init(struct xe_device *xe)
->  		return;
->  	}
->  
-> +	if (xe->info.has_csc_uid) {
-> +		ret = sysfs_create_file(&dev->kobj, &dev_attr_csc_uid.attr);
-> +		if (ret) {
-> +			drm_warn(&xe->drm, "UID sysfs setup failed err=%pe\n", ERR_PTR(ret));
-> +			return;
-
-if you exit here, you will leak dev_attr_vram_d3cold_threshold
-
-> +		}
-> +	}
-> +
->  	ret = drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini, xe);
->  	if (ret)
->  		drm_warn(&xe->drm, "Failed to add sysfs fini drm action\n");
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 268a40639ec5..e88b64cb0eca 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -239,6 +239,8 @@ struct xe_device {
->  		u8 vm_max_level;
->  		/** @va_bits: Maximum bits of a virtual address */
->  		u8 va_bits;
-> +		/** @csc_uid: device uid calculated by CSC FW, used for generating uuid */
-> +		u64 csc_uid;
->  
->  		/** @is_dgfx: is discrete device */
->  		u8 is_dgfx:1;
