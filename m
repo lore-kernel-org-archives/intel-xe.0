@@ -4,47 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4BA9EC4167B
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 05:56:29 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1E430C4167B
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 08:27:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D52A810E02A;
-	Tue, 28 Nov 2023 05:56:28 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D37410E02A
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 05:56:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBC5310E448;
+	Tue, 28 Nov 2023 08:27:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43D8610E448
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 08:27:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701150987; x=1732686987;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=6lD55ET0/D/PC4UMK+sBAL7mJYqk00KPnm98ys5j6Gs=;
- b=fMbhI/eUvkf0qFG/+cLn3Pw1f4LIvdJy1NX5g27peaQI+F7pZToRalA4
- QX9BZWY5Gc+zJ+lCVq9NqtHkUSJVXkaLgnegddNsY0cxNrVeIuRVPXZ4b
- SkYoFuF0ChlhlKfYcVdmR/XflwIX8Mmf1L/O1VCH6brAQ7E9xH//FfMMq
- 0ontFTc+fje2bUkSpqSJOSaZhMBQCVSg4VqTtB+xHvPQafbvJ/G7qbXRo
- yeDzQIySyvI5qKJca4NhRi8dzcF5AEPLR6wxgVt6jZETr5KshM9A49JlA
- +C8d0LiBvh7ctYsoEv0nBsdwX8vgKyBf0YILyPDBBaazsN5Ahc0Gwg8UD g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="383239676"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="383239676"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Nov 2023 21:56:26 -0800
+ t=1701160036; x=1732696036;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=faBUMi0A7tpaA0xuYj5GzlAqqr2ycrp9cQqqZygjpHk=;
+ b=YsEf+bmK2aF7G3ay/W8vjcYwsjMjIGaK+J5VIRfv3GsVcW85zql0a2ch
+ nIfOUQ2A++dacGyrQ8bBLqI8IynIec4vmtntqVzE1OL2G5w2G26/IeFvE
+ qq9zisUWP2ulYIPq3usLocQi68Tis7bjfk4drgBghp8DbPttU/Oozvxw+
+ qbZqmnzJkbGw+Hlk0hhKrg0/KkHZV8Lh+tnGgXj9Va8CzCpjCiSQzGJvw
+ GwRakd0O0SScbgPVSrMlT9lkjgFC43H/hlY7ITtHbQhKmENyqBHnBOsRt
+ +IPEapktvaNmFPFZO5bJWFjfh3sqVs3esYpffCuItJRuM6zbzRdHZOGvO g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="392626707"
+X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="392626707"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 00:27:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="1099989744"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="1099989744"
-Received: from lkp-server01.sh.intel.com (HELO d584ee6ebdcc) ([10.239.97.150])
- by fmsmga005.fm.intel.com with ESMTP; 27 Nov 2023 21:56:25 -0800
-Received: from kbuild by d584ee6ebdcc with local (Exim 4.96)
- (envelope-from <lkp@intel.com>) id 1r7r54-00074W-2p;
- Tue, 28 Nov 2023 05:56:22 +0000
-Date: Tue, 28 Nov 2023 13:56:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <202311281042.9kbU5vGV-lkp@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="834576476"
+X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="834576476"
+Received: from mravivx-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.252.42.57])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 00:27:11 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>,
+ intel-xe@lists.freedesktop.org
+In-Reply-To: <20231127190935.3150610-1-juhapekka.heikkila@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20231127190935.3150610-1-juhapekka.heikkila@gmail.com>
+Date: Tue, 28 Nov 2023 10:27:09 +0200
+Message-ID: <87leai8eqq.fsf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Subject: [Intel-xe] [drm-xe:drm-xe-next 3/3] drivers/gpu/drm/xe/xe_lrc.c:26:
- warning: "CTX_VALID" redefined
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [PATCH 0/6] revert local patches and cherrypick same
+ patches from drm-tip
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,65 +58,35 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org,
- oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi Lucas,
+On Mon, 27 Nov 2023, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com> wrote:
+> Here reverted local
+> * 1c7037778222 - drm/i915/display: In intel_framebuffer_init switch to use intel_bo_to_drm_bo (12 days ago) <Juha-Pekka Heikkila>
+> * d192a479c592 - drm/i915/display: in skl_surf_address check for dpt-vma (12 days ago) <Juha-Pekka Heikkila>
+> * c87774bd9237 - drm/i915/display: Separate xe and i915 common dpt code into own file (12 days ago) <Juha-Pekka Heikkila>
+>
+> and cherrypicked from drm-tip
+> | | * | | | | 12b7142e679f - drm/i915/display: In intel_framebuffer_init switch to use intel_bo_to_drm_bo (4 days ago) <Juha-Pekka Heikkila>
+> | | * | | | | 185b24883e27 - drm/i915/display: in skl_surf_address check for dpt-vma (4 days ago) <Juha-Pekka Heikkila>
+> | | * | | | | 1aba67132cbc - drm/i915/display: Separate xe and i915 common dpt code into own file (4 days ago) <Juha-Pekka Heikkila>
 
-FYI, the error/warning was bisected to this commit, please ignore it if it's irrelevant.
-
-tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
-head:   30f75cb8aa11ac361220d1491262254371302f9e
-commit: 50846befe4ba5c1ce589dc88087d45991f8069ba [3/3] drm/xe: Remove GEN[0-9]*_ prefixes
-config: sparc-allmodconfig (https://download.01.org/0day-ci/archive/20231128/202311281042.9kbU5vGV-lkp@intel.com/config)
-compiler: sparc64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231128/202311281042.9kbU5vGV-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202311281042.9kbU5vGV-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/gpu/drm/xe/xe_lrc.c:26: warning: "CTX_VALID" redefined
-      26 | #define CTX_VALID                               (1 << 0)
-         | 
-   In file included from arch/sparc/include/asm/mmu.h:5,
-                    from include/linux/mm_types.h:23,
-                    from arch/sparc/include/asm/uaccess_64.h:11,
-                    from arch/sparc/include/asm/uaccess.h:8,
-                    from include/linux/uaccess.h:11,
-                    from include/linux/sched/task.h:11,
-                    from include/linux/sched/signal.h:9,
-                    from include/linux/rcuwait.h:6,
-                    from include/linux/irq_work.h:6,
-                    from drivers/gpu/drm/xe/xe_hw_fence_types.h:11,
-                    from drivers/gpu/drm/xe/xe_lrc_types.h:9,
-                    from drivers/gpu/drm/xe/xe_lrc.h:8,
-                    from drivers/gpu/drm/xe/xe_lrc.c:6:
-   arch/sparc/include/asm/mmu_64.h:57: note: this is the location of the previous definition
-      57 | #define CTX_VALID(__ctx)        \
-         | 
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for INTEL_MEI_ME
-   Depends on [n]: X86 && PCI [=y]
-   Selected by [m]:
-   - INTEL_MEI_HDCP [=m] && (DRM_I915 [=n] || DRM_XE [=m])
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
 
-vim +/CTX_VALID +26 drivers/gpu/drm/xe/xe_lrc.c
-
-    25	
-  > 26	#define CTX_VALID				(1 << 0)
-    27	#define CTX_PRIVILEGE				(1 << 8)
-    28	#define CTX_ADDRESSING_MODE_SHIFT		3
-    29	#define LEGACY_64B_CONTEXT			3
-    30	
+>
+>
+> Juha-Pekka Heikkila (6):
+>   Revert "drm/i915/display: In intel_framebuffer_init switch to use
+>     intel_bo_to_drm_bo"
+>   Revert "drm/i915/display: in skl_surf_address check for dpt-vma"
+>   Revert "drm/i915/display: Separate xe and i915 common dpt code into
+>     own file"
+>   drm/i915/display: In intel_framebuffer_init switch to use
+>     intel_bo_to_drm_bo
+>   drm/i915/display: in skl_surf_address check for dpt-vma
+>   drm/i915/display: Separate xe and i915 common dpt code into own file
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Jani Nikula, Intel
