@@ -4,30 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 14333C07E97
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 16:39:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA6A8C4167B
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 16:40:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94D9F10E12D;
-	Tue, 28 Nov 2023 16:39:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id CC2F910E12D;
- Tue, 28 Nov 2023 16:39:42 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id BBA97A47DF;
- Tue, 28 Nov 2023 16:39:42 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9471B10E0A8;
+	Tue, 28 Nov 2023 16:40:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0C5C110E0A8
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 16:40:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701189613; x=1732725613;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=hoFK4UDaLwsClW1+VqYVPZUwR5aVmweS52Xerz4r1o0=;
+ b=eAwbPZZbSn750GJLarBpZhhwX0ZSrdsSbfp3E0QzX5TB8tfW0vNobv5q
+ g8iW7OzhbgQU/7w2ao5dm261SG1spcNe8nvhTOJehfW8QbTIpP8YnP5z3
+ oYO1214pvJgSLfzIVevWQtjc7pI2koBMUZDTdng7yVjezgwR7/RGwBYik
+ 4Xd7A3tDzGP4SN/FdRG5H+JO/NeE5G04t7clwl7upejbDdeXg1gjTnQSR
+ Xnm1tca44TQyvX4R5cGsKjo/nJh+2q2tV3uqPhQig+/Q1JpJNFlFFIhKm
+ eXg4n+WIAoKZ+S/Yew+uyp86oOvXNvuoGdXF8agEjrKrX0XRuorYipDZz Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="372332724"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="372332724"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 08:40:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="761994404"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="761994404"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Nov 2023 08:40:12 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Tue, 28 Nov 2023 08:40:11 -0800
+Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Tue, 28 Nov 2023 08:40:11 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.169)
+ by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Tue, 28 Nov 2023 08:40:11 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k64W4/nlO+cMX+NG/c7squJM6EQbLmn3zfv4vpCBmcBREiqkW0BohSrcyw2QAfiw5Pu/v2gaLW3BDPnTgae0QYar9mrcFCVegYM21qAVNmQhf7Y/9Vso6nwOsWBbt0uVuLGaA8QS/Ir+CiJd004CuSUUcURWCGmY5Vnj+gYjTeJAaCkp3enMdoHfrV1DjqC1c3mB9rzpafLE4hZZ6BfKV9ocLbSNnVN8F760u34R7DHABUlMpUtLk45qQmnZVtpKaHVvaFsumfYYYS0VPUosnTlDuLOaaceS38aiIvmtZf9xW89NvHli7j6Yxo3M9QCL8D/vh4WakJxCaBSAouInAA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OxeqKS19LW9iYAtWzzRlOy9zRjOcZWdr0rcd5Y+dpaw=;
+ b=P+pcbEr2O5noSzI/9afnL7/rY9EBiKkGLr5YuP9l8uCADNWcoGarMxMhoho9EVS/PQ4qtvCFxbupceBWh+NAjcUmAOHr5Qs+BlIRObdyvx0kIbvNZ2zUfu/waPsy67pgx077Kq612P5O4K6jDe1OfseBtxfkNaq+u5d+zTOiawOcgkr3D7+9tXo523p+MoASWaAy6+KbL26/men64XYOqqeuH9Z61Yf/zaNIC/w0tr5bucuV+u/f1HNgLOG4Rc0TDjLEYMneibyVrVyft5H9SiyatvZWqjiZJ3Glc1Qgy3k1wnrkbZ+nxGpkD9wmtNpjDnHADZzhRyIaiNAJyiFk4g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by BL3PR11MB6529.namprd11.prod.outlook.com (2603:10b6:208:38c::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.28; Tue, 28 Nov
+ 2023 16:40:05 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b9a8:8221:e4a1:4cda]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::b9a8:8221:e4a1:4cda%4]) with mapi id 15.20.7046.015; Tue, 28 Nov 2023
+ 16:40:05 +0000
+Date: Tue, 28 Nov 2023 09:38:33 +0000
+From: Matthew Brost <matthew.brost@intel.com>
+To: Riana Tauro <riana.tauro@intel.com>
+Message-ID: <ZWW1GXuDuMBA3Jdz@DUT025-TGLU.fm.intel.com>
+References: <20231127141125.2913415-1-riana.tauro@intel.com>
+ <20231127141125.2913415-2-riana.tauro@intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20231127141125.2913415-2-riana.tauro@intel.com>
+X-ClientProxiedBy: BYAPR02CA0002.namprd02.prod.outlook.com
+ (2603:10b6:a02:ee::15) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Michal Wajdeczko" <michal.wajdeczko@intel.com>
-Date: Tue, 28 Nov 2023 16:39:42 -0000
-Message-ID: <170118958276.8219.1009511912677638392@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231128151507.1015-1-michal.wajdeczko@intel.com>
-In-Reply-To: <20231128151507.1015-1-michal.wajdeczko@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EHooks=3A_failure_for_Introdu?=
- =?utf-8?q?ce_Local_Memory_Translation_Table?=
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|BL3PR11MB6529:EE_
+X-MS-Office365-Filtering-Correlation-Id: 96babdde-5f01-42a7-8f7c-08dbf030acd2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Ns34tDQq3aLsk89A6eFRLVBCruMi/j2x/bH1u97JSWSF7xPg5kpJYFR8r/J/PjJEy1qluBM8Ix8cTt241S+8hhJI+klFwta1AS1ybkVliiNoqNLWWr5n27ZIvP3mMSVMmjshUT4NCZSqZh0H49YFxA4AOrhbiw5Ctmt19SKzof6k4+ljBnVYds6LOFiO7wy5vM/FKsCWmtMagFPv+o088QOt6ScF943WgeV7H/4he/tS0O6NGjUQKOSsMyCDedvrOn8Au7ZJ7zHEdzI2VOIwbUoC6PhfuYnb/Bnnd3qXZVhUTqVtNsqGaSoydZYUzTRpgW1FxAygQVjAQblt1vY2iumAiRbSUY0WzdvgzXio7cz59ALmtzfugEW4pI2985KqBZdT8rKhUKiE+0lGfpGLok7alfpH7BGVjjaARSYZLk2A+HSxj4RVLTtpuCezrhgzGhstkfelJMFYpZrWOCNiJFWGz7Z+m91ypS2YTQR2pAUYsIfN+3gDqQfbMVL7WyRZxQlwsicW7ZXneEtI8DwU39EQtgoTVqBKPueHzAGmxmvLxXMvWGXYcrJZ9m9aM21c
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(230922051799003)(186009)(451199024)(1800799012)(6636002)(6512007)(86362001)(6506007)(6486002)(26005)(6666004)(508600001)(82960400001)(83380400001)(38100700002)(66476007)(66556008)(66946007)(5660300002)(44832011)(2906002)(8936002)(4326008)(6862004)(8676002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?acGM797s8w5SZivwVC+fmyFTaZWSaISrmjNZP7MXAMMO5lT5ZYqqRBfsnqyW?=
+ =?us-ascii?Q?Vfz6tu3KrNC7xEO9+qZb4VUyPY/vTMIe3WFYZwyldCUMjFixxO3Dj0skPMp6?=
+ =?us-ascii?Q?qjfmo9pk6CJjp1q8cJ5Iw1tjGdYJkWxxFbWuUSdHZ2wdDYbiMxsu4Rcf8TEq?=
+ =?us-ascii?Q?G+8WLwLFqvj0p3S7Pg+IoS/jj0+YZvc6u4bl27JVU//aMFuVjR0kjwizq+b+?=
+ =?us-ascii?Q?qQRddUHFm+1TTzzlqyXsNZVuWc714OI2dmJVayQnJVu9CJ3cxEKeCo6YTVXA?=
+ =?us-ascii?Q?BVLB4hDGS3LGDw1AHpdSWIkAMEYQp6Vstxgl7mFstQxxIeHBRbIeohTi4Dgf?=
+ =?us-ascii?Q?yU2lrMRgW8D07MxgizZ0QWDiSD6TbkmkE59HoqCGvImmFILcAOYU+m82MTra?=
+ =?us-ascii?Q?ukjOFImvZbOel10cLD5GGddUF8hX2RMKS6+SXz7c/r6vdhwHdwL+4LqfAuqk?=
+ =?us-ascii?Q?T5kF7gX588hlLfjX87EUuUiathydkBwti+0tSUVqbV7kBv9k3znW2ObqTtqE?=
+ =?us-ascii?Q?W1UFTJM32FeUT0I23lggitACbixZlQjvK8pTaJONO0z6gdmoIPu86OkgIGnK?=
+ =?us-ascii?Q?wZEx+p9XN7piH3WuUistIQ1zdkLfvSxlP3mB2hM6vRDj24a7IVBpprgO2Pbl?=
+ =?us-ascii?Q?xy0H6rPDQ4pF5dRvQIaopLRoik6uLh+3KZSYasMxm3CsyuV46bz4oaoefB5e?=
+ =?us-ascii?Q?GF/FtGw/PsVFJvcjPz30F1Ef5VOu0eVgsMIGQ5A0oqFeI2HSQugNLUDIM5Ae?=
+ =?us-ascii?Q?Mv8k5O30R8r6a+4NTwBUtr91lxvyIpiNvs7cc3ffZoJbwTBIKg/iAOK/lOpl?=
+ =?us-ascii?Q?iQg4StaYFsKMayl8XpROEXP+s0G1fQkLf+Fqu+mZ946n3Q7dqsJc7DRypRLo?=
+ =?us-ascii?Q?TpS/22Cbmk4kHEw+xvP5MZZSOKjaNJ0MweR1uMzjzltNuD1EsTw5REaDeHsl?=
+ =?us-ascii?Q?btvEWKJXQjiUFkySar94cftSE+Evqw1lWVn8gQTuY2N1MUXINW6XEyzp8qa7?=
+ =?us-ascii?Q?lsB9zJ+Hz1rbA3FTdVCQ6omhafE8P0HnFNJFb3oe2SCOLn+8BVtSSgLg7X8y?=
+ =?us-ascii?Q?RoPjbVg7TDIrNlaUUkcZPIkMQatnlUAre43Hr8r9pWrmA/aJ5s4D843/w+3v?=
+ =?us-ascii?Q?FJu/zU4pQ+xmyWIU/oeiOtqRE07Lpcgn1KwxQyUZSSX9q5uPWyRjtGcUwixa?=
+ =?us-ascii?Q?tAE/xkaVsSPSyW6URJamP0eZ9YY9aAQSZ3DfHyW4UCuxrAVyNjnOSExjF/nq?=
+ =?us-ascii?Q?BfBxmLVSk7rH/CMtlgr6C2twqHp1CasiBszVZI+BlLtc4XXvkzRhd4t4aeWw?=
+ =?us-ascii?Q?zz5ASe1VImBnMhrS1L66dC/9lVORl5AC4v9+8ThjMJnWBzEvv7DtQFLI1zXk?=
+ =?us-ascii?Q?uBoZnZiXA/unpL87pI7Xpnf6JlyVKkmIiqxpO278ocGM7L2IjtRqenNx1TBa?=
+ =?us-ascii?Q?xW/bbDS4AUPR4KMmymRuH5iNsqBMaV+4gJCaFcB0SSyeBREwuGRGCDqOaMDv?=
+ =?us-ascii?Q?+KMraJG8QzcqoFXvZCGJiZDOG4p7mTtT92CG3kqa4kZ7WQq1NZ7nJ8KpMTgB?=
+ =?us-ascii?Q?Pt8QF02/KHIETYDXLQT0h+l2lDUOujvULODYuzLQc0w4ta7S1eqSGHbpE93h?=
+ =?us-ascii?Q?Xg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 96babdde-5f01-42a7-8f7c-08dbf030acd2
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2023 16:40:05.2435 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RE2V2lAmt+EAsL9sf6Q7Zz6nQ/txYf+amqaFKiXbUkXGrJyrlLFa9ULCEjbYp0QENJu+OCrx8lnl7RsBbdvVQA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR11MB6529
+X-OriginatorOrg: intel.com
+Subject: Re: [Intel-xe] [PATCH 1/8] RFC drm/xe: Move user engine class
+ mappings to header
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,524 +144,168 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On Mon, Nov 27, 2023 at 07:41:18PM +0530, Riana Tauro wrote:
+> Move user engine class <-> hw engine class to header
+> files so that it can be used by perf component.
+> 
+> No functional changes.
+> 
+> Cc: Matthew Brost <matthew.brost@intel.com>
+> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+> ---
+>  drivers/gpu/drm/xe/xe_exec_queue.c      | 17 +++++------------
+>  drivers/gpu/drm/xe/xe_hw_engine_types.h | 18 ++++++++++++++++++
+>  drivers/gpu/drm/xe/xe_query.c           | 22 +++-------------------
+>  3 files changed, 26 insertions(+), 31 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+> index 62d0237e724e..6f27b78666f6 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+> @@ -482,31 +482,24 @@ static int exec_queue_user_extensions(struct xe_device *xe, struct xe_exec_queue
+>  	return 0;
+>  }
+>  
+> -static const enum xe_engine_class user_to_xe_engine_class[] = {
+> -	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
+> -	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
+> -	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
+> -	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
+> -	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+> -};
+> -
+>  static struct xe_hw_engine *
+>  find_hw_engine(struct xe_device *xe,
+>  	       struct drm_xe_engine_class_instance eci)
+>  {
+>  	u32 idx;
+>  
+> -	if (eci.engine_class > ARRAY_SIZE(user_to_xe_engine_class))
+> +	if (eci.engine_class > ARRAY_SIZE(xe_user_to_engine_class))
+>  		return NULL;
+>  
+>  	if (eci.gt_id >= xe->info.gt_count)
+>  		return NULL;
+>  
+>  	idx = array_index_nospec(eci.engine_class,
+> -				 ARRAY_SIZE(user_to_xe_engine_class));
+> +				 ARRAY_SIZE(xe_user_to_engine_class));
+> +
+>  
+>  	return xe_gt_hw_engine(xe_device_get_gt(xe, eci.gt_id),
+> -			       user_to_xe_engine_class[idx],
+> +			       xe_user_to_engine_class[idx],
+>  			       eci.engine_instance, true);
+>  }
+>  
+> @@ -532,7 +525,7 @@ static u32 bind_exec_queue_logical_mask(struct xe_device *xe, struct xe_gt *gt,
+>  			continue;
+>  
+>  		if (hwe->class ==
+> -		    user_to_xe_engine_class[DRM_XE_ENGINE_CLASS_COPY])
+> +		    xe_user_to_engine_class[DRM_XE_ENGINE_CLASS_COPY])
+>  			logical_mask |= BIT(hwe->logical_instance);
+>  	}
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_hw_engine_types.h b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> index 39908dec042a..8269f77c4ca2 100644
+> --- a/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> +++ b/drivers/gpu/drm/xe/xe_hw_engine_types.h
+> @@ -6,6 +6,8 @@
+>  #ifndef _XE_HW_ENGINE_TYPES_H_
+>  #define _XE_HW_ENGINE_TYPES_H_
+>  
+> +#include <drm/xe_drm.h>
+> +
+>  #include "xe_force_wake_types.h"
+>  #include "xe_lrc_types.h"
+>  #include "xe_reg_sr_types.h"
+> @@ -58,6 +60,22 @@ enum xe_hw_engine_id {
+>  	XE_NUM_HW_ENGINES,
+>  };
+>  
+> +static const u16 xe_engine_to_user_class[] = {
 
-Series: Introduce Local Memory Translation Table
-URL   : https://patchwork.freedesktop.org/series/126993/
-State : failure
+s/xe_engine_to_user_class/xe_hwe_engine_to_user_class
 
-== Summary ==
+> +	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
+> +	[XE_ENGINE_CLASS_COPY] = DRM_XE_ENGINE_CLASS_COPY,
+> +	[XE_ENGINE_CLASS_VIDEO_DECODE] = DRM_XE_ENGINE_CLASS_VIDEO_DECODE,
+> +	[XE_ENGINE_CLASS_VIDEO_ENHANCE] = DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE,
+> +	[XE_ENGINE_CLASS_COMPUTE] = DRM_XE_ENGINE_CLASS_COMPUTE,
+> +};
+> +
+> +static const enum xe_engine_class xe_user_to_engine_class[] = {
 
-run-parts: executing /workspace/ci/hooks/00-showenv
-+ pwd
-+ ls -la
-/workspace
-total 936
-drwxrwxr-x 12 1003 1003   4096 Nov 28 16:39 .
-drwxr-xr-x  1 root root   4096 Nov 28 16:39 ..
--rw-rw-r--  1 1003 1003 800144 Nov 28 16:39 build.log
--rw-rw-r--  1 1003 1003   4086 Nov 28 16:30 checkpatch.log
-drwxrwxr-x  5 1003 1003   4096 Nov 28 16:28 ci
-drwxrwxr-x  9 1003 1003   4096 Nov 28 16:28 docker
-drwxrwxr-x  8 1003 1003   4096 Nov 28 16:28 .git
--rw-rw-r--  1 1003 1003    436 Nov 28 16:30 git_apply.log
-drwxrwxr-x  4 1003 1003   4096 Nov 28 16:28 .github
--rw-rw-r--  1 1003 1003    233 Nov 28 16:28 .groovylintrc.json
--rw-rw-r--  1 1003 1003     78 Nov 28 16:39 hooks.log
-drwxrwxr-x 31 1003 1003   4096 Nov 28 16:39 kernel
--rw-rw-r--  1 1003 1003  40036 Nov 28 16:30 kernel.mbox
--rw-rw-r--  1 1003 1003  29288 Nov 28 16:31 kunit.log
--rw-rw-r--  1 1003 1003     48 Nov 28 16:30 parent.tag
--rw-rw-r--  1 1003 1003    270 Nov 28 16:30 parent_tag_mismatch_alert.txt
-drwxrwxr-x 44 1003 1003   4096 Nov 28 16:28 pipelines
--rw-rw-r--  1 1003 1003    793 Nov 28 16:28 README.adoc
-drwxrwxr-x  3 1003 1003   4096 Nov 28 16:28 scripts
-drwxrwxr-x  3 1003 1003   4096 Nov 28 16:28 src
-drwxrwxr-x  2 1003 1003   4096 Nov 28 16:28 vars
-drwxrwxr-x  2 1003 1003   4096 Nov 28 16:28 .vscode
-+ uname -a
-Linux da22ac801d67 5.4.0-164-generic #181-Ubuntu SMP Fri Sep 1 13:41:22 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux
-+ export
-+ grep -Ei '(^|\W)CI_'
-declare -x CI_KERNEL_BUILD_DIR="/workspace/kernel/build64-default"
-declare -x CI_KERNEL_SRC_DIR="/workspace/kernel"
-declare -x CI_TOOLS_SRC_DIR="/workspace/ci"
-declare -x CI_WORKSPACE_DIR="/workspace"
-+ '[' -n /workspace ']'
-+ git_args='-C /workspace/kernel'
-+ git_log_args=
-+ git --no-pager -C /workspace/kernel log --format=oneline --abbrev-commit
-c96f8f84c drm/xe/kunit: Add test for LMTT operations
-de48441d8 drm/xe/kunit: Enable CONFIG_PCI_IOV in .kunitconfig
-d6f0629bb drm/xe/pf: Introduce Local Memory Translation Table
-956109d03 drm/xe: Introduce SR-IOV logging macros
-e825c177c drm/xe: Define DRM_XE_DEBUG_SRIOV config
-b06c9f366 fixup! drm/xe/uapi: Remove MMIO ioctl
-run-parts: executing /workspace/ci/hooks/10-build-W1
-+ SRC_DIR=/workspace/kernel
-+ RESTORE_DISPLAY_CONFIG=0
-+ '[' -n /workspace/kernel/build64-default ']'
-+ BUILD_DIR=/workspace/kernel/build64-default
-+ cd /workspace/kernel
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default modules_prepare
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  GEN     Makefile
-  UPD     include/config/kernel.release
-  UPD     include/generated/compile.h
-  UPD     include/generated/utsrelease.h
-  DESCEND objtool
-  HOSTCC  /workspace/kernel/build64-default/tools/objtool/fixdep.o
-  CALL    ../scripts/checksyscalls.sh
-  HOSTLD  /workspace/kernel/build64-default/tools/objtool/fixdep-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/fixdep
-  INSTALL libsubcmd_headers
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/exec-cmd.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/help.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/pager.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/parse-options.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/run-command.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/sigchain.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libsubcmd/subcmd-config.o
-  LD      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd-in.o
-  AR      /workspace/kernel/build64-default/tools/objtool/libsubcmd/libsubcmd.a
-  CC      /workspace/kernel/build64-default/tools/objtool/weak.o
-  CC      /workspace/kernel/build64-default/tools/objtool/check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/builtin-check.o
-  CC      /workspace/kernel/build64-default/tools/objtool/elf.o
-  CC      /workspace/kernel/build64-default/tools/objtool/objtool.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_gen.o
-  CC      /workspace/kernel/build64-default/tools/objtool/orc_dump.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libstring.o
-  CC      /workspace/kernel/build64-default/tools/objtool/libctype.o
-  CC      /workspace/kernel/build64-default/tools/objtool/str_error_r.o
-  CC      /workspace/kernel/build64-default/tools/objtool/librbtree.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/special.o
-  CC      /workspace/kernel/build64-default/tools/objtool/arch/x86/decode.o
-  LD      /workspace/kernel/build64-default/tools/objtool/arch/x86/objtool-in.o
-  LD      /workspace/kernel/build64-default/tools/objtool/objtool-in.o
-  LINK    /workspace/kernel/build64-default/tools/objtool/objtool
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-++ nproc
-+ make -j48 O=/workspace/kernel/build64-default M=drivers/gpu/drm/xe W=1
-make[1]: Entering directory '/workspace/kernel/build64-default'
-  CC [M]  drivers/gpu/drm/xe/xe_bb.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo.o
-  CC [M]  drivers/gpu/drm/xe/xe_bo_evict.o
-  CC [M]  drivers/gpu/drm/xe/xe_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_devcoredump.o
-  CC [M]  drivers/gpu/drm/xe/xe_device.o
-  CC [M]  drivers/gpu/drm/xe/xe_device_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_dma_buf.o
-  CC [M]  drivers/gpu/drm/xe/xe_drm_client.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec.o
-  CC [M]  drivers/gpu/drm/xe/xe_execlist.o
-  CC [M]  drivers/gpu/drm/xe/xe_exec_queue.o
-  CC [M]  drivers/gpu/drm/xe/xe_force_wake.o
-  CC [M]  drivers/gpu/drm/xe/xe_ggtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gpu_scheduler.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_clock.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_idle_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_mcr.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_pagefault.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_tlb_invalidation.o
-  CC [M]  drivers/gpu/drm/xe/xe_gt_topology.o
-  HOSTCC  drivers/gpu/drm/xe/xe_gen_wa_oob
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ads.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_ct.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_hwconfig.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_log.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_pc.o
-  CC [M]  drivers/gpu/drm/xe/xe_guc_submit.o
-  CC [M]  drivers/gpu/drm/xe/xe_heci_gsc.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_hw_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc.o
-  CC [M]  drivers/gpu/drm/xe/xe_huc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_irq.o
-  CC [M]  drivers/gpu/drm/xe/xe_lrc.o
-  CC [M]  drivers/gpu/drm/xe/xe_mmio.o
-  CC [M]  drivers/gpu/drm/xe/xe_mocs.o
-  CC [M]  drivers/gpu/drm/xe/xe_module.o
-  CC [M]  drivers/gpu/drm/xe/xe_pat.o
-  CC [M]  drivers/gpu/drm/xe/xe_pci.o
-  CC [M]  drivers/gpu/drm/xe/xe_pcode.o
-  CC [M]  drivers/gpu/drm/xe/xe_pm.o
-  CC [M]  drivers/gpu/drm/xe/xe_preempt_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt.o
-  CC [M]  drivers/gpu/drm/xe/xe_pt_walk.o
-  CC [M]  drivers/gpu/drm/xe/xe_query.o
-  CC [M]  drivers/gpu/drm/xe/xe_range_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_sr.o
-  CC [M]  drivers/gpu/drm/xe/xe_reg_whitelist.o
-  CC [M]  drivers/gpu/drm/xe/xe_rtp.o
-  CC [M]  drivers/gpu/drm/xe/xe_sa.o
-  CC [M]  drivers/gpu/drm/xe/xe_sched_job.o
-  CC [M]  drivers/gpu/drm/xe/xe_step.o
-  CC [M]  drivers/gpu/drm/xe/xe_sync.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile.o
-  CC [M]  drivers/gpu/drm/xe/xe_tile_sysfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_trace.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_sys_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_vram_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_tuning.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/xe_uc_fw.o
-  CC [M]  drivers/gpu/drm/xe/xe_wait_user_fence.o
-  CC [M]  drivers/gpu/drm/xe/xe_wopcm.o
-  CC [M]  drivers/gpu/drm/xe/xe_hwmon.o
-  CC [M]  drivers/gpu/drm/xe/xe_sriov.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt_2l.o
-  CC [M]  drivers/gpu/drm/xe/xe_lmtt_ml.o
-  CC [M]  drivers/gpu/drm/xe/xe_display.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_fb_pin.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_hdcp_gsc.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_plane_initial.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_display_rps.o
-  CC [M]  drivers/gpu/drm/xe/display/xe_display_misc.o
-  CC [M]  drivers/gpu/drm/xe/display/intel_fbdev_fb.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/i915_irq.o
-  CC [M]  drivers/gpu/drm/xe/display/ext/i915_utils.o
-  CC [M]  drivers/gpu/drm/xe/i915-soc/intel_dram.o
-  CC [M]  drivers/gpu/drm/xe/i915-soc/intel_pch.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/icl_dsi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_atomic_plane.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_audio.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_backlight.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bios.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_bw.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cdclk.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_color.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_combo_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_connector.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_crtc_state_dump.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cursor.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_cx0_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_ddi_buf_trans.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_debugfs_params.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_device.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_driver.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_irq.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_params.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_map.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_power_well.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_trace.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_display_wa.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dkl_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dmc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_aux_backlight.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_hdcp.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_link_training.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dp_mst.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpll_mgr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dpt_common.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_drrs.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsb.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_dcs_backlight.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_dsi_vbt.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fb.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fdi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fifo_underrun.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_frontbuffer.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_global_state.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_gmbus.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdcp.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hdmi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hotplug_irq.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_hti.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_link_bw.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_lspcon.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_lock.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_setup.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_modeset_verify.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_panel.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pipe_crc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pmdemand.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_pps.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_psr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_qp_tables.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_quirks.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_snps_phy.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_tc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vblank.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vdsc.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vga.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_vrr.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_wm.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_scaler.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_universal_plane.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/skl_watermark.o
-  CC [M]  drivers/gpu/drm/xe/xe_pmu.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_acpi.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_opregion.o
-  CC [M]  drivers/gpu/drm/xe/i915-display/intel_fbdev.o
-  HDRTEST drivers/gpu/drm/xe/abi/guc_klvs_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_errors_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_slpc_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_mmio_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_actions_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-  HDRTEST drivers/gpu/drm/xe/abi/guc_messages_abi.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_gem.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vma_types.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_irq.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband_reg.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_wakeref.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_mocs_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_pcode.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_drv.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_trace.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_reg.h
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.o
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_active_types.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_utils.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/vlv_sideband.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_gem_stolen.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_mchbar_regs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_gpu_error.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/soc/intel_pch.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/soc/intel_dram.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/soc/intel_gmch.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_vgpu.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_fixed.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_runtime_pm.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_mman.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/gt/intel_rps.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/intel_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/pxp/intel_pxp.h
-  HDRTEST drivers/gpu/drm/xe/compat-i915-headers/i915_active.h
-  HDRTEST drivers/gpu/drm/xe/display/intel_fbdev_fb.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_instr_defs.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_gfxpipe_commands.h
-  HDRTEST drivers/gpu/drm/xe/instructions/xe_mi_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_reg_defs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_guc_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gt_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_sriov_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_lrc_layout.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_mchbar_regs.h
-  HDRTEST drivers/gpu/drm/xe/regs/xe_engine_regs.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_pci_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_migrate_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_dma_buf_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_mocs_test.h
-  HDRTEST drivers/gpu/drm/xe/tests/xe_bo_test.h
-  HDRTEST drivers/gpu/drm/xe/xe_assert.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb.h
-  HDRTEST drivers/gpu/drm/xe/xe_bb_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_evict.h
-  HDRTEST drivers/gpu/drm/xe/xe_bo_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump.h
-  HDRTEST drivers/gpu/drm/xe/xe_devcoredump_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_device.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_device_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_display.h
-  HDRTEST drivers/gpu/drm/xe/xe_dma_buf.h
-  HDRTEST drivers/gpu/drm/xe/xe_drm_client.h
-  HDRTEST drivers/gpu/drm/xe/xe_drv.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue.h
-  HDRTEST drivers/gpu/drm/xe/xe_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist.h
-  HDRTEST drivers/gpu/drm/xe/xe_execlist_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake.h
-  HDRTEST drivers/gpu/drm/xe/xe_force_wake_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_ggtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gpu_scheduler.h
-  HDRTEST drivers/gpu/drm/xe/xe_gpu_scheduler_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_clock.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_idle_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_mcr.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_pagefault.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_tlb_invalidation_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_topology.h
-  HDRTEST drivers/gpu/drm/xe/xe_gt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ads_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_ct_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_exec_queue_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_fwif.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_hwconfig.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_log_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_pc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_submit_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_guc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_heci_gsc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_huc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_class_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_engine_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_hw_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_hwmon.h
-  HDRTEST drivers/gpu/drm/xe/xe_irq.h
-  HDRTEST drivers/gpu/drm/xe/xe_lmtt.h
-  HDRTEST drivers/gpu/drm/xe/xe_lmtt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc.h
-  HDRTEST drivers/gpu/drm/xe/xe_lrc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_macros.h
-  HDRTEST drivers/gpu/drm/xe/xe_map.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate.h
-  HDRTEST drivers/gpu/drm/xe/xe_migrate_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_mmio.h
-  HDRTEST drivers/gpu/drm/xe/xe_mocs.h
-  HDRTEST drivers/gpu/drm/xe/xe_module.h
-  HDRTEST drivers/gpu/drm/xe/xe_pat.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci.h
-  HDRTEST drivers/gpu/drm/xe/xe_pci_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode.h
-  HDRTEST drivers/gpu/drm/xe/xe_pcode_api.h
-  HDRTEST drivers/gpu/drm/xe/xe_platform_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pm.h
-  HDRTEST drivers/gpu/drm/xe/xe_pmu.h
-  HDRTEST drivers/gpu/drm/xe/xe_pmu_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_preempt_fence_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_pt_walk.h
-  HDRTEST drivers/gpu/drm/xe/xe_query.h
-  HDRTEST drivers/gpu/drm/xe/xe_range_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_sr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_reg_whitelist.h
-  HDRTEST drivers/gpu/drm/xe/xe_res_cursor.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops.h
-  HDRTEST drivers/gpu/drm/xe/xe_ring_ops_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp.h
-  HDRTEST drivers/gpu/drm/xe/xe_rtp_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa.h
-  HDRTEST drivers/gpu/drm/xe/xe_sa_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job.h
-  HDRTEST drivers/gpu/drm/xe/xe_sched_job_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sriov.h
-  HDRTEST drivers/gpu/drm/xe/xe_sriov_printk.h
-  HDRTEST drivers/gpu/drm/xe/xe_sriov_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_step.h
-  HDRTEST drivers/gpu/drm/xe/xe_step_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync.h
-  HDRTEST drivers/gpu/drm/xe/xe_sync_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_tile_sysfs_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_trace.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_stolen_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_sys_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr.h
-  HDRTEST drivers/gpu/drm/xe/xe_ttm_vram_mgr_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_tuning.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_debugfs.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_abi.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_fw_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_uc_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_doc.h
-  HDRTEST drivers/gpu/drm/xe/xe_vm_types.h
-  HDRTEST drivers/gpu/drm/xe/xe_wa.h
-  HDRTEST drivers/gpu/drm/xe/xe_wait_user_fence.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm.h
-  HDRTEST drivers/gpu/drm/xe/xe_wopcm_types.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  GEN     xe_wa_oob.c xe_wa_oob.h
-  CC [M]  drivers/gpu/drm/xe/xe_guc.o
-  CC [M]  drivers/gpu/drm/xe/xe_migrate.o
-  CC [M]  drivers/gpu/drm/xe/xe_ring_ops.o
-  CC [M]  drivers/gpu/drm/xe/xe_ttm_stolen_mgr.o
-  CC [M]  drivers/gpu/drm/xe/xe_vm.o
-  CC [M]  drivers/gpu/drm/xe/xe_wa.o
-  LD [M]  drivers/gpu/drm/xe/xe.o
-  MODPOST drivers/gpu/drm/xe/Module.symvers
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/gpu/drm/xe/tests/xe_mocs_test.o
-  CC [M]  drivers/gpu/drm/xe/xe.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_bo_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_mocs_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_pci_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.mod.o
-  CC [M]  drivers/gpu/drm/xe/tests/xe_wa_test.mod.o
-  LD [M]  drivers/gpu/drm/xe/tests/xe_wa_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_bo_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_pci_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_mocs_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_rtp_test.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_dma_buf_test.ko
-  LD [M]  drivers/gpu/drm/xe/xe.ko
-  LD [M]  drivers/gpu/drm/xe/tests/xe_migrate_test.ko
-make[1]: Leaving directory '/workspace/kernel/build64-default'
-run-parts: executing /workspace/ci/hooks/20-kernel-doc
-+ SRC_DIR=/workspace/kernel
-+ cd /workspace/kernel
-+ find drivers/gpu/drm/xe/ -name '*.[ch]' -not -path 'drivers/gpu/drm/xe/display/*'
-+ xargs ./scripts/kernel-doc -Werror -none include/uapi/drm/xe_drm.h
-drivers/gpu/drm/xe/xe_device_types.h:203: warning: Function parameter or member 'sriov' not described in 'xe_tile'
-1 warnings as Errors
-run-parts: /workspace/ci/hooks/20-kernel-doc exited with return code 123
+s/xe_user_to_engine_class/xe_user_to_hwe_engine_class
 
+Otherwise LGTM.
 
+Matt
+
+> +	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
+> +	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
+> +	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
+> +	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
+> +	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+> +};
+> +
+>  /* FIXME: s/XE_HW_ENGINE_MAX_INSTANCE/XE_HW_ENGINE_MAX_COUNT */
+>  #define XE_HW_ENGINE_MAX_INSTANCE	9
+>  
+> diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+> index 61a7d92b7e88..caa98c6b5853 100644
+> --- a/drivers/gpu/drm/xe/xe_query.c
+> +++ b/drivers/gpu/drm/xe/xe_query.c
+> @@ -22,22 +22,6 @@
+>  #include "xe_mmio.h"
+>  #include "xe_ttm_vram_mgr.h"
+>  
+> -static const u16 xe_to_user_engine_class[] = {
+> -	[XE_ENGINE_CLASS_RENDER] = DRM_XE_ENGINE_CLASS_RENDER,
+> -	[XE_ENGINE_CLASS_COPY] = DRM_XE_ENGINE_CLASS_COPY,
+> -	[XE_ENGINE_CLASS_VIDEO_DECODE] = DRM_XE_ENGINE_CLASS_VIDEO_DECODE,
+> -	[XE_ENGINE_CLASS_VIDEO_ENHANCE] = DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE,
+> -	[XE_ENGINE_CLASS_COMPUTE] = DRM_XE_ENGINE_CLASS_COMPUTE,
+> -};
+> -
+> -static const enum xe_engine_class user_to_xe_engine_class[] = {
+> -	[DRM_XE_ENGINE_CLASS_RENDER] = XE_ENGINE_CLASS_RENDER,
+> -	[DRM_XE_ENGINE_CLASS_COPY] = XE_ENGINE_CLASS_COPY,
+> -	[DRM_XE_ENGINE_CLASS_VIDEO_DECODE] = XE_ENGINE_CLASS_VIDEO_DECODE,
+> -	[DRM_XE_ENGINE_CLASS_VIDEO_ENHANCE] = XE_ENGINE_CLASS_VIDEO_ENHANCE,
+> -	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+> -};
+> -
+>  static size_t calc_hw_engine_info_size(struct xe_device *xe)
+>  {
+>  	struct xe_hw_engine *hwe;
+> @@ -138,10 +122,10 @@ query_engine_cycles(struct xe_device *xe,
+>  	if (!gt)
+>  		return -EINVAL;
+>  
+> -	if (eci->engine_class >= ARRAY_SIZE(user_to_xe_engine_class))
+> +	if (eci->engine_class >= ARRAY_SIZE(xe_user_to_engine_class))
+>  		return -EINVAL;
+>  
+> -	hwe = xe_gt_hw_engine(gt, user_to_xe_engine_class[eci->engine_class],
+> +	hwe = xe_gt_hw_engine(gt, xe_user_to_engine_class[eci->engine_class],
+>  			      eci->engine_instance, true);
+>  	if (!hwe)
+>  		return -EINVAL;
+> @@ -212,7 +196,7 @@ static int query_engines(struct xe_device *xe,
+>  				continue;
+>  
+>  			hw_engine_info[i].engine_class =
+> -				xe_to_user_engine_class[hwe->class];
+> +				xe_engine_to_user_class[hwe->class];
+>  			hw_engine_info[i].engine_instance =
+>  				hwe->logical_instance;
+>  			hw_engine_info[i].gt_id = gt->info.id;
+> -- 
+> 2.40.0
+> 
