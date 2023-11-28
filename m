@@ -4,47 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 23872C4167B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DF8FAC07E97
 	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 20:32:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6446910E33B;
-	Tue, 28 Nov 2023 20:32:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A79E510E32A;
+	Tue, 28 Nov 2023 20:32:18 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B2A110E188
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 20:32:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03ACE10E188
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 20:32:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1701203536; x=1732739536;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HpcYmVOJd5thlgJ7FlC9AscIKanreAMmiVCcIdHJ/SU=;
- b=UNzimTC2pPYSXNPo9/J1Ma1tXHc5FFi5DYFeOgJfuAN+PSsBDfrIw10Z
- id0G1JzP0b6d1KGvzYRENxu7DyFlQImAPULQb5V2W+/KTx6D+wurhqmLF
- 34WlaHFPNzZx0+z3TG2qln2LIMi3Yjycr82LYKPYGQFwbUf0jUBZ4pmsw
- gZ1kjNHVFSzqzvL1wFtpJGSysPoXsbY2vW51HdprefbIbvmc6tIEe57Pp
- gqmDdZQtpZAcyTG9iiKXr3m4kA5Vwq7SjM/RNkqXmX6i9C/o1NeE03h61
- yJoFRBIyjhKMF7zhA3Ui4EjS0KqNn78ypSTqKqMMMzuJ8iQ0BzYrPJPfL Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="424168784"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="424168784"
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=hoMkkDPG4Tj2czdA106QtwXk8bjZeTXq9kej8N3C+b4=;
+ b=AqBXOZ3FjVWZ2TlkLVsSSTOZzjx9rNDwGlrqkRd8to86VXHmat1IM/60
+ pQMO+1iWZs3IdBdzTeeiE8xadEqV24OI9GcFVs0wCXjjA7OVT/MkoumH1
+ +106trinp3zswLzlRyUWaBdoVcq+J4baiUk5N/Z6/Kb81a1Kz1xX3u/n8
+ EbWK7oyTNoV49TvvHlrxZRR9LJYBszX8QWSt6mQg5u1hSiUTd2qavSWEU
+ fScppI0lWASXBB1so+BtFo9XSongn0pv0zqF+z2K8oA3GTPUtUGPBvtjc
+ ulpL+r5/t+0FoU9qR5OCifbsu2fdtIYYGXTmSr7Suq0bMLy8R3k/HwhGn A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="424168776"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="424168776"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 12:32:16 -0800
+ 28 Nov 2023 12:32:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="17038408"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="17038398"
 Received: from mwajdecz-mobl.ger.corp.intel.com ([10.249.140.124])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 12:32:15 -0800
+ 28 Nov 2023 12:32:14 -0800
 From: Michal Wajdeczko <michal.wajdeczko@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Nov 2023 21:32:02 +0100
-Message-Id: <20231128203203.1147-2-michal.wajdeczko@intel.com>
+Date: Tue, 28 Nov 2023 21:32:01 +0100
+Message-Id: <20231128203203.1147-1-michal.wajdeczko@intel.com>
 X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20231128203203.1147-1-michal.wajdeczko@intel.com>
-References: <20231128203203.1147-1-michal.wajdeczko@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/3] drm/xe/guc: Remove obsolete GuC CTB
- documentation
+Subject: [Intel-xe] [PATCH 1/3] drm/xe/guc: Drop ancient GuC CTB definitions
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,68 +56,42 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Refer to already described CTB Descriptor and CTB HXG Message.
+Those definitions were applicable for old GuC firmwares only.
 
 Signed-off-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
 ---
- .../drm/xe/abi/guc_communication_ctb_abi.h    | 45 +------------------
- 1 file changed, 2 insertions(+), 43 deletions(-)
+ .../drm/xe/abi/guc_communication_ctb_abi.h    | 21 -------------------
+ 1 file changed, 21 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-index d34f91002789..3b83f907ece4 100644
+index 41244055cc0c..d34f91002789 100644
 --- a/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
 +++ b/drivers/gpu/drm/xe/abi/guc_communication_ctb_abi.h
-@@ -120,49 +120,8 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
-  * is based on u32 data stream written to the shared buffer. One buffer can
-  * be used to transmit data only in one direction (one-directional channel).
-  *
-- * Current status of the each buffer is stored in the buffer descriptor.
-- * Buffer descriptor holds tail and head fields that represents active data
-- * stream. The tail field is updated by the data producer (sender), and head
-- * field is updated by the data consumer (receiver)::
-- *
-- *      +------------+
-- *      | DESCRIPTOR |          +=================+============+========+
-- *      +============+          |                 | MESSAGE(s) |        |
-- *      | address    |--------->+=================+============+========+
-- *      +------------+
-- *      | head       |          ^-----head--------^
-- *      +------------+
-- *      | tail       |          ^---------tail-----------------^
-- *      +------------+
-- *      | size       |          ^---------------size--------------------^
-- *      +------------+
-- *
-- * Each message in data stream starts with the single u32 treated as a header,
-- * followed by optional set of u32 data that makes message specific payload::
-- *
-- *      +------------+---------+---------+---------+
-- *      |         MESSAGE                          |
-- *      +------------+---------+---------+---------+
-- *      |   msg[0]   |   [1]   |   ...   |  [n-1]  |
-- *      +------------+---------+---------+---------+
-- *      |   MESSAGE  |       MESSAGE PAYLOAD       |
-- *      +   HEADER   +---------+---------+---------+
-- *      |            |    0    |   ...   |    n    |
-- *      +======+=====+=========+=========+=========+
-- *      | 31:16| code|         |         |         |
-- *      +------+-----+         |         |         |
-- *      |  15:5|flags|         |         |         |
-- *      +------+-----+         |         |         |
-- *      |   4:0|  len|         |         |         |
-- *      +------+-----+---------+---------+---------+
-- *
-- *                   ^-------------len-------------^
-- *
-- * The message header consists of:
-- *
-- * - **len**, indicates length of the message payload (in u32)
-- * - **code**, indicates message code
-- * - **flags**, holds various bits to control message handling
-+ * Current status of the each buffer is maintained in the `CTB Descriptor`_.
-+ * Each message in data stream is encoded as `CTB HXG Message`_.
+@@ -165,25 +165,4 @@ static_assert(sizeof(struct guc_ct_buffer_desc) == 64);
+  * - **flags**, holds various bits to control message handling
   */
  
+-/*
+- * Definition of the command transport message header (DW0)
+- *
+- * bit[4..0]	message len (in dwords)
+- * bit[7..5]	reserved
+- * bit[8]	response (G2H only)
+- * bit[8]	write fence to desc (H2G only)
+- * bit[9]	write status to H2G buff (H2G only)
+- * bit[10]	send status back via G2H (H2G only)
+- * bit[15..11]	reserved
+- * bit[31..16]	action code
+- */
+-#define GUC_CT_MSG_LEN_SHIFT			0
+-#define GUC_CT_MSG_LEN_MASK			0x1F
+-#define GUC_CT_MSG_IS_RESPONSE			(1 << 8)
+-#define GUC_CT_MSG_WRITE_FENCE_TO_DESC		(1 << 8)
+-#define GUC_CT_MSG_WRITE_STATUS_TO_BUFF		(1 << 9)
+-#define GUC_CT_MSG_SEND_STATUS			(1 << 10)
+-#define GUC_CT_MSG_ACTION_SHIFT			16
+-#define GUC_CT_MSG_ACTION_MASK			0xFFFF
+-
  #endif
 -- 
 2.25.1
