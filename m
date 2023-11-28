@@ -4,55 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2D3AEC4167B
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 10:52:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5DA42C4167B
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 11:33:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E88B610E4D3;
-	Tue, 28 Nov 2023 10:52:38 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6C8C10E4D3
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 10:52:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A4E710E233;
+	Tue, 28 Nov 2023 11:33:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5571C10E233
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 11:33:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701168757; x=1732704757;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=L4V0O0bMarg4JvO0SlF52GKcRhRP3olqjn6pLaJReAM=;
- b=JQ3tN2jCuAudjn9a5BvdnrggwypybPZ+v+cpbaDQhXmRFjH2EOQYrir1
- uJQGsj+/FQz0m7xUmcQBgLax7Eh5Dedc5vOT71cymDoCRNIjptdoBRVEx
- Ci2UIv3Ha48Q/XkrEswcIg5F/UrJitDn2BRklFJ/WWk15+PqyynZ9UxVa
- RNJYw79dJleXVvaL2sldfrPB3F0sjfHG1FML2TyAlMFGujQ/kw7KQnWz/
- CoEtb2XjtICv3IPiAc8Uw545hlpIQ0BLxchvnEhONBNgW1lDh+qb+8w2y
- otecCmUXItzv4hGUhCWy/kHUHIa34Rv9B1AEyTNGgr29uHXLn/X/kMONc g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="372270680"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="372270680"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 02:52:27 -0800
+ t=1701171192; x=1732707192;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GIvVVybCk059bqv2qZAQZ5OqcO3qCGNNi/VB8Nc4xxo=;
+ b=Ij89n8I2FyEb684PsV6o+A80+k2QPUmwgNY0stlc/fNQ5vZ1qLXmPnvg
+ T9+luWbSpT+bHvQ572qNo2DUc4USgA7fSuwyA4lx3tuz3i0YBcDHavkwh
+ FiiaYg20MQ2xmaHYfJIqG2SvXKxcoIJjWOUaqix7sqHtTlrWyPR+3pHIN
+ Xupo9vosD9usG8m5O/QZrrdKUXX3k2EOsJ070uQyvR9iWNP4XFknK2pnP
+ fdv1DRbNSaADt4Ju60xfgqypX6RkJ5vE8muNKVNpgMvIevoWDKakTLxxA
+ 9WJ65J99cXWHk/mAQ5CIeU8grAcjMlae2eLfwGMvLNTeOrjYU793Q90k5 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="11599691"
+X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="11599691"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 03:33:12 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="802932320"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="802932320"
-Received: from ayacoub-mobl.ger.corp.intel.com (HELO [10.213.202.101])
- ([10.213.202.101])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 02:52:24 -0800
-Message-ID: <28785502-ff6c-4904-9c66-014a96163d61@linux.intel.com>
-Date: Tue, 28 Nov 2023 10:52:22 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="892044926"
+X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="892044926"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga004.jf.intel.com with ESMTP; 28 Nov 2023 03:33:10 -0800
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Nov 2023 17:12:32 +0530
+Message-Id: <20231128114232.4057798-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>,
- Riana Tauro <riana.tauro@intel.com>, intel-xe@lists.freedesktop.org
-References: <20231127141125.2913415-1-riana.tauro@intel.com>
- <20231127141125.2913415-5-riana.tauro@intel.com>
- <9fa96965-3393-45d4-8b8d-6fb9596a5fdf@linux.intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <9fa96965-3393-45d4-8b8d-6fb9596a5fdf@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 4/8] RFC drm/xe/guc: Add PMU counter for
- total active ticks
+Subject: [Intel-xe] [PATCH V2] drm/xe/xe2: Add workaround 16020292621
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,312 +53,94 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+Workaround applies to Graphics 20.04 as part of ring
+submission
 
-On 28/11/2023 10:06, Aravind Iddamsetty wrote:
-> 
-> On 11/27/23 19:41, Riana Tauro wrote:
->> GuC provides engine busyness ticks as a 64 bit counter which count
->> as clock ticks. These counters are maintained in a
->> shared memory buffer and internally updated on a continuous basis.
->>
->> GuC also provides a periodically total active ticks that GT has been
->> active for. This counter is exposed to the user such that busyness can
->> be calculated as a percentage using
->>
->> busyness % = (engine active ticks/total active ticks) * 100.
-> is the total active ticks from epoch, but PMU is relative from instance of event open
-> so i'm just thinking if total active ticks will be less than  engine active ticks in which case the
-> % will be greater than 100.
+V2:
+  - Marking this WA for 20.04 instead of 20.00
 
-If you are saying engine and total reset internally at different points 
-that might be a problem.
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  1 +
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h      |  1 +
+ drivers/gpu/drm/xe/xe_ring_ops.c          | 18 ++++++++++++++++++
+ drivers/gpu/drm/xe/xe_wa_oob.rules        |  2 ++
+ 4 files changed, 22 insertions(+)
 
-In general I suggest a very extensive IGT coverage aka perf_pmu for 
-i915, especially on the edge cases like GPU/engine resets, 
-suspend/resume, driver unbind/unload, CPU hotplug, RC6 etc. This is 
-because perf API is a bit tricky and certain things can surprise.
+diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+index 4402f72481dc..f1c5bf203b3d 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+@@ -48,6 +48,7 @@
+ #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
+ #define   PIPE_CONTROL_AMFS_FLUSH			(1<<25)
+ #define   PIPE_CONTROL_GLOBAL_GTT_IVB			(1<<24)
++#define   PIPE_CONTROL_LRI_POST_SYNC			BIT(23)
+ #define   PIPE_CONTROL_STORE_DATA_INDEX			(1<<21)
+ #define   PIPE_CONTROL_CS_STALL				(1<<20)
+ #define   PIPE_CONTROL_GLOBAL_SNAPSHOT_RESET		(1<<19)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index 18b13224480d..efc05762556e 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -60,6 +60,7 @@
+ #define   MTL_MCR_GROUPID			REG_GENMASK(11, 8)
+ #define   MTL_MCR_INSTANCEID			REG_GENMASK(3, 0)
+ 
++#define RCS_NOPID				XE_REG(0x2094)
+ #define FF_SLICE_CS_CHICKEN1			XE_REG(0x20e0, XE_REG_OPTION_MASKED)
+ #define   FFSC_PERCTX_PREEMPT_CTRL		REG_BIT(14)
+ 
+diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
+index 59e0aa2d6a4c..ed161e4ac4b2 100644
+--- a/drivers/gpu/drm/xe/xe_ring_ops.c
++++ b/drivers/gpu/drm/xe/xe_ring_ops.c
+@@ -184,6 +184,22 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
+ 	return i;
+ }
+ 
++static int emit_pipe_control(struct xe_sched_job *job, u32 *dw, int i)
++{
++	struct xe_gt *gt = job->q->gt;
++
++	if (XE_WA(gt, 16020292621)) {
++		dw[i++] = GFX_OP_PIPE_CONTROL(6);
++		dw[i++] = PIPE_CONTROL_LRI_POST_SYNC;
++		dw[i++] = RCS_NOPID.addr;
++		dw[i++] = 0;
++		dw[i++] = 0;
++		dw[i++] = 0;
++	}
++
++	return i;
++}
++
+ static int emit_pipe_imm_ggtt(u32 addr, u32 value, bool stall_only, u32 *dw,
+ 			      int i)
+ {
+@@ -342,6 +358,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
+ 
+ 	i = emit_user_interrupt(dw, i);
+ 
++	i = emit_pipe_control(job, dw, i);
++
+ 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
+ 
+ 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
+diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
+index 752842d734be..defae8259778 100644
+--- a/drivers/gpu/drm/xe/xe_wa_oob.rules
++++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
+@@ -20,3 +20,5 @@
+ 16017236439	PLATFORM(PVC)
+ 22010954014	PLATFORM(DG2)
+ 14019821291	MEDIA_VERSION_RANGE(1300, 2000)
++16020292621	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
++		ENGINE_CLASS(RENDER)
+-- 
+2.25.1
 
-If the test coverage is on par with i915 PMU then I think you can be 
-reasonably confident things work reliably and as expected.
-
-> rather why don't we just expose engine busyness in ns like we did in i915.
-> 
-> @Tvrtko, any thoughts please?
-
-AFAIR ticks are thought to work better from a VF but I don't remember 
-the details.
-
-Or outside the VF, do total ticks run when in RC6 and if they don't will 
-percentage calculations from the host be meaningful.
-
-Regards,
-
-Tvrtko
-
-
-> Thanks,
-> Aravind.
->>
->> This patch provides a pmu counter for total active ticks.
->>
->> This is listed by perf tool as
->>
->> sudo ./perf list
->> 	  xe_0000_03_00.0/total-active-ticks-gt0/            [Kernel PMU event]
->>
->> and can be read using
->>
->> sudo ./perf stat -e xe_0000_03_00.0/total-active-ticks-gt0/ -I 1000
->>          time 	    counts  unit 	events
->>      1.001332764    58942964    xe_0000_03_00.0/total-active-ticks-gt0/
->>      2.011421147	   21191869    xe_0000_03_00.0/total-active-ticks-gt0/
->>      3.013223865	   19269012    xe_0000_03_00.0/total-active-ticks-gt0/
->>
->> Signed-off-by: Riana Tauro <riana.tauro@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_gt.c                  | 11 +++
->>   drivers/gpu/drm/xe/xe_gt.h                  |  1 +
->>   drivers/gpu/drm/xe/xe_guc_engine_busyness.c | 75 +++++++++++++++++----
->>   drivers/gpu/drm/xe/xe_guc_engine_busyness.h |  1 +
->>   drivers/gpu/drm/xe/xe_pmu.c                 |  7 ++
->>   include/uapi/drm/xe_drm.h                   |  1 +
->>   6 files changed, 83 insertions(+), 13 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> index f06c74a7c6d0..2379462685f2 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.c
->> +++ b/drivers/gpu/drm/xe/xe_gt.c
->> @@ -765,6 +765,17 @@ struct xe_hw_engine *xe_gt_any_hw_engine_by_reset_domain(struct xe_gt *gt,
->>   	return NULL;
->>   }
->>   
->> +/**
->> + * xe_gt_total_active_ticks - Return total active ticks
->> + * @gt: GT structure
->> + *
->> + * Returns total active ticks that the GT was active for.
->> + */
->> +u64 xe_gt_total_active_ticks(struct xe_gt *gt)
->> +{
->> +	return xe_guc_engine_busyness_active_ticks(&gt->uc.guc);
->> +}
->> +
->>   /**
->>    * xe_gt_engine_busy_ticks - Return current accumulated engine busyness ticks
->>    * @gt: GT structure
->> diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
->> index e23a6ceff863..023cb7c0c32d 100644
->> --- a/drivers/gpu/drm/xe/xe_gt.h
->> +++ b/drivers/gpu/drm/xe/xe_gt.h
->> @@ -41,6 +41,7 @@ void xe_gt_reset_async(struct xe_gt *gt);
->>   void xe_gt_sanitize(struct xe_gt *gt);
->>   
->>   u64 xe_gt_engine_busy_ticks(struct xe_gt *gt, struct xe_hw_engine *hwe);
->> +u64 xe_gt_total_active_ticks(struct xe_gt *gt);
->>   
->>   /**
->>    * xe_gt_any_hw_engine_by_reset_domain - scan the list of engines and return the
->> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_busyness.c b/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
->> index 611bafd14d1a..dcf468ee30ea 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
->> +++ b/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
->> @@ -19,7 +19,16 @@
->>    * timer internal to GuC. The update rate is guaranteed to be at least 2Hz (but with
->>    * a caveat that is not real time, best effort only).
->>    *
->> + * In addition to the engine busyness ticks, there is also a total time count which
->> + * is a free running GT timestamp counter.
->> + *
->> + * Note that counters should be used as ratios of each other for calculating a
->> + * percentage.
->> + *
->>    * engine busyness ticks (ticks_engine) : clock ticks for which engine was active
->> + * total active ticks (ticks_gt)	: total clock ticks
->> + *
->> + * engine busyness % = (ticks_engine / ticks_gt) * 100
->>    */
->>   
->>   static bool guc_engine_busyness_supported(struct xe_guc *guc)
->> @@ -41,48 +50,69 @@ static bool guc_engine_busyness_supported(struct xe_guc *guc)
->>   
->>   static void guc_engine_busyness_usage_map(struct xe_guc *guc,
->>   					  struct xe_hw_engine *hwe,
->> -					  struct iosys_map *engine_map)
->> +					  struct iosys_map *engine_map,
->> +					  struct iosys_map *global_map)
->>   {
->>   	struct iosys_map *map;
->>   	size_t offset;
->>   	u32 instance;
->>   	u8 guc_class;
->>   
->> -	guc_class = xe_engine_class_to_guc_class(hwe->class);
->> -	instance = hwe->logical_instance;
->> +	if (hwe) {
->> +		guc_class = xe_engine_class_to_guc_class(hwe->class);
->> +		instance = hwe->logical_instance;
->> +	}
->>   
->>   	map = &guc->busy.bo->vmap;
->>   
->> -	offset = offsetof(struct guc_engine_observation_data,
->> -			  engine_data[guc_class][instance]);
->> +	if (hwe) {
->> +		offset = offsetof(struct guc_engine_observation_data,
->> +				  engine_data[guc_class][instance]);
->>   
->> -	*engine_map = IOSYS_MAP_INIT_OFFSET(map, offset);
->> +		*engine_map = IOSYS_MAP_INIT_OFFSET(map, offset);
->> +	}
->> +
->> +	*global_map = IOSYS_MAP_INIT_OFFSET(map, 0);
->>   }
->>   
->>   static void guc_engine_busyness_get_usage(struct xe_guc *guc,
->>   					  struct xe_hw_engine *hwe,
->> -					  u64 *_ticks_engine)
->> +					  u64 *_ticks_engine,
->> +					  u64 *_ticks_gt)
->>   {
->> -	struct iosys_map engine_map;
->> -	u64 ticks_engine = 0;
->> +	struct iosys_map engine_map, global_map;
->> +	u64 ticks_engine = 0, ticks_gt = 0;
->>   	int i = 0;
->>   
->> -	guc_engine_busyness_usage_map(guc, hwe, &engine_map);
->> +	guc_engine_busyness_usage_map(guc, hwe, &engine_map, &global_map);
->>   
->>   #define read_engine_usage(map_, field_) \
->>   	iosys_map_rd_field(map_, 0, struct guc_engine_data, field_)
->>   
->> +#define read_global_field(map_, field_) \
->> +	iosys_map_rd_field(map_, 0, struct guc_engine_observation_data, field_)
->> +
->>   	do {
->> -		ticks_engine = read_engine_usage(&engine_map, total_execution_ticks);
->> +		if (hwe)
->> +			ticks_engine = read_engine_usage(&engine_map, total_execution_ticks);
->> +
->> +		ticks_gt = read_global_field(&global_map, gt_timestamp);
->>   
->> -		if (read_engine_usage(&engine_map, total_execution_ticks) == ticks_engine)
->> +		if (hwe && read_engine_usage(&engine_map, total_execution_ticks) != ticks_engine)
->> +			continue;
->> +
->> +		if (read_global_field(&global_map, gt_timestamp) == ticks_gt)
->>   			break;
->>   	} while (++i < 6);
->>   
->>   #undef read_engine_usage
->> +#undef read_global_field
->>   
->>   	if (_ticks_engine)
->>   		*_ticks_engine = ticks_engine;
->> +
->> +	if (_ticks_gt)
->> +		*_ticks_gt = ticks_gt;
->>   }
->>   
->>   static void guc_engine_busyness_enable_stats(struct xe_guc *guc)
->> @@ -112,6 +142,25 @@ static void guc_engine_busyness_fini(struct drm_device *drm, void *arg)
->>   	xe_bo_unpin_map_no_vm(guc->busy.bo);
->>   }
->>   
->> +/*
->> + * xe_guc_engine_busyness_active_ticks - Gets the total active ticks
->> + * @guc: The GuC object
->> + *
->> + * Returns total active ticks that the GT has been running for.
->> + */
->> +u64 xe_guc_engine_busyness_active_ticks(struct xe_guc *guc)
->> +{
->> +	u64 ticks_gt;
->> +
->> +	/* Engine busyness supported only on GuC >= 70.11.1 */
->> +	if (!guc_engine_busyness_supported(guc))
->> +		return 0;
->> +
->> +	guc_engine_busyness_get_usage(guc, NULL, NULL, &ticks_gt);
->> +
->> +	return ticks_gt;
->> +}
->> +
->>   /*
->>    * xe_guc_engine_busyness_ticks - Gets current accumulated
->>    *				  engine busyness ticks
->> @@ -128,7 +177,7 @@ u64 xe_guc_engine_busyness_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
->>   	if (!guc_engine_busyness_supported(guc))
->>   		return 0;
->>   
->> -	guc_engine_busyness_get_usage(guc, hwe, &ticks_engine);
->> +	guc_engine_busyness_get_usage(guc, hwe, &ticks_engine, NULL);
->>   
->>   	return ticks_engine;
->>   }
->> diff --git a/drivers/gpu/drm/xe/xe_guc_engine_busyness.h b/drivers/gpu/drm/xe/xe_guc_engine_busyness.h
->> index d70f06209896..57325910ebc4 100644
->> --- a/drivers/gpu/drm/xe/xe_guc_engine_busyness.h
->> +++ b/drivers/gpu/drm/xe/xe_guc_engine_busyness.h
->> @@ -12,6 +12,7 @@ struct xe_hw_engine;
->>   struct xe_guc;
->>   
->>   int xe_guc_engine_busyness_init(struct xe_guc *guc);
->> +u64 xe_guc_engine_busyness_active_ticks(struct xe_guc *guc);
->>   u64 xe_guc_engine_busyness_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe);
->>   
->>   #endif
->> diff --git a/drivers/gpu/drm/xe/xe_pmu.c b/drivers/gpu/drm/xe/xe_pmu.c
->> index 6dd5c97129f2..0beb660689da 100644
->> --- a/drivers/gpu/drm/xe/xe_pmu.c
->> +++ b/drivers/gpu/drm/xe/xe_pmu.c
->> @@ -9,6 +9,7 @@
->>   
->>   #include "regs/xe_gt_regs.h"
->>   #include "xe_device.h"
->> +#include "xe_gt.h"
->>   #include "xe_gt_clock.h"
->>   #include "xe_mmio.h"
->>   
->> @@ -124,6 +125,8 @@ config_status(struct xe_device *xe, u64 config)
->>   		if (!(gt->info.engine_mask & (BIT(XE_HW_ENGINE_VCS0) | BIT(XE_HW_ENGINE_VECS0))))
->>   			return -ENOENT;
->>   		break;
->> +	case DRM_XE_PMU_TOTAL_ACTIVE_TICKS(0):
->> +		break;
->>   	default:
->>   		return -ENOENT;
->>   	}
->> @@ -186,6 +189,9 @@ static u64 __xe_pmu_event_read(struct perf_event *event)
->>   	case DRM_XE_PMU_MEDIA_GROUP_BUSY(0):
->>   		val = engine_group_busyness_read(gt, config);
->>   		break;
->> +	case DRM_XE_PMU_TOTAL_ACTIVE_TICKS(0):
->> +		val = xe_gt_total_active_ticks(gt);
->> +		break;
->>   	default:
->>   		drm_warn(&gt->tile->xe->drm, "unknown pmu event\n");
->>   	}
->> @@ -357,6 +363,7 @@ create_event_attributes(struct xe_pmu *pmu)
->>   		__event(1, "copy-group-busy", "ns"),
->>   		__event(2, "media-group-busy", "ns"),
->>   		__event(3, "any-engine-group-busy", "ns"),
->> +		__event(4, "total-active-ticks", NULL),
->>   	};
->>   
->>   	struct perf_pmu_events_attr *pmu_attr = NULL, *pmu_iter;
->> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
->> index 88f3aca02b08..6f38f836b705 100644
->> --- a/include/uapi/drm/xe_drm.h
->> +++ b/include/uapi/drm/xe_drm.h
->> @@ -1016,6 +1016,7 @@ struct drm_xe_wait_user_fence {
->>   #define DRM_XE_PMU_COPY_GROUP_BUSY(gt)		___DRM_XE_PMU_OTHER(gt, 1)
->>   #define DRM_XE_PMU_MEDIA_GROUP_BUSY(gt)		___DRM_XE_PMU_OTHER(gt, 2)
->>   #define DRM_XE_PMU_ANY_ENGINE_GROUP_BUSY(gt)	___DRM_XE_PMU_OTHER(gt, 3)
->> +#define DRM_XE_PMU_TOTAL_ACTIVE_TICKS(gt)	___DRM_XE_PMU_OTHER(gt, 4)
->>   
->>   #if defined(__cplusplus)
->>   }
