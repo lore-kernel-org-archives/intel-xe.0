@@ -4,51 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3A5BCC4167B
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 13:37:01 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1AED9C4167B
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 15:04:20 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA90710E529;
-	Tue, 28 Nov 2023 13:37:00 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCA9710E52A
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 13:36:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DA37010E563;
+	Tue, 28 Nov 2023 15:04:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3343D10E565
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 15:04:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701178618; x=1732714618;
- h=message-id:subject:from:to:date:in-reply-to:references:
- content-transfer-encoding:mime-version;
- bh=10zTZRs9XtaKjP9SOlLcHD6JQk3fK/fMGt6NFwD0cgo=;
- b=GhEaUa1ZEHrIuSOtmJWF+dDgnFAMu75Upag/XUTyxyTWOHkTjsurTKfL
- d1SSrCAUBJYXyQh5QyRSUfMbOZqW4uz02qCIw1tnBWjy7gIyQeRv5/yku
- jU5ZzDrCMU2MZpYP3h7cGtgPol5Zt6aOAoB08reOQQEwz/q5IYmoynXuf
- PfM1zQg8h5TdNdatvZgHR7yofGlbmQolTO0YVYAL/RdZUUO17maHMB4by
- sHo7wqTmxO70A7cY8SyLksBzhHgRxh0QIUxIN8YZmGSQeGzWbCLy8+8JM
- HMF/wDFTZAQ58crWoRtCHCczMRciO+TcPfXv7XItIUtHXPTi+AmzL9zba A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="372297457"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="372297457"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 05:36:58 -0800
+ t=1701183858; x=1732719858;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=okyy6jv0G6cnthlxH+LR4kk+Y9qkSb7oRbW6JOoz1Sc=;
+ b=f7jGAcngHdfEBhn2+3ZDDucT1Cg6onBz3gqcy2SqzvRgGkGZ4kNH3/ov
+ F2z+K0daV0JrBoItus2k9UCkQKGGNNCci1iMauCLD3e3Lc4W472+uOv2+
+ cpDo8aPmXraw1EoT1bF/U48x9yRqIC97Q2TaofCejlPe71RsMqn3/Gwlp
+ slW3fEQi73JGtDOyvxCvdpWMYY1U4uO696S39wDS1T2Hrevc1qOVcK76/
+ 7lngANKR6WTaC/4wW4J386TroHJyb2a/XWIs/n7E/xoSrAeAAM3JwYspy
+ Vp+Rx++ZqfPQueWyUkxIbkLU6dKdcC1UZonwOS48J0ujytJJOIFktsHDo A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="395757868"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="395757868"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 07:04:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10907"; a="912433145"
-X-IronPort-AV: E=Sophos;i="6.04,233,1695711600"; d="scan'208";a="912433145"
-Received: from kjeldbeg-mobl.ger.corp.intel.com (HELO [10.249.254.83])
- ([10.249.254.83])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 05:36:56 -0800
-Message-ID: <273d22f529cafde3bfae432ae2f2de4d921a1239.camel@linux.intel.com>
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>, 
- intel-xe@lists.freedesktop.org
-Date: Tue, 28 Nov 2023 14:36:53 +0100
-In-Reply-To: <20231121100906.3587649-1-himal.prasad.ghimiray@intel.com>
-References: <20231121100906.3587649-1-himal.prasad.ghimiray@intel.com>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="892096582"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="892096582"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga004.jf.intel.com with ESMTP; 28 Nov 2023 07:04:12 -0800
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue, 28 Nov 2023 20:43:31 +0530
+Message-Id: <20231128151333.4068550-2-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231128151333.4068550-1-tejas.upadhyay@intel.com>
+References: <20231128151333.4068550-1-tejas.upadhyay@intel.com>
 MIME-Version: 1.0
-Subject: Re: [Intel-xe] [RFC v2 0/6] Enable compression handling on LNL.
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH V3 1/3] drm/xe: Track if platform has csc uid
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,48 +58,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Hi!
+Some platforms, like ATS-M has CSC firmware calculated unique
+device id. This flag will help to identify if platform has it.
 
-On Tue, 2023-11-21 at 15:39 +0530, Himal Prasad Ghimiray wrote:
-> Series enables flat ccs on xe2 igfx platforms and handles clearing
-> and copy=20
-> of ccs metadata during bo creation and xe_bo_move respectively.
->=20
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Himal Prasad Ghimiray
-> <himal.prasad.ghimiray@intel.com>
->=20
-> Himal Prasad Ghimiray (6):
-> =C2=A0 drm/xe/xe2: Support flat ccs.
-> =C2=A0 drm/xe/xe2: Determine bios enablement for flat ccs on igfx.
-> =C2=A0 drm/xe/xe2: Allocate extra pages for ccs during bo create.
-> =C2=A0 drm/xe/xe2: Updates on XY_CTRL_SURF_COPY_BLT
-> =C2=A0 drm/xe/xe_migrate.c: Use NULL 1G PTE mapped at 255GiB VA for ccs
-> =C2=A0=C2=A0=C2=A0 clear.
-> =C2=A0 drm/xe/xe2: Handle flat ccs move for igfx.
->=20
-> =C2=A0drivers/gpu/drm/xe/regs/xe_gpu_commands.h |=C2=A0=C2=A0 3 +-
-> =C2=A0drivers/gpu/drm/xe/regs/xe_gt_regs.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-|=C2=A0=C2=A0 3 +
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 40 ++++---
-> =C2=A0drivers/gpu/drm/xe/xe_bo_types.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +
-> =C2=A0drivers/gpu/drm/xe/xe_device.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 32 ++++-
-> =C2=A0drivers/gpu/drm/xe/xe_migrate.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 | 139 +++++++++-----------
-> --
-> =C2=A0drivers/gpu/drm/xe/xe_pci.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 2 +-
-> =C2=A07 files changed, 119 insertions(+), 102 deletions(-)
->=20
+V2:
+  - Rebase to resolve pre-merge conflict
 
-I forgot to mention, in xe/tests/xe_bo.c there is a kunit test that
-exercises basic clearing and migration with a CCS-metadata-enabled bo.
-IMO we should update that to make sure it runs with the new code as
-well.
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device_types.h | 2 ++
+ drivers/gpu/drm/xe/xe_pci.c          | 3 +++
+ 2 files changed, 5 insertions(+)
 
-Thanks,
-Thomas
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 2712905c7a91..268a40639ec5 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -264,6 +264,8 @@ struct xe_device {
+ 		u8 supports_mmio_ext:1;
+ 		/** @has_heci_gscfi: device has heci gscfi */
+ 		u8 has_heci_gscfi:1;
++		/** @has_csc_uid: device has CSC FW calculated uid, used for generating uuid */
++		u8 has_csc_uid:1;
+ 
+ #if IS_ENABLED(CONFIG_DRM_XE_DISPLAY)
+ 		struct {
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index cb762c11dd0f..cf4f7de5b04e 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -61,6 +61,7 @@ struct xe_device_desc {
+ 	u8 has_heci_gscfi:1;
+ 
+ 	u8 has_llc:1;
++	u8 has_csc_uid:1;
+ 	u8 has_sriov:1;
+ 	u8 bypass_mtcfg:1;
+ 	u8 supports_mmio_ext:1;
+@@ -300,6 +301,7 @@ static const struct xe_device_desc ats_m_desc = {
+ 
+ 	DG2_FEATURES,
+ 	.has_display = false,
++	.has_csc_uid = true,
+ };
+ 
+ static const struct xe_device_desc dg2_desc = {
+@@ -579,6 +581,7 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.graphics_name = graphics_desc->name;
+ 	xe->info.media_name = media_desc ? media_desc->name : "none";
+ 	xe->info.has_llc = desc->has_llc;
++	xe->info.has_csc_uid = desc->has_csc_uid;
+ 	xe->info.has_sriov = desc->has_sriov;
+ 	xe->info.bypass_mtcfg = desc->bypass_mtcfg;
+ 	xe->info.supports_mmio_ext = desc->supports_mmio_ext;
+-- 
+2.25.1
 
