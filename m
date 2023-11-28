@@ -4,136 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D4604C07E97
-	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 20:57:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id E8F6CC4167B
+	for <intel-xe@archiver.kernel.org>; Tue, 28 Nov 2023 21:25:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8332A10E188;
-	Tue, 28 Nov 2023 20:57:37 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D386F10E188
- for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 20:57:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C3DA10E06E;
+	Tue, 28 Nov 2023 21:25:32 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6878B10E06E
+ for <intel-xe@lists.freedesktop.org>; Tue, 28 Nov 2023 21:25:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701205056; x=1732741056;
+ t=1701206731; x=1732742731;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=k71ZTWT0DNJPLPx9GHSlt4XwVerOj2tLcUDZuZVwXK8=;
- b=LE7L5SfNGIeMMZslU4lz5C5VlkErB7OxF0nLbcUtmVYDulKItcmuEOjK
- VY/DcPUZx7sMCdZZzl4RQdKiolrn3sBMivdUrHE05zI44Shh6hXHgH1Sk
- H5wyiVcpLUX5D9ylu+q8wRFZtrmr00eFObK5dI99vqwvbtPExWqfxLryl
- QM8eJWreP8xExYfmYrR4UwxyTfU/AL3cdO3gEyPfb9VrMsEkWfgHD4Wa0
- 3QotDDuu7X4ovRbCYgtFLZrCqRM66sJkkSYjWEel88Tmq4wuNdOb0cWIP
- w7sqJR5FFVLgKzB3eMwdqwMbXBQopZZqqIUW/YjwwqKdiIIEIDblipJqo A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="457358683"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="457358683"
+ bh=yjGSLDclFeodHb9B8MvkoUZc208FW4nll08VZMWVOtY=;
+ b=eE31Z34fdftL1y8hgfERrfT6w234aLWIdZNuGufMsZfIGjn+P8yrkWxA
+ hmKoqdULpo0UEi0nRfPuWuXHMzfISUK445P2L5w0QnsH9TRYl+txI9Iu5
+ mTTAzvUT7cPJ43u//vZn1b5ZUO3RPoXhNlrblcYsyv60Sg6jcqQ4wRi2q
+ SMrOeQf79NNJ2uRcuS4YGKYC3g1e8zQ7tUpFlFnZVJ14yGxX9N7b9RQ3W
+ 96lfXsdKFbkWugUEvJAb/+R8nRBogWGo0N0Tun7QK1//MOcDigYP0WT+w
+ rl7THG/tO2zi2oozO9r1rNFEJOuhMkt5UnDseMWiBifz9xLfrrYugWUZf A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="11731781"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="11731781"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 12:57:33 -0800
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 13:25:31 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="762056359"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="762056359"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="762064500"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="762064500"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
  by orsmga007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Nov 2023 12:57:32 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ 28 Nov 2023 13:25:30 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Tue, 28 Nov 2023 12:57:16 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.1.2507.34; Tue, 28 Nov 2023 13:25:29 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Tue, 28 Nov 2023 12:57:16 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.100)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Tue, 28 Nov 2023 13:25:29 -0800
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
+ edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Tue, 28 Nov 2023 12:57:15 -0800
+ 15.1.2507.34; Tue, 28 Nov 2023 13:25:24 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dPM076lFpaeu4vdN9iwL9IAsnA/wXDK5txG4FtXK0MsYSkTEmQtdKNUTPQZ/mHcexlIwX1H02oO6djOaPZLjLYcasCuG1dfR5c89YKiTof/qmQxzzmnb2/VPLdrCKTgjGqr836ktEONlSj9jEvR9QkuuZzHiauRbCC9JWNPYwzsINnIFISoNnZ5ekNlgQGsSiWHi6alu8nlApcVVEO4Aw1UT6/IzcQZtjT4sB5H08XBNm1nz4b3LTZQZkRJDOAGBP4IYHrHv4ptT/Sb2hd9ILM0oZVXMIgvt5gnaKT6J2YP9S6diNClTmFqY2G7ARR8P0KmepB5fq7XNhwDpKve34g==
+ b=JIS6nLPnSdxEE7F2bMMlj/rLWy8VAdZePyeaRSt1DRdj4rQW2u+DE2QEebJF+Rn9ERRt6wpjsdXzFiQIDSaH/F3wkvS3y7fhSlhgwh7MmcYUdWTl1CZAW4ds9loGc4OaDoTe4qcErunp3LJ76BiDySpeLJjJQqDG9rU3tWiz/QKc6DkZQOMhA71ExbS3fq6UFinn9pp80os5TNcaLAFN2AArxNn+Llxm0tQHPs0CICQCiW40QwwGCQ3bPVTRxlZ2rp6EeUGobDsRCgmGC5AKSVfPtRkdRWFLbtRTDzuO8MesmFTqx1qWx/lJCW+/GOsvBxaS+v7AkCdW3fb41ujaqA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=yk4FPtLpKZE8+kJ/YZwkwNEGp/mi9h7Rzy0ly7IkZ4Y=;
- b=b9Wun82VNpkoUbiq2M0+oLuUGeTHbtiZyGvAhUSMZnBX3WRdMCMAITprPwGHHrOjcYyx59sOjiUpjPd0T6PfAEVIJbmubmRvkbJTdhjYXVQbOXUe8yrvtVUJtzF8Lp5rNqVG8F/e1Df6PHk+QdhgR3+zKaIQakajnsSXaPxTFP0IPJZqvJmNRKfWlgVa64koVftvcGd8826AOF5TZYWylK3PUoBPrkC4BbRg+zOjTxYI+Di2WmuGqltmKTOntv9513AMPuFUwcnPz53jDfPVbYR3nXYR6dAKW1teXgX14KE/NiwfyWEI/1zPZ9VJxyH+MnssTiw2ntoY4BspO3Y6tg==
+ bh=/LAz4TPS+PSrTyLrT3YhW+4RcO4RZKq5BCEgHb3cNbk=;
+ b=jabl+ydQ8dNEJAYxDa+Kj0myowfYmWsjxsyGhIWNO6T3OQ0LAnTi30W2puFFmgTAGXpBfoQM1yAI2L4LYpExnZ/aCtwXwySvj29e/7koUpieSzJbRxwYEX1sQvvVtEBcq9QjBmXtmHwXPHDwwmbisFBopxskxRGUi6JnTNKPcycEKlxIcxs0sZVLs2VQsdQ5hgC92yxbzzJmHF2W1lqvZXZhT/LmLYgHLIPDJD0j65MFF3Q2jPpLC93tGm/9yJGvSbS9YCyvByMAE2Mmg7JRbdis6+Cw8w8KqTAliaMc/GGmc7EyGiVpBhmNHvJMcY/MGnxQ+IPzt0730KsEG2njSw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
- by PH0PR11MB5578.namprd11.prod.outlook.com (2603:10b6:510:e7::8) with
- Microsoft SMTP Server (version=TLS1_2,
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by BL1PR11MB5510.namprd11.prod.outlook.com (2603:10b6:208:31d::5)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29; Tue, 28 Nov
- 2023 20:57:13 +0000
-Received: from PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::b9a8:8221:e4a1:4cda]) by PH7PR11MB6522.namprd11.prod.outlook.com
- ([fe80::b9a8:8221:e4a1:4cda%4]) with mapi id 15.20.7046.015; Tue, 28 Nov 2023
- 20:57:12 +0000
-Date: Tue, 28 Nov 2023 13:55:40 +0000
-From: Matthew Brost <matthew.brost@intel.com>
-To: Lucas De Marchi <lucas.demarchi@intel.com>
-Message-ID: <ZWXxXAQLjYdfOEwP@DUT025-TGLU.fm.intel.com>
-References: <20231121112555.3734840-1-tejas.upadhyay@intel.com>
- <ykymzzr23ixp3owtn6tdeieb6eyxpnzeypvwajx66mqkkxobzx@eu26ntxgx6fr>
- <ZWWpP99Wzh5U0qwB@DUT025-TGLU.fm.intel.com>
- <mcx6k5c6cx3okqszgpw45ew7yqwty7tprojkjnwv56yj3ulpqz@h5fehhchgjbk>
+ 2023 21:25:17 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::ada2:f954:a3a5:6179]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::ada2:f954:a3a5:6179%5]) with mapi id 15.20.7025.022; Tue, 28 Nov 2023
+ 21:25:17 +0000
+Date: Tue, 28 Nov 2023 16:25:14 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: Bommu Krishnaiah <krishnaiah.bommu@intel.com>, Francois Dugast
+ <francois.dugast@intel.com>, Matthew Brost <matthew.brost@intel.com>, "Oak
+ Zeng" <oak.zeng@intel.com>
+Message-ID: <ZWZaukdzs0chi5LK@intel.com>
+References: <20231122042142.6648-1-krishnaiah.bommu@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <mcx6k5c6cx3okqszgpw45ew7yqwty7tprojkjnwv56yj3ulpqz@h5fehhchgjbk>
-X-ClientProxiedBy: SJ0PR13CA0147.namprd13.prod.outlook.com
- (2603:10b6:a03:2c6::32) To PH7PR11MB6522.namprd11.prod.outlook.com
- (2603:10b6:510:212::12)
+In-Reply-To: <20231122042142.6648-1-krishnaiah.bommu@intel.com>
+X-ClientProxiedBy: BY5PR03CA0015.namprd03.prod.outlook.com
+ (2603:10b6:a03:1e0::25) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|PH0PR11MB5578:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6717dc7-41bb-45ee-0eef-08dbf054983e
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|BL1PR11MB5510:EE_
+X-MS-Office365-Filtering-Correlation-Id: bd81cd16-a44b-49d4-8232-08dbf0588465
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: Qn3lE2jVPbaaXCwqLn6jb5/XRLTlPJoBIYgKf0BirbqHL+umiycSZcCXubkQit5UfJ7GD+jKFUM+9QS1s4a18kswZKA5EEBYZCR3c3l6ZVLAjxSOLq3EgP2kld3u1DAc1+0z1F+dH2Tv6LQwut2k9PWbeJHGny7PlktJ7Z+75VqGGUzHaXwIiUhPRP96tZtLLVaSPDUSmVBc13ZChln/Fu5dC201TzY7XRPm3kTpAnQ2eT2ezK9HlmEvSLknsg4WwCeSjvIPmCnozxwKA4TzdeYI1O1kRK46e8qLdOJKX28zZrXR9m8AIXDlDia8cffcS3XsK1gn/BCM3guqNqp7CpYKkrPtmJGozrN9CylRcAWblcsbjUCS1T/lFuveo0Px/vkVdmRBHzOPAuNAmhsyQRLWGIIy+xFu0tBWR+UrRMxj0+f3iaEnBHs+awfC7dcGsEWK/gQXBWXmlLWqUJPiXuKZlCXEHVITlI71kxh5T9ory9vEShOKdNaOslhSNZWQ+ejjPeG22WFFBA6DkXPDSYBlW5S0K+Gd7dBhQX/dHWYHSaX0U17bHOxHwE0W38y4MkDhlhVIEgbnG+2IANaQCe1WlLLzAlRUJStDw1XJQd4=
+X-Microsoft-Antispam-Message-Info: g+Jj2QC9phTcUg9cEFC08do8tZELFUwSDUFKmyaCeqz1TdGqvTx4T4000PjRWM8PvXknkHk+FayfngzE9qpHwVizJ3+2Eo+MTYbQjmAs1CKEYhvHbmLYh1SrN7XpuM1eSr+hcpB3aORsYW7+kMxTgjnmbIZDAzyv1mRzgljMv+2J2Vt+W1dZcfScft83xqxf49DH2/C3L9KLfMKXwTUg5huWx5PLjbmIaP+lkd9sEtAmrT9VZCUGEoJEy0AhdUKHklUParI5sk/1uFsx7usLdGvS8GnvB+d/EAoVe6mS9zUzKsS7CfOxd3mNoKgk6oUKLrHzcPE07IGBvG+2Yt+lM1j9qrlXLcEXuP3C6H53hxZoQNCdSF8THiattql2/il+U5JIPYmk/tKa7EApFZoPr6MgHotbrcuJ5AeCSf5aA8KheC0pwGMKxtMKpXkLMTa2rwGvyuxZTHIqwuuxuDnr7Jx3WvJfPAmbdbDoJgqIy08N22NcnxHGVIU0lUI3ZjRzi6OajFeuXQ6D5JEVacAFVGOMcnmLbA0qmK6zxxPqmCM=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(366004)(396003)(346002)(376002)(39860400002)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(6666004)(8936002)(4326008)(6862004)(8676002)(6512007)(6506007)(66946007)(66556008)(66476007)(316002)(6636002)(478600001)(6486002)(38100700002)(41300700001)(86362001)(26005)(2906002)(44832011)(83380400001)(82960400001)(5660300002)(21314003);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(396003)(376002)(136003)(39860400002)(346002)(366004)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(2906002)(5660300002)(44832011)(6666004)(6512007)(41300700001)(36756003)(478600001)(4326008)(8936002)(6506007)(8676002)(38100700002)(966005)(6486002)(82960400001)(2616005)(83380400001)(6636002)(66476007)(66946007)(86362001)(66556008)(110136005)(316002)(26005);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XctFGLIvzCm2YyywCADwj2jktxSpEhDqUOTp+o1BahMa+NqssuBhQ126XQXT?=
- =?us-ascii?Q?hkNaHWcvO9lc18/SiKwZ2g93ndjwBiEbtmn5EJecDoYhqH4KAnPlRjZ8meRJ?=
- =?us-ascii?Q?T9B7Y86XhYh18V6QMd+8RWbJb7rWC7k4CYJeQeDFaeriNgpB0pS3/bSQRDnQ?=
- =?us-ascii?Q?d704VpDc+ukY73XxZDL9WJoS/ZAQeAyl4gFOcgb6u7lnuT0koHLsjCpFJwdr?=
- =?us-ascii?Q?P5qaQTq/vUbCHDem8IqUSj27WL5g9piuCLdryHVxSt7usrz/++GzveqOW0Zv?=
- =?us-ascii?Q?hm5BA0S5CyI3xENuSE7/4QA5pVoD5v61FLeijIOa7IW228PkHOiZmvKyHGW8?=
- =?us-ascii?Q?Ay7Zr5iaKhkDwggmgEXeNgCsU1hcDP1cVIOHw/kGnZVUz1TW9/ZNLnQhPn3M?=
- =?us-ascii?Q?eHCqgBS83+M9VR573owd9HAUnsSMuRBS7tClnf8y8C9s6sA6vMh5VAPeqpAx?=
- =?us-ascii?Q?piR8hdWQiRdyhqU/yignWV1y9HtFzqDU88xFsRrlnVvcANdbu1J19SZ14zHv?=
- =?us-ascii?Q?ewLPyD2liV4xCKb7wf6TZ/eVC9ezETDhsEDPkJdQUYRCLDPS0QfCpTTzS7Vp?=
- =?us-ascii?Q?WYyXXUcNvrha8grOWQQQN/WJChXkCb8KdjCazbhcpelhwTr+vrrsxx44xGjv?=
- =?us-ascii?Q?h5MAeeMu/iSFa4j7PJGqI9TL54geDbgs6psKiGmWC4+6O6DPzStWH/Mbsypw?=
- =?us-ascii?Q?yocVODTSlpurNxA/tMureYyL4BXSrb5ZjUw1D9bJAJnDMSBAraJu68IDsrDi?=
- =?us-ascii?Q?rPb6RjNC9pGOf9DBGy8CAOGsHX6GyvC3gfXXDCmgls0Wd6sPsIrzZUgsGAxB?=
- =?us-ascii?Q?oLcpkNtobBr5YEYHBiNCyere830wwk+3tOIfdJHk9TTBAo+he6zrjLvhPEiB?=
- =?us-ascii?Q?PR+yajEmBwn0hUE2Kgn73cHYcBetCpQp4Cw8XB5ZF6W34buRqv2Zc2woEe0V?=
- =?us-ascii?Q?uNCK0vZ3/aey+dfOFNrMfxiPWYrdVPAuh7z/xFVoKpGamE0a07CvRbgene94?=
- =?us-ascii?Q?AI9B1/Un2VnQgY4S2L2PgpyF6eTvWSLep1GtiLFO+FUEB65kUC7rRkk92zoC?=
- =?us-ascii?Q?nrlZ0KdiDBxgU7af2/A2pLAFvFMhV+DFaX7jUjLM+BKWN0GLs96k21qzm8z7?=
- =?us-ascii?Q?8VbdtiqQFfJnvR7IBbI9PNixd3HLaWGSuJ+sZijiZoSQuf7NUQSfMnSe8HRy?=
- =?us-ascii?Q?c8gYBmMRjPSe1I0g5vJkTyQTe09D/0PApKjPxGXdc/pX7XjvqWXH5NXWB8LG?=
- =?us-ascii?Q?XLZhnsGwQE8fgtqoyHbJQJi0vqTbpTcTwYEhVQAK+Hay6mzgAvz9nHfW5Ida?=
- =?us-ascii?Q?TCs3z5+F/EpZvb8PP2xpyvxH0EQO6VI6pVvXej7UvsLmYRjvQnOsjd27F0IP?=
- =?us-ascii?Q?vsedvysMnPxlPeSzEWRGnAUkbOzDcad5C8yG74+Fp0xo87xhnVHkIqr9kPkQ?=
- =?us-ascii?Q?UkCTjOHjugwk2UvoB1piVVqw18HKK0jp7mujAiYDcBQFXgqY1Ry0zxDXZFy0?=
- =?us-ascii?Q?n5KRCkAVWzjVRCE+jzfJv7zrebhQsyiyPbyperl2DsWDt6kXIr57mcr08Ox9?=
- =?us-ascii?Q?YxvXHsvFjV2evCf3TqeLfC3A1nkNBH5/CMNvHZUH8Krro6U+sVKqj8V/9Ztz?=
- =?us-ascii?Q?cg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6717dc7-41bb-45ee-0eef-08dbf054983e
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Y0AJXekGaNff6RndRO6E0T+BFVQjT5LVFQl+1mWgSdUVq6mWO/TFO8LplwSD?=
+ =?us-ascii?Q?gs3erbJm3OJUe+ippLX5/lqIG9b1fBLQ4qn8UMJVaFcOCPqFIUX6I2nFtqxe?=
+ =?us-ascii?Q?YKqJMTR3dnA9WInKtHRazajoF0hNNZl+PAZGxb86HDb8I4chTLen6aOOeRrW?=
+ =?us-ascii?Q?rb6FSENORnbAazvl6O48bB3Gg+nBAepiTJj8qFFMyf+vb4TP7DZi0L93UD5A?=
+ =?us-ascii?Q?UvzT9k0Y9+pjf0PY+MYMLzv6T+CJfrGWp9BMfuqPolNEq6DM4BIZ4okzlP9t?=
+ =?us-ascii?Q?StmWEtaooXShUgFvAk8l7dXD44LPoowoLEL/V7gON3bMNs8jcwuyJfiZotkZ?=
+ =?us-ascii?Q?qQp1a23yFvkC1T+mbnHgpkXqaHPlsvknv3t8DiaiQIq5rSZXpJIdCn0OWrE0?=
+ =?us-ascii?Q?cyAtt9q7mMh74m/3MUfCtDI1G4Plp6mP5EtKEKHwH4PUr5XLOpo5wqcDYe/y?=
+ =?us-ascii?Q?Ln9W5nRo2bTmdmP+T/BCJ3oZ69jpEsMFJIvlniTB2aPvkekojAobkPEgMKWN?=
+ =?us-ascii?Q?o+A+mtI77D2wS1ATBYToWdtQ1seNZLceyTmeNwnrrlrfl4Qb6bv5U0dbe++N?=
+ =?us-ascii?Q?8a/S3WxlldRbyvvlqqCSm0l7nQIlsYPJWFjHQxg34K+vq3aHNJPV21W571wK?=
+ =?us-ascii?Q?tBDOeINlwU9NqZ6xqBQop1/c9tSmIN5YhggWUzbVJ46a5KbVx31MHZZ5LsJS?=
+ =?us-ascii?Q?FR/8e2GAR9b9ZtXIvA0BQK2R8zVWXa81Fz5QRgrNN3V24vkE7VhRHjx6T6Qg?=
+ =?us-ascii?Q?75NOAMGKlRjN93U5zsZt2tG6hfkulBVuwgyAUdjiXJxG7tQ2AfFQfeNsNm9N?=
+ =?us-ascii?Q?YLGP+L8LJ6h9RTrHMkLok4RP3jpLTgtZw2gUi1Bt9TMdylcsAOJDntNkPDrE?=
+ =?us-ascii?Q?9kGsbkuP3g93/sMCS8BBUweeKcz22YGMnTGO8vaol8+bXEhql+KMDZ3N9R/S?=
+ =?us-ascii?Q?rk7eQMpYDG36FwF20z8J9dXV1cUOUvaCLcgYQgzjgVHZxKaRuQQrFBn1KKWo?=
+ =?us-ascii?Q?GQabEojauKVtorwexoxrA3WcVO/mlYihk7P+SRRqVUId8bBDPiP4Mo9d/jzD?=
+ =?us-ascii?Q?iruxCbR0RUSIVaqVxsI5YPis9LUgTlGnPK3do6LTIHEZFvyKOC0CwtwaaZTQ?=
+ =?us-ascii?Q?D74/BXpoA/gjj+xk5SI6r3q63Sz4ieKO8qQ3+dH+4GkRVnLsCZ1EjmE2jgAM?=
+ =?us-ascii?Q?E3p8pHqc/7qewdzoGIr8XTiZGq8gs7lVaXORX1dO6dwayqUO8SmFLS50W+HB?=
+ =?us-ascii?Q?bAzt5E9+xS+262tqioOL7NEvmn7USpZCQXKFIzRSyd1TPh6/dPZAB93eAZuO?=
+ =?us-ascii?Q?f7BuSHy1efJ0Cg2PdMU3geSRBd0Tb+NbxD26SYamfLmBR9rqJAUEZhHBLJa8?=
+ =?us-ascii?Q?rYF6eJiqimPboktLUJSVdexeNRMe9gyFMsy1cLNgFlle9jS6P/NknVd1Vr87?=
+ =?us-ascii?Q?A1oggkixySGE09RK7XaIVgSmYSY1x3mGJMKlwkfdf19omoXtOE0G9GGDH27g?=
+ =?us-ascii?Q?CQgvK/IE54yu7b1UzGOQdU0pyKrb82TcyapF1d7LY1z7qgazmKC4qO8gbdA0?=
+ =?us-ascii?Q?Y+Xr/v/ZEGKxj/231MS0Ry8Zdzx3cHeRbjjmw3KAR5Suh9Y3TCBHHfqiaMBG?=
+ =?us-ascii?Q?IQ=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: bd81cd16-a44b-49d4-8232-08dbf0588465
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2023 20:57:12.6649 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Nov 2023 21:25:17.4053 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9rhKtKIcJDSRqFfJDDc4zzidLIJvw+IRzkRcLHTO/71j4EYiBr57kS7BdDh1f4oJgGWZpclNmEe1JmBCEGpuLA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5578
+X-MS-Exchange-CrossTenant-UserPrincipalName: i7X6KktYuEqtgLhT7yV4I5RoZ3cdbb36hhGhLSkJmOssUaDOgtd5hWG/D9MIdSSEL7xxzFq8JzPHMI5w50i3KQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5510
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Move wa processing to gt_init
+Subject: Re: [Intel-xe] [PATCH v2] RFC: drm/xe: Return correct error code
+ for xe_wait_user_fence_ioctl
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,167 +149,250 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2023 at 11:45:36AM -0600, Lucas De Marchi wrote:
-> On Tue, Nov 28, 2023 at 08:47:59AM +0000, Matthew Brost wrote:
-> > On Tue, Nov 21, 2023 at 08:48:47AM -0600, Lucas De Marchi wrote:
-> > > On Tue, Nov 21, 2023 at 04:55:55PM +0530, Tejas Upadhyay wrote:
-> > > > Currently WA processing for gt is happening in early init API.
-> > > > It also includes processing of WAs which needs filter based on
-> > > > hardware engine by looping over number of hardware engines in gt.
-> > > >
-> > > > However at early init stage hardware engines are not associated
-> > > > with gt in software which skips processing such WAs.
-> > > >
-> > > > Example WAs which will be fixed to apply after this change,
-> > > > "14011060649",
-> > > > "16010515920",
-> > > > "16021867713"
-> > > >
-> > > > Fixes: 811a9b3d262d8 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
-> > > > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > > > ---
-> > > > drivers/gpu/drm/xe/xe_gt.c | 2 +-
-> > > > 1 file changed, 1 insertion(+), 1 deletion(-)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-> > > > index 0dddb751c6a4..3d0f7b6f952c 100644
-> > > > --- a/drivers/gpu/drm/xe/xe_gt.c
-> > > > +++ b/drivers/gpu/drm/xe/xe_gt.c
-> > > > @@ -311,7 +311,6 @@ int xe_gt_init_early(struct xe_gt *gt)
-> > > > 	if (err)
-> > > > 		return err;
-> > > >
-> > > > -	xe_wa_process_gt(gt);
-> > > > 	xe_wa_process_oob(gt);
-> > > > 	xe_tuning_process_gt(gt);
-> > > >
-> > > > @@ -495,6 +494,7 @@ int xe_gt_init(struct xe_gt *gt)
-> > > > 	if (err)
-> > > > 		return err;
-> > > >
-> > > > +	xe_wa_process_gt(gt);
-> > > 
-> > > the problem with that is that if we need to touch any register already
-> > > touched until this point, the workarounds would not had been applied.
-> > > Digging the git history, I had added this commit exactly to be able to
-> > > initialize the gt workarounds as soon as possible:
-> > > 
-> > > 	4eb2e8d25ab4 ("drm/xe: Add xe_hw_engines_init_early()")
-> > > 
-> > > And then
-> > > 
-> > > 	816d37907ac6 ("drm/xe: Plug gt WAs to gt init/reset")
-> > > 
-> > > Note that these commits are in the xe branch, not drm-xe-next.
-> > > So, it was:
-> > > 
-> > > 	xe_hw_engines_init_early(gt);
-> > 
-> > xe_hw_engines_init_early has be called after xe_uc_init_hwconfig after
+On Wed, Nov 22, 2023 at 09:51:42AM +0530, Bommu Krishnaiah wrote:
+> return correct error code if exec_queue is reset/engine is hung
+> remove the num_engines/instances members from drm_xe_wait_user_fence structure
+> and add a exec_queue_id member
 > 
-> did you mean "has to be" or "has been"?
+> v2: Addressed the review comments
 > 
+> Need to validated the changes
+> 
+> Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+> Cc: Oak Zeng <oak.zeng@intel.com>
+> Cc: Kempczynski Zbigniew <Zbigniew.Kempczynski@intel.com>
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-Sorry, "has to be".
+Cc: Francois Dugast <francois.dugast@intel.com>
 
-> > the idea is gt->info.engine_mask would be set by reading the hwconfig
-> > table from the GuC rather than from a hardcoded table in the driver.
-> 
-> like I said, the problem with postponing that is we could have hard to
-> debug issues because we will think we have all the workarounds coded,
-> not realizing it isn't applied to the early stages of hw initialization.
-> 
-> I think we should go back push back on the idea of initializing the hw
-> engines array after loading guc... it doesn't make much sense from the
-> engine initialization pov and we are *not* doing that.
-> 
-> static int gt_fw_domain_init(struct xe_gt *gt)
-> {
-> 	...
-> 	err = xe_uc_init_hwconfig(&gt->uc);                                   	if
-> (err)                                                              		goto
-> err_force_wake;
-> 
-> 	xe_gt_idle_sysfs_init(&gt->gtidle);
-> 
-> 	/* XXX: Fake that we pull the engine mask from hwconfig blob */
-> 	gt->info.engine_mask = gt->info.__engine_mask;
+This patch here needs to replace my patch in Francois' series:
+https://lore.kernel.org/all/20231122143833.7-12-francois.dugast@intel.com/
 
-Right, we don't currently parse the hwconfig to get the engine_mask but
-eventually they should be.
+I finally saw some sense in some engine information in there.
 
+Brost, thoughts?
+
+> ---
+>  drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +
+>  drivers/gpu/drm/xe/xe_execlist.c         |  7 +++
+>  drivers/gpu/drm/xe/xe_guc_submit.c       | 13 +++++
+>  drivers/gpu/drm/xe/xe_wait_user_fence.c  | 60 +++++-------------------
+>  include/uapi/drm/xe_drm.h                | 13 +----
+>  5 files changed, 37 insertions(+), 58 deletions(-)
 > 
-> 	...
-> }
+> diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> index 5ba47a5cfdbd..84ccf7242247 100644
+> --- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> +++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+> @@ -206,6 +206,8 @@ struct xe_exec_queue_ops {
+>  	 * signalled when this function is called.
+>  	 */
+>  	void (*resume)(struct xe_exec_queue *q);
+> +	/** @reset_status: check exec queue reset status */
+> +	bool (*reset_status)(struct xe_exec_queue *q);
+>  };
+>  
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_execlist.c b/drivers/gpu/drm/xe/xe_execlist.c
+> index e8754adfc52a..3b390f047108 100644
+> --- a/drivers/gpu/drm/xe/xe_execlist.c
+> +++ b/drivers/gpu/drm/xe/xe_execlist.c
+> @@ -446,6 +446,12 @@ static void execlist_exec_queue_resume(struct xe_exec_queue *q)
+>  	/* NIY */
+>  }
+>  
+> +static bool execlist_exec_queue_reset_status(struct xe_exec_queue *q)
+> +{
+> +	 /* NIY */
+> +	 return false;
+> +}
+> +
+>  static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
+>  	.init = execlist_exec_queue_init,
+>  	.kill = execlist_exec_queue_kill,
+> @@ -457,6 +463,7 @@ static const struct xe_exec_queue_ops execlist_exec_queue_ops = {
+>  	.suspend = execlist_exec_queue_suspend,
+>  	.suspend_wait = execlist_exec_queue_suspend_wait,
+>  	.resume = execlist_exec_queue_resume,
+> +	.reset_status = execlist_exec_queue_reset_status,
+>  };
+>  
+>  int xe_execlist_init(struct xe_gt *gt)
+> diff --git a/drivers/gpu/drm/xe/xe_guc_submit.c b/drivers/gpu/drm/xe/xe_guc_submit.c
+> index 9e9e925c7353..e13792e49a67 100644
+> --- a/drivers/gpu/drm/xe/xe_guc_submit.c
+> +++ b/drivers/gpu/drm/xe/xe_guc_submit.c
+> @@ -852,6 +852,10 @@ static void simple_error_capture(struct xe_exec_queue *q)
+>  static void xe_guc_exec_queue_trigger_cleanup(struct xe_exec_queue *q)
+>  {
+>  	struct xe_guc *guc = exec_queue_to_guc(q);
+> +	struct xe_device *xe = guc_to_xe(guc);
+> +
+> +	/** to wakeup xe_wait_user_fence ioctl if exec queue is reset */
+> +	wake_up_all(&xe->ufence_wq);
+>  
+>  	if (xe_exec_queue_is_lr(q))
+>  		queue_work(guc_to_gt(guc)->ordered_wq, &q->guc->lr_tdr);
+> @@ -1392,6 +1396,14 @@ static void guc_exec_queue_resume(struct xe_exec_queue *q)
+>  	guc_exec_queue_add_msg(q, msg, RESUME);
+>  }
+>  
+> +static bool guc_exec_queue_reset_status(struct xe_exec_queue *q)
+> +{
+> +	if (exec_queue_registered(q))
+> +		return exec_queue_reset(q);
+
+probably just rename the original function and use that directly.
+
+> +
+> +	return false;
+> +}
+> +
+>  /*
+>   * All of these functions are an abstraction layer which other parts of XE can
+>   * use to trap into the GuC backend. All of these functions, aside from init,
+> @@ -1409,6 +1421,7 @@ static const struct xe_exec_queue_ops guc_exec_queue_ops = {
+>  	.suspend = guc_exec_queue_suspend,
+>  	.suspend_wait = guc_exec_queue_suspend_wait,
+>  	.resume = guc_exec_queue_resume,
+> +	.reset_status = guc_exec_queue_reset_status,
+>  };
+>  
+>  static void guc_exec_queue_stop(struct xe_guc *guc, struct xe_exec_queue *q)
+> diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> index 4d5c2555ce41..97af879ee923 100644
+> --- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> +++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+> @@ -13,6 +13,7 @@
+>  #include "xe_device.h"
+>  #include "xe_gt.h"
+>  #include "xe_macros.h"
+> +#include "xe_exec_queue.h"
+>  
+>  static int do_compare(u64 addr, u64 value, u64 mask, u16 op)
+>  {
+> @@ -58,27 +59,6 @@ static const enum xe_engine_class user_to_xe_engine_class[] = {
+>  	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+>  };
+>  
+> -static int check_hw_engines(struct xe_device *xe,
+> -			    struct drm_xe_engine_class_instance *eci,
+> -			    int num_engines)
+> -{
+> -	int i;
+> -
+> -	for (i = 0; i < num_engines; ++i) {
+> -		enum xe_engine_class user_class =
+> -			user_to_xe_engine_class[eci[i].engine_class];
+> -
+> -		if (eci[i].gt_id >= xe->info.tile_count)
+> -			return -EINVAL;
+> -
+> -		if (!xe_gt_hw_engine(xe_device_get_gt(xe, eci[i].gt_id),
+> -				     user_class, eci[i].engine_instance, true))
+> -			return -EINVAL;
+> -	}
+> -
+> -	return 0;
+> -}
+> -
+>  #define VALID_FLAGS	(DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP | \
+>  			 DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)
+>  #define MAX_OP		DRM_XE_UFENCE_WAIT_OP_LTE
+> @@ -130,14 +110,12 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>  			     struct drm_file *file)
+>  {
+>  	struct xe_device *xe = to_xe_device(dev);
+> +	struct xe_file *xef = to_xe_file(file);
+>  	DEFINE_WAIT_FUNC(w_wait, woken_wake_function);
+>  	struct drm_xe_wait_user_fence *args = data;
+> -	struct drm_xe_engine_class_instance eci[XE_HW_ENGINE_MAX_INSTANCE];
+> -	struct drm_xe_engine_class_instance __user *user_eci =
+> -		u64_to_user_ptr(args->instances);
+> +	struct xe_exec_queue *q = NULL;
+>  	u64 addr = args->addr;
+>  	int err;
+> -	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP;
+>  	long timeout;
+>  	ktime_t start;
+>  
+> @@ -151,35 +129,17 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>  	if (XE_IOCTL_DBG(xe, args->op > MAX_OP))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_DBG(xe, no_engines &&
+> -			 (args->num_engines || args->instances)))
+> -		return -EINVAL;
+> -
+> -	if (XE_IOCTL_DBG(xe, !no_engines && !args->num_engines))
+> -		return -EINVAL;
+> -
+>  	if (XE_IOCTL_DBG(xe, addr & 0x7))
+>  		return -EINVAL;
+>  
+> -	if (XE_IOCTL_DBG(xe, args->num_engines > XE_HW_ENGINE_MAX_INSTANCE))
+> -		return -EINVAL;
+> -
+> -	if (!no_engines) {
+> -		err = copy_from_user(eci, user_eci,
+> -				     sizeof(struct drm_xe_engine_class_instance) *
+> -			     args->num_engines);
+> -		if (XE_IOCTL_DBG(xe, err))
+> -			return -EFAULT;
+> -
+> -		if (XE_IOCTL_DBG(xe, check_hw_engines(xe, eci,
+> -						      args->num_engines)))
+> -			return -EINVAL;
+> -	}
+> -
+>  	timeout = to_jiffies_timeout(xe, args);
+>  
+>  	start = ktime_get();
+>  
+> +	q = xe_exec_queue_lookup(xef, args->exec_queue_id);
+> +	if (XE_IOCTL_DBG(xe, !q))
+> +		return -ENOENT;
+> +
+>  	/*
+>  	 * FIXME: Very simple implementation at the moment, single wait queue
+>  	 * for everything. Could be optimized to have a wait queue for every
+> @@ -202,6 +162,12 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+>  			break;
+>  		}
+>  
+> +		if (q->ops->reset_status(q)) {
+> +			drm_info(&xe->drm, "exec gueue reset detected\n");
+> +			err = -EIO;
+> +			break;
+> +		}
+> +
+>  		timeout = wait_woken(&w_wait, TASK_INTERRUPTIBLE, timeout);
+>  	}
+>  	remove_wait_queue(&xe->ufence_wq, &w_wait);
+> diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> index 88f3aca02b08..ae2457dc30ad 100644
+> --- a/include/uapi/drm/xe_drm.h
+> +++ b/include/uapi/drm/xe_drm.h
+> @@ -962,17 +962,8 @@ struct drm_xe_wait_user_fence {
+>  	 */
+>  	__s64 timeout;
+>  
+> -	/**
+> -	 * @num_engines: number of engine instances to wait on, must be zero
+> -	 * when DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP set
+> -	 */
+> -	__u64 num_engines;
+> -
+> -	/**
+> -	 * @instances: user pointer to array of drm_xe_engine_class_instance to
+> -	 * wait on, must be NULL when DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP set
+> -	 */
+> -	__u64 instances;
+> +	/** @exec_queue_id: exec_queue_id returned from xe_exec_queue_create_ioctl */
+> +	__u32 exec_queue_id;
+>  
+>  	/** @reserved: Reserved */
+>  	__u64 reserved[2];
+> -- 
+> 2.25.1
 > 
-> The engines available are not hardcoded in the driver. We read the fuses
-
-The initial value of info.engine_mask is hardcoded in the driver, the
-fuses adjust this. Eventual I think we want to get rid of all platform
-information hardcoded in the driver and dervive info.engine_mask from
-the hwconfig. At least that is the goal from my understanding.
-
-> to know the avilable ones. That is sufficient already to loop through all
-> of them. Note that since it's *engine* WAs, we need to pass those to GuC
-> via the ads since it's GuC itself that does the save and restore.
-> 
-
-Yes, but not for hwconfig load. We can load the GuC to read hwconfig and
-then properly populate engine WAs list when the GuC is loaded for
-submission.
-
-> > Likewise for_each_hw_engine should only be called after
-> > xe_hw_engines_init_early is called. With that, I think this patch is
-> > correct. Does that make sense?
-> 
-> as per above, no. I think we are overcomplicating it for no real
-> benefit.
->
-
-I agree this is complicated but I thought this ordering / reading the
-platform information from hwconfig was requirement. Maybe we should
-follow up to check if this is indeed a requirement.
-
-> > 
-> > I suggested to Tejas that we add an assert to for_each_hw_engine to
-> > enforce this is called after xe_hw_engines_init_early to catch issues
-> > like this too.
-> 
-> I think that is already clear. Not sure it deserves an assert. The
-> assert would for instance trigger right now in calculate_regset_size(),
-> but that is harmless. Also we'd have it spread through the driver.
-> 
-
-Well an assert like this would caught this bug quite a bit early.
-
-Matt
-
-> Lucas De Marchi
-> 
-> > 
-> > > 	...
-> > > 	xe_wa_process_gt();
-> > > 
-> > > That gt_fw_domain_init() seems a very poor place to initialize these
-> > > things now. It started with commit b892e30c6cd7 ("drm/xe: Move load of
-> > > minimal GuC and hwconfig read much earlier") and then people end up
-> > > adding random stuff in that function :(
-> > > 
-> > > So I think we need to get back to the original idea of _early()
-> > > initializing what's needed. Then we'd probably need a few cleanups in
-> > > the initialization sequence so the function names at least partially
-> > > matches what's being initialized.
-> > > 
-> > 
-> > I agree on that the naming of all of this could be better...
-> > 
-> > Matt
-> > 
-> > > Lucas De Marchi
-> > > 
-> > > > 	xe_force_wake_init_engines(gt, gt_to_fw(gt));
-> > > >
-> > > > 	err = all_fw_domain_init(gt);
-> > > > --
-> > > > 2.25.1
-> > > >
