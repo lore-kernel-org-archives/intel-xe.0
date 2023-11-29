@@ -4,49 +4,143 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 16320C07E98
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 01:17:48 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 45117C4167B
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 01:17:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEB7F10E5E4;
-	Wed, 29 Nov 2023 01:17:47 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B994510E5E1
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 01:17:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09F5F10E5E2;
+	Wed, 29 Nov 2023 01:17:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 468ED10E5E4
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 01:17:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701220651; x=1732756651;
+ t=1701220667; x=1732756667;
  h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=anTfKzJlnAqatSoOGpWkVleHRdHDIxXkRO94l6gRrf0=;
- b=dE194xGlzpu7CZfL+wf2f3yCKtiZPHwVGgR49SDDxC2uwEClrb04zd3o
- DJRnOxCqG028ju1XcdLjmOEX9rLIAjAKORHCI6yZFrqgRVHRq9/2VbnKc
- 30barCZ7bK0eWqM5A8Rd3wyTEhNWXxDLvKHVU7SHi351KUmzplqf8qdeN
- T7v0yAKymBITiWaFNr0AfpydNZo/giMwsGUwI7/EDzsIYaLfQTT9+k9H5
- aDGQ/VKxok8ZL4IM0z7wewYBHgeagER1i3VKM5bADfp3ZEmSAaRE7z2ZV
- Aony2tywK4npD3j+f+PpK7DMyvle0OZEq0aYQ4Z+W7c2YBQdI38+WsaYM g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="6329499"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; 
-   d="scan'208";a="6329499"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 17:17:31 -0800
+ references:content-transfer-encoding:mime-version;
+ bh=wGvSpIuSMFxxBDuOou3C0GKTj6uVwm7bsrUT7oIAxnI=;
+ b=K2i7huOqDbTpruSajymXEnb8TpkO2IPydB5UhDNxBEp9humkvPysKKSS
+ IofWR8hqXz1PAiE2Hh/Ls0pDglMzPuVpUnX3TeGc4BiBp25KILOqtEhRr
+ N9el7v1ocpHjPmN1fdOKQaLdgmDja5nr8NJIiXMm3GH5ygxNOlaLIcWlu
+ mkAILNsDGlHoSaqKjIN8W7woNQcVXn3Mb8eBZ5gBOBHGX0XcJ/aCjKohm
+ UhqfWBINWKmM8dFaVWJomcrR1zdfM5QT4Fpvz+LxdLXTmRjXYuGzF7gPy
+ mTtBtAczbnUwruH905NdUJk39p1UQir02XmTx4x9L9oK0uiKak6/gZbL5 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="372436677"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="372436677"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 17:17:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="1100322354"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="1100322354"
-Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 17:17:30 -0800
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Nov 2023 17:17:19 -0800
-Message-ID: <20231129011721.2793482-3-daniele.ceraolospurio@intel.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20231129011721.2793482-1-daniele.ceraolospurio@intel.com>
-References: <20231129011721.2793482-1-daniele.ceraolospurio@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="892272841"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="892272841"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Nov 2023 17:17:46 -0800
+Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34; Tue, 28 Nov 2023 17:17:45 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Tue, 28 Nov 2023 17:17:45 -0800
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.34; Tue, 28 Nov 2023 17:17:44 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X708+Chs7xifs9wxxV0ogYWAVI6xeOpXxaQFtl3ELzzreoH1q5DPlU6wI9Kv4zYGkmJoP1b5hNTUKOJuB5FygzUOcY/nkDxYf57GoI9hKErURv+Wa8pmq79T0QqnkC3vo9wti6xP8F5HTmNKONKFyvVhK6FCTC6YaiGRSreFMZ4ghNwFTSZbhVWGyxgG2k+F3IcAG8YaupCG6aZM/zSZJeGTKBDQfzS1QZek14I2mF5/v5EJSscq5ITHt6yRyH/BmZXrNDoKQ7ybyKbGpDs1OJ+xeSk/d/qlfz4L+o/vH8ifh2PjMAiqGWmArTZSCPS76EoeROR71U+mDcvrga54uA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Y2VsqH3uivmiWejTWWposKeKzA52iLolJoZ0YGCzB0w=;
+ b=T4vMoIJNdU8MAD7MadvcEIiMcozdxHLGi43XMOwxzj5jJeVEXUsQFAGtleUbq79ZpKSFojHvlKQx9x5KDFWbs9rOV13eMv8M9bblDhboR538JEvsbmWuPrgDemDjQlMzkgkE4diACex9B19Mfu6VxWQ89UrB45PUpCmnRrDDDsyiEvobmaBLRjRyzXfgxkHnSOzSUzzHA0MyNEEmrBpLi5AFtLfO+5cZghRQ/6qud6sL8xxaFGMtizVPgn7lN7HK0pJKTSqa+JbCgej9RlBcHGOJl75h2gbLSXCb/jwk6DE9GFfcojdgdtYN5Dg/Xn6UIfZ8ZZuDTSk0LThVEq9l5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
+ PH8PR11MB7992.namprd11.prod.outlook.com (2603:10b6:510:25b::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29; Wed, 29 Nov
+ 2023 01:17:43 +0000
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::f105:47dd:6794:6821]) by DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::f105:47dd:6794:6821%4]) with mapi id 15.20.7046.015; Wed, 29 Nov 2023
+ 01:17:43 +0000
+From: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Wed, 29 Nov 2023 02:16:21 +0100
+Message-ID: <20231129011624.836843-20-michal.winiarski@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20231129011624.836843-1-michal.winiarski@intel.com>
+References: <20231129011624.836843-1-michal.winiarski@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 2/2] drm/xe/huc: HuC authentication via GSC
+X-ClientProxiedBy: VI1PR0102CA0025.eurprd01.prod.exchangelabs.com
+ (2603:10a6:802::38) To BL1PR11MB5365.namprd11.prod.outlook.com
+ (2603:10b6:208:308::18)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|PH8PR11MB7992:EE_
+X-MS-Office365-Filtering-Correlation-Id: b16589eb-a74e-4fee-f4c4-08dbf078fcaf
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: j4tnOn9soigbgb+MxAUMWW1UvA43tclQKMAvRFMCTWIL5qHI3Guk8q+gjv9ryCOBAF9vjDjEGQ4t5RNzDKTzBTIUtbJipV2fc0oV4JaQ6rUYNZphumNWxSqYxd2Yu2KNwF+wHVSMMN09rLFQ6nEvv63Vni5l1gW/w8/U6uzQ6V2K6P1AHyJHda/+jMc1vLQBlh/eDF78/Cks7BZNLFLxz2rsnJb+PZmY8uwpbcUI3XbH5UC93zeRz+CEfLXPWBCsoc/n7Fxli339zDLrCSuK/fWHw04umwbqDHYveXcrWlBoijIUW/hKYgxqYkbEBaIiph4xcRo8eYC2kHTeTTTIrTRBFlWArFbXyztQ7GCU6JESBVq2IR5Tvm0sYUHtWfaQGMgDaUwfJHCEOEoN3HYErwbPZnpuE0ev/KH31kN4okoVYGbsiztEa5L3R4Z9rkOO8vOZsBeU7ZqWPvxz5iAsNaK+0NXheKgGOU/lCUoqpJcgzFewdzsVBZiNr+klJE4fDxVWcGcrld7haeznbvdLYVnUMeHvWQ1/FrqDwupOfnXhsr2N2VcGoffvVj09s7KU
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(39860400002)(376002)(346002)(396003)(136003)(230922051799003)(451199024)(186009)(1800799012)(64100799003)(6666004)(8936002)(4326008)(8676002)(6512007)(6506007)(54906003)(66556008)(66946007)(66476007)(6916009)(316002)(478600001)(6486002)(41300700001)(38100700002)(86362001)(1076003)(36756003)(2906002)(26005)(2616005)(83380400001)(82960400001)(5660300002);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OVFDNzVLZHFxWVVtaUpaZStZbUxWYXZwSVc5ZExrWk1ieUdlM2RCdGtzMWdR?=
+ =?utf-8?B?QWE5T3JtNUhMdHdJdVRGTGxxeHVyYms5Mkh0WFlXVWVXNGM0OUpOVFo2Mk9X?=
+ =?utf-8?B?ZTVOQUtBNDhER3NKbEJraWhHNjI3THpzV0pxM2ExQnQwN3BxZWx0NTB6c0JG?=
+ =?utf-8?B?Q081SGpRRHdGcjQ1RjJMNlJmTllWQUxsZXVhSVdRNElsQnhyamdVRXlEMVBj?=
+ =?utf-8?B?QTN5Q2hFTncrWUpybXpJUUUwL0RBQldodU82dEhwRFMzTnpNVG9xcFNGbjdr?=
+ =?utf-8?B?QWV2M3RWZjBMSG43YjYvc1FkWWJDTGxVMHlXc2VBaWhieGpyaUhqNkJKUXVq?=
+ =?utf-8?B?STg2Mk1jZHdPSWJUc2pxSU5oMDhLWWlqbGQvV05CTTFqSjN2RHBmYUkyM2sy?=
+ =?utf-8?B?T05xMGVTNzd5dVRreklhbFRER3F5ZXNzZXhpeGt6c1A4SHlybnVEcDFDcTZk?=
+ =?utf-8?B?NEdYYkZkMkw4Vkc1ekZ6dVJRYTJ4MDBJcEhKcVp2dHQ4MFp4Kzg3MHRZa28r?=
+ =?utf-8?B?MFFORGZJTFVLTlR1Y2NiT2ZjR05DK2VqR3p3UlZTQUh4aDhHaENtZy92ZFE5?=
+ =?utf-8?B?QlhYeEFVMzE3NVM1TEJlZkc0UGRYQkhIYStoLzQ4RnlaZWIvZTc4Q1BzQWp1?=
+ =?utf-8?B?UFNya21TdUtrZWIrM0pQMU96dU1JWmhwdHo4UXUvS004bWlMSVVvdDRzYThr?=
+ =?utf-8?B?UlNVQW1hcHl1aWoxRTl5NllNUG9NaTk5VHdTZzJFMVc5TFRBNEhyRVd2Zktl?=
+ =?utf-8?B?Wk96ZVNsNlNVbXFJTWpwNnQyMlgvS0NIbkV2djZCanR2UGlKTjR2bG84VEdn?=
+ =?utf-8?B?UTNnQXcvU2RCbmNHQmJHQ1k3anhHL0xSNERYSTNDUUV0eU1rL2NjYnF1KzZG?=
+ =?utf-8?B?eEprUWZBNWhSYk1VekxPZ3c5Y2taaFpJOHF0UEZqTXBCeG9nV1djUWUrQWxG?=
+ =?utf-8?B?Y0pCeGY4TVZuVlRWN3JBckoyZzJVS1dJZFF2VDhoYnJmaVFxVVFrTUpFVVpV?=
+ =?utf-8?B?ZHBpQXN4dnMrMDIwNUozbUlSNjhCTFdHQXArQ2tPZFc2Nm5CSVNpR05KTGFR?=
+ =?utf-8?B?YUhmenVENWM0V1BlVVYxdHdCdDYxSWlibTNBaDgrdzRrSllURFdQNk1aeFRi?=
+ =?utf-8?B?V3NrenNNY1R5RWQ1aGpXL0dFRWFRMXpLeTErWDYxNzVaS2lOOVR5UnVlSjZa?=
+ =?utf-8?B?N1ZLT1hXUXVVQlZEbjBKYVJIdzhTdUtBTGd3Tzd3aUR0M25yd2kySkFRQUdm?=
+ =?utf-8?B?WW1oWW9ldXVyNmNkenVyb3lmMlJ2akpOTWIwRXpNNkwyMkVXbStLZ1BxSFFz?=
+ =?utf-8?B?clZKT084NDdrYURHTE14cmdmQlBHQ1RIYmtiazAxVjNZQlUva2FDR09lYW9v?=
+ =?utf-8?B?SThlbnkvaWl3VzRVUmN0QmxrVXRLUTdCL2JrOFd0ZmhxOUpmbktBQU5ZNUp4?=
+ =?utf-8?B?eng4Y2h5bzg1Ylg3eGdQQ3FITENzbWU2cXRvNGl1TGY1UU50NGlwWFg5MDgv?=
+ =?utf-8?B?TTBDU3ZFeEc1SmIwQU5HeWs2VkZSbFZHdWhNbFppa1dnUVNvenA4ekxqRWVu?=
+ =?utf-8?B?ZGg0MVZ5VEZOU213b3NMVU9oWDVqNlhySEpSOGY5MGtXcndXREpFb1daamZH?=
+ =?utf-8?B?WGw5cUxBdFJOa2d0dzZzdGFYRHlxWXJPMEJJeitzMGFxajExK0xDTThJcmo0?=
+ =?utf-8?B?QWdMMmtZZkFycVJiUjF0WUE2UWk1eGNMQ0Q3QjFlWTZQVWIvNFdYWG9LYlov?=
+ =?utf-8?B?OC9IR0d3SXd2bWxYYm1CNHFSMTU1SFdhbkNDNGU3aFVIS0hiWklmMFpUNEF1?=
+ =?utf-8?B?dmhLeVBJSG0vdzVEOTNTcHNNQjJpeTJ0WkZsSHpQS0hudUN6YlRaWXk2REJ6?=
+ =?utf-8?B?a2Y5ODBma0RIdGxRUk1EcFg3Z0l6eU5LN3YwOVpUOE82MVlSNTZCMGVHZVQv?=
+ =?utf-8?B?MjJ2YXJjVVMvQzRXZ01remdxaTI1SXMrYW9lU25NYXVvdUVjSXROTXA2ck9S?=
+ =?utf-8?B?QWtRNk1xZFMwV0RXUitKRmFseUFvVXRvQ2hvQVF0SFE2VXhMODY0ZnB2Nnlz?=
+ =?utf-8?B?UFlDWDZ6eVcwTXFJL1BZTFRlaWlFelFSV0xrNHZENzdXS0hqVEJRRldtWG5S?=
+ =?utf-8?B?VkNNbno3Y2QrNnJCeXB5WHpNcFN5a3Jzd0hndVpENkVhbUlPRGh0UGgxVlJJ?=
+ =?utf-8?B?cXc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: b16589eb-a74e-4fee-f4c4-08dbf078fcaf
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR11MB5365.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 01:17:43.3701 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: LIvEIW7LwddDL9UElAeje7KaDze/4K0rOIqxU608H83EJoKSOIE/O27AdGFK1tXlZboF7LaJzq9TxPqQNK/KylO2Q5d7T989b1LAHSmTJDE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB7992
+X-OriginatorOrg: intel.com
+Subject: [Intel-xe] [PATCH v4 19/22] drm/managed: Add drmm_release_action
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,394 +152,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-HuC authentication via GSC is performed by submitting the appropriate
-PXP packet to the GSC FW. This packet can trigger a "pending" reply from
-the FW, so we need to handle that and resubmit. Note that the auth via
-GSC can only be performed if the HuC has already been authenticated by
-the GuC.
+Similar to devres equivalent, it allows to call the "release" action
+directly and remove the resource from the managed resources list.
 
-Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-Cc: Alan Previn <alan.previn.teres.alexis@intel.com>
-Cc: John Harrison <John.C.Harrison@Intel.com>
-Cc: Vivaik Balasubrawmanian <vivaik.balasubrawmanian@intel.com>
+Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
 ---
- drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h |  59 ++++++++
- drivers/gpu/drm/xe/xe_gsc.c                   |  14 +-
- drivers/gpu/drm/xe/xe_huc.c                   | 141 +++++++++++++++++-
- drivers/gpu/drm/xe/xe_huc.h                   |   1 +
- drivers/gpu/drm/xe/xe_huc_types.h             |   5 +
- drivers/gpu/drm/xe/xe_uc_fw.c                 |   2 +
- drivers/gpu/drm/xe/xe_uc_fw_types.h           |   3 +
- 7 files changed, 218 insertions(+), 7 deletions(-)
- create mode 100644 drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
+ drivers/gpu/drm/drm_managed.c | 28 ++++++++++++++++++++++++++++
+ include/drm/drm_managed.h     |  4 ++++
+ 2 files changed, 32 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h b/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
-new file mode 100644
-index 000000000000..57520809e48d
---- /dev/null
-+++ b/drivers/gpu/drm/xe/abi/gsc_pxp_commands_abi.h
-@@ -0,0 +1,59 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _ABI_GSC_PXP_COMMANDS_ABI_H
-+#define _ABI_GSC_PXP_COMMANDS_ABI_H
-+
-+#include <linux/types.h>
-+
-+/* Heci client ID for PXP commands */
-+#define HECI_MEADDRESS_PXP 17
-+
-+#define PXP_APIVER(x, y) (((x) & 0xFFFF) << 16 | ((y) & 0xFFFF))
-+
-+/*
-+ * there are a lot of status codes for PXP, but we only define the cross-API
-+ * common ones that we actually can handle in the kernel driver. Other failure
-+ * codes should be printed to error msg for debug.
-+ */
-+enum pxp_status {
-+	PXP_STATUS_SUCCESS = 0x0,
-+	PXP_STATUS_ERROR_API_VERSION = 0x1002,
-+	PXP_STATUS_NOT_READY = 0x100e,
-+	PXP_STATUS_PLATFCONFIG_KF1_NOVERIF = 0x101a,
-+	PXP_STATUS_PLATFCONFIG_KF1_BAD = 0x101f,
-+	PXP_STATUS_OP_NOT_PERMITTED = 0x4013
-+};
-+
-+/* Common PXP FW message header */
-+struct pxp_cmd_header {
-+	u32 api_version;
-+	u32 command_id;
-+	union {
-+		u32 status; /* out */
-+		u32 stream_id; /* in */
-+#define PXP_CMDHDR_EXTDATA_SESSION_VALID GENMASK(0, 0)
-+#define PXP_CMDHDR_EXTDATA_APP_TYPE GENMASK(1, 1)
-+#define PXP_CMDHDR_EXTDATA_SESSION_ID GENMASK(17, 2)
-+	};
-+	/* Length of the message (excluding the header) */
-+	u32 buffer_len;
-+} __packed;
-+
-+#define PXP43_CMDID_NEW_HUC_AUTH 0x0000003F /* MTL+ */
-+
-+/* PXP-Input-Packet: HUC Auth-only */
-+struct pxp43_new_huc_auth_in {
-+	struct pxp_cmd_header header;
-+	u64 huc_base_address;
-+	u32 huc_size;
-+} __packed;
-+
-+/* PXP-Output-Packet: HUC Load and Authentication or Auth-only */
-+struct pxp43_huc_auth_out {
-+	struct pxp_cmd_header header;
-+} __packed;
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_gsc.c b/drivers/gpu/drm/xe/xe_gsc.c
-index 020b7b4c6ffc..4aad6a8c9dde 100644
---- a/drivers/gpu/drm/xe/xe_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_gsc.c
-@@ -16,6 +16,7 @@
- #include "xe_gsc_submit.h"
- #include "xe_gt.h"
- #include "xe_gt_printk.h"
-+#include "xe_huc.h"
- #include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_sched_job.h"
-@@ -257,11 +258,18 @@ static void gsc_work(struct work_struct *work)
- 	xe_force_wake_get(gt_to_fw(gt), XE_FW_GSC);
- 
- 	ret = gsc_upload(gsc);
--	if (ret && ret != -EEXIST)
-+	if (ret && ret != -EEXIST) {
- 		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_LOAD_FAIL);
--	else
--		xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
-+		goto out;
-+	}
- 
-+	xe_uc_fw_change_status(&gsc->fw, XE_UC_FIRMWARE_TRANSFERRED);
-+
-+	/* HuC auth failure is not fatal */
-+	if (xe_huc_is_authenticated(&gt->uc.huc, XE_HUC_AUTH_VIA_GUC))
-+		xe_huc_auth(&gt->uc.huc, XE_HUC_AUTH_VIA_GSC);
-+
-+out:
- 	xe_force_wake_put(gt_to_fw(gt), XE_FW_GSC);
- 	xe_device_mem_access_put(xe);
+diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
+index bcd111404b128..f819940b8a959 100644
+--- a/drivers/gpu/drm/drm_managed.c
++++ b/drivers/gpu/drm/drm_managed.c
+@@ -176,6 +176,34 @@ int __drmm_add_action_or_reset(struct drm_device *dev,
  }
-diff --git a/drivers/gpu/drm/xe/xe_huc.c b/drivers/gpu/drm/xe/xe_huc.c
-index 9845165a819c..3c7e1c10d5fa 100644
---- a/drivers/gpu/drm/xe/xe_huc.c
-+++ b/drivers/gpu/drm/xe/xe_huc.c
-@@ -5,14 +5,19 @@
+ EXPORT_SYMBOL(__drmm_add_action_or_reset);
  
- #include "xe_huc.h"
- 
-+#include <drm/drm_managed.h>
-+
-+#include "abi/gsc_pxp_commands_abi.h"
- #include "regs/xe_gsc_regs.h"
- #include "regs/xe_guc_regs.h"
- #include "xe_assert.h"
- #include "xe_bo.h"
- #include "xe_device.h"
- #include "xe_force_wake.h"
-+#include "xe_gsc_submit.h"
- #include "xe_gt.h"
- #include "xe_guc.h"
-+#include "xe_map.h"
- #include "xe_mmio.h"
- #include "xe_uc_fw.h"
- 
-@@ -34,6 +39,42 @@ huc_to_guc(struct xe_huc *huc)
- 	return &container_of(huc, struct xe_uc, huc)->guc;
- }
- 
-+static void free_gsc_pkt(struct drm_device *drm, void *arg)
++void drmm_release_action(struct drm_device *dev,
++			 drmres_release_t action,
++			 void *data)
 +{
-+	struct xe_huc *huc = arg;
++	struct drmres *dr_match = NULL, *dr;
++	unsigned long flags;
 +
-+	xe_bo_unpin_map_no_vm(huc->gsc_pkt);
-+	huc->gsc_pkt = NULL;
-+}
-+
-+#define PXP43_HUC_AUTH_INOUT_SIZE SZ_4K
-+static int huc_alloc_gsc_pkt(struct xe_huc *huc)
-+{
-+	struct xe_gt *gt = huc_to_gt(huc);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_bo *bo;
-+	int err;
-+
-+	/* we use a single object for both input and output */
-+	bo = xe_bo_create_pin_map(xe, gt_to_tile(gt), NULL,
-+				  PXP43_HUC_AUTH_INOUT_SIZE * 2,
-+				  ttm_bo_type_kernel,
-+				  XE_BO_CREATE_SYSTEM_BIT |
-+				  XE_BO_CREATE_GGTT_BIT);
-+	if (IS_ERR(bo))
-+		return PTR_ERR(bo);
-+
-+	huc->gsc_pkt = bo;
-+
-+	err = drmm_add_action_or_reset(&xe->drm, free_gsc_pkt, huc);
-+	if (err) {
-+		free_gsc_pkt(&xe->drm, huc);
-+		return err;
-+	}
-+
-+	return 0;
-+}
-+
- int xe_huc_init(struct xe_huc *huc)
- {
- 	struct xe_gt *gt = huc_to_gt(huc);
-@@ -56,6 +97,12 @@ int xe_huc_init(struct xe_huc *huc)
- 	if (!xe_uc_fw_is_enabled(&huc->fw))
- 		return 0;
- 
-+	if (huc->fw.has_gsc_headers) {
-+		ret = huc_alloc_gsc_pkt(huc);
-+		if (ret)
-+			goto out;
-+	}
-+
- 	xe_uc_fw_change_status(&huc->fw, XE_UC_FIRMWARE_LOADABLE);
- 
- 	return 0;
-@@ -72,6 +119,89 @@ int xe_huc_upload(struct xe_huc *huc)
- 	return xe_uc_fw_upload(&huc->fw, 0, HUC_UKERNEL);
- }
- 
-+#define huc_auth_msg_wr(xe_, map_, offset_, field_, val_) \
-+	xe_map_wr_field(xe_, map_, offset_, struct pxp43_new_huc_auth_in, field_, val_)
-+#define huc_auth_msg_rd(xe_, map_, offset_, field_) \
-+	xe_map_rd_field(xe_, map_, offset_, struct pxp43_huc_auth_out, field_)
-+
-+static u32 huc_emit_pxp_auth_msg(struct xe_device *xe, struct iosys_map *map,
-+				 u32 wr_offset, u32 huc_offset, u32 huc_size)
-+{
-+	xe_map_memset(xe, map, wr_offset, 0, sizeof(struct pxp43_new_huc_auth_in));
-+
-+	huc_auth_msg_wr(xe, map, wr_offset, header.api_version, PXP_APIVER(4, 3));
-+	huc_auth_msg_wr(xe, map, wr_offset, header.command_id, PXP43_CMDID_NEW_HUC_AUTH);
-+	huc_auth_msg_wr(xe, map, wr_offset, header.status, 0);
-+	huc_auth_msg_wr(xe, map, wr_offset, header.buffer_len,
-+			sizeof(struct pxp43_new_huc_auth_in) - sizeof(struct pxp_cmd_header));
-+	huc_auth_msg_wr(xe, map, wr_offset, huc_base_address, huc_offset);
-+	huc_auth_msg_wr(xe, map, wr_offset, huc_size, huc_size);
-+
-+	return wr_offset + sizeof(struct pxp43_new_huc_auth_in);
-+}
-+
-+static int huc_auth_via_gsccs(struct xe_huc *huc)
-+{
-+	struct xe_gt *gt = huc_to_gt(huc);
-+	struct xe_device *xe = gt_to_xe(gt);
-+	struct xe_bo *pkt = huc->gsc_pkt;
-+	u32 wr_offset;
-+	u32 rd_offset;
-+	u64 ggtt_offset;
-+	u32 out_status;
-+	int retry = 5;
-+	int err = 0;
-+
-+	if (!pkt)
-+		return -ENODEV;
-+
-+	ggtt_offset = xe_bo_ggtt_addr(pkt);
-+
-+	wr_offset = xe_gsc_emit_header(xe, &pkt->vmap, 0, HECI_MEADDRESS_PXP, 0,
-+				       sizeof(struct pxp43_new_huc_auth_in));
-+	wr_offset = huc_emit_pxp_auth_msg(xe, &pkt->vmap, wr_offset,
-+					 xe_bo_ggtt_addr(huc->fw.bo),
-+					 huc->fw.bo->size);
-+	do {
-+		err = xe_gsc_pkt_submit_kernel(&gt->uc.gsc, ggtt_offset, wr_offset,
-+					       ggtt_offset + PXP43_HUC_AUTH_INOUT_SIZE,
-+					       PXP43_HUC_AUTH_INOUT_SIZE);
-+		if (err)
-+			break;
-+
-+		if (xe_gsc_check_and_update_pending(xe, &pkt->vmap, 0, &pkt->vmap,
-+						    PXP43_HUC_AUTH_INOUT_SIZE)) {
-+			err = -EBUSY;
-+			msleep(50);
++	spin_lock_irqsave(&dev->managed.lock, flags);
++	list_for_each_entry_reverse(dr, &dev->managed.resources, node.entry) {
++		if (dr->node.release == action) {
++			if (!data || (data && *(void **)dr->data == data)) {
++				dr_match = dr;
++				del_dr(dev, dr_match);
++				break;
++			}
 +		}
-+	} while (--retry && err == -EBUSY);
-+
-+	if (err) {
-+		drm_err(&xe->drm, "failed to submit GSC request to auth: %d\n", err);
-+		return err;
 +	}
++	spin_unlock_irqrestore(&dev->managed.lock, flags);
 +
-+	err = xe_gsc_read_out_header(xe, &pkt->vmap, PXP43_HUC_AUTH_INOUT_SIZE,
-+				     sizeof(struct pxp43_huc_auth_out), &rd_offset);
-+	if (err) {
-+		drm_err(&xe->drm, "HuC: invalid GSC reply for auth (err=%d)\n", err);
-+		return err;
-+	}
++	if (WARN_ON(!dr_match))
++		return;
 +
-+	/*
-+	 * The GSC will return PXP_STATUS_OP_NOT_PERMITTED if the HuC is already
-+	 * authenticated. If the same error is ever returned with HuC not loaded
-+	 * we'll still catch it when we check the authentication bit later.
-+	 */
-+	out_status = huc_auth_msg_rd(xe, &pkt->vmap, rd_offset, header.status);
-+	if (out_status != PXP_STATUS_SUCCESS && out_status != PXP_STATUS_OP_NOT_PERMITTED) {
-+		drm_err(&xe->drm, "auth failed with GSC error = 0x%x\n", out_status);
-+		return -EIO;
-+	}
++	action(dev, data);
 +
-+	return 0;
++	free_dr(dr_match);
 +}
-+
- static const struct {
- 	const char *name;
- 	struct xe_reg reg;
-@@ -85,8 +215,10 @@ static const struct {
- 				  HECI1_FWSTS5_HUC_AUTH_DONE },
- };
- 
--static bool huc_is_authenticated(struct xe_gt *gt, enum xe_huc_auth_types type)
-+bool xe_huc_is_authenticated(struct xe_huc *huc, enum xe_huc_auth_types type)
- {
-+	struct xe_gt *gt = huc_to_gt(huc);
-+
- 	return xe_mmio_read32(gt, huc_auth_modes[type].reg) & huc_auth_modes[type].val;
- }
- 
-@@ -100,10 +232,8 @@ int xe_huc_auth(struct xe_huc *huc, enum xe_huc_auth_types type)
- 	if (!xe_uc_fw_is_loadable(&huc->fw))
- 		return 0;
- 
--	xe_assert(xe, !xe_uc_fw_is_running(&huc->fw));
--
- 	/* On newer platforms the HuC survives reset, so no need to re-auth */
--	if (huc_is_authenticated(gt, type)) {
-+	if (xe_huc_is_authenticated(huc, type)) {
- 		xe_uc_fw_change_status(&huc->fw, XE_UC_FIRMWARE_RUNNING);
- 		return 0;
- 	}
-@@ -116,6 +246,9 @@ int xe_huc_auth(struct xe_huc *huc, enum xe_huc_auth_types type)
- 		ret = xe_guc_auth_huc(guc, xe_bo_ggtt_addr(huc->fw.bo) +
- 				      xe_uc_fw_rsa_offset(&huc->fw));
- 		break;
-+	case XE_HUC_AUTH_VIA_GSC:
-+		ret = huc_auth_via_gsccs(huc);
-+		break;
- 	default:
- 		XE_WARN_ON(type);
- 		return -EINVAL;
-diff --git a/drivers/gpu/drm/xe/xe_huc.h b/drivers/gpu/drm/xe/xe_huc.h
-index b8c387f14b8e..532017230287 100644
---- a/drivers/gpu/drm/xe/xe_huc.h
-+++ b/drivers/gpu/drm/xe/xe_huc.h
-@@ -19,6 +19,7 @@ enum xe_huc_auth_types {
- int xe_huc_init(struct xe_huc *huc);
- int xe_huc_upload(struct xe_huc *huc);
- int xe_huc_auth(struct xe_huc *huc, enum xe_huc_auth_types type);
-+bool xe_huc_is_authenticated(struct xe_huc *huc, enum xe_huc_auth_types type);
- void xe_huc_sanitize(struct xe_huc *huc);
- void xe_huc_print_info(struct xe_huc *huc, struct drm_printer *p);
- 
-diff --git a/drivers/gpu/drm/xe/xe_huc_types.h b/drivers/gpu/drm/xe/xe_huc_types.h
-index cae6d19097df..cfbaa5e0dfca 100644
---- a/drivers/gpu/drm/xe/xe_huc_types.h
-+++ b/drivers/gpu/drm/xe/xe_huc_types.h
-@@ -8,12 +8,17 @@
- 
- #include "xe_uc_fw_types.h"
- 
-+struct xe_bo;
++EXPORT_SYMBOL(drmm_release_action);
 +
  /**
-  * struct xe_huc - HuC
-  */
- struct xe_huc {
- 	/** @fw: Generic uC firmware management */
- 	struct xe_uc_fw fw;
+  * drmm_kmalloc - &drm_device managed kmalloc()
+  * @dev: DRM device
+diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+index ad08f834af408..f547b09ca0239 100644
+--- a/include/drm/drm_managed.h
++++ b/include/drm/drm_managed.h
+@@ -45,6 +45,10 @@ int __must_check __drmm_add_action_or_reset(struct drm_device *dev,
+ 					    drmres_release_t action,
+ 					    void *data, const char *name);
+ 
++void drmm_release_action(struct drm_device *dev,
++			 drmres_release_t action,
++			 void *data);
 +
-+	/** @gsc_pkt: bo to store the packet for auth via GSC */
-+	struct xe_bo *gsc_pkt;
- };
+ void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __malloc;
  
- #endif
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-index 2fcec528a1d1..eb1e6a883f13 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw.c
-+++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-@@ -529,6 +529,8 @@ static int parse_cpd_header(struct xe_uc_fw *uc_fw, const void *data, size_t siz
- 		uc_fw->css_offset = offset;
- 	}
- 
-+	uc_fw->has_gsc_headers = true;
-+
- 	return 0;
- }
- 
-diff --git a/drivers/gpu/drm/xe/xe_uc_fw_types.h b/drivers/gpu/drm/xe/xe_uc_fw_types.h
-index fc1de0cc9324..ee914a5d8523 100644
---- a/drivers/gpu/drm/xe/xe_uc_fw_types.h
-+++ b/drivers/gpu/drm/xe/xe_uc_fw_types.h
-@@ -112,6 +112,9 @@ struct xe_uc_fw {
- 	/** @bo: XE BO for uC firmware */
- 	struct xe_bo *bo;
- 
-+	/** @has_gsc_headers: whether the FW image starts with GSC headers */
-+	bool has_gsc_headers;
-+
- 	/*
- 	 * The firmware build process will generate a version header file with
- 	 * major and minor version defined. The versions are built into CSS
+ /**
 -- 
-2.41.0
+2.43.0
 
