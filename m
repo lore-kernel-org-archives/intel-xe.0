@@ -4,53 +4,52 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7A4B0C4167B
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 09:43:57 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD1FBC4167B
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 10:39:35 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D1F210E3F3;
-	Wed, 29 Nov 2023 09:43:57 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AADF10E3F3
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 09:43:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 939E410E198;
+	Wed, 29 Nov 2023 10:39:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 016DE10E198
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 10:39:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701251035; x=1732787035;
+ t=1701254374; x=1732790374;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=jNK5mVltIMxCwxGsvkQ0QN/S1oDCA3Z6iW0mhMNIp0Y=;
- b=mDLrYJtDvtDZD1ICiRXqJnixQRoZrGUUlB3JiwH9TH3UHdkXR+AFYyQR
- lUSuEzgbdutbu9MjIYSAjEOpnV0oLsL3XpA/1Vra4+Jd/uYuB53r7Frjh
- 23ZsU0ieTeU9i1ZbVZ2NflQTCLJOIXQsvRMMGTvJEM+fmRzqHw42llxu3
- MFT0XIHmk/1HqSt3wjyt5MjE8eoY66nmtGea8cgikVV4ZxDu4ii9kPZ5e
- 3Mk7I2JPc/vWwboWEAuS6nDUwjWl/j/e06tuXNdp32VgGUj6j5GtjwMbo
- cJNni/UMolSoL0pjkS7W6cXYhsJhbFbQb+pELZ+7nJPdP4H+4eo5uVl6w g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="373321087"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="373321087"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 01:43:27 -0800
+ bh=DaIzEYRaRANky9aDybUvQdG8rrHJwyywRFRtzv3MiSE=;
+ b=ZedBMbMacLyNoYRgo3xUeLUVMA0QPtrmlLzWxQo20SNLGWCn4yHJt73P
+ YMoarP/qvcfvGcxZGIshQu99MV7R/BeTgu5hC0Yu4XkXLLXMfbffLKucn
+ bYwoxjowQKoOP0jUzWZsLT6PzYX54NJqj6SuRkYZLKLo9Gzo/Jw9PDoYN
+ kvfSBSKQbZh9YvI3jXe+toC30W8g84tJo0Rnqmc0k+3naZ+TX8maRlu8R
+ mLnq3YXaHYoTP3gX7gMuGROQAXwHVTCmxMTSHf41G+I2W4OmIhxOc1Uwu
+ M8RQu7qOwmioTmTfFNq0iWdP4pKV/DXdUG9BJSuqCoU4eucZwEdrzhi8a g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="424285156"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="424285156"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 02:39:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="859764003"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="859764003"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by FMSMGA003.fm.intel.com with ESMTP; 29 Nov 2023 01:43:25 -0800
-Received: from [10.249.156.143] (unknown [10.249.156.143])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id CD77A36344;
- Wed, 29 Nov 2023 09:43:24 +0000 (GMT)
-Message-ID: <cefbc4f8-08c4-4c96-b042-a1e83d49d05c@intel.com>
-Date: Wed, 29 Nov 2023 10:43:24 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="803253302"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="803253302"
+Received: from rsexton-mobl.ger.corp.intel.com (HELO [10.252.8.118])
+ ([10.252.8.118])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 02:39:31 -0800
+Message-ID: <546af81f-357c-46ac-9214-46c7d8addeac@intel.com>
+Date: Wed, 29 Nov 2023 10:39:29 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Content-Language: en-US
-To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20231129011624.836843-1-michal.winiarski@intel.com>
- <20231129011624.836843-20-michal.winiarski@intel.com>
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20231129011624.836843-20-michal.winiarski@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH v4 19/22] drm/managed: Add drmm_release_action
+To: Matthew Brost <matthew.brost@intel.com>
+References: <20231127094458.18130-2-matthew.auld@intel.com>
+ <ZWWyaVbQpbciDXs4@DUT025-TGLU.fm.intel.com>
+Content-Language: en-GB
+From: Matthew Auld <matthew.auld@intel.com>
+In-Reply-To: <ZWWyaVbQpbciDXs4@DUT025-TGLU.fm.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Subject: Re: [Intel-xe] [PATCH v2] drm/xe: fix mem_access for early lrc
+ generation
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,77 +61,122 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>
+Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-
-
-On 29.11.2023 02:16, Michał Winiarski wrote:
-> Similar to devres equivalent, it allows to call the "release" action
-> directly and remove the resource from the managed resources list.
+On 28/11/2023 09:27, Matthew Brost wrote:
+> On Mon, Nov 27, 2023 at 09:44:59AM +0000, Matthew Auld wrote:
+>> We spawn some hw queues during device probe to generate the default LRC
+>> for every engine type, however the queue destruction step is typically
+>> async. Queue destruction needs to do stuff like GuC context deregister
+>> which requires GuC CT, which in turn requires an active mem_access ref.
+>> The caller during probe is meant to hold the mem_access token, however
+>> due to the async destruction it might have already been dropped if we
+>> are unlucky.
+>>
+>> Similar to how we already handle migrate VMs for which there is no
+>> mem_access ref, fix this by keeping the callers token alive, releasing
+>> it only when destroying the queue. We can treat a NULL vm as indication
+>> that we need to grab our own extra ref.
+>>
+>> Fixes the following splat sometimes during load:
+>>
+>> [ 1682.899930] WARNING: CPU: 1 PID: 8642 at drivers/gpu/drm/xe/xe_device.c:537 xe_device_assert_mem_access+0x27/0x30 [xe]
+>> [ 1682.900209] CPU: 1 PID: 8642 Comm: kworker/u24:97 Tainted: G     U  W   E    N 6.6.0-rc3+ #6
+>> [ 1682.900214] Workqueue: submit_wq xe_sched_process_msg_work [xe]
+>> [ 1682.900303] RIP: 0010:xe_device_assert_mem_access+0x27/0x30 [xe]
+>> [ 1682.900388] Code: 90 90 90 66 0f 1f 00 0f 1f 44 00 00 53 48 89 fb e8 1e 6c 03 00 48 85 c0 74 06 5b c3 cc cc cc cc 8b 83 28 23 00 00 85 c0 75 f0 <0f> 0b 5b c3 cc cc cc cc 90 90 90 90 90 90 90 90 90 90 90 90 90 90
+>> [ 1682.900390] RSP: 0018:ffffc900021cfb68 EFLAGS: 00010246
+>> [ 1682.900394] RAX: 0000000000000000 RBX: ffff8886a96d8000 RCX: 0000000000000000
+>> [ 1682.900396] RDX: 0000000000000001 RSI: ffff8886a6311a00 RDI: ffff8886a96d8000
+>> [ 1682.900398] RBP: ffffc900021cfcc0 R08: 0000000000000001 R09: 0000000000000000
+>> [ 1682.900400] R10: ffffc900021cfcd0 R11: 0000000000000002 R12: 0000000000000004
+>> [ 1682.900402] R13: 0000000000000000 R14: ffff8886a6311990 R15: ffffc900021cfd74
+>> [ 1682.900405] FS:  0000000000000000(0000) GS:ffff888829880000(0000) knlGS:0000000000000000
+>> [ 1682.900407] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+>> [ 1682.900409] CR2: 000055f70bad3fb0 CR3: 000000025243a004 CR4: 00000000003706e0
+>> [ 1682.900412] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
+>> [ 1682.900413] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
+>> [ 1682.900415] Call Trace:
+>> [ 1682.900418]  <TASK>
+>> [ 1682.900420]  ? xe_device_assert_mem_access+0x27/0x30 [xe]
+>> [ 1682.900504]  ? __warn+0x85/0x170
+>> [ 1682.900510]  ? xe_device_assert_mem_access+0x27/0x30 [xe]
+>> [ 1682.900596]  ? report_bug+0x171/0x1a0
+>> [ 1682.900604]  ? handle_bug+0x3c/0x80
+>> [ 1682.900608]  ? exc_invalid_op+0x17/0x70
+>> [ 1682.900612]  ? asm_exc_invalid_op+0x1a/0x20
+>> [ 1682.900621]  ? xe_device_assert_mem_access+0x27/0x30 [xe]
+>> [ 1682.900706]  ? xe_device_assert_mem_access+0x12/0x30 [xe]
+>> [ 1682.900790]  guc_ct_send_locked+0xb9/0x1550 [xe]
+>> [ 1682.900882]  ? lock_acquire+0xca/0x2b0
+>> [ 1682.900885]  ? guc_ct_send+0x3c/0x1a0 [xe]
+>> [ 1682.900977]  ? lock_is_held_type+0x9b/0x110
+>> [ 1682.900984]  ? __mutex_lock+0xc0/0xb90
+>> [ 1682.900989]  ? __pfx___drm_printfn_info+0x10/0x10
+>> [ 1682.900999]  guc_ct_send+0x53/0x1a0 [xe]
+>> [ 1682.901090]  ? __lock_acquire+0xf22/0x21b0
+>> [ 1682.901097]  ? process_one_work+0x1a0/0x500
+>> [ 1682.901109]  xe_guc_ct_send+0x19/0x50 [xe]
+>> [ 1682.901202]  set_min_preemption_timeout+0x75/0xa0 [xe]
+>> [ 1682.901294]  disable_scheduling_deregister+0x55/0x250 [xe]
+>> [ 1682.901383]  ? xe_sched_process_msg_work+0x76/0xd0 [xe]
+>> [ 1682.901467]  ? lock_release+0xc9/0x260
+>> [ 1682.901474]  xe_sched_process_msg_work+0x82/0xd0 [xe]
+>> [ 1682.901559]  process_one_work+0x20a/0x500
+>>
+>> v2: Add the splat
+>>
+>> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+>> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+>> Cc: Matthew Brost <matthew.brost@intel.com>
 > 
-> Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
-> ---
->  drivers/gpu/drm/drm_managed.c | 28 ++++++++++++++++++++++++++++
->  include/drm/drm_managed.h     |  4 ++++
->  2 files changed, 32 insertions(+)
+> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-shouldn't this go to the dri-devel first ?
+Thanks.
 
 > 
-> diff --git a/drivers/gpu/drm/drm_managed.c b/drivers/gpu/drm/drm_managed.c
-> index bcd111404b128..f819940b8a959 100644
-> --- a/drivers/gpu/drm/drm_managed.c
-> +++ b/drivers/gpu/drm/drm_managed.c
-> @@ -176,6 +176,34 @@ int __drmm_add_action_or_reset(struct drm_device *dev,
->  }
->  EXPORT_SYMBOL(__drmm_add_action_or_reset);
->  
-> +void drmm_release_action(struct drm_device *dev,
-> +			 drmres_release_t action,
-> +			 void *data)
-> +{
-> +	struct drmres *dr_match = NULL, *dr;
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&dev->managed.lock, flags);
-> +	list_for_each_entry_reverse(dr, &dev->managed.resources, node.entry) {
-> +		if (dr->node.release == action) {
-> +			if (!data || (data && *(void **)dr->data == data)) {
-> +				dr_match = dr;
-> +				del_dr(dev, dr_match);
-> +				break;
-> +			}
-> +		}
-> +	}
-> +	spin_unlock_irqrestore(&dev->managed.lock, flags);
-> +
-> +	if (WARN_ON(!dr_match))
-> +		return;
-> +
-> +	action(dev, data);
-> +
-> +	free_dr(dr_match);
-> +}
-> +EXPORT_SYMBOL(drmm_release_action);
-> +
->  /**
->   * drmm_kmalloc - &drm_device managed kmalloc()
->   * @dev: DRM device
-> diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
-> index ad08f834af408..f547b09ca0239 100644
-> --- a/include/drm/drm_managed.h
-> +++ b/include/drm/drm_managed.h
-> @@ -45,6 +45,10 @@ int __must_check __drmm_add_action_or_reset(struct drm_device *dev,
->  					    drmres_release_t action,
->  					    void *data, const char *name);
->  
-> +void drmm_release_action(struct drm_device *dev,
-> +			 drmres_release_t action,
-> +			 void *data);
-> +
->  void *drmm_kmalloc(struct drm_device *dev, size_t size, gfp_t gfp) __malloc;
->  
->  /**
+>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_exec_queue.c | 14 +++++++-------
+>>   1 file changed, 7 insertions(+), 7 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+>> index 62d0237e724e..7a9186cea5a6 100644
+>> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
+>> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+>> @@ -90,12 +90,12 @@ static struct xe_exec_queue *__xe_exec_queue_create(struct xe_device *xe,
+>>   	/*
+>>   	 * Normally the user vm holds an rpm ref to keep the device
+>>   	 * awake, and the context holds a ref for the vm, however for
+>> -	 * some engines we use the kernels migrate vm underneath which
+>> -	 * offers no such rpm ref. Make sure we keep a ref here, so we
+>> -	 * can perform GuC CT actions when needed. Caller is expected to
+>> -	 * have already grabbed the rpm ref outside any sensitive locks.
+>> +	 * some engines we use the kernels migrate vm underneath which offers no
+>> +	 * such rpm ref, or we lack a vm. Make sure we keep a ref here, so we
+>> +	 * can perform GuC CT actions when needed. Caller is expected to have
+>> +	 * already grabbed the rpm ref outside any sensitive locks.
+>>   	 */
+>> -	if (q->flags & EXEC_QUEUE_FLAG_VM)
+>> +	if (q->flags & EXEC_QUEUE_FLAG_VM || !vm)
+>>   		drm_WARN_ON(&xe->drm, !xe_device_mem_access_get_if_ongoing(xe));
+>>   
+>>   	return q;
+>> @@ -172,10 +172,10 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
+>>   
+>>   	for (i = 0; i < q->width; ++i)
+>>   		xe_lrc_finish(q->lrc + i);
+>> +	if (q->flags & EXEC_QUEUE_FLAG_VM || !q->vm)
+>> +		xe_device_mem_access_put(gt_to_xe(q->gt));
+>>   	if (q->vm)
+>>   		xe_vm_put(q->vm);
+>> -	if (q->flags & EXEC_QUEUE_FLAG_VM)
+>> -		xe_device_mem_access_put(gt_to_xe(q->gt));
+>>   
+>>   	kfree(q);
+>>   }
+>> -- 
+>> 2.43.0
+>>
