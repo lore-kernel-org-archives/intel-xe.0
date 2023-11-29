@@ -4,52 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD1FBC4167B
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 10:39:35 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id ED936C4167B
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 10:44:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 939E410E198;
-	Wed, 29 Nov 2023 10:39:35 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 016DE10E198
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 10:39:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2E8A10E198;
+	Wed, 29 Nov 2023 10:44:26 +0000 (UTC)
+X-Greylist: delayed 425 seconds by postgrey-1.36 at gabe;
+ Wed, 29 Nov 2023 10:44:24 UTC
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA08F10E198
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 10:44:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701254374; x=1732790374;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=DaIzEYRaRANky9aDybUvQdG8rrHJwyywRFRtzv3MiSE=;
- b=ZedBMbMacLyNoYRgo3xUeLUVMA0QPtrmlLzWxQo20SNLGWCn4yHJt73P
- YMoarP/qvcfvGcxZGIshQu99MV7R/BeTgu5hC0Yu4XkXLLXMfbffLKucn
- bYwoxjowQKoOP0jUzWZsLT6PzYX54NJqj6SuRkYZLKLo9Gzo/Jw9PDoYN
- kvfSBSKQbZh9YvI3jXe+toC30W8g84tJo0Rnqmc0k+3naZ+TX8maRlu8R
- mLnq3YXaHYoTP3gX7gMuGROQAXwHVTCmxMTSHf41G+I2W4OmIhxOc1Uwu
- M8RQu7qOwmioTmTfFNq0iWdP4pKV/DXdUG9BJSuqCoU4eucZwEdrzhi8a g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="424285156"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="424285156"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 02:39:33 -0800
+ t=1701254665; x=1732790665;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PpF7VV5dkZaN2UomMUysrwXEobCCnh7QutxMy1f6Wqg=;
+ b=el5pwpe+6jatDnol5XJZcqgfaa07A5CM+k2+v+ULTXFVMUjs9amBLB2W
+ Yu0FPB/TG0/fHVSHgbXeWdB+D3PU9mE5eYK8TX25aKbshJiR/B/OiyB2O
+ 2sggoWExPB75Dqo0S9bnnVKW7bVCE3o/Vch7A++0+i8l/GSqvMr7kYaOx
+ TOrH0HObAr/pu6ZWSHIsbCB2UnVhCb/wyDf9CzkMAHW/F0yS2CCQWKs1t
+ Ud1cB6BoVv1k1GkOJKuhobAXX9CM8uz312aOsuYCxU+JaTJ5HvVvu8wec
+ yoNoj4db7v+wOTxAJzu5DWR0asDj66GWu3OsGfC/slSm+dytIEpfR4lCr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="123262"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; 
+   d="scan'208";a="123262"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 02:37:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="803253302"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="803253302"
-Received: from rsexton-mobl.ger.corp.intel.com (HELO [10.252.8.118])
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="762271268"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="762271268"
+Received: from rsexton-mobl.ger.corp.intel.com (HELO mwauld-mobl1.intel.com)
  ([10.252.8.118])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 02:39:31 -0800
-Message-ID: <546af81f-357c-46ac-9214-46c7d8addeac@intel.com>
-Date: Wed, 29 Nov 2023 10:39:29 +0000
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: Matthew Brost <matthew.brost@intel.com>
-References: <20231127094458.18130-2-matthew.auld@intel.com>
- <ZWWyaVbQpbciDXs4@DUT025-TGLU.fm.intel.com>
-Content-Language: en-GB
+ by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 02:37:17 -0800
 From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <ZWWyaVbQpbciDXs4@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Subject: Re: [Intel-xe] [PATCH v2] drm/xe: fix mem_access for early lrc
- generation
+To: intel-xe@lists.freedesktop.org
+Date: Wed, 29 Nov 2023 10:37:07 +0000
+Message-ID: <20231129103706.329056-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.43.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe/mocs: update MOCS table for xe2
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,122 +58,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 28/11/2023 09:27, Matthew Brost wrote:
-> On Mon, Nov 27, 2023 at 09:44:59AM +0000, Matthew Auld wrote:
->> We spawn some hw queues during device probe to generate the default LRC
->> for every engine type, however the queue destruction step is typically
->> async. Queue destruction needs to do stuff like GuC context deregister
->> which requires GuC CT, which in turn requires an active mem_access ref.
->> The caller during probe is meant to hold the mem_access token, however
->> due to the async destruction it might have already been dropped if we
->> are unlucky.
->>
->> Similar to how we already handle migrate VMs for which there is no
->> mem_access ref, fix this by keeping the callers token alive, releasing
->> it only when destroying the queue. We can treat a NULL vm as indication
->> that we need to grab our own extra ref.
->>
->> Fixes the following splat sometimes during load:
->>
->> [ 1682.899930] WARNING: CPU: 1 PID: 8642 at drivers/gpu/drm/xe/xe_device.c:537 xe_device_assert_mem_access+0x27/0x30 [xe]
->> [ 1682.900209] CPU: 1 PID: 8642 Comm: kworker/u24:97 Tainted: G     U  W   E    N 6.6.0-rc3+ #6
->> [ 1682.900214] Workqueue: submit_wq xe_sched_process_msg_work [xe]
->> [ 1682.900303] RIP: 0010:xe_device_assert_mem_access+0x27/0x30 [xe]
->> [ 1682.900388] Code: 90 90 90 66 0f 1f 00 0f 1f 44 00 00 53 48 89 fb e8 1e 6c 03 00 48 85 c0 74 06 5b c3 cc cc cc cc 8b 83 28 23 00 00 85 c0 75 f0 <0f> 0b 5b c3 cc cc cc cc 90 90 90 90 90 90 90 90 90 90 90 90 90 90
->> [ 1682.900390] RSP: 0018:ffffc900021cfb68 EFLAGS: 00010246
->> [ 1682.900394] RAX: 0000000000000000 RBX: ffff8886a96d8000 RCX: 0000000000000000
->> [ 1682.900396] RDX: 0000000000000001 RSI: ffff8886a6311a00 RDI: ffff8886a96d8000
->> [ 1682.900398] RBP: ffffc900021cfcc0 R08: 0000000000000001 R09: 0000000000000000
->> [ 1682.900400] R10: ffffc900021cfcd0 R11: 0000000000000002 R12: 0000000000000004
->> [ 1682.900402] R13: 0000000000000000 R14: ffff8886a6311990 R15: ffffc900021cfd74
->> [ 1682.900405] FS:  0000000000000000(0000) GS:ffff888829880000(0000) knlGS:0000000000000000
->> [ 1682.900407] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
->> [ 1682.900409] CR2: 000055f70bad3fb0 CR3: 000000025243a004 CR4: 00000000003706e0
->> [ 1682.900412] DR0: 0000000000000000 DR1: 0000000000000000 DR2: 0000000000000000
->> [ 1682.900413] DR3: 0000000000000000 DR6: 00000000fffe0ff0 DR7: 0000000000000400
->> [ 1682.900415] Call Trace:
->> [ 1682.900418]  <TASK>
->> [ 1682.900420]  ? xe_device_assert_mem_access+0x27/0x30 [xe]
->> [ 1682.900504]  ? __warn+0x85/0x170
->> [ 1682.900510]  ? xe_device_assert_mem_access+0x27/0x30 [xe]
->> [ 1682.900596]  ? report_bug+0x171/0x1a0
->> [ 1682.900604]  ? handle_bug+0x3c/0x80
->> [ 1682.900608]  ? exc_invalid_op+0x17/0x70
->> [ 1682.900612]  ? asm_exc_invalid_op+0x1a/0x20
->> [ 1682.900621]  ? xe_device_assert_mem_access+0x27/0x30 [xe]
->> [ 1682.900706]  ? xe_device_assert_mem_access+0x12/0x30 [xe]
->> [ 1682.900790]  guc_ct_send_locked+0xb9/0x1550 [xe]
->> [ 1682.900882]  ? lock_acquire+0xca/0x2b0
->> [ 1682.900885]  ? guc_ct_send+0x3c/0x1a0 [xe]
->> [ 1682.900977]  ? lock_is_held_type+0x9b/0x110
->> [ 1682.900984]  ? __mutex_lock+0xc0/0xb90
->> [ 1682.900989]  ? __pfx___drm_printfn_info+0x10/0x10
->> [ 1682.900999]  guc_ct_send+0x53/0x1a0 [xe]
->> [ 1682.901090]  ? __lock_acquire+0xf22/0x21b0
->> [ 1682.901097]  ? process_one_work+0x1a0/0x500
->> [ 1682.901109]  xe_guc_ct_send+0x19/0x50 [xe]
->> [ 1682.901202]  set_min_preemption_timeout+0x75/0xa0 [xe]
->> [ 1682.901294]  disable_scheduling_deregister+0x55/0x250 [xe]
->> [ 1682.901383]  ? xe_sched_process_msg_work+0x76/0xd0 [xe]
->> [ 1682.901467]  ? lock_release+0xc9/0x260
->> [ 1682.901474]  xe_sched_process_msg_work+0x82/0xd0 [xe]
->> [ 1682.901559]  process_one_work+0x20a/0x500
->>
->> v2: Add the splat
->>
->> Signed-off-by: Matthew Auld <matthew.auld@intel.com>
->> Cc: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
->> Cc: Matthew Brost <matthew.brost@intel.com>
-> 
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Looks like there were some changes at some point here for preferring L4
+uncached for some of the indexes. Triple checked the PAT settings also,
+but that looks all correct as per current BSpec.
 
-Thanks.
+BSpec: 71582
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+---
+ drivers/gpu/drm/xe/xe_mocs.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-> 
->> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->> ---
->>   drivers/gpu/drm/xe/xe_exec_queue.c | 14 +++++++-------
->>   1 file changed, 7 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
->> index 62d0237e724e..7a9186cea5a6 100644
->> --- a/drivers/gpu/drm/xe/xe_exec_queue.c
->> +++ b/drivers/gpu/drm/xe/xe_exec_queue.c
->> @@ -90,12 +90,12 @@ static struct xe_exec_queue *__xe_exec_queue_create(struct xe_device *xe,
->>   	/*
->>   	 * Normally the user vm holds an rpm ref to keep the device
->>   	 * awake, and the context holds a ref for the vm, however for
->> -	 * some engines we use the kernels migrate vm underneath which
->> -	 * offers no such rpm ref. Make sure we keep a ref here, so we
->> -	 * can perform GuC CT actions when needed. Caller is expected to
->> -	 * have already grabbed the rpm ref outside any sensitive locks.
->> +	 * some engines we use the kernels migrate vm underneath which offers no
->> +	 * such rpm ref, or we lack a vm. Make sure we keep a ref here, so we
->> +	 * can perform GuC CT actions when needed. Caller is expected to have
->> +	 * already grabbed the rpm ref outside any sensitive locks.
->>   	 */
->> -	if (q->flags & EXEC_QUEUE_FLAG_VM)
->> +	if (q->flags & EXEC_QUEUE_FLAG_VM || !vm)
->>   		drm_WARN_ON(&xe->drm, !xe_device_mem_access_get_if_ongoing(xe));
->>   
->>   	return q;
->> @@ -172,10 +172,10 @@ void xe_exec_queue_fini(struct xe_exec_queue *q)
->>   
->>   	for (i = 0; i < q->width; ++i)
->>   		xe_lrc_finish(q->lrc + i);
->> +	if (q->flags & EXEC_QUEUE_FLAG_VM || !q->vm)
->> +		xe_device_mem_access_put(gt_to_xe(q->gt));
->>   	if (q->vm)
->>   		xe_vm_put(q->vm);
->> -	if (q->flags & EXEC_QUEUE_FLAG_VM)
->> -		xe_device_mem_access_put(gt_to_xe(q->gt));
->>   
->>   	kfree(q);
->>   }
->> -- 
->> 2.43.0
->>
+diff --git a/drivers/gpu/drm/xe/xe_mocs.c b/drivers/gpu/drm/xe/xe_mocs.c
+index 12a6d39fcd4a..ef79552e4f2f 100644
+--- a/drivers/gpu/drm/xe/xe_mocs.c
++++ b/drivers/gpu/drm/xe/xe_mocs.c
+@@ -366,9 +366,9 @@ static const struct xe_mocs_entry mtl_mocs_desc[] = {
+ 
+ static const struct xe_mocs_entry xe2_mocs_table[] = {
+ 	/* Defer to PAT */
+-	MOCS_ENTRY(0, XE2_L3_0_WB | L4_0_WB, 0),
+-	/* Cached L3 + L4 */
+-	MOCS_ENTRY(1, IG_PAT | XE2_L3_0_WB | L4_0_WB, 0),
++	MOCS_ENTRY(0, XE2_L3_0_WB | L4_3_UC, 0),
++	/* Cached L3, Uncached L4 */
++	MOCS_ENTRY(1, IG_PAT | XE2_L3_0_WB | L4_3_UC, 0),
+ 	/* Uncached L3, Cached L4 */
+ 	MOCS_ENTRY(2, IG_PAT | XE2_L3_3_UC | L4_0_WB, 0),
+ 	/* Uncached L3 + L4 */
+@@ -390,8 +390,8 @@ static unsigned int get_mocs_settings(struct xe_device *xe,
+ 		info->table = xe2_mocs_table;
+ 		info->n_entries = XE2_NUM_MOCS_ENTRIES;
+ 		info->uc_index = 3;
+-		info->wb_index = 1;
+-		info->unused_entries_index = 1;
++		info->wb_index = 4;
++		info->unused_entries_index = 4;
+ 		break;
+ 	case XE_PVC:
+ 		info->size = ARRAY_SIZE(pvc_mocs_desc);
+-- 
+2.43.0
+
