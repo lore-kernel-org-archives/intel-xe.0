@@ -4,45 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4EE95C4167B
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 02:57:22 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37E44C46CA3
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 02:57:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BEB010E1E9;
-	Wed, 29 Nov 2023 02:57:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0723110E5E9;
+	Wed, 29 Nov 2023 02:57:26 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8143810E1E9
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 02:57:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 174B110E1E9
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 02:57:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701226640; x=1732762640;
- h=from:to:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=iQj3kJwhVdVxCK4Wuh1MUpu7+ZhVOhz87Lbo2uuDdqg=;
- b=mUIg5won8y8QJitqAU2RNZz+tWsJhBnquGLP4d5skldYwziej9KlbIb8
- 4V5dN6rSFUT5stGHhxW1SWQ+gMNk098+DAUCDRM6ssVF2iut4sKR0/zqM
- on209CpTlTUJsBopvqlZrLn7UwC1TxcYVA8Mt1drLr75ovYbfl+0srhaa
- DTGt7MkXx7fz4UOZqvuPvKeJa7qNeFT3Tw5BMqNuUwYqBbQExk90JpHZK
- BxuZmbVqysF58ghnQsItsmMKo4rGkzd4KZknUhd0sIILB0vNB75x5wd7G
- 0/f+GEVoyD7WAe3kuTfLkr1PqLNbU4Lo83YHydLlGdXyE9TOxOKYt7Mj0 Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="373265512"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="373265512"
+ t=1701226641; x=1732762641;
+ h=from:to:subject:date:message-id:in-reply-to:references:
+ mime-version:content-transfer-encoding;
+ bh=/Cy7IC7JXC+/+a2gNQAF+Zdf9W8Oplf+p9GuFSLVJ10=;
+ b=eT+IN+072JULwO9khMe1P278Ws7uO2cqvdu029DLr70wlp1+e3fqW3SX
+ ygvAFMpUdomMjuieKU5a5lSnNz9PMDH1NFvWgiwiC3TBF/PtnSNZ8FZUQ
+ W1730Q5k6qCz6O4ppfHsfNHqHLT/YU58BJgfg6Ok71YzjYL14h7DzIZO7
+ rhX7qpD6NAvkhV6RCjsd1YvlTJWYLWG8JKQoDegLHwS2HC0xtnEJ7aD+O
+ zStU5s0pG8L39+Ru7YvfOld8BoY50wxnxaXPX0R4l5QRZv6ctLh4QeixM
+ y58vpFOoqqlBbTDJLPGD1w11OquGRX7zJF9TNNics+yteDOAaNidgw/K1 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="373265516"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="373265516"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 18:57:19 -0800
+ 28 Nov 2023 18:57:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="762140430"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="762140430"
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="762140433"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="762140433"
 Received: from nvishwa1-desk.sc.intel.com ([172.25.29.76])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  28 Nov 2023 18:57:19 -0800
 From: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue, 28 Nov 2023 18:57:13 -0800
-Message-Id: <20231129025716.9094-1-niranjana.vishwanathapura@intel.com>
+Date: Tue, 28 Nov 2023 18:57:16 -0800
+Message-Id: <20231129025716.9094-4-niranjana.vishwanathapura@intel.com>
 X-Mailer: git-send-email 2.21.0.rc0.32.g243a4c7e27
+In-Reply-To: <20231129025716.9094-1-niranjana.vishwanathapura@intel.com>
+References: <20231129025716.9094-1-niranjana.vishwanathapura@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 0/3] drm/xe: Enable fixed CCS mode
+Subject: [Intel-xe] [PATCH v2 3/3] drm/xe: Avoid any races around ccs_mode
+ update
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,40 +60,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Allow static assignment of compute slices to a user selected
-number of compute engines. Add a per-gt 'ccs_mode' sysfs
-interface for user selection. By default assign all compute
-resources to the first available compute engine. User must
-ensure that there are no open drm clients while updating
-CCS mode through this interface. Enable this for all platforms
-with more than one compute engine.
+Ensure that there are no drm clients when changing CCS mode.
+Allow exec_queue creation only with enabled CCS engines.
 
-IGT: https://patchwork.freedesktop.org/series/125873/
-
-v2: Rebase, make it platform agnostic
+v2: Rebase
 
 Signed-off-by: Niranjana Vishwanathapura <niranjana.vishwanathapura@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c       |  9 +++++++++
+ drivers/gpu/drm/xe/xe_device_types.h |  9 +++++++++
+ drivers/gpu/drm/xe/xe_gt_ccs_mode.c  | 10 ++++++++++
+ 3 files changed, 28 insertions(+)
 
-Niranjana Vishwanathapura (3):
-  drm/xe: Enable Fixed CCS mode setting
-  drm/xe: Allow userspace to configure CCS mode
-  drm/xe: Avoid any races around ccs_mode update
-
- drivers/gpu/drm/xe/Makefile          |   1 +
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  14 +++
- drivers/gpu/drm/xe/xe_device.c       |   9 ++
- drivers/gpu/drm/xe/xe_device_types.h |   9 ++
- drivers/gpu/drm/xe/xe_gt.c           |  16 +++
- drivers/gpu/drm/xe/xe_gt.h           |   2 +
- drivers/gpu/drm/xe/xe_gt_ccs_mode.c  | 157 +++++++++++++++++++++++++++
- drivers/gpu/drm/xe/xe_gt_ccs_mode.h  |  24 ++++
- drivers/gpu/drm/xe/xe_gt_types.h     |  14 +++
- drivers/gpu/drm/xe/xe_guc_ads.c      |   3 +
- drivers/gpu/drm/xe/xe_hw_engine.c    |  20 ++++
- 11 files changed, 269 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_gt_ccs_mode.c
- create mode 100644 drivers/gpu/drm/xe/xe_gt_ccs_mode.h
-
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 54202623e255..c7134d377b4c 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -72,6 +72,10 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+ 	mutex_init(&xef->exec_queue.lock);
+ 	xa_init_flags(&xef->exec_queue.xa, XA_FLAGS_ALLOC1);
+ 
++	spin_lock(&xe->clients.lock);
++	xe->clients.count++;
++	spin_unlock(&xe->clients.lock);
++
+ 	file->driver_priv = xef;
+ 	return 0;
+ }
+@@ -104,6 +108,10 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+ 	xa_destroy(&xef->vm.xa);
+ 	mutex_destroy(&xef->vm.lock);
+ 
++	spin_lock(&xe->clients.lock);
++	xe->clients.count--;
++	spin_unlock(&xe->clients.lock);
++
+ 	xe_drm_client_put(xef->client);
+ 	kfree(xef);
+ }
+@@ -226,6 +234,7 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	xe->info.force_execlist = xe_modparam.force_execlist;
+ 
+ 	spin_lock_init(&xe->irq.lock);
++	spin_lock_init(&xe->clients.lock);
+ 
+ 	init_waitqueue_head(&xe->ufence_wq);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 2712905c7a91..12cb1caacda8 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -306,6 +306,15 @@ struct xe_device {
+ 		enum xe_sriov_mode __mode;
+ 	} sriov;
+ 
++	/** @clients: drm clients info */
++	struct {
++		/** @lock: Protects drm clients info */
++		spinlock_t lock;
++
++		/** @count: number of drm clients */
++		u64 count;
++	} clients;
++
+ 	/** @usm: unified memory state */
+ 	struct {
+ 		/** @asid: convert a ASID to VM */
+diff --git a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+index 0ad97383aedd..303ffb0761d8 100644
+--- a/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
++++ b/drivers/gpu/drm/xe/xe_gt_ccs_mode.c
+@@ -90,6 +90,7 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 	       const char *buff, size_t count)
+ {
+ 	struct xe_gt *gt = kobj_to_gt(&kdev->kobj);
++	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 num_engines, num_slices;
+ 	int ret;
+ 
+@@ -108,12 +109,21 @@ ccs_mode_store(struct device *kdev, struct device_attribute *attr,
+ 		return -EINVAL;
+ 	}
+ 
++	/* CCS mode can only be updated when there are no drm clients */
++	spin_lock(&xe->clients.lock);
++	if (xe->clients.count) {
++		spin_unlock(&xe->clients.lock);
++		return -EBUSY;
++	}
++
+ 	if (gt->ccs_mode.num_engines != num_engines) {
+ 		xe_gt_info(gt, "Setting compute mode to %d\n", num_engines);
+ 		gt->ccs_mode.num_engines = num_engines;
+ 		xe_gt_reset_async(gt);
+ 	}
+ 
++	spin_unlock(&xe->clients.lock);
++
+ 	return count;
+ }
+ 
 -- 
 2.21.0.rc0.32.g243a4c7e27
 
