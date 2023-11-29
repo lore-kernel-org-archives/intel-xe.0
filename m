@@ -4,143 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 82ADAC07CB1
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 15:23:37 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5260AC4167B
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 15:30:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43ABD10E60E;
-	Wed, 29 Nov 2023 15:23:37 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 439C610E615
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 15:23:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CC3D10E614;
+	Wed, 29 Nov 2023 15:30:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 630F510E60E
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 15:30:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701271414; x=1732807414;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=Q7ZABysqZJm/49dysSbiu7evaok8HIlRteadDl2GP64=;
- b=Tn8a8BZTzSrC9/77nhscTf1ywA6NxR2wCYoecxYqWacc3Aa+ovoAI9ke
- z716wtxIKjfKg7so5ecFQzDDpDxMHAmPNRskd4hhTeDsBss6JeS50lN3y
- nAWuRDk0QCDBj7/9I1Bpd9JWApqGTzu81ersZLje2YF9ThJX4CkDH0aSk
- kpWpPNTY5HMJm7XPspyx7vi/ZGNFybTD0/XwTdygzXwk/Y0KgczOIlKnj
- Cbtm/xWZXvOA7nWDrhChIjBUMTTFEnE3JENr7zH2+sCes5M9h7QRtq96X
- vUo/zJxrg8DYttkX7In2R6RlKKmeu7KunaReb0R9ZAz1Ij+Fl7TkkqgrH w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="6391932"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; 
-   d="scan'208";a="6391932"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 07:23:32 -0800
+ t=1701271834; x=1732807834;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=byRr3PqqNLFSXv2MTnlsk1H7Y23bXCw7VhJhuJIpA5M=;
+ b=dCovSvWhpB5UfTqJRMlmL2PZdY7mpX3ipRRphC8ntk5wMvixucgkHapd
+ 7daPfBMNgTfgU+bLgWGuYhu7myEaWrN+hVwt5OfeiZo9F1M8wxFIaIESU
+ SIMhiStOBV+YQMRDyD3q/l6lbe7Pf36jeBPsjcCJkaU7VCMbLjEvEI7rM
+ 9hzGQrpxyWSG4sUzSAuQTCx0hMqUeN6EmZQGPYYPfUXJ3D26qo94quFLI
+ Fr721Cekxih7I54QN6NNUveWeQPzl8egCFlN1/NoPR5OyFZh5l36/PPpf
+ dcbVevF8RJEc0/x+Pr5pcPg0yUWi7wRRWD9RYTEtfZwHxvq55buInzkZo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="397076046"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="397076046"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 07:30:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="803326207"
-X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="803326207"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Nov 2023 07:23:31 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 29 Nov 2023 07:23:32 -0800
-Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
- ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 29 Nov 2023 07:23:31 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Wed, 29 Nov 2023 07:23:31 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Wed, 29 Nov 2023 07:23:31 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QNoTWBgL9wy+w2hwfhSSTAqiirXRK7gHG64MEmfWlDpy0Phe4gVvqMSZxbQdz1Wxespa8bkoH6aHWrCEabTPRE8M4erYcc8wNjCOFJTek4RiZJnsf40f7Uk+r/XQAcG95G85RclNBt10g+3diGHPptJbeCr2+W6dMtbCX4jBi06S0HDMhCnP/kjU19B5H4Hv+ZVBc3FTugEiAkMufivUCRls0MIrTy9vRtLQA9hRG6GehvGsgQoTWqrrqkG3CXcnKMznVnHz+kR5WUMxOYijc4WVn7hRvtWKs/Gv0J6tu+kTDWq3q/ypWFl6ihrvIsf1IV9eR4hnBeZBzsx+ypvDZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8sRuVrgF+aknwXxU8cjIY4pYK7VutEcTIGunD3X+r1w=;
- b=M7A64YAhRuSO4mNk+bzpDIm+tuDKIg3pKAhQ4ot9Fsus9EqFO3vtk3inpoSx+2crOaN9Tg7Rmw1hJCY0SY47+OMalGD2a1sYmmELoNcooQ4fhI2s3EnMTWWpVa4oCqpNrHb/d5WqFIsHXStrvfRfYJHuXWfFIMDj57DLzv7LT42LH7N8Q5QvwqeL/PgesWLMs01b+F5mQ0rXv7WlrMw7YSg25xmirsL2ieWKOezRQK1tVYUkeyoiofSVbkDP7aMCPmntTRrPqxc9Rc2dcxuESDHuR54dqHEn2xYStjbzcsW8zWxNGd7XisL2DMKFdCove7azG8MLSo6v77WYnLS6Dg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by SJ0PR11MB4942.namprd11.prod.outlook.com (2603:10b6:a03:2ac::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.29; Wed, 29 Nov
- 2023 15:23:29 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7046.023; Wed, 29 Nov 2023
- 15:23:29 +0000
-Date: Wed, 29 Nov 2023 09:23:25 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Yang, Fei" <fei.yang@intel.com>
-Message-ID: <etn2pzk3j6uiwi5afwprklhtd5642jfzrdlz3pxdb73ykg3xzk@m2dmlx4dh6ky>
-References: <20231122204501.1353325-1-fei.yang@intel.com>
- <20231122204501.1353325-2-fei.yang@intel.com>
- <ymi5rgc3ba562kxellzosdndtlo23wwlsz75rrafxg6qfevmc4@owfjmqn5tesj>
- <2144662b-4c97-4101-b6fd-cb092b7713d4@intel.com>
- <BYAPR11MB2567D4E758801174BCF0904B9A83A@BYAPR11MB2567.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <BYAPR11MB2567D4E758801174BCF0904B9A83A@BYAPR11MB2567.namprd11.prod.outlook.com>
-X-ClientProxiedBy: BYAPR11CA0069.namprd11.prod.outlook.com
- (2603:10b6:a03:80::46) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="768950374"
+X-IronPort-AV: E=Sophos;i="6.04,235,1695711600"; d="scan'208";a="768950374"
+Received: from mkuoppal-desk.fi.intel.com (HELO localhost) ([10.237.72.193])
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 07:30:32 -0800
+From: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+To: Andi Shyti <andi.shyti@linux.intel.com>
+In-Reply-To: <ZV4D6lGJpt5jUv4-@ashyti-mobl2.lan>
+References: <20231106111845.2333093-1-mika.kuoppala@linux.intel.com>
+ <20231106111845.2333093-2-mika.kuoppala@linux.intel.com>
+ <ZV4D6lGJpt5jUv4-@ashyti-mobl2.lan>
+Date: Wed, 29 Nov 2023 17:26:45 +0200
+Message-ID: <87a5qw60ne.fsf@mkuoppal-desk>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|SJ0PR11MB4942:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3eccf46d-5703-4e5e-ec94-08dbf0ef23f9
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: NWgWA7gE+xc/Mjzs+ya4c/HF9TAIqJ0MTTAVhn8POYTI8fGuKjmM7xbMOXQZT3zVzWhH0IUy65x1UPYbqvPyONpA7yS+mfWEVyi3XXcXuL59MxjX+jy+/IhlwOokQxfRAwim4wFsuSGFPLZ1MRbNQIZLI9bREJijBkK9+YyH31CCwZovLh96586cwQQ94fNqD5x5nAgonIuxYdzEP8gvs6QMJ0MFrlM8wxnl7V9TFxqMparrW63ku1Bl75tGKJysERdRhd5cvvHlaonQAfr9Y6kZQeFzCqgqaf/3zI/y+qEAorSqvmn74P2aKtfwOtF/WvyRI9V7NbWwnLl298YZ8FMSksVEUAoD9s1CG6DT7TQjaEsjzpsfJ7Z0WgehrWafGpcZymTkY5RegVyS1vTaKQmO7Cf6lH05K2pBdNPRG9qvNfkLNADGblT6OUv3x4iAetr7deZJcpSU/UmB2qq7rnCcpPPuN87wc0HDPlPQy1iZU53Th5XdGjsb3FnmOYuUVjREZwKP+cU6WTVHKXO0xscWgU/V1ymKzZiQ6iVTFneNZmFF758QFVf06bujGvutRFRWDPxDmbPymBZtxnDzto7YlhFjcKfvclPwqaGQrEdL78uxv/QA8nffU5AFlN/r
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(136003)(346002)(366004)(39860400002)(376002)(396003)(230273577357003)(230173577357003)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(38100700002)(2906002)(41300700001)(5660300002)(82960400001)(9686003)(6512007)(478600001)(6486002)(6666004)(107886003)(33716001)(53546011)(6506007)(86362001)(8676002)(6862004)(8936002)(4326008)(83380400001)(66556008)(6636002)(54906003)(66946007)(26005)(316002)(66476007);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?IhyeZflJxsTq4xlBEkk8m0ZOS5yG1JQB+D6GZiRJoM7sFz94szb8XIrbUr9y?=
- =?us-ascii?Q?geJC3p4S1z8dFQqQdVMvoasKKNw3Bl5p1FOlNtnXLIUW2CrjITaVccLsfgwR?=
- =?us-ascii?Q?hEgGOdZsoGon7e2nB0zfyoXa/RLBTD2V+gLQxRxP3GmKqZuGsfYhC+7EQWEQ?=
- =?us-ascii?Q?B5H+mdwPIS0pfD2IhNtY8Re/t3iPa/jqKgRAGOwcWzR3TEeKS2aHH356dLVL?=
- =?us-ascii?Q?yT9FipQ74G/eN3Aqr5DsVawKrb5qljB7Njj6XF2tNG4BQ81d/BnczrE/bm8D?=
- =?us-ascii?Q?pvgYLnu8oBgl/+yx+VBMKkkSM4yosRliNj6gYqfNIk5nDOgfEuQMDME+pyYG?=
- =?us-ascii?Q?c0MkyRmv+CW7Vb1GNzbPVm/gvHJbXdvOJ2jaCTKxbAf6dQenuz77ZQ+AOA7I?=
- =?us-ascii?Q?kyTUOCYr0FXv/PwzmD4Dz4vl2Mp7HlZ60xGLM+F1FZ2I1MI49QrmL+E6vrbq?=
- =?us-ascii?Q?h2Guvbqa47ctubuQaAgWCaEGoWfK5dYLy2yc+u7u3cHT4DzsBVOZbMxNCMWs?=
- =?us-ascii?Q?dORUiiyWk+pddG/5l4S+pv5VAMubHkCwJ7oCmTq3lpsiDhMyirkamnSQqZjR?=
- =?us-ascii?Q?4V3GvxCaRoBsFF+oKvrBStgNVZWBo03b/Ou6v7FIWIR1fqVxtwzLR6RbWwms?=
- =?us-ascii?Q?9QqMIxhEr+tfWqCpxkPiL3i6y2fzdfXig62V5YF2BrBgXNXTwdZUeXGmyz0f?=
- =?us-ascii?Q?4biKMOCPSWTGyK6fm8tr11p3ua/OCqgix+g8Vvy8I/uwHT2vM/yDfdxeHXQZ?=
- =?us-ascii?Q?oYLICstfr7t1JTIQ3feUP3w4/BSXBMvunNNrTVh9CHOujBk3qwk3ApgVTmMv?=
- =?us-ascii?Q?YhPtNJWiNn4sDtNu5kULId2Drhg8KQkZpTc8A22lw1lvinf1liaB8+QrXyhG?=
- =?us-ascii?Q?oeBXRqIznY21RE0GrQlikDd5aupDGZV4SHcFT27dqasrPPoUM7AOcYnJRC0K?=
- =?us-ascii?Q?l3mew/p+KTRhB/v9nuZd5lJMdbdNN15l/fV1qq6+MQgoqrtSbrMbJb5vxViC?=
- =?us-ascii?Q?Hy3i2+kqJF/4yUDZOLIq1GrBxsm056DTXLIn3fkzDQrOoR5s3F0gxV6q4zfK?=
- =?us-ascii?Q?SNpvx3YILdNrVLC9+nwSqVF0qHYQqgRGGOto5Ks2HmqZd3JG2K9Y4/e+tT7W?=
- =?us-ascii?Q?pLryFj9/N80GdS5WHtWkkHoCI00U/YMXme9X3tEqnDzOOycSU2Fu1t2yA8e0?=
- =?us-ascii?Q?zcHXsX7DZ+U4pq3ARzTBqr7jAHZDyakrtjhPPf5CBg6EBJwwPEW4cdK5vmaq?=
- =?us-ascii?Q?ESRheW4a1W4cE4b2rqkrdSrJ+B+DD7GYORF6pwGZpgK9FO4UVaKxH58hY6DW?=
- =?us-ascii?Q?zdq8X04o7m92DGwCNkrSylETs0663MZJR16DIHDj7wxVa0LsuHVEsXrQ3Dyg?=
- =?us-ascii?Q?t3ofMB6fcUiiMIDAQgJWqpHCXf/4ZT2t6XIViNZvI0u8gLHBBgeLU8U9tEWc?=
- =?us-ascii?Q?lzF3csmLMIiI+wzkJyyk8Kjzy9DSz+wdldzz1Hl/cpvDwa0hB6Rs/73OLBK2?=
- =?us-ascii?Q?6TN/vsLdrLUoVFkvL9ncpxA7hsRdJfuJ5YXsZL0Ne3IMTmAftn0tL/5jkFIR?=
- =?us-ascii?Q?Xb1/jH05L3VPtitkursmbiJh8GL3N4Cw95lZ+kGUDKIaOixVdpgBxfKpipjb?=
- =?us-ascii?Q?dg=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3eccf46d-5703-4e5e-ec94-08dbf0ef23f9
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 15:23:29.5773 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qoZRkPflzZuD/UlZCXwvrEjmZPseN+0uAiyBMx2hIqOSUclBn7QC6ek5rsIPeaK3raGViLa09UQn2DTUNBfJ1jv9f9IskNgn+7kb8Re0E48=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4942
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH 1/1] drm/xe: explicitly set GGTT access for
- GuC DMA
+Content-Type: text/plain
+Subject: Re: [Intel-xe] [RFC 01/25] drm/xe/eudebug: Introduce eudebug support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -152,111 +57,740 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Roper, Matthew D" <matthew.d.roper@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, intel-xe@lists.freedesktop.org,
+ Maciej Patelczyk <maciej.patelczyk@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2023 at 11:59:29PM -0600, Yang, Fei wrote:
->> On 11/27/2023 11:09 AM, Lucas De Marchi wrote:
->>> On Wed, Nov 22, 2023 at 12:45:01PM -0800, fei.yang@intel.com wrote:
->>>> From: Fei Yang <fei.yang@intel.com>
->>>>
->>>> Confirmed with hardware that setting GGTT memory access for GuC
->>>> firmware loading is correct for all platforms and required for new
->>>> platforms going forward.
->>>>
->>>> Signed-off-by: Fei Yang <fei.yang@intel.com>
->>>> ---
->>>> drivers/gpu/drm/xe/regs/xe_guc_regs.h | 1 +
->>>> drivers/gpu/drm/xe/xe_uc_fw.c         | 3 ++-
->>>> 2 files changed, 3 insertions(+), 1 deletion(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>>> b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>>> index ba375fc51a87..92320bbc9d3d 100644
->>>> --- a/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>>> +++ b/drivers/gpu/drm/xe/regs/xe_guc_regs.h
->>>> @@ -70,6 +70,7 @@
->>>> #define DMA_ADDR_1_HIGH                XE_REG(0xc30c) #define
->>>> DMA_ADDR_SPACE_MASK            REG_GENMASK(20, 16) #define
->>>> DMA_ADDRESS_SPACE_WOPCM REG_FIELD_PREP(DMA_ADDR_SPACE_MASK, 7)
->>>> +#define   DMA_ADDRESS_SPACE_GGTT REG_FIELD_PREP(DMA_ADDR_SPACE_MASK,
->>>> +8)
->>>> #define DMA_COPY_SIZE                XE_REG(0xc310) #define DMA_CTRL
->>>> XE_REG(0xc314) #define   HUC_UKERNEL                REG_BIT(9) diff
->>>> --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
->>>> index 3032c4f148d4..438ce51dd373 100644
->>>> --- a/drivers/gpu/drm/xe/xe_uc_fw.c
->>>> +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
->>>> @@ -629,7 +629,8 @@ static int uc_fw_xfer(struct xe_uc_fw *uc_fw, u32
->>>> offset, u32 dma_flags)
->>>>     /* Set the source address for the uCode */
->>>>     src_offset = uc_fw_ggtt_offset(uc_fw) + uc_fw->css_offset;
->>>>     xe_mmio_write32(gt, DMA_ADDR_0_LOW, lower_32_bits(src_offset));
->>>> -    xe_mmio_write32(gt, DMA_ADDR_0_HIGH, upper_32_bits(src_offset));
->>>
->>> not that this patch changes anything but this upper_32_bits() is a
->>> code smell. If uc_fw_ggtt_offset() can only return u32, why exactly we
->>> would try to get the upper 32 bits (and suppress the warning by doing
->>> 2x >> 16?). Humn... commit ee2dee81e484 ("drm/xe/huc: Extract version
->>> and binary offset from new HuC headers") extracted css_offset and now
->>> we are adding 2 u32. So maybe keep the upper_32_bits(), but move
->>> src_offset to
->>
->> This is still guaranteed to be a 32b number even after the sum, because
->> we're adding an offset within the GGTT-mapped object and therefore the
->> resulting value is still within the 32b address space.
->> AFAICT the reason we have upper_32_bits() calls in several places with
->> GGTT offsets is because of a quirk of the HW specs: when 48b PPGTT was
->> introduced back in gen8, all address fields in GT HW (not sure about the
->> display side) have been updated to 48b, even the ones where the address
->> was guaranteed to be GGTT and therefore 32b, and the specs have been
->> updated to always say "write the upper 16 bits in the HDW reg/field"
->> even if that is always guaranteed to be 0 for GGTT offsets. I'm guessing
->> the aim on the specs side was to be ready if the GGTT ever gets bigger
->> than 32b, so I think we should do the same in SW and proceed like you're
->> suggesting with moving the variable to be a u64.
->>
->> Daniele
+Andi Shyti <andi.shyti@linux.intel.com> writes:
+
+> Hi Mika,
 >
->I agree we can define src_offset as u64, but that has to be a separate
->patch, right? Should I send that change together with this one in the
->same series, or this patch itself can be merged as is?
+> On Mon, Nov 06, 2023 at 01:18:21PM +0200, Mika Kuoppala wrote:
+> ...
+>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+>> Cc: Maciej Patelczyk <maciej.patelczyk@intel.com>
+>> Cc: Dominik Grzegorzek <dominik.grzegorzek@intel.com>
+>> Signed-off-by: Mika Kuoppala <mika.kuoppala@linux.intel.com>
+>
+> please loop me in.
 
-I'd consider that small enough to just have in the same commit with a
-note to the commit message. But it's something you will get a different
-answer depending who you ask or when you ask. So... Let me just apply
-this as is.
-
-Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
-
-and applied to drm-xe-next.
-
-Thanks
-Lucas De Marchi
-
+Will do.
 
 >
->-Fei
+> ...
 >
->>> u64. That also matches what we have in i915. Before that commit, doing
->>> that write was basically always writting 0.
->>>
->>> With that,
->>>
->>>     Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
->>>
->>>
->>> +Daniele / +Matt Brost
->>>
->>> Lucas De Marchi
->>>
->>>> +    xe_mmio_write32(gt, DMA_ADDR_0_HIGH,
->>>> +            upper_32_bits(src_offset) | DMA_ADDRESS_SPACE_GGTT);
->>>>
->>>>     /* Set the DMA destination */
->>>>     xe_mmio_write32(gt, DMA_ADDR_1_LOW, offset);
->>>> --
->>>> 2.25.1
->>>>
+>> @@ -74,7 +76,15 @@ static int xe_file_open(struct drm_device *dev, struct drm_file *file)
+>>  	xa_init_flags(&xef->exec_queue.xa, XA_FLAGS_ALLOC1);
+>>  
+>>  	file->driver_priv = xef;
+>> -	return 0;
+>> +
+>> +	ret = xa_alloc(&xe->clients.xa, &xef->client_id, xef, xa_limit_32b, GFP_KERNEL);
+>> +
+>> +	if (!ret)
+>> +		xe_eudebug_file_open(xef);
+>> +	else
+>> +		kfree(xef);
+>
+> why do we need to fail here? Just disable the debugger. Just set
+> eudebug->available = false.
+>
+
+Changed to lists instead of array so cant fail here anymore.
+
+>> +
+>> +	return ret;
+>>  }
+>>  
+>>  static void device_kill_persistent_exec_queues(struct xe_device *xe,
+>> @@ -88,6 +98,12 @@ static void xe_file_close(struct drm_device *dev, struct drm_file *file)
+>>  	struct xe_exec_queue *q;
+>>  	unsigned long idx;
+>>  
+>> +	xe_eudebug_file_close(xef);
+>> +
+>> +	mutex_lock(&xe->clients.lock);
+>> +	xa_erase(&xe->clients.xa, xef->client_id);
+>> +	mutex_unlock(&xe->clients.lock);
+>
+> xa_erase does loc already, do we need the mutexes?
+>
+
+Changed to list.
+
+>>  	mutex_lock(&xef->exec_queue.lock);
+>>  	xa_for_each(&xef->exec_queue.xa, idx, q) {
+>>  		xe_exec_queue_kill(q);
+>
+> ...
+>
+>> +	struct {
+>> +		/** @lock: protects the xa */
+>> +		struct mutex lock;
+>> +		/** @xa: xarray of xe_files currently open */
+>> +		struct xarray xa;
+>
+> most of the operations on xa are already protected, do we really
+> need the lock?
+>
+
+We need the lock to block creating new clients while the discovery
+is running.
+
+>> +	} clients;
+>> +
+>
+> ...
+>
+>> +/*
+>> + * If there is no event being read in this time (for example gdb stuck)
+>> + * connection is forcibly disconnected. This releases the client as it was
+>> + * waiting to get space for event in fifo.
+>> + */
+>
+> This comment is misleading... which time? Do you mean for a
+> "certain amount of time"?
+>
+Yes it tries to point to the define below to be the interval.
+
+'If there is no detected read by userspace, during this period, assume
+userspace problem and disconnect debugger to allow forward progress.
+detected in the timeout period'
+?
+>> +#define XE_EUDEBUG_NO_READ_DETECTED_TIMEOUT_MS (10 * 1000)
+>> +
+>> +#define for_each_debugger_rcu(debugger, head) \
+>> +	list_for_each_entry_rcu((debugger), (head), connection_link)
+>> +
+>> +#define from_event(T, event) container_of((event), typeof(*(T)), base)
+>
+> from event to what? I would call this cast_event()
+>
+
+Sounds like a better name, tried to be symmetrical to 'to_event'.
+Even then it should be from_base_event, to_base_event.
+
+>> +#define to_event(e) (&(e)->base)
+>
+> ...
+>
+>> +#define write_member(T_out, ptr, member, value) { \
+>> +	BUILD_BUG_ON(sizeof(*ptr) != sizeof(T_out)); \
+>> +	BUILD_BUG_ON(offsetof(typeof(*ptr), member) != \
+>> +		     offsetof(typeof(T_out), member)); \
+>> +	BUILD_BUG_ON(sizeof(ptr->member) != sizeof(value)); \
+>> +	BUILD_BUG_ON(sizeof(struct_member(T_out, member)) != sizeof(value)); \
+>> +	BUILD_BUG_ON(!typecheck(typeof((ptr)->member), value));	\
+>> +	/* memcpy(&ptr->member, &(value), sizeof(ptr->member));	*/ \
+>
+> some spurious commenting here
+>
+
+Yes all our members are max u64 so no memcpy needed. Need to remove.
+
+
+> /* ... */
+>
+>> +	(ptr)->member = (value); \
+>> +	}
+>
+> Is this really necessary? This is in the category of "extremely
+> safe" programming, but it's adding quite a lot of complexity for
+> just overwriting an '=' assignment operator
+>
+
+This all stems from the fact that we keep uapi events 1:1 with internal
+(for now and if possible forever). This allows copy_to_user straight
+from kfifo. To enforce that we dont mess up, enforce the parity with
+this macro.
+
+> Besides, this piece of define does not belong to this file and if
+> you really really want it, please add a good comment with a
+> convincing explanation that this is needed.
+>
+
+But it is defined right before usage and only this file will use it.
+What would be better place?
+
+>> +static struct xe_eudebug_event *
+>> +event_fifo_pending(struct xe_eudebug *d)
+>> +{
+>> +	struct xe_eudebug_event *event;
+>> +
+>> +	if (kfifo_peek(&d->events.fifo, &event))
+>> +		return event;
+>> +
+>> +	return NULL;
+>> +}
+>
+> I don't see much benefit on this wrapper either. Using directly
+> kfifo_peek() should be enough. Also because you still check the
+> return value of event_fifo_pending, so that you replace 3 lines
+> of code with 3 lines of code.
+>
+
+Yes, it doesnt by so much in lines. I remember Maarten noted about
+the same issue, and my excuse back then was that it is documentative
+(and a little bit simpler) on callsites.
+
+>> +/*
+>> + * This is racy as we dont take the lock for read but all the
+>> + * callsites can handle the race so we can live without lock.
+>> + */
+>> +__no_kcsan
+>> +static unsigned int
+>> +event_fifo_num_events_peek(const struct xe_eudebug * const d)
+>> +{
+>> +	return kfifo_len(&d->events.fifo);
+>> +}
+>
+> Same here.
+>
+>> +static const struct rhashtable_params rhash_res = {
+>> +	.head_offset = offsetof(struct xe_eudebug_handle, rh_head),
+>> +	.key_len = sizeof_field(struct xe_eudebug_handle, key),
+>> +	.key_offset = offsetof(struct xe_eudebug_handle, key),
+>> +	.automatic_shrinking = true,
+>> +};
+>> +
+>> +static struct xe_eudebug_resource *
+>> +resource_from_type(struct xe_eudebug_resources * const res, const int t)
+>> +{
+>> +	XE_WARN_ON(t < 0);
+>> +	XE_WARN_ON(t >= XE_EUDEBUG_RES_TYPE_COUNT);
+>> +
+>> +	return &res->rt[t];
+>> +}
+>
+> same here? At this point this wrapper is completely useless.
+>
+
+Looks like it came to birth to assert the boundaries.
+
+>> +static struct xe_eudebug_resources *
+>> +xe_eudebug_resources_alloc(void)
+>> +{
+>> +	struct xe_eudebug_resources *res;
+>> +	int err;
+>> +	int i;
+>> +
+>> +	res = kzalloc(sizeof(*res), GFP_KERNEL);
+>> +	if (!res)
+>> +		return ERR_PTR(-ENOMEM);
+>> +
+>> +	mutex_init(&res->lock);
+>> +
+>> +	for (i = 0; i < XE_EUDEBUG_RES_TYPE_COUNT; i++) {
+>> +		xa_init_flags(&res->rt[i].xa, XA_FLAGS_ALLOC1);
+>> +		err = rhashtable_init(&res->rt[i].rh, &rhash_res);
+>> +
+>> +		if (err) {
+>> +			while (i--) {
+>> +				xa_destroy(&res->rt[i].xa);
+>> +				rhashtable_destroy(&res->rt[i].rh);
+>> +			}
+>> +
+>> +			goto out;
+>> +		}
+>
+> this can be
+>
+> 	if (err)
+> 		goto out;
+>
+> and the while destroy can be in the exit path.
+
+I go for that.
+
+>
+>> +	}
+>> +
+>> +out:
+>> +	if (err) {
+>> +		kfree(res);
+>> +		return ERR_PTR(err);
+>> +	}
+>> +
+>> +	return res;
+>
+> this exit path is a bit complex I think you meant:
+>
+> 		for (i = 0... ) {
+> 			int err;
+>
+> 			xa_init_flags()
+> 			err = rhashtable_init(...)
+> 			if (err)
+> 				goto out;
+> 		}
+>
+> 		return res;
+>
+> 	out
+> 		while (i--) {
+> 			xa_destroy(...);
+> 			rhashtable_destroy(...);
+> 		}
+>
+> 		kfree(res);
+>
+> 		return ERR_PTR(err);
+>
+> Otherwise there is not even need for the goto at all, just break :-)
+>
+
+I will check if this will fit in more nicely.
+
+>> +}
+>> +
+>> +static void res_free_fn(void *ptr, void *arg)
+>> +{
+>> +	XE_WARN_ON(ptr);
+>
+> no need for the WARN_ON here.
+
+kfree will be fine with zero, but the intention is to have safeguard
+if our upper level cleanup actually managed to get rid of all the
+resources. Before the rhashtable destroy kicks in.
+
+>
+>> +	kfree(ptr);
+>> +}
+>> +
+>> +static void
+>> +xe_eudebug_resources_free(struct xe_eudebug *d)
+>
+> xe_eudebug_destroy_resources() ?
+
+Good one.
+
+>
+>> +{
+>> +	struct xe_eudebug_resources *res = d->res;
+>> +	struct xe_eudebug_handle *h;
+>
+> ...
+>
+>> +static void xe_eudebug_free(struct kref *ref)
+>
+> xe_eudebug_destroy() ?
+>
+> free sounds more like "free memory", but here we are actually
+> destroying the session
+
+But we do free if last ref..
+>
+>> +{
+>> +	struct xe_eudebug *d = container_of(ref, typeof(*d), ref);
+>> +	struct xe_eudebug_event *event;
+>> +
+>> +	while (kfifo_get(&d->events.fifo, &event))
+>> +		kfree(event);
+>> +
+>> +	xe_eudebug_resources_free(d);
+>> +	put_task_struct(d->target_task);
+>> +	mutex_destroy(&d->lock);
+>> +
+>> +	XE_WARN_ON(kfifo_len(&d->events.fifo));
+>
+> I think this is an overkill.
+
+Why? If something snuck event into the fifo, we will leak.
+Better leave to kmemleak to find it?
+
+>
+>> +	kfree_rcu(d, rcu);
+>> +}
+>
+> ...
+>
+>> +static void xe_eudebug_disconnect(struct xe_eudebug *d,
+>> +				  const int err)
+>> +{
+>> +	bool detached = false;
+>> +
+>> +	mutex_lock(&d->lock);
+>> +	if (!d->closed) {
+>> +		d->closed = true;
+>> +		detached = true;
+>> +		d->last_error = err;
+>> +	}
+>> +	mutex_unlock(&d->lock);
+>> +
+>> +	if (detached) {
+>> +		xe_eudebug_detach(d);
+>> +		eu_dbg(d, "disconnected: %d (%d)", d->last_error, err);
+>> +	}
+>> +
+>> +	wake_up_all(&d->events.write_done);
+>> +
+>> +	if (detached)
+>> +		xe_eudebug_put(d);
+>
+> why isn't this inside the previous 'if'?
+
+Yes it should be. I have already restructured attach/detach
+and will accommodate this if not already.
+
+>
+>> +}
+>> +
+>> +static int xe_eudebug_release(struct inode *inode, struct file *file)
+>> +{
+>> +	struct xe_eudebug *d = file->private_data;
+>> +
+>> +	xe_eudebug_disconnect(d, 0);
+>> +	xe_eudebug_put(d);
+>> +
+>> +	return 0;
+>> +}
+>
+> ...
+>
+>> +static int _xe_eudebug_queue_event(struct xe_eudebug *d,
+>> +				   struct xe_eudebug_event *event,
+>> +				   gfp_t gfp)
+>
+> is there anything different from GFP_KERNEL?
+
+Not yet atleast. Unlikely to ever be so can be omitted.
+
+>
+>> +{
+>> +	u64 start_t;
+>> +	int ret;
+>> +
+>> +	XE_WARN_ON(event->len <= sizeof(struct xe_eudebug_event));
+>> +	XE_WARN_ON(!event->type);
+>> +	XE_WARN_ON(event->type == DRM_XE_EUDEBUG_EVENT_READ);
+>> +
+>> +	ret = queue_event(d, &event);
+>> +	if (!ret)
+>> +		return 0;
+>> +
+>> +	start_t = ktime_get();
+>> +
+>> +	while (ret == -ENOSPC) {
+>> +		struct xe_eudebug_event *blocking;
+>> +
+>> +		ret = queue_event(d, &event);
+>> +		if (ret != -ENOSPC)
+>
+> if (!ret)?
+
+We do want to wait with -ENOSPC.
+>
+>> +			break;
+>> +
+>> +		blocking = event_fifo_pending(d);
+>> +
+>> +		msleep(1 + 1 * event_fifo_num_events_peek(d));
+>
+> fsleep()?
+
+Looks like better fit yes.
+
+>
+>> +		/* restart timeout if we see progress on fifo */
+>> +		if (blocking && blocking != event_fifo_pending(d))
+>> +			start_t = ktime_get();
+>> +
+>> +		if (ktime_ms_delta(ktime_get(), start_t) >=
+>> +		    XE_EUDEBUG_NO_READ_DETECTED_TIMEOUT_MS)
+>> +			ret = -ETIMEDOUT;
+>
+> this should still be -ENOSPC. Even though ENOSPC is more referred
+> to a device, rather than a list.
+>
+
+Not propagated to userspace atleast, but for our logging sanity yes.
+
+>> +	}
+>> +
+>> +	if (ret) {
+>> +		eu_warn(d, "event %llu queue failed (blocked %lld ms), disconnecting with %d",
+>> +			event ? event->seqno : 0,
+>> +			ktime_ms_delta(ktime_get(), start_t),
+>> +			ret);
+>> +		xe_eudebug_disconnect(d, ret);
+>
+> warn or err? we are disconnecting the debugger after this.
+>
+
+Or even info? As this actually can be provoked by userspace.
+
+>> +	}
+>> +
+>> +	kfree(event);
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static int xe_eudebug_queue_event(struct xe_eudebug *d,
+>> +				  struct xe_eudebug_event *event)
+>> +{
+>> +	return _xe_eudebug_queue_event(d, event, GFP_KERNEL);
+>> +}
+>> +
+>> +static struct xe_eudebug_handle *
+>> +alloc_handle(const int type, const void * const key)
+>> +{
+>> +	struct xe_eudebug_handle *h;
+>> +
+>> +	h = kzalloc(sizeof(*h), GFP_KERNEL);
+>> +	if (!h)
+>> +		return NULL;
+>> +
+>> +	h->key = (u64)key;
+>
+> no, please, don't fool the 'const'. Just don't declare it as
+> const in the parameter list.
+>
+
+Yeah thats bad.
+
+>> +	return h;
+>> +}
+>> +
+>> +static struct xe_eudebug_handle *
+>> +__find_handle(struct xe_eudebug_resource *r,
+>> +	      void *key)
+>> +{
+>> +	struct xe_eudebug_handle *h;
+>> +
+>> +	h = rhashtable_lookup_fast(&r->rh,
+>> +				   &key,
+>> +				   rhash_res);
+>> +	if (h) {
+>> +		XE_WARN_ON(!h->id);
+>> +		XE_WARN_ON((int)h->id < 0);
+>> +		XE_WARN_ON(h != xa_load(&r->xa, h->id));
+>
+> I find all these warnings unnecessary and this function too.
+>
+
+Lets get rid of it, we can assert on insertion if needed.
+
+>> +	}
+>> +
+>> +	return h;
+>> +}
+>
+> ...
+>
+>> +static int xe_eudebug_add_handle(struct xe_eudebug *d,
+>> +				 int type,
+>> +				 void *p)
+>> +{
+>> +	struct xe_eudebug_resource *r;
+>> +	struct xe_eudebug_handle *h;
+>> +	int err;
+>> +
+>> +	if (xe_eudebug_detached(d))
+>> +		return -ENOTCONN;
+>> +
+>> +	h = alloc_handle(type, p);
+>> +	if (!h)
+>> +		return -ENOMEM;
+>> +
+>> +	r = resource_from_type(d->res, type);
+>> +
+>> +	mutex_lock(&d->res->lock);
+>> +	if (!__find_handle(r, p)) {
+>
+> this check should be made at the beginning of the function, just
+> to avoid allocating/de-allocating.
+>
+>> +		err = xa_alloc(&r->xa, &h->id, h, xa_limit_31b, GFP_KERNEL);
+>> +
+>> +		if (h->id >= INT_MAX) {
+>
+> how can an integer be higher than an integer?
+>
+
+our ids are unsigned iirc
+
+>> +			xa_erase(&r->xa, h->id);
+>> +			err = -ENOSPC;
+>> +		}
+>> +
+>> +		if (!err)
+>> +			err = rhashtable_insert_fast(&r->rh,
+>> +						     &h->rh_head,
+>> +						     rhash_res);
+>> +
+>> +		if (err)
+>> +			xa_erase(&r->xa, h->id);
+>> +	} else {
+>> +		err = -EEXIST;
+>> +	}
+>> +	mutex_unlock(&d->res->lock);
+>> +
+>> +	if (err) {
+>> +		kfree(h);
+>> +		XE_WARN_ON(err > 0);
+>> +		return err;
+>> +	}
+>> +
+>> +	XE_WARN_ON(h->id == 0);
+>
+> unnecessary.
+>
+
+Yes, lets trust that zero is busy by xa_array
+
+>> +	return h->id;
+>> +}
+>
+> ...
+>
+>> +static long xe_eudebug_read_event(struct xe_eudebug *d,
+>> +				  const u64 arg,
+>> +				  const bool wait)
+>> +{
+>> +	struct drm_xe_eudebug_event __user * const user_orig =
+>> +		u64_to_user_ptr(arg);
+>> +	struct drm_xe_eudebug_event user_event;
+>> +	struct xe_eudebug_event *event;
+>> +	long ret;
+>> +
+>> +	if (copy_from_user(&user_event, user_orig, sizeof(user_event)))
+>> +		return -EFAULT;
+>> +
+>> +	if (!user_event.type)
+>> +		return -EINVAL;
+>> +
+>> +	if (user_event.type > DRM_XE_EUDEBUG_EVENT_MAX_EVENT)
+>> +		return -EINVAL;
+>> +
+>> +	if (user_event.type != DRM_XE_EUDEBUG_EVENT_READ)
+>> +		return -EINVAL;
+>> +
+>> +	if (user_event.len < sizeof(*user_orig))
+>> +		return -EINVAL;
+>> +
+>> +	if (user_event.flags)
+>> +		return -EINVAL;
+>> +
+>> +	if (user_event.reserved)
+>> +		return -EINVAL;
+>> +
+>> +	if (wait)
+>> +		ret = wait_event_interruptible_timeout(d->events.write_done,
+>> +						       event_fifo_num_events_peek(d),
+>> +						       msecs_to_jiffies(10*10000));
+>> +	else
+>> +		ret = 0;
+>
+> please initialize it at the declaration.
+>
+
+Ok
+
+>> +
+>> +	if (ret < 0)
+>> +		return ret;
+>
+> ...
+>
+>> +void xe_eudebug_init(struct xe_device *xe)
+>> +{
+>> +	int ret;
+>> +
+>> +	spin_lock_init(&xe->eudebug.lock);
+>> +	INIT_LIST_HEAD(&xe->eudebug.list);
+>> +	xa_init_flags(&xe->clients.xa, XA_FLAGS_ALLOC1);
+>> +
+>> +	ret = drmm_mutex_init(&xe->drm, &xe->clients.lock);
+>> +	if (ret)
+>> +		drm_warn(&xe->drm,
+>> +			 "eudebug init failed: %d, debugger unavailable\n",
+>> +			 ret);
+>> +
+>> +	xe->eudebug.available = ret == 0;
+>
+> available = !!ret;
+>
+
+Ok
+
+>> +}
+>
+> ...
+>
+>> +static int send_open_event(struct xe_eudebug *d, u32 flags, const u64 handle)
+>> +{
+>> +	struct xe_eudebug_event *event;
+>> +	struct xe_eudebug_event_open *eo;
+>> +
+>> +	if (!handle)
+>> +		return -EINVAL;
+>> +
+>> +	if (XE_WARN_ON((long)handle >= INT_MAX))
+>
+> just don't declare it as const.
+>
+>> +		return -EINVAL;
+>
+> ...
+>
+>> +void xe_eudebug_file_open(struct xe_file *xef)
+>> +{
+>> +	struct xe_eudebug *d;
+>> +	int err;
+>> +
+>> +	d = xe_eudebug_get(xef);
+>> +	if (!d)
+>> +		return;
+>> +
+>> +	err = client_create_event(d, xef);
+>> +	if (err == -EEXIST)
+>> +		err = 0;
+>> +
+>> +	if (err) {
+>
+> 'if (err && err != -EEXIST)' looks clearer. And it's valid for
+> all coming below.
+>
+>> +		eu_err(d, "error %d on eudebug_file_open, disconnecting", err);
+>> +		xe_eudebug_disconnect(d, err);
+>> +	}
+>> +
+>> +	xe_eudebug_put(d);
+>> +}
+>> +
+>> +void xe_eudebug_file_close(struct xe_file *xef)
+>> +{
+>> +	struct xe_eudebug *d;
+>> +	int err;
+>> +
+>> +	d = xe_eudebug_get(xef);
+>> +	if (!d)
+>> +		return;
+>> +
+>> +	err = client_destroy_event(d, xef);
+>> +	if (err) {
+>> +		eu_err(d, "error %d on eudebug_file_close, disconnecting", err);
+>
+> eu_warn()?
+>
+
+At the moment with enough discovery vs resource creation pressure, we
+can race the addition and actually hit this.
+
+So this is internal bookkeeping error for now.
+
+>> +		xe_eudebug_disconnect(d, err);
+>> +	}
+>> +
+>> +	xe_eudebug_put(d);
+>> +}
+
+
+Thanks for all the comments!
+-Mika
+
+>
+> Andi
