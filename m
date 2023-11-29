@@ -4,30 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id AC104C4167B
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 01:51:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B42B9C4167B
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 01:52:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D3A810E5DC;
-	Wed, 29 Nov 2023 01:51:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8222B10E5DD;
+	Wed, 29 Nov 2023 01:52:04 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5898D10E5DC;
- Wed, 29 Nov 2023 01:51:51 +0000 (UTC)
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0B7BE10E5DD;
+ Wed, 29 Nov 2023 01:52:03 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 4F6FEAADEA;
- Wed, 29 Nov 2023 01:51:51 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 08712AADEA;
+ Wed, 29 Nov 2023 01:52:03 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Brian Welty" <brian.welty@intel.com>
-Date: Wed, 29 Nov 2023 01:51:51 -0000
-Message-ID: <170122271129.12091.2290312441181734366@emeril.freedesktop.org>
+Date: Wed, 29 Nov 2023 01:52:03 -0000
+Message-ID: <170122272303.12092.17074133106558341313@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231128213634.3633-1-brian.welty@intel.com>
 In-Reply-To: <20231128213634.3633-1-brian.welty@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_drm/xe/xe2=3A_add_pagefault_support_for_LNL_platform?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_dr?=
+ =?utf-8?q?m/xe/xe2=3A_add_pagefault_support_for_LNL_platform?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,10 +52,28 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 1b020536e drm/xe/gsc: Define GSC FW for MTL
-=== git am output follows ===
-Applying: drm/xe/xe2: Update LNL platform to support device page faults
-Applying: drm/xe/xe2: Respond to TRTT faults as unsuccessful page fault
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit a8c86979a89f4e2bc3d2e95a74afc9649a8bc5cc
+Author: Brian Welty <brian.welty@intel.com>
+Date:   Tue Nov 28 13:36:34 2023 -0800
+
+    drm/xe/xe2: Respond to TRTT faults as unsuccessful page fault
+    
+    SW is not expected to handle TRTT faults and should report these as
+    unsuccessful page fault in the reply, such that HW can respond by
+    raising a CAT error.
+    
+    Signed-off-by: Brian Welty <brian.welty@intel.com>
++ /mt/dim checkpatch 1b020536e1c9147006cfe4e771396e89afdb14f3 drm-intel
+2c2e2f97e drm/xe/xe2: Update LNL platform to support device page faults
+a8c86979a drm/xe/xe2: Respond to TRTT faults as unsuccessful page fault
 
 
