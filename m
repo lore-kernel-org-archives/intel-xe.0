@@ -4,147 +4,136 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 815A6C4167B
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 20:33:08 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A215C07E98
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 20:34:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49A7E10E674;
-	Wed, 29 Nov 2023 20:33:08 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F4E210E674
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 20:33:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0DB110E679;
+	Wed, 29 Nov 2023 20:34:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7918A10E678;
+ Wed, 29 Nov 2023 20:34:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701289986; x=1732825986;
+ t=1701290089; x=1732826089;
  h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=MrTxdT631c3FuRN8S35Yxp4N4NUy4SfxnjCMj6QECVk=;
- b=I4+ZX/L+TbWmWlX44hf49ebUXhHPLWoJcjbfgpx95fXlJFR3LZz2H/kh
- ESG1QezMnNAOuKj4qdlgPspkK5PqRNZ2ayD4fLdYF8Jp6qUGmwdOiGWvB
- nNzdtKzOBnhZhGI6KspUjUvmQVGuYSnmqScOP8xag8mXmpRo7cKchamiC
- wSi2sv6JvhAKSOBsVv2KSohbuYJp/n5iwpjyPpCf6b8FboTtewrWujgJw
- tkn442SiO7eoJZEFFEe+ieUtl88JU+9t0hZk+8OfNMLjSE09LJCSbbsVi
- ZQzXZmeNPVLgGOSQ/vJWmkuS+hKgG5tny5Xpa4OX2DDTmsx7Bduu+Ou47 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="6493019"
-X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; 
-   d="scan'208";a="6493019"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 12:33:06 -0800
+ in-reply-to:mime-version;
+ bh=Bv8c26mbsBVYtpnluuL8MqBJ92RccwtX8YVjgjf2weI=;
+ b=l5CKt5HtZn/Nl6K3w1HtQEv5l6z15oSeHjkzQYyPmIg+emPkO82s7iHP
+ zXpm4lb/8IBOq4RRYk8dcih1myB0r5OxAhMWgP0aqSwl3J8csRpfzl5t7
+ WSpIKaZqfTm2KCS5JN97SnY85urFk/oo0GOofbDlDdsL+HRlXreYO6mng
+ fclto9JpYYPkPWqJlg9nOudT6dfAkmqHoaxrFXvu86EOcwAl9K833pN01
+ R+0OFIw3zM+dnNEsFvtT1P7lJ06iQCu9hSLMi6Bc6t4HeZ8oH9+gXEfhB
+ G2spQQXRzUttNmKe7bBtvRSA67QmFF549Cz4ApaQQrmOISBHcfFA1+3Mg Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="459716241"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="459716241"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 12:34:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="886990981"
-X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="886990981"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Nov 2023 12:33:05 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="942453057"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="942453057"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 29 Nov 2023 12:34:49 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 29 Nov 2023 12:33:04 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.1.2507.34; Wed, 29 Nov 2023 12:34:48 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Wed, 29 Nov 2023 12:33:04 -0800
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (104.47.70.101)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Wed, 29 Nov 2023 12:34:48 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Wed, 29 Nov 2023 12:33:04 -0800
+ 15.1.2507.34; Wed, 29 Nov 2023 12:34:47 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lf2ajCuFeMVNz+TBVhBy+PZ65sIZPjICZ61KM0UeEjPuTRxbNt/X+AI2obCjTZs5WAtdDs0hyL31gsrwY0dzFo/aE+D40nzLBXo5gUm4B5ZCBOUTIaWE7QTFU1bD/ig0DwTs29De5k3tCa0p7Axnx2baHR99OpJfvxDuM8nWISSxNbN4t/YH8WIB/NBR0U2GcK00WBwqgj2VULK2vpittuPboJysFo2dKjRAkT+tm0Mq+SHSmRokUZn4lINGpB1xd9lCxDtaUYajP+VrNIn2eyvXRw0BUjgYakcnWJYBR+7SZu85O73ZkpBKFK5oMnpMzUNnHGmHl7k00k29vBhaFA==
+ b=Kz6si7SaRSWIsNYCzdWF2dz8f6YzMggjxiC9JrR4X2Uzo9zZgyO7VNYaCpQuGnvIReGlnfbqIRNr5BH0s4WJoT97QnQxncbms3UylRxpBgaHPL/TJwaaRw6rfXnn/BUj04vUioImtHGYFSjrEOfiAmU31kxb2xIqvzA3VBAYhLnSBSEZNPokE6/9OldT6D0jUmWOi348CjKJOx050EeVr8rWhvM1l0rMWvd++uhG9MgLINXeW8GjRCfSKuYyxO9lZEmV1v+J1fYUahgXM8F4FhxyMuAwLWgIoBTXwijl7qOVIuBa3cZ0Kokx8YO1FaFKzjTnBFekTZEfuDVwOlXImg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xryMW056ew/E8cuLx4Q2shFL3sFMR6OJfcIe4CxrW08=;
- b=OFC3eFAEQsxCdL1q9gu8wb4V649s7r2Qbi2Xv8lzR4iG4bENp6HqhfYSPRrd1msPtNnJqwqNmdgVBf7EvCUQN3dZ4DZoRWMBxUx1FhQ7VakE300rvXs8UcWmSzJ8sV8zHvkRjdb4mEU02fO3dfX9qCFBejBp3irknwf6OaReXFfazRehtsuBoeKtVOC8+abSeZsPQ2oOk5CmoC7q60xXzzLk4urAJaNAMyJbB8HTMngRMn/xMi9PK1xiq5Tc51ibhNZ8XRO2Z8LBN9jpmaAMZtCzfyElB+kkL9HcWSxHOp2y+fyZ8Wq5sYXcpThZlrjqqr/ONR5SzoYoEKFJcyX3iw==
+ bh=zZ8HgdlMWx7l0vpHAYU5yhAzg6Ut1jdfu5rk7gY1OeU=;
+ b=ed26Vxd2RFhXCfZL75qDeOBDR3oZHsxaAaxEupxuVBVhMIz/zhoKrAnvFj0nnxfGO53WkR3ASjpIyq9MHyEKaoc8xGf0luJQv31DTEB4QrDgXjOYn5xD7RGD2T79JULdzWAjZCcGRhcac16QW70WnKMK1B+bzNndkhPPqkIML8ZIETdB3psmat92hE3rv3nzHlDiCWKXdA9493rdGVCH4L5I0EkYO8VOdqkE/awNrr69SejRdeBEL5lI2p8pmia4k5jx3IU4pMntuFuvm3vZQCQQsRRoFkoW4zuOh09u0Q7378lrD5zkaOrnwBgo7rTvwO3y3CUqLzQ1bXsDZkaF5Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
- MW4PR11MB7161.namprd11.prod.outlook.com (2603:10b6:303:212::9) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7046.23; Wed, 29 Nov 2023 20:33:01 +0000
-Received: from DM4PR11MB5373.namprd11.prod.outlook.com
- ([fe80::f105:47dd:6794:6821]) by DM4PR11MB5373.namprd11.prod.outlook.com
- ([fe80::f105:47dd:6794:6821%4]) with mapi id 15.20.7046.015; Wed, 29 Nov 2023
- 20:33:01 +0000
-Date: Wed, 29 Nov 2023 21:32:58 +0100
-From: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>
-Message-ID: <iqofdf7eiriphxctasinqz5kcbysunhfo2ccilleqslntokuzh@o5u6mkaap7pv>
-References: <20231129011624.836843-1-michal.winiarski@intel.com>
- <20231129011624.836843-15-michal.winiarski@intel.com>
- <e74cb84b-4ecf-45fd-b730-e0009ec76351@intel.com>
-Content-Type: text/plain; charset="utf-8"
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
+ by BN9PR11MB5355.namprd11.prod.outlook.com (2603:10b6:408:11c::5)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.23; Wed, 29 Nov
+ 2023 20:34:45 +0000
+Received: from MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::ada2:f954:a3a5:6179]) by MN0PR11MB6059.namprd11.prod.outlook.com
+ ([fe80::ada2:f954:a3a5:6179%5]) with mapi id 15.20.7046.023; Wed, 29 Nov 2023
+ 20:34:45 +0000
+Date: Wed, 29 Nov 2023 15:34:41 -0500
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+To: "Coelho, Luciano" <luciano.coelho@intel.com>
+Message-ID: <ZWegYaFb1yKYqNoy@intel.com>
+References: <20231129091728.1272876-1-luciano.coelho@intel.com>
+ <ZWd8aYses2mJmBqD@intel.com>
+ <54d7d0a3c53c61191aa811784c9671688722aeba.camel@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e74cb84b-4ecf-45fd-b730-e0009ec76351@intel.com>
-X-ClientProxiedBy: WA1P291CA0016.POLP291.PROD.OUTLOOK.COM
- (2603:10a6:1d0:19::27) To DM4PR11MB5373.namprd11.prod.outlook.com
- (2603:10b6:5:394::7)
+In-Reply-To: <54d7d0a3c53c61191aa811784c9671688722aeba.camel@intel.com>
+X-ClientProxiedBy: BYAPR02CA0047.namprd02.prod.outlook.com
+ (2603:10b6:a03:54::24) To MN0PR11MB6059.namprd11.prod.outlook.com
+ (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|MW4PR11MB7161:EE_
-X-MS-Office365-Filtering-Correlation-Id: 278e359f-2d07-400d-ae33-08dbf11a610d
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|BN9PR11MB5355:EE_
+X-MS-Office365-Filtering-Correlation-Id: 9414d500-ad77-4d88-e236-08dbf11a9fd0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: xiEkXB/liyBEmSTlgZJqXapUQSvE0gz9KsPm1qsclRbJjaMtYVpOAGsCat3/2m0Zuvbnp/QqoTjFQ1I1IWFT9es4kbny8b3XU94jBY7cczGoR5PFnoBfiY18L1Xq3EPNB2KiguQbnd0qeB5abMMzWXXzKk+Hjn95iENInkPeo5P3uuJr7xGST0uW3FRfxMVG7nK2SKUyZY3lbFNieXHhWycXLyNYvs1/XzrRq6q0n34Rs6R2PAXK9zrUsRZ4oPQvCQ+OnlNLBbYnlyfZdgWGNSkMMD+ecaqHjVOsivZeOzG3DzD/82m2s3cEWVLlaPGfDSW21azW85n1qlMk26IcZ8mQRYje3+h/QRyo+VV/dLkttR3av2Ux9Qy7tNMf7G74r3bnX+wf5JW5OqIUn6fF892qHFNtWWeZ/LDGvBS7BDP2BX6P4Dojc+Gx853sK8LnhJmfRtkOzDO8SRLeHdtFMx61PS2n15rvhZT5lFbhobJcqIjRZiNHHYs65Z+Fb+9OUOCwndtcbBgDtgEX3zL7ERMrECsiLzaYvdY64NfJEUNG3YzvvVS6FVuw5Ld8620LD0DS1zazEBRSoyj+G6uDTb7+CEeLVtl8kXfxrS0wbadPL6qaek/ygg8bpKlyBSADckPTBZvrrb8/WlZjKG4TIw==
+X-Microsoft-Antispam-Message-Info: 7/tib727R5CbzmmL4jv4g76LMNJz/ReQHB1gl7/rtia+6+bHo6gZ1d+XH2zXliFx/IpTOSrQiTZOC76XUhDUWp6mChFRbAHeyRlAgsvNw2f0PXR64OZqk4fPhHtpbGCa7qdS1wsA4hvvnzXsCUt+aamt9SBtgEwijiXHrm5RE45Iu+Ov8Esr2pXnHjD7e9XWv1LQQihhP2eHi0josgg8GfDd60G8cbIkSUl5z4WTdF3y2UxzPTmlgFUjOclteyBsHSEyeTh5jxAb7Vlqh36TGDPuO29NmfOiQMNGUB2QimV1tTxfnWeaJAwmgiwmEGEx4pqpWNh5vkT5wv+HLytU1j2BpCDQmEvmmykY5//51hfNa3YtwAZbKbc15JFf8/hDZf5alaNP0JQjMV3Ti+5m4lhUye91dVYfUcB2iLfxa8Xd0mTSVrPE2J8ZI0o+Rd+BU9tZ+hi4ni8CyWWGir5fFWD/EvIE94N6ez/gUtjfse3a9+zv/J+ShvIF6XdNu2cEpPTZYrA7PpCqAxZuknSvADVmo8OahN8otbPtxEu6qwSNi9rbq4SzbMOqDMXzE83rnw8xCgjbG4P4nIAASbH18+ywb+zUdZlxiOqHtj/iLLZBU1Bq1ZpLBpqjnYFwSEga
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(136003)(346002)(366004)(39860400002)(376002)(396003)(230922051799003)(186009)(451199024)(1800799012)(64100799003)(33716001)(82960400001)(86362001)(202311291699003)(30864003)(478600001)(2906002)(6666004)(6486002)(5660300002)(41300700001)(6512007)(53546011)(6506007)(26005)(107886003)(38100700002)(316002)(6636002)(8936002)(8676002)(9686003)(6862004)(4326008)(66476007)(66556008)(66946007)(54906003)(83380400001)(21314003);
+ IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(366004)(396003)(136003)(346002)(39860400002)(376002)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(202311291699003)(478600001)(2616005)(26005)(6486002)(6666004)(6506007)(6512007)(82960400001)(38100700002)(86362001)(36756003)(44832011)(5660300002)(41300700001)(54906003)(66946007)(66556008)(66476007)(6636002)(2906002)(4001150100001)(83380400001)(6862004)(8936002)(8676002)(4326008)(316002)(450100002)(37006003);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?V3VMZmFjZlNnWEMzV0tFZVA3VVJ4NTFpaTBzcVMwQzJrWXlBbEFydUxhdUpk?=
- =?utf-8?B?UE1Va0t2ZGRINzlLZzlvY0FOaUNIT1dMYTJBTnkxR2xXL2xjWURDcEJhTkpU?=
- =?utf-8?B?STZTcGcrRFNZZkU2M0ZHeVVLMGJodkNkVnNPQTJYcW1Xb1Zlc2V4c0NCSmE5?=
- =?utf-8?B?SXZCaTJjSVJ2YVlXNjJqeHJhMXRod29raEx3U2J4anM5Q2pJVXg3S2ZrejZh?=
- =?utf-8?B?dW5wWWswT1JUSW1VTWFEMnp3d25wMDh2eHdHNlgzOWpvdVlYN2llbkRwNWlY?=
- =?utf-8?B?SWd2OXBHYkhlakVCVUhwY0s1YlJxb2doa3psbzU2QThhOCsrcVRJd281OUkw?=
- =?utf-8?B?UlJiSnZOdElCeG5ZNTlaSlFmbjFhMDg3OGdMOG0yRXYzbWpyb1pRVUdSTThW?=
- =?utf-8?B?VFhETnJLRVp2OVVJeCtkMXZzZTJDUFhidmpDUFBtVUFKR2Q1RHhJZTkxWHYv?=
- =?utf-8?B?L1JjMWFUVXJhOGlrWmIrazg4NWFrQzhjTisrSnFzTjNxNWdwUjIvcC9Uc3hj?=
- =?utf-8?B?MmZCR3I1TzRYWmRSWllMczBaUEhRTzFkOG92OWNEayt0YUpzMVBGSWRUcktJ?=
- =?utf-8?B?QW9ZL1VieDdWbXI0bXNhWlBuT3lkK2cwYjdpUEdIeUVCanZvZXYxbVdCeVVr?=
- =?utf-8?B?eXBmQlVvenhQZEM3aHdSK25OL3NkRS9iRE15UWU0RnRQcE5rdWdjQTRKNVNt?=
- =?utf-8?B?SEQxVURUSHF4MnVGanFrdjdvVkpNWnRzdW1DWmtHN0FmYVJrOFNlbjFVNGJa?=
- =?utf-8?B?NFJWanU4aTVKSjdINko0Myt5UjJEUkRSRjEyTDU2RmhydUVhOXI3dEdiVlVl?=
- =?utf-8?B?bU4zTm5IOC9tbGs3UnA4OG9yKzMxTi9TMGZGd09IWFllQUZFTEcwWk9wbzBQ?=
- =?utf-8?B?UzhUSDVJK1NISzBpdTRXYnJHRTZhc05tbTVaY1I1N3dnVzFSZG5CTldiZVBW?=
- =?utf-8?B?NVFEM0ZUOStYRXpRREd3RjR3bE0wbHRKRlNxMVNmRS9zS2ZNS1NGbTFvTDc3?=
- =?utf-8?B?STFZa1g0dlI0VVkrWWJnazc0bHAzTFNOTGJOV3k1Ykl0K29ZR01uNXpERHdv?=
- =?utf-8?B?bm1YeEZnWDBkdFJxR3NLejE1bWVVZ1o0dmhHMG4yWEhRbENSL1hFRnpVdjlx?=
- =?utf-8?B?clRpY3JhRkNOZGVybDZnc09tdSsyQWY0clZyc2EzaXJkK2JLdTZhV0hhTVdk?=
- =?utf-8?B?VE1VMzFOcnVmMGl2SnVNN3NRRDF1ZzlCN010OHJnM29wSkFaVHp5RGZHdEd3?=
- =?utf-8?B?OStrTGsyOTVndGtVc3AyQjB6RmxVb05YRUJqZHAvR2FudS9tN2x0NWZhVGVw?=
- =?utf-8?B?Qm9saEp2bXhFcm9EQkJpSjhNeC8xMVBneVN3aHF6cWVVL2UrZzd5S3N1d1Jj?=
- =?utf-8?B?aHFCTXM1b1BWY2hRdGlSaFdvZ0liSlpVM29BZTd4d2FqSzJlQzA2V2V3TzQv?=
- =?utf-8?B?Z2p0M0wweGdlWTg1L1JSU1o3WFk5L0RRK3ZpSzZXcHd6bHBsdFNRaW00eDJx?=
- =?utf-8?B?SUhKUW56ZGxNQU5zMjg0MUIvaU93V0l1cmlieWEwRzdNYlUwWjJQQnA0MXlE?=
- =?utf-8?B?bWhWamoxZjdQVm1NdVdEcUtGSHBwVHBvMGtGbCtqTDVhSDZpa0kyS3phMU9s?=
- =?utf-8?B?bjgvNnlUb2UyT0wxYmJ6TUlLNW5pNnE2TzU2NmczTXhuYkQvY1JwTlpIM1pk?=
- =?utf-8?B?VlNxbGRXRnEzK3hEMTZmbUNWazhaWnRBM0tETTVWTFR0Nml1NnZPRURoZHpO?=
- =?utf-8?B?M0pFVUE1b1JDUi9vR09jMCthVklXVEhXSWhIRTFJd0paVDZnY09GTHl2b05u?=
- =?utf-8?B?U3lSdW4wOWtCdEpUMmVRSTlaQ1dNdTdONXBvRWY0WUYyZlQ0elU4cWRaU0xa?=
- =?utf-8?B?Q0ZSOEJXVTNzcGpaeVlaT0ZxVU9QNUgydjY4VVppM3lWeXBhNHgzNTlDZDJk?=
- =?utf-8?B?WFlialFlZEVGaGtjTXRwZ1pibm9UaTNTREV5VExGc0RiOUVkSGJ4QVZqbEFs?=
- =?utf-8?B?M2hXM2EyVjEyRkFmY25lR0NKTGk0Y1BiQVpFd3EyT1oyQlFNWTNjYndEZzd2?=
- =?utf-8?B?WVhsNWJLYnN4L3lIaWdSdlZjVDFYWnZGRCt3Qm95d0ZsQmpqbUtqNlhJNTU4?=
- =?utf-8?B?V0tGRVR3V2RWc3FET2g5K29naTV2VG1XbFB1YjhxMUVhSWFtdTBxV3RzL3RS?=
- =?utf-8?B?cFE9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 278e359f-2d07-400d-ae33-08dbf11a610d
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?agk5d5HiQrp1qihQhNlJS8qtf8kuMX8JmhFGTiuc+seF37YTGQQkc9qtsEy9?=
+ =?us-ascii?Q?cETyWSEG2Bgt3BX+1ezR21aQpAkhnWXll+WDLcnEbimeqUJLYUVxrOPX3JZL?=
+ =?us-ascii?Q?C2Iqn+gtec73I29DQYBcyWvJ3U8fWqre4VsRCU2aHEEOcbHEVI4Ja/FgsEF5?=
+ =?us-ascii?Q?Q2pXsIQsWB9itMXheRvzc2pWNig8vMPjKvvQ0trWEP2HWWe8roGagqTxwZ9c?=
+ =?us-ascii?Q?0u48QZPB0oSMcwpx1r62HOT3kJWb7yoTDDw/wXfmI76jig7fpcprnRAdAKrP?=
+ =?us-ascii?Q?NJnARpOqO9GZ024+d2E++rtAI026sAXW67JHJ6ZGt35Vghmq4Tm5b9PB7oXN?=
+ =?us-ascii?Q?jixkDgFYApZ3ihD+GhWB2u9mvO6qioZI5legfWCojeeFBeaY0+GnAu1w6I/9?=
+ =?us-ascii?Q?O0+LFPcX2oL1s7Frp+r3CiZ+be53Q1brKqCKhgKuIFL11H2TNZHsXGo+6jwv?=
+ =?us-ascii?Q?1u2/6Ch1wAa/3h1tzOA7satBe55wfoiPqs5GC2OKwPuKf2IG39hmKQ1gyQNQ?=
+ =?us-ascii?Q?bMdLlJci25zVDX5mG3Ygd6Jt1+8KWSs9DmqLj+b01bX67Y9hTzW2PgbyczIP?=
+ =?us-ascii?Q?WOKOPd+EvFKqlhJmyMNhB9YcTtwz3F2JRF7IpzHgjXc/m00TeNsBbY40zoGQ?=
+ =?us-ascii?Q?mKTzSeHCvtSiNx/c1UInAdI5f2vDSBFsmwrDqUJwoyddUJ06NCqOUpkletgL?=
+ =?us-ascii?Q?beq+DCh4gjT8Yq5x8HfXdvslWO/KYLp7wcDcgkwoIuddWB2Zo+V5IblDnWE6?=
+ =?us-ascii?Q?qW5gjG8QJtxAo8TnKDjy28Z5CBfuDrHNR0WJd8BDqujcnERZtZ4S/Eo9ibkE?=
+ =?us-ascii?Q?0nUXHReTJ8gnckQ+bq4KpIZDP38caW0RS9HRCD7omaQjLICfJ230qJ6CwNJR?=
+ =?us-ascii?Q?H5Nyy9ORVszfFlhRPLYMm3yS5gMsqLaW3koPMNYeGN7FEvbAKFyKRY/7RmY5?=
+ =?us-ascii?Q?mCn2OfLvcpKrRcaYH/0Shizy6Mn76I63BZpeKiX8UCz96VjAdsKEKVFfTDFv?=
+ =?us-ascii?Q?NgMgbzPzymDFEjFinnk/j/g/06b6p6q2PuA6jH28L5RMoMgraS8PRj6DxaC4?=
+ =?us-ascii?Q?v+3R+OOfT1orTAsKOlQ+tQBR8hfHdL2LHP9ZiFDAyTJnvemVUBw2ztAyeezW?=
+ =?us-ascii?Q?I+kzhnH/p7c1H8GaXmv+mcWCWajc9O8/rD9Ua0iek0hNAxlCYyRYaS2tLkmV?=
+ =?us-ascii?Q?9JUur1PTiS610H8a4+IlAqxKCicYz6rvIh3dEnL+iLj8cIcLpT7TX4wJgAhx?=
+ =?us-ascii?Q?uogbPssqWbTK/5L3Ca5OLO65l7etoQa/Rr7uT1jt/pvvhAuM10ZzB6bfjIW/?=
+ =?us-ascii?Q?tyLefPajNzzHsiAm2gFpWsTTPRYHfknXsFbfBDg+8vR3KqS5W9IcBjax6kQd?=
+ =?us-ascii?Q?57HPUgva1d3DYOwalS0qjVgc63DSEx07twRmj6cT20NOfE2tkR0aBp3NKuMJ?=
+ =?us-ascii?Q?WJOCysWvdBQGmII2KhQyi6ElS67PrwWdXrwr+DsbGNcTcYi63pJPprsKFx/M?=
+ =?us-ascii?Q?sRmo8qwAIf4orEcVJ+nCK7OkwzdWUsMECUy7jMw+VBIZ6Frj3vSI33LeU7y8?=
+ =?us-ascii?Q?7Zvw13DsjJVZR5dPoo+BmFhEpQK2X094frFFTM+Wj41fN0Xh2+6gp/oxOVjQ?=
+ =?us-ascii?Q?Aw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9414d500-ad77-4d88-e236-08dbf11a9fd0
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 20:33:01.0641 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 20:34:45.7817 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VaEiV3MMBesOaI5WMa6pMKN8T3flByHSrvKjxKq1OQ+z1xlE9RMa+YwE/TR2gJA9198bfO2ATzenEv8Imbxxempt3xqB1sYeBlvwfVO92wU=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB7161
+X-MS-Exchange-CrossTenant-UserPrincipalName: uS6fBzbDwtNYlv2x8v1UmwOsO2PqZ+IoY5qQr3oyHpPP329cz4c5RR31fV2v0zN9J/x1xZzisCaDTmg0Hemj0A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5355
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v4 14/22] drm/xe: Add a helper for DRM
- device-lifetime BO create
+Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v4] drm/i915: handle uncore
+ spinlock when not available
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,386 +145,141 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, intel-xe@lists.freedesktop.org
+Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Nov 29, 2023 at 10:38:44AM +0100, Michal Wajdeczko wrote:
-> 
-> 
-> On 29.11.2023 02:16, Michał Winiarski wrote:
-> > A helper for managed BO allocations makes it possible to remove specific
-> > "fini" actions and will simplify the following patches adding ability to
-> > execute a release action for specific BO directly.
+On Wed, Nov 29, 2023 at 03:24:33PM -0500, Coelho, Luciano wrote:
+> On Wed, 2023-11-29 at 13:01 -0500, Rodrigo Vivi wrote:
+> > On Wed, Nov 29, 2023 at 11:17:28AM +0200, Luca Coelho wrote:
+> > > The uncore code may not always be available (e.g. when we build the
+> > > display code with Xe), so we can't always rely on having the uncore's
+> > > spinlock.
+> > > 
+> > > To handle this, split the spin_lock/unlock_irqsave/restore() into
+> > > spin_lock/unlock() followed by a call to local_irq_save/restore() and
+> > > create wrapper functions for locking and unlocking the uncore's
+> > > spinlock.  In these functions, we have a condition check and only
+> > > actually try to lock/unlock the spinlock when I915 is defined, and
+> > > thus uncore is available.
+> > > 
+> > > This keeps the ifdefs contained in these new functions and all such
+> > > logic inside the display code.
+> > > 
+> > > Cc: Tvrtko Ursulin <tvrto.ursulin@intel.com>
+> > > Cc: Jani Nikula <jani.nikula@intel.com>
+> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > > Cc: Ville Syrj?l? <ville.syrjala@linux.intel.com>
+> > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> > > ---
+> > > 
+> > > In v2:
+> > > 
+> > >    * Renamed uncore_spin_*() to intel_spin_*()
+> > >    * Corrected the order: save, lock, unlock, restore
+> > > 
+> > > In v3:
+> > > 
+> > >    * Undid the change to pass drm_i915_private instead of the lock
+> > >      itself, since we would have to include i915_drv.h and that pulls
+> > >      in a truckload of other includes.
+> > > 
+> > > In v4:
+> > > 
+> > >    * After a brief attempt to replace this with a different patch,
+> > >      we're back to this one;
+> > >    * Pass drm_i195_private again, and move the functions to
+> > >      intel_vblank.c, so we don't need to include i915_drv.h in a
+> > >      header file and it's already included in intel_vblank.c;
+> > > 
+> > >  drivers/gpu/drm/i915/display/intel_display.h |  1 +
+> > >  drivers/gpu/drm/i915/display/intel_vblank.c  | 45 +++++++++++++++-----
+> > >  2 files changed, 36 insertions(+), 10 deletions(-)
+> > > 
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+> > > index 8548f49e3972..5ff299bc4b87 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> > > @@ -29,6 +29,7 @@
+> > >  
+> > >  #include "i915_reg_defs.h"
+> > >  #include "intel_display_limits.h"
+> > > +#include "i915_drv.h"
 > > 
-> > Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/xe_bo.c           | 33 ++++++++++++++++++++++++++++
-> >  drivers/gpu/drm/xe/xe_bo.h           |  4 ++++
-> >  drivers/gpu/drm/xe/xe_ggtt.c         |  6 +----
-> >  drivers/gpu/drm/xe/xe_guc_ads.c      | 20 +++--------------
-> >  drivers/gpu/drm/xe/xe_guc_ct.c       |  8 +++----
-> >  drivers/gpu/drm/xe/xe_guc_hwconfig.c | 18 +++------------
-> >  drivers/gpu/drm/xe/xe_guc_log.c      | 19 +++-------------
-> >  drivers/gpu/drm/xe/xe_guc_pc.c       |  9 +++-----
-> >  drivers/gpu/drm/xe/xe_hw_engine.c    |  8 +++----
-> >  drivers/gpu/drm/xe/xe_uc_fw.c        |  9 ++++----
-> >  10 files changed, 60 insertions(+), 74 deletions(-)
+> > please move this include to intel_vblank.c
+> 
+> Oops, this is a leftover of some tests I was making to see just how
+> much worse things would get by adding this here.
+> 
+> Actually, why don't we move the drm_i915_private structure (and maybe
+> others?) to a lighter header file than i915_drv.h? IMHO it's really
+> annoying to have the forward declarations for it in many places just
+> because we don't want to include the actual header.  When I want to
+> find its global definition, cscope always returns tens of results
+> because of the forward declarations... This is obviously orthogonal to
+> the current patch.
+
+yeah, I know. It is really inconvenient sometimes. I got used to run
+cscope and then search for "struct something {" to find the right place.
+
+But this inconvenience is actually smaller when compared to the compilation
+time whenever a header gets modified and included by other headers. If I
+remember correctly Jani did the initial assessment of compilation times
+and started to move headers including out of other headers. He might
+have more details/data on his findings.
+
+> 
+> 
+> > >  enum drm_scaling_filter;
+> > >  struct dpll;
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+> > > index 2cec2abf9746..d9625db82681 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> > > @@ -265,6 +265,26 @@ int intel_crtc_scanline_to_hw(struct intel_crtc *crtc, int scanline)
+> > >  	return (scanline + vtotal - crtc->scanline_offset) % vtotal;
+> > >  }
+> > >  
+> > > +/*
+> > > + * The uncore version of the spin lock functions is used to decide
+> > > + * whether we need to lock the uncore lock or not.  This is only
+> > > + * needed in i915, not in Xe.  Keep the decision-making centralized
+> > > + * here.
 > > 
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> > index c5aa01c0861c7..7f5b616a7bbeb 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.c
-> > +++ b/drivers/gpu/drm/xe/xe_bo.c
-> > @@ -9,6 +9,7 @@
-> >  
-> >  #include <drm/drm_drv.h>
-> >  #include <drm/drm_gem_ttm_helper.h>
-> > +#include <drm/drm_managed.h>
-> >  #include <drm/ttm/ttm_device.h>
-> >  #include <drm/ttm/ttm_placement.h>
-> >  #include <drm/ttm/ttm_tt.h>
-> > @@ -1493,6 +1494,38 @@ struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_tile *tile,
-> >  	return bo;
-> >  }
-> >  
-> > +static void __xe_bo_release(struct drm_device *drm, void *arg)
+> > maybe we could add brief mention that it is only needed because old hardware
+> > that is not supported by Xe.
 > 
-> nit: __release_xe_bo() ? this is a drm action, not a xe_bo function
-
-Xe doesn't follow this convention for release actions passed to
-drmm_add_action (it's usually xe_*).
-
+> Good idea, I'll add it.
 > 
-> > +{
-> > +	xe_bo_unpin_map_no_vm(arg);
-> > +}
-> > +
-> > +struct xe_bo *xe_managed_bo_create_pin_map(struct xe_device *xe, struct xe_tile *tile,
-> > +					   size_t size, u32 flags)
-> > +{
-> > +	struct xe_bo *bo;
-> > +	int ret;
-> > +
-> > +	bo = xe_bo_create_pin_map(xe, tile, NULL, size, ttm_bo_type_kernel, flags);
-> > +	if (IS_ERR(bo))
-> > +		return bo;
-> > +
-> > +	ret = drmm_add_action_or_reset(&xe->drm, __xe_bo_release, bo);
-> > +	if (ret)
-> > +		return ERR_PTR(ret);
-> > +
-> > +	return bo;
-> > +}
-> > +
-> > +struct xe_bo *xe_managed_bo_create_from_data(struct xe_device *xe, struct xe_tile *tile,
-> > +					     const void *data, size_t size, u32 flags)
-> > +{
-> > +	struct xe_bo *bo = xe_managed_bo_create_pin_map(xe, tile, size, flags);
-> > +
-> > +	xe_map_memcpy_to(xe, &bo->vmap, 0, data, size);
+> > 
+> > > + */
+> > > +static inline void intel_vblank_section_enter(struct drm_i915_private *i915)
+> > 
+> > let's avoid inline here.
 > 
-> will crash if "bo" is a ERR_PTR
-
-Yup, I'll add a check.
-
+> Okay, I'll remove it.
 > 
-> > +
-> > +	return bo;
-> > +}
-> > +
-> >  /*
-> >   * XXX: This is in the VM bind data path, likely should calculate this once and
-> >   * store, with a recalculation if the BO is moved.
-> > diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> > index 9f373f6d25f22..2cf32713bde9e 100644
-> > --- a/drivers/gpu/drm/xe/xe_bo.h
-> > +++ b/drivers/gpu/drm/xe/xe_bo.h
-> > @@ -109,6 +109,10 @@ struct xe_bo *xe_bo_create_pin_map_at(struct xe_device *xe, struct xe_tile *tile
-> >  struct xe_bo *xe_bo_create_from_data(struct xe_device *xe, struct xe_tile *tile,
-> >  				     const void *data, size_t size,
-> >  				     enum ttm_bo_type type, u32 flags);
-> > +struct xe_bo *xe_managed_bo_create_pin_map(struct xe_device *xe, struct xe_tile *tile,
-> > +					   size_t size, u32 flags);
-> > +struct xe_bo *xe_managed_bo_create_from_data(struct xe_device *xe, struct xe_tile *tile,
-> > +					     const void *data, size_t size, u32 flags);
 > 
-> nit: isn't "xe_device *xe" redundant if we also pass a "xe_tile *tile" ?
-
-It is, but it is also redundant for all of the non-managed variants of
-this function, so I would prefer to keep it consistent in this series.
-
-Thanks,
--Michał
-
+> > > +{
+> > > +#ifdef I915
+> > > +	spin_lock(&i915->uncore.lock);
+> > > +#endif
+> > > +}
+> > > +
+> > > +static inline void intel_vblank_section_exit(struct drm_i915_private *i915)
+> > 
+> > and here
 > 
-> >  
-> >  int xe_bo_placement_for_flags(struct xe_device *xe, struct xe_bo *bo,
-> >  			      u32 bo_flags);
-> > diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> > index fab3cc04882da..8dc783e9120d2 100644
-> > --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> > +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> > @@ -108,7 +108,6 @@ static void ggtt_fini(struct drm_device *drm, void *arg)
-> >  {
-> >  	struct xe_ggtt *ggtt = arg;
-> >  
-> > -	xe_bo_unpin_map_no_vm(ggtt->scratch);
-> >  	ggtt->scratch = NULL;
-> >  }
-> >  
-> > @@ -225,10 +224,7 @@ int xe_ggtt_init(struct xe_ggtt *ggtt)
-> >  	else
-> >  		flags |= XE_BO_CREATE_VRAM_IF_DGFX(ggtt->tile);
-> >  
-> > -	ggtt->scratch = xe_bo_create_pin_map(xe, ggtt->tile, NULL, XE_PAGE_SIZE,
-> > -					     ttm_bo_type_kernel,
-> > -					     flags);
-> > -
-> > +	ggtt->scratch = xe_managed_bo_create_pin_map(xe, ggtt->tile, XE_PAGE_SIZE, flags);
-> >  	if (IS_ERR(ggtt->scratch)) {
-> >  		err = PTR_ERR(ggtt->scratch);
-> >  		goto err;
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
-> > index 88789826e7817..2f5ff090aa6bd 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_ads.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_ads.c
-> > @@ -202,13 +202,6 @@ static size_t guc_ads_size(struct xe_guc_ads *ads)
-> >  		guc_ads_private_data_size(ads);
-> >  }
-> >  
-> > -static void guc_ads_fini(struct drm_device *drm, void *arg)
-> > -{
-> > -	struct xe_guc_ads *ads = arg;
-> > -
-> > -	xe_bo_unpin_map_no_vm(ads->bo);
-> > -}
-> > -
-> >  static bool needs_wa_1607983814(struct xe_device *xe)
-> >  {
-> >  	return GRAPHICS_VERx100(xe) < 1250;
-> > @@ -274,25 +267,18 @@ int xe_guc_ads_init(struct xe_guc_ads *ads)
-> >  	struct xe_gt *gt = ads_to_gt(ads);
-> >  	struct xe_tile *tile = gt_to_tile(gt);
-> >  	struct xe_bo *bo;
-> > -	int err;
-> >  
-> >  	ads->golden_lrc_size = calculate_golden_lrc_size(ads);
-> >  	ads->regset_size = calculate_regset_size(gt);
-> >  
-> > -	bo = xe_bo_create_pin_map(xe, tile, NULL, guc_ads_size(ads) +
-> > -				  MAX_GOLDEN_LRC_SIZE,
-> > -				  ttm_bo_type_kernel,
-> > -				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > -				  XE_BO_CREATE_GGTT_BIT);
-> > +	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ads_size(ads) + MAX_GOLDEN_LRC_SIZE,
-> > +					  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > +					  XE_BO_CREATE_GGTT_BIT);
-> >  	if (IS_ERR(bo))
-> >  		return PTR_ERR(bo);
-> >  
-> >  	ads->bo = bo;
-> >  
-> > -	err = drmm_add_action_or_reset(&xe->drm, guc_ads_fini, ads);
-> > -	if (err)
-> > -		return err;
-> > -
-> >  	return 0;
-> >  }
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c b/drivers/gpu/drm/xe/xe_guc_ct.c
-> > index c44e750746958..93c886ef6fdb4 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_ct.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
-> > @@ -112,7 +112,6 @@ static void guc_ct_fini(struct drm_device *drm, void *arg)
-> >  	struct xe_guc_ct *ct = arg;
-> >  
-> >  	xa_destroy(&ct->fence_lookup);
-> > -	xe_bo_unpin_map_no_vm(ct->bo);
-> >  }
-> >  
-> >  static void g2h_worker_func(struct work_struct *w);
-> > @@ -146,10 +145,9 @@ int xe_guc_ct_init(struct xe_guc_ct *ct)
-> >  
-> >  	primelockdep(ct);
-> >  
-> > -	bo = xe_bo_create_pin_map(xe, tile, NULL, guc_ct_size(),
-> > -				  ttm_bo_type_kernel,
-> > -				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > -				  XE_BO_CREATE_GGTT_BIT);
-> > +	bo = xe_managed_bo_create_pin_map(xe, tile, guc_ct_size(),
-> > +					  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > +					  XE_BO_CREATE_GGTT_BIT);
-> >  	if (IS_ERR(bo))
-> >  		return PTR_ERR(bo);
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_hwconfig.c b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-> > index 57d325ec8ce32..8e3db5d7192c3 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_hwconfig.c
-> > @@ -47,13 +47,6 @@ static int guc_hwconfig_copy(struct xe_guc *guc)
-> >  	return 0;
-> >  }
-> >  
-> > -static void guc_hwconfig_fini(struct drm_device *drm, void *arg)
-> > -{
-> > -	struct xe_guc *guc = arg;
-> > -
-> > -	xe_bo_unpin_map_no_vm(guc->hwconfig.bo);
-> > -}
-> > -
-> >  int xe_guc_hwconfig_init(struct xe_guc *guc)
-> >  {
-> >  	struct xe_device *xe = guc_to_xe(guc);
-> > @@ -83,19 +76,14 @@ int xe_guc_hwconfig_init(struct xe_guc *guc)
-> >  	if (!size)
-> >  		return -EINVAL;
-> >  
-> > -	bo = xe_bo_create_pin_map(xe, tile, NULL, PAGE_ALIGN(size),
-> > -				  ttm_bo_type_kernel,
-> > -				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > -				  XE_BO_CREATE_GGTT_BIT);
-> > +	bo = xe_managed_bo_create_pin_map(xe, tile, PAGE_ALIGN(size),
-> > +					  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > +					  XE_BO_CREATE_GGTT_BIT);
-> >  	if (IS_ERR(bo))
-> >  		return PTR_ERR(bo);
-> >  	guc->hwconfig.bo = bo;
-> >  	guc->hwconfig.size = size;
-> >  
-> > -	err = drmm_add_action_or_reset(&xe->drm, guc_hwconfig_fini, guc);
-> > -	if (err)
-> > -		return err;
-> > -
-> >  	return guc_hwconfig_copy(guc);
-> >  }
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_log.c b/drivers/gpu/drm/xe/xe_guc_log.c
-> > index 27c3827bfd054..bcd2f4d34081d 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_log.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_log.c
-> > @@ -77,24 +77,15 @@ void xe_guc_log_print(struct xe_guc_log *log, struct drm_printer *p)
-> >  	}
-> >  }
-> >  
-> > -static void guc_log_fini(struct drm_device *drm, void *arg)
-> > -{
-> > -	struct xe_guc_log *log = arg;
-> > -
-> > -	xe_bo_unpin_map_no_vm(log->bo);
-> > -}
-> > -
-> >  int xe_guc_log_init(struct xe_guc_log *log)
-> >  {
-> >  	struct xe_device *xe = log_to_xe(log);
-> >  	struct xe_tile *tile = gt_to_tile(log_to_gt(log));
-> >  	struct xe_bo *bo;
-> > -	int err;
-> >  
-> > -	bo = xe_bo_create_pin_map(xe, tile, NULL, guc_log_size(),
-> > -				  ttm_bo_type_kernel,
-> > -				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > -				  XE_BO_CREATE_GGTT_BIT);
-> > +	bo = xe_managed_bo_create_pin_map(xe, tile, guc_log_size(),
-> > +					  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > +					  XE_BO_CREATE_GGTT_BIT);
-> >  	if (IS_ERR(bo))
-> >  		return PTR_ERR(bo);
-> >  
-> > @@ -102,9 +93,5 @@ int xe_guc_log_init(struct xe_guc_log *log)
-> >  	log->bo = bo;
-> >  	log->level = xe_modparam.guc_log_level;
-> >  
-> > -	err = drmm_add_action_or_reset(&xe->drm, guc_log_fini, log);
-> > -	if (err)
-> > -		return err;
-> > -
-> >  	return 0;
-> >  }
-> > diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-> > index e9dd6c3d750bd..f5009a7968afa 100644
-> > --- a/drivers/gpu/drm/xe/xe_guc_pc.c
-> > +++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-> > @@ -936,7 +936,6 @@ void xe_guc_pc_fini(struct xe_guc_pc *pc)
-> >  	XE_WARN_ON(xe_guc_pc_gucrc_disable(pc));
-> >  	XE_WARN_ON(xe_guc_pc_stop(pc));
-> >  	sysfs_remove_files(pc_to_gt(pc)->sysfs, pc_attrs);
-> > -	xe_bo_unpin_map_no_vm(pc->bo);
-> >  	mutex_destroy(&pc->freq_lock);
-> >  }
-> >  
-> > @@ -955,11 +954,9 @@ int xe_guc_pc_init(struct xe_guc_pc *pc)
-> >  
-> >  	mutex_init(&pc->freq_lock);
-> >  
-> > -	bo = xe_bo_create_pin_map(xe, tile, NULL, size,
-> > -				  ttm_bo_type_kernel,
-> > -				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > -				  XE_BO_CREATE_GGTT_BIT);
-> > -
-> > +	bo = xe_managed_bo_create_pin_map(xe, tile, size,
-> > +					  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > +					  XE_BO_CREATE_GGTT_BIT);
-> >  	if (IS_ERR(bo))
-> >  		return PTR_ERR(bo);
-> >  
-> > diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
-> > index e831e63c5e485..34990f396a1a8 100644
-> > --- a/drivers/gpu/drm/xe/xe_hw_engine.c
-> > +++ b/drivers/gpu/drm/xe/xe_hw_engine.c
-> > @@ -238,8 +238,6 @@ static void hw_engine_fini(struct drm_device *drm, void *arg)
-> >  		xe_execlist_port_destroy(hwe->exl_port);
-> >  	xe_lrc_finish(&hwe->kernel_lrc);
-> >  
-> > -	xe_bo_unpin_map_no_vm(hwe->hwsp);
-> > -
-> >  	hwe->gt = NULL;
-> >  }
-> >  
-> > @@ -427,9 +425,9 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
-> >  	xe_reg_sr_apply_mmio(&hwe->reg_sr, gt);
-> >  	xe_reg_sr_apply_whitelist(hwe);
-> >  
-> > -	hwe->hwsp = xe_bo_create_pin_map(xe, tile, NULL, SZ_4K, ttm_bo_type_kernel,
-> > -					 XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > -					 XE_BO_CREATE_GGTT_BIT);
-> > +	hwe->hwsp = xe_managed_bo_create_pin_map(xe, tile, SZ_4K,
-> > +						 XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > +						 XE_BO_CREATE_GGTT_BIT);
-> >  	if (IS_ERR(hwe->hwsp)) {
-> >  		err = PTR_ERR(hwe->hwsp);
-> >  		goto err_name;
-> > diff --git a/drivers/gpu/drm/xe/xe_uc_fw.c b/drivers/gpu/drm/xe/xe_uc_fw.c
-> > index 25778887d846f..5b86c51941335 100644
-> > --- a/drivers/gpu/drm/xe/xe_uc_fw.c
-> > +++ b/drivers/gpu/drm/xe/xe_uc_fw.c
-> > @@ -266,7 +266,6 @@ static void uc_fw_fini(struct drm_device *drm, void *arg)
-> >  	if (!xe_uc_fw_is_available(uc_fw))
-> >  		return;
-> >  
-> > -	xe_bo_unpin_map_no_vm(uc_fw->bo);
-> >  	xe_uc_fw_change_status(uc_fw, XE_UC_FIRMWARE_SELECTED);
-> >  }
-> >  
-> > @@ -575,10 +574,9 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
-> >  	if (err)
-> >  		goto fail;
-> >  
-> > -	obj = xe_bo_create_from_data(xe, tile, fw->data, fw->size,
-> > -				     ttm_bo_type_kernel,
-> > -				     XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > -				     XE_BO_CREATE_GGTT_BIT);
-> > +	obj = xe_managed_bo_create_from_data(xe, tile, fw->data, fw->size,
-> > +					     XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-> > +					     XE_BO_CREATE_GGTT_BIT);
-> >  	if (IS_ERR(obj)) {
-> >  		drm_notice(&xe->drm, "%s firmware %s: failed to create / populate bo",
-> >  			   xe_uc_fw_type_repr(uc_fw->type), uc_fw->path);
-> > @@ -609,6 +607,7 @@ int xe_uc_fw_init(struct xe_uc_fw *uc_fw)
-> >  		 xe_uc_fw_type_repr(uc_fw->type), XE_UC_FIRMWARE_URL);
-> >  
-> >  	release_firmware(fw);		/* OK even if fw is NULL */
-> > +
-> >  	return err;
-> >  }
-> >  
+> Okay.
+> 
+> 
+> > With these changes:
+> > 
+> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> 
+> Thanks for the review, Rodrigo!
+> 
+> --
+> Cheers,
+> Luca.
