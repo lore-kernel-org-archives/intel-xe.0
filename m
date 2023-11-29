@@ -4,137 +4,148 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0A70C4167B
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 01:07:49 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id D89C1C4167B
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 01:16:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 673DB10E0BA;
-	Wed, 29 Nov 2023 01:07:49 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A28C10E0BA
- for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 01:07:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A922510E5D9;
+	Wed, 29 Nov 2023 01:16:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 79B0710E5DA
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 01:16:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701220067; x=1732756067;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=3/DJJDFqUC6I6AkzhEK6iBR4WF/KFW422E/Vm+hR/HU=;
- b=GPuvZ0g/auEehjb3MW5f8dMUsUT6SY2rWsHYP1+UeDHTVEpNjJSs4KGO
- trhOFbf4tgbWlFzAXUcIvE7h4uUKb3cyVd88mrXywVsPOvJWQEINCMtuE
- FhM8fE0YXRePxcXqE+AnRMlCLhe/viVlte8hJAG4DNbfiAqnXQR44/Ao1
- MzDDW23/ewWSXQh66YGm4+LzjOosv0aljFKJuzSHfMukZ2UVpecHtoZ6W
- zsIOkcjkZ6zBns7yBtfwvrhQc4xHYNWqYYLVzUAMfmpHgIrAmndsR69w+
- Jr8erQmM6EmgyU/5lFR8/4pS73FlqBM4lbCs2CBJcCcexoTjixBGH3Ldo g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="378091936"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="378091936"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Nov 2023 17:07:46 -0800
+ t=1701220605; x=1732756605;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=PKdTBuxpiKnKLg4ii4TA5B8g1bO5JVz4jP6dzzdicWo=;
+ b=BnszZTUDLs4Bk10Xl4g9X4H6HpNibUoWFBTfJ9TaDFbN490SgYpJDrjs
+ 84V5xF+3xzZnbdWxmAQhL4Cg43/hZ8UVwwLAlM4yEX0DCOQ9py+qHLcWQ
+ N0FEANzxP10h9uT5lxV5rbvfjjOw3l9WAw+XMMTmnb0XiCL3NuEl9UGBM
+ SxM1tPWVp+ogEP4896mUPNbtUK9HWMI6hoeqUrORKAX8JwPDi6Gj/5U2U
+ 5ytmGqQgfisoMdnfyR8E4/i8C+cE4Bz8lsa12JGvlCSnp1BQQFgW+cXUB
+ JJAPMtnwFexYw6Y8s1evjlzhHgFwP+EKpzlOZu0YuNHjFAiwnyjyrsMzK w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="372436520"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="372436520"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Nov 2023 17:16:44 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="942133856"
-X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="942133856"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 28 Nov 2023 17:07:46 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10908"; a="892272458"
+X-IronPort-AV: E=Sophos;i="6.04,234,1695711600"; d="scan'208";a="892272458"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga004.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 28 Nov 2023 17:16:43 -0800
+Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Tue, 28 Nov 2023 17:07:45 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.34; Tue, 28 Nov 2023 17:16:42 -0800
+Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Tue, 28 Nov 2023 17:07:45 -0800
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.168)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.34; Tue, 28 Nov 2023 17:16:42 -0800
+Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Tue, 28 Nov 2023 17:16:42 -0800
+Received: from NAM04-MW2-obe.outbound.protection.outlook.com (104.47.73.168)
+ by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Tue, 28 Nov 2023 17:07:45 -0800
+ 15.1.2507.34; Tue, 28 Nov 2023 17:16:42 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=AV8qJ/xBs5LIHYA71jMCT44ef2rbweh0Ppfmtr0jj+3ReefbhYuWmTjkJ/f4g064WlBeD9gxSZ5h5OX9tBfIao3wzXtiYFJWU1Cwc3r2URxfJW0LlDIvmOzgX1n8Ur1m45M6wiEnlsDijxFkdeC9iPtGIvkU+iidOZurJre7oIHWRLXEayhlwChU9lU3kWTTA/kFpspGInw2ejhtXx1Z7lDOlOEh8Wp0ERyUJXHfLmfpK7kckv5cxJnKrXdL47pcS6NL8y/moINb+hl3C+ChEsieqoUqwUSGR4ZA+g5dwKO7sOm9easXoUk2BDi3YrujIU5bKPYGxZYfLByONNep6Q==
+ b=i5owo0DvA5ey/ItagdBviuh0biRiJLOUt+CApxvNW2/FCp6y2HazVzNlFpZjVJTNer7W4XPNfA92jboxKUmoOhOD6Cv+uBE7pDJhmS3eeTnGo6uiaHPm85AGs4yuSXEOfr061woLEZZJpl+97fvxaPjvnZeghPUkSo5YcO68Ew1+2IqsAS03wAhcmTGjDatmA94S26Tip2xBRyU9tLi++VwPQB/S1ffBfcRQRmUAuBk10muBPbV0R0DHqONDQAR/gvhi4NsErdBTZtUxFMUq7yLs9AHF3s50j13b/ZYMHShzeMWM6I5rZ/alHJEI743sRzcGiz8cMWwmVvWgGX2/TQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ZGV/BIAZBYW0PEQHjfi+Qn8Cg7+cYmHyRX8wGmoL+a8=;
- b=Cyj5aWgFwvTXzV6zx+TNiyECbqtS9iTb7+PZeebUz+YmICbdpH6r5CTRhsgmicClfk4hMqx/73SEllz2wzkkW7Fbl8IAIuojE0zVpuAkVlntlc45Jgc/WnLII5Bbw1C2zVgh+Km4zH7Qt+wzUiAm5x2eefB0l6VdZZzsDlwpoNd/QZOYw+6OasksNq3Dzg3HwAml0lWaeVNpvONR5iv2dSJbwGC0jJqwQu7Rk6GV2Yw78UfxK9r3NXFsYiWP1iC8+CWhOSHcyMgX8V5Rddff5FCQ1jMD4Tzx72kiJfCb763w1ICAj/L+NSvZckP81tkebJz789BAfOKjF7gV/z1xMA==
+ bh=gV/bqKepYPSaj8zjGVSnd2KAEWeVeLNx+OJ8i1YmAHw=;
+ b=JxqAqrY05o/B/GHP3hjJWAnRvlmjZ1QCRd8x2OWrkiaEeNB1sR0HgVgIn8+EI3qYsZEFhJchofBkarHwEMN8EVPfOEvNxUW8I/MIeO+bWazgLsEl0fOe3Uc6ywddkQ7F8pRYFxSXho8pOgHtPm+LqT8gJV6hT9hgCJganuAGm3HbUZ/iMIknJm6PMXOynmHAkn6a7q6AbMDvClCSeFptSwXhvB/5xhIXiLv3nz/tuqdbyK8SgDarIPYC4S8azwrZxRNNGRap3OpxK70C3c5p7+FNPVmBoTsXhgMOBcc0jkqo42R6w4wP2yArS+ZY3YqLvDBqMI/Wpdw/VRWUadSLbw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by DM4PR11MB7326.namprd11.prod.outlook.com (2603:10b6:8:106::14) with
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com (2603:10b6:5:394::7) by
+ SJ1PR11MB6298.namprd11.prod.outlook.com (2603:10b6:a03:457::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.27; Wed, 29 Nov
- 2023 01:07:43 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7025.022; Wed, 29 Nov 2023
- 01:07:43 +0000
-Date: Tue, 28 Nov 2023 19:07:39 -0600
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: Matthew Brost <matthew.brost@intel.com>
-Message-ID: <rmydfe5prhckhm7lnsyyv25v6j53dw4kqjjos4eiilscgcpgpw@odhrkdpytyjy>
-References: <20231121112555.3734840-1-tejas.upadhyay@intel.com>
- <ykymzzr23ixp3owtn6tdeieb6eyxpnzeypvwajx66mqkkxobzx@eu26ntxgx6fr>
- <ZWWpP99Wzh5U0qwB@DUT025-TGLU.fm.intel.com>
- <mcx6k5c6cx3okqszgpw45ew7yqwty7tprojkjnwv56yj3ulpqz@h5fehhchgjbk>
- <ZWXxXAQLjYdfOEwP@DUT025-TGLU.fm.intel.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <ZWXxXAQLjYdfOEwP@DUT025-TGLU.fm.intel.com>
-X-ClientProxiedBy: SJ0PR13CA0190.namprd13.prod.outlook.com
- (2603:10b6:a03:2c3::15) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+ 2023 01:16:37 +0000
+Received: from DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::f105:47dd:6794:6821]) by DM4PR11MB5373.namprd11.prod.outlook.com
+ ([fe80::f105:47dd:6794:6821%4]) with mapi id 15.20.7046.015; Wed, 29 Nov 2023
+ 01:16:37 +0000
+From: =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
+To: <intel-xe@lists.freedesktop.org>
+Date: Wed, 29 Nov 2023 02:16:03 +0100
+Message-ID: <20231129011624.836843-2-michal.winiarski@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20231129011624.836843-1-michal.winiarski@intel.com>
+References: <20231129011624.836843-1-michal.winiarski@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0219.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:ac::12) To DM4PR11MB5373.namprd11.prod.outlook.com
+ (2603:10b6:5:394::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|DM4PR11MB7326:EE_
-X-MS-Office365-Filtering-Correlation-Id: 43abaf7c-e308-4950-e00c-08dbf0779702
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5373:EE_|SJ1PR11MB6298:EE_
+X-MS-Office365-Filtering-Correlation-Id: ca81db58-9981-469a-81f5-08dbf078d590
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hV3iPEZ3Z69/wkzdW+m0Wd9wBugjW7V1j1mFyUrKgfAfQwWtSmwqWcf+LRSipV26h36SZ5bEIO/tOUIkddezDKtcrDbWMr2RqpCZry6+DyHs4XWKRF/tEqo+A9gF+LxGIL+vJh2QsHeFqRs0lrwNI46yHgcZHvulbYV8QxsvxDrbcsOAncd23z84+U4s6oRo0WFbPjYZmstoMh7cThaK+NeuNZy0mbirmQZFnOsSD99Yc1u/6HdgKai2hE+gpsOHN9QpacL6gqM9/Dfj5lyUAoL03bGytavD65HlmH/FrKvjYeOACamCfSmMXa6836cDEsL3uVn3I5ctcXOmmx8Cra8c9ZjzOvVgxYJFnx7E2mxW6atZ8vV3z4o7MK7E0vnSfEIDS674/TpOoWpgxDNI3ARQnR1O5CGcNJ9AB3ayaNi04uxlEwQGzCtYqCeOBZ9FL75Qc/IsvXL5Jtn5sytYItgoIhbnes2FtUXFDRupd36/9LRon8Hl1kD4x1mDLgKYnXiW9e/pvq6iCtcttltCGNry1PvTrzoj+Nttdu20NTAwumNVJ3ufpY+rsk3wpKZI69gcBT+JyS4RT5ByiHh4Bw7TG9HzO01ov1AJr0kVa1CYV67D+IaloZoj3SnGxSvHXTqVvfSzcxIAVRuPcVtnzg==
+X-Microsoft-Antispam-Message-Info: NiJh0wgzX6wpQ64+sJFCU0tB92M2WX2dTkGwrUwtikzXeUx9/IiNkRKekXub5HPYUt86WUs9/ie3dhBTENVRjW/TEU+ruY/KtqyXjs7/g2VRtarlh6SKi0NyVhkHoMY1TPOYNWD+G/3GdXAHYxh7WmYePNAbA4p/UT7fsvItJU+JLEvVcdzK/Y1QmUsV0tQuQvFQ6zfgMhHtK/uFk2yc9C9TWaL2mtbPc3n+HWcpUhT4CAgdYIDPdQC+u8RlfUslLq7VdjMwizMTqrqHok4PEzjRbgQfmdOG6f+Nfm9qD5oaQmcCopeKCDuXQCgs1elY5sE0L4izYscDnju9ZEbQHxZ5WoNP3mVVEdXOZFt1KdQ0itH5lZMeYQnOsgDCohSrueGVejh1U7vwRaBn40aqhlJhPNzj3VnpyIaHUEDaG+YlCN6dIU9lfs4rBCEGsVwuDLaXdE0Es6gaOAgurCVjS9UtPu3NhVVQ0G4yOmmhcSaRY1mgowuvkJJ1mB98V8q5Gbxh1HJhzWkzE18nkSTshbePG6vJxFJ3ayJ28J/QTWrryzPwgmeTn0I2OGBacVaq
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(39860400002)(366004)(396003)(376002)(346002)(136003)(230922051799003)(451199024)(64100799003)(186009)(1800799012)(6666004)(8936002)(4326008)(6862004)(8676002)(9686003)(6512007)(478600001)(6506007)(66476007)(66946007)(66556008)(316002)(6636002)(6486002)(33716001)(38100700002)(41300700001)(86362001)(26005)(2906002)(83380400001)(82960400001)(5660300002)(27256005)(21314003);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5373.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(346002)(136003)(366004)(376002)(39860400002)(396003)(230922051799003)(1800799012)(186009)(64100799003)(451199024)(38100700002)(41300700001)(36756003)(86362001)(1076003)(5660300002)(83380400001)(82960400001)(26005)(2616005)(2906002)(6512007)(6506007)(6666004)(8676002)(8936002)(4326008)(478600001)(6486002)(54906003)(316002)(66476007)(66556008)(66946007)(6916009);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?xnxwcMflyK8EYvKW+jEMx68VP/RPaVG6Pz3WYm+ST8f9VbdeTS7C5oyYVkVd?=
- =?us-ascii?Q?WtVLc943TszJQGr2bCPABFzDl4g28w0zLEOfwW7Bh4BW8Gp05ZQKOAIgidac?=
- =?us-ascii?Q?1za7TURf0JBrpsO8VdShabZ63aqyrbE4jLrCVvynSKKlu84dXcZplxPvqyJ0?=
- =?us-ascii?Q?hARpkLg3LK9k/ti06BJPYE2Y0YB4kGtcznDH+S6jXh8IIkVnObDWWk9+Lj69?=
- =?us-ascii?Q?fRPNVG1CL8pwdr9LRNgguu0NYO4FQA7xzux6G+pV46yPe8U+vW/tjqEiJlIs?=
- =?us-ascii?Q?wRfqp3WO1wYcKDSfBqEu3UHu9Ol0SXadjKA2k6xVQ/wJ0zwF/JCW/hkyIsh6?=
- =?us-ascii?Q?xikTDR0ZMsOcund4tHQFPLk5UaI+QgcYd9CkJ2QoL857CW4avheaghfENaDR?=
- =?us-ascii?Q?ipi5EwYjprJwpSZkh5Rrr00CTfnzCjLs2Esd++bBproLxPhzFV70WgW65XQd?=
- =?us-ascii?Q?LXknGWmqcUazezvbq+egE8JEWSrNbQTSUjHdPIJHwHQhGOtw9AtDhnA4dixU?=
- =?us-ascii?Q?oWQpfFE0ENq/4mVgb+rzpRU0yUtHg+fN+FghwtVoJz1X46ujEZRyQxCAZ52x?=
- =?us-ascii?Q?xgNCbyAc4YvHwZazekuEOCooqygnEBQSVTfsKafU9S8KxJ5M3HC/iEcMBQ4m?=
- =?us-ascii?Q?n+SgrwbFaQ7UU3yX0GDSn5abB5VHpCbmI69eQPVuSjxWi7EhmAS7ZZe53Coy?=
- =?us-ascii?Q?/tkAUNbdgNwIbSjMaAmmaYIbI9BJ6vhRXtSFlYgHM7+H2Hv1Dw/p1DRIJwxy?=
- =?us-ascii?Q?GcHi6kA8oIFapvrgsu70AXK+hjcE9yS8pHWJ0s8qPuHo4C7CFEDHupCjlMTg?=
- =?us-ascii?Q?kuYjxr8MkLi4ckNlanjj9dXYMf+q2YnoLHYfxjrctG3JkJ7b73l0z4BgMb8y?=
- =?us-ascii?Q?YD7mH+iQu/Y79/qvUlacsVcWclTqF+iaSGNc+RxZM8TyLp7w+QfeUNh+69NM?=
- =?us-ascii?Q?WYusEIZNtdVxMy8lDYVtQxY5BacfWfe7rMtMyh3ufrEFQj2ZJLAnucjtQW3r?=
- =?us-ascii?Q?Bq1iQ0tVJ0N5//oB+VmLGxlP9dnxnJuqF+DJAgWZWawNUzwdZdjrziLvVYoh?=
- =?us-ascii?Q?lViGR3eXkBf6/9+0inkG4iiXfsRHc9wlWDliRT5kqR+tvZnunpCKG3dNO4Ht?=
- =?us-ascii?Q?VrJM9w/o2kFPC1Zh5dRQyDJF5tIVBHubq14akr0bocpJ9mnsPg+ZcU7/P+pE?=
- =?us-ascii?Q?vWWJc4rhHk+eDsKFe5QwgxYcOuZ6gL88GW13oU8ASrt5mm1EjDYyzYR8YxgR?=
- =?us-ascii?Q?jUgI/+L2ZenJmMabSEYzAjgRgH/3Beo80/Rfo5nTb752iPILmJKLNDWK7eF0?=
- =?us-ascii?Q?aXTNWzRwL+o8s75BIRm8nFKwp08k0MNV8BR62IJg7vNywZFhvTdT7rzwKevP?=
- =?us-ascii?Q?4qe/6fs4TIP9RW+qxXKyKSNsVJQai32CfEDeMKeijHGLDpcw0rf3Y/QHUavv?=
- =?us-ascii?Q?98ybo4YAOBCmGwX4wcK8RsuYW32+mZPx/egQ+adnWc6Vo0BpTWkp7lU6rfQq?=
- =?us-ascii?Q?RLyXOyDoF7XOkY53jWS7zqbVzIhUv1ri8K6MfY0tOy8Lj4HlFGeP9PUL4CTG?=
- =?us-ascii?Q?o+ld0fOrwZc+12BV+3sb0vMPxNj3ZfkocGt1vdVqFeEgv2wGX0KaFBis092U?=
- =?us-ascii?Q?uA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 43abaf7c-e308-4950-e00c-08dbf0779702
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UkhRaDM0cVRTTk5pZ3ZqWDFYY0hlYUJ5dnB0a3drZ2FqMmp6KzlzcVhWOW5Z?=
+ =?utf-8?B?NzBzV2NxVGFJTHd4cTl2aUd5T0YybGV4NmpNNXI3bW1SSUxWeWFETzUrTVZ5?=
+ =?utf-8?B?Szh6NHpOQURMRG5DWU5nTjJvMzlqNFZmeCtnY2JuVGlCTCsrZlpaSGJEc3lP?=
+ =?utf-8?B?dlVzWkhES2ZCbUVmYzlBZkt5anNLZmUzY2Z4T1pFMVVqN0lYdmV6MU9MelBJ?=
+ =?utf-8?B?ZzBTelA2ZUtReUZ6UWZ0MCt2eEdKdmhrcTFXZGNGVlJCODhHN05KWHpMYll1?=
+ =?utf-8?B?NFFJT2ZpSDNpdFo1Znd3dUpDNUJXQXNQVmQ4R2pIZGJ0SDRwQ2d4dkgrdE9u?=
+ =?utf-8?B?YzVxRVd4bTloK1IxMHkxVXpEem9UdHpBNmJMNStqdUNlUFFxeVliMFE5b3hO?=
+ =?utf-8?B?UDMzNEJTMDFJdUJLTnBSeE84eXVaWjV3bHBiV2J5YzlVbjMxSmluZENFd253?=
+ =?utf-8?B?bGhMWjhpdi9kNE4wY3lEQmNNU216cmFWaVlmYlplY1gwSWxHU2U1M0lpQktJ?=
+ =?utf-8?B?cUg3VmJTM1RWelFTRGxiMituL05Wc2kzc1VrWDdwV29zMzIyVlROQlBJTjg3?=
+ =?utf-8?B?NW11aUFEM2IvdXdPenZzRmVFaWI2S3hqR0xDNzVjbktqMGZiYlplZnM5QndN?=
+ =?utf-8?B?dGl2U3padmI0OUlUTzhIMU4rUGl5NzIvSElOSmlvN0w4OFlWbjdISkM4ajVD?=
+ =?utf-8?B?M0o2ZFRIUGR0S29tdWdOL3dpYmJqaWlyekFqbFdCNjJqaXo5ZmFQaDhnMW1C?=
+ =?utf-8?B?d0hoemFIU3Y3bE9lcW9ZMWZqTWNlRDRzZEx6UUtlS2oxbWJTVk1vY2ZTaXNK?=
+ =?utf-8?B?SVRWWmo4QlRTZXlLSEZaQ0ZONXV4VndGUCs2dmNtSXpLVDh3NFVmeWNlR3JP?=
+ =?utf-8?B?N1VHTnkxRVVKOXR4aFVZQ1FwT0o4S2pIVmhCUElPbE1zUkZoUnVxQzNiSDh5?=
+ =?utf-8?B?eVFGak52eklEUFo5MVZnYjRVREc5NnRMZGU5M2h3c05hWHFvbVBJN2ZHelRO?=
+ =?utf-8?B?UjU5MjJlRS9Sd2xGd1lCSHgvS21Oa2VVOXZsazdSQnBiTFhSZTZiOHRjK0lu?=
+ =?utf-8?B?SkVxY081S3BlL2NtKzRLUGdCcmZ2UHM5NUtlKzRRWXA2eDQySnpjZDh3Yksv?=
+ =?utf-8?B?ZUZuQ1BWOWZKRUM0eWpwakpOM013dE5OaE8vdzFoY3cxY29CanduWEVRVGEx?=
+ =?utf-8?B?TW9SSmlqZUF6L0ZtWnRaV3BWejEwWkZZVGU4bWtjWnJIQmt3RDMrNXRtQkpT?=
+ =?utf-8?B?SUxVVGE1NUp1bDNQRTNJWnJJUk1kTS9QWjlrZEkvbVVvcFZCZ2N6SFQwcUxn?=
+ =?utf-8?B?SmpUYnlEckU1NWF6cmIyMkV3RkpPYy9yNnBNRUExdllGeFhJbWZnemdueTlS?=
+ =?utf-8?B?cDdjQXAva21LVE1RM0ZEYXVhNXpWY1JkYjBZVFFvcWRyN1lMSGhXYXVZMXdG?=
+ =?utf-8?B?dG8wcmpnNXBSL3pqWnNRWWFKNUo3T2xOd0FmSnV1MGErZDljTWJNL1ozUzZM?=
+ =?utf-8?B?alJJNm1YNjg2TkRvaERNS0JXQ0NiQTNBVkdrejBaV2tIQjFMallYY2FLeHlh?=
+ =?utf-8?B?WTZHNm5lNTBmRG5IdC84cEg3L1crN2NLdFNCdlV2M3ljUW5lYjVxekRsWEpK?=
+ =?utf-8?B?M3dORlJtbkt5TVRQU1NFZHdDUnd2RUd5RWt4Y3pZbDV1ZHlmNzB6V3huUFhL?=
+ =?utf-8?B?MmRMRENFRU9pb1daeDNRRmhWL3dubjlpVlQ1SFU4THNOVkFOK1gvWS84OGpR?=
+ =?utf-8?B?elBSV0RCQnNaYllBeWdTRFgwMTlsVGFkS2FqS3djaVJpN1EvZ2VlQVNBSVdB?=
+ =?utf-8?B?NmNpOEw2R05qV1B0MmlVTWJSMG5lb2JNZ1kyMHg5cUVlR2N1Vloray9XQnFZ?=
+ =?utf-8?B?eTJwUkU2cmJadUlaMXVvNmY3RGRrU1ladTlDWk9sSDA2MXFIMkx4cE1sc1RS?=
+ =?utf-8?B?Q0l6QWkxTFd6dUVUL29nY0lWNFQwRzQyY2pRQ25qY2RuT2l4SXlPMVZLOWpB?=
+ =?utf-8?B?bnE2Wi9tNFI0S3BZSkUydityYmlzNFN1MDE4WVZRbHdoVlQ2UGtzaXFuSGxE?=
+ =?utf-8?B?NEphM3ZYYkhKVVcyY0djeE9jU2UvaFhNMnNVY0dpYVhTRWtuNFdvZXRnSnpT?=
+ =?utf-8?B?K0hqR3dkVGtZK0lmV0JwRnRSeFlHMDEzekpzZSt2U29NMHdFcjJlb0lPczRY?=
+ =?utf-8?B?THc9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: ca81db58-9981-469a-81f5-08dbf078d590
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5373.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 01:07:43.0253 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 01:16:37.4297 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: iy+BiYKrc5jo+9YPcB4g38qecXAOuVdnp2w1d+Pggw8Hvs0dSArroEO7jF18A9crKWC/Qu8BDh8hCzmOdIQ4wuDGdY7BNp7o/J9y8ijd7Ao=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB7326
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5IPEYSqlLOJD9b+WCh8mImQsSm+a7EjBGNQtpUisDfEfn+nThWeBm2psdO+xKWHHPTcNgbSfv4kD8EOFu0BNF2ILqycJL1NH8np+X9WPx+k=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR11MB6298
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Move wa processing to gt_init
+Subject: [Intel-xe] [PATCH v4 01/22] drm/xe: Skip calling drm_dev_put on
+ probe error
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -146,214 +157,85 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org
+Cc: Matt Roper <matthew.d.roper@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Nov 28, 2023 at 01:55:40PM +0000, Matthew Brost wrote:
->On Tue, Nov 28, 2023 at 11:45:36AM -0600, Lucas De Marchi wrote:
->> On Tue, Nov 28, 2023 at 08:47:59AM +0000, Matthew Brost wrote:
->> > On Tue, Nov 21, 2023 at 08:48:47AM -0600, Lucas De Marchi wrote:
->> > > On Tue, Nov 21, 2023 at 04:55:55PM +0530, Tejas Upadhyay wrote:
->> > > > Currently WA processing for gt is happening in early init API.
->> > > > It also includes processing of WAs which needs filter based on
->> > > > hardware engine by looping over number of hardware engines in gt.
->> > > >
->> > > > However at early init stage hardware engines are not associated
->> > > > with gt in software which skips processing such WAs.
->> > > >
->> > > > Example WAs which will be fixed to apply after this change,
->> > > > "14011060649",
->> > > > "16010515920",
->> > > > "16021867713"
->> > > >
->> > > > Fixes: 811a9b3d262d8 ("drm/xe: Introduce a new DRM driver for Intel GPUs")
->> > > > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
->> > > > ---
->> > > > drivers/gpu/drm/xe/xe_gt.c | 2 +-
->> > > > 1 file changed, 1 insertion(+), 1 deletion(-)
->> > > >
->> > > > diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
->> > > > index 0dddb751c6a4..3d0f7b6f952c 100644
->> > > > --- a/drivers/gpu/drm/xe/xe_gt.c
->> > > > +++ b/drivers/gpu/drm/xe/xe_gt.c
->> > > > @@ -311,7 +311,6 @@ int xe_gt_init_early(struct xe_gt *gt)
->> > > > 	if (err)
->> > > > 		return err;
->> > > >
->> > > > -	xe_wa_process_gt(gt);
->> > > > 	xe_wa_process_oob(gt);
->> > > > 	xe_tuning_process_gt(gt);
->> > > >
->> > > > @@ -495,6 +494,7 @@ int xe_gt_init(struct xe_gt *gt)
->> > > > 	if (err)
->> > > > 		return err;
->> > > >
->> > > > +	xe_wa_process_gt(gt);
->> > >
->> > > the problem with that is that if we need to touch any register already
->> > > touched until this point, the workarounds would not had been applied.
->> > > Digging the git history, I had added this commit exactly to be able to
->> > > initialize the gt workarounds as soon as possible:
->> > >
->> > > 	4eb2e8d25ab4 ("drm/xe: Add xe_hw_engines_init_early()")
->> > >
->> > > And then
->> > >
->> > > 	816d37907ac6 ("drm/xe: Plug gt WAs to gt init/reset")
->> > >
->> > > Note that these commits are in the xe branch, not drm-xe-next.
->> > > So, it was:
->> > >
->> > > 	xe_hw_engines_init_early(gt);
->> >
->> > xe_hw_engines_init_early has be called after xe_uc_init_hwconfig after
->>
->> did you mean "has to be" or "has been"?
->>
->
->Sorry, "has to be".
->
->> > the idea is gt->info.engine_mask would be set by reading the hwconfig
->> > table from the GuC rather than from a hardcoded table in the driver.
->>
->> like I said, the problem with postponing that is we could have hard to
->> debug issues because we will think we have all the workarounds coded,
->> not realizing it isn't applied to the early stages of hw initialization.
->>
->> I think we should go back push back on the idea of initializing the hw
->> engines array after loading guc... it doesn't make much sense from the
->> engine initialization pov and we are *not* doing that.
->>
->> static int gt_fw_domain_init(struct xe_gt *gt)
->> {
->> 	...
->> 	err = xe_uc_init_hwconfig(&gt->uc);                                   	if
->> (err)                                                              		goto
->> err_force_wake;
->>
->> 	xe_gt_idle_sysfs_init(&gt->gtidle);
->>
->> 	/* XXX: Fake that we pull the engine mask from hwconfig blob */
->> 	gt->info.engine_mask = gt->info.__engine_mask;
->
->Right, we don't currently parse the hwconfig to get the engine_mask but
->eventually they should be.
->
->>
->> 	...
->> }
->>
->> The engines available are not hardcoded in the driver. We read the fuses
->
->The initial value of info.engine_mask is hardcoded in the driver, the
->fuses adjust this. Eventual I think we want to get rid of all platform
+DRM device used by Xe is managed, which means that final ref will be
+dropped on driver detach.
 
-but it doesn't matter much. Even if we were to read from the hwconfig,
-we would still have gt->info.engine_mask with the upper limit and then
-use the hwconfig to trim it down. How different is it from doing the
-same thing, but with the fuses? We don't do that today and keep a trim
-down engine list, but equally we don't use the hwconfig on
-this part of the initialization. The hwconfig could be useful for
-something else, but I don't see how it helps here.
+Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_device.c | 12 +++++-------
+ drivers/gpu/drm/xe/xe_pci.c    |  5 +----
+ 2 files changed, 6 insertions(+), 11 deletions(-)
 
->information hardcoded in the driver and dervive info.engine_mask from
->the hwconfig. At least that is the goal from my understanding.
->
->> to know the avilable ones. That is sufficient already to loop through all
->> of them. Note that since it's *engine* WAs, we need to pass those to GuC
->> via the ads since it's GuC itself that does the save and restore.
->>
->
->Yes, but not for hwconfig load. We can load the GuC to read hwconfig and
->then properly populate engine WAs list when the GuC is loaded for
->submission.
->
->> > Likewise for_each_hw_engine should only be called after
->> > xe_hw_engines_init_early is called. With that, I think this patch is
->> > correct. Does that make sense?
->>
->> as per above, no. I think we are overcomplicating it for no real
->> benefit.
->>
->
->I agree this is complicated but I thought this ordering / reading the
->platform information from hwconfig was requirement. Maybe we should
->follow up to check if this is indeed a requirement.
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 54202623e2553..296260f142dcb 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -215,11 +215,11 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 			      xe->drm.anon_inode->i_mapping,
+ 			      xe->drm.vma_offset_manager, false, false);
+ 	if (WARN_ON(err))
+-		goto err_put;
++		goto err;
+ 
+ 	err = drmm_add_action_or_reset(&xe->drm, xe_device_destroy, NULL);
+ 	if (err)
+-		goto err_put;
++		goto err;
+ 
+ 	xe->info.devid = pdev->device;
+ 	xe->info.revid = pdev->revision;
+@@ -258,18 +258,16 @@ struct xe_device *xe_device_create(struct pci_dev *pdev,
+ 	if (!xe->ordered_wq || !xe->unordered_wq) {
+ 		drm_err(&xe->drm, "Failed to allocate xe workqueues\n");
+ 		err = -ENOMEM;
+-		goto err_put;
++		goto err;
+ 	}
+ 
+ 	err = xe_display_create(xe);
+ 	if (WARN_ON(err))
+-		goto err_put;
++		goto err;
+ 
+ 	return xe;
+ 
+-err_put:
+-	drm_dev_put(&xe->drm);
+-
++err:
+ 	return ERR_PTR(err);
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 994679a4eb897..db2a58747e25e 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -703,7 +703,7 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 	pci_set_drvdata(pdev, xe);
+ 	err = pci_enable_device(pdev);
+ 	if (err)
+-		goto err_drm_put;
++		return err;
+ 
+ 	pci_set_master(pdev);
+ 
+@@ -751,9 +751,6 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ err_pci_disable:
+ 	pci_disable_device(pdev);
+ 
+-err_drm_put:
+-	drm_dev_put(&xe->drm);
+-
+ 	return err;
+ }
+ 
+-- 
+2.43.0
 
-What happens when we need a gt workaround to be applied even before the
-first GuC load? This patch moves all the GT workarounds to happen after
-the first load so it potentially creates issues if any of the current WAs
-in gt_was[] are needed before that point.
-
-The alternative, adding yet another WA type for when we need to decide
-on the WA by looking at the engines it has, doesn't look pretty and also
-complicates the decision on where to add new workarounds. When Tejas
-asked about the possible solutions and I mentioned making the early
-stuff happen early, I was not thinking about moving the WA processing
-after the hwconfig, I was thinking about initializing the hw engines
-array earlier like it was before.
-
-I think the possible things to do are:
-
-1) move the engine mask to be initialized earlier like it was and stop
-pretending we are getting it from hwconfig
-
-2) what this patch does, moving the gt WAs processing after the first
-guc load
-
-3) split the gt_was[] - all the WAs that need to check the engine in the
-GT would need to be applied later
-
-4) ... something else?
-
-I'd say my preference is (1), (3), (2).
-
->
->> >
->> > I suggested to Tejas that we add an assert to for_each_hw_engine to
->> > enforce this is called after xe_hw_engines_init_early to catch issues
->> > like this too.
->>
->> I think that is already clear. Not sure it deserves an assert. The
->> assert would for instance trigger right now in calculate_regset_size(),
->> but that is harmless. Also we'd have it spread through the driver.
->>
->
->Well an assert like this would caught this bug quite a bit early.
-
-ok, fair enough on this one.... as long as it's behind the debug
-kconfig, it should be fine.
-
->
->Matt
->
->> Lucas De Marchi
->>
->> >
->> > > 	...
->> > > 	xe_wa_process_gt();
->> > >
->> > > That gt_fw_domain_init() seems a very poor place to initialize these
->> > > things now. It started with commit b892e30c6cd7 ("drm/xe: Move load of
->> > > minimal GuC and hwconfig read much earlier") and then people end up
->> > > adding random stuff in that function :(
->> > >
->> > > So I think we need to get back to the original idea of _early()
->> > > initializing what's needed. Then we'd probably need a few cleanups in
->> > > the initialization sequence so the function names at least partially
->> > > matches what's being initialized.
->> > >
->> >
->> > I agree on that the naming of all of this could be better...
->> >
->> > Matt
->> >
->> > > Lucas De Marchi
->> > >
->> > > > 	xe_force_wake_init_engines(gt, gt_to_fw(gt));
->> > > >
->> > > > 	err = all_fw_domain_init(gt);
->> > > > --
->> > > > 2.25.1
->> > > >
