@@ -4,136 +4,141 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2A215C07E98
-	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 20:34:52 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id CAA77C07CB1
+	for <intel-xe@archiver.kernel.org>; Wed, 29 Nov 2023 20:41:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D0DB110E679;
-	Wed, 29 Nov 2023 20:34:51 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7918A10E678;
- Wed, 29 Nov 2023 20:34:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 92AA510E678;
+	Wed, 29 Nov 2023 20:41:42 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55C0E10E678
+ for <intel-xe@lists.freedesktop.org>; Wed, 29 Nov 2023 20:41:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701290089; x=1732826089;
+ t=1701290500; x=1732826500;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=Bv8c26mbsBVYtpnluuL8MqBJ92RccwtX8YVjgjf2weI=;
- b=l5CKt5HtZn/Nl6K3w1HtQEv5l6z15oSeHjkzQYyPmIg+emPkO82s7iHP
- zXpm4lb/8IBOq4RRYk8dcih1myB0r5OxAhMWgP0aqSwl3J8csRpfzl5t7
- WSpIKaZqfTm2KCS5JN97SnY85urFk/oo0GOofbDlDdsL+HRlXreYO6mng
- fclto9JpYYPkPWqJlg9nOudT6dfAkmqHoaxrFXvu86EOcwAl9K833pN01
- R+0OFIw3zM+dnNEsFvtT1P7lJ06iQCu9hSLMi6Bc6t4HeZ8oH9+gXEfhB
- G2spQQXRzUttNmKe7bBtvRSA67QmFF549Cz4ApaQQrmOISBHcfFA1+3Mg Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="459716241"
-X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="459716241"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 12:34:49 -0800
+ bh=C6MzfV24OiFRp5KzoSkZ2ooRujHWK8nWtVBvwOu0h2s=;
+ b=Aubn2D9e9/rgl9UoEhEJLPpXUtkpwrioTe3NWzAh5aSY0klgCaaHtTPF
+ akpwmI3uCV9aoxrnGPZfYQPLIqCECNOf42ZzqdpWYAnPoKL11kPZEUBQ8
+ /mc7ruK3OZOalMqJLS1XH0qcjcDY2VmjVqA+8GJaa7DddQRQ39AjeVEsy
+ tkflggAl41GNRiiuWsKV+Xb7hQSrC56MTPsEJWVyUc8EHMKTq8uIaVeCx
+ SvF6XTPpdkFj7DmGQDnVhJXV9jt1iBx+GQbHzLkpWuBpzCVPyqw5+m3hO
+ TdY+z2Xnz/zCnxClaIEHGxHI9IrQEYXHYMdYynwOs+rNSZ6WAaN/ll3yC g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="6494684"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; 
+   d="scan'208";a="6494684"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Nov 2023 12:41:40 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="942453057"
-X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="942453057"
-Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
- by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 29 Nov 2023 12:34:49 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="886992542"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="886992542"
+Received: from orsmsx601.amr.corp.intel.com ([10.22.229.14])
+ by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 29 Nov 2023 12:41:39 -0800
+Received: from orsmsx611.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Wed, 29 Nov 2023 12:34:48 -0800
-Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ 15.1.2507.34; Wed, 29 Nov 2023 12:41:39 -0800
+Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX611.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Wed, 29 Nov 2023 12:34:48 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.101)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
+ 15.1.2507.34; Wed, 29 Nov 2023 12:41:38 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.34 via Frontend Transport; Wed, 29 Nov 2023 12:41:38 -0800
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.101)
+ by edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Wed, 29 Nov 2023 12:34:47 -0800
+ 15.1.2507.34; Wed, 29 Nov 2023 12:41:38 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Kz6si7SaRSWIsNYCzdWF2dz8f6YzMggjxiC9JrR4X2Uzo9zZgyO7VNYaCpQuGnvIReGlnfbqIRNr5BH0s4WJoT97QnQxncbms3UylRxpBgaHPL/TJwaaRw6rfXnn/BUj04vUioImtHGYFSjrEOfiAmU31kxb2xIqvzA3VBAYhLnSBSEZNPokE6/9OldT6D0jUmWOi348CjKJOx050EeVr8rWhvM1l0rMWvd++uhG9MgLINXeW8GjRCfSKuYyxO9lZEmV1v+J1fYUahgXM8F4FhxyMuAwLWgIoBTXwijl7qOVIuBa3cZ0Kokx8YO1FaFKzjTnBFekTZEfuDVwOlXImg==
+ b=FLALr1nKNJ0o4TSyN4c7iLFAgQd5cyaIytl9aE6UmzEr/nyBDJtWUdJy24jpQ6+aegjkw3NLkBl2JXH8x7eAUruYtglj5FcDYXOuGGGzi3af0VEtcQYW/PuNVINpRrRKHEraTLqzvBH43IjiGzao5t9somgVtRIcRqxArNmnHv7TI46LhlJ4ySvw7t/aLRTrkC2wnFJgLbTUmYzjsaqu10XY9t52hp3VyEXGtgx2qURmIn0nAluwZXmTIuR5PMg/AQuPwM/LUQCkYMT9tS9Xg+VSjWoTJvq94/KUGZs+jqPUgREnm7d0IAHXmaGj1NgtqYNHBqNRk0xB7HqHqYtZlg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zZ8HgdlMWx7l0vpHAYU5yhAzg6Ut1jdfu5rk7gY1OeU=;
- b=ed26Vxd2RFhXCfZL75qDeOBDR3oZHsxaAaxEupxuVBVhMIz/zhoKrAnvFj0nnxfGO53WkR3ASjpIyq9MHyEKaoc8xGf0luJQv31DTEB4QrDgXjOYn5xD7RGD2T79JULdzWAjZCcGRhcac16QW70WnKMK1B+bzNndkhPPqkIML8ZIETdB3psmat92hE3rv3nzHlDiCWKXdA9493rdGVCH4L5I0EkYO8VOdqkE/awNrr69SejRdeBEL5lI2p8pmia4k5jx3IU4pMntuFuvm3vZQCQQsRRoFkoW4zuOh09u0Q7378lrD5zkaOrnwBgo7rTvwO3y3CUqLzQ1bXsDZkaF5Q==
+ bh=cNH1vxsRFqMlaQyFgzBEAMLTRKF/ibpC9+qbAw3BPpw=;
+ b=Xsj47q/16+XtmLB+u5EQuHOJS2YRfy36aA+U1bTEjNRb/DdO1H0PU9HP5atY+sRF9m/9QUh8HtZKEw7QpC/c70epyypkBC2zJA2mYxuvHgdI73fpanpyjZtZPbO1IkBgdFV8CC2A4qMCubaPpf8mlpVJSZnG9Fh7YWfE90CK/JQA/j/1C6hcaDAOiGjoHu36yKAm0xnNCkPxliJ+jo+9hWFOz4u4VYYI/4QPyz5SIttqCDCii7bwOjD0ZXGNWgid7fkhXR4gGs62YP7w27MvD1D/38zy679w08A0I6CKMo36TKsNfLb/Wtbfl5+DqHnPxDPtViDJn63slgNA6H5ZQA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by BN9PR11MB5355.namprd11.prod.outlook.com (2603:10b6:408:11c::5)
+ by SJ2PR11MB8404.namprd11.prod.outlook.com (2603:10b6:a03:53f::6)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.23; Wed, 29 Nov
- 2023 20:34:45 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7025.27; Wed, 29 Nov
+ 2023 20:41:36 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::ada2:f954:a3a5:6179]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::ada2:f954:a3a5:6179%5]) with mapi id 15.20.7046.023; Wed, 29 Nov 2023
- 20:34:45 +0000
-Date: Wed, 29 Nov 2023 15:34:41 -0500
+ 20:41:36 +0000
+Date: Wed, 29 Nov 2023 15:41:32 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Coelho, Luciano" <luciano.coelho@intel.com>
-Message-ID: <ZWegYaFb1yKYqNoy@intel.com>
-References: <20231129091728.1272876-1-luciano.coelho@intel.com>
- <ZWd8aYses2mJmBqD@intel.com>
- <54d7d0a3c53c61191aa811784c9671688722aeba.camel@intel.com>
+To: "Welty, Brian" <brian.welty@intel.com>
+Message-ID: <ZWeh_OpTGsNaWRAu@intel.com>
+References: <20231122143833.7-1-francois.dugast@intel.com>
+ <20231122143833.7-3-francois.dugast@intel.com>
+ <f8d95d48-74f9-44f4-8eac-ff4d925f51fe@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <54d7d0a3c53c61191aa811784c9671688722aeba.camel@intel.com>
-X-ClientProxiedBy: BYAPR02CA0047.namprd02.prod.outlook.com
- (2603:10b6:a03:54::24) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <f8d95d48-74f9-44f4-8eac-ff4d925f51fe@intel.com>
+X-ClientProxiedBy: BYAPR11CA0046.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::23) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|BN9PR11MB5355:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9414d500-ad77-4d88-e236-08dbf11a9fd0
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SJ2PR11MB8404:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4e353a4c-e435-4d5c-ad10-08dbf11b9479
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7/tib727R5CbzmmL4jv4g76LMNJz/ReQHB1gl7/rtia+6+bHo6gZ1d+XH2zXliFx/IpTOSrQiTZOC76XUhDUWp6mChFRbAHeyRlAgsvNw2f0PXR64OZqk4fPhHtpbGCa7qdS1wsA4hvvnzXsCUt+aamt9SBtgEwijiXHrm5RE45Iu+Ov8Esr2pXnHjD7e9XWv1LQQihhP2eHi0josgg8GfDd60G8cbIkSUl5z4WTdF3y2UxzPTmlgFUjOclteyBsHSEyeTh5jxAb7Vlqh36TGDPuO29NmfOiQMNGUB2QimV1tTxfnWeaJAwmgiwmEGEx4pqpWNh5vkT5wv+HLytU1j2BpCDQmEvmmykY5//51hfNa3YtwAZbKbc15JFf8/hDZf5alaNP0JQjMV3Ti+5m4lhUye91dVYfUcB2iLfxa8Xd0mTSVrPE2J8ZI0o+Rd+BU9tZ+hi4ni8CyWWGir5fFWD/EvIE94N6ez/gUtjfse3a9+zv/J+ShvIF6XdNu2cEpPTZYrA7PpCqAxZuknSvADVmo8OahN8otbPtxEu6qwSNi9rbq4SzbMOqDMXzE83rnw8xCgjbG4P4nIAASbH18+ywb+zUdZlxiOqHtj/iLLZBU1Bq1ZpLBpqjnYFwSEga
+X-Microsoft-Antispam-Message-Info: 0a5ykv3NIqgCKwKhYhRkmIxuJ1/cPTt1WBMHtVsjRbEiysx5PHaYM/aGUuJnd8NwukIKajvq8dMj0It3+fgWPmsVhnk7TjGSzb8/Vny1s/EWk8lJ2ZtXVxlayQyWiNPW/StT1T2gghaLC2w/Iwhw6nYGFT3yacdhImlvDw9tMTMqAaRAZZAryFK9m80NOlQ/wzehpNeG72raZPv8Ykyou3PQ/7jch/8NRCT63wVdGqAteJSeP6vnjv5Z35YStUMJuo83csM6Os6aseRcb/tfbfGPcMHpbpXPvwqSj1IWG///3VluH3ba9OXBhPqysH6EbwOoFBVbt9mxO6VmqQt2plsW4RcRAIQtegTXQhJNJ/gMxXiMHfKw6pWhnzgFQn9236VvFpsOUisflbvj+RFkX5gfVp0R5Z8BdyZ2DAkSE3p4I3VUBTXGYgkxdiPGeh0jTT/dxEBX1feXVIXt/04JJYN3gcO4ZkQoVf65+7rvG2bFNv8nsoI0Bn8ZNwphiQuHfvlzAMC6Zppmj84MBZhqWn8b2ibH2rF+iEIfCd31XdQYohO7OChz/oLUPMgjY4ySzPhK8jkJ7AKMXzxay9loeuRt8h6p4+mHjE2IqoIjndrTx0dz3IMWIm1VBBO18I+7
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(366004)(396003)(136003)(346002)(39860400002)(376002)(230922051799003)(1800799012)(186009)(451199024)(64100799003)(202311291699003)(478600001)(2616005)(26005)(6486002)(6666004)(6506007)(6512007)(82960400001)(38100700002)(86362001)(36756003)(44832011)(5660300002)(41300700001)(54906003)(66946007)(66556008)(66476007)(6636002)(2906002)(4001150100001)(83380400001)(6862004)(8936002)(8676002)(4326008)(316002)(450100002)(37006003);
+ SFS:(13230031)(396003)(366004)(136003)(39860400002)(346002)(376002)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(6666004)(8936002)(6862004)(4326008)(8676002)(6512007)(53546011)(6506007)(316002)(66946007)(66556008)(66476007)(37006003)(6636002)(6486002)(478600001)(202311291699003)(26005)(86362001)(36756003)(41300700001)(38100700002)(44832011)(2616005)(2906002)(5660300002)(83380400001)(82960400001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?agk5d5HiQrp1qihQhNlJS8qtf8kuMX8JmhFGTiuc+seF37YTGQQkc9qtsEy9?=
- =?us-ascii?Q?cETyWSEG2Bgt3BX+1ezR21aQpAkhnWXll+WDLcnEbimeqUJLYUVxrOPX3JZL?=
- =?us-ascii?Q?C2Iqn+gtec73I29DQYBcyWvJ3U8fWqre4VsRCU2aHEEOcbHEVI4Ja/FgsEF5?=
- =?us-ascii?Q?Q2pXsIQsWB9itMXheRvzc2pWNig8vMPjKvvQ0trWEP2HWWe8roGagqTxwZ9c?=
- =?us-ascii?Q?0u48QZPB0oSMcwpx1r62HOT3kJWb7yoTDDw/wXfmI76jig7fpcprnRAdAKrP?=
- =?us-ascii?Q?NJnARpOqO9GZ024+d2E++rtAI026sAXW67JHJ6ZGt35Vghmq4Tm5b9PB7oXN?=
- =?us-ascii?Q?jixkDgFYApZ3ihD+GhWB2u9mvO6qioZI5legfWCojeeFBeaY0+GnAu1w6I/9?=
- =?us-ascii?Q?O0+LFPcX2oL1s7Frp+r3CiZ+be53Q1brKqCKhgKuIFL11H2TNZHsXGo+6jwv?=
- =?us-ascii?Q?1u2/6Ch1wAa/3h1tzOA7satBe55wfoiPqs5GC2OKwPuKf2IG39hmKQ1gyQNQ?=
- =?us-ascii?Q?bMdLlJci25zVDX5mG3Ygd6Jt1+8KWSs9DmqLj+b01bX67Y9hTzW2PgbyczIP?=
- =?us-ascii?Q?WOKOPd+EvFKqlhJmyMNhB9YcTtwz3F2JRF7IpzHgjXc/m00TeNsBbY40zoGQ?=
- =?us-ascii?Q?mKTzSeHCvtSiNx/c1UInAdI5f2vDSBFsmwrDqUJwoyddUJ06NCqOUpkletgL?=
- =?us-ascii?Q?beq+DCh4gjT8Yq5x8HfXdvslWO/KYLp7wcDcgkwoIuddWB2Zo+V5IblDnWE6?=
- =?us-ascii?Q?qW5gjG8QJtxAo8TnKDjy28Z5CBfuDrHNR0WJd8BDqujcnERZtZ4S/Eo9ibkE?=
- =?us-ascii?Q?0nUXHReTJ8gnckQ+bq4KpIZDP38caW0RS9HRCD7omaQjLICfJ230qJ6CwNJR?=
- =?us-ascii?Q?H5Nyy9ORVszfFlhRPLYMm3yS5gMsqLaW3koPMNYeGN7FEvbAKFyKRY/7RmY5?=
- =?us-ascii?Q?mCn2OfLvcpKrRcaYH/0Shizy6Mn76I63BZpeKiX8UCz96VjAdsKEKVFfTDFv?=
- =?us-ascii?Q?NgMgbzPzymDFEjFinnk/j/g/06b6p6q2PuA6jH28L5RMoMgraS8PRj6DxaC4?=
- =?us-ascii?Q?v+3R+OOfT1orTAsKOlQ+tQBR8hfHdL2LHP9ZiFDAyTJnvemVUBw2ztAyeezW?=
- =?us-ascii?Q?I+kzhnH/p7c1H8GaXmv+mcWCWajc9O8/rD9Ua0iek0hNAxlCYyRYaS2tLkmV?=
- =?us-ascii?Q?9JUur1PTiS610H8a4+IlAqxKCicYz6rvIh3dEnL+iLj8cIcLpT7TX4wJgAhx?=
- =?us-ascii?Q?uogbPssqWbTK/5L3Ca5OLO65l7etoQa/Rr7uT1jt/pvvhAuM10ZzB6bfjIW/?=
- =?us-ascii?Q?tyLefPajNzzHsiAm2gFpWsTTPRYHfknXsFbfBDg+8vR3KqS5W9IcBjax6kQd?=
- =?us-ascii?Q?57HPUgva1d3DYOwalS0qjVgc63DSEx07twRmj6cT20NOfE2tkR0aBp3NKuMJ?=
- =?us-ascii?Q?WJOCysWvdBQGmII2KhQyi6ElS67PrwWdXrwr+DsbGNcTcYi63pJPprsKFx/M?=
- =?us-ascii?Q?sRmo8qwAIf4orEcVJ+nCK7OkwzdWUsMECUy7jMw+VBIZ6Frj3vSI33LeU7y8?=
- =?us-ascii?Q?7Zvw13DsjJVZR5dPoo+BmFhEpQK2X094frFFTM+Wj41fN0Xh2+6gp/oxOVjQ?=
- =?us-ascii?Q?Aw=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9414d500-ad77-4d88-e236-08dbf11a9fd0
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wISMDJz2R5zh4aCNDM9/pgPdZ5BNxT5slq8ELskWLysq/4ODzpnGHJ2wynmt?=
+ =?us-ascii?Q?Dx1YaIu8GwH2avosjEXEDNqcBEdx+Sje9wYDLYH5QA0cCihJGJhlawK/w+Y9?=
+ =?us-ascii?Q?Vysar82akIFtxyuLLlztAZpAbNfnklw3qbsbrabb2UsmUKjRU0B/I5c7BHCQ?=
+ =?us-ascii?Q?4tTo7hR6ktH55EbU16G26IoVedX9x/dct6WoNHr5d1ThPJJ2CoR/dzTNvOTh?=
+ =?us-ascii?Q?kcqZUuBmViDEywT7dRgpmHt2L5+Zcgb9GKgJzv4xABAwNrHhIuzWPbZFFT2v?=
+ =?us-ascii?Q?CHLVXPJ6x0S3izhMyCzKnRMCS6ZVPuGVKsYSiBykscprY6esimUhEqiau5gI?=
+ =?us-ascii?Q?Rvf1OV1I0VbuxFndra7Gy3oZ4mFF804E3OcO68yT6UOffcAG4Qizfuf8/cl9?=
+ =?us-ascii?Q?xqdesm32i7kYNcClujDzeqLVfGGRnJKsPNaDkVk5kcmtrDCGQsh4vEt244dj?=
+ =?us-ascii?Q?QoJYX1iYlqO8/ZQ6Btj1Jm6cJ9h6ZbGhYUK/7h0iTCbnNg6Vj6FjCH2B8lI8?=
+ =?us-ascii?Q?+9NtoqF/s1zoQCjdVK/gnDDIktGZtx5Uq8y92uheLg9p4Gflcb6ISbVJ2NTy?=
+ =?us-ascii?Q?F/L+SC0ejIRWvSIu+V0Hx/wlR9+xvVvycgkbkuPCcgE5MH1MZnAsBTcBKwit?=
+ =?us-ascii?Q?SiodTYxCEmk7mzCHRYqLztLV1C1WaO5O+WCk705sq4F53hcleOX+QGUTJ4JO?=
+ =?us-ascii?Q?e8Sdat4w25SfulwUrZHBCOb17LR1qP1nbg/jq//xgPIaTUBmLFhsgj3sGCt3?=
+ =?us-ascii?Q?TEYU4ddd/hkVy2vdouqRwDT9KmWmyxAR5kIAUzwde0PAZEiTLUdTQr6br7D2?=
+ =?us-ascii?Q?NBIxAmGpzFIfzYDHUgDyAy5vN2Cl7vhknZAQmt1ufjVfCAIitVeglqJm2TH3?=
+ =?us-ascii?Q?v1/DlqS5EpofiigLCaRivaUzv9qk41A6zjX4S3Txz35b4En2LDPFuMuNq73n?=
+ =?us-ascii?Q?YPx8snAWlw/myRgKoU7mvEjjm9rFZfDAkF05AT5MZsKu8KO3fsGzn0sC6yyc?=
+ =?us-ascii?Q?VlV0LFAsGnrO1aJg7m7IFQpuk4fLpwyHtA/6HIyAfKwWpUTsGz9o3tP+8RrP?=
+ =?us-ascii?Q?jpjwPUDbCXim2eroVpAnDjRvcBmzr+fdWOAf42h+y34kX9AfyWPGfjYbhPog?=
+ =?us-ascii?Q?YtwESHHLZxtxppQzGmoMF6+ph+WrhJQfcHjKsS522ow0OVpZkl61DCrqS6Ss?=
+ =?us-ascii?Q?fxHvoSX9IKj8jG0eIcg39fw9i3ret0nyFJrs2UrIwOzpAXBtoJxaPyiQ4rbX?=
+ =?us-ascii?Q?YSBhWb2n5pDcbsciX2w7YqZUSQfLwXKDGBCpUtC0f2brZilUw6f6N90ZnEGW?=
+ =?us-ascii?Q?2yyB2PKlo1uaAlPchnH7aB1eioFcZR7z3DEVs+q4llEsbXTj4+c6D1+cMD58?=
+ =?us-ascii?Q?Gbz0S0hKjVnjwKDP8H3LVKXj4i6e8nSCwvWdJBF2koMevGicS10O59Hj+B/F?=
+ =?us-ascii?Q?HmGFuqqqFIxraQBzh+rl1cwyfFJUyxRos/erPZ1S5SLmyWpZF4pAoXfvgZjh?=
+ =?us-ascii?Q?eDz+lLinaKKYiYnYmlQi+vHMKoaCfpCrUNpEExrL8mpgKJCsCpXHGkoB9GM+?=
+ =?us-ascii?Q?nsqzLfX5Rn415j1rzb/MtpVx1dfCf4PJjS4plVDQ55r9Dow52P1Xg9Dzna0r?=
+ =?us-ascii?Q?yw=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4e353a4c-e435-4d5c-ad10-08dbf11b9479
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 20:34:45.7817 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Nov 2023 20:41:36.3580 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uS6fBzbDwtNYlv2x8v1UmwOsO2PqZ+IoY5qQr3oyHpPP329cz4c5RR31fV2v0zN9J/x1xZzisCaDTmg0Hemj0A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN9PR11MB5355
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4CoBbGcurIZNZtvWDizd7ThppGvFgwInnkfmq4oa9PytGRpY+ri293tqPuLLUd2FLxSZabz/lDnQx/xOvof3Ew==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB8404
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v4] drm/i915: handle uncore
- spinlock when not available
+Subject: Re: [Intel-xe] [PATCH v2 02/14] drm/xe/uapi: Separate bo_create
+ placement from flags
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,141 +150,120 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Francois Dugast <francois.dugast@intel.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Wed, Nov 29, 2023 at 03:24:33PM -0500, Coelho, Luciano wrote:
-> On Wed, 2023-11-29 at 13:01 -0500, Rodrigo Vivi wrote:
-> > On Wed, Nov 29, 2023 at 11:17:28AM +0200, Luca Coelho wrote:
-> > > The uncore code may not always be available (e.g. when we build the
-> > > display code with Xe), so we can't always rely on having the uncore's
-> > > spinlock.
-> > > 
-> > > To handle this, split the spin_lock/unlock_irqsave/restore() into
-> > > spin_lock/unlock() followed by a call to local_irq_save/restore() and
-> > > create wrapper functions for locking and unlocking the uncore's
-> > > spinlock.  In these functions, we have a condition check and only
-> > > actually try to lock/unlock the spinlock when I915 is defined, and
-> > > thus uncore is available.
-> > > 
-> > > This keeps the ifdefs contained in these new functions and all such
-> > > logic inside the display code.
-> > > 
-> > > Cc: Tvrtko Ursulin <tvrto.ursulin@intel.com>
-> > > Cc: Jani Nikula <jani.nikula@intel.com>
-> > > Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > Cc: Ville Syrj?l? <ville.syrjala@linux.intel.com>
-> > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > > ---
-> > > 
-> > > In v2:
-> > > 
-> > >    * Renamed uncore_spin_*() to intel_spin_*()
-> > >    * Corrected the order: save, lock, unlock, restore
-> > > 
-> > > In v3:
-> > > 
-> > >    * Undid the change to pass drm_i915_private instead of the lock
-> > >      itself, since we would have to include i915_drv.h and that pulls
-> > >      in a truckload of other includes.
-> > > 
-> > > In v4:
-> > > 
-> > >    * After a brief attempt to replace this with a different patch,
-> > >      we're back to this one;
-> > >    * Pass drm_i195_private again, and move the functions to
-> > >      intel_vblank.c, so we don't need to include i915_drv.h in a
-> > >      header file and it's already included in intel_vblank.c;
-> > > 
-> > >  drivers/gpu/drm/i915/display/intel_display.h |  1 +
-> > >  drivers/gpu/drm/i915/display/intel_vblank.c  | 45 +++++++++++++++-----
-> > >  2 files changed, 36 insertions(+), 10 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> > > index 8548f49e3972..5ff299bc4b87 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> > > @@ -29,6 +29,7 @@
-> > >  
-> > >  #include "i915_reg_defs.h"
-> > >  #include "intel_display_limits.h"
-> > > +#include "i915_drv.h"
+On Wed, Nov 29, 2023 at 11:36:03AM -0800, Welty, Brian wrote:
+> 
+> 
+> On 11/22/2023 6:38 AM, Francois Dugast wrote:
+> > From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 > > 
-> > please move this include to intel_vblank.c
+> > Although the flags are about the creation, the memory placement
+> > of the BO deserves a proper dedicated field in the uapi.
+> > 
+> > Besides getting more clear, it also allows to remove the
+> > 'magic' shifts from the flags that was a concern during the
+> > uapi reviews.
+> > 
+> > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> > Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+> > Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+> > ---
+> >   drivers/gpu/drm/xe/xe_bo.c | 15 +++++++--------
+> >   include/uapi/drm/xe_drm.h  | 12 ++++++------
+> >   2 files changed, 13 insertions(+), 14 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> > index 4305f5cbc2ab..bbce4cd80f7e 100644
+> > --- a/drivers/gpu/drm/xe/xe_bo.c
+> > +++ b/drivers/gpu/drm/xe/xe_bo.c
+> > @@ -1799,19 +1799,18 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+> >   	u32 handle;
+> >   	int err;
+> > -	if (XE_IOCTL_DBG(xe, args->extensions) || XE_IOCTL_DBG(xe, args->pad) ||
+> > +	if (XE_IOCTL_DBG(xe, args->extensions) ||
+> >   	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+> >   		return -EINVAL;
+> > +	/* at least one valid memory placement must be specified */
+> > +	if (XE_IOCTL_DBG(xe, !(args->placement & xe->info.mem_region_mask)))
+> > +		return -EINVAL;
 > 
-> Oops, this is a leftover of some tests I was making to see just how
-> much worse things would get by adding this here.
+> I think you are missing to test that args->placement is *only* a mask of
+> regions.   Looks like you allow other bits to be included and those will
+> get slammed into bo_flags below.
+
+now that they are split I don't believe that they would get slammed below,
+but anyway, good catch, you are absolutely right that we should check
+for the real valid bits in a better way, like the one you proposed below.
+
 > 
-> Actually, why don't we move the drm_i915_private structure (and maybe
-> others?) to a lighter header file than i915_drv.h? IMHO it's really
-> annoying to have the forward declarations for it in many places just
-> because we don't want to include the actual header.  When I want to
-> find its global definition, cscope always returns tens of results
-> because of the forward declarations... This is obviously orthogonal to
-> the current patch.
+> Probably:
+> 
+>   if (XE_IOCTL_DBG(xe, (args->placement & ~xe->info.mem_region_mask) ||
+> !args->placement))
+>      return -EINVAL;
 
-yeah, I know. It is really inconvenient sometimes. I got used to run
-cscope and then search for "struct something {" to find the right place.
-
-But this inconvenience is actually smaller when compared to the compilation
-time whenever a header gets modified and included by other headers. If I
-remember correctly Jani did the initial assessment of compilation times
-and started to move headers including out of other headers. He might
-have more details/data on his findings.
+Thank you!
 
 > 
 > 
-> > >  enum drm_scaling_filter;
-> > >  struct dpll;
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-> > > index 2cec2abf9746..d9625db82681 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_vblank.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-> > > @@ -265,6 +265,26 @@ int intel_crtc_scanline_to_hw(struct intel_crtc *crtc, int scanline)
-> > >  	return (scanline + vtotal - crtc->scanline_offset) % vtotal;
-> > >  }
-> > >  
-> > > +/*
-> > > + * The uncore version of the spin lock functions is used to decide
-> > > + * whether we need to lock the uncore lock or not.  This is only
-> > > + * needed in i915, not in Xe.  Keep the decision-making centralized
-> > > + * here.
-> > 
-> > maybe we could add brief mention that it is only needed because old hardware
-> > that is not supported by Xe.
-> 
-> Good idea, I'll add it.
-> 
-> > 
-> > > + */
-> > > +static inline void intel_vblank_section_enter(struct drm_i915_private *i915)
-> > 
-> > let's avoid inline here.
-> 
-> Okay, I'll remove it.
+> -Brian
 > 
 > 
-> > > +{
-> > > +#ifdef I915
-> > > +	spin_lock(&i915->uncore.lock);
-> > > +#endif
-> > > +}
-> > > +
-> > > +static inline void intel_vblank_section_exit(struct drm_i915_private *i915)
-> > 
-> > and here
-> 
-> Okay.
-> 
-> 
-> > With these changes:
-> > 
-> > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> 
-> Thanks for the review, Rodrigo!
-> 
-> --
-> Cheers,
-> Luca.
+> > +
+> >   	if (XE_IOCTL_DBG(xe, args->flags &
+> >   			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
+> >   			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
+> > -			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
+> > -			   xe->info.mem_region_mask)))
+> > -		return -EINVAL;
+> > -
+> > -	/* at least one memory type must be specified */
+> > -	if (XE_IOCTL_DBG(xe, !(args->flags & xe->info.mem_region_mask)))
+> > +			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
+> >   		return -EINVAL;
+> >   	if (XE_IOCTL_DBG(xe, args->handle))
+> > @@ -1832,7 +1831,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+> >   	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+> >   		bo_flags |= XE_BO_SCANOUT_BIT;
+> > -	bo_flags |= args->flags << (ffs(XE_BO_CREATE_SYSTEM_BIT) - 1);
+> > +	bo_flags |= args->placement << (ffs(XE_BO_CREATE_SYSTEM_BIT) - 1);
+> >   	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
+> >   		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_CREATE_VRAM_MASK)))
+> > diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+> > index b0d13bc6d9cf..1bdd20d3c4a8 100644
+> > --- a/include/uapi/drm/xe_drm.h
+> > +++ b/include/uapi/drm/xe_drm.h
+> > @@ -500,8 +500,11 @@ struct drm_xe_gem_create {
+> >   	 */
+> >   	__u64 size;
+> > -#define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(0x1 << 24)
+> > -#define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(0x1 << 25)
+> > +	/** @placement: A mask of memory instances of where BO can be placed. */
+> > +	__u32 placement;
+> > +
+> > +#define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
+> > +#define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
+> >   /*
+> >    * When using VRAM as a possible placement, ensure that the corresponding VRAM
+> >    * allocation will always use the CPU accessible part of VRAM. This is important
+> > @@ -517,7 +520,7 @@ struct drm_xe_gem_create {
+> >    * display surfaces, therefore the kernel requires setting this flag for such
+> >    * objects, otherwise an error is thrown on small-bar systems.
+> >    */
+> > -#define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(0x1 << 26)
+> > +#define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
+> >   	/**
+> >   	 * @flags: Flags, currently a mask of memory instances of where BO can
+> >   	 * be placed
+> > @@ -541,9 +544,6 @@ struct drm_xe_gem_create {
+> >   	 */
+> >   	__u32 handle;
+> > -	/** @pad: MBZ */
+> > -	__u32 pad;
+> > -
+> >   	/** @reserved: Reserved */
+> >   	__u64 reserved[2];
+> >   };
