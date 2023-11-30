@@ -4,138 +4,135 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 32964C10DAA
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 14:31:46 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2C46FC4167B
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 15:36:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3BE510E70E;
-	Thu, 30 Nov 2023 14:31:45 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D4F910E32F;
- Thu, 30 Nov 2023 14:31:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D02DF10E377;
+	Thu, 30 Nov 2023 15:36:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 638CD10E377
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Nov 2023 15:36:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701354702; x=1732890702;
+ t=1701358606; x=1732894606;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=LUSPwU10y0ebd47vCuwCt/E9DJKbNBAyzYIW3D2cKlY=;
- b=EOuQ3gbb3bRXqevGOxY2JiaaS9b+jV1cj6AM1SU8jeIkVWj21XbCJeNz
- e5PLT5VmpfksaTuJDt7jjszQIVOD4Du2mMu1CIpxda34jpGvwDPdztoD8
- VZOKP/Jc5A/HVYnA3RRDb2qkKi0v5EfeKX0/HG/PIqyIx0cZkZnRIevNz
- IHIEwmSDynpM7pAije0YJiPRZcGAwuwtJhpvqvPY3pLp1p+evHYdqR5WO
- v5On3kAyAdGZQkmYpu+WIugr3bS/vj6KaG9SaJuQi/QbjDEc77g/BJ0+2
- S4WEA8blgCPkRulJDJKUl4cT4SGzUOANc0UBhB/rzIcJplfP7z44BtS7y w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="6605952"
+ bh=lVhgsruK3SdoIOIu8ufPTpxj3/medT3aN1O2z/fjOEM=;
+ b=KDlk+c9KPplrGRaCTK7RcsdkF9jiFHS+LmySPWh7fMlWWG9f3cFLGXkg
+ /uMkk841HyV2yFVPbMsdeaZDTTowSxh/dUc1NnroPz1JF8AlQGb14Qy3A
+ TrmRNq0NKpKApQ+Z6IvvOy39eLVP2ct2aayGNMPR4rUOLEfI0ejlqm/b7
+ Wz1cKW4BZWeTN3KlmbFmmr5jbgbHxoeY4s5ZaBlTs6dAsFuCjUOEU5dTd
+ TT5UX1AkANvFPCRKiSpXWuxN2hiAr7mwuUc2A2rOClzrgMMGu54GtnaGI
+ EjqxgPvz81/gQOwUbsLAfiFwDJJuWN2BHijkZYynQ2Pf0pvjXnBfsDQXR Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="329391"
 X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; 
-   d="scan'208";a="6605952"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 06:31:41 -0800
+   d="scan'208";a="329391"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2023 07:36:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="1016647606"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="1016647606"
-Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
- by fmsmga006.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Nov 2023 06:31:42 -0800
-Received: from fmsmsx603.amr.corp.intel.com (10.18.126.83) by
- fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="803738644"
+X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="803738644"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by orsmga001.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Nov 2023 07:36:45 -0800
+Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Thu, 30 Nov 2023 06:31:42 -0800
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ 15.1.2507.34; Thu, 30 Nov 2023 07:36:45 -0800
+Received: from orsedg603.ED.cps.intel.com (10.7.248.4) by
+ orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Thu, 30 Nov 2023 06:31:42 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.169)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Thu, 30 Nov 2023 07:36:45 -0800
+Received: from NAM02-SN1-obe.outbound.protection.outlook.com (104.47.57.41) by
+ edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Thu, 30 Nov 2023 06:31:42 -0800
+ 15.1.2507.34; Thu, 30 Nov 2023 07:36:44 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=e7sL4SiRkO5Q08u8+IGcet7Vc4zTidK6CmS3byklzDBCeCPcncykTt0QFquCfTlW71+p7+x4ELcS4b8SR1oxL5U5xQ01WlaViP0zeD88qWbeIx7vOgvRLK1sEhwyGbPO6XAwBBvr82z0we8TSlu5+pjyKegSwmCYz8FmYtIEXxwOuTzjm3gWIOGn17VlfYjdtDcp+notAdLK1RUzQjFjXaSFMljevaw8CxiI2lVI8WSczQXEHlKOTvrIKf6zSphULnlKCuJp72zC3AV9+mWpZL+u5iDvR+lNkzpVMUPKtrISqL+5dLPBoVSQE7fqPB+sjV7YFcdKsDdzng67OcP65w==
+ b=WU9lXeQT/4KIIzLglGOtE/JJ9vsi+9BVeqm3+eUaHV6poAfNorrZosRI7OdmoUWanpHtUKTR8X+BpN1TBNJrB0W8dNVEVqIizNtPxBZlndnFMSfjBXsEuvHDjihGOrmd1CR8iMtvpkmpCvL/36wPRDu9BsZTduRjuUy+KXqBeG48/3gwGWhhbJEh3Cjf1fYNzG2vB1gHW/Je5ILG6jVz0q7tPLthbrA7yP236+dY1gGqyOt76CBhxZ2ztBe59t+zVjqioJtI1HLC7pLGPYVPP3f4W8Mbs0rk0Et9RCCVNXMeN824+Li4QN8Y18pWv/tS8giSYpg4922kaeiwYjnHtg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UVC9dD5s8LFFyUdBr+skOsPeXkcmeAzcNxGWtldcuwY=;
- b=LrzkbehQYR45ilYbVrzNtnr9jZZwVIEvmmc7tm6fwmntz9q4VF+E4Rt99ku0sXbdfO4wVPB7czW63u0LpxkZMiTlfERjcmqW2vUC0b3D3TnGWQl7uTGIKGjiRiuIEJJk8muAeJUrNczzTziWaKpKLs3zjupQpb5mbWw+JbHosDePdPKHucJ+zfzmRAhcb9n7qiKel0CgadRKHvTbiu7n8sgBpH5IYDYFRbe/DMJvzgKapCs7ltLDO+JJuiQ+4stSvUpAsyucE+ig7So0GBoka1hUdtpP/jGIGxzsmn8i0Y6QpLZTMhtOn20cHPhInOPdZJzSygNhhROs74NYKkXb3g==
+ bh=aKybCXtLUXP+H/6bJAJZ1gaQkPwQzdal362hUAAXAK0=;
+ b=d4GhirvHagVHLikNUoDXsmfid54gwfXg1pzV2R375UXeUgBDD2QhHxfUjlFDcR9uf1MR9WupE1HsnKQt1nas+NTNtCKEdlD/rWkIBjm7+DZKAIU4joyNB4agO4bUzJUnYWxwQONrsYZLV/cwZBx+7To0DGr4749Bz4Mmi41Ka3qhk/aGXmEP1/YXt7LqjA9PS8aKivoICNj+ORmr51BjE/HYZqhp7BgKdcVYQp2YCYpqHjl8a+ubWojmUy85QYQHnu2Ja9XHfoVsO6HEOncIsgI1vPhkNPGsd1hcg45/enpr2oKqnoxt385SaLt3U0j5iK/d2hQpuR4PZJujh2m41Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com (2603:10b6:208:377::9)
- by SA1PR11MB8575.namprd11.prod.outlook.com (2603:10b6:806:3a9::5)
+ by CH3PR11MB8094.namprd11.prod.outlook.com (2603:10b6:610:156::16)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.23; Thu, 30 Nov
- 2023 14:31:40 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24; Thu, 30 Nov
+ 2023 15:36:42 +0000
 Received: from MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::ada2:f954:a3a5:6179]) by MN0PR11MB6059.namprd11.prod.outlook.com
  ([fe80::ada2:f954:a3a5:6179%5]) with mapi id 15.20.7046.023; Thu, 30 Nov 2023
- 14:31:40 +0000
-Date: Thu, 30 Nov 2023 09:31:36 -0500
+ 15:36:41 +0000
+Date: Thu, 30 Nov 2023 10:36:38 -0500
 From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: "Coelho, Luciano" <luciano.coelho@intel.com>
-Message-ID: <ZWicyNETXC6iB1e7@intel.com>
-References: <20231130113505.1321348-1-luciano.coelho@intel.com>
- <812728f3-15d2-4327-aebb-79a032d3a2ce@linux.intel.com>
- <c579c861463fba1e24285c034d60f14aeff6d3df.camel@intel.com>
- <d6a5ece0-05c8-4108-9e25-4ad886325ba8@linux.intel.com>
- <e41da80b791fd97d86afe2d4da72a0f244563446.camel@intel.com>
+To: Koby Elbaz <kelbaz@habana.ai>
+Message-ID: <ZWisBhKOxjq8Ixbp@intel.com>
+References: <20231128165316.3142184-1-kelbaz@habana.ai>
+ <20231128165316.3142184-2-kelbaz@habana.ai>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <e41da80b791fd97d86afe2d4da72a0f244563446.camel@intel.com>
-X-ClientProxiedBy: BYAPR08CA0069.namprd08.prod.outlook.com
- (2603:10b6:a03:117::46) To MN0PR11MB6059.namprd11.prod.outlook.com
+In-Reply-To: <20231128165316.3142184-2-kelbaz@habana.ai>
+X-ClientProxiedBy: BY5PR17CA0026.namprd17.prod.outlook.com
+ (2603:10b6:a03:1b8::39) To MN0PR11MB6059.namprd11.prod.outlook.com
  (2603:10b6:208:377::9)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|SA1PR11MB8575:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8b7da424-50b8-41dd-e5b2-08dbf1b110f3
+X-MS-TrafficTypeDiagnostic: MN0PR11MB6059:EE_|CH3PR11MB8094:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6dad4e56-8236-47c7-c16c-08dbf1ba268b
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: GUkzEuRDrk+t5+7e93O1Ks0yE1/crldsxZZ/7sPj4WbcIBzc57Pr3R6CHTSj1bH7Yv1jD0q6vYZgM4a8UKaRlTj5lvnWUrZSDIySTBlDW+cCGPWYa/5E+kISwr9CwbNX8jEikExY129dXW5MciJjNkKMY9V86JeolRJVWftQ/dAxVitWYRpfwBvooF5un8qXyvJRutMhYPoue1rhoIE5t+rPRzox2zUlmlcpoYxt3aachlCwcC6POx3NaGxgTHqGYtRQ+XQLlsprjNvYQ9XrYmnFZ1HTv744TbA/jtv/AC4Gau1FTEB1MfwdeYMasV5ya9mBcfAuLEJcPKHSBygsFiM1gUEdT9DUboA5TYi01o/+OLK595KvvPk7DhIuzJHWVPO64rCLK0aGEnZY92LvPsR4H8gYQyiLOfBHCYKoe/0yUxOIxD7jXCYLDrJS2a4oohl+FlhxdTO6/NYPL031vzNUxEXr5iaawZCWejq84U34NSO1GR3ekRFcUvYZBy01R4xse/TKkx57VVoSZI1u0NT/Du6fwuQRIjuV0sdrtmNzzXEM7EBY7uuJ6ZBh8VCo
+X-Microsoft-Antispam-Message-Info: ZSgfSY8YgjY9KnAi25iOaK0M5FFDL/oTN4/U8+2kI7gnqAkbJkn/jw+GAbqsVOtnhBixvL/pWmQVs2DPcxdNtAHUIN0v9dkXx/9dY+GeNU2qzeY194FOMBvgfb+aBn1G9XbKW4ciWHtklJUMaxCNJm7KgVkzENjBDb0lVXqugylpN/t8tdyIXgSXiVIvX4CfJaa9XbUTk4eyrDLn3iPe/jicGvjYhkV6byuTw5JxxI4yVR2EjtenVwLWXxla15H7egKsak1Xf1yJA/qi3Uhg7YEnzB3HwF4as1Nzdqa2Ow/EqosW0Cns8EWQL2NA1Z+5efqsE94NiQcXpEr+dY5BXAdseIFKrjzuE3q70GlR4qdstsZV+bK9QAJ/CuwKSH02lWMgigFpYmHA6TDfr6ym6MtkGsAhTAl8veI/f20DBub9lmR/Sst1WDEnFJcdFw3PuexuoglEXeDfYrplm2sPao2WJeHTYymoiBdbJeSVuqGXSgJ/n4vWYKcQPK9WnRTr+bHtsU6Fk1UWz4EocdzVFamWLH3soV+v9WWnHPcTChLH/GZMwQflUoK36tc7rqGu
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:MN0PR11MB6059.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(346002)(39860400002)(376002)(396003)(136003)(366004)(230922051799003)(186009)(1800799012)(64100799003)(451199024)(83380400001)(2906002)(4001150100001)(2616005)(26005)(66556008)(54906003)(37006003)(66946007)(66476007)(6862004)(5660300002)(8676002)(8936002)(4326008)(86362001)(44832011)(6506007)(6666004)(41300700001)(6486002)(478600001)(6636002)(316002)(82960400001)(36756003)(6512007)(53546011)(38100700002);
+ SFS:(13230031)(346002)(136003)(366004)(396003)(376002)(39860400002)(230922051799003)(64100799003)(186009)(451199024)(1800799012)(86362001)(66946007)(66476007)(6916009)(82960400001)(38100700002)(36756003)(26005)(6506007)(83380400001)(2616005)(6512007)(6666004)(2906002)(316002)(66556008)(6486002)(8676002)(5660300002)(44832011)(478600001)(41300700001)(4326008)(8936002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?MIbyGPmJdpoz7op6hjzj3SfWczNRhDr3Ic+hFECMdm7yDKUmreeNIPM5GVQd?=
- =?us-ascii?Q?EPQsRZsZarQn+l64p65ADp3Lw8B4QtWpmF3boKtJZJRIeoIMI3hO0WV2UHDY?=
- =?us-ascii?Q?O9FhSWy0pWyc4MyutzByRRmDQt2CW6voL0kmZjXQcQ+pr1mfZCQUsrepa+C6?=
- =?us-ascii?Q?0r7NRqNLdMSz2+2Qicb/wNTwKjCyLJvkQ9H+b3M5+ffF7Kpk2NW4OJw0Df8S?=
- =?us-ascii?Q?s/pLQrK/SOtpS8wHigsLxb8kqUJhMrL3ON680I6b1LH4QndGNDuC+FcGos4s?=
- =?us-ascii?Q?NEKtgyZfBcj3Wo5Zfuq55+SUvr3RcUKCagZjaeqCn1ekZrii1sIV5oknrd8j?=
- =?us-ascii?Q?424up/zh1t1A01a8dhX03/o4FA3FqG7G3oeBAXcJq1XrluP3TnwIxn1/wLZ1?=
- =?us-ascii?Q?BNGPmYYgOfD0BrsPCJKC2BaGE8gNuKJWDisxvxLynm0mlWUBgXORwEZCiVmH?=
- =?us-ascii?Q?fG+p/rBS1n2ltTTAdd9lNeBBrGRHxt4Wx55ztOR+DG95rTzIiFAckh5HoXH3?=
- =?us-ascii?Q?BMHjl2QIMvmO4t+7VO18pr7XHLh9X1jtqVd7eWIMhE0154/fOzSiXh1XCv1E?=
- =?us-ascii?Q?FWJk0CIjjwHi+2MvfPrMHG6vcv1N7vZhEQoCItg0dmnSY4LvXpyhn411Tqsm?=
- =?us-ascii?Q?IMjREK1C04C6eNh24vjIvyj3S2aXgkPObujuTWUqV/vphucybOx1go7foEBW?=
- =?us-ascii?Q?oSsUliNbGkMYGIj1NMq/sj8asqK5/IqjZ+C4AZVqesektjnQU0dbRvBLdFSg?=
- =?us-ascii?Q?tOHov4oI+xIeUu46t4mMII/GbKg4a4NZk1GWaNFB/K0ZrqYH6RMEe58Wh5Ef?=
- =?us-ascii?Q?9Q3TKwvwGSVWWlikuO0naCMlXJu+P5AhhMR7G+sRxETon1wE/62Nr8FgT8pn?=
- =?us-ascii?Q?Pr3YML98qf8yMvNwwKb3iG+6rNiAAwYcStHaXAIV+iP+PDvwqf0FI3sK07Ox?=
- =?us-ascii?Q?zpPHB3issBsNBMc+CjFcytTis9+JVf+rV/KaR6MDbZ+K9Fa3bJaEvhCuXUdz?=
- =?us-ascii?Q?yggE5fDHQP3rgIa7SuO1U9v2R3nfYFLWIT7B+wDcTW7w0BRIJg8vWLE4B2ds?=
- =?us-ascii?Q?XIMnNOqfSXEjAedwo/l53soeMZVBTSVIMz5NDNbOkfizivVSrrS8aJ38woFC?=
- =?us-ascii?Q?nmkuozfVSRh3FkRDmrRykqByuOijqJPAPbzyW0V3EqZ9uORMjDR3NKziu5+D?=
- =?us-ascii?Q?E6NnyV9H11arWB6Ur2wP9TVRqH3mLYksRb1HBS3jyMwDibMYLJbp9zhLmOPT?=
- =?us-ascii?Q?61oYYO2ZESqBRAJYJtpjY93zucAi5ngQygN6xyHbb2Dz3YvjoQvNFhdyN0iq?=
- =?us-ascii?Q?eCTWG3qeNCNflyJVbKMjKx6ORRkqCXvKU0/KP88XhHu0E18PHbUPGstKTAhY?=
- =?us-ascii?Q?hTHi0DGpRPgIA0vkZEnh2TKo6k4k5LHz3po5blLh3rj+PIr63QLtLrth80yn?=
- =?us-ascii?Q?tMHzfLTVd5udDAGtJxqbjaqTtZd8+j3vQdrOE3jRiRDbRPzHJ7MThB3Ej6on?=
- =?us-ascii?Q?YfxAmYbl0hKQOo62867deNvPgMaqCL8WsyLQdEtZ63OI4PNmgDXQv62wkKls?=
- =?us-ascii?Q?IEmO95ANQFk4yYTLld4NTH/7ERFieoOMz/DpF/oY?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8b7da424-50b8-41dd-e5b2-08dbf1b110f3
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?EYjvbf0UfZpO5ZmFiI11zRZhs2EfXol/4Vbms7p6qXrKSI3ABZWn6QUGqRfy?=
+ =?us-ascii?Q?5UHi4vIk7cxRBTnv0onE1eUdC+KiqK7oplUVrIUDa+sxNcJqGkrBRIRceK/x?=
+ =?us-ascii?Q?LbSBLEWki+gZnNlGjw1fn+WTCNWM9WkkT46SPNmBIiO1XBK5D0X1VsyayQe+?=
+ =?us-ascii?Q?C+76BjaNVwJLCuZX6pvwSyhaHQocVGNXpSkrwau4HylLwqbkiOht9Mg8VbH9?=
+ =?us-ascii?Q?jcCaI2AZWbOh0E3J4/sdUjFFqsycje56fjqSusoGuapyIOYAR+lwjdo/qRLI?=
+ =?us-ascii?Q?6XOyVVkAxREAxnWImlFP7N78mIL1qM1L7eGmfVCEeRv9Qmkg4zRz56wbl6Ec?=
+ =?us-ascii?Q?hxeu1Tz9+uysv/JfvLLBj/8UowAZxLLmfllCEkxinRIe4YeYgQK+DvyVhMfJ?=
+ =?us-ascii?Q?wWqeeMik+04sgxEU16o6Hji+n4gMs+eaoBGQFbMcz8JJNFhxd1hY9etHpaQZ?=
+ =?us-ascii?Q?lZpZQ5cR18gtvjvSqIgBdKgb0s0rvPrL1XcgvAu49HCkhiDXsDGJlhuCMjVr?=
+ =?us-ascii?Q?IUuLgcIjP+PGmwwOV0/yXM22m5tMWu9l8zzJFyokAYM1W1lF22NfphCAdTfv?=
+ =?us-ascii?Q?T53QUx/tGaeF6ndisUs4vOdoEgjZsU7dvt7DsY8WMuZEk5d0IPoSdMBfeBTb?=
+ =?us-ascii?Q?Of82xg+Zf0FlXdd3mnYVXGskxat1h+3X0QIQKBFBh3v18//R83XGG7Opm+Ql?=
+ =?us-ascii?Q?77bNc/EbLq50bKRPp7dqB3N7iAz4mEXxsptnBh6tErNT2CODjsLk8No4pY+h?=
+ =?us-ascii?Q?w3mPdBeZDty4yX9OlKYOHzhQ1rowyuazNWT6dRjJVYDhLttevGy8n8wLisle?=
+ =?us-ascii?Q?SXBgBDK+VjOTQj7klT5nZfHalKMMuONdkfJjJFfsdhJSEgmVLFSZomgYnQbY?=
+ =?us-ascii?Q?lqzF/UWW6Sseg4Kq8wag/0xwQ3xeHtnPSQiIKaIcK9sLgCIyRMb9hmXipnz/?=
+ =?us-ascii?Q?fw1c/WYO9Q4eSacegV+Ol9zkSwslEvixcQyY8au0I6Mtzuxu+IQ46N0mYECC?=
+ =?us-ascii?Q?SrpJiXsb7THNhMEbAeG6zPZJCaBYtfbONIZd3N7p97fYlk1WySE1Bzd9FxkZ?=
+ =?us-ascii?Q?dGprRbQcn4ptQkCzpNF5KyAY5O/qfK7yHyrQROoD2r+AZhskeCxlg1Wv3kT1?=
+ =?us-ascii?Q?o7T55fGkyka+7imOkOsPdMixwwVIneRB26y+vZBDF+dQx2/iM/vVyYowNBBh?=
+ =?us-ascii?Q?VG5VsFmDmYqG+h4mpiVDG4xfIYOSuOjanpt8JAdPhkHt6nkrzRkbOG+eZDsA?=
+ =?us-ascii?Q?EmPL/490UFEQVjblwEOYm78VqaXLnhEQzunPtkBXV9NVi8jbXvM2g5gFQj1i?=
+ =?us-ascii?Q?J8mXuZGVobltY/qCEdp6QAmTIguN5PE1f/lOjryRXJsB4tW8XGFS/6iCLgsW?=
+ =?us-ascii?Q?3q2QJcBAu/CPBSW7clPm0uAxCK/f1EC2Tq1AMKy1digE00Qzg4H4Jks+op1C?=
+ =?us-ascii?Q?lXg4cjEEC/pPjDO1u5Wm8oet7SOLe+hrqojkvR6NtSaE1nBk7pgG4bk/62s1?=
+ =?us-ascii?Q?Zwd6cKDuItvcf7SvRL5nd/lyYNWkgLIFbr03JP8xUQXKWOSdnUGLlVz+JMIh?=
+ =?us-ascii?Q?GkLfpmGmzWc9vZP6KKZ36hWKwwAbOXjXsg5huSLD?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6dad4e56-8236-47c7-c16c-08dbf1ba268b
 X-MS-Exchange-CrossTenant-AuthSource: MN0PR11MB6059.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2023 14:31:40.2551 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Nov 2023 15:36:41.8606 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: F0gerktQPoz3QS9rQgJtKXTYKneMw2jaO+2KsPbKupVkLPCn+LpZ8P21d2oWriBQl3WVYcaMBpaHP86BisJ9Bw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR11MB8575
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZpdSgUhfLHSrFcgN/T/OQgyflg9pQLbURxOAqonVWZb48njw4nfFynkDmgnl9w0+Q7Wy05yOGt9wxe9mMrBubQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8094
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [Intel-gfx] [PATCH v6] drm/i915: handle uncore
- spinlock when not available
+Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe: rename bypass_mtcfg to skip_mtcfg
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,149 +144,75 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "tvrtko.ursulin@linux.intel.com" <tvrtko.ursulin@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Thu, Nov 30, 2023 at 01:54:13PM +0000, Coelho, Luciano wrote:
-> On Thu, 2023-11-30 at 13:24 +0000, Tvrtko Ursulin wrote:
-> > On 30/11/2023 12:26, Coelho, Luciano wrote:
-> > > On Thu, 2023-11-30 at 12:21 +0000, Tvrtko Ursulin wrote:
-> > > > On 30/11/2023 11:35, Luca Coelho wrote:
-> > > > > The uncore code may not always be available (e.g. when we build the
-> > > > > display code with Xe), so we can't always rely on having the uncore's
-> > > > > spinlock.
-> > > > > 
-> > > > > To handle this, split the spin_lock/unlock_irqsave/restore() into
-> > > > > spin_lock/unlock() followed by a call to local_irq_save/restore() and
-> > > > > create wrapper functions for locking and unlocking the uncore's
-> > > > > spinlock.  In these functions, we have a condition check and only
-> > > > > actually try to lock/unlock the spinlock when I915 is defined, and
-> > > > > thus uncore is available.
-> > > > > 
-> > > > > This keeps the ifdefs contained in these new functions and all such
-> > > > > logic inside the display code.
-> > > > > 
-> > > > > Cc: Tvrtko Ursulin <tvrto.ursulin@intel.com>
-> > > > > Cc: Jani Nikula <jani.nikula@intel.com>
-> > > > > Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-> > > > > Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > > > > ---
-> > > > > 
-> > > > > 
-> > > > > In v2:
-> > > > > 
-> > > > >      * Renamed uncore_spin_*() to intel_spin_*()
-> > > > >      * Corrected the order: save, lock, unlock, restore
-> > > > > 
-> > > > > In v3:
-> > > > > 
-> > > > >      * Undid the change to pass drm_i915_private instead of the lock
-> > > > >        itself, since we would have to include i915_drv.h and that pulls
-> > > > >        in a truckload of other includes.
-> > > > > 
-> > > > > In v4:
-> > > > > 
-> > > > >      * After a brief attempt to replace this with a different patch,
-> > > > >        we're back to this one;
-> > > > >      * Pass drm_i195_private again, and move the functions to
-> > > > >        intel_vblank.c, so we don't need to include i915_drv.h in a
-> > > > >        header file and it's already included in intel_vblank.c;
-> > > > > 
-> > > > > In v5:
-> > > > > 
-> > > > >      * Remove stray include in intel_display.h;
-> > > > >      * Remove unnecessary inline modifiers in the new functions.
-> > > > > 
-> > > > > In v6:
-> > > > > 
-> > > > >      * Just removed the umlauts from Ville's name, because patchwork
-> > > > >        didn't catch my patch and I suspect it was some UTF-8 confusion.
-> > > > > 
-> > > > >    drivers/gpu/drm/i915/display/intel_vblank.c | 49 ++++++++++++++++-----
-> > > > >    1 file changed, 39 insertions(+), 10 deletions(-)
-> > > > > 
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-> > > > > index 2cec2abf9746..221fcd6bf77b 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_vblank.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-> > > > > @@ -265,6 +265,30 @@ int intel_crtc_scanline_to_hw(struct intel_crtc *crtc, int scanline)
-> > > > >    	return (scanline + vtotal - crtc->scanline_offset) % vtotal;
-> > > > >    }
-> > > > >    
-> > > > > +/*
-> > > > > + * The uncore version of the spin lock functions is used to decide
-> > > > > + * whether we need to lock the uncore lock or not.  This is only
-> > > > > + * needed in i915, not in Xe.
-> > > > > + *
-> > > > > + * This lock in i915 is needed because some old platforms (at least
-> > > > > + * IVB and possibly HSW as well), which are not supported in Xe, need
-> > > > > + * all register accesses to the same cacheline to be serialized,
-> > > > > + * otherwise they may hang.
-> > > > > + */
-> > > > > +static void intel_vblank_section_enter(struct drm_i915_private *i915)
-> > > > > +{
-> > > > > +#ifdef I915
-> > > > > +	spin_lock(&i915->uncore.lock);
-> > > > > +#endif
-> > > > > +}
-> > > > > +
-> > > > > +static void intel_vblank_section_exit(struct drm_i915_private *i915)
-> > > > > +{
-> > > > > +#ifdef I915
-> > > > > +	spin_unlock(&i915->uncore.lock);
-> > > > > +#endif
-> > > > > +}
-> > > > > +
-> > > > >    static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
-> > > > >    				     bool in_vblank_irq,
-> > > > >    				     int *vpos, int *hpos,
-> > > > > @@ -302,11 +326,12 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
-> > > > >    	}
-> > > > >    
-> > > > >    	/*
-> > > > > -	 * Lock uncore.lock, as we will do multiple timing critical raw
-> > > > > -	 * register reads, potentially with preemption disabled, so the
-> > > > > -	 * following code must not block on uncore.lock.
-> > > > > +	 * Enter vblank critical section, as we will do multiple
-> > > > > +	 * timing critical raw register reads, potentially with
-> > > > > +	 * preemption disabled, so the following code must not block.
-> > > > >    	 */
-> > > > > -	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-> > > > > +	local_irq_save(irqflags);
-> > > > > +	intel_vblank_section_enter(dev_priv);
-> > > > 
-> > > > Shouldn't local_irq_save go into intel_vblank_section_enter()? It seems
-> > > > all callers from both i915 and xe end up doing that anyway and naming
-> > > > "vblank_start" was presumed there would be more to the section than
-> > > > cacheline mmio bug. I mean that there is some benefit from keeping the
-> > > > readout timings tight.
-> > > > 
-> > > 
-> > > The reason is that there is one caller that has already disabled
-> > > interrupts when this function is called (see below), so we shouldn't do
-> > > it again.
-> > 
-> > Yeah I saw that but with irqsave/restore it is safe to nest. So for me 
-> > it is more a fundamental question which I raise above.
+On Tue, Nov 28, 2023 at 06:53:16PM +0200, Koby Elbaz wrote:
+> Per device, set this flag to access the MTCFG register or to skip it.
+> This is done to standardise Xe driver naming if an access to any HW
+> should be avoided.
 > 
-> Sure, it should be safe to nest, but it seemed a bit ugly to me.
+> Signed-off-by: Koby Elbaz <kelbaz@habana.ai>
+
+Both patches reviewed and pushed. Thanks for the patches
+
+> ---
+>  drivers/gpu/drm/xe/xe_device_types.h | 4 ++--
+>  drivers/gpu/drm/xe/xe_mmio.c         | 2 +-
+>  drivers/gpu/drm/xe/xe_pci.c          | 4 ++--
+>  3 files changed, 5 insertions(+), 5 deletions(-)
 > 
-> I can change it, if you prefer, as your point seems valid, but I will
-> wait to see what Rodrigo says, since he had already given his r-b, lest
-> we start ping-ponging on this too much.
-
-I believe we should go with this patch as is, because this brings absolutely
-no code change. Even though we believe the irqsave is a safe thing on that
-side it would be a change in behavior.
-
-So, probably a follow-up patch to also convert the other case and moving
-everything inside the new vblank_start/end functions?
-
+> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+> index 72ab96869659..58876e694f47 100644
+> --- a/drivers/gpu/drm/xe/xe_device_types.h
+> +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> @@ -258,8 +258,8 @@ struct xe_device {
+>  		u8 has_sriov:1;
+>  		/** @enable_display: display enabled */
+>  		u8 enable_display:1;
+> -		/** @bypass_mtcfg: Bypass Multi-Tile configuration from MTCFG register */
+> -		u8 bypass_mtcfg:1;
+> +		/** @skip_mtcfg: skip Multi-Tile configuration from MTCFG register */
+> +		u8 skip_mtcfg:1;
+>  		/** @skip_pcode: skip access to PCODE uC */
+>  		u8 skip_pcode:1;
+>  		/** @supports_mmio_ext: supports MMIO extension/s */
+> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+> index 0f846272e39c..883610fc0abf 100644
+> --- a/drivers/gpu/drm/xe/xe_mmio.c
+> +++ b/drivers/gpu/drm/xe/xe_mmio.c
+> @@ -330,7 +330,7 @@ static void xe_mmio_probe_tiles(struct xe_device *xe)
+>  	if (tile_count == 1)
+>  		goto add_mmio_ext;
+>  
+> -	if (!xe->info.bypass_mtcfg) {
+> +	if (!xe->info.skip_mtcfg) {
+>  		mtcfg = xe_mmio_read64_2x32(gt, XEHP_MTCFG_ADDR);
+>  		tile_count = REG_FIELD_GET(TILE_COUNT, mtcfg) + 1;
+>  		if (tile_count < xe->info.tile_count) {
+> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+> index 20ca30bf58b1..2824085e7742 100644
+> --- a/drivers/gpu/drm/xe/xe_pci.c
+> +++ b/drivers/gpu/drm/xe/xe_pci.c
+> @@ -62,7 +62,7 @@ struct xe_device_desc {
+>  
+>  	u8 has_llc:1;
+>  	u8 has_sriov:1;
+> -	u8 bypass_mtcfg:1;
+> +	u8 skip_mtcfg:1;
+>  	u8 skip_pcode:1;
+>  	u8 supports_mmio_ext:1;
+>  };
+> @@ -581,7 +581,7 @@ static int xe_info_init(struct xe_device *xe,
+>  	xe->info.media_name = media_desc ? media_desc->name : "none";
+>  	xe->info.has_llc = desc->has_llc;
+>  	xe->info.has_sriov = desc->has_sriov;
+> -	xe->info.bypass_mtcfg = desc->bypass_mtcfg;
+> +	xe->info.skip_mtcfg = desc->skip_mtcfg;
+>  	xe->info.skip_pcode = desc->skip_pcode;
+>  	xe->info.supports_mmio_ext = desc->supports_mmio_ext;
+>  	xe->info.tile_mmio_ext_size = graphics_desc->tile_mmio_ext_size;
+> -- 
+> 2.34.1
 > 
-> --
-> Cheers,
-> Luca.
