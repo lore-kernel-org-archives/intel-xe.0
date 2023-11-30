@@ -4,44 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id BEFADC4167B
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 17:52:14 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1006C10DC2
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 18:40:12 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F9F210E750;
-	Thu, 30 Nov 2023 17:52:14 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F9C810E751
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Nov 2023 17:52:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78A1210E06F;
+	Thu, 30 Nov 2023 18:40:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4281310E06F
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Nov 2023 18:40:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701366732; x=1732902732;
+ t=1701369611; x=1732905611;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=aMciEBmn5mPTMGCly/t0tWm6WNwaB1Z36jXM31GqGLs=;
- b=MGwDjWQkHGPapABGvpaGpqYrVjKwRG0+q0NPNYEntXPr5yY1MHarCWQz
- sUyJi3hJofFRQ4eR8lSLF5L/TSv0M/ROVmPzL9ckcWT7nM0yXjRT4HwH3
- C3FevlLqDVEVvCw10J7n1Q8sL+SJJNq7S+vXxzpQ0xWKYkI4Tvqdj4mX9
- VfNSaWL5AXxtIIzFIItrmKHfixMj1T5lhkIPR+E66UB4C8kv94DP6HB6t
- IfNhSIHb6hT/MV2DqlJXysaWKXUR/EnNyEwFG3VmjafXmHxAmVgQ6p6RK
- myG54B1s/DgdOQhLhWjEAVhfpV1qbJeuPI6AQT9Kbw7RprX85rmsIZoOV g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="457689606"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="457689606"
+ bh=T1VYX6x4SZvWnYrbXIQbjzzq1B5Tv3Nlt3ncpKvE4ss=;
+ b=Lykd5ncNuaZAvQ2TwEh/zIWNmkOlPZosFmp6SCwZrEXu+MKvpoZ6OQ1l
+ RANBJRluvQY7HDn+r8Aoo04WfHaQwOxz5wYW7+G555HZzAodMpYnG847u
+ YA4dpEvnDxBtJ+lgyETrWEDOen2aI0Ec6Sk4/K38yhVsPjOWq5ny8Rnq5
+ ffUBUAQ/6rpv08Srae1a8DUjqaJAu+8eGJxl9iV6N5XPlh1eMkTc74AsF
+ rSML3SR1yK0FX6/EtavdyD7ZDdtl5xN1q423eEKAEpHCT4M4wAUqzaVg0
+ fDygQvRgKN21YtSSzkearB8OjGGShCPWddLOPf5wdFPM2kpIKbswcYd/R A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="393111702"
+X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="393111702"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 09:52:11 -0800
+ by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2023 10:40:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="913269656"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="913269656"
-Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
- by fmsmga001.fm.intel.com with ESMTP; 30 Nov 2023 09:52:10 -0800
-From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="913294904"
+X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="913294904"
+Received: from stefanwe-mobl.ger.corp.intel.com (HELO localhost.localdomain)
+ ([10.252.60.146])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2023 10:40:09 -0800
+From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Nov 2023 23:31:35 +0530
-Message-Id: <20231130180135.628368-1-tejas.upadhyay@intel.com>
-X-Mailer: git-send-email 2.25.1
+Date: Thu, 30 Nov 2023 18:39:39 +0000
+Message-Id: <20231130183955.7-1-francois.dugast@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH V4] drm/xe/xe2: Add workaround 16020292621
+Subject: [Intel-xe] [PATCH v3 00/16] uAPI Alignment - Cleanup and future
+ proof
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,94 +57,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Workaround applies to Graphics 20.04 as part of ring
-submission
+The series "uAPI Alignment - take 2 v3" [1] has grown too much which makes
+it difficult to review and to digest by UMDs. This new series is a third
+break down, which cleans up the uAPI and prepares for future needs.
 
-V4(MattR):
-  - Rule for engine in oob WA not supported, add explicitly
-V3(MattR):
-  - Pass hwe and rename API name to hint end of ring work
-  - Use existing RING_NOPID API
-V2:
-  - Marking this WA for 20.04 instead of 20.00
+Corresponding IGT series is here [2].
 
-Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
----
- drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  1 +
- drivers/gpu/drm/xe/xe_ring_ops.c          | 20 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_wa_oob.rules        |  1 +
- 3 files changed, 22 insertions(+)
+v2: Fix according to feedback from v1, rebase on drm-xe-next, add new fixes
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-index 4402f72481dc..f1c5bf203b3d 100644
---- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-@@ -48,6 +48,7 @@
- #define   PIPE_CONTROL_TILE_CACHE_FLUSH			(1<<28)
- #define   PIPE_CONTROL_AMFS_FLUSH			(1<<25)
- #define   PIPE_CONTROL_GLOBAL_GTT_IVB			(1<<24)
-+#define   PIPE_CONTROL_LRI_POST_SYNC			BIT(23)
- #define   PIPE_CONTROL_STORE_DATA_INDEX			(1<<21)
- #define   PIPE_CONTROL_CS_STALL				(1<<20)
- #define   PIPE_CONTROL_GLOBAL_SNAPSHOT_RESET		(1<<19)
-diff --git a/drivers/gpu/drm/xe/xe_ring_ops.c b/drivers/gpu/drm/xe/xe_ring_ops.c
-index 59e0aa2d6a4c..1201e42ef823 100644
---- a/drivers/gpu/drm/xe/xe_ring_ops.c
-+++ b/drivers/gpu/drm/xe/xe_ring_ops.c
-@@ -7,6 +7,7 @@
- 
- #include "generated/xe_wa_oob.h"
- #include "instructions/xe_mi_commands.h"
-+#include "regs/xe_engine_regs.h"
- #include "regs/xe_gpu_commands.h"
- #include "regs/xe_gt_regs.h"
- #include "regs/xe_lrc_layout.h"
-@@ -184,6 +185,23 @@ static int emit_render_cache_flush(struct xe_sched_job *job, u32 *dw, int i)
- 	return i;
- }
- 
-+static int emit_pipe_control_to_ring_end(struct xe_hw_engine *hwe, u32 *dw, int i)
-+{
-+	if (hwe->class != XE_ENGINE_CLASS_RENDER)
-+		return i;
-+
-+	if (XE_WA(hwe->gt, 16020292621)) {
-+		dw[i++] = GFX_OP_PIPE_CONTROL(6);
-+		dw[i++] = PIPE_CONTROL_LRI_POST_SYNC;
-+		dw[i++] = RING_NOPID(hwe->mmio_base).addr;
-+		dw[i++] = 0;
-+		dw[i++] = 0;
-+		dw[i++] = 0;
-+	}
-+
-+	return i;
-+}
-+
- static int emit_pipe_imm_ggtt(u32 addr, u32 value, bool stall_only, u32 *dw,
- 			      int i)
- {
-@@ -342,6 +360,8 @@ static void __emit_job_gen12_render_compute(struct xe_sched_job *job,
- 
- 	i = emit_user_interrupt(dw, i);
- 
-+	i = emit_pipe_control_to_ring_end(job->q->hwe, dw, i);
-+
- 	xe_gt_assert(gt, i <= MAX_JOB_SIZE_DW);
- 
- 	xe_lrc_write_ring(lrc, dw, i * sizeof(*dw));
-diff --git a/drivers/gpu/drm/xe/xe_wa_oob.rules b/drivers/gpu/drm/xe/xe_wa_oob.rules
-index c7b7d40b5d57..727bdc429212 100644
---- a/drivers/gpu/drm/xe/xe_wa_oob.rules
-+++ b/drivers/gpu/drm/xe/xe_wa_oob.rules
-@@ -21,3 +21,4 @@
- 22010954014	PLATFORM(DG2)
- 14019821291	MEDIA_VERSION_RANGE(1300, 2000)
- 14015076503	MEDIA_VERSION(1300)
-+16020292621	GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0)
+v3: Rebase, bundle other already reviewed uAPI changes
+
+[1] https://patchwork.freedesktop.org/series/126203/
+[2] https://patchwork.freedesktop.org/series/126537/
+
+Francois Dugast (3):
+  drm/xe/uapi: Align on a common way to return arrays (memory regions)
+  drm/xe/uapi: Align on a common way to return arrays (gt)
+  drm/xe/uapi: Align on a common way to return arrays (engines)
+
+José Roberto de Souza (1):
+  drm/xe: Make DRM_XE_DEVICE_QUERY_ENGINES future proof
+
+Mauro Carvalho Chehab (1):
+  drm/xe/uapi: Reject bo creation of unaligned size
+
+Mika Kuoppala (1):
+  drm/xe: Extend drm_xe_vm_bind_op
+
+Rodrigo Vivi (9):
+  drm/xe/uapi: Separate bo_create placement from flags
+  drm/xe/uapi: Split xe_sync types from flags
+  drm/xe/uapi: Kill tile_mask
+  drm/xe/uapi: Crystal Reference Clock updates
+  drm/xe/uapi: Add Tile ID information to the GT info query
+  drm/xe/uapi: Fix various struct padding for 64b alignment
+  drm/xe/uapi: Move xe_exec after xe_exec_queue
+  drm/xe: Remove unused extension definition
+  drm/xe/uapi: Kill exec_queue_set_property
+
+Thomas Hellström (1):
+  drm/xe/uapi: Use LR abbrev for long-running vms
+
+ drivers/gpu/drm/xe/tests/xe_dma_buf.c |   8 +-
+ drivers/gpu/drm/xe/xe_bo.c            |  38 ++--
+ drivers/gpu/drm/xe/xe_device.c        |   2 -
+ drivers/gpu/drm/xe/xe_exec_queue.c    |  38 ----
+ drivers/gpu/drm/xe/xe_exec_queue.h    |   2 -
+ drivers/gpu/drm/xe/xe_gt_clock.c      |   4 +-
+ drivers/gpu/drm/xe/xe_gt_types.h      |   4 +-
+ drivers/gpu/drm/xe/xe_query.c         |  87 +++++----
+ drivers/gpu/drm/xe/xe_sync.c          |  23 +--
+ drivers/gpu/drm/xe/xe_sync_types.h    |   1 +
+ drivers/gpu/drm/xe/xe_vm.c            |  56 ++----
+ drivers/gpu/drm/xe/xe_vm_types.h      |   2 -
+ include/uapi/drm/xe_drm.h             | 267 +++++++++++++++-----------
+ 13 files changed, 262 insertions(+), 270 deletions(-)
+
 -- 
-2.25.1
+2.34.1
 
