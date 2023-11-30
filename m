@@ -4,47 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02FD1C07CA9
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 11:35:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 63164C4167B
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 12:03:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C457610E6E4;
-	Thu, 30 Nov 2023 11:35:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE69310E6E4;
- Thu, 30 Nov 2023 11:35:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701344124; x=1732880124;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=8j3k9V3ij+DNfcZXh7xDix4C/OTMUFDMdhm5NaSWbLA=;
- b=Tp2dXAmbgO4atczu3i3FrujB/IsYhIMmLbB7/lH3hVrK2bDnEMmlKTwX
- 0l4zJ5MfqPJyj/oesJjhO7hzy6KEkDu+DGqEYKzNiEZw4muhsQD6UhKiX
- gLhpCywhbvFW38V4/aCSg2MyTYuGF9XEo3pwaOwr1TkTMlECFxkqdUTJX
- SBDQQqJfXnHQGhC4UPfAKLJbFOfJ9RBL98fABSWiKRlPgohGnY1nR6Gjb
- Sx9MlqTHppxCpR9QFp2gEaciOwDyVZuMz3zm438c74KnuiKrsbkaI7vQD
- r+MuaBsyMCSyPQekeAHtM6JaNwjWhmPiVsKCF0vBpBI/F7+ekmGZaCld6 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="14861508"
-X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="14861508"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 03:35:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="745604704"
-X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="745604704"
-Received: from avandeve-mobl1.amr.corp.intel.com (HELO
- hazy.ger.corp.intel.com) ([10.252.59.111])
- by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 03:35:21 -0800
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Date: Thu, 30 Nov 2023 13:35:05 +0200
-Message-Id: <20231130113505.1321348-1-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.39.2
+	by gabe.freedesktop.org (Postfix) with ESMTP id 109CD10E6E0;
+	Thu, 30 Nov 2023 12:03:59 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id DE11010E6E4;
+ Thu, 30 Nov 2023 12:03:56 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D7C83A0169;
+ Thu, 30 Nov 2023 12:03:56 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8614155502458776375=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v6] drm/i915: handle uncore spinlock when not
- available
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Matthew Auld" <matthew.auld@intel.com>
+Date: Thu, 30 Nov 2023 12:03:56 -0000
+Message-ID: <170134583685.15646.10321924071122183730@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231130111423.434744-2-matthew.auld@intel.com>
+In-Reply-To: <20231130111423.434744-2-matthew.auld@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_fixup!_dr?=
+ =?utf-8?q?m/xe/uapi=3A_Add_support_for_CPU_caching_mode?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,160 +39,126 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: intel-xe@lists.freedesktop.org, rodrigo.vivi@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The uncore code may not always be available (e.g. when we build the
-display code with Xe), so we can't always rely on having the uncore's
-spinlock.
+--===============8614155502458776375==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-To handle this, split the spin_lock/unlock_irqsave/restore() into
-spin_lock/unlock() followed by a call to local_irq_save/restore() and
-create wrapper functions for locking and unlocking the uncore's
-spinlock.  In these functions, we have a condition check and only
-actually try to lock/unlock the spinlock when I915 is defined, and
-thus uncore is available.
+== Series Details ==
 
-This keeps the ifdefs contained in these new functions and all such
-logic inside the display code.
+Series: fixup! drm/xe/uapi: Add support for CPU caching mode
+URL   : https://patchwork.freedesktop.org/series/127113/
+State : success
 
-Cc: Tvrtko Ursulin <tvrto.ursulin@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
+== Summary ==
+
+CI Bug Log - changes from xe-538-afdc645350a4b30d1ba6c52deed4ecc11bf7c083_BAT -> xe-pw-127113v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 3)
+------------------------------
+
+  Missing    (1): bat-dg2-oem2 
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-127113v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#692])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-538-afdc645350a4b30d1ba6c52deed4ecc11bf7c083/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127113v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html
+
+  
+  [Intel XE#692]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/692
 
 
-In v2:
+Build changes
+-------------
 
-   * Renamed uncore_spin_*() to intel_spin_*()
-   * Corrected the order: save, lock, unlock, restore
+  * Linux: xe-538-afdc645350a4b30d1ba6c52deed4ecc11bf7c083 -> xe-pw-127113v1
 
-In v3:
+  IGT_7611: 7611
+  xe-538-afdc645350a4b30d1ba6c52deed4ecc11bf7c083: afdc645350a4b30d1ba6c52deed4ecc11bf7c083
+  xe-pw-127113v1: 127113v1
 
-   * Undid the change to pass drm_i915_private instead of the lock
-     itself, since we would have to include i915_drv.h and that pulls
-     in a truckload of other includes.
+== Logs ==
 
-In v4:
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127113v1/index.html
 
-   * After a brief attempt to replace this with a different patch,
-     we're back to this one;
-   * Pass drm_i195_private again, and move the functions to
-     intel_vblank.c, so we don't need to include i915_drv.h in a
-     header file and it's already included in intel_vblank.c;
+--===============8614155502458776375==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-In v5:
 
-   * Remove stray include in intel_display.h;
-   * Remove unnecessary inline modifiers in the new functions.
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-In v6:
 
-   * Just removed the umlauts from Ville's name, because patchwork
-     didn't catch my patch and I suspect it was some UTF-8 confusion.
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>fixup! drm/xe/uapi: Add support for CPU caching mode</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127113/">https://patchwork.freedesktop.org/series/127113/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
 
- drivers/gpu/drm/i915/display/intel_vblank.c | 49 ++++++++++++++++-----
- 1 file changed, 39 insertions(+), 10 deletions(-)
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127113v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127113v1/index.html</a></td></tr>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 2cec2abf9746..221fcd6bf77b 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -265,6 +265,30 @@ int intel_crtc_scanline_to_hw(struct intel_crtc *crtc, int scanline)
- 	return (scanline + vtotal - crtc->scanline_offset) % vtotal;
- }
- 
-+/*
-+ * The uncore version of the spin lock functions is used to decide
-+ * whether we need to lock the uncore lock or not.  This is only
-+ * needed in i915, not in Xe.
-+ *
-+ * This lock in i915 is needed because some old platforms (at least
-+ * IVB and possibly HSW as well), which are not supported in Xe, need
-+ * all register accesses to the same cacheline to be serialized,
-+ * otherwise they may hang.
-+ */
-+static void intel_vblank_section_enter(struct drm_i915_private *i915)
-+{
-+#ifdef I915
-+	spin_lock(&i915->uncore.lock);
-+#endif
-+}
-+
-+static void intel_vblank_section_exit(struct drm_i915_private *i915)
-+{
-+#ifdef I915
-+	spin_unlock(&i915->uncore.lock);
-+#endif
-+}
-+
- static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 				     bool in_vblank_irq,
- 				     int *vpos, int *hpos,
-@@ -302,11 +326,12 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 	}
- 
- 	/*
--	 * Lock uncore.lock, as we will do multiple timing critical raw
--	 * register reads, potentially with preemption disabled, so the
--	 * following code must not block on uncore.lock.
-+	 * Enter vblank critical section, as we will do multiple
-+	 * timing critical raw register reads, potentially with
-+	 * preemption disabled, so the following code must not block.
- 	 */
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-+	local_irq_save(irqflags);
-+	intel_vblank_section_enter(dev_priv);
- 
- 	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
- 
-@@ -374,7 +399,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
- 
- 	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
- 
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
-+	intel_vblank_section_exit(dev_priv);
-+	local_irq_restore(irqflags);
- 
- 	/*
- 	 * While in vblank, position will be negative
-@@ -412,9 +438,13 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
- 	unsigned long irqflags;
- 	int position;
- 
--	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
-+	local_irq_save(irqflags);
-+	intel_vblank_section_enter(dev_priv);
-+
- 	position = __intel_get_crtc_scanline(crtc);
--	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
-+
-+	intel_vblank_section_exit(dev_priv);
-+	local_irq_restore(irqflags);
- 
- 	return position;
- }
-@@ -537,7 +567,7 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
- 	 * Need to audit everything to make sure it's safe.
- 	 */
- 	spin_lock_irqsave(&i915->drm.vblank_time_lock, irqflags);
--	spin_lock(&i915->uncore.lock);
-+	intel_vblank_section_enter(i915);
- 
- 	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
- 
-@@ -546,7 +576,6 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
- 	crtc->mode_flags = mode_flags;
- 
- 	crtc->scanline_offset = intel_crtc_scanline_offset(crtc_state);
--
--	spin_unlock(&i915->uncore.lock);
-+	intel_vblank_section_exit(i915);
- 	spin_unlock_irqrestore(&i915->drm.vblank_time_lock, irqflags);
- }
--- 
-2.39.2
+</table>
 
+
+    <h1>CI Bug Log - changes from xe-538-afdc645350a4b30d1ba6c52deed4ecc11bf7c083_BAT -&gt; xe-pw-127113v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 3)</h2>
+<p>Missing    (1): bat-dg2-oem2 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-127113v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-flip-before-cursor-atomic:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-538-afdc645350a4b30d1ba6c52deed4ecc11bf7c083/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127113v1/bat-adlp-7/igt@kms_cursor_legacy@basic-flip-before-cursor-atomic.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/692">Intel XE#692</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-538-afdc645350a4b30d1ba6c52deed4ecc11bf7c083 -&gt; xe-pw-127113v1</li>
+</ul>
+<p>IGT_7611: 7611<br />
+  xe-538-afdc645350a4b30d1ba6c52deed4ecc11bf7c083: afdc645350a4b30d1ba6c52deed4ecc11bf7c083<br />
+  xe-pw-127113v1: 127113v1</p>
+
+</body>
+</html>
+
+--===============8614155502458776375==--
