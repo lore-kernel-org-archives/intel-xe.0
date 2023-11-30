@@ -4,50 +4,50 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 071BFC07CA9
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 18:40:32 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 55BDDC4167B
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 18:40:37 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B0AA510E76F;
-	Thu, 30 Nov 2023 18:40:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2759C10E75D;
+	Thu, 30 Nov 2023 18:40:37 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D9C310E764
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Nov 2023 18:40:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0416210E764
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Nov 2023 18:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701369629; x=1732905629;
+ t=1701369630; x=1732905630;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+VrcFpEPYLDOEVusUJCLoTkMJ6kjtaKvv+d+/2mxsqQ=;
- b=JaNHiIhOGw4mDBlNP82ck47AWLlHDk3bmyzCofHlKvkKUHcrmg8kytSQ
- Irj7r/73dDf/WUXKopq6kt8fKVWq7vqS9im8f/+YjjC3F7cyhQYlz6sGN
- LjsXVh8dADNi/9dj3orFc02CReS1K16vcaujas2BusFuCKGNQaLal4t6A
- sPbHrPFU7Rp3OedoxZm8wINACvonRhB4vmITEQ9lcdW/JhemefbwHRSwS
- f6ufNUy6H5iOzdwKTEnbtnZjnKYBXHo9kcyPzhfVWuU6dsFAjJ33hyTts
- aPwsa6DzC08HwNLVri339u+WhNQ+pVtJ5vuvpGc+lDTozEGTm9DlD2tsx A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="393111749"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="393111749"
+ bh=sY2jKxUeUQ/iW5CA8JppFFi247M88CW0eO7a/bN/XMI=;
+ b=M7zKmDU/ScEqLDiuKFF1ghqTJ0AyGPijGs84D2eFYEXy1P/oWLzyue0V
+ pbyBXt3rD3OuhcgPgCo/+mLswLCb/J3zS0YDyyVVKi6jMpoRL42/aFgmF
+ P+6p4+tyDxj0h4HyK6ln7VIwH3dfsmliEdWEntAPjylNA1/6OyCzqTJaa
+ Vmduv1iL2C8jHYRMwnwh8q4ytOHeOjW/R+yWEuco4U8JOWe9YKXxhF3Os
+ P4yZRsCMdI3YcbvWuwsOeaTC3ETDk88tTWOCDAB2HjQr7PDnorYbn+UhQ
+ KWN9kCG8I/6nPddNoTFBqsD7LoQQ7mHrsY+tf4B2dOL5Cuyo6edB2scOk w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="393111752"
+X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="393111752"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 10:40:29 -0800
+ 30 Nov 2023 10:40:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="913294965"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="913294965"
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="913294968"
+X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="913294968"
 Received: from stefanwe-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.60.146])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 10:40:28 -0800
+ 30 Nov 2023 10:40:29 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Nov 2023 18:39:52 +0000
-Message-Id: <20231130183955.7-14-francois.dugast@intel.com>
+Date: Thu, 30 Nov 2023 18:39:53 +0000
+Message-Id: <20231130183955.7-15-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231130183955.7-1-francois.dugast@intel.com>
 References: <20231130183955.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 13/16] drm/xe/uapi: Move xe_exec after
- xe_exec_queue
+Subject: [Intel-xe] [PATCH v3 14/16] drm/xe/uapi: Use LR abbrev for
+ long-running vms
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,61 +64,104 @@ Cc: Francois Dugast <francois.dugast@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
+From: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 
-Although the exec ioctl is a very important one, it makes no sense
-to explain xe_exec before explaining the exec_queue. So, let's
-move this down to help bring a better flow on the documentation
-and code readability.
+Currently we're using "compute mode" for long running VMs using
+preempt-fences for memory management, and "fault mode" for long
+running VMs using page faults.
 
-It is important to highlight that this patch is changing all
-the ioctl numbers in a non-backward compatible way. However, we
-are doing this final uapi clean-up before we submit our first
-pull-request to be part of the upstream Kernel. Once we get
-there, no other change like this will ever happen and all the
-backward compatibility will be respected.
+Change this to use the terminology "long-running" abbreviated as LR for
+long-running VMs. These VMs can then either be in preempt-fence mode or
+fault mode. The user can force fault mode at creation time, but otherwise
+the driver can choose to use fault- or preempt-fence mode for long-running
+vms depending on the device capabilities. Initially unless fault-mode is
+specified, the driver uses preempt-fence mode.
 
-Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Francois Dugast <francois.dugast@intel.com>
-Reviewed-by: José Roberto de Souza <jose.souza@intel.com>
+v2:
+- Fix commit message wording and the documentation around
+  CREATE_FLAG_LR_MODE and CREATE_FLAG_FAULT_MODE
+
+Cc: Matthew Brost <matthew.brost@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>
+Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- include/uapi/drm/xe_drm.h | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/xe_vm.c |  8 ++++----
+ include/uapi/drm/xe_drm.h  | 23 ++++++++++++++++++++++-
+ 2 files changed, 26 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index 2c4cf1309753..e09050f16f07 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1919,7 +1919,7 @@ static int xe_vm_unbind(struct xe_vm *vm, struct xe_vma *vma,
+ }
+ 
+ #define ALL_DRM_XE_VM_CREATE_FLAGS (DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE | \
+-				    DRM_XE_VM_CREATE_FLAG_COMPUTE_MODE | \
++				    DRM_XE_VM_CREATE_FLAG_LR_MODE | \
+ 				    DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT | \
+ 				    DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+ 
+@@ -1955,7 +1955,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_COMPUTE_MODE &&
++	if (XE_IOCTL_DBG(xe, !(args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE) &&
+ 			 args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE))
+ 		return -EINVAL;
+ 
+@@ -1972,12 +1972,12 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 
+ 	if (args->flags & DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE)
+ 		flags |= XE_VM_FLAG_SCRATCH_PAGE;
+-	if (args->flags & DRM_XE_VM_CREATE_FLAG_COMPUTE_MODE)
++	if (args->flags & DRM_XE_VM_CREATE_FLAG_LR_MODE)
+ 		flags |= XE_VM_FLAG_LR_MODE;
+ 	if (args->flags & DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT)
+ 		flags |= XE_VM_FLAG_ASYNC_DEFAULT;
+ 	if (args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE)
+-		flags |= XE_VM_FLAG_LR_MODE | XE_VM_FLAG_FAULT_MODE;
++		flags |= XE_VM_FLAG_FAULT_MODE;
+ 
+ 	vm = xe_vm_create(xe, flags);
+ 	if (IS_ERR(vm))
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index deeef06a44f9..66c75a0e4fb6 100644
+index 66c75a0e4fb6..84a477009e85 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -103,11 +103,11 @@ struct xe_user_extension {
- #define DRM_XE_VM_CREATE		0x03
- #define DRM_XE_VM_DESTROY		0x04
- #define DRM_XE_VM_BIND			0x05
--#define DRM_XE_EXEC			0x06
--#define DRM_XE_EXEC_QUEUE_CREATE	0x07
--#define DRM_XE_EXEC_QUEUE_DESTROY	0x08
--#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x09
--#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x0a
-+#define DRM_XE_EXEC_QUEUE_CREATE	0x06
-+#define DRM_XE_EXEC_QUEUE_DESTROY	0x07
-+#define DRM_XE_EXEC_QUEUE_SET_PROPERTY	0x08
-+#define DRM_XE_EXEC_QUEUE_GET_PROPERTY	0x09
-+#define DRM_XE_EXEC			0x0a
- #define DRM_XE_WAIT_USER_FENCE		0x0b
- /* Must be kept compact -- no holes */
+@@ -647,8 +647,29 @@ struct drm_xe_vm_create {
+ 	__u64 extensions;
  
-@@ -117,11 +117,11 @@ struct xe_user_extension {
- #define DRM_IOCTL_XE_VM_CREATE			DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_VM_CREATE, struct drm_xe_vm_create)
- #define DRM_IOCTL_XE_VM_DESTROY			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_DESTROY, struct drm_xe_vm_destroy)
- #define DRM_IOCTL_XE_VM_BIND			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_VM_BIND, struct drm_xe_vm_bind)
--#define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
- #define DRM_IOCTL_XE_EXEC_QUEUE_CREATE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_CREATE, struct drm_xe_exec_queue_create)
- #define DRM_IOCTL_XE_EXEC_QUEUE_DESTROY		DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_DESTROY, struct drm_xe_exec_queue_destroy)
- #define DRM_IOCTL_XE_EXEC_QUEUE_SET_PROPERTY	DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_SET_PROPERTY, struct drm_xe_exec_queue_set_property)
- #define DRM_IOCTL_XE_EXEC_QUEUE_GET_PROPERTY	DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_EXEC_QUEUE_GET_PROPERTY, struct drm_xe_exec_queue_get_property)
-+#define DRM_IOCTL_XE_EXEC			DRM_IOW(DRM_COMMAND_BASE + DRM_XE_EXEC, struct drm_xe_exec)
- #define DRM_IOCTL_XE_WAIT_USER_FENCE		DRM_IOWR(DRM_COMMAND_BASE + DRM_XE_WAIT_USER_FENCE, struct drm_xe_wait_user_fence)
- 
- /**
+ #define DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE	(1 << 0)
+-#define DRM_XE_VM_CREATE_FLAG_COMPUTE_MODE	(1 << 1)
++	/*
++	 * An LR, or Long Running VM accepts exec submissions
++	 * to its exec_queues that don't have an upper time limit on
++	 * the job execution time. But exec submissions to these
++	 * don't allow any of the flags DRM_XE_SYNC_FLAG_SYNCOBJ,
++	 * DRM_XE_SYNC_FLAG_TIMELINE_SYNCOBJ, DRM_XE_SYNC_FLAG_DMA_BUF,
++	 * used as out-syncobjs, that is, together with DRM_XE_SYNC_FLAG_SIGNAL.
++	 * LR VMs can be created in recoverable page-fault mode using
++	 * DRM_XE_VM_CREATE_FLAG_FAULT_MODE, if the device supports it.
++	 * If that flag is omitted, the UMD can not rely on the slightly
++	 * different per-VM overcommit semantics that are enabled by
++	 * DRM_XE_VM_CREATE_FLAG_FAULT_MODE (see below), but KMD may
++	 * still enable recoverable pagefaults if supported by the device.
++	 */
++#define DRM_XE_VM_CREATE_FLAG_LR_MODE	        (1 << 1)
+ #define DRM_XE_VM_CREATE_FLAG_ASYNC_DEFAULT	(1 << 2)
++	/*
++	 * DRM_XE_VM_CREATE_FLAG_FAULT_MODE requires also
++	 * DRM_XE_VM_CREATE_FLAG_LR_MODE. It allows memory to be allocated
++	 * on demand when accessed, and also allows per-VM overcommit of memory.
++	 * The xe driver internally uses recoverable pagefaults to implement
++	 * this.
++	 */
+ #define DRM_XE_VM_CREATE_FLAG_FAULT_MODE	(1 << 3)
+ 	/** @flags: Flags */
+ 	__u32 flags;
 -- 
 2.34.1
 
