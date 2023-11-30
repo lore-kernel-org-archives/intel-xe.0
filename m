@@ -4,48 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B1006C10DC2
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 18:40:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79EFCC4167B
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 18:40:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78A1210E06F;
-	Thu, 30 Nov 2023 18:40:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A24610E07C;
+	Thu, 30 Nov 2023 18:40:18 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4281310E06F
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Nov 2023 18:40:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C49910E07C
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Nov 2023 18:40:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701369611; x=1732905611;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=T1VYX6x4SZvWnYrbXIQbjzzq1B5Tv3Nlt3ncpKvE4ss=;
- b=Lykd5ncNuaZAvQ2TwEh/zIWNmkOlPZosFmp6SCwZrEXu+MKvpoZ6OQ1l
- RANBJRluvQY7HDn+r8Aoo04WfHaQwOxz5wYW7+G555HZzAodMpYnG847u
- YA4dpEvnDxBtJ+lgyETrWEDOen2aI0Ec6Sk4/K38yhVsPjOWq5ny8Rnq5
- ffUBUAQ/6rpv08Srae1a8DUjqaJAu+8eGJxl9iV6N5XPlh1eMkTc74AsF
- rSML3SR1yK0FX6/EtavdyD7ZDdtl5xN1q423eEKAEpHCT4M4wAUqzaVg0
- fDygQvRgKN21YtSSzkearB8OjGGShCPWddLOPf5wdFPM2kpIKbswcYd/R A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="393111702"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="393111702"
+ t=1701369613; x=1732905613;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=OJK4sjHroyeCtgqg+curPKrRgxtnkKuIYxhoJcYiWU0=;
+ b=B6jeLl67UHq6qHzoDqL66Y3cyMTtsMAPgsFnFCZkA4kLzHXdtdeLWyB/
+ 0fmws18ZQ/EI+UNsfVKa6RbpG2vGh5I77v32nZhnRyl1RoEQIUfbx7MW/
+ Un6FZPQstj6QUjILh2ENbdOxvL3KRKEi2KNDsKQfQrCYJ3s4zp5vJalbS
+ Uskf4YzBqXynkj3vy66xnDrYO07GtUa7jwEoJRM9Ewet+RfthciVDdATF
+ qKz87V5GnU4+1MHWpMHYrY84/JRGWdcJRsglsGdwfCHc/Y/+JrRHzhGu5
+ qbv3TfkDwK4/7KC24qnFB4nmkq/nEG3cmwZa3OA9ImIwfJY1Cenp1XYyl Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="393111717"
+X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="393111717"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 10:40:10 -0800
+ 30 Nov 2023 10:40:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="913294904"
-X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="913294904"
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="913294914"
+X-IronPort-AV: E=Sophos;i="6.04,239,1695711600"; d="scan'208";a="913294914"
 Received: from stefanwe-mobl.ger.corp.intel.com (HELO localhost.localdomain)
  ([10.252.60.146])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 10:40:09 -0800
+ 30 Nov 2023 10:40:12 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Nov 2023 18:39:39 +0000
-Message-Id: <20231130183955.7-1-francois.dugast@intel.com>
+Date: Thu, 30 Nov 2023 18:39:41 +0000
+Message-Id: <20231130183955.7-3-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231130183955.7-1-francois.dugast@intel.com>
+References: <20231130183955.7-1-francois.dugast@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 00/16] uAPI Alignment - Cleanup and future
- proof
+Subject: [Intel-xe] [PATCH v3 02/16] drm/xe/uapi: Separate bo_create
+ placement from flags
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,66 +58,90 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-The series "uAPI Alignment - take 2 v3" [1] has grown too much which makes
-it difficult to review and to digest by UMDs. This new series is a third
-break down, which cleans up the uAPI and prepares for future needs.
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
-Corresponding IGT series is here [2].
+Although the flags are about the creation, the memory placement
+of the BO deserves a proper dedicated field in the uapi.
 
-v2: Fix according to feedback from v1, rebase on drm-xe-next, add new fixes
+Besides getting more clear, it also allows to remove the
+'magic' shifts from the flags that was a concern during the
+uapi reviews.
 
-v3: Rebase, bundle other already reviewed uAPI changes
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c | 14 +++++++-------
+ include/uapi/drm/xe_drm.h  |  9 ++++++---
+ 2 files changed, 13 insertions(+), 10 deletions(-)
 
-[1] https://patchwork.freedesktop.org/series/126203/
-[2] https://patchwork.freedesktop.org/series/126537/
-
-Francois Dugast (3):
-  drm/xe/uapi: Align on a common way to return arrays (memory regions)
-  drm/xe/uapi: Align on a common way to return arrays (gt)
-  drm/xe/uapi: Align on a common way to return arrays (engines)
-
-José Roberto de Souza (1):
-  drm/xe: Make DRM_XE_DEVICE_QUERY_ENGINES future proof
-
-Mauro Carvalho Chehab (1):
-  drm/xe/uapi: Reject bo creation of unaligned size
-
-Mika Kuoppala (1):
-  drm/xe: Extend drm_xe_vm_bind_op
-
-Rodrigo Vivi (9):
-  drm/xe/uapi: Separate bo_create placement from flags
-  drm/xe/uapi: Split xe_sync types from flags
-  drm/xe/uapi: Kill tile_mask
-  drm/xe/uapi: Crystal Reference Clock updates
-  drm/xe/uapi: Add Tile ID information to the GT info query
-  drm/xe/uapi: Fix various struct padding for 64b alignment
-  drm/xe/uapi: Move xe_exec after xe_exec_queue
-  drm/xe: Remove unused extension definition
-  drm/xe/uapi: Kill exec_queue_set_property
-
-Thomas Hellström (1):
-  drm/xe/uapi: Use LR abbrev for long-running vms
-
- drivers/gpu/drm/xe/tests/xe_dma_buf.c |   8 +-
- drivers/gpu/drm/xe/xe_bo.c            |  38 ++--
- drivers/gpu/drm/xe/xe_device.c        |   2 -
- drivers/gpu/drm/xe/xe_exec_queue.c    |  38 ----
- drivers/gpu/drm/xe/xe_exec_queue.h    |   2 -
- drivers/gpu/drm/xe/xe_gt_clock.c      |   4 +-
- drivers/gpu/drm/xe/xe_gt_types.h      |   4 +-
- drivers/gpu/drm/xe/xe_query.c         |  87 +++++----
- drivers/gpu/drm/xe/xe_sync.c          |  23 +--
- drivers/gpu/drm/xe/xe_sync_types.h    |   1 +
- drivers/gpu/drm/xe/xe_vm.c            |  56 ++----
- drivers/gpu/drm/xe/xe_vm_types.h      |   2 -
- include/uapi/drm/xe_drm.h             | 267 +++++++++++++++-----------
- 13 files changed, 262 insertions(+), 270 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index d59501ffc22a..2715afe123d0 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -1844,15 +1844,15 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	    XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+ 		return -EINVAL;
+ 
++	/* at least one valid memory placement must be specified */
++	if (XE_IOCTL_DBG(xe, (args->placement & ~xe->info.mem_region_mask) ||
++			 !args->placement))
++		return -EINVAL;
++
+ 	if (XE_IOCTL_DBG(xe, args->flags &
+ 			 ~(DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING |
+ 			   DRM_XE_GEM_CREATE_FLAG_SCANOUT |
+-			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM |
+-			   xe->info.mem_region_mask)))
+-		return -EINVAL;
+-
+-	/* at least one memory type must be specified */
+-	if (XE_IOCTL_DBG(xe, !(args->flags & xe->info.mem_region_mask)))
++			   DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM)))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->handle))
+@@ -1874,7 +1874,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_SCANOUT)
+ 		bo_flags |= XE_BO_SCANOUT_BIT;
+ 
+-	bo_flags |= args->flags << (ffs(XE_BO_CREATE_SYSTEM_BIT) - 1);
++	bo_flags |= args->placement << (ffs(XE_BO_CREATE_SYSTEM_BIT) - 1);
+ 
+ 	if (args->flags & DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM) {
+ 		if (XE_IOCTL_DBG(xe, !(bo_flags & XE_BO_CREATE_VRAM_MASK)))
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index 916aaa686689..20bf2aa89e2c 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -500,8 +500,11 @@ struct drm_xe_gem_create {
+ 	 */
+ 	__u64 size;
+ 
+-#define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(0x1 << 24)
+-#define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(0x1 << 25)
++	/** @placement: A mask of memory instances of where BO can be placed. */
++	__u32 placement;
++
++#define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
++#define DRM_XE_GEM_CREATE_FLAG_SCANOUT			(1 << 1)
+ /*
+  * When using VRAM as a possible placement, ensure that the corresponding VRAM
+  * allocation will always use the CPU accessible part of VRAM. This is important
+@@ -517,7 +520,7 @@ struct drm_xe_gem_create {
+  * display surfaces, therefore the kernel requires setting this flag for such
+  * objects, otherwise an error is thrown on small-bar systems.
+  */
+-#define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(0x1 << 26)
++#define DRM_XE_GEM_CREATE_FLAG_NEEDS_VISIBLE_VRAM	(1 << 2)
+ 	/**
+ 	 * @flags: Flags, currently a mask of memory instances of where BO can
+ 	 * be placed
 -- 
 2.34.1
 
