@@ -4,30 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4C6A3C4167B
-	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 08:16:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C633C10DC1
+	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 08:38:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1CD310E116;
-	Thu, 30 Nov 2023 08:16:11 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 64D3A10E116;
- Thu, 30 Nov 2023 08:16:10 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 5BD5FA47DF;
- Thu, 30 Nov 2023 08:16:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8782764258558976610=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5EE7910E6BE;
+	Thu, 30 Nov 2023 08:38:41 +0000 (UTC)
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2962A10E6BE;
+ Thu, 30 Nov 2023 08:38:39 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by dfw.source.kernel.org (Postfix) with ESMTP id 3D6B361DE9;
+ Thu, 30 Nov 2023 08:38:38 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91EB2C433D9;
+ Thu, 30 Nov 2023 08:38:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1701333517;
+ bh=3f4PCKBuYDS/P+l0eRzusj//XC10y90AiINJ1mwoS5k=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=jgFgs5aVUNhfK5jkDO9qxnDY8SRhyumOnhAACdENGLLOYbGJQPVRyOmnK/ZGTJh7N
+ e1TWBDOH78S7vCbQIuej8kLVz/UnZ86ksZaKP8ELS9Z3/kPjPl9zsGRtuiq6bXNw2H
+ 1HOD4a0EoBB0VfDeTFq7WySrabzTPiZEIbZeAaXRBP7s56ZJJw77fvOCjjTgRNwsDs
+ zMCYch69i3eu/l34rjgX8C42XoEEvkP+kNrBav+g4Vs5yfI0TEbKmrTsfsXsehYOkF
+ Y1MLo/ca0CZ5EpM+87EOkEngCeR/qvlmPv2rG4WxaZahjMaOnBxZg1YsbeFWJn7yat
+ hgxIC+mDareKQ==
+Date: Thu, 30 Nov 2023 09:38:35 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: =?utf-8?Q?Micha=C5=82?= Winiarski <michal.winiarski@intel.com>
+Message-ID: <3sio7356dxi5nbld2eupih3rzazvef4ebusrpdrhabnpg7pns4@5zxfnd4az4li>
+References: <20231129221412.1180549-1-michal.winiarski@intel.com>
+ <20231129221412.1180549-3-michal.winiarski@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Date: Thu, 30 Nov 2023 08:16:10 -0000
-Message-ID: <170133217034.15643.1245428180131586522@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231130071407.606176-1-animesh.manna@intel.com>
-In-Reply-To: <20231130071407.606176-1-animesh.manna@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_DSB_refac?=
- =?utf-8?q?toring_=28rev2=29?=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="nal4dtzzote2yu2x"
+Content-Disposition: inline
+In-Reply-To: <20231129221412.1180549-3-michal.winiarski@intel.com>
+Subject: Re: [Intel-xe] [PATCH 2/2] drm/tests: managed: Add a simple test
+ for drmm_managed_release
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,162 +51,149 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Daniel Vetter <daniel@ffwll.ch>,
+ =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Javier Martinez Canillas <javierm@redhat.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ David Airlie <airlied@gmail.com>, intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============8782764258558976610==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+--nal4dtzzote2yu2x
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Series: DSB refactoring (rev2)
-URL   : https://patchwork.freedesktop.org/series/127049/
-State : success
+Hi,
 
-== Summary ==
+Thanks for creating a test for that, that's really appreciated :)
 
-CI Bug Log - changes from xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5_BAT -> xe-pw-127049v2_BAT
-====================================================
+On Wed, Nov 29, 2023 at 11:14:12PM +0100, Micha=C5=82 Winiarski wrote:
+> Add a simple test that checks whether the action is indeed called right
+> away and that it is not called on the final drm_dev_put().
+>=20
+> Signed-off-by: Micha=C5=82 Winiarski <michal.winiarski@intel.com>
+> ---
+>  drivers/gpu/drm/tests/drm_managed_test.c | 65 ++++++++++++++++++------
+>  1 file changed, 50 insertions(+), 15 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/tests/drm_managed_test.c b/drivers/gpu/drm/t=
+ests/drm_managed_test.c
+> index 1652dca11d30c..a645ea42aee56 100644
+> --- a/drivers/gpu/drm/tests/drm_managed_test.c
+> +++ b/drivers/gpu/drm/tests/drm_managed_test.c
+> @@ -12,6 +12,8 @@
+>  #define TEST_TIMEOUT_MS	100
+> =20
+>  struct managed_test_priv {
+> +	struct drm_device *drm;
+> +	struct device *dev;
+>  	bool action_done;
+>  	wait_queue_head_t action_wq;
+>  };
+> @@ -26,42 +28,75 @@ static void drm_action(struct drm_device *drm, void *=
+ptr)
+> =20
+>  static void drm_test_managed_run_action(struct kunit *test)
+>  {
+> -	struct managed_test_priv *priv;
+> -	struct drm_device *drm;
+> -	struct device *dev;
+> +	struct managed_test_priv *priv =3D test->priv;
+>  	int ret;
+> =20
+> -	priv =3D kunit_kzalloc(test, sizeof(*priv), GFP_KERNEL);
+> -	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv);
+> -	init_waitqueue_head(&priv->action_wq);
+> +	ret =3D drmm_add_action_or_reset(priv->drm, drm_action, priv);
+> +	KUNIT_EXPECT_EQ(test, ret, 0);
+> =20
+> -	dev =3D drm_kunit_helper_alloc_device(test);
+> -	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, dev);
+> +	ret =3D drm_dev_register(priv->drm, 0);
+> +	KUNIT_ASSERT_EQ(test, ret, 0);
+> +
+> +	drm_dev_unregister(priv->drm);
+> +	drm_kunit_helper_free_device(test, priv->dev);
 
-Summary
--------
+I think we'll need two patches here, one to convert to having an init
+function, and one to actually add the new test, it's pretty confusing as
+it is.
 
-  **SUCCESS**
+> =20
+> -	drm =3D __drm_kunit_helper_alloc_drm_device(test, dev, sizeof(*drm), 0,=
+ DRIVER_MODESET);
+> -	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, drm);
+> +	ret =3D wait_event_interruptible_timeout(priv->action_wq, priv->action_=
+done,
+> +					       msecs_to_jiffies(TEST_TIMEOUT_MS));
+> +	KUNIT_EXPECT_GT(test, ret, 0);
+> +}
+> =20
+> -	ret =3D drmm_add_action_or_reset(drm, drm_action, priv);
+> +static void drm_test_managed_release_action(struct kunit *test)
+> +{
+> +	struct managed_test_priv *priv =3D test->priv;
+> +	int ret;
+> +
+> +	ret =3D drmm_add_action_or_reset(priv->drm, drm_action, priv);
+>  	KUNIT_EXPECT_EQ(test, ret, 0);
+> =20
+> -	ret =3D drm_dev_register(drm, 0);
+> +	ret =3D drm_dev_register(priv->drm, 0);
+>  	KUNIT_ASSERT_EQ(test, ret, 0);
+> =20
+> -	drm_dev_unregister(drm);
+> -	drm_kunit_helper_free_device(test, dev);
+> +	drmm_release_action(priv->drm, drm_action, priv);
+> +	KUNIT_EXPECT_TRUE(test, priv->action_done);
+> +	priv->action_done =3D false;
+> +
+> +	drm_dev_unregister(priv->drm);
+> +	drm_kunit_helper_free_device(test, priv->dev);
+> =20
+>  	ret =3D wait_event_interruptible_timeout(priv->action_wq, priv->action_=
+done,
+>  					       msecs_to_jiffies(TEST_TIMEOUT_MS));
+> -	KUNIT_EXPECT_GT(test, ret, 0);
+> +	KUNIT_EXPECT_EQ(test, ret, 0);
+> +}
+> +
+> +static int drm_managed_test_init(struct kunit *test)
+> +{
+> +	struct managed_test_priv *priv;
+> +
+> +	priv =3D kunit_kzalloc(test, sizeof(*priv), GFP_KERNEL);
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv);
+> +	init_waitqueue_head(&priv->action_wq);
 
-  No regressions found.
+Also, I know that it was there before, but I'm not sure it's valid from
+a lifetime point of view. Or at least, we have to think hard enough
+about it to just remove that construct
 
-  
+> +	priv->dev =3D drm_kunit_helper_alloc_device(test);
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv->dev);
+> +
+> +	priv->drm =3D __drm_kunit_helper_alloc_drm_device(test, priv->dev, size=
+of(*priv->drm),
+> +							0, DRIVER_MODESET);
+> +	KUNIT_ASSERT_NOT_ERR_OR_NULL(test, priv->drm);
 
-Participating hosts (4 -> 4)
-------------------------------
+For example by storing the drm_device struct in the priv structure
+directly, and thus everything will just work out.
 
-  No changes in participating hosts
+Maxime
 
-Known issues
-------------
+--nal4dtzzote2yu2x
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  Here are the changes found in xe-pw-127049v2_BAT that come from known issues:
+-----BEGIN PGP SIGNATURE-----
 
-### IGT changes ###
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZWhKCgAKCRDj7w1vZxhR
+xb1nAQDoFA7eK6k4vMebPc69Mn8c5dpfEOdMUwahXkSWMEL/vQD/WmVgGnKC+weA
+C/jQ19tn3571o1sQ/8HEgSUsEmQh3w0=
+=L/hk
+-----END PGP SIGNATURE-----
 
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-adlp-7:         [FAIL][1] ([Intel XE#480]) -> [PASS][2] +2 other tests pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127049v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * {igt@xe_create@create-execqueues-leak}:
-    - bat-atsm-2:         [FAIL][3] ([Intel XE#524]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127049v2/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-
-  
-#### Warnings ####
-
-  * igt@kms_frontbuffer_tracking@basic:
-    - bat-adlp-7:         [DMESG-FAIL][5] ([Intel XE#282] / [i915#2017]) -> [DMESG-WARN][6] ([Intel XE#282] / [i915#2017])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127049v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html
-
-  
-  {name}: This element is suppressed. This means it is ignored when computing
-          the status of the difference (SUCCESS, WARNING, or FAILURE).
-
-  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
-
-
-Build changes
--------------
-
-  * Linux: xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5 -> xe-pw-127049v2
-
-  IGT_7610: 7610
-  xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5: ff1db4de1e4054052fbf99ef307757fd2bc74df5
-  xe-pw-127049v2: 127049v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127049v2/index.html
-
---===============8782764258558976610==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>DSB refactoring (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127049/">https://patchwork.freedesktop.org/series/127049/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127049v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127049v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5_BAT -&gt; xe-pw-127049v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-127049v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127049v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>{igt@xe_create@create-execqueues-leak}:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127049v2/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_frontbuffer_tracking@basic:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127049v2/bat-adlp-7/igt@kms_frontbuffer_tracking@basic.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>)</li>
-</ul>
-</li>
-</ul>
-<p>{name}: This element is suppressed. This means it is ignored when computing<br />
-          the status of the difference (SUCCESS, WARNING, or FAILURE).</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5 -&gt; xe-pw-127049v2</li>
-</ul>
-<p>IGT_7610: 7610<br />
-  xe-537-ff1db4de1e4054052fbf99ef307757fd2bc74df5: ff1db4de1e4054052fbf99ef307757fd2bc74df5<br />
-  xe-pw-127049v2: 127049v2</p>
-
-</body>
-</html>
-
---===============8782764258558976610==--
+--nal4dtzzote2yu2x--
