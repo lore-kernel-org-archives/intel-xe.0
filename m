@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 1674DC4167B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7FA47C10DC2
 	for <intel-xe@archiver.kernel.org>; Thu, 30 Nov 2023 07:27:04 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E17B610E6BE;
-	Thu, 30 Nov 2023 07:27:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D35710E6BF;
+	Thu, 30 Nov 2023 07:27:04 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10AFC10E6BC
- for <intel-xe@lists.freedesktop.org>; Thu, 30 Nov 2023 07:26:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B163410E6BD
+ for <intel-xe@lists.freedesktop.org>; Thu, 30 Nov 2023 07:26:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701329217; x=1732865217;
+ t=1701329219; x=1732865219;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9r4OsbtuKW6MFIBLni9Jb9TxtqHxuNxhX0CwOyjWO/s=;
- b=OPlLe/+iyF8NNLEM/xQmnMKpsAHS/bHfDzW6VcG9/jzct7DNQnDj3yaN
- wBrf4ZwO5EhElcR+xYPiXVxD/Hpmoc+B5ojTlL0e+yWQLPNyYJshWVswK
- wVVsV/95VqSKXxK4Q5nb1Hrf2hSt95PmHFDVvk57Jr0kIA5MzMjyGu0gq
- Xt0wsxHI7KrgryRYtczmtXyiqlItbHVpc+2NbtMZP4wLbqFsTnedHV0ye
- zvV+VyJYOuMLG400RhJtw/SmOXnJHEANtflELubRtLCHWAxCIuHg1xVBl
- moI35arZ+f/V6Ejx/6C9eb4jHf8TCiCOXjz12PLhl/mM4zieA5WvRKmbh Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="390442157"
-X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="390442157"
+ bh=ec9LKdxL2xDNyfboKYeZIe6iI2l2xPpp37kkwmaqg8g=;
+ b=gHADztDffg0L8asjJY5DV+0t8+W9Fej+l5gmHLI1bw7BoARHHOlRMXYS
+ aGwRAmky3BuJ63S6UwFwGGDH6ogtbwTuBP+90Cu5Wu94hpmlP+fzpmaA0
+ TDruhlY+GuzZz7PdL50iM/4YnItq0QvPFu+Hk0WV8Ug7BxmQ/fbjWVomR
+ 5HhTF2xukBsju5u4u0XtnZlHrUkrpOeZjuwKJzuOvXkBWbNLPpPg1tIUY
+ toKc6XJJqNSqVIRDtETDeBmS3UWJTtQ1yi7Usbkv/xn8Y5pHNc/bDQYDV
+ RoMOpOE7Gj6YraryrllVtEIzxG3iFlnD5T2z+V/5uMpQGvr737GSn/Cjo A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10909"; a="390442161"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="390442161"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Nov 2023 23:26:56 -0800
+ 29 Nov 2023 23:26:58 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="17290783"
+X-IronPort-AV: E=Sophos;i="6.04,237,1695711600"; d="scan'208";a="17290786"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa001.jf.intel.com with ESMTP; 29 Nov 2023 23:26:55 -0800
+ by orviesa001.jf.intel.com with ESMTP; 29 Nov 2023 23:26:57 -0800
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu, 30 Nov 2023 12:44:04 +0530
-Message-Id: <20231130071407.606176-4-animesh.manna@intel.com>
+Date: Thu, 30 Nov 2023 12:44:05 +0530
+Message-Id: <20231130071407.606176-5-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20231130071407.606176-1-animesh.manna@intel.com>
 References: <20231130071407.606176-1-animesh.manna@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 3/6] drm/i915/dsb: Correct DSB command buffer
- cache coherency settings
+Subject: [Intel-xe] [PATCH v2 4/6] drm/i915/dsb: Re-instate DSB for LUT
+ updates
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,73 +61,31 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The display engine does not snoop the caches so we should mark
-the DSB command buffer as I915_CACHE_NONE.
-i915_gem_object_create_internal() always gives us I915_CACHE_LLC
-on LLC platforms. And to make things 100% correct we should also
-clflush at the end, if necessary.
+With all the known issues sorted out we can start to use
+DSB to load the LUTs.
 
-Note that currently this is a non-issue as we always write the
-command buffer through a WC mapping, so a cache flush is not actually
-needed. But we might actually want to consider a WB mapping since
-we also end up reading from the command buffer (in the indexed
-reg write handling). Either that or we should do something else
-to avoid those reads (might actually be even more sensible on DGFX
-since we end up reading over PCIe). But we should measure the overhead
-first...
-
-Anyways, no real harm in adding the belts and suspenders here so
-that the code will work correctly regardless of how we map the
-buffer. If we do get a WC mapping (as we request)
-i915_gem_object_flush_map() will be a nop. Well, apart form
-a wmb() which may just flush the WC buffer a bit earlier
-than would otherwise happen (at the latest the mmio accesses
-would trigger the WC flush).
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20231009132204.15098-2-ville.syrjala@linux.intel.com
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-(cherry picked from commit 631b117ea8c3b7d4ec21ece69be6c465e79330fa)
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20231009132204.15098-3-ville.syrjala@linux.intel.com
+(cherry picked from commit 34d8311f4a1c464ae0ce4470f2e3932c1a40d83e)
 ---
- drivers/gpu/drm/i915/display/intel_dsb.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 7410ba3126f9..78b6fe24dcd8 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -316,6 +316,8 @@ void intel_dsb_finish(struct intel_dsb *dsb)
- 				   DSB_FORCE_DEWAKE, 0);
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index 4f92fc31059f..40b04aa7d98c 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -1895,9 +1895,6 @@ void intel_color_prepare_commit(struct intel_crtc_state *crtc_state)
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
  
- 	intel_dsb_align_tail(dsb);
-+
-+	i915_gem_object_flush_map(dsb->vma->obj);
- }
- 
- static int intel_dsb_dewake_scanline(const struct intel_crtc_state *crtc_state)
-@@ -462,13 +464,18 @@ struct intel_dsb *intel_dsb_prepare(const struct intel_crtc_state *crtc_state,
- 	/* ~1 qword per instruction, full cachelines */
- 	size = ALIGN(max_cmds * 8, CACHELINE_BYTES);
- 
--	if (HAS_LMEM(i915))
-+	if (HAS_LMEM(i915)) {
- 		obj = i915_gem_object_create_lmem(i915, PAGE_ALIGN(size),
- 						  I915_BO_ALLOC_CONTIGUOUS);
--	else
-+		if (IS_ERR(obj))
-+			goto out_put_rpm;
-+	} else {
- 		obj = i915_gem_object_create_internal(i915, PAGE_ALIGN(size));
--	if (IS_ERR(obj))
--		goto out_put_rpm;
-+		if (IS_ERR(obj))
-+			goto out_put_rpm;
-+
-+		i915_gem_object_set_cache_coherency(obj, I915_CACHE_NONE);
-+	}
- 
- 	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, 0);
- 	if (IS_ERR(vma)) {
+-	/* FIXME DSB has issues loading LUTs, disable it for now */
+-	return;
+-
+ 	if (!crtc_state->hw.active ||
+ 	    intel_crtc_needs_modeset(crtc_state))
+ 		return;
 -- 
 2.29.0
 
