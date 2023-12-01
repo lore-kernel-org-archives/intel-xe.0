@@ -4,48 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 757B6C4167B
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Dec 2023 09:27:00 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 17415C4167B
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Dec 2023 09:27:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17A2710E82A;
-	Fri,  1 Dec 2023 09:27:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD2410E0C4;
+	Fri,  1 Dec 2023 09:27:05 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A943910E82A
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Dec 2023 09:26:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B672210E82D
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Dec 2023 09:27:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701422817; x=1732958817;
+ t=1701422822; x=1732958822;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ec9LKdxL2xDNyfboKYeZIe6iI2l2xPpp37kkwmaqg8g=;
- b=FL+H77As4YU4tl1PcQMw8zJS/IyDZheKwt/YU1HDBxyXG3Ka9Uj0EOgI
- F/IIU8t2xycemZ6FK8vn24k0rV03Lx5Qq2ZSzeJA3gc1UI/X6ur65nYRS
- zH/ppjvBCf3bZ6wMM3/KRrH7IoZfdpFfIOys4u7EkYteMP6LpVXxdpdcY
- MWRjUEQ6062lhHOZmjF8oHPqvsKuCMcwD9qvdtqfkNKHf/bhrqsSKHjmb
- UUxgf9KujsxujbfgxoNqJoOA/7BLj0YZGJgAF/muBRxN/wYw4wQYkpD0+
- i3He4QLlH3jfkbQDU+2sDYI6cj4K8hbDpjWPlyyg8j7b/xTzRENPHDb1+ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="378499052"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="378499052"
+ bh=psTBjLuozQSjccYvVgatmdwNt58lWx1KbcigF5QY0Wk=;
+ b=a6B4XPTBzRhDAU/TYILtDJ8zT6Qp0+lYq13FvJwS0Sdfjzt1hkCMsMFy
+ uiYonvhgcVDLnC0JS4cZO3TgW6fwVoFrCDdzd8OSvlrYPssdfGr0MTcAm
+ HkPuUI2oO/YvmJ5tK7XJDEAYXsk7+FM6LGGyTBa6g9iJzePIXVzv0yqRc
+ raY2mddl0mBegKnV1hv7TXSb/NVWx0bsC2kCu8bxzE5RvcLq53/h7sWWh
+ 74Pa+4sEIyzkMqgCujzcahhIcNgn2b4df8he/RJq1XuAiESqd1dFyk1DZ
+ RAuL8VvyfZz8P2/UbvkeCyCkjc1/pTi3krFj45se1V7o8KG49Apc+6cAu A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="378499160"
+X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="378499160"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2023 01:26:57 -0800
+ 01 Dec 2023 01:27:02 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="798655783"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="798655783"
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="798655839"
+X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="798655839"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orsmga008.jf.intel.com with ESMTP; 01 Dec 2023 01:26:56 -0800
+ by orsmga008.jf.intel.com with ESMTP; 01 Dec 2023 01:27:01 -0800
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Fri,  1 Dec 2023 14:44:03 +0530
-Message-Id: <20231201091405.658548-5-animesh.manna@intel.com>
+Date: Fri,  1 Dec 2023 14:44:05 +0530
+Message-Id: <20231201091405.658548-7-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20231201091405.658548-1-animesh.manna@intel.com>
 References: <20231201091405.658548-1-animesh.manna@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 4/6] drm/i915/dsb: Re-instate DSB for LUT
- updates
+Subject: [Intel-xe] [PATCH v3 6/6] drm/xe/dsb: DSB implementation for xe
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,33 +58,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Add xe specific DSB buffer handling methods.
 
-With all the known issues sorted out we can start to use
-DSB to load the LUTs.
+v1: Initial version.
+v2: Add null check after dynamic memory allocation of vma. [Uma]
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20231009132204.15098-3-ville.syrjala@linux.intel.com
-(cherry picked from commit 34d8311f4a1c464ae0ce4470f2e3932c1a40d83e)
+Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_color.c | 3 ---
- 1 file changed, 3 deletions(-)
+ drivers/gpu/drm/xe/Makefile                |  1 +
+ drivers/gpu/drm/xe/display/xe_dsb_buffer.c | 71 ++++++++++++++++++++++
+ 2 files changed, 72 insertions(+)
+ create mode 100644 drivers/gpu/drm/xe/display/xe_dsb_buffer.c
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 4f92fc31059f..40b04aa7d98c 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -1895,9 +1895,6 @@ void intel_color_prepare_commit(struct intel_crtc_state *crtc_state)
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
- 
--	/* FIXME DSB has issues loading LUTs, disable it for now */
--	return;
--
- 	if (!crtc_state->hw.active ||
- 	    intel_crtc_needs_modeset(crtc_state))
- 		return;
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 666024f316f6..87f3fca0c0ee 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -166,6 +166,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	display/xe_plane_initial.o \
+ 	display/xe_display_rps.o \
+ 	display/xe_display_misc.o \
++	display/xe_dsb_buffer.o \
+ 	display/intel_fbdev_fb.o \
+ 	display/ext/i915_irq.o \
+ 	display/ext/i915_utils.o
+diff --git a/drivers/gpu/drm/xe/display/xe_dsb_buffer.c b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+new file mode 100644
+index 000000000000..27c2fb1c002a
+--- /dev/null
++++ b/drivers/gpu/drm/xe/display/xe_dsb_buffer.c
+@@ -0,0 +1,71 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright 2023, Intel Corporation.
++ */
++
++#include "i915_drv.h"
++#include "i915_vma.h"
++#include "intel_display_types.h"
++#include "intel_dsb_buffer.h"
++#include "xe_bo.h"
++#include "xe_gt.h"
++
++u32 intel_dsb_buffer_ggtt_offset(struct intel_dsb_buffer *dsb_buf)
++{
++	return xe_bo_ggtt_addr(dsb_buf->vma->bo);
++}
++
++void intel_dsb_buffer_write(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val)
++{
++	iosys_map_wr(&dsb_buf->vma->bo->vmap, idx * 4, u32, val);
++}
++
++u32 intel_dsb_buffer_read(struct intel_dsb_buffer *dsb_buf, u32 idx)
++{
++	return iosys_map_rd(&dsb_buf->vma->bo->vmap, idx * 4, u32);
++}
++
++void intel_dsb_buffer_memset(struct intel_dsb_buffer *dsb_buf, u32 idx, u32 val, size_t size)
++{
++	WARN_ON(idx > (dsb_buf->buf_size - size) / sizeof(*dsb_buf->cmd_buf));
++
++	iosys_map_memset(&dsb_buf->vma->bo->vmap, idx * 4, val, size);
++}
++
++bool intel_dsb_buffer_create(struct intel_crtc *crtc, struct intel_dsb_buffer *dsb_buf, size_t size)
++{
++	struct drm_i915_private *i915 = to_i915(crtc->base.dev);
++	struct drm_i915_gem_object *obj;
++	struct i915_vma *vma;
++
++	vma = kzalloc(sizeof(*vma), GFP_KERNEL);
++	if (!vma)
++		return false;
++
++	obj = xe_bo_create_pin_map(i915, xe_device_get_root_tile(i915),
++				   NULL, PAGE_ALIGN(size),
++				   ttm_bo_type_kernel,
++				   XE_BO_CREATE_VRAM_IF_DGFX(xe_device_get_root_tile(i915)) |
++				   XE_BO_CREATE_GGTT_BIT);
++	if (IS_ERR(obj)) {
++		kfree(vma);
++		return false;
++	}
++
++	vma->bo = obj;
++	dsb_buf->vma = vma;
++	dsb_buf->buf_size = size;
++
++	return true;
++}
++
++void intel_dsb_buffer_cleanup(struct intel_dsb_buffer *dsb_buf)
++{
++	xe_bo_unpin_map_no_vm(dsb_buf->vma->bo);
++	kfree(dsb_buf->vma);
++}
++
++void intel_dsb_buffer_flush_map(struct intel_dsb_buffer *dsb_buf)
++{
++	/* TODO: add xe specific flush_map() for dsb buffer object. */
++}
 -- 
 2.29.0
 
