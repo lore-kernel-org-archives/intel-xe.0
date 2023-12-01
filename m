@@ -4,55 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EBDFFC4167B
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Dec 2023 14:28:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 79037C4167B
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Dec 2023 14:49:23 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88BD210E108;
-	Fri,  1 Dec 2023 14:28:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C21A10E108
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Dec 2023 14:28:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701440904; x=1732976904;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=7AByQ06r1Cao4D6MnnMMBQb1RzYwSU5RGgb+HzWP9CY=;
- b=XqAKJrOLqAwVYlS+RU7znrkHNaURFeNX67Bll1lko5MgASdgN8vsk5pT
- z5eapLT3xGDNKo72p0GaMXoDmcbbYKvhYiySU98xqiEyY6jGECTEpByKo
- u9HUUJa2+MfAK51KDS8FnfF8iIQFL9/01Cv51VissOiqhHgStdkO7R6ae
- QT0kJwQQqEICYHDUEID+MoODo9ajyEbN1rtknIcq6x4OpGaOxh/dQG2DB
- i7WS5O1czyNrIcw1De5DtwhVz+D0vJFGzfyHZ1AviWDQTndgyBpaUjklK
- o49RmD1yjDcAYYWZK8z45jg9CuWkf5BHrv8FIwdskl2OF0Og1fb597d4L w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10911"; a="424660591"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="424660591"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
- by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Dec 2023 06:28:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10911"; a="860573580"
-X-IronPort-AV: E=Sophos;i="6.04,241,1695711600"; d="scan'208";a="860573580"
-Received: from irvmail002.ir.intel.com ([10.43.11.120])
- by FMSMGA003.fm.intel.com with ESMTP; 01 Dec 2023 06:28:17 -0800
-Received: from [10.249.142.37] (mwajdecz-MOBL.ger.corp.intel.com
- [10.249.142.37])
- by irvmail002.ir.intel.com (Postfix) with ESMTP id 631563B583;
- Fri,  1 Dec 2023 14:28:16 +0000 (GMT)
-Message-ID: <493d1a6f-35b4-4670-a65e-771bc7237fdb@intel.com>
-Date: Fri, 1 Dec 2023 15:28:15 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1601410E121;
+	Fri,  1 Dec 2023 14:49:23 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 6173B10E121;
+ Fri,  1 Dec 2023 14:49:08 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 9A03FAADEA;
+ Fri,  1 Dec 2023 14:49:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4304821021500505509=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-To: =?UTF-8?Q?Micha=C5=82_Winiarski?= <michal.winiarski@intel.com>,
- intel-xe@lists.freedesktop.org
-References: <20231129214509.1174116-1-michal.winiarski@intel.com>
- <20231129214509.1174116-10-michal.winiarski@intel.com>
-Content-Language: en-US
-From: Michal Wajdeczko <michal.wajdeczko@intel.com>
-In-Reply-To: <20231129214509.1174116-10-michal.winiarski@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [CI 10/14] drm/xe/device: Introduce
- xe_device_probe_early
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
+Date: Fri, 01 Dec 2023 14:49:06 -0000
+Message-ID: <170144214660.19690.16528906651367060070@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231201134133.3356433-1-jouni.hogander@intel.com>
+In-Reply-To: <20231201134133.3356433-1-jouni.hogander@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_fixup!_FI?=
+ =?utf-8?q?XME=3A_drm/i915/display=3A_Remaining_changes_to_make_xe_compile?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,228 +39,130 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Matt Roper <matthew.d.roper@intel.com>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4304821021500505509==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+== Series Details ==
+
+Series: fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
+URL   : https://patchwork.freedesktop.org/series/127193/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from xe-544-a8b405ffc0326c79abf737389d99c290648f381d_BAT -> xe-pw-127193v1_BAT
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-127193v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-adlp-7:         [PASS][1] -> [FAIL][2] ([Intel XE#480]) +1 other test fail
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-544-a8b405ffc0326c79abf737389d99c290648f381d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127193v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
 
 
-On 29.11.2023 22:45, Michał Winiarski wrote:
-> SR-IOV VF doesn't have access to MMIO registers used to determine
-> graphics/media ID. It can however communicate with GuC.
-> Introduce xe_device_probe_early, which initializes enough HW to use
-> MMIO GuC communication.
-> This will allow both VF and PF/native driver to have unified probe
-> ordering.
-> 
-> Signed-off-by: Michał Winiarski <michal.winiarski@intel.com>
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-> Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-> ---
->  drivers/gpu/drm/xe/xe_device.c | 22 ++++++++++++++++++----
->  drivers/gpu/drm/xe/xe_device.h |  5 +++++
->  drivers/gpu/drm/xe/xe_mmio.c   | 16 ++++++++++------
->  drivers/gpu/drm/xe/xe_mmio.h   |  1 +
->  drivers/gpu/drm/xe/xe_pci.c    | 26 +++++++++++++++++++++-----
->  5 files changed, 55 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-> index 5e1f73c8c77ad..f4be4b13a506e 100644
-> --- a/drivers/gpu/drm/xe/xe_device.c
-> +++ b/drivers/gpu/drm/xe/xe_device.c
-> @@ -375,6 +375,24 @@ static int xe_set_dma_info(struct xe_device *xe)
->  	return err;
->  }
->  
-> +/*
-> + * Initialize MMIO resources that don't require any knowledge about tile count.
-> + */
-> +int xe_device_probe_early(struct xe_device *xe)
-> +{
-> +	int err;
-> +
-> +	err = xe_mmio_init(xe);
-> +	if (err)
-> +		return err;
-> +
-> +	err = xe_mmio_root_tile_init(xe);
-> +	if (err)
-> +		return err;
-> +
-> +	return 0;
-> +}
-> +
->  int xe_device_probe(struct xe_device *xe)
->  {
->  	struct xe_tile *tile;
-> @@ -393,10 +411,6 @@ int xe_device_probe(struct xe_device *xe)
->  	if (err)
->  		return err;
->  
-> -	err = xe_mmio_init(xe);
-> -	if (err)
-> -		return err;
-> -
->  	xe_mmio_probe_tiles(xe);
->  
->  	err = drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, xe);
-> diff --git a/drivers/gpu/drm/xe/xe_device.h b/drivers/gpu/drm/xe/xe_device.h
-> index 54694f98c91a2..3da83b2332063 100644
-> --- a/drivers/gpu/drm/xe/xe_device.h
-> +++ b/drivers/gpu/drm/xe/xe_device.h
-> @@ -37,6 +37,7 @@ static inline struct xe_device *ttm_to_xe_device(struct ttm_device *ttm)
->  
->  struct xe_device *xe_device_create(struct pci_dev *pdev,
->  				   const struct pci_device_id *ent);
-> +int xe_device_probe_early(struct xe_device *xe);
->  int xe_device_probe(struct xe_device *xe);
->  void xe_device_remove(struct xe_device *xe);
->  void xe_device_shutdown(struct xe_device *xe);
-> @@ -123,6 +124,10 @@ static inline bool xe_device_uc_enabled(struct xe_device *xe)
->  	for ((id__) = 0; (id__) < (xe__)->info.tile_count; (id__)++) \
->  		for_each_if((tile__) = &(xe__)->tiles[(id__)])
->  
-> +#define for_each_remote_tile(tile__, xe__, id__) \
-> +	for ((id__) = 1; (id__) < (xe__)->info.tile_count; (id__)++) \
-> +		for_each_if((tile__) = &(xe__)->tiles[(id__)])
-> +
->  /*
->   * FIXME: This only works for now since multi-tile and standalone media
->   * happen to be mutually exclusive.  Future platforms may change this...
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
-> index d1b59021c9712..6148c9da4f64e 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.c
-> +++ b/drivers/gpu/drm/xe/xe_mmio.c
-> @@ -15,10 +15,12 @@
->  #include "regs/xe_regs.h"
->  #include "xe_bo.h"
->  #include "xe_device.h"
-> +#include "xe_ggtt.h"
->  #include "xe_gt.h"
->  #include "xe_gt_mcr.h"
->  #include "xe_macros.h"
->  #include "xe_module.h"
-> +#include "xe_tile.h"
->  
->  #define XEHP_MTCFG_ADDR		XE_REG(0x101800)
->  #define TILE_COUNT		REG_GENMASK(15, 8)
-> @@ -376,10 +378,8 @@ static int xe_verify_lmem_ready(struct xe_device *xe)
->  
->  int xe_mmio_init(struct xe_device *xe)
->  {
-> -	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
->  	struct pci_dev *pdev = to_pci_dev(xe->drm.dev);
->  	const int mmio_bar = 0;
-> -	int err;
->  
->  	/*
->  	 * Map the entire BAR.
-> @@ -393,12 +393,16 @@ int xe_mmio_init(struct xe_device *xe)
->  		return -EIO;
->  	}
->  
-> -	err = drmm_add_action_or_reset(&xe->drm, mmio_fini, xe);
-> -	if (err)
-> -		return err;
-> +	return drmm_add_action_or_reset(&xe->drm, mmio_fini, xe);
-> +}
-> +
-> +int xe_mmio_root_tile_init(struct xe_device *xe)
-> +{
-> +	struct xe_tile *root_tile = xe_device_get_root_tile(xe);
-> +	int err;
->  
->  	/* Setup first tile; other tiles (if present) will be setup later. */
-> -	root_tile->mmio.size = xe->mmio.size;
-> +	root_tile->mmio.size = SZ_16M;
->  	root_tile->mmio.regs = xe->mmio.regs;
->  
->  	err = xe_verify_lmem_ready(xe);
-> diff --git a/drivers/gpu/drm/xe/xe_mmio.h b/drivers/gpu/drm/xe/xe_mmio.h
-> index c054c27f6925d..98de5c13c89ba 100644
-> --- a/drivers/gpu/drm/xe/xe_mmio.h
-> +++ b/drivers/gpu/drm/xe/xe_mmio.h
-> @@ -21,6 +21,7 @@ struct xe_device;
->  #define LMEM_BAR		2
->  
->  int xe_mmio_init(struct xe_device *xe);
-> +int xe_mmio_root_tile_init(struct xe_device *xe);
->  void xe_mmio_probe_tiles(struct xe_device *xe);
->  
->  static inline u8 xe_mmio_read8(struct xe_gt *gt, struct xe_reg reg)
-> diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
-> index d9a3b20179cc2..889f60fa2e7cf 100644
-> --- a/drivers/gpu/drm/xe/xe_pci.c
-> +++ b/drivers/gpu/drm/xe/xe_pci.c
-> @@ -540,10 +540,12 @@ static void handle_gmdid(struct xe_device *xe,
->   * Initialize device info content that only depends on static driver_data passed to the driver at
->   * probe time from PCI ID table.
->   */
-> -static void xe_info_init_early(struct xe_device *xe,
-> -			       const struct xe_device_desc *desc,
-> -			       const struct xe_subplatform_desc *subplatform_desc)
-> +static int xe_info_init_early(struct xe_device *xe,
-> +			      const struct xe_device_desc *desc,
-> +			      const struct xe_subplatform_desc *subplatform_desc)
->  {
-> +	int err;
-> +
->  	xe->info.platform = desc->platform;
->  	xe->info.subplatform = subplatform_desc ?
->  		subplatform_desc->subplatform : XE_SUBPLATFORM_NONE;
-> @@ -558,6 +560,12 @@ static void xe_info_init_early(struct xe_device *xe,
->  	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
->  				  xe_modparam.enable_display &&
->  				  desc->has_display;
-> +
-> +	err = xe_tile_init_early(xe_device_get_root_tile(xe), xe, 0);
-> +	if (err)
-> +		return err;
+Build changes
+-------------
 
-why this is inside xe_info_init_early() ?
-can we call it separately, as xe_info_init_early() suggests that "info"
-will touched, while xe_tile_init_early() does much more
+  * IGT: IGT_7613 -> IGT_7614
+  * Linux: xe-544-a8b405ffc0326c79abf737389d99c290648f381d -> xe-pw-127193v1
 
-as a bonus you will avoid changing signature of xe_info_init_early()
-from void to int
+  IGT_7613: 378017d8fa63defde11c0b4bc72025c64b70607d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  IGT_7614: c7298ec108dc1c861c9a2593e973648ad9b420b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-544-a8b405ffc0326c79abf737389d99c290648f381d: a8b405ffc0326c79abf737389d99c290648f381d
+  xe-pw-127193v1: 127193v1
 
-> +
-> +	return 0;
->  }
->  
->  /*
-> @@ -626,13 +634,15 @@ static int xe_info_init(struct xe_device *xe,
->  	 */
->  	xe->info.tile_count = 1 + graphics_desc->max_remote_tiles;
->  
-> -	for_each_tile(tile, xe, id) {
-> +	for_each_remote_tile(tile, xe, id) {
->  		int err;
->  
->  		err = xe_tile_init_early(tile, xe, id);
->  		if (err)
->  			return err;
-> +	}
->  
-> +	for_each_tile(tile, xe, id) {
->  		gt = tile->primary_gt;
->  		gt->info.id = xe->info.gt_count++;
->  		gt->info.type = XE_GT_TYPE_MAIN;
-> @@ -726,10 +736,16 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->  
->  	pci_set_master(pdev);
->  
-> -	xe_info_init_early(xe, desc, subplatform_desc);
-> +	err = xe_info_init_early(xe, desc, subplatform_desc);
-> +	if (err)
-> +		return err;
->  
->  	xe_sriov_probe_early(xe, desc->has_sriov);
->  
-> +	err = xe_device_probe_early(xe);
-> +	if (err)
-> +		return err;
-> +
->  	err = xe_info_init(xe, desc, subplatform_desc);
->  	if (err)
->  		return err;
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127193v1/index.html
+
+--===============4304821021500505509==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>fixup! FIXME: drm/i915/display: Remaining changes to make xe compile</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127193/">https://patchwork.freedesktop.org/series/127193/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127193v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127193v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-544-a8b405ffc0326c79abf737389d99c290648f381d_BAT -&gt; xe-pw-127193v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-127193v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-544-a8b405ffc0326c79abf737389d99c290648f381d/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127193v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>IGT: IGT_7613 -&gt; IGT_7614</li>
+<li>Linux: xe-544-a8b405ffc0326c79abf737389d99c290648f381d -&gt; xe-pw-127193v1</li>
+</ul>
+<p>IGT_7613: 378017d8fa63defde11c0b4bc72025c64b70607d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  IGT_7614: c7298ec108dc1c861c9a2593e973648ad9b420b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-544-a8b405ffc0326c79abf737389d99c290648f381d: a8b405ffc0326c79abf737389d99c290648f381d<br />
+  xe-pw-127193v1: 127193v1</p>
+
+</body>
+</html>
+
+--===============4304821021500505509==--
