@@ -4,149 +4,145 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A7CC2C4167B
-	for <intel-xe@archiver.kernel.org>; Fri,  1 Dec 2023 00:29:05 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 21B4EC4167B
+	for <intel-xe@archiver.kernel.org>; Fri,  1 Dec 2023 02:49:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C82E10E787;
-	Fri,  1 Dec 2023 00:29:05 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBC1A10E787
- for <intel-xe@lists.freedesktop.org>; Fri,  1 Dec 2023 00:29:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2F2110E7AB;
+	Fri,  1 Dec 2023 02:49:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8296210E7AB
+ for <intel-xe@lists.freedesktop.org>; Fri,  1 Dec 2023 02:49:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701390542; x=1732926542;
- h=message-id:date:subject:from:to:cc:references:
+ t=1701398947; x=1732934947;
+ h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=DBT7YkHc3lhKvodciPYEFszRhUB16JQ6IGGKCFZ05YY=;
- b=UksFttZLvuokcW/4+JlO+zr6/XljJybvruQHLb1wOdKqCAQb+MQ/EIvu
- 8FUoSGw0MoBUSwAeo9Vyrao00LFFIZ8AasevQ+RSv/QuwVR3vMSbkeanY
- /yVpgGt868CiIekUGbpQQPgXp4cXN3sZ+Lhh44QPWXRHHP5Ku7lMQBH34
- EdjvB83xW2P2u35llHqqws4QqKgL53WG1vB9e5/RH6KkShILiIobhjstT
- 9I+ShEC4nMbCY4HE1icOVlzgKSdmfdCIXGC0IFA/zwAMC+ZClPYnSUfrY
- QwNEXSotSrxr0yz0LIxaoi6IuSHbUypleVNUMa4gfsacZO+/1UF87Dp5V A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="310896"
+ bh=wNTUmfiniP9VA3oRmYCNNjzjVuopMIpDHPT1PchL5dI=;
+ b=GP4vWtlgaDpVFtBAUQW+V0ASHrE55lD9a7ia8KGCp4L40+GrujeeDqLG
+ yVBzHSyAJRcVQZNJ//gQWljOitafvhjeDHL1jrqbmBXQdfuWxkvOLzeIt
+ NU7fDaNFpOE2F2zBgDkzYMWfezCWIRtSjunnw6Gk0UWuI4DnHibTxtGk3
+ S9DLPuxv7qu6y12DNIZy0k8wOeZQkKzLZcrbP8i7CUEfeEnNTvhJNuTIZ
+ hbFd9pArXWemWLCnFGehl9ImfPNCjp1g7DZL0pyrj2XPyTGbHqf5UuwIi
+ uNM30b1p+OGoh8tC27vLkTu7PnLii+W7LAcrFZ7nsmgVXwqKhm3gcZfFk Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="309733"
 X-IronPort-AV: E=Sophos;i="6.04,240,1695711600"; 
-   d="scan'208";a="310896"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Nov 2023 16:29:01 -0800
+   d="scan'208";a="309733"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Nov 2023 18:49:06 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="773243152"
-X-IronPort-AV: E=Sophos;i="6.04,240,1695711600"; d="scan'208";a="773243152"
-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
- by fmsmga007.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 30 Nov 2023 16:29:01 -0800
+X-IronPort-AV: E=McAfee;i="6600,9927,10910"; a="762965487"
+X-IronPort-AV: E=Sophos;i="6.04,240,1695711600"; d="scan'208";a="762965487"
+Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
+ by orsmga007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 30 Nov 2023 18:49:05 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
+ fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34; Thu, 30 Nov 2023 16:29:00 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ 15.1.2507.34; Thu, 30 Nov 2023 18:49:05 -0800
+Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.34 via Frontend Transport; Thu, 30 Nov 2023 16:29:00 -0800
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (104.47.56.169)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.34 via Frontend Transport; Thu, 30 Nov 2023 18:49:05 -0800
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
+ by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Thu, 30 Nov 2023 16:29:00 -0800
+ 15.1.2507.34; Thu, 30 Nov 2023 18:49:05 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IdPCrcmbc2PCoB4+GPU7kgKX1S1qISLevcrEAfGjd2etvXl7kl4ovJng6uZdGmeirES8UU/H2Zc5MdHZPZsFPnpO0I0zYHDA1YlkF7PAxLUfYWd0RwCEgzLPwSl2aMnh0SHFz/XMKy/2JotCo1a6JdDp9wewy+WCOgPDUIjy6k+sx8+jQwSMn5TvRXlYpddIrlY3E+aPF+3gSjsb9TzN1PvAGje/OejiefGQp2FFMKEvvrZymRgkkNYUkodyZU/4rmVN33pIDgMNsN9JxwOHs/jVyEeKb2pu5SbxIBrReWMiLBzXWrIMk/QHfd3PmNXs0Y9Jw22gMmSzFPqF+PiZ6Q==
+ b=RYV4tvpsY/pwoRteGjmODM5mCifXoR3iO/wWJo2bur/aF3YmCJ9OWv2LLNPs9xKoRGM3Qn3sik1H6woqRwECUGSy2R/zhI8ch03KV7J+UF3CcsqSQrsmKtLDKeFcnT5wYULa9URin+iSWzejHkNrzT8xgV60usU5DIfYrqqSQiPq1YvGdTf0dSwJhycE9tQl1A9Yy4mLrNDT6FY0f/sQjkl43+7AotPYrmcEa/cYu0U8C1u43HQZccywo/cOur5+3rIQwm5o7hDknGCRop5Yh92j/Le4f6PuxjcvVXvrduHXS36s0X1VyNt88fAs7CCQiLv1wYWfi35wK5TPUVfVkw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gziaEXBFOlvfZ0i+Me8LdDrbfV5WMObZqQ2pjVqFSfE=;
- b=aMYpWOZr4ShaV3eqgToQRNqC2mzfnZohoT76c68H2E/BjVLaaqbho6rM5ZQ15SV/lOanpLjvOTx1YaJfP//tghbfgaEcXBJVEfdeDJe7N6V9IXcQ4z/h/uDjO9hE6rROqkB7zUO6iYXTDD+2rAeaOj/uo9qn3heK/JmQ77HBmuGzLf8XT5CxQkBRlH+0De3Q5VJYS64Zpx3pHD7ZEqUv9+aTJA1Z2RWejDRPa9gbW3OyNjbFAP7408m0bhGAzzOBbnTjEoQMoWz7uQ8r16mmwwfWi8v9RL9E1EAO8G3a0iLIHTEKp7aC+5d4ovWZXEGf2bNla0Qza3/2lonZdOGeCw==
+ bh=oBgpkTSdCgXDlyUmLiuJT9HnXiZgkXrYYm7JN+kPDoQ=;
+ b=MJwqbGnBSS9df4v1pjHrwLCz4Zi+XcgzJF48j4Db+06VqGrQpxKDncuV3fT28yESJtXhayOGsWXXH3mS5LKKOAhGfWPSuGkPZQrTO2IJxJn4N/glXad7zgH7zFYOv2mAPbiPVZM7zI/KTKRhfMhKaX14sp2FVIChM5ZpBWQBInDGcTqmp3C1KfljsNJmFj4/TcN6APdXJzfgaCKkG82qSR0BO3ea8pSXNP68NXvGerW4sb8EOeNBv49lyYvrsmxJL3iJW55A1IeeTzh42cor0+8eR+9DNeQuqyzQ/A/kj4ufUNmJQ+1AwPOhTyHEtgUW5pu6qfvZOsK7IxkjxRQZAA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com (2603:10b6:510:277::5)
- by DM4PR11MB5972.namprd11.prod.outlook.com (2603:10b6:8:5f::6) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7025.29; Fri, 1 Dec 2023 00:28:58 +0000
-Received: from PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::73d0:f907:41e4:4a34]) by PH7PR11MB7605.namprd11.prod.outlook.com
- ([fe80::73d0:f907:41e4:4a34%4]) with mapi id 15.20.7046.015; Fri, 1 Dec 2023
- 00:28:58 +0000
-Message-ID: <2e0f6881-ad17-4c55-a944-1980ac929116@intel.com>
-Date: Thu, 30 Nov 2023 16:28:56 -0800
-User-Agent: Mozilla Thunderbird
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com (2603:10b6:a03:459::19)
+ by MW3PR11MB4715.namprd11.prod.outlook.com (2603:10b6:303:57::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.24; Fri, 1 Dec
+ 2023 02:49:03 +0000
+Received: from SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::399c:3488:d511:adef]) by SJ1PR11MB6204.namprd11.prod.outlook.com
+ ([fe80::399c:3488:d511:adef%7]) with mapi id 15.20.7046.023; Fri, 1 Dec 2023
+ 02:49:03 +0000
+From: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
+To: "De Marchi, Lucas" <lucas.demarchi@intel.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>
+Thread-Topic: [Intel-xe] [PATCH V3 2/3] drm/xe/ats-m: Expose uid for ATS-M via
+ sysfs
+Thread-Index: AQHaIgwv0nUiTdecQkm7LclbocI0ZLCP9LuAgADI2eCAAqfOAIAAGzcAgAA8f/A=
+Date: Fri, 1 Dec 2023 02:49:02 +0000
+Message-ID: <SJ1PR11MB62042B38A26D2AAABD25CD728181A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+References: <20231128151333.4068550-1-tejas.upadhyay@intel.com>
+ <20231128151333.4068550-3-tejas.upadhyay@intel.com>
+ <80cd47a5-f157-4847-8242-df842c2e2aec@intel.com>
+ <SJ1PR11MB62045C5257D79A6B5E47CCCF8183A@SJ1PR11MB6204.namprd11.prod.outlook.com>
+ <ZWj_dpyE75C_Ippr@intel.com>
+ <xqhglc6kukdoq5rf6cwz3ovcreuy7m7z3eixpasmdkitij4t3z@jzhczrrzu7mp>
+In-Reply-To: <xqhglc6kukdoq5rf6cwz3ovcreuy7m7z3eixpasmdkitij4t3z@jzhczrrzu7mp>
+Accept-Language: en-US
 Content-Language: en-US
-From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-To: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- <intel-xe@lists.freedesktop.org>
-References: <20231116221637.2589469-1-daniele.ceraolospurio@intel.com>
- <7e7306b7-dc7a-4003-9d83-f0d518597f43@intel.com>
- <1c335fa6-534e-400f-8ee1-f9e0697bd3ab@intel.com>
-In-Reply-To: <1c335fa6-534e-400f-8ee1-f9e0697bd3ab@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0218.namprd03.prod.outlook.com
- (2603:10b6:a03:39f::13) To PH7PR11MB7605.namprd11.prod.outlook.com
- (2603:10b6:510:277::5)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR11MB7605:EE_|DM4PR11MB5972:EE_
-X-MS-Office365-Filtering-Correlation-Id: 490e4e45-c09e-413e-cd36-08dbf204823c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: F6mtMzxHKy9ul4yZUU1aXpTnwu59W2CRpcslE/yd4I/kRtzuDhley1m9TRC0Bs3NgiCrX0qihXUPfGqb32DSGvSzhvhD0YsZ45lxxL7Btnl3BQ7pw4yafi6RGlosQm+jRQbcb2HAWJTXrhIyo7EfFdHhBpP1qXUvirV02aiqP18E8YSVKB5T/zMkz7nenbGhg21wCPBs9VJgfpYiU6r9MYtU0MCUrkav1H/Cu2l85ZUds37dgGlTnyZIfjtzKnjPKXsHmJSU/qvl53qhuBgUiFfEy8oHzsiZq7IIsqnSvqPftnSaoBN81KxgOsLcgBuaZm1eeKOSSAzFuv+4k7Os5Cy7DM7w5K8nz+kezV41ZmrnEeuWmZM4JP1F6OQYUlb2zyjUDFcY3/I3ruT5XwaqgnOwZbrXVRDmkUXw6aeKPBBmohA0qVuuZsoH8D0LzngHxppXb2oSyrHAonDhl5ogAGYH5lFAU9oiduxlvN82CopUATxqPmPfcX+jpqWYJl14QGe8SXk5gPdNoi0Xs293RnJ++AG3nnBM0lj3eTC70furiYy0ipggNZxgkelUJG/NtJgOYmmMndeSiEJRg/sinrj+9KZfG1opX8A+1NJ46fBw5iSbhbJZTf3hrRq279MFdG8bMFlanHejNytW8kENm63N/fyKFlTcOyxe7jvalkHY2skeaK3x130BoljXIlzi
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR11MB7605.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(376002)(136003)(396003)(366004)(39860400002)(346002)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(41300700001)(36756003)(38100700002)(31686004)(15650500001)(2906002)(86362001)(83380400001)(5660300002)(82960400001)(26005)(107886003)(2616005)(6506007)(478600001)(53546011)(8676002)(8936002)(31696002)(4326008)(6486002)(6512007)(66946007)(66556008)(66476007)(316002)(54906003)(45980500001)(43740500002)(309714004);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SJ1PR11MB6204:EE_|MW3PR11MB4715:EE_
+x-ms-office365-filtering-correlation-id: 992c2c7f-aa37-4902-ae76-08dbf21813eb
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 0Oh/a7Oyx5cpcsOkuIsk9t67Bhy6EGt/pJjID/7TfkHVYmVzqNlBYwEUo/WrJArGM/0TC8BI7pwuxl70D1ZwAhfyGT6LFb6TRti0PjemVuyrKKpCZOqX02Ml8Fse9+WVhWWwacFf1usY6dFnJfLDuAg5E9nG8EiZokYoPQtO4/6mw9qA3pBQVToX57p9HqInyrh25U/qo0QkFqd4JFwdhV4338BTbqnHAmyfbjp3sH9vTFyJUgSaNNQQp110ENpbx3ZcSe4b8ulrsbsFGNf8RGXyhgMLafNtMI2FSFmdbF/Zqds97PUkEPDGQh4rNciCGZ5N0Rk7Wqoi7FEkaeuvFtd9F1klUiUMRS9YtOqiqBU5zKAJH9w28CuldgRFCORo6i511W0aaHAaWKGP6sBPHVlVOoUfeWpV4Zc6PO+CX1SM0H/dUdO3dw69iD6CFzzTaEP/Lcep7bpESyCrbKX+OP5+nf5CutHyd8F9Mmk/uTRM0fw+Mjn5F3x4+XeE3cdUpO2dnxgV1WZqHq/feRKgzV/c49chauR6CIoEfBKDOLmtI2ZpnjvBCnJPwpMyrEB3HctWyWm75FSBNOsw2pfXiHEZno6Fey9tvP2OW/oI53U=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:SJ1PR11MB6204.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230031)(39860400002)(136003)(396003)(346002)(376002)(366004)(230922051799003)(64100799003)(451199024)(186009)(1800799012)(83380400001)(82960400001)(38100700002)(8936002)(8676002)(86362001)(6506007)(7696005)(9686003)(53546011)(55016003)(4326008)(122000001)(966005)(478600001)(71200400001)(66946007)(76116006)(110136005)(316002)(66476007)(64756008)(66556008)(6636002)(66446008)(33656002)(2906002)(41300700001)(38070700009)(52536014)(5660300002);
  DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UjZkcGowblRaOURqRTBBU1Vpb2I2eFBRS0lOcFdkZmdOVm9hNWI4TmhYalJM?=
- =?utf-8?B?K3NEY2J6TC9PMExjd2dvWjlpdG56bnVQK2xFU1hqMGhnOVoxNXdGZnZQcnlB?=
- =?utf-8?B?RUR4UkNzcVA3VWQ4K0d2SWFqR2plTnJrS2x5VUxwUXRtZXRhaW5GWU9DZ0ZV?=
- =?utf-8?B?Ty8rSnV5STlJUGgvNjhkQUYrdTlJSlV6RCtVVHp1c2FjUGxTN3g1VExFemhv?=
- =?utf-8?B?V0E0VXZ1N3c4dFRaMGVKTE13UEw1c2NWK3hqbnVadG51TE90TVhqNVNxL29P?=
- =?utf-8?B?OFoxeUVybjU5K2pxVE9XYjkyMHhxTlVBOVpRMzFZQXhncnRJVFNSQWlTUEZT?=
- =?utf-8?B?a1ZBYnAwMXNJa2dWS2FNb0JOWG9WZ0xRYU5xWEExVzE2ZVkwdmpGZ0NLei9z?=
- =?utf-8?B?S3Q3b3lLN2VhU0w0WmdKd1Y1a0JqNDFhblc0OEZZT2gvY25Ob0dTUGo2c0ZJ?=
- =?utf-8?B?Y2RmUURwZ0ZqQ0RVbXB5Vk5KMkpkMlBmandiSitsQktjbDhlNFVkdXFGbEZR?=
- =?utf-8?B?dmtqNGlZMFExK24vcFRITGxBam5TaUxTOS95YUJReEplcnNPNlg4Wml3OC9T?=
- =?utf-8?B?RmJhM2w3RjFZS0Y2RHd1M29sMFBZWUtldzZEc0R1Q2lzTTV5dWFxL1dwUDI3?=
- =?utf-8?B?Qjgvc1RJVEI5bE8zVFZaQ2RNbzlTYzhZc3pMRklRZkhWWTMyc3JOUHZTNXJa?=
- =?utf-8?B?Y3VZK24vNDRyTjJPSStvMGR2WStUNWhYdzJDMC9QOGpUa2t0UHpOdnJibit6?=
- =?utf-8?B?WjJIbzdxcjJDdmJyd0Z0Z0E4ODdCL0g5dGxYYTdaeWZ6VWd5MHRySTRqZ2dD?=
- =?utf-8?B?YnZydDhqdkpFTEZ1d1oyLzZyaEFLcm4zRzNpcUpLSHh0Y3FibFh5ZjFwQVl0?=
- =?utf-8?B?REF6aWFIODdVUFp5RDQxNUloQThBbmEwcnI3VEJSM3dDeUF1VW5DQ0UwZC9K?=
- =?utf-8?B?aFYzTUpUNmNIN1Nwbi9PK0pYUXZSMUFPRklKQnFHOE5oREdRL2p6dkw0ZzlO?=
- =?utf-8?B?dE8xdjAvbG9YQUh1akRiUVV6SWJCaTE2NnlCVmNhT1ZlUTZZM0FZOUJGMzFO?=
- =?utf-8?B?MmVKQTVlTDc2MGQ2OEtrdGpuWDY3WHAzOEp0b1l3RTQ3d2FaTFdNTnQzTGlY?=
- =?utf-8?B?bjBPUzl5a2FyOUY0ZEprUk84WEZOTUF0K3p1ZGUzaFhlUU0xRUc3UFltT3Z5?=
- =?utf-8?B?M0dBQXB0bDRWRTNobmxSdVVsZW52YUh4cFpSaEFJUk5zTXNDTzR6b3Z6dk0v?=
- =?utf-8?B?RTRBbGo3VjZ3dDJSRmZwYUt1MkM0d2N4SlZ1aURCZm5DaVhSWTBVQ0ExZFlD?=
- =?utf-8?B?aFRtQ242T1I2NnZacHZ6MGM3TUIrTHZ3MFgzRVQ1V0J5VFh4MDdqMmhLaklD?=
- =?utf-8?B?dDJuQmNIYnhnMEZpMjZNc0thSHVOOUdkd0QybEtYRlRIVjdzbVlKTkx1ZENO?=
- =?utf-8?B?em92NnBhZHVSR3NPOHBkSGtPZ1NiakU3K2o4RnBnbmJ0UGRCeURwNjJ4NkU1?=
- =?utf-8?B?dDRpNHhVcmRZMVRGcFZ4MVU4UEQ5M2RKS3UrbldldEVFd0l1eU5jOTZtWlFk?=
- =?utf-8?B?RzVHTlM2emVzdGNPN1hTSXlMN3plTFYzTFk5THBCUXU0cUc2azVNSDZkUDNs?=
- =?utf-8?B?MjFEQVhsZVYyUVNCbEVCS1FZSjFZV21sd29UakVaZUk3NVJYUHBaY1hENVZR?=
- =?utf-8?B?L2J1YTRpZ0NBSmZQVE01TkNYcDd6V2x3aEptSThROENZNlpCaUVVcFRRZXVZ?=
- =?utf-8?B?WWpzVWpjMDFwaGdOVGlxMjQ5b2kvMVNibzRLZ3ExeW5DYmcwUTVUYUVqTHhP?=
- =?utf-8?B?Z2hZWWJLbVJiZG14Nm1EU0tpTlJYTGV5SnhtU1orL3hySGcrZ214STFTT2FN?=
- =?utf-8?B?TjJHU0RNU08rYXhFZ2VENnRnWHplS2U1L3czTEFEMDRFdTJCNDVveFRiLzU2?=
- =?utf-8?B?c00vYkhSQW43bm1FTGYxSHErSkllOFFOQjNLY2RwL0gzSC9rbUdjeE5BUGF2?=
- =?utf-8?B?Y0VoRmxQa2pKMGp1ejJLQ0JQU05DTHJoR2JobDdYSVVGLzN1MnBwUGY4eHNP?=
- =?utf-8?B?V2JMbEo3VkhiVVpsVkM4VzJOVEZ6d3N6dHBIbWZ4dDNGdWRqdERvMVRlbnN2?=
- =?utf-8?B?YWc2OFhiZkJjcVU0SFZtWk1xUTdVaUtKY0lVY01MeVJsQytTbTdXelZGNGkw?=
- =?utf-8?Q?jCvgVxSSCjXdzlN8wNK8xBo=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 490e4e45-c09e-413e-cd36-08dbf204823c
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB7605.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?YXrVA4YII2lC1PaVA5mmrNM4Gi1CpqNUqTR6q72QyhgsjJ+34GRYRZrkZQXV?=
+ =?us-ascii?Q?G4IHPScra2KgPOiLY8RE4bLl1f+PK27bVQzhAWsjHZIkvVJl6b1KT64Dhh+m?=
+ =?us-ascii?Q?/KEmmBDT+GB4eUtx4CIYwd/Jz9hMk3BA6ynDB1IyE7H8b/NEdEQ+I4LTDAWT?=
+ =?us-ascii?Q?CDE3kuL9hO+WeFqOXMgrhEKmYAsgqLk3KrwHDtg8O12b/BJdz4erb+QA6OQv?=
+ =?us-ascii?Q?99bhoJ3x5gZiSlaeUta71co7Ib4PiUq6R6U79z/tZ7sRLM3u/8BlyqiC2sFx?=
+ =?us-ascii?Q?PVr0VrdSh7sCpeCg1cQm5odqUsBNnVv12s9ERJf4Of0R+OfqhzQKfi6OvU5y?=
+ =?us-ascii?Q?RJ57M4BgfUwyjE9OWIJgwMgHOP887YVj0YMai+GpLyeRRiDcI/CrwDmlI7cf?=
+ =?us-ascii?Q?o2eNtGaBAQO0ezptaDE1UPEYq1BYVXbi7hAeznPnRPGXuQg+hFn/eAu90rX/?=
+ =?us-ascii?Q?OnaTk6aIYtHwAKDXxUc0vQ8mCT6ADmU5gEikxsn2hBTf7jKEGdsESaERssmd?=
+ =?us-ascii?Q?E6xwTfuNYaCMXwkX+iMhavisrIGcdfawr5LXRrgPzK4IEI8texgBuRhkZ8C1?=
+ =?us-ascii?Q?OgL+3vGOQVTXR+TnWnmZvR0pnkkFwj/i8SzyKPAm/pbaRoCNgOXI4CZLrsJ/?=
+ =?us-ascii?Q?zyhusoJqMRiBN/yZXSf+Ol/rDwbcRt32Y1yWdzhJ5UgpNiTLuAliL1nZsBhb?=
+ =?us-ascii?Q?LYdc5WvlcIQ3Ok1NEohrFW2QxhwZw8LLjjY9/sue987nMI9LS8RnJqRvoxqm?=
+ =?us-ascii?Q?PGphjHMXWwKBOwj+7igg2EXv8LztRMfmfkz9OPOnusX/Kv26pyaweyupDH52?=
+ =?us-ascii?Q?iYs5wSvvy+X/bXs6nbjNQHeEApcbq9iOJJ4nwsTSsMi5dLCkA3li8U48t9Q0?=
+ =?us-ascii?Q?yCvBo4p/0UpfA/hcK+vh7u95tGXoBlt9ZFgnNnJoighshNAc8/CmEiIygkhc?=
+ =?us-ascii?Q?SfY2H7X5lUMmREmQpZGPBTzOc/dXfVnm/5ONW78Wd1Z1p4RbcA79POCs11Ao?=
+ =?us-ascii?Q?qqzjgv/qBWJ5u3LEDLmVI4PlG7+MCor+RvwOcsa2/jjK5WNdnc0Ki+6U1Mfm?=
+ =?us-ascii?Q?afaRrz3GT4d3zVLQbkwtHaPptIW5+QYmd5KVwJXv+3h3Xn+pooNAiTAp2j9i?=
+ =?us-ascii?Q?jr1US89LWKcBQensLBdiOS36MyjGwwuB9CVBH6LZF6TJ8YTpzByYGK5Q7DIB?=
+ =?us-ascii?Q?MclsKdjG0Ox5IwfLc6yZSZASD5TUdBW7W3cL2qJJxkW4RhkKL9PZr9ldsrvM?=
+ =?us-ascii?Q?g7kLVrD69I/V7VffUVe/+v36Bp2sECetD6ZnvoLEb4w+3TeeBBLW6GQJVCIJ?=
+ =?us-ascii?Q?FY9GLmNGFlCAso0VsahWbWuHNbJl2L/tIJh6aJkp/H5zuF4RpLdd4hQ15dcu?=
+ =?us-ascii?Q?HKsP3VmAizt/mBdzn19wyLBd1TlilrmePeg336IIegas3Lb1jxj8IaPhDT82?=
+ =?us-ascii?Q?j5Uszd1Bq12nH0X8b+/8WVsdwFX7u9Ssthj3wwpuztxeXX0EO2XdmQXZkWFQ?=
+ =?us-ascii?Q?B/x6XZul2EXrR+qJDgUjiOwm1fVTPsLc0FbgBErXAU5JK0917S7ea4sTCQHQ?=
+ =?us-ascii?Q?AMghUSoulTKnNiWlVebOuD2BjZb8qJWHsd33t1Eg5O+QKqTgyAASNeSBMOUv?=
+ =?us-ascii?Q?1D8LnbvN6J7dp9erh1qcIXUN9WUcCfRN1TDf08Rabsy7?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Dec 2023 00:28:58.3568 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Tms8GJksNscAQifbeijvf4MRtWqMyeXDfae2H/JPPK5fXtLIv5JKBCLJAHUTfHliYCsRamu6FiG6jSApKA7zS6D3d4e/XvaH4aPDbbkVL4g=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5972
+X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6204.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 992c2c7f-aa37-4902-ae76-08dbf21813eb
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Dec 2023 02:49:03.0099 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /xmRPGblCc/AsGqLMdBHk5Q09mSVuFFzzuAwiQQLTFHDUagSz6Wl988r8r6ssyFCcO6yMfZIqGMwaD88GXadcUud/0eOD3N0VvTvjZUIWf8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW3PR11MB4715
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH v2] drm/xe/guc: Use FAST_REQUEST for
- non-blocking H2G messages
+Subject: Re: [Intel-xe] [PATCH V3 2/3] drm/xe/ats-m: Expose uid for ATS-M
+ via sysfs
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -158,263 +154,264 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
 
-On 11/30/2023 1:19 PM, Daniele Ceraolo Spurio wrote:
->
->
-> On 11/30/2023 12:59 PM, Michal Wajdeczko wrote:
->>
->> On 16.11.2023 23:16, Daniele Ceraolo Spurio wrote:
->>> We're currently sending non-blocking H2G messages using the EVENT type,
->>> which suppresses all CTB protocol replies from the GuC, including the
->>> failure cases. This might cause errors to slip through and manifest as
->>> unexpected behavior (e.g. a context state might not be what the driver
->>> thinks it is because the state change command was silently rejected by
->>> the GuC). To avoid this kind of problems, we can use the FAST_REQUEST
->>> type instead, which suppresses the reply only on success; this way we
->>> still get the advantage of not having to wait for an ack from the GuC
->>> (i.e. the H2G is still non-blocking) while still detecting errors.
->>> Since we can't escalate to the caller when a non-blocking message
->>> fails, we need to escalate to GT reset instead.
->>>
->>> Note that FAST_REQUEST failures are NOT expected and are usually a sign
->>> that the H2G was either malformed or requested an illegal operation.
->>>
->>> v2: assign fence values to FAST_REQUEST messages, fix abi doc, use 
->>> xe_gt
->>> printers (Michal).
->>>
->>> Signed-off-by: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
->>> Cc: John Harrison <John.C.Harrison@Intel.com>
->>> Cc: Matthew Brost <matthew.brost@intel.com>
->>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
->>> ---
->>>   drivers/gpu/drm/xe/abi/guc_messages_abi.h |  2 +
->>>   drivers/gpu/drm/xe/xe_guc_ct.c            | 58 
->>> ++++++++++++++++++++---
->>>   2 files changed, 54 insertions(+), 6 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/xe/abi/guc_messages_abi.h 
->>> b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
->>> index 3d199016cf88..6544205cf40d 100644
->>> --- a/drivers/gpu/drm/xe/abi/guc_messages_abi.h
->>> +++ b/drivers/gpu/drm/xe/abi/guc_messages_abi.h
->>> @@ -24,6 +24,7 @@
->>>    *  |   | 30:28 | **TYPE** - message 
->>> type                                      |
->>>    *  |   |       |   - _`GUC_HXG_TYPE_REQUEST` = 
->>> 0                              |
->>>    *  |   |       |   - _`GUC_HXG_TYPE_EVENT` = 
->>> 1                                |
->>> + *  |   |       |   - _`GUC_HXG_TYPE_FAST_REQUEST` = 
->>> 2                                |
->> -----------------------------------------------------------------------------------------^ 
->>
->> is this aligned correctly ?
->>
->>>    *  |   |       |   - _`GUC_HXG_TYPE_NO_RESPONSE_BUSY` = 
->>> 3                     |
->>>    *  |   |       |   - _`GUC_HXG_TYPE_NO_RESPONSE_RETRY` = 
->>> 5                    |
->>>    *  |   |       |   - _`GUC_HXG_TYPE_RESPONSE_FAILURE` = 
->>> 6                     |
->>> @@ -46,6 +47,7 @@
->>>   #define GUC_HXG_MSG_0_TYPE            (0x7 << 28)
->>>   #define   GUC_HXG_TYPE_REQUEST            0u
->>>   #define   GUC_HXG_TYPE_EVENT            1u
->>> +#define   GUC_HXG_TYPE_FAST_REQUEST        2u
->>>   #define   GUC_HXG_TYPE_NO_RESPONSE_BUSY        3u
->>>   #define   GUC_HXG_TYPE_NO_RESPONSE_RETRY    5u
->>>   #define   GUC_HXG_TYPE_RESPONSE_FAILURE        6u
->>> diff --git a/drivers/gpu/drm/xe/xe_guc_ct.c 
->>> b/drivers/gpu/drm/xe/xe_guc_ct.c
->>> index a84e111bb36a..04e443c6fd8b 100644
->>> --- a/drivers/gpu/drm/xe/xe_guc_ct.c
->>> +++ b/drivers/gpu/drm/xe/xe_guc_ct.c
->>> @@ -15,6 +15,7 @@
->>>   #include "xe_device.h"
->>>   #include "xe_gt.h"
->>>   #include "xe_gt_pagefault.h"
->>> +#include "xe_gt_printk.h"
->>>   #include "xe_gt_tlb_invalidation.h"
->>>   #include "xe_guc.h"
->>>   #include "xe_guc_submit.h"
->>> @@ -448,7 +449,7 @@ static int h2g_write(struct xe_guc_ct *ct, const 
->>> u32 *action, u32 len,
->>>                      GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
->>>       } else {
->>>           cmd[1] =
->>> -            FIELD_PREP(GUC_HXG_MSG_0_TYPE, GUC_HXG_TYPE_EVENT) |
->>> +            FIELD_PREP(GUC_HXG_MSG_0_TYPE, 
->>> GUC_HXG_TYPE_FAST_REQUEST) |
->>>               FIELD_PREP(GUC_HXG_EVENT_MSG_0_ACTION |
->>>                      GUC_HXG_EVENT_MSG_0_DATA0, action[0]);
->>>       }
->>> @@ -475,11 +476,31 @@ static int h2g_write(struct xe_guc_ct *ct, 
->>> const u32 *action, u32 len,
->>>       return 0;
->>>   }
->>>   +/*
->>> + * The CT protocol accepts a 16 bits fence. This field is fully 
->>> owned by the
->>> + * driver, the GuC will just copy it to the reply message. Since we 
->>> need to
->>> + * be able to distinguish between replies to REQUEST and 
->>> FAST_REQUEST messages,
->>> + * we use one bit of the seqno as an indicator for that and a 
->>> rolling counter
->>> + * for the remaining 15 bits.
->>> + */
->>> +#define CT_SEQNO_MASK GENMASK(14, 0)
->>> +#define CT_SEQNO_IS_UNTRACKED BIT(15)
->>> +static u16 next_ct_seqno(struct xe_guc_ct *ct, bool is_g2h_fence)
->>> +{
->>> +    u32 seqno = ct->fence_seqno++ & CT_SEQNO_MASK;
->>> +
->>> +    if (!is_g2h_fence)
->>> +        seqno |= CT_SEQNO_IS_UNTRACKED;
->>> +
->>> +    return seqno;
->>> +}
->>> +
->>>   static int __guc_ct_send_locked(struct xe_guc_ct *ct, const u32 
->>> *action,
->>>                   u32 len, u32 g2h_len, u32 num_g2h,
->>>                   struct g2h_fence *g2h_fence)
->>>   {
->>>       struct xe_device *xe = ct_to_xe(ct);
->>> +    u16 seqno;
->>>       int ret;
->>>         xe_assert(xe, !g2h_len || !g2h_fence);
->>> @@ -505,7 +526,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct 
->>> *ct, const u32 *action,
->>>           if (g2h_fence_needs_alloc(g2h_fence)) {
->>>               void *ptr;
->>>   -            g2h_fence->seqno = (ct->fence_seqno++ & 0xffff);
->>> +            g2h_fence->seqno = next_ct_seqno(ct, true);
->>>               ptr = xa_store(&ct->fence_lookup,
->>>                          g2h_fence->seqno,
->>>                          g2h_fence, GFP_ATOMIC);
->>> @@ -514,6 +535,10 @@ static int __guc_ct_send_locked(struct 
->>> xe_guc_ct *ct, const u32 *action,
->>>                   goto out;
->>>               }
->>>           }
->>> +
->>> +        seqno = g2h_fence->seqno;
->>> +    } else {
->>> +        seqno = next_ct_seqno(ct, false);
->> maybe instead of calling next_ct_seqno() twice we can set it earlier as:
->>
->>     seqno = next_ct_seqno(ct, !!g2h_fence);
->>
->>     if (g2h_fence_needs_alloc(g2h_fence)) {
->>         g2h_fence->seqno = seqno;
->>         ...
+> -----Original Message-----
+> From: De Marchi, Lucas <lucas.demarchi@intel.com>
+> Sent: Friday, December 1, 2023 4:40 AM
+> To: Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> Cc: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+> xe@lists.freedesktop.org
+> Subject: Re: [Intel-xe] [PATCH V3 2/3] drm/xe/ats-m: Expose uid for ATS-M=
+ via
+> sysfs
+>=20
+> On Thu, Nov 30, 2023 at 04:32:38PM -0500, Rodrigo Vivi wrote:
+> >On Wed, Nov 29, 2023 at 12:00:39AM -0500, Upadhyay, Tejas wrote:
+> >>
+> >>
+> >> > -----Original Message-----
+> >> > From: Wajdeczko, Michal <Michal.Wajdeczko@intel.com>
+> >> > Sent: Tuesday, November 28, 2023 10:31 PM
+> >> > To: Upadhyay, Tejas <tejas.upadhyay@intel.com>; intel-
+> >> > xe@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@intel.com>
+> >> > Subject: Re: [Intel-xe] [PATCH V3 2/3] drm/xe/ats-m: Expose uid for
+> >> > ATS-M via sysfs
+> >> >
+> >> >
+> >> >
+> >> > On 28.11.2023 16:13, Tejas Upadhyay wrote:
+> >> > > On ATS-M CSC firmware calculated unique device id(uid) can be
+> >> > > read from defined registers. Only ATS-M has this way of reading
+> >> > > uid. Also ATS-M customer require this solution to locate and name
+> >> > > their devices effectively.
+> >> > >
+> >> > > Consumer of csc uid is level0 sysman and end users using sysman.
+> >> >
+> >> > is this generic UID or UID only specific to CSC firmware ?
+> >> > if former then maybe just name it as "uid" or "uuid" ?
+> >> >
+> >> > >
+> >> > > This patch exports uid to the userspace via sysfs.
+> >> >
+> >> > as this defines uabi, shouldn't this series go over dri-devel ?
+> >> >
+> >> > + @Rodrigo
+> >
+> >The biggest problem that I see here is actually the justification.
+> >It doesn't matter which wrapper are using our sysfs or not.
+> >
+> >A better commit message would be something like:
+> >
+> >In case of multiple similar dgfx cards plugged to the same node, the
+> >user cannot rely on DRM card number nor on PCI address to identify
+> >which exact part it is operating at since these numbers can change upon
+> >order enumeration. In the case of FW flashing or other cases
+>=20
+> kind of sounds like what we have for network with predictable network
+> names.
+>=20
+> https://access.redhat.com/documentation/en-
+> us/red_hat_enterprise_linux/7/html/networking_guide/ch-
+> consistent_network_device_naming
+>=20
+> This would provide the firmware naming, but I wonder if it can't be solve=
+d
+> today entirely in userspace.
+>=20
+> >where the admin might know specifically which device it is accessing,
+> >it needs to have an unique identifier number. To solve this case, CSC
+> >FW provides an unique number that can be query. Let's expose this
+> >number in the sysfs to make the device clearly identifiable.
+>=20
+> if this is the justification (like you said, it should be in the commit m=
+essage so
+> we know what's the use to give a proper review), then it also answers the
+> question "why is it ok to wake the device on sysfs access rather than doi=
+ng on
+> device probe?" asked elsewhere: because clients will almost never access =
+it.
+> It's not like a userspace client is reading this value 10 times per secon=
+d
 
-Missed this comment in the first reply. The reason I didn't do it this 
-way is that I didn't want to leave holes in the assigned seqno sequence 
-by calling next_ct_seqno() when g2h_fence_needs_alloc() is false.
+Considering making it ADMIN attribute like MattR suggested, looks like it s=
+hould be ok to wake GT to read UID. I will update commit message like Lucas=
+ and Rodrigo suggested and sent out new version.=20
 
-Daniele
-
->>
->>>       }
->>>         if (g2h_len)
->>> @@ -523,8 +548,7 @@ static int __guc_ct_send_locked(struct xe_guc_ct 
->>> *ct, const u32 *action,
->>>       if (unlikely(ret))
->>>           goto out_unlock;
->>>   -    ret = h2g_write(ct, action, len, g2h_fence ? g2h_fence->seqno 
->>> : 0,
->>> -            !!g2h_fence);
->>> +    ret = h2g_write(ct, action, len, seqno, !!g2h_fence);
->>>       if (unlikely(ret)) {
->>>           if (ret == -EAGAIN)
->>>               goto retry;
->>> @@ -786,7 +810,8 @@ static int parse_g2h_event(struct xe_guc_ct *ct, 
->>> u32 *msg, u32 len)
->>>     static int parse_g2h_response(struct xe_guc_ct *ct, u32 *msg, 
->>> u32 len)
->>>   {
->>> -    struct xe_device *xe = ct_to_xe(ct);
->>> +    struct xe_gt *gt =  ct_to_gt(ct);
->>> +    struct xe_device *xe = gt_to_xe(gt);
->>>       u32 response_len = len - GUC_CTB_MSG_MIN_LEN;
->>>       u32 fence = FIELD_GET(GUC_CTB_MSG_0_FENCE, msg[0]);
->>>       u32 type = FIELD_GET(GUC_HXG_MSG_0_TYPE, msg[1]);
->>> @@ -794,10 +819,31 @@ static int parse_g2h_response(struct xe_guc_ct 
->>> *ct, u32 *msg, u32 len)
->>>         lockdep_assert_held(&ct->lock);
->>>   +    /*
->>> +     * Fences for FAST_REQUEST messages are not tracked in 
->>> ct->fence_lookup.
->>> +     * Those messages should never fail, so if we do get an error 
->>> back it
->>> +     * means we're likely doing an illegal operation and the GuC is
->>> +     * rejecting it. We have no way to inform the code that 
->>> submitted the
->>> +     * H2G that the message was rejected, so we need to escalate the
->>> +     * failure to trigger a reset.
->> if we trigger a reset then we might lost GuC log where additional
->> information about why the call was rejected could be included
->>
->> maybe WARN or taint will be sufficient ?
->
-> Since we don't know which message it was that failed, we don't know if 
-> we need to release memory in the G2H buffer and in case how much, so 
-> the only safe option is to do a reset and start fresh. The GuC log 
-> should be included as part of the error capture, like we do with i915.
->
->>
->>> +     */
->>> +    if (fence & CT_SEQNO_IS_UNTRACKED) {
->>> +        if (type == GUC_HXG_TYPE_RESPONSE_FAILURE)
->>> +            xe_gt_err(gt, "FAST_REQ H2G 0x%x failed! e=0x%x, h=%u\n",
->> maybe add "fence" as one could interpret that hex as action code, while
->> code below us using %u to print a fence
->>
->>     "FAST_REQ H2G (fence %u) failed! ...
->>
->>> +                  fence,
->>> +                  FIELD_GET(GUC_HXG_FAILURE_MSG_0_ERROR, msg[1]),
->>> +                  FIELD_GET(GUC_HXG_FAILURE_MSG_0_HINT, msg[1]));
->>> +        else
->>> +            xe_gt_err(gt, "unexpected response %u for FAST_REQ H2G 
->>> 0x%x!\n",
->>> +                  fence, type);
->> wrong params order ?
->
-> D'oh!
->
->>
->>> +
->>> +        return -EPROTO;
->>> +    }
->>> +
->>>       g2h_fence = xa_erase(&ct->fence_lookup, fence);
->>>       if (unlikely(!g2h_fence)) {
->>>           /* Don't tear down channel, as send could've timed out */
->>> -        drm_warn(&xe->drm, "G2H fence (%u) not found!\n", fence);
->>> +        xe_gt_warn(gt, "G2H fence (%u) not found!\n", fence);
->> nit: it's a shame that we even don't try to dump unexpected messages
->> (those could be legitimate but late SUCCESS, but equally could be spam
->> that we will be just tracking as unknown fence
->>
->>>           g2h_release_space(ct, GUC_CTB_HXG_MSG_MAX_LEN);
->> btw, I'm not sure if this is correct as we reserved different len, no?
->
-> No, when we use a g2h_fence we always reserve GUC_CTB_HXG_MSG_MAX_LEN. 
-> I had the same doubt when coding this and confirmed it is correct.
->
-> Daniele
->
->>
->>>           return 0;
->>>       }
->
-
+Tejas
+>=20
+> Lucas De Marchi
+>=20
+> >
+> >> >
+> >> > > For example, uid can be read by:
+> >> > > cat /sys/class/drm/cardX/device/csc_uid
+> >> >
+> >> > as this is more Xe driver extension then maybe
+> >> >
+> >> > /sys/bus/pci/drivers/xe/<BDF>/uuid
+> >> >
+> >> > >
+> >> > > V2(Michal):
+> >> > >   - Make separate patch for csc uid capability
+> >> > >   - Use %#llx for 0x
+> >> > >   - Dump error value when sysfs creation fails
+> >> > >   - Have consistency in csc uid name
+> >> > >
+> >> > > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> >> > > ---
+> >> > >  drivers/gpu/drm/xe/regs/xe_regs.h    |  3 +++
+> >> > >  drivers/gpu/drm/xe/xe_device.c       | 11 +++++++++++
+> >> > >  drivers/gpu/drm/xe/xe_device_sysfs.c | 21 +++++++++++++++++++++
+> >> > > drivers/gpu/drm/xe/xe_device_types.h |  2 ++
+> >> > >  4 files changed, 37 insertions(+)
+> >> > >
+> >> > > diff --git a/drivers/gpu/drm/xe/regs/xe_regs.h
+> >> > > b/drivers/gpu/drm/xe/regs/xe_regs.h
+> >> > > index ec9372aa739f..3599c7b38b61 100644
+> >> > > --- a/drivers/gpu/drm/xe/regs/xe_regs.h
+> >> > > +++ b/drivers/gpu/drm/xe/regs/xe_regs.h
+> >> > > @@ -71,6 +71,9 @@
+> >> > >  #define XEHP_CLOCK_GATE_DIS			XE_REG(0x101014)
+> >> > >  #define   SGSI_SIDECLK_DIS			REG_BIT(17)
+> >> > >
+> >> > > +#define DEVUID_LWORD
+> 	XE_REG(0x102008)
+> >> > > +#define DEVUID_HWORD
+> 	XE_REG(0x10200C)
+> >> >
+> >> > Bspec uses different names .. and LWORD/HWORD look strange but
+> >> > since it's for SW use then maybe at least (assuming ATSM is XEHP):
+> >> >
+> >> > #define XEHP_DEVUID_LDW
+> 	XE_REG(0x102008)
+> >> > #define XEHP_DEVUID_UDW
+> 	XE_REG(0x10200C)
+> >> >
+> >> > > +
+> >> > >  #define GGC					XE_REG(0x108040)
+> >> > >  #define   GMS_MASK				REG_GENMASK(15, 8)
+> >> > >  #define   GGMS_MASK				REG_GENMASK(7, 6)
+> >> > > diff --git a/drivers/gpu/drm/xe/xe_device.c
+> >> > > b/drivers/gpu/drm/xe/xe_device.c index
+> d60379d844d2..b54635d512d6
+> >> > > 100644
+> >> > > --- a/drivers/gpu/drm/xe/xe_device.c
+> >> > > +++ b/drivers/gpu/drm/xe/xe_device.c
+> >> > > @@ -355,6 +355,15 @@ static void xe_device_sanitize(struct
+> >> > > drm_device
+> >> > *drm, void *arg)
+> >> > >  		xe_gt_sanitize(gt);
+> >> > >  }
+> >> > >
+> >> > > +static void xe_read_csc_uid(struct xe_device *xe) {
+> >> > > +	if (xe->info.has_csc_uid) {
+> >> > > +		struct xe_gt *mmio =3D xe_root_mmio_gt(xe);
+> >> > > +
+> >> > > +		xe->info.csc_uid  =3D xe_mmio_read64_2x32(mmio,
+> >> > DEVUID_LWORD);
+> >> > > +	}
+> >> > > +}
+> >> > > +
+> >> > >  int xe_device_probe(struct xe_device *xe)  {
+> >> > >  	struct xe_tile *tile;
+> >> > > @@ -379,6 +388,8 @@ int xe_device_probe(struct xe_device *xe)
+> >> > >  	if (err)
+> >> > >  		return err;
+> >> > >
+> >> > > +	xe_read_csc_uid(xe);
+> >> > > +
+> >> > >  	err =3D drmm_add_action_or_reset(&xe->drm, xe_driver_flr_fini, x=
+e);
+> >> > >  	if (err)
+> >> > >  		return err;
+> >> > > diff --git a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> >> > > b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> >> > > index 99113a5a2b84..4fbf0275d3bf 100644
+> >> > > --- a/drivers/gpu/drm/xe/xe_device_sysfs.c
+> >> > > +++ b/drivers/gpu/drm/xe/xe_device_sysfs.c
+> >> > > @@ -65,11 +65,24 @@ vram_d3cold_threshold_store(struct device
+> >> > > *dev, struct device_attribute *attr,
+> >> > >
+> >> > >  static DEVICE_ATTR_RW(vram_d3cold_threshold);
+> >> > >
+> >> > > +static ssize_t csc_uid_show(struct device *dev,
+> >> > > +			    struct device_attribute *attr,
+> >> > > +			    char *buf)
+> >> > > +{
+> >> > > +	struct pci_dev *pdev =3D to_pci_dev(dev);
+> >> > > +	struct xe_device *xe =3D pdev_to_xe_device(pdev);
+> >> > > +
+> >> > > +	return sysfs_emit(buf, "%#llx\n", xe->info.csc_uid);
+> >> >
+> >> > if there are no plans to use this value in driver then maybe just
+> >> > read it here as it was already suggested by Lucas
+> >>
+> >> Why to wake GT on every sysfs read and read those registers? Does not
+> look correct in my POV.
+> >
+> >Why not to wake? it shouldn't be a query that user is doing every time r=
+ight?
+> >
+> >>
+> >> Thanks,
+> >> Tejas
+> >> >
+> >> > > +}
+> >> > > +
+> >> > > +static DEVICE_ATTR_RO(csc_uid);
+> >> > > +
+> >> > >  static void xe_device_sysfs_fini(struct drm_device *drm, void
+> >> > > *arg) {
+> >> > >  	struct xe_device *xe =3D arg;
+> >> > >
+> >> > >  	sysfs_remove_file(&xe->drm.dev->kobj,
+> >> > > &dev_attr_vram_d3cold_threshold.attr);
+> >> > > +	sysfs_remove_file(&xe->drm.dev->kobj, &dev_attr_csc_uid.attr);
+> >> >
+> >> > it's sad that we don't have proper groups defines and need to add
+> >> > each attribute separately (but that's not your fault)
+> >> >
+> >> > >  }
+> >> > >
+> >> > >  void xe_device_sysfs_init(struct xe_device *xe) @@ -83,6 +96,14
+> >> > > @@ void xe_device_sysfs_init(struct xe_device *xe)
+> >> > >  		return;
+> >> > >  	}
+> >> > >
+> >> > > +	if (xe->info.has_csc_uid) {
+> >> > > +		ret =3D sysfs_create_file(&dev->kobj, &dev_attr_csc_uid.attr);
+> >> > > +		if (ret) {
+> >> > > +			drm_warn(&xe->drm, "UID sysfs setup failed
+> >> > err=3D%pe\n", ERR_PTR(ret));
+> >> > > +			return;
+> >> >
+> >> > if you exit here, you will leak dev_attr_vram_d3cold_threshold
+> >> >
+> >> > > +		}
+> >> > > +	}
+> >> > > +
+> >> > >  	ret =3D drmm_add_action_or_reset(&xe->drm, xe_device_sysfs_fini,
+> >> > xe);
+> >> > >  	if (ret)
+> >> > >  		drm_warn(&xe->drm, "Failed to add sysfs fini drm action\n");
+> >> > diff
+> >> > > --git a/drivers/gpu/drm/xe/xe_device_types.h
+> >> > > b/drivers/gpu/drm/xe/xe_device_types.h
+> >> > > index 268a40639ec5..e88b64cb0eca 100644
+> >> > > --- a/drivers/gpu/drm/xe/xe_device_types.h
+> >> > > +++ b/drivers/gpu/drm/xe/xe_device_types.h
+> >> > > @@ -239,6 +239,8 @@ struct xe_device {
+> >> > >  		u8 vm_max_level;
+> >> > >  		/** @va_bits: Maximum bits of a virtual address */
+> >> > >  		u8 va_bits;
+> >> > > +		/** @csc_uid: device uid calculated by CSC FW, used for
+> >> > generating uuid */
+> >> > > +		u64 csc_uid;
+> >> > >
+> >> > >  		/** @is_dgfx: is discrete device */
+> >> > >  		u8 is_dgfx:1;
