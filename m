@@ -4,30 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D7ECDC4167B
-	for <intel-xe@archiver.kernel.org>; Sun,  3 Dec 2023 12:44:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 04005C4167B
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Dec 2023 05:18:55 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0056D10E2C3;
-	Sun,  3 Dec 2023 12:44:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 1380210E2C3;
- Sun,  3 Dec 2023 12:44:34 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 019B1AADFC;
- Sun,  3 Dec 2023 12:44:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2011431289047294260=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C14E10E190;
+	Mon,  4 Dec 2023 05:18:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C639310E194
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 Dec 2023 05:18:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701667132; x=1733203132;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=qC/SNjzP93VEENKjL6ag9UIC/7S5I91DgYmn1oMTtDY=;
+ b=jnDI41rMtvnZpvziKiqmz8bgJbhfonnV4BxjmbGXWmFiXtorDrev//lu
+ dkt5lVZJNtddPNYDH+pHGt+UeXcsIWg0n+vSA4cp0HQHQYrgruAFywtVN
+ 41y5fS+Sh0tmU6blRPxVwDqoYA3JwBSRO+7FXm1n9RlasrcO/6DZW1rEB
+ xsd/bKXYpl51GOJ9mGCAQPgnxTc2GPHhaZZshRnU/zOEavbRhdS1JptKy
+ KCHPnN7wXIhtIBIoyzaoDn6eZs4lbmM0bxsTfdIv0A52KTIKRFxfRFs4W
+ B7XPQkqU+3rKVhMdGFLIpI30i0dODddaF2sTwueZAOtYi+z97c5JtfQ1N g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="396494424"
+X-IronPort-AV: E=Sophos;i="6.04,248,1695711600"; d="scan'208";a="396494424"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2023 21:18:48 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="774143121"
+X-IronPort-AV: E=Sophos;i="6.04,248,1695711600"; d="scan'208";a="774143121"
+Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
+ by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Dec 2023 21:18:47 -0800
+From: Riana Tauro <riana.tauro@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon,  4 Dec 2023 10:56:08 +0530
+Message-Id: <20231204052609.3283031-2-riana.tauro@intel.com>
+X-Mailer: git-send-email 2.40.0
+In-Reply-To: <20231204052609.3283031-1-riana.tauro@intel.com>
+References: <20231204052609.3283031-1-riana.tauro@intel.com>
 MIME-Version: 1.0
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Date: Sun, 03 Dec 2023 12:44:33 -0000
-Message-ID: <170160747397.25280.9110573396957016284@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231201153923.3433110-1-jouni.hogander@intel.com>
-In-Reply-To: <20231201153923.3433110-1-jouni.hogander@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Backport_?=
- =?utf-8?q?fbdev_Xe_preparation_patches_from_drm-tip_=28rev2=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 1/2] RFC drm/xe: Move xe_device_mem_access_get to
+ the top of gem_create_ioctl
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,187 +57,154 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============2011431289047294260==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+When the device is runtime suspended (in D3cold), new BOs created
+as part of gem_create_ioctl steals the buddy block of the kernel objects
+that are yet to be restored as part of runtime resume (D3cold)
+kernel BOs need to be restored to the same place in VRAM, and with
+d3cold that means that any VRAM allocation can
+potentially steal the spot from kernel BOs which then blows up when
+waking the device up.
 
-== Series Details ==
+The overall idea is to first attempt move all the
+xe_device_mem_access_get() further up in the hierarchy (like ioctl level)
+to ensure the dma-resv lock is never held (potentially other locks too)
+when trying to wake up the device when d3cold is enabled.
+Any async work pushed out from ioctl should use
+xe_device_mem_access_get_if_ongoing() and attach to the work item
+like xe_bo_move. Currently xe_device_mem_access_get() is called much too
+deep in the call chain in various places which is going to inherit loads
+of scary locking dependencies making d3cold very tricky to implement.
 
-Series: Backport fbdev Xe preparation patches from drm-tip (rev2)
-URL   : https://patchwork.freedesktop.org/series/127203/
-State : success
+However if we end up moving xe_device_mem_access_get() much higher
+up in the hierarchy (start of the gem_create_ioctl) then
+this is no longer possible.
 
-== Summary ==
+	INFO: task kworker/1:1:44 blocked for more than 61 seconds.
+	"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+	task:kworker/1:1     state:D stack:25272 pid:44 ppid:2  flags:0x00004000
+	[  +0.008395] Workqueue: pm pm_runtime_work
+	[  +0.004068] Call Trace:
+	[  +0.002486]  <TASK>
+	[  +0.002161]  __schedule+0x6f5/0x1640
+	[  +0.003702]  ? __pfx___schedule+0x10/0x10
+	[  +0.004133]  ? __ww_mutex_lock.constprop.0+0xf4f/0x1e60
+	[  +0.005330]  schedule+0x92/0x120
+	....
+	[  +0.003922]  ttm_bo_mem_space+0x46d/0x490 [ttm]
+	[  +0.004586]  xe_bo_restore_pinned+0x200/0x320 [xe]
+	[  +0.005007]  ? __pfx_xe_bo_restore_pinned+0x10/0x10 [xe]
+	[  +0.005503]  ? __pfx__printk+0x10/0x10
+	[  +0.003791]  ? __pfx_do_raw_spin_lock+0x10/0x10
+	[  +0.004597]  xe_bo_restore_kernel+0x2e4/0x470 [xe]
+	[  +0.005521]  xe_pm_runtime_resume+0x20a/0x750 [xe]
+	....
+	INFO: task xe_mmap:1836 blocked for more than 61 seconds.
+	"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+	task:xe_mmap   state:D stack:23600 pid:1836  ppid:1831 flags:0x00004002
+	[  +0.008395] Call Trace:
+	[  +0.002486]  <TASK>
+	[  +0.003271]  rpm_resume+0x341/0xad0
+	[  +0.005269]  __pm_runtime_resume+0x53/0xc0
+	[  +0.004152]  xe_device_mem_access_get+0x2b/0x60 [xe]
+	[  +0.005172]  xe_bo_move+0x2ef/0x9f0 [xe]
+	[  +0.004131]  ttm_bo_handle_move_mem+0x15a/0x230 [ttm]
 
-CI Bug Log - changes from xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4_BAT -> xe-pw-127203v2_BAT
-====================================================
+Link: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/256
 
-Summary
--------
+v2: add warn on if device is not awake in xe_bo_move and return error
+    update commit message (Matthew Auld)
 
-  **SUCCESS**
+Suggested-by: Matthew Auld <matthew.auld@intel.com>
+Signed-off-by: Riana Tauro <riana.tauro@intel.com>
+---
+ drivers/gpu/drm/xe/xe_bo.c | 26 ++++++++++++++++++++------
+ 1 file changed, 20 insertions(+), 6 deletions(-)
 
-  No regressions found.
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 7f012f4c2b2d..b2b150c5270d 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -647,6 +647,7 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	bool tt_has_data;
+ 	bool needs_clear;
+ 	int ret = 0;
++	bool device_awake;
+ 
+ 	/* Bo creation path, moving to system or TT. No clearing required. */
+ 	if (!old_mem && ttm) {
+@@ -728,7 +729,14 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 	xe_assert(xe, migrate);
+ 
+ 	trace_xe_bo_move(bo);
+-	xe_device_mem_access_get(xe);
++
++	device_awake = xe_device_mem_access_get_if_ongoing(xe);
++
++	if (!device_awake) {
++		drm_WARN_ON(&xe->drm, !device_awake);
++		ret = -EAGAIN;
++		goto out;
++	}
+ 
+ 	if (xe_bo_is_pinned(bo) && !xe_bo_is_user(bo)) {
+ 		/*
+@@ -752,7 +760,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 
+ 				if (XE_WARN_ON(new_mem->start == XE_BO_INVALID_OFFSET)) {
+ 					ret = -EINVAL;
+-					xe_device_mem_access_put(xe);
++					if (device_awake)
++						xe_device_mem_access_put(xe);
+ 					goto out;
+ 				}
+ 
+@@ -770,7 +779,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 						bo, bo, old_mem, new_mem);
+ 		if (IS_ERR(fence)) {
+ 			ret = PTR_ERR(fence);
+-			xe_device_mem_access_put(xe);
++			if (device_awake)
++				xe_device_mem_access_put(xe);
+ 			goto out;
+ 		}
+ 		if (!move_lacks_source) {
+@@ -795,8 +805,8 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
+ 		dma_fence_put(fence);
+ 	}
+ 
+-	xe_device_mem_access_put(xe);
+-
++	if (device_awake)
++		xe_device_mem_access_put(xe);
+ out:
+ 	return ret;
+ 
+@@ -1895,10 +1905,13 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 			 args->cpu_caching == DRM_XE_GEM_CPU_CACHING_WB))
+ 		return -EINVAL;
+ 
++	xe_device_mem_access_get(xe);
+ 	if (args->vm_id) {
+ 		vm = xe_vm_lookup(xef, args->vm_id);
+-		if (XE_IOCTL_DBG(xe, !vm))
++		if (XE_IOCTL_DBG(xe, !vm)) {
++			xe_device_mem_access_put(xe);
+ 			return -ENOENT;
++		}
+ 		err = xe_vm_lock(vm, true);
+ 		if (err)
+ 			goto out_vm;
+@@ -1934,6 +1947,7 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
+ 	if (vm)
+ 		xe_vm_put(vm);
+ 
++	xe_device_mem_access_put(xe);
+ 	return err;
+ }
+ 
+-- 
+2.40.0
 
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-127203v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - bat-dg2-oem2:       [PASS][1] -> [TIMEOUT][2] ([Intel XE#430]) +1 other test timeout
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html
-
-  * igt@kms_pipe_crc_basic@nonblocking-crc:
-    - bat-dg2-oem2:       [PASS][3] -> [INCOMPLETE][4] ([Intel XE#545]) +1 other test incomplete
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:
-    - bat-adlp-7:         [FAIL][5] ([Intel XE#480]) -> [PASS][6] +2 other tests pass
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html
-
-  
-#### Warnings ####
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:
-    - bat-dg2-oem2:       [FAIL][7] ([Intel XE#400] / [Intel XE#616]) -> [TIMEOUT][8] ([Intel XE#430] / [Intel XE#530])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3:
-    - bat-dg2-oem2:       [FAIL][9] ([Intel XE#400] / [Intel XE#616]) -> [TIMEOUT][10] ([Intel XE#530])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3.html
-
-  
-  [Intel XE#400]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/400
-  [Intel XE#430]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/430
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#530]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/530
-  [Intel XE#545]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/545
-  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
-
-
-Build changes
--------------
-
-  * Linux: xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4 -> xe-pw-127203v2
-
-  IGT_7614: c7298ec108dc1c861c9a2593e973648ad9b420b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4: 38dc2e0d8c28a817f2c727402e2638f3ea2accb4
-  xe-pw-127203v2: 127203v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/index.html
-
---===============2011431289047294260==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Backport fbdev Xe preparation patches from drm-tip (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127203/">https://patchwork.freedesktop.org/series/127203/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4_BAT -&gt; xe-pw-127203v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-127203v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/430">Intel XE#430</a>) +1 other test timeout</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@nonblocking-crc.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/545">Intel XE#545</a>) +1 other test incomplete</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1:<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank@d-edp1.html">PASS</a> +2 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/430">Intel XE#430</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/530">Intel XE#530</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127203v2/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-d-dp-3.html">TIMEOUT</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/530">Intel XE#530</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4 -&gt; xe-pw-127203v2</li>
-</ul>
-<p>IGT_7614: c7298ec108dc1c861c9a2593e973648ad9b420b4 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-545-38dc2e0d8c28a817f2c727402e2638f3ea2accb4: 38dc2e0d8c28a817f2c727402e2638f3ea2accb4<br />
-  xe-pw-127203v2: 127203v2</p>
-
-</body>
-</html>
-
---===============2011431289047294260==--
