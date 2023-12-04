@@ -4,42 +4,42 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34B32C10F14
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Dec 2023 06:51:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0CE8FC10F13
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Dec 2023 06:51:05 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81EAB10E22D;
-	Mon,  4 Dec 2023 06:50:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F05310E2D4;
+	Mon,  4 Dec 2023 06:51:04 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0822910E2C0
- for <intel-xe@lists.freedesktop.org>; Mon,  4 Dec 2023 06:50:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7DE3310E165
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 Dec 2023 06:50:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701672606; x=1733208606;
+ t=1701672611; x=1733208611;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4Ymrl5xPJhvf0gQ62ZU5KIkYboty78kSZh8dLbOxGJs=;
- b=UBDNvfOTtXB0lRh1TLXd8jA5hDKNHaiezx3D+wNtgRfdN5lGXvROIra6
- qfpdAWb/Vy1adRlWPtrVRdfOvAdeWUmn8S4tsGay/wEGijn1VdIPplwOF
- wHGXSnbi2NY8n3AfKZ3JoKCdHc/04tadiHwhqEtknrp2wLSpS463HjaBv
- NZtMc71pfZjtVaDGUTuWeAmyAgvxg3y/StwZRbeu3No4R5/WTRgMkhJIk
- 6Zn7E3e5QPUexXaZGVSvIESGQ+6++BhB/8wpXe/bFfHxeBP4uc+2E4Zte
- zYRU8Jq05p0uL1mpR8esyttDuJH9Kg0kCLDkeVpVq/0khmS6VSue6xb/a Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="373880077"
-X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="373880077"
+ bh=4Ees8nbFVrFtqii4+JTaBTRptvZEI9b8SdIge9Zydv0=;
+ b=f0nwnebWrvWKFXiogoxr38Uuo82lvVk4/Jdknxj6nrjr8X7doPewan+Z
+ TMv87L0bGsNwCJC3SpkxGyzgN5ehKug8Nw/mWA2prJ52K4u+205n7gPLo
+ B/6b8SEPwW26RxvCRqR7hoCFEJ5omyewP1tADPE5jNoI1aGW7jqg9ug97
+ gJ/qtGFF96brqSEr5h32w3uCgosNc+rv6qd856BbONArin3xS7KIM7Z79
+ ns6pKjgDQ6H0+KAwWcRB/I/Vg5xJMLukCS3szcenzuPuovNrxN04Ke8lh
+ hs4y47cV2fmGxmTzhHiVZCtIxkmetO82d/A0hUFHRr8MgS1H2/LANBnsB g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="373880080"
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="373880080"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2023 22:50:06 -0800
+ 03 Dec 2023 22:50:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="836482840"
-X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="836482840"
+X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="836482859"
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="836482859"
 Received: from martinro-mobl2.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.252.46.174])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2023 22:50:04 -0800
+ 03 Dec 2023 22:50:09 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  4 Dec 2023 08:49:28 +0200
-Message-Id: <20231204064932.869215-6-jouni.hogander@intel.com>
+Date: Mon,  4 Dec 2023 08:49:30 +0200
+Message-Id: <20231204064932.869215-8-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231204064932.869215-1-jouni.hogander@intel.com>
 References: <20231204064932.869215-1-jouni.hogander@intel.com>
@@ -47,8 +47,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 5/9] drm/i915/display: Handle invalid
- fb_modifier in intel_fb_modifier_to_tiling
+Subject: [Intel-xe] [PATCH v2 7/9] fixup! drm/xe/display: Implement display
+ support
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,39 +64,47 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Lookup_modifier is returning INTEL_PLANE_CAP_TILING_4 on invalid
-fb_modifier value. Use lookup_modifier_or_null in
-intel_fb_modifier_to_tiling and return I915_TILING_NONE in case
-lookup_modifier_or_null returns null.
+Move xe_bo_get and xe_bo_put into intel_frontbuffer_get/put. This is where
+it's done for i915. It should work for Xe as well and this way we get rid
+of related ifdefs.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20231203114840.841311-4-jouni.hogander@intel.com
-(cherry picked from commit c61d8f7baabad322d53db301f7afaa2ce41493e6)
 ---
- drivers/gpu/drm/i915/display/intel_fb.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ .../gem/i915_gem_object_frontbuffer.h         | 21 ++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index f42a693f96c1..20d58a021a42 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -303,7 +303,14 @@ lookup_format_info(const struct drm_format_info formats[],
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
+index 2a3f12d2978c..498292fa15b9 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object_frontbuffer.h
+@@ -6,7 +6,26 @@
+ #ifndef _I915_GEM_OBJECT_FRONTBUFFER_H_
+ #define _I915_GEM_OBJECT_FRONTBUFFER_H_
  
- unsigned int intel_fb_modifier_to_tiling(u64 fb_modifier)
- {
--	u8 tiling_caps = lookup_modifier(fb_modifier)->plane_caps &
-+	const struct intel_modifier_desc *md;
-+	u8 tiling_caps;
++#include "xe_bo_types.h"
++#include "xe_bo.h"
 +
-+	md = lookup_modifier_or_null(fb_modifier);
-+	if (!md)
-+		return I915_TILING_NONE;
+ #define i915_gem_object_get_frontbuffer(obj)		NULL
+-#define i915_gem_object_set_frontbuffer(obj, front)	(front)
 +
-+	tiling_caps = lookup_modifier_or_null(fb_modifier)->plane_caps &
- 			 INTEL_PLANE_CAP_TILING_MASK;
++static inline struct intel_frontbuffer *
++i915_gem_object_set_frontbuffer(struct xe_bo *bo,
++				struct intel_frontbuffer *front)
++{
++	if (!front) {
++		if (bo->flags & XE_BO_CREATE_PINNED_BIT) {
++			/* Unpin our kernel fb first */
++			xe_bo_lock(bo, false);
++			xe_bo_unpin(bo);
++			xe_bo_unlock(bo);
++		}
++		xe_bo_put(bo);
++	} else
++		xe_bo_get(bo);
++	return front;
++}
  
- 	switch (tiling_caps) {
+ #endif
 -- 
 2.34.1
 
