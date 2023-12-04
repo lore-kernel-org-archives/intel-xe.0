@@ -4,53 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5C016C4167B
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Dec 2023 10:46:28 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B274C4167B
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Dec 2023 10:51:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E536910E339;
-	Mon,  4 Dec 2023 10:46:27 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36B6310E33A
- for <intel-xe@lists.freedesktop.org>; Mon,  4 Dec 2023 10:46:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D43C10E339;
+	Mon,  4 Dec 2023 10:51:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1A2810E339
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 Dec 2023 10:51:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701686786; x=1733222786;
- h=message-id:date:mime-version:subject:to:references:from:
- in-reply-to:content-transfer-encoding;
- bh=xl4LzSv78cTyf0w5URv9ZdDO0RbWzJ02LbpP08cny5w=;
- b=Df6ctROkte4D23AkEKu6KZE6zXOjl5SJHbFEfT/D34M9Rx1ad46qoMWm
- NF7epHtJ1cJRqLhEn5qcwxSLz0/3pc7yWfUV+JhS/UtBl3UYoU2hMQ3CJ
- tpbdk8o4t77gAM1j7MhfR4IuYHCHsfZVoLQvQTMfAsV3FRovRhMrj/7Mo
- 5KJCBGWoIi/WOHGT1xoc/hEcUYEWC4n+eX7qA/3lXDkbVy0QmpYoj+2TR
- aRbsVSR2N3kkuGWLSIklNoD8Xmw/04mdLF2JhlQQOlirmq9pFVbGveqGt
- ZmIuboHmKhliserjMZ2KpTR69UOCyHRc7ItKmRBTjLh71O5EHX5PVAmwg A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="378749232"
-X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="378749232"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2023 02:46:25 -0800
+ t=1701687100; x=1733223100;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zuUwW7kPy3pjP+wsdQ6z1A0CSXKttME7sdLnBO4LRfE=;
+ b=I8ycVAGC9/LDbvXc9yxU4qfLYO1AdWRBQ9lVK2bgTLgLIt8j+F1PpusE
+ P5j7grsTCcJyrmeWMEABEIxTx5yR7qsLqlX5IRa4LsAH0+rKg/4KqpVbG
+ dIJ24QTe4j3G6ThCbcc2JnbNEoBEnLjmYqV/zHuQKh3SlJoZAV7G0v2ty
+ 7GXsT/CW9ayJqs8HODx1LlMzErxwu7E3jYzPVWsWysEP8Lnl6mYXxMk2w
+ N6rhws8tUX727h/eNE1DHteS7ZLFWkICX/icTekqfKT5vVT3SKk0xfo5L
+ 9YkW3OI0lrK4FJG1bTeos4RTb2HaTh0hKzhumPLS6iPhgFdTt0V5ovnWG Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="460209306"
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; 
+ d="scan'208,223";a="460209306"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2023 02:51:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="914377821"
-X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="914377821"
-Received: from clanggaa-mobl.ger.corp.intel.com (HELO [10.249.254.100])
- ([10.249.254.100])
- by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2023 02:46:24 -0800
-Message-ID: <f538548c-e0a3-0c13-6855-baa02f0e6ec7@linux.intel.com>
-Date: Mon, 4 Dec 2023 11:46:23 +0100
+X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="836546482"
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; 
+ d="scan'208,223";a="836546482"
+Received: from psobol-mobl1.ger.corp.intel.com (HELO mwauld-mobl1.intel.com)
+ ([10.252.9.144])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2023 02:51:37 -0800
+From: Matthew Auld <matthew.auld@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Mon,  4 Dec 2023 10:51:27 +0000
+Message-ID: <20231204105126.34751-2-matthew.auld@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Content-Language: en-US
-To: Matthew Brost <matthew.brost@intel.com>, intel-xe@lists.freedesktop.org
-References: <20231116194047.214330-1-matthew.brost@intel.com>
- <20231116194047.214330-4-matthew.brost@intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231116194047.214330-4-matthew.brost@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [PATCH 3/5] drm/xe: Use a flags field instead of
- bools for sync parse
+Subject: [Intel-xe] [PATCH] drm/xe: add some debug info for d3cold
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,88 +60,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+From the CI logs we want to easily know if the machine is capable and
+allowed to enter d3cold, and can therefore potentially trigger the
+d3cold RPM suspend and resume path.
 
-On 11/16/23 20:40, Matthew Brost wrote:
-> Use a flags field instead of severval bools for sync parse as it is
-> easier to read and less bug prone.
->
-> Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-> Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+Signed-off-by: Matthew Auld <matthew.auld@intel.com>
+Cc: Anshuman Gupta <anshuman.gupta@intel.com>
+Cc: Riana Tauro <riana.tauro@intel.com>
+---
+ drivers/gpu/drm/xe/xe_pci.c | 3 +++
+ drivers/gpu/drm/xe/xe_pm.c  | 3 +++
+ 2 files changed, 6 insertions(+)
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 6977f48b03c8..501b4489f9d4 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -751,6 +751,9 @@ static int xe_pci_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
+ 
+ 	xe_pm_init(xe);
+ 
++	drm_dbg(&xe->drm, "d3cold: capable=%s\n",
++		str_yes_no(xe->d3cold.capable));
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
+index e31a91cf311c..b429c2876a76 100644
+--- a/drivers/gpu/drm/xe/xe_pm.c
++++ b/drivers/gpu/drm/xe/xe_pm.c
+@@ -399,4 +399,7 @@ void xe_pm_d3cold_allowed_toggle(struct xe_device *xe)
+ 		xe->d3cold.allowed = false;
+ 
+ 	mutex_unlock(&xe->d3cold.lock);
++
++	drm_dbg(&xe->drm,
++		"d3cold: allowed=%s\n", str_yes_no(xe->d3cold.allowed));
+ }
+-- 
+2.43.0
 
-
-> ---
->   drivers/gpu/drm/xe/xe_exec.c | 5 +++--
->   drivers/gpu/drm/xe/xe_sync.c | 8 +++++---
->   drivers/gpu/drm/xe/xe_vm.c   | 5 +++--
->   3 files changed, 11 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
-> index 28e84a0bbeb0..7d4d22c81a42 100644
-> --- a/drivers/gpu/drm/xe/xe_exec.c
-> +++ b/drivers/gpu/drm/xe/xe_exec.c
-> @@ -181,8 +181,9 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   
->   	for (i = 0; i < args->num_syncs; i++) {
->   		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs++],
-> -					  &syncs_user[i], true,
-> -					  xe_vm_no_dma_fences(vm));
-> +					  &syncs_user[i], SYNC_PARSE_FLAG_EXEC |
-> +					  (xe_vm_no_dma_fences(vm) ?
-> +					   SYNC_PARSE_FLAG_LR_MODE : 0));
->   		if (err)
->   			goto err_syncs;
->   	}
-> diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
-> index 73ef259aa387..016d0a2ea5bc 100644
-> --- a/drivers/gpu/drm/xe/xe_sync.c
-> +++ b/drivers/gpu/drm/xe/xe_sync.c
-> @@ -100,10 +100,12 @@ static void user_fence_cb(struct dma_fence *fence, struct dma_fence_cb *cb)
->   int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->   			struct xe_sync_entry *sync,
->   			struct drm_xe_sync __user *sync_user,
-> -			bool exec, bool no_dma_fences)
-> +			unsigned int flags)
->   {
->   	struct drm_xe_sync sync_in;
->   	int err;
-> +	bool exec = flags & SYNC_PARSE_FLAG_EXEC;
-> +	bool lr_mode = flags & SYNC_PARSE_FLAG_LR_MODE;
->   	bool signal;
->   
->   	if (copy_from_user(&sync_in, sync_user, sizeof(*sync_user)))
-> @@ -118,7 +120,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->   	signal = sync_in.flags & DRM_XE_SYNC_SIGNAL;
->   	switch (sync_in.flags & SYNC_FLAGS_TYPE_MASK) {
->   	case DRM_XE_SYNC_SYNCOBJ:
-> -		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
-> +		if (XE_IOCTL_DBG(xe, lr_mode && signal))
->   			return -EOPNOTSUPP;
->   
->   		if (XE_IOCTL_DBG(xe, upper_32_bits(sync_in.addr)))
-> @@ -136,7 +138,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
->   		break;
->   
->   	case DRM_XE_SYNC_TIMELINE_SYNCOBJ:
-> -		if (XE_IOCTL_DBG(xe, no_dma_fences && signal))
-> +		if (XE_IOCTL_DBG(xe, lr_mode && signal))
->   			return -EOPNOTSUPP;
->   
->   		if (XE_IOCTL_DBG(xe, upper_32_bits(sync_in.addr)))
-> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-> index 13c8a9c6117c..1f3e5dcbef9e 100644
-> --- a/drivers/gpu/drm/xe/xe_vm.c
-> +++ b/drivers/gpu/drm/xe/xe_vm.c
-> @@ -3089,8 +3089,9 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
->   	syncs_user = u64_to_user_ptr(args->syncs);
->   	for (num_syncs = 0; num_syncs < args->num_syncs; num_syncs++) {
->   		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs],
-> -					  &syncs_user[num_syncs], false,
-> -					  xe_vm_no_dma_fences(vm));
-> +					  &syncs_user[num_syncs],
-> +					  xe_vm_no_dma_fences(vm) ?
-> +					  SYNC_PARSE_FLAG_LR_MODE : 0);
->   		if (err)
->   			goto free_syncs;
->   	}
