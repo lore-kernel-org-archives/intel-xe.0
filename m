@@ -4,48 +4,51 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id B5C78C4167B
-	for <intel-xe@archiver.kernel.org>; Mon,  4 Dec 2023 06:49:58 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EDC60C10F14
+	for <intel-xe@archiver.kernel.org>; Mon,  4 Dec 2023 06:49:59 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE1FD10E165;
-	Mon,  4 Dec 2023 06:49:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7CD4110E22D;
+	Mon,  4 Dec 2023 06:49:59 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FC9210E165
- for <intel-xe@lists.freedesktop.org>; Mon,  4 Dec 2023 06:49:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB25610E165
+ for <intel-xe@lists.freedesktop.org>; Mon,  4 Dec 2023 06:49:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701672595; x=1733208595;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=qsdKkx5oHVPMB484xbFlVXI23R+Q+Ti4C0FgmFbmtrk=;
- b=eZc9W0cGdgZnUEw+A/p37Tg23ZMWyNXyWD+sbB/OzAHt/STm1DF3//k2
- mqpi07+9aj27qJ6Rh2UVGWZBhcL4S91UD0XcNN4hXFw6MFc27q/6XLEyo
- cjETPfaIcLZ7ySQpzbF0biGMWRfgdZ0G1Bc1DSKs0w8JpSGKeC7bU3Jkk
- E4fhocoGF2RWMAJtDaqwUEj7TDOa8+XUoEb0T8hFAdhxOeBqcSFOcQFwM
- lYejQLF/wniKOLKSX8kOBfe5H79uHIrQdgt8Dvg0b0tYYHfeuosfqe5ev
- Oc3elYZ/CpZArcIJIWWoawQB5ZvlXB040ornwh3RikGKw6136MK2D6zsW w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="373880066"
-X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="373880066"
+ t=1701672596; x=1733208596;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=S0ssUHOtV78W1cwAHhTeXIzW8rS0MAZgUdtLQNji59M=;
+ b=OUe662CXkTtM/8Vjxv2F4BwRAMi3sXtNpA/f2gDXfeyqjmocI1imM1x6
+ oV8b5PWk+Npgib45bFHK6GB781cPc3Mdo4+Vrwhe3JAd1g4w4n5yIu51Z
+ W4zj+xdfDWKPiohCDfE23C3zMtW9e7SYGt1wV0y0zb08XiQnSHmV8XJp4
+ QdCYHrzsRoERJEWtAb8QNeYdvkINN96jai2A1+/k7CVQpgMS/RCx1V88E
+ vIEVVrUrlYZrGOvS947IU3sIVOVucXtYW8sM2qTg4qosI8PJbftXz8JfD
+ kk1KA6VK2qcTxvYtxIXZ9/3aRuMqoH5JzpG/YGD24cynTY6Nrsfv5pSML w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="373880069"
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="373880069"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2023 22:49:54 -0800
+ 03 Dec 2023 22:49:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="836482780"
-X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="836482780"
+X-IronPort-AV: E=McAfee;i="6600,9927,10913"; a="836482789"
+X-IronPort-AV: E=Sophos;i="6.04,249,1695711600"; d="scan'208";a="836482789"
 Received: from martinro-mobl2.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.252.46.174])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Dec 2023 22:49:51 -0800
+ 03 Dec 2023 22:49:54 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Mon,  4 Dec 2023 08:49:23 +0200
-Message-Id: <20231204064932.869215-1-jouni.hogander@intel.com>
+Date: Mon,  4 Dec 2023 08:49:24 +0200
+Message-Id: <20231204064932.869215-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231204064932.869215-1-jouni.hogander@intel.com>
+References: <20231204064932.869215-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 0/9] Intel_fb.c refactoring
+Subject: [Intel-xe] [PATCH v2 1/9] Revert "FIXME: drm/i915: xe intel_fb.c
+ framebuffer init and destroy xe changes"
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,53 +60,53 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch set is refactoring intel_fb.c code to get rid of
-ifdefs. This is done by splitting i915 and Xe specific parts from
-intel_fb.c into their own source files.
+This reverts commit 14d1d786caacdb3438d07ab86fabf2e36c8151cc.
 
-Some ifdefs are tackled by adding definitions into Xe compatibility
-headers.
+Revert this as we are about to introduce implementation without any
+ifdefs.
 
-v2: i915 changes are now backported
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fb.c | 15 ---------------
+ 1 file changed, 15 deletions(-)
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-
-Jouni Högander (9):
-  Revert "FIXME: drm/i915: xe intel_fb.c framebuffer init and destroy xe
-    changes"
-  fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
-  drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c
-  drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static
-  drm/i915/display: Handle invalid fb_modifier in
-    intel_fb_modifier_to_tiling
-  drm/i915/display: Split i915 specific code away from intel_fb.c
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/xe/display: Implement display support
-
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_fb.c       | 219 ++++--------------
- drivers/gpu/drm/i915/display/intel_fb.h       |   2 +
- drivers/gpu/drm/i915/display/intel_fb_bo.c    |  92 ++++++++
- drivers/gpu/drm/i915/display/intel_fb_bo.h    |  24 ++
- drivers/gpu/drm/xe/Makefile                   |   1 +
- .../compat-i915-headers/gem/i915_gem_object.h |  16 ++
- .../gem/i915_gem_object_frontbuffer.h         |  21 +-
- drivers/gpu/drm/xe/display/intel_fb_bo.c      |  62 +++++
- drivers/gpu/drm/xe/display/intel_fb_bo.h      |  23 ++
- 10 files changed, 288 insertions(+), 173 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.h
- create mode 100644 drivers/gpu/drm/xe/display/intel_fb_bo.c
- create mode 100644 drivers/gpu/drm/xe/display/intel_fb_bo.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 16c37a508552..f7675284907f 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1891,17 +1891,6 @@ static void intel_user_framebuffer_destroy_vm(struct drm_framebuffer *fb)
+ 
+ 	if (intel_fb_uses_dpt(fb))
+ 		intel_dpt_destroy(intel_fb->dpt_vm);
+-#ifndef I915
+-	if (intel_fb_obj(fb)->flags & XE_BO_CREATE_PINNED_BIT) {
+-		struct xe_bo *bo = intel_fb_obj(fb);
+-
+-		/* Unpin our kernel fb first */
+-		xe_bo_lock(bo, false);
+-		xe_bo_unpin(bo);
+-		xe_bo_unlock(bo);
+-	}
+-	xe_bo_put(intel_fb_obj(fb));
+-#endif
+ }
+ 
+ static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
+@@ -2174,10 +2163,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 
+ 		intel_fb->dpt_vm = vm;
+ 	}
+-#ifndef I915
+-	/* Hold a reference to object while fb is alive */
+-	xe_bo_get(obj);
+-#endif
+ 
+ 	ret = drm_framebuffer_init(&dev_priv->drm, fb, &intel_fb_funcs);
+ 	if (ret) {
 -- 
 2.34.1
 
