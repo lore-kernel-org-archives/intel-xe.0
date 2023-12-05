@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C2763C4167B
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 15:19:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E800C10F05
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 15:19:31 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 94C3610E384;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAA4410E562;
 	Tue,  5 Dec 2023 15:19:30 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BC3B610E384
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9D6AB10E562
  for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 15:19:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1701789568; x=1733325568;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=QTBjV+nFjjGt/RM2lGUdM6gKAGxdxifa+9dxN9EYFWs=;
- b=l9FPLj2ZnhOapetIj2AG8y9SdHVB9NwbvzGwld2UlVB0zzhww10+Ioi6
- q4oM6kygP915xw9KPUOgz8fTKEncBFXR9Y6AbYUI2IHiX3oYz/P5hsswp
- R5DMdJSGxOoEFXCKsjXVsUI1w95CyjKHezd0P0tdwvwOvfV3XpQ+HcWpZ
- D8AmnGm/wR+nLIX88vDcP5eZjX5pz52Mee1KzoUoOvmSUGMu5BjEWxSsF
- ENqZVtDeL48BW20XH3HmbDTiq/B5JSr+x6WT6xF8mwm8j9ZzyKBQHOJrl
- qnjjsEQUAbJ9LDvZIoKVfZIjx5VWAvzdP1H56ovdPiEVxX2Q8xSv6RGqg Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="393641581"
-X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="393641581"
+ bh=1WX/BGD+P/1ImUkesVKRIr2lS/yG6ZzRojVBZptpGQo=;
+ b=C926U3PvH4lGUqk4Q8E0MgC1+QaosC9coN20G6JP7vDuqlrZJGR2YQMC
+ djHXZBG7p0gL3CL2O2u9yNWQClOd9SRFJMmR55Fa5ESx7/wAymJGq4nPe
+ apsYmYT7GiEcxd2YO71R4P/9ejEIhAzDIMzy8xSDyIVkn7IVY43+rT1Kw
+ +xFaHYX5KBS6Pu9i9865RxlJOWWdvZMSHJ9aab83IsN2OYRjmxDcAt4U0
+ 2xAmhmr/gs42QX0PvkQ1gng4FIguRRv7Q5c+uXvYhhQ/owYUwkaHlsCAw
+ P1rj6ih7H+ms+be1HQ1Zlm8Z9XVFQRPg1iVQyv0+He43xL8PNOxD0p2Wr Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="393641577"
+X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="393641577"
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 07:19:28 -0800
+ 05 Dec 2023 07:19:27 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="770956806"
-X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="770956806"
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="770956798"
+X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="770956798"
 Received: from mstribae-mobl.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.119])
  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 07:19:27 -0800
+ 05 Dec 2023 07:19:26 -0800
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  5 Dec 2023 16:19:03 +0100
-Message-ID: <20231205151913.4259-7-thomas.hellstrom@linux.intel.com>
+Date: Tue,  5 Dec 2023 16:19:02 +0100
+Message-ID: <20231205151913.4259-6-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231205151913.4259-1-thomas.hellstrom@linux.intel.com>
 References: <20231205151913.4259-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 07/16] drm/gpuvm: add drm_gpuvm_flags to drm_gpuvm
+Subject: [Intel-xe] [CI 06/16] drm/nouveau: make use of the GPUVM's shared
+ dma-resv
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,103 +63,152 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 From: Danilo Krummrich <dakr@redhat.com>
 
-Introduce flags for struct drm_gpuvm, this required by subsequent
-commits.
+DRM GEM objects private to a single GPUVM can use a shared dma-resv.
+Make use of the shared dma-resv of GPUVM rather than a driver specific
+one.
 
-Acked-by: Christian König <christian.koenig@amd.com>
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+The shared dma-resv originates from a "root" GEM object serving as
+container for the dma-resv to make it compatible with drm_exec.
+
+In order to make sure the object proving the shared dma-resv can't be
+freed up before the objects making use of it, let every such GEM object
+take a reference on it.
+
+Reviewed-by: Dave Airlie <airlied@redhat.com>
 Signed-off-by: Danilo Krummrich <dakr@redhat.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20231108001259.15123-8-dakr@redhat.com
-(cherry picked from commit 809ef191ee600e8bcbe2f8a769e00d2d54c16094)
+Link: https://patchwork.freedesktop.org/patch/msgid/20231108001259.15123-7-dakr@redhat.com
+(cherry picked from commit 6118411428a393fb0868bad9025d71875418058b)
 ---
- drivers/gpu/drm/drm_gpuvm.c            |  3 +++
- drivers/gpu/drm/nouveau/nouveau_uvmm.c |  2 +-
- include/drm/drm_gpuvm.h                | 16 ++++++++++++++++
- 3 files changed, 20 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/nouveau/nouveau_bo.c   | 11 +++++++++--
+ drivers/gpu/drm/nouveau/nouveau_bo.h   |  5 +++++
+ drivers/gpu/drm/nouveau/nouveau_gem.c  | 10 ++++++++--
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c |  7 ++-----
+ drivers/gpu/drm/nouveau/nouveau_uvmm.h |  1 -
+ 5 files changed, 24 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
-index 594ebcab5a4b..0a010b52e33d 100644
---- a/drivers/gpu/drm/drm_gpuvm.c
-+++ b/drivers/gpu/drm/drm_gpuvm.c
-@@ -720,6 +720,7 @@ EXPORT_SYMBOL_GPL(drm_gpuvm_resv_object_alloc);
-  * drm_gpuvm_init() - initialize a &drm_gpuvm
-  * @gpuvm: pointer to the &drm_gpuvm to initialize
-  * @name: the name of the GPU VA space
-+ * @flags: the &drm_gpuvm_flags for this GPUVM
-  * @drm: the &drm_device this VM resides in
-  * @r_obj: the resv &drm_gem_object providing the GPUVM's common &dma_resv
-  * @start_offset: the start offset of the GPU VA space
-@@ -735,6 +736,7 @@ EXPORT_SYMBOL_GPL(drm_gpuvm_resv_object_alloc);
-  */
- void
- drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
-+	       enum drm_gpuvm_flags flags,
- 	       struct drm_device *drm,
- 	       struct drm_gem_object *r_obj,
- 	       u64 start_offset, u64 range,
-@@ -745,6 +747,7 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
- 	INIT_LIST_HEAD(&gpuvm->rb.list);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.c b/drivers/gpu/drm/nouveau/nouveau_bo.c
+index 0f3bd187ede6..7afad86da64b 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.c
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.c
+@@ -148,10 +148,17 @@ nouveau_bo_del_ttm(struct ttm_buffer_object *bo)
+ 	 * If nouveau_bo_new() allocated this buffer, the GEM object was never
+ 	 * initialized, so don't attempt to release it.
+ 	 */
+-	if (bo->base.dev)
++	if (bo->base.dev) {
++		/* Gem objects not being shared with other VMs get their
++		 * dma_resv from a root GEM object.
++		 */
++		if (nvbo->no_share)
++			drm_gem_object_put(nvbo->r_obj);
++
+ 		drm_gem_object_release(&bo->base);
+-	else
++	} else {
+ 		dma_resv_fini(&bo->base._resv);
++	}
  
- 	gpuvm->name = name ? name : "unknown";
-+	gpuvm->flags = flags;
- 	gpuvm->ops = ops;
- 	gpuvm->drm = drm;
- 	gpuvm->r_obj = r_obj;
-diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-index 8977a518de96..f765e3835306 100644
---- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
-@@ -1828,7 +1828,7 @@ nouveau_uvmm_init(struct nouveau_uvmm *uvmm, struct nouveau_cli *cli,
- 		goto out_unlock;
+ 	kfree(nvbo);
+ }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_bo.h b/drivers/gpu/drm/nouveau/nouveau_bo.h
+index 07f671cf895e..70c551921a9e 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_bo.h
++++ b/drivers/gpu/drm/nouveau/nouveau_bo.h
+@@ -26,6 +26,11 @@ struct nouveau_bo {
+ 	struct list_head entry;
+ 	int pbbo_index;
+ 	bool validate_mapped;
++
++	/* Root GEM object we derive the dma_resv of in case this BO is not
++	 * shared between VMs.
++	 */
++	struct drm_gem_object *r_obj;
+ 	bool no_share;
+ 
+ 	/* GPU address space is independent of CPU word size */
+diff --git a/drivers/gpu/drm/nouveau/nouveau_gem.c b/drivers/gpu/drm/nouveau/nouveau_gem.c
+index a0d303e5ce3d..49c2bcbef129 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_gem.c
++++ b/drivers/gpu/drm/nouveau/nouveau_gem.c
+@@ -111,7 +111,8 @@ nouveau_gem_object_open(struct drm_gem_object *gem, struct drm_file *file_priv)
+ 	if (vmm->vmm.object.oclass < NVIF_CLASS_VMM_NV50)
+ 		return 0;
+ 
+-	if (nvbo->no_share && uvmm && &uvmm->resv != nvbo->bo.base.resv)
++	if (nvbo->no_share && uvmm &&
++	    drm_gpuvm_resv(&uvmm->base) != nvbo->bo.base.resv)
+ 		return -EPERM;
+ 
+ 	ret = ttm_bo_reserve(&nvbo->bo, false, false, NULL);
+@@ -245,7 +246,7 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
+ 		if (unlikely(!uvmm))
+ 			return -EINVAL;
+ 
+-		resv = &uvmm->resv;
++		resv = drm_gpuvm_resv(&uvmm->base);
  	}
  
--	drm_gpuvm_init(&uvmm->base, cli->name, drm, r_obj,
-+	drm_gpuvm_init(&uvmm->base, cli->name, 0, drm, r_obj,
- 		       NOUVEAU_VA_SPACE_START,
- 		       NOUVEAU_VA_SPACE_END,
- 		       kernel_managed_addr, kernel_managed_size,
-diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
-index 59b32c5b7d16..239680b83079 100644
---- a/include/drm/drm_gpuvm.h
-+++ b/include/drm/drm_gpuvm.h
-@@ -184,6 +184,16 @@ static inline bool drm_gpuva_invalidated(struct drm_gpuva *va)
- 	return va->flags & DRM_GPUVA_INVALIDATED;
+ 	if (!(domain & (NOUVEAU_GEM_DOMAIN_VRAM | NOUVEAU_GEM_DOMAIN_GART)))
+@@ -288,6 +289,11 @@ nouveau_gem_new(struct nouveau_cli *cli, u64 size, int align, uint32_t domain,
+ 	if (drm->client.device.info.family >= NV_DEVICE_INFO_V0_TESLA)
+ 		nvbo->valid_domains &= domain;
+ 
++	if (nvbo->no_share) {
++		nvbo->r_obj = drm_gpuvm_resv_obj(&uvmm->base);
++		drm_gem_object_get(nvbo->r_obj);
++	}
++
+ 	*pnvbo = nvbo;
+ 	return 0;
  }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index f74bf30bc683..8977a518de96 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -1802,7 +1802,6 @@ nouveau_uvmm_init(struct nouveau_uvmm *uvmm, struct nouveau_cli *cli,
+ 	int ret;
  
-+/**
-+ * enum drm_gpuvm_flags - flags for struct drm_gpuvm
-+ */
-+enum drm_gpuvm_flags {
-+	/**
-+	 * @DRM_GPUVM_USERBITS: user defined bits
-+	 */
-+	DRM_GPUVM_USERBITS = BIT(0),
-+};
-+
- /**
-  * struct drm_gpuvm - DRM GPU VA Manager
-  *
-@@ -202,6 +212,11 @@ struct drm_gpuvm {
- 	 */
- 	const char *name;
+ 	mutex_init(&uvmm->mutex);
+-	dma_resv_init(&uvmm->resv);
+ 	mt_init_flags(&uvmm->region_mt, MT_FLAGS_LOCK_EXTERN);
+ 	mt_set_external_lock(&uvmm->region_mt, &uvmm->mutex);
  
-+	/**
-+	 * @flags: the &drm_gpuvm_flags of this GPUVM
-+	 */
-+	enum drm_gpuvm_flags flags;
-+
- 	/**
- 	 * @drm: the &drm_device this VM lives in
- 	 */
-@@ -252,6 +267,7 @@ struct drm_gpuvm {
+@@ -1842,14 +1841,14 @@ nouveau_uvmm_init(struct nouveau_uvmm *uvmm, struct nouveau_cli *cli,
+ 			    kernel_managed_addr, kernel_managed_size,
+ 			    NULL, 0, &cli->uvmm.vmm.vmm);
+ 	if (ret)
+-		goto out_free_gpuva_mgr;
++		goto out_gpuvm_fini;
+ 
+ 	cli->uvmm.vmm.cli = cli;
+ 	mutex_unlock(&cli->mutex);
+ 
+ 	return 0;
+ 
+-out_free_gpuva_mgr:
++out_gpuvm_fini:
+ 	drm_gpuvm_destroy(&uvmm->base);
+ out_unlock:
+ 	mutex_unlock(&cli->mutex);
+@@ -1907,6 +1906,4 @@ nouveau_uvmm_fini(struct nouveau_uvmm *uvmm)
+ 	nouveau_vmm_fini(&uvmm->vmm);
+ 	drm_gpuvm_destroy(&uvmm->base);
+ 	mutex_unlock(&cli->mutex);
+-
+-	dma_resv_fini(&uvmm->resv);
+ }
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.h b/drivers/gpu/drm/nouveau/nouveau_uvmm.h
+index 06a0c36de392..22607270fae0 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.h
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.h
+@@ -12,7 +12,6 @@ struct nouveau_uvmm {
+ 	struct nouveau_vmm vmm;
+ 	struct maple_tree region_mt;
+ 	struct mutex mutex;
+-	struct dma_resv resv;
+ 
+ 	bool disabled;
  };
- 
- void drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
-+		    enum drm_gpuvm_flags flags,
- 		    struct drm_device *drm,
- 		    struct drm_gem_object *r_obj,
- 		    u64 start_offset, u64 range,
 -- 
 2.42.0
 
