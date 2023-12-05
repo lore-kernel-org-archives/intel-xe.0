@@ -4,47 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 626C2C10F05
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 20:37:42 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id F0F48C4167B
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 20:37:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C85C10E60C;
-	Tue,  5 Dec 2023 20:37:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9EEB10E608;
+	Tue,  5 Dec 2023 20:37:41 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2707810E608
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5396710E60F
  for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 20:37:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1701808660; x=1733344660;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vKdsFrftn4dnYY/k3HEqH5X/lvO0bsYc3uIrB4iN+7o=;
- b=ahX5dcrVC1V7QrEjxCWn6P+zr3SjOV6ec8AYptPVRVaar2iI6ScBIg7y
- yrfYVH61Yyf8E54aZ2cD/1gxZB9jaBjIzxSvhwr6lXTKZCZzblN0LCphV
- ga84WmvY9Ui21oNxcXkM7LsHyf+13LeQasFukPcqEgj3oqb+45zLRuyh8
- eSN9P/h97V9hh+qeUy+0QoBHLC9rp+iLJc7I75QvS80uBSJ+zroLDqkyG
- JcfEXearz72Tdz7/Q/0t51+vZcT9EQhVnm1EohjhhP6egGBU+7Z1+aNBl
- iUIW0lSx1BJqvIlLMcqSxKOBXNgHQAhm/0cjdwG5PkQeXRQiuTvjcJto4 w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="397848603"
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="397848603"
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=vji4ZYeMkLBJfzWi+PlsZnWJS3GYmGNCTwoABVcr/ks=;
+ b=mq4NQNHjLugfRKj77i2VXOy77XRahiF91JXt3i7y/Vk5zT+ezKgHDW2T
+ eA1i24KTSHVjFbZ5twmWkG1FzMOCVqPL5z2R5Nwj1tXjCTtJ52FM9SS3O
+ KLwh3x2ht/mxgEOqV6AMOiOQbSxxRUkbHZlSh4CAaPrrkYx0hAryMg5OU
+ JdChwQ8ScBgtIv9amixCGRcjhSy47PNfyAoruno9dPfUK4WFxJzc0RkRG
+ PFQJ8R8unIlBGKokGiDMmTiE4zTqPn06L/I9LfMnRvpKt9GXOHQ9Cs2OT
+ oN7DYTEFEr+sv2WABvsnUcUoNE5fm9M7Wcyh1oJ/K/O2J9NYxpKk1Up3W g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="397848606"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="397848606"
 Received: from orsmga006.jf.intel.com ([10.7.209.51])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Dec 2023 12:37:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="747366694"
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="747366694"
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="747366706"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="747366706"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orsmga006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Dec 2023 12:37:39 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Tue,  5 Dec 2023 12:37:53 -0800
-Message-Id: <20231205203758.322438-1-matthew.brost@intel.com>
+Date: Tue,  5 Dec 2023 12:37:57 -0800
+Message-Id: <20231205203758.322438-5-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231205203758.322438-1-matthew.brost@intel.com>
+References: <20231205203758.322438-1-matthew.brost@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v3 0/5] Allow num_binds/num_batch_buffer to be
- zero IOCTLs
+Subject: [Intel-xe] [PATCH v3 4/5] drm/xe: Allow num_batch_buffer == 0 in
+ exec IOCTL
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,26 +60,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Easy way to flush exec queues. A semantic that VK will likely use.
+The idea being out-syncs can signal indicating all previous operations
+on the exec queue are complete. An example use case of this would be
+support for implementing vkQueueWaitIdle easily.
 
-v2: Rebase
-v3: Bug fixes
+v2: Don't add last_fence for VM's that do not support dma fences
+v3: Use a flags field instead of severval bools in sync parse (Thomas)
+v4: s/vkQueueWaitForIdle/vkQueueWaitIdle
+v5: Fix inverted lr_mode checks
 
-Matthew Brost (5):
-  drm/xe: Use a flags field instead of bools for VMA create
-  drm/xe: Use a flags field instead of bools for sync parse
-  drm/xe: Allow num_binds == 0 in VM bind IOCTL
-  drm/xe: Allow num_batch_buffer == 0 in exec IOCTL
-  drm/xe: Take in-syncs into account when num_execs or num_binds == 0
+Signed-off-by: Matthew Brost <matthew.brost@intel.com>
+---
+ drivers/gpu/drm/xe/xe_exec.c             | 17 ++++++++++++++++-
+ drivers/gpu/drm/xe/xe_exec_queue.c       |  5 ++++-
+ drivers/gpu/drm/xe/xe_exec_queue_types.h |  5 +++--
+ drivers/gpu/drm/xe/xe_sync.c             |  4 ++++
+ 4 files changed, 27 insertions(+), 4 deletions(-)
 
- drivers/gpu/drm/xe/xe_exec.c             |  28 ++++-
- drivers/gpu/drm/xe/xe_exec_queue.c       |   5 +-
- drivers/gpu/drm/xe/xe_exec_queue_types.h |   5 +-
- drivers/gpu/drm/xe/xe_sync.c             |  82 ++++++++++++++-
- drivers/gpu/drm/xe/xe_sync.h             |  11 +-
- drivers/gpu/drm/xe/xe_vm.c               | 125 ++++++++++++++---------
- 6 files changed, 200 insertions(+), 56 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index a8a025495b14..96d7506a4c72 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -161,7 +161,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	if (XE_IOCTL_DBG(xe, q->flags & EXEC_QUEUE_FLAG_VM))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, q->width != args->num_batch_buffer))
++	if (XE_IOCTL_DBG(xe, args->num_batch_buffer &&
++			 q->width != args->num_batch_buffer))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_DBG(xe, q->flags & EXEC_QUEUE_FLAG_BANNED)) {
+@@ -235,6 +236,18 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		goto err_exec;
+ 	}
+ 
++	if (!args->num_batch_buffer) {
++		if (!xe_vm_in_lr_mode(vm)) {
++			struct dma_fence *fence =
++				xe_exec_queue_last_fence_get(q, vm);
++
++			for (i = 0; i < num_syncs; i++)
++				xe_sync_entry_signal(&syncs[i], NULL, fence);
++		}
++
++		goto err_exec;
++	}
++
+ 	if (xe_exec_queue_is_lr(q) && xe_exec_queue_ring_full(q)) {
+ 		err = -EWOULDBLOCK;
+ 		goto err_exec;
+@@ -328,6 +341,8 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 
+ 	if (xe_exec_queue_is_lr(q))
+ 		q->ring_ops->emit_job(job);
++	if (!xe_vm_in_lr_mode(vm))
++		xe_exec_queue_last_fence_set(q, vm, &job->drm.s_fence->finished);
+ 	xe_sched_job_push(job);
+ 	xe_vm_reactivate_rebind(vm);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index cb284c4ad049..67e3fd9dfc5f 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -886,7 +886,10 @@ int xe_exec_queue_destroy_ioctl(struct drm_device *dev, void *data,
+ static void xe_exec_queue_last_fence_lockdep_assert(struct xe_exec_queue *q,
+ 						    struct xe_vm *vm)
+ {
+-	lockdep_assert_held_write(&vm->lock);
++	if (q->flags & EXEC_QUEUE_FLAG_VM)
++		lockdep_assert_held_write(&vm->lock);
++	else
++		xe_vm_assert_held(vm);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue_types.h b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+index 5ba47a5cfdbd..52f0927d0d9b 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue_types.h
++++ b/drivers/gpu/drm/xe/xe_exec_queue_types.h
+@@ -56,8 +56,9 @@ struct xe_exec_queue {
+ 	struct xe_hw_fence_irq *fence_irq;
+ 
+ 	/**
+-	 * @last_fence: last fence on engine, protected by vm->lock in write
+-	 * mode if bind engine
++	 * @last_fence: last fence on exec queue, protected by vm->lock in write
++	 * mode if bind exec queue, protected by dma resv lock if non-bind exec
++	 * queue
+ 	 */
+ 	struct dma_fence *last_fence;
+ 
+diff --git a/drivers/gpu/drm/xe/xe_sync.c b/drivers/gpu/drm/xe/xe_sync.c
+index 2a3f508722fc..d0f118223fa2 100644
+--- a/drivers/gpu/drm/xe/xe_sync.c
++++ b/drivers/gpu/drm/xe/xe_sync.c
+@@ -104,6 +104,7 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+ 	int err;
+ 	bool exec = flags & SYNC_PARSE_FLAG_EXEC;
+ 	bool in_lr_mode = flags & SYNC_PARSE_FLAG_LR_MODE;
++	bool disallow_user_fence = flags & SYNC_PARSE_FLAG_DISALLOW_USER_FENCE;
+ 	bool signal;
+ 
+ 	if (copy_from_user(&sync_in, sync_user, sizeof(*sync_user)))
+@@ -164,6 +165,9 @@ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+ 		break;
+ 
+ 	case DRM_XE_SYNC_TYPE_USER_FENCE:
++		if (XE_IOCTL_DBG(xe, disallow_user_fence))
++			return -EOPNOTSUPP;
++
+ 		if (XE_IOCTL_DBG(xe, !signal))
+ 			return -EOPNOTSUPP;
+ 
 -- 
 2.34.1
 
