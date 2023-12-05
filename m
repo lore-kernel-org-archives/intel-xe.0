@@ -4,31 +4,31 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8C807C4167B
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 17:23:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FB13C4167B
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 17:23:26 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27CD110E5D8;
-	Tue,  5 Dec 2023 17:23:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 048ED10E591;
+	Tue,  5 Dec 2023 17:23:26 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 56E3C10E5D8;
- Tue,  5 Dec 2023 17:23:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id D414B10E591;
+ Tue,  5 Dec 2023 17:23:23 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 530D6AADD5;
- Tue,  5 Dec 2023 17:23:11 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id D0EE8AADD5;
+ Tue,  5 Dec 2023 17:23:23 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Bommu Krishnaiah" <krishnaiah.bommu@intel.com>
-Date: Tue, 05 Dec 2023 17:23:11 -0000
-Message-ID: <170179699133.24285.979175250765263656@emeril.freedesktop.org>
+Date: Tue, 05 Dec 2023 17:23:23 -0000
+Message-ID: <170179700385.24285.17561696608921940188@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231205143755.4834-1-krishnaiah.bommu@intel.com>
 In-Reply-To: <20231205143755.4834-1-krishnaiah.bommu@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_f?=
- =?utf-8?q?or_RFC=3A_drm/xe/uapi=3A_Return_correct_error_code_for_xe=5Fwai?=
- =?utf-8?q?t=5Fuser=5Ffence=5Fioctl?=
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_RF?=
+ =?utf-8?q?C=3A_drm/xe/uapi=3A_Return_correct_error_code_for_xe=5Fwait=5Fu?=
+ =?utf-8?q?ser=5Ffence=5Fioctl?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,10 +53,29 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: ac7b89571 drm/xe/uapi: Kill exec_queue_set_property
-=== git am output follows ===
-Applying: drm/xe/uapi: add exec_queue_id member to drm_xe_wait_user_fence structure
-Applying: drm/xe: Return correct error code for xe_wait_user_fence_ioctl
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 61f52ce4336b991c4b575316a4403811479332c9
+Author: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Date:   Tue Dec 5 20:07:55 2023 +0530
+
+    drm/xe: Return correct error code for xe_wait_user_fence_ioctl
+    
+    return correct error code if exec_queue is reset/engine is hung
+    
+    Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+    Cc: Oak Zeng <oak.zeng@intel.com>
+    Cc: Kempczynski Zbigniew <Zbigniew.Kempczynski@intel.com>
+    Cc: Matthew Brost <matthew.brost@intel.com>
++ /mt/dim checkpatch ac7b89571d802765762e7c15d78a6dcd5d92c41b drm-intel
+2a4a38c2c drm/xe/uapi: add exec_queue_id member to drm_xe_wait_user_fence structure
+61f52ce43 drm/xe: Return correct error code for xe_wait_user_fence_ioctl
 
 
