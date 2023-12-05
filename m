@@ -4,49 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10045C10F04
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 04:55:04 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 57B43C4167B
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 05:32:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7923310E1D4;
-	Tue,  5 Dec 2023 04:55:02 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E2BA891B4
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 04:54:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08C7610E0F2;
+	Tue,  5 Dec 2023 05:32:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A721310E0F2
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 05:32:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701752099; x=1733288099;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=UdiGyUeUKEy+YAaZkWisqSXVH8XpMaQZGATk1w3nGSs=;
- b=O1vAmpteuT7uUHJMYSqJMp+cGSem5iyT+80evrucfLolonxazt016hF9
- PIUoRD4kGapqaV8vzgdVEkSicH5AskpmmA0aFXUWqNn5mFSa93szhdMHv
- QTrzAorjYBgxgtujSxFF6mQ+2Z84dVdP4G+RfMBQVOwoNDoXV2p/g1BOM
- PaxiMCg+yOe3Y/BeMJIZ265UwUMd1VBmeGv/1FCOiWtK0XmG4S8kfh48/
- Z4ZQ883vmUl9EkWpVRFwyUU+zn995yXyqjm6ByrR4+db15xyVdSTovyUS
- ita+G5LPgbF0oFUxEbKHhNBJXkBDYP9Kjj2u1jnRyrr/XOjCbl0K/frwP Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="460329287"
-X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; d="scan'208";a="460329287"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2023 20:54:59 -0800
+ t=1701754355; x=1733290355;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Oy5m1IAo4ggZl4TSGc4p0p37c3gC4MtQW4IXiDA8qbg=;
+ b=PCV4FxpskX5wq5kZ7H5kwu2bxqNWvrbX0zwv7Otk8zsG4oFiRTxF60ld
+ SAnrrkz4oPLlDinGhctc3FuyFtkmkMpoc+sefQLoZILlSyf+kwlady1DV
+ 9eEc1SwV5bdVEsInCPuqpH7+/kn+R2DQ5qcfyLR3OZWdTKc90sPViNA4X
+ 3Gn74Dhy2CEYLhJ+ryhDvhw4mgGDb4rZxke9iKcBQaHSeRNCml4dRtGRw
+ av7ykqFMk4iNaTP1+7JownibtktJqRgh/sb6DjWcPyuBNMGsGgN2M4WbP
+ zVw4X4C//d2JKgR8Ja1VqWWGOwSNIDaLgljznOqZuTkRLeBOP4mPuoLfd A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="737909"
+X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; 
+   d="scan'208";a="737909"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Dec 2023 21:32:34 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="841317827"
-X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; d="scan'208";a="841317827"
-Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
- by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Dec 2023 20:54:58 -0800
-From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: intel-xe@lists.freedesktop.org,
- =?UTF-8?q?Micha=C5=82=20Winiarski?= <michal.winiarski@intel.com>
-Date: Mon,  4 Dec 2023 20:54:51 -0800
-Message-Id: <170175203495.2084037.4652564980195663729.b4-ty@intel.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20231205013309.1497006-1-michal.winiarski@intel.com>
-References: <20231205013309.1497006-1-michal.winiarski@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10914"; a="944130885"
+X-IronPort-AV: E=Sophos;i="6.04,251,1695711600"; d="scan'208";a="944130885"
+Received: from tejas-super-server.iind.intel.com ([10.145.169.166])
+ by orsmga005.jf.intel.com with ESMTP; 04 Dec 2023 21:32:31 -0800
+From: Tejas Upadhyay <tejas.upadhyay@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Tue,  5 Dec 2023 11:12:02 +0530
+Message-Id: <20231205054202.823773-1-tejas.upadhyay@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Subject: Re: [Intel-xe] [CI 01/13] drm/xe: Split xe_info_init
+Subject: [Intel-xe] [PATCH V2] drm/xe/xe2: Add workaround 14019988906
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,47 +54,50 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This workaround applies to Graphics 20.04 as engine
+workaround
 
-On Tue, 05 Dec 2023 02:32:56 +0100, Michał Winiarski wrote:
-> Parts of xe_info_init are only dealing with processing driver_data.
-> Extract it into xe_info_init_early to be able to use it earlier during
-> probe.
-> 
-> 
+V2(MattR):
+ - Reorder bit define
+ - Apply WA for RCS only
 
-Applied, thanks!
+Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+---
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h | 1 +
+ drivers/gpu/drm/xe/xe_wa.c           | 4 ++++
+ 2 files changed, 5 insertions(+)
 
-[01/13] drm/xe: Split xe_info_init
-        commit: 86312d9b1a03f670c7cab8c0a341900602f959db
-[02/13] drm/xe: Introduce xe_tile_init_early and use at earlier point in probe
-        commit: 4cb1dc40c3be0dca280d95661245e5073ee7d5a4
-[03/13] drm/xe: Map the entire BAR0 and hold onto the initial mapping
-        commit: 68d53685bd27ec7f39e4165307d509c98375b22d
-[04/13] drm/xe/device: Introduce xe_device_probe_early
-        commit: e6e07ec8a8491909225b7778b76f4ec816dd99e7
-[05/13] drm/xe: Don't "peek" into GMD_ID
-        commit: a08ebc4c597ee110d9623f9f39fdcf45ca48f601
-[06/13] drm/xe: Move system memory management init to earlier point in probe
-        commit: 2550919fe5896b9fa17b15e7a6ecec09de07283b
-[07/13] drm/xe: Move force_wake init to earlier point in probe
-        commit: ff2fd2256a122e99a0641cd326a4a4b049e0894e
-[08/13] drm/xe: Reorder GGTT init to earlier point in probe
-        commit: ed943a95501ea75254e1f96396b37efc52bcfc07
-[09/13] drm/xe: Add a helper for DRM device-lifetime BO create
-        commit: 23e939bc8f569c12795d8509571405905a148b6c
-[10/13] drm/xe/uc: Split xe_uc_fw_init
-        commit: b303baf7abc00183eb6e1a6f74b1b94ff34d3f17
-[11/13] drm/xe/uc: Store firmware binary in system-memory backed BO
-        commit: 01299c18646500cff557b728d27d162a1afde585
-[12/13] drm/xe/uc: Extract xe_uc_sanitize_reset
-        commit: 5906133338417f655b1199a4219a675efcff5ae6
-[13/13] drm/xe/guc: Split GuC params used for "hwconfig" and "post-hwconfig"
-        commit: 2c3aa5d8d87f6026a9fb60d2d78a9f4114722e24
-
-Best regards,
+diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+index d318ec0efd7d..e8dc463a49f6 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
++++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+@@ -124,6 +124,7 @@
+ #define   SCOREBOARD_STALL_FLUSH_CONTROL	REG_BIT(5)
+ 
+ #define XEHP_PSS_CHICKEN			XE_REG_MCR(0x7044, XE_REG_OPTION_MASKED)
++#define   FLSH_IGNORES_PSD			REG_BIT(10)
+ #define   FD_END_COLLECT			REG_BIT(5)
+ 
+ #define HIZ_CHICKEN					XE_REG(0x7018, XE_REG_OPTION_MASKED)
+diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+index 63bd4bb1af03..ce897f2d49be 100644
+--- a/drivers/gpu/drm/xe/xe_wa.c
++++ b/drivers/gpu/drm/xe/xe_wa.c
+@@ -719,6 +719,10 @@ static const struct xe_rtp_entry_sr lrc_was[] = {
+ 		       ENGINE_CLASS(RENDER)),
+ 	  XE_RTP_ACTIONS(SET(WM_CHICKEN3, HIZ_PLANE_COMPRESSION_DIS))
+ 	},
++	{ XE_RTP_NAME("14019988906"),
++	  XE_RTP_RULES(GRAPHICS_VERSION(2004), ENGINE_CLASS(RENDER)),
++	  XE_RTP_ACTIONS(SET(XEHP_PSS_CHICKEN, FLSH_IGNORES_PSD))
++	},
+ 
+ 	{}
+ };
 -- 
-Lucas De Marchi <lucas.demarchi@intel.com>
+2.25.1
+
