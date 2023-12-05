@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id CE18AC10DCE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64495C46CA0
 	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 19:19:58 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DE3410E533;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BA0D10E524;
 	Tue,  5 Dec 2023 19:19:58 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9495510E51F
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF8EF10E523
  for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 19:19:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701803995; x=1733339995;
+ t=1701803996; x=1733339996;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DfaStDuEnvTDMEI8N54KXWZTCQz3HUmXF9evMj3BQ+g=;
- b=dS2dHIzwjxJAD4g7z4p/968D6IRKve87Bed/pVUuKwSrTQZPDRlF/yYf
- g/j3af+r8uMcICcZEb9llKXlhp/8n/P2ttPqhhz1WAzsTfzUTWOsBFfab
- +ObIJcCbnpywOZ3QB79dpd9CEpd9IpOF5XN/yzGG6BrPmGhz2EP9ETJRi
- 9QZiz/PtsVK7pviVmfMJ8ay0VTIp7C91B4u2QzK8DmIUzPwTlkZgypHLl
- GZqFeDXufvWbbWu2GqCXU2a9P7RGaGJTu31qJfqNzRs/jRvRVY/I/Xb7y
- c3iQ88ptK4qO6sE37o8EAKTCeah4MhL3ReZu0ovSinpS6YzfV57IeNMxw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="1032969"
+ bh=TAkPcjcdkW1/4tcbNm+TOubHtfmdgAIyJiYd+4Z/N1E=;
+ b=e2nWcp8RP7H7M7EkpIIim9aAxWEjY/WmSCbB0mtz6+uAg7fc3LngwpvZ
+ irMLxt/fWiNl571tHN/fUd7hd80KpPhaZvI8hJY9dzVoUDlhASWFQydho
+ YI+5xBLAI5OJAfF9qnXWV402DG+i9e3kejeauiC/8FhXoC03imTl6z3FN
+ oBOQW15ZhV+qUwdwGSUhAoLdlxeKaoBvpOuqVSPbL92nzSDju+ommuPu0
+ cQ3CR+mENLRtC4l9l+b6WuzXot0CbDceKWoLucNKSDiPSe5V7R96MUxHN
+ HFf2qDrl9MR3QnrShYUPFRQW4RnWrZyC5YE12HiWDh9qLabHzxpEpOXtQ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="1032971"
 X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
-   d="scan'208";a="1032969"
+   d="scan'208";a="1032971"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Dec 2023 11:19:55 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="12441519"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="12441525"
 Received: from lstrano-desk.jf.intel.com ([10.54.39.91])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  05 Dec 2023 11:19:55 -0800
 From: Matthew Brost <matthew.brost@intel.com>
 To: <intel-xe@lists.freedesktop.org>
-Date: Tue,  5 Dec 2023 11:20:10 -0800
-Message-Id: <20231205192014.301742-2-matthew.brost@intel.com>
+Date: Tue,  5 Dec 2023 11:20:12 -0800
+Message-Id: <20231205192014.301742-4-matthew.brost@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231205192014.301742-1-matthew.brost@intel.com>
 References: <20231205192014.301742-1-matthew.brost@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v2 1/5] drm/xe: Use a flags field instead of
- bools for VMA create
+Subject: [Intel-xe] [PATCH v2 3/5] drm/xe: Allow num_binds == 0 in VM bind
+ IOCTL
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,143 +61,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Use a flags field instead of severval bools for VMA create as it is
-easier to read and less bug prone.
+The idea being out-syncs can signal indicating all previous operations
+on the bind queue are complete. An example use case of this would be
+support for implementing vkQueueWaitIdle easily.
 
-Suggested-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+v2: s/vkQueueWaitForIdle/vkQueueWaitIdle
+
 Signed-off-by: Matthew Brost <matthew.brost@intel.com>
 Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_vm.c | 64 ++++++++++++++++++++------------------
- 1 file changed, 34 insertions(+), 30 deletions(-)
+ drivers/gpu/drm/xe/xe_sync.h |  1 +
+ drivers/gpu/drm/xe/xe_vm.c   | 36 ++++++++++++++++++++++--------------
+ 2 files changed, 23 insertions(+), 14 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_sync.h b/drivers/gpu/drm/xe/xe_sync.h
+index 1b748cec4678..45f4371e94b9 100644
+--- a/drivers/gpu/drm/xe/xe_sync.h
++++ b/drivers/gpu/drm/xe/xe_sync.h
+@@ -14,6 +14,7 @@ struct xe_sched_job;
+ 
+ #define SYNC_PARSE_FLAG_EXEC			BIT(0)
+ #define SYNC_PARSE_FLAG_LR_MODE			BIT(1)
++#define SYNC_PARSE_FLAG_DISALLOW_USER_FENCE	BIT(2)
+ 
+ int xe_sync_entry_parse(struct xe_device *xe, struct xe_file *xef,
+ 			struct xe_sync_entry *sync,
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index e09050f16f07..44b2972d5d5f 100644
+index 42077e3db36a..042e1e31ba54 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -860,17 +860,20 @@ struct dma_fence *xe_vm_rebind(struct xe_vm *vm, bool rebind_worker)
- 	return fence;
- }
+@@ -2834,7 +2834,6 @@ static int vm_bind_ioctl_check_args(struct xe_device *xe,
+ 		return -EINVAL;
  
-+#define VMA_CREATE_FLAG_READ_ONLY	BIT(0)
-+#define VMA_CREATE_FLAG_IS_NULL		BIT(1)
-+
- static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 				    struct xe_bo *bo,
- 				    u64 bo_offset_or_userptr,
- 				    u64 start, u64 end,
--				    bool read_only,
--				    bool is_null,
--				    u16 pat_index)
-+				    u16 pat_index, unsigned int flags)
- {
- 	struct xe_vma *vma;
- 	struct xe_tile *tile;
- 	u8 id;
-+	bool read_only = (flags & VMA_CREATE_FLAG_READ_ONLY);
-+	bool is_null = (flags & VMA_CREATE_FLAG_IS_NULL);
+ 	if (XE_IOCTL_DBG(xe, args->extensions) ||
+-	    XE_IOCTL_DBG(xe, !args->num_binds) ||
+ 	    XE_IOCTL_DBG(xe, args->num_binds > MAX_BINDS))
+ 		return -EINVAL;
  
- 	xe_assert(vm->xe, start < end);
- 	xe_assert(vm->xe, end < vm->size);
-@@ -2242,7 +2245,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- }
+@@ -2987,7 +2986,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 			goto put_exec_queue;
+ 		}
  
- static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
--			      bool read_only, bool is_null, u16 pat_index)
-+			      u16 pat_index, unsigned int flags)
- {
- 	struct xe_bo *bo = op->gem.obj ? gem_to_xe_bo(op->gem.obj) : NULL;
- 	struct xe_vma *vma;
-@@ -2257,8 +2260,7 @@ static struct xe_vma *new_vma(struct xe_vm *vm, struct drm_gpuva_op_map *op,
+-		if (XE_IOCTL_DBG(xe, async !=
++		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
+ 				 !!(q->flags & EXEC_QUEUE_FLAG_VM_ASYNC))) {
+ 			err = -EINVAL;
+ 			goto put_exec_queue;
+@@ -3001,7 +3000,7 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
  	}
- 	vma = xe_vma_create(vm, bo, op->gem.offset,
- 			    op->va.addr, op->va.addr +
--			    op->va.range - 1, read_only, is_null,
--			    pat_index);
-+			    op->va.range - 1, pat_index, flags);
- 	if (bo)
- 		xe_bo_unlock(bo);
  
-@@ -2384,7 +2386,9 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
+ 	if (!args->exec_queue_id) {
+-		if (XE_IOCTL_DBG(xe, async !=
++		if (XE_IOCTL_DBG(xe, args->num_binds && async !=
+ 				 !!(vm->flags & XE_VM_FLAG_ASYNC_DEFAULT))) {
+ 			err = -EINVAL;
+ 			goto put_vm;
+@@ -3028,16 +3027,18 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 		}
+ 	}
  
- 	drm_gpuva_for_each_op(__op, ops) {
- 		struct xe_vma_op *op = gpuva_op_to_vma_op(__op);
-+		struct xe_vma *vma;
- 		bool first = list_empty(ops_list);
-+		unsigned int flags = 0;
+-	bos = kzalloc(sizeof(*bos) * args->num_binds, GFP_KERNEL);
+-	if (!bos) {
+-		err = -ENOMEM;
+-		goto release_vm_lock;
+-	}
++	if (args->num_binds) {
++		bos = kzalloc(sizeof(*bos) * args->num_binds, GFP_KERNEL);
++		if (!bos) {
++			err = -ENOMEM;
++			goto release_vm_lock;
++		}
  
- 		INIT_LIST_HEAD(&op->link);
- 		list_add_tail(&op->link, ops_list);
-@@ -2400,10 +2404,13 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 		switch (op->base.op) {
- 		case DRM_GPUVA_OP_MAP:
- 		{
--			struct xe_vma *vma;
-+			flags |= op->map.read_only ?
-+				VMA_CREATE_FLAG_READ_ONLY : 0;
-+			flags |= op->map.is_null ?
-+				VMA_CREATE_FLAG_IS_NULL : 0;
+-	ops = kzalloc(sizeof(*ops) * args->num_binds, GFP_KERNEL);
+-	if (!ops) {
+-		err = -ENOMEM;
+-		goto release_vm_lock;
++		ops = kzalloc(sizeof(*ops) * args->num_binds, GFP_KERNEL);
++		if (!ops) {
++			err = -ENOMEM;
++			goto release_vm_lock;
++		}
+ 	}
  
--			vma = new_vma(vm, &op->base.map, op->map.read_only,
--				      op->map.is_null, op->map.pat_index);
-+			vma = new_vma(vm, &op->base.map, op->map.pat_index,
-+				      flags);
- 			if (IS_ERR(vma))
- 				return PTR_ERR(vma);
+ 	for (i = 0; i < args->num_binds; ++i) {
+@@ -3107,12 +3108,19 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	for (num_syncs = 0; num_syncs < args->num_syncs; num_syncs++) {
+ 		err = xe_sync_entry_parse(xe, xef, &syncs[num_syncs],
+ 					  &syncs_user[num_syncs],
+-					  xe_vm_in_lr_mode(vm) ?
+-					  SYNC_PARSE_FLAG_LR_MODE : 0);
++					  (xe_vm_in_lr_mode(vm) ?
++					   SYNC_PARSE_FLAG_LR_MODE : 0) |
++					  (!args->num_binds ?
++					   SYNC_PARSE_FLAG_DISALLOW_USER_FENCE : 0));
+ 		if (err)
+ 			goto free_syncs;
+ 	}
  
-@@ -2419,16 +2426,15 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 			op->remap.range = xe_vma_size(old);
- 
- 			if (op->base.remap.prev) {
--				struct xe_vma *vma;
--				bool read_only =
--					op->base.remap.unmap->va->flags &
--					XE_VMA_READ_ONLY;
--				bool is_null =
--					op->base.remap.unmap->va->flags &
--					DRM_GPUVA_SPARSE;
--
--				vma = new_vma(vm, op->base.remap.prev, read_only,
--					      is_null, old->pat_index);
-+				flags |= op->base.remap.unmap->va->flags &
-+					XE_VMA_READ_ONLY ?
-+					VMA_CREATE_FLAG_READ_ONLY : 0;
-+				flags |= op->base.remap.unmap->va->flags &
-+					DRM_GPUVA_SPARSE ?
-+					VMA_CREATE_FLAG_IS_NULL : 0;
++	if (!args->num_binds) {
++		err = -ENODATA;
++		goto free_syncs;
++	}
 +
-+				vma = new_vma(vm, op->base.remap.prev,
-+					      old->pat_index, flags);
- 				if (IS_ERR(vma))
- 					return PTR_ERR(vma);
- 
-@@ -2451,17 +2457,15 @@ static int vm_bind_ioctl_ops_parse(struct xe_vm *vm, struct xe_exec_queue *q,
- 			}
- 
- 			if (op->base.remap.next) {
--				struct xe_vma *vma;
--				bool read_only =
--					op->base.remap.unmap->va->flags &
--					XE_VMA_READ_ONLY;
--
--				bool is_null =
--					op->base.remap.unmap->va->flags &
--					DRM_GPUVA_SPARSE;
--
--				vma = new_vma(vm, op->base.remap.next, read_only,
--					      is_null, old->pat_index);
-+				flags |= op->base.remap.unmap->va->flags &
-+					XE_VMA_READ_ONLY ?
-+					VMA_CREATE_FLAG_READ_ONLY : 0;
-+				flags |= op->base.remap.unmap->va->flags &
-+					DRM_GPUVA_SPARSE ?
-+					VMA_CREATE_FLAG_IS_NULL : 0;
-+
-+				vma = new_vma(vm, op->base.remap.next,
-+					      old->pat_index, flags);
- 				if (IS_ERR(vma))
- 					return PTR_ERR(vma);
- 
+ 	for (i = 0; i < args->num_binds; ++i) {
+ 		u64 range = bind_ops[i].range;
+ 		u64 addr = bind_ops[i].addr;
 -- 
 2.34.1
 
