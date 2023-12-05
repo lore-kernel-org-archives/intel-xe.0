@@ -4,30 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6F40CC4167B
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 20:54:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id C686CC10DCE
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 21:33:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 369A410E03F;
-	Tue,  5 Dec 2023 20:54:47 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [IPv6:2610:10:20:722:a800:ff:feee:56cf])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5D6F910E03F;
- Tue,  5 Dec 2023 20:54:45 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 59D63AADEA;
- Tue,  5 Dec 2023 20:54:45 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D5EA10E550;
+	Tue,  5 Dec 2023 21:33:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6612010E550
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 21:33:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701812032; x=1733348032;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=l3oiPpOGkpfN3BwYtveps+9pmqZbKcV9CEN7ixyrSUg=;
+ b=F6hc8FjavXfttbFH8GgRms+87hIlJZGP8hV7u6p867y7QOF1Nn7WTBYM
+ 7qg9HSk00g0GtNYV308ZzjJHU0IcRV2IfPv6ibebVN/gJ88kF21x3IrZi
+ c6mR9rklyN3OfLZ8OgR6oOgu44z1NMbWmalugVKBPhY2C3BfnnYHp34yo
+ Rt/cief3AuEeSJe7ivxFPyMwxEnKWLPjiqchsoAVpsZArXeletNzAeZej
+ O1k3y8ADycODBRgOoYavllaRwsHhUGguNRyhKctYc4HGjVvv2baZFM7k1
+ TyRtecqymE8ZthUeatx9e5ilTNEomjJrVgkA91IxDmBAzL6TJM2M8GX+N A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="378983004"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="378983004"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+ by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 13:33:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="889079405"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="889079405"
+Received: from himal-super-server.iind.intel.com ([10.145.169.168])
+ by fmsmga002.fm.intel.com with ESMTP; 05 Dec 2023 13:33:50 -0800
+From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed,  6 Dec 2023 03:11:26 +0530
+Message-Id: <20231205214135.958847-1-himal.prasad.ghimiray@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Lucas De Marchi" <lucas.demarchi@intel.com>
-Date: Tue, 05 Dec 2023 20:54:45 -0000
-Message-ID: <170180968536.24284.10287064281346756316@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231205155820.2133813-1-lucas.demarchi@intel.com>
-In-Reply-To: <20231205155820.2133813-1-lucas.demarchi@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=93_CI=2Echecksparse=3A_success_for_d?=
- =?utf-8?q?rm/xe=3A_Expand_XE=5FREG=5FOPTION=5FMASKED_documentation?=
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH v3 0/9] Enable compression handling on LNL.
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,38 +54,37 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+Series enables flat ccs on xe2 igfx platforms and handles clearing and copy 
+of ccs metadata during bo creation and xe_bo_move respectively.
 
-Series: drm/xe: Expand XE_REG_OPTION_MASKED documentation
-URL   : https://patchwork.freedesktop.org/series/127370/
-State : success
+Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 
-== Summary ==
+Himal Prasad Ghimiray (9):
+  drm/xe/xe2: Determine bios enablement for flat ccs on igfx
+  drm/xe/xe2: Allocate extra pages for ccs during bo create
+  drm/xe/xe2: Updates on XY_CTRL_SURF_COPY_BLT
+  drm/xe/xe_migrate: Use NULL 1G PTE mapped at 255GiB VA for ccs clear
+  drm/xe/xe2: Update chunk size for each iteration of ccs copy
+  drm/xe/xe2: Update emit_pte to use compression enabled PAT index
+  drm/xe/xe2: Handle flat ccs move for igfx.
+  drm/xe/xe2: Modify xe_bo_test for system memory
+  drm/xe/xe2: Support flat ccs
 
-+ trap cleanup EXIT
-+ KERNEL=/kernel
-+ MT=/root/linux/maintainer-tools
-+ git clone https://gitlab.freedesktop.org/drm/maintainer-tools /root/linux/maintainer-tools
-Cloning into '/root/linux/maintainer-tools'...
-warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
-+ make -C /root/linux/maintainer-tools
-make: Entering directory '/root/linux/maintainer-tools'
-cc -O2 -g -Wextra -o remap-log remap-log.c
-make: Leaving directory '/root/linux/maintainer-tools'
-+ cd /kernel
-+ git config --global --add safe.directory /kernel
-+ /root/linux/maintainer-tools/dim sparse --fast ac7b89571d802765762e7c15d78a6dcd5d92c41b
-Sparse version: 0.6.1 (Ubuntu: 0.6.1-2build1)
-Fast mode used, each commit won't be checked separately.
-Okay!
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |   3 +-
+ drivers/gpu/drm/xe/regs/xe_gt_regs.h      |   3 +
+ drivers/gpu/drm/xe/tests/xe_bo.c          |  23 ++-
+ drivers/gpu/drm/xe/tests/xe_migrate.c     |   2 +-
+ drivers/gpu/drm/xe/xe_bo.c                |  39 +++--
+ drivers/gpu/drm/xe/xe_bo_types.h          |   4 +
+ drivers/gpu/drm/xe/xe_device.c            |  31 +++-
+ drivers/gpu/drm/xe/xe_migrate.c           | 198 +++++++++++-----------
+ drivers/gpu/drm/xe/xe_pci.c               |   2 +-
+ 9 files changed, 183 insertions(+), 122 deletions(-)
 
-+ cleanup
-++ stat -c %u:%g /kernel
-+ chown -R 1003:1003 /kernel
-
+-- 
+2.25.1
 
