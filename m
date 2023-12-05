@@ -4,45 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id E1BE6C4167B
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 14:42:39 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 02CB4C4167B
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 14:42:43 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5CF110E54F;
-	Tue,  5 Dec 2023 14:42:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDF5810E551;
+	Tue,  5 Dec 2023 14:42:42 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 277EA10E321
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 14:42:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7649610E321
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 14:42:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701787357; x=1733323357;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=QBkvvl6oIzvf4VvfaTWGIajb57+s4E5bG/FlMI6JkEk=;
- b=PFnvI4FbUh8eCLaiUNDUrdA0vCJmSvr1SbGT/f3sL2VlP/aIcKMpembh
- CIKixwxinPiW9EbcCk43Y1Bm4qUtdJS4XMEoyOU/lcx+5Dv8x3SWEeNIZ
- cXijQgZWPWNcTzX2Az9v8Hg6HMsoQnt85WlIsIRZ45DPuD9rZqidjsbk1
- 726QfNQaa0/e5LQcbt2TqG1Gpy9TQUFovXeoAGPWvf3hX11Vk+cub/0Ur
- /K80e+Dv1taBFaOszoUGP7s94PoghU3VGzznw6TWLP3M0gcUz0MMiTbNn
- j9Xci0x932z4BBbonjnIMSXYN8h7z28ZG3SuQ7dxv3E9BNHABVCH48SJ1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="988106"
+ t=1701787358; x=1733323358;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=2n2746CnfsTBwoXHmrjXBu82lHvjV2G1FCG/pHUj+Nk=;
+ b=gg/7h3I1ZiA/u2bA9im94YI6ucC0I150tUmBB1EKbLbndnjDuc2X2X0L
+ ehUdKS3Q6D/jyEB/rPxylFm6inxkvAPeyMJ6FXlyPlj0NHacnBuGWZUHO
+ /uc4zUvDoVvBU540Nshje6/PZObiVaxYCSLuG//v7jQKs5PHKCf3F9H0v
+ Bz2HDEa86OBcgjPTnmSOY9+ObmZGEuWPjvIGy/ktGf6CSRIWrHpFSDap4
+ 5m4DVZugnC+35iu+ikw/WqI2a8A7SiekCP3flpMXk4ia1FGAlLcd9OINf
+ tNfe9NhjcBGPM08UyZFoCoU9TOWehE85w+o4XV0yADrAW6HUwwpqj47+I A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="988122"
 X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; 
-   d="scan'208";a="988106"
+   d="scan'208";a="988122"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 06:42:36 -0800
+ 05 Dec 2023 06:42:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="18982857"
+X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="18982860"
 Received: from kbommu-desk.iind.intel.com ([10.145.169.159])
- by orviesa001.jf.intel.com with ESMTP; 05 Dec 2023 06:42:35 -0800
+ by orviesa001.jf.intel.com with ESMTP; 05 Dec 2023 06:42:37 -0800
 From: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  5 Dec 2023 20:07:53 +0530
-Message-Id: <20231205143755.4834-1-krishnaiah.bommu@intel.com>
+Date: Tue,  5 Dec 2023 20:07:54 +0530
+Message-Id: <20231205143755.4834-2-krishnaiah.bommu@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231205143755.4834-1-krishnaiah.bommu@intel.com>
+References: <20231205143755.4834-1-krishnaiah.bommu@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH 0/2] RFC: drm/xe/uapi: Return correct error code
- for xe_wait_user_fence_ioctl
+Subject: [Intel-xe] [PATCH 1/2] drm/xe/uapi: add exec_queue_id member to
+ drm_xe_wait_user_fence structure
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -54,101 +56,153 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-return correct error code if exec_queue is reset/engine is hung
-remove the num_engines/instances members from drm_xe_wait_user_fence structure
-and add a exec_queue_id member
+remove the num_engines/instances members from drm_xe_wait_user_fence
+structure and add a exec_queue_id member
 
-I am able to see exec_queue reset was happened and xe_wait_user_fence_ioctl   returned EIO
-test output
-root@DUT7075PVC:/home/gta# LD_LIBRARY_PATH=/home/gta/ ./xe_waitfence --r invalid-exec_queue-wait
-IGT-Version: 1.28-g3c0162fc4 (x86_64) (Linux: 6.6.0-rc3-xe x86_64)
-Opened device: /dev/dri/card0
-Starting subtest: invalid-exec_queue-wait
-Subtest invalid-exec_queue-wait: SUCCESS (0.993s)
+Right now this is only checking if the engine list is sane and nothing
+else. In the end every operation with this IOCTL is a soft check.
+So, let's formalize that and only use this IOCTL to wait on the fence.
 
-test dmesg 
-[  807.680378] [IGT] xe_waitfence: executing
-[  807.699796] [drm:drm_stub_open [drm]]
-[  807.704536] xe 0000:51:00.0: [drm:drm_open_helper [drm]] comm="xe_waitfence", pid=2952, minor=0
-[  807.715155] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, DRM_IOCTL_VERSION
-[  807.727328] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, DRM_IOCTL_VERSION
-[  807.739580] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_DEVICE_QUERY
-[  807.751518] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_DEVICE_QUERY
-[  807.763550] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_DEVICE_QUERY
-[  807.775525] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_DEVICE_QUERY
-[  807.787556] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_DEVICE_QUERY
-[  807.799494] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_DEVICE_QUERY
-[  807.811531] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_DEVICE_QUERY
-[  807.823476] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_DEVICE_QUERY
-[  807.835577] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, DRM_IOCTL_VERSION
-[  807.847921] [IGT] xe_waitfence: starting subtest invalid-exec_queue-wait
-[  807.855528] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_VM_CREATE
-[  807.891346] xe 0000:51:00.0: [drm:xe_reg_sr_apply_mmio [xe]] GT0: Applying GT save-restore MMIOs
-[  807.901602] xe 0000:51:00.0: [drm:xe_reg_sr_apply_mmio [xe]] GT0: REG[0x9424] = 0x7ffffffc
------------------
------------------
-[  808.560967] xe REG[0x4500-0x45ff]: deny rw access
-[  808.566292] xe REG[0x1e3a8-0x1e3af]: allow read access
-[  808.572161] xe 0000:51:00.0: [drm:xe_reg_sr_apply_mmio [xe]] GT0: Applying ccs3 save-restore MMIOs
-[  808.582462] xe 0000:51:00.0: [drm:xe_reg_sr_apply_mmio [xe]] GT0: REG[0x260c4] = 0x3f7e0104
-[  808.592096] xe 0000:51:00.0: [drm:xe_reg_sr_apply_whitelist [xe]] Whitelisting ccs3 registers
-[  808.601962] xe REG[0x4400-0x45ff]: deny rw access
-[  808.607281] xe REG[0x4500-0x45ff]: deny rw access
-[  808.612608] xe REG[0x263a8-0x263af]: allow read access
-[  808.618477] xe 0000:51:00.0: [drm] GT0: resumed
-[  808.626283] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_EXEC_QUEUE_CREATE
-[  808.638765] krishna xe_exec_queue_create_ioctl
-[  808.645592] krishna args->exec_queue_id = 1
-[  808.650328] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_GEM_CREATE
-[  808.662621] xe 0000:51:00.0: [drm:xe_migrate_clear [xe]] Pass 0, size: 262144
-[  808.672889] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_GEM_MMAP_OFFSET
-[  808.685733] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_EXEC
-[  808.696900] krishna args->exec_queue_id = 1
-[  808.702700] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_WAIT_USER_FENCE
-[  808.704620] xe 0000:51:00.0: [drm:pf_queue_work_func [xe]]
-                ASID: 1048575
-                VFID: 0
-                PDATA: 0x00a3
-                Faulted Address: 0x00000000001a0000
-                FaultType: 0
-                AccessType: 0
-                FaultLevel: 4
-                EngineClass: 3
-                EngineInstance: 0
-[  808.750685] xe 0000:51:00.0: [drm:pf_queue_work_func [xe]] Fault response: Unsuccessful -22
-[  808.760519] xe 0000:51:00.0: [drm:xe_guc_exec_queue_memory_cat_error_handler [xe]] Engine memory cat error: guc_id=2
-[  808.773237] xe 0000:51:00.0: [drm] exec gueue reset detected
-[  808.773965] xe 0000:51:00.0: [drm] Timedout job: seqno=4294967169, guc_id=2, flags=0x8
-[  808.779632] xe 0000:51:00.0: [drm:xe_wait_user_fence_ioctl [xe]] Ioctl argument check failed at drivers/gpu/drm/xe/xe_wait_user_fence.c:174: err < 0
-[  808.789655] xe 0000:51:00.0: [drm] Xe device coredump has been created
-[  808.803796] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence", pid=2952, ret=-5
-[  808.811133] xe 0000:51:00.0: [drm] Check your /sys/class/drm/card0/device/devcoredump/data
-[  808.811220] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, XE_EXEC_QUEUE_DESTROY
-[  808.823605] xe 0000:51:00.0: [drm] Engine reset: guc_id=2
-[  808.829862] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, DRM_IOCTL_GEM_CLOSE
-[  808.843312] xe 0000:51:00.0: [drm:guc_exec_queue_timedout_job [xe]] Timedout signaled job: seqno=4294967169, guc_id=2, flags=0x9
-[  808.848707] [IGT] xe_waitfence: finished subtest invalid-exec_queue-wait, SUCCESS
-[  808.882255] xe 0000:51:00.0: [drm:drm_ioctl [drm]] comm="xe_waitfence" pid=2952, dev=0xe200, auth=1, DRM_IOCTL_VERSION
-[  808.894404] xe 0000:51:00.0: [drm:drm_file_free.part.0 [drm]] comm="xe_waitfence", pid=2952, dev=0xe200, open_count=1
-[  808.907374] xe 0000:51:00.0: [drm:drm_lastclose [drm]]
-[  808.913594] xe 0000:51:00.0: [drm:drm_lastclose [drm]] driver lastclose completed
-[  808.922416] [IGT] xe_waitfence: exiting, ret=0
+exec_queue_id member will help to user space to get proper error code
+from kernel while in exec_queue reset
 
-Bommu Krishnaiah (2):
-  drm/xe/uapi: add exec_queue_id member to drm_xe_wait_user_fence
-    structure
-  drm/xe: Return correct error code for xe_wait_user_fence_ioctl
+Signed-off-by: Bommu Krishnaiah <krishnaiah.bommu@intel.com>
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Signed-off-by: Francois Dugast <francois.dugast@intel.com>
+---
+ drivers/gpu/drm/xe/xe_wait_user_fence.c | 56 +------------------------
+ include/uapi/drm/xe_drm.h               | 16 ++-----
+ 2 files changed, 4 insertions(+), 68 deletions(-)
 
- drivers/gpu/drm/xe/xe_exec_queue_types.h |  2 +
- drivers/gpu/drm/xe/xe_execlist.c         |  7 +++
- drivers/gpu/drm/xe/xe_guc_submit.c       | 10 ++++
- drivers/gpu/drm/xe/xe_wait_user_fence.c  | 67 +++++-------------------
- include/uapi/drm/xe_drm.h                | 16 ++----
- 5 files changed, 35 insertions(+), 67 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_wait_user_fence.c b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+index 4d5c2555ce41..447e4cfd204c 100644
+--- a/drivers/gpu/drm/xe/xe_wait_user_fence.c
++++ b/drivers/gpu/drm/xe/xe_wait_user_fence.c
+@@ -58,29 +58,7 @@ static const enum xe_engine_class user_to_xe_engine_class[] = {
+ 	[DRM_XE_ENGINE_CLASS_COMPUTE] = XE_ENGINE_CLASS_COMPUTE,
+ };
+ 
+-static int check_hw_engines(struct xe_device *xe,
+-			    struct drm_xe_engine_class_instance *eci,
+-			    int num_engines)
+-{
+-	int i;
+-
+-	for (i = 0; i < num_engines; ++i) {
+-		enum xe_engine_class user_class =
+-			user_to_xe_engine_class[eci[i].engine_class];
+-
+-		if (eci[i].gt_id >= xe->info.tile_count)
+-			return -EINVAL;
+-
+-		if (!xe_gt_hw_engine(xe_device_get_gt(xe, eci[i].gt_id),
+-				     user_class, eci[i].engine_instance, true))
+-			return -EINVAL;
+-	}
+-
+-	return 0;
+-}
+-
+-#define VALID_FLAGS	(DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP | \
+-			 DRM_XE_UFENCE_WAIT_FLAG_ABSTIME)
++#define VALID_FLAGS	DRM_XE_UFENCE_WAIT_FLAG_ABSTIME
+ #define MAX_OP		DRM_XE_UFENCE_WAIT_OP_LTE
+ 
+ static long to_jiffies_timeout(struct xe_device *xe,
+@@ -132,12 +110,8 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 	struct xe_device *xe = to_xe_device(dev);
+ 	DEFINE_WAIT_FUNC(w_wait, woken_wake_function);
+ 	struct drm_xe_wait_user_fence *args = data;
+-	struct drm_xe_engine_class_instance eci[XE_HW_ENGINE_MAX_INSTANCE];
+-	struct drm_xe_engine_class_instance __user *user_eci =
+-		u64_to_user_ptr(args->instances);
+ 	u64 addr = args->addr;
+ 	int err;
+-	bool no_engines = args->flags & DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP;
+ 	long timeout;
+ 	ktime_t start;
+ 
+@@ -151,41 +125,13 @@ int xe_wait_user_fence_ioctl(struct drm_device *dev, void *data,
+ 	if (XE_IOCTL_DBG(xe, args->op > MAX_OP))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, no_engines &&
+-			 (args->num_engines || args->instances)))
+-		return -EINVAL;
+-
+-	if (XE_IOCTL_DBG(xe, !no_engines && !args->num_engines))
+-		return -EINVAL;
+-
+ 	if (XE_IOCTL_DBG(xe, addr & 0x7))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, args->num_engines > XE_HW_ENGINE_MAX_INSTANCE))
+-		return -EINVAL;
+-
+-	if (!no_engines) {
+-		err = copy_from_user(eci, user_eci,
+-				     sizeof(struct drm_xe_engine_class_instance) *
+-			     args->num_engines);
+-		if (XE_IOCTL_DBG(xe, err))
+-			return -EFAULT;
+-
+-		if (XE_IOCTL_DBG(xe, check_hw_engines(xe, eci,
+-						      args->num_engines)))
+-			return -EINVAL;
+-	}
+-
+ 	timeout = to_jiffies_timeout(xe, args);
+ 
+ 	start = ktime_get();
+ 
+-	/*
+-	 * FIXME: Very simple implementation at the moment, single wait queue
+-	 * for everything. Could be optimized to have a wait queue for every
+-	 * hardware engine. Open coding as 'do_compare' can sleep which doesn't
+-	 * work with the wait_event_* macros.
+-	 */
+ 	add_wait_queue(&xe->ufence_wq, &w_wait);
+ 	for (;;) {
+ 		err = do_compare(addr, args->value, args->mask, args->op);
+diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
+index eb03a49c17a1..d922641e11e8 100644
+--- a/include/uapi/drm/xe_drm.h
++++ b/include/uapi/drm/xe_drm.h
+@@ -1030,8 +1030,7 @@ struct drm_xe_wait_user_fence {
+ 	/** @op: wait operation (type of comparison) */
+ 	__u16 op;
+ 
+-#define DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP	(1 << 0)	/* e.g. Wait on VM bind */
+-#define DRM_XE_UFENCE_WAIT_FLAG_ABSTIME	(1 << 1)
++#define DRM_XE_UFENCE_WAIT_FLAG_ABSTIME	(1 << 0)
+ 	/** @flags: wait flags */
+ 	__u16 flags;
+ 
+@@ -1064,17 +1063,8 @@ struct drm_xe_wait_user_fence {
+ 	 */
+ 	__s64 timeout;
+ 
+-	/**
+-	 * @num_engines: number of engine instances to wait on, must be zero
+-	 * when DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP set
+-	 */
+-	__u64 num_engines;
+-
+-	/**
+-	 * @instances: user pointer to array of drm_xe_engine_class_instance to
+-	 * wait on, must be NULL when DRM_XE_UFENCE_WAIT_FLAG_SOFT_OP set
+-	 */
+-	__u64 instances;
++	/** @exec_queue_id: exec_queue_id returned from xe_exec_queue_create_ioctl */
++	__u32 exec_queue_id;
+ 
+ 	/** @reserved: Reserved */
+ 	__u64 reserved[2];
 -- 
 2.25.1
 
