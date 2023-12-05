@@ -4,138 +4,134 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id C932DC4167B
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 22:08:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 08CFDC4167B
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 22:12:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D90F10E60C;
-	Tue,  5 Dec 2023 22:08:12 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.115])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 51FBA10E60C
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 22:08:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C897510E60C;
+	Tue,  5 Dec 2023 22:12:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8716D10E60C
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 22:12:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701814090; x=1733350090;
+ t=1701814334; x=1733350334;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=jjhSVCYIlxSkUESHxO/IPd9VvznXOt0Ykau5Xndk5dY=;
- b=GgX4sxXvXTLZ2Uqn5cjk2Us+eqaDcrHt+mVvhgjNk2Aqlwl0t+i1i5KV
- XGyPi4fdjvFBvPWpXSev6mRiSdRxZ4vRDD6BO5l+jbsylR91R7ncw9wa7
- sYXNHU4Qxc6Rg04jzfpeQY1liNKlaWrvbZemhc36HDqOztTKxqs0twF1o
- TUh8k68bhaghlKVRHOwLlk7zpPg7z/L6FXJJs+guwSsBN9HVx0TCu4NpR
- 3GkvqpdvFS0mrKmful8R1ssmIKQdfFW1f9z64nn/83/71/Qq+odRuKPe2
- aaDa7HXFYEVzqPflGg9AmfV+iAZqJA/AVHEFyUkmMji3PHbXBEEvHltFb A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="393699162"
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="393699162"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
- by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 14:08:09 -0800
+ bh=9M2cmyPoajUTCbzvsiKHtxVjvJew07d8jAkO3X+JrH0=;
+ b=nNxFmmOr+mlCtg9O9PeyecQbviRFVHC21L2OqjS7EKvYfmMu6JkyEsXp
+ wIj/hb3XV5WR2W/VTA/rQ3lk2yfDCNF3Mug212j8+WezSk81PZTVDocyI
+ hNn+o2NloGt6ZSV22BYw0Alq+FBVUQZ2XLitNjz6SMPswa/zGdyC+anSA
+ L/gOIQK6y+YzuAy/yHcsbBd553XUuNuLofW8/ww8Ei9WAj1VacZC4Ijp4
+ mflHvz9OsIUWP62/i2tENi+XWX+ZYvpqomoEvQ5weB4gIglyGqyc8KA+c
+ nSL4yi1SzIQwd7eFYXsl3tmkL7aKzZjVppQ/hqc63oP69Lv+OoXs7F6l+ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="7264363"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; 
+   d="scan'208";a="7264363"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 14:12:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="889090253"
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="889090253"
-Received: from orsmsx602.amr.corp.intel.com ([10.22.229.15])
- by fmsmga002.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Dec 2023 14:08:09 -0800
-Received: from orsmsx612.amr.corp.intel.com (10.22.229.25) by
- ORSMSX602.amr.corp.intel.com (10.22.229.15) with Microsoft SMTP Server
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="837095199"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="837095199"
+Received: from orsmsx603.amr.corp.intel.com ([10.22.229.16])
+ by fmsmga008.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 05 Dec 2023 14:12:12 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX603.amr.corp.intel.com (10.22.229.16) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 5 Dec 2023 14:08:09 -0800
-Received: from orsmsx610.amr.corp.intel.com (10.22.229.23) by
- ORSMSX612.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.1.2507.35; Tue, 5 Dec 2023 14:12:12 -0800
+Received: from ORSEDG602.ED.cps.intel.com (10.7.248.7) by
+ orsmsx601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 5 Dec 2023 14:08:08 -0800
-Received: from ORSEDG601.ED.cps.intel.com (10.7.248.6) by
- orsmsx610.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 5 Dec 2023 14:08:08 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.169)
- by edgegateway.intel.com (134.134.137.102) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Tue, 5 Dec 2023 14:12:12 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.41) by
+ edgegateway.intel.com (134.134.137.103) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Tue, 5 Dec 2023 14:08:08 -0800
+ 15.1.2507.34; Tue, 5 Dec 2023 14:12:12 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=laejqIm533DnFUtaCXwYj1qEjM3DkUFNtFTrIMjmUYFJUm/J7wUYtyo7IvY55qhhcbqDhAWbeEShq288PNXIYyHQ1PHgFKCf6FUvwzcdeCoUBONZitdwvY5LlpnAGHEPWWcC4c4HWNz/sk56xSec3wvybiRO83W6+kSY5jAuCUMP7wMFczM2QsEHnbZcBUq1ne7ouRskbIZTIfyk8X4newxN0tpnjG6LWz+Ke25oyB9jmKvVbUCFjpGHBjiFmDipfsIY5Xb8MwTHdddkL9KNeyMg/PpPlJxJ6Jiz+oX2IcNIwulGE/7ABDMDWgZX6TFFjPlDDTt89kNTne6gVVYpKA==
+ b=bCg4N+y65tl19FdWXTKgAXPaIMTquECTMEZYgiz/QTOgu2j/f97qY+edp/wOi2eYMuFolS2F4cKPpFu6xaQaH6Sdys0fRXEkRnVbNAK29YCkOd4WuW0rBv6lGj/HP2siqUjoeVbv7pAJlW/lNZzkLLmPE3ISDA9qGW4DV2AKcIb/Ve2XDFVmUUNhFdSsmw+U/Xw5jZKPMtX77o/6aQ/gSxHe9ewAU4Uvy+FXuW/nPCTmo0z0DDrLmwH8Jhhz7HtDyhbCD2r4lOA/RZSYvYG6ooXGYc1lmBbFd6Lhot8OSW9ehDxUHNG8IBzHegEcVYqaZH+MDTILhenxsfqw9MyghQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SBSvvV8gsaBqgfkYlZYEwtNSDTgtLPbCXj8aw/1b26U=;
- b=D2dnzHsFVcVp14QYntuTYacK+Z3GhEIrupTpG4f2XQMjC73DjjOiJmOrKutN3+zrbCvR4Nlkk2njZJOORNs5mdtn1ZADyDBzPKt5mTknaikni6lCNmRk7kyD4s/Lz6tbNh51Wusy5IuiMnPP/JUqp6Rgc45M5DeZZ2ilOQFRqc9CT7eYSMDzqqlfVeojoW0zsiZn5fLOcsw7kTKgtQ5uun3FcpJd4d/62AbA0HwuvTyh/Mgv01kNWbOi7H3F8nQ9MA92ZKBprqIvHjXFR9D+6jhEx9JpzfXV4oiCvAhR8aNJalaywxQ2GsoaWSpOLyAesYF6OczqM1EGAwJ+V+iKVg==
+ bh=KfNKHfSlK8z6p7WP0i3V9iOL3W0UuQrka+CJA/v36pw=;
+ b=ltx28C7xOuZ8PuVRVJJVR/m9hQuvOyMXjem+cPeTtZISasBS2fAROuoqvQhE05rWOP52EsG4gl6q2xrUbImcGc4/5Y84qVHEeuWZQb1JOvDh5FN8HyVrmICMW42yAXMFQbvJqcNbCBVcXNhzuIv70N1EvtHR+jV54nitFcvdXoNPXRKo60hqP5LulpJyh9uIAtDrSYJPbjc2hFdCZrdfgDNNunV2AoCH3KNn2tSfEsdBJ2DbvscM90x4nsGalx5JCQp5+FdUvD9tvUtN9nX06b8u5VPW6gfeTzUCf/BRH/UG+AMSR5oQk7tV0pgBll4+j5LrOVRvG9JDEfh1mnccSA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by CY8PR11MB7922.namprd11.prod.outlook.com (2603:10b6:930:7b::16) with
+ by CH0PR11MB5689.namprd11.prod.outlook.com (2603:10b6:610:ec::15) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Tue, 5 Dec
- 2023 22:08:06 +0000
+ 2023 22:12:11 +0000
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::4f1d:17b5:88b5:76b0]) by DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::4f1d:17b5:88b5:76b0%7]) with mapi id 15.20.7046.034; Tue, 5 Dec 2023
- 22:08:05 +0000
-Date: Tue, 5 Dec 2023 14:08:03 -0800
+ 22:12:11 +0000
+Date: Tue, 5 Dec 2023 14:12:08 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Tejas Upadhyay <tejas.upadhyay@intel.com>
-Message-ID: <20231205220803.GM1327160@mdroper-desk1.amr.corp.intel.com>
-References: <20231205085249.833836-1-tejas.upadhyay@intel.com>
- <20231205215546.GL1327160@mdroper-desk1.amr.corp.intel.com>
+Message-ID: <20231205221208.GN1327160@mdroper-desk1.amr.corp.intel.com>
+References: <20231205131716.847721-1-tejas.upadhyay@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20231205215546.GL1327160@mdroper-desk1.amr.corp.intel.com>
-X-ClientProxiedBy: BY3PR03CA0028.namprd03.prod.outlook.com
- (2603:10b6:a03:39a::33) To DS0PR11MB8182.namprd11.prod.outlook.com
+In-Reply-To: <20231205131716.847721-1-tejas.upadhyay@intel.com>
+X-ClientProxiedBy: BYAPR05CA0016.namprd05.prod.outlook.com
+ (2603:10b6:a03:c0::29) To DS0PR11MB8182.namprd11.prod.outlook.com
  (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|CY8PR11MB7922:EE_
-X-MS-Office365-Filtering-Correlation-Id: 584e8497-db7f-489c-f0e4-08dbf5dea846
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|CH0PR11MB5689:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6cb2e348-9a54-434f-dc8d-08dbf5df3a61
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: cpHUIrSt1urCHPkoyCgMIv8+mJjp0A/6QPR0una41/FHgg54GS+LMpO7o9r10epupmSJm9miADdltqPkcZ5j36P5zb7PvHU4rJcBx1bd5BqennNbskLeeAWzJXwfX7MezL1IJqJJHPzwj5DVvmmTgPLbxu5SdhjfNLLvh8jExkJLaCyiRcQ+HZCmHa4mW43rfmSp+xKgJEMEW1FwxQ1o/jTWHtLuL2aB32Y7Kb+KC/iYqxYvyz7qpBETaABhH9KKR/j4GI+ctFXuWRfSl/eX0PVv3nJw7iiibkQuuKLoxJ6vfabWDdlNvCNQOploAnYyTHwwhmK2NhSqwY3BJRlQ72aHVcNP2M69wzUf3DYlbhp467hikpp1XnpF5LNaX4294/Vmwo8YxOnYt/vtgCWXMSs/Nn0eTWyC9nSvOLh8LecHB/2i6NFGdNs+gSGvltIn7evKf500sgwZ3qnOzwudWyNNNphDSrVrtkRfazQu9rOlFXI2DePcdTDs9dhI+oX0Z6ccoTCVMN4OVv5vZIkmiyCGUgTrLHI/81fGbPLAwdQYPqVv4QuKGEoCdVI0wcVU
+X-Microsoft-Antispam-Message-Info: OOrG79LKpk/ivoRwqz5nR1pDefKg8HzHJHvZJf5Vca1BR3qMrELGGyd9gPEADhXDLltY2u2NfK4lZxl2tnGIR6IV+nr32o7/90vf6qWXbLNSHWHBPr5ZUSdmbD2NzgGicfgKHkEpMoVxkfd68JVvcWRU+PQU0QPwpxcoaVqlnnOKLvzIp9kzcNw9ag+xx3NXjIhJzaf/MFeM/IkmlU2/C7GooB65ICGvZarYE39Zv/Z5EVEqZ+3iSrGGfhwyNOF5+H0X+75PtmEsJvEe1udy30VJQVlz7ZgnosTFhQAe3fKXcVs27oOD0Cn1pK52sCcm2AO1TEmSmcErQSAAWFZZEsIuw0f29kYQpAOh/VCA9E8J4GhXOcCamUWVdnC3veo9hLHoFauzVPa4qECgnrwFG0P+UR5+vq766xDGMpM0hLIu0WtrCh/lWZV0hmGDXV+shyxtmetMDOkln4dAYhN8HFdZSyqY8HfvuYw1d47EPONwKX/Nz2xB5Ehl7XTwyuLPXOJkTgelNTtbvLUBDp0XLXl5YmodSmw3VrIVx8+HXjgRobtt+grZL03AXZ+sR0pp
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(39860400002)(136003)(376002)(396003)(366004)(346002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(2906002)(33656002)(316002)(66556008)(6636002)(66476007)(6862004)(8676002)(86362001)(66946007)(8936002)(41300700001)(4326008)(5660300002)(38100700002)(82960400001)(6486002)(83380400001)(478600001)(26005)(1076003)(6512007)(6506007);
+ SFS:(13230031)(396003)(376002)(366004)(136003)(39860400002)(346002)(230922051799003)(64100799003)(451199024)(1800799012)(186009)(5660300002)(82960400001)(2906002)(33656002)(86362001)(41300700001)(6506007)(478600001)(6486002)(6512007)(38100700002)(6666004)(83380400001)(26005)(1076003)(6862004)(8676002)(4326008)(8936002)(6636002)(66476007)(66556008)(66946007)(316002);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?pXcKr/c4JcyR2fj7rM8Ni9CRwpcHNaK4d+YDomgQZ5CV0EYTTVEq3yBR9ROo?=
- =?us-ascii?Q?bqT2qNphSeq4AWenHL5kplDQnvLFIRiOrMfkIa9yIfHtGbLFhb1yIIj6mb8f?=
- =?us-ascii?Q?Glx0JXMLGZy/jHeaLLNekSNqlh51gFDmbybgNDsSc6ElKf59gqULeN79/0Se?=
- =?us-ascii?Q?5BKnX1NbbuGyPR03fsrssXnhR8z1dv0p2ymzjs5a6lnSBV2HLtA2wpxhmm1Z?=
- =?us-ascii?Q?3O3vOwjS3/PH8i2MAIL0pt58exwBatk9VuFQgDyvUDsdOch0amchSaCsuzJ8?=
- =?us-ascii?Q?4FS3IUKWKUsXiTqlzPo0yZV8T+CaGOMK94FuI/BXI98xVcmk+vRqRJ3M0IWa?=
- =?us-ascii?Q?lWH0IHgcJJ154UGn+S7BClX0NWxYNPCGuknylc9JtPigiTI9pbVIcwwWVGe0?=
- =?us-ascii?Q?cSaWMjsgd2pZiIJJ/eLxtsYdho19q/f6c8TGNCIgtlrOEiW5tUKoE8Bs2k7/?=
- =?us-ascii?Q?RUJ3aA2jN3hrW9djqTPyTrvoNi+77S59IBpqpd18QABErHZQPeWS61X0gT90?=
- =?us-ascii?Q?JbGWmRq6CPW97+4g65D3xZcIZZKePVSwlWFnt5KT1HJeZvCmpzDSxlnZd21f?=
- =?us-ascii?Q?6DlOWpdvzc0RY7ILp/sTpXbJyPa1m+f/ag+sVrLDtxpaCDKWdlUMdGHF7f0H?=
- =?us-ascii?Q?w6oO+lBpZVsOTzNnNLoBBEVignCCPlal+G0gbILft/jw4fkhFay5jtINEWfK?=
- =?us-ascii?Q?BOILxxl1Gisv3xrjOhHuehvLkjSwnGhFbGPNPf1EOQU51q0JutyRo4vqHbiT?=
- =?us-ascii?Q?y94vjMurPWW8uoWgcGA+niaM2t+zWr/q8GJrxdC7OtrxzuN/hXX97slzcMlc?=
- =?us-ascii?Q?WYIw5HD0J31HIR/4REYxUFazwZHfK1JI7JVpSuTQh/DEhww1FwmOKPL6nkRu?=
- =?us-ascii?Q?4QKkrPc644oa3XAj90/H7cZm0AshRbsC+/cBP43NQBc+mR5+Fk8SF1t+HOFC?=
- =?us-ascii?Q?ZvTO7UPR0s4yWAsOHCd+ov055apCuAp9l8BJ8KAKzT6hUezlcqFT1Jz05mGo?=
- =?us-ascii?Q?HN3fOLrIWc8DtHlLsOJnFpUSASlghNoRSwwF/m5iPSAMTWBwN71E3JG7Hqvq?=
- =?us-ascii?Q?TjMm6C/jihRRL0VC82bAoWMk2zRYmncAJ3yUF4LU4K5jx2vOt1LjNlnZwIDr?=
- =?us-ascii?Q?WED7NRBK7UewHz0LN85QgJrhpCeQSoc9PHxPcZN+foA4mRFitA/2LHA2HA7M?=
- =?us-ascii?Q?gv9q9tyuzjg1Q0h5x9TA3oqBEeBdR5lhfenD9ZvWTsiCO4R8mIqHu9QZOJqg?=
- =?us-ascii?Q?27L4uBqLavieHPywZw7jrFiOxAS26cQaEhrO0mQ7wz+6oprPk9sdfORVMsh6?=
- =?us-ascii?Q?mzpAMUCVyYboATjB3uJHxJa8cRxhlgFanKhqPuJz3+KceYbDR7e/cGvhQP+L?=
- =?us-ascii?Q?U/7PdLviYgerAvZWRSz+AGH+VHant3F4x1mleO7a5DX2gv4C+RWAp8dBU/3L?=
- =?us-ascii?Q?57lDF0L6aj5Qs8qFN3nsnn7vFQZxDkiE5C1YBRwxvWqA7xv6Z0acCv3Xp7C8?=
- =?us-ascii?Q?aohhGSg8gXMKHlbzQOMLSUW/UYSTSNnJo5vl8EvwfydXNGXMZg/fANkWQdKu?=
- =?us-ascii?Q?ws55afiMDLRy1Q1tERRqz8nBp8/0tv60x4zc7TFR+18RizNlBILygORB4H/Y?=
- =?us-ascii?Q?NA=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 584e8497-db7f-489c-f0e4-08dbf5dea846
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?wXduPanqcy6l4TwNveE7l5A4ofZ/D4kW2yQFEWLHKAOzha9pM76ZcJfls7Bw?=
+ =?us-ascii?Q?ukUxOQorKxCXMqZaGHjEBaduNnHCfYi1T1GexY90OQGpV2q7FbskSOs+/Z3F?=
+ =?us-ascii?Q?WpV/lERMDR3bUb3+nZ+pzyFoJxtmYm6ZUUAP2EGBzlbQ+GFJgpmSyYkyuvcH?=
+ =?us-ascii?Q?XSe5KjP1w7fgVbQ0EARy21uz+Z0ZMRxsESsL52pQsnbLFMewhcNMfu21PhK3?=
+ =?us-ascii?Q?4zERz5YobvRiQzVLtHZl/bIWFhX5HsjlaC8PGU/vj9UORt1Boli+yFQXYhhU?=
+ =?us-ascii?Q?9Sy0FzCgn0MOtijAu6K6YyMToCAnpBxfTGUwG2/mtXXSQl8NxBv9cBfnFh5e?=
+ =?us-ascii?Q?Kp2ZBQsMpnjnkqQ3dw9J6+oxYaQoQTsAGULBA8DQDCHZekLs+t0J+T7RfXrn?=
+ =?us-ascii?Q?WW/mx83bqXPH7YRonPO8Z5RREMT061iDkbH5uN2FcJ1hF981Pe9uJlYvHgzJ?=
+ =?us-ascii?Q?u6E6zTrC+48mhHCyAOjxG1iTrFOM/f9i1acX8CALHhoyCXZuvMWoYojU/Kii?=
+ =?us-ascii?Q?NHokP0igdlDDpyGA/OVBW8DXKOo+QVvML3Rtr+fzAl+KE+ZFPEUiPE9sa3wQ?=
+ =?us-ascii?Q?8LpGdiDKTiHYL+6sQF15v3py9O/B2u0R5+Q7HQzQjDZcbMlJrfzjT7CFZAsL?=
+ =?us-ascii?Q?5p4bTBpHObuB55vG3So228j0f+B/gzO/3FANrxTW4VHdBZcYlnRtycGMY3Nd?=
+ =?us-ascii?Q?SCUSmhpwvkQa9VHXiFCp2HoNv+oLGSfO2UG0SNlBVj72b+KPIkBjqAl60paG?=
+ =?us-ascii?Q?0Mi0X4JxdvtpKEfUwt7xc66U3kb4QMSGxNsH9+NsMDYZOQdleUR019NMat2c?=
+ =?us-ascii?Q?dnrpghDZFNHs/42zutPMiFwwYth6UDHoOeEC1O2AF588xg3ZdzntpRmwxJe7?=
+ =?us-ascii?Q?9pj+BLKf48WrtniR7jujuN4aPUUaFrlIJx0kDGYOyfbFPWN2oAchcKQRH5lC?=
+ =?us-ascii?Q?2ItGvB0n1rV6o9x7ItvQXXzWMviriq+izxGnrF2vL8lX///YxOsF5KZeGcgL?=
+ =?us-ascii?Q?0diWc2bFpG1GgG02V8hREc2cgFOFZ8U+8bnfLYu4h/3meIN2g764JD4zLqgo?=
+ =?us-ascii?Q?lSWo/Yi+bRsEMVNhcBxmFFY3IgASviOZyuVMQlfxK9lGapaLXKsSLhEthIda?=
+ =?us-ascii?Q?MYrHHCbgyhBL41+MTlvUBx+VunVno8vhG2dWn+L/FGp3XeayN1gHcDA8mNYn?=
+ =?us-ascii?Q?Ru8YCtEgkFvOZa5eFtj+ljFhQiJA9GMZ/ihB+pvV745hkJ80lXajc5Yf41OG?=
+ =?us-ascii?Q?UNuNM3pQzNbLBA2V0uQevBz8mKvsAkWHFKzmEqTxHURwMGf47cXwb2ShtTOy?=
+ =?us-ascii?Q?m5KIq7YltAao1qylFz6u6C6ZpRoxDXvaVgfW/lsvzpax5Oun3XmHahb0vHlm?=
+ =?us-ascii?Q?+tAHYyc98+ULmo4SpNEQ/054DYHBe1qOXD6il4Zu5VoS7M/fUR+C6UvI7Tzk?=
+ =?us-ascii?Q?f/z70L9p7a1uzgASV4aRKpTr0CoqGH2GkdOKwmYMb0ao3BNqryWgnssDMNtm?=
+ =?us-ascii?Q?nxgWCSVE/DEwPMOjra6AC7VAbSWgL3rScjKlFCPZIjQJ9IUnkKEDuK2cb9PW?=
+ =?us-ascii?Q?TcmG40yOux/HGoU7ZejCZOBIzM8KVo+gyWd+d970o474A/HQC75f1l76zFDz?=
+ =?us-ascii?Q?eg=3D=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6cb2e348-9a54-434f-dc8d-08dbf5df3a61
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2023 22:08:05.9042 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2023 22:12:11.0238 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /u6kAJ5kQIUvpWg2rNLv5r71V/ipt/ABBf9A/1iMngZ+96ovSgc54hanE1ssEfldrq2s5TQC0lkrY5PfCdMH0LGnc2/ClW48iL56y3iQtNs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7922
+X-MS-Exchange-CrossTenant-UserPrincipalName: G0XVJm+l7wtsFAwRR669EFIT45JiURkM8mtKwKiyl34YoKhFbHkhR+VsM/smi6bz9Av975FkgtLXCOY8I7ry8HPjO7BhTXvgp+/HMbFzdvU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB5689
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH V2] drm/xe/xe2: Add workaround 18032095049
+Subject: Re: [Intel-xe] [PATCH] drm/xe/xe2: Add workaround 16021639441
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -151,107 +147,140 @@ Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Dec 05, 2023 at 01:55:49PM -0800, Matt Roper wrote:
-> On Tue, Dec 05, 2023 at 02:22:49PM +0530, Tejas Upadhyay wrote:
-> > This workaround applies to graphics 20.04 A0 step and on
-> > render engine.
-> > 
-> > Workaround has three parts :
-> > 1. Pipe flush before MI_ATOMIC - This part isn't relevant to Xe
-> >    (at least not right now) since we don't use MI_ATOMIC anywhere
-> >    in the kernel mode driver.
-> > 2. Memory-based interrupt masking - Memory-based interrupt processing
-> >    isn't supported on physical functions, only virtual functions,
-> >    according to bspec 60352. So this is probably only relevant once
-> >    SRIOV support lands in the driver.
-> > 3. Disabling CSB/timestamp updates to the ghwsp and pphwsp - Workaround
-> >    is added by this change.
-> > 
-> > V2(MattR):
-> >   - Mention detail in commit message
-> >   - Reorder bit define
-> >   - Improve bit naming
-> >   - Remove workaround part which isnt relevant
-> > 
-> > Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
-> > ---
-> >  drivers/gpu/drm/xe/regs/xe_engine_regs.h | 6 ++++++
-> >  drivers/gpu/drm/xe/xe_wa.c               | 6 ++++++
-> >  2 files changed, 12 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> > index 444ff9b83bb1..ecdbc04a2d91 100644
-> > --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> > +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
-> > @@ -40,6 +40,7 @@
-> >  #define RING_NOPID(base)			XE_REG((base) + 0x94)
-> >  
-> >  #define RING_IMR(base)				XE_REG((base) + 0xa8)
-> > +
-> >  #define   RING_MAX_NONPRIV_SLOTS  12
+On Tue, Dec 05, 2023 at 06:47:16PM +0530, Tejas Upadhyay wrote:
+> This workaround applies to graphics 20.04 and on
+> non render engine.
 > 
-> Unintended change?  Even though RING_MAX_NONPRIV_SLOTS doesn't seem to
-> belong here at all (it's defined twice in the header, probably due to a
-> conflict resolution mistake at some point), but that should be cleaned
-> up independently in a separate patch.
-> 
-> Aside from that,
-> 
-> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+> Workaround has three parts :
+> 1. Pipe flush before MI_ATOMIC - This part isn't relevant to Xe
+>    (at least not right now) since we don't use MI_ATOMIC anywhere
+>    in the kernel mode driver.
+> 2. Memory-based interrupt masking - Memory-based interrupt processing
+>    isn't supported on physical functions, only virtual functions,
+>    according to bspec 60352. So this is probably only relevant once
+>    SRIOV support lands in the driver.
+> 3. Disabling CSB/timestamp updates to the ghwsp and pphwsp - Workaround
+>    is added by this change.
 
-Actually, scratch that...one remaining item below.
+This workaround is basically the inverse of Wa_18032095049; that one
+applies to RCS and this one applies to the other engines.  The
+difference is that the RCS engine workaround is a temporary workaround
+needed only for a-step, while this one applies to all steppings.
+
+The CSB reports to gHWSP and ppHWSP have been discussed as part of a
+different topic on some internal threads and we've confirmed that
+neither the KMD nor the GuC firmware use those for anything, so
+disabling them is always "safe" and should have no functional or
+performance impact on system operation.  I expect the same is true for
+the timestamp updates in the ppHWSP as well.  Given that, it might make
+sense to just combine these two workarounds into a single record (and
+single patch) and apply it on all steppings.  Disabling the reports for
+RCS on higher steppings doesn't have any kind of negative impact and
+will simplify the overall situation.  E.g.,
+
+    /*
+     * These two workarounds are the same, just applying to different
+     * engines.  Although Wa_18032095049 (for the RCS) isn't required on
+     * all steppings, disabling these reports has no impact for our
+     * driver or the GuC, so we go ahead and treat it the same as
+     * Wa_16021639441 which does apply to all steppings.
+     */
+    { XE_RTP_NAME("18032095049 / 16021639441"),
+      XE_RTP_RULES(GRAPHICS_VERSION(2004)),
+      XE_RTP_ACTIONS(SET(CSFE_CHICKEN1_REG(0),
+                         GHWSP_CSB_REPORT_DIS |
+                         PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS,
+                         XE_RTP_ACTION_FLAG(ENGINE_BASE))),
+    },
 
 > 
-> >  
-> >  #define RING_EIR(base)				XE_REG((base) + 0xb0)
-> > @@ -47,6 +48,11 @@
-> >  #define RING_ESR(base)				XE_REG((base) + 0xb8)
-> >  
-> >  #define RING_CMD_CCTL(base)			XE_REG((base) + 0xc4, XE_REG_OPTION_MASKED)
-> > +
-> > +#define CSFE_CHICKEN1_REG(base)			XE_REG((base) + 0xd4, XE_REG_OPTION_MASKED)
-> > +#define   GHWSP_CSB_REPORT_DIS			REG_BIT(15)
-> > +#define   PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS	REG_BIT(14)
-> > +
-> >  /*
-> >   * CMD_CCTL read/write fields take a MOCS value and _not_ a table index.
-> >   * The lsb of each can be considered a separate enabling bit for encryption.
-> > diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
-> > index 63bd4bb1af03..4389ce3548dd 100644
-> > --- a/drivers/gpu/drm/xe/xe_wa.c
-> > +++ b/drivers/gpu/drm/xe/xe_wa.c
-> > @@ -596,6 +596,12 @@ static const struct xe_rtp_entry_sr engine_was[] = {
-> >  	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
-> >  	  XE_RTP_ACTIONS(SET(ROW_CHICKEN, EARLY_EOT_DIS))
-> >  	},
-> > +	{ XE_RTP_NAME("18032095049"),
-> > +	  XE_RTP_RULES(GRAPHICS_VERSION(2004), GRAPHICS_STEP(A0, B0), ENGINE_CLASS(RENDER)),
-> > +	  XE_RTP_ACTIONS(SET(CSFE_CHICKEN1_REG(0),
+> Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_engine_regs.h |  4 ++++
+>  drivers/gpu/drm/xe/xe_rtp.c              |  6 ++++++
+>  drivers/gpu/drm/xe/xe_rtp.h              | 10 ++++++++++
+>  drivers/gpu/drm/xe/xe_wa.c               |  7 +++++++
+>  4 files changed, 27 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> index 444ff9b83bb1..0875b2cc0f01 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
+> @@ -47,6 +47,10 @@
+>  #define RING_ESR(base)				XE_REG((base) + 0xb8)
+>  
+>  #define RING_CMD_CCTL(base)			XE_REG((base) + 0xc4, XE_REG_OPTION_MASKED)
+> +
+> +#define CSFE_CHICKEN1_REG(base)			XE_REG((base) + 0xd4, XE_REG_OPTION_MASKED)
+> +#define   GHWSP_CSB_REPORT_DIS			REG_BIT(15)
+> +#define   PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS	REG_BIT(14)
+>  /*
+>   * CMD_CCTL read/write fields take a MOCS value and _not_ a table index.
+>   * The lsb of each can be considered a separate enabling bit for encryption.
+> diff --git a/drivers/gpu/drm/xe/xe_rtp.c b/drivers/gpu/drm/xe/xe_rtp.c
+> index fb44cc7521d8..e84e08a66af3 100644
+> --- a/drivers/gpu/drm/xe/xe_rtp.c
+> +++ b/drivers/gpu/drm/xe/xe_rtp.c
+> @@ -309,6 +309,12 @@ bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
+>  		hwe->engine_id == __ffs(render_compute_mask);
+>  }
+>  
+> +bool xe_rtp_match_non_render(const struct xe_gt *gt,
+> +			     const struct xe_hw_engine *hwe)
+> +{
+> +	return hwe->class == XE_ENGINE_CLASS_RENDER ? false : true;
+> +}
+> +
+>  bool xe_rtp_match_first_gslice_fused_off(const struct xe_gt *gt,
+>  					 const struct xe_hw_engine *hwe)
+>  {
+> diff --git a/drivers/gpu/drm/xe/xe_rtp.h b/drivers/gpu/drm/xe/xe_rtp.h
+> index c56fedd126e6..a30f89d80046 100644
+> --- a/drivers/gpu/drm/xe/xe_rtp.h
+> +++ b/drivers/gpu/drm/xe/xe_rtp.h
+> @@ -427,4 +427,14 @@ bool xe_rtp_match_first_render_or_compute(const struct xe_gt *gt,
+>  bool xe_rtp_match_first_gslice_fused_off(const struct xe_gt *gt,
+>  					 const struct xe_hw_engine *hwe);
+>  
+> +/*
+> + * xe_rtp_match_non_render - Match when non render engine in GT
+> + *
+> + * @gt: GT structure
+> + * @hwe: Engine instance
+> + *
+> + * Returns: true if engine is not render, false otherwise.
+> + */
+> +bool xe_rtp_match_non_render(const struct xe_gt *gt,
+> +			     const struct xe_hw_engine *hwe);
+>  #endif
+> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+> index 63bd4bb1af03..45a910fe0141 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.c
+> +++ b/drivers/gpu/drm/xe/xe_wa.c
+> @@ -596,6 +596,13 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+>  	  XE_RTP_RULES(GRAPHICS_VERSION(2004), FUNC(xe_rtp_match_first_render_or_compute)),
+>  	  XE_RTP_ACTIONS(SET(ROW_CHICKEN, EARLY_EOT_DIS))
+>  	},
+> +	{ XE_RTP_NAME("16021639441"),
+> +	  XE_RTP_RULES(GRAPHICS_VERSION(2004),
+> +		       FUNC(xe_rtp_match_non_render)),
+> +	  XE_RTP_ACTIONS(SET(CSFE_CHICKEN1_REG(0),
+> +			     GHWSP_CSB_REPORT_DIS |
+> +			     PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS))
 
-We either need to add XE_RTP_ACTION_FLAG(ENGINE_BASE) to apply this to
-the engine base, or pass RENDER_RING_BASE as the parameter here.  Using
-the action flag is probably best since it can potentially allow us to
-combine this record with the other similar workaround; see comments on
-the patch for Wa_16021639441.
+The RTP engine base flag is needed here (also pointed out on the other
+workaround's patch).
 
 
 Matt
 
-> > +			     GHWSP_CSB_REPORT_DIS |
-> > +			     PPHWSP_CSB_AND_TIMESTAMP_REPORT_DIS))
-> > +	},
-> >  
-> >  	{}
-> >  };
-> > -- 
-> > 2.25.1
-> > 
-> 
+> +	},
+>  
+>  	{}
+>  };
 > -- 
-> Matt Roper
-> Graphics Software Engineer
-> Linux GPU Platform Enablement
-> Intel Corporation
+> 2.25.1
+> 
 
 -- 
 Matt Roper
