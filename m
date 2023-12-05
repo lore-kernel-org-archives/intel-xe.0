@@ -4,140 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9A1B5C07E97
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 14:45:30 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 72765C4167B
+	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 14:52:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 70C1910E54F;
-	Tue,  5 Dec 2023 14:45:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4726710E551;
+	Tue,  5 Dec 2023 14:52:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4753A10E55D
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 14:45:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93E6710E56A
+ for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 14:52:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701787529; x=1733323529;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=W1D0jdxJv3UmOGBM0X9lEBdiidePvrSd9QDyOUKrByo=;
- b=Duv0+E0nZ/MQlI7RtxCSMsL2PUaQF4opBXNzQgo6O0ooQ0uo6LwZnw1d
- 5JcVx0mT4I00z7MSS4DCtoikp+E7OYdzpqheCZ3xi8/lRng17m3xl6gog
- tUEhZ70u8SM7HYVcaFbOK8QiCIwlZPqwoGQ6aurSQJ7vqq3lCjOYF75oI
- uI0Sbb9oZLbKvZde4fwhvWXUhr2VZXgP2IdzOhnt9T6jzLRlw1O+Y7oNK
- WHRhQueHMT/uD2e4PqGIdLhJX6VnGbX+vauWo1Nq5OnrExqyPQokeYFG9
- GjJd7c93y2OCcS/oX2tuclDHJvaoxHfjj1l1qtowKLjF28EgpCyKyT4MJ w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="7248281"
+ t=1701787967; x=1733323967;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rpRLrUWClpZsA/oNgHI5EgkxDP4SZWVCUcee9QJ6yRU=;
+ b=J3nrKt5ZM3/FvRPYf46GP28pEpBeKhM8UDcizwXoJzH5hWnXfVKIdrjj
+ 6PzOdg5ToN6keB6nWC6CzEQydnqJZMZriD5oDRkul34eQD6G0vKpRo4bZ
+ b2fI5YNew+QhSVwOnsQTn098j+NNnw0S6kpOKpB4h4lfV1zFaGbhCRffO
+ dCmIIT7oIdNmralKVeiUjXT/iZ8V6E4KswgSd40eSuzewxBVTwtwh7uvH
+ /NyZhYeEDqZKwdRz8yPbzmrKwSIx2dtmoSIpLUIv3q4mOUqi2Ta1G28Y7
+ jL7tM3ahRezIvL1Y8a47LlkvFjURD/ZuQIEmvkv4caZHX43gSoOUCPqJh w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="7249484"
 X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; 
-   d="scan'208";a="7248281"
+   d="scan'208";a="7249484"
 Received: from orsmga005.jf.intel.com ([10.7.209.41])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 06:45:29 -0800
+ 05 Dec 2023 06:52:46 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="944280078"
-X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="944280078"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by orsmga005.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 05 Dec 2023 06:45:28 -0800
-Received: from fmsmsx612.amr.corp.intel.com (10.18.126.92) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 5 Dec 2023 06:45:28 -0800
-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx612.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Tue, 5 Dec 2023 06:45:28 -0800
-Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Tue, 5 Dec 2023 06:45:28 -0800
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.34; Tue, 5 Dec 2023 06:45:27 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YncOyLdhRj/LMjzGa1NNNlhdg9ROHyLUhYN6HvOcX2E+FZRGJw7KtKbI8lSQ8IloLd7jOWRBJjR79E8XWbg0Du6bq7F7UmBjHQj/5AzxN9rdoDrgsermjaXZSNjGTKYySMnQyglZ0s53yRkyn5VKLZ4Dv+BCvgNwMzv+rMv4P2P44vXqjD2U8RgHm31mcQdG0cKW/LNJpMHQgzMnCkN/9lJHxvUmAkVknM/6CtZqCLY39NNZMogrw6Md7n2OG5WX7gtNLhgyxWCmpsRC9zLrqt6G/A5qU3HM1fa2Pg6QPVQLGnXByz7EFvkn0lxLbPKKk9kUf8y5SIzntD/6d/gD4g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=9aS31HeI7C1ayc5vAznbo0z7lhc6LwifnHo5BCnp5M4=;
- b=h4NLVSP6/7RXeAZ1r+sIb/PELzV5E9IebOw1kNz8MJfIO/89NSCeHy6etruEK7+lhgAjZAqoOUPjEvyAAo1lrjCq/C1Rot8KYntmEwSC9dXTDdapyYClyQV5x23rQDJYW9n/YVvIejW2hoi/3SNyOQWj1i4Dp/98Cuj15KYuLIrZZBcHmbXr/OGE/16kI8HL5WoM56evP+y5jEZ86GwArDvdl99n5SC+2QUmisg4I08G+T7hUvMI8cHmlbN9lbqmlr/3C6BZsCabLFjigfCM2rg8Gm2IEvYwy44sSeWRzplUSNAKd+ml9OkSEN1/CgGn3LC1mFCPt4wHO3nP3Zi/lw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com (2603:10b6:930:29::17)
- by CO1PR11MB4769.namprd11.prod.outlook.com (2603:10b6:303:95::10)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7046.34; Tue, 5 Dec
- 2023 14:45:26 +0000
-Received: from CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b870:a8ae:c4f1:c39b]) by CY5PR11MB6139.namprd11.prod.outlook.com
- ([fe80::b870:a8ae:c4f1:c39b%4]) with mapi id 15.20.7046.033; Tue, 5 Dec 2023
- 14:45:26 +0000
-Date: Tue, 5 Dec 2023 08:45:23 -0600
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="944281166"
+X-IronPort-AV: E=Sophos;i="6.04,252,1695711600"; d="scan'208";a="944281166"
+Received: from lucas-s2600cw.jf.intel.com ([10.165.21.196])
+ by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 06:52:46 -0800
 From: Lucas De Marchi <lucas.demarchi@intel.com>
-To: "Upadhyay, Tejas" <tejas.upadhyay@intel.com>
-Message-ID: <khxyqt6grryjkho7mjdugw5l65523ptf5pdkmw2xiwif3kleqt@vwd6ku53krko>
-References: <20231204114525.791141-1-tejas.upadhyay@intel.com>
- <w4zznqo5xdko2gpx7sfhcmkncxgmqk5ewtopzpof6z6vvry3je@pla64iszsa3p>
- <DS7PR11MB619749FCAA441D9E8430493C8185A@DS7PR11MB6197.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="us-ascii"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <DS7PR11MB619749FCAA441D9E8430493C8185A@DS7PR11MB6197.namprd11.prod.outlook.com>
-X-ClientProxiedBy: BYAPR06CA0069.namprd06.prod.outlook.com
- (2603:10b6:a03:14b::46) To CY5PR11MB6139.namprd11.prod.outlook.com
- (2603:10b6:930:29::17)
+To: intel-xe@lists.freedesktop.org
+Date: Tue,  5 Dec 2023 06:52:35 -0800
+Message-Id: <20231205145235.2114761-1-lucas.demarchi@intel.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY5PR11MB6139:EE_|CO1PR11MB4769:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1ed52cff-eef0-496b-2c33-08dbf5a0d162
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: HCX2Cn5C1ogExYTZbf4m5b67ZOuJvrgqMFlIDgILbH1AkVlP2kHjf7wcoIVW0aicPo6O4jRxzXgp+A7dNwvyjtanp+H8JOBOK1ytsZr4nmDzn5BPVZ4PeXChG5BEIb+GDPbuJKcAAblDDzPNc3AFFnwbwYa8XfFbWyd5XI4dndvIPZZ6jqiQEv6jc2U4eBxQ9zDpp8X/b4MDLLvaZwUb1nUPlRSKA7uxy/fGhtfGl0nMZ48fTzwbaNDzP5GxW9ihm3p4cbKpAk6wePwajEK/aVMiWYE3aPdlWZoZzxY34lcn7bnhRZ5Pd4JpnUyifhFcFPubXDeecn3eIqWhTIkRhoACv0rnlWY3rsj1TBwdHlcoMIdiygNt30MHJQr/5B6qLHOtQ3Hn90JlP/kTwAPRWym0braH3LvQZpdK472WsaFsuoBNk/IA2pFTvI9kPSRviL/lGnvn3Qsq/lCjJdlmhHD/bVSIU3bukptZvK7/ikFUnKQcpwhzzzdcRZJZNmN5KSHf/tsWRfmo3DI+Z8/HHrluss03NjT4hq9PaoX3/EHXfZ4hX4sHTri+2Qw8wf0f
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY5PR11MB6139.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(7916004)(346002)(396003)(376002)(136003)(366004)(39860400002)(230922051799003)(64100799003)(1800799012)(451199024)(186009)(8676002)(8936002)(86362001)(83380400001)(6506007)(38100700002)(53546011)(9686003)(6512007)(26005)(82960400001)(6666004)(478600001)(6486002)(66556008)(6636002)(316002)(66476007)(66946007)(2906002)(33716001)(41300700001)(6862004)(4326008)(5660300002);
- DIR:OUT; SFP:1102; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?ETxrBCoKqlub57TaUs7V/LekbcFDc5L6V1pmBVeR6Y/WxZZwChSQQtGc3p3/?=
- =?us-ascii?Q?eQb5EN0GAAjAdO9//RSmmpcWDrasf7OsApwa02JQhLmseOiCd500hKIyDhu+?=
- =?us-ascii?Q?46+S8+327kPu5uKhgdQcDICYmy9FSpCgJ8U/jvincn0PSaIJTtfW8+biMosa?=
- =?us-ascii?Q?zZmQQ40xaZ345GLUwnsv/QXnL9HpeMzIZKey5xcywfUctDy+C/tdRGVst1ow?=
- =?us-ascii?Q?V6BELmXvGPNfLubIiKCaFqe9c5bqbC5EO8ozSICcr8nXwwuUCArHF4g0tZE3?=
- =?us-ascii?Q?UTU7AGgASUexgC/L7q3/jdPgLyG3LgOJZKgcJtB0HlmzFGvZ047o/9zVdVnW?=
- =?us-ascii?Q?THfMoD6Uq4UxWSN+62fOpTNGhz49nfZeRt3iX1+DDJJHe0QJsozWiye9bw01?=
- =?us-ascii?Q?sWD+54RzQ/zNuUEqy0lDcYvtTO+ht9uwB85Ld0qmZ9UqwAOXtoZKEldudOmu?=
- =?us-ascii?Q?Otpt87fs/sjgTOItBxCUKIARNpEA770ATrmKDBu+ox6fWo/xUZm9E5oAbfQ6?=
- =?us-ascii?Q?64ycyOGOm5k9trvFHq0Toz0oWFXXUx1/+YPJbEEPhSZltwWBhb4oJ/Bwys3D?=
- =?us-ascii?Q?SlrzgCUGniYYKnoFX79Hx4RVvG3+NsmjYtYERjbhnt0E8D+G9dlaQGB27Plc?=
- =?us-ascii?Q?8+lsUbHInmcttVwBnyDNEJGkvc9KEZXNgextDa3/qF+WsWrlQ3xcTrSG1xF2?=
- =?us-ascii?Q?K6VSWVLMsxX3rlDPLGgw7zv0qrmVOjWNC/NQpLCbOOC5Hi65tsDQIgkF9I1S?=
- =?us-ascii?Q?9UCnThkNRB1HKSj0BsZAtR8+uiOLUif2NovkU+suT4LUXicFi/IPuit4K9/N?=
- =?us-ascii?Q?/qnt7I5Btk87LgaZJFqyKjBZp2o9N8uK1tzA6LdLcT6T6lhBzC0Drx31vg28?=
- =?us-ascii?Q?H4MoE56BVNEoH1RQTkFhViAVISwiwfCWeyatgR8ssHWFQ5vcbVCeRueeaOHH?=
- =?us-ascii?Q?y6pYzhezhb/yzGatcV8L/HyZ99BauCKYEjQYXtV/fuOvdL/Cub2L0+C/Ynf3?=
- =?us-ascii?Q?JMqvP4RLzUspZ2G8DSAnXyOl5i3U0YxNY75ZHkxc7q8DEWo3bidVglPjkJDD?=
- =?us-ascii?Q?y8a80k3KTHwDb1RcP0I31We79Rr3Nb8LIjnWe9mH2KlO9gzoRqr2E6VpLPh6?=
- =?us-ascii?Q?X+e/4kGSKY5WA20L9+ETLo785DfwNoX/b9rUUuVeS2VgTLW3SKcu0z00qiWs?=
- =?us-ascii?Q?rf20rpP+DPAR1kKDkfDthc/09Va6DGDVoJ90IaBn14FjKAPaCDwNVbtusb4/?=
- =?us-ascii?Q?OAF/TXgHdSrNy9xEG/h2odjNzcnVvTw/LRE1oPr7ftvkPbwtVKvryGOureTr?=
- =?us-ascii?Q?/wD7mQ/9BzYliPhyxXx+NcYyz+tq8biOWwfI7tNJQZl2atYw0KM4zr48lFYI?=
- =?us-ascii?Q?EQwKtmb4XW63NIooCaOWTplC0DX+O796CSHZZ6iQHA4cvrNyc62ZGh+F2v/g?=
- =?us-ascii?Q?vpuz1RUDDjjuN5z5sU6VmR3+7TH04TXUzlSo7jCST+93FPIkSTvxZy/CvCuZ?=
- =?us-ascii?Q?DUQCREVxLfEwPlHW5QYEFmxVebS9SRQMLp2qVfIqv/IG5GhISFKT6mEYwSV9?=
- =?us-ascii?Q?kihz4wGP8iAc1UX7h+JMi4GKLn/rZvNktZ7q4f08X5GsFts74nJdbintr9za?=
- =?us-ascii?Q?LQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ed52cff-eef0-496b-2c33-08dbf5a0d162
-X-MS-Exchange-CrossTenant-AuthSource: CY5PR11MB6139.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Dec 2023 14:45:26.2225 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: MpfSoNZfXLbcfbyZGoS3S26z8089PheJHvXkGyYbPOkGvyIjfwQi+UT7qaCXkgnJQ0mc8qiLVRrU5igHQfSyRl6MFVNB8VtenA6w2UtNWOA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB4769
-X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Apply mask to RING IMR
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH] drm/xe: Rename info.supports_* to info.has_*
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -149,91 +55,425 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Tue, Dec 05, 2023 at 02:10:28PM +0000, Upadhyay, Tejas wrote:
->
->
->> -----Original Message-----
->> From: De Marchi, Lucas <lucas.demarchi@intel.com>
->> Sent: Tuesday, December 5, 2023 12:11 AM
->> To: Upadhyay, Tejas <tejas.upadhyay@intel.com>
->> Cc: intel-xe@lists.freedesktop.org
->> Subject: Re: [Intel-xe] [PATCH] drm/xe: Apply mask to RING IMR
->>
->> On Mon, Dec 04, 2023 at 05:15:25PM +0530, Tejas Upadhyay wrote:
->> >As per bspec RING interrupt mask register will have lower 16 bit masked
->> >by upper 16 bit.
->> >
->> >Bspec 60352
->>
->> am I reading the wrong spec? 60352 doesn't say this register has masked
->> access, i.e. in order to write any of the 0-15 bits we also need to set the upper
->> bits.
->>
->> Compare that to e.g. 60279 where we do have a masked register
->> BCS_SWCTRL.
->>
->> In this register it seems the upper bits are just another field to be set rather
->> than considering this a masked register.
->
->"If an interrupt is unmasked. On occurrence of an interrupt and if the interrupt is enabled, will result in generating an interrupt message to the host."
->By above sentence I could understand that this mask for all interrupt bits mentioned in lower bits.
+Rename supports_mmio_ext and supports_usm to use a has_ prefix so the
+flags are grouped together. This settles on just one variant for
+positive info matching ("has_") and one for negative ("skip_").
 
-it's an overloaded meaning of "mask". A "masked register" in bspec
-(and the option you are trying to set in xe) has a very specific
-meaning: The upper bits select the corresponding bits in the lower
-part that will be set when you write to the register.
+Signed-off-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/tests/xe_migrate.c |  4 ++--
+ drivers/gpu/drm/xe/xe_debugfs.c       |  2 +-
+ drivers/gpu/drm/xe/xe_device_types.h  |  8 ++++----
+ drivers/gpu/drm/xe/xe_exec_queue.c    |  6 +++---
+ drivers/gpu/drm/xe/xe_gt.c            |  2 +-
+ drivers/gpu/drm/xe/xe_gt.h            |  2 +-
+ drivers/gpu/drm/xe/xe_gt_pagefault.c  |  4 ++--
+ drivers/gpu/drm/xe/xe_guc_ads.c       |  4 ++--
+ drivers/gpu/drm/xe/xe_hw_engine.c     |  4 ++--
+ drivers/gpu/drm/xe/xe_lrc.c           |  2 +-
+ drivers/gpu/drm/xe/xe_migrate.c       | 16 ++++++++--------
+ drivers/gpu/drm/xe/xe_mmio.c          |  5 +++--
+ drivers/gpu/drm/xe/xe_pci.c           | 12 ++++++------
+ drivers/gpu/drm/xe/xe_pci_types.h     |  2 +-
+ drivers/gpu/drm/xe/xe_vm.c            |  2 +-
+ 15 files changed, 38 insertions(+), 37 deletions(-)
 
-For those register if you try to write 0x00000001, it won't have any
-effect as the hardware will ignore it. You have to write 0x00010001 for
-the write to go through. This allows writes to different fields in the
-register to simply not care what the other bits are, avoiding a rmw
-cycle. 
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 83d6a66ed369..47fcd6e6b777 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -37,7 +37,7 @@ static int run_sanity_job(struct xe_migrate *m, struct xe_device *xe,
+ 			  struct xe_bb *bb, u32 second_idx, const char *str,
+ 			  struct kunit *test)
+ {
+-	u64 batch_base = xe_migrate_batch_base(m, xe->info.supports_usm);
++	u64 batch_base = xe_migrate_batch_base(m, xe->info.has_usm);
+ 	struct xe_sched_job *job = xe_bb_create_migration_job(m->q, bb,
+ 							      batch_base,
+ 							      second_idx);
+@@ -308,7 +308,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 		goto free_pt;
+ 	}
+ 
+-	bb = xe_bb_new(tile->primary_gt, 32, xe->info.supports_usm);
++	bb = xe_bb_new(tile->primary_gt, 32, xe->info.has_usm);
+ 	if (IS_ERR(bb)) {
+ 		KUNIT_FAIL(test, "Failed to create batchbuffer: %li\n",
+ 			   PTR_ERR(bb));
+diff --git a/drivers/gpu/drm/xe/xe_debugfs.c b/drivers/gpu/drm/xe/xe_debugfs.c
+index 2de8a0b9da18..f1e80be8b930 100644
+--- a/drivers/gpu/drm/xe/xe_debugfs.c
++++ b/drivers/gpu/drm/xe/xe_debugfs.c
+@@ -53,8 +53,8 @@ static int info(struct seq_file *m, void *data)
+ 	drm_printf(&p, "tile_count %d\n", xe->info.tile_count);
+ 	drm_printf(&p, "vm_max_level %d\n", xe->info.vm_max_level);
+ 	drm_printf(&p, "force_execlist %s\n", str_yes_no(xe->info.force_execlist));
+-	drm_printf(&p, "supports_usm %s\n", str_yes_no(xe->info.supports_usm));
+ 	drm_printf(&p, "has_flat_ccs %s\n", str_yes_no(xe->info.has_flat_ccs));
++	drm_printf(&p, "has_usm %s\n", str_yes_no(xe->info.has_usm));
+ 	for_each_gt(gt, xe, id) {
+ 		drm_printf(&p, "gt%d force wake %d\n", id,
+ 			   xe_force_wake_ref(gt_to_fw(gt), XE_FW_GT));
+diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
+index 9a212dbdb8a4..5b30836fcb23 100644
+--- a/drivers/gpu/drm/xe/xe_device_types.h
++++ b/drivers/gpu/drm/xe/xe_device_types.h
+@@ -242,8 +242,6 @@ struct xe_device {
+ 
+ 		/** @is_dgfx: is discrete device */
+ 		u8 is_dgfx:1;
+-		/** @supports_usm: Supports unified shared memory */
+-		u8 supports_usm:1;
+ 		/** @has_asid: Has address space ID */
+ 		u8 has_asid:1;
+ 		/** @force_execlist: Forced execlist submission */
+@@ -252,18 +250,20 @@ struct xe_device {
+ 		u8 has_flat_ccs:1;
+ 		/** @has_llc: Device has a shared CPU+GPU last level cache */
+ 		u8 has_llc:1;
++		/** @has_mmio_ext: Device has extra MMIO address range */
++		u8 has_mmio_ext:1;
+ 		/** @has_range_tlb_invalidation: Has range based TLB invalidations */
+ 		u8 has_range_tlb_invalidation:1;
+ 		/** @has_sriov: Supports SR-IOV */
+ 		u8 has_sriov:1;
++		/** @has_usm: Device has unified shared memory support */
++		u8 has_usm:1;
+ 		/** @enable_display: display enabled */
+ 		u8 enable_display:1;
+ 		/** @skip_mtcfg: skip Multi-Tile configuration from MTCFG register */
+ 		u8 skip_mtcfg:1;
+ 		/** @skip_pcode: skip access to PCODE uC */
+ 		u8 skip_pcode:1;
+-		/** @supports_mmio_ext: supports MMIO extension/s */
+-		u8 supports_mmio_ext:1;
+ 		/** @has_heci_gscfi: device has heci gscfi */
+ 		u8 has_heci_gscfi:1;
+ 		/** @skip_guc_pc: Skip GuC based PM feature init */
+diff --git a/drivers/gpu/drm/xe/xe_exec_queue.c b/drivers/gpu/drm/xe/xe_exec_queue.c
+index cb284c4ad049..53b432265631 100644
+--- a/drivers/gpu/drm/xe/xe_exec_queue.c
++++ b/drivers/gpu/drm/xe/xe_exec_queue.c
+@@ -362,7 +362,7 @@ static int exec_queue_set_acc_trigger(struct xe_device *xe, struct xe_exec_queue
+ 	if (XE_IOCTL_DBG(xe, !create))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, !xe->info.supports_usm))
++	if (XE_IOCTL_DBG(xe, !xe->info.has_usm))
+ 		return -EINVAL;
+ 
+ 	q->usm.acc_trigger = value;
+@@ -376,7 +376,7 @@ static int exec_queue_set_acc_notify(struct xe_device *xe, struct xe_exec_queue
+ 	if (XE_IOCTL_DBG(xe, !create))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, !xe->info.supports_usm))
++	if (XE_IOCTL_DBG(xe, !xe->info.has_usm))
+ 		return -EINVAL;
+ 
+ 	q->usm.acc_notify = value;
+@@ -390,7 +390,7 @@ static int exec_queue_set_acc_granularity(struct xe_device *xe, struct xe_exec_q
+ 	if (XE_IOCTL_DBG(xe, !create))
+ 		return -EINVAL;
+ 
+-	if (XE_IOCTL_DBG(xe, !xe->info.supports_usm))
++	if (XE_IOCTL_DBG(xe, !xe->info.has_usm))
+ 		return -EINVAL;
+ 
+ 	if (value > DRM_XE_ACC_GRANULARITY_64M)
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index a9c71da985d3..70ad563c2c65 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -427,7 +427,7 @@ static int all_fw_domain_init(struct xe_gt *gt)
+ 		/*
+ 		 * USM has its only SA pool to non-block behind user operations
+ 		 */
+-		if (gt_to_xe(gt)->info.supports_usm) {
++		if (gt_to_xe(gt)->info.has_usm) {
+ 			gt->usm.bb_pool = xe_sa_bo_manager_init(gt_to_tile(gt), SZ_1M, 16);
+ 			if (IS_ERR(gt->usm.bb_pool)) {
+ 				err = PTR_ERR(gt->usm.bb_pool);
+diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
+index caded203a8a0..11265e851a81 100644
+--- a/drivers/gpu/drm/xe/xe_gt.h
++++ b/drivers/gpu/drm/xe/xe_gt.h
+@@ -63,7 +63,7 @@ static inline bool xe_gt_is_usm_hwe(struct xe_gt *gt, struct xe_hw_engine *hwe)
+ {
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 
+-	return xe->info.supports_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
++	return xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
+ 		hwe->instance == gt->usm.reserved_bcs_instance;
+ }
+ 
+diff --git a/drivers/gpu/drm/xe/xe_gt_pagefault.c b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+index a5358064a4e0..4489aadc7a52 100644
+--- a/drivers/gpu/drm/xe/xe_gt_pagefault.c
++++ b/drivers/gpu/drm/xe/xe_gt_pagefault.c
+@@ -398,7 +398,7 @@ int xe_gt_pagefault_init(struct xe_gt *gt)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	int i;
+ 
+-	if (!xe->info.supports_usm)
++	if (!xe->info.has_usm)
+ 		return 0;
+ 
+ 	for (i = 0; i < NUM_PF_QUEUE; ++i) {
+@@ -431,7 +431,7 @@ void xe_gt_pagefault_reset(struct xe_gt *gt)
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	int i;
+ 
+-	if (!xe->info.supports_usm)
++	if (!xe->info.has_usm)
+ 		return;
+ 
+ 	for (i = 0; i < NUM_PF_QUEUE; ++i) {
+diff --git a/drivers/gpu/drm/xe/xe_guc_ads.c b/drivers/gpu/drm/xe/xe_guc_ads.c
+index 2f5ff090aa6b..6006f992b781 100644
+--- a/drivers/gpu/drm/xe/xe_guc_ads.c
++++ b/drivers/gpu/drm/xe/xe_guc_ads.c
+@@ -140,7 +140,7 @@ static size_t guc_ads_um_queues_size(struct xe_guc_ads *ads)
+ {
+ 	struct xe_device *xe = ads_to_xe(ads);
+ 
+-	if (!xe->info.supports_usm)
++	if (!xe->info.has_usm)
+ 		return 0;
+ 
+ 	return GUC_UM_QUEUE_SIZE * GUC_UM_HW_QUEUE_MAX;
+@@ -595,7 +595,7 @@ void xe_guc_ads_populate(struct xe_guc_ads *ads)
+ 	guc_capture_list_init(ads);
+ 	guc_doorbell_init(ads);
+ 
+-	if (xe->info.supports_usm) {
++	if (xe->info.has_usm) {
+ 		guc_um_init_params(ads);
+ 		ads_blob_write(ads, ads.um_init_data, base +
+ 			       offsetof(struct __guc_ads_blob, um_init_params));
+diff --git a/drivers/gpu/drm/xe/xe_hw_engine.c b/drivers/gpu/drm/xe/xe_hw_engine.c
+index 108ecbfe593e..37279cee6ad4 100644
+--- a/drivers/gpu/drm/xe/xe_hw_engine.c
++++ b/drivers/gpu/drm/xe/xe_hw_engine.c
+@@ -450,7 +450,7 @@ static int hw_engine_init(struct xe_gt *gt, struct xe_hw_engine *hwe,
+ 		xe_hw_engine_enable_ring(hwe);
+ 
+ 	/* We reserve the highest BCS instance for USM */
+-	if (xe->info.supports_usm && hwe->class == XE_ENGINE_CLASS_COPY)
++	if (xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY)
+ 		gt->usm.reserved_bcs_instance = hwe->instance;
+ 
+ 	err = drmm_add_action_or_reset(&xe->drm, hw_engine_fini, hwe);
+@@ -859,6 +859,6 @@ bool xe_hw_engine_is_reserved(struct xe_hw_engine *hwe)
+ 	if (hwe->class == XE_ENGINE_CLASS_OTHER)
+ 		return true;
+ 
+-	return xe->info.supports_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
++	return xe->info.has_usm && hwe->class == XE_ENGINE_CLASS_COPY &&
+ 		hwe->instance == gt->usm.reserved_bcs_instance;
+ }
+diff --git a/drivers/gpu/drm/xe/xe_lrc.c b/drivers/gpu/drm/xe/xe_lrc.c
+index 17c0eb9e62cf..d6dfbd0bdc70 100644
+--- a/drivers/gpu/drm/xe/xe_lrc.c
++++ b/drivers/gpu/drm/xe/xe_lrc.c
+@@ -759,7 +759,7 @@ int xe_lrc_init(struct xe_lrc *lrc, struct xe_hw_engine *hwe,
+ 		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ASID,
+ 				     (q->usm.acc_granularity <<
+ 				      ACC_GRANULARITY_S) | vm->usm.asid);
+-	if (xe->info.supports_usm && vm)
++	if (xe->info.has_usm && vm)
+ 		xe_lrc_write_ctx_reg(lrc, PVC_CTX_ACC_CTR_THOLD,
+ 				     (q->usm.acc_notify << ACC_NOTIFY_S) |
+ 				     q->usm.acc_trigger);
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index e8b567708ac0..c9c4d2428068 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -217,7 +217,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 	if (!IS_DGFX(xe)) {
+ 		/* Write out batch too */
+ 		m->batch_base_ofs = NUM_PT_SLOTS * XE_PAGE_SIZE;
+-		if (xe->info.supports_usm) {
++		if (xe->info.has_usm) {
+ 			batch = tile->primary_gt->usm.bb_pool->bo;
+ 			m->usm_batch_base_ofs = m->batch_base_ofs;
+ 		}
+@@ -237,7 +237,7 @@ static int xe_migrate_prepare_vm(struct xe_tile *tile, struct xe_migrate *m,
+ 
+ 		m->batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr);
+ 
+-		if (xe->info.supports_usm) {
++		if (xe->info.has_usm) {
+ 			batch = tile->primary_gt->usm.bb_pool->bo;
+ 			batch_addr = xe_bo_addr(batch, 0, XE_PAGE_SIZE);
+ 			m->usm_batch_base_ofs = xe_migrate_vram_ofs(xe, batch_addr);
+@@ -374,7 +374,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+ 		return ERR_PTR(err);
+ 	}
+ 
+-	if (xe->info.supports_usm) {
++	if (xe->info.has_usm) {
+ 		struct xe_hw_engine *hwe = xe_gt_hw_engine(primary_gt,
+ 							   XE_ENGINE_CLASS_COPY,
+ 							   primary_gt->usm.reserved_bcs_instance,
+@@ -397,7 +397,7 @@ struct xe_migrate *xe_migrate_init(struct xe_tile *tile)
+ 		xe_vm_close_and_put(vm);
+ 		return ERR_CAST(m->q);
+ 	}
+-	if (xe->info.supports_usm)
++	if (xe->info.has_usm)
+ 		m->q->priority = DRM_SCHED_PRIORITY_KERNEL;
+ 
+ 	mutex_init(&m->job_mutex);
+@@ -706,7 +706,7 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
+ 		u32 update_idx;
+ 		u64 ccs_ofs, ccs_size;
+ 		u32 ccs_pt;
+-		bool usm = xe->info.supports_usm;
++		bool usm = xe->info.has_usm;
+ 
+ 		src_L0 = xe_migrate_res_sizes(&src_it);
+ 		dst_L0 = xe_migrate_res_sizes(&dst_it);
+@@ -956,7 +956,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 		struct xe_sched_job *job;
+ 		struct xe_bb *bb;
+ 		u32 batch_size, update_idx;
+-		bool usm = xe->info.supports_usm;
++		bool usm = xe->info.has_usm;
+ 
+ 		clear_L0 = xe_migrate_res_sizes(&src_it);
+ 		drm_dbg(&xe->drm, "Pass %u, size: %llu\n", pass++, clear_L0);
+@@ -1227,7 +1227,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 	u32 i, batch_size, ppgtt_ofs, update_idx, page_ofs = 0;
+ 	u64 addr;
+ 	int err = 0;
+-	bool usm = !q && xe->info.supports_usm;
++	bool usm = !q && xe->info.has_usm;
+ 	bool first_munmap_rebind = vma &&
+ 		vma->gpuva.flags & XE_VMA_FIRST_REBIND;
+ 	struct xe_exec_queue *q_override = !q ? m->q : q;
+@@ -1264,7 +1264,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 	 */
+ 	xe_tile_assert(tile, batch_size < SZ_128K);
+ 
+-	bb = xe_bb_new(gt, batch_size, !q && xe->info.supports_usm);
++	bb = xe_bb_new(gt, batch_size, !q && xe->info.has_usm);
+ 	if (IS_ERR(bb))
+ 		return ERR_CAST(bb);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_mmio.c b/drivers/gpu/drm/xe/xe_mmio.c
+index 35aeb50b7158..f660cfb79f50 100644
+--- a/drivers/gpu/drm/xe/xe_mmio.c
++++ b/drivers/gpu/drm/xe/xe_mmio.c
+@@ -333,11 +333,12 @@ void xe_mmio_probe_tiles(struct xe_device *xe)
+ 	}
+ 
+ add_mmio_ext:
+-	/* By design, there's a contiguous multi-tile MMIO space (16MB hard coded per tile).
++	/*
++	 * By design, there's a contiguous multi-tile MMIO space (16MB hard coded per tile).
+ 	 * When supported, there could be an additional contiguous multi-tile MMIO extension
+ 	 * space ON TOP of it, and hence the necessity for distinguished MMIO spaces.
+ 	 */
+-	if (xe->info.supports_mmio_ext) {
++	if (xe->info.has_mmio_ext) {
+ 		regs = xe->mmio.regs + tile_mmio_size * tile_count;
+ 
+ 		for_each_tile(tile, xe, id) {
+diff --git a/drivers/gpu/drm/xe/xe_pci.c b/drivers/gpu/drm/xe/xe_pci.c
+index 076e9dc85838..465ffbe9d032 100644
+--- a/drivers/gpu/drm/xe/xe_pci.c
++++ b/drivers/gpu/drm/xe/xe_pci.c
+@@ -59,14 +59,14 @@ struct xe_device_desc {
+ 
+ 	u8 require_force_probe:1;
+ 	u8 is_dgfx:1;
++
+ 	u8 has_display:1;
+ 	u8 has_heci_gscfi:1;
+-
+ 	u8 has_llc:1;
++	u8 has_mmio_ext:1;
+ 	u8 has_sriov:1;
+ 	u8 skip_mtcfg:1;
+ 	u8 skip_pcode:1;
+-	u8 supports_mmio_ext:1;
+ 	u8 skip_guc_pc:1;
+ };
+ 
+@@ -147,7 +147,7 @@ static const struct xe_graphics_desc graphics_xehpc = {
+ 
+ 	.has_asid = 1,
+ 	.has_flat_ccs = 0,
+-	.supports_usm = 1,
++	.has_usm = 1,
+ };
+ 
+ static const struct xe_graphics_desc graphics_xelpg = {
+@@ -165,7 +165,7 @@ static const struct xe_graphics_desc graphics_xelpg = {
+ 	.has_asid = 1, \
+ 	.has_flat_ccs = 0 /* FIXME: implementation missing */, \
+ 	.has_range_tlb_invalidation = 1, \
+-	.supports_usm = 0 /* FIXME: implementation missing */, \
++	.has_usm = 0 /* FIXME: implementation missing */, \
+ 	.va_bits = 48, \
+ 	.vm_max_level = 4, \
+ 	.hw_engine_mask = \
+@@ -548,10 +548,10 @@ static int xe_info_init_early(struct xe_device *xe,
+ 	xe->info.is_dgfx = desc->is_dgfx;
+ 	xe->info.has_heci_gscfi = desc->has_heci_gscfi;
+ 	xe->info.has_llc = desc->has_llc;
++	xe->info.has_mmio_ext = desc->has_mmio_ext;
+ 	xe->info.has_sriov = desc->has_sriov;
+ 	xe->info.skip_mtcfg = desc->skip_mtcfg;
+ 	xe->info.skip_pcode = desc->skip_pcode;
+-	xe->info.supports_mmio_ext = desc->supports_mmio_ext;
+ 	xe->info.skip_guc_pc = desc->skip_guc_pc;
+ 
+ 	xe->info.enable_display = IS_ENABLED(CONFIG_DRM_XE_DISPLAY) &&
+@@ -614,10 +614,10 @@ static int xe_info_init(struct xe_device *xe,
+ 	xe->info.vram_flags = graphics_desc->vram_flags;
+ 	xe->info.va_bits = graphics_desc->va_bits;
+ 	xe->info.vm_max_level = graphics_desc->vm_max_level;
+-	xe->info.supports_usm = graphics_desc->supports_usm;
+ 	xe->info.has_asid = graphics_desc->has_asid;
+ 	xe->info.has_flat_ccs = graphics_desc->has_flat_ccs;
+ 	xe->info.has_range_tlb_invalidation = graphics_desc->has_range_tlb_invalidation;
++	xe->info.has_usm = graphics_desc->has_usm;
+ 
+ 	/*
+ 	 * All platforms have at least one primary GT.  Any platform with media
+diff --git a/drivers/gpu/drm/xe/xe_pci_types.h b/drivers/gpu/drm/xe/xe_pci_types.h
+index dd3546ba6f90..b1ad12fa22d6 100644
+--- a/drivers/gpu/drm/xe/xe_pci_types.h
++++ b/drivers/gpu/drm/xe/xe_pci_types.h
+@@ -27,7 +27,7 @@ struct xe_graphics_desc {
+ 	u8 has_asid:1;
+ 	u8 has_flat_ccs:1;
+ 	u8 has_range_tlb_invalidation:1;
+-	u8 supports_usm:1;
++	u8 has_usm:1;
+ };
+ 
+ struct xe_media_desc {
+diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+index e09050f16f07..b8e22d50d30d 100644
+--- a/drivers/gpu/drm/xe/xe_vm.c
++++ b/drivers/gpu/drm/xe/xe_vm.c
+@@ -1942,7 +1942,7 @@ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+ 		args->flags |= DRM_XE_VM_CREATE_FLAG_SCRATCH_PAGE;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->flags & DRM_XE_VM_CREATE_FLAG_FAULT_MODE &&
+-			 !xe->info.supports_usm))
++			 !xe->info.has_usm))
+ 		return -EINVAL;
+ 
+ 	if (XE_IOCTL_DBG(xe, args->reserved[0] || args->reserved[1]))
+-- 
+2.40.1
 
-Those registers in bspec are marked as "Access: masked" below the symbol
-name, besides the bitfield documentation.
-
-In this register here, the mask doesn't have that meaning. It's a normal
-"interrupt masking/unmasking" field.
-
-Lucas De Marchi
-
->
->Thanks,
->Tejas
->
->>
->>
->> Lucas De Marchi
->>
->>
->> >
->> >Signed-off-by: Tejas Upadhyay <tejas.upadhyay@intel.com>
->> >---
->> > drivers/gpu/drm/xe/regs/xe_engine_regs.h | 2 +-
->> > 1 file changed, 1 insertion(+), 1 deletion(-)
->> >
->> >diff --git a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->> >b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->> >index 444ff9b83bb1..d9013c698710 100644
->> >--- a/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->> >+++ b/drivers/gpu/drm/xe/regs/xe_engine_regs.h
->> >@@ -39,7 +39,7 @@
->> > #define RING_MI_MODE(base)			XE_REG((base) +
->> 0x9c)
->> > #define RING_NOPID(base)			XE_REG((base) + 0x94)
->> >
->> >-#define RING_IMR(base)				XE_REG((base) +
->> 0xa8)
->> >+#define RING_IMR(base)				XE_REG((base) + 0xa8,
->> XE_REG_OPTION_MASKED)
->> > #define   RING_MAX_NONPRIV_SLOTS  12
->> >
->> > #define RING_EIR(base)				XE_REG((base) +
->> 0xb0)
->> >--
->> >2.25.1
->> >
