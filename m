@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 75B5BC4167B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Dec 2023 04:23:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 758E9C10DCE
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Dec 2023 04:23:54 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37EBA10E676;
-	Wed,  6 Dec 2023 04:23:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 43BF210E678;
+	Wed,  6 Dec 2023 04:23:54 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACE5A10E674
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Dec 2023 04:23:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA6010E674
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Dec 2023 04:23:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701836630; x=1733372630;
+ t=1701836632; x=1733372632;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=s8s0frjgTfb56NU9sBEbT+rgSADoEtgpXhYIIQgeL0Q=;
- b=jNEwKsOX1bYya1oQAbREChMwyRWOW1QiW1mtJsw6iQj3ZY2Klln+5tBg
- mfD9Dq+O8HlYs5MNqzU1/LClzY3ITjg9LwPLXJhX59cGsP8d9DbNedCK5
- a0SlL5XNFULj02KiAeq7meGqqQJPRbXgZ6F6nNWM017TLVFmNeLHD3uvW
- icj6Z7x0HjVwy2nsjJu9Q/7NIYSZy92rfllh4jHlpj4wGMOBqQNjtk0pD
- znymyY3GYbnauGPZa+0wvzqyns4EH7+AuJ/fewjlVZ9sIYUf95hxLJsWk
- QuwD9QWQVnnCYqjSL6WEjlxnWCihCV8DjPq1gfpIV0Il//Xeltjgm4+Ye g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="458326767"
-X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="458326767"
+ bh=gcuGsGaO3d9lirHYyl+j5jth3EtMcgMEfLIxWVkICas=;
+ b=hxghpWl0Ut512WHkxdazfEqLkfAF5FD0r96jXeUKjA0m8QbQwhe+Uj6r
+ Rp/yDjC/jBhQDdYToz1o2fziqljY3M14ghcr0iqJhSkVVn3ObzKXDW6db
+ NyKWvBviM/y290JTIBIX2kcfFDYuDqUlR98Xe4dgQhbjbxkQtn023cFA1
+ HFRhknGr0MuB8njGScrWv/EBVw4Uf74KIZ3iNU2fjQa08QmaWaHZh/AiQ
+ cZM9zdfE0CVUTz0O2OTsba5Rh/If2C03lh6tlcNjoqr9ITHgrCp1rniHI
+ TeqvfOzlq82POmL9oYv/Nd72lKIjv0YYdEWgKGAla/cJgrrzm0EDAYfi0 g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="458326769"
+X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="458326769"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 20:23:50 -0800
+ 05 Dec 2023 20:23:52 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="12556326"
+X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="12556331"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa002.jf.intel.com with ESMTP; 05 Dec 2023 20:23:49 -0800
+ by orviesa002.jf.intel.com with ESMTP; 05 Dec 2023 20:23:51 -0800
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed,  6 Dec 2023 10:01:22 +0530
-Message-Id: <20231206043126.984049-6-himal.prasad.ghimiray@intel.com>
+Date: Wed,  6 Dec 2023 10:01:23 +0530
+Message-Id: <20231206043126.984049-7-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231206043126.984049-1-himal.prasad.ghimiray@intel.com>
 References: <20231206043126.984049-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 5/9] drm/xe/xe2: Update chunk size for each
- iteration of ccs copy
+Subject: [Intel-xe] [PATCH v4 6/9] drm/xe/xe2: Update emit_pte to use
+ compression enabled PAT index
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -56,99 +56,98 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-In xe2 platform XY_CTRL_SURF_COPY_BLT can handle ccs copy for
-max of 1024 main surface pages.
+For indirect accessed buffer use compression enabled PAT index.
+
+v2:
+ - Fix parameter name.
 
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Cc: Matthew Auld <matthew.auld@intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/xe_migrate.c | 34 ++++++++++++++++++++++++++++-----
- 1 file changed, 29 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_migrate.c |  2 +-
+ drivers/gpu/drm/xe/xe_migrate.c       | 20 ++++++++++++++------
+ 2 files changed, 15 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/tests/xe_migrate.c b/drivers/gpu/drm/xe/tests/xe_migrate.c
+index 83d6a66ed369..f77477f7e9fa 100644
+--- a/drivers/gpu/drm/xe/tests/xe_migrate.c
++++ b/drivers/gpu/drm/xe/tests/xe_migrate.c
+@@ -330,7 +330,7 @@ static void xe_migrate_sanity_test(struct xe_migrate *m, struct kunit *test)
+ 	else
+ 		xe_res_first_sg(xe_bo_sg(pt), 0, pt->size, &src_it);
+ 
+-	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt),
++	emit_pte(m, bb, NUM_KERNEL_PDE - 1, xe_bo_is_vram(pt), false,
+ 		 &src_it, XE_PAGE_SIZE, pt);
+ 
+ 	run_sanity_job(m, xe, bb, bb->len, "Writing PTE for our fake PT", test);
 diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index b4dd1b6d78f0..98dca906a023 100644
+index 98dca906a023..1bfb249680f4 100644
 --- a/drivers/gpu/drm/xe/xe_migrate.c
 +++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -672,11 +672,24 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 		u32 update_idx;
- 		u64 ccs_ofs, ccs_size;
- 		u32 ccs_pt;
+@@ -416,15 +416,23 @@ static u32 pte_update_size(struct xe_migrate *m,
+ 
+ static void emit_pte(struct xe_migrate *m,
+ 		     struct xe_bb *bb, u32 at_pt,
+-		     bool is_vram,
++		     bool is_vram, bool is_comp_pte,
+ 		     struct xe_res_cursor *cur,
+ 		     u32 size, struct xe_bo *bo)
+ {
+-	u16 pat_index = tile_to_xe(m->tile)->pat.idx[XE_CACHE_WB];
++	struct xe_device *xe = tile_to_xe(m->tile);
 +
- 		bool usm = xe->info.supports_usm;
-+		u32 avail_pts = NUM_PT_PER_BLIT;
++	u16 pat_index;
+ 	u32 ptes;
+ 	u64 ofs = at_pt * XE_PAGE_SIZE;
+ 	u64 cur_ofs;
  
- 		src_L0 = xe_migrate_res_sizes(&src_it);
- 		dst_L0 = xe_migrate_res_sizes(&dst_it);
- 
-+		/* In IGFX the XY_CTRL_SURF_COPY_BLT can handle max of 1024
-+		 * pages. Hence limit the processing size to SZ_4M per
-+		 * iteration.
-+		 */
-+		if (!IS_DGFX(xe) && GRAPHICS_VER(xe) >= 20) {
-+			src_L0 = min_t(u64, src_L0, SZ_4M);
-+			dst_L0 = min_t(u64, dst_L0, SZ_4M);
++	/* Indirect access needs compression enabled uncached PAT index */
++	if (GRAPHICS_VERx100(xe) >= 2000)
++		pat_index = is_comp_pte ? 12 : xe->pat.idx[XE_CACHE_NONE];
++	else
++		pat_index = xe->pat.idx[XE_CACHE_WB];
 +
-+			avail_pts = SZ_4M / SZ_2M;
-+		}
-+
- 		drm_dbg(&xe->drm, "Pass %u, sizes: %llu & %llu\n",
- 			pass++, src_L0, dst_L0);
- 
-@@ -684,18 +697,18 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
- 
- 		batch_size += pte_update_size(m, src_is_vram, src, &src_it, &src_L0,
- 					      &src_L0_ofs, &src_L0_pt, 0, 0,
--					      NUM_PT_PER_BLIT);
-+					      avail_pts);
- 
- 		batch_size += pte_update_size(m, dst_is_vram, dst, &dst_it, &src_L0,
- 					      &dst_L0_ofs, &dst_L0_pt, 0,
--					      NUM_PT_PER_BLIT, NUM_PT_PER_BLIT);
-+					      avail_pts, avail_pts);
- 
- 		if (copy_system_ccs) {
- 			ccs_size = xe_device_ccs_bytes(xe, src_L0);
- 			batch_size += pte_update_size(m, false, NULL, &ccs_it, &ccs_size,
- 						      &ccs_ofs, &ccs_pt, 0,
--						      2 * NUM_PT_PER_BLIT,
--						      NUM_PT_PER_BLIT);
-+						      2 * avail_pts,
-+						      avail_pts);
+ 	/*
+ 	 * FIXME: Emitting VRAM PTEs to L0 PTs is forbidden. Currently
+ 	 * we're only emitting VRAM PTEs during sanity tests, so when
+@@ -722,19 +730,19 @@ struct dma_fence *xe_migrate_copy(struct xe_migrate *m,
  		}
  
- 		/* Add copy commands size here */
-@@ -923,8 +936,19 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 		struct xe_bb *bb;
- 		u32 batch_size, update_idx;
- 		bool usm = xe->info.supports_usm;
-+		u32 avail_pts = NUM_PT_PER_BLIT;
+ 		if (!src_is_vram)
+-			emit_pte(m, bb, src_L0_pt, src_is_vram, &src_it, src_L0,
++			emit_pte(m, bb, src_L0_pt, src_is_vram, true, &src_it, src_L0,
+ 				 src_bo);
+ 		else
+ 			xe_res_next(&src_it, src_L0);
  
- 		clear_L0 = xe_migrate_res_sizes(&src_it);
-+
-+		/* In IGFX the XY_CTRL_SURF_COPY_BLT can handle max of 1024
-+		 * pages. Hence limit the processing size to SZ_4M per
-+		 * iteration.
-+		 */
-+		if (!IS_DGFX(xe) && GRAPHICS_VER(xe) >= 20) {
-+			clear_L0 = min_t(u64, clear_L0, SZ_4M);
-+			avail_pts = SZ_4M / SZ_2M;
-+		}
-+
- 		drm_dbg(&xe->drm, "Pass %u, size: %llu\n", pass++, clear_L0);
+ 		if (!dst_is_vram)
+-			emit_pte(m, bb, dst_L0_pt, dst_is_vram, &dst_it, src_L0,
++			emit_pte(m, bb, dst_L0_pt, dst_is_vram, true, &dst_it, src_L0,
+ 				 dst_bo);
+ 		else
+ 			xe_res_next(&dst_it, src_L0);
  
- 		/* Calculate final sizes and batch size.. */
-@@ -932,7 +956,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
- 			pte_update_size(m, clear_vram, src, &src_it,
- 					&clear_L0, &clear_L0_ofs, &clear_L0_pt,
- 					emit_clear_cmd_len(gt), 0,
--					NUM_PT_PER_BLIT);
-+					avail_pts);
- 		if (xe_device_has_flat_ccs(xe) && clear_vram)
- 			batch_size += EMIT_COPY_CCS_DW;
+ 		if (copy_system_ccs)
+-			emit_pte(m, bb, ccs_pt, false, &ccs_it, ccs_size, src_bo);
++			emit_pte(m, bb, ccs_pt, false, false, &ccs_it, ccs_size, src_bo);
  
+ 		bb->cs[bb->len++] = MI_BATCH_BUFFER_END;
+ 		update_idx = bb->len;
+@@ -975,7 +983,7 @@ struct dma_fence *xe_migrate_clear(struct xe_migrate *m,
+ 
+ 		/* Preemption is enabled again by the ring ops. */
+ 		if (!clear_vram) {
+-			emit_pte(m, bb, clear_L0_pt, clear_vram, &src_it, clear_L0,
++			emit_pte(m, bb, clear_L0_pt, clear_vram, true, &src_it, clear_L0,
+ 				 bo);
+ 		} else {
+ 			xe_res_next(&src_it, clear_L0);
 -- 
 2.25.1
 
