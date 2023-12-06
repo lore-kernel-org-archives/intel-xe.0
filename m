@@ -4,31 +4,45 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 4134EC4167B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Dec 2023 19:56:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 58C23C4167B
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Dec 2023 20:50:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 089AA10E787;
-	Wed,  6 Dec 2023 19:56:38 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 80A7F10E766;
- Wed,  6 Dec 2023 19:56:36 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 76B6AAADD6;
- Wed,  6 Dec 2023 19:56:36 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2829910E7A2;
+	Wed,  6 Dec 2023 20:50:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.88])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ECEDF10E7A2
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Dec 2023 20:50:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701895838; x=1733431838;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=W8MfYKGVVbu9kn1uQ34julWATrc3bNvbU8Rzri3QJ20=;
+ b=DadS8fHMH2I8vY07TutLNAgudbyBdE+AUhwk5AbhozONZ/CSrWatiJ3M
+ 5GgHYEthcalUJ9cUusG5seMH5lBNSzwfPSh4dUAwEF8ExFgw4XVWFz9Eh
+ Q20riot4iMZ4WdYr51waJ/HeajtbzXlS5UNHBfEqMwQLXUNOUSCHAdFWT
+ vLquXRj/+yg7UIbVW8ahkg4Ad6neMPRAroWxVNhHmgP+FvUC2cEr5KuEN
+ DFdQvd0dQXu4rc5/wGdpcw6faJD9EwajXooIy2hYzBAz0L0ERDTjAqa5H
+ 9zClOq/tKCuwYTPbAHIZsOIm2tPQcztZWXovypa1UPL9i2jmrogtbAoME w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="425274643"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="425274643"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2023 12:50:38 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="805768408"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="805768408"
+Received: from mdroper-desk1.fm.intel.com ([10.1.27.131])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Dec 2023 12:50:38 -0800
+From: Matt Roper <matthew.d.roper@intel.com>
+To: intel-xe@lists.freedesktop.org
+Date: Wed,  6 Dec 2023 12:50:35 -0800
+Message-ID: <20231206205034.1105637-4-matthew.d.roper@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Bommu, Krishnaiah" <krishnaiah.bommu@intel.com>
-Date: Wed, 06 Dec 2023 19:56:36 -0000
-Message-ID: <170189259648.26425.1690011608828502220@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231206034130.7897-1-krishnaiah.bommu@intel.com>
-In-Reply-To: <20231206034130.7897-1-krishnaiah.bommu@intel.com>
-Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EPatch=5Fapplied=3A_failure_f?=
- =?utf-8?q?or_RFC=3A_drm/xe/uapi=3A_Return_correct_error_code_for_xe=5Fwai?=
- =?utf-8?q?t=5Fuser=5Ffence=5Fioctl_=28rev4=29?=
+Content-Transfer-Encoding: 8bit
+Subject: [Intel-xe] [PATCH 0/2] xe: Add IP versions to GT query
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -40,31 +54,43 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: Francois Dugast <francois.dugast@intel.com>, matthew.d.roper@intel.com,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-== Series Details ==
+On MTL and later, drivers are expected to determine graphics/media
+version and stepping from the values reported in the GMD_ID registers
+rather than trying to infer them from PCI devid/revid.  Since userspace
+cannot directly access these registers, the graphics/media GMD_ID must
+be exposed through the uapi.
 
-Series: RFC: drm/xe/uapi: Return correct error code for xe_wait_user_fence_ioctl (rev4)
-URL   : https://patchwork.freedesktop.org/series/127365/
-State : failure
+Repurpose one of the 'reserved' qwords in the GT query structure to hold
+the IP version for platforms with GMD_ID.  These fields will continue to
+be 0 on pre-MTL platforms.  Userspace should continue to utilize PCI
+devid/revid on those older platforms.
 
-== Summary ==
+Note that although the hardware has a display IP GMD_ID register as
+well, that value will not be exposed through Xe uapi.  As always,
+display userspace is expected to use standard atomic properties and
+test-only commits to determine platform capabilities rather than
+attempting to recognize the underlying IP.
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 668d13abe drm/xe: Avoid any races around ccs_mode update
-=== git am output follows ===
-error: patch failed: drivers/gpu/drm/xe/xe_wait_user_fence.c:123
-error: drivers/gpu/drm/xe/xe_wait_user_fence.c: patch does not apply
-error: patch failed: include/uapi/drm/xe_drm.h:1066
-error: include/uapi/drm/xe_drm.h: patch does not apply
-hint: Use 'git am --show-current-patch' to see the failed patch
-Applying: drm/xe/uapi: add exec_queue_id member to drm_xe_wait_user_fence structure
-Patch failed at 0001 drm/xe/uapi: add exec_queue_id member to drm_xe_wait_user_fence structure
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
+Test-with: 20231206204942.1105505-1-matthew.d.roper@intel.com
+Testcase: igt@xe_query@query-gt-list
+Cc: Francois Dugast <francois.dugast@intel.com>,
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
+Matt Roper (2):
+  drm/xe: Stash GMD_ID value in xe_gt
+  drm/xe/uapi: Add IP version and stepping to GT list query
+
+ drivers/gpu/drm/xe/xe_gt.c       |  6 ++++++
+ drivers/gpu/drm/xe/xe_gt_types.h |  2 ++
+ drivers/gpu/drm/xe/xe_query.c    |  8 ++++++++
+ include/uapi/drm/xe_drm.h        | 10 +++++++++-
+ 4 files changed, 25 insertions(+), 1 deletion(-)
+
+-- 
+2.43.0
 
