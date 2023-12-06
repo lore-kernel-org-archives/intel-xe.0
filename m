@@ -4,44 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2CAB2C4167B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Dec 2023 04:33:20 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34C24C4167B
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Dec 2023 04:33:22 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C5A2810E00B;
-	Wed,  6 Dec 2023 04:33:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ED5C010E012;
+	Wed,  6 Dec 2023 04:33:21 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9763D10E00B
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Dec 2023 04:33:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC71E10E012
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Dec 2023 04:33:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701837197; x=1733373197;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=DO/yDu2XryktUGBuQnIhvZs1ZXzP9OeY4d/i2u7bPwA=;
- b=BzatrCq5D3DNlo6P/ak7CbIJ9TWI8wV12odmyWPBzdU50+6TTOejgdGO
- fNd+AtHBE13QnJyXg4rNZLNrJ2dpvABf6KqfiLNwVD0FKFwzJgEPqkguc
- 7aBOAg5Q+PAgW77dScCIKEeLWREXjci9BW1b3D0ORvGF0G9awyGCo+aVU
- qazj2Qub/y/Ab4byeZCBE+pHtsmNTu+n9xCPpVOkAMAkO5kivBeREXsz9
- sb/fBHkYLK+cRcCrI8rV2p6vztbhoeXUxhT16aGdsjqqHHnQ9i5uOJ7tP
- NCizmiP39ZR+Gu6PbzzrFYA88ynp1QJeeEOlCNjPbdAhklE3hCbgMY3pw g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="379023486"
-X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="379023486"
+ t=1701837199; x=1733373199;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Z+1OxKDEjWWu8C4AeYz3unwK6MX+D1cE7m/FLn/Hg0w=;
+ b=Evk8gCW8M/DuGWdn54iX+/wbTeMANSFl2VnBFJFed0aO3eDwoFtneP93
+ sCP2tVbtSH9aZ6sGNZQi6YYL8ztn4dYptXPokmXC79MDq/gN8kys4PcLV
+ b0c5oU6FFN2bCFLbrNxqJExoQ0Fh0ICRqCsam/XJVy5TpzBEWZbAwr1Px
+ MqxnXuFORd1HhWMvraP5QGC9iWuI9QBHnwXO8DAfnbnRebabIfx+/n57L
+ rVM3Bt8j6zCMbVqOWsnlSiuu8MSOeJxKmmrICQ8fzB/gEvgqpHaWdp8z6
+ yGVGXeM9zBUo5rx2IhN+UZTyZ4Ph6OCdllQpjwv0xOuHFlGm5aBTtFj1p w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="379023491"
+X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="379023491"
 Received: from orsmga008.jf.intel.com ([10.7.209.65])
  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 20:33:17 -0800
+ 05 Dec 2023 20:33:19 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="800216677"
-X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="800216677"
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="800216716"
+X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="800216716"
 Received: from suja-super-server.iind.intel.com ([10.145.169.64])
- by orsmga008.jf.intel.com with ESMTP; 05 Dec 2023 20:33:15 -0800
+ by orsmga008.jf.intel.com with ESMTP; 05 Dec 2023 20:33:18 -0800
 From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed,  6 Dec 2023 10:17:33 +0530
-Message-Id: <20231206044735.966213-1-sujaritha.sundaresan@intel.com>
+Date: Wed,  6 Dec 2023 10:17:34 +0530
+Message-Id: <20231206044735.966213-2-sujaritha.sundaresan@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20231206044735.966213-1-sujaritha.sundaresan@intel.com>
+References: <20231206044735.966213-1-sujaritha.sundaresan@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [v2 0/2] Add memory sysfs directory and attributes
+Subject: [Intel-xe] [v2 1/2] drm/xe: Add a new memory directory under tile
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,18 +60,69 @@ Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Create another layer of sub directories to clean up memory/vram
-related sysfs path. Additionally, introduce the vram frequency sysfs 
-under a the new path.
+Add a new memory directory under /device/tile<n> and move
+physical_vram_size attribute to the new directory.
 
-Sujaritha Sundaresan (2):
-  drm/xe: Add a new memory directory under tile
-  drm/xe: Add vram frequency sysfs attributes
+New hierarchy:
 
- drivers/gpu/drm/xe/xe_pcode_api.h  |  8 +++
- drivers/gpu/drm/xe/xe_tile_sysfs.c | 87 ++++++++++++++++++++++++++++--
- 2 files changed, 92 insertions(+), 3 deletions(-)
+/device/tile<n>/memory/physical_vram_size_bytes
 
+v2: Fix heading typo (Riana)
+    Fix cleanup error on unload/reload cycle
+
+Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+---
+ drivers/gpu/drm/xe/xe_tile_sysfs.c | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+index 16376607c68f..e8ce4d9270e6 100644
+--- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
++++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+@@ -24,7 +24,8 @@ static ssize_t
+ physical_vram_size_bytes_show(struct device *kdev, struct device_attribute *attr,
+ 			      char *buf)
+ {
+-	struct xe_tile *tile = kobj_to_tile(&kdev->kobj);
++	struct kobject *kobj = &kdev->kobj;
++	struct xe_tile *tile = kobj_to_tile(kobj->parent);
+ 
+ 	return sysfs_emit(buf, "%llu\n", tile->mem.vram.actual_physical_size);
+ }
+@@ -38,7 +39,7 @@ static void tile_sysfs_fini(struct drm_device *drm, void *arg)
+ {
+ 	struct xe_tile *tile = arg;
+ 
+-	kobject_put(tile->sysfs);
++	kobject_del(tile->sysfs);
+ }
+ 
+ void xe_tile_sysfs_init(struct xe_tile *tile)
+@@ -46,6 +47,7 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
+ 	struct xe_device *xe = tile_to_xe(tile);
+ 	struct device *dev = xe->drm.dev;
+ 	struct kobj_tile *kt;
++	struct kobject *kobj;
+ 	int err;
+ 
+ 	kt = kzalloc(sizeof(*kt), GFP_KERNEL);
+@@ -64,8 +66,15 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
+ 
+ 	tile->sysfs = &kt->base;
+ 
++	kobj = kobject_create_and_add("memory", tile->sysfs);
++	if (!kobj) {
++		kobject_put(kobj);
++		drm_warn(&xe->drm, "%s failed, err: %d\n", __func__, -ENOMEM);
++		return;
++	}
++
+ 	if (IS_DGFX(xe) && xe->info.platform != XE_DG1 &&
+-	    sysfs_create_file(tile->sysfs, physical_memsize_attr))
++	    sysfs_create_file(kobj, physical_memsize_attr))
+ 		drm_warn(&xe->drm,
+ 			 "Sysfs creation to read addr_range per tile failed\n");
+ 
 -- 
 2.25.1
 
