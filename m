@@ -4,44 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 10207C4167B
-	for <intel-xe@archiver.kernel.org>; Tue,  5 Dec 2023 23:21:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 12058C4167B
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Dec 2023 00:00:39 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAF8110E645;
-	Tue,  5 Dec 2023 23:21:12 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B08110E644
- for <intel-xe@lists.freedesktop.org>; Tue,  5 Dec 2023 23:21:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5579210E059;
+	Wed,  6 Dec 2023 00:00:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C21BD10E059
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Dec 2023 00:00:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701818470; x=1733354470;
+ t=1701820836; x=1733356836;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=oIz7BIXuJazTg0d4AUOXxoZB1NQ92B78S4Mog9D4mE4=;
- b=Ksas82D4O6kyHBeO+vgvaZDpa7UjTPUt7xYYeBztXIJPVs22Kz3gqLAQ
- arhv0B9AHMmRob7a4MdSgEBceQdyJ7IYnslr8bFMKQeIE9L2bX1TcmFIh
- +YLwTEY4QocmZZfZAedumHFn9sr581CYwB6JWYKy/r0Gat+20txVt31vV
- VY5lMxQDWd1yfuxE6doC8fVALMotbi14YXjmVlp3+w+8H3eU3vFEL30IE
- 8MAbhTDMjWXhNC5U6O7ls2NrkMqhrL1H4vNC2TSNht4kDbyPftk4pZcCA
- LgHxZupgOu2xt1Fk7QeTGh6QcckEoI+DfBYuFFuo3XaegFfG8eLTWK+rB Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="396767210"
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="396767210"
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
- by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 15:21:09 -0800
+ bh=oD4UIyJTggvCMsjVgakywR4CxnfoCXchpiAIqVgK+KE=;
+ b=NvWQpjcrNlrjxmYo8e69XM9mcAjto+3cXHiIGaVB22XgGlgyVxu+eEOh
+ GfOK1Pa+P9XWBAwF9Y67KM918GQ1cSOZtJPgaNW1WhOuXqi1EpVKxTZZC
+ XBT7fzQ/BazzqnzkigdpYnMmlzrSE4Sg9e5qNjCP7r6cZ9em04V4YjDcV
+ Z5T42JzjT+b/WXd9E9osuJF9ShkcMKmaA1WaJ246Ecvo2N3wn99vY1zSJ
+ YuVPFknZQAjcG3oIsUiRHMCGAdHrpfJRYX2XA19+4Mkt5TMXZ9sRpQKc3
+ aToE/IVYU+yOzIZ3ltk59nY8sBD0fjLAAqy3HDVw4A+CwomKEeYlZ87AO w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="373438566"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="373438566"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+ by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 16:00:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="771093086"
-X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="771093086"
-Received: from vbelgaum-ubuntu.fm.intel.com ([10.1.27.27])
- by orsmga002.jf.intel.com with ESMTP; 05 Dec 2023 15:21:09 -0800
-From: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="1018379911"
+X-IronPort-AV: E=Sophos;i="6.04,253,1695711600"; d="scan'208";a="1018379911"
+Received: from valcore-skull-1.fm.intel.com ([10.1.27.19])
+ by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Dec 2023 16:00:36 -0800
+From: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Tue,  5 Dec 2023 15:20:47 -0800
-Message-Id: <20231205232047.3277223-1-vinay.belgaumkar@intel.com>
-X-Mailer: git-send-email 2.38.1
+Date: Tue,  5 Dec 2023 16:00:29 -0800
+Message-ID: <20231206000030.3061046-1-daniele.ceraolospurio@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH] drm/xe: Check skip_guc_pc before disabling gucrc
+Subject: [Intel-xe] [PATCH 0/1] Don't take a PM ref for vm-less permanent
+ queues
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,50 +55,22 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Also, use the new C6 helper instead of duplicating that code.
+VM-less permanent queues exists for the whole lifetime of the driver, so
+they can't hold a wakeref. Given that these queues are never
+disabled/deregistered and should never hang, we don't expect any G2H
+messages outside of the submission flow and therefore we don't need the
+extra ref at all as long as the driver makes sure to hold a wakeref when
+submitting.
 
-v2: Check skip flag at the beginning of the function (Rodrigo)
+Daniele Ceraolo Spurio (1):
+  fixup! drm/xe: standardize vm-less kernel submissions
 
-Fixes: ff1db4de1e40 ("drm/xe: Manually setup C6 when skip_guc_pc is set")
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Vinay Belgaumkar <vinay.belgaumkar@intel.com>
----
- drivers/gpu/drm/xe/xe_guc_pc.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/xe_exec_queue.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_guc_pc.c b/drivers/gpu/drm/xe/xe_guc_pc.c
-index 1943893a3fd7..86124f55dbd3 100644
---- a/drivers/gpu/drm/xe/xe_guc_pc.c
-+++ b/drivers/gpu/drm/xe/xe_guc_pc.c
-@@ -794,9 +794,13 @@ static int pc_adjust_requested_freq(struct xe_guc_pc *pc)
-  */
- int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc)
- {
-+	struct xe_device *xe = pc_to_xe(pc);
- 	struct xe_gt *gt = pc_to_gt(pc);
- 	int ret = 0;
- 
-+	if (xe->info.skip_guc_pc)
-+		return 0;
-+
- 	xe_device_mem_access_get(pc_to_xe(pc));
- 
- 	ret = pc_action_setup_gucrc(pc, XE_GUCRC_HOST_CONTROL);
-@@ -807,9 +811,7 @@ int xe_guc_pc_gucrc_disable(struct xe_guc_pc *pc)
- 	if (ret)
- 		goto out;
- 
--	xe_mmio_write32(gt, PG_ENABLE, 0);
--	xe_mmio_write32(gt, RC_CONTROL, 0);
--	xe_mmio_write32(gt, RC_STATE, 0);
-+	xe_gt_idle_disable_c6(gt);
- 
- 	XE_WARN_ON(xe_force_wake_put(gt_to_fw(gt), XE_FORCEWAKE_ALL));
- 
 -- 
-2.38.1
+2.43.0
 
