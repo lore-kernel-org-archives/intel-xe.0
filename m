@@ -4,46 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 190A5C4167B
-	for <intel-xe@archiver.kernel.org>; Wed,  6 Dec 2023 04:33:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9BF78C4167B
+	for <intel-xe@archiver.kernel.org>; Wed,  6 Dec 2023 04:56:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D579D10E049;
-	Wed,  6 Dec 2023 04:33:26 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9257610E049
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Dec 2023 04:33:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701837204; x=1733373204;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=JxGc49m18zc9M71MCaPmo6uxYzX76B11JRIwQ7N1B/o=;
- b=DGid5m4AYZHrfNfT3lbuneNpM0xBY1llU46kXngx8RkK6oEZPpV6i10k
- l/sMBkjJ1wcLULr2mgs1t7KM9CMnsd+71pD1B2VvWMFEEKUiV2wAwOzzk
- i3CGs/alNASg7JQanzpbVTxrD6uf5grdZDzs/d9Wh/lo9mPbQudz8ICDY
- jaA+zO4TDUy/F1JTA1AUQpkslHErHSxLXbmCmmT/v71O5yQV2eBulVwHq
- /TU5qiBoa7dKdqtEV1errK9a9C422Szc/wEnPGFEvO4lUJqQpNFrlbyDY
- MtvhGEntdwwdaiLlS3vC3T4jUfQFcuiN80LkU4+XLLnVsk7tWipYP6xY1 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="379023495"
-X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="379023495"
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 20:33:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="800216733"
-X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="800216733"
-Received: from suja-super-server.iind.intel.com ([10.145.169.64])
- by orsmga008.jf.intel.com with ESMTP; 05 Dec 2023 20:33:21 -0800
-From: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
-To: intel-xe@lists.freedesktop.org
-Date: Wed,  6 Dec 2023 10:17:35 +0530
-Message-Id: <20231206044735.966213-3-sujaritha.sundaresan@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20231206044735.966213-1-sujaritha.sundaresan@intel.com>
-References: <20231206044735.966213-1-sujaritha.sundaresan@intel.com>
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4AA5E10E085;
+	Wed,  6 Dec 2023 04:56:00 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 9BD3710E676;
+ Wed,  6 Dec 2023 04:55:58 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 8A4F0A7DFF;
+ Wed,  6 Dec 2023 04:55:58 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1863813392641408948=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [v2 2/2] drm/xe: Add vram frequency sysfs attributes
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
+Date: Wed, 06 Dec 2023 04:55:58 -0000
+Message-ID: <170183855856.26424.7488766456837557480@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231205214135.958847-1-himal.prasad.ghimiray@intel.com>
+In-Reply-To: <20231205214135.958847-1-himal.prasad.ghimiray@intel.com>
+Subject: [Intel-xe] =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Enable_co?=
+ =?utf-8?q?mpression_handling_on_LNL=2E_=28rev4=29?=
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -55,144 +39,182 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>,
- rodrigo.vivi@intel.com
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add vram frequency sysfs attributes under the below hierarchy;
+--===============1863813392641408948==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-/device/tile<n>/memory/freq
-			|-rp0_freq
-			|-rpn_freq
+== Series Details ==
 
-v2: Drop "vram" from attribute names (Rodrigo)
+Series: Enable compression handling on LNL. (rev4)
+URL   : https://patchwork.freedesktop.org/series/126704/
+State : failure
 
-Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
----
- drivers/gpu/drm/xe/xe_pcode_api.h  |  8 ++++
- drivers/gpu/drm/xe/xe_tile_sysfs.c | 72 ++++++++++++++++++++++++++++++
- 2 files changed, 80 insertions(+)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h b/drivers/gpu/drm/xe/xe_pcode_api.h
-index 5935cfe30204..edde5335bdb1 100644
---- a/drivers/gpu/drm/xe/xe_pcode_api.h
-+++ b/drivers/gpu/drm/xe/xe_pcode_api.h
-@@ -42,6 +42,14 @@
- #define	    POWER_SETUP_I1_SHIFT		6	/* 10.6 fixed point format */
- #define	    POWER_SETUP_I1_DATA_MASK		REG_GENMASK(15, 0)
- 
-+#define   XEHP_PCODE_FREQUENCY_CONFIG                  0x6e    /* xehp, pvc */
-+/* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
-+#define     PCODE_MBOX_FC_SC_READ_FUSED_P0             0x0
-+#define     PCODE_MBOX_FC_SC_READ_FUSED_PN             0x1
-+/* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
-+/* XEHP_PCODE_FREQUENCY_CONFIG param2 */
-+#define     PCODE_MBOX_DOMAIN_HBM                      0x2
-+
- struct pcode_err_decode {
- 	int errno;
- 	const char *str;
-diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-index e8ce4d9270e6..38d334833594 100644
---- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
-+++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
-@@ -7,9 +7,14 @@
- #include <linux/sysfs.h>
- #include <drm/drm_managed.h>
- 
-+#include "xe_gt_types.h"
-+#include "xe_pcode.h"
-+#include "xe_pcode_api.h"
- #include "xe_tile.h"
- #include "xe_tile_sysfs.h"
- 
-+#define GT_FREQUENCY_MULTIPLIER	50
-+
- static void xe_tile_sysfs_kobj_release(struct kobject *kobj)
- {
- 	kfree(kobj);
-@@ -35,6 +40,65 @@ static DEVICE_ATTR_RO(physical_vram_size_bytes);
- static const struct attribute *physical_memsize_attr =
- 	&dev_attr_physical_vram_size_bytes.attr;
- 
-+static ssize_t rp0_freq_show(struct device *kdev, struct device_attribute *attr,
-+				  char *buf)
-+{
-+	struct kobject *kobj = &kdev->kobj;
-+	struct xe_tile *tile = kobj_to_tile(kobj->parent);
-+	struct xe_gt *gt = tile->primary_gt;
-+	u32 val, mbox;
-+	int err;
-+
-+	mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, XEHP_PCODE_FREQUENCY_CONFIG)
-+		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_FC_SC_READ_FUSED_P0)
-+		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
-+
-+	err = xe_pcode_read(gt, mbox, &val, NULL);
-+	if (err)
-+		return err;
-+
-+	/* data_out - Fused P0 for domain ID in units of 50 MHz */
-+	val *= GT_FREQUENCY_MULTIPLIER;
-+
-+	return sysfs_emit(buf, "%u\n", val);
-+}
-+static DEVICE_ATTR_RO(rp0_freq);
-+
-+static ssize_t rpn_freq_show(struct device *kdev, struct device_attribute *attr,
-+				  char *buf)
-+{
-+	struct kobject *kobj = &kdev->kobj;
-+	struct xe_tile *tile = kobj_to_tile(kobj->parent);
-+	struct xe_gt *gt = tile->primary_gt;
-+	u32 val, mbox;
-+	int err;
-+
-+	mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, XEHP_PCODE_FREQUENCY_CONFIG)
-+		| REG_FIELD_PREP(PCODE_MB_PARAM1, PCODE_MBOX_FC_SC_READ_FUSED_PN)
-+		| REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
-+
-+	err = xe_pcode_read(gt, mbox, &val, NULL);
-+	if (err)
-+		return err;
-+
-+	/* data_out - Fused Pn for domain ID in units of 50 MHz */
-+	val *= GT_FREQUENCY_MULTIPLIER;
-+
-+	return sysfs_emit(buf, "%u\n", val);
-+}
-+static DEVICE_ATTR_RO(rpn_freq);
-+
-+static struct attribute *freq_attrs[] = {
-+	&dev_attr_rp0_freq.attr,
-+	&dev_attr_rpn_freq.attr,
-+	NULL
-+};
-+
-+static const struct attribute_group freq_group_attrs = {
-+	.name = "freq",
-+	.attrs = freq_attrs,
-+};
-+
- static void tile_sysfs_fini(struct drm_device *drm, void *arg)
- {
- 	struct xe_tile *tile = arg;
-@@ -78,6 +142,14 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
- 		drm_warn(&xe->drm,
- 			 "Sysfs creation to read addr_range per tile failed\n");
- 
-+	if (xe->info.platform == XE_PVC) {
-+		err = sysfs_create_group(kobj, &freq_group_attrs);
-+		if (err) {
-+			drm_warn(&xe->drm, "failed to register vram freq sysfs, err: %d\n", err);
-+			return;
-+		}
-+	}
-+
- 	err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
- 	if (err) {
- 		drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, err: %d\n",
--- 
-2.25.1
+CI Bug Log - changes from xe-553-8833b1390068f7340259f5130c564cdadff5b189_BAT -> xe-pw-126704v4_BAT
+====================================================
 
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-126704v4_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-126704v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-126704v4_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_pat@prime-external-import-coh:
+    - bat-adlp-7:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-553-8833b1390068f7340259f5130c564cdadff5b189/bat-adlp-7/igt@xe_pat@prime-external-import-coh.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/bat-adlp-7/igt@xe_pat@prime-external-import-coh.html
+    - bat-dg2-oem2:       [PASS][3] -> [INCOMPLETE][4]
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-553-8833b1390068f7340259f5130c564cdadff5b189/bat-dg2-oem2/igt@xe_pat@prime-external-import-coh.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/bat-dg2-oem2/igt@xe_pat@prime-external-import-coh.html
+    - bat-atsm-2:         [PASS][5] -> [INCOMPLETE][6]
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-553-8833b1390068f7340259f5130c564cdadff5b189/bat-atsm-2/igt@xe_pat@prime-external-import-coh.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/bat-atsm-2/igt@xe_pat@prime-external-import-coh.html
+    - bat-pvc-2:          [PASS][7] -> [INCOMPLETE][8]
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-553-8833b1390068f7340259f5130c564cdadff5b189/bat-pvc-2/igt@xe_pat@prime-external-import-coh.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/bat-pvc-2/igt@xe_pat@prime-external-import-coh.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-126704v4_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@xe_create@create-execqueues-leak:
+    - bat-atsm-2:         [FAIL][9] ([Intel XE#524]) -> [PASS][10]
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-553-8833b1390068f7340259f5130c564cdadff5b189/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
+
+  
+  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
+
+
+Build changes
+-------------
+
+  * Linux: xe-553-8833b1390068f7340259f5130c564cdadff5b189 -> xe-pw-126704v4
+
+  IGT_7622: 48a47d91b7727215b965690c69d84159c8fb1aa2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-553-8833b1390068f7340259f5130c564cdadff5b189: 8833b1390068f7340259f5130c564cdadff5b189
+  xe-pw-126704v4: 126704v4
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/index.html
+
+--===============1863813392641408948==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable compression handling on LNL. (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126704/">https://patchwork.freedesktop.org/series/126704/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-553-8833b1390068f7340259f5130c564cdadff5b189_BAT -&gt; xe-pw-126704v4_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-126704v4_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-126704v4_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-126704v4_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_pat@prime-external-import-coh:</p>
+<ul>
+<li>
+<p>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-553-8833b1390068f7340259f5130c564cdadff5b189/bat-adlp-7/igt@xe_pat@prime-external-import-coh.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/bat-adlp-7/igt@xe_pat@prime-external-import-coh.html">INCOMPLETE</a></p>
+</li>
+<li>
+<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-553-8833b1390068f7340259f5130c564cdadff5b189/bat-dg2-oem2/igt@xe_pat@prime-external-import-coh.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/bat-dg2-oem2/igt@xe_pat@prime-external-import-coh.html">INCOMPLETE</a></p>
+</li>
+<li>
+<p>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-553-8833b1390068f7340259f5130c564cdadff5b189/bat-atsm-2/igt@xe_pat@prime-external-import-coh.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/bat-atsm-2/igt@xe_pat@prime-external-import-coh.html">INCOMPLETE</a></p>
+</li>
+<li>
+<p>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-553-8833b1390068f7340259f5130c564cdadff5b189/bat-pvc-2/igt@xe_pat@prime-external-import-coh.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/bat-pvc-2/igt@xe_pat@prime-external-import-coh.html">INCOMPLETE</a></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-126704v4_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@xe_create@create-execqueues-leak:<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-553-8833b1390068f7340259f5130c564cdadff5b189/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v4/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-553-8833b1390068f7340259f5130c564cdadff5b189 -&gt; xe-pw-126704v4</li>
+</ul>
+<p>IGT_7622: 48a47d91b7727215b965690c69d84159c8fb1aa2 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-553-8833b1390068f7340259f5130c564cdadff5b189: 8833b1390068f7340259f5130c564cdadff5b189<br />
+  xe-pw-126704v4: 126704v4</p>
+
+</body>
+</html>
+
+--===============1863813392641408948==--
