@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 35CD1C10DCE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7E910C4167B
 	for <intel-xe@archiver.kernel.org>; Wed,  6 Dec 2023 04:23:48 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0250010E671;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52C0B10E672;
 	Wed,  6 Dec 2023 04:23:48 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 38E3210E671
- for <intel-xe@lists.freedesktop.org>; Wed,  6 Dec 2023 04:23:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C16DA10E670
+ for <intel-xe@lists.freedesktop.org>; Wed,  6 Dec 2023 04:23:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701836627; x=1733372627;
+ t=1701836625; x=1733372625;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2NviboQkIQm1bxdbk2V6x35t6/H4v4huRiyTnkEEb8s=;
- b=GfY6D0Ftx/THfnGsD7ylrO29xQYuQgY1nlAibUobBmpW+hMINtILFEbz
- yH+jOso/c+/wo81tmSixeE+A32o8wJc3IiMXHEPoVHT+fMFtmKp0Qa+Qn
- G9S//Iqfz/4fnHrTGSRkZqM3taRvhg5EPZFP6J2aNrbAzpuslvRwIEVyl
- GaQ7wEmCGcRxB7ZMnsv5YS6SzQJCjsudLRc7iuJu6KAIwzWK6P8olLs5C
- 7AXoPutjxCWFkmD8jBFxSPKSyrUprdMRabbb2xeYW2xDgbWJS8bk5sXll
- LlNxmsP5ZK2EAHCo16d2K/NWq1DQeSZpKNBONfSFYKE2qpHssd8xGB4SH g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="458326764"
-X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="458326764"
+ bh=TVDIFbxrCNU1j9ZAdSM1C0Ogt4V4EOz3hrMiJ1qtpNk=;
+ b=n+JEpuUxv0AzQZA4ns9C0tjAQfuyh6oKhsu2ONjP1U2VzAd9+hn7dZin
+ lP0kiRCK5MYAsb5CE/j6qPut0WB+DdIujqThg2HeJjo0z9Modn2g3iK7+
+ PzDmPudQgZpum1JYJBClGqGHtQuo6gRl4Squ8ZRsxF/1+MG+2oiEcUzQN
+ MPZZmIIL3AjXTdyK+lbbc1AjAhdVjjMw9xAqc6aHntKgDwlucO3jc9UjF
+ 3U8uVUvbiPBMZ6FBNi0H6UWHOJXjhuCF7C6d9a5djD2/G9rIfQ7swujAf
+ +RucMjJ1K+Hx0bSb+MSZq1Ah6PgWGDKjeXfeYPbpd11EyljJgNSSVStdI g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10915"; a="458326761"
+X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="458326761"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Dec 2023 20:23:47 -0800
+ 05 Dec 2023 20:23:45 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="12556319"
+X-IronPort-AV: E=Sophos;i="6.04,254,1695711600"; d="scan'208";a="12556316"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orviesa002.jf.intel.com with ESMTP; 05 Dec 2023 20:23:46 -0800
+ by orviesa002.jf.intel.com with ESMTP; 05 Dec 2023 20:23:44 -0800
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Wed,  6 Dec 2023 10:01:20 +0530
-Message-Id: <20231206043126.984049-4-himal.prasad.ghimiray@intel.com>
+Date: Wed,  6 Dec 2023 10:01:19 +0530
+Message-Id: <20231206043126.984049-3-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231206043126.984049-1-himal.prasad.ghimiray@intel.com>
 References: <20231206043126.984049-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v4 3/9] drm/xe/xe2: Updates on
- XY_CTRL_SURF_COPY_BLT
+Subject: [Intel-xe] [PATCH v4 2/9] drm/xe/xe2: Allocate extra pages for ccs
+ during bo create
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -59,76 +59,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-- The XY_CTRL_SURF_COPY_BLT instruction operationg on ccs data expects
-size in pages of main memory for which CCS data should be copied.
-- The bitfield representing copy size in XY_CTRL_SURF_COPY_BLT has
-shifted one bit higher in the instruction.
+Each byte of CCS data now represents 512 bytes of main memory data.
+Allocate extra pages to handle ccs region for igfx too.
+
+Bspec:58796
 
 v2:
- - Fix the num_pages for ccs size calculation.
- - Address nits (Thomas)
+ - For dgfx ensure system bit is not set.
+ - Modify comments.(Thomas)
 
-Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  1 +
- drivers/gpu/drm/xe/xe_migrate.c           | 21 +++++++++++++++------
- 2 files changed, 16 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  2 +-
+ drivers/gpu/drm/xe/xe_bo.c                | 14 +++++++++-----
+ drivers/gpu/drm/xe/xe_device.c            |  2 +-
+ 3 files changed, 11 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-index 1f9c32e694c6..6ff6c7aaa648 100644
+index f1c5bf203b3d..1f9c32e694c6 100644
 --- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
 +++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
-@@ -13,6 +13,7 @@
- #define   DST_ACCESS_TYPE_SHIFT		20
- #define   CCS_SIZE_MASK			0x3FF
- #define   CCS_SIZE_SHIFT		8
-+#define   XE2_CCS_SIZE_SHIFT		9
+@@ -16,7 +16,7 @@
  #define   XY_CTRL_SURF_MOCS_MASK	GENMASK(31, 26)
  #define   XE2_XY_CTRL_SURF_MOCS_INDEX_MASK	GENMASK(31, 28)
  #define   NUM_CCS_BYTES_PER_BLOCK	256
-diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
-index e8b567708ac0..7ef068451b59 100644
---- a/drivers/gpu/drm/xe/xe_migrate.c
-+++ b/drivers/gpu/drm/xe/xe_migrate.c
-@@ -526,21 +526,30 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
- 	struct xe_device *xe = gt_to_xe(gt);
- 	u32 *cs = bb->cs + bb->len;
- 	u32 num_ccs_blks;
-+	u32 num_pages;
-+	u32 ccs_copy_size;
- 	u32 mocs;
+-#define   NUM_BYTES_PER_CCS_BYTE	256
++#define   NUM_BYTES_PER_CCS_BYTE(_xe)	(GRAPHICS_VER(_xe) >= 20 ? 512 : 256)
+ #define   NUM_CCS_BLKS_PER_XFER		1024
  
--	num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
--				    NUM_CCS_BYTES_PER_BLOCK);
--	xe_gt_assert(gt, num_ccs_blks <= NUM_CCS_BLKS_PER_XFER);
-+	if (GRAPHICS_VERx100(xe) >= 2000) {
-+		num_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
-+		xe_gt_assert(gt, num_pages <= 1024);
- 
--	if (GRAPHICS_VERx100(xe) >= 2000)
-+		ccs_copy_size = ((num_pages - 1) & CCS_SIZE_MASK) << XE2_CCS_SIZE_SHIFT;
- 		mocs = FIELD_PREP(XE2_XY_CTRL_SURF_MOCS_INDEX_MASK, gt->mocs.uc_index);
--	else
+ #define XY_FAST_COLOR_BLT_CMD		(2 << 29 | 0x44 << 22)
+diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+index 72dc4a4eed4e..81630838d769 100644
+--- a/drivers/gpu/drm/xe/xe_bo.c
++++ b/drivers/gpu/drm/xe/xe_bo.c
+@@ -2173,8 +2173,8 @@ int xe_bo_evict(struct xe_bo *bo, bool force_alloc)
+  * placed in system memory.
+  * @bo: The xe_bo
+  *
+- * If a bo has an allowable placement in XE_PL_TT memory, it can't use
+- * flat CCS compression, because the GPU then has no way to access the
++ * For dgfx if a bo has an allowable placement in XE_PL_TT memory, it can't
++ * use flat CCS compression, because the GPU then has no way to access the
+  * CCS metadata using relevant commands. For the opposite case, we need to
+  * allocate storage for the CCS metadata when the BO is not resident in
+  * VRAM memory.
+@@ -2183,9 +2183,13 @@ int xe_bo_evict(struct xe_bo *bo, bool force_alloc)
+  */
+ bool xe_bo_needs_ccs_pages(struct xe_bo *bo)
+ {
+-	return bo->ttm.type == ttm_bo_type_device &&
+-		!(bo->flags & XE_BO_CREATE_SYSTEM_BIT) &&
+-		(bo->flags & XE_BO_CREATE_VRAM_MASK);
++	struct xe_device *xe = xe_bo_device(bo);
 +
-+	} else {
-+		num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
-+					    NUM_CCS_BYTES_PER_BLOCK);
-+		xe_gt_assert(gt, num_ccs_blks <= NUM_CCS_BLKS_PER_XFER);
-+
-+		ccs_copy_size = ((num_ccs_blks - 1) & CCS_SIZE_MASK) << CCS_SIZE_SHIFT;
- 		mocs = FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, gt->mocs.uc_index);
-+	}
++	return (xe_device_has_flat_ccs(xe) &&
++		bo->ttm.type == ttm_bo_type_device &&
++		((IS_DGFX(xe) && (bo->flags & XE_BO_CREATE_VRAM_MASK) &&
++		  !(bo->flags & XE_BO_CREATE_SYSTEM_BIT)) ||
++		(!IS_DGFX(xe) && (bo->flags & XE_BO_CREATE_SYSTEM_BIT))));
+ }
  
- 	*cs++ = XY_CTRL_SURF_COPY_BLT |
- 		(src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
- 		(dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
--		((num_ccs_blks - 1) & CCS_SIZE_MASK) << CCS_SIZE_SHIFT;
-+		ccs_copy_size;
- 	*cs++ = lower_32_bits(src_ofs);
- 	*cs++ = upper_32_bits(src_ofs) | mocs;
- 	*cs++ = lower_32_bits(dst_ofs);
+ /**
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index 400fa1ac6168..50c87f03c51c 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -605,7 +605,7 @@ void xe_device_wmb(struct xe_device *xe)
+ u32 xe_device_ccs_bytes(struct xe_device *xe, u64 size)
+ {
+ 	return xe_device_has_flat_ccs(xe) ?
+-		DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE) : 0;
++		DIV_ROUND_UP(size, NUM_BYTES_PER_CCS_BYTE(xe)) : 0;
+ }
+ 
+ bool xe_device_mem_access_ongoing(struct xe_device *xe)
 -- 
 2.25.1
 
