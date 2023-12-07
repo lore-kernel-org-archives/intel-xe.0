@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 905F0C4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 13:50:27 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6916AC10F05
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 13:50:28 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F31210E1DB;
-	Thu,  7 Dec 2023 13:50:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16D4010E1E1;
+	Thu,  7 Dec 2023 13:50:28 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6266710E1D9
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 13:50:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 823D610E1DB
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 13:50:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701957024; x=1733493024;
+ t=1701957025; x=1733493025;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/+NXdrgIS0MaDv4ib/5FzYwO7s8S2N7eT8EGPDQo6Qg=;
- b=BY0Kf4GVird9Svr2wIJrUmmxb0XCZ9XCpj7RxVmL5HK2dv/6ykijxBC2
- gb1uX8XcAv5RajAcr9kZsEJtwmXpFipt2V7utB0cUu3kB/4dHwNBDRaiN
- fwC59eBaeewjiKTnpBv11Qc4L7h4v0jMinr4uMhLEYm3lt/VfdUZp299m
- MU64R7A2w6rdirCq6NsOf0Ext/AgCcm1qonTZ/01lm7uq3/+jP9JvgmC8
- nyIkSW10+TSILrzvHql4OkAup8KwDD7njyQVZFIaSvMGtjcXyq9xpJo0C
- dYAqavxfy30tROyWOz7cbZBnJtCcoPIrgvwc4iTUi9iIoP8RenKHcuZGl A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="373722241"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="373722241"
+ bh=RTub0rFFrWIUCjsskRKwQil5i8tsjfqs8EXJrZC/Fl8=;
+ b=Y1wkvb1XdFZniW562jJd5LBT/k4B4JpQkd75ApZlqHV5mzCVK7VHu+fO
+ qpWjkIq/T3oWgRGbmnT8X2RByYOEWyEk4JovJGNtZTnCYd1yVlM6QjxXF
+ G+2d9QGy17cvA96W/HMAEAs1I8qR2UA40yNyA3lKyFrTki9iVIlhrqS39
+ 3fYgpXkA95ayrW27T43rqIiLi239N5R8mk7cMJ44thY3xRsN0J1CyjZhf
+ bzbZBoq3YLhSX4uaiUyw2eTnNrqbm6q81mfEXA8BJ1GUDdooFLn4Q3z8a
+ Rgh9cS6jEIS/OIpM241+akNXxFsYI1oTlCGfp8m4noi5pAP/3kNdOZ8IJ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="373722245"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="373722245"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 05:50:24 -0800
+ 07 Dec 2023 05:50:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="765115450"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="765115450"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="765115455"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="765115455"
 Received: from elenagol-mobl.ccr.corp.intel.com (HELO fde8da82816e.intel.com)
  ([10.252.46.155])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 05:50:23 -0800
+ 07 Dec 2023 05:50:24 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v1 03/14] drm/xe/uapi: Document use of size in
- drm_xe_device_query
-Date: Thu,  7 Dec 2023 13:49:58 +0000
-Message-Id: <20231207135009.7-4-francois.dugast@intel.com>
+Subject: [PATCH v1 04/14] drm/xe/uapi: Document drm_xe_query_config keys
+Date: Thu,  7 Dec 2023 13:49:59 +0000
+Message-Id: <20231207135009.7-5-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231207135009.7-1-francois.dugast@intel.com>
 References: <20231207135009.7-1-francois.dugast@intel.com>
@@ -62,37 +61,51 @@ Cc: Francois Dugast <francois.dugast@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Document the behavior of the driver for IOCTL DRM_IOCTL_XE_DEVICE_QUERY
-depending on the size value provided in struct drm_xe_device_query.
+Provide a description of the keys used the struct
+drm_xe_query_config info array.
 
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/637
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ include/uapi/drm/xe_drm.h | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index d6cd76385e2c..7b18844401fd 100644
+index 7b18844401fd..cc1c6c5d594c 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -469,9 +469,15 @@ struct drm_xe_query_topology_mask {
-  * struct drm_xe_device_query - Input of &DRM_IOCTL_XE_DEVICE_QUERY - main
-  * structure to query device information
-  *
-- * If size is set to 0, the driver fills it with the required size for the
-- * requested type of data to query. If size is equal to the required size,
-- * the queried information is copied into data.
-+ * The user selects the type of data to query among DRM_XE_DEVICE_QUERY_*
-+ * and sets the value in the query member. This determines the type of
-+ * the structure provided by the driver in data, among struct drm_xe_query_*.
-+ *
-+ * If size is set to 0, the driver fills it with the required size for
-+ * the requested type of data to query. If size is equal to the required
-+ * size, the queried information is copied into data. If size is set to
-+ * a value different from 0 and different from the required size, the
-+ * IOCTL call returns -EINVAL.
-  *
-  * For example the following code snippet allows retrieving and printing
-  * information about the device engines with DRM_XE_DEVICE_QUERY_ENGINES:
+@@ -352,11 +352,31 @@ struct drm_xe_query_config {
+ 	/** @pad: MBZ */
+ 	__u32 pad;
+ 
++	/*
++	 * Device ID (lower 16 bits) and the device revision (next
++	 * 8 bits)
++	 */
+ #define DRM_XE_QUERY_CONFIG_REV_AND_DEVICE_ID	0
++	/*
++	 * Flags describing the device configuration, see list below
++	 */
+ #define DRM_XE_QUERY_CONFIG_FLAGS			1
++	/*
++	 * Flag is set if the device has usable VRAM
++	 */
+ 	#define DRM_XE_QUERY_CONFIG_FLAG_HAS_VRAM	(1 << 0)
++	/*
++	 * Minimal memory alignment required by this device,
++	 * typically SZ_4K or SZ_64K
++	 */
+ #define DRM_XE_QUERY_CONFIG_MIN_ALIGNMENT		2
++	/*
++	 * Maximum bits of a virtual address
++	 */
+ #define DRM_XE_QUERY_CONFIG_VA_BITS			3
++	/*
++	 * Value of the highest available exec queue priority
++	 */
+ #define DRM_XE_QUERY_CONFIG_MAX_EXEC_QUEUE_PRIORITY	4
+ 	/** @info: array of elements containing the config info */
+ 	__u64 info[];
 -- 
 2.34.1
 
