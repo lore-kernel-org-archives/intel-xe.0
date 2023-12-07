@@ -4,159 +4,147 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 37863C4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 06:38:45 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E581C4167B
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 06:45:18 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDDE710E6CF;
-	Thu,  7 Dec 2023 06:38:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C72D010E7B6;
+	Thu,  7 Dec 2023 06:45:17 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 635DF10E6CF
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 06:38:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9794F10E7B6
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 06:45:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701931123; x=1733467123;
+ t=1701931517; x=1733467517;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=ioBweuAIrnnpkxAVJw7E0Rx9/AMwHKyX3rezNA4p5nw=;
- b=S9l3pOxZLeSJki6tZpwsSpzC+MMADOAUzigBbcgQ7gf7w5vJ467o3Dg1
- PMovMEeNTVrK/3mKamljnjKAA9cq8WTr3QGgIbJfqIXWatIgkDHkv4znw
- fhghfpZqlLbWl+6/Ss6aZUlnkLXEmyKWJBNAZGXHMxw11JIkJLrL21oQD
- N3faipNPOaeW/1afwsKWWU/AW9tsbWdL6mwpJasSCVjdmQmPmvME+OzPV
- VN9yliG9bFqqcrftVKWZsyGkK4rMbQfX0v62oJ+pdItsR5NYGl4XrNQDk
- pcoEmyNhgeWr7mh4kJOpW2Z8k2at4MeoVhKCiMla6CSuOJnanB23htt9g Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="7493905"
+ bh=EkbF7PAS/9RZML3gbu5SQz01w3YvzNOSb1hGtIoQWYs=;
+ b=jn2mnNs9MtICffKiRAEUoo+96AujHc9OQhuOxmjZHcIoeb/Dv/IhyQj1
+ PZjSX7zw7x2r4vC+CVj0ysRCNDlLzYcEL6IQNDlImdfPYW5cgDa48bdJG
+ NcdN3MRfLCuvvwf5TZQxDbcRzbR8bsgwq+/wsCSsqxSdyuxzhGQpKJh5z
+ OoxJ3c572UAWhq4NBkzDK02D4uTCsovK39uWj9OjSFdTARgblo22z/8NN
+ 0VKapvg1xYWob9WrbM1qOEclqsbnpHwbflT3pKsvAoziHlXH8y0v+Ngxd
+ cCBSM+pAVqLn8CVt4PcMWeQ/hhpYrTzmGObFfYNoZU2NG1IayyVM90qzi w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="7495201"
 X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="7493905"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+   d="scan'208";a="7495201"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2023 22:38:43 -0800
+ 06 Dec 2023 22:45:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1103100810"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="1103100810"
-Received: from fmsmsx601.amr.corp.intel.com ([10.18.126.81])
- by fmsmga005.fm.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
- 06 Dec 2023 22:38:42 -0800
-Received: from fmsmsx611.amr.corp.intel.com (10.18.126.91) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 6 Dec 2023 22:38:42 -0800
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="765006495"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="765006495"
+Received: from fmsmsx602.amr.corp.intel.com ([10.18.126.82])
+ by orsmga007.jf.intel.com with ESMTP/TLS/AES256-GCM-SHA384;
+ 06 Dec 2023 22:45:10 -0800
 Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx611.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ fmsmsx602.amr.corp.intel.com (10.18.126.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 6 Dec 2023 22:38:41 -0800
-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
+ 15.1.2507.35; Wed, 6 Dec 2023 22:45:10 -0800
+Received: from FMSEDG603.ED.cps.intel.com (10.1.192.133) by
  fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35 via Frontend Transport; Wed, 6 Dec 2023 22:38:41 -0800
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (104.47.58.100)
- by edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
+ 15.1.2507.35 via Frontend Transport; Wed, 6 Dec 2023 22:45:10 -0800
+Received: from NAM02-DM3-obe.outbound.protection.outlook.com (104.47.56.40) by
+ edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.35; Wed, 6 Dec 2023 22:38:41 -0800
+ 15.1.2507.35; Wed, 6 Dec 2023 22:45:09 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OIODXmwsFfImUa/5wP7y96vof3VWICNb2FKgXx8BeZ/vr1mNLRF34qGQqE0ARDAfnoSPAdbTAdyaqQESgX3E4N4BKdQql2vEjzPNttGyfxFcr1qPK/KyGsv3eCMc49wzVDjQFziwlk3ojd2LHYM420StW8QmKP/k/PZUWomljyACGs4oleDb90E5vhxGwpnVpq7Fgy5DgocRnRjSYBMj5r816X4cGgcObHPkz+WDlVhhoBUAK2f6+VC1exWEKMXs1L1Mpw+A6qr5JKkHKgH8I1NABe1s4NrCUzxVbuE+M//av1OL/5MVl+LeA3ZZi4/0KV6eBzEiYxQgkBW0Dl1s2Q==
+ b=iDTjwaY9mHtf3eIlBys0UVAXLxttN/eo4kztwZvrUFkqhTlaLVw8qhFnySzZbAclquUrDcNh2ZEhwOL5oSf2GT4x5CMTDoGsosrviX8zSUi+Nym1RP3H21gmri5W9z3F1RTVlkmisv0b5RV6c6q9Wma3OPuNeQMhMcLuWnNJlCqEFB9NEmQzRVnrR8n3s92ChphcR0BSSL8+MwQg+FAFV6wqGF3tIgdafJwJLtzDwDaK7Sf50IF36vpKpAhnOky9Xu52D/e7Q9VWKOyusz2m5EZ6vGWYBdtXGv0Q7gUbiQtuWOLuimsgZCQYhrP3uWdFXu0aU26iaY1Ao5sO5dr41w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=hBbdvCLpNYAYC/cZXqDOGgERDeyJfbwz2FHH5bbcqDM=;
- b=m1F8AmQwM6NFX2vWSpA6WjWVAMZWBuOSa2AVghefdTPLU7gyMjr7X1G3mxZljuN6kYz7K+uCUb8U49paEDJvzrIVffGBVekkcv1qvcI2fW9z5xjH8dHxXvdT6aW9Axnlf4ZvHtB0NIHUrtcIWpLPvhBcv3xWW9+2TRcYS2KLRVyE5nloEqBzQT7onaRy3uNPWux3mUm8CZYgXIE9Es6IA9wnY/pCSIvJ6rMC68JGPzDIbeRrsafgQ4JzJbita1VyV4o7dcMr9Nq/loT53HXgHx4BbIOrMhHD+Mq0RWDH7IbjvtMAPB6GUf4xEjIFQqGBdfYDKEVJJDKDVokV92K7/g==
+ bh=1iTNQ0bUwiLChOhkfwenGybEXOJR/vp7zUfs9i7V8QQ=;
+ b=AY/aR2Svntw3khxf9i9zOI0S7Rx4yjl6S3uVzArXSAqBuRfhgsW/w+98tTz2Jp8QqTtU4fTuqRbLLO3sLUpfk2JDfOVlYUraXwzQKQiOWPRgjcDnUjISqBxqmd32kgBwOXfUVFTMCjd0bfqH63R4XB+LnusRBf/3wGYiuWsLa+P/sblD/xltvUFZ5Cqq8EtACivgc+4udPpbI1zbsAE5KmHNyx1nwMYUkaY8MnjjlSNdFFypa+XOh37lNGOBImlIpjki7tyY9tA3/mlK5TDTKTy3AZXd/KctebSi7ApqHdF9Et1CZjvmfDITCp6WRkXMHxGUGKYUT1uiPM96Xqsp2Q==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM8PR11MB5653.namprd11.prod.outlook.com (2603:10b6:8:25::8) by
- PH0PR11MB4806.namprd11.prod.outlook.com (2603:10b6:510:31::21) with
+ PH7PR11MB5944.namprd11.prod.outlook.com (2603:10b6:510:124::5) with
  Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7068.27; Thu, 7 Dec 2023 06:38:39 +0000
+ 15.20.7046.27; Thu, 7 Dec 2023 06:45:08 +0000
 Received: from DM8PR11MB5653.namprd11.prod.outlook.com
  ([fe80::2eaa:4647:7ac0:eb52]) by DM8PR11MB5653.namprd11.prod.outlook.com
  ([fe80::2eaa:4647:7ac0:eb52%4]) with mapi id 15.20.7068.025; Thu, 7 Dec 2023
- 06:38:39 +0000
-Message-ID: <d6d0fd1e-3c13-4992-8969-ea6533b7128a@intel.com>
-Date: Thu, 7 Dec 2023 12:08:31 +0530
+ 06:45:07 +0000
+Message-ID: <e1dc61a3-15e2-406c-9ccb-cbe8800e408a@intel.com>
+Date: Thu, 7 Dec 2023 12:15:00 +0530
 User-Agent: Mozilla Thunderbird
 Content-Language: en-US
-To: Riana Tauro <riana.tauro@intel.com>, "Upadhyay, Tejas"
- <tejas.upadhyay@intel.com>, "Gupta, Anshuman" <anshuman.gupta@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+To: Riana Tauro <riana.tauro@intel.com>, <intel-xe@lists.freedesktop.org>
 References: <20231206044735.966213-1-sujaritha.sundaresan@intel.com>
- <20231206044735.966213-2-sujaritha.sundaresan@intel.com>
- <CY5PR11MB62113FC5A386520506F9912C9584A@CY5PR11MB6211.namprd11.prod.outlook.com>
- <d9e06457-ec98-46b4-9235-8e9b3b71ffa0@intel.com>
- <7b70c647-6fb6-46ed-98e0-8e898625b5a3@intel.com>
- <SJ1PR11MB62049D5B2C629111948A668E818BA@SJ1PR11MB6204.namprd11.prod.outlook.com>
- <65cbe85b-30a2-470c-974f-ba811ec38b52@intel.com>
- <a4be4be8-700e-44b4-b0af-1d847774054a@intel.com>
+ <20231206044735.966213-3-sujaritha.sundaresan@intel.com>
+ <33c65d14-bb41-4091-b3ab-8bad50ed38fe@intel.com>
 From: "Sundaresan, Sujaritha" <sujaritha.sundaresan@intel.com>
-In-Reply-To: <a4be4be8-700e-44b4-b0af-1d847774054a@intel.com>
+In-Reply-To: <33c65d14-bb41-4091-b3ab-8bad50ed38fe@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BMXP287CA0021.INDP287.PROD.OUTLOOK.COM
- (2603:1096:b00:2c::25) To DM8PR11MB5653.namprd11.prod.outlook.com
+X-ClientProxiedBy: PN2PR01CA0061.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:23::6) To DM8PR11MB5653.namprd11.prod.outlook.com
  (2603:10b6:8:25::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM8PR11MB5653:EE_|PH0PR11MB4806:EE_
-X-MS-Office365-Filtering-Correlation-Id: c017ac9b-587a-4cf2-d02a-08dbf6ef2553
+X-MS-TrafficTypeDiagnostic: DM8PR11MB5653:EE_|PH7PR11MB5944:EE_
+X-MS-Office365-Filtering-Correlation-Id: 163c2594-fe32-4fe4-1184-08dbf6f00cc5
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: B4z9suXrpK0t4wemfsLc5Mp83j3e0dStkOqg+IpD4nSWpwxTU0GdZiM0Rec+vcv+eBZTs8hMhgPeZlgk+i4R7kqajghPmQs0+3ku2U3hJhlTAYrPh51/YBTQ037qPxtXitxkK4WGOknf4mhH28+gr3QLROUKmKo3vZKEaodfO7NdLH9kr18qzp5XPZHnhJk+nHRfWbXv68+VentNavYR04ZbCsUgGbjgt/xsnq17lqtePwOjozKQ5OD6Be/ZEvB4PBJO1dJbAcUWanB10IdyM5T9QYrZAnk+8OfYc1nsdcmWb9ZBCDHkb4Cn/Lm1w1JxLq39tV+HdyonKxt8UUGU16zVIY3jAo4kHqsOIZv8cIeSuJ34NY9cHT0znyFWfcOpJu8wGymHkMl0QqoFL463Al4pKekz9P8H5wCzKuAR2D0s1/Yy4gq2pxw/Ot8qIpDrVwwc4EXC/Ydag3IvIMl9VAO3gb9spNYP5S9hnjEZ3Afly06TWpKelxolwVkIESw5y/ae4nTRks93S45D/ZTkY0kbuzs/9j3NW/oYU43wLKYPbVo+bqRg+oY2z+SAIJP73//3+b+o7tZkhhBZlmDPDBFDtzdEhJq7q4MCaq4FPr7cDvIelA0YGqMftC6mHHWEZZlAle171+z/WVBRIlpX1g==
+X-Microsoft-Antispam-Message-Info: hyoS6HgN2Z2IH/fRo6QltqAlb6SA5ccfAOUwz8IwLcJv2s2aGdCBHPlqLfpxZH2iEizwwlB8DUeSzUWnj//IY//UlDhpf9U/rwnLE7Yv9OWFfxLHBm8bPCRqLhK59Il6oS02fJ4EuEG6CwBw7oULehBHHLw6AoTliiwieF/1hnBvkgs+sErOxcleuRlK0RLI2iCFgdOj78zePH8H9HWFyYq0KoOIirt7X01ZnQeW2/nNQH/fHJW5ACIQo42f7qvYbrY0Lc9wAZmgyHgXZCcWqL6pC9qtF63OqJL5g70nje2EoQtgPWF1Tg4qPPAN4NzI21fthaadSuobcxNgGdGRjHTqnRhmaMPJCK5MJO19X2ZmXUXWFUgCPTTKcc6OD9rZOn7x+BzBsa82c4yaGZDNEOryTB3aUZ2JLvuQCWcIoHCP2h42pzlWVgLFnasKKF/U3QV+28qn6D9LWRxJ/8G1H4AOIueK81grJuPH1lB8n6IziziBmm9MgBpKH/SEhFLgifqvHOyoHjwlD2CWZBIbU3sBsN2q0Em5BOVPo1SQ6LS9FbdhoaKoAP6ycoM7riXdikwPeLYwqZIaI9JvHQtREbVl0GbLBDDRpflft8iFWo1E7CZhNEfJKKK5XRkeQLTCMjrebHWUp91kFDqV2Z5j8w==
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM8PR11MB5653.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(136003)(396003)(346002)(366004)(376002)(39860400002)(230922051799003)(186009)(64100799003)(1800799012)(451199024)(5660300002)(2906002)(41300700001)(38100700002)(66556008)(82960400001)(66476007)(31696002)(86362001)(66946007)(107886003)(110136005)(478600001)(26005)(2616005)(53546011)(6506007)(6512007)(6666004)(6486002)(83380400001)(8936002)(8676002)(4326008)(316002)(36756003)(31686004)(43740500002)(45980500001);
+ SFS:(13230031)(346002)(376002)(396003)(366004)(39860400002)(136003)(230922051799003)(451199024)(64100799003)(1800799012)(186009)(316002)(66476007)(66556008)(66946007)(36756003)(38100700002)(6486002)(478600001)(5660300002)(6666004)(41300700001)(2906002)(8936002)(86362001)(31696002)(31686004)(2616005)(8676002)(4326008)(107886003)(53546011)(6506007)(82960400001)(83380400001)(6512007)(26005)(43740500002)(45980500001);
  DIR:OUT; SFP:1102; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Z1RvNjVIK1JxVUFSMVNhazJrTEFtS2s4aGI5cEMvak9EMDZ3TGVDYTlmbVNw?=
- =?utf-8?B?VlBSSjhNSENIcWdnRXhoSXJ4dHRUUkhwNC9IYm9GbzNKRENEb3M4bTA1eGZT?=
- =?utf-8?B?cCtRRlpxV01QREJPNFppaHRGSmFPNGtGUmZJOE84QTBDaElJS0NCOHVobXpx?=
- =?utf-8?B?NXFZb1hld2szUkFTNkNjc3FmREVaeXRRVWVBMXEycWtNb2tVeVpxeW1jNk10?=
- =?utf-8?B?UE1VR0R0cTBHR1Jyb01lOHFVWTVUbnd1dGhJcHlwRUhlakFyZm9CYk03WG9R?=
- =?utf-8?B?S3ExTm80YklLVnhQQkMxT2t5b2UwNGlNcXJ6a2Fhb2N1RnY5c2ZacVoyemFs?=
- =?utf-8?B?TlRTR3ZKU2ZxdTBDeTNtSVdGRTRmNTZGM1BOV3BNT2xUdkNHbDJpb1duUVEw?=
- =?utf-8?B?c21DQmxJRjh4bzdFTjltMmsyWEhwc0cza3djQ25HcG1sMzU3UllZcEtrYUJQ?=
- =?utf-8?B?NTdPYkYxZDczYzVXeTdKUGFzTGpFKzFIUE1nSmlkZ2ptWmJVTTFOaGJEZ2dD?=
- =?utf-8?B?bFkrd0w3bkV0ZlU0MkdSbUVMbGFNVWMwbmdhU2RRNDJ3RlZjUWhlVytDb1VJ?=
- =?utf-8?B?N2p5LzQzMnhNYkJpNU5xSXpheVNteWlyUHBmRjF4bDVuaTF0OXBjb0Q5bjB3?=
- =?utf-8?B?TWY4L1NyalBHMHlzazRHdXkwN2pRZktpK3h2MkpCb1NzNnlpTUdvb0sxQmsw?=
- =?utf-8?B?UVB6Qms0WU12SmF6eFBOTHJUZFpuREFkRUVwcmM5MmkyUHV2OEQwYy9mcVZ6?=
- =?utf-8?B?TlVaUGozZ3NiSVhzalVRa1dpZzlZLzVkSXFQOEh4RjBjWjU5WVhaVUY2cVpu?=
- =?utf-8?B?TGFyY25HSTk1YWVJeEtLRnBIaDZMakQ2N0hTUFAwc21BV2E2dDBOUTRvR3JR?=
- =?utf-8?B?T2pjbm84VzlBUURLYnZpUENYTTZDT2FRS0dVeTZMQW05SjNLaGRkSlNNNFlU?=
- =?utf-8?B?NnlzRzZJbXhOR3B5aHRySmhESVIrODhVN3pKQ2NBZ09odVlCdjB6OEY1bUNw?=
- =?utf-8?B?RW02UDlabFR5VFFDeFNLdTdpTGJ2QlJYdzIvQ2o1VjhyMWZKaDV4eXY1SVIz?=
- =?utf-8?B?TGt2cXpnV0UwOUdxSy8zUGdqTU1TcDFxTVdhZmpUZjlwNncyWE15LzRlQlVP?=
- =?utf-8?B?MnVPWFlKTnpmNnlNYml0eDBtaWJWRlBCTERlYUZVVCtRNFplakpHd1RLVjNP?=
- =?utf-8?B?NnoyR0xXdWlzRk9tTnNyanpmUXA2eGZKNWdLS3FzOUN3bXFqbmE2YkJJS0Mr?=
- =?utf-8?B?cEV4QVNhbU9UT2NYdVpFcWs0UGF2UlRFOVpubHJ0d3FyR1dHajRqNzg4ZTdl?=
- =?utf-8?B?WlN2WkdFcTN5NUxreEhMUi9lYURsMlA3MzBjRzJnV001VlZ1clRXaG9HVW1U?=
- =?utf-8?B?VEtPUUVqcHJYekVRbkw2eW9RemM4T0pORm8vREkyOHdwSXZaMWFvUzh2cDNZ?=
- =?utf-8?B?cG12R21tN1NzUjhucXpZWEhLbUdxK0V4NmdkK1lPcmd3bUYzTVF0aFhVR1hz?=
- =?utf-8?B?QVUzYjkrc0d4QVRxSFNDUGdMSWpheDdrbWh1VWg2L1kwTEk0SXZiZkdBUkZv?=
- =?utf-8?B?OE5HZWg0cjhBaHQvaXhNUVAycVhyVk85Z2Y4ZTNWVHBoVi8wb041NlIwZzFN?=
- =?utf-8?B?c0JMK0FReTA2RUwrTXAwSFEyU21oRzdJbWlubGJwSUlNOFdIQVM2Umg5cEJv?=
- =?utf-8?B?RXJWelZpL1dIMUs0dmZ4d1ZMS0FWc2cxdGRBa2l2ckVRYzdWSkJGWlZuTnN6?=
- =?utf-8?B?TFhoY2NaYm4rZHZqdk1kUGZabnYwcmhKU1FiYnpTaGtZZkNyaHBCZTZwOGlx?=
- =?utf-8?B?R3l0dFhicUx0T0daRHJNU0UzS2UzbVFCMzQ1M1ZNcUpOdGJLWlhZakZjTE9q?=
- =?utf-8?B?aDdpb0JXV3QrYytUcmxnOEpnRTZRZWphQTVNNVVhcDBHclJYQU9yL1d0ek5Y?=
- =?utf-8?B?SnVUYXN1d1lrMndKb2hPS1IzZkdFSXYydGdwMVdGM3EyNysxa0FYYTg3V3FO?=
- =?utf-8?B?ZnJYay9ObHJWb3BmUEhzbWhNV1FGbjk4bFZsSkRaUnk1UE5BMWY2Q1ZRdkpD?=
- =?utf-8?B?TWpNa3FtZ1V2SUJQY2RUU3FIYkdyZWxpR2ZBZ0d4VU4ySWorQVh4YThQQUs4?=
- =?utf-8?B?S0t6ZGhzRlJubW5DL3JjaHJsU2g5NjQ3c1FHTnJLQ3RZVXM0T0hxa3B6enh6?=
- =?utf-8?B?OWc9PQ==?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: c017ac9b-587a-4cf2-d02a-08dbf6ef2553
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YWhNdElUNXp3aVQyN1VJLzZPdEMyajJDdmlLTHFHdm5RL3FQaVU0T3lVYUx4?=
+ =?utf-8?B?VnFSL1FKb3RQUVRrQ2Y4eU5qS3oxZzdXMTBwWTJza0pxZFAvZ0FxZDRRMmxm?=
+ =?utf-8?B?TVovT1BNNXFCNjhuWm5PQXZ6bFVJemRmUjhncjVUc2lmM0RjMkFBLzlTN2ZN?=
+ =?utf-8?B?d2JGODJhMXJzSmFadUVTc1drclZBQzFVUFVOeExsamVJNVRoVEhKU2NLKytR?=
+ =?utf-8?B?SjZpNHlmbEY3cFIvZzB5ODNqaE14NStjcUVYa1BiNlBsZXRQNG9sR2hsNGd3?=
+ =?utf-8?B?NkIvc3V6UDJ0WHBCYXRzSzYrTmRlUGV6dHc3M0FGQ0RuMFR3R0JRUmR1ZTlV?=
+ =?utf-8?B?UjBoRkdQZDQrLzF0Z0lxWjhyRzdnUXk3T3ZpaDU2c1kzRWdnMlZrRFV2RmJn?=
+ =?utf-8?B?WEoycVdYRUMyMHU2dUcvUDRNSnpzb05qVHlxQnAyQXpQcUkwKzA1emNOQmpV?=
+ =?utf-8?B?MllZak5HdW1iN3haRHp5L216alBCbi9PMStFQU1xQVNNL1lCdXdmaXZmRCtR?=
+ =?utf-8?B?a3JpVWxjVG5PYWlvaXZpMTYzMEwwTE9JcHNxZUdYTnFhWFhKS3V1ay85SEJJ?=
+ =?utf-8?B?cnhBUWJlYmJqVDhHUWFhWFE2SVEwTFpCcHBpRTVLdncyaWN1OFJrYmNYVy9z?=
+ =?utf-8?B?VW9pMzk0UnRhQ3FVTlhQbzVCcGdDeEFtZlNrZ3E0MkVHaktXc3oyazJ3WE8r?=
+ =?utf-8?B?VmlXVWNSWUI3VVhKak04d0V4ZC9YQzFqRnp1UHJyZkViaWhxY1gzY3lGS2oz?=
+ =?utf-8?B?cmI0OWJWczI5K1JzSVZLRUg0YXQvNWNHbjR0Ry9ZUzdDVVNvSUt1QTd1MzE0?=
+ =?utf-8?B?ekJ0YTNRNVdYRk9teE1KTjNzbXN3bjMrZG85SWwvMk9zZ3M0SDVOOWNRdGdM?=
+ =?utf-8?B?dnUwakVheHNzVkdFTno3RTEySFpTRzI4czEwMHVrWGJRd0thMW1RQmlhOG8r?=
+ =?utf-8?B?dkN6LytHVGNsN1N5RkJnMHRTcit0N1M0UUdWbXFwSEZ5VzF2UkhHd3RhUVgw?=
+ =?utf-8?B?bGVkeVBGQmFrN1ROdVlBd0cwTTl6OUlOQktlSmY1QTEyNGJSMWlBOU5TMzl3?=
+ =?utf-8?B?YWRMWTVQdWFMaUhYQ3YzY3BZcFBCUEJRZHhoN3ZUUHkrUW9EOXhZa0pTMkNQ?=
+ =?utf-8?B?TVV6Z1BzL0Z3SDg0WDBpTDJ2UWVFeVFQWElFME5ma0lncXUrcjNmUzBvWlN1?=
+ =?utf-8?B?Ky93aVd4dmxuS25DRkFBY2hucHFPK3d2dEtNZEl2WU1PQXdDKy9weCtPYi9z?=
+ =?utf-8?B?SXFrTFU1dXBiR1JKWldWbWtTcXRnNjlKby9oVXI3ODJsOFJHeDNnNzVaNDJn?=
+ =?utf-8?B?eEh1SEg0OENjKzNnWThJeFQwVkw2a3Z2dG5oL3ZiRlltaEd5RlJsNEExU1ky?=
+ =?utf-8?B?dFVwMFpJQkdCb2YwK3VkYkdrS3pId1p0UDVNN3pvT0Z6M3JSNDBwNlNxUlVJ?=
+ =?utf-8?B?QzArM28yT0haYTV3RVdFWDZlTmhZaFNlTHNOUHNIWmx4RUxCS2ZSNlhyMkRE?=
+ =?utf-8?B?TmtYcExiM2VmSFR6WTc2SEU1TFlCRWxVNmNWZGxocXZGRVZNV2FXQ1kza1Jm?=
+ =?utf-8?B?Uk9GRHBURnZMQ21IOTh5V2dzM0UvSmFaZGtNRW1GNGVaaEtVMkg0U0tNSjUz?=
+ =?utf-8?B?OFJ4dnVHQnplY0srOGYwZ1FUdlNGNC9kTzNFZ3I2bVlhZWZDMTZpSFllYXJF?=
+ =?utf-8?B?U2dlQ2JIa2dJNmJ4N3J1RDYrZEF5MVlWbHh6QVdUMVVsZGdxTFQ4anlvSVFP?=
+ =?utf-8?B?enVFdmtDNldUUGd1dUVNTFVMWXBhWE1sbElaK3duelpLTUZaeWZqU3ZncWsy?=
+ =?utf-8?B?cG94dFlpTzByNVFkY1RZTE0zL01IZ1FUL1hCNlk2TERjUmFZQUtKME5LZnBB?=
+ =?utf-8?B?YU5SdVFMV005RDFicTVEY2RiRG5QbmFsQ3JjeDZkUFJyRU9yVmw2WW1ENWdp?=
+ =?utf-8?B?RFMzSExZMUxHYTJiRTlucUhaaTZMTVhVNUtPZ05scWNNNW83dnV6K1h1bGp3?=
+ =?utf-8?B?a1dWNEtJeTlzWDdWYjlLc3V4enIweGRmelk4ZTZyRFdod2J4MkUzQ0R0MFRP?=
+ =?utf-8?B?SDAzNDNVV3IvckFMS3YrdG5xZExQWDVKeEJmS040UGVXZHFFblJFR0hkR0py?=
+ =?utf-8?B?N1Z0VUREVnlsNzdaZ1pwZkRlSVNaa2RvdFZNcHN3NDZxM3VtMThGTzE3a21O?=
+ =?utf-8?B?b3c9PQ==?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 163c2594-fe32-4fe4-1184-08dbf6f00cc5
 X-MS-Exchange-CrossTenant-AuthSource: DM8PR11MB5653.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2023 06:38:39.0550 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Dec 2023 06:45:07.3205 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WFIT8VkDXdMaO1ljvyFRhmcX6/IKMOCR/QXUOHOljheDu/7KlIe/Rn4VB7r6kfZrMWmYeybOHbh66Yn8kSBBHrKEC1M/ljIIPs2kMbEZ5jQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB4806
+X-MS-Exchange-CrossTenant-UserPrincipalName: MxEz19gkWu9yK6w0P6f5Hvcx4xNKE4KszP2xFLgOr+7Rzh5OmL8RGCmlxsoCJtLzmw2BlHnB4oQOHcgb7iROBtxvIXJiRTy4v4So+HGd8YE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB5944
 X-OriginatorOrg: intel.com
-Subject: Re: [Intel-xe] [v2 1/2] drm/xe: Add a new memory directory under
- tile
+Subject: Re: [Intel-xe] [v2 2/2] drm/xe: Add vram frequency sysfs attributes
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,167 +156,172 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Cc: rodrigo.vivi@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 12/7/2023 11:36 AM, Riana Tauro wrote:
->
->
-> On 12/7/2023 10:51 AM, Sundaresan, Sujaritha wrote:
->>
->> On 12/7/2023 10:42 AM, Upadhyay, Tejas wrote:
->>>
->>>> -----Original Message-----
->>>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On Behalf Of
->>>> Sundaresan, Sujaritha
->>>> Sent: Wednesday, December 6, 2023 5:44 PM
->>>> To: Gupta, Anshuman <anshuman.gupta@intel.com>; intel-
->>>> xe@lists.freedesktop.org
->>>> Cc: Vivi, Rodrigo <rodrigo.vivi@intel.com>
->>>> Subject: Re: [Intel-xe] [v2 1/2] drm/xe: Add a new memory directory 
->>>> under
->>>> tile
->>>>
->>>>
->>>> On 12/6/2023 5:38 PM, Sundaresan, Sujaritha wrote:
->>>>> On 12/6/2023 5:23 PM, Gupta, Anshuman wrote:
->>>>>>> -----Original Message-----
->>>>>>> From: Intel-xe <intel-xe-bounces@lists.freedesktop.org> On 
->>>>>>> Behalf Of
->>>>>>> Sujaritha Sundaresan
->>>>>>> Sent: Wednesday, December 6, 2023 10:18 AM
->>>>>>> To: intel-xe@lists.freedesktop.org
->>>>>>> Cc: Sundaresan, Sujaritha <sujaritha.sundaresan@intel.com>; Vivi,
->>>>>>> Rodrigo <rodrigo.vivi@intel.com>
->>>>>>> Subject: [Intel-xe] [v2 1/2] drm/xe: Add a new memory directory
->>>>>>> under tile
->>>>>>>
->>>>>>> Add a new memory directory under /device/tile<n> and move
->>>>>>> physical_vram_size attribute to the new directory.
->>>>>>>
->>>>>>> New hierarchy:
->>>>>>>
->>>>>>> /device/tile<n>/memory/physical_vram_size_bytes
->>>>>>>
->>>>>>> v2: Fix heading typo (Riana)
->>>>>>>       Fix cleanup error on unload/reload cycle
->>>>>>>
->>>>>>> Signed-off-by: Sujaritha Sundaresan 
->>>>>>> <sujaritha.sundaresan@intel.com>
->>>>>>> ---
->>>>>>>    drivers/gpu/drm/xe/xe_tile_sysfs.c | 15 ++++++++++++---
->>>>>>>    1 file changed, 12 insertions(+), 3 deletions(-)
->>>>>>>
->>>>>>> diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c
->>>>>>> b/drivers/gpu/drm/xe/xe_tile_sysfs.c
->>>>>>> index 16376607c68f..e8ce4d9270e6 100644
->>>>>>> --- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
->>>>>>> +++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
->>>>>>> @@ -24,7 +24,8 @@ static ssize_t
->>>>>>>    physical_vram_size_bytes_show(struct device *kdev, struct
->>>>>>> device_attribute *attr,
->>>>>>>                      char *buf)
->>>>>>>    {
->>>>>>> -    struct xe_tile *tile = kobj_to_tile(&kdev->kobj);
->>>>>>> +    struct kobject *kobj = &kdev->kobj;
->>>>>>> +    struct xe_tile *tile = kobj_to_tile(kobj->parent);
->>>>>>>
->>>>>>>        return sysfs_emit(buf, "%llu\n",
->>>>>>> tile->mem.vram.actual_physical_size);
->>>>>>>    }
->>>>>>> @@ -38,7 +39,7 @@ static void tile_sysfs_fini(struct drm_device
->>>>>>> *drm, void
->>>>>>> *arg)  {
->>>>>>>        struct xe_tile *tile = arg;
->>>>>>>
->>>>>>> -    kobject_put(tile->sysfs);
->>>>>>> +    kobject_del(tile->sysfs);
->>>>>> Why kobekct_del instead of kobject_put?
->>>>>> Thanks,
->>>>>> Anshuman Gupta.
->>>>> Hi Anshuman,
->>>>>
->>>>> Basically when sanity checking, after reload we see that we are not
->>>>> doing a proper cleanup.
->>>>>
->>>>> kobject_put will only decrement the ref count and possibly free the
->>>>> kobject.
->>>>>
->>>>> But that is not happening in this case. There is a duplicate 
->>>>> remaining
->>>>> of the tile directory.
->>>>>
->>>>> This required a clean unregister of the parent from sysfs hence the
->>>>> use of kobject_del.
->>>>>
->>>>> Thanks,
->>>>>
->>>>> Suja
->>>> As a continuation of the above response;
->>>>
->>>> I can probably add a kobject_put call as well to ensure that we are 
->>>> cleaning
->>>> up the memory side of
->>>>
->>>> things as well. Will add.
->>>>
->>>> Thanks,
->>>>
->>>> Suja
->>>>
->>>>>>>    }
->>>>>>>
->>>>>>>    void xe_tile_sysfs_init(struct xe_tile *tile) @@ -46,6 +47,7 @@
->>>>>>> void xe_tile_sysfs_init(struct xe_tile *tile)
->>>>>>>        struct xe_device *xe = tile_to_xe(tile);
->>>>>>>        struct device *dev = xe->drm.dev;
->>>>>>>        struct kobj_tile *kt;
->>>>>>> +    struct kobject *kobj;
->>>>>>>        int err;
->>>>>>>
->>>>>>>        kt = kzalloc(sizeof(*kt), GFP_KERNEL); @@ -64,8 +66,15 @@ 
->>>>>>> void
->>>>>>> xe_tile_sysfs_init(struct xe_tile *tile)
->>>>>>>
->>>>>>>        tile->sysfs = &kt->base;
->>>>>>>
->>>>>>> +    kobj = kobject_create_and_add("memory", tile->sysfs);
->>>>>>> +    if (!kobj) {
->>>>>>> +        kobject_put(kobj);
->>> Do you mean to put kobject_put(tile->sysfs) instead of 
->>> kobject_put(kobj) ? as there was no Kobj created by the time you 
->>> reached here!
->>>
->>> Tejas
->>
->> Yup this should be fixed.
+On 12/7/2023 11:32 AM, Riana Tauro wrote:
 > Hi Suja
 >
-> Removing tile won't be right, as there are other directories (gt#) 
-> dependent on it. Simple return should be good with a warn?
+> On 12/6/2023 10:17 AM, Sujaritha Sundaresan wrote:
+>> Add vram frequency sysfs attributes under the below hierarchy;
+>>
+>> /device/tile<n>/memory/freq
+>>             |-rp0_freq
+>>             |-rpn_freq
+>>
+>> v2: Drop "vram" from attribute names (Rodrigo)
+>>
+>> Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+>> ---
+>>   drivers/gpu/drm/xe/xe_pcode_api.h  |  8 ++++
+>>   drivers/gpu/drm/xe/xe_tile_sysfs.c | 72 ++++++++++++++++++++++++++++++
+>>   2 files changed, 80 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/xe/xe_pcode_api.h 
+>> b/drivers/gpu/drm/xe/xe_pcode_api.h
+>> index 5935cfe30204..edde5335bdb1 100644
+>> --- a/drivers/gpu/drm/xe/xe_pcode_api.h
+>> +++ b/drivers/gpu/drm/xe/xe_pcode_api.h
+>> @@ -42,6 +42,14 @@
+>>   #define        POWER_SETUP_I1_SHIFT        6    /* 10.6 fixed point 
+>> format */
+>>   #define        POWER_SETUP_I1_DATA_MASK        REG_GENMASK(15, 0)
+>>   +#define   XEHP_PCODE_FREQUENCY_CONFIG 0x6e    /* xehp, pvc */
+> Can we change it to PCODE_FREQUENCY_CONFIG ? there's no usage of 
+> prefix in other places
+Sure couldn't hurt to generalize it I guess.
+>> +/* XEHP_PCODE_FREQUENCY_CONFIG sub-commands (param1) */
+>> +#define     PCODE_MBOX_FC_SC_READ_FUSED_P0             0x0
+>> +#define     PCODE_MBOX_FC_SC_READ_FUSED_PN             0x1
+>> +/* PCODE_MBOX_DOMAIN_* - mailbox domain IDs */
+>> +/* XEHP_PCODE_FREQUENCY_CONFIG param2 */
+>> +#define     PCODE_MBOX_DOMAIN_HBM                      0x2
+>> +
+>>   struct pcode_err_decode {
+>>       int errno;
+>>       const char *str;
+>> diff --git a/drivers/gpu/drm/xe/xe_tile_sysfs.c 
+>> b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+>> index e8ce4d9270e6..38d334833594 100644
+>> --- a/drivers/gpu/drm/xe/xe_tile_sysfs.c
+>> +++ b/drivers/gpu/drm/xe/xe_tile_sysfs.c
+>> @@ -7,9 +7,14 @@
+>>   #include <linux/sysfs.h>
+>>   #include <drm/drm_managed.h>
+>>   +#include "xe_gt_types.h"
+>> +#include "xe_pcode.h"
+>> +#include "xe_pcode_api.h"
+>>   #include "xe_tile.h"
+>>   #include "xe_tile_sysfs.h"
+>>   +#define GT_FREQUENCY_MULTIPLIER    50
+> Could you add documentation to this file as there are multiple sysfs 
+> added.
+>
+Sure will add.
+
+>> +
+>>   static void xe_tile_sysfs_kobj_release(struct kobject *kobj)
+>>   {
+>>       kfree(kobj);
+>> @@ -35,6 +40,65 @@ static DEVICE_ATTR_RO(physical_vram_size_bytes);
+>>   static const struct attribute *physical_memsize_attr =
+>>       &dev_attr_physical_vram_size_bytes.attr;
+>>   +static ssize_t rp0_freq_show(struct device *kdev, struct 
+>> device_attribute *attr,
+>> +                  char *buf)
+>> +{
+>> +    struct kobject *kobj = &kdev->kobj;
+>> +    struct xe_tile *tile = kobj_to_tile(kobj->parent);
+>> +    struct xe_gt *gt = tile->primary_gt;
+>> +    u32 val, mbox;
+>> +    int err;
+>> +
+>> +    mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, 
+>> XEHP_PCODE_FREQUENCY_CONFIG)
+>> +        | REG_FIELD_PREP(PCODE_MB_PARAM1, 
+>> PCODE_MBOX_FC_SC_READ_FUSED_P0)
+>> +        | REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
+>> +
+>> +    err = xe_pcode_read(gt, mbox, &val, NULL);
+>> +    if (err)
+>> +        return err;
+>> +
+>> +    /* data_out - Fused P0 for domain ID in units of 50 MHz */
+>> +    val *= GT_FREQUENCY_MULTIPLIER;
+>> +
+>> +    return sysfs_emit(buf, "%u\n", val);
+>> +}
+>> +static DEVICE_ATTR_RO(rp0_freq);
+>> +
+>> +static ssize_t rpn_freq_show(struct device *kdev, struct 
+>> device_attribute *attr,
+>> +                  char *buf)
+> alignment to the start of bracket
 >
 > Thanks
-> Riana
-Sure. We can probably have the original cleanup in fini.
->>
->> Thanks.
->>
->> Suja
->>
->>>
->>>>>>> + drm_warn(&xe->drm, "%s failed, err: %d\n", __func__, -
->>>>>>> ENOMEM);
->>>>>>> +        return;
->>>>>>> +    }
->>>>>>> +
->>>>>>>        if (IS_DGFX(xe) && xe->info.platform != XE_DG1 &&
->>>>>>> -        sysfs_create_file(tile->sysfs, physical_memsize_attr))
->>>>>>> +        sysfs_create_file(kobj, physical_memsize_attr))
->>>>>>>            drm_warn(&xe->drm,
->>>>>>>                 "Sysfs creation to read addr_range per tile
->>>>>>> failed\n");
->>>>>>>
->>>>>>> -- 
->>>>>>> 2.25.1
+> Riana Tauro
+
+Yeah I had already responded about this on one of the reviews from Anshuman.
+
+Will fix.
+
+Thanks,
+
+Suja
+
+>> +{
+>> +    struct kobject *kobj = &kdev->kobj;
+>> +    struct xe_tile *tile = kobj_to_tile(kobj->parent);
+>> +    struct xe_gt *gt = tile->primary_gt;
+>> +    u32 val, mbox;
+>> +    int err;
+>> +
+>> +    mbox = REG_FIELD_PREP(PCODE_MB_COMMAND, 
+>> XEHP_PCODE_FREQUENCY_CONFIG)
+>> +        | REG_FIELD_PREP(PCODE_MB_PARAM1, 
+>> PCODE_MBOX_FC_SC_READ_FUSED_PN)
+>> +        | REG_FIELD_PREP(PCODE_MB_PARAM2, PCODE_MBOX_DOMAIN_HBM);
+>> +
+>> +    err = xe_pcode_read(gt, mbox, &val, NULL);
+>> +    if (err)
+>> +        return err;
+>> +
+>> +    /* data_out - Fused Pn for domain ID in units of 50 MHz */
+>> +    val *= GT_FREQUENCY_MULTIPLIER;
+>> +
+>> +    return sysfs_emit(buf, "%u\n", val);
+>> +}
+>> +static DEVICE_ATTR_RO(rpn_freq);
+>> +
+>> +static struct attribute *freq_attrs[] = {
+>> +    &dev_attr_rp0_freq.attr,
+>> +    &dev_attr_rpn_freq.attr,
+>> +    NULL
+>> +};
+>> +
+>> +static const struct attribute_group freq_group_attrs = {
+>> +    .name = "freq",
+>> +    .attrs = freq_attrs,
+>> +};
+>> +
+>>   static void tile_sysfs_fini(struct drm_device *drm, void *arg)
+>>   {
+>>       struct xe_tile *tile = arg;
+>> @@ -78,6 +142,14 @@ void xe_tile_sysfs_init(struct xe_tile *tile)
+>>           drm_warn(&xe->drm,
+>>                "Sysfs creation to read addr_range per tile failed\n");
+>>   +    if (xe->info.platform == XE_PVC) {
+>> +        err = sysfs_create_group(kobj, &freq_group_attrs);
+>> +        if (err) {
+>> +            drm_warn(&xe->drm, "failed to register vram freq sysfs, 
+>> err: %d\n", err);
+>> +            return;
+>> +        }
+>> +    }
+>> +
+>>       err = drmm_add_action_or_reset(&xe->drm, tile_sysfs_fini, tile);
+>>       if (err) {
+>>           drm_warn(&xe->drm, "%s: drmm_add_action_or_reset failed, 
+>> err: %d\n",
