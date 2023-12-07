@@ -4,51 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0BD14C4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 13:01:21 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64C91C4167B
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 13:01:24 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D6DF210E06A;
-	Thu,  7 Dec 2023 13:01:20 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E93FE10E8A6
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 13:01:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C5DF10E88D;
+	Thu,  7 Dec 2023 13:01:24 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.24])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57A9310E88D
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 13:01:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701954077; x=1733490077;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=DM1s/+usiSR6V5ue9o7RIDXxOeEUpyAeBiw8XWKE8OA=;
- b=bMyvofP4rARH0fhBaGHq0NpP6W9/bdhaY2i+BU1e9UR0Wq0PjDA+xXS7
- mSUQS5BA2Z7OOUEHJ0zHSqfIJQzJe0wUVzUWYQYn98h5xrQzcMmiHh42X
- 2REKCwgO04pNqnlsqn0sjiiCkPg2Gnq0xUUZ9B6fmb2dc3kAbwObE4D6W
- 9YqRrF4eowE705QNZkAZihDVAOXpQYDyNPdiOeaP6WuJXVADBU0Ov+M1h
- J/81NDGAdlZIy82HUnMwN7j3o5OtmRbQAfHS3DyDgW7Tx+F4tiCO8Hd7j
- 6FGbDa1Ucman5WoA7IfeGWZX0ZUsNWJdpbna9qQHd9EoAm5bKfxpFqUCw Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1309002"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="1309002"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 05:01:17 -0800
+ t=1701954082; x=1733490082;
+ h=from:to:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=NKjoMCL1TNtwtzvinS8s2qHT4l+Y1POE89GBKpWgnkE=;
+ b=kyg3Q0DEhJD7jzZBZ2+I79CAa9IS7qokExVQz2kirZwuDOPU39BOKHrp
+ U0pOI55MBXAECbzfL6rMCzOU9vaQL9idCFV61q9TNFVygWhRNR8Z+q/Pp
+ nDTAXqg9eGbqeVkgVmSZ3BnWAHrCAK8URC1v1lMaVkNXJlAUowl2iTSj/
+ R0CoXPGz+DtYlkquooNu/Wq2YXh6mSJXkwWZvFPKK7etx5hqrQ54KV/Nz
+ A9WrvbnEBI7IdEyUcYdfobkj0WRSsp/uGQ1JkdmkT+NGnfVe32Hy4rnQT
+ M4vrDBz0OGP5jTAzx1pqSG8Y7BH08M6VD5xquVXyfqvISURwjZsX5PmlU A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="397017077"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="397017077"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 05:01:21 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="721454276"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="721454276"
-Received: from rlgreyi-mobl.amr.corp.intel.com (HELO jhogande-mobl1.intel.com)
- ([10.252.46.17])
- by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 05:01:15 -0800
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="837706782"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="837706782"
+Received: from ajbyrne1-mobl1.ger.corp.intel.com (HELO
+ hazy.ger.corp.intel.com) ([10.252.63.42])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 05:01:19 -0800
+From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 9/9] fixup! FIXME: drm/i915/display: Remaining changes to
- make xe compile
-Date: Thu,  7 Dec 2023 15:00:46 +0200
-Message-Id: <20231207130046.2350822-10-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20231207130046.2350822-1-jouni.hogander@intel.com>
-References: <20231207130046.2350822-1-jouni.hogander@intel.com>
+Subject: [PATCH 1/2] Revert "FIXME: drm/i915: avoid taking the uncore lock for
+ xe"
+Date: Thu,  7 Dec 2023 15:01:05 +0200
+Message-Id: <20231207130106.1676807-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -61,39 +56,88 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are defining I915_TILING_X and  I915_TILING_Y as 0. No need for these
-ifdefs anymore.
+This reverts commit 54cbd07bd1d15cb6c8d28375dce6d6b70df6d252.
 
-Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_universal_plane.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 24 +++++----------------
+ 1 file changed, 5 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-index ae6bad4407eb..5522d6725474 100644
---- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-+++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-@@ -2441,15 +2441,11 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
- 		fb->modifier = DRM_FORMAT_MOD_LINEAR;
- 		break;
- 	case PLANE_CTL_TILED_X:
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 6a0d51823655..2cec2abf9746 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -306,11 +306,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 	 * register reads, potentially with preemption disabled, so the
+ 	 * following code must not block on uncore.lock.
+ 	 */
 -#ifdef I915
- 		plane_config->tiling = I915_TILING_X;
+ 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+-#else
+-	local_irq_save(irqflags);
 -#endif
- 		fb->modifier = I915_FORMAT_MOD_X_TILED;
- 		break;
- 	case PLANE_CTL_TILED_Y:
++
+ 	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
+ 
+ 	/* Get optional system timestamp before query. */
+@@ -377,11 +374,8 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 
+ 	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
+ 
 -#ifdef I915
- 		plane_config->tiling = I915_TILING_Y;
+ 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+-#else
+-	local_irq_restore(irqflags);
 -#endif
- 		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
- 			if (DISPLAY_VER(dev_priv) >= 14)
- 				fb->modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS;
++
+ 	/*
+ 	 * While in vblank, position will be negative
+ 	 * counting up towards 0 at vbl_end. And outside
+@@ -414,19 +408,14 @@ bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
+ 
+ int intel_get_crtc_scanline(struct intel_crtc *crtc)
+ {
++	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 	unsigned long irqflags;
+ 	int position;
+-#ifdef I915
+-	struct drm_i915_private *dev_priv = to_i915(crtc->base.dev);
+ 
+ 	spin_lock_irqsave(&dev_priv->uncore.lock, irqflags);
+ 	position = __intel_get_crtc_scanline(crtc);
+ 	spin_unlock_irqrestore(&dev_priv->uncore.lock, irqflags);
+-#else
+-	local_irq_save(irqflags);
+-	position = __intel_get_crtc_scanline(crtc);
+-	local_irq_restore(irqflags);
+-#endif
++
+ 	return position;
+ }
+ 
+@@ -548,9 +537,7 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
+ 	 * Need to audit everything to make sure it's safe.
+ 	 */
+ 	spin_lock_irqsave(&i915->drm.vblank_time_lock, irqflags);
+-#ifdef I915
+ 	spin_lock(&i915->uncore.lock);
+-#endif
+ 
+ 	drm_calc_timestamping_constants(&crtc->base, &adjusted_mode);
+ 
+@@ -559,8 +546,7 @@ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
+ 	crtc->mode_flags = mode_flags;
+ 
+ 	crtc->scanline_offset = intel_crtc_scanline_offset(crtc_state);
+-#ifdef I915
++
+ 	spin_unlock(&i915->uncore.lock);
+-#endif
+ 	spin_unlock_irqrestore(&i915->drm.vblank_time_lock, irqflags);
+ }
 -- 
-2.34.1
+2.39.2
 
