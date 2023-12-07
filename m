@@ -4,27 +4,27 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 602ACC4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 10:20:10 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A0169C4167B
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 10:20:29 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34FB510E855;
-	Thu,  7 Dec 2023 10:20:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62F5810E858;
+	Thu,  7 Dec 2023 10:20:29 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5990710E855;
- Thu,  7 Dec 2023 10:20:08 +0000 (UTC)
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 3C91810E858;
+ Thu,  7 Dec 2023 10:20:27 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 42BD8ACC20;
- Thu,  7 Dec 2023 10:20:08 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 38DE7ACC20;
+ Thu,  7 Dec 2023 10:20:27 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_Enable_compression_h?=
- =?utf-8?q?andling_on_LNL=2E_=28rev7=29?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2Echeckpatch=3A_success_for_Enable_compression_handli?=
+ =?utf-8?q?ng_on_LNL=2E_=28rev7=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Date: Thu, 07 Dec 2023 10:20:08 -0000
-Message-ID: <170194440826.28720.5315316289792124159@emeril.freedesktop.org>
+Date: Thu, 07 Dec 2023 10:20:27 -0000
+Message-ID: <170194442722.28719.4064099784177749635@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231207091922.1224800-1-himal.prasad.ghimiray@intel.com>
 In-Reply-To: <20231207091922.1224800-1-himal.prasad.ghimiray@intel.com>
@@ -52,17 +52,34 @@ State : success
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 668d13abe drm/xe: Avoid any races around ccs_mode update
-=== git am output follows ===
-Applying: drm/xe/xe2: Determine bios enablement for flat ccs on igfx
-Applying: drm/xe/xe2: Allocate extra pages for ccs during bo create
-Applying: drm/xe/xe2: Updates on XY_CTRL_SURF_COPY_BLT
-Applying: drm/xe/xe_migrate: Use NULL 1G PTE mapped at 255GiB VA for ccs clear
-Applying: drm/xe/xe2: Update chunk size for each iteration of ccs copy
-Applying: drm/xe/xe2: Update emit_pte to use compression enabled PAT index
-Applying: drm/xe/xe2: Handle flat ccs move for igfx.
-Applying: drm/xe/xe2: Modify xe_bo_test for system memory
-Applying: drm/xe/xe2: Support flat ccs
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 19a11ea6f7646a039430b962b66e3e89fbb2b6fa
+Author: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
+Date:   Thu Dec 7 14:49:22 2023 +0530
+
+    drm/xe/xe2: Support flat ccs
+    
+    Enable flat ccs for XE2_GFX_FEATURES.
+    
+    Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+    Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
++ /mt/dim checkpatch 668d13abebbbc3812de86be1f8477475e1d90728 drm-intel
+f8154272d drm/xe/xe2: Determine bios enablement for flat ccs on igfx
+c0aa67f94 drm/xe/xe2: Allocate extra pages for ccs during bo create
+56eb65ff9 drm/xe/xe2: Updates on XY_CTRL_SURF_COPY_BLT
+994a06fe1 drm/xe/xe_migrate: Use NULL 1G PTE mapped at 255GiB VA for ccs clear
+321bd89d0 drm/xe/xe2: Update chunk size for each iteration of ccs copy
+62bcc307f drm/xe/xe2: Update emit_pte to use compression enabled PAT index
+8ba840644 drm/xe/xe2: Handle flat ccs move for igfx.
+3d00e1818 drm/xe/xe2: Modify xe_bo_test for system memory
+19a11ea6f drm/xe/xe2: Support flat ccs
 
 
