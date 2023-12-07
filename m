@@ -4,55 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CD83C4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 11:11:34 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 8B409C4167B
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 11:17:25 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 08C8710E86C;
-	Thu,  7 Dec 2023 11:11:34 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B1C8010E86C
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 11:11:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CA2E10E87E;
+	Thu,  7 Dec 2023 11:17:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B8A210E87E
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 11:17:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701947491; x=1733483491;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=LP8vI6gyqAmm13qJbq6Xb5it0QLvkAjwtFqYoQEDliE=;
- b=nZc9+TvvZ+7gzIRDd0RVX0CD3ha8AzN0OMPuy2UJVsGe7wqCzM/vyLO1
- mQJRwqNc7u4TKnFjyal2QFHWYAqXPXjH8FmlMyVQXiak3Cq6GvoF273Oq
- pU7gKkVeJcTP4TW4JIUEX6lbIIXiIgik2TMdq2cS2pSvmzKwL9zgq44Ge
- TRn94lSMjfvuarN7xYDL9fO906BSchuZRcaSlZx5EXo4dvoIJ4Jfqiwsf
- mYwnZzeMZnpxjlqNKKo8c2IIs5nCBwKleijRSuWiiFG5Pb7fPG7rxJCtC
- mkS+I0INisbvr4IlQFsCOXzdiMpwZO5zYhk0INX0cgWPxTGQv7nHF640y Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="374380519"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="374380519"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
- by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 03:11:31 -0800
+ t=1701947844; x=1733483844;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Hwli00kiLgqiTjh5dJFq0mkiltXsPeKIsDjZ2eLq4G8=;
+ b=F7b4JWGvFhUlON6PxH/iQ7VUuPcmgPpfHYLN8SvyXJvuc/DOHCnUGWpk
+ v6IW7p+Cwak1nD1cEmZ4JRDYK7Pyu1h1vJKVa4CO+uGLar/iX+9Fv4vo7
+ TwBpLkDUaGlFZco16nRdfUI5DEVbCxujT1++cJDQa3X7pSjTnwcUZtSaE
+ AfVqliiAW2BgO01qCYcqi0lz+/NFPsIpoZQz7RkjeVriKQYtQdxx9qD1o
+ wNEGzYvX7uifE8968vXUf3SUph03qbHrgzqITkUbCP+49fJbzs8u+dHHG
+ 0tCdoZ8G2AstGleH/BFMkB71QMo8X3cnUb6DBhdmp/h+NVGbhkGokyIZi w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="460704528"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="460704528"
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+ by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 03:17:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="805981609"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="805981609"
-Received: from jbuller-mobl.ger.corp.intel.com (HELO [10.213.214.207])
- ([10.213.214.207])
- by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 03:11:29 -0800
-Message-ID: <2990cd86-7238-4ea9-a9aa-5ab624bea572@linux.intel.com>
-Date: Thu, 7 Dec 2023 11:11:27 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="837685884"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="837685884"
+Received: from rlgreyi-mobl.amr.corp.intel.com (HELO jhogande-mobl1.intel.com)
+ ([10.252.46.17])
+ by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 03:17:20 -0800
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/9] Handle remaining ifdefs in hack patch
+Date: Thu,  7 Dec 2023 13:16:57 +0200
+Message-Id: <20231207111706.2293105-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Intel-xe] LLC configurating, mmap and bo cache management
- questions
-Content-Language: en-US
-To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-References: <02c74379-6513-40cc-a195-c4eeb7a7fd79@linux.intel.com>
- <c16bc9f7bd18f531136ebbcf6504d497db9a793a.camel@intel.com>
- <eaa44445-21e2-4b9f-95a0-6b7395203900@linux.intel.com>
- <36e0e059e0f74ca7c55b2647658456fabe26420d.camel@intel.com>
-From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
-Organization: Intel Corporation UK Plc
-In-Reply-To: <36e0e059e0f74ca7c55b2647658456fabe26420d.camel@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -65,184 +57,57 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "Auld, Matthew" <matthew.auld@intel.com>, "Santa,
- Carlos" <carlos.santa@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+This is removing rest of the ifdefs added by hack patch
+"drm/i915/display: Remaining changes to make xe compile" after
+intel_fb.c refactoring set is merged (still under work):
 
-On 06/12/2023 11:46, Hellstrom, Thomas wrote:
-> Hi, Tvrtko.
-> 
-> On Wed, 2023-12-06 at 10:58 +0000, Tvrtko Ursulin wrote:
->>
->> Hi Thomas,
->>
->> On 06/12/2023 08:26, Hellstrom, Thomas wrote:
->>> On Tue, 2023-12-05 at 14:19 +0000, Tvrtko Ursulin wrote:
->>>>
->>>> Hi,
->>>>
->>>> We are working on adding xe support to ChromeOS minigbm and have
->>>> a
->>>> couple questions.
->>>>
->>>> If I follow things correctly with xe mmap caching mode is fixed
->>>> to
->>>> object caching modes set at bo create. For framebuffers it will
->>>> be WC
->>>> and for the rest userspace can choose WB or WC via
->>>> drm_xe_gem_create->cpu_caching. (Unless discrete, when WB cannot
->>>> be
->>>> used
->>>> at all.)
->>>>
->>>> AFAICT minigbm basically cares about two transition points. Lets
->>>> call
->>>> them CPU access begin and end.
->>>>
->>>> 1)
->>>> When a bo is mmapped it wants to invalidate the cache, which
->>>> looks to
->>>> be
->>>> about making sure all GPU writes have landed to the backing
->>>> store. In
->>>> the i915 world that translates to the set_domain ioctl.
->>>>
->>>> What is the uapi for this with xe, or it is somehow guaranteed to
->>>> not
->>>> be
->>>> needed?
->>>
->>> Signalling a user-fence or dma-fence obtained as an out-fence from
->>> an
->>> exec call will guarantee GPU caches are flushed. Currently I don't
->>> think there is anything like gem wait in the uAPI, although Matt is
->>> just about to add functionality to wait on all outstanding work on
->>> an
->>> exec_queue.
->>
->> Problem I see is there are no execs or therefore fences in the
->> minigbm
->> ABI. It's just buffers, created or imported, CPU access and some
->> other
->> stuff.
->>
->> And it is quite extensively used in the OS so I assume it has to work
->> (I
->> mean the invalidation/flushing was not put in there for no reason),
->> in
->> other words, where the i915 backend today does
->> DRM_I915_GEM_SET_DOMAIN
->> on "cpu access begin", which is buffer based, I am not clear how to
->> implement that with xe.
->>
->> For the outstanding work you mention, since you say it is about
->> exec_queue, I assume again it will not work purely with buffers? If
->> so
->> it probably won't be useful for minigbm.
->>
->> Also if I look at all the other minigbm backends, I see a mix of
->> behaviours:
->>
->>    * msm and vc4 appear to not concern themselves with any of this.
->>
->>    * rockchip appears to be doing full bounce buffering via memcpy on
->> CPU
->> access begin/end.
->>
->>    * i915 and amdgpu respectively use
->> DRM_I915_GEM_SET_DOMAIN/DRM_AMDGPU_GEM_WAIT_IDLE (also buffer based,
->> not
->> execution queue). Andgpu curiously does not do any flushing on CPU
->> access end.
->>
->> Digging into git history, both DRM_I915_GEM_SET_DOMAIN on CPU access
->> begin and clflushing on end were added to fix various CTS test
->> failures.
->> So I guess we could also wait and see what happens there. If those or
->> some will be failing with xe too then propose adding some new uapi.
->> Or
->> if manual testing will start reporting visual corruption in the UI
->> elements or such.
-> 
-> Indeed it sounds like we'd need a DRM_XE_GEM_WAIT_IDLE, similar to
-> AMDGPU for this use-case. I'll bring that up for discussion.
+https://patchwork.freedesktop.org/series/126505/
 
-Thanks!
+Many patches are identical with earlier set from Maarten Lankhorst
+<maarten.lankhorst@linux.intel.com>. They are just a reordered and
+split a bit more to make more clear what is changed and why:
 
->>>> 2)
->>>> When a bo is unmapped, or CPU access finished, it wants to flush
->>>> the
->>>> CPU
->>>> caches. That is /almost/ completely a CPU operation, where it
->>>> just
->>>> needs
->>>> to either clflush or invalidate the WC buffer respectively, if
->>>> not
->>>> the
->>>> fact that clflush can be skipped on platforms with LLC.
->>>>
->>>> I did not see an equivalent of an I915_PARAM_HAS_LLC in xe? Did I
->>>> miss
->>>> it or what it is the plan for querying this detail?
->>>
->>> XeKMD is generally coherent, except if UMD selects a GPU PAT index
->>> with
->>> limited coherency together with WB instead of WC memory. In that
->>> case,
->>> UMD is responsible for doing the needed CLFLUSH-ing, whereas KMD
->>> only
->>> ensures initial clearing of the pages is CLFLUSHED for security
->>> reasons.
->>>
->>> I'm not 100% sure if UMD can actually select WB with limited
->>> coherency
->>> PAT index in the initial uAPI revision, but Matthew has received
->>> requests for that so any additional input here on performance
->>> implications is appreciated.
->>>
->>> The thinking here is otherwise that GPU PAT indices with limited
->>> coherency should be used together with WC memory in the same
->>> situations
->>> as VRAM/LMEM is used on DGFX.
->>
->> Hm okay, this would be the VM BIND side of things which deals with
->> GPU
->> PATs. From the CPU side it is just CPU caching modes implicitly
->> selected
->> via DRM_XE_GEM_CPU_CACHING_WB/WC.
->>
->> The question about the analogue of I915_PARAM_HAS_LLC was AFAIU about
->> a
->> performance optimisation where UMD is deciding whether it is okay to
->> skip issuing clflush for the mapped bo if DRM_XE_GEM_CPU_CACHING_WB
->> was
->> used. (If DRM_XE_GEM_CPU_CACHING_WC was used it obviously only needs
->> to
->> flush the write combine buffer.)
->>
->> Looking at what Mesa is doing it appears it is not using
->> I915_PARAM_HAS_LLC but has its own device info tables. So I guess
->> minigbm xe backend will have to do the same if xe will not provide
->> the
->> analogue query.
-> 
-> IMO clflushing in this case should never be needed, (Again, similar to
-> AMD). Whatever renders from / to those buffers should make sure they
-> are clflushed before or while accessing them. How is a rendering API
-> made aware of these bos? Are they imported using drm prime?
+https://patchwork.freedesktop.org/series/125685/
 
-Yes they can be imported via drm prime. It's a quite a huge code base 
-with a few abstractions and quite hard to figure out all possible paths. 
-There are gbm_bo_map paths in the host and vm compositors (Exo and 
-Sommelier), Skia library, camera pipeline, maybe more.
+One patch is supposed to be backport of i915 patch which is already
+reviewed, but not yet merged:
 
-You mean specifically on the "cpu access end" part of the story flushing 
-would never be needed? Regardless of llc and !llc, wb or wc mappings, 
-imported or native buffer? What mechanism would next in the pipeline 
-(after CPU access) use to ensure the flush?
+https://patchwork.freedesktop.org/series/127300/
 
-Regards,
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Jani Nikula <jani.nikula@intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Uma Shankar <uma.shankar@intel.com>
 
-Tvrtko
+Jouni Högander (8):
+  fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
+  fixup! drm/xe/display: Implement display support
+  fixup! drm/xe/display: Implement display support
+  fixup! drm/xe/display: Implement display support
+  fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
+  fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
+  fixup! drm/xe/display: Implement display support
+  fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
+
+Maarten Lankhorst (1):
+  drm/i915/display: Use i915_gem_object_get_dma_address to get dma
+    address
+
+ drivers/gpu/drm/i915/display/intel_cursor.c   | 12 +++---
+ drivers/gpu/drm/i915/display/intel_display.c  | 35 ----------------
+ .../drm/i915/display/intel_display_types.h    |  4 --
+ .../drm/i915/display/skl_universal_plane.c    |  4 --
+ .../compat-i915-headers/gem/i915_gem_lmem.h   |  1 +
+ .../compat-i915-headers/gem/i915_gem_object.h | 40 +++++++++++++++++++
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h |  6 +++
+ 7 files changed, 53 insertions(+), 49 deletions(-)
+ create mode 100644 drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_lmem.h
+
+-- 
+2.34.1
+
