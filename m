@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id A48FBC10F05
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 13:50:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64E1AC46CA0
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 13:50:42 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F4B410E8B1;
-	Thu,  7 Dec 2023 13:50:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2931B10E8B3;
+	Thu,  7 Dec 2023 13:50:42 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.136])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50B2610E8AF
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EC3F10E8AD
  for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 13:50:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1701957038; x=1733493038;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4IdAQ03KIgTu7mqa2EbVNlZ/bs9DCRst9c24PTZfbLI=;
- b=GNYoJdgOOdsENPK1BmTpIBxb5TWVxjN35UumXKnZ8za8nLAxRKM10hPa
- 1G1Uba9EiMH5nCaOxqOlt33rEx6Xvj6tTQws/OIiWbhIlqWhnNvHVYZR1
- cVRzGGFdA6H0yo+8inw3RKr68cbqTpooI0XPtJN/7EvafZrLRAZJ5YDZ2
- 6xX1/sHzKCFhgGEbhQ1CnLEyKf4gQJ/InjkEUROl23OCJjqa0mKYHrwSQ
- 2RKUnStguhFT+fF5/RACYOpw3eFpE4BIRZQcpoDxNxiZhCrp7WlX1icTs
- nzW8PdBd2e7Y9AI3JEXADvBueyb6AHTCy9SHkcZJEN3CIKCj7kUgt87OK A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="373722266"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="373722266"
+ bh=IklgFcn1X9WKzZMiaEXFSQ3E+g9P100yoyQVsztOcKg=;
+ b=l3PZxzNpoDouBJ/y2vmUmCArPKqG2a2g6/0sL/r21Xj8+mm265V6IFRC
+ 2s6PVlpC3J9pPcjEReWPHad/dtVzJD9lBfKwQW5rE8EWO+iTsNftxmr0d
+ hNVJRscGA8KxY33ib4sKp/0/q42BeYCpdSMus+v7i942eeBHbl5KQUj4B
+ p6iCZ8/lyArBNZwXH4PEYYvBddGgr23ftsWsl6kaz+kWC9JKvQxwHQEQj
+ /UBox8IbEzvTnXg/N71NoDg2yvPoKqopqw5/amn0o3uHDslEl7qjipZ+4
+ GEG9lsn4NyKoK+CNdJ/P/bTjsOAq1ZVCeSdPLh5aQP2WYQL32I8OUwSq1 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="373722267"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="373722267"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Dec 2023 05:50:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="765115582"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="765115582"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="765115574"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="765115574"
 Received: from elenagol-mobl.ccr.corp.intel.com (HELO fde8da82816e.intel.com)
  ([10.252.46.155])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 05:50:36 -0800
+ 07 Dec 2023 05:50:33 -0800
 From: Francois Dugast <francois.dugast@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v1 12/14] drm/xe/uapi: Add examples of user space code
-Date: Thu,  7 Dec 2023 13:50:07 +0000
-Message-Id: <20231207135009.7-13-francois.dugast@intel.com>
+Subject: [PATCH v1 10/14] drm/xe/uapi: Document the memory_region bitmask
+Date: Thu,  7 Dec 2023 13:50:05 +0000
+Message-Id: <20231207135009.7-11-francois.dugast@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231207135009.7-1-francois.dugast@intel.com>
 References: <20231207135009.7-1-francois.dugast@intel.com>
@@ -57,136 +57,125 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>
+Cc: Francois Dugast <francois.dugast@intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Complete the documentation of some structs by adding functional
-examples of user space code. Those examples are intentionally kept
-very simple. Put together, they provide a foundation for a minimal
-application that executes a job using the Xe driver.
+From: Rodrigo Vivi <rodrigo.vivi@intel.com>
 
+The uAPI should stay generic in regarding to the bitmask. It is
+the userspace responsibility to check for the type/class of the
+memory, without any assumption.
+
+Also add comments inside the code to explain how it is actually
+constructed so we don't accidentally change the assignment of
+the instance and the masks.
+
+No functional change in this patch. It only explains and document
+the memory_region masks. A further follow-up work with the
+organization of all memory regions around struct xe_mem_regions
+is desired, but not part of this patch.
+
+Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Francois Dugast <francois.dugast@intel.com>
 ---
- include/uapi/drm/xe_drm.h | 84 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 84 insertions(+)
+ drivers/gpu/drm/xe/xe_query.c | 19 +++++++++++++++++++
+ include/uapi/drm/xe_drm.h     | 23 ++++++++++++++++++-----
+ 2 files changed, 37 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/xe/xe_query.c b/drivers/gpu/drm/xe/xe_query.c
+index 56d61bf596b2..9b35673b286c 100644
+--- a/drivers/gpu/drm/xe/xe_query.c
++++ b/drivers/gpu/drm/xe/xe_query.c
+@@ -266,6 +266,11 @@ static int query_mem_regions(struct xe_device *xe,
+ 
+ 	man = ttm_manager_type(&xe->ttm, XE_PL_TT);
+ 	mem_regions->mem_regions[0].mem_class = DRM_XE_MEM_REGION_CLASS_SYSMEM;
++	/*
++	 * The instance needs to be a unique number that represents the index
++	 * in the placement mask used at xe_gem_create_ioctl() for the
++	 * xe_bo_create() placement.
++	 */
+ 	mem_regions->mem_regions[0].instance = 0;
+ 	mem_regions->mem_regions[0].min_page_size = PAGE_SIZE;
+ 	mem_regions->mem_regions[0].total_size = man->size << PAGE_SHIFT;
+@@ -381,6 +386,20 @@ static int query_gt_list(struct xe_device *xe, struct drm_xe_device_query *query
+ 		gt_list->gt_list[id].tile_id = gt_to_tile(gt)->id;
+ 		gt_list->gt_list[id].gt_id = gt->info.id;
+ 		gt_list->gt_list[id].reference_clock = gt->info.reference_clock;
++		/*
++		 * The mem_regions indexes in the mask below need to
++		 * directly identify the struct
++		 * drm_xe_query_mem_regions' instance constructed at
++		 * query_mem_regions()
++		 *
++		 * For our current platforms:
++		 * Bit 0 -> System Memory
++		 * Bit 1 -> VRAM0 on Tile0
++		 * Bit 2 -> VRAM1 on Tile1
++		 * However the uAPI is generic and it's userspace's
++		 * responsibility to check the mem_class, without any
++		 * assumption.
++		 */
+ 		if (!IS_DGFX(xe))
+ 			gt_list->gt_list[id].near_mem_regions = 0x1;
+ 		else
 diff --git a/include/uapi/drm/xe_drm.h b/include/uapi/drm/xe_drm.h
-index b5117bc1f13c..6811a1c96078 100644
+index 55cb22b2c7e2..73e9d00a2111 100644
 --- a/include/uapi/drm/xe_drm.h
 +++ b/include/uapi/drm/xe_drm.h
-@@ -962,6 +962,30 @@ struct drm_xe_vm_bind_op {
+@@ -264,10 +264,9 @@ struct drm_xe_mem_region {
+ 	 */
+ 	__u16 mem_class;
+ 	/**
+-	 * @instance: The instance for this region.
+-	 *
+-	 * The @mem_class and @instance taken together will always give
+-	 * a unique pair.
++	 * @instance: The unique ID for this region, which serves as the
++	 * index in the placement bitmask used as argument for
++	 * &DRM_IOCTL_XE_GEM_CREATE
+ 	 */
+ 	__u16 instance;
+ 	/**
+@@ -412,6 +411,10 @@ struct drm_xe_gt {
+ 	 * @near_mem_regions: Bit mask of instances from
+ 	 * drm_xe_query_mem_regions that are nearest to the current engines
+ 	 * of this GT.
++	 * Each index in this mask refers directly to the struct
++	 * drm_xe_query_mem_regions' instance, no assumptions should
++	 * be made about order. The type of each region is described
++	 * by struct drm_xe_query_mem_regions' mem_class.
+ 	 */
+ 	__u64 near_mem_regions;
+ 	/**
+@@ -420,6 +423,10 @@ struct drm_xe_gt {
+ 	 * In general, they have extra indirections when compared to the
+ 	 * @near_mem_regions. For a discrete device this could mean system
+ 	 * memory and memory living in a different tile.
++	 * Each index in this mask refers directly to the struct
++	 * drm_xe_query_mem_regions' instance, no assumptions should
++	 * be made about order. The type of each region is described
++	 * by struct drm_xe_query_mem_regions' mem_class.
+ 	 */
+ 	__u64 far_mem_regions;
+ 	/** @reserved: Reserved */
+@@ -660,7 +667,13 @@ struct drm_xe_gem_create {
+ 	 */
+ 	__u64 size;
  
- /**
-  * struct drm_xe_vm_bind - Input of &DRM_IOCTL_XE_VM_BIND
-+ *
-+ * Below is an example of a minimal use of @drm_xe_vm_bind to
-+ * asynchronously bind the buffer `data` at address `BIND_ADDRESS` to
-+ * illustrate `userptr`. It can be synchronized by using the example
-+ * provided for @drm_xe_sync.
-+ *
-+ * .. code-block:: C
-+ *
-+ *     data = aligned_alloc(ALIGNMENT, BO_SIZE);
-+ *     struct drm_xe_vm_bind bind = {
-+ *         .vm_id = vm,
-+ *         .num_binds = 1,
-+ *         .bind.obj = 0,
-+ *         .bind.obj_offset = to_user_pointer(data),
-+ *         .bind.range = BO_SIZE,
-+ *         .bind.addr = BIND_ADDRESS,
-+ *         .bind.op = DRM_XE_VM_BIND_OP_MAP_USERPTR,
-+ *         .bind.flags = DRM_XE_VM_BIND_FLAG_ASYNC,
-+ *         .num_syncs = 1,
-+ *         .syncs = &sync,
-+ *         .exec_queue_id = 0,
-+ *     };
-+ *     ioctl(fd, DRM_IOCTL_XE_VM_BIND, &bind);
-+ *
-  */
- struct drm_xe_vm_bind {
- 	/** @extensions: Pointer to the first extension struct, if any */
-@@ -1023,6 +1047,25 @@ struct drm_xe_vm_bind {
+-	/** @placement: A mask of memory instances of where GEM can be placed. */
++	/**
++	 * @placement: A mask of memory instances of where GEM can be placed.
++	 * Each index in this mask refers directly to the struct
++	 * drm_xe_query_mem_regions' instance, no assumptions should
++	 * be made about order. The type of each region is described
++	 * by struct drm_xe_query_mem_regions' mem_class.
++	 */
+ 	__u32 placement;
  
- /**
-  * struct drm_xe_exec_queue_create - Input of &DRM_IOCTL_XE_EXEC_QUEUE_CREATE
-+ *
-+ * The example below shows how to use @drm_xe_exec_queue_create to create
-+ * a simple exec_queue (no parallel submission) of class
-+ * &DRM_XE_ENGINE_CLASS_RENDER.
-+ *
-+ * .. code-block:: C
-+ *
-+ *     struct drm_xe_engine_class_instance instance = {
-+ *         .engine_class = DRM_XE_ENGINE_CLASS_RENDER,
-+ *     };
-+ *     struct drm_xe_exec_queue_create exec_queue_create = {
-+ *          .extensions = 0,
-+ *          .vm_id = vm,
-+ *          .num_bb_per_exec = 1,
-+ *          .num_eng_per_bb = 1,
-+ *          .instances = to_user_pointer(&instance),
-+ *     };
-+ *     ioctl(fd, DRM_IOCTL_XE_EXEC_QUEUE_CREATE, &exec_queue_create);
-+ *
-  */
- struct drm_xe_exec_queue_create {
- #define DRM_XE_EXEC_QUEUE_EXTENSION_SET_PROPERTY		0
-@@ -1114,6 +1157,30 @@ struct drm_xe_exec_queue_get_property {
-  *
-  * and the @flags can be:
-  *  - %DRM_XE_SYNC_FLAG_SIGNAL
-+ *
-+ * A minimal use of @drm_xe_sync looks like this:
-+ *
-+ * .. code-block:: C
-+ *
-+ *     struct drm_xe_sync sync = {
-+ *         .flags = DRM_XE_SYNC_FLAG_SIGNAL,
-+ *         .type = DRM_XE_SYNC_TYPE_SYNCOBJ,
-+ *     };
-+ *     struct drm_syncobj_create syncobj_create = { 0 };
-+ *     ioctl(fd, DRM_IOCTL_SYNCOBJ_CREATE, &syncobj_create);
-+ *     sync.handle = syncobj_create.handle;
-+ *         ...
-+ *         use of &sync in drm_xe_exec or drm_xe_vm_bind
-+ *         ...
-+ *     struct drm_syncobj_wait wait = {
-+ *         .handles = &sync.handle,
-+ *         .timeout_nsec = INT64_MAX,
-+ *         .count_handles = 1,
-+ *         .flags = 0,
-+ *         .first_signaled = 0,
-+ *         .pad = 0,
-+ *     };
-+ *     ioctl(fd, DRM_IOCTL_SYNCOBJ_WAIT, &wait);
-  */
- struct drm_xe_sync {
- 	/** @extensions: Pointer to the first extension struct, if any */
-@@ -1156,6 +1223,23 @@ struct drm_xe_sync {
- 
- /**
-  * struct drm_xe_exec - Input of &DRM_IOCTL_XE_EXEC
-+ *
-+ * This is an example to use @drm_xe_exec for execution of the object
-+ * at BIND_ADDRESS (see example in @drm_xe_vm_bind) by an exec_queue
-+ * (see example in @drm_xe_exec_queue_create). It can be synchronized
-+ * by using the example provided for @drm_xe_sync.
-+ *
-+ * .. code-block:: C
-+ *
-+ *     struct drm_xe_exec exec = {
-+ *         .exec_queue_id = exec_queue,
-+ *         .syncs = &sync,
-+ *         .num_syncs = 1,
-+ *         .address = BIND_ADDRESS,
-+ *         .num_batch_buffer = 1,
-+ *     };
-+ *     ioctl(fd, DRM_IOCTL_XE_EXEC, &exec);
-+ *
-  */
- struct drm_xe_exec {
- 	/** @extensions: Pointer to the first extension struct, if any */
+ #define DRM_XE_GEM_CREATE_FLAG_DEFER_BACKING		(1 << 0)
 -- 
 2.34.1
 
