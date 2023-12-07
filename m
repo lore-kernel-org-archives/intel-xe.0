@@ -4,49 +4,49 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 34656C4167B
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5B4FCC10DCE
 	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 08:17:16 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0201C10E81A;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 311DC10E820;
 	Thu,  7 Dec 2023 08:17:16 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.65])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE19510E81A
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 08:17:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7067310E81C
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 08:17:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701937032; x=1733473032;
+ t=1701937029; x=1733473029;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=1uKC1gaUiouNcyVN8epXKd+300MFor7nVuqMSzlR1pM=;
- b=dwxKjUF1budlMKc17uc9SC3nox4nJobiHbY0v53U1YkTDbQ6NDKdYh/Q
- IpmNUzn8o8zHOVvvuzMM9x5wY/jVsIaGQizzIO/N+sYIW0zkeWLiWezuQ
- 3yJ5g5YWk3HPaDbpKuKLDte+ICJ3WEdul9oE/x5YDvBu28JFfMPsLKUM1
- 5WY+UNjdoUEQ26TsQHuKZMRoJ2iHIO4v9p6KdfVKdEKpTD/E6/bgrH9DB
- vPr6zympQlBxWU5MK/KerozvJwOGztfbGJKlnEaxd5g2eNjJQA3OqCRlp
- NGSXmKvjMpZIIxz4oL9RlLGQc8nMnyxwI9hkNYudP7gfakxirUM0Ewpfk w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="398079431"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="398079431"
+ bh=T0CFP3ueOOD7Y8d9DiDB37yUhNH9/RT3T6ktIpCXBjc=;
+ b=Fn46TsjqoTXlNmdm1yM8g8hj2kCP1tSC53F/moxtMJFXRkaXIeJ0YoBt
+ 8uVf4I+CcJYShzcMRgKqts3kwpFWOJ0Esr30foxBa3sohpvqo+CvNgapK
+ OZ6DaDKZyGlUm5pqBS/D9cVvXlnzvZglrTfLGMIL10VJ76lGW/HpMuWM+
+ Mrz0suTmXj9hvlWhLTaK0Cp3D6cHJ9JDvK33HLXO83BxeNQ3uUjUW5q5T
+ K/MaIm3MXTKHz1ulSxJdQ6ENh6fUbbRZiz2pe2bGy/6NjCq+NcxwCy6Ex
+ KOCaxmxuvhaFPZH1hGcWE+2k/DaLXDzaFyqeW/jZGjfj346zHJkob42sR g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="398079424"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="398079424"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 00:17:12 -0800
+ 07 Dec 2023 00:17:09 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="17413368"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="17413364"
 Received: from jpoulsen-mobl.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.234])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 00:17:12 -0800
+ 07 Dec 2023 00:17:08 -0800
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  7 Dec 2023 09:16:48 +0100
-Message-ID: <20231207081652.17431-13-thomas.hellstrom@linux.intel.com>
+Date: Thu,  7 Dec 2023 09:16:44 +0100
+Message-ID: <20231207081652.17431-9-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231207081652.17431-1-thomas.hellstrom@linux.intel.com>
 References: <20231207081652.17431-1-thomas.hellstrom@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [CI 13/16] drm/xe: Adjust to commit "drm/gpuvm: add
- drm_gpuvm_flags to drm_gpuvm"
+Subject: [Intel-xe] [CI 09/16] drm/gpuvm: reference count drm_gpuvm
+ structures
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,26 +61,228 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
----
- drivers/gpu/drm/xe/xe_vm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+From: Danilo Krummrich <dakr@redhat.com>
 
-diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 9a090f21f9af..034496ac2341 100644
---- a/drivers/gpu/drm/xe/xe_vm.c
-+++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1385,8 +1385,8 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
- 		goto err_no_resv;
+Implement reference counting for struct drm_gpuvm.
+
+Acked-by: Christian König <christian.koenig@amd.com>
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+Signed-off-by: Danilo Krummrich <dakr@redhat.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20231108001259.15123-10-dakr@redhat.com
+(cherry picked from commit 8af72338dd81d1f8667e0240bd28f5fc98b3f20d)
+---
+ drivers/gpu/drm/drm_gpuvm.c            | 56 +++++++++++++++++++++-----
+ drivers/gpu/drm/nouveau/nouveau_uvmm.c | 20 ++++++---
+ include/drm/drm_gpuvm.h                | 31 +++++++++++++-
+ 3 files changed, 90 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_gpuvm.c b/drivers/gpu/drm/drm_gpuvm.c
+index 0a010b52e33d..10bd15822b9b 100644
+--- a/drivers/gpu/drm/drm_gpuvm.c
++++ b/drivers/gpu/drm/drm_gpuvm.c
+@@ -746,6 +746,8 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
+ 	gpuvm->rb.tree = RB_ROOT_CACHED;
+ 	INIT_LIST_HEAD(&gpuvm->rb.list);
+ 
++	kref_init(&gpuvm->kref);
++
+ 	gpuvm->name = name ? name : "unknown";
+ 	gpuvm->flags = flags;
+ 	gpuvm->ops = ops;
+@@ -770,15 +772,8 @@ drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
+ }
+ EXPORT_SYMBOL_GPL(drm_gpuvm_init);
+ 
+-/**
+- * drm_gpuvm_destroy() - cleanup a &drm_gpuvm
+- * @gpuvm: pointer to the &drm_gpuvm to clean up
+- *
+- * Note that it is a bug to call this function on a manager that still
+- * holds GPU VA mappings.
+- */
+-void
+-drm_gpuvm_destroy(struct drm_gpuvm *gpuvm)
++static void
++drm_gpuvm_fini(struct drm_gpuvm *gpuvm)
+ {
+ 	gpuvm->name = NULL;
+ 
+@@ -790,7 +785,35 @@ drm_gpuvm_destroy(struct drm_gpuvm *gpuvm)
+ 
+ 	drm_gem_object_put(gpuvm->r_obj);
+ }
+-EXPORT_SYMBOL_GPL(drm_gpuvm_destroy);
++
++static void
++drm_gpuvm_free(struct kref *kref)
++{
++	struct drm_gpuvm *gpuvm = container_of(kref, struct drm_gpuvm, kref);
++
++	drm_gpuvm_fini(gpuvm);
++
++	if (drm_WARN_ON(gpuvm->drm, !gpuvm->ops->vm_free))
++		return;
++
++	gpuvm->ops->vm_free(gpuvm);
++}
++
++/**
++ * drm_gpuvm_put() - drop a struct drm_gpuvm reference
++ * @gpuvm: the &drm_gpuvm to release the reference of
++ *
++ * This releases a reference to @gpuvm.
++ *
++ * This function may be called from atomic context.
++ */
++void
++drm_gpuvm_put(struct drm_gpuvm *gpuvm)
++{
++	if (gpuvm)
++		kref_put(&gpuvm->kref, drm_gpuvm_free);
++}
++EXPORT_SYMBOL_GPL(drm_gpuvm_put);
+ 
+ static int
+ __drm_gpuva_insert(struct drm_gpuvm *gpuvm,
+@@ -839,11 +862,21 @@ drm_gpuva_insert(struct drm_gpuvm *gpuvm,
+ {
+ 	u64 addr = va->va.addr;
+ 	u64 range = va->va.range;
++	int ret;
+ 
+ 	if (unlikely(!drm_gpuvm_range_valid(gpuvm, addr, range)))
+ 		return -EINVAL;
+ 
+-	return __drm_gpuva_insert(gpuvm, va);
++	ret = __drm_gpuva_insert(gpuvm, va);
++	if (likely(!ret))
++		/* Take a reference of the GPUVM for the successfully inserted
++		 * drm_gpuva. We can't take the reference in
++		 * __drm_gpuva_insert() itself, since we don't want to increse
++		 * the reference count for the GPUVM's kernel_alloc_node.
++		 */
++		drm_gpuvm_get(gpuvm);
++
++	return ret;
+ }
+ EXPORT_SYMBOL_GPL(drm_gpuva_insert);
+ 
+@@ -876,6 +909,7 @@ drm_gpuva_remove(struct drm_gpuva *va)
  	}
  
--	drm_gpuvm_init(&vm->gpuvm, "Xe VM", &xe->drm, vm_resv_obj, 0, vm->size,
--		       0, 0, &gpuvm_ops);
-+	drm_gpuvm_init(&vm->gpuvm, "Xe VM", 0, &xe->drm, vm_resv_obj,
-+		       0, vm->size, 0, 0, &gpuvm_ops);
+ 	__drm_gpuva_remove(va);
++	drm_gpuvm_put(va->vm);
+ }
+ EXPORT_SYMBOL_GPL(drm_gpuva_remove);
  
- 	drm_gem_object_put(vm_resv_obj);
+diff --git a/drivers/gpu/drm/nouveau/nouveau_uvmm.c b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+index 54be12c1272f..cb2f06565c46 100644
+--- a/drivers/gpu/drm/nouveau/nouveau_uvmm.c
++++ b/drivers/gpu/drm/nouveau/nouveau_uvmm.c
+@@ -1780,6 +1780,18 @@ nouveau_uvmm_bo_unmap_all(struct nouveau_bo *nvbo)
+ 	}
+ }
  
++static void
++nouveau_uvmm_free(struct drm_gpuvm *gpuvm)
++{
++	struct nouveau_uvmm *uvmm = uvmm_from_gpuvm(gpuvm);
++
++	kfree(uvmm);
++}
++
++static const struct drm_gpuvm_ops gpuvm_ops = {
++	.vm_free = nouveau_uvmm_free,
++};
++
+ int
+ nouveau_uvmm_ioctl_vm_init(struct drm_device *dev,
+ 			   void *data,
+@@ -1830,7 +1842,7 @@ nouveau_uvmm_ioctl_vm_init(struct drm_device *dev,
+ 		       NOUVEAU_VA_SPACE_END,
+ 		       init->kernel_managed_addr,
+ 		       init->kernel_managed_size,
+-		       NULL);
++		       &gpuvm_ops);
+ 	/* GPUVM takes care from here on. */
+ 	drm_gem_object_put(r_obj);
+ 
+@@ -1849,8 +1861,7 @@ nouveau_uvmm_ioctl_vm_init(struct drm_device *dev,
+ 	return 0;
+ 
+ out_gpuvm_fini:
+-	drm_gpuvm_destroy(&uvmm->base);
+-	kfree(uvmm);
++	drm_gpuvm_put(&uvmm->base);
+ out_unlock:
+ 	mutex_unlock(&cli->mutex);
+ 	return ret;
+@@ -1902,7 +1913,6 @@ nouveau_uvmm_fini(struct nouveau_uvmm *uvmm)
+ 
+ 	mutex_lock(&cli->mutex);
+ 	nouveau_vmm_fini(&uvmm->vmm);
+-	drm_gpuvm_destroy(&uvmm->base);
+-	kfree(uvmm);
++	drm_gpuvm_put(&uvmm->base);
+ 	mutex_unlock(&cli->mutex);
+ }
+diff --git a/include/drm/drm_gpuvm.h b/include/drm/drm_gpuvm.h
+index 239680b83079..4dc83a27506a 100644
+--- a/include/drm/drm_gpuvm.h
++++ b/include/drm/drm_gpuvm.h
+@@ -247,6 +247,11 @@ struct drm_gpuvm {
+ 		struct list_head list;
+ 	} rb;
+ 
++	/**
++	 * @kref: reference count of this object
++	 */
++	struct kref kref;
++
+ 	/**
+ 	 * @kernel_alloc_node:
+ 	 *
+@@ -273,7 +278,23 @@ void drm_gpuvm_init(struct drm_gpuvm *gpuvm, const char *name,
+ 		    u64 start_offset, u64 range,
+ 		    u64 reserve_offset, u64 reserve_range,
+ 		    const struct drm_gpuvm_ops *ops);
+-void drm_gpuvm_destroy(struct drm_gpuvm *gpuvm);
++
++/**
++ * drm_gpuvm_get() - acquire a struct drm_gpuvm reference
++ * @gpuvm: the &drm_gpuvm to acquire the reference of
++ *
++ * This function acquires an additional reference to @gpuvm. It is illegal to
++ * call this without already holding a reference. No locks required.
++ */
++static inline struct drm_gpuvm *
++drm_gpuvm_get(struct drm_gpuvm *gpuvm)
++{
++	kref_get(&gpuvm->kref);
++
++	return gpuvm;
++}
++
++void drm_gpuvm_put(struct drm_gpuvm *gpuvm);
+ 
+ bool drm_gpuvm_range_valid(struct drm_gpuvm *gpuvm, u64 addr, u64 range);
+ bool drm_gpuvm_interval_empty(struct drm_gpuvm *gpuvm, u64 addr, u64 range);
+@@ -683,6 +704,14 @@ static inline void drm_gpuva_init_from_op(struct drm_gpuva *va,
+  * operations to drivers.
+  */
+ struct drm_gpuvm_ops {
++	/**
++	 * @vm_free: called when the last reference of a struct drm_gpuvm is
++	 * dropped
++	 *
++	 * This callback is mandatory.
++	 */
++	void (*vm_free)(struct drm_gpuvm *gpuvm);
++
+ 	/**
+ 	 * @op_alloc: called when the &drm_gpuvm allocates
+ 	 * a struct drm_gpuva_op
 -- 
 2.42.0
 
