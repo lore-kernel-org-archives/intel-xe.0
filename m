@@ -4,30 +4,56 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EF654C10DCE
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 11:07:09 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3CD83C4167B
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 11:11:34 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AEB7810E868;
-	Thu,  7 Dec 2023 11:07:09 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id BA6E210E868;
- Thu,  7 Dec 2023 11:07:07 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id B20F9AADEA;
- Thu,  7 Dec 2023 11:07:07 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0468651177727288002=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 08C8710E86C;
+	Thu,  7 Dec 2023 11:11:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.151])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B1C8010E86C
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 11:11:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701947491; x=1733483491;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=LP8vI6gyqAmm13qJbq6Xb5it0QLvkAjwtFqYoQEDliE=;
+ b=nZc9+TvvZ+7gzIRDd0RVX0CD3ha8AzN0OMPuy2UJVsGe7wqCzM/vyLO1
+ mQJRwqNc7u4TKnFjyal2QFHWYAqXPXjH8FmlMyVQXiak3Cq6GvoF273Oq
+ pU7gKkVeJcTP4TW4JIUEX6lbIIXiIgik2TMdq2cS2pSvmzKwL9zgq44Ge
+ TRn94lSMjfvuarN7xYDL9fO906BSchuZRcaSlZx5EXo4dvoIJ4Jfqiwsf
+ mYwnZzeMZnpxjlqNKKo8c2IIs5nCBwKleijRSuWiiFG5Pb7fPG7rxJCtC
+ mkS+I0INisbvr4IlQFsCOXzdiMpwZO5zYhk0INX0cgWPxTGQv7nHF640y Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="374380519"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="374380519"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+ by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 03:11:31 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="805981609"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="805981609"
+Received: from jbuller-mobl.ger.corp.intel.com (HELO [10.213.214.207])
+ ([10.213.214.207])
+ by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 03:11:29 -0800
+Message-ID: <2990cd86-7238-4ea9-a9aa-5ab624bea572@linux.intel.com>
+Date: Thu, 7 Dec 2023 11:11:27 +0000
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_Enable_compression_handling_on_L?=
- =?utf-8?q?NL=2E_=28rev7=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Himal Prasad Ghimiray" <himal.prasad.ghimiray@intel.com>
-Date: Thu, 07 Dec 2023 11:07:07 -0000
-Message-ID: <170194722769.28721.6300406096296058968@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231207091922.1224800-1-himal.prasad.ghimiray@intel.com>
-In-Reply-To: <20231207091922.1224800-1-himal.prasad.ghimiray@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [Intel-xe] LLC configurating, mmap and bo cache management
+ questions
+Content-Language: en-US
+To: "Hellstrom, Thomas" <thomas.hellstrom@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+References: <02c74379-6513-40cc-a195-c4eeb7a7fd79@linux.intel.com>
+ <c16bc9f7bd18f531136ebbcf6504d497db9a793a.camel@intel.com>
+ <eaa44445-21e2-4b9f-95a0-6b7395203900@linux.intel.com>
+ <36e0e059e0f74ca7c55b2647658456fabe26420d.camel@intel.com>
+From: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>
+Organization: Intel Corporation UK Plc
+In-Reply-To: <36e0e059e0f74ca7c55b2647658456fabe26420d.camel@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,246 +65,184 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: "Auld, Matthew" <matthew.auld@intel.com>, "Santa,
+ Carlos" <carlos.santa@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============0468651177727288002==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+On 06/12/2023 11:46, Hellstrom, Thomas wrote:
+> Hi, Tvrtko.
+> 
+> On Wed, 2023-12-06 at 10:58 +0000, Tvrtko Ursulin wrote:
+>>
+>> Hi Thomas,
+>>
+>> On 06/12/2023 08:26, Hellstrom, Thomas wrote:
+>>> On Tue, 2023-12-05 at 14:19 +0000, Tvrtko Ursulin wrote:
+>>>>
+>>>> Hi,
+>>>>
+>>>> We are working on adding xe support to ChromeOS minigbm and have
+>>>> a
+>>>> couple questions.
+>>>>
+>>>> If I follow things correctly with xe mmap caching mode is fixed
+>>>> to
+>>>> object caching modes set at bo create. For framebuffers it will
+>>>> be WC
+>>>> and for the rest userspace can choose WB or WC via
+>>>> drm_xe_gem_create->cpu_caching. (Unless discrete, when WB cannot
+>>>> be
+>>>> used
+>>>> at all.)
+>>>>
+>>>> AFAICT minigbm basically cares about two transition points. Lets
+>>>> call
+>>>> them CPU access begin and end.
+>>>>
+>>>> 1)
+>>>> When a bo is mmapped it wants to invalidate the cache, which
+>>>> looks to
+>>>> be
+>>>> about making sure all GPU writes have landed to the backing
+>>>> store. In
+>>>> the i915 world that translates to the set_domain ioctl.
+>>>>
+>>>> What is the uapi for this with xe, or it is somehow guaranteed to
+>>>> not
+>>>> be
+>>>> needed?
+>>>
+>>> Signalling a user-fence or dma-fence obtained as an out-fence from
+>>> an
+>>> exec call will guarantee GPU caches are flushed. Currently I don't
+>>> think there is anything like gem wait in the uAPI, although Matt is
+>>> just about to add functionality to wait on all outstanding work on
+>>> an
+>>> exec_queue.
+>>
+>> Problem I see is there are no execs or therefore fences in the
+>> minigbm
+>> ABI. It's just buffers, created or imported, CPU access and some
+>> other
+>> stuff.
+>>
+>> And it is quite extensively used in the OS so I assume it has to work
+>> (I
+>> mean the invalidation/flushing was not put in there for no reason),
+>> in
+>> other words, where the i915 backend today does
+>> DRM_I915_GEM_SET_DOMAIN
+>> on "cpu access begin", which is buffer based, I am not clear how to
+>> implement that with xe.
+>>
+>> For the outstanding work you mention, since you say it is about
+>> exec_queue, I assume again it will not work purely with buffers? If
+>> so
+>> it probably won't be useful for minigbm.
+>>
+>> Also if I look at all the other minigbm backends, I see a mix of
+>> behaviours:
+>>
+>>    * msm and vc4 appear to not concern themselves with any of this.
+>>
+>>    * rockchip appears to be doing full bounce buffering via memcpy on
+>> CPU
+>> access begin/end.
+>>
+>>    * i915 and amdgpu respectively use
+>> DRM_I915_GEM_SET_DOMAIN/DRM_AMDGPU_GEM_WAIT_IDLE (also buffer based,
+>> not
+>> execution queue). Andgpu curiously does not do any flushing on CPU
+>> access end.
+>>
+>> Digging into git history, both DRM_I915_GEM_SET_DOMAIN on CPU access
+>> begin and clflushing on end were added to fix various CTS test
+>> failures.
+>> So I guess we could also wait and see what happens there. If those or
+>> some will be failing with xe too then propose adding some new uapi.
+>> Or
+>> if manual testing will start reporting visual corruption in the UI
+>> elements or such.
+> 
+> Indeed it sounds like we'd need a DRM_XE_GEM_WAIT_IDLE, similar to
+> AMDGPU for this use-case. I'll bring that up for discussion.
 
-Series: Enable compression handling on LNL. (rev7)
-URL   : https://patchwork.freedesktop.org/series/126704/
-State : failure
+Thanks!
 
-== Summary ==
+>>>> 2)
+>>>> When a bo is unmapped, or CPU access finished, it wants to flush
+>>>> the
+>>>> CPU
+>>>> caches. That is /almost/ completely a CPU operation, where it
+>>>> just
+>>>> needs
+>>>> to either clflush or invalidate the WC buffer respectively, if
+>>>> not
+>>>> the
+>>>> fact that clflush can be skipped on platforms with LLC.
+>>>>
+>>>> I did not see an equivalent of an I915_PARAM_HAS_LLC in xe? Did I
+>>>> miss
+>>>> it or what it is the plan for querying this detail?
+>>>
+>>> XeKMD is generally coherent, except if UMD selects a GPU PAT index
+>>> with
+>>> limited coherency together with WB instead of WC memory. In that
+>>> case,
+>>> UMD is responsible for doing the needed CLFLUSH-ing, whereas KMD
+>>> only
+>>> ensures initial clearing of the pages is CLFLUSHED for security
+>>> reasons.
+>>>
+>>> I'm not 100% sure if UMD can actually select WB with limited
+>>> coherency
+>>> PAT index in the initial uAPI revision, but Matthew has received
+>>> requests for that so any additional input here on performance
+>>> implications is appreciated.
+>>>
+>>> The thinking here is otherwise that GPU PAT indices with limited
+>>> coherency should be used together with WC memory in the same
+>>> situations
+>>> as VRAM/LMEM is used on DGFX.
+>>
+>> Hm okay, this would be the VM BIND side of things which deals with
+>> GPU
+>> PATs. From the CPU side it is just CPU caching modes implicitly
+>> selected
+>> via DRM_XE_GEM_CPU_CACHING_WB/WC.
+>>
+>> The question about the analogue of I915_PARAM_HAS_LLC was AFAIU about
+>> a
+>> performance optimisation where UMD is deciding whether it is okay to
+>> skip issuing clflush for the mapped bo if DRM_XE_GEM_CPU_CACHING_WB
+>> was
+>> used. (If DRM_XE_GEM_CPU_CACHING_WC was used it obviously only needs
+>> to
+>> flush the write combine buffer.)
+>>
+>> Looking at what Mesa is doing it appears it is not using
+>> I915_PARAM_HAS_LLC but has its own device info tables. So I guess
+>> minigbm xe backend will have to do the same if xe will not provide
+>> the
+>> analogue query.
+> 
+> IMO clflushing in this case should never be needed, (Again, similar to
+> AMD). Whatever renders from / to those buffers should make sure they
+> are clflushed before or while accessing them. How is a rendering API
+> made aware of these bos? Are they imported using drm prime?
 
-CI Bug Log - changes from xe-557-668d13abebbbc3812de86be1f8477475e1d90728_BAT -> xe-pw-126704v7_BAT
-====================================================
+Yes they can be imported via drm prime. It's a quite a huge code base 
+with a few abstractions and quite hard to figure out all possible paths. 
+There are gbm_bo_map paths in the host and vm compositors (Exo and 
+Sommelier), Skia library, camera pipeline, maybe more.
 
-Summary
--------
+You mean specifically on the "cpu access end" part of the story flushing 
+would never be needed? Regardless of llc and !llc, wb or wc mappings, 
+imported or native buffer? What mechanism would next in the pipeline 
+(after CPU access) use to ensure the flush?
 
-  **FAILURE**
+Regards,
 
-  Serious unknown changes coming with xe-pw-126704v7_BAT absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in xe-pw-126704v7_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in xe-pw-126704v7_BAT:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@xe_live_ktest@bo:
-    - bat-atsm-2:         [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-atsm-2/igt@xe_live_ktest@bo.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-atsm-2/igt@xe_live_ktest@bo.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in xe-pw-126704v7_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3:
-    - bat-dg2-oem2:       [PASS][3] -> [FAIL][4] ([Intel XE#906]) +1 other test fail
-   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html
-   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html
-
-  * igt@xe_create@create-execqueues-leak:
-    - bat-atsm-2:         [PASS][5] -> [FAIL][6] ([Intel XE#524])
-   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-atsm-2/igt@xe_create@create-execqueues-leak.html
-
-  * igt@xe_live_ktest@bo:
-    - bat-dg2-oem2:       [PASS][7] -> [INCOMPLETE][8] ([Intel XE#868])
-   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-dg2-oem2/igt@xe_live_ktest@bo.html
-   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-dg2-oem2/igt@xe_live_ktest@bo.html
-
-  * igt@xe_prime_self_import@basic-with_fd_dup:
-    - bat-atsm-2:         [PASS][9] -> [FAIL][10] ([Intel XE#999])
-   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html
-   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html
-
-  
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - bat-adlp-7:         [FAIL][11] ([Intel XE#480]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc:
-    - bat-dg2-oem2:       [DMESG-WARN][13] ([Intel XE#282] / [i915#2017]) -> [PASS][14] +5 other tests pass
-   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html
-   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html
-
-  
-#### Warnings ####
-
-  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:
-    - bat-dg2-oem2:       [DMESG-FAIL][15] ([Intel XE#282] / [i915#2017]) -> [FAIL][16] ([Intel XE#400] / [Intel XE#616]) +1 other test fail
-   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html
-
-  
-  [Intel XE#282]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/282
-  [Intel XE#400]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/400
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
-  [Intel XE#524]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/524
-  [Intel XE#616]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/616
-  [Intel XE#868]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/868
-  [Intel XE#906]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/906
-  [Intel XE#999]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/999
-  [i915#2017]: https://gitlab.freedesktop.org/drm/intel/issues/2017
-
-
-Build changes
--------------
-
-  * Linux: xe-557-668d13abebbbc3812de86be1f8477475e1d90728 -> xe-pw-126704v7
-
-  IGT_7626: 154b7288552cd7ed3033f8ef396e88d0bd1b7646 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-557-668d13abebbbc3812de86be1f8477475e1d90728: 668d13abebbbc3812de86be1f8477475e1d90728
-  xe-pw-126704v7: 126704v7
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/index.html
-
---===============0468651177727288002==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Enable compression handling on LNL. (rev7)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/126704/">https://patchwork.freedesktop.org/series/126704/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-557-668d13abebbbc3812de86be1f8477475e1d90728_BAT -&gt; xe-pw-126704v7_BAT</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with xe-pw-126704v7_BAT absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in xe-pw-126704v7_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in xe-pw-126704v7_BAT:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@xe_live_ktest@bo:<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-atsm-2/igt@xe_live_ktest@bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-atsm-2/igt@xe_live_ktest@bo.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-126704v7_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@d-dp3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/906">Intel XE#906</a>) +1 other test fail</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_create@create-execqueues-leak:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-atsm-2/igt@xe_create@create-execqueues-leak.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/524">Intel XE#524</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_live_ktest@bo:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-dg2-oem2/igt@xe_live_ktest@bo.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-dg2-oem2/igt@xe_live_ktest@bo.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/868">Intel XE#868</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@xe_prime_self_import@basic-with_fd_dup:</p>
-<ul>
-<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-atsm-2/igt@xe_prime_self_import@basic-with_fd_dup.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/999">Intel XE#999</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc:</p>
-<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@hang-read-crc.html">PASS</a> +5 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-557-668d13abebbbc3812de86be1f8477475e1d90728/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/282">Intel XE#282</a> / <a href="https://gitlab.freedesktop.org/drm/intel/issues/2017">i915#2017</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-126704v7/bat-dg2-oem2/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/400">Intel XE#400</a> / <a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/616">Intel XE#616</a>) +1 other test fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: xe-557-668d13abebbbc3812de86be1f8477475e1d90728 -&gt; xe-pw-126704v7</li>
-</ul>
-<p>IGT_7626: 154b7288552cd7ed3033f8ef396e88d0bd1b7646 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-557-668d13abebbbc3812de86be1f8477475e1d90728: 668d13abebbbc3812de86be1f8477475e1d90728<br />
-  xe-pw-126704v7: 126704v7</p>
-
-</body>
-</html>
-
---===============0468651177727288002==--
+Tvrtko
