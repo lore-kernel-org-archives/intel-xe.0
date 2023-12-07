@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DD929C10F07
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 14:12:26 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5ED05C10F09
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 14:12:27 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8B9C10E8BA;
-	Thu,  7 Dec 2023 14:12:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2669210E8C4;
+	Thu,  7 Dec 2023 14:12:27 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EE6E10E8BA
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 14:12:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB22710E8B2
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 14:12:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701958344; x=1733494344;
+ t=1701958340; x=1733494340;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=bXQeo+s4tVAf3ezfJHRSzPn6ix60jb8coF9rFp15+QM=;
- b=nk7jtCf70wgJUHQ+RHzRTS/4rHIWDC1GPzDfBrV+B5vajYvZA+rV0W3U
- uxrTipCVbSN45VETqt4XEsEaHfV+GUcVPwgZJ/svElBXNN0p1vQlUXmIQ
- 53J7uwcK05hPe0JdpM9Zvd1wH1g+gk5dui9HkykrrMJD9E4Lek+sBNkyE
- njVU4pOScLdrdtDoSnCHhcNgUfmO8tNm+w82BF9boTsqSSboD5XRVK9iw
- E8bFWqHWK8sL7Q6cTcSpm/FJwikQ5+Ug7gJoWINGCw6xcDnU+a6tq5kod
- TMM3RrPcc3S6OVP8geoAi0lSDiJ1RBhtGw82DGB+HIjtl9z/D+PXtC/Ss g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="12947583"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="12947583"
+ bh=PJTXzh20Rd3R8jBIyhRJPQvZQLChW0V+bYZqr6tzQ+Y=;
+ b=gRaWubuaGoyY3KTmXAR1VLHkl7QYDDUi5R0YG+lywQMzT7e6H8IoyQu9
+ d9ctsnBOvkeLi0wLh48c8q/W8JrzvJT0ELuKg1Hj4/TFxM8toO/K+cdgH
+ gUtJvWWeY0vnfXB0vh58hvO6+wdnGA5DeZLka8YQak5xL+goh+SqS1zI2
+ UEyTJb6KfmU3dhwtv5DF2Y0aOHW/LGetqmRj5C0OJVKwGo4I1N8uudafn
+ UnZbHtOrrZEDFWGFm7gGw9PBlCG6fvWCoMFpwOrJ0ZHW5JrdW0UsMAS44
+ N5dAoBaEfWUK2JEhypta+NTbnRkQ+Q3rSaiOozKf2uJi0B3SDSI5QClZU g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="12947559"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="12947559"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 06:12:24 -0800
+ 07 Dec 2023 06:12:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="721479792"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="721479792"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="721479784"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="721479784"
 Received: from jpoulsen-mobl.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.234])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 06:12:21 -0800
+ 07 Dec 2023 06:12:18 -0800
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH 15/16] drm/xe: Adjust to commit "drm/gpuvm: add an abstraction
- for a VM/BO combination"
-Date: Thu,  7 Dec 2023 15:11:55 +0100
-Message-ID: <20231207141157.26014-16-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH 12/16] drm/xe: Adjust to "drm/gpuvm: add common dma-resv per
+ struct drm_gpuvm"
+Date: Thu,  7 Dec 2023 15:11:52 +0100
+Message-ID: <20231207141157.26014-13-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231207141157.26014-1-thomas.hellstrom@linux.intel.com>
 References: <20231207141157.26014-1-thomas.hellstrom@linux.intel.com>
@@ -64,122 +64,484 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 11 +++++++----
- drivers/gpu/drm/xe/xe_vm.c | 33 ++++++++++++++++++++++++++-------
- 2 files changed, 33 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_bo.c       | 17 +++++---
+ drivers/gpu/drm/xe/xe_bo.h       | 11 ++++-
+ drivers/gpu/drm/xe/xe_exec.c     |  4 +-
+ drivers/gpu/drm/xe/xe_migrate.c  |  4 +-
+ drivers/gpu/drm/xe/xe_pt.c       |  6 +--
+ drivers/gpu/drm/xe/xe_vm.c       | 72 ++++++++++++++++----------------
+ drivers/gpu/drm/xe/xe_vm.h       | 21 ++++++++--
+ drivers/gpu/drm/xe/xe_vm_types.h |  6 ---
+ 8 files changed, 83 insertions(+), 58 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index ad9d8793db3e..7e25c8b7a01a 100644
+index 72dc4a4eed4e..ad9d8793db3e 100644
 --- a/drivers/gpu/drm/xe/xe_bo.c
 +++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -470,6 +470,7 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
- 	struct dma_fence *fence;
- 	struct drm_gpuva *gpuva;
- 	struct drm_gem_object *obj = &bo->ttm.base;
-+	struct drm_gpuvm_bo *vm_bo;
- 	int ret = 0;
+@@ -519,9 +519,9 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 			 * that we indeed have it locked, put the vma an the
+ 			 * vm's notifier.rebind_list instead and scoop later.
+ 			 */
+-			if (dma_resv_trylock(&vm->resv))
++			if (dma_resv_trylock(xe_vm_resv(vm)))
+ 				vm_resv_locked = true;
+-			else if (ctx->resv != &vm->resv) {
++			else if (ctx->resv != xe_vm_resv(vm)) {
+ 				spin_lock(&vm->notifier.list_lock);
+ 				if (!(vma->gpuva.flags & XE_VMA_DESTROYED))
+ 					list_move_tail(&vma->notifier.rebind_link,
+@@ -538,7 +538,7 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
+ 					      &vm->rebind_list);
  
- 	dma_resv_assert_held(bo->ttm.base.resv);
-@@ -482,11 +483,12 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
- 		dma_resv_iter_end(&cursor);
- 	}
- 
--	drm_gem_for_each_gpuva(gpuva, obj) {
--		struct xe_vma *vma = gpuva_to_vma(gpuva);
--		struct xe_vm *vm = xe_vma_vm(vma);
-+	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
-+		drm_gpuvm_bo_for_each_va(gpuva, vm_bo) {
-+			struct xe_vma *vma = gpuva_to_vma(gpuva);
-+			struct xe_vm *vm = xe_vma_vm(vma);
- 
--		trace_xe_vma_evict(vma);
-+			trace_xe_vma_evict(vma);
- 
- 		if (xe_vm_in_fault_mode(vm)) {
- 			/* Wait for pending binds / unbinds. */
-@@ -540,6 +542,7 @@ static int xe_bo_trigger_rebind(struct xe_device *xe, struct xe_bo *bo,
  			if (vm_resv_locked)
- 				dma_resv_unlock(xe_vm_resv(vm));
+-				dma_resv_unlock(&vm->resv);
++				dma_resv_unlock(xe_vm_resv(vm));
  		}
-+		}
  	}
  
- 	return ret;
+@@ -1398,7 +1398,7 @@ __xe_bo_create_locked(struct xe_device *xe,
+ 		}
+ 	}
+ 
+-	bo = ___xe_bo_create_locked(xe, bo, tile, vm ? &vm->resv : NULL,
++	bo = ___xe_bo_create_locked(xe, bo, tile, vm ? xe_vm_resv(vm) : NULL,
+ 				    vm && !xe_vm_in_fault_mode(vm) &&
+ 				    flags & XE_BO_CREATE_USER_BIT ?
+ 				    &vm->lru_bulk_move : NULL, size,
+@@ -1406,6 +1406,13 @@ __xe_bo_create_locked(struct xe_device *xe,
+ 	if (IS_ERR(bo))
+ 		return bo;
+ 
++	/*
++	 * Note that instead of taking a reference no the drm_gpuvm_resv_bo(),
++	 * to ensure the shared resv doesn't disappear under the bo, the bo
++	 * will keep a reference to the vm, and avoid circular references
++	 * by having all the vm's bo refereferences released at vm close
++	 * time.
++	 */
+ 	if (vm && xe_bo_is_user(bo))
+ 		xe_vm_get(vm);
+ 	bo->vm = vm;
+@@ -1772,7 +1779,7 @@ int xe_bo_validate(struct xe_bo *bo, struct xe_vm *vm, bool allow_res_evict)
+ 		xe_vm_assert_held(vm);
+ 
+ 		ctx.allow_res_evict = allow_res_evict;
+-		ctx.resv = &vm->resv;
++		ctx.resv = xe_vm_resv(vm);
+ 	}
+ 
+ 	return ttm_bo_validate(&bo->ttm, &bo->placement, &ctx);
+diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
+index 098ccab7fa1e..9b1279aca127 100644
+--- a/drivers/gpu/drm/xe/xe_bo.h
++++ b/drivers/gpu/drm/xe/xe_bo.h
+@@ -11,6 +11,15 @@
+ #include "xe_bo_types.h"
+ #include "xe_macros.h"
+ #include "xe_vm_types.h"
++#include "xe_vm.h"
++
++/**
++ * xe_vm_assert_held(vm) - Assert that the vm's reservation object is held.
++ * @vm: The vm
++ */
++#define xe_vm_assert_held(vm) dma_resv_assert_held(xe_vm_resv(vm))
++
++
+ 
+ #define XE_DEFAULT_GTT_SIZE_MB          3072ULL /* 3GB by default */
+ 
+@@ -168,7 +177,7 @@ void xe_bo_unlock(struct xe_bo *bo);
+ static inline void xe_bo_unlock_vm_held(struct xe_bo *bo)
+ {
+ 	if (bo) {
+-		XE_WARN_ON(bo->vm && bo->ttm.base.resv != &bo->vm->resv);
++		XE_WARN_ON(bo->vm && bo->ttm.base.resv != xe_vm_resv(bo->vm));
+ 		if (bo->vm)
+ 			xe_vm_assert_held(bo->vm);
+ 		else
+diff --git a/drivers/gpu/drm/xe/xe_exec.c b/drivers/gpu/drm/xe/xe_exec.c
+index 347239f28170..5ec37df33afe 100644
+--- a/drivers/gpu/drm/xe/xe_exec.c
++++ b/drivers/gpu/drm/xe/xe_exec.c
+@@ -281,7 +281,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	/* Wait behind munmap style rebinds */
+ 	if (!xe_vm_in_lr_mode(vm)) {
+ 		err = drm_sched_job_add_resv_dependencies(&job->drm,
+-							  &vm->resv,
++							  xe_vm_resv(vm),
+ 							  DMA_RESV_USAGE_KERNEL);
+ 		if (err)
+ 			goto err_put_job;
+@@ -309,7 +309,7 @@ int xe_exec_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ 	xe_sched_job_arm(job);
+ 	if (!xe_vm_in_lr_mode(vm)) {
+ 		/* Block userptr invalidations / BO eviction */
+-		dma_resv_add_fence(&vm->resv,
++		dma_resv_add_fence(xe_vm_resv(vm),
+ 				   &job->drm.s_fence->finished,
+ 				   DMA_RESV_USAGE_BOOKKEEP);
+ 
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index e8b567708ac0..a25697cdc2cc 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -1136,7 +1136,7 @@ xe_migrate_update_pgtables_cpu(struct xe_migrate *m,
+ 					  DMA_RESV_USAGE_KERNEL))
+ 		return ERR_PTR(-ETIME);
+ 
+-	if (wait_vm && !dma_resv_test_signaled(&vm->resv,
++	if (wait_vm && !dma_resv_test_signaled(xe_vm_resv(vm),
+ 					       DMA_RESV_USAGE_BOOKKEEP))
+ 		return ERR_PTR(-ETIME);
+ 
+@@ -1345,7 +1345,7 @@ xe_migrate_update_pgtables(struct xe_migrate *m,
+ 	 * trigger preempts before moving forward
+ 	 */
+ 	if (first_munmap_rebind) {
+-		err = job_add_deps(job, &vm->resv,
++		err = job_add_deps(job, xe_vm_resv(vm),
+ 				   DMA_RESV_USAGE_BOOKKEEP);
+ 		if (err)
+ 			goto err_job;
+diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+index 35bd7940a571..3b485313804a 100644
+--- a/drivers/gpu/drm/xe/xe_pt.c
++++ b/drivers/gpu/drm/xe/xe_pt.c
+@@ -866,7 +866,7 @@ static void xe_pt_commit_locks_assert(struct xe_vma *vma)
+ 	else if (!xe_vma_is_null(vma))
+ 		dma_resv_assert_held(xe_vma_bo(vma)->ttm.base.resv);
+ 
+-	dma_resv_assert_held(&vm->resv);
++	xe_vm_assert_held(vm);
+ }
+ 
+ static void xe_pt_commit_bind(struct xe_vma *vma,
+@@ -1328,7 +1328,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+ 		}
+ 
+ 		/* add shared fence now for pagetable delayed destroy */
+-		dma_resv_add_fence(&vm->resv, fence, !rebind &&
++		dma_resv_add_fence(xe_vm_resv(vm), fence, !rebind &&
+ 				   last_munmap_rebind ?
+ 				   DMA_RESV_USAGE_KERNEL :
+ 				   DMA_RESV_USAGE_BOOKKEEP);
+@@ -1665,7 +1665,7 @@ __xe_pt_unbind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queu
+ 		fence = &ifence->base.base;
+ 
+ 		/* add shared fence now for pagetable delayed destroy */
+-		dma_resv_add_fence(&vm->resv, fence,
++		dma_resv_add_fence(xe_vm_resv(vm), fence,
+ 				   DMA_RESV_USAGE_BOOKKEEP);
+ 
+ 		/* This fence will be installed by caller when doing eviction */
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index 6c8a84026af4..f71285e8ef10 100644
+index e09050f16f07..9a090f21f9af 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -911,12 +911,21 @@ static struct xe_vma *xe_vma_create(struct xe_vm *vm,
- 	vma->pat_index = pat_index;
+@@ -39,6 +39,11 @@
  
- 	if (bo) {
-+		struct drm_gpuvm_bo *vm_bo;
+ #define TEST_VM_ASYNC_OPS_ERROR
+ 
++static struct drm_gem_object *xe_vm_obj(struct xe_vm *vm)
++{
++	return vm->gpuvm.r_obj;
++}
 +
- 		xe_bo_assert_held(bo);
+ /**
+  * xe_vma_userptr_check_repin() - Advisory check for repin needed
+  * @vma: The userptr vma
+@@ -323,7 +328,7 @@ static void resume_and_reinstall_preempt_fences(struct xe_vm *vm)
+ 	list_for_each_entry(q, &vm->preempt.exec_queues, compute.link) {
+ 		q->ops->resume(q);
  
-+		vm_bo = drm_gpuvm_bo_obtain(vma->gpuva.vm, &bo->ttm.base);
-+		if (IS_ERR(vm_bo)) {
-+			kfree(vma);
-+			return ERR_CAST(vm_bo);
-+		}
-+
- 		drm_gem_object_get(&bo->ttm.base);
- 		vma->gpuva.gem.obj = &bo->ttm.base;
- 		vma->gpuva.gem.offset = bo_offset_or_userptr;
--		drm_gpuva_link(&vma->gpuva);
-+		drm_gpuva_link(&vma->gpuva, vm_bo);
-+		drm_gpuvm_bo_put(vm_bo);
- 	} else /* userptr or null */ {
- 		if (!is_null) {
- 			u64 size = end - start + 1;
-@@ -998,16 +1007,19 @@ static struct xe_vma *
- bo_has_vm_references_locked(struct xe_bo *bo, struct xe_vm *vm,
- 			    struct xe_vma *ignore)
- {
--	struct drm_gpuva *gpuva;
-+	struct drm_gpuvm_bo *vm_bo;
-+	struct drm_gpuva *va;
- 	struct drm_gem_object *obj = &bo->ttm.base;
+-		dma_resv_add_fence(&vm->resv, q->compute.pfence,
++		dma_resv_add_fence(xe_vm_resv(vm), q->compute.pfence,
+ 				   DMA_RESV_USAGE_BOOKKEEP);
+ 		xe_vm_fence_all_extobjs(vm, q->compute.pfence,
+ 					DMA_RESV_USAGE_BOOKKEEP);
+@@ -361,7 +366,7 @@ int xe_vm_add_compute_exec_queue(struct xe_vm *vm, struct xe_exec_queue *q)
  
- 	xe_bo_assert_held(bo);
+ 	down_read(&vm->userptr.notifier_lock);
  
--	drm_gem_for_each_gpuva(gpuva, obj) {
--		struct xe_vma *vma = gpuva_to_vma(gpuva);
-+	drm_gem_for_each_gpuvm_bo(vm_bo, obj) {
-+		drm_gpuvm_bo_for_each_va(va, vm_bo) {
-+			struct xe_vma *vma = gpuva_to_vma(va);
+-	dma_resv_add_fence(&vm->resv, pfence,
++	dma_resv_add_fence(xe_vm_resv(vm), pfence,
+ 			   DMA_RESV_USAGE_BOOKKEEP);
  
--		if (vma != ignore && xe_vma_vm(vma) == vm)
--			return vma;
-+			if (vma != ignore && xe_vma_vm(vma) == vm)
-+				return vma;
-+		}
+ 	xe_vm_fence_all_extobjs(vm, pfence, DMA_RESV_USAGE_BOOKKEEP);
+@@ -447,8 +452,7 @@ int xe_vm_lock_dma_resv(struct xe_vm *vm, struct drm_exec *exec,
+ 	lockdep_assert_held(&vm->lock);
+ 
+ 	if (lock_vm) {
+-		err = drm_exec_prepare_obj(exec, &xe_vm_ttm_bo(vm)->base,
+-					   num_shared);
++		err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), num_shared);
+ 		if (err)
+ 			return err;
+ 	}
+@@ -544,7 +548,7 @@ static int xe_preempt_work_begin(struct drm_exec *exec, struct xe_vm *vm,
+ 	 * 1 fence for each preempt fence plus a fence for each tile from a
+ 	 * possible rebind
+ 	 */
+-	err = drm_exec_prepare_obj(exec, &xe_vm_ttm_bo(vm)->base,
++	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm),
+ 				   vm->preempt.num_exec_queues +
+ 				   vm->xe->info.tile_count);
+ 	if (err)
+@@ -643,7 +647,7 @@ static void preempt_rebind_work_func(struct work_struct *w)
  	}
  
- 	return NULL;
-@@ -2156,6 +2168,7 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 	struct drm_gpuva_ops *ops;
- 	struct drm_gpuva_op *__op;
- 	struct xe_vma_op *op;
-+	struct drm_gpuvm_bo *vm_bo;
+ 	/* Wait on munmap style VM unbinds */
+-	wait = dma_resv_wait_timeout(&vm->resv,
++	wait = dma_resv_wait_timeout(xe_vm_resv(vm),
+ 				     DMA_RESV_USAGE_KERNEL,
+ 				     false, MAX_SCHEDULE_TIMEOUT);
+ 	if (wait <= 0) {
+@@ -738,13 +742,13 @@ static bool vma_userptr_invalidate(struct mmu_interval_notifier *mni,
+ 	 * unbinds to complete, and those are attached as BOOKMARK fences
+ 	 * to the vm.
+ 	 */
+-	dma_resv_iter_begin(&cursor, &vm->resv,
++	dma_resv_iter_begin(&cursor, xe_vm_resv(vm),
+ 			    DMA_RESV_USAGE_BOOKKEEP);
+ 	dma_resv_for_each_fence_unlocked(&cursor, fence)
+ 		dma_fence_enable_sw_signaling(fence);
+ 	dma_resv_iter_end(&cursor);
+ 
+-	err = dma_resv_wait_timeout(&vm->resv,
++	err = dma_resv_wait_timeout(xe_vm_resv(vm),
+ 				    DMA_RESV_USAGE_BOOKKEEP,
+ 				    false, MAX_SCHEDULE_TIMEOUT);
+ 	XE_WARN_ON(err <= 0);
+@@ -793,14 +797,14 @@ int xe_vm_userptr_pin(struct xe_vm *vm)
+ 	}
+ 
+ 	/* Take lock and move to rebind_list for rebinding. */
+-	err = dma_resv_lock_interruptible(&vm->resv, NULL);
++	err = dma_resv_lock_interruptible(xe_vm_resv(vm), NULL);
+ 	if (err)
+ 		goto out_err;
+ 
+ 	list_for_each_entry_safe(vma, next, &tmp_evict, combined_links.userptr)
+ 		list_move_tail(&vma->combined_links.rebind, &vm->rebind_list);
+ 
+-	dma_resv_unlock(&vm->resv);
++	dma_resv_unlock(xe_vm_resv(vm));
+ 
+ 	return 0;
+ 
+@@ -1116,7 +1120,7 @@ int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
  	int err;
  
- 	lockdep_assert_held_write(&vm->lock);
-@@ -2183,7 +2196,13 @@ vm_bind_ioctl_ops_create(struct xe_vm *vm, struct xe_bo *bo,
- 		err = xe_bo_lock(bo, true);
- 		if (err)
- 			return ERR_PTR(err);
--		ops = drm_gpuvm_gem_unmap_ops_create(&vm->gpuvm, obj);
+ 	XE_WARN_ON(!vm);
+-	err = drm_exec_prepare_obj(exec, &xe_vm_ttm_bo(vm)->base, num_shared);
++	err = drm_exec_prepare_obj(exec, xe_vm_obj(vm), num_shared);
+ 	if (!err && bo && !bo->vm)
+ 		err = drm_exec_prepare_obj(exec, &bo->ttm.base, num_shared);
+ 
+@@ -1331,6 +1335,7 @@ static void vm_destroy_work_func(struct work_struct *w);
+ 
+ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ {
++	struct drm_gem_object *vm_resv_obj;
+ 	struct xe_vm *vm;
+ 	int err, i = 0, number_tiles = 0;
+ 	struct xe_tile *tile;
+@@ -1342,7 +1347,6 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 
+ 	vm->xe = xe;
+ 	kref_init(&vm->refcount);
+-	dma_resv_init(&vm->resv);
+ 
+ 	vm->size = 1ull << xe->info.va_bits;
+ 
+@@ -1375,12 +1379,21 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	if (!(flags & XE_VM_FLAG_MIGRATION))
+ 		xe_device_mem_access_get(xe);
+ 
+-	err = dma_resv_lock_interruptible(&vm->resv, NULL);
++	vm_resv_obj = drm_gpuvm_resv_object_alloc(&xe->drm);
++	if (!vm_resv_obj) {
++		err = -ENOMEM;
++		goto err_no_resv;
++	}
 +
-+		vm_bo = drm_gpuvm_bo_find(&vm->gpuvm, obj);
-+		if (!vm_bo)
-+			break;
++	drm_gpuvm_init(&vm->gpuvm, "Xe VM", &xe->drm, vm_resv_obj, 0, vm->size,
++		       0, 0, &gpuvm_ops);
 +
-+		ops = drm_gpuvm_bo_unmap_ops_create(vm_bo);
-+		drm_gpuvm_bo_put(vm_bo);
- 		xe_bo_unlock(bo);
- 		break;
- 	default:
++	drm_gem_object_put(vm_resv_obj);
++
++	err = dma_resv_lock_interruptible(xe_vm_resv(vm), NULL);
+ 	if (err)
+ 		goto err_put;
+ 
+-	drm_gpuvm_init(&vm->gpuvm, "Xe VM", 0, vm->size, 0, 0,
+-		       &gpuvm_ops);
+ 	if (IS_DGFX(xe) && xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K)
+ 		vm->flags |= XE_VM_FLAG_64K;
+ 
+@@ -1422,7 +1435,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 
+ 		xe_pt_populate_empty(tile, vm, vm->pt_root[id]);
+ 	}
+-	dma_resv_unlock(&vm->resv);
++	dma_resv_unlock(xe_vm_resv(vm));
+ 
+ 	/* Kernel migration VM shouldn't have a circular loop.. */
+ 	if (!(flags & XE_VM_FLAG_MIGRATION)) {
+@@ -1483,10 +1496,10 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 		if (vm->pt_root[id])
+ 			xe_pt_destroy(vm->pt_root[id], vm->flags, NULL);
+ 	}
+-	dma_resv_unlock(&vm->resv);
+-	drm_gpuvm_destroy(&vm->gpuvm);
++	dma_resv_unlock(xe_vm_resv(vm));
+ err_put:
+-	dma_resv_fini(&vm->resv);
++	drm_gpuvm_destroy(&vm->gpuvm);
++err_no_resv:
+ 	for_each_tile(tile, xe, id)
+ 		xe_range_fence_tree_fini(&vm->rftree[id]);
+ 	kfree(vm);
+@@ -1590,8 +1603,6 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	xe_assert(xe, list_empty(&vm->extobj.list));
+ 	up_write(&vm->lock);
+ 
+-	drm_gpuvm_destroy(&vm->gpuvm);
+-
+ 	mutex_lock(&xe->usm.lock);
+ 	if (vm->flags & XE_VM_FLAG_FAULT_MODE)
+ 		xe->usm.num_vm_in_fault_mode--;
+@@ -1644,7 +1655,7 @@ static void vm_destroy_work_func(struct work_struct *w)
+ 
+ 	trace_xe_vm_free(vm);
+ 	dma_fence_put(vm->rebind_fence);
+-	dma_resv_fini(&vm->resv);
++	drm_gpuvm_destroy(&vm->gpuvm);
+ 	kfree(vm);
+ }
+ 
+@@ -2092,15 +2103,6 @@ static int xe_vm_prefetch(struct xe_vm *vm, struct xe_vma *vma,
+ 	}
+ }
+ 
+-struct ttm_buffer_object *xe_vm_ttm_bo(struct xe_vm *vm)
+-{
+-	int idx = vm->flags & XE_VM_FLAG_MIGRATION ?
+-		XE_VM_FLAG_TILE_ID(vm->flags) : 0;
+-
+-	/* Safe to use index 0 as all BO in the VM share a single dma-resv lock */
+-	return &vm->pt_root[idx]->bo->ttm;
+-}
+-
+ static void prep_vma_destroy(struct xe_vm *vm, struct xe_vma *vma,
+ 			     bool post_commit)
+ {
+@@ -3205,9 +3207,9 @@ int xe_vm_bind_ioctl(struct drm_device *dev, void *data, struct drm_file *file)
+ int xe_vm_lock(struct xe_vm *vm, bool intr)
+ {
+ 	if (intr)
+-		return dma_resv_lock_interruptible(&vm->resv, NULL);
++		return dma_resv_lock_interruptible(xe_vm_resv(vm), NULL);
+ 
+-	return dma_resv_lock(&vm->resv, NULL);
++	return dma_resv_lock(xe_vm_resv(vm), NULL);
+ }
+ 
+ /**
+@@ -3218,7 +3220,7 @@ int xe_vm_lock(struct xe_vm *vm, bool intr)
+  */
+ void xe_vm_unlock(struct xe_vm *vm)
+ {
+-	dma_resv_unlock(&vm->resv);
++	dma_resv_unlock(xe_vm_resv(vm));
+ }
+ 
+ /**
+@@ -3250,7 +3252,7 @@ int xe_vm_invalidate_vma(struct xe_vma *vma)
+ 			WARN_ON_ONCE(!mmu_interval_check_retry
+ 				     (&vma->userptr.notifier,
+ 				      vma->userptr.notifier_seq));
+-			WARN_ON_ONCE(!dma_resv_test_signaled(&xe_vma_vm(vma)->resv,
++			WARN_ON_ONCE(!dma_resv_test_signaled(xe_vm_resv(xe_vma_vm(vma)),
+ 							     DMA_RESV_USAGE_BOOKKEEP));
+ 
+ 		} else {
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 9a0ae19c47b7..e4b5cb8a0f08 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -139,8 +139,6 @@ static inline bool xe_vma_is_userptr(struct xe_vma *vma)
+ 	return xe_vma_has_no_bo(vma) && !xe_vma_is_null(vma);
+ }
+ 
+-#define xe_vm_assert_held(vm) dma_resv_assert_held(&(vm)->resv)
+-
+ u64 xe_vm_pdp4_descriptor(struct xe_vm *vm, struct xe_tile *tile);
+ 
+ int xe_vm_create_ioctl(struct drm_device *dev, void *data,
+@@ -182,8 +180,6 @@ int xe_vm_invalidate_vma(struct xe_vma *vma);
+ 
+ extern struct ttm_device_funcs xe_ttm_funcs;
+ 
+-struct ttm_buffer_object *xe_vm_ttm_bo(struct xe_vm *vm);
+-
+ static inline void xe_vm_queue_rebind_worker(struct xe_vm *vm)
+ {
+ 	xe_assert(vm->xe, xe_vm_in_preempt_fence_mode(vm));
+@@ -224,6 +220,23 @@ int xe_analyze_vm(struct drm_printer *p, struct xe_vm *vm, int gt_id);
+ int xe_vm_prepare_vma(struct drm_exec *exec, struct xe_vma *vma,
+ 		      unsigned int num_shared);
+ 
++/**
++ * xe_vm_resv() - Return's the vm's reservation object
++ * @vm: The vm
++ *
++ * Return: Pointer to the vm's reservation object.
++ */
++static inline struct dma_resv *xe_vm_resv(struct xe_vm *vm)
++{
++	return drm_gpuvm_resv(&vm->gpuvm);
++}
++
++/**
++ * xe_vm_assert_held(vm) - Assert that the vm's reservation object is held.
++ * @vm: The vm
++ */
++#define xe_vm_assert_held(vm) dma_resv_assert_held(xe_vm_resv(vm))
++
+ #if IS_ENABLED(CONFIG_DRM_XE_DEBUG_VM)
+ #define vm_dbg drm_dbg
+ #else
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 23abdfd8622f..4e540d013702 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -136,8 +136,6 @@ struct xe_vma {
+ 
+ struct xe_device;
+ 
+-#define xe_vm_assert_held(vm) dma_resv_assert_held(&(vm)->resv)
+-
+ struct xe_vm {
+ 	/** @gpuvm: base GPUVM used to track VMAs */
+ 	struct drm_gpuvm gpuvm;
+@@ -149,9 +147,6 @@ struct xe_vm {
+ 	/* exec queue used for (un)binding vma's */
+ 	struct xe_exec_queue *q[XE_MAX_TILES_PER_DEVICE];
+ 
+-	/** Protects @rebind_list and the page-table structures */
+-	struct dma_resv resv;
+-
+ 	/** @lru_bulk_move: Bulk LRU move list for this VM's BOs */
+ 	struct ttm_lru_bulk_move lru_bulk_move;
+ 
+@@ -424,5 +419,4 @@ struct xe_vma_op {
+ 		struct xe_vma_op_prefetch prefetch;
+ 	};
+ };
+-
+ #endif
 -- 
 2.42.0
 
