@@ -4,45 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id D0DF7C10F05
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 13:01:16 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 5933BC10DC3
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 13:01:17 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81F9B10E8A5;
-	Thu,  7 Dec 2023 13:01:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2857410E8A7;
+	Thu,  7 Dec 2023 13:01:17 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B8C410E89F
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 13:01:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F3E6110E8A1
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 13:01:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701954072; x=1733490072;
+ t=1701954075; x=1733490075;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+GBf83d6hprNNiPcleJ2FFD0lzgNqzV41G6cWV0OIq8=;
- b=P5bwqm/J38nw1XaBwq1nQmjakagzkaA8leZY7fiNCB34XW4Q1nt1aD0z
- r43wXcbO2q5QhEfc7QvqktMxooj9C+C5lBJW9IRe+X+j2+l2SgyxFnF4X
- v0xzNJfidQ6IhynWEUuaO1gaJWFXnDNQ3o6CQU3slAHDw72LZISQEvhJm
- jycuRGqE63ts+xp0dNYOtxFPkwHAJuPafjaNgOYmUqveqoYxuPWx7HIeU
- tzH/2b8j+yUeM0BrYT7S7TsKk2tVuF0B7N1fniZ3kjC4lK6UC3i60moKP
- Y7mB69NO2N5qcuHZ6WEH4JMQOBNYjFBFDYvU8tE7r8KqzR7nRxUN1kEwe w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1308987"
+ bh=0Sfk26LcVl7/a8meufbx2x5iYJXG9t2PUMLjwL9ryqw=;
+ b=Dx/B26nWdX7o28efeGsod0P4q76I6ZMz0RHB2C06QCqURKU4LUtRcTN6
+ zs5Swdg/rBFcT6N8yLzxliREQS/edSP3GTL082SH2fdANE9PouogsldSE
+ 4tnLyqcYreSKMhrpLSpSvKWSDqXQfzCJz46IKCCEDwXK0zAFWcNUqNde3
+ vl6OgYRSSgJoIjtxI0+TvTgOvYc+nw4X+RPRT9YEqTweLMNCxk3DjH8TS
+ sWV84ev0quxQHeOp5xp6hAHMXKmEfWM3q3W/GF+KGkzBAnw5cO3jOBwPj
+ 5vjwWKMjQXeCtW/I1LqYl4NE8Es2JBF+7xL84Bxpq+EK9cNREzBJY0Da5 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1308998"
 X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="1308987"
+   d="scan'208";a="1308998"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 05:01:11 -0800
+ 07 Dec 2023 05:01:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="721454213"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="721454213"
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="721454248"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="721454248"
 Received: from rlgreyi-mobl.amr.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.252.46.17])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 05:01:09 -0800
+ 07 Dec 2023 05:01:13 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 6/9] fixup! FIXME: drm/i915/display: Remaining changes to
- make xe compile
-Date: Thu,  7 Dec 2023 15:00:43 +0200
-Message-Id: <20231207130046.2350822-7-jouni.hogander@intel.com>
+Subject: [PATCH v2 8/9] fixup! drm/xe/display: Implement display support
+Date: Thu,  7 Dec 2023 15:00:45 +0200
+Message-Id: <20231207130046.2350822-9-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231207130046.2350822-1-jouni.hogander@intel.com>
 References: <20231207130046.2350822-1-jouni.hogander@intel.com>
@@ -65,69 +64,32 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We have now everything to build intel_display.c as it is without any
-ifdefs. Thus revert local changes from intel_display.c.
+Define I915_TILING_X and I915_TILING_Y as 0 This way we get rid of
+remaining ifdefs in skl_universal_plane.c.
 
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 35 --------------------
- 1 file changed, 35 deletions(-)
+ drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 5069b31bf1b7..c3a3a4c3b363 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -42,10 +42,8 @@
- #include <drm/drm_probe_helper.h>
- #include <drm/drm_rect.h>
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+index 23f2d037c313..a20d2638ea7a 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+@@ -9,6 +9,12 @@
+ #include <uapi/drm/i915_drm.h>
+ #include <drm/drm_mm.h>
  
--#ifdef I915
- #include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_object.h"
--#endif
++/* We don't want these from i915_drm.h in case of Xe */
++#undef I915_TILING_X
++#undef I915_TILING_Y
++#define I915_TILING_X 0
++#define I915_TILING_Y 0
++
+ struct xe_bo;
  
- #include "g4x_dp.h"
- #include "g4x_hdmi.h"
-@@ -7095,39 +7093,6 @@ static void intel_atomic_cleanup_work(struct work_struct *work)
- 	intel_atomic_helper_free_state(i915);
- }
- 
--#ifndef I915
--static int i915_gem_object_read_from_page(struct xe_bo *bo,
--					  u32 ofs, u64 *ptr, u32 size)
--{
--	struct ttm_bo_kmap_obj map;
--	void *virtual;
--	bool is_iomem;
--	int ret;
--
--	XE_WARN_ON(size != 8);
--
--	ret = xe_bo_lock(bo, true);
--	if (ret)
--		return ret;
--
--	ret = ttm_bo_kmap(&bo->ttm, ofs >> PAGE_SHIFT, 1, &map);
--	if (ret)
--		goto out_unlock;
--
--	ofs &= ~PAGE_MASK;
--	virtual = ttm_kmap_obj_virtual(&map, &is_iomem);
--	if (is_iomem)
--		*ptr = readq((void __iomem *)(virtual + ofs));
--	else
--		*ptr = *(u64 *)(virtual + ofs);
--
--	ttm_bo_kunmap(&map);
--out_unlock:
--	xe_bo_unlock(bo);
--	return ret;
--}
--#endif
--
- static void intel_atomic_prepare_plane_clear_colors(struct intel_atomic_state *state)
- {
- 	struct drm_i915_private *i915 = to_i915(state->base.dev);
+ struct i915_vma {
 -- 
 2.34.1
 
