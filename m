@@ -4,51 +4,58 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id ECFEDC4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 11:37:50 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B7FEDC4167B
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 12:01:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD6CF10E1FC;
-	Thu,  7 Dec 2023 11:37:50 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE94510E1FC
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 11:37:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C30810E885;
+	Thu,  7 Dec 2023 12:01:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FCFD10E885
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 12:01:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701949068; x=1733485068;
+ t=1701950508; x=1733486508;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=ZWlVmgK0EmZ3OkZ5NEsLhSTjMZvQjiDgp4xEWZxonlA=;
- b=ffwrBg1H90X1sc2iYFH8cZBqYDs6uOPhZ2cEsJwETeZSzATBjgxx/dRW
- kVwOIoZyoCXsRJFLGdmfRJVx0+DHzW9G8G0rJaVaXADWO7UqE2Qdmijyw
- I/eH64iCBaXkqN881AkLIOFP0/FYqrBmOUZWgVDKLydGXSr+NnTu2W46U
- nh0ZdFrQGCTE3PSG8AVkqg2No2nZEwo44fMUjT8J/tIZyl5+BNnoVyJg9
- kznXOojM72noQssBI7x/TfYNL4Ojjh7b9LIzIeBRetlRL6NxlqGTOHy11
- rtkqB1Hf5iKRyhyXXtEqCkNKk6YjWIijiuGKG17zEP1xPjq6nC2aC3qvr Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="460706454"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="460706454"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 03:37:48 -0800
+ bh=4SM8Y4BdZydtGUTZlUHfUGfAYd4puZBNNpdTba5KcRI=;
+ b=ZsCJ1qefgLrbtwyqypelWlrERKGxYhh8c5TMfIqtAWpkX2acPUn+NpDP
+ yyMKX1pbtfHVpBWDIRte63l8UyJohAo5DbpLVoIfgLO60rnuGKYD1pVL1
+ ukYSMMJwmR8o5pNOpeyyEZHM8lDIFJefGYorv5x2OCu7ZX7ZKSeJRyhTI
+ 9EceJnbXHuwR6c6h0V1hxAQ0kMpCkiWoEMlflvCrXYbcCGAn0zifBnY2w
+ p4zeeBAAJXgdpxNXCBikhQ/R/QtPp9KbypfWYNWxQeYhbndP05HrCT+Kh
+ 2OoSrYAibxMCirwQqBjSngghdP9Gs/uuwweACHGU1jUJ2JxcFDRCZOV5H w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="391391648"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="391391648"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+ by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 04:01:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1103171489"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="1103171489"
-Received: from nbathi-mobl.ger.corp.intel.com (HELO [10.252.28.51])
- ([10.252.28.51])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 03:37:46 -0800
-Message-ID: <3cb3b3dc-d28b-46b6-9c9a-a7228a7ccf31@intel.com>
-Date: Thu, 7 Dec 2023 11:37:44 +0000
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="915554997"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="915554997"
+Received: from jpoulsen-mobl.ger.corp.intel.com (HELO [10.249.254.234])
+ ([10.249.254.234])
+ by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 04:01:46 -0800
+Message-ID: <7fe7d21d-77fc-6163-47d2-944906974cdb@linux.intel.com>
+Date: Thu, 7 Dec 2023 13:01:43 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/xe/dgfx: Release mmap mappings on rpm suspend
-Content-Language: en-GB
-To: Badal Nilawar <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org
-References: <20231206133421.3295163-1-badal.nilawar@intel.com>
- <20231206133421.3295163-3-badal.nilawar@intel.com>
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20231206133421.3295163-3-badal.nilawar@intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [Intel-xe] LLC configurating, mmap and bo cache management
+ questions
+To: Tvrtko Ursulin <tvrtko.ursulin@linux.intel.com>,
+ "Hellstrom, Thomas" <thomas.hellstrom@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+References: <02c74379-6513-40cc-a195-c4eeb7a7fd79@linux.intel.com>
+ <c16bc9f7bd18f531136ebbcf6504d497db9a793a.camel@intel.com>
+ <eaa44445-21e2-4b9f-95a0-6b7395203900@linux.intel.com>
+ <36e0e059e0f74ca7c55b2647658456fabe26420d.camel@intel.com>
+ <2990cd86-7238-4ea9-a9aa-5ab624bea572@linux.intel.com>
+Content-Language: en-US
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <2990cd86-7238-4ea9-a9aa-5ab624bea572@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,257 +67,206 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: rodrigo.vivi@intel.com
+Cc: "Auld, Matthew" <matthew.auld@intel.com>, "Santa,
+ Carlos" <carlos.santa@intel.com>, "Vivi, Rodrigo" <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On 06/12/2023 13:34, Badal Nilawar wrote:
-> Release all mmap mappings for all vram objects which are associated
-> with userfault such that, while pcie function in D3hot, any access
-> to memory mappings will raise a userfault.
-> 
-> Upon userfault, in order to access memory mappings, if graphics
-> function is in D3 then runtime resume of dgpu will be triggered to
-> transition to D0.
-> 
-> Previous commit has blocked the rpm but let's make sure that rpm
-> does not get blocked for headed cards(client's parts).
-> Above pagefault approach will be  useful for headed cards to save the
-> power when display is off and there are active mmap mappings.
 
-So why do we want to use this approach for cards with display turned off 
-(client) and not for cards without a display part? I don't see that 
-explained. Also do we have a way to test this new approach in CI? Is the 
-display not mostly always turned on?
+On 12/7/23 12:11, Tvrtko Ursulin wrote:
+>
+> On 06/12/2023 11:46, Hellstrom, Thomas wrote:
+>> Hi, Tvrtko.
+>>
+>> On Wed, 2023-12-06 at 10:58 +0000, Tvrtko Ursulin wrote:
+>>>
+>>> Hi Thomas,
+>>>
+>>> On 06/12/2023 08:26, Hellstrom, Thomas wrote:
+>>>> On Tue, 2023-12-05 at 14:19 +0000, Tvrtko Ursulin wrote:
+>>>>>
+>>>>> Hi,
+>>>>>
+>>>>> We are working on adding xe support to ChromeOS minigbm and have
+>>>>> a
+>>>>> couple questions.
+>>>>>
+>>>>> If I follow things correctly with xe mmap caching mode is fixed
+>>>>> to
+>>>>> object caching modes set at bo create. For framebuffers it will
+>>>>> be WC
+>>>>> and for the rest userspace can choose WB or WC via
+>>>>> drm_xe_gem_create->cpu_caching. (Unless discrete, when WB cannot
+>>>>> be
+>>>>> used
+>>>>> at all.)
+>>>>>
+>>>>> AFAICT minigbm basically cares about two transition points. Lets
+>>>>> call
+>>>>> them CPU access begin and end.
+>>>>>
+>>>>> 1)
+>>>>> When a bo is mmapped it wants to invalidate the cache, which
+>>>>> looks to
+>>>>> be
+>>>>> about making sure all GPU writes have landed to the backing
+>>>>> store. In
+>>>>> the i915 world that translates to the set_domain ioctl.
+>>>>>
+>>>>> What is the uapi for this with xe, or it is somehow guaranteed to
+>>>>> not
+>>>>> be
+>>>>> needed?
+>>>>
+>>>> Signalling a user-fence or dma-fence obtained as an out-fence from
+>>>> an
+>>>> exec call will guarantee GPU caches are flushed. Currently I don't
+>>>> think there is anything like gem wait in the uAPI, although Matt is
+>>>> just about to add functionality to wait on all outstanding work on
+>>>> an
+>>>> exec_queue.
+>>>
+>>> Problem I see is there are no execs or therefore fences in the
+>>> minigbm
+>>> ABI. It's just buffers, created or imported, CPU access and some
+>>> other
+>>> stuff.
+>>>
+>>> And it is quite extensively used in the OS so I assume it has to work
+>>> (I
+>>> mean the invalidation/flushing was not put in there for no reason),
+>>> in
+>>> other words, where the i915 backend today does
+>>> DRM_I915_GEM_SET_DOMAIN
+>>> on "cpu access begin", which is buffer based, I am not clear how to
+>>> implement that with xe.
+>>>
+>>> For the outstanding work you mention, since you say it is about
+>>> exec_queue, I assume again it will not work purely with buffers? If
+>>> so
+>>> it probably won't be useful for minigbm.
+>>>
+>>> Also if I look at all the other minigbm backends, I see a mix of
+>>> behaviours:
+>>>
+>>>    * msm and vc4 appear to not concern themselves with any of this.
+>>>
+>>>    * rockchip appears to be doing full bounce buffering via memcpy on
+>>> CPU
+>>> access begin/end.
+>>>
+>>>    * i915 and amdgpu respectively use
+>>> DRM_I915_GEM_SET_DOMAIN/DRM_AMDGPU_GEM_WAIT_IDLE (also buffer based,
+>>> not
+>>> execution queue). Andgpu curiously does not do any flushing on CPU
+>>> access end.
+>>>
+>>> Digging into git history, both DRM_I915_GEM_SET_DOMAIN on CPU access
+>>> begin and clflushing on end were added to fix various CTS test
+>>> failures.
+>>> So I guess we could also wait and see what happens there. If those or
+>>> some will be failing with xe too then propose adding some new uapi.
+>>> Or
+>>> if manual testing will start reporting visual corruption in the UI
+>>> elements or such.
+>>
+>> Indeed it sounds like we'd need a DRM_XE_GEM_WAIT_IDLE, similar to
+>> AMDGPU for this use-case. I'll bring that up for discussion.
+>
+> Thanks!
+>
+>>>>> 2)
+>>>>> When a bo is unmapped, or CPU access finished, it wants to flush
+>>>>> the
+>>>>> CPU
+>>>>> caches. That is /almost/ completely a CPU operation, where it
+>>>>> just
+>>>>> needs
+>>>>> to either clflush or invalidate the WC buffer respectively, if
+>>>>> not
+>>>>> the
+>>>>> fact that clflush can be skipped on platforms with LLC.
+>>>>>
+>>>>> I did not see an equivalent of an I915_PARAM_HAS_LLC in xe? Did I
+>>>>> miss
+>>>>> it or what it is the plan for querying this detail?
+>>>>
+>>>> XeKMD is generally coherent, except if UMD selects a GPU PAT index
+>>>> with
+>>>> limited coherency together with WB instead of WC memory. In that
+>>>> case,
+>>>> UMD is responsible for doing the needed CLFLUSH-ing, whereas KMD
+>>>> only
+>>>> ensures initial clearing of the pages is CLFLUSHED for security
+>>>> reasons.
+>>>>
+>>>> I'm not 100% sure if UMD can actually select WB with limited
+>>>> coherency
+>>>> PAT index in the initial uAPI revision, but Matthew has received
+>>>> requests for that so any additional input here on performance
+>>>> implications is appreciated.
+>>>>
+>>>> The thinking here is otherwise that GPU PAT indices with limited
+>>>> coherency should be used together with WC memory in the same
+>>>> situations
+>>>> as VRAM/LMEM is used on DGFX.
+>>>
+>>> Hm okay, this would be the VM BIND side of things which deals with
+>>> GPU
+>>> PATs. From the CPU side it is just CPU caching modes implicitly
+>>> selected
+>>> via DRM_XE_GEM_CPU_CACHING_WB/WC.
+>>>
+>>> The question about the analogue of I915_PARAM_HAS_LLC was AFAIU about
+>>> a
+>>> performance optimisation where UMD is deciding whether it is okay to
+>>> skip issuing clflush for the mapped bo if DRM_XE_GEM_CPU_CACHING_WB
+>>> was
+>>> used. (If DRM_XE_GEM_CPU_CACHING_WC was used it obviously only needs
+>>> to
+>>> flush the write combine buffer.)
+>>>
+>>> Looking at what Mesa is doing it appears it is not using
+>>> I915_PARAM_HAS_LLC but has its own device info tables. So I guess
+>>> minigbm xe backend will have to do the same if xe will not provide
+>>> the
+>>> analogue query.
+>>
+>> IMO clflushing in this case should never be needed, (Again, similar to
+>> AMD). Whatever renders from / to those buffers should make sure they
+>> are clflushed before or while accessing them. How is a rendering API
+>> made aware of these bos? Are they imported using drm prime?
+>
+> Yes they can be imported via drm prime. It's a quite a huge code base 
+> with a few abstractions and quite hard to figure out all possible 
+> paths. There are gbm_bo_map paths in the host and vm compositors (Exo 
+> and Sommelier), Skia library, camera pipeline, maybe more.
+>
+> You mean specifically on the "cpu access end" part of the story 
+> flushing would never be needed? Regardless of llc and !llc, wb or wc 
+> mappings, imported or native buffer? What mechanism would next in the 
+> pipeline (after CPU access) use to ensure the flush?
+>
+Currently we're not supporting any older !LLC hardware, and with newer 
+!LLC hardware, we're only allowing at least 1-way coherency with 
+dma-bufs, meaning the GPU will acquire the cache line when accessing the 
+bo. If the bo is not a dma-buf, and the GPU wants to access it in 
+non-coherent mode, we're currently enforcing WC cpu-mappings.
 
-> 
-> v2:
->    - Add lock dep assertion before updating vram_userfault_count (Rodrigo)
->    - Avoid iomem check before bo migration check as bo can migrate
->      to system memory (Matthew Auld)
-> v3:
->    - Apply pagefault approach for headed cards.
-> 
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_bo.c           | 62 ++++++++++++++++++++++++++--
->   drivers/gpu/drm/xe/xe_bo.h           |  2 +
->   drivers/gpu/drm/xe/xe_bo_types.h     |  5 +++
->   drivers/gpu/drm/xe/xe_device_types.h | 20 +++++++++
->   drivers/gpu/drm/xe/xe_pm.c           |  7 ++++
->   5 files changed, 93 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 5741948a2a51..419bc5c55aa7 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -797,6 +797,18 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->   		dma_fence_put(fence);
->   	}
->   
-> +	/*
-> +	 * TTM has already nuked the mmap for us (see ttm_bo_unmap_virtual),
-> +	 * so if we moved from VRAM make sure to unlink this from the userfault
-> +	 * tracking.
-> +	 */
-> +	if (mem_type_is_vram(old_mem_type)) {
-> +		spin_lock(&xe->mem_access.vram_userfault_lock);
-> +		if (INTEL_DISPLAY_ENABLED(xe) && !list_empty(&bo->vram_userfault_link))
-> +			list_del_init(&bo->vram_userfault_link);
-> +		spin_unlock(&xe->mem_access.vram_userfault_lock);
-> +	}
-> +
->   	xe_device_mem_access_put(xe);
->   
->   out:
-> @@ -1125,6 +1137,8 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->   {
->   	struct ttm_buffer_object *tbo = vmf->vma->vm_private_data;
->   	struct drm_device *ddev = tbo->base.dev;
-> +	struct xe_bo *bo = NULL;
-> +	struct xe_device *xe = to_xe_device(ddev);
->   	vm_fault_t ret;
->   	int idx, r = 0;
->   
-> @@ -1133,7 +1147,7 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->   		return ret;
->   
->   	if (drm_dev_enter(ddev, &idx)) {
-> -		struct xe_bo *bo = ttm_to_xe_bo(tbo);
-> +		bo = ttm_to_xe_bo(tbo);
->   
->   		trace_xe_bo_cpu_fault(bo);
->   
-> @@ -1152,10 +1166,31 @@ static vm_fault_t xe_gem_fault(struct vm_fault *vmf)
->   	} else {
->   		ret = ttm_bo_vm_dummy_page(vmf, vmf->vma->vm_page_prot);
->   	}
-> +
->   	if (ret == VM_FAULT_RETRY && !(vmf->flags & FAULT_FLAG_RETRY_NOWAIT))
->   		return ret;
-> +	/*
-> +	 * ttm_bo_vm_reserve() already has dma_resv_lock.
-> +	 * vram_userfault_count is protected by dma_resv lock and rpm wakeref.
-> +	 */
-> +	if (INTEL_DISPLAY_ENABLED(xe) && ret == VM_FAULT_NOPAGE && bo && !bo->vram_userfault_count) {
-> +		if (tbo->resource->bus.is_iomem) {
-> +			dma_resv_assert_held(tbo->base.resv);
-> +
-> +			xe_device_mem_access_get(xe);
-> +
-> +			bo->vram_userfault_count = 1;
-> +
-> +			spin_lock(&xe->mem_access.vram_userfault_lock);
-> +			list_add(&bo->vram_userfault_link, &xe->mem_access.vram_userfault_list);
-> +			spin_unlock(&xe->mem_access.vram_userfault_lock);
-> +
-> +			xe_device_mem_access_put(xe);
-> +		}
-> +	}
->   
->   	dma_resv_unlock(tbo->base.resv);
-> +
->   	return ret;
->   }
->   
-> @@ -1167,7 +1202,7 @@ static void xe_ttm_bo_vm_close(struct vm_area_struct *vma)
->   
->   	ttm_bo_vm_close(vma);
->   
-> -	if (tbo->resource->bus.is_iomem)
-> +	if (!INTEL_DISPLAY_ENABLED(xe) && tbo->resource->bus.is_iomem)
->   		xe_device_mem_access_put(xe);
->   }
->   
-> @@ -1190,7 +1225,7 @@ int xe_drm_gem_ttm_mmap(struct drm_gem_object *gem,
->   	if (ret < 0)
->   		return ret;
->   
-> -	if (tbo->resource->bus.is_iomem)
-> +	if (!INTEL_DISPLAY_ENABLED(xe) && tbo->resource->bus.is_iomem)
->   		xe_device_mem_access_get(xe);
->   
->   	return 0;
-> @@ -2296,6 +2331,27 @@ int xe_bo_dumb_create(struct drm_file *file_priv,
->   	return err;
->   }
->   
-> +void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo)
-> +{
-> +	struct ttm_buffer_object *tbo = &bo->ttm;
-> +	struct ttm_device *bdev = tbo->bdev;
-> +	struct drm_device *ddev = tbo->base.dev;
-> +	struct xe_device *xe = to_xe_device(ddev);
-> +
-> +	if (!INTEL_DISPLAY_ENABLED(xe))
-> +		return;
-> +
-> +	drm_vma_node_unmap(&tbo->base.vma_node, bdev->dev_mapping);
-> +
-> +	/*
-> +	 * We have exclusive access here via runtime suspend. All other callers
-> +	 * must first grab the rpm wakeref.
-> +	 */
-> +	XE_WARN_ON(!bo->vram_userfault_count);
-> +	list_del(&bo->vram_userfault_link);
-> +	bo->vram_userfault_count = 0;
-> +}
-> +
->   #if IS_ENABLED(CONFIG_DRM_XE_KUNIT_TEST)
->   #include "tests/xe_bo.c"
->   #endif
-> diff --git a/drivers/gpu/drm/xe/xe_bo.h b/drivers/gpu/drm/xe/xe_bo.h
-> index 098ccab7fa1e..fd9ec9fc9152 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.h
-> +++ b/drivers/gpu/drm/xe/xe_bo.h
-> @@ -239,6 +239,8 @@ int xe_gem_create_ioctl(struct drm_device *dev, void *data,
->   			struct drm_file *file);
->   int xe_gem_mmap_offset_ioctl(struct drm_device *dev, void *data,
->   			     struct drm_file *file);
-> +void xe_bo_runtime_pm_release_mmap_offset(struct xe_bo *bo);
-> +
->   int xe_bo_dumb_create(struct drm_file *file_priv,
->   		      struct drm_device *dev,
->   		      struct drm_mode_create_dumb *args);
-> diff --git a/drivers/gpu/drm/xe/xe_bo_types.h b/drivers/gpu/drm/xe/xe_bo_types.h
-> index f71dbc518958..72c667dc664e 100644
-> --- a/drivers/gpu/drm/xe/xe_bo_types.h
-> +++ b/drivers/gpu/drm/xe/xe_bo_types.h
-> @@ -84,6 +84,11 @@ struct xe_bo {
->   	 * objects.
->   	 */
->   	u16 cpu_caching;
-> +	/**
-> +	 * Whether the object is currently in fake offset mmap backed by vram.
-> +	 */
-> +	unsigned int vram_userfault_count;
-> +	struct list_head vram_userfault_link;
->   };
->   
->   #define intel_bo_to_drm_bo(bo) (&(bo)->ttm.base)
-> diff --git a/drivers/gpu/drm/xe/xe_device_types.h b/drivers/gpu/drm/xe/xe_device_types.h
-> index 9a212dbdb8a4..1aa303db80c9 100644
-> --- a/drivers/gpu/drm/xe/xe_device_types.h
-> +++ b/drivers/gpu/drm/xe/xe_device_types.h
-> @@ -363,6 +363,26 @@ struct xe_device {
->   	struct {
->   		/** @ref: ref count of memory accesses */
->   		atomic_t ref;
-> +		/*
-> +		 *  Protects access to vram usefault list.
-> +		 *  It is required, if we are outside of the runtime suspend path,
-> +		 *  access to @vram_userfault_list requires always first grabbing the
-> +		 *  runtime pm, to ensure we can't race against runtime suspend.
-> +		 *  Once we have that we also need to grab @vram_userfault_lock,
-> +		 *  at which point we have exclusive access.
-> +		 *  The runtime suspend path is special since it doesn't really hold any locks,
-> +		 *  but instead has exclusive access by virtue of all other accesses requiring
-> +		 *  holding the runtime pm wakeref.
-> +		 */
-> +		spinlock_t vram_userfault_lock;
-> +
-> +		/*
-> +		 *  Keep list of userfaulted gem obj, which require to release their
-> +		 *  mmap mappings at runtime suspend path.
-> +		 */
-> +		struct list_head vram_userfault_list;
-> +
-> +		bool vram_userfault_ongoing;
->   	} mem_access;
->   
->   	/**
-> diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-> index b429c2876a76..bc1cb081e6e5 100644
-> --- a/drivers/gpu/drm/xe/xe_pm.c
-> +++ b/drivers/gpu/drm/xe/xe_pm.c
-> @@ -181,6 +181,8 @@ void xe_pm_init(struct xe_device *xe)
->   	}
->   
->   	xe_pm_runtime_init(xe);
-> +	INIT_LIST_HEAD(&xe->mem_access.vram_userfault_list);
-> +	spin_lock_init(&xe->mem_access.vram_userfault_lock);
->   }
->   
->   void xe_pm_runtime_fini(struct xe_device *xe)
-> @@ -214,6 +216,7 @@ struct task_struct *xe_pm_read_callback_task(struct xe_device *xe)
->   
->   int xe_pm_runtime_suspend(struct xe_device *xe)
->   {
-> +	struct xe_bo *bo, *on;
->   	struct xe_gt *gt;
->   	u8 id;
->   	int err = 0;
-> @@ -247,6 +250,10 @@ int xe_pm_runtime_suspend(struct xe_device *xe)
->   	 */
->   	lock_map_acquire(&xe_device_mem_access_lockdep_map);
->   
-> +	list_for_each_entry_safe(bo, on,
-> +				 &xe->mem_access.vram_userfault_list, vram_userfault_link)
-> +		xe_bo_runtime_pm_release_mmap_offset(bo);
-> +
->   	if (xe->d3cold.allowed) {
->   		err = xe_bo_evict_all(xe);
->   		if (err)
+So:
+igfx with shared LLC: Not a problem (always coherent)
+dgfx: Not a problem (always coherent)
+newer igfx WO shared LLC (KMD is enforcing coherent access).
+
+Now this may of course, as mentions, have performance implications 
+compared to previous igfx solutions, depending on how it all is written, 
+but should have similar performance characteristics as dgfx. If we want 
+to change this and relax the coherency enforcement and resort to 
+CLFLUSHes again,  could UMD communicate the need for this in the same 
+way it communicates the format of the gbm_bos?
+
+/Thomas
+
+> Regards,
+>
+> Tvrtko
