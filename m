@@ -4,146 +4,54 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 71D56C4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 17:06:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A32B7C4167B
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 17:11:03 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 161F010E149;
-	Thu,  7 Dec 2023 17:06:56 +0000 (UTC)
-X-Greylist: delayed 2918 seconds by postgrey-1.36 at gabe;
- Thu, 07 Dec 2023 17:06:54 UTC
-Received: from cluster-d.mailcontrol.com (mail-01-d.mailcontrol.com
- [85.115.60.221])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 866F910E149
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 17:06:54 +0000 (UTC)
-Received: (from mailcontrol@localhost)
- by rly14d.srv.mailcontrol.com (MailControl) with ESMTP id 3B7GICKu184404
- for intel-xe@lists.freedesktop.org; Thu, 7 Dec 2023 16:18:12 GMT
-Received: from rly14d.srv.mailcontrol.com (localhost [127.0.0.1])
- by localhost (envelope-sender kelbaz@habana.ai) (MIMEDefang) with ESMTP id
- 3B7GIBJP184031 (TLS bits=256 verify=OK)
- for intel-xe@lists.freedesktop.org; Thu, 07 Dec 2023 16:18:12 +0000 (GMT)
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
- by rly14d.srv.mailcontrol.com (MailControl) id 3B7GHORP168822
- for intel-xe@lists.freedesktop.org; Thu, 7 Dec 2023 16:17:24 GMT
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com
- (mail-vi1eur05lp2169.outbound.protection.outlook.com [104.47.17.169])
- by rly14d-eth0.srv.mailcontrol.com (envelope-sender kelbaz@habana.ai)
- (MIMEDefang) with ESMTP id 3B7GH5aV162964 (TLS bits=256 verify=OK)
- for intel-xe@lists.freedesktop.org; Thu, 07 Dec 2023 16:17:23 +0000 (GMT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=GyLCUX2Iy72ULX4GFrOkh4B7EfE7TiV3QyKFmnD8jmQsgLzVQd5sNLoCovCTjW+wZAedzJR1TlUT7+xSIiCD7za43ID3NFDfQh4RS6UguwJAfsdR5GgOfC7ZaG7FpSF+Cxf6QCBqtEEw3X00iB0EItoZVSogpPztPDlmvWCjat/5Rya2fi1U6Zorm+igy/sSbPVX2dmhiEbEtsjghjlI41ik7ASIA0QJK7fI1TpeNpm4YGIJ+L5fKHtZJir8gcv+cndYi+8HRJVOvB7hU9vmO1Dx7EE2iDoJpeClpeKggXc6M9lpY6iIwhYee23GAtcWcsKDrTMvjdJdLLgEKXmtlQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=+AFn+r7ZVBpyrzksCC7VqhL0vXxl3GMUI1C1HVZnUto=;
- b=eDeHKmfzSd0ozFz5PBmGiyhtX6kiy10oxLSrNqLzGaRQLyELTV908slhFJt/B8Fe5fl2WhxkI8FvUkk6gXEJwGot0OVLM69TPEWF/GOS8KqtvwL4Vr33y+mqDgZUE3eFlPbN8aFbyW2dkUZqeetLUT5CC3s/JHZzARLnA2Bj/b+iK7cCKxRK9AeHoZ1301+zky3iguygzdADwCjRiQ30KPOI16mRo1AEXO0xN7NXTEdxsDTPqT2qNOCLSiaxsvRHLs2bIBTklpKjwDDfzpK+lm1wN0lSNX75DGcEy9Ltkc5wRm0lUE4CdPdWxaRndK0qskscmTonhtCVC+TTKwHyog==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=habana.ai; dmarc=pass action=none header.from=habana.ai;
- dkim=pass header.d=habana.ai; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=habana.ai; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=+AFn+r7ZVBpyrzksCC7VqhL0vXxl3GMUI1C1HVZnUto=;
- b=RNb7IgdwTz0m9e2AmqtJSo5UfqePkYAezxuDjKT9zrqUPGBhcBO8lecbFwE9mBc0Z71fohn3D8yYYqNc4ky8Pqx/KO/Nnpfu9bGyAtjcucN81guMfG5KvJbcr2lF6GaQddrIk+dE3IXkTzIevurokBJ4iNUIGsrOWj5MPQxfME78dlb1tsfeXHP8JoSbwXjv7g0G6j93eHxTEFy6ILCbP899Z9xnqZguZ1GeGwZPjRr/myaaS9q08rwld+ccDwDkmDs1Bgi0c1fY6BXdm/ZIJ7IjpxFNOtzIleT8h65gAe9RISLC/vqwekJeK3lm050Bb98o1TXDV1ZBpyJr7A+KGQ==
-Received: from DU0PR02MB7873.eurprd02.prod.outlook.com (2603:10a6:10:345::21)
- by DB9PR02MB8867.eurprd02.prod.outlook.com (2603:10a6:10:3dd::14)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7068.27; Thu, 7 Dec
- 2023 16:17:02 +0000
-Received: from DU0PR02MB7873.eurprd02.prod.outlook.com
- ([fe80::ae00:6d72:5454:a3a3]) by DU0PR02MB7873.eurprd02.prod.outlook.com
- ([fe80::ae00:6d72:5454:a3a3%3]) with mapi id 15.20.7068.025; Thu, 7 Dec 2023
- 16:17:02 +0000
-From: Koby Elbaz <kelbaz@habana.ai>
-To: "De Marchi, Lucas" <lucas.demarchi@intel.com>, Gustavo Sousa
- <gustavo.sousa@intel.com>
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Rename info.supports_* to info.has_*
-Thread-Topic: [Intel-xe] [PATCH] drm/xe: Rename info.supports_* to info.has_*
-Thread-Index: AQHaJ4q3Aa9W6hUuBEm7Bzn5lyD7P7CcNcQAgAAWFoCAAbaugA==
-Date: Thu, 7 Dec 2023 16:17:02 +0000
-Message-ID: <0e14b05a-94a5-5875-1d25-7490be4f0c8b@habana.ai>
-References: <20231205145235.2114761-1-lucas.demarchi@intel.com>
- <170186687243.27709.2485801479192283213@gjsousa-mobl2>
- <mq756slndp2u2ooh67pdhhaqfrb5o4f47s3utymcwtqh65jpv7@icq4wbtysn3e>
-In-Reply-To: <mq756slndp2u2ooh67pdhhaqfrb5o4f47s3utymcwtqh65jpv7@icq4wbtysn3e>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=habana.ai;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU0PR02MB7873:EE_|DB9PR02MB8867:EE_
-x-ms-office365-filtering-correlation-id: cdae554a-a481-474d-626f-08dbf73ff242
-x-ld-processed: 0d4d4539-213c-4ed8-a251-dc9766ba127a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: w97hhVg2QRWW3U27tNbTMLNsYX6r8+03S0Lu20m2yHfoHo62ebelQLO6EFrIGrXRn2FvMjS2gbDxXhnvrajT5ryeU8of06FGIjUl0S2AdLQWNo2kB2Gwsi6xODNGMAIsXOtJHSNDp70ZNo3zp7PJ38P308eCWg6r9sqb90xP+JaAa+91aH9+fYSpOT60giihoGiEpp2viJJlvvxJI60mkm79AvK3kbUj/zZzF2NAi65YlzadQeoYB3rHJTCs0Hu9RLFVMMckEDeVCK/2gPRODDO43bNNzVJc0fS/Vgu3Og9o0ku/nCHtp9WNy0quQ15HrUDC097EGjPcuPiZxjTin3arXq8+HQsDKOB/V8seUJcME9ThWFXJidpO0fyrGUVdRxhVJWwtQ8nYjgdOPBP1wFrx15nCH1sRffJc4HsQEhORHR60SptRqk/j5AFOSx/vLX7SVyLkvJOsdUg2BI5TMsxjBJpbatScGiYkPaXL7gi7O2rINp8SQn0f479uJxilwziqxyebUBu2vuduZDS7TFGoPgMAXSnwBASElpLxM+/V9gsmFV5IaT5cX/NgExHN18aEF1B1futhJX+D++v/1lk1VyBN9y7dAO8SKCjpjZBsLr8QErLLkKYlfGWeq+TijsB+ycuIni/E6lSHEypIuw==
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DU0PR02MB7873.eurprd02.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230031)(396003)(366004)(136003)(376002)(39850400004)(346002)(230922051799003)(1800799012)(64100799003)(451199024)(186009)(2616005)(26005)(71200400001)(6506007)(6512007)(53546011)(122000001)(5660300002)(8936002)(8676002)(4744005)(4326008)(41300700001)(54906003)(2906002)(478600001)(110136005)(6486002)(91956017)(66556008)(66946007)(64756008)(66446008)(76116006)(66476007)(316002)(86362001)(31696002)(82960400001)(38100700002)(38070700009)(36756003)(31686004)(45980500001);
- DIR:OUT; SFP:1102; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?cTFPbFJIUkpCbkRicjY1ZlBxY0d0dEU2VUNBM0FuQlEyRTVueHh2STljNWMz?=
- =?utf-8?B?UEExL0c3OVA5MldhUFRFM09McHdCZWZnYzhrWm8zTk9sdTAwZGw2bFJlejdr?=
- =?utf-8?B?aTBxWmtseDdwbzhPUy9pZS84aUdXQ2NmVzNxdUUxOWI3cFN1c2RGME1EQ2FQ?=
- =?utf-8?B?SXo3NmpudFp0Y2tFNk81VWx5SWVKb2lwM1ZCY1RUK0N1Tmh3UTM0dzdYMkR3?=
- =?utf-8?B?ZklRaWd6U2orNjBvSnlYYzYzVUUrK0Z1OGN0UnBZNy93eWNUTzFMN2pYemgv?=
- =?utf-8?B?ZkJnTTRxaERQaE5TVUNoMVZ2clVqZHFTV2hwMjd1SWllSzRHYUNXemM3bit6?=
- =?utf-8?B?SUxKL2J2RWUxU1h2U1EvNHh6bGk3Rk5rbjFZYS9hVWxEOFp0N0wxUnM1S0xK?=
- =?utf-8?B?NEFMTDFyMlpjNjFRNVJyQS81a3FQQ0hpd0ZOUTBNR2RuanE4eGxJRU5tOG9w?=
- =?utf-8?B?UXpDWm13UWpqL1hueHNGVzY4UWxWRUd3QzBtdzZsNktBQ1p4MjVSQjU4Umxk?=
- =?utf-8?B?VmQ1Z0ptMFg3c3JXMUlqZThEQ2c5QmhsaFY0dC9od1lTekNvNWUwTU9OY3ZE?=
- =?utf-8?B?VGNkSjdoQVZTalRmcWVTSXlLWUpRaGthdXpMTWpHTHg1SW0zcFhtQkFGaTA0?=
- =?utf-8?B?NDRHNXVDSzVnMlM2SGltWjh4UnNSc05YUUFIUlhZbGtSNmZ5MDI3T2xoT0tM?=
- =?utf-8?B?UnJabGZqN3BXcVo0NWRwTlVVQ01zK3lMMXgvcWF1OFF3QlgwZndvTDRwRjVv?=
- =?utf-8?B?d1lYbmlrVEpNM1dzWjlndFdIMDZPdEhQRWVweithRU0zaGMyUUN3QzE5SCtx?=
- =?utf-8?B?UDJYb2R4K29TSUYyczFDa0QrWXlNWlpHZndPdm9BdU43Q2c0WGF4bWp5WTdk?=
- =?utf-8?B?d3ZsWTFXNjZ6a2NlTjdRWHVSaGd0ci9UdXRUZ0E1aFJyWnBpWDRxbjB0bU9o?=
- =?utf-8?B?TzhtTU5MRDkwVnQrcUMrV1dEWDBmWEV1eVhBT3pPQUdDM1JKRkZtYVRjLzVm?=
- =?utf-8?B?bVlXWmhOWnNZNFVCckpPWmNqWTNHUHkxZGxHYllXazU3RHJBYk9McDByOEdL?=
- =?utf-8?B?NWdkY0NwZFpwU2g0SVd0dzB0TmZNdkVjanp4YTdsaHlySnZTVHZSS2lQUXFR?=
- =?utf-8?B?aXRZeCtaak42VUg5OExPRFVHUnVtTHFYK1JzcWQweUFlV0VzY0VLaVJ2amhX?=
- =?utf-8?B?LzREWmNReEt1cmI3OFhHc1J6V3I4YlJSY2tCRERKSkdvSE1SVTJSKzZrUDdT?=
- =?utf-8?B?SVhpT3FRZ2FGN0xGTmwxM2hxczVOeGJHaWRINU9JYnFiZ1l1TENQSVVtQWV2?=
- =?utf-8?B?eFRpbHpEMnFuK3NaV3RyUEJGVHR5Z25GL0doL01PVEtzcThOY25yQVNaV2h4?=
- =?utf-8?B?akEzZ1FuWE9mdE9DUUdYQXQwVlRyRkRPUTR6SDlWa0tlUkErNlJydHIrZUVw?=
- =?utf-8?B?a1hOTXFQRGxlay9Td3d1bXlXUUhFOHNKY1E0cHpIUzJkb0lDenRHUmlKWm9J?=
- =?utf-8?B?TDNWVlJKaFBLYW1FTEg3WUJDblpyMlpiNDdBam94dGp0WmsrNzVYUHBBb2h2?=
- =?utf-8?B?d0crcy9USnk0a3pOS1N4cVdqNHZPanhoemZaTjBjLzMwUGljNCtIZExzeXEz?=
- =?utf-8?B?bnYvNHZZSFNqNW0wam9JMTQ5K0pYdnRQbldZKzVLUDV0eEFKT2hwZFBiZG1a?=
- =?utf-8?B?SnduUWJVSlFvYU8xK0tmaDdyWHI0N3poOHF2K2YveWJiTDNRSEcvOCtqaGVQ?=
- =?utf-8?B?VEk4bU5meW9kZ291aUVwRHNZNVRodUI3ZWF2elBTeXMyYUtYcHRJZzBlQWlI?=
- =?utf-8?B?K1U0czlqdjZMMU5IQWxXck1BbklXWlI0cGNKWndvcklBVWp5bVYwMFBjTnJk?=
- =?utf-8?B?a21ISmdFRFJWQi9DdzFsMzd6Qzg1aWd1TUhGVGwyTW9kcDlBQWorUnlXdGxN?=
- =?utf-8?B?UXExV0hadjkrbkc0eTROSWpsc1g5QnpvRXhwSFFlbEVWTVhSeldXVzM3a0RM?=
- =?utf-8?B?RVM5RVNxanlBZkVmS1B0TFJSY05ISW9FY0dpbWFKejhkOTZ0T01OWERYSFNT?=
- =?utf-8?B?Njc1Qk1nVkZTRjI4WndRMW0vWkVDK3pGUGFVRk5SZ3ZhT05XMEVhY1RYaUwr?=
- =?utf-8?Q?yuEA=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <FF5BE7DE8BE6A542852AEDB3F1D7A7B9@eurprd02.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72D8510E12E;
+	Thu,  7 Dec 2023 17:11:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 69AF710E12E
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 17:11:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1701969061; x=1733505061;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=yTnXr3ySM9w2y4iq1g21T7UvE1VhD1kcst7zTVDF05U=;
+ b=JkBK/ZT9WtoWwyLAITbu8p4ygPooSya8z4Eo015H7rk8VRNb3jIb0jg8
+ 7ho4iKiyiBGtpTQQypNbcp2GP/xZqfROy5QwZZ8WxnL+2Qu3vW69kKmDJ
+ WFDYoeaffOqev4tWmjamUyAPkHKVrIKCPDIXbsZNmJUEn/cCf8xF06bvp
+ 6a0KxWIDxpagobQuMJXX+/ReRcGWMDo0Cokr3s/BKFmpxmt/ZsPao8JRr
+ /27e4rejLievmMXwIF33fpkqReu7qTNxqM2YNjTmG5sBVk6QaiRMNx3oI
+ aQbMG0y28Adw9C2dDzpPG+Y4IWj8BLczMz5FJ7RF+IrWElg1jI9/yKcgh w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="480461160"
+X-IronPort-AV: E=Sophos;i="6.04,258,1695711600"; d="scan'208";a="480461160"
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+ by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 09:11:00 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="895213834"
+X-IronPort-AV: E=Sophos;i="6.04,258,1695711600"; d="scan'208";a="895213834"
+Received: from jpoulsen-mobl.ger.corp.intel.com (HELO [10.249.254.234])
+ ([10.249.254.234])
+ by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Dec 2023 09:10:59 -0800
+Message-ID: <654f7142-4c40-391d-503a-9e07d743a4ab@linux.intel.com>
+Date: Thu, 7 Dec 2023 18:10:56 +0100
 MIME-Version: 1.0
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: ltyBRbaUtVNjZa4rENk4xWP9xseAbeVxAGQLxT3Zw+mTuIvkd3EFW0iuTPE2cAJiC9WbcP1+JR5SwY3Um2aT4j0tkGr6hpmYADSO90XOSWDgJZ55xkf+SfXx2O3YtjE77HLrReenqUKsEeF/0zhXd/86kbaWkWER/N3P4Y3yOW//HemI25yO955tcP0e3zn+zRC/dSl2eIhkmuwUYPO4LucKFv2WeIlSgI8ikLXA8WT47D+PAk/4VgzIUosS3+nbQAzA0ZzLTyZNgquGZ058qgJm8uTblFrkckJOqiaIQ6ptufycDD0h8tmxzlE697vSKFbyT7vgD3jN0z8EkfjxlaE4m+Fei/Y4eeshIIEMMwkCaU7UBZVYAnH6aWam3JFrdVaof5mvCDolBCNTV8SJwaS2tBhzZVSb337E4Rg+xNe0HNZGF4lGs08S51nFWnAs0wJCj1fAsGTVh7UWKosjED6pkhBlrkCCddxw0jkTtxzHkEs80l6USwkOHAkT8dTbtmTU8O+CacPI1z0lyn1JLPGPbAlW/2NPqGNogN/MrlUVP4U4fha80eetYA6nQUCDwiU6BbRGQWuPGnx0AV+InUZcjdaxIBmFgF3JRT84k/mQbJsyXZI6ySwZ+rAFUm35dPHwPwdbcq44fLFTxFhfVsUuS7MRQ0CQdI8hC9GoMKH57BXqY7R/q+vnaHE0kuJ01RilUHKXkB3zQj0YwXkNDfeVzUc6FXPGmsRUSO5W9N4tlZLcFNJc/2KsLnU8RA9uD3vqfmIAsDfiMch98WdyKSRxMRICOn2rlKGNqMev8tQ=
-X-OriginatorOrg: habana.ai
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR02MB7873.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cdae554a-a481-474d-626f-08dbf73ff242
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Dec 2023 16:17:02.2042 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0d4d4539-213c-4ed8-a251-dc9766ba127a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: rgM/ef/0tVVpn9v07dy2CDoizsoJV54iF8p0AWEFyQ/OvYrjNNR6Gofb8EUMR3KKCyNjuXS1N2A7AC9c6afh+w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR02MB8867
-X-MailControlDKIMCheck: cGFzcyBoYWJhbmEuYWkgW3Bhc3Nd
-X-MailControl-OutInfo: MTcwMTk2NTg5MTpGUEtleTEucHJpdjrNFH8DOvfxVjSG0WKyk12dGI/7FdJ2GG+7jjSpnJW4rmFfhwNEYXjwZYogpejAVLXzxOGWqCxpDmmgBoKKsTpNnv7RLshhi9kU1v2FS5rnxDO5S8O9VFSjqYQcoLdkhPes14E9RYQQx1QEx/kT7JQKqJ6xJNynVC3+5jxoN/TZbege8SaWMRe1DgPJvbFMEeyqVEGBv5S476RKy60vKCKG5F386O38Eb60/M4vtMBuq/+4On5pdu3luv8oB5U7CUvm/InamTqHmATzUxFVvxM8SuOEmHzN6y37uH56b3StIVq7oVaGKZHWBDvz0MbeCxIqukMNwNv3c8u/dhHrL1DH
-X-Scanned-By: MailControl 44278.2143 (www.mailcontrol.com) on 104.47.17.169
-X-Mailcontrol-Refers-To: 3B7GIBJP184031
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed; d=habana.ai;
- h=from:to:cc:subject:date:message-id:references:in-reply-to:content-type:content-id:content-transfer-encoding:mime-version;
- s=fpkey81949-2; bh=+AFn+r7ZVBpyrzksCC7VqhL0vXxl3GMUI1C1HVZnUto=;
- b=DGVf74g/Dxzr7BuVIAhnnWE3gQtw8+U9y5NgvBGLjAEYpAvybSzQqgx0r26Nbzy5FS72/xABwFtpMNJpcOT3+xbfFz2NGeI66ua53gQJKQF/QOsoVadG2VYO8NwHtYZYhVSxX0lAkCFFu1LQjqKTDk312jNjfI8h6h7ncnl2j650JINOVxMn1LxzXF7KROJBCb7tO7CwasfWaLj6SfT96WHTHV2MzB84Ge5uvax1DxImSZDXv+qWJQOJ/pMyla+BJm+FudI8am6IyhjkPjC9UOEI9Cvh29pDyOcQ6FXmWpO9L1jBMWsulPgTSrkzOrn3U4hiiphV6xcZOsYbeE21lw==
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH] drm/xe: Replace the scratch pages with NULL PTEs
+Content-Language: en-US
+To: Lucas De Marchi <lucas.demarchi@intel.com>
+References: <20231207154423.35666-1-thomas.hellstrom@linux.intel.com>
+ <dktre5juul24vbetvhi67r3n2gnlnjihppf74vddyrobxetxc7@5nha57x4mdwb>
+ <301e0414-c632-dd88-b67c-87a3d24544a9@linux.intel.com>
+ <la25ljwtfjk5aj72t77i6b7pdntaiu6ei7wlmafmrcxhkkso3x@kwc4v6xz5pbf>
+From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
+In-Reply-To: <la25ljwtfjk5aj72t77i6b7pdntaiu6ei7wlmafmrcxhkkso3x@kwc4v6xz5pbf>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,22 +63,333 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-T24gMDYvMTIvMjAyMyAxNjowNiwgTHVjYXMgRGUgTWFyY2hpIHdyb3RlOg0KPiBPbiBXZWQsIERl
-YyAwNiwgMjAyMyBhdCAwOTo0Nzo1MkFNIC0wMzAwLCBHdXN0YXZvIFNvdXNhIHdyb3RlOg0KPj4g
-UXVvdGluZyBMdWNhcyBEZSBNYXJjaGkgKDIwMjMtMTItMDUgMTE6NTI6MzUtMDM6MDApDQo+Pj4g
-UmVuYW1lIHN1cHBvcnRzX21taW9fZXh0IGFuZCBzdXBwb3J0c191c20gdG8gdXNlIGEgaGFzXyBw
-cmVmaXggc28gdGhlDQo+Pj4gZmxhZ3MgYXJlIGdyb3VwZWQgdG9nZXRoZXIuIFRoaXMgc2V0dGxl
-cyBvbiBqdXN0IG9uZSB2YXJpYW50IGZvcg0KPj4+IHBvc2l0aXZlIGluZm8gbWF0Y2hpbmcgKCJo
-YXNfIikgYW5kIG9uZSBmb3IgbmVnYXRpdmUgKCJza2lwXyIpLg0KPj4+DQo+Pj4gU2lnbmVkLW9m
-Zi1ieTogTHVjYXMgRGUgTWFyY2hpIDxsdWNhcy5kZW1hcmNoaUBpbnRlbC5jb20+DQo+Pg0KPj4g
-UmV2aWV3ZWQtYnk6IEd1c3Rhdm8gU291c2EgPGd1c3Rhdm8uc291c2FAaW50ZWwuY29tPg0KPg0K
-PiBUaGFua3MuIEkgd2lsbCBsZWF2ZSB0aGlzIG91dCBhIGxpdHRsZSBiaXQgbW9yZSBzaW5jZSB0
-aGlzIGhhcyBiZWVuIGFuDQo+IGFyZWEgb2YgZGlzYWdyZWVtZW50cyBpbiB0aGUgcGFzdC4NCj4N
-Cj4gUm9kcmlnbyAvIEtvYnksIGFueSBvcGluaW9ucyBoZXJlPw0KPg0KPiBMdWNhcyBEZSBNYXJj
-aGkNCg0KDQpTb3VuZHMgZ29vZCB0byBtZS4NCg0KUmV2aWV3ZWQtYnk6IEtvYnkgRWxiYXogPGtl
-bGJhekBoYWJhbmEuYWk+DQoNCg==
+
+On 12/7/23 17:42, Lucas De Marchi wrote:
+> On Thu, Dec 07, 2023 at 05:25:01PM +0100, Thomas Hellström wrote:
+>> + intel-xe cc.
+>>
+>>
+>> On 12/7/23 17:17, Lucas De Marchi wrote:
+>>> On Thu, Dec 07, 2023 at 04:44:23PM +0100, Thomas Hellström wrote:
+>>>> Replace the scratch pages with NULL PTEs that return 0 when reading 
+>>>> and
+>>>> do nothing when writing.
+>>>
+>>> but don't we want to keep scratch so we can check when things go wrong
+>>> and writes go where they shouldn't?
+>>
+>> The argument against that was that apps that incorrectly writes to 
+>> scratch and then reads back the same value wouldn't notice that it 
+>> did something wrong, and the case you mention would to some extent be 
+>> captured by not having a scratch page at all and check for pagefaults?
+>
+> maybe... But if we have a null pte where we had scratch mapped, aren't we
+> actually masking the pagefault? What about platforms where we don't have
+> pagefault? Relying on pagefault alone I think would actually be: use a
+> null pte to account for HW prefetch where applicable, but don't use it
+> elsewhere, and only if we support pagefault on that platform. But I
+> may be misunderstanding to what degree this patch is replacing scratch
+> since I see you kept xe_vm_has_scratch().
+
+With the current uAPI we're by default setting unmapped PTEs to 0, but 
+UMD can at VM creation request scratch PTEs instead, they are then 
+resolving to a single RW page.
+
+What this patch does (if it weren't buggy) is to change the latter to 
+point to the NULL PTEs that read 0 and writes nothing, mainly for the 
+purpose of (buggy?) 3D workloads that expect reading 0 if they access an 
+unmapped area....
+
+But with the default (no scrach) behaviour any  HW prefetch outside a 
+mapped area would cause, I figure, at least an unrecoverable GPU 
+pagefault or IOMMU pagefault, so I figure UMDs are typically expected to 
+over-allocate to account for that?
+
+/Thomas
+
+
+>
+> Lucas De Marchi
+>
+>
+>>
+>> I admit I haven't been following the discussions around scratch pages 
+>> long enough to know the historical uses for it. Cc'ing Joonas for 
+>> further discussion.
+>>
+>> /Thomas
+>>
+>>
+>>>
+>>> Lucas De Marchi
+>>>
+>>>>
+>>>> Cc: Brian Welty <brian.welty@intel.com>
+>>>> Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+>>>> ---
+>>>> drivers/gpu/drm/xe/xe_pt.c       | 68 ++++----------------------------
+>>>> drivers/gpu/drm/xe/xe_pt.h       |  3 --
+>>>> drivers/gpu/drm/xe/xe_vm.c       | 45 +--------------------
+>>>> drivers/gpu/drm/xe/xe_vm.h       |  5 +++
+>>>> drivers/gpu/drm/xe/xe_vm_types.h |  2 -
+>>>> 5 files changed, 14 insertions(+), 109 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
+>>>> index 35bd7940a571..ce2846d56b04 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_pt.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_pt.c
+>>>> @@ -50,17 +50,14 @@ static struct xe_pt *xe_pt_entry(struct 
+>>>> xe_pt_dir *pt_dir, unsigned int index)
+>>>> static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
+>>>>                  unsigned int level)
+>>>> {
+>>>> -    u16 pat_index = tile_to_xe(tile)->pat.idx[XE_CACHE_WB];
+>>>> -    u8 id = tile->id;
+>>>> +    struct xe_device *xe = tile_to_xe(tile);
+>>>> +    u16 pat_index = xe->pat.idx[XE_CACHE_WB];
+>>>>
+>>>> -    if (!vm->scratch_bo[id])
+>>>> +    if (!xe_vm_has_scratch(vm))
+>>>>         return 0;
+>>>>
+>>>> -    if (level > 0)
+>>>> -        return vm->pt_ops->pde_encode_bo(vm->scratch_pt[id][level 
+>>>> - 1]->bo,
+>>>> -                         0, pat_index);
+>>>> -
+>>>> -    return vm->pt_ops->pte_encode_bo(vm->scratch_bo[id], 0, 
+>>>> pat_index, 0);
+>>>> +    return vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level, 
+>>>> IS_DGFX(xe),
+>>>> +                       0) | XE_PTE_NULL;
+>>>> }
+>>>>
+>>>> /**
+>>>> @@ -135,7 +132,7 @@ void xe_pt_populate_empty(struct xe_tile *tile, 
+>>>> struct xe_vm *vm,
+>>>>     u64 empty;
+>>>>     int i;
+>>>>
+>>>> -    if (!vm->scratch_bo[tile->id]) {
+>>>> +    if (!xe_vm_has_scratch(vm)) {
+>>>>         /*
+>>>>          * FIXME: Some memory is allocated already allocated to zero?
+>>>>          * Find out which memory that is and avoid this memset...
+>>>> @@ -194,57 +191,6 @@ void xe_pt_destroy(struct xe_pt *pt, u32 
+>>>> flags, struct llist_head *deferred)
+>>>>     kfree(pt);
+>>>> }
+>>>>
+>>>> -/**
+>>>> - * xe_pt_create_scratch() - Setup a scratch memory pagetable tree 
+>>>> for the
+>>>> - * given tile and vm.
+>>>> - * @xe: xe device.
+>>>> - * @tile: tile to set up for.
+>>>> - * @vm: vm to set up for.
+>>>> - *
+>>>> - * Sets up a pagetable tree with one page-table per level and a 
+>>>> single
+>>>> - * leaf bo. All pagetable entries point to the single page-table or,
+>>>> - * for L0, the single bo one level below.
+>>>> - *
+>>>> - * Return: 0 on success, negative error code on error.
+>>>> - */
+>>>> -int xe_pt_create_scratch(struct xe_device *xe, struct xe_tile *tile,
+>>>> -             struct xe_vm *vm)
+>>>> -{
+>>>> -    u8 id = tile->id;
+>>>> -    unsigned int flags;
+>>>> -    int i;
+>>>> -
+>>>> -    /*
+>>>> -     * So we don't need to worry about 64K TLB hints when dealing 
+>>>> with
+>>>> -     * scratch entires, rather keep the scratch page in system 
+>>>> memory on
+>>>> -     * platforms where 64K pages are needed for VRAM.
+>>>> -     */
+>>>> -    flags = XE_BO_CREATE_PINNED_BIT;
+>>>> -    if (vm->flags & XE_VM_FLAG_64K)
+>>>> -        flags |= XE_BO_CREATE_SYSTEM_BIT;
+>>>> -    else
+>>>> -        flags |= XE_BO_CREATE_VRAM_IF_DGFX(tile);
+>>>> -
+>>>> -    vm->scratch_bo[id] = xe_bo_create_pin_map(xe, tile, vm, SZ_4K,
+>>>> -                          ttm_bo_type_kernel,
+>>>> -                          flags);
+>>>> -    if (IS_ERR(vm->scratch_bo[id]))
+>>>> -        return PTR_ERR(vm->scratch_bo[id]);
+>>>> -
+>>>> -    xe_map_memset(vm->xe, &vm->scratch_bo[id]->vmap, 0, 0,
+>>>> -              vm->scratch_bo[id]->size);
+>>>> -
+>>>> -    for (i = 0; i < vm->pt_root[id]->level; i++) {
+>>>> -        vm->scratch_pt[id][i] = xe_pt_create(vm, tile, i);
+>>>> -        if (IS_ERR(vm->scratch_pt[id][i]))
+>>>> -            return PTR_ERR(vm->scratch_pt[id][i]);
+>>>> -
+>>>> -        xe_pt_populate_empty(tile, vm, vm->scratch_pt[id][i]);
+>>>> -    }
+>>>> -
+>>>> -    return 0;
+>>>> -}
+>>>> -
+>>>> /**
+>>>>  * DOC: Pagetable building
+>>>>  *
+>>>> @@ -1286,7 +1232,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct 
+>>>> xe_vma *vma, struct xe_exec_queue
+>>>>      * it needs to be done here.
+>>>>      */
+>>>>     if ((rebind && !xe_vm_in_lr_mode(vm) && 
+>>>> !vm->batch_invalidate_tlb) ||
+>>>> -        (!rebind && vm->scratch_bo[tile->id] && 
+>>>> xe_vm_in_preempt_fence_mode(vm))) {
+>>>> +        (!rebind && xe_vm_has_scratch(vm) && 
+>>>> xe_vm_in_preempt_fence_mode(vm))) {
+>>>>         ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+>>>>         if (!ifence)
+>>>>             return ERR_PTR(-ENOMEM);
+>>>> diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
+>>>> index d5460e58dbbf..6f7359ac55bd 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_pt.h
+>>>> +++ b/drivers/gpu/drm/xe/xe_pt.h
+>>>> @@ -26,9 +26,6 @@ unsigned int xe_pt_shift(unsigned int level);
+>>>> struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
+>>>>                unsigned int level);
+>>>>
+>>>> -int xe_pt_create_scratch(struct xe_device *xe, struct xe_tile *tile,
+>>>> -             struct xe_vm *vm);
+>>>> -
+>>>> void xe_pt_populate_empty(struct xe_tile *tile, struct xe_vm *vm,
+>>>>               struct xe_pt *pt);
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
+>>>> index e09050f16f07..868b9a2a5d02 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_vm.c
+>>>> +++ b/drivers/gpu/drm/xe/xe_vm.c
+>>>> @@ -1332,7 +1332,7 @@ static void vm_destroy_work_func(struct 
+>>>> work_struct *w);
+>>>> struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+>>>> {
+>>>>     struct xe_vm *vm;
+>>>> -    int err, i = 0, number_tiles = 0;
+>>>> +    int err, number_tiles = 0;
+>>>>     struct xe_tile *tile;
+>>>>     u8 id;
+>>>>
+>>>> @@ -1397,17 +1397,8 @@ struct xe_vm *xe_vm_create(struct xe_device 
+>>>> *xe, u32 flags)
+>>>>         }
+>>>>     }
+>>>>
+>>>> -    if (flags & XE_VM_FLAG_SCRATCH_PAGE) {
+>>>> -        for_each_tile(tile, xe, id) {
+>>>> -            if (!vm->pt_root[id])
+>>>> -                continue;
+>>>> -
+>>>> -            err = xe_pt_create_scratch(xe, tile, vm);
+>>>> -            if (err)
+>>>> -                goto err_scratch_pt;
+>>>> -        }
+>>>> +    if (xe_vm_has_scratch(vm))
+>>>>         vm->batch_invalidate_tlb = true;
+>>>> -    }
+>>>>
+>>>>     if (flags & XE_VM_FLAG_LR_MODE) {
+>>>>         INIT_WORK(&vm->preempt.rebind_work, preempt_rebind_work_func);
+>>>> @@ -1415,7 +1406,6 @@ struct xe_vm *xe_vm_create(struct xe_device 
+>>>> *xe, u32 flags)
+>>>>         vm->batch_invalidate_tlb = false;
+>>>>     }
+>>>>
+>>>> -    /* Fill pt_root after allocating scratch tables */
+>>>>     for_each_tile(tile, xe, id) {
+>>>>         if (!vm->pt_root[id])
+>>>>             continue;
+>>>> @@ -1465,19 +1455,6 @@ struct xe_vm *xe_vm_create(struct xe_device 
+>>>> *xe, u32 flags)
+>>>>
+>>>>     return vm;
+>>>>
+>>>> -err_scratch_pt:
+>>>> -    for_each_tile(tile, xe, id) {
+>>>> -        if (!vm->pt_root[id])
+>>>> -            continue;
+>>>> -
+>>>> -        i = vm->pt_root[id]->level;
+>>>> -        while (i)
+>>>> -            if (vm->scratch_pt[id][--i])
+>>>> -                xe_pt_destroy(vm->scratch_pt[id][i],
+>>>> -                          vm->flags, NULL);
+>>>> -        xe_bo_unpin(vm->scratch_bo[id]);
+>>>> -        xe_bo_put(vm->scratch_bo[id]);
+>>>> -    }
+>>>> err_destroy_root:
+>>>>     for_each_tile(tile, xe, id) {
+>>>>         if (vm->pt_root[id])
+>>>> @@ -1556,24 +1533,6 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+>>>>         vma->gpuva.flags |= XE_VMA_DESTROYED;
+>>>>     }
+>>>>
+>>>> -    /*
+>>>> -     * All vm operations will add shared fences to resv.
+>>>> -     * The only exception is eviction for a shared object,
+>>>> -     * but even so, the unbind when evicted would still
+>>>> -     * install a fence to resv. Hence it's safe to
+>>>> -     * destroy the pagetables immediately.
+>>>> -     */
+>>>> -    for_each_tile(tile, xe, id) {
+>>>> -        if (vm->scratch_bo[id]) {
+>>>> -            u32 i;
+>>>> -
+>>>> -            xe_bo_unpin(vm->scratch_bo[id]);
+>>>> -            xe_bo_put(vm->scratch_bo[id]);
+>>>> -            for (i = 0; i < vm->pt_root[id]->level; i++)
+>>>> -                xe_pt_destroy(vm->scratch_pt[id][i], vm->flags,
+>>>> -                          NULL);
+>>>> -        }
+>>>> -    }
+>>>>     xe_vm_unlock(vm);
+>>>>
+>>>>     /*
+>>>> diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+>>>> index 9a0ae19c47b7..b92d8f54011d 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_vm.h
+>>>> +++ b/drivers/gpu/drm/xe/xe_vm.h
+>>>> @@ -61,6 +61,11 @@ static inline bool 
+>>>> xe_vm_is_closed_or_banned(struct xe_vm *vm)
+>>>>     return xe_vm_is_closed(vm) || xe_vm_is_banned(vm);
+>>>> }
+>>>>
+>>>> +static inline bool xe_vm_has_scratch(const struct xe_vm *vm)
+>>>> +{
+>>>> +    return vm->flags & XE_VM_FLAG_SCRATCH_PAGE;
+>>>> +}
+>>>> +
+>>>> struct xe_vma *
+>>>> xe_vm_find_overlapping_vma(struct xe_vm *vm, u64 start, u64 range);
+>>>>
+>>>> diff --git a/drivers/gpu/drm/xe/xe_vm_types.h 
+>>>> b/drivers/gpu/drm/xe/xe_vm_types.h
+>>>> index 23abdfd8622f..a5762e99e6aa 100644
+>>>> --- a/drivers/gpu/drm/xe/xe_vm_types.h
+>>>> +++ b/drivers/gpu/drm/xe/xe_vm_types.h
+>>>> @@ -158,8 +158,6 @@ struct xe_vm {
+>>>>     u64 size;
+>>>>
+>>>>     struct xe_pt *pt_root[XE_MAX_TILES_PER_DEVICE];
+>>>> -    struct xe_bo *scratch_bo[XE_MAX_TILES_PER_DEVICE];
+>>>> -    struct xe_pt 
+>>>> *scratch_pt[XE_MAX_TILES_PER_DEVICE][XE_VM_MAX_LEVEL];
+>>>>
+>>>>     /**
+>>>>      * @flags: flags for this VM, statically setup a creation time 
+>>>> aside
+>>>> -- 2.42.0
+>>>>
