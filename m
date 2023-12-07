@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 44C92C4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 13:01:12 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0EA33C10F05
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 13:01:13 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D32510E89F;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31D0010E8A0;
 	Thu,  7 Dec 2023 13:01:12 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD2F10E88D
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 13:01:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 895C910E1CD
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 13:01:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701954068; x=1733490068;
+ t=1701954067; x=1733490067;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LhLwmn39gn7GTxST43evDVqk0kRqWPRZ4hB64LRWCjA=;
- b=OspKz8uJgmps9dvAdtmgxrmaJJSConePgtG8KZG7vHWYy+sS0hBBJQ/v
- 2s33HN29jvj4GzLd7F5nwpY2SMw8vToMZvYkwWn27+JkLE5qV4Vy7RelA
- fW5seULGEY2r8LEYXoQWNSJ2NG2EHtuvhNRRuyI1gXpgivbhJgLi7kSTg
- jZQAoNg4E2RO51fkxXLrWRJZ0mqpSzGGDXoLJc6H+ufGMthKjayMREVCT
- vHE900MyVwjBaekUcWEn3MNz8NF0IfUswgzhEsM94dms4yGh97BgBmnqD
- 8LTRP36ILpWrwnZyfjC4b52W4Rs61tUUI6fNGuAxNwf4Flxi+PGGgNxGL g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1308980"
+ bh=cLRMVcQUo3j2Sb1RS2RVdvWoKBS/U0q7wC9P7Z4Iuu0=;
+ b=bvd0xCdJj76i8Cw9ASNcUfONMhi6yroDhQXNmhie8EYARBmgwYKiqF+i
+ fS0MZnwVfJUgFFFv5hUmo4YUQY3T1McHPEUNzovyi+FlIaQtAlPR211EH
+ PapzcFhYQTBauwe/ata3GXtwsvdgfFCJhcS9rGBg4ngpfmV5y37MVXEos
+ JOKyFZAvH4aNwMJzHR3Znsf99IfM/SSOQ98YRrizRuUNiDoqEBhOBnNSt
+ u2K4DmLz0CpQ0wuYiD3+I4F5fo7euWdiJhc3sHapLi9j4wlHwZCnC1FGM
+ DCd7YMZoST/OHDA2KTVBsQCdJKEf4b2yTbFjNgRR90OGfGcvC0beYPKtp g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1308971"
 X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="1308980"
+   d="scan'208";a="1308971"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 05:01:08 -0800
+ 07 Dec 2023 05:01:07 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="721454198"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="721454198"
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="721454181"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="721454181"
 Received: from rlgreyi-mobl.amr.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.252.46.17])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 05:01:06 -0800
+ 07 Dec 2023 05:01:04 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 4/9] fixup! drm/xe/display: Implement display support
-Date: Thu,  7 Dec 2023 15:00:41 +0200
-Message-Id: <20231207130046.2350822-5-jouni.hogander@intel.com>
+Subject: [PATCH v2 3/9] fixup! drm/xe/display: Implement display support
+Date: Thu,  7 Dec 2023 15:00:40 +0200
+Message-Id: <20231207130046.2350822-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231207130046.2350822-1-jouni.hogander@intel.com>
 References: <20231207130046.2350822-1-jouni.hogander@intel.com>
@@ -64,51 +64,32 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We need to add i915_gem_object_read_from_page to build intel_display.c.
+We need to add i915_gem_object_get_dma_address stub to build
+intel_cursor.h.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- .../compat-i915-headers/gem/i915_gem_object.h | 31 +++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ .../gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-index b991069b5cb3..eaab536f465f 100644
+index 3b305c291cdd..b991069b5cb3 100644
 --- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
 +++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
-@@ -17,4 +17,35 @@ static inline dma_addr_t i915_gem_object_get_dma_address(const struct xe_bo *bo,
- 	return n;
- }
+@@ -6,6 +6,15 @@
+ #ifndef _I915_GEM_OBJECT_H_
+ #define _I915_GEM_OBJECT_H_
  
-+static inline int i915_gem_object_read_from_page(struct xe_bo *bo,
-+					  u32 ofs, u64 *ptr, u32 size)
++#include "xe_bo.h"
++
+ #define i915_gem_object_is_shmem(obj) ((obj)->flags & XE_BO_CREATE_SYSTEM_BIT)
+ 
++static inline dma_addr_t i915_gem_object_get_dma_address(const struct xe_bo *bo, pgoff_t n)
 +{
-+	struct ttm_bo_kmap_obj map;
-+	void *virtual;
-+	bool is_iomem;
-+	int ret;
-+
-+	XE_WARN_ON(size != 8);
-+
-+	ret = xe_bo_lock(bo, true);
-+	if (ret)
-+		return ret;
-+
-+	ret = ttm_bo_kmap(&bo->ttm, ofs >> PAGE_SHIFT, 1, &map);
-+	if (ret)
-+		goto out_unlock;
-+
-+	ofs &= ~PAGE_MASK;
-+	virtual = ttm_kmap_obj_virtual(&map, &is_iomem);
-+	if (is_iomem)
-+		*ptr = readq((void __iomem *)(virtual + ofs));
-+	else
-+		*ptr = *(u64 *)(virtual + ofs);
-+
-+	ttm_bo_kunmap(&map);
-+out_unlock:
-+	xe_bo_unlock(bo);
-+	return ret;
++	/* Should never be called */
++	WARN_ON(1);
++	return n;
 +}
 +
  #endif
