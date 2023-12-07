@@ -4,44 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 179E4C4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 15:58:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EE11CC10F05
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 15:58:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D527810E91E;
-	Thu,  7 Dec 2023 15:58:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2B1410E915;
+	Thu,  7 Dec 2023 15:58:32 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6DA2D10E919
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 15:58:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6D9210E91A
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 15:58:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701964708; x=1733500708;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=g0nEOn9UqStDhNgqF2Kzgv03M+DIFiOBOXlLHv1hNuI=;
- b=IARGSxc45QKQZ/Ydts7x5EwW9S7oPfPZUPm2KUcikSgBo7UHTPIOPLf4
- rcIfIB/5TUNzBvpgJI1o14uqXpSo2WtxQvfJmOY9GRCvvLpzmA+noJFiI
- 3WPpvzaDvneiWeFMxSAo7dmQ7YAPwYkwykE5kIbz6OViQoKzsBvLuKdKt
- vmhY1VOYsCo1IRq/P6DW0r915HTmART8OLR1cG4VvePZp49ZoomyyRQBJ
- n9GUJKrsnmWbIWXW74LNIerqNz4AFXnZnCOJNiUZRqEyhrzRG2xUVEj2J
- 9JvPwV1DCUz0HyEnyXRxTygXDzRM5vmmkMB5/OAN56uB2iCuXmXNg3oDi g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="384655277"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="384655277"
+ t=1701964709; x=1733500709;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=yiOBu7rMp1w3noK0g9i3ehd6AOoaCkDT5czzgALLvgc=;
+ b=Muilz0/8zZ6jDwINihdxuY32bb0EuNZFwMe8bT7qC6UDpc0oGl4NzR1i
+ HMoq1PkD9q3pm4tjHeIzdFV0GvJIZ8xr6uElLvfTl0AfYpOQa61u5jTQS
+ 4QwmEVId+2S+N/1fMJ81uTK5Lgp1STH7xoNT6GZ/o5d+XJAOvQPiRlFeD
+ Ey+lvG+WP6xCLmq1d0HSu4Hn5vw0AKdoxWt73lxDJEIGQzAbf6Aj9+Enm
+ TTAS9BV4dp7btlFJBOlUgqwtK5oep6srqE8h9g4907sEaf6x4FpXP/pna
+ ufITn9e967Wtr9H2F95LGlePCs2LziNH8G0oNogZqjzLksFmi2saq23Z0 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="384655280"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="384655280"
 Received: from orsmga007.jf.intel.com ([10.7.209.58])
  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 07:58:27 -0800
+ 07 Dec 2023 07:58:29 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="765151648"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="765151648"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="765151656"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="765151656"
 Received: from rlgreyi-mobl.amr.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.252.46.17])
  by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 07:58:25 -0800
+ 07 Dec 2023 07:58:27 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v6 0/9] Intel_fb.c refactoring
-Date: Thu,  7 Dec 2023 17:58:06 +0200
-Message-Id: <20231207155815.2467082-1-jouni.hogander@intel.com>
+Subject: [PATCH v6 1/9] Revert "FIXME: drm/i915: xe intel_fb.c framebuffer
+ init and destroy xe changes"
+Date: Thu,  7 Dec 2023 17:58:07 +0200
+Message-Id: <20231207155815.2467082-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20231207155815.2467082-1-jouni.hogander@intel.com>
+References: <20231207155815.2467082-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -58,60 +61,55 @@ List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Jani Nikula <jani.nikula@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+ Jani Nikula <jani.nikula@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-This patch set is refactoring intel_fb.c code to get rid of
-ifdefs. This is done by splitting i915 and Xe specific parts from
-intel_fb.c into their own source files.
+This reverts commit 14d1d786caacdb3438d07ab86fabf2e36c8151cc.
 
-Some ifdefs are tackled by adding definitions into Xe compatibility
-headers.
+Revert this as we are about to introduce implementation without any
+ifdefs.
 
-v6:
-  - Patch 7. is now backported
-v5:
-  - s/user_mode_cmd/mode_cmd
-  - Fix typo intel_fb vs. intel_fb_bo
-v4: Empty function instead of define
-v3:
-  - intel_fb_bo_framebuffer_fini added
-  - xe_bo_get/put and unpin moved to intel_fb_bo_framebuffer_init/fini
-v2: i915 changes are now backported
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fb.c | 15 ---------------
+ 1 file changed, 15 deletions(-)
 
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-
-Jouni Högander (9):
-  Revert "FIXME: drm/i915: xe intel_fb.c framebuffer init and destroy xe
-    changes"
-  fixup! FIXME: drm/i915/display: Remaining changes to make xe compile
-  drm/i915/display: use intel_bo_to_drm_bo in intel_fb.c
-  drm/i915/display: Convert intel_fb_modifier_to_tiling as non-static
-  drm/i915/display: Handle invalid fb_modifier in
-    intel_fb_modifier_to_tiling
-  drm/i915/display: Split i915 specific code away from intel_fb.c
-  drm/i915/display: Add intel_fb_bo_framebuffer_fini
-  fixup! drm/xe/display: Implement display support
-  fixup! drm/xe/display: Implement display support
-
- drivers/gpu/drm/i915/Makefile                 |   1 +
- drivers/gpu/drm/i915/display/intel_fb.c       | 247 +++++-------------
- drivers/gpu/drm/i915/display/intel_fb.h       |   2 +
- drivers/gpu/drm/i915/display/intel_fb_bo.c    |  97 +++++++
- drivers/gpu/drm/i915/display/intel_fb_bo.h    |  26 ++
- drivers/gpu/drm/xe/Makefile                   |   1 +
- .../compat-i915-headers/gem/i915_gem_object.h |  16 ++
- drivers/gpu/drm/xe/display/intel_fb_bo.c      |  74 ++++++
- drivers/gpu/drm/xe/display/intel_fb_bo.h      |  24 ++
- 9 files changed, 305 insertions(+), 183 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.h
- create mode 100644 drivers/gpu/drm/xe/display/intel_fb_bo.c
- create mode 100644 drivers/gpu/drm/xe/display/intel_fb_bo.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index 16c37a508552..f7675284907f 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1891,17 +1891,6 @@ static void intel_user_framebuffer_destroy_vm(struct drm_framebuffer *fb)
+ 
+ 	if (intel_fb_uses_dpt(fb))
+ 		intel_dpt_destroy(intel_fb->dpt_vm);
+-#ifndef I915
+-	if (intel_fb_obj(fb)->flags & XE_BO_CREATE_PINNED_BIT) {
+-		struct xe_bo *bo = intel_fb_obj(fb);
+-
+-		/* Unpin our kernel fb first */
+-		xe_bo_lock(bo, false);
+-		xe_bo_unpin(bo);
+-		xe_bo_unlock(bo);
+-	}
+-	xe_bo_put(intel_fb_obj(fb));
+-#endif
+ }
+ 
+ static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
+@@ -2174,10 +2163,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 
+ 		intel_fb->dpt_vm = vm;
+ 	}
+-#ifndef I915
+-	/* Hold a reference to object while fb is alive */
+-	xe_bo_get(obj);
+-#endif
+ 
+ 	ret = drm_framebuffer_init(&dev_priv->drm, fb, &intel_fb_funcs);
+ 	if (ret) {
 -- 
 2.34.1
 
