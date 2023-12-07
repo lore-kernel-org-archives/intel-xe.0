@@ -4,47 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 0E4EEC4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 12:50:47 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B16F4C4167B
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 12:50:49 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAC8310E89F;
-	Thu,  7 Dec 2023 12:50:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 801FD10E8A0;
+	Thu,  7 Dec 2023 12:50:49 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EF2010E89F
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 12:50:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87F1410E8A1
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 12:50:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701953445; x=1733489445;
+ t=1701953448; x=1733489448;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Sxd1dW0D3+z4W2GniT5jg5FV9OS7B6Pmca7iFHd8LKw=;
- b=WjT3MgzHAryBKQTPAVy3Gs7k6Bw1kcvqMgd23Efvis6X4D9g5mJrc5pk
- lEv1oiTCLRDvz+MQp2GZkjjdWs29d49PyrTvNCE3RbJyi0o/5ogcZ2Gsz
- 91DPdj3uWat8WfQlpK9PVL0hVFPB31F/6kRIDLtrrMbZDBjdU6tnAVMNu
- WruGKLxgqnd1johC5TufcK5f+3ThzrCfHdo2HnKuMhisxTv0TCoKExoMG
- LLwBEPNCiSL8HEJ3dVkgeIs3pBM9rAHlM6oXZSz4+F8dg4VvyN2gU2voe
- sdZA/aCj9aX4nwYWNHqdX7N42gWwYuqibulq1t6fnCOSCaE/Yl05nBazz A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1051373"
+ bh=W8vWvr/c5Qd/KzEScyliAVivqyefCBJGtyozflg+06c=;
+ b=E+V9Nlvd4nmbjsfG0uhaTiv4+4+1Hsjp/fBoM3WqFea/tkkYkBiEGQjr
+ vQPONt/ApYbc9HtyQzj9NcvM1QgJH3NNvuPLOkXdAez2camW8J0jlHrDG
+ viegAakp4MI1RAzMwyfY3MWmFCZaHDTch56y6ChCEaJY4PkC4GcJqdwNW
+ +ns8hP0GpCGz8lYm/45TWA2BYszGvIj7K5fUOUz+Y+Ef8+laO9LojzhxK
+ 3qN5GQkt4py0T1ZVBjNj2Z+SyBwfAa4UwU4Yu3/+H/7GHNdjUccna9JL+
+ Ylzhu4p/TfQQhmjg5h4xLS4tsVqAIKU+gW1AhSyUMaWs/LVgnN2hdjfoT Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="1051378"
 X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="1051373"
+   d="scan'208";a="1051378"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 04:50:44 -0800
+ 07 Dec 2023 04:50:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="19692671"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="19692685"
 Received: from rtauro-desk.iind.intel.com ([10.190.238.50])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 04:50:42 -0800
+ 07 Dec 2023 04:50:45 -0800
 From: Riana Tauro <riana.tauro@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 2/8] RFC drm/xe/guc: Add interface for engine busyness ticks
-Date: Thu,  7 Dec 2023 18:27:56 +0530
-Message-Id: <20231207125802.3730165-3-riana.tauro@intel.com>
+Subject: [PATCH v2 3/8] RFC drm/xe/guc: Expose engine busyness only for
+ supported GuC version
+Date: Thu,  7 Dec 2023 18:27:57 +0530
+Message-Id: <20231207125802.3730165-4-riana.tauro@intel.com>
 X-Mailer: git-send-email 2.40.0
 In-Reply-To: <20231207125802.3730165-1-riana.tauro@intel.com>
 References: <20231207125802.3730165-1-riana.tauro@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -60,353 +60,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-GuC provides engine busyness ticks as a 64 bit counter which count
-as clock ticks. These counters are maintained in a
-shared memory buffer and updated on a continuous basis.
+Guc version numbers are 8 bits only so convert to 32 bit 8.8.8
+to allow version comparisions. use compatibility version
+for the same.
 
-Add functions that initialize Engine busyness and get
-the current accumulated busyness.
+Engine busyness is supported only on GuC versions >= 70.11.1.
+Allow enabling/reading engine busyness only on supported
+GuC versions. Warn once if not supported.
 
+v2: rebase
+    fix guc comparison error (Matthew Brost)
+    add a macro for guc version comparison
+
+Cc: John Harrison <John.C.Harrison@Intel.com>
+Cc: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
 Signed-off-by: Riana Tauro <riana.tauro@intel.com>
 ---
- drivers/gpu/drm/xe/Makefile                 |   1 +
- drivers/gpu/drm/xe/abi/guc_actions_abi.h    |   1 +
- drivers/gpu/drm/xe/xe_gt.c                  |  13 ++
- drivers/gpu/drm/xe/xe_gt.h                  |   2 +
- drivers/gpu/drm/xe/xe_guc.c                 |   7 +
- drivers/gpu/drm/xe/xe_guc_engine_busyness.c | 153 ++++++++++++++++++++
- drivers/gpu/drm/xe/xe_guc_engine_busyness.h |  17 +++
- drivers/gpu/drm/xe/xe_guc_fwif.h            |  15 ++
- drivers/gpu/drm/xe/xe_guc_types.h           |   6 +
- 9 files changed, 215 insertions(+)
- create mode 100644 drivers/gpu/drm/xe/xe_guc_engine_busyness.c
- create mode 100644 drivers/gpu/drm/xe/xe_guc_engine_busyness.h
+ drivers/gpu/drm/xe/xe_guc_engine_busyness.c | 29 +++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
 
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 86691f3b9077..7418e6a07bc8 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -83,6 +83,7 @@ xe-y += xe_bb.o \
- 	xe_guc_ads.o \
- 	xe_guc_ct.o \
- 	xe_guc_debugfs.o \
-+	xe_guc_engine_busyness.o \
- 	xe_guc_hwconfig.o \
- 	xe_guc_log.o \
- 	xe_guc_pc.o \
-diff --git a/drivers/gpu/drm/xe/abi/guc_actions_abi.h b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-index 3062e0e0d467..d87681ca89bc 100644
---- a/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-+++ b/drivers/gpu/drm/xe/abi/guc_actions_abi.h
-@@ -139,6 +139,7 @@ enum xe_guc_action {
- 	XE_GUC_ACTION_REGISTER_CONTEXT_MULTI_LRC = 0x4601,
- 	XE_GUC_ACTION_CLIENT_SOFT_RESET = 0x5507,
- 	XE_GUC_ACTION_SET_ENG_UTIL_BUFF = 0x550A,
-+	XE_GUC_ACTION_SET_DEVICE_ENGINE_UTILIZATION = 0x550C,
- 	XE_GUC_ACTION_NOTIFY_MEMORY_CAT_ERROR = 0x6000,
- 	XE_GUC_ACTION_REPORT_PAGE_FAULT_REQ_DESC = 0x6002,
- 	XE_GUC_ACTION_PAGE_FAULT_RES_DESC = 0x6003,
-diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
-index 154d6c7072b9..3d735b66f60d 100644
---- a/drivers/gpu/drm/xe/xe_gt.c
-+++ b/drivers/gpu/drm/xe/xe_gt.c
-@@ -31,6 +31,7 @@
- #include "xe_gt_sysfs.h"
- #include "xe_gt_tlb_invalidation.h"
- #include "xe_gt_topology.h"
-+#include "xe_guc_engine_busyness.h"
- #include "xe_guc_exec_queue_types.h"
- #include "xe_guc_pc.h"
- #include "xe_hw_fence.h"
-@@ -783,3 +784,15 @@ struct xe_hw_engine *xe_gt_any_hw_engine_by_reset_domain(struct xe_gt *gt,
- 
- 	return NULL;
- }
-+
-+/**
-+ * xe_gt_engine_busy_ticks - Return current accumulated engine busyness ticks
-+ * @gt: GT structure
-+ * @hwe: Xe HW engine to report on
-+ *
-+ * Returns accumulated ticks @hwe was busy since engine stats were enabled.
-+ */
-+u64 xe_gt_engine_busy_ticks(struct xe_gt *gt, struct xe_hw_engine *hwe)
-+{
-+	return xe_guc_engine_busyness_ticks(&gt->uc.guc, hwe);
-+}
-diff --git a/drivers/gpu/drm/xe/xe_gt.h b/drivers/gpu/drm/xe/xe_gt.h
-index a818cc9c8fd0..2e3cd7031287 100644
---- a/drivers/gpu/drm/xe/xe_gt.h
-+++ b/drivers/gpu/drm/xe/xe_gt.h
-@@ -42,6 +42,8 @@ int xe_gt_resume(struct xe_gt *gt);
- void xe_gt_reset_async(struct xe_gt *gt);
- void xe_gt_sanitize(struct xe_gt *gt);
- 
-+u64 xe_gt_engine_busy_ticks(struct xe_gt *gt, struct xe_hw_engine *hwe);
-+
- /**
-  * xe_gt_any_hw_engine_by_reset_domain - scan the list of engines and return the
-  * first that matches the same reset domain as @class
-diff --git a/drivers/gpu/drm/xe/xe_guc.c b/drivers/gpu/drm/xe/xe_guc.c
-index 482cb0df9f15..6116aaea936f 100644
---- a/drivers/gpu/drm/xe/xe_guc.c
-+++ b/drivers/gpu/drm/xe/xe_guc.c
-@@ -18,6 +18,7 @@
- #include "xe_gt.h"
- #include "xe_guc_ads.h"
- #include "xe_guc_ct.h"
-+#include "xe_guc_engine_busyness.h"
- #include "xe_guc_hwconfig.h"
- #include "xe_guc_log.h"
- #include "xe_guc_pc.h"
-@@ -306,9 +307,15 @@ int xe_guc_init_post_hwconfig(struct xe_guc *guc)
- 
- int xe_guc_post_load_init(struct xe_guc *guc)
- {
-+	int err;
-+
- 	xe_guc_ads_populate_post_load(&guc->ads);
- 	guc->submission_state.enabled = true;
- 
-+	err = xe_guc_engine_busyness_init(guc);
-+	if (err)
-+		return err;
-+
- 	return 0;
- }
- 
 diff --git a/drivers/gpu/drm/xe/xe_guc_engine_busyness.c b/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
-new file mode 100644
-index 000000000000..287429e31e6c
---- /dev/null
+index 287429e31e6c..431d1ca59d2f 100644
+--- a/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
 +++ b/drivers/gpu/drm/xe/xe_guc_engine_busyness.c
-@@ -0,0 +1,153 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+#include "xe_guc_engine_busyness.h"
+@@ -23,6 +23,23 @@
+  * engine busyness ticks (ticks_engine) : clock ticks for which engine was active
+  */
+ 
++/* GuC version number components are only 8-bit, so converting to a 32bit 8.8.8 */
++#define GUC_VER(maj, min, pat)	(((maj) << 16) | ((min) << 8) | (pat))
 +
-+#include <drm/drm_managed.h>
-+
-+#include "abi/guc_actions_abi.h"
-+#include "xe_bo.h"
-+#include "xe_guc.h"
-+#include "xe_guc_ct.h"
-+
-+/**
-+ * DOC: Xe GuC Engine Busyness
-+ *
-+ * GuC >= 70.11.1 maintains busyness counters in a shared memory buffer for each
-+ * engine on a continuous basis. The counters are all 64 bits and count in clock
-+ * ticks. The values are updated on context switch events and periodicaly on a
-+ * timer internal to GuC. The update rate is guaranteed to be at least 2Hz (but with
-+ * a caveat that is not real time, best effort only).
-+ *
-+ * engine busyness ticks (ticks_engine) : clock ticks for which engine was active
-+ */
-+
-+static void guc_engine_busyness_usage_map(struct xe_guc *guc,
-+					  struct xe_hw_engine *hwe,
-+					  struct iosys_map *engine_map)
++static bool guc_engine_busyness_supported(struct xe_guc *guc)
 +{
-+	struct iosys_map *map;
-+	size_t offset;
-+	u32 instance;
-+	u8 guc_class;
++	struct xe_uc_fw *uc_fw = &guc->fw;
++	struct xe_uc_fw_version *version = &uc_fw->versions.found[XE_UC_FW_VER_COMPATIBILITY];
 +
-+	guc_class = xe_engine_class_to_guc_class(hwe->class);
-+	instance = hwe->logical_instance;
++	if (GUC_VER(version->major, version->minor, version->patch) >= GUC_VER(1, 3, 1))
++		return true;
 +
-+	map = &guc->busy.bo->vmap;
++	drm_WARN_ON_ONCE(&guc_to_xe(guc)->drm,
++			 "Engine busyness not supported in this GuC version\n");
 +
-+	offset = offsetof(struct guc_engine_observation_data,
-+			  engine_data[guc_class][instance]);
-+
-+	*engine_map = IOSYS_MAP_INIT_OFFSET(map, offset);
++	return false;
 +}
 +
-+static void guc_engine_busyness_get_usage(struct xe_guc *guc,
-+					  struct xe_hw_engine *hwe,
-+					  u64 *_ticks_engine)
-+{
-+	struct iosys_map engine_map;
-+	u64 ticks_engine = 0;
-+	int i = 0;
+ static void guc_engine_busyness_usage_map(struct xe_guc *guc,
+ 					  struct xe_hw_engine *hwe,
+ 					  struct iosys_map *engine_map)
+@@ -80,6 +97,10 @@ static void guc_engine_busyness_enable_stats(struct xe_guc *guc)
+ 	struct xe_device *xe = guc_to_xe(guc);
+ 	int ret;
+ 
++	/* Engine busyness supported only on GuC >= 70.11.1 */
++	if (!guc_engine_busyness_supported(guc))
++		return;
 +
-+	guc_engine_busyness_usage_map(guc, hwe, &engine_map);
-+
-+#define read_engine_usage(map_, field_) \
-+	iosys_map_rd_field(map_, 0, struct guc_engine_data, field_)
-+
-+	do {
-+		ticks_engine = read_engine_usage(&engine_map, total_execution_ticks);
-+
-+		if (read_engine_usage(&engine_map, total_execution_ticks) == ticks_engine)
-+			break;
-+	} while (++i < 6);
-+
-+#undef read_engine_usage
-+
-+	if (_ticks_engine)
-+		*_ticks_engine = ticks_engine;
-+}
-+
-+static void guc_engine_busyness_enable_stats(struct xe_guc *guc)
-+{
-+	u32 ggtt_addr = xe_bo_ggtt_addr(guc->busy.bo);
-+	u32 action[] = {
-+		XE_GUC_ACTION_SET_DEVICE_ENGINE_UTILIZATION,
-+		ggtt_addr,
-+		0,
-+	};
-+	struct xe_device *xe = guc_to_xe(guc);
-+	int ret;
-+
-+	ret = xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
-+	if (ret)
-+		drm_err(&xe->drm, "Failed to enable usage stats %pe", ERR_PTR(ret));
-+}
-+
-+static void guc_engine_busyness_fini(struct drm_device *drm, void *arg)
-+{
-+	struct xe_guc *guc = arg;
-+
-+	xe_bo_unpin_map_no_vm(guc->busy.bo);
-+}
-+
-+/*
-+ * xe_guc_engine_busyness_ticks - Gets current accumulated
-+ *				  engine busyness ticks
-+ * @guc: The GuC object
-+ * @hwe: Xe HW Engine
-+ *
-+ * Returns current acculumated ticks @hwe was busy when engine stats are enabled.
-+ */
-+u64 xe_guc_engine_busyness_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
-+{
-+	u64 ticks_engine;
-+
-+	guc_engine_busyness_get_usage(guc, hwe, &ticks_engine);
-+
-+	return ticks_engine;
-+}
-+
-+/*
-+ * xe_guc_engine_busyness_init - Initializes the GuC Engine Busyness
-+ * @guc: The GuC object
-+ *
-+ * Initialize GuC engine busyness, only called once during driver load
-+ * Supported only on GuC >= 70.11.1
-+ *
-+ * Return: 0 on success, negative error code on error.
-+ */
-+int xe_guc_engine_busyness_init(struct xe_guc *guc)
-+{
-+	struct xe_device *xe = guc_to_xe(guc);
-+	struct xe_gt *gt = guc_to_gt(guc);
-+	struct xe_tile *tile = gt_to_tile(gt);
-+	struct xe_bo *bo;
-+	u32 size;
-+	int err;
-+
-+	/* Initialization already done */
-+	if (guc->busy.bo)
+ 	ret = xe_guc_ct_send(&guc->ct, action, ARRAY_SIZE(action), 0, 0);
+ 	if (ret)
+ 		drm_err(&xe->drm, "Failed to enable usage stats %pe", ERR_PTR(ret));
+@@ -104,6 +125,10 @@ u64 xe_guc_engine_busyness_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe)
+ {
+ 	u64 ticks_engine;
+ 
++	/* Engine busyness supported only on GuC >= 70.11.1 */
++	if (!guc_engine_busyness_supported(guc))
 +		return 0;
 +
-+	size = PAGE_ALIGN(sizeof(struct guc_engine_observation_data));
-+
-+	bo = xe_bo_create_pin_map(xe, tile, NULL, size,
-+				  ttm_bo_type_kernel,
-+				  XE_BO_CREATE_VRAM_IF_DGFX(tile) |
-+				  XE_BO_CREATE_GGTT_BIT);
-+
-+	if (IS_ERR(bo))
-+		return PTR_ERR(bo);
-+
-+	guc->busy.bo = bo;
-+
-+	guc_engine_busyness_enable_stats(guc);
-+
-+	err = drmm_add_action_or_reset(&xe->drm, guc_engine_busyness_fini, guc);
-+	if (err)
-+		return err;
-+
-+	return 0;
-+}
-diff --git a/drivers/gpu/drm/xe/xe_guc_engine_busyness.h b/drivers/gpu/drm/xe/xe_guc_engine_busyness.h
-new file mode 100644
-index 000000000000..d70f06209896
---- /dev/null
-+++ b/drivers/gpu/drm/xe/xe_guc_engine_busyness.h
-@@ -0,0 +1,17 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2023 Intel Corporation
-+ */
-+
-+#ifndef _XE_GUC_ENGINE_BUSYNESS_H_
-+#define _XE_GUC_ENGINE_BUSYNESS_H_
-+
-+#include <linux/types.h>
-+
-+struct xe_hw_engine;
-+struct xe_guc;
-+
-+int xe_guc_engine_busyness_init(struct xe_guc *guc);
-+u64 xe_guc_engine_busyness_ticks(struct xe_guc *guc, struct xe_hw_engine *hwe);
-+
-+#endif
-diff --git a/drivers/gpu/drm/xe/xe_guc_fwif.h b/drivers/gpu/drm/xe/xe_guc_fwif.h
-index 4dd5a88a7826..c8ca5fe97614 100644
---- a/drivers/gpu/drm/xe/xe_guc_fwif.h
-+++ b/drivers/gpu/drm/xe/xe_guc_fwif.h
-@@ -37,6 +37,7 @@
- #define GUC_COMPUTE_CLASS		4
- #define GUC_GSC_OTHER_CLASS		5
- #define GUC_LAST_ENGINE_CLASS		GUC_GSC_OTHER_CLASS
-+#define GUC_MAX_OAG_COUNTERS		8
- #define GUC_MAX_ENGINE_CLASSES		16
- #define GUC_MAX_INSTANCES_PER_CLASS	32
+ 	guc_engine_busyness_get_usage(guc, hwe, &ticks_engine);
  
-@@ -222,6 +223,20 @@ struct guc_engine_usage {
- 	struct guc_engine_usage_record engines[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
- } __packed;
+ 	return ticks_engine;
+@@ -127,6 +152,10 @@ int xe_guc_engine_busyness_init(struct xe_guc *guc)
+ 	u32 size;
+ 	int err;
  
-+/* Engine busyness stats */
-+struct guc_engine_data {
-+	u64 total_execution_ticks;
-+	u64 reserved;
-+} __packed;
++	/* Engine busyness supported only on GuC >= 70.11.1 */
++	if (!guc_engine_busyness_supported(guc))
++		return 0;
 +
-+struct guc_engine_observation_data {
-+	struct guc_engine_data engine_data[GUC_MAX_ENGINE_CLASSES][GUC_MAX_INSTANCES_PER_CLASS];
-+	u64 oag_busy_data[GUC_MAX_OAG_COUNTERS];
-+	u64 total_active_ticks;
-+	u64 gt_timestamp;
-+	u64 reserved1;
-+} __packed;
-+
- /* This action will be programmed in C1BC - SOFT_SCRATCH_15_REG */
- enum xe_guc_recv_message {
- 	XE_GUC_RECV_MSG_CRASH_DUMP_POSTED = BIT(1),
-diff --git a/drivers/gpu/drm/xe/xe_guc_types.h b/drivers/gpu/drm/xe/xe_guc_types.h
-index cd80802e8918..4e9602301aed 100644
---- a/drivers/gpu/drm/xe/xe_guc_types.h
-+++ b/drivers/gpu/drm/xe/xe_guc_types.h
-@@ -70,6 +70,12 @@ struct xe_guc {
- 		u32 size;
- 	} hwconfig;
- 
-+	/** @busy: Engine busyness */
-+	struct {
-+		/** @bo: GGTT buffer object of engine busyness that is shared with GuC */
-+		struct xe_bo *bo;
-+	} busy;
-+
- 	/**
- 	 * @notify_reg: Register which is written to notify GuC of H2G messages
- 	 */
+ 	/* Initialization already done */
+ 	if (guc->busy.bo)
+ 		return 0;
 -- 
 2.40.0
 
