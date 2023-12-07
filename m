@@ -4,48 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7BD10C10DC3
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 09:11:56 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 18E68C4167B
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 09:12:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB9410E1B8;
-	Thu,  7 Dec 2023 09:11:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C009710E825;
+	Thu,  7 Dec 2023 09:11:59 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD78510E1B4
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 09:11:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 879AF10E1B4
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 09:11:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1701940313; x=1733476313;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JOGdkA2l5fTrhxEOKXz6r4rbO0noa2mwHk1BnC3QukI=;
- b=jE5K96f+vFaPOH0cxXdWhF8q00ZSkC6rlBt6HEoA3ez7ajcWcCD+rgME
- +Uvp/MDUeMwXHyVGEC5gDvlUOYQtStJtqfsY1195/jx3MT6F2nApMs/Kq
- OlIkSKWuWGMZ8er8RATpbJ3/UFFaoAP44O3tp4xahBSY7VrSwDitxmvkq
- ctG9LFxDsYDLdBdeUkaRiNl7q1DJzY9+kXkfjaolqv2gOZD4fjEImFY9W
- oxk5dTY8pCjtd8F7H4G/MKfgZQ0e9mN8wiWb+vzEeU9NxJKCUdnQQx/qX
- 4jerPAnbmivwfP1BxV6UDq8Yqn4YMmQeKRpzXP70cpiCwcdoPPNHXfb40 A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="391373974"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="391373974"
+ bh=2NviboQkIQm1bxdbk2V6x35t6/H4v4huRiyTnkEEb8s=;
+ b=NBCBbQvQQ2KvassF/LsbQnjm7/KSwS16XfqvFXs/GinsisTSL3iz3tjr
+ XJ+65Zk1S21KUiQ4bJXA36D8Lz0evPk6O9P/saQpyl+enuuyTQp4YjTzt
+ n8OfwUoJKYXqnJqU37X/h4IOfm+jNDbWnVCrZk40wUpIOkgNQi3fIPdWr
+ Ced1cmU0wj/PQT/2eZjsM4StGt6WF6ZYVmv7WvHGpoXbkakxogcrquML+
+ YNEzG/9TYhOIaQe5P+VyvpYATxY62fyUaV3SIS2YDRPbJsNE4wSEpMxjz
+ yDI0Gm/uhCIMRh8KTBgHAzHvIxRv547/k1PdCA9+uFTqsIEYa41lsYKjo Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="391373978"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="391373978"
 Received: from orsmga004.jf.intel.com ([10.7.209.38])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  07 Dec 2023 01:11:48 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="895067825"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="895067825"
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="895067842"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="895067842"
 Received: from himal-super-server.iind.intel.com ([10.145.169.168])
- by orsmga004.jf.intel.com with ESMTP; 07 Dec 2023 01:11:38 -0800
+ by orsmga004.jf.intel.com with ESMTP; 07 Dec 2023 01:11:42 -0800
 From: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  7 Dec 2023 14:49:14 +0530
-Message-Id: <20231207091922.1224800-2-himal.prasad.ghimiray@intel.com>
+Date: Thu,  7 Dec 2023 14:49:16 +0530
+Message-Id: <20231207091922.1224800-4-himal.prasad.ghimiray@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20231207091922.1224800-1-himal.prasad.ghimiray@intel.com>
 References: <20231207091922.1224800-1-himal.prasad.ghimiray@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v6 1/9] drm/xe/xe2: Determine bios enablement for
- flat ccs on igfx
+Subject: [Intel-xe] [PATCH v6 3/9] drm/xe/xe2: Updates on
+ XY_CTRL_SURF_COPY_BLT
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,93 +60,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-If bios disables flat ccs on igfx make has_flat_ccs as 0 and notify
-via drm_info.
+- The XY_CTRL_SURF_COPY_BLT instruction operationg on ccs data expects
+size in pages of main memory for which CCS data should be copied.
+- The bitfield representing copy size in XY_CTRL_SURF_COPY_BLT has
+shifted one bit higher in the instruction.
 
-Bspec:59255
+v2:
+ - Fix the num_pages for ccs size calculation.
+ - Address nits (Thomas)
 
+Reviewed-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
 Signed-off-by: Himal Prasad Ghimiray <himal.prasad.ghimiray@intel.com>
 ---
- drivers/gpu/drm/xe/regs/xe_gt_regs.h |  3 +++
- drivers/gpu/drm/xe/xe_device.c       | 29 ++++++++++++++++++++++++++++
- 2 files changed, 32 insertions(+)
+ drivers/gpu/drm/xe/regs/xe_gpu_commands.h |  1 +
+ drivers/gpu/drm/xe/xe_migrate.c           | 21 +++++++++++++++------
+ 2 files changed, 16 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-index e8dc463a49f6..de5e0cbb05be 100644
---- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-+++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
-@@ -146,6 +146,9 @@
- #define XEHP_SLICE_COMMON_ECO_CHICKEN1		XE_REG_MCR(0x731c, XE_REG_OPTION_MASKED)
- #define   MSC_MSAA_REODER_BUF_BYPASS_DISABLE	REG_BIT(14)
+diff --git a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+index 1f9c32e694c6..6ff6c7aaa648 100644
+--- a/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
++++ b/drivers/gpu/drm/xe/regs/xe_gpu_commands.h
+@@ -13,6 +13,7 @@
+ #define   DST_ACCESS_TYPE_SHIFT		20
+ #define   CCS_SIZE_MASK			0x3FF
+ #define   CCS_SIZE_SHIFT		8
++#define   XE2_CCS_SIZE_SHIFT		9
+ #define   XY_CTRL_SURF_MOCS_MASK	GENMASK(31, 26)
+ #define   XE2_XY_CTRL_SURF_MOCS_INDEX_MASK	GENMASK(31, 28)
+ #define   NUM_CCS_BYTES_PER_BLOCK	256
+diff --git a/drivers/gpu/drm/xe/xe_migrate.c b/drivers/gpu/drm/xe/xe_migrate.c
+index e8b567708ac0..7ef068451b59 100644
+--- a/drivers/gpu/drm/xe/xe_migrate.c
++++ b/drivers/gpu/drm/xe/xe_migrate.c
+@@ -526,21 +526,30 @@ static void emit_copy_ccs(struct xe_gt *gt, struct xe_bb *bb,
+ 	struct xe_device *xe = gt_to_xe(gt);
+ 	u32 *cs = bb->cs + bb->len;
+ 	u32 num_ccs_blks;
++	u32 num_pages;
++	u32 ccs_copy_size;
+ 	u32 mocs;
  
-+#define XE2_FLAT_CCS_BASE_RANGE_LOWER		XE_REG_MCR(0x8800)
-+#define   XE2_FLAT_CCS_ENABLE			REG_BIT(0)
-+
- #define VF_PREEMPTION				XE_REG(0x83a4, XE_REG_OPTION_MASKED)
- #define   PREEMPTION_VERTEX_COUNT		REG_GENMASK(15, 0)
+-	num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
+-				    NUM_CCS_BYTES_PER_BLOCK);
+-	xe_gt_assert(gt, num_ccs_blks <= NUM_CCS_BLKS_PER_XFER);
++	if (GRAPHICS_VERx100(xe) >= 2000) {
++		num_pages = DIV_ROUND_UP(size, XE_PAGE_SIZE);
++		xe_gt_assert(gt, num_pages <= 1024);
  
-diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
-index 8423c817111b..400fa1ac6168 100644
---- a/drivers/gpu/drm/xe/xe_device.c
-+++ b/drivers/gpu/drm/xe/xe_device.c
-@@ -16,6 +16,7 @@
- #include <drm/xe_drm.h>
+-	if (GRAPHICS_VERx100(xe) >= 2000)
++		ccs_copy_size = ((num_pages - 1) & CCS_SIZE_MASK) << XE2_CCS_SIZE_SHIFT;
+ 		mocs = FIELD_PREP(XE2_XY_CTRL_SURF_MOCS_INDEX_MASK, gt->mocs.uc_index);
+-	else
++
++	} else {
++		num_ccs_blks = DIV_ROUND_UP(xe_device_ccs_bytes(gt_to_xe(gt), size),
++					    NUM_CCS_BYTES_PER_BLOCK);
++		xe_gt_assert(gt, num_ccs_blks <= NUM_CCS_BLKS_PER_XFER);
++
++		ccs_copy_size = ((num_ccs_blks - 1) & CCS_SIZE_MASK) << CCS_SIZE_SHIFT;
+ 		mocs = FIELD_PREP(XY_CTRL_SURF_MOCS_MASK, gt->mocs.uc_index);
++	}
  
- #include "regs/xe_regs.h"
-+#include "regs/xe_gt_regs.h"
- #include "xe_bo.h"
- #include "xe_debugfs.h"
- #include "xe_display.h"
-@@ -26,6 +27,7 @@
- #include "xe_exec.h"
- #include "xe_ggtt.h"
- #include "xe_gt.h"
-+#include "xe_gt_mcr.h"
- #include "xe_irq.h"
- #include "xe_mmio.h"
- #include "xe_module.h"
-@@ -392,6 +394,29 @@ int xe_device_probe_early(struct xe_device *xe)
- 	return 0;
- }
- 
-+static int xe_device_set_has_flat_ccs(struct  xe_device *xe)
-+{
-+	u32 reg;
-+	int err;
-+
-+	if (IS_DGFX(xe) || GRAPHICS_VER(xe) < 20 || !xe->info.has_flat_ccs)
-+		return 0;
-+
-+	struct xe_gt *gt = xe_root_mmio_gt(xe);
-+
-+	err = xe_force_wake_get(gt_to_fw(gt), XE_FW_GT);
-+	if (err)
-+		return err;
-+
-+	reg = xe_gt_mcr_unicast_read_any(gt, XE2_FLAT_CCS_BASE_RANGE_LOWER);
-+	xe->info.has_flat_ccs = (reg & XE2_FLAT_CCS_ENABLE);
-+
-+	if (!xe->info.has_flat_ccs)
-+		drm_info(&xe->drm,
-+			 "Flat CCS has been disabled in bios, May lead to performance impact");
-+	return 0;
-+}
-+
- int xe_device_probe(struct xe_device *xe)
- {
- 	struct xe_tile *tile;
-@@ -447,6 +472,10 @@ int xe_device_probe(struct xe_device *xe)
- 			goto err_irq_shutdown;
- 	}
- 
-+	err = xe_device_set_has_flat_ccs(xe);
-+	if (err)
-+		return err;
-+
- 	err = xe_mmio_probe_vram(xe);
- 	if (err)
- 		goto err_irq_shutdown;
+ 	*cs++ = XY_CTRL_SURF_COPY_BLT |
+ 		(src_is_indirect ? 0x0 : 0x1) << SRC_ACCESS_TYPE_SHIFT |
+ 		(dst_is_indirect ? 0x0 : 0x1) << DST_ACCESS_TYPE_SHIFT |
+-		((num_ccs_blks - 1) & CCS_SIZE_MASK) << CCS_SIZE_SHIFT;
++		ccs_copy_size;
+ 	*cs++ = lower_32_bits(src_ofs);
+ 	*cs++ = upper_32_bits(src_ofs) | mocs;
+ 	*cs++ = lower_32_bits(dst_ofs);
 -- 
 2.25.1
 
