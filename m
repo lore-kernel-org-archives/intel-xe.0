@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9C3CBC4167B
-	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 05:23:38 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2233CC10F04
+	for <intel-xe@archiver.kernel.org>; Thu,  7 Dec 2023 05:23:40 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B69210E7E5;
-	Thu,  7 Dec 2023 05:23:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB8B510E7DA;
+	Thu,  7 Dec 2023 05:23:39 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28CF110E7E3
- for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 05:23:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91CF810E7E5
+ for <intel-xe@lists.freedesktop.org>; Thu,  7 Dec 2023 05:23:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701926615; x=1733462615;
+ t=1701926616; x=1733462616;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=wSSONW9KHBE7dbQgoIMdfp5Lc1PrLrE30EbOCswMuU4=;
- b=l2hrieSZctgDbSi6ud1YZsR55L4Uut2qGG1J8hLOSE6Pv/fyW5ysVnJ5
- ziZUfmXAQTYzHLsMBeftSj+KrhX0CtD75Yv18u1k3motq3BpPgzjiB5q6
- pHsKEde4VPGogCqkm1R0Z2kAm7vQwcAj1M5mUJGFafSTtpQIs+R7oW+Tr
- 97iKXUgys/B7TDpYleenYhCibCq0IqSd72x9D7QVVZa+/HR7MPC7aGCaX
- IYnwMq3GCvNQPteqe0xXdlwAxpaJTRDmatFfMSRFh8YOeiYj19Q/0o06x
- TLMOWKnD/okQdLbX43QyGukK/OeMmEZvv3RKMZGvdAbZf8Fo10YNfpzQ0 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="7482073"
+ bh=qWmppjPEWHom2blT1Q1jG5yTJ5ociZtjXhU+2BGdIWk=;
+ b=RdKIOFuzyCXibO/tp2MwviNcTx3JJCOd6Ia3Bw3N3NoLjamnBS5DsOhP
+ yGjr0iIybDI40QoZFlEgJWuanY6dtusj1T4cLtB+tgDrbWKZw/vjGqt+I
+ WxFOz9pL/rMycPceKLhoSyjH4OiWJo+CKI6NUwJdCrM8B5cQFFPo+ALlA
+ IxPGTziGpATPgh+gHDroBJUvpOLHuiXlkukgcMyfCwJctOuKe2Wnhy47M
+ o4hKzVd6x3UjWseZopvTU45MGRBj1lbTQapEas1sh4nJaGZLF/7vDFeR9
+ TdRpL0revL3e1uNbXxNTWGnVsiQ0giahNR1W0hmB9+mK/V/aY7188TRc7 A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="7482074"
 X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; 
-   d="scan'208";a="7482073"
+   d="scan'208";a="7482074"
 Received: from fmsmga004.fm.intel.com ([10.253.24.48])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2023 21:23:35 -0800
+ 06 Dec 2023 21:23:36 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="842086052"
-X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="842086052"
+X-IronPort-AV: E=McAfee;i="6600,9927,10916"; a="842086058"
+X-IronPort-AV: E=Sophos;i="6.04,256,1695711600"; d="scan'208";a="842086058"
 Received: from rlgreyi-mobl.amr.corp.intel.com (HELO jhogande-mobl1.intel.com)
  ([10.252.46.17])
  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Dec 2023 21:23:32 -0800
+ 06 Dec 2023 21:23:35 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Date: Thu,  7 Dec 2023 07:22:49 +0200
-Message-Id: <20231207052252.2092191-7-jouni.hogander@intel.com>
+Date: Thu,  7 Dec 2023 07:22:50 +0200
+Message-Id: <20231207052252.2092191-8-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231207052252.2092191-1-jouni.hogander@intel.com>
 References: <20231207052252.2092191-1-jouni.hogander@intel.com>
@@ -48,8 +48,8 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-Subject: [Intel-xe] [PATCH v5 6/9] drm/i915/display: Split i915 specific
- code away from intel_fb.c
+Subject: [Intel-xe] [PATCH v5 7/9] drm/i915/display: Add
+ intel_fb_bo_framebuffer_fini
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,306 +65,173 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are preparing for Xe driver. Backing object implementation is differing
-between i915 and Xe. Split i915 specific code into separate source file
-built only for i915.
+Xe needs intel_fb_bo_framebuffer_fini for taking care of unpinning the fb
+and taking reference.  In i915 this can be empty.
 
-v9:
-  - Use ERR_CAST
-v8:
-  - return original error code from intel_fb_bo_lookup_valid_bo on failure
-v7:
-  - drop #include <drm/drm_plane.h>
-  - s/user_mode_cmd/mode_cmd/
-  - Use passed i915 pointer instead of to_i915(obj->base.dev)
-v6: Add missing intel_fb_bo.[ch]
-v5:
-  - Keep drm_any_plane_has_format check in intel_fb.c
-  - Use mode_cmd instead of user_mode_cmd for intel_fb_bo_lookup_valid_bo
-v4: Move drm_any_plane_has_format check into intel_fb_bo.c
-v3: Fix failure handling in intel_framebuffer_init
-v2: Couple of fixes to error value handling
+Also move intel_frontbuffer_get to be done after
+intel_fb_bo_framebuffer_init to have reasonable sequences:
+
+intel_fb_bo_framebuffer_init
+intel_frontbuffer_get
+...
+intel_frontbuffer_put
+intel_fb_bo_framebuffer_fini
+
+v2: Empty function instead of define
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20231203114840.841311-5-jouni.hogander@intel.com
-(cherry picked from commit 5f449ed05da8bb2a470b17962978f0347ba399d2)
 ---
- drivers/gpu/drm/i915/Makefile              |  1 +
- drivers/gpu/drm/i915/display/intel_fb.c    | 73 +++--------------
- drivers/gpu/drm/i915/display/intel_fb_bo.c | 92 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_fb_bo.h | 24 ++++++
- 4 files changed, 127 insertions(+), 63 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_fb_bo.h
+ drivers/gpu/drm/i915/display/intel_fb.c    | 32 +++++++++++++---------
+ drivers/gpu/drm/i915/display/intel_fb_bo.c |  5 ++++
+ drivers/gpu/drm/i915/display/intel_fb_bo.h |  2 ++
+ 3 files changed, 26 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index ab008f1a25fb..2c8108703d40 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -265,6 +265,7 @@ i915-y += \
- 	display/intel_dsb.o \
- 	display/intel_dsb_buffer.o \
- 	display/intel_fb.o \
-+	display/intel_fb_bo.o \
- 	display/intel_fb_pin.o \
- 	display/intel_fbc.o \
- 	display/intel_fdi.o \
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 20d58a021a42..96663f9ac431 100644
+index 96663f9ac431..3c3847cfa323 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.c
 +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -4,7 +4,6 @@
-  */
+@@ -1888,6 +1888,8 @@ static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
  
- #include <drm/drm_blend.h>
--#include <drm/drm_framebuffer.h>
- #include <drm/drm_modeset_helper.h>
+ 	intel_frontbuffer_put(intel_fb->frontbuffer);
  
- #include <linux/dma-fence.h>
-@@ -15,6 +14,7 @@
- #include "intel_display_types.h"
- #include "intel_dpt.h"
- #include "intel_fb.h"
-+#include "intel_fb_bo.h"
- #include "intel_frontbuffer.h"
++	intel_fb_bo_framebuffer_fini(intel_fb_obj(fb));
++
+ 	kfree(intel_fb);
+ }
  
- #define check_array_bounds(i915, a, i) drm_WARN_ON(&(i915)->drm, (i) >= ARRAY_SIZE(a))
-@@ -1985,7 +1985,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	struct drm_i915_private *dev_priv = to_i915(intel_bo_to_drm_bo(obj)->dev);
- 	struct drm_framebuffer *fb = &intel_fb->base;
- 	u32 max_stride;
--	unsigned int tiling, stride;
+@@ -1988,13 +1990,15 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
  	int ret = -EINVAL;
  	int i;
  
-@@ -1993,32 +1992,11 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 	if (!intel_fb->frontbuffer)
- 		return -ENOMEM;
- 
--	i915_gem_object_lock(obj, NULL);
--	tiling = i915_gem_object_get_tiling(obj);
--	stride = i915_gem_object_get_stride(obj);
--	i915_gem_object_unlock(obj);
+-	intel_fb->frontbuffer = intel_frontbuffer_get(obj);
+-	if (!intel_fb->frontbuffer)
+-		return -ENOMEM;
 -
--	if (mode_cmd->flags & DRM_MODE_FB_MODIFIERS) {
--		/*
--		 * If there's a fence, enforce that
--		 * the fb modifier and tiling mode match.
--		 */
--		if (tiling != I915_TILING_NONE &&
--		    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
--			drm_dbg_kms(&dev_priv->drm,
--				    "tiling_mode doesn't match fb modifier\n");
--			goto err;
--		}
--	} else {
--		if (tiling == I915_TILING_X) {
--			mode_cmd->modifier[0] = I915_FORMAT_MOD_X_TILED;
--		} else if (tiling == I915_TILING_Y) {
--			drm_dbg_kms(&dev_priv->drm,
--				    "No Y tiling for legacy addfb\n");
--			goto err;
--		}
--	}
-+	ret = intel_fb_bo_framebuffer_init(intel_fb, obj, mode_cmd);
-+	if (ret)
-+		goto err;
+ 	ret = intel_fb_bo_framebuffer_init(intel_fb, obj, mode_cmd);
+ 	if (ret)
++		return ret;
++
++	intel_fb->frontbuffer = intel_frontbuffer_get(obj);
++	if (!intel_fb->frontbuffer) {
++		ret = -ENOMEM;
+ 		goto err;
++	}
  
-+	ret = -EINVAL;
+ 	ret = -EINVAL;
  	if (!drm_any_plane_has_format(&dev_priv->drm,
- 				      mode_cmd->pixel_format,
- 				      mode_cmd->modifier[0])) {
-@@ -2028,17 +2006,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 		goto err;
- 	}
- 
--	/*
--	 * gen2/3 display engine uses the fence if present,
--	 * so the tiling mode must match the fb modifier exactly.
--	 */
--	if (DISPLAY_VER(dev_priv) < 4 &&
--	    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "tiling_mode must match fb modifier exactly on gen2/3\n");
--		goto err;
--	}
--
- 	max_stride = intel_fb_max_stride(dev_priv, mode_cmd->pixel_format,
- 					 mode_cmd->modifier[0]);
- 	if (mode_cmd->pitches[0] > max_stride) {
-@@ -2050,17 +2017,6 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 		goto err;
- 	}
- 
--	/*
--	 * If there's a fence, enforce that
--	 * the fb pitch and fence stride match.
--	 */
--	if (tiling != I915_TILING_NONE && mode_cmd->pitches[0] != stride) {
--		drm_dbg_kms(&dev_priv->drm,
--			    "pitch (%d) must match tiling stride (%d)\n",
--			    mode_cmd->pitches[0], stride);
--		goto err;
--	}
--
- 	/* FIXME need to adjust LINOFF/TILEOFF accordingly. */
- 	if (mode_cmd->offsets[0] != 0) {
+@@ -2003,7 +2007,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
  		drm_dbg_kms(&dev_priv->drm,
-@@ -2144,20 +2100,11 @@ intel_user_framebuffer_create(struct drm_device *dev,
- 	struct drm_framebuffer *fb;
- 	struct drm_i915_gem_object *obj;
- 	struct drm_mode_fb_cmd2 mode_cmd = *user_mode_cmd;
--	struct drm_i915_private *i915;
--
--	obj = i915_gem_object_lookup(filp, mode_cmd.handles[0]);
--	if (!obj)
--		return ERR_PTR(-ENOENT);
--
--	/* object is backed with LMEM for discrete */
--	i915 = to_i915(obj->base.dev);
--	if (HAS_LMEM(i915) && !i915_gem_object_can_migrate(obj, INTEL_REGION_LMEM_0)) {
--		/* object is "remote", not in local memory */
--		i915_gem_object_put(obj);
--		drm_dbg_kms(&i915->drm, "framebuffer must reside in local memory\n");
--		return ERR_PTR(-EREMOTE);
--	}
-+	struct drm_i915_private *i915 = to_i915(dev);
-+
-+	obj = intel_fb_bo_lookup_valid_bo(i915, filp, &mode_cmd);
-+	if (IS_ERR(obj))
-+		return ERR_CAST(obj);
+ 			    "unsupported pixel format %p4cc / modifier 0x%llx\n",
+ 			    &mode_cmd->pixel_format, mode_cmd->modifier[0]);
+-		goto err;
++		goto err_frontbuffer_put;
+ 	}
  
- 	fb = intel_framebuffer_create(obj, &mode_cmd);
- 	drm_gem_object_put(intel_bo_to_drm_bo(obj));
+ 	max_stride = intel_fb_max_stride(dev_priv, mode_cmd->pixel_format,
+@@ -2014,7 +2018,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 			    mode_cmd->modifier[0] != DRM_FORMAT_MOD_LINEAR ?
+ 			    "tiled" : "linear",
+ 			    mode_cmd->pitches[0], max_stride);
+-		goto err;
++		goto err_frontbuffer_put;
+ 	}
+ 
+ 	/* FIXME need to adjust LINOFF/TILEOFF accordingly. */
+@@ -2022,7 +2026,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 		drm_dbg_kms(&dev_priv->drm,
+ 			    "plane 0 offset (0x%08x) must be 0\n",
+ 			    mode_cmd->offsets[0]);
+-		goto err;
++		goto err_frontbuffer_put;
+ 	}
+ 
+ 	drm_helper_mode_fill_fb_struct(&dev_priv->drm, fb, mode_cmd);
+@@ -2033,7 +2037,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 		if (mode_cmd->handles[i] != mode_cmd->handles[0]) {
+ 			drm_dbg_kms(&dev_priv->drm, "bad plane %d handle\n",
+ 				    i);
+-			goto err;
++			goto err_frontbuffer_put;
+ 		}
+ 
+ 		stride_alignment = intel_fb_stride_alignment(fb, i);
+@@ -2041,7 +2045,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 			drm_dbg_kms(&dev_priv->drm,
+ 				    "plane %d pitch (%d) must be at least %u byte aligned\n",
+ 				    i, fb->pitches[i], stride_alignment);
+-			goto err;
++			goto err_frontbuffer_put;
+ 		}
+ 
+ 		if (intel_fb_is_gen12_ccs_aux_plane(fb, i)) {
+@@ -2052,7 +2056,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 					    "ccs aux plane %d pitch (%d) must be %d\n",
+ 					    i,
+ 					    fb->pitches[i], ccs_aux_stride);
+-				goto err;
++				goto err_frontbuffer_put;
+ 			}
+ 		}
+ 
+@@ -2061,7 +2065,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 
+ 	ret = intel_fill_fb_info(dev_priv, intel_fb);
+ 	if (ret)
+-		goto err;
++		goto err_frontbuffer_put;
+ 
+ 	if (intel_fb_uses_dpt(fb)) {
+ 		struct i915_address_space *vm;
+@@ -2070,7 +2074,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 		if (IS_ERR(vm)) {
+ 			drm_dbg_kms(&dev_priv->drm, "failed to create DPT\n");
+ 			ret = PTR_ERR(vm);
+-			goto err;
++			goto err_frontbuffer_put;
+ 		}
+ 
+ 		intel_fb->dpt_vm = vm;
+@@ -2087,8 +2091,10 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
+ err_free_dpt:
+ 	if (intel_fb_uses_dpt(fb))
+ 		intel_dpt_destroy(intel_fb->dpt_vm);
+-err:
++err_frontbuffer_put:
+ 	intel_frontbuffer_put(intel_fb->frontbuffer);
++err:
++	intel_fb_bo_framebuffer_fini(obj);
+ 	return ret;
+ }
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_fb_bo.c b/drivers/gpu/drm/i915/display/intel_fb_bo.c
-new file mode 100644
-index 000000000000..ce86eff7b226
---- /dev/null
+index ce86eff7b226..4be09541e509 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_bo.c
 +++ b/drivers/gpu/drm/i915/display/intel_fb_bo.c
-@@ -0,0 +1,92 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2021 Intel Corporation
-+ */
-+
-+#include <drm/drm_framebuffer.h>
-+
-+#include "gem/i915_gem_object.h"
-+
-+#include "i915_drv.h"
-+#include "intel_fb.h"
-+#include "intel_fb_bo.h"
-+
-+int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
-+				 struct drm_i915_gem_object *obj,
-+				 struct drm_mode_fb_cmd2 *mode_cmd)
+@@ -11,6 +11,11 @@
+ #include "intel_fb.h"
+ #include "intel_fb_bo.h"
+ 
++void intel_fb_bo_framebuffer_fini(struct drm_i915_gem_object *obj)
 +{
-+	struct drm_i915_private *i915 = to_i915(obj->base.dev);
-+	unsigned int tiling, stride;
-+
-+	i915_gem_object_lock(obj, NULL);
-+	tiling = i915_gem_object_get_tiling(obj);
-+	stride = i915_gem_object_get_stride(obj);
-+	i915_gem_object_unlock(obj);
-+
-+	if (mode_cmd->flags & DRM_MODE_FB_MODIFIERS) {
-+		/*
-+		 * If there's a fence, enforce that
-+		 * the fb modifier and tiling mode match.
-+		 */
-+		if (tiling != I915_TILING_NONE &&
-+		    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
-+			drm_dbg_kms(&i915->drm,
-+				    "tiling_mode doesn't match fb modifier\n");
-+			return -EINVAL;
-+		}
-+	} else {
-+		if (tiling == I915_TILING_X) {
-+			mode_cmd->modifier[0] = I915_FORMAT_MOD_X_TILED;
-+		} else if (tiling == I915_TILING_Y) {
-+			drm_dbg_kms(&i915->drm,
-+				    "No Y tiling for legacy addfb\n");
-+			return -EINVAL;
-+		}
-+	}
-+
-+	/*
-+	 * gen2/3 display engine uses the fence if present,
-+	 * so the tiling mode must match the fb modifier exactly.
-+	 */
-+	if (DISPLAY_VER(i915) < 4 &&
-+	    tiling != intel_fb_modifier_to_tiling(mode_cmd->modifier[0])) {
-+		drm_dbg_kms(&i915->drm,
-+			    "tiling_mode must match fb modifier exactly on gen2/3\n");
-+		return -EINVAL;
-+	}
-+
-+	/*
-+	 * If there's a fence, enforce that
-+	 * the fb pitch and fence stride match.
-+	 */
-+	if (tiling != I915_TILING_NONE && mode_cmd->pitches[0] != stride) {
-+		drm_dbg_kms(&i915->drm,
-+			    "pitch (%d) must match tiling stride (%d)\n",
-+			    mode_cmd->pitches[0], stride);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
++	/* Nothing to do for i915 */
 +}
 +
-+struct drm_i915_gem_object *
-+intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915,
-+			    struct drm_file *filp,
-+			    const struct drm_mode_fb_cmd2 *mode_cmd)
-+{
-+	struct drm_i915_gem_object *obj;
-+
-+	obj = i915_gem_object_lookup(filp, mode_cmd->handles[0]);
-+	if (!obj)
-+		return ERR_PTR(-ENOENT);
-+
-+	/* object is backed with LMEM for discrete */
-+	if (HAS_LMEM(i915) && !i915_gem_object_can_migrate(obj, INTEL_REGION_LMEM_0)) {
-+		/* object is "remote", not in local memory */
-+		i915_gem_object_put(obj);
-+		drm_dbg_kms(&i915->drm, "framebuffer must reside in local memory\n");
-+		return ERR_PTR(-EREMOTE);
-+	}
-+
-+	return obj;
-+}
+ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 				 struct drm_i915_gem_object *obj,
+ 				 struct drm_mode_fb_cmd2 *mode_cmd)
 diff --git a/drivers/gpu/drm/i915/display/intel_fb_bo.h b/drivers/gpu/drm/i915/display/intel_fb_bo.h
-new file mode 100644
-index 000000000000..dd06ceec8601
---- /dev/null
+index dd06ceec8601..232bf898b013 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_bo.h
 +++ b/drivers/gpu/drm/i915/display/intel_fb_bo.h
-@@ -0,0 +1,24 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2021 Intel Corporation
-+ */
+@@ -12,6 +12,8 @@ struct drm_i915_gem_object;
+ struct drm_i915_private;
+ struct intel_framebuffer;
+ 
++void intel_fb_bo_framebuffer_fini(struct drm_i915_gem_object *obj);
 +
-+#ifndef __INTEL_FB_BO_H__
-+#define __INTEL_FB_BO_H__
-+
-+struct drm_file;
-+struct drm_mode_fb_cmd2;
-+struct drm_i915_gem_object;
-+struct drm_i915_private;
-+struct intel_framebuffer;
-+
-+int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
-+				 struct drm_i915_gem_object *obj,
-+				 struct drm_mode_fb_cmd2 *mode_cmd);
-+
-+struct drm_i915_gem_object *
-+intel_fb_bo_lookup_valid_bo(struct drm_i915_private *i915,
-+			    struct drm_file *filp,
-+			    const struct drm_mode_fb_cmd2 *user_mode_cmd);
-+
-+#endif
+ int intel_fb_bo_framebuffer_init(struct intel_framebuffer *intel_fb,
+ 				 struct drm_i915_gem_object *obj,
+ 				 struct drm_mode_fb_cmd2 *mode_cmd);
 -- 
 2.34.1
 
