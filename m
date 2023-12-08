@@ -4,54 +4,55 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 64CCFC4167B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 11:15:11 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 332B3C4167B
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 11:19:36 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30CFA10EA58;
-	Fri,  8 Dec 2023 11:15:11 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A54710EA58
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 11:15:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA8C710EA5E;
+	Fri,  8 Dec 2023 11:19:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E467210EA5E
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 11:19:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702034110; x=1733570110;
+ t=1702034373; x=1733570373;
  h=message-id:date:mime-version:subject:to:cc:references:
  from:in-reply-to:content-transfer-encoding;
- bh=MLYOVD1EyQ9G8Tu27c57oWyGmQ8HCC/LeHIC/uLwcjY=;
- b=TZjIQQF8RSee7HxbyVW5+RcLJee1cpHndda4dR0fA2nHqo14lCOiABnm
- YO+h7EFTSTxc2BtfO+4pbyeXDEfLKEovqgSke/JuR40cDvs4jzTJIuRjc
- Mx3xyDDjELfQsfgR83cKS1UOrH2wr8gHGWnej2I7Q1rXlPqT920I7hD5E
- AjCZ8qQpBnel8TkP2AfxfwWeay1ovDsthLH6spYUW/9GEFIRrM8TRNQT6
- kUeDluaxlo3gAgyXqHpy3373HriZl3Zf56ekv6E1W9hLjkpxipFHXqM2J
- KR22nCT0lRNw12nRMm4bLLPsghpORxp0F0YvVR9KJcXVmG9u3NJOJxDr2 g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1472529"
+ bh=wZO+042L1FRKqE+oL8KzksvlD+DD7Iv2wkqsLQgRC6s=;
+ b=YG+8f4ZOHrLZ1gKGoC8LN8RFypc42wv75HNglEKkuWkSxD4mDk9HdLJL
+ 9Gkc7PRceXTkyhQgdkfXxf8yJye429XTY1iyprUdTy3TYHqGTvSSoVwjy
+ kd7e/BYBSi3YZ8itMVxlD2zH2g2lzWL5AwQ9xfVXUfyOHYiZkdxMnvS8U
+ y+xDoaqwP0wV97lOiBRh6qZjGQ+My75+mNTPzvNZ3Uo0X2sUniMwCw0iA
+ DU5nwx71HqL4KCcKFtNJ7ZT0yl+Zlz9Iv+FlLph1TEvV0xci5oPxA5kpF
+ RcAbq5RzASPbzpOaeWAUVu1Hiui3gUThYINvzbfa9hCBx8eaBH1QwLqSa Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1457977"
 X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; 
-   d="scan'208";a="1472529"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2023 03:15:09 -0800
+   d="scan'208";a="1457977"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2023 03:19:33 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="765459269"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="765459269"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1103538024"
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="1103538024"
 Received: from jparkkin-mobl.ger.corp.intel.com (HELO [10.249.254.236])
  ([10.249.254.236])
- by orsmga007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2023 03:15:07 -0800
-Message-ID: <22cdd8b1-90ef-ddce-5731-75cfc0987a3c@linux.intel.com>
-Date: Fri, 8 Dec 2023 12:15:04 +0100
+ by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Dec 2023 03:19:31 -0800
+Message-ID: <eadb0ae0-fe72-aba0-9196-217bdcef8468@linux.intel.com>
+Date: Fri, 8 Dec 2023 12:19:28 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.15.1
-Subject: Re: [Intel-xe] [PATCH 2/2] drm/xe/dgfx: Release mmap mappings on rpm
- suspend
-To: Badal Nilawar <badal.nilawar@intel.com>, intel-xe@lists.freedesktop.org
-References: <20231206133421.3295163-1-badal.nilawar@intel.com>
- <20231206133421.3295163-3-badal.nilawar@intel.com>
+Subject: Re: [PATCH] drm/xe: Replace the scratch pages with NULL PTEs
 Content-Language: en-US
+To: Matt Roper <matthew.d.roper@intel.com>
+References: <20231207154423.35666-1-thomas.hellstrom@linux.intel.com>
+ <dktre5juul24vbetvhi67r3n2gnlnjihppf74vddyrobxetxc7@5nha57x4mdwb>
+ <301e0414-c632-dd88-b67c-87a3d24544a9@linux.intel.com>
+ <20231207163213.GZ5757@mdroper-desk1.amr.corp.intel.com>
 From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231206133421.3295163-3-badal.nilawar@intel.com>
+In-Reply-To: <20231207163213.GZ5757@mdroper-desk1.amr.corp.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -63,68 +64,44 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: matthew.auld@intel.com, rodrigo.vivi@intel.com
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 
-On 12/6/23 14:34, Badal Nilawar wrote:
-> Release all mmap mappings for all vram objects which are associated
-> with userfault such that, while pcie function in D3hot, any access
-> to memory mappings will raise a userfault.
+On 12/7/23 17:32, Matt Roper wrote:
+> On Thu, Dec 07, 2023 at 05:25:01PM +0100, Thomas Hellström wrote:
+>> + intel-xe cc.
+>>
+>>
+>> On 12/7/23 17:17, Lucas De Marchi wrote:
+>>> On Thu, Dec 07, 2023 at 04:44:23PM +0100, Thomas Hellström wrote:
+>>>> Replace the scratch pages with NULL PTEs that return 0 when reading and
+>>>> do nothing when writing.
+>>> but don't we want to keep scratch so we can check when things go wrong
+>>> and writes go where they shouldn't?
+>> The argument against that was that apps that incorrectly writes to scratch
+>> and then reads back the same value wouldn't notice that it did something
+>> wrong, and the case you mention would to some extent be captured by not
+>> having a scratch page at all and check for pagefaults?
+>>
+>> I admit I haven't been following the discussions around scratch pages long
+>> enough to know the historical uses for it. Cc'ing Joonas for further
+>> discussion.
+> It seems like null PTE is probably the best thing to do for real-world,
+> production use.  But for developer use we might want to add a kconfig
+> option at some point that brings back the scratch page and pre-poisons
+> it, since that might be useful in some debugging situations.
 >
-> Upon userfault, in order to access memory mappings, if graphics
-> function is in D3 then runtime resume of dgpu will be triggered to
-> transition to D0.
 >
-> Previous commit has blocked the rpm but let's make sure that rpm
-> does not get blocked for headed cards(client's parts).
-> Above pagefault approach will be  useful for headed cards to save the
-> power when display is off and there are active mmap mappings.
->
-> v2:
->    - Add lock dep assertion before updating vram_userfault_count (Rodrigo)
->    - Avoid iomem check before bo migration check as bo can migrate
->      to system memory (Matthew Auld)
-> v3:
->    - Apply pagefault approach for headed cards.
->
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Cc: Matthew Auld <matthew.auld@intel.com>
-> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
-> Signed-off-by: Badal Nilawar <badal.nilawar@intel.com>
-> ---
->   drivers/gpu/drm/xe/xe_bo.c           | 62 ++++++++++++++++++++++++++--
->   drivers/gpu/drm/xe/xe_bo.h           |  2 +
->   drivers/gpu/drm/xe/xe_bo_types.h     |  5 +++
->   drivers/gpu/drm/xe/xe_device_types.h | 20 +++++++++
->   drivers/gpu/drm/xe/xe_pm.c           |  7 ++++
->   5 files changed, 93 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 5741948a2a51..419bc5c55aa7 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -797,6 +797,18 @@ static int xe_bo_move(struct ttm_buffer_object *ttm_bo, bool evict,
->   		dma_fence_put(fence);
->   	}
->   
-> +	/*
-> +	 * TTM has already nuked the mmap for us (see ttm_bo_unmap_virtual),
-> +	 * so if we moved from VRAM make sure to unlink this from the userfault
-> +	 * tracking.
-> +	 */
-> +	if (mem_type_is_vram(old_mem_type)) {
-> +		spin_lock(&xe->mem_access.vram_userfault_lock);
-> +		if (INTEL_DISPLAY_ENABLED(xe) && !list_empty(&bo->vram_userfault_link))
-> +			list_del_init(&bo->vram_userfault_link);
-> +		spin_unlock(&xe->mem_access.vram_userfault_lock);
-> +	}
-> +
+> Matt
 
-Please move this block into move_notify() instead, if at all possible. 
-That function is intended to release whatever various bindings we have 
-set up to the backing memory in the old location.
+Hi, Matt.
+
+Sounds like a good idea. IMO, Let's add that when we get a request for 
+it for debugging purposes. I'll leave the scratch page-table structure 
+in v2 so it should be easy to add in.
 
 Thanks,
 
