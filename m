@@ -4,55 +4,29 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 332B3C4167B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 11:19:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 60F47C4167B
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 11:21:45 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CA8C710EA5E;
-	Fri,  8 Dec 2023 11:19:35 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E467210EA5E
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 11:19:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702034373; x=1733570373;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=wZO+042L1FRKqE+oL8KzksvlD+DD7Iv2wkqsLQgRC6s=;
- b=YG+8f4ZOHrLZ1gKGoC8LN8RFypc42wv75HNglEKkuWkSxD4mDk9HdLJL
- 9Gkc7PRceXTkyhQgdkfXxf8yJye429XTY1iyprUdTy3TYHqGTvSSoVwjy
- kd7e/BYBSi3YZ8itMVxlD2zH2g2lzWL5AwQ9xfVXUfyOHYiZkdxMnvS8U
- y+xDoaqwP0wV97lOiBRh6qZjGQ+My75+mNTPzvNZ3Uo0X2sUniMwCw0iA
- DU5nwx71HqL4KCcKFtNJ7ZT0yl+Zlz9Iv+FlLph1TEvV0xci5oPxA5kpF
- RcAbq5RzASPbzpOaeWAUVu1Hiui3gUThYINvzbfa9hCBx8eaBH1QwLqSa Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1457977"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; 
-   d="scan'208";a="1457977"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2023 03:19:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1103538024"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="1103538024"
-Received: from jparkkin-mobl.ger.corp.intel.com (HELO [10.249.254.236])
- ([10.249.254.236])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2023 03:19:31 -0800
-Message-ID: <eadb0ae0-fe72-aba0-9196-217bdcef8468@linux.intel.com>
-Date: Fri, 8 Dec 2023 12:19:28 +0100
+	by gabe.freedesktop.org (Postfix) with ESMTP id 22B8A10EA7C;
+	Fri,  8 Dec 2023 11:21:45 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 2CE4810EA73;
+ Fri,  8 Dec 2023 11:21:43 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id 23D09AADDA;
+ Fri,  8 Dec 2023 11:21:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4841989499281836769=="
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] drm/xe: Replace the scratch pages with NULL PTEs
-Content-Language: en-US
-To: Matt Roper <matthew.d.roper@intel.com>
-References: <20231207154423.35666-1-thomas.hellstrom@linux.intel.com>
- <dktre5juul24vbetvhi67r3n2gnlnjihppf74vddyrobxetxc7@5nha57x4mdwb>
- <301e0414-c632-dd88-b67c-87a3d24544a9@linux.intel.com>
- <20231207163213.GZ5757@mdroper-desk1.amr.corp.intel.com>
-From: =?UTF-8?Q?Thomas_Hellstr=c3=b6m?= <thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231207163213.GZ5757@mdroper-desk1.amr.corp.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Adjust_to_GPUVM_/_fixup_version?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Date: Fri, 08 Dec 2023 11:21:43 -0000
+Message-ID: <170203450314.7327.12923399927066034899@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231208064643.877688-1-rodrigo.vivi@intel.com>
+In-Reply-To: <20231208064643.877688-1-rodrigo.vivi@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,47 +38,142 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Reply-To: intel-xe@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============4841989499281836769==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 12/7/23 17:32, Matt Roper wrote:
-> On Thu, Dec 07, 2023 at 05:25:01PM +0100, Thomas Hellström wrote:
->> + intel-xe cc.
->>
->>
->> On 12/7/23 17:17, Lucas De Marchi wrote:
->>> On Thu, Dec 07, 2023 at 04:44:23PM +0100, Thomas Hellström wrote:
->>>> Replace the scratch pages with NULL PTEs that return 0 when reading and
->>>> do nothing when writing.
->>> but don't we want to keep scratch so we can check when things go wrong
->>> and writes go where they shouldn't?
->> The argument against that was that apps that incorrectly writes to scratch
->> and then reads back the same value wouldn't notice that it did something
->> wrong, and the case you mention would to some extent be captured by not
->> having a scratch page at all and check for pagefaults?
->>
->> I admit I haven't been following the discussions around scratch pages long
->> enough to know the historical uses for it. Cc'ing Joonas for further
->> discussion.
-> It seems like null PTE is probably the best thing to do for real-world,
-> production use.  But for developer use we might want to add a kconfig
-> option at some point that brings back the scratch page and pre-poisons
-> it, since that might be useful in some debugging situations.
->
->
-> Matt
+== Series Details ==
 
-Hi, Matt.
+Series: Adjust to GPUVM / fixup version
+URL   : https://patchwork.freedesktop.org/series/127549/
+State : success
 
-Sounds like a good idea. IMO, Let's add that when we get a request for 
-it for debugging purposes. I'll leave the scratch page-table structure 
-in v2 so it should be easy to add in.
+== Summary ==
 
-Thanks,
+CI Bug Log - changes from xe-561-c4235ef53c0265159d2c5f34459a3b6c37ab1995_BAT -> xe-pw-127549v1_BAT
+====================================================
 
-Thomas
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Known issues
+------------
+
+  Here are the changes found in xe-pw-127549v1_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:
+    - bat-dg2-oem2:       [PASS][1] -> [FAIL][2] ([i915#2346])
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-561-c4235ef53c0265159d2c5f34459a3b6c37ab1995/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127549v1/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html
+
+  
+#### Possible fixes ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-adlp-7:         [FAIL][3] ([Intel XE#480]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-561-c4235ef53c0265159d2c5f34459a3b6c37ab1995/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127549v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [i915#2346]: https://gitlab.freedesktop.org/drm/intel/issues/2346
 
 
+Build changes
+-------------
+
+  * Linux: xe-561-c4235ef53c0265159d2c5f34459a3b6c37ab1995 -> xe-pw-127549v1
+
+  IGT_7628: 431c2d2dd5828b25fcbe1c82afbac865f4771aee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-561-c4235ef53c0265159d2c5f34459a3b6c37ab1995: c4235ef53c0265159d2c5f34459a3b6c37ab1995
+  xe-pw-127549v1: 127549v1
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127549v1/index.html
+
+--===============4841989499281836769==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Adjust to GPUVM / fixup version</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127549/">https://patchwork.freedesktop.org/series/127549/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127549v1/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127549v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-561-c4235ef53c0265159d2c5f34459a3b6c37ab1995_BAT -&gt; xe-pw-127549v1_BAT</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-127549v1_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_cursor_legacy@basic-flip-after-cursor-legacy:<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-561-c4235ef53c0265159d2c5f34459a3b6c37ab1995/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127549v1/bat-dg2-oem2/igt@kms_cursor_legacy@basic-flip-after-cursor-legacy.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/intel/issues/2346">i915#2346</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@kms_flip@basic-flip-vs-wf_vblank:<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-561-c4235ef53c0265159d2c5f34459a3b6c37ab1995/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127549v1/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-561-c4235ef53c0265159d2c5f34459a3b6c37ab1995 -&gt; xe-pw-127549v1</li>
+</ul>
+<p>IGT_7628: 431c2d2dd5828b25fcbe1c82afbac865f4771aee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-561-c4235ef53c0265159d2c5f34459a3b6c37ab1995: c4235ef53c0265159d2c5f34459a3b6c37ab1995<br />
+  xe-pw-127549v1: 127549v1</p>
+
+</body>
+</html>
+
+--===============4841989499281836769==--
