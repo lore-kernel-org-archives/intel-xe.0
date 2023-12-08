@@ -4,52 +4,30 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 96A97C4167B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 05:47:13 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 256EBC4167B
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 05:49:06 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5362210E9CC;
-	Fri,  8 Dec 2023 05:47:13 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F02510E9D1
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 05:47:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702014430; x=1733550430;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=SMJ5bNJdpmATTHIXTeyFL4TwhGOxjAyPWVfrh7itGRU=;
- b=W6nMdaeflB3B60pP05eEgxk3GVwOXjy0/vEQICM+elihHAcvmKz/1c6G
- uSWSorpa0UxwYtdxcbhbRD8VwXndW+arEo/XbBKkXKf+X9ExGwVTBaIzq
- jaCPl6fM51IeaOdTsPRPbq9Rji4P8tDjI6XGZ9dMfeXjJ9Mizd52sjlTl
- JiG1GMktKwr0SOhd0fc0ENZwrcv8z9ckkYgzLdAh5VHQNcnX4aoh39mew
- BmBYLz2GHxzDG3TYqU/z0xrweMHRWTzpGC3BEv8WF2GmDqq7WO0gVX1ru
- HziMDfqQOp9nHdzkTJ4HtBRhnBsRHIIn1aF1z0zKbFtRkOzZ4NrduiLTP A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="458673700"
-X-IronPort-AV: E=Sophos;i="6.04,259,1695711600"; d="scan'208";a="458673700"
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
- by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 21:47:10 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1103448278"
-X-IronPort-AV: E=Sophos;i="6.04,259,1695711600"; d="scan'208";a="1103448278"
-Received: from aravind-dev.iind.intel.com (HELO [10.145.162.146])
- ([10.145.162.146])
- by fmsmga005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 21:47:08 -0800
-Message-ID: <8cc613c4-f4ba-439f-805e-f4677d7d94a1@linux.intel.com>
-Date: Fri, 8 Dec 2023 11:19:56 +0530
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD76710E9D2;
+	Fri,  8 Dec 2023 05:49:05 +0000 (UTC)
+Received: from emeril.freedesktop.org (emeril.freedesktop.org
+ [IPv6:2610:10:20:722:a800:ff:feee:56cf])
+ by gabe.freedesktop.org (Postfix) with ESMTP id D9ED310E9D1;
+ Fri,  8 Dec 2023 05:49:03 +0000 (UTC)
+Received: from emeril.freedesktop.org (localhost [127.0.0.1])
+ by emeril.freedesktop.org (Postfix) with ESMTP id D5C30A0169;
+ Fri,  8 Dec 2023 05:49:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============9029919812757473746=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [Intel-xe] [PATCH] drm/xe: Fix lockdep warning in xe_force_wake
- calls
-Content-Language: en-US
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20231206095318.30326-1-aravind.iddamsetty@linux.intel.com>
- <ZXKm-lm_BbzegovV@intel.com>
-From: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-In-Reply-To: <ZXKm-lm_BbzegovV@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_CI=2EBAT=3A_failure_for_RFC=3A_drm/xe/uapi=3A_Return_cor?=
+ =?utf-8?q?rect_error_code_for_xe=5Fwait=5Fuser=5Ffence=5Fioctl_=28rev5=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Bommu Krishnaiah" <krishnaiah.bommu@intel.com>
+Date: Fri, 08 Dec 2023 05:49:03 -0000
+Message-ID: <170201454386.7326.15345332020867600465@emeril.freedesktop.org>
+X-Patchwork-Hint: ignore
+References: <20231208041716.32369-1-krishnaiah.bommu@intel.com>
+In-Reply-To: <20231208041716.32369-1-krishnaiah.bommu@intel.com>
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,113 +39,255 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-xe@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
+--===============9029919812757473746==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On 12/8/23 10:47, Rodrigo Vivi wrote:
-> On Wed, Dec 06, 2023 at 03:23:18PM +0530, Aravind Iddamsetty wrote:
->> Use spin_lock_irqsave, spin_unlock_irqrestore
->>
->> Fix for below:
->> [13994.811263] ========================================================
->> [13994.811295] WARNING: possible irq lock inversion dependency detected
->> [13994.811326] 6.6.0-rc3-xe #2 Tainted: G     U
->> [13994.811358] --------------------------------------------------------
->> [13994.811388] swapper/0/0 just changed the state of lock:
->> [13994.811416] ffff895c7e044db8 (&cpuctx_lock){-...}-{2:2}, at:
->> __perf_event_read+0xb7/0x3a0
->> [13994.811494] but this lock took another, HARDIRQ-unsafe lock in the
->> past:
->> [13994.811528]  (&fw->lock){+.+.}-{2:2}
->> [13994.811544]
->>
->>                and interrupts could create inverse lock ordering between
->> them.
->>
->> [13994.811606]
->>                other info that might help us debug this:
->> [13994.811636]  Possible interrupt unsafe locking scenario:
->>
->> [13994.811667]        CPU0                    CPU1
->> [13994.811691]        ----                    ----
->> [13994.811715]   lock(&fw->lock);
->> [13994.811744]                                local_irq_disable();
->> [13994.811773]                                lock(&cpuctx_lock);
->> [13994.811810]                                lock(&fw->lock);
->> [13994.811846]   <Interrupt>
->> [13994.811865]     lock(&cpuctx_lock);
->> [13994.811895]
->>                 *** DEADLOCK ***
->>
->> v2: Use spin_lock in atomic context and spin_lock_irq in a non atomic
->> context (Matthew Brost)
->>
->> v3: just use spin_lock_irqsave/restore
->>
->> Cc: Matthew Brost <matthew.brost@intel.com>
->> Cc: Anshuman Gupta <anshuman.gupta@intel.com>
->> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
->>
->> Signed-off-by: Aravind Iddamsetty <aravind.iddamsetty@linux.intel.com>
-> Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+== Series Details ==
 
-Thanks Rodrigo.
+Series: RFC: drm/xe/uapi: Return correct error code for xe_wait_user_fence_ioctl (rev5)
+URL   : https://patchwork.freedesktop.org/series/127365/
+State : failure
 
-Regards,
-Aravind.
->
->> ---
->>  drivers/gpu/drm/xe/xe_force_wake.c | 10 ++++++----
->>  1 file changed, 6 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/xe/xe_force_wake.c b/drivers/gpu/drm/xe/xe_force_wake.c
->> index 32d6c4dd2807..9bbe8a5040da 100644
->> --- a/drivers/gpu/drm/xe/xe_force_wake.c
->> +++ b/drivers/gpu/drm/xe/xe_force_wake.c
->> @@ -145,9 +145,10 @@ int xe_force_wake_get(struct xe_force_wake *fw,
->>  	struct xe_gt *gt = fw_to_gt(fw);
->>  	struct xe_force_wake_domain *domain;
->>  	enum xe_force_wake_domains tmp, woken = 0;
->> +	unsigned long flags;
->>  	int ret, ret2 = 0;
->>  
->> -	spin_lock(&fw->lock);
->> +	spin_lock_irqsave(&fw->lock, flags);
->>  	for_each_fw_domain_masked(domain, domains, fw, tmp) {
->>  		if (!domain->ref++) {
->>  			woken |= BIT(domain->id);
->> @@ -162,7 +163,7 @@ int xe_force_wake_get(struct xe_force_wake *fw,
->>  				   domain->id, ret);
->>  	}
->>  	fw->awake_domains |= woken;
->> -	spin_unlock(&fw->lock);
->> +	spin_unlock_irqrestore(&fw->lock, flags);
->>  
->>  	return ret2;
->>  }
->> @@ -174,9 +175,10 @@ int xe_force_wake_put(struct xe_force_wake *fw,
->>  	struct xe_gt *gt = fw_to_gt(fw);
->>  	struct xe_force_wake_domain *domain;
->>  	enum xe_force_wake_domains tmp, sleep = 0;
->> +	unsigned long flags;
->>  	int ret, ret2 = 0;
->>  
->> -	spin_lock(&fw->lock);
->> +	spin_lock_irqsave(&fw->lock, flags);
->>  	for_each_fw_domain_masked(domain, domains, fw, tmp) {
->>  		if (!--domain->ref) {
->>  			sleep |= BIT(domain->id);
->> @@ -191,7 +193,7 @@ int xe_force_wake_put(struct xe_force_wake *fw,
->>  				   domain->id, ret);
->>  	}
->>  	fw->awake_domains &= ~sleep;
->> -	spin_unlock(&fw->lock);
->> +	spin_unlock_irqrestore(&fw->lock, flags);
->>  
->>  	return ret2;
->>  }
->> -- 
->> 2.25.1
->>
+== Summary ==
+
+CI Bug Log - changes from xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c_BAT -> xe-pw-127365v5_BAT
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with xe-pw-127365v5_BAT absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in xe-pw-127365v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  
+
+Participating hosts (4 -> 4)
+------------------------------
+
+  No changes in participating hosts
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in xe-pw-127365v5_BAT:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:
+    - bat-pvc-2:          [PASS][1] -> [TIMEOUT][2] +2 other tests timeout
+   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+    - bat-dg2-oem2:       [PASS][3] -> [TIMEOUT][4] +2 other tests timeout
+   [3]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+   [4]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html
+
+  * igt@xe_evict@evict-mixed-threads-small:
+    - bat-atsm-2:         [PASS][5] -> [TIMEOUT][6] +2 other tests timeout
+   [5]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-atsm-2/igt@xe_evict@evict-mixed-threads-small.html
+   [6]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-atsm-2/igt@xe_evict@evict-mixed-threads-small.html
+
+  * igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:
+    - bat-pvc-2:          [PASS][7] -> [FAIL][8] +21 other tests fail
+   [7]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+   [8]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html
+
+  * igt@xe_exec_compute_mode@twice-userptr-invalidate:
+    - bat-atsm-2:         [PASS][9] -> [FAIL][10] +24 other tests fail
+   [9]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
+   [10]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html
+
+  * igt@xe_exec_threads@threads-mixed-userptr-invalidate:
+    - bat-adlp-7:         [PASS][11] -> [FAIL][12] +16 other tests fail
+   [11]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
+   [12]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html
+
+  * igt@xe_waitfence@engine:
+    - bat-dg2-oem2:       [PASS][13] -> [FAIL][14] +25 other tests fail
+   [13]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-dg2-oem2/igt@xe_waitfence@engine.html
+   [14]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-dg2-oem2/igt@xe_waitfence@engine.html
+
+  
+#### Warnings ####
+
+  * igt@xe_evict@evict-beng-small-cm:
+    - bat-pvc-2:          [DMESG-FAIL][15] ([Intel XE#482]) -> [FAIL][16] +1 other test fail
+   [15]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-pvc-2/igt@xe_evict@evict-beng-small-cm.html
+   [16]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-pvc-2/igt@xe_evict@evict-beng-small-cm.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in xe-pw-127365v5_BAT that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-adlp-7:         [PASS][17] -> [FAIL][18] ([Intel XE#480]) +1 other test fail
+   [17]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [18]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@xe_waitfence@abstime:
+    - bat-atsm-2:         [PASS][19] -> [FAIL][20] ([Intel XE#826])
+   [19]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-atsm-2/igt@xe_waitfence@abstime.html
+   [20]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-atsm-2/igt@xe_waitfence@abstime.html
+
+  
+  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+  [Intel XE#482]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/482
+  [Intel XE#826]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/826
+
+
+Build changes
+-------------
+
+  * Linux: xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c -> xe-pw-127365v5
+
+  IGT_7628: 431c2d2dd5828b25fcbe1c82afbac865f4771aee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c: ca0510637dca8ce9658a2797626a2a558025ec3c
+  xe-pw-127365v5: 127365v5
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/index.html
+
+--===============9029919812757473746==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>RFC: drm/xe/uapi: Return correct error code for xe_wait_user_fence_ioctl (rev5)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127365/">https://patchwork.freedesktop.org/series/127365/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c_BAT -&gt; xe-pw-127365v5_BAT</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with xe-pw-127365v5_BAT absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in xe-pw-127365v5_BAT, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<h2>Participating hosts (4 -&gt; 4)</h2>
+<p>No changes in participating hosts</p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in xe-pw-127365v5_BAT:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>
+<p>igt@xe_evict@evict-beng-mixed-threads-small-multi-vm:</p>
+<ul>
+<li>
+<p>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-pvc-2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">TIMEOUT</a> +2 other tests timeout</p>
+</li>
+<li>
+<p>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-dg2-oem2/igt@xe_evict@evict-beng-mixed-threads-small-multi-vm.html">TIMEOUT</a> +2 other tests timeout</p>
+</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_evict@evict-mixed-threads-small:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-atsm-2/igt@xe_evict@evict-mixed-threads-small.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-atsm-2/igt@xe_evict@evict-mixed-threads-small.html">TIMEOUT</a> +2 other tests timeout</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate:</p>
+<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-pvc-2/igt@xe_exec_compute_mode@twice-bindexecqueue-userptr-invalidate.html">FAIL</a> +21 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_compute_mode@twice-userptr-invalidate:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-atsm-2/igt@xe_exec_compute_mode@twice-userptr-invalidate.html">FAIL</a> +24 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_exec_threads@threads-mixed-userptr-invalidate:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-adlp-7/igt@xe_exec_threads@threads-mixed-userptr-invalidate.html">FAIL</a> +16 other tests fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@engine:</p>
+<ul>
+<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-dg2-oem2/igt@xe_waitfence@engine.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-dg2-oem2/igt@xe_waitfence@engine.html">FAIL</a> +25 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@xe_evict@evict-beng-small-cm:<ul>
+<li>bat-pvc-2:          <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-pvc-2/igt@xe_evict@evict-beng-small-cm.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/482">Intel XE#482</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-pvc-2/igt@xe_evict@evict-beng-small-cm.html">FAIL</a> +1 other test fail</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in xe-pw-127365v5_BAT that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-adlp-7:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-adlp-7/igt@kms_flip@basic-flip-vs-wf_vblank.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) +1 other test fail</li>
+</ul>
+</li>
+<li>
+<p>igt@xe_waitfence@abstime:</p>
+<ul>
+<li>bat-atsm-2:         <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c/bat-atsm-2/igt@xe_waitfence@abstime.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127365v5/bat-atsm-2/igt@xe_waitfence@abstime.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/826">Intel XE#826</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c -&gt; xe-pw-127365v5</li>
+</ul>
+<p>IGT_7628: 431c2d2dd5828b25fcbe1c82afbac865f4771aee @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  xe-560-ca0510637dca8ce9658a2797626a2a558025ec3c: ca0510637dca8ce9658a2797626a2a558025ec3c<br />
+  xe-pw-127365v5: 127365v5</p>
+
+</body>
+</html>
+
+--===============9029919812757473746==--
