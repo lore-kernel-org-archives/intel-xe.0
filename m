@@ -4,43 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id EA72CC10DCE
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 07:56:51 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 27AD3C10DC1
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 07:56:52 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B85EA10EA13;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC57810EA14;
 	Fri,  8 Dec 2023 07:56:51 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF2B310EA0D
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 07:56:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 407E610EA13
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 07:56:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702022207; x=1733558207;
+ t=1702022209; x=1733558209;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=JM61r2/kwVBCaZasFZdh1RzdxgdjjyHEd+GVwVHTe9s=;
- b=YQrALQhPvgJczj4nOase7NRYXagzXSd5noxBKNw9lov8M8Mk1ONnMsDc
- e9MqAzX0iazzOX5m+iWEqlekVjMFNxWKdYfN9+zwCITuDctwK7SuHYT55
- szRKlBVpZvDP8wWUGTze9/wKWtWautxlWoogrUqVCFA0POS3wewtYS3y6
- 7GTqpPzvT2a4uHI/q3y+BdFFJ3Iy8zMXlIDBr2tkZB769khxvkHXhEGg5
- PLnhu7LKMPn+pQvwCwLKkMo3mNBeXAZi8FXRoc0uXTzHiCMc0B481wSTo
- Puzc5sVjrn0adwWnDXfnBi4Z1LpxqxoTH4lol3hm0p8+Ql0SbFXke6h3d Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="391542415"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="391542415"
+ bh=v0KOAOzqVx8TGCbGRREPg9YCMWS6W9b228c/RSGF/rA=;
+ b=Euh3Ds8s1T4qm3J50k9nNUCQW7ht9hl1BHTG9+UIZZV0YfMLnBpwsPJW
+ g8BcvRUnI8tqzov2o8fNY25qEl0dC/J6YdGY6/7JNb/ggXppyL4LCcbtE
+ 1qTqenbqR+2cdRGjNen903EBMtcweGRT8MnISGwgMdOP39hxNKTUNhmqH
+ 9YDaPiJM3GjE4ODHA/vJqrbNzFb1sxZ+VEpnigBbz1JKk63hwq1hEl+iA
+ HElPfqRzTTrS5uOauVNM1pCD+gM0ACtjxCdDrJ6qzvdkkdlRmQCF6Hb9M
+ IYRK4T/N3gS3indr2bQevgMOpfz0SuoLBWoFk5TYWnjniea3n8PqVY6BE g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="391542418"
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="391542418"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 23:56:47 -0800
+ 07 Dec 2023 23:56:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="838044743"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="838044743"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="838044748"
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="838044748"
 Received: from cannonro-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.252.63.126])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 23:56:46 -0800
+ 07 Dec 2023 23:56:47 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 8/9] fixup! drm/xe/display: Implement display support
-Date: Fri,  8 Dec 2023 09:56:09 +0200
-Message-Id: <20231208075610.3005795-9-jouni.hogander@intel.com>
+Subject: [PATCH v3 9/9] fixup! FIXME: drm/i915/display: Remaining changes to
+ make xe compile
+Date: Fri,  8 Dec 2023 09:56:10 +0200
+Message-Id: <20231208075610.3005795-10-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231208075610.3005795-1-jouni.hogander@intel.com>
 References: <20231208075610.3005795-1-jouni.hogander@intel.com>
@@ -63,33 +64,36 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Define I915_TILING_X and I915_TILING_Y as 0 This way we get rid of
-remaining ifdefs in skl_universal_plane.c.
+We are defining I915_TILING_X and  I915_TILING_Y as 0. No need for these
+ifdefs anymore.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-index 23f2d037c313..a20d2638ea7a 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
-@@ -9,6 +9,12 @@
- #include <uapi/drm/i915_drm.h>
- #include <drm/drm_mm.h>
- 
-+/* We don't want these from i915_drm.h in case of Xe */
-+#undef I915_TILING_X
-+#undef I915_TILING_Y
-+#define I915_TILING_X 0
-+#define I915_TILING_Y 0
-+
- struct xe_bo;
- 
- struct i915_vma {
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index ae6bad4407eb..5522d6725474 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2441,15 +2441,11 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
+ 		fb->modifier = DRM_FORMAT_MOD_LINEAR;
+ 		break;
+ 	case PLANE_CTL_TILED_X:
+-#ifdef I915
+ 		plane_config->tiling = I915_TILING_X;
+-#endif
+ 		fb->modifier = I915_FORMAT_MOD_X_TILED;
+ 		break;
+ 	case PLANE_CTL_TILED_Y:
+-#ifdef I915
+ 		plane_config->tiling = I915_TILING_Y;
+-#endif
+ 		if (val & PLANE_CTL_RENDER_DECOMPRESSION_ENABLE)
+ 			if (DISPLAY_VER(dev_priv) >= 14)
+ 				fb->modifier = I915_FORMAT_MOD_4_TILED_MTL_RC_CCS;
 -- 
 2.34.1
 
