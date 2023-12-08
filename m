@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 7CB2FC10DCE
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 61E18C4167B
 	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 11:29:47 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 496F310EA91;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C67910EA90;
 	Fri,  8 Dec 2023 11:29:47 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 968CF10EA9C
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B67A10EA9D
  for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 11:29:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1702034984; x=1733570984;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dT7lpwGUSMnTaYZ1l7kzRH3mCWtSYbEcVojWE7sOLkU=;
- b=ZsRq+hmi4Em5p/XuDVG5OD6aXGvE0TAR1d08l0GBsgS5i/kIMm6L+u3w
- jdKozKbgd2Br1uhI3EFsZuEwOvpke+eIAnp4C4fMqROCMu+c51LXIHVrQ
- cL8yf54BZ/J8Km5QSihYauwNA9pOwmMDk/mKYFNqDRYXhZuNsMclh59ip
- UXZFbPf7vPAwebcqe9N/yE55R9JWGEVlsmMMtB24XSxo5AAsVeOMR9iU0
- Knqcx7JdciJRGnJnKp56O+rLxPiREVEr5cSJg54Z3B4Vqg4DfxI2e4TeP
- HZ9gUMZQZWJlBldjjYfDi6KjLQHVuz9onsTDUPIjs8QEX/g/EywuPAjSe w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1474132"
+ bh=rxgL031/6RSaHNugfAtLUkzyeEuijpsgElcXf0O3gtQ=;
+ b=YDVf0+oLk0KomHO5N1oAbYhYrkrWlwAIJhD8WGKvQEjZKCvyUjr+sM8M
+ Og3Shernd25Oxocn59LjxYk/Bx6EG2XXevJ8ztBhkPCdG8uRPvh2ODu9x
+ NmDWiK+SL/w8i6NWeVfGYPo9G6wmceQpmLABplqpkdnIcsRD28ZC3wYY2
+ tPY/ptk8idzodHhXhivuJYm02MUnFyXTxQPAQQNeMCefkSOoa0PCpivwS
+ TG2CFZr3h4illrB372Tzq3zE7iQN3LQflaPv7uBs34RbSDmtlal1mwX6B
+ +o3UjDfdgSm2cVQ5lF+QGNZFdPNTKLmSqkpfCy8szVVlYvlbHTELuXTKS Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1474135"
 X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; 
-   d="scan'208";a="1474132"
+   d="scan'208";a="1474135"
 Received: from orsmga003.jf.intel.com ([10.7.209.27])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2023 03:29:33 -0800
+ 08 Dec 2023 03:29:35 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="721843383"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="721843383"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="721843389"
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="721843389"
 Received: from jparkkin-mobl.ger.corp.intel.com (HELO fedora..)
  ([10.249.254.236])
  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Dec 2023 03:29:32 -0800
+ 08 Dec 2023 03:29:33 -0800
 From: =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 1/2] drm/xe: Restrict huge PTEs to 1GiB
-Date: Fri,  8 Dec 2023 12:29:17 +0100
-Message-ID: <20231208112918.15411-2-thomas.hellstrom@linux.intel.com>
+Subject: [PATCH v2 2/2] drm/xe: Use NULL PTEs as scratch PTEs
+Date: Fri,  8 Dec 2023 12:29:18 +0100
+Message-ID: <20231208112918.15411-3-thomas.hellstrom@linux.intel.com>
 X-Mailer: git-send-email 2.42.0
 In-Reply-To: <20231208112918.15411-1-thomas.hellstrom@linux.intel.com>
 References: <20231208112918.15411-1-thomas.hellstrom@linux.intel.com>
@@ -59,61 +59,321 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-Add a define for the highest level for which we can encode a huge PTE,
-and use it for page-table building. Also update an assert that checks that
-we don't try to encode for larger sizes.
+Currently scratch PTEs are write-enabled and points to a single scratch
+page. This has the side effect that buggy applications with out-of-bounds
+memory accesses may not notice the bad access since what's written may
+be read back.
+
+Instead use NULL PTEs as scratch PTEs. These always return 0 when reading,
+and writing has no effect. As a slight benefit, we can also use huge NULL
+PTEs.
+
+One drawback pointed out is that debugging may be hampered since previously
+when inspecting the content of the scratch page, it might be possible to
+detect writes to out-of-bound addresses and possibly also
+from where the out-of-bounds address originated. However since the scratch
+page-table structure is kept, it will be easy to add back the single
+RW-enabled scratch page under a debug define if needed.
+
+Also update the kerneldoc accordingly and move the function to create the
+scratch page-tables from xe_pt.c to xe_pt.h since it is accessing
+vm structure internals and this also makes it possible to make it static.
+
+v2:
+- Don't try to encode scratch PTEs larger than 1GiB.
+- Move xe_pt_create_scratch(), Update kerneldoc.
+
+Cc: Brian Welty <brian.welty@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
 
 Signed-off-by: Thomas Hellström <thomas.hellstrom@linux.intel.com>
+Acked-by: Lucas De Marchi <lucas.demarchi@intel.com> #for general direction.
 ---
- drivers/gpu/drm/xe/xe_pt.c | 3 +++
- drivers/gpu/drm/xe/xe_pt.h | 3 +++
- drivers/gpu/drm/xe/xe_vm.c | 2 +-
- 3 files changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/xe_pt.c       | 65 ++++---------------------
+ drivers/gpu/drm/xe/xe_pt.h       |  3 --
+ drivers/gpu/drm/xe/xe_vm.c       | 82 ++++++++++++++++++++++----------
+ drivers/gpu/drm/xe/xe_vm.h       | 11 +++++
+ drivers/gpu/drm/xe/xe_vm_types.h |  1 -
+ 5 files changed, 75 insertions(+), 87 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/xe_pt.c b/drivers/gpu/drm/xe/xe_pt.c
-index 35bd7940a571..699a255d75f5 100644
+index 699a255d75f5..bf33e56715d8 100644
 --- a/drivers/gpu/drm/xe/xe_pt.c
 +++ b/drivers/gpu/drm/xe/xe_pt.c
-@@ -430,6 +430,9 @@ static bool xe_pt_hugepte_possible(u64 addr, u64 next, unsigned int level,
+@@ -50,17 +50,19 @@ static struct xe_pt *xe_pt_entry(struct xe_pt_dir *pt_dir, unsigned int index)
+ static u64 __xe_pt_empty_pte(struct xe_tile *tile, struct xe_vm *vm,
+ 			     unsigned int level)
  {
- 	u64 size, dma;
+-	u16 pat_index = tile_to_xe(tile)->pat.idx[XE_CACHE_WB];
++	struct xe_device *xe = tile_to_xe(tile);
++	u16 pat_index = xe->pat.idx[XE_CACHE_WB];
+ 	u8 id = tile->id;
  
+-	if (!vm->scratch_bo[id])
++	if (!xe_vm_has_scratch(vm))
+ 		return 0;
+ 
+-	if (level > 0)
 +	if (level > MAX_HUGEPTE_LEVEL)
-+		return false;
-+
- 	/* Does the virtual range requested cover a huge pte? */
- 	if (!xe_pt_covers(addr, next, level, &xe_walk->base))
- 		return false;
+ 		return vm->pt_ops->pde_encode_bo(vm->scratch_pt[id][level - 1]->bo,
+ 						 0, pat_index);
+ 
+-	return vm->pt_ops->pte_encode_bo(vm->scratch_bo[id], 0, pat_index, 0);
++	return vm->pt_ops->pte_encode_addr(xe, 0, pat_index, level, IS_DGFX(xe), 0) |
++		XE_PTE_NULL;
+ }
+ 
+ /**
+@@ -135,7 +137,7 @@ void xe_pt_populate_empty(struct xe_tile *tile, struct xe_vm *vm,
+ 	u64 empty;
+ 	int i;
+ 
+-	if (!vm->scratch_bo[tile->id]) {
++	if (!xe_vm_has_scratch(vm)) {
+ 		/*
+ 		 * FIXME: Some memory is allocated already allocated to zero?
+ 		 * Find out which memory that is and avoid this memset...
+@@ -194,57 +196,6 @@ void xe_pt_destroy(struct xe_pt *pt, u32 flags, struct llist_head *deferred)
+ 	kfree(pt);
+ }
+ 
+-/**
+- * xe_pt_create_scratch() - Setup a scratch memory pagetable tree for the
+- * given tile and vm.
+- * @xe: xe device.
+- * @tile: tile to set up for.
+- * @vm: vm to set up for.
+- *
+- * Sets up a pagetable tree with one page-table per level and a single
+- * leaf bo. All pagetable entries point to the single page-table or,
+- * for L0, the single bo one level below.
+- *
+- * Return: 0 on success, negative error code on error.
+- */
+-int xe_pt_create_scratch(struct xe_device *xe, struct xe_tile *tile,
+-			 struct xe_vm *vm)
+-{
+-	u8 id = tile->id;
+-	unsigned int flags;
+-	int i;
+-
+-	/*
+-	 * So we don't need to worry about 64K TLB hints when dealing with
+-	 * scratch entires, rather keep the scratch page in system memory on
+-	 * platforms where 64K pages are needed for VRAM.
+-	 */
+-	flags = XE_BO_CREATE_PINNED_BIT;
+-	if (vm->flags & XE_VM_FLAG_64K)
+-		flags |= XE_BO_CREATE_SYSTEM_BIT;
+-	else
+-		flags |= XE_BO_CREATE_VRAM_IF_DGFX(tile);
+-
+-	vm->scratch_bo[id] = xe_bo_create_pin_map(xe, tile, vm, SZ_4K,
+-						  ttm_bo_type_kernel,
+-						  flags);
+-	if (IS_ERR(vm->scratch_bo[id]))
+-		return PTR_ERR(vm->scratch_bo[id]);
+-
+-	xe_map_memset(vm->xe, &vm->scratch_bo[id]->vmap, 0, 0,
+-		      vm->scratch_bo[id]->size);
+-
+-	for (i = 0; i < vm->pt_root[id]->level; i++) {
+-		vm->scratch_pt[id][i] = xe_pt_create(vm, tile, i);
+-		if (IS_ERR(vm->scratch_pt[id][i]))
+-			return PTR_ERR(vm->scratch_pt[id][i]);
+-
+-		xe_pt_populate_empty(tile, vm, vm->scratch_pt[id][i]);
+-	}
+-
+-	return 0;
+-}
+-
+ /**
+  * DOC: Pagetable building
+  *
+@@ -1289,7 +1240,7 @@ __xe_pt_bind_vma(struct xe_tile *tile, struct xe_vma *vma, struct xe_exec_queue
+ 	 * it needs to be done here.
+ 	 */
+ 	if ((rebind && !xe_vm_in_lr_mode(vm) && !vm->batch_invalidate_tlb) ||
+-	    (!rebind && vm->scratch_bo[tile->id] && xe_vm_in_preempt_fence_mode(vm))) {
++	    (!rebind && xe_vm_has_scratch(vm) && xe_vm_in_preempt_fence_mode(vm))) {
+ 		ifence = kzalloc(sizeof(*ifence), GFP_KERNEL);
+ 		if (!ifence)
+ 			return ERR_PTR(-ENOMEM);
 diff --git a/drivers/gpu/drm/xe/xe_pt.h b/drivers/gpu/drm/xe/xe_pt.h
-index d5460e58dbbf..ba2f3325c84d 100644
+index ba2f3325c84d..71a4fbfcff43 100644
 --- a/drivers/gpu/drm/xe/xe_pt.h
 +++ b/drivers/gpu/drm/xe/xe_pt.h
-@@ -18,6 +18,9 @@ struct xe_tile;
- struct xe_vm;
- struct xe_vma;
+@@ -29,9 +29,6 @@ unsigned int xe_pt_shift(unsigned int level);
+ struct xe_pt *xe_pt_create(struct xe_vm *vm, struct xe_tile *tile,
+ 			   unsigned int level);
  
-+/* Largest huge pte is currently 1GiB. May become device dependent. */
-+#define MAX_HUGEPTE_LEVEL 2
-+
- #define xe_pt_write(xe, map, idx, data) \
- 	xe_map_wr(xe, map, (idx) * sizeof(u64), u64, data)
+-int xe_pt_create_scratch(struct xe_device *xe, struct xe_tile *tile,
+-			 struct xe_vm *vm);
+-
+ void xe_pt_populate_empty(struct xe_tile *tile, struct xe_vm *vm,
+ 			  struct xe_pt *pt);
  
 diff --git a/drivers/gpu/drm/xe/xe_vm.c b/drivers/gpu/drm/xe/xe_vm.c
-index e09050f16f07..f585cc7df071 100644
+index f585cc7df071..c58da0c390f5 100644
 --- a/drivers/gpu/drm/xe/xe_vm.c
 +++ b/drivers/gpu/drm/xe/xe_vm.c
-@@ -1239,7 +1239,7 @@ static u64 pte_encode_pat_index(struct xe_device *xe, u16 pat_index,
+@@ -1329,10 +1329,61 @@ static const struct xe_pt_ops xelp_pt_ops = {
  
- static u64 pte_encode_ps(u32 pt_level)
+ static void vm_destroy_work_func(struct work_struct *w);
+ 
++/**
++ * xe_vm_create_scratch() - Setup a scratch memory pagetable tree for the
++ * given tile and vm.
++ * @xe: xe device.
++ * @tile: tile to set up for.
++ * @vm: vm to set up for.
++ *
++ * Sets up a pagetable tree with one page-table per level and a single
++ * leaf PTE. All pagetable entries point to the single page-table or,
++ * for MAX_HUGEPTE_LEVEL, a NULL huge PTE returning 0 on read and
++ * writes become NOPs.
++ *
++ * Return: 0 on success, negative error code on error.
++ */
++static int xe_vm_create_scratch(struct xe_device *xe, struct xe_tile *tile,
++				struct xe_vm *vm)
++{
++	u8 id = tile->id;
++	int i;
++
++	for (i = MAX_HUGEPTE_LEVEL; i < vm->pt_root[id]->level; i++) {
++		vm->scratch_pt[id][i] = xe_pt_create(vm, tile, i);
++		if (IS_ERR(vm->scratch_pt[id][i]))
++			return PTR_ERR(vm->scratch_pt[id][i]);
++
++		xe_pt_populate_empty(tile, vm, vm->scratch_pt[id][i]);
++	}
++
++	return 0;
++}
++
++static void xe_vm_free_scratch(struct xe_vm *vm)
++{
++	struct xe_tile *tile;
++	u8 id;
++
++	if (!xe_vm_has_scratch(vm))
++		return;
++
++	for_each_tile(tile, vm->xe, id) {
++		u32 i;
++
++		if (!vm->pt_root[id])
++			continue;
++
++		for (i = MAX_HUGEPTE_LEVEL; i < vm->pt_root[id]->level; ++i)
++			if (vm->scratch_pt[id][i])
++				xe_pt_destroy(vm->scratch_pt[id][i], vm->flags, NULL);
++	}
++}
++
+ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
  {
--	XE_WARN_ON(pt_level > 2);
-+	XE_WARN_ON(pt_level > MAX_HUGEPTE_LEVEL);
+ 	struct xe_vm *vm;
+-	int err, i = 0, number_tiles = 0;
++	int err, number_tiles = 0;
+ 	struct xe_tile *tile;
+ 	u8 id;
  
- 	if (pt_level == 1)
- 		return XE_PDE_PS_2M;
+@@ -1397,12 +1448,12 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 		}
+ 	}
+ 
+-	if (flags & XE_VM_FLAG_SCRATCH_PAGE) {
++	if (xe_vm_has_scratch(vm)) {
+ 		for_each_tile(tile, xe, id) {
+ 			if (!vm->pt_root[id])
+ 				continue;
+ 
+-			err = xe_pt_create_scratch(xe, tile, vm);
++			err = xe_vm_create_scratch(xe, tile, vm);
+ 			if (err)
+ 				goto err_scratch_pt;
+ 		}
+@@ -1466,18 +1517,7 @@ struct xe_vm *xe_vm_create(struct xe_device *xe, u32 flags)
+ 	return vm;
+ 
+ err_scratch_pt:
+-	for_each_tile(tile, xe, id) {
+-		if (!vm->pt_root[id])
+-			continue;
+-
+-		i = vm->pt_root[id]->level;
+-		while (i)
+-			if (vm->scratch_pt[id][--i])
+-				xe_pt_destroy(vm->scratch_pt[id][i],
+-					      vm->flags, NULL);
+-		xe_bo_unpin(vm->scratch_bo[id]);
+-		xe_bo_put(vm->scratch_bo[id]);
+-	}
++	xe_vm_free_scratch(vm);
+ err_destroy_root:
+ 	for_each_tile(tile, xe, id) {
+ 		if (vm->pt_root[id])
+@@ -1563,17 +1603,7 @@ void xe_vm_close_and_put(struct xe_vm *vm)
+ 	 * install a fence to resv. Hence it's safe to
+ 	 * destroy the pagetables immediately.
+ 	 */
+-	for_each_tile(tile, xe, id) {
+-		if (vm->scratch_bo[id]) {
+-			u32 i;
+-
+-			xe_bo_unpin(vm->scratch_bo[id]);
+-			xe_bo_put(vm->scratch_bo[id]);
+-			for (i = 0; i < vm->pt_root[id]->level; i++)
+-				xe_pt_destroy(vm->scratch_pt[id][i], vm->flags,
+-					      NULL);
+-		}
+-	}
++	xe_vm_free_scratch(vm);
+ 	xe_vm_unlock(vm);
+ 
+ 	/*
+diff --git a/drivers/gpu/drm/xe/xe_vm.h b/drivers/gpu/drm/xe/xe_vm.h
+index 9a0ae19c47b7..6563ca33caf2 100644
+--- a/drivers/gpu/drm/xe/xe_vm.h
++++ b/drivers/gpu/drm/xe/xe_vm.h
+@@ -64,6 +64,17 @@ static inline bool xe_vm_is_closed_or_banned(struct xe_vm *vm)
+ struct xe_vma *
+ xe_vm_find_overlapping_vma(struct xe_vm *vm, u64 start, u64 range);
+ 
++/**
++ * xe_vm_has_scratch() - Whether the vm is configured for scratch PTEs
++ * @vm: The vm
++ *
++ * Return: whether the vm populates unmapped areas with scratch PTEs
++ */
++static inline bool xe_vm_has_scratch(const struct xe_vm *vm)
++{
++	return vm->flags & XE_VM_FLAG_SCRATCH_PAGE;
++}
++
+ static inline struct xe_vm *gpuva_to_vm(struct drm_gpuva *gpuva)
+ {
+ 	return container_of(gpuva->vm, struct xe_vm, gpuvm);
+diff --git a/drivers/gpu/drm/xe/xe_vm_types.h b/drivers/gpu/drm/xe/xe_vm_types.h
+index 23abdfd8622f..f628a7081f27 100644
+--- a/drivers/gpu/drm/xe/xe_vm_types.h
++++ b/drivers/gpu/drm/xe/xe_vm_types.h
+@@ -158,7 +158,6 @@ struct xe_vm {
+ 	u64 size;
+ 
+ 	struct xe_pt *pt_root[XE_MAX_TILES_PER_DEVICE];
+-	struct xe_bo *scratch_bo[XE_MAX_TILES_PER_DEVICE];
+ 	struct xe_pt *scratch_pt[XE_MAX_TILES_PER_DEVICE][XE_VM_MAX_LEVEL];
+ 
+ 	/**
 -- 
 2.42.0
 
