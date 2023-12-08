@@ -4,28 +4,28 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DACCFC4167B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 12:34:15 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id B68DAC4167B
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 12:34:30 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2B1410E2A6;
-	Fri,  8 Dec 2023 12:34:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F80A10E964;
+	Fri,  8 Dec 2023 12:34:30 +0000 (UTC)
 Received: from emeril.freedesktop.org (emeril.freedesktop.org
  [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id 8A48E10E286;
- Fri,  8 Dec 2023 12:34:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0912D10E289;
+ Fri,  8 Dec 2023 12:34:28 +0000 (UTC)
 Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id 7429FA7DFF;
- Fri,  8 Dec 2023 12:34:12 +0000 (UTC)
+ by emeril.freedesktop.org (Postfix) with ESMTP id 03A9DA7DFF;
+ Fri,  8 Dec 2023 12:34:28 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=93_CI=2EPatch=5Fapplied=3A_success_for_series_starting_with?=
- =?utf-8?q?_=5B1/3=5D_drm/xe=3A_Change_the_name_of_frequency_sysfs_attribute?=
- =?utf-8?q?s_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_CI=2Echeckpatch=3A_warning_for_series_starting_with_=5B1?=
+ =?utf-8?q?/3=5D_drm/xe=3A_Change_the_name_of_frequency_sysfs_attributes_=28?=
+ =?utf-8?q?rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Rodrigo Vivi" <rodrigo.vivi@intel.com>
-Date: Fri, 08 Dec 2023 12:34:12 -0000
-Message-ID: <170203885247.7325.2212477508235668866@emeril.freedesktop.org>
+Date: Fri, 08 Dec 2023 12:34:28 -0000
+Message-ID: <170203886801.7327.13117993401157969870@emeril.freedesktop.org>
 X-Patchwork-Hint: ignore
 References: <20231208051153.664055-1-rodrigo.vivi@intel.com>
 In-Reply-To: <20231208051153.664055-1-rodrigo.vivi@intel.com>
@@ -49,15 +49,75 @@ Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
 Series: series starting with [1/3] drm/xe: Change the name of frequency sysfs attributes (rev2)
 URL   : https://patchwork.freedesktop.org/series/127544/
-State : success
+State : warning
 
 == Summary ==
 
-=== Applying kernel patches on branch 'drm-xe-next' with base: ===
-Base commit: 61789dd6d !fixup: drm/xe/gsc: GSC FW load
-=== git am output follows ===
-Applying: drm/xe: Change the name of frequency sysfs attributes
-Applying: drm/xe: Create a xe_gt_freq component for raw management and sysfs
-Applying: drm/xe: Add frequency throttle reasons sysfs attributes
++ KERNEL=/kernel
++ git clone https://gitlab.freedesktop.org/drm/maintainer-tools mt
+Cloning into 'mt'...
+warning: redirecting to https://gitlab.freedesktop.org/drm/maintainer-tools.git/
++ git -C mt rev-list -n1 origin/master
+6030b24c1386b00de8187b5fb987e283a57b372a
++ cd /kernel
++ git config --global --add safe.directory /kernel
++ git log -n1
+commit 53934cea12fb2203dfddc141d18ca9d22befe4cc
+Author: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+Date:   Fri Dec 8 01:59:33 2023 -0500
+
+    drm/xe: Add frequency throttle reasons sysfs attributes
+    
+    Add throttle reasons sysfs attributes under a separate directory.
+    
+    /device/tile<n>/gt<n>/freq0/throttle
+                            |- reason_pl1
+                            |- reason_pl2
+                            |- reason_pl4
+                            |- reason_prochot
+                            |- reason_ratl
+                            |- reason_vr_tdc
+                            |- reason_vr_thermalert
+                            |- status
+    
+    v2: Remove unnecessary headers and clean-up action (Riana)
+    
+    v3: - Add missing 'tile#/' to the doc (Riana)
+        - Add missing documentation (Riana)
+        - Remove extra line in header (Riana)
+        - Remove extra header inclusion missed on v2 (Rodrigo).
+    
+    Signed-off-by: Sujaritha Sundaresan <sujaritha.sundaresan@intel.com>
+    Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
++ /mt/dim checkpatch 61789dd6d716fdb2ad639ddcc1d88856b6e55072 drm-intel
+457184087 drm/xe: Change the name of frequency sysfs attributes
+a5546edbe drm/xe: Create a xe_gt_freq component for raw management and sysfs
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:63: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#63: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 615 lines checked
+53934cea1 drm/xe: Add frequency throttle reasons sysfs attributes
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+Traceback (most recent call last):
+  File "scripts/spdxcheck.py", line 6, in <module>
+    from ply import lex, yacc
+ModuleNotFoundError: No module named 'ply'
+-:81: WARNING:FILE_PATH_CHANGES: added, moved or deleted file(s), does MAINTAINERS need updating?
+#81: 
+new file mode 100644
+
+total: 0 errors, 1 warnings, 0 checks, 306 lines checked
 
 
