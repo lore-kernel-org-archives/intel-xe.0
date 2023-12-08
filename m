@@ -4,44 +4,46 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 902C8C4167B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 00:22:31 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id A562EC10DCE
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 00:22:32 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3F10810E1A7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD41110E22F;
 	Fri,  8 Dec 2023 00:22:31 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E02710E1A7
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FD8510E1A7
  for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 00:22:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1701994949; x=1733530949;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4oRAVDNfUf83GRbCU8a/VL/cKnY/6snnYDTMuHfx+6U=;
- b=MY4FH4uDBc0DvEQNIcse78jFK17NDwC+Uq+Y2nhT9a7l2FQ1GiI/F5rs
- ksSMu82Kacqv/FXkzO9gNra2MldLkv2B4Cn+OYh+hZ7MtFa3smkWsvztU
- bBXiXoIU7ItGk6PPoAHFjWNz3PBNcWNa7Tz1/t6NAw+RzLX6WZZEz6PUI
- vLpNa2SykXg61ksxb3zCT1bYpGY+IlCFcHbCvRyvr67oz99RxNiAa5XfK
- 9oZhra5xZv7Txwqe+hcZLpsNKe9QD+JG19dhDlM3KGRPtrSROEzqnRVH1
- kwz2Budz2cxvvQpNg9V0QujPg9fs5+2Ec5+r7hI0P+l4cqHUCaUE7Ubwz A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1214054"
+ t=1701994950; x=1733530950;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=7eDE1fOv6N/fXrrUn3hWHa63HlskGzM31KZMtyhQk/s=;
+ b=L1KiCE2VW6lsP4rdpJZDlzFJ6Dk8hhixFTd3n5JMN1oGh1Gf70Q33fS5
+ x5MhKSABUPHDepKt8fuqq/3KhYHfDoLE3Tv7Ws30fY7cn7xzHfaZdqD62
+ 3fbrdqmGDxCLllVrKAFhpDnV1SFSGU+0Fhn/FVhp6iW/AGsggbqv/9AgL
+ wM2CjTDC9AZHxY+k5S9KOvhtBOm2Ip5scXOcwQFHs5nz1u5zh6kbt7pVI
+ fZCNKvZig1nzArpXqsvPJ2z/fkK+a0JMDeJhxCwMgOPrxdRf4AkJbOM8J
+ ZE4GqrmRwTxuRxJocQRTz595OeXP4ZQLXBDPuPhP4eyI27I7LHa1DfbSJ w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1214056"
 X-IronPort-AV: E=Sophos;i="6.04,259,1695711600"; 
-   d="scan'208";a="1214054"
+   d="scan'208";a="1214056"
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 16:22:29 -0800
+ 07 Dec 2023 16:22:30 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1019156273"
-X-IronPort-AV: E=Sophos;i="6.04,259,1695711600"; d="scan'208";a="1019156273"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="1019156276"
+X-IronPort-AV: E=Sophos;i="6.04,259,1695711600"; d="scan'208";a="1019156276"
 Received: from mdroper-desk1.fm.intel.com ([10.1.27.131])
  by fmsmga006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 16:22:28 -0800
+ 07 Dec 2023 16:22:29 -0800
 From: Matt Roper <matthew.d.roper@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v2 0/2] xe: Add IP versions to GT query
-Date: Thu,  7 Dec 2023 16:22:19 -0800
-Message-ID: <20231208002218.1287673-4-matthew.d.roper@intel.com>
+Subject: [PATCH v2 1/2] drm/xe: Stash GMD_ID value in xe_gt
+Date: Thu,  7 Dec 2023 16:22:20 -0800
+Message-ID: <20231208002218.1287673-5-matthew.d.roper@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20231208002218.1287673-4-matthew.d.roper@intel.com>
+References: <20231208002218.1287673-4-matthew.d.roper@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-xe@lists.freedesktop.org
@@ -55,47 +57,51 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: Francois Dugast <francois.dugast@intel.com>, matthew.d.roper@intel.com,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Lucas De Marchi <lucas.demarchi@intel.com>, matthew.d.roper@intel.com
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On MTL and later, drivers are expected to determine graphics/media
-version and stepping from the values reported in the GMD_ID registers
-rather than trying to infer them from PCI devid/revid.  Since userspace
-cannot directly access these registers, the graphics/media GMD_ID must
-be exposed through the uapi.
+Although we've stored the major and minor versions for graphics/media in
+xe_device, it will be simpler to implement the uapi version query if we
+also stash the raw register value in the GT itself.
 
-Repurpose one of the 'reserved' qwords in the GT query structure to hold
-the IP version for platforms with GMD_ID.  These fields will continue to
-be 0 on pre-MTL platforms.  Userspace should continue to utilize PCI
-devid/revid on those older platforms.
+Signed-off-by: Matt Roper <matthew.d.roper@intel.com>
+Reviewed-by: Lucas De Marchi <lucas.demarchi@intel.com>
+---
+ drivers/gpu/drm/xe/xe_gt.c       | 6 ++++++
+ drivers/gpu/drm/xe/xe_gt_types.h | 2 ++
+ 2 files changed, 8 insertions(+)
 
-Note that although the hardware has a display IP GMD_ID register as
-well, that value will not be exposed through Xe uapi.  As always,
-display userspace is expected to use standard atomic properties and
-test-only commits to determine platform capabilities rather than
-attempting to recognize the underlying IP.
-
-v2:
- - Tweak field naming from "revid" to "rev"  (Lucas)
- - Fix kerneldoc copy/paste mistakes.
-
-Test-with: 20231206204942.1105505-1-matthew.d.roper@intel.com
-Testcase: igt@xe_query@query-gt-list
-Cc: Francois Dugast <francois.dugast@intel.com>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-
-Matt Roper (2):
-  drm/xe: Stash GMD_ID value in xe_gt
-  drm/xe/uapi: Add IP version and stepping to GT list query
-
- drivers/gpu/drm/xe/xe_gt.c       |  6 ++++++
- drivers/gpu/drm/xe/xe_gt_types.h |  2 ++
- drivers/gpu/drm/xe/xe_query.c    |  8 ++++++++
- include/uapi/drm/xe_drm.h        | 10 +++++++++-
- 4 files changed, 25 insertions(+), 1 deletion(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_gt.c b/drivers/gpu/drm/xe/xe_gt.c
+index 6645fa158f09..357943c1ee8f 100644
+--- a/drivers/gpu/drm/xe/xe_gt.c
++++ b/drivers/gpu/drm/xe/xe_gt.c
+@@ -385,6 +385,12 @@ static int gt_fw_domain_init(struct xe_gt *gt)
+ 	/* Initialize CCS mode sysfs after early initialization of HW engines */
+ 	xe_gt_ccs_mode_sysfs_init(gt);
+ 
++	/*
++	 * Stash hardware-reported version.  Since this register does not exist
++	 * on pre-MTL platforms, reading it there will (correctly) return 0.
++	 */
++	gt->info.gmdid = xe_mmio_read32(gt, GMD_ID);
++
+ 	err = xe_force_wake_put(gt_to_fw(gt), XE_FW_GT);
+ 	XE_WARN_ON(err);
+ 	xe_device_mem_access_put(gt_to_xe(gt));
+diff --git a/drivers/gpu/drm/xe/xe_gt_types.h b/drivers/gpu/drm/xe/xe_gt_types.h
+index 4e48c4643163..4e7a4494a554 100644
+--- a/drivers/gpu/drm/xe/xe_gt_types.h
++++ b/drivers/gpu/drm/xe/xe_gt_types.h
+@@ -117,6 +117,8 @@ struct xe_gt {
+ 		 * hwconfig blob.
+ 		 */
+ 		u64 __engine_mask;
++		/** @gmdid: raw GMD_ID value from hardware */
++		u32 gmdid;
+ 	} info;
+ 
+ 	/**
 -- 
 2.43.0
 
