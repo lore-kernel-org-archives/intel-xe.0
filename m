@@ -4,44 +4,44 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9E79DC4167B
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 07:56:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E3FFC10F05
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 07:56:41 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DD3E10EA05;
-	Fri,  8 Dec 2023 07:56:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0160F10EA09;
+	Fri,  8 Dec 2023 07:56:41 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B646910E9F3
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 07:56:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5635D10E9F6
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 07:56:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702022196; x=1733558196;
+ t=1702022198; x=1733558198;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ue/tRVE+KiunDaUOzuXqeRqHHSQotJZRHpWjU57os3U=;
- b=oKkNhKBIQsWVqa4oQ+RbVY23MwwD59TL7z19JMQYU8JQm1Q8xLAtRVmo
- 39HWuRv6IjN4iHX50ycjImq1U0YdwXGaibU3gi4ztTiWS7GUCe8h98GsA
- tawCGroqDTbIGhw2Jm5v9aYrxEVC2UTFSIQWbR5HxFjHDCAPDaF1mbW0v
- sHYqOZgteL4t4q6wJXlfOxxww2dJyq6xtEefMt/DLylgef6TscdSVB3BY
- IDRS6gI86MnVpqiLognZ+hhFQ9vJoFhiFaRCSvn3tx+9+LhzSkp6D//v7
- kPN5/4wFEMejnZtS4PZR0qvxPN+wTFxhlK6CLETIRw5XBamsY/yCfBYyu Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="391542406"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="391542406"
+ bh=fsI02YEXCfqjNxXIN0JOmcK8dwkpIQxqQss5LRVDUNw=;
+ b=ZeLPcLVymRklGH+CCfKRym5hKXiWDu39LH0eNuRIjvLncJOl0zz0zJ38
+ 9RFVBxs/FiLR4lQLsdo3kljG0y7sDxckbwyyPHiHz6yR5DDP1jDf6jPtv
+ SUg/bC5ibXYu82IVY/1DV7bcGBpFEpVwXOtJuo1U/2q9b0Uw1MhtZeu1Y
+ 0OFQK2gxyozQnhQeYuhrRjh3BVi/gmiLtTZAXwYgwrdQPoF+Jj4j4MQHG
+ H9zRtHevqwcrvlWYdVX3pv+8s+fn8f612kuPVlt1BGfg46dP0jC7D6Y7v
+ pgxSw/81GbKh8VQkaIQwuWw8qRTIrEExwYheK3DhTgD0f/ZbitpnHMy4t A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="391542408"
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="391542408"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 23:56:36 -0800
+ 07 Dec 2023 23:56:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="838044700"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="838044700"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="838044722"
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="838044722"
 Received: from cannonro-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.252.63.126])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 23:56:35 -0800
+ 07 Dec 2023 23:56:36 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 1/9] fixup! FIXME: drm/i915/display: Remaining changes to
- make xe compile
-Date: Fri,  8 Dec 2023 09:56:02 +0200
-Message-Id: <20231208075610.3005795-2-jouni.hogander@intel.com>
+Subject: [PATCH v3 2/9] drm/i915/display: Use i915_gem_object_get_dma_address
+ to get dma address
+Date: Fri,  8 Dec 2023 09:56:03 +0200
+Message-Id: <20231208075610.3005795-3-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231208075610.3005795-1-jouni.hogander@intel.com>
 References: <20231208075610.3005795-1-jouni.hogander@intel.com>
@@ -64,42 +64,46 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-We are about to backport patch which is helping us to get rid of Xe build
-changes in intel_cursor.c:
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 
-https://patchwork.freedesktop.org/series/127300/
+Works better for xe like that. obj is no longer const.
 
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Link: https://patchwork.freedesktop.org/patch/msgid/20231204134946.16219-1-maarten.lankhorst@linux.intel.com
+Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+(cherry picked from commit 7054b551de18e9875fbdf8d4f3baade428353545)
 Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cursor.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 8ed8a623fa98..b342fad180ca 100644
+index b342fad180ca..0d21c34f7499 100644
 --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -30,17 +30,15 @@ static const u32 intel_cursor_formats[] = {
+@@ -23,6 +23,8 @@
+ #include "intel_psr.h"
+ #include "skl_watermark.h"
  
- static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
- {
--	__maybe_unused struct drm_i915_private *dev_priv =
-+	struct drm_i915_private *dev_priv =
++#include "gem/i915_gem_object.h"
++
+ /* Cursor formats */
+ static const u32 intel_cursor_formats[] = {
+ 	DRM_FORMAT_ARGB8888,
+@@ -33,11 +35,11 @@ static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
+ 	struct drm_i915_private *dev_priv =
  		to_i915(plane_state->uapi.plane->dev);
--	__maybe_unused const struct drm_framebuffer *fb = plane_state->hw.fb;
--	__maybe_unused const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
-+	const struct drm_framebuffer *fb = plane_state->hw.fb;
-+	const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
+ 	const struct drm_framebuffer *fb = plane_state->hw.fb;
+-	const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
++	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
  	u32 base;
  
--#ifdef I915
  	if (DISPLAY_INFO(dev_priv)->cursor_needs_physical)
- 		base = sg_dma_address(obj->mm.pages->sgl);
+-		base = sg_dma_address(obj->mm.pages->sgl);
++		base = i915_gem_object_get_dma_address(obj, 0);
  	else
--#endif
  		base = intel_plane_ggtt_offset(plane_state);
  
- 	return base + plane_state->view.color_plane[0].offset;
 -- 
 2.34.1
 
