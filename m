@@ -4,44 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3E3FFC10F05
-	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 07:56:41 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id EB022C4167B
+	for <intel-xe@archiver.kernel.org>; Fri,  8 Dec 2023 07:56:44 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0160F10EA09;
-	Fri,  8 Dec 2023 07:56:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B380D10EA0A;
+	Fri,  8 Dec 2023 07:56:44 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.55.52.93])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5635D10E9F6
- for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 07:56:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C38AE10EA05
+ for <intel-xe@lists.freedesktop.org>; Fri,  8 Dec 2023 07:56:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702022198; x=1733558198;
+ t=1702022199; x=1733558199;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fsI02YEXCfqjNxXIN0JOmcK8dwkpIQxqQss5LRVDUNw=;
- b=ZeLPcLVymRklGH+CCfKRym5hKXiWDu39LH0eNuRIjvLncJOl0zz0zJ38
- 9RFVBxs/FiLR4lQLsdo3kljG0y7sDxckbwyyPHiHz6yR5DDP1jDf6jPtv
- SUg/bC5ibXYu82IVY/1DV7bcGBpFEpVwXOtJuo1U/2q9b0Uw1MhtZeu1Y
- 0OFQK2gxyozQnhQeYuhrRjh3BVi/gmiLtTZAXwYgwrdQPoF+Jj4j4MQHG
- H9zRtHevqwcrvlWYdVX3pv+8s+fn8f612kuPVlt1BGfg46dP0jC7D6Y7v
- pgxSw/81GbKh8VQkaIQwuWw8qRTIrEExwYheK3DhTgD0f/ZbitpnHMy4t A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="391542408"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="391542408"
+ bh=HyE+NDIFx64bBGD7evCtnwjocf0F3D+4p4VFGDD75f4=;
+ b=SnVPWifU2UY3XJari3qKmeDMvQpI5n8iZ2zgFROAmj33R5C1pc0IIATe
+ fMcufZ8vHUxLrqLrKTmkdg2pgJcgmjVvDGhH/jTaZnloYaLRdycsrL1zq
+ vBzOsVc3rBjUQ8NjrtlbqnjiaOQjvLbG5NavBvR0dJEtjnlgXBxzPdhh8
+ fVH72P1H320jG7SxlnvvBsvRJdX/GL78DbwcLvG0v+cfrI5zDw3espTAV
+ u1X3XDf+QfaR0+zxbBlakx6ZYtW3WxRJfKhvh2lWFZyZLARtw3vdFze6v
+ dftPhQJI2+WekJKAldZkmpe2QjQKbp2CLNaguokovs6o5ehAA7QjhKX99 w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="391542410"
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="391542410"
 Received: from fmsmga008.fm.intel.com ([10.253.24.58])
  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 23:56:38 -0800
+ 07 Dec 2023 23:56:39 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="838044722"
-X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="838044722"
+X-IronPort-AV: E=McAfee;i="6600,9927,10917"; a="838044726"
+X-IronPort-AV: E=Sophos;i="6.04,260,1695711600"; d="scan'208";a="838044726"
 Received: from cannonro-mobl.ger.corp.intel.com (HELO
  jhogande-mobl1.intel.com) ([10.252.63.126])
  by fmsmga008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Dec 2023 23:56:36 -0800
+ 07 Dec 2023 23:56:38 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: [PATCH v3 2/9] drm/i915/display: Use i915_gem_object_get_dma_address
- to get dma address
-Date: Fri,  8 Dec 2023 09:56:03 +0200
-Message-Id: <20231208075610.3005795-3-jouni.hogander@intel.com>
+Subject: [PATCH v3 3/9] fixup! drm/xe/display: Implement display support
+Date: Fri,  8 Dec 2023 09:56:04 +0200
+Message-Id: <20231208075610.3005795-4-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20231208075610.3005795-1-jouni.hogander@intel.com>
 References: <20231208075610.3005795-1-jouni.hogander@intel.com>
@@ -64,46 +63,34 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-
-Works better for xe like that. obj is no longer const.
+We need to add i915_gem_object_get_dma_address stub to build
+intel_cursor.h.
 
 Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Link: https://patchwork.freedesktop.org/patch/msgid/20231204134946.16219-1-maarten.lankhorst@linux.intel.com
-Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
-(cherry picked from commit 7054b551de18e9875fbdf8d4f3baade428353545)
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ .../gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h   | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index b342fad180ca..0d21c34f7499 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -23,6 +23,8 @@
- #include "intel_psr.h"
- #include "skl_watermark.h"
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+index 996b4f4f27dc..d226c29f0e6a 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/gem/i915_gem_object.h
+@@ -12,6 +12,13 @@
  
-+#include "gem/i915_gem_object.h"
+ #define i915_gem_object_is_shmem(obj) ((obj)->flags & XE_BO_CREATE_SYSTEM_BIT)
+ 
++static inline dma_addr_t i915_gem_object_get_dma_address(const struct xe_bo *bo, pgoff_t n)
++{
++	/* Should never be called */
++	WARN_ON(1);
++	return n;
++}
 +
- /* Cursor formats */
- static const u32 intel_cursor_formats[] = {
- 	DRM_FORMAT_ARGB8888,
-@@ -33,11 +35,11 @@ static u32 intel_cursor_base(const struct intel_plane_state *plane_state)
- 	struct drm_i915_private *dev_priv =
- 		to_i915(plane_state->uapi.plane->dev);
- 	const struct drm_framebuffer *fb = plane_state->hw.fb;
--	const struct drm_i915_gem_object *obj = intel_fb_obj(fb);
-+	struct drm_i915_gem_object *obj = intel_fb_obj(fb);
- 	u32 base;
- 
- 	if (DISPLAY_INFO(dev_priv)->cursor_needs_physical)
--		base = sg_dma_address(obj->mm.pages->sgl);
-+		base = i915_gem_object_get_dma_address(obj, 0);
- 	else
- 		base = intel_plane_ggtt_offset(plane_state);
- 
+ static inline bool i915_gem_object_is_tiled(const struct xe_bo *bo)
+ {
+ 	/* legacy tiling is unused */
 -- 
 2.34.1
 
