@@ -4,30 +4,48 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id DB609C4167B
-	for <intel-xe@archiver.kernel.org>; Sat,  9 Dec 2023 16:28:53 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 77434C10F04
+	for <intel-xe@archiver.kernel.org>; Sat,  9 Dec 2023 18:48:09 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8CFFF10E1C6;
-	Sat,  9 Dec 2023 16:28:53 +0000 (UTC)
-Received: from emeril.freedesktop.org (emeril.freedesktop.org
- [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTP id EC31010E1C6;
- Sat,  9 Dec 2023 16:28:50 +0000 (UTC)
-Received: from emeril.freedesktop.org (localhost [127.0.0.1])
- by emeril.freedesktop.org (Postfix) with ESMTP id E326EA47DF;
- Sat,  9 Dec 2023 16:28:50 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1823645658133556188=="
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A06710E1CC;
+	Sat,  9 Dec 2023 18:48:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2DBDC10E1CC
+ for <intel-xe@lists.freedesktop.org>; Sat,  9 Dec 2023 18:48:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1702147687; x=1733683687;
+ h=date:from:to:cc:subject:message-id:mime-version;
+ bh=Qcv3BMcwRS6unAS+l31DkzLh6IXXF4c6LNf//+waDhI=;
+ b=nQAvJVoobSCHblutcuhcnzEEE2LKAif0F0iFDC2vdwD0Oqqe0aTDG+fR
+ hjlmdUN1AucGxzYCOyEuaFK0ayA6ppWfsl1S2IhXCkzZuI30eYZb81aSp
+ IOXiWCIH6pCrYBL+1EAFJNwlvlBV1/V4ngwtVA5SG9lj0I7unCmeHYG+M
+ JaDoOTdDDjXq3wBbWzuHKJcpHeKcLV6AWcAlRQFgCaVuqvr3OO6V/Sp5b
+ LVEntRrPShSh2KEmo4mM6U5/h2Q5vw4aZICodXpWMexEuEawsh762RsCI
+ iQjlbCZuh4myoszrXadQfYntkek4iT9OcAeFmBSbeNOPSTNhEgeE/yMAa A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="458837087"
+X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="458837087"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+ by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2023 10:48:06 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="1103920876"
+X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="1103920876"
+Received: from lkp-server02.sh.intel.com (HELO b07ab15da5fe) ([10.239.97.151])
+ by fmsmga005.fm.intel.com with ESMTP; 09 Dec 2023 10:48:04 -0800
+Received: from kbuild by b07ab15da5fe with local (Exim 4.96)
+ (envelope-from <lkp@intel.com>) id 1rC2Ms-000Fm4-2K;
+ Sat, 09 Dec 2023 18:48:02 +0000
+Date: Sun, 10 Dec 2023 02:47:19 +0800
+From: kernel test robot <lkp@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: [drm-xe:drm-xe-next 1052/1053]
+ drivers/gpu/drm/xe/xe_gt_freq.c:201:30: warning: variable 'err' is
+ uninitialized when used here
+Message-ID: <202312100223.2IyYhSLJ-lkp@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_CI=2EBAT=3A_success_for_Huge_PTE_and_scratch_page_update?=
- =?utf-8?q?s_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>
-Date: Sat, 09 Dec 2023 16:28:50 -0000
-Message-ID: <170213933089.20046.2015750860441748879@emeril.freedesktop.org>
-X-Patchwork-Hint: ignore
-References: <20231209151843.7903-1-thomas.hellstrom@linux.intel.com>
-In-Reply-To: <20231209151843.7903-1-thomas.hellstrom@linux.intel.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 X-BeenThere: intel-xe@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -39,130 +57,66 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-xe@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
+Cc: llvm@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ oe-kbuild-all@lists.linux.dev
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
---===============1823645658133556188==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+tree:   https://gitlab.freedesktop.org/drm/xe/kernel.git drm-xe-next
+head:   1fc141d1f445b8e5ab4ff14645b0482dd98460b9
+commit: 5d57684e0f5e1b8bb2484f0140a9b3a2f132f8fe [1052/1053] drm/xe: Create a xe_gt_freq component for raw management and sysfs
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20231210/202312100223.2IyYhSLJ-lkp@intel.com/config)
+compiler: clang version 16.0.4 (https://github.com/llvm/llvm-project.git ae42196bc493ffe877a7e3dff8be32035dea4d07)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20231210/202312100223.2IyYhSLJ-lkp@intel.com/reproduce)
 
-== Series Details ==
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202312100223.2IyYhSLJ-lkp@intel.com/
 
-Series: Huge PTE and scratch page updates (rev2)
-URL   : https://patchwork.freedesktop.org/series/127565/
-State : success
+All warnings (new ones prefixed by >>):
 
-== Summary ==
-
-CI Bug Log - changes from xe-565-1fc141d1f445b8e5ab4ff14645b0482dd98460b9_BAT -> xe-pw-127565v2_BAT
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  
-
-Participating hosts (4 -> 4)
-------------------------------
-
-  No changes in participating hosts
-
-Known issues
-------------
-
-  Here are the changes found in xe-pw-127565v2_BAT that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-dp3:
-    - bat-dg2-oem2:       [FAIL][1] ([Intel XE#480]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-565-1fc141d1f445b8e5ab4ff14645b0482dd98460b9/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp3.html
-   [2]: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127565v2/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp3.html
-
-  
-  [Intel XE#480]: https://gitlab.freedesktop.org/drm/xe/kernel/issues/480
+>> drivers/gpu/drm/xe/xe_gt_freq.c:201:30: warning: variable 'err' is uninitialized when used here [-Wuninitialized]
+                            kobject_name(gt->sysfs), err);
+                                                     ^~~
+   include/drm/drm_print.h:466:36: note: expanded from macro 'drm_warn'
+           __drm_printk((drm), warn,, fmt, ##__VA_ARGS__)
+                                             ^~~~~~~~~~~
+   include/drm/drm_print.h:456:48: note: expanded from macro '__drm_printk'
+           dev_##level##type((drm)->dev, "[drm] " fmt, ##__VA_ARGS__)
+                                                         ^~~~~~~~~~~
+   include/linux/dev_printk.h:146:70: note: expanded from macro 'dev_warn'
+           dev_printk_index_wrap(_dev_warn, KERN_WARNING, dev, dev_fmt(fmt), ##__VA_ARGS__)
+                                                                               ^~~~~~~~~~~
+   include/linux/dev_printk.h:110:23: note: expanded from macro 'dev_printk_index_wrap'
+                   _p_func(dev, fmt, ##__VA_ARGS__);                       \
+                                       ^~~~~~~~~~~
+   drivers/gpu/drm/xe/xe_gt_freq.c:196:9: note: initialize the variable 'err' to silence this warning
+           int err;
+                  ^
+                   = 0
+   1 warning generated.
 
 
-Build changes
--------------
+vim +/err +201 drivers/gpu/drm/xe/xe_gt_freq.c
 
-  * IGT: IGT_7629 -> IGT_7631
-  * Linux: xe-565-1fc141d1f445b8e5ab4ff14645b0482dd98460b9 -> xe-pw-127565v2
+   186	
+   187	/**
+   188	 * xe_gt_freq_init - Initialize Xe Freq component
+   189	 * @gt: Xe GT object
+   190	 *
+   191	 * It needs to be initialized after GT Sysfs and GuC PC components are ready.
+   192	 */
+   193	void xe_gt_freq_init(struct xe_gt *gt)
+   194	{
+   195		struct xe_device *xe = gt_to_xe(gt);
+   196		int err;
+   197	
+   198		gt->freq = kobject_create_and_add("freq0", gt->sysfs);
+   199		if (!gt->freq) {
+   200			drm_warn(&xe->drm, "failed to add freq0 directory to %s, err: %d\n",
+ > 201				 kobject_name(gt->sysfs), err);
 
-  IGT_7629: 1dd73105a01e092da7954f9552ec0c67ed8a9f4e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  IGT_7631: 0e10197156be74f7b43254e59da32185e0f9b229 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  xe-565-1fc141d1f445b8e5ab4ff14645b0482dd98460b9: 1fc141d1f445b8e5ab4ff14645b0482dd98460b9
-  xe-pw-127565v2: 127565v2
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127565v2/index.html
-
---===============1823645658133556188==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Huge PTE and scratch page updates (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/127565/">https://patchwork.freedesktop.org/series/127565/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127565v2/index.html">https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127565v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from xe-565-1fc141d1f445b8e5ab4ff14645b0482dd98460b9_BAT -&gt; xe-pw-127565v2_BAT</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<h2>Participating hosts (4 -&gt; 4)</h2>
-<p>No changes in participating hosts</p>
-<h2>Known issues</h2>
-<p>Here are the changes found in xe-pw-127565v2_BAT that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_flip@basic-flip-vs-wf_vblank@a-dp3:<ul>
-<li>bat-dg2-oem2:       <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-565-1fc141d1f445b8e5ab4ff14645b0482dd98460b9/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp3.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/xe/kernel/issues/480">Intel XE#480</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-127565v2/bat-dg2-oem2/igt@kms_flip@basic-flip-vs-wf_vblank@a-dp3.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>IGT: IGT_7629 -&gt; IGT_7631</li>
-<li>Linux: xe-565-1fc141d1f445b8e5ab4ff14645b0482dd98460b9 -&gt; xe-pw-127565v2</li>
-</ul>
-<p>IGT_7629: 1dd73105a01e092da7954f9552ec0c67ed8a9f4e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  IGT_7631: 0e10197156be74f7b43254e59da32185e0f9b229 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  xe-565-1fc141d1f445b8e5ab4ff14645b0482dd98460b9: 1fc141d1f445b8e5ab4ff14645b0482dd98460b9<br />
-  xe-pw-127565v2: 127565v2</p>
-
-</body>
-</html>
-
---===============1823645658133556188==--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
