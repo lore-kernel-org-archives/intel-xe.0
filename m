@@ -4,46 +4,47 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 3627CC4167B
-	for <intel-xe@archiver.kernel.org>; Sat,  9 Dec 2023 22:52:40 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 2FA02C4167B
+	for <intel-xe@archiver.kernel.org>; Sat,  9 Dec 2023 22:53:15 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F280D10E263;
-	Sat,  9 Dec 2023 22:52:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F337A10E0E4;
+	Sat,  9 Dec 2023 22:53:14 +0000 (UTC)
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFE1710E263
- for <intel-xe@lists.freedesktop.org>; Sat,  9 Dec 2023 22:52:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D37BA10E0E4
+ for <intel-xe@lists.freedesktop.org>; Sat,  9 Dec 2023 22:53:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702162358; x=1733698358;
+ t=1702162394; x=1733698394;
  h=date:message-id:from:to:cc:subject:in-reply-to:
  references:mime-version;
- bh=LOvBWWQMTKOfzxDukkwcRr1c9kxp26LgkA46BCGJIBA=;
- b=m9Rq1ItQtNDta4powQ8qvZkkxzjKctFVi60IZxuMpZJ/47weyEUfb0ec
- LKXYLyVsom71m7h6jatnad8aAPQ75BX9fkIPpFaddQExI6BLYVjDfRIrb
- d4KOSd6AJLjMuKkGZ/mRxYJ9qf9lIPcBlwlejenEVI6sM2GgeIjkCmcnN
- MGDL8yUMowaBxVWdHsPyI04VfaqD0nHwwiDDB1EsWGr6ki6FNyd20MGxI
- MzTO7jq+VEIV7sgjwFCKkaQNIZqmlKBF54e3ySJBA5VRE0XQWpha0riI6
- BwzNyFtHb0mggSEc8f3iQWsAIQ/v2TJ3XXA0BiZ5ll8ReZC+Js0mFIxCs A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="1651255"
+ bh=qKPS63iWORggREqlR3gUbNujzgrnYjhEzLwgGpUTL5g=;
+ b=kNM325Ju3X3hiNYP/dErMDzG3kAX0rXBUueUQ1JnCSnI42uFysWIylZv
+ xoQir/9L4h3KZ5hDgKnJ9KorOeJcjtpI4Ea9uDkLUCX6dGPQuhVxLQZ2M
+ 8batqeatzNFgWkoXVYx5jGuseB6TnCz93OdrMfl6CGun/Fl96mXzdoLqO
+ KiwXUAFyNojXqECFRY9zNjscOGMO8eQY3B/TpVLkPA69ofm1mjT878Fpa
+ SjL6tCwM4Tbz+rfbTq4I6gNbUezuciPiSC/8pyzbUgnyXNLnFpVLRM3hB
+ qHP4LdgwNh0QMShBe5KowhDXEctZYEESMmEKMvbUWAFQNhN+G/QirdWd+ Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="1651262"
 X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; 
-   d="scan'208";a="1651255"
+   d="scan'208";a="1651262"
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2023 14:52:37 -0800
+ 09 Dec 2023 14:53:14 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="916345907"
-X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="916345907"
+X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="916345941"
+X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="916345941"
 Received: from adixit-mobl.amr.corp.intel.com (HELO adixit-arch.intel.com)
  ([10.212.219.31])
  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2023 14:52:36 -0800
-Date: Sat, 09 Dec 2023 14:52:36 -0800
-Message-ID: <87msujhtu3.wl-ashutosh.dixit@intel.com>
+ 09 Dec 2023 14:53:13 -0800
+Date: Sat, 09 Dec 2023 14:53:12 -0800
+Message-ID: <87lea3htt3.wl-ashutosh.dixit@intel.com>
 From: "Dixit, Ashutosh" <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH] drm/xe/pmu: Remove PMU from Xe till uapi is finalized
-In-Reply-To: <20231209224352.2720403-1-ashutosh.dixit@intel.com>
-References: <20231209224352.2720403-1-ashutosh.dixit@intel.com>
+Subject: Re: [PATCH 07/17] drm/xe/oa/uapi: Define and parse OA stream
+ properties
+In-Reply-To: <20231208064329.2387604-8-ashutosh.dixit@intel.com>
+References: <20231208064329.2387604-1-ashutosh.dixit@intel.com>	<20231208064329.2387604-8-ashutosh.dixit@intel.com>
 User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
  FLIM-LB/1.14.9 (=?ISO-8859-4?Q?Goj=F2?=) APEL-LB/10.8 EasyPG/1.0.0
  Emacs/29.1 (x86_64-pc-linux-gnu) MULE/6.0 (HANACHIRUSATO)
@@ -60,28 +61,26 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: francois.dugast@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Harish Chegondi <harish.chegondi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
 
-On Sat, 09 Dec 2023 14:43:52 -0800, Ashutosh Dixit wrote:
+On Thu, 07 Dec 2023 22:43:19 -0800, Ashutosh Dixit wrote:
 >
-> PMU uapi is likely to change in the future. Till the uapi is finalized,
-> remove PMU from Xe. PMU can be re-added after uapi is finalized.
+> +/**
+> + * struct drm_xe_oa_open_param - Params for opening an OA stream
+> + *
+> + * Stream params are specified as a chain of @drm_xe_ext_set_property
+> + * struct's, with @property values from enum @drm_xe_oa_property_id and
+> + * @xe_user_extension base.name set to @DRM_XE_OA_EXTENSION_SET_PROPERTY
+> + */
+> +struct drm_xe_oa_open_param {
+> +#define DRM_XE_OA_EXTENSION_SET_PROPERTY	0
+> +	/** @extensions: Pointer to the first extension struct */
+> +	__u64 extensions;
+> +};
 
-Complete removal of PMU for now is probably preferable than what was done
-in:
-
-https://patchwork.freedesktop.org/series/127590/
-
-Also, it is probably preferable to remove PMU code via a rebase, but if
-that is time consuming, adding this patch will remove PMU code.
-
-I was trying to send a series of 'fixup' patches, but that seemed difficult
-because a large number of patches have touched non-PMU files, so all those
-patches will need to be fixed up.
-
-Thanks.
---
-Ashutosh
+Harish pointed out that this struct is not really needed. We might as well
+point the @param field in struct @drm_xe_perf_param to the first
+@drm_xe_ext_set_property struct. I'll make this change in the next
+revision. Thanks Harish.
