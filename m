@@ -4,43 +4,43 @@ X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.lore.kernel.org (Postfix) with ESMTPS id 6B54FC4167B
-	for <intel-xe@archiver.kernel.org>; Sat,  9 Dec 2023 22:43:36 +0000 (UTC)
+	by smtp.lore.kernel.org (Postfix) with ESMTPS id 9B681C4167B
+	for <intel-xe@archiver.kernel.org>; Sat,  9 Dec 2023 22:44:00 +0000 (UTC)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D42710E0E4;
-	Sat,  9 Dec 2023 22:43:36 +0000 (UTC)
-Received: from mgamail.intel.com (mgamail.intel.com [134.134.136.126])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCB3D10E0E4
- for <intel-xe@lists.freedesktop.org>; Sat,  9 Dec 2023 22:43:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 53DEE10E0E4;
+	Sat,  9 Dec 2023 22:44:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C33FA10E0E4
+ for <intel-xe@lists.freedesktop.org>; Sat,  9 Dec 2023 22:43:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1702161813; x=1733697813;
+ t=1702161839; x=1733697839;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
  bh=qRcj8YgJv09t7ND6/NDBuq9h6TU9KoCK1mYikzy8wro=;
- b=B7a052xepCjpnE9c7s6jPabxkXJhQJyG19e0YOtvGgs2nxpQ8LT2RgYz
- VoinHxonoef4F5ykLkb1VAOxir1FS9kkNcpwpgNyohwiVyRSRWZoCU3n8
- +P61bmcOjzDgZmPOi5j8irTRdVokGSZ6IHu91bneeJEot5tli3xL6+vjQ
- YfNYDoI3injrSqztrDUzGddOKhgaEFhw80QfPIj9lYOUFvTwPJpVN0twP
- Ju2ZwOLw364S+Qgrtl2Ax/LRdBlLvJEwHntwh+IWRAxvf83rl7Cd2sMoz
- zyTO5FiKL1o0hHAcSQkqq9fA25GHoTnev1FWDoQRx4e/Kf0FLBBVbwaCb A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="379529802"
-X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="379529802"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
- by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2023 14:43:33 -0800
+ b=Ks9SURO4rVavB862I5p/WPVCV9FDrpa51bAF/jNhqPN9E3/yqmfLxX+3
+ gQVXYRyh6S2FjjCq7X4MaHdP8SQQkpa/Wgp2L+PCI2ttEX2SfQtT/ihEh
+ FC9cRGsTUbmrRQTigA6NzksK+3ptuqicWsvoR3FFXp9TYVx/A9OIXG0Bi
+ mCgslhCUr+xBnHhfRFKH4pvmCcGJEdSth3G9G/8y1aD7kAMrLrXLeB5Yr
+ jgein8qvlmMtt1IJwDOxTKFltGJaiXp0aUuGPzRpxR10BwaGoMwKK/WYV
+ Y9F9Qbs3a3WJaeE1MDp4YwMq2vWXRg8zWGiQs1+XLDZZXOGUMV8r0wfE3 Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="16079716"
+X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="16079716"
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2023 14:43:57 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="776180560"
-X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="776180560"
+X-IronPort-AV: E=McAfee;i="6600,9927,10919"; a="772507883"
+X-IronPort-AV: E=Sophos;i="6.04,264,1695711600"; d="scan'208";a="772507883"
 Received: from orsosgc001.jf.intel.com (HELO unerlige-ril.jf.intel.com)
  ([10.165.21.138])
- by fmsmga007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Dec 2023 14:43:32 -0800
+ by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Dec 2023 14:43:56 -0800
 From: Ashutosh Dixit <ashutosh.dixit@intel.com>
 To: intel-xe@lists.freedesktop.org
 Subject: [PATCH] drm/xe/pmu: Remove PMU from Xe till uapi is finalized
-Date: Sat,  9 Dec 2023 14:43:28 -0800
-Message-ID: <20231209224328.2720390-1-ashutosh.dixit@intel.com>
+Date: Sat,  9 Dec 2023 14:43:52 -0800
+Message-ID: <20231209224352.2720403-1-ashutosh.dixit@intel.com>
 X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
@@ -56,8 +56,7 @@ List-Post: <mailto:intel-xe@lists.freedesktop.org>
 List-Help: <mailto:intel-xe-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-xe>,
  <mailto:intel-xe-request@lists.freedesktop.org?subject=subscribe>
-Cc: ravind.iddamsetty@linux.intel.com, francois.dugast@intel.com,
- Lucas De Marchi <lucas.demarchi@intel.com>,
+Cc: francois.dugast@intel.com, Lucas De Marchi <lucas.demarchi@intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>
 Errors-To: intel-xe-bounces@lists.freedesktop.org
 Sender: "Intel-xe" <intel-xe-bounces@lists.freedesktop.org>
